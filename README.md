@@ -1,5 +1,5 @@
 ![](https://i.imgur.com/HFTANBN.png)
-# SanLite [![Discord](https://img.shields.io/discord/301497432909414422.svg)](https://discord.gg/KvydXt)
+# SanLite [![Discord](https://img.shields.io/discord/301755382160818177.svg)](https://discord.gg/KvydXt)
 
 SanLite is a custom version of the popular OldSchool RuneScape client RuneLite.
 
