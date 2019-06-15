@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019, Adam <Adam@sigterm.info>
+ * Copyright (c) 2018 Abex
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -24,15 +24,37 @@
  */
 package net.runelite.api;
 
-public interface EnumComposition
+import net.runelite.api.hooks.DrawCallbacks;
+import java.awt.Canvas;
+import net.runelite.api.hooks.DrawCallbacks;
+
+/**
+ * Represents the client game engine.
+ */
+public interface GameShell
 {
-	int[] getKeys();
+	/**
+	 * Gets the canvas that contains everything.
+	 *
+	 * @return the game canvas
+	 */
+	Canvas getCanvas();
 
-	int[] getIntVals();
+	/**
+	 * Gets the client main thread.
+	 *
+	 * @return the main thread
+	 */
+	Thread getClientThread();
 
-	String[] getStringVals();
+	/**
+	 * Checks whether this code is executing on the client main thread.
+	 *
+	 * @return true if on the main thread, false otherwise
+	 */
+	boolean isClientThread();
 
-	int getIntValue(int key);
+	DrawCallbacks getDrawCallbacks();
 
-	String getStringValue(int key);
+	void resizeCanvas();
 }

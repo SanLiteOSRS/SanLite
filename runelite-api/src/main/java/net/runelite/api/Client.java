@@ -30,7 +30,6 @@ import java.util.EnumSet;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.Nullable;
-import net.runelite.api.annotations.VisibleForDevtools;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.coords.WorldPoint;
 import net.runelite.api.hooks.Callbacks;
@@ -43,7 +42,7 @@ import org.slf4j.Logger;
 /**
  * Represents the RuneScape client.
  */
-public interface Client extends GameEngine
+public interface Client extends GameShell
 {
 	/**
 	 * The client invokes these callbacks to communicate to
@@ -346,7 +345,7 @@ public interface Client extends GameEngine
 	 * @return the corresponding item composition
 	 * @see ItemID
 	 */
-	ItemComposition getItemDefinition(int id);
+	ItemDefinition getItemDefinition(int id);
 
 	/**
 	 * Creates an item icon sprite with passed variables.
@@ -360,7 +359,7 @@ public interface Client extends GameEngine
 	 * @param scale the scale of the sprite
 	 * @return the created sprite
 	 */
-	SpritePixels createItemSprite(int itemId, int quantity, int border, int shadowColor, int stackable, boolean noted, int scale);
+	Sprite createItemSprite(int itemId, int quantity, int border, int shadowColor, int stackable, boolean noted, int scale);
 
 	/**
 	 * Loads and creates the sprite images of the passed archive and file IDs.
@@ -370,7 +369,7 @@ public interface Client extends GameEngine
 	 * @param fileId the sprites file ID
 	 * @return the sprite image of the file
 	 */
-	SpritePixels[] getSprites(IndexDataBase source, int archiveId, int fileId);
+	Sprite[] getSprites(IndexDataBase source, int archiveId, int fileId);
 
 	/**
 	 * Gets the sprite index.
@@ -506,6 +505,13 @@ public interface Client extends GameEngine
 	 * @return array of y-axis widget coordinates
 	 */
 	int[] getWidgetPositionsY();
+
+	/**
+	 * Creates a new widget element
+	 *
+	 * @return created widget
+	 */
+	Widget createWidget();
 
 	/**
 	 * Gets the current run energy of the logged in player.
@@ -646,13 +652,11 @@ public interface Client extends GameEngine
 	 *
 	 * @return local player variables
 	 */
-	@VisibleForDevtools
 	int[] getVarps();
 
 	/**
 	 * Gets an array of all client variables.
 	 */
-	@VisibleForDevtools
 	Map<Integer, Object> getVarcMap();
 
 	/**
@@ -703,7 +707,6 @@ public interface Client extends GameEngine
 	 * @param varbit the variable
 	 * @param value the new value
 	 */
-	@VisibleForDevtools
 	void setSetting(Varbits varbit, int value);
 
 	/**
@@ -714,7 +717,6 @@ public interface Client extends GameEngine
 	 * @return the value
 	 * @see Varbits#id
 	 */
-	@VisibleForDevtools
 	int getVarbitValue(int[] varps, int varbitId);
 
 	/**
@@ -725,7 +727,6 @@ public interface Client extends GameEngine
 	 * @return the value
 	 * @see VarPlayer#id
 	 */
-	@VisibleForDevtools
 	int getVarpValue(int[] varps, int varpId);
 
 	/**
@@ -736,7 +737,6 @@ public interface Client extends GameEngine
 	 * @param value the value
 	 * @see VarPlayer#id
 	 */
-	@VisibleForDevtools
 	void setVarpValue(int[] varps, int varpId, int value);
 
 	/**
@@ -747,7 +747,6 @@ public interface Client extends GameEngine
 	 * @param value the value
 	 * @see Varbits#id
 	 */
-	@VisibleForDevtools
 	void setVarbitValue(int[] varps, int varbit, int value);
 
 	/**
@@ -845,7 +844,7 @@ public interface Client extends GameEngine
 	 * @return the corresponding object composition
 	 * @see ObjectID
 	 */
-	ObjectComposition getObjectDefinition(int objectId);
+	ObjectDefinition getObjectDefinition(int objectId);
 
 	/**
 	 * Gets the NPC composition corresponding to an NPCs ID.
@@ -854,7 +853,7 @@ public interface Client extends GameEngine
 	 * @return the corresponding NPC composition
 	 * @see NpcID
 	 */
-	NPCComposition getNpcDefinition(int npcId);
+	NPCDefinition getNpcDefinition(int npcId);
 
 	/**
 	 * Gets an array of all world areas
@@ -875,7 +874,7 @@ public interface Client extends GameEngine
 	 *
 	 * @return all mini-map dots
 	 */
-	SpritePixels[] getMapDots();
+	Sprite[] getMapDots();
 
 	/**
 	 * Gets the local clients game cycle.
@@ -891,7 +890,7 @@ public interface Client extends GameEngine
 	 *
 	 * @return the map icons
 	 */
-	SpritePixels[] getMapIcons();
+	Sprite[] getMapIcons();
 
 	/**
 	 * Gets an array of mod icon sprites.
@@ -923,7 +922,7 @@ public interface Client extends GameEngine
 	 * @param height the height
 	 * @return the sprite image
 	 */
-	SpritePixels createSpritePixels(int[] pixels, int width, int height);
+	Sprite createSprite(int[] pixels, int width, int height);
 
 	/**
 	 * Gets the location of the local player.
@@ -1175,7 +1174,7 @@ public interface Client extends GameEngine
 	 * factors towards {@code zero} when stretching.
 	 *
 	 * @param state new integer scaling state
-	*/
+	 */
 	void setStretchedIntegerScaling(boolean state);
 
 	/**
@@ -1237,7 +1236,7 @@ public interface Client extends GameEngine
 	 * @param z the plane
 	 * @return the map sprite
 	 */
-	SpritePixels drawInstanceMap(int z);
+	Sprite drawInstanceMap(int z);
 
 	/**
 	 * Executes a client script from the cache
@@ -1462,13 +1461,10 @@ public interface Client extends GameEngine
 	@Nullable
 	CollisionData[] getCollisionMaps();
 
-	@VisibleForDevtools
 	int[] getBoostedSkillLevels();
 
-	@VisibleForDevtools
 	int[] getRealSkillLevels();
 
-	@VisibleForDevtools
 	int[] getSkillExperiences();
 
 	void queueChangedSkill(Skill skill);
@@ -1479,7 +1475,7 @@ public interface Client extends GameEngine
 	 * The key value in the map corresponds to the ID of the sprite,
 	 * and the value the sprite to replace it with.
 	 */
-	Map<Integer, SpritePixels> getSpriteOverrides();
+	Map<Integer, Sprite> getSpriteOverrides();
 
 	/**
 	 * Gets a mapping of widget sprites to override.
@@ -1487,14 +1483,14 @@ public interface Client extends GameEngine
 	 * The key value in the map corresponds to the packed widget ID,
 	 * and the value the sprite to replace the widgets sprite with.
 	 */
-	Map<Integer, SpritePixels> getWidgetSpriteOverrides();
+	Map<Integer, Sprite> getWidgetSpriteOverrides();
 
 	/**
 	 * Sets the compass sprite.
 	 *
-	 * @param spritePixels the new sprite
+	 * @param sprite the new sprite
 	 */
-	void setCompass(SpritePixels spritePixels);
+	void setCompass(Sprite sprite);
 
 	/**
 	 * Returns widget sprite cache, to be used with {@link Client#getSpriteOverrides()}
@@ -1631,13 +1627,36 @@ public interface Client extends GameEngine
 	void setSpellSelected(boolean selected);
 
 	/**
-	 * Returns client item composition cache
+	 * Returns client item definition cache
 	 */
-	NodeCache getItemCompositionCache();
+	NodeCache getItemDefinitionCache();
 
-	EnumComposition getEnum(int id);
+	EnumDefinition getEnum(int id);
 
 	void draw2010Menu();
 
 	NodeCache getHealthBarCache();
+
+	void setRenderSelf(boolean enabled);
+
+	/**
+	 *
+	 * @param param0 This is SceneX for gameObject, index for items, and 0 for npc.
+	 * @param param1 This is SceneY for gameObject, static for items, and 0 for npc.
+	 * @param type Menu entry Action type.
+	 * @param id Targets ID
+	 * @param menuEntry Do these actually matter?
+	 * @param targetString Do these actually matter?
+	 * @param canvasX Canvas X Point
+	 * @param canvasY Canvas Y Point
+	 */
+	void invokeMenuAction(int param0, int param1, int type, int id, String menuEntry, String targetString, int canvasX, int canvasY);
+
+	MouseRecorder getMouseRecorder();
+
+	void setPrintMenuActions(boolean b);
+
+	String getSelectedSpellName();
+
+	boolean getIsSpellSelected();
 }

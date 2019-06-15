@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016-2017, Adam <Adam@sigterm.info>
+ * Copyright (c) 2018, Adam <Adam@sigterm.info>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -24,13 +24,51 @@
  */
 package net.runelite.api;
 
-import javax.annotation.Nullable;
-
-/**
- * Represents a non-player character in the game.
- */
-public interface NPC extends Actor
+public interface NPCDefinition
 {
+	/**
+	 * Gets the name of the NPC.
+	 *
+	 * @return the name
+	 */
+	String getName();
+
+	/**
+	 * Gets the model IDs that compose this NPC.
+	 *
+	 * @return the NPCs model IDs
+	 */
+	int[] getModels();
+
+	/**
+	 * Gets an array of possible right-click menu actions that can be
+	 * performed on the NPC.
+	 *
+	 * @return the menu actions
+	 */
+	String[] getActions();
+
+	/**
+	 * Gets whether the NPC can be clicked.
+	 *
+	 * @return true if the NPC can be clicked, false otherwise
+	 */
+	boolean isClickable();
+
+	/**
+	 * Gets whether the NPC is visible on the mini-map.
+	 *
+	 * @return the mini-map visible state
+	 */
+	boolean isMinimapVisible();
+
+	/**
+	 * Gets whether the NPC is visible.
+	 *
+	 * @return the visible state
+	 */
+	boolean isVisible();
+
 	/**
 	 * Gets the ID of the NPC.
 	 *
@@ -39,42 +77,38 @@ public interface NPC extends Actor
 	 */
 	int getId();
 
-	@Override
-	String getName();
-
-	@Override
+	/**
+	 * Gets the combat level of the NPC.
+	 *
+	 * @return the combat level, -1 if none
+	 */
 	int getCombatLevel();
 
 	/**
-	 * Gets the index position of this NPC in the clients cached
-	 * NPC array.
+	 * Gets the configuration data for the NPC.
 	 *
-	 * @return the NPC index
-	 * @see Client#getCachedNPCs()
+	 * @return the configuration data
 	 */
-	int getIndex();
+	int[] getConfigs();
 
 	/**
-	 * Gets the composition of this NPC.
+	 * Transforms this NPC into a new state, which may have a different ID.
 	 *
-	 * @return the composition
+	 * @return the transformed composition
 	 */
-	NPCDefinition getDefinition();
+	NPCDefinition transform();
 
 	/**
-	 * Get the composition for this NPC and transform it if required
+	 * Gets the size of the NPC.
 	 *
-	 * @return the transformed NPC
+	 * @return the NPCs size
 	 */
-	@Nullable
-	NPCDefinition getTransformedDefinition();
+	int getSize();
 
 	/**
-	 * Returns true if this NPC has died
+	 * Gets the displayed overhead icon of the NPC.
 	 *
-	 * @return is npc dead
+	 * @return the overhead icon
 	 */
-	boolean isDead();
-
-	void onDefinitionChanged(NPCDefinition composition);
+	HeadIcon getOverheadIcon();
 }

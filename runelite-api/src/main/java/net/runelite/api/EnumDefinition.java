@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, Adam <Adam@sigterm.info>
+ * Copyright (c) 2019, Adam <Adam@sigterm.info>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -24,59 +24,15 @@
  */
 package net.runelite.api;
 
-/**
- * Represents the template of a specific object.
- */
-public interface ObjectComposition
+public interface EnumDefinition
 {
-	/**
-	 * Gets ID for the object.
-	 *
-	 * @return the object ID
-	 */
-	int getId();
+	int[] getKeys();
 
-	/**
-	 * Gets the name of the object.
-	 *
-	 * @return the object name
-	 */
-	String getName();
+	int[] getIntVals();
 
-	/**
-	 * Gets an array of possible right-click menu actions that can be
-	 * performed on the object.
-	 *
-	 * @return the menu actions
-	 */
-	String[] getActions();
+	String[] getStringVals();
 
-	/**
-	 * Gets the map scene ID for the object.
-	 *
-	 * @return the scene ID
-	 */
-	int getMapSceneId();
+	int getIntValue(int key);
 
-	/**
-	 * Gets the map icon ID for the object.
-	 *
-	 * @return the map icon ID
-	 */
-	int getMapIconId();
-
-	/**
-	 * Gets IDs for objects that are considered fakes of this object,
-	 * such as barrows walls.
-	 *
-	 * @return the impostor IDs
-	 */
-	int[] getImpostorIds();
-
-	/**
-	 * Gets the impostor composition for this object.
-	 *
-	 * @return the impostor
-	 */
-	ObjectComposition getImpostor();
+	String getStringValue(int key);
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, Tyler <https://github.com/tylerthardy>
+ * Copyright (c) 2017, Adam <Adam@sigterm.info>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -24,72 +24,59 @@
  */
 package net.runelite.api;
 
-import java.awt.Color;
-import java.awt.image.BufferedImage;
-
 /**
- * Represents data about the pixels of a sprite image.
+ * Represents the template of a specific object.
  */
-public interface SpritePixels
+public interface ObjectDefinition
 {
-	int DEFAULT_SHADOW_COLOR = 3153952;
-
 	/**
-	 * Draws the pixels at the given coordinates on the canvas.
+	 * Gets ID for the object.
 	 *
-	 * @param x the x-axis coordinate
-	 * @param y the y-axis coordinate
+	 * @return the object ID
 	 */
-	void drawAt(int x, int y);
+	int getId();
 
 	/**
-	 * Gets the width of the sprite image in pixels.
+	 * Gets the name of the object.
 	 *
-	 * @return the width
+	 * @return the object name
 	 */
-	int getWidth();
+	String getName();
 
 	/**
-	 * Gets the height of the sprite image in pixels.
+	 * Gets an array of possible right-click menu actions that can be
+	 * performed on the object.
 	 *
-	 * @return the height
+	 * @return the menu actions
 	 */
-	int getHeight();
+	String[] getActions();
 
 	/**
-	 * Gets an array of all pixels data in the sprite.
+	 * Gets the map scene ID for the object.
 	 *
-	 * @return the pixel data
+	 * @return the scene ID
 	 */
-	int[] getPixels();
+	int getMapSceneId();
 
 	/**
-	 * Converts the sprite into a BufferedImage.
+	 * Gets the map icon ID for the object.
 	 *
-	 * @return the resulting BufferedImage
+	 * @return the map icon ID
 	 */
-	BufferedImage toBufferedImage();
+	int getMapIconId();
 
 	/**
-	 * Writes the contents of the sprite to the given BufferedImage.
+	 * Gets IDs for objects that are considered fakes of this object,
+	 * such as barrows walls.
 	 *
-	 * @param img the passsed buffered image
-	 * @throws IllegalArgumentException if the width or height do not match
- 	 */
-	void toBufferedImage(BufferedImage img) throws IllegalArgumentException;
-
-	/**
-	 * Writes the contents of the SpritePixels with chosen outline to the BufferedImage
-	 *
-	 * @param color target color
+	 * @return the impostor IDs
 	 */
-	BufferedImage toBufferedOutline(Color color);
+	int[] getImpostorIds();
 
 	/**
-	 * Writes the contents of the SpritePixels with chosen outline to the BufferedImage
+	 * Gets the impostor composition for this object.
 	 *
-	 * @param img target image
-	 * @param color target color
+	 * @return the impostor
 	 */
-	void toBufferedOutline(BufferedImage img, int color);
+	ObjectDefinition getImpostor();
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, Adam <Adam@sigterm.info>
+ * Copyright (c) 2019, Davis Cook <https://github.com/daviscook477>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -24,18 +24,9 @@
  */
 package net.runelite.api.events;
 
-import lombok.Data;
-import net.runelite.api.ItemComposition;
-
 /**
- * An event called after a new {@link ItemComposition} is created and
- * its data is initialized.
+ * an event posted when a cannonball is fired
  */
-@Data
-public class PostItemComposition
+public class CannonballFired
 {
-	/**
-	 * The newly created item.
-	 */
-	private ItemComposition itemComposition;
 }

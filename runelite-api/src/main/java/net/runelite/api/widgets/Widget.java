@@ -26,8 +26,10 @@ package net.runelite.api.widgets;
 
 import java.awt.Rectangle;
 import java.util.Collection;
+
 import net.runelite.api.FontTypeFace;
 import net.runelite.api.Point;
+import net.runelite.api.SpriteID;
 
 /**
  * Represents an on-screen UI element that is drawn on the canvas.
@@ -252,7 +254,7 @@ public interface Widget
 	 * Gets the sprite ID displayed in the widget.
 	 *
 	 * @return the sprite ID
-	 * @see net.runelite.api.SpriteID
+	 * @see SpriteID
 	 */
 	int getSpriteId();
 
@@ -260,7 +262,7 @@ public interface Widget
 	 * Sets the sprite ID displayed in the widget.
 	 *
 	 * @param spriteId the sprite ID
-	 * @see net.runelite.api.SpriteID
+	 * @see SpriteID
 	 */
 	void setSpriteId(int spriteId);
 
@@ -821,4 +823,24 @@ public interface Widget
 	 * Can widgets under this widgets be scrolled in this widgets bounding box
 	 */
 	void setNoScrollThrough(boolean noScrollThrough);
+
+	/**
+	 * Changes the parent ID for the widget
+	 */
+	void setParentId(int id);
+
+	/**
+	 * Changes the ID of the widget
+	 */
+	void setId(int id);
+
+	/**
+	 * Sets the index of this element
+	 */
+	void setIndex(int index);
+
+	/**
+	 * Seems like this needs to set to true when creating new widgets
+	 */
+	void setIsIf3(boolean isIf3);
 }

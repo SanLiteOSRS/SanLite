@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 Abex
+ * Copyright (c) 2018, Adam <Adam@sigterm.info>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,35 +22,20 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.api;
+package net.runelite.api.events;
 
-import java.awt.Canvas;
+import lombok.Data;
+import net.runelite.api.ItemDefinition;
 
 /**
- * Represents the client game engine.
+ * An event called after a new {@link ItemDefinition} is created and
+ * its data is initialized.
  */
-public interface GameEngine
+@Data
+public class PostItemDefinition
 {
 	/**
-	 * Gets the canvas that contains everything.
-	 *
-	 * @return the game canvas
+	 * The newly created item.
 	 */
-	Canvas getCanvas();
-
-	/**
-	 * Gets the client main thread.
-	 *
-	 * @return the main thread
-	 */
-	Thread getClientThread();
-
-	/**
-	 * Checks whether this code is executing on the client main thread.
-	 *
-	 * @return true if on the main thread, false otherwise
-	 */
-	boolean isClientThread();
-
-	void resizeCanvas();
+	private ItemDefinition itemDefinition;
 }
