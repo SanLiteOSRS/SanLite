@@ -14,13 +14,12 @@ import net.runelite.rs.api.RSModel;
 @Mixin(RSClient.class)
 public abstract class ClickboxMixin implements RSClient
 {
-	@Shadow("clientInstance")
+	@Shadow("client")
 	private static RSClient client;
 
-	private static final int MAX_ENTITES_AT_MOUSE = 1000;
+	private static final int MAX_ENTITIES_AT_MOUSE = 1000;
 	private static final int CLICKBOX_CLOSE = 50;
-	private static final int CLICKBOX_FAR = 3500;
-	private static final int OBJECT_INTERACTION_FAR = 35; // Max distance, in tiles, from camera
+	private static final int CLICKBOX_FAR = 10000;
 
 	@Inject
 	private static final int[] rl$modelViewportXs = new int[4700];
@@ -35,30 +34,25 @@ public abstract class ClickboxMixin implements RSClient
 		boolean hasFlag = hash != 0L && (int) (hash >>> 16 & 1L) != 1;
 		boolean viewportContainsMouse = client.getViewportContainsMouse();
 
-		if (!hasFlag || !viewportContainsMouse || client.getOculusOrbState() != 0)
+		if (!hasFlag || !viewportContainsMouse)
 		{
 			return;
 		}
 
-		boolean bb = boundingboxCheck(model, _x, _y, _z);
-		if (!bb)
+		boolean boundingBox = boundingboxCheck(model, _x, _y, _z);
+		if (!boundingBox)
 		{
 			return;
 		}
 
-		if (Math.sqrt(_x * _x + _z * _z) > OBJECT_INTERACTION_FAR * Perspective.LOCAL_TILE_SIZE)
-		{
-			return;
-		}
-
-		// only need a boundingbox check?
+		// Only need a bounding box check?
 		if (model.isClickable())
 		{
 			addHashAtMouse(hash);
 			return;
 		}
 
-		// otherwise we must check if the mouse is in a triangle
+		// Otherwise we must check if the mouse is in a triangle
 		final int vertexCount = model.getVerticesCount();
 		final int triangleCount = model.getTrianglesCount();
 
@@ -172,14 +166,7 @@ public abstract class ClickboxMixin implements RSClient
 					else
 					{
 						var18 = viewportMouseX - radius;
-						if (var18 > y1 && var18 > y2 && var18 > y3)
-						{
-							var34 = false;
-						}
-						else
-						{
-							var34 = true;
-						}
+						var34 = var18 <= y1 || var18 <= y2 || var18 <= y3;
 					}
 				}
 			}
@@ -197,7 +184,7 @@ public abstract class ClickboxMixin implements RSClient
 	{
 		long[] entitiesAtMouse = client.getEntitiesAtMouse();
 		int count = client.getEntitiesAtMouseCount();
-		if (count < MAX_ENTITES_AT_MOUSE)
+		if (count < MAX_ENTITIES_AT_MOUSE)
 		{
 			entitiesAtMouse[count] = hash;
 			client.setEntitiesAtMouseCount(count + 1);
@@ -261,38 +248,29 @@ public abstract class ClickboxMixin implements RSClient
 		int var45 = field2317 - var39;
 		int var46 = field528 - var40;
 
-		boolean passes;
 		if (Math.abs(var44) > var41 + field1722)
 		{
-			passes = false;
+			return false;
 		}
 		else if (Math.abs(var45) > var42 + field601)
 		{
-			passes = false;
+			return false;
 		}
 		else if (Math.abs(var46) > var43 + field38)
 		{
-			passes = false;
+			return false;
 		}
 		else if (Math.abs(var46 * field638 - var45 * field1846) > var42 * field38 + var43 * field601)
 		{
-			passes = false;
+			return false;
 		}
 		else if (Math.abs(var44 * field1846 - var46 * field1720) > var43 * field1722 + var41 * field38)
 		{
-			passes = false;
+			return false;
 		}
-		else if (Math.abs(var45 * field1720 - var44 * field638) > var42 * field1722 + var41 * field601)
-		{
-			passes = false;
-		}
-		else
-		{
-			passes = true;
-		}
-
-		return passes;
+		return Math.abs(var45 * field1720 - var44 * field638) <= var42 * field1722 + var41 * field601;
 	}
+
 
 	@Inject
 	private static int rl$rot1(int var0, int var1, int var2, int var3)
