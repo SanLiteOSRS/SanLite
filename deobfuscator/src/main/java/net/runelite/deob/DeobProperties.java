@@ -25,18 +25,16 @@
 package net.runelite.deob;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
 
 public class DeobProperties
 {
 	public static String getRevision() throws IOException
 	{
-		Properties properties = new Properties();
-		InputStream resourceAsStream = DeobProperties.class.getResourceAsStream("/deob.properties");
-		properties.load(resourceAsStream);
+//		Properties properties = new Properties();
+//		InputStream resourceAsStream = DeobProperties.class.getResourceAsStream("/deob.properties");
+//		properties.load(resourceAsStream);
 
 		// TODO: Replace with git.commit.id=${buildNumber} when update process is setup in CI
-		return "Temporary value, replace later";
+		return "180";
 	}
 }
