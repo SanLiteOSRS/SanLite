@@ -1430,6 +1430,14 @@ public interface Client extends GameShell
 	void setNPCsHidden(boolean state);
 
 	/**
+	 * Sets which NPCs are hidden
+	 *
+	 * @param names the names of the npcs seperated by ','
+	 */
+	void setNPCsNames(String names);
+
+
+	/**
 	 * Sets whether 2D sprites (ie. overhead prayers) related to
 	 * the NPCs are hidden.
 	 *
