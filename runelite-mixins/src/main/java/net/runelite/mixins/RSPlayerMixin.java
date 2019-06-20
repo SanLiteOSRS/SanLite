@@ -55,20 +55,20 @@ import net.runelite.api.model.Triangle;
 import net.runelite.api.model.Vertex;
 import net.runelite.rs.api.RSClient;
 import net.runelite.rs.api.RSModel;
-import net.runelite.rs.api.RSName;
 import net.runelite.rs.api.RSPlayer;
+import net.runelite.rs.api.RSUsername;
 
 @Mixin(RSPlayer.class)
 public abstract class RSPlayerMixin implements RSPlayer
 {
-	@Shadow("clientInstance")
+	@Shadow("client")
 	private static RSClient client;
 
 	@Inject
 	@Override
 	public String getName()
 	{
-		final RSName rsName = getRsName();
+		final RSUsername rsName = getRsName();
 
 		if (rsName == null)
 		{
@@ -112,12 +112,6 @@ public abstract class RSPlayerMixin implements RSPlayer
 	@Override
 	public SkullIcon getSkullIcon()
 	{
-		if (this != client.getLocalPlayer())
-		{
-			// prevent seeing skulls of other players.
-			return null;
-		}
-
 		switch (getRsSkullIcon())
 		{
 			case 0:
@@ -243,14 +237,14 @@ public abstract class RSPlayerMixin implements RSPlayer
 		}
 		int actionFrame = getActionFrame();
 		int poseFrame = getPoseFrame();
-		int spotAnimFrame = getSpotAnimFrame();
+		int spotAnimFrame = getSpotAnimationFrame();
 		try
 		{
 			// combine the frames with the frame cycle so we can access this information in the sequence methods
 			// without having to change method calls
 			setActionFrame(Integer.MIN_VALUE | getActionFrameCycle() << 16 | actionFrame);
 			setPoseFrame(Integer.MIN_VALUE | getPoseFrameCycle() << 16 | poseFrame);
-			setSpotAnimFrame(Integer.MIN_VALUE | getSpotAnimFrameCycle() << 16 | spotAnimFrame);
+			setSpotAnimationFrame(Integer.MIN_VALUE | getSpotAnimationFrameCycle() << 16 | spotAnimFrame);
 			return rs$getModel();
 		}
 		finally
@@ -258,7 +252,7 @@ public abstract class RSPlayerMixin implements RSPlayer
 			// reset frames
 			setActionFrame(actionFrame);
 			setPoseFrame(poseFrame);
-			setSpotAnimFrame(spotAnimFrame);
+			setSpotAnimationFrame(spotAnimFrame);
 		}
 	}
 }

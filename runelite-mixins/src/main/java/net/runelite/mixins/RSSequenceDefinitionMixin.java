@@ -1,27 +1,3 @@
-/*
- * Copyright (c) 2018, Adam <Adam@sigterm.info>
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
- *
- * 1. Redistributions of source code must retain the above copyright notice, this
- *    list of conditions and the following disclaimer.
- * 2. Redistributions in binary form must reproduce the above copyright notice,
- *    this list of conditions and the following disclaimer in the documentation
- *    and/or other materials provided with the distribution.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
- * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
- * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
- * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
- * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
- * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
- * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
- * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
- * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- */
 package net.runelite.mixins;
 
 import net.runelite.api.mixins.Copy;
@@ -31,19 +7,19 @@ import net.runelite.api.mixins.Shadow;
 import net.runelite.rs.api.RSClient;
 import net.runelite.rs.api.RSFrames;
 import net.runelite.rs.api.RSModel;
-import net.runelite.rs.api.RSSequence;
+import net.runelite.rs.api.RSSequenceDefinition;
 
-@Mixin(RSSequence.class)
-public abstract class RSSequenceMixin implements RSSequence
+@Mixin(RSSequenceDefinition.class)
+public abstract class RSSequenceDefinitionMixin implements RSSequenceDefinition
 {
-	@Shadow("clientInstance")
+	@Shadow("client")
 	private static RSClient client;
 
-	@Copy("applyTransformations")
-	public abstract RSModel rs$applyTransformations(RSModel model, int actionFrame, RSSequence poseSeq, int poseFrame);
+	@Copy("animateSequence2")
+	public abstract RSModel rs$applyTransformations(RSModel model, int actionFrame, RSSequenceDefinition poseSeq, int poseFrame);
 
-	@Replace("applyTransformations")
-	public RSModel rl$applyTransformations(RSModel model, int actionFrame, RSSequence poseSeq, int poseFrame)
+	@Replace("animateSequence2")
+	public RSModel rl$applyTransformations(RSModel model, int actionFrame, RSSequenceDefinition poseSeq, int poseFrame)
 	{
 		// reset frame ids because we're not interpolating this
 		if (actionFrame < 0)
@@ -59,10 +35,10 @@ public abstract class RSSequenceMixin implements RSSequence
 		return rs$applyTransformations(model, actionFrame, poseSeq, poseFrame);
 	}
 
-	@Copy("transformActorModel")
+	@Copy("animateSequence")
 	public abstract RSModel rs$transformActorModel(RSModel model, int frameIdx);
 
-	@Replace("transformActorModel")
+	@Replace("animateSequence")
 	public RSModel rl$transformActorModel(RSModel model, int frame)
 	{
 		// check if the frame has been modified
@@ -111,10 +87,10 @@ public abstract class RSSequenceMixin implements RSSequence
 		}
 	}
 
-	@Copy("transformObjectModel")
+	@Copy("animateObject")
 	public abstract RSModel rs$transformObjectModel(RSModel model, int frame, int rotation);
 
-	@Replace("transformObjectModel")
+	@Replace("animateObject")
 	public RSModel rl$transformObjectModel(RSModel model, int frame, int rotation)
 	{
 		// check if the frame has been modified
@@ -190,10 +166,10 @@ public abstract class RSSequenceMixin implements RSSequence
 		}
 	}
 
-	@Copy("transformSpotAnimModel")
+	@Copy("animateSpotAnimation")
 	public abstract RSModel rs$transformSpotAnimModel(RSModel model, int frame);
 
-	@Replace("transformSpotAnimModel")
+	@Replace("animateSpotAnimation")
 	public RSModel rl$transformSpotAnimModel(RSModel model, int frame)
 	{
 		// check if the frame has been modified

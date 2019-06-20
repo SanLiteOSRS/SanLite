@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, trimbe <github.com/trimbe>
+ * Copyright (c) 2018 Abex
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -24,48 +24,77 @@
  */
 package net.runelite.mixins;
 
-import net.runelite.api.ClanMember;
-import net.runelite.api.events.ClanMemberJoined;
-import net.runelite.api.events.ClanMemberLeft;
+import java.awt.event.FocusEvent;
+import net.runelite.api.events.FocusChanged;
+import net.runelite.api.hooks.DrawCallbacks;
+import net.runelite.api.mixins.FieldHook;
 import net.runelite.api.mixins.Inject;
+import net.runelite.api.mixins.MethodHook;
 import net.runelite.api.mixins.Mixin;
 import net.runelite.api.mixins.Shadow;
-import net.runelite.rs.api.RSClanMemberManager;
 import net.runelite.rs.api.RSClient;
-import net.runelite.rs.api.RSName;
-import net.runelite.rs.api.RSNameable;
+import net.runelite.rs.api.RSGameShell;
 
-@Mixin(RSClanMemberManager.class)
-public abstract class RSClanMemberManagerMixin implements RSClanMemberManager
+@Mixin(RSGameShell.class)
+public abstract class RSGameShellMixin implements RSGameShell
 {
-	@Shadow("clientInstance")
+	@Shadow("client")
 	private static RSClient client;
 
 	@Inject
-	@Override
-	public void rl$add(RSName name, RSName prevName)
-	{
-		ClanMember member = findByName(name);
-		if (member == null)
-		{
-			return;
-		}
+	private Thread thread;
 
-		ClanMemberJoined event = new ClanMemberJoined(member);
-		client.getCallbacks().postDeferred(event);
+	@Inject
+	@Override
+	public Thread getClientThread()
+	{
+		return thread;
 	}
 
 	@Inject
 	@Override
-	public void rl$remove(RSNameable nameable)
+	public boolean isClientThread()
 	{
-		ClanMember member = findByName(nameable.getRsName());
-		if (member == null)
-		{
-			return;
-		}
+		return thread == Thread.currentThread();
+	}
 
-		ClanMemberLeft event = new ClanMemberLeft(member);
-		client.getCallbacks().postDeferred(event);
+	@Inject
+	@MethodHook("run")
+	public void onRun()
+	{
+		thread = Thread.currentThread();
+		thread.setName("Client");
+	}
+
+	@Inject
+	@MethodHook("focusGained")
+	public void onFocusGained(FocusEvent focusEvent)
+	{
+		final FocusChanged focusChanged = new FocusChanged();
+		focusChanged.setFocused(true);
+		client.getCallbacks().post(focusChanged);
+	}
+
+	@Inject
+	@MethodHook("post")
+	public void onPost(Object canvas)
+	{
+		DrawCallbacks drawCallbacks = client.getDrawCallbacks();
+		if (drawCallbacks != null)
+		{
+			drawCallbacks.draw();
+		}
+	}
+
+	@FieldHook("isCanvasInvalid")
+	@Inject
+	public void onReplaceCanvasNextFrameChanged(int idx)
+	{
+		// when this is initially called the client instance doesn't exist yet
+		if (client != null && client.isGpu() && isReplaceCanvasNextFrame())
+		{
+			setReplaceCanvasNextFrame(false);
+			setResizeCanvasNextFrame(true);
+		}
 	}
 }

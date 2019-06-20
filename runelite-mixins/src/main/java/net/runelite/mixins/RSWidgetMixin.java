@@ -44,8 +44,8 @@ import static net.runelite.api.widgets.WidgetInfo.TO_CHILD;
 import static net.runelite.api.widgets.WidgetInfo.TO_GROUP;
 import net.runelite.api.widgets.WidgetItem;
 import net.runelite.rs.api.RSClient;
-import net.runelite.rs.api.RSHashTable;
 import net.runelite.rs.api.RSNode;
+import net.runelite.rs.api.RSNodeHashTable;
 import net.runelite.rs.api.RSWidget;
 
 @Mixin(RSWidget.class)
@@ -53,7 +53,7 @@ public abstract class RSWidgetMixin implements RSWidget
 {
 	private static final int ITEM_SLOT_SIZE = 32;
 
-	@Shadow("clientInstance")
+	@Shadow("client")
 	private static RSClient client;
 
 	@Inject
@@ -153,7 +153,7 @@ public abstract class RSWidgetMixin implements RSWidget
 
 		// also the widget may not have been drawn, yet
 		int groupId = TO_GROUP(getId());
-		RSHashTable componentTable = client.getComponentTable();
+		RSNodeHashTable componentTable = client.getComponentTable();
 		RSNode[] buckets = componentTable.getBuckets();
 		for (RSNode node : buckets)
 		{

@@ -1,4 +1,5 @@
 /*
+ * Copyright (c) 2018, trimbe <github.com/trimbe>
  * Copyright (c) 2018, Adam <Adam@sigterm.info>
  * All rights reserved.
  *
@@ -24,25 +25,48 @@
  */
 package net.runelite.mixins;
 
-import net.runelite.api.events.NameableNameChanged;
-import net.runelite.api.mixins.FieldHook;
+import net.runelite.api.MessageNode;
 import net.runelite.api.mixins.Inject;
 import net.runelite.api.mixins.Mixin;
-import net.runelite.api.mixins.Shadow;
-import net.runelite.rs.api.RSClient;
-import net.runelite.rs.api.RSNameable;
+import net.runelite.rs.api.RSChatChannel;
+import net.runelite.rs.api.RSDualNode;
 
-@Mixin(RSNameable.class)
-public abstract class RSNameableMixin implements RSNameable
+@Mixin(RSChatChannel.class)
+public abstract class RSChatChannelMixin implements RSChatChannel
 {
-	@Shadow("clientInstance")
-	private static RSClient client;
-
-	@FieldHook("prevName")
 	@Inject
-	public void onPrevNameChanged(int idx)
+	@Override
+	public void removeMessageNode(MessageNode node)
 	{
-		NameableNameChanged nameableNameChanged = new NameableNameChanged(this);
-		client.getCallbacks().post(nameableNameChanged);
+		MessageNode[] lines = getLines();
+		final int length = getLength();
+		int found = -1;
+
+		// Find the index of the node
+		for (int idx = 0; idx < length; idx++)
+		{
+			if (lines[idx] == node)
+			{
+				found = idx;
+				break;
+			}
+		}
+
+		if (found == -1)
+		{
+			return;
+		}
+
+		// Shift down all other messages
+		for (int i = found; i < length - 1; i++)
+		{
+			lines[i] = lines[i + 1];
+		}
+		lines[length - 1] = null;
+		setLength(length - 1);
+
+		RSDualNode rsCacheableNode = (RSDualNode) node;
+		rsCacheableNode.unlink();
+		rsCacheableNode.unlinkDual();
 	}
 }

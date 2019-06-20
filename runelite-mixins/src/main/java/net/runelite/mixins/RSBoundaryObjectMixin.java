@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, Adam <Adam@sigterm.info>
+ * Copyright (c) 2018, SomeoneWithAnInternetConnection
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -24,102 +24,101 @@
  */
 package net.runelite.mixins;
 
-import net.runelite.api.Tile;
-import net.runelite.api.events.ItemQuantityChanged;
-import net.runelite.api.mixins.FieldHook;
+import java.awt.geom.Area;
+import net.runelite.api.Model;
+import net.runelite.api.Perspective;
+import net.runelite.api.Renderable;
 import net.runelite.api.mixins.Inject;
 import net.runelite.api.mixins.Mixin;
 import net.runelite.api.mixins.Shadow;
+import net.runelite.rs.api.RSBoundaryObject;
 import net.runelite.rs.api.RSClient;
-import net.runelite.rs.api.RSItem;
 
-@Mixin(RSItem.class)
-public abstract class RSItemMixin implements RSItem
+@Mixin(RSBoundaryObject.class)
+public abstract class RSBoundaryObjectMixin implements RSBoundaryObject
 {
-	@Shadow("clientInstance")
+	@Shadow("client")
 	private static RSClient client;
 
 	@Inject
-	private int rl$sceneX = -1;
+	private int wallPlane;
 
 	@Inject
-	private int rl$sceneY = -1;
-
-	@Inject
-	RSItemMixin()
+	@Override
+	public int getPlane()
 	{
+		return wallPlane;
 	}
 
 	@Inject
 	@Override
-	public Tile getTile()
+	public void setPlane(int plane)
 	{
-		int x = rl$sceneX;
-		int y = rl$sceneY;
+		this.wallPlane = plane;
+	}
 
-		if (x == -1 || y == -1)
+	@Inject
+	private Model getModelA()
+	{
+		Renderable renderable = getRenderable1();
+		if (renderable == null)
 		{
 			return null;
 		}
 
-		Tile[][][] tiles = client.getScene().getTiles();
-		Tile tile = tiles[client.getPlane()][x][y];
-		return tile;
-	}
-
-	@Inject
-	@Override
-	public void onUnlink()
-	{
-		if (rl$sceneX != -1)
+		if (renderable instanceof Model)
 		{
-			// on despawn, the first item unlinked is the item despawning. However on spawn
-			// items can be delinked in order to sort them, so we can't assume the item here is despawning
-			if (client.getLastItemDespawn() == null)
-			{
-				client.setLastItemDespawn(this);
-			}
+			return (Model) renderable;
+		}
+		else
+		{
+			return renderable.getModel();
 		}
 	}
 
 	@Inject
-	@FieldHook(value = "quantity", before = true)
-	public void quantityChanged(int quantity)
+	private Model getModelB()
 	{
-		if (rl$sceneX != -1)
+		Renderable renderable = getRenderable2();
+		if (renderable == null)
 		{
-			client.getLogger().debug("Item quantity changed: {} ({} -> {})", getId(), getQuantity(), quantity);
+			return null;
+		}
 
-			ItemQuantityChanged itemQuantityChanged = new ItemQuantityChanged(this, getTile(), getQuantity(), quantity);
-			client.getCallbacks().post(itemQuantityChanged);
+		if (renderable instanceof Model)
+		{
+			return (Model) renderable;
+		}
+		else
+		{
+			return renderable.getModel();
 		}
 	}
 
 	@Inject
 	@Override
-	public int getX()
+	public Area getClickbox()
 	{
-		return rl$sceneX;
-	}
+		Area clickbox = new Area();
 
-	@Inject
-	@Override
-	public void setX(int x)
-	{
-		rl$sceneX = x;
-	}
+		Area clickboxA = Perspective.getClickbox(client, getModelA(), 0, getLocalLocation());
+		Area clickboxB = Perspective.getClickbox(client, getModelB(), 0, getLocalLocation());
 
-	@Inject
-	@Override
-	public int getY()
-	{
-		return rl$sceneY;
-	}
+		if (clickboxA == null && clickboxB == null)
+		{
+			return null;
+		}
 
-	@Inject
-	@Override
-	public void setY(int y)
-	{
-		rl$sceneY = y;
+		if (clickboxA != null)
+		{
+			clickbox.add(clickboxA);
+		}
+
+		if (clickboxB != null)
+		{
+			clickbox.add(clickboxB);
+		}
+
+		return clickbox;
 	}
 }

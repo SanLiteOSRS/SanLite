@@ -26,10 +26,10 @@ package net.runelite.mixins;
 
 import net.runelite.api.mixins.Inject;
 import net.runelite.api.mixins.Mixin;
-import net.runelite.rs.api.RSEnum;
+import net.runelite.rs.api.RSEnumDefinition;
 
-@Mixin(RSEnum.class)
-public abstract class RSEnumMixin implements RSEnum
+@Mixin(RSEnumDefinition.class)
+public abstract class RSEnumDefinitionMixin implements RSEnumDefinition
 {
 	@Inject
 	@Override

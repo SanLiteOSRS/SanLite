@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, Adam <Adam@sigterm.info>
+ * Copyright (c) 2018, SomeoneWithAnInternetConnection
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -24,61 +24,62 @@
  */
 package net.runelite.mixins;
 
+import java.awt.geom.Area;
+import net.runelite.api.Model;
+import net.runelite.api.Perspective;
+import net.runelite.api.Renderable;
 import net.runelite.api.mixins.Inject;
 import net.runelite.api.mixins.Mixin;
-import net.runelite.rs.api.RSSceneTilePaint;
+import net.runelite.api.mixins.Shadow;
+import net.runelite.rs.api.RSClient;
+import net.runelite.rs.api.RSFloorDecoration;
 
-@Mixin(RSSceneTilePaint.class)
-public abstract class RSSceneTilePaintMixin implements RSSceneTilePaint
+@Mixin(RSFloorDecoration.class)
+public abstract class RSFloorDecorationMixin implements RSFloorDecoration
 {
-	@Inject
-	private int rl$paintModelBufferOffset;
+	@Shadow("client")
+	private static RSClient client;
 
 	@Inject
-	private int rl$paintModelUvBufferOffset;
-
-	@Inject
-	private int rl$paintModelBufferLen;
+	private int groundObjectPlane;
 
 	@Inject
 	@Override
-	public int getBufferOffset()
+	public int getPlane()
 	{
-		return rl$paintModelBufferOffset;
+		return groundObjectPlane;
 	}
 
 	@Inject
 	@Override
-	public void setBufferOffset(int bufferOffset)
+	public void setPlane(int plane)
 	{
-		rl$paintModelBufferOffset = bufferOffset;
+		this.groundObjectPlane = plane;
+	}
+
+	@Inject
+	private Model getModel()
+	{
+		Renderable renderable = getRenderable();
+		if (renderable == null)
+		{
+			return null;
+		}
+
+		if (renderable instanceof Model)
+		{
+			return (Model) renderable;
+		}
+		else
+		{
+			return renderable.getModel();
+		}
 	}
 
 	@Inject
 	@Override
-	public int getUvBufferOffset()
+	public Area getClickbox()
 	{
-		return rl$paintModelUvBufferOffset;
-	}
-
-	@Inject
-	@Override
-	public void setUvBufferOffset(int bufferOffset)
-	{
-		rl$paintModelUvBufferOffset = bufferOffset;
-	}
-
-	@Inject
-	@Override
-	public int getBufferLen()
-	{
-		return rl$paintModelBufferLen;
-	}
-
-	@Inject
-	@Override
-	public void setBufferLen(int bufferLen)
-	{
-		rl$paintModelBufferLen = bufferLen;
+		return Perspective.getClickbox(client, getModel(), 0, getLocalLocation());
 	}
 }
