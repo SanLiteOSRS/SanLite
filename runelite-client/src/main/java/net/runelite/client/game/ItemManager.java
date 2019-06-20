@@ -46,12 +46,12 @@ import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Client;
 import static net.runelite.api.Constants.CLIENT_DEFAULT_ZOOM;
 import net.runelite.api.GameState;
-import net.runelite.api.ItemComposition;
+import net.runelite.api.ItemDefinition;
 import net.runelite.api.ItemID;
 import static net.runelite.api.ItemID.*;
-import net.runelite.api.SpritePixels;
+import net.runelite.api.Sprite;
 import net.runelite.api.events.GameStateChanged;
-import net.runelite.api.events.PostItemComposition;
+import net.runelite.api.events.PostItemDefinition;
 import net.runelite.client.callback.ClientThread;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.http.api.item.ItemClient;
@@ -86,7 +86,7 @@ public class ItemManager
 	private Map<Integer, ItemPrice> itemPrices = Collections.emptyMap();
 	private Map<Integer, ItemStats> itemStats = Collections.emptyMap();
 	private final LoadingCache<ImageKey, AsyncBufferedImage> itemImages;
-	private final LoadingCache<Integer, ItemComposition> itemCompositions;
+	private final LoadingCache<Integer, ItemDefinition> itemCompositions;
 	private final LoadingCache<OutlineKey, BufferedImage> itemOutlines;
 
 	// Worn items with weight reducing property have a different worn and inventory ItemID
@@ -177,10 +177,10 @@ public class ItemManager
 		itemCompositions = CacheBuilder.newBuilder()
 			.maximumSize(1024L)
 			.expireAfterAccess(1, TimeUnit.HOURS)
-			.build(new CacheLoader<Integer, ItemComposition>()
+			.build(new CacheLoader<Integer, ItemDefinition>()
 			{
 				@Override
-				public ItemComposition load(Integer key) throws Exception
+				public ItemDefinition load(Integer key) throws Exception
 				{
 					return client.getItemDefinition(key);
 				}
@@ -251,14 +251,14 @@ public class ItemManager
 	}
 
 	@Subscribe
-	public void onPostItemComposition(PostItemComposition event)
+	public void onPostItemComposition(PostItemDefinition event)
 	{
-		itemCompositions.put(event.getItemComposition().getId(), event.getItemComposition());
+		itemCompositions.put(event.getItemDefinition().getId(), event.getItemDefinition());
 	}
 
 	/**
 	 * Invalidates internal item manager item composition cache (but not client item composition cache)
-	 * @see Client#getItemCompositionCache()
+	 * @see Client#getItemDefinitionCache()
 	 */
 	public void invalidateItemCompositionCache()
 	{
@@ -309,7 +309,7 @@ public class ItemManager
 	@Nullable
 	public ItemStats getItemStats(int itemId, boolean allowNote)
 	{
-		ItemComposition itemComposition = getItemComposition(itemId);
+		ItemDefinition itemComposition = getItemComposition(itemId);
 
 		if (itemComposition == null || itemComposition.getName() == null || (!allowNote && itemComposition.getNote() != -1))
 		{
@@ -347,7 +347,7 @@ public class ItemManager
 	 * @param itemId item id
 	 * @return item composition
 	 */
-	public ItemComposition getItemComposition(int itemId)
+	public ItemDefinition getItemComposition(int itemId)
 	{
 		assert client.isClientThread() : "getItemComposition must be called on client thread";
 		return itemCompositions.getUnchecked(itemId);
@@ -358,7 +358,7 @@ public class ItemManager
 	 */
 	public int canonicalize(int itemID)
 	{
-		ItemComposition itemComposition = getItemComposition(itemID);
+		ItemDefinition itemComposition = getItemComposition(itemID);
 
 		if (itemComposition.getNote() != -1)
 		{
@@ -388,7 +388,7 @@ public class ItemManager
 			{
 				return false;
 			}
-			SpritePixels sprite = client.createItemSprite(itemId, quantity, 1, SpritePixels.DEFAULT_SHADOW_COLOR,
+			Sprite sprite = client.createItemSprite(itemId, quantity, 1, Sprite.DEFAULT_SHADOW_COLOR,
 				stackable ? 1 : 0, false, CLIENT_DEFAULT_ZOOM);
 			if (sprite == null)
 			{
@@ -449,7 +449,7 @@ public class ItemManager
 	 */
 	private BufferedImage loadItemOutline(final int itemId, final int itemQuantity, final Color outlineColor)
 	{
-		final SpritePixels itemSprite = client.createItemSprite(itemId, itemQuantity, 1, 0, 0, true, 710);
+		final Sprite itemSprite = client.createItemSprite(itemId, itemQuantity, 1, 0, 0, true, 710);
 		return itemSprite.toBufferedOutline(outlineColor);
 	}
 

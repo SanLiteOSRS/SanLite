@@ -28,14 +28,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import javax.inject.Inject;
-import net.runelite.api.Client;
-import net.runelite.api.InventoryID;
-import net.runelite.api.Item;
-import net.runelite.api.ItemComposition;
-import net.runelite.api.ItemContainer;
-import net.runelite.api.ItemID;
-import net.runelite.api.MenuAction;
-import net.runelite.api.MenuEntry;
+
+import net.runelite.api.*;
 import net.runelite.api.widgets.WidgetID;
 import net.runelite.api.widgets.WidgetInfo;
 import net.runelite.client.game.ItemManager;
@@ -181,7 +175,7 @@ class ItemPricesOverlay extends Overlay
 			return StackFormatter.formatNumber(qty * 1000) + " gp";
 		}
 
-		ItemComposition itemDef = itemManager.getItemComposition(id);
+		ItemDefinition itemDef = itemManager.getItemComposition(id);
 		if (itemDef.getNote() != -1)
 		{
 			id = itemDef.getLinkedNoteId();

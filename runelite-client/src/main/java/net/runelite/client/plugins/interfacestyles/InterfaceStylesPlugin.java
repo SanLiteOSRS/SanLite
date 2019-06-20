@@ -30,12 +30,7 @@ import com.google.inject.Provides;
 import java.awt.image.BufferedImage;
 import javax.inject.Inject;
 import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.Client;
-import net.runelite.api.HealthBar;
-import net.runelite.api.HealthBarOverride;
-import net.runelite.api.NodeCache;
-import net.runelite.api.SpriteID;
-import net.runelite.api.SpritePixels;
+import net.runelite.api.*;
 import net.runelite.api.events.BeforeMenuRender;
 import net.runelite.api.events.ConfigChanged;
 import net.runelite.api.events.PostHealthBar;
@@ -123,7 +118,7 @@ public class InterfaceStylesPlugin extends Plugin
 		}
 
 		HealthBar healthBar = postHealthBar.getHealthBar();
-		SpritePixels frontSprite = healthBar.getHealthBarFrontSprite();
+		Sprite frontSprite = healthBar.getHealthBarFrontSprite();
 
 		// Check if this is the health bar we are replacing
 		if (frontSprite == healthBarOverride.getFrontSprite() || frontSprite == healthBarOverride.getFrontSpriteLarge())
@@ -162,7 +157,7 @@ public class InterfaceStylesPlugin extends Plugin
 				if (skin == config.skin())
 				{
 					String file = config.skin().toString() + "/" + spriteOverride.getSpriteID() + ".png";
-					SpritePixels spritePixels = getFileSpritePixels(file);
+					Sprite spritePixels = getFileSpritePixels(file);
 
 					if (spriteOverride.getSpriteID() == SpriteID.COMPASS_TEXTURE)
 					{
@@ -194,7 +189,7 @@ public class InterfaceStylesPlugin extends Plugin
 			if (widgetOverride.getSkin() == config.skin())
 			{
 				String file = config.skin().toString() + "/widget/" + widgetOverride.getName() + ".png";
-				SpritePixels spritePixels = getFileSpritePixels(file);
+				Sprite spritePixels = getFileSpritePixels(file);
 
 				if (spritePixels != null)
 				{
@@ -218,7 +213,7 @@ public class InterfaceStylesPlugin extends Plugin
 		}
 	}
 
-	private SpritePixels getFileSpritePixels(String file)
+	private Sprite getFileSpritePixels(String file)
 	{
 		try
 		{
@@ -280,11 +275,11 @@ public class InterfaceStylesPlugin extends Plugin
 		{
 			String fileBase = Skin.AROUND_2010.toString() + "/healthbar/";
 
-			SpritePixels frontSprite = getFileSpritePixels(fileBase + "front.png");
-			SpritePixels backSprite = getFileSpritePixels(fileBase + "back.png");
+			Sprite frontSprite = getFileSpritePixels(fileBase + "front.png");
+			Sprite backSprite = getFileSpritePixels(fileBase + "back.png");
 
-			SpritePixels frontSpriteLarge = getFileSpritePixels(fileBase + "front_large.png");
-			SpritePixels backSpriteLarge = getFileSpritePixels(fileBase + "back_large.png");
+			Sprite frontSpriteLarge = getFileSpritePixels(fileBase + "front_large.png");
+			Sprite backSpriteLarge = getFileSpritePixels(fileBase + "back_large.png");
 
 			HealthBarOverride override = new HealthBarOverride(frontSprite, backSprite, frontSpriteLarge, backSpriteLarge);
 			healthBarOverride = override;
@@ -319,7 +314,7 @@ public class InterfaceStylesPlugin extends Plugin
 
 		if (compassImage != null)
 		{
-			SpritePixels compass = ImageUtil.getImageSpritePixels(compassImage, client);
+			Sprite compass = ImageUtil.getImageSpritePixels(compassImage, client);
 			client.setCompass(compass);
 		}
 	}

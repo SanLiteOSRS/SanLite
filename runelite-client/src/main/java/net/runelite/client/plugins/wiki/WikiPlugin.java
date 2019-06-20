@@ -31,12 +31,7 @@ import java.util.regex.Pattern;
 import javax.inject.Inject;
 import javax.inject.Provider;
 import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.Client;
-import net.runelite.api.MenuAction;
-import net.runelite.api.MenuEntry;
-import net.runelite.api.NPC;
-import net.runelite.api.NPCComposition;
-import net.runelite.api.ObjectComposition;
+import net.runelite.api.*;
 import net.runelite.api.coords.WorldPoint;
 import net.runelite.api.events.MenuEntryAdded;
 import net.runelite.api.events.MenuOptionClicked;
@@ -226,7 +221,7 @@ public class WikiPlugin extends Plugin
 				{
 					type = "npc";
 					NPC npc = client.getCachedNPCs()[ev.getId()];
-					NPCComposition nc = npc.getTransformedComposition();
+					NPCDefinition nc = npc.getTransformedDefinition();
 					id = nc.getId();
 					name = nc.getName();
 					location = npc.getWorldLocation();
@@ -235,7 +230,7 @@ public class WikiPlugin extends Plugin
 				case SPELL_CAST_ON_GAME_OBJECT:
 				{
 					type = "object";
-					ObjectComposition lc = client.getObjectDefinition(ev.getId());
+					ObjectDefinition lc = client.getObjectDefinition(ev.getId());
 					if (lc.getImpostorIds() != null)
 					{
 						lc = lc.getImpostor();

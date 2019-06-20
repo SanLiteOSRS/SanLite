@@ -49,21 +49,7 @@ import java.util.stream.Collectors;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import lombok.Getter;
-import net.runelite.api.Client;
-import net.runelite.api.InventoryID;
-import net.runelite.api.Item;
-import net.runelite.api.ItemComposition;
-import net.runelite.api.ItemContainer;
-import net.runelite.api.MenuAction;
-import net.runelite.api.MenuEntry;
-import net.runelite.api.Point;
-import net.runelite.api.ScriptEvent;
-import net.runelite.api.ScriptID;
-import net.runelite.api.SoundEffectID;
-import net.runelite.api.SpriteID;
-import net.runelite.api.VarClientInt;
-import net.runelite.api.VarClientStr;
-import net.runelite.api.Varbits;
+import net.runelite.api.*;
 import net.runelite.api.events.MenuEntryAdded;
 import net.runelite.api.events.MenuOptionClicked;
 import net.runelite.api.vars.InputType;
@@ -577,7 +563,7 @@ public class TabInterface
 		{
 			if (event.getMenuOption().startsWith(CHANGE_ICON + " ("))
 			{
-				ItemComposition item = getItem(event.getActionParam());
+				ItemDefinition item = getItem(event.getActionParam());
 				int itemId = itemManager.canonicalize(item.getId());
 				iconToSet.setIconItemId(itemId);
 				iconToSet.getIcon().setItemId(itemId);
@@ -611,7 +597,7 @@ public class TabInterface
 		{
 			// Add "remove" menu entry to all items in bank while tab is selected
 			event.consume();
-			final ItemComposition item = getItem(event.getActionParam());
+			final ItemDefinition item = getItem(event.getActionParam());
 			final int itemId = item.getId();
 			tagManager.removeTag(itemId, activeTab.getTag());
 			bankSearch.search(InputType.SEARCH, TAG_SEARCH + activeTab.getTag(), true);
@@ -991,7 +977,7 @@ public class TabInterface
 	}
 
 
-	private ItemComposition getItem(int idx)
+	private ItemDefinition getItem(int idx)
 	{
 		ItemContainer bankContainer = client.getItemContainer(InventoryID.BANK);
 		Item item = bankContainer.getItems()[idx];

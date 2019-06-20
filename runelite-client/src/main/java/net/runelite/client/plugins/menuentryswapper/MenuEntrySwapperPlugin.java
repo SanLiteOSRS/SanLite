@@ -31,19 +31,8 @@ import java.util.Set;
 import javax.inject.Inject;
 import lombok.Getter;
 import lombok.Setter;
-import net.runelite.api.Client;
-import net.runelite.api.GameState;
-import net.runelite.api.ItemComposition;
-import net.runelite.api.MenuAction;
-import net.runelite.api.MenuEntry;
-import net.runelite.api.NPC;
-import net.runelite.api.events.ConfigChanged;
-import net.runelite.api.events.FocusChanged;
-import net.runelite.api.events.MenuEntryAdded;
-import net.runelite.api.events.MenuOpened;
-import net.runelite.api.events.MenuOptionClicked;
-import net.runelite.api.events.PostItemComposition;
-import net.runelite.api.events.WidgetMenuOptionClicked;
+import net.runelite.api.*;
+import net.runelite.api.events.*;
 import net.runelite.api.widgets.WidgetInfo;
 import net.runelite.client.callback.ClientThread;
 import net.runelite.client.config.ConfigManager;
@@ -179,7 +168,7 @@ public class MenuEntrySwapperPlugin extends Plugin
 	private void resetItemCompositionCache()
 	{
 		itemManager.invalidateItemCompositionCache();
-		client.getItemCompositionCache().reset();
+		client.getItemDefinitionCache().reset();
 	}
 
 	private Integer getSwapConfig(int itemId)
@@ -259,7 +248,7 @@ public class MenuEntrySwapperPlugin extends Plugin
 			return;
 		}
 
-		ItemComposition itemComposition = client.getItemDefinition(itemId);
+		ItemDefinition itemComposition = client.getItemDefinition(itemId);
 		String itemName = itemComposition.getName();
 		String option = "Use";
 		int shiftClickActionindex = itemComposition.getShiftClickActionIndex();
@@ -311,7 +300,7 @@ public class MenuEntrySwapperPlugin extends Plugin
 
 		String option = event.getMenuOption();
 		String target = event.getMenuTarget();
-		ItemComposition itemComposition = client.getItemDefinition(itemId);
+		ItemDefinition itemComposition = client.getItemDefinition(itemId);
 
 		if (option.equals(RESET) && target.equals(MENU_TARGET))
 		{
@@ -582,9 +571,9 @@ public class MenuEntrySwapperPlugin extends Plugin
 	}
 
 	@Subscribe
-	public void onPostItemComposition(PostItemComposition event)
+	public void onPostItemComposition(PostItemDefinition event)
 	{
-		ItemComposition itemComposition = event.getItemComposition();
+		ItemDefinition itemComposition = event.getItemDefinition();
 		Integer option = getSwapConfig(itemComposition.getId());
 
 		if (option != null)

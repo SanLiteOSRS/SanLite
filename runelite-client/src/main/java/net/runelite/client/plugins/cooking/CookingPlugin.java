@@ -127,7 +127,7 @@ public class CookingPlugin extends Plugin
 			return;
 		}
 
-		if (player.getGraphic() == GraphicID.WINE_MAKE && config.fermentTimer())
+		if (player.getSpotAnimation() == GraphicID.WINE_MAKE && config.fermentTimer())
 		{
 			Optional<FermentTimer> fermentTimerOpt = infoBoxManager.getInfoBoxes().stream()
 				.filter(FermentTimer.class::isInstance)
