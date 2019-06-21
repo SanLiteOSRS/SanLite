@@ -224,7 +224,8 @@ public class ClientLoader
 
 			if (rs instanceof Client)
 			{
-				log.info("client-patch {}", ((Client) rs).getBuildID());
+				// TODO: Fix this
+				log.info("client-patch {}", /*((Client) rs).getBuildID()*/"TODO");
 			}
 
 			return rs;

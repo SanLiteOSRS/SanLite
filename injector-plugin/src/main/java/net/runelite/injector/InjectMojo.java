@@ -46,13 +46,10 @@ import org.apache.maven.plugins.annotations.Parameter;
 public class InjectMojo extends AbstractMojo
 {
 	private final Log log = getLog();
-
 	@Parameter(defaultValue = "${project.build.outputDirectory}")
 	private File outputDirectory;
-
 	@Parameter(defaultValue = "./runescape-client/target/rs-client-${project.version}.jar", readonly = true, required = true)
 	private String rsClientPath;
-
 	@Parameter(defaultValue = "${net.runelite.rs:vanilla:jar}", readonly = true, required = true)
 	private String vanillaPath;
 

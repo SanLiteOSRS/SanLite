@@ -59,11 +59,10 @@ import org.slf4j.LoggerFactory;
 
 public class Inject
 {
-	private static final Logger logger = LoggerFactory.getLogger(Inject.class);
-
 	public static final java.lang.Class<?> CLIENT_CLASS = RSClient.class;
 	public static final String API_PACKAGE_BASE = "net.runelite.rs.api.RS";
 	public static final String RL_API_PACKAGE_BASE = "net.runelite.api.";
+	private static final Logger logger = LoggerFactory.getLogger(Inject.class);
 	private final InjectHookMethod hookMethod = new InjectHookMethod(this);
 
 	private final InjectGetter getters = new InjectGetter(this);
@@ -516,11 +515,6 @@ public class Inject
 			{
 				rlApiType = inter;
 			}
-		}
-
-		if (rlApiType == null)
-		{
-			throw new InjectionException("RS API type " + rsApiType + " does not extend RL API interface");
 		}
 
 		final java.lang.Class<?> finalType = rlApiType == null ? rsApiType : rlApiType;

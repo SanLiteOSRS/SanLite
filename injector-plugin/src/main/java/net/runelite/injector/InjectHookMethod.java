@@ -49,9 +49,8 @@ import org.slf4j.LoggerFactory;
 
 public class InjectHookMethod
 {
-	private static final Logger logger = LoggerFactory.getLogger(InjectHookMethod.class);
-
 	public static final String HOOKS = "net/runelite/client/callback/Hooks";
+	private static final Logger logger = LoggerFactory.getLogger(InjectHookMethod.class);
 	private final Inject inject;
 
 	InjectHookMethod(Inject inject)

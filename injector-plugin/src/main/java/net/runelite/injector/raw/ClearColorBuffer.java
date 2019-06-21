@@ -85,7 +85,7 @@ public class ClearColorBuffer
 								if (current instanceof ILoad && ((ILoad) current).getVariableIndex() == 3 - varIdx)
 								{
 									varIdx++;
-									log.debug("[ClearColorBuffer] varIdx count: "+ varIdx );
+									log.debug("[ClearColorBuffer] varIdx count: " + varIdx);
 									continue;
 								}
 
@@ -106,7 +106,7 @@ public class ClearColorBuffer
 							}
 							else
 							{
-								log.debug("[ClearColorBuffer] Did not find drawRectangle: " + m);
+								log.debug("[ClearColorBuffer] Could not find drawRectangle at: " + m);
 							}
 						}
 

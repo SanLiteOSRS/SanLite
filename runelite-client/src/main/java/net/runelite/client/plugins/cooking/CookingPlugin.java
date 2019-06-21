@@ -39,7 +39,7 @@ import net.runelite.api.ItemID;
 import net.runelite.api.Player;
 import net.runelite.api.events.ChatMessage;
 import net.runelite.api.events.GameTick;
-import net.runelite.api.events.GraphicChanged;
+import net.runelite.api.events.SpotAnimationChanged;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.game.ItemManager;
@@ -118,7 +118,7 @@ public class CookingPlugin extends Plugin
 	}
 
 	@Subscribe
-	public void onGraphicChanged(GraphicChanged graphicChanged)
+	public void onSpotAnimationChanged(SpotAnimationChanged graphicChanged)
 	{
 		Player player = client.getLocalPlayer();
 
