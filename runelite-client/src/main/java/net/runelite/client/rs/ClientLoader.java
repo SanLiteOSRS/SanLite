@@ -26,18 +26,21 @@
  */
 package net.runelite.client.rs;
 
-import com.google.common.hash.Hashing;
-import com.google.common.io.ByteStreams;
-import com.google.common.reflect.TypeToken;
-import com.google.gson.Gson;
-import io.sigpipe.jbsdiff.InvalidHeaderException;
-import io.sigpipe.jbsdiff.Patch;
+import lombok.extern.slf4j.Slf4j;
+import net.runelite.http.api.RuneLiteAPI;
+import okhttp3.Request;
+import okhttp3.Response;
+
+import javax.inject.Inject;
+import javax.inject.Named;
+import javax.inject.Singleton;
 import java.applet.Applet;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
+import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLConnection;
+import java.nio.channels.Channels;
+import java.nio.channels.ReadableByteChannel;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
@@ -47,30 +50,27 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.jar.JarEntry;
 import java.util.jar.JarInputStream;
-import javax.inject.Inject;
-import javax.inject.Named;
-import javax.inject.Singleton;
-import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.Client;
-import static net.runelite.client.rs.ClientUpdateCheckMode.AUTO;
-import static net.runelite.client.rs.ClientUpdateCheckMode.NONE;
-import static net.runelite.client.rs.ClientUpdateCheckMode.VANILLA;
-import net.runelite.http.api.RuneLiteAPI;
-import okhttp3.Request;
-import okhttp3.Response;
-import org.apache.commons.compress.compressors.CompressorException;
+
+import static net.runelite.client.RuneLite.RUNELITE_DIR;
+import static net.runelite.client.rs.ClientUpdateCheckMode.*;
 
 @Slf4j
 @Singleton
 public class ClientLoader
 {
+	private static final File LOCAL_INJECTED_CLIENT = new File("./injected-client/target/injected-client-" + RuneLiteAPI.getVersion() + ".jar");
+	private static final File INJECTED_CLIENT_PATH = new File(RUNELITE_DIR + "/injected-client.jar");
+	private final String MAVEN_REPO_PATH = "https://raw.githubusercontent.com/sanliteosrs/maven-repo/master/live/injected-client.jar";
+
+
 	private final ClientConfigLoader clientConfigLoader;
 	private ClientUpdateCheckMode updateCheckMode;
+	public static boolean useLocalInjected = false;
 
 	@Inject
 	private ClientLoader(
-		@Named("updateCheckMode") final ClientUpdateCheckMode updateCheckMode,
-		final ClientConfigLoader clientConfigLoader)
+			@Named("updateCheckMode") final ClientUpdateCheckMode updateCheckMode,
+			final ClientConfigLoader clientConfigLoader)
 	{
 		this.updateCheckMode = updateCheckMode;
 		this.clientConfigLoader = clientConfigLoader;
@@ -88,14 +88,16 @@ public class ClientLoader
 			RSConfig config = clientConfigLoader.fetch();
 
 			Map<String, byte[]> zipFile = new HashMap<>();
+
+			if (updateCheckMode == VANILLA)
 			{
 				Certificate[] jagexCertificateChain = getJagexCertificateChain();
 				String codebase = config.getCodeBase();
 				String initialJar = config.getInitialJar();
 				URL url = new URL(codebase + initialJar);
 				Request request = new Request.Builder()
-					.url(url)
-					.build();
+						.url(url)
+						.build();
 
 				try (Response response = RuneLiteAPI.CLIENT.newCall(request).execute())
 				{
@@ -140,63 +142,27 @@ public class ClientLoader
 					}
 				}
 			}
-
-			if (updateCheckMode == AUTO)
+			else if (updateCheckMode == CUSTOM || useLocalInjected)
 			{
-				Map<String, String> hashes;
-				try (InputStream is = ClientLoader.class.getResourceAsStream("/patch/hashes.json"))
-				{
-					hashes = new Gson().fromJson(new InputStreamReader(is), new TypeToken<HashMap<String, String>>()
-					{
-					}.getType());
-				}
-
-				for (Map.Entry<String, String> file : hashes.entrySet())
-				{
-					byte[] bytes = zipFile.get(file.getKey());
-
-					String ourHash = null;
-					if (bytes != null)
-					{
-						ourHash = Hashing.sha512().hashBytes(bytes).toString();
-					}
-
-					if (!file.getValue().equals(ourHash))
-					{
-						log.debug("{} had a hash mismatch; falling back to vanilla. {} != {}", file.getKey(), file.getValue(), ourHash);
-						log.info("Client is outdated!");
-						updateCheckMode = VANILLA;
-						break;
-					}
-				}
+				log.info("Loading injected client from {}", LOCAL_INJECTED_CLIENT.getAbsolutePath());
+				loadJar(zipFile, LOCAL_INJECTED_CLIENT);
 			}
-
-			if (updateCheckMode == AUTO)
+			else if (updateCheckMode == AUTO)
 			{
-				ByteArrayOutputStream patchOs = new ByteArrayOutputStream(756 * 1024);
-				int patchCount = 0;
+				URL url = new URL(MAVEN_REPO_PATH);
+				ReadableByteChannel readableByteChannel = Channels.newChannel(url.openStream());
+				INJECTED_CLIENT_PATH.mkdirs();
 
-				for (Map.Entry<String, byte[]> file : zipFile.entrySet())
+				if (!INJECTED_CLIENT_PATH.exists() || getFileSize(INJECTED_CLIENT_PATH.toURI().toURL()) != getFileSize(url))
 				{
-					byte[] bytes;
-					try (InputStream is = ClientLoader.class.getResourceAsStream("/patch/" + file.getKey() + ".bs"))
-					{
-						if (is == null)
-						{
-							continue;
-						}
-
-						bytes = ByteStreams.toByteArray(is);
-					}
-
-					patchOs.reset();
-					Patch.patch(file.getValue(), bytes, patchOs);
-					file.setValue(patchOs.toByteArray());
-
-					++patchCount;
+					log.info("{} injected client", INJECTED_CLIENT_PATH.exists() ? "Updating" : "Initializing");
+					INJECTED_CLIENT_PATH.delete();
+					INJECTED_CLIENT_PATH.createNewFile();
+					updateInjectedClient(readableByteChannel);
 				}
 
-				log.debug("Patched {} classes", patchCount);
+				log.info("Loading injected client from {}", INJECTED_CLIENT_PATH.getAbsolutePath());
+				loadJar(zipFile, INJECTED_CLIENT_PATH);
 			}
 
 			String initialClass = config.getInitialClass();
@@ -222,23 +188,16 @@ public class ClientLoader
 			Applet rs = (Applet) clientClass.newInstance();
 			rs.setStub(new RSAppletStub(config));
 
-			if (rs instanceof Client)
-			{
-				// TODO: Fix this
-				log.info("client-patch {}", /*((Client) rs).getBuildID()*/"TODO");
-			}
-
 			return rs;
 		}
 		catch (IOException | ClassNotFoundException | InstantiationException | IllegalAccessException
-			| CompressorException | InvalidHeaderException | CertificateException | VerificationException
-			| SecurityException e)
+				| CertificateException | VerificationException e)
 		{
 			if (e instanceof ClassNotFoundException)
 			{
 				log.error("Unable to load client - class not found. This means you"
-					+ " are not running RuneLite with Maven as the client patch"
-					+ " is not in your classpath.");
+						+ " are not running RuneLite with Maven as the client patch"
+						+ " is not in your classpath.");
 			}
 
 			log.error("Error loading RS!", e);
@@ -246,10 +205,66 @@ public class ClientLoader
 		}
 	}
 
+	private static int getFileSize(URL url) throws IOException
+	{
+		URLConnection conn = null;
+		try
+		{
+			conn = url.openConnection();
+			if (conn instanceof HttpURLConnection)
+			{
+				((HttpURLConnection) conn).setRequestMethod("HEAD");
+			}
+			conn.getInputStream();
+			return conn.getContentLength();
+		}
+		finally
+		{
+			if (conn instanceof HttpURLConnection)
+			{
+				((HttpURLConnection) conn).disconnect();
+			}
+		}
+	}
+
+	private void updateInjectedClient(ReadableByteChannel readableByteChannel) throws IOException
+	{
+		FileOutputStream fileOutputStream = new FileOutputStream(INJECTED_CLIENT_PATH);
+		fileOutputStream.getChannel()
+				.transferFrom(readableByteChannel, 0, Integer.MAX_VALUE);
+	}
+
 	private static Certificate[] getJagexCertificateChain() throws CertificateException
 	{
 		CertificateFactory certificateFactory = CertificateFactory.getInstance("X.509");
 		Collection<? extends Certificate> certificates = certificateFactory.generateCertificates(ClientLoader.class.getResourceAsStream("jagex.crt"));
 		return certificates.toArray(new Certificate[certificates.size()]);
+	}
+
+	private static void loadJar(Map<String, byte[]> toMap, File fromFile) throws IOException
+	{
+		JarInputStream fis = new JarInputStream(new FileInputStream(fromFile));
+		byte[] tmp = new byte[4096];
+		ByteArrayOutputStream buffer = new ByteArrayOutputStream(756 * 1024);
+		for (; ; )
+		{
+			JarEntry metadata = fis.getNextJarEntry();
+			if (metadata == null)
+			{
+				break;
+			}
+
+			buffer.reset();
+			for (; ; )
+			{
+				int n = fis.read(tmp);
+				if (n <= -1)
+				{
+					break;
+				}
+				buffer.write(tmp, 0, n);
+			}
+			toMap.put(metadata.getName(), buffer.toByteArray());
+		}
 	}
 }
