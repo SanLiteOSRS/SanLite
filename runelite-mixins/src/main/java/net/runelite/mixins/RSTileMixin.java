@@ -24,10 +24,17 @@
  */
 package net.runelite.mixins;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import net.runelite.api.*;
+import net.runelite.api.CollisionData;
+import net.runelite.api.CollisionDataFlag;
+import net.runelite.api.Constants;
+import net.runelite.api.DecorativeObject;
+import net.runelite.api.GroundObject;
+import net.runelite.api.Item;
+import net.runelite.api.ItemLayer;
+import net.runelite.api.Node;
+import net.runelite.api.Point;
+import net.runelite.api.Tile;
+import net.runelite.api.WallObject;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.coords.WorldPoint;
 import net.runelite.api.events.DecorativeObjectChanged;
@@ -44,11 +51,23 @@ import net.runelite.api.events.ItemSpawned;
 import net.runelite.api.events.WallObjectChanged;
 import net.runelite.api.events.WallObjectDespawned;
 import net.runelite.api.events.WallObjectSpawned;
+import java.util.ArrayList;
+import java.util.List;
 import net.runelite.api.mixins.FieldHook;
 import net.runelite.api.mixins.Inject;
 import net.runelite.api.mixins.Mixin;
 import net.runelite.api.mixins.Shadow;
-import net.runelite.rs.api.*;
+import net.runelite.rs.api.RSActor;
+import net.runelite.rs.api.RSClient;
+import net.runelite.rs.api.RSEntity;
+import net.runelite.rs.api.RSGameObject;
+import net.runelite.rs.api.RSGraphicsObject;
+import net.runelite.rs.api.RSGroundItem;
+import net.runelite.rs.api.RSGroundItemPile;
+import net.runelite.rs.api.RSNode;
+import net.runelite.rs.api.RSNodeDeque;
+import net.runelite.rs.api.RSProjectile;
+import net.runelite.rs.api.RSTile;
 import org.slf4j.Logger;
 
 @Mixin(RSTile.class)
@@ -218,9 +237,23 @@ public abstract class RSTileMixin implements RSTile
 		// Update previous object to current
 		previousGameObjects[idx] = current;
 
+		// Last game object
+		RSGameObject last = lastGameObject;
+
+		// Update last game object
+		lastGameObject = current;
+
 		// Duplicate event, return
 		if (current == previous)
 		{
+			return;
+		}
+
+		if (current != null && current == last)
+		{
+			// When >1 tile objects are added to the scene, the same GameObject is added to
+			// multiple tiles. We keep lastGameObject to prevent duplicate spawn events from
+			// firing for these objects.
 			return;
 		}
 
