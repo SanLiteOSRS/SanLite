@@ -59,8 +59,6 @@ public interface Client extends GameShell
 	 */
 	Logger getLogger();
 
-	String getBuildID();
-
 	/**
 	 * Gets a list of all valid players from the player cache.
 	 *
