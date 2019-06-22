@@ -190,9 +190,6 @@ public abstract class RSClientMixin implements RSClient
 		.build();
 
 	@Inject
-	private static HealthBarOverride healthBarOverride;
-
-	@Inject
 	private static boolean printMenuActions;
 
 	@Inject

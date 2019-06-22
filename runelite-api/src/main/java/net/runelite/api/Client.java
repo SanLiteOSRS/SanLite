@@ -715,7 +715,7 @@ public interface Client extends GameShell
 	 * @param varps passed varbits
 	 * @param varbitId the variable ID
 	 * @return the value
-	 * @see Varbits#id
+	 * @see Varbits
 	 */
 	int getVarbitValue(int[] varps, int varbitId);
 
@@ -745,7 +745,7 @@ public interface Client extends GameShell
 	 * @param varps passed varbits
 	 * @param varbit the variable
 	 * @param value the value
-	 * @see Varbits#id
+	 * @see Varbits
 	 */
 	void setVarbitValue(int[] varps, int varbit, int value);
 
@@ -1436,7 +1436,6 @@ public interface Client extends GameShell
 	 */
 	void setNPCsNames(String names);
 
-
 	/**
 	 * Sets whether 2D sprites (ie. overhead prayers) related to
 	 * the NPCs are hidden.
@@ -1637,7 +1636,7 @@ public interface Client extends GameShell
 
 	void resetHealthBarCaches();
 	
-		void setRenderSelf(boolean enabled);
+	void setRenderSelf(boolean enabled);
 
 	/**
 	 *
@@ -1659,5 +1658,4 @@ public interface Client extends GameShell
 	String getSelectedSpellName();
 
 	boolean getIsSpellSelected();
-
 }
