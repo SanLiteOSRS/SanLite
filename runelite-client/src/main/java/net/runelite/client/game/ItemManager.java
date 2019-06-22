@@ -252,7 +252,7 @@ public class ItemManager
 	}
 
 	@Subscribe
-	public void onPostItemComposition(PostItemDefinition event)
+	public void onPostItemDefinition(PostItemDefinition event)
 	{
 		itemCompositions.put(event.getItemDefinition().getId(), event.getItemDefinition());
 	}
