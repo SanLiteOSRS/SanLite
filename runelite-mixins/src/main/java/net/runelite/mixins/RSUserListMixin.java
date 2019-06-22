@@ -12,6 +12,7 @@ public abstract class RSUserListMixin implements RSUserList
 {
 	/**
 	 * Default implementation of rl$add
+	 *
 	 * @param name
 	 * @param prevName
 	 */
@@ -23,6 +24,7 @@ public abstract class RSUserListMixin implements RSUserList
 
 	/**
 	 * Default implementation of rl$del
+	 *
 	 * @param nameable
 	 */
 	@Inject
