@@ -84,8 +84,6 @@ import net.runelite.client.util.Text;
 )
 public class GroundItemsPlugin extends Plugin
 {
-	// Used when getting High Alchemy value - multiplied by general store price.
-	private static final float HIGH_ALCHEMY_CONSTANT = 0.6f;
 	// ItemID for coins
 	private static final int COINS = ItemID.COINS_995;
 	// Ground item menu options
@@ -358,7 +356,7 @@ public class GroundItemsPlugin extends Plugin
 		final int itemId = item.getId();
 		final ItemDefinition itemComposition = itemManager.getItemComposition(itemId);
 		final int realItemId = itemComposition.getNote() != -1 ? itemComposition.getLinkedNoteId() : itemId;
-		final int alchPrice = Math.round(itemComposition.getPrice() * HIGH_ALCHEMY_CONSTANT);
+		final int alchPrice = Math.round(itemComposition.getPrice() * Constants.HIGH_ALCHEMY_MULTIPLIER);
 
 		final GroundItem groundItem = GroundItem.builder()
 			.id(itemId)
@@ -470,7 +468,7 @@ public class GroundItemsPlugin extends Plugin
 			final int realItemId = itemComposition.getNote() != -1 ? itemComposition.getLinkedNoteId() : itemComposition.getId();
 			final int itemPrice = itemManager.getItemPrice(realItemId);
 			final int price = itemPrice <= 0 ? itemComposition.getPrice() : itemPrice;
-			final int haPrice = Math.round(itemComposition.getPrice() * HIGH_ALCHEMY_CONSTANT) * quantity;
+			final int haPrice = Math.round(itemComposition.getPrice() * Constants.HIGH_ALCHEMY_MULTIPLIER) * quantity;
 			final int gePrice = quantity * price;
 			final Color hidden = getHidden(itemComposition.getName(), gePrice, haPrice, itemComposition.isTradeable());
 			final Color highlighted = getHighlighted(itemComposition.getName(), gePrice, haPrice);

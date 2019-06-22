@@ -68,7 +68,6 @@ import net.runelite.http.api.examine.ExamineClient;
 @Slf4j
 public class ExaminePlugin extends Plugin
 {
-	private static final float HIGH_ALCHEMY_CONSTANT = 0.6f;
 	private static final Pattern X_PATTERN = Pattern.compile("^\\d+ x ");
 
 	private final Deque<PendingExamine> pending = new ArrayDeque<>();
@@ -319,7 +318,7 @@ public class ExaminePlugin extends Plugin
 		quantity = Math.max(1, quantity);
 		int itemCompositionPrice = itemComposition.getPrice();
 		final int gePrice = itemManager.getItemPrice(id);
-		final int alchPrice = itemCompositionPrice <= 0 ? 0 : Math.round(itemCompositionPrice * HIGH_ALCHEMY_CONSTANT);
+		final int alchPrice = itemCompositionPrice <= 0 ? 0 : Math.round(itemCompositionPrice * Constants.HIGH_ALCHEMY_MULTIPLIER);
 
 		if (gePrice > 0 || alchPrice > 0)
 		{

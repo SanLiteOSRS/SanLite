@@ -1508,14 +1508,6 @@ public interface Client extends GameShell
 	NodeCache getWidgetSpriteCache();
 
 	/**
-	 * Overrides health bar sprites with the sprites from the specified override.
-	 * Pass in {@code null} to revert the health bars back to their default.
-	 *
-	 * @param override the health bar override
-	 */
-	void setHealthBarOverride(HealthBarOverride override);
-
-	/**
 	 * Gets the current server tick count.
 	 *
 	 * @return the tick count
@@ -1643,9 +1635,9 @@ public interface Client extends GameShell
 
 	void draw2010Menu();
 
-	NodeCache getHealthBarCache();
-
-	void setRenderSelf(boolean enabled);
+	void resetHealthBarCaches();
+	
+		void setRenderSelf(boolean enabled);
 
 	/**
 	 *
@@ -1667,4 +1659,5 @@ public interface Client extends GameShell
 	String getSelectedSpellName();
 
 	boolean getIsSpellSelected();
+
 }

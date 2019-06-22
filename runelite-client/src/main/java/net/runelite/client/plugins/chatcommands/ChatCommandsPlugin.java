@@ -74,7 +74,6 @@ import org.apache.commons.text.WordUtils;
 @Slf4j
 public class ChatCommandsPlugin extends Plugin
 {
-	private static final float HIGH_ALCHEMY_CONSTANT = 0.6f;
 	private static final Pattern KILLCOUNT_PATTERN = Pattern.compile("Your (.+) (?:kill|harvest) count is: <col=ff0000>(\\d+)</col>");
 	private static final Pattern RAIDS_PATTERN = Pattern.compile("Your completed (.+) count is: <col=ff0000>(\\d+)</col>");
 	private static final Pattern WINTERTODT_PATTERN = Pattern.compile("Your subdued Wintertodt count is: <col=ff0000>(\\d+)</col>");
@@ -608,7 +607,7 @@ public class ChatCommandsPlugin extends Plugin
 			ItemDefinition itemComposition = itemManager.getItemComposition(itemId);
 			if (itemComposition != null)
 			{
-				int alchPrice = Math.round(itemComposition.getPrice() * HIGH_ALCHEMY_CONSTANT);
+				int alchPrice = Math.round(itemComposition.getPrice() * Constants.HIGH_ALCHEMY_MULTIPLIER);
 				builder
 					.append(ChatColorType.NORMAL)
 					.append(" HA value ")

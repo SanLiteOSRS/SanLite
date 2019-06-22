@@ -953,20 +953,23 @@ public interface RSClient extends RSGameShell, Client
 	@Import("drawCircle")
 	void rasterizerDrawCircle(int x, int y, int r, int rgb);
 
-	@Import("HealthBarDefinition_cached")
-	@Override
-	RSEvictingDualNodeHashTable getHealthBarCache();
+	@Import("healthbarCache")
+	RSNodeCache getHealthBarCache();
 
+	@Import("healthBarSpriteCache")
+	RSNodeCache getHealthBarSpriteCache();
+	
 	@Import("renderSelf")
 	@Override
 	void setRenderSelf(boolean enabled);
 
 	@Import("mouseRecorder")
 	RSMouseRecorder getMouseRecorder();
-		
+	
 	@Import("selectedSpellName")
 	String getSelectedSpellName();
 	
 	@Import("isSpellSelected")
 	boolean getIsSpellSelected();
+
 }
