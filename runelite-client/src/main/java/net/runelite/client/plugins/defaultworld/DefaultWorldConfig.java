@@ -38,6 +38,6 @@ public interface DefaultWorldConfig extends Config
 	)
 	default int getWorld()
 	{
-		return 0;
+		return 496;
 	}
 }
