@@ -104,7 +104,7 @@ public class ConfigPanel extends PluginPanel
 
 	private static final String RUNELITE_GROUP_NAME = RuneLiteConfig.class.getAnnotation(ConfigGroup.class).value();
 	private static final String PINNED_PLUGINS_CONFIG_KEY = "pinnedPlugins";
-	private static final String RUNELITE_PLUGIN = "RuneLite";
+	private static final String RUNELITE_PLUGIN = "SanLite";
 	private static final String CHAT_COLOR_PLUGIN = "Chat Color";
 
 	private final PluginManager pluginManager;
@@ -210,7 +210,7 @@ public class ConfigPanel extends PluginPanel
 		// add special entries for core client configurations
 		final PluginListItem runeLite = new PluginListItem(this, runeLiteConfig,
 			configManager.getConfigDescriptor(runeLiteConfig),
-			RUNELITE_PLUGIN, "RuneLite client settings", "client");
+			RUNELITE_PLUGIN, "SanLite client settings", "client");
 		runeLite.setPinned(pinnedPlugins.contains(RUNELITE_PLUGIN));
 		pluginList.add(runeLite);
 
