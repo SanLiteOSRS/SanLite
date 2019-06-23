@@ -51,7 +51,7 @@ import net.runelite.api.events.ChatMessage;
 import net.runelite.api.events.ConfigChanged;
 import net.runelite.api.events.GameStateChanged;
 import net.runelite.api.events.GameTick;
-import net.runelite.api.events.GraphicChanged;
+import net.runelite.api.events.SpotAnimationChanged;
 import net.runelite.api.events.ItemContainerChanged;
 import net.runelite.api.events.LocalPlayerDeath;
 import net.runelite.api.events.MenuOptionClicked;
@@ -707,7 +707,7 @@ public class TimersPlugin extends Plugin
 	}
 
 	@Subscribe
-	public void onGraphicChanged(GraphicChanged event)
+	public void onSpotAnimationChanged(SpotAnimationChanged event)
 	{
 		Actor actor = event.getActor();
 
@@ -716,14 +716,14 @@ public class TimersPlugin extends Plugin
 			return;
 		}
 
-		if (config.showImbuedHeart() && actor.getGraphic() == IMBUEDHEART.getGraphicId())
+		if (config.showImbuedHeart() && actor.getSpotAnimation() == IMBUEDHEART.getGraphicId())
 		{
 			createGameTimer(IMBUEDHEART);
 		}
 
 		if (config.showFreezes())
 		{
-			if (actor.getGraphic() == BIND.getGraphicId())
+			if (actor.getSpotAnimation() == BIND.getGraphicId())
 			{
 				if (client.isPrayerActive(Prayer.PROTECT_FROM_MAGIC)
 					&& !client.getWorldType().contains(WorldType.SEASONAL_DEADMAN)
@@ -737,7 +737,7 @@ public class TimersPlugin extends Plugin
 				}
 			}
 
-			if (actor.getGraphic() == SNARE.getGraphicId())
+			if (actor.getSpotAnimation() == SNARE.getGraphicId())
 			{
 				if (client.isPrayerActive(Prayer.PROTECT_FROM_MAGIC)
 					&& !client.getWorldType().contains(WorldType.SEASONAL_DEADMAN)
@@ -751,7 +751,7 @@ public class TimersPlugin extends Plugin
 				}
 			}
 
-			if (actor.getGraphic() == ENTANGLE.getGraphicId())
+			if (actor.getSpotAnimation() == ENTANGLE.getGraphicId())
 			{
 				if (client.isPrayerActive(Prayer.PROTECT_FROM_MAGIC)
 					&& !client.getWorldType().contains(WorldType.SEASONAL_DEADMAN)
@@ -768,19 +768,19 @@ public class TimersPlugin extends Plugin
 			// downgrade freeze based on graphic, if at the same tick as the freeze message
 			if (freezeTime == client.getTickCount())
 			{
-				if (actor.getGraphic() == ICERUSH.getGraphicId())
+				if (actor.getSpotAnimation() == ICERUSH.getGraphicId())
 				{
 					removeGameTimer(ICEBARRAGE);
 					freezeTimer = createGameTimer(ICERUSH);
 				}
 
-				if (actor.getGraphic() == ICEBURST.getGraphicId())
+				if (actor.getSpotAnimation() == ICEBURST.getGraphicId())
 				{
 					removeGameTimer(ICEBARRAGE);
 					freezeTimer = createGameTimer(ICEBURST);
 				}
 
-				if (actor.getGraphic() == ICEBLITZ.getGraphicId())
+				if (actor.getSpotAnimation() == ICEBLITZ.getGraphicId())
 				{
 					removeGameTimer(ICEBARRAGE);
 					freezeTimer = createGameTimer(ICEBLITZ);

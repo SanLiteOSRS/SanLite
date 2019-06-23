@@ -37,7 +37,7 @@ import net.runelite.rs.api.RSWorld;
 @Mixin(RSWorld.class)
 public abstract class RSWorldMixin implements RSWorld
 {
-	@Shadow("clientInstance")
+	@Shadow("client")
 	private static RSClient client;
 
 	@Inject
@@ -55,7 +55,7 @@ public abstract class RSWorldMixin implements RSWorld
 	}
 
 	@Inject
-	@FieldHook("playerCount")
+	@FieldHook("population")
 	public void playerCountChanged(int idx)
 	{
 		RSWorld[] worlds = client.getWorldList();

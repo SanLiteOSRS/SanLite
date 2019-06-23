@@ -43,7 +43,7 @@ import static net.runelite.api.Opcodes.RUNELITE_EXECUTE;
 @Mixin(RSClient.class)
 public abstract class ScriptVMMixin implements RSClient
 {
-	@Shadow("clientInstance")
+	@Shadow("client")
 	private static Client client;
 
 	// This field is set by the ScriptVM raw injector
@@ -107,13 +107,13 @@ public abstract class ScriptVMMixin implements RSClient
 		return false;
 	}
 
-	@Copy("runScript")
+	@Copy("runScript0")
 	static void rs$runScript(RSScriptEvent event, int maxExecutionTime)
 	{
 		throw new RuntimeException();
 	}
 
-	@Replace("runScript")
+	@Replace("runScript0")
 	static void rl$runScript(RSScriptEvent event, int maxExecutionTime)
 	{
 		Object[] arguments = event.getArguments();

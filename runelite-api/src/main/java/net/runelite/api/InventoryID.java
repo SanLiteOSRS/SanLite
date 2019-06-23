@@ -33,30 +33,42 @@ public enum InventoryID
 	 * Standard player inventory.
 	 */
 	INVENTORY(93),
+
 	/**
 	 * Equipment inventory.
 	 */
 	EQUIPMENT(94),
+
 	/**
 	 * Bank inventory.
 	 */
 	BANK(95),
+
 	/**
 	 * A puzzle box inventory.
 	 */
 	PUZZLE_BOX(140),
+
 	/**
 	 * Barrows reward chest inventory.
 	 */
 	BARROWS_REWARD(141),
+
 	/**
 	 * Monkey madness puzzle box inventory.
 	 */
 	MONKEY_MADNESS_PUZZLE_BOX(221),
+
+	/**
+	 * Looting Bag inventory
+	 */
+	LOOTING_BAG(516),
+
 	/**
 	 * Chambers of Xeric chest inventory.
 	 */
 	CHAMBERS_OF_XERIC_CHEST(581),
+
 	/**
 	 * Theater of Blood reward chest inventory (Raids 2)
 	 */

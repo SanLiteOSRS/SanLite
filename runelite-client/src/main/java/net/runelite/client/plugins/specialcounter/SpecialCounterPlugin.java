@@ -28,18 +28,8 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import javax.inject.Inject;
-import net.runelite.api.Actor;
-import net.runelite.api.Client;
-import net.runelite.api.EquipmentInventorySlot;
-import net.runelite.api.GameState;
-import net.runelite.api.InventoryID;
-import net.runelite.api.Item;
-import net.runelite.api.ItemContainer;
-import net.runelite.api.NPC;
-import net.runelite.api.NPCComposition;
-import net.runelite.api.Player;
-import net.runelite.api.Skill;
-import net.runelite.api.VarPlayer;
+
+import net.runelite.api.*;
 import net.runelite.api.events.GameStateChanged;
 import net.runelite.api.events.GameTick;
 import net.runelite.api.events.NpcDespawned;
@@ -184,7 +174,7 @@ public class SpecialCounterPlugin extends Plugin
 		if (interacting instanceof NPC)
 		{
 			NPC npc = (NPC) interacting;
-			NPCComposition composition = npc.getComposition();
+			NPCDefinition composition = npc.getDefinition();
 			int interactingId = npc.getId();
 
 			if (!ArrayUtils.contains(composition.getActions(), "Attack"))

@@ -431,7 +431,7 @@ public final class SpriteID
 	public static final int SPELL_FIRE_SURGE_DISABLED = 415;
 	/* Unmapped: 416, 417, 418 */
 	public static final int UNKNOWN_STANCE_ICON_1 = 419;
-	public static final int UNKNOWN_STANCE_ICON_2 = 320;
+	public static final int UNKNOWN_STANCE_ICON_2 = 420;
 	public static final int UNKNOWN_STANCE_ICON_3 = 421;
 	public static final int MINIMAP_DESTINATION_FLAG = 422;
 	public static final int CHATBOX_BADGE_CROWN_PLAYER_MODERATOR = 423;
@@ -1569,6 +1569,9 @@ public final class SpriteID
 	/* Unmapped: 1709, 1710 */
 	public static final int TAB_MAGIC_SPELLBOOK_ARCEUUS = 1711;
 	/* Unmapped: 1712~2175 */
+	public static final int LARGE_GUTHIX_SPELL = 1774;
+	public static final int LARGE_SUPERHEAT = 1800;
+	public static final int LARGE_SPEC_TRANSFER = 1959;
 	public static final int HEALTHBAR_DEFAULT_FRONT_30PX = 2176;
 	public static final int HEALTHBAR_DEFAULT_BACK_30PX = 2177;
 	public static final int HEALTHBAR_DEFAULT_FRONT_50PX = 2178;
