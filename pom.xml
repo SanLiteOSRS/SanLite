@@ -112,6 +112,7 @@
 	</pluginRepositories>
 
 	<modules>
+		<module>bootstrapper</module>
 		<module>cache</module>
 		<module>cache-client</module>
 		<module>cache-updater</module>
