@@ -572,7 +572,7 @@ public class MenuEntrySwapperPlugin extends Plugin
 	}
 
 	@Subscribe
-	public void onPostItemComposition(PostItemDefinition event)
+	public void onPostItemDefinition(PostItemDefinition event)
 	{
 		ItemDefinition itemComposition = event.getItemDefinition();
 		Integer option = getSwapConfig(itemComposition.getId());
