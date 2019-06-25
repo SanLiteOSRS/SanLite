@@ -291,7 +291,6 @@ public class ConfigPanel extends PluginPanel
 			boolean collapsed = false;
 			if (!cig.getGroup().equals(""))
 			{
-				log.debug("[ConfigPanel] Rendered group {}", cig.getGroup());
 				String header = cig.getGroup();
 
 				JPanel item = new JPanel();
@@ -329,7 +328,7 @@ public class ConfigPanel extends PluginPanel
 			if (collapsed)
 				continue;
 
-			createConfigItems(cig.getItems(), cd, name, listItem, config);
+			createConfigItems(cig.getItems(), cd, listItem, config);
 		}
 
 		JButton resetButton = new JButton("Reset");
@@ -357,7 +356,7 @@ public class ConfigPanel extends PluginPanel
 		scrollPane.getVerticalScrollBar().setValue(0);
 	}
 
-	private void createConfigItems(Collection<ConfigItemDescriptor> itemDescriptors, ConfigDescriptor cd, String name, PluginListItem listItem, Config config)
+	private void createConfigItems(Collection<ConfigItemDescriptor> itemDescriptors, ConfigDescriptor cd, PluginListItem listItem, Config config)
 	{
 		for (ConfigItemDescriptor cid : itemDescriptors)
 		{
@@ -366,14 +365,15 @@ public class ConfigPanel extends PluginPanel
 				continue;
 			}
 
-			log.debug("[ConfigPanel] Rendered config item {}", cid.getItem().name());
 			JPanel item = new JPanel();
 			item.setLayout(new BorderLayout());
 			item.setMinimumSize(new Dimension(PANEL_WIDTH, 0));
-			JLabel configEntryName = new JLabel(cid.getItem().name());
+
+			String itemName = cid.getItem().name();
+			JLabel configEntryName = new JLabel(itemName);
 			configEntryName.setPreferredSize(new Dimension(PANEL_WIDTH, (int) configEntryName.getPreferredSize().getHeight()));
 			configEntryName.setForeground(Color.WHITE);
-			configEntryName.setToolTipText("<html>" + name + ":<br>" + cid.getItem().description() + "</html>");
+			configEntryName.setToolTipText("<html>" + itemName + ":<br>" + cid.getItem().description() + "</html>");
 			item.add(configEntryName, BorderLayout.CENTER);
 
 			if (cid.getType() == boolean.class)

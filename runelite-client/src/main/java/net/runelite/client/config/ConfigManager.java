@@ -468,7 +468,6 @@ public class ConfigManager
 			{
 				if (itemsGroup.getGroup().equals(groupName))
 				{
-					log.debug("[CM] Added item {} to existing group {}", itemDescriptor.getItem().name(), groupName);
 					itemsGroup.addItem(itemDescriptor);
 					found = true;
 					break;
@@ -476,7 +475,6 @@ public class ConfigManager
 			}
 			if (!found)
 			{
-				log.debug("[CM] Added item {} to new group {}", itemDescriptor.getItem().name(), groupName);
 				ConfigItemsGroup newGroup = new ConfigItemsGroup(groupName);
 				newGroup.addItem(itemDescriptor);
 				itemGroups.add(newGroup);
@@ -488,7 +486,6 @@ public class ConfigManager
 				.result())
 				.collect(Collectors.toList());
 
-		log.debug("[CM] Final itemGroups: {}", itemGroups);
 		return itemGroups;
 	}
 
