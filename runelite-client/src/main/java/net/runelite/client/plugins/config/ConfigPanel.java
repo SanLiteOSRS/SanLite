@@ -50,10 +50,7 @@ import javax.swing.event.DocumentListener;
 import javax.swing.text.JTextComponent;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.client.config.*;
-import net.runelite.client.plugins.Plugin;
-import net.runelite.client.plugins.PluginDescriptor;
-import net.runelite.client.plugins.PluginInstantiationException;
-import net.runelite.client.plugins.PluginManager;
+import net.runelite.client.plugins.*;
 import net.runelite.client.ui.ColorScheme;
 import net.runelite.client.ui.DynamicGridLayout;
 import net.runelite.client.ui.PluginPanel;
@@ -84,7 +81,7 @@ public class ConfigPanel extends PluginPanel
 	private final ScheduledExecutorService executorService;
 	private final RuneLiteConfig runeLiteConfig;
 	private final ChatColorConfig chatColorConfig;
-	private final List<PluginListItem> pluginList = new ArrayList<>();
+	private final List<PluginTypeItem> pluginTypeList = new ArrayList<>();
 
 	private final IconTextField searchBar = new IconTextField();
 	private final JPanel topPanel;
@@ -163,54 +160,79 @@ public class ConfigPanel extends PluginPanel
 
 	private void initializePluginList()
 	{
+		// Populate pluginTypeList with collapsible menu entries and all non-hidden plugins
+		for (PluginType pluginType : PluginType.values())
+		{
+			PluginTypeItem pluginTypeItem = new PluginTypeItem(this, pluginType);
+			pluginTypeItem.setPluginList(filterPluginListByType(pluginTypeItem));
+			pluginTypeList.add(pluginTypeItem);
+			log.debug("Added plugin type collapsible entry {} to config panel ", pluginType.name());
+		}
+
+		// TODO: Fix sorting to happen in type groups
+		//pluginTypeList.sort(Comparator.comparing(PluginListItem::getName));
+	}
+
+	List<PluginListItem> filterPluginListByType(PluginTypeItem pluginTypeItem)
+	{
+		List<PluginListItem> pluginListItems = new ArrayList<>();
 		final List<String> pinnedPlugins = getPinnedPluginNames();
 
-		// populate pluginList with all non-hidden plugins
+		// Filter on plugin type and collapse state, also filter out hidden plugins
 		pluginManager.getPlugins().stream()
-			.filter(plugin -> !plugin.getClass().getAnnotation(PluginDescriptor.class).hidden())
-			.forEach(plugin ->
-			{
-				final PluginDescriptor descriptor = plugin.getClass().getAnnotation(PluginDescriptor.class);
-				final Config config = pluginManager.getPluginConfigProxy(plugin);
-				final ConfigDescriptor configDescriptor = config == null ? null : configManager.getConfigDescriptor(config);
+				.filter(plugin -> !plugin.getClass().getAnnotation(PluginDescriptor.class).hidden()
+						&& plugin.getClass().getAnnotation(PluginDescriptor.class).type().equals(pluginTypeItem.getType())
+						&& pluginTypeItem.isOpened())
+				.forEach(plugin ->
+				{
+					final PluginDescriptor descriptor = plugin.getClass().getAnnotation(PluginDescriptor.class);
+					final Config config = pluginManager.getPluginConfigProxy(plugin);
+					final ConfigDescriptor configDescriptor = config == null ? null : configManager.getConfigDescriptor(config);
 
-				final PluginListItem listItem = new PluginListItem(this, plugin, descriptor, config, configDescriptor);
-				listItem.setPinned(pinnedPlugins.contains(listItem.getName()));
-				pluginList.add(listItem);
-			});
+					final PluginListItem listItem = new PluginListItem(this, plugin, descriptor, config, configDescriptor);
+					listItem.setPinned(pinnedPlugins.contains(listItem.getName()));
+					pluginListItems.add(listItem);
+					log.debug("Added plugin {} to list ", descriptor.name());
+				});
 
-		// add special entries for core client configurations
-		final PluginListItem runeLite = new PluginListItem(this, runeLiteConfig,
-			configManager.getConfigDescriptor(runeLiteConfig),
-			RUNELITE_PLUGIN, "SanLite client settings", "client");
-		runeLite.setPinned(pinnedPlugins.contains(RUNELITE_PLUGIN));
-		pluginList.add(runeLite);
+		if (pluginTypeItem.getType().equals(PluginType.VANILLA) && pluginTypeItem.isOpened())
+		{
+			// Add special entries for core client configurations
+			final PluginListItem runeLite = new PluginListItem(this, runeLiteConfig,
+					configManager.getConfigDescriptor(runeLiteConfig),
+					RUNELITE_PLUGIN, "SanLite client settings", "client");
+			runeLite.setPinned(pinnedPlugins.contains(RUNELITE_PLUGIN));
 
-		final PluginListItem chatColor = new PluginListItem(this, chatColorConfig,
-			configManager.getConfigDescriptor(chatColorConfig),
-			CHAT_COLOR_PLUGIN, "Recolor chat text", "colour", "messages");
-		chatColor.setPinned(pinnedPlugins.contains(CHAT_COLOR_PLUGIN));
-		pluginList.add(chatColor);
+			final PluginListItem chatColor = new PluginListItem(this, chatColorConfig,
+					configManager.getConfigDescriptor(chatColorConfig),
+					CHAT_COLOR_PLUGIN, "Recolor chat text", "colour", "messages");
+			chatColor.setPinned(pinnedPlugins.contains(CHAT_COLOR_PLUGIN));
 
-		pluginList.sort(Comparator.comparing(PluginListItem::getName));
+			pluginListItems.add(runeLite);
+			pluginListItems.add(chatColor);
+		}
+		return pluginListItems;
 	}
 
 	void refreshPluginList()
 	{
 		// update enabled / disabled status of all items
-		pluginList.forEach(listItem ->
+		pluginTypeList.forEach(pluginTypeItem ->
 		{
-			final Plugin plugin = listItem.getPlugin();
-			if (plugin != null)
+			pluginTypeItem.getPluginList().forEach(listItem ->
 			{
-				listItem.setPluginEnabled(pluginManager.isPluginEnabled(plugin));
+				final Plugin plugin = listItem.getPlugin();
+				if (plugin != null)
+				{
+					listItem.setPluginEnabled(pluginManager.isPluginEnabled(plugin));
+				}
+			});
+
+			if (showingPluginList)
+			{
+				openConfigList();
 			}
 		});
-
-		if (showingPluginList)
-		{
-			openConfigList();
-		}
 	}
 
 	void openConfigList()
@@ -236,7 +258,7 @@ public class ConfigPanel extends PluginPanel
 	{
 		final String text = searchBar.getText();
 
-		pluginList.forEach(mainPanel::remove);
+		pluginTypeList.forEach(mainPanel::remove);
 
 		showMatchingPlugins(true, text);
 		showMatchingPlugins(false, text);
@@ -248,18 +270,22 @@ public class ConfigPanel extends PluginPanel
 	{
 		if (text.isEmpty())
 		{
-			pluginList.stream().filter(item -> pinned == item.isPinned()).forEach(mainPanel::add);
+			pluginTypeList.forEach(pluginList ->
+					pluginList.getPluginList().stream().filter(item -> pinned == item.isPinned()).forEach(mainPanel::add));
+
 			return;
 		}
 
 		final String[] searchTerms = text.toLowerCase().split(" ");
-		pluginList.forEach(listItem ->
-		{
-			if (pinned == listItem.isPinned() && listItem.matchesSearchTerms(searchTerms))
-			{
-				mainPanel.add(listItem);
-			}
-		});
+		pluginTypeList.forEach(pluginList ->
+				pluginList.getPluginList().forEach(listItem ->
+				{
+					if (pinned == listItem.isPinned() && listItem.matchesSearchTerms(searchTerms))
+					{
+						mainPanel.add(listItem);
+					}
+				}));
+
 	}
 
 	void openGroupConfigPanel(PluginListItem listItem, Config config, ConfigDescriptor cd)
@@ -531,22 +557,28 @@ public class ConfigPanel extends PluginPanel
 
 	void savePinnedPlugins()
 	{
-		final String value = pluginList.stream()
-			.filter(PluginListItem::isPinned)
-			.map(PluginListItem::getName)
-			.collect(Collectors.joining(","));
+		pluginTypeList.forEach(pluginTypeItem ->
+		{
+			final String value = pluginTypeItem.getPluginList().stream()
+					.filter(PluginListItem::isPinned)
+					.map(PluginListItem::getName)
+					.collect(Collectors.joining(","));
 
-		configManager.setConfiguration(RUNELITE_GROUP_NAME, PINNED_PLUGINS_CONFIG_KEY, value);
+			configManager.setConfiguration(RUNELITE_GROUP_NAME, PINNED_PLUGINS_CONFIG_KEY, value);
+		});
 	}
 
 	void openConfigurationPanel(String configGroup)
 	{
-		for (PluginListItem pluginListItem : pluginList)
+		for (PluginTypeItem pluginTypeItem : pluginTypeList)
 		{
-			if (pluginListItem.getName().equals(configGroup))
+			for (PluginListItem pluginListItem : pluginTypeItem.getPluginList())
 			{
-				openGroupConfigPanel(pluginListItem, pluginListItem.getConfig(), pluginListItem.getConfigDescriptor());
-				break;
+				if (pluginListItem.getName().equals(configGroup))
+				{
+					openGroupConfigPanel(pluginListItem, pluginListItem.getConfig(), pluginListItem.getConfigDescriptor());
+					break;
+				}
 			}
 		}
 	}
