@@ -37,9 +37,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.font.TextAttribute;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
+import java.util.*;
 import java.util.List;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.stream.Collectors;
@@ -331,7 +329,7 @@ public class ConfigPanel extends PluginPanel
 			if (collapsed)
 				continue;
 
-			createConfigItems(cd, name, listItem, config);
+			createConfigItems(cig.getItems(), cd, name, listItem, config);
 		}
 
 		JButton resetButton = new JButton("Reset");
@@ -359,9 +357,9 @@ public class ConfigPanel extends PluginPanel
 		scrollPane.getVerticalScrollBar().setValue(0);
 	}
 
-	private void createConfigItems(ConfigDescriptor cd, String name, PluginListItem listItem, Config config)
+	private void createConfigItems(Collection<ConfigItemDescriptor> itemDescriptors, ConfigDescriptor cd, String name, PluginListItem listItem, Config config)
 	{
-		for (ConfigItemDescriptor cid : cd.getItems())
+		for (ConfigItemDescriptor cid : itemDescriptors)
 		{
 			if (cid.getItem().hidden())
 			{
