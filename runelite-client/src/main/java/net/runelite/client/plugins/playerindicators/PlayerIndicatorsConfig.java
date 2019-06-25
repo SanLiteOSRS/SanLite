@@ -58,7 +58,8 @@ public interface PlayerIndicatorsConfig extends Config
 		position = 2,
 		keyName = "drawFriendNames",
 		name = "Highlight friends",
-		description = "Configures whether or not friends should be highlighted"
+		description = "Configures whether or not friends should be highlighted",
+		group = "Friends"
 	)
 	default boolean highlightFriends()
 	{
@@ -69,7 +70,8 @@ public interface PlayerIndicatorsConfig extends Config
 		position = 3,
 		keyName = "friendNameColor",
 		name = "Friend color",
-		description = "Color of friend names"
+		description = "Color of friend names",
+		group = "Friends"
 	)
 	default Color getFriendColor()
 	{
@@ -80,7 +82,8 @@ public interface PlayerIndicatorsConfig extends Config
 		position = 4,
 		keyName = "drawClanMemberNames",
 		name = "Highlight clan members",
-		description = "Configures whether or clan members should be highlighted"
+		description = "Configures whether or clan members should be highlighted",
+		group = "Clan members"
 	)
 	default boolean drawClanMemberNames()
 	{
@@ -91,7 +94,8 @@ public interface PlayerIndicatorsConfig extends Config
 		position = 5,
 		keyName = "clanMemberColor",
 		name = "Clan member color",
-		description = "Color of clan members"
+		description = "Color of clan members",
+		group = "Clan members"
 	)
 	default Color getClanMemberColor()
 	{
@@ -102,7 +106,8 @@ public interface PlayerIndicatorsConfig extends Config
 		position = 6,
 		keyName = "drawTeamMemberNames",
 		name = "Highlight team members",
-		description = "Configures whether or not team members should be highlighted"
+		description = "Configures whether or not team members should be highlighted",
+		group = "Team members"
 	)
 	default boolean highlightTeamMembers()
 	{
@@ -113,7 +118,8 @@ public interface PlayerIndicatorsConfig extends Config
 		position = 7,
 		keyName = "teamMemberColor",
 		name = "Team member color",
-		description = "Color of team members"
+		description = "Color of team members",
+		group = "Team members"
 	)
 	default Color getTeamMemberColor()
 	{
