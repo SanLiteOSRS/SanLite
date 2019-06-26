@@ -128,6 +128,13 @@ public interface Client extends GameShell
 	GameState getGameState();
 
 	/**
+	 * Sets the current game state.
+	 *
+	 * @param gameState new game state
+	 */
+	void setGameState(int gameState);
+
+	/**
 	 * Gets the current logged in username.
 	 *
 	 * @return the logged in username
@@ -1633,7 +1640,9 @@ public interface Client extends GameShell
 	void draw2010Menu();
 
 	void resetHealthBarCaches();
-	
+
+	boolean getRenderSelf();
+
 	void setRenderSelf(boolean enabled);
 
 	/**
