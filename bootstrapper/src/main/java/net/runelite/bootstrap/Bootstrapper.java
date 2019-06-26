@@ -11,11 +11,9 @@ public class Bootstrapper
 	public static void main(String[] args)
 	{
 		Gson gson = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();
-		try
+		try (FileWriter fileWriter = new FileWriter("./bootstrapper/target/bootstrap.json"))
 		{
-			FileWriter fileWriter = new FileWriter("./bootstrapper/target/bootstrap.json");
 			gson.toJson(new Bootstrap(), fileWriter);
-			fileWriter.close();
 		}
 		catch (Exception e)
 		{

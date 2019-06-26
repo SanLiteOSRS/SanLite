@@ -115,6 +115,9 @@ public interface RSClient extends RSGameShell, Client
 	@Import("gameState")
 	int getRSGameState();
 
+	@Import("updateGameState")
+	void setGameState(int gameState);
+
 	@Import("checkClick")
 	@Override
 	void setCheckClick(boolean checkClick);
@@ -958,7 +961,11 @@ public interface RSClient extends RSGameShell, Client
 
 	@Import("HealthBarDefinition_cachedSprites")
 	RSEvictingDualNodeHashTable getHealthBarSpriteCache();
-	
+
+	@Import("renderSelf")
+	@Override
+	boolean getRenderSelf();
+
 	@Import("renderSelf")
 	@Override
 	void setRenderSelf(boolean enabled);
