@@ -169,6 +169,11 @@ public class ConfigPanel extends PluginPanel
 			log.debug("Added plugin type collapsible entry {} to config panel ", pluginType.name());
 		}
 
+		for (PluginTypeItem pluginTypeItem : pluginTypeList)
+		{
+			mainPanel.add(pluginTypeItem);
+		}
+
 		// TODO: Fix sorting to happen in type groups
 		//pluginTypeList.sort(Comparator.comparing(PluginListItem::getName));
 	}
@@ -270,8 +275,12 @@ public class ConfigPanel extends PluginPanel
 	{
 		if (text.isEmpty())
 		{
-			pluginTypeList.forEach(pluginList ->
-					pluginList.getPluginList().stream().filter(item -> pinned == item.isPinned()).forEach(mainPanel::add));
+			pluginTypeList.forEach(pluginTypeList ->
+					{
+						mainPanel.add(pluginTypeList);
+						pluginTypeList.getPluginList().stream().filter(item -> pinned == item.isPinned()).forEach(mainPanel::add);
+					});
+
 
 			return;
 		}

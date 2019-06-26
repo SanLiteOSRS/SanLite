@@ -32,6 +32,8 @@ public class PluginTypeItem extends JPanel
 	@Setter(AccessLevel.PACKAGE)
 	private List<PluginListItem> pluginList;
 
+	private JButton collapseButton;
+
 	PluginTypeItem(ConfigPanel configPanel, PluginType pluginType)
 	{
 		this.configPanel = configPanel;
@@ -43,7 +45,7 @@ public class PluginTypeItem extends JPanel
 	private void createCollapsiblePluginListItem(PluginType pluginType)
 	{
 		setLayout(new BorderLayout(3, 0));
-		setPreferredSize(new Dimension(PluginPanel.PANEL_WIDTH, 20));
+		setPreferredSize(new Dimension(PluginPanel.PANEL_WIDTH, 30));
 		setLayout(new BorderLayout());
 		setMinimumSize(new Dimension(PluginPanel.PANEL_WIDTH, 0));
 		setBackground(ColorScheme.DARK_GRAY_HOVER_COLOR);
@@ -57,7 +59,7 @@ public class PluginTypeItem extends JPanel
 		headerLabel.setPreferredSize(new Dimension(PluginPanel.PANEL_WIDTH, (int) headerLabel.getPreferredSize().getHeight() + 10));
 		headerLabel.setFont(headerLabel.getFont().deriveFont(Collections.singletonMap(TextAttribute.WEIGHT, TextAttribute.WEIGHT_SEMIBOLD)));
 
-		JButton collapseButton = new JButton(isOpened ? "˅" : ">");
+		collapseButton = new JButton(isOpened ? "˅" : ">");
 		collapseButton.setPreferredSize(new Dimension(20, 20));
 		collapseButton.setFont(collapseButton.getFont().deriveFont(16.0f));
 		collapseButton.setBorder(null);
@@ -72,6 +74,7 @@ public class PluginTypeItem extends JPanel
 	private void handleTypeEntryCollapse()
 	{
 		isOpened = !isOpened;
+		collapseButton.setText(isOpened ? "˅" : ">");
 		pluginList = configPanel.filterPluginListByType(this);
 		configPanel.refreshPluginList();
 	}
