@@ -32,13 +32,17 @@ public class PluginTypeItem extends JPanel
 	@Setter(AccessLevel.PACKAGE)
 	private List<PluginListItem> pluginList;
 
+	@Getter(AccessLevel.PUBLIC)
+	@Setter(AccessLevel.PACKAGE)
+	private List<PluginListItem> displayedPluginList;
+
 	private JButton collapseButton;
 
 	PluginTypeItem(ConfigPanel configPanel, PluginType pluginType)
 	{
 		this.configPanel = configPanel;
 		this.type = pluginType;
-		this.pluginList = new ArrayList<>();
+		this.displayedPluginList = new ArrayList<>();
 		createCollapsiblePluginListItem(pluginType);
 	}
 
@@ -75,7 +79,7 @@ public class PluginTypeItem extends JPanel
 	{
 		isOpened = !isOpened;
 		collapseButton.setText(isOpened ? "˅" : ">");
-		pluginList = configPanel.filterPluginListByType(this);
+		displayedPluginList = configPanel.getDisplayedPluginListByType(this);
 		configPanel.refreshPluginList();
 	}
 }

@@ -158,13 +158,17 @@ public class ConfigPanel extends PluginPanel
 		refreshPluginList();
 	}
 
+	/**
+	 * Creates entries for all plugin types and retrieves the list of plugins per type to draw in the main panel.
+	 */
 	private void initializePluginList()
 	{
 		// Populate pluginTypeList with collapsible menu entries and all non-hidden plugins
 		for (PluginType pluginType : PluginType.values())
 		{
 			PluginTypeItem pluginTypeItem = new PluginTypeItem(this, pluginType);
-			pluginTypeItem.setPluginList(filterPluginListByType(pluginTypeItem));
+			pluginTypeItem.setPluginList(getPluginListByType(pluginTypeItem));
+			pluginTypeItem.setDisplayedPluginList(getDisplayedPluginListByType(pluginTypeItem));
 			pluginTypeList.add(pluginTypeItem);
 			log.debug("Added plugin type collapsible entry {} to config panel ", pluginType.name());
 		}
@@ -173,12 +177,14 @@ public class ConfigPanel extends PluginPanel
 		{
 			mainPanel.add(pluginTypeItem);
 		}
-
-		// TODO: Fix sorting to happen in type groups
-		//pluginTypeList.sort(Comparator.comparing(PluginListItem::getName));
 	}
 
-	List<PluginListItem> filterPluginListByType(PluginTypeItem pluginTypeItem)
+	/**
+	 * Retrieves list of all plugin list items with the specified type based on the isOpened state of pluginTypeItem
+	 * @param pluginTypeItem plugin type
+	 * @return List of all PluginListItems by specified type and isOpened state
+	 */
+	List<PluginListItem> getDisplayedPluginListByType(PluginTypeItem pluginTypeItem)
 	{
 		List<PluginListItem> pluginListItems = new ArrayList<>();
 		final List<String> pinnedPlugins = getPinnedPluginNames();
@@ -216,15 +222,61 @@ public class ConfigPanel extends PluginPanel
 			pluginListItems.add(runeLite);
 			pluginListItems.add(chatColor);
 		}
+		pluginListItems.sort(Comparator.comparing(PluginListItem::getName));
+		return pluginListItems;
+	}
+
+	/**
+	 * Retrieves list of all plugin list items with the specified type
+	 * @param pluginTypeItem plugin type
+	 * @return List of all PluginListItems by specified type
+	 */
+	private List<PluginListItem> getPluginListByType(PluginTypeItem pluginTypeItem)
+	{
+		List<PluginListItem> pluginListItems = new ArrayList<>();
+		final List<String> pinnedPlugins = getPinnedPluginNames();
+
+		// Filter on plugin type and collapse state, also filter out hidden plugins
+		pluginManager.getPlugins().stream()
+				.filter(plugin -> !plugin.getClass().getAnnotation(PluginDescriptor.class).hidden()
+						&& plugin.getClass().getAnnotation(PluginDescriptor.class).type().equals(pluginTypeItem.getType()))
+				.forEach(plugin ->
+				{
+					final PluginDescriptor descriptor = plugin.getClass().getAnnotation(PluginDescriptor.class);
+					final Config config = pluginManager.getPluginConfigProxy(plugin);
+					final ConfigDescriptor configDescriptor = config == null ? null : configManager.getConfigDescriptor(config);
+
+					final PluginListItem listItem = new PluginListItem(this, plugin, descriptor, config, configDescriptor);
+					listItem.setPinned(pinnedPlugins.contains(listItem.getName()));
+					pluginListItems.add(listItem);
+				});
+
+		if (pluginTypeItem.getType().equals(PluginType.VANILLA) && pluginTypeItem.isOpened())
+		{
+			// Add special entries for core client configurations
+			final PluginListItem runeLite = new PluginListItem(this, runeLiteConfig,
+					configManager.getConfigDescriptor(runeLiteConfig),
+					RUNELITE_PLUGIN, "SanLite client settings", "client");
+			runeLite.setPinned(pinnedPlugins.contains(RUNELITE_PLUGIN));
+
+			final PluginListItem chatColor = new PluginListItem(this, chatColorConfig,
+					configManager.getConfigDescriptor(chatColorConfig),
+					CHAT_COLOR_PLUGIN, "Recolor chat text", "colour", "messages");
+			chatColor.setPinned(pinnedPlugins.contains(CHAT_COLOR_PLUGIN));
+
+			pluginListItems.add(runeLite);
+			pluginListItems.add(chatColor);
+		}
+		pluginListItems.sort(Comparator.comparing(PluginListItem::getName));
 		return pluginListItems;
 	}
 
 	void refreshPluginList()
 	{
-		// update enabled / disabled status of all items
+		// Update enabled / disabled status of all displayed items
 		pluginTypeList.forEach(pluginTypeItem ->
 		{
-			pluginTypeItem.getPluginList().forEach(listItem ->
+			pluginTypeItem.getDisplayedPluginList().forEach(listItem ->
 			{
 				final Plugin plugin = listItem.getPlugin();
 				if (plugin != null)
@@ -238,6 +290,17 @@ public class ConfigPanel extends PluginPanel
 				openConfigList();
 			}
 		});
+
+		// Update full items list to show accurate status on search results
+		pluginTypeList.forEach(pluginTypeItem ->
+				pluginTypeItem.getPluginList().forEach(listItem ->
+				{
+					final Plugin plugin = listItem.getPlugin();
+					if (plugin != null)
+					{
+						listItem.setPluginEnabled(pluginManager.isPluginEnabled(plugin));
+					}
+				}));
 	}
 
 	void openConfigList()
@@ -262,8 +325,7 @@ public class ConfigPanel extends PluginPanel
 	private void onSearchBarChanged()
 	{
 		final String text = searchBar.getText();
-
-		pluginTypeList.forEach(mainPanel::remove);
+		mainPanel.removeAll();
 
 		showMatchingPlugins(true, text);
 		showMatchingPlugins(false, text);
@@ -273,14 +335,15 @@ public class ConfigPanel extends PluginPanel
 
 	private void showMatchingPlugins(boolean pinned, String text)
 	{
+		// Re-add normal config panel items on empty search
 		if (text.isEmpty())
 		{
+			mainPanel.removeAll();
 			pluginTypeList.forEach(pluginTypeList ->
 					{
 						mainPanel.add(pluginTypeList);
-						pluginTypeList.getPluginList().stream().filter(item -> pinned == item.isPinned()).forEach(mainPanel::add);
+						pluginTypeList.getDisplayedPluginList().stream().filter(item -> pinned == item.isPinned()).forEach(mainPanel::add); // TODO: Might cause pinned items not on top
 					});
-
 
 			return;
 		}
@@ -568,7 +631,7 @@ public class ConfigPanel extends PluginPanel
 	{
 		pluginTypeList.forEach(pluginTypeItem ->
 		{
-			final String value = pluginTypeItem.getPluginList().stream()
+			final String value = pluginTypeItem.getDisplayedPluginList().stream()
 					.filter(PluginListItem::isPinned)
 					.map(PluginListItem::getName)
 					.collect(Collectors.joining(","));
@@ -581,7 +644,7 @@ public class ConfigPanel extends PluginPanel
 	{
 		for (PluginTypeItem pluginTypeItem : pluginTypeList)
 		{
-			for (PluginListItem pluginListItem : pluginTypeItem.getPluginList())
+			for (PluginListItem pluginListItem : pluginTypeItem.getDisplayedPluginList())
 			{
 				if (pluginListItem.getName().equals(configGroup))
 				{
