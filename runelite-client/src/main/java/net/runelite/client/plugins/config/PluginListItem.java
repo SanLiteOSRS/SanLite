@@ -48,6 +48,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 import net.runelite.client.config.Config;
 import net.runelite.client.config.ConfigDescriptor;
 import net.runelite.client.plugins.Plugin;
@@ -59,6 +60,7 @@ import net.runelite.client.util.ImageUtil;
 import net.runelite.client.util.LinkBrowser;
 import org.apache.commons.text.similarity.JaroWinklerDistance;
 
+@Slf4j
 class PluginListItem extends JPanel
 {
 	private static final JaroWinklerDistance DISTANCE = new JaroWinklerDistance();
@@ -76,6 +78,9 @@ class PluginListItem extends JPanel
 	@Getter
 	@Nullable
 	private final Plugin plugin;
+
+	@Getter
+	private final PluginTypeItem pluginTypeItem;
 
 	@Nullable
 	@Getter(AccessLevel.PACKAGE)
@@ -133,27 +138,28 @@ class PluginListItem extends JPanel
 	 * Note that {@code config} and {@code configDescriptor} can be {@code null}
 	 * if there is no configuration associated with the plugin.
 	 */
-	PluginListItem(ConfigPanel configPanel, Plugin plugin, PluginDescriptor descriptor,
+	PluginListItem(ConfigPanel configPanel, Plugin plugin, PluginTypeItem pluginTypeItem, PluginDescriptor descriptor,
 		@Nullable Config config, @Nullable ConfigDescriptor configDescriptor)
 	{
-		this(configPanel, plugin, config, configDescriptor,
+		this(configPanel, plugin, pluginTypeItem, config, configDescriptor,
 			descriptor.name(), descriptor.description(), descriptor.tags());
 	}
 
 	/**
 	 * Creates a new {@code PluginListItem} for a core configuration.
 	 */
-	PluginListItem(ConfigPanel configPanel, Config config, ConfigDescriptor configDescriptor,
+	PluginListItem(ConfigPanel configPanel, Config config, PluginTypeItem pluginTypeItem, ConfigDescriptor configDescriptor,
 		String name, String description, String... tags)
 	{
-		this(configPanel, null, config, configDescriptor, name, description, tags);
+		this(configPanel, null, pluginTypeItem, config, configDescriptor, name, description, tags);
 	}
 
-	private PluginListItem(ConfigPanel configPanel, @Nullable Plugin plugin, @Nullable Config config,
+	private PluginListItem(ConfigPanel configPanel, @Nullable Plugin plugin, PluginTypeItem pluginTypeItem, @Nullable Config config,
 		@Nullable ConfigDescriptor configDescriptor, String name, String description, String... tags)
 	{
 		this.configPanel = configPanel;
 		this.plugin = plugin;
+		this.pluginTypeItem = pluginTypeItem;
 		this.config = config;
 		this.configDescriptor = configDescriptor;
 		this.name = name;
@@ -182,8 +188,11 @@ class PluginListItem extends JPanel
 		pinButton.addActionListener(e ->
 		{
 			setPinned(!isPinned);
+			pluginTypeItem.onListItemPinUpdatePluginList(this);
 			configPanel.savePinnedPlugins();
 			configPanel.openConfigList();
+			//configPanel.refreshPluginList();
+			log.debug("pinButton actionEvent triggered {}", e.getActionCommand());
 		});
 
 		final JPanel buttonPanel = new JPanel();

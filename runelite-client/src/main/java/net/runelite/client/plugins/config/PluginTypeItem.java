@@ -14,9 +14,10 @@ import java.awt.*;
 import java.awt.font.TextAttribute;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
-public class PluginTypeItem extends JPanel
+class PluginTypeItem extends JPanel
 {
 
 	private final ConfigPanel configPanel;
@@ -25,7 +26,6 @@ public class PluginTypeItem extends JPanel
 	private final PluginType type;
 
 	@Getter(AccessLevel.PUBLIC)
-	@Setter(AccessLevel.PACKAGE)
 	private boolean isOpened;
 
 	@Getter(AccessLevel.PUBLIC)
@@ -44,6 +44,20 @@ public class PluginTypeItem extends JPanel
 		this.type = pluginType;
 		this.displayedPluginList = new ArrayList<>();
 		createCollapsiblePluginListItem(pluginType);
+	}
+
+	void onListItemPinUpdatePluginList(PluginListItem pluginListItem)
+	{
+		for (PluginListItem listItem : new ArrayList<>(pluginList))
+		{
+			if (listItem.getName().equals(pluginListItem.getName()))
+			{
+				pluginList.remove(listItem);
+				listItem.setPinned(pluginListItem.isPinned());
+				pluginList.add(listItem);
+				pluginList.sort(Comparator.comparing(PluginListItem::getName));
+			}
+		}
 	}
 
 	private void createCollapsiblePluginListItem(PluginType pluginType)
@@ -75,11 +89,19 @@ public class PluginTypeItem extends JPanel
 		add(headerLabel, BorderLayout.CENTER);
 	}
 
-	private void handleTypeEntryCollapse()
+	void handleTypeEntryCollapse()
 	{
 		isOpened = !isOpened;
 		collapseButton.setText(isOpened ? "˅" : ">");
-		displayedPluginList = configPanel.getDisplayedPluginListByType(this);
+
+		if (this.type == PluginType.PINNED)
+		{
+			displayedPluginList = configPanel.getDisplayedPinnedPluginsListItems(this);
+		}
+		else
+		{
+			displayedPluginList = configPanel.getDisplayedPluginListByType(this);
+		}
 		configPanel.refreshPluginList();
 	}
 }
