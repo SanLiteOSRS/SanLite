@@ -66,19 +66,20 @@ public class ConfigPanel extends PluginPanel
 	private static final ImageIcon BACK_ICON_HOVER;
 
 	private static final String RUNELITE_GROUP_NAME = RuneLiteConfig.class.getAnnotation(ConfigGroup.class).value();
-	private static final String PINNED_PLUGINS_CONFIG_KEY = "pinnedPlugins";
-	static final String PINNED_COLLAPSIBLE_ENTRY_NAME = "PINNED";
 	private static final String RUNELITE_PLUGIN = "SanLite";
 	private static final String CHAT_COLOR_PLUGIN = "Chat Color";
+	private static final String PINNED_PLUGINS_CONFIG_KEY = "pinnedPlugins";
+	static final String PINNED_COLLAPSIBLE_ENTRY_NAME = "PINNED";
+
 
 	private final PluginManager pluginManager;
 	private final ConfigManager configManager;
 	private final ScheduledExecutorService executorService;
 	private final RuneLiteConfig runeLiteConfig;
 	private final ChatColorConfig chatColorConfig;
-	private final List<CollapsibleEntry> collapsibleEntries = new ArrayList<>();
 
 	private final IconTextField searchBar = new IconTextField();
+	private final List<CollapsibleEntry> collapsibleEntries = new ArrayList<>();
 	private final JPanel topPanel;
 	private final JPanel mainPanel;
 	private final JScrollPane scrollPane;
@@ -176,7 +177,6 @@ public class ConfigPanel extends PluginPanel
 			collapsibleEntry.setCollapsibleEntryItems(collapsibleEntryItems);
 			collapsibleEntry.setDisplayedEntryItems(collapsibleEntry.getDisplayedCollapsibleEntryItems());
 			collapsibleEntries.add(collapsibleEntry);
-			log.debug("Added plugin collapsible entry {} to config panel ", pluginType.name());
 		}
 
 		for (CollapsibleEntry collapsibleEntry : collapsibleEntries)
@@ -224,6 +224,11 @@ public class ConfigPanel extends PluginPanel
 		return pluginListItems;
 	}
 
+	/**
+	 * Retrieves a list of all pinned plugins
+	 *
+	 * @return list of pinned plugins
+	 */
 	private List<PluginListItem> getPinnedPluginsListItems()
 	{
 		List<PluginListItem> pluginListItems = new ArrayList<>();
@@ -261,12 +266,16 @@ public class ConfigPanel extends PluginPanel
 		return pluginListItems;
 	}
 
+	/**
+	 * Updates the collapsible entry item list with the changed plugin list item
+	 *
+	 * @param pluginListItem updated plugin list item
+	 */
 	void updateCollapsibleEntryListItem(PluginListItem pluginListItem)
 	{
 		CollapsibleEntry entry = pluginListItem.getParentCollapsibleEntry();
 		if (entry.getName().equals(PINNED_COLLAPSIBLE_ENTRY_NAME))
 		{
-			log.debug("Triggered pinned entry update list item");
 			for (CollapsibleEntry collapsibleEntry : collapsibleEntries)
 			{
 				if (collapsibleEntry.getCollapsibleEntryItems().size() == 0)
@@ -290,7 +299,6 @@ public class ConfigPanel extends PluginPanel
 		}
 		else
 		{
-			log.debug("Triggered non-pinned entry update list item");
 			CollapsibleEntry collapsibleEntry = pluginListItem.getParentCollapsibleEntry();
 			for (PluginListItem listItem : new ArrayList<>(collapsibleEntry.getCollapsibleEntryItems()))
 			{
@@ -304,6 +312,9 @@ public class ConfigPanel extends PluginPanel
 		}
 	}
 
+	/**
+	 * Sets visibility of the pinned collapsible entry based on pinned plugins size.
+	 */
 	void setPinnedCollapsibleEntryVisibility()
 	{
 		for (CollapsibleEntry collapsibleEntry : collapsibleEntries)
@@ -316,7 +327,13 @@ public class ConfigPanel extends PluginPanel
 		}
 	}
 
-	void refreshCollapsibleEntriesDisplayedList(PluginListItem pluginListItem)
+	/**
+	 * Updates displayed collapsible entry items for each collapsible entry on plugin item pin.
+	 * The pinned collapsible entry is updated last.
+	 *
+	 * @param pluginListItem updated plugin list item
+	 */
+	void refreshCollapsibleEntriesDisplayedListOnPin(PluginListItem pluginListItem)
 	{
 		updatePinnedCollapsibleEntryItemsList(pluginListItem);
 		for (CollapsibleEntry collapsibleEntry : collapsibleEntries)
@@ -324,17 +341,11 @@ public class ConfigPanel extends PluginPanel
 			// All collapsible entries should update entry item lists before the pinned collapsible entry
 			if (!collapsibleEntry.getName().equals(PINNED_COLLAPSIBLE_ENTRY_NAME))
 			{
-				log.debug("Refreshed displayed {} plugin list", collapsibleEntry.getName());
 				collapsibleEntry.setDisplayedEntryItems(collapsibleEntry.getDisplayedCollapsibleEntryItems());
 			}
 			else if (collapsibleEntry.getName().equals(PINNED_COLLAPSIBLE_ENTRY_NAME))
 			{
-				log.debug("Refreshed displayed pinned plugin list");
 				collapsibleEntry.setDisplayedEntryItems(collapsibleEntry.getDisplayedPinnedCollapsibleEntryItems());
-				for (PluginListItem listItem : collapsibleEntry.getDisplayedPinnedCollapsibleEntryItems()) // TODO: Remove
-				{
-					log.debug("Pinned plugin: {}", listItem.getName());
-				}
 			}
 		}
 	}
@@ -352,7 +363,6 @@ public class ConfigPanel extends PluginPanel
 
 		if (pinnedCollapsibleEntry != null)
 		{
-			log.debug("Pinned collapsible entry item list size before removal: {}", pinnedCollapsibleEntry.getCollapsibleEntryItems().size());
 			if (pluginListItem.isPinned())
 			{
 				pinnedCollapsibleEntry.addToCollapsibleEntryItems(pluginListItem);
@@ -361,7 +371,6 @@ public class ConfigPanel extends PluginPanel
 			{
 				pinnedCollapsibleEntry.removeFromCollapsibleEntryItems(pluginListItem);
 			}
-			log.debug("Pinned collapsible entry item list size after removal: {}", pinnedCollapsibleEntry.getCollapsibleEntryItems().size());
 		}
 		else
 		{
@@ -420,6 +429,9 @@ public class ConfigPanel extends PluginPanel
 		scrollPane.getVerticalScrollBar().setValue(scrollBarPosition);
 	}
 
+	/**
+	 * Triggered when the the text value of the search bar changes. Redraws the main panel with the matching components
+	 */
 	private void onSearchBarChanged()
 	{
 		final String text = searchBar.getText();
@@ -431,6 +443,12 @@ public class ConfigPanel extends PluginPanel
 		revalidate();
 	}
 
+	/**
+	 * Adds the matching plugin components to the main panel.
+	 *
+	 * @param pinned show only pinned plugins
+	 * @param text   text for searching matching plugins
+	 */
 	private void showMatchingPlugins(boolean pinned, String text)
 	{
 		// Re-add normal config panel items on empty search. This is triggered on startup.
@@ -464,6 +482,11 @@ public class ConfigPanel extends PluginPanel
 		}
 	}
 
+	/**
+	 * Retrieves all pinned plugin names from the client settings file
+	 *
+	 * @return list of pinned plugin names
+	 */
 	private List<String> getPinnedPluginNames()
 	{
 		final String config = configManager.getConfiguration(RUNELITE_GROUP_NAME, PINNED_PLUGINS_CONFIG_KEY);
@@ -476,10 +499,11 @@ public class ConfigPanel extends PluginPanel
 		return Text.fromCSV(config);
 	}
 
+	/**
+	 * Saves all pinned plugins to the client settings file
+	 */
 	void savePinnedPlugins()
 	{
-		log.debug("Pinned plugins value before: {}", getPinnedPluginNames());
-
 		StringBuilder value = new StringBuilder();
 		for (CollapsibleEntry collapsibleEntry : collapsibleEntries)
 		{
@@ -499,10 +523,7 @@ public class ConfigPanel extends PluginPanel
 			}
 
 			value.append(result);
-			log.debug("Entry {} savePinnedPlugins value {}", collapsibleEntry.getName(), value);
 		}
-
-		log.debug("Setting pinnedPlugins configuration value to {}", value.toString());
 		configManager.setConfiguration(RUNELITE_GROUP_NAME, PINNED_PLUGINS_CONFIG_KEY, value.toString());
 	}
 
@@ -793,19 +814,24 @@ public class ConfigPanel extends PluginPanel
 		});
 	}
 
+	/**
+	 * Opens configuration panel from right-clicking an overlay on the game canvas.
+	 *
+	 * @param configGroup plugin config group
+	 */
 	void openConfigurationPanel(String configGroup)
 	{
-//		for (PluginTypeItem pluginTypeItem : pluginTypeList)
-//		{
-//			for (PluginListItem pluginListItem : pluginTypeItem.getDisplayedPluginList())
-//			{
-//				if (pluginListItem.getName().equals(configGroup))
-//				{
-//					openGroupConfigPanel(pluginListItem, pluginListItem.getConfig(), pluginListItem.getConfigDescriptor());
-//					break;
-//				}
-//			}
-//		}
+		for (CollapsibleEntry collapsibleEntry : collapsibleEntries)
+		{
+			for (PluginListItem pluginListItem : collapsibleEntry.getCollapsibleEntryItems())
+			{
+				if (pluginListItem.getName().equals(configGroup))
+				{
+					openGroupConfigPanel(pluginListItem, pluginListItem.getConfig(), pluginListItem.getConfigDescriptor());
+					break;
+				}
+			}
+		}
 	}
 
 	@Override

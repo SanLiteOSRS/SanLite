@@ -24,28 +24,6 @@
  */
 package net.runelite.client.plugins.config;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.GridLayout;
-import java.awt.MouseInfo;
-import java.awt.Point;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import javax.annotation.Nullable;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JMenuItem;
-import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
-import javax.swing.SwingUtilities;
-import javax.swing.border.EmptyBorder;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -61,6 +39,18 @@ import net.runelite.client.ui.components.IconButton;
 import net.runelite.client.util.ImageUtil;
 import net.runelite.client.util.LinkBrowser;
 import org.apache.commons.text.similarity.JaroWinklerDistance;
+
+import javax.annotation.Nullable;
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 @Slf4j
 class PluginListItem extends JPanel
@@ -194,15 +184,11 @@ class PluginListItem extends JPanel
 		pinButton.addActionListener(e ->
 		{
 			setPinned(!isPinned);
-			log.debug("Changed isPinned for {} to: {} ", name, isPinned);
 			configPanel.updateCollapsibleEntryListItem(this);
 			configPanel.savePinnedPlugins();
 			configPanel.setPinnedCollapsibleEntryVisibility();
-			configPanel.refreshCollapsibleEntriesDisplayedList(this);
+			configPanel.refreshCollapsibleEntriesDisplayedListOnPin(this);
 			configPanel.openConfigList();
-
-			//configPanel.refreshPluginList();
-			log.debug("pinButton actionEvent finished {}", e.getActionCommand());
 		});
 
 		final JPanel buttonPanel = new JPanel();
@@ -273,13 +259,13 @@ class PluginListItem extends JPanel
 		return button;
 	}
 
-	public void setPluginEnabled(boolean enabled)
+	void setPluginEnabled(boolean enabled)
 	{
 		isPluginEnabled = enabled;
 		updateToggleButton(toggleButton);
 	}
 
-	public void setPinned(boolean pinned)
+	void setPinned(boolean pinned)
 	{
 		isPinned = pinned;
 		pinButton.setIcon(pinned ? ON_STAR : OFF_STAR);
@@ -333,7 +319,7 @@ class PluginListItem extends JPanel
 	 * @param label     The label to attach the mouseover and click effects to
 	 * @param menuItems The menu items to be shown when the label is clicked
 	 */
-	static void addLabelPopupMenu(final JLabel label, final Collection<JMenuItem> menuItems)
+	private static void addLabelPopupMenu(final JLabel label, final Collection<JMenuItem> menuItems)
 	{
 		final JPopupMenu menu = new JPopupMenu();
 		menu.setBorder(new EmptyBorder(5, 5, 5, 5));
