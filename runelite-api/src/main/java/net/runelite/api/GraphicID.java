@@ -52,4 +52,13 @@ public class GraphicID
 	public static final int OLM_BURN = 1351;
 	public static final int OLM_TELEPORT = 1359;
 	public static final int XERIC_TELEPORT = 1612;
+	public static final int ALCHEMICAL_HYDRA_POISON_SPLAT_BEFORE_LANDING = 1645;
+	public static final int ALCHEMICAL_HYDRA_POISON_SPLAT_1 = 1654;
+	public static final int ALCHEMICAL_HYDRA_POISON_SPLAT_2 = 1655;
+	public static final int ALCHEMICAL_HYDRA_POISON_SPLAT_3 = 1656;
+	public static final int ALCHEMICAL_HYDRA_POISON_SPLAT_4 = 1660;
+	public static final int ALCHEMICAL_HYDRA_POISON_SPLAT_5 = 1661;
+	public static final int ALCHEMICAL_HYDRA_LIGHTNING_ATTACK_1 = 1664;
+	public static final int ALCHEMICAL_HYDRA_LIGHTNING_ATTACK_2 = 1666;
+	public static final int ALCHEMICAL_HYDRA_FIRE_ATTACK = 1668;
 }

@@ -78,6 +78,12 @@ public class ProjectileID
 	public static final int DEMONIC_GORILLA_MAGIC = 1304;
 	public static final int DEMONIC_GORILLA_BOULDER = 856;
 
+	public static final int ALCHEMICAL_HYDRA_MAGIC = 1662;
+	public static final int ALCHEMICAL_HYDRA_RANGED = 1663;
+	public static final int ALCHEMICAL_HYDRA_POISON = 1644;
+	public static final int ALCHEMICAL_HYDRA_LIGHTNING = 1664;
+	public static final int ALCHEMICAL_HYDRA_FIRE = 1667;
+
 	public static final int XARPUS_ACID = 1555;
 	public static final int CERB_FIRE = 1247;
 
