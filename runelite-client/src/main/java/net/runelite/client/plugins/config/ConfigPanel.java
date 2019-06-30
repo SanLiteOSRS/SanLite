@@ -26,28 +26,6 @@ package net.runelite.client.plugins.config;
 
 import com.google.common.base.Strings;
 import com.google.common.primitives.Ints;
-
-import java.awt.*;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
-import java.awt.event.ItemEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.awt.font.TextAttribute;
-import java.awt.image.BufferedImage;
-import java.util.*;
-import java.util.List;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.stream.Collectors;
-import javax.swing.*;
-import javax.swing.border.CompoundBorder;
-import javax.swing.border.EmptyBorder;
-import javax.swing.event.ChangeListener;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
-import javax.swing.text.JTextComponent;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.client.config.*;
 import net.runelite.client.plugins.*;
@@ -62,6 +40,22 @@ import net.runelite.client.util.ColorUtil;
 import net.runelite.client.util.ImageUtil;
 import net.runelite.client.util.Text;
 
+import javax.swing.*;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.text.JTextComponent;
+import java.awt.*;
+import java.awt.event.*;
+import java.awt.font.TextAttribute;
+import java.awt.image.BufferedImage;
+import java.util.List;
+import java.util.*;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.stream.Collectors;
+
 @Slf4j
 public class ConfigPanel extends PluginPanel
 {
@@ -73,6 +67,7 @@ public class ConfigPanel extends PluginPanel
 
 	private static final String RUNELITE_GROUP_NAME = RuneLiteConfig.class.getAnnotation(ConfigGroup.class).value();
 	private static final String PINNED_PLUGINS_CONFIG_KEY = "pinnedPlugins";
+	static final String PINNED_COLLAPSIBLE_ENTRY_NAME = "PINNED";
 	private static final String RUNELITE_PLUGIN = "SanLite";
 	private static final String CHAT_COLOR_PLUGIN = "Chat Color";
 
@@ -81,7 +76,7 @@ public class ConfigPanel extends PluginPanel
 	private final ScheduledExecutorService executorService;
 	private final RuneLiteConfig runeLiteConfig;
 	private final ChatColorConfig chatColorConfig;
-	private final List<PluginTypeItem> pluginTypeList = new ArrayList<>();
+	private final List<CollapsibleEntry> collapsibleEntries = new ArrayList<>();
 
 	private final IconTextField searchBar = new IconTextField();
 	private final JPanel topPanel;
@@ -99,7 +94,7 @@ public class ConfigPanel extends PluginPanel
 	}
 
 	ConfigPanel(PluginManager pluginManager, ConfigManager configManager, ScheduledExecutorService executorService,
-		RuneLiteConfig runeLiteConfig, ChatColorConfig chatColorConfig)
+				RuneLiteConfig runeLiteConfig, ChatColorConfig chatColorConfig)
 	{
 		super(false);
 		this.pluginManager = pluginManager;
@@ -143,7 +138,7 @@ public class ConfigPanel extends PluginPanel
 
 		mainPanel = new FixedWidthPanel();
 		mainPanel.setBorder(new EmptyBorder(8, 10, 10, 10));
-		mainPanel.setLayout(new DynamicGridLayout(0, 1, 0, 5));
+		mainPanel.setLayout(new DynamicGridLayout(0, 1, 0, 4));
 		mainPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
 
 		JPanel northPanel = new FixedWidthPanel();
@@ -163,133 +158,64 @@ public class ConfigPanel extends PluginPanel
 	 */
 	private void initializePluginList()
 	{
-		// Add entry for pinned plugins
-		if (getPinnedPluginNames().size() > 0)
-		{
-			PluginTypeItem pinnedPluginTypeItem = new PluginTypeItem(this, PluginType.PINNED);
-			pinnedPluginTypeItem.setPluginList(getPinnedPluginsListItems(pinnedPluginTypeItem));
-			pinnedPluginTypeItem.setDisplayedPluginList(getDisplayedPinnedPluginsListItems(pinnedPluginTypeItem));
-			pluginTypeList.add(pinnedPluginTypeItem);
-			pinnedPluginTypeItem.handleTypeEntryCollapse();
-		}
+		// Add collapsible entry for pinned plugins
+		CollapsibleEntry pinnedPluginsCollapsibleEntry = new CollapsibleEntry(PINNED_COLLAPSIBLE_ENTRY_NAME, this);
+		pinnedPluginsCollapsibleEntry.setCollapsibleEntryItems(getPinnedPluginsListItems());
+		pinnedPluginsCollapsibleEntry.getCollapsibleEntryItems().forEach(item -> item.setParentCollapsibleEntry(pinnedPluginsCollapsibleEntry));
+		pinnedPluginsCollapsibleEntry.onOpenedStateChange();
+		collapsibleEntries.add(pinnedPluginsCollapsibleEntry);
+		pinnedPluginsCollapsibleEntry.setVisible(getPinnedPluginNames().size() > 0);
+		pinnedPluginsCollapsibleEntry.setPreferredSize(new Dimension(PluginPanel.PANEL_WIDTH, getPinnedPluginNames().size() > 0 ? 30 : 0));
 
-		// Populate pluginTypeList with collapsible menu entries and all non-hidden plugins
+		// Populate pluginTypeList with collapsible entries and all non-hidden plugins
 		for (PluginType pluginType : PluginType.values())
 		{
-			if (pluginType == PluginType.PINNED)
-			{
-				return;
-			}
-
-			PluginTypeItem pluginTypeItem = new PluginTypeItem(this, pluginType);
-			pluginTypeItem.setPluginList(getPluginListByType(pluginTypeItem));
-			pluginTypeItem.setDisplayedPluginList(getDisplayedPluginListByType(pluginTypeItem));
-			pluginTypeList.add(pluginTypeItem);
-			log.debug("Added plugin type collapsible entry {} to config panel ", pluginType.name());
+			CollapsibleEntry collapsibleEntry = new CollapsibleEntry(pluginType.name(), this);
+			List<PluginListItem> collapsibleEntryItems = getPluginListByType(pluginType);
+			collapsibleEntryItems.forEach(item -> item.setParentCollapsibleEntry(collapsibleEntry));
+			collapsibleEntry.setCollapsibleEntryItems(collapsibleEntryItems);
+			collapsibleEntry.setDisplayedEntryItems(collapsibleEntry.getDisplayedCollapsibleEntryItems());
+			collapsibleEntries.add(collapsibleEntry);
+			log.debug("Added plugin collapsible entry {} to config panel ", pluginType.name());
 		}
 
-		for (PluginTypeItem pluginTypeItem : pluginTypeList)
+		for (CollapsibleEntry collapsibleEntry : collapsibleEntries)
 		{
-			mainPanel.add(pluginTypeItem);
+			mainPanel.add(collapsibleEntry);
 		}
-	}
-
-	/**
-	 * Retrieves list of all plugin list items with the specified type based on the isOpened state of pluginTypeItem
-	 * @param pluginTypeItem plugin type
-	 * @return List of all PluginListItems by specified type and isOpened state
-	 */
-	List<PluginListItem> getDisplayedPluginListByType(PluginTypeItem pluginTypeItem)
-	{
-		if (pluginTypeItem.getType() == PluginType.PINNED)
-		{
-			return null;
-		}
-
-		List<PluginListItem> pluginListItems = new ArrayList<>();
-		final List<String> pinnedPlugins = getPinnedPluginNames();
-
-		// Filter on plugin type and collapse state, also filter out hidden plugins
-		pluginManager.getPlugins().stream()
-				.filter(plugin -> !plugin.getClass().getAnnotation(PluginDescriptor.class).hidden()
-						&& plugin.getClass().getAnnotation(PluginDescriptor.class).type().equals(pluginTypeItem.getType())
-						&& pluginTypeItem.isOpened())
-				.forEach(plugin ->
-				{
-					final PluginDescriptor descriptor = plugin.getClass().getAnnotation(PluginDescriptor.class);
-					final Config config = pluginManager.getPluginConfigProxy(plugin);
-					final ConfigDescriptor configDescriptor = config == null ? null : configManager.getConfigDescriptor(config);
-
-					final PluginListItem listItem = new PluginListItem(this, plugin, pluginTypeItem, descriptor, config, configDescriptor);
-					if (!pinnedPlugins.contains(listItem.getName()))
-					{
-						pluginListItems.add(listItem);
-						log.debug("Added plugin {} to list ", descriptor.name());
-					}
-				});
-
-		if (pluginTypeItem.getType().equals(PluginType.VANILLA) && pluginTypeItem.isOpened())
-		{
-			// Add special entries for core client configurations
-			final PluginListItem runeLite = new PluginListItem(this, runeLiteConfig, pluginTypeItem,
-					configManager.getConfigDescriptor(runeLiteConfig),
-					RUNELITE_PLUGIN, "SanLite client settings", "client");
-			runeLite.setPinned(pinnedPlugins.contains(RUNELITE_PLUGIN));
-
-			final PluginListItem chatColor = new PluginListItem(this, chatColorConfig, pluginTypeItem,
-					configManager.getConfigDescriptor(chatColorConfig),
-					CHAT_COLOR_PLUGIN, "Recolor chat text", "colour", "messages");
-			chatColor.setPinned(pinnedPlugins.contains(CHAT_COLOR_PLUGIN));
-
-			pluginListItems.add(runeLite);
-			pluginListItems.add(chatColor);
-		}
-		pluginListItems.sort(Comparator.comparing(PluginListItem::getName));
-		return pluginListItems;
 	}
 
 	/**
 	 * Retrieves list of all plugin list items with the specified type
-	 * @param pluginTypeItem plugin type
+	 *
+	 * @param pluginType plugin type
 	 * @return List of all PluginListItems by specified type
 	 */
-	private List<PluginListItem> getPluginListByType(PluginTypeItem pluginTypeItem)
+	private List<PluginListItem> getPluginListByType(PluginType pluginType)
 	{
-		if (pluginTypeItem.getType() == PluginType.PINNED)
-		{
-			return null;
-		}
-
 		List<PluginListItem> pluginListItems = new ArrayList<>();
 		final List<String> pinnedPlugins = getPinnedPluginNames();
 
-		// Filter on plugin type and collapse state, also filter out hidden plugins
+		// Filter on plugin type and filter out hidden plugins
 		pluginManager.getPlugins().stream()
 				.filter(plugin -> !plugin.getClass().getAnnotation(PluginDescriptor.class).hidden()
-						&& plugin.getClass().getAnnotation(PluginDescriptor.class).type().equals(pluginTypeItem.getType()))
+						&& plugin.getClass().getAnnotation(PluginDescriptor.class).type().equals(pluginType))
 				.forEach(plugin ->
 				{
 					final PluginDescriptor descriptor = plugin.getClass().getAnnotation(PluginDescriptor.class);
 					final Config config = pluginManager.getPluginConfigProxy(plugin);
 					final ConfigDescriptor configDescriptor = config == null ? null : configManager.getConfigDescriptor(config);
 
-					final PluginListItem listItem = new PluginListItem(this, plugin, pluginTypeItem, descriptor, config, configDescriptor);
+					final PluginListItem listItem = new PluginListItem(this, plugin, plugin.getClass().getAnnotation(PluginDescriptor.class).type(), descriptor, config, configDescriptor);
 					listItem.setPinned(pinnedPlugins.contains(listItem.getName()));
 					pluginListItems.add(listItem);
 				});
 
-		if (pluginTypeItem.getType().equals(PluginType.VANILLA))
+		if (pluginType.equals(PluginType.VANILLA))
 		{
 			// Add special entries for core client configurations
-			final PluginListItem runeLite = new PluginListItem(this, runeLiteConfig, pluginTypeItem,
-					configManager.getConfigDescriptor(runeLiteConfig),
-					RUNELITE_PLUGIN, "SanLite client settings", "client");
-			runeLite.setPinned(pinnedPlugins.contains(RUNELITE_PLUGIN));
-
-			final PluginListItem chatColor = new PluginListItem(this, chatColorConfig, pluginTypeItem,
-					configManager.getConfigDescriptor(chatColorConfig),
-					CHAT_COLOR_PLUGIN, "Recolor chat text", "colour", "messages");
-			chatColor.setPinned(pinnedPlugins.contains(CHAT_COLOR_PLUGIN));
+			final PluginListItem runeLite = createClientSettingsPlugin();
+			final PluginListItem chatColor = createCreateChatColorPlugin();
 
 			pluginListItems.add(runeLite);
 			pluginListItems.add(chatColor);
@@ -298,7 +224,7 @@ public class ConfigPanel extends PluginPanel
 		return pluginListItems;
 	}
 
-	private List<PluginListItem> getPinnedPluginsListItems(PluginTypeItem pluginTypeItem)
+	private List<PluginListItem> getPinnedPluginsListItems()
 	{
 		List<PluginListItem> pluginListItems = new ArrayList<>();
 		final List<String> pinnedPlugins = getPinnedPluginNames();
@@ -313,27 +239,21 @@ public class ConfigPanel extends PluginPanel
 					final Config config = pluginManager.getPluginConfigProxy(plugin);
 					final ConfigDescriptor configDescriptor = config == null ? null : configManager.getConfigDescriptor(config);
 
-					final PluginListItem listItem = new PluginListItem(this, plugin, pluginTypeItem, descriptor, config, configDescriptor);
-					listItem.setPinned(pinnedPlugins.contains(listItem.getName()));
-					pluginListItems.add(listItem);
+					final PluginListItem collapsibleEntryItem = new PluginListItem(this, plugin, plugin.getClass().getAnnotation(PluginDescriptor.class).type(), descriptor, config, configDescriptor);
+					collapsibleEntryItem.setPinned(pinnedPlugins.contains(collapsibleEntryItem.getName()));
+					pluginListItems.add(collapsibleEntryItem);
 				});
 
 		// Add special entries for core client configurations
 		if (pinnedPlugins.contains(RUNELITE_PLUGIN))
 		{
-			final PluginListItem runeLite = new PluginListItem(this, runeLiteConfig, pluginTypeItem,
-					configManager.getConfigDescriptor(runeLiteConfig),
-					RUNELITE_PLUGIN, "SanLite client settings", "client");
-			runeLite.setPinned(pinnedPlugins.contains(RUNELITE_PLUGIN));
+			final PluginListItem runeLite = createClientSettingsPlugin();
 			pluginListItems.add(runeLite);
 		}
 
 		if (pinnedPlugins.contains(CHAT_COLOR_PLUGIN))
 		{
-			final PluginListItem chatColor = new PluginListItem(this, chatColorConfig, pluginTypeItem,
-					configManager.getConfigDescriptor(chatColorConfig),
-					CHAT_COLOR_PLUGIN, "Recolor chat text", "colour", "messages");
-			chatColor.setPinned(pinnedPlugins.contains(CHAT_COLOR_PLUGIN));
+			final PluginListItem chatColor = createCreateChatColorPlugin();
 			pluginListItems.add(chatColor);
 		}
 
@@ -341,72 +261,125 @@ public class ConfigPanel extends PluginPanel
 		return pluginListItems;
 	}
 
-	List<PluginListItem> getDisplayedPinnedPluginsListItems(PluginTypeItem pluginTypeItem)
+	void updateCollapsibleEntryListItem(PluginListItem pluginListItem)
 	{
-		List<PluginListItem> pluginListItems = new ArrayList<>();
-		final List<String> pinnedPlugins = getPinnedPluginNames();
-
-		// Filter on plugin type and collapse state, also filter out hidden plugins
-		pluginManager.getPlugins().stream()
-				.filter(plugin -> !plugin.getClass().getAnnotation(PluginDescriptor.class).hidden()
-						&& pinnedPlugins.contains(plugin.getClass().getAnnotation(PluginDescriptor.class).name())
-						&& pluginTypeItem.isOpened())
-				.forEach(plugin ->
+		CollapsibleEntry entry = pluginListItem.getParentCollapsibleEntry();
+		if (entry.getName().equals(PINNED_COLLAPSIBLE_ENTRY_NAME))
+		{
+			log.debug("Triggered pinned entry update list item");
+			for (CollapsibleEntry collapsibleEntry : collapsibleEntries)
+			{
+				if (collapsibleEntry.getCollapsibleEntryItems().size() == 0)
 				{
-					final PluginDescriptor descriptor = plugin.getClass().getAnnotation(PluginDescriptor.class);
-					final Config config = pluginManager.getPluginConfigProxy(plugin);
-					final ConfigDescriptor configDescriptor = config == null ? null : configManager.getConfigDescriptor(config);
+					continue;
+				}
 
-					final PluginListItem listItem = new PluginListItem(this, plugin, pluginTypeItem, descriptor, config, configDescriptor);
-					listItem.setPinned(pinnedPlugins.contains(listItem.getName()));
-					pluginListItems.add(listItem);
-				});
-
-		// Add special entries for core client configurations
-		if (pinnedPlugins.contains(RUNELITE_PLUGIN) && pluginTypeItem.isOpened())
+				if (pluginListItem.getPluginType() == collapsibleEntry.getCollapsibleEntryItems().get(0).getPluginType())
+				{
+					for (PluginListItem listItem : new ArrayList<>(collapsibleEntry.getCollapsibleEntryItems()))
+					{
+						if (listItem.getName().equals(pluginListItem.getName()))
+						{
+							collapsibleEntry.getCollapsibleEntryItems().remove(listItem);
+							collapsibleEntry.getCollapsibleEntryItems().add(pluginListItem);
+							collapsibleEntry.getCollapsibleEntryItems().sort(Comparator.comparing(PluginListItem::getName));
+						}
+					}
+				}
+			}
+		}
+		else
 		{
-			final PluginListItem runeLite = new PluginListItem(this, runeLiteConfig, pluginTypeItem,
-					configManager.getConfigDescriptor(runeLiteConfig),
-					RUNELITE_PLUGIN, "SanLite client settings", "client");
-			runeLite.setPinned(pinnedPlugins.contains(RUNELITE_PLUGIN));
-			pluginListItems.add(runeLite);
+			log.debug("Triggered non-pinned entry update list item");
+			CollapsibleEntry collapsibleEntry = pluginListItem.getParentCollapsibleEntry();
+			for (PluginListItem listItem : new ArrayList<>(collapsibleEntry.getCollapsibleEntryItems()))
+			{
+				if (listItem.getName().equals(pluginListItem.getName()))
+				{
+					collapsibleEntry.getCollapsibleEntryItems().remove(listItem);
+					collapsibleEntry.getCollapsibleEntryItems().add(pluginListItem);
+					collapsibleEntry.getCollapsibleEntryItems().sort(Comparator.comparing(PluginListItem::getName));
+				}
+			}
+		}
+	}
+
+	void setPinnedCollapsibleEntryVisibility()
+	{
+		for (CollapsibleEntry collapsibleEntry : collapsibleEntries)
+		{
+			if (collapsibleEntry.getName().equals(PINNED_COLLAPSIBLE_ENTRY_NAME))
+			{
+				collapsibleEntry.setVisible(getPinnedPluginNames().size() > 0);
+				collapsibleEntry.setPreferredSize(new Dimension(PluginPanel.PANEL_WIDTH, getPinnedPluginNames().size() > 0 ? 30 : 0));
+			}
+		}
+	}
+
+	void refreshCollapsibleEntriesDisplayedList(PluginListItem pluginListItem)
+	{
+		updatePinnedCollapsibleEntryItemsList(pluginListItem);
+		for (CollapsibleEntry collapsibleEntry : collapsibleEntries)
+		{
+			// All collapsible entries should update entry item lists before the pinned collapsible entry
+			if (!collapsibleEntry.getName().equals(PINNED_COLLAPSIBLE_ENTRY_NAME))
+			{
+				log.debug("Refreshed displayed {} plugin list", collapsibleEntry.getName());
+				collapsibleEntry.setDisplayedEntryItems(collapsibleEntry.getDisplayedCollapsibleEntryItems());
+			}
+			else if (collapsibleEntry.getName().equals(PINNED_COLLAPSIBLE_ENTRY_NAME))
+			{
+				log.debug("Refreshed displayed pinned plugin list");
+				collapsibleEntry.setDisplayedEntryItems(collapsibleEntry.getDisplayedPinnedCollapsibleEntryItems());
+				for (PluginListItem listItem : collapsibleEntry.getDisplayedPinnedCollapsibleEntryItems()) // TODO: Remove
+				{
+					log.debug("Pinned plugin: {}", listItem.getName());
+				}
+			}
+		}
+	}
+
+	private void updatePinnedCollapsibleEntryItemsList(PluginListItem pluginListItem)
+	{
+		CollapsibleEntry pinnedCollapsibleEntry = null;
+		for (CollapsibleEntry collapsibleEntry : collapsibleEntries)
+		{
+			if (collapsibleEntry.getName().equals(PINNED_COLLAPSIBLE_ENTRY_NAME))
+			{
+				pinnedCollapsibleEntry = collapsibleEntry;
+			}
 		}
 
-		if (pinnedPlugins.contains(CHAT_COLOR_PLUGIN))
+		if (pinnedCollapsibleEntry != null)
 		{
-			final PluginListItem chatColor = new PluginListItem(this, chatColorConfig, pluginTypeItem,
-					configManager.getConfigDescriptor(chatColorConfig),
-					CHAT_COLOR_PLUGIN, "Recolor chat text", "colour", "messages");
-			chatColor.setPinned(pinnedPlugins.contains(CHAT_COLOR_PLUGIN));
-			pluginListItems.add(chatColor);
+			log.debug("Pinned collapsible entry item list size before removal: {}", pinnedCollapsibleEntry.getCollapsibleEntryItems().size());
+			if (pluginListItem.isPinned())
+			{
+				pinnedCollapsibleEntry.addToCollapsibleEntryItems(pluginListItem);
+			}
+			else
+			{
+				pinnedCollapsibleEntry.removeFromCollapsibleEntryItems(pluginListItem);
+			}
+			log.debug("Pinned collapsible entry item list size after removal: {}", pinnedCollapsibleEntry.getCollapsibleEntryItems().size());
 		}
-
-		pluginListItems.sort(Comparator.comparing(PluginListItem::getName));
-		return pluginListItems;
+		else
+		{
+			log.error("Could not find pinned collapsible entry for updating entry items list");
+		}
 	}
 
 	void refreshPluginList()
 	{
 		// Update enabled / disabled status of all displayed items
-		pluginTypeList.forEach(pluginTypeItem ->
+		collapsibleEntries.forEach(collapsibleEntry ->
 		{
-			if (pluginTypeItem.getType() == PluginType.PINNED)
+			collapsibleEntry.getCollapsibleEntryItems().forEach(pluginListItem ->
 			{
-				pluginTypeItem.setPluginList(getPinnedPluginsListItems(pluginTypeItem));
-				pluginTypeItem.setDisplayedPluginList(getDisplayedPinnedPluginsListItems(pluginTypeItem));
-			}
-			else
-			{
-				pluginTypeItem.setPluginList(getPluginListByType(pluginTypeItem));
-				pluginTypeItem.setDisplayedPluginList(getDisplayedPluginListByType(pluginTypeItem));
-			}
-
-			pluginTypeItem.getDisplayedPluginList().forEach(listItem ->
-			{
-				final Plugin plugin = listItem.getPlugin();
+				final Plugin plugin = pluginListItem.getPlugin();
 				if (plugin != null)
 				{
-					listItem.setPluginEnabled(pluginManager.isPluginEnabled(plugin));
+					pluginListItem.setPluginEnabled(pluginManager.isPluginEnabled(plugin));
 				}
 			});
 
@@ -417,13 +390,13 @@ public class ConfigPanel extends PluginPanel
 		});
 
 		// Update full items list to show accurate status on search results
-		pluginTypeList.forEach(pluginTypeItem ->
-				pluginTypeItem.getPluginList().forEach(listItem ->
+		collapsibleEntries.forEach(collapsibleEntry ->
+				collapsibleEntry.getCollapsibleEntryItems().forEach(pluginListItem ->
 				{
-					final Plugin plugin = listItem.getPlugin();
+					final Plugin plugin = pluginListItem.getPlugin();
 					if (plugin != null)
 					{
-						listItem.setPluginEnabled(pluginManager.isPluginEnabled(plugin));
+						pluginListItem.setPluginEnabled(pluginManager.isPluginEnabled(plugin));
 					}
 				}));
 	}
@@ -464,25 +437,105 @@ public class ConfigPanel extends PluginPanel
 		if (text.isEmpty())
 		{
 			mainPanel.removeAll();
-			pluginTypeList.forEach(pluginTypeItem ->
-					{
-						mainPanel.add(pluginTypeItem);
-						pluginTypeItem.getDisplayedPluginList()/*.stream().filter(item -> pinned == item.isPinned())*/.forEach(mainPanel::add);
-					});
+			collapsibleEntries.forEach(collapsibleEntry ->
+			{
+				mainPanel.add(collapsibleEntry);
+				collapsibleEntry.getDisplayedEntryItems().forEach(mainPanel::add);
+			});
 
 			return;
 		}
 
 		final String[] searchTerms = text.toLowerCase().split(" ");
-		pluginTypeList.forEach(pluginList ->
-				pluginList.getPluginList().forEach(listItem ->
-				{
-					if (pinned == listItem.isPinned() && listItem.matchesSearchTerms(searchTerms))
-					{
-						mainPanel.add(listItem);
-					}
-				}));
+		for (CollapsibleEntry collapsibleEntry : collapsibleEntries)
+		{
+			if (collapsibleEntry.getName().equals(PINNED_COLLAPSIBLE_ENTRY_NAME))
+			{
+				continue;
+			}
 
+			for (PluginListItem pluginListItem : collapsibleEntry.getCollapsibleEntryItems())
+			{
+				if (pinned == pluginListItem.isPinned() && pluginListItem.matchesSearchTerms(searchTerms))
+				{
+					mainPanel.add(pluginListItem);
+				}
+			}
+		}
+	}
+
+	private List<String> getPinnedPluginNames()
+	{
+		final String config = configManager.getConfiguration(RUNELITE_GROUP_NAME, PINNED_PLUGINS_CONFIG_KEY);
+
+		if (config == null)
+		{
+			return Collections.emptyList();
+		}
+
+		return Text.fromCSV(config);
+	}
+
+	void savePinnedPlugins()
+	{
+		log.debug("Pinned plugins value before: {}", getPinnedPluginNames());
+
+		StringBuilder value = new StringBuilder();
+		for (CollapsibleEntry collapsibleEntry : collapsibleEntries)
+		{
+			if (collapsibleEntry.getName().equals(PINNED_COLLAPSIBLE_ENTRY_NAME))
+			{
+				continue;
+			}
+
+			String result = collapsibleEntry.getCollapsibleEntryItems().stream()
+					.filter(PluginListItem::isPinned)
+					.map(PluginListItem::getName)
+					.collect(Collectors.joining(","));
+
+			if (!value.toString().isEmpty() && !result.isEmpty())
+			{
+				value.append(",");
+			}
+
+			value.append(result);
+			log.debug("Entry {} savePinnedPlugins value {}", collapsibleEntry.getName(), value);
+		}
+
+		log.debug("Setting pinnedPlugins configuration value to {}", value.toString());
+		configManager.setConfiguration(RUNELITE_GROUP_NAME, PINNED_PLUGINS_CONFIG_KEY, value.toString());
+	}
+
+	/**
+	 * Creates a plugin list item for the client settings plugin because this plugin is not in the plugin manager list.
+	 *
+	 * @return Client settings plugin as plugin list item
+	 */
+	private PluginListItem createClientSettingsPlugin()
+	{
+		final List<String> pinnedPlugins = getPinnedPluginNames();
+
+		final PluginListItem runeLite = new PluginListItem(this, runeLiteConfig, PluginType.VANILLA,
+				configManager.getConfigDescriptor(runeLiteConfig),
+				RUNELITE_PLUGIN, "SanLite client settings", "client", "client", "settings");
+		runeLite.setPinned(pinnedPlugins.contains(RUNELITE_PLUGIN));
+		return runeLite;
+	}
+
+	/**
+	 * Creates a plugin list item for the chat color plugin because this plugin is not in the plugin manager list.
+	 *
+	 * @return Chat color plugin as plugin list item
+	 */
+	private PluginListItem createCreateChatColorPlugin()
+	{
+		final List<String> pinnedPlugins = getPinnedPluginNames();
+
+		final PluginListItem chatColor = new PluginListItem(this, chatColorConfig, PluginType.VANILLA,
+				configManager.getConfigDescriptor(chatColorConfig),
+				CHAT_COLOR_PLUGIN, "Recolor chat text", "color", "colour", "messages", "chat");
+		chatColor.setPinned(pinnedPlugins.contains(CHAT_COLOR_PLUGIN));
+		return chatColor;
 	}
 
 	void openGroupConfigPanel(PluginListItem listItem, Config config, ConfigDescriptor cd)
@@ -558,8 +611,8 @@ public class ConfigPanel extends PluginPanel
 		resetButton.addActionListener((e) ->
 		{
 			final int result = JOptionPane.showOptionDialog(resetButton, "Are you sure you want to reset this plugin's configuration?",
-				"Are you sure?", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE,
-				null, new String[]{"Yes", "No"}, "No");
+					"Are you sure?", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE,
+					null, new String[] {"Yes", "No"}, "No");
 
 			if (result == JOptionPane.YES_OPTION)
 			{
@@ -660,8 +713,8 @@ public class ConfigPanel extends PluginPanel
 		if (!Strings.isNullOrEmpty(configItem.warning()))
 		{
 			final int result = JOptionPane.showOptionDialog(component, configItem.warning(),
-				"Are you sure?", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE,
-				null, new String[]{"Yes", "No"}, "No");
+					"Are you sure?", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE,
+					null, new String[] {"Yes", "No"}, "No");
 
 			if (result != JOptionPane.YES_OPTION)
 			{
@@ -740,61 +793,19 @@ public class ConfigPanel extends PluginPanel
 		});
 	}
 
-	private List<String> getPinnedPluginNames()
-	{
-		final String config = configManager.getConfiguration(RUNELITE_GROUP_NAME, PINNED_PLUGINS_CONFIG_KEY);
-
-		if (config == null)
-		{
-			return Collections.emptyList();
-		}
-
-		return Text.fromCSV(config);
-	}
-
-	void savePinnedPlugins()
-	{
-		log.debug("Pinned plugins value before: {}", getPinnedPluginNames());
-
-		StringBuilder value = new StringBuilder();
-		for (PluginTypeItem pluginTypeItem : pluginTypeList)
-		{
-			if (pluginTypeItem.getType() == PluginType.PINNED)
-			{
-				continue;
-			}
-
-			String result = pluginTypeItem.getPluginList().stream()
-					.filter(PluginListItem::isPinned)
-					.map(PluginListItem::getName)
-					.collect(Collectors.joining(","));
-
-			if (!value.toString().isEmpty() && !result.isEmpty())
-			{
-				value.append(",");
-			}
-
-			value.append(result);
-			log.debug("savePinnedPlugins value {} after type {} stream", value, pluginTypeItem.getType());
-		}
-
-		log.debug("Setting pinnedPlugins configuration value to {}", value.toString());
-		configManager.setConfiguration(RUNELITE_GROUP_NAME, PINNED_PLUGINS_CONFIG_KEY, value.toString());
-	}
-
 	void openConfigurationPanel(String configGroup)
 	{
-		for (PluginTypeItem pluginTypeItem : pluginTypeList)
-		{
-			for (PluginListItem pluginListItem : pluginTypeItem.getDisplayedPluginList())
-			{
-				if (pluginListItem.getName().equals(configGroup))
-				{
-					openGroupConfigPanel(pluginListItem, pluginListItem.getConfig(), pluginListItem.getConfigDescriptor());
-					break;
-				}
-			}
-		}
+//		for (PluginTypeItem pluginTypeItem : pluginTypeList)
+//		{
+//			for (PluginListItem pluginListItem : pluginTypeItem.getDisplayedPluginList())
+//			{
+//				if (pluginListItem.getName().equals(configGroup))
+//				{
+//					openGroupConfigPanel(pluginListItem, pluginListItem.getConfig(), pluginListItem.getConfigDescriptor());
+//					break;
+//				}
+//			}
+//		}
 	}
 
 	@Override

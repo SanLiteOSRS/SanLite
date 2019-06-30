@@ -48,11 +48,13 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.client.config.Config;
 import net.runelite.client.config.ConfigDescriptor;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
+import net.runelite.client.plugins.PluginType;
 import net.runelite.client.ui.ColorScheme;
 import net.runelite.client.ui.PluginPanel;
 import net.runelite.client.ui.components.IconButton;
@@ -80,7 +82,7 @@ class PluginListItem extends JPanel
 	private final Plugin plugin;
 
 	@Getter
-	private final PluginTypeItem pluginTypeItem;
+	private final PluginType pluginType;
 
 	@Nullable
 	@Getter(AccessLevel.PACKAGE)
@@ -96,6 +98,10 @@ class PluginListItem extends JPanel
 	@Getter
 	private final String description;
 
+	@Getter
+	@Setter
+	private CollapsibleEntry parentCollapsibleEntry;
+
 	private final List<String> keywords = new ArrayList<>();
 
 	private final IconButton pinButton = new IconButton(OFF_STAR);
@@ -105,7 +111,7 @@ class PluginListItem extends JPanel
 	private boolean isPluginEnabled = false;
 
 	@Getter
-	private boolean isPinned = false;
+	private boolean isPinned;
 
 	static
 	{
@@ -138,28 +144,28 @@ class PluginListItem extends JPanel
 	 * Note that {@code config} and {@code configDescriptor} can be {@code null}
 	 * if there is no configuration associated with the plugin.
 	 */
-	PluginListItem(ConfigPanel configPanel, Plugin plugin, PluginTypeItem pluginTypeItem, PluginDescriptor descriptor,
+	PluginListItem(ConfigPanel configPanel, Plugin plugin, PluginType pluginType, PluginDescriptor descriptor,
 		@Nullable Config config, @Nullable ConfigDescriptor configDescriptor)
 	{
-		this(configPanel, plugin, pluginTypeItem, config, configDescriptor,
+		this(configPanel, plugin, pluginType, config, configDescriptor,
 			descriptor.name(), descriptor.description(), descriptor.tags());
 	}
 
 	/**
 	 * Creates a new {@code PluginListItem} for a core configuration.
 	 */
-	PluginListItem(ConfigPanel configPanel, Config config, PluginTypeItem pluginTypeItem, ConfigDescriptor configDescriptor,
+	PluginListItem(ConfigPanel configPanel, Config config, PluginType pluginType, ConfigDescriptor configDescriptor,
 		String name, String description, String... tags)
 	{
-		this(configPanel, null, pluginTypeItem, config, configDescriptor, name, description, tags);
+		this(configPanel, null, pluginType, config, configDescriptor, name, description, tags);
 	}
 
-	private PluginListItem(ConfigPanel configPanel, @Nullable Plugin plugin, PluginTypeItem pluginTypeItem, @Nullable Config config,
+	private PluginListItem(ConfigPanel configPanel, @Nullable Plugin plugin, PluginType pluginType, @Nullable Config config,
 		@Nullable ConfigDescriptor configDescriptor, String name, String description, String... tags)
 	{
 		this.configPanel = configPanel;
 		this.plugin = plugin;
-		this.pluginTypeItem = pluginTypeItem;
+		this.pluginType = pluginType;
 		this.config = config;
 		this.configDescriptor = configDescriptor;
 		this.name = name;
@@ -188,11 +194,15 @@ class PluginListItem extends JPanel
 		pinButton.addActionListener(e ->
 		{
 			setPinned(!isPinned);
-			pluginTypeItem.onListItemPinUpdatePluginList(this);
+			log.debug("Changed isPinned for {} to: {} ", name, isPinned);
+			configPanel.updateCollapsibleEntryListItem(this);
 			configPanel.savePinnedPlugins();
+			configPanel.setPinnedCollapsibleEntryVisibility();
+			configPanel.refreshCollapsibleEntriesDisplayedList(this);
 			configPanel.openConfigList();
+
 			//configPanel.refreshPluginList();
-			log.debug("pinButton actionEvent triggered {}", e.getActionCommand());
+			log.debug("pinButton actionEvent finished {}", e.getActionCommand());
 		});
 
 		final JPanel buttonPanel = new JPanel();
@@ -263,13 +273,13 @@ class PluginListItem extends JPanel
 		return button;
 	}
 
-	void setPluginEnabled(boolean enabled)
+	public void setPluginEnabled(boolean enabled)
 	{
 		isPluginEnabled = enabled;
 		updateToggleButton(toggleButton);
 	}
 
-	void setPinned(boolean pinned)
+	public void setPinned(boolean pinned)
 	{
 		isPinned = pinned;
 		pinButton.setIcon(pinned ? ON_STAR : OFF_STAR);
