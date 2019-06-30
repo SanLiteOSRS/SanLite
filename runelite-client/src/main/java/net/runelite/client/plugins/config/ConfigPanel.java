@@ -68,6 +68,8 @@ public class ConfigPanel extends PluginPanel
 	private static final String RUNELITE_GROUP_NAME = RuneLiteConfig.class.getAnnotation(ConfigGroup.class).value();
 	private static final String RUNELITE_PLUGIN = "SanLite";
 	private static final String CHAT_COLOR_PLUGIN = "Chat Color";
+	private static final String COLLAPSIBLE_ENTRY_CONFIG_KEY = "collapsibleEntry";
+	private static final String COLLAPSIBLE_ENTRY_OPENED_CONFIG_KEY = "opened";
 	private static final String PINNED_PLUGINS_CONFIG_KEY = "pinnedPlugins";
 	static final String PINNED_COLLAPSIBLE_ENTRY_NAME = "PINNED";
 
@@ -160,10 +162,9 @@ public class ConfigPanel extends PluginPanel
 	private void initializePluginList()
 	{
 		// Add collapsible entry for pinned plugins
-		CollapsibleEntry pinnedPluginsCollapsibleEntry = new CollapsibleEntry(PINNED_COLLAPSIBLE_ENTRY_NAME, this);
-		pinnedPluginsCollapsibleEntry.setCollapsibleEntryItems(getPinnedPluginsListItems());
+		CollapsibleEntry pinnedPluginsCollapsibleEntry = new CollapsibleEntry(PINNED_COLLAPSIBLE_ENTRY_NAME, this, getPinnedPluginsListItems());
 		pinnedPluginsCollapsibleEntry.getCollapsibleEntryItems().forEach(item -> item.setParentCollapsibleEntry(pinnedPluginsCollapsibleEntry));
-		pinnedPluginsCollapsibleEntry.onOpenedStateChange();
+
 		collapsibleEntries.add(pinnedPluginsCollapsibleEntry);
 		pinnedPluginsCollapsibleEntry.setVisible(getPinnedPluginNames().size() > 0);
 		pinnedPluginsCollapsibleEntry.setPreferredSize(new Dimension(PluginPanel.PANEL_WIDTH, getPinnedPluginNames().size() > 0 ? 30 : 0));
@@ -171,10 +172,8 @@ public class ConfigPanel extends PluginPanel
 		// Populate pluginTypeList with collapsible entries and all non-hidden plugins
 		for (PluginType pluginType : PluginType.values())
 		{
-			CollapsibleEntry collapsibleEntry = new CollapsibleEntry(pluginType.name(), this);
-			List<PluginListItem> collapsibleEntryItems = getPluginListByType(pluginType);
-			collapsibleEntryItems.forEach(item -> item.setParentCollapsibleEntry(collapsibleEntry));
-			collapsibleEntry.setCollapsibleEntryItems(collapsibleEntryItems);
+			CollapsibleEntry collapsibleEntry = new CollapsibleEntry(pluginType.name(), this, getPluginListByType(pluginType));
+			collapsibleEntry.getCollapsibleEntryItems().forEach(item -> item.setParentCollapsibleEntry(collapsibleEntry));
 			collapsibleEntry.setDisplayedEntryItems(collapsibleEntry.getDisplayedCollapsibleEntryItems());
 			collapsibleEntries.add(collapsibleEntry);
 		}
@@ -525,6 +524,36 @@ public class ConfigPanel extends PluginPanel
 			value.append(result);
 		}
 		configManager.setConfiguration(RUNELITE_GROUP_NAME, PINNED_PLUGINS_CONFIG_KEY, value.toString());
+	}
+
+	/**
+	 * Retrieves all opened collapsible entry names from the client settings file
+	 *
+	 * @return list of opened collapsible entry names
+	 */
+	List<String> getOpenedCollapsibleEntries()
+	{
+		final String config = configManager.getConfiguration(COLLAPSIBLE_ENTRY_CONFIG_KEY, COLLAPSIBLE_ENTRY_OPENED_CONFIG_KEY);
+
+		if (config == null)
+		{
+			return Collections.emptyList();
+		}
+
+		return Text.fromCSV(config);
+	}
+
+	/**
+	 * Save collapsible entry isOpened state to client settings file
+	 */
+	void saveCollapsibleEntryIsOpenedState()
+	{
+		String value = collapsibleEntries.stream()
+				.filter(CollapsibleEntry::isOpened)
+				.map(CollapsibleEntry::getName)
+				.collect(Collectors.joining(","));
+
+		configManager.setConfiguration(COLLAPSIBLE_ENTRY_CONFIG_KEY, COLLAPSIBLE_ENTRY_OPENED_CONFIG_KEY, value);
 	}
 
 	/**

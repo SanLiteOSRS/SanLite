@@ -16,7 +16,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class CollapsibleEntry extends JPanel
+class CollapsibleEntry extends JPanel
 {
 	@Getter
 	@Setter
@@ -37,10 +37,20 @@ public class CollapsibleEntry extends JPanel
 
 	private JButton collapseButton;
 
-	public CollapsibleEntry(String name, ConfigPanel configPanel)
+	CollapsibleEntry(String name, ConfigPanel configPanel, List<PluginListItem> collapsibleEntryItems)
 	{
 		this.name = name;
 		this.configPanel = configPanel;
+		this.collapsibleEntryItems = collapsibleEntryItems;
+
+		if (name.equals(ConfigPanel.PINNED_COLLAPSIBLE_ENTRY_NAME))
+		{
+			this.displayedEntryItems = getDisplayedPinnedCollapsibleEntryItems();
+		}
+		else
+		{
+			this.displayedEntryItems = getDisplayedCollapsibleEntryItems();
+		}
 
 		// Create UI for collapsible entry
 		setPreferredSize(new Dimension(PluginPanel.PANEL_WIDTH, 30));
@@ -62,11 +72,16 @@ public class CollapsibleEntry extends JPanel
 		collapseButton.setFont(collapseButton.getFont().deriveFont(16.0f));
 		collapseButton.setBorder(null);
 		collapseButton.setMargin(new Insets(0, 10, 0, 10));
-		collapseButton.addActionListener(actionEvent -> onOpenedStateChange());
+		collapseButton.addActionListener(actionEvent -> onOpenedStateChange(false));
 		nameLabel.setBorder(new EmptyBorder(0, 6, 0, 0));
 
 		add(collapseButton, BorderLayout.WEST);
 		add(nameLabel, BorderLayout.CENTER);
+
+		if (configPanel.getOpenedCollapsibleEntries().contains(name))
+		{
+			onOpenedStateChange(true);
+		}
 	}
 
 
@@ -106,10 +121,20 @@ public class CollapsibleEntry extends JPanel
 		return new ArrayList<>();
 	}
 
-	void onOpenedStateChange()
+	/**
+	 * Change opened state of collapsible entry
+	 *
+	 * @param isInitialStateChange initial state change from config settings file
+	 */
+	private void onOpenedStateChange(boolean isInitialStateChange)
 	{
 		isOpened = !isOpened;
 		collapseButton.setText(isOpened ? "˅" : ">");
+
+		if (!isInitialStateChange)
+		{
+			configPanel.saveCollapsibleEntryIsOpenedState();
+		}
 
 		if (name.equals(ConfigPanel.PINNED_COLLAPSIBLE_ENTRY_NAME))
 		{
