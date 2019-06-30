@@ -48,6 +48,8 @@ public @interface PluginDescriptor
 	 */
 	String[] tags() default {};
 
+	PluginType type() default PluginType.VANILLA;
+
 	boolean enabledByDefault() default true;
 
 	/**

@@ -24,34 +24,15 @@
  */
 package net.runelite.client.plugins.config;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.GridLayout;
-import java.awt.MouseInfo;
-import java.awt.Point;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import javax.annotation.Nullable;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JMenuItem;
-import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
-import javax.swing.SwingUtilities;
-import javax.swing.border.EmptyBorder;
 import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 import net.runelite.client.config.Config;
 import net.runelite.client.config.ConfigDescriptor;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
+import net.runelite.client.plugins.PluginType;
 import net.runelite.client.ui.ColorScheme;
 import net.runelite.client.ui.PluginPanel;
 import net.runelite.client.ui.components.IconButton;
@@ -59,7 +40,20 @@ import net.runelite.client.util.ImageUtil;
 import net.runelite.client.util.LinkBrowser;
 import org.apache.commons.text.similarity.JaroWinklerDistance;
 
-class PluginListItem extends JPanel
+import javax.annotation.Nullable;
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+
+@Slf4j
+public class PluginListItem extends JPanel
 {
 	private static final JaroWinklerDistance DISTANCE = new JaroWinklerDistance();
 	private static final String RUNELITE_WIKI_FORMAT = "https://github.com/runelite/runelite/wiki/%s";
@@ -77,6 +71,9 @@ class PluginListItem extends JPanel
 	@Nullable
 	private final Plugin plugin;
 
+	@Getter
+	private final PluginType pluginType;
+
 	@Nullable
 	@Getter(AccessLevel.PACKAGE)
 	private final Config config;
@@ -91,6 +88,10 @@ class PluginListItem extends JPanel
 	@Getter
 	private final String description;
 
+	@Getter
+	@Setter
+	private CollapsibleEntry parentCollapsibleEntry;
+
 	private final List<String> keywords = new ArrayList<>();
 
 	private final IconButton pinButton = new IconButton(OFF_STAR);
@@ -100,7 +101,7 @@ class PluginListItem extends JPanel
 	private boolean isPluginEnabled = false;
 
 	@Getter
-	private boolean isPinned = false;
+	private boolean isPinned;
 
 	static
 	{
@@ -112,17 +113,17 @@ class PluginListItem extends JPanel
 		ON_STAR = new ImageIcon(onStar);
 		CONFIG_ICON_HOVER = new ImageIcon(ImageUtil.grayscaleOffset(configIcon, -100));
 		BufferedImage offSwitcherImage = ImageUtil.flipImage(
-			ImageUtil.grayscaleOffset(
-				ImageUtil.grayscaleImage(onSwitcher),
-				0.61f
-			),
-			true,
-			false
+				ImageUtil.grayscaleOffset(
+						ImageUtil.grayscaleImage(onSwitcher),
+						0.61f
+				),
+				true,
+				false
 		);
 		OFF_SWITCHER = new ImageIcon(offSwitcherImage);
 		BufferedImage offStar = ImageUtil.grayscaleOffset(
-			ImageUtil.grayscaleImage(onStar),
-			0.77f
+				ImageUtil.grayscaleImage(onStar),
+				0.77f
 		);
 		OFF_STAR = new ImageIcon(offStar);
 	}
@@ -133,27 +134,28 @@ class PluginListItem extends JPanel
 	 * Note that {@code config} and {@code configDescriptor} can be {@code null}
 	 * if there is no configuration associated with the plugin.
 	 */
-	PluginListItem(ConfigPanel configPanel, Plugin plugin, PluginDescriptor descriptor,
-		@Nullable Config config, @Nullable ConfigDescriptor configDescriptor)
+	PluginListItem(ConfigPanel configPanel, Plugin plugin, PluginType pluginType, PluginDescriptor descriptor,
+					@Nullable Config config, @Nullable ConfigDescriptor configDescriptor)
 	{
-		this(configPanel, plugin, config, configDescriptor,
-			descriptor.name(), descriptor.description(), descriptor.tags());
+		this(configPanel, plugin, pluginType, config, configDescriptor,
+				descriptor.name(), descriptor.description(), descriptor.tags());
 	}
 
 	/**
 	 * Creates a new {@code PluginListItem} for a core configuration.
 	 */
-	PluginListItem(ConfigPanel configPanel, Config config, ConfigDescriptor configDescriptor,
-		String name, String description, String... tags)
+	PluginListItem(ConfigPanel configPanel, Config config, PluginType pluginType, ConfigDescriptor configDescriptor,
+					String name, String description, String... tags)
 	{
-		this(configPanel, null, config, configDescriptor, name, description, tags);
+		this(configPanel, null, pluginType, config, configDescriptor, name, description, tags);
 	}
 
-	private PluginListItem(ConfigPanel configPanel, @Nullable Plugin plugin, @Nullable Config config,
-		@Nullable ConfigDescriptor configDescriptor, String name, String description, String... tags)
+	private PluginListItem(ConfigPanel configPanel, @Nullable Plugin plugin, PluginType pluginType, @Nullable Config config,
+							@Nullable ConfigDescriptor configDescriptor, String name, String description, String... tags)
 	{
 		this.configPanel = configPanel;
 		this.plugin = plugin;
+		this.pluginType = pluginType;
 		this.config = config;
 		this.configDescriptor = configDescriptor;
 		this.name = name;
@@ -182,7 +184,10 @@ class PluginListItem extends JPanel
 		pinButton.addActionListener(e ->
 		{
 			setPinned(!isPinned);
+			configPanel.updateCollapsibleEntryListItem(this);
 			configPanel.savePinnedPlugins();
+			configPanel.setPinnedCollapsibleEntryVisibility();
+			configPanel.refreshCollapsibleEntriesDisplayedListOnPin(this);
 			configPanel.openConfigList();
 		});
 
@@ -275,6 +280,7 @@ class PluginListItem extends JPanel
 
 	/**
 	 * Checks if all the search terms in the given list matches at least one keyword.
+	 *
 	 * @return true if all search terms matches at least one keyword, or false if otherwise.
 	 */
 	boolean matchesSearchTerms(String[] searchTerms)
@@ -282,7 +288,7 @@ class PluginListItem extends JPanel
 		for (String term : searchTerms)
 		{
 			if (keywords.stream().noneMatch((t) -> t.contains(term) ||
-				DISTANCE.apply(t, term) > 0.9))
+					DISTANCE.apply(t, term) > 0.9))
 			{
 				return false;
 			}
@@ -314,7 +320,7 @@ class PluginListItem extends JPanel
 	 * @param label     The label to attach the mouseover and click effects to
 	 * @param menuItems The menu items to be shown when the label is clicked
 	 */
-	static void addLabelPopupMenu(final JLabel label, final Collection<JMenuItem> menuItems)
+	private static void addLabelPopupMenu(final JLabel label, final Collection<JMenuItem> menuItems)
 	{
 		final JPopupMenu menu = new JPopupMenu();
 		menu.setBorder(new EmptyBorder(5, 5, 5, 5));
