@@ -56,8 +56,8 @@ public class ConfigPanel extends PluginPanel
 	private static final ImageIcon BACK_ICON;
 	private static final ImageIcon BACK_ICON_HOVER;
 
-	private static final String RUNELITE_GROUP_NAME = RuneLiteConfig.class.getAnnotation(ConfigGroup.class).value();
-	private static final String RUNELITE_PLUGIN = "SanLite";
+	private static final String CLIENT_SETTINGS_GROUP_NAME = RuneLiteConfig.class.getAnnotation(ConfigGroup.class).value();
+	private static final String CLIENT_SETTINGS_PLUGIN = "Client Settings";
 	private static final String CHAT_COLOR_PLUGIN = "Chat Color";
 	private static final String COLLAPSIBLE_ENTRY_CONFIG_KEY = "collapsibleEntry";
 	private static final String COLLAPSIBLE_ENTRY_OPENED_CONFIG_KEY = "opened";
@@ -240,7 +240,7 @@ public class ConfigPanel extends PluginPanel
 				});
 
 		// Add special entries for core client configurations
-		if (pinnedPlugins.contains(RUNELITE_PLUGIN))
+		if (pinnedPlugins.contains(CLIENT_SETTINGS_PLUGIN))
 		{
 			final PluginListItem runeLite = createClientSettingsPlugin();
 			pluginListItems.add(runeLite);
@@ -479,7 +479,7 @@ public class ConfigPanel extends PluginPanel
 	 */
 	private List<String> getPinnedPluginNames()
 	{
-		final String config = configManager.getConfiguration(RUNELITE_GROUP_NAME, PINNED_PLUGINS_CONFIG_KEY);
+		final String config = configManager.getConfiguration(CLIENT_SETTINGS_GROUP_NAME, PINNED_PLUGINS_CONFIG_KEY);
 
 		if (config == null)
 		{
@@ -514,7 +514,7 @@ public class ConfigPanel extends PluginPanel
 
 			value.append(result);
 		}
-		configManager.setConfiguration(RUNELITE_GROUP_NAME, PINNED_PLUGINS_CONFIG_KEY, value.toString());
+		configManager.setConfiguration(CLIENT_SETTINGS_GROUP_NAME, PINNED_PLUGINS_CONFIG_KEY, value.toString());
 	}
 
 	/**
@@ -558,8 +558,9 @@ public class ConfigPanel extends PluginPanel
 
 		final PluginListItem runeLite = new PluginListItem(this, runeLiteConfig, PluginType.VANILLA,
 				configManager.getConfigDescriptor(runeLiteConfig),
-				RUNELITE_PLUGIN, "SanLite client settings", "client", "client", "settings");
-		runeLite.setPinned(pinnedPlugins.contains(RUNELITE_PLUGIN));
+				CLIENT_SETTINGS_PLUGIN, "SanLite client settings", "sanlite", "client", "settings",
+				"resolution", "notifications", "font");
+		runeLite.setPinned(pinnedPlugins.contains(CLIENT_SETTINGS_PLUGIN));
 		return runeLite;
 	}
 
@@ -574,7 +575,7 @@ public class ConfigPanel extends PluginPanel
 
 		final PluginListItem chatColor = new PluginListItem(this, chatColorConfig, PluginType.VANILLA,
 				configManager.getConfigDescriptor(chatColorConfig),
-				CHAT_COLOR_PLUGIN, "Recolor chat text", "color", "colour", "messages", "chat");
+				CHAT_COLOR_PLUGIN, "Recolor chat text", "color", "colour", "messages", "chat", "chatbox");
 		chatColor.setPinned(pinnedPlugins.contains(CHAT_COLOR_PLUGIN));
 		return chatColor;
 	}
