@@ -87,6 +87,7 @@ class CollapsibleEntry extends JPanel
 
 	/**
 	 * Returns list with all collapsible entry items if isOpened equals true. Otherwise returns an empty list.
+	 *
 	 * @return collapsible entry items list
 	 */
 	List<PluginListItem> getDisplayedPinnedCollapsibleEntryItems()
@@ -100,6 +101,7 @@ class CollapsibleEntry extends JPanel
 
 	/**
 	 * Returns list with all collapsible entry items that are not pinned if isOpened equals true. Otherwise returns an empty list.
+	 *
 	 * @return collapsible entry items list
 	 */
 	List<PluginListItem> getDisplayedCollapsibleEntryItems()

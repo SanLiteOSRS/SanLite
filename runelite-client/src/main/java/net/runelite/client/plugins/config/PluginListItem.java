@@ -53,7 +53,7 @@ import java.util.Collections;
 import java.util.List;
 
 @Slf4j
-class PluginListItem extends JPanel
+public class PluginListItem extends JPanel
 {
 	private static final JaroWinklerDistance DISTANCE = new JaroWinklerDistance();
 	private static final String RUNELITE_WIKI_FORMAT = "https://github.com/runelite/runelite/wiki/%s";
@@ -113,17 +113,17 @@ class PluginListItem extends JPanel
 		ON_STAR = new ImageIcon(onStar);
 		CONFIG_ICON_HOVER = new ImageIcon(ImageUtil.grayscaleOffset(configIcon, -100));
 		BufferedImage offSwitcherImage = ImageUtil.flipImage(
-			ImageUtil.grayscaleOffset(
-				ImageUtil.grayscaleImage(onSwitcher),
-				0.61f
-			),
-			true,
-			false
+				ImageUtil.grayscaleOffset(
+						ImageUtil.grayscaleImage(onSwitcher),
+						0.61f
+				),
+				true,
+				false
 		);
 		OFF_SWITCHER = new ImageIcon(offSwitcherImage);
 		BufferedImage offStar = ImageUtil.grayscaleOffset(
-			ImageUtil.grayscaleImage(onStar),
-			0.77f
+				ImageUtil.grayscaleImage(onStar),
+				0.77f
 		);
 		OFF_STAR = new ImageIcon(offStar);
 	}
@@ -135,23 +135,23 @@ class PluginListItem extends JPanel
 	 * if there is no configuration associated with the plugin.
 	 */
 	PluginListItem(ConfigPanel configPanel, Plugin plugin, PluginType pluginType, PluginDescriptor descriptor,
-		@Nullable Config config, @Nullable ConfigDescriptor configDescriptor)
+					@Nullable Config config, @Nullable ConfigDescriptor configDescriptor)
 	{
 		this(configPanel, plugin, pluginType, config, configDescriptor,
-			descriptor.name(), descriptor.description(), descriptor.tags());
+				descriptor.name(), descriptor.description(), descriptor.tags());
 	}
 
 	/**
 	 * Creates a new {@code PluginListItem} for a core configuration.
 	 */
 	PluginListItem(ConfigPanel configPanel, Config config, PluginType pluginType, ConfigDescriptor configDescriptor,
-		String name, String description, String... tags)
+					String name, String description, String... tags)
 	{
 		this(configPanel, null, pluginType, config, configDescriptor, name, description, tags);
 	}
 
 	private PluginListItem(ConfigPanel configPanel, @Nullable Plugin plugin, PluginType pluginType, @Nullable Config config,
-		@Nullable ConfigDescriptor configDescriptor, String name, String description, String... tags)
+							@Nullable ConfigDescriptor configDescriptor, String name, String description, String... tags)
 	{
 		this.configPanel = configPanel;
 		this.plugin = plugin;
@@ -280,6 +280,7 @@ class PluginListItem extends JPanel
 
 	/**
 	 * Checks if all the search terms in the given list matches at least one keyword.
+	 *
 	 * @return true if all search terms matches at least one keyword, or false if otherwise.
 	 */
 	boolean matchesSearchTerms(String[] searchTerms)
@@ -287,7 +288,7 @@ class PluginListItem extends JPanel
 		for (String term : searchTerms)
 		{
 			if (keywords.stream().noneMatch((t) -> t.contains(term) ||
-				DISTANCE.apply(t, term) > 0.9))
+					DISTANCE.apply(t, term) > 0.9))
 			{
 				return false;
 			}
