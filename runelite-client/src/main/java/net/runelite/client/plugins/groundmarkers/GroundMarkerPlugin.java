@@ -224,7 +224,7 @@ public class GroundMarkerPlugin extends Plugin
 	@Subscribe
 	public void onMenuOptionClicked(MenuOptionClicked event)
 	{
-		if (!event.getMenuOption().equals(MARK))
+		if (!event.getOption().equals(MARK))
 		{
 			return;
 		}

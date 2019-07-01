@@ -11,16 +11,12 @@ public class class171 {
    @ObfuscatedGetter(
       intValue = -852697585
    )
-   @Export("__fo_ro")
    static int __fo_ro;
    @ObfuscatedName("m")
-   @Export("__fo_m")
    public static boolean __fo_m;
    @ObfuscatedName("f")
-   @Export("__fo_f")
    public static File __fo_f;
    @ObfuscatedName("q")
-   @Export("__fo_q")
    static Hashtable __fo_q;
 
    static {
@@ -331,10 +327,10 @@ public class class171 {
                if(class192.mapSceneSprites == null) {
                   var2 = WorldMapSection3.indexCache8;
                   var28 = class211.spriteIds.mapScenes;
-                  if(!SpriteMask.method4392(var2, var28, 0)) {
+                  if(!SpriteMask.loadSprite(var2, var28, 0)) {
                      var27 = null;
                   } else {
-                     var27 = WorldMapLabel.method444();
+                     var27 = WorldMapLabel.createIndexedSpriteArray();
                   }
 
                   class192.mapSceneSprites = var27;
@@ -346,10 +342,10 @@ public class class171 {
                if(class15.headIconPkSprites == null) {
                   var2 = WorldMapSection3.indexCache8;
                   var28 = class211.spriteIds.headIconsPk;
-                  if(!SpriteMask.method4392(var2, var28, 0)) {
+                  if(!SpriteMask.loadSprite(var2, var28, 0)) {
                      var37 = null;
                   } else {
-                     var37 = UserComparator9.method3344();
+                     var37 = UserComparator9.createSpriteArray();
                   }
 
                   class15.headIconPkSprites = var37;
@@ -360,10 +356,10 @@ public class class171 {
                if(ClientPreferences.headIconPrayerSprites == null) {
                   var2 = WorldMapSection3.indexCache8;
                   var28 = class211.spriteIds.headIconsPrayer;
-                  if(!SpriteMask.method4392(var2, var28, 0)) {
+                  if(!SpriteMask.loadSprite(var2, var28, 0)) {
                      var37 = null;
                   } else {
-                     var37 = UserComparator9.method3344();
+                     var37 = UserComparator9.createSpriteArray();
                   }
 
                   ClientPreferences.headIconPrayerSprites = var37;
@@ -374,10 +370,10 @@ public class class171 {
                if(Player.headIconHintSprites == null) {
                   var2 = WorldMapSection3.indexCache8;
                   var28 = class211.spriteIds.headIconsHint;
-                  if(!SpriteMask.method4392(var2, var28, 0)) {
+                  if(!SpriteMask.loadSprite(var2, var28, 0)) {
                      var37 = null;
                   } else {
-                     var37 = UserComparator9.method3344();
+                     var37 = UserComparator9.createSpriteArray();
                   }
 
                   Player.headIconHintSprites = var37;
@@ -388,10 +384,10 @@ public class class171 {
                if(class16.mapMarkerSprites == null) {
                   var2 = WorldMapSection3.indexCache8;
                   var28 = class211.spriteIds.mapMarkers;
-                  if(!SpriteMask.method4392(var2, var28, 0)) {
+                  if(!SpriteMask.loadSprite(var2, var28, 0)) {
                      var37 = null;
                   } else {
-                     var37 = UserComparator9.method3344();
+                     var37 = UserComparator9.createSpriteArray();
                   }
 
                   class16.mapMarkerSprites = var37;
@@ -402,10 +398,10 @@ public class class171 {
                if(KeyHandler.crossSprites == null) {
                   var2 = WorldMapSection3.indexCache8;
                   var28 = class211.spriteIds.crosses;
-                  if(!SpriteMask.method4392(var2, var28, 0)) {
+                  if(!SpriteMask.loadSprite(var2, var28, 0)) {
                      var37 = null;
                   } else {
-                     var37 = UserComparator9.method3344();
+                     var37 = UserComparator9.createSpriteArray();
                   }
 
                   KeyHandler.crossSprites = var37;
@@ -416,10 +412,10 @@ public class class171 {
                if(class39.mapDotSprites == null) {
                   var2 = WorldMapSection3.indexCache8;
                   var28 = class211.spriteIds.mapDots;
-                  if(!SpriteMask.method4392(var2, var28, 0)) {
+                  if(!SpriteMask.loadSprite(var2, var28, 0)) {
                      var37 = null;
                   } else {
-                     var37 = UserComparator9.method3344();
+                     var37 = UserComparator9.createSpriteArray();
                   }
 
                   class39.mapDotSprites = var37;
@@ -430,10 +426,10 @@ public class class171 {
                if(class32.scrollBarSprites == null) {
                   var2 = WorldMapSection3.indexCache8;
                   var28 = class211.spriteIds.scrollBars;
-                  if(!SpriteMask.method4392(var2, var28, 0)) {
+                  if(!SpriteMask.loadSprite(var2, var28, 0)) {
                      var27 = null;
                   } else {
-                     var27 = WorldMapLabel.method444();
+                     var27 = WorldMapLabel.createIndexedSpriteArray();
                   }
 
                   class32.scrollBarSprites = var27;
@@ -444,10 +440,10 @@ public class class171 {
                if(WorldMapSectionType.modIconSprites == null) {
                   var2 = WorldMapSection3.indexCache8;
                   var28 = class211.spriteIds.modIcons;
-                  if(!SpriteMask.method4392(var2, var28, 0)) {
+                  if(!SpriteMask.loadSprite(var2, var28, 0)) {
                      var27 = null;
                   } else {
-                     var27 = WorldMapLabel.method444();
+                     var27 = WorldMapLabel.createIndexedSpriteArray();
                   }
 
                   WorldMapSectionType.modIconSprites = var27;
@@ -547,14 +543,14 @@ public class class171 {
       signature = "(IIIILjava/lang/String;I)V",
       garbageValue = "49247882"
    )
-   static void method3494(int var0, int var1, int var2, int var3, String var4) {
-      Widget var5 = class204.getWidgetChild(var1, var2);
+   static void method3494(int opIndex, int parentID, int childID, int itemID, String target) {
+      Widget var5 = class204.getWidgetChild(parentID, childID);
       if(var5 != null) {
          if(var5.onOp != null) {
             ScriptEvent var6 = new ScriptEvent();
             var6.widget = var5;
-            var6.opIndex = var0;
-            var6.targetName = var4;
+            var6.opIndex = opIndex;
+            var6.targetName = target;
             var6.args0 = var5.onOp;
             AbstractIndexCache.runScript(var6);
          }
@@ -566,87 +562,87 @@ public class class171 {
 
          if(var11) {
             int var8 = class1.getWidgetClickMask(var5);
-            int var9 = var0 - 1;
+            int var9 = opIndex - 1;
             boolean var7 = (var8 >> var9 + 1 & 1) != 0;
             if(var7) {
                PacketBufferNode var10;
-               if(var0 == 1) {
+               if(opIndex == 1) {
                   var10 = Interpreter.method1915(ClientPacket.__gs_bi, Client.packetWriter.isaacCipher);
-                  var10.packetBuffer.writeInt(var1);
-                  var10.packetBuffer.writeShort(var2);
-                  var10.packetBuffer.writeShort(var3);
+                  var10.packetBuffer.writeInt(parentID);
+                  var10.packetBuffer.writeShort(childID);
+                  var10.packetBuffer.writeShort(itemID);
                   Client.packetWriter.__q_167(var10);
                }
 
-               if(var0 == 2) {
+               if(opIndex == 2) {
                   var10 = Interpreter.method1915(ClientPacket.__gs_b, Client.packetWriter.isaacCipher);
-                  var10.packetBuffer.writeInt(var1);
-                  var10.packetBuffer.writeShort(var2);
-                  var10.packetBuffer.writeShort(var3);
+                  var10.packetBuffer.writeInt(parentID);
+                  var10.packetBuffer.writeShort(childID);
+                  var10.packetBuffer.writeShort(itemID);
                   Client.packetWriter.__q_167(var10);
                }
 
-               if(var0 == 3) {
+               if(opIndex == 3) {
                   var10 = Interpreter.method1915(ClientPacket.__gs_aa, Client.packetWriter.isaacCipher);
-                  var10.packetBuffer.writeInt(var1);
-                  var10.packetBuffer.writeShort(var2);
-                  var10.packetBuffer.writeShort(var3);
+                  var10.packetBuffer.writeInt(parentID);
+                  var10.packetBuffer.writeShort(childID);
+                  var10.packetBuffer.writeShort(itemID);
                   Client.packetWriter.__q_167(var10);
                }
 
-               if(var0 == 4) {
+               if(opIndex == 4) {
                   var10 = Interpreter.method1915(ClientPacket.__gs_y, Client.packetWriter.isaacCipher);
-                  var10.packetBuffer.writeInt(var1);
-                  var10.packetBuffer.writeShort(var2);
-                  var10.packetBuffer.writeShort(var3);
+                  var10.packetBuffer.writeInt(parentID);
+                  var10.packetBuffer.writeShort(childID);
+                  var10.packetBuffer.writeShort(itemID);
                   Client.packetWriter.__q_167(var10);
                }
 
-               if(var0 == 5) {
+               if(opIndex == 5) {
                   var10 = Interpreter.method1915(ClientPacket.__gs_ad, Client.packetWriter.isaacCipher);
-                  var10.packetBuffer.writeInt(var1);
-                  var10.packetBuffer.writeShort(var2);
-                  var10.packetBuffer.writeShort(var3);
+                  var10.packetBuffer.writeInt(parentID);
+                  var10.packetBuffer.writeShort(childID);
+                  var10.packetBuffer.writeShort(itemID);
                   Client.packetWriter.__q_167(var10);
                }
 
-               if(var0 == 6) {
+               if(opIndex == 6) {
                   var10 = Interpreter.method1915(ClientPacket.__gs_br, Client.packetWriter.isaacCipher);
-                  var10.packetBuffer.writeInt(var1);
-                  var10.packetBuffer.writeShort(var2);
-                  var10.packetBuffer.writeShort(var3);
+                  var10.packetBuffer.writeInt(parentID);
+                  var10.packetBuffer.writeShort(childID);
+                  var10.packetBuffer.writeShort(itemID);
                   Client.packetWriter.__q_167(var10);
                }
 
-               if(var0 == 7) {
+               if(opIndex == 7) {
                   var10 = Interpreter.method1915(ClientPacket.__gs_cu, Client.packetWriter.isaacCipher);
-                  var10.packetBuffer.writeInt(var1);
-                  var10.packetBuffer.writeShort(var2);
-                  var10.packetBuffer.writeShort(var3);
+                  var10.packetBuffer.writeInt(parentID);
+                  var10.packetBuffer.writeShort(childID);
+                  var10.packetBuffer.writeShort(itemID);
                   Client.packetWriter.__q_167(var10);
                }
 
-               if(var0 == 8) {
+               if(opIndex == 8) {
                   var10 = Interpreter.method1915(ClientPacket.__gs_a, Client.packetWriter.isaacCipher);
-                  var10.packetBuffer.writeInt(var1);
-                  var10.packetBuffer.writeShort(var2);
-                  var10.packetBuffer.writeShort(var3);
+                  var10.packetBuffer.writeInt(parentID);
+                  var10.packetBuffer.writeShort(childID);
+                  var10.packetBuffer.writeShort(itemID);
                   Client.packetWriter.__q_167(var10);
                }
 
-               if(var0 == 9) {
+               if(opIndex == 9) {
                   var10 = Interpreter.method1915(ClientPacket.__gs_cj, Client.packetWriter.isaacCipher);
-                  var10.packetBuffer.writeInt(var1);
-                  var10.packetBuffer.writeShort(var2);
-                  var10.packetBuffer.writeShort(var3);
+                  var10.packetBuffer.writeInt(parentID);
+                  var10.packetBuffer.writeShort(childID);
+                  var10.packetBuffer.writeShort(itemID);
                   Client.packetWriter.__q_167(var10);
                }
 
-               if(var0 == 10) {
+               if(opIndex == 10) {
                   var10 = Interpreter.method1915(ClientPacket.__gs_m, Client.packetWriter.isaacCipher);
-                  var10.packetBuffer.writeInt(var1);
-                  var10.packetBuffer.writeShort(var2);
-                  var10.packetBuffer.writeShort(var3);
+                  var10.packetBuffer.writeInt(parentID);
+                  var10.packetBuffer.writeShort(childID);
+                  var10.packetBuffer.writeShort(itemID);
                   Client.packetWriter.__q_167(var10);
                }
 
