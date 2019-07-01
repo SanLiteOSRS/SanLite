@@ -166,8 +166,15 @@ public final class AnimationID
 	public static final int BLOCK_UNARMED = 424; // Same animation as failed pickpocket
 
 	// NPC animations
-	public static final int TZTOK_JAD_MAGIC_ATTACK = 2656;
 	public static final int TZTOK_JAD_RANGE_ATTACK = 2652;
+	public static final int TZTOK_JAD_MELEE_ATTACK = 2655;
+	public static final int TZTOK_JAD_MAGIC_ATTACK = 2656;
+	public static final int TOK_XIL_RANGE_ATTACK = 2633;
+	public static final int TOK_XIL_MELEE_ATTACK = 2628;
+	public static final int KET_ZEK_MELEE_ATTACK = 2644;
+	public static final int KET_ZEK_MAGE_ATTACK = 2647;
+	public static final int MEJ_KOT_MELEE_ATTACK = 2637;
+	public static final int MEJ_KOT_HEAL_ATTACK = 2639;
 	public static final int HELLHOUND_DEFENCE = 6566;
 	public static final int VORKATH_WAKE_UP = 7950;
 	public static final int VORKATH_DEATH = 7949;
@@ -278,4 +285,31 @@ public final class AnimationID
 	public static final int GENERAL_AUTO1 = 7018;
 	public static final int GENERAL_AUTO2 = 7020;
 	public static final int GENERAL_AUTO3 = 7021;
+
+	// Kr'il Tsutsaroth
+	public static final int KRIL_GENERIC_ATTACK = 64;
+	public static final int KRIL_ATTACK = 6948;
+	public static final int KRIL_SPECIAL_ATTACK = 6950;
+	public static final int ZAKL_ATTACK = 7077;
+	public static final int BALFRUG_ATTACK = 4630;
+
+	// Commander Zilyana
+	public static final int ZILYANA_MELEE_ATTACK = 6964;
+	public static final int ZILYANA_ATTACK = 6967;
+	public static final int ZILYANA_SPECIAL_ATTACK = 6970;
+	public static final int STARLIGHT_ATTACK = 6376;
+	public static final int BREE_ATTACK = 7026;
+	public static final int GROWLER_ATTACK = 7037;
+
+	// Kree'arra
+	public static final int KREE_RANGED_ATTACK = 6978;
+	public static final int SKREE_ATTACK = 6955;
+	public static final int GEERIN_ATTACK = 6956;
+	public static final int GEERIN_FLINCH = 6958;
+	public static final int KILISA_ATTACK = 6957;
+
+	// Dagannoth Kings
+	public static final int DAG_REX_ATTACK = 2853;
+	public static final int DAG_PRIME_ATTACK = 2854;
+	public static final int DAG_SUPREME_ATTACK = 2855;
 }

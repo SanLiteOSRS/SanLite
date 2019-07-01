@@ -57,7 +57,7 @@ public class WidgetID
 	public static final int PEST_CONTROL_BOAT_GROUP_ID = 407;
 	public static final int PEST_CONTROL_GROUP_ID = 408;
 	public static final int PEST_CONTROL_EXCHANGE_WINDOW_GROUP_ID = 243;
-	public static final int PEST_CONTROL_DIALOG_GROUP_ID = 229;
+	public static final int DIALOG_MINIGAME_GROUP_ID = 229;
 	public static final int CLAN_CHAT_GROUP_ID = 7;
 	public static final int MINIMAP_GROUP_ID = 160;
 	public static final int LOGIN_CLICK_TO_PLAY_GROUP_ID = 378;
@@ -79,6 +79,7 @@ public class WidgetID
 	public static final int CHATBOX_GROUP_ID = 162;
 	public static final int WORLD_MAP_MENU_GROUP_ID = 160;
 	public static final int VOLCANIC_MINE_GROUP_ID = 611;
+	public static final int BA_HORN_OF_GLORY = 484;
 	public static final int BA_ATTACKER_GROUP_ID = 485;
 	public static final int BA_COLLECTOR_GROUP_ID = 486;
 	public static final int BA_DEFENDER_GROUP_ID = 487;
@@ -197,7 +198,7 @@ public class WidgetID
 		static final int CONFIRM_BUTTON = 6;
 	}
 
-	static class PestControlDialog
+	static class MinigameDialog
 	{
 		static final int TEXT = 1;
 		static final int CONTINUE = 2;
@@ -594,7 +595,8 @@ public class WidgetID
 	{
 		static class ATK
 		{
-			static final int LISTEN = 8;
+			static final int LISTEN_TOP = 7;
+			static final int LISTEN_BOTTOM = 8;
 			static final int TO_CALL_WIDGET = 9;
 			static final int TO_CALL = 10;
 			static final int ROLE_SPRITE = 11;
@@ -606,6 +608,13 @@ public class WidgetID
 			static final int TEAMMATE2 = 22;
 			static final int TEAMMATE3 = 26;
 			static final int TEAMMATE4 = 30;
+		}
+		static class HORN_GLORY
+		{
+			static final int ATTACKER = 5;
+			static final int DEFENDER = 6;
+			static final int COLLECTOR = 7;
+			static final int HEALER = 8;
 		}
 		static class REWARD_VALUES
 		{
@@ -961,7 +970,7 @@ public class WidgetID
 		static final int PVP_WIDGET_CONTAINER = 54;  // OUTDATED?
 		static final int SKULL = 56;  // OUTDATED?
 		static final int ATTACK_RANGE = 59;  // OUTDATED?
-		static final int BOUNTY_HUNTER_INFO = 18;
+		static final int BOUNTY_HUNTER_INFO = 19;
 		static final int KILLDEATH_RATIO = 15;
 		static final int SKULL_CONTAINER = 61;
 		static final int SAFE_ZONE = 63;

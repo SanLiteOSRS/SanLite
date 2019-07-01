@@ -249,13 +249,13 @@ public interface Client extends GameShell
 
 	/**
 	 * Gets the canvas height
-	 * @return
+	 * @return canvas height
 	 */
 	int getCanvasHeight();
 
 	/**
 	 * Gets the canvas width
-	 * @return
+	 * @return canvas width
 	 */
 	int getCanvasWidth();
 
@@ -572,6 +572,11 @@ public interface Client extends GameShell
 	MenuEntry[] getMenuEntries();
 
 	/**
+	 * @return amount of menu entries the client has (same as client.getMenuEntries().size())
+	 */
+	int getMenuOptionCount();
+
+	/**
 	 * Sets the array of open menu entries.
 	 * <p>
 	 * This method should typically be used in the context of the {@link net.runelite.api.events.MenuOpened}
@@ -795,7 +800,7 @@ public interface Client extends GameShell
 	/**
 	 * Get the total experience of the player
 	 *
-	 * @return
+	 * @return total experience
 	 */
 	long getOverallExperience();
 
@@ -974,6 +979,28 @@ public interface Client extends GameShell
 	void playSoundEffect(int id, int x, int y, int range);
 
 	/**
+	 * Play a sound effect from some point in the world.
+	 *
+	 * @param id the ID of the sound to play. Any int is allowed, but see
+	 * {@link SoundEffectID} for some common ones
+	 * @param x the ground coordinate on the x axis
+	 * @param y the ground coordinate on the y axis
+	 * @param range the number of tiles away that the sound can be heard
+	 * from
+	 * @param delay the amount of frames before the sound starts playing
+	 */
+	void playSoundEffect(int id, int x, int y, int range, int delay);
+
+	/**
+	 * Plays a sound effect, even if the player's sound effect volume is muted.
+	 *
+	 * @param id     the ID of the sound effect - {@link SoundEffectID}
+	 * @param volume the volume to play the sound effect at, see {@link SoundEffectVolume} for values used
+	 *               in the settings interface. if the sound effect volume is not muted, uses the set volume
+	 */
+	void playSoundEffect(int id, int volume);
+
+	/**
 	 * Gets the clients graphic buffer provider.
 	 *
 	 * @return the buffer provider
@@ -1075,14 +1102,14 @@ public interface Client extends GameShell
 	/**
 	 * Gets the clan owner of the currently joined clan chat
 	 *
-	 * @return
+	 * @return clan owner name
 	 */
 	String getClanOwner();
 
 	/**
 	 * Gets the clan chat name of the currently joined clan chat
 	 *
-	 * @return
+	 * @return clan chat name
 	 */
 	String getClanChatName();
 
@@ -1096,21 +1123,21 @@ public interface Client extends GameShell
 	/**
 	 * Gets the number of friends on the friends list.
 	 *
-	 * @return
+	 * @return amount of friends
 	 */
 	int getFriendsCount();
 
 	/**
 	 * Gets an array of players on the ignore list.
 	 *
-	 * @return
+	 * @return ignore list
 	 */
 	Ignore[] getIgnores();
 
 	/**
 	 * Gets the number of ignored players on the ignore list.
 	 *
-	 * @return
+	 * @return amount of ignored players
 	 */
 	int getIgnoreCount();
 
@@ -1615,13 +1642,13 @@ public interface Client extends GameShell
 	/**
 	 * Get the if1 widget whose item is being dragged
 	 *
-	 * @return
+	 * @return widget
 	 */
 	Widget getIf1DraggedWidget();
 
 	/**
 	 * Get the item index of the item being dragged on an if1 widget
-	 * @return
+	 * @return item index
 	 */
 	int getIf1DraggedItemIndex();
 
@@ -1634,6 +1661,11 @@ public interface Client extends GameShell
 	 * Returns client item definition cache
 	 */
 	NodeCache getItemDefinitionCache();
+
+	/**
+	 * Returns the array of cross sprites that appear and animate when left-clicking
+	 */
+	Sprite[] getCrossSprites();
 
 	EnumDefinition getEnum(int id);
 
@@ -1665,4 +1697,15 @@ public interface Client extends GameShell
 	String getSelectedSpellName();
 
 	boolean getIsSpellSelected();
+
+	/**
+	 * Set whether or not player attack options will be hidden for clan members/friends
+	 */
+	void setHideFriendAttackOptions(boolean yes);
+
+	/**
+	 * Sorts the current menu entries in the same way the client does this.
+	 * The last entry will be the left click one after this.
+	 */
+	void sortMenuEntries();
 }
