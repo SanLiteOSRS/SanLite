@@ -212,7 +212,7 @@ public class WikiPlugin extends Plugin
 				case SPELL_CAST_ON_GROUND_ITEM:
 				{
 					type = "item";
-					id = itemManager.canonicalize(ev.getId());
+					id = itemManager.canonicalize(ev.getIdentifier());
 					name = itemManager.getItemComposition(id).getName();
 					location = null;
 					break;
@@ -220,7 +220,7 @@ public class WikiPlugin extends Plugin
 				case SPELL_CAST_ON_NPC:
 				{
 					type = "npc";
-					NPC npc = client.getCachedNPCs()[ev.getId()];
+					NPC npc = client.getCachedNPCs()[ev.getIdentifier()];
 					NPCDefinition nc = npc.getTransformedDefinition();
 					id = nc.getId();
 					name = nc.getName();
@@ -230,14 +230,14 @@ public class WikiPlugin extends Plugin
 				case SPELL_CAST_ON_GAME_OBJECT:
 				{
 					type = "object";
-					ObjectDefinition lc = client.getObjectDefinition(ev.getId());
+					ObjectDefinition lc = client.getObjectDefinition(ev.getIdentifier());
 					if (lc.getImpostorIds() != null)
 					{
 						lc = lc.getImpostor();
 					}
 					id = lc.getId();
 					name = lc.getName();
-					location = WorldPoint.fromScene(client, ev.getActionParam(), ev.getWidgetId(), client.getPlane());
+					location = WorldPoint.fromScene(client, ev.getActionParam0(), ev.getActionParam1(), client.getPlane());
 					break;
 				}
 				default:
@@ -269,14 +269,14 @@ public class WikiPlugin extends Plugin
 		if (ev.getMenuAction() == MenuAction.RUNELITE)
 		{
 			boolean quickguide = false;
-			switch (ev.getMenuOption())
+			switch (ev.getOption())
 			{
 				case MENUOP_QUICKGUIDE:
 					quickguide = true;
 					//fallthrough;
 				case MENUOP_GUIDE:
 					ev.consume();
-					String quest = Text.removeTags(ev.getMenuTarget());
+					String quest = Text.removeTags(ev.getTarget());
 					HttpUrl.Builder ub = WIKI_BASE.newBuilder()
 						.addPathSegment("w")
 						.addPathSegment(quest)
@@ -288,8 +288,8 @@ public class WikiPlugin extends Plugin
 					LinkBrowser.browse(ub.build().toString());
 					break;
 				case MENUOP_WIKI:
-					Matcher skillRegex = WikiPlugin.SKILL_REGEX.matcher(Text.removeTags(ev.getMenuTarget()));
-					Matcher diaryRegex = WikiPlugin.DIARY_REGEX.matcher(Text.removeTags(ev.getMenuTarget()));
+					Matcher skillRegex = WikiPlugin.SKILL_REGEX.matcher(Text.removeTags(ev.getTarget()));
+					Matcher diaryRegex = WikiPlugin.DIARY_REGEX.matcher(Text.removeTags(ev.getTarget()));
 
 					if (skillRegex.find())
 					{

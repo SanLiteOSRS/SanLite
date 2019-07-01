@@ -247,31 +247,31 @@ public class MenuManager
 			return; // not a player menu
 		}
 
-		int widgetId = event.getWidgetId();
+		int widgetId = event.getActionParam1();
 		Collection<WidgetMenuOption> options = managedMenuOptions.get(widgetId);
 
 		for (WidgetMenuOption curMenuOption : options)
 		{
-			if (curMenuOption.getMenuTarget().equals(event.getMenuTarget())
-				&& curMenuOption.getMenuOption().equals(event.getMenuOption()))
+			if (curMenuOption.getMenuTarget().equals(event.getTarget())
+				&& curMenuOption.getMenuOption().equals(event.getOption()))
 			{
 				WidgetMenuOptionClicked customMenu = new WidgetMenuOptionClicked();
-				customMenu.setMenuOption(event.getMenuOption());
-				customMenu.setMenuTarget(event.getMenuTarget());
+				customMenu.setMenuOption(event.getOption());
+				customMenu.setMenuTarget(event.getTarget());
 				customMenu.setWidget(curMenuOption.getWidget());
 				eventBus.post(customMenu);
 				return; // don't continue because it's not a player option
 			}
 		}
 
-		String target = event.getMenuTarget();
+		String target = event.getTarget();
 
 		// removes tags and level from player names for example:
 		// <col=ffffff>username<col=40ff00>  (level-42) or <col=ffffff><img=2>username</col>
 		String username = Text.removeTags(target).split("[(]")[0].trim();
 
 		PlayerMenuOptionClicked playerMenuOptionClicked = new PlayerMenuOptionClicked();
-		playerMenuOptionClicked.setMenuOption(event.getMenuOption());
+		playerMenuOptionClicked.setMenuOption(event.getOption());
 		playerMenuOptionClicked.setMenuTarget(username);
 
 		eventBus.post(playerMenuOptionClicked);
