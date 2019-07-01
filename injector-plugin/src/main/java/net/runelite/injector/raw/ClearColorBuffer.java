@@ -70,50 +70,52 @@ public class ClearColorBuffer
 						continue;
 					}
 
-					if (((InvokeStatic) i).getMethod().equals(fillRectangle))
+					if (!((InvokeStatic) i).getMethod().equals(fillRectangle))
 					{
-						int indexToReturnTo = it.nextIndex();
-						count++;
-						it.previous();
-						Instruction current = it.previous();
-						if (current instanceof LDC && ((LDC) current).getConstantAsInt() == 0)
+						continue;
+					}
+
+					int indexToReturnTo = it.nextIndex();
+					count++;
+					it.previous();
+					Instruction current = it.previous();
+					if (current instanceof LDC && ((LDC) current).getConstantAsInt() == 0)
+					{
+						int varIdx = 0;
+						for (; ; )
 						{
-							int varIdx = 0;
-							for (; ; )
+							current = it.previous();
+							if (current instanceof ILoad && ((ILoad) current).getVariableIndex() == 3 - varIdx)
 							{
-								current = it.previous();
-								if (current instanceof ILoad && ((ILoad) current).getVariableIndex() == 3 - varIdx)
-								{
-									varIdx++;
-									log.debug("[ClearColorBuffer] varIdx count: " + varIdx);
-									continue;
-								}
-
-								break;
+								varIdx++;
+								log.debug("[ClearColorBuffer] varIdx count: " + varIdx);
+								continue;
 							}
 
-							if (varIdx == 4)
-							{
-								for (; !(current instanceof InvokeStatic); )
-								{
-									current = it.next();
-								}
-								assert it.nextIndex() == indexToReturnTo;
-
-								it.set(new InvokeStatic(ins, clearBuffer));
-								replaced++;
-								log.debug("[ClearColorBuffer] Found drawRectangle at {}. Found: {}, replaced {}", m.getName(), count, replaced);
-							}
-							else
-							{
-								log.debug("[ClearColorBuffer] Could not find drawRectangle at: " + m);
-							}
+							break;
 						}
 
-						while (it.nextIndex() != indexToReturnTo)
+						if (varIdx == 4)
 						{
-							it.next();
+							for (; !(current instanceof InvokeStatic); )
+							{
+								current = it.next();
+							}
+							assert it.nextIndex() == indexToReturnTo;
+
+							it.set(new InvokeStatic(ins, clearBuffer));
+							replaced++;
+							log.debug("[ClearColorBuffer] Found drawRectangle at {}. Found: {}, replaced {}", m.getName(), count, replaced);
 						}
+						else
+						{
+							log.debug("[ClearColorBuffer] Could not find drawRectangle at: " + m);
+						}
+					}
+
+					while (it.nextIndex() != indexToReturnTo)
+					{
+						it.next();
 					}
 				}
 			}

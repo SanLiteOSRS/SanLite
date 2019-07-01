@@ -317,7 +317,7 @@ public class RasterizerHook
 			{
 				if ((int) ic.getPops().get(0).getValue().getValue() == 0)
 				{
-					logger.info("Didn't add hook in method {}.{}. {} added, {} total, value 0", method.getClassFile().getClassName(), method.getName(), count - startCount, count);
+					logger.debug("Didn't add hook in method {}.{}. {} added, {} total, value 0", method.getClassFile().getClassName(), method.getName(), count - startCount, count);
 					return;
 				}
 			}
@@ -325,7 +325,7 @@ public class RasterizerHook
 			ins.getInstructions().add(index, new IOr(ins, InstructionType.IOR)); // Add instructions backwards
 			ins.getInstructions().add(index, new LDC(ins, val));
 			count++;
-			logger.info("Added hook in method {}.{}. {} added, {} total", method.getClassFile().getClassName(), method.getName(), count - startCount, count);
+			logger.debug("Added hook in method {}.{}. {} added, {} total", method.getClassFile().getClassName(), method.getName(), count - startCount, count);
 		});
 
 		ex.run();
