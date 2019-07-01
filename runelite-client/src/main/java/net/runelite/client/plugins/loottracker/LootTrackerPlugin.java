@@ -49,14 +49,7 @@ import javax.swing.SwingUtilities;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.ChatMessageType;
-import net.runelite.api.Client;
-import net.runelite.api.InventoryID;
-import net.runelite.api.ItemComposition;
-import net.runelite.api.ItemContainer;
-import net.runelite.api.NPC;
-import net.runelite.api.Player;
-import net.runelite.api.SpriteID;
+import net.runelite.api.*;
 import net.runelite.api.coords.WorldPoint;
 import net.runelite.api.events.ChatMessage;
 import net.runelite.api.events.ConfigChanged;
@@ -512,7 +505,7 @@ public class LootTrackerPlugin extends Plugin
 
 	private LootTrackerItem buildLootTrackerItem(int itemId, int quantity)
 	{
-		final ItemComposition itemComposition = itemManager.getItemComposition(itemId);
+		final ItemDefinition itemComposition = itemManager.getItemComposition(itemId);
 		final int realItemId = itemComposition.getNote() != -1 ? itemComposition.getLinkedNoteId() : itemId;
 		final long price = (long) itemManager.getItemPrice(realItemId) * (long) quantity;
 		final boolean ignored = ignoredItems.contains(itemComposition.getName());

@@ -81,10 +81,44 @@ public enum WorldType
 	}
 
 	private static final EnumSet<WorldType> PVP_WORLD_TYPES = EnumSet.of(
-		DEADMAN,
-		DEADMAN_TOURNAMENT,
-		PVP,
-		SEASONAL_DEADMAN
+			DEADMAN,
+			DEADMAN_TOURNAMENT,
+			PVP,
+			SEASONAL_DEADMAN
+	);
+
+	private static final EnumSet<WorldType> DEADMAN_WORLD_TYPES = EnumSet.of(
+			DEADMAN,
+			DEADMAN_TOURNAMENT,
+			SEASONAL_DEADMAN
+	);
+
+	private static final EnumSet<WorldType> HIGH_RISK_WORLD_TYPES = EnumSet.of(
+			HIGH_RISK
+	);
+
+	private static final EnumSet<WorldType> ALL_HIGH_RISK_WORLD_TYPES = EnumSet.of(
+			HIGH_RISK,
+			DEADMAN,
+			DEADMAN_TOURNAMENT,
+			SEASONAL_DEADMAN
+	);
+
+	private static final EnumSet<WorldType> ALL_PVP_WORLD_TYPES = EnumSet.of(
+			HIGH_RISK,
+			DEADMAN,
+			DEADMAN_TOURNAMENT,
+			PVP,
+			SEASONAL_DEADMAN
+	);
+
+	private static final EnumSet<WorldType> ALL_PK_WORLD_TYPES = EnumSet.of(
+			HIGH_RISK,
+			DEADMAN,
+			DEADMAN_TOURNAMENT,
+			PVP,
+			SEASONAL_DEADMAN,
+			BOUNTY
 	);
 
 	/**
@@ -127,14 +161,45 @@ public enum WorldType
 	}
 
 	/**
-	 * Checks whether a world having a {@link Collection} of {@link WorldType}s is a PVP world.
+	 * Checks whether a world having a {@link Collection} of {@link WorldType}s is a PVP/DEADMAN/HIGHRISK world.
 	 *
 	 * @param worldTypes A {@link Collection} of {@link WorldType}s describing the given world.
-	 * @return           True if the given worldtypes of the world are a PVP world, false otherwise.
+	 * @return True if the given worldtypes of the world are a PVP/DEADMAN/HIGHRISK world, false otherwise.
 	 * @see Client#getWorldType()
 	 */
 	public static boolean isPvpWorld(final Collection<WorldType> worldTypes)
 	{
 		return worldTypes.stream().anyMatch(PVP_WORLD_TYPES::contains);
+	}
+
+	/**
+	 * Checks to see if a collection of WorldTypes is a Deadman Mode World
+	 *
+	 * @param worldTypes The List of world types for a world
+	 * @return true if it is deadman, false otherwise
+	 */
+	public static boolean isDeadmanWorld(final Collection<WorldType> worldTypes)
+	{
+		return worldTypes.stream().anyMatch(DEADMAN_WORLD_TYPES::contains);
+	}
+
+	public static boolean isHighRiskWorld(final Collection<WorldType> worldTypes)
+	{
+		return worldTypes.stream().anyMatch(HIGH_RISK_WORLD_TYPES::contains);
+	}
+
+	public static boolean isAllHighRiskWorld(final Collection<WorldType> worldTypes)
+	{
+		return worldTypes.stream().anyMatch(ALL_HIGH_RISK_WORLD_TYPES::contains);
+	}
+
+	public static boolean isAllPvpWorld(final Collection<WorldType> worldTypes)
+	{
+		return worldTypes.stream().anyMatch(ALL_PVP_WORLD_TYPES::contains);
+	}
+
+	public static boolean isAllPKWorld(final Collection<WorldType> worldTypes)
+	{
+		return worldTypes.stream().anyMatch(ALL_PK_WORLD_TYPES::contains);
 	}
 }

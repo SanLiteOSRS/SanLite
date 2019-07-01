@@ -59,7 +59,7 @@ public interface NPC extends Actor
 	 *
 	 * @return the composition
 	 */
-	NPCComposition getComposition();
+	NPCDefinition getDefinition();
 
 	/**
 	 * Get the composition for this NPC and transform it if required
@@ -67,12 +67,14 @@ public interface NPC extends Actor
 	 * @return the transformed NPC
 	 */
 	@Nullable
-	NPCComposition getTransformedComposition();
+	NPCDefinition getTransformedDefinition();
 
 	/**
 	 * Returns true if this NPC has died
 	 *
-	 * @return
+	 * @return is npc dead
 	 */
 	boolean isDead();
+
+	void onDefinitionChanged(NPCDefinition composition);
 }

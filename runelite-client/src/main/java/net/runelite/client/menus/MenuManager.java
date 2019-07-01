@@ -39,7 +39,7 @@ import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Client;
 import net.runelite.api.MenuAction;
 import net.runelite.api.MenuEntry;
-import net.runelite.api.NPCComposition;
+import net.runelite.api.NPCDefinition;
 import net.runelite.api.events.MenuEntryAdded;
 import net.runelite.api.events.MenuOptionClicked;
 import net.runelite.api.events.NpcActionChanged;
@@ -192,14 +192,14 @@ public class MenuManager
 	@Subscribe
 	public void onNpcActionChanged(NpcActionChanged event)
 	{
-		NPCComposition composition = event.getNpcComposition();
+		NPCDefinition composition = event.getNpcDefinition();
 		for (String npcOption : npcMenuOptions)
 		{
 			addNpcOption(composition, npcOption);
 		}
 	}
 
-	private void addNpcOption(NPCComposition composition, String npcOption)
+	private void addNpcOption(NPCDefinition composition, String npcOption)
 	{
 		String[] actions = composition.getActions();
 		int unused = -1;
@@ -221,7 +221,7 @@ public class MenuManager
 		actions[unused] = npcOption;
 	}
 
-	private void removeNpcOption(NPCComposition composition, String npcOption)
+	private void removeNpcOption(NPCDefinition composition, String npcOption)
 	{
 		String[] actions = composition.getActions();
 
@@ -247,31 +247,31 @@ public class MenuManager
 			return; // not a player menu
 		}
 
-		int widgetId = event.getWidgetId();
+		int widgetId = event.getActionParam1();
 		Collection<WidgetMenuOption> options = managedMenuOptions.get(widgetId);
 
 		for (WidgetMenuOption curMenuOption : options)
 		{
-			if (curMenuOption.getMenuTarget().equals(event.getMenuTarget())
-				&& curMenuOption.getMenuOption().equals(event.getMenuOption()))
+			if (curMenuOption.getMenuTarget().equals(event.getTarget())
+				&& curMenuOption.getMenuOption().equals(event.getOption()))
 			{
 				WidgetMenuOptionClicked customMenu = new WidgetMenuOptionClicked();
-				customMenu.setMenuOption(event.getMenuOption());
-				customMenu.setMenuTarget(event.getMenuTarget());
+				customMenu.setMenuOption(event.getOption());
+				customMenu.setMenuTarget(event.getTarget());
 				customMenu.setWidget(curMenuOption.getWidget());
 				eventBus.post(customMenu);
 				return; // don't continue because it's not a player option
 			}
 		}
 
-		String target = event.getMenuTarget();
+		String target = event.getTarget();
 
 		// removes tags and level from player names for example:
 		// <col=ffffff>username<col=40ff00>  (level-42) or <col=ffffff><img=2>username</col>
 		String username = Text.removeTags(target).split("[(]")[0].trim();
 
 		PlayerMenuOptionClicked playerMenuOptionClicked = new PlayerMenuOptionClicked();
-		playerMenuOptionClicked.setMenuOption(event.getMenuOption());
+		playerMenuOptionClicked.setMenuOption(event.getOption());
 		playerMenuOptionClicked.setMenuTarget(username);
 
 		eventBus.post(playerMenuOptionClicked);

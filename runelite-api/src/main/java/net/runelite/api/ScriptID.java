@@ -94,16 +94,41 @@ public final class ScriptID
 	 * Builds the chatbox input widget
 	 */
 	public static final int CHAT_PROMPT_INIT = 223;
+	
+	/**
+	 * Joins the corresponding minigame chat
+	 */
+	public static final int FORCE_JOIN_CC = 437;
+
+	/**
+	 * Displays the game messages when clicking on an item inside the Items Kept on Death interface
+	 * <ul>
+	 * <li> int (boolean) Item kept on death </li>
+	 * <li> int Item Quantity </li>
+	 * <li> String Item Name </li>
+	 * </ul>
+	 */
+	public static final int KEPT_LOST_ITEM_EXAMINE = 1603;
+
+	/**
+	 * Displays the game messages when clicking on an item inside the Items Kept on Death interface
+	 * <ul>
+	 * <li> int (boolean) Item kept on death </li>
+	 * <li> int Item Quantity </li>
+	 * <li> String Item Name </li>
+	 * </ul>
+	 */
+	public static final int DEATH_KEEP_ITEM_EXAMINE = 1603;
 
 	/**
 	 * Checks the state of the given stash unit.
 	 * <ul>
 	 * <li>int (loc) The stash unit object id</li>
-	 *  <li>int Bitpacked stash unit states</li>
-	 *  <li>int Bitpacked stash unit states 2</li>
-	 *  <li>int Bitpacked stash unit states 3</li>
+	 * <li>int Bitpacked stash unit states</li>
+	 * <li>int Bitpacked stash unit states 2</li>
+	 * <li>int Bitpacked stash unit states 3</li>
 	 * </ul>
-	 *
+	 * <p>
 	 * Returns a pair of booleans indicating if the stash unit is built and if it is filled
 	 */
 	public static final int WATSON_STASH_UNIT_CHECK = 1479;
@@ -130,6 +155,24 @@ public final class ScriptID
 	public static final int DIARY_QUEST_UPDATE_LINECOUNT = 2523;
 
 	/**
+	 * Initializes the chatbox input to use RuneLite callbacks
+	 * <ul>
+	 * <li> String  Prompt text </li>
+	 * <li> String  Default value </li>
+	 * </ul>
+	 */
+	public static final int RUNELITE_CHATBOX_INPUT_INIT = 10001;
+
+	/**
+	 * Handles zoom input
+	 * <ul>
+	 * <li> int  zoom value </li>
+	 * <li> int  zoom value </li>
+	 * </ul>
+	 */
+	public static final int CAMERA_DO_ZOOM = 42;
+
+	/**
 	 * Does nothing
 	 *
 	 * This is used to eat events when you want a menu action attached to it
@@ -151,4 +194,10 @@ public final class ScriptID
 	 * </ul>
 	 */
 	public static final int XPDROP_DISABLED = 2091;
+
+
+	/**
+	 * Join a clan chat channel
+	 */
+	public static final int CUSTOM_JOIN_CLAN = 10690;
 }

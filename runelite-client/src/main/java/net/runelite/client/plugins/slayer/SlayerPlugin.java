@@ -44,13 +44,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.ChatMessageType;
-import net.runelite.api.Client;
-import net.runelite.api.GameState;
-import net.runelite.api.ItemID;
-import net.runelite.api.MessageNode;
-import net.runelite.api.NPC;
-import net.runelite.api.NPCComposition;
+import net.runelite.api.*;
 import static net.runelite.api.Skill.SLAYER;
 import net.runelite.api.coords.WorldPoint;
 import net.runelite.api.events.ChatMessage;
@@ -587,7 +581,7 @@ public class SlayerPlugin extends Plugin
 	private boolean doubleTroubleExtraKill()
 	{
 		return WorldPoint.fromLocalInstance(client, client.getLocalPlayer().getLocalLocation()).getRegionID() == GROTESQUE_GUARDIANS_REGION &&
-				SlayerUnlock.GROTESQUE_GARDIAN_DOUBLE_COUNT.isEnabled(client);
+				SlayerUnlock.GROTESQUE_GUARDIAN_DOUBLE_COUNT.isEnabled(client);
 	}
 
 	private boolean isTarget(NPC npc)
@@ -609,7 +603,7 @@ public class SlayerPlugin extends Plugin
 		{
 			if (name.contains(target))
 			{
-				NPCComposition composition = npc.getTransformedComposition();
+				NPCDefinition composition = npc.getTransformedDefinition();
 
 				if (composition != null)
 				{

@@ -31,8 +31,9 @@ import java.util.Set;
 import lombok.Getter;
 import net.runelite.api.NPC;
 import static net.runelite.api.NullObjectID.NULL_1293;
-import net.runelite.api.ObjectComposition;
 import static net.runelite.api.ObjectID.*;
+
+import net.runelite.api.ObjectDefinition;
 import net.runelite.api.TileObject;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.coords.WorldPoint;
@@ -259,7 +260,7 @@ public class CrypticClue extends ClueScroll implements TextClueScroll, NpcClueSc
 		new CrypticClue("Search the drawers in Catherby's Archery shop.", DRAWERS_350, new WorldPoint(2825, 3442, 0), "Hickton's Archery Emporium in Catherby."),
 		new CrypticClue("The hand ain't listening.", "The Face", new WorldPoint(3019, 3232, 0), "Talk to The Face located by the manhole just north of the Port Sarim fishing shop."),
 		new CrypticClue("Search the chest in the left-hand tower of Camelot Castle.", CLOSED_CHEST_25592, new WorldPoint(2748, 3495, 2), "Located on the second floor of the western tower of Camelot."),
-		new CrypticClue("Kill the spiritual, magic and godly whilst representing their own god", null, "Kill a spiritual mage while wearing a corresponding god item."),
+		new CrypticClue("Kill the spiritual, magic and godly whilst representing their own god.", null, "Kill a spiritual mage while wearing a corresponding god item."),
 		new CrypticClue("Anger those who adhere to Saradomin's edicts to prevent travel.", "Monk of Entrana", new WorldPoint(3042, 3236, 0), "Port Sarim Docks, try to charter a ship to Entrana with armour or weapons equipped."),
 		new CrypticClue("South of a river in a town surrounded by the undead, what lies beneath the furnace?", new WorldPoint(2857, 2966, 0), "Dig in front of the Shilo Village furnace."),
 		new CrypticClue("Talk to the Squire in the White Knights' castle in Falador.", "Squire", new WorldPoint(2977, 3343, 0), "The squire is located in the courtyard of the White Knights' Castle."),
@@ -371,7 +372,7 @@ public class CrypticClue extends ClueScroll implements TextClueScroll, NpcClueSc
 
 		if (objectId != -1)
 		{
-			ObjectComposition object = plugin.getClient().getObjectDefinition(objectId);
+			ObjectDefinition object = plugin.getClient().getObjectDefinition(objectId);
 
 			if (object != null && object.getImpostorIds() != null)
 			{

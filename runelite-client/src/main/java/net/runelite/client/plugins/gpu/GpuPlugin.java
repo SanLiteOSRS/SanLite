@@ -243,11 +243,6 @@ public class GpuPlugin extends Plugin implements DrawCallbacks
 				canvas = client.getCanvas();
 				canvas.setIgnoreRepaint(true);
 
-				if (log.isDebugEnabled())
-				{
-					System.setProperty("jogl.debug", "true");
-				}
-
 				GLProfile.initSingleton();
 
 				GLProfile glProfile = GLProfile.get(GLProfile.GL4);
@@ -264,11 +259,6 @@ public class GpuPlugin extends Plugin implements DrawCallbacks
 				glDrawable.setRealized(true);
 
 				glContext = glDrawable.createContext(null);
-				if (log.isDebugEnabled())
-				{
-					// Debug config on context needs to be set before .makeCurrent call
-					glContext.enableGLDebugMessage(true);
-				}
 
 				int res = glContext.makeCurrent();
 				if (res == GLContext.CONTEXT_NOT_CURRENT)
@@ -284,15 +274,6 @@ public class GpuPlugin extends Plugin implements DrawCallbacks
 
 				this.gl = glContext.getGL().getGL4();
 				gl.setSwapInterval(0);
-
-				if (log.isDebugEnabled())
-				{
-					gl.glEnable(gl.GL_DEBUG_OUTPUT);
-
-					// Suppress warning messages which flood the log on NVIDIA systems.
-					gl.getContext().glDebugMessageControl(gl.GL_DEBUG_SOURCE_API, gl.GL_DEBUG_TYPE_OTHER,
-						gl.GL_DEBUG_SEVERITY_NOTIFICATION, 0, null, 0, false);
-				}
 
 				initVao();
 				initProgram();
@@ -1314,10 +1295,7 @@ public class GpuPlugin extends Plugin implements DrawCallbacks
 					{
 						int var21 = (pitchCos * modelHeight >> 16) + var19;
 						int var22 = (var18 - var21) * zoom;
-						if (var22 / var14 < Rasterizer3D_clipMidY2)
-						{
-							return true;
-						}
+						return var22 / var14 < Rasterizer3D_clipMidY2;
 					}
 				}
 			}

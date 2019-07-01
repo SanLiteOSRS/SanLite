@@ -45,18 +45,7 @@ import javax.inject.Inject;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
-import net.runelite.api.Client;
-import net.runelite.api.GameState;
-import net.runelite.api.Item;
-import net.runelite.api.ItemComposition;
-import net.runelite.api.ItemID;
-import net.runelite.api.ItemLayer;
-import net.runelite.api.MenuAction;
-import net.runelite.api.MenuEntry;
-import net.runelite.api.Node;
-import net.runelite.api.Player;
-import net.runelite.api.Scene;
-import net.runelite.api.Tile;
+import net.runelite.api.*;
 import net.runelite.api.coords.WorldPoint;
 import net.runelite.api.events.ClientTick;
 import net.runelite.api.events.ConfigChanged;
@@ -95,8 +84,6 @@ import net.runelite.client.util.Text;
 )
 public class GroundItemsPlugin extends Plugin
 {
-	// Used when getting High Alchemy value - multiplied by general store price.
-	private static final float HIGH_ALCHEMY_CONSTANT = 0.6f;
 	// ItemID for coins
 	private static final int COINS = ItemID.COINS_995;
 	// Ground item menu options
@@ -367,9 +354,9 @@ public class GroundItemsPlugin extends Plugin
 	{
 		// Collect the data for the item
 		final int itemId = item.getId();
-		final ItemComposition itemComposition = itemManager.getItemComposition(itemId);
+		final ItemDefinition itemComposition = itemManager.getItemComposition(itemId);
 		final int realItemId = itemComposition.getNote() != -1 ? itemComposition.getLinkedNoteId() : itemId;
-		final int alchPrice = Math.round(itemComposition.getPrice() * HIGH_ALCHEMY_CONSTANT);
+		final int alchPrice = Math.round(itemComposition.getPrice() * Constants.HIGH_ALCHEMY_MULTIPLIER);
 
 		final GroundItem groundItem = GroundItem.builder()
 			.id(itemId)
@@ -477,11 +464,11 @@ public class GroundItemsPlugin extends Plugin
 				current = current.getNext();
 			}
 
-			final ItemComposition itemComposition = itemManager.getItemComposition(itemId);
+			final ItemDefinition itemComposition = itemManager.getItemComposition(itemId);
 			final int realItemId = itemComposition.getNote() != -1 ? itemComposition.getLinkedNoteId() : itemComposition.getId();
 			final int itemPrice = itemManager.getItemPrice(realItemId);
 			final int price = itemPrice <= 0 ? itemComposition.getPrice() : itemPrice;
-			final int haPrice = Math.round(itemComposition.getPrice() * HIGH_ALCHEMY_CONSTANT) * quantity;
+			final int haPrice = Math.round(itemComposition.getPrice() * Constants.HIGH_ALCHEMY_MULTIPLIER) * quantity;
 			final int gePrice = quantity * price;
 			final Color hidden = getHidden(itemComposition.getName(), gePrice, haPrice, itemComposition.isTradeable());
 			final Color highlighted = getHighlighted(itemComposition.getName(), gePrice, haPrice);

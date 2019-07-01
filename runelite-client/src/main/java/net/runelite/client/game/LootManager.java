@@ -109,7 +109,7 @@ public class LootManager
 				case NpcID.LIZARD:
 
 				case NpcID.ZYGOMITE:
-				case NpcID.ZYGOMITE_474:
+				case NpcID.ZYGOMITE_1024:
 				case NpcID.ANCIENT_ZYGOMITE:
 
 					// these monsters die with >0 hp, so we just look for coincident
@@ -237,7 +237,7 @@ public class LootManager
 
 		final int x = location.getSceneX();
 		final int y = location.getSceneY();
-		final int size = npc.getComposition().getSize();
+		final int size = npc.getDefinition().getSize();
 
 		// Some NPCs drop items onto multiple tiles
 		final List<ItemStack> allItems = new ArrayList<>();

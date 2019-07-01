@@ -56,6 +56,9 @@ public abstract class EntityHiderBridgeMixin implements RSClient
 	public static boolean hideNPCs;
 
 	@Inject
+	public static String hideNPCsNames;
+
+	@Inject
 	public static boolean hideNPCs2D;
 
 	@Inject
@@ -118,6 +121,13 @@ public abstract class EntityHiderBridgeMixin implements RSClient
 	public void setNPCsHidden(boolean state)
 	{
 		hideNPCs = state;
+	}
+
+	@Inject
+	@Override
+	public void setNPCsNames(String NPCs)
+	{
+		hideNPCsNames = NPCs;
 	}
 
 	@Inject

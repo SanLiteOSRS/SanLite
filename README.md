@@ -1,19 +1,24 @@
-![](https://i.imgur.com/HFTANBN.png)
-# SanLite [![Discord](https://img.shields.io/discord/301755382160818177.svg)](https://discord.gg/KvydXt)
+![](https://i.imgur.com/DrOHIyS.png)
+# SanLite [![Discord](https://img.shields.io/discord/301755382160818177.svg)](https://discord.gg/rRMNYz8)
 
 SanLite is a custom version of the popular OldSchool RuneScape client RuneLite.
 
-If you have any questions, please join our [Discord](https://discord.gg/KvydXt) server.
+If you have any questions, please join our [Discord](https://discord.gg/rRMNYz8) server.
 
 ## Project Layout
 
+- [bootstrapper](bootstrapper/src/main/java/net/runelite/bootstrap) - Generates bootstrap file used for retrieving launcher dependencies
 - [cache](cache/src/main/java/net/runelite/cache) - Libraries used for reading/writing cache files, as well as the data in it
+- [deobfuscator](deobfuscator/src/main/java/net/runelite/deob) - Deobfuscates OSRS gamepacks & updating runescape-client mappings
 - [http-api](http-api/src/main/java/net/runelite/http/api) - API for api.runelite.net
 - [http-service](http-service/src/main/java/net/runelite/http/service) - Service for api.runelite.net
+- [injected-client](injected-client) - OSRS client with mixins injected
+- [injector-plugin](injector-plugin/src/main/java/net/runelite/injector) - Injects mixins into the OSRS client
 - [runelite-api](runelite-api/src/main/java/net/runelite/api) - RuneLite API, interfaces for accessing the client
 - [runelite-mixins](runelite-mixins/src/main/java/net/runelite) - Mixins which are injected into the injected client's classes
 - [runescape-api](runescape-api/src/main/java/net/runelite) - Mappings correspond to these interfaces, runelite-api is a subset of this
 - [runelite-client](runelite-client/src/main/java/net/runelite/client) - Game client with plugins
+- [runescape-client](runescape-client/src/main/java) - Refactored RuneScape client
 
 ## Usage
 

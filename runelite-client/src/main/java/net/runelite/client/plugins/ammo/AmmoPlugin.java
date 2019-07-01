@@ -26,12 +26,8 @@ package net.runelite.client.plugins.ammo;
 
 import java.awt.image.BufferedImage;
 import javax.inject.Inject;
-import net.runelite.api.Client;
-import net.runelite.api.EquipmentInventorySlot;
-import net.runelite.api.InventoryID;
-import net.runelite.api.Item;
-import net.runelite.api.ItemComposition;
-import net.runelite.api.ItemContainer;
+
+import net.runelite.api.*;
 import net.runelite.api.events.ItemContainerChanged;
 import net.runelite.client.callback.ClientThread;
 import net.runelite.client.eventbus.Subscribe;
@@ -100,7 +96,7 @@ public class AmmoPlugin extends Plugin
 		if (items.length > EquipmentInventorySlot.WEAPON.getSlotIdx())
 		{
 			final Item weapon = items[EquipmentInventorySlot.WEAPON.getSlotIdx()];
-			final ItemComposition weaponComp = itemManager.getItemComposition(weapon.getId());
+			final ItemDefinition weaponComp = itemManager.getItemComposition(weapon.getId());
 			if (weaponComp.isStackable())
 			{
 				updateInfobox(weapon, weaponComp);
@@ -115,7 +111,7 @@ public class AmmoPlugin extends Plugin
 		}
 
 		final Item ammo = items[EquipmentInventorySlot.AMMO.getSlotIdx()];
-		final ItemComposition comp = itemManager.getItemComposition(ammo.getId());
+		final ItemDefinition comp = itemManager.getItemComposition(ammo.getId());
 
 		if (!comp.isStackable())
 		{
@@ -126,7 +122,7 @@ public class AmmoPlugin extends Plugin
 		updateInfobox(ammo, comp);
 	}
 
-	private void updateInfobox(final Item item, final ItemComposition comp)
+	private void updateInfobox(final Item item, final ItemDefinition comp)
 	{
 		if (counterBox != null && counterBox.getItemID() == item.getId())
 		{

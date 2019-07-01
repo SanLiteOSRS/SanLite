@@ -88,7 +88,7 @@ public interface RuneLiteConfig extends Config
 	@ConfigItem(
 		keyName = "uiEnableCustomChrome",
 		name = "Enable custom window chrome",
-		description = "Use Runelite's custom window title and borders.",
+		description = "Use SanLite's custom window title and borders.",
 		warning = "Please restart your client after changing this setting",
 		position = 15
 	)
@@ -175,14 +175,14 @@ public interface RuneLiteConfig extends Config
 	}
 
 	@ConfigItem(
-		keyName = "notificationFlash",
-		name = "Enable flash notification",
+		keyName = "flashNotification",
+		name = "Flash notification",
 		description = "Flashes the game frame as a notification",
 		position = 24
 	)
-	default boolean enableFlashNotification()
+	default FlashNotification flashNotification()
 	{
-		return false;
+		return FlashNotification.DISABLED;
 	}
 
 	@ConfigItem(
