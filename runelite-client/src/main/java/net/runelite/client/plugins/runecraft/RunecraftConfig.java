@@ -33,6 +33,28 @@ import net.runelite.client.config.ConfigItem;
 public interface RunecraftConfig extends Config
 {
 	@ConfigItem(
+			keyName = "leftClickEmptyPouch",
+			name = "Left-click fill empty pouch",
+			description = "Makes essence pouches left-click empty",
+			position = 1
+	)
+	default boolean leftClickEmptyPouch()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+		keyName = "leftClickFillPouchInBank",
+		name = "Left-click fill pouch in bank",
+		description = "Makes essence pouches left-click fill in bank",
+		position = 2
+	)
+	default boolean leftClickFillPouchInBank()
+	{
+		return true;
+	}
+
+	@ConfigItem(
 		keyName = "showRifts",
 		name = "Show Rifts in Abyss",
 		description = "Configures whether the rifts in the abyss will be displayed",
