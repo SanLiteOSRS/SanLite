@@ -53,14 +53,15 @@ import net.runelite.api.events.NpcSpawned;
 import net.runelite.client.Notifier;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
+import net.runelite.client.menus.MenuManager;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.ui.overlay.OverlayManager;
 
 @PluginDescriptor(
-	name = "Runecraft",
-	description = "Show minimap icons and clickboxes for abyssal rifts",
-	tags = {"abyssal", "minimap", "overlay", "rifts", "rc", "runecrafting"}
+	name = "Runecrafting",
+	description = "Show minimap icons, clickboxes for abyssal rifts and left-click swap for pouches in bank",
+	tags = {"abyssal", "minimap", "overlay", "rifts", "rc", "runecrafting", "pouch", "rune", "essence", "swap"}
 )
 public class RunecraftPlugin extends Plugin
 {
@@ -96,6 +97,9 @@ public class RunecraftPlugin extends Plugin
 	@Inject
 	private Notifier notifier;
 
+	@Inject
+	private MenuManager menuManager;
+
 	@Provides
 	RunecraftConfig getConfig(ConfigManager configManager)
 	{
@@ -107,6 +111,16 @@ public class RunecraftPlugin extends Plugin
 	{
 		overlayManager.add(abyssOverlay);
 		abyssOverlay.updateConfig();
+
+		if (config.leftClickEmptyPouch())
+		{
+			addSwapEmpty();
+		}
+
+		if (config.leftClickFillPouchInBank())
+		{
+			addSwapFillPouchInBank();
+		}
 	}
 
 	@Override
@@ -116,12 +130,71 @@ public class RunecraftPlugin extends Plugin
 		abyssObjects.clear();
 		darkMage = null;
 		degradedPouchInInventory = false;
+
+		if (config.leftClickEmptyPouch())
+		{
+			removeSwapEmpty();
+		}
+
+		if (config.leftClickFillPouchInBank())
+		{
+			removeSwapFillPouchInBank();
+		}
 	}
 
 	@Subscribe
 	public void onConfigChanged(ConfigChanged event)
 	{
+		if (!event.getGroup().equals("runecraft"))
+		{
+			return;
+		}
+
+		if (event.getKey().equals("leftClickEmptyPouch"))
+		{
+			addSwapEmpty();
+		}
+
+		if (event.getKey().equals("leftClickFillPouchInBank"))
+		{
+			addSwapFillPouchInBank();
+		}
+
 		abyssOverlay.updateConfig();
+	}
+
+	private void addSwapEmpty()
+	{
+		if (config.leftClickEmptyPouch())
+		{
+			menuManager.addMenuEntrySwap("fill", "pouch", "empty", "pouch", true, false);
+		}
+		else
+		{
+			menuManager.removeMenuEntrySwap("fill", "pouch", "empty", "pouch", true, false);
+		}
+	}
+
+	private void removeSwapEmpty()
+	{
+		menuManager.removeMenuEntrySwap("fill", "pouch", "empty", "pouch", true, false);
+	}
+
+	private void addSwapFillPouchInBank()
+	{
+		if (config.leftClickFillPouchInBank())
+		{
+			menuManager.addMenuEntrySwap("deposit", "pouch", 2, 57, "fill", "pouch", 9, 1007);
+		}
+		else
+		{
+			menuManager.removeMenuEntrySwap("deposit", "pouch", 2, 57, "fill", "pouch", 9, 1007);
+		}
+	}
+
+	private void removeSwapFillPouchInBank()
+	{
+		menuManager.removeMenuEntrySwap("deposit", "pouch", 2, 57, "fill", "pouch", 9, 1007);
 	}
 
 	@Subscribe
