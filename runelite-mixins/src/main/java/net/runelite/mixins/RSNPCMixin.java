@@ -118,16 +118,6 @@ public abstract class RSNPCMixin implements RSNPC
 		}
 	}
 
-	@FieldHook("definition")
-	@Inject
-	public void afterCompositionChanged(int idx)
-	{
-		if (this.getDefinition() != null && this.getId() != -1)
-		{
-			client.getCallbacks().post(new NpcCompositionChanged(this));
-		}
-	}
-
 	@Copy("getModel")
 	public abstract RSModel rs$getModel();
 
