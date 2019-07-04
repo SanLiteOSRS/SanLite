@@ -24,28 +24,28 @@
  */
 package net.runelite.mixins;
 
-import java.awt.Rectangle;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
 import net.runelite.api.HashTable;
 import net.runelite.api.Node;
 import net.runelite.api.Point;
 import net.runelite.api.WidgetNode;
 import net.runelite.api.events.WidgetHiddenChanged;
 import net.runelite.api.events.WidgetPositioned;
-import net.runelite.api.mixins.FieldHook;
-import net.runelite.api.mixins.Inject;
-import net.runelite.api.mixins.Mixin;
-import net.runelite.api.mixins.Shadow;
 import net.runelite.api.widgets.Widget;
 import static net.runelite.api.widgets.WidgetInfo.TO_CHILD;
 import static net.runelite.api.widgets.WidgetInfo.TO_GROUP;
 import net.runelite.api.widgets.WidgetItem;
+import java.awt.Rectangle;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+import net.runelite.api.mixins.FieldHook;
+import net.runelite.api.mixins.Inject;
+import net.runelite.api.mixins.Mixin;
+import net.runelite.api.mixins.Shadow;
 import net.runelite.rs.api.RSClient;
-import net.runelite.rs.api.RSHashTable;
 import net.runelite.rs.api.RSNode;
+import net.runelite.rs.api.RSNodeHashTable;
 import net.runelite.rs.api.RSWidget;
 
 @Mixin(RSWidget.class)
@@ -53,7 +53,7 @@ public abstract class RSWidgetMixin implements RSWidget
 {
 	private static final int ITEM_SLOT_SIZE = 32;
 
-	@Shadow("clientInstance")
+	@Shadow("client")
 	private static RSClient client;
 
 	@Inject
@@ -153,7 +153,7 @@ public abstract class RSWidgetMixin implements RSWidget
 
 		// also the widget may not have been drawn, yet
 		int groupId = TO_GROUP(getId());
-		RSHashTable componentTable = client.getComponentTable();
+		RSNodeHashTable componentTable = client.getComponentTable();
 		RSNode[] buckets = componentTable.getBuckets();
 		for (RSNode node : buckets)
 		{
@@ -476,7 +476,7 @@ public abstract class RSWidgetMixin implements RSWidget
 		broadcastHidden(isSelfHidden());
 	}
 
-	@FieldHook("relativeY")
+	@FieldHook("y")
 	@Inject
 	public void onPositionChanged(int idx)
 	{

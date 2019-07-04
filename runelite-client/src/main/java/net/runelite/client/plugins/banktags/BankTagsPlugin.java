@@ -35,15 +35,8 @@ import java.util.Collection;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import javax.inject.Inject;
-import net.runelite.api.Client;
-import net.runelite.api.InventoryID;
-import net.runelite.api.Item;
-import net.runelite.api.ItemComposition;
-import net.runelite.api.ItemContainer;
-import net.runelite.api.MenuAction;
-import net.runelite.api.MenuEntry;
-import net.runelite.api.VarClientInt;
-import net.runelite.api.VarClientStr;
+
+import net.runelite.api.*;
 import net.runelite.api.events.ConfigChanged;
 import net.runelite.api.events.DraggingWidgetChanged;
 import net.runelite.api.events.FocusChanged;
@@ -246,12 +239,12 @@ public class BankTagsPlugin extends Plugin implements MouseWheelListener, KeyLis
 	@Subscribe
 	public void onMenuOptionClicked(MenuOptionClicked event)
 	{
-		if (event.getWidgetId() == WidgetInfo.BANK_ITEM_CONTAINER.getId()
+		if (event.getActionParam1() == WidgetInfo.BANK_ITEM_CONTAINER.getId()
 			&& event.getMenuAction() == MenuAction.RUNELITE
-			&& event.getMenuOption().startsWith(EDIT_TAGS_MENU_OPTION))
+			&& event.getOption().startsWith(EDIT_TAGS_MENU_OPTION))
 		{
 			event.consume();
-			int inventoryIndex = event.getActionParam();
+			int inventoryIndex = event.getActionParam0();
 			ItemContainer bankContainer = client.getItemContainer(InventoryID.BANK);
 			if (bankContainer == null)
 			{
@@ -269,7 +262,7 @@ public class BankTagsPlugin extends Plugin implements MouseWheelListener, KeyLis
 			}
 
 			int itemId = item.getId();
-			ItemComposition itemComposition = itemManager.getItemComposition(itemId);
+			ItemDefinition itemComposition = itemManager.getItemComposition(itemId);
 			String name = itemComposition.getName();
 
 			// Get both tags and vartags and append * to end of vartags name

@@ -29,12 +29,8 @@ import com.google.inject.Guice;
 import com.google.inject.testing.fieldbinder.Bind;
 import com.google.inject.testing.fieldbinder.BoundFieldModule;
 import javax.inject.Inject;
-import net.runelite.api.Client;
-import net.runelite.api.InventoryID;
-import net.runelite.api.Item;
-import net.runelite.api.ItemComposition;
-import net.runelite.api.ItemContainer;
-import net.runelite.api.ItemID;
+
+import net.runelite.api.*;
 import net.runelite.client.game.ItemManager;
 import static org.junit.Assert.*;
 import org.junit.Before;
@@ -99,7 +95,7 @@ public class BankCalculationTest
 		when(client.getItemContainer(InventoryID.BANK))
 			.thenReturn(bankContainer);
 
-		ItemComposition whipComp = mock(ItemComposition.class);
+		ItemDefinition whipComp = mock(ItemDefinition.class);
 		when(whipComp.getId())
 			.thenReturn(ItemID.ABYSSAL_WHIP);
 		when(whipComp.getPrice())

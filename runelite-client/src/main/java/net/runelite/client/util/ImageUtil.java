@@ -44,7 +44,7 @@ import java.util.function.Predicate;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Client;
 import net.runelite.api.IndexedSprite;
-import net.runelite.api.SpritePixels;
+import net.runelite.api.Sprite;
 
 /**
  * Various Image/BufferedImage utilities.
@@ -425,7 +425,7 @@ public class ImageUtil
 	 * @param client Current client instance
 	 * @return       The buffered image as a sprite image
 	 */
-	public static SpritePixels getImageSpritePixels(BufferedImage image, Client client)
+	public static Sprite getImageSpritePixels(BufferedImage image, Client client)
 	{
 		int[] pixels = new int[image.getWidth() * image.getHeight()];
 
@@ -450,7 +450,7 @@ public class ImageUtil
 			log.debug("PixelGrabber was interrupted: ", ex);
 		}
 
-		return client.createSpritePixels(pixels, image.getWidth(), image.getHeight());
+		return client.createSprite(pixels, image.getWidth(), image.getHeight());
 	}
 
 	/**

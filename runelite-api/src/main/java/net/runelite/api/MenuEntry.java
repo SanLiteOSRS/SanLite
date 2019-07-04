@@ -24,12 +24,16 @@
  */
 package net.runelite.api;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
 /**
  * A menu entry in a right-click menu.
  */
 @Data
+@AllArgsConstructor
+@RequiredArgsConstructor
 public class MenuEntry
 {
 	/**
@@ -66,4 +70,17 @@ public class MenuEntry
 	 * This is used  for shift click
 	 */
 	private boolean forceLeftClick;
+
+	public static MenuEntry copy(MenuEntry sourceEntry)
+	{
+		return new MenuEntry(
+				sourceEntry.getOption(),
+				sourceEntry.getTarget(),
+				sourceEntry.getIdentifier(),
+				sourceEntry.getType(),
+				sourceEntry.getParam0(),
+				sourceEntry.getParam1(),
+				sourceEntry.isForceLeftClick()
+		);
+	}
 }

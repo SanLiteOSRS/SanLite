@@ -28,8 +28,8 @@ public class GraphicID
 {
 	public static final int WINE_MAKE = 47;
 	public static final int SPLASH = 85;
-	public static final int TELEPORT = 111;
 	public static final int GREY_BUBBLE_TELEPORT = 86;
+	public static final int TELEPORT = 111;
 	public static final int ENTANGLE = 179;
 	public static final int SNARE = 180;
 	public static final int BIND = 181;
@@ -39,6 +39,9 @@ public class GraphicID
 	public static final int ICE_BARRAGE = 369;
 	public static final int VENGEANCE_OTHER = 725;
 	public static final int VENGEANCE = 726;
+	public static final int NPC_CONTACT = 728;
+	public static final int POT_SHARE = 733;
+	public static final int BAKE_PIE = 746;
 	public static final int BOOK_HOME_TELEPORT_1 = 800;
 	public static final int BOOK_HOME_TELEPORT_2 = 802;
 	public static final int BOOK_HOME_TELEPORT_3 = 803;
@@ -46,7 +49,19 @@ public class GraphicID
 	public static final int STAFF_OF_THE_DEAD = 1228;
 	public static final int IMBUED_HEART = 1316;
 	public static final int FLYING_FISH = 1387;
-	public static final int NPC_CONTACT = 728;
-	public static final int POT_SHARE = 733;
-	public static final int BAKE_PIE = 746;
+	public static final int OLM_BURN = 1351;
+	public static final int OLM_LIGHTNING = 1356;
+	public static final int OLM_TELEPORT = 1359;
+	public static final int OLM_HEAL = 1363;
+	public static final int OLM_CRYSTAL = 1447;
+	public static final int XERIC_TELEPORT = 1612;
+	public static final int ALCHEMICAL_HYDRA_POISON_SPLAT_BEFORE_LANDING = 1645;
+	public static final int ALCHEMICAL_HYDRA_POISON_SPLAT_1 = 1654;
+	public static final int ALCHEMICAL_HYDRA_POISON_SPLAT_2 = 1655;
+	public static final int ALCHEMICAL_HYDRA_POISON_SPLAT_3 = 1656;
+	public static final int ALCHEMICAL_HYDRA_POISON_SPLAT_4 = 1660;
+	public static final int ALCHEMICAL_HYDRA_POISON_SPLAT_5 = 1661;
+	public static final int ALCHEMICAL_HYDRA_LIGHTNING_ATTACK_1 = 1664;
+	public static final int ALCHEMICAL_HYDRA_LIGHTNING_ATTACK_2 = 1666;
+	public static final int ALCHEMICAL_HYDRA_FIRE_ATTACK = 1668;
 }

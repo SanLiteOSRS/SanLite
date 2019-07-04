@@ -24,17 +24,18 @@
  */
 package net.runelite.client.config;
 
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ConfigDescriptor
 {
 	private final ConfigGroup group;
-	private final Collection<ConfigItemDescriptor> items;
+	private final List<ConfigItemsGroup> itemGroups;
 
-	public ConfigDescriptor(ConfigGroup group, Collection<ConfigItemDescriptor> items)
+	public ConfigDescriptor(ConfigGroup group, List<ConfigItemsGroup> itemGroups)
 	{
 		this.group = group;
-		this.items = items;
+		this.itemGroups = itemGroups;
 	}
 
 	public ConfigGroup getGroup()
@@ -42,8 +43,18 @@ public class ConfigDescriptor
 		return group;
 	}
 
-	public Collection<ConfigItemDescriptor> getItems()
+	public List<ConfigItemsGroup> getItemGroups()
 	{
-		return items;
+		return itemGroups;
+	}
+
+	public List<ConfigItemDescriptor> getItems()
+	{
+		List<ConfigItemDescriptor> allItems = new ArrayList<>();
+		for (ConfigItemsGroup group : itemGroups)
+		{
+			allItems.addAll(group.getItems());
+		}
+		return allItems;
 	}
 }

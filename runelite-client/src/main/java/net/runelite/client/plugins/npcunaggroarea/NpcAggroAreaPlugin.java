@@ -39,12 +39,7 @@ import java.util.List;
 import javax.inject.Inject;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.Client;
-import net.runelite.api.Constants;
-import net.runelite.api.ItemID;
-import net.runelite.api.NPC;
-import net.runelite.api.NPCComposition;
-import net.runelite.api.Perspective;
+import net.runelite.api.*;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.coords.WorldArea;
 import net.runelite.api.coords.WorldPoint;
@@ -247,7 +242,7 @@ public class NpcAggroAreaPlugin extends Plugin
 
 	private boolean isNpcMatch(NPC npc)
 	{
-		NPCComposition composition = npc.getTransformedComposition();
+		NPCDefinition composition = npc.getTransformedDefinition();
 		if (composition == null)
 		{
 			return false;

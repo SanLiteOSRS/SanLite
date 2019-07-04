@@ -24,20 +24,32 @@
  */
 package net.runelite.mixins;
 
+import net.runelite.api.Actor;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.events.ProjectileMoved;
+import net.runelite.api.events.ProjectileSpawned;
 import net.runelite.api.mixins.Inject;
 import net.runelite.api.mixins.MethodHook;
 import net.runelite.api.mixins.Mixin;
 import net.runelite.api.mixins.Shadow;
 import net.runelite.rs.api.RSClient;
+import net.runelite.rs.api.RSNPC;
+import net.runelite.rs.api.RSPlayer;
 import net.runelite.rs.api.RSProjectile;
 
 @Mixin(RSProjectile.class)
 public abstract class RSProjectileMixin implements RSProjectile
 {
-	@Shadow("clientInstance")
+	@Shadow("client")
 	private static RSClient client;
+
+	@Inject
+	RSProjectileMixin()
+	{
+		final ProjectileSpawned projectileSpawned = new ProjectileSpawned();
+		projectileSpawned.setProjectile(this);
+		client.getCallbacks().post(projectileSpawned);
+	}
 
 	@Inject
 	@Override
@@ -46,6 +58,36 @@ public abstract class RSProjectileMixin implements RSProjectile
 		int currentGameCycle = client.getGameCycle();
 
 		return getEndCycle() - currentGameCycle;
+	}
+
+	@Inject
+	@Override
+	public Actor getInteracting()
+	{
+		int interactingIndex = getRsInteracting();
+		if (interactingIndex == 0)
+		{
+			return null;
+		}
+
+		if (interactingIndex > 0)
+		{
+			int idx = interactingIndex - 1;
+			RSNPC[] npcs = client.getCachedNPCs();
+			return npcs[idx];
+		}
+		else
+		{
+			int idx = -interactingIndex - 1;
+
+			if (idx == client.getLocalInteractingIndex())
+			{
+				return client.getLocalPlayer();
+			}
+
+			RSPlayer[] players = client.getCachedPlayers();
+			return players[idx];
+		}
 	}
 
 	/**
@@ -59,7 +101,7 @@ public abstract class RSProjectileMixin implements RSProjectile
 	 * @param cycle
 	 */
 	@Inject
-	@MethodHook("moveProjectile")
+	@MethodHook("setDestination")
 	public void projectileMoved(int targetX, int targetY, int targetZ, int cycle)
 	{
 		final LocalPoint position = new LocalPoint(targetX, targetY);

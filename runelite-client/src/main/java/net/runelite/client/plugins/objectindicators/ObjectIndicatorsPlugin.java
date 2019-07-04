@@ -41,17 +41,10 @@ import javax.inject.Inject;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.Client;
+import net.runelite.api.*;
+
 import static net.runelite.api.Constants.REGION_SIZE;
-import net.runelite.api.DecorativeObject;
-import net.runelite.api.GameObject;
-import net.runelite.api.GameState;
-import net.runelite.api.MenuAction;
-import net.runelite.api.MenuEntry;
-import net.runelite.api.ObjectComposition;
-import net.runelite.api.Scene;
-import net.runelite.api.Tile;
-import net.runelite.api.TileObject;
+
 import net.runelite.api.coords.WorldPoint;
 import net.runelite.api.events.FocusChanged;
 import net.runelite.api.events.GameObjectDespawned;
@@ -233,25 +226,25 @@ public class ObjectIndicatorsPlugin extends Plugin implements KeyListener
 	@Subscribe
 	public void onMenuOptionClicked(MenuOptionClicked event)
 	{
-		if (event.getMenuAction() != MenuAction.RUNELITE || !event.getMenuOption().equals(MARK))
+		if (event.getMenuAction() != MenuAction.RUNELITE || !event.getOption().equals(MARK))
 		{
 			return;
 		}
 
 		Scene scene = client.getScene();
 		Tile[][][] tiles = scene.getTiles();
-		final int x = event.getActionParam();
-		final int y = event.getWidgetId();
+		final int x = event.getActionParam0();
+		final int y = event.getActionParam1();
 		final int z = client.getPlane();
 		final Tile tile = tiles[z][x][y];
 
-		TileObject object = findTileObject(tile, event.getId());
+		TileObject object = findTileObject(tile, event.getIdentifier());
 		if (object == null)
 		{
 			return;
 		}
 
-		ObjectComposition objectDefinition = client.getObjectDefinition(object.getId());
+		ObjectDefinition objectDefinition = client.getObjectDefinition(object.getId());
 		String name = objectDefinition.getName();
 		if (Strings.isNullOrEmpty(name))
 		{
@@ -313,7 +306,7 @@ public class ObjectIndicatorsPlugin extends Plugin implements KeyListener
 			}
 
 			// Check impostors
-			final ObjectComposition comp = client.getObjectDefinition(object.getId());
+			final ObjectDefinition comp = client.getObjectDefinition(object.getId());
 
 			if (comp.getImpostorIds() != null)
 			{

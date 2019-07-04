@@ -30,11 +30,7 @@ import com.google.inject.Provides;
 import java.awt.image.BufferedImage;
 import javax.inject.Inject;
 import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.Client;
-import net.runelite.api.GameState;
-import net.runelite.api.HealthBar;
-import net.runelite.api.SpriteID;
-import net.runelite.api.SpritePixels;
+import net.runelite.api.*;
 import net.runelite.api.events.BeforeMenuRender;
 import net.runelite.api.events.ConfigChanged;
 import net.runelite.api.events.GameStateChanged;
@@ -177,7 +173,7 @@ public class InterfaceStylesPlugin extends Plugin
 				if (skin == config.skin())
 				{
 					String file = config.skin().toString() + "/" + spriteOverride.getSpriteID() + ".png";
-					SpritePixels spritePixels = getFileSpritePixels(file);
+					Sprite spritePixels = getFileSpritePixels(file);
 
 					if (spriteOverride.getSpriteID() == SpriteID.COMPASS_TEXTURE)
 					{
@@ -209,7 +205,7 @@ public class InterfaceStylesPlugin extends Plugin
 			if (widgetOverride.getSkin() == config.skin())
 			{
 				String file = config.skin().toString() + "/widget/" + widgetOverride.getName() + ".png";
-				SpritePixels spritePixels = getFileSpritePixels(file);
+				Sprite spritePixels = getFileSpritePixels(file);
 
 				if (spritePixels != null)
 				{
@@ -233,7 +229,7 @@ public class InterfaceStylesPlugin extends Plugin
 		}
 	}
 
-	private SpritePixels getFileSpritePixels(String file)
+	private Sprite getFileSpritePixels(String file)
 	{
 		try
 		{
@@ -383,7 +379,7 @@ public class InterfaceStylesPlugin extends Plugin
 
 		if (compassImage != null)
 		{
-			SpritePixels compass = ImageUtil.getImageSpritePixels(compassImage, client);
+			Sprite compass = ImageUtil.getImageSpritePixels(compassImage, client);
 			client.setCompass(compass);
 		}
 	}

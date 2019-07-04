@@ -39,7 +39,7 @@ import net.runelite.api.Constants;
 import net.runelite.api.FontID;
 import net.runelite.api.InventoryID;
 import net.runelite.api.Item;
-import net.runelite.api.ItemComposition;
+import net.runelite.api.ItemDefinition;
 import net.runelite.api.ItemContainer;
 import net.runelite.api.ItemID;
 import net.runelite.api.ScriptID;
@@ -245,7 +245,7 @@ public class ItemsKeptOnDeathPlugin extends Plugin
 				continue;
 			}
 
-			final ItemComposition c = itemManager.getItemComposition(i.getId());
+			final ItemDefinition c = itemManager.getItemComposition(i.getId());
 
 			// Bonds are always kept and do not count towards the limit.
 			if (id == ItemID.OLD_SCHOOL_BOND || id == ItemID.OLD_SCHOOL_BOND_UNTRADEABLE)
@@ -344,7 +344,7 @@ public class ItemsKeptOnDeathPlugin extends Plugin
 		int exchangePrice = itemManager.getItemPrice(canonicalizedItemId);
 		if (exchangePrice == 0)
 		{
-			final ItemComposition c1 = itemManager.getItemComposition(canonicalizedItemId);
+			final ItemDefinition c1 = itemManager.getItemComposition(canonicalizedItemId);
 			exchangePrice = c1.getPrice();
 		}
 		else
@@ -472,7 +472,7 @@ public class ItemsKeptOnDeathPlugin extends Plugin
 	 * @param c The item
 	 * @return
 	 */
-	private static boolean isTradeable(final ItemComposition c)
+	private static boolean isTradeable(final ItemDefinition c)
 	{
 		// ItemComposition:: isTradeable checks if they are traded on the grand exchange, some items are trade-able but not via GE
 		if (c.getNote() != -1
@@ -593,7 +593,7 @@ public class ItemsKeptOnDeathPlugin extends Plugin
 	 * @param c   Items Composition
 	 * @return
 	 */
-	private static Widget createItemWidget(final Widget parent, final int qty, final ItemComposition c)
+	private static Widget createItemWidget(final Widget parent, final int qty, final ItemDefinition c)
 	{
 		final Widget itemWidget = parent.createChild(-1, WidgetType.GRAPHIC);
 		itemWidget.setItemId(c.getId());
