@@ -351,7 +351,7 @@ public class MenuEntrySwapperPlugin extends Plugin
 		final int eventId = event.getIdentifier();
 		final String option = Text.removeTags(event.getOption()).toLowerCase();
 		final String target = Text.removeTags(event.getTarget()).toLowerCase();
-		final NPC hintArrowNpc  = client.getHintArrowNpc();
+		final NPC hintArrowNpc = client.getHintArrowNpc();
 
 		if (hintArrowNpc != null
 			&& hintArrowNpc.getIndex() == eventId
@@ -528,6 +528,10 @@ public class MenuEntrySwapperPlugin extends Plugin
 		else if (config.swapQuick() && option.equals("open"))
 		{
 			swap("quick-open", option, target, true);
+		}
+		else if (config.swapQuick() && option.equals("climb-down"))
+		{
+			swap("quick-start", option, target, true);
 		}
 		else if (config.swapAdmire() && option.equals("admire"))
 		{

@@ -541,6 +541,8 @@ public enum Varbits
 	EXPLORER_RING_ALCHS(4554),
 	EXPLORER_RING_RUNENERGY(4553),
 
+	WINTERTODT_TIMER(7980),
+
 	/**
 	 * Temple Trekking
 	 */
