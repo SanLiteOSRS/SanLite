@@ -185,18 +185,6 @@ public class RuneLite
 			System.exit(0);
 		}
 
-		final boolean developerMode = options.has("developer-mode") && RuneLiteProperties.getLauncherVersion() == null;
-
-		if (developerMode)
-		{
-			boolean assertions = false;
-			assert assertions = true;
-			if (!assertions)
-			{
-				throw new RuntimeException("Developers should enable assertions; Add `-ea` to your JVM arguments`");
-			}
-		}
-
 		PROFILES_DIR.mkdirs();
 
 		if (options.has("debug"))
@@ -222,8 +210,7 @@ public class RuneLite
 		final long start = System.currentTimeMillis();
 
 		injector = Guice.createInjector(new RuneLiteModule(
-			options.valueOf(updateMode),
-			developerMode));
+			options.valueOf(updateMode), options.has("developer-mode")));
 
 		injector.getInstance(RuneLite.class).start();
 
