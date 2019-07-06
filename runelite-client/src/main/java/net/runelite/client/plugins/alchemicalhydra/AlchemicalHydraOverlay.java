@@ -184,7 +184,10 @@ public class AlchemicalHydraOverlay extends Overlay
 						graphicsObject.getId() == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_2 ||
 						graphicsObject.getId() == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_3 ||
 						graphicsObject.getId() == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_4 ||
-						graphicsObject.getId() == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_5)
+						graphicsObject.getId() == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_5 ||
+						graphicsObject.getId() == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_6 ||
+						graphicsObject.getId() == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_7 ||
+						graphicsObject.getId() == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_8)
 				{
 					OverlayUtil.renderPolygon(graphics, polygon, COLOR_POISON_MARKER);
 				}
