@@ -134,7 +134,8 @@ public interface RuneLiteConfig extends Config
 		keyName = "notificationTray",
 		name = "Enable tray notifications",
 		description = "Enables tray notifications",
-		position = 20
+		position = 20,
+		group = "Notifications"
 	)
 	default boolean enableTrayNotifications()
 	{
@@ -145,7 +146,8 @@ public interface RuneLiteConfig extends Config
 		keyName = "notificationRequestFocus",
 		name = "Request focus on notification",
 		description = "Toggles window focus request",
-		position = 21
+		position = 21,
+		group = "Notifications"
 	)
 	default boolean requestFocusOnNotification()
 	{
@@ -156,7 +158,8 @@ public interface RuneLiteConfig extends Config
 		keyName = "notificationSound",
 		name = "Enable sound on notifications",
 		description = "Enables the playing of a beep sound when notifications are displayed",
-		position = 22
+		position = 22,
+		group = "Notifications"
 	)
 	default boolean enableNotificationSound()
 	{
@@ -167,7 +170,8 @@ public interface RuneLiteConfig extends Config
 		keyName = "notificationGameMessage",
 		name = "Enable game message notifications",
 		description = "Puts a notification message in the chatbox",
-		position = 23
+		position = 23,
+		group = "Notifications"
 	)
 	default boolean enableGameMessageNotification()
 	{
@@ -178,7 +182,8 @@ public interface RuneLiteConfig extends Config
 		keyName = "flashNotification",
 		name = "Flash notification",
 		description = "Flashes the game frame as a notification",
-		position = 24
+		position = 24,
+		group = "Notifications"
 	)
 	default FlashNotification flashNotification()
 	{
@@ -189,7 +194,8 @@ public interface RuneLiteConfig extends Config
 		keyName = "notificationFocused",
 		name = "Send notifications when focused",
 		description = "Toggles all notifications for when the client is focused",
-		position = 25
+		position = 25,
+		group = "Notifications"
 	)
 	default boolean sendNotificationsWhenFocused()
 	{
@@ -200,7 +206,8 @@ public interface RuneLiteConfig extends Config
 		keyName = "fontType",
 		name = "Dynamic Overlay Font",
 		description = "Configures what font type is used for in-game overlays such as player name, ground items, etc.",
-		position = 30
+		position = 30,
+		group = "Font"
 	)
 	default FontType fontType()
 	{
@@ -211,7 +218,8 @@ public interface RuneLiteConfig extends Config
 		keyName = "tooltipFontType",
 		name = "Tooltip Font",
 		description = "Configures what font type is used for in-game tooltips such as food stats, NPC names, etc.",
-		position = 31
+		position = 31,
+		group = "Font"
 	)
 	default FontType tooltipFontType()
 	{
@@ -222,7 +230,8 @@ public interface RuneLiteConfig extends Config
 		keyName = "interfaceFontType",
 		name = "Interface Overlay Font",
 		description = "Configures what font type is used for in-game interface overlays such as panels, opponent info, clue scrolls etc.",
-		position = 32
+		position = 32,
+		group = "Font"
 	)
 	default FontType interfaceFontType()
 	{
@@ -244,7 +253,8 @@ public interface RuneLiteConfig extends Config
 		keyName = "infoBoxVertical",
 		name = "Display infoboxes vertically",
 		description = "Toggles the infoboxes to display vertically",
-		position = 40
+		position = 40,
+		group = "Infobox"
 	)
 	default boolean infoBoxVertical()
 	{
@@ -255,7 +265,8 @@ public interface RuneLiteConfig extends Config
 		keyName = "infoBoxWrap",
 		name = "Infobox wrap count",
 		description = "Configures the amount of infoboxes shown before wrapping",
-		position = 41
+		position = 41,
+		group = "Infobox"
 	)
 	default int infoBoxWrap()
 	{
@@ -266,7 +277,8 @@ public interface RuneLiteConfig extends Config
 		keyName = "infoBoxSize",
 		name = "Infobox size (px)",
 		description = "Configures the size of each infobox in pixels",
-		position = 42
+		position = 42,
+		group = "Infobox"
 	)
 	default int infoBoxSize()
 	{
