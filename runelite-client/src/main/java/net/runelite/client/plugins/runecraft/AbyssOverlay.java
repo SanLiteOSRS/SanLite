@@ -94,7 +94,7 @@ class AbyssOverlay extends Overlay
 			}
 		}
 
-		if (config.hightlightDarkMage())
+		if (config.highlightDarkMage())
 		{
 			highlightDarkMage(graphics);
 		}
