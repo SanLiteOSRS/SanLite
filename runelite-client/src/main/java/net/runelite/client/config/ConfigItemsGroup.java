@@ -6,7 +6,7 @@ import lombok.Getter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ConfigItemsGroup implements Comparable
+public class ConfigItemsGroup
 {
 	@Getter(AccessLevel.PUBLIC)
 	private final String group;
@@ -23,11 +23,5 @@ public class ConfigItemsGroup implements Comparable
 	void addItem(ConfigItemDescriptor item)
 	{
 		items.add(item);
-	}
-
-	@Override
-	public int compareTo(Object o)
-	{
-		return 0;
 	}
 }
