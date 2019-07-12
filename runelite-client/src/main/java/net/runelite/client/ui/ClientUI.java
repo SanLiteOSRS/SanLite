@@ -301,14 +301,7 @@ public class ClientUI
 	{
 		SwingUtilities.invokeAndWait(() ->
 		{
-			// Set some sensible swing defaults
-			SwingUtil.setupDefaults();
-
-			// Use substance look and feel
-			SwingUtil.setTheme(new SubstanceRuneLiteLookAndFeel());
-
-			// Use custom UI font
-			SwingUtil.setFont(FontManager.getRunescapeFont());
+			SwingUtil.setupRuneLiteLookAndFeel();
 
 			// Create main window
 			frame = new ContainableFrame();
