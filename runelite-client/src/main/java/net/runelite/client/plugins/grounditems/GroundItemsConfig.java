@@ -41,6 +41,7 @@ public interface GroundItemsConfig extends Config
 		keyName = "highlightedItems",
 		name = "Highlighted Items",
 		description = "Configures specifically highlighted ground items. Format: (item), (item)",
+		group = "Highlighted Items",
 		position = 0
 	)
 	default String getHighlightItems()
@@ -59,6 +60,7 @@ public interface GroundItemsConfig extends Config
 		keyName = "hiddenItems",
 		name = "Hidden Items",
 		description = "Configures hidden ground items. Format: (item), (item)",
+		group = "Hidden Items",
 		position = 1
 	)
 	default String getHiddenItems()
