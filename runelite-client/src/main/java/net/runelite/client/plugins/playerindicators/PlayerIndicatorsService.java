@@ -25,17 +25,22 @@
 package net.runelite.client.plugins.playerindicators;
 
 import java.awt.Color;
+import java.util.List;
 import java.util.function.BiConsumer;
 import javax.inject.Inject;
 import javax.inject.Singleton;
+import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Client;
 import net.runelite.api.Player;
+import net.runelite.client.util.Text;
 
+@Slf4j
 @Singleton
 public class PlayerIndicatorsService
 {
 	private final Client client;
 	private final PlayerIndicatorsConfig config;
+	private List<Player> pileList;
 
 	@Inject
 	private PlayerIndicatorsService(Client client, PlayerIndicatorsConfig config)
@@ -46,46 +51,88 @@ public class PlayerIndicatorsService
 
 	public void forEachPlayer(final BiConsumer<Player, Color> consumer)
 	{
-		if (!config.highlightOwnPlayer() && !config.drawClanMemberNames()
-			&& !config.highlightFriends() && !config.highlightNonClanMembers())
+		if (!config.highlightClanMembers() && !config.highlightFriends() && !config.highlightCallers() && !config.highlightCallersPile())
 		{
 			return;
 		}
 
-		final Player localPlayer = client.getLocalPlayer();
+		final List<String> callerRSNs = Text.fromCSV(config.getCallerRsns());
 
 		for (Player player : client.getPlayers())
 		{
-			if (player == null || player.getName() == null)
+			if (player == null || player.getName() == null || player == client.getLocalPlayer())
 			{
 				continue;
 			}
 
-			boolean isClanMember = player.isClanMember();
-
-			if (player == localPlayer)
+			if (player == client.getLocalPlayer())
 			{
-				if (config.highlightOwnPlayer())
+				if (config.highlightSelf())
 				{
-					consumer.accept(player, config.getOwnPlayerColor());
+					consumer.accept(player, config.getOwnColor());
 				}
 			}
-			else if (config.highlightFriends() && player.isFriend())
+			
+			if (player.isClanMember())
 			{
-				consumer.accept(player, config.getFriendColor());
+				if (config.highlightClanMembers())
+				{
+					consumer.accept(player, config.getClanMemberColor());
+
+				}
 			}
-			else if (config.drawClanMemberNames() && isClanMember)
+
+			if (client.isFriended(player.getName(), false))
 			{
-				consumer.accept(player, config.getClanMemberColor());
+				if (config.highlightFriends() && config.highlightOfflineFriends())
+				{
+					consumer.accept(player, config.getFriendColor());
+				}
+				else if (config.highlightFriends() && !config.highlightOfflineFriends())
+				{
+					if (client.isFriended(player.getName(), true))
+					{
+						consumer.accept(player, config.getFriendColor());
+					}
+				}
 			}
-			else if (config.highlightTeamMembers() && localPlayer.getTeam() > 0 && localPlayer.getTeam() == player.getTeam())
+
+			if (config.highlightCallers() || config.highlightCallersPile())
 			{
-				consumer.accept(player, config.getTeamMemberColor());
-			}
-			else if (config.highlightNonClanMembers() && !isClanMember)
-			{
-				consumer.accept(player, config.getNonClanMemberColor());
+				for (String rsn : callerRSNs)
+				{
+					if (player.getName().equals(rsn))
+					{
+						if (config.highlightCallers())
+						{
+							consumer.accept(player, config.getCallerColor());
+						}
+						if (config.highlightCallersPile())
+						{
+							if (player.getInteracting() != null || player.getInteracting() != client.getLocalPlayer())
+							{
+								addPile((Player)player.getInteracting());
+								consumer.accept((Player)player.getInteracting(), config.getCallerPileColor());
+							}
+						}
+					}
+				}
 			}
 		}
 	}
+	public void clearPileList()
+	{
+		pileList.clear();
+	}
+
+	public void addPile(Player pile)
+	{
+		pileList.add(pile);
+	}
+
+	public void removePile(Player pile)
+	{
+		pileList.remove(pile);
+	}
 }
+
