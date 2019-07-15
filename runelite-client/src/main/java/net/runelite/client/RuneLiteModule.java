@@ -59,19 +59,17 @@ import org.slf4j.LoggerFactory;
 public class RuneLiteModule extends AbstractModule
 {
 	private final ClientUpdateCheckMode updateCheckMode;
-	private final boolean developerMode;
 
-	public RuneLiteModule(final ClientUpdateCheckMode updateCheckMode, final boolean developerMode)
+	public RuneLiteModule(final ClientUpdateCheckMode updateCheckMode)
 	{
 		this.updateCheckMode = updateCheckMode;
-		this.developerMode = developerMode;
 	}
 
 	@Override
 	protected void configure()
 	{
 		bindConstant().annotatedWith(Names.named("updateCheckMode")).to(updateCheckMode);
-		bindConstant().annotatedWith(Names.named("developerMode")).to(developerMode);
+		bindConstant().annotatedWith(Names.named("developerMode")).to(true);
 		bind(ScheduledExecutorService.class).toInstance(new ExecutorServiceExceptionLogger(Executors.newSingleThreadScheduledExecutor()));
 		bind(OkHttpClient.class).toInstance(RuneLiteAPI.CLIENT);
 		bind(MenuManager.class);

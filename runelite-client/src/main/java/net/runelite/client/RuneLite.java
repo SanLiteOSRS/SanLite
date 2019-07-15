@@ -160,7 +160,6 @@ public class RuneLite
 		Locale.setDefault(Locale.ENGLISH);
 
 		final OptionParser parser = new OptionParser();
-		parser.accepts("developer-mode", "Enable developer tools");
 		parser.accepts("debug", "Show extra debugging output");
 		parser.accepts("local-injected", "Use local injected-client");
 		parser.accepts("no-splash-screen", "Do not show the splash screen");
@@ -219,8 +218,7 @@ public class RuneLite
 
 		final long start = System.currentTimeMillis();
 
-		injector = Guice.createInjector(new RuneLiteModule(
-			options.valueOf(updateMode), options.has("developer-mode")));
+		injector = Guice.createInjector(new RuneLiteModule(options.valueOf(updateMode)));
 
 		injector.getInstance(RuneLite.class).start();
 
