@@ -37,7 +37,7 @@ public class SanLiteSplashScreen
 
 		// Init fields with updated swing look and feel
 		frame = new JFrame("SanLite");
-		messageLabel = new JLabel("Loading...");
+		messageLabel = new JLabel("Loading client");
 		subMessageLabel = new JLabel();
 		progressBar.setUI(new BasicProgressBarUI());
 		progressBar.setMinimum(0);
@@ -94,7 +94,6 @@ public class SanLiteSplashScreen
 		final GridBagConstraints progressConstraints = new GridBagConstraints();
 		progressConstraints.insets = new Insets(0, 25, 0, 25);
 		progressConstraints.fill = GridBagConstraints.HORIZONTAL;
-		//progressConstraints.anchor = GridBagConstraints.SOUTH;
 		progressConstraints.gridy = 3;
 		panel.add(progressBar, progressConstraints);
 
@@ -170,7 +169,7 @@ public class SanLiteSplashScreen
 			{
 				return;
 			}
-			messageLabel.setText(subMessage);
+			subMessageLabel.setText(subMessage);
 		});
 	}
 }

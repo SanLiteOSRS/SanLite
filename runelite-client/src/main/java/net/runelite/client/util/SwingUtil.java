@@ -94,8 +94,8 @@ public class SwingUtil
 		UIManager.put("ProgressBar.selectionBackground", ColorScheme.BRAND_BLUE);
 		UIManager.put("ProgressBar.selectionForeground", Color.BLACK);
 		UIManager.put("ProgressBar.border", new EmptyBorder(0, 0, 0, 0));
-		UIManager.put("ProgressBar.verticalSize", new Dimension(12, 10));
-		UIManager.put("ProgressBar.horizontalSize", new Dimension(10, 12));
+		UIManager.put("ProgressBar.verticalSize", new Dimension(16, 10));
+		UIManager.put("ProgressBar.horizontalSize", new Dimension(10, 16));
 		UIManager.put("ProgressBarUI", BasicProgressBarUI.class.getName());
 
 		// Do not render shadows under popups/tooltips.

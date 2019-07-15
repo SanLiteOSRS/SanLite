@@ -30,12 +30,12 @@ public class BootstrapperProperties
 		}
 	}
 
-	public String getRuneLiteVersion()
+	String getRuneLiteVersion()
 	{
 		return properties.getProperty(RUNELITE_VERSION);
 	}
 
-	public String getSanLiteVersion()
+	String getSanLiteVersion()
 	{
 		return properties.getProperty(SANLITE_VERSION);
 	}
