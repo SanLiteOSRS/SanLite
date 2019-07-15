@@ -16,8 +16,9 @@ class Bootstrap
 	private static String CLIENT_REPO_URL;
 
 	private Artifact[] artifacts;
-
-	String buildCommit = "2d0c2b8eb66a8088b41b29d42ec2a58ead460581";
+	String artifactId = "sanlite-client";
+	String sanliteVersion = new BootstrapperProperties().getSanLiteVersion();
+	String runeliteVersion = new BootstrapperProperties().getRuneLiteVersion();
 	String[] clientJvm9Arguments = new String[]{
 		"-XX:+DisableAttachMechanism",
 		"-Xmx512m",
