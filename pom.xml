@@ -43,6 +43,7 @@
 		<maven.javadoc.skip>true</maven.javadoc.skip>
 		<checkstyle.skip>true</checkstyle.skip>
 
+		<sanlite.version>1.2.0</sanlite.version>
 		<rs.version>180</rs.version>
 	</properties>
 
