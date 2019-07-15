@@ -65,6 +65,7 @@ import org.slf4j.LoggerFactory;
 @PluginDescriptor(
 	name = "Developer Tools",
 	tags = {"panel"},
+	enabledByDefault = false,
 	developerPlugin = true
 )
 @Getter
@@ -187,7 +188,7 @@ public class DevToolsPlugin extends Plugin
 		navButton = NavigationButton.builder()
 			.tooltip("Developer Tools")
 			.icon(icon)
-			.priority(1)
+			.priority(9)
 			.panel(panel)
 			.build();
 
