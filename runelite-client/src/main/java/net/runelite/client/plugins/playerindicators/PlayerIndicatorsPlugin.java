@@ -26,8 +26,6 @@ package net.runelite.client.plugins.playerindicators;
 
 import com.google.inject.Provides;
 import java.awt.Color;
-import java.util.ArrayList;
-import java.util.List;
 import javax.inject.Inject;
 import net.runelite.api.ClanMemberRank;
 import static net.runelite.api.ClanMemberRank.UNRANKED;
@@ -41,16 +39,13 @@ import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.game.ClanManager;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
-import net.runelite.client.plugins.PluginType;
 import net.runelite.client.ui.overlay.OverlayManager;
 import net.runelite.client.util.ColorUtil;
-import net.runelite.client.util.Text;
 
 @PluginDescriptor(
-	name = "Player Indicators",
-	description = "Highlight players on-screen and/or on the minimap",
-	tags = {"highlight", "minimap", "overlay", "players"},
-	type = PluginType.SANLITE
+		name = "Player Indicators",
+		description = "Highlight players on-screen and/or on the minimap",
+		tags = {"highlight", "minimap", "overlay", "players"}
 )
 public class PlayerIndicatorsPlugin extends Plugin
 {
@@ -97,11 +92,9 @@ public class PlayerIndicatorsPlugin extends Plugin
 		overlayManager.remove(playerIndicatorsMinimapOverlay);
 	}
 
-
 	@Subscribe
 	public void onMenuEntryAdded(MenuEntryAdded menuEntryAdded)
 	{
-		List<Player> callerList = new ArrayList<Player>();
 		int type = menuEntryAdded.getType();
 
 		if (type >= 2000)
@@ -111,17 +104,18 @@ public class PlayerIndicatorsPlugin extends Plugin
 
 		int identifier = menuEntryAdded.getIdentifier();
 		if (type == FOLLOW.getId() || type == TRADE.getId()
-			|| type == SPELL_CAST_ON_PLAYER.getId() || type == ITEM_USE_ON_PLAYER.getId()
-			|| type == PLAYER_FIRST_OPTION.getId()
-			|| type == PLAYER_SECOND_OPTION.getId()
-			|| type == PLAYER_THIRD_OPTION.getId()
-			|| type == PLAYER_FOURTH_OPTION.getId()
-			|| type == PLAYER_FIFTH_OPTION.getId()
-			|| type == PLAYER_SIXTH_OPTION.getId()
-			|| type == PLAYER_SEVENTH_OPTION.getId()
-			|| type == PLAYER_EIGTH_OPTION.getId()
-			|| type == RUNELITE.getId())
+				|| type == SPELL_CAST_ON_PLAYER.getId() || type == ITEM_USE_ON_PLAYER.getId()
+				|| type == PLAYER_FIRST_OPTION.getId()
+				|| type == PLAYER_SECOND_OPTION.getId()
+				|| type == PLAYER_THIRD_OPTION.getId()
+				|| type == PLAYER_FOURTH_OPTION.getId()
+				|| type == PLAYER_FIFTH_OPTION.getId()
+				|| type == PLAYER_SIXTH_OPTION.getId()
+				|| type == PLAYER_SEVENTH_OPTION.getId()
+				|| type == PLAYER_EIGTH_OPTION.getId()
+				|| type == RUNELITE.getId())
 		{
+			final Player localPlayer = client.getLocalPlayer();
 			Player[] players = client.getCachedPlayers();
 			Player player = null;
 
@@ -137,45 +131,12 @@ public class PlayerIndicatorsPlugin extends Plugin
 
 			int image = -1;
 			Color color = null;
-			final List<String> callerRSNs = Text.fromCSV(config.getCallerRsns());
 
-
-			if (config.highlightCallers() || config.highlightCallersPile())
-			{
-				for (String rsn : callerRSNs)
-				{
-					if (player.getName().equals(rsn))
-					{
-						if (config.highlightCallersPile())
-						{
-							callerList.add(player);
-						}
-						if (config.highlightCallers())
-						{
-							color = config.getCallerColor();
-						}
-					}
-				}
-			}
-			if (config.highlightCallersPile())
-			{
-				for (Player caller : callerList)
-				{
-					if (caller.getInteracting().getName().equals(player.getName()))
-					{
-						color = config.getCallerPileColor();
-					}
-				}
-			}
-			if (config.highlightSelf() && player == client.getLocalPlayer())
-			{
-				color = config.getOwnColor();
-			}
-			else if (config.highlightFriends() && player.isFriend())
+			if (config.highlightFriends() && player.isFriend())
 			{
 				color = config.getFriendColor();
 			}
-			else if (config.highlightClanMembers() && player.isClanMember())
+			else if (config.drawClanMemberNames() && player.isClanMember())
 			{
 				color = config.getClanMemberColor();
 
@@ -184,6 +145,10 @@ public class PlayerIndicatorsPlugin extends Plugin
 				{
 					image = clanManager.getIconNumber(rank);
 				}
+			}
+			else if (config.highlightTeamMembers() && player.getTeam() > 0 && localPlayer.getTeam() == player.getTeam())
+			{
+				color = config.getTeamMemberColor();
 			}
 			else if (config.highlightNonClanMembers() && !player.isClanMember())
 			{
@@ -207,10 +172,12 @@ public class PlayerIndicatorsPlugin extends Plugin
 
 					lastEntry.setTarget(ColorUtil.prependColorTag(target, color));
 				}
+
 				if (image != -1 && config.showClanRanks())
 				{
 					lastEntry.setTarget("<img=" + image + ">" + lastEntry.getTarget());
 				}
+
 				client.setMenuEntries(menuEntries);
 			}
 		}

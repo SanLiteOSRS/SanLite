@@ -31,9 +31,9 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import javax.inject.Inject;
 import javax.inject.Singleton;
+import net.runelite.api.ClanMemberRank;
 import net.runelite.api.Player;
 import net.runelite.api.Point;
-import net.runelite.api.ClanMemberRank;
 import net.runelite.client.game.ClanManager;
 import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayPosition;
@@ -52,13 +52,14 @@ public class PlayerIndicatorsOverlay extends Overlay
 	private final ClanManager clanManager;
 
 	@Inject
-	private PlayerIndicatorsOverlay(PlayerIndicatorsConfig config, PlayerIndicatorsService playerIndicatorsService, ClanManager clanManager)
+	private PlayerIndicatorsOverlay(PlayerIndicatorsConfig config, PlayerIndicatorsService playerIndicatorsService,
+									ClanManager clanManager)
 	{
 		this.config = config;
 		this.playerIndicatorsService = playerIndicatorsService;
+		this.clanManager = clanManager;
 		setPosition(OverlayPosition.DYNAMIC);
 		setPriority(OverlayPriority.MED);
-		this.clanManager = clanManager;
 	}
 
 	@Override
