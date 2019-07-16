@@ -11,17 +11,14 @@ import java.security.NoSuchAlgorithmException;
 
 class Bootstrap
 {
-	class Artifact
-	{
-		String hash;
-		String name;
-		String path;
-		String size;
-	}
+	private static final String CLIENT_REPO_LIVE_URL = "https://raw.githubusercontent.com/sanliteosrs/maven-repo/master/live/";
+	private static final String CLIENT_REPO_STAGING_URL = "https://raw.githubusercontent.com/sanliteosrs/maven-repo/master/staging/";
+	private static String CLIENT_REPO_URL;
 
-	String buildCommit = "2d0c2b8eb66a8088b41b29d42ec2a58ead460581";
-	private Artifact[] artifacts = getArtifacts();
-	Client client = new Client();
+	private Artifact[] artifacts;
+	String artifactId = "sanlite-client";
+	String sanliteVersion = new BootstrapperProperties().getSanLiteVersion();
+	String runeliteVersion = new BootstrapperProperties().getRuneLiteVersion();
 	String[] clientJvm9Arguments = new String[]{
 		"-XX:+DisableAttachMechanism",
 		"-Xmx512m",
@@ -50,8 +47,17 @@ class Bootstrap
 		"-XX:+UseParNewGC",
 		"-Djna.nosys=true"};
 
-	Bootstrap()
+	Bootstrap(boolean isStaging)
 	{
+		if (isStaging)
+		{
+			CLIENT_REPO_URL = CLIENT_REPO_STAGING_URL;
+		}
+		else
+		{
+			CLIENT_REPO_URL = CLIENT_REPO_LIVE_URL;
+		}
+		getArtifacts();
 	}
 
 	private static String getChecksumFile(String filepath) throws IOException, NoSuchAlgorithmException
@@ -83,6 +89,12 @@ class Bootstrap
 	{
 		try
 		{
+			if (CLIENT_REPO_URL == null)
+			{
+				System.out.println("Client repository url is null");
+				return null;
+			}
+
 			artifacts = new Artifact[41];
 
 			// Static artifacts
@@ -271,27 +283,27 @@ class Bootstrap
 			artifacts[36] = new Artifact();
 			artifacts[36].name = "client-" + RuneLiteAPI.getVersion() + ".jar";
 			artifacts[36].hash = getChecksumFile("./runelite-client/target/" + artifacts[36].name);
-			artifacts[36].path = "https://raw.githubusercontent.com/sanliteosrs/maven-repo/master/live/" + artifacts[36].name;
+			artifacts[36].path = CLIENT_REPO_URL + artifacts[36].name;
 			artifacts[36].size = Long.toString(getFileSize("./runelite-client/target/" + artifacts[36].name));
 			artifacts[37] = new Artifact();
 			artifacts[37].name = "runelite-api-" + RuneLiteAPI.getVersion() + ".jar";
 			artifacts[37].hash = getChecksumFile("./runelite-api/target/" + artifacts[37].name);
-			artifacts[37].path = "https://raw.githubusercontent.com/sanliteosrs/maven-repo/master/live/" + artifacts[37].name;
+			artifacts[37].path = CLIENT_REPO_URL + artifacts[37].name;
 			artifacts[37].size = Long.toString(getFileSize("./runelite-api/target/" + artifacts[37].name));
 			artifacts[38] = new Artifact();
 			artifacts[38].name = "runescape-api-" + RuneLiteAPI.getVersion() + ".jar";
 			artifacts[38].hash = getChecksumFile("./runescape-api/target/" + artifacts[38].name);
-			artifacts[38].path = "https://raw.githubusercontent.com/sanliteosrs/maven-repo/master/live/" + artifacts[38].name;
+			artifacts[38].path = CLIENT_REPO_URL + artifacts[38].name;
 			artifacts[38].size = Long.toString(getFileSize("./runescape-api/target/" + artifacts[38].name));
 			artifacts[39] = new Artifact();
 			artifacts[39].name = "http-api-" + RuneLiteAPI.getVersion() + ".jar";
 			artifacts[39].hash = getChecksumFile("./http-api/target/" + artifacts[39].name);
-			artifacts[39].path = "https://raw.githubusercontent.com/sanliteosrs/maven-repo/master/live/" + artifacts[39].name;
+			artifacts[39].path = CLIENT_REPO_URL + artifacts[39].name;
 			artifacts[39].size = Long.toString(getFileSize("./http-api/target/" + artifacts[39].name));
 			artifacts[40] = new Artifact();
 			artifacts[40].name = "injected-client-" + RuneLiteAPI.getVersion() + ".jar";
 			artifacts[40].hash = getChecksumFile("./injected-client/target/" + artifacts[40].name);
-			artifacts[40].path = "https://raw.githubusercontent.com/sanliteosrs/maven-repo/master/live/" + artifacts[40].name;
+			artifacts[40].path = CLIENT_REPO_URL + artifacts[40].name;
 			artifacts[40].size = Long.toString(getFileSize("./injected-client/target/" + artifacts[40].name));
 		}
 		catch (IOException | NoSuchAlgorithmException e)
