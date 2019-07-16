@@ -121,9 +121,9 @@ public class ClanCallerPlugin extends Plugin
 			{
 				MenuEntry[] menuEntries = client.getMenuEntries();
 				MenuEntry lastEntry = menuEntries[menuEntries.length - 1];
-
 				String target = lastEntry.getTarget();
 				int idx = target.indexOf('>');
+
 				if (idx != -1)
 				{
 					target = target.substring(idx + 1);
