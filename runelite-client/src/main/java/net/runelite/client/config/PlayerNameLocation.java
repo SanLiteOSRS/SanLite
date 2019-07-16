@@ -1,4 +1,4 @@
-package net.runelite.client.plugins.clancallerindicators;
+package net.runelite.client.config;
 
 import lombok.AllArgsConstructor;
 

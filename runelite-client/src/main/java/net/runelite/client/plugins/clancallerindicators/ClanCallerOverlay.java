@@ -2,6 +2,7 @@ package net.runelite.client.plugins.clancallerindicators;
 
 import net.runelite.api.Player;
 import net.runelite.api.Point;
+import net.runelite.client.config.PlayerNameLocation;
 import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayPosition;
 import net.runelite.client.ui.overlay.OverlayPriority;

@@ -34,6 +34,7 @@ import javax.inject.Singleton;
 import net.runelite.api.ClanMemberRank;
 import net.runelite.api.Player;
 import net.runelite.api.Point;
+import net.runelite.client.config.PlayerNameLocation;
 import net.runelite.client.game.ClanManager;
 import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayPosition;
