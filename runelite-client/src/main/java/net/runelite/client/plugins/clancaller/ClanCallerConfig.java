@@ -129,7 +129,7 @@ public interface ClanCallerConfig extends Config
 		keyName = "callerNameColor",
 		name = "Caller color",
 		description = "Color of callers",
-		group = "Highlight caller settings"
+		group = "Caller(s) highlight"
 	)
 	default Color getCallerColor()
 	{
@@ -141,7 +141,7 @@ public interface ClanCallerConfig extends Config
 		keyName = "callerPileColor",
 		name = "Callers pile color",
 		description = "Color of callers pile",
-		group = "Highlight pile settings"
+		group = "Pile highlight"
 	)
 	default Color getCallerPileColor()
 	{
