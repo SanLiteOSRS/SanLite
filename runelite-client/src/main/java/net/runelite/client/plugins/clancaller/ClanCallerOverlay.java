@@ -41,11 +41,11 @@ public class ClanCallerOverlay extends Overlay
 	private void renderPlayerOverlay(Graphics2D graphics, Player actor, Color color)
 	{
 		PlayerNameLocation drawPlayerNamesConfig = PlayerNameLocation.DISABLED;
-		if (clanCallerService.playerIdentity(actor) == "caller")
+		if (clanCallerService.getPlayerIdentity(actor).equals("caller"))
 		{
 			drawPlayerNamesConfig = config.callerNamePosition();
 		}
-		else if (clanCallerService.playerIdentity(actor) == "pile")
+		else if (clanCallerService.getPlayerIdentity(actor).equals("pile"))
 		{
 			drawPlayerNamesConfig = config.pileNamePosition();
 		}

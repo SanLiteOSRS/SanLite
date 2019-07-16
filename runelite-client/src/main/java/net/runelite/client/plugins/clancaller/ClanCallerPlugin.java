@@ -2,8 +2,6 @@ package net.runelite.client.plugins.clancaller;
 
 import com.google.inject.Provides;
 import java.awt.Color;
-import java.util.ArrayList;
-import java.util.List;
 import javax.inject.Inject;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Client;
@@ -18,12 +16,11 @@ import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.plugins.PluginType;
 import net.runelite.client.ui.overlay.OverlayManager;
 import net.runelite.client.util.ColorUtil;
-import net.runelite.client.util.Text;
 
 @PluginDescriptor(
-		name = "Clan Caller",
+		name = "Clan Caller Indicators",
 		description = "Highlight players that your clans caller is hitting",
-		tags = {"highlight", "minimap", "overlay", "players", "clan", "caller"},
+		tags = {"highlight", "minimap", "overlay", "players", "clan", "caller", "pile", "rsb", "rsc"},
 		type = PluginType.SANLITE
 )
 
@@ -96,7 +93,6 @@ public class ClanCallerPlugin extends Plugin
 				|| type == PLAYER_EIGTH_OPTION.getId()
 				|| type == RUNELITE.getId())
 		{
-			final Player localPlayer = client.getLocalPlayer();
 			Player[] players = client.getCachedPlayers();
 			Player player = null;
 
@@ -110,50 +106,30 @@ public class ClanCallerPlugin extends Plugin
 				return;
 			}
 
-			int image = -1;
 			Color color = null;
 
-			List<Player> callerList = new ArrayList<>();
-			List<String> callerRSNs = Text.fromCSV(config.getCallerRsns());
-			for (Player plyr : client.getPlayers())
-			{
-				for (String rsn : callerRSNs)
-				{
-					if (plyr.getName().equals(rsn))
-					{
-						callerList.add(plyr);
-					}
-				}
-			}
-
-			if (config.highlightCallers() && clanCallerService.playerIdentity(player) == "caller")
+			if (config.highlightCallers() && clanCallerService.getPlayerIdentity(player).equals("caller"))
 			{
 				color = config.getCallerColor();
 			}
-			if (config.highlightCallersPile() && clanCallerService.playerIdentity(player) == "pile")
+			if (config.highlightCallersPile() && clanCallerService.getPlayerIdentity(player).equals("pile"))
 			{
 				color = config.getCallerPileColor();
 			}
 
-			if (image != -1 || color != null)
+			if (color != null && config.colorPlayerMenu())
 			{
 				MenuEntry[] menuEntries = client.getMenuEntries();
 				MenuEntry lastEntry = menuEntries[menuEntries.length - 1];
 
-				if (color != null && config.colorPlayerMenu())
+				String target = lastEntry.getTarget();
+				int idx = target.indexOf('>');
+				if (idx != -1)
 				{
-					// strip out existing <col...
-					String target = lastEntry.getTarget();
-					int idx = target.indexOf('>');
-					if (idx != -1)
-					{
-						target = target.substring(idx + 1);
-					}
-
-					lastEntry.setTarget(ColorUtil.prependColorTag(target, color));
+					target = target.substring(idx + 1);
 				}
 
-
+				lastEntry.setTarget(ColorUtil.prependColorTag(target, color));
 				client.setMenuEntries(menuEntries);
 			}
 		}

@@ -11,7 +11,7 @@ import net.runelite.api.Player;
 import net.runelite.client.util.Text;
 
 @Singleton
-public class ClanCallerService
+class ClanCallerService
 {
 	private final Client client;
 	private final ClanCallerConfig config;
@@ -23,7 +23,7 @@ public class ClanCallerService
 		this.client = client;
 	}
 
-	public void forEachPlayer(final BiConsumer<Player, Color> consumer)
+	void forEachPlayer(final BiConsumer<Player, Color> consumer)
 	{
 		if (!config.highlightCallers() && !config.highlightCallersPile())
 		{
@@ -37,18 +37,18 @@ public class ClanCallerService
 				continue;
 			}
 
-			if (playerIdentity(player) == "caller" && config.highlightCallers())
+			if (getPlayerIdentity(player).equals("caller") && config.highlightCallers())
 			{
 				consumer.accept(player, config.getCallerColor());
 			}
-			if (playerIdentity(player) == "pile" && config.highlightCallersPile())
+			if (getPlayerIdentity(player).equals("pile") && config.highlightCallersPile())
 			{
 				consumer.accept(player, config.getCallerPileColor());
 			}
 		}
 	}
 
-	public String playerIdentity(Player player)
+	String getPlayerIdentity(Player player)
 	{
 		List<Player> callerList = populateCallerObjectList();
 

@@ -39,7 +39,7 @@ public class ClanCallerMinimapOverlay extends Overlay
 	{
 		final String name = actor.getName().replace('\u00A0', ' ');
 
-		if (ClanCallerService.playerIdentity(actor) == "pile" && config.drawPileMinimapNames())
+		if (ClanCallerService.getPlayerIdentity(actor).equals("pile") && config.drawPileMinimapNames())
 		{
 			final net.runelite.api.Point minimapLocation = actor.getMinimapLocation();
 
@@ -48,7 +48,7 @@ public class ClanCallerMinimapOverlay extends Overlay
 				OverlayUtil.renderTextLocation(graphics, minimapLocation, name, color);
 			}
 		}
-		if (ClanCallerService.playerIdentity(actor) == "caller" && config.drawCallerMinimapNames())
+		if (ClanCallerService.getPlayerIdentity(actor).equals("caller") && config.drawCallerMinimapNames())
 		{
 			final net.runelite.api.Point minimapLocation = actor.getMinimapLocation();
 

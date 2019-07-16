@@ -37,14 +37,14 @@ public class ClanCallerTileOverlay extends Overlay
 		{
 			final Polygon poly = player.getCanvasTilePoly();
 
-			if (clanCallerService.playerIdentity(player) == "caller" && config.drawCallerTiles())
+			if (clanCallerService.getPlayerIdentity(player).equals("caller") && config.drawCallerTiles())
 			{
 				if (poly != null)
 				{
 					OverlayUtil.renderPolygon(graphics, poly, color);
 				}
 			}
-			if (clanCallerService.playerIdentity(player) == "pile" && config.drawPileTiles())
+			if (clanCallerService.getPlayerIdentity(player).equals("pile") && config.drawPileTiles())
 			{
 				if (poly != null)
 				{
