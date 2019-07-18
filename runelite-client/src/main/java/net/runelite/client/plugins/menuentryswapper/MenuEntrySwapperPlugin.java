@@ -455,6 +455,11 @@ public class MenuEntrySwapperPlugin extends Plugin
 			{
 				swap("quick-travel", option, target, true);
 			}
+
+			if (config.swapEnchant())
+			{
+				swap("enchant", option, target, true);
+			}
 		}
 		else if (config.swapTravel() && option.equals("pass") && target.equals("energy barrier"))
 		{
@@ -526,6 +531,10 @@ public class MenuEntrySwapperPlugin extends Plugin
 		else if (config.swapBirdhouseEmpty() && option.equals("interact") && target.contains("birdhouse"))
 		{
 			swap("empty", option, target, true);
+		}
+		else if (config.swapQuick() && option.equals("enter"))
+		{
+			swap("quick-enter", option, target, true);
 		}
 		else if (config.swapQuick() && option.equals("ring"))
 		{
