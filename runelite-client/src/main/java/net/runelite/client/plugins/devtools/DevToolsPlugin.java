@@ -353,6 +353,12 @@ public class DevToolsPlugin extends Plugin
 				client.playSoundEffect(id);
 				break;
 			}
+			case "sound":
+			{
+				int id = Integer.parseInt(args[0]);
+				client.playSoundEffect(id);
+				break;
+			}
 		}
 	}
 

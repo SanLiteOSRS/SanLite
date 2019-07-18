@@ -57,7 +57,6 @@ import net.runelite.client.ui.overlay.OverlayManager;
 import net.runelite.client.ui.overlay.infobox.InfoBoxManager;
 import net.runelite.client.util.WildcardMatcher;
 
-@Slf4j
 @PluginDescriptor(
 	name = "NPC Aggression Timer",
 	description = "Highlights the unaggressive area of NPCs nearby and timer until it becomes active",

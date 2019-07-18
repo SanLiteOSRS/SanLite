@@ -55,7 +55,6 @@ import net.runelite.http.api.item.ItemPrice;
  * This panel holds the search section of the Grand Exchange Plugin.
  * It should display a search bar and either item results or a error panel.
  */
-@Slf4j
 class GrandExchangeSearchPanel extends JPanel
 {
 	private static final String ERROR_PANEL = "ERROR_PANEL";

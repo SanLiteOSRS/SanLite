@@ -392,6 +392,7 @@ public enum Varbits
 	DAILY_SAND_COLLECTED(4549),
 	DAILY_ARROWS_STATE(4563),
 	DAILY_FLAX_STATE(4559),
+	DAILY_ARROWS_STATE(4563),
 	/**
 	 * This varbit tracks how much bonemeal has been redeemed from Robin
 	 * The player gets 13 for each diary completed above and including Medium, for a maxiumum of 39
@@ -541,7 +542,7 @@ public enum Varbits
 	EXPLORER_RING_ALCHS(4554),
 	EXPLORER_RING_RUNENERGY(4553),
 
-	WINTERTODT_TIMER(7980),
+	WINTERTODT_TIMER(7980);
 
 	/**
 	 * Temple Trekking

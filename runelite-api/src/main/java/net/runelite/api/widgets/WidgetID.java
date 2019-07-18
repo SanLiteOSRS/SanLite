@@ -151,6 +151,7 @@ public class WidgetID
 	public static final int BEGINNER_CLUE_MAP_WIZARDS_TOWER = 356;
 	public static final int SEED_BOX_GROUP_ID = 128;
 	public static final int ITEMS_KEPT_ON_DEATH_GROUP_ID = 4;
+	public static final int SEED_VAULT_GROUP_ID = 631;
 
 	static class WorldMap
 	{
@@ -253,6 +254,7 @@ public class WidgetID
 		static final int INVENTORY_ITEM_CONTAINER = 3;
 		static final int BANK_TITLE_BAR = 4;
 		static final int CONTENT_CONTAINER = 10;
+		static final int TAB_CONTAINER = 11;
 		static final int ITEM_CONTAINER = 13;
 		static final int SEARCH_BUTTON_BACKGROUND = 40;
 		static final int DEPOSIT_INVENTORY = 42;
@@ -1117,5 +1119,10 @@ public class WidgetID
 		static final int BUTTON_8 = 30;
 		static final int BUTTON_9 = 32;
 		static final int BUTTON_0 = 34;
+	}
+
+	static class SeedVault
+	{
+		static final int TITLE_CONTAINER = 2;
 	}
 }

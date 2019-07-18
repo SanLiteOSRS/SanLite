@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, Adam <Adam@sigterm.info>
+ * Copyright (c) 2019, TheStonedTurtle <https://github.com/TheStonedTurtle>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,32 +22,13 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.mixins;
+package net.runelite.client.plugins.bank;
 
-import net.runelite.api.coords.LocalPoint;
-import net.runelite.rs.api.RSClient;
-import net.runelite.rs.api.RSPlayer;
-import org.junit.Test;
-import static org.mockito.Matchers.eq;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import lombok.Value;
 
-public class RSSceneMixinTest
+@Value
+class ContainerPrices
 {
-	@Test
-	public void testWalkDistance()
-	{
-		RSClient client = mock(RSClient.class);
-		RSPlayer localPlayer = mock(RSPlayer.class);
-		when(client.getLocalPlayer()).thenReturn(localPlayer);
-
-		when(localPlayer.getLocalLocation()).thenReturn(new LocalPoint(0, 0));
-
-		RSSceneMixin.client = client;
-		RSSceneMixin.setTargetTile(90, 0);
-
-		verify(client).setSelectedSceneTileX(eq(45));
-		verify(client).setSelectedSceneTileY(eq(0));
-	}
+	private long gePrice;
+	private long highAlchPrice;
 }
