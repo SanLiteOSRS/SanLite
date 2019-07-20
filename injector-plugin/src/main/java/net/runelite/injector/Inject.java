@@ -51,6 +51,8 @@ import net.runelite.rs.api.RSClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import static net.runelite.injector.InjectUtil.getFieldType;
+
 public class Inject
 {
 	public static final java.lang.Class<?> CLIENT_CLASS = RSClient.class;
@@ -64,15 +66,7 @@ public class Inject
 	private final InjectInvoker invokes = new InjectInvoker(this);
 	private final InjectConstruct construct = new InjectConstruct(this);
 
-	private final DrawMenu drawMenu = new DrawMenu(this);
-	private final RasterizerHook rasterizerHook = new RasterizerHook(this);
 	private final MixinInjector mixinInjector = new MixinInjector(this);
-	private final DrawAfterWidgets drawAfterWidgets = new DrawAfterWidgets(this);
-	private final ScriptVM scriptVM = new ScriptVM(this);
-	private final ClearColorBuffer clearColorBuffer = new ClearColorBuffer(this);
-	private final RenderDraw renderDraw = new RenderDraw(this);
-	private final Occluder occluder = new Occluder(this);
-	private final HidePlayerAttacks hidePlayerAttacks = new HidePlayerAttacks(this);
 
 	// deobfuscated contains exports etc to apply to vanilla
 	private final ClassGroup deobfuscated, vanilla;
@@ -141,20 +135,6 @@ public class Inject
 		return Type.getType("L" + c.getName().replace('.', '/') + ";", dimms);
 	}
 
-	public Type getFieldType(Field f)
-	{
-		Type type = f.getType();
-
-		Annotation obfSignature = f.getAnnotations().find(DeobAnnotations.OBFUSCATED_SIGNATURE);
-		if (obfSignature != null)
-		{
-			//Annotation exists. Type was updated by us during deobfuscation
-			type = DeobAnnotations.getObfuscatedType(f);
-		}
-
-		return type;
-	}
-
 	public Signature getMethodSignature(Method m)
 	{
 		Signature signature = m.getDescriptor();
@@ -220,7 +200,7 @@ public class Inject
 		// Has to be done before mixins
 		// well, can be done after really
 		// but why do that when you can do it before
-		rasterizerHook.inject();
+		new RasterizerHook(this).inject();
 
 		// requires interfaces to be injected
 		mixinInjector.inject();
@@ -326,13 +306,13 @@ public class Inject
 			getters.getInjectedGetters(),
 			setters.getInjectedSetters(), invokes.getInjectedInvokers());
 
-		drawAfterWidgets.inject();
-		scriptVM.inject();
-		clearColorBuffer.inject();
-		renderDraw.inject();
-		drawMenu.inject();
-		occluder.inject();
-		hidePlayerAttacks.inject();
+		new DrawAfterWidgets(this).inject();
+		new ScriptVM(this).inject();
+		new ClearColorBuffer(this).inject();
+		new RenderDraw(this).inject();
+		new DrawMenu(this).inject();
+		new Occluder(this).inject();
+		new HidePlayerAttacks(this).inject();
 	}
 
 	private java.lang.Class injectInterface(ClassFile cf, ClassFile other)
@@ -448,36 +428,6 @@ public class Inject
 		}
 
 		return null;
-	}
-
-	public ClassFile toObClass(ClassFile deobClass)
-	{
-		String obfuscatedName = DeobAnnotations.getObfuscatedName(deobClass.getAnnotations());
-
-		for (ClassFile cf : vanilla.getClasses())
-		{
-			if (cf.getName().equalsIgnoreCase(obfuscatedName))
-			{
-				return cf;
-			}
-		}
-
-		return null;
-	}
-
-	public Field toObField(Field field)
-	{
-		String obfuscatedClassName = DeobAnnotations.getObfuscatedName(field.getClassFile().getAnnotations());
-		String obfuscatedFieldName = DeobAnnotations.getObfuscatedName(field.getAnnotations()); // obfuscated name of field
-		Type type = getFieldType(field);
-
-		ClassFile obfuscatedClass = vanilla.findClass(obfuscatedClassName);
-		assert obfuscatedClass != null;
-
-		Field obfuscatedField = obfuscatedClass.findFieldDeep(obfuscatedFieldName, type);
-		assert obfuscatedField != null;
-
-		return obfuscatedField;
 	}
 
 	Type deobfuscatedTypeToApiType(Type type) throws InjectionException
@@ -608,12 +558,12 @@ public class Inject
 		return false;
 	}
 
-	public ClassGroup getDeobfuscated()
+	public final ClassGroup getDeobfuscated()
 	{
 		return deobfuscated;
 	}
 
-	public ClassGroup getVanilla()
+	public final ClassGroup getVanilla()
 	{
 		return vanilla;
 	}
