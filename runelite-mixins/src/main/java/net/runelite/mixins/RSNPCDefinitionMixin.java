@@ -1,5 +1,6 @@
 package net.runelite.mixins;
 
+import net.runelite.api.mixins.Mixin;
 import net.runelite.api.HeadIcon;
 import static net.runelite.api.HeadIcon.MAGIC;
 import static net.runelite.api.HeadIcon.MELEE;
@@ -8,7 +9,6 @@ import static net.runelite.api.HeadIcon.RANGE_MAGE;
 import net.runelite.api.events.NpcActionChanged;
 import net.runelite.api.mixins.FieldHook;
 import net.runelite.api.mixins.Inject;
-import net.runelite.api.mixins.Mixin;
 import net.runelite.api.mixins.Shadow;
 import net.runelite.rs.api.RSClient;
 import net.runelite.rs.api.RSNPCDefinition;

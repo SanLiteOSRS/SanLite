@@ -1,8 +1,8 @@
 package net.runelite.mixins;
 
+import net.runelite.api.mixins.Mixin;
 import net.runelite.api.ClanMemberRank;
 import net.runelite.api.mixins.Inject;
-import net.runelite.api.mixins.Mixin;
 import net.runelite.rs.api.RSClanMate;
 
 @Mixin(RSClanMate.class)

@@ -1,5 +1,6 @@
 package net.runelite.mixins;
 
+import net.runelite.api.mixins.Mixin;
 import net.runelite.api.overlay.OverlayIndex;
 import com.google.common.hash.HashCode;
 import com.google.common.hash.Hashing;
@@ -11,7 +12,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import net.runelite.api.mixins.Copy;
 import net.runelite.api.mixins.Inject;
-import net.runelite.api.mixins.Mixin;
 import net.runelite.api.mixins.Replace;
 import net.runelite.api.mixins.Shadow;
 import org.slf4j.Logger;

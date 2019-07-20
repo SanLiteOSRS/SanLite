@@ -24,8 +24,8 @@
  */
 package net.runelite.mixins;
 
-import net.runelite.api.mixins.Inject;
 import net.runelite.api.mixins.Mixin;
+import net.runelite.api.mixins.Inject;
 import net.runelite.rs.api.RSFriend;
 import net.runelite.rs.api.RSUsername;
 

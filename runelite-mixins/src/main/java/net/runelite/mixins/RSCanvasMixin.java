@@ -2,8 +2,9 @@ package net.runelite.mixins;
 
 import java.awt.Canvas;
 import java.awt.event.FocusListener;
-import net.runelite.api.mixins.Inject;
+
 import net.runelite.api.mixins.Mixin;
+import net.runelite.api.mixins.Inject;
 import net.runelite.api.mixins.Shadow;
 import net.runelite.rs.api.RSCanvas;
 import net.runelite.rs.api.RSClient;

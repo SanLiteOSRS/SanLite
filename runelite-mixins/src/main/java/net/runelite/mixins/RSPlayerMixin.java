@@ -27,6 +27,8 @@ package net.runelite.mixins;
 import java.awt.Polygon;
 import java.util.ArrayList;
 import java.util.List;
+
+import net.runelite.api.mixins.Mixin;
 import net.runelite.api.HeadIcon;
 import static net.runelite.api.HeadIcon.MAGIC;
 import static net.runelite.api.HeadIcon.MELEE;

@@ -24,10 +24,10 @@
  */
 package net.runelite.mixins;
 
+import net.runelite.api.mixins.Mixin;
 import net.runelite.api.Point;
 import net.runelite.api.coords.WorldPoint;
 import net.runelite.api.mixins.Inject;
-import net.runelite.api.mixins.Mixin;
 import net.runelite.rs.api.RSWorldMap;
 import net.runelite.rs.api.RSWorldMapManager;
 

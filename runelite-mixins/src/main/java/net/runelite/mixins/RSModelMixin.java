@@ -27,13 +27,14 @@ package net.runelite.mixins;
 import java.awt.Polygon;
 import java.util.ArrayList;
 import java.util.List;
+
+import net.runelite.api.mixins.Mixin;
 import net.runelite.api.Model;
 import net.runelite.api.Perspective;
 import net.runelite.api.Point;
 import net.runelite.api.mixins.Copy;
 import net.runelite.api.mixins.Inject;
 import net.runelite.api.mixins.MethodHook;
-import net.runelite.api.mixins.Mixin;
 import net.runelite.api.mixins.Replace;
 import net.runelite.api.mixins.Shadow;
 import net.runelite.api.model.Jarvis;

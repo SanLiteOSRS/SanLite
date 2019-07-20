@@ -1,8 +1,8 @@
 package net.runelite.mixins;
 
+import net.runelite.api.mixins.Mixin;
 import net.runelite.api.mixins.Inject;
 import net.runelite.api.mixins.MethodHook;
-import net.runelite.api.mixins.Mixin;
 import net.runelite.rs.api.RSUser;
 import net.runelite.rs.api.RSUserList;
 import net.runelite.rs.api.RSUsername;
