@@ -15,6 +15,8 @@ If you have any questions, please join our [Discord](https://discord.gg/rRMNYz8)
 - [injected-client](injected-client) - OSRS client with mixins injected
 - [injector-plugin](injector-plugin/src/main/java/net/runelite/injector) - Injects mixins into the OSRS client
 - [runelite-api](runelite-api/src/main/java/net/runelite/api) - RuneLite API, interfaces for accessing the client
+- [runelite-mixins](runelite-mixins/src/main/java/net/runelite) - Mixins which are injected into the injected client's classes	
+- [runescape-api](runescape-api/src/main/java/net/runelite) - Mappings correspond to these interfaces, runelite-api is a subset of this
 - [runelite-client](runelite-client/src/main/java/net/runelite/client) - Game client with plugins
 - [runescape-client](runescape-client/src/main/java) - Refactored RuneScape client
 
