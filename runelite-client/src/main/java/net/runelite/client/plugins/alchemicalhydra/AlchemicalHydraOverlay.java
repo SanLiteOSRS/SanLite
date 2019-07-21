@@ -86,7 +86,7 @@ public class AlchemicalHydraOverlay extends Overlay
 				renderAoeEffects(graphics, alchemicalHydra);
 			}
 
-			if (config.highlightChemicalPoolsStatus())
+			if (config.highlightChemicalFountainStatus())
 			{
 				renderChemicalPoolsStatus(graphics, alchemicalHydra);
 			}
@@ -184,18 +184,21 @@ public class AlchemicalHydraOverlay extends Overlay
 						graphicsObject.getId() == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_2 ||
 						graphicsObject.getId() == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_3 ||
 						graphicsObject.getId() == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_4 ||
-						graphicsObject.getId() == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_5)
+						graphicsObject.getId() == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_5 ||
+						graphicsObject.getId() == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_6 ||
+						graphicsObject.getId() == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_7 ||
+						graphicsObject.getId() == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_8)
 				{
-					OverlayUtil.renderPolygon(graphics, polygon, COLOR_POISON_MARKER);
+					OverlayUtil.renderPolygon(graphics, polygon, config.getPoisonAttackColor());
 				}
 				else if (graphicsObject.getId() == GraphicID.ALCHEMICAL_HYDRA_LIGHTNING_ATTACK_1 ||
 						graphicsObject.getId() == GraphicID.ALCHEMICAL_HYDRA_LIGHTNING_ATTACK_2)
 				{
-					OverlayUtil.renderPolygon(graphics, polygon, COLOR_LIGHTNING_MARKER);
+					OverlayUtil.renderPolygon(graphics, polygon, config.getLightningAttackColor());
 				}
 				else if (graphicsObject.getId() == GraphicID.ALCHEMICAL_HYDRA_FIRE_ATTACK)
 				{
-					OverlayUtil.renderPolygon(graphics, polygon, COLOR_FIRE_MARKER);
+					OverlayUtil.renderPolygon(graphics, polygon, config.getFireAttackColor());
 				}
 			}
 		}
@@ -234,7 +237,7 @@ public class AlchemicalHydraOverlay extends Overlay
 		}
 
 		Color color = alchemicalHydra.getNpc().getWorldArea().intersectsWith(
-				new WorldArea(worldPoint, 1, 1)) ? Color.GREEN : Color.RED;
+				new WorldArea(worldPoint, 1, 1)) ? config.getOnChemicalPoolColor() : config.getNotOnChemicalPoolColor();
 		graphics.setColor(color);
 		graphics.setStroke(new BasicStroke(3));
 		graphics.draw(polygon);

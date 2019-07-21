@@ -24,18 +24,24 @@
  */
 package net.runelite.client.config;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
+@Slf4j
 public class ConfigDescriptor
 {
 	private final ConfigGroup group;
 	private final List<ConfigItemsGroup> itemGroups;
 
-	public ConfigDescriptor(ConfigGroup group, List<ConfigItemsGroup> itemGroups)
+	ConfigDescriptor(ConfigGroup group, List<ConfigItemsGroup> itemGroups)
 	{
 		this.group = group;
 		this.itemGroups = itemGroups;
+		this.itemGroups.sort(Comparator.comparing(ConfigItemsGroup::getGroup));
+		moveEmptyItemsGroupToLastIndex();
 	}
 
 	public ConfigGroup getGroup()
@@ -56,5 +62,18 @@ public class ConfigDescriptor
 			allItems.addAll(group.getItems());
 		}
 		return allItems;
+	}
+
+	private void moveEmptyItemsGroupToLastIndex()
+	{
+		for (ConfigItemsGroup configItemsGroup : this.itemGroups)
+		{
+			if (configItemsGroup.getGroup().equals(""))
+			{
+				this.itemGroups.remove(configItemsGroup);
+				this.itemGroups.add(configItemsGroup);
+				break;
+			}
+		}
 	}
 }

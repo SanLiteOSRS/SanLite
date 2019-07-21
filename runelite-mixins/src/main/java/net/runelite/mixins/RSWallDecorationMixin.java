@@ -2,6 +2,7 @@ package net.runelite.mixins;
 
 import java.awt.Polygon;
 import java.awt.geom.Area;
+
 import net.runelite.api.Model;
 import net.runelite.api.Perspective;
 import net.runelite.api.coords.LocalPoint;

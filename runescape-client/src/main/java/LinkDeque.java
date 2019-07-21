@@ -3,68 +3,73 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jy")
+@ObfuscatedName("je")
 @Implements("LinkDeque")
 public class LinkDeque {
-   @ObfuscatedName("m")
-   @ObfuscatedSignature(
-      signature = "Lgh;"
-   )
-   Link __m;
-   @ObfuscatedName("f")
-   @ObfuscatedSignature(
-      signature = "Lgh;"
-   )
-   Link __f;
+	@ObfuscatedName("q")
+	@ObfuscatedSignature(
+		signature = "Lfq;"
+	)
+	@Export("sentinel")
+	Link sentinel;
+	@ObfuscatedName("w")
+	@ObfuscatedSignature(
+		signature = "Lfq;"
+	)
+	@Export("current")
+	Link current;
 
-   public LinkDeque() {
-      this.__m = new Link();
-      this.__m.__m = this.__m;
-      this.__m.__f = this.__m;
-   }
+	public LinkDeque() {
+		this.sentinel = new Link();
+		this.sentinel.previous = this.sentinel;
+		this.sentinel.next = this.sentinel;
+	}
 
-   @ObfuscatedName("m")
-   @ObfuscatedSignature(
-      signature = "(Lgh;)V"
-   )
-   public void __m_437(Link var1) {
-      if(var1.__f != null) {
-         var1.remove();
-      }
+	@ObfuscatedName("q")
+	@ObfuscatedSignature(
+		signature = "(Lfq;)V"
+	)
+	@Export("addFirst")
+	public void addFirst(Link var1) {
+		if (var1.next != null) {
+			var1.remove();
+		}
 
-      var1.__f = this.__m.__f;
-      var1.__m = this.__m;
-      var1.__f.__m = var1;
-      var1.__m.__f = var1;
-   }
+		var1.next = this.sentinel.next;
+		var1.previous = this.sentinel;
+		var1.next.previous = var1;
+		var1.previous.next = var1;
+	}
 
-   @ObfuscatedName("f")
-   @ObfuscatedSignature(
-      signature = "()Lgh;"
-   )
-   public Link __f_438() {
-      Link var1 = this.__m.__m;
-      if(var1 == this.__m) {
-         this.__f = null;
-         return null;
-      } else {
-         this.__f = var1.__m;
-         return var1;
-      }
-   }
+	@ObfuscatedName("w")
+	@ObfuscatedSignature(
+		signature = "()Lfq;"
+	)
+	@Export("last")
+	public Link last() {
+		Link var1 = this.sentinel.previous;
+		if (var1 == this.sentinel) {
+			this.current = null;
+			return null;
+		} else {
+			this.current = var1.previous;
+			return var1;
+		}
+	}
 
-   @ObfuscatedName("q")
-   @ObfuscatedSignature(
-      signature = "()Lgh;"
-   )
-   public Link __q_439() {
-      Link var1 = this.__f;
-      if(var1 == this.__m) {
-         this.__f = null;
-         return null;
-      } else {
-         this.__f = var1.__m;
-         return var1;
-      }
-   }
+	@ObfuscatedName("e")
+	@ObfuscatedSignature(
+		signature = "()Lfq;"
+	)
+	@Export("previous")
+	public Link previous() {
+		Link var1 = this.current;
+		if (var1 == this.sentinel) {
+			this.current = null;
+			return null;
+		} else {
+			this.current = var1.previous;
+			return var1;
+		}
+	}
 }

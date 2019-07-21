@@ -32,6 +32,7 @@ import net.runelite.client.ui.DynamicGridLayout;
 import net.runelite.client.ui.PluginPanel;
 import net.runelite.client.ui.components.IconButton;
 import net.runelite.client.ui.components.IconTextField;
+import net.runelite.client.ui.components.colorpicker.ColorPickerManager;
 import net.runelite.client.util.ImageUtil;
 import net.runelite.client.util.Text;
 
@@ -70,6 +71,7 @@ public class ConfigPanel extends PluginPanel
 	private final ScheduledExecutorService executorService;
 	private final RuneLiteConfig runeLiteConfig;
 	private final ChatColorConfig chatColorConfig;
+	private final ColorPickerManager colorPickerManager;
 
 	private final IconTextField searchBar = new IconTextField();
 	private final List<CollapsibleEntry> collapsibleEntries = new ArrayList<>();
@@ -88,7 +90,7 @@ public class ConfigPanel extends PluginPanel
 	}
 
 	ConfigPanel(PluginManager pluginManager, ConfigManager configManager, ScheduledExecutorService executorService,
-				RuneLiteConfig runeLiteConfig, ChatColorConfig chatColorConfig)
+				RuneLiteConfig runeLiteConfig, ChatColorConfig chatColorConfig, ColorPickerManager colorPickerManager)
 	{
 		super(false);
 		this.pluginManager = pluginManager;
@@ -96,6 +98,7 @@ public class ConfigPanel extends PluginPanel
 		this.executorService = executorService;
 		this.runeLiteConfig = runeLiteConfig;
 		this.chatColorConfig = chatColorConfig;
+		this.colorPickerManager = colorPickerManager;
 
 		searchBar.setIcon(IconTextField.Icon.SEARCH);
 		searchBar.setPreferredSize(new Dimension(PluginPanel.PANEL_WIDTH - 20, 30));
@@ -606,16 +609,16 @@ public class ConfigPanel extends PluginPanel
 
 		for (ConfigItemsGroup cig : cd.getItemGroups())
 		{
-			boolean collapsed = false;
+			boolean isOpened = false;
 			if (!cig.getGroup().equals(""))
 			{
 				String header = cig.getGroup();
 
-				JPanel item = new JPanel();
-				item.setLayout(new BorderLayout());
-				item.setMinimumSize(new Dimension(PANEL_WIDTH, 0));
-				item.setBackground(ColorScheme.DARK_GRAY_HOVER_COLOR);
-				item.setBorder(
+				JPanel collapsibleEntryPanel = new JPanel();
+				collapsibleEntryPanel.setLayout(new BorderLayout());
+				collapsibleEntryPanel.setMinimumSize(new Dimension(PANEL_WIDTH, 0));
+				collapsibleEntryPanel.setBackground(ColorScheme.DARK_GRAY_HOVER_COLOR);
+				collapsibleEntryPanel.setBorder(
 						new CompoundBorder(
 								BorderFactory.createMatteBorder(1, 1, 1, 1, ColorScheme.SCROLL_TRACK_COLOR),
 								BorderFactory.createMatteBorder(1, 1, 1, 1, ColorScheme.DARKER_GRAY_HOVER_COLOR)
@@ -624,26 +627,26 @@ public class ConfigPanel extends PluginPanel
 				JLabel headerLabel = new JLabel(header);
 				headerLabel.setPreferredSize(new Dimension(PANEL_WIDTH, (int) headerLabel.getPreferredSize().getHeight() + 10));
 				headerLabel.setFont(headerLabel.getFont().deriveFont(Collections.singletonMap(TextAttribute.WEIGHT, TextAttribute.WEIGHT_SEMIBOLD)));
-				String sCollapsed = configManager.getConfiguration(cd.getGroup().value(), cig.getGroup() + "_collapse");
+				String stringOpened = configManager.getConfiguration(cd.getGroup().value(), cig.getGroup() + "_opened");
 
-				if (sCollapsed != null)
-					collapsed = Boolean.parseBoolean(sCollapsed);
+				if (stringOpened != null)
+					isOpened = Boolean.parseBoolean(stringOpened);
 
-				JButton collapse = new JButton(collapsed ? ">" : "˅");
-				collapse.setPreferredSize(new Dimension(20, 20));
-				collapse.setFont(collapse.getFont().deriveFont(16.0f));
-				collapse.setBorder(null);
-				collapse.setMargin(new Insets(0, 10, 0, 10));
-				collapse.addActionListener(ae -> changeGroupCollapse(listItem, config, collapse, cd, cig));
+				JButton collapsibleEntryBtn = new JButton(isOpened ? "˅" : ">");
+				collapsibleEntryBtn.setPreferredSize(new Dimension(20, 20));
+				collapsibleEntryBtn.setFont(collapsibleEntryBtn.getFont().deriveFont(16.0f));
+				collapsibleEntryBtn.setBorder(null);
+				collapsibleEntryBtn.setMargin(new Insets(0, 10, 0, 10));
+				collapsibleEntryBtn.addActionListener(ae -> changeGroupCollapse(listItem, config, collapsibleEntryBtn, cd, cig));
 				headerLabel.setBorder(new EmptyBorder(0, 6, 0, 0));
 
-				item.add(collapse, BorderLayout.WEST);
-				item.add(headerLabel, BorderLayout.CENTER);
+				collapsibleEntryPanel.add(collapsibleEntryBtn, BorderLayout.WEST);
+				collapsibleEntryPanel.add(headerLabel, BorderLayout.CENTER);
 
-				mainPanel.add(item);
+				mainPanel.add(collapsibleEntryPanel);
 			}
 
-			if (collapsed)
+			if (!isOpened && !cig.getGroup().equals(""))
 				continue;
 
 			createConfigItems(cig.getItems(), cd, listItem, config);
@@ -684,7 +687,7 @@ public class ConfigPanel extends PluginPanel
 	 */
 	private void createConfigItems(Collection<ConfigItemDescriptor> itemDescriptors, ConfigDescriptor cd, PluginListItem listItem, Config config)
 	{
-		ConfigItemUI configItemUI = new ConfigItemUI(configManager, this);
+		ConfigItemUI configItemUI = new ConfigItemUI(configManager, this, colorPickerManager);
 
 		for (ConfigItemDescriptor cid : itemDescriptors)
 		{
@@ -755,13 +758,13 @@ public class ConfigPanel extends PluginPanel
 	{
 		if (component instanceof JButton)
 		{
-			String sCollapsed = configManager.getConfiguration(cd.getGroup().value(), cig.getGroup() + "_collapse");
-			boolean collapse = true;
+			String stringOpened = configManager.getConfiguration(cd.getGroup().value(), cig.getGroup() + "_opened");
+			boolean opened = true;
 
-			if (sCollapsed != null)
-				collapse = !Boolean.parseBoolean(sCollapsed);
+			if (stringOpened != null)
+				opened = !Boolean.parseBoolean(stringOpened);
 
-			configManager.setConfiguration(cd.getGroup().value(), cig.getGroup() + "_collapse", collapse);
+			configManager.setConfiguration(cd.getGroup().value(), cig.getGroup() + "_opened", opened);
 			openGroupConfigPanel(listItem, config, cd);
 		}
 	}

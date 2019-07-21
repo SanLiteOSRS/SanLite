@@ -53,7 +53,8 @@ public interface NpcAggroAreaConfig extends Config
 		keyName = "npcUnaggroNames",
 		name = "NPC names",
 		description = "Enter names of NPCs where you wish to use this plugin",
-		position = 2
+		position = 2,
+		group = "NPC Names"
 	)
 	default String npcNamePatterns()
 	{
