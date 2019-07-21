@@ -88,12 +88,9 @@ public class AntiDragPlugin extends Plugin implements KeyListener
 	@Override
 	public void keyPressed(KeyEvent e)
 	{
-		// TODO: Shift, alt, control not working because keycode is set to 0. Look into the keybind modifiers
-		log.debug("Pressed key {} | Looking for keys {} or {}", e.getKeyCode(), config.keybind1().getKeyCode(), config.keybind2().getKeyCode());
 		if (e.getKeyCode() == config.keybind1().getKeyCode() || e.getKeyCode() == config.keybind2().getKeyCode())
 		{
 			client.setInventoryDragDelay(config.dragDelay());
-			log.debug("PR!!!! {}", e.paramString());
 		}
 	}
 
@@ -101,11 +98,9 @@ public class AntiDragPlugin extends Plugin implements KeyListener
 	public void keyReleased(KeyEvent e)
 	{
 
-		log.debug("RELEASED!!!! {}", e.paramString());
 		if (e.getKeyCode() == config.keybind1().getKeyCode() || e.getKeyCode() == config.keybind2().getKeyCode())
 		{
 			client.setInventoryDragDelay(DEFAULT_DELAY);
-			log.debug("CR!!!! {}", e.paramString());
 		}
 	}
 
