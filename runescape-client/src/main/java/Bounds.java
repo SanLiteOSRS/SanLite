@@ -4,156 +4,140 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("la")
+@ObfuscatedName("ls")
 @Implements("Bounds")
 public class Bounds {
-   @ObfuscatedName("m")
-   @ObfuscatedGetter(
-      intValue = -2004088829
-   )
-   public int __m;
-   @ObfuscatedName("f")
-   @ObfuscatedGetter(
-      intValue = -1887298731
-   )
-   public int __f;
-   @ObfuscatedName("q")
-   @ObfuscatedGetter(
-      intValue = 2001187823
-   )
-   public int __q;
-   @ObfuscatedName("w")
-   @ObfuscatedGetter(
-      intValue = 1377856837
-   )
-   public int __w;
+	@ObfuscatedName("q")
+	@ObfuscatedGetter(
+		intValue = 1186074789
+	)
+	@Export("lowX")
+	public int lowX;
+	@ObfuscatedName("w")
+	@ObfuscatedGetter(
+		intValue = -198324779
+	)
+	@Export("lowY")
+	public int lowY;
+	@ObfuscatedName("e")
+	@ObfuscatedGetter(
+		intValue = -574576823
+	)
+	@Export("highX")
+	public int highX;
+	@ObfuscatedName("p")
+	@ObfuscatedGetter(
+		intValue = 833436879
+	)
+	@Export("highY")
+	public int highY;
 
-   public Bounds(int var1, int var2, int var3, int var4) {
-      this.__m_487(var1, var2);
-      this.__f_488(var3, var4);
-   }
+	public Bounds(int var1, int var2, int var3, int var4) {
+		this.setLow(var1, var2);
+		this.setHigh(var3, var4);
+	}
 
-   public Bounds(int var1, int var2) {
-      this(0, 0, var1, var2);
-   }
+	public Bounds(int var1, int var2) {
+		this(0, 0, var1, var2);
+	}
 
-   @ObfuscatedName("m")
-   @ObfuscatedSignature(
-      signature = "(IIB)V",
-      garbageValue = "1"
-   )
-   public void __m_487(int var1, int var2) {
-      this.__m = var1;
-      this.__f = var2;
-   }
+	@ObfuscatedName("q")
+	@ObfuscatedSignature(
+		signature = "(IIB)V",
+		garbageValue = "-102"
+	)
+	@Export("setLow")
+	public void setLow(int var1, int var2) {
+		this.lowX = var1;
+		this.lowY = var2;
+	}
 
-   @ObfuscatedName("f")
-   @ObfuscatedSignature(
-      signature = "(III)V",
-      garbageValue = "-11269827"
-   )
-   public void __f_488(int var1, int var2) {
-      this.__q = var1;
-      this.__w = var2;
-   }
+	@ObfuscatedName("w")
+	@ObfuscatedSignature(
+		signature = "(IIB)V",
+		garbageValue = "12"
+	)
+	@Export("setHigh")
+	public void setHigh(int var1, int var2) {
+		this.highX = var1;
+		this.highY = var2;
+	}
 
-   @ObfuscatedName("q")
-   @ObfuscatedSignature(
-      signature = "(Lla;Lla;I)V",
-      garbageValue = "-2123792170"
-   )
-   public void __q_490(Bounds var1, Bounds var2) {
-      this.__w_491(var1, var2);
-      this.__o_492(var1, var2);
-   }
+	@ObfuscatedName("e")
+	@ObfuscatedSignature(
+		signature = "(Lls;Lls;I)V",
+		garbageValue = "799718452"
+	)
+	public void method5980(Bounds var1, Bounds var2) {
+		this.method5968(var1, var2);
+		this.method5964(var1, var2);
+	}
 
-   @ObfuscatedName("w")
-   @ObfuscatedSignature(
-      signature = "(Lla;Lla;I)V",
-      garbageValue = "314675149"
-   )
-   void __w_491(Bounds var1, Bounds var2) {
-      var2.__m = this.__m;
-      var2.__q = this.__q;
-      if(this.__m < var1.__m) {
-         var2.__q -= var1.__m - this.__m;
-         var2.__m = var1.__m;
-      }
+	@ObfuscatedName("p")
+	@ObfuscatedSignature(
+		signature = "(Lls;Lls;B)V",
+		garbageValue = "-20"
+	)
+	void method5968(Bounds var1, Bounds var2) {
+		var2.lowX = this.lowX;
+		var2.highX = this.highX;
+		if (this.lowX < var1.lowX) {
+			var2.highX -= var1.lowX - this.lowX;
+			var2.lowX = var1.lowX;
+		}
 
-      if(var2.__u_493() > var1.__u_493()) {
-         var2.__q -= var2.__u_493() - var1.__u_493();
-      }
+		if (var2.method5976() > var1.method5976()) {
+			var2.highX -= var2.method5976() - var1.method5976();
+		}
 
-      if(var2.__q < 0) {
-         var2.__q = 0;
-      }
+		if (var2.highX < 0) {
+			var2.highX = 0;
+		}
 
-   }
+	}
 
-   @ObfuscatedName("o")
-   @ObfuscatedSignature(
-      signature = "(Lla;Lla;S)V",
-      garbageValue = "128"
-   )
-   void __o_492(Bounds var1, Bounds var2) {
-      var2.__f = this.__f;
-      var2.__w = this.__w;
-      if(this.__f < var1.__f) {
-         var2.__w -= var1.__f - this.__f;
-         var2.__f = var1.__f;
-      }
+	@ObfuscatedName("k")
+	@ObfuscatedSignature(
+		signature = "(Lls;Lls;I)V",
+		garbageValue = "182983589"
+	)
+	void method5964(Bounds var1, Bounds var2) {
+		var2.lowY = this.lowY;
+		var2.highY = this.highY;
+		if (this.lowY < var1.lowY) {
+			var2.highY -= var1.lowY - this.lowY;
+			var2.lowY = var1.lowY;
+		}
 
-      if(var2.__g_494() > var1.__g_494()) {
-         var2.__w -= var2.__g_494() - var1.__g_494();
-      }
+		if (var2.method5965() > var1.method5965()) {
+			var2.highY -= var2.method5965() - var1.method5965();
+		}
 
-      if(var2.__w < 0) {
-         var2.__w = 0;
-      }
+		if (var2.highY < 0) {
+			var2.highY = 0;
+		}
 
-   }
+	}
 
-   @ObfuscatedName("u")
-   @ObfuscatedSignature(
-      signature = "(I)I",
-      garbageValue = "-1842151293"
-   )
-   int __u_493() {
-      return this.__m + this.__q;
-   }
+	@ObfuscatedName("l")
+	@ObfuscatedSignature(
+		signature = "(I)I",
+		garbageValue = "-1428102724"
+	)
+	int method5976() {
+		return this.highX + this.lowX;
+	}
 
-   @ObfuscatedName("g")
-   @ObfuscatedSignature(
-      signature = "(B)I",
-      garbageValue = "-22"
-   )
-   int __g_494() {
-      return this.__f + this.__w;
-   }
+	@ObfuscatedName("b")
+	@ObfuscatedSignature(
+		signature = "(I)I",
+		garbageValue = "185439342"
+	)
+	int method5965() {
+		return this.highY + this.lowY;
+	}
 
-   @ObfuscatedName("toString")
-   public String __toString_489() {
-      return null;
-   }
-
-   @ObfuscatedName("m")
-   @ObfuscatedSignature(
-      signature = "(DDII)[D",
-      garbageValue = "2112793889"
-   )
-   public static double[] method5905(double var0, double var2, int var4) {
-      int var5 = var4 * 2 + 1;
-      double[] var6 = new double[var5];
-      int var7 = -var4;
-
-      for(int var8 = 0; var7 <= var4; ++var8) {
-         double var15 = ((double)var7 - var0) / var2;
-         double var13 = Math.exp(-var15 * var15 / 2.0D) / Math.sqrt(6.283185307179586D);
-         double var11 = var13 / var2;
-         var6[var8] = var11;
-         ++var7;
-      }
-
-      return var6;
-   }
+	public String toString() {
+		return null;
+	}
 }

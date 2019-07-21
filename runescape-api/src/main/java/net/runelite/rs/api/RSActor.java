@@ -93,7 +93,7 @@ public interface RSActor extends RSEntity, Actor
 	int getSpotAnimationFrameCycle();
 
 	// Idle animation
-	@Import("idleSequence")
+	@Import("readySequence")
 	@Override
 	void setIdlePoseAnimation(int animation);
 

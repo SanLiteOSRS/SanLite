@@ -25,6 +25,7 @@
 package net.runelite.mixins;
 
 import java.awt.Polygon;
+
 import net.runelite.api.AnimationID;
 import net.runelite.api.NPCDefinition;
 import net.runelite.api.Perspective;

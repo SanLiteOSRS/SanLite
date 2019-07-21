@@ -1,184 +1,157 @@
-import java.net.URL;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ji")
+@ObfuscatedName("jj")
 @Implements("ClientParameter")
 public class ClientParameter {
-   @ObfuscatedName("se")
-   @ObfuscatedSignature(
-      signature = "Liu;"
-   )
-   public static class248 field3645;
-   @ObfuscatedName("m")
-   @ObfuscatedSignature(
-      signature = "Lji;"
-   )
-   static final ClientParameter __ji_m;
-   @ObfuscatedName("f")
-   @ObfuscatedSignature(
-      signature = "Lji;"
-   )
-   static final ClientParameter __ji_f;
-   @ObfuscatedName("q")
-   @ObfuscatedSignature(
-      signature = "Lji;"
-   )
-   static final ClientParameter __ji_q;
-   @ObfuscatedName("w")
-   @ObfuscatedSignature(
-      signature = "Lji;"
-   )
-   static final ClientParameter __ji_w;
-   @ObfuscatedName("o")
-   @ObfuscatedSignature(
-      signature = "Lji;"
-   )
-   static final ClientParameter __ji_o;
-   @ObfuscatedName("u")
-   @ObfuscatedSignature(
-      signature = "Lji;"
-   )
-   static final ClientParameter __ji_u;
-   @ObfuscatedName("g")
-   @ObfuscatedSignature(
-      signature = "Lji;"
-   )
-   static final ClientParameter __ji_g;
-   @ObfuscatedName("l")
-   @ObfuscatedSignature(
-      signature = "Lji;"
-   )
-   static final ClientParameter __ji_l;
-   @ObfuscatedName("e")
-   @ObfuscatedSignature(
-      signature = "Lji;"
-   )
-   static final ClientParameter __ji_e;
-   @ObfuscatedName("x")
-   @ObfuscatedSignature(
-      signature = "Lji;"
-   )
-   static final ClientParameter __ji_x;
-   @ObfuscatedName("d")
-   @ObfuscatedSignature(
-      signature = "Lji;"
-   )
-   static final ClientParameter __ji_d;
-   @ObfuscatedName("k")
-   @ObfuscatedSignature(
-      signature = "Lji;"
-   )
-   static final ClientParameter __ji_k;
-   @ObfuscatedName("n")
-   @ObfuscatedSignature(
-      signature = "Lji;"
-   )
-   public static final ClientParameter __ji_n;
-   @ObfuscatedName("i")
-   @ObfuscatedSignature(
-      signature = "Lji;"
-   )
-   public static final ClientParameter __ji_i;
-   @ObfuscatedName("a")
-   @ObfuscatedSignature(
-      signature = "Lji;"
-   )
-   static final ClientParameter __ji_a;
-   @ObfuscatedName("z")
-   @ObfuscatedSignature(
-      signature = "Lji;"
-   )
-   static final ClientParameter __ji_z;
-   @ObfuscatedName("j")
-   @ObfuscatedSignature(
-      signature = "Lji;"
-   )
-   static final ClientParameter __ji_j;
-   @ObfuscatedName("s")
-   @ObfuscatedSignature(
-      signature = "Lji;"
-   )
-   static final ClientParameter __ji_s;
-   @ObfuscatedName("t")
-   @ObfuscatedSignature(
-      signature = "Lji;"
-   )
-   static final ClientParameter __ji_t;
-   @ObfuscatedName("fp")
-   @ObfuscatedSignature(
-      signature = "Lfu;"
-   )
-   static AbstractSocket __ji_fp;
-   @ObfuscatedName("y")
-   @Export("id")
-   public final String id;
+	@ObfuscatedName("q")
+	@ObfuscatedSignature(
+		signature = "Ljj;"
+	)
+	static final ClientParameter field3589;
+	@ObfuscatedName("w")
+	@ObfuscatedSignature(
+		signature = "Ljj;"
+	)
+	static final ClientParameter field3582;
+	@ObfuscatedName("e")
+	@ObfuscatedSignature(
+		signature = "Ljj;"
+	)
+	static final ClientParameter field3583;
+	@ObfuscatedName("p")
+	@ObfuscatedSignature(
+		signature = "Ljj;"
+	)
+	static final ClientParameter field3591;
+	@ObfuscatedName("k")
+	@ObfuscatedSignature(
+		signature = "Ljj;"
+	)
+	static final ClientParameter field3585;
+	@ObfuscatedName("l")
+	@ObfuscatedSignature(
+		signature = "Ljj;"
+	)
+	static final ClientParameter field3581;
+	@ObfuscatedName("b")
+	@ObfuscatedSignature(
+		signature = "Ljj;"
+	)
+	static final ClientParameter field3584;
+	@ObfuscatedName("i")
+	@ObfuscatedSignature(
+		signature = "Ljj;"
+	)
+	static final ClientParameter field3588;
+	@ObfuscatedName("c")
+	@ObfuscatedSignature(
+		signature = "Ljj;"
+	)
+	static final ClientParameter field3600;
+	@ObfuscatedName("f")
+	@ObfuscatedSignature(
+		signature = "Ljj;"
+	)
+	static final ClientParameter field3593;
+	@ObfuscatedName("m")
+	@ObfuscatedSignature(
+		signature = "Ljj;"
+	)
+	static final ClientParameter field3590;
+	@ObfuscatedName("u")
+	@ObfuscatedSignature(
+		signature = "Ljj;"
+	)
+	static final ClientParameter field3592;
+	@ObfuscatedName("x")
+	@ObfuscatedSignature(
+		signature = "Ljj;"
+	)
+	public static final ClientParameter field3587;
+	@ObfuscatedName("r")
+	@ObfuscatedSignature(
+		signature = "Ljj;"
+	)
+	public static final ClientParameter field3594;
+	@ObfuscatedName("v")
+	@ObfuscatedSignature(
+		signature = "Ljj;"
+	)
+	static final ClientParameter field3595;
+	@ObfuscatedName("y")
+	@ObfuscatedSignature(
+		signature = "Ljj;"
+	)
+	static final ClientParameter field3596;
+	@ObfuscatedName("g")
+	@ObfuscatedSignature(
+		signature = "Ljj;"
+	)
+	static final ClientParameter field3586;
+	@ObfuscatedName("a")
+	@ObfuscatedSignature(
+		signature = "Ljj;"
+	)
+	static final ClientParameter field3598;
+	@ObfuscatedName("j")
+	@ObfuscatedSignature(
+		signature = "Ljj;"
+	)
+	static final ClientParameter field3599;
+	@ObfuscatedName("t")
+	@Export("id")
+	public final String id;
 
-   static {
-      __ji_m = new ClientParameter("8", "8");
-      __ji_f = new ClientParameter("15", "15");
-      __ji_q = new ClientParameter("7", "7");
-      __ji_w = new ClientParameter("10", "10");
-      __ji_o = new ClientParameter("16", "16");
-      __ji_u = new ClientParameter("12", "12");
-      __ji_g = new ClientParameter("3", "3");
-      __ji_l = new ClientParameter("6", "6");
-      __ji_e = new ClientParameter("17", "17");
-      __ji_x = new ClientParameter("5", "5");
-      __ji_d = new ClientParameter("9", "9");
-      __ji_k = new ClientParameter("14", "14");
-      __ji_n = new ClientParameter("18", "18");
-      __ji_i = new ClientParameter("13", "13");
-      __ji_a = new ClientParameter("4", "4");
-      __ji_z = new ClientParameter("1", "1");
-      __ji_j = new ClientParameter("11", "11");
-      __ji_s = new ClientParameter("2", "2");
-      __ji_t = new ClientParameter("19", "19");
-   }
+	static {
+		field3589 = new ClientParameter("8", "8");
+		field3582 = new ClientParameter("15", "15");
+		field3583 = new ClientParameter("7", "7");
+		field3591 = new ClientParameter("10", "10");
+		field3585 = new ClientParameter("16", "16");
+		field3581 = new ClientParameter("12", "12");
+		field3584 = new ClientParameter("3", "3");
+		field3588 = new ClientParameter("6", "6");
+		field3600 = new ClientParameter("17", "17");
+		field3593 = new ClientParameter("5", "5");
+		field3590 = new ClientParameter("9", "9");
+		field3592 = new ClientParameter("14", "14");
+		field3587 = new ClientParameter("18", "18");
+		field3594 = new ClientParameter("13", "13");
+		field3595 = new ClientParameter("4", "4");
+		field3596 = new ClientParameter("1", "1");
+		field3586 = new ClientParameter("11", "11");
+		field3598 = new ClientParameter("2", "2");
+		field3599 = new ClientParameter("19", "19");
+	}
 
-   ClientParameter(String var1, String var2) {
-      this.id = var2;
-   }
+	ClientParameter(String var1, String var2) {
+		this.id = var2;
+	}
 
-   @ObfuscatedName("m")
-   @ObfuscatedSignature(
-      signature = "(I)Z",
-      garbageValue = "-1723515140"
-   )
-   @Export("loadWorlds")
-   static boolean loadWorlds() {
-      try {
-         if(FriendLoginUpdate.__kn_x == null) {
-            FriendLoginUpdate.__kn_x = TriBool.urlRequester.request(new URL(ServerBuild.worldsUrl));
-         } else if(FriendLoginUpdate.__kn_x.isDone()) {
-            byte[] var0 = FriendLoginUpdate.__kn_x.getResponse();
-            Buffer var1 = new Buffer(var0);
-            var1.readInt();
-            World.worldsCount = var1.__ag_302();
-            ItemContainer.worlds = new World[World.worldsCount];
+	@ObfuscatedName("q")
+	static double method4991(double var0) {
+		return Math.exp(-var0 * var0 / 2.0D) / Math.sqrt(6.283185307179586D);
+	}
 
-            World var3;
-            for(int var2 = 0; var2 < World.worldsCount; var3.index = var2++) {
-               var3 = ItemContainer.worlds[var2] = new World();
-               var3.id = var1.__ag_302();
-               var3.properties = var1.readInt();
-               var3.host = var1.readStringCp1252NullTerminated();
-               var3.activity = var1.readStringCp1252NullTerminated();
-               var3.location = var1.readUnsignedByte();
-               var3.population = var1.__aq_303();
-            }
+	@ObfuscatedName("w")
+	@ObfuscatedSignature(
+		signature = "(DDII)[D",
+		garbageValue = "-694088627"
+	)
+	public static double[] method4992(double var0, double var2, int var4) {
+		int var5 = var4 * 2 + 1;
+		double[] var6 = new double[var5];
+		int var7 = -var4;
 
-            MilliClock.method3400(ItemContainer.worlds, 0, ItemContainer.worlds.length - 1, World.sortOption1, World.sortOption2);
-            FriendLoginUpdate.__kn_x = null;
-            return true;
-         }
-      } catch (Exception var4) {
-         var4.printStackTrace();
-         FriendLoginUpdate.__kn_x = null;
-      }
+		for (int var8 = 0; var7 <= var4; ++var8) {
+			double var11 = method4991(((double)var7 - var0) / var2) / var2;
+			var6[var8] = var11;
+			++var7;
+		}
 
-      return false;
-   }
+		return var6;
+	}
 }

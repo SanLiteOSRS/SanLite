@@ -24,6 +24,8 @@
  */
 package net.runelite.mixins;
 
+import net.runelite.api.events.*;
+import net.runelite.api.mixins.Mixin;
 import net.runelite.api.ChatMessageType;
 import net.runelite.api.ClanMember;
 import net.runelite.api.EnumDefinition;
@@ -50,7 +52,6 @@ import net.runelite.api.MenuEntry;
 import net.runelite.api.MessageNode;
 import net.runelite.api.NPC;
 import net.runelite.api.Node;
-import net.runelite.api.PacketBuffer;
 import static net.runelite.api.Perspective.LOCAL_TILE_SIZE;
 import net.runelite.api.Player;
 import net.runelite.api.Point;
@@ -65,27 +66,6 @@ import net.runelite.api.WidgetNode;
 import net.runelite.api.WorldType;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.coords.WorldPoint;
-import net.runelite.api.events.BoostedLevelChanged;
-import net.runelite.api.events.CanvasSizeChanged;
-import net.runelite.api.events.ChatMessage;
-import net.runelite.api.events.ClanChanged;
-import net.runelite.api.events.ClientTick;
-import net.runelite.api.events.DraggingWidgetChanged;
-import net.runelite.api.events.ExperienceChanged;
-import net.runelite.api.events.GameStateChanged;
-import net.runelite.api.events.GrandExchangeOfferChanged;
-import net.runelite.api.events.MenuEntryAdded;
-import net.runelite.api.events.MenuOpened;
-import net.runelite.api.events.MenuOptionClicked;
-import net.runelite.api.events.MenuShouldLeftClick;
-import net.runelite.api.events.NpcSpawned;
-import net.runelite.api.events.PlayerDespawned;
-import net.runelite.api.events.PlayerMenuOptionsChanged;
-import net.runelite.api.events.PlayerSpawned;
-import net.runelite.api.events.ResizeableChanged;
-import net.runelite.api.events.UsernameChanged;
-import net.runelite.api.events.VarbitChanged;
-import net.runelite.api.events.WidgetLoaded;
 import net.runelite.api.hooks.Callbacks;
 import net.runelite.api.hooks.DrawCallbacks;
 import net.runelite.api.vars.AccountType;
@@ -95,40 +75,19 @@ import net.runelite.api.widgets.WidgetItem;
 import net.runelite.api.widgets.WidgetType;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.EnumSet;
-import java.util.List;
-import java.util.Map;
+
+import java.math.BigInteger;
+import java.util.*;
 import javax.annotation.Nullable;
 import javax.inject.Named;
 import net.runelite.api.mixins.Copy;
 import net.runelite.api.mixins.FieldHook;
 import net.runelite.api.mixins.Inject;
 import net.runelite.api.mixins.MethodHook;
-import net.runelite.api.mixins.Mixin;
 import net.runelite.api.mixins.Replace;
 import net.runelite.api.mixins.Shadow;
+import net.runelite.rs.api.*;
 import org.slf4j.Logger;
-import net.runelite.rs.api.RSAbstractIndexCache;
-import net.runelite.rs.api.RSChatChannel;
-import net.runelite.rs.api.RSClanChat;
-import net.runelite.rs.api.RSClient;
-import net.runelite.rs.api.RSEnumDefinition;
-import net.runelite.rs.api.RSFriendSystem;
-import net.runelite.rs.api.RSFriendsList;
-import net.runelite.rs.api.RSGroundItem;
-import net.runelite.rs.api.RSIgnoreList;
-import net.runelite.rs.api.RSIndexedSprite;
-import net.runelite.rs.api.RSItemContainer;
-import net.runelite.rs.api.RSNPC;
-import net.runelite.rs.api.RSNodeDeque;
-import net.runelite.rs.api.RSNodeHashTable;
-import net.runelite.rs.api.RSPlayer;
-import net.runelite.rs.api.RSSprite;
-import net.runelite.rs.api.RSUsername;
-import net.runelite.rs.api.RSWidget;
 
 @Mixin(RSClient.class)
 public abstract class RSClientMixin implements RSClient
@@ -159,6 +118,9 @@ public abstract class RSClientMixin implements RSClient
 
 	@Inject
 	private static boolean interpolateObjectAnimations;
+
+	@Inject
+	private static boolean interpolateWidgetAnimations;
 
 	@Inject
 	private static RSPlayer[] oldPlayers = new RSPlayer[2048];
@@ -200,13 +162,53 @@ public abstract class RSClientMixin implements RSClient
 	}
 
 	@Inject
-	private static boolean hideFriendAttackOptions;
+	private static boolean hideFriendAttackOptions = false;
+
+	@Inject
+	private static boolean hideClanmateAttackOptions = false;
+
+	@Inject
+	private static boolean hideFriendCastOptions = false;
+
+	@Inject
+	private static boolean hideClanmateCastOptions = false;
+
+	@Inject
+	private static Set<String> unhiddenCasts = new HashSet<String>();
 
 	@Inject
 	@Override
 	public void setHideFriendAttackOptions(boolean yes)
 	{
 		hideFriendAttackOptions = yes;
+	}
+
+	@Inject
+	@Override
+	public void setHideFriendCastOptions(boolean yes)
+	{
+		hideFriendCastOptions = yes;
+	}
+
+	@Inject
+	@Override
+	public void setHideClanmateAttackOptions(boolean yes)
+	{
+		hideClanmateAttackOptions = yes;
+	}
+
+	@Inject
+	@Override
+	public void setHideClanmateCastOptions(boolean yes)
+	{
+		hideClanmateCastOptions = yes;
+	}
+
+	@Inject
+	@Override
+	public void setUnhiddenCasts(Set<String> casts)
+	{
+		unhiddenCasts = casts;
 	}
 
 	@Inject
@@ -282,6 +284,20 @@ public abstract class RSClientMixin implements RSClient
 	public void setInterpolateObjectAnimations(boolean interpolate)
 	{
 		interpolateObjectAnimations = interpolate;
+	}
+
+	@Inject
+	@Override
+	public boolean isInterpolateWidgetAnimations()
+	{
+		return interpolateWidgetAnimations;
+	}
+
+	@Inject
+	@Override
+	public void setInterpolateWidgetAnimations(boolean interpolate)
+	{
+		interpolateWidgetAnimations = interpolate;
 	}
 
 	@Inject
@@ -1232,9 +1248,16 @@ public abstract class RSClientMixin implements RSClient
 	@Replace("menuAction")
 	static void rl$menuAction(int actionParam, int widgetId, int menuAction, int id, String menuOption, String menuTarget, int var6, int var7)
 	{
+		boolean authentic = true;
+		if (menuTarget != null && menuTarget.startsWith("!AUTHENTIC"))
+		{
+			authentic = false;
+			menuTarget = menuTarget.substring(10);
+		}
+
 		if (printMenuActions && client.getLogger().isDebugEnabled())
 		{
-			client.getLogger().debug("Menuaction: {} {} {} {} {} {} {} {}", actionParam, widgetId, menuAction, id, menuOption, menuTarget, var6, var7);
+			client.getLogger().debug("Menuaction: {} {} {} {} {} {} {} {} {}", actionParam, widgetId, menuAction, id, menuOption, menuTarget, var6, var7, authentic);
 		}
 
 		/* Along the way, the RuneScape client may change a menuAction by incrementing it with 2000.
@@ -1254,7 +1277,8 @@ public abstract class RSClientMixin implements RSClient
 				actionParam,
 				widgetId,
 				false
-			)
+			),
+			authentic
 		);
 		client.getCallbacks().post(menuOptionClicked);
 
@@ -1264,7 +1288,24 @@ public abstract class RSClientMixin implements RSClient
 		}
 
 		rs$menuAction(menuOptionClicked.getActionParam0(), menuOptionClicked.getActionParam1(), menuOptionClicked.getType(),
-				menuOptionClicked.getIdentifier(), menuOptionClicked.getOption(), menuOptionClicked.getTarget(), var6, var7);
+			menuOptionClicked.getIdentifier(), menuOptionClicked.getOption(), menuOptionClicked.getTarget(), var6, var7);
+	}
+
+	@Override
+	@Inject
+	public void invokeMenuAction(int actionParam, int widgetId, int menuAction, int id, String menuOption, String menuTarget, int var6, int var7)
+	{
+		client.sendMenuAction(actionParam, widgetId, menuAction, id, menuOption, "!AUTHENTIC" + menuTarget, var6, var7);
+	}
+
+	@Inject
+	@FieldHook("tempMenuAction")
+	public static void onTempMenuActionChanged(int idx)
+	{
+		if (client.getTempMenuAction() != null)
+		{
+			client.getCallbacks().post(new WidgetPressed());
+		}
 	}
 
 	@FieldHook("Login_username")
@@ -1307,7 +1348,7 @@ public abstract class RSClientMixin implements RSClient
 
 	@Inject
 	@MethodHook("updateNpcs")
-	public static void updateNpcs(boolean var0, PacketBuffer var1)
+	public static void updateNpcs(boolean var0, RSPacketBuffer var1)
 	{
 		client.getCallbacks().updateNpcs();
 	}
@@ -1333,13 +1374,13 @@ public abstract class RSClientMixin implements RSClient
 	}
 
 	@Inject
-	@MethodHook("methodDraw")
-	public void methodDraw(boolean var1)
+	@MethodHook("draw")
+	public void draw(boolean var1)
 	{
 		callbacks.clientMainLoop();
 	}
 
-	@MethodHook("drawWidgetGroup")
+	@MethodHook("drawInterface")
 	@Inject
 	public static void renderWidgetLayer(Widget[] widgets, int parentId, int minX, int minY, int maxX, int maxY, int x, int y, int var8)
 	{
@@ -1442,7 +1483,7 @@ public abstract class RSClientMixin implements RSClient
 	@Override
 	public RSSprite[] getSprites(IndexDataBase source, int archiveId, int fileId)
 	{
-		RSAbstractIndexCache rsSource = (RSAbstractIndexCache) source;
+		RSAbstractArchive rsSource = (RSAbstractArchive) source;
 		byte[] configData = rsSource.getConfigData(archiveId, fileId);
 		if (configData == null)
 		{
@@ -1574,8 +1615,48 @@ public abstract class RSClientMixin implements RSClient
 	}
 
 	@Inject
-	static boolean shouldHideAttackOptionFor(RSPlayer player)
+	static boolean shouldHideAttackOptionFor(RSPlayer p)
 	{
-		return hideFriendAttackOptions && player.isFriended() || player.isClanMember();
+		if (client.isSpellSelected())
+		{
+			return ((hideFriendCastOptions && p.isFriended()) || (hideClanmateCastOptions && p.isClanMember()))
+				&& !unhiddenCasts.contains(client.getSelectedSpellName().replaceAll("<[^>]*>", "").toLowerCase());
+		}
+
+		return ((hideFriendAttackOptions && p.isFriended()) || (hideClanmateAttackOptions && p.isClanMember()));
+	}
+
+	@Inject
+	@Override
+	public void addFriend(String friend)
+	{
+		RSFriendSystem friendSystem = getFriendManager();
+		friendSystem.addFriend(friend);
+	}
+
+	@Inject
+	@Override
+	public void removeFriend(String friend)
+	{
+		RSFriendSystem friendSystem = getFriendManager();
+		friendSystem.removeFriend(friend);
+	}
+
+	@Inject
+	BigInteger modulus = new BigInteger("83ff79a3e258b99ead1a70e1049883e78e513c4cdec538d8da9483879a9f81689c0c7d146d7b82b52d05cf26132b1cda5930eeef894e4ccf3d41eebc3aabe54598c4ca48eb5a31d736bfeea17875a35558b9e3fcd4aebe2a9cc970312a477771b36e173dc2ece6001ab895c553e2770de40073ea278026f36961c94428d8d7db", 16);
+
+	@Inject
+	@Override
+	public BigInteger getModulus()
+	{
+		return modulus;
+	}
+
+
+	@Inject
+	@Override
+	public void setModulus(BigInteger modulus)
+	{
+		this.modulus = modulus;
 	}
 }

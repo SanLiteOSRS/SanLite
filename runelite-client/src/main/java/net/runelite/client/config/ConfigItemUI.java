@@ -8,6 +8,7 @@ import net.runelite.client.plugins.config.HotkeyButton;
 import net.runelite.client.plugins.config.PluginListItem;
 import net.runelite.client.ui.ColorScheme;
 import net.runelite.client.ui.components.ComboBoxListRenderer;
+import net.runelite.client.ui.components.colorpicker.ColorPickerManager;
 import net.runelite.client.ui.components.colorpicker.RuneliteColorPicker;
 import net.runelite.client.util.ColorUtil;
 import net.runelite.client.util.Text;
@@ -25,11 +26,13 @@ public class ConfigItemUI
 
 	private final ConfigManager configManager;
 	private final ConfigPanel configPanel;
+	private final ColorPickerManager colorPickerManager;
 
-	public ConfigItemUI(ConfigManager configManager, ConfigPanel configPanel)
+	public ConfigItemUI(ConfigManager configManager, ConfigPanel configPanel, ColorPickerManager colorPickerManager)
 	{
 		this.configManager = configManager;
 		this.configPanel = configPanel;
+		this.colorPickerManager = colorPickerManager;
 	}
 
 	/**
@@ -153,23 +156,18 @@ public class ConfigItemUI
 			@Override
 			public void mouseClicked(MouseEvent e)
 			{
-				RuneliteColorPicker colorPicker = new RuneliteColorPicker(SwingUtilities.windowForComponent(configPanel),
-						colorPickerBtn.getBackground(), cid.getItem().name(), cid.getAlpha() == null);
+				RuneliteColorPicker colorPicker = colorPickerManager.create(
+						SwingUtilities.windowForComponent(configPanel),
+						colorPickerBtn.getBackground(),
+						cid.getItem().name(),
+						cid.getAlpha() == null);
 				colorPicker.setLocation(configPanel.getLocationOnScreen());
 				colorPicker.setOnColorChange(c ->
 				{
 					colorPickerBtn.setBackground(c);
 					colorPickerBtn.setText(ColorUtil.toHexColor(c).toUpperCase());
 				});
-
-				colorPicker.addWindowListener(new WindowAdapter()
-				{
-					@Override
-					public void windowClosing(WindowEvent e)
-					{
-						changeConfiguration(listItem, config, colorPicker, cd, cid);
-					}
-				});
+				colorPicker.setOnClose(c -> changeConfiguration(listItem, config, colorPicker, cd, cid));
 				colorPicker.setVisible(true);
 			}
 		});

@@ -2,79 +2,96 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.Reflection;
 
-@ObfuscatedName("iw")
+@ObfuscatedName("id")
 @Implements("VarcInt")
 public class VarcInt extends DualNode {
-   @ObfuscatedName("m")
-   @ObfuscatedSignature(
-      signature = "Lir;"
-   )
-   static AbstractIndexCache __iw_m;
-   @ObfuscatedName("f")
-   @ObfuscatedSignature(
-      signature = "Ler;"
-   )
-   @Export("cachedVarcInts")
-   static EvictingDualNodeHashTable cachedVarcInts;
-   @ObfuscatedName("q")
-   @Export("persist")
-   public boolean persist;
+	@ObfuscatedName("q")
+	@ObfuscatedSignature(
+		signature = "Lhp;"
+	)
+	@Export("VarcInt_archive")
+	public static AbstractArchive VarcInt_archive;
+	@ObfuscatedName("w")
+	@ObfuscatedSignature(
+		signature = "Lel;"
+	)
+	@Export("VarcInt_cached")
+	public static EvictingDualNodeHashTable VarcInt_cached;
+	@ObfuscatedName("e")
+	@Export("persist")
+	public boolean persist;
 
-   static {
-      cachedVarcInts = new EvictingDualNodeHashTable(64);
-   }
+	static {
+		VarcInt_cached = new EvictingDualNodeHashTable(64);
+	}
 
-   VarcInt() {
-      this.persist = false;
-   }
+	public VarcInt() {
+		this.persist = false;
+	}
 
-   @ObfuscatedName("q")
-   @ObfuscatedSignature(
-      signature = "(Lgr;I)V",
-      garbageValue = "1023420886"
-   )
-   void __q_411(Buffer var1) {
-      while(true) {
-         int var2 = var1.readUnsignedByte();
-         if(var2 == 0) {
-            return;
-         }
+	@ObfuscatedName("w")
+	@ObfuscatedSignature(
+		signature = "(Lkf;B)V",
+		garbageValue = "22"
+	)
+	public void method4401(Buffer var1) {
+		while (true) {
+			int var2 = var1.readUnsignedByte();
+			if (var2 == 0) {
+				return;
+			}
 
-         this.__w_412(var1, var2);
-      }
-   }
+			this.method4396(var1, var2);
+		}
+	}
 
-   @ObfuscatedName("w")
-   @ObfuscatedSignature(
-      signature = "(Lgr;II)V",
-      garbageValue = "-202810982"
-   )
-   void __w_412(Buffer var1, int var2) {
-      if(var2 == 2) {
-         this.persist = true;
-      }
+	@ObfuscatedName("e")
+	@ObfuscatedSignature(
+		signature = "(Lkf;II)V",
+		garbageValue = "958337922"
+	)
+	void method4396(Buffer var1, int var2) {
+		if (var2 == 2) {
+			this.persist = true;
+		}
 
-   }
+	}
 
-   @ObfuscatedName("w")
-   @ObfuscatedSignature(
-      signature = "(Ljava/lang/String;I)Ljava/lang/Class;",
-      garbageValue = "1680587190"
-   )
-   @Export("loadClassFromDescriptor")
-   static Class loadClassFromDescriptor(String var0) throws ClassNotFoundException {
-      return var0.equals("B")?Byte.TYPE:(var0.equals("I")?Integer.TYPE:(var0.equals("S")?Short.TYPE:(var0.equals("J")?Long.TYPE:(var0.equals("Z")?Boolean.TYPE:(var0.equals("F")?Float.TYPE:(var0.equals("D")?Double.TYPE:(var0.equals("C")?Character.TYPE:(var0.equals("void")?Void.TYPE:Reflection.findClass(var0)))))))));
-   }
+	@ObfuscatedName("e")
+	@ObfuscatedSignature(
+		signature = "(Ljava/lang/CharSequence;S)Ljava/lang/String;",
+		garbageValue = "-32757"
+	)
+	public static String method4403(CharSequence var0) {
+		long var3 = 0L;
+		int var5 = var0.length();
 
-   @ObfuscatedName("a")
-   @ObfuscatedSignature(
-      signature = "(CI)Z",
-      garbageValue = "1367119425"
-   )
-   @Export("isAlphaNumeric")
-   public static boolean isAlphaNumeric(char var0) {
-      return var0 >= '0' && var0 <= '9' || var0 >= 'A' && var0 <= 'Z' || var0 >= 'a' && var0 <= 'z';
-   }
+		for (int var6 = 0; var6 < var5; ++var6) {
+			var3 *= 37L;
+			char var7 = var0.charAt(var6);
+			if (var7 >= 'A' && var7 <= 'Z') {
+				var3 += (long)(var7 + 1 - 65);
+			} else if (var7 >= 'a' && var7 <= 'z') {
+				var3 += (long)(var7 + 1 - 97);
+			} else if (var7 >= '0' && var7 <= '9') {
+				var3 += (long)(var7 + 27 - 48);
+			}
+
+			if (var3 >= 177917621779460413L) {
+				break;
+			}
+		}
+
+		while (var3 % 37L == 0L && 0L != var3) {
+			var3 /= 37L;
+		}
+
+		String var8 = class215.method4023(var3);
+		if (var8 == null) {
+			var8 = "";
+		}
+
+		return var8;
+	}
 }

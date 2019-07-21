@@ -4,77 +4,75 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jt")
+@ObfuscatedName("jq")
 @Implements("IterableNodeDequeDescendingIterator")
 public class IterableNodeDequeDescendingIterator implements Iterator {
-   @ObfuscatedName("m")
-   @ObfuscatedSignature(
-      signature = "Lja;"
-   )
-   @Export("deque")
-   IterableNodeDeque deque;
-   @ObfuscatedName("f")
-   @ObfuscatedSignature(
-      signature = "Lgw;"
-   )
-   Node __f;
-   @ObfuscatedName("q")
-   @ObfuscatedSignature(
-      signature = "Lgw;"
-   )
-   Node __q;
+	@ObfuscatedName("q")
+	@ObfuscatedSignature(
+		signature = "Lju;"
+	)
+	@Export("deque")
+	IterableNodeDeque deque;
+	@ObfuscatedName("w")
+	@ObfuscatedSignature(
+		signature = "Lfw;"
+	)
+	Node field3549;
+	@ObfuscatedName("e")
+	@ObfuscatedSignature(
+		signature = "Lfw;"
+	)
+	@Export("last")
+	Node last;
 
-   @ObfuscatedSignature(
-      signature = "(Lja;)V"
-   )
-   IterableNodeDequeDescendingIterator(IterableNodeDeque var1) {
-      this.__q = null;
-      this.__u_443(var1);
-   }
+	@ObfuscatedSignature(
+		signature = "(Lju;)V"
+	)
+	IterableNodeDequeDescendingIterator(IterableNodeDeque var1) {
+		this.last = null;
+		this.setDeque(var1);
+	}
 
-   @ObfuscatedName("u")
-   @ObfuscatedSignature(
-      signature = "(Lja;)V"
-   )
-   void __u_443(IterableNodeDeque var1) {
-      this.deque = var1;
-      this.__g_444();
-   }
+	@ObfuscatedName("b")
+	@ObfuscatedSignature(
+		signature = "(Lju;)V"
+	)
+	@Export("setDeque")
+	void setDeque(IterableNodeDeque var1) {
+		this.deque = var1;
+		this.start();
+	}
 
-   @ObfuscatedName("g")
-   void __g_444() {
-      this.__f = this.deque != null?this.deque.sentinel.previous:null;
-      this.__q = null;
-   }
+	@ObfuscatedName("i")
+	@Export("start")
+	void start() {
+		this.field3549 = this.deque != null ? this.deque.sentinel.previous : null;
+		this.last = null;
+	}
 
-   @Export("hasNext")
-   @ObfuscatedName("hasNext")
-   public boolean hasNext() {
-      return this.deque.sentinel != this.__f;
-   }
+	public void remove() {
+		if (this.last == null) {
+			throw new IllegalStateException();
+		} else {
+			this.last.remove();
+			this.last = null;
+		}
+	}
 
-   @Export("next")
-   @ObfuscatedName("next")
-   public Object next() {
-      Node var1 = this.__f;
-      if(var1 == this.deque.sentinel) {
-         var1 = null;
-         this.__f = null;
-      } else {
-         this.__f = var1.previous;
-      }
+	public Object next() {
+		Node var1 = this.field3549;
+		if (var1 == this.deque.sentinel) {
+			var1 = null;
+			this.field3549 = null;
+		} else {
+			this.field3549 = var1.previous;
+		}
 
-      this.__q = var1;
-      return var1;
-   }
+		this.last = var1;
+		return var1;
+	}
 
-   @ObfuscatedName("remove")
-   public void __remove_447() {
-      if(this.__q == null) {
-         throw new IllegalStateException();
-      } else {
-         this.__q.remove();
-         this.__q = null;
-      }
-   }
+	public boolean hasNext() {
+		return this.deque.sentinel != this.field3549;
+	}
 }

@@ -4,234 +4,130 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fd")
+@ObfuscatedName("fe")
 @Implements("MilliClock")
 public class MilliClock extends Clock {
-   @ObfuscatedName("qi")
-   @ObfuscatedSignature(
-      signature = "Ldp;"
-   )
-   @Export("decimator")
-   static Decimator decimator;
-   @ObfuscatedName("m")
-   long[] __m;
-   @ObfuscatedName("f")
-   @ObfuscatedGetter(
-      intValue = 1940981129
-   )
-   int __f;
-   @ObfuscatedName("q")
-   @ObfuscatedGetter(
-      intValue = 1217137493
-   )
-   int __q;
-   @ObfuscatedName("w")
-   @ObfuscatedGetter(
-      longValue = -8372744267470318611L
-   )
-   long __w;
-   @ObfuscatedName("o")
-   @ObfuscatedGetter(
-      intValue = 250272357
-   )
-   int __o;
-   @ObfuscatedName("u")
-   @ObfuscatedGetter(
-      intValue = 576555527
-   )
-   int __u;
+	@ObfuscatedName("q")
+	long[] field2011;
+	@ObfuscatedName("w")
+	@ObfuscatedGetter(
+		intValue = 406251697
+	)
+	int field2014;
+	@ObfuscatedName("e")
+	@ObfuscatedGetter(
+		intValue = -1542069259
+	)
+	int field2013;
+	@ObfuscatedName("p")
+	@ObfuscatedGetter(
+		longValue = -5256643665710280471L
+	)
+	long field2012;
+	@ObfuscatedName("k")
+	@ObfuscatedGetter(
+		intValue = 729258425
+	)
+	int field2015;
+	@ObfuscatedName("l")
+	@ObfuscatedGetter(
+		intValue = -1018209541
+	)
+	int field2016;
 
-   public MilliClock() {
-      this.__m = new long[10];
-      this.__f = 256;
-      this.__q = 1;
-      this.__o = 0;
-      this.__w = class203.currentTimeMs();
+	MilliClock() {
+		this.field2011 = new long[10];
+		this.field2014 = 256;
+		this.field2013 = 1;
+		this.field2015 = 0;
+		this.field2012 = DirectByteArrayCopier.currentTimeMs();
 
-      for(int var1 = 0; var1 < 10; ++var1) {
-         this.__m[var1] = this.__w;
-      }
+		for (int var1 = 0; var1 < 10; ++var1) {
+			this.field2011[var1] = this.field2012;
+		}
 
-   }
+	}
 
-   @ObfuscatedName("m")
-   @ObfuscatedSignature(
-      signature = "(B)V",
-      garbageValue = "61"
-   )
-   @Export("mark")
-   public void mark() {
-      for(int var1 = 0; var1 < 10; ++var1) {
-         this.__m[var1] = 0L;
-      }
+	@ObfuscatedName("q")
+	@ObfuscatedSignature(
+		signature = "(I)V",
+		garbageValue = "-1402657312"
+	)
+	@Export("mark")
+	public void mark() {
+		for (int var1 = 0; var1 < 10; ++var1) {
+			this.field2011[var1] = 0L;
+		}
 
-   }
+	}
 
-   @ObfuscatedName("f")
-   @ObfuscatedSignature(
-      signature = "(III)I",
-      garbageValue = "-126803683"
-   )
-   @Export("wait")
-   public int wait(int var1, int var2) {
-      int var3 = this.__f;
-      int var4 = this.__q;
-      this.__f = 300;
-      this.__q = 1;
-      this.__w = class203.currentTimeMs();
-      if(0L == this.__m[this.__u]) {
-         this.__f = var3;
-         this.__q = var4;
-      } else if(this.__w > this.__m[this.__u]) {
-         this.__f = (int)((long)(var1 * 2560) / (this.__w - this.__m[this.__u]));
-      }
+	@ObfuscatedName("w")
+	@ObfuscatedSignature(
+		signature = "(III)I",
+		garbageValue = "-333181863"
+	)
+	@Export("wait")
+	public int wait(int var1, int var2) {
+		int var3 = this.field2014;
+		int var4 = this.field2013;
+		this.field2014 = 300;
+		this.field2013 = 1;
+		this.field2012 = DirectByteArrayCopier.currentTimeMs();
+		if (this.field2011[this.field2016] == 0L) {
+			this.field2014 = var3;
+			this.field2013 = var4;
+		} else if (this.field2012 > this.field2011[this.field2016]) {
+			this.field2014 = (int)((long)(var1 * 2560) / (this.field2012 - this.field2011[this.field2016]));
+		}
 
-      if(this.__f < 25) {
-         this.__f = 25;
-      }
+		if (this.field2014 < 25) {
+			this.field2014 = 25;
+		}
 
-      if(this.__f > 256) {
-         this.__f = 256;
-         this.__q = (int)((long)var1 - (this.__w - this.__m[this.__u]) / 10L);
-      }
+		if (this.field2014 > 256) {
+			this.field2014 = 256;
+			this.field2013 = (int)((long)var1 - (this.field2012 - this.field2011[this.field2016]) / 10L);
+		}
 
-      if(this.__q > var1) {
-         this.__q = var1;
-      }
+		if (this.field2013 > var1) {
+			this.field2013 = var1;
+		}
 
-      this.__m[this.__u] = this.__w;
-      this.__u = (this.__u + 1) % 10;
-      int var5;
-      if(this.__q > 1) {
-         for(var5 = 0; var5 < 10; ++var5) {
-            if(this.__m[var5] != 0L) {
-               this.__m[var5] += (long)this.__q;
-            }
-         }
-      }
+		this.field2011[this.field2016] = this.field2012;
+		this.field2016 = (this.field2016 + 1) % 10;
+		int var5;
+		if (this.field2013 > 1) {
+			for (var5 = 0; var5 < 10; ++var5) {
+				if (0L != this.field2011[var5]) {
+					this.field2011[var5] += (long)this.field2013;
+				}
+			}
+		}
 
-      if(this.__q < var2) {
-         this.__q = var2;
-      }
+		if (this.field2013 < var2) {
+			this.field2013 = var2;
+		}
 
-      class203.method4010((long)this.__q);
+		EnumDefinition.method4550((long)this.field2013);
 
-      for(var5 = 0; this.__o < 256; this.__o += this.__f) {
-         ++var5;
-      }
+		for (var5 = 0; this.field2015 < 256; this.field2015 += this.field2014) {
+			++var5;
+		}
 
-      this.__o &= 255;
-      return var5;
-   }
+		this.field2015 &= 255;
+		return var5;
+	}
 
-   @ObfuscatedName("q")
-   @ObfuscatedSignature(
-      signature = "([Lbt;II[I[II)V",
-      garbageValue = "-1374398116"
-   )
-   static void method3400(World[] var0, int var1, int var2, int[] var3, int[] var4) {
-      if(var1 < var2) {
-         int var5 = var1 - 1;
-         int var6 = var2 + 1;
-         int var7 = (var2 + var1) / 2;
-         World var8 = var0[var7];
-         var0[var7] = var0[var1];
-         var0[var1] = var8;
-
-         while(var5 < var6) {
-            boolean var9 = true;
-
-            int var10;
-            int var11;
-            int var12;
-            do {
-               --var6;
-
-               for(var10 = 0; var10 < 4; ++var10) {
-                  if(var3[var10] == 2) {
-                     var11 = var0[var6].index;
-                     var12 = var8.index;
-                  } else if(var3[var10] == 1) {
-                     var11 = var0[var6].population;
-                     var12 = var8.population;
-                     if(var11 == -1 && var4[var10] == 1) {
-                        var11 = 2001;
-                     }
-
-                     if(var12 == -1 && var4[var10] == 1) {
-                        var12 = 2001;
-                     }
-                  } else if(var3[var10] == 3) {
-                     var11 = var0[var6].isMembersOnly()?1:0;
-                     var12 = var8.isMembersOnly()?1:0;
-                  } else {
-                     var11 = var0[var6].id;
-                     var12 = var8.id;
-                  }
-
-                  if(var12 != var11) {
-                     if((var4[var10] != 1 || var11 <= var12) && (var4[var10] != 0 || var11 >= var12)) {
-                        var9 = false;
-                     }
-                     break;
-                  }
-
-                  if(var10 == 3) {
-                     var9 = false;
-                  }
-               }
-            } while(var9);
-
-            var9 = true;
-
-            do {
-               ++var5;
-
-               for(var10 = 0; var10 < 4; ++var10) {
-                  if(var3[var10] == 2) {
-                     var11 = var0[var5].index;
-                     var12 = var8.index;
-                  } else if(var3[var10] == 1) {
-                     var11 = var0[var5].population;
-                     var12 = var8.population;
-                     if(var11 == -1 && var4[var10] == 1) {
-                        var11 = 2001;
-                     }
-
-                     if(var12 == -1 && var4[var10] == 1) {
-                        var12 = 2001;
-                     }
-                  } else if(var3[var10] == 3) {
-                     var11 = var0[var5].isMembersOnly()?1:0;
-                     var12 = var8.isMembersOnly()?1:0;
-                  } else {
-                     var11 = var0[var5].id;
-                     var12 = var8.id;
-                  }
-
-                  if(var11 != var12) {
-                     if((var4[var10] != 1 || var11 >= var12) && (var4[var10] != 0 || var11 <= var12)) {
-                        var9 = false;
-                     }
-                     break;
-                  }
-
-                  if(var10 == 3) {
-                     var9 = false;
-                  }
-               }
-            } while(var9);
-
-            if(var5 < var6) {
-               World var13 = var0[var5];
-               var0[var5] = var0[var6];
-               var0[var6] = var13;
-            }
-         }
-
-         method3400(var0, var1, var6, var3, var4);
-         method3400(var0, var6 + 1, var2, var3, var4);
-      }
-
-   }
+	@ObfuscatedName("c")
+	@ObfuscatedSignature(
+		signature = "(IIIB)I",
+		garbageValue = "-93"
+	)
+	static int method3468(int var0, int var1, int var2) {
+		if ((Tiles.Tiles_renderFlags[var0][var1][var2] & 8) != 0) {
+			return 0;
+		} else {
+			return var0 > 0 && (Tiles.Tiles_renderFlags[1][var1][var2] & 2) != 0 ? var0 - 1 : var0;
+		}
+	}
 }
