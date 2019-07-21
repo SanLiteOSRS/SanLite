@@ -26,9 +26,11 @@ package net.runelite.api;
 
 import java.awt.Canvas;
 import java.awt.Dimension;
+import java.math.BigInteger;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import javax.annotation.Nullable;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.coords.WorldPoint;
@@ -1368,6 +1370,20 @@ public interface Client extends GameShell
 	void setInterpolateObjectAnimations(boolean interpolate);
 
 	/**
+	 * Checks whether animation smoothing is enabled for widgets.
+	 *
+	 * @return true if widget animation smoothing is enabled, false otherwise
+	 */
+	boolean isInterpolateWidgetAnimations();
+
+	/**
+	 * Sets the animation smoothing state for widgets.
+	 *
+	 * @param interpolate the new smoothing state
+	 */
+	void setInterpolateWidgetAnimations(boolean interpolate);
+
+	/**
 	 * Checks whether the logged in player is in an instanced region.
 	 *
 	 * @return true if the player is in instanced region, false otherwise
@@ -1679,16 +1695,50 @@ public interface Client extends GameShell
 
 	String getSelectedSpellName();
 
-	boolean getIsSpellSelected();
+	boolean isSpellSelected();
 
 	/**
-	 * Set whether or not player attack options will be hidden for clan members/friends
+	 * Set whether or not player attack options will be hidden for friends
 	 */
 	void setHideFriendAttackOptions(boolean yes);
+
+	/**
+	 * Set whether or not player cast options will be hidden for friends
+	 */
+	void setHideFriendCastOptions(boolean yes);
+
+	/**
+	 * Set whether or not player attack options will be hidden for clanmates
+	 */
+	void setHideClanmateAttackOptions(boolean yes);
+
+	/**
+	 * Set whether or not player cast options will be hidden for clanmates
+	 */
+	void setHideClanmateCastOptions(boolean yes);
+
+	/**
+	 * Set spells excluded from above hiding
+	 */
+	void setUnhiddenCasts(Set<String> casts);
 
 	/**
 	 * Sorts the current menu entries in the same way the client does this.
 	 * The last entry will be the left click one after this.
 	 */
 	void sortMenuEntries();
+
+	/**
+	 * Add player to friendlist
+	 */
+	void addFriend(String name);
+
+	/**
+	 * Remove player from friendlist
+	 */
+	void removeFriend(String name);
+
+	BigInteger getModulus();
+
+	void setModulus(BigInteger modulus);
 }

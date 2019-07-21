@@ -4,56 +4,72 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("iy")
+@ObfuscatedName("ht")
 @Implements("ServerBuild")
 public class ServerBuild {
-   @ObfuscatedName("m")
-   @ObfuscatedSignature(
-      signature = "Liy;"
-   )
-   public static final ServerBuild __iy_m;
-   @ObfuscatedName("f")
-   @ObfuscatedSignature(
-      signature = "Liy;"
-   )
-   public static final ServerBuild __iy_f;
-   @ObfuscatedName("q")
-   @ObfuscatedSignature(
-      signature = "Liy;"
-   )
-   public static final ServerBuild __iy_q;
-   @ObfuscatedName("w")
-   @ObfuscatedSignature(
-      signature = "Liy;"
-   )
-   public static final ServerBuild __iy_w;
-   @ObfuscatedName("bx")
-   @Export("worldsUrl")
-   static String worldsUrl;
-   @ObfuscatedName("lo")
-   @ObfuscatedGetter(
-      intValue = -365366303
-   )
-   static int __iy_lo;
-   @ObfuscatedName("o")
-   @Export("name")
-   public final String name;
-   @ObfuscatedName("u")
-   @ObfuscatedGetter(
-      intValue = -947415971
-   )
-   @Export("id")
-   public final int id;
+	@ObfuscatedName("q")
+	@ObfuscatedSignature(
+		signature = "Lht;"
+	)
+	@Export("LIVE")
+	static final ServerBuild LIVE;
+	@ObfuscatedName("w")
+	@ObfuscatedSignature(
+		signature = "Lht;"
+	)
+	@Export("BUILDLIVE")
+	static final ServerBuild BUILDLIVE;
+	@ObfuscatedName("e")
+	@ObfuscatedSignature(
+		signature = "Lht;"
+	)
+	@Export("RC")
+	static final ServerBuild RC;
+	@ObfuscatedName("p")
+	@ObfuscatedSignature(
+		signature = "Lht;"
+	)
+	@Export("WIP")
+	static final ServerBuild WIP;
+	@ObfuscatedName("f")
+	static int[] field3103;
+	@ObfuscatedName("k")
+	@Export("name")
+	public final String name;
+	@ObfuscatedName("l")
+	@ObfuscatedGetter(
+		intValue = 1706897489
+	)
+	final int field3097;
 
-   static {
-      __iy_m = new ServerBuild("LIVE", 0);
-      __iy_f = new ServerBuild("BUILDLIVE", 3);
-      __iy_q = new ServerBuild("RC", 1);
-      __iy_w = new ServerBuild("WIP", 2);
-   }
+	static {
+		LIVE = new ServerBuild("LIVE", 0);
+		BUILDLIVE = new ServerBuild("BUILDLIVE", 3);
+		RC = new ServerBuild("RC", 1);
+		WIP = new ServerBuild("WIP", 2);
+	}
 
-   ServerBuild(String var1, int var2) {
-      this.name = var1;
-      this.id = var2;
-   }
+	ServerBuild(String var1, int var2) {
+		this.name = var1;
+		this.field3097 = var2;
+	}
+
+	@ObfuscatedName("w")
+	@ObfuscatedSignature(
+		signature = "(II)Lht;",
+		garbageValue = "-1180809125"
+	)
+	@Export("valueOf")
+	public static ServerBuild valueOf(int var0) {
+		ServerBuild[] var1 = IsaacCipher.values();
+
+		for (int var2 = 0; var2 < var1.length; ++var2) {
+			ServerBuild var3 = var1[var2];
+			if (var0 == var3.field3097) {
+				return var3;
+			}
+		}
+
+		return null;
+	}
 }

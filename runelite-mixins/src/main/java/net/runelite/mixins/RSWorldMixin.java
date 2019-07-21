@@ -25,6 +25,7 @@
 package net.runelite.mixins;
 
 import java.util.EnumSet;
+
 import net.runelite.api.WorldType;
 import net.runelite.api.events.WorldListLoad;
 import net.runelite.api.mixins.FieldHook;

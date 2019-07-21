@@ -26,6 +26,7 @@ package net.runelite.mixins;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import net.runelite.api.Client;
 import net.runelite.api.events.ScriptCallbackEvent;
 import net.runelite.api.mixins.Copy;
@@ -107,13 +108,13 @@ public abstract class ScriptVMMixin implements RSClient
 		return false;
 	}
 
-	@Copy("runScript0")
+	@Copy("runScript")
 	static void rs$runScript(RSScriptEvent event, int maxExecutionTime)
 	{
 		throw new RuntimeException();
 	}
 
-	@Replace("runScript0")
+	@Replace("runScript")
 	static void rl$runScript(RSScriptEvent event, int maxExecutionTime)
 	{
 		Object[] arguments = event.getArguments();

@@ -53,6 +53,7 @@ import net.runelite.api.*;
 import net.runelite.api.coords.WorldPoint;
 import net.runelite.api.events.ChatMessage;
 import net.runelite.api.events.ConfigChanged;
+import net.runelite.api.events.GameStateChanged;
 import net.runelite.api.events.ItemContainerChanged;
 import net.runelite.api.events.WidgetLoaded;
 import net.runelite.api.widgets.WidgetID;
@@ -133,6 +134,7 @@ public class LootTrackerPlugin extends Plugin
 	private LootTrackerPanel panel;
 	private NavigationButton navButton;
 	private String eventType;
+	private boolean chestLooted;
 
 	private List<String> ignoredItems = new ArrayList<>();
 
@@ -275,6 +277,16 @@ public class LootTrackerPlugin extends Plugin
 	{
 		clientToolbar.removeNavigation(navButton);
 		lootTrackerClient = null;
+		chestLooted = false;
+	}
+
+	@Subscribe
+	public void onGameStateChanged(final GameStateChanged event)
+	{
+		if (event.getGameState() == GameState.LOADING)
+		{
+			chestLooted = false;
+		}
 	}
 
 	@Subscribe
@@ -322,10 +334,19 @@ public class LootTrackerPlugin extends Plugin
 				container = client.getItemContainer(InventoryID.BARROWS_REWARD);
 				break;
 			case (WidgetID.CHAMBERS_OF_XERIC_REWARD_GROUP_ID):
+				if (chestLooted)
+				{
+					return;
+				}
 				eventType = "Chambers of Xeric";
 				container = client.getItemContainer(InventoryID.CHAMBERS_OF_XERIC_CHEST);
+				chestLooted = true;
 				break;
 			case (WidgetID.THEATRE_OF_BLOOD_GROUP_ID):
+				if (chestLooted)
+				{
+					return;
+				}
 				int region = WorldPoint.fromLocalInstance(client, client.getLocalPlayer().getLocalLocation()).getRegionID();
 				if (region != THEATRE_OF_BLOOD_REGION)
 				{
@@ -333,6 +354,7 @@ public class LootTrackerPlugin extends Plugin
 				}
 				eventType = "Theatre of Blood";
 				container = client.getItemContainer(InventoryID.THEATRE_OF_BLOOD_CHEST);
+				chestLooted = true;
 				break;
 			case (WidgetID.CLUE_SCROLL_REWARD_GROUP_ID):
 				// event type should be set via ChatMessage for clue scrolls.

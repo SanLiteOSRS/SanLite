@@ -3,6 +3,7 @@ package net.runelite.mixins;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
 import net.runelite.api.Node;
 import net.runelite.api.mixins.Inject;
 import net.runelite.api.mixins.Mixin;
