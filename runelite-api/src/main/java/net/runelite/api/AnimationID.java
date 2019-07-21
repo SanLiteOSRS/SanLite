@@ -310,8 +310,9 @@ public final class AnimationID
 	public static final int GEERIN_FLINCH = 6958;
 	public static final int KILISA_ATTACK = 6957;
 
-	// Dagannoth Kings
-	public static final int DAG_REX_ATTACK = 2853;
-	public static final int DAG_PRIME_ATTACK = 2854;
-	public static final int DAG_SUPREME_ATTACK = 2855;
+	// Lizardman shaman
+	public static final int LIZARDMAN_SHAMAN_SPAWN = 7157;
+
+	public static final int BARRAGE_ANIMATION = 1979;
+	public static final int CHIN_ANIMATION = 7618;
 }

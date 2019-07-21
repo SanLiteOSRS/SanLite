@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2017, Adam <Adam@sigterm.info>
+ * Copyright (c) 2019, 7ate9 <https://github.com/se7enAte9>
+ * Copyright (c) 2019, https://runelitepl.us
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,88 +23,17 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.api;
+package net.runelite.api.events;
+
+import lombok.Data;
 
 /**
- * A two-dimensional coordinate on the canvas.
+ * An event where a draggable widget has been pressed.
  */
-public class Point
+@Data
+public class WidgetPressed
 {
-	private final int x;
-	private final int y;
-
-	public Point(int x, int y)
+	public WidgetPressed()
 	{
-		this.x = x;
-		this.y = y;
-	}
-
-	@Override
-	public String toString()
-	{
-		return "Point{" + "x=" + x + ", y=" + y + '}';
-	}
-
-	/**
-	 * Gets the x-axis coordinate of the point.
-	 *
-	 * @return the x-axis coordinate
-	 */
-	public int getX()
-	{
-		return x;
-	}
-
-	/**
-	 * Gets the y-axis coordinate of the point.
-	 *
-	 * @return the y-axis coordinate
-	 */
-	public int getY()
-	{
-		return y;
-	}
-
-	/**
-	 * Gets the distance between this point and another.
-	 *
-	 * @param other other point
-	 * @return the distance
-	 */
-	public int distanceTo(Point other)
-	{
-		return (int) Math.hypot(getX() - other.getX(), getY() - other.getY());
-	}
-
-	@Override
-	public int hashCode()
-	{
-		int hash = 3;
-		hash = 23 * hash + this.x;
-		hash = 23 * hash + this.y;
-		return hash;
-	}
-
-	@Override
-	public boolean equals(Object obj)
-	{
-		if (this == obj)
-		{
-			return true;
-		}
-		if (obj == null)
-		{
-			return false;
-		}
-		if (getClass() != obj.getClass())
-		{
-			return false;
-		}
-		final Point other = (Point) obj;
-		if (this.x != other.x)
-		{
-			return false;
-		}
-		return this.y == other.y;
 	}
 }

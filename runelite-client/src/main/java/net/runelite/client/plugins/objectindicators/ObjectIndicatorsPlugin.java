@@ -40,7 +40,6 @@ import java.util.Set;
 import javax.inject.Inject;
 import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.*;
 
 import static net.runelite.api.Constants.REGION_SIZE;

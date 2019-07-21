@@ -24,46 +24,6 @@
  */
 package net.runelite.client.plugins.config;
 
-import com.google.common.base.Strings;
-import com.google.common.primitives.Ints;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
-import java.awt.event.ItemEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.stream.Collectors;
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
-import javax.swing.JFormattedTextField;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JScrollPane;
-import javax.swing.JSpinner;
-import javax.swing.JTextArea;
-import javax.swing.ScrollPaneConstants;
-import javax.swing.SpinnerModel;
-import javax.swing.SpinnerNumberModel;
-import javax.swing.SwingUtilities;
-import javax.swing.border.EmptyBorder;
-import javax.swing.event.ChangeListener;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
-import javax.swing.text.JTextComponent;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.client.config.*;
 import net.runelite.client.plugins.*;
@@ -73,8 +33,6 @@ import net.runelite.client.ui.PluginPanel;
 import net.runelite.client.ui.components.IconButton;
 import net.runelite.client.ui.components.IconTextField;
 import net.runelite.client.ui.components.colorpicker.ColorPickerManager;
-import net.runelite.client.ui.components.colorpicker.RuneliteColorPicker;
-import net.runelite.client.util.ColorUtil;
 import net.runelite.client.util.ImageUtil;
 import net.runelite.client.util.Text;
 
@@ -114,7 +72,6 @@ public class ConfigPanel extends PluginPanel
 	private final RuneLiteConfig runeLiteConfig;
 	private final ChatColorConfig chatColorConfig;
 	private final ColorPickerManager colorPickerManager;
-	private final List<PluginListItem> pluginList = new ArrayList<>();
 
 	private final IconTextField searchBar = new IconTextField();
 	private final List<CollapsibleEntry> collapsibleEntries = new ArrayList<>();
@@ -133,7 +90,7 @@ public class ConfigPanel extends PluginPanel
 	}
 
 	ConfigPanel(PluginManager pluginManager, ConfigManager configManager, ScheduledExecutorService executorService,
-		RuneLiteConfig runeLiteConfig, ChatColorConfig chatColorConfig, ColorPickerManager colorPickerManager)
+				RuneLiteConfig runeLiteConfig, ChatColorConfig chatColorConfig, ColorPickerManager colorPickerManager)
 	{
 		super(false);
 		this.pluginManager = pluginManager;
@@ -641,28 +598,14 @@ public class ConfigPanel extends PluginPanel
 		topPanelBackButton.setToolTipText("Back");
 		topPanel.add(topPanelBackButton, BorderLayout.WEST);
 
-				colorPickerBtn.setFocusable(false);
-				colorPickerBtn.setBackground(existingColor);
-				colorPickerBtn.addMouseListener(new MouseAdapter()
-				{
-					@Override
-					public void mouseClicked(MouseEvent e)
-					{
-						RuneliteColorPicker colorPicker = colorPickerManager.create(
-							SwingUtilities.windowForComponent(ConfigPanel.this),
-							colorPickerBtn.getBackground(),
-							cid.getItem().name(),
-							cid.getAlpha() == null);
-						colorPicker.setLocation(getLocationOnScreen());
-						colorPicker.setOnColorChange(c ->
-						{
-							colorPickerBtn.setBackground(c);
-							colorPickerBtn.setText(ColorUtil.toHexColor(c).toUpperCase());
-						});
-						colorPicker.setOnClose(c -> changeConfiguration(listItem, config, colorPicker, cd, cid));
-						colorPicker.setVisible(true);
-					}
-				});
+		topPanel.add(listItem.createToggleButton(), BorderLayout.EAST);
+
+		String name = listItem.getName();
+		JLabel title = new JLabel(name);
+		title.setForeground(Color.WHITE);
+		title.setToolTipText("<html>" + name + ":<br>" + listItem.getDescription() + "</html>");
+		PluginListItem.addLabelPopupMenu(title, PluginListItem.wikiLinkMenuItem(listItem.getName()));
+		topPanel.add(title);
 
 		for (ConfigItemsGroup cig : cd.getItemGroups())
 		{
@@ -744,7 +687,7 @@ public class ConfigPanel extends PluginPanel
 	 */
 	private void createConfigItems(Collection<ConfigItemDescriptor> itemDescriptors, ConfigDescriptor cd, PluginListItem listItem, Config config)
 	{
-		ConfigItemUI configItemUI = new ConfigItemUI(configManager, this);
+		ConfigItemUI configItemUI = new ConfigItemUI(configManager, this, colorPickerManager);
 
 		for (ConfigItemDescriptor cid : itemDescriptors)
 		{

@@ -552,8 +552,8 @@ public class TabInterface
 
 		if (chatboxPanelManager.getCurrentInput() != null
 			&& event.getMenuAction() != MenuAction.CANCEL
-			&& !event.getMenuOption().equals(SCROLL_UP)
-			&& !event.getMenuOption().equals(SCROLL_DOWN))
+			&& !event.getMenuEntry().equals(SCROLL_UP)
+			&& !event.getMenuEntry().equals(SCROLL_DOWN))
 		{
 			chatboxPanelManager.close();
 		}

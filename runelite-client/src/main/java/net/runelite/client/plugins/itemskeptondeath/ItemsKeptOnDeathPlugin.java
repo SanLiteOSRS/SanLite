@@ -453,7 +453,7 @@ public class ItemsKeptOnDeathPlugin extends Plugin
 
 		if (exchangePrice == 0)
 		{
-			final ItemComposition c1 = itemManager.getItemComposition(canonicalizedItemId);
+			final ItemDefinition c1 = itemManager.getItemComposition(canonicalizedItemId);
 			exchangePrice = c1.getPrice();
 		}
 
@@ -700,7 +700,7 @@ public class ItemsKeptOnDeathPlugin extends Plugin
 	{
 		final int id = item.getId();
 		final int qty = item.getQty();
-		final ItemComposition c = itemManager.getItemComposition(id);
+		final ItemDefinition c = itemManager.getItemComposition(id);
 
 		final Widget itemWidget = parent.createChild(-1, WidgetType.GRAPHIC);
 		itemWidget.setOriginalWidth(Constants.ITEM_SPRITE_WIDTH);
