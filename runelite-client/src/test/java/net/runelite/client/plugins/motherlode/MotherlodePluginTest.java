@@ -101,7 +101,7 @@ public class MotherlodePluginTest
 	{
 		// set inMlm
 		GameStateChanged gameStateChanged = new GameStateChanged();
-		gameStateChanged.setGameState(GameState.LOADING);
+		gameStateChanged.setGameState(GameState.LOGGED_IN);
 		motherlodePlugin.onGameStateChanged(gameStateChanged);
 
 		// Initial sack count
@@ -147,7 +147,7 @@ public class MotherlodePluginTest
 		when(client.getItemContainer(InventoryID.INVENTORY)).thenReturn(inventory);
 
 		// Trigger comparison
-		motherlodePlugin.onItemContainerChanged(new ItemContainerChanged(InventoryID.INVENTORY.getId(), inventory));
+		motherlodePlugin.onItemContainerChanged(new ItemContainerChanged(inventory));
 
 		verify(motherlodeSession).updateOreFound(ItemID.RUNITE_ORE, 1);
 		verify(motherlodeSession).updateOreFound(ItemID.GOLDEN_NUGGET, 4);

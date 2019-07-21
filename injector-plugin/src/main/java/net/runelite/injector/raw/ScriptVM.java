@@ -28,8 +28,6 @@ import java.util.HashSet;
 import java.util.ListIterator;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicReference;
-
-import net.runelite.asm.ClassGroup;
 import net.runelite.asm.Field;
 import net.runelite.asm.Method;
 import net.runelite.asm.Type;
@@ -55,11 +53,12 @@ import net.runelite.asm.execution.MethodContext;
 import net.runelite.asm.execution.StackContext;
 import net.runelite.deob.DeobAnnotations;
 import net.runelite.injector.Inject;
+import net.runelite.injector.InjectUtil;
+import static net.runelite.injector.InjectUtil.findDeobField;
+import static net.runelite.injector.InjectUtil.findObField;
 import net.runelite.injector.InjectionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import static net.runelite.injector.InjectUtil.*;
 
 public class ScriptVM
 {
@@ -79,8 +78,6 @@ public class ScriptVM
 
 	private void injectScriptVMHooks() throws InjectionException
 	{
-		final ClassGroup vanilla = inject.getVanilla();
-
 		/*
 			This hooks local variable assignments in the copied version of runScript:
 			 - The currently executing script > client.currentScript
@@ -108,16 +105,13 @@ public class ScriptVM
 			if_icmpge L52
 
 		 */
-		final String scriptObName = DeobAnnotations.getObfuscatedName(inject.getDeobfuscated().findClass("Script").getAnnotations());
-
-		final Method runScript = findStaticMethod(vanilla, "copy$runScript");
-		final Method vmExecuteOpcode = findStaticMethod(vanilla, "vmExecuteOpcode");
-
-		final Field scriptInstructions = findDeobField(inject, "opcodes");
-		final Field scriptStatePC = findDeobField(inject, "pc");
-
-		final Field currentScriptField = findObField(inject, "currentScript");
-		final Field currentScriptPCField = findObField(inject, "currentScriptPC");
+		String scriptObName = DeobAnnotations.getObfuscatedName(inject.getDeobfuscated().findClass("Script").getAnnotations());
+		Method runScript = InjectUtil.findStaticObMethod(inject, "copy$runScript0");
+		Method vmExecuteOpcode = InjectUtil.findStaticObMethod(inject, "vmExecuteOpcode");
+		Field scriptInstructions = findDeobField(inject, "opcodes");
+		Field scriptStatePC = findDeobField(inject, "pc");
+		Field currentScriptField = findObField(inject, "currentScript");
+		Field currentScriptPCField = findObField(inject, "currentScriptPC");
 
 		Execution e = new Execution(inject.getVanilla());
 		e.addMethod(runScript);

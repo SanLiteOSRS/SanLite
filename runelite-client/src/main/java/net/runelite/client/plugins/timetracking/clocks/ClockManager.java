@@ -27,8 +27,6 @@ package net.runelite.client.plugins.timetracking.clocks;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.google.inject.Singleton;
-
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -36,13 +34,11 @@ import javax.inject.Inject;
 import javax.swing.SwingUtilities;
 import joptsimple.internal.Strings;
 import lombok.Getter;
-import lombok.extern.slf4j.Slf4j;
 import net.runelite.client.Notifier;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.plugins.timetracking.TimeTrackingConfig;
 
 @Singleton
-@Slf4j
 public class ClockManager
 {
 	@Inject
@@ -61,19 +57,7 @@ public class ClockManager
 	private final List<Stopwatch> stopwatches = new ArrayList<>();
 
 	@Getter
-	private ClockTabPanel clockTabPanel;
-
-	public ClockManager()
-	{
-		try
-		{
-			SwingUtilities.invokeAndWait(() -> clockTabPanel = new ClockTabPanel(this));
-		}
-		catch (InterruptedException | InvocationTargetException e)
-		{
-			log.error("Error constructing ClockManager", e);
-		}
-	}
+	private ClockTabPanel clockTabPanel = new ClockTabPanel(this);
 
 	void addTimer()
 	{

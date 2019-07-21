@@ -62,17 +62,14 @@ public class HotColdClue extends ClueScroll implements LocationClueScroll, Locat
 	private static final int HOT_COLD_PANEL_WIDTH = 200;
 	private static final HotColdClue BEGINNER_CLUE = new HotColdClue("Buried beneath the ground, who knows where it's found. Lucky for you, A man called Reldo may have a clue.",
 		"Reldo",
-		"Speak to Reldo to receive a strange device.",
-		new WorldPoint(3211, 3494, 0));
+		"Speak to Reldo to receive a strange device.");
 	private static final HotColdClue MASTER_CLUE = new HotColdClue("Buried beneath the ground, who knows where it's found. Lucky for you, A man called Jorral may have a clue.",
 		"Jorral",
-		"Speak to Jorral to receive a strange device.",
-		new WorldPoint(2436, 3347, 0));
+		"Speak to Jorral to receive a strange device.");
 
 	private final String text;
 	private final String npc;
 	private final String solution;
-	private final WorldPoint npcLocation;
 	@Nullable
 	private HotColdSolver hotColdSolver;
 	private WorldPoint location;
@@ -93,12 +90,11 @@ public class HotColdClue extends ClueScroll implements LocationClueScroll, Locat
 		return null;
 	}
 
-	private HotColdClue(String text, String npc, String solution, WorldPoint npcLocation)
+	private HotColdClue(String text, String npc, String solution)
 	{
 		this.text = text;
 		this.npc = npc;
 		this.solution = solution;
-		this.npcLocation = npcLocation;
 		setRequiresSpade(true);
 		initializeSolver();
 	}
@@ -111,14 +107,7 @@ public class HotColdClue extends ClueScroll implements LocationClueScroll, Locat
 			return new WorldPoint[0];
 		}
 
-		if (hotColdSolver.getLastWorldPoint() == null)
-		{
-			return new WorldPoint[] {npcLocation};
-		}
-		else
-		{
-			return hotColdSolver.getPossibleLocations().stream().map(HotColdLocation::getWorldPoint).toArray(WorldPoint[]::new);
-		}
+		return hotColdSolver.getPossibleLocations().stream().map(HotColdLocation::getWorldPoint).toArray(WorldPoint[]::new);
 	}
 
 	@Override

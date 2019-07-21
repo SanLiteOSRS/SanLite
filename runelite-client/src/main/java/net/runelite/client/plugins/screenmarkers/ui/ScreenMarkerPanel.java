@@ -33,6 +33,8 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -543,35 +545,45 @@ class ScreenMarkerPanel extends JPanel
 
 	private void openFillColorPicker()
 	{
-		RuneliteColorPicker colorPicker = plugin.getColorPickerManager().create(
-			SwingUtilities.windowForComponent(this),
-			marker.getMarker().getFill(),
-			marker.getMarker().getName() + " Fill",
-			false);
+		RuneliteColorPicker colorPicker = new RuneliteColorPicker(SwingUtilities.windowForComponent(this),
+			marker.getMarker().getFill(), marker.getMarker().getName() + " Fill", false);
 		colorPicker.setLocation(getLocationOnScreen());
 		colorPicker.setOnColorChange(c ->
 		{
 			marker.getMarker().setFill(c);
 			updateFill();
 		});
-		colorPicker.setOnClose(c -> plugin.updateConfig());
+
+		colorPicker.addWindowListener(new WindowAdapter()
+		{
+			@Override
+			public void windowClosing(WindowEvent e)
+			{
+				plugin.updateConfig();
+			}
+		});
 		colorPicker.setVisible(true);
 	}
 
 	private void openBorderColorPicker()
 	{
-		RuneliteColorPicker colorPicker = plugin.getColorPickerManager().create(
-			SwingUtilities.windowForComponent(this),
-			marker.getMarker().getColor(),
-			marker.getMarker().getName() + " Border",
-			false);
+		RuneliteColorPicker colorPicker = new RuneliteColorPicker(SwingUtilities.windowForComponent(this),
+			marker.getMarker().getColor(), marker.getMarker().getName() + " Border", false);
 		colorPicker.setLocation(getLocationOnScreen());
 		colorPicker.setOnColorChange(c ->
 		{
 			marker.getMarker().setColor(c);
 			updateBorder();
 		});
-		colorPicker.setOnClose(c -> plugin.updateConfig());
+
+		colorPicker.addWindowListener(new WindowAdapter()
+		{
+			@Override
+			public void windowClosing(WindowEvent e)
+			{
+				plugin.updateConfig();
+			}
+		});
 		colorPicker.setVisible(true);
 	}
 }

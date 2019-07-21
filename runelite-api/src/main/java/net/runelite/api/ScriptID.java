@@ -165,11 +165,9 @@ public final class ScriptID
 
 	/**
 	 * Handles zoom input
-	 *
-	 * Updates the VarClientInts (73, 74) to this same value
 	 * <ul>
-	 * <li> int  Reset zoom position </li>
-	 * <li> int  Reset zoom position </li>
+	 * <li> int  zoom value </li>
+	 * <li> int  zoom value </li>
 	 * </ul>
 	 */
 	public static final int CAMERA_DO_ZOOM = 42;
@@ -202,14 +200,4 @@ public final class ScriptID
 	 * Join a clan chat channel
 	 */
 	public static final int CUSTOM_JOIN_CLAN = 10690;
-
-	/**
-	 * Send a public message
-	 */
-	public static final int PUBLIC_MSG = 13337;
-
-	/**
-	 * Clicking bank pin buttons runs this
-	 */
-	public static final int BANK_PIN_BUTTON_CLICK = 685;
 }

@@ -109,11 +109,10 @@ class PrayerBarOverlay extends Overlay
 				final double t = plugin.getTickProgress();
 				final int halfBarWidth = (barWidth / 2) - HD_PRAYER_BAR_PADDING;
 
-				final int xOffset = (int) (-Math.cos(t) * halfBarWidth) + halfBarWidth;
+				final int xOffset = (int) (-Math.cos(t) * halfBarWidth) + ((barWidth / 2) - halfBarWidth);
 
 				graphics.setColor(FLICK_HELP_COLOR);
-				// Padding is accounted for in the offset calculation
-				graphics.fillRect(barX + xOffset, barY + HD_PRAYER_BAR_PADDING, 1, barHeight - HD_PRAYER_BAR_PADDING * 2);
+				graphics.fillRect(barX + xOffset + HD_PRAYER_BAR_PADDING, barY + HD_PRAYER_BAR_PADDING, 1, barHeight - HD_PRAYER_BAR_PADDING * 2);
 			}
 
 			return new Dimension(barWidth, barHeight);

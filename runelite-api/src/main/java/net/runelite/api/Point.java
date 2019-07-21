@@ -104,6 +104,10 @@ public class Point
 		{
 			return false;
 		}
-		return this.y == other.y;
+		if (this.y != other.y)
+		{
+			return false;
+		}
+		return true;
 	}
 }

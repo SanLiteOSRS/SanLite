@@ -84,6 +84,7 @@ import net.runelite.client.input.KeyManager;
 import net.runelite.client.input.MouseAdapter;
 import net.runelite.client.input.MouseListener;
 import net.runelite.client.input.MouseManager;
+import net.runelite.client.ui.skin.SubstanceRuneLiteLookAndFeel;
 import net.runelite.client.util.HotkeyListener;
 import net.runelite.client.util.ImageUtil;
 import net.runelite.client.util.OSType;
@@ -300,7 +301,14 @@ public class ClientUI
 	{
 		SwingUtilities.invokeAndWait(() ->
 		{
-			SwingUtil.setupRuneLiteLookAndFeel();
+			// Set some sensible swing defaults
+			SwingUtil.setupDefaults();
+
+			// Use substance look and feel
+			SwingUtil.setTheme(new SubstanceRuneLiteLookAndFeel());
+
+			// Use custom UI font
+			SwingUtil.setFont(FontManager.getRunescapeFont());
 
 			// Create main window
 			frame = new ContainableFrame();
@@ -850,15 +858,7 @@ public class ClientUI
 		}
 
 		frame.setExpandResizeType(config.automaticResizeType());
-
-		ContainableFrame.Mode containMode = config.containInScreen();
-		if (containMode == ContainableFrame.Mode.ALWAYS && !withTitleBar)
-		{
-			// When native window decorations are enabled we don't have a way to receive window move events
-			// so we can't contain to screen always.
-			containMode = ContainableFrame.Mode.RESIZING;
-		}
-		frame.setContainedInScreen(containMode);
+		frame.setContainedInScreen(config.containInScreen() && withTitleBar);
 
 		if (!config.rememberScreenBounds())
 		{

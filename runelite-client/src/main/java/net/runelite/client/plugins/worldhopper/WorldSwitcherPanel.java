@@ -24,7 +24,6 @@
  */
 package net.runelite.client.plugins.worldhopper;
 
-import com.google.common.collect.Ordering;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -34,17 +33,18 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Function;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import lombok.AccessLevel;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 import net.runelite.client.ui.ColorScheme;
 import net.runelite.client.ui.DynamicGridLayout;
 import net.runelite.client.ui.PluginPanel;
 import net.runelite.http.api.worlds.World;
 import net.runelite.http.api.worlds.WorldType;
 
+@Slf4j
 class WorldSwitcherPanel extends PluginPanel
 {
 	private static final Color ODD_ROW = new Color(44, 44, 44);
@@ -159,27 +159,23 @@ class WorldSwitcherPanel extends PluginPanel
 			switch (orderIndex)
 			{
 				case PING:
-					// Leave worlds with unknown ping at the bottom
-					return getCompareValue(r1, r2, row ->
-					{
-						int ping = row.getPing();
-						return ping > 0 ? ping : null;
-					});
+					return Integer.compare(r1.getPing(), r2.getPing()) * (ascendingOrder ? 1 : -1);
 				case WORLD:
-					return getCompareValue(r1, r2, row -> row.getWorld().getId());
+					return Integer.compare(r1.getWorld().getId(), r2.getWorld().getId()) * (ascendingOrder ? 1 : -1);
 				case PLAYERS:
-					return getCompareValue(r1, r2, WorldTableRow::getUpdatedPlayerCount);
+					return Integer.compare(r1.getUpdatedPlayerCount(), r2.getUpdatedPlayerCount()) * (ascendingOrder ? 1 : -1);
 				case ACTIVITY:
-					// Leave empty activity worlds on the bottom of the list
-					return getCompareValue(r1, r2, row ->
-					{
-						String activity = row.getWorld().getActivity();
-						return !activity.equals("-") ? activity : null;
-					});
+					return r1.getWorld().getActivity().compareTo(r2.getWorld().getActivity()) * -1 * (ascendingOrder ? 1 : -1);
 				default:
 					return 0;
 			}
 		});
+
+		// Leave empty activity worlds on the bottom of the list
+		if (orderIndex == WorldOrder.ACTIVITY)
+		{
+			rows.sort((r1, r2) -> r1.getWorld().getActivity().equals("-") ? 1 : -1);
+		}
 
 		rows.sort((r1, r2) ->
 		{
@@ -199,17 +195,6 @@ class WorldSwitcherPanel extends PluginPanel
 
 		listContainer.revalidate();
 		listContainer.repaint();
-	}
-
-	private int getCompareValue(WorldTableRow row1, WorldTableRow row2, Function<WorldTableRow, Comparable> compareByFn)
-	{
-		Ordering<Comparable> ordering = Ordering.natural();
-		if (!ascendingOrder)
-		{
-			ordering = ordering.reverse();
-		}
-		ordering = ordering.nullsLast();
-		return ordering.compare(compareByFn.apply(row1), compareByFn.apply(row2));
 	}
 
 	void updateFavoriteMenu(int world, boolean favorite)

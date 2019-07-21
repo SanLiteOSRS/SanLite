@@ -3,20 +3,20 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("dj")
+@ObfuscatedName("df")
 @Implements("PcmStreamMixerListener")
 public abstract class PcmStreamMixerListener extends Node {
-	@ObfuscatedName("q")
-	int field1452;
+   @ObfuscatedName("m")
+   int __m;
 
-	@ObfuscatedName("q")
-	@Export("remove2")
-	abstract void remove2();
+   @ObfuscatedName("m")
+   @Export("remove2")
+   abstract void remove2();
 
-	@ObfuscatedName("w")
-	@ObfuscatedSignature(
-		signature = "(Lcz;)I"
-	)
-	@Export("update")
-	abstract int update();
+   @ObfuscatedName("f")
+   @ObfuscatedSignature(
+      signature = "(Lct;)I"
+   )
+   @Export("update")
+   abstract int update();
 }

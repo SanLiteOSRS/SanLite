@@ -28,15 +28,13 @@ import net.runelite.client.config.Config;
 import net.runelite.client.config.ConfigGroup;
 import net.runelite.client.config.ConfigItem;
 
-import java.awt.*;
-
 @ConfigGroup("Alchemical Hydra")
 public interface AlchemicalHydraConfig extends Config
 {
 	@ConfigItem(
 			keyName = "showAttackStyleCounter",
 			name = "Show attack style counter",
-			description = "Displays the Alchemical Hydra's next attack above it's health bar",
+			description = "Highlight the tiles for the Alchemical Hydra's poison, lightning and fire attacks",
 			position = 1
 	)
 	default boolean showAttackStyleCounter()
@@ -56,76 +54,21 @@ public interface AlchemicalHydraConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "highlightChemicalFountainStatus",
-			name = "Highlight chemical fountain status",
-			description = "Highlight the chemical fountain area and status depending on phase",
+			keyName = "highlightChemicalPoolsStatus",
+			name = "Highlight chemical pool status",
+			description = "Highlight the chemical pool area and status depending on phase",
 			position = 3
 	)
-	default boolean highlightChemicalFountainStatus()
+	default boolean highlightChemicalPoolsStatus()
 	{
 		return true;
 	}
 
 	@ConfigItem(
-			keyName = "poisonAttackColor",
-			name = "Poison attack marker",
-			description = "Color of Alchemical Hydra's poison special attack marker",
-			position = 4
-	)
-	default Color getPoisonAttackColor()
-	{
-		return new Color(159, 219, 0);
-	}
-
-	@ConfigItem(
-			keyName = "lightningAttackColor",
-			name = "Lightning marker",
-			description = "Color of Alchemical Hydra's lightning special attack marker",
-			position = 5
-	)
-	default Color getLightningAttackColor()
-	{
-		return new Color(3, 133, 219);
-	}
-
-	@ConfigItem(
-			keyName = "fireAttackColor",
-			name = "Fire marker",
-			description = "Color of Alchemical Hydra's fire special attack marker",
-			position = 6
-	)
-	default Color getFireAttackColor()
-	{
-		return new Color(219, 116, 0, 255);
-	}
-
-	@ConfigItem(
-			keyName = "notOnChemicalPoolColor",
-			name = "Not on fountain marker",
-			description = "Color of chemical fountain marker while the Alchemical Hydra is not on it",
-			position = 7
-	)
-	default Color getNotOnChemicalPoolColor()
-	{
-		return new Color(Color.RED.getRGB());
-	}
-
-	@ConfigItem(
-			keyName = "onChemicalPoolColor",
-			name = "On fountain marker",
-			description = "Color of chemical fountain marker while the Alchemical Hydra is on it",
-			position = 8
-	)
-	default Color getOnChemicalPoolColor()
-	{
-		return new Color(Color.GREEN.getRGB());
-	}
-
-	@ConfigItem(
-			keyName = "showDebugOverlay",
-			name = "Display debug overlay",
-			description = "Displays alchemical hydra debug overlay. This contains variables that the plugin uses to function",
-			position = 9
+		keyName = "showDebugOverlay",
+		name = "Display debug overlay",
+		description = "Displays alchemical hydra debug overlay. This contains variables that the plugin uses to function",
+		position = 4
 	)
 	default boolean showDebugOverlay()
 	{

@@ -76,11 +76,11 @@ public interface RSWidget extends Widget
 	@Override
 	void setTextColor(int textColor);
 
-	@Import("transparencyTop")
+	@Import("transparency")
 	@Override
 	int getOpacity();
 
-	@Import("transparencyTop")
+	@Import("transparency")
 	@Override
 	void setOpacity(int opacity);
 
@@ -272,7 +272,7 @@ public interface RSWidget extends Widget
 	@Override
 	void setHasListener(boolean hasListener);
 
-	@Import("onKey")
+	@Import("onKeyListener")
 	@Override
 	Object[] getOnKeyListener();
 
@@ -280,11 +280,11 @@ public interface RSWidget extends Widget
 	@Override
 	Object[] getOnLoadListener();
 
-	@Import("onDialogAbort")
+	@Import("onDialogAbortListener")
 	@Override
 	void setOnDialogAbortListener(Object... args);
 
-	@Import("onKey")
+	@Import("onKeyListener")
 	@Override
 	void setOnKeyListener(Object... args);
 
@@ -435,10 +435,4 @@ public interface RSWidget extends Widget
 	@Import("noScrollThrough")
 	@Override
 	void setNoScrollThrough(boolean noScrollThrough);
-
-	@Import("modelFrame")
-	int getModelFrame();
-
-	@Import("modelFrameCycle")
-	int getModelFrameCycle();
 }

@@ -115,11 +115,8 @@ public class InfoPanel extends PluginPanel
 
 		final Font smallFont = FontManager.getRunescapeSmallFont();
 
-		JLabel version = new JLabel(htmlLabel("RuneLite version: ", runeLiteProperties.getVersion()));
+		JLabel version = new JLabel(htmlLabel("SanLite version: ", runeLiteProperties.getVersion()));
 		version.setFont(smallFont);
-
-		JLabel sanliteVersion = new JLabel(htmlLabel("SanLite version: ", runeLiteProperties.getSanLiteVersion()));
-		sanliteVersion.setFont(smallFont);
 
 		JLabel revision = new JLabel();
 		revision.setFont(smallFont);
@@ -154,7 +151,6 @@ public class InfoPanel extends PluginPanel
 		});
 
 		versionPanel.add(version);
-		versionPanel.add(sanliteVersion);
 		versionPanel.add(revision);
 		versionPanel.add(launcher);
 		versionPanel.add(Box.createGlue());

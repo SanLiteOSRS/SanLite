@@ -35,8 +35,7 @@ public interface LootTrackerConfig extends Config
 	@ConfigItem(
 		keyName = "ignoredItems",
 		name = "Ignored items",
-		description = "Configures which items should be ignored when calculating loot prices.",
-		group = "Ignored items"
+		description = "Configures which items should be ignored when calculating loot prices."
 	)
 	default String getIgnoredItems()
 	{

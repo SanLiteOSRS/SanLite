@@ -246,8 +246,7 @@ public class AnnotationIntegrityChecker
 			Import im = method.getAnnotation(Import.class);
 			if (im != null && im.value().equals(name))
 			{
-				logger.debug("Field/method {} is imported", name);
-				return false;
+				return true;
 			}
 		}
 

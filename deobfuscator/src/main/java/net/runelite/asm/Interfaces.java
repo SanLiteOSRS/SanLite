@@ -28,7 +28,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import net.runelite.asm.pool.Class;
-import net.runelite.deob.DeobAnnotations;
 
 public class Interfaces
 {
@@ -89,22 +88,5 @@ public class Interfaces
 			}
 		}
 		return false;
-	}
-
-	public List<String> getIntfNames()
-	{
-		final List<String> names = new ArrayList<>();
-		for (ClassFile c : getMyInterfaces())
-		{
-			String name = DeobAnnotations.getObfuscatedName(c.getAnnotations());
-			if (name == null)
-			{
-				continue;
-			}
-
-			names.add(name);
-		}
-
-		return names;
 	}
 }

@@ -1,8 +1,8 @@
 package net.runelite.mixins;
 
-import net.runelite.api.mixins.Mixin;
 import net.runelite.api.mixins.Copy;
 import net.runelite.api.mixins.Inject;
+import net.runelite.api.mixins.Mixin;
 import net.runelite.api.mixins.Replace;
 import net.runelite.api.mixins.Shadow;
 import net.runelite.rs.api.RSClient;
@@ -27,13 +27,13 @@ public abstract class RSRasterizer2DMixin implements RSClient
 		pixels[index] = value & 0x00FFFFFF | outAlpha << 24;
 	}
 
-	@Copy("Rasterizer2D_fillRectangleGradientAlpha")
-	private static void rs$drawGradientAlpha(int var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7)
+	@Copy("drawGradientAlpha")
+	private static void rs$raster2d6(int var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7)
 	{
 		throw new RuntimeException();
 	}
 
-	@Replace("Rasterizer2D_fillRectangleGradientAlpha")
+	@Replace("drawGradientAlpha")
 	private static void rl$drawGradientAlpha(int var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7)
 	{
 		final int width = client.getGraphicsPixelsWidth();
@@ -45,7 +45,7 @@ public abstract class RSRasterizer2DMixin implements RSClient
 
 		if (!client.isGpu())
 		{
-			rs$drawGradientAlpha(var0, var1, var2, var3, var4, var5, var6, var7);
+			rs$raster2d6(var0, var1, var2, var3, var4, var5, var6, var7);
 			return;
 		}
 

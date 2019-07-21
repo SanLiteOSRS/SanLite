@@ -88,9 +88,9 @@ public class ProjectileID
 	public static final int CERB_FIRE = 1247;
 
 	/**
-	 * missing: superior dark beast
+	 * missing: marble gargoyle, superior dark beast
 	 */
-	public static final int MARBLE_GARGOYLE_AOE = 1453;
+
 	/**
 	 * non AOE, regular projectiles
 	 */

@@ -64,9 +64,6 @@ import org.objectweb.asm.ClassReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static net.runelite.injector.InjectUtil.toObClass;
-import static net.runelite.injector.InjectUtil.toObField;
-
 public class MixinInjector
 {
 	private static final Logger logger = LoggerFactory.getLogger(MixinInjector.class);
@@ -291,7 +288,7 @@ public class MixinInjector
 							throw new InjectionException("Shadow of nonexistent field " + shadowName);
 						}
 
-						Field obShadow = toObField(inject.getVanilla(), shadowField);
+						Field obShadow = inject.toObField(shadowField);
 						assert obShadow != null;
 						shadowFields.put(field.getPoolField(), obShadow);
 					}
@@ -562,8 +559,7 @@ public class MixinInjector
 						.findClass(deobReturnType.getInternalName());
 					if (deobReturnTypeClassFile != null)
 					{
-						ClassFile obReturnTypeClass = toObClass(inject.getVanilla(), deobReturnTypeClassFile);
-
+						ClassFile obReturnTypeClass = inject.toObClass(deobReturnTypeClassFile);
 						Instructions instructions = method.getCode().getInstructions();
 						ListIterator<Instruction> listIter = instructions.getInstructions().listIterator();
 						for (; listIter.hasNext(); )
@@ -645,7 +641,7 @@ public class MixinInjector
 
 				if (deobCf != null)
 				{
-					ClassFile obReturnTypeClass = toObClass(inject.getVanilla(), deobCf);
+					ClassFile obReturnTypeClass = inject.toObClass(deobCf);
 					Type newType = new Type("L" + obReturnTypeClass.getName() + ";");
 
 					((ANewArray) i).setType(newType);
@@ -899,7 +895,7 @@ public class MixinInjector
 							getter = (Number) an.getElement().getValue();
 						}
 
-						Field obField = toObField(inject.getVanilla(), targetField);
+						Field obField = inject.toObField(targetField);
 
 						if (method.isStatic() != targetField.isStatic())
 						{

@@ -84,7 +84,7 @@ public class PluginManagerTest
 	public void before() throws IOException
 	{
 		Injector injector = Guice.createInjector(Modules
-			.override(new RuneLiteModule(ClientUpdateCheckMode.AUTO))
+			.override(new RuneLiteModule(ClientUpdateCheckMode.AUTO, true))
 			.with(BoundFieldModule.of(this)));
 
 		RuneLite.setInjector(injector);
@@ -146,7 +146,7 @@ public class PluginManagerTest
 	{
 		List<Module> modules = new ArrayList<>();
 		modules.add(new GraphvizModule());
-		modules.add(new RuneLiteModule(ClientUpdateCheckMode.AUTO));
+		modules.add(new RuneLiteModule(ClientUpdateCheckMode.AUTO, true));
 
 		PluginManager pluginManager = new PluginManager(true, null, null, null, null, null);
 		pluginManager.loadCorePlugins();
