@@ -25,9 +25,9 @@
  */
 package net.runelite.mixins;
 
-import net.runelite.api.mixins.Mixin;
 import net.runelite.api.MessageNode;
 import net.runelite.api.mixins.Inject;
+import net.runelite.api.mixins.Mixin;
 import net.runelite.rs.api.RSChatChannel;
 import net.runelite.rs.api.RSDualNode;
 

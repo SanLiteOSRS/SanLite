@@ -24,9 +24,9 @@
  */
 package net.runelite.mixins;
 
-import net.runelite.api.mixins.Mixin;
 import net.runelite.api.mixins.Copy;
 import net.runelite.api.mixins.Inject;
+import net.runelite.api.mixins.Mixin;
 import net.runelite.api.mixins.Replace;
 import net.runelite.api.mixins.Shadow;
 import net.runelite.rs.api.RSClient;
@@ -44,10 +44,10 @@ public abstract class RSTextureMixin implements RSTexture
 	@Inject
 	private float rl$v;
 
-	@Copy("Texture_animate")
+	@Copy("animate")
 	public abstract void rs$animate(int diff);
 
-	@Replace("Texture_animate")
+	@Replace("animate")
 	public void rl$animate(int diff)
 	{
 		// The client animates textures by cycling the backing pixels of the texture each fram

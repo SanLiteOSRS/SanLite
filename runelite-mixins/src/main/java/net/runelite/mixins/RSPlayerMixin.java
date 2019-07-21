@@ -28,7 +28,6 @@ import java.awt.Polygon;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.runelite.api.mixins.Mixin;
 import net.runelite.api.HeadIcon;
 import static net.runelite.api.HeadIcon.MAGIC;
 import static net.runelite.api.HeadIcon.MELEE;
@@ -164,28 +163,28 @@ public abstract class RSPlayerMixin implements RSPlayer
 			Vertex vz = triangle.getC();
 
 			Point x = Perspective.localToCanvas(client,
-				localX - vx.getX(),
-				localY - vx.getZ(),
-				tileHeight + vx.getY());
+					localX - vx.getX(),
+					localY - vx.getZ(),
+					tileHeight + vx.getY());
 
 			Point y = Perspective.localToCanvas(client,
-				localX - vy.getX(),
-				localY - vy.getZ(),
-				tileHeight + vy.getY());
+					localX - vy.getX(),
+					localY - vy.getZ(),
+					tileHeight + vy.getY());
 
 			Point z = Perspective.localToCanvas(client,
-				localX - vz.getX(),
-				localY - vz.getZ(),
-				tileHeight + vz.getY());
+					localX - vz.getX(),
+					localY - vz.getZ(),
+					tileHeight + vz.getY());
 
 			int[] xx =
-			{
-				x.getX(), y.getX(), z.getX()
-			};
+					{
+						x.getX(), y.getX(), z.getX()
+					};
 			int[] yy =
-			{
-				x.getY(), y.getY(), z.getY()
-			};
+					{
+						x.getY(), y.getY(), z.getY()
+					};
 			polys.add(new Polygon(xx, yy, 3));
 		}
 
@@ -217,9 +216,9 @@ public abstract class RSPlayerMixin implements RSPlayer
 			Vertex c = triangle.getC();
 
 			Triangle rotatedTriangle = new Triangle(
-				a.rotate(orientation),
-				b.rotate(orientation),
-				c.rotate(orientation)
+					a.rotate(orientation),
+					b.rotate(orientation),
+					c.rotate(orientation)
 			);
 			rotatedTriangles.add(rotatedTriangle);
 		}

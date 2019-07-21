@@ -1,9 +1,9 @@
 package net.runelite.mixins;
 
-import net.runelite.api.mixins.Mixin;
 import net.runelite.api.Model;
 import net.runelite.api.Renderable;
 import net.runelite.api.mixins.Inject;
+import net.runelite.api.mixins.Mixin;
 import net.runelite.rs.api.RSGroundItemPile;
 
 import java.awt.geom.Area;

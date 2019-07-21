@@ -27,12 +27,12 @@ package net.runelite.mixins;
 import java.awt.Polygon;
 import java.awt.geom.Area;
 
-import net.runelite.api.mixins.Mixin;
 import net.runelite.api.Perspective;
 import net.runelite.api.Point;
 import net.runelite.api.coords.Angle;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.mixins.Inject;
+import net.runelite.api.mixins.Mixin;
 import net.runelite.api.mixins.Shadow;
 import net.runelite.rs.api.RSClient;
 import net.runelite.rs.api.RSEntity;

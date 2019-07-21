@@ -1,8 +1,8 @@
 package net.runelite.mixins;
 
-import net.runelite.api.mixins.Mixin;
 import net.runelite.api.kit.KitType;
 import net.runelite.api.mixins.Inject;
+import net.runelite.api.mixins.Mixin;
 import net.runelite.rs.api.RSPlayerAppearance;
 
 @Mixin(RSPlayerAppearance.class)

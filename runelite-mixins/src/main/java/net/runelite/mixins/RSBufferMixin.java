@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, Adam <Adam@sigterm.info>
+ * Copyright (c) 2019, Null (zeruth)
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -24,26 +24,32 @@
  */
 package net.runelite.mixins;
 
+import java.math.BigInteger;
+import net.runelite.api.mixins.Copy;
 import net.runelite.api.mixins.Inject;
 import net.runelite.api.mixins.Mixin;
-import net.runelite.rs.api.RSFriend;
-import net.runelite.rs.api.RSUsername;
+import net.runelite.api.mixins.Replace;
+import net.runelite.api.mixins.Shadow;
+import net.runelite.rs.api.RSBuffer;
+import net.runelite.rs.api.RSClient;
 
-@Mixin(RSFriend.class)
-public abstract class RSFriendMixin implements RSFriend
+@Mixin(RSBuffer.class)
+public abstract class RSBufferMixin implements RSBuffer
 {
-	@Override
+	@Shadow("client")
+	private static RSClient client;
+
 	@Inject
-	public String getName()
+	private static BigInteger exponent = new BigInteger("10001", 16);
+
+	@Copy("encryptRsa")
+	public void rs$encryptRsa(BigInteger var1, BigInteger var2)
 	{
-		return getRsName().getName();
 	}
 
-	@Override
-	@Inject
-	public String getPrevName()
+	@Replace("encryptRsa")
+	public void rl$encryptRsa(BigInteger var1, BigInteger var2)
 	{
-		RSUsername prevName = getRsPrevName();
-		return prevName == null ? null : prevName.getName();
+		rs$encryptRsa(exponent, client.getModulus());
 	}
 }

@@ -2,9 +2,8 @@ package net.runelite.mixins;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
-
-import net.runelite.api.mixins.Mixin;
 import net.runelite.api.mixins.Inject;
+import net.runelite.api.mixins.Mixin;
 import net.runelite.rs.api.RSSprite;
 
 @Mixin(RSSprite.class)

@@ -25,7 +25,6 @@
 
 package net.runelite.mixins;
 
-import  net.runelite.api.mixins.Mixin;
 import net.runelite.api.GrandExchangeOfferState;
 import static net.runelite.api.GrandExchangeOfferState.BOUGHT;
 import static net.runelite.api.GrandExchangeOfferState.BUYING;
@@ -35,6 +34,7 @@ import static net.runelite.api.GrandExchangeOfferState.EMPTY;
 import static net.runelite.api.GrandExchangeOfferState.SELLING;
 import static net.runelite.api.GrandExchangeOfferState.SOLD;
 import net.runelite.api.mixins.Inject;
+import net.runelite.api.mixins.Mixin;
 import net.runelite.rs.api.RSGrandExchangeOffer;
 
 @Mixin(RSGrandExchangeOffer.class)

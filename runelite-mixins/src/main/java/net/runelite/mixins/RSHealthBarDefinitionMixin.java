@@ -1,9 +1,9 @@
 package net.runelite.mixins;
 
-import net.runelite.api.mixins.Mixin;
 import net.runelite.api.events.PostHealthBar;
 import net.runelite.api.mixins.Inject;
 import net.runelite.api.mixins.MethodHook;
+import net.runelite.api.mixins.Mixin;
 import net.runelite.api.mixins.Shadow;
 import net.runelite.rs.api.*;
 
@@ -13,7 +13,7 @@ public abstract class RSHealthBarDefinitionMixin implements RSHealthBarDefinitio
 	@Shadow("client")
 	private static RSClient client;
 
-	@MethodHook(value = "read", end = true)
+	@MethodHook(value = "decode", end = true)
 	@Inject
 	public void onRead(RSBuffer buffer)
 	{

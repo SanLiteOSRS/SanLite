@@ -26,7 +26,6 @@ package net.runelite.mixins;
 
 import java.awt.Polygon;
 
-import net.runelite.api.mixins.Mixin;
 import net.runelite.api.AnimationID;
 import net.runelite.api.NPCDefinition;
 import net.runelite.api.Perspective;
@@ -36,6 +35,7 @@ import net.runelite.api.events.NpcDespawned;
 import net.runelite.api.mixins.Copy;
 import net.runelite.api.mixins.FieldHook;
 import net.runelite.api.mixins.Inject;
+import net.runelite.api.mixins.Mixin;
 import net.runelite.api.mixins.Replace;
 import net.runelite.api.mixins.Shadow;
 import net.runelite.rs.api.RSClient;

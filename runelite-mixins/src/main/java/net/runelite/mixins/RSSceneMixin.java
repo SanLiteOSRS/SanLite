@@ -24,7 +24,6 @@
  */
 package net.runelite.mixins;
 
-import net.runelite.api.mixins.Mixin;
 import net.runelite.api.Perspective;
 import net.runelite.api.Renderable;
 import net.runelite.api.SceneTileModel;
@@ -33,6 +32,7 @@ import net.runelite.api.Tile;
 import net.runelite.api.hooks.DrawCallbacks;
 import net.runelite.api.mixins.Copy;
 import net.runelite.api.mixins.Inject;
+import net.runelite.api.mixins.Mixin;
 import net.runelite.api.mixins.Replace;
 import net.runelite.api.mixins.Shadow;
 import net.runelite.rs.api.*;

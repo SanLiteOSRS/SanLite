@@ -24,13 +24,13 @@
  */
 package net.runelite.mixins;
 
-import net.runelite.api.mixins.Mixin;
 import net.runelite.api.HashTable;
 import net.runelite.api.Node;
 import net.runelite.api.Point;
 import net.runelite.api.WidgetNode;
 import net.runelite.api.events.WidgetHiddenChanged;
 import net.runelite.api.events.WidgetPositioned;
+import net.runelite.api.mixins.*;
 import net.runelite.api.widgets.Widget;
 import static net.runelite.api.widgets.WidgetInfo.TO_CHILD;
 import static net.runelite.api.widgets.WidgetInfo.TO_GROUP;
@@ -40,13 +40,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
-import net.runelite.api.mixins.FieldHook;
-import net.runelite.api.mixins.Inject;
-import net.runelite.api.mixins.Shadow;
-import net.runelite.rs.api.RSClient;
-import net.runelite.rs.api.RSNode;
-import net.runelite.rs.api.RSNodeHashTable;
-import net.runelite.rs.api.RSWidget;
+
+import net.runelite.rs.api.*;
 
 @Mixin(RSWidget.class)
 public abstract class RSWidgetMixin implements RSWidget
@@ -580,5 +575,18 @@ public abstract class RSWidgetMixin implements RSWidget
 		{
 			Arrays.fill(getChildren(), null);
 		}
+	}
+
+	@Copy("getModel")
+	public abstract RSModel rs$getModel(RSSequenceDefinition sequence, int frame, boolean alternate, RSPlayerAppearance playerComposition);
+
+	@Replace("getModel")
+	public RSModel rl$getModel(RSSequenceDefinition sequence, int frame, boolean alternate, RSPlayerAppearance playerComposition)
+	{
+		if (frame != -1 && client.isInterpolateWidgetAnimations())
+		{
+			frame = frame | getModelFrameCycle() << 16 | Integer.MIN_VALUE;
+		}
+		return rs$getModel(sequence, frame, alternate, playerComposition);
 	}
 }
