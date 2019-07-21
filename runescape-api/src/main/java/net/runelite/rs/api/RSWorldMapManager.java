@@ -5,14 +5,14 @@ import net.runelite.mapping.Import;
 
 public interface RSWorldMapManager extends WorldMapManager
 {
-	@Import("isLoaded0")
+	@Import("isLoaded")
 	@Override
 	boolean isLoaded();
 
-	@Import("surfaceOffsetX")
+	@Import("tileX")
 	int getSurfaceOffsetX();
 
-	@Import("surfaceOffsetY")
+	@Import("tileY")
 	int getSurfaceOffsetY();
 
 	@Import("getPixelsPerTile")
