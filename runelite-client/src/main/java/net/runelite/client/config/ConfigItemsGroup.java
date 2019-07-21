@@ -4,7 +4,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 
 public class ConfigItemsGroup
 {
@@ -12,15 +12,15 @@ public class ConfigItemsGroup
 	private final String group;
 
 	@Getter(AccessLevel.PUBLIC)
-	private List<ConfigItemDescriptor> items;
+	private Collection<ConfigItemDescriptor> items;
 
-	ConfigItemsGroup(String group)
+	public ConfigItemsGroup(String group)
 	{
 		this.group = group;
 		this.items = new ArrayList<>();
 	}
 
-	void addItem(ConfigItemDescriptor item)
+	public void addItem(ConfigItemDescriptor item)
 	{
 		items.add(item);
 	}

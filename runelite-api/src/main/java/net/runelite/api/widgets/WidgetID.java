@@ -151,8 +151,6 @@ public class WidgetID
 	public static final int BEGINNER_CLUE_MAP_WIZARDS_TOWER = 356;
 	public static final int SEED_BOX_GROUP_ID = 128;
 	public static final int ITEMS_KEPT_ON_DEATH_GROUP_ID = 4;
-	public static final int TRADING_SCREEN = 335;
-	public static final int SEED_VAULT_GROUP_ID = 631;
 
 	static class WorldMap
 	{
@@ -255,7 +253,6 @@ public class WidgetID
 		static final int INVENTORY_ITEM_CONTAINER = 3;
 		static final int BANK_TITLE_BAR = 4;
 		static final int CONTENT_CONTAINER = 10;
-		static final int TAB_CONTAINER = 11;
 		static final int ITEM_CONTAINER = 13;
 		static final int SEARCH_BUTTON_BACKGROUND = 40;
 		static final int DEPOSIT_INVENTORY = 42;
@@ -605,7 +602,6 @@ public class WidgetID
 			static final int ROLE_SPRITE = 11;
 			static final int ROLE = 12;
 		}
-
 		static class HLR
 		{
 			static final int TEAMMATE1 = 18;
@@ -639,7 +635,7 @@ public class WidgetID
 			static final int BASE_POINTS = 33;
 			static final int HONOUR_POINTS_REWARD = 49;
 		}
-		static final int CORRECT_STYLE = 3;
+		static final int GAME_WIDGET = 3;
 		static final int CURRENT_WAVE_WIDGET = 4;
 		static final int CURRENT_WAVE = 5;
 		static final int LISTEN_WIDGET = 6;
@@ -669,7 +665,6 @@ public class WidgetID
 
 	static class TheatreOfBlood
 	{
-		static final int RAIDING_PARTY = 9;
 		static final int ORB_BOX = 10;
 		static final int BOSS_HEALTH_BAR = 35;
 	}
@@ -972,7 +967,6 @@ public class WidgetID
 
 	static class Pvp
 	{
-		static final int FOG_OVERLAY = 1;
 		static final int PVP_WIDGET_CONTAINER = 54;  // OUTDATED?
 		static final int SKULL = 56;  // OUTDATED?
 		static final int ATTACK_RANGE = 59;  // OUTDATED?
@@ -1123,10 +1117,5 @@ public class WidgetID
 		static final int BUTTON_8 = 30;
 		static final int BUTTON_9 = 32;
 		static final int BUTTON_0 = 34;
-	}
-
-	static class SeedVault
-	{
-		static final int TITLE_CONTAINER = 2;
 	}
 }

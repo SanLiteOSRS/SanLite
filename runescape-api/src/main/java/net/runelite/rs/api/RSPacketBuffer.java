@@ -1,5 +1,7 @@
 package net.runelite.rs.api;
 
-public interface RSPacketBuffer
+import net.runelite.api.PacketBuffer;
+
+public interface RSPacketBuffer extends PacketBuffer
 {
 }

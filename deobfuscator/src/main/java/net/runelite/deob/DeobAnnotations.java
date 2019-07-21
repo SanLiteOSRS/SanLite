@@ -83,6 +83,11 @@ public class DeobAnnotations
 		return getAnnotationValue(cf.getAnnotations(), IMPLEMENTS);
 	}
 
+	public static String getHookName(Annotations an)
+	{
+		return getAnnotationValue(an, HOOK);
+	}
+
 	public static Number getObfuscatedGetter(Field field)
 	{
 		if (field == null || field.getAnnotations() == null)
@@ -121,7 +126,7 @@ public class DeobAnnotations
 		return (String) elements.get(1).getValue();
 	}
 
-	public static String getAnnotationValue(Annotations an, Type type)
+	private static String getAnnotationValue(Annotations an, Type type)
 	{
 		if (an == null)
 		{

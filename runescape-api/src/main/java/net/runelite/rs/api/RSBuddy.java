@@ -5,7 +5,7 @@ import net.runelite.mapping.Import;
 
 public interface RSBuddy extends ChatPlayer, RSUser
 {
-	@Import("getWorld")
+	@Import("world0")
 	@Override
 	int getWorld();
 

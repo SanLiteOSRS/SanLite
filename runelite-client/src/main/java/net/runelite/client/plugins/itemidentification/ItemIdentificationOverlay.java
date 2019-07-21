@@ -80,18 +80,6 @@ class ItemIdentificationOverlay extends WidgetItemOverlay
 					return;
 				}
 				break;
-			case ORE:
-				if (!config.showOres())
-				{
-					return;
-				}
-				break;
-			case GEM:
-				if (!config.showGems())
-				{
-					return;
-				}
-				break;
 		}
 
 		graphics.setFont(FontManager.getRunescapeSmallFont());

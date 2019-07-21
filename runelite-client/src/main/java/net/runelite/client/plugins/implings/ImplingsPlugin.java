@@ -34,7 +34,6 @@ import lombok.Getter;
 import net.runelite.api.GameState;
 import net.runelite.api.NPC;
 import net.runelite.api.events.GameStateChanged;
-import net.runelite.api.events.NpcChanged;
 import net.runelite.api.events.NpcDespawned;
 import net.runelite.api.events.NpcSpawned;
 import net.runelite.client.config.ConfigManager;
@@ -43,10 +42,13 @@ import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.ui.overlay.OverlayManager;
 
+/**
+ * @author robin
+ */
 @PluginDescriptor(
 	name = "Implings",
 	description = "Highlight nearby implings on the minimap and on-screen",
-	tags = {"hunter", "minimap", "overlay", "imp"}
+	tags = {"hunter", "minimap", "overlay"}
 )
 public class ImplingsPlugin extends Plugin
 {
@@ -71,17 +73,17 @@ public class ImplingsPlugin extends Plugin
 		return configManager.getConfig(ImplingsConfig.class);
 	}
 
+
 	@Override
-	protected void startUp()
+	protected void startUp() throws Exception
 	{
 		overlayManager.add(overlay);
 		overlayManager.add(minimapOverlay);
 	}
 
 	@Override
-	protected void shutDown()
+	protected void shutDown() throws Exception
 	{
-		implings.clear();
 		overlayManager.remove(overlay);
 		overlayManager.remove(minimapOverlay);
 	}
@@ -93,18 +95,6 @@ public class ImplingsPlugin extends Plugin
 		Impling impling = Impling.findImpling(npc.getId());
 
 		if (impling != null)
-		{
-			implings.add(npc);
-		}
-	}
-
-	@Subscribe
-	public void onNpcChanged(NpcChanged npcCompositionChanged)
-	{
-		NPC npc = npcCompositionChanged.getNpc();
-		Impling impling = Impling.findImpling(npc.getId());
-
-		if (impling != null && !implings.contains(npc))
 		{
 			implings.add(npc);
 		}

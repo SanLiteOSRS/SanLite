@@ -16,7 +16,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Iterator;
-import java.util.ListIterator;
 
 public class HidePlayerAttacks
 {
@@ -28,28 +27,14 @@ public class HidePlayerAttacks
 		this.inject = inject;
 	}
 
-	private Method addPlayerOptions;
-	private net.runelite.asm.pool.Method shouldHideAttackOptionFor;
-
 	public void inject() throws InjectionException
 	{
 		Stopwatch stopwatch = Stopwatch.createStarted();
 
-		addPlayerOptions = InjectUtil.findStaticMethod(inject, "addPlayerToMenu");
-		shouldHideAttackOptionFor = inject.getVanilla().findClass("client").findMethod("shouldHideAttackOptionFor").getPoolMethod();
-
-		injectHideAttack();
-		injectHideCast();
-
-		stopwatch.stop();
-
-		log.info("HidePlayerAttacks took {}", stopwatch.toString());
-	}
-
-	private void injectHideAttack() throws InjectionException
-	{
+		final Method addPlayerOptions = InjectUtil.findStaticMethod(inject, "addPlayerToMenu");
 		final Field AttackOption_hidden = InjectUtil.findDeobField(inject, "AttackOption_hidden", "AttackOption").getPoolField();
 		final Field attackOption = InjectUtil.findDeobField(inject, "playerAttackOption", "Client").getPoolField();
+		final net.runelite.asm.pool.Method shouldHideAttackOptionFor = inject.getVanilla().findClass("client").findMethod("shouldHideAttackOptionFor").getPoolMethod();
 
 		// GETSTATIC					GETSTATIC
 		// GETSTATIC					GETSTATIC
@@ -134,65 +119,9 @@ public class HidePlayerAttacks
 		IfNe i3 = new IfNe(ins, label);
 
 		ins.addInstruction(injectIdx, i3);
-	}
 
-	private void injectHideCast() throws InjectionException
-	{
-		// LABEL before
-		// BIPUSH 8
-		// LDC (garbage)
-		// GETSTATIC selectedSpellFlags
-		// IMUL
-		// BIPUSH 8
-		// IAND
-		// IF_ICMPNE -> skip adding option
-		//
-		// <--- Inject call here
-		// <--- Inject comparison here (duh)
-		//
-		// add option n such
+		stopwatch.stop();
 
-		Instructions ins = addPlayerOptions.getCode().getInstructions();
-		ListIterator<Instruction> iterator = ins.getInstructions().listIterator();
-		while (iterator.hasNext())
-		{
-			Instruction i = iterator.next();
-			if (!(i instanceof BiPush) || (byte) ((BiPush) i).getConstant() != 8)
-			{
-				continue;
-			}
-
-			i = iterator.next();
-			while (!(i instanceof BiPush) || (byte) ((BiPush) i).getConstant() != 8)
-			{
-				i = iterator.next();
-			}
-
-			i = iterator.next();
-			if (!(i instanceof IAnd))
-			{
-				throw new InjectionException("Error injecting HideCastOptions in HidePlayerAttacks");
-			}
-
-			i = iterator.next();
-			if (!(i instanceof IfICmpNe))
-			{
-				throw new InjectionException("Error injecting HideCastOptions in HidePlayerAttacks");
-			}
-
-			Label target = ((IfICmpNe) i).getJumps().get(0);
-
-			// Load the player
-			ALoad i1 = new ALoad(ins, 0);
-			// Get the boolean
-			InvokeStatic i2 = new InvokeStatic(ins, shouldHideAttackOptionFor);
-			// Compare n such
-			IfNe i3 = new IfNe(ins, target);
-
-			iterator.add(i1);
-			iterator.add(i2);
-			iterator.add(i3);
-			return;
-		}
+		log.info("HidePlayerAttacks took {}", stopwatch.toString());
 	}
 }

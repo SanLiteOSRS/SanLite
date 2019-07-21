@@ -38,7 +38,6 @@ public class RuneLiteProperties
 {
 	private static final String RUNELITE_TITLE = "runelite.title";
 	private static final String RUNELITE_VERSION = "runelite.version";
-	private static final String SANLITE_VERSION = "sanlite.version";
 	private static final String RUNESCAPE_VERSION = "runescape.version";
 	private static final String DISCORD_APP_ID = "runelite.discord.appid";
 	private static final String DISCORD_INVITE = "runelite.discord.invite";
@@ -58,7 +57,7 @@ public class RuneLiteProperties
 		}
 		catch (IOException ex)
 		{
-			log.warn("Unable to load properties", ex);
+			log.warn("unable to load propertries", ex);
 		}
 	}
 
@@ -70,11 +69,6 @@ public class RuneLiteProperties
 	public String getVersion()
 	{
 		return properties.getProperty(RUNELITE_VERSION);
-	}
-
-	public String getSanLiteVersion()
-	{
-		return properties.getProperty(SANLITE_VERSION);
 	}
 
 	public String getRunescapeVersion()

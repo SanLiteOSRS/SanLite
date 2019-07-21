@@ -44,10 +44,10 @@ public abstract class RSTextureMixin implements RSTexture
 	@Inject
 	private float rl$v;
 
-	@Copy("animate")
+	@Copy("Texture_animate")
 	public abstract void rs$animate(int diff);
 
-	@Replace("animate")
+	@Replace("Texture_animate")
 	public void rl$animate(int diff)
 	{
 		// The client animates textures by cycling the backing pixels of the texture each fram

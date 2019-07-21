@@ -32,6 +32,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import javax.annotation.Nullable;
 import javax.inject.Singleton;
+import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Client;
 import net.runelite.api.hooks.Callbacks;
 import net.runelite.client.account.SessionManager;
@@ -54,20 +55,23 @@ import okhttp3.OkHttpClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+@Slf4j
 public class RuneLiteModule extends AbstractModule
 {
 	private final ClientUpdateCheckMode updateCheckMode;
+	private final boolean developerMode;
 
-	public RuneLiteModule(final ClientUpdateCheckMode updateCheckMode)
+	public RuneLiteModule(final ClientUpdateCheckMode updateCheckMode, final boolean developerMode)
 	{
 		this.updateCheckMode = updateCheckMode;
+		this.developerMode = developerMode;
 	}
 
 	@Override
 	protected void configure()
 	{
 		bindConstant().annotatedWith(Names.named("updateCheckMode")).to(updateCheckMode);
-		bindConstant().annotatedWith(Names.named("developerMode")).to(true);
+		bindConstant().annotatedWith(Names.named("developerMode")).to(developerMode);
 		bind(ScheduledExecutorService.class).toInstance(new ExecutorServiceExceptionLogger(Executors.newSingleThreadScheduledExecutor()));
 		bind(OkHttpClient.class).toInstance(RuneLiteAPI.CLIENT);
 		bind(MenuManager.class);

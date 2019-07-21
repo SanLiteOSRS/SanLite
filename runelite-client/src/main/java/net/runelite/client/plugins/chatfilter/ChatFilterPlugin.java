@@ -81,14 +81,12 @@ public class ChatFilterPlugin extends Plugin
 	protected void startUp() throws Exception
 	{
 		updateFilteredPatterns();
-		client.refreshChat();
 	}
 
 	@Override
 	protected void shutDown() throws Exception
 	{
 		filteredPatterns.clear();
-		client.refreshChat();
 	}
 
 	@Subscribe
@@ -116,13 +114,6 @@ public class ChatFilterPlugin extends Plugin
 			case MODPRIVATECHAT:
 			case FRIENDSCHAT:
 				break;
-			case LOGINLOGOUTNOTIFICATION:
-				if (config.filterLogin())
-				{
-					// Block the message
-					intStack[intStackSize - 3] = 0;
-				}
-				return;
 			default:
 				return;
 		}
@@ -244,8 +235,5 @@ public class ChatFilterPlugin extends Plugin
 		}
 
 		updateFilteredPatterns();
-
-		//Refresh chat after config change to reflect current rules
-		client.refreshChat();
 	}
 }

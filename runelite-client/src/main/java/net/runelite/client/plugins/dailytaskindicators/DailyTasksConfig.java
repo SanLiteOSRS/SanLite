@@ -120,15 +120,4 @@ public interface DailyTasksConfig extends Config
 	{
 		return false;
 	}
-
-	@ConfigItem(
-		position = 9,
-		keyName = "showArrows",
-		name = "Show Claimable Ogre Arrows",
-		description = "Show a message when you can collect ogre arrows from Rantz."
-	)
-	default boolean showArrows()
-	{
-		return false;
-	}
 }

@@ -299,11 +299,6 @@ public class PuzzleSolverOverlay extends Overlay
 										arrow = getUpArrow();
 									}
 
-									if (arrow == null)
-									{
-										continue;
-									}
-
 									int x = puzzleBoxLocation.getX() + blankX * PUZZLE_TILE_SIZE
 											+ PUZZLE_TILE_SIZE / 2 - arrow.getWidth() / 2;
 

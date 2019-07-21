@@ -64,6 +64,7 @@ import net.runelite.api.Point;
 import net.runelite.api.SpriteID;
 import net.runelite.api.WorldType;
 import net.runelite.api.events.ChatMessage;
+import net.runelite.api.events.GameStateChanged;
 import net.runelite.api.events.GameTick;
 import net.runelite.api.events.LocalPlayerDeath;
 import net.runelite.api.events.WidgetLoaded;
@@ -234,8 +235,6 @@ public class ScreenshotPlugin extends Plugin
 			.build();
 
 		clientToolbar.addNavigation(titleBarButton);
-
-		spriteManager.getSpriteAsync(SpriteID.CHATBOX_REPORT_BUTTON, 0, s -> reportButton = s);
 	}
 
 	@Override
@@ -244,6 +243,16 @@ public class ScreenshotPlugin extends Plugin
 		overlayManager.remove(screenshotOverlay);
 		clientToolbar.removeNavigation(titleBarButton);
 		keyManager.unregisterKeyListener(hotkeyListener);
+	}
+
+	@Subscribe
+	public void onGameStateChanged(GameStateChanged event)
+	{
+		if (event.getGameState() == GameState.LOGGED_IN
+			&& reportButton == null)
+		{
+			reportButton = spriteManager.getSprite(SpriteID.CHATBOX_REPORT_BUTTON, 0);
+		}
 	}
 
 	@Subscribe
@@ -638,14 +647,6 @@ public class ScreenshotPlugin extends Plugin
 		try
 		{
 			File screenshotFile = new File(playerFolder, fileName + ".png");
-
-			// To make sure that screenshots don't get overwritten, check if file exists,
-			// and if it does create file with same name and suffix.
-			int i = 1;
-			while (screenshotFile.exists())
-			{
-				screenshotFile = new File(playerFolder, fileName + String.format("(%d)", i++) + ".png");
-			}
 
 			ImageIO.write(screenshot, "PNG", screenshotFile);
 

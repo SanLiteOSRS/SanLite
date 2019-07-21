@@ -41,7 +41,6 @@ public interface GroundItemsConfig extends Config
 		keyName = "highlightedItems",
 		name = "Highlighted Items",
 		description = "Configures specifically highlighted ground items. Format: (item), (item)",
-		group = "Highlighted Items",
 		position = 0
 	)
 	default String getHighlightItems()
@@ -60,7 +59,6 @@ public interface GroundItemsConfig extends Config
 		keyName = "hiddenItems",
 		name = "Hidden Items",
 		description = "Configures hidden ground items. Format: (item), (item)",
-		group = "Hidden Items",
 		position = 1
 	)
 	default String getHiddenItems()
@@ -211,8 +209,7 @@ public interface GroundItemsConfig extends Config
 		keyName = "defaultColor",
 		name = "Default items color",
 		description = "Configures the color for default, non-highlighted items",
-		position = 14,
-		group = "Item values & color"
+		position = 14
 	)
 	default Color defaultColor()
 	{
@@ -223,8 +220,7 @@ public interface GroundItemsConfig extends Config
 		keyName = "highlightedColor",
 		name = "Highlighted items color",
 		description = "Configures the color for highlighted items",
-		position = 15,
-		group = "Item values & color"
+		position = 15
 	)
 	default Color highlightedColor()
 	{
@@ -235,8 +231,7 @@ public interface GroundItemsConfig extends Config
 		keyName = "hiddenColor",
 		name = "Hidden items color",
 		description = "Configures the color for hidden items in right-click menu and when holding ALT",
-		position = 16,
-		group = "Item values & color"
+		position = 16
 	)
 	default Color hiddenColor()
 	{
@@ -247,8 +242,7 @@ public interface GroundItemsConfig extends Config
 		keyName = "lowValueColor",
 		name = "Low value items color",
 		description = "Configures the color for low value items",
-		position = 17,
-		group = "Item values & color"
+		position = 17
 	)
 	default Color lowValueColor()
 	{
@@ -259,8 +253,7 @@ public interface GroundItemsConfig extends Config
 		keyName = "lowValuePrice",
 		name = "Low value price",
 		description = "Configures the start price for low value items",
-		position = 18,
-		group = "Item values & color"
+		position = 18
 	)
 	default int lowValuePrice()
 	{
@@ -271,8 +264,7 @@ public interface GroundItemsConfig extends Config
 		keyName = "mediumValueColor",
 		name = "Medium value items color",
 		description = "Configures the color for medium value items",
-		position = 19,
-		group = "Item values & color"
+		position = 19
 	)
 	default Color mediumValueColor()
 	{
@@ -283,8 +275,7 @@ public interface GroundItemsConfig extends Config
 		keyName = "mediumValuePrice",
 		name = "Medium value price",
 		description = "Configures the start price for medium value items",
-		position = 20,
-		group = "Item values & color"
+		position = 20
 	)
 	default int mediumValuePrice()
 	{
@@ -295,8 +286,7 @@ public interface GroundItemsConfig extends Config
 		keyName = "highValueColor",
 		name = "High value items color",
 		description = "Configures the color for high value items",
-		position = 21,
-		group = "Item values & color"
+		position = 21
 	)
 	default Color highValueColor()
 	{
@@ -307,8 +297,7 @@ public interface GroundItemsConfig extends Config
 		keyName = "highValuePrice",
 		name = "High value price",
 		description = "Configures the start price for high value items",
-		position = 22,
-		group = "Item values & color"
+		position = 22
 	)
 	default int highValuePrice()
 	{
@@ -319,8 +308,7 @@ public interface GroundItemsConfig extends Config
 		keyName = "insaneValueColor",
 		name = "Insane value items color",
 		description = "Configures the color for insane value items",
-		position = 23,
-		group = "Item values & color"
+		position = 23
 	)
 	default Color insaneValueColor()
 	{
@@ -331,8 +319,7 @@ public interface GroundItemsConfig extends Config
 		keyName = "insaneValuePrice",
 		name = "Insane value price",
 		description = "Configures the start price for insane value items",
-		position = 24,
-		group = "Item values & color"
+		position = 24
 	)
 	default int insaneValuePrice()
 	{

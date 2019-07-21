@@ -376,7 +376,9 @@ public class MotherlodePlugin extends Plugin
 			// on region changes the tiles get set to null
 			veins.clear();
 			rocks.clear();
-
+		}
+		else if (event.getGameState() == GameState.LOGGED_IN)
+		{
 			inMlm = checkInMlm();
 		}
 		else if (event.getGameState() == GameState.LOGIN_SCREEN)
@@ -459,9 +461,7 @@ public class MotherlodePlugin extends Plugin
 
 	private boolean checkInMlm()
 	{
-		GameState gameState = client.getGameState();
-		if (gameState != GameState.LOGGED_IN
-			&& gameState != GameState.LOADING)
+		if (client.getGameState() != GameState.LOGGED_IN)
 		{
 			return false;
 		}

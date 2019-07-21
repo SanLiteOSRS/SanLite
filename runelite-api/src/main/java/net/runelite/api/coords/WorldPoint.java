@@ -334,7 +334,7 @@ public class WorldPoint
 	 * @param other other point
 	 * @return the straight-line distance
 	 */
-	public float distanceTo2DHypotenuse(WorldPoint other)
+	private float distanceTo2DHypotenuse(WorldPoint other)
 	{
 		return (float) Math.hypot(getX() - other.getX(), getY() - other.getY());
 	}

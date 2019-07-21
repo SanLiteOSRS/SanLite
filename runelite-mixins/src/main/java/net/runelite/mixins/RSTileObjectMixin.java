@@ -2,7 +2,6 @@ package net.runelite.mixins;
 
 import java.awt.Graphics2D;
 import java.awt.Polygon;
-
 import net.runelite.api.Perspective;
 import net.runelite.api.Point;
 import net.runelite.api.TileObject;

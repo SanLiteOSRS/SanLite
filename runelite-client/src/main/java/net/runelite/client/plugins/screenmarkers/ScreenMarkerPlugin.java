@@ -50,7 +50,6 @@ import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.plugins.screenmarkers.ui.ScreenMarkerPluginPanel;
 import net.runelite.client.ui.ClientToolbar;
 import net.runelite.client.ui.NavigationButton;
-import net.runelite.client.ui.components.colorpicker.ColorPickerManager;
 import net.runelite.client.ui.overlay.OverlayManager;
 import net.runelite.client.util.ImageUtil;
 
@@ -85,10 +84,6 @@ public class ScreenMarkerPlugin extends Plugin
 
 	@Inject
 	private ScreenMarkerCreationOverlay overlay;
-
-	@Getter
-	@Inject
-	private ColorPickerManager colorPickerManager;
 
 	private ScreenMarkerMouseListener mouseListener;
 	private ScreenMarkerPluginPanel pluginPanel;

@@ -24,10 +24,12 @@
  */
 package net.runelite.mixins;
 
-import net.runelite.api.InventoryID;
-import net.runelite.api.mixins.*;
 import net.runelite.api.Item;
 import net.runelite.api.events.ItemContainerChanged;
+import net.runelite.api.mixins.FieldHook;
+import net.runelite.api.mixins.Inject;
+import net.runelite.api.mixins.Mixin;
+import net.runelite.api.mixins.Shadow;
 import net.runelite.rs.api.RSClient;
 import net.runelite.rs.api.RSGroundItem;
 import net.runelite.rs.api.RSItemContainer;
@@ -39,10 +41,7 @@ public abstract class RSItemContainerMixin implements RSItemContainer
 	private static RSClient client;
 
 	@Inject
-	static private int rl$lastCycle;
-
-	@Inject
-	static private int rl$lastContainer;
+	private int rl$lastCycle;
 
 	@Inject
 	@Override
@@ -63,36 +62,21 @@ public abstract class RSItemContainerMixin implements RSItemContainer
 		return items;
 	}
 
-	@Copy("itemContainerSetItem")
-	static void rs$itemContainerSetItem(int itemContainerId, int index, int itemId, int itemQuantity)
+	@FieldHook("quantities")
+	@Inject
+	public void stackSizesChanged(int idx)
 	{
-
-	}
-
-	@Replace("itemContainerSetItem")
-	static void rl$itemContainerSetItem(int itemContainerId, int index, int itemId, int itemQuantity)
-	{
-		rs$itemContainerSetItem(itemContainerId, index, itemId, itemQuantity);
-
 		int cycle = client.getGameCycle();
-
-		if (rl$lastCycle == cycle && rl$lastContainer == itemContainerId)
+		if (rl$lastCycle == cycle)
 		{
-			// Limit item container updates to one per cycle per container
-			return;
-		}
-
-		InventoryID container = InventoryID.getValue(itemContainerId);
-
-		if (container == null)
-		{
+			// Limit item container updates to one per cycle
 			return;
 		}
 
 		rl$lastCycle = cycle;
-		rl$lastContainer = itemContainerId;
 
-		ItemContainerChanged event = new ItemContainerChanged(itemContainerId, client.getItemContainer(container));
+		ItemContainerChanged event = new ItemContainerChanged(this);
 		client.getCallbacks().postDeferred(event);
 	}
+
 }

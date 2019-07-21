@@ -13,10 +13,4 @@ public interface RSFriendSystem extends FriendManager
 
 	@Import("isFriended")
 	boolean isFriended(RSUsername var1, boolean var2);
-
-	@Import("addFriend")
-	void addFriend(String username);
-
-	@Import("removeFriend")
-	void removeFriend(String username);
 }

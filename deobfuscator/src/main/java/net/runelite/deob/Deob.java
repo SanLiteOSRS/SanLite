@@ -71,7 +71,7 @@ public class Deob
 	{
 		if (args == null || args.length < 2)
 		{
-			System.err.println("Syntax: input_jar output_jar || input_jar output_jar rl");
+			System.err.println("Syntax: input_jar output_jar ?rl");
 			System.exit(-1);
 		}
 
@@ -81,9 +81,11 @@ public class Deob
 
 		ClassGroup group = JarUtil.loadJar(new File(args[0]));
 
-		run(group, new StaticShouldBeInstance());
-
-		if (args.length <= 2 || !args[2].equals("rl"))
+		if (args.length > 2 && args[2].equals("rl"))
+		{
+			run(group, new StaticShouldBeInstance());
+		}
+		else
 		{
 			// remove except RuntimeException
 			run(group, new RuntimeExceptions());

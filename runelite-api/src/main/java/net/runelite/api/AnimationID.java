@@ -155,7 +155,6 @@ public final class AnimationID
 	public static final int SAND_COLLECTION = 895;
 	public static final int PISCARILIUS_CRANE_REPAIR = 7199;
 	public static final int HOME_MAKE_TABLET = 4067;
-	public static final int DRAGONFIRE_SHIELD_SPECIAL = 6696;
 	public static final int THIEVING_STALL = 832;
 	public static final int PICKPOCKET_SUCCESS = 881;
 	
@@ -197,7 +196,6 @@ public final class AnimationID
 	public static final int FARMING_PLANT_SEED = 2291;
 	public static final int FARMING_HARVEST_FLOWER = 2292;
 	public static final int FARMING_MIX_ULTRACOMPOST = 7699;
-	public static final int FARMING_HARVEST_ALLOTMENT = 830;
 
 	// Lunar spellbook
 	public static final int ENERGY_TRANSFER_VENGEANCE_OTHER = 4411;
@@ -310,9 +308,8 @@ public final class AnimationID
 	public static final int GEERIN_FLINCH = 6958;
 	public static final int KILISA_ATTACK = 6957;
 
-	// Lizardman shaman
-	public static final int LIZARDMAN_SHAMAN_SPAWN = 7157;
-
-	public static final int BARRAGE_ANIMATION = 1979;
-	public static final int CHIN_ANIMATION = 7618;
+	// Dagannoth Kings
+	public static final int DAG_REX_ATTACK = 2853;
+	public static final int DAG_PRIME_ATTACK = 2854;
+	public static final int DAG_SUPREME_ATTACK = 2855;
 }

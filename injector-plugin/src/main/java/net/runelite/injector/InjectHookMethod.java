@@ -33,7 +33,6 @@ import net.runelite.asm.ClassGroup;
 import net.runelite.asm.Method;
 import net.runelite.asm.Type;
 import net.runelite.asm.attributes.Annotations;
-import net.runelite.asm.attributes.Code;
 import net.runelite.asm.attributes.annotation.Annotation;
 import net.runelite.asm.attributes.code.Instruction;
 import net.runelite.asm.attributes.code.InstructionType;
@@ -90,9 +89,9 @@ public class InjectHookMethod
 			obfuscatedClassName = DeobAnnotations.getObfuscatedName(cf.getAnnotations());
 
 		// might be a constructor
-		if (obfuscatedMethodName == null)
+		if (obfuscatedMethodName == null && method.getName().equals("<init>"))
 		{
-			obfuscatedMethodName = method.getName();
+			obfuscatedMethodName = "<init>";
 		}
 
 		assert obfuscatedClassName != null : "hook on method in class with no obfuscated name";
@@ -111,12 +110,7 @@ public class InjectHookMethod
 
 	private void injectHookMethod(Method hookMethod, String hookName, boolean end, Method deobMethod, Method vanillaMethod, boolean useHooks) throws InjectionException
 	{
-		Code code = vanillaMethod.getCode();
-		if (code == null)
-		{
-			logger.warn(vanillaMethod + " code is null");
-		}
-		Instructions instructions = code.getInstructions();
+		Instructions instructions = vanillaMethod.getCode().getInstructions();
 
 		Signature.Builder builder = new Signature.Builder()
 			.setReturnType(Type.VOID); // Hooks always return void

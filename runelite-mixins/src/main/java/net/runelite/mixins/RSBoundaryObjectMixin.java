@@ -25,7 +25,6 @@
 package net.runelite.mixins;
 
 import java.awt.geom.Area;
-
 import net.runelite.api.Model;
 import net.runelite.api.Perspective;
 import net.runelite.api.Renderable;

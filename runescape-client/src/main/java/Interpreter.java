@@ -1,139 +1,225 @@
+import java.io.File;
+import java.io.IOException;
+import java.io.RandomAccessFile;
+import java.util.Calendar;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("be")
+@ObfuscatedName("bv")
 @Implements("Interpreter")
 public class Interpreter {
-	@ObfuscatedName("e")
-	@Export("Interpreter_intLocals")
-	static int[] Interpreter_intLocals;
-	@ObfuscatedName("p")
-	@ObfuscatedSignature(
-		signature = "Lga;"
-	)
-	@Export("midiPcmStream")
-	public static MidiPcmStream midiPcmStream;
-	@ObfuscatedName("k")
-	@Export("Interpreter_arrayLengths")
-	static int[] Interpreter_arrayLengths;
-	@ObfuscatedName("l")
-	@Export("Interpreter_arrays")
-	static int[][] Interpreter_arrays;
-	@ObfuscatedName("b")
-	@Export("Interpreter_intStack")
-	static int[] Interpreter_intStack;
-	@ObfuscatedName("c")
-	@Export("Interpreter_stringStack")
-	static String[] Interpreter_stringStack;
-	@ObfuscatedName("m")
-	@ObfuscatedGetter(
-		intValue = -340268151
-	)
-	@Export("Interpreter_frameDepth")
-	static int Interpreter_frameDepth;
-	@ObfuscatedName("u")
-	@ObfuscatedSignature(
-		signature = "[Lbh;"
-	)
-	@Export("Interpreter_frames")
-	static ScriptFrame[] Interpreter_frames;
-	@ObfuscatedName("r")
-	@ObfuscatedSignature(
-		signature = "Lhj;"
-	)
-	static Widget field1111;
-	@ObfuscatedName("v")
-	@Export("Interpreter_calendar")
-	static java.util.Calendar Interpreter_calendar;
-	@ObfuscatedName("y")
-	@Export("Interpreter_MONTHS")
-	static final String[] Interpreter_MONTHS;
-	@ObfuscatedName("a")
-	static boolean field1104;
-	@ObfuscatedName("j")
-	static boolean field1105;
-	@ObfuscatedName("t")
-	@ObfuscatedGetter(
-		intValue = -662324053
-	)
-	static int field1106;
-	@ObfuscatedName("d")
-	static final double field1110;
-	@ObfuscatedName("hr")
-	@ObfuscatedGetter(
-		intValue = 973734975
-	)
-	@Export("cameraYaw")
-	static int cameraYaw;
+   @ObfuscatedName("w")
+   @Export("Interpreter_stringLocals")
+   static String[] Interpreter_stringLocals;
+   @ObfuscatedName("o")
+   @Export("Interpreter_arrayLengths")
+   static int[] Interpreter_arrayLengths;
+   @ObfuscatedName("u")
+   @Export("Interpreter_arrays")
+   static int[][] Interpreter_arrays;
+   @ObfuscatedName("g")
+   @Export("Interpreter_intStack")
+   static int[] Interpreter_intStack;
+   @ObfuscatedName("e")
+   @Export("Interpreter_stringStack")
+   static String[] Interpreter_stringStack;
+   @ObfuscatedName("x")
+   @ObfuscatedGetter(
+      intValue = -114766123
+   )
+   @Export("Interpreter_stringStackSize")
+   static int Interpreter_stringStackSize;
+   @ObfuscatedName("d")
+   @ObfuscatedGetter(
+      intValue = 545127349
+   )
+   @Export("Interpreter_frameDepth")
+   static int Interpreter_frameDepth;
+   @ObfuscatedName("k")
+   @ObfuscatedSignature(
+      signature = "[Lbn;"
+   )
+   @Export("Interpreter_frames")
+   static ScriptFrame[] Interpreter_frames;
+   @ObfuscatedName("a")
+   @Export("Interpreter_calendar")
+   static Calendar Interpreter_calendar;
+   @ObfuscatedName("z")
+   static final String[] __bv_z;
+   @ObfuscatedName("s")
+   static boolean __bv_s;
+   @ObfuscatedName("t")
+   static boolean __bv_t;
+   @ObfuscatedName("y")
+   @ObfuscatedGetter(
+      intValue = -1019558835
+   )
+   static int __bv_y;
+   @ObfuscatedName("r")
+   static final double __bv_r;
 
-	static {
-		Interpreter_arrayLengths = new int[5];
-		Interpreter_arrays = new int[5][5000];
-		Interpreter_intStack = new int[1000];
-		Interpreter_stringStack = new String[1000];
-		Interpreter_frameDepth = 0;
-		Interpreter_frames = new ScriptFrame[50];
-		Interpreter_calendar = java.util.Calendar.getInstance();
-		Interpreter_MONTHS = new String[]{"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
-		field1104 = false;
-		field1105 = false;
-		field1106 = 0;
-		field1110 = Math.log(2.0D);
-	}
+   static {
+      Interpreter_arrayLengths = new int[5];
+      Interpreter_arrays = new int[5][5000];
+      Interpreter_intStack = new int[1000];
+      Interpreter_stringStack = new String[1000];
+      Interpreter_frameDepth = 0;
+      Interpreter_frames = new ScriptFrame[50];
+      Interpreter_calendar = Calendar.getInstance();
+      __bv_z = new String[]{"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+      __bv_s = false;
+      __bv_t = false;
+      __bv_y = 0;
+      __bv_r = Math.log(2.0D);
+   }
 
-	@ObfuscatedName("q")
-	@ObfuscatedSignature(
-		signature = "(I)[Lgc;",
-		garbageValue = "-23272757"
-	)
-	@Export("ServerPacket_values")
-	public static ServerPacket[] ServerPacket_values() {
-		return new ServerPacket[]{ServerPacket.field2160, ServerPacket.field2116, ServerPacket.field2117, ServerPacket.field2152, ServerPacket.field2119, ServerPacket.field2165, ServerPacket.field2178, ServerPacket.field2122, ServerPacket.field2190, ServerPacket.field2176, ServerPacket.field2141, ServerPacket.field2126, ServerPacket.field2127, ServerPacket.field2128, ServerPacket.field2129, ServerPacket.field2130, ServerPacket.field2131, ServerPacket.field2120, ServerPacket.field2133, ServerPacket.field2134, ServerPacket.field2125, ServerPacket.field2136, ServerPacket.field2191, ServerPacket.field2138, ServerPacket.field2139, ServerPacket.field2140, ServerPacket.field2137, ServerPacket.field2135, ServerPacket.field2143, ServerPacket.field2144, ServerPacket.field2181, ServerPacket.field2175, ServerPacket.field2147, ServerPacket.field2148, ServerPacket.field2149, ServerPacket.field2118, ServerPacket.field2151, ServerPacket.field2202, ServerPacket.field2180, ServerPacket.field2154, ServerPacket.field2155, ServerPacket.field2156, ServerPacket.field2157, ServerPacket.field2162, ServerPacket.field2159, ServerPacket.field2189, ServerPacket.field2161, ServerPacket.field2150, ServerPacket.field2163, ServerPacket.field2164, ServerPacket.field2123, ServerPacket.field2166, ServerPacket.field2167, ServerPacket.field2153, ServerPacket.field2142, ServerPacket.field2170, ServerPacket.field2171, ServerPacket.field2172, ServerPacket.field2132, ServerPacket.field2174, ServerPacket.field2169, ServerPacket.field2124, ServerPacket.field2177, ServerPacket.field2168, ServerPacket.field2179, ServerPacket.field2158, ServerPacket.field2173, ServerPacket.field2182, ServerPacket.field2183, ServerPacket.field2184, ServerPacket.field2185, ServerPacket.field2186, ServerPacket.field2187, ServerPacket.field2188, ServerPacket.field2115, ServerPacket.field2121, ServerPacket.field2145, ServerPacket.field2192, ServerPacket.field2193, ServerPacket.field2194, ServerPacket.field2195, ServerPacket.field2196, ServerPacket.field2197, ServerPacket.field2198, ServerPacket.field2199, ServerPacket.field2200};
-	}
+   @ObfuscatedName("m")
+   @ObfuscatedSignature(
+      signature = "(Lgs;Lhn;I)Lgg;",
+      garbageValue = "-370104720"
+   )
+   public static PacketBufferNode method1915(ClientPacket var0, IsaacCipher var1) {
+      PacketBufferNode var2;
+      if(PacketBufferNode.__gg_u == 0) {
+         var2 = new PacketBufferNode();
+      } else {
+         var2 = PacketBufferNode.packetBufferNodes[--PacketBufferNode.__gg_u];
+      }
 
-	@ObfuscatedName("hr")
-	@ObfuscatedSignature(
-		signature = "(II)Z",
-		garbageValue = "1044045879"
-	)
-	static final boolean method1936(int var0) {
-		if (var0 < 0) {
-			return false;
-		} else {
-			int var1 = Client.menuOpcodes[var0];
-			if (var1 >= 2000) {
-				var1 -= 2000;
-			}
+      var2.__m = var0;
+      var2.__f = var0.length;
+      if(var2.__f == -1) {
+         var2.packetBuffer = new PacketBuffer(260);
+      } else if(var2.__f == -2) {
+         var2.packetBuffer = new PacketBuffer(10000);
+      } else if(var2.__f <= 18) {
+         var2.packetBuffer = new PacketBuffer(20);
+      } else if(var2.__f <= 98) {
+         var2.packetBuffer = new PacketBuffer(100);
+      } else {
+         var2.packetBuffer = new PacketBuffer(260);
+      }
 
-			return var1 == 1007;
-		}
-	}
+      var2.packetBuffer.setIsaacCipher(var1);
+      var2.packetBuffer.writeByteIsaac(var2.__m.id);
+      var2.__w = 0;
+      return var2;
+   }
 
-	@ObfuscatedName("jo")
-	@ObfuscatedSignature(
-		signature = "(IIIILly;Lhg;B)V",
-		garbageValue = "73"
-	)
-	@Export("drawSpriteOnMinimap")
-	static final void drawSpriteOnMinimap(int var0, int var1, int var2, int var3, Sprite var4, SpriteMask var5) {
-		if (var4 != null) {
-			int var6 = Client.camAngleY & 2047;
-			int var7 = var3 * var3 + var2 * var2;
-			if (var7 <= 6400) {
-				int var8 = Rasterizer3D.Rasterizer3D_sine[var6];
-				int var9 = Rasterizer3D.Rasterizer3D_cosine[var6];
-				int var10 = var9 * var2 + var3 * var8 >> 16;
-				int var11 = var3 * var9 - var8 * var2 >> 16;
-				if (var7 > 2500) {
-					var4.method6146(var10 + var5.width / 2 - var4.width / 2, var5.height / 2 - var11 - var4.height / 2, var0, var1, var5.width, var5.height, var5.xStarts, var5.xWidths);
-				} else {
-					var4.drawAt2(var0 + var10 + var5.width / 2 - var4.width / 2, var5.height / 2 + var1 - var11 - var4.height / 2);
-				}
+   @ObfuscatedName("m")
+   @ObfuscatedSignature(
+      signature = "(II)Ljw;",
+      garbageValue = "-1888252818"
+   )
+   @Export("getEnum")
+   public static EnumDefinition getEnum(int var0) {
+      EnumDefinition var1 = (EnumDefinition)EnumDefinition.EnumDefinition_cached.get((long)var0);
+      if(var1 != null) {
+         return var1;
+      } else {
+         byte[] var2 = EnumDefinition.EnumDefinition_indexCache.takeRecord(8, var0);
+         var1 = new EnumDefinition();
+         if(var2 != null) {
+            var1.read(new Buffer(var2));
+         }
 
-			}
-		}
-	}
+         EnumDefinition.EnumDefinition_cached.put(var1, (long)var0);
+         return var1;
+      }
+   }
+
+   @ObfuscatedName("f")
+   @ObfuscatedSignature(
+      signature = "(IIB)V",
+      garbageValue = "76"
+   )
+   @Export("changeWorldSelectSorting")
+   static void changeWorldSelectSorting(int var0, int var1) {
+      int[] var2 = new int[4];
+      int[] var3 = new int[4];
+      var2[0] = var0;
+      var3[0] = var1;
+      int var4 = 1;
+
+      for(int var5 = 0; var5 < 4; ++var5) {
+         if(World.sortOption1[var5] != var0) {
+            var2[var4] = World.sortOption1[var5];
+            var3[var4] = World.sortOption2[var5];
+            ++var4;
+         }
+      }
+
+      World.sortOption1 = var2;
+      World.sortOption2 = var3;
+      MilliClock.method3400(ItemContainer.worlds, 0, ItemContainer.worlds.length - 1, World.sortOption1, World.sortOption2);
+   }
+
+   @ObfuscatedName("w")
+   @ObfuscatedSignature(
+      signature = "(B)V",
+      garbageValue = "80"
+   )
+   public static void method1976() {
+      try {
+         File var0 = new File(WorldMapSection1.userHomeDirectory, "random.dat");
+         int var2;
+         if(var0.exists()) {
+            class168.randomDat = new BufferedFile(new AccessFile(var0, "rw", 25L), 24, 0);
+         } else {
+            label38:
+            for(int var1 = 0; var1 < Canvas.__ao_s.length; ++var1) {
+               for(var2 = 0; var2 < WorldMapSection2.cacheDirectoryLocations.length; ++var2) {
+                  File var3 = new File(WorldMapSection2.cacheDirectoryLocations[var2] + Canvas.__ao_s[var1] + File.separatorChar + "random.dat");
+                  if(var3.exists()) {
+                     class168.randomDat = new BufferedFile(new AccessFile(var3, "rw", 25L), 24, 0);
+                     break label38;
+                  }
+               }
+            }
+         }
+
+         if(class168.randomDat == null) {
+            RandomAccessFile var4 = new RandomAccessFile(var0, "rw");
+            var2 = var4.read();
+            var4.seek(0L);
+            var4.write(var2);
+            var4.seek(0L);
+            var4.close();
+            class168.randomDat = new BufferedFile(new AccessFile(var0, "rw", 25L), 24, 0);
+         }
+      } catch (IOException var5) {
+         ;
+      }
+
+   }
+
+   @ObfuscatedName("iz")
+   @ObfuscatedSignature(
+      signature = "(IIIIIIIIB)V",
+      garbageValue = "-10"
+   )
+   @Export("drawWidgets")
+   static final void drawWidgets(int var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7) {
+      if(GroundItemPile.loadWidgetGroup(var0)) {
+         class279.__jx_ne = null;
+         DevicePcmPlayerProvider.drawWidgetGroup(Widget.widgets[var0], -1, var1, var2, var3, var4, var5, var6, var7);
+         if(class279.__jx_ne != null) {
+            DevicePcmPlayerProvider.drawWidgetGroup(class279.__jx_ne, -1412584499, var1, var2, var3, var4, class54.__bs_nb, class157.__fw_nm, var7);
+            class279.__jx_ne = null;
+         }
+
+      } else {
+         if(var7 != -1) {
+            Client.__client_od[var7] = true;
+         } else {
+            for(int var8 = 0; var8 < 100; ++var8) {
+               Client.__client_od[var8] = true;
+            }
+         }
+
+      }
+   }
 }

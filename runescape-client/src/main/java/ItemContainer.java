@@ -6,61 +6,93 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("bc")
 @Implements("ItemContainer")
 public class ItemContainer extends Node {
-	@ObfuscatedName("q")
-	@ObfuscatedSignature(
-		signature = "Llc;"
-	)
-	@Export("itemContainers")
-	static NodeHashTable itemContainers;
-	@ObfuscatedName("jk")
-	@ObfuscatedSignature(
-		signature = "Lhj;"
-	)
-	static Widget field549;
-	@ObfuscatedName("w")
-	@Export("ids")
-	int[] ids;
-	@ObfuscatedName("e")
-	@Export("quantities")
-	int[] quantities;
+   @ObfuscatedName("m")
+   @ObfuscatedSignature(
+      signature = "Lld;"
+   )
+   @Export("itemContainers")
+   static NodeHashTable itemContainers;
+   @ObfuscatedName("o")
+   @ObfuscatedSignature(
+      signature = "[Lbt;"
+   )
+   @Export("worlds")
+   static World[] worlds;
+   @ObfuscatedName("dm")
+   @ObfuscatedSignature(
+      signature = "Lit;"
+   )
+   static IndexCache __bc_dm;
+   @ObfuscatedName("f")
+   @Export("ids")
+   int[] ids;
+   @ObfuscatedName("q")
+   @Export("quantities")
+   int[] quantities;
 
-	static {
-		itemContainers = new NodeHashTable(32);
-	}
+   static {
+      itemContainers = new NodeHashTable(32);
+   }
 
-	ItemContainer() {
-		this.ids = new int[]{-1};
-		this.quantities = new int[]{0};
-	}
+   ItemContainer() {
+      this.ids = new int[]{-1};
+      this.quantities = new int[]{0};
+   }
 
-	@ObfuscatedName("w")
-	@ObfuscatedSignature(
-		signature = "(IB)Lic;",
-		garbageValue = "-70"
-	)
-	public static FloorUnderlayDefinition method1117(int var0) {
-		FloorUnderlayDefinition var1 = (FloorUnderlayDefinition)FloorUnderlayDefinition.FloorUnderlayDefinition_cached.get((long)var0);
-		if (var1 != null) {
-			return var1;
-		} else {
-			byte[] var2 = FloorUnderlayDefinition.FloorUnderlayDefinition_archive.takeFile(1, var0);
-			var1 = new FloorUnderlayDefinition();
-			if (var2 != null) {
-				var1.decode(new Buffer(var2), var0);
-			}
+   @ObfuscatedName("m")
+   @ObfuscatedSignature(
+      signature = "(II)Ljava/lang/String;",
+      garbageValue = "-1265322360"
+   )
+   static String method1170(int var0) {
+      return "<img=" + var0 + ">";
+   }
 
-			var1.postDecode();
-			FloorUnderlayDefinition.FloorUnderlayDefinition_cached.put(var1, (long)var0);
-			return var1;
-		}
-	}
+   @ObfuscatedName("x")
+   @ObfuscatedSignature(
+      signature = "(II)Len;",
+      garbageValue = "-227230552"
+   )
+   @Export("getFrames")
+   static Frames getFrames(int var0) {
+      Frames var1 = (Frames)SequenceDefinition.__jh_o.get((long)var0);
+      if(var1 != null) {
+         return var1;
+      } else {
+         AbstractIndexCache var3 = SequenceDefinition.__jh_f;
+         AbstractIndexCache var4 = SequenceDefinition.__jh_q;
+         boolean var5 = true;
+         int[] var6 = var3.__j_395(var0);
 
-	@ObfuscatedName("ac")
-	@ObfuscatedSignature(
-		signature = "(II)I",
-		garbageValue = "-1225456641"
-	)
-	static int method1116(int var0) {
-		return (int)Math.pow(2.0D, (double)((float)var0 / 256.0F + 7.0F));
-	}
+         for(int var7 = 0; var7 < var6.length; ++var7) {
+            byte[] var8 = var3.getRecord(var0, var6[var7]);
+            if(var8 == null) {
+               var5 = false;
+            } else {
+               int var9 = (var8[0] & 255) << 8 | var8[1] & 255;
+               byte[] var10 = var4.getRecord(var9, 0);
+               if(var10 == null) {
+                  var5 = false;
+               }
+            }
+         }
+
+         Frames var2;
+         if(!var5) {
+            var2 = null;
+         } else {
+            try {
+               var2 = new Frames(var3, var4, var0, false);
+            } catch (Exception var12) {
+               var2 = null;
+            }
+         }
+
+         if(var2 != null) {
+            SequenceDefinition.__jh_o.put(var2, (long)var0);
+         }
+
+         return var2;
+      }
+   }
 }

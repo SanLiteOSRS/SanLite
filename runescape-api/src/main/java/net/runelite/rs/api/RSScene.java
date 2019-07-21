@@ -34,6 +34,6 @@ public interface RSScene extends Scene
 	@Import("ySize")
 	int getMaxZ();
 
-	@Import("minPlane")
+	@Import("Scene_minPlane")
 	int getMinLevel();
 }

@@ -66,7 +66,7 @@ public abstract class CameraMixin implements RSClient
 		}
 	}
 
-	@FieldHook("camAngleX")
+	@FieldHook("cameraPitchTarget")
 	@Inject
 	static void onCameraPitchTargetChanged(int idx)
 	{
