@@ -269,7 +269,7 @@ public class ConfigItemUI
 				cid.getItem().keyName(),
 				(Class<? extends Keybind>) cid.getType());
 
-		HotkeyButton button = new HotkeyButton(startingValue, cid.getType() == ModifierlessKeybind.class);
+		HotkeyButton button = new HotkeyButton(startingValue, cid.getType() == ModifierlessKeybind.class, cid.getType() == AllKeyCodeKeybind.class);
 
 		button.addFocusListener(new FocusAdapter()
 		{

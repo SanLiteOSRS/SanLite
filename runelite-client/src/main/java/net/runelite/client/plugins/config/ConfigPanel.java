@@ -737,7 +737,7 @@ public class ConfigPanel extends PluginPanel
 				item.add(configItemUI.createComboBoxConfigItem(listItem, config, cd, cid), BorderLayout.EAST);
 			}
 
-			if (cid.getType() == Keybind.class || cid.getType() == ModifierlessKeybind.class)
+			if (cid.getType() == Keybind.class || cid.getType() == ModifierlessKeybind.class || cid.getType() == AllKeyCodeKeybind.class)
 			{
 				item.add(configItemUI.createKeybindConfigItem(listItem, config, cd, cid), BorderLayout.EAST);
 			}
