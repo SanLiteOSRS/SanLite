@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, DennisDeV <https://github.com/DevDennis>
+ * Copyright (c) 2019 Abex
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,46 +22,35 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.client.plugins.antidrag;
-
-import net.runelite.api.Constants;
-import net.runelite.client.config.*;
+package net.runelite.client.config;
 
 import java.awt.event.KeyEvent;
 
-@ConfigGroup("antiDrag")
-public interface AntiDragConfig extends Config
+public class AllKeyCodeKeybind extends Keybind
 {
-	@ConfigItem(
-		keyName = "dragDelay",
-		name = "Drag Delay",
-		description = "Configures the inventory drag delay in client ticks (20ms)",
-		position = 1
-	)
-	default int dragDelay()
+	public AllKeyCodeKeybind(int keyCode, int modifiers)
 	{
-		return Constants.GAME_TICK_LENGTH / Constants.CLIENT_TICK_LENGTH; // one game tick
+		super(keyCode, modifiers, true, true);
 	}
 
-	@ConfigItem(
-			keyName = "keybind1",
-			name = "Keybind 1",
-			description = "First key that when held down delays dragging items",
-			position = 0
-	)
-	default AllKeyCodeKeybind keybind1()
+	/**
+	 * Constructs a keybind with that matches the passed KeyEvent
+	 */
+	public AllKeyCodeKeybind(KeyEvent e)
 	{
-		return new AllKeyCodeKeybind(KeyEvent.VK_SHIFT, 0);
+		this(e.getExtendedKeyCode(), e.getModifiersEx());
+
+		assert matches(e);
 	}
 
-	@ConfigItem(
-			keyName = "keybind2",
-			name = "Keybind 2",
-			description = "Second key that when held down delays dragging items",
-			position = 0
-	)
-	default AllKeyCodeKeybind keybind2()
+	/**
+	 * If the KeyEvent is from a KeyPressed event this returns if the
+	 * Event is this hotkey being pressed. If the KeyEvent is a
+	 * KeyReleased event this returns if the event is this hotkey being
+	 * released
+	 */
+	public boolean matches(KeyEvent e)
 	{
-		return new AllKeyCodeKeybind(KeyEvent.VK_CONTROL, 0);
+		return matches(e, true);
 	}
 }
