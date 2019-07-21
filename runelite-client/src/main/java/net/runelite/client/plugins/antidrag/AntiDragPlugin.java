@@ -27,6 +27,8 @@ package net.runelite.client.plugins.antidrag;
 import com.google.inject.Provides;
 import java.awt.event.KeyEvent;
 import javax.inject.Inject;
+
+import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Client;
 import net.runelite.api.events.FocusChanged;
 import net.runelite.client.config.ConfigManager;
@@ -35,12 +37,16 @@ import net.runelite.client.input.KeyListener;
 import net.runelite.client.input.KeyManager;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
+import net.runelite.client.plugins.PluginType;
 
 @PluginDescriptor(
-	name = "Shift Anti Drag",
+	name = "Anti Drag",
 	description = "Prevent dragging an item for a specified delay",
-	tags = {"antidrag", "delay", "inventory", "items"}
+	tags = {"antidrag", "delay", "inventory", "items", "keybind"},
+	enabledByDefault = false,
+	type = PluginType.SANLITE
 )
+@Slf4j
 public class AntiDragPlugin extends Plugin implements KeyListener
 {
 	private static final int DEFAULT_DELAY = 5;
@@ -82,18 +88,24 @@ public class AntiDragPlugin extends Plugin implements KeyListener
 	@Override
 	public void keyPressed(KeyEvent e)
 	{
-		if (e.getKeyCode() == KeyEvent.VK_SHIFT)
+		// TODO: Shift, alt, control not working because keycode is set to 0. Look into the keybind modifiers
+		log.debug("Pressed key {} | Looking for keys {} or {}", e.getKeyCode(), config.keybind1().getKeyCode(), config.keybind2().getKeyCode());
+		if (e.getKeyCode() == config.keybind1().getKeyCode() || e.getKeyCode() == config.keybind2().getKeyCode())
 		{
 			client.setInventoryDragDelay(config.dragDelay());
+			log.debug("PR!!!! {}", e.paramString());
 		}
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e)
 	{
-		if (e.getKeyCode() == KeyEvent.VK_SHIFT)
+
+		log.debug("RELEASED!!!! {}", e.paramString());
+		if (e.getKeyCode() == config.keybind1().getKeyCode() || e.getKeyCode() == config.keybind2().getKeyCode())
 		{
 			client.setInventoryDragDelay(DEFAULT_DELAY);
+			log.debug("CR!!!! {}", e.paramString());
 		}
 	}
 
