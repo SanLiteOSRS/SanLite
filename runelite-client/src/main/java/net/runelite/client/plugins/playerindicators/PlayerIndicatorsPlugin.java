@@ -43,9 +43,9 @@ import net.runelite.client.ui.overlay.OverlayManager;
 import net.runelite.client.util.ColorUtil;
 
 @PluginDescriptor(
-	name = "Player Indicators",
-	description = "Highlight players on-screen and/or on the minimap",
-	tags = {"highlight", "minimap", "overlay", "players"}
+		name = "Player Indicators",
+		description = "Highlight players on-screen and/or on the minimap",
+		tags = {"highlight", "minimap", "overlay", "players"}
 )
 public class PlayerIndicatorsPlugin extends Plugin
 {
@@ -104,16 +104,16 @@ public class PlayerIndicatorsPlugin extends Plugin
 
 		int identifier = menuEntryAdded.getIdentifier();
 		if (type == FOLLOW.getId() || type == TRADE.getId()
-			|| type == SPELL_CAST_ON_PLAYER.getId() || type == ITEM_USE_ON_PLAYER.getId()
-			|| type == PLAYER_FIRST_OPTION.getId()
-			|| type == PLAYER_SECOND_OPTION.getId()
-			|| type == PLAYER_THIRD_OPTION.getId()
-			|| type == PLAYER_FOURTH_OPTION.getId()
-			|| type == PLAYER_FIFTH_OPTION.getId()
-			|| type == PLAYER_SIXTH_OPTION.getId()
-			|| type == PLAYER_SEVENTH_OPTION.getId()
-			|| type == PLAYER_EIGTH_OPTION.getId()
-			|| type == RUNELITE.getId())
+				|| type == SPELL_CAST_ON_PLAYER.getId() || type == ITEM_USE_ON_PLAYER.getId()
+				|| type == PLAYER_FIRST_OPTION.getId()
+				|| type == PLAYER_SECOND_OPTION.getId()
+				|| type == PLAYER_THIRD_OPTION.getId()
+				|| type == PLAYER_FOURTH_OPTION.getId()
+				|| type == PLAYER_FIFTH_OPTION.getId()
+				|| type == PLAYER_SIXTH_OPTION.getId()
+				|| type == PLAYER_SEVENTH_OPTION.getId()
+				|| type == PLAYER_EIGTH_OPTION.getId()
+				|| type == RUNELITE.getId())
 		{
 			final Player localPlayer = client.getLocalPlayer();
 			Player[] players = client.getCachedPlayers();

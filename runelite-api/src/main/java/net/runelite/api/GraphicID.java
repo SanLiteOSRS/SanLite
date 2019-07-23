@@ -59,8 +59,11 @@ public class GraphicID
 	public static final int ALCHEMICAL_HYDRA_POISON_SPLAT_1 = 1654;
 	public static final int ALCHEMICAL_HYDRA_POISON_SPLAT_2 = 1655;
 	public static final int ALCHEMICAL_HYDRA_POISON_SPLAT_3 = 1656;
-	public static final int ALCHEMICAL_HYDRA_POISON_SPLAT_4 = 1660;
-	public static final int ALCHEMICAL_HYDRA_POISON_SPLAT_5 = 1661;
+	public static final int ALCHEMICAL_HYDRA_POISON_SPLAT_4 = 1657;
+	public static final int ALCHEMICAL_HYDRA_POISON_SPLAT_5 = 1658;
+	public static final int ALCHEMICAL_HYDRA_POISON_SPLAT_6 = 1659;
+	public static final int ALCHEMICAL_HYDRA_POISON_SPLAT_7 = 1660;
+	public static final int ALCHEMICAL_HYDRA_POISON_SPLAT_8 = 1661;
 	public static final int ALCHEMICAL_HYDRA_LIGHTNING_ATTACK_1 = 1664;
 	public static final int ALCHEMICAL_HYDRA_LIGHTNING_ATTACK_2 = 1666;
 	public static final int ALCHEMICAL_HYDRA_FIRE_ATTACK = 1668;

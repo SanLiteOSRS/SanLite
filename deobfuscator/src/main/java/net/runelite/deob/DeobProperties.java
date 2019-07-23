@@ -35,6 +35,6 @@ public class DeobProperties
 //		properties.load(resourceAsStream);
 
 		// TODO: Replace with git.commit.id=${buildNumber} when update process is setup in CI
-		return "180";
+		return "181";
 	}
 }

@@ -47,7 +47,8 @@ public interface ChatFilterConfig extends Config
 		keyName = "filteredWords",
 		name = "Filtered Words",
 		description = "List of filtered words, separated by commas",
-		position = 2
+		position = 2,
+		group = "Filtered Words"
 	)
 	default String filteredWords()
 	{
@@ -58,7 +59,8 @@ public interface ChatFilterConfig extends Config
 		keyName = "filteredRegex",
 		name = "Filtered Regex",
 		description = "List of regular expressions to filter, one per line",
-		position = 3
+		position = 3,
+		group = "Filtered Regex"
 	)
 	default String filteredRegex()
 	{
@@ -83,6 +85,17 @@ public interface ChatFilterConfig extends Config
 		position = 5
 	)
 	default boolean filterClan()
+	{
+		return false;
+	}
+
+	@ConfigItem(
+		keyName = "filterLogin",
+		name = "Filter Logged In/Out Messages",
+		description = "Filter your private chat to remove logged in/out messages",
+		position = 6
+	)
+	default boolean filterLogin()
 	{
 		return false;
 	}

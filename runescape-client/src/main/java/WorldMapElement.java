@@ -1,318 +1,329 @@
+import java.io.IOException;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ic")
+@ObfuscatedName("iw")
 @Implements("WorldMapElement")
 public class WorldMapElement extends DualNode {
-   @ObfuscatedName("m")
-   @ObfuscatedSignature(
-      signature = "Lir;"
-   )
-   public static AbstractIndexCache __ic_m;
-   @ObfuscatedName("w")
-   @ObfuscatedSignature(
-      signature = "Ler;"
-   )
-   @Export("WorldMapElement_cachedSprites")
-   static EvictingDualNodeHashTable WorldMapElement_cachedSprites;
-   @ObfuscatedName("fs")
-   @ObfuscatedSignature(
-      signature = "Lkz;"
-   )
-   @Export("fonts")
-   static Fonts fonts;
-   @ObfuscatedName("o")
-   @ObfuscatedGetter(
-      intValue = -1579051565
-   )
-   public final int __o;
-   @ObfuscatedName("u")
-   @ObfuscatedGetter(
-      intValue = 2012857993
-   )
-   @Export("sprite1")
-   public int sprite1;
-   @ObfuscatedName("g")
-   @ObfuscatedGetter(
-      intValue = -322924875
-   )
-   @Export("sprite2")
-   int sprite2;
-   @ObfuscatedName("l")
-   public String __l;
-   @ObfuscatedName("e")
-   @ObfuscatedGetter(
-      intValue = -231067
-   )
-   public int __e;
-   @ObfuscatedName("x")
-   @ObfuscatedGetter(
-      intValue = 1184517129
-   )
-   @Export("textSize")
-   public int textSize;
-   @ObfuscatedName("k")
-   @Export("strings")
-   public String[] strings;
-   @ObfuscatedName("n")
-   @Export("string1")
-   public String string1;
-   @ObfuscatedName("i")
-   int[] __i;
-   @ObfuscatedName("a")
-   @ObfuscatedGetter(
-      intValue = 1336803515
-   )
-   int __a;
-   @ObfuscatedName("z")
-   @ObfuscatedGetter(
-      intValue = -1825795359
-   )
-   int __z;
-   @ObfuscatedName("j")
-   @ObfuscatedGetter(
-      intValue = -1007121521
-   )
-   int __j;
-   @ObfuscatedName("s")
-   @ObfuscatedGetter(
-      intValue = -1209054101
-   )
-   int __s;
-   @ObfuscatedName("t")
-   @ObfuscatedSignature(
-      signature = "Lju;"
-   )
-   public class266 field3287;
-   @ObfuscatedName("y")
-   @ObfuscatedSignature(
-      signature = "Lip;"
-   )
-   public class249 field3301;
-   @ObfuscatedName("h")
-   int[] __h;
-   @ObfuscatedName("b")
-   byte[] __b;
-   @ObfuscatedName("c")
-   @ObfuscatedGetter(
-      intValue = -653112729
-   )
-   @Export("category")
-   public int category;
+	@ObfuscatedName("q")
+	@ObfuscatedSignature(
+		signature = "Lhp;"
+	)
+	@Export("WorldMapElement_archive")
+	public static AbstractArchive WorldMapElement_archive;
+	@ObfuscatedName("w")
+	@ObfuscatedSignature(
+		signature = "[Liw;"
+	)
+	@Export("WorldMapElement_cached")
+	public static WorldMapElement[] WorldMapElement_cached;
+	@ObfuscatedName("p")
+	@ObfuscatedSignature(
+		signature = "Lel;"
+	)
+	@Export("WorldMapElement_cachedSprites")
+	static EvictingDualNodeHashTable WorldMapElement_cachedSprites;
+	@ObfuscatedName("k")
+	@ObfuscatedGetter(
+		intValue = -846582449
+	)
+	@Export("objectId")
+	public final int objectId;
+	@ObfuscatedName("l")
+	@ObfuscatedGetter(
+		intValue = 248724911
+	)
+	@Export("sprite1")
+	public int sprite1;
+	@ObfuscatedName("b")
+	@ObfuscatedGetter(
+		intValue = 473638347
+	)
+	@Export("sprite2")
+	int sprite2;
+	@ObfuscatedName("i")
+	@Export("name")
+	public String name;
+	@ObfuscatedName("c")
+	@ObfuscatedGetter(
+		intValue = 1731213053
+	)
+	public int field3217;
+	@ObfuscatedName("f")
+	@ObfuscatedGetter(
+		intValue = -1939800195
+	)
+	@Export("textSize")
+	public int textSize;
+	@ObfuscatedName("u")
+	@Export("strings")
+	public String[] strings;
+	@ObfuscatedName("x")
+	@Export("string1")
+	public String string1;
+	@ObfuscatedName("r")
+	int[] field3221;
+	@ObfuscatedName("v")
+	@ObfuscatedGetter(
+		intValue = 584750185
+	)
+	int field3222;
+	@ObfuscatedName("y")
+	@ObfuscatedGetter(
+		intValue = 908052841
+	)
+	int field3223;
+	@ObfuscatedName("g")
+	@ObfuscatedGetter(
+		intValue = -310968273
+	)
+	int field3224;
+	@ObfuscatedName("a")
+	@ObfuscatedGetter(
+		intValue = 961137775
+	)
+	int field3231;
+	@ObfuscatedName("j")
+	@ObfuscatedSignature(
+		signature = "Liz;"
+	)
+	@Export("horizontalAlignment")
+	public HorizontalAlignment horizontalAlignment;
+	@ObfuscatedName("t")
+	@ObfuscatedSignature(
+		signature = "Lif;"
+	)
+	@Export("verticalAlignment")
+	public VerticalAlignment verticalAlignment;
+	@ObfuscatedName("h")
+	int[] field3228;
+	@ObfuscatedName("o")
+	byte[] field3214;
+	@ObfuscatedName("n")
+	@ObfuscatedGetter(
+		intValue = -880485155
+	)
+	@Export("category")
+	public int category;
 
-   static {
-      WorldMapElement_cachedSprites = new EvictingDualNodeHashTable(256);
-   }
+	static {
+		WorldMapElement_cachedSprites = new EvictingDualNodeHashTable(256);
+	}
 
-   public WorldMapElement(int var1) {
-      this.sprite1 = -1;
-      this.sprite2 = -1;
-      this.textSize = 0;
-      this.strings = new String[5];
-      this.__a = Integer.MAX_VALUE;
-      this.__z = Integer.MAX_VALUE;
-      this.__j = Integer.MIN_VALUE;
-      this.__s = Integer.MIN_VALUE;
-      this.field3287 = class266.field3527;
-      this.field3301 = class249.field3273;
-      this.category = -1;
-      this.__o = var1;
-   }
+	public WorldMapElement(int var1) {
+		this.sprite1 = -1;
+		this.sprite2 = -1;
+		this.textSize = 0;
+		this.strings = new String[5];
+		this.field3222 = Integer.MAX_VALUE;
+		this.field3223 = Integer.MAX_VALUE;
+		this.field3224 = Integer.MIN_VALUE;
+		this.field3231 = Integer.MIN_VALUE;
+		this.horizontalAlignment = HorizontalAlignment.HorizontalAlignment_centered;
+		this.verticalAlignment = VerticalAlignment.VerticalAlignment_centered;
+		this.category = -1;
+		this.objectId = var1;
+	}
 
-   @ObfuscatedName("f")
-   @ObfuscatedSignature(
-      signature = "(Lgr;B)V",
-      garbageValue = "81"
-   )
-   @Export("read")
-   public void read(Buffer var1) {
-      while(true) {
-         int var2 = var1.readUnsignedByte();
-         if(var2 == 0) {
-            return;
-         }
+	@ObfuscatedName("w")
+	@ObfuscatedSignature(
+		signature = "(Lkf;I)V",
+		garbageValue = "-2108629289"
+	)
+	@Export("decode")
+	public void decode(Buffer var1) {
+		while (true) {
+			int var2 = var1.readUnsignedByte();
+			if (var2 == 0) {
+				return;
+			}
 
-         this.readNext(var1, var2);
-      }
-   }
+			this.decodeNext(var1, var2);
+		}
+	}
 
-   @ObfuscatedName("q")
-   @ObfuscatedSignature(
-      signature = "(Lgr;II)V",
-      garbageValue = "-1197630144"
-   )
-   @Export("readNext")
-   void readNext(Buffer var1, int var2) {
-      if(var2 == 1) {
-         this.sprite1 = var1.__ap_310();
-      } else if(var2 == 2) {
-         this.sprite2 = var1.__ap_310();
-      } else if(var2 == 3) {
-         this.__l = var1.readStringCp1252NullTerminated();
-      } else if(var2 == 4) {
-         this.__e = var1.readMedium();
-      } else if(var2 == 5) {
-         var1.readMedium();
-      } else if(var2 == 6) {
-         this.textSize = var1.readUnsignedByte();
-      } else {
-         int var3;
-         if(var2 == 7) {
-            var3 = var1.readUnsignedByte();
-            if((var3 & 1) == 0) {
-               ;
-            }
+	@ObfuscatedName("e")
+	@ObfuscatedSignature(
+		signature = "(Lkf;II)V",
+		garbageValue = "-1385963725"
+	)
+	@Export("decodeNext")
+	void decodeNext(Buffer var1, int var2) {
+		if (var2 == 1) {
+			this.sprite1 = var1.method5511();
+		} else if (var2 == 2) {
+			this.sprite2 = var1.method5511();
+		} else if (var2 == 3) {
+			this.name = var1.readStringCp1252NullTerminated();
+		} else if (var2 == 4) {
+			this.field3217 = var1.readMedium();
+		} else if (var2 == 5) {
+			var1.readMedium();
+		} else if (var2 == 6) {
+			this.textSize = var1.readUnsignedByte();
+		} else {
+			int var3;
+			if (var2 == 7) {
+				var3 = var1.readUnsignedByte();
+				if ((var3 & 1) == 0) {
+				}
 
-            if((var3 & 2) == 2) {
-               ;
-            }
-         } else if(var2 == 8) {
-            var1.readUnsignedByte();
-         } else if(var2 >= 10 && var2 <= 14) {
-            this.strings[var2 - 10] = var1.readStringCp1252NullTerminated();
-         } else if(var2 == 15) {
-            var3 = var1.readUnsignedByte();
-            this.__i = new int[var3 * 2];
+				if ((var3 & 2) == 2) {
+				}
+			} else if (var2 == 8) {
+				var1.readUnsignedByte();
+			} else if (var2 >= 10 && var2 <= 14) {
+				this.strings[var2 - 10] = var1.readStringCp1252NullTerminated();
+			} else if (var2 == 15) {
+				var3 = var1.readUnsignedByte();
+				this.field3221 = new int[var3 * 2];
 
-            int var4;
-            for(var4 = 0; var4 < var3 * 2; ++var4) {
-               this.__i[var4] = var1.__aq_303();
-            }
+				int var4;
+				for (var4 = 0; var4 < var3 * 2; ++var4) {
+					this.field3221[var4] = var1.readShort();
+				}
 
-            var1.readInt();
-            var4 = var1.readUnsignedByte();
-            this.__h = new int[var4];
+				var1.readInt();
+				var4 = var1.readUnsignedByte();
+				this.field3228 = new int[var4];
 
-            int var5;
-            for(var5 = 0; var5 < this.__h.length; ++var5) {
-               this.__h[var5] = var1.readInt();
-            }
+				int var5;
+				for (var5 = 0; var5 < this.field3228.length; ++var5) {
+					this.field3228[var5] = var1.readInt();
+				}
 
-            this.__b = new byte[var3];
+				this.field3214 = new byte[var3];
 
-            for(var5 = 0; var5 < var3; ++var5) {
-               this.__b[var5] = var1.readByte();
-            }
-         } else if(var2 != 16) {
-            if(var2 == 17) {
-               this.string1 = var1.readStringCp1252NullTerminated();
-            } else if(var2 == 18) {
-               var1.__ap_310();
-            } else if(var2 == 19) {
-               this.category = var1.__ag_302();
-            } else if(var2 == 21) {
-               var1.readInt();
-            } else if(var2 == 22) {
-               var1.readInt();
-            } else if(var2 == 23) {
-               var1.readUnsignedByte();
-               var1.readUnsignedByte();
-               var1.readUnsignedByte();
-            } else if(var2 == 24) {
-               var1.__aq_303();
-               var1.__aq_303();
-            } else if(var2 == 25) {
-               var1.__ap_310();
-            } else if(var2 == 28) {
-               var1.readUnsignedByte();
-            } else if(var2 == 29) {
-               class266[] var6 = new class266[]{class266.field3527, class266.field3526, class266.field3529};
-               this.field3287 = (class266)ScriptFrame.findEnumerated(var6, var1.readUnsignedByte());
-            } else if(var2 == 30) {
-               this.field3301 = (class249)ScriptFrame.findEnumerated(UnderlayDefinition.method4839(), var1.readUnsignedByte());
-            }
-         }
-      }
+				for (var5 = 0; var5 < var3; ++var5) {
+					this.field3214[var5] = var1.readByte();
+				}
+			} else if (var2 != 16) {
+				if (var2 == 17) {
+					this.string1 = var1.readStringCp1252NullTerminated();
+				} else if (var2 == 18) {
+					var1.method5511();
+				} else if (var2 == 19) {
+					this.category = var1.readUnsignedShort();
+				} else if (var2 == 21) {
+					var1.readInt();
+				} else if (var2 == 22) {
+					var1.readInt();
+				} else if (var2 == 23) {
+					var1.readUnsignedByte();
+					var1.readUnsignedByte();
+					var1.readUnsignedByte();
+				} else if (var2 == 24) {
+					var1.readShort();
+					var1.readShort();
+				} else if (var2 == 25) {
+					var1.method5511();
+				} else if (var2 == 28) {
+					var1.readUnsignedByte();
+				} else if (var2 == 29) {
+					HorizontalAlignment[] var6 = new HorizontalAlignment[]{HorizontalAlignment.field3461, HorizontalAlignment.field3460, HorizontalAlignment.HorizontalAlignment_centered};
+					this.horizontalAlignment = (HorizontalAlignment)SoundSystem.findEnumerated(var6, var1.readUnsignedByte());
+				} else if (var2 == 30) {
+					VerticalAlignment[] var7 = new VerticalAlignment[]{VerticalAlignment.VerticalAlignment_centered, VerticalAlignment.field3195, VerticalAlignment.field3194};
+					this.verticalAlignment = (VerticalAlignment)SoundSystem.findEnumerated(var7, var1.readUnsignedByte());
+				}
+			}
+		}
 
-   }
+	}
 
-   @ObfuscatedName("w")
-   @ObfuscatedSignature(
-      signature = "(I)V",
-      garbageValue = "1799485224"
-   )
-   public void __w_409() {
-      if(this.__i != null) {
-         for(int var1 = 0; var1 < this.__i.length; var1 += 2) {
-            if(this.__i[var1] < this.__a) {
-               this.__a = this.__i[var1];
-            } else if(this.__i[var1] > this.__j) {
-               this.__j = this.__i[var1];
-            }
+	@ObfuscatedName("p")
+	@ObfuscatedSignature(
+		signature = "(I)V",
+		garbageValue = "2017602837"
+	)
+	public void method4370() {
+		if (this.field3221 != null) {
+			for (int var1 = 0; var1 < this.field3221.length; var1 += 2) {
+				if (this.field3221[var1] < this.field3222) {
+					this.field3222 = this.field3221[var1];
+				} else if (this.field3221[var1] > this.field3224) {
+					this.field3224 = this.field3221[var1];
+				}
 
-            if(this.__i[var1 + 1] < this.__z) {
-               this.__z = this.__i[var1 + 1];
-            } else if(this.__i[var1 + 1] > this.__s) {
-               this.__s = this.__i[var1 + 1];
-            }
-         }
-      }
+				if (this.field3221[var1 + 1] < this.field3223) {
+					this.field3223 = this.field3221[var1 + 1];
+				} else if (this.field3221[var1 + 1] > this.field3231) {
+					this.field3231 = this.field3221[var1 + 1];
+				}
+			}
+		}
 
-   }
+	}
 
-   @ObfuscatedName("o")
-   @ObfuscatedSignature(
-      signature = "(ZI)Lln;",
-      garbageValue = "628564789"
-   )
-   @Export("getSprite")
-   public Sprite getSprite(boolean var1) {
-      int var2 = this.sprite1;
-      return this.getSprite0(var2);
-   }
+	@ObfuscatedName("k")
+	@ObfuscatedSignature(
+		signature = "(ZI)Lly;",
+		garbageValue = "1310169716"
+	)
+	@Export("getSpriteBool")
+	public Sprite getSpriteBool(boolean var1) {
+		int var2 = this.sprite1;
+		return this.getSprite(var2);
+	}
 
-   @ObfuscatedName("u")
-   @ObfuscatedSignature(
-      signature = "(IB)Lln;",
-      garbageValue = "-34"
-   )
-   @Export("getSprite0")
-   Sprite getSprite0(int var1) {
-      if(var1 < 0) {
-         return null;
-      } else {
-         Sprite var2 = (Sprite)WorldMapElement_cachedSprites.get((long)var1);
-         if(var2 != null) {
-            return var2;
-         } else {
-            var2 = class322.readSprite(__ic_m, var1, 0);
-            if(var2 != null) {
-               WorldMapElement_cachedSprites.put(var2, (long)var1);
-            }
+	@ObfuscatedName("l")
+	@ObfuscatedSignature(
+		signature = "(II)Lly;",
+		garbageValue = "-517237521"
+	)
+	@Export("getSprite")
+	Sprite getSprite(int var1) {
+		if (var1 < 0) {
+			return null;
+		} else {
+			Sprite var2 = (Sprite)WorldMapElement_cachedSprites.get((long)var1);
+			if (var2 != null) {
+				return var2;
+			} else {
+				var2 = class65.loadSprite(WorldMapElement_archive, var1, 0);
+				if (var2 != null) {
+					WorldMapElement_cachedSprites.put(var2, (long)var1);
+				}
 
-            return var2;
-         }
-      }
-   }
+				return var2;
+			}
+		}
+	}
 
-   @ObfuscatedName("g")
-   @ObfuscatedSignature(
-      signature = "(I)I",
-      garbageValue = "821701099"
-   )
-   public int __g_410() {
-      return this.__o;
-   }
+	@ObfuscatedName("b")
+	@ObfuscatedSignature(
+		signature = "(B)I",
+		garbageValue = "95"
+	)
+	@Export("getObjectId")
+	public int getObjectId() {
+		return this.objectId;
+	}
 
-   @ObfuscatedName("m")
-   @ObfuscatedSignature(
-      signature = "(IB)Lko;",
-      garbageValue = "-31"
-   )
-   public static class310 method4783(int var0) {
-      class310[] var1 = new class310[]{class310.field3805, class310.field3807, class310.field3806};
-      class310[] var2 = var1;
+	@ObfuscatedName("ga")
+	@ObfuscatedSignature(
+		signature = "(ZI)V",
+		garbageValue = "426729441"
+	)
+	static final void method4368(boolean var0) {
+		class186.playPcmPlayers();
+		++Client.packetWriter.field1319;
+		if (Client.packetWriter.field1319 >= 50 || var0) {
+			Client.packetWriter.field1319 = 0;
+			if (!Client.field701 && Client.packetWriter.getSocket() != null) {
+				PacketBufferNode var1 = Archive.method4265(ClientPacket.field2225, Client.packetWriter.isaacCipher);
+				Client.packetWriter.method2219(var1);
 
-      for(int var3 = 0; var3 < var2.length; ++var3) {
-         class310 var4 = var2[var3];
-         if(var0 == var4.field3804) {
-            return var4;
-         }
-      }
+				try {
+					Client.packetWriter.method2234();
+				} catch (IOException var3) {
+					Client.field701 = true;
+				}
+			}
 
-      return null;
-   }
+		}
+	}
 }

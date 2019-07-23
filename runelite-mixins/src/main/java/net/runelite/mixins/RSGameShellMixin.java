@@ -25,6 +25,7 @@
 package net.runelite.mixins;
 
 import java.awt.event.FocusEvent;
+
 import net.runelite.api.events.FocusChanged;
 import net.runelite.api.hooks.DrawCallbacks;
 import net.runelite.api.mixins.FieldHook;
