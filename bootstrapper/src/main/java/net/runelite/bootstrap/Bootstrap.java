@@ -16,6 +16,7 @@ class Bootstrap
 	private static String CLIENT_REPO_URL;
 
 	private Artifact[] artifacts;
+	String buildCommit = "cc1669ce863b4eba44bd2c7db59cab0dd0ba595a"; // This should be the build commit for the release
 	String artifactId = "sanlite-client";
 	String sanliteVersion = new BootstrapperProperties().getSanLiteVersion();
 	String runeliteVersion = new BootstrapperProperties().getRuneLiteVersion();
