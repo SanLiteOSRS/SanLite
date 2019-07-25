@@ -411,7 +411,7 @@ public abstract class RSSceneMixin implements RSScene
 		Tile tile = getTiles()[plane][x][y];
 		if (tile != null)
 		{
-			RSGroundItemPile itemLayer = (RSGroundItemPile) tile.getItemLayer();
+			RSTileItemPile itemLayer = (RSTileItemPile) tile.getItemLayer();
 			if (itemLayer != null)
 			{
 				itemLayer.setPlane(plane);
