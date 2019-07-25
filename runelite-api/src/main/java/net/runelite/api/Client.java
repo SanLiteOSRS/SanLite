@@ -31,6 +31,7 @@ import java.util.EnumSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.coords.WorldPoint;
@@ -352,6 +353,7 @@ public interface Client extends GameShell
 	 * @return the corresponding item composition
 	 * @see ItemID
 	 */
+	@Nonnull
 	ItemDefinition getItemDefinition(int id);
 
 	/**
@@ -366,6 +368,7 @@ public interface Client extends GameShell
 	 * @param scale the scale of the sprite
 	 * @return the created sprite
 	 */
+	@Nullable
 	Sprite createItemSprite(int itemId, int quantity, int border, int shadowColor, int stackable, boolean noted, int scale);
 
 	/**
@@ -376,6 +379,7 @@ public interface Client extends GameShell
 	 * @param fileId the sprites file ID
 	 * @return the sprite image of the file
 	 */
+	@Nullable
 	Sprite[] getSprites(IndexDataBase source, int archiveId, int fileId);
 
 	/**

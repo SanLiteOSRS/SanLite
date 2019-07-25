@@ -24,7 +24,6 @@
  */
 package net.runelite.mixins;
 
-import net.runelite.api.mixins.Mixin;
 import net.runelite.api.Actor;
 import net.runelite.api.Hitsplat;
 import net.runelite.api.NPC;
@@ -48,6 +47,7 @@ import java.awt.image.BufferedImage;
 import net.runelite.api.mixins.FieldHook;
 import net.runelite.api.mixins.Inject;
 import net.runelite.api.mixins.MethodHook;
+import net.runelite.api.mixins.Mixin;
 import net.runelite.api.mixins.Shadow;
 import net.runelite.rs.api.RSActor;
 import net.runelite.rs.api.RSClient;

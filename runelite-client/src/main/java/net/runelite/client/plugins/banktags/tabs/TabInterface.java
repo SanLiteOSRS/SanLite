@@ -558,7 +558,16 @@ public class TabInterface
 			chatboxPanelManager.close();
 		}
 
-		if (event.getActionParam1() == WidgetInfo.BANK_ITEM_CONTAINER.getId()
+		if (event.getActionParam1() == WidgetInfo.BANK_ITEM_CONTAINER.getId())
+		if (chatboxPanelManager.getCurrentInput() != null
+			&& event.getMenuAction() != MenuAction.CANCEL
+			&& !event.getMenuEntry().equals(SCROLL_UP)
+			&& !event.getMenuEntry().equals(SCROLL_DOWN))
+		{
+			chatboxPanelManager.close();
+		}
+
+		if (event.getIdentifier() == WidgetInfo.BANK_ITEM_CONTAINER.getId()
 			&& event.getMenuAction() == MenuAction.EXAMINE_ITEM_BANK_EQ
 			&& event.getOption().equalsIgnoreCase("withdraw-x"))
 		{

@@ -30,17 +30,8 @@ import java.util.Optional;
 import java.util.function.Consumer;
 import javax.inject.Inject;
 import javax.inject.Singleton;
-import net.runelite.api.Client;
-import net.runelite.api.Constants;
-import net.runelite.api.GameState;
-import net.runelite.api.InventoryID;
-import net.runelite.api.Item;
-import net.runelite.api.ItemContainer;
-import net.runelite.api.NPC;
-import net.runelite.api.Node;
-import net.runelite.api.Player;
-import net.runelite.api.Scene;
-import net.runelite.api.Tile;
+
+import net.runelite.api.*;
 import net.runelite.api.events.DecorativeObjectSpawned;
 import net.runelite.api.events.GameObjectSpawned;
 import net.runelite.api.events.GroundObjectSpawned;
@@ -180,9 +171,9 @@ public class GameEventManager
 				{
 					Node current = itemLayer.getBottom();
 
-					while (current instanceof Item)
+					while (current instanceof TileItem)
 					{
-						final Item item = (Item) current;
+						final TileItem item = (TileItem) current;
 
 						current = current.getNext();
 
