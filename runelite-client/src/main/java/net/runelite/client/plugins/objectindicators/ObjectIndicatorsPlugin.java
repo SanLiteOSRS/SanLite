@@ -40,7 +40,8 @@ import java.util.Set;
 import javax.inject.Inject;
 import lombok.AccessLevel;
 import lombok.Getter;
-import net.runelite.api.Client;
+import net.runelite.api.*;
+
 import static net.runelite.api.Constants.REGION_SIZE;
 
 import net.runelite.api.coords.WorldPoint;

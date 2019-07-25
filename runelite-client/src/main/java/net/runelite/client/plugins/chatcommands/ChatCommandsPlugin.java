@@ -39,7 +39,7 @@ import net.runelite.api.Client;
 import net.runelite.api.Constants;
 import net.runelite.api.Experience;
 import net.runelite.api.IconID;
-import net.runelite.api.ItemComposition;
+import net.runelite.api.ItemDefinition;
 import net.runelite.api.MessageNode;
 import net.runelite.api.VarPlayer;
 import net.runelite.api.Varbits;
