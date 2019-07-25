@@ -35,12 +35,8 @@ import java.text.NumberFormat;
 import java.time.Instant;
 import java.util.Locale;
 import javax.inject.Inject;
-import net.runelite.api.Client;
-import net.runelite.api.Constants;
-import net.runelite.api.NPC;
-import net.runelite.api.NPCComposition;
-import net.runelite.api.Perspective;
-import net.runelite.api.Point;
+
+import net.runelite.api.*;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.coords.WorldPoint;
 import net.runelite.client.ui.overlay.Overlay;
@@ -155,7 +151,7 @@ public class NpcSceneOverlay extends Overlay
 
 			case TILE:
 				int size = 1;
-				NPCComposition composition = actor.getTransformedComposition();
+				NPCDefinition composition = actor.getTransformedDefinition();
 				if (composition != null)
 				{
 					size = composition.getSize();

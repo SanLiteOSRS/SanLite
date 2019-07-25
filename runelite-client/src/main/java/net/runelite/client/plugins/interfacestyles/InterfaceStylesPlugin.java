@@ -34,7 +34,7 @@ import net.runelite.api.Client;
 import net.runelite.api.GameState;
 import net.runelite.api.HealthBar;
 import net.runelite.api.SpriteID;
-import net.runelite.api.SpritePixels;
+import net.runelite.api.Sprite;
 import net.runelite.api.events.BeforeMenuRender;
 import net.runelite.api.events.ConfigChanged;
 import net.runelite.api.events.GameStateChanged;
@@ -71,7 +71,7 @@ public class InterfaceStylesPlugin extends Plugin
 	@Inject
 	private SpriteManager spriteManager;
 
-	private SpritePixels[] defaultCrossSprites;
+	private Sprite[] defaultCrossSprites;
 
 	@Provides
 	InterfaceStylesConfig provideConfig(ConfigManager configManager)
@@ -177,7 +177,7 @@ public class InterfaceStylesPlugin extends Plugin
 				if (skin == config.skin())
 				{
 					String file = config.skin().toString() + "/" + spriteOverride.getSpriteID() + ".png";
-					SpritePixels spritePixels = getFileSpritePixels(file);
+					Sprite spritePixels = getFileSpritePixels(file);
 
 					if (spriteOverride.getSpriteID() == SpriteID.COMPASS_TEXTURE)
 					{
@@ -209,7 +209,7 @@ public class InterfaceStylesPlugin extends Plugin
 			if (widgetOverride.getSkin() == config.skin())
 			{
 				String file = config.skin().toString() + "/widget/" + widgetOverride.getName() + ".png";
-				SpritePixels spritePixels = getFileSpritePixels(file);
+				Sprite spritePixels = getFileSpritePixels(file);
 
 				if (spritePixels != null)
 				{
@@ -233,7 +233,7 @@ public class InterfaceStylesPlugin extends Plugin
 		}
 	}
 
-	private SpritePixels getFileSpritePixels(String file)
+	private Sprite getFileSpritePixels(String file)
 	{
 		try
 		{
@@ -316,19 +316,19 @@ public class InterfaceStylesPlugin extends Plugin
 				return;
 			}
 
-			SpritePixels[] crossSprites = client.getCrossSprites();
+			Sprite[] crossSprites = client.getCrossSprites();
 
 			if (crossSprites == null)
 			{
 				return;
 			}
 
-			defaultCrossSprites = new SpritePixels[crossSprites.length];
+			defaultCrossSprites = new Sprite[crossSprites.length];
 			System.arraycopy(crossSprites, 0, defaultCrossSprites, 0, defaultCrossSprites.length);
 
 			for (int i = 0; i < crossSprites.length; i++)
 			{
-				SpritePixels newSprite = getFileSpritePixels("rs3/cross_sprites/" + i + ".png");
+				Sprite newSprite = getFileSpritePixels("rs3/cross_sprites/" + i + ".png");
 
 				if (newSprite == null)
 				{
@@ -351,7 +351,7 @@ public class InterfaceStylesPlugin extends Plugin
 			return;
 		}
 
-		SpritePixels[] crossSprites = client.getCrossSprites();
+		Sprite[] crossSprites = client.getCrossSprites();
 
 		if (crossSprites != null && defaultCrossSprites.length == crossSprites.length)
 		{
@@ -383,7 +383,7 @@ public class InterfaceStylesPlugin extends Plugin
 
 		if (compassImage != null)
 		{
-			SpritePixels compass = ImageUtil.getImageSpritePixels(compassImage, client);
+			Sprite compass = ImageUtil.getImageSpritePixels(compassImage, client);
 			client.setCompass(compass);
 		}
 	}

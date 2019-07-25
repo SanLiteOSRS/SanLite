@@ -111,7 +111,7 @@ public class Constants
 	/**
 	 * High alchemy = shop price * HIGH_ALCHEMY_MULTIPLIER
 	 *
-	 * @see ItemComposition#getPrice
+	 * @see ItemDefinition#getPrice
 	 */
 	public static final float HIGH_ALCHEMY_MULTIPLIER = .6f;
 }

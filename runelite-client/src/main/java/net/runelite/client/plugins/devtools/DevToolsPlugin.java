@@ -65,6 +65,7 @@ import org.slf4j.LoggerFactory;
 @PluginDescriptor(
 	name = "Developer Tools",
 	tags = {"panel"},
+	enabledByDefault = false,
 	developerPlugin = true
 )
 @Getter
@@ -187,7 +188,7 @@ public class DevToolsPlugin extends Plugin
 		navButton = NavigationButton.builder()
 			.tooltip("Developer Tools")
 			.icon(icon)
-			.priority(1)
+			.priority(9)
 			.panel(panel)
 			.build();
 
@@ -325,15 +326,15 @@ public class DevToolsPlugin extends Plugin
 			{
 				int id = Integer.parseInt(args[0]);
 				Player localPlayer = client.getLocalPlayer();
-				localPlayer.setGraphic(id);
-				localPlayer.setSpotAnimFrame(0);
+				localPlayer.setSpotAnimation(id);
+				localPlayer.setSpotAnimationFrame(0);
 				break;
 			}
 			case "transform":
 			{
 				int id = Integer.parseInt(args[0]);
 				Player player = client.getLocalPlayer();
-				player.getPlayerComposition().setTransformedNpcId(id);
+				player.getPlayerAppearance().setTransformedNpcId(id);
 				player.setIdlePoseAnimation(-1);
 				player.setPoseAnimation(-1);
 				break;
@@ -342,8 +343,14 @@ public class DevToolsPlugin extends Plugin
 			{
 				int id = Integer.parseInt(args[0]);
 				Player player = client.getLocalPlayer();
-				player.getPlayerComposition().getEquipmentIds()[KitType.CAPE.getIndex()] = id + 512;
-				player.getPlayerComposition().setHash();
+				player.getPlayerAppearance().getEquipmentIds()[KitType.CAPE.getIndex()] = id + 512;
+				player.getPlayerAppearance().setHash();
+				break;
+			}
+			case "sound":
+			{
+				int id = Integer.parseInt(args[0]);
+				client.playSoundEffect(id);
 				break;
 			}
 			case "sound":

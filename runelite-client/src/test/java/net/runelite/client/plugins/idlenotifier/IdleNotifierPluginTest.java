@@ -28,14 +28,7 @@ import com.google.inject.Guice;
 import com.google.inject.Inject;
 import com.google.inject.testing.fieldbinder.Bind;
 import com.google.inject.testing.fieldbinder.BoundFieldModule;
-import net.runelite.api.AnimationID;
-import net.runelite.api.Client;
-import net.runelite.api.GameState;
-import net.runelite.api.Hitsplat;
-import net.runelite.api.NPC;
-import net.runelite.api.NPCComposition;
-import net.runelite.api.Player;
-import net.runelite.api.VarPlayer;
+import net.runelite.api.*;
 import net.runelite.api.events.AnimationChanged;
 import net.runelite.api.events.GameStateChanged;
 import net.runelite.api.events.GameTick;
@@ -91,15 +84,15 @@ public class IdleNotifierPluginTest
 
 		// Mock monster
 		final String[] monsterActions = new String[] { "Attack", "Examine" };
-		final NPCComposition monsterComp = mock(NPCComposition.class);
+		final NPCDefinition monsterComp = mock(NPCDefinition.class);
 		when(monsterComp.getActions()).thenReturn(monsterActions);
-		when(monster.getComposition()).thenReturn(monsterComp);
+		when(monster.getDefinition()).thenReturn(monsterComp);
 
 		// Mock random event
 		final String[] randomEventActions = new String[] { "Talk-to", "Dismiss", "Examine" };
-		final NPCComposition randomEventComp = mock(NPCComposition.class);
+		final NPCDefinition randomEventComp = mock(NPCDefinition.class);
 		when(randomEventComp.getActions()).thenReturn(randomEventActions);
-		when(randomEvent.getComposition()).thenReturn(randomEventComp);
+		when(randomEvent.getDefinition()).thenReturn(randomEventComp);
 
 		// Mock player
 		when(player.getName()).thenReturn(PLAYER_NAME);

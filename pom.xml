@@ -112,9 +112,11 @@
 	</pluginRepositories>
 
 	<modules>
+		<module>bootstrapper</module>
 		<module>cache</module>
 		<module>cache-client</module>
 		<module>cache-updater</module>
+		<module>deobfuscator</module>
 		<module>runelite-api</module>
 		<module>runelite-client</module>
 		<module>runelite-script-assembler-plugin</module>
@@ -122,6 +124,7 @@
 		<module>http-service</module>
 		<module>protocol-api</module>
 		<module>protocol</module>
+        <module>scripts</module>
 	</modules>
 
 	<dependencyManagement>

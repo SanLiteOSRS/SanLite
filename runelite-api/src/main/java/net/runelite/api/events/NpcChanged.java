@@ -26,7 +26,7 @@ package net.runelite.api.events;
 
 import lombok.Value;
 import net.runelite.api.NPC;
-import net.runelite.api.NPCComposition;
+import net.runelite.api.NPCDefinition;
 
 /**
  * Fires after the composition of an {@link NPC} changes.
@@ -42,5 +42,5 @@ public class NpcChanged
 	/**
 	 * The old composition of the NPC
 	 */
-	private final NPCComposition old;
+	private final NPCDefinition old;
 }

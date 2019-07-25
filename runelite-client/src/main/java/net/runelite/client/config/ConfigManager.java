@@ -47,13 +47,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.Instant;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Properties;
+import java.util.*;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
@@ -459,7 +453,40 @@ public class ConfigManager
 				.result())
 			.collect(Collectors.toList());
 
-		return new ConfigDescriptor(group, items);
+		return new ConfigDescriptor(group, createConfigItemGroups(items));
+	}
+
+	private List<ConfigItemsGroup> createConfigItemGroups(List<ConfigItemDescriptor> itemDescriptors)
+	{
+		List<ConfigItemsGroup> itemGroups = new ArrayList<>();
+
+		for (ConfigItemDescriptor itemDescriptor : itemDescriptors)
+		{
+			String groupName = itemDescriptor.getItem().group();
+			boolean found = false;
+			for (ConfigItemsGroup itemsGroup : itemGroups)
+			{
+				if (itemsGroup.getGroup().equals(groupName))
+				{
+					itemsGroup.addItem(itemDescriptor);
+					found = true;
+					break;
+				}
+			}
+			if (!found)
+			{
+				ConfigItemsGroup newGroup = new ConfigItemsGroup(groupName);
+				newGroup.addItem(itemDescriptor);
+				itemGroups.add(newGroup);
+			}
+		}
+
+		itemGroups = itemGroups.stream().sorted((a, b) -> ComparisonChain.start()
+				.compare(a.getGroup(), b.getGroup())
+				.result())
+				.collect(Collectors.toList());
+
+		return itemGroups;
 	}
 
 	/**
@@ -582,7 +609,7 @@ public class ConfigManager
 		{
 			return Instant.parse(str);
 		}
-		if (type == Keybind.class || type == ModifierlessKeybind.class)
+		if (type == Keybind.class || type == ModifierlessKeybind.class || type == AllKeyCodeKeybind.class)
 		{
 			String[] splitStr = str.split(":");
 			int code = Integer.parseInt(splitStr[0]);
@@ -590,6 +617,10 @@ public class ConfigManager
 			if (type == ModifierlessKeybind.class)
 			{
 				return new ModifierlessKeybind(code, mods);
+			}
+			else if (type == AllKeyCodeKeybind.class)
+			{
+				return new AllKeyCodeKeybind(code, mods);
 			}
 			return new Keybind(code, mods);
 		}

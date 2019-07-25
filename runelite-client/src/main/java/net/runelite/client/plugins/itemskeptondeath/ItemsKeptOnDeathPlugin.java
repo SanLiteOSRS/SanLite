@@ -43,7 +43,7 @@ import net.runelite.api.Constants;
 import net.runelite.api.FontID;
 import net.runelite.api.InventoryID;
 import net.runelite.api.Item;
-import net.runelite.api.ItemComposition;
+import net.runelite.api.ItemDefinition;
 import net.runelite.api.ItemContainer;
 import net.runelite.api.ItemID;
 import net.runelite.api.ScriptID;
@@ -453,7 +453,7 @@ public class ItemsKeptOnDeathPlugin extends Plugin
 
 		if (exchangePrice == 0)
 		{
-			final ItemComposition c1 = itemManager.getItemComposition(canonicalizedItemId);
+			final ItemDefinition c1 = itemManager.getItemComposition(canonicalizedItemId);
 			exchangePrice = c1.getPrice();
 		}
 
@@ -574,7 +574,7 @@ public class ItemsKeptOnDeathPlugin extends Plugin
 	 * @param c The item
 	 * @return
 	 */
-	private static boolean isTradeable(final ItemComposition c)
+	private static boolean isTradeable(final ItemDefinition c)
 	{
 		// ItemComposition:: isTradeable checks if they are traded on the grand exchange, some items are trade-able but not via GE
 		if (c.getNote() != -1
@@ -700,7 +700,7 @@ public class ItemsKeptOnDeathPlugin extends Plugin
 	{
 		final int id = item.getId();
 		final int qty = item.getQty();
-		final ItemComposition c = itemManager.getItemComposition(id);
+		final ItemDefinition c = itemManager.getItemComposition(id);
 
 		final Widget itemWidget = parent.createChild(-1, WidgetType.GRAPHIC);
 		itemWidget.setOriginalWidth(Constants.ITEM_SPRITE_WIDTH);

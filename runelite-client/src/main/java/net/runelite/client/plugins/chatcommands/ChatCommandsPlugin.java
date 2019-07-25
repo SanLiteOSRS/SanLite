@@ -819,7 +819,7 @@ public class ChatCommandsPlugin extends Plugin
 				.append(ChatColorType.HIGHLIGHT)
 				.append(StackFormatter.formatNumber(itemPrice));
 
-			ItemComposition itemComposition = itemManager.getItemComposition(itemId);
+			ItemDefinition itemComposition = itemManager.getItemComposition(itemId);
 			if (itemComposition != null)
 			{
 				int alchPrice = Math.round(itemComposition.getPrice() * Constants.HIGH_ALCHEMY_MULTIPLIER);

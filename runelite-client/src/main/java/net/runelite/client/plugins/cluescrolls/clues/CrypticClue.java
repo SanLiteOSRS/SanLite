@@ -31,8 +31,9 @@ import java.util.Set;
 import lombok.Getter;
 import net.runelite.api.NPC;
 import static net.runelite.api.NullObjectID.NULL_1293;
-import net.runelite.api.ObjectComposition;
 import static net.runelite.api.ObjectID.*;
+
+import net.runelite.api.ObjectDefinition;
 import net.runelite.api.TileObject;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.coords.WorldPoint;
@@ -371,7 +372,7 @@ public class CrypticClue extends ClueScroll implements TextClueScroll, NpcClueSc
 
 		if (objectId != -1)
 		{
-			ObjectComposition object = plugin.getClient().getObjectDefinition(objectId);
+			ObjectDefinition object = plugin.getClient().getObjectDefinition(objectId);
 
 			if (object != null && object.getImpostorIds() != null)
 			{

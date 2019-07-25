@@ -66,7 +66,6 @@ public class InfoPanel extends PluginPanel
 	private static final ImageIcon ARROW_RIGHT_ICON;
 	private static final ImageIcon GITHUB_ICON;
 	private static final ImageIcon DISCORD_ICON;
-	private static final ImageIcon PATREON_ICON;
 	private static final ImageIcon WIKI_ICON;
 	private static final ImageIcon IMPORT_ICON;
 
@@ -99,7 +98,6 @@ public class InfoPanel extends PluginPanel
 		ARROW_RIGHT_ICON = new ImageIcon(ImageUtil.getResourceStreamFromClass(InfoPanel.class, "/util/arrow_right.png"));
 		GITHUB_ICON = new ImageIcon(ImageUtil.getResourceStreamFromClass(InfoPanel.class, "github_icon.png"));
 		DISCORD_ICON = new ImageIcon(ImageUtil.getResourceStreamFromClass(InfoPanel.class, "discord_icon.png"));
-		PATREON_ICON = new ImageIcon(ImageUtil.getResourceStreamFromClass(InfoPanel.class, "patreon_icon.png"));
 		WIKI_ICON = new ImageIcon(ImageUtil.getResourceStreamFromClass(InfoPanel.class, "wiki_icon.png"));
 		IMPORT_ICON = new ImageIcon(ImageUtil.getResourceStreamFromClass(InfoPanel.class, "import_icon.png"));
 	}
@@ -119,6 +117,9 @@ public class InfoPanel extends PluginPanel
 
 		JLabel version = new JLabel(htmlLabel("RuneLite version: ", runeLiteProperties.getVersion()));
 		version.setFont(smallFont);
+
+		JLabel sanliteVersion = new JLabel(htmlLabel("SanLite version: ", runeLiteProperties.getSanLiteVersion()));
+		sanliteVersion.setFont(smallFont);
 
 		JLabel revision = new JLabel();
 		revision.setFont(smallFont);
@@ -153,6 +154,7 @@ public class InfoPanel extends PluginPanel
 		});
 
 		versionPanel.add(version);
+		versionPanel.add(sanliteVersion);
 		versionPanel.add(revision);
 		versionPanel.add(launcher);
 		versionPanel.add(Box.createGlue());
@@ -178,8 +180,7 @@ public class InfoPanel extends PluginPanel
 
 		actionsContainer.add(buildLinkPanel(GITHUB_ICON, "Report an issue or", "make a suggestion", runeLiteProperties.getGithubLink()));
 		actionsContainer.add(buildLinkPanel(DISCORD_ICON, "Talk to us on our", "discord server", runeLiteProperties.getDiscordInvite()));
-		actionsContainer.add(buildLinkPanel(PATREON_ICON, "Become a patron to", "help support RuneLite", runeLiteProperties.getPatreonLink()));
-		actionsContainer.add(buildLinkPanel(WIKI_ICON, "Information about", "RuneLite and plugins", runeLiteProperties.getWikiLink()));
+		actionsContainer.add(buildLinkPanel(WIKI_ICON, "Information about", "SanLite and plugins", runeLiteProperties.getWikiLink()));
 
 		add(versionPanel, BorderLayout.NORTH);
 		add(actionsContainer, BorderLayout.CENTER);

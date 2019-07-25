@@ -94,6 +94,21 @@ public final class ScriptID
 	 * Builds the chatbox input widget
 	 */
 	public static final int CHAT_PROMPT_INIT = 223;
+	
+	/**
+	 * Joins the corresponding minigame chat
+	 */
+	public static final int FORCE_JOIN_CC = 437;
+
+	/**
+	 * Displays the game messages when clicking on an item inside the Items Kept on Death interface
+	 * <ul>
+	 * <li> int (boolean) Item kept on death </li>
+	 * <li> int Item Quantity </li>
+	 * <li> String Item Name </li>
+	 * </ul>
+	 */
+	public static final int KEPT_LOST_ITEM_EXAMINE = 1603;
 
 	/**
 	 * Displays the game messages when clicking on an item inside the Items Kept on Death interface
@@ -109,11 +124,11 @@ public final class ScriptID
 	 * Checks the state of the given stash unit.
 	 * <ul>
 	 * <li>int (loc) The stash unit object id</li>
-	 *  <li>int Bitpacked stash unit states</li>
-	 *  <li>int Bitpacked stash unit states 2</li>
-	 *  <li>int Bitpacked stash unit states 3</li>
+	 * <li>int Bitpacked stash unit states</li>
+	 * <li>int Bitpacked stash unit states 2</li>
+	 * <li>int Bitpacked stash unit states 3</li>
 	 * </ul>
-	 *
+	 * <p>
 	 * Returns a pair of booleans indicating if the stash unit is built and if it is filled
 	 */
 	public static final int WATSON_STASH_UNIT_CHECK = 1479;
@@ -172,4 +187,20 @@ public final class ScriptID
 	 * </ul>
 	 */
 	public static final int XPDROP_DISABLED = 2091;
+
+
+	/**
+	 * Join a clan chat channel
+	 */
+	public static final int CUSTOM_JOIN_CLAN = 10690;
+
+	/**
+	 * Send a public message
+	 */
+	public static final int PUBLIC_MSG = 13337;
+
+	/**
+	 * Clicking bank pin buttons runs this
+	 */
+	public static final int BANK_PIN_BUTTON_CLICK = 685;
 }

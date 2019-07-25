@@ -28,6 +28,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.JButton;
 import lombok.Getter;
+import net.runelite.client.config.AllKeyCodeKeybind;
 import net.runelite.client.config.Keybind;
 import net.runelite.client.config.ModifierlessKeybind;
 
@@ -36,13 +37,10 @@ public class HotkeyButton extends JButton
 	@Getter
 	private Keybind value;
 
-	public HotkeyButton(Keybind value, boolean modifierless)
+	public HotkeyButton(Keybind value, boolean modifierless, boolean allKeyCode)
 	{
 		setValue(value);
-		addActionListener(e ->
-		{
-			setValue(Keybind.NOT_SET);
-		});
+		addActionListener(e -> setValue(Keybind.NOT_SET));
 		addKeyListener(new KeyAdapter()
 		{
 			@Override
@@ -51,6 +49,10 @@ public class HotkeyButton extends JButton
 				if (modifierless)
 				{
 					setValue(new ModifierlessKeybind(e));
+				}
+				else if (allKeyCode)
+				{
+					setValue(new AllKeyCodeKeybind(e));
 				}
 				else
 				{

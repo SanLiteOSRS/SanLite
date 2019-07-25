@@ -25,9 +25,9 @@
 package net.runelite.client.plugins.antidrag;
 
 import net.runelite.api.Constants;
-import net.runelite.client.config.Config;
-import net.runelite.client.config.ConfigGroup;
-import net.runelite.client.config.ConfigItem;
+import net.runelite.client.config.*;
+
+import java.awt.event.KeyEvent;
 
 @ConfigGroup("antiDrag")
 public interface AntiDragConfig extends Config
@@ -41,5 +41,27 @@ public interface AntiDragConfig extends Config
 	default int dragDelay()
 	{
 		return Constants.GAME_TICK_LENGTH / Constants.CLIENT_TICK_LENGTH; // one game tick
+	}
+
+	@ConfigItem(
+			keyName = "keybind1",
+			name = "Keybind 1",
+			description = "First key that when held down delays dragging items",
+			position = 0
+	)
+	default AllKeyCodeKeybind keybind1()
+	{
+		return new AllKeyCodeKeybind(KeyEvent.VK_SHIFT, 0);
+	}
+
+	@ConfigItem(
+			keyName = "keybind2",
+			name = "Keybind 2",
+			description = "Second key that when held down delays dragging items",
+			position = 0
+	)
+	default AllKeyCodeKeybind keybind2()
+	{
+		return new AllKeyCodeKeybind(KeyEvent.VK_CONTROL, 0);
 	}
 }

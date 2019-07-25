@@ -41,7 +41,7 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 import lombok.Setter;
-import net.runelite.api.ItemComposition;
+import net.runelite.api.ItemDefinition;
 import net.runelite.client.callback.ClientThread;
 import net.runelite.client.game.AsyncBufferedImage;
 import net.runelite.client.game.ItemManager;
@@ -198,7 +198,7 @@ class GrandExchangeSearchPanel extends JPanel
 
 			int itemId = item.getId();
 
-			ItemComposition itemComp = itemManager.getItemComposition(itemId);
+			ItemDefinition itemComp = itemManager.getItemComposition(itemId);
 			if (itemComp == null)
 			{
 				continue;
