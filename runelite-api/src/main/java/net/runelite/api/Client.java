@@ -1745,9 +1745,4 @@ public interface Client extends GameShell
 	BigInteger getModulus();
 
 	void setModulus(BigInteger modulus);
-
-//	/**
-//	 * Returns the max item index + 1 from cache
-//	 */
-//	int getItemCount();
 }
