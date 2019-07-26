@@ -8097,6 +8097,7 @@ public final class NpcID
 	public static final int CRYSTALLINE_HUNLLEF_9022 = 9022;
 	public static final int CRYSTALLINE_HUNLLEF_9023 = 9023;
 	public static final int CRYSTALLINE_HUNLLEF_9024 = 9024;
+	public static final int CRYSTALLINE_HUNLLEF_CRYSTAL = 9025;
 	public static final int CRYSTALLINE_RAT = 9026;
 	public static final int CRYSTALLINE_SPIDER = 9027;
 	public static final int CRYSTALLINE_BAT = 9028;

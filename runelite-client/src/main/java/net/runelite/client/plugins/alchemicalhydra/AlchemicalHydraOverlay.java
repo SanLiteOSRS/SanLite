@@ -30,9 +30,6 @@ public class AlchemicalHydraOverlay extends Overlay
 	private static final Color COLOR_ICON_BACKGROUND = new Color(0, 0, 0, 128);
 	private static final Color COLOR_ICON_BORDER = new Color(0, 0, 0, 255);
 	private static final Color COLOR_ICON_BORDER_FILL = new Color(219, 175, 0, 255);
-	private static final Color COLOR_POISON_MARKER = new Color(159, 219, 0, 255);
-	private static final Color COLOR_LIGHTNING_MARKER = new Color(3, 133, 219, 255);
-	private static final Color COLOR_FIRE_MARKER = new Color(219, 116, 0, 255);
 	private static final int ICON_WIDTH = 25;
 	private static final int ICON_HEIGHT = 25;
 	private static final int OVERLAY_ICON_DISTANCE = 30;
