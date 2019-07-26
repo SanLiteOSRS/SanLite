@@ -26,12 +26,8 @@ package net.runelite.client.plugins.gauntlet;
 
 
 import net.runelite.api.Client;
-import net.runelite.api.NPC;
-import net.runelite.api.Perspective;
-import net.runelite.api.coords.LocalPoint;
 import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayPosition;
-import net.runelite.client.ui.overlay.OverlayUtil;
 import net.runelite.client.ui.overlay.components.LineComponent;
 import net.runelite.client.ui.overlay.components.PanelComponent;
 import net.runelite.client.ui.overlay.components.TitleComponent;
@@ -103,6 +99,11 @@ public class GauntletDebugOverlay extends Overlay
 			panelComponent.getChildren().add(LineComponent.builder()
 					.left("Number of AoE effects")
 					.right("" + plugin.getGauntletBoss().getCrystalEffects().size())
+					.build());
+
+			panelComponent.getChildren().add(LineComponent.builder()
+					.left("Number of resource spots")
+					.right("" + plugin.getResourceSpots().size())
 					.build());
 
 			return panelComponent.render(graphics);

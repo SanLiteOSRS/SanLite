@@ -1,9 +1,11 @@
 package net.runelite.client.plugins.gauntlet;
 
 import com.google.inject.Provides;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.*;
+import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.events.*;
 import net.runelite.client.callback.ClientThread;
 import net.runelite.client.config.ConfigManager;
@@ -14,12 +16,18 @@ import net.runelite.client.plugins.PluginType;
 import net.runelite.client.ui.overlay.OverlayManager;
 
 import javax.inject.Inject;
+import java.awt.*;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+
+import static net.runelite.api.ObjectID.*;
 
 @Slf4j
 @PluginDescriptor(
 		name = "The Gauntlet",
-		description = "Assists with the Gauntlet minigame",
+		description = "Assists with The Gauntlet minigame",
 		tags = {"combat", "overlay", "pve", "pvm", "gauntlet", "crystal", "hunllef", "custom", "minigame"},
 		type = PluginType.SANLITE
 )
@@ -44,6 +52,12 @@ public class GauntletPlugin extends Plugin
 	private GauntletOverlay overlay;
 
 	@Inject
+	private GauntletResourceSpotOverlay resourceSpotOverlay;
+
+	@Inject
+	private GauntletResourceSpotMinimapOverlay resourceSpotMinimapOverlay;
+
+	@Inject
 	private GauntletDebugOverlay debugOverlay;
 
 	@Inject
@@ -51,6 +65,9 @@ public class GauntletPlugin extends Plugin
 
 	@Getter
 	private GauntletBoss gauntletBoss;
+
+	@Getter(AccessLevel.PACKAGE)
+	private final List<GameObject> resourceSpots = new ArrayList<>();
 
 	private static boolean isNpcGauntletBoss(int npcId)
 	{
@@ -68,6 +85,8 @@ public class GauntletPlugin extends Plugin
 	protected void startUp() throws Exception
 	{
 		overlayManager.add(overlay);
+		overlayManager.add(resourceSpotOverlay);
+		overlayManager.add(resourceSpotMinimapOverlay);
 		if (config.showDebugOverlay())
 		{
 			overlayManager.add(debugOverlay);
@@ -79,11 +98,13 @@ public class GauntletPlugin extends Plugin
 	protected void shutDown() throws Exception
 	{
 		overlayManager.remove(overlay);
+		overlayManager.remove(resourceSpotOverlay);
+		overlayManager.remove(resourceSpotMinimapOverlay);
 		if (config.showDebugOverlay())
 		{
 			overlayManager.remove(debugOverlay);
 		}
-		gauntletBoss = null;
+		reset();
 	}
 
 	@Subscribe
@@ -102,6 +123,7 @@ public class GauntletPlugin extends Plugin
 	private void reset()
 	{
 		gauntletBoss = null;
+		resourceSpots.clear();
 	}
 
 	/**
@@ -263,6 +285,13 @@ public class GauntletPlugin extends Plugin
 	public void onGameStateChanged(GameStateChanged event)
 	{
 		GameState gameState = event.getGameState();
+
+		// Clear resource spots when a new gauntlet room is loaded
+		if (gameState == GameState.LOADING)
+		{
+			resourceSpots.clear();
+		}
+
 		if (gameState == GameState.LOGGING_IN || gameState == GameState.CONNECTION_LOST || gameState == GameState.HOPPING)
 		{
 			reset();
@@ -313,12 +342,65 @@ public class GauntletPlugin extends Plugin
 	}
 
 	@Subscribe
+	public void onGameObjectSpawned(GameObjectSpawned event)
+	{
+		final GameObject gameObject = event.getGameObject();
+		if (!GauntletResourceSpot.getSPOTS().containsKey(gameObject.getId()))
+		{
+			return;
+		}
+		resourceSpots.add(gameObject);
+		log.debug("Added gameObject {} at x: {} | y: {}", gameObject.getId(), gameObject.getCanvasLocation().getX(), gameObject.getCanvasLocation().getY());
+		inverseSortSpotDistanceFromPlayer();
+	}
+
+	@Subscribe
+	public void onGameObjectDespawned(GameObjectDespawned event)
+	{
+		final GameObject gameObject = event.getGameObject();
+
+		if (gameObject == null || !GauntletResourceSpot.getSPOTS().containsKey(gameObject.getId()))
+		{
+			return;
+		}
+
+		log.debug("Removed gameObject {} at x: {} | y: {}", gameObject.getId(), gameObject.getCanvasLocation().getX(), gameObject.getCanvasLocation().getY());
+		resourceSpots.remove(gameObject);
+	}
+
+	@Subscribe
 	protected void onClientTick(ClientTick event)
 	{
 		if (inGauntletInstance())
 		{
 			checkGauntletBossAttacks();
 			checkGauntletBossCrystalAttack();
+		}
+	}
+
+	private void inverseSortSpotDistanceFromPlayer()
+	{
+		final LocalPoint cameraPoint = new LocalPoint(client.getCameraX(), client.getCameraY());
+		resourceSpots.sort(Comparator.comparing(spot -> -1 * spot.getLocalLocation().distanceTo(cameraPoint)));
+	}
+
+	Color getResourceSpotColor(int gameObjectId)
+	{
+		switch (gameObjectId)
+		{
+			case GAUNTLET_FISHING_SPOT:
+				return config.getPaddlefishSpotColor();
+			case GAUNTLET_CRYSTAL_DEPOSIT:
+				return config.getCrystalDepositColor();
+			case GAUNTLET_GRYM_ROOT:
+				return config.getGrymRootColor();
+			case GAUNTLET_PHREN_ROOTS:
+				return config.getPhrenRootsColor();
+			case GAUNTLET_LINUM_TIRINUM:
+				return config.getLinumTirinumColor();
+			default:
+				log.warn("Unknown Gauntlet resource spot with id {}", gameObjectId);
+				return Color.GRAY;
 		}
 	}
 }

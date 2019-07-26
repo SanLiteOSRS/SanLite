@@ -34,10 +34,10 @@ import java.awt.*;
 public interface GauntletConfig extends Config
 {
 	@ConfigItem(
+			position = 1,
 			keyName = "showAttackStyleCounter",
 			name = "Show attack style counter",
-			description = "Displays the Gauntlet boss next attack above it's health bar",
-			position = 1
+			description = "Displays the Gauntlet boss next attack above it's health bar"
 	)
 	default boolean showAttackStyleCounter()
 	{
@@ -45,10 +45,10 @@ public interface GauntletConfig extends Config
 	}
 
 	@ConfigItem(
+			position = 2,
 			keyName = "highlightCrystalAttackTiles",
 			name = "Highlight crystals tiles",
-			description = "Highlight the tiles for the Gauntlet boss crystals",
-			position = 2
+			description = "Highlight the tiles for the Gauntlet boss crystals"
 	)
 	default boolean highlightCrystalAttackTiles()
 	{
@@ -56,10 +56,10 @@ public interface GauntletConfig extends Config
 	}
 
 	@ConfigItem(
+			position = 3,
 			keyName = "crystalAttackColor",
 			name = "Crystals marker",
-			description = "Color of Gauntlet boss crystals marker",
-			position = 3
+			description = "Color of Gauntlet boss crystals marker"
 	)
 	default Color getCrystalAttackColor()
 	{
@@ -67,10 +67,118 @@ public interface GauntletConfig extends Config
 	}
 
 	@ConfigItem(
+			position = 4,
+			keyName = "showResourceSpotsTiles",
+			name = "Display resource spot tiles",
+			description = "Configures whether tiles for resource spots are highlighted",
+			group = "Resource spots"
+	)
+	default boolean showResourceSpotsTiles()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+			position = 5,
+			keyName = "showResourceSpotsIcons",
+			name = "Display resource spot icons",
+			description = "Configures whether icons for resource spots are displayed",
+			group = "Resource spots"
+	)
+	default boolean showResourceSpotsIcons()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+			position = 6,
+			keyName = "showResourceSpotsNames",
+			name = "Display resource spot names",
+			description = "Configures whether names for resource spots are displayed",
+			group = "Resource spots"
+	)
+	default boolean showResourceSpotsNames()
+	{
+		return false;
+	}
+
+	@ConfigItem(
+			position = 7,
+			keyName = "showResourceSpotsOnMinimap",
+			name = "Display resource spot on minimap",
+			description = "Configures whether resource spots are displayed on the minimap",
+			group = "Resource spots"
+	)
+	default boolean showResourceSpotsOnMinimap()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+			position = 8,
+			keyName = "paddlefishSpotColor",
+			name = "Paddlefish spot color",
+			description = "Color of paddlefish fishing spots tile markers",
+			group = "Resource spots"
+	)
+	default Color getPaddlefishSpotColor()
+	{
+		return new Color(0, 162, 162);
+	}
+
+	@ConfigItem(
+			position = 9,
+			keyName = "crystalDepositColor",
+			name = "Crystal deposit color",
+			description = "Color of crystal deposit spots tile markers",
+			group = "Resource spots"
+	)
+	default Color getCrystalDepositColor()
+	{
+		return new Color(152, 107, 61);
+	}
+
+	@ConfigItem(
+			position = 10,
+			keyName = "grymRootColor",
+			name = "Grym root color",
+			description = "Color of grym root spots tile markers",
+			group = "Resource spots"
+	)
+	default Color getGrymRootColor()
+	{
+		return new Color(6, 116, 12, 255);
+	}
+
+	@ConfigItem(
+			position = 11,
+			keyName = "phrenRootsColor",
+			name = "Phren roots color",
+			description = "Color of phren roots spots tile markers",
+			group = "Resource spots"
+	)
+	default Color getPhrenRootsColor()
+	{
+		return new Color(91, 219, 1, 255);
+	}
+
+	@ConfigItem(
+			position = 12,
+			keyName = "linumTirinumColor",
+			name = "Linum Tirinum color",
+			description = "Color of linum tirinum spots tile markers",
+			group = "Resource spots"
+	)
+	default Color getLinumTirinumColor()
+	{
+		return new Color(217, 219, 199, 255);
+	}
+
+	@ConfigItem(
+			position = 13,
 			keyName = "showDebugOverlay",
 			name = "Display debug overlay",
-			description = "Displays Gauntlet boss debug overlay. This contains variables that the plugin uses to function",
-			position = 4
+			description = "Displays Gauntlet boss debug overlay. This contains variables that the plugin uses to function"
 	)
 	default boolean showDebugOverlay()
 	{
