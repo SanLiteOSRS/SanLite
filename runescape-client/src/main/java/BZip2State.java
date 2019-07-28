@@ -26,13 +26,13 @@ public final class BZip2State {
 	byte[] inputArray;
 	@ObfuscatedName("i")
 	@ObfuscatedGetter(
-			intValue = -1049906743
+		intValue = -1049906743
 	)
 	@Export("nextByte")
 	int nextByte;
 	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-			intValue = 1743451477
+		intValue = 1743451477
 	)
 	@Export("nextBit_unused")
 	int nextBit_unused;
@@ -41,19 +41,19 @@ public final class BZip2State {
 	byte[] outputArray;
 	@ObfuscatedName("m")
 	@ObfuscatedGetter(
-			intValue = -1528977191
+		intValue = -1528977191
 	)
 	@Export("next_out")
 	int next_out;
 	@ObfuscatedName("u")
 	@ObfuscatedGetter(
-			intValue = 1616991267
+		intValue = 1616991267
 	)
 	@Export("outputLength")
 	int outputLength;
 	@ObfuscatedName("x")
 	@ObfuscatedGetter(
-			intValue = 1607838751
+		intValue = 1607838751
 	)
 	int field3753;
 	@ObfuscatedName("r")
@@ -61,42 +61,42 @@ public final class BZip2State {
 	byte out_char;
 	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-			intValue = 236002095
+		intValue = 236002095
 	)
 	@Export("su_rNToGo")
 	int su_rNToGo;
 	@ObfuscatedName("y")
 	@ObfuscatedGetter(
-			intValue = 145021143
+		intValue = 145021143
 	)
 	@Export("bsBuff")
 	int bsBuff;
 	@ObfuscatedName("g")
 	@ObfuscatedGetter(
-			intValue = 964245035
+		intValue = 964245035
 	)
 	@Export("bsLive")
 	int bsLive;
 	@ObfuscatedName("a")
 	@ObfuscatedGetter(
-			intValue = 738319360
+		intValue = 738319360
 	)
 	@Export("blockSize100k")
 	int blockSize100k;
 	@ObfuscatedName("j")
 	@ObfuscatedGetter(
-			intValue = 826030823
+		intValue = 826030823
 	)
 	@Export("originalPointer")
 	int originalPointer;
 	@ObfuscatedName("t")
 	@ObfuscatedGetter(
-			intValue = -300117779
+		intValue = -300117779
 	)
 	int field3760;
 	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-			intValue = -284126821
+		intValue = -284126821
 	)
 	@Export("su_ch2")
 	int su_ch2;
@@ -105,7 +105,7 @@ public final class BZip2State {
 	int[] unzftab;
 	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-			intValue = -485705465
+		intValue = -485705465
 	)
 	@Export("nblocks_used")
 	int nblocks_used;
@@ -114,7 +114,7 @@ public final class BZip2State {
 	int[] cftab;
 	@ObfuscatedName("z")
 	@ObfuscatedGetter(
-			intValue = 386581291
+		intValue = 386581291
 	)
 	@Export("nInUse")
 	int nInUse;
@@ -156,7 +156,7 @@ public final class BZip2State {
 	int[] minLens;
 	@ObfuscatedName("at")
 	@ObfuscatedGetter(
-			intValue = -590888097
+		intValue = -590888097
 	)
 	int field3776;
 

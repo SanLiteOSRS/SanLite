@@ -8,13 +8,13 @@ import net.runelite.mapping.ObfuscatedSignature;
 public final class NPC extends Actor {
 	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-			signature = "Lly;"
+		signature = "Lly;"
 	)
 	@Export("rightTitleSprite")
 	static Sprite rightTitleSprite;
 	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-			signature = "Lij;"
+		signature = "Lij;"
 	)
 	@Export("definition")
 	NPCDefinition definition;
@@ -24,8 +24,8 @@ public final class NPC extends Actor {
 
 	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-			signature = "(IBI)V",
-			garbageValue = "1156693210"
+		signature = "(IBI)V",
+		garbageValue = "1156693210"
 	)
 	final void method1974(int var1, byte var2) {
 		int var3 = super.pathX[0];
@@ -87,8 +87,8 @@ public final class NPC extends Actor {
 
 	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-			signature = "(IIZS)V",
-			garbageValue = "128"
+		signature = "(IIZS)V",
+		garbageValue = "128"
 	)
 	final void method1963(int var1, int var2, boolean var3) {
 		if (super.sequence != -1 && GrandExchangeEvent.getSequenceDefinition(super.sequence).field3532 == 1) {
@@ -127,8 +127,8 @@ public final class NPC extends Actor {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-			signature = "(I)Ldm;",
-			garbageValue = "759381421"
+		signature = "(I)Ldm;",
+		garbageValue = "759381421"
 	)
 	@Export("getModel")
 	protected final Model getModel() {
@@ -161,8 +161,8 @@ public final class NPC extends Actor {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-			signature = "(I)Z",
-			garbageValue = "-1461786701"
+		signature = "(I)Z",
+		garbageValue = "-1461786701"
 	)
 	@Export("isVisible")
 	final boolean isVisible() {
@@ -171,8 +171,8 @@ public final class NPC extends Actor {
 
 	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-			signature = "(ILcx;ZI)I",
-			garbageValue = "-1435183788"
+		signature = "(ILcx;ZI)I",
+		garbageValue = "-1435183788"
 	)
 	static int method1977(int var0, Script var1, boolean var2) {
 		if (var0 < 1000) {

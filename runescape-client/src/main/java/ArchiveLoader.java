@@ -76,8 +76,8 @@ public class ArchiveLoader {
 
 	@ObfuscatedName("j")
 	@ObfuscatedSignature(
-			signature = "(ILcx;ZB)I",
-			garbageValue = "65"
+		signature = "(ILcx;ZB)I",
+		garbageValue = "65"
 	)
 	static int method1100(int var0, Script var1, boolean var2) {
 		Widget var3;
