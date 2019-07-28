@@ -28,7 +28,7 @@
 
 	<groupId>net.runelite</groupId>
 	<artifactId>runelite-parent</artifactId>
-	<version>1.5.29</version>
+	<version>1.5.29.1</version>
 	<packaging>pom</packaging>
 
 	<name>RuneLite</name>
@@ -44,7 +44,7 @@
 		<checkstyle.skip>true</checkstyle.skip>
 
 		<rs.version>181</rs.version>
-		<sanlite.version>1.2.0</sanlite.version>
+		<sanlite.version>1.3.0</sanlite.version>
 	</properties>
 
 	<licenses>
@@ -60,7 +60,7 @@
 		<url>https://github.com/runelite/runelite</url>
 		<connection>scm:git:git://github.com/runelite/runelite</connection>
 		<developerConnection>scm:git:git@github.com:runelite/runelite</developerConnection>
-		<tag>runelite-parent-1.5.29</tag>
+		<tag>HEAD</tag>
 	</scm>
 
 	<developers>
@@ -120,13 +120,13 @@
 		<module>deobfuscator</module>
 		<module>runelite-api</module>
 		<module>runelite-client</module>
-        <module>runelite-mixins</module>
+		<module>runelite-mixins</module>
 		<module>runelite-script-assembler-plugin</module>
 		<module>runescape-api</module>
 		<module>runescape-client</module>
-		<module>injector-plugin</module>
-		<module>injected-client</module>
-		<module>http-api</module>
+        <module>injector-plugin</module>
+        <module>injected-client</module>
+        <module>http-api</module>
 		<module>http-service</module>
 		<module>protocol-api</module>
 		<module>protocol</module>
