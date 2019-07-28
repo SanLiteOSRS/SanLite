@@ -184,7 +184,7 @@ public interface GauntletConfig extends Config
 	)
 	default Color getGrymRootColor()
 	{
-		return new Color(210, 23, 23);
+		return new Color(160, 10, 10);
 	}
 
 
