@@ -116,9 +116,21 @@ public interface GauntletConfig extends Config
 
 	@ConfigItem(
 			position = 9,
+			keyName = "showPaddlefishSpots",
+			name = "Display paddlefish markers",
+			description = "Configures whether paddlefish spots are displayed with the resource spot markers",
+			group = "Resource spots"
+	)
+	default boolean showPaddlefishSpots()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+			position = 10,
 			keyName = "paddlefishSpotColor",
 			name = "Paddlefish spot color",
-			description = "Color of paddlefish fishing spots tile markers",
+			description = "Color of paddlefish fishing spots resource spot markers",
 			group = "Resource spots"
 	)
 	default Color getPaddlefishSpotColor()
@@ -126,11 +138,24 @@ public interface GauntletConfig extends Config
 		return new Color(0, 162, 162);
 	}
 
+
 	@ConfigItem(
-			position = 10,
+			position = 11,
+			keyName = "showCrystalDeposits",
+			name = "Display crystal deposit markers",
+			description = "Configures whether crystal deposits are displayed with the resource spot markers",
+			group = "Resource spots"
+	)
+	default boolean showCrystalDeposits()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+			position = 12,
 			keyName = "crystalDepositColor",
 			name = "Crystal deposit color",
-			description = "Color of crystal deposit spots tile markers",
+			description = "Color of crystal deposit spots resource spot markers",
 			group = "Resource spots"
 	)
 	default Color getCrystalDepositColor()
@@ -139,10 +164,22 @@ public interface GauntletConfig extends Config
 	}
 
 	@ConfigItem(
-			position = 11,
+			position = 13,
+			keyName = "showGrymRoots",
+			name = "Display Grym roots markers",
+			description = "Configures whether Grym roots are displayed with the resource spot markers",
+			group = "Resource spots"
+	)
+	default boolean showGrymRoots()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+			position = 14,
 			keyName = "grymRootColor",
 			name = "Grym root color",
-			description = "Color of grym root spots tile markers",
+			description = "Color of grym root spots resource spot markers",
 			group = "Resource spots"
 	)
 	default Color getGrymRootColor()
@@ -150,11 +187,24 @@ public interface GauntletConfig extends Config
 		return new Color(11, 102, 15, 255);
 	}
 
+
 	@ConfigItem(
-			position = 12,
+			position = 15,
+			keyName = "showPhrenRoots",
+			name = "Display Phren roots markers",
+			description = "Configures whether Phren roots are displayed with the resource spot markers",
+			group = "Resource spots"
+	)
+	default boolean showPhrenRoots()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+			position = 16,
 			keyName = "phrenRootsColor",
 			name = "Phren roots color",
-			description = "Color of phren roots spots tile markers",
+			description = "Color of phren roots spots resource spot markers",
 			group = "Resource spots"
 	)
 	default Color getPhrenRootsColor()
@@ -163,10 +213,22 @@ public interface GauntletConfig extends Config
 	}
 
 	@ConfigItem(
-			position = 13,
+			position = 17,
+			keyName = "showLinumTirinum",
+			name = "Display Linum Tirinum markers",
+			description = "Configures whether Linum Tirinum are displayed with the resource spot markers",
+			group = "Resource spots"
+	)
+	default boolean showLinumTirinum()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+			position = 18,
 			keyName = "linumTirinumColor",
 			name = "Linum Tirinum color",
-			description = "Color of linum tirinum spots tile markers",
+			description = "Color of linum tirinum spots resource spot markers",
 			group = "Resource spots"
 	)
 	default Color getLinumTirinumColor()
@@ -175,7 +237,7 @@ public interface GauntletConfig extends Config
 	}
 
 	@ConfigItem(
-			position = 14,
+			position = 19,
 			keyName = "showDebugOverlay",
 			name = "Display debug overlay",
 			description = "Displays Gauntlet boss debug overlay. This contains variables that the plugin uses to function"

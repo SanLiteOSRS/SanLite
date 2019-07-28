@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static net.runelite.api.ObjectID.*;
 
@@ -70,7 +71,7 @@ public class GauntletPlugin extends Plugin
 	private GauntletBoss gauntletBoss;
 
 	@Getter(AccessLevel.PACKAGE)
-	private final List<GameObject> resourceSpots = new ArrayList<>();
+	private List<GameObject> resourceSpots = new ArrayList<>();
 
 	private static boolean isNpcGauntletBoss(int npcId)
 	{
@@ -115,6 +116,37 @@ public class GauntletPlugin extends Plugin
 	@Subscribe
 	public void onConfigChanged(ConfigChanged event)
 	{
+
+		if (!config.showPaddlefishSpots())
+		{
+			resourceSpots.removeIf(spot -> spot.getId() == GAUNTLET_FISHING_SPOT ||
+							spot.getId() == CORRUPTED_GAUNTLET_FISHING_SPOT);
+		}
+
+		if (!config.showCrystalDeposits())
+		{
+			resourceSpots.removeIf(spot -> spot.getId() == GAUNTLET_CRYSTAL_DEPOSIT ||
+					spot.getId() == CORRUPTED_GAUNTLET_CORRUPTED_DEPOSIT);
+		}
+
+		if (!config.showGrymRoots())
+		{
+			resourceSpots.removeIf(spot -> spot.getId() == GAUNTLET_GRYM_ROOT ||
+					spot.getId() == CORRUPTED_GAUNTLET_GRYM_ROOT);
+		}
+
+		if (!config.showPhrenRoots())
+		{
+			resourceSpots.removeIf(spot -> spot.getId() == GAUNTLET_PHREN_ROOTS ||
+					spot.getId() == CORRUPTED_GAUNTLET_PHREN_ROOTS);
+		}
+
+		if (!config.showLinumTirinum())
+		{
+			resourceSpots.removeIf(spot -> spot.getId() == GAUNTLET_LINUM_TIRINUM ||
+					spot.getId() == CORRUPTED_GAUNTLET_LINUM_TIRINUM);
+		}
+
 		if (config.showDebugOverlay())
 		{
 			overlayManager.add(debugOverlay);
@@ -356,6 +388,37 @@ public class GauntletPlugin extends Plugin
 		{
 			return;
 		}
+
+		if (event.getGameObject().getId() == GAUNTLET_FISHING_SPOT && !config.showPaddlefishSpots() ||
+				event.getGameObject().getId() == CORRUPTED_GAUNTLET_FISHING_SPOT && !config.showPaddlefishSpots())
+		{
+			return;
+		}
+
+		if (event.getGameObject().getId() == GAUNTLET_CRYSTAL_DEPOSIT && !config.showCrystalDeposits() ||
+				event.getGameObject().getId() == CORRUPTED_GAUNTLET_CORRUPTED_DEPOSIT && !config.showCrystalDeposits())
+		{
+			return;
+		}
+
+		if (event.getGameObject().getId() == GAUNTLET_GRYM_ROOT && !config.showGrymRoots() ||
+				event.getGameObject().getId() == CORRUPTED_GAUNTLET_GRYM_ROOT && !config.showGrymRoots())
+		{
+			return;
+		}
+
+		if (event.getGameObject().getId() == GAUNTLET_PHREN_ROOTS && !config.showPhrenRoots() ||
+				event.getGameObject().getId() == CORRUPTED_GAUNTLET_PHREN_ROOTS && !config.showPhrenRoots())
+		{
+			return;
+		}
+
+		if (event.getGameObject().getId() == GAUNTLET_LINUM_TIRINUM && !config.showLinumTirinum() ||
+				event.getGameObject().getId() == CORRUPTED_GAUNTLET_LINUM_TIRINUM && !config.showLinumTirinum())
+		{
+			return;
+		}
+
 		resourceSpots.add(gameObject);
 		log.debug("Added gameObject {} at x: {} | y: {}", gameObject.getId(), gameObject.getCanvasLocation().getX(), gameObject.getCanvasLocation().getY());
 		inverseSortSpotDistanceFromPlayer();
