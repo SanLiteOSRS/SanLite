@@ -8,12 +8,13 @@ public class class16 {
 		signature = "(I)V",
 		garbageValue = "572816821"
 	)
-	public static void method174() {
+	@Export("SpriteBuffer_clear")
+	public static void SpriteBuffer_clear() {
 		Varps.SpriteBuffer_xOffsets = null;
-		class326.SpriteBuffer_yOffsets = null;
-		class326.SpriteBuffer_spriteWidths = null;
+		SpriteBuffer.SpriteBuffer_yOffsets = null;
+		SpriteBuffer.SpriteBuffer_spriteWidths = null;
 		class216.SpriteBuffer_spriteHeights = null;
 		Frames.SpriteBuffer_spritePalette = null;
-		class326.SpriteBuffer_pixels = null;
+		SpriteBuffer.SpriteBuffer_pixels = null;
 	}
 }

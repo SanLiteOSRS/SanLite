@@ -315,4 +315,7 @@ public final class AnimationID
 
 	public static final int BARRAGE_ANIMATION = 1979;
 	public static final int CHIN_ANIMATION = 7618;
+
+	// Gauntlet
+	public static final int GAUNTLET_BOSS_CRYSTAL_ATTACK = 8418;
 }

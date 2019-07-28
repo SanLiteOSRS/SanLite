@@ -4,6 +4,8 @@ import net.runelite.api.Client;
 import net.runelite.api.Sprite;
 import net.runelite.api.World;
 import net.runelite.api.widgets.Widget;
+
+import java.math.BigInteger;
 import java.util.Map;
 import net.runelite.mapping.Construct;
 import net.runelite.mapping.Import;
@@ -450,7 +452,7 @@ public interface RSClient extends RSGameShell, Client
 	@Override
 	RSIterableNodeHashTable getMessages();
 
-	@Import("revision")
+	@Import("RunException_revision")
 	@Override
 	int getRevision();
 
@@ -576,7 +578,7 @@ public interface RSClient extends RSGameShell, Client
 	void setObjectDefinitionLowDetail(boolean lowDetail);
 
 	@Construct
-	RSGroundItem createItem();
+	RSTileItem createItem();
 
 	@Import("Interpreter_intStackSize")
 	@Override
@@ -800,9 +802,9 @@ public interface RSClient extends RSGameShell, Client
 	@Override
 	int getOculusOrbFocalPointY();
 
-	RSGroundItem getLastItemDespawn();
+	RSTileItem getLastItemDespawn();
 
-	void setLastItemDespawn(RSGroundItem lastItemDespawn);
+	void setLastItemDespawn(RSTileItem lastItemDespawn);
 
 	@Construct
 	RSWidget createWidget();
@@ -1008,4 +1010,8 @@ public interface RSClient extends RSGameShell, Client
 	@Import("crossSprites")
 	@Override
 	RSSprite[] getCrossSprites();
+
+	BigInteger getModulus();
+
+	void setModulus(BigInteger modulus);
 }

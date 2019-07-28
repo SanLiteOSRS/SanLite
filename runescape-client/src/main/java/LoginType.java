@@ -10,7 +10,8 @@ public class LoginType {
 	@ObfuscatedSignature(
 		signature = "Lmu;"
 	)
-	public static final LoginType field4052;
+	@Export("oldscape")
+	public static final LoginType oldscape;
 	@ObfuscatedName("w")
 	@ObfuscatedSignature(
 		signature = "Lmu;"
@@ -60,7 +61,7 @@ public class LoginType {
 	final String field4048;
 
 	static {
-		field4052 = new LoginType(0, 0, "", "");
+		oldscape = new LoginType(0, 0, "", "");
 		field4049 = new LoginType(3, 1, "", "");
 		field4050 = new LoginType(4, 2, "", "");
 		field4051 = new LoginType(7, 3, "", "");
@@ -68,7 +69,7 @@ public class LoginType {
 		field4053 = new LoginType(8, 5, "", "");
 		field4054 = new LoginType(1, 6, "", "");
 		field4055 = new LoginType(6, 7, "", "");
-		field4056 = new LoginType(2, -1, "", "", true, new LoginType[]{field4052, field4049, field4050, field4058, field4051});
+		field4056 = new LoginType(2, -1, "", "", true, new LoginType[]{oldscape, field4049, field4050, field4058, field4051});
 	}
 
 	LoginType(int var1, int var2, String var3, String var4) {

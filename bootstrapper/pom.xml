@@ -5,7 +5,7 @@
     <parent>
         <groupId>net.runelite</groupId>
         <artifactId>runelite-parent</artifactId>
-        <version>1.5.29</version>
+        <version>1.5.28</version>
     </parent>
 
     <artifactId>bootstrapper</artifactId>
@@ -51,3 +51,4 @@
         </resources>
     </build>
 </project>
+        <version>1.5.29.1</version>

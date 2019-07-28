@@ -10,5 +10,6 @@ public interface Enumerated {
 		signature = "(I)I",
 		garbageValue = "320353268"
 	)
+	@Export("rsOrdinal")
 	int rsOrdinal();
 }

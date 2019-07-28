@@ -204,7 +204,7 @@ public class GroundItemsPlugin extends Plugin
 	@Subscribe
 	public void onItemSpawned(ItemSpawned itemSpawned)
 	{
-		Item item = itemSpawned.getItem();
+		TileItem item = itemSpawned.getItem();
 		Tile tile = itemSpawned.getTile();
 
 		GroundItem groundItem = buildGroundItem(tile, item);
@@ -230,7 +230,7 @@ public class GroundItemsPlugin extends Plugin
 	@Subscribe
 	public void onItemDespawned(ItemDespawned itemDespawned)
 	{
-		Item item = itemDespawned.getItem();
+		TileItem item = itemDespawned.getItem();
 		Tile tile = itemDespawned.getTile();
 
 		GroundItem.GroundItemKey groundItemKey = new GroundItem.GroundItemKey(item.getId(), tile.getWorldLocation());
@@ -253,7 +253,7 @@ public class GroundItemsPlugin extends Plugin
 	@Subscribe
 	public void onItemQuantityChanged(ItemQuantityChanged itemQuantityChanged)
 	{
-		Item item = itemQuantityChanged.getItem();
+		TileItem item = itemQuantityChanged.getItem();
 		Tile tile = itemQuantityChanged.getTile();
 		int oldQuantity = itemQuantityChanged.getOldQuantity();
 		int newQuantity = itemQuantityChanged.getNewQuantity();
@@ -353,7 +353,7 @@ public class GroundItemsPlugin extends Plugin
 		}
 	}
 
-	private GroundItem buildGroundItem(final Tile tile, final Item item)
+	private GroundItem buildGroundItem(final Tile tile, final TileItem item)
 	{
 		// Collect the data for the item
 		final int itemId = item.getId();

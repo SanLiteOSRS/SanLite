@@ -73,6 +73,7 @@ public enum class313 implements Enumerated {
 		signature = "(I)I",
 		garbageValue = "320353268"
 	)
+	@Export("rsOrdinal")
 	public int rsOrdinal() {
 		return this.field3836;
 	}
