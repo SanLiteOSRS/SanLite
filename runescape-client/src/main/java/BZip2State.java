@@ -187,8 +187,8 @@ public final class BZip2State {
 
 	@ObfuscatedName("ag")
 	@ObfuscatedSignature(
-			signature = "(Ljava/net/Socket;IIB)Lky;",
-			garbageValue = "10"
+		signature = "(Ljava/net/Socket;IIB)Lky;",
+		garbageValue = "10"
 	)
 	@Export("newBufferedNetSocket")
 	public static AbstractSocket newBufferedNetSocket(Socket var0, int var1, int var2) throws IOException {

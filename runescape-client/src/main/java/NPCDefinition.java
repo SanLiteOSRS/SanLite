@@ -137,7 +137,7 @@ public class NPCDefinition extends DualNode {
 	int widthScale;
 	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-			intValue = 409024439
+		intValue = 409024439
 	)
 	@Export("heightScale")
 	int heightScale;
