@@ -18655,6 +18655,11 @@ public final class ObjectID
 	public static final int WEB_34898 = 34898;
 	public static final int SLASHED_WEB_34899 = 34899;
 	public static final int FOG_MARKER = 34905;
+	public static final int CORRUPTED_GAUNTLET_CORRUPTED_DEPOSIT = 35967;
+	public static final int CORRUPTED_GAUNTLET_PHREN_ROOTS = 35969;
+	public static final int CORRUPTED_GAUNTLET_FISHING_SPOT = 35971;
+	public static final int CORRUPTED_GAUNTLET_GRYM_ROOT = 35973;
+	public static final int CORRUPTED_GAUNTLET_LINUM_TIRINUM = 35975;
 	public static final int GAUNTLET_CRYSTAL_DEPOSIT = 36064;
 	public static final int GAUNTLET_PHREN_ROOTS = 36066;
 	public static final int GAUNTLET_FISHING_SPOT = 36068;

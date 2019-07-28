@@ -10934,6 +10934,10 @@ public final class ItemID
 	public static final int MAGES_BOOK_23652 = 23652;
 	public static final int AHRIMS_STAFF_23653 = 23653;
 	public static final int OCCULT_NECKLACE_23654 = 23654;
+	public static final int CORRUPTED_GRYM_LEAF = 23835;
+	public static final int CORRUPTED_LINUM_TIRINUM = 23836;
+	public static final int CORRUPT_ORE = 23837;
+	public static final int CORRUPT_PHREN_BARK = 23838;
 	public static final int RAW_PADDLEFISH = 23872;
 	public static final int GRYM_LEAF = 23875;
 	public static final int LINUM_TIRINUM = 23876;

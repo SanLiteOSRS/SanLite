@@ -105,6 +105,9 @@ public class ProjectileID
 
 	// Gauntlet
 	public static final int GAUNTLET_BOSS_MAGIC = 1707;
+	public static final int CORRUPTED_GAUNTLET_BOSS_MAGIC = 1708;
 	public static final int GAUNTLET_BOSS_RANGED = 1711;
+	public static final int CORRUPTED_GAUNTLET_BOSS_RANGED = 1712;
 	public static final int GAUNTLET_BOSS_MAGIC_DISABLE_PRAYERS = 1713;
+	public static final int CORRUPTED_GAUNTLET_BOSS_MAGIC_DISABLE_PRAYERS = 1714;
 }

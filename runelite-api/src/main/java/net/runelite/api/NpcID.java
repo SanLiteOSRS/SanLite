@@ -8111,6 +8111,7 @@ public final class NpcID
 	public static final int CORRUPTED_HUNLLEF_9036 = 9036;
 	public static final int CORRUPTED_HUNLLEF_9037 = 9037;
 	public static final int CORRUPTED_HUNLLEF_9038 = 9038;
+	public static final int CORRUPTED_HUNLLEF_CRYSTAL = 9039;
 	public static final int CORRUPTED_RAT = 9040;
 	public static final int CORRUPTED_SPIDER = 9041;
 	public static final int CORRUPTED_BAT = 9042;

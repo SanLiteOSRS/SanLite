@@ -3,7 +3,6 @@ package net.runelite.client.plugins.gauntlet;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.GameObject;
 import net.runelite.api.Point;
-import net.runelite.client.game.ItemManager;
 import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayLayer;
 import net.runelite.client.ui.overlay.OverlayPosition;
@@ -11,7 +10,6 @@ import net.runelite.client.ui.overlay.OverlayUtil;
 
 import javax.inject.Inject;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 
 @Slf4j
 public class GauntletResourceSpotOverlay extends Overlay
@@ -19,16 +17,14 @@ public class GauntletResourceSpotOverlay extends Overlay
 
 	private final GauntletPlugin plugin;
 	private final GauntletConfig config;
-	private final ItemManager itemManager;
 
 	@Inject
-	private GauntletResourceSpotOverlay(GauntletPlugin plugin, GauntletConfig config, ItemManager itemManager)
+	private GauntletResourceSpotOverlay(GauntletPlugin plugin, GauntletConfig config)
 	{
 		setPosition(OverlayPosition.DYNAMIC);
 		setLayer(OverlayLayer.ABOVE_SCENE);
 		this.plugin = plugin;
 		this.config = config;
-		this.itemManager = itemManager;
 	}
 
 	@Override
@@ -45,6 +41,15 @@ public class GauntletResourceSpotOverlay extends Overlay
 
 			Color color = plugin.getResourceSpotColor(gameObject.getId());
 
+			if (config.showResourceSpotsObjectMarkers())
+			{
+				Polygon poly = gameObject.getConvexHull();
+				if (poly != null)
+				{
+					OverlayUtil.renderPolygon(graphics, poly, color);
+				}
+			}
+
 			if (config.showResourceSpotsTiles())
 			{
 				Polygon poly = gameObject.getCanvasTilePoly();
@@ -54,25 +59,11 @@ public class GauntletResourceSpotOverlay extends Overlay
 				}
 			}
 
-			if (config.showResourceSpotsIcons())
-			{
-				BufferedImage resourceImage = itemManager.getImage(resourceSpot.getResourceSpriteId());
-
-				if (resourceImage != null)
-				{
-					Point imageLocation = gameObject.getCanvasLocation(); // TODO:
-					if (imageLocation != null)
-					{
-						OverlayUtil.renderImageLocation(graphics, imageLocation, resourceImage);
-					}
-				}
-			}
-
 			if (config.showResourceSpotsNames())
 			{
 				String text = resourceSpot.getName();
 
-				Point textLocation = gameObject.getCanvasTextLocation(graphics, text, 40); // TODO:
+				Point textLocation = gameObject.getCanvasTextLocation(graphics, text, 40);
 
 				if (textLocation != null)
 				{

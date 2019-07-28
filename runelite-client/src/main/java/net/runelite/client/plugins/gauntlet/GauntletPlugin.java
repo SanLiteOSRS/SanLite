@@ -34,9 +34,12 @@ import static net.runelite.api.ObjectID.*;
 public class GauntletPlugin extends Plugin
 {
 
-	// TODO: Check if corrupted is the same
-	private static final int[] GAUNTLET_REGIONS = {
+	private static final int[] GAUNTLET_REGION = {
 			7512
+	};
+
+	private static final int[] CORRUPTED_GAUNTLET_REGION = {
+			7768
 	};
 
 	@Inject
@@ -72,7 +75,9 @@ public class GauntletPlugin extends Plugin
 	private static boolean isNpcGauntletBoss(int npcId)
 	{
 		return npcId == NpcID.CRYSTALLINE_HUNLLEF || npcId == NpcID.CRYSTALLINE_HUNLLEF_9022 ||
-				npcId == NpcID.CRYSTALLINE_HUNLLEF_9023 || npcId == NpcID.CRYSTALLINE_HUNLLEF_9024;
+				npcId == NpcID.CRYSTALLINE_HUNLLEF_9023 || npcId == NpcID.CRYSTALLINE_HUNLLEF_9024 ||
+				npcId == NpcID.CORRUPTED_HUNLLEF || npcId == NpcID.CORRUPTED_HUNLLEF_9036 ||
+				npcId == NpcID.CORRUPTED_HUNLLEF_9037 || npcId == NpcID.CORRUPTED_HUNLLEF_9038;
 	}
 
 	@Provides
@@ -172,9 +177,7 @@ public class GauntletPlugin extends Plugin
 	}
 
 	/**
-	 * Checks attack style and phase to determine the amount of hits.
-	 * This is done because the alchemical hydra attacks with multiple
-	 * heads and the numbers of attack change per phase.
+	 * Sets the remaining hits for the current Gauntlet boss attack style.
 	 *
 	 * @param attackStyle Ranged or magic
 	 */
@@ -202,16 +205,19 @@ public class GauntletPlugin extends Plugin
 				switch (recentProjectileId)
 				{
 					case ProjectileID.GAUNTLET_BOSS_MAGIC:
+					case ProjectileID.CORRUPTED_GAUNTLET_BOSS_MAGIC:
 						log.debug("onAttack magic: " + gauntletBoss.getRemainingProjectileCount());
 						gauntletBoss.setRemainingProjectileCount(gauntletBoss.getRemainingProjectileCount() - 1);
 						onGauntletBossAttack(GauntletBoss.AttackStyle.MAGIC);
 						break;
 					case ProjectileID.GAUNTLET_BOSS_MAGIC_DISABLE_PRAYERS:
+					case ProjectileID.CORRUPTED_GAUNTLET_BOSS_MAGIC_DISABLE_PRAYERS:
 						log.debug("onAttack magic disable prayers: " + gauntletBoss.getRemainingProjectileCount());
 						gauntletBoss.setRemainingProjectileCount(gauntletBoss.getRemainingProjectileCount() - 1);
 						onGauntletBossAttack(GauntletBoss.AttackStyle.MAGIC);
 						break;
 					case ProjectileID.GAUNTLET_BOSS_RANGED:
+					case ProjectileID.CORRUPTED_GAUNTLET_BOSS_RANGED:
 						log.debug("onAttack ranged: " + gauntletBoss.getRemainingProjectileCount());
 						gauntletBoss.setRemainingProjectileCount(gauntletBoss.getRemainingProjectileCount() - 1);
 						onGauntletBossAttack(GauntletBoss.AttackStyle.RANGED);
@@ -245,7 +251,8 @@ public class GauntletPlugin extends Plugin
 
 	private boolean inGauntletInstance()
 	{
-		return Arrays.equals(client.getMapRegions(), GAUNTLET_REGIONS) && client.isInInstancedRegion();
+		return Arrays.equals(client.getMapRegions(), GAUNTLET_REGION) && client.isInInstancedRegion() ||
+				Arrays.equals(client.getMapRegions(), CORRUPTED_GAUNTLET_REGION) && client.isInInstancedRegion();
 	}
 
 	@Subscribe
@@ -345,7 +352,7 @@ public class GauntletPlugin extends Plugin
 	public void onGameObjectSpawned(GameObjectSpawned event)
 	{
 		final GameObject gameObject = event.getGameObject();
-		if (!GauntletResourceSpot.getSPOTS().containsKey(gameObject.getId()))
+		if (gameObject == null || !GauntletResourceSpot.getSPOTS().containsKey(gameObject.getId()))
 		{
 			return;
 		}
@@ -389,14 +396,19 @@ public class GauntletPlugin extends Plugin
 		switch (gameObjectId)
 		{
 			case GAUNTLET_FISHING_SPOT:
+			case CORRUPTED_GAUNTLET_FISHING_SPOT:
 				return config.getPaddlefishSpotColor();
 			case GAUNTLET_CRYSTAL_DEPOSIT:
+			case CORRUPTED_GAUNTLET_CORRUPTED_DEPOSIT:
 				return config.getCrystalDepositColor();
 			case GAUNTLET_GRYM_ROOT:
+			case CORRUPTED_GAUNTLET_GRYM_ROOT:
 				return config.getGrymRootColor();
 			case GAUNTLET_PHREN_ROOTS:
+			case CORRUPTED_GAUNTLET_PHREN_ROOTS:
 				return config.getPhrenRootsColor();
 			case GAUNTLET_LINUM_TIRINUM:
+			case CORRUPTED_GAUNTLET_LINUM_TIRINUM:
 				return config.getLinumTirinumColor();
 			default:
 				log.warn("Unknown Gauntlet resource spot with id {}", gameObjectId);
