@@ -119,7 +119,7 @@ public class GauntletPlugin extends Plugin
 		if (!config.showPaddlefishSpots())
 		{
 			resourceSpots.removeIf(spot -> spot.getId() == GAUNTLET_FISHING_SPOT ||
-							spot.getId() == CORRUPTED_GAUNTLET_FISHING_SPOT);
+					spot.getId() == CORRUPTED_GAUNTLET_FISHING_SPOT);
 		}
 
 		if (!config.showCrystalDeposits())
