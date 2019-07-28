@@ -21,7 +21,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static net.runelite.api.ObjectID.*;
 
@@ -420,7 +419,6 @@ public class GauntletPlugin extends Plugin
 		}
 
 		resourceSpots.add(gameObject);
-		log.debug("Added gameObject {} at x: {} | y: {}", gameObject.getId(), gameObject.getCanvasLocation().getX(), gameObject.getCanvasLocation().getY());
 		inverseSortSpotDistanceFromPlayer();
 	}
 
@@ -434,7 +432,6 @@ public class GauntletPlugin extends Plugin
 			return;
 		}
 
-		log.debug("Removed gameObject {} at x: {} | y: {}", gameObject.getId(), gameObject.getCanvasLocation().getX(), gameObject.getCanvasLocation().getY());
 		resourceSpots.remove(gameObject);
 	}
 

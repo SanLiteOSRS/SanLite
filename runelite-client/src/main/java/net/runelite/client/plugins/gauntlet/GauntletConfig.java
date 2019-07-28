@@ -135,7 +135,7 @@ public interface GauntletConfig extends Config
 	)
 	default Color getPaddlefishSpotColor()
 	{
-		return new Color(0, 162, 162);
+		return new Color(14, 189, 185);
 	}
 
 
@@ -160,7 +160,7 @@ public interface GauntletConfig extends Config
 	)
 	default Color getCrystalDepositColor()
 	{
-		return new Color(152, 107, 61);
+		return new Color(189, 144, 101);
 	}
 
 	@ConfigItem(
@@ -184,7 +184,7 @@ public interface GauntletConfig extends Config
 	)
 	default Color getGrymRootColor()
 	{
-		return new Color(11, 102, 15, 255);
+		return new Color(210, 23, 23);
 	}
 
 
@@ -209,7 +209,7 @@ public interface GauntletConfig extends Config
 	)
 	default Color getPhrenRootsColor()
 	{
-		return new Color(91, 219, 1, 255);
+		return new Color(108, 229, 22);
 	}
 
 	@ConfigItem(
@@ -233,7 +233,7 @@ public interface GauntletConfig extends Config
 	)
 	default Color getLinumTirinumColor()
 	{
-		return new Color(217, 219, 199, 255);
+		return new Color(235, 237, 226);
 	}
 
 	@ConfigItem(

@@ -2,7 +2,6 @@ package net.runelite.client.plugins.gauntlet;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.NPC;
 import net.runelite.api.NpcID;
 import net.runelite.api.ProjectileID;
@@ -10,7 +9,6 @@ import net.runelite.api.ProjectileID;
 import java.util.ArrayList;
 import java.util.List;
 
-@Slf4j
 class GauntletBoss
 {
 	static final int ATTACK_RATE = 5; // 5 ticks between each attack

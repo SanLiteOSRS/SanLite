@@ -2,6 +2,7 @@ package net.runelite.client.plugins.gauntlet;
 
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.GameObject;
+import net.runelite.api.Point;
 import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayLayer;
 import net.runelite.client.ui.overlay.OverlayPosition;
@@ -19,39 +20,37 @@ public class GauntletResourceSpotMinimapOverlay extends Overlay
 	@Inject
 	private GauntletResourceSpotMinimapOverlay(GauntletPlugin plugin, GauntletConfig config)
 	{
-		setPosition(OverlayPosition.DYNAMIC);
-		setLayer(OverlayLayer.ABOVE_SCENE);
 		this.plugin = plugin;
 		this.config = config;
+		setPosition(OverlayPosition.DYNAMIC);
+		setLayer(OverlayLayer.ABOVE_WIDGETS);
 	}
 
-	// TODO: Fix minimap dots not showing (might be wrong coords or instance)
 	@Override
 	public Dimension render(Graphics2D graphics)
 	{
-		if (!config.showResourceSpotsOnMinimap())
+		if (config.showResourceSpotsOnMinimap())
 		{
-			return null;
-		}
-
-		for (GameObject gameObject : plugin.getResourceSpots())
-		{
-			GauntletResourceSpot resourceSpot = GauntletResourceSpot.getSPOTS().get(gameObject.getId());
-
-			if (resourceSpot == null)
+			for (GameObject gameObject : plugin.getResourceSpots())
 			{
-				continue;
-			}
 
-			Color color = plugin.getResourceSpotColor(gameObject.getId());
-
-			net.runelite.api.Point minimapLocation = gameObject.getMinimapLocation();
-			if (minimapLocation != null)
-			{
-				OverlayUtil.renderMinimapLocation(graphics, minimapLocation, color);
+				if (GauntletResourceSpot.getSPOTS().get(gameObject.getId()) == null)
+				{
+					continue;
+				}
+				renderResourceSpotOverlay(graphics, gameObject, plugin.getResourceSpotColor(gameObject.getId()));
 			}
 		}
 
 		return null;
+	}
+
+	private void renderResourceSpotOverlay(Graphics2D graphics, GameObject gameObject, Color color)
+	{
+		Point minimapLocation = gameObject.getMinimapLocation();
+		if (minimapLocation != null)
+		{
+			OverlayUtil.renderMinimapLocation(graphics, minimapLocation, color.darker());
+		}
 	}
 }
