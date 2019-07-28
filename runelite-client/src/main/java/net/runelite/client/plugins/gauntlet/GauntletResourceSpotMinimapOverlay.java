@@ -1,6 +1,5 @@
 package net.runelite.client.plugins.gauntlet;
 
-import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.GameObject;
 import net.runelite.api.Point;
 import net.runelite.client.ui.overlay.Overlay;
@@ -11,7 +10,6 @@ import net.runelite.client.ui.overlay.OverlayUtil;
 import javax.inject.Inject;
 import java.awt.*;
 
-@Slf4j
 public class GauntletResourceSpotMinimapOverlay extends Overlay
 {
 	private final GauntletPlugin plugin;
@@ -50,7 +48,7 @@ public class GauntletResourceSpotMinimapOverlay extends Overlay
 		Point minimapLocation = gameObject.getMinimapLocation();
 		if (minimapLocation != null)
 		{
-			OverlayUtil.renderMinimapLocation(graphics, minimapLocation, color.darker());
+			OverlayUtil.renderMinimapLocation(graphics, minimapLocation, color);
 		}
 	}
 }
