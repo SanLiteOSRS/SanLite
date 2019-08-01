@@ -70,6 +70,7 @@ class GauntletBoss
 		this.nextAttackTick = -100;
 		this.recentProjectileId = -1;
 		this.attacksUntilSwitch = ATTACKS_PER_SWITCH;
+		this.currentAttackStyle = AttackStyle.RANGED;
 		this.crystalEffects = new ArrayList<>();
 	}
 
