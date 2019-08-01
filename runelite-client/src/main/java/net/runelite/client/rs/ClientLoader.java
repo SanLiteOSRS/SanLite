@@ -26,39 +26,48 @@
  */
 package net.runelite.client.rs;
 
-import lombok.extern.slf4j.Slf4j;
-
-import javax.inject.Inject;
-import javax.inject.Named;
-import javax.inject.Singleton;
 import java.applet.Applet;
-import java.io.*;
+import java.io.IOException;
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.util.function.Supplier;
+
+import lombok.extern.slf4j.Slf4j;
+
+import static net.runelite.client.rs.ClientUpdateCheckMode.NONE;
 
 @Slf4j
-@Singleton
-public class ClientLoader
+public class ClientLoader implements Supplier<Applet>
 {
-
-	private final ClientConfigLoader clientConfigLoader;
 	private ClientUpdateCheckMode updateCheckMode;
 	public static boolean useLocalInjected = false;
+	private Applet client = null;
 
-	@Inject
-	private ClientLoader(
-			@Named("updateCheckMode") final ClientUpdateCheckMode updateCheckMode,
-			final ClientConfigLoader clientConfigLoader)
+	public ClientLoader(ClientUpdateCheckMode updateCheckMode)
 	{
 		this.updateCheckMode = updateCheckMode;
-		this.clientConfigLoader = clientConfigLoader;
 	}
 
-	public Applet load()
+	@Override
+	public synchronized Applet get()
 	{
+		if (client == null)
+		{
+			client = doLoad();
+		}
+		return client;
+	}
+
+	private Applet doLoad()
+	{
+		if (updateCheckMode == NONE)
+		{
+			return null;
+		}
+
 		try
 		{
-			final RSConfig config = clientConfigLoader.fetch();
+			RSConfig config = ClientConfigLoader.fetch();
 
 			switch (updateCheckMode)
 			{

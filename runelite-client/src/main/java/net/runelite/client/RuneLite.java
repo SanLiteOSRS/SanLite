@@ -55,8 +55,6 @@ import net.runelite.client.game.ItemManager;
 import net.runelite.client.game.LootManager;
 import net.runelite.client.game.chatbox.ChatboxPanelManager;
 import net.runelite.client.menus.MenuManager;
-import net.runelite.client.plugins.Plugin;
-import net.runelite.client.plugins.PluginInstantiationException;
 import net.runelite.client.plugins.PluginManager;
 import net.runelite.client.rs.ClientLoader;
 import net.runelite.client.rs.ClientUpdateCheckMode;
@@ -116,7 +114,7 @@ public class RuneLite
 	private OverlayManager overlayManager;
 
 	@Inject
-	private PartyService partyService;
+	private Provider<PartyService> partyService;
 
 	@Inject
 	private Provider<ItemManager> itemManager;
@@ -187,8 +185,6 @@ public class RuneLite
 			System.exit(0);
 		}
 
-		PROFILES_DIR.mkdirs();
-
 		if (options.has("debug"))
 		{
 			final Logger logger = (Logger) LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME);
@@ -208,7 +204,7 @@ public class RuneLite
 				log.error("Classes are out of date; Build with maven again.");
 			}
 		});
-
+		
 		if (!options.has("no-splash-screen"))
 		{
 			splashScreen.open(5);
@@ -216,9 +212,20 @@ public class RuneLite
 
 		splashScreen.setMessage("Starting SanLite Injector");
 
+		final ClientLoader clientLoader = new ClientLoader(options.valueOf(updateMode));
+
+		new Thread(() ->
+		{
+			clientLoader.get();
+			ClassPreloader.preload();
+		}, "Preloader").start();
+
+		PROFILES_DIR.mkdirs();
+
+		
 		final long start = System.currentTimeMillis();
 
-		injector = Guice.createInjector(new RuneLiteModule(options.valueOf(updateMode)));
+		injector = Guice.createInjector(new RuneLiteModule(clientLoader));
 
 		injector.getInstance(RuneLite.class).start();
 
@@ -278,13 +285,13 @@ public class RuneLite
 		eventBus.register(overlayManager);
 		eventBus.register(drawManager);
 		eventBus.register(infoBoxManager);
-		eventBus.register(partyService);
 
 		if (!isOutdated)
 		{
 			// Initialize chat colors
 			chatMessageManager.get().loadColors();
 
+			eventBus.register(partyService.get());
 			eventBus.register(overlayRenderer.get());
 			eventBus.register(clanManager.get());
 			eventBus.register(itemManager.get());
@@ -310,18 +317,6 @@ public class RuneLite
 		configManager.sendConfig();
 		clientSessionManager.shutdown();
 		discordService.close();
-
-		for (final Plugin plugin : pluginManager.getPlugins())
-		{
-			try
-			{
-				pluginManager.stopPlugin(plugin);
-			}
-			catch (PluginInstantiationException e)
-			{
-				log.warn("Failed to gracefully close plugin", e);
-			}
-		}
 	}
 
 	@VisibleForTesting

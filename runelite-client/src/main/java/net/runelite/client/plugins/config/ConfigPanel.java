@@ -23,7 +23,6 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package net.runelite.client.plugins.config;
-
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.client.config.*;
 import net.runelite.client.plugins.*;

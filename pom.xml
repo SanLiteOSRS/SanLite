@@ -28,7 +28,7 @@
 
 	<groupId>net.runelite</groupId>
 	<artifactId>runelite-parent</artifactId>
-	<version>1.5.29.1</version>
+	<version>1.5.30</version>
 	<packaging>pom</packaging>
 
 	<name>RuneLite</name>
@@ -120,8 +120,8 @@
 		<module>deobfuscator</module>
 		<module>runelite-api</module>
 		<module>runelite-client</module>
-		<module>runelite-mixins</module>
-		<module>runelite-script-assembler-plugin</module>
+        <module>runelite-mixins</module>
+        <module>runelite-script-assembler-plugin</module>
 		<module>runescape-api</module>
 		<module>runescape-client</module>
         <module>injector-plugin</module>
