@@ -462,7 +462,7 @@ public class GroundItemsPlugin extends Plugin
 			int itemId = event.getIdentifier();
 			Scene scene = client.getScene();
 			Tile tile = scene.getTiles()[client.getPlane()][event.getActionParam0()][event.getActionParam1()];
-			ItemLayer itemLayer = tile.getItemLayer();
+			TileItemPile itemLayer = tile.getItemLayer();
 
 			if (itemLayer == null)
 			{
@@ -675,7 +675,7 @@ public class GroundItemsPlugin extends Plugin
 	{
 		if (menuOptionClicked.getMenuAction() == MenuAction.ITEM_DROP)
 		{
-			int itemId = menuOptionClicked.getId();
+			int itemId = menuOptionClicked.getIdentifier();
 			// Keep a queue of recently dropped items to better detect
 			// item spawns that are drops
 			droppedItemQueue.add(itemId);

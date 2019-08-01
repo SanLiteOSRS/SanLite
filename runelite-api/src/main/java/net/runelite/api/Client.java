@@ -1469,7 +1469,14 @@ public interface Client extends GameShell
 	 *
 	 * @param names the names of the npcs seperated by ','
 	 */
-	void setNPCsNames(String names);
+	void setNPCsNames(List<String> names);
+
+	/**
+	 * Sets which NPCs are hidden on death
+	 *
+	 * @param names the names of the npcs
+	 */
+	void setNPCsHiddenOnDeath(List<String> names);
 
 	/**
 	 * Sets whether 2D sprites (ie. overhead prayers) related to
@@ -1492,6 +1499,13 @@ public interface Client extends GameShell
 	 * @param state new projectile hidden state
 	 */
 	void setProjectilesHidden(boolean state);
+
+	/**
+	 * Sets whether dead NPCs are hidden.
+	 *
+	 * @param state new NPC hidden state
+	 */
+	void setDeadNPCsHidden(boolean state);
 
 	/**
 	 * Gets an array of tile collision data.
@@ -1745,4 +1759,9 @@ public interface Client extends GameShell
 	BigInteger getModulus();
 
 	void setModulus(BigInteger modulus);
+
+	/*
+	 * Returns the max item index + 1 from cache
+	 */
+	int getItemCount();
 }

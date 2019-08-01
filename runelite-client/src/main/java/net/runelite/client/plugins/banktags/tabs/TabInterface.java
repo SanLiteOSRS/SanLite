@@ -586,22 +586,6 @@ public class TabInterface
 			bankSearch.search(InputType.NONE, rememberedSearch, true);
 		}
 
-		if (iconToSet != null)
-		{
-			if (event.getOption().startsWith(CHANGE_ICON + " ("))
-			{
-				ItemDefinition item = getItem(event.getActionParam0());
-				int itemId = itemManager.canonicalize(item.getId());
-				iconToSet.setIconItemId(itemId);
-				iconToSet.getIcon().setItemId(itemId);
-				tabManager.setIcon(iconToSet.getTag(), itemId + "");
-				event.consume();
-			}
-
-			// Reset icon selection even when we do not clicked item with icon
-			iconToSet = null;
-		}
-
 		if (activeTab != null
 			&& event.getOption().equals("Search")
 			&& client.getWidget(WidgetInfo.BANK_SEARCH_BUTTON_BACKGROUND).getSpriteId() != SpriteID.EQUIPMENT_SLOT_SELECTED)

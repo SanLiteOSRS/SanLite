@@ -11037,10 +11037,6 @@ public final class ItemID
 	public static final int CORRUPTED_BOWSTRING = 23832;
 	public static final int CORRUPTED_ORB = 23833;
 	public static final int WEAPON_FRAME = 23834;
-	public static final int GRYM_LEAF = 23835;
-	public static final int LINUM_TIRINUM = 23836;
-	public static final int CORRUPTED_ORE = 23837;
-	public static final int PHREN_BARK = 23838;
 	public static final int VIAL_23839 = 23839;
 	public static final int CORRUPTED_HELM_BASIC = 23840;
 	public static final int CORRUPTED_HELM_ATTUNED = 23841;
@@ -11073,12 +11069,10 @@ public final class ItemID
 	public static final int CRYSTALLINE_BOWSTRING = 23869;
 	public static final int CRYSTAL_ORB = 23870;
 	public static final int WEAPON_FRAME_23871 = 23871;
-	public static final int RAW_PADDLEFISH = 23872;
 	public static final int BURNT_FISH_23873 = 23873;
 	public static final int PADDLEFISH = 23874;
 	public static final int GRYM_LEAF_23875 = 23875;
 	public static final int LINUM_TIRINUM_23876 = 23876;
-	public static final int CRYSTAL_ORE = 23877;
 	public static final int PHREN_BARK_23878 = 23878;
 	public static final int VIAL_23879 = 23879;
 	public static final int WATERFILLED_VIAL = 23880;

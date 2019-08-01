@@ -419,7 +419,7 @@ public class XpTrackerPlugin extends Plugin
 	public void onMenuOptionClicked(MenuOptionClicked event)
 	{
 		if (event.getMenuAction().getId() != MenuAction.RUNELITE.getId()
-			|| TO_GROUP(event.getWidgetId()) != WidgetID.SKILLS_GROUP_ID)
+			|| TO_GROUP(event.getIdentifier()) != WidgetID.SKILLS_GROUP_ID)
 		{
 			return;
 		}
@@ -427,7 +427,7 @@ public class XpTrackerPlugin extends Plugin
 		final Skill skill;
 		try
 		{
-			skill = Skill.valueOf(Text.removeTags(event.getMenuTarget()).toUpperCase());
+			skill = Skill.valueOf(Text.removeTags(event.getTarget()).toUpperCase());
 		}
 		catch (IllegalArgumentException ex)
 		{
@@ -435,7 +435,7 @@ public class XpTrackerPlugin extends Plugin
 			return;
 		}
 
-		switch (event.getMenuOption())
+		switch (event.getOption())
 		{
 			case MENUOP_ADD_CANVAS_TRACKER:
 				addOverlay(skill);

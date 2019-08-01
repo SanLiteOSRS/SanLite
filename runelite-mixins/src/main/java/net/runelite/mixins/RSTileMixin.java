@@ -24,17 +24,7 @@
  */
 package net.runelite.mixins;
 
-import net.runelite.api.CollisionData;
-import net.runelite.api.CollisionDataFlag;
-import net.runelite.api.Constants;
-import net.runelite.api.DecorativeObject;
-import net.runelite.api.GroundObject;
-import net.runelite.api.ItemLayer;
-import net.runelite.api.Node;
-import net.runelite.api.Point;
-import net.runelite.api.Tile;
-import net.runelite.api.TileItem;
-import net.runelite.api.WallObject;
+import net.runelite.api.*;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.coords.WorldPoint;
 import net.runelite.api.events.DecorativeObjectChanged;
@@ -233,7 +223,7 @@ public abstract class RSTileMixin implements RSTile
 	@Override
 	public List<TileItem> getGroundItems()
 	{
-		ItemLayer layer = this.getItemLayer();
+		TileItemPile layer = this.getItemLayer();
 		if (layer == null)
 		{
 			return null;

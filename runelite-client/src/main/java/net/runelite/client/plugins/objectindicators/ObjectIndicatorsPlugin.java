@@ -228,7 +228,7 @@ public class ObjectIndicatorsPlugin extends Plugin implements KeyListener
 	public void onMenuOptionClicked(MenuOptionClicked event)
 	{
 		if (event.getMenuAction() != MenuAction.RUNELITE
-			|| !(event.getMenuOption().equals(MARK) || event.getMenuOption().equals(UNMARK)))
+			|| !(event.getOption().equals(MARK) || event.getOption().equals(UNMARK)))
 		{
 			return;
 		}

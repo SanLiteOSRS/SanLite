@@ -392,15 +392,15 @@ public class TimersPlugin extends Plugin
 		}
 
 		if (config.showStamina()
-			&& event.getMenuOption().contains("Drink")
-			&& (event.getId() == ItemID.STAMINA_MIX1
-			|| event.getId() == ItemID.STAMINA_MIX2
-			|| event.getId() == ItemID.EGNIOL_POTION_1
-			|| event.getId() == ItemID.EGNIOL_POTION_2
-			|| event.getId() == ItemID.EGNIOL_POTION_3
-			|| event.getId() == ItemID.EGNIOL_POTION_4))
+			&& event.getOption().contains("Drink")
+			&& (event.getIdentifier() == ItemID.STAMINA_MIX1
+			|| event.getIdentifier() == ItemID.STAMINA_MIX2
+			|| event.getIdentifier() == ItemID.EGNIOL_POTION_1
+			|| event.getIdentifier() == ItemID.EGNIOL_POTION_2
+			|| event.getIdentifier() == ItemID.EGNIOL_POTION_3
+			|| event.getIdentifier() == ItemID.EGNIOL_POTION_4))
 		{
-			// Needs menu option hook because mixes use a common drink message, distinct from their standard potion messages
+			// Needs menu option hook because mixes use a common drink message, distinct from their standard potion meszsages
 			createGameTimer(STAMINA);
 			return;
 		}

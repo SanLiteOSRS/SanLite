@@ -288,7 +288,7 @@ public class NpcIndicatorsPlugin extends Plugin
 	public void onMenuOptionClicked(MenuOptionClicked click)
 	{
 		if (click.getMenuAction() != MenuAction.RUNELITE ||
-			!(click.getMenuOption().equals(TAG) || click.getMenuOption().equals(UNTAG)))
+			!(click.getOption().equals(TAG) || click.getOption().equals(UNTAG)))
 		{
 			return;
 		}

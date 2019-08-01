@@ -169,7 +169,7 @@ class InstanceMapOverlay extends Overlay
 
 		if (image == null)
 		{
-			SpritePixels map = client.drawInstanceMap(viewedPlane);
+			Sprite map = client.drawInstanceMap(viewedPlane);
 			image = minimapToBufferedImage(map);
 			synchronized (this)
 			{

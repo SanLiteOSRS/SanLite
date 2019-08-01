@@ -230,7 +230,7 @@ public class GroundMarkerPlugin extends Plugin
 	public void onMenuOptionClicked(MenuOptionClicked event)
 	{
 		if (event.getMenuAction().getId() != MenuAction.RUNELITE.getId() ||
-			!(event.getMenuOption().equals(MARK) || event.getMenuOption().equals(UNMARK)))
+			!(event.getOption().equals(MARK) || event.getOption().equals(UNMARK)))
 		{
 			return;
 		}
