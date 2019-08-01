@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, Adam <Adam@sigterm.info>
+ * Copyright (c) 2019 Abex
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,44 +22,27 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.api;
+package net.runelite.client;
+
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import net.runelite.client.ui.FontManager;
 
 /**
- * Represents a pile of items held by a tile.
+ * Loads some slow to initialize classes (hopefully) before they are needed to streamline client startup
  */
-public interface ItemLayer extends TileObject
+@SuppressWarnings({"ResultOfMethodCallIgnored", "unused"})
+class ClassPreloader
 {
-	/**
-	 * Gets the height of the layer.
-	 *
-	 * @return the height
-	 */
-	int getHeight();
+	static void preload()
+	{
+		// This needs to enumerate the system fonts for some reason, and that takes a while
+		FontManager.getRunescapeSmallFont();
 
-	/**
-	 * Gets the item at the bottom of the pile.
-	 *
-	 * @return the bottom item
-	 */
-	Renderable getBottom();
+		// This needs to load a timezone database that is mildly large
+		ZoneId.of("Europe/London");
 
-	/**
-	 * Gets the item at the middle of the pile.
-	 *
-	 * @return the middle item
-	 */
-	Renderable getMiddle();
-
-	/**
-	 * Gets the item at the top of the pile.
-	 *
-	 * @return the top item
-	 */
-	Renderable getTop();
-
-	Model getModelBottom();
-
-	Model getModelMiddle();
-
-	Model getModelTop();
+		// This just needs to call 20 different DateTimeFormatter constructors, which are slow
+		Object unused = DateTimeFormatter.BASIC_ISO_DATE;
+	}
 }

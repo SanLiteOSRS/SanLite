@@ -38,24 +38,7 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 import lombok.Getter;
 import lombok.Setter;
-import net.runelite.api.Client;
-import net.runelite.api.Constants;
-import net.runelite.api.DecorativeObject;
-import net.runelite.api.GameObject;
-import net.runelite.api.GraphicsObject;
-import net.runelite.api.GroundObject;
-import net.runelite.api.Item;
-import net.runelite.api.ItemLayer;
-import net.runelite.api.NPC;
-import net.runelite.api.NPCDefinition;
-import net.runelite.api.Node;
-import net.runelite.api.Perspective;
-import net.runelite.api.Player;
-import net.runelite.api.Point;
-import net.runelite.api.Projectile;
-import net.runelite.api.Scene;
-import net.runelite.api.Tile;
-import net.runelite.api.WallObject;
+import net.runelite.api.*;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.widgets.Widget;
 import net.runelite.api.widgets.WidgetInfo;
@@ -266,15 +249,15 @@ class DevToolsOverlay extends Overlay
 
 	private void renderGroundItems(Graphics2D graphics, Tile tile, Player player)
 	{
-		ItemLayer itemLayer = tile.getItemLayer();
+		TileItemPile itemLayer = tile.getItemLayer();
 		if (itemLayer != null)
 		{
 			if (player.getLocalLocation().distanceTo(itemLayer.getLocalLocation()) <= MAX_DISTANCE)
 			{
 				Node current = itemLayer.getBottom();
-				while (current instanceof Item)
+				while (current instanceof TileItem)
 				{
-					Item item = (Item) current;
+					TileItem item = (TileItem) current;
 					OverlayUtil.renderTileOverlay(graphics, itemLayer, "ID: " + item.getId() + " Qty:" + item.getQuantity(), RED);
 					current = current.getNext();
 				}
