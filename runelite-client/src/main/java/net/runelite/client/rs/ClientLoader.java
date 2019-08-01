@@ -26,39 +26,72 @@
  */
 package net.runelite.client.rs;
 
-import lombok.extern.slf4j.Slf4j;
-
+import com.google.common.hash.Hashing;
+import com.google.common.io.ByteStreams;
+import com.google.common.reflect.TypeToken;
+import com.google.gson.Gson;
+import io.sigpipe.jbsdiff.InvalidHeaderException;
+import io.sigpipe.jbsdiff.Patch;
+import java.applet.Applet;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.security.cert.Certificate;
+import java.security.cert.CertificateException;
+import java.security.cert.CertificateFactory;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.jar.JarEntry;
+import java.util.jar.JarInputStream;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
-import java.applet.Applet;
-import java.io.*;
-import java.net.URL;
-import java.net.URLClassLoader;
+import lombok.extern.slf4j.Slf4j;
+import net.runelite.api.Client;
+import static net.runelite.client.rs.ClientUpdateCheckMode.AUTO;
+import static net.runelite.client.rs.ClientUpdateCheckMode.NONE;
+import static net.runelite.client.rs.ClientUpdateCheckMode.VANILLA;
+import net.runelite.http.api.RuneLiteAPI;
+import okhttp3.Request;
+import okhttp3.Response;
+import org.apache.commons.compress.compressors.CompressorException;
 
 @Slf4j
-@Singleton
-public class ClientLoader
+public class ClientLoader implements Supplier<Applet>
 {
-
-	private final ClientConfigLoader clientConfigLoader;
 	private ClientUpdateCheckMode updateCheckMode;
 	public static boolean useLocalInjected = false;
+	private Applet client = null;
 
-	@Inject
-	private ClientLoader(
-			@Named("updateCheckMode") final ClientUpdateCheckMode updateCheckMode,
-			final ClientConfigLoader clientConfigLoader)
+	public ClientLoader(ClientUpdateCheckMode updateCheckMode)
 	{
 		this.updateCheckMode = updateCheckMode;
-		this.clientConfigLoader = clientConfigLoader;
 	}
 
-	public Applet load()
+	@Override
+	public synchronized Applet get()
 	{
+		if (client == null)
+		{
+			client = doLoad();
+		}
+		return client;
+	}
+
+	private Applet doLoad()
+	{
+		if (updateCheckMode == NONE)
+		{
+			return null;
+		}
+
 		try
 		{
-			final RSConfig config = clientConfigLoader.fetch();
+			RSConfig config = ClientConfigLoader.fetch();
 
 			switch (updateCheckMode)
 			{

@@ -31,7 +31,7 @@ import com.google.inject.testing.fieldbinder.BoundFieldModule;
 import javax.inject.Inject;
 import net.runelite.api.Client;
 import net.runelite.api.Item;
-import net.runelite.api.ItemDefinition;
+import net.runelite.api.ItemComposition;
 import net.runelite.api.ItemID;
 import net.runelite.client.game.ItemManager;
 import static org.junit.Assert.assertNotNull;
@@ -67,24 +67,16 @@ public class ContainerCalculationTest
 	@Test
 	public void testCalculate()
 	{
-		Item coins = mock(Item.class);
-		when(coins.getId())
-			.thenReturn(ItemID.COINS_995);
-		when(coins.getQuantity())
-			.thenReturn(Integer.MAX_VALUE);
+		Item coins = new Item(ItemID.COINS_995, Integer.MAX_VALUE);
 
-		Item whip = mock(Item.class);
-		when(whip.getId())
-			.thenReturn(ItemID.ABYSSAL_WHIP);
-		when(whip.getQuantity())
-			.thenReturn(1_000_000_000);
+		Item whip = new Item(ItemID.ABYSSAL_WHIP, 1_000_000_000);
 
 		Item[] items = ImmutableList.of(
 			coins,
 			whip
 		).toArray(new Item[0]);
 
-		ItemDefinition whipComp = mock(ItemDefinition.class);
+		ItemComposition whipComp = mock(ItemComposition.class);
 		when(whipComp.getId())
 			.thenReturn(ItemID.ABYSSAL_WHIP);
 		when(whipComp.getPrice())

@@ -22,7 +22,7 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.client.plugins.chatfilter;
+package net.runelite.client.util;
 
 import com.google.common.base.CharMatcher;
 
@@ -34,6 +34,6 @@ class JagexPrintableCharMatcher extends CharMatcher
 		// Characters which are printable
 		return (c >= 32 && c <= 126)
 			|| c == 128
-			|| (c >= 161 && c <= 255);
+			|| (c >= 160 && c <= 255);
 	}
 }

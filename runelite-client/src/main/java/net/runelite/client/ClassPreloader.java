@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, Adam <Adam@sigterm.info>
+ * Copyright (c) 2019 Abex
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,16 +22,27 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.api.mixins;
+package net.runelite.client;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import net.runelite.client.ui.FontManager;
 
-@Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.TYPE)
-public @interface Mixins
+/**
+ * Loads some slow to initialize classes (hopefully) before they are needed to streamline client startup
+ */
+@SuppressWarnings({"ResultOfMethodCallIgnored", "unused"})
+class ClassPreloader
 {
-	Mixin[] value();
+	static void preload()
+	{
+		// This needs to enumerate the system fonts for some reason, and that takes a while
+		FontManager.getRunescapeSmallFont();
+
+		// This needs to load a timezone database that is mildly large
+		ZoneId.of("Europe/London");
+
+		// This just needs to call 20 different DateTimeFormatter constructors, which are slow
+		Object unused = DateTimeFormatter.BASIC_ISO_DATE;
+	}
 }

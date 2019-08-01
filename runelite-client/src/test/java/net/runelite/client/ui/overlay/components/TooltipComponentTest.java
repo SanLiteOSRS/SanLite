@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, Adam <Adam@sigterm.info>
+ * Copyright (c) 2019, Adam <Adam@sigterm.info>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,16 +22,24 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.api.mixins;
+package net.runelite.client.ui.overlay.components;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import java.awt.FontMetrics;
+import static net.runelite.client.ui.overlay.components.TooltipComponent.calculateTextWidth;
+import static org.junit.Assert.assertEquals;
+import org.junit.Test;
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
-@Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.METHOD, ElementType.FIELD, ElementType.CONSTRUCTOR})
-public @interface Inject
+public class TooltipComponentTest
 {
+	@Test
+	public void testCalculateTextWidth()
+	{
+		FontMetrics fontMetics = mock(FontMetrics.class);
+		when(fontMetics.stringWidth(anyString())).thenAnswer((invocation) -> ((String) invocation.getArguments()[0]).length());
 
+		assertEquals(11, calculateTextWidth(fontMetics, "line1<col=ff0000>>line2"));
+	}
 }
