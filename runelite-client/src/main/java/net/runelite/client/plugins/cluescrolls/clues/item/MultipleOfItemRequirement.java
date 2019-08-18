@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, Lotto <https://github.com/devLotto>
+ * Copyright (c) 2019 Hydrox6 <ikada@protonmail.ch>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,28 +22,27 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.client.plugins.cluescrolls.clues.emote;
+package net.runelite.client.plugins.cluescrolls.clues.item;
 
 import net.runelite.api.Client;
 import net.runelite.api.Item;
+import net.runelite.api.ItemComposition;
 
-public class RangeItemRequirement implements ItemRequirement
+public class MultipleOfItemRequirement implements ItemRequirement
 {
-	private String name;
-	private int startItemId;
-	private int endItemId;
+	private int itemId;
+	private int quantity;
 
-	public RangeItemRequirement(String name, int startItemId, int endItemId)
+	public MultipleOfItemRequirement(int itemId, int quantity)
 	{
-		this.name = name;
-		this.startItemId = startItemId;
-		this.endItemId = endItemId;
+		this.itemId = itemId;
+		this.quantity = quantity;
 	}
 
 	@Override
 	public boolean fulfilledBy(int itemId)
 	{
-		return itemId >= startItemId && itemId <= endItemId;
+		return itemId == this.itemId && this.quantity == 1;
 	}
 
 	@Override
@@ -51,7 +50,7 @@ public class RangeItemRequirement implements ItemRequirement
 	{
 		for (Item item : items)
 		{
-			if (item.getId() >= startItemId && item.getId() <= endItemId)
+			if (item.getId() == itemId && item.getQuantity() >= quantity)
 			{
 				return true;
 			}
@@ -63,6 +62,13 @@ public class RangeItemRequirement implements ItemRequirement
 	@Override
 	public String getCollectiveName(Client client)
 	{
-		return name;
+		ItemComposition definition = client.getItemDefinition(itemId);
+
+		if (definition == null)
+		{
+			return "N/A";
+		}
+
+		return definition.getName() + " x" + this.quantity;
 	}
 }

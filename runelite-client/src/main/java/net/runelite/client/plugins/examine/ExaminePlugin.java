@@ -203,6 +203,12 @@ public class ExaminePlugin extends Plugin
 		{
 			final int itemId = pendingExamine.getId();
 			final int itemQuantity = pendingExamine.getQuantity();
+
+			if (itemId == ItemID.COINS_995)
+			{
+				return;
+			}
+
 			itemComposition = itemManager.getItemComposition(itemId);
 
 			if (itemComposition != null)

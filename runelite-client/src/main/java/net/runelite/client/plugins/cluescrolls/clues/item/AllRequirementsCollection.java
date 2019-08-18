@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016-2017, Adam <Adam@sigterm.info>
+ * Copyright (c) 2018, Lotto <https://github.com/devLotto>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,19 +22,58 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.mapping;
+package net.runelite.client.plugins.cluescrolls.clues.item;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import net.runelite.api.Client;
+import net.runelite.api.Item;
 
-@Retention(RetentionPolicy.RUNTIME)
-@Target(
+public class AllRequirementsCollection implements ItemRequirement
 {
-	ElementType.FIELD, ElementType.METHOD
-})
-public @interface Import
-{
-	String value();
+	private String name;
+	private ItemRequirement[] requirements;
+
+	public AllRequirementsCollection(String name, ItemRequirement... requirements)
+	{
+		this.name = name;
+		this.requirements = requirements;
+	}
+
+	public AllRequirementsCollection(ItemRequirement... requirements)
+	{
+		this("N/A", requirements);
+	}
+
+	@Override
+	public boolean fulfilledBy(int itemId)
+	{
+		for (ItemRequirement requirement : requirements)
+		{
+			if (requirement.fulfilledBy(itemId))
+			{
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	@Override
+	public boolean fulfilledBy(Item[] items)
+	{
+		for (ItemRequirement requirement : requirements)
+		{
+			if (!requirement.fulfilledBy(items))
+			{
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	@Override
+	public String getCollectiveName(Client client)
+	{
+		return name;
+	}
 }

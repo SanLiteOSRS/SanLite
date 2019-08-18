@@ -33,7 +33,7 @@ import java.util.Collections;
 import java.util.List;
 import net.runelite.api.Client;
 import net.runelite.api.Item;
-import net.runelite.api.ItemDefinition;
+import net.runelite.api.ItemComposition;
 import net.runelite.api.ItemID;
 import net.runelite.client.game.ItemManager;
 import static net.runelite.client.plugins.itemskeptondeath.ItemsKeptOnDeathPlugin.DeathItems;
@@ -80,7 +80,7 @@ public class ItemsKeptOnDeathPluginTest
 	private Item mItem(final int id, final int qty, final String name, final boolean tradeable, final int price)
 	{
 		// Mock Item Composition and necessary ItemManager methods for this item
-		ItemDefinition c = mock(ItemDefinition.class);
+		ItemComposition c = mock(ItemComposition.class);
 		when(c.getId())
 			.thenReturn(id);
 		when(c.getName())
@@ -607,5 +607,25 @@ public class ItemsKeptOnDeathPluginTest
 
 		final List<ItemStack> kept = deathItems.getKeptItems();
 		assertTrue(kept.contains(new ItemStack(ItemID.SHADOW_SWORD, 1)));
+	}
+
+	@Test
+	public void brokenOnDeathTestRepairPrice()
+	{
+		// Dragon defender price should actually be pulled from BrokenOnDeathItem, and be lost on death
+		final Item[] inv = new Item[]
+			{
+				mItem(ItemID.BARROWS_GLOVES, 1, "Barrows gloves", false, 130000),
+				mItem(ItemID.DRAGON_DEFENDER, 1, "Dragon defender", false, 68007),
+				mItem(ItemID.DRAGON_SCIMITAR, 1, "Dragon scimitar", true, 63123),
+				mItem(ItemID.HELM_OF_NEITIZNOT, 1, "Helm of neitiznot", true, 45519),
+			};
+
+		plugin.wildyLevel = 21;
+
+		final DeathItems deathItems = plugin.calculateKeptLostItems(inv, new Item[0]);
+
+		final List<ItemStack> lost = deathItems.getLostItems();
+		assertTrue(lost.contains(new ItemStack(ItemID.DRAGON_DEFENDER, 1)));
 	}
 }

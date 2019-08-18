@@ -22,33 +22,42 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.client.plugins.cluescrolls.clues.emote;
+package net.runelite.client.plugins.cluescrolls.clues.item;
 
 import net.runelite.api.Client;
 import net.runelite.api.Item;
-import net.runelite.api.ItemDefinition;
 
-public class SingleItemRequirement implements ItemRequirement
+public class AnyRequirementCollection implements ItemRequirement
 {
-	private int itemId;
+	private String name;
+	private ItemRequirement[] requirements;
 
-	public SingleItemRequirement(int itemId)
+	public AnyRequirementCollection(String name, ItemRequirement... requirements)
 	{
-		this.itemId = itemId;
+		this.name = name;
+		this.requirements = requirements;
 	}
 
 	@Override
 	public boolean fulfilledBy(int itemId)
 	{
-		return this.itemId == itemId;
+		for (ItemRequirement requirement : requirements)
+		{
+			if (requirement.fulfilledBy(itemId))
+			{
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	@Override
 	public boolean fulfilledBy(Item[] items)
 	{
-		for (Item item : items)
+		for (ItemRequirement requirement : requirements)
 		{
-			if (item.getId() == itemId)
+			if (requirement.fulfilledBy(items))
 			{
 				return true;
 			}
@@ -60,13 +69,6 @@ public class SingleItemRequirement implements ItemRequirement
 	@Override
 	public String getCollectiveName(Client client)
 	{
-		ItemDefinition definition = client.getItemDefinition(itemId);
-
-		if (definition == null)
-		{
-			return "N/A";
-		}
-
-		return definition.getName();
+		return name;
 	}
 }

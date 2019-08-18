@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, Adam <Adam@sigterm.info>
+ * Copyright (c) 2018, Lotto <https://github.com/devLotto>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,16 +22,51 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.api.mixins;
+package net.runelite.client.plugins.cluescrolls.clues.item;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import net.runelite.api.Client;
+import net.runelite.api.EquipmentInventorySlot;
+import net.runelite.api.Item;
 
-@Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.TYPE)
-public @interface Mixins
+public class SlotLimitationRequirement implements ItemRequirement
 {
-	Mixin[] value();
+	private String description;
+	private EquipmentInventorySlot[] slots;
+
+	public SlotLimitationRequirement(String description, EquipmentInventorySlot... slots)
+	{
+		this.description = description;
+		this.slots = slots;
+	}
+
+	@Override
+	public boolean fulfilledBy(int itemId)
+	{
+		return false;
+	}
+
+	@Override
+	public boolean fulfilledBy(Item[] items)
+	{
+		for (EquipmentInventorySlot slot : slots)
+		{
+			if (slot.getSlotIdx() >= items.length)
+			{
+				continue; //We can't check the slot, because there is nothing in it, the array hasn't been resized
+			}
+
+			if (items[slot.getSlotIdx()].getId() != -1)
+			{
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	@Override
+	public String getCollectiveName(Client client)
+	{
+		return description;
+	}
 }
