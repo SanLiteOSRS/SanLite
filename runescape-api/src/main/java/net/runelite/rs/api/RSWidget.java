@@ -441,4 +441,8 @@ public interface RSWidget extends Widget
 
 	@Import("modelFrameCycle")
 	int getModelFrameCycle();
+
+	@Import("onInvTransmit")
+	@Override
+	Object[] getOnInvTransmitListener();
 }

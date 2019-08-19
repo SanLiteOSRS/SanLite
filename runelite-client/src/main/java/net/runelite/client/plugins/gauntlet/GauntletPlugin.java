@@ -118,32 +118,32 @@ public class GauntletPlugin extends Plugin
 
 		if (!config.showPaddlefishSpots())
 		{
-			resourceSpots.removeIf(spot -> spot.getId() == GAUNTLET_FISHING_SPOT ||
-					spot.getId() == CORRUPTED_GAUNTLET_FISHING_SPOT);
+			resourceSpots.removeIf(spot -> spot.getId() == FISHING_SPOT_36068 ||
+					spot.getId() == FISHING_SPOT_35971);
 		}
 
 		if (!config.showCrystalDeposits())
 		{
-			resourceSpots.removeIf(spot -> spot.getId() == GAUNTLET_CRYSTAL_DEPOSIT ||
-					spot.getId() == CORRUPTED_GAUNTLET_CORRUPTED_DEPOSIT);
+			resourceSpots.removeIf(spot -> spot.getId() == CRYSTAL_DEPOSIT ||
+					spot.getId() == CORRUPT_DEPOSIT);
 		}
 
 		if (!config.showGrymRoots())
 		{
-			resourceSpots.removeIf(spot -> spot.getId() == GAUNTLET_GRYM_ROOT ||
-					spot.getId() == CORRUPTED_GAUNTLET_GRYM_ROOT);
+			resourceSpots.removeIf(spot -> spot.getId() == GRYM_ROOT_36070 ||
+					spot.getId() == GRYM_ROOT);
 		}
 
 		if (!config.showPhrenRoots())
 		{
-			resourceSpots.removeIf(spot -> spot.getId() == GAUNTLET_PHREN_ROOTS ||
-					spot.getId() == CORRUPTED_GAUNTLET_PHREN_ROOTS);
+			resourceSpots.removeIf(spot -> spot.getId() == PHREN_ROOTS_36066 ||
+					spot.getId() == PHREN_ROOTS);
 		}
 
 		if (!config.showLinumTirinum())
 		{
-			resourceSpots.removeIf(spot -> spot.getId() == GAUNTLET_LINUM_TIRINUM ||
-					spot.getId() == CORRUPTED_GAUNTLET_LINUM_TIRINUM);
+			resourceSpots.removeIf(spot -> spot.getId() == LINUM_TIRINUM_36072 ||
+					spot.getId() == LINUM_TIRINUM);
 		}
 
 		if (config.showDebugOverlay())
@@ -388,32 +388,32 @@ public class GauntletPlugin extends Plugin
 			return;
 		}
 
-		if (event.getGameObject().getId() == GAUNTLET_FISHING_SPOT && !config.showPaddlefishSpots() ||
-				event.getGameObject().getId() == CORRUPTED_GAUNTLET_FISHING_SPOT && !config.showPaddlefishSpots())
+		if (event.getGameObject().getId() == FISHING_SPOT_36068 && !config.showPaddlefishSpots() ||
+				event.getGameObject().getId() == FISHING_SPOT_35971 && !config.showPaddlefishSpots())
 		{
 			return;
 		}
 
-		if (event.getGameObject().getId() == GAUNTLET_CRYSTAL_DEPOSIT && !config.showCrystalDeposits() ||
-				event.getGameObject().getId() == CORRUPTED_GAUNTLET_CORRUPTED_DEPOSIT && !config.showCrystalDeposits())
+		if (event.getGameObject().getId() == CRYSTAL_DEPOSIT && !config.showCrystalDeposits() ||
+				event.getGameObject().getId() == CORRUPT_DEPOSIT && !config.showCrystalDeposits())
 		{
 			return;
 		}
 
-		if (event.getGameObject().getId() == GAUNTLET_GRYM_ROOT && !config.showGrymRoots() ||
-				event.getGameObject().getId() == CORRUPTED_GAUNTLET_GRYM_ROOT && !config.showGrymRoots())
+		if (event.getGameObject().getId() == GRYM_ROOT_36070 && !config.showGrymRoots() ||
+				event.getGameObject().getId() == GRYM_ROOT && !config.showGrymRoots())
 		{
 			return;
 		}
 
-		if (event.getGameObject().getId() == GAUNTLET_PHREN_ROOTS && !config.showPhrenRoots() ||
-				event.getGameObject().getId() == CORRUPTED_GAUNTLET_PHREN_ROOTS && !config.showPhrenRoots())
+		if (event.getGameObject().getId() == PHREN_ROOTS_36066 && !config.showPhrenRoots() ||
+				event.getGameObject().getId() == PHREN_ROOTS && !config.showPhrenRoots())
 		{
 			return;
 		}
 
-		if (event.getGameObject().getId() == GAUNTLET_LINUM_TIRINUM && !config.showLinumTirinum() ||
-				event.getGameObject().getId() == CORRUPTED_GAUNTLET_LINUM_TIRINUM && !config.showLinumTirinum())
+		if (event.getGameObject().getId() == LINUM_TIRINUM_36072 && !config.showLinumTirinum() ||
+				event.getGameObject().getId() == LINUM_TIRINUM && !config.showLinumTirinum())
 		{
 			return;
 		}
@@ -455,20 +455,20 @@ public class GauntletPlugin extends Plugin
 	{
 		switch (gameObjectId)
 		{
-			case GAUNTLET_FISHING_SPOT:
-			case CORRUPTED_GAUNTLET_FISHING_SPOT:
+			case FISHING_SPOT_36068:
+			case FISHING_SPOT_35971:
 				return config.getPaddlefishSpotColor();
-			case GAUNTLET_CRYSTAL_DEPOSIT:
-			case CORRUPTED_GAUNTLET_CORRUPTED_DEPOSIT:
+			case CRYSTAL_DEPOSIT:
+			case CORRUPT_DEPOSIT:
 				return config.getCrystalDepositColor();
-			case GAUNTLET_GRYM_ROOT:
-			case CORRUPTED_GAUNTLET_GRYM_ROOT:
+			case GRYM_ROOT_36070:
+			case GRYM_ROOT:
 				return config.getGrymRootColor();
-			case GAUNTLET_PHREN_ROOTS:
-			case CORRUPTED_GAUNTLET_PHREN_ROOTS:
+			case PHREN_ROOTS_36066:
+			case PHREN_ROOTS:
 				return config.getPhrenRootsColor();
-			case GAUNTLET_LINUM_TIRINUM:
-			case CORRUPTED_GAUNTLET_LINUM_TIRINUM:
+			case LINUM_TIRINUM_36072:
+			case LINUM_TIRINUM:
 				return config.getLinumTirinumColor();
 			default:
 				log.warn("Unknown Gauntlet resource spot with id {}", gameObjectId);

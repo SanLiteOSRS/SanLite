@@ -39,9 +39,11 @@ import static net.runelite.client.rs.ClientUpdateCheckMode.NONE;
 @Slf4j
 public class ClientLoader implements Supplier<Applet>
 {
+	private static final int NUM_ATTEMPTS = 6;
+	public static boolean USE_LOCAL_INJECTED = false;
+
 	private ClientUpdateCheckMode updateCheckMode;
-	public static boolean useLocalInjected = false;
-	private Applet client = null;
+	private Object client = null;
 
 	public ClientLoader(ClientUpdateCheckMode updateCheckMode)
 	{
@@ -55,7 +57,12 @@ public class ClientLoader implements Supplier<Applet>
 		{
 			client = doLoad();
 		}
-		return client;
+
+		if (client instanceof Throwable)
+		{
+			throw new RuntimeException((Throwable) client);
+		}
+		return (Applet) client;
 	}
 
 	private Applet doLoad()
@@ -67,7 +74,29 @@ public class ClientLoader implements Supplier<Applet>
 
 		try
 		{
-			RSConfig config = ClientConfigLoader.fetch();
+			HostSupplier hostSupplier = new HostSupplier();
+
+			String host = null;
+			RSConfig config;
+			for (int attempt = 0; ; attempt++)
+			{
+				try
+				{
+					config = ClientConfigLoader.fetch(host);
+					break;
+				}
+				catch (IOException e)
+				{
+					log.info("Failed to get jav_config from host \"{}\" ({})", host, e.getMessage());
+
+					if (attempt >= NUM_ATTEMPTS)
+					{
+						throw e;
+					}
+
+					host = hostSupplier.get();
+				}
+			}
 
 			switch (updateCheckMode)
 			{
