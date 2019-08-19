@@ -485,66 +485,6 @@ public class XpTrackerPlugin extends Plugin
 	public void onMenuOptionClicked(MenuOptionClicked event)
 	{
 		if (event.getMenuAction().getId() != MenuAction.RUNELITE.getId()
-			|| TO_GROUP(event.getWidgetId()) != WidgetID.SKILLS_GROUP_ID)
-		{
-			return;
-		}
-
-		final Skill skill;
-		try
-		{
-			skill = Skill.valueOf(Text.removeTags(event.getMenuTarget()).toUpperCase());
-		}
-		catch (IllegalArgumentException ex)
-		{
-			log.debug(null, ex);
-			return;
-		}
-
-		switch (event.getMenuOption())
-		{
-			case MENUOP_ADD_CANVAS_TRACKER:
-				addOverlay(skill);
-				break;
-			case MENUOP_REMOVE_CANVAS_TRACKER:
-				removeOverlay(skill);
-				break;
-		}
-	}
-
-	@Subscribe
-	public void onMenuEntryAdded(final MenuEntryAdded event)
-	{
-		int widgetID = event.getActionParam1();
-
-		if (TO_GROUP(widgetID) != WidgetID.SKILLS_GROUP_ID
-			|| !event.getOption().startsWith("View")
-			|| !xpTrackerConfig.skillTabOverlayMenuOptions())
-		{
-			return;
-		}
-
-		// Get skill from menu option, eg. "View <col=ff981f>Attack</col> guide"
-		final String skillText = event.getOption().split(" ")[1];
-		final Skill skill = Skill.valueOf(Text.removeTags(skillText).toUpperCase());
-
-		MenuEntry[] menuEntries = client.getMenuEntries();
-		menuEntries = Arrays.copyOf(menuEntries, menuEntries.length + 1);
-
-		MenuEntry menuEntry = menuEntries[menuEntries.length - 1] = new MenuEntry();
-		menuEntry.setTarget(skillText);
-		menuEntry.setOption(hasOverlay(skill) ? MENUOP_REMOVE_CANVAS_TRACKER : MENUOP_ADD_CANVAS_TRACKER);
-		menuEntry.setParam0(event.getActionParam0());
-		menuEntry.setParam1(widgetID);
-		menuEntry.setType(MenuAction.RUNELITE.getId());
-
-		client.setMenuEntries(menuEntries);
-	}
-
-	@Subscribe
-	public void onMenuOptionClicked(MenuOptionClicked event)
-	{
-		if (event.getMenuAction().getId() != MenuAction.RUNELITE.getId()
 			|| TO_GROUP(event.getIdentifier()) != WidgetID.SKILLS_GROUP_ID)
 		{
 			return;

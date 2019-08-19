@@ -462,7 +462,7 @@ public class ItemsKeptOnDeathPlugin extends Plugin
 			// If for some reason it still has no price default to the items store price
 			if (exchangePrice == 0)
 			{
-				final ItemComposition c1 = itemManager.getItemComposition(canonicalizedItemId);
+				final ItemDefinition c1 = itemManager.getItemComposition(canonicalizedItemId);
 				exchangePrice = c1.getPrice();
 			}
 		}

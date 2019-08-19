@@ -25,31 +25,33 @@
 package net.runelite.api;
 
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 public enum Quest
 {
 	//Free Quests
-	BLACK_KNIGHTS_FORTRESS(299, "Black Knights' Fortress", VarPlayer.QUEST_BLACK_KNIGHTS_FORTRESS),
-	COOKS_ASSISTANT(300, "Cook's Assistant", VarPlayer.QUEST_COOKS_ASSISTANT),
-	THE_CORSAIR_CURSE(301, "The Corsair Curse", Varbits.QUEST_THE_CORSAIR_CURSE),
-	DEMON_SLAYER(302, "Demon Slayer", Varbits.QUEST_DEMON_SLAYER),
-	DORICS_QUEST(303, "Doric's Quest", VarPlayer.QUEST_DORICS_QUEST),
-	DRAGON_SLAYER(304, "Dragon Slayer", VarPlayer.QUEST_DRAGON_SLAYER),
-	ERNEST_THE_CHICKEN(305, "Ernest the Chicken", VarPlayer.QUEST_ERNEST_THE_CHICKEN),
-	GOBLIN_DIPLOMACY(306, "Goblin Diplomacy", Varbits.QUEST_GOBLIN_DIPLOMACY),
-	IMP_CATCHER(307, "Imp Catcher", VarPlayer.QUEST_IMP_CATCHER),
-	THE_KNIGHTS_SWORD(308, "The Knight's Sword", VarPlayer.QUEST_THE_KNIGHTS_SWORD),
-	MISTHALIN_MYSTERY(309, "Misthalin Mystery", Varbits.QUEST_MISTHALIN_MYSTERY),
-	PIRATES_TREASURE(310, "Pirate's Treasure", VarPlayer.QUEST_PIRATES_TREASURE),
-	PRINCE_ALI_RESCUE(311, "Prince Ali Rescue", VarPlayer.QUEST_PRINCE_ALI_RESCUE),
-	THE_RESTLESS_GHOST(312, "The Restless Ghost", VarPlayer.QUEST_THE_RESTLESS_GHOST),
-	ROMEO__JULIET(313, "Romeo & Juliet", VarPlayer.QUEST_ROMEO_AND_JULIET),
-	RUNE_MYSTERIES(314, "Rune Mysteries", VarPlayer.QUEST_RUNE_MYSTERIES),
-	SHEEP_SHEARER(315, "Sheep Shearer", VarPlayer.QUEST_SHEEP_SHEARER),
-	SHIELD_OF_ARRAV(316, "Shield of Arrav", VarPlayer.QUEST_SHIELD_OF_ARRAV),
-	VAMPIRE_SLAYER(317, "Vampire Slayer", VarPlayer.QUEST_VAMPIRE_SLAYER),
-	WITCHS_POTION(318, "Witch's Potion", VarPlayer.QUEST_WITCHS_POTION),
-	X_MARKS_THE_SPOT(550, "X Marks the Spot", Varbits.QUEST_X_MARKS_THE_SPOT),
+	BLACK_KNIGHTS_FORTRESS(299, "Black Knights' Fortress"),
+	COOKS_ASSISTANT(300, "Cook's Assistant"),
+	THE_CORSAIR_CURSE(301, "The Corsair Curse"),
+	DEMON_SLAYER(302, "Demon Slayer"),
+	DORICS_QUEST(303, "Doric's Quest"),
+	DRAGON_SLAYER(304, "Dragon Slayer"),
+	ERNEST_THE_CHICKEN(305, "Ernest the Chicken"),
+	GOBLIN_DIPLOMACY(306, "Goblin Diplomacy"),
+	IMP_CATCHER(307, "Imp Catcher"),
+	THE_KNIGHTS_SWORD(308, "The Knight's Sword"),
+	MISTHALIN_MYSTERY(309, "Misthalin Mystery"),
+	PIRATES_TREASURE(310, "Pirate's Treasure"),
+	PRINCE_ALI_RESCUE(311, "Prince Ali Rescue"),
+	THE_RESTLESS_GHOST(312, "The Restless Ghost"),
+	ROMEO__JULIET(313, "Romeo & Juliet"),
+	RUNE_MYSTERIES(314, "Rune Mysteries"),
+	SHEEP_SHEARER(315, "Sheep Shearer"),
+	SHIELD_OF_ARRAV(316, "Shield of Arrav"),
+	VAMPIRE_SLAYER(317, "Vampire Slayer"),
+	WITCHS_POTION(318, "Witch's Potion"),
+	X_MARKS_THE_SPOT(550, "X Marks the Spot"),
 
 	//Members' Quests
 	ANIMAL_MAGNETISM(331, "Animal Magnetism"),
@@ -196,26 +198,6 @@ public enum Quest
 	@Getter
 	private final String name;
 
-	private final Varbits varbit;
-
-	private final VarPlayer varPlayer;
-
-	Quest(int id, String name, Varbits varbit)
-	{
-		this.id = id;
-		this.name = name;
-		this.varbit = varbit;
-		this.varPlayer = null;
-	}
-
-	Quest(int id, String name, VarPlayer varPlayer)
-	{
-		this.id = id;
-		this.name = name;
-		this.varbit = null;
-		this.varPlayer = varPlayer;
-	}
-
 	public QuestState getState(Client client)
 	{
 		client.runScript(ScriptID.QUESTLIST_PROGRESS, id);
@@ -227,18 +209,6 @@ public enum Quest
 				return QuestState.NOT_STARTED;
 			default:
 				return QuestState.IN_PROGRESS;
-		}
-	}
-
-	public int getVar(Client client)
-	{
-		if (varbit != null)
-		{
-			return client.getVar(varbit);
-		}
-		else
-		{
-			return client.getVar(varPlayer);
 		}
 	}
 }

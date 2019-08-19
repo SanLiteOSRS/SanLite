@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 Hydrox6 <ikada@protonmail.ch>
+ * Copyright (c) 2016-2017, Adam <Adam@sigterm.info>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,53 +22,19 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.client.plugins.cluescrolls.clues.item;
+package net.runelite.mapping;
 
-import net.runelite.api.Client;
-import net.runelite.api.Item;
-import net.runelite.api.ItemDefinition;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
-public class MultipleOfItemRequirement implements ItemRequirement
+@Retention(RetentionPolicy.RUNTIME)
+@Target(
+		{
+				ElementType.FIELD, ElementType.METHOD
+		})
+public @interface Import
 {
-	private int itemId;
-	private int quantity;
-
-	public MultipleOfItemRequirement(int itemId, int quantity)
-	{
-		this.itemId = itemId;
-		this.quantity = quantity;
-	}
-
-	@Override
-	public boolean fulfilledBy(int itemId)
-	{
-		return itemId == this.itemId && this.quantity == 1;
-	}
-
-	@Override
-	public boolean fulfilledBy(Item[] items)
-	{
-		for (Item item : items)
-		{
-			if (item.getId() == itemId && item.getQuantity() >= quantity)
-			{
-				return true;
-			}
-		}
-
-		return false;
-	}
-
-	@Override
-	public String getCollectiveName(Client client)
-	{
-		ItemDefinition definition = client.getItemDefinition(itemId);
-
-		if (definition == null)
-		{
-			return "N/A";
-		}
-
-		return definition.getName() + " x" + this.quantity;
-	}
+	String value();
 }

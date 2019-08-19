@@ -69,7 +69,7 @@ public class RuneLiteProperties
 		return properties.getProperty(RUNELITE_VERSION);
 	}
 
-	public String getSanLiteVersion()
+	public static String getSanLiteVersion()
 	{
 		return properties.getProperty(SANLITE_VERSION);
 	}

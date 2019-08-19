@@ -642,22 +642,4 @@ public class LootTrackerPlugin extends Plugin
 
 		return false;
 	}
-
-	/**
-	 * Is player at the Last Man Standing minigame
-	 */
-	private boolean isAtLMS()
-	{
-		final int[] mapRegions = client.getMapRegions();
-
-		for (int region : LAST_MAN_STANDING_REGIONS)
-		{
-			if (ArrayUtils.contains(mapRegions, region))
-			{
-				return true;
-			}
-		}
-
-		return false;
-	}
 }

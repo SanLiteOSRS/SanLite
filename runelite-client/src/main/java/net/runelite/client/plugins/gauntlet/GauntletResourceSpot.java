@@ -3,6 +3,7 @@ package net.runelite.client.plugins.gauntlet;
 import com.google.common.collect.ImmutableMap;
 import lombok.Getter;
 import net.runelite.api.ItemID;
+import net.runelite.api.ObjectID;
 
 import java.util.Map;
 
@@ -12,31 +13,31 @@ import static net.runelite.api.ObjectID.*;
 public enum GauntletResourceSpot
 {
 	PADDLEFISH("Paddlefish", ItemID.RAW_PADDLEFISH,
-			GAUNTLET_FISHING_SPOT, CORRUPTED_GAUNTLET_FISHING_SPOT
+			FISHING_SPOT_36068, FISHING_SPOT_35971
 	),
 	CRYSTAL_DEPOSIT("Crystal Deposit", ItemID.CRYSTAL_ORE,
-			GAUNTLET_CRYSTAL_DEPOSIT
+			ObjectID.CRYSTAL_DEPOSIT
 	),
-	CORRUPT_DEPOSIT("Corrupt Deposit", ItemID.CORRUPT_ORE,
-			CORRUPTED_GAUNTLET_CORRUPTED_DEPOSIT
+	CORRUPT_DEPOSIT("Corrupt Deposit", ItemID.CORRUPTED_ORE,
+			ObjectID.CORRUPT_DEPOSIT
 	),
-	GRYM_ROOT("Grym Root", ItemID.GRYM_LEAF,
-			GAUNTLET_GRYM_ROOT
+	GRYM_ROOT("Grym Root", ItemID.GRYM_LEAF_23875,
+			GRYM_ROOT_36070
 	),
-	CORRUPT_GRYM_ROOT("Grym Root", ItemID.CORRUPTED_GRYM_LEAF,
-			CORRUPTED_GAUNTLET_GRYM_ROOT
+	CORRUPT_GRYM_ROOT("Grym Root", ItemID.GRYM_LEAF,
+			ObjectID.GRYM_ROOT
 	),
-	PHREN_ROOTS("Phren Roots", ItemID.PHREN_BARK,
-			GAUNTLET_PHREN_ROOTS
+	PHREN_ROOTS("Phren Roots", ItemID.PHREN_BARK_23878,
+			PHREN_ROOTS_36066
 	),
-	CORRUPT_PHREN_ROOTS("Phren Roots", ItemID.CORRUPT_PHREN_BARK,
-			CORRUPTED_GAUNTLET_PHREN_ROOTS
+	CORRUPT_PHREN_ROOTS("Phren Roots", ItemID.PHREN_BARK,
+			ObjectID.PHREN_ROOTS
 	),
-	LINUM_TIRINUM("Linum Tirinum", ItemID.LINUM_TIRINUM,
-			GAUNTLET_LINUM_TIRINUM
+	LINUM_TIRINUM("Linum Tirinum", ItemID.LINUM_TIRINUM_23876,
+			LINUM_TIRINUM_36072
 	),
-	CORRUPT_LINUM_TIRINUM("Linum Tirinum", ItemID.CORRUPTED_LINUM_TIRINUM,
-			CORRUPTED_GAUNTLET_LINUM_TIRINUM
+	CORRUPT_LINUM_TIRINUM("Linum Tirinum", ItemID.LINUM_TIRINUM,
+			ObjectID.LINUM_TIRINUM
 	);
 
 	@Getter

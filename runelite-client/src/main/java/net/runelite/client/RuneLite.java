@@ -80,6 +80,7 @@ public class RuneLite
 	public static final File RUNELITE_DIR = new File(System.getProperty("user.home"), ".sanlite");
 	public static final File PROFILES_DIR = new File(RUNELITE_DIR, "profiles");
 	public static final File SCREENSHOT_DIR = new File(RUNELITE_DIR, "screenshots");
+	public static final File LOGS_DIR = new File(RUNELITE_DIR, "logs");
 	private static final SanLiteSplashScreen splashScreen = new SanLiteSplashScreen();
 
 	@Getter
@@ -195,7 +196,7 @@ public class RuneLite
 
 		if (options.has("local-injected"))
 		{
-			ClientLoader.useLocalInjected = true;
+			ClientLoader.USE_LOCAL_INJECTED = true;
 		}
 
 		Thread.setDefaultUncaughtExceptionHandler((thread, throwable) ->
@@ -209,28 +210,26 @@ public class RuneLite
 		
 		if (!options.has("no-splash-screen"))
 		{
-			splashScreen.open(5);
+			splashScreen.open(6);
 		}
 
 		splashScreen.setMessage("Starting SanLite Injector");
 		
-        try
-        {
-		    final ClientLoader clientLoader = new ClientLoader(options.valueOf(updateMode));
-    
-		    new Thread(() ->
-		    {
-		    	clientLoader.get();
-		    	ClassPreloader.preload();
-		    }, "Preloader").start();
-    
-		    PROFILES_DIR.mkdirs();
-    
-		    
-		    final long start = System.currentTimeMillis();
-    
-		    injector = Guice.createInjector(new RuneLiteModule(clientLoader));
+		try
+		{
+			final ClientLoader clientLoader = new ClientLoader(options.valueOf(updateMode));
 
+			new Thread(() ->
+			{
+				clientLoader.get();
+				ClassPreloader.preload();
+			}, "Preloader").start();
+
+			PROFILES_DIR.mkdirs();
+
+			final long start = System.currentTimeMillis();
+
+			injector = Guice.createInjector(new RuneLiteModule(clientLoader));
 
 			injector.getInstance(RuneLite.class).start();
 
@@ -246,10 +245,6 @@ public class RuneLite
 				new FatalErrorDialog("RuneLite has encountered an unexpected error during startup.")
 					.open());
 		}
-		finally
-		{
-			SplashScreen.stop();
-		}
 	}
 
 	public void start() throws Exception
@@ -262,8 +257,6 @@ public class RuneLite
 			// Inject members into client
 			injector.injectMembers(client);
 		}
-
-		SplashScreen.stage(.57, null, "Loading configuration");
 
 		// Load user configuration
 		splashScreen.setMessage("Loading configuration");
@@ -280,7 +273,7 @@ public class RuneLite
 		// This will initialize configuration
 		pluginManager.loadCorePlugins();
 
-		SplashScreen.stage(.70, null, "Finalizing configuration");
+		splashScreen.setMessage("Finalizing configuration");
 
 		// Plugins have provided their config, so set default config
 		// to main settings
@@ -290,10 +283,8 @@ public class RuneLite
 		splashScreen.setMessage("Starting session");
 		clientSessionManager.start();
 
-		SplashScreen.stage(.75, null, "Starting core interface");
-
 		// Initialize UI
-		splashScreen.setMessage("Loading client interface");
+		splashScreen.setMessage("Starting core interface");
 		clientUI.init(this);
 
 		// Close the splash screen
@@ -333,8 +324,6 @@ public class RuneLite
 
 		// Start plugins
 		pluginManager.startCorePlugins();
-
-		SplashScreen.stop();
 
 		clientUI.show();
 	}
