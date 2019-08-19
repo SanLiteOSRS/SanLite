@@ -151,8 +151,8 @@ public class WidgetID
 	public static final int BEGINNER_CLUE_MAP_WIZARDS_TOWER = 356;
 	public static final int SEED_BOX_GROUP_ID = 128;
 	public static final int ITEMS_KEPT_ON_DEATH_GROUP_ID = 4;
-	public static final int TRADING_SCREEN = 335;
 	public static final int SEED_VAULT_GROUP_ID = 631;
+	public static final int EXPLORERS_RING_ALCH_GROUP_ID = 483;
 
 	static class WorldMap
 	{
@@ -1073,62 +1073,15 @@ public class WidgetID
 		static final int CUSTOM_TEXT_CONTAINER = 33;
 	}
 
-	public static class TradeScreen
-	{
-		public static final int SECOND_GROUP_ID = 334;
-		public static final int SECOND_TRADING_WITH = 30;
-		public static final int SECOND_MY_OFFER = 23;
-		public static final int SECOND_THEIR_OFFER = 24;
-		public static final int SECOND_ACCEPT_FUNC = 13;
-		public static final int SECOND_ACCEPT_TEXT = 25;
-	}
-
-	public static class DuelConfig
-	{
-		public static final int CONFIG_GROUP_IP = 482;
-		public static final int TITLE = 35;
-		public static final int OPPONENT_ATT = 9;
-		public static final int OPPONENT_STR = 13;
-		public static final int OPPONENT_DEF = 17;
-		public static final int OPPONENT_HP = 21;
-	}
-
-	public static class DuelResult
-	{
-		public static final int RESULT_GROUP_ID = 372;
-		public static final int TITLE = 16;
-		public static final int TOTAL_STAKED = 32;
-		public static final int TOTAL_TAX = 39;
-		public static final int WINNINGS = 40;
-	}
-
-	// Also used for many other interfaces!
-	static class BankPin
-	{
-		static final int TOP_LEFT_TEXT = 2;
-		static final int FIRST_ENTERED = 3;
-		static final int SECOND_ENTERED = 4;
-		static final int THIRD_ENTERED = 5;
-		static final int FOURTH_ENTERED = 6;
-		static final int INSTRUCTION_TEXT = 10;
-		static final int EXIT_BUTTON = 13;
-		static final int FORGOT_BUTTON = 15;
-		static final int BUTTON_1 = 16;
-		static final int BUTTON_2 = 18;
-		static final int BUTTON_3 = 20;
-		static final int BUTTON_4 = 22;
-		static final int BUTTON_5 = 24;
-		static final int BUTTON_6 = 26;
-		static final int BUTTON_7 = 28;
-		static final int BUTTON_8 = 30;
-		static final int BUTTON_9 = 32;
-		static final int BUTTON_0 = 34;
-	}
-
 	static class SeedVault
 	{
 		static final int TITLE_CONTAINER = 2;
 		static final int ITEM_CONTAINER = 15;
 		static final int ITEM_TEXT = 16;
+	}
+
+	static class ExplorersRing
+	{
+		static final int INVENTORY = 7;
 	}
 }
