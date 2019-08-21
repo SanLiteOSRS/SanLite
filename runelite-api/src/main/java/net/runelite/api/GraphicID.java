@@ -55,6 +55,11 @@ public class GraphicID
 	public static final int OLM_HEAL = 1363;
 	public static final int OLM_CRYSTAL = 1447;
 	public static final int XERIC_TELEPORT = 1612;
+
+	// Theatre of Blood
+	public static final int MAIDEN_BLOOD_SPLAT_ATTACK = 1579;
+
+	// Alchemical Hydra
 	public static final int ALCHEMICAL_HYDRA_POISON_SPLAT_BEFORE_LANDING = 1645;
 	public static final int ALCHEMICAL_HYDRA_POISON_SPLAT_1 = 1654;
 	public static final int ALCHEMICAL_HYDRA_POISON_SPLAT_2 = 1655;
