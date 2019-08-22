@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, Cas <https://github.com/casvandongen>
+ * Copyright (c) 2019, Juul <https://github.com/juuldamen>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -57,5 +57,41 @@ public interface TheatreOfBloodConfig extends Config
 	default Color getBloodSplatAttackColor()
 	{
 		return new Color(163, 12, 12);
+	}
+
+	@ConfigItem(
+			keyName = "highlightBloatHandAttackTiles",
+			name = "Highlight hand attack tiles",
+			description = "Highlight the tiles for the Pestilent Bloat's hand attacks",
+			position = 3,
+			group = "Pestilent Bloat"
+	)
+	default boolean highlightBloatHandAttackTiles()
+	{
+		return true;
+	}
+
+
+	@ConfigItem(
+			keyName = "bloatHandAttackColor",
+			name = "Hand attack marker",
+			description = "Color of Pestilent Bloat's hand attack marker",
+			position = 4,
+			group = "Pestilent Bloat"
+	)
+	default Color getBloatHandAttackColor()
+	{
+		return new Color(20, 15, 10);
+	}
+
+	@ConfigItem(
+			keyName = "showDebugOverlay",
+			name = "Display debug overlay",
+			description = "Displays Theatre of Blood debug overlay. This contains variables that the plugin uses to function",
+			position = 5
+	)
+	default boolean showDebugOverlay()
+	{
+		return false;
 	}
 }

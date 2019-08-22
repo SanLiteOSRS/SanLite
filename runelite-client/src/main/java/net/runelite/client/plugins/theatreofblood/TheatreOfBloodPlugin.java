@@ -11,6 +11,7 @@ import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.plugins.PluginType;
+import net.runelite.client.plugins.theatreofblood.encounters.*;
 import net.runelite.client.ui.overlay.OverlayManager;
 
 import javax.inject.Inject;
@@ -26,9 +27,23 @@ import java.util.stream.Collectors;
 )
 public class TheatreOfBloodPlugin extends Plugin
 {
-
 	private static final int[] MAIDEN_REGIONS = {
 			12613, 12869
+	};
+	private static final int[] BLOAT_REGIONS = {
+			13125
+	};
+	private static final int[] NYLOCAS_REGIONS = {
+			13122
+	};
+	private static final int[] SOTETSEG_REGIONS = {
+			13123, 13379
+	};
+	private static final int[] XARPUS_REGIONS = {
+			12612
+	};
+	private static final int[] VERZIK_REGIONS = {
+			12611
 	};
 
 	@Inject
@@ -44,19 +59,51 @@ public class TheatreOfBloodPlugin extends Plugin
 	private TheatreOfBloodOverlay overlay;
 
 	@Inject
+	private TheatreOfBloodDebugOverlay debugOverlay;
+
+	@Inject
 	private ClientThread clientThread;
 
 	@Getter
-	private SugadintiMaiden sugadintiMaiden;
+	private TheatreOfBloodEncounter currentEncounter;
 
-	private static boolean isNpcSugadintiMaiden(int npcId)
+
+	// TODO: Does not contain nylocas encounter npc's
+	private boolean isNpcTheatreOfBloodEncounter(int npcId)
 	{
 		return npcId == NpcID.THE_MAIDEN_OF_SUGADINTI ||
 				npcId == NpcID.THE_MAIDEN_OF_SUGADINTI_8361 ||
 				npcId == NpcID.THE_MAIDEN_OF_SUGADINTI_8362 ||
 				npcId == NpcID.THE_MAIDEN_OF_SUGADINTI_8363 ||
 				npcId == NpcID.THE_MAIDEN_OF_SUGADINTI_8364 ||
-				npcId == NpcID.THE_MAIDEN_OF_SUGADINTI_8365;
+				npcId == NpcID.THE_MAIDEN_OF_SUGADINTI_8365 ||
+				npcId == NpcID.PESTILENT_BLOAT ||
+				npcId == NpcID.SOTETSEG ||
+				npcId == NpcID.SOTETSEG_8388 ||
+				npcId == NpcID.XARPUS ||
+				npcId == NpcID.XARPUS_8339 ||
+				npcId == NpcID.XARPUS_8340 ||
+				npcId == NpcID.XARPUS_8341 ||
+				npcId == NpcID.VERZIK_VITUR ||
+				npcId == NpcID.VERZIK_VITUR_8369 ||
+				npcId == NpcID.VERZIK_VITUR_8370 ||
+				npcId == NpcID.VERZIK_VITUR_8371 ||
+				npcId == NpcID.VERZIK_VITUR_8372 ||
+				npcId == NpcID.VERZIK_VITUR_8373 ||
+				npcId == NpcID.VERZIK_VITUR_8374 ||
+				npcId == NpcID.VERZIK_VITUR_8375;
+	}
+
+	private boolean isInstanceTheatreOfBloodRegion(int[] regions)
+	{
+		for (int[] regions1 : TheatreOfBloodEncounterRegions.getTOB_REGIONS())
+		{
+			if (Arrays.equals(regions1, regions) && client.isInInstancedRegion())
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 
 	@Provides
@@ -69,6 +116,10 @@ public class TheatreOfBloodPlugin extends Plugin
 	protected void startUp() throws Exception
 	{
 		overlayManager.add(overlay);
+		if (config.showDebugOverlay())
+		{
+			overlayManager.add(debugOverlay);
+		}
 		clientThread.invoke(this::reset);
 	}
 
@@ -76,31 +127,102 @@ public class TheatreOfBloodPlugin extends Plugin
 	protected void shutDown() throws Exception
 	{
 		overlayManager.remove(overlay);
-		sugadintiMaiden = null;
+		if (config.showDebugOverlay())
+		{
+			overlayManager.remove(debugOverlay);
+		}
+		reset();
+	}
+
+	@Subscribe
+	public void onConfigChanged(ConfigChanged event)
+	{
+		if (config.showDebugOverlay())
+		{
+			overlayManager.add(debugOverlay);
+		}
+		else if (!config.showDebugOverlay())
+		{
+			overlayManager.remove(debugOverlay);
+		}
 	}
 
 	private void reset()
 	{
-		sugadintiMaiden = null;
+		currentEncounter = null;
+		log.debug("Current encounter reset");
 	}
 
-	/**
-	 * Checks if the client graphics objects contain a special attack object and updates the maiden aoeEffects list
-	 */
 	private void checkGraphicObjects()
 	{
-		if (sugadintiMaiden != null)
+		if (currentEncounter != null && currentEncounter.isStarted() && currentEncounter.getNpc() != null)
 		{
-			sugadintiMaiden.setAoeEffects(
-					client.getGraphicsObjects().stream()
-							.filter(x -> sugadintiMaiden.isBloodAttack(x.getId()))
-							.collect(Collectors.toList()));
+			switch (currentEncounter.getNpc().getId())
+			{
+				case NpcID.THE_MAIDEN_OF_SUGADINTI:
+				case NpcID.THE_MAIDEN_OF_SUGADINTI_8361:
+				case NpcID.THE_MAIDEN_OF_SUGADINTI_8362:
+				case NpcID.THE_MAIDEN_OF_SUGADINTI_8363:
+				case NpcID.THE_MAIDEN_OF_SUGADINTI_8364:
+				case NpcID.THE_MAIDEN_OF_SUGADINTI_8365:
+					SugadintiMaiden sugadintiMaiden = (SugadintiMaiden) currentEncounter;
+					currentEncounter.setAoeEffects(
+							client.getGraphicsObjects().stream()
+									.filter(x -> sugadintiMaiden.isBloodAttack(x.getId()))
+									.collect(Collectors.toList()));
+					break;
+				case NpcID.PESTILENT_BLOAT:
+					PestilentBloat pestilentBloat = (PestilentBloat) currentEncounter;
+					currentEncounter.setAoeEffects(
+							client.getGraphicsObjects().stream()
+									.filter(x -> pestilentBloat.isHandAttack(x.getId()))
+									.collect(Collectors.toList()));
+					break;
+			}
 		}
 	}
 
-	private boolean inSugadintiMaidenInstance()
+	@Subscribe
+	public void onWorldRegionChanged(WorldRegionChanged event)
 	{
-		return Arrays.equals(client.getMapRegions(), MAIDEN_REGIONS) && client.isInInstancedRegion();
+		if (currentEncounter != null)
+		{
+			return;
+		}
+
+		if (isInstanceTheatreOfBloodRegion(event.getWorldRegion()))
+		{
+			if (Arrays.equals(event.getWorldRegion(), MAIDEN_REGIONS))
+			{
+				currentEncounter = new SugadintiMaiden(TheatreOfBloodEncounterRegions.MAIDEN_REGIONS, TheatreOfBloodEncounters.SUGADINTI_MAIDEN);
+				log.debug("Current encounter set to maiden: {}", currentEncounter);
+			}
+			else if (Arrays.equals(event.getWorldRegion(), BLOAT_REGIONS))
+			{
+				currentEncounter = new PestilentBloat(TheatreOfBloodEncounterRegions.BLOAT_REGIONS, TheatreOfBloodEncounters.PESTILENT_BLOAT);
+				log.debug("Current encounter set to bloat: {}", currentEncounter);
+			}
+			else if (Arrays.equals(event.getWorldRegion(), NYLOCAS_REGIONS))
+			{
+				currentEncounter = new Nylocas(TheatreOfBloodEncounterRegions.NYLOCAS_REGIONS, TheatreOfBloodEncounters.NYLOCAS);
+				log.debug("Current encounter set to nylocas: {}", currentEncounter);
+			}
+			else if (Arrays.equals(event.getWorldRegion(), SOTETSEG_REGIONS))
+			{
+				currentEncounter = new Sotetseg(TheatreOfBloodEncounterRegions.SOTETSEG_REGIONS, TheatreOfBloodEncounters.SOTETSEG);
+				log.debug("Current encounter set to sotetseg: {}", currentEncounter);
+			}
+			else if (Arrays.equals(event.getWorldRegion(), XARPUS_REGIONS))
+			{
+				currentEncounter = new Xarpus(TheatreOfBloodEncounterRegions.XARPUS_REGIONS, TheatreOfBloodEncounters.XARPUS);
+				log.debug("Current encounter set to xarpus: {}", currentEncounter);
+			}
+			else if (Arrays.equals(event.getWorldRegion(), VERZIK_REGIONS))
+			{
+				currentEncounter = new Verzik(TheatreOfBloodEncounterRegions.VERZIK_REGIONS, TheatreOfBloodEncounters.VERZIK);
+				log.debug("Current encounter set to verzik: {}", currentEncounter);
+			}
+		}
 	}
 
 	@Subscribe
@@ -116,12 +238,13 @@ public class TheatreOfBloodPlugin extends Plugin
 	@Subscribe
 	public void onNpcSpawned(NpcSpawned event)
 	{
-		if (inSugadintiMaidenInstance())
+		if (currentEncounter != null)
 		{
 			NPC npc = event.getNpc();
-			if (isNpcSugadintiMaiden(npc.getId()))
+			if (isNpcTheatreOfBloodEncounter(npc.getId()))
 			{
-				sugadintiMaiden = new SugadintiMaiden(npc);
+				currentEncounter.setNpc(npc);
+				log.debug("Current encounter npc set: {}", npc.getName());
 			}
 		}
 	}
@@ -129,16 +252,28 @@ public class TheatreOfBloodPlugin extends Plugin
 	@Subscribe
 	public void onNpcDespawned(NpcDespawned event)
 	{
-		if (isNpcSugadintiMaiden(event.getNpc().getId()))
+		if (isNpcTheatreOfBloodEncounter(event.getNpc().getId()))
 		{
 			reset();
 		}
 	}
 
 	@Subscribe
+	public void onVarbitChanged(VarbitChanged event)
+	{
+		if (currentEncounter != null && !currentEncounter.isStarted())
+		{
+			if (client.getVar(Varbits.TOB_ENCOUNTER_DOOR) == 1)
+			{
+				currentEncounter.setStarted(true);
+			}
+		}
+	}
+
+	@Subscribe
 	protected void onClientTick(ClientTick event)
 	{
-		if (inSugadintiMaidenInstance())
+		if (currentEncounter != null && client.isInInstancedRegion())
 		{
 			checkGraphicObjects();
 		}

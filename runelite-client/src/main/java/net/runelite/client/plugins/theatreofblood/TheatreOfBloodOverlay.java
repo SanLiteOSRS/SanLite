@@ -5,6 +5,10 @@ import net.runelite.api.Client;
 import net.runelite.api.GraphicsObject;
 import net.runelite.api.Perspective;
 import net.runelite.api.coords.LocalPoint;
+import net.runelite.client.plugins.theatreofblood.encounters.PestilentBloat;
+import net.runelite.client.plugins.theatreofblood.encounters.SugadintiMaiden;
+import net.runelite.client.plugins.theatreofblood.encounters.TheatreOfBloodEncounter;
+import net.runelite.client.plugins.theatreofblood.encounters.TheatreOfBloodEncounters;
 import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayLayer;
 import net.runelite.client.ui.overlay.OverlayPosition;
@@ -35,18 +39,23 @@ public class TheatreOfBloodOverlay extends Overlay
 	@Override
 	public Dimension render(Graphics2D graphics)
 	{
-		SugadintiMaiden sugadintiMaiden = plugin.getSugadintiMaiden();
-		if (sugadintiMaiden != null)
+		TheatreOfBloodEncounter encounter = plugin.getCurrentEncounter();
+		if (encounter != null && encounter.isStarted() && encounter.getNpc() != null)
 		{
-			if (config.highlightBloodSplatAttackTiles())
+			if (config.highlightBloodSplatAttackTiles() && encounter.getEncounter() == TheatreOfBloodEncounters.SUGADINTI_MAIDEN)
 			{
-				renderAoeEffects(graphics, sugadintiMaiden);
+				renderMaidenBloodSplatAoeEffects(graphics, (SugadintiMaiden) encounter);
+			}
+
+			if (config.highlightBloatHandAttackTiles() && encounter.getEncounter() == TheatreOfBloodEncounters.PESTILENT_BLOAT)
+			{
+				renderBloatHandAoeEffects(graphics, (PestilentBloat) encounter);
 			}
 		}
 		return null;
 	}
 
-	private void renderAoeEffects(Graphics2D graphics, SugadintiMaiden sugadintiMaiden)
+	private void renderMaidenBloodSplatAoeEffects(Graphics2D graphics, SugadintiMaiden sugadintiMaiden)
 	{
 		for (GraphicsObject graphicsObject : sugadintiMaiden.getAoeEffects())
 		{
@@ -58,6 +67,23 @@ public class TheatreOfBloodOverlay extends Overlay
 				if (sugadintiMaiden.isBloodAttack(graphicsObject.getId()))
 				{
 					OverlayUtil.renderPolygon(graphics, polygon, config.getBloodSplatAttackColor());
+				}
+			}
+		}
+	}
+
+	private void renderBloatHandAoeEffects(Graphics2D graphics, PestilentBloat pestilentBloat)
+	{
+		for (GraphicsObject graphicsObject : pestilentBloat.getAoeEffects())
+		{
+			LocalPoint localPoint = graphicsObject.getLocation();
+			Polygon polygon = Perspective.getCanvasTilePoly(client, localPoint);
+
+			if (polygon != null)
+			{
+				if (pestilentBloat.isHandAttack(graphicsObject.getId()))
+				{
+					OverlayUtil.renderPolygon(graphics, polygon, config.getBloatHandAttackColor());
 				}
 			}
 		}
