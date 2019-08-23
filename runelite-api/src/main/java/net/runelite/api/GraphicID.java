@@ -57,6 +57,10 @@ public class GraphicID
 	public static final int XERIC_TELEPORT = 1612;
 
 	// Theatre of Blood
+	public static final int BLOAT_HAND_ATTACK_1 = 1570;
+	public static final int BLOAT_HAND_ATTACK_2 = 1571;
+	public static final int BLOAT_HAND_ATTACK_3 = 1572;
+	public static final int BLOAT_HAND_ATTACK_4 = 1573;
 	public static final int MAIDEN_BLOOD_SPLAT_ATTACK = 1579;
 
 	// Alchemical Hydra
