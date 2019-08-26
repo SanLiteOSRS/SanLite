@@ -140,12 +140,12 @@ class DevToolsOverlay extends Overlay
 		{
 			if (p != local)
 			{
-				String text = p.getName() + " (A: " + p.getAnimation() + ") (G: " + p.getSpotAnimation() + ")";
+				String text = p.getName() + " (A: " + p.getAnimation() + ") (G: " + p.getSpotAnimation()  + ")" + "(GF:" + p.getSpotAnimationFrame() + ")";
 				OverlayUtil.renderActorOverlay(graphics, p, text, BLUE);
 			}
 		}
 
-		String text = local.getName() + " (A: " + local.getAnimation() + ") (G: " + local.getSpotAnimation() + ")";
+		String text = local.getName() + " (A: " + local.getAnimation() + ") (G: " + local.getSpotAnimation() + ")" + "(GF:" + local.getSpotAnimationFrame() + ")";
 		OverlayUtil.renderActorOverlay(graphics, local, text, CYAN);
 		renderPlayerWireframe(graphics, local, CYAN);
 	}
@@ -170,11 +170,12 @@ class DevToolsOverlay extends Overlay
 				}
 			}
 
-			String text = String.format("%s (ID: %d) (A: %d) (G: %d)",
+			String text = String.format("%s (ID: %d) (A: %d) (G: %d) (GF: %d)",
 				composition.getName(),
 				composition.getId(),
 				npc.getAnimation(),
-				npc.getSpotAnimation());
+				npc.getSpotAnimation(),
+				npc.getSpotAnimationFrame());
 
 			OverlayUtil.renderActorOverlay(graphics, npc, text, color);
 		}

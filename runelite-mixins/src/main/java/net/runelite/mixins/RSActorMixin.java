@@ -35,12 +35,8 @@ import net.runelite.api.Sprite;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.coords.WorldArea;
 import net.runelite.api.coords.WorldPoint;
-import net.runelite.api.events.AnimationChanged;
-import net.runelite.api.events.HitsplatApplied;
-import net.runelite.api.events.LocalPlayerDeath;
-import net.runelite.api.events.SpotAnimationChanged;
-import net.runelite.api.events.InteractingChanged;
-import net.runelite.api.events.OverheadTextChanged;
+import net.runelite.api.events.*;
+
 import java.awt.Graphics2D;
 import java.awt.Polygon;
 import java.awt.image.BufferedImage;
@@ -180,6 +176,24 @@ public abstract class RSActorMixin implements RSActor
 	public Point getMinimapLocation()
 	{
 		return Perspective.localToMinimap(client, getLocalLocation());
+	}
+
+	@FieldHook("x")
+	@Inject
+	public void actorPositionXChanged(int idx)
+	{
+		ActorPositionChanged actorPositionChanged = new ActorPositionChanged();
+		actorPositionChanged.setActor(this);
+		client.getCallbacks().post(actorPositionChanged);
+	}
+
+	@FieldHook("y")
+	@Inject
+	public void actorPositionYChanged(int idx)
+	{
+		ActorPositionChanged actorPositionChanged = new ActorPositionChanged();
+		actorPositionChanged.setActor(this);
+		client.getCallbacks().post(actorPositionChanged);
 	}
 
 	@FieldHook("sequence")
