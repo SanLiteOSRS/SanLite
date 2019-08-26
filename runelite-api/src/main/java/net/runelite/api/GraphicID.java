@@ -55,6 +55,18 @@ public class GraphicID
 	public static final int OLM_HEAL = 1363;
 	public static final int OLM_CRYSTAL = 1447;
 	public static final int XERIC_TELEPORT = 1612;
+
+	// Theatre of Blood
+	public static final int XARPUS_POISON_SPLAT_ON_LANDING = 1556;
+	public static final int BLOAT_HAND_ATTACK_1 = 1570;
+	public static final int BLOAT_HAND_ATTACK_2 = 1571;
+	public static final int BLOAT_HAND_ATTACK_3 = 1572;
+	public static final int BLOAT_HAND_ATTACK_4 = 1573;
+	public static final int MAIDEN_BLOOD_SPLAT_ATTACK = 1579;
+	public static final int VERZIK_SKULL_ATTACK_ON_LANDING  = 1584;
+	public static final int VERZIK_GREEN_ORB_POOL  = 1595;
+
+	// Alchemical Hydra
 	public static final int ALCHEMICAL_HYDRA_POISON_SPLAT_BEFORE_LANDING = 1645;
 	public static final int ALCHEMICAL_HYDRA_POISON_SPLAT_1 = 1654;
 	public static final int ALCHEMICAL_HYDRA_POISON_SPLAT_2 = 1655;
