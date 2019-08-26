@@ -85,10 +85,85 @@ public interface TheatreOfBloodConfig extends Config
 	}
 
 	@ConfigItem(
+			keyName = "highlightXarpusPoisonAttackTiles",
+			name = "Highlight poison attack tiles",
+			description = "Highlight the tiles for Xarpus poison attacks",
+			position = 5,
+			group = "Xarpus"
+	)
+	default boolean highlightXarpusPoisonAttackTiles()
+	{
+		return true;
+	}
+
+
+	@ConfigItem(
+			keyName = "xarpusPoisonAttackColor",
+			name = "Poison attack marker",
+			description = "Color of Xarpus poison attack marker",
+			position = 6,
+			group = "Xarpus"
+	)
+	default Color getXarpusPoisonAttackColor()
+	{
+		return new Color(159, 219, 0);
+	}
+
+	@ConfigItem(
+			keyName = "highlightVerzikSkullAttackTiles",
+			name = "Highlight skull attack tiles",
+			description = "Highlight the tiles for Verzik's skull attacks",
+			position = 7,
+			group = "Verzik Vitur"
+	)
+	default boolean highlightVerzikSkullAttackTiles()
+	{
+		return true;
+	}
+
+
+	@ConfigItem(
+			keyName = "verzikSkullAttackColor",
+			name = "Skull attack marker",
+			description = "Color of Verzik's skull attack marker",
+			position = 8,
+			group = "Verzik Vitur"
+	)
+	default Color getVerzikSkullAttackColor()
+	{
+		return new Color(102, 130, 28);
+	}
+
+	@ConfigItem(
+			keyName = "highlightVerzikGreenOrbPoolTiles",
+			name = "Highlight green orb pool tiles",
+			description = "Highlight the tiles for Verzik's green orb pools",
+			position = 9,
+			group = "Verzik Vitur"
+	)
+	default boolean highlightVerzikGreenOrbPoolTiles()
+	{
+		return true;
+	}
+
+
+	@ConfigItem(
+			keyName = "verzikGreenOrbPoolColor",
+			name = "Green orb pool marker",
+			description = "Color of Verzik's green orb pool marker",
+			position = 10,
+			group = "Verzik Vitur"
+	)
+	default Color getVerzikGreenOrbPoolColor()
+	{
+		return new Color(164, 172, 32);
+	}
+
+	@ConfigItem(
 			keyName = "showDebugOverlay",
 			name = "Display debug overlay",
 			description = "Displays Theatre of Blood debug overlay. This contains variables that the plugin uses to function",
-			position = 5
+			position = 11
 	)
 	default boolean showDebugOverlay()
 	{

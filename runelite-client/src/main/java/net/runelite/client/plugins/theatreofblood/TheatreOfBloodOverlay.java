@@ -5,10 +5,7 @@ import net.runelite.api.Client;
 import net.runelite.api.GraphicsObject;
 import net.runelite.api.Perspective;
 import net.runelite.api.coords.LocalPoint;
-import net.runelite.client.plugins.theatreofblood.encounters.PestilentBloat;
-import net.runelite.client.plugins.theatreofblood.encounters.SugadintiMaiden;
-import net.runelite.client.plugins.theatreofblood.encounters.TheatreOfBloodEncounter;
-import net.runelite.client.plugins.theatreofblood.encounters.TheatreOfBloodEncounters;
+import net.runelite.client.plugins.theatreofblood.encounters.*;
 import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayLayer;
 import net.runelite.client.ui.overlay.OverlayPosition;
@@ -51,6 +48,21 @@ public class TheatreOfBloodOverlay extends Overlay
 			{
 				renderBloatHandAoeEffects(graphics, (PestilentBloat) encounter);
 			}
+
+			if (config.highlightXarpusPoisonAttackTiles() && encounter.getEncounter() == TheatreOfBloodEncounters.XARPUS)
+			{
+				renderXarpusAoeEffects(graphics, (Xarpus) encounter);
+			}
+
+			if (config.highlightVerzikSkullAttackTiles() && encounter.getEncounter() == TheatreOfBloodEncounters.VERZIK)
+			{
+				renderVerzikSkullAoeEffects(graphics, (Verzik) encounter);
+			}
+
+			if (config.highlightVerzikGreenOrbPoolTiles() && encounter.getEncounter() == TheatreOfBloodEncounters.VERZIK)
+			{
+				renderVerzikGreenOrbPoolAoeEffects(graphics, (Verzik) encounter);
+			}
 		}
 		return null;
 	}
@@ -84,6 +96,57 @@ public class TheatreOfBloodOverlay extends Overlay
 				if (pestilentBloat.isHandAttack(graphicsObject.getId()))
 				{
 					OverlayUtil.renderPolygon(graphics, polygon, config.getBloatHandAttackColor());
+				}
+			}
+		}
+	}
+
+	private void renderXarpusAoeEffects(Graphics2D graphics, Xarpus xarpus)
+	{
+		for (GraphicsObject graphicsObject : xarpus.getAoeEffects())
+		{
+			LocalPoint localPoint = graphicsObject.getLocation();
+			Polygon polygon = Perspective.getCanvasTilePoly(client, localPoint);
+
+			if (polygon != null)
+			{
+				if (xarpus.isPoisonAttack(graphicsObject.getId()))
+				{
+					OverlayUtil.renderPolygon(graphics, polygon, config.getXarpusPoisonAttackColor());
+				}
+			}
+		}
+	}
+
+	private void renderVerzikSkullAoeEffects(Graphics2D graphics, Verzik verzik)
+	{
+		for (GraphicsObject graphicsObject : verzik.getAoeEffects())
+		{
+			LocalPoint localPoint = graphicsObject.getLocation();
+			Polygon polygon = Perspective.getCanvasTilePoly(client, localPoint);
+
+			if (polygon != null)
+			{
+				if (verzik.isSkullAttack(graphicsObject.getId()))
+				{
+					OverlayUtil.renderPolygon(graphics, polygon, config.getVerzikSkullAttackColor());
+				}
+			}
+		}
+	}
+
+	private void renderVerzikGreenOrbPoolAoeEffects(Graphics2D graphics, Verzik verzik)
+	{
+		for (GraphicsObject graphicsObject : verzik.getAoeEffects())
+		{
+			LocalPoint localPoint = graphicsObject.getLocation();
+			Polygon polygon = Perspective.getCanvasTilePoly(client, localPoint);
+
+			if (polygon != null)
+			{
+				if (verzik.isGreenOrbPool(graphicsObject.getId()))
+				{
+					OverlayUtil.renderPolygon(graphics, polygon, config.getVerzikGreenOrbPoolColor());
 				}
 			}
 		}

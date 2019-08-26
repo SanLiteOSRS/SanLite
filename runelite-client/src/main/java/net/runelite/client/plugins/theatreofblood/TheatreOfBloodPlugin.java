@@ -178,6 +178,30 @@ public class TheatreOfBloodPlugin extends Plugin
 									.filter(x -> pestilentBloat.isHandAttack(x.getId()))
 									.collect(Collectors.toList()));
 					break;
+				case NpcID.XARPUS:
+				case NpcID.XARPUS_8339:
+				case NpcID.XARPUS_8340:
+				case NpcID.XARPUS_8341:
+					Xarpus xarpus = (Xarpus) currentEncounter;
+					currentEncounter.setAoeEffects(
+							client.getGraphicsObjects().stream()
+									.filter(x -> xarpus.isPoisonAttack(x.getId()))
+									.collect(Collectors.toList()));
+					break;
+				case NpcID.VERZIK_VITUR:
+				case NpcID.VERZIK_VITUR_8369:
+				case NpcID.VERZIK_VITUR_8370:
+				case NpcID.VERZIK_VITUR_8371:
+				case NpcID.VERZIK_VITUR_8372:
+				case NpcID.VERZIK_VITUR_8373:
+				case NpcID.VERZIK_VITUR_8374:
+				case NpcID.VERZIK_VITUR_8375:
+					Verzik verzik = (Verzik) currentEncounter;
+					currentEncounter.setAoeEffects(
+							client.getGraphicsObjects().stream()
+									.filter(x -> verzik.isSkullAttack(x.getId()) || verzik.isGreenOrbPool(x.getId()))
+									.collect(Collectors.toList()));
+					break;
 			}
 		}
 	}
