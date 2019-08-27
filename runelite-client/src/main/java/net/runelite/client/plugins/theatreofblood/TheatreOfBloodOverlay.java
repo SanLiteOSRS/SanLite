@@ -1,9 +1,8 @@
 package net.runelite.client.plugins.theatreofblood;
 
 import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.Client;
-import net.runelite.api.GraphicsObject;
-import net.runelite.api.Perspective;
+import net.runelite.api.*;
+import net.runelite.api.Point;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.client.plugins.theatreofblood.encounters.*;
 import net.runelite.client.ui.overlay.Overlay;
@@ -44,6 +43,11 @@ public class TheatreOfBloodOverlay extends Overlay
 				renderMaidenBloodSplatAoeEffects(graphics, (SugadintiMaiden) encounter);
 			}
 
+			if (config.highlightBloodSpawnTiles() && encounter.getEncounter() == TheatreOfBloodEncounters.SUGADINTI_MAIDEN)
+			{
+				renderMaidenBloodSpawnAoeEffects(graphics, (SugadintiMaiden) encounter);
+			}
+
 			if (config.highlightBloatHandAttackTiles() && encounter.getEncounter() == TheatreOfBloodEncounters.PESTILENT_BLOAT)
 			{
 				renderBloatHandAoeEffects(graphics, (PestilentBloat) encounter);
@@ -76,9 +80,26 @@ public class TheatreOfBloodOverlay extends Overlay
 
 			if (polygon != null)
 			{
-				if (sugadintiMaiden.isBloodAttack(graphicsObject.getId()))
+				if (sugadintiMaiden.isBloodSplatAttack(graphicsObject.getId()))
 				{
 					OverlayUtil.renderPolygon(graphics, polygon, config.getBloodSplatAttackColor());
+				}
+			}
+		}
+	}
+
+	private void renderMaidenBloodSpawnAoeEffects(Graphics2D graphics, SugadintiMaiden sugadintiMaiden)
+	{
+		for (GameObject gameObject : sugadintiMaiden.getGameObjects())
+		{
+			LocalPoint localPoint = gameObject.getLocalLocation();
+			Polygon polygon = Perspective.getCanvasTilePoly(client, localPoint);
+
+			if (polygon != null)
+			{
+				if (sugadintiMaiden.isBloodSpawnBloodTile(gameObject.getId()))
+				{
+					OverlayUtil.renderPolygon(graphics, polygon, config.getBloodSpawnBloodColor());
 				}
 			}
 		}

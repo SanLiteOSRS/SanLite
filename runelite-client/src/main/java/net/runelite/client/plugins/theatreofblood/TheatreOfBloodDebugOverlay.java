@@ -91,6 +91,14 @@ public class TheatreOfBloodDebugOverlay extends Overlay
 						.build());
 			}
 
+			if (plugin.getCurrentEncounter().getGameObjects() != null)
+			{
+				panelComponent.getChildren().add(LineComponent.builder()
+						.left("Number of encounter game objects")
+						.right("" + plugin.getCurrentEncounter().getGameObjects().size())
+						.build());
+			}
+
 			return panelComponent.render(graphics);
 		}
 		return null;

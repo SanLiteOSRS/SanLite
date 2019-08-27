@@ -60,10 +60,35 @@ public interface TheatreOfBloodConfig extends Config
 	}
 
 	@ConfigItem(
+			keyName = "highlightBloodSpawnTiles",
+			name = "Highlight blood spawn tiles",
+			description = "Highlight the tiles of blood left by blood spawns",
+			position = 3,
+			group = "Sugadinti Maiden"
+	)
+	default boolean highlightBloodSpawnTiles()
+	{
+		return true;
+	}
+
+
+	@ConfigItem(
+			keyName = "bloodSpawnBloodColor",
+			name = "Blood spawn blood marker",
+			description = "Color of tiles of blood marker from blood spawns",
+			position = 4,
+			group = "Sugadinti Maiden"
+	)
+	default Color getBloodSpawnBloodColor()
+	{
+		return new Color(119, 11, 11);
+	}
+
+	@ConfigItem(
 			keyName = "highlightBloatHandAttackTiles",
 			name = "Highlight hand attack tiles",
 			description = "Highlight the tiles for the Pestilent Bloat's hand attacks",
-			position = 3,
+			position = 5,
 			group = "Pestilent Bloat"
 	)
 	default boolean highlightBloatHandAttackTiles()
@@ -76,19 +101,19 @@ public interface TheatreOfBloodConfig extends Config
 			keyName = "bloatHandAttackColor",
 			name = "Hand attack marker",
 			description = "Color of Pestilent Bloat's hand attack marker",
-			position = 4,
+			position = 6,
 			group = "Pestilent Bloat"
 	)
 	default Color getBloatHandAttackColor()
 	{
-		return new Color(20, 15, 10);
+		return new Color(39, 37, 36);
 	}
 
 	@ConfigItem(
 			keyName = "highlightXarpusPoisonAttackTiles",
 			name = "Highlight poison attack tiles",
 			description = "Highlight the tiles for Xarpus poison attacks",
-			position = 5,
+			position = 7,
 			group = "Xarpus"
 	)
 	default boolean highlightXarpusPoisonAttackTiles()
@@ -101,7 +126,7 @@ public interface TheatreOfBloodConfig extends Config
 			keyName = "xarpusPoisonAttackColor",
 			name = "Poison attack marker",
 			description = "Color of Xarpus poison attack marker",
-			position = 6,
+			position = 8,
 			group = "Xarpus"
 	)
 	default Color getXarpusPoisonAttackColor()
@@ -113,7 +138,7 @@ public interface TheatreOfBloodConfig extends Config
 			keyName = "highlightVerzikSkullAttackTiles",
 			name = "Highlight skull attack tiles",
 			description = "Highlight the tiles for Verzik's skull attacks",
-			position = 7,
+			position = 9,
 			group = "Verzik Vitur"
 	)
 	default boolean highlightVerzikSkullAttackTiles()
@@ -126,7 +151,7 @@ public interface TheatreOfBloodConfig extends Config
 			keyName = "verzikSkullAttackColor",
 			name = "Skull attack marker",
 			description = "Color of Verzik's skull attack marker",
-			position = 8,
+			position = 10,
 			group = "Verzik Vitur"
 	)
 	default Color getVerzikSkullAttackColor()
@@ -138,7 +163,7 @@ public interface TheatreOfBloodConfig extends Config
 			keyName = "highlightVerzikGreenOrbPoolTiles",
 			name = "Highlight green orb pool tiles",
 			description = "Highlight the tiles for Verzik's green orb pools",
-			position = 9,
+			position = 11,
 			group = "Verzik Vitur"
 	)
 	default boolean highlightVerzikGreenOrbPoolTiles()
@@ -151,7 +176,7 @@ public interface TheatreOfBloodConfig extends Config
 			keyName = "verzikGreenOrbPoolColor",
 			name = "Green orb pool marker",
 			description = "Color of Verzik's green orb pool marker",
-			position = 10,
+			position = 12,
 			group = "Verzik Vitur"
 	)
 	default Color getVerzikGreenOrbPoolColor()
@@ -163,7 +188,7 @@ public interface TheatreOfBloodConfig extends Config
 			keyName = "showDebugOverlay",
 			name = "Display debug overlay",
 			description = "Displays Theatre of Blood debug overlay. This contains variables that the plugin uses to function",
-			position = 11
+			position = 13
 	)
 	default boolean showDebugOverlay()
 	{

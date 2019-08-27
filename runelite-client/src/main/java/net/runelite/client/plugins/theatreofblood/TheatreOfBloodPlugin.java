@@ -15,7 +15,9 @@ import net.runelite.client.plugins.theatreofblood.encounters.*;
 import net.runelite.client.ui.overlay.OverlayManager;
 
 import javax.inject.Inject;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -168,7 +170,7 @@ public class TheatreOfBloodPlugin extends Plugin
 					SugadintiMaiden sugadintiMaiden = (SugadintiMaiden) currentEncounter;
 					currentEncounter.setAoeEffects(
 							client.getGraphicsObjects().stream()
-									.filter(x -> sugadintiMaiden.isBloodAttack(x.getId()))
+									.filter(x -> sugadintiMaiden.isBloodSplatAttack(x.getId()))
 									.collect(Collectors.toList()));
 					break;
 				case NpcID.PESTILENT_BLOAT:
@@ -202,8 +204,71 @@ public class TheatreOfBloodPlugin extends Plugin
 									.filter(x -> verzik.isSkullAttack(x.getId()) || verzik.isGreenOrbPool(x.getId()))
 									.collect(Collectors.toList()));
 					break;
+				default:
+					log.warn("Found unknown npc id for current encounter | id: {}", currentEncounter.getNpc().getId());
 			}
 		}
+	}
+
+	private void checkGameObjects()
+	{
+		if (currentEncounter != null && currentEncounter.isStarted() && currentEncounter.getNpc() != null)
+		{
+			switch (currentEncounter.getNpc().getId())
+			{
+				case NpcID.THE_MAIDEN_OF_SUGADINTI:
+				case NpcID.THE_MAIDEN_OF_SUGADINTI_8361:
+				case NpcID.THE_MAIDEN_OF_SUGADINTI_8362:
+				case NpcID.THE_MAIDEN_OF_SUGADINTI_8363:
+				case NpcID.THE_MAIDEN_OF_SUGADINTI_8364:
+				case NpcID.THE_MAIDEN_OF_SUGADINTI_8365:
+					SugadintiMaiden sugadintiMaiden = (SugadintiMaiden) currentEncounter;
+					currentEncounter.setGameObjects(getClientGameObjects().stream()
+							.filter(x -> sugadintiMaiden.isBloodSpawnBloodTile(x.getId()))
+							.collect(Collectors.toList()));
+			}
+		}
+	}
+
+	private List<GameObject> getClientGameObjects()
+	{
+		Scene scene = client.getScene();
+		Tile[][][] tiles = scene.getTiles();
+
+		int z = client.getPlane();
+
+		List<GameObject> gameObjectsList = new ArrayList<>();
+		for (int x = 0; x < Constants.SCENE_SIZE; ++x)
+		{
+			for (int y = 0; y < Constants.SCENE_SIZE; ++y)
+			{
+				Tile tile = tiles[z][x][y];
+
+				if (tile == null)
+				{
+					continue;
+				}
+
+				Player player = client.getLocalPlayer();
+				if (player == null)
+				{
+					continue;
+				}
+
+				GameObject[] gameObjects = tile.getGameObjects();
+				if (gameObjects != null)
+				{
+					for (GameObject gameObject : gameObjects)
+					{
+						if (gameObject != null)
+						{
+							gameObjectsList.add(gameObject);
+						}
+					}
+				}
+			}
+		}
+		return gameObjectsList;
 	}
 
 	@Subscribe
@@ -300,6 +365,7 @@ public class TheatreOfBloodPlugin extends Plugin
 		if (currentEncounter != null && client.isInInstancedRegion())
 		{
 			checkGraphicObjects();
+			checkGameObjects();
 		}
 	}
 }

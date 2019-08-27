@@ -2,6 +2,7 @@ package net.runelite.client.plugins.theatreofblood.encounters;
 
 import lombok.Getter;
 import lombok.Setter;
+import net.runelite.api.GameObject;
 import net.runelite.api.GraphicsObject;
 import net.runelite.api.NPC;
 import net.runelite.client.plugins.theatreofblood.TheatreOfBloodEncounterRegions;
@@ -30,11 +31,16 @@ public class TheatreOfBloodEncounter
 	@Setter
 	private List<GraphicsObject> aoeEffects;
 
+	@Getter
+	@Setter
+	private List<GameObject> gameObjects;
+
 	TheatreOfBloodEncounter(TheatreOfBloodEncounterRegions regions, TheatreOfBloodEncounters encounter)
 	{
 		this.encounter = encounter;
 		this.encounterRegions = regions;
 		this.aoeEffects = new ArrayList<>();
+		this.gameObjects = new ArrayList<>();
 	}
 
 }
