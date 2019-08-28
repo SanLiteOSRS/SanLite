@@ -135,10 +135,35 @@ public interface TheatreOfBloodConfig extends Config
 	}
 
 	@ConfigItem(
+			keyName = "highlightXarpusHealingPoolTiles",
+			name = "Highlight healing pool tiles",
+			description = "Highlight the healing pool tiles during the Xarpus encounter",
+			position = 9,
+			group = "Xarpus"
+	)
+	default boolean highlightXarpusHealingPoolTiles()
+	{
+		return true;
+	}
+
+
+	@ConfigItem(
+			keyName = "xarpusHealingPoolColor",
+			name = "Healing pool marker",
+			description = "Color of Xarpus healing pool marker",
+			position = 10,
+			group = "Xarpus"
+	)
+	default Color getXarpusHealingPoolColor()
+	{
+		return new Color(127, 130, 56);
+	}
+
+	@ConfigItem(
 			keyName = "highlightVerzikSkullAttackTiles",
 			name = "Highlight skull attack tiles",
 			description = "Highlight the tiles for Verzik's skull attacks",
-			position = 9,
+			position = 11,
 			group = "Verzik Vitur"
 	)
 	default boolean highlightVerzikSkullAttackTiles()
@@ -151,7 +176,7 @@ public interface TheatreOfBloodConfig extends Config
 			keyName = "verzikSkullAttackColor",
 			name = "Skull attack marker",
 			description = "Color of Verzik's skull attack marker",
-			position = 10,
+			position = 12,
 			group = "Verzik Vitur"
 	)
 	default Color getVerzikSkullAttackColor()
@@ -163,7 +188,7 @@ public interface TheatreOfBloodConfig extends Config
 			keyName = "highlightVerzikGreenOrbPoolTiles",
 			name = "Highlight green orb pool tiles",
 			description = "Highlight the tiles for Verzik's green orb pools",
-			position = 11,
+			position = 13,
 			group = "Verzik Vitur"
 	)
 	default boolean highlightVerzikGreenOrbPoolTiles()
@@ -176,7 +201,7 @@ public interface TheatreOfBloodConfig extends Config
 			keyName = "verzikGreenOrbPoolColor",
 			name = "Green orb pool marker",
 			description = "Color of Verzik's green orb pool marker",
-			position = 12,
+			position = 14,
 			group = "Verzik Vitur"
 	)
 	default Color getVerzikGreenOrbPoolColor()
@@ -188,7 +213,7 @@ public interface TheatreOfBloodConfig extends Config
 			keyName = "showDebugOverlay",
 			name = "Display debug overlay",
 			description = "Displays Theatre of Blood debug overlay. This contains variables that the plugin uses to function",
-			position = 13
+			position = 15
 	)
 	default boolean showDebugOverlay()
 	{

@@ -80,6 +80,10 @@ public class TheatreOfBloodPlugin extends Plugin
 				npcId == NpcID.THE_MAIDEN_OF_SUGADINTI_8364 ||
 				npcId == NpcID.THE_MAIDEN_OF_SUGADINTI_8365 ||
 				npcId == NpcID.PESTILENT_BLOAT ||
+				npcId == NpcID.NYLOCAS_VASILIAS ||
+				npcId == NpcID.NYLOCAS_VASILIAS_8355 ||
+				npcId == NpcID.NYLOCAS_VASILIAS_8356 ||
+				npcId == NpcID.NYLOCAS_VASILIAS_8357 ||
 				npcId == NpcID.SOTETSEG ||
 				npcId == NpcID.SOTETSEG_8388 ||
 				npcId == NpcID.XARPUS ||
@@ -187,7 +191,7 @@ public class TheatreOfBloodPlugin extends Plugin
 					Xarpus xarpus = (Xarpus) currentEncounter;
 					currentEncounter.setAoeEffects(
 							client.getGraphicsObjects().stream()
-									.filter(x -> xarpus.isPoisonAttack(x.getId()))
+									.filter(x -> xarpus.isPoisonAttackLanding(x.getId()))
 									.collect(Collectors.toList()));
 					break;
 				case NpcID.VERZIK_VITUR:
@@ -204,8 +208,6 @@ public class TheatreOfBloodPlugin extends Plugin
 									.filter(x -> verzik.isSkullAttack(x.getId()) || verzik.isGreenOrbPool(x.getId()))
 									.collect(Collectors.toList()));
 					break;
-				default:
-					log.warn("Found unknown npc id for current encounter | id: {}", currentEncounter.getNpc().getId());
 			}
 		}
 	}
@@ -223,9 +225,19 @@ public class TheatreOfBloodPlugin extends Plugin
 				case NpcID.THE_MAIDEN_OF_SUGADINTI_8364:
 				case NpcID.THE_MAIDEN_OF_SUGADINTI_8365:
 					SugadintiMaiden sugadintiMaiden = (SugadintiMaiden) currentEncounter;
-					currentEncounter.setGameObjects(getClientGameObjects().stream()
-							.filter(x -> sugadintiMaiden.isBloodSpawnBloodTile(x.getId()))
-							.collect(Collectors.toList()));
+					currentEncounter.setGameObjects(
+							getClientGameObjects().stream()
+									.filter(x -> sugadintiMaiden.isBloodSpawnBloodTile(x.getId()))
+									.collect(Collectors.toList()));
+				case NpcID.XARPUS:
+				case NpcID.XARPUS_8339:
+				case NpcID.XARPUS_8340:
+				case NpcID.XARPUS_8341:
+					Xarpus xarpus = (Xarpus) currentEncounter;
+					currentEncounter.setGameObjects(
+							getClientGameObjects().stream()
+									.filter(x -> xarpus.isPoisonTileObject(x.getId()) || xarpus.isHealingPoolTileObject(x.getId()))
+									.collect(Collectors.toList()));
 			}
 		}
 	}
@@ -343,6 +355,7 @@ public class TheatreOfBloodPlugin extends Plugin
 	{
 		if (isNpcTheatreOfBloodEncounter(event.getNpc().getId()))
 		{
+			log.debug("Encounter ended because of npc despawn | id: {}", event.getNpc().getId());
 			reset();
 		}
 	}
@@ -350,11 +363,23 @@ public class TheatreOfBloodPlugin extends Plugin
 	@Subscribe
 	public void onVarbitChanged(VarbitChanged event)
 	{
+		// TODO: Does not work on all encounters. Xarpus/Verzik confirmed
 		if (currentEncounter != null && !currentEncounter.isStarted())
 		{
 			if (client.getVar(Varbits.TOB_ENCOUNTER_DOOR) == 1)
 			{
+				log.debug("Encounter started: {}", currentEncounter.getEncounter());
 				currentEncounter.setStarted(true);
+			}
+		}
+
+		if (currentEncounter != null)
+		{
+			// Reset if players is not in a party
+			if (client.getVar(Varbits.THEATRE_OF_BLOOD) == 0)
+			{
+				log.debug("Player left party. Encounter reset");
+				reset();
 			}
 		}
 	}

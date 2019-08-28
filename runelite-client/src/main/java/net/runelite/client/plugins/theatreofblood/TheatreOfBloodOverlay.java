@@ -2,7 +2,6 @@ package net.runelite.client.plugins.theatreofblood;
 
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.*;
-import net.runelite.api.Point;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.client.plugins.theatreofblood.encounters.*;
 import net.runelite.client.ui.overlay.Overlay;
@@ -55,7 +54,17 @@ public class TheatreOfBloodOverlay extends Overlay
 
 			if (config.highlightXarpusPoisonAttackTiles() && encounter.getEncounter() == TheatreOfBloodEncounters.XARPUS)
 			{
-				renderXarpusAoeEffects(graphics, (Xarpus) encounter);
+				renderXarpusPoisonAttackLandingAoeEffects(graphics, (Xarpus) encounter);
+			}
+
+			if (config.highlightXarpusPoisonAttackTiles() && encounter.getEncounter() == TheatreOfBloodEncounters.XARPUS)
+			{
+				renderXarpusPoisonTileObjects(graphics, (Xarpus) encounter);
+			}
+
+			if (config.highlightXarpusHealingPoolTiles() && encounter.getEncounter() == TheatreOfBloodEncounters.XARPUS)
+			{
+				renderXarpusHealingPoolTileObjects(graphics, (Xarpus) encounter);
 			}
 
 			if (config.highlightVerzikSkullAttackTiles() && encounter.getEncounter() == TheatreOfBloodEncounters.VERZIK)
@@ -122,7 +131,7 @@ public class TheatreOfBloodOverlay extends Overlay
 		}
 	}
 
-	private void renderXarpusAoeEffects(Graphics2D graphics, Xarpus xarpus)
+	private void renderXarpusPoisonAttackLandingAoeEffects(Graphics2D graphics, Xarpus xarpus)
 	{
 		for (GraphicsObject graphicsObject : xarpus.getAoeEffects())
 		{
@@ -131,9 +140,43 @@ public class TheatreOfBloodOverlay extends Overlay
 
 			if (polygon != null)
 			{
-				if (xarpus.isPoisonAttack(graphicsObject.getId()))
+				if (xarpus.isPoisonAttackLanding(graphicsObject.getId()))
 				{
 					OverlayUtil.renderPolygon(graphics, polygon, config.getXarpusPoisonAttackColor());
+				}
+			}
+		}
+	}
+
+	private void renderXarpusPoisonTileObjects(Graphics2D graphics, Xarpus xarpus)
+	{
+		for (GameObject gameObject : xarpus.getGameObjects())
+		{
+			LocalPoint localPoint = gameObject.getLocalLocation();
+			Polygon polygon = Perspective.getCanvasTilePoly(client, localPoint);
+
+			if (polygon != null)
+			{
+				if (xarpus.isPoisonTileObject(gameObject.getId()))
+				{
+					OverlayUtil.renderPolygon(graphics, polygon, config.getXarpusPoisonAttackColor());
+				}
+			}
+		}
+	}
+
+	private void renderXarpusHealingPoolTileObjects(Graphics2D graphics, Xarpus xarpus)
+	{
+		for (GameObject gameObject : xarpus.getGameObjects())
+		{
+			LocalPoint localPoint = gameObject.getLocalLocation();
+			Polygon polygon = Perspective.getCanvasTilePoly(client, localPoint);
+
+			if (polygon != null)
+			{
+				if (xarpus.isHealingPoolTileObject(gameObject.getId()))
+				{
+					OverlayUtil.renderPolygon(graphics, polygon, config.getXarpusHealingPoolColor());
 				}
 			}
 		}
