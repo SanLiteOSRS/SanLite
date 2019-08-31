@@ -26,6 +26,7 @@ package net.runelite.api;
 
 public final class ScriptID
 {
+
 	/**
 	 * Updates the scrollbar handle and container to the new height of the content container
 	 * <ul>
@@ -92,6 +93,12 @@ public final class ScriptID
 	 */
 	@ScriptArguments(integer = 1)
 	public static final int MESSAGE_LAYER_OPEN = 677;
+
+	/**
+	 * Clicking bank pin buttons runs this
+	 */
+	@ScriptArguments(integer = 20)
+	public static final int BANK_PIN_OP = 685;
 
 	/**
 	 * Builds the chatbox input widget
@@ -163,6 +170,12 @@ public final class ScriptID
 	 */
 	@ScriptArguments(integer = 2)
 	public static final int CAMERA_DO_ZOOM = 42;
+
+	/**
+	 * Rebuilds the Spellbook
+	 */
+	@ScriptArguments(integer = 10, string = 2)
+	public static final int MAGIC_SPELLBOOK_REDRAW = 2611;
 
 	/**
 	 * Does nothing

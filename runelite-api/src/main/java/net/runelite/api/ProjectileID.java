@@ -51,7 +51,7 @@ public class ProjectileID
 	public static final int OLM_FIRE_LINE = 1347;
 	public static final int OLM_MAGE_ATTACK = 1339;
 	public static final int OLM_RANGE_ATTACK = 1340;
-	
+
 	public static final int VORKATH_BOMB_AOE = 1481;
 	public static final int VORKATH_POISON_POOL_AOE = 1483;
 	public static final int VORKATH_TICK_FIRE_AOE = 1482;
@@ -78,6 +78,10 @@ public class ProjectileID
 	public static final int DEMONIC_GORILLA_MAGIC = 1304;
 	public static final int DEMONIC_GORILLA_BOULDER = 856;
 
+	public static final int SOTETSEG_BOMB = 1604;
+	public static final int SOTETSEG_RANGE = 1607;
+	public static final int SOTETSEG_MAGE = 1606;
+
 	public static final int DRAKE_BREATH = 1637;
 	public static final int ALCHEMICAL_HYDRA_MAGIC = 1662;
 	public static final int ALCHEMICAL_HYDRA_RANGED = 1663;
@@ -103,11 +107,13 @@ public class ProjectileID
 	public static final int VORKATH_VENOM = 1470;
 	public static final int VORKATH_ICE = 395;
 
-	// Gauntlet
+	// The Gauntlet
 	public static final int GAUNTLET_BOSS_MAGIC = 1707;
 	public static final int CORRUPTED_GAUNTLET_BOSS_MAGIC = 1708;
 	public static final int GAUNTLET_BOSS_RANGED = 1711;
 	public static final int CORRUPTED_GAUNTLET_BOSS_RANGED = 1712;
 	public static final int GAUNTLET_BOSS_MAGIC_DISABLE_PRAYERS = 1713;
 	public static final int CORRUPTED_GAUNTLET_BOSS_MAGIC_DISABLE_PRAYERS = 1714;
+
+	public static final int ZALCANO_PROJECTILE = 1728;
 }

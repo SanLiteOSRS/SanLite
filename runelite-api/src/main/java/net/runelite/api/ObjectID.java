@@ -15273,10 +15273,8 @@ public final class ObjectID
 	public static final int LADDER_29062 = 29062;
 	public static final int REWARD_CHEST = 29063;
 	public static final int SCOREBOARD_29064 = 29064;
-	public static final int PLINTH_29065 = 29065;
 	public static final int DOOR_29066 = 29066;
 	public static final int DOOR_29067 = 29067;
-	public static final int DOOR_29068 = 29068;
 	public static final int CHEST_29069 = 29069;
 	public static final int CHEST_29070 = 29070;
 	public static final int CHEST_29071 = 29071;
