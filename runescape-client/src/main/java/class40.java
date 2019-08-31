@@ -46,7 +46,7 @@ public class class40 {
       if (var7 != 0 && this.pixelsPerTile != 0 && this.tileTemplates != null) {
          var8 = this.method686(var8, var7);
          var7 = this.method699(var7);
-         Rasterizer2D.raster2d7(var1, var2, var5, var6, var3, var4, this.tileTemplates[var7 - 1][var8], this.pixelsPerTile);
+         Rasterizer2D.Rasterizer2D_drawGradientPixels(var1, var2, var5, var6, var3, var4, this.tileTemplates[var7 - 1][var8], this.pixelsPerTile);
       }
    }
 

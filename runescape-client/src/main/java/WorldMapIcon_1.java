@@ -458,7 +458,7 @@ public class WorldMapIcon_1 extends AbstractWorldMapIcon {
                }
 
                var24.append("").append(var7);
-               class3.sendStackTrace(var24.toString(), var27);
+               class3.RunException_sendStackTrace(var24.toString(), var27);
             }
          } finally {
             if (Interpreter.field1074) {

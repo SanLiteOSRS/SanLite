@@ -84,8 +84,8 @@ public class class3 implements Enumerated {
       signature = "(Ljava/lang/String;Ljava/lang/Throwable;I)V",
       garbageValue = "1743466142"
    )
-   @Export("sendStackTrace")
-   public static void sendStackTrace(String var0, Throwable var1) {
+   @Export("RunException_sendStackTrace")
+   public static void RunException_sendStackTrace(String var0, Throwable var1) {
       if (var1 != null) {
          var1.printStackTrace();
       } else {

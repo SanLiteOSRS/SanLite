@@ -29,6 +29,7 @@ import java.util.Collection;
 
 import net.runelite.api.FontTypeFace;
 import net.runelite.api.Point;
+import net.runelite.api.Sprite;
 import net.runelite.api.SpriteID;
 
 /**

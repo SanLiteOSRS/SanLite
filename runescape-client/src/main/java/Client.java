@@ -2508,7 +2508,7 @@ public final class Client extends GameShell implements Usernamed {
                   WorldMapSection1.idxFiles[var4] = new BufferedFile(new AccessFile(class42.method731("main_file_cache.idx" + var4), "rw", 1048576L), 6000, 0);
                }
             } catch (Exception var15) {
-               class3.sendStackTrace((String)null, var15);
+               class3.RunException_sendStackTrace((String)null, var15);
             }
 
             WorldMapID.client = this;
@@ -5351,7 +5351,7 @@ public final class Client extends GameShell implements Usernamed {
                return true;
             }
 
-            class3.sendStackTrace("" + (var1.serverPacket != null ? var1.serverPacket.id : -1) + "," + (var1.field1296 != null ? var1.field1296.id : -1) + "," + (var1.field1291 != null ? var1.field1291.id : -1) + "," + var1.serverPacketLength, (Throwable)null);
+            class3.RunException_sendStackTrace("" + (var1.serverPacket != null ? var1.serverPacket.id : -1) + "," + (var1.field1296 != null ? var1.field1296.id : -1) + "," + (var1.field1291 != null ? var1.field1291.id : -1) + "," + var1.serverPacketLength, (Throwable)null);
             class65.method1182();
          } catch (IOException var35) {
             class2.method31();
@@ -5362,7 +5362,7 @@ public final class Client extends GameShell implements Usernamed {
                var19 = var19 + var3.array[var6] + ",";
             }
 
-            class3.sendStackTrace(var19, var36);
+            class3.RunException_sendStackTrace(var19, var36);
             class65.method1182();
          }
 

@@ -112,7 +112,7 @@ public class UrlRequester implements Runnable {
 
             }
          } catch (Exception var17) {
-            class3.sendStackTrace((String)null, var17);
+            class3.RunException_sendStackTrace((String)null, var17);
          }
       }
 

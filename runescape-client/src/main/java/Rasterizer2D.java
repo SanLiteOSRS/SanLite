@@ -521,8 +521,8 @@ public class Rasterizer2D extends DualNode {
       signature = "(IIIIII[BIZ)V",
       garbageValue = "1"
    )
-   @Export("raster2d7")
-   public static void raster2d7(int var0, int var1, int var2, int var3, int var4, int var5, byte[] var6, int var7) {
+   @Export("Rasterizer2D_drawGradientPixels")
+   public static void Rasterizer2D_drawGradientPixels(int var0, int var1, int var2, int var3, int var4, int var5, byte[] var6, int var7) {
       if (var0 + var2 >= 0 && var3 + var1 >= 0) {
          if (var0 < Rasterizer2D_width && var1 < Rasterizer2D_height) {
             int var8 = 0;

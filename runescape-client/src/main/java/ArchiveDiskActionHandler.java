@@ -75,7 +75,7 @@ public class ArchiveDiskActionHandler implements Runnable {
             }
          }
       } catch (Exception var13) {
-         class3.sendStackTrace((String)null, var13);
+         class3.RunException_sendStackTrace((String)null, var13);
       }
    }
 

@@ -486,7 +486,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 
          taskHandler.newThreadTask(this, 1);
       } catch (Exception var5) {
-         class3.sendStackTrace((String)null, var5);
+         class3.RunException_sendStackTrace((String)null, var5);
          this.error("crash");
       }
 
@@ -968,7 +968,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
             this.post(this.canvas);
          }
       } catch (Exception var6) {
-         class3.sendStackTrace((String)null, var6);
+         class3.RunException_sendStackTrace((String)null, var6);
          this.error("crash");
       }
 
