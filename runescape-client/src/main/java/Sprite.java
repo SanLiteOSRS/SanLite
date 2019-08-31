@@ -263,7 +263,7 @@ public final class Sprite extends Rasterizer2D {
       }
 
       if (var6 > 0 && var5 > 0) {
-         Sprite_something(Rasterizer2D.Rasterizer2D_pixels, this.pixels, var4, var3, var6, var5, var7, var8);
+         Sprite_draw(Rasterizer2D.Rasterizer2D_pixels, this.pixels, var4, var3, var6, var5, var7, var8);
       }
    }
 
@@ -309,7 +309,7 @@ public final class Sprite extends Rasterizer2D {
       }
 
       if (var6 > 0 && var5 > 0) {
-         Sprite_andAnotherOne(Rasterizer2D.Rasterizer2D_pixels, this.pixels, 0, var4, var3, var6, var5, var7, var8);
+         Sprite_drawTransBg(Rasterizer2D.Rasterizer2D_pixels, this.pixels, 0, var4, var3, var6, var5, var7, var8);
       }
    }
 
@@ -373,7 +373,7 @@ public final class Sprite extends Rasterizer2D {
             var14 += var15;
          }
 
-         Sprite_somethingElse(Rasterizer2D.Rasterizer2D_pixels, this.pixels, 0, var7, var8, var13, var14, var3, var4, var11, var12, var5);
+         Sprite_drawScaled(Rasterizer2D.Rasterizer2D_pixels, this.pixels, 0, var7, var8, var13, var14, var3, var4, var11, var12, var5);
       }
    }
 
@@ -422,7 +422,7 @@ public final class Sprite extends Rasterizer2D {
          }
 
          if (var8 > 0 && var7 > 0) {
-            Sprite_anotherOne(Rasterizer2D.Rasterizer2D_pixels, this.pixels, 0, var6, var5, var8, var7, var9, var10, var3, var4);
+            Sprite_drawTransOverlay(Rasterizer2D.Rasterizer2D_pixels, this.pixels, 0, var6, var5, var8, var7, var9, var10, var3, var4);
          }
       }
    }
@@ -468,7 +468,7 @@ public final class Sprite extends Rasterizer2D {
       }
 
       if (var7 > 0 && var6 > 0) {
-         Sprite_alpha1(Rasterizer2D.Rasterizer2D_pixels, this.pixels, 0, var5, var4, var7, var6, var8, var9, var3);
+         Sprite_drawTransparent(Rasterizer2D.Rasterizer2D_pixels, this.pixels, 0, var5, var4, var7, var6, var8, var9, var3);
       }
    }
 
@@ -532,7 +532,7 @@ public final class Sprite extends Rasterizer2D {
             var15 += var16;
          }
 
-         Sprite_alpha2(Rasterizer2D.Rasterizer2D_pixels, this.pixels, 0, var8, var9, var14, var15, var3, var4, var12, var13, var6, var5);
+         Sprite_drawTransScaled(Rasterizer2D.Rasterizer2D_pixels, this.pixels, 0, var8, var9, var14, var15, var3, var4, var12, var13, var6, var5);
       }
    }
 
@@ -1374,8 +1374,8 @@ public final class Sprite extends Rasterizer2D {
    }
 
    @ObfuscatedName("f")
-   @Export("Sprite_something")
-   static void Sprite_something(int[] var0, int[] var1, int var2, int var3, int var4, int var5, int var6, int var7) {
+   @Export("Sprite_draw")
+   static void Sprite_draw(int[] var0, int[] var1, int var2, int var3, int var4, int var5, int var6, int var7) {
       for(int var8 = -var5; var8 < 0; ++var8) {
          int var9;
          for(var9 = var3 + var4 - 3; var3 < var9; var0[var3++] = var1[var2++]) {
@@ -1394,8 +1394,8 @@ public final class Sprite extends Rasterizer2D {
    }
 
    @ObfuscatedName("r")
-   @Export("Sprite_andAnotherOne")
-   static void Sprite_andAnotherOne(int[] var0, int[] var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8) {
+   @Export("Sprite_drawTransBg")
+   static void Sprite_drawTransBg(int[] var0, int[] var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8) {
       int var9 = -(var5 >> 2);
       var5 = -(var5 & 3);
 
@@ -1447,8 +1447,8 @@ public final class Sprite extends Rasterizer2D {
    }
 
    @ObfuscatedName("p")
-   @Export("Sprite_somethingElse")
-   static void Sprite_somethingElse(int[] var0, int[] var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, int var9, int var10, int var11) {
+   @Export("Sprite_drawScaled")
+   static void Sprite_drawScaled(int[] var0, int[] var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, int var9, int var10, int var11) {
       int var12 = var3;
 
       for(int var13 = -var8; var13 < 0; ++var13) {
@@ -1473,8 +1473,8 @@ public final class Sprite extends Rasterizer2D {
    }
 
    @ObfuscatedName("e")
-   @Export("Sprite_anotherOne")
-   static void Sprite_anotherOne(int[] var0, int[] var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, int var9, int var10) {
+   @Export("Sprite_drawTransOverlay")
+   static void Sprite_drawTransOverlay(int[] var0, int[] var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, int var9, int var10) {
       int var11 = 256 - var9;
       int var12 = (var10 & 16711935) * var11 & -16711936;
       int var13 = (var10 & '\uff00') * var11 & 16711680;
@@ -1499,8 +1499,8 @@ public final class Sprite extends Rasterizer2D {
    }
 
    @ObfuscatedName("w")
-   @Export("Sprite_alpha1")
-   static void Sprite_alpha1(int[] var0, int[] var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, int var9) {
+   @Export("Sprite_drawTransparent")
+   static void Sprite_drawTransparent(int[] var0, int[] var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, int var9) {
       int var10 = 256 - var9;
 
       for(int var11 = -var6; var11 < 0; ++var11) {
@@ -1521,8 +1521,8 @@ public final class Sprite extends Rasterizer2D {
    }
 
    @ObfuscatedName("h")
-   @Export("Sprite_alpha2")
-   static void Sprite_alpha2(int[] var0, int[] var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, int var9, int var10, int var11, int var12) {
+   @Export("Sprite_drawTransScaled")
+   static void Sprite_drawTransScaled(int[] var0, int[] var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, int var9, int var10, int var11, int var12) {
       int var13 = 256 - var12;
       int var14 = var3;
 
