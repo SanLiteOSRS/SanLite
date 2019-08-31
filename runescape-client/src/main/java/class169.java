@@ -3,76 +3,68 @@ import java.util.Hashtable;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("fy")
+@ObfuscatedName("fj")
 public class class169 {
-	@ObfuscatedName("q")
-	static boolean field2055;
-	@ObfuscatedName("w")
-	static File field2050;
-	@ObfuscatedName("e")
-	static Hashtable field2052;
-	@ObfuscatedName("l")
-	@Export("isStereo")
-	protected static boolean isStereo;
-	@ObfuscatedName("fj")
-	@ObfuscatedSignature(
-		signature = "Lku;"
-	)
-	@Export("WorldMapElement_fonts")
-	static Fonts WorldMapElement_fonts;
-	@ObfuscatedName("fu")
-	@ObfuscatedSignature(
-		signature = "Lke;"
-	)
-	@Export("fontPlain12")
-	static Font fontPlain12;
+   @ObfuscatedName("s")
+   public static boolean field2034 = false;
+   @ObfuscatedName("j")
+   public static File field2033;
+   @ObfuscatedName("i")
+   static Hashtable field2035 = new Hashtable(16);
 
-	static {
-		field2055 = false;
-		field2052 = new Hashtable(16);
-	}
+   @ObfuscatedName("s")
+   @ObfuscatedSignature(
+      signature = "(II)Lip;",
+      garbageValue = "-760710815"
+   )
+   public static VarcInt method3447(int var0) {
+      VarcInt var1 = (VarcInt)VarcInt.VarcInt_cached.get((long)var0);
+      if (var1 != null) {
+         return var1;
+      } else {
+         byte[] var2 = VarcInt.VarcInt_archive.takeFile(19, var0);
+         var1 = new VarcInt();
+         if (var2 != null) {
+            var1.method4314(new Buffer(var2));
+         }
 
-	@ObfuscatedName("e")
-	@ObfuscatedSignature(
-		signature = "(Lhp;IIIZI)V",
-		garbageValue = "1090882543"
-	)
-	public static void method3503(AbstractArchive var0, int var1, int var2, int var3, boolean var4) {
-		class197.field2402 = 1;
-		GrandExchangeOfferNameComparator.musicTrackArchive = var0;
-		class197.musicTrackGroupId = var1;
-		class197.musicTrackFileId = var2;
-		ScriptFrame.field529 = var3;
-		BuddyRankComparator.musicTrackBoolean = var4;
-		class197.field2404 = 10000;
-	}
+         VarcInt.VarcInt_cached.put(var1, (long)var0);
+         return var1;
+      }
+   }
 
-	@ObfuscatedName("g")
-	@ObfuscatedSignature(
-		signature = "(ILcx;ZI)I",
-		garbageValue = "-786180451"
-	)
-	static int method3501(int var0, Script var1, boolean var2) {
-		Widget var3 = var2 ? Interpreter.field1111 : Calendar.field2507;
-		if (var0 == ScriptOpcodes.CC_GETINVOBJECT) {
-			Interpreter.Interpreter_intStack[++HealthBarUpdate.Interpreter_intStackSize - 1] = var3.itemId;
-			return 1;
-		}
-		if (var0 == ScriptOpcodes.CC_GETINVCOUNT) {
-			if (var3.itemId != -1) {
-				Interpreter.Interpreter_intStack[++HealthBarUpdate.Interpreter_intStackSize - 1] = var3.itemQuantity;
-			} else {
-				Interpreter.Interpreter_intStack[++HealthBarUpdate.Interpreter_intStackSize - 1] = 0;
-			}
+   @ObfuscatedName("i")
+   @ObfuscatedSignature(
+      signature = "(IIB)Lbi;",
+      garbageValue = "17"
+   )
+   static Message method3446(int var0, int var1) {
+      ChatChannel var2 = (ChatChannel)Messages.Messages_channels.get(var0);
+      return var2.getMessage(var1);
+   }
 
-			return 1;
-		}
-		if (var0 == ScriptOpcodes.CC_GETID) {
-			Interpreter.Interpreter_intStack[++HealthBarUpdate.Interpreter_intStackSize - 1] = var3.childIndex;
-			return 1;
-		}
-		return 2;
-	}
+   @ObfuscatedName("k")
+   @ObfuscatedSignature(
+      signature = "(Lhz;Lhz;III)Lkb;",
+      garbageValue = "1068587353"
+   )
+   @Export("SpriteBuffer_getFont")
+   public static Font SpriteBuffer_getFont(AbstractArchive var0, AbstractArchive var1, int var2, int var3) {
+      if (!World.SpriteBuffer_bufferFile(var0, var2, var3)) {
+         return null;
+      } else {
+         byte[] var5 = var1.takeFile(var2, var3);
+         Font var4;
+         if (var5 == null) {
+            var4 = null;
+         } else {
+            Font var6 = new Font(var5, class325.SpriteBuffer_xOffsets, class325.SpriteBuffer_yOffsets, class325.SpriteBuffer_spriteWidths, class225.SpriteBuffer_spriteHeights, class325.SpriteBuffer_spritePalette, WorldMapSection1.SpriteBuffer_pixels);
+            UserComparator7.SpriteBuffer_clear();
+            var4 = var6;
+         }
+
+         return var4;
+      }
+   }
 }

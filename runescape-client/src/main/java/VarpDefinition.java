@@ -4,104 +4,115 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ik")
+@ObfuscatedName("in")
 @Implements("VarpDefinition")
 public class VarpDefinition extends DualNode {
-	@ObfuscatedName("q")
-	@ObfuscatedSignature(
-		signature = "Lhp;"
-	)
-	@Export("VarpDefinition_archive")
-	static AbstractArchive VarpDefinition_archive;
-	@ObfuscatedName("w")
-	@ObfuscatedGetter(
-		intValue = -2051999343
-	)
-	@Export("VarpDefinition_fileCount")
-	public static int VarpDefinition_fileCount;
-	@ObfuscatedName("e")
-	@ObfuscatedSignature(
-		signature = "Lel;"
-	)
-	@Export("VarpDefinition_cached")
-	static EvictingDualNodeHashTable VarpDefinition_cached;
-	@ObfuscatedName("l")
-	@ObfuscatedSignature(
-		signature = "Llx;"
-	)
-	@Export("titlebuttonSprite")
-	static IndexedSprite titlebuttonSprite;
-	@ObfuscatedName("y")
-	@ObfuscatedSignature(
-		signature = "Lkf;"
-	)
-	@Export("NetCache_responseArchiveBuffer")
-	static Buffer NetCache_responseArchiveBuffer;
-	@ObfuscatedName("p")
-	@ObfuscatedGetter(
-		intValue = 1809591211
-	)
-	@Export("type")
-	public int type;
+   @ObfuscatedName("s")
+   @ObfuscatedSignature(
+      signature = "Lhz;"
+   )
+   @Export("VarpDefinition_archive")
+   static AbstractArchive VarpDefinition_archive;
+   @ObfuscatedName("j")
+   @ObfuscatedGetter(
+      intValue = -1812370505
+   )
+   @Export("VarpDefinition_fileCount")
+   public static int VarpDefinition_fileCount;
+   @ObfuscatedName("i")
+   @ObfuscatedSignature(
+      signature = "Lep;"
+   )
+   @Export("VarpDefinition_cached")
+   static EvictingDualNodeHashTable VarpDefinition_cached = new EvictingDualNodeHashTable(64);
+   @ObfuscatedName("k")
+   @ObfuscatedGetter(
+      intValue = -559924911
+   )
+   @Export("type")
+   public int type = 0;
 
-	static {
-		VarpDefinition_cached = new EvictingDualNodeHashTable(64);
-	}
+   VarpDefinition() {
+   }
 
-	VarpDefinition() {
-		this.type = 0;
-	}
+   @ObfuscatedName("i")
+   @ObfuscatedSignature(
+      signature = "(Lky;B)V",
+      garbageValue = "-60"
+   )
+   @Export("decode")
+   void decode(Buffer var1) {
+      while(true) {
+         int var2 = var1.readUnsignedByte();
+         if (var2 == 0) {
+            return;
+         }
 
-	@ObfuscatedName("e")
-	@ObfuscatedSignature(
-		signature = "(Lkf;I)V",
-		garbageValue = "-927981442"
-	)
-	@Export("decode")
-	void decode(Buffer var1) {
-		while (true) {
-			int var2 = var1.readUnsignedByte();
-			if (var2 == 0) {
-				return;
-			}
+         this.decodeNext(var1, var2);
+      }
+   }
 
-			this.decodeNext(var1, var2);
-		}
-	}
+   @ObfuscatedName("k")
+   @ObfuscatedSignature(
+      signature = "(Lky;IB)V",
+      garbageValue = "-93"
+   )
+   @Export("decodeNext")
+   void decodeNext(Buffer var1, int var2) {
+      if (var2 == 5) {
+         this.type = var1.readUnsignedShort();
+      }
 
-	@ObfuscatedName("p")
-	@ObfuscatedSignature(
-		signature = "(Lkf;II)V",
-		garbageValue = "-1780799047"
-	)
-	@Export("decodeNext")
-	void decodeNext(Buffer var1, int var2) {
-		if (var2 == 5) {
-			this.type = var1.readUnsignedShort();
-		}
+   }
 
-	}
+   @ObfuscatedName("jv")
+   @ObfuscatedSignature(
+      signature = "(Lbq;ZI)V",
+      garbageValue = "50109421"
+   )
+   @Export("closeInterface")
+   static final void closeInterface(InterfaceParent var0, boolean var1) {
+      int var2 = var0.group;
+      int var3 = (int)var0.key;
+      var0.remove();
+      if (var1) {
+         UrlRequester.method3250(var2);
+      }
 
-	@ObfuscatedName("w")
-	@ObfuscatedSignature(
-		signature = "(CI)Z",
-		garbageValue = "-17259877"
-	)
-	public static boolean method4366(char var0) {
-		if ((var0 <= 0 || var0 >= 128) && (var0 < 160 || var0 > 255)) {
-			if (var0 != 0) {
-				char[] var1 = class288.cp1252AsciiExtension;
+      for(IntegerNode var4 = (IntegerNode)Client.widgetClickMasks.first(); var4 != null; var4 = (IntegerNode)Client.widgetClickMasks.next()) {
+         if ((long)var2 == (var4.key >> 48 & 65535L)) {
+            var4.remove();
+         }
+      }
 
-				for (int var2 = 0; var2 < var1.length; ++var2) {
-					char var3 = var1[var2];
-					if (var0 == var3) {
-						return true;
-					}
-				}
-			}
+      Widget var7 = WorldMapElement.getWidget(var3);
+      if (var7 != null) {
+         FriendSystem.method1822(var7);
+      }
 
-			return false;
-		}
-		return true;
-	}
+      for(int var5 = 0; var5 < Client.menuOptionsCount; ++var5) {
+         if (PendingSpawn.isWidgetMenuOpcode(Client.menuOpcodes[var5])) {
+            if (var5 < Client.menuOptionsCount - 1) {
+               for(int var6 = var5; var6 < Client.menuOptionsCount - 1; ++var6) {
+                  Client.menuActions[var6] = Client.menuActions[var6 + 1];
+                  Client.menuTargetNames[var6] = Client.menuTargetNames[var6 + 1];
+                  Client.menuOpcodes[var6] = Client.menuOpcodes[var6 + 1];
+                  Client.menuArguments0[var6] = Client.menuArguments0[var6 + 1];
+                  Client.menuArguments1[var6] = Client.menuArguments1[var6 + 1];
+                  Client.menuArguments2[var6] = Client.menuArguments2[var6 + 1];
+                  Client.menuShiftClick[var6] = Client.menuShiftClick[var6 + 1];
+               }
+            }
+
+            --var5;
+            --Client.menuOptionsCount;
+         }
+      }
+
+      GrandExchangeOfferNameComparator.method146();
+      if (Client.rootInterface != -1) {
+         UserComparator6.method3382(Client.rootInterface, 1);
+      }
+
+   }
 }

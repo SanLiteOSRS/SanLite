@@ -4,58 +4,52 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ct")
+@ObfuscatedName("cw")
 @Implements("AttackOption")
 public enum AttackOption implements Enumerated {
-	@ObfuscatedName("q")
-	@ObfuscatedSignature(
-		signature = "Lct;"
-	)
-	@Export("AttackOption_dependsOnCombatLevels")
-	AttackOption_dependsOnCombatLevels(0),
-	@ObfuscatedName("w")
-	@ObfuscatedSignature(
-		signature = "Lct;"
-	)
-	@Export("AttackOption_alwaysRightClick")
-	AttackOption_alwaysRightClick(1),
-	@ObfuscatedName("e")
-	@ObfuscatedSignature(
-		signature = "Lct;"
-	)
-	@Export("AttackOption_leftClickWhereAvailable")
-	AttackOption_leftClickWhereAvailable(2),
-	@ObfuscatedName("p")
-	@ObfuscatedSignature(
-		signature = "Lct;"
-	)
-	@Export("AttackOption_hidden")
-	AttackOption_hidden(3);
+   @ObfuscatedName("s")
+   @ObfuscatedSignature(
+      signature = "Lcw;"
+   )
+   @Export("AttackOption_dependsOnCombatLevels")
+   AttackOption_dependsOnCombatLevels(0),
+   @ObfuscatedName("j")
+   @ObfuscatedSignature(
+      signature = "Lcw;"
+   )
+   @Export("AttackOption_alwaysRightClick")
+   AttackOption_alwaysRightClick(1),
+   @ObfuscatedName("i")
+   @ObfuscatedSignature(
+      signature = "Lcw;"
+   )
+   @Export("AttackOption_leftClickWhereAvailable")
+   AttackOption_leftClickWhereAvailable(2),
+   @ObfuscatedName("k")
+   @ObfuscatedSignature(
+      signature = "Lcw;"
+   )
+   @Export("AttackOption_hidden")
+   AttackOption_hidden(3);
 
-	@ObfuscatedName("qz")
-	@ObfuscatedSignature(
-		signature = "Ldz;"
-	)
-	@Export("decimator")
-	static Decimator decimator;
-	@ObfuscatedName("k")
-	@ObfuscatedGetter(
-		intValue = 52026669
-	)
-	@Export("id")
-	final int id;
+   @ObfuscatedName("u")
+   @ObfuscatedGetter(
+      intValue = -2103853983
+   )
+   @Export("id")
+   final int id;
 
-	AttackOption(int var3) {
-		this.id = var3;
-	}
+   AttackOption(int var3) {
+      this.id = var3;
+   }
 
-	@ObfuscatedName("e")
-	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "320353268"
-	)
-	@Export("rsOrdinal")
-	public int rsOrdinal() {
-		return this.id;
-	}
+   @ObfuscatedName("j")
+   @ObfuscatedSignature(
+      signature = "(B)I",
+      garbageValue = "-32"
+   )
+   @Export("rsOrdinal")
+   public int rsOrdinal() {
+      return this.id;
+   }
 }

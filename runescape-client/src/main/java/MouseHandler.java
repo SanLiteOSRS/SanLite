@@ -3,416 +3,418 @@ import java.awt.event.FocusListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.io.File;
+import java.io.IOException;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("bi")
+@ObfuscatedName("bo")
 @Implements("MouseHandler")
 public class MouseHandler implements MouseListener, MouseMotionListener, FocusListener {
-	@ObfuscatedName("p")
-	@ObfuscatedSignature(
-		signature = "Lbi;"
-	)
-	@Export("MouseHandler_instance")
-	public static MouseHandler MouseHandler_instance;
-	@ObfuscatedName("k")
-	@ObfuscatedGetter(
-		intValue = -1010010923
-	)
-	@Export("MouseHandler_x")
-	public static int MouseHandler_x;
-	@ObfuscatedName("l")
-	@ObfuscatedGetter(
-		intValue = 224194115
-	)
-	@Export("MouseHandler_idleCycles")
-	public static volatile int MouseHandler_idleCycles;
-	@ObfuscatedName("b")
-	@ObfuscatedGetter(
-		intValue = 1710921911
-	)
-	@Export("MouseHandler_currentButton0")
-	public static volatile int MouseHandler_currentButton0;
-	@ObfuscatedName("i")
-	@ObfuscatedGetter(
-		intValue = 1256133149
-	)
-	@Export("MouseHandler_x0")
-	public static volatile int MouseHandler_x0;
-	@ObfuscatedName("c")
-	@ObfuscatedGetter(
-		intValue = 1661434067
-	)
-	@Export("MouseHandler_y0")
-	public static volatile int MouseHandler_y0;
-	@ObfuscatedName("f")
-	@ObfuscatedGetter(
-		longValue = -8614064843857647631L
-	)
-	@Export("MouseHandler_millis0")
-	public static volatile long MouseHandler_millis0;
-	@ObfuscatedName("m")
-	@ObfuscatedGetter(
-		intValue = 1270652981
-	)
-	@Export("MouseHandler_currentButton")
-	public static int MouseHandler_currentButton;
-	@ObfuscatedName("u")
-	@ObfuscatedGetter(
-		intValue = -1776792987
-	)
-	@Export("MouseHandler_y")
-	public static int MouseHandler_y;
-	@ObfuscatedName("x")
-	@ObfuscatedGetter(
-		longValue = 5241023896637855779L
-	)
-	@Export("MouseHandler_millis")
-	public static long MouseHandler_millis;
-	@ObfuscatedName("r")
-	@ObfuscatedGetter(
-		intValue = -1163235529
-	)
-	@Export("MouseHandler_lastButton0")
-	public static volatile int MouseHandler_lastButton0;
-	@ObfuscatedName("v")
-	@ObfuscatedGetter(
-		intValue = -1839013683
-	)
-	@Export("MouseHandler_lastPressedX0")
-	public static volatile int MouseHandler_lastPressedX0;
-	@ObfuscatedName("y")
-	@ObfuscatedGetter(
-		intValue = -62123151
-	)
-	@Export("MouseHandler_lastPressedY0")
-	public static volatile int MouseHandler_lastPressedY0;
-	@ObfuscatedName("g")
-	@ObfuscatedGetter(
-		longValue = -4691083224527858071L
-	)
-	@Export("MouseHandler_lastPressedTimeMillis0")
-	public static volatile long MouseHandler_lastPressedTimeMillis0;
-	@ObfuscatedName("a")
-	@ObfuscatedGetter(
-		intValue = 1647189949
-	)
-	@Export("MouseHandler_lastButton")
-	public static int MouseHandler_lastButton;
-	@ObfuscatedName("j")
-	@ObfuscatedGetter(
-		intValue = -836499887
-	)
-	@Export("MouseHandler_lastPressedX")
-	public static int MouseHandler_lastPressedX;
-	@ObfuscatedName("t")
-	@ObfuscatedGetter(
-		intValue = 201376633
-	)
-	@Export("MouseHandler_lastPressedY")
-	public static int MouseHandler_lastPressedY;
-	@ObfuscatedName("h")
-	@ObfuscatedGetter(
-		longValue = -687699044042245685L
-	)
-	@Export("MouseHandler_lastPressedTimeMillis")
-	public static long MouseHandler_lastPressedTimeMillis;
-	@ObfuscatedName("ht")
-	@ObfuscatedGetter(
-		intValue = -400570657
-	)
-	@Export("oculusOrbFocalPointX")
-	static int oculusOrbFocalPointX;
+   @ObfuscatedName("k")
+   @ObfuscatedGetter(
+      intValue = -93099155
+   )
+   @Export("MouseHandler_x")
+   public static int MouseHandler_x = 0;
+   @ObfuscatedName("u")
+   @ObfuscatedSignature(
+      signature = "Lbo;"
+   )
+   @Export("MouseHandler_instance")
+   public static MouseHandler MouseHandler_instance = new MouseHandler();
+   @ObfuscatedName("n")
+   @ObfuscatedGetter(
+      intValue = -1641933139
+   )
+   @Export("MouseHandler_idleCycles")
+   public static volatile int MouseHandler_idleCycles = 0;
+   @ObfuscatedName("t")
+   @ObfuscatedGetter(
+      intValue = -1870128511
+   )
+   @Export("MouseHandler_currentButton0")
+   static volatile int MouseHandler_currentButton0 = 0;
+   @ObfuscatedName("q")
+   @ObfuscatedGetter(
+      intValue = 1230571699
+   )
+   @Export("MouseHandler_x0")
+   static volatile int MouseHandler_x0 = -1;
+   @ObfuscatedName("x")
+   @ObfuscatedGetter(
+      intValue = -1059786001
+   )
+   @Export("MouseHandler_y")
+   public static int MouseHandler_y = 0;
+   @ObfuscatedName("d")
+   @ObfuscatedGetter(
+      intValue = 311656783
+   )
+   @Export("MouseHandler_y0")
+   static volatile int MouseHandler_y0 = -1;
+   @ObfuscatedName("f")
+   @ObfuscatedGetter(
+      longValue = 7196021325649186919L
+   )
+   @Export("MouseHandler_millis0")
+   static volatile long MouseHandler_millis0 = -1L;
+   @ObfuscatedName("c")
+   @ObfuscatedGetter(
+      intValue = -1297098921
+   )
+   @Export("MouseHandler_currentButton")
+   public static int MouseHandler_currentButton = 0;
+   @ObfuscatedName("r")
+   @ObfuscatedGetter(
+      longValue = 619055357369552987L
+   )
+   @Export("MouseHandler_millis")
+   public static long MouseHandler_millis = 0L;
+   @ObfuscatedName("y")
+   @ObfuscatedGetter(
+      intValue = -1157657453
+   )
+   @Export("MouseHandler_lastButton0")
+   static volatile int MouseHandler_lastButton0 = 0;
+   @ObfuscatedName("p")
+   @ObfuscatedGetter(
+      intValue = -1268176769
+   )
+   @Export("MouseHandler_lastPressedX0")
+   static volatile int MouseHandler_lastPressedX0 = 0;
+   @ObfuscatedName("b")
+   @ObfuscatedGetter(
+      intValue = 73180775
+   )
+   @Export("MouseHandler_lastPressedY0")
+   static volatile int MouseHandler_lastPressedY0 = 0;
+   @ObfuscatedName("g")
+   @ObfuscatedGetter(
+      longValue = 8295957419767528369L
+   )
+   @Export("MouseHandler_lastPressedTimeMillis0")
+   static volatile long MouseHandler_lastPressedTimeMillis0 = 0L;
+   @ObfuscatedName("e")
+   @ObfuscatedGetter(
+      intValue = -1949699637
+   )
+   @Export("MouseHandler_lastButton")
+   public static int MouseHandler_lastButton = 0;
+   @ObfuscatedName("z")
+   @ObfuscatedGetter(
+      intValue = 683803083
+   )
+   @Export("MouseHandler_lastPressedX")
+   public static int MouseHandler_lastPressedX = 0;
+   @ObfuscatedName("a")
+   @ObfuscatedGetter(
+      intValue = -1446302593
+   )
+   @Export("MouseHandler_lastPressedY")
+   public static int MouseHandler_lastPressedY = 0;
+   @ObfuscatedName("w")
+   @ObfuscatedGetter(
+      longValue = 1144028975339776835L
+   )
+   @Export("MouseHandler_lastPressedTimeMillis")
+   public static long MouseHandler_lastPressedTimeMillis = 0L;
+   @ObfuscatedName("gt")
+   @Export("regionMapArchiveIds")
+   static int[] regionMapArchiveIds;
 
-	static {
-		MouseHandler_instance = new MouseHandler();
-		MouseHandler_idleCycles = 0;
-		MouseHandler_currentButton0 = 0;
-		MouseHandler_x0 = -1;
-		MouseHandler_y0 = -1;
-		MouseHandler_millis0 = -1L;
-		MouseHandler_currentButton = 0;
-		MouseHandler_x = 0;
-		MouseHandler_y = 0;
-		MouseHandler_millis = 0L;
-		MouseHandler_lastButton0 = 0;
-		MouseHandler_lastPressedX0 = 0;
-		MouseHandler_lastPressedY0 = 0;
-		MouseHandler_lastPressedTimeMillis0 = 0L;
-		MouseHandler_lastButton = 0;
-		MouseHandler_lastPressedX = 0;
-		MouseHandler_lastPressedY = 0;
-		MouseHandler_lastPressedTimeMillis = 0L;
-	}
+   MouseHandler() {
+   }
 
-	MouseHandler() {
-	}
+   @ObfuscatedName("u")
+   @ObfuscatedSignature(
+      signature = "(Ljava/awt/event/MouseEvent;S)I",
+      garbageValue = "-1859"
+   )
+   @Export("getButton")
+   final int getButton(MouseEvent var1) {
+      int var2 = var1.getButton();
+      if (!var1.isAltDown() && var2 != 2) {
+         return !var1.isMetaDown() && var2 != 3 ? 1 : 2;
+      } else {
+         return 4;
+      }
+   }
 
-	@ObfuscatedName("e")
-	@ObfuscatedSignature(
-		signature = "(Ljava/awt/event/MouseEvent;I)I",
-		garbageValue = "-1900631244"
-	)
-	@Export("getButton")
-	final int getButton(MouseEvent var1) {
-		int var2 = var1.getButton();
-		if (!var1.isAltDown() && var2 != 2) {
-			return !var1.isMetaDown() && var2 != 3 ? 1 : 2;
-		}
-		return 4;
-	}
+   public final synchronized void mouseMoved(MouseEvent var1) {
+      if (MouseHandler_instance != null) {
+         MouseHandler_idleCycles = 0;
+         MouseHandler_x0 = var1.getX();
+         MouseHandler_y0 = var1.getY();
+         MouseHandler_millis0 = var1.getWhen();
+      }
 
-	public final synchronized void mouseMoved(MouseEvent var1) {
-		if (MouseHandler_instance != null) {
-			MouseHandler_idleCycles = 0;
-			MouseHandler_x0 = var1.getX();
-			MouseHandler_y0 = var1.getY();
-			MouseHandler_millis0 = var1.getWhen();
-		}
+   }
 
-	}
+   public final synchronized void mousePressed(MouseEvent var1) {
+      if (MouseHandler_instance != null) {
+         MouseHandler_idleCycles = 0;
+         MouseHandler_lastPressedX0 = var1.getX();
+         MouseHandler_lastPressedY0 = var1.getY();
+         MouseHandler_lastPressedTimeMillis0 = SequenceDefinition.currentTimeMs();
+         MouseHandler_lastButton0 = this.getButton(var1);
+         if (MouseHandler_lastButton0 != 0) {
+            MouseHandler_currentButton0 = MouseHandler_lastButton0;
+         }
+      }
 
-	public final synchronized void mousePressed(MouseEvent var1) {
-		if (MouseHandler_instance != null) {
-			MouseHandler_idleCycles = 0;
-			MouseHandler_lastPressedX0 = var1.getX();
-			MouseHandler_lastPressedY0 = var1.getY();
-			MouseHandler_lastPressedTimeMillis0 = DirectByteArrayCopier.currentTimeMs();
-			MouseHandler_lastButton0 = this.getButton(var1);
-			if (MouseHandler_lastButton0 != 0) {
-				MouseHandler_currentButton0 = MouseHandler_lastButton0;
-			}
-		}
+      if (var1.isPopupTrigger()) {
+         var1.consume();
+      }
 
-		if (var1.isPopupTrigger()) {
-			var1.consume();
-		}
+   }
 
-	}
+   public final synchronized void mouseEntered(MouseEvent var1) {
+      this.mouseMoved(var1);
+   }
 
-	public final synchronized void mouseReleased(MouseEvent var1) {
-		if (MouseHandler_instance != null) {
-			MouseHandler_idleCycles = 0;
-			MouseHandler_currentButton0 = 0;
-		}
+   public final void mouseClicked(MouseEvent var1) {
+      if (var1.isPopupTrigger()) {
+         var1.consume();
+      }
 
-		if (var1.isPopupTrigger()) {
-			var1.consume();
-		}
+   }
 
-	}
+   public final synchronized void mouseExited(MouseEvent var1) {
+      if (MouseHandler_instance != null) {
+         MouseHandler_idleCycles = 0;
+         MouseHandler_x0 = -1;
+         MouseHandler_y0 = -1;
+         MouseHandler_millis0 = var1.getWhen();
+      }
 
-	public final void mouseClicked(MouseEvent var1) {
-		if (var1.isPopupTrigger()) {
-			var1.consume();
-		}
+   }
 
-	}
+   public final synchronized void mouseDragged(MouseEvent var1) {
+      this.mouseMoved(var1);
+   }
 
-	public final synchronized void mouseDragged(MouseEvent var1) {
-		this.mouseMoved(var1);
-	}
+   public final void focusGained(FocusEvent var1) {
+   }
 
-	public final synchronized void focusLost(FocusEvent var1) {
-		if (MouseHandler_instance != null) {
-			MouseHandler_currentButton0 = 0;
-		}
+   public final synchronized void mouseReleased(MouseEvent var1) {
+      if (MouseHandler_instance != null) {
+         MouseHandler_idleCycles = 0;
+         MouseHandler_currentButton0 = 0;
+      }
 
-	}
+      if (var1.isPopupTrigger()) {
+         var1.consume();
+      }
 
-	public final synchronized void mouseExited(MouseEvent var1) {
-		if (MouseHandler_instance != null) {
-			MouseHandler_idleCycles = 0;
-			MouseHandler_x0 = -1;
-			MouseHandler_y0 = -1;
-			MouseHandler_millis0 = var1.getWhen();
-		}
+   }
 
-	}
+   public final synchronized void focusLost(FocusEvent var1) {
+      if (MouseHandler_instance != null) {
+         MouseHandler_currentButton0 = 0;
+      }
 
-	public final void focusGained(FocusEvent var1) {
-	}
+   }
 
-	public final synchronized void mouseEntered(MouseEvent var1) {
-		this.mouseMoved(var1);
-	}
+   @ObfuscatedName("j")
+   @ObfuscatedSignature(
+      signature = "(Ljava/io/File;Ljava/io/File;I)V",
+      garbageValue = "-768479838"
+   )
+   static void method1041(File var0, File var1) {
+      try {
+         AccessFile var2 = new AccessFile(class290.field3635, "rw", 10000L);
+         Buffer var3 = new Buffer(500);
+         var3.writeByte(3);
+         var3.writeByte(var1 != null ? 1 : 0);
+         var3.writeCESU8(var0.getPath());
+         if (var1 != null) {
+            var3.writeCESU8("");
+         }
 
-	@ObfuscatedName("q")
-	@ObfuscatedSignature(
-		signature = "(III)I",
-		garbageValue = "-102731253"
-	)
-	public static int method1009(int var0, int var1) {
-		int var2;
-		for (var2 = 1; var1 > 1; var1 >>= 1) {
-			if ((var1 & 1) != 0) {
-				var2 = var0 * var2;
-			}
+         var2.write(var3.array, 0, var3.offset);
+         var2.close();
+      } catch (IOException var4) {
+         var4.printStackTrace();
+      }
 
-			var0 *= var0;
-		}
+   }
 
-		if (var1 == 1) {
-			return var0 * var2;
-		}
-		return var2;
-	}
+   @ObfuscatedName("j")
+   @ObfuscatedSignature(
+      signature = "(III)V",
+      garbageValue = "-409012679"
+   )
+   public static void method1040(int var0, int var1) {
+      VarbitDefinition var3 = (VarbitDefinition)VarbitDefinition.VarbitDefinition_cached.get((long)var0);
+      VarbitDefinition var2;
+      if (var3 != null) {
+         var2 = var3;
+      } else {
+         byte[] var8 = VarbitDefinition.VarbitDefinition_archive.takeFile(14, var0);
+         var3 = new VarbitDefinition();
+         if (var8 != null) {
+            var3.decode(new Buffer(var8));
+         }
 
-	@ObfuscatedName("e")
-	@ObfuscatedSignature(
-		signature = "(Lkx;I)V",
-		garbageValue = "-685707928"
-	)
-	static final void method1037(PacketBuffer var0) {
-		int var1 = 0;
-		var0.importIndex();
+         VarbitDefinition.VarbitDefinition_cached.put(var3, (long)var0);
+         var2 = var3;
+      }
 
-		byte[] var10000;
-		int var2;
-		int var3;
-		int var4;
-		for (var2 = 0; var2 < Players.Players_count; ++var2) {
-			var3 = Players.Players_indices[var2];
-			if ((Players.field1252[var3] & 1) == 0) {
-				if (var1 > 0) {
-					--var1;
-					var10000 = Players.field1252;
-					var10000[var3] = (byte)(var10000[var3] | 2);
-				} else {
-					var4 = var0.readBits(1);
-					if (var4 == 0) {
-						var1 = World.method1686(var0);
-						var10000 = Players.field1252;
-						var10000[var3] = (byte)(var10000[var3] | 2);
-					} else {
-						WorldMapIcon_0.method210(var0, var3);
-					}
-				}
-			}
-		}
+      int var4 = var2.baseVar;
+      int var5 = var2.startBit;
+      int var6 = var2.endBit;
+      int var7 = Varps.Varps_masks[var6 - var5];
+      if (var1 < 0 || var1 > var7) {
+         var1 = 0;
+      }
 
-		var0.exportIndex();
-		if (var1 != 0) {
-			throw new RuntimeException();
-		}
-		var0.importIndex();
+      var7 <<= var5;
+      Varps.Varps_main[var4] = Varps.Varps_main[var4] & ~var7 | var1 << var5 & var7;
+   }
 
-		for (var2 = 0; var2 < Players.Players_count; ++var2) {
-			var3 = Players.Players_indices[var2];
-			if ((Players.field1252[var3] & 1) != 0) {
-				if (var1 > 0) {
-					--var1;
-					var10000 = Players.field1252;
-					var10000[var3] = (byte)(var10000[var3] | 2);
-				} else {
-					var4 = var0.readBits(1);
-					if (var4 == 0) {
-						var1 = World.method1686(var0);
-						var10000 = Players.field1252;
-						var10000[var3] = (byte)(var10000[var3] | 2);
-					} else {
-						WorldMapIcon_0.method210(var0, var3);
-					}
-				}
-			}
-		}
+   @ObfuscatedName("k")
+   @ObfuscatedSignature(
+      signature = "(IZIZB)V",
+      garbageValue = "43"
+   )
+   @Export("sortWorldList")
+   static void sortWorldList(int var0, boolean var1, int var2, boolean var3) {
+      if (ChatChannel.worlds != null) {
+         Language.doWorldSorting(0, ChatChannel.worlds.length - 1, var0, var1, var2, var3);
+      }
 
-		var0.exportIndex();
-		if (var1 != 0) {
-			throw new RuntimeException();
-		}
-		var0.importIndex();
+   }
 
-		for (var2 = 0; var2 < Players.Players_emptyIdxCount; ++var2) {
-			var3 = Players.Players_emptyIndices[var2];
-			if ((Players.field1252[var3] & 1) != 0) {
-				if (var1 > 0) {
-					--var1;
-					var10000 = Players.field1252;
-					var10000[var3] = (byte)(var10000[var3] | 2);
-				} else {
-					var4 = var0.readBits(1);
-					if (var4 == 0) {
-						var1 = World.method1686(var0);
-						var10000 = Players.field1252;
-						var10000[var3] = (byte)(var10000[var3] | 2);
-					} else if (class226.updateExternalPlayer(var0, var3)) {
-						var10000 = Players.field1252;
-						var10000[var3] = (byte)(var10000[var3] | 2);
-					}
-				}
-			}
-		}
+   @ObfuscatedName("aj")
+   @ObfuscatedSignature(
+      signature = "(ILcr;ZB)I",
+      garbageValue = "96"
+   )
+   static int method1043(int var0, Script var1, boolean var2) {
+      int var3;
+      if (var0 == ScriptOpcodes.OC_NAME) {
+         var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
+         Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = WorldMapData_0.getItemDefinition(var3).name;
+         return 1;
+      } else {
+         int var4;
+         ItemDefinition var5;
+         if (var0 == ScriptOpcodes.OC_OP) {
+            Interpreter.Interpreter_intStackSize -= 2;
+            var3 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
+            var4 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
+            var5 = WorldMapData_0.getItemDefinition(var3);
+            if (var4 >= 1 && var4 <= 5 && var5.groundActions[var4 - 1] != null) {
+               Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var5.groundActions[var4 - 1];
+            } else {
+               Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = "";
+            }
 
-		var0.exportIndex();
-		if (var1 != 0) {
-			throw new RuntimeException();
-		}
-		var0.importIndex();
+            return 1;
+         } else if (var0 == ScriptOpcodes.OC_IOP) {
+            Interpreter.Interpreter_intStackSize -= 2;
+            var3 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
+            var4 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
+            var5 = WorldMapData_0.getItemDefinition(var3);
+            if (var4 >= 1 && var4 <= 5 && var5.inventoryActions[var4 - 1] != null) {
+               Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var5.inventoryActions[var4 - 1];
+            } else {
+               Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = "";
+            }
 
-		for (var2 = 0; var2 < Players.Players_emptyIdxCount; ++var2) {
-			var3 = Players.Players_emptyIndices[var2];
-			if ((Players.field1252[var3] & 1) == 0) {
-				if (var1 > 0) {
-					--var1;
-					var10000 = Players.field1252;
-					var10000[var3] = (byte)(var10000[var3] | 2);
-				} else {
-					var4 = var0.readBits(1);
-					if (var4 == 0) {
-						var1 = World.method1686(var0);
-						var10000 = Players.field1252;
-						var10000[var3] = (byte)(var10000[var3] | 2);
-					} else if (class226.updateExternalPlayer(var0, var3)) {
-						var10000 = Players.field1252;
-						var10000[var3] = (byte)(var10000[var3] | 2);
-					}
-				}
-			}
-		}
+            return 1;
+         } else if (var0 == ScriptOpcodes.OC_COST) {
+            var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
+            Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = WorldMapData_0.getItemDefinition(var3).price;
+            return 1;
+         } else if (var0 == ScriptOpcodes.OC_STACKABLE) {
+            var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
+            Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = WorldMapData_0.getItemDefinition(var3).isStackable == 1 ? 1 : 0;
+            return 1;
+         } else {
+            ItemDefinition var6;
+            if (var0 == ScriptOpcodes.OC_CERT) {
+               var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
+               var6 = WorldMapData_0.getItemDefinition(var3);
+               if (var6.noteTemplate == -1 && var6.note >= 0) {
+                  Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var6.note;
+               } else {
+                  Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3;
+               }
 
-		var0.exportIndex();
-		if (var1 != 0) {
-			throw new RuntimeException();
-		}
-		Players.Players_count = 0;
-		Players.Players_emptyIdxCount = 0;
+               return 1;
+            } else if (var0 == ScriptOpcodes.OC_UNCERT) {
+               var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
+               var6 = WorldMapData_0.getItemDefinition(var3);
+               if (var6.noteTemplate >= 0 && var6.note >= 0) {
+                  Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var6.note;
+               } else {
+                  Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3;
+               }
 
-		for (var2 = 1; var2 < 2048; ++var2) {
-			var10000 = Players.field1252;
-			var10000[var2] = (byte)(var10000[var2] >> 1);
-			Player var5 = Client.players[var2];
-			if (var5 != null) {
-				Players.Players_indices[++Players.Players_count - 1] = var2;
-			} else {
-				Players.Players_emptyIndices[++Players.Players_emptyIdxCount - 1] = var2;
-			}
-		}
+               return 1;
+            } else if (var0 == ScriptOpcodes.OC_MEMBERS) {
+               var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
+               Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = WorldMapData_0.getItemDefinition(var3).isMembersOnly ? 1 : 0;
+               return 1;
+            } else if (var0 == ScriptOpcodes.OC_PLACEHOLDER) {
+               var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
+               var6 = WorldMapData_0.getItemDefinition(var3);
+               if (var6.placeholderTemplate == -1 && var6.placeholder >= 0) {
+                  Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var6.placeholder;
+               } else {
+                  Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3;
+               }
 
-	}
+               return 1;
+            } else if (var0 == ScriptOpcodes.OC_UNPLACEHOLDER) {
+               var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
+               var6 = WorldMapData_0.getItemDefinition(var3);
+               if (var6.placeholderTemplate >= 0 && var6.placeholder >= 0) {
+                  Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var6.placeholder;
+               } else {
+                  Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3;
+               }
 
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "-37"
-	)
-	static void method1039() {
-		Login.loginIndex = 24;
-		class268.setLoginResponseString("The game servers are currently being updated.", "Please wait a few minutes and try again.", "");
-	}
+               return 1;
+            } else if (var0 == ScriptOpcodes.OC_FIND) {
+               String var7 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];
+               var4 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
+               LoginPacket.findItemDefinitions(var7, var4 == 1);
+               Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = Language.foundItemIdCount;
+               return 1;
+            } else if (var0 != ScriptOpcodes.OC_FINDNEXT) {
+               if (var0 == ScriptOpcodes.OC_FINDRESET) {
+                  GrandExchangeOffer.foundItemIndex = 0;
+                  return 1;
+               } else {
+                  return 2;
+               }
+            } else {
+               if (SecureRandomCallable.foundItemIds != null && GrandExchangeOffer.foundItemIndex < Language.foundItemIdCount) {
+                  Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = SecureRandomCallable.foundItemIds[++GrandExchangeOffer.foundItemIndex - 1] & '\uffff';
+               } else {
+                  Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = -1;
+               }
 
-	@ObfuscatedName("y")
-	@ObfuscatedSignature(
-		signature = "(III)I",
-		garbageValue = "1793626495"
-	)
-	static final int method1021(int var0, int var1) {
-		int var2 = var0 + var1 * 57;
-		var2 ^= var2 << 13;
-		int var3 = (var2 * var2 * 15731 + 789221) * var2 + 1376312589 & Integer.MAX_VALUE;
-		return var3 >> 19 & 255;
-	}
+               return 1;
+            }
+         }
+      }
+   }
+
+   @ObfuscatedName("jh")
+   @ObfuscatedSignature(
+      signature = "(B)Z",
+      garbageValue = "-23"
+   )
+   @Export("getTapToDrop")
+   static boolean getTapToDrop() {
+      return Client.tapToDrop;
+   }
 }

@@ -4,81 +4,108 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gh")
+@ObfuscatedName("ge")
 @Implements("LoginPacket")
-public class LoginPacket implements ClientPacketMarker
-{
-	@ObfuscatedName("q")
-	@ObfuscatedSignature(
-		signature = "Lgh;"
-	)
-	public static final LoginPacket field2306;
-	@ObfuscatedName("w")
-	@ObfuscatedSignature(
-		signature = "Lgh;"
-	)
-	static final LoginPacket field2307;
-	@ObfuscatedName("e")
-	@ObfuscatedSignature(
-		signature = "Lgh;"
-	)
-	public static final LoginPacket field2308;
-	@ObfuscatedName("p")
-	@ObfuscatedSignature(
-		signature = "Lgh;"
-	)
-	public static final LoginPacket field2311;
-	@ObfuscatedName("k")
-	@ObfuscatedSignature(
-		signature = "Lgh;"
-	)
-	static final LoginPacket field2310;
-	@ObfuscatedName("b")
-	@ObfuscatedSignature(
-		signature = "[Lgh;"
-	)
-	@Export("LoginPacket_indexedValues")
-	static final LoginPacket[] LoginPacket_indexedValues;
-	@ObfuscatedName("a")
-	static String[] field2309;
-	@ObfuscatedName("l")
-	@ObfuscatedGetter(
-		intValue = 1829786709
-	)
-	@Export("id")
-	public final int id;
+public class LoginPacket implements class181 {
+   @ObfuscatedName("s")
+   @ObfuscatedSignature(
+      signature = "Lge;"
+   )
+   public static final LoginPacket field2291 = new LoginPacket(14, 0);
+   @ObfuscatedName("j")
+   @ObfuscatedSignature(
+      signature = "Lge;"
+   )
+   static final LoginPacket field2293 = new LoginPacket(15, 4);
+   @ObfuscatedName("i")
+   @ObfuscatedSignature(
+      signature = "Lge;"
+   )
+   public static final LoginPacket field2295 = new LoginPacket(16, -2);
+   @ObfuscatedName("k")
+   @ObfuscatedSignature(
+      signature = "Lge;"
+   )
+   public static final LoginPacket field2292 = new LoginPacket(18, -2);
+   @ObfuscatedName("u")
+   @ObfuscatedSignature(
+      signature = "Lge;"
+   )
+   static final LoginPacket field2289 = new LoginPacket(27, 0);
+   @ObfuscatedName("t")
+   @ObfuscatedSignature(
+      signature = "[Lge;"
+   )
+   @Export("LoginPacket_indexedValues")
+   static final LoginPacket[] LoginPacket_indexedValues = new LoginPacket[32];
+   @ObfuscatedName("n")
+   @ObfuscatedGetter(
+      intValue = 1160024949
+   )
+   @Export("id")
+   public final int id;
 
-	static {
-		field2306 = new LoginPacket(14, 0);
-		field2307 = new LoginPacket(15, 4);
-		field2308 = new LoginPacket(16, -2);
-		field2311 = new LoginPacket(18, -2);
-		field2310 = new LoginPacket(27, 0);
-		LoginPacket_indexedValues = new LoginPacket[32];
-		LoginPacket[] var0 = new LoginPacket[]{field2310, field2306, field2308, field2311, field2307};
-		LoginPacket[] var1 = var0;
+   static {
+      LoginPacket[] var0 = class16.method183();
 
-		for (int var2 = 0; var2 < var1.length; ++var2) {
-			LoginPacket_indexedValues[var1[var2].id] = var1[var2];
-		}
+      for(int var1 = 0; var1 < var0.length; ++var1) {
+         LoginPacket_indexedValues[var0[var1].id] = var0[var1];
+      }
 
-	}
+   }
 
-	@ObfuscatedSignature(
-		signature = "(II)V",
-		garbageValue = "0"
-	)
-	LoginPacket(int var1, int var2) {
-		this.id = var1;
-	}
+   @ObfuscatedSignature(
+      signature = "(II)V",
+      garbageValue = "0"
+   )
+   LoginPacket(int var1, int var2) {
+      this.id = var1;
+   }
 
-	@ObfuscatedName("q")
-	@ObfuscatedSignature(
-		signature = "(Lbb;B)V",
-		garbageValue = "-119"
-	)
-	@Export("runScriptEvent")
-	public static void runScriptEvent(ScriptEvent var0) {
-		class96.runScript(var0, 500000);
-	}
+   @ObfuscatedName("ko")
+   @ObfuscatedSignature(
+      signature = "(Ljava/lang/String;ZI)V",
+      garbageValue = "237960990"
+   )
+   @Export("findItemDefinitions")
+   static void findItemDefinitions(String var0, boolean var1) {
+      var0 = var0.toLowerCase();
+      short[] var2 = new short[16];
+      int var3 = 0;
+
+      for(int var4 = 0; var4 < MouseRecorder.ItemDefinition_fileCount; ++var4) {
+         ItemDefinition var5 = WorldMapData_0.getItemDefinition(var4);
+         if ((!var1 || var5.isTradable) && var5.noteTemplate == -1 && var5.name.toLowerCase().indexOf(var0) != -1) {
+            if (var3 >= 250) {
+               Language.foundItemIdCount = -1;
+               SecureRandomCallable.foundItemIds = null;
+               return;
+            }
+
+            if (var3 >= var2.length) {
+               short[] var6 = new short[var2.length * 2];
+
+               for(int var7 = 0; var7 < var3; ++var7) {
+                  var6[var7] = var2[var7];
+               }
+
+               var2 = var6;
+            }
+
+            var2[var3++] = (short)var4;
+         }
+      }
+
+      SecureRandomCallable.foundItemIds = var2;
+      GrandExchangeOffer.foundItemIndex = 0;
+      Language.foundItemIdCount = var3;
+      String[] var8 = new String[Language.foundItemIdCount];
+
+      for(int var9 = 0; var9 < Language.foundItemIdCount; ++var9) {
+         var8[var9] = WorldMapData_0.getItemDefinition(var2[var9]).name;
+      }
+
+      short[] var10 = SecureRandomCallable.foundItemIds;
+      ModelData0.sortItemsByName(var8, var10, 0, var8.length - 1);
+   }
 }

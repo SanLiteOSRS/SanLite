@@ -1,67 +1,55 @@
-import java.util.Iterator;
+import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("dd")
+@ObfuscatedName("dl")
 @Implements("VertexNormal")
 public class VertexNormal {
-	@ObfuscatedName("q")
-	@ObfuscatedGetter(
-		intValue = 741962059
-	)
-	int field1759;
-	@ObfuscatedName("w")
-	@ObfuscatedGetter(
-		intValue = -1828551341
-	)
-	int field1760;
-	@ObfuscatedName("e")
-	@ObfuscatedGetter(
-		intValue = 1911535461
-	)
-	int field1758;
-	@ObfuscatedName("p")
-	@ObfuscatedGetter(
-		intValue = -171249661
-	)
-	int field1761;
+   @ObfuscatedName("s")
+   @ObfuscatedGetter(
+      intValue = 1795200651
+   )
+   int field1737;
+   @ObfuscatedName("j")
+   @ObfuscatedGetter(
+      intValue = -1592235953
+   )
+   int field1735;
+   @ObfuscatedName("i")
+   @ObfuscatedGetter(
+      intValue = 221616325
+   )
+   int field1736;
+   @ObfuscatedName("k")
+   @ObfuscatedGetter(
+      intValue = -1908751547
+   )
+   int field1734;
 
-	VertexNormal() {
-	}
+   VertexNormal() {
+   }
 
-	@ObfuscatedSignature(
-		signature = "(Ldd;)V"
-	)
-	VertexNormal(VertexNormal var1) {
-		this.field1759 = var1.field1759;
-		this.field1760 = var1.field1760;
-		this.field1758 = var1.field1758;
-		this.field1761 = var1.field1761;
-	}
+   @ObfuscatedSignature(
+      signature = "(Ldl;)V"
+   )
+   VertexNormal(VertexNormal var1) {
+      this.field1737 = var1.field1737;
+      this.field1735 = var1.field1735;
+      this.field1736 = var1.field1736;
+      this.field1734 = var1.field1734;
+   }
 
-	@ObfuscatedName("jz")
-	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "6"
-	)
-	static final void method2972() {
-		for (int var0 = 0; var0 < Players.Players_count; ++var0) {
-			Player var1 = Client.players[Players.Players_indices[var0]];
-			var1.clearIsFriend();
-		}
-
-		Iterator var2 = Messages.Messages_hashTable.iterator();
-
-		while (var2.hasNext()) {
-			Message var3 = (Message)var2.next();
-			var3.clearIsFromFriend();
-		}
-
-		if (DevicePcmPlayerProvider.clanChat != null) {
-			DevicePcmPlayerProvider.clanChat.clearFriends();
-		}
-
-	}
+   @ObfuscatedName("u")
+   @ObfuscatedSignature(
+      signature = "(Lhz;Ljava/lang/String;Ljava/lang/String;S)Llq;",
+      garbageValue = "3108"
+   )
+   @Export("SpriteBuffer_getIndexedSpriteByName")
+   public static IndexedSprite SpriteBuffer_getIndexedSpriteByName(AbstractArchive var0, String var1, String var2) {
+      int var3 = var0.getGroupId(var1);
+      int var4 = var0.getFileId(var3, var2);
+      return Clock.SpriteBuffer_getIndexedSprite(var0, var3, var4);
+   }
 }

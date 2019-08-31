@@ -1,52 +1,56 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ak")
+@ObfuscatedName("ad")
 @Implements("DevicePcmPlayerProvider")
 public class DevicePcmPlayerProvider implements PcmPlayerProvider {
-	@ObfuscatedName("pf")
-	@ObfuscatedSignature(
-		signature = "Ljx;"
-	)
-	@Export("clanChat")
-	static ClanChat clanChat;
-	@ObfuscatedName("qn")
-	@ObfuscatedGetter(
-		intValue = 490221952
-	)
-	static int field412;
-	@ObfuscatedName("q")
-	@ObfuscatedGetter(
-		longValue = 95792887242414313L
-	)
-	static long field416;
-	@ObfuscatedName("ci")
-	@Export("mouseCam")
-	static boolean mouseCam;
+   DevicePcmPlayerProvider() {
+   }
 
-	DevicePcmPlayerProvider() {
-	}
+   @ObfuscatedName("s")
+   @ObfuscatedSignature(
+      signature = "(S)Ldd;",
+      garbageValue = "-22145"
+   )
+   @Export("player")
+   public PcmPlayer player() {
+      return new DevicePcmPlayer();
+   }
 
-	@ObfuscatedName("q")
-	@ObfuscatedSignature(
-		signature = "(B)Ldn;",
-		garbageValue = "1"
-	)
-	@Export("player")
-	public PcmPlayer player() {
-		return new DevicePcmPlayer();
-	}
+   @ObfuscatedName("s")
+   @ObfuscatedSignature(
+      signature = "(IIB)Z",
+      garbageValue = "1"
+   )
+   static boolean method794(int var0, int var1) {
+      return var0 != 4 || var1 < 8;
+   }
 
-	@ObfuscatedName("kn")
-	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "-5"
-	)
-	static void method805() {
-		Client.packetWriter.method2219(Archive.method4265(ClientPacket.field2240, Client.packetWriter.isaacCipher));
-		Client.oculusOrbState = 0;
-	}
+   @ObfuscatedName("u")
+   @ObfuscatedSignature(
+      signature = "(II)V",
+      garbageValue = "895453465"
+   )
+   public static void method793(int var0) {
+      class197.field2378 = 1;
+      WorldMapDecoration.musicTrackArchive = null;
+      class197.musicTrackGroupId = -1;
+      class197.musicTrackFileId = -1;
+      WorldMapSprite.field222 = 0;
+      Varcs.musicTrackBoolean = false;
+      class16.field98 = var0;
+   }
+
+   @ObfuscatedName("t")
+   @ObfuscatedSignature(
+      signature = "(I)Lbl;",
+      garbageValue = "-1981262323"
+   )
+   @Export("worldListStart")
+   static World worldListStart() {
+      World.worldListWorldCount = 0;
+      return GrandExchangeOfferAgeComparator.getNextWorldListWorld();
+   }
 }

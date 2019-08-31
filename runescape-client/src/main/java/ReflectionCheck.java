@@ -6,70 +6,87 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ce")
+@ObfuscatedName("cv")
 @Implements("ReflectionCheck")
 public class ReflectionCheck extends Node {
-	@ObfuscatedName("co")
-	@ObfuscatedGetter(
-		intValue = 749425319
-	)
-	public static int field1338;
-	@ObfuscatedName("q")
-	@ObfuscatedGetter(
-		intValue = -1523966437
-	)
-	@Export("id")
-	int id;
-	@ObfuscatedName("w")
-	@ObfuscatedGetter(
-		intValue = 970491183
-	)
-	@Export("size")
-	int size;
-	@ObfuscatedName("e")
-	@Export("operations")
-	int[] operations;
-	@ObfuscatedName("p")
-	@Export("creationErrors")
-	int[] creationErrors;
-	@ObfuscatedName("k")
-	@Export("fields")
-	Field[] fields;
-	@ObfuscatedName("l")
-	@Export("intReplaceValues")
-	int[] intReplaceValues;
-	@ObfuscatedName("b")
-	@Export("methods")
-	Method[] methods;
-	@ObfuscatedName("i")
-	@Export("arguments")
-	byte[][][] arguments;
+   @ObfuscatedName("cm")
+   @ObfuscatedGetter(
+      intValue = -391486769
+   )
+   public static int field1307;
+   @ObfuscatedName("s")
+   @ObfuscatedGetter(
+      intValue = 1136310453
+   )
+   @Export("id")
+   int id;
+   @ObfuscatedName("j")
+   @ObfuscatedGetter(
+      intValue = 563211099
+   )
+   @Export("size")
+   int size;
+   @ObfuscatedName("i")
+   @Export("operations")
+   int[] operations;
+   @ObfuscatedName("k")
+   @Export("creationErrors")
+   int[] creationErrors;
+   @ObfuscatedName("u")
+   @Export("fields")
+   Field[] fields;
+   @ObfuscatedName("n")
+   @Export("intReplaceValues")
+   int[] intReplaceValues;
+   @ObfuscatedName("t")
+   @Export("methods")
+   Method[] methods;
+   @ObfuscatedName("q")
+   @Export("arguments")
+   byte[][][] arguments;
 
-	ReflectionCheck() {
-	}
+   ReflectionCheck() {
+   }
 
-	@ObfuscatedName("p")
-	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "2118101811"
-	)
-	@Export("savePreferences")
-	static void savePreferences() {
-		AccessFile var0 = null;
+   @ObfuscatedName("s")
+   @ObfuscatedSignature(
+      signature = "(IIIB)I",
+      garbageValue = "4"
+   )
+   public static int method2213(int var0, int var1, int var2) {
+      var2 &= 3;
+      if (var2 == 0) {
+         return var0;
+      } else if (var2 == 1) {
+         return var1;
+      } else {
+         return var2 == 2 ? 7 - var0 : 7 - var1;
+      }
+   }
 
-		try {
-			var0 = WorldMapIcon_0.getPreferencesFile("", WorldMapRegion.studioGame.name, true);
-			Buffer var1 = WorldMapLabelSize.clientPreferences.toBuffer();
-			var0.write(var1.array, 0, var1.offset);
-		} catch (Exception var3) {
-		}
+   @ObfuscatedName("s")
+   @ObfuscatedSignature(
+      signature = "(III)I",
+      garbageValue = "-125143607"
+   )
+   public static int method2212(int var0, int var1) {
+      return (var0 << 8) + var1;
+   }
 
-		try {
-			if (var0 != null) {
-				var0.closeSync(true);
-			}
-		} catch (Exception var2) {
-		}
+   @ObfuscatedName("t")
+   @ObfuscatedSignature(
+      signature = "(Ljava/lang/CharSequence;I)I",
+      garbageValue = "482373296"
+   )
+   @Export("hashString")
+   public static int hashString(CharSequence var0) {
+      int var1 = var0.length();
+      int var2 = 0;
 
-	}
+      for(int var3 = 0; var3 < var1; ++var3) {
+         var2 = (var2 << 5) - var2 + class14.charToByteCp1252(var0.charAt(var3));
+      }
+
+      return var2;
+   }
 }

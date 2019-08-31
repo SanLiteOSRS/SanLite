@@ -1,121 +1,194 @@
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.StringReader;
-import java.io.StringWriter;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("dq")
+@ObfuscatedName("dy")
 @Implements("FloorDecoration")
 public final class FloorDecoration {
-	@ObfuscatedName("q")
-	@ObfuscatedGetter(
-		intValue = -311515591
-	)
-	@Export("tileHeight")
-	int tileHeight;
-	@ObfuscatedName("w")
-	@ObfuscatedGetter(
-		intValue = -1344271777
-	)
-	@Export("x")
-	int x;
-	@ObfuscatedName("e")
-	@ObfuscatedGetter(
-		intValue = -779439179
-	)
-	@Export("y")
-	int y;
-	@ObfuscatedName("p")
-	@ObfuscatedSignature(
-		signature = "Leo;"
-	)
-	@Export("entity")
-	public Entity entity;
-	@ObfuscatedName("k")
-	@ObfuscatedGetter(
-		longValue = -3653968665269180135L
-	)
-	@Export("tag")
-	public long tag;
-	@ObfuscatedName("l")
-	@ObfuscatedGetter(
-		intValue = -1094759427
-	)
-	@Export("flags")
-	int flags;
+   @ObfuscatedName("x")
+   @ObfuscatedGetter(
+      intValue = -513074151
+   )
+   @Export("pcmPlayerCount")
+   static int pcmPlayerCount;
+   @ObfuscatedName("ec")
+   @ObfuscatedGetter(
+      intValue = -1042709879
+   )
+   @Export("port2")
+   static int port2;
+   @ObfuscatedName("s")
+   @ObfuscatedGetter(
+      intValue = 577791457
+   )
+   @Export("tileHeight")
+   int tileHeight;
+   @ObfuscatedName("j")
+   @ObfuscatedGetter(
+      intValue = 2080109751
+   )
+   @Export("x")
+   int x;
+   @ObfuscatedName("i")
+   @ObfuscatedGetter(
+      intValue = 748443287
+   )
+   @Export("y")
+   int y;
+   @ObfuscatedName("k")
+   @ObfuscatedSignature(
+      signature = "Len;"
+   )
+   @Export("entity")
+   public Entity entity;
+   @ObfuscatedName("u")
+   @ObfuscatedGetter(
+      longValue = 6356128824356996537L
+   )
+   @Export("tag")
+   public long tag;
+   @ObfuscatedName("n")
+   @ObfuscatedGetter(
+      intValue = -1037477129
+   )
+   @Export("flags")
+   int flags;
 
-	FloorDecoration() {
-	}
+   FloorDecoration() {
+   }
 
-	@ObfuscatedName("w")
-	@ObfuscatedSignature(
-		signature = "(S)V",
-		garbageValue = "3762"
-	)
-	public static void method2842() {
-		if (KeyHandler.KeyHandler_instance != null) {
-			synchronized(KeyHandler.KeyHandler_instance) {
-				KeyHandler.KeyHandler_instance = null;
-			}
-		}
+   @ObfuscatedName("er")
+   @ObfuscatedSignature(
+      signature = "(II)V",
+      garbageValue = "-1136881308"
+   )
+   @Export("updateGameState")
+   static void updateGameState(int var0) {
+      if (var0 != Client.gameState) {
+         if (Client.gameState == 0) {
+            WorldMapID.client.method891();
+         }
 
-	}
+         if (var0 == 20 || var0 == 40 || var0 == 45) {
+            Client.loginState = 0;
+            Client.field658 = 0;
+            Client.field659 = 0;
+            Client.timer.method4899(var0);
+            if (var0 != 20) {
+               WorldMapArea.method358(false);
+            }
+         }
 
-	@ObfuscatedName("e")
-	@ObfuscatedSignature(
-		signature = "(Ljava/lang/Throwable;B)Ljava/lang/String;",
-		garbageValue = "1"
-	)
-	static String method2843(Throwable var0) throws IOException {
-		String var1;
-		if (var0 instanceof RunException) {
-			RunException var2 = (RunException)var0;
-			var1 = var2.message + " | ";
-			var0 = var2.throwable;
-		} else {
-			var1 = "";
-		}
+         if (var0 != 20 && var0 != 40 && Bounds.field3845 != null) {
+            Bounds.field3845.close();
+            Bounds.field3845 = null;
+         }
 
-		StringWriter var12 = new StringWriter();
-		PrintWriter var3 = new PrintWriter(var12);
-		var0.printStackTrace(var3);
-		var3.close();
-		String var4 = var12.toString();
-		BufferedReader var5 = new BufferedReader(new StringReader(var4));
-		String var6 = var5.readLine();
+         if (Client.gameState == 25) {
+            Client.field719 = 0;
+            Client.field676 = 0;
+            Client.field886 = 1;
+            Client.field678 = 0;
+            Client.field718 = 1;
+         }
 
-		while (true) {
-			while (true) {
-				String var7 = var5.readLine();
-				if (var7 == null) {
-					var1 = var1 + "| " + var6;
-					return var1;
-				}
+         if (var0 != 5 && var0 != 10) {
+            if (var0 == 20) {
+               BoundaryObject.method3213(GameObject.archive10, class2.archive8, true, Client.gameState == 11 ? 4 : 0);
+            } else if (var0 == 11) {
+               BoundaryObject.method3213(GameObject.archive10, class2.archive8, false, 4);
+            } else {
+               DynamicObject.method2153();
+            }
+         } else {
+            BoundaryObject.method3213(GameObject.archive10, class2.archive8, true, 0);
+         }
 
-				int var8 = var7.indexOf(40);
-				int var9 = var7.indexOf(41, var8 + 1);
-				if (var8 >= 0 && var9 >= 0) {
-					String var10 = var7.substring(var8 + 1, var9);
-					int var11 = var10.indexOf(".java:");
-					if (var11 >= 0) {
-						var10 = var10.substring(0, var11) + var10.substring(var11 + 5);
-						var1 = var1 + var10 + ' ';
-						continue;
-					}
+         Client.gameState = var0;
+      }
+   }
 
-					var7 = var7.substring(0, var8);
-				}
+   @ObfuscatedName("hd")
+   @ObfuscatedSignature(
+      signature = "(I)V",
+      garbageValue = "1412444391"
+   )
+   static final void method2788() {
+      for(PendingSpawn var0 = (PendingSpawn)Client.pendingSpawns.last(); var0 != null; var0 = (PendingSpawn)Client.pendingSpawns.previous()) {
+         if (var0.hitpoints > 0) {
+            --var0.hitpoints;
+         }
 
-				var7 = var7.trim();
-				var7 = var7.substring(var7.lastIndexOf(32) + 1);
-				var7 = var7.substring(var7.lastIndexOf(9) + 1);
-				var1 = var1 + var7 + ' ';
-			}
-		}
-	}
+         if (var0.hitpoints == 0) {
+            if (var0.field906 < 0 || WorldMapSprite.method404(var0.field906, var0.field903)) {
+               Script.addPendingSpawnToScene(var0.plane, var0.type, var0.x, var0.y, var0.field906, var0.field907, var0.field903);
+               var0.remove();
+            }
+         } else {
+            if (var0.delay > 0) {
+               --var0.delay;
+            }
+
+            if (var0.delay == 0 && var0.x >= 1 && var0.y >= 1 && var0.x <= 102 && var0.y <= 102 && (var0.id < 0 || WorldMapSprite.method404(var0.id, var0.field911))) {
+               Script.addPendingSpawnToScene(var0.plane, var0.type, var0.x, var0.y, var0.id, var0.orientation, var0.field911);
+               var0.delay = -1;
+               if (var0.id == var0.field906 && var0.field906 == -1) {
+                  var0.remove();
+               } else if (var0.id == var0.field906 && var0.orientation == var0.field907 && var0.field903 == var0.field911) {
+                  var0.remove();
+               }
+            }
+         }
+      }
+
+   }
+
+   @ObfuscatedName("hq")
+   @ObfuscatedSignature(
+      signature = "(IIIII)V",
+      garbageValue = "507499403"
+   )
+   static final void method2786(int var0, int var1, int var2, int var3) {
+      for(int var4 = 0; var4 < Client.rootWidgetCount; ++var4) {
+         if (Client.rootWidgetXs[var4] + Client.rootWidgetWidths[var4] > var0 && Client.rootWidgetXs[var4] < var0 + var2 && Client.rootWidgetHeights[var4] + Client.rootWidgetYs[var4] > var1 && Client.rootWidgetYs[var4] < var3 + var1) {
+            Client.field703[var4] = true;
+         }
+      }
+
+   }
+
+   @ObfuscatedName("kh")
+   @ObfuscatedSignature(
+      signature = "(Lky;I)V",
+      garbageValue = "183516662"
+   )
+   static void method2787(Buffer var0) {
+      if (Client.field863 != null) {
+         var0.writeBytes(Client.field863, 0, Client.field863.length);
+      } else {
+         byte[] var2 = new byte[24];
+
+         try {
+            class167.randomDat.seek(0L);
+            class167.randomDat.readFully(var2);
+
+            int var3;
+            for(var3 = 0; var3 < 24 && var2[var3] == 0; ++var3) {
+            }
+
+            if (var3 >= 24) {
+               throw new IOException();
+            }
+         } catch (Exception var6) {
+            for(int var4 = 0; var4 < 24; ++var4) {
+               var2[var4] = -1;
+            }
+         }
+
+         var0.writeBytes(var2, 0, var2.length);
+      }
+   }
 }
