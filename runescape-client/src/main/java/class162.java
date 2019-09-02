@@ -4,13 +4,10 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("fv")
 public class class162 implements class161 {
-   @ObfuscatedName("g")
-   @ObfuscatedSignature(
-      signature = "Lag;"
-   )
-   @Export("worldMapEvent")
-   static WorldMapEvent worldMapEvent;
-
-   public class162() {
-   }
+	@ObfuscatedName("g")
+	@ObfuscatedSignature(
+		signature = "Lag;"
+	)
+	@Export("worldMapEvent")
+	static WorldMapEvent worldMapEvent;
 }

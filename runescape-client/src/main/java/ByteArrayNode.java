@@ -5,11 +5,11 @@ import net.runelite.mapping.ObfuscatedName;
 @ObfuscatedName("fl")
 @Implements("ByteArrayNode")
 public class ByteArrayNode extends Node {
-   @ObfuscatedName("s")
-   @Export("byteArray")
-   public byte[] byteArray;
+	@ObfuscatedName("s")
+	@Export("byteArray")
+	public byte[] byteArray;
 
-   public ByteArrayNode(byte[] var1) {
-      this.byteArray = var1;
-   }
+	public ByteArrayNode(byte[] var1) {
+		this.byteArray = var1;
+	}
 }

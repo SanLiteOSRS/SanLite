@@ -9,33 +9,33 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("bz")
 @Implements("SecureRandomCallable")
 public class SecureRandomCallable implements Callable {
-   @ObfuscatedName("su")
-   @Export("foundItemIds")
-   static short[] foundItemIds;
-   @ObfuscatedName("r")
-   @ObfuscatedSignature(
-      signature = "Lct;"
-   )
-   @Export("pcmPlayerProvider")
-   static PcmPlayerProvider pcmPlayerProvider;
-   @ObfuscatedName("ae")
-   @ObfuscatedGetter(
-      intValue = 1643871529
-   )
-   static int field500;
-   @ObfuscatedName("ej")
-   @ObfuscatedGetter(
-      intValue = 1838360693
-   )
-   @Export("port3")
-   static int port3;
+	@ObfuscatedName("su")
+	@Export("foundItemIds")
+	static short[] foundItemIds;
+	@ObfuscatedName("r")
+	@ObfuscatedSignature(
+		signature = "Lct;"
+	)
+	@Export("pcmPlayerProvider")
+	static PcmPlayerProvider pcmPlayerProvider;
+	@ObfuscatedName("ae")
+	@ObfuscatedGetter(
+		intValue = 1643871529
+	)
+	static int field500;
+	@ObfuscatedName("ej")
+	@ObfuscatedGetter(
+		intValue = 1838360693
+	)
+	@Export("port3")
+	static int port3;
 
-   SecureRandomCallable() {
-   }
+	SecureRandomCallable() {
+	}
 
-   public Object call() {
-      SecureRandom var2 = new SecureRandom();
-      var2.nextInt();
-      return var2;
-   }
+	public Object call() {
+		SecureRandom var2 = new SecureRandom();
+		var2.nextInt();
+		return var2;
+	}
 }

@@ -7,35 +7,35 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("lf")
 @Implements("UserComparator1")
 public class UserComparator1 implements Comparator {
-   @ObfuscatedName("i")
-   @Export("Interpreter_intLocals")
-   static int[] Interpreter_intLocals;
-   @ObfuscatedName("k")
-   @Export("Interpreter_stringLocals")
-   static String[] Interpreter_stringLocals;
-   @ObfuscatedName("s")
-   @Export("reversed")
-   final boolean reversed;
+	@ObfuscatedName("i")
+	@Export("Interpreter_intLocals")
+	static int[] Interpreter_intLocals;
+	@ObfuscatedName("k")
+	@Export("Interpreter_stringLocals")
+	static String[] Interpreter_stringLocals;
+	@ObfuscatedName("s")
+	@Export("reversed")
+	final boolean reversed;
 
-   public UserComparator1(boolean var1) {
-      this.reversed = var1;
-   }
+	public UserComparator1(boolean var1) {
+		this.reversed = var1;
+	}
 
-   @ObfuscatedName("s")
-   @ObfuscatedSignature(
-      signature = "(Lju;Lju;I)I",
-      garbageValue = "-414427589"
-   )
-   @Export("compare_bridged")
-   int compare_bridged(User var1, User var2) {
-      return this.reversed ? var1.compareTo_user(var2) : var2.compareTo_user(var1);
-   }
+	@ObfuscatedName("s")
+	@ObfuscatedSignature(
+		signature = "(Lju;Lju;I)I",
+		garbageValue = "-414427589"
+	)
+	@Export("compare_bridged")
+	int compare_bridged(User var1, User var2) {
+		return this.reversed ? var1.compareTo_user(var2) : var2.compareTo_user(var1);
+	}
 
-   public boolean equals(Object var1) {
-      return super.equals(var1);
-   }
+	public boolean equals(Object var1) {
+		return super.equals(var1);
+	}
 
-   public int compare(Object var1, Object var2) {
-      return this.compare_bridged((User)var1, (User)var2);
-   }
+	public int compare(Object var1, Object var2) {
+		return this.compare_bridged((User)var1, (User)var2);
+	}
 }

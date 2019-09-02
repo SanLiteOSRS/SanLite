@@ -4,10 +4,10 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("kf")
 public class class293 {
-   @ObfuscatedName("sx")
-   @ObfuscatedSignature(
-      signature = "Lkv;"
-   )
-   @Export("masterDisk")
-   static ArchiveDisk masterDisk;
+	@ObfuscatedName("sx")
+	@ObfuscatedSignature(
+		signature = "Lkv;"
+	)
+	@Export("masterDisk")
+	static ArchiveDisk masterDisk;
 }

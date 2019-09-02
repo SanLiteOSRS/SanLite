@@ -4,10 +4,10 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("md")
 public class class339 {
-   @ObfuscatedName("s")
-   @ObfuscatedSignature(
-      signature = "Lhz;"
-   )
-   @Export("ParamDefinition_archive")
-   public static AbstractArchive ParamDefinition_archive;
+	@ObfuscatedName("s")
+	@ObfuscatedSignature(
+		signature = "Lhz;"
+	)
+	@Export("ParamDefinition_archive")
+	public static AbstractArchive ParamDefinition_archive;
 }
