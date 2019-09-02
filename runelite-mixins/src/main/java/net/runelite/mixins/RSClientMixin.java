@@ -1302,26 +1302,27 @@ public abstract class RSClientMixin implements RSClient
 		return WorldType.fromMask(flags);
 	}
 
-	@FieldHook("regions")
-	@Inject
-	public void onWorldRegionChanged(int idx)
-	{
-		int[] mapRegions = client.getMapRegions();
-
-		if (mapRegions == null)
-		{
-			return;
-		}
-
-		// Only post the event when every map region is loaded
-		for (int region : mapRegions)
-		{
-			if (region == 0)
-				return;
-		}
-
-		client.getCallbacks().post(new WorldRegionChanged(mapRegions));
-	}
+	// TODO: Find out why this causes a client crash on startup
+//	@FieldHook("regions")
+//	@Inject
+//	public void onWorldRegionChanged(int idx)
+//	{
+//		int[] mapRegions = client.getMapRegions();
+//
+//		if (mapRegions == null)
+//		{
+//			return;
+//		}
+//
+//		// Only post the event when every map region is loaded
+//		for (int region : mapRegions)
+//		{
+//			if (region == 0)
+//				return;
+//		}
+//
+//		client.getCallbacks().post(new WorldRegionChanged(mapRegions));
+//	}
 
 	@Inject
 	@MethodHook("openMenu")
