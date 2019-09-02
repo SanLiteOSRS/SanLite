@@ -909,6 +909,7 @@ public class MixinInjector
 
 						if (method.isStatic() != targetField.isStatic())
 						{
+							logger.error("Method {} static flag {} does not match field hook {} static flag {}", method.getName(), method.isStatic(), targetField.getName(), targetField.isStatic());
 							throw new InjectionException("Field hook method static flag must match target field");
 						}
 

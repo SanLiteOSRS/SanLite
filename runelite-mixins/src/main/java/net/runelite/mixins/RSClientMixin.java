@@ -1304,7 +1304,7 @@ public abstract class RSClientMixin implements RSClient
 
 	@FieldHook("regions")
 	@Inject
-	public static void onWorldRegionChanged(int idx)
+	public void onWorldRegionChanged(int idx)
 	{
 		int[] mapRegions = client.getMapRegions();
 
