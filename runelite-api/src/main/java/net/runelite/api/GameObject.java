@@ -62,13 +62,20 @@ public interface GameObject extends TileObject
 	Polygon getConvexHull();
 
 	/**
+	 * Gets the polygons that make up the game object model.
+	 *
+	 * @return the model polygons
+	 */
+	Polygon[] getPolygons();
+
+	/**
 	 * Gets the orientation of the object.
 	 *
 	 * @return the orientation
 	 */
 	Angle getOrientation();
 
-	Renderable getRenderable();
+	Entity getEntity();
 
 	int getRsOrientation();
 

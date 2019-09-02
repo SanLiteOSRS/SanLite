@@ -386,14 +386,14 @@ public abstract class RSTileMixin implements RSTile
 		boolean currentInvalid = false, prevInvalid = false;
 		if (current != null)
 		{
-			RSEntity renderable = current.getRenderable();
-			currentInvalid = renderable instanceof RSActor || renderable instanceof RSProjectile || renderable instanceof RSGraphicsObject;
+			RSEntity entity = current.getEntity();
+			currentInvalid = entity instanceof RSActor || entity instanceof RSProjectile || entity instanceof RSGraphicsObject;
 		}
 
 		if (previous != null)
 		{
-			RSEntity renderable = previous.getRenderable();
-			prevInvalid = renderable instanceof RSActor || renderable instanceof RSProjectile || renderable instanceof RSGraphicsObject;
+			RSEntity entity = previous.getEntity();
+			prevInvalid = entity instanceof RSActor || entity instanceof RSProjectile || entity instanceof RSGraphicsObject;
 		}
 
 		Logger logger = client.getLogger();

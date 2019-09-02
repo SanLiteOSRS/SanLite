@@ -576,6 +576,12 @@ public interface Client extends GameShell
 	void setMenuEntries(MenuEntry[] entries);
 
 	/**
+	 * Set the amount of menu entries the client has.
+	 * If you decrement this count, it's the same as removing the last one
+	 */
+	void setMenuOptionCount(int count);
+
+	/**
 	 * Checks whether a right-click menu is currently open.
 	 *
 	 * @return true if a menu is open, false otherwise
@@ -1017,6 +1023,11 @@ public interface Client extends GameShell
 	 * @see Constants#CLIENT_TICK_LENGTH
 	 */
 	int getKeyboardIdleTicks();
+
+	/**
+	 * Returns an array of booleans relating to keys pressed.
+	 */
+	boolean[] getPressedKeys();
 
 	/**
 	 * Changes how game behaves based on memory mode. Low memory mode skips
@@ -1466,7 +1477,7 @@ public interface Client extends GameShell
 	/**
 	 * Sets which NPCs are hidden
 	 *
-	 * @param names the names of the npcs seperated by ','
+	 * @param names the names of the npcs
 	 */
 	void setNPCsNames(List<String> names);
 
@@ -1697,7 +1708,7 @@ public interface Client extends GameShell
 	 *
 	 * @param param0 This is SceneX for gameObject, index for items, and 0 for npc.
 	 * @param param1 This is SceneY for gameObject, static for items, and 0 for npc.
-	 * @param type Menu entry Action type.
+	 * @param type Menu entry Action opcode.
 	 * @param id Targets ID
 	 * @param menuEntry Do these actually matter?
 	 * @param targetString Do these actually matter?

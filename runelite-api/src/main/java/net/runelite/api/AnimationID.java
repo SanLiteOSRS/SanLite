@@ -269,7 +269,7 @@ public final class AnimationID
 	public static final int HYDRA_RANGED_4 = 8255;
 	public static final int HYDRA_4_1 = 8257;
 	public static final int HYDRA_4_2 = 8258;
-	
+
 	// Inferno animations
 	public static final int JAL_NIB = 7574;
 	public static final int JAL_MEJRAH = 7578;
@@ -318,12 +318,24 @@ public final class AnimationID
 	public static final int GEERIN_FLINCH = 6958;
 	public static final int KILISA_ATTACK = 6957;
 
+	// Dagannoth Kings
+	public static final int DAGANNOTH_REX_ATTACK = 2853;
+	public static final int DAGANNOTH_PRIME_ATTACK = 2854;
+	public static final int DAGANNOTH_SUPREME_ATTACK = 2855;
+
 	// Lizardman shaman
 	public static final int LIZARDMAN_SHAMAN_SPAWN = 7157;
 
 	public static final int BARRAGE_ANIMATION = 1979;
 	public static final int CHIN_ANIMATION = 7618;
 
-	// Gauntlet
+	// The Gauntlet
 	public static final int GAUNTLET_BOSS_CRYSTAL_ATTACK = 8418;
+	public static final int GAUNTLET_BOSS_ATTACK = 8419;
+	public static final int GAUNTLET_BOSS_TRAMPLE = 8420;
+
+	// Zalcano
+	public static final int ZALCANO_KNOCKED_DOWN = 8437;
+	public static final int ZALCANO_WAKE_UP = 8439;
+	public static final int ZALCANO_ROCK_GLOWING = 8448;
 }

@@ -29,6 +29,7 @@ import java.util.Collection;
 
 import net.runelite.api.FontTypeFace;
 import net.runelite.api.Point;
+import net.runelite.api.Sprite;
 import net.runelite.api.SpriteID;
 
 /**
@@ -624,7 +625,7 @@ public interface Widget
 	 */
 	Object[] getOnLoadListener();
 
-	Object[] getOnInvTransmitListener();
+	Object[] getOnInvTransmit();
 
 	/**
 	 * Returns the archive id of the font used
@@ -845,4 +846,14 @@ public interface Widget
 	 * Seems like this needs to set to true when creating new widgets
 	 */
 	void setIsIf3(boolean isIf3);
+
+	/**
+	 * Returns yes if your mouse pointer is over this widget or any of it's children.
+	 */
+	boolean containsMouse();
+
+	/**
+	 * Gets the image which is (or should be) drawn on this widget
+	 */
+	Sprite getSprite();
 }

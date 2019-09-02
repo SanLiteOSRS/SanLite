@@ -562,9 +562,9 @@ public abstract class RSClientMixin implements RSClient
 		String[] menuOptions = getMenuOptions();
 		String[] menuTargets = getMenuTargets();
 		int[] menuIdentifiers = getMenuIdentifiers();
-		int[] menuTypes = getMenuTypes();
-		int[] params0 = getMenuActionParams0();
-		int[] params1 = getMenuActionParams1();
+		int[] menuTypes = getMenuOpcodes();
+		int[] params0 = getMenuArguments1();
+		int[] params1 = getMenuArguments2();
 		boolean[] leftClick = getMenuForceLeftClick();
 
 		MenuEntry[] entries = new MenuEntry[count];
@@ -590,13 +590,18 @@ public abstract class RSClientMixin implements RSClient
 		String[] menuOptions = getMenuOptions();
 		String[] menuTargets = getMenuTargets();
 		int[] menuIdentifiers = getMenuIdentifiers();
-		int[] menuTypes = getMenuTypes();
-		int[] params0 = getMenuActionParams0();
-		int[] params1 = getMenuActionParams1();
+		int[] menuTypes = getMenuOpcodes();
+		int[] params0 = getMenuArguments1();
+		int[] params1 = getMenuArguments2();
 		boolean[] leftClick = getMenuForceLeftClick();
 
 		for (MenuEntry entry : entries)
 		{
+			if (entry == null)
+			{
+				continue;
+			}
+
 			menuOptions[count] = entry.getOption();
 			menuTargets[count] = entry.getTarget();
 			menuIdentifiers[count] = entry.getIdentifier();
@@ -623,15 +628,15 @@ public abstract class RSClientMixin implements RSClient
 		if (newCount == oldCount + 1)
 		{
 			MenuEntryAdded event = new MenuEntryAdded(
-					new MenuEntry(
-							client.getMenuOptions()[oldCount],
-							client.getMenuTargets()[oldCount],
-							client.getMenuIdentifiers()[oldCount],
-							client.getMenuTypes()[oldCount],
-							client.getMenuActionParams0()[oldCount],
-							client.getMenuActionParams1()[oldCount],
-							client.getMenuForceLeftClick()[oldCount]
-					)
+				new MenuEntry(
+					client.getMenuOptions()[oldCount],
+					client.getMenuTargets()[oldCount],
+					client.getMenuIdentifiers()[oldCount],
+					client.getMenuOpcodes()[oldCount],
+					client.getMenuArguments1()[oldCount],
+					client.getMenuArguments2()[oldCount],
+					client.getMenuForceLeftClick()[oldCount]
+				)
 			);
 
 			client.getCallbacks().post(event);
@@ -1297,26 +1302,27 @@ public abstract class RSClientMixin implements RSClient
 		return WorldType.fromMask(flags);
 	}
 
-	@FieldHook("regions")
-	@Inject
-	public static void onWorldRegionChanged(int idx)
-	{
-		int[] mapRegions = client.getMapRegions();
-
-		if (mapRegions == null)
-		{
-			return;
-		}
-
-		// Only post the event when every map region is loaded
-		for (int region : mapRegions)
-		{
-			if (region == 0)
-				return;
-		}
-
-		client.getCallbacks().post(new WorldRegionChanged(mapRegions));
-	}
+	// TODO: Find out why this causes a client crash on startup
+//	@FieldHook("regions")
+//	@Inject
+//	public void onWorldRegionChanged(int idx)
+//	{
+//		int[] mapRegions = client.getMapRegions();
+//
+//		if (mapRegions == null)
+//		{
+//			return;
+//		}
+//
+//		// Only post the event when every map region is loaded
+//		for (int region : mapRegions)
+//		{
+//			if (region == 0)
+//				return;
+//		}
+//
+//		client.getCallbacks().post(new WorldRegionChanged(mapRegions));
+//	}
 
 	@Inject
 	@MethodHook("openMenu")
@@ -1563,7 +1569,7 @@ public abstract class RSClientMixin implements RSClient
 		int len = getMenuOptionCount();
 		if (len > 0)
 		{
-			int type = getMenuTypes()[len - 1];
+			int type = getMenuOpcodes()[len - 1];
 			return type == MenuAction.RUNELITE_OVERLAY.getId();
 		}
 
