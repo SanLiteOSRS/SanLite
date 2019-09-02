@@ -179,7 +179,7 @@ public class Calendar {
                   NodeDeque var35 = Client.groundItems[ItemContainer.plane][var15][var16];
                   if (var35 != null) {
                      for(TileItem var39 = (TileItem)var35.first(); var39 != null; var39 = (TileItem)var35.next()) {
-                        ItemDefinition var37 = WorldMapData_0.getItemDefinition(var39.id);
+                        ItemDefinition var37 = WorldMapData_0.ItemDefinition_get(var39.id);
                         if (Client.isItemSelected == 1) {
                            WorldMapData_0.insertMenuItemNoShift("Use", Client.selectedItemName + " " + "->" + " " + class16.colorStartTag(16748608) + var37.name, 16, var39.id, var15, var16);
                         } else if (Client.isSpellSelected) {

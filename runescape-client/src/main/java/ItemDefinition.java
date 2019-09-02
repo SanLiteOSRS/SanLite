@@ -548,7 +548,7 @@ public class ItemDefinition extends DualNode {
          }
 
          if (var2 != -1) {
-            return WorldMapData_0.getItemDefinition(var2).method4553(1);
+            return WorldMapData_0.ItemDefinition_get(var2).method4553(1);
          }
       }
 
@@ -593,7 +593,7 @@ public class ItemDefinition extends DualNode {
          }
 
          if (var2 != -1) {
-            return WorldMapData_0.getItemDefinition(var2).getModel(1);
+            return WorldMapData_0.ItemDefinition_get(var2).getModel(1);
          }
       }
 
@@ -647,7 +647,7 @@ public class ItemDefinition extends DualNode {
          }
 
          if (var2 != -1) {
-            return WorldMapData_0.getItemDefinition(var2);
+            return WorldMapData_0.ItemDefinition_get(var2);
          }
       }
 

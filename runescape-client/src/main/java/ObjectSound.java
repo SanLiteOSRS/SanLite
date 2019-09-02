@@ -282,9 +282,9 @@ public final class ObjectSound extends Node {
                         Rasterizer2D.Rasterizer2D_expandClip(var22, var23, var92 + var22, var21 + var23);
                         var14.method6010(var22, var23, var17);
                      } else {
-                        var78.drawAt2(var22, var23);
+                        var78.drawTransBgAt(var22, var23);
                         Rasterizer2D.Rasterizer2D_expandClip(var22, var23, var92 + var22, var23 + var21);
-                        var14.drawAt2(var22, var23);
+                        var14.drawTransBgAt(var22, var23);
                      }
 
                      Rasterizer2D.Rasterizer2D_setClip(var2, var3, var2 + var4, var3 + var5);
@@ -320,12 +320,12 @@ public final class ObjectSound extends Node {
                if (Client.viewportTempX > -1) {
                   if (var10.headIconPk != -1) {
                      var87 += 25;
-                     UserComparator6.headIconPkSprites[var10.headIconPk].drawAt2(var2 + Client.viewportTempX - 12, var3 + Client.viewportTempY - var87);
+                     UserComparator6.headIconPkSprites[var10.headIconPk].drawTransBgAt(var2 + Client.viewportTempX - 12, var3 + Client.viewportTempY - var87);
                   }
 
                   if (var10.headIconPrayer != -1) {
                      var87 += 25;
-                     IntHashTable.headIconPrayerSprites[var10.headIconPrayer].drawAt2(var2 + Client.viewportTempX - 12, var3 + Client.viewportTempY - var87);
+                     IntHashTable.headIconPrayerSprites[var10.headIconPrayer].drawTransBgAt(var2 + Client.viewportTempX - 12, var3 + Client.viewportTempY - var87);
                   }
                }
             }
@@ -334,7 +334,7 @@ public final class ObjectSound extends Node {
                Entity.getActorScreenLocation(var0, var0.defaultHeight + 15);
                if (Client.viewportTempX > -1) {
                   var87 += WorldMapData_1.headIconHintSprites[1].subHeight;
-                  WorldMapData_1.headIconHintSprites[1].drawAt2(var2 + Client.viewportTempX - 12, var3 + Client.viewportTempY - var87);
+                  WorldMapData_1.headIconHintSprites[1].drawTransBgAt(var2 + Client.viewportTempX - 12, var3 + Client.viewportTempY - var87);
                }
             }
          } else {
@@ -346,14 +346,14 @@ public final class ObjectSound extends Node {
             if (var90.headIconPrayer >= 0 && var90.headIconPrayer < IntHashTable.headIconPrayerSprites.length) {
                Entity.getActorScreenLocation(var0, var0.defaultHeight + 15);
                if (Client.viewportTempX > -1) {
-                  IntHashTable.headIconPrayerSprites[var90.headIconPrayer].drawAt2(var2 + Client.viewportTempX - 12, var3 + Client.viewportTempY - 30);
+                  IntHashTable.headIconPrayerSprites[var90.headIconPrayer].drawTransBgAt(var2 + Client.viewportTempX - 12, var3 + Client.viewportTempY - 30);
                }
             }
 
             if (Client.hintArrowType == 1 && Client.npcIndices[var1 - var75] == Client.hintArrowNpcIndex && Client.cycle % 20 < 10) {
                Entity.getActorScreenLocation(var0, var0.defaultHeight + 15);
                if (Client.viewportTempX > -1) {
-                  WorldMapData_1.headIconHintSprites[0].drawAt2(var2 + Client.viewportTempX - 12, var3 + Client.viewportTempY - 28);
+                  WorldMapData_1.headIconHintSprites[0].drawTransBgAt(var2 + Client.viewportTempX - 12, var3 + Client.viewportTempY - 28);
                }
             }
          }
@@ -730,41 +730,41 @@ public final class ObjectSound extends Node {
                         }
                      } else {
                         if (var82 != null) {
-                           var82.drawAt2(var65 + var52 - var26, var66);
+                           var82.drawTransBgAt(var65 + var52 - var26, var66);
                         }
 
                         if (var84 != null) {
-                           var84.drawAt2(var65 + var53 - var28, var66);
+                           var84.drawTransBgAt(var65 + var53 - var28, var66);
                         }
 
                         if (var83 != null) {
                            for(var74 = 0; var74 < var49; ++var74) {
-                              var83.drawAt2(var74 * var23 + (var54 + var65 - var27), var66);
+                              var83.drawTransBgAt(var74 * var23 + (var54 + var65 - var27), var66);
                            }
                         }
 
                         if (var85 != null) {
-                           var85.drawAt2(var65 + var56 - var29, var66);
+                           var85.drawTransBgAt(var65 + var56 - var29, var66);
                         }
 
                         var86.draw(var45, var65 + var55, var69, var96.field3313 | -16777216, 0);
                         if (var81 != null) {
                            if (var30 != null) {
-                              var30.drawAt2(var65 + var57 - var38, var66);
+                              var30.drawTransBgAt(var65 + var57 - var38, var66);
                            }
 
                            if (var32 != null) {
-                              var32.drawAt2(var65 + var58 - var40, var66);
+                              var32.drawTransBgAt(var65 + var58 - var40, var66);
                            }
 
                            if (var31 != null) {
                               for(var74 = 0; var74 < var50; ++var74) {
-                                 var31.drawAt2(var35 * var74 + (var65 + var59 - var39), var66);
+                                 var31.drawTransBgAt(var35 * var74 + (var65 + var59 - var39), var66);
                               }
                            }
 
                            if (var33 != null) {
-                              var33.drawAt2(var60 + var65 - var41, var66);
+                              var33.drawTransBgAt(var60 + var65 - var41, var66);
                            }
 
                            var44.draw(var46, var65 + var61, var72, var81.field3313 | -16777216, 0);

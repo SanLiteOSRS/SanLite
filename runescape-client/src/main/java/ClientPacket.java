@@ -617,7 +617,7 @@ public class ClientPacket implements class181 {
                   Client.dragItemSlotDestination = var15;
                   class222.field2730 = var0;
                   if (var0.itemIds[var15] > 0) {
-                     ItemDefinition var8 = WorldMapData_0.getItemDefinition(var0.itemIds[var15] - 1);
+                     ItemDefinition var8 = WorldMapData_0.ItemDefinition_get(var0.itemIds[var15] - 1);
                      if (Client.isItemSelected == 1 && Huffman.method3901(ParamDefinition.getWidgetClickMask(var0))) {
                         if (var0.id != FontName.selectedItemWidget || var15 != class185.selectedItemSlot) {
                            WorldMapData_0.insertMenuItemNoShift("Use", Client.selectedItemName + " " + "->" + " " + class16.colorStartTag(16748608) + var8.name, 31, var8.id, var15, var0.id);

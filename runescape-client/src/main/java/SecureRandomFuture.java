@@ -692,7 +692,7 @@ public class SecureRandomFuture {
                            FontName.selectedItemWidget = var1;
                            class1.selectedItemId = var3;
                            FriendSystem.method1822(var16);
-                           Client.selectedItemName = class16.colorStartTag(16748608) + WorldMapData_0.getItemDefinition(var3).name + class16.colorStartTag(16777215);
+                           Client.selectedItemName = class16.colorStartTag(16748608) + WorldMapData_0.ItemDefinition_get(var3).name + class16.colorStartTag(16777215);
                            if (Client.selectedItemName == null) {
                               Client.selectedItemName = "null";
                            }
@@ -937,7 +937,7 @@ public class SecureRandomFuture {
                                  if (var2 == 1005) {
                                     var16 = WorldMapElement.getWidget(var1);
                                     if (var16 != null && var16.itemQuantities[var0] >= 100000) {
-                                       DirectByteArrayCopier.addGameMessage(27, "", var16.itemQuantities[var0] + " x " + WorldMapData_0.getItemDefinition(var3).name);
+                                       DirectByteArrayCopier.addGameMessage(27, "", var16.itemQuantities[var0] + " x " + WorldMapData_0.ItemDefinition_get(var3).name);
                                     } else {
                                        var9 = MenuAction.method1994(ClientPacket.field2209, Client.packetWriter.isaacCipher);
                                        var9.packetBuffer.writeShortLE(var3);

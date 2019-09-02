@@ -242,12 +242,12 @@ public class Language implements Enumerated {
       if (var0 < var1) {
          int var6 = (var0 + var1) / 2;
          int var7 = var0;
-         World var8 = ChatChannel.worlds[var6];
-         ChatChannel.worlds[var6] = ChatChannel.worlds[var1];
-         ChatChannel.worlds[var1] = var8;
+         World var8 = ChatChannel.World_worlds[var6];
+         ChatChannel.World_worlds[var6] = ChatChannel.World_worlds[var1];
+         ChatChannel.World_worlds[var1] = var8;
 
          for(int var9 = var0; var9 < var1; ++var9) {
-            World var11 = ChatChannel.worlds[var9];
+            World var11 = ChatChannel.World_worlds[var9];
             int var12 = SoundSystem.compareWorlds(var11, var8, var2, var3);
             int var10;
             if (var12 != 0) {
@@ -268,14 +268,14 @@ public class Language implements Enumerated {
             }
 
             if (var10 <= 0) {
-               World var14 = ChatChannel.worlds[var9];
-               ChatChannel.worlds[var9] = ChatChannel.worlds[var7];
-               ChatChannel.worlds[var7++] = var14;
+               World var14 = ChatChannel.World_worlds[var9];
+               ChatChannel.World_worlds[var9] = ChatChannel.World_worlds[var7];
+               ChatChannel.World_worlds[var7++] = var14;
             }
          }
 
-         ChatChannel.worlds[var1] = ChatChannel.worlds[var7];
-         ChatChannel.worlds[var7] = var8;
+         ChatChannel.World_worlds[var1] = ChatChannel.World_worlds[var7];
+         ChatChannel.World_worlds[var7] = var8;
          doWorldSorting(var0, var7 - 1, var2, var3, var4, var5);
          doWorldSorting(var7 + 1, var1, var2, var3, var4, var5);
       }

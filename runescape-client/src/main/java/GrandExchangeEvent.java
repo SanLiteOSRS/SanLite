@@ -333,7 +333,7 @@ public class GrandExchangeEvent {
 
             int var17;
             for(var17 = var34 * var43; var17 < World.worldsCount && var43 - Login.worldSelectPage < var35; ++var17) {
-               World var28 = ChatChannel.worlds[var17];
+               World var28 = ChatChannel.World_worlds[var17];
                boolean var19 = true;
                String var20 = Integer.toString(var28.population);
                if (var28.population == -1) {
@@ -396,7 +396,7 @@ public class GrandExchangeEvent {
             }
 
             if (var42) {
-               var17 = var1.stringWidth(ChatChannel.worlds[Login.hoveredWorldIndex].activity) + 6;
+               var17 = var1.stringWidth(ChatChannel.World_worlds[Login.hoveredWorldIndex].activity) + 6;
                int var18 = var1.ascent + 8;
                int var44 = MouseHandler.MouseHandler_y + 25;
                if (var18 + var44 > 480) {
@@ -405,7 +405,7 @@ public class GrandExchangeEvent {
 
                Rasterizer2D.Rasterizer2D_fillRectangle(MouseHandler.MouseHandler_x - var17 / 2, var44, var17, var18, 16777120);
                Rasterizer2D.Rasterizer2D_drawRectangle(MouseHandler.MouseHandler_x - var17 / 2, var44, var17, var18, 0);
-               var1.drawCentered(ChatChannel.worlds[Login.hoveredWorldIndex].activity, MouseHandler.MouseHandler_x, var44 + var1.ascent + 4, 0, -1);
+               var1.drawCentered(ChatChannel.World_worlds[Login.hoveredWorldIndex].activity, MouseHandler.MouseHandler_x, var44 + var1.ascent + 4, 0, -1);
             }
          }
 

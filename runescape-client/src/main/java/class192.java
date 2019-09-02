@@ -130,9 +130,9 @@ public enum class192 implements Enumerated {
    public static void method3617() {
       synchronized(MouseHandler.MouseHandler_instance) {
          MouseHandler.MouseHandler_currentButton = MouseHandler.MouseHandler_currentButton0;
-         MouseHandler.MouseHandler_x = MouseHandler.MouseHandler_x0;
-         MouseHandler.MouseHandler_y = MouseHandler.MouseHandler_y0;
-         MouseHandler.MouseHandler_millis = MouseHandler.MouseHandler_millis0;
+         MouseHandler.MouseHandler_x = MouseHandler.MouseHandler_xVolatile;
+         MouseHandler.MouseHandler_y = MouseHandler.MouseHandler_yVolatile;
+         MouseHandler.MouseHandler_millis = MouseHandler.MouseHandler_lastMovedVolatile;
          MouseHandler.MouseHandler_lastButton = MouseHandler.MouseHandler_lastButton0;
          MouseHandler.MouseHandler_lastPressedX = MouseHandler.MouseHandler_lastPressedX0;
          MouseHandler.MouseHandler_lastPressedY = MouseHandler.MouseHandler_lastPressedY0;

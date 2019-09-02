@@ -352,7 +352,7 @@ public final class ArchiveDisk {
 
          try {
             PcmPlayer var3 = SecureRandomCallable.pcmPlayerProvider.player();
-            var3.samples = new int[(PcmPlayer.isStereo ? 2 : 1) * 256];
+            var3.samples = new int[(PcmPlayer.PcmPlayer_stereo ? 2 : 1) * 256];
             var3.field1399 = var2;
             var3.init();
             var3.capacity = (var2 & -1024) + 1024;

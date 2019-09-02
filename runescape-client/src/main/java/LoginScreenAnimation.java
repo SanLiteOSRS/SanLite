@@ -134,11 +134,11 @@ public class LoginScreenAnimation {
 
       this.field1012 = new int[256];
       this.field1022 = 0;
-      this.field1020 = new int['耀'];
-      this.field1024 = new int['耀'];
+      this.field1020 = new int[32768];
+      this.field1024 = new int[32768];
       this.method1738((IndexedSprite)null);
-      this.field1018 = new int['耀'];
-      this.field1019 = new int['耀'];
+      this.field1018 = new int[32768];
+      this.field1019 = new int[32768];
    }
 
    @ObfuscatedName("j")
@@ -573,7 +573,7 @@ public class LoginScreenAnimation {
       Client.menuOptionsCount = 0;
       Client.isMenuOpen = false;
       Client.menuActions[0] = "Cancel";
-      Client.menuTargetNames[0] = "";
+      Client.menuTargets[0] = "";
       Client.menuOpcodes[0] = 1006;
       Client.menuShiftClick[0] = false;
       Client.menuOptionsCount = 1;

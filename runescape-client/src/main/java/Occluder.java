@@ -215,7 +215,7 @@ public final class Occluder {
                         for(var26 = (ScriptEvent)Client.scriptEvents.last(); var26 != null; var26 = (ScriptEvent)Client.scriptEvents.previous()) {
                            if (var26.boolean1) {
                               var26.remove();
-                              var26.widget.field2546 = false;
+                              var26.widget.containsMouse = false;
                            }
                         }
 
@@ -430,8 +430,8 @@ public final class Occluder {
                            Client.scriptEvents.addFirst(var27);
                         }
 
-                        if (!var9.field2546 && var33) {
-                           var9.field2546 = true;
+                        if (!var9.containsMouse && var33) {
+                           var9.containsMouse = true;
                            if (var9.onMouseOver != null) {
                               var27 = new ScriptEvent();
                               var27.boolean1 = true;
@@ -443,7 +443,7 @@ public final class Occluder {
                            }
                         }
 
-                        if (var9.field2546 && var33 && var9.onMouseRepeat != null) {
+                        if (var9.containsMouse && var33 && var9.onMouseRepeat != null) {
                            var27 = new ScriptEvent();
                            var27.boolean1 = true;
                            var27.widget = var9;
@@ -453,8 +453,8 @@ public final class Occluder {
                            Client.scriptEvents.addFirst(var27);
                         }
 
-                        if (var9.field2546 && !var33) {
-                           var9.field2546 = false;
+                        if (var9.containsMouse && !var33) {
+                           var9.containsMouse = false;
                            if (var9.onMouseLeave != null) {
                               var27 = new ScriptEvent();
                               var27.boolean1 = true;
@@ -644,7 +644,7 @@ public final class Occluder {
                            for(ScriptEvent var29 = (ScriptEvent)Client.scriptEvents.last(); var29 != null; var29 = (ScriptEvent)Client.scriptEvents.previous()) {
                               if (var29.boolean1) {
                                  var29.remove();
-                                 var29.widget.field2546 = false;
+                                 var29.widget.containsMouse = false;
                               }
                            }
 

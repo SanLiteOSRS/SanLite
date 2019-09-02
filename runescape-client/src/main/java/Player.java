@@ -217,7 +217,7 @@ public final class Player extends Actor {
             }
 
             if (var4[var5] >= 512) {
-               int var8 = WorldMapData_0.getItemDefinition(var4[var5] - 512).team;
+               int var8 = WorldMapData_0.ItemDefinition_get(var4[var5] - 512).team;
                if (var8 != 0) {
                   this.team = var8;
                }

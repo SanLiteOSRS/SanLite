@@ -130,7 +130,7 @@ public class UserComparator10 extends AbstractUserComparator {
          }
       }
 
-      ItemDefinition var9 = WorldMapData_0.getItemDefinition(var0);
+      ItemDefinition var9 = WorldMapData_0.ItemDefinition_get(var0);
       if (var1 > 1 && var9.countobj != null) {
          int var10 = -1;
 
@@ -141,7 +141,7 @@ public class UserComparator10 extends AbstractUserComparator {
          }
 
          if (var10 != -1) {
-            var9 = WorldMapData_0.getItemDefinition(var10);
+            var9 = WorldMapData_0.ItemDefinition_get(var10);
          }
       }
 
@@ -179,7 +179,7 @@ public class UserComparator10 extends AbstractUserComparator {
          Rasterizer3D.method2929(16, 16);
          Rasterizer3D.field1744 = false;
          if (var9.placeholderTemplate != -1) {
-            var20.drawAt2(0, 0);
+            var20.drawTransBgAt(0, 0);
          }
 
          int var16 = var9.zoom2d;
@@ -194,7 +194,7 @@ public class UserComparator10 extends AbstractUserComparator {
          var19.calculateBoundsCylinder();
          var19.method2874(0, var9.yan2d, var9.zan2d, var9.xan2d, var9.offsetX2d, var19.height / 2 + var17 + var9.offsetY2d, var18 + var9.offsetY2d);
          if (var9.notedId != -1) {
-            var20.drawAt2(0, 0);
+            var20.drawTransBgAt(0, 0);
          }
 
          if (var2 >= 1) {
@@ -211,7 +211,7 @@ public class UserComparator10 extends AbstractUserComparator {
 
          Rasterizer2D.Rasterizer2D_replace(var8.pixels, 36, 32);
          if (var9.noteTemplate != -1) {
-            var20.drawAt2(0, 0);
+            var20.drawTransBgAt(0, 0);
          }
 
          if (var4 == 1 || var4 == 2 && var9.isStackable == 1) {

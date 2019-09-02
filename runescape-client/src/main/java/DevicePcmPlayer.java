@@ -38,8 +38,8 @@ public class DevicePcmPlayer extends PcmPlayer {
    )
    @Export("init")
    protected void init() {
-      this.format = new AudioFormat((float)PcmPlayer.PcmPlayer_sampleRate, 16, PcmPlayer.isStereo ? 2 : 1, true, false);
-      this.byteSamples = new byte[256 << (PcmPlayer.isStereo ? 2 : 1)];
+      this.format = new AudioFormat((float)PcmPlayer.PcmPlayer_sampleRate, 16, PcmPlayer.PcmPlayer_stereo ? 2 : 1, true, false);
+      this.byteSamples = new byte[256 << (PcmPlayer.PcmPlayer_stereo ? 2 : 1)];
    }
 
    @ObfuscatedName("j")
@@ -50,7 +50,7 @@ public class DevicePcmPlayer extends PcmPlayer {
    @Export("open")
    protected void open(int var1) throws LineUnavailableException {
       try {
-         Info var2 = new Info(SourceDataLine.class, this.format, var1 << (PcmPlayer.isStereo ? 2 : 1));
+         Info var2 = new Info(SourceDataLine.class, this.format, var1 << (PcmPlayer.PcmPlayer_stereo ? 2 : 1));
          this.line = (SourceDataLine)AudioSystem.getLine(var2);
          this.line.open();
          this.line.start();
@@ -85,14 +85,14 @@ public class DevicePcmPlayer extends PcmPlayer {
    )
    @Export("position")
    protected int position() {
-      return this.capacity2 - (this.line.available() >> (PcmPlayer.isStereo ? 2 : 1));
+      return this.capacity2 - (this.line.available() >> (PcmPlayer.PcmPlayer_stereo ? 2 : 1));
    }
 
    @ObfuscatedName("k")
    @Export("write")
    protected void write() {
       int var1 = 256;
-      if (PcmPlayer.isStereo) {
+      if (PcmPlayer.PcmPlayer_stereo) {
          var1 <<= 1;
       }
 

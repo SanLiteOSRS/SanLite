@@ -150,9 +150,9 @@ public class NetCache {
       if (!Client.isMenuOpen) {
          if (Client.menuOptionsCount < 500) {
             Client.menuActions[Client.menuOptionsCount] = var0;
-            Client.menuTargetNames[Client.menuOptionsCount] = var1;
+            Client.menuTargets[Client.menuOptionsCount] = var1;
             Client.menuOpcodes[Client.menuOptionsCount] = var2;
-            Client.menuArguments0[Client.menuOptionsCount] = var3;
+            Client.menuIdentifiers[Client.menuOptionsCount] = var3;
             Client.menuArguments1[Client.menuOptionsCount] = var4;
             Client.menuArguments2[Client.menuOptionsCount] = var5;
             Client.menuShiftClick[Client.menuOptionsCount] = var6;

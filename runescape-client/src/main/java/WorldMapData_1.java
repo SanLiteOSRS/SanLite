@@ -174,8 +174,8 @@ public class WorldMapData_1 extends AbstractWorldMapData {
          String var5;
          if (var3 < 0) {
             var5 = "";
-         } else if (Client.menuTargetNames[var3].length() > 0) {
-            var5 = Client.menuActions[var3] + " " + Client.menuTargetNames[var3];
+         } else if (Client.menuTargets[var3].length() > 0) {
+            var5 = Client.menuActions[var3] + " " + Client.menuTargets[var3];
          } else {
             var5 = Client.menuActions[var3];
          }

@@ -14,8 +14,8 @@ public class PcmPlayer {
    @Export("PcmPlayer_sampleRate")
    public static int PcmPlayer_sampleRate;
    @ObfuscatedName("n")
-   @Export("isStereo")
-   protected static boolean isStereo;
+   @Export("PcmPlayer_stereo")
+   protected static boolean PcmPlayer_stereo;
    @ObfuscatedName("y")
    @Export("samples")
    protected int[] samples;
@@ -332,7 +332,7 @@ public class PcmPlayer {
    @Export("fill")
    final void fill(int[] var1, int var2) {
       int var3 = var2;
-      if (isStereo) {
+      if (PcmPlayer_stereo) {
          var3 = var2 << 1;
       }
 

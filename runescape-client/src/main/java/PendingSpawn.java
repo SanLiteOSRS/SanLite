@@ -161,19 +161,19 @@ public final class PendingSpawn extends Node {
                return 1;
             } else if (var0 == ScriptOpcodes.INVOTHER_GETOBJ) {
                Interpreter.Interpreter_intStackSize -= 2;
-               var3 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize] + '耀';
+               var3 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize] + 32768;
                var4 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
                Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = Language.method3605(var3, var4);
                return 1;
             } else if (var0 == ScriptOpcodes.INVOTHER_GETNUM) {
                Interpreter.Interpreter_intStackSize -= 2;
-               var3 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize] + '耀';
+               var3 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize] + 32768;
                var4 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
                Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = Decimator.method2453(var3, var4);
                return 1;
             } else if (var0 == ScriptOpcodes.INVOTHER_TOTAL) {
                Interpreter.Interpreter_intStackSize -= 2;
-               var3 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize] + '耀';
+               var3 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize] + 32768;
                var4 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
                Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = class43.method761(var3, var4);
                return 1;

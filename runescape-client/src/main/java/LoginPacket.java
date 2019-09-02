@@ -74,7 +74,7 @@ public class LoginPacket implements class181 {
       int var3 = 0;
 
       for(int var4 = 0; var4 < MouseRecorder.ItemDefinition_fileCount; ++var4) {
-         ItemDefinition var5 = WorldMapData_0.getItemDefinition(var4);
+         ItemDefinition var5 = WorldMapData_0.ItemDefinition_get(var4);
          if ((!var1 || var5.isTradable) && var5.noteTemplate == -1 && var5.name.toLowerCase().indexOf(var0) != -1) {
             if (var3 >= 250) {
                Language.foundItemIdCount = -1;
@@ -102,7 +102,7 @@ public class LoginPacket implements class181 {
       String[] var8 = new String[Language.foundItemIdCount];
 
       for(int var9 = 0; var9 < Language.foundItemIdCount; ++var9) {
-         var8[var9] = WorldMapData_0.getItemDefinition(var2[var9]).name;
+         var8[var9] = WorldMapData_0.ItemDefinition_get(var2[var9]).name;
       }
 
       short[] var10 = SecureRandomCallable.foundItemIds;

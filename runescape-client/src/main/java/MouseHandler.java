@@ -43,8 +43,8 @@ public class MouseHandler implements MouseListener, MouseMotionListener, FocusLi
    @ObfuscatedGetter(
       intValue = 1230571699
    )
-   @Export("MouseHandler_x0")
-   static volatile int MouseHandler_x0 = -1;
+   @Export("MouseHandler_xVolatile")
+   static volatile int MouseHandler_xVolatile = -1;
    @ObfuscatedName("x")
    @ObfuscatedGetter(
       intValue = -1059786001
@@ -55,14 +55,14 @@ public class MouseHandler implements MouseListener, MouseMotionListener, FocusLi
    @ObfuscatedGetter(
       intValue = 311656783
    )
-   @Export("MouseHandler_y0")
-   static volatile int MouseHandler_y0 = -1;
+   @Export("MouseHandler_yVolatile")
+   static volatile int MouseHandler_yVolatile = -1;
    @ObfuscatedName("f")
    @ObfuscatedGetter(
       longValue = 7196021325649186919L
    )
-   @Export("MouseHandler_millis0")
-   static volatile long MouseHandler_millis0 = -1L;
+   @Export("MouseHandler_lastMovedVolatile")
+   static volatile long MouseHandler_lastMovedVolatile = -1L;
    @ObfuscatedName("c")
    @ObfuscatedGetter(
       intValue = -1297098921
@@ -148,9 +148,9 @@ public class MouseHandler implements MouseListener, MouseMotionListener, FocusLi
    public final synchronized void mouseMoved(MouseEvent var1) {
       if (MouseHandler_instance != null) {
          MouseHandler_idleCycles = 0;
-         MouseHandler_x0 = var1.getX();
-         MouseHandler_y0 = var1.getY();
-         MouseHandler_millis0 = var1.getWhen();
+         MouseHandler_xVolatile = var1.getX();
+         MouseHandler_yVolatile = var1.getY();
+         MouseHandler_lastMovedVolatile = var1.getWhen();
       }
 
    }
@@ -187,9 +187,9 @@ public class MouseHandler implements MouseListener, MouseMotionListener, FocusLi
    public final synchronized void mouseExited(MouseEvent var1) {
       if (MouseHandler_instance != null) {
          MouseHandler_idleCycles = 0;
-         MouseHandler_x0 = -1;
-         MouseHandler_y0 = -1;
-         MouseHandler_millis0 = var1.getWhen();
+         MouseHandler_xVolatile = -1;
+         MouseHandler_yVolatile = -1;
+         MouseHandler_lastMovedVolatile = var1.getWhen();
       }
 
    }
@@ -284,8 +284,8 @@ public class MouseHandler implements MouseListener, MouseMotionListener, FocusLi
    )
    @Export("sortWorldList")
    static void sortWorldList(int var0, boolean var1, int var2, boolean var3) {
-      if (ChatChannel.worlds != null) {
-         Language.doWorldSorting(0, ChatChannel.worlds.length - 1, var0, var1, var2, var3);
+      if (ChatChannel.World_worlds != null) {
+         Language.doWorldSorting(0, ChatChannel.World_worlds.length - 1, var0, var1, var2, var3);
       }
 
    }
@@ -299,7 +299,7 @@ public class MouseHandler implements MouseListener, MouseMotionListener, FocusLi
       int var3;
       if (var0 == ScriptOpcodes.OC_NAME) {
          var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-         Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = WorldMapData_0.getItemDefinition(var3).name;
+         Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = WorldMapData_0.ItemDefinition_get(var3).name;
          return 1;
       } else {
          int var4;
@@ -308,7 +308,7 @@ public class MouseHandler implements MouseListener, MouseMotionListener, FocusLi
             Interpreter.Interpreter_intStackSize -= 2;
             var3 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
             var4 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
-            var5 = WorldMapData_0.getItemDefinition(var3);
+            var5 = WorldMapData_0.ItemDefinition_get(var3);
             if (var4 >= 1 && var4 <= 5 && var5.groundActions[var4 - 1] != null) {
                Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var5.groundActions[var4 - 1];
             } else {
@@ -320,7 +320,7 @@ public class MouseHandler implements MouseListener, MouseMotionListener, FocusLi
             Interpreter.Interpreter_intStackSize -= 2;
             var3 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
             var4 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
-            var5 = WorldMapData_0.getItemDefinition(var3);
+            var5 = WorldMapData_0.ItemDefinition_get(var3);
             if (var4 >= 1 && var4 <= 5 && var5.inventoryActions[var4 - 1] != null) {
                Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var5.inventoryActions[var4 - 1];
             } else {
@@ -330,17 +330,17 @@ public class MouseHandler implements MouseListener, MouseMotionListener, FocusLi
             return 1;
          } else if (var0 == ScriptOpcodes.OC_COST) {
             var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-            Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = WorldMapData_0.getItemDefinition(var3).price;
+            Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = WorldMapData_0.ItemDefinition_get(var3).price;
             return 1;
          } else if (var0 == ScriptOpcodes.OC_STACKABLE) {
             var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-            Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = WorldMapData_0.getItemDefinition(var3).isStackable == 1 ? 1 : 0;
+            Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = WorldMapData_0.ItemDefinition_get(var3).isStackable == 1 ? 1 : 0;
             return 1;
          } else {
             ItemDefinition var6;
             if (var0 == ScriptOpcodes.OC_CERT) {
                var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-               var6 = WorldMapData_0.getItemDefinition(var3);
+               var6 = WorldMapData_0.ItemDefinition_get(var3);
                if (var6.noteTemplate == -1 && var6.note >= 0) {
                   Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var6.note;
                } else {
@@ -350,7 +350,7 @@ public class MouseHandler implements MouseListener, MouseMotionListener, FocusLi
                return 1;
             } else if (var0 == ScriptOpcodes.OC_UNCERT) {
                var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-               var6 = WorldMapData_0.getItemDefinition(var3);
+               var6 = WorldMapData_0.ItemDefinition_get(var3);
                if (var6.noteTemplate >= 0 && var6.note >= 0) {
                   Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var6.note;
                } else {
@@ -360,11 +360,11 @@ public class MouseHandler implements MouseListener, MouseMotionListener, FocusLi
                return 1;
             } else if (var0 == ScriptOpcodes.OC_MEMBERS) {
                var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-               Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = WorldMapData_0.getItemDefinition(var3).isMembersOnly ? 1 : 0;
+               Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = WorldMapData_0.ItemDefinition_get(var3).isMembersOnly ? 1 : 0;
                return 1;
             } else if (var0 == ScriptOpcodes.OC_PLACEHOLDER) {
                var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-               var6 = WorldMapData_0.getItemDefinition(var3);
+               var6 = WorldMapData_0.ItemDefinition_get(var3);
                if (var6.placeholderTemplate == -1 && var6.placeholder >= 0) {
                   Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var6.placeholder;
                } else {
@@ -374,7 +374,7 @@ public class MouseHandler implements MouseListener, MouseMotionListener, FocusLi
                return 1;
             } else if (var0 == ScriptOpcodes.OC_UNPLACEHOLDER) {
                var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-               var6 = WorldMapData_0.getItemDefinition(var3);
+               var6 = WorldMapData_0.ItemDefinition_get(var3);
                if (var6.placeholderTemplate >= 0 && var6.placeholder >= 0) {
                   Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var6.placeholder;
                } else {

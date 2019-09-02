@@ -257,7 +257,7 @@ public class PlayerAppearance {
                   var9 = true;
                }
 
-               if (var11 >= 512 && !WorldMapData_0.getItemDefinition(var11 - 512).method4556(this.isFemale)) {
+               if (var11 >= 512 && !WorldMapData_0.ItemDefinition_get(var11 - 512).method4556(this.isFemale)) {
                   var9 = true;
                }
             }
@@ -288,7 +288,7 @@ public class PlayerAppearance {
                   }
 
                   if (var13 >= 512) {
-                     var14 = WorldMapData_0.getItemDefinition(var13 - 512).method4557(this.isFemale);
+                     var14 = WorldMapData_0.ItemDefinition_get(var13 - 512).method4557(this.isFemale);
                      if (var14 != null) {
                         var16[var11++] = var14;
                      }
@@ -349,7 +349,7 @@ public class PlayerAppearance {
                var1 = true;
             }
 
-            if (var3 >= 512 && !WorldMapData_0.getItemDefinition(var3 - 512).method4558(this.isFemale)) {
+            if (var3 >= 512 && !WorldMapData_0.ItemDefinition_get(var3 - 512).method4558(this.isFemale)) {
                var1 = true;
             }
          }
@@ -372,7 +372,7 @@ public class PlayerAppearance {
                }
 
                if (var5 >= 512) {
-                  var6 = WorldMapData_0.getItemDefinition(var5 - 512).method4559(this.isFemale);
+                  var6 = WorldMapData_0.ItemDefinition_get(var5 - 512).method4559(this.isFemale);
                   if (var6 != null) {
                      var7[var3++] = var6;
                   }

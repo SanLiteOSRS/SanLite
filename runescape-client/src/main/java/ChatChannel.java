@@ -11,8 +11,8 @@ public class ChatChannel {
    @ObfuscatedSignature(
       signature = "[Lbl;"
    )
-   @Export("worlds")
-   static World[] worlds;
+   @Export("World_worlds")
+   static World[] World_worlds;
    @ObfuscatedName("j")
    @ObfuscatedSignature(
       signature = "[Lbi;"

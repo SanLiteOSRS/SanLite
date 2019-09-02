@@ -91,8 +91,8 @@ public class WorldMapData_0 extends AbstractWorldMapData {
       signature = "(II)Liu;",
       garbageValue = "-1815953126"
    )
-   @Export("getItemDefinition")
-   public static ItemDefinition getItemDefinition(int var0) {
+   @Export("ItemDefinition_get")
+   public static ItemDefinition ItemDefinition_get(int var0) {
       ItemDefinition var1 = (ItemDefinition)ItemDefinition.ItemDefinition_cached.get((long)var0);
       if (var1 != null) {
          return var1;
@@ -106,15 +106,15 @@ public class WorldMapData_0 extends AbstractWorldMapData {
 
          var1.post();
          if (var1.noteTemplate != -1) {
-            var1.genCert(getItemDefinition(var1.noteTemplate), getItemDefinition(var1.note));
+            var1.genCert(ItemDefinition_get(var1.noteTemplate), ItemDefinition_get(var1.note));
          }
 
          if (var1.notedId != -1) {
-            var1.genBought(getItemDefinition(var1.notedId), getItemDefinition(var1.unnotedId));
+            var1.genBought(ItemDefinition_get(var1.notedId), ItemDefinition_get(var1.unnotedId));
          }
 
          if (var1.placeholderTemplate != -1) {
-            var1.genPlaceholder(getItemDefinition(var1.placeholderTemplate), getItemDefinition(var1.placeholder));
+            var1.genPlaceholder(ItemDefinition_get(var1.placeholderTemplate), ItemDefinition_get(var1.placeholder));
          }
 
          if (!UrlRequester.inMembersWorld && var1.isMembersOnly) {
@@ -201,8 +201,8 @@ public class WorldMapData_0 extends AbstractWorldMapData {
          String var11;
          if (var7 < 0) {
             var11 = "";
-         } else if (Client.menuTargetNames[var7].length() > 0) {
-            var11 = Client.menuActions[var7] + " " + Client.menuTargetNames[var7];
+         } else if (Client.menuTargets[var7].length() > 0) {
+            var11 = Client.menuActions[var7] + " " + Client.menuTargets[var7];
          } else {
             var11 = Client.menuActions[var7];
          }

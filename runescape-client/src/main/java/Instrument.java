@@ -12,7 +12,7 @@ public class Instrument {
    static int[] Instrument_samples;
    @ObfuscatedName("z")
    @Export("Instrument_noise")
-   static int[] Instrument_noise = new int['耀'];
+   static int[] Instrument_noise = new int[32768];
    @ObfuscatedName("a")
    @Export("Instrument_sine")
    static int[] Instrument_sine;
@@ -121,7 +121,7 @@ public class Instrument {
          Instrument_noise[var1] = (var0.nextInt() & 2) - 1;
       }
 
-      Instrument_sine = new int['耀'];
+      Instrument_sine = new int[32768];
 
       for(var1 = 0; var1 < 32768; ++var1) {
          Instrument_sine[var1] = (int)(Math.sin((double)var1 / 5215.1903D) * 16384.0D);
@@ -197,7 +197,7 @@ public class Instrument {
             if (this.volumeMultiplier != null) {
                var14 = this.volumeMultiplier.doStep(var1);
                var15 = this.volumeMultiplierAmplitude.doStep(var1);
-               var13 = var13 * ((this.evaluateWave(var10, var15, this.volumeMultiplier.form) >> 1) + '耀') >> 15;
+               var13 = var13 * ((this.evaluateWave(var10, var15, this.volumeMultiplier.form) >> 1) + 32768) >> 15;
                var10 = var10 + var9 + (var14 * var8 >> 16);
             }
 

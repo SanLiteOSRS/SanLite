@@ -641,7 +641,8 @@ public class Widget extends Node {
    @Export("children")
    public Widget[] children;
    @ObfuscatedName("fz")
-   public boolean field2546;
+   @Export("containsMouse")
+   public boolean containsMouse;
    @ObfuscatedName("fd")
    public boolean field2610;
    @ObfuscatedName("fi")
@@ -741,7 +742,7 @@ public class Widget extends Node {
       this.itemQuantity = 0;
       this.modelFrame = 0;
       this.modelFrameCycle = 0;
-      this.field2546 = false;
+      this.containsMouse = false;
       this.field2610 = false;
       this.field2679 = -1;
       this.field2680 = 0;
@@ -1395,7 +1396,7 @@ public class Widget extends Node {
             }
 
             if (var5 == 4) {
-               ItemDefinition var9 = WorldMapData_0.getItemDefinition(var6);
+               ItemDefinition var9 = WorldMapData_0.ItemDefinition_get(var6);
                var8 = var9.method4553(10);
                if (var8 == null) {
                   field2579 = true;

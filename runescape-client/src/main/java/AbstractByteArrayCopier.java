@@ -79,7 +79,7 @@ public abstract class AbstractByteArrayCopier {
                   var9 += var2[var4++];
                   var10 = WorldMapElement.getWidget(var9);
                   var11 = var2[var4++];
-                  if (var11 != -1 && (!WorldMapData_0.getItemDefinition(var11).isMembersOnly || Client.isMembersWorld)) {
+                  if (var11 != -1 && (!WorldMapData_0.ItemDefinition_get(var11).isMembersOnly || Client.isMembersWorld)) {
                      for(var12 = 0; var12 < var10.itemIds.length; ++var12) {
                         if (var11 + 1 == var10.itemIds[var12]) {
                            var7 += var10.itemQuantities[var12];
@@ -117,7 +117,7 @@ public abstract class AbstractByteArrayCopier {
                   var9 += var2[var4++];
                   var10 = WorldMapElement.getWidget(var9);
                   var11 = var2[var4++];
-                  if (var11 != -1 && (!WorldMapData_0.getItemDefinition(var11).isMembersOnly || Client.isMembersWorld)) {
+                  if (var11 != -1 && (!WorldMapData_0.ItemDefinition_get(var11).isMembersOnly || Client.isMembersWorld)) {
                      for(var12 = 0; var12 < var10.itemIds.length; ++var12) {
                         if (var11 + 1 == var10.itemIds[var12]) {
                            var7 = 999999999;

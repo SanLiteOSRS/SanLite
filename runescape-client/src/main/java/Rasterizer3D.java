@@ -71,7 +71,7 @@ public class Rasterizer3D extends Rasterizer2D {
    static {
       int var0;
       for(var0 = 1; var0 < 512; ++var0) {
-         field1764[var0] = '耀' / var0;
+         field1764[var0] = 32768 / var0;
       }
 
       for(var0 = 1; var0 < 2048; ++var0) {
@@ -1420,7 +1420,7 @@ public class Rasterizer3D extends Rasterizer2D {
 
    @ObfuscatedName("y")
    static final void method2938(int var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, int var9, int var10, int var11, int var12, int var13, int var14, int var15, int var16, int var17, int var18) {
-      int[] var19 = Rasterizer3D_textureLoader.load(var18);
+      int[] var19 = Rasterizer3D_textureLoader.getTexturePixels(var18);
       int var20;
       if (var19 == null) {
          var20 = Rasterizer3D_textureLoader.getAverageTextureRGB(var18);
@@ -2462,7 +2462,7 @@ public class Rasterizer3D extends Rasterizer2D {
 
    @ObfuscatedName("g")
    static final void method2994(int var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, int var9, int var10, int var11, int var12, int var13, int var14, int var15, int var16, int var17, int var18) {
-      int[] var19 = Rasterizer3D_textureLoader.load(var18);
+      int[] var19 = Rasterizer3D_textureLoader.getTexturePixels(var18);
       int var20;
       if (var19 == null) {
          var20 = Rasterizer3D_textureLoader.getAverageTextureRGB(var18);

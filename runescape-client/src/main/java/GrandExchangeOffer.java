@@ -155,7 +155,7 @@ public class GrandExchangeOffer {
          int var5 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
          var3.itemId = var4;
          var3.itemQuantity = var5;
-         ItemDefinition var6 = WorldMapData_0.getItemDefinition(var4);
+         ItemDefinition var6 = WorldMapData_0.ItemDefinition_get(var4);
          var3.modelAngleX = var6.xan2d;
          var3.modelAngleY = var6.yan2d;
          var3.modelAngleZ = var6.zan2d;

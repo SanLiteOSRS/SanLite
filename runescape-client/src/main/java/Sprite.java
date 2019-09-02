@@ -268,8 +268,8 @@ public final class Sprite extends Rasterizer2D {
    }
 
    @ObfuscatedName("c")
-   @Export("drawAt2")
-   public void drawAt2(int var1, int var2) {
+   @Export("drawTransBgAt")
+   public void drawTransBgAt(int var1, int var2) {
       var1 += this.yOffset;
       var2 += this.xOffset;
       int var3 = var1 + var2 * Rasterizer2D.Rasterizer2D_width;
@@ -381,7 +381,7 @@ public final class Sprite extends Rasterizer2D {
    @Export("drawAtTransOverlay")
    public void drawAtTransOverlay(int var1, int var2, int var3, int var4) {
       if (var3 == 256) {
-         this.drawAt2(var1, var2);
+         this.drawTransBgAt(var1, var2);
       } else {
          var1 += this.yOffset;
          var2 += this.xOffset;

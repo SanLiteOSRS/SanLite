@@ -49,11 +49,11 @@ public class class173 {
             Buffer var1 = new Buffer(var0);
             var1.readInt();
             World.worldsCount = var1.readUnsignedShort();
-            ChatChannel.worlds = new World[World.worldsCount];
+            ChatChannel.World_worlds = new World[World.worldsCount];
 
             World var3;
             for(int var2 = 0; var2 < World.worldsCount; var3.index = var2++) {
-               var3 = ChatChannel.worlds[var2] = new World();
+               var3 = ChatChannel.World_worlds[var2] = new World();
                var3.id = var1.readUnsignedShort();
                var3.properties = var1.readInt();
                var3.host = var1.readStringCp1252NullTerminated();
@@ -62,7 +62,7 @@ public class class173 {
                var3.population = var1.readShort();
             }
 
-            Tile.sortWorlds(ChatChannel.worlds, 0, ChatChannel.worlds.length - 1, World.sortOption1, World.sortOption2);
+            Tile.sortWorlds(ChatChannel.World_worlds, 0, ChatChannel.World_worlds.length - 1, World.sortOption1, World.sortOption2);
             IgnoreList.field3576 = null;
             return true;
          }

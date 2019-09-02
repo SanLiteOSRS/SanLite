@@ -137,7 +137,7 @@ public class class51 {
 
             for(var5 = 0; var5 < Client.menuOptionsCount; ++var5) {
                if (Client.menuOpcodes[var5] == 23) {
-                  Client.menuTargetNames[var5] = class16.colorStartTag(16777215) + var4;
+                  Client.menuTargets[var5] = class16.colorStartTag(16777215) + var4;
                   break;
                }
             }

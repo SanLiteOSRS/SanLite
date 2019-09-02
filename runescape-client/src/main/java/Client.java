@@ -1187,14 +1187,14 @@ public final class Client extends GameShell implements Usernamed {
    @Export("menuOpcodes")
    static int[] menuOpcodes;
    @ObfuscatedName("lm")
-   @Export("menuArguments0")
-   static int[] menuArguments0;
+   @Export("menuIdentifiers")
+   static int[] menuIdentifiers;
    @ObfuscatedName("lh")
    @Export("menuActions")
    static String[] menuActions;
    @ObfuscatedName("lp")
-   @Export("menuTargetNames")
-   static String[] menuTargetNames;
+   @Export("menuTargets")
+   static String[] menuTargets;
    @ObfuscatedName("lj")
    @Export("menuShiftClick")
    static boolean[] menuShiftClick;
@@ -1277,9 +1277,9 @@ public final class Client extends GameShell implements Usernamed {
       Login_isUsernameRemembered = false;
       secureRandomFuture = new SecureRandomFuture();
       field863 = null;
-      npcs = new NPC['耀'];
+      npcs = new NPC[32768];
       npcCount = 0;
-      npcIndices = new int['耀'];
+      npcIndices = new int[32768];
       field861 = 0;
       field669 = new int[250];
       packetWriter = new PacketWriter();
@@ -1376,9 +1376,9 @@ public final class Client extends GameShell implements Usernamed {
       menuArguments1 = new int[500];
       menuArguments2 = new int[500];
       menuOpcodes = new int[500];
-      menuArguments0 = new int[500];
+      menuIdentifiers = new int[500];
       menuActions = new String[500];
-      menuTargetNames = new String[500];
+      menuTargets = new String[500];
       menuShiftClick = new boolean[500];
       followerOpsLowPriority = false;
       shiftClickDrop = false;
@@ -3939,11 +3939,11 @@ public final class Client extends GameShell implements Usernamed {
       Rasterizer2D.Rasterizer2D_resetClip();
       if (showMouseCross) {
          if (mouseCrossColor == 1) {
-            DefaultsGroup.crossSprites[mouseCrossState * 20 / 100].drawAt2(mouseCrossX - 8, mouseCrossY - 8);
+            DefaultsGroup.crossSprites[mouseCrossState * 20 / 100].drawTransBgAt(mouseCrossX - 8, mouseCrossY - 8);
          }
 
          if (mouseCrossColor == 2) {
-            DefaultsGroup.crossSprites[mouseCrossState * 20 / 100 + 4].drawAt2(mouseCrossX - 8, mouseCrossY - 8);
+            DefaultsGroup.crossSprites[mouseCrossState * 20 / 100 + 4].drawTransBgAt(mouseCrossX - 8, mouseCrossY - 8);
          }
       }
 
@@ -3962,8 +3962,8 @@ public final class Client extends GameShell implements Usernamed {
                   String var5;
                   if (var3 < 0) {
                      var5 = "";
-                  } else if (menuTargetNames[var3].length() > 0) {
-                     var5 = menuActions[var3] + " " + menuTargetNames[var3];
+                  } else if (menuTargets[var3].length() > 0) {
+                     var5 = menuActions[var3] + " " + menuTargets[var3];
                   } else {
                      var5 = menuActions[var3];
                   }
@@ -4728,7 +4728,7 @@ public final class Client extends GameShell implements Usernamed {
                      return true;
                   }
 
-                  var42 = WorldMapData_0.getItemDefinition(var5);
+                  var42 = WorldMapData_0.ItemDefinition_get(var5);
                   var41.modelType = 4;
                   var41.modelId = var5;
                   var41.modelAngleX = var42.xan2d;
@@ -4738,7 +4738,7 @@ public final class Client extends GameShell implements Usernamed {
                } else {
                   var41.itemId = var5;
                   var41.itemQuantity = var6;
-                  var42 = WorldMapData_0.getItemDefinition(var5);
+                  var42 = WorldMapData_0.ItemDefinition_get(var5);
                   var41.modelAngleX = var42.xan2d;
                   var41.modelAngleY = var42.yan2d;
                   var41.modelAngleZ = var42.zan2d;
@@ -5418,9 +5418,9 @@ public final class Client extends GameShell implements Usernamed {
                         var8 = menuArguments1[var18];
                         var19 = menuArguments2[var18];
                         var10 = menuOpcodes[var18];
-                        int var17 = menuArguments0[var18];
+                        int var17 = menuIdentifiers[var18];
                         String var12 = menuActions[var18];
-                        String var13 = menuTargetNames[var18];
+                        String var13 = menuTargets[var18];
                         SecureRandomFuture.menuAction(var8, var19, var10, var17, var12, var13, MouseHandler.MouseHandler_lastPressedX, MouseHandler.MouseHandler_lastPressedY);
                      }
 
@@ -5457,9 +5457,9 @@ public final class Client extends GameShell implements Usernamed {
                      var3 = menuArguments1[var2];
                      var4 = menuArguments2[var2];
                      var5 = menuOpcodes[var2];
-                     var6 = menuArguments0[var2];
+                     var6 = menuIdentifiers[var2];
                      String var15 = menuActions[var2];
-                     String var16 = menuTargetNames[var2];
+                     String var16 = menuTargets[var2];
                      SecureRandomFuture.menuAction(var3, var4, var5, var6, var15, var16, MouseHandler.MouseHandler_lastPressedX, MouseHandler.MouseHandler_lastPressedY);
                   }
 
@@ -5494,7 +5494,7 @@ public final class Client extends GameShell implements Usernamed {
                class1.tempMenuAction.argument1 = menuArguments1[var2];
                class1.tempMenuAction.argument2 = menuArguments2[var2];
                class1.tempMenuAction.opcode = menuOpcodes[var2];
-               class1.tempMenuAction.argument0 = menuArguments0[var2];
+               class1.tempMenuAction.argument0 = menuIdentifiers[var2];
                class1.tempMenuAction.action = menuActions[var2];
             }
 
@@ -5972,7 +5972,7 @@ public final class Client extends GameShell implements Usernamed {
       int var3 = 0;
 
       for(int var4 = 0; var4 < MouseRecorder.ItemDefinition_fileCount; ++var4) {
-         ItemDefinition var5 = WorldMapData_0.getItemDefinition(var4);
+         ItemDefinition var5 = WorldMapData_0.ItemDefinition_get(var4);
          if ((!var1 || var5.isTradable) && var5.noteTemplate * -600977204 == -1 && var5.name.toLowerCase().indexOf(var0) != -1) {
             if (var3 >= 250) {
                Language.foundItemIdCount = -1;
@@ -6000,7 +6000,7 @@ public final class Client extends GameShell implements Usernamed {
       String[] var8 = new String[Language.foundItemIdCount * 1188384709];
 
       for(int var9 = 0; var9 < Language.foundItemIdCount * -269707746; ++var9) {
-         var8[var9] = WorldMapData_0.getItemDefinition(var2[var9]).name;
+         var8[var9] = WorldMapData_0.ItemDefinition_get(var2[var9]).name;
       }
 
       short[] var10 = SecureRandomCallable.foundItemIds;

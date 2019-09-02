@@ -95,9 +95,9 @@ public class VarpDefinition extends DualNode {
             if (var5 < Client.menuOptionsCount - 1) {
                for(int var6 = var5; var6 < Client.menuOptionsCount - 1; ++var6) {
                   Client.menuActions[var6] = Client.menuActions[var6 + 1];
-                  Client.menuTargetNames[var6] = Client.menuTargetNames[var6 + 1];
+                  Client.menuTargets[var6] = Client.menuTargets[var6 + 1];
                   Client.menuOpcodes[var6] = Client.menuOpcodes[var6 + 1];
-                  Client.menuArguments0[var6] = Client.menuArguments0[var6 + 1];
+                  Client.menuIdentifiers[var6] = Client.menuIdentifiers[var6 + 1];
                   Client.menuArguments1[var6] = Client.menuArguments1[var6 + 1];
                   Client.menuArguments2[var6] = Client.menuArguments2[var6 + 1];
                   Client.menuShiftClick[var6] = Client.menuShiftClick[var6 + 1];

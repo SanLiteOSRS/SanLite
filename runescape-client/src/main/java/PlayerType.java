@@ -99,7 +99,7 @@ public enum PlayerType implements Enumerated {
    public static final void method4048(int var0, boolean var1, int var2) {
       if (var0 >= 8000 && var0 <= 48000) {
          PcmPlayer.PcmPlayer_sampleRate = var0;
-         PcmPlayer.isStereo = var1;
+         PcmPlayer.PcmPlayer_stereo = var1;
          FloorDecoration.pcmPlayerCount = var2;
       } else {
          throw new IllegalArgumentException();

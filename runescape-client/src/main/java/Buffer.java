@@ -311,7 +311,7 @@ public class Buffer extends Node {
       if (var1 >= 0 && var1 < 128) {
          this.writeByte(var1);
       } else if (var1 >= 0 && var1 < 32768) {
-         this.writeShort(var1 + '耀');
+         this.writeShort(var1 + 32768);
       } else {
          throw new IllegalArgumentException();
       }
@@ -540,7 +540,7 @@ public class Buffer extends Node {
    @Export("readUShortSmart")
    public int readUShortSmart() {
       int var1 = this.array[this.offset] & 255;
-      return var1 < 128 ? this.readUnsignedByte() : this.readUnsignedShort() - '耀';
+      return var1 < 128 ? this.readUnsignedByte() : this.readUnsignedShort() - 32768;
    }
 
    @ObfuscatedName("ce")

@@ -12,7 +12,7 @@ public interface TextureLoader {
       garbageValue = "-414302740"
    )
    @Export("load")
-   int[] load(int var1);
+   int[] getTexturePixels(int var1);
 
    @ObfuscatedName("k")
    @ObfuscatedSignature(

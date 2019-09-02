@@ -58,7 +58,7 @@ public class class65 extends RouteStrategy {
 
       World.sortOption1 = var2;
       World.sortOption2 = var3;
-      Tile.sortWorlds(ChatChannel.worlds, 0, ChatChannel.worlds.length - 1, World.sortOption1, World.sortOption2);
+      Tile.sortWorlds(ChatChannel.World_worlds, 0, ChatChannel.World_worlds.length - 1, World.sortOption1, World.sortOption2);
    }
 
    @ObfuscatedName("c")
@@ -141,7 +141,7 @@ public class class65 extends RouteStrategy {
             if (var0.targetIndex < 32768) {
                var1 = Client.npcs[var0.targetIndex];
             } else if (var0.targetIndex >= 32768) {
-               var1 = Client.players[var0.targetIndex - '耀'];
+               var1 = Client.players[var0.targetIndex - 32768];
             }
 
             if (var1 != null) {

@@ -627,7 +627,7 @@ public class WorldMapElement extends DualNode {
       if (Client.hintArrowType == 2) {
          WorldMapAreaData.worldToScreen(Client.hintArrowSubX * 64 + (Client.hintArrowX - PacketWriter.baseX * 64 << 7), (Client.hintArrowY - RouteStrategy.baseY * 64 << 7) + Client.hintArrowSubY * 4096, Client.hintArrowHeight * 4);
          if (Client.viewportTempX > -1 && Client.cycle % 20 < 10) {
-            WorldMapData_1.headIconHintSprites[0].drawAt2(var0 + Client.viewportTempX - 12, Client.viewportTempY + var1 - 28);
+            WorldMapData_1.headIconHintSprites[0].drawTransBgAt(var0 + Client.viewportTempX - 12, Client.viewportTempY + var1 - 28);
          }
       }
 

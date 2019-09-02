@@ -138,7 +138,7 @@ final class GrandExchangeOfferAgeComparator implements Comparator {
    )
    @Export("getNextWorldListWorld")
    static World getNextWorldListWorld() {
-      return World.worldListWorldCount < World.worldsCount ? ChatChannel.worlds[++World.worldListWorldCount - 1] : null;
+      return World.worldListWorldCount < World.worldsCount ? ChatChannel.World_worlds[++World.worldListWorldCount - 1] : null;
    }
 
    @ObfuscatedName("g")

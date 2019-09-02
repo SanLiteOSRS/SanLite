@@ -345,7 +345,7 @@ public enum WorldMapSectionType implements Enumerated {
                                     if (var10.inventorySprites != null && var19 < 20) {
                                        Sprite var43 = var10.getInventorySprite(var19);
                                        if (var43 != null) {
-                                          var43.drawAt2(var22, var23);
+                                          var43.drawTransBgAt(var22, var23);
                                        } else if (Widget.field2579) {
                                           FriendSystem.method1822(var10);
                                        }
@@ -416,7 +416,7 @@ public enum WorldMapSectionType implements Enumerated {
                                           } else if (var10 == Actor.field978 && var19 == Client.field730) {
                                              var27.method6010(var22, var23, 128);
                                           } else {
-                                             var27.drawAt2(var22, var23);
+                                             var27.drawTransBgAt(var22, var23);
                                           }
                                        } else {
                                           FriendSystem.method1822(var10);
@@ -487,7 +487,7 @@ public enum WorldMapSectionType implements Enumerated {
                                  }
 
                                  if (var10.isIf3 && var10.itemId != -1) {
-                                    ItemDefinition var47 = WorldMapData_0.getItemDefinition(var10.itemId);
+                                    ItemDefinition var47 = WorldMapData_0.ItemDefinition_get(var10.itemId);
                                     var45 = var47.name;
                                     if (var45 == null) {
                                        var45 = "null";
@@ -514,7 +514,7 @@ public enum WorldMapSectionType implements Enumerated {
                               if (!var10.isIf3) {
                                  var40 = var10.getSprite(UserComparator10.runCs1(var10));
                                  if (var40 != null) {
-                                    var40.drawAt2(var12, var13);
+                                    var40.drawTransBgAt(var12, var13);
                                  } else if (Widget.field2579) {
                                     FriendSystem.method1822(var10);
                                  }
@@ -539,7 +539,7 @@ public enum WorldMapSectionType implements Enumerated {
                                        } else if (var14 != 0) {
                                           var40.method6018(var12, var13, var10.width, var10.height, 256 - (var14 & 255));
                                        } else if (var20 == var10.width && var21 == var10.height) {
-                                          var40.drawAt2(var12, var13);
+                                          var40.drawTransBgAt(var12, var13);
                                        } else {
                                           var40.method6066(var12, var13, var10.width, var10.height);
                                        }
@@ -555,7 +555,7 @@ public enum WorldMapSectionType implements Enumerated {
                                              } else if (var14 != 0) {
                                                 var40.method6010(var12 + var20 * var24, var13 + var25 * var21, 256 - (var14 & 255));
                                              } else {
-                                                var40.drawAt2(var12 + var20 * var24, var13 + var21 * var25);
+                                                var40.drawTransBgAt(var12 + var20 * var24, var13 + var21 * var25);
                                              }
                                           }
                                        }
@@ -577,7 +577,7 @@ public enum WorldMapSectionType implements Enumerated {
                                  Model var42 = null;
                                  var22 = 0;
                                  if (var10.itemId != -1) {
-                                    var33 = WorldMapData_0.getItemDefinition(var10.itemId);
+                                    var33 = WorldMapData_0.ItemDefinition_get(var10.itemId);
                                     if (var33 != null) {
                                        var33 = var33.getCountObj(var10.itemQuantity);
                                        var42 = var33.getModel(1);
@@ -639,7 +639,7 @@ public enum WorldMapSectionType implements Enumerated {
                                     for(var21 = 0; var21 < var10.rawHeight; ++var21) {
                                        for(var22 = 0; var22 < var10.rawWidth; ++var22) {
                                           if (var10.itemIds[var20] > 0) {
-                                             var33 = WorldMapData_0.getItemDefinition(var10.itemIds[var20] - 1);
+                                             var33 = WorldMapData_0.ItemDefinition_get(var10.itemIds[var20] - 1);
                                              String var31;
                                              if (var33.isStackable != 1 && var10.itemQuantities[var20] == 1) {
                                                 var31 = class16.colorStartTag(16748608) + var33.name + "</col>";

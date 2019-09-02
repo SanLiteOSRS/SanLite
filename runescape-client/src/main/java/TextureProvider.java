@@ -112,8 +112,8 @@ public class TextureProvider implements TextureLoader {
       signature = "(II)[I",
       garbageValue = "-414302740"
    )
-   @Export("load")
-   public int[] load(int var1) {
+   @Export("getTexturePixels")
+   public int[] getTexturePixels(int var1) {
       Texture var2 = this.textures[var1];
       if (var2 != null) {
          if (var2.pixels != null) {

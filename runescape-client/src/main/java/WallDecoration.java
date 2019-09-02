@@ -223,8 +223,8 @@ public final class WallDecoration {
                var4 = null;
 
                for(var5 = 0; var5 < World.worldsCount; ++var5) {
-                  if (var7 == ChatChannel.worlds[var5].id) {
-                     var4 = ChatChannel.worlds[var5];
+                  if (var7 == ChatChannel.World_worlds[var5].id) {
+                     var4 = ChatChannel.World_worlds[var5];
                      break;
                   }
                }
@@ -291,9 +291,9 @@ public final class WallDecoration {
                      var8 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
                      var9 = VarcInt.getParamDefinition(var8);
                      if (var9.isString()) {
-                        Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = WorldMapData_0.getItemDefinition(var7).getStringParam(var8, var9.defaultStr);
+                        Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = WorldMapData_0.ItemDefinition_get(var7).getStringParam(var8, var9.defaultStr);
                      } else {
-                        Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = WorldMapData_0.getItemDefinition(var7).getIntParam(var8, var9.defaultInt);
+                        Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = WorldMapData_0.ItemDefinition_get(var7).getIntParam(var8, var9.defaultInt);
                      }
 
                      return 1;
@@ -343,7 +343,7 @@ public final class WallDecoration {
             } else {
                var7 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
                if (var7 >= 0 && var7 < World.worldsCount) {
-                  var4 = ChatChannel.worlds[var7];
+                  var4 = ChatChannel.World_worlds[var7];
                   Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var4.id;
                   Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var4.properties;
                   Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var4.activity;

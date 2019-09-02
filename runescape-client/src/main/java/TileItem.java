@@ -30,7 +30,7 @@ public final class TileItem extends Entity {
    )
    @Export("getModel")
    protected final Model getModel() {
-      return WorldMapData_0.getItemDefinition(this.id).getModel(this.quantity);
+      return WorldMapData_0.ItemDefinition_get(this.id).getModel(this.quantity);
    }
 
    @ObfuscatedName("u")

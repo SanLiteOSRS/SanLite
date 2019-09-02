@@ -203,7 +203,7 @@ public class MusicPatchNode extends Node {
          }
 
          if (Login.hoveredWorldIndex != -1) {
-            World var5 = ChatChannel.worlds[Login.hoveredWorldIndex];
+            World var5 = ChatChannel.World_worlds[Login.hoveredWorldIndex];
             class65.changeWorld(var5);
             class13.method163();
             return;
