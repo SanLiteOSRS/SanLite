@@ -3,24 +3,24 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cc")
+@ObfuscatedName("ca")
 @Implements("SoundEffect")
 public class SoundEffect {
-	@ObfuscatedName("w")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
-		signature = "[Lde;"
+		signature = "[Ldn;"
 	)
 	@Export("instruments")
 	Instrument[] instruments;
-	@ObfuscatedName("e")
+	@ObfuscatedName("i")
 	@Export("start")
 	int start;
-	@ObfuscatedName("p")
+	@ObfuscatedName("k")
 	@Export("end")
 	int end;
 
 	@ObfuscatedSignature(
-		signature = "(Lkf;)V"
+		signature = "(Lky;)V"
 	)
 	SoundEffect(Buffer var1) {
 		this.instruments = new Instrument[10];
@@ -38,9 +38,9 @@ public class SoundEffect {
 		this.end = var1.readUnsignedShort();
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
-		signature = "()Lcd;"
+		signature = "()Lco;"
 	)
 	@Export("toRawSound")
 	public RawSound toRawSound() {
@@ -48,7 +48,7 @@ public class SoundEffect {
 		return new RawSound(22050, var1, this.start * 22050 / 1000, this.end * 22050 / 1000);
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("i")
 	@Export("calculateDelay")
 	public final int calculateDelay() {
 		int var1 = 9999999;
@@ -78,11 +78,12 @@ public class SoundEffect {
 			}
 
 			return var1;
+		} else {
+			return 0;
 		}
-		return 0;
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("k")
 	@Export("mix")
 	final byte[] mix() {
 		int var1 = 0;
@@ -96,33 +97,34 @@ public class SoundEffect {
 
 		if (var1 == 0) {
 			return new byte[0];
-		}
-		var2 = var1 * 22050 / 1000;
-		byte[] var3 = new byte[var2];
+		} else {
+			var2 = var1 * 22050 / 1000;
+			byte[] var3 = new byte[var2];
 
-		for (int var4 = 0; var4 < 10; ++var4) {
-			if (this.instruments[var4] != null) {
-				int var5 = this.instruments[var4].duration * 22050 / 1000;
-				int var6 = this.instruments[var4].offset * 22050 / 1000;
-				int[] var7 = this.instruments[var4].synthesize(var5, this.instruments[var4].duration);
+			for (int var4 = 0; var4 < 10; ++var4) {
+				if (this.instruments[var4] != null) {
+					int var5 = this.instruments[var4].duration * 22050 / 1000;
+					int var6 = this.instruments[var4].offset * 22050 / 1000;
+					int[] var7 = this.instruments[var4].synthesize(var5, this.instruments[var4].duration);
 
-				for (int var8 = 0; var8 < var5; ++var8) {
-					int var9 = (var7[var8] >> 8) + var3[var8 + var6];
-					if ((var9 + 128 & -256) != 0) {
-						var9 = var9 >> 31 ^ 127;
+					for (int var8 = 0; var8 < var5; ++var8) {
+						int var9 = (var7[var8] >> 8) + var3[var8 + var6];
+						if ((var9 + 128 & -256) != 0) {
+							var9 = var9 >> 31 ^ 127;
+						}
+
+						var3[var8 + var6] = (byte)var9;
 					}
-
-					var3[var8 + var6] = (byte)var9;
 				}
 			}
-		}
 
-		return var3;
+			return var3;
+		}
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		signature = "(Lhp;II)Lcc;"
+		signature = "(Lhz;II)Lca;"
 	)
 	@Export("readSoundEffect")
 	public static SoundEffect readSoundEffect(AbstractArchive var0, int var1, int var2) {

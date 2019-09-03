@@ -4,75 +4,76 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jc")
+@ObfuscatedName("jo")
 @Implements("FriendsList")
 public class FriendsList extends UserList {
-	@ObfuscatedName("e")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		signature = "Lmu;"
+		signature = "Llu;"
 	)
 	@Export("loginType")
 	final LoginType loginType;
-	@ObfuscatedName("f")
+	@ObfuscatedName("d")
 	@ObfuscatedGetter(
-		intValue = -374978569
+		intValue = 1273879743
 	)
-	int field3643;
-	@ObfuscatedName("m")
+	int field3600;
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "Lje;"
+		signature = "Ljf;"
 	)
 	@Export("friendLoginUpdates")
 	public LinkDeque friendLoginUpdates;
 
 	@ObfuscatedSignature(
-		signature = "(Lmu;)V"
+		signature = "(Llu;)V"
 	)
 	public FriendsList(LoginType var1) {
 		super(400);
-		this.field3643 = 1;
+		this.field3600 = 1;
 		this.friendLoginUpdates = new LinkDeque();
 		this.loginType = var1;
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		signature = "(I)Ljd;",
-		garbageValue = "2016619159"
+		signature = "(I)Lju;",
+		garbageValue = "-192021045"
 	)
 	@Export("newInstance")
 	User newInstance() {
 		return new Friend();
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
-		signature = "(II)[Ljd;",
-		garbageValue = "2126056206"
+		signature = "(II)[Lju;",
+		garbageValue = "518998026"
 	)
 	@Export("newTypedArray")
 	User[] newTypedArray(int var1) {
 		return new Friend[var1];
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		signature = "(Ljv;ZI)Z",
-		garbageValue = "547540517"
+		signature = "(Ljx;ZI)Z",
+		garbageValue = "-1515368457"
 	)
 	@Export("isFriended")
 	public boolean isFriended(Username var1, boolean var2) {
 		Friend var3 = (Friend)this.getByUsername(var1);
 		if (var3 == null) {
 			return false;
+		} else {
+			return !var2 || var3.world != 0;
 		}
-		return !var2 || var3.world != 0;
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		signature = "(Lkf;II)V",
-		garbageValue = "2066125669"
+		signature = "(Lky;IB)V",
+		garbageValue = "0"
 	)
 	@Export("read")
 	public void read(Buffer var1, int var2) {
@@ -97,7 +98,7 @@ public class FriendsList extends UserList {
 					Friend var11 = (Friend)this.getByCurrentUsername(var4);
 					if (var3) {
 						Friend var12 = (Friend)this.getByCurrentUsername(var5);
-						if (var12 != null && var11 != var12) {
+						if (var12 != null && var12 != var11) {
 							if (var11 != null) {
 								this.remove(var12);
 							} else {
@@ -136,17 +137,17 @@ public class FriendsList extends UserList {
 					}
 
 					if (var6 != var11.world) {
-						var11.int2 = ++this.field3643 - 1;
+						var11.int2 = ++this.field3600 - 1;
 						if (var11.world == -1 && var6 == 0) {
-							var11.int2 = -(var11.int2 * -782754599) * -1246846103;
+							var11.int2 = -(var11.int2 * 1037739243) * 1487463363;
 						}
 
 						var11.world = var6;
 					}
 
 					var11.rank = var7;
-					var11.field3650 = var9;
-					var11.field3651 = var10;
+					var11.field3607 = var9;
+					var11.field3606 = var10;
 					continue;
 				}
 
@@ -156,5 +157,49 @@ public class FriendsList extends UserList {
 			this.sort();
 			return;
 		}
+	}
+
+	@ObfuscatedName("fk")
+	@ObfuscatedSignature(
+		signature = "(Lbd;III)V",
+		garbageValue = "1475900100"
+	)
+	@Export("performPlayerAnimation")
+	static void performPlayerAnimation(Player var0, int var1, int var2) {
+		if (var0.sequence == var1 && var1 != -1) {
+			int var3 = Widget.SequenceDefinition_get(var1).field3492;
+			if (var3 == 1) {
+				var0.sequenceFrame = 0;
+				var0.sequenceFrameCycle = 0;
+				var0.sequenceDelay = var2;
+				var0.field964 = 0;
+			}
+
+			if (var3 == 2) {
+				var0.field964 = 0;
+			}
+		} else if (var1 == -1 || var0.sequence == -1 || Widget.SequenceDefinition_get(var1).field3508 >= Widget.SequenceDefinition_get(var0.sequence).field3508) {
+			var0.sequence = var1;
+			var0.sequenceFrame = 0;
+			var0.sequenceFrameCycle = 0;
+			var0.sequenceDelay = var2;
+			var0.field964 = 0;
+			var0.field947 = var0.pathLength;
+		}
+
+	}
+
+	@ObfuscatedName("ht")
+	@ObfuscatedSignature(
+		signature = "(IIIIB)V",
+		garbageValue = "-11"
+	)
+	static final void method5102(int var0, int var1, int var2, int var3) {
+		for (int var4 = 0; var4 < Client.rootWidgetCount; ++var4) {
+			if (Client.rootWidgetXs[var4] + Client.rootWidgetWidths[var4] > var0 && Client.rootWidgetXs[var4] < var0 + var2 && Client.rootWidgetYs[var4] + Client.rootWidgetHeights[var4] > var1 && Client.rootWidgetYs[var4] < var3 + var1) {
+				Client.field829[var4] = true;
+			}
+		}
+
 	}
 }

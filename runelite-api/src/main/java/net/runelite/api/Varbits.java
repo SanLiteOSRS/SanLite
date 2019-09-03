@@ -298,7 +298,7 @@ public enum Varbits
 	 * Theatre of Blood 1=In Party, 2=Inside/Spectator, 3=Dead Spectating
 	 */
 	THEATRE_OF_BLOOD(6440),
-	BLOAT_DOOR(6447),
+	TOB_ENCOUNTER_DOOR(6447), // 1 = Encounter started
 
 	/**
 	 * Theatre of Blood orb varbits each number stands for the player's health on a scale of 1-27 (I think), 0 hides the orb

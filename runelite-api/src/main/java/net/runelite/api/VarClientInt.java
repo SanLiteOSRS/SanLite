@@ -59,7 +59,7 @@ public enum VarClientInt
 	 *  5 = Prayer
 	 *  6 = Spellbook
 	 *  7 = Clan
-	 *  8 = Account Managment
+	 *  8 = Account Management
 	 *  9 = Friends
 	 *  10 = Logout
 	 *  11 = Options

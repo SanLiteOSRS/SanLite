@@ -25,13 +25,8 @@
 package net.runelite.client.ui.overlay;
 
 import com.google.common.base.Strings;
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics2D;
-import java.awt.Polygon;
-import java.awt.RenderingHints;
-import java.awt.Stroke;
+
+import java.awt.*;
 import java.awt.geom.Area;
 import java.awt.image.BufferedImage;
 import net.runelite.api.Actor;
@@ -197,6 +192,25 @@ public class OverlayUtil
 	public static void setGraphicProperties(Graphics2D graphics)
 	{
 		graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+	}
+
+	public static void renderTextLocation(Graphics2D graphics, String txtString, int fontSize, int fontStyle, Color fontColor, Point canvasPoint, boolean shadows, int yOffset)
+	{
+		graphics.setFont(new Font("RuneScape Standard", fontStyle, fontSize));
+		if (canvasPoint != null)
+		{
+			final Point canvasCenterPoint = new Point(
+					canvasPoint.getX(),
+					canvasPoint.getY() + yOffset);
+			final Point canvasCenterPoint_shadow = new Point(
+					canvasPoint.getX() + 1,
+					canvasPoint.getY() + 1);
+			if (shadows)
+			{
+				renderTextLocation(graphics, canvasCenterPoint_shadow, txtString, Color.BLACK);
+			}
+			renderTextLocation(graphics, canvasCenterPoint, txtString, fontColor);
+		}
 	}
 
 	public static java.awt.Point padPosition(OverlayPosition position, Dimension dimension, final int padding)

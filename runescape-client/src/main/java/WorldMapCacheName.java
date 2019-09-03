@@ -1,80 +1,83 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ae")
+@ObfuscatedName("ak")
 @Implements("WorldMapCacheName")
 public class WorldMapCacheName {
-	@ObfuscatedName("q")
+	@ObfuscatedName("sr")
 	@ObfuscatedSignature(
-		signature = "Lae;"
+		signature = "Llv;"
 	)
-	public static final WorldMapCacheName field308;
-	@ObfuscatedName("w")
+	@Export("worldMap")
+	static WorldMap worldMap;
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		signature = "Lae;"
+		signature = "Lak;"
 	)
-	public static final WorldMapCacheName field302;
-	@ObfuscatedName("e")
+	public static final WorldMapCacheName field295;
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
-		signature = "Lae;"
+		signature = "Lak;"
 	)
-	public static final WorldMapCacheName field303;
-	@ObfuscatedName("p")
+	public static final WorldMapCacheName field290;
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		signature = "Lae;"
+		signature = "Lak;"
 	)
-	static final WorldMapCacheName field304;
+	public static final WorldMapCacheName field291;
 	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "Lae;"
+		signature = "Lak;"
 	)
-	public static final WorldMapCacheName field305;
-	@ObfuscatedName("c")
-	public static short[] field309;
-	@ObfuscatedName("de")
+	static final WorldMapCacheName field292;
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "Liu;"
+		signature = "Lak;"
 	)
-	@Export("archive5")
-	static Archive archive5;
-	@ObfuscatedName("mj")
-	@ObfuscatedGetter(
-		intValue = -380277113
-	)
-	@Export("selectedSpellFlags")
-	static int selectedSpellFlags;
-	@ObfuscatedName("l")
+	public static final WorldMapCacheName field293;
+	@ObfuscatedName("n")
 	@Export("name")
 	public final String name;
 
 	static {
-		field308 = new WorldMapCacheName("details");
-		field302 = new WorldMapCacheName("compositemap");
-		field303 = new WorldMapCacheName("compositetexture");
-		field304 = new WorldMapCacheName("area");
-		field305 = new WorldMapCacheName("labels");
+		field295 = new WorldMapCacheName("details");
+		field290 = new WorldMapCacheName("compositemap");
+		field291 = new WorldMapCacheName("compositetexture");
+		field292 = new WorldMapCacheName("area");
+		field293 = new WorldMapCacheName("labels");
 	}
 
 	WorldMapCacheName(String var1) {
 		this.name = var1;
 	}
 
-	@ObfuscatedName("x")
+	@ObfuscatedName("fw")
 	@ObfuscatedSignature(
-		signature = "(Lhj;IB)V",
-		garbageValue = "67"
+		signature = "(B)V",
+		garbageValue = "40"
 	)
-	static final void method600(Widget var0, int var1) {
-		if (var0.field2650 == null) {
-			throw new RuntimeException();
-		}
-		if (var0.field2578 == null) {
-			var0.field2578 = new int[var0.field2650.length];
-		}
+	static void method593() {
+		PacketBufferNode var0 = MenuAction.getPacketBufferNode(ClientPacket.field2220, Client.packetWriter.isaacCipher);
+		var0.packetBuffer.writeByte(UserComparator7.getWindowedMode());
+		var0.packetBuffer.writeShort(KitDefinition.canvasWidth);
+		var0.packetBuffer.writeShort(class30.canvasHeight);
+		Client.packetWriter.addNode(var0);
+	}
 
-		var0.field2578[var1] = Integer.MAX_VALUE;
+	@ObfuscatedName("kl")
+	@ObfuscatedSignature(
+		signature = "(Ljava/lang/String;I)V",
+		garbageValue = "350490543"
+	)
+	@Export("clanKickUser")
+	static final void clanKickUser(String var0) {
+		if (Client.clanChat != null) {
+			PacketBufferNode var1 = MenuAction.getPacketBufferNode(ClientPacket.field2198, Client.packetWriter.isaacCipher);
+			var1.packetBuffer.writeByte(Buddy.stringCp1252NullTerminatedByteSize(var0));
+			var1.packetBuffer.writeStringCp1252NullTerminated(var0);
+			Client.packetWriter.addNode(var1);
+		}
 	}
 }

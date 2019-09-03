@@ -41,6 +41,16 @@ public class InjectUtil
 		return obfuscatedField;
 	}
 
+	public static ClassFile toDeobClass(final ClassFile obCf, final ClassGroup deob) throws InjectionException
+	{
+		final ClassFile classFile = deob.findObfuscatedName(obCf.getName());
+		if (classFile == null)
+		{
+			throw new InjectionException("Class file is either not obfuscated enough, or too much. Class file is not from the deobfuscated gamepack");
+		}
+		return classFile;
+	}
+
 	public static Type getFieldType(final Field f)
 	{
 		Type type = f.getType();
@@ -84,6 +94,21 @@ public class InjectUtil
 	public static Method findStaticMethod(final ClassGroup group, final String name) throws InjectionException
 	{
 		Method m = group.findStaticMethod(name);
+
+		if (m == null)
+		{
+			throw new InjectionException(String.format("Static method \"%s\" could not be found.", name));
+		}
+
+		return m;
+	}
+
+	/**
+	 * Find a static method in ClassGroup group. Throws exception if not found.
+	 */
+	public static Method findStaticMethod(final ClassGroup group, final String name, Signature sig) throws InjectionException
+	{
+		Method m = group.findStaticMethod(name, sig);
 
 		if (m == null)
 		{

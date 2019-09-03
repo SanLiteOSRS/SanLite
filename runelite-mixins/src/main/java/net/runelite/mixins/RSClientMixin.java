@@ -24,70 +24,30 @@
  */
 package net.runelite.mixins;
 
-import net.runelite.api.events.*;
-import net.runelite.api.mixins.Mixin;
-import net.runelite.api.ChatMessageType;
-import net.runelite.api.ClanMember;
-import net.runelite.api.EnumDefinition;
-import net.runelite.api.Friend;
-import net.runelite.api.GameState;
-import net.runelite.api.GrandExchangeOffer;
-import net.runelite.api.GraphicsObject;
-import net.runelite.api.HashTable;
-import net.runelite.api.HintArrowType;
-import net.runelite.api.Ignore;
-import net.runelite.api.IndexDataBase;
-import net.runelite.api.IndexedSprite;
-import net.runelite.api.InventoryID;
-import net.runelite.api.MenuAction;
-import static net.runelite.api.MenuAction.PLAYER_EIGTH_OPTION;
-import static net.runelite.api.MenuAction.PLAYER_FIFTH_OPTION;
-import static net.runelite.api.MenuAction.PLAYER_FIRST_OPTION;
-import static net.runelite.api.MenuAction.PLAYER_FOURTH_OPTION;
-import static net.runelite.api.MenuAction.PLAYER_SECOND_OPTION;
-import static net.runelite.api.MenuAction.PLAYER_SEVENTH_OPTION;
-import static net.runelite.api.MenuAction.PLAYER_SIXTH_OPTION;
-import static net.runelite.api.MenuAction.PLAYER_THIRD_OPTION;
-import net.runelite.api.MenuEntry;
-import net.runelite.api.MessageNode;
-import net.runelite.api.NPC;
-import net.runelite.api.Node;
-import static net.runelite.api.Perspective.LOCAL_TILE_SIZE;
-import net.runelite.api.Player;
-import net.runelite.api.Point;
-import net.runelite.api.Prayer;
-import net.runelite.api.Projectile;
-import net.runelite.api.Skill;
-import net.runelite.api.Sprite;
-import net.runelite.api.Tile;
-import net.runelite.api.VarPlayer;
-import net.runelite.api.Varbits;
-import net.runelite.api.WidgetNode;
-import net.runelite.api.WorldType;
+import com.google.common.cache.Cache;
+import com.google.common.cache.CacheBuilder;
+import net.runelite.api.*;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.coords.WorldPoint;
+import net.runelite.api.events.*;
 import net.runelite.api.hooks.Callbacks;
 import net.runelite.api.hooks.DrawCallbacks;
+import net.runelite.api.mixins.*;
 import net.runelite.api.vars.AccountType;
 import net.runelite.api.widgets.Widget;
 import net.runelite.api.widgets.WidgetInfo;
 import net.runelite.api.widgets.WidgetItem;
 import net.runelite.api.widgets.WidgetType;
-import com.google.common.cache.Cache;
-import com.google.common.cache.CacheBuilder;
-
-import java.math.BigInteger;
-import java.util.*;
-import javax.annotation.Nullable;
-import javax.inject.Named;
-import net.runelite.api.mixins.Copy;
-import net.runelite.api.mixins.FieldHook;
-import net.runelite.api.mixins.Inject;
-import net.runelite.api.mixins.MethodHook;
-import net.runelite.api.mixins.Replace;
-import net.runelite.api.mixins.Shadow;
 import net.runelite.rs.api.*;
 import org.slf4j.Logger;
+
+import javax.annotation.Nullable;
+import javax.inject.Named;
+import java.math.BigInteger;
+import java.util.*;
+
+import static net.runelite.api.MenuAction.*;
+import static net.runelite.api.Perspective.LOCAL_TILE_SIZE;
 
 @Mixin(RSClient.class)
 public abstract class RSClientMixin implements RSClient
@@ -148,8 +108,8 @@ public abstract class RSClientMixin implements RSClient
 
 	@Inject
 	private final Cache<Integer, RSEnumDefinition> enumCache = CacheBuilder.newBuilder()
-		.maximumSize(64)
-		.build();
+			.maximumSize(64)
+			.build();
 
 	@Inject
 	private static boolean printMenuActions;
@@ -602,9 +562,9 @@ public abstract class RSClientMixin implements RSClient
 		String[] menuOptions = getMenuOptions();
 		String[] menuTargets = getMenuTargets();
 		int[] menuIdentifiers = getMenuIdentifiers();
-		int[] menuTypes = getMenuTypes();
-		int[] params0 = getMenuActionParams0();
-		int[] params1 = getMenuActionParams1();
+		int[] menuTypes = getMenuOpcodes();
+		int[] params0 = getMenuArguments1();
+		int[] params1 = getMenuArguments2();
 		boolean[] leftClick = getMenuForceLeftClick();
 
 		MenuEntry[] entries = new MenuEntry[count];
@@ -630,13 +590,18 @@ public abstract class RSClientMixin implements RSClient
 		String[] menuOptions = getMenuOptions();
 		String[] menuTargets = getMenuTargets();
 		int[] menuIdentifiers = getMenuIdentifiers();
-		int[] menuTypes = getMenuTypes();
-		int[] params0 = getMenuActionParams0();
-		int[] params1 = getMenuActionParams1();
+		int[] menuTypes = getMenuOpcodes();
+		int[] params0 = getMenuArguments1();
+		int[] params1 = getMenuArguments2();
 		boolean[] leftClick = getMenuForceLeftClick();
 
 		for (MenuEntry entry : entries)
 		{
+			if (entry == null)
+			{
+				continue;
+			}
+
 			menuOptions[count] = entry.getOption();
 			menuTargets[count] = entry.getTarget();
 			menuIdentifiers[count] = entry.getIdentifier();
@@ -667,9 +632,9 @@ public abstract class RSClientMixin implements RSClient
 					client.getMenuOptions()[oldCount],
 					client.getMenuTargets()[oldCount],
 					client.getMenuIdentifiers()[oldCount],
-					client.getMenuTypes()[oldCount],
-					client.getMenuActionParams0()[oldCount],
-					client.getMenuActionParams1()[oldCount],
+					client.getMenuOpcodes()[oldCount],
+					client.getMenuArguments1()[oldCount],
+					client.getMenuArguments2()[oldCount],
 					client.getMenuForceLeftClick()[oldCount]
 				)
 			);
@@ -986,7 +951,7 @@ public abstract class RSClientMixin implements RSClient
 	{
 		// Reset the menu type
 		MenuAction[] playerActions = {PLAYER_FIRST_OPTION, PLAYER_SECOND_OPTION, PLAYER_THIRD_OPTION, PLAYER_FOURTH_OPTION,
-			PLAYER_FIFTH_OPTION, PLAYER_SIXTH_OPTION, PLAYER_SEVENTH_OPTION, PLAYER_EIGTH_OPTION};
+				PLAYER_FIFTH_OPTION, PLAYER_SIXTH_OPTION, PLAYER_SEVENTH_OPTION, PLAYER_EIGTH_OPTION};
 		if (idx >= 0 && idx < playerActions.length)
 		{
 			MenuAction playerAction = playerActions[idx];
@@ -1269,16 +1234,16 @@ public abstract class RSClientMixin implements RSClient
 		}
 
 		final MenuOptionClicked menuOptionClicked = new MenuOptionClicked(
-			new MenuEntry(
-				menuOption,
-				menuTarget,
-				id,
-				menuAction,
-				actionParam,
-				widgetId,
-				false
-			),
-			authentic
+				new MenuEntry(
+						menuOption,
+						menuTarget,
+						id,
+						menuAction,
+						actionParam,
+						widgetId,
+						false
+				),
+				authentic
 		);
 		client.getCallbacks().post(menuOptionClicked);
 
@@ -1288,7 +1253,7 @@ public abstract class RSClientMixin implements RSClient
 		}
 
 		rs$menuAction(menuOptionClicked.getActionParam0(), menuOptionClicked.getActionParam1(), menuOptionClicked.getType(),
-			menuOptionClicked.getIdentifier(), menuOptionClicked.getOption(), menuOptionClicked.getTarget(), var6, var7);
+				menuOptionClicked.getIdentifier(), menuOptionClicked.getOption(), menuOptionClicked.getTarget(), var6, var7);
 	}
 
 	@Override
@@ -1336,6 +1301,28 @@ public abstract class RSClientMixin implements RSClient
 		int flags = getFlags();
 		return WorldType.fromMask(flags);
 	}
+
+	// TODO: Find out why this causes a client crash on startup
+//	@FieldHook("regions")
+//	@Inject
+//	public void onWorldRegionChanged(int idx)
+//	{
+//		int[] mapRegions = client.getMapRegions();
+//
+//		if (mapRegions == null)
+//		{
+//			return;
+//		}
+//
+//		// Only post the event when every map region is loaded
+//		for (int region : mapRegions)
+//		{
+//			if (region == 0)
+//				return;
+//		}
+//
+//		client.getCallbacks().post(new WorldRegionChanged(mapRegions));
+//	}
 
 	@Inject
 	@MethodHook("openMenu")
@@ -1582,7 +1569,7 @@ public abstract class RSClientMixin implements RSClient
 		int len = getMenuOptionCount();
 		if (len > 0)
 		{
-			int type = getMenuTypes()[len - 1];
+			int type = getMenuOpcodes()[len - 1];
 			return type == MenuAction.RUNELITE_OVERLAY.getId();
 		}
 
@@ -1620,7 +1607,7 @@ public abstract class RSClientMixin implements RSClient
 		if (client.isSpellSelected())
 		{
 			return ((hideFriendCastOptions && p.isFriended()) || (hideClanmateCastOptions && p.isClanMember()))
-				&& !unhiddenCasts.contains(client.getSelectedSpellName().replaceAll("<[^>]*>", "").toLowerCase());
+					&& !unhiddenCasts.contains(client.getSelectedSpellName().replaceAll("<[^>]*>", "").toLowerCase());
 		}
 
 		return ((hideFriendAttackOptions && p.isFriended()) || (hideClanmateAttackOptions && p.isClanMember()));

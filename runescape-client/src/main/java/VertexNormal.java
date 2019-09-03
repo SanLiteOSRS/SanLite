@@ -1,67 +1,59 @@
-import java.util.Iterator;
+import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("dd")
+@ObfuscatedName("dl")
 @Implements("VertexNormal")
 public class VertexNormal {
-	@ObfuscatedName("q")
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = 741962059
+		intValue = 1795200651
 	)
-	int field1759;
-	@ObfuscatedName("w")
+	@Export("x")
+	int x;
+	@ObfuscatedName("j")
 	@ObfuscatedGetter(
-		intValue = -1828551341
+		intValue = -1592235953
 	)
-	int field1760;
-	@ObfuscatedName("e")
+	@Export("y")
+	int y;
+	@ObfuscatedName("i")
 	@ObfuscatedGetter(
-		intValue = 1911535461
+		intValue = 221616325
 	)
-	int field1758;
-	@ObfuscatedName("p")
+	@Export("z")
+	int z;
+	@ObfuscatedName("k")
 	@ObfuscatedGetter(
-		intValue = -171249661
+		intValue = -1908751547
 	)
-	int field1761;
+	@Export("magnitude")
+	int magnitude;
 
 	VertexNormal() {
 	}
 
 	@ObfuscatedSignature(
-		signature = "(Ldd;)V"
+		signature = "(Ldl;)V"
 	)
 	VertexNormal(VertexNormal var1) {
-		this.field1759 = var1.field1759;
-		this.field1760 = var1.field1760;
-		this.field1758 = var1.field1758;
-		this.field1761 = var1.field1761;
+		this.x = var1.x;
+		this.y = var1.y;
+		this.z = var1.z;
+		this.magnitude = var1.magnitude;
 	}
 
-	@ObfuscatedName("jz")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "6"
+		signature = "(Lhz;Ljava/lang/String;Ljava/lang/String;S)Llq;",
+		garbageValue = "3108"
 	)
-	static final void method2972() {
-		for (int var0 = 0; var0 < Players.Players_count; ++var0) {
-			Player var1 = Client.players[Players.Players_indices[var0]];
-			var1.clearIsFriend();
-		}
-
-		Iterator var2 = Messages.Messages_hashTable.iterator();
-
-		while (var2.hasNext()) {
-			Message var3 = (Message)var2.next();
-			var3.clearIsFromFriend();
-		}
-
-		if (DevicePcmPlayerProvider.clanChat != null) {
-			DevicePcmPlayerProvider.clanChat.clearFriends();
-		}
-
+	@Export("SpriteBuffer_getIndexedSpriteByName")
+	public static IndexedSprite SpriteBuffer_getIndexedSpriteByName(AbstractArchive var0, String var1, String var2) {
+		int var3 = var0.getGroupId(var1);
+		int var4 = var0.getFileId(var3, var2);
+		return Clock.SpriteBuffer_getIndexedSprite(var0, var3, var4);
 	}
 }
