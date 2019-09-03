@@ -26,13 +26,16 @@
  */
 package net.runelite.client.rs;
 
+import com.google.common.base.Strings;
+import lombok.extern.slf4j.Slf4j;
+import net.runelite.client.ui.FatalErrorDialog;
+
+import javax.swing.*;
 import java.applet.Applet;
 import java.io.IOException;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.function.Supplier;
-
-import lombok.extern.slf4j.Slf4j;
 
 import static net.runelite.client.rs.ClientUpdateCheckMode.NONE;
 
@@ -65,7 +68,7 @@ public class ClientLoader implements Supplier<Applet>
 		return (Applet) client;
 	}
 
-	private Applet doLoad()
+	private Object doLoad()
 	{
 		if (updateCheckMode == NONE)
 		{
@@ -83,6 +86,12 @@ public class ClientLoader implements Supplier<Applet>
 				try
 				{
 					config = ClientConfigLoader.fetch(host);
+
+					if (Strings.isNullOrEmpty(config.getCodeBase()) || Strings.isNullOrEmpty(config.getInitialJar()) || Strings.isNullOrEmpty(config.getInitialClass()))
+					{
+						throw new IOException("Invalid or missing jav_config");
+					}
+
 					break;
 				}
 				catch (IOException e)
@@ -119,8 +128,8 @@ public class ClientLoader implements Supplier<Applet>
 						+ " is not in your classpath.");
 			}
 
-			log.error("Error loading RS!", e);
-			return null;
+			SwingUtilities.invokeLater(() -> FatalErrorDialog.showNetErrorWindow("loading the client", e));
+			return e;
 		}
 	}
 
@@ -140,7 +149,7 @@ public class ClientLoader implements Supplier<Applet>
 
 		// Must set parent classloader to null, or it will pull from
 		// this class's classloader first
-		final URLClassLoader classloader = new URLClassLoader(new URL[]{url}, null);
+		final URLClassLoader classloader = new URLClassLoader(new URL[] {url}, null);
 		final Class<?> clientClass = classloader.loadClass(initialClass);
 		return loadFromClass(config, clientClass);
 	}
