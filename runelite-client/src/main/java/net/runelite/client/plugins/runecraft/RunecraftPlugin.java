@@ -145,9 +145,9 @@ public class RunecraftPlugin extends Plugin
 	@Subscribe
 	public void onConfigChanged(ConfigChanged event)
 	{
-		if (!event.getGroup().equals("runecraft"))
+		if (event.getGroup().equals("runecraft"))
 		{
-			return;
+			abyssOverlay.updateConfig();
 		}
 
 		if (event.getKey().equals("leftClickEmptyPouch"))
@@ -159,8 +159,6 @@ public class RunecraftPlugin extends Plugin
 		{
 			addSwapFillPouchInBank();
 		}
-
-		abyssOverlay.updateConfig();
 	}
 
 	private void addSwapEmpty()

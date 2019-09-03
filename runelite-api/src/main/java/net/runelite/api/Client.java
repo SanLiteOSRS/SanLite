@@ -131,11 +131,11 @@ public interface Client extends GameShell
 	GameState getGameState();
 
 	/**
-	 * Sets the current game state.
+	 * Sets the current game state
 	 *
-	 * @param gameState new game state
+	 * @param gameState
 	 */
-	void setGameState(int gameState);
+	void setGameState(GameState gameState);
 
 	/**
 	 * Gets the current logged in username.
@@ -344,6 +344,7 @@ public interface Client extends GameShell
 	 *
 	 * @return the logged in player
 	 */
+	@Nullable
 	Player getLocalPlayer();
 
 	/**
@@ -424,6 +425,7 @@ public interface Client extends GameShell
 	 *
 	 * @return the selected tile
 	 */
+	@Nullable
 	Tile getSelectedSceneTile();
 
 	/**
@@ -438,6 +440,7 @@ public interface Client extends GameShell
 	 *
 	 * @return the dragged widget, null if not dragging any widget
 	 */
+	@Nullable
 	Widget getDraggedWidget();
 
 	/**
@@ -448,6 +451,7 @@ public interface Client extends GameShell
 	 *
 	 * @return the dragged on widget, null if not dragging any widget
 	 */
+	@Nullable
 	Widget getDraggedOnWidget();
 
 	/**
