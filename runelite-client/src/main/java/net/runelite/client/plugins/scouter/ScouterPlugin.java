@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 
 @PluginDescriptor(
-		name = "Scouter",
+		name = "Player Scouter",
 		description = "Assists in scouting a certain player",
 		tags = {"scout, scouter"},
 		type = PluginType.SANLITE
