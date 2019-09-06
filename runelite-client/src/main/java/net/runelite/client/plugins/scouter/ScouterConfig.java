@@ -11,7 +11,7 @@ public interface ScouterConfig extends Config
 			position = 0,
 			keyName = "playerRSN",
 			name = "Enter RSN of player to scout",
-			description = "RSN of just one player."
+			description = "RSN of one player. More than one name will not work."
 	)
 	default String getPlayerRSN()
 	{
