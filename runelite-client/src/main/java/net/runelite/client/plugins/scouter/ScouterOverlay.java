@@ -30,7 +30,7 @@ public class ScouterOverlay extends Overlay
 		panelComponent.getChildren().clear();
 
 		panelComponent.getChildren().add(TitleComponent.builder()
-				.text("Scouter")
+				.text("Player Scouter")
 				.build());
 
 		panelComponent.getChildren().add(LineComponent.builder()
