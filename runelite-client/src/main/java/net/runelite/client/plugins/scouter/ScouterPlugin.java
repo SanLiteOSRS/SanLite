@@ -18,7 +18,7 @@ import java.util.ArrayList;
 @PluginDescriptor(
 		name = "Player Scouter",
 		description = "Assists in scouting a certain player",
-		tags = {"scout, scouter"},
+		tags = {"scout, scouter, player, finder, overlay, notifications"},
 		type = PluginType.SANLITE
 )
 public class ScouterPlugin extends Plugin
