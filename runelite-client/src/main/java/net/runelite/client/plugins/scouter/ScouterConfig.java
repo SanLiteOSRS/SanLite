@@ -21,7 +21,7 @@ public interface ScouterConfig extends Config
 	@ConfigItem(
 			position = 1,
 			keyName = "notificationsEnabled",
-			name = "Display windows notifications if the player is spotted.",
+			name = "Display notification on spot",
 			description = "Will send a windows notification if notifications are enabled in client settings."
 	)
 	default boolean getNotificationsEnabled()
