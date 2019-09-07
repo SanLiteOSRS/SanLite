@@ -71,9 +71,9 @@ public class PlayerScouterPlugin extends Plugin
 	{
 		ArrayList<String> playerList = new ArrayList<>();
 
-		for (Player P : client.getPlayers())
+		for (Player p : client.getPlayers())
 		{
-			playerList.add(P.getName());
+			playerList.add(p.getName());
 		}
 
 		if (playerList.contains(playerScouterConfig.getPlayerRSN()))
@@ -98,7 +98,7 @@ public class PlayerScouterPlugin extends Plugin
 	}
 	public void onConfigChanged(ConfigChanged event)
 	{
-		if (event.getGroup().equals("playerscouter"))
+		if (event.getGroup().equals("playerscouter") && event.getKey().equals("playerRSN"))
 		{
 			lastSeen = "never";
 			seenCounter = 0;
