@@ -36,6 +36,7 @@ import net.runelite.api.*;
 
 import static net.runelite.api.AnimationID.*;
 
+import net.runelite.api.coords.WorldPoint;
 import net.runelite.api.events.*;
 import net.runelite.client.Notifier;
 import net.runelite.client.config.ConfigManager;

@@ -22,94 +22,27 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.api;
+package net.runelite.api.mixins;
+
+import java.lang.annotation.Documented;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
- * An enumeration of possible inventory types.
+ * Indicates a copy of the specified method should be copied into
+ * the target class.
  */
-public enum InventoryID
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.METHOD)
+@Documented
+public @interface Copy
 {
 	/**
-	 * Standard player inventory.
-	 */
-	INVENTORY(93),
-
-	/**
-	 * Equipment inventory.
-	 */
-	EQUIPMENT(94),
-
-	/**
-	 * Bank inventory.
-	 */
-	BANK(95),
-
-	/**
-	 * A puzzle box inventory.
-	 */
-	PUZZLE_BOX(140),
-
-	/**
-	 * Barrows reward chest inventory.
-	 */
-	BARROWS_REWARD(141),
-
-	/**
-	 * Monkey madness puzzle box inventory.
-	 */
-	MONKEY_MADNESS_PUZZLE_BOX(221),
-
-	/**
-	 * Looting Bag inventory
-	 */
-	LOOTING_BAG(516),
-
-	/**
-	 * Kingdom Of Miscellania reward inventory.
-	 */
-	KINGDOM_OF_MISCELLANIA(390),
-
-	/**
-	 * Chambers of Xeric chest inventory.
-	 */
-	CHAMBERS_OF_XERIC_CHEST(581),
-
-	/**
-	 * Theater of Blood reward chest inventory (Raids 2)
-	 */
-	THEATRE_OF_BLOOD_CHEST(612),
-
-	/**
-	 * Seed vault located inside the Farming Guild
-	 */
-	SEED_VAULT(626);
-
-	private final int id;
-
-	InventoryID(int id)
-	{
-		this.id = id;
-	}
-
-	/**
-	 * Gets the raw inventory type ID.
+	 * Method to copy
 	 *
-	 * @return inventory type
+	 * @return
 	 */
-	public int getId()
-	{
-		return id;
-	}
-
-	public static InventoryID getValue(int value)
-	{
-		for (InventoryID e: InventoryID.values())
-		{
-			if (e.id == value)
-			{
-				return e;
-			}
-		}
-		return null;
-	}
+	String value();
 }
