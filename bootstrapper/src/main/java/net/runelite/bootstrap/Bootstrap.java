@@ -20,6 +20,7 @@ class Bootstrap
 	String artifactId = "sanlite-client";
 	String sanliteVersion = new BootstrapperProperties().getSanLiteVersion();
 	String runeliteVersion = new BootstrapperProperties().getRuneLiteVersion();
+	String osrsVersion = new BootstrapperProperties().getRuneScapeVersion();
 	String[] clientJvm9Arguments = new String[]{
 		"-XX:+DisableAttachMechanism",
 		"-Xmx512m",
