@@ -118,7 +118,6 @@ public class RunecraftPlugin extends Plugin
 	{
 		overlayManager.add(abyssOverlay);
 		overlayManager.add(abyssMinimapOverlay);
-		abyssOverlay.updateConfig();
 
 		if (config.leftClickEmptyPouch())
 		{
@@ -154,11 +153,6 @@ public class RunecraftPlugin extends Plugin
 	@Subscribe
 	public void onConfigChanged(ConfigChanged event)
 	{
-		if (event.getGroup().equals("runecraft"))
-		{
-			abyssOverlay.updateConfig();
-		}
-
 		if (event.getKey().equals("leftClickEmptyPouch"))
 		{
 			addSwapEmpty();
