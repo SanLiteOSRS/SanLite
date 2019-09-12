@@ -258,6 +258,8 @@ public class RuneLite
 			injector.injectMembers(client);
 		}
 
+		SplashScreen.stage(.57, null, "Loading configuration");
+
 		// Load user configuration
 		splashScreen.setMessage("Loading configuration");
 		configManager.load();
@@ -282,6 +284,8 @@ public class RuneLite
 		// Start client session
 		splashScreen.setMessage("Starting session");
 		clientSessionManager.start();
+
+		SplashScreen.stage(.75, null, "Starting core interface");
 
 		// Initialize UI
 		splashScreen.setMessage("Starting core interface");

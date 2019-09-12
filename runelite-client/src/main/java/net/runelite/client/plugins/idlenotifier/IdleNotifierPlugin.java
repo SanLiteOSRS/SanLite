@@ -74,6 +74,9 @@ public class IdleNotifierPlugin extends Plugin
 	private int lastAnimation = AnimationID.IDLE;
 	private Instant lastInteracting;
 	private Actor lastInteract;
+	private Instant lastMoving;
+	private WorldPoint lastPosition;
+	private boolean notifyPosition = false;
 	private boolean notifyHitpoints = true;
 	private boolean notifyPrayer = true;
 	private boolean notifyOxygen = true;
@@ -386,6 +389,11 @@ public class IdleNotifierPlugin extends Plugin
 			notifier.notify("[" + local.getName() + "] is now idle!");
 		}
 
+		if (config.movementIdle() && checkMovementIdle(waitDuration, local))
+		{
+			notifier.notify("[" + local.getName() + "] has stopped moving!");
+		}
+
 		if (config.interactionIdle() && checkInteractionIdle(waitDuration, local))
 		{
 			if (lastInteractWasCombat)
@@ -619,6 +627,37 @@ public class IdleNotifierPlugin extends Plugin
 		else
 		{
 			lastAnimating = Instant.now();
+		}
+
+		return false;
+	}
+
+	private boolean checkMovementIdle(Duration waitDuration, Player local)
+	{
+		if (lastPosition == null)
+		{
+			lastPosition = local.getWorldLocation();
+			return false;
+		}
+
+		WorldPoint position = local.getWorldLocation();
+
+		if (lastPosition.equals(position))
+		{
+			if (notifyPosition
+				&& local.getAnimation() == IDLE
+				&& Instant.now().compareTo(lastMoving.plus(waitDuration)) >= 0)
+			{
+				notifyPosition = false;
+				// Return true only if we weren't just breaking out of an animation
+				return lastAnimation == IDLE;
+			}
+		}
+		else
+		{
+			notifyPosition = true;
+			lastPosition = position;
+			lastMoving = Instant.now();
 		}
 
 		return false;
