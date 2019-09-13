@@ -208,6 +208,7 @@ public class TheatreOfBloodPlugin extends Plugin
 		}
 	}
 
+	// TODO: Change this to an alternative since event has been deprecated
 	@Subscribe
 	public void onWorldRegionChanged(WorldRegionChanged event)
 	{

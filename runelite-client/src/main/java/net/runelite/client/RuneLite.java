@@ -241,6 +241,7 @@ public class RuneLite
 		catch (Exception e)
 		{
 			log.warn("Failure during startup", e);
+			splashScreen.close();
 			SwingUtilities.invokeLater(() ->
 				new FatalErrorDialog("RuneLite has encountered an unexpected error during startup.")
 					.open());
