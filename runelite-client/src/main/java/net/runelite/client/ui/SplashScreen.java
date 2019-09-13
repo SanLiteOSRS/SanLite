@@ -46,7 +46,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.plaf.basic.BasicProgressBarUI;
 import lombok.extern.slf4j.Slf4j;
 
-@Slf4j // TODO: Change this class to use the SanLiteSplashScreen design
+@Slf4j
 public class SplashScreen extends JFrame implements ActionListener
 {
 	private static final int WIDTH = 200;
