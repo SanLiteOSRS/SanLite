@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2019, Null (zeruth)
+ * Copyright (c) 2019 Hydrox6 <ikada@protonmail.ch>
+ * Copyright (c) 2019 Adam <Adam@sigterm.info>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,34 +23,42 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.mixins;
+package net.runelite.client.plugins.cluescrolls;
 
-import java.math.BigInteger;
-import net.runelite.api.mixins.Copy;
-import net.runelite.api.mixins.Inject;
-import net.runelite.api.mixins.Mixin;
-import net.runelite.api.mixins.Replace;
-import net.runelite.api.mixins.Shadow;
-import net.runelite.rs.api.RSBuffer;
-import net.runelite.rs.api.RSClient;
+import net.runelite.api.coords.WorldPoint;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
+import org.junit.Test;
 
-@Mixin(RSBuffer.class)
-public abstract class RSBufferMixin implements RSBuffer
+public class ClueScrollPluginTest
 {
-	@Shadow("client")
-	private static RSClient client;
-
-	@Inject
-	private static BigInteger exponent = new BigInteger("10001", 16);
-
-	@Copy("encryptRsa")
-	public void rs$encryptRsa(BigInteger var1, BigInteger var2)
+	@Test
+	public void getGetMirrorPoint()
 	{
-	}
+		WorldPoint point, converted;
 
-	@Replace("encryptRsa")
-	public void rl$encryptRsa(BigInteger var1, BigInteger var2)
-	{
-		rs$encryptRsa(exponent, client.getModulus());
+		// Zalcano's entrance portal
+		point = new WorldPoint(3282, 6058, 0);
+		converted = ClueScrollPlugin.getMirrorPoint(point, true);
+		assertNotEquals(point, converted);
+
+		// Elven Crystal Chest, which is upstairs
+		point = new WorldPoint(3273, 6082, 2);
+		converted = ClueScrollPlugin.getMirrorPoint(point, true);
+		assertNotEquals(point, converted);
+
+		// Around the area of the Elite coordinate clue
+		point = new WorldPoint(2185, 3280, 0);
+		// To overworld
+		converted = ClueScrollPlugin.getMirrorPoint(point, true);
+		assertEquals(point, converted);
+		// To real
+		converted = ClueScrollPlugin.getMirrorPoint(point, false);
+		assertNotEquals(point, converted);
+
+		// Brugsen Bursen, Grand Exchange
+		point = new WorldPoint(3165, 3477, 0);
+		converted = ClueScrollPlugin.getMirrorPoint(point, false);
+		assertEquals(point, converted);
 	}
 }

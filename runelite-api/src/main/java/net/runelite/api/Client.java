@@ -26,7 +26,6 @@ package net.runelite.api;
 
 import java.awt.Canvas;
 import java.awt.Dimension;
-import java.math.BigInteger;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Map;
@@ -1769,10 +1768,6 @@ public interface Client extends GameShell
 	 * Remove player from friendlist
 	 */
 	void removeFriend(String name);
-
-	BigInteger getModulus();
-
-	void setModulus(BigInteger modulus);
 
 	/*
 	 * Returns the max item index + 1 from cache
