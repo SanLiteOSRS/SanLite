@@ -33,7 +33,7 @@ public class DeobProperties
 	public static String getRevision() throws IOException
 	{
 		Properties properties = new Properties();
-		InputStream resourceAsStream = DeobProperties.class.getResourceAsStream("/deob.properties");
+		InputStream resourceAsStream = DeobProperties.class.getResourceAsStream("deob.properties");
 		properties.load(resourceAsStream);
 
 		return properties.getProperty("runescape.version");
