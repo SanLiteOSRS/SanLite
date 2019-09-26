@@ -46,6 +46,7 @@ import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Client;
 import net.runelite.client.account.SessionManager;
+import net.runelite.client.callback.Hooks;
 import net.runelite.client.chat.ChatMessageManager;
 import net.runelite.client.chat.CommandManager;
 import net.runelite.client.config.ConfigManager;
@@ -151,6 +152,9 @@ public class RuneLite
 
 	@Inject
 	private Provider<ChatboxPanelManager> chatboxPanelManager;
+
+	@Inject
+	private Provider<Hooks> hooks;
 
 	@Inject
 	@Nullable
@@ -259,6 +263,8 @@ public class RuneLite
 			injector.injectMembers(client);
 		}
 
+		SplashScreen.stage(.57, null, "Loading configuration");
+
 		// Load user configuration
 		splashScreen.setMessage("Loading configuration");
 		configManager.load();
@@ -283,6 +289,8 @@ public class RuneLite
 		// Start client session
 		splashScreen.setMessage("Starting session");
 		clientSessionManager.start();
+
+		SplashScreen.stage(.75, null, "Starting core interface");
 
 		// Initialize UI
 		splashScreen.setMessage("Starting core interface");
@@ -315,6 +323,7 @@ public class RuneLite
 			eventBus.register(commandManager.get());
 			eventBus.register(lootManager.get());
 			eventBus.register(chatboxPanelManager.get());
+			eventBus.register(hooks.get());
 
 			// Add core overlays
 			WidgetOverlay.createOverlays(client).forEach(overlayManager::add);

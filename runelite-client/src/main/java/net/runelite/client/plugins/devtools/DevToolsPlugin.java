@@ -358,6 +358,17 @@ public class DevToolsPlugin extends Plugin
 				client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", String.join(" ", args), "");
 				break;
 			}
+			case "sound":
+			{
+				int id = Integer.parseInt(args[0]);
+				client.playSoundEffect(id);
+				break;
+			}
+			case "msg":
+			{
+				client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", String.join(" ", args), "");
+				break;
+			}
 		}
 	}
 

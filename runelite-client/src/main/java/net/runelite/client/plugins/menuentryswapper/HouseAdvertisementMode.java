@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, Adam <Adam@sigterm.info>
+ * Copyright (c) 2019, Adam <Adam@sigterm.info>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,20 +22,24 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.api.mixins;
+package net.runelite.client.plugins.menuentryswapper;
 
-import java.lang.annotation.Documented;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
-@Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.METHOD)
-@Documented
-public @interface MethodHook
+@Getter
+@RequiredArgsConstructor
+public enum HouseAdvertisementMode
 {
-	String value();
+	VIEW("View"),
+	ADD_HOUSE("Add-House"),
+	VISIT_LAST("Visit-Last");
 
-	boolean end() default false;
+	private final String name;
+
+	@Override
+	public String toString()
+	{
+		return name;
+	}
 }

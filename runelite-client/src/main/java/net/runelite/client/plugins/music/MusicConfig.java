@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, Adam <Adam@sigterm.info>
+ * Copyright (c) 2019, Adam <Adam@sigterm.info>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,16 +22,58 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.api.mixins;
+package net.runelite.client.plugins.music;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import net.runelite.client.config.Config;
+import net.runelite.client.config.ConfigGroup;
+import net.runelite.client.config.ConfigItem;
+import net.runelite.client.config.Range;
 
-@Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.TYPE)
-public @interface Mixins
+@ConfigGroup("music")
+public interface MusicConfig extends Config
 {
-	Mixin[] value();
+	@ConfigItem(
+		keyName = "musicVolume",
+		name = "Music Volume",
+		description = "Overrides music volume in game with more granular control",
+		position = 1
+	)
+	@Range(
+		min = 0,
+		max = 255
+	)
+	default int getMusicVolume()
+	{
+		return 0;
+	}
+
+	@ConfigItem(
+		keyName = "soundEffectVolume",
+		name = "Sound Effect Volume",
+		description = "Overrides the sound effect volume in game with more granular control",
+		position = 2
+	)
+	@Range(
+		min = 0,
+		max = 127
+	)
+	default int getSoundEffectVolume()
+	{
+		return 0;
+	}
+
+	@ConfigItem(
+		keyName = "areaSoundEffectVolume",
+		name = "Area Sound Effect Volume",
+		description = "Overrides the area sound effect volume in game with more granular control",
+		position = 3
+	)
+	@Range(
+		min = 0,
+		max = 127
+	)
+	default int getAreaSoundEffectVolume()
+	{
+		return 0;
+	}
 }
