@@ -955,17 +955,17 @@ public interface Client extends GameShell
 	 */
 	List<GraphicsObject> getGraphicsObjects();
 
-	/**
-	 * Gets the music volume
-	 * @return volume 0-255 inclusive
-	 */
-	int getMusicVolume();
-
-	/**
-	 * Sets the music volume
-	 * @param volume 0-255 inclusive
-	 */
-	void setMusicVolume(int volume);
+//	/**
+//	 * Gets the music volume
+//	 * @return volume 0-255 inclusive
+//	 */
+//	int getMusicVolume();
+//
+//	/**
+//	 * Sets the music volume
+//	 * @param volume 0-255 inclusive
+//	 */
+//	void setMusicVolume(int volume);
 
 	/**
 	 * Gets the sound effect volume
