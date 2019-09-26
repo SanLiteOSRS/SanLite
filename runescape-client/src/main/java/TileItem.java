@@ -17,7 +17,8 @@ public final class TileItem extends Entity {
 	@ObfuscatedGetter(
 		intValue = 1727946021
 	)
-	public static int field1223;
+	@Export("musicVolume")
+	public static int musicVolume;
 	@ObfuscatedName("z")
 	@ObfuscatedGetter(
 		intValue = -1488876063
