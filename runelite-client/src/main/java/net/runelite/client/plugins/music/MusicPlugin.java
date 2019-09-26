@@ -209,7 +209,7 @@ public class MusicPlugin extends Plugin
 		// Set the volume if it is >0, or if it was >0 and is now going back to 0
 		if (musicVolume > 0 || lastMusicVolume > 0)
 		{
-			//client.setMusicVolume(musicVolume);
+			client.setMusicVolume(musicVolume);
 			lastMusicVolume = musicVolume;
 		}
 
