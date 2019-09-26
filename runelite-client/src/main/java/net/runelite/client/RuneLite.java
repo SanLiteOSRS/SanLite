@@ -46,6 +46,7 @@ import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Client;
 import net.runelite.client.account.SessionManager;
+import net.runelite.client.callback.Hooks;
 import net.runelite.client.chat.ChatMessageManager;
 import net.runelite.client.chat.CommandManager;
 import net.runelite.client.config.ConfigManager;
@@ -153,6 +154,9 @@ public class RuneLite
 	private Provider<ChatboxPanelManager> chatboxPanelManager;
 
 	@Inject
+	private Provider<Hooks> hooks;
+
+	@Inject
 	@Nullable
 	private Client client;
 
@@ -241,6 +245,7 @@ public class RuneLite
 		catch (Exception e)
 		{
 			log.warn("Failure during startup", e);
+			splashScreen.close();
 			SwingUtilities.invokeLater(() ->
 				new FatalErrorDialog("RuneLite has encountered an unexpected error during startup.")
 					.open());
@@ -314,6 +319,7 @@ public class RuneLite
 			eventBus.register(commandManager.get());
 			eventBus.register(lootManager.get());
 			eventBus.register(chatboxPanelManager.get());
+			eventBus.register(hooks.get());
 
 			// Add core overlays
 			WidgetOverlay.createOverlays(client).forEach(overlayManager::add);

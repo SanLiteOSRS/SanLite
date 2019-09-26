@@ -1301,28 +1301,6 @@ public abstract class RSClientMixin implements RSClient
 		return WorldType.fromMask(flags);
 	}
 
-	// TODO: Find out why this causes a client crash on startup
-//	@FieldHook("regions")
-//	@Inject
-//	public void onWorldRegionChanged(int idx)
-//	{
-//		int[] mapRegions = client.getMapRegions();
-//
-//		if (mapRegions == null)
-//		{
-//			return;
-//		}
-//
-//		// Only post the event when every map region is loaded
-//		for (int region : mapRegions)
-//		{
-//			if (region == 0)
-//				return;
-//		}
-//
-//		client.getCallbacks().post(new WorldRegionChanged(mapRegions));
-//	}
-
 	@Inject
 	@MethodHook("openMenu")
 	public void menuOpened(int var1, int var2)
@@ -1603,7 +1581,7 @@ public abstract class RSClientMixin implements RSClient
 	@Inject
 	static boolean shouldHideAttackOptionFor(RSPlayer p)
 	{
-		if (client.isSpellSelected())
+		if (client.getSpellSelected())
 		{
 			return ((hideFriendCastOptions && p.isFriended()) || (hideClanmateCastOptions && p.isClanMember()))
 					&& !unhiddenCasts.contains(client.getSelectedSpellName().replaceAll("<[^>]*>", "").toLowerCase());
