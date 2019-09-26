@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016-2017, Adam <Adam@sigterm.info>
+ * Copyright (c) 2019, Adam <Adam@sigterm.info>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,69 +22,24 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+package net.runelite.client.plugins.menuentryswapper;
 
-import java.applet.Applet;
-import java.applet.AppletContext;
-import java.applet.AppletStub;
-import java.awt.Dimension;
-import java.net.MalformedURLException;
-import java.net.URL;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
-public class RSStub implements AppletStub
+@Getter
+@RequiredArgsConstructor
+public enum HouseAdvertisementMode
 {
-	private final ConfigLoader config;
-	private final Applet app;
+	VIEW("View"),
+	ADD_HOUSE("Add-House"),
+	VISIT_LAST("Visit-Last");
 
-	public RSStub(ConfigLoader config, Applet app)
-	{
-		this.config = config;
-		this.app = app;
-	}
+	private final String name;
 
 	@Override
-	public boolean isActive()
+	public String toString()
 	{
-		return true;
+		return name;
 	}
-
-	@Override
-	public URL getDocumentBase()
-	{
-		return getCodeBase();
-	}
-
-	@Override
-	public URL getCodeBase()
-	{
-		try
-		{
-			return new URL(config.getProperty(ConfigLoader.CODEBASE));
-		}
-		catch (MalformedURLException ex)
-		{
-			return null;
-		}
-	}
-
-	@Override
-	public String getParameter(String name)
-	{
-		return config.getAppletProperty(name);
-	}
-
-	@Override
-	public AppletContext getAppletContext()
-	{
-		return null;
-	}
-
-	@Override
-	public void appletResize(int width, int height)
-	{
-		Dimension d = new Dimension(width, height);
-
-		app.setSize(d);
-		app.setPreferredSize(d);
-	}
-
 }
