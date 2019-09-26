@@ -166,7 +166,7 @@ public class GrandExchangeEvent {
 				int var10;
 				if (Client.isItemSelected == 1) {
 					WorldMapData_1.insertMenuItemNoShift("Use", Client.selectedItemName + " " + "->" + " " + World.colorStartTag(16777215) + var4, 14, var1, var2, var3);
-				} else if (Client.isSpellSelected) {
+				} else if (Client.spellSelected) {
 					if ((ItemContainer.selectedSpellFlags & 8) == 8) {
 						WorldMapData_1.insertMenuItemNoShift(Client.selectedSpellActionName, Client.selectedSpellName + " " + "->" + " " + World.colorStartTag(16777215) + var4, 15, var1, var2, var3);
 					}

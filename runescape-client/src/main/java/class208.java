@@ -26,7 +26,7 @@ public class class208 {
 	)
 	@Export("Widget_runOnTargetLeave")
 	static void Widget_runOnTargetLeave() {
-		if (Client.isSpellSelected) {
+		if (Client.spellSelected) {
 			Widget var0 = GrandExchangeOfferWorldComparator.getWidgetChild(AttackOption.field1157, Client.field768);
 			if (var0 != null && var0.onTargetLeave != null) {
 				ScriptEvent var1 = new ScriptEvent();
@@ -35,7 +35,7 @@ public class class208 {
 				ParamDefinition.runScriptEvent(var1);
 			}
 
-			Client.isSpellSelected = false;
+			Client.spellSelected = false;
 			WorldMapSectionType.invalidateWidget(var0);
 		}
 	}

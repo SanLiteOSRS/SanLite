@@ -213,7 +213,8 @@ public final class Client extends GameShell implements Usernamed {
 	@ObfuscatedGetter(
 		intValue = 892519291
 	)
-	static int field868;
+	@Export("areaSoundEffectVolume")
+	static int areaSoundEffectVolume;
 	@ObfuscatedName("no")
 	static int[] field820;
 	@ObfuscatedName("nb")
@@ -1071,7 +1072,8 @@ public final class Client extends GameShell implements Usernamed {
 	@Export("dragItemSlotDestination")
 	static int dragItemSlotDestination;
 	@ObfuscatedName("jr")
-	static boolean field748;
+	@Export("areWidgetsOpTargetable")
+	static boolean allWidgetsAreOpTargetable;
 	@ObfuscatedName("jw")
 	@ObfuscatedGetter(
 		intValue = -1965230699
@@ -1248,7 +1250,7 @@ public final class Client extends GameShell implements Usernamed {
 	static int isItemSelected;
 	@ObfuscatedName("lz")
 	@Export("isSpellSelected")
-	static boolean isSpellSelected;
+	static boolean spellSelected;
 	@ObfuscatedName("li")
 	@ObfuscatedGetter(
 		intValue = -133249451
@@ -1383,7 +1385,7 @@ public final class Client extends GameShell implements Usernamed {
 		field745 = 0;
 		field746 = 0;
 		dragItemSlotDestination = 0;
-		field748 = false;
+		allWidgetsAreOpTargetable = false;
 		itemDragDuration = 0;
 		field634 = 0;
 		showLoadingMessages = true;
@@ -1426,7 +1428,7 @@ public final class Client extends GameShell implements Usernamed {
 		field788 = 50;
 		isItemSelected = 0;
 		selectedItemName = null;
-		isSpellSelected = false;
+		spellSelected = false;
 		field768 = -1;
 		field793 = -1;
 		selectedSpellActionName = null;
@@ -1508,7 +1510,7 @@ public final class Client extends GameShell implements Usernamed {
 		field666 = -1;
 		field759 = false;
 		soundEffectVolume = 127;
-		field868 = 127;
+		areaSoundEffectVolume = 127;
 		soundEffectCount = 0;
 		soundEffectIds = new int[50];
 		queuedSoundEffectLoops = new int[50];
@@ -2639,7 +2641,7 @@ public final class Client extends GameShell implements Usernamed {
 						MouseHandler.MouseHandler_idleCycles = 0;
 						WorldMapDecoration.method349();
 						isItemSelected = 0;
-						isSpellSelected = false;
+						spellSelected = false;
 						soundEffectCount = 0;
 						camAngleY = 0;
 						oculusOrbState = 0;
@@ -3219,7 +3221,7 @@ public final class Client extends GameShell implements Usernamed {
 																WorldMapSectionType.invalidateWidget(Frames.dragInventoryWidget);
 																++itemDragDuration;
 																if (MouseHandler.MouseHandler_currentButton == 0) {
-																	if (field748) {
+																	if (allWidgetsAreOpTargetable) {
 																		if (Frames.dragInventoryWidget == DevicePcmPlayerProvider.field391 && dragItemSlotDestination != dragItemSlotSource) {
 																			Widget var41 = Frames.dragInventoryWidget;
 																			byte var33 = 0;
@@ -3272,7 +3274,7 @@ public final class Client extends GameShell implements Usernamed {
 																	MouseHandler.MouseHandler_lastButton = 0;
 																	Frames.dragInventoryWidget = null;
 																} else if (itemDragDuration >= 5 && (MouseHandler.MouseHandler_x > field745 + 5 || MouseHandler.MouseHandler_x < field745 - 5 || MouseHandler.MouseHandler_y > field746 + 5 || MouseHandler.MouseHandler_y < field746 - 5)) {
-																	field748 = true;
+																	allWidgetsAreOpTargetable = true;
 																}
 															}
 
@@ -3652,12 +3654,12 @@ public final class Client extends GameShell implements Usernamed {
 			if (viewportX != -1) {
 				var1 = viewportX;
 				var2 = viewportY;
-				if ((menuOptionsCount >= 2 || isItemSelected != 0 || isSpellSelected) && showMouseOverText) {
+				if ((menuOptionsCount >= 2 || isItemSelected != 0 || spellSelected) && showMouseOverText) {
 					var3 = BuddyRankComparator.getNewestMenuIdx();
 					String var4;
 					if (isItemSelected == 1 && menuOptionsCount < 2) {
 						var4 = "Use" + " " + selectedItemName + " " + "->";
-					} else if (isSpellSelected && menuOptionsCount < 2) {
+					} else if (spellSelected && menuOptionsCount < 2) {
 						var4 = selectedSpellActionName + " " + selectedSpellName + " " + "->";
 					} else {
 						var4 = class40.method799(var3);
@@ -5205,11 +5207,11 @@ public final class Client extends GameShell implements Usernamed {
 							var5 = menuArguments2[var2];
 							Widget var15 = Canvas.getWidget(var5);
 							if (ModelData0.method3211(class2.getWidgetClickMask(var15)) || WorldMapSection0.method249(class2.getWidgetClickMask(var15))) {
-								if (Frames.dragInventoryWidget != null && !field748 && menuOptionsCount > 0 && !this.shouldLeftClickOpenMenu()) {
+								if (Frames.dragInventoryWidget != null && !allWidgetsAreOpTargetable && menuOptionsCount > 0 && !this.shouldLeftClickOpenMenu()) {
 									class3.method47(field745, field746);
 								}
 
-								field748 = false;
+								allWidgetsAreOpTargetable = false;
 								itemDragDuration = 0;
 								if (Frames.dragInventoryWidget != null) {
 									WorldMapSectionType.invalidateWidget(Frames.dragInventoryWidget);

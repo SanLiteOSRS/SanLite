@@ -32,7 +32,7 @@ import javax.inject.Inject;
 import net.runelite.api.Client;
 import net.runelite.api.InventoryID;
 import net.runelite.api.Item;
-import net.runelite.api.ItemComposition;
+import net.runelite.api.ItemDefinition;
 import net.runelite.api.ItemContainer;
 import net.runelite.api.ItemID;
 import net.runelite.client.game.ItemManager;
@@ -79,7 +79,7 @@ public class BankPluginTest
 		when(itemContainer.getItems()).thenReturn(new Item[]{new Item(itemId, 30)});
 		when(client.getItemContainer(InventoryID.BANK)).thenReturn(itemContainer);
 
-		ItemComposition comp = mock(ItemComposition.class);
+		ItemDefinition comp = mock(ItemDefinition.class);
 		when(comp.getId())
 			.thenReturn(itemId);
 

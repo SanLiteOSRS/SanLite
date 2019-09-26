@@ -167,7 +167,7 @@ public class MusicPatchNode extends Node {
 		}
 
 		String var3;
-		if (var0.buttonType == 2 && !Client.isSpellSelected) {
+		if (var0.buttonType == 2 && !Client.spellSelected) {
 			var3 = VerticalAlignment.method4309(var0);
 			if (var3 != null) {
 				WorldMapData_1.insertMenuItemNoShift(var3, World.colorStartTag(65280) + var0.spellName, 25, 0, -1, var0.id);
@@ -224,7 +224,7 @@ public class MusicPatchNode extends Node {
 									}
 								}
 
-								if (Client.isSpellSelected) {
+								if (Client.spellSelected) {
 									var10 = class2.getWidgetClickMask(var0);
 									var9 = (var10 >> 30 & 1) != 0;
 									if (var9) {
@@ -313,7 +313,7 @@ public class MusicPatchNode extends Node {
 		}
 
 		if (var0.isIf3) {
-			if (Client.isSpellSelected) {
+			if (Client.spellSelected) {
 				var4 = class2.getWidgetClickMask(var0);
 				boolean var25 = (var4 >> 21 & 1) != 0;
 				if (var25 && (ItemContainer.selectedSpellFlags & 32) == 32) {

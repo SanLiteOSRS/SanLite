@@ -1091,16 +1091,4 @@ public class WidgetID
 	{
 		static final int INVENTORY = 7;
 	}
-
-	static class SeedVault
-	{
-		static final int TITLE_CONTAINER = 2;
-		static final int ITEM_CONTAINER = 15;
-		static final int ITEM_TEXT = 16;
-	}
-
-	static class ExplorersRing
-	{
-		static final int INVENTORY = 7;
-	}
 }

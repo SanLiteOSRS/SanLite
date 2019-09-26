@@ -497,23 +497,23 @@ public final class NetSocket extends AbstractSocket implements Runnable {
 
 			if (var4 == 10) {
 				if (var2 == 0) {
-					Client.field868 = 127;
+					Client.areaSoundEffectVolume = 127;
 				}
 
 				if (var2 == 1) {
-					Client.field868 = 96;
+					Client.areaSoundEffectVolume = 96;
 				}
 
 				if (var2 == 2) {
-					Client.field868 = 64;
+					Client.areaSoundEffectVolume = 64;
 				}
 
 				if (var2 == 3) {
-					Client.field868 = 32;
+					Client.areaSoundEffectVolume = 32;
 				}
 
 				if (var2 == 4) {
-					Client.field868 = 0;
+					Client.areaSoundEffectVolume = 0;
 				}
 			}
 

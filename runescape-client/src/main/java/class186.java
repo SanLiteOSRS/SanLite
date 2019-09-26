@@ -81,7 +81,7 @@ public class class186 {
 
 						if (Client.isItemSelected == 1) {
 							WorldMapData_1.insertMenuItemNoShift("Use", Client.selectedItemName + " " + "->" + " " + World.colorStartTag(16776960) + var4, 7, var1, var2, var3);
-						} else if (Client.isSpellSelected) {
+						} else if (Client.spellSelected) {
 							if ((ItemContainer.selectedSpellFlags & 2) == 2) {
 								WorldMapData_1.insertMenuItemNoShift(Client.selectedSpellActionName, Client.selectedSpellName + " " + "->" + " " + World.colorStartTag(16776960) + var4, 8, var1, var2, var3);
 							}

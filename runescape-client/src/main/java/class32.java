@@ -173,7 +173,7 @@ public class class32 {
 		}
 
 		Client.field793 = var3;
-		Client.isSpellSelected = true;
+		Client.spellSelected = true;
 		AttackOption.field1157 = var0;
 		Client.field768 = var1;
 		ItemContainer.selectedSpellFlags = var2;
@@ -187,7 +187,7 @@ public class class32 {
 	)
 	@Export("addSceneMenuOptions")
 	static final void addSceneMenuOptions(int var0, int var1, int var2, int var3) {
-		if (Client.isItemSelected == 0 && !Client.isSpellSelected) {
+		if (Client.isItemSelected == 0 && !Client.spellSelected) {
 			WorldMapData_1.insertMenuItemNoShift("Walk here", "", 23, 0, var0 - var2, var1 - var3);
 		}
 
@@ -230,7 +230,7 @@ public class class32 {
 
 						if (Client.isItemSelected == 1) {
 							WorldMapData_1.insertMenuItemNoShift("Use", Client.selectedItemName + " " + "->" + " " + World.colorStartTag(65535) + var21.name, 1, var19, var15, var17);
-						} else if (Client.isSpellSelected) {
+						} else if (Client.spellSelected) {
 							if ((ItemContainer.selectedSpellFlags & 4) == 4) {
 								WorldMapData_1.insertMenuItemNoShift(Client.selectedSpellActionName, Client.selectedSpellName + " " + "->" + " " + World.colorStartTag(65535) + var21.name, 2, var19, var15, var17);
 							}
@@ -341,7 +341,7 @@ public class class32 {
 								ItemDefinition var36 = Occluder.ItemDefinition_get(var38.id);
 								if (Client.isItemSelected == 1) {
 									WorldMapData_1.insertMenuItemNoShift("Use", Client.selectedItemName + " " + "->" + " " + World.colorStartTag(16748608) + var36.name, 16, var38.id, var16, var17);
-								} else if (Client.isSpellSelected) {
+								} else if (Client.spellSelected) {
 									if ((ItemContainer.selectedSpellFlags & 1) == 1) {
 										WorldMapData_1.insertMenuItemNoShift(Client.selectedSpellActionName, Client.selectedSpellName + " " + "->" + " " + World.colorStartTag(16748608) + var36.name, 17, var38.id, var16, var17);
 									}

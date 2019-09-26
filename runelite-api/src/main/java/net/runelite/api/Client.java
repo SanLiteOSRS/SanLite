@@ -1768,8 +1768,6 @@ public interface Client extends GameShell
 
 	String getSelectedSpellName();
 
-	boolean isSpellSelected();
-
 	/**
 	 * Set whether or not player attack options will be hidden for friends
 	 */

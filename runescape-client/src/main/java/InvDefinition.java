@@ -833,7 +833,7 @@ public class InvDefinition extends DualNode {
 			WorldMapSectionType.invalidateWidget(Canvas.getWidget(class2.selectedItemWidget));
 		}
 
-		if (Client.isSpellSelected) {
+		if (Client.spellSelected) {
 			class208.Widget_runOnTargetLeave();
 		}
 

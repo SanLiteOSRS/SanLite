@@ -113,7 +113,7 @@ public class HealthBarUpdate extends Node {
 							var8 = 0;
 						}
 
-						var2 = (var3 - var8) * Client.field868 / var3;
+						var2 = (var3 - var8) * Client.areaSoundEffectVolume / var3;
 					} else {
 						var2 = Client.soundEffectVolume;
 					}

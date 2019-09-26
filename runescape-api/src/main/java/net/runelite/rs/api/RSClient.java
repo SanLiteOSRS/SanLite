@@ -925,6 +925,9 @@ public interface RSClient extends RSGameShell, Client
 	int getIf1DraggedItemIndex();
 
 	@Import("isSpellSelected")
+	boolean getSpellSelected();
+
+	@Import("isSpellSelected")
 	@Override
 	void setSpellSelected(boolean selected);
 
@@ -984,9 +987,6 @@ public interface RSClient extends RSGameShell, Client
 	@Import("selectedSpellName")
 	String getSelectedSpellName();
 
-	@Import("isSpellSelected")
-	boolean isSpellSelected();
-
 	@Import("readSoundEffect")
 	RSSoundEffect getTrack(RSAbstractArchive indexData, int id, int var0);
 
@@ -1002,8 +1002,23 @@ public interface RSClient extends RSGameShell, Client
 	@Import("decimator")
 	RSDecimator getSoundEffectResampler();
 
+	@Import("soundEffectVolume") // TODO: Find correct field to export
+	int getMusicVolume();
+
+	@Import("soundEffectVolume") // TODO: Find correct field to export
+	void setMusicVolume(int volume);
+
 	@Import("soundEffectVolume")
 	int getSoundEffectVolume();
+
+	@Import("soundEffectVolume")
+	void setSoundEffectVolume(int volume);
+
+	@Import("areaSoundEffectVolume")
+	int getAreaSoundEffectVolume();
+
+	@Import("areaSoundEffectVolume")
+	void setAreaSoundEffectVolume(int volume);
 
 	@Import("viewportWalking")
 	void setViewportWalking(boolean viewportWalking);
@@ -1014,4 +1029,7 @@ public interface RSClient extends RSGameShell, Client
 
 	@Import("ItemDefinition_fileCount")
 	int getItemCount();
+
+	@Import("areWidgetsOpTargetable")
+	void setAllWidgetsAreOpTargetable(boolean value);
 }
