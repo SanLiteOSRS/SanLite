@@ -26,7 +26,6 @@ import java.util.List;
 		tags = {"spell", "effect", "timers", "freeze", "timers", "barrage", "freezy", "ancients", "overlay", "root",
 				"vengeance", "teleblock", "veng", "tb"},
 		enabledByDefault = false,
-		hidden = true,
 		type = PluginType.SANLITE
 )
 public class SpellEffectTimersPlugin extends Plugin
