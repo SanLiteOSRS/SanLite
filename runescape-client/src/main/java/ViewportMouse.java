@@ -4,65 +4,76 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("di")
+@ObfuscatedName("db")
 @Implements("ViewportMouse")
 public class ViewportMouse {
-	@ObfuscatedName("q")
-	@Export("ViewportMouse_isInViewport")
-	public static boolean ViewportMouse_isInViewport;
-	@ObfuscatedName("w")
+	@ObfuscatedName("nr")
 	@ObfuscatedGetter(
-		intValue = 284050525
+		intValue = 69994429
+	)
+	@Export("widgetDragDuration")
+	static int widgetDragDuration;
+	@ObfuscatedName("z")
+	@Export("ViewportMouse_isInViewport")
+	static boolean ViewportMouse_isInViewport;
+	@ObfuscatedName("n")
+	@ObfuscatedGetter(
+		intValue = 1421874705
 	)
 	@Export("ViewportMouse_x")
-	public static int ViewportMouse_x;
-	@ObfuscatedName("e")
+	static int ViewportMouse_x;
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = -245246371
+		intValue = 197980329
 	)
 	@Export("ViewportMouse_y")
-	public static int ViewportMouse_y;
-	@ObfuscatedName("p")
-	@Export("ViewportMouse_false0")
-	public static boolean ViewportMouse_false0;
-	@ObfuscatedName("l")
-	@ObfuscatedGetter(
-		intValue = -933115495
-	)
-	static int field1745;
-	@ObfuscatedName("b")
-	@ObfuscatedGetter(
-		intValue = -401508143
-	)
-	static int field1746;
-	@ObfuscatedName("i")
-	@Export("loadedInterfaces")
-	public static boolean[] loadedInterfaces;
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		signature = "Lhp;"
-	)
-	@Export("Widget_modelsArchive")
-	static AbstractArchive Widget_modelsArchive;
+	static int ViewportMouse_y;
 	@ObfuscatedName("u")
-	@ObfuscatedGetter(
-		intValue = -900084985
-	)
-	static int field1741;
+	@Export("ViewportMouse_false0")
+	static boolean ViewportMouse_false0;
 	@ObfuscatedName("r")
 	@ObfuscatedGetter(
-		intValue = -1866489791
+		intValue = 1955374903
+	)
+	static int field1707;
+	@ObfuscatedName("p")
+	@ObfuscatedGetter(
+		intValue = -386992233
+	)
+	static int field1708;
+	@ObfuscatedName("q")
+	@ObfuscatedGetter(
+		intValue = -1018697137
+	)
+	static int field1714;
+	@ObfuscatedName("m")
+	@Export("Widget_loadedInterfaces")
+	static boolean[] Widget_loadedInterfaces;
+	@ObfuscatedName("y")
+	@ObfuscatedGetter(
+		intValue = -96146427
+	)
+	static int field1718;
+	@ObfuscatedName("i")
+	@ObfuscatedGetter(
+		intValue = -737509043
+	)
+	static int field1711;
+	@ObfuscatedName("a")
+	@ObfuscatedGetter(
+		intValue = 1620511435
 	)
 	@Export("ViewportMouse_entityCount")
 	public static int ViewportMouse_entityCount;
-	@ObfuscatedName("v")
+	@ObfuscatedName("e")
 	@Export("ViewportMouse_entityTags")
 	public static long[] ViewportMouse_entityTags;
-	@ObfuscatedName("fq")
-	@ObfuscatedGetter(
-		intValue = -572146471
+	@ObfuscatedName("af")
+	@Export("client")
+	@ObfuscatedSignature(
+		signature = "Lclient;"
 	)
-	static int field1747;
+	static Client client;
 
 	static {
 		ViewportMouse_isInViewport = false;
@@ -73,114 +84,162 @@ public class ViewportMouse {
 		ViewportMouse_entityTags = new long[1000];
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("gm")
 	@ObfuscatedSignature(
-		signature = "(IS)Liy;",
-		garbageValue = "4095"
+		signature = "(IIIIB)V",
+		garbageValue = "13"
 	)
-	@Export("getObjectDefinition")
-	public static ObjectDefinition getObjectDefinition(int var0) {
-		ObjectDefinition var1 = (ObjectDefinition)ObjectDefinition.ObjectDefinition_cached.get((long)var0);
-		if (var1 != null) {
-			return var1;
-		}
-		byte[] var2 = ObjectDefinition.ObjectDefinition_archive.takeFile(6, var0);
-		var1 = new ObjectDefinition();
-		var1.id = var0;
-		if (var2 != null) {
-			var1.decode(new Buffer(var2));
+	static final void method2950(int var0, int var1, int var2, int var3) {
+		Client.overheadTextCount = 0;
+		boolean var4 = false;
+		int var5 = -1;
+		int var6 = -1;
+		int var7 = Players.Players_count;
+		int[] var8 = Players.Players_indices;
+
+		int var9;
+		for (var9 = 0; var9 < var7 + Client.npcCount; ++var9) {
+			Object var10;
+			if (var9 < var7) {
+				var10 = Client.players[var8[var9]];
+				if (var8[var9] == Client.combatTargetPlayerIndex) {
+					var4 = true;
+					var5 = var9;
+					continue;
+				}
+
+				if (var10 == class223.localPlayer) {
+					var6 = var9;
+					continue;
+				}
+			} else {
+				var10 = Client.npcs[Client.npcIndices[var9 - var7]];
+			}
+
+			class312.drawActor2d((Actor)var10, var9, var0, var1, var2, var3);
 		}
 
-		var1.postDecode();
-		if (var1.isSolid) {
-			var1.interactType = 0;
-			var1.boolean1 = false;
+		if (Client.renderSelf && var6 != -1) {
+			class312.drawActor2d(class223.localPlayer, var6, var0, var1, var2, var3);
 		}
 
-		ObjectDefinition.ObjectDefinition_cached.put(var1, (long)var0);
-		return var1;
-	}
-
-	@ObfuscatedName("q")
-	@ObfuscatedSignature(
-		signature = "(IB)Lcx;",
-		garbageValue = "1"
-	)
-	@Export("getScript")
-	static Script getScript(int var0) {
-		Script var1 = (Script)Script.Script_cached.get((long)var0);
-		if (var1 != null) {
-			return var1;
+		if (var4) {
+			class312.drawActor2d(Client.players[Client.combatTargetPlayerIndex], var5, var0, var1, var2, var3);
 		}
-		byte[] var2 = UserComparator4.archive12.takeFile(var0, 0);
-		if (var2 == null) {
-			return null;
-		}
-		var1 = World.newScript(var2);
-		Script.Script_cached.put(var1, (long)var0);
-		return var1;
-	}
 
-	@ObfuscatedName("e")
-	@ObfuscatedSignature(
-		signature = "(Liu;IIIBZI)V",
-		garbageValue = "-913325342"
-	)
-	@Export("requestNetFile")
-	static void requestNetFile(Archive var0, int var1, int var2, int var3, byte var4, boolean var5) {
-		long var6 = (long)((var1 << 16) + var2);
-		NetFileRequest var8 = (NetFileRequest)NetCache.NetCache_pendingPriorityWrites.get(var6);
-		if (var8 == null) {
-			var8 = (NetFileRequest)NetCache.NetCache_pendingPriorityResponses.get(var6);
-			if (var8 == null) {
-				var8 = (NetFileRequest)NetCache.NetCache_pendingWrites.get(var6);
-				if (var8 != null) {
-					if (var5) {
-						var8.removeDual();
-						NetCache.NetCache_pendingPriorityWrites.put(var8, var6);
-						--NetCache.NetCache_pendingWritesCount;
-						++NetCache.NetCache_pendingPriorityWritesCount;
+		for (var9 = 0; var9 < Client.overheadTextCount; ++var9) {
+			int var19 = Client.overheadTextXs[var9];
+			int var11 = Client.overheadTextYs[var9];
+			int var12 = Client.overheadTextXOffsets[var9];
+			int var13 = Client.overheadTextAscents[var9];
+			boolean var14 = true;
+
+			while (var14) {
+				var14 = false;
+
+				for (int var15 = 0; var15 < var9; ++var15) {
+					if (var11 + 2 > Client.overheadTextYs[var15] - Client.overheadTextAscents[var15] && var11 - var13 < Client.overheadTextYs[var15] + 2 && var19 - var12 < Client.overheadTextXOffsets[var15] + Client.overheadTextXs[var15] && var19 + var12 > Client.overheadTextXs[var15] - Client.overheadTextXOffsets[var15] && Client.overheadTextYs[var15] - Client.overheadTextAscents[var15] < var11) {
+						var11 = Client.overheadTextYs[var15] - Client.overheadTextAscents[var15];
+						var14 = true;
 					}
-
-				} else {
-					if (!var5) {
-						var8 = (NetFileRequest)NetCache.NetCache_pendingResponses.get(var6);
-						if (var8 != null) {
-							return;
-						}
-					}
-
-					var8 = new NetFileRequest();
-					var8.archive = var0;
-					var8.crc = var3;
-					var8.padding = var4;
-					if (var5) {
-						NetCache.NetCache_pendingPriorityWrites.put(var8, var6);
-						++NetCache.NetCache_pendingPriorityWritesCount;
-					} else {
-						NetCache.NetCache_pendingWritesQueue.addFirst(var8);
-						NetCache.NetCache_pendingWrites.put(var8, var6);
-						++NetCache.NetCache_pendingWritesCount;
-					}
-
 				}
 			}
+
+			Client.viewportTempX = Client.overheadTextXs[var9];
+			Client.viewportTempY = Client.overheadTextYs[var9] = var11;
+			String var20 = Client.overheadText[var9];
+			if (Client.chatEffects == 0) {
+				int var16 = 16776960;
+				if (Client.overheadTextColors[var9] < 6) {
+					var16 = Client.field851[Client.overheadTextColors[var9]];
+				}
+
+				if (Client.overheadTextColors[var9] == 6) {
+					var16 = Client.viewportDrawCount % 20 < 10 ? 16711680 : 16776960;
+				}
+
+				if (Client.overheadTextColors[var9] == 7) {
+					var16 = Client.viewportDrawCount % 20 < 10 ? 255 : '\uffff';
+				}
+
+				if (Client.overheadTextColors[var9] == 8) {
+					var16 = Client.viewportDrawCount % 20 < 10 ? '뀀' : 8454016;
+				}
+
+				int var17;
+				if (Client.overheadTextColors[var9] == 9) {
+					var17 = 150 - Client.overheadTextCyclesRemaining[var9];
+					if (var17 < 50) {
+						var16 = var17 * 1280 + 16711680;
+					} else if (var17 < 100) {
+						var16 = 16776960 - (var17 - 50) * 327680;
+					} else if (var17 < 150) {
+						var16 = (var17 - 100) * 5 + 65280;
+					}
+				}
+
+				if (Client.overheadTextColors[var9] == 10) {
+					var17 = 150 - Client.overheadTextCyclesRemaining[var9];
+					if (var17 < 50) {
+						var16 = var17 * 5 + 16711680;
+					} else if (var17 < 100) {
+						var16 = 16711935 - (var17 - 50) * 327680;
+					} else if (var17 < 150) {
+						var16 = (var17 - 100) * 327680 + 255 - (var17 - 100) * 5;
+					}
+				}
+
+				if (Client.overheadTextColors[var9] == 11) {
+					var17 = 150 - Client.overheadTextCyclesRemaining[var9];
+					if (var17 < 50) {
+						var16 = 16777215 - var17 * 327685;
+					} else if (var17 < 100) {
+						var16 = (var17 - 50) * 327685 + 65280;
+					} else if (var17 < 150) {
+						var16 = 16777215 - (var17 - 100) * 327680;
+					}
+				}
+
+				if (Client.overheadTextEffects[var9] == 0) {
+					class173.fontBold12.drawCentered(var20, var0 + Client.viewportTempX, Client.viewportTempY + var1, var16, 0);
+				}
+
+				if (Client.overheadTextEffects[var9] == 1) {
+					class173.fontBold12.drawCenteredWave(var20, var0 + Client.viewportTempX, Client.viewportTempY + var1, var16, 0, Client.viewportDrawCount);
+				}
+
+				if (Client.overheadTextEffects[var9] == 2) {
+					class173.fontBold12.drawCenteredWave2(var20, var0 + Client.viewportTempX, Client.viewportTempY + var1, var16, 0, Client.viewportDrawCount);
+				}
+
+				if (Client.overheadTextEffects[var9] == 3) {
+					class173.fontBold12.drawCenteredShake(var20, var0 + Client.viewportTempX, Client.viewportTempY + var1, var16, 0, Client.viewportDrawCount, 150 - Client.overheadTextCyclesRemaining[var9]);
+				}
+
+				if (Client.overheadTextEffects[var9] == 4) {
+					var17 = (150 - Client.overheadTextCyclesRemaining[var9]) * (class173.fontBold12.stringWidth(var20) + 100) / 150;
+					Rasterizer2D.Rasterizer2D_expandClip(var0 + Client.viewportTempX - 50, var1, var0 + Client.viewportTempX + 50, var3 + var1);
+					class173.fontBold12.draw(var20, var0 + Client.viewportTempX + 50 - var17, Client.viewportTempY + var1, var16, 0);
+					Rasterizer2D.Rasterizer2D_setClip(var0, var1, var0 + var2, var3 + var1);
+				}
+
+				if (Client.overheadTextEffects[var9] == 5) {
+					var17 = 150 - Client.overheadTextCyclesRemaining[var9];
+					int var18 = 0;
+					if (var17 < 25) {
+						var18 = var17 - 25;
+					} else if (var17 > 125) {
+						var18 = var17 - 125;
+					}
+
+					Rasterizer2D.Rasterizer2D_expandClip(var0, Client.viewportTempY + var1 - class173.fontBold12.ascent - 1, var0 + var2, Client.viewportTempY + var1 + 5);
+					class173.fontBold12.drawCentered(var20, var0 + Client.viewportTempX, var18 + Client.viewportTempY + var1, var16, 0);
+					Rasterizer2D.Rasterizer2D_setClip(var0, var1, var0 + var2, var3 + var1);
+				}
+			} else {
+				class173.fontBold12.drawCentered(var20, var0 + Client.viewportTempX, Client.viewportTempY + var1, 16776960, 0);
+			}
 		}
-	}
 
-	@ObfuscatedName("i")
-	@ObfuscatedSignature(
-		signature = "(Ljava/lang/CharSequence;I)I",
-		garbageValue = "-1418597327"
-	)
-	public static int method2971(CharSequence var0) {
-		int var1 = var0.length();
-		int var2 = 0;
-
-		for (int var3 = 0; var3 < var1; ++var3) {
-			var2 = (var2 << 5) - var2 + var0.charAt(var3);
-		}
-
-		return var2;
 	}
 }

@@ -5,71 +5,76 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("ce")
+@ObfuscatedName("cq")
 @Implements("ReflectionCheck")
 public class ReflectionCheck extends Node {
-	@ObfuscatedName("co")
+	@ObfuscatedName("sf")
 	@ObfuscatedGetter(
-		intValue = 749425319
+		intValue = 1327402685
 	)
-	public static int field1338;
-	@ObfuscatedName("q")
+	@Export("foundItemIndex")
+	static int foundItemIndex;
+	@ObfuscatedName("gp")
+	@ObfuscatedSignature(
+		signature = "[Llf;"
+	)
+	@Export("headIconHintSprites")
+	static Sprite[] headIconHintSprites;
+	@ObfuscatedName("z")
 	@ObfuscatedGetter(
-		intValue = -1523966437
+		intValue = 85422493
 	)
 	@Export("id")
 	int id;
-	@ObfuscatedName("w")
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = 970491183
+		intValue = 198207431
 	)
 	@Export("size")
 	int size;
-	@ObfuscatedName("e")
+	@ObfuscatedName("v")
 	@Export("operations")
 	int[] operations;
-	@ObfuscatedName("p")
+	@ObfuscatedName("u")
 	@Export("creationErrors")
 	int[] creationErrors;
-	@ObfuscatedName("k")
+	@ObfuscatedName("r")
 	@Export("fields")
 	Field[] fields;
-	@ObfuscatedName("l")
+	@ObfuscatedName("p")
 	@Export("intReplaceValues")
 	int[] intReplaceValues;
-	@ObfuscatedName("b")
+	@ObfuscatedName("q")
 	@Export("methods")
 	Method[] methods;
-	@ObfuscatedName("i")
+	@ObfuscatedName("m")
 	@Export("arguments")
 	byte[][][] arguments;
 
 	ReflectionCheck() {
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "2118101811"
+		signature = "(ILcu;ZI)I",
+		garbageValue = "-884073904"
 	)
-	@Export("savePreferences")
-	static void savePreferences() {
-		AccessFile var0 = null;
-
-		try {
-			var0 = WorldMapIcon_0.getPreferencesFile("", WorldMapRegion.studioGame.name, true);
-			Buffer var1 = WorldMapLabelSize.clientPreferences.toBuffer();
-			var0.write(var1.array, 0, var1.offset);
-		} catch (Exception var3) {
+	static int method2267(int var0, Script var1, boolean var2) {
+		if (var0 == ScriptOpcodes.SOUND_SYNTH) {
+			Interpreter.Interpreter_intStackSize -= 3;
+			Message.queueSoundEffect(Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize], Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1], Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 2]);
+			return 1;
+		} else if (var0 == ScriptOpcodes.SOUND_SONG) {
+			MusicPatchNode2.playSong(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);
+			return 1;
+		} else if (var0 == ScriptOpcodes.SOUND_JINGLE) {
+			Interpreter.Interpreter_intStackSize -= 2;
+			ClientPacket.playSoundJingle(Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize], Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1]);
+			return 1;
+		} else {
+			return 2;
 		}
-
-		try {
-			if (var0 != null) {
-				var0.closeSync(true);
-			}
-		} catch (Exception var2) {
-		}
-
 	}
 }

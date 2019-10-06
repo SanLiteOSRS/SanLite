@@ -43,7 +43,6 @@ import org.slf4j.Logger;
 
 import javax.annotation.Nullable;
 import javax.inject.Named;
-import java.math.BigInteger;
 import java.util.*;
 
 import static net.runelite.api.MenuAction.*;
@@ -562,9 +561,9 @@ public abstract class RSClientMixin implements RSClient
 		String[] menuOptions = getMenuOptions();
 		String[] menuTargets = getMenuTargets();
 		int[] menuIdentifiers = getMenuIdentifiers();
-		int[] menuTypes = getMenuTypes();
-		int[] params0 = getMenuActionParams0();
-		int[] params1 = getMenuActionParams1();
+		int[] menuTypes = getMenuOpcodes();
+		int[] params0 = getMenuArguments1();
+		int[] params1 = getMenuArguments2();
 		boolean[] leftClick = getMenuForceLeftClick();
 
 		MenuEntry[] entries = new MenuEntry[count];
@@ -590,13 +589,18 @@ public abstract class RSClientMixin implements RSClient
 		String[] menuOptions = getMenuOptions();
 		String[] menuTargets = getMenuTargets();
 		int[] menuIdentifiers = getMenuIdentifiers();
-		int[] menuTypes = getMenuTypes();
-		int[] params0 = getMenuActionParams0();
-		int[] params1 = getMenuActionParams1();
+		int[] menuTypes = getMenuOpcodes();
+		int[] params0 = getMenuArguments1();
+		int[] params1 = getMenuArguments2();
 		boolean[] leftClick = getMenuForceLeftClick();
 
 		for (MenuEntry entry : entries)
 		{
+			if (entry == null)
+			{
+				continue;
+			}
+
 			menuOptions[count] = entry.getOption();
 			menuTargets[count] = entry.getTarget();
 			menuIdentifiers[count] = entry.getIdentifier();
@@ -623,15 +627,15 @@ public abstract class RSClientMixin implements RSClient
 		if (newCount == oldCount + 1)
 		{
 			MenuEntryAdded event = new MenuEntryAdded(
-					new MenuEntry(
-							client.getMenuOptions()[oldCount],
-							client.getMenuTargets()[oldCount],
-							client.getMenuIdentifiers()[oldCount],
-							client.getMenuTypes()[oldCount],
-							client.getMenuActionParams0()[oldCount],
-							client.getMenuActionParams1()[oldCount],
-							client.getMenuForceLeftClick()[oldCount]
-					)
+				new MenuEntry(
+					client.getMenuOptions()[oldCount],
+					client.getMenuTargets()[oldCount],
+					client.getMenuIdentifiers()[oldCount],
+					client.getMenuOpcodes()[oldCount],
+					client.getMenuArguments1()[oldCount],
+					client.getMenuArguments2()[oldCount],
+					client.getMenuForceLeftClick()[oldCount]
+				)
 			);
 
 			client.getCallbacks().post(event);
@@ -1297,27 +1301,6 @@ public abstract class RSClientMixin implements RSClient
 		return WorldType.fromMask(flags);
 	}
 
-	@FieldHook("regions")
-	@Inject
-	public static void onWorldRegionChanged(int idx)
-	{
-		int[] mapRegions = client.getMapRegions();
-
-		if (mapRegions == null)
-		{
-			return;
-		}
-
-		// Only post the event when every map region is loaded
-		for (int region : mapRegions)
-		{
-			if (region == 0)
-				return;
-		}
-
-		client.getCallbacks().post(new WorldRegionChanged(mapRegions));
-	}
-
 	@Inject
 	@MethodHook("openMenu")
 	public void menuOpened(int var1, int var2)
@@ -1563,7 +1546,7 @@ public abstract class RSClientMixin implements RSClient
 		int len = getMenuOptionCount();
 		if (len > 0)
 		{
-			int type = getMenuTypes()[len - 1];
+			int type = getMenuOpcodes()[len - 1];
 			return type == MenuAction.RUNELITE_OVERLAY.getId();
 		}
 
@@ -1598,7 +1581,7 @@ public abstract class RSClientMixin implements RSClient
 	@Inject
 	static boolean shouldHideAttackOptionFor(RSPlayer p)
 	{
-		if (client.isSpellSelected())
+		if (client.getSpellSelected())
 		{
 			return ((hideFriendCastOptions && p.isFriended()) || (hideClanmateCastOptions && p.isClanMember()))
 					&& !unhiddenCasts.contains(client.getSelectedSpellName().replaceAll("<[^>]*>", "").toLowerCase());
@@ -1621,23 +1604,5 @@ public abstract class RSClientMixin implements RSClient
 	{
 		RSFriendSystem friendSystem = getFriendManager();
 		friendSystem.removeFriend(friend);
-	}
-
-	@Inject
-	BigInteger modulus = new BigInteger("83ff79a3e258b99ead1a70e1049883e78e513c4cdec538d8da9483879a9f81689c0c7d146d7b82b52d05cf26132b1cda5930eeef894e4ccf3d41eebc3aabe54598c4ca48eb5a31d736bfeea17875a35558b9e3fcd4aebe2a9cc970312a477771b36e173dc2ece6001ab895c553e2770de40073ea278026f36961c94428d8d7db", 16);
-
-	@Inject
-	@Override
-	public BigInteger getModulus()
-	{
-		return modulus;
-	}
-
-
-	@Inject
-	@Override
-	public void setModulus(BigInteger modulus)
-	{
-		this.modulus = modulus;
 	}
 }

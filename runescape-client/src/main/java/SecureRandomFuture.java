@@ -4,25 +4,27 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("co")
+@ObfuscatedName("cb")
 @Implements("SecureRandomFuture")
 public class SecureRandomFuture {
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		signature = "Ldg;"
+	@ObfuscatedName("rq")
+	@ObfuscatedGetter(
+		intValue = -488554496
 	)
-	@Export("soundSystem")
-	static SoundSystem soundSystem;
-	@ObfuscatedName("gw")
-	@Export("regionMapArchiveIds")
-	static int[] regionMapArchiveIds;
-	@ObfuscatedName("q")
+	static int field1228;
+	@ObfuscatedName("cb")
+	@ObfuscatedGetter(
+		intValue = 515695907
+	)
+	public static int field1230;
+	@ObfuscatedName("z")
 	@Export("executor")
 	ExecutorService executor;
-	@ObfuscatedName("w")
+	@ObfuscatedName("n")
 	@Export("future")
 	Future future;
 
@@ -31,10 +33,10 @@ public class SecureRandomFuture {
 		this.future = this.executor.submit(new SecureRandomCallable());
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "1961789418"
+		garbageValue = "-128121805"
 	)
 	@Export("shutdown")
 	void shutdown() {
@@ -42,63 +44,55 @@ public class SecureRandomFuture {
 		this.executor = null;
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
 		signature = "(I)Z",
-		garbageValue = "-2036940847"
+		garbageValue = "-55622200"
 	)
 	@Export("isDone")
 	boolean isDone() {
 		return this.future.isDone();
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
 		signature = "(I)Ljava/security/SecureRandom;",
-		garbageValue = "1181780583"
+		garbageValue = "311645204"
 	)
 	@Export("get")
 	SecureRandom get() {
 		try {
 			return (SecureRandom)this.future.get();
-		} catch (Exception var4) {
-			SecureRandom var3 = new SecureRandom();
-			var3.nextInt();
-			return var3;
+		} catch (Exception var2) {
+			return AttackOption.method2077();
 		}
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("ha")
 	@ObfuscatedSignature(
-		signature = "(ILkm;Liu;I)V",
-		garbageValue = "-1214592487"
+		signature = "(I)V",
+		garbageValue = "-1765847825"
 	)
-	static void method2056(int var0, ArchiveDisk var1, Archive var2) {
-		byte[] var3 = null;
-		synchronized(ArchiveDiskActionHandler.ArchiveDiskActionHandler_requestQueue) {
-			for (ArchiveDiskAction var5 = (ArchiveDiskAction)ArchiveDiskActionHandler.ArchiveDiskActionHandler_requestQueue.last(); var5 != null; var5 = (ArchiveDiskAction)ArchiveDiskActionHandler.ArchiveDiskActionHandler_requestQueue.previous()) {
-				if ((long)var0 == var5.key && var1 == var5.archiveDisk && var5.type == 0) {
-					var3 = var5.data;
-					break;
+	static void method2134() {
+		for (int var0 = 0; var0 < Client.menuOptionsCount; ++var0) {
+			if (BZip2State.method5688(Client.menuOpcodes[var0])) {
+				if (var0 < Client.menuOptionsCount - 1) {
+					for (int var1 = var0; var1 < Client.menuOptionsCount - 1; ++var1) {
+						Client.menuActions[var1] = Client.menuActions[var1 + 1];
+						Client.menuTargets[var1] = Client.menuTargets[var1 + 1];
+						Client.menuOpcodes[var1] = Client.menuOpcodes[var1 + 1];
+						Client.menuIdentifiers[var1] = Client.menuIdentifiers[var1 + 1];
+						Client.menuArguments1[var1] = Client.menuArguments1[var1 + 1];
+						Client.menuArguments2[var1] = Client.menuArguments2[var1 + 1];
+						Client.menuShiftClick[var1] = Client.menuShiftClick[var1 + 1];
+					}
 				}
+
+				--var0;
+				--Client.menuOptionsCount;
 			}
 		}
 
-		if (var3 != null) {
-			var2.load(var1, var0, var3, true);
-		} else {
-			byte[] var4 = var1.read(var0);
-			var2.load(var1, var0, var4, true);
-		}
-	}
-
-	@ObfuscatedName("e")
-	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-1709939450"
-	)
-	@Export("WorldMapRegion_clearCachedSprites")
-	static void WorldMapRegion_clearCachedSprites() {
-		WorldMapRegion.WorldMapRegion_cachedSprites.clear();
+		UserComparator6.calculateMenuBounds(FriendSystem.menuWidth / 2 + UrlRequester.menuX, class51.menuY);
 	}
 }

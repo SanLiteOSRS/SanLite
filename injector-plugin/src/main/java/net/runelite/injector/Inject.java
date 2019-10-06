@@ -310,7 +310,7 @@ public class Inject
 		new ScriptVM(this).inject();
 		new ClearColorBuffer(this).inject();
 		new RenderDraw(this).inject();
-		new DrawMenu(this).inject();
+		//new DrawMenu(this).inject();
 		new Occluder(this).inject();
 		new HidePlayerAttacks(this).inject();
 	}

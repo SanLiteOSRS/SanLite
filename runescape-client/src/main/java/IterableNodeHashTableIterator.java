@@ -4,33 +4,33 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("lg")
+@ObfuscatedName("ls")
 @Implements("IterableNodeHashTableIterator")
 public class IterableNodeHashTableIterator implements Iterator {
-	@ObfuscatedName("q")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "Lla;"
+		signature = "Llb;"
 	)
 	@Export("hashTable")
 	IterableNodeHashTable hashTable;
-	@ObfuscatedName("w")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "Lfw;"
+		signature = "Lfx;"
 	)
 	@Export("head")
 	Node head;
-	@ObfuscatedName("e")
+	@ObfuscatedName("v")
 	@Export("index")
 	int index;
-	@ObfuscatedName("p")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "Lfw;"
+		signature = "Lfx;"
 	)
 	@Export("last")
 	Node last;
 
 	@ObfuscatedSignature(
-		signature = "(Lla;)V"
+		signature = "(Llb;)V"
 	)
 	IterableNodeHashTableIterator(IterableNodeHashTable var1) {
 		this.last = null;
@@ -38,7 +38,7 @@ public class IterableNodeHashTableIterator implements Iterator {
 		this.start();
 	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("i")
 	@Export("start")
 	void start() {
 		this.head = this.hashTable.buckets[0].previous;
@@ -46,20 +46,13 @@ public class IterableNodeHashTableIterator implements Iterator {
 		this.last = null;
 	}
 
-	public boolean hasNext() {
-		if (this.hashTable.buckets[this.index - 1] != this.head) {
-			return true;
+	public void remove() {
+		if (this.last == null) {
+			throw new IllegalStateException();
+		} else {
+			this.last.remove();
+			this.last = null;
 		}
-		while (this.index < this.hashTable.size) {
-			if (this.hashTable.buckets[this.index++].previous != this.hashTable.buckets[this.index - 1]) {
-				this.head = this.hashTable.buckets[this.index - 1].previous;
-				return true;
-			}
-
-			this.head = this.hashTable.buckets[this.index - 1];
-		}
-
-		return false;
 	}
 
 	public Object next() {
@@ -69,25 +62,35 @@ public class IterableNodeHashTableIterator implements Iterator {
 			this.head = var1.previous;
 			this.last = var1;
 			return var1;
+		} else {
+			do {
+				if (this.index >= this.hashTable.size) {
+					return null;
+				}
+
+				var1 = this.hashTable.buckets[this.index++].previous;
+			} while(var1 == this.hashTable.buckets[this.index - 1]);
+
+			this.head = var1.previous;
+			this.last = var1;
+			return var1;
 		}
-		do {
-			if (this.index >= this.hashTable.size) {
-				return null;
-			}
-
-			var1 = this.hashTable.buckets[this.index++].previous;
-		} while(var1 == this.hashTable.buckets[this.index - 1]);
-
-		this.head = var1.previous;
-		this.last = var1;
-		return var1;
 	}
 
-	public void remove() {
-		if (this.last == null) {
-			throw new IllegalStateException();
+	public boolean hasNext() {
+		if (this.hashTable.buckets[this.index - 1] != this.head) {
+			return true;
+		} else {
+			while (this.index < this.hashTable.size) {
+				if (this.hashTable.buckets[this.index++].previous != this.hashTable.buckets[this.index - 1]) {
+					this.head = this.hashTable.buckets[this.index - 1].previous;
+					return true;
+				}
+
+				this.head = this.hashTable.buckets[this.index - 1];
+			}
+
+			return false;
 		}
-		this.last.remove();
-		this.last = null;
 	}
 }

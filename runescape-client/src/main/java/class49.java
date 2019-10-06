@@ -1,70 +1,58 @@
 import javax.imageio.ImageIO;
 import net.runelite.mapping.Export;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ay")
+@ObfuscatedName("au")
 public class class49 {
+	@ObfuscatedName("u")
+	@ObfuscatedSignature(
+		signature = "Lgb;"
+	)
+	@Export("midiPcmStream")
+	public static MidiPcmStream midiPcmStream;
+	@ObfuscatedName("m")
+	@ObfuscatedGetter(
+		intValue = -649185671
+	)
+	@Export("musicTrackFileId")
+	public static int musicTrackFileId;
+
 	static {
 		ImageIO.setUseCache(false);
 	}
 
-	@ObfuscatedName("e")
-	@ObfuscatedSignature(
-		signature = "(S)V",
-		garbageValue = "135"
-	)
-	static void method815() {
-		if (Login.Login_username == null || Login.Login_username.length() <= 0) {
-			if (WorldMapLabelSize.clientPreferences.rememberedUsername != null) {
-				Login.Login_username = WorldMapLabelSize.clientPreferences.rememberedUsername;
-				Client.Login_isUsernameRemembered = true;
-			} else {
-				Client.Login_isUsernameRemembered = false;
-			}
-
-		}
-	}
-
-	@ObfuscatedName("e")
-	@ObfuscatedSignature(
-		signature = "(IIB)Lcx;",
-		garbageValue = "3"
-	)
-	@Export("getWorldMapScript")
-	static Script getWorldMapScript(int var0, int var1) {
-		Script var2 = (Script)Script.Script_cached.get((long)(var0 << 16));
-		if (var2 != null) {
-			return var2;
-		}
-		String var3 = String.valueOf(var0);
-		int var4 = UserComparator4.archive12.getGroupId(var3);
-		if (var4 == -1) {
-			return null;
-		}
-		byte[] var5 = UserComparator4.archive12.takeFileFlat(var4);
-		if (var5 != null) {
-			if (var5.length <= 1) {
-				return null;
-			}
-
-			var2 = World.newScript(var5);
-			if (var2 != null) {
-				Script.Script_cached.put(var2, (long)(var0 << 16));
-				return var2;
-			}
-		}
-
-		return null;
-	}
-
 	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "(CS)Z",
-		garbageValue = "8230"
+		signature = "(IZIZB)V",
+		garbageValue = "-64"
 	)
-	@Export("isCharDigit")
-	public static boolean isCharDigit(char var0) {
-		return var0 >= '0' && var0 <= '9';
+	@Export("sortWorldList")
+	static void sortWorldList(int var0, boolean var1, int var2, boolean var3) {
+		if (World.World_worlds != null) {
+			AbstractWorldMapData.doWorldSorting(0, World.World_worlds.length - 1, var0, var1, var2, var3);
+		}
+
+	}
+
+	@ObfuscatedName("y")
+	@ObfuscatedSignature(
+		signature = "([BI)Lkn;",
+		garbageValue = "-1770627772"
+	)
+	static Font method893(byte[] var0) {
+		if (var0 == null) {
+			return null;
+		} else {
+			Font var1 = new Font(var0, class325.SpriteBuffer_xOffsets, MusicPatchPcmStream.SpriteBuffer_yOffsets, class325.SpriteBuffer_spriteWidths, RunException.SpriteBuffer_spriteHeights, class325.SpriteBuffer_spritePalette, PacketBufferNode.SpriteBuffer_pixels);
+			class325.SpriteBuffer_xOffsets = null;
+			MusicPatchPcmStream.SpriteBuffer_yOffsets = null;
+			class325.SpriteBuffer_spriteWidths = null;
+			RunException.SpriteBuffer_spriteHeights = null;
+			class325.SpriteBuffer_spritePalette = null;
+			PacketBufferNode.SpriteBuffer_pixels = null;
+			return var1;
+		}
 	}
 }

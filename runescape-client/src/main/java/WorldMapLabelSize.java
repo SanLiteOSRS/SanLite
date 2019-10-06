@@ -4,143 +4,168 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("a")
+@ObfuscatedName("g")
 @Implements("WorldMapLabelSize")
 public class WorldMapLabelSize {
-	@ObfuscatedName("sy")
+	@ObfuscatedName("qv")
 	@ObfuscatedSignature(
-		signature = "Lbk;"
+		signature = "Lca;"
 	)
-	@Export("clientPreferences")
-	static ClientPreferences clientPreferences;
-	@ObfuscatedName("q")
+	@Export("pcmStreamMixer")
+	static PcmStreamMixer pcmStreamMixer;
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "La;"
+		signature = "Lg;"
 	)
 	@Export("WorldMapLabelSize_small")
 	public static final WorldMapLabelSize WorldMapLabelSize_small;
-	@ObfuscatedName("w")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "La;"
+		signature = "Lg;"
 	)
 	@Export("WorldMapLabelSize_medium")
 	public static final WorldMapLabelSize WorldMapLabelSize_medium;
-	@ObfuscatedName("e")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "La;"
+		signature = "Lg;"
 	)
 	@Export("WorldMapLabelSize_large")
 	public static final WorldMapLabelSize WorldMapLabelSize_large;
-	@ObfuscatedName("x")
+	@ObfuscatedName("bc")
 	@ObfuscatedSignature(
-		signature = "Ldf;"
+		signature = "Lgt;"
 	)
-	@Export("soundCache")
-	public static SoundCache soundCache;
-	@ObfuscatedName("dk")
+	@Export("clientLanguage")
+	static Language clientLanguage;
+	@ObfuscatedName("du")
 	@ObfuscatedSignature(
-		signature = "Liu;"
+		signature = "Lie;"
 	)
-	@Export("archive10")
-	static Archive archive10;
+	@Export("archive1")
+	static Archive archive1;
+	@ObfuscatedName("u")
+	@ObfuscatedGetter(
+		intValue = -1343624191
+	)
+	final int field107;
+	@ObfuscatedName("r")
+	@ObfuscatedGetter(
+		intValue = -1129278847
+	)
+	final int field108;
 	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = -1999419383
+		intValue = 1652176271
 	)
-	final int field112;
-	@ObfuscatedName("k")
-	@ObfuscatedGetter(
-		intValue = -1876270567
-	)
-	final int field114;
-	@ObfuscatedName("l")
-	@ObfuscatedGetter(
-		intValue = 798925557
-	)
-	final int field115;
+	final int field109;
 
 	static {
-		WorldMapLabelSize_small = new WorldMapLabelSize(0, 0, 4);
-		WorldMapLabelSize_medium = new WorldMapLabelSize(2, 1, 2);
-		WorldMapLabelSize_large = new WorldMapLabelSize(1, 2, 0);
+		WorldMapLabelSize_small = new WorldMapLabelSize(1, 0, 4);
+		WorldMapLabelSize_medium = new WorldMapLabelSize(0, 1, 2);
+		WorldMapLabelSize_large = new WorldMapLabelSize(2, 2, 0);
 	}
 
 	WorldMapLabelSize(int var1, int var2, int var3) {
-		this.field112 = var1;
-		this.field114 = var2;
-		this.field115 = var3;
+		this.field107 = var1;
+		this.field108 = var2;
+		this.field109 = var3;
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
 		signature = "(FI)Z",
-		garbageValue = "-927816948"
+		garbageValue = "-1695259698"
 	)
-	boolean method184(float var1) {
-		return var1 >= (float)this.field115;
+	boolean method198(float var1) {
+		return var1 >= (float)this.field109;
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(B)[La;",
-		garbageValue = "31"
+		signature = "(I)[Lg;",
+		garbageValue = "1124237372"
 	)
-	static WorldMapLabelSize[] method178() {
-		return new WorldMapLabelSize[]{WorldMapLabelSize_small, WorldMapLabelSize_medium, WorldMapLabelSize_large};
+	static WorldMapLabelSize[] method196() {
+		return new WorldMapLabelSize[]{WorldMapLabelSize_large, WorldMapLabelSize_small, WorldMapLabelSize_medium};
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("r")
 	@ObfuscatedSignature(
-		signature = "(II)La;",
-		garbageValue = "1320537825"
+		signature = "(S)I",
+		garbageValue = "255"
 	)
-	static WorldMapLabelSize method177(int var0) {
-		WorldMapLabelSize[] var1 = method178();
+	public static int method197() {
+		return ++MouseHandler.MouseHandler_idleCycles - 1;
+	}
 
-		for (int var2 = 0; var2 < var1.length; ++var2) {
-			WorldMapLabelSize var3 = var1[var2];
-			if (var0 == var3.field114) {
-				return var3;
+	@ObfuscatedName("c")
+	@ObfuscatedSignature(
+		signature = "(IIII)I",
+		garbageValue = "-962048478"
+	)
+	static final int method202(int var0, int var1, int var2) {
+		int var3 = var0 / var2;
+		int var4 = var0 & var2 - 1;
+		int var5 = var1 / var2;
+		int var6 = var1 & var2 - 1;
+		int var7 = Login.method2096(var3, var5);
+		int var8 = Login.method2096(var3 + 1, var5);
+		int var9 = Login.method2096(var3, var5 + 1);
+		int var10 = Login.method2096(var3 + 1, var5 + 1);
+		int var12 = 65536 - Rasterizer3D.Rasterizer3D_cosine[var4 * 1024 / var2] >> 1;
+		int var11 = ((65536 - var12) * var7 >> 16) + (var12 * var8 >> 16);
+		int var14 = 65536 - Rasterizer3D.Rasterizer3D_cosine[var4 * 1024 / var2] >> 1;
+		int var13 = ((65536 - var14) * var9 >> 16) + (var10 * var14 >> 16);
+		int var16 = 65536 - Rasterizer3D.Rasterizer3D_cosine[var6 * 1024 / var2] >> 1;
+		int var15 = ((65536 - var16) * var11 >> 16) + (var13 * var16 >> 16);
+		return var15;
+	}
+
+	@ObfuscatedName("hu")
+	@ObfuscatedSignature(
+		signature = "(ILjava/lang/String;I)V",
+		garbageValue = "-1330882873"
+	)
+	static void method201(int var0, String var1) {
+		int var2 = Players.Players_count;
+		int[] var3 = Players.Players_indices;
+		boolean var4 = false;
+		Username var5 = new Username(var1, WorldMapSection1.loginType);
+
+		for (int var6 = 0; var6 < var2; ++var6) {
+			Player var7 = Client.players[var3[var6]];
+			if (var7 != null && var7 != class223.localPlayer && var7.username != null && var7.username.equals(var5)) {
+				PacketBufferNode var8;
+				if (var0 == 1) {
+					var8 = InterfaceParent.getPacketBufferNode(ClientPacket.field2231, Client.packetWriter.isaacCipher);
+					var8.packetBuffer.writeIntME(var3[var6]);
+					var8.packetBuffer.method5452(0);
+					Client.packetWriter.addNode(var8);
+				} else if (var0 == 4) {
+					var8 = InterfaceParent.getPacketBufferNode(ClientPacket.field2271, Client.packetWriter.isaacCipher);
+					var8.packetBuffer.writeShortLE(var3[var6]);
+					var8.packetBuffer.method5453(0);
+					Client.packetWriter.addNode(var8);
+				} else if (var0 == 6) {
+					var8 = InterfaceParent.getPacketBufferNode(ClientPacket.field2214, Client.packetWriter.isaacCipher);
+					var8.packetBuffer.writeShort(var3[var6]);
+					var8.packetBuffer.method5452(0);
+					Client.packetWriter.addNode(var8);
+				} else if (var0 == 7) {
+					var8 = InterfaceParent.getPacketBufferNode(ClientPacket.field2274, Client.packetWriter.isaacCipher);
+					var8.packetBuffer.method5461(var3[var6]);
+					var8.packetBuffer.method5452(0);
+					Client.packetWriter.addNode(var8);
+				}
+
+				var4 = true;
+				break;
 			}
 		}
 
-		return null;
-	}
-
-	@ObfuscatedName("p")
-	@ObfuscatedSignature(
-		signature = "(IZIZI)V",
-		garbageValue = "-176379221"
-	)
-	@Export("sortWorldList")
-	static void sortWorldList(int var0, boolean var1, int var2, boolean var3) {
-		if (World.worlds != null) {
-			GrandExchangeOffer.doWorldSorting(0, World.worlds.length - 1, var0, var1, var2, var3);
+		if (!var4) {
+			class210.addGameMessage(4, "", "Unable to find " + var1);
 		}
 
-	}
-
-	@ObfuscatedName("fe")
-	@ObfuscatedSignature(
-		signature = "(III)V",
-		garbageValue = "131988648"
-	)
-	static void method188(int var0, int var1) {
-		if (Client.field911 != 0 && var0 != -1) {
-			class169.method3503(class32.archive11, var0, 0, Client.field911, false);
-			Client.field699 = true;
-		}
-
-	}
-
-	@ObfuscatedName("is")
-	@ObfuscatedSignature(
-		signature = "(III)V",
-		garbageValue = "-1199742641"
-	)
-	static final void method175(int var0, int var1) {
-		if (class162.loadInterface(var0)) {
-			WorldMapID.method539(Widget.Widget_interfaceComponents[var0], var1);
-		}
 	}
 }

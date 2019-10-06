@@ -4,68 +4,93 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gk")
+@ObfuscatedName("gf")
 @Implements("MusicPatchNode2")
 public class MusicPatchNode2 {
-	@ObfuscatedName("fb")
-	@ObfuscatedGetter(
-		intValue = 1668948707
-	)
-	@Export("baseX")
-	static int baseX;
-	@ObfuscatedName("q")
-	byte[] field2387;
-	@ObfuscatedName("w")
-	byte[] field2388;
-	@ObfuscatedName("e")
-	@ObfuscatedGetter(
-		intValue = -1099658343
-	)
-	int field2392;
-	@ObfuscatedName("p")
-	@ObfuscatedGetter(
-		intValue = -369193851
-	)
-	int field2390;
-	@ObfuscatedName("k")
-	@ObfuscatedGetter(
-		intValue = -1130103085
-	)
-	int field2398;
-	@ObfuscatedName("l")
-	@ObfuscatedGetter(
-		intValue = 582227349
-	)
-	int field2391;
-	@ObfuscatedName("b")
-	@ObfuscatedGetter(
-		intValue = 371780499
-	)
-	int field2393;
 	@ObfuscatedName("i")
 	@ObfuscatedGetter(
-		intValue = -273928819
+		intValue = -1235370225
 	)
-	int field2394;
-	@ObfuscatedName("c")
+	public static int field2382;
+	@ObfuscatedName("z")
+	byte[] field2376;
+	@ObfuscatedName("n")
+	byte[] field2374;
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = 934948077
+		intValue = 93349913
 	)
-	int field2395;
+	int field2375;
+	@ObfuscatedName("u")
+	@ObfuscatedGetter(
+		intValue = -1109994129
+	)
+	int field2373;
+	@ObfuscatedName("r")
+	@ObfuscatedGetter(
+		intValue = 1372771045
+	)
+	int field2377;
+	@ObfuscatedName("p")
+	@ObfuscatedGetter(
+		intValue = 1580268847
+	)
+	int field2378;
+	@ObfuscatedName("q")
+	@ObfuscatedGetter(
+		intValue = -1867393453
+	)
+	int field2379;
+	@ObfuscatedName("m")
+	@ObfuscatedGetter(
+		intValue = 1316855939
+	)
+	int field2380;
+	@ObfuscatedName("y")
+	@ObfuscatedGetter(
+		intValue = -1262915041
+	)
+	int field2381;
 
 	MusicPatchNode2() {
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("fq")
 	@ObfuscatedSignature(
-		signature = "(IS)I",
-		garbageValue = "17338"
+		signature = "(II)V",
+		garbageValue = "-521075601"
 	)
-	static int method3686(int var0) {
-		Message var1 = (Message)Messages.Messages_hashTable.get((long)var0);
-		if (var1 == null) {
-			return -1;
+	@Export("playSong")
+	static void playSong(int var0) {
+		if (var0 == -1 && !Client.field759) {
+			VertexNormal.method2956();
+		} else if (var0 != -1 && var0 != Client.field666 && Client.field761 != 0 && !Client.field759) {
+			Archive var1 = class225.archive6;
+			int var2 = Client.field761;
+			class197.field2386 = 1;
+			class197.musicTrackArchive = var1;
+			class188.musicTrackGroupId = var0;
+			class49.musicTrackFileId = 0;
+			TileItem.musicVolume = var2;
+			WorldMapSectionType.musicTrackBoolean = false;
+			field2382 = 2;
 		}
-		return var1.previousDual == Messages.Messages_queue.sentinel ? -1 : ((Message)var1.previousDual).count;
+
+		Client.field666 = var0;
+	}
+
+	@ObfuscatedName("ic")
+	@ObfuscatedSignature(
+		signature = "(IB)Z",
+		garbageValue = "-93"
+	)
+	static boolean method3649(int var0) {
+		for (int var1 = 0; var1 < Client.field857; ++var1) {
+			if (Client.field859[var1] == var0) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 }

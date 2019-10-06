@@ -39,7 +39,7 @@ public class HidePlayerAttacks
 		shouldHideAttackOptionFor = inject.getVanilla().findClass("client").findMethod("shouldHideAttackOptionFor").getPoolMethod();
 
 		injectHideAttack();
-		injectHideCast();
+		//injectHideCast(); TODO: Find out why injection is failing
 
 		stopwatch.stop();
 

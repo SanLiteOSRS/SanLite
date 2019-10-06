@@ -4,104 +4,95 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("is")
+@ObfuscatedName("ix")
 @Implements("SequenceDefinition")
 public class SequenceDefinition extends DualNode {
-	@ObfuscatedName("q")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
 		signature = "Lhp;"
 	)
 	@Export("SequenceDefinition_archive")
-	public static AbstractArchive SequenceDefinition_archive;
-	@ObfuscatedName("w")
+	static AbstractArchive SequenceDefinition_archive;
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
 		signature = "Lhp;"
 	)
 	@Export("SequenceDefinition_animationsArchive")
-	public static AbstractArchive SequenceDefinition_animationsArchive;
-	@ObfuscatedName("e")
+	static AbstractArchive SequenceDefinition_animationsArchive;
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "Lhp;"
-	)
-	@Export("SequenceDefinition_skeletonsArchive")
-	public static AbstractArchive SequenceDefinition_skeletonsArchive;
-	@ObfuscatedName("p")
-	@ObfuscatedSignature(
-		signature = "Lel;"
+		signature = "Lem;"
 	)
 	@Export("SequenceDefinition_cached")
 	public static EvictingDualNodeHashTable SequenceDefinition_cached;
-	@ObfuscatedName("k")
+	@ObfuscatedName("r")
 	@ObfuscatedSignature(
-		signature = "Lel;"
+		signature = "Lem;"
 	)
 	@Export("SequenceDefinition_cachedFrames")
 	public static EvictingDualNodeHashTable SequenceDefinition_cachedFrames;
-	@ObfuscatedName("ff")
-	@ObfuscatedSignature(
-		signature = "Lez;"
-	)
-	@Export("urlRequester")
-	static UrlRequester urlRequester;
-	@ObfuscatedName("l")
+	@ObfuscatedName("aa")
+	@Export("fontHelvetica13")
+	static java.awt.Font fontHelvetica13;
+	@ObfuscatedName("p")
 	@Export("frameIds")
 	public int[] frameIds;
-	@ObfuscatedName("b")
+	@ObfuscatedName("q")
 	@Export("chatFrameIds")
 	int[] chatFrameIds;
-	@ObfuscatedName("i")
+	@ObfuscatedName("m")
 	@Export("frameLengths")
 	public int[] frameLengths;
-	@ObfuscatedName("c")
+	@ObfuscatedName("y")
 	@Export("soundEffects")
 	public int[] soundEffects;
-	@ObfuscatedName("f")
+	@ObfuscatedName("i")
 	@ObfuscatedGetter(
-		intValue = -416695211
+		intValue = 646355869
 	)
 	@Export("frameCount")
 	public int frameCount;
-	@ObfuscatedName("m")
-	int[] field3518;
-	@ObfuscatedName("u")
-	public boolean field3526;
-	@ObfuscatedName("x")
+	@ObfuscatedName("c")
+	int[] field3509;
+	@ObfuscatedName("b")
+	public boolean field3504;
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = -655637591
+		intValue = 1781199649
 	)
-	public int field3533;
-	@ObfuscatedName("r")
+	public int field3511;
+	@ObfuscatedName("a")
 	@ObfuscatedGetter(
-		intValue = 975165597
+		intValue = 75980763
 	)
 	@Export("shield")
 	public int shield;
-	@ObfuscatedName("v")
+	@ObfuscatedName("e")
 	@ObfuscatedGetter(
-		intValue = -608635427
+		intValue = 1392893675
 	)
 	@Export("weapon")
 	public int weapon;
-	@ObfuscatedName("y")
+	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		intValue = -130744455
+		intValue = 1078760223
 	)
-	public int field3535;
+	public int field3503;
+	@ObfuscatedName("t")
+	@ObfuscatedGetter(
+		intValue = 1818541161
+	)
+	public int field3515;
 	@ObfuscatedName("g")
 	@ObfuscatedGetter(
-		intValue = -1640931413
+		intValue = 2021679627
 	)
-	public int field3525;
-	@ObfuscatedName("a")
+	public int field3510;
+	@ObfuscatedName("x")
 	@ObfuscatedGetter(
-		intValue = -1353977843
+		intValue = -1562384253
 	)
-	public int field3532;
-	@ObfuscatedName("j")
-	@ObfuscatedGetter(
-		intValue = 553206065
-	)
-	public int field3529;
+	public int field3517;
 
 	static {
 		SequenceDefinition_cached = new EvictingDualNodeHashTable(64);
@@ -110,20 +101,20 @@ public class SequenceDefinition extends DualNode {
 
 	SequenceDefinition() {
 		this.frameCount = -1;
-		this.field3526 = false;
-		this.field3533 = 5;
+		this.field3504 = false;
+		this.field3511 = 5;
 		this.shield = -1;
 		this.weapon = -1;
-		this.field3535 = 99;
-		this.field3525 = -1;
-		this.field3532 = -1;
-		this.field3529 = 2;
+		this.field3503 = 99;
+		this.field3515 = -1;
+		this.field3510 = -1;
+		this.field3517 = 2;
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(Lkf;B)V",
-		garbageValue = "88"
+		signature = "(Lkl;B)V",
+		garbageValue = "-45"
 	)
 	@Export("decode")
 	void decode(Buffer var1) {
@@ -137,10 +128,10 @@ public class SequenceDefinition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "(Lkf;II)V",
-		garbageValue = "-1384847796"
+		signature = "(Lkl;II)V",
+		garbageValue = "-4421595"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
@@ -167,29 +158,29 @@ public class SequenceDefinition extends DualNode {
 			this.frameCount = var1.readUnsignedShort();
 		} else if (var2 == 3) {
 			var3 = var1.readUnsignedByte();
-			this.field3518 = new int[var3 + 1];
+			this.field3509 = new int[var3 + 1];
 
 			for (var4 = 0; var4 < var3; ++var4) {
-				this.field3518[var4] = var1.readUnsignedByte();
+				this.field3509[var4] = var1.readUnsignedByte();
 			}
 
-			this.field3518[var3] = 9999999;
+			this.field3509[var3] = 9999999;
 		} else if (var2 == 4) {
-			this.field3526 = true;
+			this.field3504 = true;
 		} else if (var2 == 5) {
-			this.field3533 = var1.readUnsignedByte();
+			this.field3511 = var1.readUnsignedByte();
 		} else if (var2 == 6) {
 			this.shield = var1.readUnsignedShort();
 		} else if (var2 == 7) {
 			this.weapon = var1.readUnsignedShort();
 		} else if (var2 == 8) {
-			this.field3535 = var1.readUnsignedByte();
+			this.field3503 = var1.readUnsignedByte();
 		} else if (var2 == 9) {
-			this.field3525 = var1.readUnsignedByte();
+			this.field3515 = var1.readUnsignedByte();
 		} else if (var2 == 10) {
-			this.field3532 = var1.readUnsignedByte();
+			this.field3510 = var1.readUnsignedByte();
 		} else if (var2 == 11) {
-			this.field3529 = var1.readUnsignedByte();
+			this.field3517 = var1.readUnsignedByte();
 		} else if (var2 == 12) {
 			var3 = var1.readUnsignedByte();
 			this.chatFrameIds = new int[var3];
@@ -212,159 +203,184 @@ public class SequenceDefinition extends DualNode {
 
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("r")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "806874502"
+		signature = "(S)V",
+		garbageValue = "30171"
 	)
 	@Export("postDecode")
 	void postDecode() {
-		if (this.field3525 == -1) {
-			if (this.field3518 != null) {
-				this.field3525 = 2;
+		if (this.field3515 == -1) {
+			if (this.field3509 != null) {
+				this.field3515 = 2;
 			} else {
-				this.field3525 = 0;
+				this.field3515 = 0;
 			}
 		}
 
-		if (this.field3532 == -1) {
-			if (this.field3518 != null) {
-				this.field3532 = 2;
+		if (this.field3510 == -1) {
+			if (this.field3509 != null) {
+				this.field3510 = 2;
 			} else {
-				this.field3532 = 0;
+				this.field3510 = 0;
 			}
 		}
 
 	}
 
-	@ObfuscatedName("k")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		signature = "(Ldm;II)Ldm;",
-		garbageValue = "1904294443"
+		signature = "(Ldh;II)Ldh;",
+		garbageValue = "330035631"
 	)
 	@Export("transformActorModel")
 	public Model transformActorModel(Model var1, int var2) {
 		var2 = this.frameIds[var2];
-		Frames var3 = class30.getFrames(var2 >> 16);
+		Frames var3 = class226.getFrames(var2 >> 16);
 		var2 &= 65535;
 		if (var3 == null) {
 			return var1.toSharedSequenceModel(true);
+		} else {
+			Model var4 = var1.toSharedSequenceModel(!var3.hasAlphaTransform(var2));
+			var4.animate(var3, var2);
+			return var4;
 		}
-		Model var4 = var1.toSharedSequenceModel(!var3.hasAlphaTransform(var2));
-		var4.animate(var3, var2);
-		return var4;
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		signature = "(Ldm;IIB)Ldm;",
-		garbageValue = "-68"
+		signature = "(Ldh;IIB)Ldh;",
+		garbageValue = "2"
 	)
 	@Export("transformObjectModel")
 	Model transformObjectModel(Model var1, int var2, int var3) {
 		var2 = this.frameIds[var2];
-		Frames var4 = class30.getFrames(var2 >> 16);
+		Frames var4 = class226.getFrames(var2 >> 16);
 		var2 &= 65535;
 		if (var4 == null) {
 			return var1.toSharedSequenceModel(true);
-		}
-		Model var5 = var1.toSharedSequenceModel(!var4.hasAlphaTransform(var2));
-		var3 &= 3;
-		if (var3 == 1) {
-			var5.rotateY270Ccw();
-		} else if (var3 == 2) {
-			var5.rotateY180();
-		} else if (var3 == 3) {
-			var5.rotateY90Ccw();
-		}
+		} else {
+			Model var5 = var1.toSharedSequenceModel(!var4.hasAlphaTransform(var2));
+			var3 &= 3;
+			if (var3 == 1) {
+				var5.rotateY270Ccw();
+			} else if (var3 == 2) {
+				var5.rotateY180();
+			} else if (var3 == 3) {
+				var5.rotateY90Ccw();
+			}
 
-		var5.animate(var4, var2);
-		if (var3 == 1) {
-			var5.rotateY90Ccw();
-		} else if (var3 == 2) {
-			var5.rotateY180();
-		} else if (var3 == 3) {
-			var5.rotateY270Ccw();
-		}
+			var5.animate(var4, var2);
+			if (var3 == 1) {
+				var5.rotateY90Ccw();
+			} else if (var3 == 2) {
+				var5.rotateY180();
+			} else if (var3 == 3) {
+				var5.rotateY270Ccw();
+			}
 
-		return var5;
+			return var5;
+		}
 	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		signature = "(Ldm;II)Ldm;",
-		garbageValue = "-1365798268"
+		signature = "(Ldh;II)Ldh;",
+		garbageValue = "-1452846924"
 	)
 	@Export("transformSpotAnimationModel")
 	Model transformSpotAnimationModel(Model var1, int var2) {
 		var2 = this.frameIds[var2];
-		Frames var3 = class30.getFrames(var2 >> 16);
+		Frames var3 = class226.getFrames(var2 >> 16);
 		var2 &= 65535;
 		if (var3 == null) {
 			return var1.toSharedSpotAnimationModel(true);
+		} else {
+			Model var4 = var1.toSharedSpotAnimationModel(!var3.hasAlphaTransform(var2));
+			var4.animate(var3, var2);
+			return var4;
 		}
-		Model var4 = var1.toSharedSpotAnimationModel(!var3.hasAlphaTransform(var2));
-		var4.animate(var3, var2);
-		return var4;
 	}
 
-	@ObfuscatedName("i")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(Ldm;ILis;II)Ldm;",
-		garbageValue = "743277610"
+		signature = "(Ldh;ILix;IB)Ldh;",
+		garbageValue = "-28"
 	)
 	@Export("applyTransformations")
 	public Model applyTransformations(Model var1, int var2, SequenceDefinition var3, int var4) {
 		var2 = this.frameIds[var2];
-		Frames var5 = class30.getFrames(var2 >> 16);
+		Frames var5 = class226.getFrames(var2 >> 16);
 		var2 &= 65535;
 		if (var5 == null) {
 			return var3.transformActorModel(var1, var4);
+		} else {
+			var4 = var3.frameIds[var4];
+			Frames var6 = class226.getFrames(var4 >> 16);
+			var4 &= 65535;
+			Model var7;
+			if (var6 == null) {
+				var7 = var1.toSharedSequenceModel(!var5.hasAlphaTransform(var2));
+				var7.animate(var5, var2);
+				return var7;
+			} else {
+				var7 = var1.toSharedSequenceModel(!var5.hasAlphaTransform(var2) & !var6.hasAlphaTransform(var4));
+				var7.animate2(var5, var2, var6, var4, this.field3509);
+				return var7;
+			}
 		}
-		var4 = var3.frameIds[var4];
-		Frames var6 = class30.getFrames(var4 >> 16);
-		var4 &= 65535;
-		Model var7;
-		if (var6 == null) {
-			var7 = var1.toSharedSequenceModel(!var5.hasAlphaTransform(var2));
-			var7.animate(var5, var2);
-			return var7;
-		}
-		var7 = var1.toSharedSequenceModel(!var5.hasAlphaTransform(var2) & !var6.hasAlphaTransform(var4));
-		var7.animate2(var5, var2, var6, var4, this.field3518);
-		return var7;
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		signature = "(Ldm;II)Ldm;",
-		garbageValue = "-1834936397"
+		signature = "(Ldh;IB)Ldh;",
+		garbageValue = "-75"
 	)
 	@Export("transformWidgetModel")
 	public Model transformWidgetModel(Model var1, int var2) {
 		int var3 = this.frameIds[var2];
-		Frames var4 = class30.getFrames(var3 >> 16);
+		Frames var4 = class226.getFrames(var3 >> 16);
 		var3 &= 65535;
 		if (var4 == null) {
 			return var1.toSharedSequenceModel(true);
+		} else {
+			Frames var5 = null;
+			int var6 = 0;
+			if (this.chatFrameIds != null && var2 < this.chatFrameIds.length) {
+				var6 = this.chatFrameIds[var2];
+				var5 = class226.getFrames(var6 >> 16);
+				var6 &= 65535;
+			}
+
+			Model var7;
+			if (var5 != null && var6 != 65535) {
+				var7 = var1.toSharedSequenceModel(!var4.hasAlphaTransform(var3) & !var5.hasAlphaTransform(var6));
+				var7.animate(var4, var3);
+				var7.animate(var5, var6);
+				return var7;
+			} else {
+				var7 = var1.toSharedSequenceModel(!var4.hasAlphaTransform(var3));
+				var7.animate(var4, var3);
+				return var7;
+			}
 		}
-		Frames var5 = null;
-		int var6 = 0;
-		if (this.chatFrameIds != null && var2 < this.chatFrameIds.length) {
-			var6 = this.chatFrameIds[var2];
-			var5 = class30.getFrames(var6 >> 16);
-			var6 &= 65535;
+	}
+
+	@ObfuscatedName("et")
+	@ObfuscatedSignature(
+		signature = "(II)V",
+		garbageValue = "-645881783"
+	)
+	static final void method4744(int var0) {
+		DynamicObject.method2219();
+		switch(var0) {
+		case 1:
+			Login.loginIndex = 24;
+			PlayerType.setLoginResponseString("", "You were disconnected from the server.", "");
+			break;
+		case 2:
+			class3.method48();
 		}
 
-		Model var7;
-		if (var5 != null && var6 != 65535) {
-			var7 = var1.toSharedSequenceModel(!var4.hasAlphaTransform(var3) & !var5.hasAlphaTransform(var6));
-			var7.animate(var4, var3);
-			var7.animate(var5, var6);
-			return var7;
-		}
-		var7 = var1.toSharedSequenceModel(!var4.hasAlphaTransform(var3));
-		var7.animate(var4, var3);
-		return var7;
 	}
 }

@@ -4,65 +4,57 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bj")
+@ObfuscatedName("be")
 @Implements("Message")
 public class Message extends DualNode {
-	@ObfuscatedName("f")
-	public static short[][] field604;
-	@ObfuscatedName("u")
-	@ObfuscatedSignature(
-		signature = "Llx;"
-	)
-	static IndexedSprite field606;
-	@ObfuscatedName("gf")
-	@ObfuscatedSignature(
-		signature = "Lly;"
-	)
-	@Export("compass")
-	static Sprite compass;
-	@ObfuscatedName("q")
+	@ObfuscatedName("eh")
 	@ObfuscatedGetter(
-		intValue = -235508607
+		intValue = -1928576619
+	)
+	static int field592;
+	@ObfuscatedName("z")
+	@ObfuscatedGetter(
+		intValue = 36313413
 	)
 	@Export("count")
 	int count;
-	@ObfuscatedName("w")
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = 468304279
+		intValue = -1483460383
 	)
 	@Export("cycle")
 	int cycle;
-	@ObfuscatedName("e")
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = -1991230871
+		intValue = -991694021
 	)
 	@Export("type")
 	int type;
-	@ObfuscatedName("p")
+	@ObfuscatedName("u")
 	@Export("sender")
 	String sender;
-	@ObfuscatedName("k")
+	@ObfuscatedName("r")
 	@ObfuscatedSignature(
-		signature = "Ljv;"
+		signature = "Ljq;"
 	)
 	@Export("senderUsername")
 	Username senderUsername;
-	@ObfuscatedName("l")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		signature = "Ljy;"
+		signature = "Ljm;"
 	)
 	@Export("isFromFriend0")
 	TriBool isFromFriend0;
-	@ObfuscatedName("b")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		signature = "Ljy;"
+		signature = "Ljm;"
 	)
 	@Export("isFromIgnored0")
 	TriBool isFromIgnored0;
-	@ObfuscatedName("i")
+	@ObfuscatedName("m")
 	@Export("prefix")
 	String prefix;
-	@ObfuscatedName("c")
+	@ObfuscatedName("y")
 	@Export("text")
 	String text;
 
@@ -72,14 +64,15 @@ public class Message extends DualNode {
 		this.set(var1, var2, var3, var4);
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
 		signature = "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;B)V",
-		garbageValue = "-46"
+		garbageValue = "29"
 	)
 	@Export("set")
 	void set(int var1, String var2, String var3, String var4) {
-		this.count = HorizontalAlignment.method4701();
+		int var5 = ++Messages.Messages_count - 1;
+		this.count = var5;
 		this.cycle = Client.cycle;
 		this.type = var1;
 		this.sender = var2;
@@ -90,20 +83,20 @@ public class Message extends DualNode {
 		this.clearIsFromIgnored();
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "1828914917"
+		signature = "(B)V",
+		garbageValue = "10"
 	)
 	@Export("clearIsFromFriend")
 	void clearIsFromFriend() {
 		this.isFromFriend0 = TriBool.TriBool_unknown;
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
 		signature = "(I)Z",
-		garbageValue = "1322141944"
+		garbageValue = "-1794465193"
 	)
 	@Export("isFromFriend")
 	final boolean isFromFriend() {
@@ -114,30 +107,30 @@ public class Message extends DualNode {
 		return this.isFromFriend0 == TriBool.TriBool_true;
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "-728879206"
+		garbageValue = "-1169950855"
 	)
 	@Export("fillIsFromFriend")
 	void fillIsFromFriend() {
-		this.isFromFriend0 = ArchiveLoader.friendSystem.friendsList.contains(this.senderUsername) ? TriBool.TriBool_true : TriBool.TriBool_false;
+		this.isFromFriend0 = Tiles.friendSystem.friendsList.contains(this.senderUsername) ? TriBool.TriBool_true : TriBool.TriBool_false;
 	}
 
-	@ObfuscatedName("k")
+	@ObfuscatedName("r")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "-391302038"
+		garbageValue = "1690653176"
 	)
 	@Export("clearIsFromIgnored")
 	void clearIsFromIgnored() {
 		this.isFromIgnored0 = TriBool.TriBool_unknown;
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
 		signature = "(I)Z",
-		garbageValue = "1146765519"
+		garbageValue = "-759719202"
 	)
 	@Export("isFromIgnored")
 	final boolean isFromIgnored() {
@@ -148,28 +141,61 @@ public class Message extends DualNode {
 		return this.isFromIgnored0 == TriBool.TriBool_true;
 	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "1299937735"
+		garbageValue = "-1328990032"
 	)
 	@Export("fillIsFromIgnored")
 	void fillIsFromIgnored() {
-		this.isFromIgnored0 = ArchiveLoader.friendSystem.ignoreList.contains(this.senderUsername) ? TriBool.TriBool_true : TriBool.TriBool_false;
+		this.isFromIgnored0 = Tiles.friendSystem.ignoreList.contains(this.senderUsername) ? TriBool.TriBool_true : TriBool.TriBool_false;
 	}
 
-	@ObfuscatedName("i")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "-1250059182"
+		garbageValue = "-1885223886"
 	)
 	@Export("fillSenderUsername")
 	final void fillSenderUsername() {
 		if (this.sender != null) {
-			this.senderUsername = new Username(GrandExchangeOfferTotalQuantityComparator.removeImageTag(this.sender), class40.loginType);
+			this.senderUsername = new Username(WorldMapSectionType.method250(this.sender), WorldMapSection1.loginType);
 		} else {
 			this.senderUsername = null;
 		}
 
+	}
+
+	@ObfuscatedName("fk")
+	@ObfuscatedSignature(
+		signature = "(IIII)V",
+		garbageValue = "2017032545"
+	)
+	@Export("queueSoundEffect")
+	static void queueSoundEffect(int var0, int var1, int var2) {
+		if (Client.soundEffectVolume != 0 && var1 != 0 && Client.soundEffectCount < 50) {
+			Client.soundEffectIds[Client.soundEffectCount] = var0;
+			Client.queuedSoundEffectLoops[Client.soundEffectCount] = var1;
+			Client.queuedSoundEffectDelays[Client.soundEffectCount] = var2;
+			Client.soundEffects[Client.soundEffectCount] = null;
+			Client.soundLocations[Client.soundEffectCount] = 0;
+			++Client.soundEffectCount;
+		}
+
+	}
+
+	@ObfuscatedName("gi")
+	@ObfuscatedSignature(
+		signature = "(III)V",
+		garbageValue = "200131202"
+	)
+	static final void method1231(int var0, int var1) {
+		if (Client.hintArrowType == 2) {
+			PlayerAppearance.worldToScreen((Client.hintArrowX - class223.baseX * 64 << 7) + Client.hintArrowSubX * 4096, (Client.hintArrowY - class286.baseY * 64 << 7) + Client.hintArrowSubY * 4096, Client.hintArrowHeight * 2);
+			if (Client.viewportTempX > -1 && Client.cycle % 20 < 10) {
+				ReflectionCheck.headIconHintSprites[0].drawTransBgAt(var0 + Client.viewportTempX - 12, Client.viewportTempY + var1 - 28);
+			}
+
+		}
 	}
 }

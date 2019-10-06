@@ -4,90 +4,87 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ib")
+@ObfuscatedName("ik")
 @Implements("SpotAnimationDefinition")
 public class SpotAnimationDefinition extends DualNode {
-	@ObfuscatedName("q")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
 		signature = "Lhp;"
 	)
-	@Export("SpotAnimationDefinition_archive")
-	public static AbstractArchive SpotAnimationDefinition_archive;
-	@ObfuscatedName("e")
+	@Export("SpotAnimationDefinition_modelArchive")
+	public static AbstractArchive SpotAnimationDefinition_modelArchive;
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "Lel;"
+		signature = "Lem;"
 	)
 	@Export("SpotAnimationDefinition_cached")
-	public static EvictingDualNodeHashTable SpotAnimationDefinition_cached;
-	@ObfuscatedName("p")
+	static EvictingDualNodeHashTable SpotAnimationDefinition_cached;
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "Lel;"
+		signature = "Lem;"
 	)
 	@Export("SpotAnimationDefinition_cachedModels")
-	public static EvictingDualNodeHashTable SpotAnimationDefinition_cachedModels;
-	@ObfuscatedName("j")
+	static EvictingDualNodeHashTable SpotAnimationDefinition_cachedModels;
+	@ObfuscatedName("r")
 	@ObfuscatedGetter(
-		intValue = -1614568549
-	)
-	static int field3248;
-	@ObfuscatedName("k")
-	@ObfuscatedGetter(
-		intValue = 1856859661
+		intValue = -1118528649
 	)
 	@Export("id")
 	int id;
-	@ObfuscatedName("l")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = -1484335723
+		intValue = 388295053
 	)
 	@Export("archive")
 	int archive;
-	@ObfuscatedName("b")
+	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = 106564223
+		intValue = -2139310385
 	)
 	@Export("sequence")
 	public int sequence;
-	@ObfuscatedName("i")
+	@ObfuscatedName("m")
 	@Export("recolorFrom")
 	short[] recolorFrom;
-	@ObfuscatedName("c")
+	@ObfuscatedName("y")
 	@Export("recolorTo")
 	short[] recolorTo;
-	@ObfuscatedName("f")
+	@ObfuscatedName("i")
 	@Export("retextureFrom")
 	short[] retextureFrom;
-	@ObfuscatedName("m")
+	@ObfuscatedName("c")
 	@Export("retextureTo")
 	short[] retextureTo;
-	@ObfuscatedName("u")
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = 537215933
+		intValue = -1021828075
 	)
 	@Export("widthScale")
 	int widthScale;
-	@ObfuscatedName("x")
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = -1285947315
+		intValue = -1112009759
 	)
 	@Export("heightScale")
 	int heightScale;
-	@ObfuscatedName("r")
+	@ObfuscatedName("a")
 	@ObfuscatedGetter(
-		intValue = 1550216449
+		intValue = -1178653603
 	)
 	@Export("orientation")
 	int orientation;
-	@ObfuscatedName("v")
+	@ObfuscatedName("e")
 	@ObfuscatedGetter(
-		intValue = -1281395591
+		intValue = -1363981799
 	)
-	int field3251;
-	@ObfuscatedName("y")
+	@Export("ambient")
+	int ambient;
+	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		intValue = -499739553
+		intValue = 1122835039
 	)
-	int field3253;
+	@Export("contrast")
+	int contrast;
 
 	static {
 		SpotAnimationDefinition_cached = new EvictingDualNodeHashTable(64);
@@ -99,14 +96,14 @@ public class SpotAnimationDefinition extends DualNode {
 		this.widthScale = 128;
 		this.heightScale = 128;
 		this.orientation = 0;
-		this.field3251 = 0;
-		this.field3253 = 0;
+		this.ambient = 0;
+		this.contrast = 0;
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Lkf;I)V",
-		garbageValue = "65111702"
+		signature = "(Lkl;I)V",
+		garbageValue = "1457139461"
 	)
 	@Export("decode")
 	void decode(Buffer var1) {
@@ -120,10 +117,10 @@ public class SpotAnimationDefinition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(Lkf;II)V",
-		garbageValue = "-1978905591"
+		signature = "(Lkl;IB)V",
+		garbageValue = "25"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
@@ -138,9 +135,9 @@ public class SpotAnimationDefinition extends DualNode {
 		} else if (var2 == 6) {
 			this.orientation = var1.readUnsignedShort();
 		} else if (var2 == 7) {
-			this.field3251 = var1.readUnsignedByte();
+			this.ambient = var1.readUnsignedByte();
 		} else if (var2 == 8) {
-			this.field3253 = var1.readUnsignedByte();
+			this.contrast = var1.readUnsignedByte();
 		} else {
 			int var3;
 			int var4;
@@ -167,16 +164,16 @@ public class SpotAnimationDefinition extends DualNode {
 
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "(II)Ldm;",
-		garbageValue = "1645713423"
+		signature = "(II)Ldh;",
+		garbageValue = "-1528746671"
 	)
 	@Export("getModel")
 	public final Model getModel(int var1) {
 		Model var2 = (Model)SpotAnimationDefinition_cachedModels.get((long)this.id);
 		if (var2 == null) {
-			ModelData var3 = ModelData.method2769(class43.SpotAnimationDefinition_modelArchive, this.archive, 0);
+			ModelData var3 = ModelData.ModelData_get(SpotAnimationDefinition_modelArchive, this.archive, 0);
 			if (var3 == null) {
 				return null;
 			}
@@ -194,13 +191,13 @@ public class SpotAnimationDefinition extends DualNode {
 				}
 			}
 
-			var2 = var3.toModel(this.field3251 + 64, this.field3253 + 850, -30, -50, -30);
+			var2 = var3.toModel(this.ambient + 64, this.contrast + 850, -30, -50, -30);
 			SpotAnimationDefinition_cachedModels.put(var2, (long)this.id);
 		}
 
 		Model var5;
 		if (this.sequence != -1 && var1 != -1) {
-			var5 = GrandExchangeEvent.getSequenceDefinition(this.sequence).transformSpotAnimationModel(var2, var1);
+			var5 = GrandExchangeOfferUnitPriceComparator.SequenceDefinition_get(this.sequence).transformSpotAnimationModel(var2, var1);
 		} else {
 			var5 = var2.toSharedSpotAnimationModel(true);
 		}
@@ -227,18 +224,5 @@ public class SpotAnimationDefinition extends DualNode {
 		}
 
 		return var5;
-	}
-
-	@ObfuscatedName("fo")
-	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-1672246120"
-	)
-	static void method4415() {
-		if (BoundaryObject.worldMap != null) {
-			BoundaryObject.worldMap.method6309(class42.plane, MusicPatchNode2.baseX * 64 + (Client.localPlayer.x >> 7), class1.baseY * 64 + (Client.localPlayer.y >> 7), false);
-			BoundaryObject.worldMap.loadCache();
-		}
-
 	}
 }

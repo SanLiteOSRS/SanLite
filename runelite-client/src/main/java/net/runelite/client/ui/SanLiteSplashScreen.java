@@ -15,8 +15,6 @@ import java.io.IOException;
 @Slf4j
 public class SanLiteSplashScreen
 {
-	private final RuneLiteProperties runeLiteProperties = new RuneLiteProperties();
-
 	private JFrame frame;
 	private final JPanel panel = new JPanel();
 	private JLabel messageLabel;
@@ -65,7 +63,7 @@ public class SanLiteSplashScreen
 				final BufferedImage logo = ImageIO.read(SanLiteSplashScreen.class.getResourceAsStream("/sanlite.png"));
 				frame.setIconImage(logo);
 
-				final BufferedImage logoTransparent = ImageIO.read(SanLiteSplashScreen.class.getResourceAsStream("/sanlite_transparent.png"));
+				final BufferedImage logoTransparent = ImageIO.read(SanLiteSplashScreen.class.getResourceAsStream("sanlite_transparent.png"));
 				final GridBagConstraints logoConstraints = new GridBagConstraints();
 				logoConstraints.anchor = GridBagConstraints.SOUTH;
 				panel.add(new JLabel(new ImageIcon(logoTransparent.getScaledInstance(96, 96, Image.SCALE_SMOOTH))), logoConstraints);
@@ -83,7 +81,7 @@ public class SanLiteSplashScreen
 		panel.add(title, titleConstraints);
 
 		// SanLite version
-		final JLabel sanliteVersion = new JLabel("Version " + runeLiteProperties.getSanLiteVersion());
+		final JLabel sanliteVersion = new JLabel("Version " + RuneLiteProperties.getSanLiteVersion());
 		sanliteVersion.setFont(FontManager.getRunescapeSmallFont());
 		sanliteVersion.setForeground(sanliteVersion.getForeground().darker());
 		final GridBagConstraints sanliteVersionConstraints = new GridBagConstraints();

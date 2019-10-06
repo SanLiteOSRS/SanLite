@@ -64,8 +64,7 @@ import org.objectweb.asm.ClassReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static net.runelite.injector.InjectUtil.toObClass;
-import static net.runelite.injector.InjectUtil.toObField;
+import static net.runelite.injector.InjectUtil.*;
 
 public class MixinInjector
 {
@@ -330,9 +329,16 @@ public class MixinInjector
 			}
 
 			String deobMethodName = (String) copyAnnotation.getElement().getValue();
-
-			ClassFile deobCf = inject.toDeobClass(cf);
-			Method deobMethod = findDeobMethod(deobCf, deobMethodName, method.getDescriptor());
+			Method deobMethod;
+			if (method.isStatic())
+			{
+				deobMethod = findStaticMethod(inject.getDeobfuscated(), deobMethodName, method.getDescriptor().rsApiToRsClient());
+			}
+			else
+			{
+				ClassFile deobCf = toDeobClass(cf, inject.getDeobfuscated());
+				deobMethod = deobCf.findMethod(deobMethodName, method.getDescriptor().rsApiToRsClient());
+			}
 
 			if (deobMethod == null)
 			{
@@ -903,6 +909,7 @@ public class MixinInjector
 
 						if (method.isStatic() != targetField.isStatic())
 						{
+							logger.error("Method {} static flag {} does not match field hook {} static flag {}", method.getName(), method.isStatic(), targetField.getName(), targetField.isStatic());
 							throw new InjectionException("Field hook method static flag must match target field");
 						}
 

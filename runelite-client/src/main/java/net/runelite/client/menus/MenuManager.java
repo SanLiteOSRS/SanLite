@@ -254,6 +254,11 @@ public class MenuManager
 	@Subscribe
 	public void onMenuEntryAdded(MenuEntryAdded event)
 	{
+		if (client.getSpellSelected())
+		{
+			return;
+		}
+
 		int widgetId = event.getActionParam1();
 		Collection<WidgetMenuOption> options = managedMenuOptions.get(widgetId);
 		MenuEntry[] menuEntries = client.getMenuEntries();

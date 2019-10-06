@@ -1,64 +1,59 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gj")
+@ObfuscatedName("gl")
 public class class191 {
-	@ObfuscatedName("q")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "Lgj;"
+		signature = "Lgl;"
 	)
-	static final class191 field2365;
-	@ObfuscatedName("w")
+	static final class191 field2344;
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "Lgj;"
+		signature = "Lgl;"
 	)
-	static final class191 field2362;
-	@ObfuscatedName("e")
+	static final class191 field2345;
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "Lgj;"
+		signature = "Lgl;"
 	)
-	static final class191 field2364;
-	@ObfuscatedName("dg")
-	@ObfuscatedSignature(
-		signature = "Lfa;"
-	)
-	@Export("js5SocketTask")
-	static Task js5SocketTask;
+	static final class191 field2346;
 
 	static {
-		field2365 = new class191();
-		field2362 = new class191();
-		field2364 = new class191();
+		field2344 = new class191();
+		field2345 = new class191();
+		field2346 = new class191();
 	}
 
 	class191() {
 	}
 
-	@ObfuscatedName("iu")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(IIIIIIIII)V",
-		garbageValue = "-474414027"
+		signature = "(I)V",
+		garbageValue = "1561368496"
 	)
-	@Export("drawWidgets")
-	static final void drawWidgets(int var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7) {
-		if (class162.loadInterface(var0)) {
-			WorldMapIcon_1.field188 = null;
-			FontName.drawInterface(Widget.Widget_interfaceComponents[var0], -1, var1, var2, var3, var4, var5, var6, var7);
-			if (WorldMapIcon_1.field188 != null) {
-				FontName.drawInterface(WorldMapIcon_1.field188, -1412584499, var1, var2, var3, var4, WorldMapDecorationType.field2742, ClientPacket.field2305, var7);
-				WorldMapIcon_1.field188 = null;
+	public static void method3631() {
+		if (KeyHandler.KeyHandler_instance != null) {
+			synchronized(KeyHandler.KeyHandler_instance) {
+				KeyHandler.KeyHandler_instance = null;
 			}
-
-		} else {
-			if (var7 != -1) {
-				Client.field843[var7] = true;
-			} else {
-				for (int var8 = 0; var8 < 100; ++var8) {
-					Client.field843[var8] = true;
-				}
-			}
-
 		}
+
+	}
+
+	@ObfuscatedName("fa")
+	@ObfuscatedSignature(
+		signature = "(Lby;I)V",
+		garbageValue = "616240991"
+	)
+	static final void method3630(Actor var0) {
+		int var1 = var0.field948 - Client.cycle;
+		int var2 = var0.field932 * -527978816 + var0.field971 * 128;
+		int var3 = var0.field932 * -527978816 + var0.field973 * 128;
+		var0.x += (var2 - var0.x) / var1;
+		var0.y += (var3 - var0.y * 682054857) / var1 * -944175751;
+		var0.field949 = 0;
+		var0.orientation = var0.field977;
 	}
 }

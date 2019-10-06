@@ -2,69 +2,133 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("r")
+@ObfuscatedName("a")
 public class class13 {
-	@ObfuscatedName("dp")
+	@ObfuscatedName("gx")
 	@ObfuscatedSignature(
-		signature = "Liu;"
+		signature = "[Llf;"
 	)
-	@Export("archive4")
-	static Archive archive4;
-	@ObfuscatedName("gp")
-	@Export("regionLandArchives")
-	static byte[][] regionLandArchives;
+	@Export("mapDotSprites")
+	static Sprite[] mapDotSprites;
 
-	@ObfuscatedName("bi")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;I)I",
-		garbageValue = "-1481103738"
+		signature = "(CLgt;I)C",
+		garbageValue = "-1706308889"
 	)
-	public static int method152(String var0) {
-		return var0.length() + 2;
-	}
+	@Export("standardizeChar")
+	static char standardizeChar(char var0, Language var1) {
+		if (var0 >= 192 && var0 <= 255) {
+			if (var0 >= 192 && var0 <= 198) {
+				return 'A';
+			}
 
-	@ObfuscatedName("ht")
-	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "246973533"
-	)
-	static final int method151() {
-		return Client.menuOptionsCount - 1;
-	}
+			if (var0 == 199) {
+				return 'C';
+			}
 
-	@ObfuscatedName("ic")
-	@ObfuscatedSignature(
-		signature = "([Lhj;IIIZI)V",
-		garbageValue = "1879036172"
-	)
-	@Export("resizeWidget")
-	static void resizeWidget(Widget[] var0, int var1, int var2, int var3, boolean var4) {
-		for (int var5 = 0; var5 < var0.length; ++var5) {
-			Widget var6 = var0[var5];
-			if (var6 != null && var6.parentId == var1) {
-				class219.alignWidgetSize(var6, var2, var3, var4);
-				PcmPlayer.alignWidgetPosition(var6, var2, var3);
-				if (var6.scrollX > var6.scrollWidth - var6.width) {
-					var6.scrollX = var6.scrollWidth - var6.width;
-				}
+			if (var0 >= 200 && var0 <= 203) {
+				return 'E';
+			}
 
-				if (var6.scrollX < 0) {
-					var6.scrollX = 0;
-				}
+			if (var0 >= 204 && var0 <= 207) {
+				return 'I';
+			}
 
-				if (var6.scrollY > var6.scrollHeight - var6.height) {
-					var6.scrollY = var6.scrollHeight - var6.height;
-				}
+			if (var0 == 209 && var1 != Language.Language_ES) {
+				return 'N';
+			}
 
-				if (var6.scrollY < 0) {
-					var6.scrollY = 0;
-				}
+			if (var0 >= 210 && var0 <= 214) {
+				return 'O';
+			}
 
-				if (var6.type == 0) {
-					WorldMapSprite.revalidateWidgetScroll(var0, var6, var4);
-				}
+			if (var0 >= 217 && var0 <= 220) {
+				return 'U';
+			}
+
+			if (var0 == 221) {
+				return 'Y';
+			}
+
+			if (var0 == 223) {
+				return 's';
+			}
+
+			if (var0 >= 224 && var0 <= 230) {
+				return 'a';
+			}
+
+			if (var0 == 231) {
+				return 'c';
+			}
+
+			if (var0 >= 232 && var0 <= 235) {
+				return 'e';
+			}
+
+			if (var0 >= 236 && var0 <= 239) {
+				return 'i';
+			}
+
+			if (var0 == 241 && var1 != Language.Language_ES) {
+				return 'n';
+			}
+
+			if (var0 >= 242 && var0 <= 246) {
+				return 'o';
+			}
+
+			if (var0 >= 249 && var0 <= 252) {
+				return 'u';
+			}
+
+			if (var0 == 253 || var0 == 255) {
+				return 'y';
 			}
 		}
 
+		if (var0 == 338) {
+			return 'O';
+		} else if (var0 == 339) {
+			return 'o';
+		} else if (var0 == 376) {
+			return 'Y';
+		} else {
+			return var0;
+		}
+	}
+
+	@ObfuscatedName("y")
+	@ObfuscatedSignature(
+		signature = "(II)I",
+		garbageValue = "-114703177"
+	)
+	@Export("Messages_getNextChatID")
+	static int Messages_getNextChatID(int var0) {
+		Message var1 = (Message)Messages.Messages_hashTable.get((long)var0);
+		if (var1 == null) {
+			return -1;
+		} else {
+			return var1.previousDual == Messages.Messages_queue.sentinel ? -1 : ((Message)var1.previousDual).count;
+		}
+	}
+
+	@ObfuscatedName("c")
+	@ObfuscatedSignature(
+		signature = "(Lho;II)V",
+		garbageValue = "891811325"
+	)
+	@Export("Widget_setKeyIgnoreHeld")
+	static final void Widget_setKeyIgnoreHeld(Widget var0, int var1) {
+		if (var0.field2552 == null) {
+			throw new RuntimeException();
+		} else {
+			if (var0.field2684 == null) {
+				var0.field2684 = new int[var0.field2552.length];
+			}
+
+			var0.field2684[var1] = Integer.MAX_VALUE;
+		}
 	}
 }

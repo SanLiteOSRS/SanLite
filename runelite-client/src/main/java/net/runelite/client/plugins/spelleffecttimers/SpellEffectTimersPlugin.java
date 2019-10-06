@@ -21,11 +21,12 @@ import java.util.List;
 
 @Slf4j
 @PluginDescriptor(
-		name = "[TEST] Spell Effect Timers",
-		description = "Shows spell effect timers for freezes, vengeance and teleblock. This plugin is currently in the testing phase so please report any issues that occur.",
+		name = "Spell Effect Timers",
+		description = "Shows spell effect timers for freezes, vengeance and teleblock",
 		tags = {"spell", "effect", "timers", "freeze", "timers", "barrage", "freezy", "ancients", "overlay", "root",
 				"vengeance", "teleblock", "veng", "tb"},
 		enabledByDefault = false,
+		hidden = true,
 		type = PluginType.SANLITE
 )
 public class SpellEffectTimersPlugin extends Plugin

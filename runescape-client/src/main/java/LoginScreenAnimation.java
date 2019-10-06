@@ -1,3 +1,5 @@
+import java.net.MalformedURLException;
+import java.net.URL;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
@@ -7,210 +9,207 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("br")
 @Implements("LoginScreenAnimation")
 public class LoginScreenAnimation {
-	@ObfuscatedName("lf")
+	@ObfuscatedName("as")
 	@ObfuscatedSignature(
-		signature = "Lhj;"
+		signature = "Lll;"
 	)
-	@Export("mousedOverWidgetIf1")
-	static Widget mousedOverWidgetIf1;
-	@ObfuscatedName("q")
+	static Bounds field1032;
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "[Llx;"
+		signature = "[Llp;"
 	)
 	@Export("sprites")
 	IndexedSprite[] sprites;
-	@ObfuscatedName("b")
-	int[] field1042;
-	@ObfuscatedName("i")
-	@ObfuscatedGetter(
-		intValue = 1717008553
-	)
-	int field1058;
-	@ObfuscatedName("c")
-	int[] field1044;
-	@ObfuscatedName("f")
-	int[] field1045;
+	@ObfuscatedName("q")
+	int[] field1017;
 	@ObfuscatedName("m")
-	int[] field1046;
-	@ObfuscatedName("u")
-	int[] field1047;
+	@ObfuscatedGetter(
+		intValue = 433825167
+	)
+	int field1018;
+	@ObfuscatedName("y")
+	int[] field1019;
+	@ObfuscatedName("i")
+	int[] field1030;
+	@ObfuscatedName("c")
+	int[] field1021;
+	@ObfuscatedName("b")
+	int[] field1022;
+	@ObfuscatedName("o")
+	@ObfuscatedGetter(
+		intValue = 1054808651
+	)
+	int field1023;
+	@ObfuscatedName("a")
+	int field1014;
+	@ObfuscatedName("e")
+	int[] field1020;
+	@ObfuscatedName("w")
+	int[] field1027;
+	@ObfuscatedName("t")
+	int[] field1031;
+	@ObfuscatedName("g")
+	int[] field1015;
 	@ObfuscatedName("x")
 	@ObfuscatedGetter(
-		intValue = -2128952243
+		intValue = 153935283
 	)
-	int field1048;
-	@ObfuscatedName("r")
-	@ObfuscatedGetter(
-		intValue = 1545183041
-	)
-	int field1049;
-	@ObfuscatedName("v")
-	int[] field1039;
-	@ObfuscatedName("y")
-	int[] field1043;
-	@ObfuscatedName("g")
-	int[] field1041;
-	@ObfuscatedName("a")
-	int[] field1053;
-	@ObfuscatedName("j")
-	@ObfuscatedGetter(
-		intValue = -1480925265
-	)
-	int field1054;
-	@ObfuscatedName("t")
-	@ObfuscatedGetter(
-		intValue = 826478180
-	)
-	int field1055;
+	int field1029;
 	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = -1956845489
+		intValue = 456974096
 	)
-	int field1056;
+	int field1024;
+	@ObfuscatedName("s")
+	@ObfuscatedGetter(
+		intValue = -389038271
+	)
+	int field1025;
 
 	@ObfuscatedSignature(
-		signature = "([Llx;)V"
+		signature = "([Llp;)V"
 	)
 	LoginScreenAnimation(IndexedSprite[] var1) {
-		this.field1042 = new int[256];
-		this.field1058 = 0;
-		this.field1048 = 0;
-		this.field1049 = 0;
-		this.field1054 = 0;
-		this.field1055 = 0;
-		this.field1056 = 0;
+		this.field1017 = new int[256];
+		this.field1018 = 0;
+		this.field1023 = 0;
+		this.field1014 = 0;
+		this.field1029 = 0;
+		this.field1024 = 0;
+		this.field1025 = 0;
 		this.sprites = var1;
-		this.method1721();
+		this.initColors();
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "-1195148401"
+		garbageValue = "-27245818"
 	)
-	void method1721() {
-		this.field1045 = new int[256];
+	@Export("initColors")
+	void initColors() {
+		this.field1030 = new int[256];
 
 		int var1;
 		for (var1 = 0; var1 < 64; ++var1) {
-			this.field1045[var1] = var1 * 262144;
+			this.field1030[var1] = var1 * 262144;
 		}
 
 		for (var1 = 0; var1 < 64; ++var1) {
-			this.field1045[var1 + 64] = var1 * 1024 + 16711680;
+			this.field1030[var1 + 64] = var1 * 1024 + 16711680;
 		}
 
 		for (var1 = 0; var1 < 64; ++var1) {
-			this.field1045[var1 + 128] = var1 * 4 + 16776960;
+			this.field1030[var1 + 128] = var1 * 4 + 16776960;
 		}
 
 		for (var1 = 0; var1 < 64; ++var1) {
-			this.field1045[var1 + 192] = 16777215;
+			this.field1030[var1 + 192] = 16777215;
 		}
 
-		this.field1046 = new int[256];
+		this.field1021 = new int[256];
 
 		for (var1 = 0; var1 < 64; ++var1) {
-			this.field1046[var1] = var1 * 1024;
-		}
-
-		for (var1 = 0; var1 < 64; ++var1) {
-			this.field1046[var1 + 64] = var1 * 4 + 65280;
+			this.field1021[var1] = var1 * 1024;
 		}
 
 		for (var1 = 0; var1 < 64; ++var1) {
-			this.field1046[var1 + 128] = var1 * 262144 + 65535;
+			this.field1021[var1 + 64] = var1 * 4 + 65280;
 		}
 
 		for (var1 = 0; var1 < 64; ++var1) {
-			this.field1046[var1 + 192] = 16777215;
-		}
-
-		this.field1047 = new int[256];
-
-		for (var1 = 0; var1 < 64; ++var1) {
-			this.field1047[var1] = var1 * 4;
+			this.field1021[var1 + 128] = var1 * 262144 + 65535;
 		}
 
 		for (var1 = 0; var1 < 64; ++var1) {
-			this.field1047[var1 + 64] = var1 * 262144 + 255;
+			this.field1021[var1 + 192] = 16777215;
+		}
+
+		this.field1022 = new int[256];
+
+		for (var1 = 0; var1 < 64; ++var1) {
+			this.field1022[var1] = var1 * 4;
 		}
 
 		for (var1 = 0; var1 < 64; ++var1) {
-			this.field1047[var1 + 128] = var1 * 1024 + 16711935;
+			this.field1022[var1 + 64] = var1 * 262144 + 255;
 		}
 
 		for (var1 = 0; var1 < 64; ++var1) {
-			this.field1047[var1 + 192] = 16777215;
+			this.field1022[var1 + 128] = var1 * 1024 + 16711935;
 		}
 
-		this.field1044 = new int[256];
-		this.field1054 = 0;
-		this.field1041 = new int[32768];
-		this.field1053 = new int[32768];
-		this.method1723((IndexedSprite)null);
-		this.field1039 = new int[32768];
-		this.field1043 = new int[32768];
+		for (var1 = 0; var1 < 64; ++var1) {
+			this.field1022[var1 + 192] = 16777215;
+		}
+
+		this.field1019 = new int[256];
+		this.field1029 = 0;
+		this.field1031 = new int[32768];
+		this.field1015 = new int[32768];
+		this.method1824((IndexedSprite)null);
+		this.field1020 = new int[32768];
+		this.field1027 = new int[32768];
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "0"
+		signature = "(I)V",
+		garbageValue = "-1384251878"
 	)
-	void method1720() {
-		this.field1045 = null;
-		this.field1046 = null;
-		this.field1047 = null;
-		this.field1044 = null;
-		this.field1041 = null;
-		this.field1053 = null;
-		this.field1039 = null;
-		this.field1043 = null;
-		this.field1054 = 0;
-		this.field1055 = 0;
+	void method1817() {
+		this.field1030 = null;
+		this.field1021 = null;
+		this.field1022 = null;
+		this.field1019 = null;
+		this.field1031 = null;
+		this.field1015 = null;
+		this.field1020 = null;
+		this.field1027 = null;
+		this.field1029 = 0;
+		this.field1024 = 0;
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(IIB)V",
-		garbageValue = "-86"
+		signature = "(III)V",
+		garbageValue = "-938798150"
 	)
 	@Export("draw")
 	void draw(int var1, int var2) {
-		if (this.field1039 == null) {
-			this.method1721();
+		if (this.field1020 == null) {
+			this.initColors();
 		}
 
-		if (this.field1056 == 0) {
-			this.field1056 = var2;
+		if (this.field1025 == 0) {
+			this.field1025 = var2;
 		}
 
-		int var3 = var2 - this.field1056;
+		int var3 = var2 - this.field1025;
 		if (var3 >= 256) {
 			var3 = 0;
 		}
 
-		this.field1056 = var2;
+		this.field1025 = var2;
 		if (var3 > 0) {
-			this.method1722(var3);
+			this.method1819(var3);
 		}
 
-		this.method1726(var1);
+		this.method1836(var1);
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
 		signature = "(II)V",
-		garbageValue = "2053204142"
+		garbageValue = "-1108655518"
 	)
-	final void method1722(int var1) {
-		this.field1054 += 128 * var1;
+	final void method1819(int var1) {
+		this.field1029 += var1 * 128;
 		int var2;
-		if (this.field1054 > this.field1041.length) {
-			this.field1054 -= this.field1041.length;
+		if (this.field1029 > this.field1031.length) {
+			this.field1029 -= this.field1031.length;
 			var2 = (int)(Math.random() * 12.0D);
-			this.method1723(this.sprites[var2]);
+			this.method1824(this.sprites[var2]);
 		}
 
 		var2 = 0;
@@ -219,12 +218,12 @@ public class LoginScreenAnimation {
 
 		int var6;
 		for (int var5 = 0; var5 < var4; ++var5) {
-			var6 = this.field1039[var3 + var2] - this.field1041[var2 + this.field1054 & this.field1041.length - 1] * var1 / 6;
+			var6 = this.field1020[var2 + var3] - this.field1031[var2 + this.field1029 & this.field1031.length - 1] * var1 / 6;
 			if (var6 < 0) {
 				var6 = 0;
 			}
 
-			this.field1039[var2++] = var6;
+			this.field1020[var2++] = var6;
 		}
 
 		byte var15 = 10;
@@ -238,42 +237,42 @@ public class LoginScreenAnimation {
 			for (int var9 = 0; var9 < 128; ++var9) {
 				var10 = (int)(Math.random() * 100.0D);
 				if (var10 < 50 && var9 > var15 && var9 < var6) {
-					this.field1039[var9 + var8] = 255;
+					this.field1020[var9 + var8] = 255;
 				} else {
-					this.field1039[var9 + var8] = 0;
+					this.field1020[var8 + var9] = 0;
 				}
 			}
 		}
 
-		if (this.field1048 * 16 > 0) {
-			this.field1048 = this.field1048 * 16 - var1 * 4;
+		if (this.field1023 * 16 > 0) {
+			this.field1023 = this.field1023 * 16 - var1 * 4;
 		}
 
-		if (this.field1049 * 16 > 0) {
-			this.field1049 = this.field1049 * 16 - var1 * 4;
+		if (this.field1014 * -1416071611 > 0) {
+			this.field1014 -= var1 * 979153460;
 		}
 
-		if (this.field1048 * 16 == 0 && this.field1049 * 16 == 0) {
+		if (this.field1023 * 16 == 0 && this.field1014 * -1416071611 == 0) {
 			var7 = (int)(Math.random() * (double)(2000 / var1));
 			if (var7 == 0) {
-				this.field1048 = 1024;
+				this.field1023 = 1024;
 			}
 
 			if (var7 == 1) {
-				this.field1049 = 1024;
+				this.field1014 = 1555182592;
 			}
 		}
 
 		for (var7 = 0; var7 < 256 - var1; ++var7) {
-			this.field1042[var7] = this.field1042[var7 + var1];
+			this.field1017[var7] = this.field1017[var7 + var1];
 		}
 
 		for (var7 = 256 - var1; var7 < 256; ++var7) {
-			this.field1042[var7] = (int)(Math.sin((double)this.field1058 / 14.0D) * 16.0D + Math.sin((double)this.field1058 / 15.0D) * 14.0D + Math.sin((double)this.field1058 / 16.0D) * 12.0D);
-			++this.field1058;
+			this.field1017[var7] = (int)(Math.sin((double)this.field1018 / 14.0D) * 16.0D + Math.sin((double)this.field1018 / 15.0D) * 14.0D + Math.sin((double)this.field1018 / 16.0D) * 12.0D);
+			++this.field1018;
 		}
 
-		this.field1055 = this.field1055 * 10000 + var1 * 100;
+		this.field1024 = this.field1024 * 10000 + 10000 * var1;
 		var7 = ((Client.cycle & 1) + var1) / 2;
 		if (var7 > 0) {
 			short var16 = 128;
@@ -283,13 +282,13 @@ public class LoginScreenAnimation {
 			int var11;
 			int var12;
 			int var13;
-			for (var11 = 0; var11 < this.field1055 * 10000; ++var11) {
+			for (var11 = 0; var11 < this.field1024 * 100; ++var11) {
 				var12 = (int)(Math.random() * (double)var10) + var17;
 				var13 = (int)(Math.random() * (double)var16) + var16;
-				this.field1039[var12 + (var13 << 7)] = 192;
+				this.field1020[var12 + (var13 << 7)] = 192;
 			}
 
-			this.field1055 = 0;
+			this.field1024 = 0;
 
 			int var14;
 			for (var11 = 0; var11 < 256; ++var11) {
@@ -297,16 +296,16 @@ public class LoginScreenAnimation {
 				var13 = var11 * 128;
 
 				for (var14 = -var7; var14 < 128; ++var14) {
-					if (var7 + var14 < 128) {
-						var12 += this.field1039[var13 + var14 + var7];
+					if (var14 + var7 < 128) {
+						var12 += this.field1020[var7 + var14 + var13];
 					}
 
 					if (var14 - (var7 + 1) >= 0) {
-						var12 -= this.field1039[var13 + var14 - (var7 + 1)];
+						var12 -= this.field1020[var13 + var14 - (var7 + 1)];
 					}
 
 					if (var14 >= 0) {
-						this.field1043[var13 + var14] = var12 / (var7 * 2 + 1);
+						this.field1027[var14 + var13] = var12 / (var7 * 2 + 1);
 					}
 				}
 			}
@@ -316,16 +315,16 @@ public class LoginScreenAnimation {
 
 				for (var13 = -var7; var13 < 256; ++var13) {
 					var14 = var13 * 128;
-					if (var13 + var7 < 256) {
-						var12 += this.field1043[var14 + var11 + var7 * 128];
+					if (var7 + var13 < 256) {
+						var12 += this.field1027[var7 * 128 + var14 + var11];
 					}
 
 					if (var13 - (var7 + 1) >= 0) {
-						var12 -= this.field1043[var11 + var14 - (var7 + 1) * 128];
+						var12 -= this.field1027[var14 + var11 - (var7 + 1) * 128];
 					}
 
 					if (var13 >= 0) {
-						this.field1039[var11 + var14] = var12 / (var7 * 2 + 1);
+						this.field1020[var11 + var14] = var12 / (var7 * 2 + 1);
 					}
 				}
 			}
@@ -333,66 +332,66 @@ public class LoginScreenAnimation {
 
 	}
 
-	@ObfuscatedName("k")
+	@ObfuscatedName("r")
 	@ObfuscatedSignature(
 		signature = "(IIII)I",
-		garbageValue = "-1694024652"
+		garbageValue = "1638746019"
 	)
-	final int method1725(int var1, int var2, int var3) {
+	final int method1820(int var1, int var2, int var3) {
 		int var4 = 256 - var3;
-		return (var4 * (var1 & 16711935) + var3 * (var2 & 16711935) & -16711936) + (var3 * (var2 & 65280) + var4 * (var1 & 65280) & 16711680) >> 8;
+		return (var3 * (var2 & 65280) + var4 * (var1 & 65280) & 16711680) + (var4 * (var1 & 16711935) + var3 * (var2 & 16711935) & -16711936) >> 8;
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		signature = "(II)V",
-		garbageValue = "-1640931413"
+		signature = "(IB)V",
+		garbageValue = "97"
 	)
-	final void method1726(int var1) {
-		int var2 = this.field1044.length;
-		if (this.field1048 * 16 > 0) {
-			this.method1727(this.field1048 * 16, this.field1046);
-		} else if (this.field1049 * 16 > 0) {
-			this.method1727(this.field1049 * 16, this.field1047);
+	final void method1836(int var1) {
+		int var2 = this.field1019.length;
+		if (this.field1023 * 16 > 0) {
+			this.method1822(this.field1023 * 16, this.field1021);
+		} else if (this.field1014 * -1416071611 > 0) {
+			this.method1822(this.field1014 * -1416071611, this.field1022);
 		} else {
 			for (int var3 = 0; var3 < var2; ++var3) {
-				this.field1044[var3] = this.field1045[var3];
+				this.field1019[var3] = this.field1030[var3];
 			}
 		}
 
-		this.method1728(var1);
+		this.method1823(var1);
 	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		signature = "(I[IB)V",
-		garbageValue = "117"
+		signature = "(I[II)V",
+		garbageValue = "-1982126918"
 	)
-	final void method1727(int var1, int[] var2) {
-		int var3 = this.field1044.length;
+	final void method1822(int var1, int[] var2) {
+		int var3 = this.field1019.length;
 
 		for (int var4 = 0; var4 < var3; ++var4) {
 			if (var1 > 768) {
-				this.field1044[var4] = this.method1725(this.field1045[var4], var2[var4], 1024 - var1);
+				this.field1019[var4] = this.method1820(this.field1030[var4], var2[var4], 1024 - var1);
 			} else if (var1 > 256) {
-				this.field1044[var4] = var2[var4];
+				this.field1019[var4] = var2[var4];
 			} else {
-				this.field1044[var4] = this.method1725(var2[var4], this.field1045[var4], 256 - var1);
+				this.field1019[var4] = this.method1820(var2[var4], this.field1030[var4], 256 - var1);
 			}
 		}
 
 	}
 
-	@ObfuscatedName("i")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
 		signature = "(II)V",
-		garbageValue = "379301456"
+		garbageValue = "-224486060"
 	)
-	final void method1728(int var1) {
+	final void method1823(int var1) {
 		int var2 = 0;
 
 		for (int var3 = 1; var3 < 255; ++var3) {
-			int var4 = (256 - var3) * this.field1042[var3] / 256;
+			int var4 = (256 - var3) * this.field1017[var3] / 256;
 			int var5 = var4 + var1;
 			int var6 = 0;
 			int var7 = 128;
@@ -401,22 +400,22 @@ public class LoginScreenAnimation {
 				var5 = 0;
 			}
 
-			if (var5 + 128 >= MusicPatchPcmStream.rasterProvider.width) {
-				var7 = MusicPatchPcmStream.rasterProvider.width - var5;
+			if (var5 + 128 >= class42.rasterProvider.width) {
+				var7 = class42.rasterProvider.width - var5;
 			}
 
-			int var8 = var5 + (var3 + 8) * MusicPatchPcmStream.rasterProvider.width;
+			int var8 = var5 + (var3 + 8) * class42.rasterProvider.width;
 			var2 += var6;
 
 			for (int var9 = var6; var9 < var7; ++var9) {
-				int var10 = this.field1039[var2++];
+				int var10 = this.field1020[var2++];
 				int var11 = var8 % Rasterizer2D.Rasterizer2D_width;
 				if (var10 != 0 && var11 >= Rasterizer2D.Rasterizer2D_xClipStart && var11 < Rasterizer2D.Rasterizer2D_xClipEnd) {
 					int var12 = var10;
 					int var13 = 256 - var10;
-					var10 = this.field1044[var10];
-					int var14 = MusicPatchPcmStream.rasterProvider.pixels[var8];
-					MusicPatchPcmStream.rasterProvider.pixels[var8++] = -16777216 | (var13 * (var14 & 65280) + var12 * (var10 & 65280) & 16711680) + ((var14 & 16711935) * var13 + (var10 & 16711935) * var12 & -16711936) >> 8;
+					var10 = this.field1019[var10];
+					int var14 = class42.rasterProvider.pixels[var8];
+					class42.rasterProvider.pixels[var8++] = -16777216 | ((var14 & 16711935) * var13 + (var10 & 16711935) * var12 & -16711936) + (var12 * (var10 & 65280) + var13 * (var14 & 65280) & 16711680) >> 8;
 				} else {
 					++var8;
 				}
@@ -427,21 +426,21 @@ public class LoginScreenAnimation {
 
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(Llx;I)V",
-		garbageValue = "956004569"
+		signature = "(Llp;I)V",
+		garbageValue = "1363271921"
 	)
-	final void method1723(IndexedSprite var1) {
+	final void method1824(IndexedSprite var1) {
 		int var2;
-		for (var2 = 0; var2 < this.field1041.length; ++var2) {
-			this.field1041[var2] = 0;
+		for (var2 = 0; var2 < this.field1031.length; ++var2) {
+			this.field1031[var2] = 0;
 		}
 
 		int var3;
 		for (var2 = 0; var2 < 5000; ++var2) {
 			var3 = (int)(Math.random() * 128.0D * 256.0D);
-			this.field1041[var3] = (int)(Math.random() * 256.0D);
+			this.field1031[var3] = (int)(Math.random() * 256.0D);
 		}
 
 		int var4;
@@ -450,13 +449,13 @@ public class LoginScreenAnimation {
 			for (var3 = 1; var3 < 255; ++var3) {
 				for (var4 = 1; var4 < 127; ++var4) {
 					var5 = var4 + (var3 << 7);
-					this.field1053[var5] = (this.field1041[var5 + 128] + this.field1041[var5 - 128] + this.field1041[var5 + 1] + this.field1041[var5 - 1]) / 4;
+					this.field1015[var5] = (this.field1031[var5 + 1] + this.field1031[var5 + 128] + this.field1031[var5 - 128] + this.field1031[var5 - 1]) / 4;
 				}
 			}
 
-			int[] var8 = this.field1041;
-			this.field1041 = this.field1053;
-			this.field1053 = var8;
+			int[] var8 = this.field1031;
+			this.field1031 = this.field1015;
+			this.field1015 = var8;
 		}
 
 		if (var1 != null) {
@@ -468,7 +467,7 @@ public class LoginScreenAnimation {
 						var5 = var4 + var1.xOffset + 16;
 						int var6 = var3 + var1.yOffset + 16;
 						int var7 = var5 + (var6 << 7);
-						this.field1041[var7] = 0;
+						this.field1031[var7] = 0;
 					}
 				}
 			}
@@ -476,66 +475,90 @@ public class LoginScreenAnimation {
 
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(II)I",
-		garbageValue = "-1877742024"
+		signature = "(Ljava/lang/String;I)Z",
+		garbageValue = "666011978"
 	)
-	static int method1744(int var0) {
-		ChatChannel var1 = (ChatChannel)Messages.Messages_channels.get(var0);
-		return var1 == null ? 0 : var1.size();
+	@Export("isValidURL")
+	static boolean isValidURL(String var0) {
+		if (var0 == null) {
+			return false;
+		} else {
+			try {
+				new URL(var0);
+				return true;
+			} catch (MalformedURLException var2) {
+				return false;
+			}
+		}
 	}
 
-	@ObfuscatedName("gr")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(IIIIIIII)V",
-		garbageValue = "806808180"
+		signature = "(CI)Z",
+		garbageValue = "1979853088"
 	)
-	static final void method1724(int var0, int var1, int var2, int var3, int var4, int var5, int var6) {
-		int var8 = var6 - 334;
-		if (var8 < 0) {
-			var8 = 0;
-		} else if (var8 > 100) {
-			var8 = 100;
+	public static boolean method1839(char var0) {
+		if ((var0 <= 0 || var0 >= 128) && (var0 < 160 || var0 > 255)) {
+			if (var0 != 0) {
+				char[] var1 = class287.cp1252AsciiExtension;
+
+				for (int var2 = 0; var2 < var1.length; ++var2) {
+					char var3 = var1[var2];
+					if (var0 == var3) {
+						return true;
+					}
+				}
+			}
+
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+	@ObfuscatedName("i")
+	@ObfuscatedSignature(
+		signature = "(Lho;IIII)V",
+		garbageValue = "1378912334"
+	)
+	@Export("Widget_setKeyRate")
+	static final void Widget_setKeyRate(Widget var0, int var1, int var2, int var3) {
+		if (var0.field2586 == null) {
+			throw new RuntimeException();
+		} else {
+			var0.field2586[var1] = var2;
+			var0.field2548[var1] = var3;
+		}
+	}
+
+	@ObfuscatedName("an")
+	@ObfuscatedSignature(
+		signature = "([BIII)I",
+		garbageValue = "-1562433827"
+	)
+	static int method1844(byte[] var0, int var1, int var2) {
+		int var3 = -1;
+
+		for (int var4 = var1; var4 < var2; ++var4) {
+			var3 = var3 >>> 8 ^ Buffer.crc32Table[(var3 ^ var0[var4]) & 255];
 		}
 
-		int var9 = (Client.field908 - Client.field906) * var8 / 100 + Client.field906;
-		int var7 = var5 * var9 / 256;
-		var8 = 2048 - var3 & 2047;
-		var9 = 2048 - var4 & 2047;
-		int var10 = 0;
-		int var11 = 0;
-		int var12 = var7;
-		int var13;
-		int var14;
-		int var15;
-		if (var8 != 0) {
-			var13 = Rasterizer3D.Rasterizer3D_sine[var8];
-			var14 = Rasterizer3D.Rasterizer3D_cosine[var8];
-			var15 = var11 * var14 - var13 * var7 >> 16;
-			var12 = var11 * var13 + var14 * var7 >> 16;
-			var11 = var15;
+		var3 = ~var3;
+		return var3;
+	}
+
+	@ObfuscatedName("kh")
+	@ObfuscatedSignature(
+		signature = "([BII)V",
+		garbageValue = "-2002563170"
+	)
+	static void method1828(byte[] var0, int var1) {
+		if (Client.randomDatData == null) {
+			Client.randomDatData = new byte[24];
 		}
 
-		if (var9 != 0) {
-			var13 = Rasterizer3D.Rasterizer3D_sine[var9];
-			var14 = Rasterizer3D.Rasterizer3D_cosine[var9];
-			var15 = var13 * var12 + var14 * var10 >> 16;
-			var12 = var14 * var12 - var13 * var10 >> 16;
-			var10 = var15;
-		}
-
-		PacketBuffer.cameraX = var0 - var10;
-		class43.cameraY = var1 - var11;
-		class1.cameraZ = var2 - var12;
-		GrandExchangeOfferNameComparator.cameraPitch = var3;
-		Interpreter.cameraYaw = var4;
-		if (Client.oculusOrbState == 1 && Client.staffModLevel >= 2 && Client.cycle % 50 == 0 && (MouseHandler.oculusOrbFocalPointX >> 7 != Client.localPlayer.x >> 7 || WorldMapArea.oculusOrbFocalPointY >> 7 != Client.localPlayer.y >> 7)) {
-			var13 = Client.localPlayer.plane;
-			var14 = MusicPatchNode2.baseX * 64 + (MouseHandler.oculusOrbFocalPointX >> 7);
-			var15 = class1.baseY * 64 + (WorldMapArea.oculusOrbFocalPointY >> 7);
-			WorldMapLabel.method418(var14, var15, var13, true);
-		}
-
+		class300.writeRandomDat(var0, var1, Client.randomDatData, 0, 24);
 	}
 }

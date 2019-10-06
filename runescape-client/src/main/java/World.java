@@ -3,234 +3,257 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("bw")
+@ObfuscatedName("bo")
 @Implements("World")
 public class World {
-	@ObfuscatedName("k")
+	@ObfuscatedName("r")
 	@ObfuscatedSignature(
-		signature = "[Lbw;"
+		signature = "[Lbo;"
 	)
-	@Export("worlds")
-	static World[] worlds;
-	@ObfuscatedName("l")
+	@Export("World_worlds")
+	static World[] World_worlds;
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = 774267173
+		intValue = -1109260753
 	)
-	@Export("worldsCount")
-	static int worldsCount;
-	@ObfuscatedName("b")
+	@Export("World_count")
+	static int World_count;
+	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = -2084454035
+		intValue = -1029210309
 	)
-	@Export("worldListWorldCount")
-	static int worldListWorldCount;
-	@ObfuscatedName("i")
-	@Export("sortOption2")
-	static int[] sortOption2;
-	@ObfuscatedName("c")
-	@Export("sortOption1")
-	static int[] sortOption1;
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		signature = "Lex;"
-	)
-	static UrlRequest field1027;
+	@Export("World_listCount")
+	static int World_listCount;
 	@ObfuscatedName("m")
+	@Export("World_sortOption2")
+	static int[] World_sortOption2;
+	@ObfuscatedName("y")
+	@Export("World_sortOption1")
+	static int[] World_sortOption1;
+	@ObfuscatedName("en")
 	@ObfuscatedGetter(
-		intValue = 790181133
+		intValue = 1902437399
+	)
+	static int field1012;
+	@ObfuscatedName("c")
+	@ObfuscatedGetter(
+		intValue = 974966281
 	)
 	@Export("id")
 	int id;
-	@ObfuscatedName("u")
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = 630491985
+		intValue = 1702314457
 	)
 	@Export("properties")
 	int properties;
-	@ObfuscatedName("x")
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = -432731733
+		intValue = 997157235
 	)
 	@Export("population")
 	int population;
-	@ObfuscatedName("r")
+	@ObfuscatedName("a")
 	@Export("host")
 	String host;
-	@ObfuscatedName("v")
+	@ObfuscatedName("e")
 	@Export("activity")
 	String activity;
-	@ObfuscatedName("y")
+	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		intValue = 657222747
+		intValue = 1450881291
 	)
 	@Export("location")
 	int location;
-	@ObfuscatedName("g")
+	@ObfuscatedName("t")
 	@ObfuscatedGetter(
-		intValue = -1014616139
+		intValue = 1472418349
 	)
 	@Export("index")
 	int index;
 
 	static {
-		worldsCount = 0;
-		worldListWorldCount = 0;
-		sortOption2 = new int[]{1, 1, 1, 1};
-		sortOption1 = new int[]{0, 1, 2, 3};
+		World_count = 0;
+		World_listCount = 0;
+		World_sortOption2 = new int[]{1, 1, 1, 1};
+		World_sortOption1 = new int[]{0, 1, 2, 3};
 	}
 
 	World() {
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		signature = "(B)Z",
-		garbageValue = "0"
+		signature = "(I)Z",
+		garbageValue = "858641980"
 	)
 	@Export("isMembersOnly")
 	boolean isMembersOnly() {
 		return (1 & this.properties) != 0;
 	}
 
-	@ObfuscatedName("u")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
 		signature = "(I)Z",
-		garbageValue = "2029214211"
+		garbageValue = "-622240981"
 	)
-	boolean method1682() {
+	boolean method1802() {
 		return (2 & this.properties) != 0;
 	}
 
-	@ObfuscatedName("x")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
 		signature = "(I)Z",
-		garbageValue = "-1353649797"
+		garbageValue = "2080738289"
 	)
 	@Export("isPvp")
 	boolean isPvp() {
 		return (4 & this.properties) != 0;
 	}
 
-	@ObfuscatedName("r")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
 		signature = "(I)Z",
-		garbageValue = "1749102436"
+		garbageValue = "100459661"
 	)
-	boolean method1698() {
+	boolean method1774() {
 		return (8 & this.properties) != 0;
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
 		signature = "(I)Z",
-		garbageValue = "-2068007512"
+		garbageValue = "-1262281013"
 	)
 	@Export("isDeadman")
 	boolean isDeadman() {
 		return (536870912 & this.properties) != 0;
 	}
 
-	@ObfuscatedName("y")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		signature = "(I)Z",
-		garbageValue = "1648546006"
+		signature = "(B)Z",
+		garbageValue = "-24"
 	)
 	@Export("isBeta")
 	boolean isBeta() {
 		return (33554432 & this.properties) != 0;
 	}
 
-	@ObfuscatedName("p")
-	@ObfuscatedSignature(
-		signature = "(Lkx;B)I",
-		garbageValue = "80"
-	)
-	static int method1686(PacketBuffer var0) {
-		int var1 = var0.readBits(2);
-		int var2;
-		if (var1 == 0) {
-			var2 = 0;
-		} else if (var1 == 1) {
-			var2 = var0.readBits(5);
-		} else if (var1 == 2) {
-			var2 = var0.readBits(8);
-		} else {
-			var2 = var0.readBits(11);
-		}
+	@ObfuscatedName("z")
+	@Export("base37DecodeLong")
+	public static String base37DecodeLong(long var0) {
+		if (var0 > 0L && var0 < 6582952005840035281L) {
+			if (0L == var0 % 37L) {
+				return null;
+			} else {
+				int var2 = 0;
 
-		return var2;
+				for (long var3 = var0; 0L != var3; var3 /= 37L) {
+					++var2;
+				}
+
+				StringBuilder var5;
+				char var8;
+				for (var5 = new StringBuilder(var2); var0 != 0L; var5.append(var8)) {
+					long var6 = var0;
+					var0 /= 37L;
+					var8 = class288.base37Table[(int)(var6 - var0 * 37L)];
+					if (var8 == '_') {
+						int var9 = var5.length() - 1;
+						var5.setCharAt(var9, Character.toUpperCase(var5.charAt(var9)));
+						var8 = 160;
+					}
+				}
+
+				var5.reverse();
+				var5.setCharAt(0, Character.toUpperCase(var5.charAt(0)));
+				return var5.toString();
+			}
+		} else {
+			return null;
+		}
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "([BI)Lcx;",
-		garbageValue = "-75241458"
+		signature = "(IB)Ljava/lang/String;",
+		garbageValue = "118"
 	)
-	@Export("newScript")
-	static Script newScript(byte[] var0) {
-		Script var1 = new Script();
-		Buffer var2 = new Buffer(var0);
-		var2.offset = var2.array.length - 2;
-		int var3 = var2.readUnsignedShort();
-		int var4 = var2.array.length - 2 - var3 - 12;
-		var2.offset = var4;
-		int var5 = var2.readInt();
-		var1.localIntCount = var2.readUnsignedShort();
-		var1.localStringCount = var2.readUnsignedShort();
-		var1.intArgumentCount = var2.readUnsignedShort();
-		var1.stringArgumentCount = var2.readUnsignedShort();
-		int var6 = var2.readUnsignedByte();
-		int var7;
-		int var8;
-		if (var6 > 0) {
-			var1.switches = var1.method2182(var6);
+	@Export("colorStartTag")
+	static String colorStartTag(int var0) {
+		return "<col=" + Integer.toHexString(var0) + ">";
+	}
 
-			for (var7 = 0; var7 < var6; ++var7) {
-				var8 = var2.readUnsignedShort();
-				int var9;
-				int var11;
-				if (var8 > 0) {
-					var11 = var8 - 1;
-					var11 |= var11 >>> 1;
-					var11 |= var11 >>> 2;
-					var11 |= var11 >>> 4;
-					var11 |= var11 >>> 8;
-					var11 |= var11 >>> 16;
-					int var10 = var11 + 1;
-					var9 = var10;
+	@ObfuscatedName("u")
+	@ObfuscatedSignature(
+		signature = "(III)I",
+		garbageValue = "-1827551520"
+	)
+	public static int method1810(int var0, int var1) {
+		int var2 = var0 >>> 31;
+		return (var0 + var2) / var1 - var2;
+	}
+
+	@ObfuscatedName("x")
+	@ObfuscatedSignature(
+		signature = "(ILcu;ZI)I",
+		garbageValue = "1196159395"
+	)
+	static int method1811(int var0, Script var1, boolean var2) {
+		Widget var3 = var2 ? GrandExchangeOfferAgeComparator.field76 : KitDefinition.field3252;
+		if (var0 == ScriptOpcodes.CC_GETTARGETMASK) {
+			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = class2.method30(class2.getWidgetClickMask(var3));
+			return 1;
+		} else if (var0 != ScriptOpcodes.CC_GETOP) {
+			if (var0 == ScriptOpcodes.CC_GETOPBASE) {
+				if (var3.dataText == null) {
+					Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = "";
 				} else {
-					var9 = 1;
+					Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var3.dataText;
 				}
 
-				IterableNodeHashTable var13 = new IterableNodeHashTable(var9);
-				var1.switches[var7] = var13;
-
-				while (var8-- > 0) {
-					var11 = var2.readInt();
-					int var12 = var2.readInt();
-					var13.put(new IntegerNode(var12), (long)var11);
-				}
-			}
-		}
-
-		var2.offset = 0;
-		var2.readStringCp1252NullTerminatedOrNull();
-		var1.opcodes = new int[var5];
-		var1.intOperands = new int[var5];
-		var1.stringOperands = new String[var5];
-
-		for (var7 = 0; var2.offset < var4; var1.opcodes[var7++] = var8) {
-			var8 = var2.readUnsignedShort();
-			if (var8 == 3) {
-				var1.stringOperands[var7] = var2.readStringCp1252NullTerminated();
-			} else if (var8 < 100 && var8 != 21 && var8 != 38 && var8 != 39) {
-				var1.intOperands[var7] = var2.readInt();
+				return 1;
 			} else {
-				var1.intOperands[var7] = var2.readUnsignedByte();
+				return 2;
 			}
-		}
+		} else {
+			int var4 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
+			--var4;
+			if (var3.actions != null && var4 < var3.actions.length && var3.actions[var4] != null) {
+				Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var3.actions[var4];
+			} else {
+				Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = "";
+			}
 
-		return var1;
+			return 1;
+		}
+	}
+
+	@ObfuscatedName("ga")
+	@ObfuscatedSignature(
+		signature = "(Lby;II)V",
+		garbageValue = "-310218201"
+	)
+	@Export("getActorScreenLocation")
+	static final void getActorScreenLocation(Actor var0, int var1) {
+		PlayerAppearance.worldToScreen(var0.x, var0.y * 682054857, var1);
+	}
+
+	@ObfuscatedName("jj")
+	@ObfuscatedSignature(
+		signature = "(Ljava/lang/String;I)V",
+		garbageValue = "1791021557"
+	)
+	@Export("Clan_joinChat")
+	static final void Clan_joinChat(String var0) {
+		if (!var0.equals("")) {
+			PacketBufferNode var1 = InterfaceParent.getPacketBufferNode(ClientPacket.field2237, Client.packetWriter.isaacCipher);
+			var1.packetBuffer.writeByte(class268.stringCp1252NullTerminatedByteSize(var0));
+			var1.packetBuffer.writeStringCp1252NullTerminated(var0);
+			Client.packetWriter.addNode(var1);
+		}
 	}
 }

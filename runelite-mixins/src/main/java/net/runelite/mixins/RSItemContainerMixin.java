@@ -66,7 +66,6 @@ public abstract class RSItemContainerMixin implements RSItemContainer
 	@Copy("itemContainerSetItem")
 	static void rs$itemContainerSetItem(int itemContainerId, int index, int itemId, int itemQuantity)
 	{
-
 	}
 
 	@Replace("itemContainerSetItem")

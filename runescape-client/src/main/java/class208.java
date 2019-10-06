@@ -1,199 +1,67 @@
-import java.util.Date;
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("ha")
+@ObfuscatedName("hh")
 public class class208 {
-	@ObfuscatedName("ax")
+	@ObfuscatedName("gd")
 	@ObfuscatedSignature(
-		signature = "(ILcx;ZB)I",
-		garbageValue = "17"
+		signature = "(B)I",
+		garbageValue = "15"
 	)
-	static int method3941(int var0, Script var1, boolean var2) {
-		String var3;
-		int var4;
-		if (var0 == ScriptOpcodes.APPEND_NUM) {
-			var3 = Interpreter.Interpreter_stringStack[--Skills.Interpreter_stringStackSize];
-			var4 = Interpreter.Interpreter_intStack[--HealthBarUpdate.Interpreter_intStackSize];
-			Interpreter.Interpreter_stringStack[++Skills.Interpreter_stringStackSize - 1] = var3 + var4;
-			return 1;
+	@Export("getHighestVisiblePlane")
+	static final int getHighestVisiblePlane() {
+		if (AbstractArchive.clientPreferences.roofsHidden) {
+			return WorldMapRectangle.plane;
+		} else {
+			int var0 = MusicPatchPcmStream.getTileHeight(GrandExchangeOfferOwnWorldComparator.cameraX, WorldMapIcon_1.cameraZ, WorldMapRectangle.plane);
+			return var0 - Varcs.cameraY < 800 && (Tiles.Tiles_renderFlags[WorldMapRectangle.plane][GrandExchangeOfferOwnWorldComparator.cameraX >> 7][WorldMapIcon_1.cameraZ >> 7] & 4) != 0 ? WorldMapRectangle.plane : 3;
 		}
-		String var9;
-		if (var0 == ScriptOpcodes.APPEND) {
-			Skills.Interpreter_stringStackSize -= 2;
-			var3 = Interpreter.Interpreter_stringStack[Skills.Interpreter_stringStackSize];
-			var9 = Interpreter.Interpreter_stringStack[Skills.Interpreter_stringStackSize + 1];
-			Interpreter.Interpreter_stringStack[++Skills.Interpreter_stringStackSize - 1] = var3 + var9;
-			return 1;
-		}
-		if (var0 == ScriptOpcodes.APPEND_SIGNNUM) {
-			var3 = Interpreter.Interpreter_stringStack[--Skills.Interpreter_stringStackSize];
-			var4 = Interpreter.Interpreter_intStack[--HealthBarUpdate.Interpreter_intStackSize];
-			Interpreter.Interpreter_stringStack[++Skills.Interpreter_stringStackSize - 1] = var3 + class195.intToString(var4, true);
-			return 1;
-		}
-		if (var0 == ScriptOpcodes.LOWERCASE) {
-			var3 = Interpreter.Interpreter_stringStack[--Skills.Interpreter_stringStackSize];
-			Interpreter.Interpreter_stringStack[++Skills.Interpreter_stringStackSize - 1] = var3.toLowerCase();
-			return 1;
-		}
-		int var6;
-		int var10;
-		if (var0 == ScriptOpcodes.FROMDATE) {
-			var10 = Interpreter.Interpreter_intStack[--HealthBarUpdate.Interpreter_intStackSize];
-			long var11 = (11745L + (long)var10) * 86400000L;
-			Interpreter.Interpreter_calendar.setTime(new Date(var11));
-			var6 = Interpreter.Interpreter_calendar.get(5);
-			int var16 = Interpreter.Interpreter_calendar.get(2);
-			int var8 = Interpreter.Interpreter_calendar.get(1);
-			Interpreter.Interpreter_stringStack[++Skills.Interpreter_stringStackSize - 1] = var6 + "-" + Interpreter.Interpreter_MONTHS[var16] + "-" + var8;
-			return 1;
-		}
-		if (var0 == ScriptOpcodes.TEXT_GENDER) {
-			Skills.Interpreter_stringStackSize -= 2;
-			var3 = Interpreter.Interpreter_stringStack[Skills.Interpreter_stringStackSize];
-			var9 = Interpreter.Interpreter_stringStack[Skills.Interpreter_stringStackSize + 1];
-			if (Client.localPlayer.appearance != null && Client.localPlayer.appearance.isFemale) {
-				Interpreter.Interpreter_stringStack[++Skills.Interpreter_stringStackSize - 1] = var9;
-			} else {
-				Interpreter.Interpreter_stringStack[++Skills.Interpreter_stringStackSize - 1] = var3;
+	}
+
+	@ObfuscatedName("hx")
+	@ObfuscatedSignature(
+		signature = "(I)V",
+		garbageValue = "73357396"
+	)
+	@Export("Widget_runOnTargetLeave")
+	static void Widget_runOnTargetLeave() {
+		if (Client.spellSelected) {
+			Widget var0 = GrandExchangeOfferWorldComparator.getWidgetChild(AttackOption.field1157, Client.field768);
+			if (var0 != null && var0.onTargetLeave != null) {
+				ScriptEvent var1 = new ScriptEvent();
+				var1.widget = var0;
+				var1.args = var0.onTargetLeave;
+				ParamDefinition.runScriptEvent(var1);
 			}
 
-			return 1;
+			Client.spellSelected = false;
+			WorldMapSectionType.invalidateWidget(var0);
 		}
-		if (var0 == ScriptOpcodes.TOSTRING) {
-			var10 = Interpreter.Interpreter_intStack[--HealthBarUpdate.Interpreter_intStackSize];
-			Interpreter.Interpreter_stringStack[++Skills.Interpreter_stringStackSize - 1] = Integer.toString(var10);
-			return 1;
-		}
-		if (var0 == ScriptOpcodes.COMPARE) {
-			Skills.Interpreter_stringStackSize -= 2;
-			Interpreter.Interpreter_intStack[++HealthBarUpdate.Interpreter_intStackSize - 1] = WallDecoration.method3292(MenuAction.method1993(Interpreter.Interpreter_stringStack[Skills.Interpreter_stringStackSize], Interpreter.Interpreter_stringStack[Skills.Interpreter_stringStackSize + 1], ScriptFrame.clientLanguage));
-			return 1;
-		}
-		int var5;
-		byte[] var13;
-		Font var14;
-		if (var0 == ScriptOpcodes.PARAHEIGHT) {
-			var3 = Interpreter.Interpreter_stringStack[--Skills.Interpreter_stringStackSize];
-			HealthBarUpdate.Interpreter_intStackSize -= 2;
-			var4 = Interpreter.Interpreter_intStack[HealthBarUpdate.Interpreter_intStackSize];
-			var5 = Interpreter.Interpreter_intStack[HealthBarUpdate.Interpreter_intStackSize + 1];
-			var13 = class2.archive13.takeFile(var5, 0);
-			var14 = new Font(var13);
-			Interpreter.Interpreter_intStack[++HealthBarUpdate.Interpreter_intStackSize - 1] = var14.lineCount(var3, var4);
-			return 1;
-		}
-		if (var0 == ScriptOpcodes.PARAWIDTH) {
-			var3 = Interpreter.Interpreter_stringStack[--Skills.Interpreter_stringStackSize];
-			HealthBarUpdate.Interpreter_intStackSize -= 2;
-			var4 = Interpreter.Interpreter_intStack[HealthBarUpdate.Interpreter_intStackSize];
-			var5 = Interpreter.Interpreter_intStack[HealthBarUpdate.Interpreter_intStackSize + 1];
-			var13 = class2.archive13.takeFile(var5, 0);
-			var14 = new Font(var13);
-			Interpreter.Interpreter_intStack[++HealthBarUpdate.Interpreter_intStackSize - 1] = var14.lineWidth(var3, var4);
-			return 1;
-		}
-		if (var0 == ScriptOpcodes.TEXT_SWITCH) {
-			Skills.Interpreter_stringStackSize -= 2;
-			var3 = Interpreter.Interpreter_stringStack[Skills.Interpreter_stringStackSize];
-			var9 = Interpreter.Interpreter_stringStack[Skills.Interpreter_stringStackSize + 1];
-			if (Interpreter.Interpreter_intStack[--HealthBarUpdate.Interpreter_intStackSize] == 1) {
-				Interpreter.Interpreter_stringStack[++Skills.Interpreter_stringStackSize - 1] = var3;
-			} else {
-				Interpreter.Interpreter_stringStack[++Skills.Interpreter_stringStackSize - 1] = var9;
-			}
+	}
 
-			return 1;
-		}
-		if (var0 == ScriptOpcodes.ESCAPE) {
-			var3 = Interpreter.Interpreter_stringStack[--Skills.Interpreter_stringStackSize];
-			Interpreter.Interpreter_stringStack[++Skills.Interpreter_stringStackSize - 1] = AbstractFont.escapeBrackets(var3);
-			return 1;
-		}
-		if (var0 == ScriptOpcodes.APPEND_CHAR) {
-			var3 = Interpreter.Interpreter_stringStack[--Skills.Interpreter_stringStackSize];
-			var4 = Interpreter.Interpreter_intStack[--HealthBarUpdate.Interpreter_intStackSize];
-			Interpreter.Interpreter_stringStack[++Skills.Interpreter_stringStackSize - 1] = var3 + (char) var4;
-			return 1;
-		}
-		if (var0 == ScriptOpcodes.CHAR_ISPRINTABLE) {
-			var10 = Interpreter.Interpreter_intStack[--HealthBarUpdate.Interpreter_intStackSize];
-			Interpreter.Interpreter_intStack[++HealthBarUpdate.Interpreter_intStackSize - 1] = Ignored.isCharPrintable((char) var10) ? 1 : 0;
-			return 1;
-		}
-		if (var0 == ScriptOpcodes.CHAR_ISALPHANUMERIC) {
-			var10 = Interpreter.Interpreter_intStack[--HealthBarUpdate.Interpreter_intStackSize];
-			Interpreter.Interpreter_intStack[++HealthBarUpdate.Interpreter_intStackSize - 1] = GrandExchangeOfferOwnWorldComparator.isAlphaNumeric((char) var10) ? 1 : 0;
-			return 1;
-		}
-		if (var0 == ScriptOpcodes.CHAR_ISALPHA) {
-			var10 = Interpreter.Interpreter_intStack[--HealthBarUpdate.Interpreter_intStackSize];
-			Interpreter.Interpreter_intStack[++HealthBarUpdate.Interpreter_intStackSize - 1] = class185.isCharAlphabetic((char) var10) ? 1 : 0;
-			return 1;
-		}
-		if (var0 == ScriptOpcodes.CHAR_ISNUMERIC) {
-			var10 = Interpreter.Interpreter_intStack[--HealthBarUpdate.Interpreter_intStackSize];
-			Interpreter.Interpreter_intStack[++HealthBarUpdate.Interpreter_intStackSize - 1] = class49.isCharDigit((char) var10) ? 1 : 0;
-			return 1;
-		}
-		if (var0 == ScriptOpcodes.STRING_LENGTH) {
-			var3 = Interpreter.Interpreter_stringStack[--Skills.Interpreter_stringStackSize];
-			if (var3 != null) {
-				Interpreter.Interpreter_intStack[++HealthBarUpdate.Interpreter_intStackSize - 1] = var3.length();
-			} else {
-				Interpreter.Interpreter_intStack[++HealthBarUpdate.Interpreter_intStackSize - 1] = 0;
-			}
-
-			return 1;
-		}
-		if (var0 == ScriptOpcodes.SUBSTRING) {
-			var3 = Interpreter.Interpreter_stringStack[--Skills.Interpreter_stringStackSize];
-			HealthBarUpdate.Interpreter_intStackSize -= 2;
-			var4 = Interpreter.Interpreter_intStack[HealthBarUpdate.Interpreter_intStackSize];
-			var5 = Interpreter.Interpreter_intStack[HealthBarUpdate.Interpreter_intStackSize + 1];
-			Interpreter.Interpreter_stringStack[++Skills.Interpreter_stringStackSize - 1] = var3.substring(var4, var5);
-			return 1;
-		}
-		if (var0 == ScriptOpcodes.REMOVETAGS) {
-			var3 = Interpreter.Interpreter_stringStack[--Skills.Interpreter_stringStackSize];
-			StringBuilder var17 = new StringBuilder(var3.length());
-			boolean var15 = false;
-
-			for (var6 = 0; var6 < var3.length(); ++var6) {
-				char var7 = var3.charAt(var6);
-				if (var7 == '<') {
-					var15 = true;
-				} else if (var7 == '>') {
-					var15 = false;
-				} else if (!var15) {
-					var17.append(var7);
+	@ObfuscatedName("ju")
+	@ObfuscatedSignature(
+		signature = "(IIIILlf;Lhz;I)V",
+		garbageValue = "1204804321"
+	)
+	@Export("drawSpriteOnMinimap")
+	static final void drawSpriteOnMinimap(int var0, int var1, int var2, int var3, Sprite var4, SpriteMask var5) {
+		if (var4 != null) {
+			int var6 = Client.camAngleY & 2047;
+			int var7 = var3 * var3 + var2 * var2;
+			if (var7 <= 6400) {
+				int var8 = Rasterizer3D.Rasterizer3D_sine[var6];
+				int var9 = Rasterizer3D.Rasterizer3D_cosine[var6];
+				int var10 = var9 * var2 + var3 * var8 >> 16;
+				int var11 = var3 * var9 - var8 * var2 >> 16;
+				if (var7 > 2500) {
+					var4.method6065(var10 + var5.width / 2 - var4.width / 2, var5.height / 2 - var11 - var4.height / 2, var0, var1, var5.width, var5.height, var5.xStarts, var5.xWidths);
+				} else {
+					var4.drawTransBgAt(var0 + var10 + var5.width / 2 - var4.width / 2, var5.height / 2 + var1 - var11 - var4.height / 2);
 				}
-			}
 
-			Interpreter.Interpreter_stringStack[++Skills.Interpreter_stringStackSize - 1] = var17.toString();
-			return 1;
+			}
 		}
-		if (var0 == ScriptOpcodes.STRING_INDEXOF_CHAR) {
-			var3 = Interpreter.Interpreter_stringStack[--Skills.Interpreter_stringStackSize];
-			var4 = Interpreter.Interpreter_intStack[--HealthBarUpdate.Interpreter_intStackSize];
-			Interpreter.Interpreter_intStack[++HealthBarUpdate.Interpreter_intStackSize - 1] = var3.indexOf(var4);
-			return 1;
-		}
-		if (var0 == ScriptOpcodes.STRING_INDEXOF_STRING) {
-			Skills.Interpreter_stringStackSize -= 2;
-			var3 = Interpreter.Interpreter_stringStack[Skills.Interpreter_stringStackSize];
-			var9 = Interpreter.Interpreter_stringStack[Skills.Interpreter_stringStackSize + 1];
-			var5 = Interpreter.Interpreter_intStack[--HealthBarUpdate.Interpreter_intStackSize];
-			Interpreter.Interpreter_intStack[++HealthBarUpdate.Interpreter_intStackSize - 1] = var3.indexOf(var9, var5);
-			return 1;
-		}
-		if (var0 == ScriptOpcodes.UPPERCASE) {
-			var3 = Interpreter.Interpreter_stringStack[--Skills.Interpreter_stringStackSize];
-			Interpreter.Interpreter_stringStack[++Skills.Interpreter_stringStackSize - 1] = var3.toUpperCase();
-			return 1;
-		}
-		return 2;
 	}
 }

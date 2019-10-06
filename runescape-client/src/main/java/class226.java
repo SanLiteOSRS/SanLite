@@ -2,132 +2,63 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hw")
+@ObfuscatedName("hd")
 public class class226 {
-	@ObfuscatedName("pr")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "Lkl;"
+		signature = "(I)[Lhj;",
+		garbageValue = "133309082"
 	)
-	@Export("privateChatMode")
-	static class310 privateChatMode;
-	@ObfuscatedName("r")
+	@Export("PlayerType_values")
+	public static PlayerType[] PlayerType_values() {
+		return new PlayerType[]{PlayerType.PlayerType_jagexModerator, PlayerType.PlayerType_normal, PlayerType.PlayerType_playerModerator, PlayerType.PlayerType_ironman, PlayerType.PlayerType_hardcoreIronman, PlayerType.PlayerType_ultimateIronman};
+	}
+
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "Lhq;"
+		signature = "(II)Lep;",
+		garbageValue = "1928253690"
 	)
-	@Export("NetCache_currentResponse")
-	static NetFileRequest NetCache_currentResponse;
+	@Export("getFrames")
+	static Frames getFrames(int var0) {
+		Frames var1 = (Frames)SequenceDefinition.SequenceDefinition_cachedFrames.get((long)var0);
+		if (var1 != null) {
+			return var1;
+		} else {
+			AbstractArchive var3 = SequenceDefinition.SequenceDefinition_animationsArchive;
+			AbstractArchive var4 = class188.SequenceDefinition_skeletonsArchive;
+			boolean var5 = true;
+			int[] var6 = var3.getGroupFileIds(var0);
 
-	@ObfuscatedName("l")
-	@ObfuscatedSignature(
-		signature = "(Lkx;II)Z",
-		garbageValue = "-352047926"
-	)
-	@Export("updateExternalPlayer")
-	static boolean updateExternalPlayer(PacketBuffer var0, int var1) {
-		int var2 = var0.readBits(2);
-		int var3;
-		int var4;
-		int var7;
-		int var8;
-		int var9;
-		int var10;
-		if (var2 == 0) {
-			if (var0.readBits(1) != 0) {
-				updateExternalPlayer(var0, var1);
+			for (int var7 = 0; var7 < var6.length; ++var7) {
+				byte[] var8 = var3.getFile(var0, var6[var7]);
+				if (var8 == null) {
+					var5 = false;
+				} else {
+					int var9 = (var8[0] & 255) << 8 | var8[1] & 255;
+					byte[] var10 = var4.getFile(var9, 0);
+					if (var10 == null) {
+						var5 = false;
+					}
+				}
 			}
 
-			var3 = var0.readBits(13);
-			var4 = var0.readBits(13);
-			boolean var12 = var0.readBits(1) == 1;
-			if (var12) {
-				Players.Players_pendingUpdateIndices[++Players.Players_pendingUpdateCount - 1] = var1;
+			Frames var2;
+			if (!var5) {
+				var2 = null;
+			} else {
+				try {
+					var2 = new Frames(var3, var4, var0, false);
+				} catch (Exception var12) {
+					var2 = null;
+				}
 			}
 
-			if (Client.players[var1] != null) {
-				throw new RuntimeException();
-			}
-			Player var6 = Client.players[var1] = new Player();
-			var6.index = var1;
-			if (Players.field1254[var1] != null) {
-				var6.read(Players.field1254[var1]);
+			if (var2 != null) {
+				SequenceDefinition.SequenceDefinition_cachedFrames.put(var2, (long)var0);
 			}
 
-			var6.orientation = Players.Players_orientations[var1];
-			var6.targetIndex = Players.Players_targetIndices[var1];
-			var7 = Players.Players_regions[var1];
-			var8 = var7 >> 28;
-			var9 = var7 >> 14 & 255;
-			var10 = var7 & 255;
-			var6.pathTraversed[0] = Players.field1250[var1];
-			var6.plane = (byte)var8;
-			var6.resetPath((var9 << 13) + var3 - MusicPatchNode2.baseX * 64, (var10 << 13) + var4 - class1.baseY * 64);
-			var6.field638 = false;
-			return true;
+			return var2;
 		}
-		if (var2 == 1) {
-			var3 = var0.readBits(2);
-			var4 = Players.Players_regions[var1];
-			Players.Players_regions[var1] = (((var4 >> 28) + var3 & 3) << 28) + (var4 & 268435455);
-			return false;
-		}
-		int var5;
-		int var11;
-		if (var2 == 2) {
-			var3 = var0.readBits(5);
-			var4 = var3 >> 3;
-			var5 = var3 & 7;
-			var11 = Players.Players_regions[var1];
-			var7 = (var11 >> 28) + var4 & 3;
-			var8 = var11 >> 14 & 255;
-			var9 = var11 & 255;
-			if (var5 == 0) {
-				--var8;
-				--var9;
-			}
-
-			if (var5 == 1) {
-				--var9;
-			}
-
-			if (var5 == 2) {
-				++var8;
-				--var9;
-			}
-
-			if (var5 == 3) {
-				--var8;
-			}
-
-			if (var5 == 4) {
-				++var8;
-			}
-
-			if (var5 == 5) {
-				--var8;
-				++var9;
-			}
-
-			if (var5 == 6) {
-				++var9;
-			}
-
-			if (var5 == 7) {
-				++var8;
-				++var9;
-			}
-
-			Players.Players_regions[var1] = (var8 << 14) + var9 + (var7 << 28);
-			return false;
-		}
-		var3 = var0.readBits(18);
-		var4 = var3 >> 16;
-		var5 = var3 >> 8 & 255;
-		var11 = var3 & 255;
-		var7 = Players.Players_regions[var1];
-		var8 = (var7 >> 28) + var4 & 3;
-		var9 = var5 + (var7 >> 14) & 255;
-		var10 = var11 + var7 & 255;
-		Players.Players_regions[var1] = (var9 << 14) + var10 + (var8 << 28);
-		return false;
 	}
 }

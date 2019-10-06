@@ -1,19 +1,32 @@
 import java.net.URL;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ex")
+@ObfuscatedName("eh")
 @Implements("UrlRequest")
 public class UrlRequest {
-	@ObfuscatedName("q")
+	@ObfuscatedName("r")
+	@ObfuscatedGetter(
+		intValue = -535227307
+	)
+	@Export("PcmPlayer_sampleRate")
+	public static int PcmPlayer_sampleRate;
+	@ObfuscatedName("gq")
+	@ObfuscatedSignature(
+		signature = "[Llf;"
+	)
+	@Export("crossSprites")
+	static Sprite[] crossSprites;
+	@ObfuscatedName("z")
 	@Export("url")
 	final URL url;
-	@ObfuscatedName("w")
+	@ObfuscatedName("n")
 	@Export("isDone0")
 	volatile boolean isDone0;
-	@ObfuscatedName("e")
+	@ObfuscatedName("v")
 	@Export("response0")
 	volatile byte[] response0;
 
@@ -21,165 +34,298 @@ public class UrlRequest {
 		this.url = var1;
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
 		signature = "(I)Z",
-		garbageValue = "1792198908"
+		garbageValue = "737522726"
 	)
 	@Export("isDone")
 	public boolean isDone() {
 		return this.isDone0;
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
 		signature = "(I)[B",
-		garbageValue = "-338757002"
+		garbageValue = "-213988486"
 	)
 	@Export("getResponse")
 	public byte[] getResponse() {
 		return this.response0;
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(Lhp;Lhp;Lhp;Lhp;I)V",
-		garbageValue = "-354587299"
+		signature = "(I)V",
+		garbageValue = "142413926"
 	)
-	public static void method3317(AbstractArchive var0, AbstractArchive var1, AbstractArchive var2, AbstractArchive var3) {
-		Widget.Widget_archive = var0;
-		ViewportMouse.Widget_modelsArchive = var1;
-		class216.Widget_spritesArchive = var2;
-		DirectByteArrayCopier.Widget_fontsArchive = var3;
-		Widget.Widget_interfaceComponents = new Widget[Widget.Widget_archive.getGroupCount()][];
-		ViewportMouse.loadedInterfaces = new boolean[Widget.Widget_archive.getGroupCount()];
+	public static void method3265() {
+		synchronized(ArchiveDiskActionHandler.ArchiveDiskActionHandler_lock) {
+			if (ArchiveDiskActionHandler.field3127 != 0) {
+				ArchiveDiskActionHandler.field3127 = 1;
+
+				try {
+					ArchiveDiskActionHandler.ArchiveDiskActionHandler_lock.wait();
+				} catch (InterruptedException var3) {
+				}
+			}
+
+		}
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(II)I",
-		garbageValue = "-1541949649"
+		signature = "(Lkf;II)V",
+		garbageValue = "-1347303356"
 	)
-	@Export("iLog")
-	public static int iLog(int var0) {
-		int var1 = 0;
-		if (var0 < 0 || var0 >= 65536) {
-			var0 >>>= 16;
-			var1 += 16;
+	@Export("readPlayerUpdate")
+	static void readPlayerUpdate(PacketBuffer var0, int var1) {
+		boolean var2 = var0.readBits(1) == 1;
+		if (var2) {
+			Players.Players_pendingUpdateIndices[++Players.Players_pendingUpdateCount - 1] = var1;
 		}
 
-		if (var0 >= 256) {
-			var0 >>>= 8;
-			var1 += 8;
-		}
+		int var3 = var0.readBits(2);
+		Player var4 = Client.players[var1];
+		if (var3 == 0) {
+			if (var2) {
+				var4.field621 = false;
+			} else if (Client.localPlayerIndex == var1) {
+				throw new RuntimeException();
+			} else {
+				Players.Players_regions[var1] = (var4.plane << 28) + (class223.baseX * 64 + var4.pathX[0] >> 13 << 14) + (class286.baseY * 64 + var4.pathY[0] >> 13);
+				if (var4.field957 != -1) {
+					Players.Players_orientations[var1] = var4.field957;
+				} else {
+					Players.Players_orientations[var1] = var4.orientation;
+				}
 
-		if (var0 >= 16) {
-			var0 >>>= 4;
-			var1 += 4;
-		}
+				Players.Players_targetIndices[var1] = var4.targetIndex;
+				Client.players[var1] = null;
+				if (var0.readBits(1) != 0) {
+					class290.updateExternalPlayer(var0, var1);
+				}
 
-		if (var0 >= 4) {
-			var0 >>>= 2;
-			var1 += 2;
-		}
-
-		if (var0 >= 1) {
-			var0 >>>= 1;
-			++var1;
-		}
-
-		return var0 + var1;
-	}
-
-	@ObfuscatedName("gc")
-	@ObfuscatedSignature(
-		signature = "(IIIIZB)V",
-		garbageValue = "-69"
-	)
-	@Export("setViewportShape")
-	static final void setViewportShape(int var0, int var1, int var2, int var3, boolean var4) {
-		if (var2 < 1) {
-			var2 = 1;
-		}
-
-		if (var3 < 1) {
-			var3 = 1;
-		}
-
-		int var5 = var3 - 334;
-		int var6;
-		if (var5 < 0) {
-			var6 = Client.field782;
-		} else if (var5 >= 100) {
-			var6 = Client.field651;
+			}
 		} else {
-			var6 = (Client.field651 - Client.field782) * var5 / 100 + Client.field782;
-		}
-
-		int var7 = var3 * var6 * 512 / (var2 * 334);
-		int var8;
-		int var9;
-		short var17;
-		if (var7 < Client.field732) {
-			var17 = Client.field732;
-			var6 = var17 * var2 * 334 / (var3 * 512);
-			if (var6 > Client.field790) {
-				var6 = Client.field790;
-				var8 = var3 * var6 * 512 / (var17 * 334);
-				var9 = (var2 - var8) / 2;
-				if (var4) {
-					Rasterizer2D.Rasterizer2D_resetClip();
-					Rasterizer2D.Rasterizer2D_fillRectangle(var0, var1, var9, var3, -16777216);
-					Rasterizer2D.Rasterizer2D_fillRectangle(var0 + var2 - var9, var1, var9, var3, -16777216);
+			int var5;
+			int var6;
+			int var7;
+			if (var3 == 1) {
+				var5 = var0.readBits(3);
+				var6 = var4.pathX[0];
+				var7 = var4.pathY[0];
+				if (var5 == 0) {
+					--var6;
+					--var7;
+				} else if (var5 == 1) {
+					--var7;
+				} else if (var5 == 2) {
+					++var6;
+					--var7;
+				} else if (var5 == 3) {
+					--var6;
+				} else if (var5 == 4) {
+					++var6;
+				} else if (var5 == 5) {
+					--var6;
+					++var7;
+				} else if (var5 == 6) {
+					++var7;
+				} else if (var5 == 7) {
+					++var6;
+					++var7;
 				}
 
-				var0 += var9;
-				var2 -= var9 * 2;
-			}
-		} else if (var7 > Client.field659) {
-			var17 = Client.field659;
-			var6 = var17 * var2 * 334 / (var3 * 512);
-			if (var6 < Client.field820) {
-				var6 = Client.field820;
-				var8 = var17 * var2 * 334 / (var6 * 512);
-				var9 = (var3 - var8) / 2;
-				if (var4) {
-					Rasterizer2D.Rasterizer2D_resetClip();
-					Rasterizer2D.Rasterizer2D_fillRectangle(var0, var1, var2, var9, -16777216);
-					Rasterizer2D.Rasterizer2D_fillRectangle(var0, var3 + var1 - var9, var2, var9, -16777216);
+				if (Client.localPlayerIndex != var1 || var4.x >= 1536 && var4.y * 682054857 >= 1536 && var4.x < 11776 && var4.y * 682054857 < 11776) {
+					if (var2) {
+						var4.field621 = true;
+						var4.tileX = var6;
+						var4.tileY = var7;
+					} else {
+						var4.field621 = false;
+						var4.method1274(var6, var7, Players.field1235[var1]);
+					}
+				} else {
+					var4.resetPath(var6, var7);
+					var4.field621 = false;
 				}
 
-				var1 += var9;
-				var3 -= var9 * 2;
-			}
-		}
-
-		Client.viewportZoom = var3 * var6 / 334;
-		if (var2 != Client.viewportWidth || var3 != Client.viewportHeight) {
-			int[] var16 = new int[9];
-
-			for (var9 = 0; var9 < var16.length; ++var9) {
-				int var10 = var9 * 32 + 15 + 128;
-				int var11 = class40.method700(var10);
-				int var12 = Rasterizer3D.Rasterizer3D_sine[var10];
-				int var14 = var3 - 334;
-				if (var14 < 0) {
-					var14 = 0;
-				} else if (var14 > 100) {
-					var14 = 100;
+			} else if (var3 == 2) {
+				var5 = var0.readBits(4);
+				var6 = var4.pathX[0];
+				var7 = var4.pathY[0];
+				if (var5 == 0) {
+					var6 -= 2;
+					var7 -= 2;
+				} else if (var5 == 1) {
+					--var6;
+					var7 -= 2;
+				} else if (var5 == 2) {
+					var7 -= 2;
+				} else if (var5 == 3) {
+					++var6;
+					var7 -= 2;
+				} else if (var5 == 4) {
+					var6 += 2;
+					var7 -= 2;
+				} else if (var5 == 5) {
+					var6 -= 2;
+					--var7;
+				} else if (var5 == 6) {
+					var6 += 2;
+					--var7;
+				} else if (var5 == 7) {
+					var6 -= 2;
+				} else if (var5 == 8) {
+					var6 += 2;
+				} else if (var5 == 9) {
+					var6 -= 2;
+					++var7;
+				} else if (var5 == 10) {
+					var6 += 2;
+					++var7;
+				} else if (var5 == 11) {
+					var6 -= 2;
+					var7 += 2;
+				} else if (var5 == 12) {
+					--var6;
+					var7 += 2;
+				} else if (var5 == 13) {
+					var7 += 2;
+				} else if (var5 == 14) {
+					++var6;
+					var7 += 2;
+				} else if (var5 == 15) {
+					var6 += 2;
+					var7 += 2;
 				}
 
-				int var15 = (Client.field908 - Client.field906) * var14 / 100 + Client.field906;
-				int var13 = var15 * var11 / 256;
-				var16[var9] = var12 * var13 >> 16;
-			}
+				if (Client.localPlayerIndex == var1 && (var4.x < 1536 || var4.y * 682054857 < 1536 || var4.x >= 11776 || var4.y * 682054857 >= 11776)) {
+					var4.resetPath(var6, var7);
+					var4.field621 = false;
+				} else if (var2) {
+					var4.field621 = true;
+					var4.tileX = var6;
+					var4.tileY = var7;
+				} else {
+					var4.field621 = false;
+					var4.method1274(var6, var7, Players.field1235[var1]);
+				}
 
-			Scene.Scene_buildVisiblityMap(var16, 500, 800, var2 * 334 / var3, 334);
+			} else {
+				var5 = var0.readBits(1);
+				int var8;
+				int var9;
+				int var10;
+				int var11;
+				if (var5 == 0) {
+					var6 = var0.readBits(12);
+					var7 = var6 >> 10;
+					var8 = var6 >> 5 & 31;
+					if (var8 > 15) {
+						var8 -= 32;
+					}
+
+					var9 = var6 & 31;
+					if (var9 > 15) {
+						var9 -= 32;
+					}
+
+					var10 = var8 + var4.pathX[0];
+					var11 = var9 + var4.pathY[0];
+					if (Client.localPlayerIndex == var1 && (var4.x < 1536 || var4.y * 682054857 < 1536 || var4.x >= 11776 || var4.y * 682054857 >= 11776)) {
+						var4.resetPath(var10, var11);
+						var4.field621 = false;
+					} else if (var2) {
+						var4.field621 = true;
+						var4.tileX = var10;
+						var4.tileY = var11;
+					} else {
+						var4.field621 = false;
+						var4.method1274(var10, var11, Players.field1235[var1]);
+					}
+
+					var4.plane = (byte)(var7 + var4.plane & 3);
+					if (Client.localPlayerIndex == var1) {
+						WorldMapRectangle.plane = var4.plane;
+					}
+
+				} else {
+					var6 = var0.readBits(30);
+					var7 = var6 >> 28;
+					var8 = var6 >> 14 & 16383;
+					var9 = var6 & 16383;
+					var10 = (class223.baseX * 64 + var8 + var4.pathX[0] & 16383) - class223.baseX * 64;
+					var11 = (class286.baseY * 64 + var9 + var4.pathY[0] & 16383) - class286.baseY * 64;
+					if (Client.localPlayerIndex != var1 || var4.x >= 1536 && var4.y * 682054857 >= 1536 && var4.x < 11776 && var4.y * 682054857 < 11776) {
+						if (var2) {
+							var4.field621 = true;
+							var4.tileX = var10;
+							var4.tileY = var11;
+						} else {
+							var4.field621 = false;
+							var4.method1274(var10, var11, Players.field1235[var1]);
+						}
+					} else {
+						var4.resetPath(var10, var11);
+						var4.field621 = false;
+					}
+
+					var4.plane = (byte)(var7 + var4.plane & 3);
+					if (Client.localPlayerIndex == var1) {
+						WorldMapRectangle.plane = var4.plane;
+					}
+
+				}
+			}
+		}
+	}
+
+	@ObfuscatedName("gy")
+	@ObfuscatedSignature(
+		signature = "(B)V",
+		garbageValue = "1"
+	)
+	static void method3275() {
+		if (Client.combatTargetPlayerIndex >= 0 && Client.players[Client.combatTargetPlayerIndex] != null) {
+			Players.addPlayerToScene(Client.players[Client.combatTargetPlayerIndex], false);
 		}
 
-		Client.viewportOffsetX = var0;
-		Client.viewportOffsetY = var1;
-		Client.viewportWidth = var2;
-		Client.viewportHeight = var3;
+	}
+
+	@ObfuscatedName("iv")
+	@ObfuscatedSignature(
+		signature = "(Lho;Lit;IIZI)V",
+		garbageValue = "-1977494158"
+	)
+	@Export("addWidgetItemMenuItem")
+	static final void addWidgetItemMenuItem(Widget var0, ItemDefinition var1, int var2, int var3, boolean var4) {
+		String[] var5 = var1.inventoryActions;
+		byte var6 = -1;
+		String var7 = null;
+		if (var5 != null && var5[var3] != null) {
+			if (var3 == 0) {
+				var6 = 33;
+			} else if (var3 == 1) {
+				var6 = 34;
+			} else if (var3 == 2) {
+				var6 = 35;
+			} else if (var3 == 3) {
+				var6 = 36;
+			} else {
+				var6 = 37;
+			}
+
+			var7 = var5[var3];
+		} else if (var3 == 4) {
+			var6 = 37;
+			var7 = "Drop";
+		}
+
+		if (var6 != -1 && var7 != null) {
+			AttackOption.insertMenuItem(var7, World.colorStartTag(16748608) + var1.name, var6, var1.id, var2, var0.id, var4);
+		}
+
 	}
 }

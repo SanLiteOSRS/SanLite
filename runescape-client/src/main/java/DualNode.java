@@ -3,26 +3,26 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fb")
+@ObfuscatedName("fw")
 @Implements("DualNode")
 public class DualNode extends Node {
-	@ObfuscatedName("cx")
+	@ObfuscatedName("cu")
 	@Export("keyDual")
 	public long keyDual;
-	@ObfuscatedName("cu")
+	@ObfuscatedName("ce")
 	@ObfuscatedSignature(
-		signature = "Lfb;"
+		signature = "Lfw;"
 	)
 	@Export("previousDual")
 	public DualNode previousDual;
-	@ObfuscatedName("cs")
+	@ObfuscatedName("cc")
 	@ObfuscatedSignature(
-		signature = "Lfb;"
+		signature = "Lfw;"
 	)
 	@Export("nextDual")
 	public DualNode nextDual;
 
-	@ObfuscatedName("cm")
+	@ObfuscatedName("ce")
 	@Export("removeDual")
 	public void removeDual() {
 		if (this.nextDual != null) {
