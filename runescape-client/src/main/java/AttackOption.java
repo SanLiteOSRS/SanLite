@@ -49,7 +49,8 @@ public enum AttackOption implements Enumerated {
 	@ObfuscatedGetter(
 		intValue = 629841565
 	)
-	static int field1157;
+	@Export("selectedSpellWidget")
+	static int selectedSpellWidget;
 	@ObfuscatedName("r")
 	@ObfuscatedGetter(
 		intValue = -1814915457

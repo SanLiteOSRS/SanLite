@@ -1255,7 +1255,8 @@ public final class Client extends GameShell implements Usernamed {
 	@ObfuscatedGetter(
 		intValue = -133249451
 	)
-	static int field768;
+	@Export("selectedSpellChildIndex")
+	static int selectedSpellChildIndex;
 	@ObfuscatedName("mp")
 	@ObfuscatedGetter(
 		intValue = -1549196691
@@ -1429,7 +1430,7 @@ public final class Client extends GameShell implements Usernamed {
 		isItemSelected = 0;
 		selectedItemName = null;
 		spellSelected = false;
-		field768 = -1;
+		selectedSpellChildIndex = -1;
 		field793 = -1;
 		selectedSpellActionName = null;
 		selectedSpellName = null;

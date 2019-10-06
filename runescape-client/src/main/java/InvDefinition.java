@@ -100,12 +100,12 @@ public class InvDefinition extends DualNode {
 			Client.destinationX = var0;
 			Client.destinationY = var1;
 			var8 = InterfaceParent.getPacketBufferNode(ClientPacket.field2252, Client.packetWriter.isaacCipher);
-			var8.packetBuffer.writeInt(AttackOption.field1157);
+			var8.packetBuffer.writeInt(AttackOption.selectedSpellWidget);
 			var8.packetBuffer.writeByte(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
 			var8.packetBuffer.writeShort(class286.baseY * 64 + var1);
 			var8.packetBuffer.writeShortLE(var3);
 			var8.packetBuffer.writeShort(class223.baseX * 64 + var0);
-			var8.packetBuffer.writeIntME(Client.field768);
+			var8.packetBuffer.writeIntME(Client.selectedSpellChildIndex);
 			Client.packetWriter.addNode(var8);
 		} else if (var2 == 3) {
 			Client.mouseCrossX = var6;
@@ -189,9 +189,9 @@ public class InvDefinition extends DualNode {
 					Client.destinationX = var0;
 					Client.destinationY = var1;
 					var9 = InterfaceParent.getPacketBufferNode(ClientPacket.field2260, Client.packetWriter.isaacCipher);
-					var9.packetBuffer.method5461(Client.field768);
+					var9.packetBuffer.method5461(Client.selectedSpellChildIndex);
 					var9.packetBuffer.method5461(var3);
-					var9.packetBuffer.writeIntLE16(AttackOption.field1157);
+					var9.packetBuffer.writeIntLE16(AttackOption.selectedSpellWidget);
 					var9.packetBuffer.writeByte(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
 					Client.packetWriter.addNode(var9);
 				}
@@ -295,9 +295,9 @@ public class InvDefinition extends DualNode {
 						Client.destinationY = var1;
 						var9 = InterfaceParent.getPacketBufferNode(ClientPacket.field2239, Client.packetWriter.isaacCipher);
 						var9.packetBuffer.method5461(var3);
-						var9.packetBuffer.writeIntME(Client.field768);
+						var9.packetBuffer.writeIntME(Client.selectedSpellChildIndex);
 						var9.packetBuffer.writeByte(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
-						var9.packetBuffer.method5474(AttackOption.field1157);
+						var9.packetBuffer.method5474(AttackOption.selectedSpellWidget);
 						Client.packetWriter.addNode(var9);
 					}
 				} else if (var2 == 16) {
@@ -325,9 +325,9 @@ public class InvDefinition extends DualNode {
 					Client.destinationY = var1;
 					var8 = InterfaceParent.getPacketBufferNode(ClientPacket.field2218, Client.packetWriter.isaacCipher);
 					var8.packetBuffer.writeIntME(class286.baseY * 64 + var1);
-					var8.packetBuffer.writeIntLE16(AttackOption.field1157);
+					var8.packetBuffer.writeIntLE16(AttackOption.selectedSpellWidget);
 					var8.packetBuffer.writeShortLE(var3);
-					var8.packetBuffer.writeIntME(Client.field768);
+					var8.packetBuffer.writeIntME(Client.selectedSpellChildIndex);
 					var8.packetBuffer.method5461(class223.baseX * 64 + var0);
 					var8.packetBuffer.method5452(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
 					Client.packetWriter.addNode(var8);
@@ -486,11 +486,11 @@ public class InvDefinition extends DualNode {
 								Client.field743 = var0;
 							} else if (var2 == 32) {
 								var8 = InterfaceParent.getPacketBufferNode(ClientPacket.field2246, Client.packetWriter.isaacCipher);
-								var8.packetBuffer.writeShortLE(Client.field768);
+								var8.packetBuffer.writeShortLE(Client.selectedSpellChildIndex);
 								var8.packetBuffer.method5461(var0);
 								var8.packetBuffer.method5461(var3);
 								var8.packetBuffer.method5615(var1);
-								var8.packetBuffer.method5474(AttackOption.field1157);
+								var8.packetBuffer.method5474(AttackOption.selectedSpellWidget);
 								Client.packetWriter.addNode(var8);
 								Client.field750 = 0;
 								GrandExchangeOfferOwnWorldComparator.field628 = Canvas.getWidget(var1);
@@ -723,9 +723,9 @@ public class InvDefinition extends DualNode {
 													var9 = InterfaceParent.getPacketBufferNode(ClientPacket.field2236, Client.packetWriter.isaacCipher);
 													var9.packetBuffer.method5615(var1);
 													var9.packetBuffer.writeShort(var16.itemId);
-													var9.packetBuffer.writeIntLE16(AttackOption.field1157);
+													var9.packetBuffer.writeIntLE16(AttackOption.selectedSpellWidget);
 													var9.packetBuffer.writeShortLE(var0);
-													var9.packetBuffer.writeIntME(Client.field768);
+													var9.packetBuffer.writeIntME(Client.selectedSpellChildIndex);
 													var9.packetBuffer.writeIntME(Client.field793);
 													Client.packetWriter.addNode(var9);
 												}

@@ -174,8 +174,8 @@ public class class32 {
 
 		Client.field793 = var3;
 		Client.spellSelected = true;
-		AttackOption.field1157 = var0;
-		Client.field768 = var1;
+		AttackOption.selectedSpellWidget = var0;
+		Client.selectedSpellChildIndex = var1;
 		ItemContainer.selectedSpellFlags = var2;
 		WorldMapSectionType.invalidateWidget(var4);
 	}
