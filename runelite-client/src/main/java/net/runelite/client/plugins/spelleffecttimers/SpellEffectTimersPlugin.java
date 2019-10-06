@@ -26,7 +26,6 @@ import java.util.List;
 		tags = {"spell", "effect", "timers", "freeze", "timers", "barrage", "freezy", "ancients", "overlay", "root",
 				"vengeance", "teleblock", "veng", "tb"},
 		enabledByDefault = false,
-		hidden = true,
 		type = PluginType.SANLITE
 )
 public class SpellEffectTimersPlugin extends Plugin
@@ -215,8 +214,9 @@ public class SpellEffectTimersPlugin extends Plugin
 			return;
 		}
 
+		// Remove freeze timer if actor moves during freeze duration but after initial grace period (first 10% of freeze duration)
 		spellEffects.removeIf(x -> x.getActor().equals(actorPositionChanged.getActor()) &&
-				x.getSpellEffect().getSpellType().equals(SpellEffectType.FREEZE));
+				x.getSpellEffect().getSpellType().equals(SpellEffectType.FREEZE) && x.getRemainingTime() < (0.9 * x.getRemainingTime()));
 	}
 
 	private void checkExpiredSpellEffects()
