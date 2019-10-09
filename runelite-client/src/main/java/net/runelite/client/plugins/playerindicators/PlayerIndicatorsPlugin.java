@@ -45,7 +45,7 @@ import net.runelite.client.util.ColorUtil;
 @PluginDescriptor(
 		name = "Player Indicators",
 		description = "Highlight players on-screen and/or on the minimap",
-		tags = {"highlight", "minimap", "overlay", "players"}
+		tags = {"highlight", "minimap", "overlay", "players", "friend", "finder", "offline", "pvp"}
 )
 public class PlayerIndicatorsPlugin extends Plugin
 {
@@ -132,27 +132,39 @@ public class PlayerIndicatorsPlugin extends Plugin
 			int image = -1;
 			Color color = null;
 
-			if (config.highlightFriends() && player.isFriend())
+			if (config.highlightFriends() && player.isFriend() || config.highlightFriends() &&
+					config.highlightOfflineFriends() && client.isFriended(player.getName(), false))
 			{
-				color = config.getFriendColor();
-			}
-			else if (config.drawClanMemberNames() && player.isClanMember())
-			{
-				color = config.getClanMemberColor();
-
-				ClanMemberRank rank = clanManager.getRank(player.getName());
-				if (rank != UNRANKED)
+				if (!config.disableFriendHighlightIfClanMember())
 				{
-					image = clanManager.getIconNumber(rank);
+					color = config.getFriendColor();
+				}
+				else if (config.disableFriendHighlightIfClanMember() && !client.isClanMember(player.getName()))
+				{
+					color = config.getFriendColor();
 				}
 			}
-			else if (config.highlightTeamMembers() && player.getTeam() > 0 && localPlayer.getTeam() == player.getTeam())
+
+			if (color != config.getFriendColor())
 			{
-				color = config.getTeamMemberColor();
-			}
-			else if (config.highlightNonClanMembers() && !player.isClanMember())
-			{
-				color = config.getNonClanMemberColor();
+				if (config.drawClanMemberNames() && player.isClanMember())
+				{
+					color = config.getClanMemberColor();
+
+					ClanMemberRank rank = clanManager.getRank(player.getName());
+					if (rank != UNRANKED)
+					{
+						image = clanManager.getIconNumber(rank);
+					}
+				}
+				else if (config.highlightTeamMembers() && player.getTeam() > 0 && localPlayer.getTeam() == player.getTeam())
+				{
+					color = config.getTeamMemberColor();
+				}
+				else if (config.highlightNonClanMembers() && !player.isClanMember())
+				{
+					color = config.getNonClanMemberColor();
+				}
 			}
 
 			if (image != -1 || color != null)
