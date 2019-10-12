@@ -24,12 +24,13 @@
  */
 package net.runelite.client.plugins.playerindicators;
 
-import java.awt.Color;
-import java.util.function.BiConsumer;
-import javax.inject.Inject;
-import javax.inject.Singleton;
 import net.runelite.api.Client;
 import net.runelite.api.Player;
+
+import javax.inject.Inject;
+import javax.inject.Singleton;
+import java.awt.*;
+import java.util.function.BiConsumer;
 
 @Singleton
 public class PlayerIndicatorsService
@@ -47,7 +48,7 @@ public class PlayerIndicatorsService
 	public void forEachPlayer(final BiConsumer<Player, Color> consumer)
 	{
 		if (!config.highlightOwnPlayer() && !config.drawClanMemberNames()
-				&& !config.highlightFriends() && !config.highlightNonClanMembers())
+				&& !config.highlightFriends() && !config.highlightNonClanMembers() && !config.highlightTeamMembers())
 		{
 			return;
 		}
@@ -69,12 +70,24 @@ public class PlayerIndicatorsService
 				{
 					consumer.accept(player, config.getOwnPlayerColor());
 				}
+				continue;
 			}
-			else if (config.highlightFriends() && player.isFriend())
+			else if (config.highlightFriends() && player.isFriend() || config.highlightFriends() &&
+					config.highlightOfflineFriends() && client.isFriended(player.getName(), false))
 			{
-				consumer.accept(player, config.getFriendColor());
+				if (!config.disableFriendHighlightIfClanMember())
+				{
+					consumer.accept(player, config.getFriendColor());
+					continue;
+				}
+				else if (config.disableFriendHighlightIfClanMember() && !isClanMember)
+				{
+					consumer.accept(player, config.getFriendColor());
+					continue;
+				}
 			}
-			else if (config.drawClanMemberNames() && isClanMember)
+
+			if (config.drawClanMemberNames() && isClanMember)
 			{
 				consumer.accept(player, config.getClanMemberColor());
 			}
