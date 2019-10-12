@@ -44,7 +44,7 @@
 		<checkstyle.skip>true</checkstyle.skip>
 
 		<rs.version>184</rs.version>
-		<sanlite.version>1.4.5</sanlite.version>
+		<sanlite.version>1.5.0</sanlite.version>
 	</properties>
 
 	<licenses>
