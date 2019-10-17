@@ -277,29 +277,31 @@ public class ConfigPanel extends PluginPanel
 
 				if (pluginListItem.getPluginType() == collapsibleEntry.getCollapsibleEntryItems().get(0).getPluginType())
 				{
-					for (PluginListItem listItem : new ArrayList<>(collapsibleEntry.getCollapsibleEntryItems()))
-					{
-						if (listItem.getName().equals(pluginListItem.getName()))
-						{
-							collapsibleEntry.getCollapsibleEntryItems().remove(listItem);
-							collapsibleEntry.getCollapsibleEntryItems().add(pluginListItem);
-							collapsibleEntry.getCollapsibleEntryItems().sort(Comparator.comparing(PluginListItem::getName));
-						}
-					}
+					updateCollapsibleEntryListItems(collapsibleEntry, pluginListItem);
 				}
 			}
 		}
 		else
 		{
-			CollapsibleEntry collapsibleEntry = pluginListItem.getParentCollapsibleEntry();
-			for (PluginListItem listItem : new ArrayList<>(collapsibleEntry.getCollapsibleEntryItems()))
+			updateCollapsibleEntryListItems(pluginListItem.getParentCollapsibleEntry(), pluginListItem);
+		}
+	}
+
+	/**
+	 * Updates the collapsible entry item list with the updated list item and sorts the list.
+	 *
+	 * @param collapsibleEntry collapsible entry (eg. plugin type SanLite)
+	 * @param pluginListItem updated plugin list item
+	 */
+	private void updateCollapsibleEntryListItems(CollapsibleEntry collapsibleEntry, PluginListItem pluginListItem)
+	{
+		for (PluginListItem listItem : new ArrayList<>(collapsibleEntry.getCollapsibleEntryItems()))
+		{
+			if (listItem.getName().equals(pluginListItem.getName()))
 			{
-				if (listItem.getName().equals(pluginListItem.getName()))
-				{
-					collapsibleEntry.getCollapsibleEntryItems().remove(listItem);
-					collapsibleEntry.getCollapsibleEntryItems().add(pluginListItem);
-					collapsibleEntry.getCollapsibleEntryItems().sort(Comparator.comparing(PluginListItem::getName));
-				}
+				collapsibleEntry.getCollapsibleEntryItems().remove(listItem);
+				collapsibleEntry.getCollapsibleEntryItems().add(pluginListItem);
+				collapsibleEntry.getCollapsibleEntryItems().sort(Comparator.comparing(PluginListItem::getName));
 			}
 		}
 	}
