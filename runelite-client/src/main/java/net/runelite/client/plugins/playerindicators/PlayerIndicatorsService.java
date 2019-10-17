@@ -26,7 +26,6 @@ package net.runelite.client.plugins.playerindicators;
 
 import net.runelite.api.Client;
 import net.runelite.api.Player;
-
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import java.awt.*;

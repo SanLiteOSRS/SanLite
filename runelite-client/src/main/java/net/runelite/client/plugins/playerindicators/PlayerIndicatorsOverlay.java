@@ -32,6 +32,7 @@ import java.awt.image.BufferedImage;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import net.runelite.api.ClanMemberRank;
+import net.runelite.api.Client;
 import net.runelite.api.Player;
 import net.runelite.api.Point;
 import net.runelite.client.config.PlayerNameLocation;
@@ -51,14 +52,16 @@ public class PlayerIndicatorsOverlay extends Overlay
 	private final PlayerIndicatorsService playerIndicatorsService;
 	private final PlayerIndicatorsConfig config;
 	private final ClanManager clanManager;
+	private final Client client;
 
 	@Inject
 	private PlayerIndicatorsOverlay(PlayerIndicatorsConfig config, PlayerIndicatorsService playerIndicatorsService,
-									ClanManager clanManager)
+									ClanManager clanManager, Client client)
 	{
 		this.config = config;
 		this.playerIndicatorsService = playerIndicatorsService;
 		this.clanManager = clanManager;
+		this.client = client;
 		setPosition(OverlayPosition.DYNAMIC);
 		setPriority(OverlayPriority.MED);
 	}
@@ -73,7 +76,8 @@ public class PlayerIndicatorsOverlay extends Overlay
 	private void renderPlayerOverlay(Graphics2D graphics, Player actor, Color color)
 	{
 		final PlayerNameLocation drawPlayerNamesConfig = config.playerNamePosition();
-		if (drawPlayerNamesConfig == PlayerNameLocation.DISABLED)
+		final PlayerNameLocation drawFriendPlayerNamePosition = config.friendPlayerNamePosition();
+		if (drawPlayerNamesConfig == PlayerNameLocation.DISABLED && drawFriendPlayerNamePosition == PlayerNameLocation.DISABLED)
 		{
 			return;
 		}
@@ -92,7 +96,7 @@ public class PlayerIndicatorsOverlay extends Overlay
 		final String name = Text.sanitize(actor.getName());
 		Point textLocation = actor.getCanvasTextLocation(graphics, name, zOffset);
 
-		if (drawPlayerNamesConfig == PlayerNameLocation.MODEL_RIGHT)
+		if (drawPlayerNamesConfig == PlayerNameLocation.MODEL_RIGHT || drawFriendPlayerNamePosition == PlayerNameLocation.MODEL_RIGHT)
 		{
 			textLocation = actor.getCanvasTextLocation(graphics, "", zOffset);
 
@@ -144,6 +148,20 @@ public class PlayerIndicatorsOverlay extends Overlay
 			}
 		}
 
-		OverlayUtil.renderTextLocation(graphics, textLocation, name, color);
+		if (config.highlightOfflineFriends() && client.isFriended(actor.getName(), false) && drawFriendPlayerNamePosition != PlayerNameLocation.DISABLED && config.highlightFriends())
+		{
+			if (config.disableFriendHighlightIfClanMember() && !actor.isClanMember())
+			{
+				OverlayUtil.renderTextLocation(graphics, textLocation, name, color);
+			}
+			else if (!config.disableFriendHighlightIfClanMember())
+			{
+				OverlayUtil.renderTextLocation(graphics, textLocation, name, color);
+			}
+		}
+		else if (drawPlayerNamesConfig != PlayerNameLocation.DISABLED)
+		{
+			OverlayUtil.renderTextLocation(graphics, textLocation, name, color);
+		}
 	}
 }

@@ -29,6 +29,7 @@ import java.awt.Dimension;
 import java.awt.Graphics2D;
 import javax.inject.Inject;
 import javax.inject.Singleton;
+import net.runelite.api.Client;
 import net.runelite.api.Player;
 import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayLayer;
@@ -41,12 +42,14 @@ public class PlayerIndicatorsMinimapOverlay extends Overlay
 {
 	private final PlayerIndicatorsService playerIndicatorsService;
 	private final PlayerIndicatorsConfig config;
+	private final Client client;
 
 	@Inject
-	private PlayerIndicatorsMinimapOverlay(PlayerIndicatorsConfig config, PlayerIndicatorsService playerIndicatorsService)
+	private PlayerIndicatorsMinimapOverlay(PlayerIndicatorsConfig config, PlayerIndicatorsService playerIndicatorsService, Client client)
 	{
 		this.config = config;
 		this.playerIndicatorsService = playerIndicatorsService;
+		this.client = client;
 		setLayer(OverlayLayer.ABOVE_WIDGETS);
 		setPosition(OverlayPosition.DYNAMIC);
 		setPriority(OverlayPriority.HIGH);
@@ -70,6 +73,21 @@ public class PlayerIndicatorsMinimapOverlay extends Overlay
 			if (minimapLocation != null)
 			{
 				OverlayUtil.renderTextLocation(graphics, minimapLocation, name, color);
+			}
+		}
+		else if (config.drawFriendMinimapNames() && client.isFriended(actor.getName(), false) && config.highlightOfflineFriends() && config.highlightFriends())
+		{
+			final net.runelite.api.Point minimapLocation = actor.getMinimapLocation();
+			if (minimapLocation != null)
+			{
+				if (config.disableFriendHighlightIfClanMember() && !actor.isClanMember())
+				{
+					OverlayUtil.renderTextLocation(graphics, minimapLocation, name, color);
+				}
+				else if (!config.disableFriendHighlightIfClanMember())
+				{
+					OverlayUtil.renderTextLocation(graphics, minimapLocation, name, color);
+				}
 			}
 		}
 	}

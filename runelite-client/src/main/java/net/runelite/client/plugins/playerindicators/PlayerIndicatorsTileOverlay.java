@@ -29,6 +29,7 @@ import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Polygon;
 import javax.inject.Inject;
+import net.runelite.api.Client;
 import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayLayer;
 import net.runelite.client.ui.overlay.OverlayPosition;
@@ -39,11 +40,13 @@ public class PlayerIndicatorsTileOverlay extends Overlay
 {
 	private final PlayerIndicatorsService playerIndicatorsService;
 	private final PlayerIndicatorsConfig config;
+	private final Client client;
 
 	@Inject
-	private PlayerIndicatorsTileOverlay(PlayerIndicatorsConfig config, PlayerIndicatorsService playerIndicatorsService)
+	private PlayerIndicatorsTileOverlay(PlayerIndicatorsConfig config, PlayerIndicatorsService playerIndicatorsService, Client client)
 	{
 		this.config = config;
+		this.client = client;
 		this.playerIndicatorsService = playerIndicatorsService;
 		setLayer(OverlayLayer.ABOVE_SCENE);
 		setPosition(OverlayPosition.DYNAMIC);
@@ -53,7 +56,7 @@ public class PlayerIndicatorsTileOverlay extends Overlay
 	@Override
 	public Dimension render(Graphics2D graphics)
 	{
-		if (!config.drawTiles())
+		if (!config.drawTiles() && !config.drawFriendsTiles())
 		{
 			return null;
 		}
@@ -62,7 +65,18 @@ public class PlayerIndicatorsTileOverlay extends Overlay
 		{
 			final Polygon poly = player.getCanvasTilePoly();
 
-			if (poly != null)
+			if (client.isFriended(player.getName(), false) && config.drawFriendsTiles() && poly != null && config.highlightOfflineFriends() && config.highlightFriends())
+			{
+				if (config.disableFriendHighlightIfClanMember() && !player.isClanMember())
+				{
+					OverlayUtil.renderPolygon(graphics, poly, color);
+				}
+				else if (!config.disableFriendHighlightIfClanMember())
+				{
+					OverlayUtil.renderPolygon(graphics, poly, color);
+				}
+			}
+			if (config.drawTiles() && poly != null)
 			{
 				OverlayUtil.renderPolygon(graphics, poly, color);
 			}
