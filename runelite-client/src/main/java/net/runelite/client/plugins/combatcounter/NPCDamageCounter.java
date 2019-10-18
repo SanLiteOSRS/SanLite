@@ -1,10 +1,10 @@
 package net.runelite.client.plugins.combatcounter;
 
+import javax.inject.Singleton;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
-import javax.inject.Singleton;
 
 @Singleton
 class NPCDamageCounter
