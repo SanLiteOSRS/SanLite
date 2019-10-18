@@ -28,7 +28,7 @@
 
 	<groupId>net.runelite</groupId>
 	<artifactId>runelite-parent</artifactId>
-	<version>1.5.34</version>
+	<version>1.5.36</version>
 	<packaging>pom</packaging>
 
 	<name>RuneLite</name>
@@ -44,7 +44,7 @@
 		<checkstyle.skip>true</checkstyle.skip>
 
 		<rs.version>184</rs.version>
-		<sanlite.version>1.5.0</sanlite.version>
+		<sanlite.version>1.5.1</sanlite.version>
 	</properties>
 
 	<licenses>
@@ -60,7 +60,7 @@
 		<url>https://github.com/runelite/runelite</url>
 		<connection>scm:git:git://github.com/runelite/runelite</connection>
 		<developerConnection>scm:git:git@github.com:runelite/runelite</developerConnection>
-		<tag>runelite-parent-1.5.34</tag>
+		<tag>runelite-parent-1.5.36</tag>
 	</scm>
 
 	<developers>
@@ -214,7 +214,7 @@
 					<dependency>
 						<groupId>com.puppycrawl.tools</groupId>
 						<artifactId>checkstyle</artifactId>
-						<version>8.3</version>
+						<version>8.18</version>
 					</dependency>
 				</dependencies>
 				<executions>

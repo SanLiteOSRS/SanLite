@@ -27,7 +27,6 @@ package net.runelite.client.ui.overlay;
 import com.google.common.base.Strings;
 
 import java.awt.*;
-import java.awt.geom.Area;
 import java.awt.image.BufferedImage;
 import net.runelite.api.Actor;
 import net.runelite.api.Client;
@@ -35,7 +34,6 @@ import net.runelite.api.Perspective;
 import net.runelite.api.Point;
 import net.runelite.api.TileObject;
 import net.runelite.api.coords.LocalPoint;
-
 
 /**
  * Created by Kyle Fricilone on Jun 09, 2017.
@@ -45,14 +43,14 @@ public class OverlayUtil
 	private static final int MINIMAP_DOT_RADIUS = 4;
 	private static final double UNIT = Math.PI / 1024.0d;
 
-	public static void renderPolygon(Graphics2D graphics, Polygon poly, Color color)
+	public static void renderPolygon(Graphics2D graphics, Shape poly, Color color)
 	{
 		graphics.setColor(color);
 		final Stroke originalStroke = graphics.getStroke();
 		graphics.setStroke(new BasicStroke(2));
-		graphics.drawPolygon(poly);
+		graphics.draw(poly);
 		graphics.setColor(new Color(0, 0, 0, 50));
-		graphics.fillPolygon(poly);
+		graphics.fill(poly);
 		graphics.setStroke(originalStroke);
 	}
 
@@ -170,7 +168,7 @@ public class OverlayUtil
 		renderImageLocation(client, graphics, localLocation, image, 0);
 	}
 
-	public static void renderHoverableArea(Graphics2D graphics, Area area, net.runelite.api.Point mousePosition, Color fillColor, Color borderColor, Color borderHoverColor)
+	public static void renderHoverableArea(Graphics2D graphics, Shape area, net.runelite.api.Point mousePosition, Color fillColor, Color borderColor, Color borderHoverColor)
 	{
 		if (area != null)
 		{

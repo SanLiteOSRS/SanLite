@@ -40,7 +40,7 @@ public interface RunecraftConfig extends Config
 	)
 	default boolean leftClickEmptyPouch()
 	{
-		return true;
+		return false;
 	}
 
 	@ConfigItem(
@@ -51,7 +51,7 @@ public interface RunecraftConfig extends Config
 	)
 	default boolean leftClickFillPouchInBank()
 	{
-		return true;
+		return false;
 	}
 
 	@ConfigItem(

@@ -41,7 +41,7 @@ public class GauntletResourceSpotOverlay extends Overlay
 
 			if (config.showResourceSpotsObjectMarkers())
 			{
-				Polygon poly = gameObject.getConvexHull();
+				Shape poly = gameObject.getConvexHull();
 				if (poly != null)
 				{
 					OverlayUtil.renderPolygon(graphics, poly, color);

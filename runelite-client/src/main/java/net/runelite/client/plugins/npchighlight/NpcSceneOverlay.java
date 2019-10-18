@@ -30,6 +30,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Polygon;
+import java.awt.Shape;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.time.Instant;
@@ -163,7 +164,7 @@ public class NpcSceneOverlay extends Overlay
 				break;
 
 			case HULL:
-				Polygon objectClickbox = actor.getConvexHull();
+				Shape objectClickbox = actor.getConvexHull();
 
 				renderPoly(graphics, color, objectClickbox);
 				break;
@@ -181,7 +182,7 @@ public class NpcSceneOverlay extends Overlay
 		}
 	}
 
-	private void renderPoly(Graphics2D graphics, Color color, Polygon polygon)
+	private void renderPoly(Graphics2D graphics, Color color, Shape polygon)
 	{
 		if (polygon != null)
 		{
