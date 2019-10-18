@@ -24,6 +24,8 @@
  */
 package net.runelite.api;
 
+import java.awt.*;
+
 /**
  * Represents the wall of a tile, which is an un-passable boundary.
  */
@@ -57,4 +59,14 @@ public interface WallObject extends TileObject
 	Model getModelA();
 
 	Model getModelB();
+
+	/**
+	 * Gets the convex hull of the objects model.
+	 *
+	 * @return the convex hull
+	 * @see net.runelite.api.model.Jarvis
+	 */
+	Shape getConvexHull();
+
+	Shape getConvexHull2();
 }

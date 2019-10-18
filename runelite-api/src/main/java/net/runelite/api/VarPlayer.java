@@ -28,7 +28,12 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * An enumeration of local player variables.
+ * Server controlled "content-developer" integers.
+ *
+ * VarPlayers are stored per RuneScape player save, and synchronized
+ * from the server to the client. The client can change them preemptively
+ * if it thinks they will change the next tick as a lag-hiding measure.
+ * The client CANNOT directly make the server change a varbit.
  */
 @AllArgsConstructor
 @Getter
@@ -262,8 +267,6 @@ public enum VarPlayer
 	QUEST_ALFRED_GRIMHANDS_BARCRAWL(77),
 	QUEST_ALFRED_GRIMHANDS_BARCRAWL_STATE_76(76),
 	QUEST_THE_MAGE_ARENA(267);
-
-
 
 	public final int id;
 }
