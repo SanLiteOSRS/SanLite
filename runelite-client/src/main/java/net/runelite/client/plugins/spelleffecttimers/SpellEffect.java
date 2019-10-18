@@ -14,7 +14,7 @@ public enum SpellEffect
 	ICE_BURST("Ice Burst", SpellEffectType.FREEZE, 363, false, 10000, "ice_burst.png"),
 	ICE_BLITZ("Ice Blitz", SpellEffectType.FREEZE, 367, false, 15000, "ice_blitz.png"),
 	ICE_BARRAGE("Ice Barrage", SpellEffectType.FREEZE, 369, false, 20000, "ice_barrage.png"),
-	FREEZE_IMMUNITY("Freeze Immunity", SpellEffectType.FREEZE_IMMUNITY, -1, false, 2760, "freeze_immunity.png");
+	FREEZE_IMMUNITY("Freeze Immunity", SpellEffectType.FREEZE_IMMUNITY, -1, false, 3000, "freeze_immunity.png");
 
 	@Getter(AccessLevel.PACKAGE)
 	private final String name;
