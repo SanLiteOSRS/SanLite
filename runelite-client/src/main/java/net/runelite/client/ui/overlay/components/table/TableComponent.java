@@ -1,22 +1,16 @@
 package net.runelite.client.ui.overlay.components.table;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FontMetrics;
-import java.awt.Graphics2D;
-import java.awt.Point;
-import java.awt.Rectangle;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import lombok.Getter;
-import lombok.NonNull;
 import lombok.Setter;
 import net.runelite.client.ui.overlay.components.ComponentConstants;
 import net.runelite.client.ui.overlay.components.LayoutableRenderableEntity;
 import net.runelite.client.ui.overlay.components.TextComponent;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Setter
 public class TableComponent implements LayoutableRenderableEntity
@@ -105,6 +99,7 @@ public class TableComponent implements LayoutableRenderableEntity
 	/**
 	 * Returns the width that each column should take up
 	 * Based on https://stackoverflow.com/questions/22206825/algorithm-for-calculating-variable-column-widths-for-set-table-width
+	 *
 	 * @param metrics
 	 * @return int[] of column width
 	 */
@@ -300,7 +295,8 @@ public class TableComponent implements LayoutableRenderableEntity
 	/**
 	 * Returns the color for the specified table element.
 	 * Priority order: cell->row->column->default
-	 * @param row TableRow element
+	 *
+	 * @param row      TableRow element
 	 * @param colIndex column index
 	 */
 	private Color getCellColor(final TableRow row, final int colIndex)
@@ -334,7 +330,8 @@ public class TableComponent implements LayoutableRenderableEntity
 	/**
 	 * Returns the alignment for the specified table element.
 	 * Priority order: cell->row->column->default
-	 * @param row TableRow element
+	 *
+	 * @param row      TableRow element
 	 * @param colIndex column index
 	 */
 	private TableAlignment getCellAlignment(final TableRow row, final int colIndex)
@@ -383,54 +380,5 @@ public class TableComponent implements LayoutableRenderableEntity
 
 		this.rows.add(row);
 	}
-
-	private void addRows(@Nonnull final String[]... rows)
-	{
-		for (String[] row : rows)
-		{
-			addRow(row);
-		}
-	}
-
-	public void addRows(@NonNull final TableRow... rows)
-	{
-		this.rows.addAll(Arrays.asList(rows));
-	}
-
-	public void setRows(@Nonnull final String[]... elements)
-	{
-		this.rows.clear();
-		addRows(elements);
-	}
-
-	public void setRows(@Nonnull final TableRow... elements)
-	{
-		this.rows.clear();
-		this.rows.addAll(Arrays.asList(elements));
-	}
-
-	private void addColumn(@Nonnull final String col)
-	{
-		this.columns.add(TableElement.builder().content(col).build());
-	}
-
-	public void addColumns(@NonNull final TableElement... columns)
-	{
-		this.columns.addAll(Arrays.asList(columns));
-	}
-
-	public void setColumns(@Nonnull final TableElement... elements)
-	{
-		this.columns.clear();
-		this.columns.addAll(Arrays.asList(elements));
-	}
-
-	public void setColumns(@Nonnull final String... columns)
-	{
-		this.columns.clear();
-		for (String col : columns)
-		{
-			addColumn(col);
-		}
-	}
 }
+

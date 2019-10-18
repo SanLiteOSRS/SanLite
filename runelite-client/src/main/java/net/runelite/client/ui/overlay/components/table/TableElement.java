@@ -6,9 +6,11 @@ import lombok.Data;
 
 @Data
 @Builder
-public class TableElement
+class TableElement
 {
 	TableAlignment alignment;
+
 	Color color;
+
 	String content;
 }
