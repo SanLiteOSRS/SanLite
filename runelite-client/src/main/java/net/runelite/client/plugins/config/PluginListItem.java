@@ -96,7 +96,7 @@ public class PluginListItem extends JPanel
 
 	private final IconButton pinButton = new IconButton(OFF_STAR);
 	private final IconButton configButton = new IconButton(CONFIG_ICON, CONFIG_ICON_HOVER);
-	private final IconButton toggleButton = new IconButton(OFF_SWITCHER);
+	private final IconButton toggleButton;
 
 	private boolean isPluginEnabled = false;
 
@@ -220,8 +220,7 @@ public class PluginListItem extends JPanel
 		addLabelPopupMenu(nameLabel, popupMenuItems);
 		add(nameLabel, BorderLayout.CENTER);
 
-		toggleButton.setPreferredSize(new Dimension(25, 0));
-		attachToggleButtonListener(toggleButton);
+		toggleButton = createToggleButton();
 		buttonPanel.add(toggleButton);
 	}
 
@@ -252,7 +251,7 @@ public class PluginListItem extends JPanel
 
 	IconButton createToggleButton()
 	{
-		IconButton button = new IconButton(OFF_SWITCHER);
+		final IconButton button = new IconButton(OFF_SWITCHER);
 		button.setPreferredSize(new Dimension(25, 0));
 		updateToggleButton(button);
 		attachToggleButtonListener(button);

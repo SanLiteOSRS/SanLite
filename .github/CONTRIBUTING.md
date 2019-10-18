@@ -1,6 +1,6 @@
-# Contributing to runelite
+# Contributing to SanLite
 
-We'd love for you to contribute to our source code and to make runelite even better than it is
+We'd love for you to contribute to our source code and to make SanLite even better than it is
 today!
 
 Check out the Developer's Guide on the [wiki](https://github.com/runelite/runelite/wiki) for setup instructions, and general tips and tricks.
@@ -14,7 +14,7 @@ Here are the guidelines we'd like you to follow:
 
 ## <a name="question"></a> Got a Question or Problem?
 
-If you have questions about how to contribute to runelite, please join our [Discord](https://discord.gg/mePCs8U) server.
+If you have questions about how to contribute to SanLite, please join our [Discord](https://discord.gg/hNgWmk6) server.
 
 ## <a name="issue"></a> Found an Issue?
 
@@ -43,18 +43,18 @@ quickly:
 ### Submitting a Pull Request
 Before you submit your pull request consider the following guidelines:
 
-* Search [GitHub](https://github.com/runelite/runelite/pulls) for an open or closed Pull Request
+* Search [GitHub](https://github.com/sanliteosrs/SanLite/pulls) for an open or closed Pull Request
   that relates to your submission. You don't want to duplicate effort.
 * [Fork](https://help.github.com/articles/fork-a-repo/) this repo.
 * [Clone](https://help.github.com/articles/cloning-a-repository/) your copy.
     ```shell
-    git clone https://github.com/YOUR_USERNAME/runelite.git
-    cd runelite/
+    git clone https://github.com/YOUR_USERNAME/sanlite.git
+    cd sanlite/
     ```
 * After cloning, set a new remote [upstream](https://help.github.com/articles/configuring-a-remote-for-a-fork/) (this helps to keep your fork up to date)
     
     ```shell
-    git remote add upstream https://github.com/runelite/runelite.git
+    git remote add upstream https://github.com/sanliteosrs/sanlite.git
     ```
 
 * Make your changes in a new git branch:
@@ -78,11 +78,11 @@ Before you submit your pull request consider the following guidelines:
     git push origin my-fix-branch
     ```
 
-In GitHub, send a pull request to `runelite:master`.
+In GitHub, send a pull request to `sanlite:develop`.
 If we suggest changes, then:
 
 * Make the required updates.
-* Re-run runelite and make sure any and all tests are still passing.
+* Re-run SanLite and make sure any and all tests are still passing.
 * Commit your changes to your branch (e.g. `my-fix-branch`).
 * Push the changes to your GitHub repository (this will update your Pull Request).
 
@@ -130,5 +130,5 @@ from the main (upstream) repository:
 To ensure consistency throughout the source code, review our [code conventions](https://github.com/runelite/runelite/wiki/Code-Conventions).
 
 
-[github]: https://github.com/runelite/runelite
-[discord]: https://discord.gg/mePCs8U
+[github]: https://github.com/sanliteosrs/SanLite
+[discord]: https://discord.gg/hNgWmk6
