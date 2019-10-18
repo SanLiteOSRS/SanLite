@@ -118,7 +118,6 @@ public class ScammerListPlugin extends Plugin
 					{
 						if (widgetChild.getTextColor() != new Color(255, 255, 255).getRGB() && widgetChild.hasListener())
 						{
-							log.debug(widgetChild.getText() + " set white");
 							widgetChild.setTextColor(new Color(255, 255, 255).getRGB());
 						}
 					}
@@ -215,11 +214,13 @@ public class ScammerListPlugin extends Plugin
 				String name = tradingWith.getText().replaceAll("Trading With: ", "");
 				if (checkScamList(name.toLowerCase()) != null)
 				{
+					sendWarning(name, checkScamList(name.toLowerCase()));
 					client.getWidget(335, 31).setText("Trading With: " + name + " (scammer)");
 					client.getWidget(335, 31).setTextColor(new Color(255, 0, 0).getRGB());
 				}
 				if (checkToxicList(name.toLowerCase()) != null)
 				{
+					sendWarning(name, checkToxicList(name.toLowerCase()));
 					client.getWidget(335, 31).setText("Trading With: " + name + " (toxic)");
 					client.getWidget(335, 31).setTextColor(new Color(255, 0, 0).getRGB());
 				}
