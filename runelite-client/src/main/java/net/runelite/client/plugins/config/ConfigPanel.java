@@ -62,7 +62,7 @@ public class ConfigPanel extends PluginPanel
 	private static final String COLLAPSIBLE_ENTRY_CONFIG_KEY = "collapsibleEntry";
 	private static final String COLLAPSIBLE_ENTRY_OPENED_CONFIG_KEY = "opened";
 	private static final String PINNED_PLUGINS_CONFIG_KEY = "pinnedPlugins";
-	static final String PINNED_COLLAPSIBLE_ENTRY_NAME = "PINNED";
+	static final String PINNED_COLLAPSIBLE_ENTRY_NAME = "Pinned";
 
 
 	private final PluginManager pluginManager;
@@ -165,7 +165,7 @@ public class ConfigPanel extends PluginPanel
 		// Populate pluginTypeList with collapsible entries and all non-hidden plugins
 		for (PluginType pluginType : PluginType.values())
 		{
-			CollapsibleEntry collapsibleEntry = new CollapsibleEntry(pluginType.name(), this, getPluginListByType(pluginType));
+			CollapsibleEntry collapsibleEntry = new CollapsibleEntry(pluginType.toString(), this, getPluginListByType(pluginType));
 			collapsibleEntry.getCollapsibleEntryItems().forEach(item -> item.setParentCollapsibleEntry(collapsibleEntry));
 			collapsibleEntry.setDisplayedEntryItems(collapsibleEntry.getDisplayedCollapsibleEntryItems());
 			collapsibleEntries.add(collapsibleEntry);
@@ -203,7 +203,7 @@ public class ConfigPanel extends PluginPanel
 					pluginListItems.add(listItem);
 				});
 
-		if (pluginType.equals(PluginType.VANILLA))
+		if (pluginType.equals(PluginType.RUNELITE))
 		{
 			// Add special entries for core client configurations
 			final PluginListItem runeLite = createClientSettingsPlugin();
@@ -277,29 +277,31 @@ public class ConfigPanel extends PluginPanel
 
 				if (pluginListItem.getPluginType() == collapsibleEntry.getCollapsibleEntryItems().get(0).getPluginType())
 				{
-					for (PluginListItem listItem : new ArrayList<>(collapsibleEntry.getCollapsibleEntryItems()))
-					{
-						if (listItem.getName().equals(pluginListItem.getName()))
-						{
-							collapsibleEntry.getCollapsibleEntryItems().remove(listItem);
-							collapsibleEntry.getCollapsibleEntryItems().add(pluginListItem);
-							collapsibleEntry.getCollapsibleEntryItems().sort(Comparator.comparing(PluginListItem::getName));
-						}
-					}
+					updateCollapsibleEntryListItems(collapsibleEntry, pluginListItem);
 				}
 			}
 		}
 		else
 		{
-			CollapsibleEntry collapsibleEntry = pluginListItem.getParentCollapsibleEntry();
-			for (PluginListItem listItem : new ArrayList<>(collapsibleEntry.getCollapsibleEntryItems()))
+			updateCollapsibleEntryListItems(pluginListItem.getParentCollapsibleEntry(), pluginListItem);
+		}
+	}
+
+	/**
+	 * Updates the collapsible entry item list with the updated list item and sorts the list.
+	 *
+	 * @param collapsibleEntry collapsible entry (eg. plugin type SanLite)
+	 * @param pluginListItem updated plugin list item
+	 */
+	private void updateCollapsibleEntryListItems(CollapsibleEntry collapsibleEntry, PluginListItem pluginListItem)
+	{
+		for (PluginListItem listItem : new ArrayList<>(collapsibleEntry.getCollapsibleEntryItems()))
+		{
+			if (listItem.getName().equals(pluginListItem.getName()))
 			{
-				if (listItem.getName().equals(pluginListItem.getName()))
-				{
-					collapsibleEntry.getCollapsibleEntryItems().remove(listItem);
-					collapsibleEntry.getCollapsibleEntryItems().add(pluginListItem);
-					collapsibleEntry.getCollapsibleEntryItems().sort(Comparator.comparing(PluginListItem::getName));
-				}
+				collapsibleEntry.getCollapsibleEntryItems().remove(listItem);
+				collapsibleEntry.getCollapsibleEntryItems().add(pluginListItem);
+				collapsibleEntry.getCollapsibleEntryItems().sort(Comparator.comparing(PluginListItem::getName));
 			}
 		}
 	}
@@ -558,7 +560,7 @@ public class ConfigPanel extends PluginPanel
 	{
 		final List<String> pinnedPlugins = getPinnedPluginNames();
 
-		final PluginListItem runeLite = new PluginListItem(this, runeLiteConfig, PluginType.VANILLA,
+		final PluginListItem runeLite = new PluginListItem(this, runeLiteConfig, PluginType.RUNELITE,
 				configManager.getConfigDescriptor(runeLiteConfig),
 				CLIENT_SETTINGS_PLUGIN, "SanLite client settings", "sanlite", "client", "settings",
 				"resolution", "notifications", "font");
@@ -575,7 +577,7 @@ public class ConfigPanel extends PluginPanel
 	{
 		final List<String> pinnedPlugins = getPinnedPluginNames();
 
-		final PluginListItem chatColor = new PluginListItem(this, chatColorConfig, PluginType.VANILLA,
+		final PluginListItem chatColor = new PluginListItem(this, chatColorConfig, PluginType.RUNELITE,
 				configManager.getConfigDescriptor(chatColorConfig),
 				CHAT_COLOR_PLUGIN, "Recolor chat text", "color", "colour", "messages", "chat", "chatbox");
 		chatColor.setPinned(pinnedPlugins.contains(CHAT_COLOR_PLUGIN));

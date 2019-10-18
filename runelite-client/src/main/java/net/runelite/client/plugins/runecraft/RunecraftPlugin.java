@@ -57,12 +57,15 @@ import net.runelite.client.menus.MenuManager;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import static net.runelite.client.plugins.runecraft.AbyssRifts.*;
+
+import net.runelite.client.plugins.PluginType;
 import net.runelite.client.ui.overlay.OverlayManager;
 
 @PluginDescriptor(
 	name = "Runecrafting",
 	description = "Show minimap icons, clickboxes for abyssal rifts and left-click swap for pouches in bank",
-	tags = {"abyssal", "minimap", "overlay", "rifts", "rc", "runecrafting", "pouch", "rune", "essence", "swap"}
+	tags = {"abyssal", "minimap", "overlay", "rifts", "rc", "runecrafting", "pouch", "rune", "essence", "swap"},
+	type = PluginType.SANLITE
 )
 public class RunecraftPlugin extends Plugin
 {

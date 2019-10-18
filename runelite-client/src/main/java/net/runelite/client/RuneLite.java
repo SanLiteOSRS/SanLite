@@ -247,7 +247,7 @@ public class RuneLite
 			log.warn("Failure during startup", e);
 			splashScreen.close();
 			SwingUtilities.invokeLater(() ->
-				new FatalErrorDialog("RuneLite has encountered an unexpected error during startup.")
+				new FatalErrorDialog("SanLite has encountered an unexpected error during startup.")
 					.open());
 		}
 	}

@@ -25,7 +25,7 @@
 package net.runelite.mixins;
 
 import java.awt.Polygon;
-import java.awt.geom.Area;
+import java.awt.Shape;
 import java.util.ArrayList;
 import java.util.List;
 import net.runelite.api.Model;
@@ -85,7 +85,7 @@ public abstract class RSGameObjectMixin implements RSGameObject
 
 	@Inject
 	@Override
-	public Area getClickbox()
+	public Shape getClickbox()
 	{
 		return Perspective.getClickbox(client, getModel(), getRsOrientation(), getLocalLocation());
 	}
