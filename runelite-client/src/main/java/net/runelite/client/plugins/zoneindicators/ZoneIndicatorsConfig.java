@@ -10,7 +10,7 @@ public interface ZoneIndicatorsConfig extends Config
 {
 	@ConfigItem(
 			keyName = "multiCombatZoneVisibility",
-			name = "Multi combat zones",
+			name = "Multi zones",
 			description = "Determine where multi combat zones should be shown",
 			position = 1
 	)
@@ -60,7 +60,7 @@ public interface ZoneIndicatorsConfig extends Config
 	)
 	default boolean showMinimapLines()
 	{
-		return true;
+		return false;
 	}
 
 	@ConfigItem(
@@ -71,7 +71,7 @@ public interface ZoneIndicatorsConfig extends Config
 	)
 	default Color multiCombatColor()
 	{
-		return Color.MAGENTA;
+		return new Color(237, 0, 0);
 	}
 
 	@ConfigItem(
@@ -87,7 +87,7 @@ public interface ZoneIndicatorsConfig extends Config
 
 	@ConfigItem(
 			keyName = "wildernessLevelLinesColor",
-			name = "Wilderness level lines color",
+			name = "Wilderness level lines",
 			description = "Choose color to use for marking wilderness level lines",
 			position = 8
 	)
