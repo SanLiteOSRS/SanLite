@@ -32,6 +32,7 @@ import java.awt.image.BufferedImage;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import net.runelite.api.ClanMemberRank;
+import net.runelite.api.Client;
 import net.runelite.api.Player;
 import net.runelite.api.Point;
 import net.runelite.client.config.PlayerNameLocation;
@@ -50,14 +51,16 @@ public class PlayerIndicatorsOverlay extends Overlay
 
 	private final PlayerIndicatorsService playerIndicatorsService;
 	private final PlayerIndicatorsConfig config;
+	private final Client client;
 	private final ClanManager clanManager;
 
 	@Inject
-	private PlayerIndicatorsOverlay(PlayerIndicatorsConfig config, PlayerIndicatorsService playerIndicatorsService,
+	private PlayerIndicatorsOverlay(PlayerIndicatorsConfig config, PlayerIndicatorsService playerIndicatorsService, Client client,
 									ClanManager clanManager)
 	{
 		this.config = config;
 		this.playerIndicatorsService = playerIndicatorsService;
+		this.client = client;
 		this.clanManager = clanManager;
 		setPosition(OverlayPosition.DYNAMIC);
 		setPriority(OverlayPriority.MED);
@@ -72,78 +75,120 @@ public class PlayerIndicatorsOverlay extends Overlay
 
 	private void renderPlayerOverlay(Graphics2D graphics, Player actor, Color color)
 	{
-		final PlayerNameLocation drawPlayerNamesConfig = config.playerNamePosition();
-		if (drawPlayerNamesConfig == PlayerNameLocation.DISABLED)
+		PlayerNameLocation drawPlayerNamesConfig = PlayerNameLocation.DISABLED;
+
+		if (config.clanPlayerNamePosition() == PlayerNameLocation.DISABLED
+			&& config.friendPlayerNamePosition() == PlayerNameLocation.DISABLED
+			&& config.ownPlayerNamePosition() == PlayerNameLocation.DISABLED
+			&& config.nonClanPlayerNamePosition() == PlayerNameLocation.DISABLED
+			&& config.teamPlayerNamePosition() == PlayerNameLocation.DISABLED)
 		{
 			return;
 		}
 
-		final int zOffset;
-		switch (drawPlayerNamesConfig)
+		if (actor == client.getLocalPlayer() && config.ownPlayerNamePosition() != PlayerNameLocation.DISABLED && config.highlightOwnPlayer())
 		{
-			case MODEL_CENTER:
-			case MODEL_RIGHT:
-				zOffset = actor.getLogicalHeight() / 2;
-				break;
-			default:
-				zOffset = actor.getLogicalHeight() + ACTOR_OVERHEAD_TEXT_MARGIN;
+			drawPlayerNamesConfig = config.ownPlayerNamePosition();
+		}
+		else if (client.isFriended(actor.getName(), false) && config.friendPlayerNamePosition() != PlayerNameLocation.DISABLED && config.highlightFriends())
+		{
+			if (config.disableFriendHighlightIfClanMember() && !client.isClanMember(actor.getName()))
+			{
+				drawPlayerNamesConfig = config.friendPlayerNamePosition();
+			}
+			else if (!config.disableFriendHighlightIfClanMember())
+			{
+				drawPlayerNamesConfig = config.friendPlayerNamePosition();
+			}
+		}
+		else if (actor.getTeam() > 0 && client.getLocalPlayer().getTeam() == actor.getTeam() && config.teamPlayerNamePosition() != PlayerNameLocation.DISABLED && config.highlightTeamMembers())
+		{
+			drawPlayerNamesConfig = config.teamPlayerNamePosition();
+		}
+		else if (client.isClanMember(actor.getName()) && config.clanPlayerNamePosition() != PlayerNameLocation.DISABLED && config.highlightClanMembers())
+		{
+			drawPlayerNamesConfig = config.clanPlayerNamePosition();
+		}
+		else if (!client.isClanMember(actor.getName()) && config.nonClanPlayerNamePosition() != PlayerNameLocation.DISABLED && config.highlightNonClanMembers())
+		{
+			drawPlayerNamesConfig = config.nonClanPlayerNamePosition();
 		}
 
-		final String name = Text.sanitize(actor.getName());
-		Point textLocation = actor.getCanvasTextLocation(graphics, name, zOffset);
-
-		if (drawPlayerNamesConfig == PlayerNameLocation.MODEL_RIGHT)
+		//Checked here as if statements follow into friends path but wont highlight clan members if config says not to, in this situation they could be highlighted as clan members
+		if (config.disableFriendHighlightIfClanMember() && client.isClanMember(actor.getName()) && config.clanPlayerNamePosition() != PlayerNameLocation.DISABLED && config.highlightClanMembers())
 		{
-			textLocation = actor.getCanvasTextLocation(graphics, "", zOffset);
+			drawPlayerNamesConfig = config.clanPlayerNamePosition();
+		}
+
+		if (drawPlayerNamesConfig != PlayerNameLocation.DISABLED)
+		{
+			final int zOffset;
+			switch (drawPlayerNamesConfig)
+			{
+				case MODEL_CENTER:
+				case MODEL_RIGHT:
+					zOffset = actor.getLogicalHeight() / 2;
+					break;
+				default:
+					zOffset = actor.getLogicalHeight() + ACTOR_OVERHEAD_TEXT_MARGIN;
+			}
+
+			final String name = Text.sanitize(actor.getName());
+			Point textLocation = actor.getCanvasTextLocation(graphics, name, zOffset);
+
+			if (drawPlayerNamesConfig == PlayerNameLocation.MODEL_RIGHT)
+			{
+				textLocation = actor.getCanvasTextLocation(graphics, "", zOffset);
+
+				if (textLocation == null)
+				{
+					return;
+				}
+
+				textLocation = new Point(textLocation.getX() + ACTOR_HORIZONTAL_TEXT_MARGIN, textLocation.getY());
+			}
 
 			if (textLocation == null)
 			{
 				return;
 			}
 
-			textLocation = new Point(textLocation.getX() + ACTOR_HORIZONTAL_TEXT_MARGIN, textLocation.getY());
-		}
-
-		if (textLocation == null)
-		{
-			return;
-		}
-
-		if (config.showClanRanks() && actor.isClanMember())
-		{
-			final ClanMemberRank rank = clanManager.getRank(name);
-
-			if (rank != ClanMemberRank.UNRANKED)
+			if (config.showClanRanks() && actor.isClanMember())
 			{
-				final BufferedImage clanchatImage = clanManager.getClanImage(rank);
+				final ClanMemberRank rank = clanManager.getRank(name);
 
-				if (clanchatImage != null)
+				if (rank != ClanMemberRank.UNRANKED)
 				{
-					final int clanImageWidth = clanchatImage.getWidth();
-					final int clanImageTextMargin;
-					final int clanImageNegativeMargin;
+					final BufferedImage clanchatImage = clanManager.getClanImage(rank);
 
-					if (drawPlayerNamesConfig == PlayerNameLocation.MODEL_RIGHT)
+					if (clanchatImage != null)
 					{
-						clanImageTextMargin = clanImageWidth;
-						clanImageNegativeMargin = 0;
-					}
-					else
-					{
-						clanImageTextMargin = clanImageWidth / 2;
-						clanImageNegativeMargin = clanImageWidth / 2;
-					}
+						final int clanImageWidth = clanchatImage.getWidth();
+						final int clanImageTextMargin;
+						final int clanImageNegativeMargin;
 
-					final int textHeight = graphics.getFontMetrics().getHeight() - graphics.getFontMetrics().getMaxDescent();
-					final Point imageLocation = new Point(textLocation.getX() - clanImageNegativeMargin - 1, textLocation.getY() - textHeight / 2 - clanchatImage.getHeight() / 2);
-					OverlayUtil.renderImageLocation(graphics, imageLocation, clanchatImage);
+						if (drawPlayerNamesConfig == PlayerNameLocation.MODEL_RIGHT)
+						{
+							clanImageTextMargin = clanImageWidth;
+							clanImageNegativeMargin = 0;
+						}
+						else
+						{
+							clanImageTextMargin = clanImageWidth / 2;
+							clanImageNegativeMargin = clanImageWidth / 2;
+						}
 
-					// move text
-					textLocation = new Point(textLocation.getX() + clanImageTextMargin, textLocation.getY());
+						final int textHeight = graphics.getFontMetrics().getHeight() - graphics.getFontMetrics().getMaxDescent();
+						final Point imageLocation = new Point(textLocation.getX() - clanImageNegativeMargin - 1, textLocation.getY() - textHeight / 2 - clanchatImage.getHeight() / 2);
+						OverlayUtil.renderImageLocation(graphics, imageLocation, clanchatImage);
+
+						// move text
+						textLocation = new Point(textLocation.getX() + clanImageTextMargin, textLocation.getY());
+					}
 				}
 			}
-		}
 
-		OverlayUtil.renderTextLocation(graphics, textLocation, name, color);
+			OverlayUtil.renderTextLocation(graphics, textLocation, name, color);
+		}
 	}
 }

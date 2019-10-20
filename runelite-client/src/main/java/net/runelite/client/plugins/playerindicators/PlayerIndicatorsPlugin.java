@@ -147,7 +147,7 @@ public class PlayerIndicatorsPlugin extends Plugin
 
 			if (color != config.getFriendColor())
 			{
-				if (config.drawClanMemberNames() && player.isClanMember())
+				if (config.highlightClanMembers() && player.isClanMember())
 				{
 					color = config.getClanMemberColor();
 
@@ -172,17 +172,41 @@ public class PlayerIndicatorsPlugin extends Plugin
 				MenuEntry[] menuEntries = client.getMenuEntries();
 				MenuEntry lastEntry = menuEntries[menuEntries.length - 1];
 
-				if (color != null && config.colorPlayerMenu())
+				if (color != null)
 				{
-					// strip out existing <col...
-					String target = lastEntry.getTarget();
-					int idx = target.indexOf('>');
-					if (idx != -1)
+					boolean colorMenu = false;
+					if (client.isFriended(player.getName(), false) && config.highlightFriends() && config.colorFriendPlayerMenu())
 					{
-						target = target.substring(idx + 1);
+						if (!config.disableFriendHighlightIfClanMember() && !client.isClanMember(player.getName()))
+						{
+							colorMenu = true;
+						}
+					}
+					else if (player.getTeam() > 0 && client.getLocalPlayer().getTeam() == player.getTeam() && config.colorTeamPlayerMenu() && config.highlightTeamMembers())
+					{
+						colorMenu = true;
+					}
+					else if (client.isClanMember(player.getName()) && config.colorClanPlayerMenu() && config.highlightClanMembers())
+					{
+						colorMenu = true;
+					}
+					else if (!client.isClanMember(player.getName()) && config.colorNonClanPlayerMenu() && config.highlightNonClanMembers())
+					{
+						colorMenu = true;
 					}
 
-					lastEntry.setTarget(ColorUtil.prependColorTag(target, color));
+					if (colorMenu)
+					{
+						// strip out existing <col...
+						String target = lastEntry.getTarget();
+						int idx = target.indexOf('>');
+						if (idx != -1)
+						{
+							target = target.substring(idx + 1);
+						}
+
+						lastEntry.setTarget(ColorUtil.prependColorTag(target, color));
+					}
 				}
 
 				if (image != -1 && config.showClanRanks())

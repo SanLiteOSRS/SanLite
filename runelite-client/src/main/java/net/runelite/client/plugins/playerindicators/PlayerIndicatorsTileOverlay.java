@@ -29,6 +29,8 @@ import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Polygon;
 import javax.inject.Inject;
+
+import net.runelite.api.Client;
 import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayLayer;
 import net.runelite.client.ui.overlay.OverlayPosition;
@@ -39,12 +41,14 @@ public class PlayerIndicatorsTileOverlay extends Overlay
 {
 	private final PlayerIndicatorsService playerIndicatorsService;
 	private final PlayerIndicatorsConfig config;
+	private final Client client;
 
 	@Inject
-	private PlayerIndicatorsTileOverlay(PlayerIndicatorsConfig config, PlayerIndicatorsService playerIndicatorsService)
+	private PlayerIndicatorsTileOverlay(PlayerIndicatorsConfig config, PlayerIndicatorsService playerIndicatorsService, Client client)
 	{
 		this.config = config;
 		this.playerIndicatorsService = playerIndicatorsService;
+		this.client = client;
 		setLayer(OverlayLayer.ABOVE_SCENE);
 		setPosition(OverlayPosition.DYNAMIC);
 		setPriority(OverlayPriority.MED);
@@ -53,18 +57,57 @@ public class PlayerIndicatorsTileOverlay extends Overlay
 	@Override
 	public Dimension render(Graphics2D graphics)
 	{
-		if (!config.drawTiles())
+		if (!config.drawOwnTiles() && !config.drawFriendTiles() && !config.drawTeamTiles() && !config.drawClanTiles() && !config.drawNonClanTiles())
 		{
 			return null;
 		}
 
 		playerIndicatorsService.forEachPlayer((player, color) ->
 		{
-			final Polygon poly = player.getCanvasTilePoly();
+			boolean drawTile = false;
 
-			if (poly != null)
+			if (config.drawOwnTiles() && player == client.getLocalPlayer() && config.highlightOwnPlayer())
 			{
-				OverlayUtil.renderPolygon(graphics, poly, color);
+				drawTile = true;
+			}
+			else if (config.drawFriendTiles() && client.isFriended(player.getName(), false) && config.highlightFriends() && player != client.getLocalPlayer())
+			{
+				if (config.disableFriendHighlightIfClanMember() && !client.isClanMember(player.getName()))
+				{
+					drawTile = true;
+				}
+				else if (!config.disableFriendHighlightIfClanMember())
+				{
+					drawTile = true;
+				}
+			}
+			else if (config.drawTeamTiles() && player.getTeam() > 0 && client.getLocalPlayer().getTeam() == player.getTeam())
+			{
+				drawTile = true;
+			}
+			else if (config.drawClanTiles() && client.isClanMember(player.getName()))
+			{
+				drawTile = true;
+			}
+			else if (config.drawNonClanTiles() && !client.isClanMember(player.getName()))
+			{
+				drawTile = true;
+			}
+
+			//Checked here as if statements follow into friends path but wont highlight clan members if config says not to, in this situation they could be highlighted as clan members
+			if (config.disableFriendHighlightIfClanMember() && client.isClanMember(player.getName()) && config.drawClanTiles() && config.highlightClanMembers())
+			{
+				drawTile = true;
+			}
+
+			if (drawTile)
+			{
+				final Polygon poly = player.getCanvasTilePoly();
+
+				if (poly != null)
+				{
+					OverlayUtil.renderPolygon(graphics, poly, color);
+				}
 			}
 		});
 
