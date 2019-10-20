@@ -103,7 +103,6 @@ public class SpellEffectTimersPlugin extends Plugin
 		Actor actor = spotAnimationChanged.getActor();
 		if (actor == null)
 		{
-			log.debug("Actor is null");
 			return;
 		}
 
@@ -114,23 +113,18 @@ public class SpellEffectTimersPlugin extends Plugin
 
 		if (actor.equals(client.getLocalPlayer()))
 		{
-			log.debug("Actor is local player");
 			return;
 		}
 
 		int spotAnimation = actor.getSpotAnimation();
 		if (spotAnimation == 0)
 		{
-			log.debug("Spot anim is 0 | value: {} | frame: {}", actor.getSpotAnimation(), actor.getSpotAnimationFrame());
 			return;
 		}
-
-		log.debug("Spot anim frame: {} | tick: {}", actor.getSpotAnimationFrame(), client.getGameCycle());
 
 		SpellEffect spellEffect = SpellEffect.getFromSpotAnimation(actor.getSpotAnimation());
 		if (spellEffect == null)
 		{
-			log.debug("Spell effect is null");
 			return;
 		}
 
@@ -152,7 +146,6 @@ public class SpellEffectTimersPlugin extends Plugin
 
 	private void checkFreezeSpellEffect(SpotAnimationChanged spotAnimationChanged, Actor actor, SpellEffect spellEffect)
 	{
-		log.debug("Check freeze triggered | animationId: {} | Tick: {}", actor.getSpotAnimation(), client.getGameCycle());
 		List<SpellEffectInfo> actorFreezeSpellEffects = new ArrayList<>();
 		for (SpellEffectInfo spellEffectInfo : spellEffects)
 		{
@@ -161,7 +154,6 @@ public class SpellEffectTimersPlugin extends Plugin
 				SpellEffectType spellType = spellEffectInfo.getSpellEffect().getSpellType();
 				if (spellType.equals(SpellEffectType.FREEZE_IMMUNITY))
 				{
-					log.debug("{} has freeze immunity | {}", actor.getName(), client.getGameCycle());
 					return;
 				}
 
@@ -177,14 +169,10 @@ public class SpellEffectTimersPlugin extends Plugin
 			// Checks if the actor is already frozen. Extra second to prevent freeze & immunity timers both triggering.
 			if (spellEffectInfo.getExpireClientTick() + 1 > client.getGameCycle())
 			{
-				log.debug("{} already frozen or has freeze immunity", actor.getName());
 				return;
 			}
 		}
-
-		log.debug("Spell effect list size before add: {}", spellEffects.size());
 		spellEffects.add(new SpellEffectInfo(actor, spellEffect, client.getGameCycle()));
-		log.debug("Spell effect added: {} | {}", spellEffect.getName(), client.getGameCycle());
 	}
 
 	@Subscribe
@@ -244,9 +232,7 @@ public class SpellEffectTimersPlugin extends Plugin
 	private void expireFreezeSpellEffect(SpellEffectInfo spellEffectInfo)
 	{
 		spellEffects.remove(spellEffectInfo);
-		log.debug("Spell effect {} removed | {}", spellEffectInfo.getSpellEffect().getName(), client.getGameCycle());
 		spellEffects.add(new SpellEffectInfo(spellEffectInfo.getActor(),
 				SpellEffect.FREEZE_IMMUNITY, client.getGameCycle()));
-		log.debug("Spell effect Freeze Immunity added | {}", client.getGameCycle());
 	}
 }

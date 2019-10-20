@@ -38,6 +38,5 @@ class SpellEffectInfo
 		this.expireClientTick = initialHitClientTick + (spellEffect.getSpellLength() / Constants.CLIENT_TICK_LENGTH);
 		this.remainingClientTicks = expireClientTick - initialHitClientTick;
 		this.remainingTime = remainingClientTicks / 5;
-		log.debug("Expire game tick: {}", expireClientTick);
 	}
 }

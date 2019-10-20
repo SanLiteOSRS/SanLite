@@ -36,67 +36,74 @@ public class TheatreOfBloodOverlay extends Overlay
 	public Dimension render(Graphics2D graphics)
 	{
 		TheatreOfBloodEncounter encounter = plugin.getCurrentEncounter();
-		if (encounter != null && encounter.getNpc() != null)
+		if (encounter != null)
 		{
-
-			// Sugadinti Maiden
-			if (config.highlightBloodSplatAttackTiles() && encounter.getEncounter() == TheatreOfBloodEncounters.SUGADINTI_MAIDEN)
+			if (encounter.getNpc() != null)
 			{
-				renderMaidenBloodSplatAoeEffects(graphics, (SugadintiMaiden) encounter);
+				// Sugadinti Maiden
+				if (config.highlightBloodSplatAttackTiles() && encounter.getEncounter() == TheatreOfBloodEncounters.SUGADINTI_MAIDEN)
+				{
+					renderMaidenBloodSplatAoeEffects(graphics, (SugadintiMaiden) encounter);
+				}
+
+				if (config.highlightBloodSpawnTiles() && encounter.getEncounter() == TheatreOfBloodEncounters.SUGADINTI_MAIDEN)
+				{
+					renderMaidenBloodSpawnAoeEffects(graphics, (SugadintiMaiden) encounter);
+				}
+
+				// Pestilent Bloat
+				if (config.highlightBloatHandAttackTiles() && encounter.getEncounter() == TheatreOfBloodEncounters.PESTILENT_BLOAT)
+				{
+					renderBloatHandAoeEffects(graphics, (PestilentBloat) encounter);
+				}
+
+				if (config.highlightBloatStatus() && encounter.getEncounter() == TheatreOfBloodEncounters.PESTILENT_BLOAT)
+				{
+					renderPestilentBloatHull(graphics, (PestilentBloat) encounter);
+				}
+
+				if (config.displayBloatSleepTimer() && encounter.getEncounter() == TheatreOfBloodEncounters.PESTILENT_BLOAT)
+				{
+					renderPestilentBloatTimerText(graphics, (PestilentBloat) encounter);
+				}
+
+				// Sotetseg
+				if (config.highlightSotetsegRedMazeTiles() && encounter.getEncounter() == TheatreOfBloodEncounters.SOTETSEG)
+				{
+					renderSotetsegMazeTiles(graphics, (Sotetseg) encounter);
+				}
+
+				// Xarpus
+				if (config.highlightXarpusPoisonAttackTiles() && encounter.getEncounter() == TheatreOfBloodEncounters.XARPUS)
+				{
+					renderXarpusPoisonAttackLandingAoeEffects(graphics, (Xarpus) encounter);
+				}
+
+				if (config.highlightXarpusPoisonAttackTiles() && encounter.getEncounter() == TheatreOfBloodEncounters.XARPUS)
+				{
+					renderXarpusPoisonTileObjects(graphics, (Xarpus) encounter);
+				}
+
+				if (config.highlightXarpusHealingPoolTiles() && encounter.getEncounter() == TheatreOfBloodEncounters.XARPUS)
+				{
+					renderXarpusHealingPoolTileObjects(graphics, (Xarpus) encounter);
+				}
+
+				// Verzik Vitur
+				if (config.highlightVerzikSkullAttackTiles() && encounter.getEncounter() == TheatreOfBloodEncounters.VERZIK)
+				{
+					renderVerzikSkullAoeEffects(graphics, (Verzik) encounter);
+				}
+
+				if (config.highlightVerzikGreenOrbPoolTiles() && encounter.getEncounter() == TheatreOfBloodEncounters.VERZIK)
+				{
+					renderVerzikGreenOrbPoolAoeEffects(graphics, (Verzik) encounter);
+				}
 			}
-
-			if (config.highlightBloodSpawnTiles() && encounter.getEncounter() == TheatreOfBloodEncounters.SUGADINTI_MAIDEN)
+			// Nylocas - does not always have a boss npc
+			if (config.highlightAggressiveNylocas() && encounter.getEncounter() == TheatreOfBloodEncounters.NYLOCAS)
 			{
-				renderMaidenBloodSpawnAoeEffects(graphics, (SugadintiMaiden) encounter);
-			}
-
-			// Pestilent Bloat
-			if (config.highlightBloatHandAttackTiles() && encounter.getEncounter() == TheatreOfBloodEncounters.PESTILENT_BLOAT)
-			{
-				renderBloatHandAoeEffects(graphics, (PestilentBloat) encounter);
-			}
-
-			if (config.highlightBloatStatus() && encounter.getEncounter() == TheatreOfBloodEncounters.PESTILENT_BLOAT)
-			{
-				renderPestilentBloatHull(graphics, (PestilentBloat) encounter);
-			}
-
-			if (config.displayBloatSleepTimer() && encounter.getEncounter() == TheatreOfBloodEncounters.PESTILENT_BLOAT)
-			{
-				renderPestilentBloatTimerText(graphics, (PestilentBloat) encounter);
-			}
-
-			// Sotetseg
-			if (config.highlightSotetsegRedMazeTiles() && encounter.getEncounter() == TheatreOfBloodEncounters.SOTETSEG)
-			{
-				renderSotetsegMazeTiles(graphics, (Sotetseg) encounter);
-			}
-
-			// Xarpus
-			if (config.highlightXarpusPoisonAttackTiles() && encounter.getEncounter() == TheatreOfBloodEncounters.XARPUS)
-			{
-				renderXarpusPoisonAttackLandingAoeEffects(graphics, (Xarpus) encounter);
-			}
-
-			if (config.highlightXarpusPoisonAttackTiles() && encounter.getEncounter() == TheatreOfBloodEncounters.XARPUS)
-			{
-				renderXarpusPoisonTileObjects(graphics, (Xarpus) encounter);
-			}
-
-			if (config.highlightXarpusHealingPoolTiles() && encounter.getEncounter() == TheatreOfBloodEncounters.XARPUS)
-			{
-				renderXarpusHealingPoolTileObjects(graphics, (Xarpus) encounter);
-			}
-
-			// Verzik Vitur
-			if (config.highlightVerzikSkullAttackTiles() && encounter.getEncounter() == TheatreOfBloodEncounters.VERZIK)
-			{
-				renderVerzikSkullAoeEffects(graphics, (Verzik) encounter);
-			}
-
-			if (config.highlightVerzikGreenOrbPoolTiles() && encounter.getEncounter() == TheatreOfBloodEncounters.VERZIK)
-			{
-				renderVerzikGreenOrbPoolAoeEffects(graphics, (Verzik) encounter);
+				renderAggressiveNylocasHighlights(graphics, (Nylocas) encounter);
 			}
 		}
 		return null;
@@ -161,10 +168,6 @@ public class TheatreOfBloodOverlay extends Overlay
 		{
 			return;
 		}
-		else
-		{
-			log.warn("Pestilent Bloat convex hull is null");
-		}
 
 		Color color;
 		if (pestilentBloat.isAsleep())
@@ -180,11 +183,33 @@ public class TheatreOfBloodOverlay extends Overlay
 
 	private void renderPestilentBloatTimerText(Graphics2D graphics, PestilentBloat pestilentBloat)
 	{
+		if (pestilentBloat.getRemainingSleepClientTicks() < 0)
+		{
+			return;
+		}
+
 		int remainingDuration = pestilentBloat.getRemainingSleepClientTicks() / 5;
 		String text = Math.abs(remainingDuration / 10) + "." + (Math.abs(remainingDuration) % 10);
 
 		Point textLocation = pestilentBloat.getNpc().getCanvasTextLocation(graphics, text, 0);
 		OverlayUtil.renderTextLocation(graphics, textLocation, text, Color.WHITE);
+	}
+
+	private void renderAggressiveNylocasHighlights(Graphics2D graphics, Nylocas nylocas)
+	{
+		if (nylocas.getHighlightedNylocasNpcs() == null)
+		{
+			return;
+		}
+
+		for (NPC npc : nylocas.getHighlightedNylocasNpcs())
+		{
+			Shape npcClickbox = npc.getConvexHull();
+			if (npcClickbox != null)
+			{
+				OverlayUtil.renderPolygon(graphics, npcClickbox, config.getAggressiveNylocasColor());
+			}
+		}
 	}
 
 	private void renderSotetsegMazeTiles(Graphics2D graphics, Sotetseg sotetseg)

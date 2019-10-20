@@ -25,6 +25,9 @@
 package net.runelite.client.plugins.theatreofblood;
 
 import net.runelite.api.Client;
+import net.runelite.client.plugins.theatreofblood.encounters.Nylocas;
+import net.runelite.client.plugins.theatreofblood.encounters.PestilentBloat;
+import net.runelite.client.plugins.theatreofblood.encounters.Sotetseg;
 import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayPosition;
 import net.runelite.client.ui.overlay.components.LineComponent;
@@ -97,6 +100,34 @@ public class TheatreOfBloodDebugOverlay extends Overlay
 						.left("Number of encounter game objects")
 						.right("" + plugin.getCurrentEncounter().getGameObjects().size())
 						.build());
+			}
+
+			switch (plugin.getCurrentEncounter().getEncounter())
+			{
+				case PESTILENT_BLOAT:
+					PestilentBloat pestilentBloat = (PestilentBloat) plugin.getCurrentEncounter();
+					panelComponent.getChildren().add(LineComponent.builder()
+							.left("Remaining sleep client ticks")
+							.right("" + pestilentBloat.getRemainingSleepClientTicks())
+							.build());
+					break;
+				case NYLOCAS:
+					Nylocas nylocas = (Nylocas) plugin.getCurrentEncounter();
+					panelComponent.getChildren().add(LineComponent.builder()
+							.left("Number of npcs")
+							.right("" + client.getNpcs().size())
+							.build());
+					panelComponent.getChildren().add(LineComponent.builder()
+							.left("Number of highlighted Nylocas npcs")
+							.right("" + nylocas.getHighlightedNylocasNpcs().size())
+							.build());
+					break;
+				case SOTETSEG:
+					Sotetseg sotetseg = (Sotetseg) plugin.getCurrentEncounter();
+					panelComponent.getChildren().add(LineComponent.builder()
+							.left("Number of active red maze tiles")
+							.right("" + sotetseg.getActiveMazeTiles().size())
+							.build());
 			}
 
 			return panelComponent.render(graphics);

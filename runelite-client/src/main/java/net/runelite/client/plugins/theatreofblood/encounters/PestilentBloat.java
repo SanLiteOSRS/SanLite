@@ -6,17 +6,16 @@ import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.*;
 import net.runelite.client.plugins.theatreofblood.TheatreOfBloodEncounterRegions;
 
-import javax.inject.Inject;
-
 @Slf4j
 public class PestilentBloat extends TheatreOfBloodEncounter
 {
 	private static final int SLEEP_DURATION = 18000;
 
-	@Inject
-	private Client client;
-
+	@Getter
 	private int wakeUpClientTick;
+
+	@Getter
+	private int lastSleepEndClientTick;
 
 	@Getter
 	@Setter
@@ -26,18 +25,12 @@ public class PestilentBloat extends TheatreOfBloodEncounter
 	{
 		super(region, encounter);
 		wakeUpClientTick = -1;
+		lastSleepEndClientTick = 1;
 		remainingSleepClientTicks = -1;
 	}
 
 	public boolean isHandAttack(int graphicsObjectId)
 	{
-		if (graphicsObjectId == GraphicID.BLOAT_HAND_ATTACK_1 ||
-				graphicsObjectId == GraphicID.BLOAT_HAND_ATTACK_2 ||
-				graphicsObjectId == GraphicID.BLOAT_HAND_ATTACK_3 ||
-				graphicsObjectId == GraphicID.BLOAT_HAND_ATTACK_4)
-		{
-			log.debug("Hand attack detected"); // TODO: Remove
-		}
 		return graphicsObjectId == GraphicID.BLOAT_HAND_ATTACK_1 ||
 				graphicsObjectId == GraphicID.BLOAT_HAND_ATTACK_2 ||
 				graphicsObjectId == GraphicID.BLOAT_HAND_ATTACK_3 ||
@@ -60,14 +53,15 @@ public class PestilentBloat extends TheatreOfBloodEncounter
 		this.remainingSleepClientTicks = wakeUpClientTick - initialHitClientTick;
 	}
 
-	public void wakeUp()
+	public void wakeUp(int sleepEndClientTick)
 	{
 		this.wakeUpClientTick = -1;
+		this.lastSleepEndClientTick = sleepEndClientTick;
 		this.remainingSleepClientTicks = -1;
 	}
 
-	public void updateSleepDurationTimer()
+	public void updateSleepDurationTimer(int clientTick)
 	{
-		setRemainingSleepClientTicks(wakeUpClientTick - client.getGameCycle());
+		setRemainingSleepClientTicks(wakeUpClientTick - clientTick);
 	}
 }
