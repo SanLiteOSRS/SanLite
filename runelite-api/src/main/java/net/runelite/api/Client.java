@@ -26,7 +26,6 @@ package net.runelite.api;
 
 import java.awt.Canvas;
 import java.awt.Dimension;
-import java.math.BigInteger;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Map;
@@ -39,6 +38,7 @@ import net.runelite.api.hooks.Callbacks;
 import net.runelite.api.hooks.DrawCallbacks;
 import net.runelite.api.vars.AccountType;
 import net.runelite.api.widgets.Widget;
+import net.runelite.api.widgets.WidgetConfig;
 import net.runelite.api.widgets.WidgetInfo;
 import org.slf4j.Logger;
 
@@ -131,11 +131,11 @@ public interface Client extends GameShell
 	GameState getGameState();
 
 	/**
-	 * Sets the current game state.
+	 * Sets the current game state
 	 *
-	 * @param gameState new game state
+	 * @param gameState
 	 */
-	void setGameState(int gameState);
+	void setGameState(GameState gameState);
 
 	/**
 	 * Gets the current logged in username.
@@ -344,6 +344,7 @@ public interface Client extends GameShell
 	 *
 	 * @return the logged in player
 	 */
+	@Nullable
 	Player getLocalPlayer();
 
 	/**
@@ -424,6 +425,7 @@ public interface Client extends GameShell
 	 *
 	 * @return the selected tile
 	 */
+	@Nullable
 	Tile getSelectedSceneTile();
 
 	/**
@@ -438,6 +440,7 @@ public interface Client extends GameShell
 	 *
 	 * @return the dragged widget, null if not dragging any widget
 	 */
+	@Nullable
 	Widget getDraggedWidget();
 
 	/**
@@ -448,6 +451,7 @@ public interface Client extends GameShell
 	 *
 	 * @return the dragged on widget, null if not dragging any widget
 	 */
+	@Nullable
 	Widget getDraggedOnWidget();
 
 	/**
@@ -574,6 +578,12 @@ public interface Client extends GameShell
 	 * @param entries new array of open menu entries
 	 */
 	void setMenuEntries(MenuEntry[] entries);
+
+	/**
+	 * Set the amount of menu entries the client has.
+	 * If you decrement this count, it's the same as removing the last one
+	 */
+	void setMenuOptionCount(int count);
 
 	/**
 	 * Checks whether a right-click menu is currently open.
@@ -946,6 +956,42 @@ public interface Client extends GameShell
 	List<GraphicsObject> getGraphicsObjects();
 
 	/**
+	 * Gets the music volume
+	 * @return volume 0-255 inclusive
+	 */
+	int getMusicVolume();
+
+	/**
+	 * Sets the music volume
+	 * @param volume 0-255 inclusive
+	 */
+	void setMusicVolume(int volume);
+
+	/**
+	 * Gets the sound effect volume
+	 * @return volume 0-127 inclusive
+	 */
+	int getSoundEffectVolume();
+
+	/**
+	 * Sets the sound effect volume
+	 * @param volume 0-127 inclusive
+	 */
+	void setSoundEffectVolume(int volume);
+
+	/**
+	 * Gets the area sound effect volume
+	 * @return volume 0-127 inclusive
+	 */
+	int getAreaSoundEffectVolume();
+
+	/**
+	 * Sets the area sound effect volume
+	 * @param volume 0-127 inclusive
+	 */
+	void setAreaSoundEffectVolume(int volume);
+
+	/**
 	 * Play a sound effect at the player's current location. This is how UI,
 	 * and player-generated (e.g. mining, woodcutting) sound effects are
 	 * normally played.
@@ -1017,6 +1063,11 @@ public interface Client extends GameShell
 	 * @see Constants#CLIENT_TICK_LENGTH
 	 */
 	int getKeyboardIdleTicks();
+
+	/**
+	 * Returns an array of booleans relating to keys pressed.
+	 */
+	boolean[] getPressedKeys();
 
 	/**
 	 * Changes how game behaves based on memory mode. Low memory mode skips
@@ -1466,7 +1517,7 @@ public interface Client extends GameShell
 	/**
 	 * Sets which NPCs are hidden
 	 *
-	 * @param names the names of the npcs seperated by ','
+	 * @param names the names of the npcs
 	 */
 	void setNPCsNames(List<String> names);
 
@@ -1669,6 +1720,11 @@ public interface Client extends GameShell
 	int getIf1DraggedItemIndex();
 
 	/**
+	 * Is a widget is in target mode?
+	 */
+	boolean getSpellSelected();
+
+	/**
 	 * Sets if a widget is in target mode
 	 */
 	void setSpellSelected(boolean selected);
@@ -1697,7 +1753,7 @@ public interface Client extends GameShell
 	 *
 	 * @param param0 This is SceneX for gameObject, index for items, and 0 for npc.
 	 * @param param1 This is SceneY for gameObject, static for items, and 0 for npc.
-	 * @param type Menu entry Action type.
+	 * @param type Menu entry Action opcode.
 	 * @param id Targets ID
 	 * @param menuEntry Do these actually matter?
 	 * @param targetString Do these actually matter?
@@ -1711,8 +1767,6 @@ public interface Client extends GameShell
 	void setPrintMenuActions(boolean b);
 
 	String getSelectedSpellName();
-
-	boolean isSpellSelected();
 
 	/**
 	 * Set whether or not player attack options will be hidden for friends
@@ -1755,12 +1809,13 @@ public interface Client extends GameShell
 	 */
 	void removeFriend(String name);
 
-	BigInteger getModulus();
-
-	void setModulus(BigInteger modulus);
-
 	/*
 	 * Returns the max item index + 1 from cache
 	 */
 	int getItemCount();
+
+	/**
+	 * Makes all widgets behave as if they are {@link WidgetConfig#WIDGET_USE_TARGET}
+	 */
+	void setAllWidgetsAreOpTargetable(boolean value);
 }

@@ -25,7 +25,9 @@ import java.util.stream.Collectors;
 		name = "Theatre of Blood",
 		description = "Helps with the various boss mechanics in the Theatre of Blood",
 		tags = {"tob", "raids", "theatre", "blood", "theatre of blood", "pvm", "overlay", "boss"},
-		type = PluginType.SANLITE
+		type = PluginType.SANLITE,
+		enabledByDefault = false,
+		hidden = true
 )
 public class TheatreOfBloodPlugin extends Plugin
 {

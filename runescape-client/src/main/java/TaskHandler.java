@@ -7,37 +7,46 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fs")
+@ObfuscatedName("fm")
 @Implements("TaskHandler")
 public class TaskHandler implements Runnable {
-	@ObfuscatedName("q")
+	@ObfuscatedName("z")
 	@Export("javaVendor")
 	public static String javaVendor;
-	@ObfuscatedName("w")
+	@ObfuscatedName("n")
 	@Export("javaVersion")
 	public static String javaVersion;
-	@ObfuscatedName("e")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		signature = "Lfa;"
+		signature = "Lhp;"
+	)
+	@Export("Widget_modelsArchive")
+	static AbstractArchive Widget_modelsArchive;
+	@ObfuscatedName("ah")
+	@Export("hasFocus")
+	protected static boolean hasFocus;
+	@ObfuscatedName("v")
+	@ObfuscatedSignature(
+		signature = "Lfv;"
 	)
 	@Export("current")
 	Task current;
-	@ObfuscatedName("p")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "Lfa;"
+		signature = "Lfv;"
 	)
-	@Export("task0")
-	Task task0;
-	@ObfuscatedName("k")
+	@Export("task")
+	Task task;
+	@ObfuscatedName("r")
 	@Export("thread")
 	Thread thread;
-	@ObfuscatedName("l")
+	@ObfuscatedName("p")
 	@Export("isClosed")
 	boolean isClosed;
 
 	public TaskHandler() {
 		this.current = null;
-		this.task0 = null;
+		this.task = null;
 		this.isClosed = false;
 		javaVendor = "Unknown";
 		javaVersion = "1.6";
@@ -55,10 +64,10 @@ public class TaskHandler implements Runnable {
 		this.thread.start();
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "876535177"
+		garbageValue = "1673059069"
 	)
 	@Export("close")
 	public final void close() {
@@ -74,10 +83,10 @@ public class TaskHandler implements Runnable {
 
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(IIILjava/lang/Object;B)Lfa;",
-		garbageValue = "115"
+		signature = "(IIILjava/lang/Object;S)Lfv;",
+		garbageValue = "255"
 	)
 	@Export("newTask")
 	final Task newTask(int var1, int var2, int var3, Object var4) {
@@ -86,11 +95,11 @@ public class TaskHandler implements Runnable {
 		var5.intArgument = var2;
 		var5.objectArgument = var4;
 		synchronized(this) {
-			if (this.task0 != null) {
-				this.task0.next = var5;
-				this.task0 = var5;
+			if (this.task != null) {
+				this.task.next = var5;
+				this.task = var5;
 			} else {
-				this.task0 = this.current = var5;
+				this.task = this.current = var5;
 			}
 
 			this.notify();
@@ -98,20 +107,20 @@ public class TaskHandler implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;II)Lfa;",
-		garbageValue = "313449224"
+		signature = "(Ljava/lang/String;II)Lfv;",
+		garbageValue = "2091612218"
 	)
 	@Export("newSocketTask")
 	public final Task newSocketTask(String var1, int var2) {
 		return this.newTask(1, var2, 0, var1);
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/Runnable;II)Lfa;",
-		garbageValue = "193419386"
+		signature = "(Ljava/lang/Runnable;II)Lfv;",
+		garbageValue = "-1627707278"
 	)
 	@Export("newThreadTask")
 	public final Task newThreadTask(Runnable var1, int var2) {
@@ -131,7 +140,7 @@ public class TaskHandler implements Runnable {
 						var1 = this.current;
 						this.current = this.current.next;
 						if (this.current == null) {
-							this.task0 = null;
+							this.task = null;
 						}
 						break;
 					}
@@ -164,5 +173,12 @@ public class TaskHandler implements Runnable {
 				var1.status = 2;
 			}
 		}
+	}
+
+	@ObfuscatedName("z")
+	static double method3425(double var0, double var2, double var4) {
+		double var8 = (var0 - var2) / var4;
+		double var6 = Math.exp(-var8 * var8 / 2.0D) / Math.sqrt(6.283185307179586D);
+		return var6 / var4;
 	}
 }

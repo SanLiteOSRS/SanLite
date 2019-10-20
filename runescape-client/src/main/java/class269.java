@@ -1,11 +1,13 @@
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jp")
+@ObfuscatedName("ja")
 public class class269 {
-	@ObfuscatedName("fm")
+	@ObfuscatedName("sq")
 	@ObfuscatedSignature(
-		signature = "Lky;"
+		signature = "Llt;"
 	)
-	static AbstractSocket field3563;
+	@Export("platformInfo")
+	static PlatformInfo platformInfo;
 }

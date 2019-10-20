@@ -14,6 +14,7 @@ public class BootstrapperProperties
 {
 	private static final String RUNELITE_VERSION = "runelite.version";
 	private static final String SANLITE_VERSION = "sanlite.version";
+	private static final String RS_VERSION = "rs.version";
 
 	private final Properties properties = new Properties();
 
@@ -38,5 +39,10 @@ public class BootstrapperProperties
 	String getSanLiteVersion()
 	{
 		return properties.getProperty(SANLITE_VERSION);
+	}
+
+	String getRuneScapeVersion()
+	{
+		return properties.getProperty(RS_VERSION);
 	}
 }

@@ -817,6 +817,7 @@ public class WidgetID
 
 	static class SpellBook
 	{
+		static final int FILTERED_SPELLS_PARENT = 1;
 		static final int FILTERED_SPELLS_BOUNDS = 3;
 
 		// NORMAL SPELLS
@@ -968,19 +969,21 @@ public class WidgetID
 
 		// ARCEUUS SPELLS
 		static final int ARCEUUS_HOME_TELEPORT = 143;
+		static final int BATTLEFRONT_TELEPORT = 178;
+
+		static final int FILTER_SECTION_PARENT = 181;
+		static final int FILTER_BUTTONS_PARENT = 184;
+		static final int FILTER_BUTTON_PARENT = 185;
+		static final int FILTER_BUTTON = 187;
 	}
 
 	static class Pvp
 	{
-		static final int FOG_OVERLAY = 1;
-		static final int PVP_WIDGET_CONTAINER = 54;  // OUTDATED?
-		static final int SKULL = 56;  // OUTDATED?
-		static final int ATTACK_RANGE = 59;  // OUTDATED?
-		static final int BOUNTY_HUNTER_INFO = 19;
-		static final int KILLDEATH_RATIO = 15;
-		static final int SKULL_CONTAINER = 61;
-		static final int SAFE_ZONE = 63;
-		static final int WILDERNESS_LEVEL = 66; // this can also be the Deadman Mode "Protection" text
+		static final int BOUNTY_HUNTER_INFO = 6;
+		static final int KILLDEATH_RATIO = 33;
+		static final int SKULL_CONTAINER = 53;
+		static final int SAFE_ZONE = 55;
+		static final int WILDERNESS_LEVEL = 57; // this can also be the Deadman Mode "Protection" text
 	}
 
 	static class KourendFavour

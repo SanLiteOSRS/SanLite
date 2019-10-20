@@ -4,40 +4,40 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("if")
+@ObfuscatedName("im")
 @Implements("VerticalAlignment")
 public enum VerticalAlignment implements Enumerated {
-	@ObfuscatedName("q")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "Lif;"
+		signature = "Lim;"
 	)
-	field3195(1, 0),
-	@ObfuscatedName("w")
+	field3172(0, 0),
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "Lif;"
+		signature = "Lim;"
 	)
 	@Export("VerticalAlignment_centered")
-	VerticalAlignment_centered(0, 1),
-	@ObfuscatedName("e")
+	VerticalAlignment_centered(2, 1),
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "Lif;"
+		signature = "Lim;"
 	)
-	field3194(2, 2);
+	field3170(1, 2);
 
-	@ObfuscatedName("g")
+	@ObfuscatedName("df")
 	@ObfuscatedGetter(
-		intValue = -899877695
+		longValue = 8439577585786440307L
 	)
-	static int field3192;
-	@ObfuscatedName("p")
+	static long field3175;
+	@ObfuscatedName("u")
 	@ObfuscatedGetter(
-		intValue = -513284045
+		intValue = -163994147
 	)
 	@Export("value")
 	public final int value;
-	@ObfuscatedName("k")
+	@ObfuscatedName("r")
 	@ObfuscatedGetter(
-		intValue = -404264531
+		intValue = 1741450623
 	)
 	@Export("id")
 	final int id;
@@ -47,13 +47,26 @@ public enum VerticalAlignment implements Enumerated {
 		this.id = var4;
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "320353268"
+		signature = "(S)I",
+		garbageValue = "221"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
 		return this.id;
+	}
+
+	@ObfuscatedName("ko")
+	@ObfuscatedSignature(
+		signature = "(Lho;I)Ljava/lang/String;",
+		garbageValue = "-2118508660"
+	)
+	static String method4309(Widget var0) {
+		if (class2.method30(class2.getWidgetClickMask(var0)) == 0) {
+			return null;
+		} else {
+			return var0.spellActionName != null && var0.spellActionName.trim().length() != 0 ? var0.spellActionName : null;
+		}
 	}
 }

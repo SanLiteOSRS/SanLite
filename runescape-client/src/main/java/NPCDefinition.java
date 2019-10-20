@@ -4,194 +4,185 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ij")
+@ObfuscatedName("il")
 @Implements("NPCDefinition")
 public class NPCDefinition extends DualNode {
-	@ObfuscatedName("q")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
 		signature = "Lhp;"
 	)
 	@Export("NpcDefinition_archive")
-	static AbstractArchive NpcDefinition_archive;
-	@ObfuscatedName("w")
+	public static AbstractArchive NpcDefinition_archive;
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
 		signature = "Lhp;"
 	)
 	@Export("NpcDefinition_modelArchive")
-	static AbstractArchive NpcDefinition_modelArchive;
-	@ObfuscatedName("e")
+	public static AbstractArchive NpcDefinition_modelArchive;
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "Lel;"
+		signature = "Lem;"
 	)
 	@Export("NpcDefinition_cached")
-	static EvictingDualNodeHashTable NpcDefinition_cached;
-	@ObfuscatedName("p")
+	public static EvictingDualNodeHashTable NpcDefinition_cached;
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "Lel;"
+		signature = "Lem;"
 	)
 	@Export("NpcDefinition_cachedModels")
-	static EvictingDualNodeHashTable NpcDefinition_cachedModels;
-	@ObfuscatedName("bl")
-	@ObfuscatedSignature(
-		signature = "Llx;"
-	)
-	@Export("worldSelectRightSprite")
-	static IndexedSprite worldSelectRightSprite;
-	@ObfuscatedName("do")
-	@ObfuscatedSignature(
-		signature = "Liu;"
-	)
-	@Export("archive7")
-	static Archive archive7;
-	@ObfuscatedName("k")
+	public static EvictingDualNodeHashTable NpcDefinition_cachedModels;
+	@ObfuscatedName("r")
 	@ObfuscatedGetter(
-		intValue = -2095411363
+		intValue = 795033679
 	)
 	@Export("id")
 	public int id;
-	@ObfuscatedName("l")
+	@ObfuscatedName("p")
 	@Export("name")
 	public String name;
-	@ObfuscatedName("b")
+	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = 182085113
+		intValue = -441203939
 	)
 	@Export("size")
 	public int size;
-	@ObfuscatedName("i")
+	@ObfuscatedName("m")
 	@Export("models")
 	int[] models;
-	@ObfuscatedName("c")
-	int[] field3463;
-	@ObfuscatedName("f")
+	@ObfuscatedName("y")
+	int[] field3448;
+	@ObfuscatedName("i")
 	@ObfuscatedGetter(
-		intValue = -530997781
+		intValue = -182220755
 	)
 	@Export("readySequence")
 	public int readySequence;
-	@ObfuscatedName("m")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = 1697646117
+		intValue = -1669190657
 	)
 	@Export("turnLeftSequence")
 	public int turnLeftSequence;
-	@ObfuscatedName("u")
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = -225693269
+		intValue = -394985883
 	)
 	@Export("turnRightSequence")
 	public int turnRightSequence;
-	@ObfuscatedName("x")
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = -480719565
+		intValue = 1951589919
 	)
 	@Export("walkSequence")
 	public int walkSequence;
-	@ObfuscatedName("r")
+	@ObfuscatedName("a")
 	@ObfuscatedGetter(
-		intValue = -527626491
+		intValue = 1113665339
 	)
 	@Export("walkBackSequence")
 	public int walkBackSequence;
-	@ObfuscatedName("v")
+	@ObfuscatedName("e")
 	@ObfuscatedGetter(
-		intValue = 1672595499
+		intValue = -1204590857
 	)
 	@Export("walkLeftSequence")
 	public int walkLeftSequence;
-	@ObfuscatedName("y")
+	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		intValue = -389638615
+		intValue = -2041030831
 	)
 	@Export("walkRightSequence")
 	public int walkRightSequence;
-	@ObfuscatedName("g")
+	@ObfuscatedName("t")
 	@Export("recolorFrom")
 	short[] recolorFrom;
-	@ObfuscatedName("a")
+	@ObfuscatedName("g")
 	@Export("recolorTo")
 	short[] recolorTo;
-	@ObfuscatedName("j")
+	@ObfuscatedName("x")
 	@Export("retextureFrom")
 	short[] retextureFrom;
-	@ObfuscatedName("t")
+	@ObfuscatedName("h")
 	@Export("retextureTo")
 	short[] retextureTo;
-	@ObfuscatedName("h")
+	@ObfuscatedName("s")
 	@Export("actions")
 	public String[] actions;
-	@ObfuscatedName("o")
+	@ObfuscatedName("f")
 	@Export("drawMapDot")
 	public boolean drawMapDot;
-	@ObfuscatedName("n")
+	@ObfuscatedName("j")
 	@ObfuscatedGetter(
-		intValue = -785647373
+		intValue = 1360683279
 	)
 	@Export("combatLevel")
 	public int combatLevel;
 	@ObfuscatedName("d")
 	@ObfuscatedGetter(
-		intValue = 1029052063
+		intValue = 758770497
 	)
 	@Export("widthScale")
 	int widthScale;
-	@ObfuscatedName("s")
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = 409024439
+		intValue = -1757828027
 	)
 	@Export("heightScale")
 	int heightScale;
-	@ObfuscatedName("z")
+	@ObfuscatedName("k")
 	@Export("isVisible")
 	public boolean isVisible;
-	@ObfuscatedName("al")
+	@ObfuscatedName("ac")
 	@ObfuscatedGetter(
-		intValue = -1025761835
+		intValue = 1963706097
 	)
-	int field3489;
-	@ObfuscatedName("av")
+	@Export("ambient")
+	int ambient;
+	@ObfuscatedName("az")
 	@ObfuscatedGetter(
-		intValue = -704573687
+		intValue = -1785698549
 	)
-	int field3477;
-	@ObfuscatedName("as")
+	@Export("contrast")
+	int contrast;
+	@ObfuscatedName("aw")
 	@ObfuscatedGetter(
-		intValue = -958294189
+		intValue = 246799047
 	)
 	@Export("headIconPrayer")
 	public int headIconPrayer;
-	@ObfuscatedName("aw")
+	@ObfuscatedName("aa")
 	@ObfuscatedGetter(
-		intValue = 648485331
+		intValue = 950956241
 	)
-	public int field3492;
-	@ObfuscatedName("ad")
+	@Export("rotation")
+	public int rotation;
+	@ObfuscatedName("ap")
 	@Export("transforms")
 	public int[] transforms;
-	@ObfuscatedName("ag")
+	@ObfuscatedName("ar")
 	@ObfuscatedGetter(
-		intValue = 971935579
+		intValue = 1759904707
 	)
 	@Export("transformVarbit")
 	int transformVarbit;
-	@ObfuscatedName("ar")
+	@ObfuscatedName("ab")
 	@ObfuscatedGetter(
-		intValue = -375353725
+		intValue = -313433817
 	)
 	@Export("transformVarp")
 	int transformVarp;
 	@ObfuscatedName("ax")
 	@Export("isInteractable")
 	public boolean isInteractable;
-	@ObfuscatedName("az")
+	@ObfuscatedName("as")
 	@Export("isClickable")
 	public boolean isClickable;
-	@ObfuscatedName("ae")
+	@ObfuscatedName("ao")
 	@Export("isFollower")
 	public boolean isFollower;
-	@ObfuscatedName("ao")
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		signature = "Lla;"
+		signature = "Llb;"
 	)
 	@Export("params")
 	IterableNodeHashTable params;
@@ -217,10 +208,10 @@ public class NPCDefinition extends DualNode {
 		this.widthScale = 128;
 		this.heightScale = 128;
 		this.isVisible = false;
-		this.field3489 = 0;
-		this.field3477 = 0;
+		this.ambient = 0;
+		this.contrast = 0;
 		this.headIconPrayer = -1;
-		this.field3492 = 32;
+		this.rotation = 32;
 		this.transformVarbit = -1;
 		this.transformVarp = -1;
 		this.isInteractable = true;
@@ -228,19 +219,19 @@ public class NPCDefinition extends DualNode {
 		this.isFollower = false;
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-169621084"
+		signature = "(B)V",
+		garbageValue = "-117"
 	)
 	@Export("postDecode")
 	void postDecode() {
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(Lkf;I)V",
-		garbageValue = "-1547887563"
+		signature = "(Lkl;B)V",
+		garbageValue = "-41"
 	)
 	@Export("decode")
 	void decode(Buffer var1) {
@@ -254,10 +245,10 @@ public class NPCDefinition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("k")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "(Lkf;IB)V",
-		garbageValue = "-24"
+		signature = "(Lkl;II)V",
+		garbageValue = "-1943278683"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
@@ -312,10 +303,10 @@ public class NPCDefinition extends DualNode {
 			}
 		} else if (var2 == 60) {
 			var3 = var1.readUnsignedByte();
-			this.field3463 = new int[var3];
+			this.field3448 = new int[var3];
 
 			for (var4 = 0; var4 < var3; ++var4) {
-				this.field3463[var4] = var1.readUnsignedShort();
+				this.field3448[var4] = var1.readUnsignedShort();
 			}
 		} else if (var2 == 93) {
 			this.drawMapDot = false;
@@ -328,13 +319,13 @@ public class NPCDefinition extends DualNode {
 		} else if (var2 == 99) {
 			this.isVisible = true;
 		} else if (var2 == 100) {
-			this.field3489 = var1.readByte();
+			this.ambient = var1.readByte();
 		} else if (var2 == 101) {
-			this.field3477 = var1.readByte() * 5;
+			this.contrast = var1.readByte() * 5;
 		} else if (var2 == 102) {
 			this.headIconPrayer = var1.readUnsignedShort();
 		} else if (var2 == 103) {
-			this.field3492 = var1.readUnsignedShort();
+			this.rotation = var1.readUnsignedShort();
 		} else if (var2 != 106 && var2 != 118) {
 			if (var2 == 107) {
 				this.isInteractable = false;
@@ -343,7 +334,7 @@ public class NPCDefinition extends DualNode {
 			} else if (var2 == 111) {
 				this.isFollower = true;
 			} else if (var2 == 249) {
-				this.params = WorldMapArea.readStringIntParameters(var1, this.params);
+				this.params = UserComparator5.readStringIntParameters(var1, this.params);
 			}
 		} else {
 			this.transformVarbit = var1.readUnsignedShort();
@@ -379,143 +370,145 @@ public class NPCDefinition extends DualNode {
 
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("r")
 	@ObfuscatedSignature(
-		signature = "(Lis;ILis;IB)Ldm;",
-		garbageValue = "27"
+		signature = "(Lix;ILix;IS)Ldh;",
+		garbageValue = "-24084"
 	)
 	@Export("getModel")
 	public final Model getModel(SequenceDefinition var1, int var2, SequenceDefinition var3, int var4) {
 		if (this.transforms != null) {
 			NPCDefinition var12 = this.transform();
 			return var12 == null ? null : var12.getModel(var1, var2, var3, var4);
-		}
-		Model var5 = (Model)NpcDefinition_cachedModels.get((long)this.id);
-		if (var5 == null) {
-			boolean var6 = false;
-
-			for (int var7 = 0; var7 < this.models.length; ++var7) {
-				if (!NpcDefinition_modelArchive.tryLoadFile(this.models[var7], 0)) {
-					var6 = true;
-				}
-			}
-
-			if (var6) {
-				return null;
-			}
-
-			ModelData[] var8 = new ModelData[this.models.length];
-
-			int var9;
-			for (var9 = 0; var9 < this.models.length; ++var9) {
-				var8[var9] = ModelData.method2769(NpcDefinition_modelArchive, this.models[var9], 0);
-			}
-
-			ModelData var11;
-			if (var8.length == 1) {
-				var11 = var8[0];
-			} else {
-				var11 = new ModelData(var8, var8.length);
-			}
-
-			if (this.recolorFrom != null) {
-				for (var9 = 0; var9 < this.recolorFrom.length; ++var9) {
-					var11.recolor(this.recolorFrom[var9], this.recolorTo[var9]);
-				}
-			}
-
-			if (this.retextureFrom != null) {
-				for (var9 = 0; var9 < this.retextureFrom.length; ++var9) {
-					var11.retexture(this.retextureFrom[var9], this.retextureTo[var9]);
-				}
-			}
-
-			var5 = var11.toModel(this.field3489 + 64, this.field3477 + 850, -30, -50, -30);
-			NpcDefinition_cachedModels.put(var5, (long)this.id);
-		}
-
-		Model var10;
-		if (var1 != null && var3 != null) {
-			var10 = var1.applyTransformations(var5, var2, var3, var4);
-		} else if (var1 != null) {
-			var10 = var1.transformActorModel(var5, var2);
-		} else if (var3 != null) {
-			var10 = var3.transformActorModel(var5, var4);
 		} else {
-			var10 = var5.toSharedSequenceModel(true);
-		}
+			Model var5 = (Model)NpcDefinition_cachedModels.get((long)this.id);
+			if (var5 == null) {
+				boolean var6 = false;
 
-		if (this.widthScale != 128 || this.heightScale != 128) {
-			var10.scale(this.widthScale, this.heightScale, this.widthScale);
-		}
+				for (int var7 = 0; var7 < this.models.length; ++var7) {
+					if (!NpcDefinition_modelArchive.tryLoadFile(this.models[var7], 0)) {
+						var6 = true;
+					}
+				}
 
-		return var10;
+				if (var6) {
+					return null;
+				}
+
+				ModelData[] var8 = new ModelData[this.models.length];
+
+				int var9;
+				for (var9 = 0; var9 < this.models.length; ++var9) {
+					var8[var9] = ModelData.ModelData_get(NpcDefinition_modelArchive, this.models[var9], 0);
+				}
+
+				ModelData var11;
+				if (var8.length == 1) {
+					var11 = var8[0];
+				} else {
+					var11 = new ModelData(var8, var8.length);
+				}
+
+				if (this.recolorFrom != null) {
+					for (var9 = 0; var9 < this.recolorFrom.length; ++var9) {
+						var11.recolor(this.recolorFrom[var9], this.recolorTo[var9]);
+					}
+				}
+
+				if (this.retextureFrom != null) {
+					for (var9 = 0; var9 < this.retextureFrom.length; ++var9) {
+						var11.retexture(this.retextureFrom[var9], this.retextureTo[var9]);
+					}
+				}
+
+				var5 = var11.toModel(this.ambient + 64, this.contrast + 850, -30, -50, -30);
+				NpcDefinition_cachedModels.put(var5, (long)this.id);
+			}
+
+			Model var10;
+			if (var1 != null && var3 != null) {
+				var10 = var1.applyTransformations(var5, var2, var3, var4);
+			} else if (var1 != null) {
+				var10 = var1.transformActorModel(var5, var2);
+			} else if (var3 != null) {
+				var10 = var3.transformActorModel(var5, var4);
+			} else {
+				var10 = var5.toSharedSequenceModel(true);
+			}
+
+			if (this.widthScale != 128 || this.heightScale != 128) {
+				var10.scale(this.widthScale, this.heightScale, this.widthScale);
+			}
+
+			return var10;
+		}
 	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		signature = "(B)Lds;",
-		garbageValue = "87"
+		signature = "(B)Ldw;",
+		garbageValue = "58"
 	)
 	@Export("getModelData")
 	public final ModelData getModelData() {
 		if (this.transforms != null) {
 			NPCDefinition var1 = this.transform();
 			return var1 == null ? null : var1.getModelData();
-		}
-		if (this.field3463 == null) {
+		} else if (this.field3448 == null) {
 			return null;
-		}
-		boolean var5 = false;
-
-		for (int var2 = 0; var2 < this.field3463.length; ++var2) {
-			if (!NpcDefinition_modelArchive.tryLoadFile(this.field3463[var2], 0)) {
-				var5 = true;
-			}
-		}
-
-		if (var5) {
-			return null;
-		}
-		ModelData[] var6 = new ModelData[this.field3463.length];
-
-		for (int var3 = 0; var3 < this.field3463.length; ++var3) {
-			var6[var3] = ModelData.method2769(NpcDefinition_modelArchive, this.field3463[var3], 0);
-		}
-
-		ModelData var7;
-		if (var6.length == 1) {
-			var7 = var6[0];
 		} else {
-			var7 = new ModelData(var6, var6.length);
-		}
+			boolean var5 = false;
 
-		int var4;
-		if (this.recolorFrom != null) {
-			for (var4 = 0; var4 < this.recolorFrom.length; ++var4) {
-				var7.recolor(this.recolorFrom[var4], this.recolorTo[var4]);
+			for (int var2 = 0; var2 < this.field3448.length; ++var2) {
+				if (!NpcDefinition_modelArchive.tryLoadFile(this.field3448[var2], 0)) {
+					var5 = true;
+				}
+			}
+
+			if (var5) {
+				return null;
+			} else {
+				ModelData[] var6 = new ModelData[this.field3448.length];
+
+				for (int var3 = 0; var3 < this.field3448.length; ++var3) {
+					var6[var3] = ModelData.ModelData_get(NpcDefinition_modelArchive, this.field3448[var3], 0);
+				}
+
+				ModelData var7;
+				if (var6.length == 1) {
+					var7 = var6[0];
+				} else {
+					var7 = new ModelData(var6, var6.length);
+				}
+
+				int var4;
+				if (this.recolorFrom != null) {
+					for (var4 = 0; var4 < this.recolorFrom.length; ++var4) {
+						var7.recolor(this.recolorFrom[var4], this.recolorTo[var4]);
+					}
+				}
+
+				if (this.retextureFrom != null) {
+					for (var4 = 0; var4 < this.retextureFrom.length; ++var4) {
+						var7.retexture(this.retextureFrom[var4], this.retextureTo[var4]);
+					}
+				}
+
+				return var7;
 			}
 		}
-
-		if (this.retextureFrom != null) {
-			for (var4 = 0; var4 < this.retextureFrom.length; ++var4) {
-				var7.retexture(this.retextureFrom[var4], this.retextureTo[var4]);
-			}
-		}
-
-		return var7;
 	}
 
-	@ObfuscatedName("i")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		signature = "(I)Lij;",
-		garbageValue = "942859640"
+		signature = "(I)Lil;",
+		garbageValue = "1423511184"
 	)
 	@Export("transform")
 	public final NPCDefinition transform() {
 		int var1 = -1;
 		if (this.transformVarbit != -1) {
-			var1 = GrandExchangeOfferOwnWorldComparator.getVarbit(this.transformVarbit);
+			var1 = WorldMapSprite.getVarbit(this.transformVarbit);
 		} else if (this.transformVarp != -1) {
 			var1 = Varps.Varps_main[this.transformVarp];
 		}
@@ -527,62 +520,114 @@ public class NPCDefinition extends DualNode {
 			var2 = this.transforms[this.transforms.length - 1];
 		}
 
-		return var2 != -1 ? GameShell.getNpcDefinition(var2) : null;
+		return var2 != -1 ? PacketBufferNode.getNpcDefinition(var2) : null;
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
 		signature = "(B)Z",
-		garbageValue = "-119"
+		garbageValue = "-43"
 	)
 	@Export("transformIsVisible")
 	public boolean transformIsVisible() {
 		if (this.transforms == null) {
 			return true;
-		}
-		int var1 = -1;
-		if (this.transformVarbit != -1) {
-			var1 = GrandExchangeOfferOwnWorldComparator.getVarbit(this.transformVarbit);
-		} else if (this.transformVarp != -1) {
-			var1 = Varps.Varps_main[this.transformVarp];
-		}
+		} else {
+			int var1 = -1;
+			if (this.transformVarbit != -1) {
+				var1 = WorldMapSprite.getVarbit(this.transformVarbit);
+			} else if (this.transformVarp != -1) {
+				var1 = Varps.Varps_main[this.transformVarp];
+			}
 
-		if (var1 >= 0 && var1 < this.transforms.length) {
-			return this.transforms[var1] != -1;
+			if (var1 >= 0 && var1 < this.transforms.length) {
+				return this.transforms[var1] != -1;
+			} else {
+				return this.transforms[this.transforms.length - 1] != -1;
+			}
 		}
-		return this.transforms[this.transforms.length - 1] != -1;
 	}
 
-	@ObfuscatedName("u")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
 		signature = "(III)I",
-		garbageValue = "-696362374"
+		garbageValue = "-1804168798"
 	)
 	@Export("getIntParam")
 	public int getIntParam(int var1, int var2) {
-		IterableNodeHashTable var4 = this.params;
-		int var3;
-		if (var4 == null) {
-			var3 = var2;
-		} else {
-			IntegerNode var5 = (IntegerNode)var4.get((long)var1);
-			if (var5 == null) {
-				var3 = var2;
-			} else {
-				var3 = var5.integer;
-			}
-		}
-
-		return var3;
+		return HealthBar.method2030(this.params, var1, var2);
 	}
 
-	@ObfuscatedName("x")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
 		signature = "(ILjava/lang/String;I)Ljava/lang/String;",
-		garbageValue = "-1901190491"
+		garbageValue = "-1270482233"
 	)
 	@Export("getStringParam")
 	public String getStringParam(int var1, String var2) {
-		return GrandExchangeOfferWorldComparator.method54(this.params, var1, var2);
+		return class96.method2259(this.params, var1, var2);
+	}
+
+	@ObfuscatedName("v")
+	@ObfuscatedSignature(
+		signature = "(Lhp;III)Llf;",
+		garbageValue = "-1092680498"
+	)
+	@Export("SpriteBuffer_getSprite")
+	public static Sprite SpriteBuffer_getSprite(AbstractArchive var0, int var1, int var2) {
+		return !VertexNormal.method2958(var0, var1, var2) ? null : FillMode.method6007();
+	}
+
+	@ObfuscatedName("gr")
+	@ObfuscatedSignature(
+		signature = "(IIIIIIII)V",
+		garbageValue = "474931921"
+	)
+	static final void method4665(int var0, int var1, int var2, int var3, int var4, int var5, int var6) {
+		int var8 = var6 - 334;
+		if (var8 < 0) {
+			var8 = 0;
+		} else if (var8 > 100) {
+			var8 = 100;
+		}
+
+		int var9 = (Client.zoomWidth - Client.zoomHeight) * var8 / 100 + Client.zoomHeight;
+		int var7 = var5 * var9 / 256;
+		var8 = 2048 - var3 & 2047;
+		var9 = 2048 - var4 & 2047;
+		int var10 = 0;
+		int var11 = 0;
+		int var12 = var7;
+		int var13;
+		int var14;
+		int var15;
+		if (var8 != 0) {
+			var13 = Rasterizer3D.Rasterizer3D_sine[var8];
+			var14 = Rasterizer3D.Rasterizer3D_cosine[var8];
+			var15 = var11 * var14 - var7 * var13 >> 16;
+			var12 = var14 * var7 + var13 * var11 >> 16;
+			var11 = var15;
+		}
+
+		if (var9 != 0) {
+			var13 = Rasterizer3D.Rasterizer3D_sine[var9];
+			var14 = Rasterizer3D.Rasterizer3D_cosine[var9];
+			var15 = var10 * var14 + var13 * var12 >> 16;
+			var12 = var12 * var14 - var10 * var13 >> 16;
+			var10 = var15;
+		}
+
+		GrandExchangeOfferOwnWorldComparator.cameraX = var0 - var10;
+		Varcs.cameraY = var1 - var11;
+		WorldMapIcon_1.cameraZ = var2 - var12;
+		IgnoreList.cameraPitch = var3;
+		WorldMapSection2.cameraYaw = var4;
+		if (Client.oculusOrbState == 1 && Client.staffModLevel >= 2 && Client.cycle % 50 == 0 && (ObjectSound.oculusOrbFocalPointX >> 7 != class223.localPlayer.x >> 7 || class14.oculusOrbFocalPointY >> 7 != class223.localPlayer.y * 682054857 >> 7)) {
+			var13 = class223.localPlayer.plane;
+			var14 = class223.baseX * 64 + (ObjectSound.oculusOrbFocalPointX >> 7);
+			var15 = class286.baseY * 64 + (class14.oculusOrbFocalPointY >> 7);
+			class287.method5205(var14, var15, var13, true);
+		}
+
 	}
 }

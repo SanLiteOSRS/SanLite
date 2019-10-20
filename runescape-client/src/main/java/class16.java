@@ -1,21 +1,20 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("g")
+@ObfuscatedName("t")
 public class class16 {
-	@ObfuscatedName("r")
+	@ObfuscatedName("bv")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "572816821"
+		signature = "Lha;"
 	)
-	@Export("SpriteBuffer_clear")
-	public static void SpriteBuffer_clear() {
-		Varps.SpriteBuffer_xOffsets = null;
-		SpriteBuffer.SpriteBuffer_yOffsets = null;
-		SpriteBuffer.SpriteBuffer_spriteWidths = null;
-		class216.SpriteBuffer_spriteHeights = null;
-		Frames.SpriteBuffer_spritePalette = null;
-		SpriteBuffer.SpriteBuffer_pixels = null;
+	static StudioGame field101;
+
+	@ObfuscatedName("gt")
+	@ObfuscatedSignature(
+		signature = "(I)Z",
+		garbageValue = "-194801296"
+	)
+	static boolean method195() {
+		return (Client.drawPlayerNames & 8) != 0;
 	}
 }

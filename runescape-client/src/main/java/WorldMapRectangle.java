@@ -4,110 +4,83 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("n")
+@ObfuscatedName("j")
 @Implements("WorldMapRectangle")
 public final class WorldMapRectangle {
-	@ObfuscatedName("sd")
-	@ObfuscatedSignature(
-		signature = "Llo;"
-	)
-	@Export("platformInfo")
-	static PlatformInfo platformInfo;
-	@ObfuscatedName("gs")
-	@Export("regionLandArchiveIds")
-	static int[] regionLandArchiveIds;
-	@ObfuscatedName("q")
+	@ObfuscatedName("jz")
 	@ObfuscatedGetter(
-		intValue = 1996817297
+		intValue = 1984702959
+	)
+	@Export("plane")
+	static int plane;
+	@ObfuscatedName("z")
+	@ObfuscatedGetter(
+		intValue = 1437732891
 	)
 	@Export("width")
 	int width;
-	@ObfuscatedName("w")
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = 625891879
+		intValue = 2120102399
 	)
 	@Export("height")
 	int height;
-	@ObfuscatedName("e")
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = 1380746691
+		intValue = -1194762567
 	)
 	@Export("x")
 	int x;
-	@ObfuscatedName("p")
+	@ObfuscatedName("u")
 	@ObfuscatedGetter(
-		intValue = -1337066781
+		intValue = 1496265891
 	)
 	@Export("y")
 	int y;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		signature = "Lao;"
+		signature = "Lal;"
 	)
 	final WorldMapManager this$0;
 
 	@ObfuscatedSignature(
-		signature = "(Lao;)V"
+		signature = "(Lal;)V"
 	)
 	WorldMapRectangle(WorldMapManager var1) {
 		this.this$0 = var1;
 	}
 
-	@ObfuscatedName("gb")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "205706610"
+		signature = "(Lhp;Ljava/lang/String;Ljava/lang/String;I)Llp;",
+		garbageValue = "669461373"
 	)
-	static final void method275() {
-		for (GraphicsObject var0 = (GraphicsObject)Client.graphicsObjects.last(); var0 != null; var0 = (GraphicsObject)Client.graphicsObjects.previous()) {
-			if (var0.plane == class42.plane && !var0.isFinished) {
-				if (Client.cycle >= var0.cycleStart) {
-					var0.advance(Client.field718);
-					if (var0.isFinished) {
-						var0.remove();
-					} else {
-						GrandExchangeOfferWorldComparator.scene.drawEntity(var0.plane, var0.x, var0.y, var0.height, 60, var0, 0, -1L, false);
-					}
-				}
-			} else {
-				var0.remove();
-			}
+	@Export("SpriteBuffer_getIndexedSpriteByName")
+	public static IndexedSprite SpriteBuffer_getIndexedSpriteByName(AbstractArchive var0, String var1, String var2) {
+		int var3 = var0.getGroupId(var1);
+		int var4 = var0.getFileId(var3, var2);
+		IndexedSprite var5;
+		if (!VertexNormal.method2958(var0, var3, var4)) {
+			var5 = null;
+		} else {
+			IndexedSprite var7 = new IndexedSprite();
+			var7.width = class325.SpriteBuffer_spriteWidth;
+			var7.height = Frames.SpriteBuffer_spriteHeight;
+			var7.xOffset = class325.SpriteBuffer_xOffsets[0];
+			var7.yOffset = MusicPatchPcmStream.SpriteBuffer_yOffsets[0];
+			var7.subWidth = class325.SpriteBuffer_spriteWidths[0];
+			var7.subHeight = RunException.SpriteBuffer_spriteHeights[0];
+			var7.palette = class325.SpriteBuffer_spritePalette;
+			var7.pixels = PacketBufferNode.SpriteBuffer_pixels[0];
+			class325.SpriteBuffer_xOffsets = null;
+			MusicPatchPcmStream.SpriteBuffer_yOffsets = null;
+			class325.SpriteBuffer_spriteWidths = null;
+			RunException.SpriteBuffer_spriteHeights = null;
+			class325.SpriteBuffer_spritePalette = null;
+			PacketBufferNode.SpriteBuffer_pixels = null;
+			var5 = var7;
 		}
 
-	}
-
-	@ObfuscatedName("iv")
-	@ObfuscatedSignature(
-		signature = "(Lhj;Liq;IIZI)V",
-		garbageValue = "106659698"
-	)
-	@Export("addWidgetItemMenuItem")
-	static final void addWidgetItemMenuItem(Widget var0, ItemDefinition var1, int var2, int var3, boolean var4) {
-		String[] var5 = var1.inventoryActions;
-		byte var6 = -1;
-		String var7 = null;
-		if (var5 != null && var5[var3] != null) {
-			if (var3 == 0) {
-				var6 = 33;
-			} else if (var3 == 1) {
-				var6 = 34;
-			} else if (var3 == 2) {
-				var6 = 35;
-			} else if (var3 == 3) {
-				var6 = 36;
-			} else {
-				var6 = 37;
-			}
-
-			var7 = var5[var3];
-		} else if (var3 == 4) {
-			var6 = 37;
-			var7 = "Drop";
-		}
-
-		if (var6 != -1 && var7 != null) {
-			Entity.insertMenuItem(var7, ClientPreferences.colorStartTag(16748608) + var1.name, var6, var1.id, var2, var0.id, var4);
-		}
-
+		return var5;
 	}
 }

@@ -3,25 +3,33 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("ez")
+@ObfuscatedName("en")
 @Implements("UrlRequester")
 public class UrlRequester implements Runnable {
-	@ObfuscatedName("q")
+	@ObfuscatedName("u")
+	@Export("Interpreter_stringLocals")
+	static String[] Interpreter_stringLocals;
+	@ObfuscatedName("kx")
+	@ObfuscatedGetter(
+		intValue = 1912035221
+	)
+	@Export("menuX")
+	static int menuX;
+	@ObfuscatedName("z")
 	@Export("thread")
 	final Thread thread;
-	@ObfuscatedName("w")
+	@ObfuscatedName("n")
 	@Export("isClosed")
 	volatile boolean isClosed;
-	@ObfuscatedName("e")
+	@ObfuscatedName("v")
 	@Export("requests")
 	Queue requests;
 
@@ -32,10 +40,10 @@ public class UrlRequester implements Runnable {
 		this.thread.start();
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(Ljava/net/URL;B)Lex;",
-		garbageValue = "78"
+		signature = "(Ljava/net/URL;I)Leh;",
+		garbageValue = "1658949504"
 	)
 	@Export("request")
 	public UrlRequest request(URL var1) {
@@ -47,10 +55,10 @@ public class UrlRequester implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "78"
+		signature = "(I)V",
+		garbageValue = "-1861698120"
 	)
 	@Export("close")
 	public void close() {
@@ -113,66 +121,18 @@ public class UrlRequester implements Runnable {
 
 				}
 			} catch (Exception var17) {
-				HitSplatDefinition.sendStackTrace((String)null, var17);
+				class32.RunException_sendStackTrace((String)null, var17);
 			}
 		}
 
 	}
 
-	@ObfuscatedName("u")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(I)Ljava/lang/String;",
-		garbageValue = "1670821408"
+		signature = "(CI)C",
+		garbageValue = "1748894504"
 	)
-	@Export("getChatMessagesAsString")
-	static String getChatMessagesAsString() {
-		String var0 = "";
-
-		Message var2;
-		for (Iterator var1 = Messages.Messages_hashTable.iterator(); var1.hasNext(); var0 = var0 + var2.sender + ':' + var2.text + '\n') {
-			var2 = (Message)var1.next();
-		}
-
-		return var0;
-	}
-
-	@ObfuscatedName("s")
-	@ObfuscatedSignature(
-		signature = "(ILcx;ZI)I",
-		garbageValue = "337474973"
-	)
-	static int method3306(int var0, Script var1, boolean var2) {
-		Widget var3;
-		if (var0 == ScriptOpcodes.IF_GETINVOBJECT) {
-			var3 = class80.getWidget(Interpreter.Interpreter_intStack[--HealthBarUpdate.Interpreter_intStackSize]);
-			Interpreter.Interpreter_intStack[++HealthBarUpdate.Interpreter_intStackSize - 1] = var3.itemId;
-			return 1;
-		}
-		if (var0 == ScriptOpcodes.IF_GETINVCOUNT) {
-			var3 = class80.getWidget(Interpreter.Interpreter_intStack[--HealthBarUpdate.Interpreter_intStackSize]);
-			if (var3.itemId != -1) {
-				Interpreter.Interpreter_intStack[++HealthBarUpdate.Interpreter_intStackSize - 1] = var3.itemQuantity;
-			} else {
-				Interpreter.Interpreter_intStack[++HealthBarUpdate.Interpreter_intStackSize - 1] = 0;
-			}
-
-			return 1;
-		}
-		if (var0 == ScriptOpcodes.IF_HASSUB) {
-			int var5 = Interpreter.Interpreter_intStack[--HealthBarUpdate.Interpreter_intStackSize];
-			InterfaceParent var4 = (InterfaceParent)Client.interfaceParents.get((long)var5);
-			if (var4 != null) {
-				Interpreter.Interpreter_intStack[++HealthBarUpdate.Interpreter_intStackSize - 1] = 1;
-			} else {
-				Interpreter.Interpreter_intStack[++HealthBarUpdate.Interpreter_intStackSize - 1] = 0;
-			}
-
-			return 1;
-		}
-		if (var0 == ScriptOpcodes.IF_GETTOP) {
-			Interpreter.Interpreter_intStack[++HealthBarUpdate.Interpreter_intStackSize - 1] = Client.rootInterface;
-			return 1;
-		}
-		return 2;
+	static char method3256(char var0) {
+		return var0 != 181 && var0 != 402 ? Character.toTitleCase(var0) : var0;
 	}
 }

@@ -4,64 +4,64 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cw")
+@ObfuscatedName("cr")
 @Implements("Players")
 public class Players {
-	@ObfuscatedName("e")
-	static byte[] field1252;
-	@ObfuscatedName("p")
-	static byte[] field1250;
-	@ObfuscatedName("k")
+	@ObfuscatedName("v")
+	static byte[] field1244;
+	@ObfuscatedName("u")
+	static byte[] field1235;
+	@ObfuscatedName("r")
 	@ObfuscatedSignature(
-		signature = "[Lkf;"
+		signature = "[Lkl;"
 	)
-	static Buffer[] field1254;
-	@ObfuscatedName("l")
+	static Buffer[] field1236;
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = -1230820149
+		intValue = 842790617
 	)
 	@Export("Players_count")
 	static int Players_count;
-	@ObfuscatedName("b")
+	@ObfuscatedName("q")
 	@Export("Players_indices")
 	static int[] Players_indices;
-	@ObfuscatedName("i")
+	@ObfuscatedName("m")
 	@ObfuscatedGetter(
-		intValue = -1347586957
+		intValue = -662435465
 	)
 	@Export("Players_emptyIdxCount")
 	static int Players_emptyIdxCount;
-	@ObfuscatedName("c")
+	@ObfuscatedName("y")
 	@Export("Players_emptyIndices")
 	static int[] Players_emptyIndices;
-	@ObfuscatedName("f")
+	@ObfuscatedName("i")
 	@Export("Players_regions")
 	static int[] Players_regions;
-	@ObfuscatedName("m")
+	@ObfuscatedName("c")
 	@Export("Players_orientations")
 	static int[] Players_orientations;
-	@ObfuscatedName("u")
+	@ObfuscatedName("b")
 	@Export("Players_targetIndices")
 	static int[] Players_targetIndices;
-	@ObfuscatedName("x")
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = 1998791081
+		intValue = 301065307
 	)
 	@Export("Players_pendingUpdateCount")
 	static int Players_pendingUpdateCount;
-	@ObfuscatedName("r")
+	@ObfuscatedName("a")
 	@Export("Players_pendingUpdateIndices")
 	static int[] Players_pendingUpdateIndices;
-	@ObfuscatedName("v")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		signature = "Lkf;"
+		signature = "Lkl;"
 	)
-	static Buffer field1264;
+	static Buffer field1246;
 
 	static {
-		field1252 = new byte[2048];
-		field1250 = new byte[2048];
-		field1254 = new Buffer[2048];
+		field1244 = new byte[2048];
+		field1235 = new byte[2048];
+		field1236 = new Buffer[2048];
 		Players_count = 0;
 		Players_indices = new int[2048];
 		Players_emptyIdxCount = 0;
@@ -71,74 +71,46 @@ public class Players {
 		Players_targetIndices = new int[2048];
 		Players_pendingUpdateCount = 0;
 		Players_pendingUpdateIndices = new int[2048];
-		field1264 = new Buffer(new byte[5000]);
+		field1246 = new Buffer(new byte[5000]);
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("gw")
 	@ObfuscatedSignature(
-		signature = "(IIIIB)V",
-		garbageValue = "-86"
+		signature = "(Lbi;ZI)V",
+		garbageValue = "-1924716638"
 	)
-	static final void method2092(int var0, int var1, int var2, int var3) {
-		for (int var4 = var1; var4 <= var3 + var1; ++var4) {
-			for (int var5 = var0; var5 <= var0 + var2; ++var5) {
-				if (var5 >= 0 && var5 < 104 && var4 >= 0 && var4 < 104) {
-					class32.field282[0][var5][var4] = 127;
-					if (var0 == var5 && var5 > 0) {
-						Tiles.Tiles_heights[0][var5][var4] = Tiles.Tiles_heights[0][var5 - 1][var4];
+	@Export("addPlayerToScene")
+	static void addPlayerToScene(Player var0, boolean var1) {
+		if (var0 != null && var0.isVisible() && !var0.isHidden) {
+			var0.isUnanimated = false;
+			if ((Client.isLowDetail && Players_count > 50 || Players_count > 200) && var1 && var0.readySequence == var0.movementSequence) {
+				var0.isUnanimated = true;
+			}
+
+			int var2 = var0.x >> 7;
+			int var3 = var0.y * 682054857 >> 7;
+			if (var2 >= 0 && var2 < 104 && var3 >= 0 && var3 < 104) {
+				long var4 = class267.calculateTag(0, 0, 0, false, var0.index);
+				if (var0.model0 != null && Client.cycle >= var0.animationCycleStart && Client.cycle < var0.animationCycleEnd) {
+					var0.isUnanimated = false;
+					var0.tileHeight = MusicPatchPcmStream.getTileHeight(var0.x, var0.y * 682054857, WorldMapRectangle.plane);
+					var0.playerCycle = Client.cycle;
+					PacketWriter.scene.addNullableObject(WorldMapRectangle.plane, var0.x, var0.y * 682054857, var0.tileHeight, 60, var0, var0.rotation, var4, var0.field622, var0.field611, var0.field612, var0.field613);
+				} else {
+					if ((var0.x & 127) == 64 && (var0.y * 682054857 & 127) == 64) {
+						if (Client.tileLastDrawnActor[var2][var3] == Client.viewportDrawCount) {
+							return;
+						}
+
+						Client.tileLastDrawnActor[var2][var3] = Client.viewportDrawCount;
 					}
 
-					if (var5 == var0 + var2 && var5 < 103) {
-						Tiles.Tiles_heights[0][var5][var4] = Tiles.Tiles_heights[0][var5 + 1][var4];
-					}
-
-					if (var4 == var1 && var4 > 0) {
-						Tiles.Tiles_heights[0][var5][var4] = Tiles.Tiles_heights[0][var5][var4 - 1];
-					}
-
-					if (var4 == var3 + var1 && var4 < 103) {
-						Tiles.Tiles_heights[0][var5][var4] = Tiles.Tiles_heights[0][var5][var4 + 1];
-					}
+					var0.tileHeight = MusicPatchPcmStream.getTileHeight(var0.x, var0.y * 682054857, WorldMapRectangle.plane);
+					var0.playerCycle = Client.cycle;
+					PacketWriter.scene.drawEntity(WorldMapRectangle.plane, var0.x, var0.y * 682054857, var0.tileHeight, 60, var0, var0.rotation, var4, var0.isWalking);
 				}
 			}
 		}
 
-	}
-
-	@ObfuscatedName("e")
-	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "0"
-	)
-	public static void method2093() {
-		synchronized(ArchiveDiskActionHandler.ArchiveDiskActionHandler_lock) {
-			if (ArchiveDiskActionHandler.field3144 != 0) {
-				ArchiveDiskActionHandler.field3144 = 1;
-
-				try {
-					ArchiveDiskActionHandler.ArchiveDiskActionHandler_lock.wait();
-				} catch (InterruptedException var3) {
-				}
-			}
-
-		}
-	}
-
-	@ObfuscatedName("o")
-	@ObfuscatedSignature(
-		signature = "(III)Z",
-		garbageValue = "2142202681"
-	)
-	static final boolean method2091(int var0, int var1) {
-		ObjectDefinition var2 = ViewportMouse.getObjectDefinition(var0);
-		if (var1 == 11) {
-			var1 = 10;
-		}
-
-		if (var1 >= 5 && var1 <= 8) {
-			var1 = 4;
-		}
-
-		return var2.method4589(var1);
 	}
 }

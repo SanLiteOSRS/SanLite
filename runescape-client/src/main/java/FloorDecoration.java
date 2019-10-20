@@ -1,50 +1,51 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.StringReader;
-import java.io.StringWriter;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("dq")
+@ObfuscatedName("dj")
 @Implements("FloorDecoration")
 public final class FloorDecoration {
-	@ObfuscatedName("q")
+	@ObfuscatedName("d")
 	@ObfuscatedGetter(
-		intValue = -311515591
+		intValue = 1829552079
 	)
-	@Export("tileHeight")
-	int tileHeight;
-	@ObfuscatedName("w")
-	@ObfuscatedGetter(
-		intValue = -1344271777
-	)
-	@Export("x")
-	int x;
-	@ObfuscatedName("e")
-	@ObfuscatedGetter(
-		intValue = -779439179
-	)
-	@Export("y")
-	int y;
-	@ObfuscatedName("p")
+	@Export("canvasWidth")
+	public static int canvasWidth;
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "Leo;"
+		signature = "Ler;"
 	)
 	@Export("entity")
 	public Entity entity;
-	@ObfuscatedName("k")
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		longValue = -3653968665269180135L
+		intValue = 1834213503
+	)
+	@Export("tileHeight")
+	int tileHeight;
+	@ObfuscatedName("v")
+	@ObfuscatedGetter(
+		intValue = 461857131
+	)
+	@Export("x")
+	int x;
+	@ObfuscatedName("u")
+	@ObfuscatedGetter(
+		intValue = -848464295
+	)
+	@Export("y")
+	int y;
+	@ObfuscatedName("r")
+	@ObfuscatedGetter(
+		longValue = 3642112439868332829L
 	)
 	@Export("tag")
 	public long tag;
-	@ObfuscatedName("l")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = -1094759427
+		intValue = -1953587145
 	)
 	@Export("flags")
 	int flags;
@@ -52,70 +53,48 @@ public final class FloorDecoration {
 	FloorDecoration() {
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(S)V",
-		garbageValue = "3762"
+		signature = "(II)Lhs;",
+		garbageValue = "-1156266256"
 	)
-	public static void method2842() {
-		if (KeyHandler.KeyHandler_instance != null) {
-			synchronized(KeyHandler.KeyHandler_instance) {
-				KeyHandler.KeyHandler_instance = null;
+	public static ServerBuild method2837(int var0) {
+		ServerBuild[] var1 = new ServerBuild[]{ServerBuild.BUILDLIVE, ServerBuild.LIVE, ServerBuild.RC, ServerBuild.WIP};
+		ServerBuild[] var2 = var1;
+
+		for (int var3 = 0; var3 < var2.length; ++var3) {
+			ServerBuild var4 = var2[var3];
+			if (var0 == var4.field3079) {
+				return var4;
 			}
 		}
 
+		return null;
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("jl")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/Throwable;B)Ljava/lang/String;",
-		garbageValue = "1"
+		signature = "(IIIILlf;Lhz;S)V",
+		garbageValue = "1700"
 	)
-	static String method2843(Throwable var0) throws IOException {
-		String var1;
-		if (var0 instanceof RunException) {
-			RunException var2 = (RunException)var0;
-			var1 = var2.message + " | ";
-			var0 = var2.throwable;
+	@Export("worldToMinimap")
+	static final void worldToMinimap(int var0, int var1, int var2, int var3, Sprite var4, SpriteMask var5) {
+		int var6 = var3 * var3 + var2 * var2;
+		if (var6 > 4225 && var6 < 90000) {
+			int var7 = Client.camAngleY & 2047;
+			int var8 = Rasterizer3D.Rasterizer3D_sine[var7];
+			int var9 = Rasterizer3D.Rasterizer3D_cosine[var7];
+			int var10 = var9 * var2 + var3 * var8 >> 16;
+			int var11 = var3 * var9 - var8 * var2 >> 16;
+			double var12 = Math.atan2((double)var10, (double)var11);
+			int var14 = var5.width / 2 - 25;
+			int var15 = (int)(Math.sin(var12) * (double)var14);
+			int var16 = (int)(Math.cos(var12) * (double)var14);
+			byte var17 = 20;
+			PendingSpawn.redHintArrowSprite.method6067(var15 + (var0 + var5.width / 2 - var17 / 2), var5.height / 2 + var1 - var17 / 2 - var16 - 10, var17, var17, 15, 15, var12, 256);
 		} else {
-			var1 = "";
+			class208.drawSpriteOnMinimap(var0, var1, var2, var3, var4, var5);
 		}
 
-		StringWriter var12 = new StringWriter();
-		PrintWriter var3 = new PrintWriter(var12);
-		var0.printStackTrace(var3);
-		var3.close();
-		String var4 = var12.toString();
-		BufferedReader var5 = new BufferedReader(new StringReader(var4));
-		String var6 = var5.readLine();
-
-		while (true) {
-			while (true) {
-				String var7 = var5.readLine();
-				if (var7 == null) {
-					var1 = var1 + "| " + var6;
-					return var1;
-				}
-
-				int var8 = var7.indexOf(40);
-				int var9 = var7.indexOf(41, var8 + 1);
-				if (var8 >= 0 && var9 >= 0) {
-					String var10 = var7.substring(var8 + 1, var9);
-					int var11 = var10.indexOf(".java:");
-					if (var11 >= 0) {
-						var10 = var10.substring(0, var11) + var10.substring(var11 + 5);
-						var1 = var1 + var10 + ' ';
-						continue;
-					}
-
-					var7 = var7.substring(0, var8);
-				}
-
-				var7 = var7.trim();
-				var7 = var7.substring(var7.lastIndexOf(32) + 1);
-				var7 = var7.substring(var7.lastIndexOf(9) + 1);
-				var1 = var1 + var7 + ' ';
-			}
-		}
 	}
 }

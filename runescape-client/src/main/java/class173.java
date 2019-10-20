@@ -3,31 +3,31 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fo")
+@ObfuscatedName("fr")
 public class class173 {
-	@ObfuscatedName("e")
+	@ObfuscatedName("v")
 	@Export("directions")
-	public static int[][] directions;
-	@ObfuscatedName("p")
+	static int[][] directions;
+	@ObfuscatedName("u")
 	@Export("distances")
-	public static int[][] distances;
-	@ObfuscatedName("k")
+	static int[][] distances;
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = 1613442925
+		intValue = 764450151
 	)
-	public static int field2088;
-	@ObfuscatedName("i")
+	static int field2075;
+	@ObfuscatedName("m")
 	@Export("bufferX")
-	public static int[] bufferX;
-	@ObfuscatedName("c")
+	static int[] bufferX;
+	@ObfuscatedName("y")
 	@Export("bufferY")
-	public static int[] bufferY;
-	@ObfuscatedName("gq")
+	static int[] bufferY;
+	@ObfuscatedName("fu")
 	@ObfuscatedSignature(
-		signature = "[Lly;"
+		signature = "Lkn;"
 	)
-	@Export("headIconHintSprites")
-	static Sprite[] headIconHintSprites;
+	@Export("fontBold12")
+	static Font fontBold12;
 
 	static {
 		directions = new int[128][128];
@@ -36,16 +36,26 @@ public class class173 {
 		bufferY = new int[4096];
 	}
 
-	@ObfuscatedName("r")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(I)Lfu;",
-		garbageValue = "-1483717574"
+		signature = "(Ljava/lang/CharSequence;I)I",
+		garbageValue = "1868348372"
 	)
-	public static Clock method3589() {
-		try {
-			return new NanoClock();
-		} catch (Throwable var1) {
-			return new MilliClock();
+	public static int method3550(CharSequence var0) {
+		int var1 = var0.length();
+		int var2 = 0;
+
+		for (int var3 = 0; var3 < var1; ++var3) {
+			char var4 = var0.charAt(var3);
+			if (var4 <= 127) {
+				++var2;
+			} else if (var4 <= 2047) {
+				var2 += 2;
+			} else {
+				var2 += 3;
+			}
 		}
+
+		return var2;
 	}
 }

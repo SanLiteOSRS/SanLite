@@ -4,213 +4,125 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("en")
+@ObfuscatedName("ee")
 @Implements("FaceNormal")
 public class FaceNormal {
-	@ObfuscatedName("v")
-	static int[][][] field1887;
-	@ObfuscatedName("q")
-	@ObfuscatedGetter(
-		intValue = 2130535467
+	@ObfuscatedName("o")
+	@ObfuscatedSignature(
+		signature = "Lkn;"
 	)
-	int field1889;
+	@Export("ItemDefinition_fontPlain11")
+	static Font ItemDefinition_fontPlain11;
 	@ObfuscatedName("w")
-	@ObfuscatedGetter(
-		intValue = 522108407
+	@ObfuscatedSignature(
+		signature = "Lkl;"
 	)
-	int field1890;
-	@ObfuscatedName("e")
-	@ObfuscatedGetter(
-		intValue = -1566565487
+	@Export("NetCache_responseArchiveBuffer")
+	static Buffer NetCache_responseArchiveBuffer;
+	@ObfuscatedName("ds")
+	@ObfuscatedSignature(
+		signature = "Lie;"
 	)
-	int field1888;
+	@Export("archive2")
+	static Archive archive2;
+	@ObfuscatedName("n")
+	@ObfuscatedGetter(
+		intValue = 149051353
+	)
+	@Export("x")
+	int x;
+	@ObfuscatedName("v")
+	@ObfuscatedGetter(
+		intValue = -1494841217
+	)
+	@Export("y")
+	int y;
+	@ObfuscatedName("u")
+	@ObfuscatedGetter(
+		intValue = 2026615431
+	)
+	@Export("z")
+	int z;
 
 	FaceNormal() {
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("iy")
 	@ObfuscatedSignature(
-		signature = "(I)[Ljj;",
-		garbageValue = "1137342160"
+		signature = "([Lho;IIIZI)V",
+		garbageValue = "2028417948"
 	)
-	@Export("ClientParameter_values")
-	public static ClientParameter[] ClientParameter_values() {
-		return new ClientParameter[]{ClientParameter.field3593, ClientParameter.field3589, ClientParameter.field3594, ClientParameter.field3591, ClientParameter.field3600, ClientParameter.field3599, ClientParameter.field3592, ClientParameter.field3595, ClientParameter.field3585, ClientParameter.field3587, ClientParameter.field3582, ClientParameter.field3586, ClientParameter.field3581, ClientParameter.field3598, ClientParameter.field3590, ClientParameter.field3588, ClientParameter.field3584, ClientParameter.field3596, ClientParameter.field3583};
-	}
+	@Export("resizeInterface")
+	static void resizeInterface(Widget[] var0, int var1, int var2, int var3, boolean var4) {
+		for (int var5 = 0; var5 < var0.length; ++var5) {
+			Widget var6 = var0[var5];
+			if (var6 != null && var6.parentId == var1) {
+				TileItem.alignWidgetSize(var6, var2, var3, var4);
+				class30.alignWidgetPosition(var6, var2, var3);
+				if (var6.scrollX > var6.scrollWidth - var6.width) {
+					var6.scrollX = var6.scrollWidth - var6.width;
+				}
 
-	@ObfuscatedName("q")
-	@ObfuscatedSignature(
-		signature = "(Lhp;Lhp;B)V",
-		garbageValue = "-92"
-	)
-	@Export("setNpcDefinitionArchives")
-	public static void setNpcDefinitionArchives(AbstractArchive var0, AbstractArchive var1) {
-		NPCDefinition.NpcDefinition_archive = var0;
-		NPCDefinition.NpcDefinition_modelArchive = var1;
-	}
+				if (var6.scrollX < 0) {
+					var6.scrollX = 0;
+				}
 
-	@ObfuscatedName("k")
-	@ObfuscatedSignature(
-		signature = "(ZI)V",
-		garbageValue = "-545171198"
-	)
-	static void method3266(boolean var0) {
-		Login.Login_response1 = "";
-		Login.Login_response2 = "Enter your username/email & password.";
-		Login.Login_response3 = "";
-		Login.loginIndex = 2;
-		if (var0) {
-			Login.Login_password = "";
+				if (var6.scrollY > var6.scrollHeight - var6.height) {
+					var6.scrollY = var6.scrollHeight - var6.height;
+				}
+
+				if (var6.scrollY < 0) {
+					var6.scrollY = 0;
+				}
+
+				if (var6.type == 0) {
+					GameShell.revalidateWidgetScroll(var0, var6, var4);
+				}
+			}
 		}
 
-		class49.method815();
-		if (Client.Login_isUsernameRemembered && Login.Login_username != null && Login.Login_username.length() > 0) {
-			Login.currentLoginField = 1;
+	}
+
+	@ObfuscatedName("ki")
+	@ObfuscatedSignature(
+		signature = "(Lho;II)Ljava/lang/String;",
+		garbageValue = "-1147965976"
+	)
+	static String method3224(Widget var0, int var1) {
+		int var3 = class2.getWidgetClickMask(var0);
+		boolean var2 = (var3 >> var1 + 1 & 1) != 0;
+		if (!var2 && var0.onOp == null) {
+			return null;
 		} else {
-			Login.currentLoginField = 0;
+			return var0.actions != null && var0.actions.length > var1 && var0.actions[var1] != null && var0.actions[var1].trim().length() != 0 ? var0.actions[var1] : null;
 		}
-
 	}
 
-	@ObfuscatedName("eh")
+	@ObfuscatedName("kr")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-1702335616"
+		signature = "(Ljava/lang/String;ZB)Ljava/lang/String;",
+		garbageValue = "17"
 	)
-	static void method3264() {
-		Client.mouseLastLastPressedTimeMillis = 1L;
-		class40.mouseRecorder.index = 0;
-		class267.field3557 = true;
-		Client.field667 = true;
-		Client.field879 = -1L;
-		class192.method3678();
-		Client.packetWriter.method2218();
-		Client.packetWriter.packetBuffer.offset = 0;
-		Client.packetWriter.serverPacket = null;
-		Client.packetWriter.field1309 = null;
-		Client.packetWriter.field1321 = null;
-		Client.packetWriter.field1317 = null;
-		Client.packetWriter.serverPacketLength = 0;
-		Client.packetWriter.field1318 = 0;
-		Client.rebootTimer = 0;
-		Client.field700 = 0;
-		Client.hintArrowType = 0;
-		Strings.method4121();
-		MouseHandler.MouseHandler_idleCycles = 0;
-		Messages.Messages_channels.clear();
-		Messages.Messages_hashTable.clear();
-		Messages.Messages_queue.clear();
-		Messages.Messages_count = 0;
-		Client.isItemSelected = 0;
-		Client.isSpellSelected = false;
-		Client.soundEffectCount = 0;
-		Client.camAngleY = 0;
-		Client.oculusOrbState = 0;
-		PendingSpawn.field944 = null;
-		Client.minimapState = 0;
-		Client.field747 = -1;
-		Client.destinationX = 0;
-		Client.destinationY = 0;
-		Client.playerAttackOption = AttackOption.AttackOption_hidden;
-		Client.npcAttackOption = AttackOption.AttackOption_hidden;
-		Client.npcCount = 0;
-		Players.Players_count = 0;
-
-		int var0;
-		for (var0 = 0; var0 < 2048; ++var0) {
-			Players.field1254[var0] = null;
-			Players.field1250[var0] = 1;
+	static String method3225(String var0, boolean var1) {
+		String var2 = var1 ? "https://" : "http://";
+		if (Client.gameBuild == 1) {
+			var0 = var0 + "-wtrc";
+		} else if (Client.gameBuild == 2) {
+			var0 = var0 + "-wtqa";
+		} else if (Client.gameBuild == 3) {
+			var0 = var0 + "-wtwip";
+		} else if (Client.gameBuild == 5) {
+			var0 = var0 + "-wti";
+		} else if (Client.gameBuild == 4) {
+			var0 = "local";
 		}
 
-		for (var0 = 0; var0 < 2048; ++var0) {
-			Client.players[var0] = null;
+		String var3 = "";
+		if (class197.field2390 != null) {
+			var3 = "/p=" + class197.field2390;
 		}
 
-		for (var0 = 0; var0 < 32768; ++var0) {
-			Client.npcs[var0] = null;
-		}
-
-		Client.combatTargetPlayerIndex = -1;
-		Client.projectiles.clear();
-		Client.graphicsObjects.clear();
-
-		int var2;
-		for (var0 = 0; var0 < 4; ++var0) {
-			for (int var1 = 0; var1 < 104; ++var1) {
-				for (var2 = 0; var2 < 104; ++var2) {
-					Client.groundItems[var0][var1][var2] = null;
-				}
-			}
-		}
-
-		Client.pendingSpawns = new NodeDeque();
-		ArchiveLoader.friendSystem.clear();
-
-		for (var0 = 0; var0 < VarpDefinition.VarpDefinition_fileCount; ++var0) {
-			VarpDefinition var3 = GrandExchangeOfferWorldComparator.method61(var0);
-			if (var3 != null) {
-				Varps.Varps_temp[var0] = 0;
-				Varps.Varps_main[var0] = 0;
-			}
-		}
-
-		Clock.varcs.clearTransient();
-		Client.followerIndex = -1;
-		if (Client.rootInterface != -1) {
-			var0 = Client.rootInterface;
-			if (var0 != -1 && ViewportMouse.loadedInterfaces[var0]) {
-				Widget.Widget_archive.clearFilesGroup(var0);
-				if (Widget.Widget_interfaceComponents[var0] != null) {
-					boolean var5 = true;
-
-					for (var2 = 0; var2 < Widget.Widget_interfaceComponents[var0].length; ++var2) {
-						if (Widget.Widget_interfaceComponents[var0][var2] != null) {
-							if (Widget.Widget_interfaceComponents[var0][var2].type != 2) {
-								Widget.Widget_interfaceComponents[var0][var2] = null;
-							} else {
-								var5 = false;
-							}
-						}
-					}
-
-					if (var5) {
-						Widget.Widget_interfaceComponents[var0] = null;
-					}
-
-					ViewportMouse.loadedInterfaces[var0] = false;
-				}
-			}
-		}
-
-		for (InterfaceParent var4 = (InterfaceParent)Client.interfaceParents.first(); var4 != null; var4 = (InterfaceParent)Client.interfaceParents.next()) {
-			class197.closeInterface(var4, true);
-		}
-
-		Client.rootInterface = -1;
-		Client.interfaceParents = new NodeHashTable(8);
-		Client.field850 = null;
-		Strings.method4121();
-		Client.playerAppearance.update((int[])null, new int[]{0, 0, 0, 0, 0}, false, -1);
-
-		for (var0 = 0; var0 < 8; ++var0) {
-			Client.playerMenuActions[var0] = null;
-			Client.playerOptionsPriorities[var0] = false;
-		}
-
-		ItemContainer.itemContainers = new NodeHashTable(32);
-		Client.isLoading = true;
-
-		for (var0 = 0; var0 < 100; ++var0) {
-			Client.field843[var0] = true;
-		}
-
-		HealthBarUpdate.method1677();
-		DevicePcmPlayerProvider.clanChat = null;
-
-		for (var0 = 0; var0 < 8; ++var0) {
-			Client.grandExchangeOffers[var0] = new GrandExchangeOffer();
-		}
-
-		PendingSpawn.grandExchangeEvents = null;
+		String var4 = "runescape.com";
+		return var2 + var0 + "." + var4 + "/l=" + WorldMapLabelSize.clientLanguage + "/a=" + WorldMapArea.field218 + var3 + "/";
 	}
 }

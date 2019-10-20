@@ -54,6 +54,7 @@ import net.runelite.client.eventbus.EventBus;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
+import net.runelite.client.plugins.PluginType;
 import net.runelite.client.ui.ClientToolbar;
 import net.runelite.client.ui.JagexColors;
 import net.runelite.client.ui.NavigationButton;
@@ -64,7 +65,9 @@ import org.slf4j.LoggerFactory;
 
 @PluginDescriptor(
 	name = "Developer Tools",
-	tags = {"panel"},
+	description = "Adds the developer tools button to side-panel with various tools to assist development of the client",
+	tags = {"panel", "dev", "camera", "debug"},
+	type = PluginType.SANLITE,
 	enabledByDefault = false,
 	developerPlugin = true
 )
@@ -351,6 +354,11 @@ public class DevToolsPlugin extends Plugin
 			{
 				int id = Integer.parseInt(args[0]);
 				client.playSoundEffect(id);
+				break;
+			}
+			case "msg":
+			{
+				client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", String.join(" ", args), "");
 				break;
 			}
 		}

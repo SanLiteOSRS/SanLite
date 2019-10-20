@@ -25,6 +25,7 @@
  */
 package net.runelite.client.plugins.xptracker;
 
+import com.google.common.annotations.VisibleForTesting;
 import static com.google.common.base.MoreObjects.firstNonNull;
 import com.google.common.collect.ImmutableList;
 import com.google.inject.Binder;
@@ -36,6 +37,8 @@ import java.util.EnumSet;
 import java.util.List;
 import java.util.Objects;
 import javax.inject.Inject;
+import lombok.AccessLevel;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Actor;
 import net.runelite.api.Client;
@@ -114,6 +117,8 @@ public class XpTrackerPlugin extends Plugin
 	private OverlayManager overlayManager;
 
 	private NavigationButton navButton;
+	@Setter(AccessLevel.PACKAGE)
+	@VisibleForTesting
 	private XpPanel xpPanel;
 	private XpWorldType lastWorldType;
 	private String lastUsername;
@@ -190,11 +195,11 @@ public class XpTrackerPlugin extends Plugin
 				fetchXp = true;
 				lastWorldType = type;
 				resetState();
-				// Must be set from hitting the LOGGING_IN case below
+				// Must be set from hitting the LOGGING_IN or HOPPING case below
 				assert initializeTracker;
 			}
 		}
-		else if (state == GameState.LOGGING_IN)
+		else if (state == GameState.LOGGING_IN || state == GameState.HOPPING)
 		{
 			initializeTracker = true;
 		}
@@ -255,6 +260,17 @@ public class XpTrackerPlugin extends Plugin
 	void removeOverlay(Skill skill)
 	{
 		overlayManager.removeIf(e -> e instanceof XpInfoBoxOverlay && ((XpInfoBoxOverlay) e).getSkill() == skill);
+	}
+
+	/**
+	 * Check if there is an overlay on the canvas for the skill.
+	 *
+	 * @param skill the skill which should have an overlay.
+	 * @return true if the skill has an overlay.
+	 */
+	boolean hasOverlay(final Skill skill)
+	{
+		return overlayManager.anyMatch(o -> o instanceof XpInfoBoxOverlay && ((XpInfoBoxOverlay) o).getSkill() == skill);
 	}
 
 	/**
@@ -412,7 +428,7 @@ public class XpTrackerPlugin extends Plugin
 
 					log.debug("Skill xp for {} changed when offline: {} -> {}", skill, skillState.getCurrentXp(), currentXp);
 					// Offset start xp for offline gains
-					long diff = skillState.getCurrentXp() - currentXp;
+					long diff = currentXp - skillState.getCurrentXp();
 					skillState.setStartXp(skillState.getStartXp() + diff);
 				}
 			}
@@ -485,7 +501,7 @@ public class XpTrackerPlugin extends Plugin
 	public void onMenuOptionClicked(MenuOptionClicked event)
 	{
 		if (event.getMenuAction().getId() != MenuAction.RUNELITE.getId()
-			|| TO_GROUP(event.getIdentifier()) != WidgetID.SKILLS_GROUP_ID)
+			|| TO_GROUP(event.getActionParam1()) != WidgetID.SKILLS_GROUP_ID)
 		{
 			return;
 		}
@@ -510,6 +526,11 @@ public class XpTrackerPlugin extends Plugin
 				removeOverlay(skill);
 				break;
 		}
+	}
+
+	XpStateSingle getSkillState(Skill skill)
+	{
+		return xpState.getSkill(skill);
 	}
 
 	XpSnapshotSingle getSkillSnapshot(Skill skill)
@@ -697,10 +718,5 @@ public class XpTrackerPlugin extends Plugin
 		{
 			pauseSkill(skill, pause);
 		}
-	}
-
-	private boolean hasOverlay(final Skill skill)
-	{
-		return overlayManager.anyMatch(o -> o instanceof XpInfoBoxOverlay && ((XpInfoBoxOverlay) o).getSkill() == skill);
 	}
 }

@@ -2,46 +2,33 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fm")
+@ObfuscatedName("fk")
 public class class162 implements class161 {
-	@ObfuscatedName("p")
+	@ObfuscatedName("m")
+	@Export("ItemDefinition_inMembersWorld")
+	static boolean ItemDefinition_inMembersWorld;
+	@ObfuscatedName("s")
+	public static String field1990;
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		signature = "(II)Z",
-		garbageValue = "1772418873"
+		signature = "Lll;"
 	)
-	@Export("loadInterface")
-	public static boolean loadInterface(int var0) {
-		if (ViewportMouse.loadedInterfaces[var0]) {
-			return true;
-		}
-		if (!Widget.Widget_archive.tryLoadGroup(var0)) {
-			return false;
-		}
-		int var1 = Widget.Widget_archive.getGroupFileCount(var0);
-		if (var1 == 0) {
-			ViewportMouse.loadedInterfaces[var0] = true;
-			return true;
-		}
-		if (Widget.Widget_interfaceComponents[var0] == null) {
-			Widget.Widget_interfaceComponents[var0] = new Widget[var1];
-		}
+	static Bounds field1988;
 
-		for (int var2 = 0; var2 < var1; ++var2) {
-			if (Widget.Widget_interfaceComponents[var0][var2] == null) {
-				byte[] var3 = Widget.Widget_archive.takeFile(var0, var2);
-				if (var3 != null) {
-					Widget.Widget_interfaceComponents[var0][var2] = new Widget();
-					Widget.Widget_interfaceComponents[var0][var2].id = var2 + (var0 << 16);
-					if (var3[0] == -1) {
-						Widget.Widget_interfaceComponents[var0][var2].decode(new Buffer(var3));
-					} else {
-						Widget.Widget_interfaceComponents[var0][var2].decodeLegacy(new Buffer(var3));
-					}
-				}
+	@ObfuscatedName("r")
+	@ObfuscatedSignature(
+		signature = "(II)V",
+		garbageValue = "1376590669"
+	)
+	@Export("clearItemContainer")
+	static void clearItemContainer(int var0) {
+		ItemContainer var1 = (ItemContainer)ItemContainer.itemContainers.get((long)var0);
+		if (var1 != null) {
+			for (int var2 = 0; var2 < var1.ids.length; ++var2) {
+				var1.ids[var2] = -1;
+				var1.quantities[var2] = 0;
 			}
-		}
 
-		ViewportMouse.loadedInterfaces[var0] = true;
-		return true;
+		}
 	}
 }

@@ -4,89 +4,95 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("es")
+@ObfuscatedName("ej")
 @Implements("GameObject")
 public final class GameObject {
-	@ObfuscatedName("q")
-	@ObfuscatedGetter(
-		intValue = 1570301061
-	)
-	@Export("plane")
-	int plane;
-	@ObfuscatedName("w")
-	@ObfuscatedGetter(
-		intValue = -1372995053
-	)
-	@Export("height")
-	int height;
-	@ObfuscatedName("e")
-	@ObfuscatedGetter(
-		intValue = 3597047
-	)
-	@Export("centerX")
-	int centerX;
-	@ObfuscatedName("p")
-	@ObfuscatedGetter(
-		intValue = 1286023919
-	)
-	@Export("centerY")
-	int centerY;
-	@ObfuscatedName("k")
+	@ObfuscatedName("gh")
 	@ObfuscatedSignature(
-		signature = "Leo;"
+		signature = "[Llf;"
+	)
+	@Export("mapMarkerSprites")
+	static Sprite[] mapMarkerSprites;
+	@ObfuscatedName("z")
+	@ObfuscatedSignature(
+		signature = "Ler;"
 	)
 	@Export("entity")
 	public Entity entity;
-	@ObfuscatedName("l")
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = -1679497939
+		intValue = 23072497
+	)
+	@Export("plane")
+	int plane;
+	@ObfuscatedName("v")
+	@ObfuscatedGetter(
+		intValue = 1467218039
+	)
+	@Export("height")
+	int height;
+	@ObfuscatedName("u")
+	@ObfuscatedGetter(
+		intValue = 1096373851
+	)
+	@Export("centerX")
+	int centerX;
+	@ObfuscatedName("r")
+	@ObfuscatedGetter(
+		intValue = -921514335
+	)
+	@Export("centerY")
+	int centerY;
+	@ObfuscatedName("p")
+	@ObfuscatedGetter(
+		intValue = 1901316909
 	)
 	@Export("orientation")
 	int orientation;
-	@ObfuscatedName("b")
+	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = 2072838249
+		intValue = -714921437
 	)
 	@Export("startX")
 	int startX;
-	@ObfuscatedName("i")
+	@ObfuscatedName("m")
 	@ObfuscatedGetter(
-		intValue = -1679068867
+		intValue = -1336647537
 	)
 	@Export("endX")
 	int endX;
-	@ObfuscatedName("c")
+	@ObfuscatedName("y")
 	@ObfuscatedGetter(
-		intValue = -1593954751
+		intValue = -1244242871
 	)
 	@Export("startY")
 	int startY;
-	@ObfuscatedName("f")
+	@ObfuscatedName("i")
 	@ObfuscatedGetter(
-		intValue = 614764075
+		intValue = 1759509999
 	)
 	@Export("endY")
 	int endY;
-	@ObfuscatedName("m")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = -2081842773
+		intValue = -1933245697
 	)
-	int field1939;
-	@ObfuscatedName("u")
+	int field1914;
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = -1806951057
+		intValue = 505349389
 	)
 	@Export("lastDrawn")
 	int lastDrawn;
-	@ObfuscatedName("x")
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		longValue = -3308425322664563893L
+		longValue = 2276908467403178719L
 	)
 	@Export("tag")
 	public long tag;
-	@ObfuscatedName("r")
+	@ObfuscatedName("a")
 	@ObfuscatedGetter(
-		intValue = -320745509
+		intValue = 8294449
 	)
 	@Export("flags")
 	int flags;
@@ -94,15 +100,5 @@ public final class GameObject {
 	GameObject() {
 		this.tag = 0L;
 		this.flags = 0;
-	}
-
-	@ObfuscatedName("k")
-	@ObfuscatedSignature(
-		signature = "(Lhp;Lhp;III)Lke;",
-		garbageValue = "-1252480817"
-	)
-	@Export("SpriteBuffer_getFont")
-	public static Font SpriteBuffer_getFont(AbstractArchive var0, AbstractArchive var1, int var2, int var3) {
-		return !Friend.SpriteBuffer_bufferFile(var0, var2, var3) ? null : WallDecoration.SpriteBuffer_createFont(var1.takeFile(var2, var3));
 	}
 }

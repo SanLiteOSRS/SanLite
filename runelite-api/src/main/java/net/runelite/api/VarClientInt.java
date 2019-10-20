@@ -28,7 +28,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * An enumeration of integer local variables.
+ * Client side only, content-developer integers
+ *
+ * VarCInts are stored entirely in memory, or locally on a user's
+ * machine in the preferences2.dat file depending on how Jagex
+ * configured the variable
  */
 @AllArgsConstructor
 @Getter
@@ -59,7 +63,7 @@ public enum VarClientInt
 	 *  5 = Prayer
 	 *  6 = Spellbook
 	 *  7 = Clan
-	 *  8 = Account Managment
+	 *  8 = Account Management
 	 *  9 = Friends
 	 *  10 = Logout
 	 *  11 = Options

@@ -4,30 +4,30 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ls")
+@ObfuscatedName("ll")
 @Implements("Bounds")
 public class Bounds {
-	@ObfuscatedName("q")
+	@ObfuscatedName("z")
 	@ObfuscatedGetter(
-		intValue = 1186074789
+		intValue = -479130629
 	)
 	@Export("lowX")
 	public int lowX;
-	@ObfuscatedName("w")
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = -198324779
+		intValue = 724783571
 	)
 	@Export("lowY")
 	public int lowY;
-	@ObfuscatedName("e")
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = -574576823
+		intValue = 1669121479
 	)
 	@Export("highX")
 	public int highX;
-	@ObfuscatedName("p")
+	@ObfuscatedName("u")
 	@ObfuscatedGetter(
-		intValue = 833436879
+		intValue = -1354833317
 	)
 	@Export("highY")
 	public int highY;
@@ -41,10 +41,10 @@ public class Bounds {
 		this(0, 0, var1, var2);
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(IIB)V",
-		garbageValue = "-102"
+		signature = "(III)V",
+		garbageValue = "166241873"
 	)
 	@Export("setLow")
 	public void setLow(int var1, int var2) {
@@ -52,10 +52,10 @@ public class Bounds {
 		this.lowY = var2;
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(IIB)V",
-		garbageValue = "12"
+		signature = "(III)V",
+		garbageValue = "1712715973"
 	)
 	@Export("setHigh")
 	public void setHigh(int var1, int var2) {
@@ -63,22 +63,22 @@ public class Bounds {
 		this.highY = var2;
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(Lls;Lls;I)V",
-		garbageValue = "799718452"
+		signature = "(Lll;Lll;I)V",
+		garbageValue = "2079875928"
 	)
-	public void method5980(Bounds var1, Bounds var2) {
-		this.method5968(var1, var2);
-		this.method5964(var1, var2);
+	public void method5893(Bounds var1, Bounds var2) {
+		this.method5905(var1, var2);
+		this.method5894(var1, var2);
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "(Lls;Lls;B)V",
-		garbageValue = "-20"
+		signature = "(Lll;Lll;B)V",
+		garbageValue = "-1"
 	)
-	void method5968(Bounds var1, Bounds var2) {
+	void method5905(Bounds var1, Bounds var2) {
 		var2.lowX = this.lowX;
 		var2.highX = this.highX;
 		if (this.lowX < var1.lowX) {
@@ -86,8 +86,8 @@ public class Bounds {
 			var2.lowX = var1.lowX;
 		}
 
-		if (var2.method5976() > var1.method5976()) {
-			var2.highX -= var2.method5976() - var1.method5976();
+		if (var2.method5896() > var1.method5896()) {
+			var2.highX -= var2.method5896() - var1.method5896();
 		}
 
 		if (var2.highX < 0) {
@@ -96,12 +96,12 @@ public class Bounds {
 
 	}
 
-	@ObfuscatedName("k")
+	@ObfuscatedName("r")
 	@ObfuscatedSignature(
-		signature = "(Lls;Lls;I)V",
-		garbageValue = "182983589"
+		signature = "(Lll;Lll;I)V",
+		garbageValue = "-1654040739"
 	)
-	void method5964(Bounds var1, Bounds var2) {
+	void method5894(Bounds var1, Bounds var2) {
 		var2.lowY = this.lowY;
 		var2.highY = this.highY;
 		if (this.lowY < var1.lowY) {
@@ -109,8 +109,8 @@ public class Bounds {
 			var2.lowY = var1.lowY;
 		}
 
-		if (var2.method5965() > var1.method5965()) {
-			var2.highY -= var2.method5965() - var1.method5965();
+		if (var2.method5892() > var1.method5892()) {
+			var2.highY -= var2.method5892() - var1.method5892();
 		}
 
 		if (var2.highY < 0) {
@@ -119,25 +119,37 @@ public class Bounds {
 
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
 		signature = "(I)I",
-		garbageValue = "-1428102724"
+		garbageValue = "769635987"
 	)
-	int method5976() {
-		return this.highX + this.lowX;
+	int method5896() {
+		return this.lowX + this.highX;
 	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "185439342"
+		signature = "(B)I",
+		garbageValue = "59"
 	)
-	int method5965() {
+	int method5892() {
 		return this.highY + this.lowY;
 	}
 
 	public String toString() {
+		return null;
+	}
+
+	public String aak() {
+		return null;
+	}
+
+	public String aae() {
+		return null;
+	}
+
+	public String aah() {
 		return null;
 	}
 }

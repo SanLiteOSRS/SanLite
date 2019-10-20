@@ -4,72 +4,78 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ei")
+@ObfuscatedName("eg")
 @Implements("WallDecoration")
 public final class WallDecoration {
-	@ObfuscatedName("q")
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = 1872492475
+		intValue = -1573146665
 	)
-	@Export("tileHeight")
-	int tileHeight;
-	@ObfuscatedName("w")
+	@Export("canvasHeight")
+	public static int canvasHeight;
+	@ObfuscatedName("z")
 	@ObfuscatedGetter(
-		intValue = -185034131
-	)
-	@Export("x")
-	int x;
-	@ObfuscatedName("e")
-	@ObfuscatedGetter(
-		intValue = -1951564087
-	)
-	@Export("y")
-	int y;
-	@ObfuscatedName("p")
-	@ObfuscatedGetter(
-		intValue = 1472564709
+		intValue = 500861795
 	)
 	@Export("orientation")
 	int orientation;
-	@ObfuscatedName("k")
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = 909597607
+		intValue = 1324796191
+	)
+	@Export("tileHeight")
+	int tileHeight;
+	@ObfuscatedName("v")
+	@ObfuscatedGetter(
+		intValue = 1787906731
+	)
+	@Export("x")
+	int x;
+	@ObfuscatedName("u")
+	@ObfuscatedGetter(
+		intValue = -337099317
+	)
+	@Export("y")
+	int y;
+	@ObfuscatedName("r")
+	@ObfuscatedGetter(
+		intValue = 1549979331
 	)
 	@Export("orientation2")
 	int orientation2;
-	@ObfuscatedName("l")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = 1726678055
+		intValue = 43570649
 	)
 	@Export("xOffset")
 	int xOffset;
-	@ObfuscatedName("b")
+	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = -1895972445
+		intValue = -396532533
 	)
 	@Export("yOffset")
 	int yOffset;
-	@ObfuscatedName("i")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		signature = "Leo;"
+		signature = "Ler;"
 	)
 	@Export("entity1")
 	public Entity entity1;
-	@ObfuscatedName("c")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "Leo;"
+		signature = "Ler;"
 	)
 	@Export("entity2")
 	public Entity entity2;
-	@ObfuscatedName("f")
+	@ObfuscatedName("i")
 	@ObfuscatedGetter(
-		longValue = -3118431343692928767L
+		longValue = 463073903231293703L
 	)
 	@Export("tag")
 	public long tag;
-	@ObfuscatedName("m")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = -359663539
+		intValue = 14602599
 	)
 	@Export("flags")
 	int flags;
@@ -79,50 +85,42 @@ public final class WallDecoration {
 		this.flags = 0;
 	}
 
-	@ObfuscatedName("i")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "([BI)Lke;",
-		garbageValue = "107452813"
+		signature = "(II)Lif;",
+		garbageValue = "-746198187"
 	)
-	@Export("SpriteBuffer_createFont")
-	public static Font SpriteBuffer_createFont(byte[] var0) {
-		if (var0 == null) {
-			return null;
+	@Export("getParamDefinition")
+	public static ParamDefinition getParamDefinition(int var0) {
+		ParamDefinition var1 = (ParamDefinition)ParamDefinition.ParamDefinition_cached.get((long)var0);
+		if (var1 != null) {
+			return var1;
+		} else {
+			byte[] var2 = ParamDefinition.ParamDefinition_archive.takeFile(11, var0);
+			var1 = new ParamDefinition();
+			if (var2 != null) {
+				var1.decode(new Buffer(var2));
+			}
+
+			var1.postDecode();
+			ParamDefinition.ParamDefinition_cached.put(var1, (long)var0);
+			return var1;
 		}
-		Font var1 = new Font(var0, Varps.SpriteBuffer_xOffsets, SpriteBuffer.SpriteBuffer_yOffsets, SpriteBuffer.SpriteBuffer_spriteWidths, class216.SpriteBuffer_spriteHeights, Frames.SpriteBuffer_spritePalette, SpriteBuffer.SpriteBuffer_pixels);
-		class16.SpriteBuffer_clear();
-		return var1;
 	}
 
-	@ObfuscatedName("g")
-	@ObfuscatedSignature(
-		signature = "(II)I",
-		garbageValue = "-2066331179"
-	)
-	public static int method3292(int var0) {
-		if (var0 > 0) {
-			return 1;
-		}
-		return var0 < 0 ? -1 : 0;
-	}
-
-	@ObfuscatedName("as")
+	@ObfuscatedName("fz")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "2093071208"
+		garbageValue = "-1910753346"
 	)
-	protected static final void method3291() {
-		GameShell.clock.mark();
-
-		int var0;
-		for (var0 = 0; var0 < 32; ++var0) {
-			GameShell.field452[var0] = 0L;
+	static final void method3251() {
+		for (int var0 = 0; var0 < Client.npcCount; ++var0) {
+			int var1 = Client.npcIndices[var0];
+			NPC var2 = Client.npcs[var1];
+			if (var2 != null) {
+				class325.calculateActorPosition(var2, var2.definition.size);
+			}
 		}
 
-		for (var0 = 0; var0 < 32; ++var0) {
-			GameShell.field453[var0] = 0L;
-		}
-
-		GameShell.field449 = 0;
 	}
 }

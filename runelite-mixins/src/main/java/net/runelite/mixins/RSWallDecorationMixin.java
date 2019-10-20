@@ -1,7 +1,6 @@
 package net.runelite.mixins;
 
-import java.awt.Polygon;
-import java.awt.geom.Area;
+import java.awt.*;
 
 import net.runelite.api.Model;
 import net.runelite.api.Perspective;
@@ -41,21 +40,21 @@ public abstract class RSWallDecorationMixin implements RSWallDecoration
 	@Override
 	public RSModel getModel1()
 	{
-		RSEntity renderable = getRenderable();
-		if (renderable == null)
+		RSEntity entity = getEntity1();
+		if (entity == null)
 		{
 			return null;
 		}
 
 		RSModel model;
 
-		if (renderable instanceof Model)
+		if (entity instanceof Model)
 		{
-			model = (RSModel) renderable;
+			model = (RSModel) entity;
 		}
 		else
 		{
-			model = renderable.getModel();
+			model = entity.getModel();
 		}
 
 		return model;
@@ -65,21 +64,21 @@ public abstract class RSWallDecorationMixin implements RSWallDecoration
 	@Override
 	public RSModel getModel2()
 	{
-		RSEntity renderable = getRenderable2();
-		if (renderable == null)
+		RSEntity entity = getEntity2();
+		if (entity == null)
 		{
 			return null;
 		}
 
 		RSModel model;
 
-		if (renderable instanceof Model)
+		if (entity instanceof Model)
 		{
-			model = (RSModel) renderable;
+			model = (RSModel) entity;
 		}
 		else
 		{
-			model = renderable.getModel();
+			model = entity.getModel();
 		}
 
 		return model;
@@ -87,14 +86,12 @@ public abstract class RSWallDecorationMixin implements RSWallDecoration
 
 	@Inject
 	@Override
-	public Area getClickbox()
+	public Shape getClickbox()
 	{
-		Area clickbox = new Area();
-
 		LocalPoint lp = getLocalLocation();
-		Area clickboxA = Perspective.getClickbox(client, getModel1(), 0,
+		Shape clickboxA = Perspective.getClickbox(client, getModel1(), 0,
 			new LocalPoint(lp.getX() + getXOffset(), lp.getY() + getYOffset()));
-		Area clickboxB = Perspective.getClickbox(client, getModel2(), 0, lp);
+		Shape clickboxB = Perspective.getClickbox(client, getModel2(), 0, lp);
 
 		if (clickboxA == null && clickboxB == null)
 		{
@@ -103,15 +100,10 @@ public abstract class RSWallDecorationMixin implements RSWallDecoration
 
 		if (clickboxA != null)
 		{
-			clickbox.add(clickboxA);
+			return clickboxA;
 		}
 
-		if (clickboxB != null)
-		{
-			clickbox.add(clickboxB);
-		}
-
-		return clickbox;
+		return clickboxB;
 	}
 
 	@Inject

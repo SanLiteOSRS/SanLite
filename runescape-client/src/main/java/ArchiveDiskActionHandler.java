@@ -1,42 +1,37 @@
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ir")
+@ObfuscatedName("ih")
 @Implements("ArchiveDiskActionHandler")
 public class ArchiveDiskActionHandler implements Runnable {
-	@ObfuscatedName("q")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "Ljh;"
+		signature = "Ljv;"
 	)
 	@Export("ArchiveDiskActionHandler_requestQueue")
 	public static NodeDeque ArchiveDiskActionHandler_requestQueue;
-	@ObfuscatedName("w")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "Ljh;"
+		signature = "Ljv;"
 	)
 	@Export("ArchiveDiskActionHandler_responseQueue")
 	public static NodeDeque ArchiveDiskActionHandler_responseQueue;
-	@ObfuscatedName("e")
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = -1331634311
+		intValue = 1320379029
 	)
-	static int field3144;
-	@ObfuscatedName("p")
+	static int field3127;
+	@ObfuscatedName("u")
 	@Export("ArchiveDiskActionHandler_lock")
 	static Object ArchiveDiskActionHandler_lock;
-	@ObfuscatedName("k")
-	@Export("ArchiveDiskActionHandler_thread")
-	static Thread ArchiveDiskActionHandler_thread;
 
 	static {
 		ArchiveDiskActionHandler_requestQueue = new NodeDeque();
 		ArchiveDiskActionHandler_responseQueue = new NodeDeque();
-		field3144 = 0;
+		field3127 = 0;
 		ArchiveDiskActionHandler_lock = new Object();
 	}
 
@@ -65,76 +60,50 @@ public class ArchiveDiskActionHandler implements Runnable {
 					}
 
 					synchronized(ArchiveDiskActionHandler_lock) {
-						if (field3144 <= 1) {
-							field3144 = 0;
+						if (field3127 <= 1) {
+							field3127 = 0;
 							ArchiveDiskActionHandler_lock.notifyAll();
 							return;
 						}
 
-						field3144 = 600;
+						field3127 = 600;
 					}
 				} else {
-					EnumDefinition.method4550(100L);
+					long var8 = 99L;
+
+					try {
+						Thread.sleep(var8);
+					} catch (InterruptedException var15) {
+					}
+
+					try {
+						Thread.sleep(1L);
+					} catch (InterruptedException var14) {
+					}
+
 					synchronized(ArchiveDiskActionHandler_lock) {
-						if (field3144 <= 1) {
-							field3144 = 0;
+						if (field3127 <= 1) {
+							field3127 = 0;
 							ArchiveDiskActionHandler_lock.notifyAll();
 							return;
 						}
 
-						--field3144;
+						--field3127;
 					}
 				}
 			}
-		} catch (Exception var13) {
-			HitSplatDefinition.sendStackTrace((String)null, var13);
+		} catch (Exception var17) {
+			class32.RunException_sendStackTrace((String)null, var17);
 		}
 	}
 
-	@ObfuscatedName("al")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(Lfs;III)Ldn;",
-		garbageValue = "2015059645"
+		signature = "(Ljava/lang/String;ZZB)V",
+		garbageValue = "10"
 	)
-	public static final PcmPlayer method4256(TaskHandler var0, int var1, int var2) {
-		if (CollisionMap.PcmPlayer_sampleRate == 0) {
-			throw new IllegalStateException();
-		}
-		if (var1 >= 0 && var1 < 2) {
-			if (var2 < 256) {
-				var2 = 256;
-			}
-
-			try {
-				PcmPlayer var3 = class32.pcmPlayerProvider.player();
-				var3.samples = new int[256 * (class169.isStereo ? 2 : 1)];
-				var3.field1414 = var2;
-				var3.init();
-				var3.capacity = (var2 & -1024) + 1024;
-				if (var3.capacity > 16384) {
-					var3.capacity = 16384;
-				}
-
-				var3.open(var3.capacity);
-				if (PcmPlayer.pcmPlayerCount > 0 && SecureRandomFuture.soundSystem == null) {
-					SecureRandomFuture.soundSystem = new SoundSystem();
-					class14.soundSystemExecutor = Executors.newScheduledThreadPool(1);
-					class14.soundSystemExecutor.scheduleAtFixedRate(SecureRandomFuture.soundSystem, 0L, 10L, TimeUnit.MILLISECONDS);
-				}
-
-				if (SecureRandomFuture.soundSystem != null) {
-					if (SecureRandomFuture.soundSystem.players[var1] != null) {
-						throw new IllegalArgumentException();
-					}
-
-					SecureRandomFuture.soundSystem.players[var1] = var3;
-				}
-
-				return var3;
-			} catch (Throwable var4) {
-				return new PcmPlayer();
-			}
-		}
-		throw new IllegalArgumentException();
+	@Export("openURL")
+	public static void openURL(String var0, boolean var1, boolean var2) {
+		WorldMapID.method568(var0, var1, "openjs", var2);
 	}
 }

@@ -3,24 +3,24 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cr")
+@ObfuscatedName("cz")
 @Implements("HealthBar")
 public class HealthBar extends Node {
-	@ObfuscatedName("x")
+	@ObfuscatedName("bu")
 	@ObfuscatedSignature(
-		signature = "Lke;"
+		signature = "Llp;"
 	)
-	@Export("ItemDefinition_fontPlain11")
-	public static Font ItemDefinition_fontPlain11;
-	@ObfuscatedName("e")
+	@Export("worldSelectRightSprite")
+	static IndexedSprite worldSelectRightSprite;
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
 		signature = "Lip;"
 	)
 	@Export("definition")
 	HealthBarDefinition definition;
-	@ObfuscatedName("p")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "Lju;"
+		signature = "Ljs;"
 	)
 	@Export("updates")
 	IterableNodeDeque updates;
@@ -33,10 +33,10 @@ public class HealthBar extends Node {
 		this.definition = var1;
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
 		signature = "(IIIIB)V",
-		garbageValue = "87"
+		garbageValue = "1"
 	)
 	@Export("put")
 	void put(int var1, int var2, int var3, int var4) {
@@ -69,10 +69,10 @@ public class HealthBar extends Node {
 		}
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(IB)Lbu;",
-		garbageValue = "41"
+		signature = "(IB)Lbq;",
+		garbageValue = "109"
 	)
 	@Export("get")
 	HealthBarUpdate get(int var1) {
@@ -83,31 +83,102 @@ public class HealthBar extends Node {
 				var2 = var3;
 			}
 
-			if (this.definition.int5 + var2.cycle + var2.cycleOffset > var1) {
+			if (this.definition.int5 + var2.cycleOffset + var2.cycle > var1) {
 				return var2;
+			} else {
+				var2.remove();
+				return null;
 			}
-			var2.remove();
+		} else {
 			return null;
 		}
-		return null;
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
 		signature = "(I)Z",
-		garbageValue = "-16711936"
+		garbageValue = "-783831173"
 	)
 	@Export("isEmpty")
 	boolean isEmpty() {
-		return this.updates.isEmpty();
+		return this.updates.method4763();
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(IB)I",
-		garbageValue = "35"
+		signature = "(Llb;III)I",
+		garbageValue = "-1932083268"
 	)
-	public static int method1957(int var0) {
-		return var0 >> 11 & 63;
+	static int method2030(IterableNodeHashTable var0, int var1, int var2) {
+		if (var0 == null) {
+			return var2;
+		} else {
+			IntegerNode var3 = (IntegerNode)var0.get((long)var1);
+			return var3 == null ? var2 : var3.integer;
+		}
+	}
+
+	@ObfuscatedName("q")
+	@ObfuscatedSignature(
+		signature = "(IZI)Ljava/lang/String;",
+		garbageValue = "878473077"
+	)
+	@Export("intToString")
+	public static String intToString(int var0, boolean var1) {
+		if (var1 && var0 >= 0) {
+			int var3 = var0;
+			String var2;
+			if (var1 && var0 >= 0) {
+				int var4 = 2;
+
+				for (int var5 = var0 / 10; var5 != 0; ++var4) {
+					var5 /= 10;
+				}
+
+				char[] var6 = new char[var4];
+				var6[0] = '+';
+
+				for (int var7 = var4 - 1; var7 > 0; --var7) {
+					int var8 = var3;
+					var3 /= 10;
+					int var9 = var8 - var3 * 10;
+					if (var9 >= 10) {
+						var6[var7] = (char)(var9 + 87);
+					} else {
+						var6[var7] = (char)(var9 + 48);
+					}
+				}
+
+				var2 = new String(var6);
+			} else {
+				var2 = Integer.toString(var0, 10);
+			}
+
+			return var2;
+		} else {
+			return Integer.toString(var0);
+		}
+	}
+
+	@ObfuscatedName("fr")
+	@ObfuscatedSignature(
+		signature = "(Lby;I)V",
+		garbageValue = "1394806934"
+	)
+	static final void method2028(Actor var0) {
+		if (var0.field976 == Client.cycle || var0.sequence == -1 || var0.sequenceDelay != 0 || var0.sequenceFrameCycle + 1 > GrandExchangeOfferUnitPriceComparator.SequenceDefinition_get(var0.sequence).frameLengths[var0.sequenceFrame]) {
+			int var1 = var0.field976 - var0.field948;
+			int var2 = Client.cycle - var0.field948;
+			int var3 = var0.size * -527978816 + var0.field971 * 128;
+			int var4 = var0.size * -527978816 + var0.field973 * 128;
+			int var5 = var0.field972 * 128 + var0.size * -527978816;
+			int var6 = var0.size * -527978816 + var0.field974 * 128;
+			var0.x = (var2 * var5 + var3 * (var1 - var2)) / var1;
+			var0.y = (var6 * var2 + var4 * (var1 - var2)) / var1 * -944175751;
+		}
+
+		var0.field949 = 0;
+		var0.orientation = var0.field977;
+		var0.rotation = var0.orientation;
 	}
 }

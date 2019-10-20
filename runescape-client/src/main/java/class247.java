@@ -1,15 +1,37 @@
 import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
+import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("il")
+@ObfuscatedName("iw")
 public class class247 {
-	@ObfuscatedName("i")
-	public static short[][] field3291;
-	@ObfuscatedName("km")
-	@ObfuscatedGetter(
-		intValue = -940566551
+	@ObfuscatedName("z")
+	@ObfuscatedSignature(
+		signature = "(II)Ljava/lang/String;",
+		garbageValue = "1617248140"
 	)
-	@Export("menuX")
-	static int menuX;
+	static String method4443(int var0) {
+		return "<img=" + var0 + ">";
+	}
+
+	@ObfuscatedName("fw")
+	@ObfuscatedSignature(
+		signature = "(I)I",
+		garbageValue = "1170068749"
+	)
+	@Export("getWindowedMode")
+	static int getWindowedMode() {
+		return Client.isResizable ? 2 : 1;
+	}
+
+	@ObfuscatedName("iu")
+	@ObfuscatedSignature(
+		signature = "(IIIZB)V",
+		garbageValue = "-73"
+	)
+	@Export("resizeComponents")
+	static final void resizeComponents(int var0, int var1, int var2, boolean var3) {
+		if (WorldMapData_0.loadInterface(var0)) {
+			FaceNormal.resizeInterface(UserComparator5.Widget_interfaceComponents[var0], -1, var1, var2, var3);
+		}
+	}
 }

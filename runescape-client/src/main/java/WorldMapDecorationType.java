@@ -4,133 +4,128 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hr")
+@ObfuscatedName("hn")
 @Implements("WorldMapDecorationType")
 public enum WorldMapDecorationType implements Enumerated {
-	@ObfuscatedName("q")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "Lhr;"
+		signature = "Lhn;"
 	)
-	field2725(0, 0),
-	@ObfuscatedName("w")
-	@ObfuscatedSignature(
-		signature = "Lhr;"
-	)
-	field2719(1, 0),
-	@ObfuscatedName("e")
-	@ObfuscatedSignature(
-		signature = "Lhr;"
-	)
-	field2720(2, 0),
-	@ObfuscatedName("p")
-	@ObfuscatedSignature(
-		signature = "Lhr;"
-	)
-	field2721(3, 0),
-	@ObfuscatedName("k")
-	@ObfuscatedSignature(
-		signature = "Lhr;"
-	)
-	field2739(9, 2),
-	@ObfuscatedName("l")
-	@ObfuscatedSignature(
-		signature = "Lhr;"
-	)
-	field2738(4, 1),
-	@ObfuscatedName("b")
-	@ObfuscatedSignature(
-		signature = "Lhr;"
-	)
-	field2724(5, 1),
-	@ObfuscatedName("i")
-	@ObfuscatedSignature(
-		signature = "Lhr;"
-	)
-	field2729(6, 1),
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		signature = "Lhr;"
-	)
-	field2726(7, 1),
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		signature = "Lhr;"
-	)
-	field2727(8, 1),
-	@ObfuscatedName("m")
-	@ObfuscatedSignature(
-		signature = "Lhr;"
-	)
-	field2728(12, 2),
-	@ObfuscatedName("u")
-	@ObfuscatedSignature(
-		signature = "Lhr;"
-	)
-	field2718(13, 2),
-	@ObfuscatedName("x")
-	@ObfuscatedSignature(
-		signature = "Lhr;"
-	)
-	field2730(14, 2),
-	@ObfuscatedName("r")
-	@ObfuscatedSignature(
-		signature = "Lhr;"
-	)
-	field2731(15, 2),
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		signature = "Lhr;"
-	)
-	field2732(16, 2),
-	@ObfuscatedName("y")
-	@ObfuscatedSignature(
-		signature = "Lhr;"
-	)
-	field2740(17, 2),
-	@ObfuscatedName("g")
-	@ObfuscatedSignature(
-		signature = "Lhr;"
-	)
-	field2734(18, 2),
-	@ObfuscatedName("a")
-	@ObfuscatedSignature(
-		signature = "Lhr;"
-	)
-	field2735(19, 2),
-	@ObfuscatedName("j")
-	@ObfuscatedSignature(
-		signature = "Lhr;"
-	)
-	field2736(20, 2),
-	@ObfuscatedName("t")
-	@ObfuscatedSignature(
-		signature = "Lhr;"
-	)
-	field2737(21, 2),
-	@ObfuscatedName("h")
-	@ObfuscatedSignature(
-		signature = "Lhr;"
-	)
-	field2733(10, 2),
-	@ObfuscatedName("o")
-	@ObfuscatedSignature(
-		signature = "Lhr;"
-	)
-	field2722(11, 2),
+	field2710(0, 0),
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "Lhr;"
+		signature = "Lhn;"
 	)
-	field2741(22, 3);
+	field2700(1, 0),
+	@ObfuscatedName("v")
+	@ObfuscatedSignature(
+		signature = "Lhn;"
+	)
+	field2701(2, 0),
+	@ObfuscatedName("u")
+	@ObfuscatedSignature(
+		signature = "Lhn;"
+	)
+	field2702(3, 0),
+	@ObfuscatedName("r")
+	@ObfuscatedSignature(
+		signature = "Lhn;"
+	)
+	field2708(9, 2),
+	@ObfuscatedName("p")
+	@ObfuscatedSignature(
+		signature = "Lhn;"
+	)
+	field2712(4, 1),
+	@ObfuscatedName("q")
+	@ObfuscatedSignature(
+		signature = "Lhn;"
+	)
+	field2705(5, 1),
+	@ObfuscatedName("m")
+	@ObfuscatedSignature(
+		signature = "Lhn;"
+	)
+	field2713(6, 1),
+	@ObfuscatedName("y")
+	@ObfuscatedSignature(
+		signature = "Lhn;"
+	)
+	field2703(7, 1),
+	@ObfuscatedName("i")
+	@ObfuscatedSignature(
+		signature = "Lhn;"
+	)
+	field2706(8, 1),
+	@ObfuscatedName("c")
+	@ObfuscatedSignature(
+		signature = "Lhn;"
+	)
+	field2709(12, 2),
+	@ObfuscatedName("b")
+	@ObfuscatedSignature(
+		signature = "Lhn;"
+	)
+	field2719(13, 2),
+	@ObfuscatedName("o")
+	@ObfuscatedSignature(
+		signature = "Lhn;"
+	)
+	field2711(14, 2),
+	@ObfuscatedName("a")
+	@ObfuscatedSignature(
+		signature = "Lhn;"
+	)
+	field2707(15, 2),
+	@ObfuscatedName("e")
+	@ObfuscatedSignature(
+		signature = "Lhn;"
+	)
+	field2699(16, 2),
+	@ObfuscatedName("w")
+	@ObfuscatedSignature(
+		signature = "Lhn;"
+	)
+	field2714(17, 2),
+	@ObfuscatedName("t")
+	@ObfuscatedSignature(
+		signature = "Lhn;"
+	)
+	field2715(18, 2),
+	@ObfuscatedName("g")
+	@ObfuscatedSignature(
+		signature = "Lhn;"
+	)
+	field2716(19, 2),
+	@ObfuscatedName("x")
+	@ObfuscatedSignature(
+		signature = "Lhn;"
+	)
+	field2717(20, 2),
+	@ObfuscatedName("h")
+	@ObfuscatedSignature(
+		signature = "Lhn;"
+	)
+	field2718(21, 2),
+	@ObfuscatedName("s")
+	@ObfuscatedSignature(
+		signature = "Lhn;"
+	)
+	field2704(10, 2),
+	@ObfuscatedName("f")
+	@ObfuscatedSignature(
+		signature = "Lhn;"
+	)
+	field2720(11, 2),
+	@ObfuscatedName("j")
+	@ObfuscatedSignature(
+		signature = "Lhn;"
+	)
+	field2721(22, 3);
 
-	@ObfuscatedName("ne")
-	@ObfuscatedGetter(
-		intValue = -797405515
-	)
-	static int field2742;
 	@ObfuscatedName("d")
 	@ObfuscatedGetter(
-		intValue = -1119244565
+		intValue = -240297385
 	)
 	@Export("id")
 	public final int id;
@@ -143,10 +138,10 @@ public enum WorldMapDecorationType implements Enumerated {
 		this.id = var3;
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "320353268"
+		signature = "(S)I",
+		garbageValue = "221"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {

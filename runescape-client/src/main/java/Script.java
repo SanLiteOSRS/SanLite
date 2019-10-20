@@ -4,51 +4,57 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cx")
+@ObfuscatedName("cu")
 @Implements("Script")
 public class Script extends DualNode {
-	@ObfuscatedName("q")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "Lel;"
+		signature = "Lem;"
 	)
 	@Export("Script_cached")
 	static EvictingDualNodeHashTable Script_cached;
-	@ObfuscatedName("w")
+	@ObfuscatedName("dh")
+	@ObfuscatedSignature(
+		signature = "Lie;"
+	)
+	@Export("archive15")
+	static Archive archive15;
+	@ObfuscatedName("n")
 	@Export("opcodes")
 	int[] opcodes;
-	@ObfuscatedName("e")
+	@ObfuscatedName("v")
 	@Export("intOperands")
 	int[] intOperands;
-	@ObfuscatedName("p")
+	@ObfuscatedName("u")
 	@Export("stringOperands")
 	String[] stringOperands;
-	@ObfuscatedName("k")
+	@ObfuscatedName("r")
 	@ObfuscatedGetter(
-		intValue = -1512547181
+		intValue = 1534316869
 	)
 	@Export("localIntCount")
 	int localIntCount;
-	@ObfuscatedName("l")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = -461479353
+		intValue = -473600855
 	)
 	@Export("localStringCount")
 	int localStringCount;
-	@ObfuscatedName("b")
+	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = -1738324737
+		intValue = -171399011
 	)
 	@Export("intArgumentCount")
 	int intArgumentCount;
-	@ObfuscatedName("i")
+	@ObfuscatedName("m")
 	@ObfuscatedGetter(
-		intValue = -826878645
+		intValue = -1063868631
 	)
 	@Export("stringArgumentCount")
 	int stringArgumentCount;
-	@ObfuscatedName("c")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "[Lla;"
+		signature = "[Llb;"
 	)
 	@Export("switches")
 	IterableNodeHashTable[] switches;
@@ -60,21 +66,13 @@ public class Script extends DualNode {
 	Script() {
 	}
 
-	@ObfuscatedName("k")
+	@ObfuscatedName("r")
 	@ObfuscatedSignature(
-		signature = "(IB)[Lla;",
-		garbageValue = "45"
+		signature = "(II)[Llb;",
+		garbageValue = "1885034841"
 	)
-	IterableNodeHashTable[] method2182(int var1) {
+	@Export("newIterableNodeHashTable")
+	IterableNodeHashTable[] newIterableNodeHashTable(int var1) {
 		return new IterableNodeHashTable[var1];
-	}
-
-	@ObfuscatedName("b")
-	@ObfuscatedSignature(
-		signature = "(IB)Z",
-		garbageValue = "-58"
-	)
-	public static boolean method2185(int var0) {
-		return (var0 >> 30 & 1) != 0;
 	}
 }

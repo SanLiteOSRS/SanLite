@@ -4,24 +4,22 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ku")
+@ObfuscatedName("kr")
 @Implements("Fonts")
 public class Fonts {
-	@ObfuscatedName("r")
-	static int[] field3689;
-	@ObfuscatedName("q")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
 		signature = "Lhp;"
 	)
 	@Export("spritesArchive")
 	AbstractArchive spritesArchive;
-	@ObfuscatedName("w")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
 		signature = "Lhp;"
 	)
 	@Export("fontsArchive")
 	AbstractArchive fontsArchive;
-	@ObfuscatedName("e")
+	@ObfuscatedName("v")
 	@Export("map")
 	HashMap map;
 
@@ -34,10 +32,10 @@ public class Fonts {
 		this.map = new HashMap();
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "([Lkd;I)Ljava/util/HashMap;",
-		garbageValue = "-354104614"
+		signature = "([Lko;I)Ljava/util/HashMap;",
+		garbageValue = "-1165155916"
 	)
 	@Export("createMap")
 	public HashMap createMap(FontName[] var1) {
@@ -49,7 +47,12 @@ public class Fonts {
 			if (this.map.containsKey(var5)) {
 				var2.put(var5, this.map.get(var5));
 			} else {
-				Font var6 = class287.SpriteBuffer_getFontByName(this.spritesArchive, this.fontsArchive, var5.name, "");
+				AbstractArchive var7 = this.spritesArchive;
+				AbstractArchive var8 = this.fontsArchive;
+				String var9 = var5.name;
+				int var10 = var7.getGroupId(var9);
+				int var11 = var7.getFileId(var10, "");
+				Font var6 = ClanMate.method4964(var7, var8, var10, var11);
 				if (var6 != null) {
 					this.map.put(var5, var6);
 					var2.put(var5, var6);
@@ -58,5 +61,23 @@ public class Fonts {
 		}
 
 		return var2;
+	}
+
+	@ObfuscatedName("n")
+	@ObfuscatedSignature(
+		signature = "(II)Lkc;",
+		garbageValue = "202775938"
+	)
+	public static PrivateChatMode method5258(int var0) {
+		PrivateChatMode[] var1 = BZip2State.ChatMode_values();
+
+		for (int var2 = 0; var2 < var1.length; ++var2) {
+			PrivateChatMode var3 = var1[var2];
+			if (var0 == var3.field3793) {
+				return var3;
+			}
+		}
+
+		return null;
 	}
 }

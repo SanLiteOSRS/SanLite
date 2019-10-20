@@ -3,93 +3,88 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("kx")
+@ObfuscatedName("kf")
 @Implements("PacketBuffer")
 public class PacketBuffer extends Buffer {
-	@ObfuscatedName("w")
-	static final int[] field3724;
-	@ObfuscatedName("hd")
-	@ObfuscatedGetter(
-		intValue = -1521348339
-	)
-	@Export("cameraX")
-	static int cameraX;
-	@ObfuscatedName("q")
+	@ObfuscatedName("n")
+	static final int[] field3695;
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "Llv;"
+		signature = "Llg;"
 	)
 	@Export("isaacCipher")
 	IsaacCipher isaacCipher;
-	@ObfuscatedName("e")
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = -1484140069
+		intValue = -1801396377
 	)
 	@Export("bitIndex")
 	int bitIndex;
 
 	static {
-		field3724 = new int[]{0, 1, 3, 7, 15, 31, 63, 127, 255, 511, 1023, 2047, 4095, 8191, 16383, 32767, 65535, 131071, 262143, 524287, 1048575, 2097151, 4194303, 8388607, 16777215, 33554431, 67108863, 134217727, 268435455, 536870911, 1073741823, Integer.MAX_VALUE, -1};
+		field3695 = new int[]{0, 1, 3, 7, 15, 31, 63, 127, 255, 511, 1023, 2047, 4095, 8191, 16383, 32767, 65535, 131071, 262143, 524287, 1048575, 2097151, 4194303, 8388607, 16777215, 33554431, 67108863, 134217727, 268435455, 536870911, 1073741823, Integer.MAX_VALUE, -1};
 	}
 
 	public PacketBuffer(int var1) {
 		super(var1);
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
 		signature = "([II)V",
-		garbageValue = "-1645876260"
+		garbageValue = "2116683841"
 	)
 	@Export("newIsaacCipher")
 	public void newIsaacCipher(int[] var1) {
 		this.isaacCipher = new IsaacCipher(var1);
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Llv;B)V",
-		garbageValue = "102"
+		signature = "(Llg;B)V",
+		garbageValue = "100"
 	)
 	@Export("setIsaacCipher")
 	public void setIsaacCipher(IsaacCipher var1) {
 		this.isaacCipher = var1;
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
 		signature = "(II)V",
-		garbageValue = "-624366105"
+		garbageValue = "1358666817"
 	)
 	@Export("writeByteIsaac")
 	public void writeByteIsaac(int var1) {
 		super.array[++super.offset - 1] = (byte)(var1 + this.isaacCipher.nextInt());
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
 		signature = "(I)I",
-		garbageValue = "-1669588152"
+		garbageValue = "-2099772642"
 	)
 	@Export("readByteIsaac")
 	public int readByteIsaac() {
 		return super.array[++super.offset - 1] - this.isaacCipher.nextInt() & 255;
 	}
 
-	@ObfuscatedName("k")
+	@ObfuscatedName("r")
 	@ObfuscatedSignature(
 		signature = "(I)Z",
-		garbageValue = "1288814590"
+		garbageValue = "-1080759401"
 	)
-	public boolean method5441() {
-		int var1 = super.array[super.offset] - this.isaacCipher.method6254() & 255;
+	public boolean method5380() {
+		int var1 = super.array[super.offset] - this.isaacCipher.method6191() & 255;
 		return var1 >= 128;
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
 		signature = "(I)I",
-		garbageValue = "-588340710"
+		garbageValue = "427431431"
 	)
 	@Export("readSmartByteShortIsaac")
 	public int readSmartByteShortIsaac() {
@@ -97,32 +92,32 @@ public class PacketBuffer extends Buffer {
 		return var1 < 128 ? var1 : (var1 - 128 << 8) + (super.array[++super.offset - 1] - this.isaacCipher.nextInt() & 255);
 	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
 		signature = "([BIII)V",
-		garbageValue = "2009256610"
+		garbageValue = "1740365961"
 	)
-	public void method5443(byte[] var1, int var2, int var3) {
+	public void method5385(byte[] var1, int var2, int var3) {
 		for (int var4 = 0; var4 < var3; ++var4) {
 			var1[var4 + var2] = (byte)(super.array[++super.offset - 1] - this.isaacCipher.nextInt());
 		}
 
 	}
 
-	@ObfuscatedName("i")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "1671880174"
+		garbageValue = "1647095141"
 	)
 	@Export("importIndex")
 	public void importIndex() {
 		this.bitIndex = super.offset * 8;
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
 		signature = "(II)I",
-		garbageValue = "-1296046831"
+		garbageValue = "1367970229"
 	)
 	@Export("readBits")
 	public int readBits(int var1) {
@@ -131,59 +126,117 @@ public class PacketBuffer extends Buffer {
 		int var4 = 0;
 
 		for (this.bitIndex += var1; var1 > var3; var3 = 8) {
-			var4 += (super.array[var2++] & field3724[var3]) << var1 - var3;
+			var4 += (super.array[var2++] & field3695[var3]) << var1 - var3;
 			var1 -= var3;
 		}
 
 		if (var3 == var1) {
-			var4 += super.array[var2] & field3724[var3];
+			var4 += super.array[var2] & field3695[var3];
 		} else {
-			var4 += super.array[var2] >> var3 - var1 & field3724[var1];
+			var4 += super.array[var2] >> var3 - var1 & field3695[var1];
 		}
 
 		return var4;
 	}
 
-	@ObfuscatedName("u")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
 		signature = "(B)V",
-		garbageValue = "-100"
+		garbageValue = "4"
 	)
 	@Export("exportIndex")
 	public void exportIndex() {
 		super.offset = (this.bitIndex + 7) / 8;
 	}
 
-	@ObfuscatedName("x")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(IS)I",
-		garbageValue = "4225"
+		signature = "(II)I",
+		garbageValue = "586994412"
 	)
 	@Export("bitsRemaining")
 	public int bitsRemaining(int var1) {
 		return var1 * 8 - this.bitIndex;
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("aa")
 	@ObfuscatedSignature(
-		signature = "(Lhp;III)Llx;",
-		garbageValue = "-1232611828"
+		signature = "(ILcu;ZB)I",
+		garbageValue = "82"
 	)
-	@Export("SpriteBuffer_getIndexedSprite")
-	static IndexedSprite SpriteBuffer_getIndexedSprite(AbstractArchive var0, int var1, int var2) {
-		if (!Friend.SpriteBuffer_bufferFile(var0, var1, var2)) {
-			return null;
+	static int method5408(int var0, Script var1, boolean var2) {
+		int var3;
+		int var4;
+		int var6;
+		if (var0 == ScriptOpcodes.ENUM_STRING) {
+			Interpreter.Interpreter_intStackSize -= 2;
+			var3 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
+			var4 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
+			EnumDefinition var5 = UserComparator10.getEnum(var3);
+			if (var5.outputType != 's') {
+			}
+
+			for (var6 = 0; var6 < var5.outputCount; ++var6) {
+				if (var4 == var5.keys[var6]) {
+					Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var5.strVals[var6];
+					var5 = null;
+					break;
+				}
+			}
+
+			if (var5 != null) {
+				Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var5.defaultStr;
+			}
+
+			return 1;
+		} else if (var0 != ScriptOpcodes.ENUM) {
+			if (var0 == ScriptOpcodes.ENUM_GETOUTPUTCOUNT) {
+				var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
+				EnumDefinition var10 = UserComparator10.getEnum(var3);
+				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var10.size();
+				return 1;
+			} else {
+				return 2;
+			}
+		} else {
+			Interpreter.Interpreter_intStackSize -= 4;
+			var3 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
+			var4 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
+			int var9 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 2];
+			var6 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 3];
+			EnumDefinition var7 = UserComparator10.getEnum(var9);
+			if (var3 == var7.inputType && var4 == var7.outputType) {
+				for (int var8 = 0; var8 < var7.outputCount; ++var8) {
+					if (var6 == var7.keys[var8]) {
+						if (var4 == 115) {
+							Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var7.strVals[var8];
+						} else {
+							Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var7.intVals[var8];
+						}
+
+						var7 = null;
+						break;
+					}
+				}
+
+				if (var7 != null) {
+					if (var4 == 115) {
+						Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var7.defaultStr;
+					} else {
+						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var7.defaultInt;
+					}
+				}
+
+				return 1;
+			} else {
+				if (var4 == 115) {
+					Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = "null";
+				} else {
+					Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = 0;
+				}
+
+				return 1;
+			}
 		}
-		IndexedSprite var4 = new IndexedSprite();
-		var4.width = SpriteBuffer.SpriteBuffer_spriteWidth;
-		var4.height = SpriteBuffer.SpriteBuffer_spriteHeight;
-		var4.xOffset = Varps.SpriteBuffer_xOffsets[0];
-		var4.yOffset = SpriteBuffer.SpriteBuffer_yOffsets[0];
-		var4.subWidth = SpriteBuffer.SpriteBuffer_spriteWidths[0];
-		var4.subHeight = class216.SpriteBuffer_spriteHeights[0];
-		var4.palette = Frames.SpriteBuffer_spritePalette;
-		var4.pixels = SpriteBuffer.SpriteBuffer_pixels[0];
-		class16.SpriteBuffer_clear();
-		return var4;
 	}
 }

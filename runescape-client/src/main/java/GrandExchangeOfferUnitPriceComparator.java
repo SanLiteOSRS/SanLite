@@ -1,20 +1,24 @@
 import java.util.Comparator;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("m")
+@ObfuscatedName("c")
 @Implements("GrandExchangeOfferUnitPriceComparator")
 final class GrandExchangeOfferUnitPriceComparator implements Comparator {
-	@ObfuscatedName("w")
-	@Export("localPlayerName")
-	public static String localPlayerName;
+	@ObfuscatedName("s")
+	@ObfuscatedGetter(
+		intValue = -1987201491
+	)
+	@Export("loginBoxCenter")
+	static int loginBoxCenter;
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(Li;Li;B)I",
-		garbageValue = "-46"
+		signature = "(Lm;Lm;I)I",
+		garbageValue = "1379036847"
 	)
 	@Export("compare_bridged")
 	int compare_bridged(GrandExchangeEvent var1, GrandExchangeEvent var2) {
@@ -29,168 +33,92 @@ final class GrandExchangeOfferUnitPriceComparator implements Comparator {
 		return super.equals(var1);
 	}
 
-	@ObfuscatedName("jp")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(IB)V",
-		garbageValue = "31"
+		signature = "(II)Lix;",
+		garbageValue = "-1839745147"
 	)
-	static final void method124(int var0) {
-		class65.method1176();
-
-		for (ObjectSound var1 = (ObjectSound)ObjectSound.objectSounds.last(); var1 != null; var1 = (ObjectSound)ObjectSound.objectSounds.previous()) {
-			if (var1.obj != null) {
-				var1.set();
+	@Export("SequenceDefinition_get")
+	public static SequenceDefinition SequenceDefinition_get(int var0) {
+		SequenceDefinition var1 = (SequenceDefinition)SequenceDefinition.SequenceDefinition_cached.get((long)var0);
+		if (var1 != null) {
+			return var1;
+		} else {
+			byte[] var2 = SequenceDefinition.SequenceDefinition_archive.takeFile(12, var0);
+			var1 = new SequenceDefinition();
+			if (var2 != null) {
+				var1.decode(new Buffer(var2));
 			}
+
+			var1.postDecode();
+			SequenceDefinition.SequenceDefinition_cached.put(var1, (long)var0);
+			return var1;
 		}
+	}
 
-		int var4 = GrandExchangeOfferWorldComparator.method61(var0).type;
-		if (var4 != 0) {
-			int var2 = Varps.Varps_main[var0];
-			if (var4 == 1) {
-				if (var2 == 1) {
-					Rasterizer3D.Rasterizer3D_setBrightness(0.9D);
-					((TextureProvider)Rasterizer3D.Rasterizer3D_textureLoader).setBrightness(0.9D);
-				}
+	@ObfuscatedName("n")
+	@ObfuscatedSignature(
+		signature = "(Ljava/lang/Object;ZI)[B",
+		garbageValue = "264970062"
+	)
+	@Export("serialize")
+	public static byte[] serialize(Object var0, boolean var1) {
+		if (var0 == null) {
+			return null;
+		} else if (var0 instanceof byte[]) {
+			byte[] var6 = (byte[])((byte[])var0);
+			if (var1) {
+				int var4 = var6.length;
+				byte[] var5 = new byte[var4];
+				System.arraycopy(var6, 0, var5, 0, var4);
+				return var5;
+			} else {
+				return var6;
+			}
+		} else if (var0 instanceof AbstractByteArrayCopier) {
+			AbstractByteArrayCopier var2 = (AbstractByteArrayCopier)var0;
+			return var2.get();
+		} else {
+			throw new IllegalArgumentException();
+		}
+	}
 
-				if (var2 == 2) {
-					Rasterizer3D.Rasterizer3D_setBrightness(0.8D);
-					((TextureProvider)Rasterizer3D.Rasterizer3D_textureLoader).setBrightness(0.8D);
-				}
+	@ObfuscatedName("eg")
+	@ObfuscatedSignature(
+		signature = "(B)V",
+		garbageValue = "35"
+	)
+	static final void method139() {
+		Scene.Scene_isLowDetail = false;
+		Client.isLowDetail = false;
+	}
 
-				if (var2 == 3) {
-					Rasterizer3D.Rasterizer3D_setBrightness(0.7D);
-					((TextureProvider)Rasterizer3D.Rasterizer3D_textureLoader).setBrightness(0.7D);
-				}
-
-				if (var2 == 4) {
-					Rasterizer3D.Rasterizer3D_setBrightness(0.6D);
-					((TextureProvider)Rasterizer3D.Rasterizer3D_textureLoader).setBrightness(0.6D);
-				}
-
-				FontName.method5317();
+	@ObfuscatedName("gl")
+	@ObfuscatedSignature(
+		signature = "(Lbi;B)Z",
+		garbageValue = "64"
+	)
+	static boolean method134(Player var0) {
+		if (Client.drawPlayerNames == 0) {
+			return false;
+		} else if (class223.localPlayer != var0) {
+			boolean var1 = (Client.drawPlayerNames & 4) != 0;
+			boolean var2 = var1;
+			boolean var3;
+			if (!var1) {
+				var3 = (Client.drawPlayerNames & 1) != 0;
+				var2 = var3 && var0.isFriend();
 			}
 
-			if (var4 == 3) {
-				short var3 = 0;
-				if (var2 == 0) {
-					var3 = 255;
-				}
-
-				if (var2 == 1) {
-					var3 = 192;
-				}
-
-				if (var2 == 2) {
-					var3 = 128;
-				}
-
-				if (var2 == 3) {
-					var3 = 64;
-				}
-
-				if (var2 == 4) {
-					var3 = 0;
-				}
-
-				if (var3 != Client.field911) {
-					if (Client.field911 == 0 && Client.field889 != -1) {
-						class169.method3503(WorldMapRegion.archive6, Client.field889, 0, var3, false);
-						Client.field699 = false;
-					} else if (var3 == 0) {
-						NetSocket.method3553();
-						Client.field699 = false;
-					} else if (class197.field2402 != 0) {
-						ScriptFrame.field529 = var3;
-					} else {
-						Interpreter.midiPcmStream.method3706(var3);
-					}
-
-					Client.field911 = var3;
-				}
+			var3 = var2;
+			if (!var2) {
+				boolean var4 = (Client.drawPlayerNames & 2) != 0;
+				var3 = var4 && var0.isClanMember();
 			}
 
-			if (var4 == 4) {
-				if (var2 == 0) {
-					Client.soundEffectVolume = 127;
-				}
-
-				if (var2 == 1) {
-					Client.soundEffectVolume = 96;
-				}
-
-				if (var2 == 2) {
-					Client.soundEffectVolume = 64;
-				}
-
-				if (var2 == 3) {
-					Client.soundEffectVolume = 32;
-				}
-
-				if (var2 == 4) {
-					Client.soundEffectVolume = 0;
-				}
-			}
-
-			if (var4 == 5) {
-				Client.field789 = var2;
-			}
-
-			if (var4 == 6) {
-				Client.chatEffects = var2;
-			}
-
-			if (var4 == 9) {
-				Client.field809 = var2;
-			}
-
-			if (var4 == 10) {
-				if (var2 == 0) {
-					Client.field892 = 127;
-				}
-
-				if (var2 == 1) {
-					Client.field892 = 96;
-				}
-
-				if (var2 == 2) {
-					Client.field892 = 64;
-				}
-
-				if (var2 == 3) {
-					Client.field892 = 32;
-				}
-
-				if (var2 == 4) {
-					Client.field892 = 0;
-				}
-			}
-
-			if (var4 == 17) {
-				Client.followerIndex = var2 & 65535;
-			}
-
-			if (var4 == 18) {
-				Client.playerAttackOption = (AttackOption)SoundSystem.findEnumerated(AbstractArchive.method4141(), var2);
-				if (Client.playerAttackOption == null) {
-					Client.playerAttackOption = AttackOption.AttackOption_dependsOnCombatLevels;
-				}
-			}
-
-			if (var4 == 19) {
-				if (var2 == -1) {
-					Client.combatTargetPlayerIndex = -1;
-				} else {
-					Client.combatTargetPlayerIndex = var2 & 2047;
-				}
-			}
-
-			if (var4 == 22) {
-				Client.npcAttackOption = (AttackOption)SoundSystem.findEnumerated(AbstractArchive.method4141(), var2);
-				if (Client.npcAttackOption == null) {
-					Client.npcAttackOption = AttackOption.AttackOption_dependsOnCombatLevels;
-				}
-			}
-
+			return var3;
+		} else {
+			return class16.method195();
 		}
 	}
 }

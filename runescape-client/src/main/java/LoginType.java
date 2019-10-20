@@ -4,89 +4,101 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("mu")
+@ObfuscatedName("li")
 @Implements("LoginType")
 public class LoginType {
-	@ObfuscatedName("q")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "Lmu;"
+		signature = "Lli;"
 	)
 	@Export("oldscape")
 	public static final LoginType oldscape;
-	@ObfuscatedName("w")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "Lmu;"
+		signature = "Lli;"
 	)
-	static final LoginType field4049;
-	@ObfuscatedName("e")
+	static final LoginType field4026;
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "Lmu;"
+		signature = "Lli;"
 	)
-	static final LoginType field4050;
+	static final LoginType field4029;
+	@ObfuscatedName("u")
+	@ObfuscatedSignature(
+		signature = "Lli;"
+	)
+	static final LoginType field4025;
+	@ObfuscatedName("r")
+	@ObfuscatedSignature(
+		signature = "Lli;"
+	)
+	static final LoginType field4028;
 	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		signature = "Lmu;"
+		signature = "Lli;"
 	)
-	static final LoginType field4051;
-	@ObfuscatedName("k")
+	static final LoginType field4027;
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		signature = "Lmu;"
+		signature = "Lli;"
 	)
-	static final LoginType field4058;
-	@ObfuscatedName("l")
-	@ObfuscatedSignature(
-		signature = "Lmu;"
-	)
-	static final LoginType field4053;
-	@ObfuscatedName("b")
-	@ObfuscatedSignature(
-		signature = "Lmu;"
-	)
-	static final LoginType field4054;
-	@ObfuscatedName("i")
-	@ObfuscatedSignature(
-		signature = "Lmu;"
-	)
-	static final LoginType field4055;
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		signature = "Lmu;"
-	)
-	public static final LoginType field4056;
-	@ObfuscatedName("f")
-	@ObfuscatedGetter(
-		intValue = 1957513145
-	)
-	final int field4057;
+	static final LoginType field4024;
 	@ObfuscatedName("m")
-	final String field4048;
+	@ObfuscatedSignature(
+		signature = "Lli;"
+	)
+	static final LoginType field4031;
+	@ObfuscatedName("y")
+	@ObfuscatedSignature(
+		signature = "Lli;"
+	)
+	public static final LoginType field4032;
+	@ObfuscatedName("i")
+	@ObfuscatedGetter(
+		intValue = 1653780659
+	)
+	final int field4033;
+	@ObfuscatedName("c")
+	final String field4034;
 
 	static {
-		oldscape = new LoginType(0, 0, "", "");
-		field4049 = new LoginType(3, 1, "", "");
-		field4050 = new LoginType(4, 2, "", "");
-		field4051 = new LoginType(7, 3, "", "");
-		field4058 = new LoginType(5, 4, "", "");
-		field4053 = new LoginType(8, 5, "", "");
-		field4054 = new LoginType(1, 6, "", "");
-		field4055 = new LoginType(6, 7, "", "");
-		field4056 = new LoginType(2, -1, "", "", true, new LoginType[]{oldscape, field4049, field4050, field4058, field4051});
+		oldscape = new LoginType(7, 0, "", "");
+		field4026 = new LoginType(5, 1, "", "");
+		field4029 = new LoginType(6, 2, "", "");
+		field4025 = new LoginType(2, 3, "", "");
+		field4028 = new LoginType(4, 4, "", "");
+		field4027 = new LoginType(0, 5, "", "");
+		field4024 = new LoginType(8, 6, "", "");
+		field4031 = new LoginType(3, 7, "", "");
+		field4032 = new LoginType(1, -1, "", "", true, new LoginType[]{oldscape, field4026, field4029, field4028, field4025});
 	}
 
 	LoginType(int var1, int var2, String var3, String var4) {
-		this.field4057 = var1;
-		this.field4048 = var4;
+		this.field4033 = var1;
+		this.field4034 = var4;
 	}
 
 	@ObfuscatedSignature(
-		signature = "(IILjava/lang/String;Ljava/lang/String;Z[Lmu;)V"
+		signature = "(IILjava/lang/String;Ljava/lang/String;Z[Lli;)V"
 	)
 	LoginType(int var1, int var2, String var3, String var4, boolean var5, LoginType[] var6) {
-		this.field4057 = var1;
-		this.field4048 = var4;
+		this.field4033 = var1;
+		this.field4034 = var4;
+	}
+
+	public String aak() {
+		return this.field4034;
 	}
 
 	public String toString() {
-		return this.field4048;
+		return this.field4034;
+	}
+
+	public String aah() {
+		return this.field4034;
+	}
+
+	public String aae() {
+		return this.field4034;
 	}
 }

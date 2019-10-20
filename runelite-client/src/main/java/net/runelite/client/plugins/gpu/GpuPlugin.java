@@ -59,10 +59,10 @@ import net.runelite.api.GameState;
 import net.runelite.api.Model;
 import net.runelite.api.NodeCache;
 import net.runelite.api.Perspective;
-import net.runelite.api.Renderable;
+import net.runelite.api.Entity;
 import net.runelite.api.Scene;
-import net.runelite.api.SceneTileModel;
-import net.runelite.api.SceneTilePaint;
+import net.runelite.api.TileModel;
+import net.runelite.api.TilePaint;
 import net.runelite.api.Texture;
 import net.runelite.api.TextureProvider;
 import net.runelite.api.events.GameStateChanged;
@@ -235,15 +235,21 @@ public class GpuPlugin extends Plugin implements DrawCallbacks
 				bufferId = uvBufferId = uniformBufferId = -1;
 				unorderedModels = smallModels = largeModels = 0;
 
+				canvas = client.getCanvas();
+
+				if (!canvas.isDisplayable())
+				{
+					return false;
+				}
+
+				canvas.setIgnoreRepaint(true);
+
 				vertexBuffer = new GpuIntBuffer();
 				uvBuffer = new GpuFloatBuffer();
 
 				modelBufferUnordered = new GpuIntBuffer();
 				modelBufferSmall = new GpuIntBuffer();
 				modelBuffer = new GpuIntBuffer();
-
-				canvas = client.getCanvas();
-				canvas.setIgnoreRepaint(true);
 
 				GLProfile.initSingleton();
 
@@ -321,7 +327,7 @@ public class GpuPlugin extends Plugin implements DrawCallbacks
 
 				shutDown();
 			}
-
+			return true;
 		});
 	}
 
@@ -711,7 +717,7 @@ public class GpuPlugin extends Plugin implements DrawCallbacks
 	}
 
 	public void drawScenePaint(int orientation, int pitchSin, int pitchCos, int yawSin, int yawCos, int x, int y, int z,
-							SceneTilePaint paint, int tileZ, int tileX, int tileY,
+							TilePaint paint, int tileZ, int tileX, int tileY,
 							int zoom, int centerX, int centerY)
 	{
 		if (paint.getBufferLen() > 0)
@@ -737,7 +743,7 @@ public class GpuPlugin extends Plugin implements DrawCallbacks
 	}
 
 	public void drawSceneModel(int orientation, int pitchSin, int pitchCos, int yawSin, int yawCos, int x, int y, int z,
-							SceneTileModel model, int tileZ, int tileX, int tileY,
+							TileModel model, int tileZ, int tileX, int tileY,
 							int zoom, int centerX, int centerY)
 	{
 		if (model.getBufferLen() > 0)
@@ -1322,7 +1328,7 @@ public class GpuPlugin extends Plugin implements DrawCallbacks
 	 * @param hash
 	 */
 	@Override
-	public void draw(Renderable renderable, int orientation, int pitchSin, int pitchCos, int yawSin, int yawCos, int x, int y, int z, long hash)
+	public void draw(Entity renderable, int orientation, int pitchSin, int pitchCos, int yawSin, int yawCos, int x, int y, int z, long hash)
 	{
 		// Model may be in the scene buffer
 		if (renderable instanceof Model && ((Model) renderable).getSceneId() == sceneUploader.sceneId)
