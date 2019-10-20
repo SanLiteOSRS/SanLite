@@ -10,11 +10,6 @@ public class Verzik extends TheatreOfBloodEncounter
 		super(region, encounter);
 	}
 
-	public boolean isSkullAttack(int graphicsObjectId)
-	{
-		return graphicsObjectId == GraphicID.VERZIK_SKULL_ATTACK_ON_LANDING;
-	}
-
 	public boolean isGreenOrbPool(int graphicsObjectId)
 	{
 		return graphicsObjectId == GraphicID.VERZIK_GREEN_ORB_POOL;

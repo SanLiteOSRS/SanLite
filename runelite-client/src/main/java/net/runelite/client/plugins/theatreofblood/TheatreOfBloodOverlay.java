@@ -90,11 +90,6 @@ public class TheatreOfBloodOverlay extends Overlay
 				}
 
 				// Verzik Vitur
-				if (config.highlightVerzikSkullAttackTiles() && encounter.getEncounter() == TheatreOfBloodEncounters.VERZIK)
-				{
-					renderVerzikSkullAoeEffects(graphics, (Verzik) encounter);
-				}
-
 				if (config.highlightVerzikGreenOrbPoolTiles() && encounter.getEncounter() == TheatreOfBloodEncounters.VERZIK)
 				{
 					renderVerzikGreenOrbPoolAoeEffects(graphics, (Verzik) encounter);
@@ -272,23 +267,6 @@ public class TheatreOfBloodOverlay extends Overlay
 				if (xarpus.isHealingPoolTileObject(gameObject.getId()))
 				{
 					OverlayUtil.renderPolygon(graphics, polygon, config.getXarpusHealingPoolColor());
-				}
-			}
-		}
-	}
-
-	private void renderVerzikSkullAoeEffects(Graphics2D graphics, Verzik verzik)
-	{
-		for (GraphicsObject graphicsObject : verzik.getAoeEffects())
-		{
-			LocalPoint localPoint = graphicsObject.getLocation();
-			Polygon polygon = Perspective.getCanvasTilePoly(client, localPoint);
-
-			if (polygon != null)
-			{
-				if (verzik.isSkullAttack(graphicsObject.getId()))
-				{
-					OverlayUtil.renderPolygon(graphics, polygon, config.getVerzikSkullAttackColor());
 				}
 			}
 		}

@@ -258,35 +258,10 @@ public interface TheatreOfBloodConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "highlightVerzikSkullAttackTiles",
-			name = "Highlight skull attack tiles",
-			description = "Highlight the tiles for Verzik's skull attacks",
-			position = 19,
-			group = "Verzik Vitur"
-	)
-	default boolean highlightVerzikSkullAttackTiles()
-	{
-		return false;
-	}
-
-
-	@ConfigItem(
-			keyName = "verzikSkullAttackColor",
-			name = "Skull attack marker",
-			description = "Color of Verzik's skull attack marker",
-			position = 20,
-			group = "Verzik Vitur"
-	)
-	default Color getVerzikSkullAttackColor()
-	{
-		return new Color(102, 130, 28);
-	}
-
-	@ConfigItem(
 			keyName = "highlightVerzikGreenOrbPoolTiles",
 			name = "Highlight green orb pool tiles",
 			description = "Highlight the tiles for Verzik's green orb pools",
-			position = 21,
+			position = 19,
 			group = "Verzik Vitur"
 	)
 	default boolean highlightVerzikGreenOrbPoolTiles()
@@ -299,7 +274,7 @@ public interface TheatreOfBloodConfig extends Config
 			keyName = "verzikGreenOrbPoolColor",
 			name = "Green orb pool marker",
 			description = "Color of Verzik's green orb pool marker",
-			position = 22,
+			position = 20,
 			group = "Verzik Vitur"
 	)
 	default Color getVerzikGreenOrbPoolColor()
@@ -311,7 +286,7 @@ public interface TheatreOfBloodConfig extends Config
 			keyName = "showDebugOverlay",
 			name = "Display debug overlay",
 			description = "Displays Theatre of Blood debug overlay. This contains variables that the plugin uses to function",
-			position = 23
+			position = 21
 	)
 	default boolean showDebugOverlay()
 	{

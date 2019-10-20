@@ -32,9 +32,6 @@ public class TheatreOfBloodPlugin extends Plugin
 	private static final int[] NYLOCAS_REGIONS = {
 			13122
 	};
-	private static final int[] VERZIK_REGIONS = {
-			12611
-	};
 
 	@Inject
 	private Client client;
@@ -193,7 +190,7 @@ public class TheatreOfBloodPlugin extends Plugin
 					Verzik verzik = (Verzik) currentEncounter;
 					currentEncounter.setAoeEffects(
 							client.getGraphicsObjects().stream()
-									.filter(x -> verzik.isSkullAttack(x.getId()) || verzik.isGreenOrbPool(x.getId()))
+									.filter(x -> verzik.isGreenOrbPool(x.getId()))
 									.collect(Collectors.toList()));
 					break;
 			}
@@ -226,17 +223,19 @@ public class TheatreOfBloodPlugin extends Plugin
 				case NpcID.XARPUS_8339:
 				case NpcID.XARPUS_8340:
 				case NpcID.XARPUS_8341:
-					for (GameObject gameObject : getClientGameObjects()) // TODO: Remove
+					for (GroundObject groundObject : getClientGroundObjects()) // TODO: Remove
 					{
-						if (gameObject.getId() == ObjectID.EXHUMED || gameObject.getId() == ObjectID.ACIDIC_MIASMA)
+						log.debug("groundObject id: {}", groundObject.getId());
+						if (groundObject.getId() == ObjectID.EXHUMED || groundObject.getId() == ObjectID.ACIDIC_MIASMA)
 						{
-							log.debug("GameObjects contain Xarpus object | id: {}", gameObject.getId());
-						}
+							log.debug("groundObject contain Xarpus object | id: {}", groundObject.getId());
+						} // TODO: This only sees the game objects highlighted and not ground objects for Xarpus
 					}
 
+
 					Xarpus xarpus = (Xarpus) currentEncounter;
-					currentEncounter.setGameObjects(
-							getClientGameObjects().stream()
+					xarpus.setGroundObjects(
+							getClientGroundObjects().stream()
 									.filter(x -> xarpus.isPoisonTileObject(x.getId()) || xarpus.isHealingPoolTileObject(x.getId()))
 									.collect(Collectors.toList()));
 					break;
@@ -340,6 +339,41 @@ public class TheatreOfBloodPlugin extends Plugin
 		return gameObjectsList;
 	}
 
+	private List<GroundObject> getClientGroundObjects()
+	{
+		Scene scene = client.getScene();
+		Tile[][][] tiles = scene.getTiles();
+
+		int z = client.getPlane();
+
+		List<GroundObject> groundObjectsList = new ArrayList<>();
+		for (int x = 0; x < Constants.SCENE_SIZE; ++x)
+		{
+			for (int y = 0; y < Constants.SCENE_SIZE; ++y)
+			{
+				Tile tile = tiles[z][x][y];
+
+				if (tile == null)
+				{
+					continue;
+				}
+
+				Player player = client.getLocalPlayer();
+				if (player == null)
+				{
+					continue;
+				}
+
+				GroundObject groundObject = tile.getGroundObject();
+				if (groundObject != null)
+				{
+					groundObjectsList.add(groundObject);
+				}
+			}
+		}
+		return groundObjectsList;
+	}
+
 	/**
 	 * Checks the current world region and NPC id and sets the encounter based on it.
 	 *
@@ -435,30 +469,6 @@ public class TheatreOfBloodPlugin extends Plugin
 		{
 			log.debug("Encounter ended because of npc despawn | id: {}", event.getNpc().getId());
 			reset();
-		}
-	}
-
-	@Subscribe
-	public void onVarbitChanged(VarbitChanged event)
-	{
-		// TODO: Does not work on all encounters. Xarpus/Verzik confirmed
-		if (currentEncounter != null && !currentEncounter.isStarted())
-		{
-			if (client.getVar(Varbits.TOB_ENCOUNTER_DOOR) == 1)
-			{
-				log.debug("Encounter started: {}", currentEncounter.getEncounter());
-				currentEncounter.setStarted(true);
-			}
-		}
-
-		if (currentEncounter != null)
-		{
-			// Reset if players is not in a party
-			if (client.getVar(Varbits.THEATRE_OF_BLOOD) == 0)
-			{
-				log.debug("Player left the party. Encounter reset");
-				reset();
-			}
 		}
 	}
 
