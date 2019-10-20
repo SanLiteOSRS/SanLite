@@ -65,7 +65,7 @@ public class PlayerIndicatorsTileOverlay extends Overlay
 		{
 			final Polygon poly = player.getCanvasTilePoly();
 
-			if (client.isFriended(player.getName(), false) && config.drawFriendsTiles() && poly != null && config.highlightOfflineFriends() && config.highlightFriends())
+			if (client.isFriended(player.getName(), false) && config.drawFriendsTiles() && poly != null && config.highlightOfflineFriends() && config.highlightFriends()  && player != client.getLocalPlayer())
 			{
 				if (config.disableFriendHighlightIfClanMember() && !player.isClanMember())
 				{

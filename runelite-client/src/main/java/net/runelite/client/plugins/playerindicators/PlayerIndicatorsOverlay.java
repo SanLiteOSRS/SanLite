@@ -83,7 +83,18 @@ public class PlayerIndicatorsOverlay extends Overlay
 		}
 
 		final int zOffset;
-		switch (drawPlayerNamesConfig)
+		PlayerNameLocation locationToUse;
+
+		if (client.isFriended(actor.getName(), false) && config.highlightFriends())
+		{
+			locationToUse = drawFriendPlayerNamePosition;
+		}
+		else
+		{
+			locationToUse = drawPlayerNamesConfig;
+		}
+
+		switch (locationToUse)
 		{
 			case MODEL_CENTER:
 			case MODEL_RIGHT:
@@ -96,7 +107,21 @@ public class PlayerIndicatorsOverlay extends Overlay
 		final String name = Text.sanitize(actor.getName());
 		Point textLocation = actor.getCanvasTextLocation(graphics, name, zOffset);
 
-		if (drawPlayerNamesConfig == PlayerNameLocation.MODEL_RIGHT || drawFriendPlayerNamePosition == PlayerNameLocation.MODEL_RIGHT)
+		if (client.isFriended(actor.getName(), false) && drawFriendPlayerNamePosition == PlayerNameLocation.MODEL_RIGHT && config.highlightFriends())
+		{
+			if (!config.disableFriendHighlightIfClanMember() && !actor.isClanMember())
+			{
+				textLocation = actor.getCanvasTextLocation(graphics, "", zOffset);
+
+				if (textLocation == null)
+				{
+					return;
+				}
+
+				textLocation = new Point(textLocation.getX() + ACTOR_HORIZONTAL_TEXT_MARGIN, textLocation.getY());
+			}
+		}
+		else if (drawPlayerNamesConfig == PlayerNameLocation.MODEL_RIGHT )
 		{
 			textLocation = actor.getCanvasTextLocation(graphics, "", zOffset);
 
@@ -127,7 +152,7 @@ public class PlayerIndicatorsOverlay extends Overlay
 					final int clanImageTextMargin;
 					final int clanImageNegativeMargin;
 
-					if (drawPlayerNamesConfig == PlayerNameLocation.MODEL_RIGHT)
+					if (locationToUse == PlayerNameLocation.MODEL_RIGHT)
 					{
 						clanImageTextMargin = clanImageWidth;
 						clanImageNegativeMargin = 0;
@@ -148,7 +173,7 @@ public class PlayerIndicatorsOverlay extends Overlay
 			}
 		}
 
-		if (config.highlightOfflineFriends() && client.isFriended(actor.getName(), false) && drawFriendPlayerNamePosition != PlayerNameLocation.DISABLED && config.highlightFriends())
+		if (config.highlightOfflineFriends() && client.isFriended(actor.getName(), false) && drawFriendPlayerNamePosition != PlayerNameLocation.DISABLED && config.highlightFriends() && actor != client.getLocalPlayer())
 		{
 			if (config.disableFriendHighlightIfClanMember() && !actor.isClanMember())
 			{

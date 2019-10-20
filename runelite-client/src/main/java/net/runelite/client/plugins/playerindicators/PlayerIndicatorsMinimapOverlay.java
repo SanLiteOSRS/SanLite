@@ -75,7 +75,7 @@ public class PlayerIndicatorsMinimapOverlay extends Overlay
 				OverlayUtil.renderTextLocation(graphics, minimapLocation, name, color);
 			}
 		}
-		else if (config.drawFriendMinimapNames() && client.isFriended(actor.getName(), false) && config.highlightOfflineFriends() && config.highlightFriends())
+		else if (config.drawFriendMinimapNames() && client.isFriended(actor.getName(), false) && config.highlightOfflineFriends() && config.highlightFriends()  && actor != client.getLocalPlayer())
 		{
 			final net.runelite.api.Point minimapLocation = actor.getMinimapLocation();
 			if (minimapLocation != null)
