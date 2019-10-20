@@ -25,9 +25,7 @@ import java.util.stream.Collectors;
 		name = "Theatre of Blood",
 		description = "Helps with the various boss mechanics in the Theatre of Blood",
 		tags = {"tob", "raids", "theatre", "blood", "theatre of blood", "pvm", "overlay", "boss"},
-		type = PluginType.SANLITE,
-		enabledByDefault = false,
-		hidden = true
+		type = PluginType.SANLITE
 )
 public class TheatreOfBloodPlugin extends Plugin
 {
@@ -163,7 +161,7 @@ public class TheatreOfBloodPlugin extends Plugin
 
 	private void checkGraphicObjects()
 	{
-		if (currentEncounter != null && currentEncounter.isStarted() && currentEncounter.getNpc() != null)
+		if (currentEncounter != null && currentEncounter.getNpc() != null)
 		{
 			switch (currentEncounter.getNpc().getId())
 			{
@@ -216,7 +214,7 @@ public class TheatreOfBloodPlugin extends Plugin
 
 	private void checkGameObjects()
 	{
-		if (currentEncounter != null && currentEncounter.isStarted() && currentEncounter.getNpc() != null)
+		if (currentEncounter != null && currentEncounter.getNpc() != null)
 		{
 			switch (currentEncounter.getNpc().getId())
 			{
@@ -231,6 +229,11 @@ public class TheatreOfBloodPlugin extends Plugin
 							getClientGameObjects().stream()
 									.filter(x -> sugadintiMaiden.isBloodSpawnBloodTile(x.getId()))
 									.collect(Collectors.toList()));
+					break;
+				case NpcID.SOTETSEG:
+				case NpcID.SOTETSEG_8388:
+					checkMazeTiles((Sotetseg) currentEncounter);
+					break;
 				case NpcID.XARPUS:
 				case NpcID.XARPUS_8339:
 				case NpcID.XARPUS_8340:
@@ -240,6 +243,32 @@ public class TheatreOfBloodPlugin extends Plugin
 							getClientGameObjects().stream()
 									.filter(x -> xarpus.isPoisonTileObject(x.getId()) || xarpus.isHealingPoolTileObject(x.getId()))
 									.collect(Collectors.toList()));
+					break;
+			}
+		}
+	}
+
+	void checkMazeTiles(Sotetseg sotetseg)
+	{
+		if (sotetseg.isMazeActive(getClientGameObjects()))
+		{
+			if (sotetseg.getActiveMazeTiles() == null)
+			{
+				sotetseg.activateMaze();
+			}
+
+			getClientGameObjects().stream()
+					.filter(x -> sotetseg.isRedMazeTileObject(x.getId()) && !sotetseg.getActiveMazeTiles().contains(x))
+					.forEach((x) ->
+					{
+						sotetseg.getActiveMazeTiles().add(x);
+					});
+		}
+		else if (!sotetseg.isMazeActive(getClientGameObjects()))
+		{
+			if (sotetseg.getActiveMazeTiles() != null)
+			{
+				sotetseg.resetMaze();
 			}
 		}
 	}
@@ -285,42 +314,46 @@ public class TheatreOfBloodPlugin extends Plugin
 		return gameObjectsList;
 	}
 
-	@Subscribe
-	public void onWorldRegionChanged(WorldRegionChanged event)
+	/**
+	 * Checks the current world region and sets the encounter based on it.
+	 *
+	 * @param worldRegion current world region(s)
+	 */
+	private void updateCurrentEncounter(int[] worldRegion)
 	{
 		if (currentEncounter != null)
 		{
 			return;
 		}
 
-		if (isInstanceTheatreOfBloodRegion(event.getWorldRegion()))
+		if (isInstanceTheatreOfBloodRegion(worldRegion))
 		{
-			if (Arrays.equals(event.getWorldRegion(), MAIDEN_REGIONS))
+			if (Arrays.equals(worldRegion, MAIDEN_REGIONS))
 			{
 				currentEncounter = new SugadintiMaiden(TheatreOfBloodEncounterRegions.MAIDEN_REGIONS, TheatreOfBloodEncounters.SUGADINTI_MAIDEN);
 				log.debug("Current encounter set to maiden: {}", currentEncounter);
 			}
-			else if (Arrays.equals(event.getWorldRegion(), BLOAT_REGIONS))
+			else if (Arrays.equals(worldRegion, BLOAT_REGIONS))
 			{
 				currentEncounter = new PestilentBloat(TheatreOfBloodEncounterRegions.BLOAT_REGIONS, TheatreOfBloodEncounters.PESTILENT_BLOAT);
 				log.debug("Current encounter set to bloat: {}", currentEncounter);
 			}
-			else if (Arrays.equals(event.getWorldRegion(), NYLOCAS_REGIONS))
+			else if (Arrays.equals(worldRegion, NYLOCAS_REGIONS))
 			{
 				currentEncounter = new Nylocas(TheatreOfBloodEncounterRegions.NYLOCAS_REGIONS, TheatreOfBloodEncounters.NYLOCAS);
 				log.debug("Current encounter set to nylocas: {}", currentEncounter);
 			}
-			else if (Arrays.equals(event.getWorldRegion(), SOTETSEG_REGIONS))
+			else if (Arrays.equals(worldRegion, SOTETSEG_REGIONS))
 			{
 				currentEncounter = new Sotetseg(TheatreOfBloodEncounterRegions.SOTETSEG_REGIONS, TheatreOfBloodEncounters.SOTETSEG);
 				log.debug("Current encounter set to sotetseg: {}", currentEncounter);
 			}
-			else if (Arrays.equals(event.getWorldRegion(), XARPUS_REGIONS))
+			else if (Arrays.equals(worldRegion, XARPUS_REGIONS))
 			{
 				currentEncounter = new Xarpus(TheatreOfBloodEncounterRegions.XARPUS_REGIONS, TheatreOfBloodEncounters.XARPUS);
 				log.debug("Current encounter set to xarpus: {}", currentEncounter);
 			}
-			else if (Arrays.equals(event.getWorldRegion(), VERZIK_REGIONS))
+			else if (Arrays.equals(worldRegion, VERZIK_REGIONS))
 			{
 				currentEncounter = new Verzik(TheatreOfBloodEncounterRegions.VERZIK_REGIONS, TheatreOfBloodEncounters.VERZIK);
 				log.debug("Current encounter set to verzik: {}", currentEncounter);
@@ -332,6 +365,13 @@ public class TheatreOfBloodPlugin extends Plugin
 	public void onGameStateChanged(GameStateChanged event)
 	{
 		GameState gameState = event.getGameState();
+
+		// Triggers when a new world region is loaded
+		if (gameState == GameState.LOGGED_IN)
+		{
+			updateCurrentEncounter(client.getMapRegions());
+		}
+
 		if (gameState == GameState.LOGGING_IN || gameState == GameState.CONNECTION_LOST || gameState == GameState.HOPPING)
 		{
 			reset();
@@ -380,7 +420,7 @@ public class TheatreOfBloodPlugin extends Plugin
 			// Reset if players is not in a party
 			if (client.getVar(Varbits.THEATRE_OF_BLOOD) == 0)
 			{
-				log.debug("Player left party. Encounter reset");
+				log.debug("Player left the party. Encounter reset");
 				reset();
 			}
 		}
@@ -393,6 +433,26 @@ public class TheatreOfBloodPlugin extends Plugin
 		{
 			checkGraphicObjects();
 			checkGameObjects();
+
+			if (currentEncounter.getEncounter() == TheatreOfBloodEncounters.PESTILENT_BLOAT)
+			{
+				PestilentBloat pestilentBloat = (PestilentBloat) currentEncounter;
+				if (pestilentBloat.isAsleep())
+				{
+					if (pestilentBloat.getRemainingSleepClientTicks() == -1)
+					{
+						pestilentBloat.sleep(client.getGameCycle());
+					}
+					else if (pestilentBloat.getRemainingSleepClientTicks() <= 0)
+					{
+						pestilentBloat.wakeUp();
+					}
+					else
+					{
+						pestilentBloat.updateSleepDurationTimer();
+					}
+				}
+			}
 		}
 	}
 }

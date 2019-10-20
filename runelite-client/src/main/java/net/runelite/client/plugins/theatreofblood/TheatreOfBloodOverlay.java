@@ -2,6 +2,7 @@ package net.runelite.client.plugins.theatreofblood;
 
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.*;
+import net.runelite.api.Point;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.client.plugins.theatreofblood.encounters.*;
 import net.runelite.client.ui.overlay.Overlay;
@@ -35,8 +36,10 @@ public class TheatreOfBloodOverlay extends Overlay
 	public Dimension render(Graphics2D graphics)
 	{
 		TheatreOfBloodEncounter encounter = plugin.getCurrentEncounter();
-		if (encounter != null && encounter.isStarted() && encounter.getNpc() != null)
+		if (encounter != null && encounter.getNpc() != null)
 		{
+
+			// Sugadinti Maiden
 			if (config.highlightBloodSplatAttackTiles() && encounter.getEncounter() == TheatreOfBloodEncounters.SUGADINTI_MAIDEN)
 			{
 				renderMaidenBloodSplatAoeEffects(graphics, (SugadintiMaiden) encounter);
@@ -47,11 +50,29 @@ public class TheatreOfBloodOverlay extends Overlay
 				renderMaidenBloodSpawnAoeEffects(graphics, (SugadintiMaiden) encounter);
 			}
 
+			// Pestilent Bloat
 			if (config.highlightBloatHandAttackTiles() && encounter.getEncounter() == TheatreOfBloodEncounters.PESTILENT_BLOAT)
 			{
 				renderBloatHandAoeEffects(graphics, (PestilentBloat) encounter);
 			}
 
+			if (config.highlightBloatStatus() && encounter.getEncounter() == TheatreOfBloodEncounters.PESTILENT_BLOAT)
+			{
+				renderPestilentBloatHull(graphics, (PestilentBloat) encounter);
+			}
+
+			if (config.displayBloatSleepTimer() && encounter.getEncounter() == TheatreOfBloodEncounters.PESTILENT_BLOAT)
+			{
+				renderPestilentBloatTimerText(graphics, (PestilentBloat) encounter);
+			}
+
+			// Sotetseg
+			if (config.highlightSotetsegRedMazeTiles() && encounter.getEncounter() == TheatreOfBloodEncounters.SOTETSEG)
+			{
+				renderSotetsegMazeTiles(graphics, (Sotetseg) encounter);
+			}
+
+			// Xarpus
 			if (config.highlightXarpusPoisonAttackTiles() && encounter.getEncounter() == TheatreOfBloodEncounters.XARPUS)
 			{
 				renderXarpusPoisonAttackLandingAoeEffects(graphics, (Xarpus) encounter);
@@ -67,6 +88,7 @@ public class TheatreOfBloodOverlay extends Overlay
 				renderXarpusHealingPoolTileObjects(graphics, (Xarpus) encounter);
 			}
 
+			// Verzik Vitur
 			if (config.highlightVerzikSkullAttackTiles() && encounter.getEncounter() == TheatreOfBloodEncounters.VERZIK)
 			{
 				renderVerzikSkullAoeEffects(graphics, (Verzik) encounter);
@@ -127,6 +149,54 @@ public class TheatreOfBloodOverlay extends Overlay
 				{
 					OverlayUtil.renderPolygon(graphics, polygon, config.getBloatHandAttackColor());
 				}
+			}
+		}
+	}
+
+	private void renderPestilentBloatHull(Graphics2D graphics, PestilentBloat pestilentBloat)
+	{
+		Shape objectClickbox = pestilentBloat.getNpc().getConvexHull();
+
+		if (objectClickbox == null)
+		{
+			return;
+		}
+		else
+		{
+			log.warn("Pestilent Bloat convex hull is null");
+		}
+
+		Color color;
+		if (pestilentBloat.isAsleep())
+		{
+			color = config.getBloatAsleepColor();
+		}
+		else
+		{
+			color = config.getBloatAwakeColor();
+		}
+		OverlayUtil.renderPolygon(graphics, objectClickbox, color);
+	}
+
+	private void renderPestilentBloatTimerText(Graphics2D graphics, PestilentBloat pestilentBloat)
+	{
+		int remainingDuration = pestilentBloat.getRemainingSleepClientTicks() / 5;
+		String text = Math.abs(remainingDuration / 10) + "." + (Math.abs(remainingDuration) % 10);
+
+		Point textLocation = pestilentBloat.getNpc().getCanvasTextLocation(graphics, text, 0);
+		OverlayUtil.renderTextLocation(graphics, textLocation, text, Color.WHITE);
+	}
+
+	private void renderSotetsegMazeTiles(Graphics2D graphics, Sotetseg sotetseg)
+	{
+		for (GameObject gameObject : sotetseg.getActiveMazeTiles())
+		{
+			LocalPoint localPoint = gameObject.getLocalLocation();
+			Polygon polygon = Perspective.getCanvasTilePoly(client, localPoint);
+
+			if (polygon != null)
+			{
+				OverlayUtil.renderPolygon(graphics, polygon, config.getSotetsegMazeTileColor());
 			}
 		}
 	}
