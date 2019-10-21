@@ -1,3 +1,27 @@
+/*
+ * Copyright (c) 2019, Siraz
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ * 1. Redistributions of source code must retain the above copyright notice, this
+ *    list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright notice,
+ *    this list of conditions and the following disclaimer in the documentation
+ *    and/or other materials provided with the distribution.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+ * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
 package net.runelite.client.plugins.theatreofblood;
 
 import com.google.inject.Provides;
@@ -18,7 +42,6 @@ import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Slf4j
 @PluginDescriptor(
@@ -54,8 +77,47 @@ public class TheatreOfBloodPlugin extends Plugin
 	@Getter
 	private TheatreOfBloodEncounter currentEncounter;
 
+	@Provides
+	TheatreOfBloodConfig getConfig(ConfigManager configManager)
+	{
+		return configManager.getConfig(TheatreOfBloodConfig.class);
+	}
 
-	// TODO: Does not contain nylocas encounter npc's
+	@Override
+	protected void startUp() throws Exception
+	{
+		overlayManager.add(overlay);
+		if (config.showDebugOverlay())
+		{
+			overlayManager.add(debugOverlay);
+		}
+		clientThread.invoke(this::resetCurrentEncounter);
+	}
+
+	@Override
+	protected void shutDown() throws Exception
+	{
+		overlayManager.remove(overlay);
+		if (config.showDebugOverlay())
+		{
+			overlayManager.remove(debugOverlay);
+		}
+		resetCurrentEncounter();
+	}
+
+	@Subscribe
+	public void onConfigChanged(ConfigChanged event)
+	{
+		if (config.showDebugOverlay())
+		{
+			overlayManager.add(debugOverlay);
+		}
+		else if (!config.showDebugOverlay())
+		{
+			overlayManager.remove(debugOverlay);
+		}
+	}
+
 	private boolean isNpcTheatreOfBloodEncounter(int npcId)
 	{
 		return npcId == NpcID.THE_MAIDEN_OF_SUGADINTI ||
@@ -97,58 +159,81 @@ public class TheatreOfBloodPlugin extends Plugin
 		return false;
 	}
 
-	@Provides
-	TheatreOfBloodConfig getConfig(ConfigManager configManager)
-	{
-		return configManager.getConfig(TheatreOfBloodConfig.class);
-	}
-
-	@Override
-	protected void startUp() throws Exception
-	{
-		overlayManager.add(overlay);
-		if (config.showDebugOverlay())
-		{
-			overlayManager.add(debugOverlay);
-		}
-		clientThread.invoke(this::reset);
-	}
-
-	@Override
-	protected void shutDown() throws Exception
-	{
-		overlayManager.remove(overlay);
-		if (config.showDebugOverlay())
-		{
-			overlayManager.remove(debugOverlay);
-		}
-		reset();
-	}
-
-	@Subscribe
-	public void onConfigChanged(ConfigChanged event)
-	{
-		if (config.showDebugOverlay())
-		{
-			overlayManager.add(debugOverlay);
-		}
-		else if (!config.showDebugOverlay())
-		{
-			overlayManager.remove(debugOverlay);
-		}
-	}
-
-	private void reset()
+	private void resetCurrentEncounter()
 	{
 		currentEncounter = null;
 		log.debug("Current encounter reset");
 	}
 
+	/**
+	 * Checks for graphic objects depending on the current encounter
+	 */
 	private void checkGraphicObjects()
 	{
-		if (currentEncounter != null && currentEncounter.getNpc() != null)
+		switch (currentEncounter.getEncounter())
 		{
-			switch (currentEncounter.getNpc().getId())
+			case SUGADINTI_MAIDEN:
+				currentEncounter.castToMaiden().checkBloodSplatGraphicObjects(client.getGraphicsObjects());
+				break;
+			case PESTILENT_BLOAT:
+				currentEncounter.castToBloat().checkHandAttackGraphicObjects(client.getGraphicsObjects());
+				break;
+			case XARPUS:
+				currentEncounter.castToXarpus().checkPoisonAttackLandingGraphicObjects(client.getGraphicsObjects());
+				break;
+			case VERZIK_VITUR:
+				currentEncounter.castToVerzik().checkGreenOrbPoolGraphicObjects(client.getGraphicsObjects());
+				break;
+		}
+	}
+
+	/**
+	 * Checks for game/ground objects depending on the current encounter
+	 */
+	private void checkTileObjects()
+	{
+		switch (currentEncounter.getEncounter())
+		{
+			case SUGADINTI_MAIDEN:
+				currentEncounter.castToMaiden().checkBloodSpawnGameObjects(getClientGameObjects());
+				break;
+			case SOTETSEG:
+				currentEncounter.castToSotetseg().checkMazeTiles(getClientGameObjects());
+				break;
+			case XARPUS:
+				currentEncounter.castToXarpus().checkXarpusTileObjects(getClientGroundObjects());
+				break;
+		}
+	}
+
+	/**
+	 * Checks the current world region and NPC id and sets the encounter based on it.
+	 *
+	 * @param npcId npc identifier
+	 */
+	private void updateCurrentEncounter(int npcId)
+	{
+		if (currentEncounter != null)
+		{
+			return;
+		}
+
+		int[] worldRegion = client.getMapRegions();
+		if (worldRegion == null)
+		{
+			return;
+		}
+
+		if (isInstanceTheatreOfBloodRegion(worldRegion))
+		{
+			// Nylocas room boss npc only spawns at the end so we check the region instead
+			if (Arrays.equals(worldRegion, NYLOCAS_REGIONS))
+			{
+				currentEncounter = new Nylocas(TheatreOfBloodEncounters.NYLOCAS);
+				log.debug("Current encounter set to nylocas: {}", currentEncounter);
+			}
+
+			switch (npcId)
 			{
 				case NpcID.THE_MAIDEN_OF_SUGADINTI:
 				case NpcID.THE_MAIDEN_OF_SUGADINTI_8361:
@@ -156,28 +241,24 @@ public class TheatreOfBloodPlugin extends Plugin
 				case NpcID.THE_MAIDEN_OF_SUGADINTI_8363:
 				case NpcID.THE_MAIDEN_OF_SUGADINTI_8364:
 				case NpcID.THE_MAIDEN_OF_SUGADINTI_8365:
-					SugadintiMaiden sugadintiMaiden = (SugadintiMaiden) currentEncounter;
-					currentEncounter.setAoeEffects(
-							client.getGraphicsObjects().stream()
-									.filter(x -> sugadintiMaiden.isBloodSplatAttack(x.getId()))
-									.collect(Collectors.toList()));
+					currentEncounter = new SugadintiMaiden(TheatreOfBloodEncounters.SUGADINTI_MAIDEN);
+					log.debug("Current encounter set to maiden: {}", currentEncounter);
 					break;
 				case NpcID.PESTILENT_BLOAT:
-					PestilentBloat pestilentBloat = (PestilentBloat) currentEncounter;
-					currentEncounter.setAoeEffects(
-							client.getGraphicsObjects().stream()
-									.filter(x -> pestilentBloat.isHandAttack(x.getId()))
-									.collect(Collectors.toList()));
+					currentEncounter = new PestilentBloat(TheatreOfBloodEncounters.PESTILENT_BLOAT);
+					log.debug("Current encounter set to bloat: {}", currentEncounter);
+					break;
+				case NpcID.SOTETSEG:
+				case NpcID.SOTETSEG_8388:
+					currentEncounter = new Sotetseg(TheatreOfBloodEncounters.SOTETSEG);
+					log.debug("Current encounter set to sotetseg: {}", currentEncounter);
 					break;
 				case NpcID.XARPUS:
 				case NpcID.XARPUS_8339:
 				case NpcID.XARPUS_8340:
 				case NpcID.XARPUS_8341:
-					Xarpus xarpus = (Xarpus) currentEncounter;
-					currentEncounter.setAoeEffects(
-							client.getGraphicsObjects().stream()
-									.filter(x -> xarpus.isPoisonAttackLanding(x.getId()))
-									.collect(Collectors.toList()));
+					currentEncounter = new Xarpus(TheatreOfBloodEncounters.XARPUS);
+					log.debug("Current encounter set to xarpus: {}", currentEncounter);
 					break;
 				case NpcID.VERZIK_VITUR:
 				case NpcID.VERZIK_VITUR_8369:
@@ -187,113 +268,86 @@ public class TheatreOfBloodPlugin extends Plugin
 				case NpcID.VERZIK_VITUR_8373:
 				case NpcID.VERZIK_VITUR_8374:
 				case NpcID.VERZIK_VITUR_8375:
-					Verzik verzik = (Verzik) currentEncounter;
-					currentEncounter.setAoeEffects(
-							client.getGraphicsObjects().stream()
-									.filter(x -> verzik.isGreenOrbPool(x.getId()))
-									.collect(Collectors.toList()));
+					currentEncounter = new Verzik(TheatreOfBloodEncounters.VERZIK_VITUR);
+					log.debug("Current encounter set to verzik: {}", currentEncounter);
 					break;
 			}
 		}
 	}
 
-	private void checkGameObjects()
+	/**
+	 * Resets the current encounter on login, connection lost and hopping
+	 *
+	 * @param event gamestate event
+	 */
+	@Subscribe
+	public void onGameStateChanged(GameStateChanged event)
 	{
-		if (currentEncounter != null && currentEncounter.getNpc() != null)
+		GameState gameState = event.getGameState();
+		if (gameState == GameState.LOGGING_IN || gameState == GameState.CONNECTION_LOST || gameState == GameState.HOPPING)
 		{
-			switch (currentEncounter.getNpc().getId())
-			{
-				case NpcID.THE_MAIDEN_OF_SUGADINTI:
-				case NpcID.THE_MAIDEN_OF_SUGADINTI_8361:
-				case NpcID.THE_MAIDEN_OF_SUGADINTI_8362:
-				case NpcID.THE_MAIDEN_OF_SUGADINTI_8363:
-				case NpcID.THE_MAIDEN_OF_SUGADINTI_8364:
-				case NpcID.THE_MAIDEN_OF_SUGADINTI_8365:
-					SugadintiMaiden sugadintiMaiden = (SugadintiMaiden) currentEncounter;
-					currentEncounter.setGameObjects(
-							getClientGameObjects().stream()
-									.filter(x -> sugadintiMaiden.isBloodSpawnBloodTile(x.getId()))
-									.collect(Collectors.toList()));
-					break;
-				case NpcID.SOTETSEG:
-				case NpcID.SOTETSEG_8388:
-					checkMazeTiles((Sotetseg) currentEncounter);
-					break;
-				case NpcID.XARPUS:
-				case NpcID.XARPUS_8339:
-				case NpcID.XARPUS_8340:
-				case NpcID.XARPUS_8341:
-					for (GroundObject groundObject : getClientGroundObjects()) // TODO: Remove
-					{
-						log.debug("groundObject id: {}", groundObject.getId());
-						if (groundObject.getId() == ObjectID.EXHUMED || groundObject.getId() == ObjectID.ACIDIC_MIASMA)
-						{
-							log.debug("groundObject contain Xarpus object | id: {}", groundObject.getId());
-						} // TODO: This only sees the game objects highlighted and not ground objects for Xarpus
-					}
-
-
-					Xarpus xarpus = (Xarpus) currentEncounter;
-					xarpus.setGroundObjects(
-							getClientGroundObjects().stream()
-									.filter(x -> xarpus.isPoisonTileObject(x.getId()) || xarpus.isHealingPoolTileObject(x.getId()))
-									.collect(Collectors.toList()));
-					break;
-			}
+			resetCurrentEncounter();
 		}
 	}
 
-	private void checkBloatStatus()
+	/**
+	 * Sets the current encounter and encounter npc if the spawned npc is a Theatre of Blood npc
+	 *
+	 * @param event npc spawned event
+	 */
+	@Subscribe
+	public void onNpcSpawned(NpcSpawned event)
 	{
-		PestilentBloat pestilentBloat = (PestilentBloat) currentEncounter;
-		if (pestilentBloat.isAsleep() && client.getGameCycle() > pestilentBloat.getLastSleepEndClientTick() + 250)
+		NPC npc = event.getNpc();
+		if (!isNpcTheatreOfBloodEncounter(npc.getId()) && !Nylocas.isNylocasNpc(npc.getId()))
 		{
-			if (pestilentBloat.getRemainingSleepClientTicks() == -1)
-			{
-				pestilentBloat.sleep(client.getGameCycle());
-			}
-			else if (pestilentBloat.getRemainingSleepClientTicks() <= 0)
-			{
-				pestilentBloat.wakeUp(client.getGameCycle());
-			}
-			else
-			{
-				pestilentBloat.updateSleepDurationTimer(client.getGameCycle());
-			}
+			return;
+		}
+
+		if (currentEncounter == null)
+		{
+			updateCurrentEncounter(npc.getId());
+		}
+
+		if (currentEncounter != null && !Nylocas.isNylocasNpc(npc.getId()))
+		{
+			currentEncounter.setNpc(npc);
+			log.debug("Current encounter npc set: {}", npc.getName());
 		}
 	}
 
-	private void checkNylocasAggressiveNpcs()
+	/**
+	 * Resets the current encounter if the despawned npc is a Theatre of Blood npc
+	 *
+	 * @param event npc despawned event
+	 */
+	@Subscribe
+	public void onNpcDespawned(NpcDespawned event)
 	{
-		Nylocas nylocas = (Nylocas) currentEncounter;
-		nylocas.setHighlightedNylocasNpcs(
-				client.getNpcs().stream()
-						.filter(x -> nylocas.isNylocasNpc(x.getId()) &&
-								nylocas.isNylocasNpcAggressive(x, client.getPlayers()))
-						.collect(Collectors.toList()));
+		NPC npc = event.getNpc();
+		if (isNpcTheatreOfBloodEncounter(npc.getId()))
+		{
+			log.debug("Encounter ended because of npc despawn | id: {}", event.getNpc().getId());
+			resetCurrentEncounter();
+		}
 	}
 
-	private void checkMazeTiles(Sotetseg sotetseg)
+	@Subscribe
+	protected void onClientTick(ClientTick event)
 	{
-		if (sotetseg.isMazeActive(getClientGameObjects()))
+		if (client.isInInstancedRegion() && currentEncounter != null && currentEncounter.getEncounter() != null)
 		{
-			if (sotetseg.getActiveMazeTiles() == null)
-			{
-				sotetseg.activateMaze();
-			}
+			checkGraphicObjects();
+			checkTileObjects();
 
-			getClientGameObjects().stream()
-					.filter(x -> sotetseg.isRedMazeTileObject(x.getId()) && !sotetseg.getActiveMazeTiles().contains(x))
-					.forEach((x) ->
-					{
-						sotetseg.getActiveMazeTiles().add(x);
-					});
-		}
-		else if (!sotetseg.isMazeActive(getClientGameObjects()))
-		{
-			if (sotetseg.getActiveMazeTiles() != null)
+			switch (currentEncounter.getEncounter())
 			{
-				sotetseg.resetMaze();
+				case PESTILENT_BLOAT:
+					currentEncounter.castToBloat().checkBloatStatus(client.getGameCycle());
+					break;
+				case NYLOCAS:
+					currentEncounter.castToNylocas().checkNylocasAggressiveNpcs(client.getNpcs(), client.getPlayers());
+					break;
 			}
 		}
 	}
@@ -372,123 +426,5 @@ public class TheatreOfBloodPlugin extends Plugin
 			}
 		}
 		return groundObjectsList;
-	}
-
-	/**
-	 * Checks the current world region and NPC id and sets the encounter based on it.
-	 *
-	 * @param npcId current world region(s)
-	 */
-	private void updateCurrentEncounter(int npcId)
-	{
-		if (currentEncounter != null)
-		{
-			return;
-		}
-
-		int[] worldRegion = client.getMapRegions();
-
-		if (worldRegion == null)
-		{
-			return;
-		}
-
-		if (isInstanceTheatreOfBloodRegion(worldRegion))
-		{
-			if (npcId == NpcID.THE_MAIDEN_OF_SUGADINTI || npcId == NpcID.THE_MAIDEN_OF_SUGADINTI_8361 ||
-					npcId == NpcID.THE_MAIDEN_OF_SUGADINTI_8362 || npcId == NpcID.THE_MAIDEN_OF_SUGADINTI_8363 ||
-					npcId == NpcID.THE_MAIDEN_OF_SUGADINTI_8364 || npcId == NpcID.THE_MAIDEN_OF_SUGADINTI_8365)
-			{
-				currentEncounter = new SugadintiMaiden(TheatreOfBloodEncounterRegions.MAIDEN_REGIONS, TheatreOfBloodEncounters.SUGADINTI_MAIDEN);
-				log.debug("Current encounter set to maiden: {}", currentEncounter);
-			}
-			else if (npcId == NpcID.PESTILENT_BLOAT)
-			{
-				currentEncounter = new PestilentBloat(TheatreOfBloodEncounterRegions.BLOAT_REGIONS, TheatreOfBloodEncounters.PESTILENT_BLOAT);
-				log.debug("Current encounter set to bloat: {}", currentEncounter);
-			}
-			else if (Arrays.equals(worldRegion, NYLOCAS_REGIONS))
-			{
-				currentEncounter = new Nylocas(TheatreOfBloodEncounterRegions.NYLOCAS_REGIONS, TheatreOfBloodEncounters.NYLOCAS);
-				log.debug("Current encounter set to nylocas: {}", currentEncounter);
-			}
-			else if (npcId == NpcID.SOTETSEG || npcId == NpcID.SOTETSEG_8388)
-			{
-				currentEncounter = new Sotetseg(TheatreOfBloodEncounterRegions.SOTETSEG_REGIONS, TheatreOfBloodEncounters.SOTETSEG);
-				log.debug("Current encounter set to sotetseg: {}", currentEncounter);
-			}
-			else if (npcId == NpcID.XARPUS || npcId == NpcID.XARPUS_8339 || npcId == NpcID.XARPUS_8340 || npcId == NpcID.XARPUS_8341)
-			{
-				currentEncounter = new Xarpus(TheatreOfBloodEncounterRegions.XARPUS_REGIONS, TheatreOfBloodEncounters.XARPUS);
-				log.debug("Current encounter set to xarpus: {}", currentEncounter);
-			}
-			else if (npcId == NpcID.VERZIK_VITUR_8369 || npcId == NpcID.VERZIK_VITUR_8370 || npcId == NpcID.VERZIK_VITUR_8371 ||
-					npcId == NpcID.VERZIK_VITUR_8372 || npcId == NpcID.VERZIK_VITUR_8373 || npcId == NpcID.VERZIK_VITUR_8374 ||
-					npcId == NpcID.VERZIK_VITUR_8375)
-			{
-				currentEncounter = new Verzik(TheatreOfBloodEncounterRegions.VERZIK_REGIONS, TheatreOfBloodEncounters.VERZIK);
-				log.debug("Current encounter set to verzik: {}", currentEncounter);
-			}
-		}
-	}
-
-	@Subscribe
-	public void onGameStateChanged(GameStateChanged event)
-	{
-		GameState gameState = event.getGameState();
-		if (gameState == GameState.LOGGING_IN || gameState == GameState.CONNECTION_LOST || gameState == GameState.HOPPING)
-		{
-			reset();
-		}
-	}
-
-	@Subscribe
-	public void onNpcSpawned(NpcSpawned event)
-	{
-		if (currentEncounter == null)
-		{
-			updateCurrentEncounter(event.getNpc().getId());
-		}
-
-		if (currentEncounter != null)
-		{
-			NPC npc = event.getNpc();
-			if (isNpcTheatreOfBloodEncounter(npc.getId()))
-			{
-				currentEncounter.setNpc(npc);
-				log.debug("Current encounter npc set: {}", npc.getName());
-			}
-		}
-	}
-
-	@Subscribe
-	public void onNpcDespawned(NpcDespawned event)
-	{
-		NPC npc = event.getNpc();
-		if (isNpcTheatreOfBloodEncounter(npc.getId()))
-		{
-			log.debug("Encounter ended because of npc despawn | id: {}", event.getNpc().getId());
-			reset();
-		}
-	}
-
-	@Subscribe
-	protected void onClientTick(ClientTick event)
-	{
-		if (currentEncounter != null && client.isInInstancedRegion())
-		{
-			checkGraphicObjects();
-			checkGameObjects();
-
-			switch (currentEncounter.getEncounter())
-			{
-				case PESTILENT_BLOAT:
-					checkBloatStatus();
-					break;
-				case NYLOCAS:
-					checkNylocasAggressiveNpcs();
-					break;
-			}
-		}
 	}
 }

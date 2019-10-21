@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019, Juul <https://github.com/juuldamen>
+ * Copyright (c) 2019, Siraz
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
