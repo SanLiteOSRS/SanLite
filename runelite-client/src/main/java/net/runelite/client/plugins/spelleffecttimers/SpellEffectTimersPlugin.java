@@ -142,7 +142,7 @@ public class SpellEffectTimersPlugin extends Plugin
 			case FREEZE_IMMUNITY:
 				return;
 			case TELEBLOCK:
-				// TODO: Implement teleblock support
+				checkTeleblockSpellEffect(spotAnimationChanged, actor, spellEffect);
 			case VENGEANCE:
 				// TODO: Implement vengeance support
 			default:
@@ -182,6 +182,26 @@ public class SpellEffectTimersPlugin extends Plugin
 			}
 		}
 
+		log.debug("Spell effect list size before add: {}", spellEffects.size());
+		spellEffects.add(new SpellEffectInfo(actor, spellEffect, client.getGameCycle()));
+		log.debug("Spell effect added: {} | {}", spellEffect.getName(), client.getGameCycle());
+	}
+
+	private void checkTeleblockSpellEffect(SpotAnimationChanged spotAnimationChanged, Actor actor, SpellEffect spellEffect)
+	{
+		log.debug("Check teleblock triggered | animationId: {} | Tick: {}", actor.getSpotAnimation(), client.getGameCycle());
+		List<SpellEffectInfo> actorTeleblockSpellEffects = new ArrayList<>();
+		for (SpellEffectInfo spellEffectInfo : spellEffects)
+		{
+			if (spotAnimationChanged.getActor().equals(spellEffectInfo.getActor()))
+			{
+				SpellEffectType spellType = spellEffectInfo.getSpellEffect().getSpellType();
+				if (spellType.equals(SpellEffectType.TELEBLOCK))
+				{
+					actorTeleblockSpellEffects.add(spellEffectInfo);
+				}
+			}
+		}
 		log.debug("Spell effect list size before add: {}", spellEffects.size());
 		spellEffects.add(new SpellEffectInfo(actor, spellEffect, client.getGameCycle()));
 		log.debug("Spell effect added: {} | {}", spellEffect.getName(), client.getGameCycle());

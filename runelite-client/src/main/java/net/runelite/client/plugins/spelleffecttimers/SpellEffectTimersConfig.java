@@ -23,6 +23,17 @@ public interface SpellEffectTimersConfig extends Config
 
 	@ConfigItem(
 			position = 1,
+			keyName = "showTeleblockTimersOverlay",
+			name = "Show teleblock timers",
+			description = "Configures if teleblock timers are shown"
+	)
+	default boolean showTeleblockTimersOverlay()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+			position = 1,
 			keyName = "showSpellImage",
 			name = "Show spell image",
 			description = "Configures if spell images are displayed on spell effect timers"
