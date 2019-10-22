@@ -100,11 +100,6 @@ public class TheatreOfBloodOverlay extends Overlay
 				// Xarpus
 				if (config.highlightXarpusPoisonAttackTiles() && encounter.getEncounter() == TheatreOfBloodEncounters.XARPUS)
 				{
-					renderXarpusPoisonAttackLandingAoeEffects(graphics, (Xarpus) encounter);
-				}
-
-				if (config.highlightXarpusPoisonAttackTiles() && encounter.getEncounter() == TheatreOfBloodEncounters.XARPUS)
-				{
 					renderXarpusPoisonTileObjects(graphics, (Xarpus) encounter);
 				}
 
@@ -241,23 +236,6 @@ public class TheatreOfBloodOverlay extends Overlay
 			if (polygon != null)
 			{
 				OverlayUtil.renderPolygon(graphics, polygon, config.getSotetsegMazeTileColor());
-			}
-		}
-	}
-
-	private void renderXarpusPoisonAttackLandingAoeEffects(Graphics2D graphics, Xarpus xarpus)
-	{
-		for (GraphicsObject graphicsObject : xarpus.getAoeEffects())
-		{
-			LocalPoint localPoint = graphicsObject.getLocation();
-			Polygon polygon = Perspective.getCanvasTilePoly(client, localPoint);
-
-			if (polygon != null)
-			{
-				if (xarpus.isPoisonAttackLanding(graphicsObject.getId()))
-				{
-					OverlayUtil.renderPolygon(graphics, polygon, config.getXarpusPoisonAttackColor());
-				}
 			}
 		}
 	}

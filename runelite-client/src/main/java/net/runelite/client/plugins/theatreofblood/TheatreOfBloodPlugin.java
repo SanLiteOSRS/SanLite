@@ -39,9 +39,7 @@ import net.runelite.client.plugins.theatreofblood.encounters.*;
 import net.runelite.client.ui.overlay.OverlayManager;
 
 import javax.inject.Inject;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 @Slf4j
 @PluginDescriptor(
@@ -178,9 +176,6 @@ public class TheatreOfBloodPlugin extends Plugin
 			case PESTILENT_BLOAT:
 				currentEncounter.castToBloat().checkHandAttackGraphicObjects(client.getGraphicsObjects());
 				break;
-			case XARPUS:
-				currentEncounter.castToXarpus().checkPoisonAttackLandingGraphicObjects(client.getGraphicsObjects());
-				break;
 			case VERZIK_VITUR:
 				currentEncounter.castToVerzik().checkGreenOrbPoolGraphicObjects(client.getGraphicsObjects());
 				break;
@@ -188,21 +183,83 @@ public class TheatreOfBloodPlugin extends Plugin
 	}
 
 	/**
-	 * Checks for game/ground objects depending on the current encounter
+	 * Validates if the player is in a Theatre of Blood map region and the current encounter is not null
+	 *
+	 * @return player in Theatre of Blood room and has a current encounter
 	 */
-	private void checkTileObjects()
+	private boolean validateRegionAndCurrentEncounter()
 	{
+		return isInstanceTheatreOfBloodRegion(client.getMapRegions()) && currentEncounter != null &&
+				currentEncounter.getEncounter() != null;
+	}
+
+	@Subscribe
+	public void onGameObjectSpawned(GameObjectSpawned event)
+	{
+		if (!validateRegionAndCurrentEncounter())
+		{
+			return;
+		}
+
+		final GameObject object = event.getGameObject();
 		switch (currentEncounter.getEncounter())
 		{
 			case SUGADINTI_MAIDEN:
-				currentEncounter.castToMaiden().checkBloodSpawnGameObjects(getClientGameObjects());
+				currentEncounter.castToMaiden().addBloodSpawnBloodObject(object);
 				break;
 			case SOTETSEG:
-				currentEncounter.castToSotetseg().checkMazeTiles(getClientGameObjects());
+				currentEncounter.castToSotetseg().checkMazeTiles(object, false);
 				break;
-			case XARPUS:
-				currentEncounter.castToXarpus().checkXarpusTileObjects(getClientGroundObjects());
+		}
+	}
+
+	@Subscribe
+	public void onGameObjectDespawned(GameObjectDespawned event)
+	{
+		if (!validateRegionAndCurrentEncounter())
+		{
+			return;
+		}
+
+		final GameObject object = event.getGameObject();
+		switch (currentEncounter.getEncounter())
+		{
+			case SUGADINTI_MAIDEN:
+				currentEncounter.castToMaiden().removeBloodSpawnBloodObject(object);
 				break;
+			case SOTETSEG:
+				currentEncounter.castToSotetseg().checkMazeTiles(object, true);
+				break;
+		}
+	}
+
+	@Subscribe
+	public void onGroundObjectSpawned(GroundObjectSpawned event)
+	{
+		if (!validateRegionAndCurrentEncounter())
+		{
+			return;
+		}
+
+		final GroundObject object = event.getGroundObject();
+		if (currentEncounter.getEncounter() == TheatreOfBloodEncounters.XARPUS)
+		{
+			currentEncounter.castToXarpus().addGroundObject(object);
+		}
+	}
+
+	@Subscribe
+	public void onGroundObjectDespawned(GroundObjectDespawned event)
+	{
+		if (!validateRegionAndCurrentEncounter())
+		{
+			return;
+		}
+
+		final GroundObject object = event.getGroundObject();
+		if (currentEncounter.getEncounter() == TheatreOfBloodEncounters.XARPUS)
+		{
+			currentEncounter.castToXarpus().removeGroundObject(object);
 		}
 	}
 
@@ -276,21 +333,6 @@ public class TheatreOfBloodPlugin extends Plugin
 	}
 
 	/**
-	 * Resets the current encounter on login, connection lost and hopping
-	 *
-	 * @param event gamestate event
-	 */
-	@Subscribe
-	public void onGameStateChanged(GameStateChanged event)
-	{
-		GameState gameState = event.getGameState();
-		if (gameState == GameState.LOGGING_IN || gameState == GameState.CONNECTION_LOST || gameState == GameState.HOPPING)
-		{
-			resetCurrentEncounter();
-		}
-	}
-
-	/**
 	 * Sets the current encounter and encounter npc if the spawned npc is a Theatre of Blood npc
 	 *
 	 * @param event npc spawned event
@@ -332,14 +374,27 @@ public class TheatreOfBloodPlugin extends Plugin
 		}
 	}
 
+	/**
+	 * Resets the current encounter on login, connection lost and hopping
+	 *
+	 * @param event gamestate event
+	 */
+	@Subscribe
+	public void onGameStateChanged(GameStateChanged event)
+	{
+		GameState gameState = event.getGameState();
+		if (gameState == GameState.LOGGING_IN || gameState == GameState.CONNECTION_LOST || gameState == GameState.HOPPING)
+		{
+			resetCurrentEncounter();
+		}
+	}
+
 	@Subscribe
 	protected void onClientTick(ClientTick event)
 	{
 		if (client.isInInstancedRegion() && currentEncounter != null && currentEncounter.getEncounter() != null)
 		{
 			checkGraphicObjects();
-			checkTileObjects();
-
 			switch (currentEncounter.getEncounter())
 			{
 				case PESTILENT_BLOAT:
@@ -350,81 +405,5 @@ public class TheatreOfBloodPlugin extends Plugin
 					break;
 			}
 		}
-	}
-
-	private List<GameObject> getClientGameObjects()
-	{
-		Scene scene = client.getScene();
-		Tile[][][] tiles = scene.getTiles();
-
-		int z = client.getPlane();
-
-		List<GameObject> gameObjectsList = new ArrayList<>();
-		for (int x = 0; x < Constants.SCENE_SIZE; ++x)
-		{
-			for (int y = 0; y < Constants.SCENE_SIZE; ++y)
-			{
-				Tile tile = tiles[z][x][y];
-
-				if (tile == null)
-				{
-					continue;
-				}
-
-				Player player = client.getLocalPlayer();
-				if (player == null)
-				{
-					continue;
-				}
-
-				GameObject[] gameObjects = tile.getGameObjects();
-				if (gameObjects != null)
-				{
-					for (GameObject gameObject : gameObjects)
-					{
-						if (gameObject != null)
-						{
-							gameObjectsList.add(gameObject);
-						}
-					}
-				}
-			}
-		}
-		return gameObjectsList;
-	}
-
-	private List<GroundObject> getClientGroundObjects()
-	{
-		Scene scene = client.getScene();
-		Tile[][][] tiles = scene.getTiles();
-
-		int z = client.getPlane();
-
-		List<GroundObject> groundObjectsList = new ArrayList<>();
-		for (int x = 0; x < Constants.SCENE_SIZE; ++x)
-		{
-			for (int y = 0; y < Constants.SCENE_SIZE; ++y)
-			{
-				Tile tile = tiles[z][x][y];
-
-				if (tile == null)
-				{
-					continue;
-				}
-
-				Player player = client.getLocalPlayer();
-				if (player == null)
-				{
-					continue;
-				}
-
-				GroundObject groundObject = tile.getGroundObject();
-				if (groundObject != null)
-				{
-					groundObjectsList.add(groundObject);
-				}
-			}
-		}
-		return groundObjectsList;
 	}
 }

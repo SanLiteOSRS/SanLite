@@ -26,14 +26,11 @@ package net.runelite.client.plugins.theatreofblood.encounters;
 
 import lombok.Getter;
 import lombok.Setter;
-import net.runelite.api.GraphicID;
-import net.runelite.api.GraphicsObject;
 import net.runelite.api.GroundObject;
 import net.runelite.api.ObjectID;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Xarpus extends TheatreOfBloodEncounter
 {
@@ -47,11 +44,6 @@ public class Xarpus extends TheatreOfBloodEncounter
 		groundObjects = new ArrayList<>();
 	}
 
-	public boolean isPoisonAttackLanding(int graphicsObjectId)
-	{
-		return graphicsObjectId == GraphicID.XARPUS_POISON_SPLAT_ON_LANDING;
-	}
-
 	public boolean isHealingPoolTileObject(int objectId)
 	{
 		return objectId == ObjectID.EXHUMED;
@@ -62,19 +54,29 @@ public class Xarpus extends TheatreOfBloodEncounter
 		return objectId == ObjectID.ACIDIC_MIASMA;
 	}
 
-	public void checkXarpusTileObjects(List<GroundObject> clientGroundObjects)
+	public void addGroundObject(GroundObject groundObject)
 	{
-		setGroundObjects(
-				clientGroundObjects.stream()
-						.filter(x -> isPoisonTileObject(x.getId()) || isHealingPoolTileObject(x.getId()))
-						.collect(Collectors.toList()));
+		if (groundObject == null)
+		{
+			return;
+		}
+
+		if (isPoisonTileObject(groundObject.getId()) || isHealingPoolTileObject(groundObject.getId()))
+		{
+			groundObjects.add(groundObject);
+		}
 	}
 
-	public void checkPoisonAttackLandingGraphicObjects(List<GraphicsObject> clientGraphicObjects)
+	public void removeGroundObject(GroundObject groundObject)
 	{
-		setAoeEffects(
-				clientGraphicObjects.stream()
-						.filter(x -> isPoisonAttackLanding(x.getId()))
-						.collect(Collectors.toList()));
+		if (groundObject == null)
+		{
+			return;
+		}
+
+		if (isPoisonTileObject(groundObject.getId()) || isHealingPoolTileObject(groundObject.getId()))
+		{
+			groundObjects.remove(groundObject);
+		}
 	}
 }

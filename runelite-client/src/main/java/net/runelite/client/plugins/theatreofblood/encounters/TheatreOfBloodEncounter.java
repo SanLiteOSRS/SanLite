@@ -43,10 +43,6 @@ public class TheatreOfBloodEncounter
 
 	@Getter
 	@Setter
-	private boolean isStarted;
-
-	@Getter
-	@Setter
 	private NPC npc;
 
 	@Getter

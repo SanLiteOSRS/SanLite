@@ -73,11 +73,6 @@ public class TheatreOfBloodDebugOverlay extends Overlay
 					.right("" + plugin.getCurrentEncounter().getEncounter())
 					.build());
 
-			panelComponent.getChildren().add(LineComponent.builder()
-					.left("Current encounter started")
-					.right("" + plugin.getCurrentEncounter().isStarted())
-					.build());
-
 			if (plugin.getCurrentEncounter().getNpc() != null)
 			{
 				panelComponent.getChildren().add(LineComponent.builder()
@@ -124,6 +119,10 @@ public class TheatreOfBloodDebugOverlay extends Overlay
 					break;
 				case SOTETSEG:
 					Sotetseg sotetseg = (Sotetseg) plugin.getCurrentEncounter();
+					panelComponent.getChildren().add(LineComponent.builder()
+							.left("Maze Active")
+							.right("" + sotetseg.isMazeActive())
+							.build());
 					panelComponent.getChildren().add(LineComponent.builder()
 							.left("Number of active red maze tiles")
 							.right("" + sotetseg.getActiveMazeTiles().size())

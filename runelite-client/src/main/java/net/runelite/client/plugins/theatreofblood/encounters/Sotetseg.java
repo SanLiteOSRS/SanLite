@@ -38,14 +38,17 @@ public class Sotetseg extends TheatreOfBloodEncounter
 	@Setter
 	private List<GameObject> activeMazeTiles;
 
+	@Getter
+	private boolean isMazeActive;
+
 	public Sotetseg(TheatreOfBloodEncounters encounter)
 	{
 		super(encounter);
 	}
 
-	private boolean isMazeActive(List<GameObject> gameObjects)
+	private boolean isMazeActive(GameObject gameObject, boolean isDespawnedObject)
 	{
-		return gameObjects.stream().anyMatch(x -> x.getId() == ObjectID.TILE_33034);
+		return gameObject.getId() == ObjectID.TILE_33034 && !isDespawnedObject;
 	}
 
 	private boolean isRedMazeTileObject(int objectId)
@@ -58,6 +61,7 @@ public class Sotetseg extends TheatreOfBloodEncounter
 		if (activeMazeTiles == null)
 		{
 			activeMazeTiles = new ArrayList<>();
+			isMazeActive = true;
 		}
 	}
 
@@ -66,28 +70,27 @@ public class Sotetseg extends TheatreOfBloodEncounter
 		if (activeMazeTiles != null)
 		{
 			activeMazeTiles = null;
+			isMazeActive = false;
 		}
 	}
 
-	public void checkMazeTiles(List<GameObject> clientGameObjects)
+	public void checkMazeTiles(GameObject gameObject, boolean isDespawnedObject)
 	{
-		if (isMazeActive(clientGameObjects))
+		if (isMazeActive(gameObject, isDespawnedObject) || getActiveMazeTiles() != null)
 		{
 			if (getActiveMazeTiles() == null)
 			{
 				activateMaze();
 			}
 
-			clientGameObjects.stream()
-					.filter(x -> isRedMazeTileObject(x.getId()) && !getActiveMazeTiles().contains(x))
-					.forEach((x) -> getActiveMazeTiles().add(x));
-		}
-		else if (!isMazeActive(clientGameObjects))
-		{
-			if (getActiveMazeTiles() != null)
+			if (isRedMazeTileObject(gameObject.getId()))
 			{
-				resetMaze();
+				getActiveMazeTiles().add(gameObject);
 			}
+		}
+		else if (!isMazeActive(gameObject, isDespawnedObject))
+		{
+			resetMaze();
 		}
 	}
 }

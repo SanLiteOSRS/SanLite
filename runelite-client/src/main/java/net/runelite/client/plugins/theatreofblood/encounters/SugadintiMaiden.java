@@ -49,6 +49,32 @@ public class SugadintiMaiden extends TheatreOfBloodEncounter
 		return gameObjectId == NullObjectID.NULL_32984;
 	}
 
+	public void addBloodSpawnBloodObject(GameObject gameObject)
+	{
+		if (gameObject == null)
+		{
+			return;
+		}
+
+		if (isBloodSpawnBloodTile(gameObject.getId()))
+		{
+			getGameObjects().add(gameObject);
+		}
+	}
+
+	public void removeBloodSpawnBloodObject(GameObject gameObject)
+	{
+		if (gameObject == null)
+		{
+			return;
+		}
+
+		if (isBloodSpawnBloodTile(gameObject.getId()))
+		{
+			getGameObjects().remove(gameObject);
+		}
+	}
+
 	public void checkBloodSplatGraphicObjects(List<GraphicsObject> clientGraphicObjects)
 	{
 		setAoeEffects(
