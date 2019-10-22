@@ -1515,20 +1515,6 @@ public interface Client extends GameShell
 	void setNPCsHidden(boolean state);
 
 	/**
-	 * Sets which NPCs are hidden
-	 *
-	 * @param names the names of the npcs
-	 */
-	void setNPCsNames(List<String> names);
-
-	/**
-	 * Sets which NPCs are hidden on death
-	 *
-	 * @param names the names of the npcs
-	 */
-	void setNPCsHiddenOnDeath(List<String> names);
-
-	/**
 	 * Sets whether 2D sprites (ie. overhead prayers) related to
 	 * the NPCs are hidden.
 	 *
@@ -1549,13 +1535,6 @@ public interface Client extends GameShell
 	 * @param state new projectile hidden state
 	 */
 	void setProjectilesHidden(boolean state);
-
-	/**
-	 * Sets whether dead NPCs are hidden.
-	 *
-	 * @param state new NPC hidden state
-	 */
-	void setDeadNPCsHidden(boolean state);
 
 	/**
 	 * Gets an array of tile collision data.
