@@ -33,7 +33,29 @@ public interface SpellEffectTimersConfig extends Config
 	}
 
 	@ConfigItem(
-			position = 1,
+			position = 2,
+			keyName = "showVengTimersOverlay",
+			name = "Show vengeance timers",
+			description = "Configures if vengeance timers are shown"
+	)
+	default boolean showVengTimersOverlay()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+			position = 3,
+			keyName = "showVengActivatedOverlay",
+			name = "Show vengeance acivated",
+			description = "Configures if vengeance timers are shown"
+	)
+	default boolean showVengActivatedOverlay()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+			position = 4,
 			keyName = "showSpellImage",
 			name = "Show spell image",
 			description = "Configures if spell images are displayed on spell effect timers"
@@ -44,7 +66,7 @@ public interface SpellEffectTimersConfig extends Config
 	}
 
 	@ConfigItem(
-			position = 2,
+			position = 5,
 			keyName = "timersFontSize",
 			name = "Text size",
 			description = "Text size for timers"
@@ -55,7 +77,7 @@ public interface SpellEffectTimersConfig extends Config
 	}
 
 	@ConfigItem(
-			position = 3,
+			position = 6,
 			keyName = "timersFontStyle",
 			name = "Font style",
 			description = "Font style for timers. Choose between bold, italics or plain"
@@ -66,7 +88,7 @@ public interface SpellEffectTimersConfig extends Config
 	}
 
 	@ConfigItem(
-			position = 4,
+			position = 7,
 			keyName = "timersFontColor",
 			name = "Font color",
 			description = "Color of timers font"
@@ -74,16 +96,5 @@ public interface SpellEffectTimersConfig extends Config
 	default Color getTimersFontColor()
 	{
 		return new Color(255, 255, 255, 255);
-	}
-
-	@ConfigItem(
-			position = 5,
-			keyName = "showDebugOverlay",
-			name = "Display debug overlay",
-			description = "Displays freezy timers debug overlay. This contains variables that the plugin uses to function"
-	)
-	default boolean showDebugOverlay()
-	{
-		return false;
 	}
 }

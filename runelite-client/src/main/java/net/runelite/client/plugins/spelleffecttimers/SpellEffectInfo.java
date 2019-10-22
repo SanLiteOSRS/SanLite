@@ -30,12 +30,23 @@ class SpellEffectInfo
 	@Setter(AccessLevel.PACKAGE)
 	private int remainingTime;
 
-	SpellEffectInfo(Actor actor, SpellEffect spellEffect, int initialHitClientTick)
+	@Getter(AccessLevel.PACKAGE)
+	private final boolean halved;
+
+	SpellEffectInfo(Actor actor, SpellEffect spellEffect, int initialHitClientTick, boolean halved)
 	{
 		this.actor = actor;
 		this.spellEffect = spellEffect;
 		this.initialHitClientTick = initialHitClientTick;
-		this.expireClientTick = initialHitClientTick + (spellEffect.getSpellLength() / Constants.CLIENT_TICK_LENGTH);
+		this.halved = halved;
+		if (this.halved)
+		{
+			this.expireClientTick = initialHitClientTick + ((spellEffect.getSpellLength() / 2) / Constants.CLIENT_TICK_LENGTH);
+		}
+		else
+		{
+			this.expireClientTick = initialHitClientTick + (spellEffect.getSpellLength() / Constants.CLIENT_TICK_LENGTH);
+		}
 		this.remainingClientTicks = expireClientTick - initialHitClientTick;
 		this.remainingTime = remainingClientTicks / 5;
 		log.debug("Expire game tick: {}", expireClientTick);

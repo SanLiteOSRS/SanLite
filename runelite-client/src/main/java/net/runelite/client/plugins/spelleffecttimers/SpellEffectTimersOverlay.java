@@ -2,7 +2,6 @@ package net.runelite.client.plugins.spelleffecttimers;
 
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Actor;
-import net.runelite.api.Client;
 import net.runelite.api.Point;
 import net.runelite.client.ui.overlay.*;
 import net.runelite.client.util.ImageUtil;
@@ -15,17 +14,13 @@ import java.awt.image.BufferedImage;
 public class SpellEffectTimersOverlay extends Overlay
 {
 	private final SpellEffectTimersPlugin plugin;
-	private final Client client;
-	private int overlaysDrawn = 0;
-
-	@Inject
 	private SpellEffectTimersConfig config;
 
 	@Inject
-	public SpellEffectTimersOverlay(final SpellEffectTimersPlugin plugin, Client client)
+	public SpellEffectTimersOverlay(final SpellEffectTimersPlugin plugin, SpellEffectTimersConfig config)
 	{
 		this.plugin = plugin;
-		this.client = client;
+		this.config = config;
 		setPriority(OverlayPriority.HIGHEST);
 		setPosition(OverlayPosition.DYNAMIC);
 		setLayer(OverlayLayer.UNDER_WIDGETS);
@@ -43,21 +38,39 @@ public class SpellEffectTimersOverlay extends Overlay
 	@Override
 	public Dimension render(Graphics2D graphics)
 	{
-		if (config.showFreezeTimersOverlay())
+		if (!config.showFreezeTimersOverlay() && !config.showTeleblockTimersOverlay() && !config.showVengTimersOverlay() && !config.showVengActivatedOverlay())
 		{
-			for (SpellEffectInfo spellEffectInfo : plugin.getSpellEffects())
+			return null;
+		}
+
+		for (SpellEffectInfo spellEffectInfo : plugin.getSpellEffects())
+		{
+			if (config.showFreezeTimersOverlay())
 			{
-				if (spellEffectInfo.getSpellEffect() == SpellEffect.ICE_BARRAGE)
+				if (spellEffectInfo.getSpellEffect().getSpellType().equals(SpellEffectType.FREEZE) ||
+					spellEffectInfo.getSpellEffect().getSpellType().equals(SpellEffectType.FREEZE_IMMUNITY))
 				{
 					drawSpellEffectOverlay(graphics, spellEffectInfo);
 				}
 			}
-		}
-		if (config.showTeleblockTimersOverlay())
-		{
-			for (SpellEffectInfo spellEffectInfo : plugin.getSpellEffects())
+			if (config.showTeleblockTimersOverlay())
 			{
-				if (spellEffectInfo.getSpellEffect() == SpellEffect.TELEBLOCK)
+				if (spellEffectInfo.getSpellEffect().getSpellType().equals(SpellEffectType.TELEBLOCK) ||
+						spellEffectInfo.getSpellEffect().getSpellType().equals(SpellEffectType.TELEBLOCK_IMMUNITY))
+				{
+					drawSpellEffectOverlay(graphics, spellEffectInfo);
+				}
+			}
+			if (config.showVengTimersOverlay())
+			{
+				if (spellEffectInfo.getSpellEffect().equals(SpellEffect.VENGEANCE))
+				{
+					drawSpellEffectOverlay(graphics, spellEffectInfo);
+				}
+			}
+			if (config.showVengActivatedOverlay())
+			{
+				if (spellEffectInfo.getSpellEffect().equals(SpellEffect.VENGEANCE_ACTIVE))
 				{
 					drawSpellEffectOverlay(graphics, spellEffectInfo);
 				}
@@ -66,40 +79,16 @@ public class SpellEffectTimersOverlay extends Overlay
 		return null;
 	}
 
-	// TODO: Add support for multiple spell effects at the same time
 	private void drawSpellEffectOverlay(Graphics2D graphics, SpellEffectInfo spellEffectInfo)
 	{
 		Actor actor = spellEffectInfo.getActor();
 		String text = Math.abs(spellEffectInfo.getRemainingTime() / 10) + "." + (Math.abs(spellEffectInfo.getRemainingTime()) % 10);
 		Point actorTextPoint = actor.getCanvasTextLocation(graphics, text, 0);
-		boolean alreadyDrawn = false;
 
 		if (actorTextPoint == null)
 		{
 			return;
 		}
-
-		/*if (spellEffectInfo.getSpellEffect() != null && spellEffectInfo.getRemainingTime() == spellEffectInfo.getSpellEffect().getSpellLength())
-		{
-			log.debug("Spell effect = " + spellEffectInfo.getSpellEffect() + " remaining time = " + spellEffectInfo.getRemainingTime());
-			overlaysDrawn++;
-		}
-
-		/*
-		if (spellEffectInfo.getSpellEffect() == SpellEffect.TELEBLOCK && spellEffectInfo.getRemainingTime() < 2999)
-		{
-			log.debug("Spell effect = " + spellEffectInfo.getSpellEffect() + " remaining time = " + spellEffectInfo.getRemainingTime());
-			overlaysDrawn++;
-			alreadyDrawn = true;
-		}
-
-		if (spellEffectInfo.getSpellEffect() == SpellEffect.ICE_BARRAGE && spellEffectInfo.getRemainingTime() < 199)
-		{
-			log.debug("Spell effect = " + spellEffectInfo.getSpellEffect() + " remaining time = " + spellEffectInfo.getRemainingTime());
-			overlaysDrawn++;
-			alreadyDrawn = true;
-		}
-		*/
 
 		final int yOffset = plugin.getSpellEffects().indexOf(spellEffectInfo) * 14;
 
@@ -110,11 +99,17 @@ public class SpellEffectTimersOverlay extends Overlay
 			{
 				int offset = 4;
 				int imageOffsetY = yOffset;
-
-				graphics.drawImage(image, actorTextPoint.getX(), actorTextPoint.getY() + imageOffsetY - 14, null);
-				Point textLocation = new Point(actorTextPoint.getX() + image.getWidth() + offset, actorTextPoint.getY());
-				OverlayUtil.renderTextLocation(graphics, text, config.getTimersFontSize(),
-						config.getTimersFontStyle().getFont(), config.getTimersFontColor(), textLocation, false, yOffset);
+				if (spellEffectInfo.getSpellEffect().getSpellLength() == -1)
+				{
+					graphics.drawImage(image, actorTextPoint.getX(), actorTextPoint.getY() + imageOffsetY - 14, null);
+				}
+				else
+				{
+					graphics.drawImage(image, actorTextPoint.getX(), actorTextPoint.getY() + imageOffsetY - 14, null);
+					Point textLocation = new Point(actorTextPoint.getX() + image.getWidth() + offset, actorTextPoint.getY());
+					OverlayUtil.renderTextLocation(graphics, text, config.getTimersFontSize(),
+							config.getTimersFontStyle().getFont(), config.getTimersFontColor(), textLocation, false, yOffset);
+				}
 			}
 			else
 			{
