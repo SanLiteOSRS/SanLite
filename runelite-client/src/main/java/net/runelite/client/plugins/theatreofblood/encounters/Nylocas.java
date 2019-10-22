@@ -55,6 +55,13 @@ public class Nylocas extends TheatreOfBloodEncounter
 				npcId == NpcID.NYLOCAS_ISCHYROS_8351 || npcId == NpcID.NYLOCAS_TOXOBOLOS_8352 || npcId == NpcID.NYLOCAS_HAGIOS_8353;
 	}
 
+	/**
+	 * Checks if nylocas npc is interacting with any of the players in Theatre of Blood
+	 *
+	 * @param npc     nylocas npc
+	 * @param players list of players
+	 * @return is npc interacting with any player from the list
+	 */
 	private boolean isNylocasNpcAggressive(NPC npc, List<Player> players)
 	{
 		Actor interactingActor = npc.getInteracting();
@@ -65,6 +72,12 @@ public class Nylocas extends TheatreOfBloodEncounter
 		return players.stream().anyMatch(interactingActor::equals);
 	}
 
+	/**
+	 * Adds aggressive nylocas npc's to the highlighted npc's list
+	 *
+	 * @param clientNpcs    list of npc's from the client
+	 * @param clientPlayers list of players from the client
+	 */
 	public void checkNylocasAggressiveNpcs(List<NPC> clientNpcs, List<Player> clientPlayers)
 	{
 		setHighlightedNylocasNpcs(

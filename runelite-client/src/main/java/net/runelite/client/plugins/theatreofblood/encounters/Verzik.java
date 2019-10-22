@@ -42,6 +42,11 @@ public class Verzik extends TheatreOfBloodEncounter
 		return graphicsObjectId == GraphicID.VERZIK_GREEN_ORB_POOL;
 	}
 
+	/**
+	 * Checks for the graphics objects from Verzik's green orb pool attack
+	 *
+	 * @param clientGraphicObjects the clients current graphics objects list
+	 */
 	public void checkGreenOrbPoolGraphicObjects(List<GraphicsObject> clientGraphicObjects)
 	{
 		setAoeEffects(

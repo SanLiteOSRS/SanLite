@@ -49,6 +49,11 @@ public class SugadintiMaiden extends TheatreOfBloodEncounter
 		return gameObjectId == NullObjectID.NULL_32984;
 	}
 
+	/**
+	 * Adds game object to the game objects list if it matches the blood spawn object id
+	 *
+	 * @param gameObject game object
+	 */
 	public void addBloodSpawnBloodObject(GameObject gameObject)
 	{
 		if (gameObject == null)
@@ -62,6 +67,11 @@ public class SugadintiMaiden extends TheatreOfBloodEncounter
 		}
 	}
 
+	/**
+	 * Removes game object from the game objects list if it matches the blood spawn object id
+	 *
+	 * @param gameObject game object
+	 */
 	public void removeBloodSpawnBloodObject(GameObject gameObject)
 	{
 		if (gameObject == null)
@@ -75,19 +85,16 @@ public class SugadintiMaiden extends TheatreOfBloodEncounter
 		}
 	}
 
+	/**
+	 * Checks for the graphics objects thrown out by the Sugadinti Maiden's blood splat attack
+	 *
+	 * @param clientGraphicObjects the clients current graphics objects list
+	 */
 	public void checkBloodSplatGraphicObjects(List<GraphicsObject> clientGraphicObjects)
 	{
 		setAoeEffects(
 				clientGraphicObjects.stream()
 						.filter(x -> isBloodSplatAttack(x.getId()))
-						.collect(Collectors.toList()));
-	}
-
-	public void checkBloodSpawnGameObjects(List<GameObject> clientGameObjects)
-	{
-		setGameObjects(
-				clientGameObjects.stream()
-						.filter(x -> isBloodSpawnBloodTile(x.getId()))
 						.collect(Collectors.toList()));
 	}
 }

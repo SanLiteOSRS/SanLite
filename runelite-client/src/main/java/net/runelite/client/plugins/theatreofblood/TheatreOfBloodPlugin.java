@@ -37,9 +37,11 @@ import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.plugins.PluginType;
 import net.runelite.client.plugins.theatreofblood.encounters.*;
 import net.runelite.client.ui.overlay.OverlayManager;
+import net.runelite.client.util.Text;
 
 import javax.inject.Inject;
 import java.util.Arrays;
+import java.util.regex.Pattern;
 
 @Slf4j
 @PluginDescriptor(
@@ -116,35 +118,6 @@ public class TheatreOfBloodPlugin extends Plugin
 		}
 	}
 
-	private boolean isNpcTheatreOfBloodEncounter(int npcId)
-	{
-		return npcId == NpcID.THE_MAIDEN_OF_SUGADINTI ||
-				npcId == NpcID.THE_MAIDEN_OF_SUGADINTI_8361 ||
-				npcId == NpcID.THE_MAIDEN_OF_SUGADINTI_8362 ||
-				npcId == NpcID.THE_MAIDEN_OF_SUGADINTI_8363 ||
-				npcId == NpcID.THE_MAIDEN_OF_SUGADINTI_8364 ||
-				npcId == NpcID.THE_MAIDEN_OF_SUGADINTI_8365 ||
-				npcId == NpcID.PESTILENT_BLOAT ||
-				npcId == NpcID.NYLOCAS_VASILIAS ||
-				npcId == NpcID.NYLOCAS_VASILIAS_8355 ||
-				npcId == NpcID.NYLOCAS_VASILIAS_8356 ||
-				npcId == NpcID.NYLOCAS_VASILIAS_8357 ||
-				npcId == NpcID.SOTETSEG ||
-				npcId == NpcID.SOTETSEG_8388 ||
-				npcId == NpcID.XARPUS ||
-				npcId == NpcID.XARPUS_8339 ||
-				npcId == NpcID.XARPUS_8340 ||
-				npcId == NpcID.XARPUS_8341 ||
-				npcId == NpcID.VERZIK_VITUR ||
-				npcId == NpcID.VERZIK_VITUR_8369 ||
-				npcId == NpcID.VERZIK_VITUR_8370 ||
-				npcId == NpcID.VERZIK_VITUR_8371 ||
-				npcId == NpcID.VERZIK_VITUR_8372 ||
-				npcId == NpcID.VERZIK_VITUR_8373 ||
-				npcId == NpcID.VERZIK_VITUR_8374 ||
-				npcId == NpcID.VERZIK_VITUR_8375;
-	}
-
 	private boolean isInstanceTheatreOfBloodRegion(int[] regions)
 	{
 		for (int[] regions1 : TheatreOfBloodEncounterRegions.getTOB_REGIONS())
@@ -193,6 +166,11 @@ public class TheatreOfBloodPlugin extends Plugin
 				currentEncounter.getEncounter() != null;
 	}
 
+	/**
+	 * Checks game object spawned for various encounter objects
+	 *
+	 * @param event game object spawned
+	 */
 	@Subscribe
 	public void onGameObjectSpawned(GameObjectSpawned event)
 	{
@@ -213,6 +191,11 @@ public class TheatreOfBloodPlugin extends Plugin
 		}
 	}
 
+	/**
+	 * Checks game object despawned for various encounter objects
+	 *
+	 * @param event game object despawned
+	 */
 	@Subscribe
 	public void onGameObjectDespawned(GameObjectDespawned event)
 	{
@@ -233,6 +216,11 @@ public class TheatreOfBloodPlugin extends Plugin
 		}
 	}
 
+	/**
+	 * Checks ground objects spawned for Xarpus healing/acid pools
+	 *
+	 * @param event ground object spawned event
+	 */
 	@Subscribe
 	public void onGroundObjectSpawned(GroundObjectSpawned event)
 	{
@@ -248,6 +236,11 @@ public class TheatreOfBloodPlugin extends Plugin
 		}
 	}
 
+	/**
+	 * Checks ground objects despawned for Xarpus healing/acid pools
+	 *
+	 * @param event ground object despawned event
+	 */
 	@Subscribe
 	public void onGroundObjectDespawned(GroundObjectDespawned event)
 	{
@@ -341,7 +334,7 @@ public class TheatreOfBloodPlugin extends Plugin
 	public void onNpcSpawned(NpcSpawned event)
 	{
 		NPC npc = event.getNpc();
-		if (!isNpcTheatreOfBloodEncounter(npc.getId()) && !Nylocas.isNylocasNpc(npc.getId()))
+		if (!TheatreOfBloodEncounter.isNpcTheatreOfBloodEncounter(npc.getId()) && !Nylocas.isNylocasNpc(npc.getId()))
 		{
 			return;
 		}
@@ -359,19 +352,46 @@ public class TheatreOfBloodPlugin extends Plugin
 	}
 
 	/**
-	 * Resets the current encounter if the despawned npc is a Theatre of Blood npc
+	 * Resets the current encounter npc if the despawned npc is a Theatre of Blood npc
 	 *
 	 * @param event npc despawned event
 	 */
 	@Subscribe
 	public void onNpcDespawned(NpcDespawned event)
 	{
-		NPC npc = event.getNpc();
-		if (isNpcTheatreOfBloodEncounter(npc.getId()))
+		if (!validateRegionAndCurrentEncounter())
 		{
-			log.debug("Encounter ended because of npc despawn | id: {}", event.getNpc().getId());
-			resetCurrentEncounter();
+			return;
 		}
+
+		NPC npc = event.getNpc();
+		if (TheatreOfBloodEncounter.isNpcTheatreOfBloodEncounter(npc.getId()))
+		{
+			currentEncounter.setNpc(null);
+			log.debug("Current encounter npc reset due to despawn of npc id: {}", npc.getId());
+		}
+	}
+
+	@Subscribe
+	public void onChatMessage(ChatMessage event)
+	{
+		if (event.getType() != ChatMessageType.GAMEMESSAGE && event.getType() != ChatMessageType.SPAM)
+		{
+			return;
+		}
+
+		if (!validateRegionAndCurrentEncounter())
+		{
+			return;
+		}
+
+		if (Pattern.matches("Wave '.+' complete! Duration: .+", Text.removeTags(event.getMessage())))
+		{
+			resetCurrentEncounter();
+			log.debug("Encounter ended due to wave completion");
+		}
+
+		// TODO: Add case for when the party fails the raid (does not have a game message)
 	}
 
 	/**

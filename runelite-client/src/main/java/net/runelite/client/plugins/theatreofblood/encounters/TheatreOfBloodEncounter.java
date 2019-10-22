@@ -30,6 +30,7 @@ import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.GameObject;
 import net.runelite.api.GraphicsObject;
 import net.runelite.api.NPC;
+import net.runelite.api.NpcID;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,6 +59,41 @@ public class TheatreOfBloodEncounter
 		this.encounter = encounter;
 		this.aoeEffects = new ArrayList<>();
 		this.gameObjects = new ArrayList<>();
+	}
+
+	/**
+	 * Checks if the given npc id is a boss from a Theatre of Blood encounter
+	 *
+	 * @param npcId npc identifier
+	 * @return is npc boss from Theatre of Blood encounter
+	 */
+	public static boolean isNpcTheatreOfBloodEncounter(int npcId)
+	{
+		return npcId == NpcID.THE_MAIDEN_OF_SUGADINTI ||
+				npcId == NpcID.THE_MAIDEN_OF_SUGADINTI_8361 ||
+				npcId == NpcID.THE_MAIDEN_OF_SUGADINTI_8362 ||
+				npcId == NpcID.THE_MAIDEN_OF_SUGADINTI_8363 ||
+				npcId == NpcID.THE_MAIDEN_OF_SUGADINTI_8364 ||
+				npcId == NpcID.THE_MAIDEN_OF_SUGADINTI_8365 ||
+				npcId == NpcID.PESTILENT_BLOAT ||
+				npcId == NpcID.NYLOCAS_VASILIAS ||
+				npcId == NpcID.NYLOCAS_VASILIAS_8355 ||
+				npcId == NpcID.NYLOCAS_VASILIAS_8356 ||
+				npcId == NpcID.NYLOCAS_VASILIAS_8357 ||
+				npcId == NpcID.SOTETSEG ||
+				npcId == NpcID.SOTETSEG_8388 ||
+				npcId == NpcID.XARPUS ||
+				npcId == NpcID.XARPUS_8339 ||
+				npcId == NpcID.XARPUS_8340 ||
+				npcId == NpcID.XARPUS_8341 ||
+				npcId == NpcID.VERZIK_VITUR ||
+				npcId == NpcID.VERZIK_VITUR_8369 ||
+				npcId == NpcID.VERZIK_VITUR_8370 ||
+				npcId == NpcID.VERZIK_VITUR_8371 ||
+				npcId == NpcID.VERZIK_VITUR_8372 ||
+				npcId == NpcID.VERZIK_VITUR_8373 ||
+				npcId == NpcID.VERZIK_VITUR_8374 ||
+				npcId == NpcID.VERZIK_VITUR_8375;
 	}
 
 	public SugadintiMaiden castToMaiden()

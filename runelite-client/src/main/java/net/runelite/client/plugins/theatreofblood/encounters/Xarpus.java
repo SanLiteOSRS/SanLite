@@ -54,6 +54,11 @@ public class Xarpus extends TheatreOfBloodEncounter
 		return objectId == ObjectID.ACIDIC_MIASMA;
 	}
 
+	/**
+	 * Adds ground object to the ground objects list if it matches one of Xarpus objects id's
+	 *
+	 * @param groundObject ground object
+	 */
 	public void addGroundObject(GroundObject groundObject)
 	{
 		if (groundObject == null)
@@ -67,6 +72,11 @@ public class Xarpus extends TheatreOfBloodEncounter
 		}
 	}
 
+	/**
+	 * Removes ground object from the ground objects list if it matches one of Xarpus objects id's
+	 *
+	 * @param groundObject ground object
+	 */
 	public void removeGroundObject(GroundObject groundObject)
 	{
 		if (groundObject == null)

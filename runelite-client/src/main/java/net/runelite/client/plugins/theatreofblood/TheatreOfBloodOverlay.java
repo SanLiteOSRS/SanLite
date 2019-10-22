@@ -25,8 +25,8 @@
 package net.runelite.client.plugins.theatreofblood;
 
 import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.*;
 import net.runelite.api.Point;
+import net.runelite.api.*;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.client.plugins.theatreofblood.encounters.*;
 import net.runelite.client.ui.overlay.Overlay;
@@ -206,6 +206,11 @@ public class TheatreOfBloodOverlay extends Overlay
 		String text = Math.abs(remainingDuration / 10) + "." + (Math.abs(remainingDuration) % 10);
 
 		Point textLocation = pestilentBloat.getNpc().getCanvasTextLocation(graphics, text, 0);
+		if (textLocation == null)
+		{
+			return;
+		}
+
 		OverlayUtil.renderTextLocation(graphics, textLocation, text, Color.WHITE);
 	}
 

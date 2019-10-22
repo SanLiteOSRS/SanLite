@@ -63,6 +63,11 @@ public class PestilentBloat extends TheatreOfBloodEncounter
 				graphicsObjectId == GraphicID.BLOAT_HAND_ATTACK_4;
 	}
 
+	/**
+	 * Checks if the Pestilent Bloat animation id matches the sleep id
+	 *
+	 * @return is Pestilent Bloat asleep
+	 */
 	public boolean isAsleep()
 	{
 		NPC npc = getNpc();
@@ -73,12 +78,22 @@ public class PestilentBloat extends TheatreOfBloodEncounter
 		return false;
 	}
 
-	private void sleep(int initialHitClientTick)
+	/**
+	 * Initializes the values for the Pestilent Bloat's sleep timer
+	 *
+	 * @param initialSleepClientTick initial client tick that the sleep animation was detected
+	 */
+	private void sleep(int initialSleepClientTick)
 	{
-		this.wakeUpClientTick = initialHitClientTick + SLEEP_DURATION / Constants.CLIENT_TICK_LENGTH;
-		this.remainingSleepClientTicks = wakeUpClientTick - initialHitClientTick;
+		this.wakeUpClientTick = initialSleepClientTick + SLEEP_DURATION / Constants.CLIENT_TICK_LENGTH;
+		this.remainingSleepClientTicks = wakeUpClientTick - initialSleepClientTick;
 	}
 
+	/**
+	 * Ends the Pestilent Bloat's sleep timer and sets the last sleep end client tick
+	 *
+	 * @param sleepEndClientTick the client tick that the Pestilent Bloat woke up
+	 */
 	private void wakeUp(int sleepEndClientTick)
 	{
 		this.wakeUpClientTick = -1;
@@ -86,6 +101,11 @@ public class PestilentBloat extends TheatreOfBloodEncounter
 		this.remainingSleepClientTicks = -1;
 	}
 
+	/**
+	 * Checks if the Pestilent Bloat is asleep or awake and updates the timer based on this
+	 *
+	 * @param clientTick current client tick
+	 */
 	public void checkBloatStatus(int clientTick)
 	{
 		// 5 seconds of grace period after bloat wakes up to prevent the timer restarting
@@ -106,6 +126,11 @@ public class PestilentBloat extends TheatreOfBloodEncounter
 		}
 	}
 
+	/**
+	 * Checks the clients graphics objects for the Pestilent Bloat's hand attacks and adds them to to AoE effects list
+	 *
+	 * @param clientGraphicObjects the clients graphics objects list
+	 */
 	public void checkHandAttackGraphicObjects(List<GraphicsObject> clientGraphicObjects)
 	{
 		setAoeEffects(
@@ -114,6 +139,11 @@ public class PestilentBloat extends TheatreOfBloodEncounter
 						.collect(Collectors.toList()));
 	}
 
+	/**
+	 * Updates the remaining sleep duration timer of the Pestilent Bloat
+	 *
+	 * @param clientTick current client tick
+	 */
 	private void updateSleepDurationTimer(int clientTick)
 	{
 		setRemainingSleepClientTicks(wakeUpClientTick - clientTick);

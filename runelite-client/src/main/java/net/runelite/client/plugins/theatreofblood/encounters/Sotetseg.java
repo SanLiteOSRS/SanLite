@@ -56,6 +56,9 @@ public class Sotetseg extends TheatreOfBloodEncounter
 		return objectId == ObjectID.TILE_33035;
 	}
 
+	/**
+	 * Initializes the active maze tiles list
+	 */
 	private void activateMaze()
 	{
 		if (activeMazeTiles == null)
@@ -65,6 +68,9 @@ public class Sotetseg extends TheatreOfBloodEncounter
 		}
 	}
 
+	/**
+	 * Resets the active maze tiles list
+	 */
 	private void resetMaze()
 	{
 		if (activeMazeTiles != null)
@@ -74,6 +80,12 @@ public class Sotetseg extends TheatreOfBloodEncounter
 		}
 	}
 
+	/**
+	 * Activates/deactivates the Sotetseg maze and adds red maze tiles to the active maze tiles list
+	 *
+	 * @param gameObject        game object that triggered the function call
+	 * @param isDespawnedObject if the game object despawned
+	 */
 	public void checkMazeTiles(GameObject gameObject, boolean isDespawnedObject)
 	{
 		if (isMazeActive(gameObject, isDespawnedObject) || getActiveMazeTiles() != null)
