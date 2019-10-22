@@ -24,6 +24,7 @@ import javax.inject.Singleton;
 import java.awt.*;
 import java.util.List;
 import java.util.*;
+import static java.util.Collections.reverseOrder;
 
 import static net.runelite.api.AnimationID.*;
 
@@ -540,14 +541,13 @@ public class CombatTickCounterPlugin extends Plugin
 	private <K, V extends Comparable<? super V>> Map<K, V> sortByValue(Map<K, V> map)
 	{
 		List<Map.Entry<K, V>> list = new ArrayList<>(map.entrySet());
-		list.sort(Map.Entry.comparingByValue());
+		list.sort(reverseOrder(Map.Entry.comparingByValue()));
 
 		Map<K, V> result = new LinkedHashMap<>();
 		for (Map.Entry<K, V> entry : list)
 		{
 			result.put(entry.getKey(), entry.getValue());
 		}
-
 		return result;
 	}
 
