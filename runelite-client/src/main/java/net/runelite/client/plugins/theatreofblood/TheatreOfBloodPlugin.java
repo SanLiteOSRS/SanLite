@@ -56,6 +56,10 @@ public class TheatreOfBloodPlugin extends Plugin
 			13122
 	};
 
+	private static final int[] THEATRE_OF_BLOOD_OUTSIDE_REGIONS = {
+			14385, 14386, 14387, 14641, 14642, 14643, 14897, 14898, 14899
+	};
+
 	@Inject
 	private Client client;
 
@@ -390,8 +394,6 @@ public class TheatreOfBloodPlugin extends Plugin
 			resetCurrentEncounter();
 			log.debug("Encounter ended due to wave completion");
 		}
-
-		// TODO: Add case for when the party fails the raid (does not have a game message)
 	}
 
 	/**
@@ -406,6 +408,21 @@ public class TheatreOfBloodPlugin extends Plugin
 		if (gameState == GameState.LOGGING_IN || gameState == GameState.CONNECTION_LOST || gameState == GameState.HOPPING)
 		{
 			resetCurrentEncounter();
+		}
+
+		if (gameState == GameState.LOADING)
+		{
+			int[] mapRegion = client.getMapRegions();
+			if (mapRegion == null)
+			{
+				return;
+			}
+
+			// Reset encounter when the players leaves the Theatre of Blood
+			if (Arrays.equals(mapRegion, THEATRE_OF_BLOOD_OUTSIDE_REGIONS))
+			{
+				resetCurrentEncounter();
+			}
 		}
 	}
 
