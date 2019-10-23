@@ -608,17 +608,36 @@ public class MenuEntrySwapperPlugin extends Plugin
 		{
 			switch (config.swapBuy50())
 			{
-				case Buy_1:
+				case CHANGE_TO_1:
 					swap ("buy 1", option, target, index);
 					break;
-				case Buy_5:
+				case CHANGE_TO_5:
 					swap ("buy 5", option, target, index);
 					break;
-				case Buy_10:
+				case CHANGE_TO_10:
 					swap ("buy 10", option, target, index);
 					break;
-				case Buy_50:
+				case CHANGE_TO_50:
 					swap ("buy 50", option, target, index);
+					break;
+				case Value:
+
+				default:
+
+			}
+			switch (config.swapSell50())
+			{
+				case CHANGE_TO_1:
+					swap ("sell 1", option, target, index);
+					break;
+				case CHANGE_TO_5:
+					swap ("sell 5", option, target, index);
+					break;
+				case CHANGE_TO_10:
+					swap ("sell 10", option, target, index);
+					break;
+				case CHANGE_TO_50:
+					swap ("sell 50", option, target, index);
 					break;
 				case Value:
 

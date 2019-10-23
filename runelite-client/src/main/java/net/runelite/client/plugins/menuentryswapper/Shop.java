@@ -27,22 +27,16 @@ package net.runelite.client.plugins.menuentryswapper;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
+
 @Getter
 @RequiredArgsConstructor
 public enum Shop
 {
     Value ("Value"),
-    Buy_1 ("Buy 1"),
-    Buy_5 ("Buy 5"),
-    Buy_10 ("Buy 10"),
-    Buy_50 ("Buy 50");
-
+    CHANGE_TO_1 ("1"),
+    CHANGE_TO_5 ("5"),
+    CHANGE_TO_10 ("10"),
+    CHANGE_TO_50 ("50");
 
     private final String name;
-
-    @Override
-    public String toString()
-    {
-        return name;
-    }
 }

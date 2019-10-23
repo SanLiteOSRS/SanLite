@@ -313,11 +313,21 @@ public interface MenuEntrySwapperConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "swapStore",
-			name = "Store",
-			description = "Changes stores default options"
+			keyName = "swapStoreBuy",
+			name = "Store Buy",
+			description = "Changes stores default buy options"
 	)
 	default Shop swapBuy50()
+	{
+		return Shop.Value;
+	}
+
+	@ConfigItem(
+			keyName = "swapStoreSell",
+			name = "Store Sell",
+			description = "Changes stores default sell options"
+	)
+	default Shop swapSell50()
 	{
 		return Shop.Value;
 	}
