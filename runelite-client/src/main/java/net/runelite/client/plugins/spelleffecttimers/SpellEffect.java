@@ -41,6 +41,7 @@ public enum SpellEffect
 	FREEZE_IMMUNITY("Freeze Immunity", SpellEffectType.FREEZE_IMMUNITY, -1, false, 3000, "freeze_immunity.png"),
 	TELEBLOCK("Teleblock", SpellEffectType.TELEBLOCK, 345, true, 300000, "teleblock.png"),
 	TELEBLOCK_IMMUNITY("Teleblock Immunity", SpellEffectType.TELEBLOCK_IMMUNITY, -1, false, 60000, "teleblock_immunity.png"),
+	VENGEANCE_OTHER("Vengeance Other", SpellEffectType.VENGEANCE, 725, false, -1, "vengeance.png"),
 	VENGEANCE("Vengeance", SpellEffectType.VENGEANCE, 726, false, 30000, "vengeance.png"),
 	VENGEANCE_ACTIVE("Vengeance Active", SpellEffectType.VENGEANCE, -1, false, -1, "vengeance_white.png");
 

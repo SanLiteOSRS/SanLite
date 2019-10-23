@@ -33,6 +33,8 @@ import net.runelite.client.util.ImageUtil;
 import javax.inject.Inject;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 public class SpellEffectTimersOverlay extends Overlay
@@ -72,7 +74,7 @@ public class SpellEffectTimersOverlay extends Overlay
 			if (config.showFreezeTimersOverlay())
 			{
 				if (spellEffectInfo.getSpellEffect().getSpellType().equals(SpellEffectType.FREEZE) ||
-					spellEffectInfo.getSpellEffect().getSpellType().equals(SpellEffectType.FREEZE_IMMUNITY))
+						spellEffectInfo.getSpellEffect().getSpellType().equals(SpellEffectType.FREEZE_IMMUNITY))
 				{
 					drawSpellEffectOverlay(graphics, spellEffectInfo);
 				}
@@ -114,7 +116,10 @@ public class SpellEffectTimersOverlay extends Overlay
 			return;
 		}
 
-		final int yOffset = plugin.getSpellEffects().indexOf(spellEffectInfo) * 14;
+		List<SpellEffectInfo> actorSpellEffects = plugin.getSpellEffects().stream()
+				.filter(x -> x.getActor().equals(actor))
+				.collect(Collectors.toList());
+		final int yOffset = actorSpellEffects.indexOf(spellEffectInfo) * 14;
 
 		if (config.showSpellImage())
 		{
@@ -122,14 +127,13 @@ public class SpellEffectTimersOverlay extends Overlay
 			if (image != null)
 			{
 				int offset = 4;
-				int imageOffsetY = yOffset;
 				if (spellEffectInfo.getSpellEffect().getSpellLength() == -1)
 				{
-					graphics.drawImage(image, actorTextPoint.getX(), actorTextPoint.getY() + imageOffsetY - 14, null);
+					graphics.drawImage(image, actorTextPoint.getX(), actorTextPoint.getY() + yOffset - 14, null);
 				}
 				else
 				{
-					graphics.drawImage(image, actorTextPoint.getX(), actorTextPoint.getY() + imageOffsetY - 14, null);
+					graphics.drawImage(image, actorTextPoint.getX(), actorTextPoint.getY() + yOffset - 14, null);
 					Point textLocation = new Point(actorTextPoint.getX() + image.getWidth() + offset, actorTextPoint.getY());
 					OverlayUtil.renderTextLocation(graphics, text, config.getTimersFontSize(),
 							config.getTimersFontStyle().getFont(), config.getTimersFontColor(), textLocation, false, yOffset);

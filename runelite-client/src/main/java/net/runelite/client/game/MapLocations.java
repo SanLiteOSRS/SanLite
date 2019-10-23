@@ -3156,10 +3156,20 @@ public class MapLocations
 
 		// Hosidius bank
 		addPolygonOnPlane(PVP_WORLD_SAFE_ZONES, 0,
-				1671, 3558,
-				1671, 3577,
-				1682, 3577,
-				1682, 3558);
+				1753, 3597,
+				1751, 3597,
+				1751, 3596,
+				1750, 3596,
+				1750, 3594,
+				1745, 3594,
+				1745, 3601,
+				1744, 3601,
+				1744, 3604,
+				1750, 3604,
+				1750, 3602,
+				1751, 3602,
+				1751, 3601,
+				1753, 3601);
 
 		// Woodcutting guild bank
 		addPolygonOnPlane(PVP_WORLD_SAFE_ZONES, 0,
@@ -3244,17 +3254,72 @@ public class MapLocations
 
 		// Hosidius grape farm bank
 		addPolygonOnPlane(PVP_WORLD_SAFE_ZONES, 0,
-				1804, 3571,
-				1804, 3572,
-				1808, 3572,
-				1808, 3571);
+				1806, 3566,
+				1806, 3568,
+				1810, 3568,
+				1810, 3566);
 
 		// Hosidius cooking bank
 		addPolygonOnPlane(PVP_WORLD_SAFE_ZONES, 0,
-				1652, 3605,
-				1652, 3615,
-				1661, 3615,
-				1661, 3605);
+				1675, 3615,
+				1675, 3618,
+				1676, 3618,
+				1676, 3620,
+				1675, 3620,
+				1675, 3623,
+				1684, 3623,
+				1684, 3620,
+				1683, 3620,
+				1683, 3618,
+				1684, 3618,
+				1684, 3615
+		);
+
+		// Kourend castle upstairs bank
+		addPolygonOnPlane(PVP_WORLD_SAFE_ZONES, 2,
+				1610, 3679,
+				1610, 3684,
+				1611, 3684,
+				1611, 3685,
+				1612, 3685,
+				1612, 3686,
+				1614, 3686,
+				1614, 3679);
+
+		// Mount Karuulm bank
+		addPolygonOnPlane(PVP_WORLD_SAFE_ZONES, 2,
+				1322, 3823,
+				1322, 3826,
+				1327, 3826,
+				1327, 3823);
+
+		// Farming Guild south bank
+		addPolygonOnPlane(PVP_WORLD_SAFE_ZONES, 2,
+				1252, 3739,
+				1252, 3743,
+				1255, 3743,
+				1255, 3739);
+
+		// Farming Guild north bank
+		addPolygonOnPlane(PVP_WORLD_SAFE_ZONES, 2,
+				1248, 3758,
+				1248, 3759,
+				1250, 3759,
+				1250, 3758);
+
+		// Prifddinas southeast bank
+		addPolygonOnPlane(PVP_WORLD_SAFE_ZONES, 2,
+				3294, 6057,
+				3294, 6063,
+				3299, 6063,
+				3299, 6057);
+
+		// Prifddinas northwest bank
+		addPolygonOnPlane(PVP_WORLD_SAFE_ZONES, 2,
+				3255, 6102,
+				3255, 6113,
+				3260, 6113,
+				3260, 6102);
 
 		// Etceteria bank
 		addPolygonOnPlane(PVP_WORLD_SAFE_ZONES, 0,

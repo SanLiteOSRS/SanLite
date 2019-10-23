@@ -104,7 +104,6 @@ public class SpellEffectTimersPlugin extends Plugin
 		Actor actor = spotAnimationChanged.getActor();
 		if (actor == null)
 		{
-			log.debug("Actor is null");
 			return;
 		}
 
@@ -115,23 +114,18 @@ public class SpellEffectTimersPlugin extends Plugin
 
 		if (actor.equals(client.getLocalPlayer()))
 		{
-			log.debug("Actor is local player");
 			return;
 		}
 
 		int spotAnimation = actor.getSpotAnimation();
 		if (spotAnimation == 0)
 		{
-			log.debug("Spot anim is 0 | value: {} | frame: {}", actor.getSpotAnimation(), actor.getSpotAnimationFrame());
 			return;
 		}
-
-		log.debug("Spot anim frame: {} | tick: {}", actor.getSpotAnimationFrame(), client.getGameCycle());
 
 		SpellEffect spellEffect = SpellEffect.getFromSpotAnimation(actor.getSpotAnimation());
 		if (spellEffect == null)
 		{
-			log.debug("Spell effect is null");
 			return;
 		}
 
@@ -141,12 +135,11 @@ public class SpellEffectTimersPlugin extends Plugin
 				checkFreezeSpellEffect(spotAnimationChanged, actor, spellEffect);
 				break;
 			case FREEZE_IMMUNITY:
-				return;
-			case TELEBLOCK:
-				checkTeleblockSpellEffect(spotAnimationChanged, actor, spellEffect);
-				break;
 			case TELEBLOCK_IMMUNITY:
 				return;
+			case TELEBLOCK:
+				checkTeleblockSpellEffect(actor, spellEffect);
+				break;
 			case VENGEANCE:
 				checkVengSpellEffect(spotAnimationChanged, actor, spellEffect);
 				return;
@@ -157,7 +150,6 @@ public class SpellEffectTimersPlugin extends Plugin
 
 	private void checkFreezeSpellEffect(SpotAnimationChanged spotAnimationChanged, Actor actor, SpellEffect spellEffect)
 	{
-		log.debug("Check freeze triggered | animationId: {} | Tick: {}", actor.getSpotAnimation(), client.getGameCycle());
 		List<SpellEffectInfo> actorFreezeSpellEffects = new ArrayList<>();
 		for (SpellEffectInfo spellEffectInfo : spellEffects)
 		{
@@ -166,7 +158,6 @@ public class SpellEffectTimersPlugin extends Plugin
 				SpellEffectType spellType = spellEffectInfo.getSpellEffect().getSpellType();
 				if (spellType.equals(SpellEffectType.FREEZE_IMMUNITY))
 				{
-					log.debug("{} has freeze immunity | {}", actor.getName(), client.getGameCycle());
 					return;
 				}
 
@@ -182,27 +173,22 @@ public class SpellEffectTimersPlugin extends Plugin
 			// Checks if the actor is already frozen. Extra second to prevent freeze & immunity timers both triggering.
 			if (spellEffectInfo.getExpireClientTick() + 1 > client.getGameCycle())
 			{
-				log.debug("{} already frozen or has freeze immunity", actor.getName());
 				return;
 			}
 		}
 
-		log.debug("Spell effect list size before add: {}", spellEffects.size());
 		spellEffects.add(new SpellEffectInfo(actor, spellEffect, client.getGameCycle(), false));
 		log.debug("Spell effect added: {} | {}", spellEffect.getName(), client.getGameCycle());
 	}
 
-	private void checkTeleblockSpellEffect(SpotAnimationChanged spotAnimationChanged, Actor actor, SpellEffect spellEffect)
+	private void checkTeleblockSpellEffect(Actor actor, SpellEffect spellEffect)
 	{
-		log.debug("Check teleblock triggered | animationId: {} | Tick: {}", actor.getSpotAnimation(), client.getGameCycle());
-
 		Player player = (Player) actor;
 		boolean magePray = false;
 		if (player.getOverheadIcon() != null)
 		{
 			if (player.getOverheadIcon().ordinal() == 2 && spellEffect.isHalvable())
 			{
-				log.debug("Actor is praying mage");
 				magePray = true;
 			}
 		}
@@ -210,9 +196,47 @@ public class SpellEffectTimersPlugin extends Plugin
 		spellEffects.add(new SpellEffectInfo(actor, spellEffect, client.getGameCycle(), magePray));
 	}
 
+	private void checkRemoveTeleblockSpellEffect()
+	{
+		for (SpellEffectInfo spellEffect : spellEffects)
+		{
+			if (spellEffect.getSpellEffect() == SpellEffect.TELEBLOCK || spellEffect.getSpellEffect() == SpellEffect.TELEBLOCK_IMMUNITY)
+			{
+				final boolean inDeadman = client.getWorldType().stream().anyMatch(x ->
+						x == WorldType.DEADMAN || x == WorldType.SEASONAL_DEADMAN);
+				final boolean inPvp = client.getWorldType().stream().anyMatch(x ->
+						x == WorldType.PVP || x == WorldType.HIGH_RISK);
+				final WorldPoint actorLoc = spellEffect.getActor().getWorldLocation();
+
+				// Remove teleblock timer if actor leaves wilderness and it is not a pvp or deadman world
+				if (!MapLocations.getWilderness(actorLoc.getPlane()).contains(actorLoc.getX(), actorLoc.getY()) && !inDeadman && !inPvp)
+				{
+					spellEffects.removeIf(x -> x.getActor().equals(spellEffect.getActor()) &&
+							x.getSpellEffect().getSpellType().equals(SpellEffectType.TELEBLOCK) ||
+							x.getSpellEffect().getSpellType().equals(SpellEffectType.TELEBLOCK_IMMUNITY));
+				}
+
+				// Remove teleblock timer if actor enters a PvP safezone and it is a PvP world
+				else if (MapLocations.getPvpSafeZones(actorLoc.getPlane()).contains(actorLoc.getX(), actorLoc.getY()) && inPvp)
+				{
+					spellEffects.removeIf(x -> x.getActor().equals(spellEffect.getActor()) &&
+							x.getSpellEffect().getSpellType().equals(SpellEffectType.TELEBLOCK) ||
+							x.getSpellEffect().getSpellType().equals(SpellEffectType.TELEBLOCK_IMMUNITY));
+				}
+
+				// Remove teleblock timer if actor enters a deadman safezone and it is a deadman world
+				else if (MapLocations.getDeadmanSafeZones(actorLoc.getPlane()).contains(actorLoc.getX(), actorLoc.getY()) && inDeadman)
+				{
+					spellEffects.removeIf(x -> x.getActor().equals(spellEffect.getActor()) &&
+							x.getSpellEffect().getSpellType().equals(SpellEffectType.TELEBLOCK) ||
+							x.getSpellEffect().getSpellType().equals(SpellEffectType.TELEBLOCK_IMMUNITY));
+				}
+			}
+		}
+	}
+
 	private void checkVengSpellEffect(SpotAnimationChanged spotAnimationChanged, Actor actor, SpellEffect spellEffect)
 	{
-		log.debug("Spell effect list size before add: {}", spellEffects.size());
 		spellEffects.add(new SpellEffectInfo(actor, spellEffect, client.getGameCycle(), false));
 		log.debug("Spell effect added: {} | {}", spellEffect.getName(), client.getGameCycle());
 
@@ -228,7 +252,6 @@ public class SpellEffectTimersPlugin extends Plugin
 			}
 		}
 
-		log.debug("Spell effect list size before add: {}", spellEffects.size());
 		spellEffects.add(new SpellEffectInfo(actor, SpellEffect.VENGEANCE_ACTIVE, client.getGameCycle(), false));
 		log.debug("Spell effect added: {} | {}", spellEffect.getName(), client.getGameCycle());
 
@@ -237,7 +260,9 @@ public class SpellEffectTimersPlugin extends Plugin
 	@Subscribe
 	public void onOverheadTextChanged(OverheadTextChanged overheadTextChanged)
 	{
-		spellEffects.removeIf(x -> x.getSpellEffect().equals(SpellEffect.VENGEANCE_ACTIVE) && overheadTextChanged.getOverheadText().equals("Taste vengeance!"));
+		spellEffects.removeIf(x -> x.getSpellEffect().equals(SpellEffect.VENGEANCE_ACTIVE) &&
+				x.getActor().equals(overheadTextChanged.getActor()) &&
+				overheadTextChanged.getOverheadText().equals("Taste vengeance!"));
 	}
 
 	@Subscribe
@@ -255,43 +280,9 @@ public class SpellEffectTimersPlugin extends Plugin
 	@Subscribe
 	public void onGameTick(GameTick gameTick)
 	{
-		for (SpellEffectInfo spellEffect : spellEffects)
+		if (config.showTeleblockTimersOverlay())
 		{
-			if (spellEffect.getSpellEffect() == SpellEffect.TELEBLOCK || spellEffect.getSpellEffect() == SpellEffect.TELEBLOCK_IMMUNITY)
-			{
-				final boolean inDeadman = client.getWorldType().stream().anyMatch(x ->
-						x == WorldType.DEADMAN || x == WorldType.SEASONAL_DEADMAN);
-				final boolean inPvp = client.getWorldType().stream().anyMatch(x ->
-						x == WorldType.PVP || x == WorldType.HIGH_RISK);
-				final WorldPoint actorLoc = spellEffect.getActor().getWorldLocation();
-
-				// Remove teleblock timer if actor leaves wilderness and it is not a pvp or deadman world
-				if (!MapLocations.getWilderness(actorLoc.getPlane()).contains(actorLoc.getX(), actorLoc.getY()) && !inDeadman && !inPvp)
-				{
-					log.debug("Actor not in wilderness: " + client.getVar(Varbits.IN_WILDERNESS) + " pvp world = " + inPvp + " deadman world = " + inDeadman);
-					spellEffects.removeIf(x -> x.getActor().equals(spellEffect.getActor()) &&
-							x.getSpellEffect().getSpellType().equals(SpellEffectType.TELEBLOCK) ||
-							x.getSpellEffect().getSpellType().equals(SpellEffectType.TELEBLOCK_IMMUNITY));
-				}
-
-				// Remove teleblock timer if actor enters a PvP safezone and it is a PvP world
-				else if (MapLocations.getPvpSafeZones(actorLoc.getPlane()).contains(actorLoc.getX(), actorLoc.getY()) && inPvp)
-				{
-					log.debug("Actor not in PVP area. pvp world = " + inPvp + " deadman world = " + inDeadman);
-					spellEffects.removeIf(x -> x.getActor().equals(spellEffect.getActor()) &&
-							x.getSpellEffect().getSpellType().equals(SpellEffectType.TELEBLOCK) ||
-							x.getSpellEffect().getSpellType().equals(SpellEffectType.TELEBLOCK_IMMUNITY));
-				}
-
-				// Remove teleblock timer if actor enters a deadman safezone and it is a deadman world
-				else if (MapLocations.getDeadmanSafeZones(actorLoc.getPlane()).contains(actorLoc.getX(), actorLoc.getY()) && inDeadman)
-				{
-					log.debug("Actor not in Deadman area. pvp world = " + inPvp + " deadman world = " + inDeadman);
-					spellEffects.removeIf(x -> x.getActor().equals(spellEffect.getActor()) &&
-							x.getSpellEffect().getSpellType().equals(SpellEffectType.TELEBLOCK) ||
-							x.getSpellEffect().getSpellType().equals(SpellEffectType.TELEBLOCK_IMMUNITY));
-				}
-			}
+			checkRemoveTeleblockSpellEffect();
 		}
 	}
 
@@ -333,8 +324,7 @@ public class SpellEffectTimersPlugin extends Plugin
 				.filter(x -> x.getSpellEffect().getSpellType() == SpellEffectType.TELEBLOCK &&
 						x.getExpireClientTick() - client.getGameCycle() < 0)
 				.forEach(this::expireSpellEffect);
-
-
+		
 		// Check for remaining expired spell effects
 		if (spellEffects.removeIf(x -> x.getExpireClientTick() - client.getGameCycle() < 0 && !x.getSpellEffect().equals(SpellEffect.VENGEANCE_ACTIVE)))
 		{
