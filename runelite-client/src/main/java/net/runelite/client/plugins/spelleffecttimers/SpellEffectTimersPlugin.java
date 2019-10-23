@@ -48,7 +48,7 @@ import java.util.List;
 		name = "Spell Effect Timers",
 		description = "Shows spell effect timers for freezes, vengeance and teleblock",
 		tags = {"spell", "effect", "timers", "freeze", "timers", "barrage", "freezy", "ancients", "overlay", "root",
-				"vengeance", "teleblock", "veng", "tb"},
+				"vengeance", "teleblock", "veng", "tb", "pvp"},
 		enabledByDefault = false,
 		type = PluginType.SANLITE
 )
@@ -178,7 +178,6 @@ public class SpellEffectTimersPlugin extends Plugin
 		}
 
 		spellEffects.add(new SpellEffectInfo(actor, spellEffect, client.getGameCycle(), false));
-		log.debug("Spell effect added: {} | {}", spellEffect.getName(), client.getGameCycle());
 	}
 
 	private void checkTeleblockSpellEffect(Actor actor, SpellEffect spellEffect)
@@ -238,23 +237,18 @@ public class SpellEffectTimersPlugin extends Plugin
 	private void checkVengSpellEffect(SpotAnimationChanged spotAnimationChanged, Actor actor, SpellEffect spellEffect)
 	{
 		spellEffects.add(new SpellEffectInfo(actor, spellEffect, client.getGameCycle(), false));
-		log.debug("Spell effect added: {} | {}", spellEffect.getName(), client.getGameCycle());
-
 		for (SpellEffectInfo spellEffectInfo : spellEffects)
 		{
 			if (spotAnimationChanged.getActor().equals(spellEffectInfo.getActor()))
 			{
 				if (spellEffectInfo.getSpellEffect().equals(SpellEffect.VENGEANCE_ACTIVE))
 				{
-					log.debug("{} has vengeance active | {}", actor.getName(), client.getGameCycle());
 					return;
 				}
 			}
 		}
 
 		spellEffects.add(new SpellEffectInfo(actor, SpellEffect.VENGEANCE_ACTIVE, client.getGameCycle(), false));
-		log.debug("Spell effect added: {} | {}", spellEffect.getName(), client.getGameCycle());
-
 	}
 
 	@Subscribe
@@ -324,12 +318,10 @@ public class SpellEffectTimersPlugin extends Plugin
 				.filter(x -> x.getSpellEffect().getSpellType() == SpellEffectType.TELEBLOCK &&
 						x.getExpireClientTick() - client.getGameCycle() < 0)
 				.forEach(this::expireSpellEffect);
-		
+
 		// Check for remaining expired spell effects
-		if (spellEffects.removeIf(x -> x.getExpireClientTick() - client.getGameCycle() < 0 && !x.getSpellEffect().equals(SpellEffect.VENGEANCE_ACTIVE)))
-		{
-			log.debug("Removed non-/teleblock spell effect | tick: {}", client.getGameCycle());
-		}
+		spellEffects.removeIf(x -> x.getExpireClientTick() - client.getGameCycle() < 0 &&
+				!x.getSpellEffect().equals(SpellEffect.VENGEANCE_ACTIVE));
 
 		// Update remaining duration of non-expired spell effects
 		for (SpellEffectInfo spellEffect : spellEffects)
@@ -342,18 +334,16 @@ public class SpellEffectTimersPlugin extends Plugin
 	private void expireSpellEffect(SpellEffectInfo spellEffectInfo)
 	{
 		spellEffects.remove(spellEffectInfo);
-		log.debug("Spell effect {} removed | {}", spellEffectInfo.getSpellEffect().getName(), client.getGameCycle());
-		if (spellEffectInfo.getSpellEffect().getSpellType() == SpellEffectType.FREEZE)
+		switch (spellEffectInfo.getSpellEffect().getSpellType())
 		{
-			spellEffects.add(new SpellEffectInfo(spellEffectInfo.getActor(),
-					SpellEffect.FREEZE_IMMUNITY, client.getGameCycle(), false));
-			log.debug("Spell effect Freeze Immunity added | {}", client.getGameCycle());
-		}
-		else if (spellEffectInfo.getSpellEffect().getSpellType() == SpellEffectType.TELEBLOCK)
-		{
-			spellEffects.add(new SpellEffectInfo(spellEffectInfo.getActor(),
-					SpellEffect.TELEBLOCK_IMMUNITY, client.getGameCycle(), false));
-			log.debug("Spell effect Teleblock Immunity added | {}", client.getGameCycle());
+			case FREEZE:
+				spellEffects.add(new SpellEffectInfo(spellEffectInfo.getActor(),
+						SpellEffect.FREEZE_IMMUNITY, client.getGameCycle(), false));
+				break;
+			case TELEBLOCK:
+				spellEffects.add(new SpellEffectInfo(spellEffectInfo.getActor(),
+						SpellEffect.TELEBLOCK_IMMUNITY, client.getGameCycle(), false));
+				break;
 		}
 	}
 }
