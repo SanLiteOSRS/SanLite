@@ -95,7 +95,7 @@ public class PlayerIndicatorsTileOverlay extends Overlay
 			}
 
 			//Checked here as if statements follow into friends path but wont highlight clan members if config says not to, in this situation they could be highlighted as clan members
-			if (config.disableFriendHighlightIfClanMember() && client.isClanMember(player.getName()) && config.drawClanTiles() && config.highlightClanMembers())
+			if (config.disableFriendHighlightIfClanMember() && client.isClanMember(player.getName()) && config.drawClanTiles() && config.highlightClanMembers() && player != client.getLocalPlayer())
 			{
 				drawTile = true;
 			}

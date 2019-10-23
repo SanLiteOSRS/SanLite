@@ -79,7 +79,7 @@ public class PlayerIndicatorsMinimapOverlay extends Overlay
 			{
 				drawMinimapName = true;
 			}
-			else if (config.drawFriendMinimapNames() && client.isFriended(actor.getName(), false) && config.highlightFriends())
+			else if (config.drawFriendMinimapNames() && client.isFriended(actor.getName(), false) && config.highlightFriends()  && actor != client.getLocalPlayer())
 			{
 				if (config.disableFriendHighlightIfClanMember() && !client.isClanMember(actor.getName()))
 				{
@@ -104,7 +104,7 @@ public class PlayerIndicatorsMinimapOverlay extends Overlay
 			}
 
 			//Checked here as if statements follow into friends path but wont highlight clan members if config says not to, in this situation they could be highlighted as clan members
-			if (config.disableFriendHighlightIfClanMember() && client.isClanMember(actor.getName()) && config.drawClanMinimapNames() && config.highlightClanMembers())
+			if (config.disableFriendHighlightIfClanMember() && client.isClanMember(actor.getName()) && config.drawClanMinimapNames() && config.highlightClanMembers() && actor != client.getLocalPlayer())
 			{
 				drawMinimapName = true;
 			}

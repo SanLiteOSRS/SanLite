@@ -90,7 +90,7 @@ public class PlayerIndicatorsOverlay extends Overlay
 		{
 			drawPlayerNamesConfig = config.ownPlayerNamePosition();
 		}
-		else if (client.isFriended(actor.getName(), false) && config.friendPlayerNamePosition() != PlayerNameLocation.DISABLED && config.highlightFriends())
+		else if (client.isFriended(actor.getName(), false) && config.friendPlayerNamePosition() != PlayerNameLocation.DISABLED && config.highlightFriends() && actor != client.getLocalPlayer())
 		{
 			if (config.disableFriendHighlightIfClanMember() && !client.isClanMember(actor.getName()))
 			{
@@ -115,7 +115,7 @@ public class PlayerIndicatorsOverlay extends Overlay
 		}
 
 		//Checked here as if statements follow into friends path but wont highlight clan members if config says not to, in this situation they could be highlighted as clan members
-		if (config.disableFriendHighlightIfClanMember() && client.isClanMember(actor.getName()) && config.clanPlayerNamePosition() != PlayerNameLocation.DISABLED && config.highlightClanMembers())
+		if (config.disableFriendHighlightIfClanMember() && client.isClanMember(actor.getName()) && config.clanPlayerNamePosition() != PlayerNameLocation.DISABLED && config.highlightClanMembers() && actor != client.getLocalPlayer())
 		{
 			drawPlayerNamesConfig = config.clanPlayerNamePosition();
 		}

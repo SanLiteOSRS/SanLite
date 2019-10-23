@@ -31,8 +31,10 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 import java.awt.*;
 import java.util.function.BiConsumer;
+import lombok.extern.slf4j.Slf4j;
 
 @Singleton
+@Slf4j
 public class PlayerIndicatorsService
 {
 	private final Client client;
@@ -53,7 +55,6 @@ public class PlayerIndicatorsService
 			return;
 		}
 
-
 		final Player localPlayer = client.getLocalPlayer();
 
 		for (Player player : client.getPlayers())
@@ -70,8 +71,8 @@ public class PlayerIndicatorsService
 				consumer.accept(player, config.getOwnPlayerColor());
 				continue;
 			}
-			else if (config.highlightFriends() && player.isFriend() || config.highlightFriends() &&
-					config.highlightOfflineFriends() && client.isFriended(player.getName(), false) && player != client.getLocalPlayer())
+			else if ((!config.highlightFriends() && player.isFriend()) || (config.highlightFriends() &&
+					config.highlightOfflineFriends() && client.isFriended(player.getName(), false) && player != client.getLocalPlayer()))
 			{
 				if (!config.disableFriendHighlightIfClanMember())
 				{
