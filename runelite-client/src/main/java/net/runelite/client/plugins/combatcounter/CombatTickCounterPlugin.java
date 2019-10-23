@@ -8,7 +8,6 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.*;
-import net.runelite.api.coords.WorldPoint;
 import net.runelite.api.events.*;
 import net.runelite.api.kit.KitType;
 import net.runelite.client.config.ConfigManager;
@@ -46,9 +45,6 @@ public class CombatTickCounterPlugin extends Plugin
 	private CombatTickCounterOverlay tickOverlay;
 
 	@Inject
-	private CombatTickCounterDamageOverlay damageOverlay;
-
-	@Inject
 	private OverlayManager overlayManager;
 
 	@Inject
@@ -64,13 +60,8 @@ public class CombatTickCounterPlugin extends Plugin
 
 	private final Map<String, Long> blowpipe = new HashMap<>();
 
-	private final Map<NPC, NPCDamageCounter> npcDamageMap = new HashMap<>();
-	Map<String, Double> playerDamage = new HashMap<>();
-
 	@Getter(AccessLevel.PACKAGE)
 	private boolean showTickCounter;
-	@Getter(AccessLevel.PACKAGE)
-	private boolean showDamageCounter;
 	private boolean resetOnNewInstance;
 	@Getter(AccessLevel.PACKAGE)
 	private Color selfColor;
@@ -206,7 +197,6 @@ public class CombatTickCounterPlugin extends Plugin
 		updateConfig();
 
 		overlayManager.add(tickOverlay);
-		overlayManager.add(damageOverlay);
 
 		reset();
 	}
@@ -217,7 +207,6 @@ public class CombatTickCounterPlugin extends Plugin
 		eventBus.unregister(this);
 
 		overlayManager.remove(tickOverlay);
-		overlayManager.remove(damageOverlay);
 
 		reset();
 	}
@@ -226,8 +215,6 @@ public class CombatTickCounterPlugin extends Plugin
 	{
 		this.counter.clear();
 		this.blowpipe.clear();
-		this.npcDamageMap.clear();
-		this.playerDamage.clear();
 	}
 
 	@Subscribe
@@ -246,9 +233,6 @@ public class CombatTickCounterPlugin extends Plugin
 				{
 					if (VARIABLES.containsKey(animation))
 					{
-						/*
-						 * This part handles the Tick Counter.
-						 */
 						long ticks = VARIABLES.get(animation);
 						if (((Player) actor).getPlayerAppearance().getEquipmentId(KitType.WEAPON) == 23360)
 						{
@@ -264,106 +248,6 @@ public class CombatTickCounterPlugin extends Plugin
 						if (animation == BLOWPIPE_ATTACK)
 						{
 							this.blowpipe.put(name, -4L);
-						}
-
-						/*
-						 * This part handles the Damage Counter.
-						 */
-						Actor interacting = actor.getInteracting();
-						if (interacting instanceof NPC)
-						{
-							NPC npc = (NPC) interacting;
-
-							List<NPC> actives = new ArrayList<>();
-							actives.add(npc);
-
-							if (BARRAGE_ANIMATION == 1979 || CHIN_ANIMATION == 7618)
-							{ // Barrage or chin.
-								for (NPC nearby : this.client.getNpcs())
-								{
-									int distance = npc.getWorldLocation().distanceTo(nearby.getWorldLocation());
-									if (distance <= 1 && npc != nearby)
-									{
-										actives.add(nearby);
-									}
-								}
-							}
-
-							int distance = calculateDistance(p, npc);
-
-							int delay = -1;
-							boolean canFarcast = false;
-
-							if (animation == 7618)
-							{
-								delay = this.calculateChinDelay(distance);
-								canFarcast = true;
-							}
-							else if (animation == 5061)
-							{
-								delay = this.calculateBPDelay(distance);
-								canFarcast = true;
-							}
-							else if (RANGE_ANIMATIONS.contains(animation))
-							{
-								delay = this.calculateRangedDelay(distance);
-								canFarcast = true;
-							}
-							else if (MELEE_ANIMATIONS.contains(animation))
-							{
-								delay = 1;
-							}
-							else if (MAGE_ANIMATIONS.contains(animation))
-							{
-								delay = this.calculateMageDelay(distance);
-								canFarcast = true;
-							}
-							else
-							{
-								log.debug("Unclassified Animation: {}", animation);
-							}
-
-							if (delay != -1)
-							{
-								List<Integer> ticksToAdd = new ArrayList<>();
-								ticksToAdd.add(delay);
-
-								if (canFarcast && delay > 2)
-								{
-									ticksToAdd.add(delay - 1);
-								}
-
-								/*
-								 * Dragon Claw Specials are 2 ticks long.
-								 */
-								if (animation == 7514)
-								{
-									ticksToAdd.add(delay + 1);
-								}
-
-								for (NPC target : actives)
-								{
-									NPCDamageCounter dc = new NPCDamageCounter();
-									if (this.npcDamageMap.containsKey(target))
-									{
-										dc = this.npcDamageMap.get(target);
-									}
-
-									for (Integer tick : ticksToAdd)
-									{
-										List<String> attackers = new ArrayList<>();
-										if (dc.attackers.containsKey(tick))
-										{
-											attackers = dc.attackers.get(tick);
-										}
-
-										attackers.add(name);
-										dc.attackers.put(tick, attackers);
-									}
-
-									this.npcDamageMap.put(target, dc);
-								}
-							}
 						}
 					}
 				}
@@ -386,8 +270,6 @@ public class CombatTickCounterPlugin extends Plugin
 			{
 				this.counter.clear();
 				this.blowpipe.clear();
-				this.npcDamageMap.clear();
-				this.playerDamage.clear();
 			}
 		}
 
@@ -399,61 +281,6 @@ public class CombatTickCounterPlugin extends Plugin
 				visible.put(p.getName(), p);
 			}
 		}
-
-		for (NPC npc : new ArrayList<>(this.npcDamageMap.keySet()))
-		{
-			NPCDamageCounter counter = this.npcDamageMap.get(npc);
-
-			Map<Integer, List<String>> attackers = counter.attackers;
-			for (Integer i : new ArrayList<>(attackers.keySet()))
-			{
-				List<String> p = attackers.get(i);
-				attackers.put(i - 1, p);
-				attackers.remove(i);
-			}
-
-			double totalDamage = 0d;
-			for (Integer damage : counter.damage)
-			{
-				totalDamage += damage;
-			}
-
-			if (attackers.containsKey(-1))
-			{
-				List<String> players = attackers.get(-1);
-				double totalPlayers = players.size();
-
-				double damagePerPlayer = totalDamage / totalPlayers;
-				for (String name : players)
-				{
-					double count = 0d;
-					if (this.playerDamage.containsKey(name))
-					{
-						count = this.playerDamage.get(name);
-					}
-
-					count += damagePerPlayer;
-					this.playerDamage.put(name, count);
-				}
-
-				counter.damage.clear();
-			}
-
-			for (Integer i : new ArrayList<>(attackers.keySet()))
-			{
-				if (i <= -1)
-				{
-					attackers.remove(i);
-				}
-			}
-
-			if (attackers.isEmpty())
-			{
-				this.npcDamageMap.remove(npc);
-			}
-		}
-
-		this.playerDamage = sortByValue(this.playerDamage);
 
 		for (String user : new ArrayList<>(blowpipe.keySet()))
 		{
@@ -468,44 +295,6 @@ public class CombatTickCounterPlugin extends Plugin
 					long ticks = counter.get(user);
 					counter.replace(user, ticks + 2);
 					counter = sortByValue(counter);
-
-					Player p = visible.get(user);
-					Actor interacting = p.getInteracting();
-					if (interacting instanceof NPC)
-					{
-						NPC npc = (NPC) interacting;
-
-						int distance = calculateDistance(p, npc);
-
-						NPCDamageCounter dc = new NPCDamageCounter();
-						if (this.npcDamageMap.containsKey(npc))
-						{
-							dc = this.npcDamageMap.get(npc);
-						}
-
-						int delay = this.calculateBPDelay(distance);
-
-						List<Integer> counts = new ArrayList<>();
-						counts.add(delay);
-						if (delay > 2)
-						{
-							counts.add(delay - 1);
-						}
-
-						for (int tick : counts)
-						{
-							List<String> attackers = new ArrayList<>();
-							if (dc.attackers.containsKey(tick))
-							{
-								attackers = dc.attackers.get(tick);
-							}
-
-							attackers.add(user);
-							dc.attackers.put(tick, attackers);
-						}
-
-						this.npcDamageMap.put(npc, dc);
-					}
 				}
 			}
 			else
@@ -515,28 +304,6 @@ public class CombatTickCounterPlugin extends Plugin
 		}
 	}
 
-	@Subscribe
-	private void onHitsplatApplied(HitsplatApplied event)
-	{
-		Actor actor = event.getActor();
-
-		if (!(actor instanceof NPC))
-		{
-			return;
-		}
-
-		NPC npc = (NPC) actor;
-
-		if (!this.npcDamageMap.containsKey(npc))
-		{
-			return;
-		}
-
-		Hitsplat splat = event.getHitsplat();
-		NPCDamageCounter dc = this.npcDamageMap.get(npc);
-
-		dc.damage.add(splat.getAmount());
-	}
 
 	private <K, V extends Comparable<? super V>> Map<K, V> sortByValue(Map<K, V> map)
 	{
@@ -549,58 +316,6 @@ public class CombatTickCounterPlugin extends Plugin
 			result.put(entry.getKey(), entry.getValue());
 		}
 		return result;
-	}
-
-	private int calculateDistance(Player p, NPC npc)
-	{
-		int size = 1;
-		NPCDefinition comp = npc.getTransformedDefinition();
-		if (comp != null)
-		{
-			size = comp.getSize();
-		}
-
-		WorldPoint wpPlayer = p.getWorldLocation();
-		WorldPoint wpNPC = npc.getWorldLocation();
-		int distance = wpNPC.distanceTo(wpPlayer);
-
-		if (size > 1)
-		{
-			for (int x = 0; x < size; x++)
-			{
-				for (int y = 0; y < size; y++)
-				{
-					WorldPoint wpNPCB = WorldPoint.fromRegion(wpNPC.getRegionID(), wpNPC.getRegionX() + x, wpNPC.getRegionY() + y, wpNPC.getPlane());
-					int distB = wpNPCB.distanceTo(wpPlayer);
-					if (distB >= 1 && distB < distance)
-					{
-						distance = distB;
-					}
-				}
-			}
-		}
-
-		return distance;
-	}
-
-	private int calculateBPDelay(double distance)
-	{
-		return 2 + (int) Math.floor(distance / 6d);
-	}
-
-	private int calculateChinDelay(double distance)
-	{
-		return 2 + (int) Math.floor(distance / 6d);
-	}
-
-	private int calculateMageDelay(double distance)
-	{
-		return 2 + (int) Math.floor((1d + distance) / 3d);
-	}
-
-	private int calculateRangedDelay(double distance)
-	{
-		return 2 + (int) Math.floor((3d + distance) / 6d);
 	}
 
 	@Subscribe
@@ -625,7 +340,6 @@ public class CombatTickCounterPlugin extends Plugin
 	private void updateConfig()
 	{
 		this.showTickCounter = config.showTickCounter();
-		this.showDamageCounter = config.showDamageCounter();
 		this.resetOnNewInstance = config.resetOnNewInstance();
 		this.selfColor = config.selfColor();
 		this.totalColor = config.totalColor();

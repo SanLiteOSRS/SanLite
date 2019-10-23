@@ -22,21 +22,10 @@ public interface CombatTickCounterConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "Show Damage Counter",
-			name = "Show Damage Counter",
-			description = "Display the damage counter overlay",
-			position = 2
-	)
-	default boolean showDamageCounter()
-	{
-		return false;
-	}
-
-	@ConfigItem(
 			keyName = "Reset on New Instance",
 			name = "Reset On New Instance",
 			description = "Resets counter when entering a new instance",
-			position = 3
+			position = 2
 	)
 	default boolean resetOnNewInstance()
 	{
@@ -48,7 +37,7 @@ public interface CombatTickCounterConfig extends Config
 			keyName = "selfColor",
 			name = "Your color",
 			description = "Color of your own name on the overlay",
-			position = 4
+			position = 3
 	)
 	default Color selfColor()
 	{
@@ -60,7 +49,7 @@ public interface CombatTickCounterConfig extends Config
 			keyName = "totalColor",
 			name = "Total color",
 			description = "Color of total on the overlay",
-			position = 5
+			position = 4
 	)
 	default Color totalColor()
 	{
@@ -72,7 +61,7 @@ public interface CombatTickCounterConfig extends Config
 			keyName = "otherColor",
 			name = "Other players color",
 			description = "Color of other players names on the overlay",
-			position = 6
+			position = 5
 	)
 	default Color otherColor()
 	{
@@ -84,7 +73,7 @@ public interface CombatTickCounterConfig extends Config
 			keyName = "backgroundColor",
 			name = "Background color",
 			description = "Overlay background color",
-			position = 7
+			position = 6
 	)
 	default Color backgroundColor()
 	{
@@ -96,7 +85,7 @@ public interface CombatTickCounterConfig extends Config
 			keyName = "titleColor",
 			name = "Title color",
 			description = "Overlay title color",
-			position = 8
+			position = 7
 	)
 	default Color titleColor()
 	{
