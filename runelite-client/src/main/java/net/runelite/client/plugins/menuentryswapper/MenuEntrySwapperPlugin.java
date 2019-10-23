@@ -604,6 +604,28 @@ public class MenuEntrySwapperPlugin extends Plugin
 		{
 			swap("use", option, target, index);
 		}
+		else if (option.equals("value"))
+		{
+			switch (config.swapBuy50())
+			{
+				case Buy_1:
+					swap ("buy 1", option, target, index);
+					break;
+				case Buy_5:
+					swap ("buy 5", option, target, index);
+					break;
+				case Buy_10:
+					swap ("buy 10", option, target, index);
+					break;
+				case Buy_50:
+					swap ("buy 50", option, target, index);
+					break;
+				case Value:
+
+				default:
+					break;
+			}
+		}
 	}
 
 	private static boolean shouldSwapPickpocket(String target)
