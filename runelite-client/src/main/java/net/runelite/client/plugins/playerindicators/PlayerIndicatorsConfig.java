@@ -47,6 +47,18 @@ public interface PlayerIndicatorsConfig extends Config
 
 	@ConfigItem(
 			position = 1,
+			keyName = "ownNameColor",
+			name = "Own player color",
+			description = "Color of your own player",
+			group = "Own player"
+	)
+	default Color getOwnPlayerColor()
+	{
+		return new Color(0, 184, 212);
+	}
+
+	@ConfigItem(
+			position = 2,
 			keyName = "drawOwnTiles",
 			name = "Draw tiles under own player",
 			description = "Configures whether or not tiles under own player should be drawn",
@@ -58,7 +70,7 @@ public interface PlayerIndicatorsConfig extends Config
 	}
 
 	@ConfigItem(
-			position = 2,
+			position = 3,
 			keyName = "ownPlayerNamePosition",
 			name = "Name position",
 			description = "Configures the position of drawn own player name, or if they should be disabled",
@@ -70,7 +82,7 @@ public interface PlayerIndicatorsConfig extends Config
 	}
 
 	@ConfigItem(
-			position = 3,
+			position = 4,
 			keyName = "drawOwnPlayerMinimapNames",
 			name = "Draw own player name on minimap",
 			description = "Configures whether or not minimap names for own player with rendered names should be drawn",
@@ -79,18 +91,6 @@ public interface PlayerIndicatorsConfig extends Config
 	default boolean drawOwnPlayerMinimapNames()
 	{
 		return false;
-	}
-
-	@ConfigItem(
-			position = 4,
-			keyName = "ownNameColor",
-			name = "Own player color",
-			description = "Color of your own player",
-			group = "Own player"
-	)
-	default Color getOwnPlayerColor()
-	{
-		return new Color(0, 184, 212);
 	}
 
 	@ConfigItem(
@@ -360,8 +360,8 @@ public interface PlayerIndicatorsConfig extends Config
 	@ConfigItem(
 			position = 27,
 			keyName = "drawNonClanTiles",
-			name = "Draw tiles under team members",
-			description = "Configures whether or not tiles under highlighted non clan members should be drawn",
+			name = "Draw tiles under non-clan members",
+			description = "Configures whether or not tiles under highlighted non-clan members should be drawn",
 			group = "Non-clan members"
 	)
 	default boolean drawNonClanTiles()
@@ -373,7 +373,7 @@ public interface PlayerIndicatorsConfig extends Config
 			position = 28,
 			keyName = "nonClanPlayerNamePosition",
 			name = "Name position",
-			description = "Configures the position of drawn non clan member names, or if they should be disabled",
+			description = "Configures the position of drawn non-clan member names, or if they should be disabled",
 			group = "Non-clan members"
 	)
 	default PlayerNameLocation nonClanPlayerNamePosition()
@@ -385,7 +385,7 @@ public interface PlayerIndicatorsConfig extends Config
 			position = 29,
 			keyName = "drawNonClanMinimapNames",
 			name = "Draw non clan member names on minimap",
-			description = "Configures whether or not minimap names for non clan members with rendered names should be drawn",
+			description = "Configures whether or not minimap names for non-clan members with rendered names should be drawn",
 			group = "Non-clan members"
 	)
 	default boolean drawNonClanMinimapNames()
@@ -397,7 +397,7 @@ public interface PlayerIndicatorsConfig extends Config
 			position = 30,
 			keyName = "colorNonClanPlayerMenu",
 			name = "Colorize player menu for non clan members",
-			description = "Color right click menu for non clan members",
+			description = "Color right click menu for non-clan members",
 			group = "Non-clan members"
 	)
 	default boolean colorNonClanPlayerMenu()
