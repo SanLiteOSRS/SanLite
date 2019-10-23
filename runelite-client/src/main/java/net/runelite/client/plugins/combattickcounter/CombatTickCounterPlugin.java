@@ -1,4 +1,4 @@
-package net.runelite.client.plugins.combatcounter;
+package net.runelite.client.plugins.combattickcounter;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
@@ -7,8 +7,14 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.*;
-import net.runelite.api.events.*;
+import net.runelite.api.Actor;
+import net.runelite.api.Client;
+import net.runelite.api.GameState;
+import net.runelite.api.Player;
+import net.runelite.api.events.AnimationChanged;
+import net.runelite.api.events.ConfigChanged;
+import net.runelite.api.events.GameStateChanged;
+import net.runelite.api.events.GameTick;
 import net.runelite.api.kit.KitType;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.EventBus;
@@ -23,9 +29,9 @@ import javax.inject.Singleton;
 import java.awt.*;
 import java.util.List;
 import java.util.*;
-import static java.util.Collections.reverseOrder;
 
-import static net.runelite.api.AnimationID.*;
+import static java.util.Collections.reverseOrder;
+import static net.runelite.api.AnimationID.BLOWPIPE_ATTACK;
 
 @PluginDescriptor(
 		name = "Combat Tick Counter",
@@ -70,7 +76,7 @@ public class CombatTickCounterPlugin extends Plugin
 	@Getter(AccessLevel.PACKAGE)
 	private Color otherColor;
 	@Getter(AccessLevel.PACKAGE)
-	private Color bgColor;
+	private Color backgroundColor;
 	@Getter(AccessLevel.PACKAGE)
 	private Color titleColor;
 
@@ -224,11 +230,11 @@ public class CombatTickCounterPlugin extends Plugin
 
 		if (actor instanceof Player)
 		{
-			Player p = (Player) actor;
+			Player player = (Player) actor;
 			String name = actor.getName();
 			if (name != null)
 			{
-				int animation = p.getAnimation();
+				int animation = player.getAnimation();
 				if (animation != -1)
 				{
 					if (VARIABLES.containsKey(animation))
@@ -274,11 +280,11 @@ public class CombatTickCounterPlugin extends Plugin
 		}
 
 		Map<String, Player> visible = new HashMap<>();
-		for (Player p : this.client.getPlayers())
+		for (Player player : this.client.getPlayers())
 		{
-			if (p.getName() != null)
+			if (player.getName() != null)
 			{
-				visible.put(p.getName(), p);
+				visible.put(player.getName(), player);
 			}
 		}
 
@@ -344,7 +350,7 @@ public class CombatTickCounterPlugin extends Plugin
 		this.selfColor = config.selfColor();
 		this.totalColor = config.totalColor();
 		this.otherColor = config.otherColor();
-		this.bgColor = config.backgroundColor();
+		this.backgroundColor = config.backgroundColor();
 		this.titleColor = config.titleColor();
 	}
 }

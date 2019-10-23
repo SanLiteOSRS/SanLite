@@ -1,4 +1,4 @@
-package net.runelite.client.plugins.combatcounter;
+package net.runelite.client.plugins.combattickcounter;
 
 import net.runelite.api.Client;
 import net.runelite.api.Player;
@@ -53,7 +53,7 @@ class CombatTickCounterOverlay extends Overlay
 			{
 				return null;
 			}
-			panelComponent.setBackgroundColor(plugin.getBgColor());
+			panelComponent.setBackgroundColor(plugin.getBackgroundColor());
 			panelComponent.getChildren().add(TitleComponent.builder().text("Combat Tick Counter").color(plugin.getTitleColor()).build());
 			int total = 0;
 
@@ -75,7 +75,7 @@ class CombatTickCounterOverlay extends Overlay
 				for (Map.Entry<String, Long> counter : map.entrySet())
 				{
 					String name = counter.getKey();
-					if (client.getLocalPlayer().getName().contains(name))
+					if (local.getName().contains(name))
 					{
 						tableComponent.addRow(ColorUtil.prependColorTag(name, plugin.getSelfColor()), ColorUtil.prependColorTag(Long.toString(counter.getValue()), plugin.getSelfColor()));
 					}
