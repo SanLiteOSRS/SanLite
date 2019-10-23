@@ -212,7 +212,7 @@ public class DynamicObject extends Entity {
 		class197.musicTrackArchive = null;
 		class188.musicTrackGroupId = -1;
 		class49.musicTrackFileId = -1;
-		TileItem.musicVolume = 0;
+		TileItem.field762 = 0;
 		WorldMapSectionType.musicTrackBoolean = false;
 		MusicPatchNode2.field2382 = 2;
 		Client.field666 = -1;

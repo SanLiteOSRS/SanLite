@@ -444,20 +444,20 @@ public final class NetSocket extends AbstractSocket implements Runnable {
 					var3 = 0;
 				}
 
-				if (var3 != Client.field761) {
-					if (Client.field761 == 0 && Client.field666 != -1) {
+				if (var3 != Client.musicVolume) {
+					if (Client.musicVolume == 0 && Client.field666 != -1) {
 						class83.method2064(class225.archive6, Client.field666, 0, var3, false);
 						Client.field759 = false;
 					} else if (var3 == 0) {
 						VertexNormal.method2956();
 						Client.field759 = false;
 					} else if (class197.field2386 != 0) {
-						TileItem.musicVolume = var3;
+						TileItem.field762 = var3;
 					} else {
 						class49.midiPcmStream.method3751(var3);
 					}
 
-					Client.field761 = var3;
+					Client.musicVolume = var3;
 				}
 			}
 
