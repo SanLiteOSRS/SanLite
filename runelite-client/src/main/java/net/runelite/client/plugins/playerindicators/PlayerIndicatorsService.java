@@ -65,16 +65,13 @@ public class PlayerIndicatorsService
 
 			boolean isClanMember = player.isClanMember();
 
-			if (player == localPlayer)
+			if (player == localPlayer && config.highlightOwnPlayer())
 			{
-				if (config.highlightOwnPlayer())
-				{
-					consumer.accept(player, config.getOwnPlayerColor());
-				}
+				consumer.accept(player, config.getOwnPlayerColor());
 				continue;
 			}
 			else if (config.highlightFriends() && player.isFriend() || config.highlightFriends() &&
-					config.highlightOfflineFriends() && client.isFriended(player.getName(), false))
+					config.highlightOfflineFriends() && client.isFriended(player.getName(), false) && player != client.getLocalPlayer())
 			{
 				if (!config.disableFriendHighlightIfClanMember())
 				{
@@ -87,18 +84,20 @@ public class PlayerIndicatorsService
 					continue;
 				}
 			}
-
-			if (config.highlightClanMembers() && isClanMember)
+			else if (config.highlightClanMembers() && isClanMember && player != client.getLocalPlayer())
 			{
 				consumer.accept(player, config.getClanMemberColor());
+				continue;
 			}
-			else if (config.highlightTeamMembers() && localPlayer.getTeam() > 0 && localPlayer.getTeam() == player.getTeam())
+			else if (config.highlightTeamMembers() && localPlayer.getTeam() > 0 && localPlayer.getTeam() == player.getTeam()  && player != client.getLocalPlayer())
 			{
 				consumer.accept(player, config.getTeamMemberColor());
+				continue;
 			}
 			else if (config.highlightNonClanMembers() && !isClanMember)
 			{
 				consumer.accept(player, config.getNonClanMemberColor());
+				continue;
 			}
 		}
 	}

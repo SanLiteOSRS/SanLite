@@ -85,11 +85,11 @@ public class PlayerIndicatorsTileOverlay extends Overlay
 			{
 				drawTile = true;
 			}
-			else if (config.drawClanTiles() && client.isClanMember(player.getName()))
+			else if (config.drawClanTiles() && client.isClanMember(player.getName()) && player != client.getLocalPlayer())
 			{
 				drawTile = true;
 			}
-			else if (config.drawNonClanTiles() && !client.isClanMember(player.getName()))
+			else if (config.drawNonClanTiles() && !client.isClanMember(player.getName()) && player != client.getLocalPlayer())
 			{
 				drawTile = true;
 			}

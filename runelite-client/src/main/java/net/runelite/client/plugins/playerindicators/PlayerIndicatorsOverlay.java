@@ -105,11 +105,11 @@ public class PlayerIndicatorsOverlay extends Overlay
 		{
 			drawPlayerNamesConfig = config.teamPlayerNamePosition();
 		}
-		else if (client.isClanMember(actor.getName()) && config.clanPlayerNamePosition() != PlayerNameLocation.DISABLED && config.highlightClanMembers())
+		else if (client.isClanMember(actor.getName()) && config.clanPlayerNamePosition() != PlayerNameLocation.DISABLED && config.highlightClanMembers() && actor != client.getLocalPlayer())
 		{
 			drawPlayerNamesConfig = config.clanPlayerNamePosition();
 		}
-		else if (!client.isClanMember(actor.getName()) && config.nonClanPlayerNamePosition() != PlayerNameLocation.DISABLED && config.highlightNonClanMembers())
+		else if (!client.isClanMember(actor.getName()) && config.nonClanPlayerNamePosition() != PlayerNameLocation.DISABLED && config.highlightNonClanMembers() && actor != client.getLocalPlayer())
 		{
 			drawPlayerNamesConfig = config.nonClanPlayerNamePosition();
 		}

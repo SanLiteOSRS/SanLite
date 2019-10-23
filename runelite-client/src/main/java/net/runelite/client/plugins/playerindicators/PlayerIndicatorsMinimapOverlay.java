@@ -94,11 +94,11 @@ public class PlayerIndicatorsMinimapOverlay extends Overlay
 			{
 				drawMinimapName = true;
 			}
-			else if (config.drawClanMinimapNames() && client.isClanMember(actor.getName()))
+			else if (config.drawClanMinimapNames() && client.isClanMember(actor.getName()) && actor != client.getLocalPlayer())
 			{
 				drawMinimapName = true;
 			}
-			else if (config.drawNonClanMinimapNames() && !client.isClanMember(actor.getName()))
+			else if (config.drawNonClanMinimapNames() && !client.isClanMember(actor.getName()) && actor != client.getLocalPlayer())
 			{
 				drawMinimapName = true;
 			}

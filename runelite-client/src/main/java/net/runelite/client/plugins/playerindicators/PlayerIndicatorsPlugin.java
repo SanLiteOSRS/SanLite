@@ -161,7 +161,7 @@ public class PlayerIndicatorsPlugin extends Plugin
 				{
 					color = config.getTeamMemberColor();
 				}
-				else if (config.highlightNonClanMembers() && !player.isClanMember())
+				else if (config.highlightNonClanMembers() && !player.isClanMember() && player != client.getLocalPlayer())
 				{
 					color = config.getNonClanMemberColor();
 				}
@@ -177,7 +177,11 @@ public class PlayerIndicatorsPlugin extends Plugin
 					boolean colorMenu = false;
 					if (client.isFriended(player.getName(), false) && config.highlightFriends() && config.colorFriendPlayerMenu())
 					{
-						if (!config.disableFriendHighlightIfClanMember() && !client.isClanMember(player.getName()))
+						if (config.disableFriendHighlightIfClanMember() && !client.isClanMember(player.getName()))
+						{
+							colorMenu = true;
+						}
+						else if (!config.disableFriendHighlightIfClanMember())
 						{
 							colorMenu = true;
 						}
