@@ -24,7 +24,6 @@
  */
 package net.runelite.mixins;
 
-import java.util.List;
 import net.runelite.api.mixins.Inject;
 import net.runelite.api.mixins.Mixin;
 import net.runelite.rs.api.RSClient;
@@ -64,15 +63,6 @@ public abstract class EntityHiderBridgeMixin implements RSClient
 
 	@Inject
 	public static boolean hideProjectiles;
-
-	@Inject
-	public static boolean hideDeadNPCs;
-
-	@Inject
-	public static List<String> hideNPCsNames;
-
-	@Inject
-	public static List<String> hideNPCsOnDeath;
 
 	@Inject
 	@Override
@@ -139,20 +129,6 @@ public abstract class EntityHiderBridgeMixin implements RSClient
 
 	@Inject
 	@Override
-	public void setNPCsNames(List<String> NPCs)
-	{
-		hideNPCsNames = NPCs;
-	}
-
-	@Inject
-	@Override
-	public void setNPCsHiddenOnDeath(List<String> NPCs)
-	{
-		hideNPCsOnDeath = NPCs;
-	}
-
-	@Inject
-	@Override
 	public void setAttackersHidden(boolean state)
 	{
 		hideAttackers = state;
@@ -163,12 +139,5 @@ public abstract class EntityHiderBridgeMixin implements RSClient
 	public void setProjectilesHidden(boolean state)
 	{
 		hideProjectiles = state;
-	}
-
-	@Inject
-	@Override
-	public void setDeadNPCsHidden(boolean state)
-	{
-		hideDeadNPCs = state;
 	}
 }
