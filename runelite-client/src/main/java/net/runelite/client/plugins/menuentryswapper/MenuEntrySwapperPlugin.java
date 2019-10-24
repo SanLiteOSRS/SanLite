@@ -57,6 +57,7 @@ import net.runelite.client.menus.MenuManager;
 import net.runelite.client.menus.WidgetMenuOption;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
+import net.runelite.client.plugins.PluginType;
 import net.runelite.client.util.Text;
 import org.apache.commons.lang3.ArrayUtils;
 
@@ -64,7 +65,8 @@ import org.apache.commons.lang3.ArrayUtils;
 	name = "Menu Entry Swapper",
 	description = "Change the default option that is displayed when hovering over objects",
 	tags = {"npcs", "inventory", "items", "objects"},
-	enabledByDefault = false
+	enabledByDefault = false,
+	type = PluginType.SANLITE
 )
 public class MenuEntrySwapperPlugin extends Plugin
 {
@@ -603,6 +605,47 @@ public class MenuEntrySwapperPlugin extends Plugin
 		else if (config.swapBones() && option.equals("bury"))
 		{
 			swap("use", option, target, index);
+		}
+		else if (option.equals("value"))
+		{
+			switch (config.swapStoreBuy())
+			{
+				case CHANGE_TO_1:
+					swap ("buy 1", option, target, index);
+					break;
+				case CHANGE_TO_5:
+					swap ("buy 5", option, target, index);
+					break;
+				case CHANGE_TO_10:
+					swap ("buy 10", option, target, index);
+					break;
+				case CHANGE_TO_50:
+					swap ("buy 50", option, target, index);
+					break;
+				case Value:
+
+				default:
+
+			}
+			switch (config.swapStoreSell())
+			{
+				case CHANGE_TO_1:
+					swap ("sell 1", option, target, index);
+					break;
+				case CHANGE_TO_5:
+					swap ("sell 5", option, target, index);
+					break;
+				case CHANGE_TO_10:
+					swap ("sell 10", option, target, index);
+					break;
+				case CHANGE_TO_50:
+					swap ("sell 50", option, target, index);
+					break;
+				case Value:
+
+				default:
+					break;
+			}
 		}
 	}
 

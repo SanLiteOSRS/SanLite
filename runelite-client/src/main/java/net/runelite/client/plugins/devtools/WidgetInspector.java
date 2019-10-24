@@ -68,6 +68,7 @@ import net.runelite.api.widgets.WidgetConfig;
 import net.runelite.api.widgets.WidgetInfo;
 import net.runelite.api.widgets.WidgetItem;
 import net.runelite.api.widgets.WidgetType;
+import net.runelite.client.RuneLiteProperties;
 import net.runelite.client.callback.ClientThread;
 import net.runelite.client.eventbus.EventBus;
 import net.runelite.client.eventbus.Subscribe;
@@ -135,7 +136,7 @@ class WidgetInspector extends JFrame
 
 		eventBus.register(this);
 
-		setTitle("RuneLite Widget Inspector");
+		setTitle(RuneLiteProperties.getTitle() + " Widget Inspector");
 		setIconImage(ClientUI.ICON);
 
 		// Reset highlight on close

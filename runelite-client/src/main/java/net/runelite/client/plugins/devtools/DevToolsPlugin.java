@@ -65,7 +65,8 @@ import org.slf4j.LoggerFactory;
 
 @PluginDescriptor(
 	name = "Developer Tools",
-	tags = {"panel"},
+	description = "Adds the developer tools button to side-panel with various tools to assist development of the client",
+	tags = {"panel", "dev", "camera", "debug"},
 	type = PluginType.SANLITE,
 	enabledByDefault = false,
 	developerPlugin = true
