@@ -79,7 +79,7 @@ class SpellEffectInfo
 	 * @param spellDuration spell duration (in milliseconds)
 	 * @return spell time
 	 */
-	public int spellDurationToSpellTime(int spellDuration)
+	int spellDurationToSpellTime(int spellDuration)
 	{
 		return (spellDuration / Constants.CLIENT_TICK_LENGTH) / 5;
 	}
