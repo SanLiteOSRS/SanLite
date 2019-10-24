@@ -182,16 +182,10 @@ public class TheatreOfBloodPlugin extends Plugin
 		{
 			return;
 		}
-
 		final GameObject object = event.getGameObject();
-		switch (currentEncounter.getEncounter())
+		if (currentEncounter.getEncounter() == TheatreOfBloodEncounters.SUGADINTI_MAIDEN)
 		{
-			case SUGADINTI_MAIDEN:
-				currentEncounter.castToMaiden().addBloodSpawnBloodObject(object);
-				break;
-			case SOTETSEG:
-				currentEncounter.castToSotetseg().checkMazeTiles(object, false);
-				break;
+			currentEncounter.castToMaiden().addBloodSpawnBloodObject(object);
 		}
 	}
 
@@ -209,19 +203,14 @@ public class TheatreOfBloodPlugin extends Plugin
 		}
 
 		final GameObject object = event.getGameObject();
-		switch (currentEncounter.getEncounter())
+		if (currentEncounter.getEncounter() == TheatreOfBloodEncounters.SUGADINTI_MAIDEN)
 		{
-			case SUGADINTI_MAIDEN:
-				currentEncounter.castToMaiden().removeBloodSpawnBloodObject(object);
-				break;
-			case SOTETSEG:
-				currentEncounter.castToSotetseg().checkMazeTiles(object, true);
-				break;
+			currentEncounter.castToMaiden().removeBloodSpawnBloodObject(object);
 		}
 	}
 
 	/**
-	 * Checks ground objects spawned for Xarpus healing/acid pools
+	 * Checks ground objects spawned for Xarpus healing/acid pools and Sotetseg maze tiles
 	 *
 	 * @param event ground object spawned event
 	 */
@@ -234,14 +223,19 @@ public class TheatreOfBloodPlugin extends Plugin
 		}
 
 		final GroundObject object = event.getGroundObject();
-		if (currentEncounter.getEncounter() == TheatreOfBloodEncounters.XARPUS)
+		switch (currentEncounter.getEncounter())
 		{
-			currentEncounter.castToXarpus().addGroundObject(object);
+//			case SOTETSEG:
+//				currentEncounter.castToSotetseg().checkMazeTile(object, false);
+//				break;
+			case XARPUS:
+				currentEncounter.castToXarpus().addGroundObject(object);
+				break;
 		}
 	}
 
 	/**
-	 * Checks ground objects despawned for Xarpus healing/acid pools
+	 * Checks ground objects despawned for Xarpus healing/acid pools and Sotetseg maze tiles
 	 *
 	 * @param event ground object despawned event
 	 */
@@ -254,9 +248,14 @@ public class TheatreOfBloodPlugin extends Plugin
 		}
 
 		final GroundObject object = event.getGroundObject();
-		if (currentEncounter.getEncounter() == TheatreOfBloodEncounters.XARPUS)
+		switch (currentEncounter.getEncounter())
 		{
-			currentEncounter.castToXarpus().removeGroundObject(object);
+//			case SOTETSEG:
+//				currentEncounter.castToSotetseg().checkMazeTile(object, true);
+//				break;
+			case XARPUS:
+				currentEncounter.castToXarpus().removeGroundObject(object);
+				break;
 		}
 	}
 
@@ -284,7 +283,7 @@ public class TheatreOfBloodPlugin extends Plugin
 			if (Arrays.equals(worldRegion, NYLOCAS_REGIONS))
 			{
 				currentEncounter = new Nylocas(TheatreOfBloodEncounters.NYLOCAS);
-				log.debug("Current encounter set to nylocas: {}", currentEncounter);
+				log.debug("Current encounter set to Nylocas: {}", currentEncounter);
 			}
 
 			switch (npcId)
@@ -296,23 +295,23 @@ public class TheatreOfBloodPlugin extends Plugin
 				case NpcID.THE_MAIDEN_OF_SUGADINTI_8364:
 				case NpcID.THE_MAIDEN_OF_SUGADINTI_8365:
 					currentEncounter = new SugadintiMaiden(TheatreOfBloodEncounters.SUGADINTI_MAIDEN);
-					log.debug("Current encounter set to maiden: {}", currentEncounter);
+					log.debug("Current encounter set to Maiden: {}", currentEncounter);
 					break;
 				case NpcID.PESTILENT_BLOAT:
 					currentEncounter = new PestilentBloat(TheatreOfBloodEncounters.PESTILENT_BLOAT);
-					log.debug("Current encounter set to bloat: {}", currentEncounter);
+					log.debug("Current encounter set to Bloat: {}", currentEncounter);
 					break;
 				case NpcID.SOTETSEG:
 				case NpcID.SOTETSEG_8388:
 					currentEncounter = new Sotetseg(TheatreOfBloodEncounters.SOTETSEG);
-					log.debug("Current encounter set to sotetseg: {}", currentEncounter);
+					log.debug("Current encounter set to Sotetseg: {}", currentEncounter);
 					break;
 				case NpcID.XARPUS:
 				case NpcID.XARPUS_8339:
 				case NpcID.XARPUS_8340:
 				case NpcID.XARPUS_8341:
 					currentEncounter = new Xarpus(TheatreOfBloodEncounters.XARPUS);
-					log.debug("Current encounter set to xarpus: {}", currentEncounter);
+					log.debug("Current encounter set to Xarpus: {}", currentEncounter);
 					break;
 				case NpcID.VERZIK_VITUR:
 				case NpcID.VERZIK_VITUR_8369:
@@ -323,7 +322,7 @@ public class TheatreOfBloodPlugin extends Plugin
 				case NpcID.VERZIK_VITUR_8374:
 				case NpcID.VERZIK_VITUR_8375:
 					currentEncounter = new Verzik(TheatreOfBloodEncounters.VERZIK_VITUR);
-					log.debug("Current encounter set to verzik: {}", currentEncounter);
+					log.debug("Current encounter set to Verzik: {}", currentEncounter);
 					break;
 			}
 		}
@@ -351,7 +350,6 @@ public class TheatreOfBloodPlugin extends Plugin
 		if (currentEncounter != null && !Nylocas.isNylocasNpc(npc.getId()))
 		{
 			currentEncounter.setNpc(npc);
-			log.debug("Current encounter npc set: {}", npc.getName());
 		}
 	}
 
