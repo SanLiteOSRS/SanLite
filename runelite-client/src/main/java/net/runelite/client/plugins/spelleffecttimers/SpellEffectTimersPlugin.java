@@ -41,6 +41,7 @@ import net.runelite.client.ui.overlay.OverlayManager;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Slf4j
@@ -69,6 +70,9 @@ public class SpellEffectTimersPlugin extends Plugin
 
 	@Getter(AccessLevel.PACKAGE)
 	private List<SpellEffectInfo> spellEffects = new ArrayList<>();
+
+	@Getter
+	private HashMap<Actor, WorldPoint> frozenActors = new HashMap<>();
 
 	@Provides
 	public SpellEffectTimersConfig getConfig(ConfigManager configManager)
@@ -178,26 +182,26 @@ public class SpellEffectTimersPlugin extends Plugin
 		}
 
 		spellEffects.add(new SpellEffectInfo(actor, spellEffect, client.getGameCycle(), false));
+		frozenActors.put(actor, actor.getWorldLocation());
 	}
 
 	private void checkTeleblockSpellEffect(Actor actor, SpellEffect spellEffect)
 	{
 		Player player = (Player) actor;
-		boolean magePray = false;
+		boolean isPrayingMage = false;
 		if (player.getOverheadIcon() != null)
 		{
 			if (player.getOverheadIcon().ordinal() == 2 && spellEffect.isHalvable())
 			{
-				magePray = true;
+				isPrayingMage = true;
 			}
 		}
-
-		spellEffects.add(new SpellEffectInfo(actor, spellEffect, client.getGameCycle(), magePray));
+		spellEffects.add(new SpellEffectInfo(actor, spellEffect, client.getGameCycle(), isPrayingMage));
 	}
 
 	private void checkRemoveTeleblockSpellEffect()
 	{
-		for (SpellEffectInfo spellEffect : spellEffects)
+		for (SpellEffectInfo spellEffect : new ArrayList<>(spellEffects))
 		{
 			if (spellEffect.getSpellEffect() == SpellEffect.TELEBLOCK || spellEffect.getSpellEffect() == SpellEffect.TELEBLOCK_IMMUNITY)
 			{
@@ -263,17 +267,24 @@ public class SpellEffectTimersPlugin extends Plugin
 	public void onPlayerDespawned(PlayerDespawned playerDespawned)
 	{
 		spellEffects.removeIf(x -> x.getActor().equals(playerDespawned.getActor()));
+		frozenActors.entrySet().removeIf(x -> x.getKey().equals(playerDespawned.getActor()));
 	}
 
 	@Subscribe
 	public void onNpcDespawned(NpcDespawned npcDespawned)
 	{
 		spellEffects.removeIf(x -> x.getActor().equals(npcDespawned.getActor()));
+		frozenActors.entrySet().removeIf(x -> x.getKey().equals(npcDespawned.getActor()));
 	}
 
 	@Subscribe
 	public void onGameTick(GameTick gameTick)
 	{
+		if (frozenActors != null && frozenActors.size() > 0)
+		{
+			checkIfAnyFrozenActorsMoved();
+		}
+
 		if (config.showTeleblockTimersOverlay())
 		{
 			checkRemoveTeleblockSpellEffect();
@@ -286,23 +297,22 @@ public class SpellEffectTimersPlugin extends Plugin
 		checkExpiredSpellEffects();
 	}
 
-	@Subscribe
-	public void onActorPositionChanged(ActorPositionChanged actorPositionChanged)
+	/**
+	 * Remove freeze timer if actor moves during freeze duration but after initial grace period (first 10% of freeze duration)
+	 */
+	private void checkIfAnyFrozenActorsMoved()
 	{
-		GameState gameState = client.getGameState();
-		if (gameState == GameState.LOGGING_IN || gameState == GameState.CONNECTION_LOST || gameState == GameState.HOPPING)
-		{
-			return;
-		}
-		for (SpellEffectInfo spellEffect : spellEffects)
-		{
-			if (spellEffect.getSpellEffect().getSpellType().equals(SpellEffectType.FREEZE))
-			{
-				// Remove freeze timer if actor moves during freeze duration but after initial grace period (first 10% of freeze duration)
-				spellEffects.removeIf(x -> x.getActor().equals(actorPositionChanged.getActor()) &&
-						x.getSpellEffect().getSpellType().equals(SpellEffectType.FREEZE) && x.getRemainingTime() < (0.9 * x.getRemainingTime()));
-			}
-		}
+		new HashMap<>(frozenActors).entrySet().stream()
+				.filter(x -> !x.getKey().getWorldLocation().equals(x.getValue()))
+				.forEach((entry) ->
+				{
+					new ArrayList<>(spellEffects).stream()
+							.filter(x -> x.getActor().equals(entry.getKey()) &&
+									x.getRemainingTime() < (0.9 * x.spellDurationToSpellTime(
+											x.getSpellEffect().getSpellLength())))
+							.forEach((spellEffect) -> spellEffects.remove(spellEffect));
+					frozenActors.remove(entry.getKey());
+				});
 	}
 
 	private void checkExpiredSpellEffects()
@@ -334,6 +344,7 @@ public class SpellEffectTimersPlugin extends Plugin
 	private void expireSpellEffect(SpellEffectInfo spellEffectInfo)
 	{
 		spellEffects.remove(spellEffectInfo);
+		frozenActors.remove(spellEffectInfo.getActor());
 		switch (spellEffectInfo.getSpellEffect().getSpellType())
 		{
 			case FREEZE:

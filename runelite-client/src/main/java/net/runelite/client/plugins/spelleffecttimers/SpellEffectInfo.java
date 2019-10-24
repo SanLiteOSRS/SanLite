@@ -72,4 +72,15 @@ class SpellEffectInfo
 		this.remainingClientTicks = expireClientTick - initialHitClientTick;
 		this.remainingTime = remainingClientTicks / 5;
 	}
+
+	/**
+	 * Converts spell duration (milliseconds) to spell time ((duration / client tick length) / 5)
+	 *
+	 * @param spellDuration spell duration (in milliseconds)
+	 * @return spell time
+	 */
+	public int spellDurationToSpellTime(int spellDuration)
+	{
+		return (spellDuration / Constants.CLIENT_TICK_LENGTH) / 5;
+	}
 }

@@ -39,6 +39,8 @@ import java.util.stream.Collectors;
 @Slf4j
 public class SpellEffectTimersOverlay extends Overlay
 {
+	private static final int SPELL_ICON_OFFSET = 16;
+
 	private final SpellEffectTimersPlugin plugin;
 	private SpellEffectTimersConfig config;
 
@@ -119,7 +121,7 @@ public class SpellEffectTimersOverlay extends Overlay
 		List<SpellEffectInfo> actorSpellEffects = plugin.getSpellEffects().stream()
 				.filter(x -> x.getActor().equals(actor))
 				.collect(Collectors.toList());
-		final int yOffset = actorSpellEffects.indexOf(spellEffectInfo) * 14;
+		final int yOffset = actorSpellEffects.indexOf(spellEffectInfo) * SPELL_ICON_OFFSET;
 
 		if (config.showSpellImage())
 		{
