@@ -248,6 +248,9 @@ public final class AnimationID
 	public static final int TEKTON_ENRAGE_AUTO2 = 7493;
 	public static final int TEKTON_ENRAGE_AUTO3 = 7494;
 
+	// Pestilent Bloat
+	public static final int BLOAT_SLEEP = 8082;
+
 	// Hydra
 	public static final int HYDRA_POISON_1 = 8234;
 	public static final int HYDRA_RANGED_1 = 8235;
