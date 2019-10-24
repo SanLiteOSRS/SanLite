@@ -20,7 +20,7 @@ public abstract class ClickboxMixin implements RSClient
 	private static final int MAX_ENTITES_AT_MOUSE = 1000;
 	private static final int CLICKBOX_CLOSE = 50;
 	private static final int CLICKBOX_FAR = 10000;
-	private static final int OBJECT_INTERACTION_FAR = 100; // Max distance, in tiles, from camera
+	private static final int OBJECT_INTERACTION_FAR = 200; // Max distance, in tiles, from camera
 
 	@Inject
 	private static final int[] rl$modelViewportXs = new int[4700];

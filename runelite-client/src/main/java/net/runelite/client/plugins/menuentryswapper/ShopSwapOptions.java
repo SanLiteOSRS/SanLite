@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016-2017, Abel Briggs
+ * Copyright (c) 2018, Ethan <http://github.com/shmeeps>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,19 +22,20 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.api.events;
+package net.runelite.client.plugins.menuentryswapper;
 
-import lombok.Data;
-import net.runelite.api.Actor;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
-/**
- * An event where the {@link Actor} has changed position.
- */
-@Data
-public class ActorPositionChanged
+@Getter
+@RequiredArgsConstructor
+public enum ShopSwapOptions
 {
-	/**
-	 * The actor that has changed position
-	 */
-	private Actor actor;
+	Value("Value"),
+	CHANGE_TO_1("1"),
+	CHANGE_TO_5("5"),
+	CHANGE_TO_10("10"),
+	CHANGE_TO_50("50");
+
+	private final String name;
 }

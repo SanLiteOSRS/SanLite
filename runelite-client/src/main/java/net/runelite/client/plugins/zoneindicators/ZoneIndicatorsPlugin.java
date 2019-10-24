@@ -14,6 +14,7 @@ import net.runelite.client.callback.ClientThread;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.EventBus;
 import net.runelite.client.eventbus.Subscribe;
+import net.runelite.client.game.MapLocations;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.plugins.PluginType;
@@ -266,7 +267,7 @@ public class ZoneIndicatorsPlugin extends Plugin
 				if (this.multiCombatZoneVisibility == ZoneVisibility.SHOW_IN_PVP &&
 						!isInDeadman() && !isInPvp())
 				{
-					lines = Geometry.clipPath(lines, MapLocations.getRoughWilderness(i));
+					lines = Geometry.clipPath(lines, MapLocations.getWilderness(i));
 				}
 				lines = Geometry.splitIntoSegments(lines, 1);
 				if (useCollisionLogic())

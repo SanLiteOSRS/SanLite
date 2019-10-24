@@ -64,14 +64,14 @@ public class MusicPatchNode2 {
 	static void playSong(int var0) {
 		if (var0 == -1 && !Client.field759) {
 			VertexNormal.method2956();
-		} else if (var0 != -1 && var0 != Client.field666 && Client.field761 != 0 && !Client.field759) {
+		} else if (var0 != -1 && var0 != Client.field666 && Client.musicVolume != 0 && !Client.field759) {
 			Archive var1 = class225.archive6;
-			int var2 = Client.field761;
+			int var2 = Client.musicVolume;
 			class197.field2386 = 1;
 			class197.musicTrackArchive = var1;
 			class188.musicTrackGroupId = var0;
 			class49.musicTrackFileId = 0;
-			TileItem.musicVolume = var2;
+			TileItem.field762 = var2;
 			WorldMapSectionType.musicTrackBoolean = false;
 			field2382 = 2;
 		}

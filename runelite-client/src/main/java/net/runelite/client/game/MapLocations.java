@@ -1,4 +1,28 @@
-package net.runelite.client.plugins.zoneindicators;
+/*
+ * Copyright (c) 2018, Woox <https://github.com/wooxsolo>
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ * 1. Redistributions of source code must retain the above copyright notice, this
+ *    list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright notice,
+ *    this list of conditions and the following disclaimer in the documentation
+ *    and/or other materials provided with the distribution.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+ * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+package net.runelite.client.game;
 
 import net.runelite.api.Constants;
 
@@ -10,12 +34,12 @@ import java.util.List;
 
 public class MapLocations
 {
-	private static final List<Shape>[] MULTICOMBAT = new List[Constants.MAX_Z];
-	private static final List<Shape>[] NOT_MULTICOMBAT = new List[Constants.MAX_Z];
-	private static final List<Shape>[] ROUGH_WILDERNESS = new List[Constants.MAX_Z];
-	private static final List<Shape>[] WILDERNESS_LEVEL_LINES = new List[Constants.MAX_Z];
 	private static final List<Shape>[] DEADMAN_SAFE_ZONES = new List[Constants.MAX_Z];
 	private static final List<Shape>[] PVP_WORLD_SAFE_ZONES = new List[Constants.MAX_Z];
+	private static final List<Shape>[] WILDERNESS = new List[Constants.MAX_Z];
+	private static final List<Shape>[] WILDERNESS_LEVEL_LINES = new List[Constants.MAX_Z];
+	private static final List<Shape>[] MULTICOMBAT = new List[Constants.MAX_Z];
+	private static final List<Shape>[] NOT_MULTICOMBAT = new List[Constants.MAX_Z];
 
 	private static Area getArea(List<Shape> shapes)
 	{
@@ -47,14 +71,14 @@ public class MapLocations
 		return area;
 	}
 
-	public static Area getRoughWilderness(int plane)
+	public static Area getDeadmanSafeZones(int plane)
 	{
-		return getArea(ROUGH_WILDERNESS[plane]);
+		return getArea(DEADMAN_SAFE_ZONES[plane]);
 	}
 
-	public static Area getWildernessLevelLines(Rectangle view, int plane)
+	public static Area getPvpSafeZones(int plane)
 	{
-		return getArea(WILDERNESS_LEVEL_LINES[plane], view);
+		return getArea(PVP_WORLD_SAFE_ZONES[plane]);
 	}
 
 	public static Area getDeadmanSafeZones(Rectangle view, int plane)
@@ -67,6 +91,16 @@ public class MapLocations
 		return getArea(PVP_WORLD_SAFE_ZONES[plane], view);
 	}
 
+	public static Area getWilderness(int plane)
+	{
+		return getArea(WILDERNESS[plane]);
+	}
+
+	public static Area getWildernessLevelLines(Rectangle view, int plane)
+	{
+		return getArea(WILDERNESS_LEVEL_LINES[plane], view);
+	}
+
 	private static void initializeWithEmptyLists(List<Shape>[] array)
 	{
 		Arrays.fill(array, new ArrayList<>());
@@ -74,18 +108,18 @@ public class MapLocations
 
 	static
 	{
-		initializeWithEmptyLists(MULTICOMBAT);
-		initializeWithEmptyLists(NOT_MULTICOMBAT);
-		initializeWithEmptyLists(ROUGH_WILDERNESS);
-		initializeWithEmptyLists(WILDERNESS_LEVEL_LINES);
 		initializeWithEmptyLists(DEADMAN_SAFE_ZONES);
 		initializeWithEmptyLists(PVP_WORLD_SAFE_ZONES);
+		initializeWithEmptyLists(WILDERNESS);
+		initializeWithEmptyLists(WILDERNESS_LEVEL_LINES);
+		initializeWithEmptyLists(MULTICOMBAT);
+		initializeWithEmptyLists(NOT_MULTICOMBAT);
 
-		defineMultiCombatAreas();
 		defineDeadmanSafeZones();
 		definePvpSafeZones();
 		defineWilderness();
 		defineWildernessLevelLines();
+		defineMultiCombatAreas();
 	}
 
 	private static void defineMultiCombatAreas()
@@ -3122,10 +3156,20 @@ public class MapLocations
 
 		// Hosidius bank
 		addPolygonOnPlane(PVP_WORLD_SAFE_ZONES, 0,
-				1671, 3558,
-				1671, 3577,
-				1682, 3577,
-				1682, 3558);
+				1753, 3597,
+				1751, 3597,
+				1751, 3596,
+				1750, 3596,
+				1750, 3594,
+				1745, 3594,
+				1745, 3601,
+				1744, 3601,
+				1744, 3604,
+				1750, 3604,
+				1750, 3602,
+				1751, 3602,
+				1751, 3601,
+				1753, 3601);
 
 		// Woodcutting guild bank
 		addPolygonOnPlane(PVP_WORLD_SAFE_ZONES, 0,
@@ -3210,17 +3254,72 @@ public class MapLocations
 
 		// Hosidius grape farm bank
 		addPolygonOnPlane(PVP_WORLD_SAFE_ZONES, 0,
-				1804, 3571,
-				1804, 3572,
-				1808, 3572,
-				1808, 3571);
+				1806, 3566,
+				1806, 3568,
+				1810, 3568,
+				1810, 3566);
 
 		// Hosidius cooking bank
 		addPolygonOnPlane(PVP_WORLD_SAFE_ZONES, 0,
-				1652, 3605,
-				1652, 3615,
-				1661, 3615,
-				1661, 3605);
+				1675, 3615,
+				1675, 3618,
+				1676, 3618,
+				1676, 3620,
+				1675, 3620,
+				1675, 3623,
+				1684, 3623,
+				1684, 3620,
+				1683, 3620,
+				1683, 3618,
+				1684, 3618,
+				1684, 3615
+		);
+
+		// Kourend castle upstairs bank
+		addPolygonOnPlane(PVP_WORLD_SAFE_ZONES, 2,
+				1610, 3679,
+				1610, 3684,
+				1611, 3684,
+				1611, 3685,
+				1612, 3685,
+				1612, 3686,
+				1614, 3686,
+				1614, 3679);
+
+		// Mount Karuulm bank
+		addPolygonOnPlane(PVP_WORLD_SAFE_ZONES, 2,
+				1322, 3823,
+				1322, 3826,
+				1327, 3826,
+				1327, 3823);
+
+		// Farming Guild south bank
+		addPolygonOnPlane(PVP_WORLD_SAFE_ZONES, 2,
+				1252, 3739,
+				1252, 3743,
+				1255, 3743,
+				1255, 3739);
+
+		// Farming Guild north bank
+		addPolygonOnPlane(PVP_WORLD_SAFE_ZONES, 2,
+				1248, 3758,
+				1248, 3759,
+				1250, 3759,
+				1250, 3758);
+
+		// Prifddinas southeast bank
+		addPolygonOnPlane(PVP_WORLD_SAFE_ZONES, 2,
+				3294, 6057,
+				3294, 6063,
+				3299, 6063,
+				3299, 6057);
+
+		// Prifddinas northwest bank
+		addPolygonOnPlane(PVP_WORLD_SAFE_ZONES, 2,
+				3255, 6102,
+				3255, 6113,
+				3260, 6113,
+				3260, 6102);
 
 		// Etceteria bank
 		addPolygonOnPlane(PVP_WORLD_SAFE_ZONES, 0,
@@ -3388,14 +3487,14 @@ public class MapLocations
 	private static void defineWilderness()
 	{
 		// Above ground
-		addPolygonTo(ROUGH_WILDERNESS,
-				2944, 3523,
-				3392, 3523,
+		addPolygonTo(WILDERNESS,
+				2944, 3524,
+				3392, 3524,
 				3392, 3971,
 				2944, 3971);
 
 		// Underground
-		addPolygonTo(ROUGH_WILDERNESS,
+		addPolygonTo(WILDERNESS,
 				2944, 9918,
 				2944, 10360,
 				3264, 10360,
