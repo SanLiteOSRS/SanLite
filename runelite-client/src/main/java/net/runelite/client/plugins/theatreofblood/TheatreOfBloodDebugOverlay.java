@@ -125,7 +125,7 @@ public class TheatreOfBloodDebugOverlay extends Overlay
 							.build());
 					panelComponent.getChildren().add(LineComponent.builder()
 							.left("Number of active red maze tiles")
-							.right("" + sotetseg.getActiveMazeTiles().size())
+							.right(sotetseg.getActiveMazeTiles() != null ? "" + sotetseg.getActiveMazeTiles().size() : "null")
 							.build());
 			}
 
