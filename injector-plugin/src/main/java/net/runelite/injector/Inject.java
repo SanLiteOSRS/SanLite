@@ -200,7 +200,7 @@ public class Inject
 		// Has to be done before mixins
 		// well, can be done after really
 		// but why do that when you can do it before
-		new RasterizerHook(this).inject();
+		new RasterizerAlpha(this).inject();
 
 		// requires interfaces to be injected
 		mixinInjector.inject();
@@ -283,13 +283,12 @@ public class Inject
 					continue;
 				}
 
-				// check that otherf is converable to apiMethod's
-				// return type
+				// check that other field is convertible to the API methods return type
 				Type fieldType = otherf.getType();
 				Type returnType = classToType(apiMethod.getReturnType());
 				if (!validateTypeIsConvertibleTo(fieldType, returnType))
 				{
-					throw new InjectionException("Type " + fieldType + " is not convertable to " + returnType + " for getter " + apiMethod);
+					throw new InjectionException("Type " + fieldType + " is not convertible to " + returnType + " for getter " + apiMethod);
 				}
 
 				getters.injectGetter(targetClass, apiMethod, otherf, getter);
@@ -310,7 +309,7 @@ public class Inject
 		new ScriptVM(this).inject();
 		new ClearColorBuffer(this).inject();
 		new RenderDraw(this).inject();
-		//new DrawMenu(this).inject();
+		//new DrawMenu(this).inject(); TODO: Fix this injection
 		new Occluder(this).inject();
 		new HidePlayerAttacks(this).inject();
 	}
@@ -361,7 +360,7 @@ public class Inject
 			{
 				/*
 				 * If you override an interface method in another interface
-				 * with a return type that is a child of the overriden methods
+				 * with a return type that is a child of the overridden methods
 				 * return type, both methods end up in the interface, and both
 				 * are *annotated*. But the base one is synthetic.
 				 */

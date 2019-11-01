@@ -47,7 +47,7 @@ import static net.runelite.api.MenuAction.*;
 		description = "Highlight players that your clans caller is hitting",
 		tags = {"highlight", "minimap", "overlay", "players", "clan", "caller", "pile", "rsb", "rsc"},
 		enabledByDefault = false,
-		type = PluginType.SANLITE
+		type = PluginType.SANLITE_USE_AT_OWN_RISK
 )
 
 public class ClanCallerPlugin extends Plugin

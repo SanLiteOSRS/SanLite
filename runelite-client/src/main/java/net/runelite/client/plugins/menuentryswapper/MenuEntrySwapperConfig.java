@@ -205,7 +205,8 @@ public interface MenuEntrySwapperConfig extends Config
 	@ConfigItem(
 		keyName = "swapPickpocket",
 		name = "Pickpocket",
-		description = "Swap Talk-to with Pickpocket"
+		description = "Swap Talk-to with Pickpocket",
+		group = "Use at own risk"
 	)
 	default boolean swapPickpocket()
 	{

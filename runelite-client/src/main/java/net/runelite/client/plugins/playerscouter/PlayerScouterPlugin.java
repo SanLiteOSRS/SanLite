@@ -44,7 +44,7 @@ import java.util.ArrayList;
 		description = "Assists in scouting a certain player",
 		tags = {"scout, scouter, player, finder, overlay, notifications"},
 		enabledByDefault = false,
-		type = PluginType.SANLITE
+		type = PluginType.SANLITE_USE_AT_OWN_RISK
 )
 public class PlayerScouterPlugin extends Plugin
 {
