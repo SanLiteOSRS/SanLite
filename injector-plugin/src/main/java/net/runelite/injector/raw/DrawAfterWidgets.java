@@ -99,7 +99,7 @@ public class DrawAfterWidgets
 		         Interpreter.method1977(rootInterface, 0, 0, SoundCache.canvasWidth, Huffman.canvasHeight, 0, 0, -1);
 		      }
 
-				< --  here appearantly
+				< --  here apparently
 
 		      Rasterizer2D.Rasterizer2D_resetClip();
 			______________________________________________________

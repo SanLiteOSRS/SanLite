@@ -53,7 +53,7 @@ import static net.runelite.api.ObjectID.*;
 		name = "The Gauntlet",
 		description = "Assists with The Gauntlet minigame",
 		tags = {"combat", "overlay", "pve", "pvm", "gauntlet", "crystal", "hunllef", "custom", "minigame"},
-		type = PluginType.SANLITE
+		type = PluginType.SANLITE_USE_AT_OWN_RISK
 )
 public class GauntletPlugin extends Plugin
 {
