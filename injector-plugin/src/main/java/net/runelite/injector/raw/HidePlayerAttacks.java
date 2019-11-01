@@ -130,7 +130,6 @@ public class HidePlayerAttacks
 			injectIdx = ins.getInstructions().indexOf(i2) + 1;
 		}
 
-		// Compare and such
 		IfNe i3 = new IfNe(ins, label);
 
 		ins.addInstruction(injectIdx, i3);
@@ -186,7 +185,6 @@ public class HidePlayerAttacks
 			ALoad i1 = new ALoad(ins, 0);
 			// Get the boolean
 			InvokeStatic i2 = new InvokeStatic(ins, shouldHideAttackOptionFor);
-			// Compare n such
 			IfNe i3 = new IfNe(ins, target);
 
 			iterator.add(i1);

@@ -58,7 +58,7 @@ public class InjectUtil
 		Annotation obfSignature = f.getAnnotations().find(DeobAnnotations.OBFUSCATED_SIGNATURE);
 		if (obfSignature != null)
 		{
-			//Annotation exists. Type was updated by us during deobfuscation
+			// Annotation exists. Type was updated by us during deobfuscation
 			type = DeobAnnotations.getObfuscatedType(f);
 		}
 
