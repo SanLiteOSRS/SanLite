@@ -48,7 +48,7 @@ import java.util.regex.Pattern;
 		name = "Theatre of Blood",
 		description = "Helps with the various boss mechanics in the Theatre of Blood",
 		tags = {"tob", "raids", "theatre", "blood", "theatre of blood", "pvm", "overlay", "boss"},
-		type = PluginType.SANLITE
+		type = PluginType.SANLITE_USE_AT_OWN_RISK
 )
 public class TheatreOfBloodPlugin extends Plugin
 {

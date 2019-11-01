@@ -43,7 +43,7 @@ import net.runelite.client.ui.overlay.OverlayManager;
 		name = "Fight Cave",
 		description = "Show what to pray against Jad",
 		tags = {"bosses", "combat", "minigame", "overlay", "prayer", "pve", "pvm", "jad", "fight", "cave"},
-		type = PluginType.SANLITE
+		type = PluginType.RUNELITE_USE_AT_OWN_RISK
 )
 public class FightCavePlugin extends Plugin
 {

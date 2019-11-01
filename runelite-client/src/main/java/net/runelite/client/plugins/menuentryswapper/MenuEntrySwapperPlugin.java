@@ -66,7 +66,7 @@ import org.apache.commons.lang3.ArrayUtils;
 	description = "Change the default option that is displayed when hovering over objects",
 	tags = {"npcs", "inventory", "items", "objects"},
 	enabledByDefault = false,
-	type = PluginType.SANLITE
+	type = PluginType.SANLITE_USE_AT_OWN_RISK
 )
 public class MenuEntrySwapperPlugin extends Plugin
 {
