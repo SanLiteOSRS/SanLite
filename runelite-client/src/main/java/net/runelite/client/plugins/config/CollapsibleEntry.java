@@ -3,6 +3,7 @@ package net.runelite.client.plugins.config;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
+import net.runelite.client.plugins.PluginType;
 import net.runelite.client.ui.ColorScheme;
 import net.runelite.client.ui.PluginPanel;
 
@@ -64,6 +65,10 @@ class CollapsibleEntry extends JPanel
 				));
 
 		JLabel nameLabel = new JLabel(name);
+		if (name.equals(PluginType.RUNELITE_USE_AT_OWN_RISK.toString()) || name.equals(PluginType.SANLITE_USE_AT_OWN_RISK.toString()))
+		{
+			nameLabel.setForeground(Color.RED.darker());
+		}
 		nameLabel.setPreferredSize(new Dimension(PluginPanel.PANEL_WIDTH, (int) nameLabel.getPreferredSize().getHeight() + 10));
 		nameLabel.setFont(nameLabel.getFont().deriveFont(Collections.singletonMap(TextAttribute.WEIGHT, TextAttribute.WEIGHT_SEMIBOLD)));
 

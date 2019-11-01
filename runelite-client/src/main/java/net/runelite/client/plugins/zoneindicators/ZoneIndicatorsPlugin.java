@@ -30,7 +30,7 @@ import java.util.Arrays;
 		name = "Zone Indicators",
 		description = "Show borders of multi combat zones, wilderness levels and PvP/Deadman safezones",
 		tags = {"multi combat", "lines", "pvp", "deadman", "safezones", "wilderness", "overlay"},
-		type = PluginType.SANLITE,
+		type = PluginType.SANLITE_USE_AT_OWN_RISK,
 		enabledByDefault = false
 )
 @Singleton

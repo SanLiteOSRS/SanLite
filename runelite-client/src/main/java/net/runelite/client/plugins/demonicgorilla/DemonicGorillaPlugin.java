@@ -64,7 +64,7 @@ import net.runelite.client.ui.overlay.OverlayManager;
 	name = "Demonic Gorillas",
 	description = "Count demonic gorilla attacks and display their next possible attack styles",
 	tags = {"combat", "overlay", "pve", "pvm"},
-	type = PluginType.SANLITE
+	type = PluginType.RUNELITE_USE_AT_OWN_RISK
 )
 public class DemonicGorillaPlugin extends Plugin
 {

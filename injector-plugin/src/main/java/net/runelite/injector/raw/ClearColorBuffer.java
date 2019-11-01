@@ -88,7 +88,7 @@ public class ClearColorBuffer
 							if (current instanceof ILoad && ((ILoad) current).getVariableIndex() == 3 - varIdx)
 							{
 								varIdx++;
-								log.debug("[ClearColorBuffer] varIdx count: " + varIdx);
+								log.debug("varIdx count: " + varIdx);
 								continue;
 							}
 
@@ -105,11 +105,11 @@ public class ClearColorBuffer
 
 							it.set(new InvokeStatic(ins, clearBuffer));
 							replaced++;
-							log.debug("[ClearColorBuffer] Found drawRectangle at {}. Found: {}, replaced {}", m.getName(), count, replaced);
+							log.debug("Found drawRectangle at {}. Found: {}, replaced {}", m.getName(), count, replaced);
 						}
 						else
 						{
-							log.debug("[ClearColorBuffer] Could not find drawRectangle at: " + m);
+							log.debug("Could not find drawRectangle at: " + m);
 						}
 					}
 

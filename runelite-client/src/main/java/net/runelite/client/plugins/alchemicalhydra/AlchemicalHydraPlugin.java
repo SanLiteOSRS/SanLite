@@ -46,7 +46,7 @@ import java.util.stream.Collectors;
 		name = "Alchemical Hydra",
 		description = "Displays Alchemical Hydra's next attack style and highlights special attacks",
 		tags = {"combat", "overlay", "pve", "pvm", "hydra", "alchemical", "boss", "custom", "slayer"},
-		type = PluginType.SANLITE
+		type = PluginType.SANLITE_USE_AT_OWN_RISK
 )
 public class AlchemicalHydraPlugin extends Plugin
 {
