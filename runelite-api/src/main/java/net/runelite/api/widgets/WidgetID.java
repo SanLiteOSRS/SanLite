@@ -487,6 +487,7 @@ public class WidgetID
 		static final int MESSAGES = 55;
 		static final int TRANSPARENT_BACKGROUND_LINES = 56;
 		static final int INPUT = 57;
+		static final int MESSAGE = 58;
 	}
 
 	static class Prayer
