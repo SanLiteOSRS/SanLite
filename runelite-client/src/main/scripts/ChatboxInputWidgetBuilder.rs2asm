@@ -52,7 +52,7 @@ LABEL40:
    iconst                 1894
    get_varbit             1777
    enum                  
-   chat_playername       
+   chat_playername
    sconst                 ": "
    sload                  0
    sload                  1

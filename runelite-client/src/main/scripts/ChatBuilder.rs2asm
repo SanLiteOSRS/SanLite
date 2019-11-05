@@ -6,7 +6,7 @@
    iconst                 10616890
    if_getwidth           
    istore                 1
-   chat_playername       
+   chat_playername
    removetags            
    sstore                 0
    iconst                 0

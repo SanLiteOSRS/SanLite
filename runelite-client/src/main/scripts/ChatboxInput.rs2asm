@@ -5,6 +5,7 @@
 .string_var_count   1
    sload                  0              ; load input
    iload                  0              ; load chat type
+   chat_playername        "rev-rs.net"   ;
    sconst                 "chatboxInput" ; event name
    runelite_callback     ; invoke callback
    pop_int               ; pop chat type
@@ -23,7 +24,7 @@ LABEL4:
    if_icmpeq              LABEL8
    jump                   LABEL16
 LABEL8:
-   chat_playername       
+   chat_playername
    sconst                 ": "
    sconst                 "<col=2020ef>"
    sload                  0
@@ -32,7 +33,7 @@ LABEL8:
    mes                   
    jump                   LABEL23
 LABEL16:
-   chat_playername       
+   chat_playername
    sconst                 ": "
    sconst                 "<col=0000ff>"
    sload                  0
