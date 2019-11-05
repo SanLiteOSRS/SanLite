@@ -62,22 +62,23 @@ public class ClanCallerOverlay extends Overlay
 		{
 			for (Player player : plugin.getCallersList())
 			{
-				renderPlayerOverlay(graphics, player, config.getCallerColor(), config.callerNamePosition());
+				renderPlayerOverlay(graphics, player, config.getCallerColor(), config.callerNamePosition(), true);
 			}
 		}
 		if (config.highlightCallersPile() && config.pileNamePosition() != PlayerNameLocation.DISABLED)
 		{
 			for (Player player : plugin.getPilesList())
 			{
-				renderPlayerOverlay(graphics, player, config.getCallerPileColor(), config.pileNamePosition());
+				renderPlayerOverlay(graphics, player, config.getCallerPileColor(), config.pileNamePosition(), false);
 			}
 		}
 		return null;
 	}
 
-	private void renderPlayerOverlay(Graphics2D graphics, Player actor, Color color, PlayerNameLocation drawPlayerNamesConfig)
+	private void renderPlayerOverlay(Graphics2D graphics, Player actor, Color color, PlayerNameLocation drawPlayerNamesConfig, Boolean isCaller)
 	{
 		final int zOffset;
+		String name = "";
 		switch (drawPlayerNamesConfig)
 		{
 			case MODEL_CENTER:
@@ -87,9 +88,16 @@ public class ClanCallerOverlay extends Overlay
 			default:
 				zOffset = actor.getLogicalHeight() + ACTOR_OVERHEAD_TEXT_MARGIN;
 		}
+		if (isCaller)
+		{
+			name = "Caller";
+		}
+		else if (!isCaller)
+		{
+			name = Text.sanitize(actor.getName());
+		}
 
-		final String name = Text.sanitize(actor.getName());
-		Point textLocation = actor.getCanvasTextLocation(graphics, name, zOffset);
+		Point textLocation = actor.getCanvasTextLocation(graphics, Text.sanitize(actor.getName()), zOffset);
 
 		if (drawPlayerNamesConfig == PlayerNameLocation.MODEL_RIGHT)
 		{

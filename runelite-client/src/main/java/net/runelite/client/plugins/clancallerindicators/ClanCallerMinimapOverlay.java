@@ -54,22 +54,31 @@ public class ClanCallerMinimapOverlay extends Overlay
 		{
 			for (Player player : plugin.getCallersList())
 			{
-				renderPlayerOverlay(graphics, player, config.getCallerColor());
+				renderPlayerOverlay(graphics, player, config.getCallerColor(), true);
 			}
 		}
 		if (config.highlightCallersPile() && config.drawPileMinimapNames())
 		{
 			for (Player player : plugin.getPilesList())
 			{
-				renderPlayerOverlay(graphics, player, config.getCallerPileColor());
+				renderPlayerOverlay(graphics, player, config.getCallerPileColor(), false);
 			}
 		}
 		return null;
 	}
 
-	private void renderPlayerOverlay(Graphics2D graphics, Player actor, Color color)
+	private void renderPlayerOverlay(Graphics2D graphics, Player actor, Color color, Boolean isCaller)
 	{
-		final String name = actor.getName().replace('\u00A0', ' ');
+		String name = "";
+
+		if (isCaller)
+		{
+			name = "Caller";
+		}
+		else if (!isCaller)
+		{
+			name = actor.getName().replace('\u00A0', ' ');
+		}
 
 		final net.runelite.api.Point minimapLocation = actor.getMinimapLocation();
 
