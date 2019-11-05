@@ -24,6 +24,7 @@
  */
 package net.runelite.client.plugins.clancallerindicators;
 
+import net.runelite.api.Player;
 import net.runelite.client.ui.overlay.*;
 
 import javax.inject.Inject;
@@ -31,14 +32,14 @@ import java.awt.*;
 
 public class ClanCallerTileOverlay extends Overlay
 {
-	private final ClanCallerService clanCallerService;
 	private final ClanCallerConfig config;
+	private final ClanCallerPlugin plugin;
 
 	@Inject
-	private ClanCallerTileOverlay(ClanCallerConfig config, ClanCallerService clanCallerService)
+	private ClanCallerTileOverlay(ClanCallerConfig config, ClanCallerPlugin plugin)
 	{
 		this.config = config;
-		this.clanCallerService = clanCallerService;
+		this.plugin = plugin;
 		setLayer(OverlayLayer.ABOVE_SCENE);
 		setPosition(OverlayPosition.DYNAMIC);
 		setPriority(OverlayPriority.MED);
@@ -47,31 +48,28 @@ public class ClanCallerTileOverlay extends Overlay
 	@Override
 	public Dimension render(Graphics2D graphics)
 	{
-		if (!config.drawCallerTiles() && !config.drawPileTiles())
+		if (config.highlightCallers() && config.drawCallerTiles())
 		{
-			return null;
+			for (Player player : plugin.getCallersList())
+			{
+				final Polygon poly = player.getCanvasTilePoly();
+				if (poly != null)
+				{
+					OverlayUtil.renderPolygon(graphics, poly, config.getCallerColor());
+				}
+			}
 		}
-
-		clanCallerService.forEachPlayer((player, color) ->
+		if (config.highlightCallersPile() && config.drawPileTiles())
 		{
-			final Polygon poly = player.getCanvasTilePoly();
-
-			if (clanCallerService.getPlayerIdentity(player).equals("caller") && config.drawCallerTiles())
+			for (Player player : plugin.getPilesList())
 			{
+				final Polygon poly = player.getCanvasTilePoly();
 				if (poly != null)
 				{
-					OverlayUtil.renderPolygon(graphics, poly, color);
+					OverlayUtil.renderPolygon(graphics, poly, config.getCallerPileColor());
 				}
 			}
-			if (clanCallerService.getPlayerIdentity(player).equals("pile") && config.drawPileTiles())
-			{
-				if (poly != null)
-				{
-					OverlayUtil.renderPolygon(graphics, poly, color);
-				}
-			}
-		});
-
+		}
 		return null;
 	}
 }

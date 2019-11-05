@@ -43,14 +43,14 @@ public class ClanCallerOverlay extends Overlay
 	private static final int ACTOR_OVERHEAD_TEXT_MARGIN = 40;
 	private static final int ACTOR_HORIZONTAL_TEXT_MARGIN = 10;
 
-	private final ClanCallerService clanCallerService;
 	private final ClanCallerConfig config;
+	private final ClanCallerPlugin plugin;
 
 	@Inject
-	private ClanCallerOverlay(ClanCallerConfig config, ClanCallerService clanCallerService)
+	private ClanCallerOverlay(ClanCallerConfig config, ClanCallerPlugin plugin)
 	{
 		this.config = config;
-		this.clanCallerService = clanCallerService;
+		this.plugin = plugin;
 		setPosition(OverlayPosition.DYNAMIC);
 		setPriority(OverlayPriority.MED);
 	}
@@ -58,27 +58,25 @@ public class ClanCallerOverlay extends Overlay
 	@Override
 	public Dimension render(Graphics2D graphics)
 	{
-		clanCallerService.forEachPlayer((player, color) -> renderPlayerOverlay(graphics, player, color));
+		if (config.highlightCallers() && config.callerNamePosition() != PlayerNameLocation.DISABLED)
+		{
+			for (Player player : plugin.getCallersList())
+			{
+				renderPlayerOverlay(graphics, player, config.getCallerColor(), config.callerNamePosition());
+			}
+		}
+		if (config.highlightCallersPile() && config.pileNamePosition() != PlayerNameLocation.DISABLED)
+		{
+			for (Player player : plugin.getPilesList())
+			{
+				renderPlayerOverlay(graphics, player, config.getCallerPileColor(), config.pileNamePosition());
+			}
+		}
 		return null;
 	}
 
-	private void renderPlayerOverlay(Graphics2D graphics, Player actor, Color color)
+	private void renderPlayerOverlay(Graphics2D graphics, Player actor, Color color, PlayerNameLocation drawPlayerNamesConfig)
 	{
-		PlayerNameLocation drawPlayerNamesConfig = PlayerNameLocation.DISABLED;
-		if (clanCallerService.getPlayerIdentity(actor).equals("caller"))
-		{
-			drawPlayerNamesConfig = config.callerNamePosition();
-		}
-		else if (clanCallerService.getPlayerIdentity(actor).equals("pile"))
-		{
-			drawPlayerNamesConfig = config.pileNamePosition();
-		}
-
-		if (drawPlayerNamesConfig == PlayerNameLocation.DISABLED)
-		{
-			return;
-		}
-
 		final int zOffset;
 		switch (drawPlayerNamesConfig)
 		{
