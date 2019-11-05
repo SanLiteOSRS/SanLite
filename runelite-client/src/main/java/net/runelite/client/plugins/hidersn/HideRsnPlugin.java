@@ -17,7 +17,6 @@ import net.runelite.client.plugins.PluginType;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.inject.Inject;
-import java.util.Arrays;
 
 @PluginDescriptor(
 		name = "Hide RSN",
@@ -49,15 +48,21 @@ public class HideRsnPlugin extends Plugin
 	{
 		if (config.hideRSN())
 		{
-			log.debug("change rsn triggered");
 			Widget widget = client.getWidget(WidgetInfo.CHATBOX_INPUT);
 			String[] splitRSN = widget.getText().split(":");
-			splitRSN[0] = "rev-rs.net";
-			widget.setText(Arrays.toString(splitRSN));
+			splitRSN[0] = "rev-rs.net:";
+			StringBuilder stringBuilder = new StringBuilder();
+			for (int i = 0; i < splitRSN.length; i++)
+			{
+				stringBuilder.append(splitRSN[i]);
+			}
+			String newChatRSN = stringBuilder.toString();
+			widget.setText(newChatRSN);
 		}
 	}
-
 	 */
+
+
 
 	@Subscribe
 	public void onGameTick(GameTick gameTick)
@@ -96,21 +101,30 @@ public class HideRsnPlugin extends Plugin
 			//client.setUsername("rev.rs-net");
 
 		}
-		*/
+
+
+
 		if (config.hideRSN())
 		{
 			Widget widget = client.getWidget(WidgetInfo.CHATBOX_INPUT);
 			String[] splitRSN = widget.getText().split(":");
 			splitRSN[0] = "rev-rs.net:";
-			String newChatRSN = Arrays.toString(splitRSN);
-			log.debug(newChatRSN + " newChatRSN");
+			StringBuilder stringBuilder = new StringBuilder();
+			for (int i = 0; i < splitRSN.length; i++)
+			{
+				stringBuilder.append(splitRSN[i]);
+			}
+			String newChatRSN = stringBuilder.toString();
 			widget.setText(newChatRSN);
 		}
+
+		 */
+
 	}
 
 
 
-	/*
+
 	@Subscribe
 	public void onVarClientStrChanged (VarClientStrChanged varClientStr)
 	{
@@ -123,15 +137,23 @@ public class HideRsnPlugin extends Plugin
 		{
 			if (config.hideRSN())
 			{
-				log.debug("change rsn triggered");
+				log.debug("if passed");
 				Widget widget = client.getWidget(WidgetInfo.CHATBOX_INPUT);
 				String[] splitRSN = widget.getText().split(":");
-				splitRSN[0] = "rev-rs.net";
-				widget.setText(Arrays.toString(splitRSN));
+				splitRSN[0] = "rev-rs.net:";
+				StringBuilder stringBuilder = new StringBuilder();
+				for (int i = 0; i < splitRSN.length; i++)
+				{
+					stringBuilder.append(splitRSN[i]);
+				}
+				String newChatRSN = stringBuilder.toString();
+				log.debug(newChatRSN + " new chat rsn");
+				widget.setText(newChatRSN);
+				widget.revalidateScroll();
 				widget.revalidate();
 			}
 		}
 	}
-	*/
+
 
 }
