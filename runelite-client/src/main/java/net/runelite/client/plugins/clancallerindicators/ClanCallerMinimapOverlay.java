@@ -69,15 +69,21 @@ public class ClanCallerMinimapOverlay extends Overlay
 
 	private void renderPlayerOverlay(Graphics2D graphics, Player actor, Color color, Boolean isCaller)
 	{
-		String name = "";
+		String name;
 
 		if (isCaller)
 		{
 			name = "Caller";
 		}
-		else if (!isCaller)
+		else
 		{
-			name = actor.getName().replace('\u00A0', ' ');
+			String actorName = actor.getName();
+			if (actorName == null)
+			{
+				return;
+			}
+
+			name = actorName.replace('\u00A0', ' ');
 		}
 
 		final net.runelite.api.Point minimapLocation = actor.getMinimapLocation();

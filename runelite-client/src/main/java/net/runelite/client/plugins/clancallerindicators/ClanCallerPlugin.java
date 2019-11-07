@@ -45,9 +45,8 @@ import net.runelite.client.util.Text;
 
 import javax.inject.Inject;
 import java.awt.*;
-import java.util.*;
+import java.util.ArrayList;
 import java.util.List;
-
 
 import static net.runelite.api.MenuAction.*;
 
@@ -162,10 +161,12 @@ public class ClanCallerPlugin extends Plugin
 	@Subscribe
 	public void onPlayerDespawned(PlayerDespawned playerDespawned)
 	{
-		if (callersList.contains(playerDespawned.getActor()))
+		if (callersList == null || callersList.isEmpty())
 		{
-			callersList.remove(playerDespawned.getActor());
+			return;
 		}
+
+		callersList.removeIf(x -> x.equals(playerDespawned.getPlayer()));
 	}
 
 	@Subscribe

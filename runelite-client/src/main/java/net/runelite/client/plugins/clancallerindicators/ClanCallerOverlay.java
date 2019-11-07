@@ -78,7 +78,7 @@ public class ClanCallerOverlay extends Overlay
 	private void renderPlayerOverlay(Graphics2D graphics, Player actor, Color color, PlayerNameLocation drawPlayerNamesConfig, Boolean isCaller)
 	{
 		final int zOffset;
-		String name = "";
+		String name;
 		switch (drawPlayerNamesConfig)
 		{
 			case MODEL_CENTER:
@@ -88,11 +88,18 @@ public class ClanCallerOverlay extends Overlay
 			default:
 				zOffset = actor.getLogicalHeight() + ACTOR_OVERHEAD_TEXT_MARGIN;
 		}
+
+		String actorName = actor.getName();
+		if (actorName == null)
+		{
+			return;
+		}
+
 		if (isCaller)
 		{
 			name = "Caller";
 		}
-		else if (!isCaller)
+		else
 		{
 			name = Text.sanitize(actor.getName());
 		}
