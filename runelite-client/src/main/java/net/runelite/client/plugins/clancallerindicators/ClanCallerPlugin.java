@@ -48,7 +48,6 @@ import java.awt.*;
 import java.util.*;
 import java.util.List;
 
-import lombok.extern.slf4j.Slf4j;
 
 import static net.runelite.api.MenuAction.*;
 
@@ -60,7 +59,6 @@ import static net.runelite.api.MenuAction.*;
 		type = PluginType.SANLITE_USE_AT_OWN_RISK
 )
 
-@Slf4j
 @Singleton
 public class ClanCallerPlugin extends Plugin
 {
@@ -117,10 +115,8 @@ public class ClanCallerPlugin extends Plugin
 	public void onGameTick(GameTick gameTick)
 	{
 		pilesList.clear();
-		log.debug("Lists cleared");
 		for (Player player : client.getPlayers())
 		{
-			log.debug("New player");
 			//Checks if player is currently a caller or pile
 			if (!callersList.contains(player.getName()) && !pilesList.contains(player.getName()))
 			{
@@ -131,7 +127,6 @@ public class ClanCallerPlugin extends Plugin
 					{
 						if (caller.equals(player.getName()) && !callersList.contains(player))
 						{
-							log.debug("Caller added to list");
 							callersList.add(player);
 						}
 					}
@@ -141,14 +136,11 @@ public class ClanCallerPlugin extends Plugin
 				{
 					for (Player caller : callersList)
 					{
-						log.debug("Checking for caller:" + caller.getName());
 						if (caller.getInteracting() != null)
 						{
-							log.debug("caller interact: " + caller.getInteracting().getName());
 							if (caller.getInteracting().getName().equals(player.getName()))
 							{
 								pilesList.add(player);
-								log.debug("Added to piles object list: " + player.getName());
 							}
 						}
 					}
@@ -162,7 +154,6 @@ public class ClanCallerPlugin extends Plugin
 	{
 		if (configChanged.getGroup().equals("clancallerindicators") && configChanged.getKey().equals("callersRsns"))
 		{
-			log.debug("Caller rsn config changed");
 			callersList.clear();
 			getCallerRSNs();
 		}
@@ -173,7 +164,6 @@ public class ClanCallerPlugin extends Plugin
 	{
 		if (callersList.contains(playerDespawned.getActor()))
 		{
-			log.debug("Caller died removing caller object");
 			callersList.remove(playerDespawned.getActor());
 		}
 	}
