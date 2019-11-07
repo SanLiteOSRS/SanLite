@@ -56,9 +56,6 @@ import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.menus.MenuManager;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
-import static net.runelite.client.plugins.runecraft.AbyssRifts.*;
-
-import net.runelite.client.plugins.PluginType;
 import net.runelite.client.ui.overlay.OverlayManager;
 
 @PluginDescriptor(
@@ -121,6 +118,7 @@ public class RunecraftPlugin extends Plugin
 	{
 		overlayManager.add(abyssOverlay);
 		overlayManager.add(abyssMinimapOverlay);
+        updateRifts();
 
 		if (config.leftClickEmptyPouch())
 		{
@@ -156,6 +154,10 @@ public class RunecraftPlugin extends Plugin
 	@Subscribe
 	public void onConfigChanged(ConfigChanged event)
 	{
+		if (event.getGroup().equals("runecraft"))
+		{
+			updateRifts();
+		}
 		if (event.getKey().equals("leftClickEmptyPouch"))
 		{
 			addSwapEmpty();

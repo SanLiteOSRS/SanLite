@@ -51,7 +51,6 @@ import net.runelite.api.Player;
 import net.runelite.api.Skill;
 import net.runelite.api.VarPlayer;
 import net.runelite.api.WorldType;
-import net.runelite.api.events.ExperienceChanged;
 import net.runelite.api.events.GameStateChanged;
 import net.runelite.api.events.GameTick;
 import net.runelite.api.events.MenuEntryAdded;
@@ -341,11 +340,11 @@ public class XpTrackerPlugin extends Plugin
 	}
 
 	@Subscribe
-	public void onExperienceChanged(ExperienceChanged event)
+	public void onStatChanged(StatChanged statChanged)
 	{
-		final Skill skill = event.getSkill();
-		final int currentXp = client.getSkillExperience(skill);
-		final int currentLevel = Experience.getLevelForXp(currentXp);
+		final Skill skill = statChanged.getSkill();
+		final int currentXp = statChanged.getXp();
+		final int currentLevel = statChanged.getLevel();
 		final VarPlayer startGoal = startGoalVarpForSkill(skill);
 		final VarPlayer endGoal = endGoalVarpForSkill(skill);
 		final int startGoalXp = startGoal != null ? client.getVar(startGoal) : -1;

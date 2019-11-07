@@ -222,6 +222,8 @@ public class PluginListItem extends JPanel
 
 		toggleButton = createToggleButton();
 		buttonPanel.add(toggleButton);
+
+		configToggleButton = createToggleButton();
 	}
 
 	private void attachToggleButtonListener(IconButton button)
@@ -249,7 +251,7 @@ public class PluginListItem extends JPanel
 		});
 	}
 
-	IconButton createToggleButton()
+	private IconButton createToggleButton()
 	{
 		final IconButton button = new IconButton(OFF_SWITCHER);
 		button.setPreferredSize(new Dimension(25, 0));
@@ -262,6 +264,7 @@ public class PluginListItem extends JPanel
 	{
 		isPluginEnabled = enabled;
 		updateToggleButton(toggleButton);
+		updateToggleButton(configToggleButton);
 	}
 
 	void setPinned(boolean pinned)

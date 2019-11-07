@@ -108,7 +108,7 @@ public class TimersPlugin extends Plugin
 	private static final String PRAYER_ENHANCE_EXPIRED = "<col=ff0000>Your prayer enhance effect has worn off.</col>";
 
 	private static final Pattern DEADMAN_HALF_TELEBLOCK_PATTERN = Pattern.compile("<col=4f006f>A Tele Block spell has been cast on you by (.+)\\. It will expire in 1 minute, 15 seconds\\.</col>");
-	private static final Pattern FULL_TELEBLOCK_PATTERN = Pattern.compile("<col=4f006f>A Tele Block spell has been cast on you by (.+)\\. It will expire in 5 minutes, 0 seconds\\.</col>");
+	private static final Pattern FULL_TELEBLOCK_PATTERN = Pattern.compile("<col=4f006f>A Tele Block spell has been cast on you by (.+)\\. It will expire in 5 minutes\\.</col>");
 	private static final Pattern HALF_TELEBLOCK_PATTERN = Pattern.compile("<col=4f006f>A Tele Block spell has been cast on you by (.+)\\. It will expire in 2 minutes, 30 seconds\\.</col>");
 	private static final Pattern DIVINE_POTION_PATTERN = Pattern.compile("You drink some of your divine (.+) potion\\.");
 
@@ -389,6 +389,13 @@ public class TimersPlugin extends Plugin
 		}
 
 		if (config.showStamina()
+			&& event.getMenuOption().contains("Drink")
+			&& (event.getId() == ItemID.STAMINA_MIX1
+			|| event.getId() == ItemID.STAMINA_MIX2
+			|| event.getId() == ItemID.EGNIOL_POTION_1
+			|| event.getId() == ItemID.EGNIOL_POTION_2
+			|| event.getId() == ItemID.EGNIOL_POTION_3
+			|| event.getId() == ItemID.EGNIOL_POTION_4))
 			&& event.getOption().contains("Drink")
 			&& (event.getIdentifier() == ItemID.STAMINA_MIX1
 			|| event.getIdentifier() == ItemID.STAMINA_MIX2

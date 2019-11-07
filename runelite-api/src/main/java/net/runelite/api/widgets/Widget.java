@@ -556,7 +556,7 @@ public interface Widget
 	void setOnMouseOverListener(Object... args);
 
 	/**
-	 * Sets a script to be ran every frame when the mouse is in the widget bounds
+	 * Sets a script to be ran every client tick when the mouse is in the widget bounds
 	 *
 	 * @param args A ScriptID, then the args for the script
 	 */
@@ -570,7 +570,7 @@ public interface Widget
 	void setOnMouseLeaveListener(Object... args);
 
 	/**
-	 * Sets a script to be ran every frame
+	 * Sets a script to be ran every client tick
 	 *
 	 * @param args A ScriptID, then the args for the script
 	 */
@@ -828,32 +828,29 @@ public interface Widget
 	void setNoScrollThrough(boolean noScrollThrough);
 
 	/**
-	 * Changes the parent ID for the widget
+	 * {@link net.runelite.api.VarPlayer}s that triggers this widgets varTransmitListener
 	 */
-	void setParentId(int id);
+	void setVarTransmitTrigger(int ...trigger);
 
 	/**
-	 * Changes the ID of the widget
+	 * Sets a script to be ran the first client tick the mouse is held ontop of this widget
+	 *
+	 * @param args A ScriptID, then the args for the script
 	 */
-	void setId(int id);
+	void setOnClickListener(Object ...args);
 
 	/**
-	 * Sets the index of this element
+	 * Sets a script to be ran the every client tick the mouse is held ontop of this widget,
+	 * except the first client tick.
+	 *
+	 * @param args A ScriptID, then the args for the script
 	 */
-	void setIndex(int index);
+	void setOnHoldListener(Object ...args);
 
 	/**
-	 * Seems like this needs to set to true when creating new widgets
+	 * Sets a script to be ran the first client tick the mouse is not held ontop of this widget
+	 *
+	 * @param args A ScriptID, then the args for the script
 	 */
-	void setIsIf3(boolean isIf3);
-
-	/**
-	 * Returns yes if your mouse pointer is over this widget or any of it's children.
-	 */
-	boolean containsMouse();
-
-	/**
-	 * Gets the image which is (or should be) drawn on this widget
-	 */
-	Sprite getSprite();
+	void setOnReleaseListener(Object ...args);
 }

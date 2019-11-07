@@ -24,8 +24,7 @@
  */
 package net.runelite.api;
 
-import java.awt.*;
-
+import java.awt.Shape;
 import net.runelite.api.coords.Angle;
 
 /**
