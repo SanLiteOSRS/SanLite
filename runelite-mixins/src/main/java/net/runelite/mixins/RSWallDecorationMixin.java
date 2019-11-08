@@ -1,10 +1,10 @@
 package net.runelite.mixins;
 
-import java.awt.*;
-
+import java.awt.Shape;
 import net.runelite.api.Model;
 import net.runelite.api.Perspective;
 import net.runelite.api.coords.LocalPoint;
+import net.runelite.api.geometry.Shapes;
 import net.runelite.api.mixins.Inject;
 import net.runelite.api.mixins.Mixin;
 import net.runelite.api.mixins.Shadow;
@@ -98,6 +98,11 @@ public abstract class RSWallDecorationMixin implements RSWallDecoration
 			return null;
 		}
 
+		if (clickboxA != null && clickboxB != null)
+		{
+			return new Shapes(new Shape[]{clickboxA, clickboxB});
+		}
+
 		if (clickboxA != null)
 		{
 			return clickboxA;
@@ -108,7 +113,7 @@ public abstract class RSWallDecorationMixin implements RSWallDecoration
 
 	@Inject
 	@Override
-	public Polygon getConvexHull()
+	public Shape getConvexHull()
 	{
 		RSModel model = getModel1();
 
@@ -123,7 +128,7 @@ public abstract class RSWallDecorationMixin implements RSWallDecoration
 
 	@Inject
 	@Override
-	public Polygon getConvexHull2()
+	public Shape getConvexHull2()
 	{
 		RSModel model = getModel2();
 

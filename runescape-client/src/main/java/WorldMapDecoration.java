@@ -140,7 +140,8 @@ public class WorldMapDecoration {
 		signature = "(IB)V",
 		garbageValue = "-115"
 	)
-	static final void method389(int var0) {
+	@Export("changeGameOptions")
+	static final void changeGameOptions(int var0) {
 		BoundaryObject.method3346();
 
 		for (ObjectSound var1 = (ObjectSound)ObjectSound.objectSounds.last(); var1 != null; var1 = (ObjectSound)ObjectSound.objectSounds.previous()) {
@@ -149,7 +150,7 @@ public class WorldMapDecoration {
 			}
 		}
 
-		int var4 = Varcs.method2305(var0).type;
+		int var4 = Varcs.VarpDefinition_get(var0).type;
 		if (var4 != 0) {
 			int var2 = Varps.Varps_main[var0];
 			if (var4 == 1) {
@@ -199,16 +200,16 @@ public class WorldMapDecoration {
 				}
 
 				if (var3 != Client.musicVolume) {
-					if (Client.musicVolume == 0 && Client.field865 != -1) {
-						MusicPatchNode2.method3778(class216.archive6, Client.field865, 0, var3, false);
+					if (Client.musicVolume == 0 && Client.currentTrackGroupId != -1) {
+						MusicPatchNode2.playMusicTrack(class216.archive6, Client.currentTrackGroupId, 0, var3, false);
 						Client.field855 = false;
 					} else if (var3 == 0) {
 						ReflectionCheck.method2391();
 						Client.field855 = false;
 					} else if (class197.field2377 != 0) {
-						class197.field2379 = var3;
+						class197.musicTrackVolume = var3;
 					} else {
-						class197.midiPcmStream.method3890(var3);
+						class197.midiPcmStream.setPcmStreamVolume(var3);
 					}
 
 					Client.musicVolume = var3;

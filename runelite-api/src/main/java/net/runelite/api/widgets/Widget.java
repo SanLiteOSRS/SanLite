@@ -627,6 +627,8 @@ public interface Widget
 
 	Object[] getOnInvTransmit();
 
+	Object[] getOnOp();
+
 	/**
 	 * Returns the archive id of the font used
 	 *
@@ -808,6 +810,11 @@ public interface Widget
 	void setTargetVerb(String targetVerb);
 
 	Sprite getSprite();
+
+	/**
+	 * Returns true if your mouse pointer is over this widget or any of its children.
+	 */
+	boolean containsMouse();
 
 	/**
 	 * Can widgets under this widgets be clicked in this widgets bounding box

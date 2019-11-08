@@ -26,8 +26,8 @@ package net.runelite.rs.api;
 
 import net.runelite.mapping.Import;
 
-public interface RSRawSound
+public interface RSMidiPcmStream
 {
-	@Import("resample")
-	RSRawSound applyResampler(RSDecimator resampler);
+	@Import("setPcmStreamVolume")
+	void setPcmStreamVolume(int volume);
 }

@@ -280,6 +280,10 @@ public interface RSWidget extends Widget
 	@Override
 	Object[] getOnLoadListener();
 
+	@Import("onOp")
+	@Override
+	Object[] getOnOp();
+
 	@Import("onDialogAbort")
 	@Override
 	void setOnDialogAbortListener(Object... args);
@@ -402,7 +406,7 @@ public interface RSWidget extends Widget
 
 	@Import("getFont")
 	@Override
-	RSAbstractFont getFont();
+	RSFont getFont();
 
 	@Import("fill")
 	@Override
@@ -445,6 +449,10 @@ public interface RSWidget extends Widget
 	@Import("onInvTransmit")
 	@Override
 	Object[] getOnInvTransmit();
+
+	@Import("containsMouse")
+	@Override
+	boolean containsMouse();
 
 	@Import("getSprite")
 	RSSprite getSprite(boolean b);
