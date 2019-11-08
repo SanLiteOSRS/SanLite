@@ -22,62 +22,44 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.api;
+package net.runelite.api.model;
 
-import java.awt.Shape;
-import net.runelite.api.coords.Angle;
+import lombok.Value;
+import net.runelite.api.Perspective;
 
 /**
- * Represents a game object.
- * <p>
- * Most object in the RuneScape world are considered as game objects. Things
- * such as trees, anvils, boxes, etc are all game objects.
+ * Represents a point in a three-dimensional space.
  */
-public interface GameObject extends TileObject
+@Value
+public class Vertex
 {
+	private final int x;
+	private final int y;
+	private final int z;
 
 	/**
-	 * Gets the minimum x and y scene coordinate pair for this game object.
+	 * Rotates the triangle by the given orientation.
 	 *
-	 * @return the minimum scene coordinate
+	 * @param orientation passed orientation
+	 * @return new instance
 	 */
-	Point getSceneMinLocation();
+	public Vertex rotate(int orientation)
+	{
+		// models are orientated north (1024) and there are 2048 angles total
+		orientation = (orientation + 1024) % 2048;
 
-	/**
-	 * Gets the maximum x and y scene coordinate pair for this game object.
-	 * <p>
-	 * This value differs from {@link #getSceneMinLocation()} when the size
-	 * of the object is more than 1 tile.
-	 *
-	 * @return the maximum scene coordinate
-	 */
-	Point getSceneMaxLocation();
+		if (orientation == 0)
+		{
+			return this;
+		}
 
-	/**
-	 * Gets the convex hull of the object's model.
-	 *
-	 * @return the convex hull
-	 * @see net.runelite.api.model.Jarvis
-	 */
-	Shape getConvexHull();
+		int sin = Perspective.SINE[orientation];
+		int cos = Perspective.COSINE[orientation];
 
-	/**
-	 * Gets the polygons that make up the game object model.
-	 *
-	 * @return the model polygons
-	 */
-	Shape[] getPolygons();
-
-	/**
-	 * Gets the orientation of the object.
-	 *
-	 * @return the orientation
-	 */
-	Angle getOrientation();
-
-	Entity getEntity();
-
-	int getRsOrientation();
-
-	Model getModel();
+		return new Vertex(
+			x * cos + z * sin >> 16,
+			y,
+			z * cos - x * sin >> 16
+		);
+	}
 }

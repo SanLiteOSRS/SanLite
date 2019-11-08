@@ -807,6 +807,8 @@ public interface Widget
 	 */
 	void setTargetVerb(String targetVerb);
 
+	Sprite getSprite();
+
 	/**
 	 * Can widgets under this widgets be clicked in this widgets bounding box
 	 */

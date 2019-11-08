@@ -245,7 +245,7 @@ public class WikiPlugin extends Plugin
 					break;
 				}
 				case SPELL_CAST_ON_WIDGET:
-					Widget w = getWidget(ev.getWidgetId(), ev.getActionParam());
+					Widget w = getWidget(ev.getActionParam1(), ev.getActionParam0());
 
 					if (w.getType() == WidgetType.GRAPHIC && w.getItemId() != -1)
 					{

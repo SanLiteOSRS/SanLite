@@ -22,62 +22,23 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.api;
+package net.runelite.api.mixins;
 
-import java.awt.Shape;
-import net.runelite.api.coords.Angle;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Repeatable;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
-/**
- * Represents a game object.
- * <p>
- * Most object in the RuneScape world are considered as game objects. Things
- * such as trees, anvils, boxes, etc are all game objects.
- */
-public interface GameObject extends TileObject
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.TYPE)
+@Repeatable(Mixins.class)
+public @interface Mixin
 {
-
 	/**
-	 * Gets the minimum x and y scene coordinate pair for this game object.
+	 * Class to inject this mixin into
 	 *
-	 * @return the minimum scene coordinate
+	 * @return
 	 */
-	Point getSceneMinLocation();
-
-	/**
-	 * Gets the maximum x and y scene coordinate pair for this game object.
-	 * <p>
-	 * This value differs from {@link #getSceneMinLocation()} when the size
-	 * of the object is more than 1 tile.
-	 *
-	 * @return the maximum scene coordinate
-	 */
-	Point getSceneMaxLocation();
-
-	/**
-	 * Gets the convex hull of the object's model.
-	 *
-	 * @return the convex hull
-	 * @see net.runelite.api.model.Jarvis
-	 */
-	Shape getConvexHull();
-
-	/**
-	 * Gets the polygons that make up the game object model.
-	 *
-	 * @return the model polygons
-	 */
-	Shape[] getPolygons();
-
-	/**
-	 * Gets the orientation of the object.
-	 *
-	 * @return the orientation
-	 */
-	Angle getOrientation();
-
-	Entity getEntity();
-
-	int getRsOrientation();
-
-	Model getModel();
+	Class<?> value();
 }

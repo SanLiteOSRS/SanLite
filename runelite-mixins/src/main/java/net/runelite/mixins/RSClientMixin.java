@@ -924,14 +924,18 @@ public abstract class RSClientMixin implements RSClient
 	@Inject
 	public static void experiencedChanged(int idx)
 	{
-		ExperienceChanged experienceChanged = new ExperienceChanged();
 		Skill[] possibleSkills = Skill.values();
 
 		// We subtract one here because 'Overall' isn't considered a skill that's updated.
 		if (idx < possibleSkills.length - 1)
 		{
 			Skill updatedSkill = possibleSkills[idx];
-			experienceChanged.setSkill(updatedSkill);
+			StatChanged experienceChanged = new StatChanged(
+					updatedSkill,
+					client.getSkillExperience(updatedSkill),
+					client.getRealSkillLevel(updatedSkill),
+					client.getBoostedSkillLevel(updatedSkill)
+			);
 			client.getCallbacks().post(experienceChanged);
 		}
 	}
@@ -945,9 +949,13 @@ public abstract class RSClientMixin implements RSClient
 		if (idx >= 0 && idx < skills.length - 1)
 		{
 			Skill updatedSkill = skills[idx];
-			BoostedLevelChanged boostedLevelChanged = new BoostedLevelChanged();
-			boostedLevelChanged.setSkill(updatedSkill);
-			client.getCallbacks().post(boostedLevelChanged);
+			StatChanged statChanged = new StatChanged(
+					updatedSkill,
+					client.getSkillExperience(updatedSkill),
+					client.getRealSkillLevel(updatedSkill),
+					client.getBoostedSkillLevel(updatedSkill)
+			);
+			client.getCallbacks().post(statChanged);
 		}
 	}
 

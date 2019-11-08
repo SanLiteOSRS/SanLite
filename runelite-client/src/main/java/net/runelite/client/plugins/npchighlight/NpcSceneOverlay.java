@@ -146,7 +146,7 @@ public class NpcSceneOverlay extends Overlay
 			case SOUTH_WEST_TILE:
 			{
 				int size = 1;
-				NPCComposition composition = actor.getTransformedComposition();
+				NPCDefinition composition = actor.getTransformedDefinition();
 				if (composition != null)
 				{
 					size = composition.getSize();

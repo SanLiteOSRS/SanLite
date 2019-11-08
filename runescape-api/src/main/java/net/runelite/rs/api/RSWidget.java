@@ -446,10 +446,22 @@ public interface RSWidget extends Widget
 	@Override
 	Object[] getOnInvTransmit();
 
-	@Import("containsMouse")
-	@Override
-	boolean containsMouse();
-
 	@Import("getSprite")
 	RSSprite getSprite(boolean b);
+
+	@Import("onRelease")
+	@Override
+	void setOnReleaseListener(Object[] o);
+
+	@Import("varTransmitTriggers")
+	@Override
+	void setVarTransmitTrigger(int[] i);
+
+	@Import("onHold")
+	@Override
+	void setOnHoldListener(Object[] o);
+
+	@Import("onClick")
+	@Override
+	void setOnClickListener(Object[] o);
 }

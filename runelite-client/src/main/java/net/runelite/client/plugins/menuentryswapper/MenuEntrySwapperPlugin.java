@@ -615,7 +615,7 @@ public class MenuEntrySwapperPlugin extends Plugin
 		{
 			swap("use", option, target, index);
 		}
-        else if (option.equals("value"))
+		else if (option.equals("value"))
 		{
 			switch (config.swapStoreBuy())
 			{

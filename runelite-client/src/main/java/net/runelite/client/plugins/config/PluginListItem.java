@@ -89,6 +89,9 @@ public class PluginListItem extends JPanel
 	private final String description;
 
 	@Getter
+	private final IconButton configToggleButton;
+
+	@Getter
 	@Setter
 	private CollapsibleEntry parentCollapsibleEntry;
 
@@ -251,7 +254,7 @@ public class PluginListItem extends JPanel
 		});
 	}
 
-	private IconButton createToggleButton()
+	IconButton createToggleButton()
 	{
 		final IconButton button = new IconButton(OFF_SWITCHER);
 		button.setPreferredSize(new Dimension(25, 0));

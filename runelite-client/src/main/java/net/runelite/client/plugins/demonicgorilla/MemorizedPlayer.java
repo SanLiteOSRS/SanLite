@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, Adam <Adam@sigterm.info>
+ * Copyright (c) 2018, Woox <https://github.com/wooxsolo>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,62 +22,31 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.api;
+package net.runelite.client.plugins.demonicgorilla;
 
-import java.awt.Shape;
-import net.runelite.api.coords.Angle;
+import java.util.ArrayList;
+import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
+import net.runelite.api.Hitsplat;
+import net.runelite.api.Player;
+import net.runelite.api.coords.WorldArea;
 
-/**
- * Represents a game object.
- * <p>
- * Most object in the RuneScape world are considered as game objects. Things
- * such as trees, anvils, boxes, etc are all game objects.
- */
-public interface GameObject extends TileObject
+public class MemorizedPlayer
 {
+	@Getter
+	private Player player;
 
-	/**
-	 * Gets the minimum x and y scene coordinate pair for this game object.
-	 *
-	 * @return the minimum scene coordinate
-	 */
-	Point getSceneMinLocation();
+	@Getter
+	@Setter
+	private WorldArea lastWorldArea;
 
-	/**
-	 * Gets the maximum x and y scene coordinate pair for this game object.
-	 * <p>
-	 * This value differs from {@link #getSceneMinLocation()} when the size
-	 * of the object is more than 1 tile.
-	 *
-	 * @return the maximum scene coordinate
-	 */
-	Point getSceneMaxLocation();
+	@Getter
+	private List<Hitsplat> recentHitsplats;
 
-	/**
-	 * Gets the convex hull of the object's model.
-	 *
-	 * @return the convex hull
-	 * @see net.runelite.api.model.Jarvis
-	 */
-	Shape getConvexHull();
-
-	/**
-	 * Gets the polygons that make up the game object model.
-	 *
-	 * @return the model polygons
-	 */
-	Shape[] getPolygons();
-
-	/**
-	 * Gets the orientation of the object.
-	 *
-	 * @return the orientation
-	 */
-	Angle getOrientation();
-
-	Entity getEntity();
-
-	int getRsOrientation();
-
-	Model getModel();
+	public MemorizedPlayer(Player player)
+	{
+		this.player = player;
+		this.recentHitsplats = new ArrayList<>();
+	}
 }

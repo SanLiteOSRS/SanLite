@@ -213,7 +213,7 @@
 		<dependency>
 			<groupId>net.runelite</groupId>
 			<artifactId>discord</artifactId>
-            <version>1.1</version>
+			<version>1.1</version>
 		</dependency>
 		<dependency>
 			<groupId>net.runelite</groupId>
@@ -226,12 +226,6 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
             <version>4.12</version>
-            <scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.mockito</groupId>
-			<artifactId>mockito-all</artifactId>
-            <version>1.10.19</version>
             <scope>test</scope>
 		</dependency>
 		<dependency>
@@ -258,7 +252,7 @@
 			<version>${guice.version}</version>
 			<scope>test</scope>
 		</dependency>
-    </dependencies>
+	</dependencies>
 
 	<build>
 		<resources>
@@ -301,6 +295,7 @@
 							<goal>shade</goal>
 						</goals>
 						<configuration>
+							<minimizeJar>true</minimizeJar>
 
 							<shadedArtifactAttached>true</shadedArtifactAttached>
 							<shadedClassifierName>shaded</shadedClassifierName>

@@ -125,18 +125,6 @@ public class ImplingsPlugin extends Plugin
 	}
 
 	@Subscribe
-	public void onNpcChanged(NpcChanged npcCompositionChanged)
-	{
-		NPC npc = npcCompositionChanged.getNpc();
-		Impling impling = Impling.findImpling(npc.getId());
-
-		if (impling != null && !implings.contains(npc))
-		{
-			implings.add(npc);
-		}
-	}
-
-	@Subscribe
 	public void onGameStateChanged(GameStateChanged event)
 	{
 		if (event.getGameState() == GameState.LOGIN_SCREEN || event.getGameState() == GameState.HOPPING)

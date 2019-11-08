@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, Adam <Adam@sigterm.info>
+ * Copyright (c) 2018, Adam <Adam@sigterm.info>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,62 +22,52 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.api;
+package net.runelite.client.plugins.reorderprayers;
 
-import java.awt.Shape;
-import net.runelite.api.coords.Angle;
+import net.runelite.api.Prayer;
+import net.runelite.client.config.Config;
+import net.runelite.client.config.ConfigGroup;
+import net.runelite.client.config.ConfigItem;
 
-/**
- * Represents a game object.
- * <p>
- * Most object in the RuneScape world are considered as game objects. Things
- * such as trees, anvils, boxes, etc are all game objects.
- */
-public interface GameObject extends TileObject
+@ConfigGroup(ReorderPrayersPlugin.CONFIG_GROUP_KEY)
+public interface ReorderPrayersConfig extends Config
 {
 
-	/**
-	 * Gets the minimum x and y scene coordinate pair for this game object.
-	 *
-	 * @return the minimum scene coordinate
-	 */
-	Point getSceneMinLocation();
+	@ConfigItem(
+		keyName = ReorderPrayersPlugin.CONFIG_UNLOCK_REORDERING_KEY,
+		name = "Unlock Prayer Reordering",
+		description = "Configures whether or not you can reorder the prayers",
+		position = 1
+	)
+	default boolean unlockPrayerReordering()
+	{
+		return false;
+	}
 
-	/**
-	 * Gets the maximum x and y scene coordinate pair for this game object.
-	 * <p>
-	 * This value differs from {@link #getSceneMinLocation()} when the size
-	 * of the object is more than 1 tile.
-	 *
-	 * @return the maximum scene coordinate
-	 */
-	Point getSceneMaxLocation();
+	@ConfigItem(
+		keyName = ReorderPrayersPlugin.CONFIG_UNLOCK_REORDERING_KEY,
+		name = "",
+		description = ""
+	)
+	void unlockPrayerReordering(boolean unlock);
 
-	/**
-	 * Gets the convex hull of the object's model.
-	 *
-	 * @return the convex hull
-	 * @see net.runelite.api.model.Jarvis
-	 */
-	Shape getConvexHull();
+	@ConfigItem(
+		keyName = ReorderPrayersPlugin.CONFIG_PRAYER_ORDER_KEY,
+		name = "Prayer Order",
+		description = "Configures the order of the prayers",
+		hidden = true,
+		position = 2
+	)
+	default String prayerOrder()
+	{
+		return ReorderPrayersPlugin.prayerOrderToString(Prayer.values());
+	}
 
-	/**
-	 * Gets the polygons that make up the game object model.
-	 *
-	 * @return the model polygons
-	 */
-	Shape[] getPolygons();
+	@ConfigItem(
+		keyName = ReorderPrayersPlugin.CONFIG_PRAYER_ORDER_KEY,
+		name = "",
+		description = ""
+	)
+	void prayerOrder(String prayerOrder);
 
-	/**
-	 * Gets the orientation of the object.
-	 *
-	 * @return the orientation
-	 */
-	Angle getOrientation();
-
-	Entity getEntity();
-
-	int getRsOrientation();
-
-	Model getModel();
 }

@@ -28,6 +28,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.util.List;
 import javax.inject.Inject;
 
 import net.runelite.api.*;
@@ -58,9 +59,13 @@ class BarrowsOverlay extends Overlay
 	@Override
 	public Dimension render(Graphics2D graphics)
 	{
+		Player local = client.getLocalPlayer();
+		final Color npcColor = getMinimapDotColor(1);
+		final Color playerColor = getMinimapDotColor(2);
 		Widget puzzleAnswer = plugin.getPuzzleAnswer();
 
-		if (config.showBrotherLoc())
+		// tunnels are only on z=0
+		if (!plugin.getWalls().isEmpty() && client.getPlane() == 0 && config.showMinimap())
 		{
 			// NPC dots
 			graphics.setColor(npcColor);

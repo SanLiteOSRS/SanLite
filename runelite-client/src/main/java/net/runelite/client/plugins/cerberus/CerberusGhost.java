@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, Adam <Adam@sigterm.info>
+ * Copyright (c) 2018, Tomas Slusny <slusnucky@gmail.com>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,62 +22,49 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.api;
+package net.runelite.client.plugins.cerberus;
 
-import java.awt.Shape;
-import net.runelite.api.coords.Angle;
+import com.google.common.collect.ImmutableMap;
+import java.util.Map;
+import java.util.Optional;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import net.runelite.api.NPC;
+import net.runelite.api.NpcID;
+import net.runelite.api.Skill;
 
-/**
- * Represents a game object.
- * <p>
- * Most object in the RuneScape world are considered as game objects. Things
- * such as trees, anvils, boxes, etc are all game objects.
- */
-public interface GameObject extends TileObject
+@Getter
+@RequiredArgsConstructor
+public enum CerberusGhost
 {
+	RANGE(NpcID.SUMMONED_SOUL, Skill.RANGED),
+	MAGE(NpcID.SUMMONED_SOUL_5868, Skill.MAGIC),
+	MELEE(NpcID.SUMMONED_SOUL_5869, Skill.ATTACK);
+
+	private final int npcId;
+	private final Skill type;
+
+	private static final Map<Integer, CerberusGhost> MAP;
+
+	static
+	{
+		ImmutableMap.Builder<Integer, CerberusGhost> builder = new ImmutableMap.Builder<>();
+
+		for (final CerberusGhost ghost : values())
+		{
+			builder.put(ghost.getNpcId(), ghost);
+		}
+
+		MAP = builder.build();
+	}
 
 	/**
-	 * Gets the minimum x and y scene coordinate pair for this game object.
-	 *
-	 * @return the minimum scene coordinate
+	 * Try to identify if NPC is ghost
+	 * @param npc npc
+	 * @return optional ghost
 	 */
-	Point getSceneMinLocation();
-
-	/**
-	 * Gets the maximum x and y scene coordinate pair for this game object.
-	 * <p>
-	 * This value differs from {@link #getSceneMinLocation()} when the size
-	 * of the object is more than 1 tile.
-	 *
-	 * @return the maximum scene coordinate
-	 */
-	Point getSceneMaxLocation();
-
-	/**
-	 * Gets the convex hull of the object's model.
-	 *
-	 * @return the convex hull
-	 * @see net.runelite.api.model.Jarvis
-	 */
-	Shape getConvexHull();
-
-	/**
-	 * Gets the polygons that make up the game object model.
-	 *
-	 * @return the model polygons
-	 */
-	Shape[] getPolygons();
-
-	/**
-	 * Gets the orientation of the object.
-	 *
-	 * @return the orientation
-	 */
-	Angle getOrientation();
-
-	Entity getEntity();
-
-	int getRsOrientation();
-
-	Model getModel();
+	public static Optional<CerberusGhost> fromNPC(final NPC npc)
+	{
+		return npc == null ? Optional.empty() : Optional.ofNullable(MAP.get(npc.getId()));
+	}
 }
