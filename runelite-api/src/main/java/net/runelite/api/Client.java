@@ -343,9 +343,12 @@ public interface Client extends GameShell
 	 * Gets the logged in player instance.
 	 *
 	 * @return the logged in player
+	 *
+	 * (getLocalPlayerIndex returns the local index, useful for menus/interacting)
 	 */
 	@Nullable
 	Player getLocalPlayer();
+	int getLocalPlayerIndex();
 
 	/**
 	 * Gets the item composition corresponding to an items ID.
@@ -1746,6 +1749,8 @@ public interface Client extends GameShell
 	void setPrintMenuActions(boolean b);
 
 	String getSelectedSpellName();
+
+	void setSelectedSpellName(String name);
 
 	/**
 	 * Set whether or not player attack options will be hidden for friends

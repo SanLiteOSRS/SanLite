@@ -34,14 +34,14 @@ import java.awt.*;
 @Singleton
 public class ClanCallerMinimapOverlay extends Overlay
 {
-	private final ClanCallerService ClanCallerService;
 	private final ClanCallerConfig config;
+	private final ClanCallerPlugin plugin;
 
 	@Inject
-	private ClanCallerMinimapOverlay(ClanCallerConfig config, ClanCallerService ClanCallerService)
+	private ClanCallerMinimapOverlay(ClanCallerConfig config, ClanCallerPlugin plugin)
 	{
 		this.config = config;
-		this.ClanCallerService = ClanCallerService;
+		this.plugin = plugin;
 		setLayer(OverlayLayer.ABOVE_WIDGETS);
 		setPosition(OverlayPosition.DYNAMIC);
 		setPriority(OverlayPriority.HIGH);
@@ -50,31 +50,47 @@ public class ClanCallerMinimapOverlay extends Overlay
 	@Override
 	public Dimension render(Graphics2D graphics)
 	{
-		ClanCallerService.forEachPlayer((player, color) -> renderPlayerOverlay(graphics, player, color));
+		if (config.highlightCallers() && config.drawCallerMinimapNames())
+		{
+			for (Player player : plugin.getCallersList())
+			{
+				renderPlayerOverlay(graphics, player, config.getCallerColor(), true);
+			}
+		}
+		if (config.highlightCallersPile() && config.drawPileMinimapNames())
+		{
+			for (Player player : plugin.getPilesList())
+			{
+				renderPlayerOverlay(graphics, player, config.getCallerPileColor(), false);
+			}
+		}
 		return null;
 	}
 
-	private void renderPlayerOverlay(Graphics2D graphics, Player actor, Color color)
+	private void renderPlayerOverlay(Graphics2D graphics, Player actor, Color color, Boolean isCaller)
 	{
-		final String name = actor.getName().replace('\u00A0', ' ');
+		String name;
 
-		if (ClanCallerService.getPlayerIdentity(actor).equals("pile") && config.drawPileMinimapNames())
+		if (isCaller)
 		{
-			final net.runelite.api.Point minimapLocation = actor.getMinimapLocation();
-
-			if (minimapLocation != null)
-			{
-				OverlayUtil.renderTextLocation(graphics, minimapLocation, name, color);
-			}
+			name = "Caller";
 		}
-		if (ClanCallerService.getPlayerIdentity(actor).equals("caller") && config.drawCallerMinimapNames())
+		else
 		{
-			final net.runelite.api.Point minimapLocation = actor.getMinimapLocation();
-
-			if (minimapLocation != null)
+			String actorName = actor.getName();
+			if (actorName == null)
 			{
-				OverlayUtil.renderTextLocation(graphics, minimapLocation, name, color);
+				return;
 			}
+
+			name = actorName.replace('\u00A0', ' ');
+		}
+
+		final net.runelite.api.Point minimapLocation = actor.getMinimapLocation();
+
+		if (minimapLocation != null)
+		{
+			OverlayUtil.renderTextLocation(graphics, minimapLocation, name, color);
 		}
 	}
 }
