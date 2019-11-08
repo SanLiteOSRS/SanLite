@@ -705,7 +705,11 @@ public enum Varbits
 	/**
 	 * 1 is true, 0 is false.
 	 */
-	GAUNTLET_ENTERED(9178);
+	GAUNTLET_ENTERED(9178),
+
+	WITHDRAW_X_AMOUNT(3960),
+
+	IN_PVP_AREA(8121);
 
 	/**
 	 * The raw varbit ID.

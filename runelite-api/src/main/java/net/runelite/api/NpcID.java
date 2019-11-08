@@ -286,6 +286,7 @@ public final class NpcID
 	public static final int DWARF = 290;
 	public static final int CHAOS_DWARF = 291;
 	public static final int DWARF_292 = 292;
+	public static final int ADVENTURER_JON = 293;
 	public static final int DWARF_294 = 294;
 	public static final int DWARF_295 = 295;
 	public static final int DWARF_296 = 296;
@@ -8263,7 +8264,7 @@ public final class NpcID
 	public static final int ED_9200 = 9200;
 	public static final int CRAB_9201 = 9201;
 	public static final int TIDE = 9202;
-	public static final int ADVENTURER_JON = 9244;
+	public static final int ADVENTURER_JON_9244 = 9244;
 	public static final int ARIANWYN_HARD = 9246;
 	public static final int ESSYLLT_HARD = 9247;
 	public static final int ARIANWYN_9248 = 9248;

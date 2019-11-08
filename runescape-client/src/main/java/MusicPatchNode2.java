@@ -1,7 +1,4 @@
-import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
-import net.runelite.mapping.ObfuscatedName;
-import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.mapping.*;
 
 @ObfuscatedName("gp")
 @Implements("MusicPatchNode2")
@@ -92,12 +89,13 @@ public class MusicPatchNode2 {
 		signature = "(Lhq;IIIZI)V",
 		garbageValue = "1856110966"
 	)
-	public static void method3778(AbstractArchive var0, int var1, int var2, int var3, boolean var4) {
+	@Export("playMusicTrack")
+	public static void playMusicTrack(AbstractArchive var0, int var1, int var2, int var3, boolean var4) {
 		class197.field2377 = 1;
 		class247.musicTrackArchive = var0;
 		class189.musicTrackGroupId = var1;
 		class197.musicTrackFileId = var2;
-		class197.field2379 = var3;
+		class197.musicTrackVolume = var3;
 		ScriptFrame.musicTrackBoolean = var4;
 		class197.field2384 = 10000;
 	}

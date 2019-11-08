@@ -34,10 +34,7 @@ import net.runelite.api.hooks.Callbacks;
 import net.runelite.api.hooks.DrawCallbacks;
 import net.runelite.api.mixins.*;
 import net.runelite.api.vars.AccountType;
-import net.runelite.api.widgets.Widget;
-import net.runelite.api.widgets.WidgetInfo;
-import net.runelite.api.widgets.WidgetItem;
-import net.runelite.api.widgets.WidgetType;
+import net.runelite.api.widgets.*;
 import net.runelite.rs.api.*;
 import org.slf4j.Logger;
 
@@ -133,6 +130,9 @@ public abstract class RSClientMixin implements RSClient
 	private static boolean hideClanmateCastOptions = false;
 
 	@Inject
+	private static boolean allWidgetsAreOpTargetable = false;
+
+	@Inject
 	private static Set<String> unhiddenCasts = new HashSet<String>();
 
 	@Inject
@@ -161,6 +161,13 @@ public abstract class RSClientMixin implements RSClient
 	public void setHideClanmateCastOptions(boolean yes)
 	{
 		hideClanmateCastOptions = yes;
+	}
+
+	@Inject
+	@Override
+	public void setAllWidgetsAreOpTargetable(boolean yes)
+	{
+		allWidgetsAreOpTargetable = yes;
 	}
 
 	@Inject
@@ -924,15 +931,19 @@ public abstract class RSClientMixin implements RSClient
 	@Inject
 	public static void experiencedChanged(int idx)
 	{
-		ExperienceChanged experienceChanged = new ExperienceChanged();
 		Skill[] possibleSkills = Skill.values();
 
 		// We subtract one here because 'Overall' isn't considered a skill that's updated.
 		if (idx < possibleSkills.length - 1)
 		{
 			Skill updatedSkill = possibleSkills[idx];
-			experienceChanged.setSkill(updatedSkill);
-			client.getCallbacks().post(experienceChanged);
+			StatChanged statChanged = new StatChanged(
+					updatedSkill,
+					client.getSkillExperience(updatedSkill),
+					client.getRealSkillLevel(updatedSkill),
+					client.getBoostedSkillLevel(updatedSkill)
+			);
+			client.getCallbacks().post(statChanged);
 		}
 	}
 
@@ -945,9 +956,13 @@ public abstract class RSClientMixin implements RSClient
 		if (idx >= 0 && idx < skills.length - 1)
 		{
 			Skill updatedSkill = skills[idx];
-			BoostedLevelChanged boostedLevelChanged = new BoostedLevelChanged();
-			boostedLevelChanged.setSkill(updatedSkill);
-			client.getCallbacks().post(boostedLevelChanged);
+			StatChanged statChanged = new StatChanged(
+					updatedSkill,
+					client.getSkillExperience(updatedSkill),
+					client.getRealSkillLevel(updatedSkill),
+					client.getBoostedSkillLevel(updatedSkill)
+			);
+			client.getCallbacks().post(statChanged);
 		}
 	}
 
@@ -1611,5 +1626,67 @@ public abstract class RSClientMixin implements RSClient
 	{
 		RSFriendSystem friendSystem = getFriendManager();
 		friendSystem.removeFriend(friend);
+	}
+
+
+	@Inject
+	@Override
+	public void setMusicVolume(int volume)
+	{
+		if (volume > 0 && client.getMusicVolume() <= 0 && client.getCurrentTrackGroupId() != -1)
+		{
+			client.playMusicTrack(client.getMusicTracks(), client.getCurrentTrackGroupId(), 0, volume, false);
+		}
+
+		client.setClientMusicVolume(volume);
+		client.setMusicTrackVolume(volume);
+		if (client.getMidiPcmStream() != null)
+		{
+			client.getMidiPcmStream().setPcmStreamVolume(volume);
+		}
+	}
+
+
+	@Copy("changeGameOptions")
+	public static void rs$changeGameOptions(int var0)
+	{
+		throw new RuntimeException();
+	}
+
+	@Replace("changeGameOptions")
+	public static void changeGameOptions(int var0)
+	{
+		rs$changeGameOptions(var0);
+
+		int type = client.getVarpDefinition(var0).getType();
+		if (type == 3 || type == 4 || type == 10)
+		{
+			VolumeChanged volumeChanged = new VolumeChanged(type == 3 ? VolumeChanged.Type.MUSIC : type == 4 ? VolumeChanged.Type.EFFECTS : VolumeChanged.Type.AREA);
+			client.getCallbacks().post(volumeChanged);
+		}
+	}
+
+	@Replace("getWidgetClickMask")
+	public static int getWidgetClickMask(Widget widget)
+	{
+		IntegerNode integerNode = (IntegerNode) client.getWidgetFlags().get(((long) widget.getId() << 32) + (long) widget.getIndex());
+
+		int widgetClickMask;
+
+		if (integerNode == null)
+		{
+			widgetClickMask = widget.getClickMask();
+		}
+		else
+		{
+			widgetClickMask = integerNode.getValue();
+		}
+
+		if (allWidgetsAreOpTargetable)
+		{
+			widgetClickMask |= WidgetConfig.WIDGET_USE_TARGET;
+		}
+
+		return widgetClickMask;
 	}
 }
