@@ -24,8 +24,7 @@
  */
 package net.runelite.mixins;
 
-import java.awt.Polygon;
-
+import java.awt.Shape;
 import net.runelite.api.AnimationID;
 import net.runelite.api.NPCDefinition;
 import net.runelite.api.Perspective;
@@ -179,7 +178,7 @@ public abstract class RSNPCMixin implements RSNPC
 
 	@Inject
 	@Override
-	public Polygon getConvexHull()
+	public Shape getConvexHull()
 	{
 		RSModel model = getModel();
 		if (model == null)

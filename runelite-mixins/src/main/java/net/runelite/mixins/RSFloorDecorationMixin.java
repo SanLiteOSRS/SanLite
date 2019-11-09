@@ -82,7 +82,7 @@ public abstract class RSFloorDecorationMixin implements RSFloorDecoration
 
 	@Inject
 	@Override
-	public Polygon getConvexHull()
+	public Shape getConvexHull()
 	{
 		RSModel model = getModel();
 

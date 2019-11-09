@@ -89,6 +89,9 @@ public class PluginListItem extends JPanel
 	private final String description;
 
 	@Getter
+	private final IconButton configToggleButton;
+
+	@Getter
 	@Setter
 	private CollapsibleEntry parentCollapsibleEntry;
 
@@ -222,6 +225,8 @@ public class PluginListItem extends JPanel
 
 		toggleButton = createToggleButton();
 		buttonPanel.add(toggleButton);
+
+		configToggleButton = createToggleButton();
 	}
 
 	private void attachToggleButtonListener(IconButton button)
@@ -262,6 +267,7 @@ public class PluginListItem extends JPanel
 	{
 		isPluginEnabled = enabled;
 		updateToggleButton(toggleButton);
+		updateToggleButton(configToggleButton);
 	}
 
 	void setPinned(boolean pinned)

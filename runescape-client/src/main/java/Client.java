@@ -356,7 +356,8 @@ public final class Client extends GameShell implements Usernamed {
 	@ObfuscatedGetter(
 		intValue = 398456721
 	)
-	static int field865;
+	@Export("currentTrackGroupId")
+	static int currentTrackGroupId;
 	@ObfuscatedName("pq")
 	@ObfuscatedGetter(
 		intValue = -87647027
@@ -1062,8 +1063,7 @@ public final class Client extends GameShell implements Usernamed {
 	@Export("dragItemSlotDestination")
 	static int dragItemSlotDestination;
 	@ObfuscatedName("jr")
-	@Export("areWidgetsOpTargetable")
-	static boolean areWidgetsOpTargetable;
+	static boolean field742;
 	@ObfuscatedName("je")
 	@ObfuscatedGetter(
 		intValue = 2041162413
@@ -1376,7 +1376,7 @@ public final class Client extends GameShell implements Usernamed {
 		field729 = 0;
 		field741 = 0;
 		dragItemSlotDestination = 0;
-		areWidgetsOpTargetable = false;
+		field742 = false;
 		itemDragDuration = 0;
 		field745 = 0;
 		showLoadingMessages = true;
@@ -1498,7 +1498,7 @@ public final class Client extends GameShell implements Usernamed {
 		destinationY = 0;
 		minimapState = 0;
 		musicVolume = 255;
-		field865 = -1;
+		currentTrackGroupId = -1;
 		field855 = false;
 		soundEffectVolume = 127;
 		areaSoundEffectVolume = 127;
@@ -1615,7 +1615,7 @@ public final class Client extends GameShell implements Usernamed {
 								var45 = 0;
 							}
 
-							class197.midiPcmStream.method3890(var45);
+							class197.midiPcmStream.setPcmStreamVolume(var45);
 						} else {
 							class197.midiPcmStream.clear();
 							class197.midiPcmStream.removeAll();
@@ -2657,7 +2657,7 @@ public final class Client extends GameShell implements Usernamed {
 
 					if (class197.midiPcmStream.loadMusicTrack(class197.musicTrack, class197.musicPatchesArchive, ByteArrayPool.soundCache, 22050)) {
 						class197.midiPcmStream.clearAll();
-						class197.midiPcmStream.method3890(class197.field2379);
+						class197.midiPcmStream.setPcmStreamVolume(class197.musicTrackVolume);
 						class197.midiPcmStream.setMusicTrack(class197.musicTrack, ScriptFrame.musicTrackBoolean);
 						class197.field2377 = 0;
 						class197.musicTrack = null;
@@ -4132,8 +4132,8 @@ public final class Client extends GameShell implements Usernamed {
 						}
 
 						if (field855 && !Login.method2209()) {
-							if (musicVolume != 0 && field865 != -1) {
-								MusicPatchNode2.method3778(class216.archive6, field865, 0, musicVolume, false);
+							if (musicVolume != 0 && currentTrackGroupId != -1) {
+								MusicPatchNode2.playMusicTrack(class216.archive6, currentTrackGroupId, 0, musicVolume, false);
 							}
 
 							field855 = false;
@@ -4151,7 +4151,7 @@ public final class Client extends GameShell implements Usernamed {
 							var15 = npcIndices[var1];
 							NPC var25 = npcs[var15];
 							if (var25 != null) {
-								HitSplatDefinition.calculateActorPosition(var25, var25.definition.size);
+								HitSplatDefinition.updateActorSequence(var25, var25.definition.size);
 							}
 						}
 
@@ -4251,7 +4251,7 @@ public final class Client extends GameShell implements Usernamed {
 																GrandExchangeOfferAgeComparator.invalidateWidget(GrandExchangeOffer.dragInventoryWidget);
 																++itemDragDuration;
 																if (MouseHandler.MouseHandler_currentButton == 0) {
-																	if (areWidgetsOpTargetable) {
+																	if (field742) {
 																		if (DirectByteArrayCopier.field2476 == GrandExchangeOffer.dragInventoryWidget && dragItemSlotSource != dragItemSlotDestination) {
 																			Widget var46 = GrandExchangeOffer.dragInventoryWidget;
 																			byte var33 = 0;
@@ -4306,7 +4306,7 @@ public final class Client extends GameShell implements Usernamed {
 																	MouseHandler.MouseHandler_lastButton = 0;
 																	GrandExchangeOffer.dragInventoryWidget = null;
 																} else if (itemDragDuration >= 5 && (MouseHandler.MouseHandler_x > field729 + 5 || MouseHandler.MouseHandler_x < field729 - 5 || MouseHandler.MouseHandler_y > field741 + 5 || MouseHandler.MouseHandler_y < field741 - 5)) {
-																	areWidgetsOpTargetable = true;
+																	field742 = true;
 																}
 															}
 
@@ -5648,7 +5648,7 @@ public final class Client extends GameShell implements Usernamed {
 
 				if (ServerPacket.field2103 == var1.serverPacket) {
 					for (var16 = 0; var16 < VarpDefinition.VarpDefinition_fileCount; ++var16) {
-						VarpDefinition var51 = Varcs.method2305(var16);
+						VarpDefinition var51 = Varcs.VarpDefinition_get(var16);
 						if (var51 != null) {
 							Varps.Varps_temp[var16] = 0;
 							Varps.Varps_main[var16] = 0;
@@ -5675,7 +5675,7 @@ public final class Client extends GameShell implements Usernamed {
 						Varps.Varps_main[var16] = var41;
 					}
 
-					WorldMapDecoration.method389(var16);
+					WorldMapDecoration.changeGameOptions(var16);
 					field817[++field679 - 1 & 31] = var16;
 					var1.serverPacket = null;
 					return true;
@@ -5699,7 +5699,7 @@ public final class Client extends GameShell implements Usernamed {
 					for (var16 = 0; var16 < Varps.Varps_main.length; ++var16) {
 						if (Varps.Varps_main[var16] != Varps.Varps_temp[var16]) {
 							Varps.Varps_main[var16] = Varps.Varps_temp[var16];
-							WorldMapDecoration.method389(var16);
+							WorldMapDecoration.changeGameOptions(var16);
 							field817[++field679 - 1 & 31] = var16;
 						}
 					}
@@ -6021,7 +6021,7 @@ public final class Client extends GameShell implements Usernamed {
 						Varps.Varps_main[var5] = var16;
 					}
 
-					WorldMapDecoration.method389(var5);
+					WorldMapDecoration.changeGameOptions(var5);
 					field817[++field679 - 1 & 31] = var5;
 					var1.serverPacket = null;
 					return true;
@@ -6243,11 +6243,11 @@ public final class Client extends GameShell implements Usernamed {
 									}
 								}
 
-								if (GrandExchangeOffer.dragInventoryWidget != null && !areWidgetsOpTargetable && menuOptionsCount > 0 && !this.shouldLeftClickOpenMenu()) {
+								if (GrandExchangeOffer.dragInventoryWidget != null && !field742 && menuOptionsCount > 0 && !this.shouldLeftClickOpenMenu()) {
 									AbstractWorldMapData.method325(field729, field741);
 								}
 
-								areWidgetsOpTargetable = false;
+								field742 = false;
 								itemDragDuration = 0;
 								if (GrandExchangeOffer.dragInventoryWidget != null) {
 									GrandExchangeOfferAgeComparator.invalidateWidget(GrandExchangeOffer.dragInventoryWidget);
