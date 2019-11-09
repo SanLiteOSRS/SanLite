@@ -42,10 +42,12 @@ public class HideRsnPlugin extends Plugin
 	@Subscribe
 	public void onGameTick(GameTick gameTick)
 	{
+		int chatBoxHeight = 16;
 		Widget widget = client.getWidget(WidgetInfo.CHATBOX_MESSAGE);
 		Widget[] widgetArray = widget.getDynamicChildren();
 
-		for (int i = 0; i < widgetArray.length; i++)
+		//No need to update messages not viewable in the chatbox
+		for (int i = 0; i < chatBoxHeight; i++)
 		{
 			String[] splitRSN = widgetArray[i].getText().split(":");
 			if (client.isClanMember(splitRSN[0]) || client.getLocalPlayer().getName().equals(splitRSN[0]))
