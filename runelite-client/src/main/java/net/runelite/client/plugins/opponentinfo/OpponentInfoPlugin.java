@@ -55,7 +55,7 @@ import net.runelite.http.api.hiscore.HiscoreEndpoint;
 	name = "Opponent Information",
 	description = "Show name and hitpoints information about the NPC you are fighting",
 	tags = {"combat", "health", "hitpoints", "npcs", "overlay"},
-	type = PluginType.RUNELITE_USE_AT_OWN_RISK
+	type = PluginType.SANLITE_USE_AT_OWN_RISK
 )
 public class OpponentInfoPlugin extends Plugin
 {

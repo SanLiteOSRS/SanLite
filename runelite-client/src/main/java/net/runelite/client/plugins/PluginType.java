@@ -9,13 +9,6 @@ public enum PluginType
 					return "RuneLite";
 				}
 			},
-	RUNELITE_USE_AT_OWN_RISK
-			{
-				public String toString()
-				{
-					return "RuneLite - Use at own risk";
-				}
-			},
 	SANLITE
 			{
 				public String toString()
