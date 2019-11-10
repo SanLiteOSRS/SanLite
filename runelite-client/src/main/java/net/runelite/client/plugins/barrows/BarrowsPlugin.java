@@ -33,17 +33,7 @@ import java.util.Set;
 import javax.inject.Inject;
 import lombok.AccessLevel;
 import lombok.Getter;
-import net.runelite.api.ChatMessageType;
-import net.runelite.api.Client;
-import net.runelite.api.GameObject;
-import net.runelite.api.GameState;
-import net.runelite.api.InventoryID;
-import net.runelite.api.Item;
-import net.runelite.api.ItemContainer;
-import net.runelite.api.NullObjectID;
-import net.runelite.api.ObjectID;
-import net.runelite.api.SpriteID;
-import net.runelite.api.WallObject;
+import net.runelite.api.*;
 import net.runelite.api.events.ConfigChanged;
 import net.runelite.api.events.GameObjectChanged;
 import net.runelite.api.events.GameObjectDespawned;
@@ -344,6 +334,11 @@ public class BarrowsPlugin extends Plugin
 
 	private boolean isInCrypt()
 	{
-		return client.getLocalPlayer().getWorldLocation().getRegionID() == CRYPT_REGION_ID;
+		Player localPlayer = client.getLocalPlayer();
+		if (localPlayer == null)
+		{
+			return false;
+		}
+		return localPlayer.getWorldLocation().getRegionID() == CRYPT_REGION_ID;
 	}
 }
