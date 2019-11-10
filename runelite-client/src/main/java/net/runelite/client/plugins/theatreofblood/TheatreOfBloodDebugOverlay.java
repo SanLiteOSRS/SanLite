@@ -28,6 +28,7 @@ import net.runelite.api.Client;
 import net.runelite.client.plugins.theatreofblood.encounters.Nylocas;
 import net.runelite.client.plugins.theatreofblood.encounters.PestilentBloat;
 import net.runelite.client.plugins.theatreofblood.encounters.Sotetseg;
+import net.runelite.client.plugins.theatreofblood.encounters.Xarpus;
 import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayPosition;
 import net.runelite.client.ui.overlay.components.LineComponent;
@@ -126,6 +127,29 @@ public class TheatreOfBloodDebugOverlay extends Overlay
 					panelComponent.getChildren().add(LineComponent.builder()
 							.left("Number of active red maze tiles")
 							.right(sotetseg.getActiveMazeTiles() != null ? "" + sotetseg.getActiveMazeTiles().size() : "null")
+							.build());
+					break;
+				case XARPUS:
+					Xarpus xarpus = (Xarpus) plugin.getCurrentEncounter();
+					panelComponent.getChildren().add(LineComponent.builder()
+							.left("Is staring")
+							.right("" + xarpus.getIsStaring())
+							.build());
+					panelComponent.getChildren().add(LineComponent.builder()
+							.left("Last turn")
+							.right("" + xarpus.getLastTurnTime())
+							.build());
+					panelComponent.getChildren().add(LineComponent.builder()
+							.left("Next turn")
+							.right("" + xarpus.getNextTurnTime())
+							.build());
+					panelComponent.getChildren().add(LineComponent.builder()
+							.left("Remaining time")
+							.right("" + xarpus.getRemainingTurnTime())
+							.build());
+					panelComponent.getChildren().add(LineComponent.builder()
+							.left("Client Tick")
+							.right("" + client.getGameCycle())
 							.build());
 			}
 

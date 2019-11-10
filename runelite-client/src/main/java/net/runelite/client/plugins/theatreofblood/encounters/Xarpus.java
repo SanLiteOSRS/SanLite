@@ -26,6 +26,7 @@ package net.runelite.client.plugins.theatreofblood.encounters;
 
 import lombok.Getter;
 import lombok.Setter;
+import net.runelite.api.Constants;
 import net.runelite.api.GroundObject;
 import net.runelite.api.ObjectID;
 
@@ -38,10 +39,28 @@ public class Xarpus extends TheatreOfBloodEncounter
 	@Setter
 	private List<GroundObject> groundObjects;
 
+	@Getter
+	@Setter
+	private Boolean isStaring = false;
+
+	private final int TURN_DURATION = 4800;
+
+	@Setter
+	@Getter
+	private int lastTurnTime;
+
+	@Getter
+	private int nextTurnTime;
+
+	@Getter
+	private int remainingTurnTime;
+
+
 	public Xarpus(TheatreOfBloodEncounters encounter)
 	{
 		super(encounter);
 		groundObjects = new ArrayList<>();
+		lastTurnTime = -1;
 	}
 
 	public boolean isHealingPoolTileObject(int objectId)
@@ -87,6 +106,24 @@ public class Xarpus extends TheatreOfBloodEncounter
 		if (isPoisonTileObject(groundObject.getId()) || isHealingPoolTileObject(groundObject.getId()))
 		{
 			groundObjects.remove(groundObject);
+		}
+	}
+
+	public String getOverheadText()
+	{
+		return getNpc().getOverheadText();
+	}
+
+	public void checkTurnTimer(int clientTick)
+	{
+		if (nextTurnTime <= clientTick)
+		{
+			lastTurnTime = clientTick;
+			nextTurnTime = lastTurnTime + TURN_DURATION / Constants.CLIENT_TICK_LENGTH;
+		}
+		else
+		{
+			remainingTurnTime = nextTurnTime - clientTick;
 		}
 	}
 }

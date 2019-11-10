@@ -354,6 +354,11 @@ public class TheatreOfBloodPlugin extends Plugin
 		{
 			currentEncounter.setNpc(npc);
 		}
+
+		if (currentEncounter.getEncounter() == TheatreOfBloodEncounters.NYLOCAS && Nylocas.isNylocasNpc(npc.getId()))
+		{
+			currentEncounter.castToNylocas().addNylocasCrab(npc, client.getGameCycle());
+		}
 	}
 
 	/**
@@ -374,6 +379,11 @@ public class TheatreOfBloodPlugin extends Plugin
 		{
 			currentEncounter.setNpc(null);
 			log.debug("Current encounter npc reset due to despawn of npc id: {}", npc.getId());
+		}
+
+		if (currentEncounter.getEncounter() == TheatreOfBloodEncounters.NYLOCAS && Nylocas.isNylocasNpc(npc.getId()))
+		{
+			currentEncounter.castToNylocas().removeNylocasCrab(npc);
 		}
 	}
 
@@ -440,6 +450,13 @@ public class TheatreOfBloodPlugin extends Plugin
 					break;
 				case NYLOCAS:
 					currentEncounter.castToNylocas().checkNylocasAggressiveNpcs(client.getNpcs(), client.getPlayers());
+					currentEncounter.castToNylocas().checkNylocasTimers(client.getGameCycle());
+					break;
+				case XARPUS:
+					if (currentEncounter.castToXarpus().getIsStaring())
+					{
+						currentEncounter.castToXarpus().checkTurnTimer(client.getGameCycle());
+					}
 					break;
 			}
 		}
@@ -448,7 +465,7 @@ public class TheatreOfBloodPlugin extends Plugin
 	@Subscribe
 	protected void onVarbitChanged(VarbitChanged varbitChanged)
 	{
-		if (client.isInInstancedRegion())
+		if (client.isInInstancedRegion() && currentEncounter != null && currentEncounter.getEncounter() != null)
 		{
 			switch (currentEncounter.getEncounter())
 			{
@@ -466,6 +483,27 @@ public class TheatreOfBloodPlugin extends Plugin
 							currentEncounter.castToSotetseg().setMazeActive(false);
 							currentEncounter.castToSotetseg().resetMaze();
 						}
+					}
+					break;
+				default:
+					break;
+			}
+		}
+	}
+
+	@Subscribe
+	protected void onGameTick(GameTick gametick)
+	{
+		if (client.isInInstancedRegion() && currentEncounter != null && currentEncounter.getEncounter() != null)
+		{
+			switch (currentEncounter.getEncounter())
+			{
+				case XARPUS:
+					if (currentEncounter.castToXarpus().getOverheadText() != null)
+					{
+						log.debug("Is staring set to true");
+						currentEncounter.castToXarpus().setIsStaring(true);
+						currentEncounter.castToXarpus().setLastTurnTime(client.getGameCycle());
 					}
 					break;
 				default:

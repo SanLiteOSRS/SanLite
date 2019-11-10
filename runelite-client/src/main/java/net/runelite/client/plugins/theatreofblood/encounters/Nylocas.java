@@ -26,12 +26,10 @@ package net.runelite.client.plugins.theatreofblood.encounters;
 
 import lombok.Getter;
 import lombok.Setter;
-import net.runelite.api.Actor;
-import net.runelite.api.NPC;
-import net.runelite.api.NpcID;
-import net.runelite.api.Player;
+import net.runelite.api.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -41,10 +39,16 @@ public class Nylocas extends TheatreOfBloodEncounter
 	@Setter
 	private List<NPC> highlightedNylocasNpcs;
 
+	@Getter
+	private HashMap<NPC, List<Integer>> aliveNylocas;
+
+	private final int NYLOCAS_LIFE_LENGTH = 31200;
+
 	public Nylocas(TheatreOfBloodEncounters encounter)
 	{
 		super(encounter);
 		highlightedNylocasNpcs = new ArrayList<>();
+		aliveNylocas = new HashMap<>();
 	}
 
 	public static boolean isNylocasNpc(int npcId)
@@ -84,5 +88,40 @@ public class Nylocas extends TheatreOfBloodEncounter
 				clientNpcs.stream()
 						.filter(x -> isNylocasNpc(x.getId()) && isNylocasNpcAggressive(x, clientPlayers))
 						.collect(Collectors.toList()));
+	}
+
+	public void addNylocasCrab(NPC npc, int clientTick)
+	{
+		List<Integer> timers = new ArrayList<>();
+
+		//spawn time
+		timers.add(clientTick);
+		//explode time
+		timers.add(clientTick + NYLOCAS_LIFE_LENGTH);
+		//time till explode
+		timers.add(NYLOCAS_LIFE_LENGTH / Constants.CLIENT_TICK_LENGTH);
+
+		aliveNylocas.put(npc, timers);
+	}
+
+	public void removeNylocasCrab(NPC npc)
+	{
+		aliveNylocas.remove(npc);
+	}
+
+	public void checkNylocasTimers(int clientTick)
+	{
+		for (NPC nylocas : new ArrayList<>(aliveNylocas.keySet()))
+		{
+			List<Integer> timers = aliveNylocas.get(nylocas);
+
+			if (clientTick > timers.get(1))
+			{
+				aliveNylocas.remove(nylocas);
+			}
+			timers.set(2, (timers.get(1) - clientTick));
+
+			aliveNylocas.replace(nylocas, timers);
+		}
 	}
 }

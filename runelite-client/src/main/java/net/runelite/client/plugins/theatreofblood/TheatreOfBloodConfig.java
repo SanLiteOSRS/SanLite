@@ -183,10 +183,22 @@ public interface TheatreOfBloodConfig extends Config
 	}
 
 	@ConfigItem(
+			keyName = "displayNylocasLifeTimerText",
+			name = "Display Nylocas life timers",
+			description = "Display Nylocas life timers when time till death is less than 5 seconds",
+			position = 13,
+			group = "Nylocas"
+	)
+	default boolean displayNylocasLifeTimerText()
+	{
+		return true;
+	}
+
+	@ConfigItem(
 			keyName = "highlightSotetsegRedMazeTiles",
 			name = "Highlight red maze tiles",
 			description = "Highlight the red tiles during Sotetseg's maze",
-			position = 13,
+			position = 14,
 			group = "Sotetseg"
 	)
 	default boolean highlightSotetsegRedMazeTiles()
@@ -199,7 +211,7 @@ public interface TheatreOfBloodConfig extends Config
 			keyName = "sotetsegMazeTileColor",
 			name = "Maze tile markers",
 			description = "Color of Sotetseg's red maze tile markers",
-			position = 14,
+			position = 15,
 			group = "Sotetseg"
 	)
 	default Color getSotetsegMazeTileColor()
@@ -211,7 +223,7 @@ public interface TheatreOfBloodConfig extends Config
 			keyName = "highlightXarpusPoisonAttackTiles",
 			name = "Highlight poison attack tiles",
 			description = "Highlight the tiles for Xarpus poison attacks",
-			position = 15,
+			position = 16,
 			group = "Xarpus"
 	)
 	default boolean highlightXarpusPoisonAttackTiles()
@@ -219,12 +231,11 @@ public interface TheatreOfBloodConfig extends Config
 		return true;
 	}
 
-
 	@ConfigItem(
 			keyName = "xarpusPoisonAttackColor",
 			name = "Poison attack marker",
 			description = "Color of Xarpus poison attack marker",
-			position = 16,
+			position = 17,
 			group = "Xarpus"
 	)
 	default Color getXarpusPoisonAttackColor()
@@ -236,7 +247,7 @@ public interface TheatreOfBloodConfig extends Config
 			keyName = "highlightXarpusHealingPoolTiles",
 			name = "Highlight healing pool tiles",
 			description = "Highlight the healing pool tiles during the Xarpus encounter",
-			position = 17,
+			position = 18,
 			group = "Xarpus"
 	)
 	default boolean highlightXarpusHealingPoolTiles()
@@ -249,7 +260,7 @@ public interface TheatreOfBloodConfig extends Config
 			keyName = "xarpusHealingPoolColor",
 			name = "Healing pool marker",
 			description = "Color of Xarpus healing pool marker",
-			position = 18,
+			position = 19,
 			group = "Xarpus"
 	)
 	default Color getXarpusHealingPoolColor()
@@ -258,10 +269,22 @@ public interface TheatreOfBloodConfig extends Config
 	}
 
 	@ConfigItem(
+			keyName = "displayXarpusTurnTimer",
+			name = "Xarpus turn timer",
+			description = "Displays a timer until Xarpus next turn",
+			position = 20,
+			group = "Xarpus"
+	)
+	default boolean displayXarpusTurnTimer()
+	{
+		return true;
+	}
+
+	@ConfigItem(
 			keyName = "highlightVerzikGreenOrbPoolTiles",
 			name = "Highlight green orb pool tiles",
 			description = "Highlight the tiles for Verzik's green orb pools",
-			position = 19,
+			position = 21,
 			group = "Verzik Vitur"
 	)
 	default boolean highlightVerzikGreenOrbPoolTiles()
@@ -274,7 +297,7 @@ public interface TheatreOfBloodConfig extends Config
 			keyName = "verzikGreenOrbPoolColor",
 			name = "Green orb pool marker",
 			description = "Color of Verzik's green orb pool marker",
-			position = 20,
+			position = 22,
 			group = "Verzik Vitur"
 	)
 	default Color getVerzikGreenOrbPoolColor()
@@ -286,7 +309,7 @@ public interface TheatreOfBloodConfig extends Config
 			keyName = "showDebugOverlay",
 			name = "Display debug overlay",
 			description = "Displays Theatre of Blood debug overlay. This contains variables that the plugin uses to function",
-			position = 21
+			position = 23
 	)
 	default boolean showDebugOverlay()
 	{

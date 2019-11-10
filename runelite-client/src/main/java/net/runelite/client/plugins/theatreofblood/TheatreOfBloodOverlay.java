@@ -36,6 +36,8 @@ import net.runelite.client.ui.overlay.OverlayUtil;
 
 import javax.inject.Inject;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Slf4j
 public class TheatreOfBloodOverlay extends Overlay
@@ -108,6 +110,11 @@ public class TheatreOfBloodOverlay extends Overlay
 					renderXarpusHealingPoolTileObjects(graphics, (Xarpus) encounter);
 				}
 
+				if (config.displayXarpusTurnTimer() && encounter.getEncounter() == TheatreOfBloodEncounters.XARPUS)
+				{
+					renderXarpusTurnTimerText(graphics, (Xarpus) encounter);
+				}
+
 				// Verzik Vitur
 				if (config.highlightVerzikGreenOrbPoolTiles() && encounter.getEncounter() == TheatreOfBloodEncounters.VERZIK_VITUR)
 				{
@@ -118,6 +125,10 @@ public class TheatreOfBloodOverlay extends Overlay
 			if (config.highlightAggressiveNylocas() && encounter.getEncounter() == TheatreOfBloodEncounters.NYLOCAS)
 			{
 				renderAggressiveNylocasHighlights(graphics, (Nylocas) encounter);
+			}
+			if (config.displayNylocasLifeTimerText() && encounter.getEncounter() == TheatreOfBloodEncounters.NYLOCAS)
+			{
+				renderNylocasLifeTimerText(graphics, (Nylocas) encounter);
 			}
 		}
 		return null;
@@ -231,6 +242,33 @@ public class TheatreOfBloodOverlay extends Overlay
 		}
 	}
 
+	private void renderNylocasLifeTimerText(Graphics2D graphics, Nylocas nylocas)
+	{
+		if (nylocas.getAliveNylocas() == null)
+		{
+			return;
+		}
+
+		for (NPC aliveNylocas : new ArrayList<>(nylocas.getAliveNylocas().keySet()))
+		{
+			List<Integer> timers = nylocas.getAliveNylocas().get(aliveNylocas);
+
+			//if (timers.get(2) < 500)
+			//{
+				int remainingDuration = timers.get(2) / 5;
+				String text = Math.abs(remainingDuration / 10) + "." + (Math.abs(remainingDuration) % 10);
+
+				Point textLocation = aliveNylocas.getCanvasTextLocation(graphics, text, 0);
+				if (textLocation == null)
+				{
+					return;
+				}
+
+				OverlayUtil.renderTextLocation(graphics, textLocation, text, Color.WHITE);
+			//}
+		}
+	}
+
 	private void renderSotetsegMazeTiles(Graphics2D graphics, Sotetseg sotetseg)
 	{
 		if (sotetseg.getActiveMazeTiles() == null)
@@ -282,6 +320,25 @@ public class TheatreOfBloodOverlay extends Overlay
 				}
 			}
 		}
+	}
+
+	private void renderXarpusTurnTimerText(Graphics2D graphics, Xarpus xarpus)
+	{
+		if (xarpus.getRemainingTurnTime() <= 0)
+		{
+			return;
+		}
+
+		int remainingDuration = xarpus.getRemainingTurnTime() / 5;
+		String text = Math.abs(remainingDuration / 10) + "." + (Math.abs(remainingDuration) % 10);
+
+		Point textLocation = xarpus.getNpc().getCanvasTextLocation(graphics, text, 0);
+		if (textLocation == null)
+		{
+			return;
+		}
+
+		OverlayUtil.renderTextLocation(graphics, textLocation, text, Color.WHITE);
 	}
 
 	private void renderVerzikGreenOrbPoolAoeEffects(Graphics2D graphics, Verzik verzik)
