@@ -92,10 +92,10 @@ public class TheatreOfBloodOverlay extends Overlay
 				}
 
 				// Sotetseg
-//				if (config.highlightSotetsegRedMazeTiles() && encounter.getEncounter() == TheatreOfBloodEncounters.SOTETSEG)
-//				{
-//					renderSotetsegMazeTiles(graphics, (Sotetseg) encounter);
-//				}
+				if (config.highlightSotetsegRedMazeTiles() && encounter.getEncounter() == TheatreOfBloodEncounters.SOTETSEG)
+				{
+					renderSotetsegMazeTiles(graphics, (Sotetseg) encounter);
+				}
 
 				// Xarpus
 				if (config.highlightXarpusPoisonAttackTiles() && encounter.getEncounter() == TheatreOfBloodEncounters.XARPUS)
@@ -231,24 +231,24 @@ public class TheatreOfBloodOverlay extends Overlay
 		}
 	}
 
-//	private void renderSotetsegMazeTiles(Graphics2D graphics, Sotetseg sotetseg)
-//	{
-//		if (sotetseg.getActiveMazeTiles() == null)
-//		{
-//			return;
-//		}
-//
-//		for (GroundObject groundObject : sotetseg.getActiveMazeTiles())
-//		{
-//			LocalPoint localPoint = groundObject.getLocalLocation();
-//			Polygon polygon = Perspective.getCanvasTilePoly(client, localPoint);
-//
-//			if (polygon != null)
-//			{
-//				OverlayUtil.renderPolygon(graphics, polygon, config.getSotetsegMazeTileColor());
-//			}
-//		}
-//	}
+	private void renderSotetsegMazeTiles(Graphics2D graphics, Sotetseg sotetseg)
+	{
+		if (sotetseg.getActiveMazeTiles() == null)
+		{
+			return;
+		}
+
+		for (GroundObject groundObject : sotetseg.getActiveMazeTiles())
+		{
+			LocalPoint localPoint = groundObject.getLocalLocation();
+			Polygon polygon = Perspective.getCanvasTilePoly(client, localPoint);
+
+			if (polygon != null)
+			{
+				OverlayUtil.renderPolygon(graphics, polygon, config.getSotetsegMazeTileColor());
+			}
+		}
+	}
 
 	private void renderXarpusPoisonTileObjects(Graphics2D graphics, Xarpus xarpus)
 	{

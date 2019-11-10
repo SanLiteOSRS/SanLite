@@ -25,27 +25,27 @@
 package net.runelite.client.plugins.theatreofblood.encounters;
 
 import lombok.Getter;
+import lombok.Setter;
 import net.runelite.api.GroundObject;
 import net.runelite.api.ObjectID;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class Sotetseg extends TheatreOfBloodEncounter
 {
 	private List<GroundObject> activeMazeTiles;
 
 	@Getter
+	@Setter
 	private boolean isMazeActive;
 
 	public Sotetseg(TheatreOfBloodEncounters encounter)
 	{
 		super(encounter);
-	}
-
-	private boolean isMazeActive(GroundObject groundObject, boolean isDespawnedObject)
-	{
-		return groundObject.getId() == ObjectID.TILE_33034 && !isDespawnedObject;
 	}
 
 	private boolean isActiveMazeTileObject(int objectId)
@@ -65,20 +65,20 @@ public class Sotetseg extends TheatreOfBloodEncounter
 	{
 		if (activeMazeTiles == null)
 		{
+			log.debug("initialising array");
 			activeMazeTiles = new ArrayList<>();
-			isMazeActive = true;
 		}
 	}
 
 	/**
 	 * Resets the active maze tiles list
 	 */
-	private void resetMaze()
+	public void resetMaze()
 	{
 		if (activeMazeTiles != null)
 		{
+			log.debug("resetting array");
 			activeMazeTiles = null;
-			isMazeActive = false;
 		}
 	}
 
@@ -91,27 +91,28 @@ public class Sotetseg extends TheatreOfBloodEncounter
 	 * Activates/deactivates the Sotetseg maze and adds red maze tiles to the active maze tiles list
 	 *
 	 * @param groundObject      ground object that triggered the function call
-	 * @param isDespawnedObject if the game object despawned
 	 */
-	public void checkMazeTile(GroundObject groundObject, boolean isDespawnedObject)
+	public void checkMazeTile(GroundObject groundObject)
 	{
 		if (!isActiveMazeTileObject(groundObject.getId()) && !isRedMazeTileObject(groundObject.getId()))
 		{
+			log.debug("Tile already highlighted");
 			return;
 		}
-		if (isMazeActive(groundObject, isDespawnedObject) || getActiveMazeTiles() != null)
+
+		if (isMazeActive)
 		{
 			if (getActiveMazeTiles() == null)
 			{
 				activateMaze();
 			}
-
-			if (isRedMazeTileObject(groundObject.getId()))
+			if (isRedMazeTileObject(groundObject.getId()) && !getActiveMazeTiles().contains(groundObject))
 			{
+				log.debug("Adding tile");
 				getActiveMazeTiles().add(groundObject);
 			}
 		}
-		else if (!isMazeActive(groundObject, isDespawnedObject) && getActiveMazeTiles() != null)
+		else
 		{
 			resetMaze();
 		}

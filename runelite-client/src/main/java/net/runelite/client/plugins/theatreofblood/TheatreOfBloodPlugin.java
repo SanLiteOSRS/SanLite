@@ -43,6 +43,9 @@ import javax.inject.Inject;
 import java.util.Arrays;
 import java.util.regex.Pattern;
 
+import static net.runelite.api.Varbits.TOB_ENCOUNTER_STATE;
+
+
 @Slf4j
 @PluginDescriptor(
 		name = "Theatre of Blood",
@@ -225,9 +228,9 @@ public class TheatreOfBloodPlugin extends Plugin
 		final GroundObject object = event.getGroundObject();
 		switch (currentEncounter.getEncounter())
 		{
-//			case SOTETSEG:
-//				currentEncounter.castToSotetseg().checkMazeTile(object, false);
-//				break;
+			case SOTETSEG:
+				currentEncounter.castToSotetseg().checkMazeTile(object);
+				break;
 			case XARPUS:
 				currentEncounter.castToXarpus().addGroundObject(object);
 				break;
@@ -250,9 +253,9 @@ public class TheatreOfBloodPlugin extends Plugin
 		final GroundObject object = event.getGroundObject();
 		switch (currentEncounter.getEncounter())
 		{
-//			case SOTETSEG:
-//				currentEncounter.castToSotetseg().checkMazeTile(object, true);
-//				break;
+			case SOTETSEG:
+				currentEncounter.castToSotetseg().checkMazeTile(object);
+				break;
 			case XARPUS:
 				currentEncounter.castToXarpus().removeGroundObject(object);
 				break;
@@ -437,6 +440,35 @@ public class TheatreOfBloodPlugin extends Plugin
 					break;
 				case NYLOCAS:
 					currentEncounter.castToNylocas().checkNylocasAggressiveNpcs(client.getNpcs(), client.getPlayers());
+					break;
+			}
+		}
+	}
+
+	@Subscribe
+	protected void onVarbitChanged(VarbitChanged varbitChanged)
+	{
+		if (client.isInInstancedRegion())
+		{
+			switch (currentEncounter.getEncounter())
+			{
+				case SOTETSEG:
+					if (varbitChanged.getIndex() == 1745)
+					{
+						if (client.getVar(TOB_ENCOUNTER_STATE) == 2)
+						{
+							log.debug("maze true");
+							currentEncounter.castToSotetseg().setMazeActive(true);
+						}
+						else if (client.getVar(TOB_ENCOUNTER_STATE) == 1)
+						{
+							log.debug("maze false");
+							currentEncounter.castToSotetseg().setMazeActive(false);
+							currentEncounter.castToSotetseg().resetMaze();
+						}
+					}
+					break;
+				default:
 					break;
 			}
 		}

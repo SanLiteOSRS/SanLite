@@ -182,30 +182,30 @@ public interface TheatreOfBloodConfig extends Config
 		return Color.RED;
 	}
 
-//	@ConfigItem(
-//			keyName = "highlightSotetsegRedMazeTiles",
-//			name = "Highlight red maze tiles",
-//			description = "Highlight the red tiles during Sotetseg's maze",
-//			position = 13,
-//			group = "Sotetseg"
-//	)
-//	default boolean highlightSotetsegRedMazeTiles()
-//	{
-//		return true;
-//	}
-//
-//
-//	@ConfigItem(
-//			keyName = "sotetsegMazeTileColor",
-//			name = "Maze tile markers",
-//			description = "Color of Sotetseg's red maze tile markers",
-//			position = 14,
-//			group = "Sotetseg"
-//	)
-//	default Color getSotetsegMazeTileColor()
-//	{
-//		return new Color(155, 0, 35);
-//	}
+	@ConfigItem(
+			keyName = "highlightSotetsegRedMazeTiles",
+			name = "Highlight red maze tiles",
+			description = "Highlight the red tiles during Sotetseg's maze",
+			position = 13,
+			group = "Sotetseg"
+	)
+	default boolean highlightSotetsegRedMazeTiles()
+	{
+		return true;
+	}
+
+
+	@ConfigItem(
+			keyName = "sotetsegMazeTileColor",
+			name = "Maze tile markers",
+			description = "Color of Sotetseg's red maze tile markers",
+			position = 14,
+			group = "Sotetseg"
+	)
+	default Color getSotetsegMazeTileColor()
+	{
+		return new Color(155, 0, 35);
+	}
 
 	@ConfigItem(
 			keyName = "highlightXarpusPoisonAttackTiles",
