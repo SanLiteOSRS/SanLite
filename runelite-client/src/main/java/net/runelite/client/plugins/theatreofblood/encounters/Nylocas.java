@@ -42,6 +42,9 @@ public class Nylocas extends TheatreOfBloodEncounter
 	@Getter
 	private HashMap<NPC, List<Integer>> aliveNylocas;
 
+	@Getter
+	private List<Integer> debuglist;
+
 	private final int NYLOCAS_LIFE_LENGTH = 31200;
 
 	public Nylocas(TheatreOfBloodEncounters encounter)
@@ -49,6 +52,7 @@ public class Nylocas extends TheatreOfBloodEncounter
 		super(encounter);
 		highlightedNylocasNpcs = new ArrayList<>();
 		aliveNylocas = new HashMap<>();
+		debuglist = new ArrayList<>();
 	}
 
 	public static boolean isNylocasNpc(int npcId)
@@ -97,9 +101,9 @@ public class Nylocas extends TheatreOfBloodEncounter
 		//spawn time
 		timers.add(clientTick);
 		//explode time
-		timers.add(clientTick + NYLOCAS_LIFE_LENGTH);
+		timers.add(clientTick + (NYLOCAS_LIFE_LENGTH / Constants.CLIENT_TICK_LENGTH));
 		//time till explode
-		timers.add(NYLOCAS_LIFE_LENGTH / Constants.CLIENT_TICK_LENGTH);
+		timers.add(timers.get(1) - timers.get(0));
 
 		aliveNylocas.put(npc, timers);
 	}

@@ -253,8 +253,8 @@ public class TheatreOfBloodOverlay extends Overlay
 		{
 			List<Integer> timers = nylocas.getAliveNylocas().get(aliveNylocas);
 
-			//if (timers.get(2) < 500)
-			//{
+			if (timers.get(2) < (500 / Constants.CLIENT_TICK_LENGTH))
+			{
 				int remainingDuration = timers.get(2) / 5;
 				String text = Math.abs(remainingDuration / 10) + "." + (Math.abs(remainingDuration) % 10);
 
@@ -265,7 +265,7 @@ public class TheatreOfBloodOverlay extends Overlay
 				}
 
 				OverlayUtil.renderTextLocation(graphics, textLocation, text, Color.WHITE);
-			//}
+			}
 		}
 	}
 
