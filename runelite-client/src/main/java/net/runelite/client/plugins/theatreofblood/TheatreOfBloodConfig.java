@@ -255,7 +255,6 @@ public interface TheatreOfBloodConfig extends Config
 		return true;
 	}
 
-
 	@ConfigItem(
 			keyName = "xarpusHealingPoolColor",
 			name = "Healing pool marker",
@@ -281,10 +280,46 @@ public interface TheatreOfBloodConfig extends Config
 	}
 
 	@ConfigItem(
+			keyName = "displayP1AttackTimerText",
+			name = "Display Phase 1 Attack Timer",
+			description = "Displays a timer showing when verzik's next attack is on phase 1",
+			position = 21,
+			group = "Verzik Vitur"
+	)
+	default boolean displayP1AttackTimerText()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+			keyName = "displayP2AttackTimerText",
+			name = "Display Phase 2 Attack Timer",
+			description = "Displays a timer showing when verzik's next attack is on phase 2",
+			position = 22,
+			group = "Verzik Vitur"
+	)
+	default boolean displayP2AttackTimerText()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+			keyName = "displayP3AttackTimerText",
+			name = "Display Phase 3 Attack Timer",
+			description = "Displays a timer showing when verzik's next attack is on phase 3",
+			position = 23,
+			group = "Verzik Vitur"
+	)
+	default boolean displayP3AttackTimerText()
+	{
+		return true;
+	}
+
+	@ConfigItem(
 			keyName = "highlightVerzikGreenOrbPoolTiles",
 			name = "Highlight green orb pool tiles",
 			description = "Highlight the tiles for Verzik's green orb pools",
-			position = 21,
+			position = 24,
 			group = "Verzik Vitur"
 	)
 	default boolean highlightVerzikGreenOrbPoolTiles()
@@ -292,12 +327,11 @@ public interface TheatreOfBloodConfig extends Config
 		return true;
 	}
 
-
 	@ConfigItem(
 			keyName = "verzikGreenOrbPoolColor",
 			name = "Green orb pool marker",
 			description = "Color of Verzik's green orb pool marker",
-			position = 22,
+			position = 25,
 			group = "Verzik Vitur"
 	)
 	default Color getVerzikGreenOrbPoolColor()
@@ -309,7 +343,7 @@ public interface TheatreOfBloodConfig extends Config
 			keyName = "showDebugOverlay",
 			name = "Display debug overlay",
 			description = "Displays Theatre of Blood debug overlay. This contains variables that the plugin uses to function",
-			position = 23
+			position = 26
 	)
 	default boolean showDebugOverlay()
 	{

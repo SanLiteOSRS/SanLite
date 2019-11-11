@@ -120,6 +120,18 @@ public class TheatreOfBloodOverlay extends Overlay
 				{
 					renderVerzikGreenOrbPoolAoeEffects(graphics, (Verzik) encounter);
 				}
+				if (config.displayP1AttackTimerText() && encounter.getEncounter() == TheatreOfBloodEncounters.VERZIK_VITUR && encounter.castToVerzik().getVerzikPhase() == 1)
+				{
+					renderVerzikAttackTimerText(graphics, (Verzik) encounter);
+				}
+				if (config.displayP2AttackTimerText() && encounter.getEncounter() == TheatreOfBloodEncounters.VERZIK_VITUR && encounter.castToVerzik().getVerzikPhase() == 2)
+				{
+					renderVerzikAttackTimerText(graphics, (Verzik) encounter);
+				}
+				if (config.displayP3AttackTimerText() && encounter.getEncounter() == TheatreOfBloodEncounters.VERZIK_VITUR && encounter.castToVerzik().getVerzikPhase() >= 3)
+				{
+					renderVerzikAttackTimerText(graphics, (Verzik) encounter);
+				}
 			}
 			// Nylocas - does not always have a boss npc
 			if (config.highlightAggressiveNylocas() && encounter.getEncounter() == TheatreOfBloodEncounters.NYLOCAS)
@@ -253,7 +265,7 @@ public class TheatreOfBloodOverlay extends Overlay
 		{
 			List<Integer> timers = nylocas.getAliveNylocas().get(aliveNylocas);
 
-			if (timers.get(2) < (500 / Constants.CLIENT_TICK_LENGTH))
+			if (timers.get(2) < (5000 / Constants.CLIENT_TICK_LENGTH))
 			{
 				int remainingDuration = timers.get(2) / 5;
 				String text = Math.abs(remainingDuration / 10) + "." + (Math.abs(remainingDuration) % 10);
@@ -333,6 +345,25 @@ public class TheatreOfBloodOverlay extends Overlay
 		String text = Math.abs(remainingDuration / 10) + "." + (Math.abs(remainingDuration) % 10);
 
 		Point textLocation = xarpus.getNpc().getCanvasTextLocation(graphics, text, 0);
+		if (textLocation == null)
+		{
+			return;
+		}
+
+		OverlayUtil.renderTextLocation(graphics, textLocation, text, Color.WHITE);
+	}
+
+	private void renderVerzikAttackTimerText(Graphics2D graphics, Verzik verzik)
+	{
+		if (verzik.getPhaseTimeTillNextAttack() < 0)
+		{
+			return;
+		}
+
+		int remainingDuration = verzik.getPhaseTimeTillNextAttack() / 5;
+		String text = Math.abs(remainingDuration / 10) + "." + (Math.abs(remainingDuration) % 10);
+
+		Point textLocation = verzik.getNpc().getCanvasTextLocation(graphics, text, 0);
 		if (textLocation == null)
 		{
 			return;

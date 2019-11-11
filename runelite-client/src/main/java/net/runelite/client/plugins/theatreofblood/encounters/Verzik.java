@@ -24,17 +24,51 @@
  */
 package net.runelite.client.plugins.theatreofblood.encounters;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
+import net.runelite.api.Constants;
 import net.runelite.api.GraphicID;
 import net.runelite.api.GraphicsObject;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 public class Verzik extends TheatreOfBloodEncounter
 {
+	//P4 = Below 20% HP P3, attack speed increases
+	private final int TIME_TILL_P1_START = 10200;
+	private final int TIME_TILL_P2_START = 8400;
+	private final int TIME_TILL_P3_START = 3600;
+	private final int P1_ATTACK_SPEED = 8400;
+	private final int P2_ATTACK_SPEED = 2400;
+	private final int P3_ATTACK_SPEED = 4200;
+	private final int P4_ATTACK_SPEED = 3000;
+
+	@Setter
+	@Getter
+	int verzikPhase;
+
+	@Getter
+	private int phaseStartTime;
+
+	@Getter
+	private int phaseLastAttack;
+
+	@Getter
+	private int phaseNextAttack;
+
+	@Getter
+	private int phaseTimeTillNextAttack;
+
 	public Verzik(TheatreOfBloodEncounters encounter)
 	{
 		super(encounter);
+		phaseStartTime = -1;
+		phaseLastAttack = -1;
+		phaseTimeTillNextAttack = -1;
+		verzikPhase = 0;
 	}
 
 	public boolean isGreenOrbPool(int graphicsObjectId)
@@ -53,5 +87,75 @@ public class Verzik extends TheatreOfBloodEncounter
 				clientGraphicObjects.stream()
 						.filter(x -> isGreenOrbPool(x.getId()))
 						.collect(Collectors.toList()));
+	}
+
+	public void checkAttackTimer(int clientTick)
+	{
+		int attackSpeed = 0;
+		switch (verzikPhase)
+		{
+			case 0:
+				log.debug("Verzik phase not set");
+				break;
+			case 1:
+				attackSpeed = (P1_ATTACK_SPEED / Constants.CLIENT_TICK_LENGTH);
+				break;
+			case 2:
+				attackSpeed = (P2_ATTACK_SPEED / Constants.CLIENT_TICK_LENGTH);
+				break;
+			case 3:
+				attackSpeed = (P3_ATTACK_SPEED / Constants.CLIENT_TICK_LENGTH);
+				break;
+			case 4:
+				attackSpeed = (P4_ATTACK_SPEED / Constants.CLIENT_TICK_LENGTH);
+				break;
+		}
+
+		if ((phaseStartTime - attackSpeed) >= clientTick && phaseStartTime != -1)
+		{
+			phaseLastAttack = clientTick;
+			phaseNextAttack = clientTick + attackSpeed;
+			phaseTimeTillNextAttack = phaseNextAttack = phaseLastAttack;
+			phaseStartTime = -1;
+		}
+
+		if (phaseTimeTillNextAttack <= 0)
+		{
+			phaseLastAttack = clientTick;
+			phaseNextAttack = clientTick + attackSpeed;
+			phaseTimeTillNextAttack = phaseNextAttack = phaseLastAttack;
+		}
+		else
+		{
+			phaseTimeTillNextAttack = phaseNextAttack - clientTick;
+		}
+	}
+
+	public String getOverheadText()
+	{
+		return getNpc().getOverheadText();
+	}
+
+	public void setPhaseStartTime(int clientTick)
+	{
+		phaseStartTime = clientTick;
+		switch (verzikPhase)
+		{
+			case 0:
+				log.debug("Verzik phase not set");
+				break;
+			case 1:
+				phaseStartTime += (TIME_TILL_P1_START / Constants.CLIENT_TICK_LENGTH);
+				break;
+			case 2:
+				phaseStartTime += (TIME_TILL_P2_START / Constants.CLIENT_TICK_LENGTH);
+				break;
+			case 3:
+				phaseStartTime += (TIME_TILL_P3_START / Constants.CLIENT_TICK_LENGTH);
+				break;
+			default:
+				break;
+
+		}
 	}
 }

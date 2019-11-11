@@ -25,10 +25,7 @@
 package net.runelite.client.plugins.theatreofblood;
 
 import net.runelite.api.Client;
-import net.runelite.client.plugins.theatreofblood.encounters.Nylocas;
-import net.runelite.client.plugins.theatreofblood.encounters.PestilentBloat;
-import net.runelite.client.plugins.theatreofblood.encounters.Sotetseg;
-import net.runelite.client.plugins.theatreofblood.encounters.Xarpus;
+import net.runelite.client.plugins.theatreofblood.encounters.*;
 import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayPosition;
 import net.runelite.client.ui.overlay.components.LineComponent;
@@ -146,6 +143,41 @@ public class TheatreOfBloodDebugOverlay extends Overlay
 					panelComponent.getChildren().add(LineComponent.builder()
 							.left("Remaining time")
 							.right("" + xarpus.getRemainingTurnTime())
+							.build());
+					panelComponent.getChildren().add(LineComponent.builder()
+							.left("Client Tick")
+							.right("" + client.getGameCycle())
+							.build());
+					break;
+				case VERZIK_VITUR:
+					Verzik verzik = (Verzik) plugin.getCurrentEncounter();
+					panelComponent.getChildren().add(LineComponent.builder()
+							.left("Spot Animation ID")
+							.right("" + verzik.getNpc().getSpotAnimation())
+							.build());
+					panelComponent.getChildren().add(LineComponent.builder()
+							.left("Animation ID")
+							.right("" + verzik.getNpc().getAnimation())
+							.build());
+					panelComponent.getChildren().add(LineComponent.builder()
+							.left("Overhead Text")
+							.right("" + verzik.getNpc().getOverheadText())
+							.build());
+					panelComponent.getChildren().add(LineComponent.builder()
+							.left("Phase")
+							.right("" + verzik.getVerzikPhase())
+							.build());
+					panelComponent.getChildren().add(LineComponent.builder()
+							.left("Phase Last Attack")
+							.right("" + verzik.getPhaseLastAttack())
+							.build());
+					panelComponent.getChildren().add(LineComponent.builder()
+							.left("Phase Next Attack")
+							.right("" + verzik.getPhaseNextAttack())
+							.build());
+					panelComponent.getChildren().add(LineComponent.builder()
+							.left("Phase Time till next Attack")
+							.right("" + verzik.getPhaseTimeTillNextAttack())
 							.build());
 					panelComponent.getChildren().add(LineComponent.builder()
 							.left("Client Tick")

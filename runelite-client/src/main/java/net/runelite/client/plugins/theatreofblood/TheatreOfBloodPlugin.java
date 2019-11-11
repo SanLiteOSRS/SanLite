@@ -458,6 +458,12 @@ public class TheatreOfBloodPlugin extends Plugin
 						currentEncounter.castToXarpus().checkTurnTimer(client.getGameCycle());
 					}
 					break;
+				case VERZIK_VITUR:
+					if (currentEncounter.castToVerzik().getVerzikPhase() != 0)
+					{
+						currentEncounter.castToVerzik().checkAttackTimer(client.getGameCycle());
+					}
+					break;
 			}
 		}
 	}
@@ -504,6 +510,51 @@ public class TheatreOfBloodPlugin extends Plugin
 						log.debug("Is staring set to true");
 						currentEncounter.castToXarpus().setIsStaring(true);
 						currentEncounter.castToXarpus().setLastTurnTime(client.getGameCycle());
+					}
+					break;
+				case VERZIK_VITUR:
+					if (currentEncounter.castToVerzik().getOverheadText() != null)
+					{
+						if (currentEncounter.castToVerzik().getOverheadText().equals("You think you can defeat me?") && currentEncounter.castToVerzik().getVerzikPhase() != 2)
+						{
+							log.debug("P2 Starting");
+							currentEncounter.castToVerzik().setVerzikPhase(2);
+							currentEncounter.castToVerzik().setPhaseStartTime(client.getGameCycle());
+						}
+						if (currentEncounter.castToVerzik().getOverheadText().equals("Behold my true nature!") && currentEncounter.castToVerzik().getVerzikPhase() != 3)
+						{
+							log.debug("P3 Starting");
+							currentEncounter.castToVerzik().setVerzikPhase(3);
+							currentEncounter.castToVerzik().setPhaseStartTime(client.getGameCycle());
+						}
+						if (currentEncounter.castToVerzik().getOverheadText().equals("I'm not finished with you just yet!") && currentEncounter.castToVerzik().getVerzikPhase() != 4)
+						{
+							//P4 = Below 20% HP P3, attack speed increases
+							log.debug("P4 Starting");
+							currentEncounter.castToVerzik().setVerzikPhase(4);
+							currentEncounter.castToVerzik().setPhaseStartTime(client.getGameCycle());
+						}
+					}
+					break;
+				default:
+					break;
+			}
+		}
+	}
+
+	@Subscribe
+	protected void onAnimationChanged(AnimationChanged animationChanged)
+	{
+		if (client.isInInstancedRegion() && currentEncounter != null && currentEncounter.getEncounter() != null)
+		{
+			switch (currentEncounter.getEncounter())
+			{
+				case VERZIK_VITUR:
+					if (animationChanged.getActor().getAnimation() == 8110 && currentEncounter.castToVerzik().getVerzikPhase() != 1)
+					{
+						log.debug("P1 Starting");
+						currentEncounter.castToVerzik().setVerzikPhase(1);
+						currentEncounter.castToVerzik().setPhaseStartTime(client.getGameCycle());
 					}
 					break;
 				default:
