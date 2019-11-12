@@ -164,6 +164,10 @@ public class TheatreOfBloodDebugOverlay extends Overlay
 							.right("" + verzik.getNpc().getOverheadText())
 							.build());
 					panelComponent.getChildren().add(LineComponent.builder()
+							.left("Attack Count")
+							.right("" + verzik.getAttackCount())
+							.build());
+					panelComponent.getChildren().add(LineComponent.builder()
 							.left("Phase")
 							.right("" + verzik.getVerzikPhase())
 							.build());
@@ -178,6 +182,10 @@ public class TheatreOfBloodDebugOverlay extends Overlay
 					panelComponent.getChildren().add(LineComponent.builder()
 							.left("Phase Time till next Attack")
 							.right("" + verzik.getPhaseTimeTillNextAttack())
+							.build());
+					panelComponent.getChildren().add(LineComponent.builder()
+							.left("Phase Start Time")
+							.right("" + verzik.getPhaseStartTime())
 							.build());
 					panelComponent.getChildren().add(LineComponent.builder()
 							.left("Client Tick")

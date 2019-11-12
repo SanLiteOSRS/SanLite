@@ -51,6 +51,10 @@ public class Verzik extends TheatreOfBloodEncounter
 	int verzikPhase;
 
 	@Getter
+	private int attackCount;
+
+	@Getter
+	@Setter
 	private int phaseStartTime;
 
 	@Getter
@@ -69,6 +73,7 @@ public class Verzik extends TheatreOfBloodEncounter
 		phaseLastAttack = -1;
 		phaseTimeTillNextAttack = -1;
 		verzikPhase = 0;
+		attackCount = 0;
 	}
 
 	public boolean isGreenOrbPool(int graphicsObjectId)
@@ -111,19 +116,20 @@ public class Verzik extends TheatreOfBloodEncounter
 				break;
 		}
 
-		if ((phaseStartTime - attackSpeed) >= clientTick && phaseStartTime != -1)
+		if (phaseStartTime != -1)
 		{
 			phaseLastAttack = clientTick;
-			phaseNextAttack = clientTick + attackSpeed;
-			phaseTimeTillNextAttack = phaseNextAttack = phaseLastAttack;
+			phaseNextAttack = phaseStartTime;
+			phaseTimeTillNextAttack = phaseStartTime - phaseLastAttack;
 			phaseStartTime = -1;
 		}
 
 		if (phaseTimeTillNextAttack <= 0)
 		{
+			attackCount++;
 			phaseLastAttack = clientTick;
 			phaseNextAttack = clientTick + attackSpeed;
-			phaseTimeTillNextAttack = phaseNextAttack = phaseLastAttack;
+			phaseTimeTillNextAttack = phaseNextAttack + phaseLastAttack;
 		}
 		else
 		{
