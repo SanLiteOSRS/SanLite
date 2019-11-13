@@ -157,7 +157,6 @@ public class WidgetID
 	public static final int SEED_VAULT_GROUP_ID = 631;
 	public static final int EXPLORERS_RING_ALCH_GROUP_ID = 483;
 	public static final int OPTIONS_GROUP_ID = 261;
-	public static final int TRADING_SCREEN = 335;
 
 	static class WorldMap
 	{
