@@ -35,7 +35,7 @@ import net.runelite.api.GameState;
 import net.runelite.api.HealthBar;
 import net.runelite.api.SpriteID;
 import net.runelite.api.Sprite;
-import net.runelite.api.events.BeforeMenuRender;
+//import net.runelite.api.events.BeforeMenuRender;
 import net.runelite.api.events.ClientTick;
 import net.runelite.api.events.ConfigChanged;
 import net.runelite.api.events.GameStateChanged;
@@ -158,15 +158,16 @@ public class InterfaceStylesPlugin extends Plugin
 		overrideCrossSprites();
 	}
 
-	@Subscribe
-	public void onBeforeMenuRender(BeforeMenuRender event)
-	{
-		if (config.hdMenu())
-		{
-			client.draw2010Menu();
-			event.consume();
-		}
-	}
+	// TODO: Re-enable this event when the draw menu injection is fixed
+//	@Subscribe
+//	public void onBeforeMenuRender(BeforeMenuRender event)
+//	{
+//		if (config.hdMenu())
+//		{
+//			client.draw2010Menu();
+//			event.consume();
+//		}
+//	}
 
 	private void overrideSprites()
 	{

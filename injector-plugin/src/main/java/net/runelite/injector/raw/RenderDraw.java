@@ -65,11 +65,7 @@ public class RenderDraw
 			}
 		}
 
-		if (count < 21)
-		{
-			throw new InjectionException("Not all renderDraws were found");
-		}
-		else if (count != 21)
+		if (count != 21)
 		{
 			log.warn("Found {} draws while 21 were expected. There might've been a revision update", count);
 		}
@@ -77,6 +73,12 @@ public class RenderDraw
 		{
 			log.info("RenderDraw replaced {} method calls", count);
 		}
+
+		if (count < 21)
+		{
+			throw new InjectionException("Not all renderDraws were found");
+		}
+
 
 		for (Instruction i : insList)
 		{

@@ -36,7 +36,8 @@ public interface BarrowsConfig extends Config
 		keyName = "showMinimap",
 		name = "Show Minimap in tunnels",
 		description = "Configures whether or not the minimap is displayed",
-		position = 0
+		position = 0,
+		group = "Use at own risk"
 	)
 	default boolean showMinimap()
 	{

@@ -1,10 +1,39 @@
+/*
+ * Copyright (c) 2019, Jajack
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ * 1. Redistributions of source code must retain the above copyright notice, this
+ *    list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright notice,
+ *    this list of conditions and the following disclaimer in the documentation
+ *    and/or other materials provided with the distribution.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+ * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
 package net.runelite.client.plugins.clancallerindicators;
 
 import com.google.inject.Provides;
+import com.google.inject.Singleton;
+import lombok.Getter;
 import net.runelite.api.Client;
 import net.runelite.api.MenuEntry;
 import net.runelite.api.Player;
+import net.runelite.api.events.ConfigChanged;
+import net.runelite.api.events.GameTick;
 import net.runelite.api.events.MenuEntryAdded;
+import net.runelite.api.events.PlayerDespawned;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.plugins.Plugin;
@@ -12,9 +41,12 @@ import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.plugins.PluginType;
 import net.runelite.client.ui.overlay.OverlayManager;
 import net.runelite.client.util.ColorUtil;
+import net.runelite.client.util.Text;
 
 import javax.inject.Inject;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import static net.runelite.api.MenuAction.*;
 
@@ -23,9 +55,10 @@ import static net.runelite.api.MenuAction.*;
 		description = "Highlight players that your clans caller is hitting",
 		tags = {"highlight", "minimap", "overlay", "players", "clan", "caller", "pile", "rsb", "rsc"},
 		enabledByDefault = false,
-		type = PluginType.SANLITE
+		type = PluginType.SANLITE_USE_AT_OWN_RISK
 )
 
+@Singleton
 public class ClanCallerPlugin extends Plugin
 {
 	@Inject
@@ -46,8 +79,13 @@ public class ClanCallerPlugin extends Plugin
 	@Inject
 	private Client client;
 
-	@Inject
-	private ClanCallerService clanCallerService;
+	@Getter
+	private List<Player> callersList = new ArrayList<>();
+
+	@Getter
+	private List<Player> pilesList = new ArrayList<>();
+
+	private List<String> callersListString = new ArrayList<>();
 
 	@Provides
 	ClanCallerConfig provideConfig(ConfigManager configManager)
@@ -61,6 +99,7 @@ public class ClanCallerPlugin extends Plugin
 		overlayManager.add(clanCallerOverlay);
 		overlayManager.add(clanCallerTileOverlay);
 		overlayManager.add(clanCallerMinimapOverlay);
+		getCallerRSNs();
 	}
 
 	@Override
@@ -72,67 +111,134 @@ public class ClanCallerPlugin extends Plugin
 	}
 
 	@Subscribe
+	public void onGameTick(GameTick gameTick)
+	{
+		pilesList.clear();
+		for (Player player : client.getPlayers())
+		{
+			//Checks if player is currently a caller or pile
+			if (!callersList.contains(player.getName()) && !pilesList.contains(player.getName()))
+			{
+				//If it is a clan member, it can only be a caller
+				if (client.isClanMember(player.getName()))
+				{
+					for (String caller : callersListString)
+					{
+						if (caller.equals(player.getName()) && !callersList.contains(player))
+						{
+							callersList.add(player);
+						}
+					}
+				}
+				//If it is not a clan member, it can only be a pile
+				else if (!client.isClanMember(player.getName()))
+				{
+					for (Player caller : callersList)
+					{
+						if (caller.getInteracting() != null)
+						{
+							if (caller.getInteracting().getName().equals(player.getName()))
+							{
+								pilesList.add(player);
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	@Subscribe
+	public void onConfigChanged(ConfigChanged configChanged)
+	{
+		if (configChanged.getGroup().equals("clancallerindicators") && configChanged.getKey().equals("callersRsns"))
+		{
+			callersList.clear();
+			getCallerRSNs();
+		}
+	}
+
+	@Subscribe
+	public void onPlayerDespawned(PlayerDespawned playerDespawned)
+	{
+		if (callersList == null || callersList.isEmpty())
+		{
+			return;
+		}
+
+		callersList.removeIf(x -> x.equals(playerDespawned.getPlayer()));
+	}
+
+	@Subscribe
 	public void onMenuEntryAdded(MenuEntryAdded menuEntryAdded)
 	{
-		int type = menuEntryAdded.getType();
-
-		if (type >= 2000)
+		if (config.colorPlayerMenu())
 		{
-			type -= 2000;
-		}
+			int type = menuEntryAdded.getType();
 
-		int identifier = menuEntryAdded.getIdentifier();
-		if (type == FOLLOW.getId() || type == TRADE.getId()
-				|| type == SPELL_CAST_ON_PLAYER.getId() || type == ITEM_USE_ON_PLAYER.getId()
-				|| type == PLAYER_FIRST_OPTION.getId()
-				|| type == PLAYER_SECOND_OPTION.getId()
-				|| type == PLAYER_THIRD_OPTION.getId()
-				|| type == PLAYER_FOURTH_OPTION.getId()
-				|| type == PLAYER_FIFTH_OPTION.getId()
-				|| type == PLAYER_SIXTH_OPTION.getId()
-				|| type == PLAYER_SEVENTH_OPTION.getId()
-				|| type == PLAYER_EIGTH_OPTION.getId()
-				|| type == RUNELITE.getId())
-		{
-			Player[] players = client.getCachedPlayers();
-			Player player = null;
-
-			if (identifier >= 0 && identifier < players.length)
+			if (type >= 2000)
 			{
-				player = players[identifier];
+				type -= 2000;
 			}
 
-			if (player == null)
+			int identifier = menuEntryAdded.getIdentifier();
+			if (type == FOLLOW.getId() || type == TRADE.getId()
+					|| type == SPELL_CAST_ON_PLAYER.getId() || type == ITEM_USE_ON_PLAYER.getId()
+					|| type == PLAYER_FIRST_OPTION.getId()
+					|| type == PLAYER_SECOND_OPTION.getId()
+					|| type == PLAYER_THIRD_OPTION.getId()
+					|| type == PLAYER_FOURTH_OPTION.getId()
+					|| type == PLAYER_FIFTH_OPTION.getId()
+					|| type == PLAYER_SIXTH_OPTION.getId()
+					|| type == PLAYER_SEVENTH_OPTION.getId()
+					|| type == PLAYER_EIGTH_OPTION.getId()
+					|| type == RUNELITE.getId())
 			{
-				return;
-			}
+				Player[] players = client.getCachedPlayers();
+				Player player = null;
 
-			Color color = null;
-
-			if (config.highlightCallers() && clanCallerService.getPlayerIdentity(player).equals("caller"))
-			{
-				color = config.getCallerColor();
-			}
-			if (config.highlightCallersPile() && clanCallerService.getPlayerIdentity(player).equals("pile"))
-			{
-				color = config.getCallerPileColor();
-			}
-
-			if (color != null && config.colorPlayerMenu())
-			{
-				MenuEntry[] menuEntries = client.getMenuEntries();
-				MenuEntry lastEntry = menuEntries[menuEntries.length - 1];
-				String target = lastEntry.getTarget();
-				int idx = target.indexOf('>');
-
-				if (idx != -1)
+				if (identifier >= 0 && identifier < players.length)
 				{
-					target = target.substring(idx + 1);
+					player = players[identifier];
 				}
 
-				lastEntry.setTarget(ColorUtil.prependColorTag(target, color));
-				client.setMenuEntries(menuEntries);
+				if (player == null)
+				{
+					return;
+				}
+
+				Color color = null;
+
+				if (callersList.contains(player) && config.highlightCallers())
+				{
+					color = config.getCallerColor();
+				}
+				else if (pilesList.contains(player) && config.highlightCallersPile())
+				{
+					color = config.getCallerPileColor();
+				}
+
+				if (color != null)
+				{
+					MenuEntry[] menuEntries = client.getMenuEntries();
+					MenuEntry lastEntry = menuEntries[menuEntries.length - 1];
+					String target = lastEntry.getTarget();
+					int idx = target.indexOf('>');
+
+					if (idx != -1)
+					{
+						target = target.substring(idx + 1);
+					}
+
+					lastEntry.setTarget(ColorUtil.prependColorTag(target, color));
+					client.setMenuEntries(menuEntries);
+				}
 			}
 		}
+	}
+
+	private void getCallerRSNs()
+	{
+		callersListString = Text.fromCSV(config.getCallerRsns());
 	}
 }

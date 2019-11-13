@@ -178,24 +178,6 @@ public abstract class RSActorMixin implements RSActor
 		return Perspective.localToMinimap(client, getLocalLocation());
 	}
 
-	@FieldHook("x")
-	@Inject
-	public void actorPositionXChanged(int idx)
-	{
-		ActorPositionChanged actorPositionChanged = new ActorPositionChanged();
-		actorPositionChanged.setActor(this);
-		client.getCallbacks().post(actorPositionChanged);
-	}
-
-	@FieldHook("y")
-	@Inject
-	public void actorPositionYChanged(int idx)
-	{
-		ActorPositionChanged actorPositionChanged = new ActorPositionChanged();
-		actorPositionChanged.setActor(this);
-		client.getCallbacks().post(actorPositionChanged);
-	}
-
 	@FieldHook("sequence")
 	@Inject
 	public void animationChanged(int idx)

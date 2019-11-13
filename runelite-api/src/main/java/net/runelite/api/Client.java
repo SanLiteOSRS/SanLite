@@ -343,9 +343,12 @@ public interface Client extends GameShell
 	 * Gets the logged in player instance.
 	 *
 	 * @return the logged in player
+	 *
+	 * (getLocalPlayerIndex returns the local index, useful for menus/interacting)
 	 */
 	@Nullable
 	Player getLocalPlayer();
+	int getLocalPlayerIndex();
 
 	/**
 	 * Gets the item composition corresponding to an items ID.
@@ -1515,20 +1518,6 @@ public interface Client extends GameShell
 	void setNPCsHidden(boolean state);
 
 	/**
-	 * Sets which NPCs are hidden
-	 *
-	 * @param names the names of the npcs
-	 */
-	void setNPCsNames(List<String> names);
-
-	/**
-	 * Sets which NPCs are hidden on death
-	 *
-	 * @param names the names of the npcs
-	 */
-	void setNPCsHiddenOnDeath(List<String> names);
-
-	/**
 	 * Sets whether 2D sprites (ie. overhead prayers) related to
 	 * the NPCs are hidden.
 	 *
@@ -1549,13 +1538,6 @@ public interface Client extends GameShell
 	 * @param state new projectile hidden state
 	 */
 	void setProjectilesHidden(boolean state);
-
-	/**
-	 * Sets whether dead NPCs are hidden.
-	 *
-	 * @param state new NPC hidden state
-	 */
-	void setDeadNPCsHidden(boolean state);
 
 	/**
 	 * Gets an array of tile collision data.
@@ -1767,6 +1749,8 @@ public interface Client extends GameShell
 	void setPrintMenuActions(boolean b);
 
 	String getSelectedSpellName();
+
+	void setSelectedSpellName(String name);
 
 	/**
 	 * Set whether or not player attack options will be hidden for friends

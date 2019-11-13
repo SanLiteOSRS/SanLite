@@ -35,7 +35,7 @@ public interface RSClient extends RSGameShell, Client
 	@Override
 	int getCameraZ2();
 
-	@Import("plane")
+	@Import("Client_plane")
 	@Override
 	int getPlane();
 
@@ -179,6 +179,10 @@ public interface RSClient extends RSGameShell, Client
 	@Import("localPlayer")
 	@Override
 	RSPlayer getLocalPlayer();
+
+	@Import("localPlayerIndex")
+	@Override
+	int getLocalPlayerIndex();
 
 	@Import("npcCount")
 	int getNpcIndexesCount();
@@ -417,13 +421,16 @@ public interface RSClient extends RSGameShell, Client
 	@Import("SpriteBuffer_spritePalette")
 	void setIndexedSpritePalette(int[] indexedSpritePalette);
 
+	@Import("archive6")
+	RSArchive getMusicTracks();
+
 	@Import("archive8")
 	@Override
-	RSAbstractArchive getIndexSprites();
+	RSArchive getIndexSprites();
 
 	@Import("archive12")
 	@Override
-	RSAbstractArchive getIndexScripts();
+	RSArchive getIndexScripts();
 
 	@Import("widgetClickMasks")
 	@Override
@@ -987,6 +994,10 @@ public interface RSClient extends RSGameShell, Client
 	@Import("selectedSpellName")
 	String getSelectedSpellName();
 
+	@Import("selectedSpellName")
+	@Override
+	void setSelectedSpellName(String name);
+
 	@Import("readSoundEffect")
 	RSSoundEffect getTrack(RSAbstractArchive indexData, int id, int var0);
 
@@ -997,31 +1008,48 @@ public interface RSClient extends RSGameShell, Client
 	RSPcmStreamMixer getSoundEffectAudioQueue();
 
 	@Import("archive4")
-	RSAbstractArchive getIndexCache4();
+	RSArchive getIndexCache4();
 
 	@Import("decimator")
 	RSDecimator getSoundEffectResampler();
 
 	@Import("musicVolume")
+	@Override
 	int getMusicVolume();
 
 	@Import("musicVolume")
-	void setMusicVolume(int volume);
-
-	@Import("soundEffectVolume")
-	int getSoundEffectVolume();
-
-	@Import("soundEffectVolume")
-	void setSoundEffectVolume(int volume);
+	void setClientMusicVolume(int volume);
 
 	@Import("areaSoundEffectVolume")
+	@Override
 	int getAreaSoundEffectVolume();
 
 	@Import("areaSoundEffectVolume")
+	@Override
 	void setAreaSoundEffectVolume(int volume);
+
+	@Import("soundEffectVolume")
+	@Override
+	int getSoundEffectVolume();
+
+	@Import("soundEffectVolume")
+	@Override
+	void setSoundEffectVolume(int volume);
+
+	@Import("musicTrackVolume")
+	void setMusicTrackVolume(int volume);
 
 	@Import("viewportWalking")
 	void setViewportWalking(boolean viewportWalking);
+
+	@Import("playMusicTrack")
+	void playMusicTrack(RSAbstractArchive var0, int var1, int var2, int var3, boolean var4);
+
+	@Import("midiPcmStream")
+	RSMidiPcmStream getMidiPcmStream();
+
+	@Import("currentTrackGroupId")
+	int getCurrentTrackGroupId();
 
 	@Import("crossSprites")
 	@Override
@@ -1030,6 +1058,6 @@ public interface RSClient extends RSGameShell, Client
 	@Import("ItemDefinition_fileCount")
 	int getItemCount();
 
-	@Import("areWidgetsOpTargetable")
-	void setAllWidgetsAreOpTargetable(boolean value);
+	@Import("VarpDefinition_get")
+	RSVarpDefinition getVarpDefinition(int id);
 }

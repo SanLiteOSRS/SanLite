@@ -16,4 +16,11 @@ public enum PluginType
 					return "SanLite";
 				}
 			},
+	SANLITE_USE_AT_OWN_RISK
+			{
+				public String toString()
+				{
+					return "SanLite - Use at own risk";
+				}
+			},
 }

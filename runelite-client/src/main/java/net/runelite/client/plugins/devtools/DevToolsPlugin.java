@@ -43,10 +43,9 @@ import net.runelite.api.NPC;
 import net.runelite.api.Player;
 import net.runelite.api.Skill;
 import net.runelite.api.coords.WorldPoint;
-import net.runelite.api.events.BoostedLevelChanged;
 import net.runelite.api.events.CommandExecuted;
-import net.runelite.api.events.ExperienceChanged;
 import net.runelite.api.events.MenuEntryAdded;
+import net.runelite.api.events.StatChanged;
 import net.runelite.api.events.VarbitChanged;
 import net.runelite.api.kit.KitType;
 import net.runelite.client.config.ConfigManager;
@@ -65,7 +64,8 @@ import org.slf4j.LoggerFactory;
 
 @PluginDescriptor(
 	name = "Developer Tools",
-	tags = {"panel"},
+	description = "Adds the developer tools button to side-panel with various tools to assist development of the client",
+	tags = {"panel", "dev", "camera", "debug"},
 	type = PluginType.SANLITE,
 	enabledByDefault = false,
 	developerPlugin = true
@@ -288,9 +288,13 @@ public class DevToolsPlugin extends Plugin
 
 				client.queueChangedSkill(skill);
 
-				ExperienceChanged experienceChanged = new ExperienceChanged();
-				experienceChanged.setSkill(skill);
-				eventBus.post(experienceChanged);
+				StatChanged statChanged = new StatChanged(
+					skill,
+					totalXp,
+					level,
+					level
+				);
+				eventBus.post(statChanged);
 				break;
 			}
 			case "setstat":
@@ -307,13 +311,13 @@ public class DevToolsPlugin extends Plugin
 
 				client.queueChangedSkill(skill);
 
-				ExperienceChanged experienceChanged = new ExperienceChanged();
-				experienceChanged.setSkill(skill);
-				eventBus.post(experienceChanged);
-
-				BoostedLevelChanged boostedLevelChanged = new BoostedLevelChanged();
-				boostedLevelChanged.setSkill(skill);
-				eventBus.post(boostedLevelChanged);
+				StatChanged statChanged = new StatChanged(
+					skill,
+					xp,
+					level,
+					level
+				);
+				eventBus.post(statChanged);
 				break;
 			}
 			case "anim":

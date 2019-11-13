@@ -35,7 +35,8 @@ public interface CorpConfig extends Config
 		keyName = "leftClickCore",
 		name = "Left click walk on core",
 		description = "Prioritizes Walk here over Attack on the Dark energy core",
-		position = 1
+		position = 1,
+		group = "Use at own risk"
 	)
 	default boolean leftClickCore()
 	{

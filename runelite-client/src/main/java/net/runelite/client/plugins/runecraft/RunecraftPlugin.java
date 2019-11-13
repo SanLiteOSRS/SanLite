@@ -26,55 +26,41 @@ package net.runelite.client.plugins.runecraft;
 
 import com.google.common.collect.ImmutableList;
 import com.google.inject.Provides;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Stream;
-import javax.inject.Inject;
 import lombok.AccessLevel;
 import lombok.Getter;
-import net.runelite.api.ChatMessageType;
-import net.runelite.api.Client;
-import net.runelite.api.DecorativeObject;
-import net.runelite.api.GameState;
-import net.runelite.api.InventoryID;
-import net.runelite.api.Item;
-import net.runelite.api.ItemID;
-import net.runelite.api.NPC;
-import net.runelite.api.NpcID;
-import net.runelite.api.events.ChatMessage;
-import net.runelite.api.events.ConfigChanged;
-import net.runelite.api.events.DecorativeObjectDespawned;
-import net.runelite.api.events.DecorativeObjectSpawned;
-import net.runelite.api.events.GameStateChanged;
-import net.runelite.api.events.ItemContainerChanged;
-import net.runelite.api.events.NpcDespawned;
-import net.runelite.api.events.NpcSpawned;
+import net.runelite.api.*;
+import net.runelite.api.events.*;
 import net.runelite.client.Notifier;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.menus.MenuManager;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
-import static net.runelite.client.plugins.runecraft.AbyssRifts.*;
-
 import net.runelite.client.plugins.PluginType;
 import net.runelite.client.ui.overlay.OverlayManager;
 
+import javax.inject.Inject;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Stream;
+
+import static net.runelite.client.plugins.runecraft.AbyssRifts.*;
+
 @PluginDescriptor(
-	name = "Runecrafting",
-	description = "Show minimap icons, clickboxes for abyssal rifts and left-click swap for pouches in bank",
-	tags = {"abyssal", "minimap", "overlay", "rifts", "rc", "runecrafting", "pouch", "rune", "essence", "swap"},
-	type = PluginType.SANLITE
+		name = "Runecrafting",
+		description = "Show minimap icons, clickboxes for abyssal rifts and left-click swap for pouches in bank",
+		tags = {"abyssal", "minimap", "overlay", "rifts", "rc", "runecrafting", "pouch", "rune", "essence", "swap"},
+		type = PluginType.SANLITE_USE_AT_OWN_RISK
 )
 public class RunecraftPlugin extends Plugin
 {
 	private static final String POUCH_DECAYED_NOTIFICATION_MESSAGE = "Your rune pouch has decayed.";
 	private static final String POUCH_DECAYED_MESSAGE = "Your pouch has decayed through use.";
 	private static final List<Integer> DEGRADED_POUCHES = ImmutableList.of(
-		ItemID.MEDIUM_POUCH_5511,
-		ItemID.LARGE_POUCH_5513,
-		ItemID.GIANT_POUCH_5515
+			ItemID.MEDIUM_POUCH_5511,
+			ItemID.LARGE_POUCH_5513,
+			ItemID.GIANT_POUCH_5515
 	);
 
 	@Getter(AccessLevel.PACKAGE)
@@ -121,6 +107,7 @@ public class RunecraftPlugin extends Plugin
 	{
 		overlayManager.add(abyssOverlay);
 		overlayManager.add(abyssMinimapOverlay);
+		updateRifts();
 
 		if (config.leftClickEmptyPouch())
 		{
@@ -156,6 +143,10 @@ public class RunecraftPlugin extends Plugin
 	@Subscribe
 	public void onConfigChanged(ConfigChanged event)
 	{
+		if (event.getGroup().equals("runecraft"))
+		{
+			updateRifts();
+		}
 		if (event.getKey().equals("leftClickEmptyPouch"))
 		{
 			addSwapEmpty();

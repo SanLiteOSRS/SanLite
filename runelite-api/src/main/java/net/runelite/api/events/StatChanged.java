@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016-2017, Abel Briggs
+ * Copyright (c) 2017-2019, Adam <Adam@sigterm.info>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -24,17 +24,17 @@
  */
 package net.runelite.api.events;
 
-import lombok.Data;
-import net.runelite.api.Actor;
+import lombok.Value;
+import net.runelite.api.Skill;
 
 /**
- * An event where the {@link Actor} has changed position.
+ * An event where the experience, level, or boosted level of a {@link Skill} has been modified.
  */
-@Data
-public class ActorPositionChanged
+@Value
+public class StatChanged
 {
-	/**
-	 * The actor that has changed position
-	 */
-	private Actor actor;
+	private final Skill skill;
+	private final int xp;
+	private final int level;
+	private final int boostedLevel;
 }
