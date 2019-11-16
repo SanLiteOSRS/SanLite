@@ -60,7 +60,7 @@ public interface OpponentInfoConfig extends Config
 		position = 2,
 		group = "Use at own risk"
 	)
-	default boolean showOpponentsOpponent()
+	default boolean showOpponentsInMenu()
 	{
 		return false;
 	}

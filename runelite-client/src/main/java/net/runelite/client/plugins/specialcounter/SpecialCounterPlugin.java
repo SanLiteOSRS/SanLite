@@ -33,6 +33,7 @@ import net.runelite.api.*;
 import net.runelite.api.events.GameStateChanged;
 import net.runelite.api.events.GameTick;
 import net.runelite.api.events.NpcDespawned;
+import net.runelite.api.events.StatChanged;
 import net.runelite.api.events.VarbitChanged;
 import net.runelite.client.callback.ClientThread;
 import net.runelite.client.eventbus.Subscribe;
@@ -55,6 +56,7 @@ public class SpecialCounterPlugin extends Plugin
 	private int currentWorld = -1;
 	private int specialPercentage = -1;
 	private int specialHitpointsExperience = -1;
+	private int specialHitpointsGained = -1;
 	private boolean specialUsed;
 	private double modifier = 1d;
 
@@ -128,6 +130,25 @@ public class SpecialCounterPlugin extends Plugin
 
 		specialUsed = true;
 		specialHitpointsExperience = client.getSkillExperience(Skill.HITPOINTS);
+		specialHitpointsGained = -1;
+	}
+
+	@Subscribe
+	public void onStatChanged(StatChanged statChanged)
+	{
+		if (specialUsed && statChanged.getSkill() == Skill.HITPOINTS)
+		{
+			specialHitpointsGained = statChanged.getXp() - specialHitpointsExperience;
+		}
+	}
+
+	@Subscribe
+	public void onFakeXpDrop(FakeXpDrop fakeXpDrop)
+	{
+		if (specialUsed && fakeXpDrop.getSkill() == Skill.HITPOINTS)
+		{
+			specialHitpointsGained = fakeXpDrop.getXp();
+		}
 	}
 
 	@Subscribe
@@ -139,13 +160,11 @@ public class SpecialCounterPlugin extends Plugin
 		}
 
 		int interactingId = checkInteracting();
-
-		if (interactingId > -1 && specialHitpointsExperience != -1 && specialUsed)
+		if (interactingId > -1 && specialUsed)
 		{
+			int deltaExperience = specialHitpointsGained;
+
 			specialUsed = false;
-			int hpXp = client.getSkillExperience(Skill.HITPOINTS);
-			int deltaExperience = hpXp - specialHitpointsExperience;
-			specialHitpointsExperience = -1;
 
 			if (deltaExperience > 0)
 			{

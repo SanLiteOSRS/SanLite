@@ -24,29 +24,11 @@
  */
 package net.runelite.api;
 
-import java.util.List;
-import net.runelite.api.model.Triangle;
-import net.runelite.api.model.Vertex;
-
 /**
  * Represents the model of an object.
  */
 public interface Model extends Entity
 {
-	/**
-	 * Gets a list of all vertices of the model.
-	 *
-	 * @return the vertices
-	 */
-	List<Vertex> getVertices();
-
-	/**
-	 * Gets a list of all triangles of the model.
-	 *
-	 * @return the triangle
-	 */
-	List<Triangle> getTriangles();
-
 	int getVerticesCount();
 
 	int[] getVerticesX();
@@ -103,6 +85,5 @@ public interface Model extends Entity
 	int getExtremeZ();
 
 	int getXYZMag();
-
 	boolean isClickable();
 }

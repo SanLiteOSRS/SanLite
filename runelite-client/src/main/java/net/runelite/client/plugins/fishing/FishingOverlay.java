@@ -44,6 +44,7 @@ import net.runelite.client.ui.overlay.components.TitleComponent;
 class FishingOverlay extends Overlay
 {
 	private static final String FISHING_SPOT = "Fishing spot";
+	static final String FISHING_RESET = "Reset";
 
 	private final Client client;
 	private final FishingPlugin plugin;
@@ -62,6 +63,7 @@ class FishingOverlay extends Overlay
 		this.config = config;
 		this.xpTrackerService = xpTrackerService;
 		getMenuEntries().add(new OverlayMenuEntry(RUNELITE_OVERLAY_CONFIG, OPTION_CONFIGURE, "Fishing overlay"));
+		getMenuEntries().add(new OverlayMenuEntry(RUNELITE_OVERLAY, FISHING_RESET, "Fishing overlay"));
 	}
 
 	@Override

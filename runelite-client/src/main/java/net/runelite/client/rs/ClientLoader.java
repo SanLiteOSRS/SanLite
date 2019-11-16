@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2016-2017, Adam <Adam@sigterm.info>
  * Copyright (c) 2018, Tomas Slusny <slusnucky@gmail.com>
- * Copyright (c) 2018 Abex
+ * Copyright (c) 2019 Abex
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -105,7 +105,17 @@ public class ClientLoader implements Supplier<Applet>
 
 					host = hostSupplier.get();
 				}
+				else
+				{
+					vanillaCacheIsInvalid = true;
+				}
 			}
+			catch (Exception e)
+			{
+				log.info("Failed to read the vanilla cache: {}", e.toString());
+				vanillaCacheIsInvalid = true;
+			}
+			vanilla.position(0);
 
 			switch (updateCheckMode)
 			{
@@ -121,15 +131,35 @@ public class ClientLoader implements Supplier<Applet>
 		}
 		catch (IOException | ClassNotFoundException | InstantiationException | IllegalAccessException e)
 		{
-			if (e instanceof ClassNotFoundException)
+			log.info("Client is outdated!");
+			updateCheckMode = VANILLA;
+			return;
+		}
+
+		if (PATCHED_CACHE.exists())
+		{
+			byte[] diskBytes = Files.asByteSource(PATCHED_CACHE).hash(Hashing.sha512()).asBytes();
+			if (!Arrays.equals(diskBytes, appliedPatchHash))
 			{
 				log.error("Unable to load client - class not found. This means you"
 						+ " are not running RuneLite with Maven as the injected client"
 						+ " is not in your classpath.");
 			}
+			else
+			{
+				log.info("Using cached patched client");
+				return;
+			}
+		}
 
 			SwingUtilities.invokeLater(() -> FatalErrorDialog.showNetErrorWindow("loading the client", e));
 			return e;
+		}
+		catch (IOException e)
+		{
+			log.error("Unable to apply patch despite hash matching", e);
+			updateCheckMode = VANILLA;
+			return;
 		}
 	}
 

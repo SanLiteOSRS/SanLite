@@ -68,7 +68,6 @@ class OpponentInfoOverlay extends Overlay
 	private int lastRatio = 0;
 	private int lastHealthScale = 0;
 	private String opponentName;
-	private String opponentsOpponentName;
 
 	@Inject
 	private OpponentInfoOverlay(

@@ -254,7 +254,7 @@ public class PluginListItem extends JPanel
 		});
 	}
 
-	IconButton createToggleButton()
+	private IconButton createToggleButton()
 	{
 		final IconButton button = new IconButton(OFF_SWITCHER);
 		button.setPreferredSize(new Dimension(25, 0));
