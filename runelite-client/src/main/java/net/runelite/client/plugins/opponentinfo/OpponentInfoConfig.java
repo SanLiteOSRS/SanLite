@@ -62,7 +62,7 @@ public interface OpponentInfoConfig extends Config
 	)
 	default boolean showOpponentsOpponent()
 	{
-		return false;
+		return true;
 	}
 
 	@ConfigItem(

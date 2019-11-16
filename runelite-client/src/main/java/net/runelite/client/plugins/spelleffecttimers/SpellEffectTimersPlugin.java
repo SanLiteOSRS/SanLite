@@ -205,8 +205,7 @@ public class SpellEffectTimersPlugin extends Plugin
 		{
 			if (spellEffect.getSpellEffect() == SpellEffect.TELEBLOCK || spellEffect.getSpellEffect() == SpellEffect.TELEBLOCK_IMMUNITY)
 			{
-				final boolean inDeadman = client.getWorldType().stream().anyMatch(x ->
-						x == WorldType.DEADMAN || x == WorldType.SEASONAL_DEADMAN);
+				final boolean inDeadman = client.getWorldType().stream().anyMatch(x -> x == WorldType.DEADMAN);
 				final boolean inPvp = client.getWorldType().stream().anyMatch(x ->
 						x == WorldType.PVP || x == WorldType.HIGH_RISK);
 				final WorldPoint actorLoc = spellEffect.getActor().getWorldLocation();

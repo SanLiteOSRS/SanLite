@@ -36,7 +36,6 @@ import net.runelite.api.GameState;
 import net.runelite.api.HashTable;
 import net.runelite.api.Prayer;
 import net.runelite.api.WidgetNode;
-import net.runelite.api.events.ConfigChanged;
 import net.runelite.api.events.DraggingWidgetChanged;
 import net.runelite.api.events.GameStateChanged;
 import net.runelite.api.events.WidgetLoaded;
@@ -48,6 +47,7 @@ import net.runelite.api.widgets.WidgetID;
 import net.runelite.api.widgets.WidgetInfo;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
+import net.runelite.client.events.ConfigChanged;
 import net.runelite.client.menus.MenuManager;
 import net.runelite.client.menus.WidgetMenuOption;
 import net.runelite.client.plugins.Plugin;
@@ -57,7 +57,7 @@ import net.runelite.client.plugins.PluginType;
 @PluginDescriptor(
 	name = "Reorder Prayers",
 	description = "Reorder the prayers displayed on the Prayer panel",
-	type = PluginType.RUNELITE_USE_AT_OWN_RISK
+	type = PluginType.SANLITE_USE_AT_OWN_RISK
 )
 public class ReorderPrayersPlugin extends Plugin
 {

@@ -47,7 +47,7 @@ import net.runelite.client.ui.overlay.OverlayManager;
 	name = "Cerberus",
 	description = "Show what to pray against the summoned souls",
 	tags = {"bosses", "combat", "ghosts", "prayer", "pve", "overlay", "souls"},
-	type = PluginType.RUNELITE_USE_AT_OWN_RISK
+	type = PluginType.SANLITE_USE_AT_OWN_RISK
 )
 @Singleton
 public class CerberusPlugin extends Plugin
