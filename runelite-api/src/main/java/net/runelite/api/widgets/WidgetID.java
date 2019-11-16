@@ -41,7 +41,6 @@ public class WidgetID
 	public static final int LOGOUT_PANEL_ID = 182;
 	public static final int BANK_GROUP_ID = 12;
 	public static final int BANK_INVENTORY_GROUP_ID = 15;
-	public static final int BANK_PIN_GROUP_ID = 213;
 	public static final int GRAND_EXCHANGE_INVENTORY_GROUP_ID = 467;
 	public static final int GRAND_EXCHANGE_GROUP_ID = 465;
 	public static final int DEPOSIT_BOX_GROUP_ID = 192;
@@ -58,8 +57,6 @@ public class WidgetID
 	public static final int ACHIEVEMENT_DIARY_GROUP_ID = 259;
 	public static final int PEST_CONTROL_BOAT_GROUP_ID = 407;
 	public static final int PEST_CONTROL_GROUP_ID = 408;
-	public static final int PEST_CONTROL_EXCHANGE_WINDOW_GROUP_ID = 243;
-	public static final int DIALOG_MINIGAME_GROUP_ID = 229;
 	public static final int CLAN_CHAT_GROUP_ID = 7;
 	public static final int MINIMAP_GROUP_ID = 160;
 	public static final int LOGIN_CLICK_TO_PLAY_GROUP_ID = 378;
@@ -81,7 +78,6 @@ public class WidgetID
 	public static final int CHATBOX_GROUP_ID = 162;
 	public static final int WORLD_MAP_MENU_GROUP_ID = 160;
 	public static final int VOLCANIC_MINE_GROUP_ID = 611;
-	public static final int BA_HORN_OF_GLORY = 484;
 	public static final int BA_ATTACKER_GROUP_ID = 485;
 	public static final int BA_COLLECTOR_GROUP_ID = 486;
 	public static final int BA_DEFENDER_GROUP_ID = 487;
@@ -94,7 +90,6 @@ public class WidgetID
 	public static final int BARROWS_REWARD_GROUP_ID = 155;
 	public static final int RAIDS_GROUP_ID = 513;
 	public static final int MOTHERLODE_MINE_GROUP_ID = 382;
-	public static final int MOTHERLODE_MINE_FULL_INVENTORY_GROUP_ID = 229;
 	public static final int EXPERIENCE_DROP_GROUP_ID = 122;
 	public static final int PUZZLE_BOX_GROUP_ID = 306;
 	public static final int LIGHT_BOX_GROUP_ID = 322;
@@ -118,7 +113,7 @@ public class WidgetID
 	public static final int VARROCK_MUSEUM_QUIZ_GROUP_ID = 533;
 	public static final int KILL_LOGS_GROUP_ID = 549;
 	public static final int DIARY_QUEST_GROUP_ID = 119;
-	public static final int THEATRE_OF_BLOOD_GROUP_ID = 28;
+	public static final int THEATRE_OF_BLOOD_GROUP_ID = 23;
 	public static final int WORLD_SWITCHER_GROUP_ID = 69;
 	public static final int DIALOG_OPTION_GROUP_ID = 219;
 	public static final int DIALOG_PLAYER_GROUP_ID = 217;
@@ -126,8 +121,6 @@ public class WidgetID
 	public static final int MINIGAME_TAB_ID = 76;
 	public static final int SPELLBOOK_GROUP_ID = 218;
 	public static final int PVP_GROUP_ID = 90;
-	public static final int PERFORMERS_FOR_THE_THEATRE_GROUPS_GROUP_ID = 364;
-	public static final int PERFORMERS_FOR_THE_THEATRE_PLAYERS_GROUP_ID = 50;
 	public static final int FISHING_TRAWLER_GROUP_ID = 366;
 	public static final int FISHING_TRAWLER_REWARD_GROUP_ID = 367;
 	public static final int ZEAH_MESS_HALL_GROUP_ID = 235;
@@ -138,11 +131,7 @@ public class WidgetID
 	public static final int FULLSCREEN_MAP_GROUP_ID = 165;
 	public static final int QUESTLIST_GROUP_ID = 399;
 	public static final int SKILLS_GROUP_ID = 320;
-	public static final int DIALOG_SPRITE2_ID = 11;
-	public static final int EQUIPMENT_PAGE_GROUP_ID = 84;
-	public static final int QUESTTAB_GROUP_ID = 629;
 	public static final int MUSIC_GROUP_ID = 239;
-	public static final int MUSICTAB_GROUP_ID = 239;
 	public static final int BARROWS_PUZZLE_GROUP_ID = 25;
 	public static final int KEPT_ON_DEATH_GROUP_ID = 4;
 	public static final int GUIDE_PRICE_GROUP_ID = 464;
@@ -191,31 +180,11 @@ public class WidgetID
 	static class PestControlBoat
 	{
 		static final int INFO = 3;
-
-		static final int NEXT_DEPARTURE = 4;
-		static final int PLAYERS_READY = 5;
-		static final int POINTS = 6;
-	}
-
-	static class PestControlExchangeWindow
-	{
-		static final int ITEM_LIST = 2;
-		static final int BOTTOM = 5;
-		static final int POINTS = 8;
-		static final int CONFIRM_BUTTON = 6;
-	}
-
-	static class MinigameDialog
-	{
-		static final int TEXT = 1;
-		static final int CONTINUE = 2;
 	}
 
 	static class PestControl
 	{
 		static final int INFO = 3;
-
-		static final int TIME = 6;
 
 		static final int ACTIVITY_BAR = 12;
 		static final int ACTIVITY_PROGRESS = 14;
@@ -573,8 +542,6 @@ public class WidgetID
 		static final int SPELL_ICON = 28;
 		static final int SPELL_TEXT = 29;
 		static final int AUTO_RETALIATE = 30;
-		static final int SPECIAL_ATTACK_BAR = 34;
-		static final int TOOLTIP = 41;
 	}
 
 	static class VolcanicMine
@@ -597,8 +564,7 @@ public class WidgetID
 	{
 		static class ATK
 		{
-			static final int LISTEN_TOP = 7;
-			static final int LISTEN_BOTTOM = 8;
+			static final int CALL_TEXT = 8;
 			static final int TO_CALL_WIDGET = 9;
 			static final int TO_CALL = 10;
 			static final int ROLE_SPRITE = 11;
@@ -614,8 +580,8 @@ public class WidgetID
 		static final int CORRECT_STYLE = 3;
 		static final int CURRENT_WAVE_WIDGET = 4;
 		static final int CURRENT_WAVE = 5;
-		static final int LISTEN_WIDGET = 6;
-		static final int LISTEN = 7;
+		static final int CALL_WIDGET = 6;
+		static final int CALL_TEXT = 7;
 		static final int TO_CALL_WIDGET = 8;
 		static final int TO_CALL = 9;
 		static final int ROLE_SPRITE = 10;
@@ -642,13 +608,6 @@ public class WidgetID
 	static class Raids
 	{
 		static final int POINTS_INFOBOX = 6;
-	}
-
-	static class TheatreOfBlood
-	{
-		static final int RAIDING_PARTY = 9;
-		static final int ORB_BOX = 10;
-		static final int BOSS_HEALTH_BAR = 35;
 	}
 
 	static class ExperienceDrop
@@ -739,28 +698,6 @@ public class WidgetID
 		static final int DESTROY_ITEM_NO = 3;
 	}
 
-	static class EquipmentWidgetIdentifiers
-	{
-		static final int EQUIP_YOUR_CHARACTER = 3;
-		static final int STAB_ATTACK_BONUS = 23;
-		static final int SLASH_ATTACK_BONUS = 24;
-		static final int CRUSH_ATTACK_BONUS = 25;
-		static final int MAGIC_ATTACK_BONUS = 26;
-		static final int RANGED_ATTACK_BONUS = 27;
-		static final int STAB_DEFENCE_BONUS = 29;
-		static final int SLASH_DEFENCE_BONUS = 30;
-		static final int CRUSH_DEFENCE_BONUS = 31;
-		static final int MAGIC_DEFENCE_BONUS = 32;
-		static final int RANGED_DEFENCE_BONUS = 33;
-		static final int MELEE_STRENGTH = 35;
-		static final int RANGED_STRENGTH = 36;
-		static final int MAGIC_DAMAGE = 37;
-		static final int PRAYER_BONUS = 38;
-		static final int UNDEAD_DAMAGE_BONUS = 40;
-		static final int SLAYER_DAMAGE_BONUS = 41;
-		static final int WEIGHT = 43;
-	}
-
 	static class VarrockMuseum
 	{
 		static final int VARROCK_MUSEUM_QUESTION = 28;
@@ -792,7 +729,7 @@ public class WidgetID
 		static final int TELEPORT_BUTTON = 26;
 	}
 
-	static class SpellBook
+	static class StandardSpellBook
 	{
 		static final int LUMBRIDGE_HOME_TELEPORT = 5;
 	}
@@ -894,7 +831,6 @@ public class WidgetID
 		static final int INFORMATION_CONTAINER = 29;
 		static final int MAX_ITEMS_KEPT_ON_DEATH = 30;
 		static final int SAFE_ZONE_CONTAINER = 31;
-		static final int CUSTOM_TEXT_CONTAINER = 33;
 	}
 
 	static class SeedVault

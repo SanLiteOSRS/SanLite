@@ -124,7 +124,7 @@ public class ExaminePlugin extends Plugin
 			}
 			case EXAMINE_ITEM_GROUND:
 				type = ExamineType.ITEM;
-				id = event.getId();
+				id = event.getIdentifier();
 				break;
 			case EXAMINE_ITEM_BANK_EQ:
 			{

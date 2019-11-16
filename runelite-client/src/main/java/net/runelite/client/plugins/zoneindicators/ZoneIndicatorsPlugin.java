@@ -7,7 +7,7 @@ import net.runelite.api.*;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.coords.WorldArea;
 import net.runelite.api.coords.WorldPoint;
-import net.runelite.api.events.ConfigChanged;
+import net.runelite.client.events.ConfigChanged;
 import net.runelite.api.events.GameStateChanged;
 import net.runelite.api.geometry.Geometry;
 import net.runelite.client.callback.ClientThread;
@@ -242,10 +242,8 @@ public class ZoneIndicatorsPlugin extends Plugin
 
 	private void findLinesInScene()
 	{
-		inDeadman = client.getWorldType().stream().anyMatch(x ->
-				x == WorldType.DEADMAN || x == WorldType.SEASONAL_DEADMAN);
-		inPvp = client.getWorldType().stream().anyMatch(x ->
-				x == WorldType.PVP || x == WorldType.HIGH_RISK);
+		inDeadman = client.getWorldType().stream().anyMatch(x -> x == WorldType.DEADMAN);
+		inPvp = client.getWorldType().stream().anyMatch(x -> x == WorldType.PVP || x == WorldType.HIGH_RISK);
 
 		Rectangle sceneRect = new Rectangle(
 				client.getBaseX() + 1, client.getBaseY() + 1,

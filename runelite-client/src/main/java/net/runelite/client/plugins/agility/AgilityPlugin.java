@@ -39,7 +39,7 @@ import static net.runelite.api.ItemID.AGILITY_ARENA_TICKET;
 import static net.runelite.api.Skill.AGILITY;
 
 import net.runelite.api.coords.WorldPoint;
-import net.runelite.api.events.ConfigChanged;
+import net.runelite.client.events.ConfigChanged;
 import net.runelite.api.events.DecorativeObjectChanged;
 import net.runelite.api.events.DecorativeObjectDespawned;
 import net.runelite.api.events.DecorativeObjectSpawned;
