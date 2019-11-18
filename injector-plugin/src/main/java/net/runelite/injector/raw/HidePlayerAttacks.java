@@ -1,6 +1,5 @@
 package net.runelite.injector.raw;
 
-import com.google.common.base.Stopwatch;
 import net.runelite.asm.Method;
 import net.runelite.asm.attributes.code.Instruction;
 import net.runelite.asm.attributes.code.Instructions;
@@ -28,25 +27,24 @@ public class HidePlayerAttacks
 		this.inject = inject;
 	}
 
-	private Method addPlayerOptions;
-	private net.runelite.asm.pool.Method shouldHideAttackOptionFor;
-
 	public void inject() throws InjectionException
 	{
-		Stopwatch stopwatch = Stopwatch.createStarted();
+		final Method addPlayerOptions = InjectUtil.findMethod(inject, "addPlayerToMenu");
+		final net.runelite.asm.pool.Method shouldHideAttackOptionFor = inject.getVanilla().findClass("client")
+				.findMethod("shouldHideAttackOptionFor").getPoolMethod();
 
-		addPlayerOptions = InjectUtil.findStaticMethod(inject, "addPlayerToMenu");
-		shouldHideAttackOptionFor = inject.getVanilla().findClass("client").findMethod("shouldHideAttackOptionFor").getPoolMethod();
-
-		injectHideAttack();
-		//injectHideCast(); TODO: Find out why injection is failing
-
-		stopwatch.stop();
-
-		log.info("HidePlayerAttacks took {}", stopwatch.toString());
+		try
+		{
+			injectHideAttack(addPlayerOptions, shouldHideAttackOptionFor);
+			injectHideCast(addPlayerOptions, shouldHideAttackOptionFor);
+		}
+		catch (InjectionException | AssertionError e)
+		{
+			log.warn("HidePlayerAttacks injection failed, but as this does not interfere with other functionality we will continue", e);
+		}
 	}
 
-	private void injectHideAttack() throws InjectionException
+	private void injectHideAttack(Method addPlayerOptions, net.runelite.asm.pool.Method shouldHideAttackOptionFor) throws InjectionException
 	{
 		final Field AttackOption_hidden = InjectUtil.findDeobField(inject, "AttackOption_hidden", "AttackOption").getPoolField();
 		final Field attackOption = InjectUtil.findDeobField(inject, "playerAttackOption", "Client").getPoolField();
@@ -135,7 +133,7 @@ public class HidePlayerAttacks
 		ins.addInstruction(injectIdx, i3);
 	}
 
-	private void injectHideCast() throws InjectionException
+	private void injectHideCast(Method addPlayerOptions, net.runelite.asm.pool.Method shouldHideAttackOptionFor) throws InjectionException
 	{
 		// LABEL before
 		// BIPUSH 8
@@ -147,44 +145,78 @@ public class HidePlayerAttacks
 		// IF_ICMPNE -> skip adding option
 		//
 		// <--- Inject call here
-		// <--- Inject comparison here (duh)
+		// <--- Inject comparison here
 		//
-		// add option n such
-
+		// add option
+		final Field flags = InjectUtil.findDeobField(inject, "selectedSpellFlags", "Client").getPoolField();
 		Instructions ins = addPlayerOptions.getCode().getInstructions();
 		ListIterator<Instruction> iterator = ins.getInstructions().listIterator();
+		boolean b1, b2, iAnd, getStatic;
+		b1 = b2 = iAnd = getStatic = false;
 		while (iterator.hasNext())
 		{
 			Instruction i = iterator.next();
-			if (!(i instanceof BiPush) || (byte) ((BiPush) i).getConstant() != 8)
+
+			if (i instanceof Label)
+			{
+				b1 = b2 = iAnd = getStatic = false;
+				continue;
+			}
+
+			if ((i instanceof BiPush) && (byte) ((BiPush) i).getConstant() == 8)
+			{
+				if (!b1)
+					b1 = true;
+				else if (!b2)
+					b2 = true;
+				else
+					throw new InjectionException("Error injecting HideCastOptions in HidePlayerAttacks: more than 2 BiPushes");
+
+				continue;
+			}
+
+			if (i instanceof IAnd)
+			{
+				iAnd = true;
+				continue;
+			}
+
+			if (i instanceof GetStatic && ((GetStatic) i).getField().equals(flags))
+			{
+				getStatic = true;
+				continue;
+			}
+
+
+			if (!(i instanceof JumpingInstruction))
+			{
+				if (b1 && b2 && iAnd && getStatic)
+				{
+					throw new InjectionException("Error injecting HideCastOptions in HidePlayerAttacks");
+				}
+				continue;
+			}
+
+			if (!(b1 && b2 && iAnd && getStatic))
 			{
 				continue;
 			}
 
-			i = iterator.next();
-			while (!(i instanceof BiPush) || (byte) ((BiPush) i).getConstant() != 8)
+			Label target;
+			if (i instanceof IfICmpNe)
 			{
-				i = iterator.next();
+				target = ((IfICmpNe) i).getJumps().get(0);
 			}
-
-			i = iterator.next();
-			if (!(i instanceof IAnd))
+			else
 			{
 				throw new InjectionException("Error injecting HideCastOptions in HidePlayerAttacks");
 			}
-
-			i = iterator.next();
-			if (!(i instanceof IfICmpNe))
-			{
-				throw new InjectionException("Error injecting HideCastOptions in HidePlayerAttacks");
-			}
-
-			Label target = ((IfICmpNe) i).getJumps().get(0);
 
 			// Load the player
 			ALoad i1 = new ALoad(ins, 0);
 			// Get the boolean
 			InvokeStatic i2 = new InvokeStatic(ins, shouldHideAttackOptionFor);
+			// Compare
 			IfNe i3 = new IfNe(ins, target);
 
 			iterator.add(i1);

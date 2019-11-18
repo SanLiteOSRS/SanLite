@@ -24,10 +24,6 @@
  */
 package net.runelite.injector;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 import net.runelite.asm.ClassFile;
 import net.runelite.asm.ClassGroup;
 import net.runelite.asm.Method;
@@ -48,6 +44,11 @@ import net.runelite.deob.DeobAnnotations;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class InjectHookMethod
 {
 	public static final String HOOKS = "net/runelite/client/callback/Hooks";
@@ -61,13 +62,13 @@ public class InjectHookMethod
 
 	void process(Method method) throws InjectionException
 	{
-		Annotations an = method.getAnnotations();
-		if (an == null)
+		Annotations annotations = method.getAnnotations();
+		if (annotations == null)
 		{
 			return;
 		}
 
-		Annotation a = an.find(DeobAnnotations.HOOK);
+		Annotation a = annotations.find(DeobAnnotations.HOOK);
 		if (a == null)
 		{
 			return;
@@ -81,13 +82,13 @@ public class InjectHookMethod
 
 	public void inject(Method hookMethod, Method method, String name, boolean end, boolean useHooks) throws InjectionException
 	{
-		Annotations an = method.getAnnotations();
+		Annotations annotations = method.getAnnotations();
 
 		// Method is hooked
 		// Find equivalent method in vanilla, and insert callback at the beginning
-		ClassFile cf = method.getClassFile();
-		String obfuscatedMethodName = DeobAnnotations.getObfuscatedName(an),
-			obfuscatedClassName = DeobAnnotations.getObfuscatedName(cf.getAnnotations());
+		ClassFile classFile = method.getClassFile();
+		String obfuscatedMethodName = DeobAnnotations.getObfuscatedName(annotations),
+				obfuscatedClassName = DeobAnnotations.getObfuscatedName(classFile.getAnnotations());
 
 		// might be a constructor
 		if (obfuscatedMethodName == null)
@@ -119,7 +120,7 @@ public class InjectHookMethod
 		Instructions instructions = code.getInstructions();
 
 		Signature.Builder builder = new Signature.Builder()
-			.setReturnType(Type.VOID); // Hooks always return void
+				.setReturnType(Type.VOID); // Hooks always return void
 
 		for (Type type : deobMethod.getDescriptor().getArguments())
 		{
@@ -168,26 +169,26 @@ public class InjectHookMethod
 			{
 				// Invoke callback
 				invoke = new InvokeStatic(instructions,
-					new net.runelite.asm.pool.Method(
-						new net.runelite.asm.pool.Class(HOOKS),
-						hookName,
-						signature
-					)
+						new net.runelite.asm.pool.Method(
+								new net.runelite.asm.pool.Class(HOOKS),
+								hookName,
+								signature
+						)
 				);
 			}
 			else
 			{
-				// Invoke methodhook
+				// Invoke method hook
 				assert hookMethod != null;
 
 				if (vanillaMethod.isStatic())
 				{
 					invoke = new InvokeStatic(instructions,
-						new net.runelite.asm.pool.Method(
-							new net.runelite.asm.pool.Class("client"), // Static methods are in client
-							hookMethod.getName(),
-							signature
-						)
+							new net.runelite.asm.pool.Method(
+									new net.runelite.asm.pool.Class("client"), // Static methods are in client
+									hookMethod.getName(),
+									signature
+							)
 					);
 				}
 				else
@@ -195,11 +196,11 @@ public class InjectHookMethod
 					// otherwise invoke member function
 					//instructions.addInstruction(insertPos++, new ALoad(instructions, 0));
 					invoke = new InvokeVirtual(instructions,
-						new net.runelite.asm.pool.Method(
-							new net.runelite.asm.pool.Class(vanillaMethod.getClassFile().getName()),
-							hookMethod.getName(),
-							hookMethod.getDescriptor()
-						)
+							new net.runelite.asm.pool.Method(
+									new net.runelite.asm.pool.Class(vanillaMethod.getClassFile().getName()),
+									hookMethod.getName(),
+									hookMethod.getDescriptor()
+							)
 					);
 				}
 			}
@@ -208,11 +209,11 @@ public class InjectHookMethod
 		}
 
 		logger.info("Injected method hook {} in {} with {} args: {}",
-			hookName, vanillaMethod, signature.size(),
-			signature.getArguments());
+				hookName, vanillaMethod, signature.size(),
+				signature.getArguments());
 	}
 
-	private List<Integer> findHookLocations(String hookName, boolean end, Method vanillaMethod) throws InjectionException
+	private List<Integer> findHookLocations(String hookName, boolean end, Method vanillaMethod)
 	{
 		Instructions instructions = vanillaMethod.getCode().getInstructions();
 
@@ -220,8 +221,8 @@ public class InjectHookMethod
 		{
 			// find return
 			List<Instruction> returns = instructions.getInstructions().stream()
-				.filter(i -> i instanceof ReturnInstruction)
-				.collect(Collectors.toList());
+					.filter(i -> i instanceof ReturnInstruction)
+					.collect(Collectors.toList());
 			List<Integer> indexes = new ArrayList<>();
 
 			for (Instruction ret : returns)
@@ -239,7 +240,7 @@ public class InjectHookMethod
 			return Arrays.asList(0);
 		}
 
-		// Find index after invokespecial
+		// Find index after invoke special
 		for (int i = 0; i < instructions.getInstructions().size(); ++i)
 		{
 			Instruction in = instructions.getInstructions().get(i);
@@ -250,6 +251,6 @@ public class InjectHookMethod
 			}
 		}
 
-		throw new IllegalStateException("constructor with no invokespecial");
+		throw new IllegalStateException("constructor with no invoke special");
 	}
 }

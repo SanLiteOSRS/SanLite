@@ -24,7 +24,6 @@
  */
 package net.runelite.injector;
 
-import java.util.List;
 import net.runelite.asm.ClassFile;
 import net.runelite.asm.Field;
 import net.runelite.asm.Method;
@@ -32,17 +31,14 @@ import net.runelite.asm.attributes.Code;
 import net.runelite.asm.attributes.code.Instruction;
 import net.runelite.asm.attributes.code.InstructionType;
 import net.runelite.asm.attributes.code.Instructions;
-import net.runelite.asm.attributes.code.instructions.ALoad;
-import net.runelite.asm.attributes.code.instructions.GetField;
-import net.runelite.asm.attributes.code.instructions.GetStatic;
-import net.runelite.asm.attributes.code.instructions.IMul;
-import net.runelite.asm.attributes.code.instructions.LDC;
-import net.runelite.asm.attributes.code.instructions.LMul;
-import net.runelite.asm.attributes.code.instructions.Return;
+import net.runelite.asm.attributes.code.instructions.*;
 import net.runelite.asm.signature.Signature;
-import static org.objectweb.asm.Opcodes.ACC_PUBLIC;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.List;
+
+import static org.objectweb.asm.Opcodes.ACC_PUBLIC;
 
 class InjectGetter
 {
@@ -68,8 +64,8 @@ class InjectGetter
 		assert field.isStatic() || field.getClassFile() == clazz;
 
 		Signature sig = new Signature.Builder()
-			.setReturnType(Inject.classToType(method.getReturnType()))
-			.build();
+				.setReturnType(Inject.classToType(method.getReturnType()))
+				.build();
 		Method getterMethod = new Method(clazz, method.getName(), sig);
 		getterMethod.setAccessFlags(ACC_PUBLIC);
 
@@ -102,12 +98,12 @@ class InjectGetter
 
 			if (getter instanceof Integer)
 			{
-				ins.add(new LDC(instructions, (int) getter));
+				ins.add(new LDC(instructions, getter));
 				ins.add(new IMul(instructions));
 			}
 			else
 			{
-				ins.add(new LDC(instructions, (long) getter));
+				ins.add(new LDC(instructions, getter));
 				ins.add(new LMul(instructions));
 			}
 		}
