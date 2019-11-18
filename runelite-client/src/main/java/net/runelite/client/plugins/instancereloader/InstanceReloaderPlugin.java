@@ -13,7 +13,7 @@ import java.awt.image.BufferedImage;
 
 @PluginDescriptor(
 		name = "Instance Reloader",
-		description = "",
+		description = "Allows the user to reload an instance by disconnecting themselves temporarily. This is used for raids scouting",
 		tags = {"raids", "instance", "scouter", "scout"},
 		type = PluginType.SANLITE,
 		enabledByDefault = false

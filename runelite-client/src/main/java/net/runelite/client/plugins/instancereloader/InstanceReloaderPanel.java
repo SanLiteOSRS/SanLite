@@ -56,7 +56,7 @@ class InstanceReloaderPanel extends PluginPanel
 		instanceReloaderPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
 		instanceReloaderPanel.setLayout(new GridLayout(2, 1));
 
-		JLabel title = new JLabel(htmlLabel("<center>Instance Reload Helper</center>"), SwingConstants.CENTER);
+		JLabel title = new JLabel(htmlLabel("<center>Instance Reloader</center>"), SwingConstants.CENTER);
 		title.setFont(FontManager.getRunescapeFont());
 
 		JLabel subTitle = new JLabel(htmlLabel("Reloading an instance will cause your client to disconnect temporarily."));
@@ -72,7 +72,7 @@ class InstanceReloaderPanel extends PluginPanel
 
 		reloadButton.addActionListener((ActionEvent e) ->
 		{
-			if ((client.getGameState() == GameState.LOGGED_IN))
+			if ((client.getGameState() == GameState.LOGGED_IN) && client.isInInstancedRegion())
 			{
 				client.setGameState(GameState.CONNECTION_LOST);
 			}
