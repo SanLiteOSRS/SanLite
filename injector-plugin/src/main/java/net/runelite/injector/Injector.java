@@ -24,13 +24,13 @@
  */
 package net.runelite.injector;
 
-import java.io.File;
-import java.io.IOException;
-
 import com.google.common.io.Files;
 import net.runelite.asm.ClassFile;
 import net.runelite.asm.ClassGroup;
 import net.runelite.deob.util.JarUtil;
+
+import java.io.File;
+import java.io.IOException;
 
 public class Injector
 {
@@ -53,8 +53,8 @@ public class Injector
 		ClassGroup vanilla = JarUtil.loadJar(new File(args[1]));
 
 		Injector u = new Injector(
-			deobfuscated,
-			vanilla
+				deobfuscated,
+				vanilla
 		);
 		u.inject();
 

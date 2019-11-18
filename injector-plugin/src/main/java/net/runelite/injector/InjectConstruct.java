@@ -24,11 +24,6 @@
  */
 package net.runelite.injector;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import net.runelite.asm.ClassFile;
 import net.runelite.asm.ClassGroup;
 import net.runelite.asm.Method;
@@ -36,17 +31,20 @@ import net.runelite.asm.Type;
 import net.runelite.asm.attributes.Code;
 import net.runelite.asm.attributes.code.Instruction;
 import net.runelite.asm.attributes.code.Instructions;
-import net.runelite.asm.attributes.code.instructions.CheckCast;
-import net.runelite.asm.attributes.code.instructions.Dup;
-import net.runelite.asm.attributes.code.instructions.InvokeSpecial;
-import net.runelite.asm.attributes.code.instructions.New;
-import net.runelite.asm.attributes.code.instructions.Return;
+import net.runelite.asm.attributes.code.instructions.*;
 import net.runelite.asm.signature.Signature;
 import net.runelite.deob.DeobAnnotations;
 import net.runelite.mapping.Construct;
-import static org.objectweb.asm.Opcodes.ACC_PUBLIC;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import static org.objectweb.asm.Opcodes.ACC_PUBLIC;
 
 public class InjectConstruct
 {
@@ -115,19 +113,19 @@ public class InjectConstruct
 		Signature sig = inject.javaMethodToSignature(apiMethod);
 
 		Signature constructorSig = new Signature.Builder()
-			.addArguments(Stream.of(apiMethod.getParameterTypes())
-				.map(arg ->
-				{
-					ClassFile vanilla = inject.findVanillaForInterface(arg);
-					if (vanilla != null)
-					{
-						return new Type("L" + vanilla.getName() + ";");
-					}
-					return Inject.classToType(arg);
-				})
-				.collect(Collectors.toList()))
-			.setReturnType(Type.VOID)
-			.build();
+				.addArguments(Stream.of(apiMethod.getParameterTypes())
+						.map(arg ->
+						{
+							ClassFile vanilla = inject.findVanillaForInterface(arg);
+							if (vanilla != null)
+							{
+								return new Type("L" + vanilla.getName() + ";");
+							}
+							return Inject.classToType(arg);
+						})
+						.collect(Collectors.toList()))
+				.setReturnType(Type.VOID)
+				.build();
 		Method vanillaConstructor = vanillaClass.findMethod("<init>", constructorSig);
 		if (vanillaConstructor == null)
 		{
