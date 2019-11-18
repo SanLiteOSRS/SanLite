@@ -24,7 +24,6 @@
  */
 package net.runelite.injector;
 
-import java.util.List;
 import net.runelite.asm.ClassFile;
 import net.runelite.asm.Field;
 import net.runelite.asm.Method;
@@ -32,18 +31,14 @@ import net.runelite.asm.Type;
 import net.runelite.asm.attributes.Code;
 import net.runelite.asm.attributes.code.Instruction;
 import net.runelite.asm.attributes.code.Instructions;
-import net.runelite.asm.attributes.code.instructions.ALoad;
-import net.runelite.asm.attributes.code.instructions.CheckCast;
-import net.runelite.asm.attributes.code.instructions.IMul;
-import net.runelite.asm.attributes.code.instructions.LDC;
-import net.runelite.asm.attributes.code.instructions.LMul;
-import net.runelite.asm.attributes.code.instructions.PutField;
-import net.runelite.asm.attributes.code.instructions.PutStatic;
-import net.runelite.asm.attributes.code.instructions.VReturn;
+import net.runelite.asm.attributes.code.instructions.*;
 import net.runelite.asm.signature.Signature;
-import static org.objectweb.asm.Opcodes.ACC_PUBLIC;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.List;
+
+import static org.objectweb.asm.Opcodes.ACC_PUBLIC;
 
 class InjectSetter
 {
@@ -89,9 +84,9 @@ class InjectSetter
 		assert field.isStatic() || field.getClassFile() == targetClass;
 
 		Signature sig = new Signature.Builder()
-			.setReturnType(Type.VOID)
-			.addArgument(Inject.classToType(method.getParameterTypes()[0]))
-			.build();
+				.setReturnType(Type.VOID)
+				.addArgument(Inject.classToType(method.getParameterTypes()[0]))
+				.build();
 
 		Method setterMethod = new Method(targetClass, method.getName(), sig);
 		setterMethod.setAccessFlags(ACC_PUBLIC);
@@ -129,12 +124,12 @@ class InjectSetter
 
 			if (setter instanceof Integer)
 			{
-				ins.add(new LDC(instructions, (int) setter));
+				ins.add(new LDC(instructions, setter));
 				ins.add(new IMul(instructions));
 			}
 			else
 			{
-				ins.add(new LDC(instructions, (long) setter));
+				ins.add(new LDC(instructions, setter));
 				ins.add(new LMul(instructions));
 			}
 		}

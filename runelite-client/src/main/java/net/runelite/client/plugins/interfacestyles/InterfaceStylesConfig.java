@@ -53,16 +53,15 @@ public interface InterfaceStylesConfig extends Config
 		return false;
 	}
 
-	// TODO: Re-enable this config option when the draw menu injection is fixed
-//	@ConfigItem(
-//		keyName = "hdMenu",
-//		name = "High Detail menu",
-//		description = "Replaces game menu with the RuneScape High Detail mode design"
-//	)
-//	default boolean hdMenu()
-//	{
-//		return false;
-//	}
+	@ConfigItem(
+		keyName = "hdMenu",
+		name = "High Detail menu",
+		description = "Replaces game menu with the RuneScape High Detail mode design"
+	)
+	default boolean hdMenu()
+	{
+		return false;
+	}
 
 	@ConfigItem(
 		keyName = "rsCrossSprites",

@@ -24,9 +24,6 @@
  */
 package net.runelite.injector;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import net.runelite.asm.ClassFile;
 import net.runelite.asm.ClassGroup;
 import net.runelite.deob.clientver.ClientVersion;
@@ -39,9 +36,13 @@ import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 @Mojo(
-	name = "runelite-injector",
-	defaultPhase = LifecyclePhase.GENERATE_RESOURCES
+		name = "runelite-injector",
+		defaultPhase = LifecyclePhase.GENERATE_RESOURCES
 )
 public class InjectMojo extends AbstractMojo
 {
@@ -124,29 +125,29 @@ public class InjectMojo extends AbstractMojo
 			File classFile = getClassFile(outputDirectory, cf);
 			byte[] classData = JarUtil.writeClass(group, cf);
 
-			try (FileOutputStream fout = new FileOutputStream(classFile, false))
+			try (FileOutputStream fileOutputStream = new FileOutputStream(classFile, false))
 			{
-				fout.write(classData);
+				fileOutputStream.write(classData);
 			}
 		}
 	}
 
-	private File getClassFile(File base, ClassFile cf)
+	private File getClassFile(File base, ClassFile classFile)
 	{
-		File f = base;
+		File file = base;
 
-		String[] parts = cf.getName().split("/");
+		String[] parts = classFile.getName().split("/");
 		for (int i = 0; i < parts.length - 1; ++i)
 		{
 			String part = parts[i];
 
-			f = new File(f, part);
+			file = new File(file, part);
 		}
 
-		f.mkdirs();
-		f = new File(f, parts[parts.length - 1] + ".class");
+		file.mkdirs();
+		file = new File(file, parts[parts.length - 1] + ".class");
 
-		return f;
+		return file;
 	}
 
 }

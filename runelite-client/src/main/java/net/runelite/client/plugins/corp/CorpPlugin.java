@@ -62,7 +62,7 @@ import net.runelite.client.ui.overlay.OverlayManager;
 	name = "Corporeal Beast",
 	description = "Show damage statistics and highlight dark energy cores",
 	tags = {"bosses", "combat", "pve", "overlay"},
-	type = PluginType.RUNELITE_USE_AT_OWN_RISK
+	type = PluginType.SANLITE_USE_AT_OWN_RISK
 )
 @Slf4j
 public class CorpPlugin extends Plugin
