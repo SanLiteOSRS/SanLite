@@ -160,9 +160,9 @@ public class UrlRequester implements Runnable {
 					int var12 = class215.localPlayer.y - var10 >> 7;
 					PacketBufferNode var13 = ModelData0.getPacketBufferNode(ClientPacket.field2282, Client.packetWriter.isaacCipher);
 					var13.packetBuffer.writeByte(18);
-					var13.packetBuffer.method5604(class51.baseX * 64 + var11);
-					var13.packetBuffer.method5596(KeyHandler.KeyHandler_pressedKeys[82] ? (KeyHandler.KeyHandler_pressedKeys[81] ? 2 : 1) : 0);
-					var13.packetBuffer.method5604(var12 + VarcInt.baseY * -1499248159);
+					var13.packetBuffer.method5636(class51.baseX * 64 + var11);
+					var13.packetBuffer.method5628(KeyHandler.KeyHandler_pressedKeys[82] ? (KeyHandler.KeyHandler_pressedKeys[81] ? 2 : 1) : 0);
+					var13.packetBuffer.method5636(VarcInt.baseY * 64 + var12);
 					var13.packetBuffer.writeByte(var4);
 					var13.packetBuffer.writeByte(var5);
 					var13.packetBuffer.writeShort(Client.camAngleY);

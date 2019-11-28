@@ -191,9 +191,9 @@ public class UserComparator10 extends AbstractUserComparator {
 				return var0.activity.compareTo(var1.activity);
 			}
 		} else if (var2 == 4) {
-			return var0.method1766() ? (var1.method1766() ? 0 : 1) : (var1.method1766() ? -1 : 0);
+			return var0.method1785() ? (var1.method1785() ? 0 : 1) : (var1.method1785() ? -1 : 0);
 		} else if (var2 == 5) {
-			return var0.method1783() ? (var1.method1783() ? 0 : 1) : (var1.method1783() ? -1 : 0);
+			return var0.method1802() ? (var1.method1802() ? 0 : 1) : (var1.method1802() ? -1 : 0);
 		} else if (var2 == 6) {
 			return var0.isPvp() ? (var1.isPvp() ? 0 : 1) : (var1.isPvp() ? -1 : 0);
 		} else if (var2 == 7) {

@@ -78,7 +78,7 @@ public enum WorldMapSectionType implements Enumerated {
 
 		int var3;
 		for (byte var2 = 12; var0 < 16; var1 -= var2) {
-			var3 = Huffman.method3994((double)((float)var1 / 360.0F), 0.9998999834060669D, (double)(0.075F + 0.425F * (float)var0 / 16.0F));
+			var3 = Huffman.method4020((double)((float)var1 / 360.0F), 0.9998999834060669D, (double)(0.075F + 0.425F * (float)var0 / 16.0F));
 			Skeleton.field1788[var0] = var3;
 			++var0;
 		}
@@ -88,7 +88,7 @@ public enum WorldMapSectionType implements Enumerated {
 		for (int var5 = var1 / 6; var0 < Skeleton.field1788.length; var1 -= var5) {
 			var3 = var0 * 2;
 
-			for (int var4 = Huffman.method3994((double)((float)var1 / 360.0F), 0.9998999834060669D, 0.5D); var0 < var3 && var0 < Skeleton.field1788.length; ++var0) {
+			for (int var4 = Huffman.method4020((double)((float)var1 / 360.0F), 0.9998999834060669D, 0.5D); var0 < var3 && var0 < Skeleton.field1788.length; ++var0) {
 				Skeleton.field1788[var0] = var4;
 			}
 		}

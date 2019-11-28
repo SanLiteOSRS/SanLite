@@ -55,7 +55,7 @@ public class Messages {
 		signature = "(Lhg;I)V",
 		garbageValue = "-1903945924"
 	)
-	public static void method2211(Huffman var0) {
+	public static void method2230(Huffman var0) {
 		class210.huffman = var0;
 	}
 
@@ -64,10 +64,10 @@ public class Messages {
 		signature = "(ILci;ZI)I",
 		garbageValue = "-1564166931"
 	)
-	static int method2222(int var0, Script var1, boolean var2) {
+	static int method2241(int var0, Script var1, boolean var2) {
 		Widget var3 = var2 ? Interpreter.field1090 : class188.field2352;
 		if (var0 == ScriptOpcodes.CC_GETTARGETMASK) {
-			Interpreter.Interpreter_intStack[++GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize - 1] = Client.method1651(MenuAction.getWidgetClickMask(var3));
+			Interpreter.Interpreter_intStack[++GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize - 1] = Client.method1655(MenuAction.getWidgetClickMask(var3));
 			return 1;
 		} else if (var0 != ScriptOpcodes.CC_GETOP) {
 			if (var0 == ScriptOpcodes.CC_GETOPBASE) {

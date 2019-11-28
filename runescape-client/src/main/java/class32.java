@@ -32,12 +32,12 @@ public class class32 {
 			Client.destinationY = var1;
 			var8 = ModelData0.getPacketBufferNode(ClientPacket.field2244, Client.packetWriter.isaacCipher);
 			var8.packetBuffer.writeShort(class51.baseX * 64 + var0);
-			var8.packetBuffer.method5596(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
+			var8.packetBuffer.method5628(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
 			var8.packetBuffer.writeShortLE(class43.selectedItemSlot);
-			var8.packetBuffer.method5604(HealthBarUpdate.selectedItemId);
-			var8.packetBuffer.method5616(class1.selectedItemWidget);
+			var8.packetBuffer.method5636(HealthBarUpdate.selectedItemId);
+			var8.packetBuffer.method5648(class1.selectedItemWidget);
 			var8.packetBuffer.writeShortLE(var3);
-			var8.packetBuffer.writeShort(VarcInt.baseY * -1499248159 + var1);
+			var8.packetBuffer.writeShort(VarcInt.baseY * 64 + var1);
 			Client.packetWriter.addNode(var8);
 		} else if (var2 == 2) {
 			Client.mouseCrossX = var6;
@@ -47,11 +47,11 @@ public class class32 {
 			Client.destinationX = var0;
 			Client.destinationY = var1;
 			var8 = ModelData0.getPacketBufferNode(ClientPacket.field2263, Client.packetWriter.isaacCipher);
-			var8.packetBuffer.method5604(Client.selectedSpellChildIndex);
-			var8.packetBuffer.method5581(var3);
-			var8.packetBuffer.method5581(VarcInt.baseY * -1499248159 + var1);
+			var8.packetBuffer.method5636(Client.selectedSpellChildIndex);
+			var8.packetBuffer.method5613(var3);
+			var8.packetBuffer.method5613(VarcInt.baseY * 64 + var1);
 			var8.packetBuffer.writeInt(WorldMapAreaData.selectedSpellWidget);
-			var8.packetBuffer.method5596(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
+			var8.packetBuffer.method5628(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
 			var8.packetBuffer.writeShortLE(class51.baseX * 64 + var0);
 			Client.packetWriter.addNode(var8);
 		} else if (var2 == 3) {
@@ -62,9 +62,9 @@ public class class32 {
 			Client.destinationX = var0;
 			Client.destinationY = var1;
 			var8 = ModelData0.getPacketBufferNode(ClientPacket.field2226, Client.packetWriter.isaacCipher);
-			var8.packetBuffer.writeShortLE(VarcInt.baseY * -1499248159 + var1);
+			var8.packetBuffer.writeShortLE(VarcInt.baseY * 64 + var1);
 			var8.packetBuffer.writeShortLE(class51.baseX * 64 + var0);
-			var8.packetBuffer.method5566(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
+			var8.packetBuffer.method5598(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
 			var8.packetBuffer.writeShortLE(var3);
 			Client.packetWriter.addNode(var8);
 		} else if (var2 == 4) {
@@ -75,9 +75,9 @@ public class class32 {
 			Client.destinationX = var0;
 			Client.destinationY = var1;
 			var8 = ModelData0.getPacketBufferNode(ClientPacket.field2297, Client.packetWriter.isaacCipher);
-			var8.packetBuffer.method5596(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
-			var8.packetBuffer.method5604(VarcInt.baseY * -1499248159 + var1);
-			var8.packetBuffer.method5604(var3);
+			var8.packetBuffer.method5628(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
+			var8.packetBuffer.method5636(VarcInt.baseY * 64 + var1);
+			var8.packetBuffer.method5636(var3);
 			var8.packetBuffer.writeShort(class51.baseX * 64 + var0);
 			Client.packetWriter.addNode(var8);
 		} else if (var2 == 5) {
@@ -88,10 +88,10 @@ public class class32 {
 			Client.destinationX = var0;
 			Client.destinationY = var1;
 			var8 = ModelData0.getPacketBufferNode(ClientPacket.field2237, Client.packetWriter.isaacCipher);
-			var8.packetBuffer.method5581(VarcInt.baseY * -1499248159 + var1);
-			var8.packetBuffer.method5581(var3);
-			var8.packetBuffer.method5604(class51.baseX * 64 + var0);
-			var8.packetBuffer.method5566(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
+			var8.packetBuffer.method5613(VarcInt.baseY * 64 + var1);
+			var8.packetBuffer.method5613(var3);
+			var8.packetBuffer.method5636(class51.baseX * 64 + var0);
+			var8.packetBuffer.method5598(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
 			Client.packetWriter.addNode(var8);
 		} else if (var2 == 6) {
 			Client.mouseCrossX = var6;
@@ -102,9 +102,9 @@ public class class32 {
 			Client.destinationY = var1;
 			var8 = ModelData0.getPacketBufferNode(ClientPacket.field2252, Client.packetWriter.isaacCipher);
 			var8.packetBuffer.writeIntME(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
-			var8.packetBuffer.writeShortLE(VarcInt.baseY * -1499248159 + var1);
-			var8.packetBuffer.method5604(var3);
-			var8.packetBuffer.method5581(class51.baseX * 64 + var0);
+			var8.packetBuffer.writeShortLE(VarcInt.baseY * 64 + var1);
+			var8.packetBuffer.method5636(var3);
+			var8.packetBuffer.method5613(class51.baseX * 64 + var0);
 			Client.packetWriter.addNode(var8);
 		} else {
 			PacketBufferNode var9;
@@ -121,9 +121,9 @@ public class class32 {
 					var9 = ModelData0.getPacketBufferNode(ClientPacket.field2316, Client.packetWriter.isaacCipher);
 					var9.packetBuffer.writeInt(class1.selectedItemWidget);
 					var9.packetBuffer.writeIntME(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
-					var9.packetBuffer.method5604(HealthBarUpdate.selectedItemId);
-					var9.packetBuffer.method5581(var3);
-					var9.packetBuffer.method5581(class43.selectedItemSlot);
+					var9.packetBuffer.method5636(HealthBarUpdate.selectedItemId);
+					var9.packetBuffer.method5613(var3);
+					var9.packetBuffer.method5613(class43.selectedItemSlot);
 					Client.packetWriter.addNode(var9);
 				}
 			} else if (var2 == 8) {
@@ -137,9 +137,9 @@ public class class32 {
 					Client.destinationY = var1;
 					var9 = ModelData0.getPacketBufferNode(ClientPacket.field2300, Client.packetWriter.isaacCipher);
 					var9.packetBuffer.writeInt(WorldMapAreaData.selectedSpellWidget);
-					var9.packetBuffer.method5604(Client.selectedSpellChildIndex);
-					var9.packetBuffer.method5566(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
-					var9.packetBuffer.method5581(var3);
+					var9.packetBuffer.method5636(Client.selectedSpellChildIndex);
+					var9.packetBuffer.method5598(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
+					var9.packetBuffer.method5613(var3);
 					Client.packetWriter.addNode(var9);
 				}
 			} else if (var2 == 9) {
@@ -152,7 +152,7 @@ public class class32 {
 					Client.destinationX = var0;
 					Client.destinationY = var1;
 					var9 = ModelData0.getPacketBufferNode(ClientPacket.field2255, Client.packetWriter.isaacCipher);
-					var9.packetBuffer.method5604(var3);
+					var9.packetBuffer.method5636(var3);
 					var9.packetBuffer.writeIntME(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
 					Client.packetWriter.addNode(var9);
 				}
@@ -167,7 +167,7 @@ public class class32 {
 					Client.destinationY = var1;
 					var9 = ModelData0.getPacketBufferNode(ClientPacket.field2245, Client.packetWriter.isaacCipher);
 					var9.packetBuffer.writeShortLE(var3);
-					var9.packetBuffer.method5566(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
+					var9.packetBuffer.method5598(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
 					Client.packetWriter.addNode(var9);
 				}
 			} else if (var2 == 11) {
@@ -180,8 +180,8 @@ public class class32 {
 					Client.destinationX = var0;
 					Client.destinationY = var1;
 					var9 = ModelData0.getPacketBufferNode(ClientPacket.field2308, Client.packetWriter.isaacCipher);
-					var9.packetBuffer.method5581(var3);
-					var9.packetBuffer.method5596(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
+					var9.packetBuffer.method5613(var3);
+					var9.packetBuffer.method5628(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
 					Client.packetWriter.addNode(var9);
 				}
 			} else if (var2 == 12) {
@@ -194,7 +194,7 @@ public class class32 {
 					Client.destinationX = var0;
 					Client.destinationY = var1;
 					var9 = ModelData0.getPacketBufferNode(ClientPacket.field2243, Client.packetWriter.isaacCipher);
-					var9.packetBuffer.method5596(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
+					var9.packetBuffer.method5628(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
 					var9.packetBuffer.writeShortLE(var3);
 					Client.packetWriter.addNode(var9);
 				}
@@ -208,8 +208,8 @@ public class class32 {
 					Client.destinationX = var0;
 					Client.destinationY = var1;
 					var9 = ModelData0.getPacketBufferNode(ClientPacket.field2257, Client.packetWriter.isaacCipher);
-					var9.packetBuffer.method5566(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
-					var9.packetBuffer.method5581(var3);
+					var9.packetBuffer.method5598(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
+					var9.packetBuffer.method5613(var3);
 					Client.packetWriter.addNode(var9);
 				}
 			} else {
@@ -224,11 +224,11 @@ public class class32 {
 						Client.destinationX = var0;
 						Client.destinationY = var1;
 						var9 = ModelData0.getPacketBufferNode(ClientPacket.field2286, Client.packetWriter.isaacCipher);
-						var9.packetBuffer.method5604(HealthBarUpdate.selectedItemId);
+						var9.packetBuffer.method5636(HealthBarUpdate.selectedItemId);
 						var9.packetBuffer.writeIntME(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
 						var9.packetBuffer.writeInt(class1.selectedItemWidget);
 						var9.packetBuffer.writeShortLE(var3);
-						var9.packetBuffer.method5581(class43.selectedItemSlot);
+						var9.packetBuffer.method5613(class43.selectedItemSlot);
 						Client.packetWriter.addNode(var9);
 					}
 				} else if (var2 == 15) {
@@ -241,10 +241,10 @@ public class class32 {
 						Client.destinationX = var0;
 						Client.destinationY = var1;
 						var9 = ModelData0.getPacketBufferNode(ClientPacket.field2225, Client.packetWriter.isaacCipher);
-						var9.packetBuffer.method5581(var3);
-						var9.packetBuffer.method5779(WorldMapAreaData.selectedSpellWidget);
-						var9.packetBuffer.method5596(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
-						var9.packetBuffer.method5581(Client.selectedSpellChildIndex);
+						var9.packetBuffer.method5613(var3);
+						var9.packetBuffer.method5811(WorldMapAreaData.selectedSpellWidget);
+						var9.packetBuffer.method5628(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
+						var9.packetBuffer.method5613(Client.selectedSpellChildIndex);
 						Client.packetWriter.addNode(var9);
 					}
 				} else if (var2 == 16) {
@@ -255,13 +255,13 @@ public class class32 {
 					Client.destinationX = var0;
 					Client.destinationY = var1;
 					var8 = ModelData0.getPacketBufferNode(ClientPacket.field2284, Client.packetWriter.isaacCipher);
-					var8.packetBuffer.method5581(class43.selectedItemSlot);
+					var8.packetBuffer.method5613(class43.selectedItemSlot);
 					var8.packetBuffer.writeShortLE(class51.baseX * 64 + var0);
-					var8.packetBuffer.method5779(class1.selectedItemWidget);
-					var8.packetBuffer.writeShort(VarcInt.baseY * -1499248159 + var1);
-					var8.packetBuffer.method5596(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
+					var8.packetBuffer.method5811(class1.selectedItemWidget);
+					var8.packetBuffer.writeShort(VarcInt.baseY * 64 + var1);
+					var8.packetBuffer.method5628(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
 					var8.packetBuffer.writeShortLE(HealthBarUpdate.selectedItemId);
-					var8.packetBuffer.method5581(var3);
+					var8.packetBuffer.method5613(var3);
 					Client.packetWriter.addNode(var8);
 				} else if (var2 == 17) {
 					Client.mouseCrossX = var6;
@@ -271,12 +271,12 @@ public class class32 {
 					Client.destinationX = var0;
 					Client.destinationY = var1;
 					var8 = ModelData0.getPacketBufferNode(ClientPacket.field2254, Client.packetWriter.isaacCipher);
-					var8.packetBuffer.method5581(class51.baseX * 64 + var0);
-					var8.packetBuffer.method5566(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
-					var8.packetBuffer.writeShort(VarcInt.baseY * -1499248159 + var1);
+					var8.packetBuffer.method5613(class51.baseX * 64 + var0);
+					var8.packetBuffer.method5598(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
+					var8.packetBuffer.writeShort(VarcInt.baseY * 64 + var1);
 					var8.packetBuffer.writeShortLE(var3);
-					var8.packetBuffer.method5616(WorldMapAreaData.selectedSpellWidget);
-					var8.packetBuffer.method5604(Client.selectedSpellChildIndex);
+					var8.packetBuffer.method5648(WorldMapAreaData.selectedSpellWidget);
+					var8.packetBuffer.method5636(Client.selectedSpellChildIndex);
 					Client.packetWriter.addNode(var8);
 				} else if (var2 == 18) {
 					Client.mouseCrossX = var6;
@@ -286,10 +286,10 @@ public class class32 {
 					Client.destinationX = var0;
 					Client.destinationY = var1;
 					var8 = ModelData0.getPacketBufferNode(ClientPacket.field2236, Client.packetWriter.isaacCipher);
-					var8.packetBuffer.method5566(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
-					var8.packetBuffer.method5604(var3);
-					var8.packetBuffer.writeShort(VarcInt.baseY * -1499248159 + var1);
-					var8.packetBuffer.method5604(class51.baseX * 64 + var0);
+					var8.packetBuffer.method5598(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
+					var8.packetBuffer.method5636(var3);
+					var8.packetBuffer.writeShort(VarcInt.baseY * 64 + var1);
+					var8.packetBuffer.method5636(class51.baseX * 64 + var0);
 					Client.packetWriter.addNode(var8);
 				} else if (var2 == 19) {
 					Client.mouseCrossX = var6;
@@ -300,9 +300,9 @@ public class class32 {
 					Client.destinationY = var1;
 					var8 = ModelData0.getPacketBufferNode(ClientPacket.field2227, Client.packetWriter.isaacCipher);
 					var8.packetBuffer.writeShortLE(class51.baseX * 64 + var0);
-					var8.packetBuffer.method5566(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
-					var8.packetBuffer.method5604(var3);
-					var8.packetBuffer.writeShort(VarcInt.baseY * -1499248159 + var1);
+					var8.packetBuffer.method5598(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
+					var8.packetBuffer.method5636(var3);
+					var8.packetBuffer.writeShort(VarcInt.baseY * 64 + var1);
 					Client.packetWriter.addNode(var8);
 				} else if (var2 == 20) {
 					Client.mouseCrossX = var6;
@@ -313,8 +313,8 @@ public class class32 {
 					Client.destinationY = var1;
 					var8 = ModelData0.getPacketBufferNode(ClientPacket.field2233, Client.packetWriter.isaacCipher);
 					var8.packetBuffer.writeByte(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
-					var8.packetBuffer.method5581(var3);
-					var8.packetBuffer.method5581(VarcInt.baseY * -1499248159 + var1);
+					var8.packetBuffer.method5613(var3);
+					var8.packetBuffer.method5613(VarcInt.baseY * 64 + var1);
 					var8.packetBuffer.writeShortLE(class51.baseX * 64 + var0);
 					Client.packetWriter.addNode(var8);
 				} else if (var2 == 21) {
@@ -325,10 +325,10 @@ public class class32 {
 					Client.destinationX = var0;
 					Client.destinationY = var1;
 					var8 = ModelData0.getPacketBufferNode(ClientPacket.field2264, Client.packetWriter.isaacCipher);
-					var8.packetBuffer.method5581(VarcInt.baseY * -1499248159 + var1);
+					var8.packetBuffer.method5613(VarcInt.baseY * 64 + var1);
 					var8.packetBuffer.writeIntME(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
 					var8.packetBuffer.writeShort(var3);
-					var8.packetBuffer.method5581(class51.baseX * 64 + var0);
+					var8.packetBuffer.method5613(class51.baseX * 64 + var0);
 					Client.packetWriter.addNode(var8);
 				} else if (var2 == 22) {
 					Client.mouseCrossX = var6;
@@ -338,9 +338,9 @@ public class class32 {
 					Client.destinationX = var0;
 					Client.destinationY = var1;
 					var8 = ModelData0.getPacketBufferNode(ClientPacket.field2220, Client.packetWriter.isaacCipher);
-					var8.packetBuffer.writeShortLE(VarcInt.baseY * -1499248159 + var1);
+					var8.packetBuffer.writeShortLE(VarcInt.baseY * 64 + var1);
 					var8.packetBuffer.writeIntME(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
-					var8.packetBuffer.method5581(var3);
+					var8.packetBuffer.method5613(var3);
 					var8.packetBuffer.writeShort(class51.baseX * 64 + var0);
 					Client.packetWriter.addNode(var8);
 				} else if (var2 == 23) {
@@ -369,9 +369,9 @@ public class class32 {
 							var16 = UserComparator3.getWidgetChild(var1, var0);
 							if (var16 != null) {
 								Actor.Widget_runOnTargetLeave();
-								TextureProvider.method2790(var1, var0, Client.method1651(MenuAction.getWidgetClickMask(var16)), var16.itemId);
+								TextureProvider.selectSpell(var1, var0, Client.method1655(MenuAction.getWidgetClickMask(var16)), var16.itemId);
 								Client.isItemSelected = 0;
-								Client.selectedSpellActionName = LoginPacket.method3639(var16);
+								Client.selectedSpellActionName = LoginPacket.method3662(var16);
 								if (Client.selectedSpellActionName == null) {
 									Client.selectedSpellActionName = "null";
 								}
@@ -387,7 +387,7 @@ public class class32 {
 						}
 
 						if (var2 == 26) {
-							Actor.method1737();
+							Actor.method1756();
 						} else {
 							int var12;
 							Widget var14;
@@ -423,10 +423,10 @@ public class class32 {
 								var8 = ModelData0.getPacketBufferNode(ClientPacket.field2248, Client.packetWriter.isaacCipher);
 								var8.packetBuffer.writeShortLE(var3);
 								var8.packetBuffer.writeShortLE(class43.selectedItemSlot);
-								var8.packetBuffer.method5779(var1);
+								var8.packetBuffer.method5811(var1);
 								var8.packetBuffer.writeInt(class1.selectedItemWidget);
-								var8.packetBuffer.method5581(HealthBarUpdate.selectedItemId);
-								var8.packetBuffer.method5581(var0);
+								var8.packetBuffer.method5613(HealthBarUpdate.selectedItemId);
+								var8.packetBuffer.method5613(var0);
 								Client.packetWriter.addNode(var8);
 								Client.field664 = 0;
 								class51.field432 = Language.getWidget(var1);
@@ -435,8 +435,8 @@ public class class32 {
 								var8 = ModelData0.getPacketBufferNode(ClientPacket.field2269, Client.packetWriter.isaacCipher);
 								var8.packetBuffer.writeInt(var1);
 								var8.packetBuffer.writeInt(WorldMapAreaData.selectedSpellWidget);
-								var8.packetBuffer.method5581(var0);
-								var8.packetBuffer.method5581(var3);
+								var8.packetBuffer.method5613(var0);
+								var8.packetBuffer.method5613(var3);
 								var8.packetBuffer.writeShort(Client.selectedSpellChildIndex);
 								Client.packetWriter.addNode(var8);
 								Client.field664 = 0;
@@ -444,9 +444,9 @@ public class class32 {
 								Client.field749 = var0;
 							} else if (var2 == 33) {
 								var8 = ModelData0.getPacketBufferNode(ClientPacket.field2279, Client.packetWriter.isaacCipher);
-								var8.packetBuffer.method5604(var3);
-								var8.packetBuffer.method5581(var0);
-								var8.packetBuffer.method5615(var1);
+								var8.packetBuffer.method5636(var3);
+								var8.packetBuffer.method5613(var0);
+								var8.packetBuffer.method5647(var1);
 								Client.packetWriter.addNode(var8);
 								Client.field664 = 0;
 								class51.field432 = Language.getWidget(var1);
@@ -455,7 +455,7 @@ public class class32 {
 								var8 = ModelData0.getPacketBufferNode(ClientPacket.field2294, Client.packetWriter.isaacCipher);
 								var8.packetBuffer.writeShort(var0);
 								var8.packetBuffer.writeShort(var3);
-								var8.packetBuffer.method5616(var1);
+								var8.packetBuffer.method5648(var1);
 								Client.packetWriter.addNode(var8);
 								Client.field664 = 0;
 								class51.field432 = Language.getWidget(var1);
@@ -464,14 +464,14 @@ public class class32 {
 								var8 = ModelData0.getPacketBufferNode(ClientPacket.field2222, Client.packetWriter.isaacCipher);
 								var8.packetBuffer.writeShort(var0);
 								var8.packetBuffer.writeShort(var3);
-								var8.packetBuffer.method5615(var1);
+								var8.packetBuffer.method5647(var1);
 								Client.packetWriter.addNode(var8);
 								Client.field664 = 0;
 								class51.field432 = Language.getWidget(var1);
 								Client.field749 = var0;
 							} else if (var2 == 36) {
 								var8 = ModelData0.getPacketBufferNode(ClientPacket.field2235, Client.packetWriter.isaacCipher);
-								var8.packetBuffer.method5779(var1);
+								var8.packetBuffer.method5811(var1);
 								var8.packetBuffer.writeShortLE(var0);
 								var8.packetBuffer.writeShortLE(var3);
 								Client.packetWriter.addNode(var8);
@@ -480,9 +480,9 @@ public class class32 {
 								Client.field749 = var0;
 							} else if (var2 == 37) {
 								var8 = ModelData0.getPacketBufferNode(ClientPacket.field2250, Client.packetWriter.isaacCipher);
-								var8.packetBuffer.method5581(var3);
-								var8.packetBuffer.method5616(var1);
-								var8.packetBuffer.method5581(var0);
+								var8.packetBuffer.method5613(var3);
+								var8.packetBuffer.method5648(var1);
+								var8.packetBuffer.method5613(var0);
 								Client.packetWriter.addNode(var8);
 								Client.field664 = 0;
 								class51.field432 = Language.getWidget(var1);
@@ -507,15 +507,15 @@ public class class32 {
 								if (var2 == 39) {
 									var8 = ModelData0.getPacketBufferNode(ClientPacket.field2303, Client.packetWriter.isaacCipher);
 									var8.packetBuffer.writeShortLE(var0);
-									var8.packetBuffer.method5581(var3);
-									var8.packetBuffer.method5779(var1);
+									var8.packetBuffer.method5613(var3);
+									var8.packetBuffer.method5811(var1);
 									Client.packetWriter.addNode(var8);
 									Client.field664 = 0;
 									class51.field432 = Language.getWidget(var1);
 									Client.field749 = var0;
 								} else if (var2 == 40) {
 									var8 = ModelData0.getPacketBufferNode(ClientPacket.field2310, Client.packetWriter.isaacCipher);
-									var8.packetBuffer.method5581(var3);
+									var8.packetBuffer.method5613(var3);
 									var8.packetBuffer.writeInt(var1);
 									var8.packetBuffer.writeShortLE(var0);
 									Client.packetWriter.addNode(var8);
@@ -526,25 +526,25 @@ public class class32 {
 									var8 = ModelData0.getPacketBufferNode(ClientPacket.field2315, Client.packetWriter.isaacCipher);
 									var8.packetBuffer.writeShortLE(var3);
 									var8.packetBuffer.writeShort(var0);
-									var8.packetBuffer.method5615(var1);
+									var8.packetBuffer.method5647(var1);
 									Client.packetWriter.addNode(var8);
 									Client.field664 = 0;
 									class51.field432 = Language.getWidget(var1);
 									Client.field749 = var0;
 								} else if (var2 == 42) {
 									var8 = ModelData0.getPacketBufferNode(ClientPacket.field2253, Client.packetWriter.isaacCipher);
-									var8.packetBuffer.method5779(var1);
-									var8.packetBuffer.method5604(var0);
-									var8.packetBuffer.method5581(var3);
+									var8.packetBuffer.method5811(var1);
+									var8.packetBuffer.method5636(var0);
+									var8.packetBuffer.method5613(var3);
 									Client.packetWriter.addNode(var8);
 									Client.field664 = 0;
 									class51.field432 = Language.getWidget(var1);
 									Client.field749 = var0;
 								} else if (var2 == 43) {
 									var8 = ModelData0.getPacketBufferNode(ClientPacket.field2317, Client.packetWriter.isaacCipher);
-									var8.packetBuffer.method5581(var3);
+									var8.packetBuffer.method5613(var3);
 									var8.packetBuffer.writeShortLE(var0);
-									var8.packetBuffer.method5779(var1);
+									var8.packetBuffer.method5811(var1);
 									Client.packetWriter.addNode(var8);
 									Client.field664 = 0;
 									class51.field432 = Language.getWidget(var1);
@@ -559,8 +559,8 @@ public class class32 {
 										Client.destinationX = var0;
 										Client.destinationY = var1;
 										var9 = ModelData0.getPacketBufferNode(ClientPacket.field2231, Client.packetWriter.isaacCipher);
-										var9.packetBuffer.method5566(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
-										var9.packetBuffer.method5581(var3);
+										var9.packetBuffer.method5598(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
+										var9.packetBuffer.method5613(var3);
 										Client.packetWriter.addNode(var9);
 									}
 								} else if (var2 == 45) {
@@ -573,7 +573,7 @@ public class class32 {
 										Client.destinationX = var0;
 										Client.destinationY = var1;
 										var9 = ModelData0.getPacketBufferNode(ClientPacket.field2238, Client.packetWriter.isaacCipher);
-										var9.packetBuffer.method5566(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
+										var9.packetBuffer.method5598(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
 										var9.packetBuffer.writeShortLE(var3);
 										Client.packetWriter.addNode(var9);
 									}
@@ -601,7 +601,7 @@ public class class32 {
 										Client.destinationX = var0;
 										Client.destinationY = var1;
 										var9 = ModelData0.getPacketBufferNode(ClientPacket.field2267, Client.packetWriter.isaacCipher);
-										var9.packetBuffer.method5581(var3);
+										var9.packetBuffer.method5613(var3);
 										var9.packetBuffer.writeByte(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
 										Client.packetWriter.addNode(var9);
 									}
@@ -629,8 +629,8 @@ public class class32 {
 										Client.destinationX = var0;
 										Client.destinationY = var1;
 										var9 = ModelData0.getPacketBufferNode(ClientPacket.field2241, Client.packetWriter.isaacCipher);
-										var9.packetBuffer.method5596(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
-										var9.packetBuffer.method5604(var3);
+										var9.packetBuffer.method5628(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
+										var9.packetBuffer.method5636(var3);
 										Client.packetWriter.addNode(var9);
 									}
 								} else if (var2 == 50) {
@@ -670,10 +670,10 @@ public class class32 {
 													var9 = ModelData0.getPacketBufferNode(ClientPacket.field2232, Client.packetWriter.isaacCipher);
 													var9.packetBuffer.writeShortLE(Client.selectedSpellChildIndex);
 													var9.packetBuffer.writeShort(Client.field799);
-													var9.packetBuffer.method5604(var16.itemId);
-													var9.packetBuffer.method5615(WorldMapAreaData.selectedSpellWidget);
-													var9.packetBuffer.method5604(var0);
-													var9.packetBuffer.method5779(var1);
+													var9.packetBuffer.method5636(var16.itemId);
+													var9.packetBuffer.method5647(WorldMapAreaData.selectedSpellWidget);
+													var9.packetBuffer.method5636(var0);
+													var9.packetBuffer.method5811(var1);
 													Client.packetWriter.addNode(var9);
 												}
 												break label894;
@@ -687,10 +687,10 @@ public class class32 {
 												Client.destinationX = var0;
 												Client.destinationY = var1;
 												var8 = ModelData0.getPacketBufferNode(ClientPacket.field2292, Client.packetWriter.isaacCipher);
-												var8.packetBuffer.method5566(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
-												var8.packetBuffer.method5581(VarcInt.baseY * -1499248159 + var1);
-												var8.packetBuffer.method5604(class51.baseX * 64 + var0);
-												var8.packetBuffer.method5581(var3);
+												var8.packetBuffer.method5598(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
+												var8.packetBuffer.method5613(VarcInt.baseY * 64 + var1);
+												var8.packetBuffer.method5636(class51.baseX * 64 + var0);
+												var8.packetBuffer.method5613(var3);
 												Client.packetWriter.addNode(var8);
 												break label894;
 											}
@@ -733,7 +733,7 @@ public class class32 {
 												Client.mouseCrossColor = 2;
 												Client.mouseCrossState = 0;
 												var8 = ModelData0.getPacketBufferNode(ClientPacket.field2293, Client.packetWriter.isaacCipher);
-												var8.packetBuffer.method5604(var3);
+												var8.packetBuffer.method5636(var3);
 												Client.packetWriter.addNode(var8);
 												break label894;
 											}
@@ -744,7 +744,7 @@ public class class32 {
 													GrandExchangeOfferAgeComparator.addGameMessage(27, "", var16.itemQuantities[var0] + " x " + Interpreter.ItemDefinition_get(var3).name);
 												} else {
 													var9 = ModelData0.getPacketBufferNode(ClientPacket.field2293, Client.packetWriter.isaacCipher);
-													var9.packetBuffer.method5604(var3);
+													var9.packetBuffer.method5636(var3);
 													Client.packetWriter.addNode(var9);
 												}
 
@@ -755,7 +755,7 @@ public class class32 {
 											}
 
 											if (var2 != 1007) {
-												if (var2 == 1009 || var2 == 1011 || var2 == 1008 || var2 == 1010 || var2 == 1012) {
+												if (var2 == 1010 || var2 == 1009 || var2 == 1008 || var2 == 1011 || var2 == 1012) {
 													WorldMapRegion.worldMap.worldMapMenuAction(var2, var3, new Coord(var0), new Coord(var1));
 												}
 												break label894;
@@ -764,7 +764,7 @@ public class class32 {
 
 										var16 = UserComparator3.getWidgetChild(var1, var0);
 										if (var16 != null) {
-											WorldMapData_1.method715(var3, var1, var0, var16.itemId, var5);
+											WorldMapData_1.widgetDefaultMenuAction(var3, var1, var0, var16.itemId, var5);
 										}
 									}
 								}
@@ -796,7 +796,7 @@ public class class32 {
 		garbageValue = "-847322953"
 	)
 	static void method570(Buffer var0, int var1) {
-		class226.method4171(var0.array, var1);
+		class226.method4200(var0.array, var1);
 		GrandExchangeEvent.method86(var0, var1);
 	}
 }

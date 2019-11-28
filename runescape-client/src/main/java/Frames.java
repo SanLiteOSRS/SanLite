@@ -70,7 +70,7 @@ public class Frames extends DualNode {
 		signature = "(Lel;[Lfh;B)V",
 		garbageValue = "-55"
 	)
-	static final void method3300(Scene var0, CollisionMap[] var1) {
+	static final void method3319(Scene var0, CollisionMap[] var1) {
 		int var2;
 		int var3;
 		int var4;
@@ -157,7 +157,7 @@ public class Frames extends DualNode {
 					if (var13 >= 0 && var13 < 104) {
 						var14 = Tiles.field498[var2][var13][var12] & 255;
 						if (var14 > 0) {
-							FloorUnderlayDefinition var43 = WallDecoration.method3320(var14 - 1);
+							FloorUnderlayDefinition var43 = WallDecoration.method3339(var14 - 1);
 							var10000 = Tiles.Tiles_hue;
 							var10000[var12] += var43.hue;
 							var10000 = Tiles.Tiles_saturation;
@@ -174,7 +174,7 @@ public class Frames extends DualNode {
 					if (var14 >= 0 && var14 < 104) {
 						var15 = Tiles.field498[var2][var14][var12] & 255;
 						if (var15 > 0) {
-							FloorUnderlayDefinition var45 = WallDecoration.method3320(var15 - 1);
+							FloorUnderlayDefinition var45 = WallDecoration.method3339(var15 - 1);
 							var10000 = Tiles.Tiles_hue;
 							var10000[var12] -= var45.hue;
 							var10000 = Tiles.Tiles_saturation;
@@ -268,11 +268,11 @@ public class Frames extends DualNode {
 
 								var32 = 0;
 								if (var31 != -1) {
-									var32 = Rasterizer3D.Rasterizer3D_colorPalette[TriBool.method5226(var31, 96)];
+									var32 = Rasterizer3D.Rasterizer3D_colorPalette[TriBool.method5255(var31, 96)];
 								}
 
 								if (var21 == 0) {
-									var0.addTile(var2, var11, var17, 0, 0, -1, var22, var23, var24, var25, TriBool.method5226(var30, var26), TriBool.method5226(var30, var27), TriBool.method5226(var30, var28), TriBool.method5226(var30, var29), 0, 0, 0, 0, var32, 0);
+									var0.addTile(var2, var11, var17, 0, 0, -1, var22, var23, var24, var25, TriBool.method5255(var30, var26), TriBool.method5255(var30, var27), TriBool.method5255(var30, var28), TriBool.method5255(var30, var29), 0, 0, 0, 0, var32, 0);
 								} else {
 									var33 = Tiles.field500[var2][var11][var17] + 1;
 									byte var48 = Tiles.field501[var2][var11][var17];
@@ -304,7 +304,7 @@ public class Frames extends DualNode {
 
 									var39 = 0;
 									if (var38 != -2) {
-										var39 = Rasterizer3D.Rasterizer3D_colorPalette[LoginScreenAnimation.method1813(var38, 96)];
+										var39 = Rasterizer3D.Rasterizer3D_colorPalette[LoginScreenAnimation.method1832(var38, 96)];
 									}
 
 									if (var35.secondaryRgb != -1) {
@@ -317,10 +317,10 @@ public class Frames extends DualNode {
 										}
 
 										var38 = FriendLoginUpdate.hslToRgb(var40, var35.secondarySaturation, var41);
-										var39 = Rasterizer3D.Rasterizer3D_colorPalette[LoginScreenAnimation.method1813(var38, 96)];
+										var39 = Rasterizer3D.Rasterizer3D_colorPalette[LoginScreenAnimation.method1832(var38, 96)];
 									}
 
-									var0.addTile(var2, var11, var17, var33, var48, var36, var22, var23, var24, var25, TriBool.method5226(var30, var26), TriBool.method5226(var30, var27), TriBool.method5226(var30, var28), TriBool.method5226(var30, var29), LoginScreenAnimation.method1813(var37, var26), LoginScreenAnimation.method1813(var37, var27), LoginScreenAnimation.method1813(var37, var28), LoginScreenAnimation.method1813(var37, var29), var32, var39);
+									var0.addTile(var2, var11, var17, var33, var48, var36, var22, var23, var24, var25, TriBool.method5255(var30, var26), TriBool.method5255(var30, var27), TriBool.method5255(var30, var28), TriBool.method5255(var30, var29), LoginScreenAnimation.method1832(var37, var26), LoginScreenAnimation.method1832(var37, var27), LoginScreenAnimation.method1832(var37, var28), LoginScreenAnimation.method1832(var37, var29), var32, var39);
 								}
 							}
 						}
@@ -349,7 +349,7 @@ public class Frames extends DualNode {
 			class51.field423[var2] = null;
 		}
 
-		var0.method3146(-50, -10, -50);
+		var0.method3165(-50, -10, -50);
 
 		for (var2 = 0; var2 < 104; ++var2) {
 			for (var3 = 0; var3 < 104; ++var3) {

@@ -160,7 +160,7 @@ public class class3 implements Enumerated {
 		int var4;
 		int var11;
 		if (var0.field934 > Client.cycle) {
-			UserComparator5.method3442(var0);
+			UserComparator5.method3461(var0);
 		} else if (var0.field982 >= Client.cycle) {
 			WorldMapAreaData.method707(var0);
 		} else {
@@ -184,8 +184,8 @@ public class class3 implements Enumerated {
 
 					var11 = var0.x;
 					var3 = var0.y;
-					var4 = var0.pathX[var0.pathLength - 1] * 128 + var0.size * 64;
-					int var5 = var0.pathY[var0.pathLength - 1] * 128 + var0.size * 64;
+					var4 = var0.pathX[var0.pathLength - 1] * 128 + var0.field938 * 64;
+					int var5 = var0.pathY[var0.pathLength - 1] * 128 + var0.field938 * 64;
 					if (var11 < var4) {
 						if (var3 < var5) {
 							var0.orientation = 1280;
@@ -324,9 +324,9 @@ public class class3 implements Enumerated {
 			var0.spotAnimation = -1;
 			var0.field934 = 0;
 			var0.field982 = 0;
-			var0.x = var0.pathX[0] * 128 + var0.size * 64;
-			var0.y = var0.pathY[0] * 128 + var0.size * 64;
-			var0.method1740();
+			var0.x = var0.pathX[0] * 128 + var0.field938 * 64;
+			var0.y = var0.pathY[0] * 128 + var0.field938 * 64;
+			var0.method1759();
 		}
 
 		if (class215.localPlayer == var0 && (var0.x < 1536 || var0.y < 1536 || var0.x >= 11776 || var0.y >= 11776)) {
@@ -334,9 +334,9 @@ public class class3 implements Enumerated {
 			var0.spotAnimation = -1;
 			var0.field934 = 0;
 			var0.field982 = 0;
-			var0.x = var0.pathX[0] * 128 + var0.size * 64;
-			var0.y = var0.pathY[0] * 128 + var0.size * 64;
-			var0.method1740();
+			var0.x = var0.pathX[0] * 128 + var0.field938 * 64;
+			var0.y = var0.pathY[0] * 128 + var0.field938 * 64;
+			var0.method1759();
 		}
 
 		if (var0.field988 != 0) {

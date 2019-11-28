@@ -52,7 +52,7 @@ public class BuddyRankComparator extends AbstractUserComparator {
 		signature = "(Lhf;Lhf;Lhf;Lgz;I)Z",
 		garbageValue = "-2130405669"
 	)
-	public static boolean method3464(AbstractArchive var0, AbstractArchive var1, AbstractArchive var2, MidiPcmStream var3) {
+	public static boolean method3483(AbstractArchive var0, AbstractArchive var1, AbstractArchive var2, MidiPcmStream var3) {
 		class197.musicPatchesArchive = var0;
 		class197.musicSamplesArchive = var1;
 		class197.soundEffectsArchive = var2;

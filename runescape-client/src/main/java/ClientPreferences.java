@@ -49,7 +49,7 @@ public class ClientPreferences {
 		this.rememberedUsername = null;
 		this.hideUsername = false;
 		this.parameters = new LinkedHashMap();
-		this.method1837(true);
+		this.method1856(true);
 	}
 
 	@ObfuscatedSignature(
@@ -93,10 +93,10 @@ public class ClientPreferences {
 					this.hideUsername = var1.readBoolean();
 				}
 			} else {
-				this.method1837(true);
+				this.method1856(true);
 			}
 		} else {
-			this.method1837(true);
+			this.method1856(true);
 		}
 
 	}
@@ -106,7 +106,7 @@ public class ClientPreferences {
 		signature = "(ZI)V",
 		garbageValue = "1503707935"
 	)
-	void method1837(boolean var1) {
+	void method1856(boolean var1) {
 	}
 
 	@ObfuscatedName("f")

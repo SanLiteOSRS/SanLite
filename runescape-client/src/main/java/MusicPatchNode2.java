@@ -56,7 +56,7 @@ public class MusicPatchNode2 {
 		signature = "(I)V",
 		garbageValue = "1982714060"
 	)
-	public static void method3724() {
+	public static void method3750() {
 		if (KeyHandler.KeyHandler_instance != null) {
 			synchronized(KeyHandler.KeyHandler_instance) {
 				KeyHandler.KeyHandler_instance = null;
@@ -81,14 +81,14 @@ public class MusicPatchNode2 {
 		signature = "(ILci;ZI)I",
 		garbageValue = "1322591078"
 	)
-	static int method3721(int var0, Script var1, boolean var2) {
+	static int method3747(int var0, Script var1, boolean var2) {
 		if (var0 == ScriptOpcodes.CHAT_GETFILTER_PUBLIC) {
 			Interpreter.Interpreter_intStack[++GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize - 1] = Client.publicChatMode;
 			return 1;
 		} else if (var0 == ScriptOpcodes.CHAT_SETFILTER) {
 			GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize -= 3;
 			Client.publicChatMode = Interpreter.Interpreter_intStack[GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize];
-			MusicPatchNode.privateChatMode = User.method5102(Interpreter.Interpreter_intStack[GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize + 1]);
+			MusicPatchNode.privateChatMode = User.method5131(Interpreter.Interpreter_intStack[GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize + 1]);
 			if (MusicPatchNode.privateChatMode == null) {
 				MusicPatchNode.privateChatMode = PrivateChatMode.field3792;
 			}
@@ -290,7 +290,7 @@ public class MusicPatchNode2 {
 					var8.packetBuffer.writeByte(var4);
 					var8.packetBuffer.writeByte(var17);
 					var8.packetBuffer.writeByte(var7);
-					class289.method5356(var8.packetBuffer, var3);
+					class289.method5388(var8.packetBuffer, var3);
 					var8.packetBuffer.writeLengthByte(var8.packetBuffer.offset - var9);
 					Client.packetWriter.addNode(var8);
 					return 1;
@@ -302,7 +302,7 @@ public class MusicPatchNode2 {
 					var11.packetBuffer.writeShort(0);
 					int var13 = var11.packetBuffer.offset;
 					var11.packetBuffer.writeStringCp1252NullTerminated(var3);
-					class289.method5356(var11.packetBuffer, var12);
+					class289.method5388(var11.packetBuffer, var12);
 					var11.packetBuffer.writeLengthShort(var11.packetBuffer.offset - var13);
 					Client.packetWriter.addNode(var11);
 					return 1;
@@ -332,7 +332,7 @@ public class MusicPatchNode2 {
 					} else if (var0 == ScriptOpcodes.CHAT_GETMESSAGEFILTER) {
 						Interpreter.Interpreter_stringStack[++class43.Interpreter_stringStackSize - 1] = Client.field860;
 						return 1;
-					} else if (var0 == 5023) {
+					} else if (var0 == ScriptOpcodes.DEBUGMES) {
 						var3 = Interpreter.Interpreter_stringStack[--class43.Interpreter_stringStackSize];
 						System.out.println(var3);
 						return 1;
@@ -445,7 +445,7 @@ public class MusicPatchNode2 {
 
 					if (Client.hintArrowType == 2) {
 						var10 = Client.hintArrowX * 4 - class51.baseX * 256 + 2 - class215.localPlayer.x / 32;
-						var11 = Client.hintArrowY * 4 - VarcInt.baseY * -1702025340 + 2 - class215.localPlayer.y / 32;
+						var11 = Client.hintArrowY * 4 - VarcInt.baseY * 256 + 2 - class215.localPlayer.y / 32;
 						WorldMapIcon_0.worldToMinimap(var1, var2, var10, var11, AttackOption.mapMarkerSprites[1], var4);
 					}
 

@@ -93,7 +93,7 @@ public class class289 {
 		signature = "(Lkg;Ljava/lang/String;B)I",
 		garbageValue = "61"
 	)
-	public static int method5356(Buffer var0, String var1) {
+	public static int method5388(Buffer var0, String var1) {
 		int var2 = var0.offset;
 		int var4 = var1.length();
 		byte[] var5 = new byte[var4];

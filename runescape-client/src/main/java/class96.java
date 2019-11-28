@@ -43,7 +43,7 @@ public class class96 {
 		signature = "(III)I",
 		garbageValue = "-1542678274"
 	)
-	static int method2295(int var0, int var1) {
+	static int method2314(int var0, int var1) {
 		ItemContainer var2 = (ItemContainer)ItemContainer.itemContainers.get((long)var0);
 		if (var2 == null) {
 			return 0;
@@ -67,7 +67,7 @@ public class class96 {
 		signature = "(B)V",
 		garbageValue = "72"
 	)
-	static final void method2288() {
+	static final void method2307() {
 		if (!ViewportMouse.ViewportMouse_false0) {
 			int var0 = Scene.Scene_cameraPitchSine;
 			int var1 = Scene.Scene_cameraPitchCosine;
@@ -79,17 +79,17 @@ public class class96 {
 			int var7 = (ViewportMouse.ViewportMouse_y - Rasterizer3D.Rasterizer3D_clipMidY) * var4 / Rasterizer3D.Rasterizer3D_zoom;
 			int var8 = (ViewportMouse.ViewportMouse_x - Rasterizer3D.Rasterizer3D_clipMidX) * var5 / Rasterizer3D.Rasterizer3D_zoom;
 			int var9 = (ViewportMouse.ViewportMouse_y - Rasterizer3D.Rasterizer3D_clipMidY) * var5 / Rasterizer3D.Rasterizer3D_zoom;
-			int var10 = Rasterizer3D.method3029(var7, var4, var1, var0);
-			int var11 = Rasterizer3D.method3025(var7, var4, var1, var0);
+			int var10 = Rasterizer3D.method3048(var7, var4, var1, var0);
+			int var11 = Rasterizer3D.method3044(var7, var4, var1, var0);
 			var7 = var10;
-			var10 = Rasterizer3D.method3029(var9, var5, var1, var0);
-			int var12 = Rasterizer3D.method3025(var9, var5, var1, var0);
+			var10 = Rasterizer3D.method3048(var9, var5, var1, var0);
+			int var12 = Rasterizer3D.method3044(var9, var5, var1, var0);
 			var9 = var10;
-			var10 = Rasterizer3D.method3035(var6, var11, var3, var2);
-			var11 = Rasterizer3D.method3048(var6, var11, var3, var2);
+			var10 = Rasterizer3D.method3054(var6, var11, var3, var2);
+			var11 = Rasterizer3D.method3067(var6, var11, var3, var2);
 			var6 = var10;
-			var10 = Rasterizer3D.method3035(var8, var12, var3, var2);
-			var12 = Rasterizer3D.method3048(var8, var12, var3, var2);
+			var10 = Rasterizer3D.method3054(var8, var12, var3, var2);
+			var12 = Rasterizer3D.method3067(var8, var12, var3, var2);
 			class30.field261 = (var6 + var10) / 2;
 			class2.field5 = (var7 + var9) / 2;
 			GrandExchangeEvents.field36 = (var12 + var11) / 2;
@@ -107,7 +107,7 @@ public class class96 {
 		signature = "(IB)Z",
 		garbageValue = "-50"
 	)
-	static boolean method2296(int var0) {
+	static boolean method2315(int var0) {
 		return var0 == 57 || var0 == 58 || var0 == 1007 || var0 == 25 || var0 == 30;
 	}
 }

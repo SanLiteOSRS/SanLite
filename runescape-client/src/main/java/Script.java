@@ -75,14 +75,14 @@ public class Script extends DualNode {
 		signature = "([BIIB)Z",
 		garbageValue = "27"
 	)
-	static final boolean method2238(byte[] var0, int var1, int var2) {
+	static final boolean method2257(byte[] var0, int var1, int var2) {
 		boolean var3 = true;
 		Buffer var4 = new Buffer(var0);
 		int var5 = -1;
 
 		label69:
 		while (true) {
-			int var6 = var4.method5678();
+			int var6 = var4.method5710();
 			if (var6 == 0) {
 				return var3;
 			}

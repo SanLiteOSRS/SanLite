@@ -157,9 +157,9 @@ public final class Canvas extends java.awt.Canvas {
 		WorldMapArea var3 = Clock.getWorldMap().getMapArea(var0);
 		int var4 = class215.localPlayer.plane;
 		int var5 = class51.baseX * 64 + (class215.localPlayer.x >> 7);
-		int var6 = VarcInt.baseY * -1499248159 + (class215.localPlayer.y >> 7);
+		int var6 = VarcInt.baseY * 64 + (class215.localPlayer.y >> 7);
 		Coord var7 = new Coord(var4, var5, var6);
-		Clock.getWorldMap().method6411(var3, var7, var1, var2);
+		Clock.getWorldMap().method6453(var3, var7, var1, var2);
 	}
 
 	@ObfuscatedName("fo")

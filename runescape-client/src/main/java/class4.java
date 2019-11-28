@@ -186,14 +186,14 @@ final class class4 implements class0 {
 		garbageValue = "1158604899"
 	)
 	static boolean method63() {
-		if (Client.archiveLoaders != null && Client.archiveLoaderArchive < Client.archiveLoaders.size()) {
-			while (Client.archiveLoaderArchive < Client.archiveLoaders.size()) {
-				ArchiveLoader var0 = (ArchiveLoader)Client.archiveLoaders.get(Client.archiveLoaderArchive);
+		if (Client.archiveLoaders != null && Client.archiveLoadersDone < Client.archiveLoaders.size()) {
+			while (Client.archiveLoadersDone < Client.archiveLoaders.size()) {
+				ArchiveLoader var0 = (ArchiveLoader)Client.archiveLoaders.get(Client.archiveLoadersDone);
 				if (!var0.isLoaded()) {
 					return false;
 				}
 
-				++Client.archiveLoaderArchive;
+				++Client.archiveLoadersDone;
 			}
 
 			return true;

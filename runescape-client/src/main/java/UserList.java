@@ -344,7 +344,7 @@ public abstract class UserList {
 		signature = "(Lhl;I)V",
 		garbageValue = "1273300851"
 	)
-	static final void method5204(Widget var0) {
+	static final void method5233(Widget var0) {
 		int var1 = var0.contentType;
 		if (var1 == 324) {
 			if (Client.field906 == -1) {

@@ -23,7 +23,7 @@ public class class60 {
 		garbageValue = "-2011149056"
 	)
 	public static Font method1195(AbstractArchive var0, AbstractArchive var1, int var2, int var3) {
-		return !GraphicsObject.method2011(var0, var2, var3) ? null : FloorOverlayDefinition.method4824(var1.takeFile(var2, var3));
+		return !GraphicsObject.method2030(var0, var2, var3) ? null : FloorOverlayDefinition.method4853(var1.takeFile(var2, var3));
 	}
 
 	@ObfuscatedName("l")

@@ -156,7 +156,7 @@ public class Interpreter {
 	)
 	@Export("isNumber")
 	public static boolean isNumber(CharSequence var0) {
-		return SpriteMask.method4013(var0, 10, true);
+		return SpriteMask.method4039(var0, 10, true);
 	}
 
 	@ObfuscatedName("h")
@@ -164,7 +164,7 @@ public class Interpreter {
 		signature = "(ILci;ZI)I",
 		garbageValue = "1948301704"
 	)
-	static int method1976(int var0, Script var1, boolean var2) {
+	static int method1995(int var0, Script var1, boolean var2) {
 		Widget var3;
 		if (var0 >= 2000) {
 			var0 -= 1000;
@@ -222,12 +222,12 @@ public class Interpreter {
 		signature = "(Ldf;IIIB)Z",
 		garbageValue = "-22"
 	)
-	static final boolean method1950(Model var0, int var1, int var2, int var3) {
+	static final boolean method1969(Model var0, int var1, int var2, int var3) {
 		boolean var4 = ViewportMouse.ViewportMouse_isInViewport;
 		if (!var4) {
 			return false;
 		} else {
-			class96.method2288();
+			class96.method2307();
 			int var5 = var0.xMid + var1;
 			int var6 = var2 + var0.yMid;
 			int var7 = var3 + var0.zMid;

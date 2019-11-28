@@ -129,39 +129,7 @@ public final class AccessFile {
 		return var4;
 	}
 
-	protected void aap() throws Throwable {
-		if (this.file != null) {
-			System.out.println("");
-			this.close();
-		}
-
-	}
-
 	protected void finalize() throws Throwable {
-		if (this.file != null) {
-			System.out.println("");
-			this.close();
-		}
-
-	}
-
-	protected void aaf() throws Throwable {
-		if (this.file != null) {
-			System.out.println("");
-			this.close();
-		}
-
-	}
-
-	protected void aac() throws Throwable {
-		if (this.file != null) {
-			System.out.println("");
-			this.close();
-		}
-
-	}
-
-	protected void aae() throws Throwable {
 		if (this.file != null) {
 			System.out.println("");
 			this.close();

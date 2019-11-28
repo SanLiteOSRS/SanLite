@@ -19,7 +19,8 @@ public class class222 {
 		signature = "(ZI)V",
 		garbageValue = "-649981056"
 	)
-	static void method4168(boolean var0) {
+	@Export("Login_promptCredentials")
+	static void Login_promptCredentials(boolean var0) {
 		Login.Login_response1 = "";
 		Login.Login_response2 = "Enter your username/email & password.";
 		Login.Login_response3 = "";
@@ -37,7 +38,7 @@ public class class222 {
 			}
 		}
 
-		Buddy.method5222();
+		Buddy.method5251();
 	}
 
 	@ObfuscatedName("k")
@@ -45,7 +46,7 @@ public class class222 {
 		signature = "(B)V",
 		garbageValue = "-23"
 	)
-	public static void method4166() {
+	public static void method4195() {
 		NPCDefinition.NpcDefinition_cached.clear();
 		NPCDefinition.NpcDefinition_cachedModels.clear();
 	}
@@ -55,8 +56,8 @@ public class class222 {
 		signature = "([BII)I",
 		garbageValue = "-2031476219"
 	)
-	public static int method4167(byte[] var0, int var1) {
-		return UserComparator5.method3448(var0, 0, var1);
+	public static int method4196(byte[] var0, int var1) {
+		return UserComparator5.method3467(var0, 0, var1);
 	}
 
 	@ObfuscatedName("fy")
@@ -64,7 +65,7 @@ public class class222 {
 		signature = "(B)V",
 		garbageValue = "11"
 	)
-	static final void method4169() {
+	static final void method4198() {
 		if (WorldMapID.ClanChat_inClanChat) {
 			if (InterfaceParent.clanChat != null) {
 				InterfaceParent.clanChat.sort();

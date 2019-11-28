@@ -76,7 +76,7 @@ public enum AttackOption implements Enumerated {
 		signature = "(III)I",
 		garbageValue = "-573010380"
 	)
-	static int method2079(int var0, int var1) {
+	static int method2098(int var0, int var1) {
 		ItemContainer var2 = (ItemContainer)ItemContainer.itemContainers.get((long)var0);
 		if (var2 == null) {
 			return -1;
@@ -93,9 +93,9 @@ public enum AttackOption implements Enumerated {
 	@Export("playSong")
 	static void playSong(int var0) {
 		if (var0 == -1 && !Client.field742) {
-			TileItemPile.method2792();
+			TileItemPile.method2811();
 		} else if (var0 != -1 && var0 != Client.currentTrackGroupId && Client.musicVolume != 0 && !Client.field742) {
-			World.method1800(2, AbstractWorldMapData.archive6, var0, 0, Client.musicVolume, false);
+			World.method1819(2, AbstractWorldMapData.archive6, var0, 0, Client.musicVolume, false);
 		}
 
 		Client.currentTrackGroupId = var0;

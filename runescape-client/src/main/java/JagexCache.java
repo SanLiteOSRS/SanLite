@@ -67,7 +67,7 @@ public class JagexCache {
 		signature = "(IIB)V",
 		garbageValue = "87"
 	)
-	public static void method3521(int var0, int var1) {
+	public static void method3540(int var0, int var1) {
 		VarbitDefinition var3 = (VarbitDefinition)VarbitDefinition.VarbitDefinition_cached.get((long)var0);
 		VarbitDefinition var2;
 		if (var3 != null) {
@@ -100,7 +100,7 @@ public class JagexCache {
 		signature = "(IIIB)I",
 		garbageValue = "12"
 	)
-	static int method3512(int var0, int var1, int var2) {
+	static int method3531(int var0, int var1, int var2) {
 		if (var2 > 179) {
 			var1 /= 2;
 		}
@@ -138,12 +138,12 @@ public class JagexCache {
 
 		int var6 = (var3 - 32 - var5) * var2 / (var4 - var3);
 		Rasterizer2D.Rasterizer2D_fillRectangle(var0, var6 + var1 + 16, 16, var5, Client.field706);
-		Rasterizer2D.Rasterizer2D_drawVerticalLine(var0, var6 + var1 + 16, var5, Client.field708);
-		Rasterizer2D.Rasterizer2D_drawVerticalLine(var0 + 1, var6 + var1 + 16, var5, Client.field708);
+		Rasterizer2D.rasterizerDrawVerticalLine(var0, var6 + var1 + 16, var5, Client.field708);
+		Rasterizer2D.rasterizerDrawVerticalLine(var0 + 1, var6 + var1 + 16, var5, Client.field708);
 		Rasterizer2D.Rasterizer2D_drawHorizontalLine(var0, var6 + var1 + 16, 16, Client.field708);
 		Rasterizer2D.Rasterizer2D_drawHorizontalLine(var0, var6 + var1 + 17, 16, Client.field708);
-		Rasterizer2D.Rasterizer2D_drawVerticalLine(var0 + 15, var6 + var1 + 16, var5, Client.field707);
-		Rasterizer2D.Rasterizer2D_drawVerticalLine(var0 + 14, var6 + var1 + 17, var5 - 1, Client.field707);
+		Rasterizer2D.rasterizerDrawVerticalLine(var0 + 15, var6 + var1 + 16, var5, Client.field707);
+		Rasterizer2D.rasterizerDrawVerticalLine(var0 + 14, var6 + var1 + 17, var5 - 1, Client.field707);
 		Rasterizer2D.Rasterizer2D_drawHorizontalLine(var0, var6 + var5 + var1 + 15, 16, Client.field707);
 		Rasterizer2D.Rasterizer2D_drawHorizontalLine(var0 + 1, var6 + var5 + var1 + 14, 15, Client.field707);
 	}
@@ -153,7 +153,7 @@ public class JagexCache {
 		signature = "(B)V",
 		garbageValue = "66"
 	)
-	static void method3520() {
+	static void method3539() {
 		if (Client.field826 && class215.localPlayer != null) {
 			int var0 = class215.localPlayer.pathX[0];
 			int var1 = class215.localPlayer.pathY[0];

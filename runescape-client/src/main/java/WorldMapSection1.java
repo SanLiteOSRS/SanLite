@@ -175,7 +175,7 @@ public class WorldMapSection1 implements WorldMapSection {
 				GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize -= 2;
 				var3 = Interpreter.Interpreter_intStack[GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize];
 				var4 = Interpreter.Interpreter_intStack[GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize + 1];
-				Interpreter.Interpreter_intStack[++GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize - 1] = AttackOption.method2079(var3, var4);
+				Interpreter.Interpreter_intStack[++GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize - 1] = AttackOption.method2098(var3, var4);
 				return 1;
 			} else if (var0 == ScriptOpcodes.INV_GETNUM) {
 				GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize -= 2;
@@ -187,7 +187,7 @@ public class WorldMapSection1 implements WorldMapSection {
 				GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize -= 2;
 				var3 = Interpreter.Interpreter_intStack[GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize];
 				var4 = Interpreter.Interpreter_intStack[GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize + 1];
-				Interpreter.Interpreter_intStack[++GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize - 1] = class96.method2295(var3, var4);
+				Interpreter.Interpreter_intStack[++GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize - 1] = class96.method2314(var3, var4);
 				return 1;
 			} else if (var0 == ScriptOpcodes.INV_SIZE) {
 				var3 = Interpreter.Interpreter_intStack[--GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize];
@@ -210,7 +210,7 @@ public class WorldMapSection1 implements WorldMapSection {
 				if (var0 == ScriptOpcodes.COORD) {
 					var3 = ClientPacket.Client_plane;
 					var4 = class51.baseX * 64 + (class215.localPlayer.x >> 7);
-					var5 = (class215.localPlayer.y >> 7) + VarcInt.baseY * -1499248159;
+					var5 = VarcInt.baseY * 64 + (class215.localPlayer.y >> 7);
 					Interpreter.Interpreter_intStack[++GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize - 1] = (var4 << 14) + var5 + (var3 << 28);
 					return 1;
 				} else if (var0 == ScriptOpcodes.COORDX) {
@@ -232,7 +232,7 @@ public class WorldMapSection1 implements WorldMapSection {
 					GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize -= 2;
 					var3 = Interpreter.Interpreter_intStack[GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize] + 32768;
 					var4 = Interpreter.Interpreter_intStack[GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize + 1];
-					Interpreter.Interpreter_intStack[++GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize - 1] = AttackOption.method2079(var3, var4);
+					Interpreter.Interpreter_intStack[++GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize - 1] = AttackOption.method2098(var3, var4);
 					return 1;
 				} else if (var0 == ScriptOpcodes.INVOTHER_GETNUM) {
 					GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize -= 2;
@@ -244,7 +244,7 @@ public class WorldMapSection1 implements WorldMapSection {
 					GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize -= 2;
 					var3 = Interpreter.Interpreter_intStack[GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize] + 32768;
 					var4 = Interpreter.Interpreter_intStack[GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize + 1];
-					Interpreter.Interpreter_intStack[++GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize - 1] = class96.method2295(var3, var4);
+					Interpreter.Interpreter_intStack[++GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize - 1] = class96.method2314(var3, var4);
 					return 1;
 				} else if (var0 == ScriptOpcodes.STAFFMODLEVEL) {
 					if (Client.staffModLevel >= 2) {

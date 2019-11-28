@@ -193,7 +193,7 @@ public class GrandExchangeOffer {
 				var7 = var0.readUnsignedByte();
 				if (var7 == 0) {
 					if (var1 == 0) {
-						Tiles.Tiles_heights[0][var2][var3] = -class188.method3669(var4 + var2 + 932731, var3 + 556238 + var5) * 8;
+						Tiles.Tiles_heights[0][var2][var3] = -class188.method3692(var4 + var2 + 932731, var3 + 556238 + var5) * 8;
 					} else {
 						Tiles.Tiles_heights[var1][var2][var3] = Tiles.Tiles_heights[var1 - 1][var2][var3] - 240;
 					}

@@ -31,8 +31,9 @@ public class DevicePcmPlayerProvider implements class99 {
 		signature = "(II)V",
 		garbageValue = "2048125775"
 	)
-	static final void method861(int var0) {
-		class40.method760();
+	@Export("forceDisconnect")
+	static final void forceDisconnect(int var0) {
+		class40.logOut();
 		switch(var0) {
 		case 1:
 			Login.loginIndex = 24;

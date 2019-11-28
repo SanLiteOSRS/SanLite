@@ -16,7 +16,7 @@ public class class189 {
 		signature = "(II)Z",
 		garbageValue = "-557441008"
 	)
-	public static boolean method3676(int var0) {
+	public static boolean method3699(int var0) {
 		return (var0 >> 31 & 1) != 0;
 	}
 
@@ -25,7 +25,7 @@ public class class189 {
 		signature = "(ILci;ZI)I",
 		garbageValue = "-474023245"
 	)
-	static int method3675(int var0, Script var1, boolean var2) {
+	static int method3698(int var0, Script var1, boolean var2) {
 		boolean var3 = true;
 		Widget var4;
 		if (var0 >= 2000) {

@@ -16,7 +16,7 @@ public class class266 {
 		signature = "(IIII)I",
 		garbageValue = "1187459015"
 	)
-	public static int method5036(int var0, int var1, int var2) {
+	public static int method5065(int var0, int var1, int var2) {
 		var2 &= 3;
 		if (var2 == 0) {
 			return var0;
@@ -32,7 +32,7 @@ public class class266 {
 		signature = "(IIB)I",
 		garbageValue = "-67"
 	)
-	static final int method5037(int var0, int var1) {
+	static final int method5066(int var0, int var1) {
 		int var2 = GrandExchangeOfferWorldComparator.method76(var0 - 1, var1 - 1) + GrandExchangeOfferWorldComparator.method76(1 + var0, var1 - 1) + GrandExchangeOfferWorldComparator.method76(var0 - 1, 1 + var1) + GrandExchangeOfferWorldComparator.method76(1 + var0, var1 + 1);
 		int var3 = GrandExchangeOfferWorldComparator.method76(var0 - 1, var1) + GrandExchangeOfferWorldComparator.method76(1 + var0, var1) + GrandExchangeOfferWorldComparator.method76(var0, var1 - 1) + GrandExchangeOfferWorldComparator.method76(var0, 1 + var1);
 		int var4 = GrandExchangeOfferWorldComparator.method76(var0, var1);
@@ -44,7 +44,7 @@ public class class266 {
 		signature = "(Lij;Ljava/lang/String;I)V",
 		garbageValue = "-1313176939"
 	)
-	static void method5035(Archive var0, String var1) {
+	static void method5064(Archive var0, String var1) {
 		ArchiveLoader var2 = new ArchiveLoader(var0, var1);
 		Client.archiveLoaders.add(var2);
 		Client.field914 += var2.groupCount;

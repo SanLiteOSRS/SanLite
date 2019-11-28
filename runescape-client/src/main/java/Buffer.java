@@ -207,7 +207,7 @@ public class Buffer extends Node {
 		int var2 = AbstractWorldMapData.method284(var1);
 		this.array[++this.offset - 1] = 0;
 		this.writeVarInt(var2);
-		this.offset += ArchiveDiskAction.method4200(this.array, this.offset, var1);
+		this.offset += ArchiveDiskAction.method4229(this.array, this.offset, var1);
 	}
 
 	@ObfuscatedName("bd")
@@ -567,7 +567,7 @@ public class Buffer extends Node {
 		signature = "(I)I",
 		garbageValue = "1915469336"
 	)
-	public int method5678() {
+	public int method5710() {
 		int var1 = 0;
 
 		int var2;
@@ -584,7 +584,7 @@ public class Buffer extends Node {
 		signature = "(B)I",
 		garbageValue = "-109"
 	)
-	public int method5585() {
+	public int method5617() {
 		return this.array[this.offset] < 0 ? this.readInt() & Integer.MAX_VALUE : this.readUnsignedShort();
 	}
 
@@ -593,7 +593,7 @@ public class Buffer extends Node {
 		signature = "(I)I",
 		garbageValue = "-1394561672"
 	)
-	public int method5586() {
+	public int method5618() {
 		if (this.array[this.offset] < 0) {
 			return this.readInt() & Integer.MAX_VALUE;
 		} else {
@@ -761,7 +761,7 @@ public class Buffer extends Node {
 	)
 	@Export("writeCrc")
 	public int writeCrc(int var1) {
-		int var2 = UserComparator5.method3448(this.array, var1, this.offset);
+		int var2 = UserComparator5.method3467(this.array, var1, this.offset);
 		this.writeInt(var2);
 		return var2;
 	}
@@ -774,7 +774,7 @@ public class Buffer extends Node {
 	@Export("checkCrc")
 	public boolean checkCrc() {
 		this.offset -= 4;
-		int var1 = UserComparator5.method3448(this.array, 0, this.offset);
+		int var1 = UserComparator5.method3467(this.array, 0, this.offset);
 		int var2 = this.readInt();
 		return var2 == var1;
 	}
@@ -784,7 +784,7 @@ public class Buffer extends Node {
 		signature = "(II)V",
 		garbageValue = "2047890611"
 	)
-	public void method5566(int var1) {
+	public void method5598(int var1) {
 		this.array[++this.offset - 1] = (byte)(var1 + 128);
 	}
 
@@ -793,7 +793,7 @@ public class Buffer extends Node {
 		signature = "(II)V",
 		garbageValue = "-1379722724"
 	)
-	public void method5596(int var1) {
+	public void method5628(int var1) {
 		this.array[++this.offset - 1] = (byte)(0 - var1);
 	}
 
@@ -812,7 +812,7 @@ public class Buffer extends Node {
 		signature = "(S)I",
 		garbageValue = "128"
 	)
-	public int method5696() {
+	public int method5728() {
 		return this.array[++this.offset - 1] - 128 & 255;
 	}
 
@@ -821,7 +821,7 @@ public class Buffer extends Node {
 		signature = "(I)I",
 		garbageValue = "1543854045"
 	)
-	public int method5599() {
+	public int method5631() {
 		return 0 - this.array[++this.offset - 1] & 255;
 	}
 
@@ -830,7 +830,7 @@ public class Buffer extends Node {
 		signature = "(I)I",
 		garbageValue = "-1082297230"
 	)
-	public int method5657() {
+	public int method5689() {
 		return 128 - this.array[++this.offset - 1] & 255;
 	}
 
@@ -839,7 +839,7 @@ public class Buffer extends Node {
 		signature = "(I)B",
 		garbageValue = "1164121747"
 	)
-	public byte method5601() {
+	public byte method5633() {
 		return (byte)(this.array[++this.offset - 1] - 128);
 	}
 
@@ -848,7 +848,7 @@ public class Buffer extends Node {
 		signature = "(I)B",
 		garbageValue = "-839452095"
 	)
-	public byte method5605() {
+	public byte method5637() {
 		return (byte)(0 - this.array[++this.offset - 1]);
 	}
 
@@ -857,7 +857,7 @@ public class Buffer extends Node {
 		signature = "(B)B",
 		garbageValue = "-65"
 	)
-	public byte method5740() {
+	public byte method5772() {
 		return (byte)(128 - this.array[++this.offset - 1]);
 	}
 
@@ -866,7 +866,7 @@ public class Buffer extends Node {
 		signature = "(II)V",
 		garbageValue = "1799174836"
 	)
-	public void method5604(int var1) {
+	public void method5636(int var1) {
 		this.array[++this.offset - 1] = (byte)var1;
 		this.array[++this.offset - 1] = (byte)(var1 >> 8);
 	}
@@ -876,7 +876,7 @@ public class Buffer extends Node {
 		signature = "(IB)V",
 		garbageValue = "-8"
 	)
-	public void method5581(int var1) {
+	public void method5613(int var1) {
 		this.array[++this.offset - 1] = (byte)(var1 >> 8);
 		this.array[++this.offset - 1] = (byte)(var1 + 128);
 	}
@@ -897,7 +897,7 @@ public class Buffer extends Node {
 		signature = "(B)I",
 		garbageValue = "92"
 	)
-	public int method5687() {
+	public int method5719() {
 		this.offset += 2;
 		return ((this.array[this.offset - 1] & 255) << 8) + (this.array[this.offset - 2] & 255);
 	}
@@ -907,7 +907,7 @@ public class Buffer extends Node {
 		signature = "(I)I",
 		garbageValue = "-699058931"
 	)
-	public int method5608() {
+	public int method5640() {
 		this.offset += 2;
 		return (this.array[this.offset - 1] - 128 & 255) + ((this.array[this.offset - 2] & 255) << 8);
 	}
@@ -917,7 +917,7 @@ public class Buffer extends Node {
 		signature = "(I)I",
 		garbageValue = "-2077720731"
 	)
-	public int method5609() {
+	public int method5641() {
 		this.offset += 2;
 		return ((this.array[this.offset - 1] & 255) << 8) + (this.array[this.offset - 2] - 128 & 255);
 	}
@@ -927,7 +927,7 @@ public class Buffer extends Node {
 		signature = "(I)I",
 		garbageValue = "-1939464839"
 	)
-	public int method5733() {
+	public int method5765() {
 		this.offset += 2;
 		int var1 = ((this.array[this.offset - 1] & 255) << 8) + (this.array[this.offset - 2] & 255);
 		if (var1 > 32767) {
@@ -942,7 +942,7 @@ public class Buffer extends Node {
 		signature = "(I)I",
 		garbageValue = "-1382531763"
 	)
-	public int method5611() {
+	public int method5643() {
 		this.offset += 2;
 		int var1 = ((this.array[this.offset - 1] & 255) << 8) + (this.array[this.offset - 2] - 128 & 255);
 		if (var1 > 32767) {
@@ -957,7 +957,7 @@ public class Buffer extends Node {
 		signature = "(II)V",
 		garbageValue = "-163163988"
 	)
-	public void method5595(int var1) {
+	public void method5627(int var1) {
 		this.array[++this.offset - 1] = (byte)(var1 >> 8);
 		this.array[++this.offset - 1] = (byte)(var1 >> 16);
 		this.array[++this.offset - 1] = (byte)var1;
@@ -968,7 +968,7 @@ public class Buffer extends Node {
 		signature = "(I)I",
 		garbageValue = "1088416772"
 	)
-	public int method5613() {
+	public int method5645() {
 		this.offset += 3;
 		return (this.array[this.offset - 1] & 255) + ((this.array[this.offset - 3] & 255) << 8) + ((this.array[this.offset - 2] & 255) << 16);
 	}
@@ -978,7 +978,7 @@ public class Buffer extends Node {
 		signature = "(II)V",
 		garbageValue = "2035333434"
 	)
-	public void method5779(int var1) {
+	public void method5811(int var1) {
 		this.array[++this.offset - 1] = (byte)var1;
 		this.array[++this.offset - 1] = (byte)(var1 >> 8);
 		this.array[++this.offset - 1] = (byte)(var1 >> 16);
@@ -990,7 +990,7 @@ public class Buffer extends Node {
 		signature = "(II)V",
 		garbageValue = "272743804"
 	)
-	public void method5615(int var1) {
+	public void method5647(int var1) {
 		this.array[++this.offset - 1] = (byte)(var1 >> 8);
 		this.array[++this.offset - 1] = (byte)var1;
 		this.array[++this.offset - 1] = (byte)(var1 >> 24);
@@ -1002,7 +1002,7 @@ public class Buffer extends Node {
 		signature = "(II)V",
 		garbageValue = "476827595"
 	)
-	public void method5616(int var1) {
+	public void method5648(int var1) {
 		this.array[++this.offset - 1] = (byte)(var1 >> 16);
 		this.array[++this.offset - 1] = (byte)(var1 >> 24);
 		this.array[++this.offset - 1] = (byte)var1;
@@ -1014,7 +1014,7 @@ public class Buffer extends Node {
 		signature = "(I)I",
 		garbageValue = "1875662145"
 	)
-	public int method5617() {
+	public int method5649() {
 		this.offset += 4;
 		return (this.array[this.offset - 4] & 255) + ((this.array[this.offset - 3] & 255) << 8) + ((this.array[this.offset - 2] & 255) << 16) + ((this.array[this.offset - 1] & 255) << 24);
 	}
@@ -1024,7 +1024,7 @@ public class Buffer extends Node {
 		signature = "(B)I",
 		garbageValue = "-68"
 	)
-	public int method5618() {
+	public int method5650() {
 		this.offset += 4;
 		return ((this.array[this.offset - 2] & 255) << 24) + ((this.array[this.offset - 4] & 255) << 8) + (this.array[this.offset - 3] & 255) + ((this.array[this.offset - 1] & 255) << 16);
 	}
@@ -1034,7 +1034,7 @@ public class Buffer extends Node {
 		signature = "(I)I",
 		garbageValue = "-163399300"
 	)
-	public int method5556() {
+	public int method5588() {
 		this.offset += 4;
 		return ((this.array[this.offset - 1] & 255) << 8) + ((this.array[this.offset - 4] & 255) << 16) + (this.array[this.offset - 2] & 255) + ((this.array[this.offset - 3] & 255) << 24);
 	}

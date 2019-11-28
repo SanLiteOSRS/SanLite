@@ -102,7 +102,7 @@ public class ScriptEvent extends Node {
 	public static void method1198() {
 		try {
 			if (class197.field2411 == 1) {
-				int var0 = FaceNormal.midiPcmStream.method3743();
+				int var0 = FaceNormal.midiPcmStream.method3769();
 				if (var0 > 0 && FaceNormal.midiPcmStream.isReady()) {
 					var0 -= class335.field4014;
 					if (var0 < 0) {

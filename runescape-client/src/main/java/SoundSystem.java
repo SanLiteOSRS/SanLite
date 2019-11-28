@@ -44,7 +44,7 @@ public class SoundSystem implements Runnable {
 		signature = "(Lhf;Lhf;ZLky;I)V",
 		garbageValue = "-1163192511"
 	)
-	public static void method2510(AbstractArchive var0, AbstractArchive var1, boolean var2, Font var3) {
+	public static void method2529(AbstractArchive var0, AbstractArchive var1, boolean var2, Font var3) {
 		ItemDefinition.ItemDefinition_archive = var0;
 		class266.ItemDefinition_modelArchive = var1;
 		ItemDefinition.ItemDefinition_inMembersWorld = var2;
@@ -57,7 +57,7 @@ public class SoundSystem implements Runnable {
 		signature = "(ILci;ZI)I",
 		garbageValue = "-107397374"
 	)
-	static int method2511(int var0, Script var1, boolean var2) {
+	static int method2530(int var0, Script var1, boolean var2) {
 		int var3;
 		if (var0 == ScriptOpcodes.STOCKMARKET_GETOFFERTYPE) {
 			var3 = Interpreter.Interpreter_intStack[--GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize];
@@ -168,7 +168,7 @@ public class SoundSystem implements Runnable {
 					} else if (var0 == ScriptOpcodes.TRADINGPOST_GETOFFERAGE) {
 						var3 = Interpreter.Interpreter_intStack[--GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize];
 						var11 = (GrandExchangeEvent)SoundCache.grandExchangeEvents.events.get(var3);
-						long var5 = TaskHandler.method3510() - class65.field604 - var11.age;
+						long var5 = TaskHandler.currentTimeMillis() - class65.field604 - var11.age;
 						int var7 = (int)(var5 / 3600000L);
 						int var8 = (int)((var5 - (long)(var7 * 3600000)) / 60000L);
 						int var9 = (int)((var5 - (long)(var7 * 3600000) - (long)(var8 * 60000)) / 1000L);

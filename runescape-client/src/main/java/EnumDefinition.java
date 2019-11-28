@@ -131,7 +131,7 @@ public class EnumDefinition extends DualNode {
 		signature = "(IIIIIILel;Lfh;I)V",
 		garbageValue = "1647105288"
 	)
-	static final void method4627(int var0, int var1, int var2, int var3, int var4, int var5, Scene var6, CollisionMap var7) {
+	static final void method4656(int var0, int var1, int var2, int var3, int var4, int var5, Scene var6, CollisionMap var7) {
 		if (!Client.isLowDetail || (Tiles.Tiles_renderFlags[0][var1][var2] & 2) != 0 || (Tiles.Tiles_renderFlags[var0][var1][var2] & 16) == 0) {
 			if (var0 < Tiles.Tiles_minPlane) {
 				Tiles.Tiles_minPlane = var0;
@@ -208,7 +208,7 @@ public class EnumDefinition extends DualNode {
 							var22 = new DynamicObject(var3, var5, var4, var0, var1, var2, var8.animationId, true, (Entity)null);
 						}
 
-						var6.method3223(var0, var1, var2, var16, 1, 1, (Entity)var22, 0, var19, var21);
+						var6.method3242(var0, var1, var2, var16, 1, 1, (Entity)var22, 0, var19, var21);
 						if (var5 >= 12 && var5 <= 17 && var5 != 13 && var0 > 0) {
 							var10000 = WorldMapLabel.field233[var0][var1];
 							var10000[var2] |= 2340;
@@ -269,11 +269,11 @@ public class EnumDefinition extends DualNode {
 						}
 
 						if (var8.interactType != 0 && var7 != null) {
-							var7.method3591(var1, var2, var5, var4, var8.boolean1);
+							var7.method3614(var1, var2, var5, var4, var8.boolean1);
 						}
 
 						if (var8.int2 != 16) {
-							var6.method3105(var0, var1, var2, var8.int2);
+							var6.method3124(var0, var1, var2, var8.int2);
 						}
 
 					} else if (var5 == 1) {
@@ -297,7 +297,7 @@ public class EnumDefinition extends DualNode {
 						}
 
 						if (var8.interactType != 0 && var7 != null) {
-							var7.method3591(var1, var2, var5, var4, var8.boolean1);
+							var7.method3614(var1, var2, var5, var4, var8.boolean1);
 						}
 
 					} else {
@@ -340,11 +340,11 @@ public class EnumDefinition extends DualNode {
 							}
 
 							if (var8.interactType != 0 && var7 != null) {
-								var7.method3591(var1, var2, var5, var4, var8.boolean1);
+								var7.method3614(var1, var2, var5, var4, var8.boolean1);
 							}
 
 							if (var8.int2 != 16) {
-								var6.method3105(var0, var1, var2, var8.int2);
+								var6.method3124(var0, var1, var2, var8.int2);
 							}
 
 						} else if (var5 == 3) {
@@ -368,7 +368,7 @@ public class EnumDefinition extends DualNode {
 							}
 
 							if (var8.interactType != 0 && var7 != null) {
-								var7.method3591(var1, var2, var5, var4, var8.boolean1);
+								var7.method3614(var1, var2, var5, var4, var8.boolean1);
 							}
 
 						} else if (var5 == 9) {
@@ -378,13 +378,13 @@ public class EnumDefinition extends DualNode {
 								var22 = new DynamicObject(var3, var5, var4, var0, var1, var2, var8.animationId, true, (Entity)null);
 							}
 
-							var6.method3223(var0, var1, var2, var16, 1, 1, (Entity)var22, 0, var19, var21);
+							var6.method3242(var0, var1, var2, var16, 1, 1, (Entity)var22, 0, var19, var21);
 							if (var8.interactType != 0 && var7 != null) {
 								var7.addGameObject(var1, var2, var9, var10, var8.boolean1);
 							}
 
 							if (var8.int2 != 16) {
-								var6.method3105(var0, var1, var2, var8.int2);
+								var6.method3124(var0, var1, var2, var8.int2);
 							}
 
 						} else if (var5 == 4) {
@@ -463,10 +463,10 @@ public class EnumDefinition extends DualNode {
 						var22 = new DynamicObject(var3, 10, var4, var0, var1, var2, var8.animationId, true, (Entity)null);
 					}
 
-					if (var22 != null && var6.method3223(var0, var1, var2, var16, var9, var10, (Entity)var22, var5 == 11 ? 256 : 0, var19, var21) && var8.clipped) {
+					if (var22 != null && var6.method3242(var0, var1, var2, var16, var9, var10, (Entity)var22, var5 == 11 ? 256 : 0, var19, var21) && var8.clipped) {
 						var23 = 15;
 						if (var22 instanceof Model) {
-							var23 = ((Model)var22).method2888() / 4;
+							var23 = ((Model)var22).method2907() / 4;
 							if (var23 > 30) {
 								var23 = 30;
 							}

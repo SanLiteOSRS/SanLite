@@ -57,7 +57,7 @@ public class FileSystem {
 		signature = "(IIIIIIB)I",
 		garbageValue = "46"
 	)
-	public static int method3530(int var0, int var1, int var2, int var3, int var4, int var5) {
+	public static int method3549(int var0, int var1, int var2, int var3, int var4, int var5) {
 		if ((var5 & 1) == 1) {
 			int var6 = var3;
 			var3 = var4;
@@ -79,12 +79,12 @@ public class FileSystem {
 		signature = "([BIIIIIIILel;[Lfh;I)V",
 		garbageValue = "1216246502"
 	)
-	static final void method3533(byte[] var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7, Scene var8, CollisionMap[] var9) {
+	static final void method3552(byte[] var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7, Scene var8, CollisionMap[] var9) {
 		Buffer var10 = new Buffer(var0);
 		int var11 = -1;
 
 		while (true) {
-			int var12 = var10.method5678();
+			int var12 = var10.method5710();
 			if (var12 == 0) {
 				return;
 			}
@@ -107,8 +107,8 @@ public class FileSystem {
 				int var20 = var18 & 3;
 				if (var17 == var4 && var16 >= var5 && var16 < var5 + 8 && var15 >= var6 && var15 < var6 + 8) {
 					ObjectDefinition var21 = Occluder.getObjectDefinition(var11);
-					int var22 = var2 + PacketWriter.method2273(var16 & 7, var15 & 7, var7, var21.sizeX, var21.sizeY, var20);
-					int var23 = var3 + method3530(var16 & 7, var15 & 7, var7, var21.sizeX, var21.sizeY, var20);
+					int var22 = var2 + PacketWriter.method2292(var16 & 7, var15 & 7, var7, var21.sizeX, var21.sizeY, var20);
+					int var23 = var3 + method3549(var16 & 7, var15 & 7, var7, var21.sizeX, var21.sizeY, var20);
 					if (var22 > 0 && var23 > 0 && var22 < 103 && var23 < 103) {
 						int var24 = var1;
 						if ((Tiles.Tiles_renderFlags[1][var22][var23] & 2) == 2) {
@@ -120,7 +120,7 @@ public class FileSystem {
 							var25 = var9[var24];
 						}
 
-						EnumDefinition.method4627(var1, var22, var23, var11, var20 + var7 & 3, var19, var8, var25);
+						EnumDefinition.method4656(var1, var22, var23, var11, var20 + var7 & 3, var19, var8, var25);
 					}
 				}
 			}
@@ -132,7 +132,7 @@ public class FileSystem {
 		signature = "(II)I",
 		garbageValue = "1410165290"
 	)
-	static int method3532(int var0) {
+	static int method3551(int var0) {
 		return (int)((Math.log((double)var0) / Interpreter.field1082 - 7.0D) * 256.0D);
 	}
 

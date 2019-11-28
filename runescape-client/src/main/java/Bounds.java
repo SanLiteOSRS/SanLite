@@ -68,9 +68,9 @@ public class Bounds {
 		signature = "(Llw;Llw;I)V",
 		garbageValue = "-1378813027"
 	)
-	public void method6030(Bounds var1, Bounds var2) {
-		this.method6031(var1, var2);
-		this.method6032(var1, var2);
+	public void method6069(Bounds var1, Bounds var2) {
+		this.method6070(var1, var2);
+		this.method6071(var1, var2);
 	}
 
 	@ObfuscatedName("g")
@@ -78,7 +78,7 @@ public class Bounds {
 		signature = "(Llw;Llw;B)V",
 		garbageValue = "6"
 	)
-	void method6031(Bounds var1, Bounds var2) {
+	void method6070(Bounds var1, Bounds var2) {
 		var2.lowX = this.lowX;
 		var2.highX = this.highX;
 		if (this.lowX < var1.lowX) {
@@ -86,8 +86,8 @@ public class Bounds {
 			var2.lowX = var1.lowX;
 		}
 
-		if (var2.method6044() > var1.method6044()) {
-			var2.highX -= var2.method6044() - var1.method6044();
+		if (var2.method6086() > var1.method6086()) {
+			var2.highX -= var2.method6086() - var1.method6086();
 		}
 
 		if (var2.highX < 0) {
@@ -101,7 +101,7 @@ public class Bounds {
 		signature = "(Llw;Llw;B)V",
 		garbageValue = "72"
 	)
-	void method6032(Bounds var1, Bounds var2) {
+	void method6071(Bounds var1, Bounds var2) {
 		var2.lowY = this.lowY;
 		var2.highY = this.highY;
 		if (this.lowY < var1.lowY) {
@@ -109,8 +109,8 @@ public class Bounds {
 			var2.lowY = var1.lowY;
 		}
 
-		if (var2.method6043() > var1.method6043()) {
-			var2.highY -= var2.method6043() - var1.method6043();
+		if (var2.method6085() > var1.method6085()) {
+			var2.highY -= var2.method6085() - var1.method6085();
 		}
 
 		if (var2.highY < 0) {
@@ -124,7 +124,7 @@ public class Bounds {
 		signature = "(S)I",
 		garbageValue = "-14495"
 	)
-	int method6044() {
+	int method6086() {
 		return this.highX + this.lowX;
 	}
 
@@ -133,23 +133,11 @@ public class Bounds {
 		signature = "(I)I",
 		garbageValue = "-1630571197"
 	)
-	int method6043() {
+	int method6085() {
 		return this.highY + this.lowY;
 	}
 
 	public String toString() {
-		return null;
-	}
-
-	public String aaq() {
-		return null;
-	}
-
-	public String aaw() {
-		return null;
-	}
-
-	public String aan() {
 		return null;
 	}
 }

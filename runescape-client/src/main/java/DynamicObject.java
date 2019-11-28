@@ -167,7 +167,7 @@ public class DynamicObject extends Entity {
 		signature = "(II)V",
 		garbageValue = "1357680514"
 	)
-	public static void method2244(int var0) {
+	public static void method2263(int var0) {
 		if (var0 != -1) {
 			if (Widget.Widget_loadedInterfaces[var0]) {
 				InvDefinition.Widget_archive.clearFilesGroup(var0);
@@ -199,7 +199,7 @@ public class DynamicObject extends Entity {
 		signature = "(I)V",
 		garbageValue = "514266465"
 	)
-	public static void method2240() {
+	public static void method2259() {
 		KitDefinition.KitDefinition_cached.clear();
 	}
 
@@ -208,7 +208,7 @@ public class DynamicObject extends Entity {
 		signature = "(ZLkj;B)V",
 		garbageValue = "4"
 	)
-	static final void method2243(boolean var0, PacketBuffer var1) {
+	static final void method2262(boolean var0, PacketBuffer var1) {
 		while (true) {
 			if (var1.bitsRemaining(Client.packetWriter.serverPacketLength) >= 27) {
 				int var2 = var1.readBits(15);
@@ -260,7 +260,7 @@ public class DynamicObject extends Entity {
 						Client.field688[++Client.field687 - 1] = var2;
 					}
 
-					var4.size = var4.definition.size;
+					var4.field938 = var4.definition.size;
 					var4.field988 = var4.definition.rotation;
 					if (var4.field988 == 0) {
 						var4.rotation = 0;
@@ -273,7 +273,7 @@ public class DynamicObject extends Entity {
 					var4.readySequence = var4.definition.readySequence;
 					var4.turnLeftSequence = var4.definition.turnLeftSequence;
 					var4.turnRightSequence = var4.definition.turnRightSequence;
-					var4.method2040(class215.localPlayer.pathX[0] + var7, class215.localPlayer.pathY[0] + var8, var6 == 1);
+					var4.method2059(class215.localPlayer.pathX[0] + var7, class215.localPlayer.pathY[0] + var8, var6 == 1);
 					continue;
 				}
 			}

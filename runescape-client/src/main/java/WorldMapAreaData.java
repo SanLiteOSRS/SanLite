@@ -82,7 +82,7 @@ public class WorldMapAreaData extends WorldMapArea {
 		int var3 = var1.readUnsignedShort();
 
 		for (int var4 = 0; var4 < var3; ++var4) {
-			int var5 = var1.method5586();
+			int var5 = var1.method5618();
 			Coord var6 = new Coord(var1.readInt());
 			boolean var7 = var1.readUnsignedByte() == 1;
 			if (var2 || !var7) {
@@ -108,7 +108,7 @@ public class WorldMapAreaData extends WorldMapArea {
 	)
 	@Export("openURL")
 	public static void openURL(String var0, boolean var1, boolean var2) {
-		class191.method3695(var0, var1, "openjs", var2);
+		class191.method3721(var0, var1, "openjs", var2);
 	}
 
 	@ObfuscatedName("z")
@@ -161,10 +161,10 @@ public class WorldMapAreaData extends WorldMapArea {
 		if (var0.field982 == Client.cycle || var0.sequence == -1 || var0.sequenceDelay != 0 || var0.sequenceFrameCycle + 1 > GrandExchangeOfferAgeComparator.SequenceDefinition_get(var0.sequence).frameLengths[var0.sequenceFrame]) {
 			int var1 = var0.field982 - var0.field934;
 			int var2 = Client.cycle - var0.field934;
-			int var3 = var0.field946 * 128 + var0.size * 64;
-			int var4 = var0.field979 * 128 + var0.size * 64;
-			int var5 = var0.field978 * 128 + var0.size * 64;
-			int var6 = var0.field980 * 128 + var0.size * 64;
+			int var3 = var0.field946 * 128 + var0.field938 * 64;
+			int var4 = var0.field979 * 128 + var0.field938 * 64;
+			int var5 = var0.field978 * 128 + var0.field938 * 64;
+			int var6 = var0.field980 * 128 + var0.field938 * 64;
 			var0.x = (var5 * var2 + var3 * (var1 - var2)) / var1;
 			var0.y = (var6 * var2 + var4 * (var1 - var2)) / var1;
 		}
@@ -179,7 +179,8 @@ public class WorldMapAreaData extends WorldMapArea {
 		signature = "(Ljava/lang/String;I)V",
 		garbageValue = "74366885"
 	)
-	static final void method705(String var0) {
+	@Export("Clan_joinChat")
+	static final void Clan_joinChat(String var0) {
 		if (!var0.equals("")) {
 			PacketBufferNode var1 = ModelData0.getPacketBufferNode(ClientPacket.field2314, Client.packetWriter.isaacCipher);
 			var1.packetBuffer.writeByte(class173.stringCp1252NullTerminatedByteSize(var0));

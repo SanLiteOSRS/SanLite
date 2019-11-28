@@ -16,7 +16,7 @@ public class class216 {
 		signature = "(Ljava/lang/String;II)V",
 		garbageValue = "-126430026"
 	)
-	static final void method4089(String var0, int var1) {
+	static final void method4118(String var0, int var1) {
 		PacketBufferNode var2 = ModelData0.getPacketBufferNode(ClientPacket.field2319, Client.packetWriter.isaacCipher);
 		var2.packetBuffer.writeByte(class173.stringCp1252NullTerminatedByteSize(var0) + 1);
 		var2.packetBuffer.writeStringCp1252NullTerminated(var0);

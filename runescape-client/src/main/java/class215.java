@@ -28,7 +28,7 @@ public class class215 {
 	}
 
 	@ObfuscatedName("u")
-	public static String method4078(long var0) {
+	public static String method4107(long var0) {
 		Calendar.Calendar_calendar.setTime(new Date(var0));
 		int var2 = Calendar.Calendar_calendar.get(7);
 		int var3 = Calendar.Calendar_calendar.get(5);
@@ -45,7 +45,7 @@ public class class215 {
 		signature = "(II)Z",
 		garbageValue = "-266411833"
 	)
-	public static boolean method4080(int var0) {
+	public static boolean method4109(int var0) {
 		return (var0 >> 28 & 1) != 0;
 	}
 
@@ -83,7 +83,7 @@ public class class215 {
 		signature = "(Lbe;I)V",
 		garbageValue = "2102952401"
 	)
-	static final void method4079(PendingSpawn var0) {
+	static final void method4108(PendingSpawn var0) {
 		long var1 = 0L;
 		int var3 = -1;
 		int var4 = 0;

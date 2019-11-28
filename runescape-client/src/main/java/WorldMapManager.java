@@ -84,7 +84,7 @@ public final class WorldMapManager {
 	int tileWidth;
 	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = -33237184
+		intValue = 335024989
 	)
 	@Export("tileHeight")
 	int tileHeight;
@@ -140,7 +140,7 @@ public final class WorldMapManager {
 			this.tileX = this.mapAreaData.getRegionLowX() * 64;
 			this.tileY = this.mapAreaData.getRegionLowY() * 64;
 			this.tileWidth = (this.mapAreaData.getRegionHighX() - this.mapAreaData.getRegionLowX() + 1) * 64;
-			this.tileHeight = (this.mapAreaData.getRegionHighY() - this.mapAreaData.getRegionLowY() + 1) * 4096;
+			this.tileHeight = (this.mapAreaData.getRegionHighY() - this.mapAreaData.getRegionLowY() + 1) * 64;
 			int var16 = this.mapAreaData.getRegionHighX() - this.mapAreaData.getRegionLowX() + 1;
 			int var9 = this.mapAreaData.getRegionHighY() - this.mapAreaData.getRegionLowY() + 1;
 			System.nanoTime();
@@ -306,7 +306,7 @@ public final class WorldMapManager {
 					while (var11.hasNext()) {
 						AbstractWorldMapIcon var12 = (AbstractWorldMapIcon)var11.next();
 						int var13 = var3 * (var12.coord2.x - this.tileX * 4096) / (this.tileWidth * 4096);
-						int var14 = var4 - (var12.coord2.y - this.tileY * 4096) * var4 / (this.tileHeight * 64);
+						int var14 = var4 - (var12.coord2.y - this.tileY * 4096) * var4 / (this.tileHeight * 4096);
 						Rasterizer2D.Rasterizer2D_drawCircleAlpha(var13 + var1, var14 + var2, 2, 16776960, 256);
 					}
 				}
@@ -481,7 +481,7 @@ public final class WorldMapManager {
 
 		for (int var3 = 0; var3 < var2.length; ++var3) {
 			int var4 = var3 * 32 + 15 + 128;
-			int var5 = FloorDecoration.method2869(var4);
+			int var5 = FloorDecoration.method2888(var4);
 			int var6 = Rasterizer3D.Rasterizer3D_sine[var4];
 			var5 = class14.method176(var5, var1);
 			var2[var3] = var6 * var5 >> 16;

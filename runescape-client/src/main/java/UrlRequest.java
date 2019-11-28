@@ -61,7 +61,7 @@ public class UrlRequest {
 	static final void updatePlayers(PacketBuffer var0, int var1) {
 		int var2 = var0.offset;
 		Players.Players_pendingUpdateCount = 0;
-		GraphicsObject.method2022(var0);
+		GraphicsObject.method2041(var0);
 
 		for (int var3 = 0; var3 < Players.Players_pendingUpdateCount; ++var3) {
 			int var4 = Players.Players_pendingUpdateIndices[var3];
@@ -71,7 +71,7 @@ public class UrlRequest {
 				var6 += var0.readUnsignedByte() << 8;
 			}
 
-			Players.method2148(var0, var4, var5, var6);
+			Players.method2167(var0, var4, var5, var6);
 		}
 
 		if (var0.offset - var2 != var1) {
@@ -84,7 +84,7 @@ public class UrlRequest {
 		signature = "(II)V",
 		garbageValue = "-791590790"
 	)
-	public static void method3339(int var0) {
+	public static void method3358(int var0) {
 		class197.field2411 = 1;
 		class197.musicTrackArchive = null;
 		UrlRequester.musicTrackGroupId = -1;
@@ -99,7 +99,7 @@ public class UrlRequest {
 		signature = "(Lhl;II)Ljava/lang/String;",
 		garbageValue = "-1934633021"
 	)
-	static String method3342(Widget var0, int var1) {
+	static String method3361(Widget var0, int var1) {
 		if (!WorldMapManager.method651(MenuAction.getWidgetClickMask(var0), var1) && var0.onOp == null) {
 			return null;
 		} else {

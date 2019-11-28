@@ -152,9 +152,9 @@ public class WorldMapElement extends DualNode {
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
 		if (var2 == 1) {
-			this.sprite1 = var1.method5586();
+			this.sprite1 = var1.method5618();
 		} else if (var2 == 2) {
-			this.sprite2 = var1.method5586();
+			this.sprite2 = var1.method5618();
 		} else if (var2 == 3) {
 			this.name = var1.readStringCp1252NullTerminated();
 		} else if (var2 == 4) {
@@ -203,7 +203,7 @@ public class WorldMapElement extends DualNode {
 				if (var2 == 17) {
 					this.menuTargetName = var1.readStringCp1252NullTerminated();
 				} else if (var2 == 18) {
-					var1.method5586();
+					var1.method5618();
 				} else if (var2 == 19) {
 					this.category = var1.readUnsignedShort();
 				} else if (var2 == 21) {
@@ -218,7 +218,7 @@ public class WorldMapElement extends DualNode {
 					var1.readShort();
 					var1.readShort();
 				} else if (var2 == 25) {
-					var1.method5586();
+					var1.method5618();
 				} else if (var2 == 28) {
 					var1.readUnsignedByte();
 				} else if (var2 == 29) {
@@ -237,7 +237,7 @@ public class WorldMapElement extends DualNode {
 		signature = "(I)V",
 		garbageValue = "147472747"
 	)
-	public void method4432() {
+	public void method4461() {
 		if (this.field3228 != null) {
 			for (int var1 = 0; var1 < this.field3228.length; var1 += 2) {
 				if (this.field3228[var1] < this.field3236) {
@@ -306,7 +306,7 @@ public class WorldMapElement extends DualNode {
 		signature = "(CI)C",
 		garbageValue = "1312574148"
 	)
-	static char method4454(char var0) {
+	static char method4483(char var0) {
 		return var0 != 181 && var0 != 402 ? Character.toTitleCase(var0) : var0;
 	}
 

@@ -14,7 +14,7 @@ public class class195 {
 		signature = "(II)Z",
 		garbageValue = "338644626"
 	)
-	public static boolean method3717(int var0) {
+	public static boolean method3743(int var0) {
 		return var0 == WorldMapDecorationType.field2749.id;
 	}
 
@@ -41,7 +41,7 @@ public class class195 {
 		signature = "([BIIB)Ljava/lang/String;",
 		garbageValue = "9"
 	)
-	static String method3713(byte[] var0, int var1, int var2) {
+	static String method3739(byte[] var0, int var1, int var2) {
 		StringBuilder var3 = new StringBuilder();
 
 		for (int var4 = var1; var4 < var2 + var1; var4 += 3) {
@@ -69,14 +69,14 @@ public class class195 {
 		signature = "(I)V",
 		garbageValue = "1518312277"
 	)
-	public static void method3720() {
+	public static void method3746() {
 		VarpDefinition.VarpDefinition_cached.clear();
 	}
 
 	@ObfuscatedName("gf")
 	@ObfuscatedSignature(
 		signature = "(IIII)I",
-		garbageValue = "1740420520"
+		garbageValue = "-1206093044"
 	)
 	@Export("getTileHeight")
 	static final int getTileHeight(int var0, int var1, int var2) {

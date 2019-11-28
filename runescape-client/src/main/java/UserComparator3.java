@@ -100,7 +100,7 @@ public class UserComparator3 extends AbstractUserComparator {
 		signature = "(II)Z",
 		garbageValue = "-1508425976"
 	)
-	static boolean method3457(int var0) {
+	static boolean method3476(int var0) {
 		for (int var1 = 0; var1 < Client.field889; ++var1) {
 			if (Client.field865[var1] == var0) {
 				return true;
@@ -191,10 +191,10 @@ public class UserComparator3 extends AbstractUserComparator {
 					int var11 = Client.menuOptionsCount - 1;
 					if (var11 != -1) {
 						Tiles.tempMenuAction = new MenuAction();
-						Tiles.tempMenuAction.argument1 = Client.menuArguments1[var11];
-						Tiles.tempMenuAction.argument2 = Client.menuArguments2[var11];
+						Tiles.tempMenuAction.param0 = Client.menuArguments1[var11];
+						Tiles.tempMenuAction.param1 = Client.menuArguments2[var11];
 						Tiles.tempMenuAction.opcode = Client.menuOpcodes[var11];
-						Tiles.tempMenuAction.argument0 = Client.menuIdentifiers[var11];
+						Tiles.tempMenuAction.identifier = Client.menuIdentifiers[var11];
 						Tiles.tempMenuAction.action = Client.menuActions[var11];
 					}
 

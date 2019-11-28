@@ -80,14 +80,14 @@ public class ChatChannel {
 		signature = "(I)V",
 		garbageValue = "-1059026202"
 	)
-	static void method2255() {
+	static void method2274() {
 		if (InvDefinition.field3210 != null) {
 			Client.field863 = Client.cycle;
-			InvDefinition.field3210.method4374();
+			InvDefinition.field3210.method4403();
 
 			for (int var0 = 0; var0 < Client.players.length; ++var0) {
 				if (Client.players[var0] != null) {
-					InvDefinition.field3210.method4377(class51.baseX * 64 + (Client.players[var0].x >> 7), VarcInt.baseY * -1499248159 + (Client.players[var0].y >> 7));
+					InvDefinition.field3210.method4406(class51.baseX * 64 + (Client.players[var0].x >> 7), VarcInt.baseY * 64 + (Client.players[var0].y >> 7));
 				}
 			}
 		}

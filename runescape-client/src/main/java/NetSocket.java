@@ -228,18 +228,6 @@ public final class NetSocket extends AbstractSocket implements Runnable {
 		this.close();
 	}
 
-	protected void aaf() {
-		this.close();
-	}
-
-	protected void aap() {
-		this.close();
-	}
-
-	protected void aae() {
-		this.close();
-	}
-
 	public void run() {
 		try {
 			while (true) {
@@ -310,9 +298,5 @@ public final class NetSocket extends AbstractSocket implements Runnable {
 			Calendar.RunException_sendStackTrace((String)null, var12);
 		}
 
-	}
-
-	protected void aac() {
-		this.close();
 	}
 }

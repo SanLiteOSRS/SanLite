@@ -48,7 +48,7 @@ public class ReflectionCheck extends Node {
 		signature = "(IIIIB)V",
 		garbageValue = "-15"
 	)
-	static final void method2297(int var0, int var1, int var2, int var3) {
+	static final void method2316(int var0, int var1, int var2, int var3) {
 		for (int var4 = var1; var4 <= var3 + var1; ++var4) {
 			for (int var5 = var0; var5 <= var0 + var2; ++var5) {
 				if (var5 >= 0 && var5 < 104 && var4 >= 0 && var4 < 104) {

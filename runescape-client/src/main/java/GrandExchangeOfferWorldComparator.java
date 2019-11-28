@@ -54,8 +54,8 @@ final class GrandExchangeOfferWorldComparator implements Comparator {
 		if (var0 == 6600) {
 			var3 = ClientPacket.Client_plane;
 			int var9 = class51.baseX * 64 + (class215.localPlayer.x >> 7);
-			int var5 = (class215.localPlayer.y >> 7) + VarcInt.baseY * -1499248159;
-			Clock.getWorldMap().method6339(var3, var9, var5, true);
+			int var5 = VarcInt.baseY * 64 + (class215.localPlayer.y >> 7);
+			Clock.getWorldMap().method6381(var3, var9, var5, true);
 			return 1;
 		} else {
 			WorldMapArea var11;
@@ -309,7 +309,7 @@ final class GrandExchangeOfferWorldComparator implements Comparator {
 										GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize -= 2;
 										var3 = Interpreter.Interpreter_intStack[GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize];
 										var12 = new Coord(Interpreter.Interpreter_intStack[GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize + 1]);
-										var7 = Clock.getWorldMap().method6388(var3, var12);
+										var7 = Clock.getWorldMap().method6430(var3, var12);
 										if (var7 == null) {
 											Interpreter.Interpreter_intStack[++GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize - 1] = -1;
 										} else {

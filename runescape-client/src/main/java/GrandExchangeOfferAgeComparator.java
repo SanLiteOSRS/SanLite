@@ -105,7 +105,7 @@ final class GrandExchangeOfferAgeComparator implements Comparator {
 		var0.subHeight = VarcInt.SpriteBuffer_spriteHeights[0];
 		var0.palette = class325.SpriteBuffer_spritePalette;
 		var0.pixels = FillMode.SpriteBuffer_pixels[0];
-		PcmPlayer.method2491();
+		PcmPlayer.method2510();
 		return var0;
 	}
 

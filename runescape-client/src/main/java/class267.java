@@ -17,7 +17,7 @@ public class class267 {
 		signature = "(ILci;ZI)I",
 		garbageValue = "2022043883"
 	)
-	static int method5038(int var0, Script var1, boolean var2) {
+	static int method5067(int var0, Script var1, boolean var2) {
 		Widget var3;
 		if (var0 == ScriptOpcodes.IF_GETINVOBJECT) {
 			var3 = Language.getWidget(Interpreter.Interpreter_intStack[--GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize]);
@@ -55,7 +55,7 @@ public class class267 {
 		signature = "(B)V",
 		garbageValue = "8"
 	)
-	static final void method5039() {
+	static final void method5068() {
 		InterfaceParent.method1197(false);
 		Client.field676 = 0;
 		boolean var0 = true;
@@ -91,13 +91,13 @@ public class class267 {
 				byte[] var2 = UrlRequest.regionMapArchives[var1];
 				if (var2 != null) {
 					var3 = (class226.regions[var1] >> 8) * 64 - class51.baseX * 64;
-					var4 = (class226.regions[var1] & 255) * 64 - VarcInt.baseY * -1499248159;
+					var4 = (class226.regions[var1] & 255) * 64 - VarcInt.baseY * 64;
 					if (Client.isInInstance) {
 						var3 = 10;
 						var4 = 10;
 					}
 
-					var0 &= Script.method2238(var2, var3, var4);
+					var0 &= Script.method2257(var2, var3, var4);
 				}
 			}
 
@@ -170,7 +170,7 @@ public class class267 {
 					byte[] var5;
 					for (var31 = 0; var31 < var1; ++var31) {
 						var3 = (class226.regions[var31] >> 8) * 64 - class51.baseX * 64;
-						var4 = (class226.regions[var31] & 255) * 64 - VarcInt.baseY * -1499248159;
+						var4 = (class226.regions[var31] & 255) * 64 - VarcInt.baseY * 64;
 						var5 = VerticalAlignment.regionLandArchives[var31];
 						if (var5 != null) {
 							Tiles.playPcmPlayers();
@@ -180,11 +180,11 @@ public class class267 {
 
 					for (var31 = 0; var31 < var1; ++var31) {
 						var3 = (class226.regions[var31] >> 8) * 64 - class51.baseX * 64;
-						var4 = (class226.regions[var31] & 255) * 64 - VarcInt.baseY * -1499248159;
+						var4 = (class226.regions[var31] & 255) * 64 - VarcInt.baseY * 64;
 						var5 = VerticalAlignment.regionLandArchives[var31];
 						if (var5 == null && SoundCache.field1438 < 800) {
 							Tiles.playPcmPlayers();
-							ReflectionCheck.method2297(var3, var4, 64, 64);
+							ReflectionCheck.method2316(var3, var4, 64, 64);
 						}
 					}
 
@@ -194,7 +194,7 @@ public class class267 {
 						byte[] var33 = UrlRequest.regionMapArchives[var31];
 						if (var33 != null) {
 							var4 = (class226.regions[var31] >> 8) * 64 - class51.baseX * 64;
-							var32 = (class226.regions[var31] & 255) * 64 - VarcInt.baseY * -1499248159;
+							var32 = (class226.regions[var31] & 255) * 64 - VarcInt.baseY * 64;
 							Tiles.playPcmPlayers();
 							Scene var34 = class2.scene;
 							CollisionMap[] var35 = Client.collisionMaps;
@@ -202,7 +202,7 @@ public class class267 {
 							var9 = -1;
 
 							while (true) {
-								var10 = var36.method5678();
+								var10 = var36.method5710();
 								if (var10 == 0) {
 									break;
 								}
@@ -236,7 +236,7 @@ public class class267 {
 											var40 = var35[var21];
 										}
 
-										EnumDefinition.method4627(var15, var19, var20, var9, var39, var17, var34, var40);
+										EnumDefinition.method4656(var15, var19, var20, var9, var39, var17, var34, var40);
 									}
 								}
 							}
@@ -286,7 +286,7 @@ public class class267 {
 												for (var21 = 0; var21 < 64; ++var21) {
 													for (int var22 = 0; var22 < 64; ++var22) {
 														if (var7 == var20 && var21 >= var16 && var21 < var16 + 8 && var22 >= var17 && var22 < var17 + 8) {
-															int var25 = var14 + class266.method5036(var21 & 7, var22 & 7, var8);
+															int var25 = var14 + class266.method5065(var21 & 7, var22 & 7, var8);
 															int var28 = var21 & 7;
 															int var29 = var22 & 7;
 															int var30 = var8 & 3;
@@ -316,7 +316,7 @@ public class class267 {
 								}
 
 								if (!var42) {
-									TilePaint.method3086(var31, var3 * 8, var4 * 8);
+									TilePaint.method3105(var31, var3 * 8, var4 * 8);
 								}
 							}
 						}
@@ -326,7 +326,7 @@ public class class267 {
 						for (var3 = 0; var3 < 13; ++var3) {
 							var4 = Client.instanceChunkTemplates[0][var31][var3];
 							if (var4 == -1) {
-								ReflectionCheck.method2297(var31 * 8, var3 * 8, 8, 8);
+								ReflectionCheck.method2316(var31 * 8, var3 * 8, 8, 8);
 							}
 						}
 					}
@@ -348,7 +348,7 @@ public class class267 {
 
 									for (var11 = 0; var11 < class226.regions.length; ++var11) {
 										if (class226.regions[var11] == var10 && UrlRequest.regionMapArchives[var11] != null) {
-											FileSystem.method3533(UrlRequest.regionMapArchives[var11], var31, var3 * 8, var4 * 8, var6, (var8 & 7) * 8, (var9 & 7) * 8, var7, class2.scene, Client.collisionMaps);
+											FileSystem.method3552(UrlRequest.regionMapArchives[var11], var31, var3 * 8, var4 * 8, var6, (var8 & 7) * 8, (var9 & 7) * 8, var7, class2.scene, Client.collisionMaps);
 											break;
 										}
 									}
@@ -360,7 +360,7 @@ public class class267 {
 
 				InterfaceParent.method1197(true);
 				Tiles.playPcmPlayers();
-				Frames.method3300(class2.scene, Client.collisionMaps);
+				Frames.method3319(class2.scene, Client.collisionMaps);
 				InterfaceParent.method1197(true);
 				var31 = Tiles.Tiles_minPlane;
 				if (var31 > ClientPacket.Client_plane) {
@@ -388,7 +388,7 @@ public class class267 {
 				for (PendingSpawn var43 = (PendingSpawn)Client.pendingSpawns.last(); var43 != null; var43 = (PendingSpawn)Client.pendingSpawns.previous()) {
 					if (var43.hitpoints == -1) {
 						var43.delay = 0;
-						class215.method4079(var43);
+						class215.method4108(var43);
 					} else {
 						var43.remove();
 					}
@@ -437,14 +437,14 @@ public class class267 {
 				BuddyRankComparator.clock.mark();
 
 				for (var4 = 0; var4 < 32; ++var4) {
-					GameShell.field446[var4] = 0L;
+					GameShell.graphicsTickTimes[var4] = 0L;
 				}
 
 				for (var4 = 0; var4 < 32; ++var4) {
-					GameShell.field447[var4] = 0L;
+					GameShell.clientTickTimes[var4] = 0L;
 				}
 
-				GameShell.field441 = 0;
+				GameShell.gameCyclesToDo = 0;
 			}
 		}
 	}

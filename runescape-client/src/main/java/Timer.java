@@ -74,8 +74,8 @@ public class Timer {
 		signature = "(I)V",
 		garbageValue = "233565560"
 	)
-	public void method5042() {
-		this.field3584 = TaskHandler.method3510();
+	public void method5071() {
+		this.field3584 = TaskHandler.currentTimeMillis();
 	}
 
 	@ObfuscatedName("f")
@@ -83,9 +83,9 @@ public class Timer {
 		signature = "(I)V",
 		garbageValue = "2022402966"
 	)
-	public void method5043() {
+	public void method5072() {
 		if (-1L != this.field3584) {
-			this.field3583 = TaskHandler.method3510() - this.field3584;
+			this.field3583 = TaskHandler.currentTimeMillis() - this.field3584;
 			this.field3584 = -1L;
 		}
 
@@ -96,8 +96,8 @@ public class Timer {
 		signature = "(II)V",
 		garbageValue = "-290587074"
 	)
-	public void method5044(int var1) {
-		this.field3580 = TaskHandler.method3510();
+	public void method5073(int var1) {
+		this.field3580 = TaskHandler.currentTimeMillis();
 		this.field3585 = var1;
 	}
 
@@ -106,9 +106,9 @@ public class Timer {
 		signature = "(I)V",
 		garbageValue = "1294932031"
 	)
-	public void method5050() {
+	public void method5079() {
 		if (this.field3580 != -1L) {
-			this.field3582 = TaskHandler.method3510() - this.field3580;
+			this.field3582 = TaskHandler.currentTimeMillis() - this.field3580;
 			this.field3580 = -1L;
 		}
 
@@ -121,7 +121,7 @@ public class Timer {
 		signature = "(I)V",
 		garbageValue = "65408"
 	)
-	public void method5046() {
+	public void method5075() {
 		this.field3581 = false;
 		this.field3586 = 0;
 	}
@@ -131,8 +131,8 @@ public class Timer {
 		signature = "(I)V",
 		garbageValue = "1988962701"
 	)
-	public void method5047() {
-		this.method5050();
+	public void method5076() {
+		this.method5079();
 	}
 
 	@ObfuscatedName("h")
@@ -142,9 +142,9 @@ public class Timer {
 	)
 	@Export("write")
 	public void write(Buffer var1) {
-		VertexNormal.method3000(var1, this.field3583);
-		VertexNormal.method3000(var1, this.field3582);
-		VertexNormal.method3000(var1, this.field3579);
+		VertexNormal.method3019(var1, this.field3583);
+		VertexNormal.method3019(var1, this.field3582);
+		VertexNormal.method3019(var1, this.field3579);
 		var1.writeShort(this.field3585);
 		var1.writeShort(this.field3586);
 		var1.writeShort(this.field3588);
@@ -156,7 +156,7 @@ public class Timer {
 		signature = "(ILci;ZI)I",
 		garbageValue = "1563555840"
 	)
-	static int method5069(int var0, Script var1, boolean var2) {
+	static int method5098(int var0, Script var1, boolean var2) {
 		String var3;
 		if (var0 == ScriptOpcodes.MES) {
 			var3 = Interpreter.Interpreter_stringStack[--class43.Interpreter_stringStackSize];
@@ -207,7 +207,7 @@ public class Timer {
 					if (var0 == ScriptOpcodes.OPPLAYER) {
 						var15 = Interpreter.Interpreter_intStack[--GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize];
 						var7 = Interpreter.Interpreter_stringStack[--class43.Interpreter_stringStackSize];
-						UserComparator5.method3447(var15, var7);
+						UserComparator5.method3466(var15, var7);
 						return 1;
 					} else if (var0 == ScriptOpcodes.IF_DRAGPICKUP) {
 						GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize -= 3;
@@ -413,7 +413,7 @@ public class Timer {
 							Interpreter.Interpreter_intStack[++GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize - 1] = Login.Login_loadingPercent;
 							return 1;
 						} else if (var0 == 3154) {
-							Interpreter.Interpreter_intStack[++GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize - 1] = SpotAnimationDefinition.method4480();
+							Interpreter.Interpreter_intStack[++GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize - 1] = SpotAnimationDefinition.method4509();
 							return 1;
 						} else if (var0 == 3155) {
 							--class43.Interpreter_stringStackSize;

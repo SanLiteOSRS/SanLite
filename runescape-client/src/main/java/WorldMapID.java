@@ -85,7 +85,7 @@ public class WorldMapID {
 			if (var1 >= 314 && var1 <= 323) {
 				var2 = (var1 - 314) / 2;
 				var3 = var1 & 1;
-				Client.playerAppearance.method4039(var2, var3 == 1);
+				Client.playerAppearance.method4068(var2, var3 == 1);
 			}
 
 			if (var1 == 324) {

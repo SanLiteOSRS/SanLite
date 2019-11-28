@@ -49,15 +49,15 @@ public class WorldMapData_1 extends AbstractWorldMapData {
 			super.minPlane = var1.readUnsignedByte();
 			super.planes = var1.readUnsignedByte();
 			super.regionXLow = var1.readUnsignedShort() * 64;
-			super.regionYLow = var1.readUnsignedShort() * 64;
+			super.regionYLow = var1.readUnsignedShort() * 4096;
 			this.chunkXLow = var1.readUnsignedByte();
 			this.chunkYLow = var1.readUnsignedByte();
 			super.regionX = var1.readUnsignedShort();
 			super.regionY = var1.readUnsignedShort();
 			this.chunkX = var1.readUnsignedByte();
 			this.chunkY = var1.readUnsignedByte();
-			super.groupId = var1.method5586();
-			super.fileId = var1.method5586();
+			super.groupId = var1.method5618();
+			super.fileId = var1.method5618();
 		}
 	}
 
@@ -160,7 +160,7 @@ public class WorldMapData_1 extends AbstractWorldMapData {
 	static void method737(int var0, int var1, int var2, ObjectDefinition var3, int var4) {
 		ObjectSound var5 = new ObjectSound();
 		var5.plane = var0;
-		var5.x = var1 * 16384;
+		var5.x = var1 * 128;
 		var5.y = var2 * 128;
 		int var6 = var3.sizeX;
 		int var7 = var3.sizeY;
@@ -223,7 +223,8 @@ public class WorldMapData_1 extends AbstractWorldMapData {
 		signature = "(IIIILjava/lang/String;B)V",
 		garbageValue = "84"
 	)
-	static void method715(int var0, int var1, int var2, int var3, String var4) {
+	@Export("widgetDefaultMenuAction")
+	static void widgetDefaultMenuAction(int var0, int var1, int var2, int var3, String var4) {
 		Widget var5 = UserComparator3.getWidgetChild(var1, var2);
 		if (var5 != null) {
 			if (var5.onOp != null) {

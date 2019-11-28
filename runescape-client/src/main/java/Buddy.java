@@ -66,7 +66,7 @@ public class Buddy extends User {
 		signature = "(I)V",
 		garbageValue = "595265698"
 	)
-	static void method5222() {
+	static void method5251() {
 		if (Client.Login_isUsernameRemembered && Login.Login_username != null && Login.Login_username.length() > 0) {
 			Login.currentLoginField = 1;
 		} else {

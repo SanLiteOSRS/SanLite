@@ -152,11 +152,11 @@ public abstract class Clock {
 		signature = "(IIIZI)V",
 		garbageValue = "744755226"
 	)
-	public static void method3536(int var0, int var1, int var2, boolean var3) {
+	public static void method3555(int var0, int var1, int var2, boolean var3) {
 		PacketBufferNode var4 = ModelData0.getPacketBufferNode(ClientPacket.field2285, Client.packetWriter.isaacCipher);
 		var4.packetBuffer.writeIntME(var2);
 		var4.packetBuffer.writeShortLE(var1);
-		var4.packetBuffer.method5616(var3 ? Client.field748 : 0);
+		var4.packetBuffer.method5648(var3 ? Client.field748 : 0);
 		var4.packetBuffer.writeShortLE(var0);
 		Client.packetWriter.addNode(var4);
 	}

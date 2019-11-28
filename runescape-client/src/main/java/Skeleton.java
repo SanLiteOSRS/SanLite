@@ -84,7 +84,7 @@ public class Skeleton extends Node {
 		signature = "(ILci;ZI)I",
 		garbageValue = "-1324781775"
 	)
-	static int method3088(int var0, Script var1, boolean var2) {
+	static int method3107(int var0, Script var1, boolean var2) {
 		if (var0 == ScriptOpcodes.SOUND_SYNTH) {
 			GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize -= 3;
 			FileSystem.queueSoundEffect(Interpreter.Interpreter_intStack[GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize], Interpreter.Interpreter_intStack[GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize + 1], Interpreter.Interpreter_intStack[GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize + 2]);

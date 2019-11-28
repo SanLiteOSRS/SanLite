@@ -532,7 +532,7 @@ public class ObjectDefinition extends DualNode {
 		signature = "(II)Z",
 		garbageValue = "2054916988"
 	)
-	public final boolean method4662(int var1) {
+	public final boolean method4691(int var1) {
 		if (this.models != null) {
 			for (int var4 = 0; var4 < this.models.length; ++var4) {
 				if (this.models[var4] == var1) {
@@ -610,14 +610,14 @@ public class ObjectDefinition extends DualNode {
 		}
 
 		if (this.nonFlatShading) {
-			var9 = ((ModelData)var9).method2820();
+			var9 = ((ModelData)var9).method2839();
 		}
 
 		if (this.clipType * 65536 >= 0) {
 			if (var9 instanceof Model) {
 				var9 = ((Model)var9).contourGround(var3, var4, var5, var6, true, this.clipType * 65536);
 			} else if (var9 instanceof ModelData) {
-				var9 = ((ModelData)var9).method2800(var3, var4, var5, var6, true, this.clipType * 65536);
+				var9 = ((ModelData)var9).method2819(var3, var4, var5, var6, true, this.clipType * 65536);
 			}
 		}
 
@@ -739,7 +739,7 @@ public class ObjectDefinition extends DualNode {
 					}
 
 					if (var4) {
-						var3.method2859();
+						var3.method2878();
 					}
 
 					ObjectDefinition_cachedModelData.put(var3, (long)var7);
@@ -781,7 +781,7 @@ public class ObjectDefinition extends DualNode {
 				}
 
 				if (var10) {
-					var3.method2859();
+					var3.method2878();
 				}
 
 				ObjectDefinition_cachedModelData.put(var3, (long)var5);
@@ -803,17 +803,17 @@ public class ObjectDefinition extends DualNode {
 
 		ModelData var8 = new ModelData(var3, var2 == 0 && !var4 && !var11, null == this.recolorFrom, this.retextureFrom == null, true);
 		if (var1 == 4 && var2 > 3) {
-			var8.method2803(256);
+			var8.method2822(256);
 			var8.changeOffset(45, 0, -45);
 		}
 
 		var2 &= 3;
 		if (var2 == 1) {
-			var8.method2865();
+			var8.method2884();
 		} else if (var2 == 2) {
-			var8.method2853();
+			var8.method2872();
 		} else if (var2 == 3) {
-			var8.method2804();
+			var8.method2823();
 		}
 
 		if (this.recolorFrom != null) {
@@ -893,7 +893,7 @@ public class ObjectDefinition extends DualNode {
 	)
 	@Export("getStringParam")
 	public String getStringParam(int var1, String var2) {
-		return ServerBuild.method4185(this.params, var1, var2);
+		return ServerBuild.method4214(this.params, var1, var2);
 	}
 
 	@ObfuscatedName("c")
@@ -924,7 +924,8 @@ public class ObjectDefinition extends DualNode {
 		signature = "(Lbo;I)V",
 		garbageValue = "-1368226174"
 	)
-	static void method4711(GameShell var0) {
+	@Export("doCycleTitle")
+	static void doCycleTitle(GameShell var0) {
 		int var3;
 		int var31;
 		if (Login.worldSelectOpen) {
@@ -1029,16 +1030,16 @@ public class ObjectDefinition extends DualNode {
 				if (!UserComparator10.clientPreferences.titleMusicDisabled) {
 					WorldMapData_0.method191(AbstractWorldMapData.archive6, "scape main", "", 255, false);
 				} else {
-					TileItemPile.method2792();
+					TileItemPile.method2811();
 				}
 			}
 
 			if (Client.gameState != 5) {
 				if (-1L == Login.field1205) {
-					Login.field1205 = TaskHandler.method3510() + 1000L;
+					Login.field1205 = TaskHandler.currentTimeMillis() + 1000L;
 				}
 
-				long var20 = TaskHandler.method3510();
+				long var20 = TaskHandler.currentTimeMillis();
 				if (class4.method63() && -1L == Login.field1206) {
 					Login.field1206 = var20;
 					if (Login.field1206 > Login.field1205) {
@@ -1090,7 +1091,7 @@ public class ObjectDefinition extends DualNode {
 						var35 = GrandExchangeOfferOwnWorldComparator.loginBoxCenter - 80;
 						var34 = 291;
 						if (var3 == 1 && var31 >= var35 - 75 && var31 <= var35 + 75 && var42 >= var34 - 20 && var42 <= var34 + 20) {
-							WorldMapAreaData.openURL(PacketBuffer.method5550("secure", true) + "m=account-creation/g=oldscape/create_account_funnel.ws", true, false);
+							WorldMapAreaData.openURL(PacketBuffer.method5582("secure", true) + "m=account-creation/g=oldscape/create_account_funnel.ws", true, false);
 						}
 
 						var35 = GrandExchangeOfferOwnWorldComparator.loginBoxCenter + 80;
@@ -1101,7 +1102,7 @@ public class ObjectDefinition extends DualNode {
 								Login.Login_response2 = "Your normal account will not be affected.";
 								Login.Login_response3 = "";
 								Login.loginIndex = 1;
-								Buddy.method5222();
+								Buddy.method5251();
 							} else if ((Client.worldProperties & 4) != 0) {
 								if ((Client.worldProperties & 1024) != 0) {
 									Login.Login_response1 = "This is a <col=ffff00>High Risk <col=ff0000>PvP<col=ffffff> world.";
@@ -1115,16 +1116,16 @@ public class ObjectDefinition extends DualNode {
 
 								Login.Login_response0 = "Warning!";
 								Login.loginIndex = 1;
-								Buddy.method5222();
+								Buddy.method5251();
 							} else if ((Client.worldProperties & 1024) != 0) {
 								Login.Login_response1 = "This is a <col=ffff00>High Risk<col=ffffff> world.";
 								Login.Login_response2 = "The Protect Item prayer will";
 								Login.Login_response3 = "not work on this world.";
 								Login.Login_response0 = "Warning!";
 								Login.loginIndex = 1;
-								Buddy.method5222();
+								Buddy.method5251();
 							} else {
-								class222.method4168(false);
+								class222.Login_promptCredentials(false);
 							}
 						}
 					} else {
@@ -1136,7 +1137,7 @@ public class ObjectDefinition extends DualNode {
 									var32 = GrandExchangeOfferOwnWorldComparator.loginBoxCenter - 80;
 									var7 = 321;
 									if (var3 == 1 && var31 >= var32 - 75 && var31 <= var32 + 75 && var42 >= var7 - 20 && var42 <= var7 + 20) {
-										class222.method4168(false);
+										class222.Login_promptCredentials(false);
 									}
 
 									var32 = GrandExchangeOfferOwnWorldComparator.loginBoxCenter + 80;
@@ -1147,7 +1148,7 @@ public class ObjectDefinition extends DualNode {
 								}
 
 								if (class49.field418 == 84) {
-									class222.method4168(false);
+									class222.Login_promptCredentials(false);
 								} else if (class49.field418 == 13) {
 									Login.loginIndex = 0;
 								}
@@ -1232,7 +1233,7 @@ public class ObjectDefinition extends DualNode {
 									if (!UserComparator10.clientPreferences.hideUsername) {
 										Login.Login_username = "";
 										UserComparator10.clientPreferences.rememberedUsername = null;
-										Buddy.method5222();
+										Buddy.method5251();
 									}
 
 									class40.savePreferences();
@@ -1254,7 +1255,7 @@ public class ObjectDefinition extends DualNode {
 																continue label1149;
 															}
 
-															DirectByteArrayCopier.method3984(class297.field3699);
+															DirectByteArrayCopier.method4010(class297.field3699);
 															if (class49.field418 == 85 && Login.Login_username.length() > 0) {
 																Login.Login_username = Login.Login_username.substring(0, Login.Login_username.length() - 1);
 															}
@@ -1399,7 +1400,7 @@ public class ObjectDefinition extends DualNode {
 								var32 = Login.loginBoxX + 180;
 								var7 = 276;
 								if (var3 == 1 && var31 >= var32 - 75 && var31 <= var32 + 75 && var42 >= var7 - 20 && var42 <= var7 + 20) {
-									class222.method4168(false);
+									class222.Login_promptCredentials(false);
 								}
 
 								var32 = Login.loginBoxX + 180;
@@ -1434,7 +1435,7 @@ public class ObjectDefinition extends DualNode {
 									}
 
 									if (var3 == 1 && var31 >= Login.loginBoxX + 180 - 34 && var31 <= Login.loginBoxX + 34 + 180 && var42 >= 351 && var42 <= 363) {
-										WorldMapAreaData.openURL(PacketBuffer.method5550("secure", true) + "m=totp-authenticator/disableTOTPRequest", true, false);
+										WorldMapAreaData.openURL(PacketBuffer.method5582("secure", true) + "m=totp-authenticator/disableTOTPRequest", true, false);
 									}
 
 									var32 = Login.loginBoxX + 180 + 80;
@@ -1497,14 +1498,14 @@ public class ObjectDefinition extends DualNode {
 
 									var32 = Login.loginBoxX + 180 + 80;
 									if (var3 == 1 && var31 >= var32 - 75 && var31 <= var32 + 75 && var42 >= var7 - 20 && var42 <= var7 + 20) {
-										class222.method4168(true);
+										class222.Login_promptCredentials(true);
 									}
 
 									var34 = 361;
 									if (class186.field2342 != null) {
 										var9 = class186.field2342.highX / 2;
 										if (var3 == 1 && var31 >= class186.field2342.lowX - var9 && var31 <= var9 + class186.field2342.lowX && var42 >= var34 - 15 && var42 < var34) {
-											WorldMapAreaData.openURL(PacketBuffer.method5550("secure", true) + "m=weblogin/g=oldscape/cant_log_in", true, false);
+											WorldMapAreaData.openURL(PacketBuffer.method5582("secure", true) + "m=weblogin/g=oldscape/cant_log_in", true, false);
 										}
 									}
 
@@ -1519,7 +1520,7 @@ public class ObjectDefinition extends DualNode {
 										}
 
 										if (class49.field418 == 13) {
-											class222.method4168(true);
+											class222.Login_promptCredentials(true);
 										} else {
 											if (class49.field418 == 85 && Login.Login_username.length() > 0) {
 												Login.Login_username = Login.Login_username.substring(0, Login.Login_username.length() - 1);
@@ -1540,7 +1541,7 @@ public class ObjectDefinition extends DualNode {
 										var32 = Login.loginBoxX + 180 - 80;
 										var7 = 321;
 										if (var3 == 1 && var31 >= var32 - 75 && var31 <= var32 + 75 && var42 >= var7 - 20 && var42 <= var7 + 20) {
-											WorldMapAreaData.openURL(PacketBuffer.method5550("secure", true) + "m=dob/set_dob.ws", true, false);
+											WorldMapAreaData.openURL(PacketBuffer.method5582("secure", true) + "m=dob/set_dob.ws", true, false);
 											PacketWriter.setLoginResponseString("", "Page has opened in a new window.", "(Please check your popup blocker.)");
 											Login.loginIndex = 6;
 											return;
@@ -1548,7 +1549,7 @@ public class ObjectDefinition extends DualNode {
 
 										var32 = Login.loginBoxX + 180 + 80;
 										if (var3 == 1 && var31 >= var32 - 75 && var31 <= var32 + 75 && var42 >= var7 - 20 && var42 <= var7 + 20) {
-											class222.method4168(true);
+											class222.Login_promptCredentials(true);
 										}
 									} else if (Login.loginIndex == 8) {
 										var32 = Login.loginBoxX + 180 - 80;
@@ -1562,7 +1563,7 @@ public class ObjectDefinition extends DualNode {
 
 										var32 = Login.loginBoxX + 180 + 80;
 										if (var3 == 1 && var31 >= var32 - 75 && var31 <= var32 + 75 && var42 >= var7 - 20 && var42 <= var7 + 20) {
-											class222.method4168(true);
+											class222.Login_promptCredentials(true);
 										}
 									} else if (Login.loginIndex == 12) {
 										String var28 = "";
@@ -1574,7 +1575,7 @@ public class ObjectDefinition extends DualNode {
 											var28 = "https://support.runescape.com/hc/en-gb/articles/206103939-My-account-is-locked";
 											break;
 										default:
-											class222.method4168(false);
+											class222.Login_promptCredentials(false);
 										}
 
 										var35 = Login.loginBoxX + 180;
@@ -1589,13 +1590,13 @@ public class ObjectDefinition extends DualNode {
 										var35 = Login.loginBoxX + 180;
 										var34 = 326;
 										if (var3 == 1 && var31 >= var35 - 75 && var31 <= var35 + 75 && var42 >= var34 - 20 && var42 <= var34 + 20) {
-											class222.method4168(false);
+											class222.Login_promptCredentials(false);
 										}
 									} else if (Login.loginIndex == 24) {
 										var32 = Login.loginBoxX + 180;
 										var7 = 301;
 										if (var3 == 1 && var31 >= var32 - 75 && var31 <= var32 + 75 && var42 >= var7 - 20 && var42 <= var7 + 20) {
-											class222.method4168(false);
+											class222.Login_promptCredentials(false);
 										}
 									}
 								} else {
@@ -1604,14 +1605,14 @@ public class ObjectDefinition extends DualNode {
 											if (!InvDefinition.isKeyDown()) {
 												var33 = 321;
 												if (var3 == 1 && var42 >= var33 - 20 && var42 <= var33 + 20) {
-													class222.method4168(true);
+													class222.Login_promptCredentials(true);
 												}
 
 												return;
 											}
 										} while(class49.field418 != 84 && class49.field418 != 13);
 
-										class222.method4168(true);
+										class222.Login_promptCredentials(true);
 									}
 								}
 							}
@@ -1630,7 +1631,7 @@ public class ObjectDefinition extends DualNode {
 	)
 	@Export("changeGameOptions")
 	static final void changeGameOptions(int var0) {
-		class312.method5967();
+		class312.method6006();
 
 		for (ObjectSound var1 = (ObjectSound)ObjectSound.objectSounds.last(); var1 != null; var1 = (ObjectSound)ObjectSound.objectSounds.previous()) {
 			if (var1.obj != null) {
@@ -1692,10 +1693,10 @@ public class ObjectDefinition extends DualNode {
 						class65.playMusicTrack(AbstractWorldMapData.archive6, Client.currentTrackGroupId, 0, var3, false);
 						Client.field742 = false;
 					} else if (var3 == 0) {
-						TileItemPile.method2792();
+						TileItemPile.method2811();
 						Client.field742 = false;
 					} else {
-						TilePaint.method3084(var3);
+						TilePaint.method3103(var3);
 					}
 
 					Client.musicVolume = var3;

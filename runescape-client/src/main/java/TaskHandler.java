@@ -171,7 +171,8 @@ public class TaskHandler implements Runnable {
 		signature = "(I)J",
 		garbageValue = "-1924215879"
 	)
-	public static final synchronized long method3510() {
+	@Export("currentTimeMillis")
+	public static final synchronized long currentTimeMillis() {
 		long var0 = System.currentTimeMillis();
 		if (var0 < class296.field3695) {
 			class296.field3696 += class296.field3695 - var0;

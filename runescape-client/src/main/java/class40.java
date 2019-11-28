@@ -672,7 +672,7 @@ public class class40 {
 			byte[] var2 = VarcInt.VarcInt_archive.takeFile(19, var0);
 			var1 = new VarcInt();
 			if (var2 != null) {
-				var1.method4456(new Buffer(var2));
+				var1.method4485(new Buffer(var2));
 			}
 
 			VarcInt.VarcInt_cached.put(var1, (long)var0);
@@ -752,29 +752,30 @@ public class class40 {
 		signature = "(I)V",
 		garbageValue = "-644551053"
 	)
-	static final void method760() {
+	@Export("logOut")
+	static final void logOut() {
 		Client.packetWriter.close();
 		GrandExchangeOfferNameComparator.method154();
-		BoundaryObject.method3292();
-		DynamicObject.method2240();
-		GraphicsObject.method2020();
-		class222.method4166();
+		BoundaryObject.method3311();
+		DynamicObject.method2259();
+		GraphicsObject.method2039();
+		class222.method4195();
 		WorldMapAreaData.method703();
 		SequenceDefinition.SequenceDefinition_cached.clear();
 		SequenceDefinition.SequenceDefinition_cachedFrames.clear();
 		SpotAnimationDefinition.SpotAnimationDefinition_cached.clear();
 		SpotAnimationDefinition.SpotAnimationDefinition_cachedModels.clear();
 		VarbitDefinition.VarbitDefinition_cached.clear();
-		class195.method3720();
+		class195.method3746();
 		HitSplatDefinition.HitSplatDefinition_cached.clear();
 		HitSplatDefinition.HitSplatDefinition_cachedSprites.clear();
 		HitSplatDefinition.HitSplatDefinition_cachedFonts.clear();
-		class237.method4392();
-		ViewportMouse.method2993();
+		class237.method4421();
+		ViewportMouse.method3012();
 		class3.method35();
-		Occluder.method3317();
-		MusicPatchPcmStream.method3944();
-		HealthBar.method2035();
+		Occluder.method3336();
+		MusicPatchPcmStream.method3970();
+		HealthBar.method2054();
 		((TextureProvider)Rasterizer3D.Rasterizer3D_textureLoader).clear();
 		Script.Script_cached.clear();
 		GrandExchangeOfferAgeComparator.archive0.clearFiles();
@@ -796,7 +797,7 @@ public class class40 {
 		}
 
 		System.gc();
-		UrlRequest.method3339(2);
+		UrlRequest.method3358(2);
 		Client.currentTrackGroupId = -1;
 		Client.field742 = false;
 
@@ -844,7 +845,7 @@ public class class40 {
 				var10.cycle = Client.cycle;
 				if (!var10.isIf3 || !AbstractByteArrayCopier.isComponentHidden(var10)) {
 					if (var10.contentType > 0) {
-						UserList.method5204(var10);
+						UserList.method5233(var10);
 					}
 
 					int var12 = var10.x + var6;
@@ -1199,7 +1200,7 @@ public class class40 {
 											}
 
 											if (!var10.isIf3) {
-												var45 = GraphicsObject.method2017(var45, var10);
+												var45 = GraphicsObject.method2036(var45, var10);
 											}
 
 											var36.drawLines(var45, var12, var13, var10.width, var10.height, var20, var10.textShadowed ? 0 : -1, var10.textXAlignment, var10.textYAlignment, var10.textLineHeight);
@@ -1230,7 +1231,7 @@ public class class40 {
 												if (!var10.spriteTiling) {
 													var22 = var10.width * 4096 / var20;
 													if (var10.spriteAngle != 0) {
-														var37.method6184(var10.width / 2 + var12, var10.height / 2 + var13, var10.spriteAngle, var22);
+														var37.method6226(var10.width / 2 + var12, var10.height / 2 + var13, var10.spriteAngle, var22);
 													} else if (var14 != 0) {
 														var37.drawTransScaledAt(var12, var13, var10.width, var10.height, 256 - (var14 & 255));
 													} else if (var20 == var10.width && var21 == var10.height) {
@@ -1246,7 +1247,7 @@ public class class40 {
 													for (var24 = 0; var24 < var22; ++var24) {
 														for (var25 = 0; var25 < var23; ++var25) {
 															if (var10.spriteAngle != 0) {
-																var37.method6184(var20 / 2 + var12 + var20 * var24, var21 / 2 + var13 + var25 * var21, var10.spriteAngle, 4096);
+																var37.method6226(var20 / 2 + var12 + var20 * var24, var21 / 2 + var13 + var25 * var21, var10.spriteAngle, 4096);
 															} else if (var14 != 0) {
 																var37.drawTransAt(var12 + var24 * var20, var13 + var21 * var25, 256 - (var14 & 255));
 															} else {
@@ -1302,18 +1303,18 @@ public class class40 {
 												}
 											}
 
-											Rasterizer3D.method3005(var10.width / 2 + var12, var10.height / 2 + var13);
+											Rasterizer3D.method3024(var10.width / 2 + var12, var10.height / 2 + var13);
 											var23 = Rasterizer3D.Rasterizer3D_sine[var10.modelAngleX] * var10.modelZoom >> 16;
 											var24 = Rasterizer3D.Rasterizer3D_cosine[var10.modelAngleX] * var10.modelZoom >> 16;
 											if (var41 != null) {
 												if (!var10.isIf3) {
-													var41.method2939(0, var10.modelAngleY, 0, var10.modelAngleX, 0, var23, var24);
+													var41.method2958(0, var10.modelAngleY, 0, var10.modelAngleX, 0, var23, var24);
 												} else {
 													var41.calculateBoundsCylinder();
 													if (var10.modelOrthog) {
-														var41.method2899(0, var10.modelAngleY, var10.modelAngleZ, var10.modelAngleX, var10.modelOffsetX, var22 + var23 + var10.modelOffsetY, var24 + var10.modelOffsetY, var10.modelZoom);
+														var41.method2918(0, var10.modelAngleY, var10.modelAngleZ, var10.modelAngleX, var10.modelOffsetX, var22 + var23 + var10.modelOffsetY, var24 + var10.modelOffsetY, var10.modelZoom);
 													} else {
-														var41.method2939(0, var10.modelAngleY, var10.modelAngleZ, var10.modelAngleX, var10.modelOffsetX, var23 + var22 + var10.modelOffsetY, var24 + var10.modelOffsetY);
+														var41.method2958(0, var10.modelAngleY, var10.modelAngleZ, var10.modelAngleX, var10.modelOffsetX, var23 + var22 + var10.modelOffsetY, var24 + var10.modelOffsetY);
 													}
 												}
 											}
@@ -1365,7 +1366,7 @@ public class class40 {
 												String var33 = var10.text;
 
 												String var44;
-												for (var33 = GraphicsObject.method2017(var33, var10); var33.length() > 0; var20 = var20 + var32.ascent + 1) {
+												for (var33 = GraphicsObject.method2036(var33, var10); var33.length() > 0; var20 = var20 + var32.ascent + 1) {
 													var24 = var33.indexOf("<br>");
 													if (var24 != -1) {
 														var44 = var33.substring(0, var24);
@@ -1402,7 +1403,7 @@ public class class40 {
 												var33 = var10.text;
 												var26 = var25 + var32.ascent + 2;
 
-												for (var33 = GraphicsObject.method2017(var33, var10); var33.length() > 0; var26 = var26 + var32.ascent + 1) {
+												for (var33 = GraphicsObject.method2036(var33, var10); var33.length() > 0; var26 = var26 + var32.ascent + 1) {
 													int var27 = var33.indexOf("<br>");
 													if (var27 != -1) {
 														var44 = var33.substring(0, var27);

@@ -171,17 +171,17 @@ public class HitSplatDefinition extends DualNode {
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
 		if (var2 == 1) {
-			this.fontId = var1.method5586();
+			this.fontId = var1.method5618();
 		} else if (var2 == 2) {
 			this.textColor = var1.readMedium();
 		} else if (var2 == 3) {
-			this.field3351 = var1.method5586();
+			this.field3351 = var1.method5618();
 		} else if (var2 == 4) {
-			this.field3341 = var1.method5586();
+			this.field3341 = var1.method5618();
 		} else if (var2 == 5) {
-			this.field3340 = var1.method5586();
+			this.field3340 = var1.method5618();
 		} else if (var2 == 6) {
-			this.field3349 = var1.method5586();
+			this.field3349 = var1.method5618();
 		} else if (var2 == 7) {
 			this.field3343 = var1.readShort();
 		} else if (var2 == 8) {
@@ -299,7 +299,7 @@ public class HitSplatDefinition extends DualNode {
 		signature = "(I)Lln;",
 		garbageValue = "138954957"
 	)
-	public Sprite method4633() {
+	public Sprite method4662() {
 		if (this.field3351 < 0) {
 			return null;
 		} else {
@@ -322,7 +322,7 @@ public class HitSplatDefinition extends DualNode {
 		signature = "(I)Lln;",
 		garbageValue = "-1751554235"
 	)
-	public Sprite method4634() {
+	public Sprite method4663() {
 		if (this.field3340 < 0) {
 			return null;
 		} else {
@@ -345,7 +345,7 @@ public class HitSplatDefinition extends DualNode {
 		signature = "(I)Lln;",
 		garbageValue = "243869561"
 	)
-	public Sprite method4642() {
+	public Sprite method4671() {
 		if (this.field3341 < 0) {
 			return null;
 		} else {
@@ -368,7 +368,7 @@ public class HitSplatDefinition extends DualNode {
 		signature = "(B)Lln;",
 		garbageValue = "20"
 	)
-	public Sprite method4628() {
+	public Sprite method4657() {
 		if (this.field3349 < 0) {
 			return null;
 		} else {

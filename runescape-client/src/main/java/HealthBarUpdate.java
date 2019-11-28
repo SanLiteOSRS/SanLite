@@ -77,7 +77,7 @@ public class HealthBarUpdate extends Node {
 		signature = "(Lfu;III)Lde;",
 		garbageValue = "148025221"
 	)
-	public static final PcmPlayer method1757(TaskHandler var0, int var1, int var2) {
+	public static final PcmPlayer method1776(TaskHandler var0, int var1, int var2) {
 		if (Messages.field1274 == 0) {
 			throw new IllegalStateException();
 		} else if (var1 >= 0 && var1 < 2) {
@@ -124,7 +124,7 @@ public class HealthBarUpdate extends Node {
 		signature = "(Lgd;I)V",
 		garbageValue = "1866013369"
 	)
-	static final void method1760(class185 var0) {
+	static final void method1779(class185 var0) {
 		PacketBuffer var1 = Client.packetWriter.packetBuffer;
 		int var2;
 		int var3;
@@ -138,7 +138,7 @@ public class HealthBarUpdate extends Node {
 			var3 = var2 >> 2;
 			var4 = var2 & 3;
 			var5 = Client.field703[var3];
-			var6 = var1.method5657();
+			var6 = var1.method5689();
 			var7 = (var6 >> 4 & 7) + class227.field3092;
 			var8 = (var6 & 7) + class40.field343;
 			if (var7 >= 0 && var8 >= 0 && var7 < 104 && var8 < 104) {
@@ -148,7 +148,7 @@ public class HealthBarUpdate extends Node {
 		} else {
 			int var9;
 			if (class185.field2337 == var0) {
-				var2 = var1.method5696();
+				var2 = var1.method5728();
 				var3 = var2 >> 2;
 				var4 = var2 & 3;
 				var5 = Client.field703[var3];
@@ -191,10 +191,10 @@ public class HealthBarUpdate extends Node {
 						var2 = var1.readUnsignedByte();
 						var3 = var2 >> 4 & 15;
 						var4 = var2 & 7;
-						var5 = var1.method5657();
+						var5 = var1.method5689();
 						var6 = (var5 >> 4 & 7) + class227.field3092;
 						var7 = (var5 & 7) + class40.field343;
-						var8 = var1.method5599();
+						var8 = var1.method5631();
 						var9 = var1.readUnsignedShort();
 						if (var6 >= 0 && var7 >= 0 && var6 < 104 && var7 < 104) {
 							var10 = var3 + 1;
@@ -214,19 +214,19 @@ public class HealthBarUpdate extends Node {
 					int var13;
 					int var14;
 					if (class185.field2336 == var0) {
-						var2 = var1.method5657();
+						var2 = var1.method5689();
 						var3 = var1.readUnsignedShort();
-						var4 = var1.method5687();
-						var5 = var1.method5696();
+						var4 = var1.method5719();
+						var5 = var1.method5728();
 						var6 = (var5 >> 4 & 7) + class227.field3092;
 						var7 = (var5 & 7) + class40.field343;
 						byte var37 = var1.readByte();
-						var9 = var1.method5657() * 4;
-						var10 = var1.method5687();
-						var11 = var1.method5657() * 4;
-						var12 = var1.method5611();
+						var9 = var1.method5689() * 4;
+						var10 = var1.method5719();
+						var11 = var1.method5689() * 4;
+						var12 = var1.method5643();
 						byte var40 = var1.readByte();
-						var14 = var1.method5696();
+						var14 = var1.method5728();
 						var8 = var37 + var6;
 						var13 = var40 + var7;
 						if (var6 >= 0 && var7 >= 0 && var6 < 104 && var7 < 104 && var8 >= 0 && var13 >= 0 && var8 < 104 && var13 < 104 && var4 != 65535) {
@@ -240,17 +240,17 @@ public class HealthBarUpdate extends Node {
 						}
 
 					} else if (class185.field2332 == var0) {
-						var2 = var1.method5608();
-						var3 = var1.method5657();
+						var2 = var1.method5640();
+						var3 = var1.method5689();
 						var4 = (var3 >> 4 & 7) + class227.field3092;
 						var5 = (var3 & 7) + class40.field343;
-						var6 = var1.method5696();
+						var6 = var1.method5728();
 						var7 = var6 >> 2;
 						var8 = var6 & 3;
 						var9 = Client.field703[var7];
 						if (var4 >= 0 && var5 >= 0 && var4 < 103 && var5 < 103) {
 							if (var9 == 0) {
-								BoundaryObject var33 = class2.scene.method3111(ClientPacket.Client_plane, var4, var5);
+								BoundaryObject var33 = class2.scene.method3130(ClientPacket.Client_plane, var4, var5);
 								if (var33 != null) {
 									var11 = ItemContainer.Entity_unpackID(var33.tag);
 									if (var7 == 2) {
@@ -263,7 +263,7 @@ public class HealthBarUpdate extends Node {
 							}
 
 							if (var9 == 1) {
-								WallDecoration var41 = class2.scene.method3112(ClientPacket.Client_plane, var4, var5);
+								WallDecoration var41 = class2.scene.method3131(ClientPacket.Client_plane, var4, var5);
 								if (var41 != null) {
 									var11 = ItemContainer.Entity_unpackID(var41.tag);
 									if (var7 != 4 && var7 != 5) {
@@ -282,7 +282,7 @@ public class HealthBarUpdate extends Node {
 							}
 
 							if (var9 == 2) {
-								GameObject var42 = class2.scene.method3234(ClientPacket.Client_plane, var4, var5);
+								GameObject var42 = class2.scene.method3253(ClientPacket.Client_plane, var4, var5);
 								if (var7 == 11) {
 									var7 = 10;
 								}
@@ -301,9 +301,9 @@ public class HealthBarUpdate extends Node {
 						}
 
 					} else if (class185.field2341 == var0) {
-						var2 = var1.method5608();
+						var2 = var1.method5640();
 						var3 = var1.readUnsignedByte();
-						var4 = var1.method5609();
+						var4 = var1.method5641();
 						var5 = var1.readUnsignedByte();
 						var6 = (var5 >> 4 & 7) + class227.field3092;
 						var7 = (var5 & 7) + class40.field343;
@@ -316,9 +316,9 @@ public class HealthBarUpdate extends Node {
 
 					} else if (class185.field2331 == var0) {
 						var2 = var1.readUnsignedShort();
-						var3 = var1.method5609();
-						var4 = var1.method5609();
-						var5 = var1.method5599();
+						var3 = var1.method5641();
+						var4 = var1.method5641();
+						var5 = var1.method5631();
 						var6 = (var5 >> 4 & 7) + class227.field3092;
 						var7 = (var5 & 7) + class40.field343;
 						if (var6 >= 0 && var7 >= 0 && var6 < 104 && var7 < 104) {
@@ -340,7 +340,7 @@ public class HealthBarUpdate extends Node {
 						var3 = var1.readUnsignedByte();
 						var4 = (var3 >> 4 & 7) + class227.field3092;
 						var5 = (var3 & 7) + class40.field343;
-						var6 = var1.method5608();
+						var6 = var1.method5640();
 						if (var4 >= 0 && var5 >= 0 && var4 < 104 && var5 < 104) {
 							var32 = new TileItem();
 							var32.id = var6;
@@ -356,20 +356,20 @@ public class HealthBarUpdate extends Node {
 					} else {
 						if (class185.field2333 == var0) {
 							var2 = var1.readUnsignedShort();
-							var3 = var1.method5687();
-							var4 = var1.method5657();
+							var3 = var1.method5719();
+							var4 = var1.method5689();
 							var5 = var4 >> 2;
 							var6 = var4 & 3;
 							var7 = Client.field703[var5];
-							var8 = var1.method5609();
-							byte var38 = var1.method5740();
-							byte var39 = var1.method5605();
+							var8 = var1.method5641();
+							byte var38 = var1.method5772();
+							byte var39 = var1.method5637();
 							var11 = var1.readUnsignedByte();
 							var12 = (var11 >> 4 & 7) + class227.field3092;
 							var13 = (var11 & 7) + class40.field343;
-							var14 = var1.method5687();
-							byte var36 = var1.method5601();
-							byte var16 = var1.method5605();
+							var14 = var1.method5719();
+							byte var36 = var1.method5633();
+							byte var16 = var1.method5637();
 							Player var17;
 							if (var3 == Client.localPlayerIndex) {
 								var17 = class215.localPlayer;

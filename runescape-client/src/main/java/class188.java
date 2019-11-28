@@ -29,8 +29,8 @@ public class class188 {
 		signature = "(III)I",
 		garbageValue = "470925087"
 	)
-	static final int method3669(int var0, int var1) {
-		int var2 = RouteStrategy.method3617(45365 + var0, 91923 + var1, 4) - 128 + (RouteStrategy.method3617(var0 + 10294, var1 + 37821, 2) - 128 >> 1) + (RouteStrategy.method3617(var0, var1, 1) - 128 >> 2);
+	static final int method3692(int var0, int var1) {
+		int var2 = RouteStrategy.method3640(45365 + var0, 91923 + var1, 4) - 128 + (RouteStrategy.method3640(var0 + 10294, var1 + 37821, 2) - 128 >> 1) + (RouteStrategy.method3640(var0, var1, 1) - 128 >> 2);
 		var2 = (int)(0.3D * (double)var2) + 35;
 		if (var2 < 10) {
 			var2 = 10;

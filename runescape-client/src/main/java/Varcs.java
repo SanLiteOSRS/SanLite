@@ -44,7 +44,7 @@ public class Varcs {
 		}
 
 		var2 = 0;
-		if (class288.archive2.method4326(15)) {
+		if (class288.archive2.method4355(15)) {
 			var2 = class288.archive2.getGroupFileCount(15);
 		}
 
@@ -232,7 +232,7 @@ public class Varcs {
 		}
 
 		this.unwrittenChanges = false;
-		this.field1267 = TaskHandler.method3510();
+		this.field1267 = TaskHandler.currentTimeMillis();
 	}
 
 	@ObfuscatedName("i")
@@ -334,7 +334,7 @@ public class Varcs {
 	)
 	@Export("tryWrite")
 	void tryWrite() {
-		if (this.unwrittenChanges && this.field1267 < TaskHandler.method3510() - 60000L) {
+		if (this.unwrittenChanges && this.field1267 < TaskHandler.currentTimeMillis() - 60000L) {
 			this.write();
 		}
 
@@ -365,8 +365,8 @@ public class Varcs {
 		signature = "(I)Lgx;",
 		garbageValue = "2098158571"
 	)
-	public static PacketBufferNode method2202() {
-		PacketBufferNode var0 = StudioGame.method4196();
+	public static PacketBufferNode method2221() {
+		PacketBufferNode var0 = StudioGame.method4225();
 		var0.clientPacket = null;
 		var0.clientPacketLength = 0;
 		var0.packetBuffer = new PacketBuffer(5000);
@@ -388,7 +388,7 @@ public class Varcs {
 		signature = "(ILci;ZI)I",
 		garbageValue = "2145599306"
 	)
-	static int method2182(int var0, Script var1, boolean var2) {
+	static int method2201(int var0, Script var1, boolean var2) {
 		Widget var3;
 		if (var0 >= 2000) {
 			var0 -= 1000;
@@ -499,7 +499,7 @@ public class Varcs {
 		signature = "(ILci;ZB)I",
 		garbageValue = "-3"
 	)
-	static int method2201(int var0, Script var1, boolean var2) {
+	static int method2220(int var0, Script var1, boolean var2) {
 		Widget var3 = var2 ? Interpreter.field1090 : class188.field2352;
 		if (var0 == ScriptOpcodes.CC_GETSCROLLX) {
 			Interpreter.Interpreter_intStack[++GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize - 1] = var3.scrollX;
@@ -556,7 +556,7 @@ public class Varcs {
 		signature = "(ILci;ZB)I",
 		garbageValue = "-27"
 	)
-	static int method2175(int var0, Script var1, boolean var2) {
+	static int method2194(int var0, Script var1, boolean var2) {
 		if (var0 == ScriptOpcodes.LOGOUT) {
 			Client.logoutTimer = 250;
 			return 1;
@@ -633,7 +633,7 @@ public class Varcs {
 				return;
 			}
 
-			long var25 = SoundCache.method2512(var8);
+			long var25 = SoundCache.method2531(var8);
 			if (var25 != var6) {
 				label333: {
 					var6 = var25;

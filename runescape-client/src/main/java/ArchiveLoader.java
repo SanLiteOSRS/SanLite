@@ -50,7 +50,7 @@ public class ArchiveLoader {
 		this.loadedCount = 0;
 
 		for (int var1 = 0; var1 < this.groupCount; ++var1) {
-			if (!this.archive.method4326(var1) || this.archive.method4325(var1)) {
+			if (!this.archive.method4355(var1) || this.archive.method4354(var1)) {
 				++this.loadedCount;
 			}
 		}

@@ -61,7 +61,7 @@ public class Friend extends Buddy {
 		signature = "(II)I",
 		garbageValue = "-825705813"
 	)
-	public static int method5261(int var0) {
+	public static int method5293(int var0) {
 		if (var0 > 0) {
 			return 1;
 		} else {
@@ -84,7 +84,7 @@ public class Friend extends Buddy {
 		signature = "(IIII)Lbf;",
 		garbageValue = "-252811827"
 	)
-	static final InterfaceParent method5271(int var0, int var1, int var2) {
+	static final InterfaceParent method5303(int var0, int var1, int var2) {
 		InterfaceParent var3 = new InterfaceParent();
 		var3.group = var1;
 		var3.type = var2;
@@ -97,7 +97,7 @@ public class Friend extends Buddy {
 			Client.meslayerContinueWidget = null;
 		}
 
-		Varps.method4017();
+		Varps.method4043();
 		MilliClock.revalidateWidgetScroll(FloorDecoration.Widget_interfaceComponents[var0 >> 16], var4, false);
 		UserComparator9.runWidgetOnLoadListener(var1);
 		if (Client.rootInterface != -1) {

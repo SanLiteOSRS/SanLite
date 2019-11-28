@@ -96,7 +96,7 @@ public class ScriptFrame {
 	)
 	static long method1162() {
 		try {
-			URL var0 = new URL(PacketBuffer.method5550("services", false) + "m=accountappeal/login.ws");
+			URL var0 = new URL(PacketBuffer.method5582("services", false) + "m=accountappeal/login.ws");
 			URLConnection var1 = var0.openConnection();
 			var1.setRequestProperty("connection", "close");
 			var1.setDoInput(true);
@@ -190,11 +190,11 @@ public class ScriptFrame {
 				var11.writeBytes(var7.array, 0, var7.offset);
 				var11.writeShort(var10.offset);
 				var11.writeBytes(var10.array, 0, var10.offset);
-				String var12 = StudioGame.method4191(var11.array);
+				String var12 = StudioGame.method4220(var11.array);
 
 				byte var3;
 				try {
-					URL var13 = new URL(PacketBuffer.method5550("services", false) + "m=accountappeal/login.ws");
+					URL var13 = new URL(PacketBuffer.method5582("services", false) + "m=accountappeal/login.ws");
 					URLConnection var14 = var13.openConnection();
 					var14.setDoInput(true);
 					var14.setDoOutput(true);

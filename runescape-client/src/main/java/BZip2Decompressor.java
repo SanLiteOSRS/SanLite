@@ -42,7 +42,7 @@ public final class BZip2Decompressor {
 	@ObfuscatedSignature(
 		signature = "(Lko;)V"
 	)
-	static void method5863(BZip2State var0) {
+	static void method5895(BZip2State var0) {
 		byte var2 = var0.out_char;
 		int var3 = var0.su_rNToGo;
 		int var4 = var0.nblocks_used;
@@ -523,7 +523,7 @@ public final class BZip2Decompressor {
 					var0.field3738 >>= 8;
 					++var0.nblocks_used;
 					var0.field3756 = var47;
-					method5863(var0);
+					method5895(var0);
 					if (var0.field3756 + 1 == var0.nblocks_used && var0.su_rNToGo == 0) {
 						var26 = true;
 						break;

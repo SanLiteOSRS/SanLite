@@ -89,16 +89,4 @@ public class LoginType {
 	public String toString() {
 		return this.field4033;
 	}
-
-	public String aaq() {
-		return this.field4033;
-	}
-
-	public String aaw() {
-		return this.field4033;
-	}
-
-	public String aan() {
-		return this.field4033;
-	}
 }

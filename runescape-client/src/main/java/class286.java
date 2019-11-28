@@ -9,7 +9,7 @@ public class class286 {
 		signature = "([I[II)V",
 		garbageValue = "1632761415"
 	)
-	public static void method5321(int[] var0, int[] var1) {
+	public static void method5353(int[] var0, int[] var1) {
 		if (var0 != null && var1 != null) {
 			WorldMapSprite.ByteArrayPool_alternativeSizes = var0;
 			class216.ByteArrayPool_altSizeArrayCounts = new int[var0.length];
@@ -56,7 +56,7 @@ public class class286 {
 		signature = "(IIIII)I",
 		garbageValue = "1010446499"
 	)
-	static final int method5314(int var0, int var1, int var2, int var3) {
+	static final int method5346(int var0, int var1, int var2, int var3) {
 		int var4 = 65536 - Rasterizer3D.Rasterizer3D_cosine[var2 * 1024 / var3] >> 1;
 		return ((65536 - var4) * var0 >> 16) + (var4 * var1 >> 16);
 	}

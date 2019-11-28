@@ -106,7 +106,7 @@ public class PcmPlayer {
 
 	protected PcmPlayer() {
 		this.field1396 = 32;
-		this.timeMs = TaskHandler.method3510();
+		this.timeMs = TaskHandler.currentTimeMillis();
 		this.field1405 = 0L;
 		this.field1406 = 0;
 		this.field1404 = 0;
@@ -187,7 +187,7 @@ public class PcmPlayer {
 	@Export("run")
 	public final synchronized void run() {
 		if (this.samples != null) {
-			long var1 = TaskHandler.method3510();
+			long var1 = TaskHandler.currentTimeMillis();
 
 			try {
 				if (this.field1405 != 0L) {
@@ -277,7 +277,7 @@ public class PcmPlayer {
 		signature = "(S)V",
 		garbageValue = "-4762"
 	)
-	public final void method2439() {
+	public final void method2458() {
 		this.field1398 = true;
 	}
 
@@ -294,7 +294,7 @@ public class PcmPlayer {
 			this.discard();
 		} catch (Exception var2) {
 			this.close();
-			this.field1405 = TaskHandler.method3510() + 2000L;
+			this.field1405 = TaskHandler.currentTimeMillis() + 2000L;
 		}
 
 	}
@@ -361,7 +361,7 @@ public class PcmPlayer {
 		if (this.stream != null && this.field1409 <= 0) {
 			this.field1409 += Messages.field1274 >> 4;
 			class1.PcmStream_disable(this.stream);
-			this.method2433(this.stream, this.stream.vmethod2722());
+			this.method2452(this.stream, this.stream.vmethod2741());
 			int var4 = 0;
 			int var5 = 255;
 
@@ -399,7 +399,7 @@ public class PcmPlayer {
 									var11 = var11.after;
 								} else {
 									var11.active = true;
-									int var13 = var11.vmethod3937();
+									int var13 = var11.vmethod3963();
 									var4 += var13;
 									if (var12 != null) {
 										var12.position += var13;
@@ -412,7 +412,7 @@ public class PcmPlayer {
 									PcmStream var14 = var11.firstSubStream();
 									if (var14 != null) {
 										for (int var15 = var11.field1483; var14 != null; var14 = var11.nextSubStream()) {
-											this.method2433(var14, var15 * var14.vmethod2722() >> 8);
+											this.method2452(var14, var15 * var14.vmethod2741() >> 8);
 										}
 									}
 
@@ -459,7 +459,7 @@ public class PcmPlayer {
 			this.stream.fill(var1, 0, var2);
 		}
 
-		this.timeMs = TaskHandler.method3510();
+		this.timeMs = TaskHandler.currentTimeMillis();
 	}
 
 	@ObfuscatedName("ar")
@@ -467,7 +467,7 @@ public class PcmPlayer {
 		signature = "(Ldt;II)V",
 		garbageValue = "1065299389"
 	)
-	final void method2433(PcmStream var1, int var2) {
+	final void method2452(PcmStream var1, int var2) {
 		int var3 = var2 >> 5;
 		PcmStream var4 = this.field1411[var3];
 		if (var4 == null) {
@@ -485,7 +485,7 @@ public class PcmPlayer {
 		signature = "(S)V",
 		garbageValue = "180"
 	)
-	static void method2491() {
+	static void method2510() {
 		UrlRequester.SpriteBuffer_xOffsets = null;
 		class216.SpriteBuffer_yOffsets = null;
 		class325.SpriteBuffer_spriteWidths = null;
@@ -499,7 +499,7 @@ public class PcmPlayer {
 		signature = "(I)V",
 		garbageValue = "264863950"
 	)
-	static final void method2490() {
+	static final void method2509() {
 		boolean var0 = false;
 
 		while (!var0) {

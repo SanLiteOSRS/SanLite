@@ -137,7 +137,7 @@ public class GrandExchangeOfferOwnWorldComparator implements Comparator {
 			var0 += class13.archive19.percentage() / 100;
 			var0 += UserComparator9.archive18.percentage() / 100;
 			var0 += class60.archive20.percentage() / 100;
-			var0 += AbstractWorldMapIcon.archive17.method4316() && AbstractWorldMapIcon.archive17.isFullyLoaded() ? 1 : 0;
+			var0 += AbstractWorldMapIcon.archive17.method4345() && AbstractWorldMapIcon.archive17.isFullyLoaded() ? 1 : 0;
 			if (var0 != 100) {
 				if (var0 != 0) {
 					Login.Login_loadingText = "Checking for updates - " + var0 + "%";
@@ -145,19 +145,19 @@ public class GrandExchangeOfferOwnWorldComparator implements Comparator {
 
 				Login.Login_loadingPercent = 30;
 			} else {
-				class266.method5035(GrandExchangeOfferAgeComparator.archive0, "Animations");
-				class266.method5035(class43.archive1, "Skeletons");
-				class266.method5035(SpriteMask.archive4, "Sound FX");
-				class266.method5035(DirectByteArrayCopier.archive5, "Maps");
-				class266.method5035(AbstractWorldMapData.archive6, "Music Tracks");
-				class266.method5035(ClientPacket.archive7, "Models");
-				class266.method5035(WorldMapRegion.archive8, "Sprites");
-				class266.method5035(ScriptFrame.archive11, "Music Jingles");
-				class266.method5035(class162.archive14, "Music Samples");
-				class266.method5035(class210.archive15, "Music Patches");
-				class266.method5035(class13.archive19, "World Map");
-				class266.method5035(UserComparator9.archive18, "World Map Geography");
-				class266.method5035(class60.archive20, "World Map Ground");
+				class266.method5064(GrandExchangeOfferAgeComparator.archive0, "Animations");
+				class266.method5064(class43.archive1, "Skeletons");
+				class266.method5064(SpriteMask.archive4, "Sound FX");
+				class266.method5064(DirectByteArrayCopier.archive5, "Maps");
+				class266.method5064(AbstractWorldMapData.archive6, "Music Tracks");
+				class266.method5064(ClientPacket.archive7, "Models");
+				class266.method5064(WorldMapRegion.archive8, "Sprites");
+				class266.method5064(ScriptFrame.archive11, "Music Jingles");
+				class266.method5064(class162.archive14, "Music Samples");
+				class266.method5064(class210.archive15, "Music Patches");
+				class266.method5064(class13.archive19, "World Map");
+				class266.method5064(UserComparator9.archive18, "World Map Geography");
+				class266.method5064(class60.archive20, "World Map Ground");
 				Actor.spriteIds = new GraphicsDefaults();
 				Actor.spriteIds.decode(AbstractWorldMapIcon.archive17);
 				Login.Login_loadingText = "Loaded update list";
@@ -167,11 +167,11 @@ public class GrandExchangeOfferOwnWorldComparator implements Comparator {
 		} else if (Client.titleLoadingStage == 45) {
 			GrandExchangeOfferAgeComparator.method170(22050, !Client.isLowDetail, 2);
 			MidiPcmStream var33 = new MidiPcmStream();
-			var33.method3749(9, 128);
-			MenuAction.pcmPlayer0 = HealthBarUpdate.method1757(GameShell.taskHandler, 0, 22050);
+			var33.method3775(9, 128);
+			MenuAction.pcmPlayer0 = HealthBarUpdate.method1776(GameShell.taskHandler, 0, 22050);
 			MenuAction.pcmPlayer0.setStream(var33);
-			BuddyRankComparator.method3464(class210.archive15, class162.archive14, SpriteMask.archive4, var33);
-			class60.pcmPlayer1 = HealthBarUpdate.method1757(GameShell.taskHandler, 1, 2048);
+			BuddyRankComparator.method3483(class210.archive15, class162.archive14, SpriteMask.archive4, var33);
+			class60.pcmPlayer1 = HealthBarUpdate.method1776(GameShell.taskHandler, 1, 2048);
 			ClientPacket.pcmStreamMixer = new PcmStreamMixer();
 			class60.pcmPlayer1.setStream(ClientPacket.pcmStreamMixer);
 			LoginScreenAnimation.decimator = new Decimator(22050, Messages.field1274);
@@ -279,20 +279,20 @@ public class GrandExchangeOfferOwnWorldComparator implements Comparator {
 						FloorOverlayDefinition.FloorOverlayDefinition_archive = var31;
 						var34 = class288.archive2;
 						FloorUnderlayDefinition.FloorUnderlayDefinition_archive = var34;
-						CollisionMap.method3592(class288.archive2, ClientPacket.archive7);
+						CollisionMap.method3615(class288.archive2, ClientPacket.archive7);
 						AbstractWorldMapIcon.method625(class288.archive2, ClientPacket.archive7, Client.isLowDetail);
 						var2 = class288.archive2;
 						Archive var3 = ClientPacket.archive7;
 						NPCDefinition.NpcDefinition_archive = var2;
 						NPCDefinition.NpcDefinition_modelArchive = var3;
-						NetFileRequest.method4201(class288.archive2);
-						SoundSystem.method2510(class288.archive2, ClientPacket.archive7, Client.isMembersWorld, AttackOption.fontPlain11);
-						class83.method2071(class288.archive2, GrandExchangeOfferAgeComparator.archive0, class43.archive1);
+						NetFileRequest.method4230(class288.archive2);
+						SoundSystem.method2529(class288.archive2, ClientPacket.archive7, Client.isMembersWorld, AttackOption.fontPlain11);
+						class83.method2090(class288.archive2, GrandExchangeOfferAgeComparator.archive0, class43.archive1);
 						Archive var24 = class288.archive2;
 						Archive var25 = ClientPacket.archive7;
 						SpotAnimationDefinition.SpotAnimationDefinition_archive = var24;
 						SpotAnimationDefinition.SpotAnimationDefinition_modelArchive = var25;
-						class185.method3642(class288.archive2);
+						class185.method3665(class288.archive2);
 						Archive var6 = class288.archive2;
 						VarpDefinition.VarpDefinition_archive = var6;
 						VarpDefinition.VarpDefinition_fileCount = VarpDefinition.VarpDefinition_archive.getGroupFileCount(16);
@@ -308,7 +308,7 @@ public class GrandExchangeOfferOwnWorldComparator implements Comparator {
 						Widget.Widget_loadedInterfaces = new boolean[InvDefinition.Widget_archive.getGroupCount()];
 						Archive var11 = class288.archive2;
 						InvDefinition.InvDefinition_archive = var11;
-						PacketBufferNode.method3656(class288.archive2);
+						PacketBufferNode.method3679(class288.archive2);
 						Archive var12 = class288.archive2;
 						VarcInt.VarcInt_archive = var12;
 						Archive var13 = class288.archive2;
@@ -333,7 +333,7 @@ public class GrandExchangeOfferOwnWorldComparator implements Comparator {
 								WorldMapElement.WorldMapElement_cached[var19] = new WorldMapElement(var19);
 								if (var20 != null) {
 									WorldMapElement.WorldMapElement_cached[var19].decode(new Buffer(var20));
-									WorldMapElement.WorldMapElement_cached[var19].method4432();
+									WorldMapElement.WorldMapElement_cached[var19].method4461();
 								}
 							}
 						}
@@ -360,10 +360,10 @@ public class GrandExchangeOfferOwnWorldComparator implements Comparator {
 					if (GrandExchangeOfferTotalQuantityComparator.mapSceneSprites == null) {
 						var2 = WorldMapRegion.archive8;
 						var23 = Actor.spriteIds.mapScenes;
-						if (!GraphicsObject.method2011(var2, var23, 0)) {
+						if (!GraphicsObject.method2030(var2, var23, 0)) {
 							var22 = null;
 						} else {
-							var22 = WallDecoration.method3322();
+							var22 = WallDecoration.method3341();
 						}
 
 						GrandExchangeOfferTotalQuantityComparator.mapSceneSprites = var22;
@@ -410,10 +410,10 @@ public class GrandExchangeOfferOwnWorldComparator implements Comparator {
 					if (GrandExchangeOfferTotalQuantityComparator.scrollBarSprites == null) {
 						var2 = WorldMapRegion.archive8;
 						var23 = Actor.spriteIds.field3800;
-						if (!GraphicsObject.method2011(var2, var23, 0)) {
+						if (!GraphicsObject.method2030(var2, var23, 0)) {
 							var22 = null;
 						} else {
-							var22 = WallDecoration.method3322();
+							var22 = WallDecoration.method3341();
 						}
 
 						GrandExchangeOfferTotalQuantityComparator.scrollBarSprites = var22;
@@ -424,10 +424,10 @@ public class GrandExchangeOfferOwnWorldComparator implements Comparator {
 					if (class192.modIconSprites == null) {
 						var2 = WorldMapRegion.archive8;
 						var23 = Actor.spriteIds.field3809;
-						if (!GraphicsObject.method2011(var2, var23, 0)) {
+						if (!GraphicsObject.method2030(var2, var23, 0)) {
 							var22 = null;
 						} else {
-							var22 = WallDecoration.method3322();
+							var22 = WallDecoration.method3341();
 						}
 
 						class192.modIconSprites = var22;
@@ -482,7 +482,7 @@ public class GrandExchangeOfferOwnWorldComparator implements Comparator {
 						Login.Login_loadingPercent = 94;
 					} else {
 						Huffman var21 = new Huffman(class81.archive10.takeFileByNames("huffman", ""));
-						Messages.method2211(var21);
+						Messages.method2230(var21);
 						Login.Login_loadingText = "Loaded wordpack";
 						Login.Login_loadingPercent = 94;
 						Client.titleLoadingStage = 130;

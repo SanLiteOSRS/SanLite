@@ -78,7 +78,7 @@ public class Language implements Enumerated {
 		Language_NL = new Language("NL", "nl", "Dutch", class192.field2392, 4, "NL");
 		Language_ES = new Language("ES", "es", "Spanish", class192.field2392, 5, "ES");
 		Language_ES_MX = new Language("ES_MX", "es-mx", "Spanish (Latin American)", class192.field2381, 6, "MX");
-		Language[] var0 = method3680();
+		Language[] var0 = method3703();
 		Language_valuesOrdered = new Language[var0.length];
 		Language[] var1 = var0;
 
@@ -132,18 +132,6 @@ public class Language implements Enumerated {
 		return this.getLanguage().toLowerCase(Locale.ENGLISH);
 	}
 
-	public String aaq() {
-		return this.getLanguage().toLowerCase(Locale.ENGLISH);
-	}
-
-	public String aan() {
-		return this.getLanguage().toLowerCase(Locale.ENGLISH);
-	}
-
-	public String aaw() {
-		return this.getLanguage().toLowerCase(Locale.ENGLISH);
-	}
-
 	@ObfuscatedName("u")
 	@ObfuscatedSignature(
 		signature = "(II)Lhl;",
@@ -168,7 +156,7 @@ public class Language implements Enumerated {
 		signature = "(I)[Lgc;",
 		garbageValue = "-2103702236"
 	)
-	static Language[] method3680() {
+	static Language[] method3703() {
 		return new Language[]{Language_DE, Language_ES_MX, Language_FR, Language_ES, Language_PT, Language_EN, Language_NL};
 	}
 
@@ -199,7 +187,7 @@ public class Language implements Enumerated {
 		signature = "(ILci;ZS)I",
 		garbageValue = "32581"
 	)
-	static int method3687(int var0, Script var1, boolean var2) {
+	static int method3710(int var0, Script var1, boolean var2) {
 		Widget var3 = getWidget(Interpreter.Interpreter_intStack[--GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize]);
 		if (var0 == ScriptOpcodes.IF_GETX) {
 			Interpreter.Interpreter_intStack[++GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize - 1] = var3.x;
@@ -229,8 +217,8 @@ public class Language implements Enumerated {
 		signature = "(Lcg;IIB)V",
 		garbageValue = "24"
 	)
-	static final void method3682(MenuAction var0, int var1, int var2) {
-		class32.menuAction(var0.argument1, var0.argument2, var0.opcode, var0.argument0, var0.action, var0.action, var1, var2);
+	static final void method3705(MenuAction var0, int var1, int var2) {
+		class32.menuAction(var0.param0, var0.param1, var0.opcode, var0.identifier, var0.action, var0.action, var1, var2);
 	}
 
 	@ObfuscatedName("jw")
@@ -238,7 +226,7 @@ public class Language implements Enumerated {
 		signature = "(Lhl;II)I",
 		garbageValue = "1435184999"
 	)
-	static final int method3693(Widget var0, int var1) {
+	static final int method3719(Widget var0, int var1) {
 		if (var0.cs1Instructions != null && var1 < var0.cs1Instructions.length) {
 			try {
 				int[] var2 = var0.cs1Instructions[var1];
@@ -359,7 +347,7 @@ public class Language implements Enumerated {
 					}
 
 					if (var6 == 19) {
-						var7 = (class215.localPlayer.y >> 7) + VarcInt.baseY * -1499248159;
+						var7 = VarcInt.baseY * 64 + (class215.localPlayer.y >> 7);
 					}
 
 					if (var6 == 20) {

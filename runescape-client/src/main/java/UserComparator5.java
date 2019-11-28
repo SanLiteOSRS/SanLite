@@ -43,7 +43,7 @@ public class UserComparator5 extends AbstractUserComparator {
 	)
 	@Export("SpriteBuffer_getSpriteArray")
 	public static Sprite[] SpriteBuffer_getSpriteArray(AbstractArchive var0, int var1, int var2) {
-		if (!GraphicsObject.method2011(var0, var1, var2)) {
+		if (!GraphicsObject.method2030(var0, var1, var2)) {
 			return null;
 		} else {
 			Sprite[] var4 = new Sprite[class325.SpriteBuffer_spriteCount];
@@ -65,7 +65,7 @@ public class UserComparator5 extends AbstractUserComparator {
 				}
 			}
 
-			PcmPlayer.method2491();
+			PcmPlayer.method2510();
 			return var4;
 		}
 	}
@@ -75,7 +75,7 @@ public class UserComparator5 extends AbstractUserComparator {
 		signature = "([BIII)I",
 		garbageValue = "1975760321"
 	)
-	public static int method3448(byte[] var0, int var1, int var2) {
+	public static int method3467(byte[] var0, int var1, int var2) {
 		int var3 = -1;
 
 		for (int var4 = var1; var4 < var2; ++var4) {
@@ -91,10 +91,10 @@ public class UserComparator5 extends AbstractUserComparator {
 		signature = "(Lbt;B)V",
 		garbageValue = "4"
 	)
-	static final void method3442(Actor var0) {
+	static final void method3461(Actor var0) {
 		int var1 = var0.field934 - Client.cycle;
-		int var2 = var0.field946 * 128 + var0.size * 64;
-		int var3 = var0.field979 * 128 + var0.size * 64;
+		int var2 = var0.field946 * 128 + var0.field938 * 64;
+		int var3 = var0.field979 * 128 + var0.field938 * 64;
 		var0.x += (var2 - var0.x) / var1;
 		var0.y += (var3 - var0.y) / var1;
 		var0.field976 = 0;
@@ -106,7 +106,7 @@ public class UserComparator5 extends AbstractUserComparator {
 		signature = "(ILjava/lang/String;I)V",
 		garbageValue = "-165860818"
 	)
-	static void method3447(int var0, String var1) {
+	static void method3466(int var0, String var1) {
 		int var2 = Players.Players_count;
 		int[] var3 = Players.Players_indices;
 		boolean var4 = false;
@@ -118,18 +118,18 @@ public class UserComparator5 extends AbstractUserComparator {
 				PacketBufferNode var8;
 				if (var0 == 1) {
 					var8 = ModelData0.getPacketBufferNode(ClientPacket.field2231, Client.packetWriter.isaacCipher);
-					var8.packetBuffer.method5566(0);
-					var8.packetBuffer.method5581(var3[var6]);
+					var8.packetBuffer.method5598(0);
+					var8.packetBuffer.method5613(var3[var6]);
 					Client.packetWriter.addNode(var8);
 				} else if (var0 == 4) {
 					var8 = ModelData0.getPacketBufferNode(ClientPacket.field2267, Client.packetWriter.isaacCipher);
-					var8.packetBuffer.method5581(var3[var6]);
+					var8.packetBuffer.method5613(var3[var6]);
 					var8.packetBuffer.writeByte(0);
 					Client.packetWriter.addNode(var8);
 				} else if (var0 == 6) {
 					var8 = ModelData0.getPacketBufferNode(ClientPacket.field2241, Client.packetWriter.isaacCipher);
-					var8.packetBuffer.method5596(0);
-					var8.packetBuffer.method5604(var3[var6]);
+					var8.packetBuffer.method5628(0);
+					var8.packetBuffer.method5636(var3[var6]);
 					Client.packetWriter.addNode(var8);
 				} else if (var0 == 7) {
 					var8 = ModelData0.getPacketBufferNode(ClientPacket.field2251, Client.packetWriter.isaacCipher);

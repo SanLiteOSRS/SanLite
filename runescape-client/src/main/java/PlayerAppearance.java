@@ -121,7 +121,7 @@ public class PlayerAppearance {
 		signature = "(IZI)V",
 		garbageValue = "1401975523"
 	)
-	public void method4039(int var1, boolean var2) {
+	public void method4068(int var1, boolean var2) {
 		int var3 = this.bodyColors[var1];
 		if (!var2) {
 			do {
@@ -129,14 +129,14 @@ public class PlayerAppearance {
 				if (var3 < 0) {
 					var3 = ArchiveLoader.field533[var1].length - 1;
 				}
-			} while(!RouteStrategy.method3615(var1, var3));
+			} while(!RouteStrategy.method3638(var1, var3));
 		} else {
 			do {
 				++var3;
 				if (var3 >= ArchiveLoader.field533[var1].length) {
 					var3 = 0;
 				}
-			} while(!RouteStrategy.method3615(var1, var3));
+			} while(!RouteStrategy.method3638(var1, var3));
 		}
 
 		this.bodyColors[var1] = var3;
@@ -297,7 +297,7 @@ public class PlayerAppearance {
 						}
 
 						if (var13 >= 512) {
-							var14 = Interpreter.ItemDefinition_get(var13 - 512).method4717(this.isFemale);
+							var14 = Interpreter.ItemDefinition_get(var13 - 512).method4746(this.isFemale);
 							if (var14 != null) {
 								var16[var11++] = var14;
 							}
@@ -354,11 +354,11 @@ public class PlayerAppearance {
 			int var3;
 			for (int var2 = 0; var2 < 12; ++var2) {
 				var3 = this.equipment[var2];
-				if (var3 >= 256 && var3 < 512 && !Players.KitDefinition_get(var3 - 256).method4506()) {
+				if (var3 >= 256 && var3 < 512 && !Players.KitDefinition_get(var3 - 256).method4535()) {
 					var1 = true;
 				}
 
-				if (var3 >= 512 && !Interpreter.ItemDefinition_get(var3 - 512).method4725(this.isFemale)) {
+				if (var3 >= 512 && !Interpreter.ItemDefinition_get(var3 - 512).method4754(this.isFemale)) {
 					var1 = true;
 				}
 			}
@@ -381,7 +381,7 @@ public class PlayerAppearance {
 					}
 
 					if (var5 >= 512) {
-						var6 = Interpreter.ItemDefinition_get(var5 - 512).method4726(this.isFemale);
+						var6 = Interpreter.ItemDefinition_get(var5 - 512).method4755(this.isFemale);
 						if (var6 != null) {
 							var7[var3++] = var6;
 						}
@@ -420,14 +420,14 @@ public class PlayerAppearance {
 		signature = "(Lhl;III)V",
 		garbageValue = "1826770393"
 	)
-	static final void method4050(Widget var0, int var1, int var2) {
+	static final void method4079(Widget var0, int var1, int var2) {
 		if (var0.buttonType == 1) {
 			WorldMapSprite.insertMenuItemNoShift(var0.buttonText, "", 24, 0, 0, var0.id);
 		}
 
 		String var3;
 		if (var0.buttonType == 2 && !Client.isSpellSelected) {
-			var3 = LoginPacket.method3639(var0);
+			var3 = LoginPacket.method3662(var0);
 			if (var3 != null) {
 				WorldMapSprite.insertMenuItemNoShift(var3, class222.colorStartTag(65280) + var0.spellName, 25, 0, -1, var0.id);
 			}
@@ -495,7 +495,7 @@ public class PlayerAppearance {
 
 								String[] var18 = var8.inventoryActions;
 								var10 = -1;
-								if (Client.shiftClickDrop && PendingSpawn.method1732()) {
+								if (Client.shiftClickDrop && PendingSpawn.method1751()) {
 									var10 = var8.getShiftClickIndex();
 								}
 
@@ -510,7 +510,7 @@ public class PlayerAppearance {
 								}
 
 								Object var10000 = null;
-								if (class189.method3676(MenuAction.getWidgetClickMask(var0))) {
+								if (class189.method3699(MenuAction.getWidgetClickMask(var0))) {
 									WorldMapSprite.insertMenuItemNoShift("Use", class222.colorStartTag(16748608) + var8.name, 38, var8.id, var17, var0.id);
 								}
 
@@ -578,25 +578,25 @@ public class PlayerAppearance {
 				}
 			} else {
 				for (var17 = 9; var17 >= 5; --var17) {
-					String var19 = UrlRequest.method3342(var0, var17);
+					String var19 = UrlRequest.method3361(var0, var17);
 					if (var19 != null) {
 						WorldMapSprite.insertMenuItemNoShift(var19, var0.dataText, 1007, var17 + 1, var0.childIndex, var0.id);
 					}
 				}
 
-				var3 = LoginPacket.method3639(var0);
+				var3 = LoginPacket.method3662(var0);
 				if (var3 != null) {
 					WorldMapSprite.insertMenuItemNoShift(var3, var0.dataText, 25, 0, var0.childIndex, var0.id);
 				}
 
 				for (var4 = 4; var4 >= 0; --var4) {
-					String var20 = UrlRequest.method3342(var0, var4);
+					String var20 = UrlRequest.method3361(var0, var4);
 					if (var20 != null) {
 						class14.insertMenuItem(var20, var0.dataText, 57, var4 + 1, var0.childIndex, var0.id, var0.field2719);
 					}
 				}
 
-				if (SoundCache.method2525(MenuAction.getWidgetClickMask(var0))) {
+				if (SoundCache.method2544(MenuAction.getWidgetClickMask(var0))) {
 					WorldMapSprite.insertMenuItemNoShift("Continue", "", 30, 0, var0.childIndex, var0.id);
 				}
 			}

@@ -27,7 +27,7 @@ public interface TextureLoader {
 		signature = "(II)Z",
 		garbageValue = "561655524"
 	)
-	boolean vmethod3311(int var1);
+	boolean vmethod3330(int var1);
 
 	@ObfuscatedName("p")
 	@ObfuscatedSignature(

@@ -49,11 +49,11 @@ public class ModelData0 {
 	@ObfuscatedName("f")
 	@ObfuscatedSignature(
 		signature = "(Lgj;Lld;I)Lgx;",
-		garbageValue = "-1776903122"
+		garbageValue = "280522015"
 	)
 	@Export("getPacketBufferNode")
 	public static PacketBufferNode getPacketBufferNode(ClientPacket var0, IsaacCipher var1) {
-		PacketBufferNode var2 = StudioGame.method4196();
+		PacketBufferNode var2 = StudioGame.method4225();
 		var2.clientPacket = var0;
 		var2.clientPacketLength = var0.length;
 		if (var2.clientPacketLength == -1) {
@@ -79,7 +79,7 @@ public class ModelData0 {
 		signature = "(ILci;ZI)I",
 		garbageValue = "1140897416"
 	)
-	static int method3280(int var0, Script var1, boolean var2) {
+	static int method3299(int var0, Script var1, boolean var2) {
 		if (var0 == ScriptOpcodes.WORLDLIST_FETCH) {
 			Interpreter.Interpreter_intStack[++GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize - 1] = Canvas.loadWorlds() ? 1 : 0;
 			return 1;

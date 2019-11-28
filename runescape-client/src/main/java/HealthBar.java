@@ -107,7 +107,7 @@ public class HealthBar extends Node {
 	)
 	@Export("isEmpty")
 	boolean isEmpty() {
-		return this.updates.method4882();
+		return this.updates.method4911();
 	}
 
 	@ObfuscatedName("n")
@@ -115,7 +115,7 @@ public class HealthBar extends Node {
 		signature = "(I)V",
 		garbageValue = "-154641567"
 	)
-	public static void method2035() {
+	public static void method2054() {
 		Widget.Widget_cachedSprites.clear();
 		Widget.Widget_cachedModels.clear();
 		Widget.Widget_cachedFonts.clear();

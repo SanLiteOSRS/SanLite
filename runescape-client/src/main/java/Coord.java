@@ -11,7 +11,8 @@ public class Coord {
 	@ObfuscatedGetter(
 		intValue = 556251855
 	)
-	static int field2537;
+	@Export("graphicsTickTimeIdx")
+	static int graphicsTickTimeIdx;
 	@ObfuscatedName("u")
 	@ObfuscatedGetter(
 		intValue = 1348059781
@@ -86,15 +87,11 @@ public class Coord {
 	@ObfuscatedName("b")
 	@ObfuscatedSignature(
 		signature = "(Ljava/lang/String;B)Ljava/lang/String;",
-		garbageValue = "-22"
+		garbageValue = "-38"
 	)
 	@Export("toString")
 	String toString(String var1) {
 		return this.plane + var1 + (this.x >> 6) + var1 + (this.y >> 6) + var1 + (this.x & 63) + var1 + (this.y & 63);
-	}
-
-	public String aaw() {
-		return this.toString(",");
 	}
 
 	public boolean equals(Object var1) {
@@ -110,14 +107,6 @@ public class Coord {
 	}
 
 	public String toString() {
-		return this.toString(",");
-	}
-
-	public String aaq() {
-		return this.toString(",");
-	}
-
-	public String aan() {
 		return this.toString(",");
 	}
 }

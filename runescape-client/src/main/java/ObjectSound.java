@@ -21,7 +21,7 @@ public final class ObjectSound extends Node {
 	int plane;
 	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = 1908400256
+		intValue = -320634943
 	)
 	@Export("x")
 	int x;
@@ -131,7 +131,7 @@ public final class ObjectSound extends Node {
 		signature = "([BI)[B",
 		garbageValue = "-359888333"
 	)
-	public static byte[] method1916(byte[] var0) {
+	public static byte[] method1935(byte[] var0) {
 		int var1 = var0.length;
 		byte[] var2 = new byte[var1];
 		System.arraycopy(var0, 0, var2, 0, var1);
@@ -143,7 +143,7 @@ public final class ObjectSound extends Node {
 		signature = "(B)V",
 		garbageValue = "7"
 	)
-	static final void method1917() {
+	static final void method1936() {
 		Client.field836 = Client.cycleCntr;
 		WorldMapID.ClanChat_inClanChat = true;
 	}

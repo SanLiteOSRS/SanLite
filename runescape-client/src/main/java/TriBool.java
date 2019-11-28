@@ -39,7 +39,7 @@ public class TriBool {
 		signature = "(III)I",
 		garbageValue = "-218767973"
 	)
-	static final int method5226(int var0, int var1) {
+	static final int method5255(int var0, int var1) {
 		if (var0 == -1) {
 			return 12345678;
 		} else {

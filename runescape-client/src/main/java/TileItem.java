@@ -38,7 +38,7 @@ public final class TileItem extends Entity {
 		signature = "(I)I",
 		garbageValue = "-657071617"
 	)
-	static int method2123() {
+	static int method2142() {
 		return ++Messages.Messages_count - 1;
 	}
 
@@ -47,7 +47,7 @@ public final class TileItem extends Entity {
 		signature = "(I[BLke;I)V",
 		garbageValue = "261282715"
 	)
-	static void method2125(int var0, byte[] var1, ArchiveDisk var2) {
+	static void method2144(int var0, byte[] var1, ArchiveDisk var2) {
 		ArchiveDiskAction var3 = new ArchiveDiskAction();
 		var3.type = 0;
 		var3.key = (long)var0;

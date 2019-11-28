@@ -119,7 +119,7 @@ public class ParamDefinition extends DualNode {
 		signature = "(IIILfg;Lfh;Z[I[II)I",
 		garbageValue = "1370585226"
 	)
-	public static int method4583(int var0, int var1, int var2, RouteStrategy var3, CollisionMap var4, boolean var5, int[] var6, int[] var7) {
+	public static int method4612(int var0, int var1, int var2, RouteStrategy var3, CollisionMap var4, boolean var5, int[] var6, int[] var7) {
 		int var9;
 		for (int var8 = 0; var8 < 128; ++var8) {
 			for (var9 = 0; var9 < 128; ++var9) {
@@ -145,7 +145,7 @@ public class ParamDefinition extends DualNode {
 		if (var2 == 1) {
 			var28 = WorldMapLabel.method434(var0, var1, var3, var4);
 		} else if (var2 == 2) {
-			var28 = GameObject.method3323(var0, var1, var3, var4);
+			var28 = GameObject.method3342(var0, var1, var3, var4);
 		} else {
 			var10 = var0;
 			var11 = var1;
@@ -450,7 +450,7 @@ public class ParamDefinition extends DualNode {
 		signature = "(I)V",
 		garbageValue = "1049391968"
 	)
-	public static final void method4582() {
+	public static final void method4611() {
 		ViewportMouse.ViewportMouse_isInViewport = false;
 		ViewportMouse.ViewportMouse_entityCount = 0;
 	}

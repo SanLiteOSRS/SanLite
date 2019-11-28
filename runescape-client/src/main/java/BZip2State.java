@@ -192,6 +192,6 @@ public final class BZip2State {
 	public static IndexedSprite SpriteBuffer_getIndexedSpriteByName(AbstractArchive var0, String var1, String var2) {
 		int var3 = var0.getGroupId(var1);
 		int var4 = var0.getFileId(var3, var2);
-		return UserComparator6.method3472(var0, var3, var4);
+		return UserComparator6.method3491(var0, var3, var4);
 	}
 }

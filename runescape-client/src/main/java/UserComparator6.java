@@ -37,8 +37,8 @@ public class UserComparator6 extends AbstractUserComparator {
 		signature = "(Lhf;III)Llm;",
 		garbageValue = "2030832414"
 	)
-	static IndexedSprite method3472(AbstractArchive var0, int var1, int var2) {
-		return !GraphicsObject.method2011(var0, var1, var2) ? null : GrandExchangeOfferAgeComparator.method172();
+	static IndexedSprite method3491(AbstractArchive var0, int var1, int var2) {
+		return !GraphicsObject.method2030(var0, var1, var2) ? null : GrandExchangeOfferAgeComparator.method172();
 	}
 
 	@ObfuscatedName("u")
@@ -58,7 +58,7 @@ public class UserComparator6 extends AbstractUserComparator {
 		int var6 = var3 & 16383;
 		var2.pathX[0] = var5 - class51.baseX * 64;
 		var2.x = (var2.pathX[0] << 7) + (var2.transformedSize() << 6);
-		var2.pathY[0] = var6 - VarcInt.baseY * -1499248159;
+		var2.pathY[0] = var6 - VarcInt.baseY * 64;
 		var2.y = (var2.pathY[0] << 7) + (var2.transformedSize() << 6);
 		ClientPacket.Client_plane = var2.plane = var4;
 		if (Players.field1248[var1] != null) {

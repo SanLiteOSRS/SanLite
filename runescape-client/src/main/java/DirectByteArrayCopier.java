@@ -53,7 +53,7 @@ public class DirectByteArrayCopier extends AbstractByteArrayCopier {
 		signature = "(CI)Z",
 		garbageValue = "-1809076627"
 	)
-	static boolean method3984(char var0) {
+	static boolean method4010(char var0) {
 		for (int var1 = 0; var1 < "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!\"£$%^&*()-_=+[{]};:'@#~,<.>/?\\| ".length(); ++var1) {
 			if (var0 == "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!\"£$%^&*()-_=+[{]};:'@#~,<.>/?\\| ".charAt(var1)) {
 				return true;

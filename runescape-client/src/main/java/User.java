@@ -86,8 +86,8 @@ public class User implements Comparable {
 		signature = "(II)Lkc;",
 		garbageValue = "-1233621276"
 	)
-	public static PrivateChatMode method5102(int var0) {
-		PrivateChatMode[] var1 = TileItemPile.method2791();
+	public static PrivateChatMode method5131(int var0) {
+		PrivateChatMode[] var1 = TileItemPile.method2810();
 
 		for (int var2 = 0; var2 < var1.length; ++var2) {
 			PrivateChatMode var3 = var1[var2];

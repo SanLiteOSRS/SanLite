@@ -205,10 +205,10 @@ public class WorldMapRegion {
 		Coord var6 = new Coord(var2, var3 + this.regionX * 64, this.regionY * 64 + var4);
 		Coord var7 = null;
 		if (this.worldMapData_0 != null) {
-			var7 = new Coord(this.worldMapData_0.minPlane + var2, var3 + this.worldMapData_0.regionXLow * 4096, this.worldMapData_0.regionYLow * 4096 + var4);
+			var7 = new Coord(this.worldMapData_0.minPlane + var2, var3 + this.worldMapData_0.regionXLow * 4096, var4 + this.worldMapData_0.regionYLow * 64);
 		} else {
 			WorldMapData_1 var8 = (WorldMapData_1)var5;
-			var7 = new Coord(var2 + var8.minPlane, var3 + var8.regionXLow * 4096 + var8.getChunkXLow() * 8, var4 + var8.regionYLow * 4096 + var8.getChunkYLow() * 8);
+			var7 = new Coord(var2 + var8.minPlane, var3 + var8.regionXLow * 4096 + var8.getChunkXLow() * 8, var4 + var8.regionYLow * 64 + var8.getChunkYLow() * 8);
 		}
 
 		Object var10;
@@ -487,7 +487,7 @@ public class WorldMapRegion {
 
 		int var8 = 16711935;
 		if (var7 != -1) {
-			var8 = class288.method5351(var7, this.backgroundColor);
+			var8 = class288.method5383(var7, this.backgroundColor);
 		}
 
 		if (var7 > -1 && var3.field166[0][var1][var2] == 0) {
@@ -511,7 +511,7 @@ public class WorldMapRegion {
 		for (int var5 = 1; var5 < var3.planes; ++var5) {
 			int var6 = var3.floorOverlayIds[var5][var1][var2] - 1;
 			if (var6 > -1) {
-				int var7 = class288.method5351(var6, this.backgroundColor);
+				int var7 = class288.method5383(var6, this.backgroundColor);
 				if (var3.field166[var5][var1][var2] == 0) {
 					Rasterizer2D.Rasterizer2D_fillRectangle(this.pixelsPerTile * var1, this.pixelsPerTile * (63 - var2), this.pixelsPerTile, this.pixelsPerTile, var7);
 				} else {
@@ -546,13 +546,13 @@ public class WorldMapRegion {
 					WorldMapDecoration var9 = var7[var8];
 					int var11 = var9.decoration;
 					boolean var10 = var11 >= WorldMapDecorationType.field2747.id && var11 <= WorldMapDecorationType.field2728.id;
-					if (var10 || class195.method3717(var9.decoration)) {
+					if (var10 || class195.method3743(var9.decoration)) {
 						ObjectDefinition var12 = Occluder.getObjectDefinition(var9.objectDefinitionId);
 						if (var12.mapSceneId != -1) {
 							if (var12.mapSceneId != 46 && var12.mapSceneId != 52) {
-								var4[var12.mapSceneId].method6140(this.pixelsPerTile * var1, this.pixelsPerTile * (63 - var2), this.pixelsPerTile * 2, this.pixelsPerTile * 2);
+								var4[var12.mapSceneId].method6182(this.pixelsPerTile * var1, this.pixelsPerTile * (63 - var2), this.pixelsPerTile * 2, this.pixelsPerTile * 2);
 							} else {
-								var4[var12.mapSceneId].method6140(this.pixelsPerTile * var1, this.pixelsPerTile * (63 - var2), this.pixelsPerTile * 2 + 1, this.pixelsPerTile * 2 + 1);
+								var4[var12.mapSceneId].method6182(this.pixelsPerTile * var1, this.pixelsPerTile * (63 - var2), this.pixelsPerTile * 2 + 1, this.pixelsPerTile * 2 + 1);
 							}
 						}
 					}
@@ -575,7 +575,7 @@ public class WorldMapRegion {
 
 				for (int var7 = 0; var7 < var6.length; ++var7) {
 					WorldMapDecoration var8 = var6[var7];
-					if (class81.method2067(var8.decoration)) {
+					if (class81.method2086(var8.decoration)) {
 						ObjectDefinition var9 = Occluder.getObjectDefinition(var8.objectDefinitionId);
 						int var10 = var9.int1 != 0 ? -3407872 : -3355444;
 						if (var8.decoration == WorldMapDecorationType.field2748.id) {
@@ -897,7 +897,7 @@ public class WorldMapRegion {
 	void method469(int var1, int var2, int var3, int var4) {
 		var3 %= 4;
 		if (var3 == 0) {
-			Rasterizer2D.Rasterizer2D_drawVerticalLine(this.pixelsPerTile * var1, this.pixelsPerTile * (63 - var2), this.pixelsPerTile, var4);
+			Rasterizer2D.rasterizerDrawVerticalLine(this.pixelsPerTile * var1, this.pixelsPerTile * (63 - var2), this.pixelsPerTile, var4);
 		}
 
 		if (var3 == 1) {
@@ -905,7 +905,7 @@ public class WorldMapRegion {
 		}
 
 		if (var3 == 2) {
-			Rasterizer2D.Rasterizer2D_drawVerticalLine(this.pixelsPerTile * var1 + this.pixelsPerTile - 1, this.pixelsPerTile * (63 - var2), this.pixelsPerTile, var4);
+			Rasterizer2D.rasterizerDrawVerticalLine(this.pixelsPerTile * var1 + this.pixelsPerTile - 1, this.pixelsPerTile * (63 - var2), this.pixelsPerTile, var4);
 		}
 
 		if (var3 == 3) {
@@ -967,20 +967,20 @@ public class WorldMapRegion {
 			int var6 = var1.getGroupId("runes");
 			int var7 = var1.getFileId(var6, "");
 			IndexedSprite[] var8;
-			if (!GraphicsObject.method2011(var1, var6, var7)) {
+			if (!GraphicsObject.method2030(var1, var6, var7)) {
 				var8 = null;
 			} else {
-				var8 = WallDecoration.method3322();
+				var8 = WallDecoration.method3341();
 			}
 
 			StructDefinition.runesSprite = var8;
 			var7 = var1.getGroupId("title_mute");
 			int var10 = var1.getFileId(var7, "");
 			IndexedSprite[] var9;
-			if (!GraphicsObject.method2011(var1, var7, var10)) {
+			if (!GraphicsObject.method2030(var1, var7, var10)) {
 				var9 = null;
 			} else {
-				var9 = WallDecoration.method3322();
+				var9 = WallDecoration.method3341();
 			}
 
 			Login.title_muteSprite = var9;
@@ -1004,9 +1004,9 @@ public class WorldMapRegion {
 				Archive var12 = AbstractWorldMapData.archive6;
 				var10 = var12.getGroupId("scape main");
 				int var13 = var12.getFileId(var10, "");
-				World.method1800(2, var12, var10, var13, 255, false);
+				World.method1819(2, var12, var10, var13, 255, false);
 			} else {
-				UrlRequest.method3339(2);
+				UrlRequest.method3358(2);
 			}
 
 			if (NetCache.NetCache_socket != null) {
@@ -1051,8 +1051,8 @@ public class WorldMapRegion {
 		int var7;
 		int var8;
 		if (!Client.isInInstance) {
-			var2 = var1.method5608();
-			int var3 = var1.method5609();
+			var2 = var1.method5640();
+			int var3 = var1.method5641();
 			var4 = var1.readUnsignedShort();
 			WorldMapIcon_0.xteaKeys = new int[var4][4];
 
@@ -1092,9 +1092,9 @@ public class WorldMapRegion {
 
 			WorldMapSection0.method259(var3, var2, true);
 		} else {
-			var2 = var1.method5687();
-			boolean var15 = var1.method5599() == 1;
-			var4 = var1.method5687();
+			var2 = var1.method5719();
+			boolean var15 = var1.method5631() == 1;
+			var4 = var1.method5719();
 			var5 = var1.readUnsignedShort();
 			var1.importIndex();
 

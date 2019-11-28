@@ -158,7 +158,7 @@ public class SoundCache {
 		signature = "(II)Z",
 		garbageValue = "851722270"
 	)
-	public static boolean method2525(int var0) {
+	public static boolean method2544(int var0) {
 		return (var0 & 1) != 0;
 	}
 
@@ -167,7 +167,7 @@ public class SoundCache {
 		signature = "(II)J",
 		garbageValue = "-1448942759"
 	)
-	public static long method2512(int var0) {
+	public static long method2531(int var0) {
 		return ViewportMouse.ViewportMouse_entityTags[var0];
 	}
 

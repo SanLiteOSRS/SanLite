@@ -55,7 +55,7 @@ public class UserComparator9 extends AbstractUserComparator {
 		signature = "(Lkn;ZB)V",
 		garbageValue = "-115"
 	)
-	public static void method3417(AbstractSocket var0, boolean var1) {
+	public static void method3436(AbstractSocket var0, boolean var1) {
 		if (NetCache.NetCache_socket != null) {
 			try {
 				NetCache.NetCache_socket.close();
@@ -114,7 +114,7 @@ public class UserComparator9 extends AbstractUserComparator {
 						}
 
 						NetCache.NetCache_loadTime = 0;
-						NetCache.field3171 = TaskHandler.method3510();
+						NetCache.field3171 = TaskHandler.currentTimeMillis();
 						return;
 					}
 
@@ -309,7 +309,7 @@ public class UserComparator9 extends AbstractUserComparator {
 							if (var9.contentType == 1400) {
 								WorldMapRegion.worldMap.addElementMenuOptions(var10, var11, var9.width, var9.height, var17, var18);
 							} else {
-								PlayerAppearance.method4050(var9, var17 - var10, var18 - var11);
+								PlayerAppearance.method4079(var9, var17 - var10, var18 - var11);
 							}
 						}
 
@@ -326,7 +326,7 @@ public class UserComparator9 extends AbstractUserComparator {
 											var24 = KeyHandler.KeyHandler_pressedKeys[var9.field2592[var20][var23]];
 										}
 
-										if (UserComparator3.method3457(var9.field2592[var20][var23]) || var24) {
+										if (UserComparator3.method3476(var9.field2592[var20][var23]) || var24) {
 											var21 = true;
 											if (var9.field2695 != null && var9.field2695[var20] > Client.cycle) {
 												break;
@@ -343,11 +343,11 @@ public class UserComparator9 extends AbstractUserComparator {
 
 								if (var22) {
 									if (var20 < 10) {
-										WorldMapData_1.method715(var20 + 1, var9.id, var9.childIndex, var9.itemId, "");
+										WorldMapData_1.widgetDefaultMenuAction(var20 + 1, var9.id, var9.childIndex, var9.itemId, "");
 									} else if (var20 == 10) {
 										Actor.Widget_runOnTargetLeave();
-										TextureProvider.method2790(var9.id, var9.childIndex, Client.method1651(MenuAction.getWidgetClickMask(var9)), var9.itemId);
-										Client.selectedSpellActionName = LoginPacket.method3639(var9);
+										TextureProvider.selectSpell(var9.id, var9.childIndex, Client.method1655(MenuAction.getWidgetClickMask(var9)), var9.itemId);
+										Client.selectedSpellActionName = LoginPacket.method3662(var9);
 										if (Client.selectedSpellActionName == null) {
 											Client.selectedSpellActionName = "null";
 										}
@@ -403,7 +403,7 @@ public class UserComparator9 extends AbstractUserComparator {
 							}
 
 							if (var9.contentType == 1400) {
-								WorldMapRegion.worldMap.method6336(var17, var18, var33 & var34, var33 & var21);
+								WorldMapRegion.worldMap.method6378(var17, var18, var33 & var34, var33 & var21);
 							}
 
 							if (Client.clickedWidget != null && var9 != Client.clickedWidget && var33 && WorldMapData_0.method192(MenuAction.getWidgetClickMask(var9))) {
@@ -555,7 +555,7 @@ public class UserComparator9 extends AbstractUserComparator {
 									if (var9.invTransmitTriggers != null && Client.field898 - var9.field2585 <= 32) {
 										label856:
 										for (var35 = var9.field2585; var35 < Client.field898; ++var35) {
-											var23 = Client.field830[var35 & 31];
+											var23 = Client.changedItemContainers[var35 & 31];
 
 											for (var36 = 0; var36 < var9.invTransmitTriggers.length; ++var36) {
 												if (var23 == var9.invTransmitTriggers[var36]) {

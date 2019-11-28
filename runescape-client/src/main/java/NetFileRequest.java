@@ -31,7 +31,7 @@ public class NetFileRequest extends DualNode {
 		signature = "(Lhf;I)V",
 		garbageValue = "-568024441"
 	)
-	public static void method4201(AbstractArchive var0) {
+	public static void method4230(AbstractArchive var0) {
 		StructDefinition.StructDefinition_archive = var0;
 	}
 }

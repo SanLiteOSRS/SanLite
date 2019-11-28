@@ -18,13 +18,13 @@ public class Username implements Comparable {
 	)
 	public Username(String var1, LoginType var2) {
 		this.name = var1;
-		this.cleanName = StudioGame.method4199(var1, var2);
+		this.cleanName = StudioGame.method4228(var1, var2);
 	}
 
 	@ObfuscatedName("u")
 	@ObfuscatedSignature(
 		signature = "(B)Ljava/lang/String;",
-		garbageValue = "34"
+		garbageValue = "70"
 	)
 	@Export("getName")
 	public String getName() {
@@ -74,23 +74,11 @@ public class Username implements Comparable {
 		return this.cleanName == null ? 0 : this.cleanName.hashCode();
 	}
 
-	public String aaq() {
-		return this.getName();
-	}
-
 	public int compareTo(Object var1) {
 		return this.compareToTyped((Username)var1);
 	}
 
 	public String toString() {
-		return this.getName();
-	}
-
-	public String aaw() {
-		return this.getName();
-	}
-
-	public String aan() {
 		return this.getName();
 	}
 }

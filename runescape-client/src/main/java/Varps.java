@@ -63,7 +63,7 @@ public class Varps {
 			var9.type = var3;
 			var9.x = var1;
 			var9.y = var2;
-			class215.method4079(var9);
+			class215.method4108(var9);
 			Client.pendingSpawns.addFirst(var9);
 		}
 
@@ -79,9 +79,9 @@ public class Varps {
 		signature = "(B)V",
 		garbageValue = "1"
 	)
-	static void method4017() {
+	static void method4043() {
 		for (int var0 = 0; var0 < Client.menuOptionsCount; ++var0) {
-			if (class96.method2296(Client.menuOpcodes[var0])) {
+			if (class96.method2315(Client.menuOpcodes[var0])) {
 				if (var0 < Client.menuOptionsCount - 1) {
 					for (int var1 = var0; var1 < Client.menuOptionsCount - 1; ++var1) {
 						Client.menuActions[var1] = Client.menuActions[var1 + 1];

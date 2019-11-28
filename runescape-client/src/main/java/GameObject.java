@@ -112,7 +112,7 @@ public final class GameObject {
 		signature = "(IILfg;Lfh;I)Z",
 		garbageValue = "-1345578739"
 	)
-	static final boolean method3323(int var0, int var1, RouteStrategy var2, CollisionMap var3) {
+	static final boolean method3342(int var0, int var1, RouteStrategy var2, CollisionMap var3) {
 		int var4 = var0;
 		int var5 = var1;
 		byte var6 = 64;

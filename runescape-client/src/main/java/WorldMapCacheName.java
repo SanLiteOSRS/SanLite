@@ -80,7 +80,7 @@ public class WorldMapCacheName {
 	@Export("resumePauseWidget")
 	static void resumePauseWidget(int var0, int var1) {
 		PacketBufferNode var2 = ModelData0.getPacketBufferNode(ClientPacket.field2275, Client.packetWriter.isaacCipher);
-		var2.packetBuffer.method5581(var1);
+		var2.packetBuffer.method5613(var1);
 		var2.packetBuffer.writeInt(var0);
 		Client.packetWriter.addNode(var2);
 	}

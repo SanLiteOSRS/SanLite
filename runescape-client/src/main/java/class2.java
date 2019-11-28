@@ -59,7 +59,7 @@ final class class2 implements class0 {
 	@ObfuscatedName("u")
 	@ObfuscatedSignature(
 		signature = "(I)[Lhb;",
-		garbageValue = "47307976"
+		garbageValue = "277199676"
 	)
 	@Export("PlayerType_values")
 	public static PlayerType[] PlayerType_values() {
@@ -74,7 +74,7 @@ final class class2 implements class0 {
 	static final void method31() {
 		Client.field756 = 0;
 		int var0 = class51.baseX * 64 + (class215.localPlayer.x >> 7);
-		int var1 = VarcInt.baseY * -1499248159 + (class215.localPlayer.y >> 7);
+		int var1 = VarcInt.baseY * 64 + (class215.localPlayer.y >> 7);
 		if (var0 >= 3053 && var0 <= 3156 && var1 >= 3056 && var1 <= 3136) {
 			Client.field756 = 1;
 		}
@@ -96,7 +96,7 @@ final class class2 implements class0 {
 	)
 	@Export("addCancelMenuEntry")
 	static void addCancelMenuEntry() {
-		RouteStrategy.method3618();
+		RouteStrategy.method3641();
 		Client.menuActions[0] = "Cancel";
 		Client.menuTargets[0] = "";
 		Client.menuOpcodes[0] = 1006;

@@ -69,7 +69,7 @@ public final class class43 {
 		}
 
 		Tiles.method1161();
-		FontName.method5395();
+		FontName.method5427();
 		WorldMapData_0.addNpcsToScene(true);
 		Tiles.method1160();
 		WorldMapData_0.addNpcsToScene(false);
@@ -120,7 +120,7 @@ public final class class43 {
 			var6 = class80.oculusOrbFocalPointX;
 			var7 = GrandExchangeOfferAgeComparator.field78;
 			var8 = class81.oculusOrbFocalPointY;
-			var9 = FloorDecoration.method2869(var18);
+			var9 = FloorDecoration.method2888(var18);
 			var9 = class14.method176(var9, var3);
 			var10 = 2048 - var18 & 2047;
 			var11 = 2048 - var5 & 2047;
@@ -154,13 +154,13 @@ public final class class43 {
 			if (Client.oculusOrbState == 1 && Client.staffModLevel >= 2 && Client.cycle % 50 == 0 && (class80.oculusOrbFocalPointX >> 7 != class215.localPlayer.x >> 7 || class81.oculusOrbFocalPointY >> 7 != class215.localPlayer.y >> 7)) {
 				var15 = class215.localPlayer.plane;
 				var16 = class51.baseX * 64 + (class80.oculusOrbFocalPointX >> 7);
-				var17 = VarcInt.baseY * -1499248159 + (class81.oculusOrbFocalPointY >> 7);
-				Clock.method3536(var16, var17, var15, true);
+				var17 = VarcInt.baseY * 64 + (class81.oculusOrbFocalPointY >> 7);
+				Clock.method3555(var16, var17, var15, true);
 			}
 		}
 
 		if (!Client.isCameraLocked) {
-			var18 = ClientPacket.method3637();
+			var18 = ClientPacket.method3660();
 		} else {
 			if (UserComparator10.clientPreferences.roofsHidden) {
 				var5 = ClientPacket.Client_plane;
@@ -222,9 +222,9 @@ public final class class43 {
 		}
 
 		if (var10 >= var0 && var10 < var0 + var2 && var11 >= var1 && var11 < var3 + var1) {
-			CollisionMap.method3605(var10 - var0, var11 - var1);
+			CollisionMap.method3628(var10 - var0, var11 - var1);
 		} else {
-			ParamDefinition.method4582();
+			ParamDefinition.method4611();
 		}
 
 		Tiles.playPcmPlayers();
@@ -236,9 +236,9 @@ public final class class43 {
 		Rasterizer3D.Rasterizer3D_zoom = var12;
 		Tiles.playPcmPlayers();
 		class2.scene.clearTempGameObjects();
-		FontName.method5394(var0, var1, var2, var3);
+		FontName.method5426(var0, var1, var2, var3);
 		if (Client.hintArrowType == 2) {
-			TextureProvider.worldToScreen(Client.hintArrowSubX * 64 + (Client.hintArrowX - class51.baseX * 64 << 7), (Client.hintArrowY - VarcInt.baseY * -1499248159 << 7) + Client.hintArrowSubY * 64, Client.hintArrowHeight * 4);
+			TextureProvider.worldToScreen(Client.hintArrowSubX * 64 + (Client.hintArrowX - class51.baseX * 64 << 7), Client.hintArrowSubY * 64 + (Client.hintArrowY - VarcInt.baseY * 64 << 7), Client.hintArrowHeight * 2);
 			if (Client.viewportTempX > -1 && Client.cycle % 20 < 10) {
 				SequenceDefinition.headIconHintSprites[0].drawTransBgAt(var0 + Client.viewportTempX - 12, Client.viewportTempY + var1 - 28);
 			}
@@ -251,7 +251,7 @@ public final class class43 {
 		FloorDecoration.cameraZ = var7;
 		ItemContainer.cameraPitch = var8;
 		Decimator.cameraYaw = var9;
-		if (Client.isLoading && ViewportMouse.method2996(true, false) == 0) {
+		if (Client.isLoading && ViewportMouse.method3015(true, false) == 0) {
 			Client.isLoading = false;
 		}
 
@@ -273,7 +273,7 @@ public final class class43 {
 		int var3 = (int)var0.key;
 		var0.remove();
 		if (var1) {
-			DynamicObject.method2244(var2);
+			DynamicObject.method2263(var2);
 		}
 
 		for (IntegerNode var4 = (IntegerNode)Client.widgetClickMasks.first(); var4 != null; var4 = (IntegerNode)Client.widgetClickMasks.next()) {
@@ -287,7 +287,7 @@ public final class class43 {
 			ScriptEvent.invalidateWidget(var5);
 		}
 
-		Varps.method4017();
+		Varps.method4043();
 		if (Client.rootInterface != -1) {
 			GrandExchangeEvents.runIntfCloseListeners(Client.rootInterface, 1);
 		}
@@ -309,7 +309,7 @@ public final class class43 {
 			if (var0.length() == 0) {
 				var3 = var3 + "; Expires=Thu, 01-Jan-1970 00:00:00 GMT; Max-Age=0";
 			} else {
-				var3 = var3 + "; Expires=" + class215.method4078(TaskHandler.method3510() + 94608000000L) + "; Max-Age=" + 94608000L;
+				var3 = var3 + "; Expires=" + class215.method4107(TaskHandler.currentTimeMillis() + 94608000000L) + "; Max-Age=" + 94608000L;
 			}
 
 			Client var4 = AbstractWorldMapIcon.client;

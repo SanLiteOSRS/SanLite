@@ -104,16 +104,16 @@ public class Players {
 		signature = "(Lkj;ILbg;II)V",
 		garbageValue = "237761948"
 	)
-	static final void method2148(PacketBuffer var0, int var1, Player var2, int var3) {
+	static final void method2167(PacketBuffer var0, int var1, Player var2, int var3) {
 		byte var4 = -1;
 		if ((var3 & 512) != 0) {
-			var2.field946 = var0.method5601();
-			var2.field979 = var0.method5740();
-			var2.field978 = var0.method5601();
-			var2.field980 = var0.method5605();
-			var2.field934 = var0.method5687() + Client.cycle;
-			var2.field982 = var0.method5608() + Client.cycle;
-			var2.field983 = var0.method5687();
+			var2.field946 = var0.method5633();
+			var2.field979 = var0.method5772();
+			var2.field978 = var0.method5633();
+			var2.field980 = var0.method5637();
+			var2.field934 = var0.method5719() + Client.cycle;
+			var2.field982 = var0.method5640() + Client.cycle;
+			var2.field983 = var0.method5719();
 			if (var2.field630) {
 				var2.field946 += var2.tileX;
 				var2.field979 += var2.tileY;
@@ -133,8 +133,8 @@ public class Players {
 
 		int var5;
 		if ((var3 & 2048) != 0) {
-			var2.spotAnimation = var0.method5687();
-			var5 = var0.method5617();
+			var2.spotAnimation = var0.method5719();
+			var5 = var0.method5649();
 			var2.field996 = var5 >> 16;
 			var2.field975 = (var5 & 65535) + Client.cycle;
 			var2.spotAnimationFrame = 0;
@@ -153,11 +153,11 @@ public class Players {
 		}
 
 		if ((var3 & 4096) != 0) {
-			field1247[var1] = var0.method5601();
+			field1247[var1] = var0.method5633();
 		}
 
 		if ((var3 & 128) != 0) {
-			var5 = var0.method5696();
+			var5 = var0.method5728();
 			byte[] var6 = new byte[var5];
 			Buffer var7 = new Buffer(var6);
 			var0.readBytes(var6, 0, var5);
@@ -187,14 +187,14 @@ public class Players {
 		}
 
 		if ((var3 & 1) != 0) {
-			var2.targetIndex = var0.method5687();
+			var2.targetIndex = var0.method5719();
 			if (var2.targetIndex == 65535) {
 				var2.targetIndex = -1;
 			}
 		}
 
 		if ((var3 & 32) != 0) {
-			var2.field965 = var0.method5608();
+			var2.field965 = var0.method5640();
 			if (var2.pathLength == 0) {
 				var2.orientation = var2.field965;
 				var2.field965 = -1;
@@ -203,12 +203,12 @@ public class Players {
 
 		int var13;
 		if ((var3 & 16) != 0) {
-			var5 = var0.method5687();
+			var5 = var0.method5719();
 			if (var5 == 65535) {
 				var5 = -1;
 			}
 
-			var13 = var0.method5657();
+			var13 = var0.method5689();
 			WorldMapRectangle.performPlayerAnimation(var2, var5, var13);
 		}
 
@@ -242,15 +242,15 @@ public class Players {
 				}
 			}
 
-			var13 = var0.method5599();
+			var13 = var0.method5631();
 			if (var13 > 0) {
 				for (var14 = 0; var14 < var13; ++var14) {
 					var8 = var0.readUShortSmart();
 					var9 = var0.readUShortSmart();
 					if (var9 != 32767) {
 						var10 = var0.readUShortSmart();
-						var11 = var0.method5599();
-						var12 = var9 > 0 ? var0.method5696() : var11;
+						var11 = var0.method5631();
+						var12 = var9 > 0 ? var0.method5728() : var11;
 						var2.addHealthBar(var8, Client.cycle, var9, var10, var11, var12);
 					} else {
 						var2.removeHealthBar(var8);
@@ -260,9 +260,9 @@ public class Players {
 		}
 
 		if ((var3 & 64) != 0) {
-			var5 = var0.method5687();
-			PlayerType var16 = (PlayerType)CollisionMap.findEnumerated(class2.PlayerType_values(), var0.method5696());
-			boolean var19 = var0.method5599() == 1;
+			var5 = var0.method5719();
+			PlayerType var16 = (PlayerType)CollisionMap.findEnumerated(class2.PlayerType_values(), var0.method5728());
+			boolean var19 = var0.method5631() == 1;
 			var8 = var0.readUnsignedByte();
 			var9 = var0.offset;
 			if (var2.username != null && var2.appearance != null) {
@@ -275,7 +275,7 @@ public class Players {
 					field1252.offset = 0;
 					var0.readBytes(field1252.array, 0, var8);
 					field1252.offset = 0;
-					String var15 = AbstractFont.escapeBrackets(class191.method3694(GrandExchangeOfferUnitPriceComparator.method142(field1252)));
+					String var15 = AbstractFont.escapeBrackets(class191.method3720(GrandExchangeOfferUnitPriceComparator.method142(field1252)));
 					var2.overheadText = var15.trim();
 					var2.overheadTextColor = var5 >> 8;
 					var2.overheadTextEffect = var5 & 255;
@@ -289,7 +289,7 @@ public class Players {
 					}
 
 					if (var16.modIcon != -1) {
-						GrandExchangeOfferAgeComparator.addGameMessage(var12, Client.method1730(var16.modIcon) + var2.username.getName(), var15);
+						GrandExchangeOfferAgeComparator.addGameMessage(var12, Client.method1749(var16.modIcon) + var2.username.getName(), var15);
 					} else {
 						GrandExchangeOfferAgeComparator.addGameMessage(var12, var2.username.getName(), var15);
 					}

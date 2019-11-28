@@ -86,7 +86,7 @@ public class class185 {
 		signature = "(Lhf;B)V",
 		garbageValue = "3"
 	)
-	public static void method3642(AbstractArchive var0) {
+	public static void method3665(AbstractArchive var0) {
 		VarbitDefinition.VarbitDefinition_archive = var0;
 	}
 
@@ -95,7 +95,7 @@ public class class185 {
 		signature = "(Lhf;IB)Llm;",
 		garbageValue = "-1"
 	)
-	public static IndexedSprite method3646(AbstractArchive var0, int var1) {
+	public static IndexedSprite method3669(AbstractArchive var0, int var1) {
 		byte[] var3 = var0.takeFileFlat(var1);
 		boolean var2;
 		if (var3 == null) {
@@ -124,7 +124,7 @@ public class class185 {
 				int var10 = var3 * var8 + var9 * var2 >> 16;
 				int var11 = var3 * var9 - var8 * var2 >> 16;
 				if (var7 > 2500) {
-					var4.method6181(var10 + var5.width / 2 - var4.width / 2, var5.height / 2 - var11 - var4.height / 2, var0, var1, var5.width, var5.height, var5.xStarts, var5.xWidths);
+					var4.method6223(var10 + var5.width / 2 - var4.width / 2, var5.height / 2 - var11 - var4.height / 2, var0, var1, var5.width, var5.height, var5.xStarts, var5.xWidths);
 				} else {
 					var4.drawTransBgAt(var0 + var10 + var5.width / 2 - var4.width / 2, var5.height / 2 + var1 - var11 - var4.height / 2);
 				}

@@ -101,23 +101,7 @@ public class BufferedNetSocket extends AbstractSocket {
 		this.sink.write(var1, var2, var3);
 	}
 
-	protected void aaf() {
-		this.close();
-	}
-
 	protected void finalize() {
-		this.close();
-	}
-
-	protected void aap() {
-		this.close();
-	}
-
-	protected void aae() {
-		this.close();
-	}
-
-	protected void aac() {
 		this.close();
 	}
 }

@@ -74,7 +74,7 @@ public enum StudioGame implements Enumerated {
 		signature = "(Ljava/lang/CharSequence;Llg;I)Ljava/lang/String;",
 		garbageValue = "-1208620842"
 	)
-	public static String method4199(CharSequence var0, LoginType var1) {
+	public static String method4228(CharSequence var0, LoginType var1) {
 		if (var0 == null) {
 			return null;
 		} else {
@@ -266,7 +266,7 @@ public enum StudioGame implements Enumerated {
 		signature = "(I)Lgx;",
 		garbageValue = "233010468"
 	)
-	static PacketBufferNode method4196() {
+	static PacketBufferNode method4225() {
 		return PacketBufferNode.PacketBufferNode_packetBufferNodeCount == 0 ? new PacketBufferNode() : PacketBufferNode.PacketBufferNode_packetBufferNodes[--PacketBufferNode.PacketBufferNode_packetBufferNodeCount];
 	}
 
@@ -275,8 +275,8 @@ public enum StudioGame implements Enumerated {
 		signature = "([BB)Ljava/lang/String;",
 		garbageValue = "117"
 	)
-	public static String method4191(byte[] var0) {
-		return class195.method3713(var0, 0, var0.length);
+	public static String method4220(byte[] var0) {
+		return class195.method3739(var0, 0, var0.length);
 	}
 
 	@ObfuscatedName("b")

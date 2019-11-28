@@ -73,7 +73,7 @@ public class CollisionMap {
 		signature = "(IIIIZB)V",
 		garbageValue = "61"
 	)
-	public void method3591(int var1, int var2, int var3, int var4, boolean var5) {
+	public void method3614(int var1, int var2, int var3, int var4, boolean var5) {
 		var1 -= this.xInset;
 		var2 -= this.yInset;
 		if (var3 == 0) {
@@ -289,7 +289,7 @@ public class CollisionMap {
 		signature = "(IIIIZI)V",
 		garbageValue = "350468397"
 	)
-	public void method3575(int var1, int var2, int var3, int var4, boolean var5) {
+	public void method3598(int var1, int var2, int var3, int var4, boolean var5) {
 		var1 -= this.xInset;
 		var2 -= this.yInset;
 		if (var3 == 0) {
@@ -485,7 +485,7 @@ public class CollisionMap {
 		signature = "(III)V",
 		garbageValue = "1031605578"
 	)
-	public void method3578(int var1, int var2) {
+	public void method3601(int var1, int var2) {
 		var1 -= this.xInset;
 		var2 -= this.yInset;
 		int[] var10000 = this.flags[var1];
@@ -516,7 +516,7 @@ public class CollisionMap {
 		signature = "(Lhf;Lhf;I)V",
 		garbageValue = "1646323129"
 	)
-	public static void method3592(AbstractArchive var0, AbstractArchive var1) {
+	public static void method3615(AbstractArchive var0, AbstractArchive var1) {
 		class14.KitDefinition_archive = var0;
 		KitDefinition.KitDefinition_modelsArchive = var1;
 		KitDefinition.KitDefinition_fileCount = class14.KitDefinition_archive.getGroupFileCount(3);
@@ -542,7 +542,7 @@ public class CollisionMap {
 		signature = "(III)V",
 		garbageValue = "746775715"
 	)
-	public static final void method3605(int var0, int var1) {
+	public static final void method3628(int var0, int var1) {
 		ViewportMouse.ViewportMouse_x = var0;
 		ViewportMouse.ViewportMouse_y = var1;
 		ViewportMouse.ViewportMouse_isInViewport = true;

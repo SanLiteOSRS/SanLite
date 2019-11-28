@@ -75,8 +75,8 @@ public class PacketBuffer extends Buffer {
 		signature = "(I)Z",
 		garbageValue = "-1671006897"
 	)
-	public boolean method5549() {
-		int var1 = super.array[super.offset] - this.isaacCipher.method6289() & 255;
+	public boolean method5581() {
+		int var1 = super.array[super.offset] - this.isaacCipher.method6331() & 255;
 		return var1 >= 128;
 	}
 
@@ -96,7 +96,7 @@ public class PacketBuffer extends Buffer {
 		signature = "([BIII)V",
 		garbageValue = "-739226773"
 	)
-	public void method5519(byte[] var1, int var2, int var3) {
+	public void method5551(byte[] var1, int var2, int var3) {
 		for (int var4 = 0; var4 < var3; ++var4) {
 			var1[var4 + var2] = (byte)(super.array[++super.offset - 1] - this.isaacCipher.nextInt());
 		}
@@ -163,7 +163,7 @@ public class PacketBuffer extends Buffer {
 		signature = "(Ljava/lang/String;ZI)Ljava/lang/String;",
 		garbageValue = "-117055056"
 	)
-	static String method5550(String var0, boolean var1) {
+	static String method5582(String var0, boolean var1) {
 		String var2 = var1 ? "https://" : "http://";
 		if (Client.gameBuild == 1) {
 			var0 = var0 + "-wtrc";

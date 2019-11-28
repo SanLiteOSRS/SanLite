@@ -8,12 +8,12 @@ public class class208 {
 		signature = "(II)V",
 		garbageValue = "682234129"
 	)
-	static void method3991(int var0) {
+	static void method4017(int var0) {
 		Tiles.tempMenuAction = new MenuAction();
-		Tiles.tempMenuAction.argument1 = Client.menuArguments1[var0];
-		Tiles.tempMenuAction.argument2 = Client.menuArguments2[var0];
+		Tiles.tempMenuAction.param0 = Client.menuArguments1[var0];
+		Tiles.tempMenuAction.param1 = Client.menuArguments2[var0];
 		Tiles.tempMenuAction.opcode = Client.menuOpcodes[var0];
-		Tiles.tempMenuAction.argument0 = Client.menuIdentifiers[var0];
+		Tiles.tempMenuAction.identifier = Client.menuIdentifiers[var0];
 		Tiles.tempMenuAction.action = Client.menuActions[var0];
 	}
 }

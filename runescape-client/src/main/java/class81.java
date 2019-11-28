@@ -30,7 +30,7 @@ public class class81 {
 		signature = "(II)Z",
 		garbageValue = "1888089163"
 	)
-	public static boolean method2067(int var0) {
+	public static boolean method2086(int var0) {
 		return var0 >= WorldMapDecorationType.field2748.id && var0 <= WorldMapDecorationType.field2730.id || var0 == WorldMapDecorationType.field2731.id;
 	}
 
@@ -50,7 +50,7 @@ public class class81 {
 				Client.loginState = 0;
 				Client.field887 = 0;
 				Client.field678 = 0;
-				Client.timer.method5044(var0);
+				Client.timer.method5073(var0);
 				if (var0 != 20) {
 					Canvas.method872(false);
 				}
@@ -89,8 +89,8 @@ public class class81 {
 					class40.worldSelectArrows = null;
 					GraphicsObject.worldSelectStars = null;
 					class42.field364 = null;
-					DynamicObject.loginScreenRunesAnimation.method1809();
-					UrlRequest.method3339(2);
+					DynamicObject.loginScreenRunesAnimation.method1828();
+					UrlRequest.method3358(2);
 					if (NetCache.NetCache_socket != null) {
 						try {
 							Buffer var1 = new Buffer(4);
@@ -123,7 +123,7 @@ public class class81 {
 		signature = "(I)V",
 		garbageValue = "-2006396000"
 	)
-	static final void method2065() {
+	static final void method2084() {
 		for (int var0 = 0; var0 < Client.soundEffectCount; ++var0) {
 			int var10002 = Client.queuedSoundEffectDelays[var0]--;
 			if (Client.queuedSoundEffectDelays[var0] >= -10) {
@@ -219,7 +219,7 @@ public class class81 {
 		signature = "(I)V",
 		garbageValue = "667770085"
 	)
-	static final void method2066() {
+	static final void method2085() {
 		int var0 = Players.Players_count;
 		int[] var1 = Players.Players_indices;
 

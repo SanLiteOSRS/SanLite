@@ -97,7 +97,7 @@ public enum class192 implements Enumerated {
 	final Set field2391;
 
 	static {
-		method3707();
+		method3733();
 	}
 
 	@ObfuscatedSignature(
@@ -135,7 +135,7 @@ public enum class192 implements Enumerated {
 		signature = "(I)[Lgo;",
 		garbageValue = "1222259750"
 	)
-	static class192[] method3707() {
+	static class192[] method3733() {
 		return new class192[]{field2383, field2379, field2392, field2388, field2387, field2384, field2385, field2378, field2386, field2390, field2389, field2382, field2381};
 	}
 
@@ -259,7 +259,7 @@ public enum class192 implements Enumerated {
 		signature = "(B)I",
 		garbageValue = "25"
 	)
-	static final int method3704() {
+	static final int method3730() {
 		return ViewportMouse.ViewportMouse_y;
 	}
 
@@ -268,7 +268,7 @@ public enum class192 implements Enumerated {
 		signature = "(II)V",
 		garbageValue = "-1031778889"
 	)
-	static void method3706(int var0) {
+	static void method3732(int var0) {
 		Client.oculusOrbState = var0;
 	}
 }

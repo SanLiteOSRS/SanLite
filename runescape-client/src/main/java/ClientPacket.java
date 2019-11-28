@@ -671,7 +671,7 @@ public class ClientPacket implements class181 {
 		int var38;
 		if (Login.worldSelectOpen) {
 			if (class42.worldSelectBackSprites == null) {
-				class42.worldSelectBackSprites = GraphicsDefaults.method5958(WorldMapRegion.archive8, "sl_back", "");
+				class42.worldSelectBackSprites = GraphicsDefaults.method5997(WorldMapRegion.archive8, "sl_back", "");
 			}
 
 			IndexedSprite[] var7;
@@ -680,10 +680,10 @@ public class ClientPacket implements class181 {
 				var30 = WorldMapRegion.archive8;
 				var31 = var30.getGroupId("sl_flags");
 				var6 = var30.getFileId(var31, "");
-				if (!GraphicsObject.method2011(var30, var31, var6)) {
+				if (!GraphicsObject.method2030(var30, var31, var6)) {
 					var7 = null;
 				} else {
-					var7 = WallDecoration.method3322();
+					var7 = WallDecoration.method3341();
 				}
 
 				ItemContainer.worldSelectFlagSprites = var7;
@@ -693,10 +693,10 @@ public class ClientPacket implements class181 {
 				var30 = WorldMapRegion.archive8;
 				var31 = var30.getGroupId("sl_arrows");
 				var6 = var30.getFileId(var31, "");
-				if (!GraphicsObject.method2011(var30, var31, var6)) {
+				if (!GraphicsObject.method2030(var30, var31, var6)) {
 					var7 = null;
 				} else {
-					var7 = WallDecoration.method3322();
+					var7 = WallDecoration.method3341();
 				}
 
 				class40.worldSelectArrows = var7;
@@ -706,10 +706,10 @@ public class ClientPacket implements class181 {
 				var30 = WorldMapRegion.archive8;
 				var31 = var30.getGroupId("sl_stars");
 				var6 = var30.getFileId(var31, "");
-				if (!GraphicsObject.method2011(var30, var31, var6)) {
+				if (!GraphicsObject.method2030(var30, var31, var6)) {
 					var7 = null;
 				} else {
-					var7 = WallDecoration.method3322();
+					var7 = WallDecoration.method3341();
 				}
 
 				GraphicsObject.worldSelectStars = var7;
@@ -875,7 +875,7 @@ public class ClientPacket implements class181 {
 						} else {
 							var21 = 4;
 						}
-					} else if (var28.method1769()) {
+					} else if (var28.method1788()) {
 						var21 = 8;
 					} else if (var28.isPvp()) {
 						if (var28.isMembersOnly()) {
@@ -961,13 +961,13 @@ public class ClientPacket implements class181 {
 					var0.draw("Login: ", Login.loginBoxX + 180 - 110, var38, 16777215, 0);
 					var39 = 200;
 
-					for (var25 = RouteStrategy.method3616(); var0.stringWidth(var25) > var39; var25 = var25.substring(0, var25.length() - 1)) {
+					for (var25 = RouteStrategy.method3639(); var0.stringWidth(var25) > var39; var25 = var25.substring(0, var25.length() - 1)) {
 					}
 
 					var0.draw(AbstractFont.escapeBrackets(var25), Login.loginBoxX + 180 - 70, var38, 16777215, 0);
 					var38 += 15;
 
-					for (var27 = PlayerType.method4183(Login.Login_password); var0.stringWidth(var27) > var39; var27 = var27.substring(1)) {
+					for (var27 = PlayerType.method4212(Login.Login_password); var0.stringWidth(var27) > var39; var27 = var27.substring(1)) {
 					}
 
 					var0.draw("Password: " + var27, Login.loginBoxX + 180 - 108, var38, 16777215, 0);
@@ -1017,25 +1017,25 @@ public class ClientPacket implements class181 {
 					var0.draw("Login: ", GrandExchangeOfferOwnWorldComparator.loginBoxCenter - 110, var38, 16777215, 0);
 					var39 = 200;
 
-					for (var25 = RouteStrategy.method3616(); var0.stringWidth(var25) > var39; var25 = var25.substring(1)) {
+					for (var25 = RouteStrategy.method3639(); var0.stringWidth(var25) > var39; var25 = var25.substring(1)) {
 					}
 
 					var0.draw(AbstractFont.escapeBrackets(var25) + (Login.currentLoginField == 0 & Client.cycle % 40 < 20 ? class222.colorStartTag(16776960) + "|" : ""), GrandExchangeOfferOwnWorldComparator.loginBoxCenter - 70, var38, 16777215, 0);
 					var38 += 15;
 
-					for (var27 = PlayerType.method4183(Login.Login_password); var0.stringWidth(var27) > var39; var27 = var27.substring(1)) {
+					for (var27 = PlayerType.method4212(Login.Login_password); var0.stringWidth(var27) > var39; var27 = var27.substring(1)) {
 					}
 
 					var0.draw("Password: " + var27 + (Login.currentLoginField == 1 & Client.cycle % 40 < 20 ? class222.colorStartTag(16776960) + "|" : ""), GrandExchangeOfferOwnWorldComparator.loginBoxCenter - 108, var38, 16777215, 0);
 					var38 += 15;
 					var37 = 277;
 					var26 = GrandExchangeOfferOwnWorldComparator.loginBoxCenter + -117;
-					IndexedSprite var29 = PendingSpawn.method1734(Client.Login_isUsernameRemembered, Login.field1173);
+					IndexedSprite var29 = PendingSpawn.method1753(Client.Login_isUsernameRemembered, Login.field1173);
 					var29.drawAt(var26, var37);
 					var26 = var26 + var29.subWidth + 5;
 					var1.draw("Remember username", var26, var37 + 13, 16776960, 0);
 					var26 = GrandExchangeOfferOwnWorldComparator.loginBoxCenter + 24;
-					var29 = PendingSpawn.method1734(UserComparator10.clientPreferences.hideUsername, Login.field1195);
+					var29 = PendingSpawn.method1753(UserComparator10.clientPreferences.hideUsername, Login.field1195);
 					var29.drawAt(var26, var37);
 					var26 = var26 + var29.subWidth + 5;
 					var1.draw("Hide username", var26, var37 + 13, 16776960, 0);
@@ -1086,7 +1086,7 @@ public class ClientPacket implements class181 {
 						var38 += 15;
 						var0.drawCentered(Login.Login_response3, Login.loginBoxX + 180, var38, 16777215, 0);
 						var38 += 15;
-						var0.draw("PIN: " + PlayerType.method4183(WorldMapSection0.otp) + (Client.cycle % 40 < 20 ? class222.colorStartTag(16776960) + "|" : ""), Login.loginBoxX + 180 - 108, var38, 16777215, 0);
+						var0.draw("PIN: " + PlayerType.method4212(WorldMapSection0.otp) + (Client.cycle % 40 < 20 ? class222.colorStartTag(16776960) + "|" : ""), Login.loginBoxX + 180 - 108, var38, 16777215, 0);
 						var38 -= 8;
 						var0.draw("Trust this computer", Login.loginBoxX + 180 - 9, var38, 16776960, 0);
 						var38 += 15;
@@ -1123,7 +1123,7 @@ public class ClientPacket implements class181 {
 						var0.draw("Username/email: ", Login.loginBoxX + 180 - 145, var38, 16777215, 0);
 						var39 = 174;
 
-						for (var25 = RouteStrategy.method3616(); var0.stringWidth(var25) > var39; var25 = var25.substring(1)) {
+						for (var25 = RouteStrategy.method3639(); var0.stringWidth(var25) > var39; var25 = var25.substring(1)) {
 						}
 
 						var0.draw(AbstractFont.escapeBrackets(var25) + (Client.cycle % 40 < 20 ? class222.colorStartTag(16776960) + "|" : ""), Login.loginBoxX + 180 - 34, var38, 16777215, 0);
@@ -1196,7 +1196,7 @@ public class ClientPacket implements class181 {
 							var27 = "";
 							break;
 						default:
-							class222.method4168(false);
+							class222.Login_promptCredentials(false);
 						}
 
 						var0.drawCentered(var4, Login.loginBoxX + 180, var37, 16776960, 0);
@@ -1265,7 +1265,7 @@ public class ClientPacket implements class181 {
 		signature = "(I)I",
 		garbageValue = "-850052471"
 	)
-	static final int method3637() {
+	static final int method3660() {
 		if (UserComparator10.clientPreferences.roofsHidden) {
 			return Client_plane;
 		} else {

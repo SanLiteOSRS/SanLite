@@ -295,7 +295,7 @@ public class Huffman {
 	}
 
 	@ObfuscatedName("u")
-	public static final int method3994(double var0, double var2, double var4) {
+	public static final int method4020(double var0, double var2, double var4) {
 		double var6 = var4;
 		double var8 = var4;
 		double var10 = var4;

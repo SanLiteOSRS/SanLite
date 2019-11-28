@@ -85,7 +85,7 @@ public enum PlayerType implements Enumerated {
 		signature = "(ILke;Lij;I)V",
 		garbageValue = "1224063547"
 	)
-	static void method4181(int var0, ArchiveDisk var1, Archive var2) {
+	static void method4210(int var0, ArchiveDisk var1, Archive var2) {
 		byte[] var3 = null;
 		synchronized(ArchiveDiskActionHandler.ArchiveDiskActionHandler_requestQueue) {
 			for (ArchiveDiskAction var5 = (ArchiveDiskAction)ArchiveDiskActionHandler.ArchiveDiskActionHandler_requestQueue.last(); var5 != null; var5 = (ArchiveDiskAction)ArchiveDiskActionHandler.ArchiveDiskActionHandler_requestQueue.previous()) {
@@ -109,7 +109,7 @@ public enum PlayerType implements Enumerated {
 		signature = "(Ljava/lang/CharSequence;I)Ljava/lang/String;",
 		garbageValue = "1655356407"
 	)
-	public static String method4183(CharSequence var0) {
+	public static String method4212(CharSequence var0) {
 		int var2 = var0.length();
 		char[] var3 = new char[var2];
 

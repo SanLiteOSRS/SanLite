@@ -146,7 +146,7 @@ public final class Occluder {
 		signature = "(I)V",
 		garbageValue = "-1792672505"
 	)
-	public static void method3317() {
+	public static void method3336() {
 		WorldMapElement.WorldMapElement_cachedSprites.clear();
 	}
 
@@ -155,7 +155,7 @@ public final class Occluder {
 		signature = "(B)Lln;",
 		garbageValue = "0"
 	)
-	static Sprite method3319() {
+	static Sprite method3338() {
 		Sprite var0 = new Sprite();
 		var0.width = class325.SpriteBuffer_spriteWidth;
 		var0.height = UserComparator9.SpriteBuffer_spriteHeight;
@@ -171,7 +171,7 @@ public final class Occluder {
 			var0.pixels[var3] = class325.SpriteBuffer_spritePalette[var2[var3] & 255];
 		}
 
-		PcmPlayer.method2491();
+		PcmPlayer.method2510();
 		return var0;
 	}
 }

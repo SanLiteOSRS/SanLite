@@ -68,7 +68,7 @@ public class class13 {
 			}
 
 			if (var0.equalsIgnoreCase("clientdrop")) {
-				Projectile.method2118();
+				Projectile.method2137();
 			}
 		}
 

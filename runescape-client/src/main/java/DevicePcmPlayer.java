@@ -56,7 +56,7 @@ public class DevicePcmPlayer extends PcmPlayer {
 			this.line.start();
 			this.capacity2 = var1;
 		} catch (LineUnavailableException var5) {
-			if (BoundaryObject.method3293(var1) != 1) {
+			if (BoundaryObject.method3312(var1) != 1) {
 				int var4 = var1 - 1;
 				var4 |= var4 >>> 1;
 				var4 |= var4 >>> 2;

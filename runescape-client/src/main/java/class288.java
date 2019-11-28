@@ -37,7 +37,7 @@ public final class class288 {
 		signature = "(IIB)I",
 		garbageValue = "-123"
 	)
-	static int method5351(int var0, int var1) {
+	static int method5383(int var0, int var1) {
 		FloorOverlayDefinition var2 = WorldMapRectangle.FloorUnderlayDefinition_get(var0);
 		if (var2 == null) {
 			return var1;
@@ -46,12 +46,12 @@ public final class class288 {
 		} else {
 			int var3;
 			if (var2.texture >= 0) {
-				var3 = TilePaint.method3085(Rasterizer3D.Rasterizer3D_textureLoader.getAverageTextureRGB(var2.texture), 96);
+				var3 = TilePaint.method3104(Rasterizer3D.Rasterizer3D_textureLoader.getAverageTextureRGB(var2.texture), 96);
 				return Rasterizer3D.Rasterizer3D_colorPalette[var3] | -16777216;
 			} else if (var2.primaryRgb == 16711935) {
 				return var1;
 			} else {
-				var3 = JagexCache.method3512(var2.hue, var2.saturation, var2.lightness);
+				var3 = JagexCache.method3531(var2.hue, var2.saturation, var2.lightness);
 				byte var5 = 96;
 				int var4;
 				if (var3 == -2) {
@@ -91,6 +91,6 @@ public final class class288 {
 	)
 	@Export("SpriteBuffer_getSprite")
 	public static Sprite SpriteBuffer_getSprite(AbstractArchive var0, int var1, int var2) {
-		return !GraphicsObject.method2011(var0, var1, var2) ? null : Occluder.method3319();
+		return !GraphicsObject.method2030(var0, var1, var2) ? null : Occluder.method3338();
 	}
 }

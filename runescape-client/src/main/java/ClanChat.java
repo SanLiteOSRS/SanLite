@@ -101,7 +101,7 @@ public class ClanChat extends UserList {
 	public final void readUpdate(Buffer var1) {
 		this.setOwner(var1.readStringCp1252NullTerminated());
 		long var2 = var1.readLong();
-		this.readName(SpriteMask.method4012(var2));
+		this.readName(SpriteMask.method4038(var2));
 		this.minKick = var1.readByte();
 		int var4 = var1.readUnsignedByte();
 		if (var4 != 255) {
@@ -124,7 +124,7 @@ public class ClanChat extends UserList {
 		signature = "(Lkg;I)V",
 		garbageValue = "1670981116"
 	)
-	public final void method5297(Buffer var1) {
+	public final void method5329(Buffer var1) {
 		Username var2 = new Username(var1.readStringCp1252NullTerminated(), this.loginType);
 		int var3 = var1.readUnsignedShort();
 		byte var4 = var1.readByte();

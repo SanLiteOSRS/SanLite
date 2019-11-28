@@ -59,7 +59,7 @@ public class ViewportMouse {
 		signature = "(ZZI)I",
 		garbageValue = "-1821844574"
 	)
-	public static int method2996(boolean var0, boolean var1) {
+	public static int method3015(boolean var0, boolean var1) {
 		byte var2 = 0;
 		int var3 = var2 + NetCache.NetCache_pendingPriorityResponsesCount + NetCache.NetCache_pendingPriorityWritesCount;
 		return var3;
@@ -70,7 +70,7 @@ public class ViewportMouse {
 		signature = "(I)V",
 		garbageValue = "-950495199"
 	)
-	public static void method2993() {
+	public static void method3012() {
 		StructDefinition.StructDefinition_cached.clear();
 	}
 }

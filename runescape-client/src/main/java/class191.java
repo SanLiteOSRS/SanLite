@@ -87,7 +87,7 @@ public class class191 {
 		signature = "(Ljava/lang/String;ZLjava/lang/String;ZB)V",
 		garbageValue = "0"
 	)
-	static void method3695(String var0, boolean var1, String var2, boolean var3) {
+	static void method3721(String var0, boolean var1, String var2, boolean var3) {
 		if (var1) {
 			if (!var3 && Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Action.BROWSE)) {
 				try {
@@ -98,18 +98,18 @@ public class class191 {
 			}
 
 			if (class51.field424.startsWith("win") && !var3) {
-				GraphicsObject.method2021(var0, 0);
+				GraphicsObject.method2040(var0, 0);
 				return;
 			}
 
 			if (class51.field424.startsWith("mac")) {
-				class237.method4393(var0, 1, var2);
+				class237.method4422(var0, 1, var2);
 				return;
 			}
 
-			GraphicsObject.method2021(var0, 2);
+			GraphicsObject.method2040(var0, 2);
 		} else {
-			GraphicsObject.method2021(var0, 3);
+			GraphicsObject.method2040(var0, 3);
 		}
 
 	}
@@ -119,7 +119,7 @@ public class class191 {
 		signature = "(Ljava/lang/String;B)Ljava/lang/String;",
 		garbageValue = "-1"
 	)
-	public static String method3694(String var0) {
+	public static String method3720(String var0) {
 		int var1 = var0.length();
 		char[] var2 = new char[var1];
 		byte var3 = 2;
@@ -129,7 +129,7 @@ public class class191 {
 			if (var3 == 0) {
 				var5 = Character.toLowerCase(var5);
 			} else if (var3 == 2 || Character.isUpperCase(var5)) {
-				var5 = WorldMapElement.method4454(var5);
+				var5 = WorldMapElement.method4483(var5);
 			}
 
 			if (Character.isLetter(var5)) {

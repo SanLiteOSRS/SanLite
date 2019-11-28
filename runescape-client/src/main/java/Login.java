@@ -167,7 +167,7 @@ public class Login {
 		signature = "(B)V",
 		garbageValue = "84"
 	)
-	public static void method2106() {
+	public static void method2125() {
 		try {
 			JagexCache.JagexCache_dat2File.close();
 
@@ -187,7 +187,7 @@ public class Login {
 		signature = "(Lkj;I)I",
 		garbageValue = "-1079578182"
 	)
-	static int method2105(PacketBuffer var0) {
+	static int method2124(PacketBuffer var0) {
 		int var1 = var0.readBits(2);
 		int var2;
 		if (var1 == 0) {

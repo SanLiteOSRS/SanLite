@@ -20,7 +20,7 @@ public class SecureRandomCallable implements Callable {
 	}
 
 	public Object call() {
-		return NetCache.method4365();
+		return NetCache.method4394();
 	}
 
 	@ObfuscatedName("b")

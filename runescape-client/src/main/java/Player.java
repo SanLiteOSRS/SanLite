@@ -458,7 +458,7 @@ public final class Player extends Actor {
 					int var6 = super.pathY[0];
 					int var7 = this.transformedSize();
 					if (var5 >= var7 && var5 < 104 - var7 && var6 >= var7 && var6 < 104 - var7 && var1 >= var7 && var1 < 104 - var7 && var2 >= var7 && var2 < 104 - var7) {
-						int var8 = ParamDefinition.method4583(var5, var6, this.transformedSize(), WorldMapIcon_1.method321(var1, var2), Client.collisionMaps[this.plane], true, Client.field916, Client.field862);
+						int var8 = ParamDefinition.method4612(var5, var6, this.transformedSize(), WorldMapIcon_1.method321(var1, var2), Client.collisionMaps[this.plane], true, Client.field916, Client.field862);
 						if (var8 >= 1) {
 							for (int var9 = 0; var9 < var8 - 1; ++var9) {
 								var4.method1250(Client.field916[var9], Client.field862[var9], (byte)2);

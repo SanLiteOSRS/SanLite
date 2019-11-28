@@ -185,8 +185,8 @@ public class LoginPacket implements class181 {
 		signature = "(Lhl;I)Ljava/lang/String;",
 		garbageValue = "646735317"
 	)
-	static String method3639(Widget var0) {
-		if (Client.method1651(MenuAction.getWidgetClickMask(var0)) == 0) {
+	static String method3662(Widget var0) {
+		if (Client.method1655(MenuAction.getWidgetClickMask(var0)) == 0) {
 			return null;
 		} else {
 			return var0.spellActionName != null && var0.spellActionName.trim().length() != 0 ? var0.spellActionName : null;

@@ -40,7 +40,7 @@ public class class237 {
 		signature = "(II)V",
 		garbageValue = "-1518977792"
 	)
-	void method4375(int var1) {
+	void method4404(int var1) {
 		int var2 = var1 * 2 + 1;
 		double var4 = (double)((float)var1 / 3.0F);
 		int var6 = var1 * 2 + 1;
@@ -78,9 +78,9 @@ public class class237 {
 		signature = "(IS)Lln;",
 		garbageValue = "-15422"
 	)
-	Sprite method4376(int var1) {
+	Sprite method4405(int var1) {
 		if (!this.spriteMap.containsKey(var1)) {
-			this.method4375(var1);
+			this.method4404(var1);
 		}
 
 		return (Sprite)this.spriteMap.get(var1);
@@ -89,9 +89,9 @@ public class class237 {
 	@ObfuscatedName("g")
 	@ObfuscatedSignature(
 		signature = "(IIB)V",
-		garbageValue = "39"
+		garbageValue = "-106"
 	)
-	public final void method4377(int var1, int var2) {
+	public final void method4406(int var1, int var2) {
 		if (this.field3196 < this.field3192.length) {
 			this.field3192[this.field3196] = var1;
 			this.field3193[this.field3196] = var2;
@@ -102,9 +102,9 @@ public class class237 {
 	@ObfuscatedName("z")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "1824721136"
+		garbageValue = "-1194246226"
 	)
-	public final void method4374() {
+	public final void method4403() {
 		this.field3196 = 0;
 	}
 
@@ -113,9 +113,9 @@ public class class237 {
 		signature = "(IILln;FI)V",
 		garbageValue = "-2013920472"
 	)
-	public final void method4379(int var1, int var2, Sprite var3, float var4) {
+	public final void method4408(int var1, int var2, Sprite var3, float var4) {
 		int var5 = (int)(var4 * 18.0F);
-		Sprite var6 = this.method4376(var5);
+		Sprite var6 = this.method4405(var5);
 		int var7 = var5 * 2 + 1;
 		Bounds var8 = new Bounds(0, 0, var3.subWidth, var3.subHeight);
 		Bounds var9 = new Bounds(0, 0);
@@ -131,8 +131,8 @@ public class class237 {
 			int var13 = (int)((float)(var11 - var1) * var4) - var5;
 			int var14 = (int)((float)var3.subHeight - var4 * (float)(var12 - var2)) - var5;
 			this.bounds.setLow(var13, var14);
-			this.bounds.method6030(var8, var9);
-			this.method4380(var6, var3, var9);
+			this.bounds.method6069(var8, var9);
+			this.method4409(var6, var3, var9);
 		}
 
 		System.nanoTime();
@@ -164,7 +164,7 @@ public class class237 {
 		signature = "(Lln;Lln;Llw;I)V",
 		garbageValue = "244697744"
 	)
-	void method4380(Sprite var1, Sprite var2, Bounds var3) {
+	void method4409(Sprite var1, Sprite var2, Bounds var3) {
 		if (var3.highX != 0 && var3.highY != 0) {
 			int var4 = 0;
 			int var5 = 0;
@@ -198,7 +198,7 @@ public class class237 {
 		signature = "(Ljava/lang/String;ILjava/lang/String;B)Z",
 		garbageValue = "-79"
 	)
-	static boolean method4393(String var0, int var1, String var2) {
+	static boolean method4422(String var0, int var1, String var2) {
 		if (var1 == 0) {
 			try {
 				if (!class51.field424.startsWith("win")) {
@@ -256,7 +256,7 @@ public class class237 {
 		signature = "(I)V",
 		garbageValue = "-152675892"
 	)
-	public static void method4392() {
+	public static void method4421() {
 		HealthBarDefinition.HealthBarDefinition_cached.clear();
 		HealthBarDefinition.HealthBarDefinition_cachedSprites.clear();
 	}

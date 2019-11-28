@@ -24,7 +24,7 @@ public class class16 {
 			int var3;
 			if (var0 == ScriptOpcodes.FRIEND_GETNAME) {
 				var3 = Interpreter.Interpreter_intStack[--GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize];
-				if (VertexNormal.friendSystem.method1851() && var3 >= 0 && var3 < VertexNormal.friendSystem.friendsList.getSize()) {
+				if (VertexNormal.friendSystem.method1870() && var3 >= 0 && var3 < VertexNormal.friendSystem.friendsList.getSize()) {
 					Friend var8 = (Friend)VertexNormal.friendSystem.friendsList.get(var3);
 					Interpreter.Interpreter_stringStack[++class43.Interpreter_stringStackSize - 1] = var8.getName();
 					Interpreter.Interpreter_stringStack[++class43.Interpreter_stringStackSize - 1] = var8.getPreviousName();
@@ -36,7 +36,7 @@ public class class16 {
 				return 1;
 			} else if (var0 == ScriptOpcodes.FRIEND_GETWORLD) {
 				var3 = Interpreter.Interpreter_intStack[--GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize];
-				if (VertexNormal.friendSystem.method1851() && var3 >= 0 && var3 < VertexNormal.friendSystem.friendsList.getSize()) {
+				if (VertexNormal.friendSystem.method1870() && var3 >= 0 && var3 < VertexNormal.friendSystem.friendsList.getSize()) {
 					Interpreter.Interpreter_intStack[++GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize - 1] = ((Buddy)VertexNormal.friendSystem.friendsList.get(var3)).world;
 				} else {
 					Interpreter.Interpreter_intStack[++GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize - 1] = 0;
@@ -45,7 +45,7 @@ public class class16 {
 				return 1;
 			} else if (var0 == ScriptOpcodes.FRIEND_GETRANK) {
 				var3 = Interpreter.Interpreter_intStack[--GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize];
-				if (VertexNormal.friendSystem.method1851() && var3 >= 0 && var3 < VertexNormal.friendSystem.friendsList.getSize()) {
+				if (VertexNormal.friendSystem.method1870() && var3 >= 0 && var3 < VertexNormal.friendSystem.friendsList.getSize()) {
 					Interpreter.Interpreter_intStack[++GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize - 1] = ((Buddy)VertexNormal.friendSystem.friendsList.get(var3)).rank;
 				} else {
 					Interpreter.Interpreter_intStack[++GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize - 1] = 0;
@@ -57,7 +57,7 @@ public class class16 {
 				if (var0 == ScriptOpcodes.FRIEND_SETRANK) {
 					var5 = Interpreter.Interpreter_stringStack[--class43.Interpreter_stringStackSize];
 					int var6 = Interpreter.Interpreter_intStack[--GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize];
-					class216.method4089(var5, var6);
+					class216.method4118(var5, var6);
 					return 1;
 				} else if (var0 == ScriptOpcodes.FRIEND_ADD) {
 					var5 = Interpreter.Interpreter_stringStack[--class43.Interpreter_stringStackSize];
@@ -77,7 +77,7 @@ public class class16 {
 					return 1;
 				} else if (var0 == ScriptOpcodes.FRIEND_TEST) {
 					var5 = Interpreter.Interpreter_stringStack[--class43.Interpreter_stringStackSize];
-					var5 = VertexNormal.method2998(var5);
+					var5 = VertexNormal.method3017(var5);
 					Interpreter.Interpreter_intStack[++GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize - 1] = VertexNormal.friendSystem.isFriended(new Username(var5, WorldMapLabelSize.loginType), false) ? 1 : 0;
 					return 1;
 				} else if (var0 == ScriptOpcodes.CLAN_GETCHATDISPLAYNAME) {
@@ -135,13 +135,13 @@ public class class16 {
 					return 1;
 				} else if (var0 == ScriptOpcodes.CLAN_JOINCHAT) {
 					var5 = Interpreter.Interpreter_stringStack[--class43.Interpreter_stringStackSize];
-					WorldMapAreaData.method705(var5);
+					WorldMapAreaData.Clan_joinChat(var5);
 					return 1;
 				} else if (var0 == ScriptOpcodes.CLAN_LEAVECHAT) {
-					class290.method5392();
+					class290.Clan_leaveChat();
 					return 1;
 				} else if (var0 == ScriptOpcodes.IGNORE_COUNT) {
-					if (!VertexNormal.friendSystem.method1851()) {
+					if (!VertexNormal.friendSystem.method1870()) {
 						Interpreter.Interpreter_intStack[++GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize - 1] = -1;
 					} else {
 						Interpreter.Interpreter_intStack[++GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize - 1] = VertexNormal.friendSystem.ignoreList.getSize();
@@ -150,7 +150,7 @@ public class class16 {
 					return 1;
 				} else if (var0 == ScriptOpcodes.IGNORE_GETNAME) {
 					var3 = Interpreter.Interpreter_intStack[--GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize];
-					if (VertexNormal.friendSystem.method1851() && var3 >= 0 && var3 < VertexNormal.friendSystem.ignoreList.getSize()) {
+					if (VertexNormal.friendSystem.method1870() && var3 >= 0 && var3 < VertexNormal.friendSystem.ignoreList.getSize()) {
 						Ignored var4 = (Ignored)VertexNormal.friendSystem.ignoreList.get(var3);
 						Interpreter.Interpreter_stringStack[++class43.Interpreter_stringStackSize - 1] = var4.getName();
 						Interpreter.Interpreter_stringStack[++class43.Interpreter_stringStackSize - 1] = var4.getPreviousName();
@@ -162,7 +162,7 @@ public class class16 {
 					return 1;
 				} else if (var0 == ScriptOpcodes.IGNORE_TEST) {
 					var5 = Interpreter.Interpreter_stringStack[--class43.Interpreter_stringStackSize];
-					var5 = VertexNormal.method2998(var5);
+					var5 = VertexNormal.method3017(var5);
 					Interpreter.Interpreter_intStack[++GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize - 1] = VertexNormal.friendSystem.isIgnored(new Username(var5, WorldMapLabelSize.loginType)) ? 1 : 0;
 					return 1;
 				} else if (var0 == ScriptOpcodes.CLAN_ISSELF) {
@@ -479,8 +479,8 @@ public class class16 {
 			Interpreter.Interpreter_intStack[++GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize - 1] = Client.zoomWidth;
 			return 1;
 		} else if (var0 == ScriptOpcodes.VIEWPORT_GETFOV) {
-			Interpreter.Interpreter_intStack[++GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize - 1] = FileSystem.method3532(Client.field880);
-			Interpreter.Interpreter_intStack[++GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize - 1] = FileSystem.method3532(Client.field893);
+			Interpreter.Interpreter_intStack[++GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize - 1] = FileSystem.method3551(Client.field880);
+			Interpreter.Interpreter_intStack[++GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize - 1] = FileSystem.method3551(Client.field893);
 			return 1;
 		} else if (var0 == 6220) {
 			Interpreter.Interpreter_intStack[++GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize - 1] = 0;

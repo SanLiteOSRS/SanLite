@@ -130,7 +130,7 @@ public class MusicPatchNode extends Node {
 		signature = "(I)V",
 		garbageValue = "786622629"
 	)
-	void method3867() {
+	void method3893() {
 		this.patch = null;
 		this.rawSound = null;
 		this.field2448 = null;

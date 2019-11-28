@@ -86,7 +86,7 @@ public final class WallDecoration {
 		signature = "(IB)Lig;",
 		garbageValue = "-81"
 	)
-	public static FloorUnderlayDefinition method3320(int var0) {
+	public static FloorUnderlayDefinition method3339(int var0) {
 		FloorUnderlayDefinition var1 = (FloorUnderlayDefinition)FloorUnderlayDefinition.FloorUnderlayDefinition_cached.get((long)var0);
 		if (var1 != null) {
 			return var1;
@@ -104,7 +104,7 @@ public final class WallDecoration {
 	}
 
 	@ObfuscatedName("f")
-	public static boolean method3321(long var0) {
+	public static boolean method3340(long var0) {
 		boolean var2 = var0 != 0L;
 		if (var2) {
 			boolean var3 = (int)(var0 >>> 16 & 1L) == 1;
@@ -119,7 +119,7 @@ public final class WallDecoration {
 		signature = "(B)[Llm;",
 		garbageValue = "-38"
 	)
-	public static IndexedSprite[] method3322() {
+	public static IndexedSprite[] method3341() {
 		IndexedSprite[] var0 = new IndexedSprite[class325.SpriteBuffer_spriteCount];
 
 		for (int var1 = 0; var1 < class325.SpriteBuffer_spriteCount; ++var1) {
@@ -134,7 +134,7 @@ public final class WallDecoration {
 			var2.pixels = FillMode.SpriteBuffer_pixels[var1];
 		}
 
-		PcmPlayer.method2491();
+		PcmPlayer.method2510();
 		return var0;
 	}
 }

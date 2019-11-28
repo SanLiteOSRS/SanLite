@@ -93,7 +93,7 @@ public class TextureProvider implements TextureLoader {
 
 				for (int var7 = 0; var7 < var6.length; ++var7) {
 					int var8 = var6[var7];
-					if (this.archive.method4208(var8)) {
+					if (this.archive.method4237(var8)) {
 						++var2;
 					}
 				}
@@ -162,7 +162,7 @@ public class TextureProvider implements TextureLoader {
 		signature = "(II)Z",
 		garbageValue = "561655524"
 	)
-	public boolean vmethod3311(int var1) {
+	public boolean vmethod3330(int var1) {
 		return this.textures[var1].field1615;
 	}
 
@@ -272,7 +272,8 @@ public class TextureProvider implements TextureLoader {
 		signature = "(IIIIB)V",
 		garbageValue = "-94"
 	)
-	static void method2790(int var0, int var1, int var2, int var3) {
+	@Export("selectSpell")
+	static void selectSpell(int var0, int var1, int var2, int var3) {
 		Widget var4 = UserComparator3.getWidgetChild(var0, var1);
 		if (var4 != null && var4.onTargetEnter != null) {
 			ScriptEvent var5 = new ScriptEvent();

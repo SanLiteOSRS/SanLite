@@ -101,17 +101,17 @@ public class GraphicsDefaults {
 				var3.readMedium();
 				break;
 			case 2:
-				this.compass = var3.method5586();
-				this.field3808 = var3.method5586();
-				this.mapScenes = var3.method5586();
-				this.headIconsPk = var3.method5586();
-				this.field3799 = var3.method5586();
-				this.field3804 = var3.method5586();
-				this.field3805 = var3.method5586();
-				this.field3806 = var3.method5586();
-				this.field3807 = var3.method5586();
-				this.field3800 = var3.method5586();
-				this.field3809 = var3.method5586();
+				this.compass = var3.method5618();
+				this.field3808 = var3.method5618();
+				this.mapScenes = var3.method5618();
+				this.headIconsPk = var3.method5618();
+				this.field3799 = var3.method5618();
+				this.field3804 = var3.method5618();
+				this.field3805 = var3.method5618();
+				this.field3806 = var3.method5618();
+				this.field3807 = var3.method5618();
+				this.field3800 = var3.method5618();
+				this.field3809 = var3.method5618();
 			}
 		}
 	}
@@ -121,7 +121,7 @@ public class GraphicsDefaults {
 		signature = "(Lhf;Ljava/lang/String;Ljava/lang/String;I)[Lln;",
 		garbageValue = "-1956835175"
 	)
-	public static Sprite[] method5958(AbstractArchive var0, String var1, String var2) {
+	public static Sprite[] method5997(AbstractArchive var0, String var1, String var2) {
 		int var3 = var0.getGroupId(var1);
 		int var4 = var0.getFileId(var3, var2);
 		return UserComparator5.SpriteBuffer_getSpriteArray(var0, var3, var4);

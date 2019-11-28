@@ -40,7 +40,7 @@ public class MilliClock extends Clock {
 		this.field2018 = 256;
 		this.field2019 = 1;
 		this.field2021 = 0;
-		this.field2022 = TaskHandler.method3510();
+		this.field2022 = TaskHandler.currentTimeMillis();
 
 		for (int var1 = 0; var1 < 10; ++var1) {
 			this.field2017[var1] = this.field2022;
@@ -72,7 +72,7 @@ public class MilliClock extends Clock {
 		int var4 = this.field2019;
 		this.field2018 = 300;
 		this.field2019 = 1;
-		this.field2022 = TaskHandler.method3510();
+		this.field2022 = TaskHandler.currentTimeMillis();
 		if (0L == this.field2017[this.field2020]) {
 			this.field2018 = var3;
 			this.field2019 = var4;

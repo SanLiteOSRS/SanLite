@@ -265,7 +265,7 @@ public final class Projectile extends Entity {
 		}
 
 		if (UserComparator9.garbageCollector != null) {
-			long var9 = TaskHandler.method3510();
+			long var9 = TaskHandler.currentTimeMillis();
 			long var3 = UserComparator9.garbageCollector.getCollectionTime();
 			if (GameShell.garbageCollectorLastCollectionTime != -1L) {
 				long var5 = var3 - GameShell.garbageCollectorLastCollectionTime;
@@ -287,11 +287,11 @@ public final class Projectile extends Entity {
 		signature = "(I)V",
 		garbageValue = "1897306098"
 	)
-	static final void method2118() {
+	static final void method2137() {
 		if (Client.logoutTimer > 0) {
-			class40.method760();
+			class40.logOut();
 		} else {
-			Client.timer.method5043();
+			Client.timer.method5072();
 			class81.updateGameState(40);
 			PcmPlayer.field1413 = Client.packetWriter.getSocket();
 			Client.packetWriter.removeSocket();

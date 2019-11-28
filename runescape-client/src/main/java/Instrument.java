@@ -421,6 +421,6 @@ public class Instrument {
 		this.offset = var1.readUnsignedShort();
 		this.filter = new AudioFilter();
 		this.filterEnvelope = new SoundEnvelope();
-		this.filter.method2710(var1, this.filterEnvelope);
+		this.filter.method2729(var1, this.filterEnvelope);
 	}
 }

@@ -41,7 +41,7 @@ public class WorldMapDecoration {
 	static int method355(int var0, Script var1, boolean var2) {
 		Widget var3 = Language.getWidget(Interpreter.Interpreter_intStack[--GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize]);
 		if (var0 == ScriptOpcodes.IF_GETTARGETMASK) {
-			Interpreter.Interpreter_intStack[++GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize - 1] = Client.method1651(MenuAction.getWidgetClickMask(var3));
+			Interpreter.Interpreter_intStack[++GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize - 1] = Client.method1655(MenuAction.getWidgetClickMask(var3));
 			return 1;
 		} else if (var0 != ScriptOpcodes.IF_GETOP) {
 			if (var0 == ScriptOpcodes.IF_GETOPBASE) {

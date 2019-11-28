@@ -93,7 +93,7 @@ public abstract class AbstractArchive {
 	)
 	@Export("decodeIndex")
 	void decodeIndex(byte[] var1) {
-		this.hash = class222.method4167(var1, var1.length);
+		this.hash = class222.method4196(var1, var1.length);
 		Buffer var2 = new Buffer(class226.decompressBytes(var1));
 		int var3 = var2.readUnsignedByte();
 		if (var3 >= 5 && var3 <= 7) {
@@ -103,7 +103,7 @@ public abstract class AbstractArchive {
 
 			int var4 = var2.readUnsignedByte();
 			if (var3 >= 7) {
-				this.groupCount = var2.method5585();
+				this.groupCount = var2.method5617();
 			} else {
 				this.groupCount = var2.readUnsignedShort();
 			}
@@ -114,7 +114,7 @@ public abstract class AbstractArchive {
 			int var7;
 			if (var3 >= 7) {
 				for (var7 = 0; var7 < this.groupCount; ++var7) {
-					this.groupIds[var7] = var5 += var2.method5585();
+					this.groupIds[var7] = var5 += var2.method5617();
 					if (this.groupIds[var7] > var6) {
 						var6 = this.groupIds[var7];
 					}
@@ -170,7 +170,7 @@ public abstract class AbstractArchive {
 					this.fileIds[var8] = new int[var9];
 
 					for (var11 = 0; var11 < var9; ++var11) {
-						var12 = this.fileIds[var8][var11] = var5 += var2.method5585();
+						var12 = this.fileIds[var8][var11] = var5 += var2.method5617();
 						if (var12 > var10) {
 							var10 = var12;
 						}
@@ -294,7 +294,7 @@ public abstract class AbstractArchive {
 		signature = "(II)Z",
 		garbageValue = "1197413241"
 	)
-	public boolean method4208(int var1) {
+	public boolean method4237(int var1) {
 		if (this.files.length == 1) {
 			return this.tryLoadFile(0, var1);
 		} else if (this.files[var1].length == 1) {

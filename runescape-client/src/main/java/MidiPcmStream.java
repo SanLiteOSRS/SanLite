@@ -123,7 +123,7 @@ public class MidiPcmStream extends PcmStream {
 		this.midiFile = new MidiFileReader();
 		this.patchStream = new MusicPatchPcmStream(this);
 		this.musicPatches = new NodeHashTable(128);
-		this.method3761();
+		this.method3787();
 	}
 
 	@ObfuscatedName("u")
@@ -141,7 +141,7 @@ public class MidiPcmStream extends PcmStream {
 		signature = "(I)I",
 		garbageValue = "-847322953"
 	)
-	int method3743() {
+	int method3769() {
 		return this.field2417;
 	}
 
@@ -152,7 +152,7 @@ public class MidiPcmStream extends PcmStream {
 	)
 	@Export("loadMusicTrack")
 	public synchronized boolean loadMusicTrack(MusicTrack var1, AbstractArchive var2, SoundCache var3, int var4) {
-		var1.method3961();
+		var1.method3987();
 		boolean var5 = true;
 		int[] var6 = null;
 		if (var4 > 0) {
@@ -180,7 +180,7 @@ public class MidiPcmStream extends PcmStream {
 				this.musicPatches.put(var10, (long)var8);
 			}
 
-			if (!var9.method3926(var3, var7.byteArray, var6)) {
+			if (!var9.method3952(var3, var7.byteArray, var6)) {
 				var5 = false;
 			}
 		}
@@ -237,7 +237,7 @@ public class MidiPcmStream extends PcmStream {
 	}
 
 	@ObfuscatedName("y")
-	protected synchronized int vmethod3937() {
+	protected synchronized int vmethod3963() {
 		return 0;
 	}
 
@@ -259,7 +259,7 @@ public class MidiPcmStream extends PcmStream {
 				this.patchStream.fill(var1, var2, var7);
 				var2 += var7;
 				var3 -= var7;
-				this.method3774();
+				this.method3800();
 			} while(this.midiFile.isReady());
 		}
 
@@ -287,7 +287,7 @@ public class MidiPcmStream extends PcmStream {
 
 		this.track = this.midiFile.getPrioritizedTrack();
 		this.trackLength = this.midiFile.trackLengths[this.track];
-		this.field2416 = this.midiFile.method3880(this.trackLength);
+		this.field2416 = this.midiFile.method3906(this.trackLength);
 	}
 
 	@ObfuscatedName("k")
@@ -307,7 +307,7 @@ public class MidiPcmStream extends PcmStream {
 				this.field2431 += (long)var5 * (long)var2;
 				this.patchStream.skip(var5);
 				var1 -= var5;
-				this.method3774();
+				this.method3800();
 			} while(this.midiFile.isReady());
 		}
 
@@ -322,7 +322,7 @@ public class MidiPcmStream extends PcmStream {
 	@Export("clear")
 	public synchronized void clear() {
 		this.midiFile.clear();
-		this.method3761();
+		this.method3787();
 	}
 
 	@ObfuscatedName("o")
@@ -340,8 +340,8 @@ public class MidiPcmStream extends PcmStream {
 		signature = "(III)V",
 		garbageValue = "2056390451"
 	)
-	public synchronized void method3749(int var1, int var2) {
-		this.method3791(var1, var2);
+	public synchronized void method3775(int var1, int var2) {
+		this.method3817(var1, var2);
 	}
 
 	@ObfuscatedName("n")
@@ -349,10 +349,10 @@ public class MidiPcmStream extends PcmStream {
 		signature = "(III)V",
 		garbageValue = "-1275355891"
 	)
-	void method3791(int var1, int var2) {
+	void method3817(int var1, int var2) {
 		this.field2422[var1] = var2;
 		this.field2424[var1] = var2 & -128;
-		this.method3751(var1, var2);
+		this.method3777(var1, var2);
 	}
 
 	@ObfuscatedName("c")
@@ -360,7 +360,7 @@ public class MidiPcmStream extends PcmStream {
 		signature = "(III)V",
 		garbageValue = "-1314090559"
 	)
-	void method3751(int var1, int var2) {
+	void method3777(int var1, int var2) {
 		if (var2 != this.field2421[var1]) {
 			this.field2421[var1] = var2;
 
@@ -376,8 +376,8 @@ public class MidiPcmStream extends PcmStream {
 		signature = "(IIII)V",
 		garbageValue = "1833290175"
 	)
-	void method3752(int var1, int var2, int var3) {
-		this.method3790(var1, var2, 64);
+	void method3778(int var1, int var2, int var3) {
+		this.method3816(var1, var2, 64);
 		if ((this.field2428[var1] & 2) != 0) {
 			for (MusicPatchNode var4 = (MusicPatchNode)this.patchStream.queue.first(); var4 != null; var4 = (MusicPatchNode)this.patchStream.queue.next()) {
 				if (var4.field2449 == var1 && var4.field2459 < 0) {
@@ -413,10 +413,10 @@ public class MidiPcmStream extends PcmStream {
 				var6.field2459 = -1;
 				var6.field2460 = 0;
 				if (this.field2441[var1] == 0) {
-					var6.stream = RawPcmStream.method2549(var8, this.method3836(var6), this.method3767(var6), this.method3768(var6));
+					var6.stream = RawPcmStream.method2568(var8, this.method3862(var6), this.method3793(var6), this.method3794(var6));
 				} else {
-					var6.stream = RawPcmStream.method2549(var8, this.method3836(var6), 0, this.method3768(var6));
-					this.method3753(var6, var9.field2485[var2] < 0);
+					var6.stream = RawPcmStream.method2568(var8, this.method3862(var6), 0, this.method3794(var6));
+					this.method3779(var6, var9.field2485[var2] < 0);
 				}
 
 				if (var9.field2485[var2] < 0) {
@@ -444,7 +444,7 @@ public class MidiPcmStream extends PcmStream {
 		signature = "(Lge;ZI)V",
 		garbageValue = "-1090319556"
 	)
-	void method3753(MusicPatchNode var1, boolean var2) {
+	void method3779(MusicPatchNode var1, boolean var2) {
 		int var3 = var1.rawSound.samples.length;
 		int var4;
 		if (var2 && var1.rawSound.field1378) {
@@ -453,13 +453,13 @@ public class MidiPcmStream extends PcmStream {
 			var3 <<= 8;
 			if (var4 >= var3) {
 				var4 = var3 + var3 - 1 - var4;
-				var1.stream.method2559();
+				var1.stream.method2578();
 			}
 		} else {
 			var4 = (int)((long)var3 * (long)this.field2441[var1.field2449] >> 6);
 		}
 
-		var1.stream.method2703(var4);
+		var1.stream.method2722(var4);
 	}
 
 	@ObfuscatedName("m")
@@ -467,7 +467,7 @@ public class MidiPcmStream extends PcmStream {
 		signature = "(IIIB)V",
 		garbageValue = "-33"
 	)
-	void method3790(int var1, int var2, int var3) {
+	void method3816(int var1, int var2, int var3) {
 		MusicPatchNode var4 = this.field2434[var1][var2];
 		if (var4 != null) {
 			this.field2434[var1][var2] = null;
@@ -490,7 +490,7 @@ public class MidiPcmStream extends PcmStream {
 		signature = "(IIIB)V",
 		garbageValue = "-115"
 	)
-	void method3755(int var1, int var2, int var3) {
+	void method3781(int var1, int var2, int var3) {
 	}
 
 	@ObfuscatedName("q")
@@ -498,7 +498,7 @@ public class MidiPcmStream extends PcmStream {
 		signature = "(III)V",
 		garbageValue = "-1083073471"
 	)
-	void method3756(int var1, int var2) {
+	void method3782(int var1, int var2) {
 	}
 
 	@ObfuscatedName("l")
@@ -506,7 +506,7 @@ public class MidiPcmStream extends PcmStream {
 		signature = "(III)V",
 		garbageValue = "683649842"
 	)
-	void method3757(int var1, int var2) {
+	void method3783(int var1, int var2) {
 		this.field2425[var1] = var2;
 	}
 
@@ -515,16 +515,16 @@ public class MidiPcmStream extends PcmStream {
 		signature = "(II)V",
 		garbageValue = "41766095"
 	)
-	void method3758(int var1) {
+	void method3784(int var1) {
 		for (MusicPatchNode var2 = (MusicPatchNode)this.patchStream.queue.last(); var2 != null; var2 = (MusicPatchNode)this.patchStream.queue.previous()) {
 			if (var1 < 0 || var2.field2449 == var1) {
 				if (var2.stream != null) {
-					var2.stream.method2563(Messages.field1274 / 100);
-					if (var2.stream.method2667()) {
+					var2.stream.method2582(Messages.field1274 / 100);
+					if (var2.stream.method2686()) {
 						this.patchStream.mixer.addSubStream(var2.stream);
 					}
 
-					var2.method3867();
+					var2.method3893();
 				}
 
 				if (var2.field2459 < 0) {
@@ -542,7 +542,7 @@ public class MidiPcmStream extends PcmStream {
 		signature = "(IB)V",
 		garbageValue = "54"
 	)
-	void method3794(int var1) {
+	void method3820(int var1) {
 		if (var1 >= 0) {
 			this.field2437[var1] = 12800;
 			this.field2420[var1] = 8192;
@@ -550,16 +550,16 @@ public class MidiPcmStream extends PcmStream {
 			this.field2425[var1] = 8192;
 			this.field2443[var1] = 0;
 			this.field2427[var1] = 8192;
-			this.method3811(var1);
-			this.method3763(var1);
+			this.method3837(var1);
+			this.method3789(var1);
 			this.field2428[var1] = 0;
 			this.field2440[var1] = 32767;
 			this.field2430[var1] = 256;
 			this.field2441[var1] = 0;
-			this.method3765(var1, 8192);
+			this.method3791(var1, 8192);
 		} else {
 			for (var1 = 0; var1 < 16; ++var1) {
-				this.method3794(var1);
+				this.method3820(var1);
 			}
 
 		}
@@ -570,7 +570,7 @@ public class MidiPcmStream extends PcmStream {
 		signature = "(IB)V",
 		garbageValue = "122"
 	)
-	void method3760(int var1) {
+	void method3786(int var1) {
 		for (MusicPatchNode var2 = (MusicPatchNode)this.patchStream.queue.last(); var2 != null; var2 = (MusicPatchNode)this.patchStream.queue.previous()) {
 			if ((var1 < 0 || var2.field2449 == var1) && var2.field2459 < 0) {
 				this.field2434[var2.field2449][var2.field2450] = null;
@@ -585,9 +585,9 @@ public class MidiPcmStream extends PcmStream {
 		signature = "(B)V",
 		garbageValue = "-18"
 	)
-	void method3761() {
-		this.method3758(-1);
-		this.method3794(-1);
+	void method3787() {
+		this.method3784(-1);
+		this.method3820(-1);
 
 		int var1;
 		for (var1 = 0; var1 < 16; ++var1) {
@@ -605,7 +605,7 @@ public class MidiPcmStream extends PcmStream {
 		signature = "(II)V",
 		garbageValue = "1524706833"
 	)
-	void method3811(int var1) {
+	void method3837(int var1) {
 		if ((this.field2428[var1] & 2) != 0) {
 			for (MusicPatchNode var2 = (MusicPatchNode)this.patchStream.queue.last(); var2 != null; var2 = (MusicPatchNode)this.patchStream.queue.previous()) {
 				if (var2.field2449 == var1 && this.field2434[var1][var2.field2450] == null && var2.field2459 < 0) {
@@ -621,7 +621,7 @@ public class MidiPcmStream extends PcmStream {
 		signature = "(II)V",
 		garbageValue = "-339945953"
 	)
-	void method3763(int var1) {
+	void method3789(int var1) {
 		if ((this.field2428[var1] & 4) != 0) {
 			for (MusicPatchNode var2 = (MusicPatchNode)this.patchStream.queue.last(); var2 != null; var2 = (MusicPatchNode)this.patchStream.queue.previous()) {
 				if (var2.field2449 == var1) {
@@ -637,7 +637,7 @@ public class MidiPcmStream extends PcmStream {
 		signature = "(II)V",
 		garbageValue = "640708386"
 	)
-	void method3744(int var1) {
+	void method3770(int var1) {
 		int var2 = var1 & 240;
 		int var3;
 		int var4;
@@ -646,22 +646,22 @@ public class MidiPcmStream extends PcmStream {
 			var3 = var1 & 15;
 			var4 = var1 >> 8 & 127;
 			var5 = var1 >> 16 & 127;
-			this.method3790(var3, var4, var5);
+			this.method3816(var3, var4, var5);
 		} else if (var2 == 144) {
 			var3 = var1 & 15;
 			var4 = var1 >> 8 & 127;
 			var5 = var1 >> 16 & 127;
 			if (var5 > 0) {
-				this.method3752(var3, var4, var5);
+				this.method3778(var3, var4, var5);
 			} else {
-				this.method3790(var3, var4, 64);
+				this.method3816(var3, var4, 64);
 			}
 
 		} else if (var2 == 160) {
 			var3 = var1 & 15;
 			var4 = var1 >> 8 & 127;
 			var5 = var1 >> 16 & 127;
-			this.method3755(var3, var4, var5);
+			this.method3781(var3, var4, var5);
 		} else if (var2 == 176) {
 			var3 = var1 & 15;
 			var4 = var1 >> 8 & 127;
@@ -730,7 +730,7 @@ public class MidiPcmStream extends PcmStream {
 					var10000 = this.field2428;
 					var10000[var3] |= 2;
 				} else {
-					this.method3811(var3);
+					this.method3837(var3);
 					var10000 = this.field2428;
 					var10000[var3] &= -3;
 				}
@@ -753,15 +753,15 @@ public class MidiPcmStream extends PcmStream {
 			}
 
 			if (var4 == 120) {
-				this.method3758(var3);
+				this.method3784(var3);
 			}
 
 			if (var4 == 121) {
-				this.method3794(var3);
+				this.method3820(var3);
 			}
 
 			if (var4 == 123) {
-				this.method3760(var3);
+				this.method3786(var3);
 			}
 
 			int var6;
@@ -792,36 +792,36 @@ public class MidiPcmStream extends PcmStream {
 					var10000 = this.field2428;
 					var10000[var3] |= 4;
 				} else {
-					this.method3763(var3);
+					this.method3789(var3);
 					var10000 = this.field2428;
 					var10000[var3] &= -5;
 				}
 			}
 
 			if (var4 == 17) {
-				this.method3765(var3, (var5 << 7) + (this.field2432[var3] & -16257));
+				this.method3791(var3, (var5 << 7) + (this.field2432[var3] & -16257));
 			}
 
 			if (var4 == 49) {
-				this.method3765(var3, var5 + (this.field2432[var3] & -128));
+				this.method3791(var3, var5 + (this.field2432[var3] & -128));
 			}
 
 		} else if (var2 == 192) {
 			var3 = var1 & 15;
 			var4 = var1 >> 8 & 127;
-			this.method3751(var3, var4 + this.field2424[var3]);
+			this.method3777(var3, var4 + this.field2424[var3]);
 		} else if (var2 == 208) {
 			var3 = var1 & 15;
 			var4 = var1 >> 8 & 127;
-			this.method3756(var3, var4);
+			this.method3782(var3, var4);
 		} else if (var2 == 224) {
 			var3 = var1 & 15;
 			var4 = (var1 >> 8 & 127) + (var1 >> 9 & 16256);
-			this.method3757(var3, var4);
+			this.method3783(var3, var4);
 		} else {
 			var2 = var1 & 255;
 			if (var2 == 255) {
-				this.method3761();
+				this.method3787();
 			}
 		}
 	}
@@ -831,7 +831,7 @@ public class MidiPcmStream extends PcmStream {
 		signature = "(III)V",
 		garbageValue = "-2102724080"
 	)
-	void method3765(int var1, int var2) {
+	void method3791(int var1, int var2) {
 		this.field2432[var1] = var2;
 		this.field2433[var1] = (int)(2097152.0D * Math.pow(2.0D, 5.4931640625E-4D * (double)var2) + 0.5D);
 	}
@@ -841,7 +841,7 @@ public class MidiPcmStream extends PcmStream {
 		signature = "(Lge;B)I",
 		garbageValue = "1"
 	)
-	int method3836(MusicPatchNode var1) {
+	int method3862(MusicPatchNode var1) {
 		int var2 = (var1.field2455 * var1.field2454 >> 12) + var1.field2465;
 		var2 += (this.field2425[var1.field2449] - 8192) * this.field2430[var1.field2449] >> 12;
 		MusicPatchNode2 var3 = var1.field2448;
@@ -867,7 +867,7 @@ public class MidiPcmStream extends PcmStream {
 		signature = "(Lge;B)I",
 		garbageValue = "7"
 	)
-	int method3767(MusicPatchNode var1) {
+	int method3793(MusicPatchNode var1) {
 		MusicPatchNode2 var2 = var1.field2448;
 		int var3 = this.field2442[var1.field2449] * this.field2437[var1.field2449] + 4096 >> 13;
 		var3 = var3 * var3 + 16384 >> 15;
@@ -913,7 +913,7 @@ public class MidiPcmStream extends PcmStream {
 		signature = "(Lge;I)I",
 		garbageValue = "1924101342"
 	)
-	int method3768(MusicPatchNode var1) {
+	int method3794(MusicPatchNode var1) {
 		int var2 = this.field2420[var1.field2449];
 		return var2 < 8192 ? var2 * var1.field2452 + 32 >> 6 : 16384 - ((128 - var1.field2452) * (16384 - var2) + 32 >> 6);
 	}
@@ -923,12 +923,12 @@ public class MidiPcmStream extends PcmStream {
 		signature = "(I)V",
 		garbageValue = "869204676"
 	)
-	void method3774() {
+	void method3800() {
 		int var1 = this.track;
 		int var2 = this.trackLength;
 
 		long var3;
-		for (var3 = this.field2416; var2 == this.trackLength; var3 = this.midiFile.method3880(var2)) {
+		for (var3 = this.field2416; var2 == this.trackLength; var3 = this.midiFile.method3906(var2)) {
 			while (var2 == this.midiFile.trackLengths[var1]) {
 				this.midiFile.gotoTrack(var1);
 				int var5 = this.midiFile.readMessage(var1);
@@ -937,7 +937,7 @@ public class MidiPcmStream extends PcmStream {
 					this.midiFile.markTrackPosition(var1);
 					if (this.midiFile.isDone()) {
 						if (!this.field2426 || var2 == 0) {
-							this.method3761();
+							this.method3787();
 							this.midiFile.clear();
 							return;
 						}
@@ -948,7 +948,7 @@ public class MidiPcmStream extends PcmStream {
 				}
 
 				if ((var5 & 128) != 0) {
-					this.method3744(var5);
+					this.method3770(var5);
 				}
 
 				this.midiFile.readTrackLength(var1);
@@ -969,7 +969,7 @@ public class MidiPcmStream extends PcmStream {
 		signature = "(Lge;B)Z",
 		garbageValue = "0"
 	)
-	boolean method3775(MusicPatchNode var1) {
+	boolean method3801(MusicPatchNode var1) {
 		if (var1.stream == null) {
 			if (var1.field2459 >= 0) {
 				var1.remove();
@@ -989,9 +989,9 @@ public class MidiPcmStream extends PcmStream {
 		signature = "(Lge;[IIII)Z",
 		garbageValue = "178317578"
 	)
-	boolean method3776(MusicPatchNode var1, int[] var2, int var3, int var4) {
+	boolean method3802(MusicPatchNode var1, int[] var2, int var3, int var4) {
 		var1.field2464 = Messages.field1274 / 100;
-		if (var1.field2459 < 0 || var1.stream != null && !var1.stream.method2566()) {
+		if (var1.field2459 < 0 || var1.stream != null && !var1.stream.method2585()) {
 			int var5 = var1.field2455;
 			if (var5 > 0) {
 				var5 -= (int)(16.0D * Math.pow(2.0D, (double)this.field2427[var1.field2449] * 4.921259842519685E-4D) + 0.5D);
@@ -1002,7 +1002,7 @@ public class MidiPcmStream extends PcmStream {
 				var1.field2455 = var5;
 			}
 
-			var1.stream.method2660(this.method3836(var1));
+			var1.stream.method2679(this.method3862(var1));
 			MusicPatchNode2 var6 = var1.field2448;
 			boolean var7 = false;
 			++var1.field2461;
@@ -1049,18 +1049,18 @@ public class MidiPcmStream extends PcmStream {
 			}
 
 			if (var7) {
-				var1.stream.method2563(var1.field2464);
+				var1.stream.method2582(var1.field2464);
 				if (var2 != null) {
 					var1.stream.fill(var2, var3, var4);
 				} else {
 					var1.stream.skip(var4);
 				}
 
-				if (var1.stream.method2667()) {
+				if (var1.stream.method2686()) {
 					this.patchStream.mixer.addSubStream(var1.stream);
 				}
 
-				var1.method3867();
+				var1.method3893();
 				if (var1.field2459 >= 0) {
 					var1.remove();
 					if (var1.field2445 > 0 && var1 == this.field2435[var1.field2449][var1.field2445]) {
@@ -1070,11 +1070,11 @@ public class MidiPcmStream extends PcmStream {
 
 				return true;
 			} else {
-				var1.stream.method2562(var1.field2464, this.method3767(var1), this.method3768(var1));
+				var1.stream.method2581(var1.field2464, this.method3793(var1), this.method3794(var1));
 				return false;
 			}
 		} else {
-			var1.method3867();
+			var1.method3893();
 			var1.remove();
 			if (var1.field2445 > 0 && var1 == this.field2435[var1.field2449][var1.field2445]) {
 				this.field2435[var1.field2449][var1.field2445] = null;

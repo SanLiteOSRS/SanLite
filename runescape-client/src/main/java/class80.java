@@ -62,7 +62,7 @@ public class class80 {
 			int var16;
 			int var22;
 			int var23;
-			if (!var0.healthBars.method4882()) {
+			if (!var0.healthBars.method4911()) {
 				ItemContainer.getActorScreenLocation(var0, var0.defaultHeight + 15);
 
 				for (HealthBar var77 = (HealthBar)var0.healthBars.last(); var77 != null; var77 = (HealthBar)var0.healthBars.previous()) {
@@ -327,7 +327,7 @@ public class class80 {
 							int var40 = 0;
 							int var41 = 0;
 							int var42 = 0;
-							Sprite var98 = var91.method4633();
+							Sprite var98 = var91.method4662();
 							int var43;
 							if (var98 != null) {
 								var22 = var98.subWidth;
@@ -339,7 +339,7 @@ public class class80 {
 								var26 = var98.xOffset;
 							}
 
-							var97 = var91.method4634();
+							var97 = var91.method4663();
 							if (var97 != null) {
 								var23 = var97.subWidth;
 								var43 = var97.subHeight;
@@ -350,7 +350,7 @@ public class class80 {
 								var27 = var97.xOffset;
 							}
 
-							var86 = var91.method4642();
+							var86 = var91.method4671();
 							if (var86 != null) {
 								var24 = var86.subWidth;
 								var43 = var86.subHeight;
@@ -361,7 +361,7 @@ public class class80 {
 								var28 = var86.xOffset;
 							}
 
-							var87 = var91.method4628();
+							var87 = var91.method4657();
 							if (var87 != null) {
 								var25 = var87.subWidth;
 								var43 = var87.subHeight;
@@ -373,7 +373,7 @@ public class class80 {
 							}
 
 							if (var83 != null) {
-								var30 = var83.method4633();
+								var30 = var83.method4662();
 								if (var30 != null) {
 									var34 = var30.subWidth;
 									var43 = var30.subHeight;
@@ -384,7 +384,7 @@ public class class80 {
 									var38 = var30.xOffset;
 								}
 
-								var31 = var83.method4634();
+								var31 = var83.method4663();
 								if (var31 != null) {
 									var35 = var31.subWidth;
 									var43 = var31.subHeight;
@@ -395,7 +395,7 @@ public class class80 {
 									var39 = var31.xOffset;
 								}
 
-								var32 = var83.method4642();
+								var32 = var83.method4671();
 								if (var32 != null) {
 									var36 = var32.subWidth;
 									var43 = var32.subHeight;
@@ -406,7 +406,7 @@ public class class80 {
 									var40 = var32.xOffset;
 								}
 
-								var33 = var83.method4628();
+								var33 = var83.method4657();
 								if (var33 != null) {
 									var37 = var33.subWidth;
 									var43 = var33.subHeight;

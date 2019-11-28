@@ -55,7 +55,7 @@ public class VertexNormal {
 	@ObfuscatedSignature(
 		signature = "(Lkg;J)V"
 	)
-	static void method3000(Buffer var0, long var1) {
+	static void method3019(Buffer var0, long var1) {
 		var1 /= 10L;
 		if (var1 < 0L) {
 			var1 = 0L;
@@ -134,7 +134,7 @@ public class VertexNormal {
 			Rasterizer2D.Rasterizer2D_replace(var8.pixels, 36, 32);
 			Rasterizer2D.Rasterizer2D_clear();
 			Rasterizer3D.Rasterizer3D_setClipFromRasterizer2D();
-			Rasterizer3D.method3005(16, 16);
+			Rasterizer3D.method3024(16, 16);
 			Rasterizer3D.field1750 = false;
 			if (var9.placeholderTemplate != -1) {
 				var20.drawTransBgAt(0, 0);
@@ -150,7 +150,7 @@ public class VertexNormal {
 			int var17 = var16 * Rasterizer3D.Rasterizer3D_sine[var9.xan2d] >> 16;
 			int var18 = var16 * Rasterizer3D.Rasterizer3D_cosine[var9.xan2d] >> 16;
 			var19.calculateBoundsCylinder();
-			var19.method2939(0, var9.yan2d, var9.zan2d, var9.xan2d, var9.offsetX2d, var19.height / 2 + var17 + var9.offsetY2d, var18 + var9.offsetY2d);
+			var19.method2958(0, var9.yan2d, var9.zan2d, var9.xan2d, var9.offsetX2d, var19.height / 2 + var17 + var9.offsetY2d, var18 + var9.offsetY2d);
 			if (var9.notedId != -1) {
 				var20.drawTransBgAt(0, 0);
 			}
@@ -193,12 +193,12 @@ public class VertexNormal {
 		signature = "(Ljava/lang/String;I)Ljava/lang/String;",
 		garbageValue = "-710411127"
 	)
-	static String method2998(String var0) {
+	static String method3017(String var0) {
 		PlayerType[] var1 = class2.PlayerType_values();
 
 		for (int var2 = 0; var2 < var1.length; ++var2) {
 			PlayerType var3 = var1[var2];
-			if (var3.modIcon != -1 && var0.startsWith(Client.method1730(var3.modIcon))) {
+			if (var3.modIcon != -1 && var0.startsWith(Client.method1749(var3.modIcon))) {
 				var0 = var0.substring(6 + Integer.toString(var3.modIcon).length());
 				break;
 			}

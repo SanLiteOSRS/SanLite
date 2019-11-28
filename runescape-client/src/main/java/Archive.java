@@ -122,7 +122,7 @@ public class Archive extends AbstractArchive {
 	@Export("loadGroup")
 	void loadGroup(int var1) {
 		if (this.archiveDisk != null && this.validGroups != null && this.validGroups[var1]) {
-			PlayerType.method4181(var1, this.archiveDisk, this);
+			PlayerType.method4210(var1, this.archiveDisk, this);
 		} else {
 			ClientPreferences.requestNetFile(this, this.index, var1, super.groupCrcs[var1], (byte)2, true);
 		}
@@ -134,7 +134,7 @@ public class Archive extends AbstractArchive {
 		signature = "(B)Z",
 		garbageValue = "0"
 	)
-	public boolean method4316() {
+	public boolean method4345() {
 		return this.field3158;
 	}
 
@@ -178,7 +178,7 @@ public class Archive extends AbstractArchive {
 		this.indexCrc = var1;
 		this.indexVersion = var2;
 		if (this.masterDisk != null) {
-			PlayerType.method4181(this.index, this.masterDisk, this);
+			PlayerType.method4210(this.index, this.masterDisk, this);
 		} else {
 			ClientPreferences.requestNetFile(this, 255, this.index, this.indexCrc, (byte)0, true);
 		}
@@ -198,7 +198,7 @@ public class Archive extends AbstractArchive {
 			}
 
 			if (this.masterDisk != null) {
-				TileItem.method2125(this.index, var2, this.masterDisk);
+				TileItem.method2144(this.index, var2, this.masterDisk);
 			}
 
 			this.decodeIndex(var2);
@@ -207,7 +207,7 @@ public class Archive extends AbstractArchive {
 			var2[var2.length - 2] = (byte)(super.groupVersions[var1] >> 8);
 			var2[var2.length - 1] = (byte)super.groupVersions[var1];
 			if (this.archiveDisk != null) {
-				TileItem.method2125(var1, var2, this.archiveDisk);
+				TileItem.method2144(var1, var2, this.archiveDisk);
 				this.validGroups[var1] = true;
 			}
 
@@ -359,7 +359,7 @@ public class Archive extends AbstractArchive {
 		signature = "(II)Z",
 		garbageValue = "2065580050"
 	)
-	public boolean method4325(int var1) {
+	public boolean method4354(int var1) {
 		return this.validGroups[var1];
 	}
 
@@ -368,7 +368,7 @@ public class Archive extends AbstractArchive {
 		signature = "(II)Z",
 		garbageValue = "581589057"
 	)
-	public boolean method4326(int var1) {
+	public boolean method4355(int var1) {
 		return this.getGroupFileIds(var1) != null;
 	}
 

@@ -46,7 +46,7 @@ public class FriendSystem {
 		signature = "(I)Z",
 		garbageValue = "-1963052463"
 	)
-	boolean method1851() {
+	boolean method1870() {
 		return this.field1061 == 2;
 	}
 
@@ -55,7 +55,7 @@ public class FriendSystem {
 		signature = "(B)V",
 		garbageValue = "-31"
 	)
-	final void method1848() {
+	final void method1867() {
 		this.field1061 = 1;
 	}
 
@@ -79,7 +79,7 @@ public class FriendSystem {
 	@Export("processFriendUpdates")
 	final void processFriendUpdates() {
 		for (FriendLoginUpdate var1 = (FriendLoginUpdate)this.friendsList.friendLoginUpdates.last(); var1 != null; var1 = (FriendLoginUpdate)this.friendsList.friendLoginUpdates.previous()) {
-			if ((long)var1.field3646 < TaskHandler.method3510() / 1000L - 5L) {
+			if ((long)var1.field3646 < TaskHandler.currentTimeMillis() / 1000L - 5L) {
 				if (var1.world > 0) {
 					GrandExchangeOfferAgeComparator.addGameMessage(5, "", var1.username + " has logged in.");
 				}
@@ -147,7 +147,7 @@ public class FriendSystem {
 			Username var2 = new Username(var1, this.loginType);
 			if (var2.hasCleanName()) {
 				if (this.friendsListIsFull()) {
-					PacketBufferNode.method3647();
+					PacketBufferNode.method3670();
 				} else if (class215.localPlayer.username.equals(var2)) {
 					WorldMapSection2.method347("You can't add yourself to your own friend list");
 				} else if (this.isFriended(var2, false)) {
@@ -193,7 +193,7 @@ public class FriendSystem {
 				} else if (this.isFriended(var2, false)) {
 					WorldMapSectionType.method269(var1);
 				} else {
-					class218.method4150(var1);
+					class218.method4179(var1);
 				}
 			}
 		}
@@ -271,7 +271,7 @@ public class FriendSystem {
 		signature = "(I)[Lgd;",
 		garbageValue = "-1110076754"
 	)
-	public static class185[] method1908() {
+	public static class185[] method1927() {
 		return new class185[]{class185.field2334, class185.field2332, class185.field2333, class185.field2339, class185.field2336, class185.field2341, class185.field2337, class185.field2331, class185.field2335, class185.field2340};
 	}
 
@@ -280,7 +280,7 @@ public class FriendSystem {
 		signature = "(B)Z",
 		garbageValue = "-90"
 	)
-	static boolean method1901() {
+	static boolean method1920() {
 		return (Client.drawPlayerNames & 2) != 0;
 	}
 }

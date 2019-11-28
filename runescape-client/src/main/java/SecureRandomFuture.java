@@ -65,7 +65,7 @@ public class SecureRandomFuture {
 		try {
 			return (SecureRandom)this.future.get();
 		} catch (Exception var2) {
-			return NetCache.method4365();
+			return NetCache.method4394();
 		}
 	}
 }

@@ -364,7 +364,7 @@ public class WorldMap {
 		signature = "(I)V",
 		garbageValue = "2075872374"
 	)
-	public void method6334() {
+	public void method6376() {
 		WorldMapRegion.WorldMapRegion_cachedSprites.demote(5);
 	}
 
@@ -424,9 +424,9 @@ public class WorldMap {
 		signature = "(IIZZI)V",
 		garbageValue = "-788666076"
 	)
-	public void method6336(int var1, int var2, boolean var3, boolean var4) {
-		long var5 = TaskHandler.method3510();
-		this.method6337(var1, var2, var4, var5);
+	public void method6378(int var1, int var2, boolean var3, boolean var4) {
+		long var5 = TaskHandler.currentTimeMillis();
+		this.method6379(var1, var2, var4, var5);
 		if (!this.hasTarget() && (var4 || var3)) {
 			if (var4) {
 				this.field3966 = var1;
@@ -441,7 +441,7 @@ public class WorldMap {
 				this.setWorldMapPosition(this.field3997 - (int)((float)var7 / this.zoomTarget), (int)((float)var8 / this.zoomTarget) + this.field3979, false);
 			}
 		} else {
-			this.method6341();
+			this.method6383();
 		}
 
 		if (var4) {
@@ -453,14 +453,14 @@ public class WorldMap {
 	}
 
 	@ObfuscatedName("z")
-	void method6337(int var1, int var2, boolean var3, long var4) {
+	void method6379(int var1, int var2, boolean var3, long var4) {
 		if (this.currentMapArea != null) {
 			int var6 = (int)((float)this.centerTileX + ((float)(var1 - this.worldMapDisplayX) - (float)this.getDisplayWith() * this.zoom / 2.0F) / this.zoom);
 			int var7 = (int)((float)this.centerTileY - ((float)(var2 - this.worldMapDisplayY) - (float)this.getDisplayHeight() * this.zoom / 2.0F) / this.zoom);
 			this.mouseCoord = this.currentMapArea.coord(var6 + this.currentMapArea.getRegionLowX() * 64, var7 + this.currentMapArea.getRegionLowY() * 64);
 			if (this.mouseCoord != null && var3) {
 				if (WorldMapSection0.method254() && KeyHandler.KeyHandler_pressedKeys[82] && KeyHandler.KeyHandler_pressedKeys[81]) {
-					Clock.method3536(this.mouseCoord.x, this.mouseCoord.y, this.mouseCoord.plane, false);
+					Clock.method3555(this.mouseCoord.x, this.mouseCoord.y, this.mouseCoord.plane, false);
 				} else {
 					boolean var8 = true;
 					if (this.field3957) {
@@ -473,7 +473,7 @@ public class WorldMap {
 
 					if (var8) {
 						PacketBufferNode var11 = ModelData0.getPacketBufferNode(ClientPacket.field2291, Client.packetWriter.isaacCipher);
-						var11.packetBuffer.method5615(this.mouseCoord.packed());
+						var11.packetBuffer.method5647(this.mouseCoord.packed());
 						Client.packetWriter.addNode(var11);
 						this.field3982 = 0L;
 					}
@@ -542,9 +542,9 @@ public class WorldMap {
 	final void setWorldMapPosition(int var1, int var2, boolean var3) {
 		this.centerTileX = var1;
 		this.centerTileY = var2;
-		TaskHandler.method3510();
+		TaskHandler.currentTimeMillis();
 		if (var3) {
-			this.method6341();
+			this.method6383();
 		}
 
 	}
@@ -554,7 +554,7 @@ public class WorldMap {
 		signature = "(B)V",
 		garbageValue = "-93"
 	)
-	final void method6341() {
+	final void method6383() {
 		this.field3981 = -1;
 		this.field3966 = -1;
 		this.field3979 = -1;
@@ -597,7 +597,7 @@ public class WorldMap {
 		signature = "(IIIZB)V",
 		garbageValue = "118"
 	)
-	public void method6339(int var1, int var2, int var3, boolean var4) {
+	public void method6381(int var1, int var2, int var3, boolean var4) {
 		WorldMapArea var5 = this.mapAreaAtCoord(var1, var2, var3);
 		if (var5 == null) {
 			if (!var4) {
@@ -684,7 +684,7 @@ public class WorldMap {
 		signature = "(Laf;Lhx;Lhx;ZI)V",
 		garbageValue = "1443129955"
 	)
-	public void method6411(WorldMapArea var1, Coord var2, Coord var3, boolean var4) {
+	public void method6453(WorldMapArea var1, Coord var2, Coord var3, boolean var4) {
 		if (var1 != null) {
 			if (this.currentMapArea == null || var1 != this.currentMapArea) {
 				this.initializeWorldMapManager(var1);
@@ -770,7 +770,7 @@ public class WorldMap {
 				this.worldMapManager.drawElements(this.centerTileX - var8 / 2, this.centerTileY - var9 / 2, var8 / 2 + this.centerTileX, var9 / 2 + this.centerTileY, var1, var2, var3 + var1, var2 + var4, this.field3989, this.flashingElements, this.flashCycle, this.cyclesPerFlash, var10);
 			}
 
-			this.method6354(var1, var2, var3, var4, var8, var9);
+			this.method6396(var1, var2, var3, var4, var8, var9);
 			if (WorldMapSection0.method254() && this.showCoord && this.mouseCoord != null) {
 				this.font.draw("Coord: " + this.mouseCoord, Rasterizer2D.Rasterizer2D_xClipStart + 10, Rasterizer2D.Rasterizer2D_yClipStart + 20, 16776960, -1);
 			}
@@ -788,7 +788,7 @@ public class WorldMap {
 		signature = "(IIIIIII)Z",
 		garbageValue = "1539911567"
 	)
-	boolean method6475(int var1, int var2, int var3, int var4, int var5, int var6) {
+	boolean method6517(int var1, int var2, int var3, int var4, int var5, int var6) {
 		if (this.sprite == null) {
 			return true;
 		} else if (this.sprite.subWidth == var1 && this.sprite.subHeight == var2) {
@@ -811,7 +811,7 @@ public class WorldMap {
 		signature = "(IIIIIIB)V",
 		garbageValue = "115"
 	)
-	void method6354(int var1, int var2, int var3, int var4, int var5, int var6) {
+	void method6396(int var1, int var2, int var3, int var4, int var5, int var6) {
 		if (InvDefinition.field3210 != null) {
 			int var7 = 512 / (this.worldMapManager.pixelsPerTile * 2);
 			int var8 = var3 + 512;
@@ -823,7 +823,7 @@ public class WorldMap {
 			int var12 = this.getDisplayY() - var6 / 2 - var7;
 			int var13 = var1 - (var7 + var11 - this.minCachedTileX) * this.worldMapManager.pixelsPerTile;
 			int var14 = var2 - this.worldMapManager.pixelsPerTile * (var7 - (var12 - this.minCachedTileY));
-			if (this.method6475(var8, var9, var13, var14, var3, var4)) {
+			if (this.method6517(var8, var9, var13, var14, var3, var4)) {
 				if (this.sprite != null && this.sprite.subWidth == var8 && this.sprite.subHeight == var9) {
 					Arrays.fill(this.sprite.pixels, 0);
 				} else {
@@ -833,7 +833,7 @@ public class WorldMap {
 				this.minCachedTileX = this.getDisplayX() - var5 / 2 - var7;
 				this.minCachedTileY = this.getDisplayY() - var6 / 2 - var7;
 				this.cachedPixelsPerTile = this.worldMapManager.pixelsPerTile;
-				InvDefinition.field3210.method4379(this.minCachedTileX, this.minCachedTileY, this.sprite, (float)this.cachedPixelsPerTile / var10);
+				InvDefinition.field3210.method4408(this.minCachedTileX, this.minCachedTileY, this.sprite, (float)this.cachedPixelsPerTile / var10);
 				this.field4002 = Client.field863;
 				var13 = var1 - (var11 + var7 - this.minCachedTileX) * this.worldMapManager.pixelsPerTile;
 				var14 = var2 - this.worldMapManager.pixelsPerTile * (var7 - (var12 - this.minCachedTileY));
@@ -841,9 +841,9 @@ public class WorldMap {
 
 			Rasterizer2D.Rasterizer2D_fillRectangleAlpha(var1, var2, var3, var4, 0, 128);
 			if (var10 == 1.0F) {
-				this.sprite.method6175(var13, var14, 192);
+				this.sprite.method6217(var13, var14, 192);
 			} else {
-				this.sprite.method6178(var13, var14, (int)(var10 * (float)var8), (int)(var10 * (float)var9), 192);
+				this.sprite.method6220(var13, var14, (int)(var10 * (float)var8), (int)(var10 * (float)var9), 192);
 			}
 		}
 
@@ -1205,7 +1205,7 @@ public class WorldMap {
 			this.enabledElements.remove(var1);
 		}
 
-		this.method6386();
+		this.method6428();
 	}
 
 	@ObfuscatedName("bo")
@@ -1232,7 +1232,7 @@ public class WorldMap {
 			}
 		}
 
-		this.method6386();
+		this.method6428();
 	}
 
 	@ObfuscatedName("bx")
@@ -1270,7 +1270,7 @@ public class WorldMap {
 		signature = "(B)V",
 		garbageValue = "122"
 	)
-	void method6386() {
+	void method6428() {
 		this.field3989.clear();
 		this.field3989.addAll(this.enabledElements);
 		this.field3989.addAll(this.enabledElementIds);
@@ -1317,7 +1317,7 @@ public class WorldMap {
 		signature = "(ILhx;B)Lhx;",
 		garbageValue = "8"
 	)
-	public Coord method6388(int var1, Coord var2) {
+	public Coord method6430(int var1, Coord var2) {
 		if (!this.cacheLoader.isLoaded()) {
 			return null;
 		} else if (!this.worldMapManager.isLoaded()) {

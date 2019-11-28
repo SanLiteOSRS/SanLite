@@ -281,13 +281,13 @@ public class WorldMapSection0 implements WorldMapSection {
 			class81.updateGameState(25);
 			WorldMapIcon_1.drawLoadingMessage("Loading - please wait.", true);
 			int var3 = class51.baseX * 64;
-			int var4 = VarcInt.baseY * -1499248159;
+			int var4 = VarcInt.baseY * 64;
 			class51.baseX = (var0 - 6) * 8;
-			VarcInt.baseY = (var1 - 6) * 808833288;
+			VarcInt.baseY = (var1 - 6) * 8;
 			int var5 = class51.baseX * 64 - var3;
-			int var6 = VarcInt.baseY * -1499248159 - var4;
+			int var6 = VarcInt.baseY * 64 - var4;
 			var3 = class51.baseX * 64;
-			var4 = VarcInt.baseY * -1499248159;
+			var4 = VarcInt.baseY * 64;
 
 			int var7;
 			int var9;
@@ -424,10 +424,10 @@ public class WorldMapSection0 implements WorldMapSection {
 			int var22 = var1 - var16;
 			int var23 = var7 + var1 - var16;
 			int var24 = var15 + var7 + var1;
-			Rasterizer3D.method3016(var17, var18, var19);
-			Rasterizer3D.method3036(var21, var22, var23, var17, var18, var19, var4);
-			Rasterizer3D.method3016(var17, var19, var20);
-			Rasterizer3D.method3036(var21, var23, var24, var17, var19, var20, var4);
+			Rasterizer3D.method3035(var17, var18, var19);
+			Rasterizer3D.method3055(var21, var22, var23, var17, var18, var19, var4);
+			Rasterizer3D.method3035(var17, var19, var20);
+			Rasterizer3D.method3055(var21, var23, var24, var17, var19, var20, var4);
 		}
 	}
 

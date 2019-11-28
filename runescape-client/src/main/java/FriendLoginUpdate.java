@@ -37,7 +37,7 @@ public class FriendLoginUpdate extends Link {
 		signature = "(Ljb;I)V"
 	)
 	FriendLoginUpdate(Username var1, int var2) {
-		this.field3646 = (int)(TaskHandler.method3510() / 1000L);
+		this.field3646 = (int)(TaskHandler.currentTimeMillis() / 1000L);
 		this.username = var1;
 		this.world = (short)var2;
 	}

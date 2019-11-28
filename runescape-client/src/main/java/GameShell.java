@@ -59,7 +59,8 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 	@ObfuscatedGetter(
 		intValue = 844501225
 	)
-	protected static int field441;
+	@Export("gameCyclesToDo")
+	protected static int gameCyclesToDo;
 	@ObfuscatedName("i")
 	@ObfuscatedGetter(
 		intValue = -1954278037
@@ -79,9 +80,11 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 	@Export("fps")
 	protected static int fps;
 	@ObfuscatedName("r")
-	protected static long[] field446;
+	@Export("graphicsTickTimes")
+	protected static long[] graphicsTickTimes;
 	@ObfuscatedName("a")
-	protected static long[] field447;
+	@Export("clientTickTimes")
+	protected static long[] clientTickTimes;
 	@ObfuscatedName("ai")
 	@Export("fontHelvetica13")
 	static java.awt.Font fontHelvetica13;
@@ -194,8 +197,8 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 		cycleDurationMillis = 20;
 		fiveOrOne = 1;
 		fps = 0;
-		field446 = new long[32];
-		field447 = new long[32];
+		graphicsTickTimes = new long[32];
+		clientTickTimes = new long[32];
 		field459 = 500;
 		volatileFocus = true;
 		garbageCollectorLastCollectionTime = -1L;
@@ -311,7 +314,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 	)
 	@Export("setUpMouse")
 	protected final void setUpMouse() {
-		VarcInt.method4455(this.canvas);
+		VarcInt.method4484(this.canvas);
 	}
 
 	@ObfuscatedName("o")
@@ -424,7 +427,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 
 		this.addCanvas();
 		class14.method178(this.canvas);
-		VarcInt.method4455(this.canvas);
+		VarcInt.method4484(this.canvas);
 		if (this.mouseWheelHandler != null) {
 			this.mouseWheelHandler.addTo(this.canvas);
 		}
@@ -515,7 +518,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 		}
 
 		this.isCanvasInvalid = false;
-		this.field463 = TaskHandler.method3510();
+		this.field463 = TaskHandler.currentTimeMillis();
 	}
 
 	@ObfuscatedName("m")
@@ -555,11 +558,12 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 		signature = "(B)V",
 		garbageValue = "22"
 	)
-	void method944() {
-		long var1 = TaskHandler.method3510();
-		long var3 = field447[WorldMapSection2.field193];
-		field447[WorldMapSection2.field193] = var1;
-		WorldMapSection2.field193 = WorldMapSection2.field193 + 1 & 31;
+	@Export("clientTick")
+	void clientTick() {
+		long var1 = TaskHandler.currentTimeMillis();
+		long var3 = clientTickTimes[WorldMapSection2.clientTickTimeIdx];
+		clientTickTimes[WorldMapSection2.clientTickTimeIdx] = var1;
+		WorldMapSection2.clientTickTimeIdx = WorldMapSection2.clientTickTimeIdx + 1 & 31;
 		if (var3 != 0L && var1 > var3) {
 		}
 
@@ -575,12 +579,13 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 		signature = "(I)V",
 		garbageValue = "1595065586"
 	)
-	void method971() {
+	@Export("graphicsTick")
+	void graphicsTick() {
 		Container var1 = this.container();
-		long var2 = TaskHandler.method3510();
-		long var4 = field446[Coord.field2537];
-		field446[Coord.field2537] = var2;
-		Coord.field2537 = Coord.field2537 + 1 & 31;
+		long var2 = TaskHandler.currentTimeMillis();
+		long var4 = graphicsTickTimes[Coord.graphicsTickTimeIdx];
+		graphicsTickTimes[Coord.graphicsTickTimeIdx] = var2;
+		Coord.graphicsTickTimeIdx = Coord.graphicsTickTimeIdx + 1 & 31;
 		if (0L != var4 && var2 > var4) {
 			int var6 = (int)(var2 - var4);
 			fps = ((var6 >> 1) + 32000) / var6;
@@ -839,7 +844,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 
 	public final void destroy() {
 		if (this == gameShell && !isKilled) {
-			stopTimeMs = TaskHandler.method3510();
+			stopTimeMs = TaskHandler.currentTimeMillis();
 			long var1 = 4999L;
 
 			try {
@@ -859,7 +864,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 	public final synchronized void paint(Graphics var1) {
 		if (this == gameShell && !isKilled) {
 			this.field451 = true;
-			if (TaskHandler.method3510() - this.field463 > 1000L) {
+			if (TaskHandler.currentTimeMillis() - this.field463 > 1000L) {
 				Rectangle var2 = var1.getClipBounds();
 				if (var2 == null || var2.width >= BoundaryObject.canvasWidth && var2.height >= WorldMapCacheName.canvasHeight) {
 					this.isCanvasInvalid = true;
@@ -915,14 +920,14 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 
 			BuddyRankComparator.clock = (Clock)var8;
 
-			while (0L == stopTimeMs || TaskHandler.method3510() < stopTimeMs) {
-				field441 = BuddyRankComparator.clock.wait(cycleDurationMillis, fiveOrOne);
+			while (0L == stopTimeMs || TaskHandler.currentTimeMillis() < stopTimeMs) {
+				gameCyclesToDo = BuddyRankComparator.clock.wait(cycleDurationMillis, fiveOrOne);
 
-				for (int var5 = 0; var5 < field441; ++var5) {
-					this.method944();
+				for (int var5 = 0; var5 < gameCyclesToDo; ++var5) {
+					this.clientTick();
 				}
 
-				this.method971();
+				this.graphicsTick();
 				this.post(this.canvas);
 			}
 		} catch (Exception var7) {
@@ -941,7 +946,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 
 	public final void stop() {
 		if (this == gameShell && !isKilled) {
-			stopTimeMs = TaskHandler.method3510() + 4000L;
+			stopTimeMs = TaskHandler.currentTimeMillis() + 4000L;
 		}
 	}
 

@@ -80,7 +80,7 @@ public final class FloorDecoration {
 		signature = "(IB)I",
 		garbageValue = "3"
 	)
-	static int method2869(int var0) {
+	static int method2888(int var0) {
 		return var0 * 3 + 600;
 	}
 }

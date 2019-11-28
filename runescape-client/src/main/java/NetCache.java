@@ -148,7 +148,7 @@ public class NetCache {
 		signature = "(I)Ljava/security/SecureRandom;",
 		garbageValue = "967007361"
 	)
-	static SecureRandom method4365() {
+	static SecureRandom method4394() {
 		SecureRandom var0 = new SecureRandom();
 		var0.nextInt();
 		return var0;
@@ -181,79 +181,79 @@ public class NetCache {
 		signature = "(ILci;ZI)I",
 		garbageValue = "1873047599"
 	)
-	static int method4368(int var0, Script var1, boolean var2) {
+	static int method4397(int var0, Script var1, boolean var2) {
 		if (var0 < 1000) {
-			return ServerPacket.method3634(var0, var1, var2);
+			return ServerPacket.method3657(var0, var1, var2);
 		} else if (var0 < 1100) {
 			return GameShell.method952(var0, var1, var2);
 		} else if (var0 < 1200) {
 			return SecureRandomCallable.method1171(var0, var1, var2);
 		} else if (var0 < 1300) {
-			return Interpreter.method1976(var0, var1, var2);
+			return Interpreter.method1995(var0, var1, var2);
 		} else if (var0 < 1400) {
-			return class189.method3675(var0, var1, var2);
+			return class189.method3698(var0, var1, var2);
 		} else if (var0 < 1500) {
-			return Varcs.method2182(var0, var1, var2);
+			return Varcs.method2201(var0, var1, var2);
 		} else if (var0 < 1600) {
 			return Canvas.method873(var0, var1, var2);
 		} else if (var0 < 1700) {
-			return Varcs.method2201(var0, var1, var2);
+			return Varcs.method2220(var0, var1, var2);
 		} else if (var0 < 1800) {
-			return Decimator.method2545(var0, var1, var2);
+			return Decimator.method2564(var0, var1, var2);
 		} else if (var0 < 1900) {
-			return Messages.method2222(var0, var1, var2);
+			return Messages.method2241(var0, var1, var2);
 		} else if (var0 < 2000) {
-			return Actor.method1755(var0, var1, var2);
+			return Actor.method1774(var0, var1, var2);
 		} else if (var0 < 2100) {
 			return GameShell.method952(var0, var1, var2);
 		} else if (var0 < 2200) {
 			return SecureRandomCallable.method1171(var0, var1, var2);
 		} else if (var0 < 2300) {
-			return Interpreter.method1976(var0, var1, var2);
+			return Interpreter.method1995(var0, var1, var2);
 		} else if (var0 < 2400) {
-			return class189.method3675(var0, var1, var2);
+			return class189.method3698(var0, var1, var2);
 		} else if (var0 < 2500) {
-			return Varcs.method2182(var0, var1, var2);
+			return Varcs.method2201(var0, var1, var2);
 		} else if (var0 < 2600) {
-			return Language.method3687(var0, var1, var2);
+			return Language.method3710(var0, var1, var2);
 		} else if (var0 < 2700) {
 			return AbstractWorldMapIcon.method618(var0, var1, var2);
 		} else if (var0 < 2800) {
-			return class267.method5038(var0, var1, var2);
+			return class267.method5067(var0, var1, var2);
 		} else if (var0 < 2900) {
 			return WorldMapDecoration.method355(var0, var1, var2);
 		} else if (var0 < 3000) {
-			return Actor.method1755(var0, var1, var2);
+			return Actor.method1774(var0, var1, var2);
 		} else if (var0 < 3200) {
-			return Timer.method5069(var0, var1, var2);
+			return Timer.method5098(var0, var1, var2);
 		} else if (var0 < 3300) {
-			return Skeleton.method3088(var0, var1, var2);
+			return Skeleton.method3107(var0, var1, var2);
 		} else if (var0 < 3400) {
 			return WorldMapSection1.method608(var0, var1, var2);
 		} else if (var0 < 3500) {
-			return class83.method2072(var0, var1, var2);
+			return class83.method2091(var0, var1, var2);
 		} else if (var0 < 3700) {
 			return class16.method195(var0, var1, var2);
 		} else if (var0 < 4000) {
-			return SoundSystem.method2511(var0, var1, var2);
+			return SoundSystem.method2530(var0, var1, var2);
 		} else if (var0 < 4100) {
-			return BoundaryObject.method3294(var0, var1, var2);
+			return BoundaryObject.method3313(var0, var1, var2);
 		} else if (var0 < 4200) {
 			return WorldMapArea.method396(var0, var1, var2);
 		} else if (var0 < 4300) {
 			return class4.method66(var0, var1, var2);
 		} else if (var0 < 5100) {
-			return MusicPatchNode2.method3721(var0, var1, var2);
+			return MusicPatchNode2.method3747(var0, var1, var2);
 		} else if (var0 < 5400) {
 			return WorldMapData_0.method193(var0, var1, var2);
 		} else if (var0 < 5600) {
 			return class16.method196(var0, var1, var2);
 		} else if (var0 < 5700) {
-			return Varcs.method2175(var0, var1, var2);
+			return Varcs.method2194(var0, var1, var2);
 		} else if (var0 < 6300) {
 			return class16.method197(var0, var1, var2);
 		} else if (var0 < 6600) {
-			return ModelData0.method3280(var0, var1, var2);
+			return ModelData0.method3299(var0, var1, var2);
 		} else {
 			return var0 < 6700 ? GrandExchangeOfferWorldComparator.method78(var0, var1, var2) : 2;
 		}
@@ -264,7 +264,7 @@ public class NetCache {
 		signature = "(I)V",
 		garbageValue = "-2033375403"
 	)
-	public static void method4370() {
+	public static void method4399() {
 		while (true) {
 			ArchiveDiskAction var0;
 			synchronized(ArchiveDiskActionHandler.ArchiveDiskActionHandler_requestQueue) {

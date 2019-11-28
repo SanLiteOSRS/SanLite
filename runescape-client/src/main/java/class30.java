@@ -55,7 +55,7 @@ public class class30 {
 		garbageValue = "2"
 	)
 	public static boolean method565() {
-		long var0 = TaskHandler.method3510();
+		long var0 = TaskHandler.currentTimeMillis();
 		int var2 = (int)(var0 - NetCache.field3171);
 		NetCache.field3171 = var0;
 		if (var2 > 200) {
@@ -302,7 +302,7 @@ public class class30 {
 			boolean var1 = (Client.drawPlayerNames & 8) != 0;
 			return var1;
 		} else {
-			return WorldMapSection0.method257() || class1.method16() && var0.isFriend() || FriendSystem.method1901() && var0.isClanMember();
+			return WorldMapSection0.method257() || class1.method16() && var0.isFriend() || FriendSystem.method1920() && var0.isClanMember();
 		}
 	}
 }

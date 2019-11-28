@@ -550,7 +550,7 @@ public class ServerPacket {
 		signature = "(ILci;ZI)I",
 		garbageValue = "2083616637"
 	)
-	static int method3634(int var0, Script var1, boolean var2) {
+	static int method3657(int var0, Script var1, boolean var2) {
 		int var3;
 		int var4;
 		if (var0 == ScriptOpcodes.CC_CREATE) {

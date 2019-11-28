@@ -87,7 +87,7 @@ public class World {
 		signature = "(B)Z",
 		garbageValue = "-32"
 	)
-	boolean method1783() {
+	boolean method1802() {
 		return (2 & this.properties) != 0;
 	}
 
@@ -106,7 +106,7 @@ public class World {
 		signature = "(I)Z",
 		garbageValue = "1798300394"
 	)
-	boolean method1766() {
+	boolean method1785() {
 		return (8 & this.properties) != 0;
 	}
 
@@ -135,7 +135,7 @@ public class World {
 		signature = "(B)Z",
 		garbageValue = "5"
 	)
-	boolean method1769() {
+	boolean method1788() {
 		return (1073741824 & this.properties) != 0;
 	}
 
@@ -144,7 +144,7 @@ public class World {
 		signature = "(ILhf;IIIZI)V",
 		garbageValue = "592972731"
 	)
-	public static void method1800(int var0, AbstractArchive var1, int var2, int var3, int var4, boolean var5) {
+	public static void method1819(int var0, AbstractArchive var1, int var2, int var3, int var4, boolean var5) {
 		class197.field2411 = 1;
 		class197.musicTrackArchive = var1;
 		UrlRequester.musicTrackGroupId = var2;
@@ -173,7 +173,7 @@ public class World {
 			var8 = var7 >> 6 & 3;
 			var9 = var7 & 31;
 			var10 = var3;
-			if (WallDecoration.method3321(var5)) {
+			if (WallDecoration.method3340(var5)) {
 				var10 = var4;
 			}
 
@@ -268,7 +268,7 @@ public class World {
 				}
 			} else if (var9 == 9) {
 				var12 = 15658734;
-				if (WallDecoration.method3321(var5)) {
+				if (WallDecoration.method3340(var5)) {
 					var12 = 15597568;
 				}
 

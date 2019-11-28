@@ -39,7 +39,7 @@ public class Calendar {
 			try {
 				String var2 = "";
 				if (var1 != null) {
-					var2 = SpriteMask.method4009(var1);
+					var2 = SpriteMask.method4035(var1);
 				}
 
 				if (var0 != null) {
@@ -59,7 +59,7 @@ public class Calendar {
 					return;
 				}
 
-				URL var3 = new URL(RunException.RunException_applet.getCodeBase(), "clienterror.ws?c=" + RunException.RunException_revision + "&u=" + RunException.localPlayerName + "&v1=" + TaskHandler.javaVendor + "&v2=" + TaskHandler.javaVersion + "&ct=" + RunException.field4044 + "&e=" + var2);
+				URL var3 = new URL(RunException.RunException_applet.getCodeBase(), "clienterror.ws?c=" + RunException.RunException_revision + "&u=" + RunException.localPlayerName + "&v1=" + TaskHandler.javaVendor + "&v2=" + TaskHandler.javaVersion + "&ct=" + RunException.clientType + "&e=" + var2);
 				DataInputStream var4 = new DataInputStream(var3.openStream());
 				var4.read();
 				var4.close();

@@ -66,7 +66,7 @@ public class Message extends DualNode {
 	)
 	@Export("set")
 	void set(int var1, String var2, String var3, String var4) {
-		this.count = TileItem.method2123();
+		this.count = TileItem.method2142();
 		this.cycle = Client.cycle;
 		this.type = var1;
 		this.sender = var2;
@@ -153,7 +153,7 @@ public class Message extends DualNode {
 	@Export("fillSenderUsername")
 	final void fillSenderUsername() {
 		if (this.sender != null) {
-			this.senderUsername = new Username(VertexNormal.method2998(this.sender), WorldMapLabelSize.loginType);
+			this.senderUsername = new Username(VertexNormal.method3017(this.sender), WorldMapLabelSize.loginType);
 		} else {
 			this.senderUsername = null;
 		}

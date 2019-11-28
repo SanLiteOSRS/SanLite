@@ -76,7 +76,7 @@ public class FontName {
 			return null;
 		} else if (var0 instanceof byte[]) {
 			byte[] var3 = (byte[])((byte[])var0);
-			return var1 ? ObjectSound.method1916(var3) : var3;
+			return var1 ? ObjectSound.method1935(var3) : var3;
 		} else if (var0 instanceof AbstractByteArrayCopier) {
 			AbstractByteArrayCopier var2 = (AbstractByteArrayCopier)var0;
 			return var2.get();
@@ -90,7 +90,7 @@ public class FontName {
 		signature = "([Ljava/lang/CharSequence;IIS)Ljava/lang/String;",
 		garbageValue = "11835"
 	)
-	public static String method5393(CharSequence[] var0, int var1, int var2) {
+	public static String method5425(CharSequence[] var0, int var1, int var2) {
 		if (var2 == 0) {
 			return "";
 		} else if (var2 == 1) {
@@ -129,7 +129,7 @@ public class FontName {
 		signature = "(I)V",
 		garbageValue = "1549507676"
 	)
-	static void method5395() {
+	static void method5427() {
 		if (Client.combatTargetPlayerIndex >= 0 && Client.players[Client.combatTargetPlayerIndex] != null) {
 			Varcs.addPlayerToScene(Client.players[Client.combatTargetPlayerIndex], false);
 		}
@@ -141,7 +141,7 @@ public class FontName {
 		signature = "(IIIII)V",
 		garbageValue = "-310614097"
 	)
-	static final void method5394(int var0, int var1, int var2, int var3) {
+	static final void method5426(int var0, int var1, int var2, int var3) {
 		Client.overheadTextCount = 0;
 		boolean var4 = false;
 		int var5 = -1;

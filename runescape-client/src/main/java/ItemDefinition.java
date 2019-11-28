@@ -743,7 +743,7 @@ public class ItemDefinition extends DualNode {
 		signature = "(ZI)Ldq;",
 		garbageValue = "292190899"
 	)
-	public final ModelData method4717(boolean var1) {
+	public final ModelData method4746(boolean var1) {
 		int var2 = this.maleModel;
 		int var3 = this.maleModel1;
 		int var4 = this.maleModel2;
@@ -799,7 +799,7 @@ public class ItemDefinition extends DualNode {
 		signature = "(ZI)Z",
 		garbageValue = "1230085198"
 	)
-	public final boolean method4725(boolean var1) {
+	public final boolean method4754(boolean var1) {
 		int var2 = this.maleHeadModel;
 		int var3 = this.maleHeadModel2;
 		if (var1) {
@@ -828,7 +828,7 @@ public class ItemDefinition extends DualNode {
 		signature = "(ZI)Ldq;",
 		garbageValue = "-1698197859"
 	)
-	public final ModelData method4726(boolean var1) {
+	public final ModelData method4755(boolean var1) {
 		int var2 = this.maleHeadModel;
 		int var3 = this.maleHeadModel2;
 		if (var1) {
@@ -893,7 +893,7 @@ public class ItemDefinition extends DualNode {
 	)
 	@Export("getStringParam")
 	public String getStringParam(int var1, String var2) {
-		return ServerBuild.method4185(this.params, var1, var2);
+		return ServerBuild.method4214(this.params, var1, var2);
 	}
 
 	@ObfuscatedName("v")

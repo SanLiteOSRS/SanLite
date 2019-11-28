@@ -237,11 +237,11 @@ public class SpotAnimationDefinition extends DualNode {
 		signature = "(I)I",
 		garbageValue = "150195420"
 	)
-	static int method4480() {
-		if (Client.archiveLoaders != null && Client.archiveLoaderArchive < Client.archiveLoaders.size()) {
+	static int method4509() {
+		if (Client.archiveLoaders != null && Client.archiveLoadersDone < Client.archiveLoaders.size()) {
 			int var0 = 0;
 
-			for (int var1 = 0; var1 <= Client.archiveLoaderArchive; ++var1) {
+			for (int var1 = 0; var1 <= Client.archiveLoadersDone; ++var1) {
 				var0 += ((ArchiveLoader)Client.archiveLoaders.get(var1)).loadedCount;
 			}
 

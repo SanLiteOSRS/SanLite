@@ -178,7 +178,7 @@ final class GrandExchangeOfferNameComparator implements Comparator {
 								var32 = false;
 							}
 
-							var20 = NetCache.method4368(var29, var3, var32);
+							var20 = NetCache.method4397(var29, var3, var32);
 							switch(var20) {
 							case 0:
 								return;
@@ -238,7 +238,7 @@ final class GrandExchangeOfferNameComparator implements Comparator {
 							Interpreter.Interpreter_intStack[++GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize - 1] = FileSystem.getVarbit(var11);
 						} else if (var29 == ScriptOpcodes.SET_VARBIT) {
 							var11 = var6[var17];
-							JagexCache.method3521(var11, Interpreter.Interpreter_intStack[--GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize]);
+							JagexCache.method3540(var11, Interpreter.Interpreter_intStack[--GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize]);
 						} else if (var29 == ScriptOpcodes.IF_ICMPLE) {
 							GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize -= 2;
 							if (Interpreter.Interpreter_intStack[GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize] <= Interpreter.Interpreter_intStack[GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize + 1]) {
@@ -260,7 +260,7 @@ final class GrandExchangeOfferNameComparator implements Comparator {
 						} else if (var29 == ScriptOpcodes.JOIN_STRING) {
 							var11 = var6[var17];
 							class43.Interpreter_stringStackSize -= var11;
-							String var31 = FontName.method5393(Interpreter.Interpreter_stringStack, class43.Interpreter_stringStackSize, var11);
+							String var31 = FontName.method5425(Interpreter.Interpreter_stringStack, class43.Interpreter_stringStackSize, var11);
 							Interpreter.Interpreter_stringStack[++class43.Interpreter_stringStackSize - 1] = var31;
 						} else if (var29 == ScriptOpcodes.POP_INT) {
 							--GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize;
@@ -377,7 +377,7 @@ final class GrandExchangeOfferNameComparator implements Comparator {
 			} finally {
 				if (Interpreter.field1093) {
 					Interpreter.field1087 = true;
-					Actor.method1737();
+					Actor.method1756();
 					Interpreter.field1087 = false;
 					Interpreter.field1093 = false;
 				}
@@ -406,7 +406,7 @@ final class GrandExchangeOfferNameComparator implements Comparator {
 			} else if (Client.localPlayerIndex == var1) {
 				throw new RuntimeException();
 			} else {
-				Players.Players_regions[var1] = (var4.plane << 28) + (class51.baseX * 64 + var4.pathX[0] >> 13 << 14) + (VarcInt.baseY * -1499248159 + var4.pathY[0] >> 13);
+				Players.Players_regions[var1] = (var4.plane << 28) + (class51.baseX * 64 + var4.pathX[0] >> 13 << 14) + (VarcInt.baseY * 64 + var4.pathY[0] >> 13);
 				if (var4.field965 != -1) {
 					Players.Players_orientations[var1] = var4.field965;
 				} else {
@@ -568,7 +568,7 @@ final class GrandExchangeOfferNameComparator implements Comparator {
 					var8 = var6 >> 14 & 16383;
 					var9 = var6 & 16383;
 					var10 = (class51.baseX * 64 + var8 + var4.pathX[0] & 16383) - class51.baseX * 64;
-					var11 = (var9 + VarcInt.baseY * -1499248159 + var4.pathY[0] & 16383) - VarcInt.baseY * -1499248159;
+					var11 = (VarcInt.baseY * 64 + var9 + var4.pathY[0] & 16383) - VarcInt.baseY * 64;
 					if (Client.localPlayerIndex == var1 && (var4.x < 1536 || var4.y < 1536 || var4.x >= 11776 || var4.y >= 11776)) {
 						var4.resetPath(var10, var11);
 						var4.field630 = false;
@@ -617,7 +617,7 @@ final class GrandExchangeOfferNameComparator implements Comparator {
 	static final void method157() {
 		if (Client.field867 != ClientPacket.Client_plane) {
 			Client.field867 = ClientPacket.Client_plane;
-			Client.method1728(ClientPacket.Client_plane);
+			Client.method1746(ClientPacket.Client_plane);
 		}
 
 	}

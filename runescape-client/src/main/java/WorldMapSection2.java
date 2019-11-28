@@ -16,7 +16,8 @@ public class WorldMapSection2 implements WorldMapSection {
 	@ObfuscatedGetter(
 		intValue = 1524934865
 	)
-	static int field193;
+	@Export("clientTickTimeIdx")
+	static int clientTickTimeIdx;
 	@ObfuscatedName("u")
 	@ObfuscatedGetter(
 		intValue = 955020079
@@ -205,7 +206,7 @@ public class WorldMapSection2 implements WorldMapSection {
 		Client.field814 = 0;
 		Client.field687 = 0;
 		WorldMapArea.method424();
-		DynamicObject.method2243(var0, var1);
+		DynamicObject.method2262(var0, var1);
 
 		int var2;
 		int var3;
@@ -218,7 +219,7 @@ public class WorldMapSection2 implements WorldMapSection {
 			int var8;
 			int var9;
 			if ((var5 & 4) != 0) {
-				var6 = var1.method5657();
+				var6 = var1.method5689();
 				int var10;
 				int var11;
 				int var12;
@@ -244,7 +245,7 @@ public class WorldMapSection2 implements WorldMapSection {
 					}
 				}
 
-				var7 = var1.method5599();
+				var7 = var1.method5631();
 				if (var7 > 0) {
 					for (var8 = 0; var8 < var7; ++var8) {
 						var9 = var1.readUShortSmart();
@@ -303,8 +304,8 @@ public class WorldMapSection2 implements WorldMapSection {
 			}
 
 			if ((var5 & 1) != 0) {
-				var4.definition = VarcInt.getNpcDefinition(var1.method5608());
-				var4.size = var4.definition.size;
+				var4.definition = VarcInt.getNpcDefinition(var1.method5640());
+				var4.field938 = var4.definition.size;
 				var4.field988 = var4.definition.rotation;
 				var4.walkSequence = var4.definition.walkSequence;
 				var4.walkBackSequence = var4.definition.walkBackSequence;
@@ -316,7 +317,7 @@ public class WorldMapSection2 implements WorldMapSection {
 			}
 
 			if ((var5 & 64) != 0) {
-				var4.spotAnimation = var1.method5608();
+				var4.spotAnimation = var1.method5640();
 				var6 = var1.readInt();
 				var4.field996 = var6 >> 16;
 				var4.field975 = (var6 & 65535) + Client.cycle;
@@ -335,7 +336,7 @@ public class WorldMapSection2 implements WorldMapSection {
 				var6 = var1.readUnsignedShort();
 				var7 = var1.readUnsignedShort();
 				var8 = var4.x - (var6 - class51.baseX * 64 - class51.baseX * 64) * 64;
-				var9 = var4.y - (var7 - VarcInt.baseY * -1499248159 - VarcInt.baseY * -1499248159) * 64;
+				var9 = var4.y - (var7 - VarcInt.baseY * 64 - VarcInt.baseY * 64) * 64;
 				if (var8 != 0 || var9 != 0) {
 					var4.field965 = (int)(Math.atan2((double)var8, (double)var9) * 325.949D) & 2047;
 				}

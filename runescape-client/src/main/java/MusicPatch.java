@@ -492,7 +492,7 @@ public class MusicPatch extends Node {
 		signature = "(Ldk;[B[II)Z",
 		garbageValue = "-1839137697"
 	)
-	boolean method3926(SoundCache var1, byte[] var2, int[] var3) {
+	boolean method3952(SoundCache var1, byte[] var2, int[] var3) {
 		boolean var4 = true;
 		int var5 = 0;
 		RawSound var6 = null;

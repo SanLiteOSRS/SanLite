@@ -31,11 +31,11 @@ public class WorldMapData_0 extends AbstractWorldMapData {
 			super.minPlane = var1.readUnsignedByte();
 			super.planes = var1.readUnsignedByte();
 			super.regionXLow = var1.readUnsignedShort() * 64;
-			super.regionYLow = var1.readUnsignedShort() * 64;
+			super.regionYLow = var1.readUnsignedShort() * 4096;
 			super.regionX = var1.readUnsignedShort();
 			super.regionY = var1.readUnsignedShort();
-			super.groupId = var1.method5586();
-			super.fileId = var1.method5586();
+			super.groupId = var1.method5618();
+			super.fileId = var1.method5618();
 		}
 	}
 
@@ -171,7 +171,7 @@ public class WorldMapData_0 extends AbstractWorldMapData {
 				int var3 = var2.x >> 7;
 				int var4 = var2.y >> 7;
 				if (var3 >= 0 && var3 < 104 && var4 >= 0 && var4 < 104) {
-					if (var2.size == 1 && (var2.x & 127) == 64 && (var2.y & 127) == 64) {
+					if (var2.field938 == 1 && (var2.x & 127) == 64 && (var2.y & 127) == 64) {
 						if (Client.tileLastDrawnActor[var3][var4] == Client.viewportDrawCount) {
 							continue;
 						}
@@ -181,7 +181,7 @@ public class WorldMapData_0 extends AbstractWorldMapData {
 
 					long var5 = MouseHandler.calculateTag(0, 0, 1, !var2.definition.isInteractable, Client.npcIndices[var1]);
 					var2.playerCycle = Client.cycle;
-					class2.scene.drawEntity(ClientPacket.Client_plane, var2.x, var2.y, class195.getTileHeight(var2.size * 64 - 64 + var2.x, var2.size * 64 - 64 + var2.y, ClientPacket.Client_plane), var2.size * 64 - 64 + 60, var2, var2.rotation, var5, var2.isWalking);
+					class2.scene.drawEntity(ClientPacket.Client_plane, var2.x, var2.y, class195.getTileHeight(var2.field938 * 64 - 64 + var2.x, var2.field938 * 64 - 64 + var2.y, ClientPacket.Client_plane), var2.field938 * 64 - 64 + 60, var2, var2.rotation, var5, var2.isWalking);
 				}
 			}
 		}

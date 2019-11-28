@@ -164,7 +164,7 @@ public class Decimator {
 		signature = "(ILci;ZI)I",
 		garbageValue = "1172796739"
 	)
-	static int method2545(int var0, Script var1, boolean var2) {
+	static int method2564(int var0, Script var1, boolean var2) {
 		Widget var3 = var2 ? Interpreter.field1090 : class188.field2352;
 		if (var0 == ScriptOpcodes.CC_GETINVOBJECT) {
 			Interpreter.Interpreter_intStack[++GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize - 1] = var3.itemId;

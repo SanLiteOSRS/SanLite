@@ -135,7 +135,7 @@ public class Rasterizer3D extends Rasterizer2D {
 	}
 
 	@ObfuscatedName("g")
-	public static final void method3005(int var0, int var1) {
+	public static final void method3024(int var0, int var1) {
 		int var2 = Rasterizer3D_rowOffsets[0];
 		int var3 = var2 / Rasterizer2D.Rasterizer2D_width;
 		int var4 = var2 - var3 * Rasterizer2D.Rasterizer2D_width;
@@ -257,12 +257,12 @@ public class Rasterizer3D extends Rasterizer2D {
 	}
 
 	@ObfuscatedName("w")
-	public static void method3016(int var0, int var1, int var2) {
+	public static void method3035(int var0, int var1, int var2) {
 		field1757 = var0 < 0 || var0 > Rasterizer3D_clipWidth || var1 < 0 || var1 > Rasterizer3D_clipWidth || var2 < 0 || var2 > Rasterizer3D_clipWidth;
 	}
 
 	@ObfuscatedName("i")
-	static final void method3011(int var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8) {
+	static final void method3030(int var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8) {
 		int var9 = var4 - var3;
 		int var10 = var1 - var0;
 		int var11 = var5 - var3;
@@ -871,7 +871,7 @@ public class Rasterizer3D extends Rasterizer2D {
 	}
 
 	@ObfuscatedName("x")
-	public static final void method3036(int var0, int var1, int var2, int var3, int var4, int var5, int var6) {
+	public static final void method3055(int var0, int var1, int var2, int var3, int var4, int var5, int var6) {
 		int var7 = 0;
 		if (var0 != var1) {
 			var7 = (var4 - var3 << 14) / (var1 - var0);
@@ -1422,15 +1422,15 @@ public class Rasterizer3D extends Rasterizer2D {
 	}
 
 	@ObfuscatedName("e")
-	static final void method3015(int var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, int var9, int var10, int var11, int var12, int var13, int var14, int var15, int var16, int var17, int var18) {
+	static final void method3034(int var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, int var9, int var10, int var11, int var12, int var13, int var14, int var15, int var16, int var17, int var18) {
 		int[] var19 = Rasterizer3D_textureLoader.getTexturePixels(var18);
 		int var20;
 		if (var19 == null) {
 			var20 = Rasterizer3D_textureLoader.getAverageTextureRGB(var18);
-			method3011(var0, var1, var2, var3, var4, var5, method3019(var20, var6), method3019(var20, var7), method3019(var20, var8));
+			method3030(var0, var1, var2, var3, var4, var5, method3038(var20, var6), method3038(var20, var7), method3038(var20, var8));
 		} else {
 			Rasterizer3D_isLowDetailTexture = Rasterizer3D_textureLoader.isLowDetail(var18);
-			field1748 = Rasterizer3D_textureLoader.vmethod3311(var18);
+			field1748 = Rasterizer3D_textureLoader.vmethod3330(var18);
 			var20 = var4 - var3;
 			int var21 = var1 - var0;
 			int var22 = var5 - var3;
@@ -2470,10 +2470,10 @@ public class Rasterizer3D extends Rasterizer2D {
 		int var20;
 		if (var19 == null) {
 			var20 = Rasterizer3D_textureLoader.getAverageTextureRGB(var18);
-			method3011(var0, var1, var2, var3, var4, var5, method3019(var20, var6), method3019(var20, var7), method3019(var20, var8));
+			method3030(var0, var1, var2, var3, var4, var5, method3038(var20, var6), method3038(var20, var7), method3038(var20, var8));
 		} else {
 			Rasterizer3D_isLowDetailTexture = Rasterizer3D_textureLoader.isLowDetail(var18);
-			field1748 = Rasterizer3D_textureLoader.vmethod3311(var18);
+			field1748 = Rasterizer3D_textureLoader.vmethod3330(var18);
 			var20 = var4 - var3;
 			int var21 = var1 - var0;
 			int var22 = var5 - var3;
@@ -3402,7 +3402,7 @@ public class Rasterizer3D extends Rasterizer2D {
 	}
 
 	@ObfuscatedName("t")
-	static final int method3019(int var0, int var1) {
+	static final int method3038(int var0, int var1) {
 		var1 = (var0 & 127) * var1 >> 7;
 		if (var1 < 2) {
 			var1 = 2;
@@ -3414,32 +3414,32 @@ public class Rasterizer3D extends Rasterizer2D {
 	}
 
 	@ObfuscatedName("m")
-	static final int method3020(int var0, int var1, int var2, int var3) {
+	static final int method3039(int var0, int var1, int var2, int var3) {
 		return var0 * var2 + var3 * var1 >> 16;
 	}
 
 	@ObfuscatedName("v")
-	static final int method3062(int var0, int var1, int var2, int var3) {
+	static final int method3081(int var0, int var1, int var2, int var3) {
 		return var2 * var1 - var3 * var0 >> 16;
 	}
 
 	@ObfuscatedName("q")
-	static final int method3035(int var0, int var1, int var2, int var3) {
+	static final int method3054(int var0, int var1, int var2, int var3) {
 		return var0 * var2 - var3 * var1 >> 16;
 	}
 
 	@ObfuscatedName("l")
-	static final int method3048(int var0, int var1, int var2, int var3) {
+	static final int method3067(int var0, int var1, int var2, int var3) {
 		return var3 * var0 + var2 * var1 >> 16;
 	}
 
 	@ObfuscatedName("j")
-	static final int method3029(int var0, int var1, int var2, int var3) {
+	static final int method3048(int var0, int var1, int var2, int var3) {
 		return var0 * var2 + var3 * var1 >> 16;
 	}
 
 	@ObfuscatedName("ad")
-	static final int method3025(int var0, int var1, int var2, int var3) {
+	static final int method3044(int var0, int var1, int var2, int var3) {
 		return var2 * var1 - var3 * var0 >> 16;
 	}
 }

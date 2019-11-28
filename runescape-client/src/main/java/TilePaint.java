@@ -68,7 +68,7 @@ public final class TilePaint {
 		signature = "(IIB)I",
 		garbageValue = "82"
 	)
-	static int method3085(int var0, int var1) {
+	static int method3104(int var0, int var1) {
 		if (var0 == -2) {
 			return 12345678;
 		} else if (var0 == -1) {
@@ -97,7 +97,7 @@ public final class TilePaint {
 		signature = "(IIII)V",
 		garbageValue = "606674318"
 	)
-	static final void method3086(int var0, int var1, int var2) {
+	static final void method3105(int var0, int var1, int var2) {
 		int var3;
 		for (var3 = 0; var3 < 8; ++var3) {
 			for (int var4 = 0; var4 < 8; ++var4) {
@@ -132,7 +132,7 @@ public final class TilePaint {
 		signature = "(II)V",
 		garbageValue = "-770375157"
 	)
-	public static void method3084(int var0) {
+	public static void method3103(int var0) {
 		if (class197.field2411 != 0) {
 			class197.musicTrackVolume = var0;
 		} else {

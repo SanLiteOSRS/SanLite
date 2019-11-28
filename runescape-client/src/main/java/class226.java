@@ -46,7 +46,7 @@ public class class226 {
 		signature = "([BIB)V",
 		garbageValue = "-41"
 	)
-	static void method4171(byte[] var0, int var1) {
+	static void method4200(byte[] var0, int var1) {
 		if (Client.randomDatData == null) {
 			Client.randomDatData = new byte[24];
 		}

@@ -94,7 +94,7 @@ public enum class160 implements Enumerated {
 		signature = "(IB)V",
 		garbageValue = "7"
 	)
-	static final void method3475(int var0) {
+	static final void method3494(int var0) {
 		if (UserComparator3.loadInterface(var0)) {
 			MusicPatchPcmStream.drawModelComponents(FloorDecoration.Widget_interfaceComponents[var0], -1);
 		}

@@ -52,7 +52,7 @@ final class GrandExchangeOfferTotalQuantityComparator implements Comparator {
 		garbageValue = "1071559755"
 	)
 	public static String method97(CharSequence var0) {
-		String var1 = GrandExchangeOffer.base37DecodeLong(Actor.method1754(var0));
+		String var1 = GrandExchangeOffer.base37DecodeLong(Actor.method1773(var0));
 		if (var1 == null) {
 			var1 = "";
 		}

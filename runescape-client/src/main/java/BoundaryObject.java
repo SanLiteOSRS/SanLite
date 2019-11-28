@@ -79,7 +79,7 @@ public final class BoundaryObject {
 		signature = "(IB)I",
 		garbageValue = "17"
 	)
-	public static int method3293(int var0) {
+	public static int method3312(int var0) {
 		var0 = (var0 & 1431655765) + (var0 >>> 1 & 1431655765);
 		var0 = (var0 >>> 2 & 858993459) + (var0 & 858993459);
 		var0 = var0 + (var0 >>> 4) & 252645135;
@@ -168,7 +168,7 @@ public final class BoundaryObject {
 		signature = "(B)V",
 		garbageValue = "-1"
 	)
-	public static void method3292() {
+	public static void method3311() {
 		FloorUnderlayDefinition.FloorUnderlayDefinition_cached.clear();
 	}
 
@@ -177,7 +177,7 @@ public final class BoundaryObject {
 		signature = "(ILci;ZB)I",
 		garbageValue = "0"
 	)
-	static int method3294(int var0, Script var1, boolean var2) {
+	static int method3313(int var0, Script var1, boolean var2) {
 		int var3;
 		int var4;
 		if (var0 == ScriptOpcodes.ADD) {

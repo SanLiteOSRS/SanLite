@@ -136,7 +136,7 @@ public final class GraphicsObject extends Entity {
 		signature = "(Lkj;I)V",
 		garbageValue = "-219604871"
 	)
-	static final void method2022(PacketBuffer var0) {
+	static final void method2041(PacketBuffer var0) {
 		int var1 = 0;
 		var0.importIndex();
 
@@ -154,7 +154,7 @@ public final class GraphicsObject extends Entity {
 				} else {
 					var4 = var0.readBits(1);
 					if (var4 == 0) {
-						var1 = Login.method2105(var0);
+						var1 = Login.method2124(var0);
 						var10000 = Players.field1246;
 						var10000[var3] = (byte)(var10000[var3] | 2);
 					} else {
@@ -180,7 +180,7 @@ public final class GraphicsObject extends Entity {
 					} else {
 						var4 = var0.readBits(1);
 						if (var4 == 0) {
-							var1 = Login.method2105(var0);
+							var1 = Login.method2124(var0);
 							var10000 = Players.field1246;
 							var10000[var3] = (byte)(var10000[var3] | 2);
 						} else {
@@ -206,7 +206,7 @@ public final class GraphicsObject extends Entity {
 						} else {
 							var4 = var0.readBits(1);
 							if (var4 == 0) {
-								var1 = Login.method2105(var0);
+								var1 = Login.method2124(var0);
 								var10000 = Players.field1246;
 								var10000[var3] = (byte)(var10000[var3] | 2);
 							} else if (Client.updateExternalPlayer(var0, var3)) {
@@ -233,7 +233,7 @@ public final class GraphicsObject extends Entity {
 							} else {
 								var4 = var0.readBits(1);
 								if (var4 == 0) {
-									var1 = Login.method2105(var0);
+									var1 = Login.method2124(var0);
 									var10000 = Players.field1246;
 									var10000[var3] = (byte)(var10000[var3] | 2);
 								} else if (Client.updateExternalPlayer(var0, var3)) {
@@ -273,8 +273,8 @@ public final class GraphicsObject extends Entity {
 		signature = "(Ljava/lang/String;II)Z",
 		garbageValue = "1506076524"
 	)
-	static boolean method2021(String var0, int var1) {
-		return class237.method4393(var0, var1, "openjs");
+	static boolean method2040(String var0, int var1) {
+		return class237.method4422(var0, var1, "openjs");
 	}
 
 	@ObfuscatedName("x")
@@ -282,7 +282,7 @@ public final class GraphicsObject extends Entity {
 		signature = "(Lhf;IIB)Z",
 		garbageValue = "19"
 	)
-	public static boolean method2011(AbstractArchive var0, int var1, int var2) {
+	public static boolean method2030(AbstractArchive var0, int var1, int var2) {
 		byte[] var3 = var0.takeFile(var1, var2);
 		if (var3 == null) {
 			return false;
@@ -297,7 +297,7 @@ public final class GraphicsObject extends Entity {
 		signature = "(I)V",
 		garbageValue = "-1587719078"
 	)
-	public static void method2020() {
+	public static void method2039() {
 		ObjectDefinition.ObjectDefinition_cached.clear();
 		ObjectDefinition.ObjectDefinition_cachedModelData.clear();
 		ObjectDefinition.ObjectDefinition_cachedEntities.clear();
@@ -309,7 +309,7 @@ public final class GraphicsObject extends Entity {
 		signature = "(Ljava/lang/String;Lhl;S)Ljava/lang/String;",
 		garbageValue = "128"
 	)
-	static String method2017(String var0, Widget var1) {
+	static String method2036(String var0, Widget var1) {
 		if (var0.indexOf("%") != -1) {
 			for (int var2 = 1; var2 <= 5; ++var2) {
 				while (true) {
@@ -319,7 +319,7 @@ public final class GraphicsObject extends Entity {
 					}
 
 					String var4 = var0.substring(0, var3);
-					int var6 = Language.method3693(var1, var2 - 1);
+					int var6 = Language.method3719(var1, var2 - 1);
 					String var5;
 					if (var6 < 999999999) {
 						var5 = Integer.toString(var6);

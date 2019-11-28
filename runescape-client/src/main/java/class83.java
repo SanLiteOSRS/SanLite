@@ -27,7 +27,7 @@ public class class83 {
 		signature = "(Lhf;Lhf;Lhf;I)V",
 		garbageValue = "568934897"
 	)
-	public static void method2071(AbstractArchive var0, AbstractArchive var1, AbstractArchive var2) {
+	public static void method2090(AbstractArchive var0, AbstractArchive var1, AbstractArchive var2) {
 		SequenceDefinition.SequenceDefinition_archive = var0;
 		SequenceDefinition.SequenceDefinition_animationsArchive = var1;
 		SequenceDefinition.SequenceDefinition_skeletonsArchive = var2;
@@ -38,7 +38,7 @@ public class class83 {
 		signature = "(ILci;ZI)I",
 		garbageValue = "480831567"
 	)
-	static int method2072(int var0, Script var1, boolean var2) {
+	static int method2091(int var0, Script var1, boolean var2) {
 		int var3;
 		int var4;
 		int var6;

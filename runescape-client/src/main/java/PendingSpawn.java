@@ -98,7 +98,7 @@ public final class PendingSpawn extends Node {
 		signature = "(ZZB)Llm;",
 		garbageValue = "0"
 	)
-	static IndexedSprite method1734(boolean var0, boolean var1) {
+	static IndexedSprite method1753(boolean var0, boolean var1) {
 		return var0 ? (var1 ? StructDefinition.field3315 : Varps.options_buttons_2Sprite) : (var1 ? Login.field1179 : InterfaceParent.options_buttons_0Sprite);
 	}
 
@@ -144,7 +144,7 @@ public final class PendingSpawn extends Node {
 		signature = "(I)Z",
 		garbageValue = "-547734374"
 	)
-	static boolean method1732() {
+	static boolean method1751() {
 		return Client.tapToDrop || KeyHandler.KeyHandler_pressedKeys[81];
 	}
 }

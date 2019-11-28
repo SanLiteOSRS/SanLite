@@ -45,8 +45,7 @@ public abstract class Actor extends Entity {
 	@ObfuscatedGetter(
 		intValue = 401053777
 	)
-	@Export("size")
-	int size;
+	int field938;
 	@ObfuscatedName("aa")
 	@ObfuscatedGetter(
 		intValue = 1537825747
@@ -331,7 +330,7 @@ public abstract class Actor extends Entity {
 
 	Actor() {
 		this.isWalking = false;
-		this.size = 1;
+		this.field938 = 1;
 		this.readySequence = -1;
 		this.turnLeftSequence = -1;
 		this.turnRightSequence = -1;
@@ -393,7 +392,7 @@ public abstract class Actor extends Entity {
 		signature = "(I)V",
 		garbageValue = "-2082426618"
 	)
-	final void method1740() {
+	final void method1759() {
 		this.pathLength = 0;
 		this.field994 = 0;
 	}
@@ -564,7 +563,7 @@ public abstract class Actor extends Entity {
 		signature = "(Ljava/lang/CharSequence;I)J",
 		garbageValue = "1807317311"
 	)
-	static long method1754(CharSequence var0) {
+	static long method1773(CharSequence var0) {
 		long var1 = 0L;
 		int var3 = var0.length();
 
@@ -596,7 +595,7 @@ public abstract class Actor extends Entity {
 		signature = "(ILci;ZB)I",
 		garbageValue = "-13"
 	)
-	static int method1755(int var0, Script var1, boolean var2) {
+	static int method1774(int var0, Script var1, boolean var2) {
 		Widget var3;
 		if (var0 >= 2000) {
 			var0 -= 1000;
@@ -666,7 +665,7 @@ public abstract class Actor extends Entity {
 					class2.scene.removeBoundaryObject(var0, var2, var3);
 					var13 = Occluder.getObjectDefinition(var14);
 					if (var13.interactType != 0) {
-						Client.collisionMaps[var0].method3575(var2, var3, var15, var16, var13.boolean1);
+						Client.collisionMaps[var0].method3598(var2, var3, var15, var16, var13.boolean1);
 					}
 				}
 
@@ -690,7 +689,7 @@ public abstract class Actor extends Entity {
 					class2.scene.removeFloorDecoration(var0, var2, var3);
 					var13 = Occluder.getObjectDefinition(var14);
 					if (var13.interactType == 1) {
-						Client.collisionMaps[var0].method3578(var2, var3);
+						Client.collisionMaps[var0].method3601(var2, var3);
 					}
 				}
 			}
@@ -701,7 +700,7 @@ public abstract class Actor extends Entity {
 					var12 = var0 + 1;
 				}
 
-				MenuAction.method2069(var0, var12, var2, var3, var4, var5, var6, class2.scene, Client.collisionMaps[var0]);
+				MenuAction.method2088(var0, var12, var2, var3, var4, var5, var6, class2.scene, Client.collisionMaps[var0]);
 			}
 		}
 
@@ -733,7 +732,7 @@ public abstract class Actor extends Entity {
 		signature = "(B)V",
 		garbageValue = "3"
 	)
-	static final void method1737() {
+	static final void method1756() {
 		PacketBufferNode var0 = ModelData0.getPacketBufferNode(ClientPacket.field2311, Client.packetWriter.isaacCipher);
 		Client.packetWriter.addNode(var0);
 

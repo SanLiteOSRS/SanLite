@@ -68,7 +68,7 @@ public class SpriteMask extends DualNode {
 	}
 
 	@ObfuscatedName("f")
-	public static String method4012(long var0) {
+	public static String method4038(long var0) {
 		if (var0 > 0L && var0 < 6582952005840035281L) {
 			if (0L == var0 % 37L) {
 				return null;
@@ -99,7 +99,7 @@ public class SpriteMask extends DualNode {
 		signature = "(B)V",
 		garbageValue = "87"
 	)
-	public static void method4014() {
+	public static void method4040() {
 		if (MouseHandler.MouseHandler_instance != null) {
 			synchronized(MouseHandler.MouseHandler_instance) {
 				MouseHandler.MouseHandler_instance = null;
@@ -113,7 +113,7 @@ public class SpriteMask extends DualNode {
 		signature = "(Ljava/lang/Throwable;I)Ljava/lang/String;",
 		garbageValue = "467734351"
 	)
-	static String method4009(Throwable var0) throws IOException {
+	static String method4035(Throwable var0) throws IOException {
 		String var1;
 		if (var0 instanceof RunException) {
 			RunException var2 = (RunException)var0;
@@ -166,7 +166,7 @@ public class SpriteMask extends DualNode {
 		signature = "(Ljava/lang/CharSequence;IZB)Z",
 		garbageValue = "25"
 	)
-	static boolean method4013(CharSequence var0, int var1, boolean var2) {
+	static boolean method4039(CharSequence var0, int var1, boolean var2) {
 		if (var1 >= 2 && var1 <= 36) {
 			boolean var3 = false;
 			boolean var4 = false;

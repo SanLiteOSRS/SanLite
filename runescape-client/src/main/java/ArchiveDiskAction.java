@@ -37,7 +37,7 @@ public class ArchiveDiskAction extends Node {
 		signature = "([BILjava/lang/CharSequence;I)I",
 		garbageValue = "-1806066306"
 	)
-	public static int method4200(byte[] var0, int var1, CharSequence var2) {
+	public static int method4229(byte[] var0, int var1, CharSequence var2) {
 		int var3 = var2.length();
 		int var4 = var1;
 

@@ -219,12 +219,12 @@ public class FloorOverlayDefinition extends DualNode {
 		signature = "([BI)Lky;",
 		garbageValue = "1533965281"
 	)
-	static Font method4824(byte[] var0) {
+	static Font method4853(byte[] var0) {
 		if (var0 == null) {
 			return null;
 		} else {
 			Font var1 = new Font(var0, UrlRequester.SpriteBuffer_xOffsets, class216.SpriteBuffer_yOffsets, class325.SpriteBuffer_spriteWidths, VarcInt.SpriteBuffer_spriteHeights, class325.SpriteBuffer_spritePalette, FillMode.SpriteBuffer_pixels);
-			PcmPlayer.method2491();
+			PcmPlayer.method2510();
 			return var1;
 		}
 	}

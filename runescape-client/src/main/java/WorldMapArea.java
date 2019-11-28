@@ -532,7 +532,7 @@ public class WorldMapArea {
 						return 1;
 					} else if (var0 == ScriptOpcodes.COMPARE) {
 						class43.Interpreter_stringStackSize -= 2;
-						Interpreter.Interpreter_intStack[++GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize - 1] = Friend.method5261(ArchiveDiskActionHandler.compareStrings(Interpreter.Interpreter_stringStack[class43.Interpreter_stringStackSize], Interpreter.Interpreter_stringStack[class43.Interpreter_stringStackSize + 1], VarbitDefinition.clientLanguage));
+						Interpreter.Interpreter_intStack[++GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize - 1] = Friend.method5293(ArchiveDiskActionHandler.compareStrings(Interpreter.Interpreter_stringStack[class43.Interpreter_stringStackSize], Interpreter.Interpreter_stringStack[class43.Interpreter_stringStackSize + 1], VarbitDefinition.clientLanguage));
 						return 1;
 					} else {
 						int var5;
@@ -703,7 +703,7 @@ public class WorldMapArea {
 							Client.npcIndices[++Client.npcCount - 1] = var3;
 							var4.npcCycle = Client.cycle;
 							var7 = var0.readBits(3);
-							var4.method2039(var7, (byte)1);
+							var4.method2058(var7, (byte)1);
 							var8 = var0.readBits(1);
 							if (var8 == 1) {
 								Client.field688[++Client.field687 - 1] = var3;
@@ -712,9 +712,9 @@ public class WorldMapArea {
 							Client.npcIndices[++Client.npcCount - 1] = var3;
 							var4.npcCycle = Client.cycle;
 							var7 = var0.readBits(3);
-							var4.method2039(var7, (byte)2);
+							var4.method2058(var7, (byte)2);
 							var8 = var0.readBits(3);
-							var4.method2039(var8, (byte)2);
+							var4.method2058(var8, (byte)2);
 							int var9 = var0.readBits(1);
 							if (var9 == 1) {
 								Client.field688[++Client.field687 - 1] = var3;
@@ -740,7 +740,7 @@ public class WorldMapArea {
 			return false;
 		} else {
 			for (int var1 = 0; var1 < var0.cs1Comparisons.length; ++var1) {
-				int var2 = Language.method3693(var0, var1);
+				int var2 = Language.method3719(var0, var1);
 				int var3 = var0.cs1ComparisonValues[var1];
 				if (var0.cs1Comparisons[var1] == 2) {
 					if (var2 >= var3) {

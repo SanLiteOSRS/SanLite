@@ -199,7 +199,7 @@ public class KitDefinition extends DualNode {
 		signature = "(B)Z",
 		garbageValue = "1"
 	)
-	public boolean method4506() {
+	public boolean method4535() {
 		boolean var1 = true;
 
 		for (int var2 = 0; var2 < 5; ++var2) {

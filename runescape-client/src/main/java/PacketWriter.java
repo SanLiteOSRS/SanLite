@@ -198,7 +198,7 @@ public class PacketWriter {
 		signature = "(IIIIIII)I",
 		garbageValue = "62079839"
 	)
-	public static int method2273(int var0, int var1, int var2, int var3, int var4, int var5) {
+	public static int method2292(int var0, int var1, int var2, int var3, int var4, int var5) {
 		if ((var5 & 1) == 1) {
 			int var6 = var3;
 			var3 = var4;

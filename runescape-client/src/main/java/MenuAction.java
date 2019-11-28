@@ -17,14 +17,14 @@ public class MenuAction {
 	@ObfuscatedGetter(
 		intValue = 727455553
 	)
-	@Export("argument1")
-	int argument1;
+	@Export("param0")
+	int param0;
 	@ObfuscatedName("f")
 	@ObfuscatedGetter(
 		intValue = -2069898041
 	)
-	@Export("argument2")
-	int argument2;
+	@Export("param1")
+	int param1;
 	@ObfuscatedName("b")
 	@ObfuscatedGetter(
 		intValue = -444090723
@@ -35,8 +35,8 @@ public class MenuAction {
 	@ObfuscatedGetter(
 		intValue = -1960849141
 	)
-	@Export("argument0")
-	int argument0;
+	@Export("identifier")
+	int identifier;
 	@ObfuscatedName("z")
 	@Export("action")
 	String action;
@@ -49,7 +49,7 @@ public class MenuAction {
 		signature = "(IIIIIIILel;Lfh;I)V",
 		garbageValue = "-285019446"
 	)
-	static final void method2069(int var0, int var1, int var2, int var3, int var4, int var5, int var6, Scene var7, CollisionMap var8) {
+	static final void method2088(int var0, int var1, int var2, int var3, int var4, int var5, int var6, Scene var7, CollisionMap var8) {
 		ObjectDefinition var9 = Occluder.getObjectDefinition(var4);
 		int var10;
 		int var11;
@@ -112,7 +112,7 @@ public class MenuAction {
 					var23 = new DynamicObject(var4, var6, var5, var1, var2, var3, var9.animationId, true, (Entity)null);
 				}
 
-				var7.method3223(var0, var2, var3, var17, 1, 1, (Entity)var23, 0, var20, var22);
+				var7.method3242(var0, var2, var3, var17, 1, 1, (Entity)var23, 0, var20, var22);
 				if (var9.interactType != 0) {
 					var8.addGameObject(var2, var3, var10, var11, var9.boolean1);
 				}
@@ -126,7 +126,7 @@ public class MenuAction {
 
 				var7.newBoundaryObject(var0, var2, var3, var17, (Entity)var23, (Entity)null, Tiles.field505[var5], 0, var20, var22);
 				if (var9.interactType != 0) {
-					var8.method3591(var2, var3, var6, var5, var9.boolean1);
+					var8.method3614(var2, var3, var6, var5, var9.boolean1);
 				}
 
 			} else if (var6 == 1) {
@@ -138,7 +138,7 @@ public class MenuAction {
 
 				var7.newBoundaryObject(var0, var2, var3, var17, (Entity)var23, (Entity)null, Tiles.field506[var5], 0, var20, var22);
 				if (var9.interactType != 0) {
-					var8.method3591(var2, var3, var6, var5, var9.boolean1);
+					var8.method3614(var2, var3, var6, var5, var9.boolean1);
 				}
 
 			} else {
@@ -157,7 +157,7 @@ public class MenuAction {
 
 					var7.newBoundaryObject(var0, var2, var3, var17, (Entity)var24, (Entity)var25, Tiles.field505[var5], Tiles.field505[var29], var20, var22);
 					if (var9.interactType != 0) {
-						var8.method3591(var2, var3, var6, var5, var9.boolean1);
+						var8.method3614(var2, var3, var6, var5, var9.boolean1);
 					}
 
 				} else if (var6 == 3) {
@@ -169,7 +169,7 @@ public class MenuAction {
 
 					var7.newBoundaryObject(var0, var2, var3, var17, (Entity)var23, (Entity)null, Tiles.field506[var5], 0, var20, var22);
 					if (var9.interactType != 0) {
-						var8.method3591(var2, var3, var6, var5, var9.boolean1);
+						var8.method3614(var2, var3, var6, var5, var9.boolean1);
 					}
 
 				} else if (var6 == 9) {
@@ -179,7 +179,7 @@ public class MenuAction {
 						var23 = new DynamicObject(var4, var6, var5, var1, var2, var3, var9.animationId, true, (Entity)null);
 					}
 
-					var7.method3223(var0, var2, var3, var17, 1, 1, (Entity)var23, 0, var20, var22);
+					var7.method3242(var0, var2, var3, var17, 1, 1, (Entity)var23, 0, var20, var22);
 					if (var9.interactType != 0) {
 						var8.addGameObject(var2, var3, var10, var11, var9.boolean1);
 					}
@@ -261,7 +261,7 @@ public class MenuAction {
 			}
 
 			if (var23 != null) {
-				var7.method3223(var0, var2, var3, var17, var10, var11, (Entity)var23, var6 == 11 ? 256 : 0, var20, var22);
+				var7.method3242(var0, var2, var3, var17, var10, var11, (Entity)var23, var6 == 11 ? 256 : 0, var20, var22);
 			}
 
 			if (var9.interactType != 0) {

@@ -25,6 +25,9 @@ public final class ArchiveDisk {
 	@Export("idxFile")
 	BufferedFile idxFile;
 	@ObfuscatedName("g")
+	@ObfuscatedGetter(
+		intValue = 417377451
+	)
 	@Export("archive")
 	int archive;
 	@ObfuscatedName("z")
@@ -45,7 +48,7 @@ public final class ArchiveDisk {
 		this.datFile = null;
 		this.idxFile = null;
 		this.maxEntrySize = 65000;
-		this.archive = var1 * 1619389955;
+		this.archive = var1;
 		this.datFile = var2;
 		this.idxFile = var3;
 		this.maxEntrySize = var4;
@@ -116,7 +119,7 @@ public final class ArchiveDisk {
 								var12 = ArchiveDisk_buffer[7] & 255;
 							}
 
-							if (var9 != var1 || var10 != var7 || this.archive * 417377451 != var12) {
+							if (var9 != var1 || var10 != var7 || var12 != this.archive) {
 								var10000 = null;
 								return (byte[])var10000;
 							}
@@ -161,7 +164,7 @@ public final class ArchiveDisk {
 
 				return var5;
 			} else {
-				throw new IllegalArgumentException("" + this.archive * 417377451 + ',' + var1 + ',' + var3);
+				throw new IllegalArgumentException("" + this.archive + ',' + var1 + ',' + var3);
 			}
 		}
 	}
@@ -241,7 +244,7 @@ public final class ArchiveDisk {
 									var12 = ArchiveDisk_buffer[7] & 255;
 								}
 
-								if (var10 != var1 || var8 != var11 || var12 != this.archive * 417377451) {
+								if (var10 != var1 || var8 != var11 || var12 != this.archive) {
 									var10000 = false;
 									return var10000;
 								}
@@ -278,7 +281,7 @@ public final class ArchiveDisk {
 								ArchiveDisk_buffer[6] = (byte)(var9 >> 16);
 								ArchiveDisk_buffer[7] = (byte)(var9 >> 8);
 								ArchiveDisk_buffer[8] = (byte)var9;
-								ArchiveDisk_buffer[9] = (byte)(this.archive * 417377451);
+								ArchiveDisk_buffer[9] = (byte)this.archive;
 								this.datFile.seek(520L * (long)var6);
 								this.datFile.write(ArchiveDisk_buffer, 0, 10);
 								var10 = var3 - var7;
@@ -300,7 +303,7 @@ public final class ArchiveDisk {
 								ArchiveDisk_buffer[4] = (byte)(var9 >> 16);
 								ArchiveDisk_buffer[5] = (byte)(var9 >> 8);
 								ArchiveDisk_buffer[6] = (byte)var9;
-								ArchiveDisk_buffer[7] = (byte)(this.archive * 417377451);
+								ArchiveDisk_buffer[7] = (byte)this.archive;
 								this.datFile.seek(520L * (long)var6);
 								this.datFile.write(ArchiveDisk_buffer, 0, 8);
 								var10 = var3 - var7;
@@ -327,19 +330,7 @@ public final class ArchiveDisk {
 		}
 	}
 
-	public String aaw() {
-		return "" + this.archive * 2079409415;
-	}
-
 	public String toString() {
-		return "" + this.archive * 417377451;
-	}
-
-	public String aaq() {
-		return "" + this.archive * -72770718;
-	}
-
-	public String aan() {
-		return "" + this.archive * 556176520;
+		return "" + this.archive;
 	}
 }

@@ -1,6 +1,7 @@
 import java.awt.Component;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 import net.runelite.rs.Reflection;
@@ -24,6 +25,9 @@ public class VarcInt extends DualNode {
 	@Export("SpriteBuffer_spriteHeights")
 	static int[] SpriteBuffer_spriteHeights;
 	@ObfuscatedName("fa")
+	@ObfuscatedGetter(
+		intValue = -1499248159
+	)
 	@Export("baseY")
 	static int baseY;
 	@ObfuscatedName("b")
@@ -43,14 +47,14 @@ public class VarcInt extends DualNode {
 		signature = "(Lkg;I)V",
 		garbageValue = "-407905796"
 	)
-	void method4456(Buffer var1) {
+	void method4485(Buffer var1) {
 		while (true) {
 			int var2 = var1.readUnsignedByte();
 			if (var2 == 0) {
 				return;
 			}
 
-			this.method4457(var1, var2);
+			this.method4486(var1, var2);
 		}
 	}
 
@@ -59,7 +63,7 @@ public class VarcInt extends DualNode {
 		signature = "(Lkg;IB)V",
 		garbageValue = "-67"
 	)
-	void method4457(Buffer var1, int var2) {
+	void method4486(Buffer var1, int var2) {
 		if (var2 == 2) {
 			this.persist = true;
 		}
@@ -71,7 +75,7 @@ public class VarcInt extends DualNode {
 		signature = "(Ljava/awt/Component;B)V",
 		garbageValue = "85"
 	)
-	static void method4455(Component var0) {
+	static void method4484(Component var0) {
 		var0.addMouseListener(MouseHandler.MouseHandler_instance);
 		var0.addMouseMotionListener(MouseHandler.MouseHandler_instance);
 		var0.addFocusListener(MouseHandler.MouseHandler_instance);

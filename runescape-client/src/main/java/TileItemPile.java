@@ -72,7 +72,7 @@ public final class TileItemPile {
 		signature = "(B)[Lkc;",
 		garbageValue = "-76"
 	)
-	static PrivateChatMode[] method2791() {
+	static PrivateChatMode[] method2810() {
 		return new PrivateChatMode[]{PrivateChatMode.field3793, PrivateChatMode.field3792, PrivateChatMode.field3794};
 	}
 
@@ -81,7 +81,7 @@ public final class TileItemPile {
 		signature = "(I)V",
 		garbageValue = "-1881198055"
 	)
-	public static void method2792() {
+	public static void method2811() {
 		FaceNormal.midiPcmStream.clear();
 		class197.field2411 = 1;
 		class197.musicTrackArchive = null;

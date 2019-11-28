@@ -68,7 +68,7 @@ public enum class312 implements Enumerated {
 		signature = "(I)V",
 		garbageValue = "-847322953"
 	)
-	static void method5967() {
+	static void method6006() {
 		for (InterfaceParent var0 = (InterfaceParent)Client.interfaceParents.first(); var0 != null; var0 = (InterfaceParent)Client.interfaceParents.next()) {
 			int var1 = var0.group;
 			if (UserComparator3.loadInterface(var1)) {

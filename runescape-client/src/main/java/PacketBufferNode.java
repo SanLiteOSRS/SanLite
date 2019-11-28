@@ -69,7 +69,7 @@ public class PacketBufferNode extends Node {
 		signature = "(Lhf;I)V",
 		garbageValue = "-628490328"
 	)
-	public static void method3656(AbstractArchive var0) {
+	public static void method3679(AbstractArchive var0) {
 		EnumDefinition.EnumDefinition_archive = var0;
 	}
 
@@ -78,7 +78,7 @@ public class PacketBufferNode extends Node {
 		signature = "(I)V",
 		garbageValue = "-380587936"
 	)
-	static final void method3647() {
+	static final void method3670() {
 		WorldMapSection2.method347("Your friend list is full. Max of 200 for free users, and 400 for members");
 	}
 }

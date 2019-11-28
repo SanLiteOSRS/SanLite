@@ -23,7 +23,8 @@ public class RunException extends RuntimeException {
 	@ObfuscatedGetter(
 		intValue = -768179773
 	)
-	public static int field4044;
+	@Export("clientType")
+	public static int clientType;
 	@ObfuscatedName("z")
 	@Export("message")
 	String message;

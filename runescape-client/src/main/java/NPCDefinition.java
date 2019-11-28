@@ -140,7 +140,7 @@ public class NPCDefinition extends DualNode {
 	int ambient;
 	@ObfuscatedName("ad")
 	@ObfuscatedGetter(
-		intValue = -1591255307
+		intValue = 1399735857
 	)
 	@Export("contrast")
 	int contrast;
@@ -321,7 +321,7 @@ public class NPCDefinition extends DualNode {
 		} else if (var2 == 100) {
 			this.ambient = var1.readByte();
 		} else if (var2 == 101) {
-			this.contrast = var1.readByte() * 5;
+			this.contrast = var1.readByte();
 		} else if (var2 == 102) {
 			this.headIconPrayer = var1.readUnsignedShort();
 		} else if (var2 == 103) {
@@ -421,7 +421,7 @@ public class NPCDefinition extends DualNode {
 					}
 				}
 
-				var5 = var11.toModel(this.ambient + 64, this.contrast + 850, -30, -50, -30);
+				var5 = var11.toModel(this.ambient + 64, this.contrast * 5 + 850, -30, -50, -30);
 				NpcDefinition_cachedModels.put(var5, (long)this.id);
 			}
 
@@ -578,6 +578,6 @@ public class NPCDefinition extends DualNode {
 	)
 	@Export("getStringParam")
 	public String getStringParam(int var1, String var2) {
-		return ServerBuild.method4185(this.params, var1, var2);
+		return ServerBuild.method4214(this.params, var1, var2);
 	}
 }

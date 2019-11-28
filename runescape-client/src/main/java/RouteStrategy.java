@@ -58,7 +58,7 @@ public abstract class RouteStrategy {
 		signature = "(IIB)Z",
 		garbageValue = "34"
 	)
-	static boolean method3615(int var0, int var1) {
+	static boolean method3638(int var0, int var1) {
 		return var0 != 4 || var1 < 8;
 	}
 
@@ -67,8 +67,8 @@ public abstract class RouteStrategy {
 		signature = "(I)Ljava/lang/String;",
 		garbageValue = "62216772"
 	)
-	static String method3616() {
-		return UserComparator10.clientPreferences.hideUsername ? PlayerType.method4183(Login.Login_username) : Login.Login_username;
+	static String method3639() {
+		return UserComparator10.clientPreferences.hideUsername ? PlayerType.method4212(Login.Login_username) : Login.Login_username;
 	}
 
 	@ObfuscatedName("i")
@@ -76,19 +76,19 @@ public abstract class RouteStrategy {
 		signature = "(IIII)I",
 		garbageValue = "-377116898"
 	)
-	static final int method3617(int var0, int var1, int var2) {
+	static final int method3640(int var0, int var1, int var2) {
 		int var3 = var0 / var2;
 		int var4 = var0 & var2 - 1;
 		int var5 = var1 / var2;
 		int var6 = var1 & var2 - 1;
-		int var7 = class266.method5037(var3, var5);
-		int var8 = class266.method5037(var3 + 1, var5);
-		int var9 = class266.method5037(var3, var5 + 1);
-		int var10 = class266.method5037(var3 + 1, var5 + 1);
+		int var7 = class266.method5066(var3, var5);
+		int var8 = class266.method5066(var3 + 1, var5);
+		int var9 = class266.method5066(var3, var5 + 1);
+		int var10 = class266.method5066(var3 + 1, var5 + 1);
 		int var12 = 65536 - Rasterizer3D.Rasterizer3D_cosine[var4 * 1024 / var2] >> 1;
 		int var11 = ((65536 - var12) * var7 >> 16) + (var12 * var8 >> 16);
-		int var13 = class286.method5314(var9, var10, var4, var2);
-		return class286.method5314(var11, var13, var6, var2);
+		int var13 = class286.method5346(var9, var10, var4, var2);
+		return class286.method5346(var11, var13, var6, var2);
 	}
 
 	@ObfuscatedName("hu")
@@ -96,7 +96,7 @@ public abstract class RouteStrategy {
 		signature = "(I)V",
 		garbageValue = "-1126084733"
 	)
-	static void method3618() {
+	static void method3641() {
 		Client.menuOptionsCount = 0;
 		Client.isMenuOpen = false;
 	}

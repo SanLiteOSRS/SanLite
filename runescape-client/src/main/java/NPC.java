@@ -33,7 +33,7 @@ public final class NPC extends Actor {
 		signature = "(IBI)V",
 		garbageValue = "1878117955"
 	)
-	final void method2039(int var1, byte var2) {
+	final void method2058(int var1, byte var2) {
 		int var3 = super.pathX[0];
 		int var4 = super.pathY[0];
 		if (var1 == 0) {
@@ -96,7 +96,7 @@ public final class NPC extends Actor {
 		signature = "(IIZB)V",
 		garbageValue = "79"
 	)
-	final void method2040(int var1, int var2, boolean var3) {
+	final void method2059(int var1, int var2, boolean var3) {
 		if (super.sequence != -1 && GrandExchangeOfferAgeComparator.SequenceDefinition_get(super.sequence).field3515 == 1) {
 			super.sequence = -1;
 		}
@@ -127,8 +127,8 @@ public final class NPC extends Actor {
 		super.field976 = 0;
 		super.pathX[0] = var1;
 		super.pathY[0] = var2;
-		super.x = super.size * 64 + super.pathX[0] * 128;
-		super.y = super.size * 64 + super.pathY[0] * 128;
+		super.x = super.field938 * 64 + super.pathX[0] * 128;
+		super.y = super.field938 * 64 + super.pathY[0] * 128;
 	}
 
 	@ObfuscatedName("w")
