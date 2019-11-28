@@ -48,7 +48,7 @@ import org.slf4j.LoggerFactory;
 
 public class RasterizerAlpha
 {
-	private static final Logger logger = LoggerFactory.getLogger(RasterizerAlpha.class);
+	private static final Logger log = LoggerFactory.getLogger(RasterizerAlpha.class);
 	private static final net.runelite.asm.pool.Method DRAW_ALPHA = new net.runelite.asm.pool.Method(
 			new Class("client"),
 			"drawAlpha",
@@ -64,26 +64,21 @@ public class RasterizerAlpha
 	}
 
 	/*
-	 * This class exists cause of removing colour banding.
-	 *
-	 * Push array on stack
-	 * Push array index on stack
-	 * Push colour on stack -> we're interested in where the colour comes from
-	 * Put colour in array, popping array, index and colour
+	 * This class exists to allow transparency in overlays
 	 */
 	public void inject() throws InjectionException
 	{
 		final Field r2dPx = InjectUtil.findDeobField(inject, "Rasterizer2D_pixels", "Rasterizer2D");
-		final Method draw = InjectUtil.findMethod(inject, "draw", "Client");
+		final Method draw = InjectUtil.findMethod(inject, "drawLoggedIn", "Client");
 		final ClassFile rasterizer2D = r2dPx.getClassFile();
-		final Execution execution = new Execution(rasterizer2D.getGroup());
-		execution.staticStep = false;
-		execution.step = false;
-		execution.addMethod(draw);
+		final Execution ex = new Execution(rasterizer2D.getGroup());
+		ex.staticStep = false;
+		ex.step = false;
+		ex.addMethod(draw);
 
 		int[] counts = new int[2];
 
-		execution.addMethodContextVisitor((MethodContext mc) ->
+		ex.addMethodContextVisitor((MethodContext mc) ->
 		{
 			Instructions instrs = getInstrs(mc);
 			if (instrs == null)
@@ -92,6 +87,7 @@ public class RasterizerAlpha
 			int count = 0;
 			int orCount = 0;
 
+			outer:
 			for (InstructionContext ic : mc.getInstructionContexts())
 			{
 				Instruction instruction = ic.getInstruction();
@@ -112,90 +108,91 @@ public class RasterizerAlpha
 				InstructionContext colPusher = colour.getPushed().resolve(colour);
 				Instruction colPushI = colPusher.getInstruction();
 
-				// If it's not a >> or a | we're not interested
-				if (colPushI instanceof LVTInstruction // when called from a method we didn't execute
-						|| colPushI instanceof PushConstantInstruction &&
-						!((PushConstantInstruction) colPushI).getConstant().equals(0)
-						|| colPushI instanceof IALoad)
+				// If it's not a >> or a >>> or a + it's not alpha
+				if (colPushI instanceof IShR ||
+						colPushI instanceof IUShR ||
+						colPushI instanceof IAdd)
 				{
-					// OR with 0xFF000000, unless 0
-					int storeIdx = instrs.getInstructions().indexOf(instruction);
+					// So we know we may be dealing with alpha here, now we need the alpha value
+					// earlier on in the method there's been a 256 - XXX, where xxx is alpha.
+					// if that SiPush 256 doesn't exist, we should just | 0xff000000 instead
+					for (InstructionContext ins : mc.getInstructionContexts())
+					{
+						if (!(ins.getInstruction() instanceof SiPush))
+							continue;
 
-					instrs.addInstruction(storeIdx++, new LDC(instrs, ALPHA));
-					instrs.addInstruction(storeIdx, new IOr(instrs, InstructionType.IOR));
-					++orCount;
+						SiPush pci = (SiPush) ins.getInstruction();
+						if ((short) pci.getConstant() != (short) 256)
+							continue;
+
+						InstructionContext isub = ins.getPushes().get(0).getPopped().get(0);
+						if (!(isub.getInstruction() instanceof ISub))
+							continue;
+
+						StackContext alphaPop = isub.getPops().get(0);
+						InstructionContext alphaPusher = alphaPop.getPushed().resolve(alphaPop);
+						InstructionContext isubResult = isub.getPushes().get(0).getPopped().get(0);
+
+						if (pushesToSameField(isubResult, alphaPusher))
+						{
+							alphaPusher = resolveFieldThroughInvokes(alphaPop);
+
+							if (alphaPusher == null)
+								throw new RuntimeException("Alpha var is overwritten and we don't know what pushed it");
+						}
+
+						int storeIdx = instrs.getInstructions().indexOf(instruction);
+
+						Instruction alphaPushI = alphaPusher.getInstruction();
+						if (alphaPushI instanceof GetStatic)
+						{
+							instrs.addInstruction(storeIdx++, new LDC(instrs, 255));
+							instrs.addInstruction(storeIdx++, new GetStatic(instrs, ((GetStatic) alphaPushI).getField()));
+							instrs.addInstruction(storeIdx++, new ISub(instrs, InstructionType.ISUB));
+						}
+						else if (alphaPushI instanceof LVTInstruction)
+						{
+							instrs.addInstruction(storeIdx++, new ILoad(instrs, ((LVTInstruction) alphaPushI).getVariableIndex()));
+						}
+
+						instrs.getInstructions().set(storeIdx, new InvokeStatic(instrs, DRAW_ALPHA));
+						++count;
+						continue outer;
+					}
+				}
+
+				// If we're copying from the same field we don't have to apply extra alpha again
+				if (colPushI instanceof IALoad
+						&& isSameField(r2dPx, colPusher.getPops().get(1)))
 					continue;
-				}
-				else if (!(
-						colPushI instanceof IShR ||
-								colPushI instanceof IUShR ||
-								colPushI instanceof IAdd))
-				{
+
+				// If the value is 0, it's supposed to be transparent, not black
+				if (colPushI instanceof PushConstantInstruction
+						&& ((PushConstantInstruction) colPushI).getConstant().equals(0))
 					continue;
-				}
 
-				// So we know we're dealing with alpha here, now we need the alpha value
-				// earlier on in the method there's been a 256 - XXX, where xxx is alpha
+				// rasterPx[idx] = color | 0xff000000 (the | 0xff000000 is what's added)
+				int storeIdx = instrs.getInstructions().indexOf(instruction);
 
-				for (InstructionContext ins : mc.getInstructionContexts())
-				{
-					if (!(ins.getInstruction() instanceof SiPush))
-						continue;
-
-					SiPush pci = (SiPush) ins.getInstruction();
-					if ((short) pci.getConstant() != (short) 256)
-						continue;
-
-					InstructionContext isub = ins.getPushes().get(0).getPopped().get(0);
-					if (!(isub.getInstruction() instanceof ISub))
-						continue;
-
-					StackContext alphaPop = isub.getPops().get(0);
-					InstructionContext alphaPusher = alphaPop.getPushed().resolve(alphaPop);
-					InstructionContext isubResult = isub.getPushes().get(0).getPopped().get(0);
-
-					if (pushesToSameField(isubResult, alphaPusher))
-					{
-						alphaPusher = resolveFieldThroughInvokes(alphaPop);
-
-						if (alphaPusher == null)
-							throw new RuntimeException("Alpha var is overwritten and we don't know what pushed it");
-					}
-
-					int storeIdx = instrs.getInstructions().indexOf(instruction);
-
-					Instruction alphaPushI = alphaPusher.getInstruction();
-					if (alphaPushI instanceof GetStatic)
-					{
-						instrs.addInstruction(storeIdx++, new LDC(instrs, 255));
-						instrs.addInstruction(storeIdx++, new GetStatic(instrs, ((GetStatic) alphaPushI).getField()));
-						instrs.addInstruction(storeIdx++, new ISub(instrs, InstructionType.ISUB));
-					}
-					else if (alphaPushI instanceof LVTInstruction)
-					{
-						instrs.addInstruction(storeIdx++, new ILoad(instrs, ((LVTInstruction) alphaPushI).getVariableIndex()));
-					}
-
-					instrs.getInstructions().set(storeIdx, new InvokeStatic(instrs, DRAW_ALPHA));
-					++count;
-					break;
-				}
+				instrs.addInstruction(storeIdx++, new LDC(instrs, ALPHA));
+				instrs.addInstruction(storeIdx, new IOr(instrs, InstructionType.IOR));
+				++orCount;
 			}
 
 			if (orCount != 0)
 			{
 				counts[0] += orCount;
-				logger.info("Added {} OR's into {}", orCount, mc.getMethod());
+				log.info("Added {} OR's into {}", orCount, mc.getMethod());
 			}
 			if (count != 0)
 			{
 				counts[1] += count;
-				logger.info("Injected {} DrawAlpha invokes into {}", count, mc.getMethod());
+				log.info("Injected {} DrawAlpha invokes into {}", count, mc.getMethod());
 			}
 		});
 
-		execution.run();
-		logger.info("Injected {} DrawAlpha invokes and {} ors", counts[1], counts[0]);
+		ex.run();
+		log.info("Injected {} DrawAlpha invokes and {} ors", counts[1], counts[0]);
 	}
 
 	private static boolean pushesToSameField(InstructionContext cA, InstructionContext cB)

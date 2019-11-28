@@ -27,31 +27,10 @@ package net.runelite.client.plugins.barrows;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Sets;
 import com.google.inject.Provides;
-import java.time.temporal.ChronoUnit;
-import java.util.HashSet;
-import java.util.Set;
-import javax.inject.Inject;
 import lombok.AccessLevel;
 import lombok.Getter;
-import net.runelite.api.ChatMessageType;
-import net.runelite.api.Client;
-import net.runelite.api.GameObject;
-import net.runelite.api.GameState;
-import net.runelite.api.InventoryID;
-import net.runelite.api.Item;
-import net.runelite.api.ItemContainer;
-import net.runelite.api.NullObjectID;
-import net.runelite.api.ObjectID;
-import net.runelite.api.SpriteID;
-import net.runelite.api.WallObject;
-import net.runelite.api.events.GameObjectChanged;
-import net.runelite.api.events.GameObjectDespawned;
-import net.runelite.api.events.GameObjectSpawned;
-import net.runelite.api.events.GameStateChanged;
-import net.runelite.api.events.WallObjectChanged;
-import net.runelite.api.events.WallObjectDespawned;
-import net.runelite.api.events.WallObjectSpawned;
-import net.runelite.api.events.WidgetLoaded;
+import net.runelite.api.*;
+import net.runelite.api.events.*;
 import net.runelite.api.widgets.Widget;
 import net.runelite.api.widgets.WidgetID;
 import net.runelite.api.widgets.WidgetInfo;
@@ -72,28 +51,33 @@ import net.runelite.client.ui.overlay.infobox.InfoBoxPriority;
 import net.runelite.client.ui.overlay.infobox.LoopTimer;
 import net.runelite.client.util.QuantityFormatter;
 
+import javax.inject.Inject;
+import java.time.temporal.ChronoUnit;
+import java.util.HashSet;
+import java.util.Set;
+
 @PluginDescriptor(
-	name = "Barrows Brothers",
-	description = "Show helpful information for the Barrows minigame",
-	tags = {"combat", "minigame", "minimap", "bosses", "pve", "pvm"}
+		name = "Barrows Brothers",
+		description = "Show helpful information for the Barrows minigame",
+		tags = {"combat", "minigame", "minimap", "bosses", "pve", "pvm"}
 )
 public class BarrowsPlugin extends Plugin
 {
 	@Getter(AccessLevel.PACKAGE)
 	private static final Set<Integer> BARROWS_WALLS = Sets.newHashSet
-	(
-		ObjectID.DOOR_20678, NullObjectID.NULL_20681, NullObjectID.NULL_20682, NullObjectID.NULL_20683, NullObjectID.NULL_20684, NullObjectID.NULL_20685, NullObjectID.NULL_20686, NullObjectID.NULL_20687,
-		NullObjectID.NULL_20688, NullObjectID.NULL_20689, NullObjectID.NULL_20690, NullObjectID.NULL_20691, NullObjectID.NULL_20692, NullObjectID.NULL_20693, NullObjectID.NULL_20694, NullObjectID.NULL_20695,
-		NullObjectID.NULL_20696, ObjectID.DOOR_20697, NullObjectID.NULL_20700, NullObjectID.NULL_20701, NullObjectID.NULL_20702, NullObjectID.NULL_20703, NullObjectID.NULL_20704, NullObjectID.NULL_20705,
-		NullObjectID.NULL_20706, NullObjectID.NULL_20707, NullObjectID.NULL_20708, NullObjectID.NULL_20709, NullObjectID.NULL_20710, NullObjectID.NULL_20711, NullObjectID.NULL_20712, NullObjectID.NULL_20713,
-		NullObjectID.NULL_20714, NullObjectID.NULL_20715, NullObjectID.NULL_20728, NullObjectID.NULL_20730
-	);
+			(
+					ObjectID.DOOR_20678, NullObjectID.NULL_20681, NullObjectID.NULL_20682, NullObjectID.NULL_20683, NullObjectID.NULL_20684, NullObjectID.NULL_20685, NullObjectID.NULL_20686, NullObjectID.NULL_20687,
+					NullObjectID.NULL_20688, NullObjectID.NULL_20689, NullObjectID.NULL_20690, NullObjectID.NULL_20691, NullObjectID.NULL_20692, NullObjectID.NULL_20693, NullObjectID.NULL_20694, NullObjectID.NULL_20695,
+					NullObjectID.NULL_20696, ObjectID.DOOR_20697, NullObjectID.NULL_20700, NullObjectID.NULL_20701, NullObjectID.NULL_20702, NullObjectID.NULL_20703, NullObjectID.NULL_20704, NullObjectID.NULL_20705,
+					NullObjectID.NULL_20706, NullObjectID.NULL_20707, NullObjectID.NULL_20708, NullObjectID.NULL_20709, NullObjectID.NULL_20710, NullObjectID.NULL_20711, NullObjectID.NULL_20712, NullObjectID.NULL_20713,
+					NullObjectID.NULL_20714, NullObjectID.NULL_20715, NullObjectID.NULL_20728, NullObjectID.NULL_20730
+			);
 
 	private static final Set<Integer> BARROWS_LADDERS = Sets.newHashSet(NullObjectID.NULL_20675, NullObjectID.NULL_20676, NullObjectID.NULL_20677);
 	private static final ImmutableList<WidgetInfo> POSSIBLE_SOLUTIONS = ImmutableList.of(
-		WidgetInfo.BARROWS_PUZZLE_ANSWER1,
-		WidgetInfo.BARROWS_PUZZLE_ANSWER2,
-		WidgetInfo.BARROWS_PUZZLE_ANSWER3
+			WidgetInfo.BARROWS_PUZZLE_ANSWER1,
+			WidgetInfo.BARROWS_PUZZLE_ANSWER2,
+			WidgetInfo.BARROWS_PUZZLE_ANSWER3
 	);
 
 	private static final long PRAYER_DRAIN_INTERVAL_MS = 18200;
@@ -286,16 +270,16 @@ public class BarrowsPlugin extends Plugin
 			}
 
 			final ChatMessageBuilder message = new ChatMessageBuilder()
-				.append(ChatColorType.HIGHLIGHT)
-				.append("Your chest is worth around ")
-				.append(QuantityFormatter.formatNumber(chestPrice))
-				.append(" coins.")
-				.append(ChatColorType.NORMAL);
+					.append(ChatColorType.HIGHLIGHT)
+					.append("Your chest is worth around ")
+					.append(QuantityFormatter.formatNumber(chestPrice))
+					.append(" coins.")
+					.append(ChatColorType.NORMAL);
 
 			chatMessageManager.queue(QueuedMessage.builder()
-				.type(ChatMessageType.ITEM_EXAMINE)
-				.runeLiteFormattedMessage(message.build())
-				.build());
+					.type(ChatMessageType.ITEM_EXAMINE)
+					.runeLiteFormattedMessage(message.build())
+					.build());
 		}
 		else if (event.getGroupId() == WidgetID.BARROWS_PUZZLE_GROUP_ID)
 		{
@@ -320,11 +304,11 @@ public class BarrowsPlugin extends Plugin
 		if (config.showPrayerDrainTimer())
 		{
 			final LoopTimer loopTimer = new LoopTimer(
-				PRAYER_DRAIN_INTERVAL_MS,
-				ChronoUnit.MILLIS,
-				null,
-				this,
-				true);
+					PRAYER_DRAIN_INTERVAL_MS,
+					ChronoUnit.MILLIS,
+					null,
+					this,
+					true);
 
 			spriteManager.getSpriteAsync(SpriteID.TAB_PRAYER, 0, loopTimer);
 
@@ -344,6 +328,11 @@ public class BarrowsPlugin extends Plugin
 
 	private boolean isInCrypt()
 	{
-		return client.getLocalPlayer().getWorldLocation().getRegionID() == CRYPT_REGION_ID;
+		Player localPlayer = client.getLocalPlayer();
+		if (localPlayer == null)
+		{
+			return false;
+		}
+		return localPlayer.getWorldLocation().getRegionID() == CRYPT_REGION_ID;
 	}
 }
