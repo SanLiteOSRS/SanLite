@@ -1,13 +1,19 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hg")
+@ObfuscatedName("hr")
 public class class208 {
-	@ObfuscatedName("q")
+	@ObfuscatedName("je")
 	@ObfuscatedSignature(
-		signature = "[Llw;"
+		signature = "(II)V",
+		garbageValue = "682234129"
 	)
-	@Export("runesSprite")
-	static IndexedSprite[] runesSprite;
+	static void method3991(int var0) {
+		Tiles.tempMenuAction = new MenuAction();
+		Tiles.tempMenuAction.argument1 = Client.menuArguments1[var0];
+		Tiles.tempMenuAction.argument2 = Client.menuArguments2[var0];
+		Tiles.tempMenuAction.opcode = Client.menuOpcodes[var0];
+		Tiles.tempMenuAction.argument0 = Client.menuIdentifiers[var0];
+		Tiles.tempMenuAction.action = Client.menuActions[var0];
+	}
 }
