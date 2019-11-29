@@ -1,3 +1,3 @@
-**/runelite-mixins/** merge = ours
-**/runescape-api/** merge = ours
-**/RSModelMixin.java merge = ours
+**/runelite-mixins/** merge=ours
+**/runescape-api/** merge=ours
+**/RSModelMixin.java merge=ours
