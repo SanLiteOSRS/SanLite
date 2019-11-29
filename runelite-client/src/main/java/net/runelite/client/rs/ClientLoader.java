@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2016-2017, Adam <Adam@sigterm.info>
  * Copyright (c) 2018, Tomas Slusny <slusnucky@gmail.com>
- * Copyright (c) 2018 Abex
+ * Copyright (c) 2019 Abex
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -106,6 +106,8 @@ public class ClientLoader implements Supplier<Applet>
 					host = hostSupplier.get();
 				}
 			}
+		}
+	}
 
 			switch (updateCheckMode)
 			{

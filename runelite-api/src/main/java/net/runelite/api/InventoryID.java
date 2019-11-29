@@ -74,6 +74,10 @@ public enum InventoryID
 	KINGDOM_OF_MISCELLANIA(390),
 
 	/**
+	 * Kingdom Of Miscellania reward inventory.
+	 */
+	KINGDOM_OF_MISCELLANIA(390),
+	/**
 	 * Chambers of Xeric chest inventory.
 	 */
 	CHAMBERS_OF_XERIC_CHEST(581),

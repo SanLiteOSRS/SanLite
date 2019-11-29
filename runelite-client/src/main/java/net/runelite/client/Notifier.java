@@ -197,7 +197,7 @@ public class Notifier
 				// Any interaction with the client since the notification started will cancel it after the minimum duration
 				if ((client.getMouseIdleTicks() < MINIMUM_FLASH_DURATION_TICKS
 					|| client.getKeyboardIdleTicks() < MINIMUM_FLASH_DURATION_TICKS
-						|| client.getMouseLastPressedMillis() > mouseLastPressedMillis) && clientUI.isFocused())
+					|| client.getMouseLastPressedMillis() > mouseLastPressedMillis) && clientUI.isFocused())
 				{
 					flashStart = null;
 				}

@@ -126,6 +126,10 @@ public interface MenuEntrySwapperConfig extends Config
 			keyName = "swapDarkMage",
 			name = "Repairs",
 			description = "Swap Talk-to with Repairs for Dark Mage"
+	@ConfigItem(
+		keyName = "swapDarkMage",
+		name = "Repairs",
+		description = "Swap Talk-to with Repairs for Dark Mage"
 	)
 	default boolean swapDarkMage()
 	{
@@ -163,9 +167,9 @@ public interface MenuEntrySwapperConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "swapHardWoodGrove",
-			name = "Hardwood Grove",
-			description = "Swap Quick-Pay(100) and Send-Parcel at Hardwood Grove"
+		keyName = "swapHardWoodGrove",
+		name = "Hardwood Grove",
+		description = "Swap Quick-Pay(100) and Send-Parcel at Hardwood Grove"
 	)
 	default boolean swapHardWoodGrove()
 	{
@@ -193,9 +197,9 @@ public interface MenuEntrySwapperConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "swapHouseAdvertisement",
-			name = "House Advertisement",
-			description = "Swap View with Add-House or Visit-Last on House Advertisement board"
+		keyName = "swapHouseAdvertisement",
+		name = "House Advertisement",
+		description = "Swap View with Add-House or Visit-Last on House Advertisement board"
 	)
 	default HouseAdvertisementMode swapHouseAdvertisement()
 	{
@@ -304,9 +308,9 @@ public interface MenuEntrySwapperConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "swapEnchant",
-			name = "Enchant",
-			description = "Swap Talk-to with Enchant for Eluned"
+        keyName = "swapEnchant",
+        name = "Enchant",
+        description = "Swap Talk-to with Enchant for Eluned"
 	)
 	default boolean swapEnchant()
 	{
@@ -314,9 +318,9 @@ public interface MenuEntrySwapperConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "swapTeleportSpell",
-			name = "Shift-click teleport spells",
-			description = "Swap teleport spells that have a second destination on shift"
+        keyName = "swapTeleportSpell",
+        name = "Shift-click teleport spells",
+        description = "Swap teleport spells that have a second destination on shift"
 	)
 	default boolean swapTeleportSpell()
 	{
@@ -324,9 +328,9 @@ public interface MenuEntrySwapperConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "swapStartMinigame",
-			name = "Pyramid Plunder Start-minigame",
-			description = "Swap Talk-to with Start-minigame at the Guardian Mummy"
+        keyName = "swapStartMinigame",
+        name = "Pyramid Plunder Start-minigame",
+        description = "Swap Talk-to with Start-minigame at the Guardian Mummy"
 	)
 	default boolean swapStartMinigame()
 	{
@@ -334,9 +338,9 @@ public interface MenuEntrySwapperConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "swapQuickleave",
-			name = "Quick-Leave",
-			description = "Swap Leave Tomb with Quick-Leave at Pyramid Plunder"
+        keyName = "swapQuickleave",
+        name = "Quick-Leave",
+        description = "Swap Leave Tomb with Quick-Leave at Pyramid Plunder"
 	)
 	default boolean swapQuickLeave()
 	{
@@ -344,9 +348,9 @@ public interface MenuEntrySwapperConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "swapStoreBuy",
-			name = "Store Buy",
-			description = "Changes stores left-click buy options"
+        keyName = "swapStoreBuy",
+        name = "Store Buy",
+        description = "Changes stores left-click buy options"
 	)
 	default ShopSwapOptions swapStoreBuy()
 	{
@@ -354,9 +358,9 @@ public interface MenuEntrySwapperConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "swapStoreSell",
-			name = "Store Sell",
-			description = "Changes stores left-click sell options"
+        keyName = "swapStoreSell",
+        name = "Store Sell",
+        description = "Changes stores left-click sell options"
 	)
 	default ShopSwapOptions swapStoreSell()
 	{
