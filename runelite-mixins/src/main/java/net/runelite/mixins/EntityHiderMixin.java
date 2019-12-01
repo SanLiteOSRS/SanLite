@@ -70,7 +70,8 @@ public abstract class EntityHiderMixin implements RSScene
 	@Shadow("hideNPCs2D")
 	private static boolean hideNPCs2D;
 
-	// TODO: Add hide pets
+	@Shadow("hidePets")
+	private static boolean hidePets;
 
 	@Shadow("hideAttackers")
 	private static boolean hideAttackers;
@@ -159,6 +160,14 @@ public abstract class EntityHiderMixin implements RSScene
 				if (npc.getInteracting() == client.getLocalPlayer())
 				{
 					return true;
+				}
+			}
+
+			if (hidePets)
+			{
+				if (npc.getDefinition().isFollower())
+				{
+					return false;
 				}
 			}
 
