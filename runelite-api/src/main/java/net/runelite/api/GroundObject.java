@@ -24,7 +24,7 @@
  */
 package net.runelite.api;
 
-import java.awt.Shape;
+import java.awt.*;
 
 /**
  * Represents an object on the ground of a tile.
@@ -33,6 +33,7 @@ public interface GroundObject extends TileObject
 {
 	Entity getEntity();
 
+	Model getModel();
 
 	/**
 	 * Gets the convex hull of the objects model.

@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2016-2017, Adam <Adam@sigterm.info>
  * Copyright (c) 2018, Tomas Slusny <slusnucky@gmail.com>
- * Copyright (c) 2019 Abex
+ * Copyright (c) 2018 Abex
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -28,7 +28,9 @@ package net.runelite.client.rs;
 
 import com.google.common.base.Strings;
 import lombok.extern.slf4j.Slf4j;
+import net.runelite.client.RuneLiteProperties;
 import net.runelite.client.ui.FatalErrorDialog;
+import okhttp3.HttpUrl;
 
 import javax.swing.*;
 import java.applet.Applet;
@@ -47,6 +49,9 @@ public class ClientLoader implements Supplier<Applet>
 
 	private ClientUpdateCheckMode updateCheckMode;
 	private Object client = null;
+
+	private HostSupplier hostSupplier = new HostSupplier();
+	private RSConfig config;
 
 	public ClientLoader(ClientUpdateCheckMode updateCheckMode)
 	{
@@ -77,37 +82,7 @@ public class ClientLoader implements Supplier<Applet>
 
 		try
 		{
-			HostSupplier hostSupplier = new HostSupplier();
-
-			String host = null;
-			RSConfig config;
-			for (int attempt = 0; ; attempt++)
-			{
-				try
-				{
-					config = ClientConfigLoader.fetch(host);
-
-					if (Strings.isNullOrEmpty(config.getCodeBase()) || Strings.isNullOrEmpty(config.getInitialJar()) || Strings.isNullOrEmpty(config.getInitialClass()))
-					{
-						throw new IOException("Invalid or missing jav_config");
-					}
-
-					break;
-				}
-				catch (IOException e)
-				{
-					log.info("Failed to get jav_config from host \"{}\" ({})", host, e.getMessage());
-
-					if (attempt >= NUM_ATTEMPTS)
-					{
-						throw e;
-					}
-
-					host = hostSupplier.get();
-				}
-			}
-		}
-	}
+			downloadConfig();
 
 			switch (updateCheckMode)
 			{
@@ -132,6 +107,59 @@ public class ClientLoader implements Supplier<Applet>
 
 			SwingUtilities.invokeLater(() -> FatalErrorDialog.showNetErrorWindow("loading the client", e));
 			return e;
+		}
+	}
+
+	private void downloadConfig() throws IOException
+	{
+		HttpUrl url = HttpUrl.parse(RuneLiteProperties.getJavConfig());
+		IOException err = null;
+		for (int attempt = 0; attempt < NUM_ATTEMPTS; attempt++)
+		{
+			try
+			{
+				config = ClientConfigLoader.fetch(url);
+
+				if (Strings.isNullOrEmpty(config.getCodeBase()) || Strings.isNullOrEmpty(config.getInitialJar()) || Strings.isNullOrEmpty(config.getInitialClass()))
+				{
+					throw new IOException("Invalid or missing jav_config");
+				}
+
+				return;
+			}
+			catch (IOException e)
+			{
+				log.info("Failed to get jav_config from host \"{}\" ({})", url.host(), e.getMessage());
+				String host = hostSupplier.get();
+				url = url.newBuilder().host(host).build();
+				err = e;
+			}
+		}
+
+		log.info("Falling back to backup client config");
+
+		try
+		{
+			RSConfig backupConfig = ClientConfigLoader.fetch(HttpUrl.parse(RuneLiteProperties.getJavConfigBackup()));
+
+			if (Strings.isNullOrEmpty(backupConfig.getCodeBase()) || Strings.isNullOrEmpty(backupConfig.getInitialJar()) || Strings.isNullOrEmpty(backupConfig.getInitialClass()))
+			{
+				throw new IOException("Invalid or missing jav_config");
+			}
+
+			if (Strings.isNullOrEmpty(backupConfig.getRuneLiteGamepack()))
+			{
+				throw new IOException("Backup config does not have RuneLite gamepack url");
+			}
+
+			// Randomize the codebase
+			String codebase = hostSupplier.get();
+			backupConfig.setCodebase("http://" + codebase + "/");
+			config = backupConfig;
+		}
+		catch (IOException ex)
+		{
+			throw err; // use error from Jagex's servers
 		}
 	}
 

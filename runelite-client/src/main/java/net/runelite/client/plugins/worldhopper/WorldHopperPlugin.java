@@ -50,13 +50,11 @@ import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.ChatMessageType;
 import net.runelite.api.ChatPlayer;
 import net.runelite.api.ClanMember;
-import net.runelite.api.ClanMemberManager;
 import net.runelite.api.Client;
 import net.runelite.api.Friend;
 import net.runelite.api.GameState;
 import net.runelite.api.MenuAction;
 import net.runelite.api.MenuEntry;
-import net.runelite.api.NameableContainer;
 import net.runelite.api.Varbits;
 import net.runelite.api.events.ChatMessage;
 import net.runelite.api.events.GameStateChanged;
@@ -720,20 +718,30 @@ public class WorldHopperPlugin extends Plugin
 
 		// Search clan members first, because if a friend is in the clan chat but their private
 		// chat is 'off', then the hop-to option will not get shown in the menu (issue #5679).
-		ClanMemberManager clanMemberManager = client.getClanMemberManager();
-		if (clanMemberManager != null)
+		ClanMember[] clanMembers = client.getClanMembers();
+
+		if (clanMembers != null)
 		{
-			ClanMember clanMember = clanMemberManager.findByName(cleanName);
-			if (clanMember != null)
+			for (ClanMember clanMember : clanMembers)
 			{
-				return clanMember;
+				if (clanMember != null && clanMember.getUsername().equals(cleanName))
+				{
+					return clanMember;
+				}
 			}
 		}
 
-		NameableContainer<Friend> friendContainer = client.getFriendContainer();
-		if (friendContainer != null)
+		Friend[] friends = client.getFriends();
+
+		if (friends != null)
 		{
-			return friendContainer.findByName(cleanName);
+			for (Friend friend : friends)
+			{
+				if (friend != null && friend.getName().equals(cleanName))
+				{
+					return friend;
+				}
+			}
 		}
 
 		return null;

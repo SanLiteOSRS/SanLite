@@ -56,6 +56,12 @@ public interface NPCDefinition
 	boolean isClickable();
 
 	/**
+	 * NPC can be interacting with via menu options
+	 * @return true if the NPC can be interacted with, false otherwise
+	 */
+	boolean isInteractable();
+
+	/**
 	 * Gets whether the NPC is visible on the mini-map.
 	 *
 	 * @return the mini-map visible state

@@ -25,6 +25,7 @@
 package net.runelite.client.plugins.barrows;
 
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Sets;
 import com.google.inject.Provides;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -82,6 +83,12 @@ public class BarrowsPlugin extends Plugin
 	private static final long PRAYER_DRAIN_INTERVAL_MS = 18200;
 	private static final int CRYPT_REGION_ID = 14231;
 
+	@Getter(AccessLevel.PACKAGE)
+	private final Set<WallObject> walls = new HashSet<>();
+
+	@Getter(AccessLevel.PACKAGE)
+	private final Set<GameObject> ladders = new HashSet<>();
+
 	private LoopTimer barrowsPrayerDrainTimer;
 	private boolean wasInCrypt = false;
 
@@ -133,6 +140,8 @@ public class BarrowsPlugin extends Plugin
 	{
 		overlayManager.remove(barrowsOverlay);
 		overlayManager.remove(brotherOverlay);
+		walls.clear();
+		ladders.clear();
 		puzzleAnswer = null;
 		wasInCrypt = false;
 		stopPrayerDrainTimer();
@@ -161,12 +170,74 @@ public class BarrowsPlugin extends Plugin
 	}
 
 	@Subscribe
+	public void onWallObjectSpawned(WallObjectSpawned event)
+	{
+		WallObject wallObject = event.getWallObject();
+		if (BARROWS_WALLS.contains(wallObject.getId()))
+		{
+			walls.add(wallObject);
+		}
+	}
+
+	@Subscribe
+	public void onWallObjectChanged(WallObjectChanged event)
+	{
+		WallObject previous = event.getPrevious();
+		WallObject wallObject = event.getWallObject();
+
+		walls.remove(previous);
+		if (BARROWS_WALLS.contains(wallObject.getId()))
+		{
+			walls.add(wallObject);
+		}
+	}
+
+	@Subscribe
+	public void onWallObjectDespawned(WallObjectDespawned event)
+	{
+		WallObject wallObject = event.getWallObject();
+		walls.remove(wallObject);
+	}
+
+	@Subscribe
+	public void onGameObjectSpawned(GameObjectSpawned event)
+	{
+		GameObject gameObject = event.getGameObject();
+		if (BARROWS_LADDERS.contains(gameObject.getId()))
+		{
+			ladders.add(gameObject);
+		}
+	}
+
+	@Subscribe
+	public void onGameObjectChanged(GameObjectChanged event)
+	{
+		GameObject previous = event.getPrevious();
+		GameObject gameObject = event.getGameObject();
+
+		ladders.remove(previous);
+		if (BARROWS_LADDERS.contains(gameObject.getId()))
+		{
+			ladders.add(gameObject);
+		}
+	}
+
+	@Subscribe
+	public void onGameObjectDespawned(GameObjectDespawned event)
+	{
+		GameObject gameObject = event.getGameObject();
+		ladders.remove(gameObject);
+	}
+
+	@Subscribe
 	public void onGameStateChanged(GameStateChanged event)
 	{
 		if (event.getGameState() == GameState.LOADING)
 		{
 			wasInCrypt = isInCrypt();
 			// on region changes the tiles get set to null
+			walls.clear();
+			ladders.clear();
 			puzzleAnswer = null;
 		}
 		else if (event.getGameState() == GameState.LOGGED_IN)

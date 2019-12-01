@@ -79,6 +79,7 @@ import org.slf4j.LoggerFactory;
 public class RuneLite
 {
 	public static final File RUNELITE_DIR = new File(System.getProperty("user.home"), ".sanlite");
+	public static final File CACHE_DIR = new File(RUNELITE_DIR, "cache");
 	public static final File PROFILES_DIR = new File(RUNELITE_DIR, "profiles");
 	public static final File SCREENSHOT_DIR = new File(RUNELITE_DIR, "screenshots");
 	public static final File LOGS_DIR = new File(RUNELITE_DIR, "logs");
@@ -263,8 +264,6 @@ public class RuneLite
 			injector.injectMembers(client);
 		}
 
-		SplashScreen.stage(.57, null, "Loading configuration");
-
 		// Load user configuration
 		splashScreen.setMessage("Loading configuration");
 		configManager.load();
@@ -289,8 +288,6 @@ public class RuneLite
 		// Start client session
 		splashScreen.setMessage("Starting session");
 		clientSessionManager.start();
-
-		SplashScreen.stage(.75, null, "Starting core interface");
 
 		// Initialize UI
 		splashScreen.setMessage("Starting core interface");

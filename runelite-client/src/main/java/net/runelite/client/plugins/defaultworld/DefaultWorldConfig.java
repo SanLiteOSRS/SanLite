@@ -65,27 +65,6 @@ public interface DefaultWorldConfig extends Config
 	}
 
 	@ConfigItem(
-		keyName = "useLastWorld",
-		name = "Use Last World",
-		description = "Use the last world you used as the default"
-	)
-	default boolean useLastWorld()
-	{
-		return false;
-	}
-
-	@ConfigItem(
-		keyName = "lastWorld",
-		name = "",
-		description = "",
-		hidden = true
-	)
-	default int lastWorld()
-	{
-		return 0;
-	}
-
-	@ConfigItem(
 		keyName = "lastWorld",
 		name = "",
 		description = ""

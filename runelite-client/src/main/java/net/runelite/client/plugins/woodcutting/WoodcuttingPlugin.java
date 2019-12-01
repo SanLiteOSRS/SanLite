@@ -185,6 +185,7 @@ public class WoodcuttingPlugin extends Plugin
 	@Subscribe
 	public void onGameObjectSpawned(final GameObjectSpawned event)
 	{
+		log.debug("gameObject spawned: {}", event.getGameObject().getId());
 		GameObject gameObject = event.getGameObject();
 		Tree tree = Tree.findTree(gameObject.getId());
 
@@ -197,6 +198,7 @@ public class WoodcuttingPlugin extends Plugin
 	@Subscribe
 	public void onGameObjectDespawned(final GameObjectDespawned event)
 	{
+		log.debug("gameObject despawned: {}", event.getGameObject().getId());
 		final GameObject object = event.getGameObject();
 
 		Tree tree = Tree.findTree(object.getId());

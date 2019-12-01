@@ -37,12 +37,7 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 import javax.swing.text.JTextComponent;
 import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.ClanMemberManager;
-import net.runelite.api.Client;
-import net.runelite.api.Friend;
-import net.runelite.api.Nameable;
-import net.runelite.api.NameableContainer;
-import net.runelite.api.Player;
+import net.runelite.api.*;
 
 @Slf4j
 class NameAutocompleter implements KeyListener
@@ -193,25 +188,27 @@ class NameAutocompleter implements KeyListener
 
 		// TODO: Search lookup history
 
-		NameableContainer<Friend> friendContainer = client.getFriendContainer();
-		if (friendContainer != null)
+		Friend[] friends = client.getFriends();
+		if (friends != null)
 		{
-			autocompleteName = Arrays.stream(friendContainer.getMembers())
-				.map(Nameable::getName)
-				.filter(n -> pattern.matcher(n).matches())
-				.findFirst();
+			autocompleteName = Arrays.stream(friends)
+					.filter(Objects::nonNull)
+					.map(Friend::getName)
+					.filter(n -> pattern.matcher(n).matches())
+					.findFirst();
 		}
 
 		// Search clan if a friend wasn't found
 		if (!autocompleteName.isPresent())
 		{
-			final ClanMemberManager clanMemberManager = client.getClanMemberManager();
-			if (clanMemberManager != null)
+			final ClanMember[] clannies = client.getClanMembers();
+			if (clannies != null)
 			{
-				autocompleteName = Arrays.stream(clanMemberManager.getMembers())
-					.map(Nameable::getName)
-					.filter(n -> pattern.matcher(n).matches())
-					.findFirst();
+				autocompleteName = Arrays.stream(clannies)
+						.filter(Objects::nonNull)
+						.map(ClanMember::getUsername)
+						.filter(n -> pattern.matcher(n).matches())
+						.findFirst();
 			}
 		}
 

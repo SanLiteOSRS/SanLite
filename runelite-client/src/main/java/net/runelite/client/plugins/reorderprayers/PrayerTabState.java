@@ -22,11 +22,11 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.api;
+package net.runelite.client.plugins.reorderprayers;
 
-/**
- * Represents a chat entity that has a name.
- */
-public interface Nameable extends Comparable
+public enum PrayerTabState
 {
+	NONE,
+	PRAYERS,
+	QUICK_PRAYERS
 }

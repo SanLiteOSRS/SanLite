@@ -306,7 +306,7 @@ public class WikiPlugin extends Plugin
 				case MENUOP_WIKI:
 					LinkBrowser.browse(WIKI_BASE.newBuilder()
 						.addPathSegment("w")
-						.addPathSegment(Text.removeTags(ev.getMenuTarget()))
+						.addPathSegment(Text.removeTags(ev.getTarget()))
 						.addQueryParameter(UTM_SORUCE_KEY, UTM_SORUCE_VALUE)
 						.build().toString());
 
