@@ -163,9 +163,9 @@ public interface MenuEntrySwapperConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "swapHardWoodGrove",
-			name = "Hardwood Grove",
-			description = "Swap Quick-Pay(100) and Send-Parcel at Hardwood Grove"
+		keyName = "swapHardWoodGrove",
+		name = "Hardwood Grove",
+		description = "Swap Quick-Pay(100) and Send-Parcel at Hardwood Grove"
 	)
 	default boolean swapHardWoodGrove()
 	{
@@ -193,9 +193,9 @@ public interface MenuEntrySwapperConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "swapHouseAdvertisement",
-			name = "House Advertisement",
-			description = "Swap View with Add-House or Visit-Last on House Advertisement board"
+		keyName = "swapHouseAdvertisement",
+		name = "House Advertisement",
+		description = "Swap View with Add-House or Visit-Last on House Advertisement board"
 	)
 	default HouseAdvertisementMode swapHouseAdvertisement()
 	{
@@ -310,7 +310,7 @@ public interface MenuEntrySwapperConfig extends Config
 	)
 	default boolean swapEnchant()
 	{
-		return true;
+	return true;
 	}
 
 	@ConfigItem(
@@ -320,7 +320,7 @@ public interface MenuEntrySwapperConfig extends Config
 	)
 	default boolean swapTeleportSpell()
 	{
-		return false;
+	return false;
 	}
 
 	@ConfigItem(
@@ -330,7 +330,7 @@ public interface MenuEntrySwapperConfig extends Config
 	)
 	default boolean swapStartMinigame()
 	{
-		return true;
+	return true;
 	}
 
 	@ConfigItem(
@@ -340,7 +340,7 @@ public interface MenuEntrySwapperConfig extends Config
 	)
 	default boolean swapQuickLeave()
 	{
-		return false;
+	return false;
 	}
 
 	@ConfigItem(
@@ -350,7 +350,7 @@ public interface MenuEntrySwapperConfig extends Config
 	)
 	default ShopSwapOptions swapStoreBuy()
 	{
-		return ShopSwapOptions.Value;
+	return ShopSwapOptions.Value;
 	}
 
 	@ConfigItem(
@@ -360,6 +360,6 @@ public interface MenuEntrySwapperConfig extends Config
 	)
 	default ShopSwapOptions swapStoreSell()
 	{
-		return ShopSwapOptions.Value;
+	return ShopSwapOptions.Value;
 	}
 }

@@ -29,6 +29,7 @@ public class AnnotationCleaner
 	public DeobTestProperties properties = new DeobTestProperties();
 
 	@Test
+	@Ignore
 	public void checkMappings() throws Exception
 	{
 		File client = new File(properties.getRsClient());

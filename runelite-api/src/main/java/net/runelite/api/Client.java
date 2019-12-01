@@ -1145,14 +1145,14 @@ public interface Client extends GameShell
 	/**
 	 * Gets the clan owner of the currently joined clan chat
 	 *
-	 * @return clan owner name
+	 * @return
 	 */
 	String getClanOwner();
 
 	/**
 	 * Gets the clan chat name of the currently joined clan chat
 	 *
-	 * @return clan chat name
+	 * @return
 	 */
 	String getClanChatName();
 
@@ -1166,21 +1166,21 @@ public interface Client extends GameShell
 	/**
 	 * Gets the number of friends on the friends list.
 	 *
-	 * @return amount of friends
+	 * @return
 	 */
 	int getFriendsCount();
 
 	/**
 	 * Gets an array of players on the ignore list.
 	 *
-	 * @return ignore list
+	 * @return
 	 */
 	Ignore[] getIgnores();
 
 	/**
 	 * Gets the number of ignored players on the ignore list.
 	 *
-	 * @return amount of ignored players
+	 * @return
 	 */
 	int getIgnoreCount();
 
@@ -1524,6 +1524,13 @@ public interface Client extends GameShell
 	 * @param state new NPC 2D hidden state
 	 */
 	void setNPCsHidden2D(boolean state);
+
+	/**
+	 * Sets whether Pets from other players are hidden.
+	 *
+	 * @param state new pet hidden state
+	 */
+	void setPetsHidden(boolean state);
 
 	/**
 	 * Sets whether attacking players or NPCs are hidden.
