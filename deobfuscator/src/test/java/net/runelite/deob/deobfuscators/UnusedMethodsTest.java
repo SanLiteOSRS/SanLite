@@ -31,10 +31,7 @@ import net.runelite.asm.ClassGroup;
 import net.runelite.deob.DeobTestProperties;
 import net.runelite.deob.TemporyFolderLocation;
 import net.runelite.deob.util.JarUtil;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.rules.TemporaryFolder;
 
 public class UnusedMethodsTest
@@ -60,6 +57,7 @@ public class UnusedMethodsTest
 	}
 
 	@Test
+	@Ignore
 	public void testRun()
 	{
 		UnusedMethods um = new UnusedMethods();

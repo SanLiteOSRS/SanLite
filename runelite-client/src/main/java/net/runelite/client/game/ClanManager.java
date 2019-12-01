@@ -87,11 +87,11 @@ public class ClanManager
 				}
 
 				return Arrays.stream(clanMembersArr)
-					.filter(Objects::nonNull)
-					.filter(clanMember -> sanitize(clanMember.getUsername()).equals(sanitize(key)))
-					.map(ClanMember::getRank)
-					.findAny()
-					.orElse(ClanMemberRank.UNRANKED);
+						.filter(Objects::nonNull)
+						.filter(clanMember -> sanitize(clanMember.getUsername()).equals(sanitize(key)))
+						.map(ClanMember::getRank)
+						.findAny()
+						.orElse(ClanMemberRank.UNRANKED);
 			}
 		});
 
