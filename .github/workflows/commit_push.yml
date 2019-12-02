@@ -50,5 +50,5 @@ jobs:
           java-version: 8
           java-package: jdk+fx
 
-      - name: Build with Maven
-        run: mvn test
+      - name: Test with Maven
+        run: mvn test -X
