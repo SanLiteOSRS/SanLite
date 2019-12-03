@@ -4,78 +4,74 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("eg")
+@ObfuscatedName("et")
 @Implements("WallDecoration")
 public final class WallDecoration {
-	@ObfuscatedName("l")
+	@ObfuscatedName("bf")
+	static String field1914;
+	@ObfuscatedName("u")
 	@ObfuscatedGetter(
-		intValue = -1573146665
-	)
-	@Export("canvasHeight")
-	public static int canvasHeight;
-	@ObfuscatedName("z")
-	@ObfuscatedGetter(
-		intValue = 500861795
-	)
-	@Export("orientation")
-	int orientation;
-	@ObfuscatedName("n")
-	@ObfuscatedGetter(
-		intValue = 1324796191
+		intValue = 1205113251
 	)
 	@Export("tileHeight")
 	int tileHeight;
-	@ObfuscatedName("v")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = 1787906731
+		intValue = -271474909
 	)
 	@Export("x")
 	int x;
-	@ObfuscatedName("u")
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = -337099317
+		intValue = -1267605537
 	)
 	@Export("y")
 	int y;
-	@ObfuscatedName("r")
+	@ObfuscatedName("g")
 	@ObfuscatedGetter(
-		intValue = 1549979331
+		intValue = -1727501807
+	)
+	@Export("orientation")
+	int orientation;
+	@ObfuscatedName("z")
+	@ObfuscatedGetter(
+		intValue = 1125268543
 	)
 	@Export("orientation2")
 	int orientation2;
 	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = 43570649
+		intValue = -1924743317
 	)
 	@Export("xOffset")
 	int xOffset;
-	@ObfuscatedName("q")
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = -396532533
+		intValue = -2072940953
 	)
 	@Export("yOffset")
 	int yOffset;
-	@ObfuscatedName("m")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "Ler;"
+		signature = "Lee;"
 	)
 	@Export("entity1")
 	public Entity entity1;
-	@ObfuscatedName("y")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		signature = "Ler;"
+		signature = "Lee;"
 	)
 	@Export("entity2")
 	public Entity entity2;
 	@ObfuscatedName("i")
 	@ObfuscatedGetter(
-		longValue = 463073903231293703L
+		longValue = -1256134443736608047L
 	)
 	@Export("tag")
 	public long tag;
-	@ObfuscatedName("c")
+	@ObfuscatedName("k")
 	@ObfuscatedGetter(
-		intValue = 14602599
+		intValue = 1975621391
 	)
 	@Export("flags")
 	int flags;
@@ -85,42 +81,60 @@ public final class WallDecoration {
 		this.flags = 0;
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "(II)Lif;",
-		garbageValue = "-746198187"
+		signature = "(IB)Lig;",
+		garbageValue = "-81"
 	)
-	@Export("getParamDefinition")
-	public static ParamDefinition getParamDefinition(int var0) {
-		ParamDefinition var1 = (ParamDefinition)ParamDefinition.ParamDefinition_cached.get((long)var0);
+	public static FloorUnderlayDefinition method3339(int var0) {
+		FloorUnderlayDefinition var1 = (FloorUnderlayDefinition)FloorUnderlayDefinition.FloorUnderlayDefinition_cached.get((long)var0);
 		if (var1 != null) {
 			return var1;
 		} else {
-			byte[] var2 = ParamDefinition.ParamDefinition_archive.takeFile(11, var0);
-			var1 = new ParamDefinition();
+			byte[] var2 = FloorUnderlayDefinition.FloorUnderlayDefinition_archive.takeFile(1, var0);
+			var1 = new FloorUnderlayDefinition();
 			if (var2 != null) {
-				var1.decode(new Buffer(var2));
+				var1.decode(new Buffer(var2), var0);
 			}
 
 			var1.postDecode();
-			ParamDefinition.ParamDefinition_cached.put(var1, (long)var0);
+			FloorUnderlayDefinition.FloorUnderlayDefinition_cached.put(var1, (long)var0);
 			return var1;
 		}
 	}
 
-	@ObfuscatedName("fz")
-	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-1910753346"
-	)
-	static final void method3251() {
-		for (int var0 = 0; var0 < Client.npcCount; ++var0) {
-			int var1 = Client.npcIndices[var0];
-			NPC var2 = Client.npcs[var1];
-			if (var2 != null) {
-				class325.calculateActorPosition(var2, var2.definition.size);
-			}
+	@ObfuscatedName("f")
+	public static boolean method3340(long var0) {
+		boolean var2 = var0 != 0L;
+		if (var2) {
+			boolean var3 = (int)(var0 >>> 16 & 1L) == 1;
+			var2 = !var3;
 		}
 
+		return var2;
+	}
+
+	@ObfuscatedName("y")
+	@ObfuscatedSignature(
+		signature = "(B)[Llm;",
+		garbageValue = "-38"
+	)
+	public static IndexedSprite[] method3341() {
+		IndexedSprite[] var0 = new IndexedSprite[class325.SpriteBuffer_spriteCount];
+
+		for (int var1 = 0; var1 < class325.SpriteBuffer_spriteCount; ++var1) {
+			IndexedSprite var2 = var0[var1] = new IndexedSprite();
+			var2.width = class325.SpriteBuffer_spriteWidth;
+			var2.height = UserComparator9.SpriteBuffer_spriteHeight;
+			var2.xOffset = UrlRequester.SpriteBuffer_xOffsets[var1];
+			var2.yOffset = class216.SpriteBuffer_yOffsets[var1];
+			var2.subWidth = class325.SpriteBuffer_spriteWidths[var1];
+			var2.subHeight = VarcInt.SpriteBuffer_spriteHeights[var1];
+			var2.palette = class325.SpriteBuffer_spritePalette;
+			var2.pixels = FillMode.SpriteBuffer_pixels[var1];
+		}
+
+		PcmPlayer.method2510();
+		return var0;
 	}
 }

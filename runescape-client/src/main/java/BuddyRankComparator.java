@@ -1,12 +1,27 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fd")
+@ObfuscatedName("fj")
 @Implements("BuddyRankComparator")
 public class BuddyRankComparator extends AbstractUserComparator {
-	@ObfuscatedName("z")
+	@ObfuscatedName("rm")
+	@ObfuscatedGetter(
+		intValue = -773868241
+	)
+	static int field1998;
+	@ObfuscatedName("e")
+	@ObfuscatedSignature(
+		signature = "Lfp;"
+	)
+	@Export("clock")
+	protected static Clock clock;
+	@ObfuscatedName("gd")
+	@Export("regionMapArchiveIds")
+	static int[] regionMapArchiveIds;
+	@ObfuscatedName("u")
 	@Export("reversed")
 	final boolean reversed;
 
@@ -14,10 +29,10 @@ public class BuddyRankComparator extends AbstractUserComparator {
 		this.reversed = var1;
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "(Ljl;Ljl;I)I",
-		garbageValue = "-1443378495"
+		signature = "(Ljt;Ljt;I)I",
+		garbageValue = "-525022889"
 	)
 	@Export("compareBuddy")
 	int compareBuddy(Buddy var1, Buddy var2) {
@@ -32,13 +47,16 @@ public class BuddyRankComparator extends AbstractUserComparator {
 		return this.compareBuddy((Buddy)var1, (Buddy)var2);
 	}
 
-	@ObfuscatedName("hs")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "(B)I",
-		garbageValue = "96"
+		signature = "(Lhf;Lhf;Lhf;Lgz;I)Z",
+		garbageValue = "-2130405669"
 	)
-	@Export("getNewestMenuIdx")
-	static final int getNewestMenuIdx() {
-		return Client.menuOptionsCount - 1;
+	public static boolean method3483(AbstractArchive var0, AbstractArchive var1, AbstractArchive var2, MidiPcmStream var3) {
+		class197.musicPatchesArchive = var0;
+		class197.musicSamplesArchive = var1;
+		class197.soundEffectsArchive = var2;
+		FaceNormal.midiPcmStream = var3;
+		return true;
 	}
 }

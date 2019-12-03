@@ -1574,6 +1574,8 @@ public final class SpriteID
 	public static final int TAB_MAGIC_SPELLBOOK_ARCEUUS = 1711;
 	/* Unmapped: 1712~2175 */
 	public static final int LARGE_GUTHIX_SPELL = 1774;
+	public static final int LARGE_BIND = 1788;
+	public static final int LARGE_SNARE = 1789;
 	public static final int LARGE_SUPERHEAT = 1800;
 	public static final int LARGE_SPEC_TRANSFER = 1959;
 	public static final int HEALTHBAR_DEFAULT_FRONT_30PX = 2176;

@@ -4,12 +4,10 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ey")
+@ObfuscatedName("en")
 @Implements("UserComparator4")
 public class UserComparator4 implements Comparator {
-	@ObfuscatedName("t")
-	public static String[] field1948;
-	@ObfuscatedName("z")
+	@ObfuscatedName("u")
 	@Export("reversed")
 	final boolean reversed;
 
@@ -17,44 +15,21 @@ public class UserComparator4 implements Comparator {
 		this.reversed = var1;
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "(Ljl;Ljl;I)I",
-		garbageValue = "-1358641411"
+		signature = "(Ljt;Ljt;I)I",
+		garbageValue = "-955614748"
 	)
 	@Export("compare_bridged")
 	int compare_bridged(Buddy var1, Buddy var2) {
 		return this.reversed ? var1.int2 - var2.int2 : var2.int2 - var1.int2;
 	}
 
-	public int compare(Object var1, Object var2) {
-		return this.compare_bridged((Buddy)var1, (Buddy)var2);
-	}
-
 	public boolean equals(Object var1) {
 		return super.equals(var1);
 	}
 
-	@ObfuscatedName("z")
-	@ObfuscatedSignature(
-		signature = "(Lhp;Ljava/lang/String;Ljava/lang/String;IZI)V",
-		garbageValue = "-1960498787"
-	)
-	public static void method3345(AbstractArchive var0, String var1, String var2, int var3, boolean var4) {
-		int var5 = var0.getGroupId(var1);
-		int var6 = var0.getFileId(var5, var2);
-		class83.method2064(var0, var5, var6, var3, var4);
-	}
-
-	@ObfuscatedName("ka")
-	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "2110753861"
-	)
-	static void method3346() {
-		if (Client.oculusOrbState == 1) {
-			Client.field879 = true;
-		}
-
+	public int compare(Object var1, Object var2) {
+		return this.compare_bridged((Buddy)var1, (Buddy)var2);
 	}
 }

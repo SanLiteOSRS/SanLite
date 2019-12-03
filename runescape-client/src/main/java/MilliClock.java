@@ -4,112 +4,112 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fc")
+@ObfuscatedName("fi")
 @Implements("MilliClock")
 public class MilliClock extends Clock {
-	@ObfuscatedName("z")
-	long[] field1993;
-	@ObfuscatedName("n")
-	@ObfuscatedGetter(
-		intValue = 1174263325
-	)
-	int field1992;
-	@ObfuscatedName("v")
-	@ObfuscatedGetter(
-		intValue = -133065269
-	)
-	int field1994;
 	@ObfuscatedName("u")
+	long[] field2017;
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		longValue = 4855142476282651555L
+		intValue = 90836153
 	)
-	long field1997;
-	@ObfuscatedName("r")
+	int field2018;
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = -118742351
+		intValue = 878139607
 	)
-	int field1996;
+	int field2019;
+	@ObfuscatedName("g")
+	@ObfuscatedGetter(
+		longValue = -4513558875816337439L
+	)
+	long field2022;
+	@ObfuscatedName("z")
+	@ObfuscatedGetter(
+		intValue = -1976068769
+	)
+	int field2021;
 	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = -432514755
+		intValue = 1447162639
 	)
-	int field1995;
+	int field2020;
 
-	MilliClock() {
-		this.field1993 = new long[10];
-		this.field1992 = 256;
-		this.field1994 = 1;
-		this.field1996 = 0;
-		this.field1997 = class30.method566();
+	public MilliClock() {
+		this.field2017 = new long[10];
+		this.field2018 = 256;
+		this.field2019 = 1;
+		this.field2021 = 0;
+		this.field2022 = TaskHandler.currentTimeMillis();
 
 		for (int var1 = 0; var1 < 10; ++var1) {
-			this.field1993[var1] = this.field1997;
+			this.field2017[var1] = this.field2022;
 		}
 
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "-54"
+		signature = "(I)V",
+		garbageValue = "-26166053"
 	)
 	@Export("mark")
 	public void mark() {
 		for (int var1 = 0; var1 < 10; ++var1) {
-			this.field1993[var1] = 0L;
+			this.field2017[var1] = 0L;
 		}
 
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "(III)I",
-		garbageValue = "569029249"
+		signature = "(IIB)I",
+		garbageValue = "6"
 	)
 	@Export("wait")
 	public int wait(int var1, int var2) {
-		int var3 = this.field1992;
-		int var4 = this.field1994;
-		this.field1992 = 300;
-		this.field1994 = 1;
-		this.field1997 = class30.method566();
-		if (0L == this.field1993[this.field1995]) {
-			this.field1992 = var3;
-			this.field1994 = var4;
-		} else if (this.field1997 > this.field1993[this.field1995]) {
-			this.field1992 = (int)((long)(var1 * 2560) / (this.field1997 - this.field1993[this.field1995]));
+		int var3 = this.field2018;
+		int var4 = this.field2019;
+		this.field2018 = 300;
+		this.field2019 = 1;
+		this.field2022 = TaskHandler.currentTimeMillis();
+		if (0L == this.field2017[this.field2020]) {
+			this.field2018 = var3;
+			this.field2019 = var4;
+		} else if (this.field2022 > this.field2017[this.field2020]) {
+			this.field2018 = (int)((long)(var1 * 2560) / (this.field2022 - this.field2017[this.field2020]));
 		}
 
-		if (this.field1992 < 25) {
-			this.field1992 = 25;
+		if (this.field2018 < 25) {
+			this.field2018 = 25;
 		}
 
-		if (this.field1992 > 256) {
-			this.field1992 = 256;
-			this.field1994 = (int)((long)var1 - (this.field1997 - this.field1993[this.field1995]) / 10L);
+		if (this.field2018 > 256) {
+			this.field2018 = 256;
+			this.field2019 = (int)((long)var1 - (this.field2022 - this.field2017[this.field2020]) / 10L);
 		}
 
-		if (this.field1994 > var1) {
-			this.field1994 = var1;
+		if (this.field2019 > var1) {
+			this.field2019 = var1;
 		}
 
-		this.field1993[this.field1995] = this.field1997;
-		this.field1995 = (this.field1995 + 1) % 10;
-		if (this.field1994 > 1) {
+		this.field2017[this.field2020] = this.field2022;
+		this.field2020 = (this.field2020 + 1) % 10;
+		if (this.field2019 > 1) {
 			for (int var5 = 0; var5 < 10; ++var5) {
-				if (0L != this.field1993[var5]) {
-					this.field1993[var5] += (long)this.field1994;
+				if (this.field2017[var5] != 0L) {
+					this.field2017[var5] += (long)this.field2019;
 				}
 			}
 		}
 
-		if (this.field1994 < var2) {
-			this.field1994 = var2;
+		if (this.field2019 < var2) {
+			this.field2019 = var2;
 		}
 
-		long var10 = (long)this.field1994;
+		long var10 = (long)this.field2019;
 		if (var10 > 0L) {
-			if (var10 % 10L == 0L) {
+			if (0L == var10 % 10L) {
 				long var7 = var10 - 1L;
 
 				try {
@@ -130,11 +130,35 @@ public class MilliClock extends Clock {
 		}
 
 		int var13;
-		for (var13 = 0; this.field1996 < 256; this.field1996 += this.field1992) {
+		for (var13 = 0; this.field2021 < 256; this.field2021 += this.field2018) {
 			++var13;
 		}
 
-		this.field1996 &= 255;
+		this.field2021 &= 255;
 		return var13;
+	}
+
+	@ObfuscatedName("ip")
+	@ObfuscatedSignature(
+		signature = "([Lhl;Lhl;ZB)V",
+		garbageValue = "115"
+	)
+	@Export("revalidateWidgetScroll")
+	static void revalidateWidgetScroll(Widget[] var0, Widget var1, boolean var2) {
+		int var3 = var1.scrollWidth != 0 ? var1.scrollWidth : var1.width;
+		int var4 = var1.scrollHeight != 0 ? var1.scrollHeight : var1.height;
+		class225.resizeInterface(var0, var1.id, var3, var4, var2);
+		if (var1.children != null) {
+			class225.resizeInterface(var1.children, var1.id, var3, var4, var2);
+		}
+
+		InterfaceParent var5 = (InterfaceParent)Client.interfaceParents.get((long)var1.id);
+		if (var5 != null) {
+			WorldMapSectionType.method272(var5.group, var3, var4, var2);
+		}
+
+		if (var1.contentType == 1337) {
+		}
+
 	}
 }

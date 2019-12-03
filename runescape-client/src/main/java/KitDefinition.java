@@ -4,51 +4,58 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("iy")
+@ObfuscatedName("ie")
 @Implements("KitDefinition")
 public class KitDefinition extends DualNode {
-	@ObfuscatedName("z")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "Lhp;"
+		signature = "Lhf;"
 	)
-	@Export("KitDefinition_archive")
-	public static AbstractArchive KitDefinition_archive;
-	@ObfuscatedName("u")
+	@Export("KitDefinition_modelsArchive")
+	static AbstractArchive KitDefinition_modelsArchive;
+	@ObfuscatedName("b")
+	@ObfuscatedGetter(
+		intValue = 469619503
+	)
+	@Export("KitDefinition_fileCount")
+	public static int KitDefinition_fileCount;
+	@ObfuscatedName("g")
 	@ObfuscatedSignature(
-		signature = "Lem;"
+		signature = "Lef;"
 	)
 	@Export("KitDefinition_cached")
-	public static EvictingDualNodeHashTable KitDefinition_cached;
-	@ObfuscatedName("o")
+	static EvictingDualNodeHashTable KitDefinition_cached;
+	@ObfuscatedName("bb")
 	@ObfuscatedSignature(
-		signature = "Lho;"
+		signature = "Llm;"
 	)
-	static Widget field3252;
-	@ObfuscatedName("r")
+	@Export("worldSelectRightSprite")
+	static IndexedSprite worldSelectRightSprite;
+	@ObfuscatedName("z")
 	@ObfuscatedGetter(
-		intValue = 1391426239
+		intValue = 404247585
 	)
 	@Export("bodypartID")
 	public int bodypartID;
 	@ObfuscatedName("p")
 	@Export("models2")
 	int[] models2;
-	@ObfuscatedName("q")
+	@ObfuscatedName("h")
 	@Export("recolorFrom")
 	short[] recolorFrom;
-	@ObfuscatedName("m")
+	@ObfuscatedName("y")
 	@Export("recolorTo")
 	short[] recolorTo;
-	@ObfuscatedName("y")
+	@ObfuscatedName("w")
 	@Export("retextureFrom")
 	short[] retextureFrom;
 	@ObfuscatedName("i")
 	@Export("retextureTo")
 	short[] retextureTo;
-	@ObfuscatedName("c")
+	@ObfuscatedName("k")
 	@Export("models")
 	int[] models;
-	@ObfuscatedName("b")
+	@ObfuscatedName("x")
 	@Export("nonSelectable")
 	public boolean nonSelectable;
 
@@ -62,10 +69,10 @@ public class KitDefinition extends DualNode {
 		this.nonSelectable = false;
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		signature = "(Lkl;I)V",
-		garbageValue = "801046571"
+		signature = "(Lkg;I)V",
+		garbageValue = "-888948213"
 	)
 	@Export("decode")
 	void decode(Buffer var1) {
@@ -79,10 +86,10 @@ public class KitDefinition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("g")
 	@ObfuscatedSignature(
-		signature = "(Lkl;II)V",
-		garbageValue = "1307391521"
+		signature = "(Lkg;II)V",
+		garbageValue = "-1758313973"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
@@ -125,10 +132,10 @@ public class KitDefinition extends DualNode {
 
 	}
 
-	@ObfuscatedName("u")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
 		signature = "(I)Z",
-		garbageValue = "-1837700521"
+		garbageValue = "-1861944698"
 	)
 	@Export("ready")
 	public boolean ready() {
@@ -138,7 +145,7 @@ public class KitDefinition extends DualNode {
 			boolean var1 = true;
 
 			for (int var2 = 0; var2 < this.models2.length; ++var2) {
-				if (!GrandExchangeOfferOwnWorldComparator.KitDefinition_modelsArchive.tryLoadFile(this.models2[var2], 0)) {
+				if (!KitDefinition_modelsArchive.tryLoadFile(this.models2[var2], 0)) {
 					var1 = false;
 				}
 			}
@@ -147,10 +154,10 @@ public class KitDefinition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("r")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		signature = "(I)Ldw;",
-		garbageValue = "538019624"
+		signature = "(B)Ldq;",
+		garbageValue = "20"
 	)
 	@Export("getModelData")
 	public ModelData getModelData() {
@@ -160,7 +167,7 @@ public class KitDefinition extends DualNode {
 			ModelData[] var1 = new ModelData[this.models2.length];
 
 			for (int var2 = 0; var2 < this.models2.length; ++var2) {
-				var1[var2] = ModelData.ModelData_get(GrandExchangeOfferOwnWorldComparator.KitDefinition_modelsArchive, this.models2[var2], 0);
+				var1[var2] = ModelData.ModelData_get(KitDefinition_modelsArchive, this.models2[var2], 0);
 			}
 
 			ModelData var4;
@@ -187,16 +194,16 @@ public class KitDefinition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(I)Z",
-		garbageValue = "-361074735"
+		signature = "(B)Z",
+		garbageValue = "1"
 	)
-	public boolean method4411() {
+	public boolean method4535() {
 		boolean var1 = true;
 
 		for (int var2 = 0; var2 < 5; ++var2) {
-			if (this.models[var2] != -1 && !GrandExchangeOfferOwnWorldComparator.KitDefinition_modelsArchive.tryLoadFile(this.models[var2], 0)) {
+			if (this.models[var2] != -1 && !KitDefinition_modelsArchive.tryLoadFile(this.models[var2], 0)) {
 				var1 = false;
 			}
 		}
@@ -204,10 +211,10 @@ public class KitDefinition extends DualNode {
 		return var1;
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(B)Ldw;",
-		garbageValue = "-26"
+		signature = "(B)Ldq;",
+		garbageValue = "-19"
 	)
 	@Export("getKitDefinitionModels")
 	public ModelData getKitDefinitionModels() {
@@ -216,7 +223,7 @@ public class KitDefinition extends DualNode {
 
 		for (int var3 = 0; var3 < 5; ++var3) {
 			if (this.models[var3] != -1) {
-				var1[var2++] = ModelData.ModelData_get(GrandExchangeOfferOwnWorldComparator.KitDefinition_modelsArchive, this.models[var3], 0);
+				var1[var2++] = ModelData.ModelData_get(KitDefinition_modelsArchive, this.models[var3], 0);
 			}
 		}
 

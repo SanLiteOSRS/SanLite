@@ -4,56 +4,56 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ky")
+@ObfuscatedName("kn")
 @Implements("AbstractSocket")
 public abstract class AbstractSocket {
 	protected AbstractSocket() {
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
 		signature = "(B)V",
-		garbageValue = "-119"
+		garbageValue = "-29"
 	)
 	@Export("close")
 	public abstract void close();
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "1784126558"
+		signature = "(B)I",
+		garbageValue = "27"
 	)
 	@Export("readUnsignedByte")
 	public abstract int readUnsignedByte() throws IOException;
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
 		signature = "(B)I",
-		garbageValue = "3"
+		garbageValue = "-53"
 	)
 	@Export("available")
 	public abstract int available() throws IOException;
 
-	@ObfuscatedName("u")
+	@ObfuscatedName("g")
 	@ObfuscatedSignature(
 		signature = "(II)Z",
-		garbageValue = "-336706705"
+		garbageValue = "-1591428004"
 	)
 	@Export("isAvailable")
 	public abstract boolean isAvailable(int var1) throws IOException;
 
-	@ObfuscatedName("r")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "([BIII)I",
-		garbageValue = "-2035668362"
+		signature = "([BIIB)I",
+		garbageValue = "29"
 	)
 	@Export("read")
 	public abstract int read(byte[] var1, int var2, int var3) throws IOException;
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "([BIIB)V",
-		garbageValue = "-68"
+		signature = "([BIII)V",
+		garbageValue = "-543253817"
 	)
 	@Export("write")
 	public abstract void write(byte[] var1, int var2, int var3) throws IOException;

@@ -1,29 +1,32 @@
-import java.io.IOException;
 import java.nio.ByteBuffer;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gj")
+@ObfuscatedName("gu")
 @Implements("DirectByteArrayCopier")
 public class DirectByteArrayCopier extends AbstractByteArrayCopier {
-	@ObfuscatedName("l")
-	@Export("BZip2Decompressor_block")
-	static int[] BZip2Decompressor_block;
-	@ObfuscatedName("eu")
-	static int[] field2482;
-	@ObfuscatedName("z")
+	@ObfuscatedName("az")
+	@ObfuscatedSignature(
+		signature = "Llp;"
+	)
+	@Export("rasterProvider")
+	public static AbstractRasterProvider rasterProvider;
+	@ObfuscatedName("dr")
+	@ObfuscatedSignature(
+		signature = "Lij;"
+	)
+	@Export("archive5")
+	static Archive archive5;
+	@ObfuscatedName("u")
 	@Export("directBuffer")
 	ByteBuffer directBuffer;
 
-	DirectByteArrayCopier() {
-	}
-
-	@ObfuscatedName("u")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		signature = "(B)[B",
-		garbageValue = "-37"
+		signature = "(S)[B",
+		garbageValue = "18982"
 	)
 	@Export("get")
 	byte[] get() {
@@ -33,40 +36,30 @@ public class DirectByteArrayCopier extends AbstractByteArrayCopier {
 		return var1;
 	}
 
-	@ObfuscatedName("r")
+	@ObfuscatedName("g")
 	@ObfuscatedSignature(
 		signature = "([BI)V",
-		garbageValue = "-793496359"
+		garbageValue = "-1436271820"
 	)
 	@Export("set")
-	void set(byte[] var1) {
+	public void set(byte[] var1) {
 		this.directBuffer = ByteBuffer.allocateDirect(var1.length);
 		this.directBuffer.position(0);
 		this.directBuffer.put(var1);
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		signature = "(ZI)V",
-		garbageValue = "-2052817052"
+		signature = "(CI)Z",
+		garbageValue = "-1809076627"
 	)
-	public static void method3915(boolean var0) {
-		if (NetCache.NetCache_socket != null) {
-			try {
-				Buffer var1 = new Buffer(4);
-				var1.writeByte(var0 ? 2 : 3);
-				var1.writeMedium(0);
-				NetCache.NetCache_socket.write(var1.array, 0, 4);
-			} catch (IOException var4) {
-				try {
-					NetCache.NetCache_socket.close();
-				} catch (Exception var3) {
-				}
-
-				++NetCache.NetCache_ioExceptions;
-				NetCache.NetCache_socket = null;
+	static boolean method4010(char var0) {
+		for (int var1 = 0; var1 < "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!\"£$%^&*()-_=+[{]};:'@#~,<.>/?\\| ".length(); ++var1) {
+			if (var0 == "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!\"£$%^&*()-_=+[{]};:'@#~,<.>/?\\| ".charAt(var1)) {
+				return true;
 			}
-
 		}
+
+		return false;
 	}
 }

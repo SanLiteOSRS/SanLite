@@ -3,50 +3,56 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gr")
+@ObfuscatedName("gq")
 public class class197 {
-	@ObfuscatedName("ok")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "Lct;"
-	)
-	@Export("varcs")
-	static Varcs varcs;
-	@ObfuscatedName("z")
-	@ObfuscatedSignature(
-		signature = "Lhp;"
+		signature = "Lhf;"
 	)
 	@Export("musicPatchesArchive")
 	public static AbstractArchive musicPatchesArchive;
-	@ObfuscatedName("v")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "Lhp;"
+		signature = "Lhf;"
+	)
+	@Export("musicSamplesArchive")
+	public static AbstractArchive musicSamplesArchive;
+	@ObfuscatedName("b")
+	@ObfuscatedSignature(
+		signature = "Lhf;"
 	)
 	@Export("soundEffectsArchive")
 	public static AbstractArchive soundEffectsArchive;
-	@ObfuscatedName("r")
+	@ObfuscatedName("z")
 	@ObfuscatedGetter(
-		intValue = 1857449183
+		intValue = 569775055
 	)
-	public static int field2386;
+	public static int field2411;
 	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		signature = "Lhp;"
+		signature = "Lhf;"
 	)
 	@Export("musicTrackArchive")
 	public static AbstractArchive musicTrackArchive;
-	@ObfuscatedName("b")
-	@ObfuscatedSignature(
-		signature = "Lgh;"
+	@ObfuscatedName("w")
+	@ObfuscatedGetter(
+		intValue = 2134983541
 	)
-	@Export("musicTrack")
-	public static MusicTrack musicTrack;
-	@ObfuscatedName("ba")
-	static String field2390;
-	@ObfuscatedName("gw")
-	@Export("regionMapArchiveIds")
-	static int[] regionMapArchiveIds;
+	@Export("musicTrackVolume")
+	public static int musicTrackVolume;
 
 	static {
-		field2386 = 0;
+		field2411 = 0;
+	}
+
+	@ObfuscatedName("g")
+	@ObfuscatedSignature(
+		signature = "(III)Lba;",
+		garbageValue = "1833957440"
+	)
+	@Export("Messages_getByChannelAndID")
+	static Message Messages_getByChannelAndID(int var0, int var1) {
+		ChatChannel var2 = (ChatChannel)Messages.Messages_channels.get(var0);
+		return var2.getMessage(var1);
 	}
 }

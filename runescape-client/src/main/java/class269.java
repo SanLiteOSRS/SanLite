@@ -2,12 +2,12 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ja")
+@ObfuscatedName("jk")
 public class class269 {
-	@ObfuscatedName("sq")
+	@ObfuscatedName("dg")
 	@ObfuscatedSignature(
-		signature = "Llt;"
+		signature = "Lij;"
 	)
-	@Export("platformInfo")
-	static PlatformInfo platformInfo;
+	@Export("archive13")
+	static Archive archive13;
 }

@@ -4,40 +4,38 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("im")
+@ObfuscatedName("ik")
 @Implements("VerticalAlignment")
 public enum VerticalAlignment implements Enumerated {
-	@ObfuscatedName("z")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "Lim;"
+		signature = "Lik;"
 	)
-	field3172(0, 0),
-	@ObfuscatedName("n")
+	field3201(2, 0),
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "Lim;"
+		signature = "Lik;"
 	)
 	@Export("VerticalAlignment_centered")
-	VerticalAlignment_centered(2, 1),
-	@ObfuscatedName("v")
+	VerticalAlignment_centered(1, 1),
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		signature = "Lim;"
+		signature = "Lik;"
 	)
-	field3170(1, 2);
+	field3200(0, 2);
 
-	@ObfuscatedName("df")
+	@ObfuscatedName("gh")
+	@Export("regionLandArchives")
+	static byte[][] regionLandArchives;
+	@ObfuscatedName("g")
 	@ObfuscatedGetter(
-		longValue = 8439577585786440307L
-	)
-	static long field3175;
-	@ObfuscatedName("u")
-	@ObfuscatedGetter(
-		intValue = -163994147
+		intValue = 445419169
 	)
 	@Export("value")
 	public final int value;
-	@ObfuscatedName("r")
+	@ObfuscatedName("z")
 	@ObfuscatedGetter(
-		intValue = 1741450623
+		intValue = -1195481175
 	)
 	@Export("id")
 	final int id;
@@ -47,26 +45,13 @@ public enum VerticalAlignment implements Enumerated {
 		this.id = var4;
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("g")
 	@ObfuscatedSignature(
-		signature = "(S)I",
-		garbageValue = "221"
+		signature = "(B)I",
+		garbageValue = "7"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
 		return this.id;
-	}
-
-	@ObfuscatedName("ko")
-	@ObfuscatedSignature(
-		signature = "(Lho;I)Ljava/lang/String;",
-		garbageValue = "-2118508660"
-	)
-	static String method4309(Widget var0) {
-		if (class2.method30(class2.getWidgetClickMask(var0)) == 0) {
-			return null;
-		} else {
-			return var0.spellActionName != null && var0.spellActionName.trim().length() != 0 ? var0.spellActionName : null;
-		}
 	}
 }

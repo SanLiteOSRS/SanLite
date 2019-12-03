@@ -6,46 +6,40 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("kv")
+@ObfuscatedName("kb")
 @Implements("BufferedSink")
 public class BufferedSink implements Runnable {
-	@ObfuscatedName("e")
-	@ObfuscatedSignature(
-		signature = "Lbr;"
-	)
-	@Export("loginScreenRunesAnimation")
-	static LoginScreenAnimation loginScreenRunesAnimation;
-	@ObfuscatedName("z")
+	@ObfuscatedName("u")
 	@Export("thread")
 	Thread thread;
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@Export("outputStream")
 	OutputStream outputStream;
-	@ObfuscatedName("v")
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = 1047270953
+		intValue = 904264235
 	)
 	@Export("capacity")
 	int capacity;
-	@ObfuscatedName("u")
+	@ObfuscatedName("g")
 	@Export("buffer")
 	byte[] buffer;
-	@ObfuscatedName("r")
+	@ObfuscatedName("z")
 	@ObfuscatedGetter(
-		intValue = 205486611
+		intValue = -566617461
 	)
 	@Export("position")
 	int position;
 	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = -1646863699
+		intValue = -217387211
 	)
 	@Export("limit")
 	int limit;
-	@ObfuscatedName("q")
+	@ObfuscatedName("h")
 	@Export("exception")
 	IOException exception;
-	@ObfuscatedName("m")
+	@ObfuscatedName("y")
 	@Export("closed")
 	boolean closed;
 
@@ -60,10 +54,10 @@ public class BufferedSink implements Runnable {
 		this.thread.start();
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "(B)Z",
-		garbageValue = "-57"
+		signature = "(I)Z",
+		garbageValue = "1508887687"
 	)
 	@Export("isClosed")
 	boolean isClosed() {
@@ -85,10 +79,10 @@ public class BufferedSink implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
 		signature = "([BIIB)V",
-		garbageValue = "30"
+		garbageValue = "-22"
 	)
 	@Export("write")
 	void write(byte[] var1, int var2, int var3) throws IOException {
@@ -125,10 +119,10 @@ public class BufferedSink implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "-1627292871"
+		garbageValue = "1435553079"
 	)
 	@Export("close")
 	void close() {
@@ -202,73 +196,5 @@ public class BufferedSink implements Runnable {
 			}
 		} while(!this.isClosed());
 
-	}
-
-	@ObfuscatedName("z")
-	@ObfuscatedSignature(
-		signature = "(Lli;I)I",
-		garbageValue = "-828018974"
-	)
-	static final int method5777(LoginType var0) {
-		if (var0 == null) {
-			return 12;
-		} else {
-			switch(var0.field4033) {
-			case 0:
-				return 20;
-			default:
-				return 12;
-			}
-		}
-	}
-
-	@ObfuscatedName("fm")
-	@ObfuscatedSignature(
-		signature = "(Lho;IIB)V",
-		garbageValue = "-112"
-	)
-	@Export("checkIfMinimapClicked")
-	static final void checkIfMinimapClicked(Widget var0, int var1, int var2) {
-		if (Client.minimapState == 0 || Client.minimapState == 3) {
-			if (!Client.isMenuOpen && (MouseHandler.MouseHandler_lastButton == 1 || !WorldMapIcon_1.mouseCam && MouseHandler.MouseHandler_lastButton == 4)) {
-				SpriteMask var3 = var0.getSpriteMask(true);
-				if (var3 == null) {
-					return;
-				}
-
-				int var4 = MouseHandler.MouseHandler_lastPressedX - var1;
-				int var5 = MouseHandler.MouseHandler_lastPressedY - var2;
-				if (var3.contains(var4, var5)) {
-					var4 -= var3.width / 2;
-					var5 -= var3.height / 2;
-					int var6 = Client.camAngleY & 2047;
-					int var7 = Rasterizer3D.Rasterizer3D_sine[var6];
-					int var8 = Rasterizer3D.Rasterizer3D_cosine[var6];
-					int var9 = var5 * var7 + var4 * var8 >> 11;
-					int var10 = var5 * var8 - var7 * var4 >> 11;
-					int var11 = var9 + class223.localPlayer.x >> 7;
-					int var12 = class223.localPlayer.y * 682054857 - var10 >> 7;
-					PacketBufferNode var13 = InterfaceParent.getPacketBufferNode(ClientPacket.field2275, Client.packetWriter.isaacCipher);
-					var13.packetBuffer.writeByte(18);
-					var13.packetBuffer.writeShortLE(class223.baseX * 64 + var11);
-					var13.packetBuffer.method5461(class286.baseY * 64 + var12);
-					var13.packetBuffer.method5453(KeyHandler.KeyHandler_pressedKeys[82] ? (KeyHandler.KeyHandler_pressedKeys[81] ? 2 : 1) : 0);
-					var13.packetBuffer.writeByte(var4);
-					var13.packetBuffer.writeByte(var5);
-					var13.packetBuffer.writeShort(Client.camAngleY);
-					var13.packetBuffer.writeByte(57);
-					var13.packetBuffer.writeByte(0);
-					var13.packetBuffer.writeByte(0);
-					var13.packetBuffer.writeByte(89);
-					var13.packetBuffer.writeShort(class223.localPlayer.x);
-					var13.packetBuffer.writeShort(class223.localPlayer.y * 682054857);
-					var13.packetBuffer.writeByte(63);
-					Client.packetWriter.addNode(var13);
-					Client.destinationX = var11;
-					Client.destinationY = var12;
-				}
-			}
-
-		}
 	}
 }

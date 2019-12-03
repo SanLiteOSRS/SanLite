@@ -7,37 +7,37 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("kx")
+@ObfuscatedName("kt")
 @Implements("BufferedSource")
 public class BufferedSource implements Runnable {
-	@ObfuscatedName("z")
+	@ObfuscatedName("u")
 	@Export("thread")
 	Thread thread;
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@Export("inputStream")
 	InputStream inputStream;
-	@ObfuscatedName("v")
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = -1837703949
+		intValue = -290674023
 	)
 	@Export("capacity")
 	int capacity;
-	@ObfuscatedName("u")
+	@ObfuscatedName("g")
 	@Export("buffer")
 	byte[] buffer;
-	@ObfuscatedName("r")
+	@ObfuscatedName("z")
 	@ObfuscatedGetter(
-		intValue = 496960127
+		intValue = 1886229969
 	)
 	@Export("position")
 	int position;
 	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = -589477741
+		intValue = 1533965281
 	)
 	@Export("limit")
 	int limit;
-	@ObfuscatedName("q")
+	@ObfuscatedName("h")
 	@Export("exception")
 	IOException exception;
 
@@ -52,10 +52,10 @@ public class BufferedSource implements Runnable {
 		this.thread.start();
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
 		signature = "(IB)Z",
-		garbageValue = "-42"
+		garbageValue = "-1"
 	)
 	@Export("isAvailable")
 	boolean isAvailable(int var1) throws IOException {
@@ -86,10 +86,10 @@ public class BufferedSource implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
 		signature = "(B)I",
-		garbageValue = "-99"
+		garbageValue = "71"
 	)
 	@Export("available")
 	int available() throws IOException {
@@ -110,10 +110,10 @@ public class BufferedSource implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
 		signature = "(I)I",
-		garbageValue = "1540455812"
+		garbageValue = "-245742191"
 	)
 	@Export("readUnsignedByte")
 	int readUnsignedByte() throws IOException {
@@ -133,10 +133,10 @@ public class BufferedSource implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("u")
+	@ObfuscatedName("g")
 	@ObfuscatedSignature(
 		signature = "([BIII)I",
-		garbageValue = "2103598010"
+		garbageValue = "4492631"
 	)
 	@Export("read")
 	int read(byte[] var1, int var2, int var3) throws IOException {
@@ -174,10 +174,10 @@ public class BufferedSource implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("r")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "2069219110"
+		signature = "(B)V",
+		garbageValue = "34"
 	)
 	@Export("close")
 	void close() {

@@ -44,16 +44,17 @@ import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.*;
 
-import static net.runelite.api.Constants.REGION_SIZE;
 import net.runelite.api.DecorativeObject;
 import net.runelite.api.GameObject;
 import net.runelite.api.GameState;
+import net.runelite.api.GroundObject;
 import net.runelite.api.MenuAction;
 import net.runelite.api.MenuEntry;
 import net.runelite.api.ObjectDefinition;
 import net.runelite.api.Scene;
 import net.runelite.api.Tile;
 import net.runelite.api.TileObject;
+import net.runelite.api.WallObject;
 import net.runelite.api.coords.WorldPoint;
 import net.runelite.api.events.DecorativeObjectDespawned;
 import net.runelite.api.events.DecorativeObjectSpawned;
@@ -324,8 +325,8 @@ public class ObjectIndicatorsPlugin extends Plugin implements KeyListener
 
 		for (ObjectPoint objectPoint : objectPoints)
 		{
-			if ((worldPoint.getX() & (REGION_SIZE - 1)) == objectPoint.getRegionX()
-					&& (worldPoint.getY() & (REGION_SIZE - 1)) == objectPoint.getRegionY())
+			if (worldPoint.getRegionX() == objectPoint.getRegionX()
+					&& worldPoint.getRegionY() == objectPoint.getRegionY())
 			{
 				// Transform object to get the name which matches against what we've stored
 				if (objectPoint.getName().equals(getObjectComposition(object.getId()).getName()))
@@ -416,18 +417,27 @@ public class ObjectIndicatorsPlugin extends Plugin implements KeyListener
 		final WorldPoint worldPoint = WorldPoint.fromLocalInstance(client, object.getLocalLocation());
 		final int regionId = worldPoint.getRegionID();
 		final ObjectPoint point = new ObjectPoint(
+			object.getId(),
 			name,
 			regionId,
-			worldPoint.getX() & (REGION_SIZE - 1),
-			worldPoint.getY() & (REGION_SIZE - 1),
+			worldPoint.getRegionX(),
+			worldPoint.getRegionY(),
 			client.getPlane());
 
 		Set<ObjectPoint> objectPoints = points.computeIfAbsent(regionId, k -> new HashSet<>());
 
-		if (objectPoints.contains(point))
+		if (objects.remove(object))
 		{
-			objectPoints.remove(point);
-			objects.remove(object);
+			// Use object id instead of name to match the object point with this object due to the object name being
+			// able to change because of multilocs.
+			if (!objectPoints.removeIf(op -> (op.getId() == -1 || op.getId() == object.getId())
+				&& op.getRegionX() == worldPoint.getRegionX()
+				&& op.getRegionY() == worldPoint.getRegionY()
+				&& op.getZ() == worldPoint.getPlane()))
+			{
+				log.warn("unable to find object point for unmarked object {}", object.getId());
+			}
+
 			log.debug("Unmarking object: {}", point);
 		}
 		else

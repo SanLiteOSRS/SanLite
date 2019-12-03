@@ -164,15 +164,6 @@ public final class AnimationID
 	public static final int PISCARILIUS_CRANE_REPAIR = 7199;
 	public static final int HOME_MAKE_TABLET = 4067;
 	public static final int DRAGONFIRE_SHIELD_SPECIAL = 6696;
-	public static final int THIEVING_STALL = 832;
-	public static final int PICKPOCKET_SUCCESS = 881;
-	
-	// Block animations for players and perhaps npc's
-	public static final int BLOCK_DEFENDER = 4177;
-	public static final int BLOCK_NO_SHIELD = 420;
-	public static final int BLOCK_SHIELD = 1156;
-	public static final int BLOCK_SWORD = 388;
-	public static final int BLOCK_UNARMED = 424; // Same animation as failed pickpocket
 
 	// NPC animations
 	public static final int TZTOK_JAD_RANGE_ATTACK = 2652;
@@ -248,6 +239,9 @@ public final class AnimationID
 	public static final int TEKTON_ENRAGE_AUTO2 = 7493;
 	public static final int TEKTON_ENRAGE_AUTO3 = 7494;
 
+	// Pestilent Bloat
+	public static final int BLOAT_SLEEP = 8082;
+
 	// Hydra
 	public static final int HYDRA_POISON_1 = 8234;
 	public static final int HYDRA_RANGED_1 = 8235;
@@ -273,6 +267,7 @@ public final class AnimationID
 	// Inferno animations
 	public static final int JAL_NIB = 7574;
 	public static final int JAL_MEJRAH = 7578;
+	public static final int JAL_MEJRAH_STAND = 7577;
 	public static final int JAL_AK_RANGE_ATTACK = 7581;
 	public static final int JAL_AK_MELEE_ATTACK = 7582;
 	public static final int JAL_AK_MAGIC_ATTACK = 7583;

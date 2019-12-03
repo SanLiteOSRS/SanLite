@@ -4,114 +4,84 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ao")
+@ObfuscatedName("ab")
 @Implements("WorldMapCacheName")
 public class WorldMapCacheName {
-	@ObfuscatedName("z")
-	@ObfuscatedSignature(
-		signature = "Lao;"
+	@ObfuscatedName("rg")
+	@ObfuscatedGetter(
+		intValue = 671141563
 	)
-	public static final WorldMapCacheName field284;
-	@ObfuscatedName("n")
-	@ObfuscatedSignature(
-		signature = "Lao;"
-	)
-	public static final WorldMapCacheName field289;
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		signature = "Lao;"
-	)
-	public static final WorldMapCacheName field283;
+	static int field308;
 	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "Lao;"
+		signature = "Lab;"
 	)
-	static final WorldMapCacheName field285;
-	@ObfuscatedName("r")
+	public static final WorldMapCacheName field304;
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "Lao;"
+		signature = "Lab;"
 	)
-	public static final WorldMapCacheName field287;
-	@ObfuscatedName("ay")
+	public static final WorldMapCacheName field303;
+	@ObfuscatedName("b")
+	@ObfuscatedSignature(
+		signature = "Lab;"
+	)
+	public static final WorldMapCacheName field307;
+	@ObfuscatedName("g")
+	@ObfuscatedSignature(
+		signature = "Lab;"
+	)
+	static final WorldMapCacheName field305;
+	@ObfuscatedName("z")
+	@ObfuscatedSignature(
+		signature = "Lab;"
+	)
+	public static final WorldMapCacheName field306;
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = 1366497929
+		intValue = -770375157
 	)
-	static int field286;
+	@Export("canvasHeight")
+	public static int canvasHeight;
 	@ObfuscatedName("p")
 	@Export("name")
 	public final String name;
 
 	static {
-		field284 = new WorldMapCacheName("details");
-		field289 = new WorldMapCacheName("compositemap");
-		field283 = new WorldMapCacheName("compositetexture");
-		field285 = new WorldMapCacheName("area");
-		field287 = new WorldMapCacheName("labels");
+		field304 = new WorldMapCacheName("details");
+		field303 = new WorldMapCacheName("compositemap");
+		field307 = new WorldMapCacheName("compositetexture");
+		field305 = new WorldMapCacheName("area");
+		field306 = new WorldMapCacheName("labels");
 	}
 
 	WorldMapCacheName(String var1) {
 		this.name = var1;
 	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "1512894139"
+		signature = "(ZI)V",
+		garbageValue = "-98614245"
 	)
-	static final void method644() {
-		EnumDefinition.method4496("Your ignore list is full. Max of 100 for free users, and 400 for members");
+	public static void method637(boolean var0) {
+		if (var0 != ItemDefinition.ItemDefinition_inMembersWorld) {
+			WorldMapAreaData.method703();
+			ItemDefinition.ItemDefinition_inMembersWorld = var0;
+		}
+
 	}
 
-	@ObfuscatedName("ht")
+	@ObfuscatedName("if")
 	@ObfuscatedSignature(
-		signature = "(III)V",
-		garbageValue = "2059241635"
+		signature = "(IIB)V",
+		garbageValue = "57"
 	)
-	@Export("updateItemPile")
-	static final void updateItemPile(int var0, int var1) {
-		NodeDeque var2 = Client.groundItems[WorldMapRectangle.plane][var0][var1];
-		if (var2 == null) {
-			PacketWriter.scene.removeGroundItemPile(WorldMapRectangle.plane, var0, var1);
-		} else {
-			long var3 = -99999999L;
-			TileItem var5 = null;
-
-			TileItem var6;
-			for (var6 = (TileItem)var2.last(); var6 != null; var6 = (TileItem)var2.previous()) {
-				ItemDefinition var7 = Occluder.ItemDefinition_get(var6.id);
-				long var8 = (long)var7.price;
-				if (var7.isStackable == 1) {
-					var8 *= (long)(var6.quantity + 1);
-				}
-
-				if (var8 > var3) {
-					var3 = var8;
-					var5 = var6;
-				}
-			}
-
-			if (var5 == null) {
-				PacketWriter.scene.removeGroundItemPile(WorldMapRectangle.plane, var0, var1);
-			} else {
-				var2.addLast(var5);
-				TileItem var12 = null;
-				TileItem var11 = null;
-
-				for (var6 = (TileItem)var2.last(); var6 != null; var6 = (TileItem)var2.previous()) {
-					if (var5.id != var6.id) {
-						if (var12 == null) {
-							var12 = var6;
-						}
-
-						if (var6.id != var12.id && var11 == null) {
-							var11 = var6;
-						}
-					}
-				}
-
-				long var9 = class267.calculateTag(var0, var1, 3, false, 0);
-				PacketWriter.scene.newGroundItemPile(WorldMapRectangle.plane, var0, var1, MusicPatchPcmStream.getTileHeight(var0 * 128 + 64, var1 * 128 + 64, WorldMapRectangle.plane), var5, var9, var12, var11);
-			}
-		}
+	@Export("resumePauseWidget")
+	static void resumePauseWidget(int var0, int var1) {
+		PacketBufferNode var2 = ModelData0.getPacketBufferNode(ClientPacket.field2275, Client.packetWriter.isaacCipher);
+		var2.packetBuffer.method5613(var1);
+		var2.packetBuffer.writeInt(var0);
+		Client.packetWriter.addNode(var2);
 	}
 }

@@ -4,154 +4,155 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gb")
+@ObfuscatedName("gz")
 @Implements("MidiPcmStream")
 public class MidiPcmStream extends PcmStream {
-	@ObfuscatedName("z")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "Llq;"
+		signature = "Lle;"
 	)
 	@Export("musicPatches")
 	NodeHashTable musicPatches;
-	@ObfuscatedName("n")
-	@ObfuscatedGetter(
-		intValue = -1432283379
-	)
-	int field2393;
-	@ObfuscatedName("v")
-	@ObfuscatedGetter(
-		intValue = -1001030592
-	)
-	int field2394;
-	@ObfuscatedName("u")
-	int[] field2409;
-	@ObfuscatedName("r")
-	int[] field2405;
-	@ObfuscatedName("p")
-	int[] field2407;
-	@ObfuscatedName("q")
-	int[] field2398;
-	@ObfuscatedName("m")
-	int[] field2395;
-	@ObfuscatedName("y")
-	int[] field2400;
-	@ObfuscatedName("i")
-	int[] field2399;
-	@ObfuscatedName("c")
-	int[] field2402;
-	@ObfuscatedName("b")
-	int[] field2403;
-	@ObfuscatedName("h")
-	int[] field2404;
-	@ObfuscatedName("s")
-	int[] field2392;
 	@ObfuscatedName("f")
-	int[] field2418;
-	@ObfuscatedName("j")
-	int[] field2408;
-	@ObfuscatedName("d")
-	int[] field2406;
-	@ObfuscatedName("l")
-	int[] field2401;
+	@ObfuscatedGetter(
+		intValue = -1040348167
+	)
+	int field2417;
+	@ObfuscatedName("b")
+	@ObfuscatedGetter(
+		intValue = -618997033
+	)
+	int field2419;
+	@ObfuscatedName("g")
+	int[] field2437;
+	@ObfuscatedName("z")
+	int[] field2420;
+	@ObfuscatedName("p")
+	int[] field2442;
+	@ObfuscatedName("h")
+	int[] field2422;
+	@ObfuscatedName("y")
+	int[] field2421;
+	@ObfuscatedName("i")
+	int[] field2424;
 	@ObfuscatedName("k")
+	int[] field2425;
+	@ObfuscatedName("x")
+	int[] field2443;
+	@ObfuscatedName("o")
+	int[] field2427;
+	@ObfuscatedName("s")
+	int[] field2428;
+	@ObfuscatedName("t")
+	int[] field2440;
+	@ObfuscatedName("m")
+	int[] field2430;
+	@ObfuscatedName("v")
+	int[] field2441;
+	@ObfuscatedName("q")
+	int[] field2432;
+	@ObfuscatedName("l")
+	int[] field2433;
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
-		signature = "[[Lgu;"
+		signature = "[[Lge;"
 	)
-	MusicPatchNode[][] field2410;
-	@ObfuscatedName("ac")
+	MusicPatchNode[][] field2434;
+	@ObfuscatedName("af")
 	@ObfuscatedSignature(
-		signature = "[[Lgu;"
+		signature = "[[Lge;"
 	)
-	MusicPatchNode[][] field2411;
-	@ObfuscatedName("az")
+	MusicPatchNode[][] field2435;
+	@ObfuscatedName("ad")
 	@ObfuscatedSignature(
-		signature = "Lgc;"
+		signature = "Lgg;"
 	)
 	@Export("midiFile")
 	MidiFileReader midiFile;
-	@ObfuscatedName("aw")
-	boolean field2413;
-	@ObfuscatedName("aa")
+	@ObfuscatedName("am")
+	boolean field2426;
+	@ObfuscatedName("ai")
 	@ObfuscatedGetter(
-		intValue = 442651773
+		intValue = -664864555
 	)
 	@Export("track")
 	int track;
-	@ObfuscatedName("ap")
+	@ObfuscatedName("ag")
 	@ObfuscatedGetter(
-		intValue = -532588397
+		intValue = -1177592685
 	)
 	@Export("trackLength")
 	int trackLength;
-	@ObfuscatedName("ar")
+	@ObfuscatedName("ao")
 	@ObfuscatedGetter(
-		longValue = -7808892689914607303L
+		longValue = -3140797067045383129L
+	)
+	long field2431;
+	@ObfuscatedName("aw")
+	@ObfuscatedGetter(
+		longValue = 7928451830395047815L
 	)
 	long field2416;
-	@ObfuscatedName("ab")
-	@ObfuscatedGetter(
-		longValue = -2211095128418699139L
-	)
-	long field2417;
-	@ObfuscatedName("ax")
+	@ObfuscatedName("ak")
 	@ObfuscatedSignature(
-		signature = "Lgp;"
+		signature = "Lgr;"
 	)
 	@Export("patchStream")
 	MusicPatchPcmStream patchStream;
 
 	public MidiPcmStream() {
-		this.field2393 = 256;
-		this.field2394 = -727379968;
-		this.field2409 = new int[16];
-		this.field2405 = new int[16];
-		this.field2407 = new int[16];
-		this.field2398 = new int[16];
-		this.field2395 = new int[16];
-		this.field2400 = new int[16];
-		this.field2399 = new int[16];
-		this.field2402 = new int[16];
-		this.field2403 = new int[16];
-		this.field2404 = new int[16];
-		this.field2392 = new int[16];
-		this.field2418 = new int[16];
-		this.field2408 = new int[16];
-		this.field2406 = new int[16];
-		this.field2401 = new int[16];
-		this.field2410 = new MusicPatchNode[16][128];
-		this.field2411 = new MusicPatchNode[16][128];
+		this.field2417 = 256;
+		this.field2419 = 1000000;
+		this.field2437 = new int[16];
+		this.field2420 = new int[16];
+		this.field2442 = new int[16];
+		this.field2422 = new int[16];
+		this.field2421 = new int[16];
+		this.field2424 = new int[16];
+		this.field2425 = new int[16];
+		this.field2443 = new int[16];
+		this.field2427 = new int[16];
+		this.field2428 = new int[16];
+		this.field2440 = new int[16];
+		this.field2430 = new int[16];
+		this.field2441 = new int[16];
+		this.field2432 = new int[16];
+		this.field2433 = new int[16];
+		this.field2434 = new MusicPatchNode[16][128];
+		this.field2435 = new MusicPatchNode[16][128];
 		this.midiFile = new MidiFileReader();
 		this.patchStream = new MusicPatchPcmStream(this);
 		this.musicPatches = new NodeHashTable(128);
-		this.method3681();
+		this.method3787();
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "(II)V",
-		garbageValue = "-1812413582"
+		signature = "(IB)V",
+		garbageValue = "31"
 	)
-	public synchronized void method3751(int var1) {
-		this.field2393 = var1;
+	@Export("setPcmStreamVolume")
+	public synchronized void setPcmStreamVolume(int var1) {
+		this.field2417 = var1;
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
 		signature = "(I)I",
-		garbageValue = "-1892008992"
+		garbageValue = "-847322953"
 	)
-	public int method3736() {
-		return this.field2393;
+	int method3769() {
+		return this.field2417;
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		signature = "(Lgh;Lhp;Ldq;II)Z",
-		garbageValue = "-1805357835"
+		signature = "(Lgt;Lhf;Ldk;II)Z",
+		garbageValue = "612802869"
 	)
 	@Export("loadMusicTrack")
 	public synchronized boolean loadMusicTrack(MusicTrack var1, AbstractArchive var2, SoundCache var3, int var4) {
-		var1.method3886();
+		var1.method3987();
 		boolean var5 = true;
 		int[] var6 = null;
 		if (var4 > 0) {
@@ -162,16 +163,24 @@ public class MidiPcmStream extends PcmStream {
 			int var8 = (int)var7.key;
 			MusicPatch var9 = (MusicPatch)this.musicPatches.get((long)var8);
 			if (var9 == null) {
-				var9 = WorldMapRegion.method519(var2, var8);
-				if (var9 == null) {
+				byte[] var11 = var2.takeFileFlat(var8);
+				MusicPatch var10;
+				if (var11 == null) {
+					var10 = null;
+				} else {
+					var10 = new MusicPatch(var11);
+				}
+
+				var9 = var10;
+				if (var10 == null) {
 					var5 = false;
 					continue;
 				}
 
-				this.musicPatches.put(var9, (long)var8);
+				this.musicPatches.put(var10, (long)var8);
 			}
 
-			if (!var9.method3847(var3, var7.byteArray, var6)) {
+			if (!var9.method3952(var3, var7.byteArray, var6)) {
 				var5 = false;
 			}
 		}
@@ -183,10 +192,10 @@ public class MidiPcmStream extends PcmStream {
 		return var5;
 	}
 
-	@ObfuscatedName("u")
+	@ObfuscatedName("g")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-1194981634"
+		signature = "(B)V",
+		garbageValue = "34"
 	)
 	@Export("clearAll")
 	public synchronized void clearAll() {
@@ -196,13 +205,13 @@ public class MidiPcmStream extends PcmStream {
 
 	}
 
-	@ObfuscatedName("r")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "1548831069"
+		garbageValue = "-1987681948"
 	)
 	@Export("removeAll")
-	public synchronized void removeAll() {
+	synchronized void removeAll() {
 		for (MusicPatch var1 = (MusicPatch)this.musicPatches.first(); var1 != null; var1 = (MusicPatch)this.musicPatches.next()) {
 			var1.remove();
 		}
@@ -211,46 +220,46 @@ public class MidiPcmStream extends PcmStream {
 
 	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		signature = "()Ldc;"
+		signature = "()Ldt;"
 	)
 	@Export("firstSubStream")
 	protected synchronized PcmStream firstSubStream() {
 		return this.patchStream;
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "()Ldc;"
+		signature = "()Ldt;"
 	)
 	@Export("nextSubStream")
 	protected synchronized PcmStream nextSubStream() {
 		return null;
 	}
 
-	@ObfuscatedName("m")
-	protected synchronized int vmethod3873() {
+	@ObfuscatedName("y")
+	protected synchronized int vmethod3963() {
 		return 0;
 	}
 
-	@ObfuscatedName("y")
+	@ObfuscatedName("w")
 	@Export("fill")
 	protected synchronized void fill(int[] var1, int var2, int var3) {
 		if (this.midiFile.isReady()) {
-			int var4 = this.midiFile.division * this.field2394 * 1000000 / UrlRequest.PcmPlayer_sampleRate;
+			int var4 = this.midiFile.division * this.field2419 * -727379968 / Messages.field1274;
 
 			do {
-				long var5 = this.field2416 + (long)var4 * (long)var3;
-				if (this.field2417 - var5 >= 0L) {
-					this.field2416 = var5;
+				long var5 = this.field2431 + (long)var4 * (long)var3;
+				if (this.field2416 - var5 >= 0L) {
+					this.field2431 = var5;
 					break;
 				}
 
-				int var7 = (int)((this.field2417 - this.field2416 + (long)var4 - 1L) / (long)var4);
-				this.field2416 += (long)var7 * (long)var4;
+				int var7 = (int)((this.field2416 - this.field2431 + (long)var4 - 1L) / (long)var4);
+				this.field2431 += (long)var4 * (long)var7;
 				this.patchStream.fill(var1, var2, var7);
 				var2 += var7;
 				var3 -= var7;
-				this.method3731();
+				this.method3800();
 			} while(this.midiFile.isReady());
 		}
 
@@ -259,15 +268,15 @@ public class MidiPcmStream extends PcmStream {
 
 	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		signature = "(Lgh;ZI)V",
-		garbageValue = "1917268302"
+		signature = "(Lgt;ZI)V",
+		garbageValue = "1137691865"
 	)
 	@Export("setMusicTrack")
 	public synchronized void setMusicTrack(MusicTrack var1, boolean var2) {
 		this.clear();
 		this.midiFile.parse(var1.midi);
-		this.field2413 = var2;
-		this.field2416 = 0L;
+		this.field2426 = var2;
+		this.field2431 = 0L;
 		int var3 = this.midiFile.trackCount();
 
 		for (int var4 = 0; var4 < var3; ++var4) {
@@ -278,248 +287,248 @@ public class MidiPcmStream extends PcmStream {
 
 		this.track = this.midiFile.getPrioritizedTrack();
 		this.trackLength = this.midiFile.trackLengths[this.track];
-		this.field2417 = this.midiFile.method3804(this.trackLength);
+		this.field2416 = this.midiFile.method3906(this.trackLength);
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("k")
 	@Export("skip")
 	protected synchronized void skip(int var1) {
 		if (this.midiFile.isReady()) {
-			int var2 = this.midiFile.division * this.field2394 * 1000000 / UrlRequest.PcmPlayer_sampleRate;
+			int var2 = this.midiFile.division * this.field2419 * -727379968 / Messages.field1274;
 
 			do {
-				long var3 = this.field2416 + (long)var2 * (long)var1;
-				if (this.field2417 - var3 >= 0L) {
-					this.field2416 = var3;
+				long var3 = this.field2431 + (long)var2 * (long)var1;
+				if (this.field2416 - var3 >= 0L) {
+					this.field2431 = var3;
 					break;
 				}
 
-				int var5 = (int)((this.field2417 - this.field2416 + (long)var2 - 1L) / (long)var2);
-				this.field2416 += (long)var5 * (long)var2;
+				int var5 = (int)(((long)var2 + (this.field2416 - this.field2431) - 1L) / (long)var2);
+				this.field2431 += (long)var5 * (long)var2;
 				this.patchStream.skip(var5);
 				var1 -= var5;
-				this.method3731();
+				this.method3800();
 			} while(this.midiFile.isReady());
 		}
 
 		this.patchStream.skip(var1);
 	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "-36"
+		signature = "(I)V",
+		garbageValue = "-196539834"
 	)
 	@Export("clear")
 	public synchronized void clear() {
 		this.midiFile.clear();
-		this.method3681();
+		this.method3787();
 	}
 
 	@ObfuscatedName("o")
 	@ObfuscatedSignature(
 		signature = "(I)Z",
-		garbageValue = "-842698736"
+		garbageValue = "2105523598"
 	)
 	@Export("isReady")
 	public synchronized boolean isReady() {
 		return this.midiFile.isReady();
 	}
 
-	@ObfuscatedName("a")
-	@ObfuscatedSignature(
-		signature = "(IIB)V",
-		garbageValue = "-50"
-	)
-	public synchronized void method3737(int var1, int var2) {
-		this.method3738(var1, var2);
-	}
-
 	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		signature = "(IIB)V",
-		garbageValue = "14"
+		signature = "(III)V",
+		garbageValue = "2056390451"
 	)
-	void method3738(int var1, int var2) {
-		this.field2398[var1] = var2;
-		this.field2400[var1] = var2 & -128;
-		this.method3671(var1, var2);
+	public synchronized void method3775(int var1, int var2) {
+		this.method3817(var1, var2);
 	}
 
-	@ObfuscatedName("x")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
 		signature = "(III)V",
-		garbageValue = "1745754026"
+		garbageValue = "-1275355891"
 	)
-	void method3671(int var1, int var2) {
-		if (var2 != this.field2395[var1]) {
-			this.field2395[var1] = var2;
+	void method3817(int var1, int var2) {
+		this.field2422[var1] = var2;
+		this.field2424[var1] = var2 & -128;
+		this.method3777(var1, var2);
+	}
+
+	@ObfuscatedName("c")
+	@ObfuscatedSignature(
+		signature = "(III)V",
+		garbageValue = "-1314090559"
+	)
+	void method3777(int var1, int var2) {
+		if (var2 != this.field2421[var1]) {
+			this.field2421[var1] = var2;
 
 			for (int var3 = 0; var3 < 128; ++var3) {
-				this.field2411[var1][var3] = null;
+				this.field2435[var1][var3] = null;
 			}
 		}
 
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
 		signature = "(IIII)V",
-		garbageValue = "828963250"
+		garbageValue = "1833290175"
 	)
-	void method3729(int var1, int var2, int var3) {
-		this.method3674(var1, var2, 64);
-		if ((this.field2404[var1] & 2) != 0) {
+	void method3778(int var1, int var2, int var3) {
+		this.method3816(var1, var2, 64);
+		if ((this.field2428[var1] & 2) != 0) {
 			for (MusicPatchNode var4 = (MusicPatchNode)this.patchStream.queue.first(); var4 != null; var4 = (MusicPatchNode)this.patchStream.queue.next()) {
-				if (var4.field2420 == var1 && var4.field2433 < 0) {
-					this.field2410[var1][var4.field2424] = null;
-					this.field2410[var1][var2] = var4;
-					int var5 = (var4.field2429 * var4.field2441 >> 12) + var4.field2427;
-					var4.field2427 += var2 - var4.field2424 << 8;
-					var4.field2441 = var5 - var4.field2427;
-					var4.field2429 = 4096;
-					var4.field2424 = var2;
+				if (var4.field2449 == var1 && var4.field2459 < 0) {
+					this.field2434[var1][var4.field2450] = null;
+					this.field2434[var1][var2] = var4;
+					int var5 = (var4.field2455 * var4.field2454 >> 12) + var4.field2465;
+					var4.field2465 += var2 - var4.field2450 << 8;
+					var4.field2454 = var5 - var4.field2465;
+					var4.field2455 = 4096;
+					var4.field2450 = var2;
 					return;
 				}
 			}
 		}
 
-		MusicPatch var9 = (MusicPatch)this.musicPatches.get((long)this.field2395[var1]);
+		MusicPatch var9 = (MusicPatch)this.musicPatches.get((long)this.field2421[var1]);
 		if (var9 != null) {
 			RawSound var8 = var9.rawSounds[var2];
 			if (var8 != null) {
 				MusicPatchNode var6 = new MusicPatchNode();
-				var6.field2420 = var1;
+				var6.field2449 = var1;
 				var6.patch = var9;
 				var6.rawSound = var8;
-				var6.field2435 = var9.field2462[var2];
-				var6.field2423 = var9.field2460[var2];
-				var6.field2424 = var2;
-				var6.field2425 = var3 * var3 * var9.field2459[var2] * var9.field2458 + 1024 >> 11;
-				var6.field2426 = var9.field2456[var2] & 255;
-				var6.field2427 = (var2 << 8) - (var9.field2457[var2] & 32767);
-				var6.field2428 = 0;
-				var6.field2431 = 0;
-				var6.field2432 = 0;
-				var6.field2433 = -1;
-				var6.field2434 = 0;
-				if (this.field2408[var1] == 0) {
-					var6.stream = RawPcmStream.method2544(var8, this.method3686(var6), this.method3687(var6), this.method3742(var6));
+				var6.field2448 = var9.field2488[var2];
+				var6.field2445 = var9.field2487[var2];
+				var6.field2450 = var2;
+				var6.field2451 = var3 * var3 * var9.field2486[var2] * var9.field2489 + 1024 >> 11;
+				var6.field2452 = var9.field2483[var2] & 255;
+				var6.field2465 = (var2 << 8) - (var9.field2485[var2] & 32767);
+				var6.field2456 = 0;
+				var6.field2457 = 0;
+				var6.field2458 = 0;
+				var6.field2459 = -1;
+				var6.field2460 = 0;
+				if (this.field2441[var1] == 0) {
+					var6.stream = RawPcmStream.method2568(var8, this.method3862(var6), this.method3793(var6), this.method3794(var6));
 				} else {
-					var6.stream = RawPcmStream.method2544(var8, this.method3686(var6), 0, this.method3742(var6));
-					this.method3673(var6, var9.field2457[var2] < 0);
+					var6.stream = RawPcmStream.method2568(var8, this.method3862(var6), 0, this.method3794(var6));
+					this.method3779(var6, var9.field2485[var2] < 0);
 				}
 
-				if (var9.field2457[var2] < 0) {
+				if (var9.field2485[var2] < 0) {
 					var6.stream.setNumLoops(-1);
 				}
 
-				if (var6.field2423 >= 0) {
-					MusicPatchNode var7 = this.field2411[var1][var6.field2423];
-					if (var7 != null && var7.field2433 < 0) {
-						this.field2410[var1][var7.field2424] = null;
-						var7.field2433 = 0;
+				if (var6.field2445 >= 0) {
+					MusicPatchNode var7 = this.field2435[var1][var6.field2445];
+					if (var7 != null && var7.field2459 < 0) {
+						this.field2434[var1][var7.field2450] = null;
+						var7.field2459 = 0;
 					}
 
-					this.field2411[var1][var6.field2423] = var6;
+					this.field2435[var1][var6.field2445] = var6;
 				}
 
 				this.patchStream.queue.addFirst(var6);
-				this.field2410[var1][var2] = var6;
+				this.field2434[var1][var2] = var6;
 			}
 		}
 	}
 
-	@ObfuscatedName("s")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		signature = "(Lgu;ZB)V",
-		garbageValue = "-87"
+		signature = "(Lge;ZI)V",
+		garbageValue = "-1090319556"
 	)
-	void method3673(MusicPatchNode var1, boolean var2) {
+	void method3779(MusicPatchNode var1, boolean var2) {
 		int var3 = var1.rawSound.samples.length;
 		int var4;
-		if (var2 && var1.rawSound.field1369) {
+		if (var2 && var1.rawSound.field1378) {
 			int var5 = var3 + var3 - var1.rawSound.start;
-			var4 = (int)((long)this.field2408[var1.field2420] * (long)var5 >> 6);
+			var4 = (int)((long)this.field2441[var1.field2449] * (long)var5 >> 6);
 			var3 <<= 8;
 			if (var4 >= var3) {
 				var4 = var3 + var3 - 1 - var4;
-				var1.stream.method2521();
+				var1.stream.method2578();
 			}
 		} else {
-			var4 = (int)((long)var3 * (long)this.field2408[var1.field2420] >> 6);
+			var4 = (int)((long)var3 * (long)this.field2441[var1.field2449] >> 6);
 		}
 
-		var1.stream.method2577(var4);
+		var1.stream.method2722(var4);
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		signature = "(IIII)V",
-		garbageValue = "97221829"
+		signature = "(IIIB)V",
+		garbageValue = "-33"
 	)
-	void method3674(int var1, int var2, int var3) {
-		MusicPatchNode var4 = this.field2410[var1][var2];
+	void method3816(int var1, int var2, int var3) {
+		MusicPatchNode var4 = this.field2434[var1][var2];
 		if (var4 != null) {
-			this.field2410[var1][var2] = null;
-			if ((this.field2404[var1] & 2) != 0) {
+			this.field2434[var1][var2] = null;
+			if ((this.field2428[var1] & 2) != 0) {
 				for (MusicPatchNode var5 = (MusicPatchNode)this.patchStream.queue.last(); var5 != null; var5 = (MusicPatchNode)this.patchStream.queue.previous()) {
-					if (var4.field2420 == var5.field2420 && var5.field2433 < 0 && var4 != var5) {
-						var4.field2433 = 0;
+					if (var5.field2449 == var4.field2449 && var5.field2459 < 0 && var5 != var4) {
+						var4.field2459 = 0;
 						break;
 					}
 				}
 			} else {
-				var4.field2433 = 0;
+				var4.field2459 = 0;
 			}
 
 		}
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(IIII)V",
-		garbageValue = "-1518043222"
+		signature = "(IIIB)V",
+		garbageValue = "-115"
 	)
-	void method3675(int var1, int var2, int var3) {
+	void method3781(int var1, int var2, int var3) {
 	}
 
-	@ObfuscatedName("d")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
 		signature = "(III)V",
-		garbageValue = "-752934894"
+		garbageValue = "-1083073471"
 	)
-	void method3779(int var1, int var2) {
+	void method3782(int var1, int var2) {
 	}
 
 	@ObfuscatedName("l")
 	@ObfuscatedSignature(
 		signature = "(III)V",
-		garbageValue = "896514567"
+		garbageValue = "683649842"
 	)
-	void method3677(int var1, int var2) {
-		this.field2399[var1] = var2;
+	void method3783(int var1, int var2) {
+		this.field2425[var1] = var2;
 	}
 
-	@ObfuscatedName("k")
+	@ObfuscatedName("aa")
 	@ObfuscatedSignature(
 		signature = "(II)V",
-		garbageValue = "1124863656"
+		garbageValue = "41766095"
 	)
-	void method3678(int var1) {
+	void method3784(int var1) {
 		for (MusicPatchNode var2 = (MusicPatchNode)this.patchStream.queue.last(); var2 != null; var2 = (MusicPatchNode)this.patchStream.queue.previous()) {
-			if (var1 < 0 || var2.field2420 == var1) {
+			if (var1 < 0 || var2.field2449 == var1) {
 				if (var2.stream != null) {
-					var2.stream.method2525(UrlRequest.PcmPlayer_sampleRate / 100);
-					if (var2.stream.method2529()) {
+					var2.stream.method2582(Messages.field1274 / 100);
+					if (var2.stream.method2686()) {
 						this.patchStream.mixer.addSubStream(var2.stream);
 					}
 
-					var2.method3785();
+					var2.method3893();
 				}
 
-				if (var2.field2433 < 0) {
-					this.field2410[var2.field2420][var2.field2424] = null;
+				if (var2.field2459 < 0) {
+					this.field2434[var2.field2449][var2.field2450] = null;
 				}
 
 				var2.remove();
@@ -528,44 +537,80 @@ public class MidiPcmStream extends PcmStream {
 
 	}
 
-	@ObfuscatedName("ai")
+	@ObfuscatedName("ab")
 	@ObfuscatedSignature(
 		signature = "(IB)V",
-		garbageValue = "-61"
+		garbageValue = "54"
 	)
-	void method3679(int var1) {
+	void method3820(int var1) {
 		if (var1 >= 0) {
-			this.field2409[var1] = 12800;
-			this.field2405[var1] = 8192;
-			this.field2407[var1] = 16383;
-			this.field2399[var1] = 8192;
-			this.field2402[var1] = 0;
-			this.field2403[var1] = 8192;
-			this.method3682(var1);
-			this.method3683(var1);
-			this.field2404[var1] = 0;
-			this.field2392[var1] = 32767;
-			this.field2418[var1] = 256;
-			this.field2408[var1] = 0;
-			this.method3735(var1, 8192);
+			this.field2437[var1] = 12800;
+			this.field2420[var1] = 8192;
+			this.field2442[var1] = 16383;
+			this.field2425[var1] = 8192;
+			this.field2443[var1] = 0;
+			this.field2427[var1] = 8192;
+			this.method3837(var1);
+			this.method3789(var1);
+			this.field2428[var1] = 0;
+			this.field2440[var1] = 32767;
+			this.field2430[var1] = 256;
+			this.field2441[var1] = 0;
+			this.method3791(var1, 8192);
 		} else {
 			for (var1 = 0; var1 < 16; ++var1) {
-				this.method3679(var1);
+				this.method3820(var1);
 			}
 
 		}
 	}
 
-	@ObfuscatedName("ak")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
 		signature = "(IB)V",
-		garbageValue = "-91"
+		garbageValue = "122"
 	)
-	void method3776(int var1) {
+	void method3786(int var1) {
 		for (MusicPatchNode var2 = (MusicPatchNode)this.patchStream.queue.last(); var2 != null; var2 = (MusicPatchNode)this.patchStream.queue.previous()) {
-			if ((var1 < 0 || var2.field2420 == var1) && var2.field2433 < 0) {
-				this.field2410[var2.field2420][var2.field2424] = null;
-				var2.field2433 = 0;
+			if ((var1 < 0 || var2.field2449 == var1) && var2.field2459 < 0) {
+				this.field2434[var2.field2449][var2.field2450] = null;
+				var2.field2459 = 0;
+			}
+		}
+
+	}
+
+	@ObfuscatedName("ac")
+	@ObfuscatedSignature(
+		signature = "(B)V",
+		garbageValue = "-18"
+	)
+	void method3787() {
+		this.method3784(-1);
+		this.method3820(-1);
+
+		int var1;
+		for (var1 = 0; var1 < 16; ++var1) {
+			this.field2421[var1] = this.field2422[var1];
+		}
+
+		for (var1 = 0; var1 < 16; ++var1) {
+			this.field2424[var1] = this.field2422[var1] & -128;
+		}
+
+	}
+
+	@ObfuscatedName("az")
+	@ObfuscatedSignature(
+		signature = "(II)V",
+		garbageValue = "1524706833"
+	)
+	void method3837(int var1) {
+		if ((this.field2428[var1] & 2) != 0) {
+			for (MusicPatchNode var2 = (MusicPatchNode)this.patchStream.queue.last(); var2 != null; var2 = (MusicPatchNode)this.patchStream.queue.previous()) {
+				if (var2.field2449 == var1 && this.field2434[var1][var2.field2450] == null && var2.field2459 < 0) {
+					var2.field2459 = 0;
+				}
 			}
 		}
 
@@ -573,50 +618,14 @@ public class MidiPcmStream extends PcmStream {
 
 	@ObfuscatedName("ae")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "997152444"
-	)
-	void method3681() {
-		this.method3678(-1);
-		this.method3679(-1);
-
-		int var1;
-		for (var1 = 0; var1 < 16; ++var1) {
-			this.field2395[var1] = this.field2398[var1];
-		}
-
-		for (var1 = 0; var1 < 16; ++var1) {
-			this.field2400[var1] = this.field2398[var1] & -128;
-		}
-
-	}
-
-	@ObfuscatedName("av")
-	@ObfuscatedSignature(
-		signature = "(IB)V",
-		garbageValue = "91"
-	)
-	void method3682(int var1) {
-		if ((this.field2404[var1] & 2) != 0) {
-			for (MusicPatchNode var2 = (MusicPatchNode)this.patchStream.queue.last(); var2 != null; var2 = (MusicPatchNode)this.patchStream.queue.previous()) {
-				if (var2.field2420 == var1 && this.field2410[var1][var2.field2424] == null && var2.field2433 < 0) {
-					var2.field2433 = 0;
-				}
-			}
-		}
-
-	}
-
-	@ObfuscatedName("ag")
-	@ObfuscatedSignature(
 		signature = "(II)V",
-		garbageValue = "-1884831875"
+		garbageValue = "-339945953"
 	)
-	void method3683(int var1) {
-		if ((this.field2404[var1] & 4) != 0) {
+	void method3789(int var1) {
+		if ((this.field2428[var1] & 4) != 0) {
 			for (MusicPatchNode var2 = (MusicPatchNode)this.patchStream.queue.last(); var2 != null; var2 = (MusicPatchNode)this.patchStream.queue.previous()) {
-				if (var2.field2420 == var1) {
-					var2.field2419 = 0;
+				if (var2.field2449 == var1) {
+					var2.field2463 = 0;
 				}
 			}
 		}
@@ -626,9 +635,9 @@ public class MidiPcmStream extends PcmStream {
 	@ObfuscatedName("aj")
 	@ObfuscatedSignature(
 		signature = "(II)V",
-		garbageValue = "-1837545367"
+		garbageValue = "640708386"
 	)
-	void method3759(int var1) {
+	void method3770(int var1) {
 		int var2 = var1 & 240;
 		int var3;
 		int var4;
@@ -637,289 +646,289 @@ public class MidiPcmStream extends PcmStream {
 			var3 = var1 & 15;
 			var4 = var1 >> 8 & 127;
 			var5 = var1 >> 16 & 127;
-			this.method3674(var3, var4, var5);
+			this.method3816(var3, var4, var5);
 		} else if (var2 == 144) {
 			var3 = var1 & 15;
 			var4 = var1 >> 8 & 127;
 			var5 = var1 >> 16 & 127;
 			if (var5 > 0) {
-				this.method3729(var3, var4, var5);
+				this.method3778(var3, var4, var5);
 			} else {
-				this.method3674(var3, var4, 64);
+				this.method3816(var3, var4, 64);
 			}
 
 		} else if (var2 == 160) {
 			var3 = var1 & 15;
 			var4 = var1 >> 8 & 127;
 			var5 = var1 >> 16 & 127;
-			this.method3675(var3, var4, var5);
+			this.method3781(var3, var4, var5);
 		} else if (var2 == 176) {
 			var3 = var1 & 15;
 			var4 = var1 >> 8 & 127;
 			var5 = var1 >> 16 & 127;
 			if (var4 == 0) {
-				this.field2400[var3] = (var5 << 14) + (this.field2400[var3] & -2080769);
+				this.field2424[var3] = (var5 << 14) + (this.field2424[var3] & -2080769);
 			}
 
 			if (var4 == 32) {
-				this.field2400[var3] = (var5 << 7) + (this.field2400[var3] & -16257);
+				this.field2424[var3] = (var5 << 7) + (this.field2424[var3] & -16257);
 			}
 
 			if (var4 == 1) {
-				this.field2402[var3] = (var5 << 7) + (this.field2402[var3] & -16257);
+				this.field2443[var3] = (var5 << 7) + (this.field2443[var3] & -16257);
 			}
 
 			if (var4 == 33) {
-				this.field2402[var3] = var5 + (this.field2402[var3] & -128);
+				this.field2443[var3] = var5 + (this.field2443[var3] & -128);
 			}
 
 			if (var4 == 5) {
-				this.field2403[var3] = (var5 << 7) + (this.field2403[var3] & -16257);
+				this.field2427[var3] = (var5 << 7) + (this.field2427[var3] & -16257);
 			}
 
 			if (var4 == 37) {
-				this.field2403[var3] = var5 + (this.field2403[var3] & -128);
+				this.field2427[var3] = var5 + (this.field2427[var3] & -128);
 			}
 
 			if (var4 == 7) {
-				this.field2409[var3] = (var5 << 7) + (this.field2409[var3] & -16257);
+				this.field2437[var3] = (var5 << 7) + (this.field2437[var3] & -16257);
 			}
 
 			if (var4 == 39) {
-				this.field2409[var3] = var5 + (this.field2409[var3] & -128);
+				this.field2437[var3] = var5 + (this.field2437[var3] & -128);
 			}
 
 			if (var4 == 10) {
-				this.field2405[var3] = (var5 << 7) + (this.field2405[var3] & -16257);
+				this.field2420[var3] = (var5 << 7) + (this.field2420[var3] & -16257);
 			}
 
 			if (var4 == 42) {
-				this.field2405[var3] = var5 + (this.field2405[var3] & -128);
+				this.field2420[var3] = var5 + (this.field2420[var3] & -128);
 			}
 
 			if (var4 == 11) {
-				this.field2407[var3] = (var5 << 7) + (this.field2407[var3] & -16257);
+				this.field2442[var3] = (var5 << 7) + (this.field2442[var3] & -16257);
 			}
 
 			if (var4 == 43) {
-				this.field2407[var3] = var5 + (this.field2407[var3] & -128);
+				this.field2442[var3] = var5 + (this.field2442[var3] & -128);
 			}
 
 			int[] var10000;
 			if (var4 == 64) {
 				if (var5 >= 64) {
-					var10000 = this.field2404;
+					var10000 = this.field2428;
 					var10000[var3] |= 1;
 				} else {
-					var10000 = this.field2404;
+					var10000 = this.field2428;
 					var10000[var3] &= -2;
 				}
 			}
 
 			if (var4 == 65) {
 				if (var5 >= 64) {
-					var10000 = this.field2404;
+					var10000 = this.field2428;
 					var10000[var3] |= 2;
 				} else {
-					this.method3682(var3);
-					var10000 = this.field2404;
+					this.method3837(var3);
+					var10000 = this.field2428;
 					var10000[var3] &= -3;
 				}
 			}
 
 			if (var4 == 99) {
-				this.field2392[var3] = (var5 << 7) + (this.field2392[var3] & 127);
+				this.field2440[var3] = (var5 << 7) + (this.field2440[var3] & 127);
 			}
 
 			if (var4 == 98) {
-				this.field2392[var3] = (this.field2392[var3] & 16256) + var5;
+				this.field2440[var3] = (this.field2440[var3] & 16256) + var5;
 			}
 
 			if (var4 == 101) {
-				this.field2392[var3] = (var5 << 7) + (this.field2392[var3] & 127) + 16384;
+				this.field2440[var3] = (var5 << 7) + (this.field2440[var3] & 127) + 16384;
 			}
 
 			if (var4 == 100) {
-				this.field2392[var3] = (this.field2392[var3] & 16256) + var5 + 16384;
+				this.field2440[var3] = (this.field2440[var3] & 16256) + var5 + 16384;
 			}
 
 			if (var4 == 120) {
-				this.method3678(var3);
+				this.method3784(var3);
 			}
 
 			if (var4 == 121) {
-				this.method3679(var3);
+				this.method3820(var3);
 			}
 
 			if (var4 == 123) {
-				this.method3776(var3);
+				this.method3786(var3);
 			}
 
 			int var6;
 			if (var4 == 6) {
-				var6 = this.field2392[var3];
+				var6 = this.field2440[var3];
 				if (var6 == 16384) {
-					this.field2418[var3] = (var5 << 7) + (this.field2418[var3] & -16257);
+					this.field2430[var3] = (var5 << 7) + (this.field2430[var3] & -16257);
 				}
 			}
 
 			if (var4 == 38) {
-				var6 = this.field2392[var3];
+				var6 = this.field2440[var3];
 				if (var6 == 16384) {
-					this.field2418[var3] = var5 + (this.field2418[var3] & -128);
+					this.field2430[var3] = var5 + (this.field2430[var3] & -128);
 				}
 			}
 
 			if (var4 == 16) {
-				this.field2408[var3] = (var5 << 7) + (this.field2408[var3] & -16257);
+				this.field2441[var3] = (var5 << 7) + (this.field2441[var3] & -16257);
 			}
 
 			if (var4 == 48) {
-				this.field2408[var3] = var5 + (this.field2408[var3] & -128);
+				this.field2441[var3] = var5 + (this.field2441[var3] & -128);
 			}
 
 			if (var4 == 81) {
 				if (var5 >= 64) {
-					var10000 = this.field2404;
+					var10000 = this.field2428;
 					var10000[var3] |= 4;
 				} else {
-					this.method3683(var3);
-					var10000 = this.field2404;
+					this.method3789(var3);
+					var10000 = this.field2428;
 					var10000[var3] &= -5;
 				}
 			}
 
 			if (var4 == 17) {
-				this.method3735(var3, (var5 << 7) + (this.field2406[var3] & -16257));
+				this.method3791(var3, (var5 << 7) + (this.field2432[var3] & -16257));
 			}
 
 			if (var4 == 49) {
-				this.method3735(var3, var5 + (this.field2406[var3] & -128));
+				this.method3791(var3, var5 + (this.field2432[var3] & -128));
 			}
 
 		} else if (var2 == 192) {
 			var3 = var1 & 15;
 			var4 = var1 >> 8 & 127;
-			this.method3671(var3, var4 + this.field2400[var3]);
+			this.method3777(var3, var4 + this.field2424[var3]);
 		} else if (var2 == 208) {
 			var3 = var1 & 15;
 			var4 = var1 >> 8 & 127;
-			this.method3779(var3, var4);
+			this.method3782(var3, var4);
 		} else if (var2 == 224) {
 			var3 = var1 & 15;
 			var4 = (var1 >> 8 & 127) + (var1 >> 9 & 16256);
-			this.method3677(var3, var4);
+			this.method3783(var3, var4);
 		} else {
 			var2 = var1 & 255;
 			if (var2 == 255) {
-				this.method3681();
+				this.method3787();
 			}
 		}
 	}
 
-	@ObfuscatedName("ay")
+	@ObfuscatedName("ap")
 	@ObfuscatedSignature(
 		signature = "(III)V",
-		garbageValue = "-1166869867"
+		garbageValue = "-2102724080"
 	)
-	void method3735(int var1, int var2) {
-		this.field2406[var1] = var2;
-		this.field2401[var1] = (int)(2097152.0D * Math.pow(2.0D, 5.4931640625E-4D * (double)var2) + 0.5D);
+	void method3791(int var1, int var2) {
+		this.field2432[var1] = var2;
+		this.field2433[var1] = (int)(2097152.0D * Math.pow(2.0D, 5.4931640625E-4D * (double)var2) + 0.5D);
 	}
 
-	@ObfuscatedName("au")
+	@ObfuscatedName("an")
 	@ObfuscatedSignature(
-		signature = "(Lgu;I)I",
-		garbageValue = "-1249853166"
+		signature = "(Lge;B)I",
+		garbageValue = "1"
 	)
-	int method3686(MusicPatchNode var1) {
-		int var2 = (var1.field2441 * var1.field2429 >> 12) + var1.field2427;
-		var2 += (this.field2399[var1.field2420] - 8192) * this.field2418[var1.field2420] >> 12;
-		MusicPatchNode2 var3 = var1.field2435;
+	int method3862(MusicPatchNode var1) {
+		int var2 = (var1.field2455 * var1.field2454 >> 12) + var1.field2465;
+		var2 += (this.field2425[var1.field2449] - 8192) * this.field2430[var1.field2449] >> 12;
+		MusicPatchNode2 var3 = var1.field2448;
 		int var4;
-		if (var3.field2380 > 0 && (var3.field2379 > 0 || this.field2402[var1.field2420] > 0)) {
-			var4 = var3.field2379 << 2;
-			int var5 = var3.field2381 << 1;
-			if (var1.field2439 < var5) {
-				var4 = var4 * var1.field2439 / var5;
+		if (var3.field2405 > 0 && (var3.field2401 > 0 || this.field2443[var1.field2449] > 0)) {
+			var4 = var3.field2401 << 2;
+			int var5 = var3.field2402 << 1;
+			if (var1.field2461 < var5) {
+				var4 = var4 * var1.field2461 / var5;
 			}
 
-			var4 += this.field2402[var1.field2420] >> 7;
-			double var6 = Math.sin((double)(var1.field2436 & 511) * 0.01227184630308513D);
-			var2 += (int)((double)var4 * var6);
+			var4 += this.field2443[var1.field2449] >> 7;
+			double var6 = Math.sin(0.01227184630308513D * (double)(var1.field2462 & 511));
+			var2 += (int)(var6 * (double)var4);
 		}
 
-		var4 = (int)((double)(var1.rawSound.sampleRate * 256) * Math.pow(2.0D, 3.255208333333333E-4D * (double)var2) / (double)UrlRequest.PcmPlayer_sampleRate + 0.5D);
+		var4 = (int)((double)(var1.rawSound.sampleRate * 256) * Math.pow(2.0D, (double)var2 * 3.255208333333333E-4D) / (double)Messages.field1274 + 0.5D);
 		return var4 < 1 ? 1 : var4;
 	}
 
-	@ObfuscatedName("af")
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		signature = "(Lgu;I)I",
-		garbageValue = "8582462"
+		signature = "(Lge;B)I",
+		garbageValue = "7"
 	)
-	int method3687(MusicPatchNode var1) {
-		MusicPatchNode2 var2 = var1.field2435;
-		int var3 = this.field2409[var1.field2420] * this.field2407[var1.field2420] + 4096 >> 13;
+	int method3793(MusicPatchNode var1) {
+		MusicPatchNode2 var2 = var1.field2448;
+		int var3 = this.field2442[var1.field2449] * this.field2437[var1.field2449] + 4096 >> 13;
 		var3 = var3 * var3 + 16384 >> 15;
-		var3 = var3 * var1.field2425 + 16384 >> 15;
-		var3 = var3 * this.field2393 + 128 >> 8;
-		if (var2.field2375 > 0) {
-			var3 = (int)((double)var3 * Math.pow(0.5D, (double)var1.field2428 * 1.953125E-5D * (double)var2.field2375) + 0.5D);
+		var3 = var3 * var1.field2451 + 16384 >> 15;
+		var3 = var3 * this.field2417 + 128 >> 8;
+		if (var2.field2400 > 0) {
+			var3 = (int)((double)var3 * Math.pow(0.5D, 1.953125E-5D * (double)var1.field2456 * (double)var2.field2400) + 0.5D);
 		}
 
 		int var4;
 		int var5;
 		int var6;
 		int var7;
-		if (var2.field2376 != null) {
-			var4 = var1.field2431;
-			var5 = var2.field2376[var1.field2432 * 4 + 1];
-			if (var1.field2432 * 4 < var2.field2376.length - 2) {
-				var6 = (var2.field2376[var1.field2432 * 4] & 255) << 8;
-				var7 = (var2.field2376[var1.field2432 * 4 + 2] & 255) << 8;
-				var5 += (var4 - var6) * (var2.field2376[var1.field2432 * 4 + 3] - var5) / (var7 - var6);
+		if (var2.field2404 != null) {
+			var4 = var1.field2457;
+			var5 = var2.field2404[var1.field2458 * 4 + 1];
+			if (var1.field2458 * 4 < var2.field2404.length - 2) {
+				var6 = (var2.field2404[var1.field2458 * 4] & 255) << 8;
+				var7 = (var2.field2404[var1.field2458 * 4 + 2] & 255) << 8;
+				var5 += (var2.field2404[var1.field2458 * 4 + 3] - var5) * (var4 - var6) / (var7 - var6);
 			}
 
 			var3 = var5 * var3 + 32 >> 6;
 		}
 
-		if (var1.field2433 > 0 && var2.field2374 != null) {
-			var4 = var1.field2433;
-			var5 = var2.field2374[var1.field2434 * 4 + 1];
-			if (var1.field2434 * 4 < var2.field2374.length - 2) {
-				var6 = (var2.field2374[var1.field2434 * 4] & 255) << 8;
-				var7 = (var2.field2374[var1.field2434 * 4 + 2] & 255) << 8;
-				var5 += (var2.field2374[var1.field2434 * 4 + 3] - var5) * (var4 - var6) / (var7 - var6);
+		if (var1.field2459 > 0 && var2.field2399 != null) {
+			var4 = var1.field2459;
+			var5 = var2.field2399[var1.field2460 * 4 + 1];
+			if (var1.field2460 * 4 < var2.field2399.length - 2) {
+				var6 = (var2.field2399[var1.field2460 * 4] & 255) << 8;
+				var7 = (var2.field2399[var1.field2460 * 4 + 2] & 255) << 8;
+				var5 += (var2.field2399[var1.field2460 * 4 + 3] - var5) * (var4 - var6) / (var7 - var6);
 			}
 
-			var3 = var3 * var5 + 32 >> 6;
+			var3 = var5 * var3 + 32 >> 6;
 		}
 
 		return var3;
 	}
 
-	@ObfuscatedName("at")
+	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
-		signature = "(Lgu;I)I",
-		garbageValue = "19850751"
+		signature = "(Lge;I)I",
+		garbageValue = "1924101342"
 	)
-	int method3742(MusicPatchNode var1) {
-		int var2 = this.field2405[var1.field2420];
-		return var2 < 8192 ? var2 * var1.field2426 + 32 >> 6 : 16384 - ((128 - var1.field2426) * (16384 - var2) + 32 >> 6);
+	int method3794(MusicPatchNode var1) {
+		int var2 = this.field2420[var1.field2449];
+		return var2 < 8192 ? var2 * var1.field2452 + 32 >> 6 : 16384 - ((128 - var1.field2452) * (16384 - var2) + 32 >> 6);
 	}
 
-	@ObfuscatedName("bx")
+	@ObfuscatedName("ax")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "-1542890504"
+		garbageValue = "869204676"
 	)
-	void method3731() {
+	void method3800() {
 		int var1 = this.track;
 		int var2 = this.trackLength;
 
 		long var3;
-		for (var3 = this.field2417; var2 == this.trackLength; var3 = this.midiFile.method3804(var2)) {
+		for (var3 = this.field2416; var2 == this.trackLength; var3 = this.midiFile.method3906(var2)) {
 			while (var2 == this.midiFile.trackLengths[var1]) {
 				this.midiFile.gotoTrack(var1);
 				int var5 = this.midiFile.readMessage(var1);
@@ -927,8 +936,8 @@ public class MidiPcmStream extends PcmStream {
 					this.midiFile.setTrackDone();
 					this.midiFile.markTrackPosition(var1);
 					if (this.midiFile.isDone()) {
-						if (!this.field2413 || var2 == 0) {
-							this.method3681();
+						if (!this.field2426 || var2 == 0) {
+							this.method3787();
 							this.midiFile.clear();
 							return;
 						}
@@ -939,7 +948,7 @@ public class MidiPcmStream extends PcmStream {
 				}
 
 				if ((var5 & 128) != 0) {
-					this.method3759(var5);
+					this.method3770(var5);
 				}
 
 				this.midiFile.readTrackLength(var1);
@@ -952,20 +961,20 @@ public class MidiPcmStream extends PcmStream {
 
 		this.track = var1;
 		this.trackLength = var2;
-		this.field2417 = var3;
+		this.field2416 = var3;
 	}
 
-	@ObfuscatedName("bh")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		signature = "(Lgu;I)Z",
-		garbageValue = "1629954628"
+		signature = "(Lge;B)Z",
+		garbageValue = "0"
 	)
-	boolean method3695(MusicPatchNode var1) {
+	boolean method3801(MusicPatchNode var1) {
 		if (var1.stream == null) {
-			if (var1.field2433 >= 0) {
+			if (var1.field2459 >= 0) {
 				var1.remove();
-				if (var1.field2423 > 0 && var1 == this.field2411[var1.field2420][var1.field2423]) {
-					this.field2411[var1.field2420][var1.field2423] = null;
+				if (var1.field2445 > 0 && var1 == this.field2435[var1.field2449][var1.field2445]) {
+					this.field2435[var1.field2449][var1.field2445] = null;
 				}
 			}
 
@@ -975,100 +984,100 @@ public class MidiPcmStream extends PcmStream {
 		}
 	}
 
-	@ObfuscatedName("bd")
+	@ObfuscatedName("as")
 	@ObfuscatedSignature(
-		signature = "(Lgu;[IIII)Z",
-		garbageValue = "-1178188591"
+		signature = "(Lge;[IIII)Z",
+		garbageValue = "178317578"
 	)
-	boolean method3696(MusicPatchNode var1, int[] var2, int var3, int var4) {
-		var1.field2438 = UrlRequest.PcmPlayer_sampleRate / 100;
-		if (var1.field2433 < 0 || var1.stream != null && !var1.stream.method2528()) {
-			int var5 = var1.field2429;
+	boolean method3802(MusicPatchNode var1, int[] var2, int var3, int var4) {
+		var1.field2464 = Messages.field1274 / 100;
+		if (var1.field2459 < 0 || var1.stream != null && !var1.stream.method2585()) {
+			int var5 = var1.field2455;
 			if (var5 > 0) {
-				var5 -= (int)(16.0D * Math.pow(2.0D, 4.921259842519685E-4D * (double)this.field2403[var1.field2420]) + 0.5D);
+				var5 -= (int)(16.0D * Math.pow(2.0D, (double)this.field2427[var1.field2449] * 4.921259842519685E-4D) + 0.5D);
 				if (var5 < 0) {
 					var5 = 0;
 				}
 
-				var1.field2429 = var5;
+				var1.field2455 = var5;
 			}
 
-			var1.stream.method2526(this.method3686(var1));
-			MusicPatchNode2 var6 = var1.field2435;
+			var1.stream.method2679(this.method3862(var1));
+			MusicPatchNode2 var6 = var1.field2448;
 			boolean var7 = false;
-			++var1.field2439;
-			var1.field2436 += var6.field2380;
-			double var8 = 5.086263020833333E-6D * (double)((var1.field2424 - 60 << 8) + (var1.field2441 * var1.field2429 >> 12));
-			if (var6.field2375 > 0) {
-				if (var6.field2378 > 0) {
-					var1.field2428 += (int)(128.0D * Math.pow(2.0D, (double)var6.field2378 * var8) + 0.5D);
+			++var1.field2461;
+			var1.field2462 += var6.field2405;
+			double var8 = 5.086263020833333E-6D * (double)((var1.field2450 - 60 << 8) + (var1.field2454 * var1.field2455 >> 12));
+			if (var6.field2400 > 0) {
+				if (var6.field2403 > 0) {
+					var1.field2456 += (int)(128.0D * Math.pow(2.0D, (double)var6.field2403 * var8) + 0.5D);
 				} else {
-					var1.field2428 += 128;
+					var1.field2456 += 128;
 				}
 			}
 
-			if (var6.field2376 != null) {
-				if (var6.field2373 > 0) {
-					var1.field2431 += (int)(128.0D * Math.pow(2.0D, (double)var6.field2373 * var8) + 0.5D);
+			if (var6.field2404 != null) {
+				if (var6.field2398 > 0) {
+					var1.field2457 += (int)(128.0D * Math.pow(2.0D, var8 * (double)var6.field2398) + 0.5D);
 				} else {
-					var1.field2431 += 128;
+					var1.field2457 += 128;
 				}
 
-				while (var1.field2432 * 4 < var6.field2376.length - 2 && var1.field2431 > (var6.field2376[var1.field2432 * 4 + 2] & 255) << 8) {
-					var1.field2432 = var1.field2432 * 4 + 2;
+				while (var1.field2458 * 4 < var6.field2404.length - 2 && var1.field2457 > (var6.field2404[var1.field2458 * 4 + 2] & 255) << 8) {
+					var1.field2458 = var1.field2458 * 4 + 2;
 				}
 
-				if (var1.field2432 * 4 == var6.field2376.length - 2 && var6.field2376[var1.field2432 * 4 + 1] == 0) {
+				if (var1.field2458 * 4 == var6.field2404.length - 2 && var6.field2404[var1.field2458 * 4 + 1] == 0) {
 					var7 = true;
 				}
 			}
 
-			if (var1.field2433 >= 0 && var6.field2374 != null && (this.field2404[var1.field2420] & 1) == 0 && (var1.field2423 < 0 || var1 != this.field2411[var1.field2420][var1.field2423])) {
-				if (var6.field2377 > 0) {
-					var1.field2433 += (int)(128.0D * Math.pow(2.0D, (double)var6.field2377 * var8) + 0.5D);
+			if (var1.field2459 >= 0 && var6.field2399 != null && (this.field2428[var1.field2449] & 1) == 0 && (var1.field2445 < 0 || var1 != this.field2435[var1.field2449][var1.field2445])) {
+				if (var6.field2407 > 0) {
+					var1.field2459 += (int)(128.0D * Math.pow(2.0D, (double)var6.field2407 * var8) + 0.5D);
 				} else {
-					var1.field2433 += 128;
+					var1.field2459 += 128;
 				}
 
-				while (var1.field2434 * 4 < var6.field2374.length - 2 && var1.field2433 > (var6.field2374[var1.field2434 * 4 + 2] & 255) << 8) {
-					var1.field2434 = var1.field2434 * 4 + 2;
+				while (var1.field2460 * 4 < var6.field2399.length - 2 && var1.field2459 > (var6.field2399[var1.field2460 * 4 + 2] & 255) << 8) {
+					var1.field2460 = var1.field2460 * 4 + 2;
 				}
 
-				if (var1.field2434 * 4 == var6.field2374.length - 2) {
+				if (var1.field2460 * 4 == var6.field2399.length - 2) {
 					var7 = true;
 				}
 			}
 
 			if (var7) {
-				var1.stream.method2525(var1.field2438);
+				var1.stream.method2582(var1.field2464);
 				if (var2 != null) {
 					var1.stream.fill(var2, var3, var4);
 				} else {
 					var1.stream.skip(var4);
 				}
 
-				if (var1.stream.method2529()) {
+				if (var1.stream.method2686()) {
 					this.patchStream.mixer.addSubStream(var1.stream);
 				}
 
-				var1.method3785();
-				if (var1.field2433 >= 0) {
+				var1.method3893();
+				if (var1.field2459 >= 0) {
 					var1.remove();
-					if (var1.field2423 > 0 && var1 == this.field2411[var1.field2420][var1.field2423]) {
-						this.field2411[var1.field2420][var1.field2423] = null;
+					if (var1.field2445 > 0 && var1 == this.field2435[var1.field2449][var1.field2445]) {
+						this.field2435[var1.field2449][var1.field2445] = null;
 					}
 				}
 
 				return true;
 			} else {
-				var1.stream.method2524(var1.field2438, this.method3687(var1), this.method3742(var1));
+				var1.stream.method2581(var1.field2464, this.method3793(var1), this.method3794(var1));
 				return false;
 			}
 		} else {
-			var1.method3785();
+			var1.method3893();
 			var1.remove();
-			if (var1.field2423 > 0 && var1 == this.field2411[var1.field2420][var1.field2423]) {
-				this.field2411[var1.field2420][var1.field2423] = null;
+			if (var1.field2445 > 0 && var1 == this.field2435[var1.field2449][var1.field2445]) {
+				this.field2435[var1.field2449][var1.field2445] = null;
 			}
 
 			return true;

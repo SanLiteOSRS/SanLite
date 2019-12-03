@@ -6,53 +6,57 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("au")
 public class class49 {
-	@ObfuscatedName("u")
-	@ObfuscatedSignature(
-		signature = "Lgb;"
-	)
-	@Export("midiPcmStream")
-	public static MidiPcmStream midiPcmStream;
-	@ObfuscatedName("m")
+	@ObfuscatedName("rq")
 	@ObfuscatedGetter(
-		intValue = -649185671
+		intValue = 1686126592
 	)
-	@Export("musicTrackFileId")
-	public static int musicTrackFileId;
+	static int field417;
+	@ObfuscatedName("cn")
+	@ObfuscatedGetter(
+		intValue = 1254436043
+	)
+	public static int field418;
+	@ObfuscatedName("et")
+	@ObfuscatedGetter(
+		intValue = -311350761
+	)
+	@Export("port2")
+	static int port2;
 
 	static {
 		ImageIO.setUseCache(false);
 	}
 
-	@ObfuscatedName("u")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		signature = "(IZIZB)V",
-		garbageValue = "-64"
+		signature = "(IIB)Lci;",
+		garbageValue = "-31"
 	)
-	@Export("sortWorldList")
-	static void sortWorldList(int var0, boolean var1, int var2, boolean var3) {
-		if (World.World_worlds != null) {
-			AbstractWorldMapData.doWorldSorting(0, World.World_worlds.length - 1, var0, var1, var2, var3);
-		}
-
-	}
-
-	@ObfuscatedName("y")
-	@ObfuscatedSignature(
-		signature = "([BI)Lkn;",
-		garbageValue = "-1770627772"
-	)
-	static Font method893(byte[] var0) {
-		if (var0 == null) {
-			return null;
+	static Script method880(int var0, int var1) {
+		Script var2 = (Script)Script.Script_cached.get((long)(var0 << 16));
+		if (var2 != null) {
+			return var2;
 		} else {
-			Font var1 = new Font(var0, class325.SpriteBuffer_xOffsets, MusicPatchPcmStream.SpriteBuffer_yOffsets, class325.SpriteBuffer_spriteWidths, RunException.SpriteBuffer_spriteHeights, class325.SpriteBuffer_spritePalette, PacketBufferNode.SpriteBuffer_pixels);
-			class325.SpriteBuffer_xOffsets = null;
-			MusicPatchPcmStream.SpriteBuffer_yOffsets = null;
-			class325.SpriteBuffer_spriteWidths = null;
-			RunException.SpriteBuffer_spriteHeights = null;
-			class325.SpriteBuffer_spritePalette = null;
-			PacketBufferNode.SpriteBuffer_pixels = null;
-			return var1;
+			String var3 = String.valueOf(var0);
+			int var4 = class267.archive12.getGroupId(var3);
+			if (var4 == -1) {
+				return null;
+			} else {
+				byte[] var5 = class267.archive12.takeFileFlat(var4);
+				if (var5 != null) {
+					if (var5.length <= 1) {
+						return null;
+					}
+
+					var2 = WorldMapArea.newScript(var5);
+					if (var2 != null) {
+						Script.Script_cached.put(var2, (long)(var0 << 16));
+						return var2;
+					}
+				}
+
+				return null;
+			}
 		}
 	}
 }

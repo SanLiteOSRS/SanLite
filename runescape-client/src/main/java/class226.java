@@ -2,63 +2,55 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hd")
+@ObfuscatedName("hq")
 public class class226 {
-	@ObfuscatedName("z")
+	@ObfuscatedName("gn")
+	@Export("regions")
+	static int[] regions;
+
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		signature = "(I)[Lhj;",
-		garbageValue = "133309082"
+		signature = "([BI)[B",
+		garbageValue = "-424113908"
 	)
-	@Export("PlayerType_values")
-	public static PlayerType[] PlayerType_values() {
-		return new PlayerType[]{PlayerType.PlayerType_jagexModerator, PlayerType.PlayerType_normal, PlayerType.PlayerType_playerModerator, PlayerType.PlayerType_ironman, PlayerType.PlayerType_hardcoreIronman, PlayerType.PlayerType_ultimateIronman};
+	@Export("decompressBytes")
+	static final byte[] decompressBytes(byte[] var0) {
+		Buffer var1 = new Buffer(var0);
+		int var2 = var1.readUnsignedByte();
+		int var3 = var1.readInt();
+		if (var3 < 0 || AbstractArchive.field3152 != 0 && var3 > AbstractArchive.field3152) {
+			throw new RuntimeException();
+		} else if (var2 == 0) {
+			byte[] var4 = new byte[var3];
+			var1.readBytes(var4, 0, var3);
+			return var4;
+		} else {
+			int var6 = var1.readInt();
+			if (var6 >= 0 && (AbstractArchive.field3152 == 0 || var6 <= AbstractArchive.field3152)) {
+				byte[] var5 = new byte[var6];
+				if (var2 == 1) {
+					BZip2Decompressor.BZip2Decompressor_decompress(var5, var6, var0, var3, 9);
+				} else {
+					AbstractArchive.gzipDecompressor.decompress(var1, var5);
+				}
+
+				return var5;
+			} else {
+				throw new RuntimeException();
+			}
+		}
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("ki")
 	@ObfuscatedSignature(
-		signature = "(II)Lep;",
-		garbageValue = "1928253690"
+		signature = "([BIB)V",
+		garbageValue = "-41"
 	)
-	@Export("getFrames")
-	static Frames getFrames(int var0) {
-		Frames var1 = (Frames)SequenceDefinition.SequenceDefinition_cachedFrames.get((long)var0);
-		if (var1 != null) {
-			return var1;
-		} else {
-			AbstractArchive var3 = SequenceDefinition.SequenceDefinition_animationsArchive;
-			AbstractArchive var4 = class188.SequenceDefinition_skeletonsArchive;
-			boolean var5 = true;
-			int[] var6 = var3.getGroupFileIds(var0);
-
-			for (int var7 = 0; var7 < var6.length; ++var7) {
-				byte[] var8 = var3.getFile(var0, var6[var7]);
-				if (var8 == null) {
-					var5 = false;
-				} else {
-					int var9 = (var8[0] & 255) << 8 | var8[1] & 255;
-					byte[] var10 = var4.getFile(var9, 0);
-					if (var10 == null) {
-						var5 = false;
-					}
-				}
-			}
-
-			Frames var2;
-			if (!var5) {
-				var2 = null;
-			} else {
-				try {
-					var2 = new Frames(var3, var4, var0, false);
-				} catch (Exception var12) {
-					var2 = null;
-				}
-			}
-
-			if (var2 != null) {
-				SequenceDefinition.SequenceDefinition_cachedFrames.put(var2, (long)var0);
-			}
-
-			return var2;
+	static void method4200(byte[] var0, int var1) {
+		if (Client.randomDatData == null) {
+			Client.randomDatData = new byte[24];
 		}
+
+		class300.writeRandomDat(var0, var1, Client.randomDatData, 0, 24);
 	}
 }

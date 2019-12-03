@@ -4,30 +4,36 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hb")
+@ObfuscatedName("hx")
 @Implements("Coord")
 public class Coord {
-	@ObfuscatedName("n")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = 562826067
+		intValue = 556251855
+	)
+	@Export("graphicsTickTimeIdx")
+	static int graphicsTickTimeIdx;
+	@ObfuscatedName("u")
+	@ObfuscatedGetter(
+		intValue = 1348059781
 	)
 	@Export("plane")
 	public int plane;
-	@ObfuscatedName("v")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = 2054727359
+		intValue = 1294830225
 	)
 	@Export("x")
 	public int x;
-	@ObfuscatedName("u")
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = -1032758603
+		intValue = 358494981
 	)
 	@Export("y")
 	public int y;
 
 	@ObfuscatedSignature(
-		signature = "(Lhb;)V"
+		signature = "(Lhx;)V"
 	)
 	public Coord(Coord var1) {
 		this.plane = var1.plane;
@@ -52,20 +58,20 @@ public class Coord {
 
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
 		signature = "(I)I",
-		garbageValue = "-444536660"
+		garbageValue = "-633329475"
 	)
 	@Export("packed")
 	public int packed() {
 		return this.plane << 28 | this.x << 14 | this.y;
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "(Lhb;I)Z",
-		garbageValue = "-1914028694"
+		signature = "(Lhx;I)Z",
+		garbageValue = "1606698981"
 	)
 	@Export("equalsCoord")
 	boolean equalsCoord(Coord var1) {
@@ -78,10 +84,10 @@ public class Coord {
 		}
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;I)Ljava/lang/String;",
-		garbageValue = "-986705762"
+		signature = "(Ljava/lang/String;B)Ljava/lang/String;",
+		garbageValue = "-38"
 	)
 	@Export("toString")
 	String toString(String var1) {
@@ -102,48 +108,5 @@ public class Coord {
 
 	public String toString() {
 		return this.toString(",");
-	}
-
-	public String aah() {
-		return this.toString(",");
-	}
-
-	public String aae() {
-		return this.toString(",");
-	}
-
-	public String aak() {
-		return this.toString(",");
-	}
-
-	@ObfuscatedName("i")
-	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-2118719705"
-	)
-	static void method3964() {
-		Login.worldSelectOpen = false;
-		WorldMapID.leftTitleSprite.drawAt(Login.xPadding, 0);
-		class51.rightTitleSprite.drawAt(Login.xPadding + 382, 0);
-		FontName.logoSprite.drawAt(Login.xPadding + 382 - FontName.logoSprite.subWidth / 2, 18);
-	}
-
-	@ObfuscatedName("jm")
-	@ObfuscatedSignature(
-		signature = "(S)V",
-		garbageValue = "22280"
-	)
-	@Export("FriendSystem_invalidateFriends")
-	static final void FriendSystem_invalidateFriends() {
-		for (int var0 = 0; var0 < Players.Players_count; ++var0) {
-			Player var1 = Client.players[Players.Players_indices[var0]];
-			var1.clearIsFriend();
-		}
-
-		KeyHandler.method873();
-		if (Varps.clanChat != null) {
-			Varps.clanChat.clearFriends();
-		}
-
 	}
 }

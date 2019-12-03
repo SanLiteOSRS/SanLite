@@ -1,27 +1,23 @@
-import java.lang.management.GarbageCollectorMXBean;
 import java.util.Comparator;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jr")
+@ObfuscatedName("jq")
 @Implements("AbstractUserComparator")
 public abstract class AbstractUserComparator implements Comparator {
-	@ObfuscatedName("ag")
-	@Export("garbageCollector")
-	static GarbageCollectorMXBean garbageCollector;
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@Export("nextComparator")
 	Comparator nextComparator;
 
 	protected AbstractUserComparator() {
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		signature = "(Ljava/util/Comparator;B)V",
-		garbageValue = "0"
+		signature = "(Ljava/util/Comparator;I)V",
+		garbageValue = "314545919"
 	)
 	@Export("addComparator")
 	final void addComparator(Comparator var1) {
@@ -33,10 +29,10 @@ public abstract class AbstractUserComparator implements Comparator {
 
 	}
 
-	@ObfuscatedName("y")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		signature = "(Ljh;Ljh;B)I",
-		garbageValue = "-78"
+		signature = "(Ljr;Ljr;B)I",
+		garbageValue = "14"
 	)
 	@Export("compareUser")
 	protected final int compareUser(User var1, User var2) {

@@ -4,42 +4,39 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("kt")
+@ObfuscatedName("kv")
 @Implements("ByteArrayPool")
 public class ByteArrayPool {
-	@ObfuscatedName("z")
+	@ObfuscatedName("u")
 	@ObfuscatedGetter(
-		intValue = 1085109787
+		intValue = 153239603
 	)
 	@Export("ByteArrayPool_smallCount")
 	static int ByteArrayPool_smallCount;
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = -745592959
+		intValue = -433125971
 	)
 	@Export("ByteArrayPool_mediumCount")
 	static int ByteArrayPool_mediumCount;
-	@ObfuscatedName("v")
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = 1171490501
+		intValue = -1031778889
 	)
 	@Export("ByteArrayPool_largeCount")
 	static int ByteArrayPool_largeCount;
-	@ObfuscatedName("u")
+	@ObfuscatedName("g")
 	@Export("ByteArrayPool_small")
 	static byte[][] ByteArrayPool_small;
-	@ObfuscatedName("r")
+	@ObfuscatedName("z")
 	@Export("ByteArrayPool_medium")
 	static byte[][] ByteArrayPool_medium;
 	@ObfuscatedName("p")
 	@Export("ByteArrayPool_large")
 	static byte[][] ByteArrayPool_large;
-	@ObfuscatedName("q")
-	@Export("ByteArrayPool_alternativeSizes")
-	public static int[] ByteArrayPool_alternativeSizes;
-	@ObfuscatedName("m")
-	@Export("ByteArrayPool_altSizeArrayCounts")
-	public static int[] ByteArrayPool_altSizeArrayCounts;
+	@ObfuscatedName("w")
+	@Export("ByteArrayPool_arrays")
+	static byte[][][] ByteArrayPool_arrays;
 
 	static {
 		ByteArrayPool_smallCount = 0;
@@ -50,10 +47,10 @@ public class ByteArrayPool {
 		ByteArrayPool_large = new byte[50][];
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "(IZB)[B",
-		garbageValue = "-44"
+		signature = "(IZI)[B",
+		garbageValue = "-2110348593"
 	)
 	@Export("ByteArrayPool_getArrayBool")
 	static synchronized byte[] ByteArrayPool_getArrayBool(int var0, boolean var1) {
@@ -85,14 +82,14 @@ public class ByteArrayPool {
 			return var2;
 		}
 
-		if (class81.ByteArrayPool_arrays != null) {
-			for (int var4 = 0; var4 < ByteArrayPool_alternativeSizes.length; ++var4) {
-				if (ByteArrayPool_alternativeSizes[var4] != var0) {
-					if (var0 < ByteArrayPool_alternativeSizes[var4]) {
+		if (ByteArrayPool_arrays != null) {
+			for (int var4 = 0; var4 < WorldMapSprite.ByteArrayPool_alternativeSizes.length; ++var4) {
+				if (WorldMapSprite.ByteArrayPool_alternativeSizes[var4] != var0) {
+					if (var0 < WorldMapSprite.ByteArrayPool_alternativeSizes[var4]) {
 					}
-				} else if (ByteArrayPool_altSizeArrayCounts[var4] > 0) {
-					byte[] var3 = class81.ByteArrayPool_arrays[var4][--ByteArrayPool_altSizeArrayCounts[var4]];
-					class81.ByteArrayPool_arrays[var4][ByteArrayPool_altSizeArrayCounts[var4]] = null;
+				} else if (class216.ByteArrayPool_altSizeArrayCounts[var4] > 0) {
+					byte[] var3 = ByteArrayPool_arrays[var4][--class216.ByteArrayPool_altSizeArrayCounts[var4]];
+					ByteArrayPool_arrays[var4][class216.ByteArrayPool_altSizeArrayCounts[var4]] = null;
 					return var3;
 				}
 			}

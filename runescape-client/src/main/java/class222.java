@@ -1,145 +1,83 @@
-import net.runelite.mapping.ObfuscatedGetter;
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("hu")
+@ObfuscatedName("ht")
 public class class222 {
-	@ObfuscatedName("c")
-	@ObfuscatedGetter(
-		intValue = -1634764861
-	)
-	static int field2729;
-
-	@ObfuscatedName("as")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "(ILcu;ZI)I",
-		garbageValue = "1931429415"
+		signature = "(IB)Ljava/lang/String;",
+		garbageValue = "0"
 	)
-	static int method4078(int var0, Script var1, boolean var2) {
-		int var3;
-		if (var0 == ScriptOpcodes.OC_NAME) {
-			var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-			Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = Occluder.ItemDefinition_get(var3).name;
-			return 1;
-		} else {
-			int var4;
-			ItemDefinition var5;
-			if (var0 == ScriptOpcodes.OC_OP) {
-				Interpreter.Interpreter_intStackSize -= 2;
-				var3 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
-				var4 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
-				var5 = Occluder.ItemDefinition_get(var3);
-				if (var4 >= 1 && var4 <= 5 && var5.groundActions[var4 - 1] != null) {
-					Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var5.groundActions[var4 - 1];
-				} else {
-					Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = "";
-				}
-
-				return 1;
-			} else if (var0 == ScriptOpcodes.OC_IOP) {
-				Interpreter.Interpreter_intStackSize -= 2;
-				var3 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
-				var4 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
-				var5 = Occluder.ItemDefinition_get(var3);
-				if (var4 >= 1 && var4 <= 5 && var5.inventoryActions[var4 - 1] != null) {
-					Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var5.inventoryActions[var4 - 1];
-				} else {
-					Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = "";
-				}
-
-				return 1;
-			} else if (var0 == ScriptOpcodes.OC_COST) {
-				var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = Occluder.ItemDefinition_get(var3).price;
-				return 1;
-			} else if (var0 == ScriptOpcodes.OC_STACKABLE) {
-				var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = Occluder.ItemDefinition_get(var3).isStackable == 1 ? 1 : 0;
-				return 1;
-			} else {
-				ItemDefinition var6;
-				if (var0 == ScriptOpcodes.OC_CERT) {
-					var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-					var6 = Occluder.ItemDefinition_get(var3);
-					if (var6.noteTemplate == -1 && var6.note >= 0) {
-						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var6.note;
-					} else {
-						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3;
-					}
-
-					return 1;
-				} else if (var0 == ScriptOpcodes.OC_UNCERT) {
-					var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-					var6 = Occluder.ItemDefinition_get(var3);
-					if (var6.noteTemplate >= 0 && var6.note >= 0) {
-						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var6.note;
-					} else {
-						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3;
-					}
-
-					return 1;
-				} else if (var0 == ScriptOpcodes.OC_MEMBERS) {
-					var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-					Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = Occluder.ItemDefinition_get(var3).isMembersOnly ? 1 : 0;
-					return 1;
-				} else if (var0 == ScriptOpcodes.OC_PLACEHOLDER) {
-					var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-					var6 = Occluder.ItemDefinition_get(var3);
-					if (var6.placeholderTemplate == -1 && var6.placeholder >= 0) {
-						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var6.placeholder;
-					} else {
-						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3;
-					}
-
-					return 1;
-				} else if (var0 == ScriptOpcodes.OC_UNPLACEHOLDER) {
-					var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-					var6 = Occluder.ItemDefinition_get(var3);
-					if (var6.placeholderTemplate >= 0 && var6.placeholder >= 0) {
-						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var6.placeholder;
-					} else {
-						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3;
-					}
-
-					return 1;
-				} else if (var0 == ScriptOpcodes.OC_FIND) {
-					String var7 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];
-					var4 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-					Canvas.findItemDefinitions(var7, var4 == 1);
-					Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = DevicePcmPlayerProvider.foundItemIdCount;
-					return 1;
-				} else if (var0 != ScriptOpcodes.OC_FINDNEXT) {
-					if (var0 == ScriptOpcodes.OC_FINDRESET) {
-						ReflectionCheck.foundItemIndex = 0;
-						return 1;
-					} else {
-						return 2;
-					}
-				} else {
-					if (WorldMapIcon_0.foundItemIds != null && ReflectionCheck.foundItemIndex < DevicePcmPlayerProvider.foundItemIdCount) {
-						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = WorldMapIcon_0.foundItemIds[++ReflectionCheck.foundItemIndex - 1] & '\uffff';
-					} else {
-						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = -1;
-					}
-
-					return 1;
-				}
-			}
-		}
+	@Export("colorStartTag")
+	static String colorStartTag(int var0) {
+		return "<col=" + Integer.toHexString(var0) + ">";
 	}
 
-	@ObfuscatedName("an")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(ILcu;ZI)I",
-		garbageValue = "1936251414"
+		signature = "(ZI)V",
+		garbageValue = "-649981056"
 	)
-	static int method4077(int var0, Script var1, boolean var2) {
-		if (var0 == ScriptOpcodes.LOGOUT) {
-			Client.logoutTimer = 250;
-			return 1;
-		} else {
-			return 2;
+	@Export("Login_promptCredentials")
+	static void Login_promptCredentials(boolean var0) {
+		Login.Login_response1 = "";
+		Login.Login_response2 = "Enter your username/email & password.";
+		Login.Login_response3 = "";
+		Login.loginIndex = 2;
+		if (var0) {
+			Login.Login_password = "";
 		}
+
+		if (Login.Login_username == null || Login.Login_username.length() <= 0) {
+			if (UserComparator10.clientPreferences.rememberedUsername != null) {
+				Login.Login_username = UserComparator10.clientPreferences.rememberedUsername;
+				Client.Login_isUsernameRemembered = true;
+			} else {
+				Client.Login_isUsernameRemembered = false;
+			}
+		}
+
+		Buddy.method5251();
+	}
+
+	@ObfuscatedName("k")
+	@ObfuscatedSignature(
+		signature = "(B)V",
+		garbageValue = "-23"
+	)
+	public static void method4195() {
+		NPCDefinition.NpcDefinition_cached.clear();
+		NPCDefinition.NpcDefinition_cachedModels.clear();
+	}
+
+	@ObfuscatedName("aj")
+	@ObfuscatedSignature(
+		signature = "([BII)I",
+		garbageValue = "-2031476219"
+	)
+	public static int method4196(byte[] var0, int var1) {
+		return UserComparator5.method3467(var0, 0, var1);
+	}
+
+	@ObfuscatedName("fy")
+	@ObfuscatedSignature(
+		signature = "(B)V",
+		garbageValue = "11"
+	)
+	static final void method4198() {
+		if (WorldMapID.ClanChat_inClanChat) {
+			if (InterfaceParent.clanChat != null) {
+				InterfaceParent.clanChat.sort();
+			}
+
+			for (int var0 = 0; var0 < Players.Players_count; ++var0) {
+				Player var1 = Client.players[Players.Players_indices[var0]];
+				var1.clearIsInClanChat();
+			}
+
+			WorldMapID.ClanChat_inClanChat = false;
+		}
+
 	}
 }

@@ -24,9 +24,6 @@
  */
 package net.runelite.injector.raw;
 
-import java.util.HashSet;
-import java.util.ListIterator;
-import java.util.Set;
 import net.runelite.asm.ClassFile;
 import net.runelite.asm.Method;
 import net.runelite.asm.attributes.code.Instruction;
@@ -39,11 +36,16 @@ import net.runelite.asm.attributes.code.instructions.IMul;
 import net.runelite.asm.attributes.code.instructions.InvokeStatic;
 import net.runelite.asm.signature.Signature;
 import net.runelite.injector.Inject;
-import static net.runelite.injector.InjectHookMethod.HOOKS;
-import static net.runelite.injector.InjectUtil.findStaticMethod;
 import net.runelite.injector.InjectionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.HashSet;
+import java.util.ListIterator;
+import java.util.Set;
+
+import static net.runelite.injector.InjectHookMethod.HOOKS;
+import static net.runelite.injector.InjectUtil.findStaticMethod;
 
 public class DrawAfterWidgets
 {
@@ -99,7 +101,7 @@ public class DrawAfterWidgets
 		         Interpreter.method1977(rootInterface, 0, 0, SoundCache.canvasWidth, Huffman.canvasHeight, 0, 0, -1);
 		      }
 
-				< --  here appearantly
+				< --  here apparently
 
 		      Rasterizer2D.Rasterizer2D_resetClip();
 			______________________________________________________
@@ -227,8 +229,8 @@ public class DrawAfterWidgets
 						so let's make it easier by just checking that they are there.
 					 */
 					if (insns.stream().filter(i2 -> i2 instanceof PushConstantInstruction).count() != 2
-						|| insns.stream().filter(i2 -> i2 instanceof IMul).count() != 1
-						|| insns.stream().filter(i2 -> i2 instanceof GetStatic).count() != 1)
+							|| insns.stream().filter(i2 -> i2 instanceof IMul).count() != 1
+							|| insns.stream().filter(i2 -> i2 instanceof GetStatic).count() != 1)
 					{
 						continue;
 					}
@@ -240,16 +242,16 @@ public class DrawAfterWidgets
 				for (Label l : labelsToInjectAfter)
 				{
 					InvokeStatic invoke = new InvokeStatic(instructions,
-						new net.runelite.asm.pool.Method(
-							new net.runelite.asm.pool.Class(HOOKS),
-							"drawAfterWidgets",
-							new Signature("()V")
-						)
+							new net.runelite.asm.pool.Method(
+									new net.runelite.asm.pool.Class(HOOKS),
+									"drawAfterWidgets",
+									new Signature("()V")
+							)
 					);
 
 					instructions.addInstruction(instructions.getInstructions().indexOf(l) + 1, invoke);
 
-					logger.info("injectDrawAfterWidgets injected a call after " + l);
+					logger.debug("injectDrawAfterWidgets injected a call after " + l);
 
 					injected = true;
 				}

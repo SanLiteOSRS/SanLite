@@ -8,23 +8,24 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cb")
+@ObfuscatedName("cy")
 @Implements("SecureRandomFuture")
 public class SecureRandomFuture {
-	@ObfuscatedName("rq")
+	@ObfuscatedName("rh")
 	@ObfuscatedGetter(
-		intValue = -488554496
+		intValue = 1810494336
 	)
-	static int field1228;
-	@ObfuscatedName("cb")
-	@ObfuscatedGetter(
-		intValue = 515695907
+	static int field1242;
+	@ObfuscatedName("fx")
+	@ObfuscatedSignature(
+		signature = "Lfo;"
 	)
-	public static int field1230;
-	@ObfuscatedName("z")
+	@Export("socketTask")
+	static Task socketTask;
+	@ObfuscatedName("u")
 	@Export("executor")
 	ExecutorService executor;
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@Export("future")
 	Future future;
 
@@ -33,10 +34,10 @@ public class SecureRandomFuture {
 		this.future = this.executor.submit(new SecureRandomCallable());
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-128121805"
+		signature = "(B)V",
+		garbageValue = "3"
 	)
 	@Export("shutdown")
 	void shutdown() {
@@ -44,55 +45,27 @@ public class SecureRandomFuture {
 		this.executor = null;
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
 		signature = "(I)Z",
-		garbageValue = "-55622200"
+		garbageValue = "583924598"
 	)
 	@Export("isDone")
 	boolean isDone() {
 		return this.future.isDone();
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		signature = "(I)Ljava/security/SecureRandom;",
-		garbageValue = "311645204"
+		signature = "(B)Ljava/security/SecureRandom;",
+		garbageValue = "117"
 	)
 	@Export("get")
 	SecureRandom get() {
 		try {
 			return (SecureRandom)this.future.get();
 		} catch (Exception var2) {
-			return AttackOption.method2077();
+			return NetCache.method4394();
 		}
-	}
-
-	@ObfuscatedName("ha")
-	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-1765847825"
-	)
-	static void method2134() {
-		for (int var0 = 0; var0 < Client.menuOptionsCount; ++var0) {
-			if (BZip2State.method5688(Client.menuOpcodes[var0])) {
-				if (var0 < Client.menuOptionsCount - 1) {
-					for (int var1 = var0; var1 < Client.menuOptionsCount - 1; ++var1) {
-						Client.menuActions[var1] = Client.menuActions[var1 + 1];
-						Client.menuTargets[var1] = Client.menuTargets[var1 + 1];
-						Client.menuOpcodes[var1] = Client.menuOpcodes[var1 + 1];
-						Client.menuIdentifiers[var1] = Client.menuIdentifiers[var1 + 1];
-						Client.menuArguments1[var1] = Client.menuArguments1[var1 + 1];
-						Client.menuArguments2[var1] = Client.menuArguments2[var1 + 1];
-						Client.menuShiftClick[var1] = Client.menuShiftClick[var1 + 1];
-					}
-				}
-
-				--var0;
-				--Client.menuOptionsCount;
-			}
-		}
-
-		UserComparator6.calculateMenuBounds(FriendSystem.menuWidth / 2 + UrlRequester.menuX, class51.menuY);
 	}
 }

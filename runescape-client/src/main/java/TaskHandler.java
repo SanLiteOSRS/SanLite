@@ -7,37 +7,28 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fm")
+@ObfuscatedName("fu")
 @Implements("TaskHandler")
 public class TaskHandler implements Runnable {
-	@ObfuscatedName("z")
+	@ObfuscatedName("u")
 	@Export("javaVendor")
 	public static String javaVendor;
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@Export("javaVersion")
 	public static String javaVersion;
-	@ObfuscatedName("i")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		signature = "Lhp;"
-	)
-	@Export("Widget_modelsArchive")
-	static AbstractArchive Widget_modelsArchive;
-	@ObfuscatedName("ah")
-	@Export("hasFocus")
-	protected static boolean hasFocus;
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		signature = "Lfv;"
+		signature = "Lfo;"
 	)
 	@Export("current")
 	Task current;
-	@ObfuscatedName("u")
+	@ObfuscatedName("g")
 	@ObfuscatedSignature(
-		signature = "Lfv;"
+		signature = "Lfo;"
 	)
 	@Export("task")
 	Task task;
-	@ObfuscatedName("r")
+	@ObfuscatedName("z")
 	@Export("thread")
 	Thread thread;
 	@ObfuscatedName("p")
@@ -64,10 +55,10 @@ public class TaskHandler implements Runnable {
 		this.thread.start();
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "1673059069"
+		garbageValue = "1951824555"
 	)
 	@Export("close")
 	public final void close() {
@@ -83,10 +74,10 @@ public class TaskHandler implements Runnable {
 
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "(IIILjava/lang/Object;S)Lfv;",
-		garbageValue = "255"
+		signature = "(IIILjava/lang/Object;B)Lfo;",
+		garbageValue = "1"
 	)
 	@Export("newTask")
 	final Task newTask(int var1, int var2, int var3, Object var4) {
@@ -107,20 +98,20 @@ public class TaskHandler implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;II)Lfv;",
-		garbageValue = "2091612218"
+		signature = "(Ljava/lang/String;II)Lfo;",
+		garbageValue = "456195098"
 	)
 	@Export("newSocketTask")
 	public final Task newSocketTask(String var1, int var2) {
 		return this.newTask(1, var2, 0, var1);
 	}
 
-	@ObfuscatedName("u")
+	@ObfuscatedName("g")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/Runnable;II)Lfv;",
-		garbageValue = "-1627707278"
+		signature = "(Ljava/lang/Runnable;II)Lfo;",
+		garbageValue = "1003656831"
 	)
 	@Export("newThreadTask")
 	public final Task newThreadTask(Runnable var1, int var2) {
@@ -175,10 +166,19 @@ public class TaskHandler implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("z")
-	static double method3425(double var0, double var2, double var4) {
-		double var8 = (var0 - var2) / var4;
-		double var6 = Math.exp(-var8 * var8 / 2.0D) / Math.sqrt(6.283185307179586D);
-		return var6 / var4;
+	@ObfuscatedName("u")
+	@ObfuscatedSignature(
+		signature = "(I)J",
+		garbageValue = "-1924215879"
+	)
+	@Export("currentTimeMillis")
+	public static final synchronized long currentTimeMillis() {
+		long var0 = System.currentTimeMillis();
+		if (var0 < class296.field3695) {
+			class296.field3696 += class296.field3695 - var0;
+		}
+
+		class296.field3695 = var0;
+		return class296.field3696 + var0;
 	}
 }

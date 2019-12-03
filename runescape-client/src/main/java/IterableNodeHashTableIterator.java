@@ -4,27 +4,27 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ls")
+@ObfuscatedName("ll")
 @Implements("IterableNodeHashTableIterator")
 public class IterableNodeHashTableIterator implements Iterator {
-	@ObfuscatedName("z")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
 		signature = "Llb;"
 	)
 	@Export("hashTable")
 	IterableNodeHashTable hashTable;
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "Lfx;"
+		signature = "Lfb;"
 	)
 	@Export("head")
 	Node head;
-	@ObfuscatedName("v")
+	@ObfuscatedName("b")
 	@Export("index")
 	int index;
-	@ObfuscatedName("u")
+	@ObfuscatedName("g")
 	@ObfuscatedSignature(
-		signature = "Lfx;"
+		signature = "Lfb;"
 	)
 	@Export("last")
 	Node last;
@@ -38,7 +38,7 @@ public class IterableNodeHashTableIterator implements Iterator {
 		this.start();
 	}
 
-	@ObfuscatedName("i")
+	@ObfuscatedName("y")
 	@Export("start")
 	void start() {
 		this.head = this.hashTable.buckets[0].previous;
@@ -46,12 +46,20 @@ public class IterableNodeHashTableIterator implements Iterator {
 		this.last = null;
 	}
 
-	public void remove() {
-		if (this.last == null) {
-			throw new IllegalStateException();
+	public boolean hasNext() {
+		if (this.hashTable.buckets[this.index - 1] != this.head) {
+			return true;
 		} else {
-			this.last.remove();
-			this.last = null;
+			while (this.index < this.hashTable.size) {
+				if (this.hashTable.buckets[this.index++].previous != this.hashTable.buckets[this.index - 1]) {
+					this.head = this.hashTable.buckets[this.index - 1].previous;
+					return true;
+				}
+
+				this.head = this.hashTable.buckets[this.index - 1];
+			}
+
+			return false;
 		}
 	}
 
@@ -77,20 +85,12 @@ public class IterableNodeHashTableIterator implements Iterator {
 		}
 	}
 
-	public boolean hasNext() {
-		if (this.hashTable.buckets[this.index - 1] != this.head) {
-			return true;
+	public void remove() {
+		if (this.last == null) {
+			throw new IllegalStateException();
 		} else {
-			while (this.index < this.hashTable.size) {
-				if (this.hashTable.buckets[this.index++].previous != this.hashTable.buckets[this.index - 1]) {
-					this.head = this.hashTable.buckets[this.index - 1].previous;
-					return true;
-				}
-
-				this.head = this.hashTable.buckets[this.index - 1];
-			}
-
-			return false;
+			this.last.remove();
+			this.last = null;
 		}
 	}
 }

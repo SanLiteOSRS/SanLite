@@ -4,42 +4,37 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("s")
+@ObfuscatedName("t")
 @Implements("WorldMapSectionType")
 public enum WorldMapSectionType implements Enumerated {
-	@ObfuscatedName("z")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "Ls;"
+		signature = "Lt;"
 	)
 	@Export("WORLDMAPSECTIONTYPE0")
 	WORLDMAPSECTIONTYPE0(0, (byte)0),
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "Ls;"
+		signature = "Lt;"
 	)
 	@Export("WORLDMAPSECTIONTYPE1")
-	WORLDMAPSECTIONTYPE1(3, (byte)1),
-	@ObfuscatedName("v")
+	WORLDMAPSECTIONTYPE1(2, (byte)1),
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		signature = "Ls;"
+		signature = "Lt;"
 	)
 	@Export("WORLDMAPSECTIONTYPE2")
-	WORLDMAPSECTIONTYPE2(2, (byte)2),
-	@ObfuscatedName("u")
+	WORLDMAPSECTIONTYPE2(1, (byte)2),
+	@ObfuscatedName("g")
 	@ObfuscatedSignature(
-		signature = "Ls;"
+		signature = "Lt;"
 	)
 	@Export("WORLDMAPSECTIONTYPE3")
-	WORLDMAPSECTIONTYPE3(1, (byte)3);
+	WORLDMAPSECTIONTYPE3(3, (byte)3);
 
-	@ObfuscatedName("c")
-	@Export("musicTrackBoolean")
-	public static boolean musicTrackBoolean;
-	@ObfuscatedName("bk")
-	static String field150;
-	@ObfuscatedName("r")
+	@ObfuscatedName("z")
 	@ObfuscatedGetter(
-		intValue = 19347147
+		intValue = -740472387
 	)
 	@Export("type")
 	final int type;
@@ -52,55 +47,111 @@ public enum WorldMapSectionType implements Enumerated {
 		this.id = var4;
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("g")
 	@ObfuscatedSignature(
-		signature = "(S)I",
-		garbageValue = "221"
+		signature = "(B)I",
+		garbageValue = "7"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
 		return this.id;
 	}
 
-	@ObfuscatedName("jf")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "(Lho;I)V",
-		garbageValue = "529400812"
+		signature = "(I)[Lt;",
+		garbageValue = "-1446334113"
 	)
-	@Export("invalidateWidget")
-	static void invalidateWidget(Widget var0) {
-		if (var0.cycle == Client.field638) {
-			Client.field841[var0.rootIndex] = true;
+	static WorldMapSectionType[] method262() {
+		return new WorldMapSectionType[]{WORLDMAPSECTIONTYPE3, WORLDMAPSECTIONTYPE0, WORLDMAPSECTIONTYPE1, WORLDMAPSECTIONTYPE2};
+	}
+
+	@ObfuscatedName("u")
+	@ObfuscatedSignature(
+		signature = "(I)V",
+		garbageValue = "748001828"
+	)
+	static void method265() {
+		Skeleton.field1788 = new int[2000];
+		int var0 = 0;
+		int var1 = 240;
+
+		int var3;
+		for (byte var2 = 12; var0 < 16; var1 -= var2) {
+			var3 = Huffman.method4020((double)((float)var1 / 360.0F), 0.9998999834060669D, (double)(0.075F + 0.425F * (float)var0 / 16.0F));
+			Skeleton.field1788[var0] = var3;
+			++var0;
 		}
 
-	}
+		var1 = 48;
 
-	@ObfuscatedName("ks")
-	@ObfuscatedSignature(
-		signature = "(Lho;B)Z",
-		garbageValue = "7"
-	)
-	@Export("isComponentHidden")
-	static boolean isComponentHidden(Widget var0) {
-		return var0.isHidden;
-	}
+		for (int var5 = var1 / 6; var0 < Skeleton.field1788.length; var1 -= var5) {
+			var3 = var0 * 2;
 
-	@ObfuscatedName("kj")
-	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;I)Ljava/lang/String;",
-		garbageValue = "-1617760184"
-	)
-	static String method250(String var0) {
-		PlayerType[] var1 = class226.PlayerType_values();
-
-		for (int var2 = 0; var2 < var1.length; ++var2) {
-			PlayerType var3 = var1[var2];
-			if (var3.modIcon != -1 && var0.startsWith(class247.method4443(var3.modIcon))) {
-				var0 = var0.substring(6 + Integer.toString(var3.modIcon).length());
-				break;
+			for (int var4 = Huffman.method4020((double)((float)var1 / 360.0F), 0.9998999834060669D, 0.5D); var0 < var3 && var0 < Skeleton.field1788.length; ++var0) {
+				Skeleton.field1788[var0] = var4;
 			}
 		}
 
-		return var0;
+	}
+
+	@ObfuscatedName("p")
+	public static int method271(long var0) {
+		return (int)(var0 >>> 7 & 127L);
+	}
+
+	@ObfuscatedName("w")
+	@ObfuscatedSignature(
+		signature = "(Lhl;I[B[BB)V",
+		garbageValue = "98"
+	)
+	@Export("Widget_setKey")
+	static final void Widget_setKey(Widget var0, int var1, byte[] var2, byte[] var3) {
+		if (var0.field2592 == null) {
+			if (var2 == null) {
+				return;
+			}
+
+			var0.field2592 = new byte[11][];
+			var0.field2653 = new byte[11][];
+			var0.field2654 = new int[11];
+			var0.field2655 = new int[11];
+		}
+
+		var0.field2592[var1] = var2;
+		if (var2 != null) {
+			var0.field2651 = true;
+		} else {
+			var0.field2651 = false;
+
+			for (int var4 = 0; var4 < var0.field2592.length; ++var4) {
+				if (var0.field2592[var4] != null) {
+					var0.field2651 = true;
+					break;
+				}
+			}
+		}
+
+		var0.field2653[var1] = var3;
+	}
+
+	@ObfuscatedName("n")
+	@ObfuscatedSignature(
+		signature = "(Ljava/lang/String;I)V",
+		garbageValue = "-2113411095"
+	)
+	static final void method269(String var0) {
+		WorldMapSection2.method347("Please remove " + var0 + " from your friend list first");
+	}
+
+	@ObfuscatedName("ih")
+	@ObfuscatedSignature(
+		signature = "(IIIZI)V",
+		garbageValue = "-1551677344"
+	)
+	static final void method272(int var0, int var1, int var2, boolean var3) {
+		if (UserComparator3.loadInterface(var0)) {
+			class225.resizeInterface(FloorDecoration.Widget_interfaceComponents[var0], -1, var1, var2, var3);
+		}
 	}
 }

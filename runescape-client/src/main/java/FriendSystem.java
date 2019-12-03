@@ -4,94 +4,88 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bf")
+@ObfuscatedName("bz")
 @Implements("FriendSystem")
 public class FriendSystem {
-	@ObfuscatedName("kp")
-	@ObfuscatedGetter(
-		intValue = 784647043
-	)
-	@Export("menuWidth")
-	static int menuWidth;
-	@ObfuscatedName("u")
+	@ObfuscatedName("g")
 	@ObfuscatedSignature(
-		signature = "Lli;"
+		signature = "Llg;"
 	)
 	@Export("loginType")
 	final LoginType loginType;
-	@ObfuscatedName("r")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "Ljz;"
+		signature = "Ljh;"
 	)
 	@Export("friendsList")
 	public final FriendsList friendsList;
 	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		signature = "Ljw;"
+		signature = "Lju;"
 	)
 	@Export("ignoreList")
 	public final IgnoreList ignoreList;
-	@ObfuscatedName("q")
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = -154127357
+		intValue = 618152065
 	)
-	int field1052;
+	int field1061;
 
 	@ObfuscatedSignature(
-		signature = "(Lli;)V"
+		signature = "(Llg;)V"
 	)
 	FriendSystem(LoginType var1) {
-		this.field1052 = 0;
+		this.field1061 = 0;
 		this.loginType = var1;
 		this.friendsList = new FriendsList(var1);
 		this.ignoreList = new IgnoreList(var1);
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
 		signature = "(I)Z",
-		garbageValue = "-537546182"
+		garbageValue = "-1963052463"
 	)
-	boolean method1859() {
-		return this.field1052 == 2;
+	boolean method1870() {
+		return this.field1061 == 2;
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-1827488115"
+		signature = "(B)V",
+		garbageValue = "-31"
 	)
-	final void method1860() {
-		this.field1052 = 1;
+	final void method1867() {
+		this.field1061 = 1;
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		signature = "(Lkl;II)V",
-		garbageValue = "87159269"
+		signature = "(Lkg;IB)V",
+		garbageValue = "52"
 	)
 	@Export("readUpdate")
 	final void readUpdate(Buffer var1, int var2) {
 		this.friendsList.read(var1, var2);
-		this.field1052 = 2;
-		Coord.FriendSystem_invalidateFriends();
+		this.field1061 = 2;
+		WorldMapIcon_1.FriendSystem_invalidateFriends();
 	}
 
-	@ObfuscatedName("u")
+	@ObfuscatedName("g")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "1809100173"
+		garbageValue = "2007033957"
 	)
 	@Export("processFriendUpdates")
 	final void processFriendUpdates() {
 		for (FriendLoginUpdate var1 = (FriendLoginUpdate)this.friendsList.friendLoginUpdates.last(); var1 != null; var1 = (FriendLoginUpdate)this.friendsList.friendLoginUpdates.previous()) {
-			if ((long)var1.field3627 < class30.method566() / 1000L - 5L) {
+			if ((long)var1.field3646 < TaskHandler.currentTimeMillis() / 1000L - 5L) {
 				if (var1.world > 0) {
-					class210.addGameMessage(5, "", var1.username + " has logged in.");
+					GrandExchangeOfferAgeComparator.addGameMessage(5, "", var1.username + " has logged in.");
 				}
 
 				if (var1.world == 0) {
-					class210.addGameMessage(5, "", var1.username + " has logged out.");
+					GrandExchangeOfferAgeComparator.addGameMessage(5, "", var1.username + " has logged out.");
 				}
 
 				var1.remove();
@@ -100,38 +94,38 @@ public class FriendSystem {
 
 	}
 
-	@ObfuscatedName("r")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "2097335947"
+		garbageValue = "-242142328"
 	)
 	@Export("clear")
 	final void clear() {
-		this.field1052 = 0;
+		this.field1061 = 0;
 		this.friendsList.clear();
 		this.ignoreList.clear();
 	}
 
 	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		signature = "(Ljq;ZI)Z",
-		garbageValue = "-99546473"
+		signature = "(Ljb;ZI)Z",
+		garbageValue = "-557958994"
 	)
 	@Export("isFriended")
 	final boolean isFriended(Username var1, boolean var2) {
 		if (var1 == null) {
 			return false;
-		} else if (var1.equals(class223.localPlayer.username)) {
+		} else if (var1.equals(class215.localPlayer.username)) {
 			return true;
 		} else {
 			return this.friendsList.isFriended(var1, var2);
 		}
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(Ljq;I)Z",
-		garbageValue = "-1271048446"
+		signature = "(Ljb;B)Z",
+		garbageValue = "94"
 	)
 	@Export("isIgnored")
 	final boolean isIgnored(Username var1) {
@@ -142,65 +136,48 @@ public class FriendSystem {
 		}
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
 		signature = "(Ljava/lang/String;I)V",
-		garbageValue = "70213064"
+		garbageValue = "905679920"
 	)
 	@Export("addFriend")
 	final void addFriend(String var1) {
 		if (var1 != null) {
 			Username var2 = new Username(var1, this.loginType);
 			if (var2.hasCleanName()) {
-				StringBuilder var10000;
-				String var4;
 				if (this.friendsListIsFull()) {
-					var10000 = null;
-					var4 = "Your friend list is full. Max of 200 for free users, and 400 for members";
-					class210.addGameMessage(30, "", var4);
-				} else if (class223.localPlayer.username.equals(var2)) {
-					var10000 = null;
-					var4 = "You can't add yourself to your own friend list";
-					class210.addGameMessage(30, "", var4);
+					PacketBufferNode.method3670();
+				} else if (class215.localPlayer.username.equals(var2)) {
+					WorldMapSection2.method347("You can't add yourself to your own friend list");
+				} else if (this.isFriended(var2, false)) {
+					class65.method1244(var1);
+				} else if (this.isIgnored(var2)) {
+					WorldMapSection2.method347("Please remove " + var1 + " from your ignore list first");
 				} else {
-					Object var10001;
-					if (this.isFriended(var2, false)) {
-						var10000 = (new StringBuilder()).append(var1);
-						var10001 = null;
-						var4 = var10000.append(" is already on your friend list").toString();
-						class210.addGameMessage(30, "", var4);
-					} else if (this.isIgnored(var2)) {
-						var10000 = new StringBuilder();
-						var10001 = null;
-						var10000 = var10000.append("Please remove ").append(var1);
-						var10001 = null;
-						var4 = var10000.append(" from your ignore list first").toString();
-						class210.addGameMessage(30, "", var4);
-					} else {
-						PacketBufferNode var3 = InterfaceParent.getPacketBufferNode(ClientPacket.field2264, Client.packetWriter.isaacCipher);
-						var3.packetBuffer.writeByte(class268.stringCp1252NullTerminatedByteSize(var1));
-						var3.packetBuffer.writeStringCp1252NullTerminated(var1);
-						Client.packetWriter.addNode(var3);
-					}
+					PacketBufferNode var3 = ModelData0.getPacketBufferNode(ClientPacket.field2268, Client.packetWriter.isaacCipher);
+					var3.packetBuffer.writeByte(class173.stringCp1252NullTerminatedByteSize(var1));
+					var3.packetBuffer.writeStringCp1252NullTerminated(var1);
+					Client.packetWriter.addNode(var3);
 				}
 			}
 		}
 	}
 
-	@ObfuscatedName("i")
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
 		signature = "(I)Z",
-		garbageValue = "-414102513"
+		garbageValue = "-1079308803"
 	)
 	@Export("friendsListIsFull")
 	final boolean friendsListIsFull() {
-		return this.friendsList.isFull() || this.friendsList.getSize() >= 200 && Client.field636 != 1;
+		return this.friendsList.isFull() || this.friendsList.getSize() >= 200 && Client.field789 != 1;
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;I)V",
-		garbageValue = "1251138329"
+		signature = "(Ljava/lang/String;B)V",
+		garbageValue = "15"
 	)
 	@Export("addIgnore")
 	final void addIgnore(String var1) {
@@ -208,54 +185,34 @@ public class FriendSystem {
 			Username var2 = new Username(var1, this.loginType);
 			if (var2.hasCleanName()) {
 				if (this.canAddIgnore()) {
-					WorldMapCacheName.method644();
+					GrandExchangeOfferNameComparator.method145();
+				} else if (class215.localPlayer.username.equals(var2)) {
+					WorldMapSection2.method347("You can't add yourself to your own ignore list");
+				} else if (this.isIgnored(var2)) {
+					WorldMapSection2.method347(var1 + " is already on your ignore list");
+				} else if (this.isFriended(var2, false)) {
+					WorldMapSectionType.method269(var1);
 				} else {
-					StringBuilder var10000;
-					String var4;
-					if (class223.localPlayer.username.equals(var2)) {
-						var10000 = null;
-						var4 = "You can't add yourself to your own ignore list";
-						class210.addGameMessage(30, "", var4);
-					} else {
-						Object var10001;
-						if (this.isIgnored(var2)) {
-							var10000 = (new StringBuilder()).append(var1);
-							var10001 = null;
-							var4 = var10000.append(" is already on your ignore list").toString();
-							class210.addGameMessage(30, "", var4);
-						} else if (this.isFriended(var2, false)) {
-							var10000 = new StringBuilder();
-							var10001 = null;
-							var10000 = var10000.append("Please remove ").append(var1);
-							var10001 = null;
-							var4 = var10000.append(" from your friend list first").toString();
-							class210.addGameMessage(30, "", var4);
-						} else {
-							PacketBufferNode var3 = InterfaceParent.getPacketBufferNode(ClientPacket.field2279, Client.packetWriter.isaacCipher);
-							var3.packetBuffer.writeByte(class268.stringCp1252NullTerminatedByteSize(var1));
-							var3.packetBuffer.writeStringCp1252NullTerminated(var1);
-							Client.packetWriter.addNode(var3);
-						}
-					}
+					class218.method4179(var1);
 				}
 			}
 		}
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		signature = "(S)Z",
-		garbageValue = "30910"
+		signature = "(B)Z",
+		garbageValue = "97"
 	)
 	@Export("canAddIgnore")
 	final boolean canAddIgnore() {
-		return this.ignoreList.isFull() || this.ignoreList.getSize() >= 100 && Client.field636 != 1;
+		return this.ignoreList.isFull() || this.ignoreList.getSize() >= 100 && Client.field789 != 1;
 	}
 
-	@ObfuscatedName("a")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
 		signature = "(Ljava/lang/String;I)V",
-		garbageValue = "1378951166"
+		garbageValue = "-774164721"
 	)
 	@Export("removeFriend")
 	final void removeFriend(String var1) {
@@ -263,22 +220,22 @@ public class FriendSystem {
 			Username var2 = new Username(var1, this.loginType);
 			if (var2.hasCleanName()) {
 				if (this.friendsList.removeByUsername(var2)) {
-					Client.field744 = Client.cycleCntr;
-					PacketBufferNode var3 = InterfaceParent.getPacketBufferNode(ClientPacket.field2232, Client.packetWriter.isaacCipher);
-					var3.packetBuffer.writeByte(class268.stringCp1252NullTerminatedByteSize(var1));
+					Client.field833 = Client.cycleCntr;
+					PacketBufferNode var3 = ModelData0.getPacketBufferNode(ClientPacket.field2289, Client.packetWriter.isaacCipher);
+					var3.packetBuffer.writeByte(class173.stringCp1252NullTerminatedByteSize(var1));
 					var3.packetBuffer.writeStringCp1252NullTerminated(var1);
 					Client.packetWriter.addNode(var3);
 				}
 
-				Coord.FriendSystem_invalidateFriends();
+				WorldMapIcon_1.FriendSystem_invalidateFriends();
 			}
 		}
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
 		signature = "(Ljava/lang/String;I)V",
-		garbageValue = "-1989545258"
+		garbageValue = "-1018111"
 	)
 	@Export("removeIgnore")
 	final void removeIgnore(String var1) {
@@ -286,26 +243,44 @@ public class FriendSystem {
 			Username var2 = new Username(var1, this.loginType);
 			if (var2.hasCleanName()) {
 				if (this.ignoreList.removeByUsername(var2)) {
-					Client.field744 = Client.cycleCntr;
-					PacketBufferNode var3 = InterfaceParent.getPacketBufferNode(ClientPacket.field2268, Client.packetWriter.isaacCipher);
-					var3.packetBuffer.writeByte(class268.stringCp1252NullTerminatedByteSize(var1));
+					Client.field833 = Client.cycleCntr;
+					PacketBufferNode var3 = ModelData0.getPacketBufferNode(ClientPacket.field2217, Client.packetWriter.isaacCipher);
+					var3.packetBuffer.writeByte(class173.stringCp1252NullTerminatedByteSize(var1));
 					var3.packetBuffer.writeStringCp1252NullTerminated(var1);
 					Client.packetWriter.addNode(var3);
 				}
 
-				class195.FriendSystem_invalidateIgnoreds();
+				Language.FriendSystem_invalidateIgnoreds();
 			}
 		}
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		signature = "(Ljq;I)Z",
-		garbageValue = "869979117"
+		signature = "(Ljb;B)Z",
+		garbageValue = "0"
 	)
 	@Export("isFriendAndHasWorld")
 	final boolean isFriendAndHasWorld(Username var1) {
 		Friend var2 = (Friend)this.friendsList.getByUsername(var1);
 		return var2 != null && var2.hasWorld();
+	}
+
+	@ObfuscatedName("u")
+	@ObfuscatedSignature(
+		signature = "(I)[Lgd;",
+		garbageValue = "-1110076754"
+	)
+	public static class185[] method1927() {
+		return new class185[]{class185.field2334, class185.field2332, class185.field2333, class185.field2339, class185.field2336, class185.field2341, class185.field2337, class185.field2331, class185.field2335, class185.field2340};
+	}
+
+	@ObfuscatedName("ge")
+	@ObfuscatedSignature(
+		signature = "(B)Z",
+		garbageValue = "-90"
+	)
+	static boolean method1920() {
+		return (Client.drawPlayerNames & 2) != 0;
 	}
 }

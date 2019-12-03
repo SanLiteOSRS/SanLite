@@ -3,16 +3,16 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ht")
+@ObfuscatedName("hg")
 @Implements("Huffman")
 public class Huffman {
-	@ObfuscatedName("z")
+	@ObfuscatedName("u")
 	@Export("masks")
 	int[] masks;
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@Export("bits")
 	byte[] bits;
-	@ObfuscatedName("v")
+	@ObfuscatedName("b")
 	@Export("keys")
 	int[] keys;
 
@@ -99,10 +99,10 @@ public class Huffman {
 
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "([BII[BII)I",
-		garbageValue = "2067037926"
+		signature = "([BII[BIB)I",
+		garbageValue = "-1"
 	)
 	@Export("compress")
 	int compress(byte[] var1, int var2, int var3, byte[] var4, int var5) {
@@ -150,10 +150,10 @@ public class Huffman {
 		return (var7 + 7 >> 3) - var5;
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
 		signature = "([BI[BIII)I",
-		garbageValue = "98933619"
+		garbageValue = "661108656"
 	)
 	@Export("decompress")
 	int decompress(byte[] var1, int var2, byte[] var3, int var4, int var5) {
@@ -292,5 +292,67 @@ public class Huffman {
 
 			return var7 + 1 - var2;
 		}
+	}
+
+	@ObfuscatedName("u")
+	public static final int method4020(double var0, double var2, double var4) {
+		double var6 = var4;
+		double var8 = var4;
+		double var10 = var4;
+		if (var2 != 0.0D) {
+			double var12;
+			if (var4 < 0.5D) {
+				var12 = (1.0D + var2) * var4;
+			} else {
+				var12 = var4 + var2 - var2 * var4;
+			}
+
+			double var14 = 2.0D * var4 - var12;
+			double var16 = 0.3333333333333333D + var0;
+			if (var16 > 1.0D) {
+				--var16;
+			}
+
+			double var20 = var0 - 0.3333333333333333D;
+			if (var20 < 0.0D) {
+				++var20;
+			}
+
+			if (var16 * 6.0D < 1.0D) {
+				var6 = var16 * (var12 - var14) * 6.0D + var14;
+			} else if (var16 * 2.0D < 1.0D) {
+				var6 = var12;
+			} else if (3.0D * var16 < 2.0D) {
+				var6 = 6.0D * (var12 - var14) * (0.6666666666666666D - var16) + var14;
+			} else {
+				var6 = var14;
+			}
+
+			if (var0 * 6.0D < 1.0D) {
+				var8 = var14 + var0 * (var12 - var14) * 6.0D;
+			} else if (var0 * 2.0D < 1.0D) {
+				var8 = var12;
+			} else if (3.0D * var0 < 2.0D) {
+				var8 = 6.0D * (0.6666666666666666D - var0) * (var12 - var14) + var14;
+			} else {
+				var8 = var14;
+			}
+
+			if (var20 * 6.0D < 1.0D) {
+				var10 = var20 * 6.0D * (var12 - var14) + var14;
+			} else if (var20 * 2.0D < 1.0D) {
+				var10 = var12;
+			} else if (var20 * 3.0D < 2.0D) {
+				var10 = var14 + 6.0D * (var12 - var14) * (0.6666666666666666D - var20);
+			} else {
+				var10 = var14;
+			}
+		}
+
+		int var22 = (int)(var6 * 256.0D);
+		int var13 = (int)(256.0D * var8);
+		int var23 = (int)(256.0D * var10);
+		int var15 = var23 + (var13 << 8) + (var22 << 16);
+		return var15;
 	}
 }

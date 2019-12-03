@@ -4,45 +4,50 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ef")
+@ObfuscatedName("ey")
 @Implements("TilePaint")
 public final class TilePaint {
-	@ObfuscatedName("z")
+	@ObfuscatedName("ns")
 	@ObfuscatedGetter(
-		intValue = 968490533
+		intValue = -1788868487
+	)
+	static int field1782;
+	@ObfuscatedName("u")
+	@ObfuscatedGetter(
+		intValue = -94402457
 	)
 	@Export("swColor")
 	int swColor;
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = -721233201
+		intValue = 1565892331
 	)
 	@Export("seColor")
 	int seColor;
-	@ObfuscatedName("v")
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = -1592287523
+		intValue = 813293965
 	)
 	@Export("neColor")
 	int neColor;
-	@ObfuscatedName("u")
+	@ObfuscatedName("g")
 	@ObfuscatedGetter(
-		intValue = -100726041
+		intValue = -1163969349
 	)
 	@Export("nwColor")
 	int nwColor;
-	@ObfuscatedName("r")
+	@ObfuscatedName("z")
 	@ObfuscatedGetter(
-		intValue = 2026223793
+		intValue = 1857222665
 	)
 	@Export("texture")
 	int texture;
 	@ObfuscatedName("p")
 	@Export("isFlat")
 	boolean isFlat;
-	@ObfuscatedName("q")
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = 1661774659
+		intValue = -1506842685
 	)
 	@Export("rgb")
 	int rgb;
@@ -58,56 +63,80 @@ public final class TilePaint {
 		this.isFlat = var7;
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "(Lkl;II)Ljava/lang/String;",
-		garbageValue = "-964205547"
+		signature = "(IIB)I",
+		garbageValue = "82"
 	)
-	static String method3038(Buffer var0, int var1) {
-		try {
-			int var2 = var0.readUShortSmart();
-			if (var2 > var1) {
-				var2 = var1;
+	static int method3104(int var0, int var1) {
+		if (var0 == -2) {
+			return 12345678;
+		} else if (var0 == -1) {
+			if (var1 < 0) {
+				var1 = 0;
+			} else if (var1 > 127) {
+				var1 = 127;
 			}
 
-			byte[] var3 = new byte[var2];
-			var0.offset += class210.huffman.decompress(var0.array, var0.offset, var3, 0, var2);
-			String var4 = ArchiveLoader.decodeStringCp1252(var3, 0, var2);
-			return var4;
-		} catch (Exception var6) {
-			return "Cabbage";
-		}
-	}
-
-	@ObfuscatedName("u")
-	@ObfuscatedSignature(
-		signature = "(Ljava/lang/CharSequence;I)I",
-		garbageValue = "800355488"
-	)
-	@Export("parseInt")
-	public static int parseInt(CharSequence var0) {
-		return SoundCache.parseIntCustomRadix(var0, 10, true);
-	}
-
-	@ObfuscatedName("r")
-	@ObfuscatedSignature(
-		signature = "(ZI)V",
-		garbageValue = "-2065502658"
-	)
-	static void method3039(boolean var0) {
-		Login.Login_response1 = "";
-		Login.Login_response2 = "Enter your username/email & password.";
-		Login.Login_response3 = "";
-		Login.loginIndex = 2;
-		if (var0) {
-			Login.Login_password = "";
-		}
-
-		InterfaceParent.method1197();
-		if (Client.Login_isUsernameRemembered && Login.Login_username != null && Login.Login_username.length() > 0) {
-			Login.currentLoginField = 1;
+			var1 = 127 - var1;
+			return var1;
 		} else {
-			Login.currentLoginField = 0;
+			var1 = (var0 & 127) * var1 / 128;
+			if (var1 < 2) {
+				var1 = 2;
+			} else if (var1 > 126) {
+				var1 = 126;
+			}
+
+			return (var0 & 65408) + var1;
+		}
+	}
+
+	@ObfuscatedName("b")
+	@ObfuscatedSignature(
+		signature = "(IIII)V",
+		garbageValue = "606674318"
+	)
+	static final void method3105(int var0, int var1, int var2) {
+		int var3;
+		for (var3 = 0; var3 < 8; ++var3) {
+			for (int var4 = 0; var4 < 8; ++var4) {
+				Tiles.Tiles_heights[var0][var3 + var1][var4 + var2] = 0;
+			}
+		}
+
+		if (var1 > 0) {
+			for (var3 = 1; var3 < 8; ++var3) {
+				Tiles.Tiles_heights[var0][var1][var3 + var2] = Tiles.Tiles_heights[var0][var1 - 1][var3 + var2];
+			}
+		}
+
+		if (var2 > 0) {
+			for (var3 = 1; var3 < 8; ++var3) {
+				Tiles.Tiles_heights[var0][var3 + var1][var2] = Tiles.Tiles_heights[var0][var3 + var1][var2 - 1];
+			}
+		}
+
+		if (var1 > 0 && Tiles.Tiles_heights[var0][var1 - 1][var2] != 0) {
+			Tiles.Tiles_heights[var0][var1][var2] = Tiles.Tiles_heights[var0][var1 - 1][var2];
+		} else if (var2 > 0 && Tiles.Tiles_heights[var0][var1][var2 - 1] != 0) {
+			Tiles.Tiles_heights[var0][var1][var2] = Tiles.Tiles_heights[var0][var1][var2 - 1];
+		} else if (var1 > 0 && var2 > 0 && Tiles.Tiles_heights[var0][var1 - 1][var2 - 1] != 0) {
+			Tiles.Tiles_heights[var0][var1][var2] = Tiles.Tiles_heights[var0][var1 - 1][var2 - 1];
+		}
+
+	}
+
+	@ObfuscatedName("g")
+	@ObfuscatedSignature(
+		signature = "(II)V",
+		garbageValue = "-770375157"
+	)
+	public static void method3103(int var0) {
+		if (class197.field2411 != 0) {
+			class197.musicTrackVolume = var0;
+		} else {
+			FaceNormal.midiPcmStream.setPcmStreamVolume(var0);
 		}
 
 	}

@@ -7,20 +7,20 @@ import net.runelite.deob.DeobAnnotations;
 
 public class InjectUtil
 {
-	public static ClassFile toObClass(final ClassGroup vanilla, final ClassFile deobCf) throws InjectionException
+	static ClassFile toObClass(final ClassGroup vanilla, final ClassFile deobCf) throws InjectionException
 	{
 		final String obfuscatedName = DeobAnnotations.getObfuscatedName(deobCf.getAnnotations());
-		final ClassFile obCf = vanilla.findClass(obfuscatedName);
+		final ClassFile obfuscatedClassFile = vanilla.findClass(obfuscatedName);
 
-		if (obCf == null)
+		if (obfuscatedClassFile == null)
 		{
 			throw new InjectionException(String.format("ClassFile \"%s\" could not be found.", obfuscatedName));
 		}
 
-		return obCf;
+		return obfuscatedClassFile;
 	}
 
-	public static Field toObField(final ClassGroup vanilla, final Field field) throws InjectionException
+	static Field toObField(final ClassGroup vanilla, final Field field) throws InjectionException
 	{
 		String obfuscatedClassName = DeobAnnotations.getObfuscatedName(field.getClassFile().getAnnotations());
 		String obfuscatedFieldName = DeobAnnotations.getObfuscatedName(field.getAnnotations()); // obfuscated name of field
@@ -41,27 +41,25 @@ public class InjectUtil
 		return obfuscatedField;
 	}
 
-	public static ClassFile toDeobClass(final ClassFile obCf, final ClassGroup deob) throws InjectionException
+	static ClassFile toDeobClass(final ClassFile obCf, final ClassGroup deob) throws InjectionException
 	{
 		final ClassFile classFile = deob.findObfuscatedName(obCf.getName());
 		if (classFile == null)
 		{
-			throw new InjectionException("Class file is either not obfuscated enough, or too much. Class file is not from the deobfuscated gamepack");
+			throw new InjectionException("Class file has little or too much obfuscation. Class file is not from the deobfuscated gamepack");
 		}
 		return classFile;
 	}
 
-	public static Type getFieldType(final Field f)
+	static Type getFieldType(final Field field)
 	{
-		Type type = f.getType();
-
-		Annotation obfSignature = f.getAnnotations().find(DeobAnnotations.OBFUSCATED_SIGNATURE);
-		if (obfSignature != null)
+		Type type = field.getType();
+		Annotation obfuscatedSignature = field.getAnnotations().find(DeobAnnotations.OBFUSCATED_SIGNATURE);
+		if (obfuscatedSignature != null)
 		{
-			//Annotation exists. Type was updated by us during deobfuscation
-			type = DeobAnnotations.getObfuscatedType(f);
+			// Annotation exists. Type was updated by us during deobfuscation
+			type = DeobAnnotations.getObfuscatedType(field);
 		}
-
 		return type;
 	}
 
@@ -71,21 +69,19 @@ public class InjectUtil
 	 */
 	public static Method findStaticMethod(final ClassGroup group, final String name, final String hint) throws InjectionException
 	{
-		final ClassFile cf = group.findClass(hint);
+		final ClassFile classFile = group.findClass(hint);
 
-		if (cf == null)
+		if (classFile == null)
 		{
 			throw new InjectionException(String.format("ClassFile \"%s\" could not be found.", hint));
 		}
 
-		Method m = cf.findStaticMethod(name);
-
-		if (m == null)
+		Method method = classFile.findStaticMethod(name);
+		if (method == null)
 		{
-			m = group.findStaticMethod(name);
+			method = group.findStaticMethod(name);
 		}
-
-		return m;
+		return method;
 	}
 
 	/**
@@ -93,29 +89,25 @@ public class InjectUtil
 	 */
 	public static Method findStaticMethod(final ClassGroup group, final String name) throws InjectionException
 	{
-		Method m = group.findStaticMethod(name);
-
-		if (m == null)
+		Method method = group.findStaticMethod(name);
+		if (method == null)
 		{
 			throw new InjectionException(String.format("Static method \"%s\" could not be found.", name));
 		}
-
-		return m;
+		return method;
 	}
 
 	/**
 	 * Find a static method in ClassGroup group. Throws exception if not found.
 	 */
-	public static Method findStaticMethod(final ClassGroup group, final String name, Signature sig) throws InjectionException
+	public static Method findStaticMethod(final ClassGroup group, final String name, Signature signature) throws InjectionException
 	{
-		Method m = group.findStaticMethod(name, sig);
-
-		if (m == null)
+		Method method = group.findStaticMethod(name, signature);
+		if (method == null)
 		{
 			throw new InjectionException(String.format("Static method \"%s\" could not be found.", name));
 		}
-
-		return m;
+		return method;
 	}
 
 	public static Method findMethod(Inject inject, String name) throws InjectionException
@@ -127,41 +119,41 @@ public class InjectUtil
 	{
 		if (hint != null)
 		{
-			ClassFile c = inject.getDeobfuscated().findClass(hint);
-
-			if (c == null)
+			ClassFile classFile = inject.getDeobfuscated().findClass(hint);
+			if (classFile == null)
 			{
 				throw new InjectionException("Class " + hint + " doesn't exist. (check capitalization)");
 			}
 
-			Method deob = c.findMethod(name);
-
-			if (deob != null)
+			Method deobfuscatedMethod = classFile.findMethod(name);
+			if (deobfuscatedMethod != null)
 			{
-				String obfuscatedName = DeobAnnotations.getObfuscatedName(deob.getAnnotations());
-				Signature obfuscatedSignature = DeobAnnotations.getObfuscatedSignature(deob);
+				String obfuscatedName = DeobAnnotations.getObfuscatedName(deobfuscatedMethod.getAnnotations());
+				Signature obfuscatedSignature = DeobAnnotations.getObfuscatedSignature(deobfuscatedMethod);
 
-				ClassFile ob = toObClass(inject.getVanilla(), c);
-
-				return ob.findMethod(obfuscatedName, (obfuscatedSignature != null) ? obfuscatedSignature : deob.getDescriptor());
+				ClassFile obfuscatedClassFile = toObClass(inject.getVanilla(), classFile);
+				return obfuscatedClassFile.findMethod(obfuscatedName, (obfuscatedSignature != null)
+						? obfuscatedSignature
+						: deobfuscatedMethod.getDescriptor());
 			}
 		}
 
-		for (ClassFile c : inject.getDeobfuscated().getClasses())
+		for (ClassFile classFile : inject.getDeobfuscated().getClasses())
 		{
-			for (Method m : c.getMethods())
+			for (Method method : classFile.getMethods())
 			{
-				if (!m.getName().equals(name))
+				if (!method.getName().equals(name))
 				{
 					continue;
 				}
 
-				String obfuscatedName = DeobAnnotations.getObfuscatedName(m.getAnnotations());
-				Signature obfuscatedSignature = DeobAnnotations.getObfuscatedSignature(m);
+				String obfuscatedName = DeobAnnotations.getObfuscatedName(method.getAnnotations());
+				Signature obfuscatedSignature = DeobAnnotations.getObfuscatedSignature(method);
 
-				ClassFile c2 = toObClass(inject.getVanilla(), c);
-
-				return c2.findMethod(obfuscatedName, (obfuscatedSignature != null) ? obfuscatedSignature : m.getDescriptor());
+				ClassFile classFile1 = toObClass(inject.getVanilla(), classFile);
+				return classFile1.findMethod(obfuscatedName, (obfuscatedSignature != null)
+						? obfuscatedSignature
+						: method.getDescriptor());
 			}
 		}
 
@@ -170,21 +162,22 @@ public class InjectUtil
 
 	public static Method findStaticMethod(Inject inject, String name) throws InjectionException
 	{
-		for (ClassFile c : inject.getDeobfuscated().getClasses())
+		for (ClassFile classFile : inject.getDeobfuscated().getClasses())
 		{
-			for (Method m : c.getMethods())
+			for (Method method : classFile.getMethods())
 			{
-				if (!m.isStatic() || !m.getName().equals(name))
+				if (!method.isStatic() || !method.getName().equals(name))
 				{
 					continue;
 				}
 
-				String obfuscatedName = DeobAnnotations.getObfuscatedName(m.getAnnotations());
-				Signature obfuscatedSignature = DeobAnnotations.getObfuscatedSignature(m);
+				String obfuscatedName = DeobAnnotations.getObfuscatedName(method.getAnnotations());
+				Signature obfuscatedSignature = DeobAnnotations.getObfuscatedSignature(method);
 
-				ClassFile c2 = toObClass(inject.getVanilla(), c);
-
-				return c2.findMethod(obfuscatedName, (obfuscatedSignature != null) ? obfuscatedSignature : m.getDescriptor());
+				ClassFile classFile1 = toObClass(inject.getVanilla(), classFile);
+				return classFile1.findMethod(obfuscatedName, (obfuscatedSignature != null)
+						? obfuscatedSignature
+						: method.getDescriptor());
 			}
 		}
 
@@ -194,15 +187,15 @@ public class InjectUtil
 
 	public static Field findObField(Inject inject, String name) throws InjectionException
 	{
-		for (ClassFile c : inject.getVanilla().getClasses())
+		for (ClassFile classFile : inject.getVanilla().getClasses())
 		{
-			for (Field f : c.getFields())
+			for (Field field : classFile.getFields())
 			{
-				if (!f.getName().equals(name))
+				if (!field.getName().equals(name))
 				{
 					continue;
 				}
-				return f;
+				return field;
 			}
 		}
 
@@ -218,57 +211,58 @@ public class InjectUtil
 	{
 		if (hint != null)
 		{
-			ClassFile c = inject.getDeobfuscated().findClass(hint);
-			if (c == null)
+			ClassFile classFile = inject.getDeobfuscated().findClass(hint);
+			if (classFile == null)
 			{
 				throw new InjectionException("Class " + hint + " doesn't exist. (check capitalization)");
 			}
 
-			for (Field f : c.getFields())
+			Field field = findFieldInClassFile(inject, classFile, name);
+			if (field != null)
 			{
-				if (!f.getName().equals(name))
-				{
-					continue;
-				}
-
-				String obfuscatedName = DeobAnnotations.getObfuscatedName(f.getAnnotations());
-
-				ClassFile c2 = toObClass(inject.getVanilla(), c);
-				return c2.findField(obfuscatedName);
+				return field;
 			}
 		}
 
-		for (ClassFile c : inject.getDeobfuscated().getClasses())
+		for (ClassFile classFile : inject.getDeobfuscated().getClasses())
 		{
-			for (Field f : c.getFields())
+			Field field = findFieldInClassFile(inject, classFile, name);
+			if (field != null)
 			{
-				if (!f.getName().equals(name))
-				{
-					continue;
-				}
-
-				String obfuscatedName = DeobAnnotations.getObfuscatedName(f.getAnnotations());
-
-				ClassFile c2 = toObClass(inject.getVanilla(), c);
-				return c2.findField(obfuscatedName);
+				return field;
 			}
 		}
 
 		throw new InjectionException(String.format("Mapped field \"%s\" could not be found.", name));
 	}
 
-	public static Field findDeobFieldButUseless(Inject inject, String name) throws InjectionException
+	private static Field findFieldInClassFile(Inject inject, ClassFile classFile, String fieldName) throws InjectionException
 	{
-		for (ClassFile c : inject.getDeobfuscated().getClasses())
+		for (Field field : classFile.getFields())
 		{
-			for (Field f : c.getFields())
+			if (!field.getName().equals(fieldName))
 			{
-				if (!f.getName().equals(name))
+				continue;
+			}
+
+			String obfuscatedName = DeobAnnotations.getObfuscatedName(field.getAnnotations());
+			ClassFile classFile1 = toObClass(inject.getVanilla(), classFile);
+			return classFile1.findField(obfuscatedName);
+		}
+		return null;
+	}
+
+	static Field findDeobFieldButUseless(Inject inject, String name) throws InjectionException
+	{
+		for (ClassFile classFile : inject.getDeobfuscated().getClasses())
+		{
+			for (Field field : classFile.getFields())
+			{
+				if (!field.getName().equals(name))
 				{
 					continue;
 				}
-
-				return f;
+				return field;
 			}
 		}
 

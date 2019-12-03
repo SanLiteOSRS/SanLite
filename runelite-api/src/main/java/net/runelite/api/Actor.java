@@ -64,8 +64,11 @@ public interface Actor extends Entity
 	 * </ul>
 	 *
 	 * @return the actor, null if no interaction is occurring
+	 *
+	 * (getRSInteracting returns the npc/player index, useful for menus)
 	 */
 	Actor getInteracting();
+	int getRSInteracting();
 
 	/**
 	 * Gets the health ratio of the actor.
@@ -112,6 +115,8 @@ public interface Actor extends Entity
 	 * @see net.runelite.api.coords.Angle
 	 */
 	int getOrientation();
+
+	int getCurrentOrientation();
 
 	/**
 	 * Gets the current animation the actor is performing.

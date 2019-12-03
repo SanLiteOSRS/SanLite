@@ -4,36 +4,36 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("lg")
+@ObfuscatedName("ld")
 @Implements("IsaacCipher")
 public final class IsaacCipher {
-	@ObfuscatedName("u")
+	@ObfuscatedName("g")
 	@ObfuscatedGetter(
-		intValue = -925707239
+		intValue = -1571057455
 	)
 	@Export("valuesRemaining")
 	int valuesRemaining;
-	@ObfuscatedName("r")
+	@ObfuscatedName("z")
 	@Export("results")
 	int[] results;
 	@ObfuscatedName("p")
 	@Export("mm")
 	int[] mm;
-	@ObfuscatedName("q")
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = 460099205
+		intValue = -1397727627
 	)
 	@Export("aa")
 	int aa;
-	@ObfuscatedName("m")
+	@ObfuscatedName("y")
 	@ObfuscatedGetter(
-		intValue = 883284121
+		intValue = -1547439877
 	)
 	@Export("bb")
 	int bb;
-	@ObfuscatedName("y")
+	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		intValue = 2097692587
+		intValue = 1834697375
 	)
 	@Export("cc")
 	int cc;
@@ -46,13 +46,13 @@ public final class IsaacCipher {
 			this.results[var2] = var1[var2];
 		}
 
-		this.method6193();
+		this.method6332();
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "(B)I",
-		garbageValue = "2"
+		signature = "(I)I",
+		garbageValue = "-1791712529"
 	)
 	@Export("nextInt")
 	public final int nextInt() {
@@ -64,12 +64,12 @@ public final class IsaacCipher {
 		return this.results[--this.valuesRemaining];
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
 		signature = "(I)I",
-		garbageValue = "2039703989"
+		garbageValue = "1109117945"
 	)
-	public final int method6191() {
+	public final int method6331() {
 		if (this.valuesRemaining == 0) {
 			this.generateMoreResults();
 			this.valuesRemaining = 256;
@@ -78,10 +78,10 @@ public final class IsaacCipher {
 		return this.results[this.valuesRemaining - 1];
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "522891016"
+		garbageValue = "-1602632803"
 	)
 	@Export("generateMoreResults")
 	final void generateMoreResults() {
@@ -109,12 +109,12 @@ public final class IsaacCipher {
 
 	}
 
-	@ObfuscatedName("u")
+	@ObfuscatedName("g")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "-135595454"
+		garbageValue = "-660697769"
 	)
-	final void method6193() {
+	final void method6332() {
 		int var9 = -1640531527;
 		int var8 = -1640531527;
 		int var7 = -1640531527;

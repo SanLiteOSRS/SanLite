@@ -7,13 +7,14 @@ import net.runelite.api.*;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.coords.WorldArea;
 import net.runelite.api.coords.WorldPoint;
-import net.runelite.api.events.ConfigChanged;
+import net.runelite.client.events.ConfigChanged;
 import net.runelite.api.events.GameStateChanged;
 import net.runelite.api.geometry.Geometry;
 import net.runelite.client.callback.ClientThread;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.EventBus;
 import net.runelite.client.eventbus.Subscribe;
+import net.runelite.client.game.MapLocations;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.plugins.PluginType;
@@ -29,7 +30,7 @@ import java.util.Arrays;
 		name = "Zone Indicators",
 		description = "Show borders of multi combat zones, wilderness levels and PvP/Deadman safezones",
 		tags = {"multi combat", "lines", "pvp", "deadman", "safezones", "wilderness", "overlay"},
-		type = PluginType.SANLITE,
+		type = PluginType.SANLITE_USE_AT_OWN_RISK,
 		enabledByDefault = false
 )
 @Singleton
@@ -241,10 +242,8 @@ public class ZoneIndicatorsPlugin extends Plugin
 
 	private void findLinesInScene()
 	{
-		inDeadman = client.getWorldType().stream().anyMatch(x ->
-				x == WorldType.DEADMAN || x == WorldType.SEASONAL_DEADMAN);
-		inPvp = client.getWorldType().stream().anyMatch(x ->
-				x == WorldType.PVP || x == WorldType.HIGH_RISK);
+		inDeadman = client.getWorldType().stream().anyMatch(x -> x == WorldType.DEADMAN);
+		inPvp = client.getWorldType().stream().anyMatch(x -> x == WorldType.PVP || x == WorldType.HIGH_RISK);
 
 		Rectangle sceneRect = new Rectangle(
 				client.getBaseX() + 1, client.getBaseY() + 1,
@@ -266,7 +265,7 @@ public class ZoneIndicatorsPlugin extends Plugin
 				if (this.multiCombatZoneVisibility == ZoneVisibility.SHOW_IN_PVP &&
 						!isInDeadman() && !isInPvp())
 				{
-					lines = Geometry.clipPath(lines, MapLocations.getRoughWilderness(i));
+					lines = Geometry.clipPath(lines, MapLocations.getWilderness(i));
 				}
 				lines = Geometry.splitIntoSegments(lines, 1);
 				if (useCollisionLogic())

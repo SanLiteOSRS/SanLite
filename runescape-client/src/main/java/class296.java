@@ -1,20 +1,16 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 
-@ObfuscatedName("kb")
+@ObfuscatedName("kk")
 public final class class296 {
-	@ObfuscatedName("z")
+	@ObfuscatedName("u")
 	@ObfuscatedGetter(
-		longValue = 3603656264460916993L
+		longValue = -6454763268597817631L
 	)
-	static long field3688;
-	@ObfuscatedName("n")
+	static long field3695;
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		longValue = 3509104245048020795L
+		longValue = -1124279977682692331L
 	)
-	static long field3689;
-	@ObfuscatedName("gn")
-	@Export("xteaKeys")
-	static int[][] xteaKeys;
+	static long field3696;
 }

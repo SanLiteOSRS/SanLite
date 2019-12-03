@@ -55,7 +55,6 @@ import net.runelite.api.events.ChatMessage;
 import net.runelite.api.events.ClanChanged;
 import net.runelite.api.events.ClanMemberJoined;
 import net.runelite.api.events.ClanMemberLeft;
-import net.runelite.api.events.ConfigChanged;
 import net.runelite.api.events.GameStateChanged;
 import net.runelite.api.events.GameTick;
 import net.runelite.api.events.PlayerDespawned;
@@ -69,6 +68,7 @@ import net.runelite.client.callback.ClientThread;
 import net.runelite.client.chat.ChatMessageBuilder;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
+import net.runelite.client.events.ConfigChanged;
 import net.runelite.client.game.ClanManager;
 import net.runelite.client.game.SpriteManager;
 import net.runelite.client.plugins.Plugin;
@@ -199,7 +199,7 @@ public class ClanChatPlugin extends Plugin
 		if (!activityBuffer.containsKey(member.getUsername()))
 		{
 			ClanMemberActivity joinActivity = new ClanMemberActivity(ClanActivityType.JOINED,
-				member, client.getTickCount());
+					member, client.getTickCount());
 			activityBuffer.put(member.getUsername(), joinActivity);
 		}
 		else
@@ -243,7 +243,7 @@ public class ClanChatPlugin extends Plugin
 		if (!activityBuffer.containsKey(member.getUsername()))
 		{
 			ClanMemberActivity leaveActivity = new ClanMemberActivity(ClanActivityType.LEFT,
-				member, client.getTickCount());
+					member, client.getTickCount());
 			activityBuffer.put(member.getUsername(), leaveActivity);
 		}
 		else

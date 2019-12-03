@@ -3,31 +3,29 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("ew")
+@ObfuscatedName("ec")
 @Implements("Skeleton")
 public class Skeleton extends Node {
-	@ObfuscatedName("bn")
-	@ObfuscatedSignature(
-		signature = "Llp;"
-	)
-	static IndexedSprite field1767;
-	@ObfuscatedName("z")
+	@ObfuscatedName("w")
+	static int[] field1788;
+	@ObfuscatedName("u")
 	@ObfuscatedGetter(
-		intValue = -1879620261
+		intValue = -1887621735
 	)
 	@Export("id")
 	int id;
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = -1324463493
+		intValue = 1674197883
 	)
 	@Export("count")
 	int count;
-	@ObfuscatedName("v")
+	@ObfuscatedName("b")
 	@Export("transformTypes")
 	int[] transformTypes;
-	@ObfuscatedName("u")
+	@ObfuscatedName("g")
 	@Export("labels")
 	int[][] labels;
 
@@ -53,5 +51,53 @@ public class Skeleton extends Node {
 			}
 		}
 
+	}
+
+	@ObfuscatedName("g")
+	@ObfuscatedSignature(
+		signature = "([BI)V",
+		garbageValue = "870610960"
+	)
+	@Export("ByteArrayPool_release")
+	public static synchronized void ByteArrayPool_release(byte[] var0) {
+		if (var0.length == 100 && ByteArrayPool.ByteArrayPool_smallCount < 1000) {
+			ByteArrayPool.ByteArrayPool_small[++ByteArrayPool.ByteArrayPool_smallCount - 1] = var0;
+		} else if (var0.length == 5000 && ByteArrayPool.ByteArrayPool_mediumCount < 250) {
+			ByteArrayPool.ByteArrayPool_medium[++ByteArrayPool.ByteArrayPool_mediumCount - 1] = var0;
+		} else if (var0.length == 30000 && ByteArrayPool.ByteArrayPool_largeCount < 50) {
+			ByteArrayPool.ByteArrayPool_large[++ByteArrayPool.ByteArrayPool_largeCount - 1] = var0;
+		} else {
+			if (ByteArrayPool.ByteArrayPool_arrays != null) {
+				for (int var1 = 0; var1 < WorldMapSprite.ByteArrayPool_alternativeSizes.length; ++var1) {
+					if (var0.length == WorldMapSprite.ByteArrayPool_alternativeSizes[var1] && class216.ByteArrayPool_altSizeArrayCounts[var1] < ByteArrayPool.ByteArrayPool_arrays[var1].length) {
+						ByteArrayPool.ByteArrayPool_arrays[var1][class216.ByteArrayPool_altSizeArrayCounts[var1]++] = var0;
+						return;
+					}
+				}
+			}
+
+		}
+	}
+
+	@ObfuscatedName("j")
+	@ObfuscatedSignature(
+		signature = "(ILci;ZI)I",
+		garbageValue = "-1324781775"
+	)
+	static int method3107(int var0, Script var1, boolean var2) {
+		if (var0 == ScriptOpcodes.SOUND_SYNTH) {
+			GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize -= 3;
+			FileSystem.queueSoundEffect(Interpreter.Interpreter_intStack[GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize], Interpreter.Interpreter_intStack[GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize + 1], Interpreter.Interpreter_intStack[GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize + 2]);
+			return 1;
+		} else if (var0 == ScriptOpcodes.SOUND_SONG) {
+			AttackOption.playSong(Interpreter.Interpreter_intStack[--GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize]);
+			return 1;
+		} else if (var0 == ScriptOpcodes.SOUND_JINGLE) {
+			GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize -= 2;
+			MouseHandler.playSoundJingle(Interpreter.Interpreter_intStack[GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize], Interpreter.Interpreter_intStack[GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize + 1]);
+			return 1;
+		} else {
+			return 2;
+		}
 	}
 }

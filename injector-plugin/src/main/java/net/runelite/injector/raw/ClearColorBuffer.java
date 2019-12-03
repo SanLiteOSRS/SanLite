@@ -1,14 +1,15 @@
 package net.runelite.injector.raw;
 
-import java.util.ListIterator;
-import net.runelite.asm.ClassFile;
 import net.runelite.asm.Method;
-import net.runelite.asm.attributes.Code;
 import net.runelite.asm.attributes.code.Instruction;
 import net.runelite.asm.attributes.code.Instructions;
+import net.runelite.asm.attributes.code.instruction.types.PushConstantInstruction;
 import net.runelite.asm.attributes.code.instructions.ILoad;
 import net.runelite.asm.attributes.code.instructions.InvokeStatic;
-import net.runelite.asm.attributes.code.instructions.LDC;
+import net.runelite.asm.execution.Execution;
+import net.runelite.asm.execution.InstructionContext;
+import net.runelite.asm.execution.MethodContext;
+import net.runelite.asm.execution.StackContext;
 import net.runelite.asm.pool.Class;
 import net.runelite.asm.signature.Signature;
 import net.runelite.injector.Inject;
@@ -17,13 +18,16 @@ import net.runelite.injector.InjectionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
+
 public class ClearColorBuffer
 {
 	private static final Logger log = LoggerFactory.getLogger(ClearColorBuffer.class);
-	private static final net.runelite.asm.pool.Method clearBuffer = new net.runelite.asm.pool.Method(
-		new Class("net.runelite.client.callback.Hooks"),
-		"clearColorBuffer",
-		new Signature("(IIIII)V")
+	private static final net.runelite.asm.pool.Method CLEAR_BUFFER = new net.runelite.asm.pool.Method(
+			new Class("net.runelite.client.callback.Hooks"),
+			"clearColorBuffer",
+			new Signature("(IIIII)V")
 	);
 	private final Inject inject;
 
@@ -34,90 +38,51 @@ public class ClearColorBuffer
 
 	public void inject() throws InjectionException
 	{
-		injectColorBufferHooks();
-	}
+		/*
+		 * This class stops the client from basically painting everything black before the scene is drawn
+		 */
+		final Execution execution = new Execution(inject.getVanilla());
 
-	private void injectColorBufferHooks() throws InjectionException
-	{
-		net.runelite.asm.pool.Method fillRectangle = InjectUtil.findStaticMethod(inject, "Rasterizer2D_fillRectangle").getPoolMethod();
+		final net.runelite.asm.pool.Method fillRectPool = InjectUtil.findMethod(inject, "Rasterizer2D_fillRectangle", "Rasterizer2D").getPoolMethod();
+		final Method drawEntities = InjectUtil.findMethod(inject, "drawEntities"); // XXX: should prob be called drawViewport?
 
-		int count = 0;
-		int replaced = 0;
+		execution.addMethod(drawEntities);
+		execution.noInvoke = true;
 
-		for (ClassFile cf : inject.getVanilla().getClasses())
+		final AtomicReference<MethodContext> pcontext = new AtomicReference<>(null);
+
+		execution.addMethodContextVisitor(pcontext::set);
+		execution.run();
+
+		final MethodContext methodContext = pcontext.get();
+		for (InstructionContext ic : methodContext.getInstructionContexts())
 		{
-			for (Method m : cf.getMethods())
+			final Instruction instr = ic.getInstruction();
+			if (!(instr instanceof InvokeStatic))
 			{
-				if (!m.isStatic())
+				continue;
+			}
+
+			if (fillRectPool.equals(((InvokeStatic) instr).getMethod()))
+			{
+				List<StackContext> pops = ic.getPops();
+
+				// Last pop is constant value 0, before that are vars in order
+				assert pops.size() == 5 : "If this fails cause of this add in 1 for obfuscation, I don't think that happens here though";
+
+				int i = 0;
+				Instruction pushed = pops.get(i++).getPushed().getInstruction();
+				assert (pushed instanceof PushConstantInstruction) && ((PushConstantInstruction) pushed).getConstant().equals(0);
+
+				for (int varI = 3; i < 5; i++, varI--)
 				{
-					continue;
+					pushed = pops.get(i).getPushed().getInstruction();
+					assert (pushed instanceof ILoad) && ((ILoad) pushed).getVariableIndex() == varI;
 				}
 
-				Code c = m.getCode();
-				if (c == null)
-				{
-					continue;
-				}
-
-				Instructions ins = c.getInstructions();
-				ListIterator<Instruction> it = ins.getInstructions().listIterator();
-
-				for (; it.hasNext(); )
-				{
-					Instruction i = it.next();
-					if (!(i instanceof InvokeStatic))
-					{
-						continue;
-					}
-
-					if (!((InvokeStatic) i).getMethod().equals(fillRectangle))
-					{
-						continue;
-					}
-
-					int indexToReturnTo = it.nextIndex();
-					count++;
-					it.previous();
-					Instruction current = it.previous();
-					if (current instanceof LDC && ((LDC) current).getConstantAsInt() == 0)
-					{
-						int varIdx = 0;
-						for (; ; )
-						{
-							current = it.previous();
-							if (current instanceof ILoad && ((ILoad) current).getVariableIndex() == 3 - varIdx)
-							{
-								varIdx++;
-								log.debug("[ClearColorBuffer] varIdx count: " + varIdx);
-								continue;
-							}
-
-							break;
-						}
-
-						if (varIdx == 4)
-						{
-							for (; !(current instanceof InvokeStatic); )
-							{
-								current = it.next();
-							}
-							assert it.nextIndex() == indexToReturnTo;
-
-							it.set(new InvokeStatic(ins, clearBuffer));
-							replaced++;
-							log.debug("[ClearColorBuffer] Found drawRectangle at {}. Found: {}, replaced {}", m.getName(), count, replaced);
-						}
-						else
-						{
-							log.debug("[ClearColorBuffer] Could not find drawRectangle at: " + m);
-						}
-					}
-
-					while (it.nextIndex() != indexToReturnTo)
-					{
-						it.next();
-					}
-				}
+				Instructions ins = instr.getInstructions();
+				ins.replace(instr, new InvokeStatic(ins, CLEAR_BUFFER));
+				log.debug("Injected drawRectangle at {}", methodContext.getMethod().getPoolMethod());
 			}
 		}
 	}

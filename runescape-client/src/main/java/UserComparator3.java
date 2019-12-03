@@ -4,15 +4,15 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fe")
+@ObfuscatedName("fl")
 @Implements("UserComparator3")
 public class UserComparator3 extends AbstractUserComparator {
-	@ObfuscatedName("b")
+	@ObfuscatedName("qg")
 	@ObfuscatedGetter(
-		intValue = -2030399033
+		intValue = -1789609461
 	)
-	static int field1971;
-	@ObfuscatedName("z")
+	static int field1990;
+	@ObfuscatedName("u")
 	@Export("reversed")
 	final boolean reversed;
 
@@ -20,10 +20,10 @@ public class UserComparator3 extends AbstractUserComparator {
 		this.reversed = var1;
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "(Ljl;Ljl;I)I",
-		garbageValue = "-1163251881"
+		signature = "(Ljt;Ljt;I)I",
+		garbageValue = "81177431"
 	)
 	@Export("compareBuddy")
 	int compareBuddy(Buddy var1, Buddy var2) {
@@ -38,78 +38,185 @@ public class UserComparator3 extends AbstractUserComparator {
 		return this.compareBuddy((Buddy)var1, (Buddy)var2);
 	}
 
-	@ObfuscatedName("r")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/CharSequence;I)[B",
-		garbageValue = "-772174627"
+		signature = "(III)Lhl;",
+		garbageValue = "2096565459"
 	)
-	public static byte[] method3390(CharSequence var0) {
-		int var1 = var0.length();
-		byte[] var2 = new byte[var1];
+	@Export("getWidgetChild")
+	public static Widget getWidgetChild(int var0, int var1) {
+		Widget var2 = Language.getWidget(var0);
+		if (var1 == -1) {
+			return var2;
+		} else {
+			return var2 != null && var2.children != null && var1 < var2.children.length ? var2.children[var1] : null;
+		}
+	}
 
-		for (int var3 = 0; var3 < var1; ++var3) {
-			char var4 = var0.charAt(var3);
-			if (var4 > 0 && var4 < 128 || var4 >= 160 && var4 <= 255) {
-				var2[var3] = (byte)var4;
-			} else if (var4 == 8364) {
-				var2[var3] = -128;
-			} else if (var4 == 8218) {
-				var2[var3] = -126;
-			} else if (var4 == 402) {
-				var2[var3] = -125;
-			} else if (var4 == 8222) {
-				var2[var3] = -124;
-			} else if (var4 == 8230) {
-				var2[var3] = -123;
-			} else if (var4 == 8224) {
-				var2[var3] = -122;
-			} else if (var4 == 8225) {
-				var2[var3] = -121;
-			} else if (var4 == 710) {
-				var2[var3] = -120;
-			} else if (var4 == 8240) {
-				var2[var3] = -119;
-			} else if (var4 == 352) {
-				var2[var3] = -118;
-			} else if (var4 == 8249) {
-				var2[var3] = -117;
-			} else if (var4 == 338) {
-				var2[var3] = -116;
-			} else if (var4 == 381) {
-				var2[var3] = -114;
-			} else if (var4 == 8216) {
-				var2[var3] = -111;
-			} else if (var4 == 8217) {
-				var2[var3] = -110;
-			} else if (var4 == 8220) {
-				var2[var3] = -109;
-			} else if (var4 == 8221) {
-				var2[var3] = -108;
-			} else if (var4 == 8226) {
-				var2[var3] = -107;
-			} else if (var4 == 8211) {
-				var2[var3] = -106;
-			} else if (var4 == 8212) {
-				var2[var3] = -105;
-			} else if (var4 == 732) {
-				var2[var3] = -104;
-			} else if (var4 == 8482) {
-				var2[var3] = -103;
-			} else if (var4 == 353) {
-				var2[var3] = -102;
-			} else if (var4 == 8250) {
-				var2[var3] = -101;
-			} else if (var4 == 339) {
-				var2[var3] = -100;
-			} else if (var4 == 382) {
-				var2[var3] = -98;
-			} else if (var4 == 376) {
-				var2[var3] = -97;
+	@ObfuscatedName("b")
+	@ObfuscatedSignature(
+		signature = "(II)Z",
+		garbageValue = "438202516"
+	)
+	@Export("loadInterface")
+	public static boolean loadInterface(int var0) {
+		if (Widget.Widget_loadedInterfaces[var0]) {
+			return true;
+		} else if (!InvDefinition.Widget_archive.tryLoadGroup(var0)) {
+			return false;
+		} else {
+			int var1 = InvDefinition.Widget_archive.getGroupFileCount(var0);
+			if (var1 == 0) {
+				Widget.Widget_loadedInterfaces[var0] = true;
+				return true;
 			} else {
-				var2[var3] = 63;
+				if (FloorDecoration.Widget_interfaceComponents[var0] == null) {
+					FloorDecoration.Widget_interfaceComponents[var0] = new Widget[var1];
+				}
+
+				for (int var2 = 0; var2 < var1; ++var2) {
+					if (FloorDecoration.Widget_interfaceComponents[var0][var2] == null) {
+						byte[] var3 = InvDefinition.Widget_archive.takeFile(var0, var2);
+						if (var3 != null) {
+							FloorDecoration.Widget_interfaceComponents[var0][var2] = new Widget();
+							FloorDecoration.Widget_interfaceComponents[var0][var2].id = var2 + (var0 << 16);
+							if (var3[0] == -1) {
+								FloorDecoration.Widget_interfaceComponents[var0][var2].decode(new Buffer(var3));
+							} else {
+								FloorDecoration.Widget_interfaceComponents[var0][var2].decodeLegacy(new Buffer(var3));
+							}
+						}
+					}
+				}
+
+				Widget.Widget_loadedInterfaces[var0] = true;
+				return true;
+			}
+		}
+	}
+
+	@ObfuscatedName("jl")
+	@ObfuscatedSignature(
+		signature = "(II)Z",
+		garbageValue = "-1508425976"
+	)
+	static boolean method3476(int var0) {
+		for (int var1 = 0; var1 < Client.field889; ++var1) {
+			if (Client.field865[var1] == var0) {
+				return true;
 			}
 		}
 
-		return var2;
+		return false;
+	}
+
+	@ObfuscatedName("jq")
+	@ObfuscatedSignature(
+		signature = "(Lhl;IIB)V",
+		garbageValue = "13"
+	)
+	@Export("clickWidget")
+	static final void clickWidget(Widget var0, int var1, int var2) {
+		if (Client.clickedWidget == null && !Client.isMenuOpen) {
+			if (var0 != null) {
+				Widget var5 = var0;
+				int var7 = MenuAction.getWidgetClickMask(var0);
+				int var6 = var7 >> 17 & 7;
+				int var8 = var6;
+				Widget var4;
+				int var9;
+				if (var6 == 0) {
+					var4 = null;
+				} else {
+					var9 = 0;
+
+					while (true) {
+						if (var9 >= var8) {
+							var4 = var5;
+							break;
+						}
+
+						var5 = Language.getWidget(var5.parentId);
+						if (var5 == null) {
+							var4 = null;
+							break;
+						}
+
+						++var9;
+					}
+				}
+
+				Widget var10 = var4;
+				if (var4 == null) {
+					var10 = var0.parent;
+				}
+
+				if (var10 != null) {
+					Client.clickedWidget = var0;
+					var5 = var0;
+					var7 = MenuAction.getWidgetClickMask(var0);
+					var6 = var7 >> 17 & 7;
+					var8 = var6;
+					if (var6 == 0) {
+						var4 = null;
+					} else {
+						var9 = 0;
+
+						while (true) {
+							if (var9 >= var8) {
+								var4 = var5;
+								break;
+							}
+
+							var5 = Language.getWidget(var5.parentId);
+							if (var5 == null) {
+								var4 = null;
+								break;
+							}
+
+							++var9;
+						}
+					}
+
+					var10 = var4;
+					if (var4 == null) {
+						var10 = var0.parent;
+					}
+
+					Client.clickedWidgetParent = var10;
+					Client.widgetClickX = var1;
+					Client.widgetClickY = var2;
+					class3.widgetDragDuration = 0;
+					Client.isDraggingWidget = false;
+					int var11 = Client.menuOptionsCount - 1;
+					if (var11 != -1) {
+						Tiles.tempMenuAction = new MenuAction();
+						Tiles.tempMenuAction.param0 = Client.menuArguments1[var11];
+						Tiles.tempMenuAction.param1 = Client.menuArguments2[var11];
+						Tiles.tempMenuAction.opcode = Client.menuOpcodes[var11];
+						Tiles.tempMenuAction.identifier = Client.menuIdentifiers[var11];
+						Tiles.tempMenuAction.action = Client.menuActions[var11];
+					}
+
+					return;
+				}
+			}
+
+		}
+	}
+
+	@ObfuscatedName("kr")
+	@ObfuscatedSignature(
+		signature = "(Ljava/lang/String;I)V",
+		garbageValue = "65535"
+	)
+	@Export("clanKickUser")
+	static final void clanKickUser(String var0) {
+		if (InterfaceParent.clanChat != null) {
+			PacketBufferNode var1 = ModelData0.getPacketBufferNode(ClientPacket.field2296, Client.packetWriter.isaacCipher);
+			var1.packetBuffer.writeByte(class173.stringCp1252NullTerminatedByteSize(var0));
+			var1.packetBuffer.writeStringCp1252NullTerminated(var0);
+			Client.packetWriter.addNode(var1);
+		}
 	}
 }

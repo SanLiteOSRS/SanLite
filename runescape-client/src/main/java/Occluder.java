@@ -1,236 +1,177 @@
-import java.util.Date;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("es")
+@ObfuscatedName("ej")
 @Implements("Occluder")
 public final class Occluder {
-	@ObfuscatedName("ns")
+	@ObfuscatedName("u")
 	@ObfuscatedGetter(
-		intValue = 1790718175
-	)
-	static int field1889;
-	@ObfuscatedName("z")
-	@ObfuscatedGetter(
-		intValue = 1195661333
+		intValue = -868680993
 	)
 	@Export("minTileX")
 	int minTileX;
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = -1045185805
+		intValue = -78813791
 	)
 	@Export("maxTileX")
 	int maxTileX;
-	@ObfuscatedName("v")
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = 1813082719
+		intValue = -307237447
 	)
 	@Export("minTileY")
 	int minTileY;
-	@ObfuscatedName("u")
+	@ObfuscatedName("g")
 	@ObfuscatedGetter(
-		intValue = 2061838755
+		intValue = -772985783
 	)
 	@Export("maxTileY")
 	int maxTileY;
-	@ObfuscatedName("r")
+	@ObfuscatedName("z")
 	@ObfuscatedGetter(
-		intValue = 1843610955
+		intValue = 1542494109
 	)
 	@Export("type")
 	int type;
 	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = -629573769
+		intValue = -291894415
 	)
 	@Export("minX")
 	int minX;
-	@ObfuscatedName("q")
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = 1170068749
+		intValue = -724655561
 	)
 	@Export("maxX")
 	int maxX;
-	@ObfuscatedName("m")
+	@ObfuscatedName("y")
 	@ObfuscatedGetter(
-		intValue = 1998915961
+		intValue = 686060305
 	)
 	@Export("minZ")
 	int minZ;
-	@ObfuscatedName("y")
+	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		intValue = 88556865
+		intValue = 2092987209
 	)
 	@Export("maxZ")
 	int maxZ;
 	@ObfuscatedName("i")
 	@ObfuscatedGetter(
-		intValue = 1146642601
+		intValue = -264626047
 	)
 	@Export("minY")
 	int minY;
-	@ObfuscatedName("c")
+	@ObfuscatedName("k")
 	@ObfuscatedGetter(
-		intValue = -486759885
+		intValue = -1980036159
 	)
 	@Export("maxY")
 	int maxY;
-	@ObfuscatedName("b")
+	@ObfuscatedName("x")
 	@ObfuscatedGetter(
-		intValue = -1230823835
+		intValue = -1409166921
 	)
-	int field1882;
+	int field1896;
 	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = -1799381643
+		intValue = -307213361
 	)
-	int field1884;
-	@ObfuscatedName("a")
-	@ObfuscatedGetter(
-		intValue = -269756741
-	)
-	int field1871;
+	int field1897;
 	@ObfuscatedName("e")
 	@ObfuscatedGetter(
-		intValue = 1633183437
+		intValue = -1941150605
 	)
-	int field1885;
-	@ObfuscatedName("w")
+	int field1898;
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = 265274287
+		intValue = 1179191271
 	)
-	int field1886;
-	@ObfuscatedName("t")
+	int field1900;
+	@ObfuscatedName("r")
 	@ObfuscatedGetter(
-		intValue = -1265477601
+		intValue = -1336984119
 	)
-	int field1879;
-	@ObfuscatedName("g")
+	int field1890;
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = -163200097
+		intValue = -863399609
 	)
-	int field1887;
+	int field1901;
+	@ObfuscatedName("a")
+	@ObfuscatedGetter(
+		intValue = -1653375525
+	)
+	int field1902;
 
 	Occluder() {
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "(II)Lit;",
-		garbageValue = "1430884212"
+		signature = "(II)Lil;",
+		garbageValue = "513049272"
 	)
-	@Export("ItemDefinition_get")
-	public static ItemDefinition ItemDefinition_get(int var0) {
-		ItemDefinition var1 = (ItemDefinition)ItemDefinition.ItemDefinition_cached.get((long)var0);
+	@Export("getObjectDefinition")
+	public static ObjectDefinition getObjectDefinition(int var0) {
+		ObjectDefinition var1 = (ObjectDefinition)ObjectDefinition.ObjectDefinition_cached.get((long)var0);
 		if (var1 != null) {
 			return var1;
 		} else {
-			byte[] var2 = ItemDefinition.ItemDefinition_archive.takeFile(10, var0);
-			var1 = new ItemDefinition();
+			byte[] var2 = ObjectDefinition.ObjectDefinition_archive.takeFile(6, var0);
+			var1 = new ObjectDefinition();
 			var1.id = var0;
 			if (var2 != null) {
 				var1.decode(new Buffer(var2));
 			}
 
-			var1.post();
-			if (var1.noteTemplate != -1) {
-				var1.genCert(ItemDefinition_get(var1.noteTemplate), ItemDefinition_get(var1.note));
+			var1.postDecode();
+			if (var1.isSolid) {
+				var1.interactType = 0;
+				var1.boolean1 = false;
 			}
 
-			if (var1.notedId != -1) {
-				var1.genBought(ItemDefinition_get(var1.notedId), ItemDefinition_get(var1.unnotedId));
-			}
-
-			if (var1.placeholderTemplate != -1) {
-				var1.genPlaceholder(ItemDefinition_get(var1.placeholderTemplate), ItemDefinition_get(var1.placeholder));
-			}
-
-			if (!class162.ItemDefinition_inMembersWorld && var1.isMembersOnly) {
-				var1.name = "Members object";
-				var1.isTradable = false;
-				var1.groundActions = null;
-				var1.inventoryActions = null;
-				var1.shiftClickIndex = -1;
-				var1.team = 0;
-				if (var1.params != null) {
-					boolean var3 = false;
-
-					for (Node var4 = var1.params.first(); var4 != null; var4 = var1.params.next()) {
-						ParamDefinition var5 = WallDecoration.getParamDefinition((int)var4.key);
-						if (var5.autoDisable) {
-							var4.remove();
-						} else {
-							var3 = true;
-						}
-					}
-
-					if (!var3) {
-						var1.params = null;
-					}
-				}
-			}
-
-			ItemDefinition.ItemDefinition_cached.put(var1, (long)var0);
+			ObjectDefinition.ObjectDefinition_cached.put(var1, (long)var0);
 			return var1;
 		}
 	}
 
-	@ObfuscatedName("u")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "-37"
+		signature = "(I)V",
+		garbageValue = "-1792672505"
 	)
-	public static void method3248() {
-		try {
-			JagexCache.JagexCache_dat2File.close();
-
-			for (int var0 = 0; var0 < JagexCache.idxCount; ++var0) {
-				class189.JagexCache_idxFiles[var0].close();
-			}
-
-			JagexCache.JagexCache_idx255File.close();
-			JagexCache.JagexCache_randomDat.close();
-		} catch (Exception var2) {
-		}
-
+	public static void method3336() {
+		WorldMapElement.WorldMapElement_cachedSprites.clear();
 	}
 
-	@ObfuscatedName("ku")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;I)V",
-		garbageValue = "-1221499190"
+		signature = "(B)Lln;",
+		garbageValue = "0"
 	)
-	static void method3247(String var0) {
-		class197.field2390 = var0;
+	static Sprite method3338() {
+		Sprite var0 = new Sprite();
+		var0.width = class325.SpriteBuffer_spriteWidth;
+		var0.height = UserComparator9.SpriteBuffer_spriteHeight;
+		var0.xOffset = UrlRequester.SpriteBuffer_xOffsets[0];
+		var0.yOffset = class216.SpriteBuffer_yOffsets[0];
+		var0.subWidth = class325.SpriteBuffer_spriteWidths[0];
+		var0.subHeight = VarcInt.SpriteBuffer_spriteHeights[0];
+		int var1 = var0.subHeight * var0.subWidth;
+		byte[] var2 = FillMode.SpriteBuffer_pixels[0];
+		var0.pixels = new int[var1];
 
-		try {
-			String var1 = ViewportMouse.client.getParameter(Integer.toString(18));
-			String var2 = ViewportMouse.client.getParameter(Integer.toString(13));
-			String var3 = var1 + "settings=" + var0 + "; version=1; path=/; domain=" + var2;
-			if (var0.length() == 0) {
-				var3 = var3 + "; Expires=Thu, 01-Jan-1970 00:00:00 GMT; Max-Age=0";
-			} else {
-				String var4 = var3 + "; Expires=";
-				long var6 = class30.method566() + 94608000000L;
-				Calendar.Calendar_calendar.setTime(new Date(var6));
-				int var8 = Calendar.Calendar_calendar.get(7);
-				int var9 = Calendar.Calendar_calendar.get(5);
-				int var10 = Calendar.Calendar_calendar.get(2);
-				int var11 = Calendar.Calendar_calendar.get(1);
-				int var12 = Calendar.Calendar_calendar.get(11);
-				int var13 = Calendar.Calendar_calendar.get(12);
-				int var14 = Calendar.Calendar_calendar.get(13);
-				String var5 = Calendar.DAYS_OF_THE_WEEK[var8 - 1] + ", " + var9 / 10 + var9 % 10 + "-" + Calendar.MONTH_NAMES_ENGLISH_GERMAN[0][var10] + "-" + var11 + " " + var12 / 10 + var12 % 10 + ":" + var13 / 10 + var13 % 10 + ":" + var14 / 10 + var14 % 10 + " GMT";
-				var3 = var4 + var5 + "; Max-Age=" + 94608000L;
-			}
-
-			class47.method880(ViewportMouse.client, "document.cookie=\"" + var3 + "\"");
-		} catch (Throwable var15) {
+		for (int var3 = 0; var3 < var1; ++var3) {
+			var0.pixels[var3] = class325.SpriteBuffer_spritePalette[var2[var3] & 255];
 		}
 
+		PcmPlayer.method2510();
+		return var0;
 	}
 }

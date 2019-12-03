@@ -3,53 +3,55 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.Reflection;
 
-@ObfuscatedName("dz")
+@ObfuscatedName("db")
 @Implements("TextureProvider")
 public class TextureProvider implements TextureLoader {
-	@ObfuscatedName("z")
+	@ObfuscatedName("an")
+	@Export("hasFocus")
+	protected static boolean hasFocus;
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "[Ldg;"
+		signature = "[Ldv;"
 	)
 	@Export("textures")
 	Texture[] textures;
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "Ljv;"
+		signature = "Ljd;"
 	)
 	@Export("deque")
 	NodeDeque deque;
-	@ObfuscatedName("v")
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = 707785193
+		intValue = 913401883
 	)
 	@Export("capacity")
 	int capacity;
-	@ObfuscatedName("u")
+	@ObfuscatedName("g")
 	@ObfuscatedGetter(
-		intValue = -55735149
+		intValue = -793022159
 	)
 	@Export("remaining")
 	int remaining;
-	@ObfuscatedName("r")
+	@ObfuscatedName("z")
 	@Export("brightness")
 	double brightness;
 	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = 678440487
+		intValue = 1514204273
 	)
 	@Export("textureSize")
 	int textureSize;
-	@ObfuscatedName("q")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "Lhp;"
+		signature = "Lhf;"
 	)
 	@Export("archive")
 	AbstractArchive archive;
 
 	@ObfuscatedSignature(
-		signature = "(Lhp;Lhp;IDI)V"
+		signature = "(Lhf;Lhf;IDI)V"
 	)
 	public TextureProvider(AbstractArchive var1, AbstractArchive var2, int var3, double var4, int var6) {
 		this.deque = new NodeDeque();
@@ -72,10 +74,10 @@ public class TextureProvider implements TextureLoader {
 
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
 		signature = "(I)I",
-		garbageValue = "-2135448801"
+		garbageValue = "-1516350248"
 	)
 	@Export("getLoadedPercentage")
 	public int getLoadedPercentage() {
@@ -91,7 +93,7 @@ public class TextureProvider implements TextureLoader {
 
 				for (int var7 = 0; var7 < var6.length; ++var7) {
 					int var8 = var6[var7];
-					if (this.archive.method4115(var8)) {
+					if (this.archive.method4237(var8)) {
 						++var2;
 					}
 				}
@@ -105,17 +107,17 @@ public class TextureProvider implements TextureLoader {
 		}
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@Export("setBrightness")
 	public void setBrightness(double var1) {
 		this.brightness = var1;
 		this.clear();
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
 		signature = "(IB)[I",
-		garbageValue = "2"
+		garbageValue = "-64"
 	)
 	@Export("getTexturePixels")
 	public int[] getTexturePixels(int var1) {
@@ -145,39 +147,39 @@ public class TextureProvider implements TextureLoader {
 		return null;
 	}
 
-	@ObfuscatedName("u")
+	@ObfuscatedName("g")
 	@ObfuscatedSignature(
 		signature = "(II)I",
-		garbageValue = "1942090144"
+		garbageValue = "298398688"
 	)
 	@Export("getAverageTextureRGB")
 	public int getAverageTextureRGB(int var1) {
 		return this.textures[var1] != null ? this.textures[var1].averageRGB : 0;
 	}
 
-	@ObfuscatedName("r")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
 		signature = "(II)Z",
-		garbageValue = "1238853491"
+		garbageValue = "561655524"
 	)
-	public boolean vmethod3232(int var1) {
-		return this.textures[var1].field1587;
+	public boolean vmethod3330(int var1) {
+		return this.textures[var1].field1615;
 	}
 
 	@ObfuscatedName("p")
 	@ObfuscatedSignature(
 		signature = "(II)Z",
-		garbageValue = "-818075958"
+		garbageValue = "-959544558"
 	)
 	@Export("isLowDetail")
 	public boolean isLowDetail(int var1) {
 		return this.textureSize == 64;
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "170454088"
+		garbageValue = "1449865056"
 	)
 	@Export("clear")
 	public void clear() {
@@ -191,10 +193,10 @@ public class TextureProvider implements TextureLoader {
 		this.remaining = this.capacity;
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(IB)V",
-		garbageValue = "60"
+		signature = "(II)V",
+		garbageValue = "248051597"
 	)
 	@Export("animate")
 	public void animate(int var1) {
@@ -208,61 +210,83 @@ public class TextureProvider implements TextureLoader {
 
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-1068033058"
+		signature = "(II)Lit;",
+		garbageValue = "1399456300"
 	)
-	static void method2753() {
-		Tiles.Tiles_minPlane = 99;
-		Tiles.field501 = new byte[4][104][104];
-		Tiles.field483 = new byte[4][104][104];
-		DevicePcmPlayerProvider.field393 = new byte[4][104][104];
-		class287.field3634 = new byte[4][104][104];
-		Tiles.field488 = new int[4][105][105];
-		Tiles.field486 = new byte[4][105][105];
-		DevicePcmPlayerProvider.field386 = new int[105][105];
-		Tiles.Tiles_hue = new int[104];
-		ArchiveLoader.Tiles_saturation = new int[104];
-		Tiles.Tiles_lightness = new int[104];
-		FontName.Tiles_hueMultiplier = new int[104];
-		Tiles.field487 = new int[104];
-	}
-
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;B)Ljava/lang/Class;",
-		garbageValue = "-14"
-	)
-	@Export("loadClassFromDescriptor")
-	static Class loadClassFromDescriptor(String var0) throws ClassNotFoundException {
-		if (var0.equals("B")) {
-			return Byte.TYPE;
-		} else if (var0.equals("I")) {
-			return Integer.TYPE;
-		} else if (var0.equals("S")) {
-			return Short.TYPE;
-		} else if (var0.equals("J")) {
-			return Long.TYPE;
-		} else if (var0.equals("Z")) {
-			return Boolean.TYPE;
-		} else if (var0.equals("F")) {
-			return Float.TYPE;
-		} else if (var0.equals("D")) {
-			return Double.TYPE;
-		} else if (var0.equals("C")) {
-			return Character.TYPE;
+	@Export("getInvDefinition")
+	public static InvDefinition getInvDefinition(int var0) {
+		InvDefinition var1 = (InvDefinition)InvDefinition.InvDefinition_cached.get((long)var0);
+		if (var1 != null) {
+			return var1;
 		} else {
-			return var0.equals("void") ? Void.TYPE : Reflection.findClass(var0);
+			byte[] var2 = InvDefinition.InvDefinition_archive.takeFile(5, var0);
+			var1 = new InvDefinition();
+			if (var2 != null) {
+				var1.decode(new Buffer(var2));
+			}
+
+			InvDefinition.InvDefinition_cached.put(var1, (long)var0);
+			return var1;
 		}
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("gu")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "-114"
+		signature = "(IIIB)V",
+		garbageValue = "14"
 	)
-	public static void method2742() {
-		ParamDefinition.ParamDefinition_cached.clear();
+	@Export("worldToScreen")
+	static final void worldToScreen(int var0, int var1, int var2) {
+		if (var0 >= 128 && var1 >= 128 && var0 <= 13056 && var1 <= 13056) {
+			int var3 = class195.getTileHeight(var0, var1, ClientPacket.Client_plane) - var2;
+			var0 -= class30.cameraX;
+			var3 -= GameObject.cameraY;
+			var1 -= FloorDecoration.cameraZ;
+			int var4 = Rasterizer3D.Rasterizer3D_sine[ItemContainer.cameraPitch];
+			int var5 = Rasterizer3D.Rasterizer3D_cosine[ItemContainer.cameraPitch];
+			int var6 = Rasterizer3D.Rasterizer3D_sine[Decimator.cameraYaw];
+			int var7 = Rasterizer3D.Rasterizer3D_cosine[Decimator.cameraYaw];
+			int var8 = var6 * var1 + var0 * var7 >> 16;
+			var1 = var7 * var1 - var0 * var6 >> 16;
+			var0 = var8;
+			var8 = var3 * var5 - var4 * var1 >> 16;
+			var1 = var5 * var1 + var4 * var3 >> 16;
+			if (var1 >= 50) {
+				Client.viewportTempX = var0 * Client.viewportZoom / var1 + Client.viewportWidth / 2;
+				Client.viewportTempY = Client.viewportHeight / 2 + var8 * Client.viewportZoom / var1;
+			} else {
+				Client.viewportTempX = -1;
+				Client.viewportTempY = -1;
+			}
+
+		} else {
+			Client.viewportTempX = -1;
+			Client.viewportTempY = -1;
+		}
+	}
+
+	@ObfuscatedName("ij")
+	@ObfuscatedSignature(
+		signature = "(IIIIB)V",
+		garbageValue = "-94"
+	)
+	@Export("selectSpell")
+	static void selectSpell(int var0, int var1, int var2, int var3) {
+		Widget var4 = UserComparator3.getWidgetChild(var0, var1);
+		if (var4 != null && var4.onTargetEnter != null) {
+			ScriptEvent var5 = new ScriptEvent();
+			var5.widget = var4;
+			var5.args = var4.onTargetEnter;
+			WorldMapLabel.runScriptEvent(var5);
+		}
+
+		Client.field799 = var3;
+		Client.isSpellSelected = true;
+		WorldMapAreaData.selectedSpellWidget = var0;
+		Client.selectedSpellChildIndex = var1;
+		Actor.selectedSpellFlags = var2;
+		ScriptEvent.invalidateWidget(var4);
 	}
 }

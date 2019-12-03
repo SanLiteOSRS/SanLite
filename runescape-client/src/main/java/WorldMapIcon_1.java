@@ -1,63 +1,52 @@
+import java.util.Iterator;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("d")
+@ObfuscatedName("q")
 @Implements("WorldMapIcon_1")
 public class WorldMapIcon_1 extends AbstractWorldMapIcon {
-	@ObfuscatedName("cp")
-	@Export("mouseCam")
-	static boolean mouseCam;
-	@ObfuscatedName("gd")
-	@Export("regionLandArchives")
-	static byte[][] regionLandArchives;
-	@ObfuscatedName("hv")
+	@ObfuscatedName("u")
 	@ObfuscatedGetter(
-		intValue = -767824539
-	)
-	@Export("cameraZ")
-	static int cameraZ;
-	@ObfuscatedName("z")
-	@ObfuscatedGetter(
-		intValue = -90223087
+		intValue = -2092116219
 	)
 	@Export("objectDefId")
 	final int objectDefId;
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "Laa;"
+		signature = "Lai;"
 	)
 	@Export("region")
 	final WorldMapRegion region;
-	@ObfuscatedName("v")
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = -1981898425
+		intValue = 1422868001
 	)
 	@Export("element")
 	int element;
-	@ObfuscatedName("u")
+	@ObfuscatedName("g")
 	@ObfuscatedSignature(
-		signature = "Law;"
+		signature = "Lam;"
 	)
 	@Export("label")
 	WorldMapLabel label;
-	@ObfuscatedName("r")
+	@ObfuscatedName("z")
 	@ObfuscatedGetter(
-		intValue = 1086525415
+		intValue = -900902157
 	)
 	@Export("subWidth")
 	int subWidth;
 	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = 73044895
+		intValue = -673960603
 	)
 	@Export("subHeight")
 	int subHeight;
 
 	@ObfuscatedSignature(
-		signature = "(Lhb;Lhb;ILaa;)V"
+		signature = "(Lhx;Lhx;ILai;)V"
 	)
 	WorldMapIcon_1(Coord var1, Coord var2, int var3, WorldMapRegion var4) {
 		super(var1, var2);
@@ -66,56 +55,56 @@ public class WorldMapIcon_1 extends AbstractWorldMapIcon {
 		this.init();
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "(B)I",
-		garbageValue = "16"
+		signature = "(I)I",
+		garbageValue = "-871583687"
 	)
 	@Export("getElement")
 	public int getElement() {
 		return this.element;
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "(I)Law;",
-		garbageValue = "13348956"
+		signature = "(I)Lam;",
+		garbageValue = "969160497"
 	)
 	@Export("getLabel")
 	WorldMapLabel getLabel() {
 		return this.label;
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
 		signature = "(I)I",
-		garbageValue = "-175699296"
+		garbageValue = "-55298135"
 	)
 	@Export("getSubWidth")
 	int getSubWidth() {
 		return this.subWidth;
 	}
 
-	@ObfuscatedName("u")
+	@ObfuscatedName("g")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "806304417"
+		signature = "(B)I",
+		garbageValue = "-51"
 	)
 	@Export("getSubHeight")
 	int getSubHeight() {
 		return this.subHeight;
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "-93"
+		signature = "(I)V",
+		garbageValue = "1280762110"
 	)
 	@Export("init")
 	void init() {
-		this.element = GrandExchangeOfferOwnWorldComparator.getObjectDefinition(this.objectDefId).transform().mapIconId;
-		this.label = this.region.createMapLabel(Decimator.WorldMapElement_get(this.element));
-		WorldMapElement var1 = Decimator.WorldMapElement_get(this.getElement());
+		this.element = Occluder.getObjectDefinition(this.objectDefId).transform().mapIconId;
+		this.label = this.region.createMapLabel(Varcs.WorldMapElement_get(this.element));
+		WorldMapElement var1 = Varcs.WorldMapElement_get(this.getElement());
 		Sprite var2 = var1.getSpriteBool(false);
 		if (var2 != null) {
 			this.subWidth = var2.subWidth;
@@ -127,51 +116,96 @@ public class WorldMapIcon_1 extends AbstractWorldMapIcon {
 
 	}
 
-	@ObfuscatedName("eb")
+	@ObfuscatedName("aq")
+	@ObfuscatedSignature(
+		signature = "(IB)I",
+		garbageValue = "80"
+	)
+	static int method309(int var0) {
+		return (int)Math.pow(2.0D, (double)((float)var0 / 256.0F + 7.0F));
+	}
+
+	@ObfuscatedName("gx")
+	@ObfuscatedSignature(
+		signature = "(Ljava/lang/String;ZI)V",
+		garbageValue = "58684745"
+	)
+	@Export("drawLoadingMessage")
+	static final void drawLoadingMessage(String var0, boolean var1) {
+		if (Client.showLoadingMessages) {
+			byte var2 = 4;
+			int var3 = var2 + 6;
+			int var4 = var2 + 6;
+			int var5 = Player.fontPlain12.lineWidth(var0, 250);
+			int var6 = Player.fontPlain12.lineCount(var0, 250) * 13;
+			Rasterizer2D.Rasterizer2D_fillRectangle(var3 - var2, var4 - var2, var2 + var5 + var2, var2 + var6 + var2, 0);
+			Rasterizer2D.Rasterizer2D_drawRectangle(var3 - var2, var4 - var2, var2 + var5 + var2, var6 + var2 + var2, 16777215);
+			Player.fontPlain12.drawLines(var0, var3, var4, var5, var6, 16777215, -1, 1, 1, 0);
+			int var7 = var3 - var2;
+			int var8 = var4 - var2;
+			int var9 = var2 + var5 + var2;
+			int var10 = var2 + var6 + var2;
+
+			int var11;
+			for (var11 = 0; var11 < Client.rootWidgetCount; ++var11) {
+				if (Client.rootWidgetWidths[var11] + Client.rootWidgetXs[var11] > var7 && Client.rootWidgetXs[var11] < var9 + var7 && Client.rootWidgetYs[var11] + Client.rootWidgetHeights[var11] > var8 && Client.rootWidgetYs[var11] < var10 + var8) {
+					Client.field847[var11] = true;
+				}
+			}
+
+			if (var1) {
+				DirectByteArrayCopier.rasterProvider.drawFull(0, 0);
+			} else {
+				var11 = var3;
+				int var12 = var4;
+				int var13 = var5;
+				int var14 = var6;
+
+				for (int var15 = 0; var15 < Client.rootWidgetCount; ++var15) {
+					if (Client.rootWidgetXs[var15] + Client.rootWidgetWidths[var15] > var11 && Client.rootWidgetXs[var15] < var13 + var11 && Client.rootWidgetYs[var15] + Client.rootWidgetHeights[var15] > var12 && Client.rootWidgetYs[var15] < var14 + var12) {
+						Client.field837[var15] = true;
+					}
+				}
+			}
+
+		}
+	}
+
+	@ObfuscatedName("hy")
+	@ObfuscatedSignature(
+		signature = "(III)Lfg;",
+		garbageValue = "1189073530"
+	)
+	static RouteStrategy method321(int var0, int var1) {
+		Client.field915.approxDestinationX = var0;
+		Client.field915.approxDestinationY = var1;
+		Client.field915.approxDestinationSizeX = 1;
+		Client.field915.approxDestinationSizeY = 1;
+		return Client.field915;
+	}
+
+	@ObfuscatedName("kf")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "-806150701"
+		garbageValue = "826026682"
 	)
-	static final void method314() {
-		FloorOverlayDefinition.FloorOverlayDefinition_cached.clear();
-		FloorUnderlayDefinition.FloorUnderlayDefinition_cached.clear();
-		KitDefinition.KitDefinition_cached.clear();
-		ObjectDefinition.ObjectDefinition_cached.clear();
-		ObjectDefinition.ObjectDefinition_cachedModelData.clear();
-		ObjectDefinition.ObjectDefinition_cachedEntities.clear();
-		ObjectDefinition.ObjectDefinition_cachedModels.clear();
-		NPCDefinition.NpcDefinition_cached.clear();
-		NPCDefinition.NpcDefinition_cachedModels.clear();
-		InterfaceParent.method1193();
-		SequenceDefinition.SequenceDefinition_cached.clear();
-		SequenceDefinition.SequenceDefinition_cachedFrames.clear();
-		class219.method4067();
-		VarbitDefinition.VarbitDefinition_cached.clear();
-		MusicPatch.method3859();
-		GrandExchangeEvent.method83();
-		HealthBarDefinition.HealthBarDefinition_cached.clear();
-		HealthBarDefinition.HealthBarDefinition_cachedSprites.clear();
-		StructDefinition.StructDefinition_cached.clear();
-		TextureProvider.method2742();
-		WorldMapElement.WorldMapElement_cachedSprites.clear();
-		UserComparator1.method5827();
-		Widget.Widget_cachedSprites.clear();
-		Widget.Widget_cachedModels.clear();
-		Widget.Widget_cachedFonts.clear();
-		Widget.Widget_cachedSpriteMasks.clear();
-		((TextureProvider)Rasterizer3D.Rasterizer3D_textureLoader).clear();
-		Script.Script_cached.clear();
-		class1.archive0.clearFiles();
-		WorldMapLabelSize.archive1.clearFiles();
-		BoundaryObject.archive3.clearFiles();
-		GrandExchangeOfferAgeComparator.archive4.clearFiles();
-		class3.archive5.clearFiles();
-		class225.archive6.clearFiles();
-		Language.archive7.clearFiles();
-		GrandExchangeOfferAgeComparator.archive8.clearFiles();
-		AttackOption.archive9.clearFiles();
-		Client.archive10.clearFiles();
-		ClanMate.archive11.clearFiles();
-		GrandExchangeOfferOwnWorldComparator.archive12.clearFiles();
+	@Export("FriendSystem_invalidateFriends")
+	static final void FriendSystem_invalidateFriends() {
+		for (int var0 = 0; var0 < Players.Players_count; ++var0) {
+			Player var1 = Client.players[Players.Players_indices[var0]];
+			var1.clearIsFriend();
+		}
+
+		Iterator var2 = Messages.Messages_hashTable.iterator();
+
+		while (var2.hasNext()) {
+			Message var3 = (Message)var2.next();
+			var3.clearIsFromFriend();
+		}
+
+		if (InterfaceParent.clanChat != null) {
+			InterfaceParent.clanChat.clearFriends();
+		}
+
 	}
 }

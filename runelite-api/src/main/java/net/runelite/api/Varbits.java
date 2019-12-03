@@ -306,7 +306,9 @@ public enum Varbits
 	 * Theatre of Blood 1=In Party, 2=Inside/Spectator, 3=Dead Spectating
 	 */
 	THEATRE_OF_BLOOD(6440),
-	TOB_ENCOUNTER_DOOR(6447), // 1 = Encounter started
+	TOB_ENCOUNTER_STATE(6447), // Range from 0-3, values depend on encounter
+	TOB_ENCOUNTER_HEALTH_BAR(6448), // Value is current health percentage (eg. 839 is 83,9%)
+	TOB_ENCOUNTER_HEALTH_BAR_MAX_VALUE(6449), // Value is set from 1000 to 0 at the end of encounter
 
 	/**
 	 * Theatre of Blood orb varbits each number stands for the player's health on a scale of 1-27 (I think), 0 hides the orb
@@ -487,8 +489,8 @@ public enum Varbits
 
 	CURRENT_BANK_TAB(4150),
 
-	WORLDHOPPER_FAVROITE_1(4597),
-	WORLDHOPPER_FAVROITE_2(4598),
+	WORLDHOPPER_FAVORITE_1(4597),
+	WORLDHOPPER_FAVORITE_2(4598),
 
 	/**
 	 * Vengeance is active
@@ -555,6 +557,15 @@ public enum Varbits
 	EXPLORER_RING_RUNENERGY(4553),
 
 	WINTERTODT_TIMER(7980),
+
+	/**
+	 * Twisted league
+	 */
+	TWISTED_LEAGUE_RELIC_1(10049),
+	TWISTED_LEAGUE_RELIC_2(10050),
+	TWISTED_LEAGUE_RELIC_3(10051),
+	TWISTED_LEAGUE_RELIC_4(10052),
+	TWISTED_LEAGUE_RELIC_5(10053),
 
 	/**
 	 * Temple Trekking
@@ -703,7 +714,11 @@ public enum Varbits
 	/**
 	 * 1 is true, 0 is false.
 	 */
-	GAUNTLET_ENTERED(9178);
+	GAUNTLET_ENTERED(9178),
+
+	WITHDRAW_X_AMOUNT(3960),
+
+	IN_PVP_AREA(8121);
 
 	/**
 	 * The raw varbit ID.

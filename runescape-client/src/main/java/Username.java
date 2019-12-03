@@ -3,48 +3,48 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jq")
+@ObfuscatedName("jb")
 @Implements("Username")
 public class Username implements Comparable {
-	@ObfuscatedName("z")
+	@ObfuscatedName("u")
 	@Export("name")
 	String name;
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@Export("cleanName")
 	String cleanName;
 
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;Lli;)V"
+		signature = "(Ljava/lang/String;Llg;)V"
 	)
 	public Username(String var1, LoginType var2) {
 		this.name = var1;
-		this.cleanName = ScriptEvent.method1198(var1, var2);
+		this.cleanName = StudioGame.method4228(var1, var2);
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "(I)Ljava/lang/String;",
-		garbageValue = "1788579750"
+		signature = "(B)Ljava/lang/String;",
+		garbageValue = "70"
 	)
 	@Export("getName")
 	public String getName() {
 		return this.name;
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "(I)Z",
-		garbageValue = "415071897"
+		signature = "(B)Z",
+		garbageValue = "-102"
 	)
 	@Export("hasCleanName")
 	public boolean hasCleanName() {
 		return this.cleanName != null;
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		signature = "(Ljq;I)I",
-		garbageValue = "432116697"
+		signature = "(Ljb;I)I",
+		garbageValue = "1816661585"
 	)
 	@Export("compareToTyped")
 	public int compareToTyped(Username var1) {
@@ -74,32 +74,11 @@ public class Username implements Comparable {
 		return this.cleanName == null ? 0 : this.cleanName.hashCode();
 	}
 
-	public String toString() {
-		return this.getName();
-	}
-
 	public int compareTo(Object var1) {
 		return this.compareToTyped((Username)var1);
 	}
 
-	public String aah() {
+	public String toString() {
 		return this.getName();
-	}
-
-	public String aae() {
-		return this.getName();
-	}
-
-	public String aak() {
-		return this.getName();
-	}
-
-	@ObfuscatedName("ai")
-	@ObfuscatedSignature(
-		signature = "([BII)I",
-		garbageValue = "-42849866"
-	)
-	public static int method5132(byte[] var0, int var1) {
-		return LoginScreenAnimation.method1844(var0, 0, var1);
 	}
 }

@@ -1,134 +1,80 @@
 import net.runelite.mapping.Export;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("a")
+@ObfuscatedName("e")
 public class class13 {
-	@ObfuscatedName("gx")
-	@ObfuscatedSignature(
-		signature = "[Llf;"
+	@ObfuscatedName("br")
+	@ObfuscatedGetter(
+		intValue = 1914182179
 	)
-	@Export("mapDotSprites")
-	static Sprite[] mapDotSprites;
-
-	@ObfuscatedName("n")
+	static int field91;
+	@ObfuscatedName("dd")
 	@ObfuscatedSignature(
-		signature = "(CLgt;I)C",
-		garbageValue = "-1706308889"
+		signature = "Lij;"
 	)
-	@Export("standardizeChar")
-	static char standardizeChar(char var0, Language var1) {
-		if (var0 >= 192 && var0 <= 255) {
-			if (var0 >= 192 && var0 <= 198) {
-				return 'A';
-			}
+	@Export("archive19")
+	static Archive archive19;
 
-			if (var0 == 199) {
-				return 'C';
-			}
-
-			if (var0 >= 200 && var0 <= 203) {
-				return 'E';
-			}
-
-			if (var0 >= 204 && var0 <= 207) {
-				return 'I';
-			}
-
-			if (var0 == 209 && var1 != Language.Language_ES) {
-				return 'N';
-			}
-
-			if (var0 >= 210 && var0 <= 214) {
-				return 'O';
-			}
-
-			if (var0 >= 217 && var0 <= 220) {
-				return 'U';
-			}
-
-			if (var0 == 221) {
-				return 'Y';
-			}
-
-			if (var0 == 223) {
-				return 's';
-			}
-
-			if (var0 >= 224 && var0 <= 230) {
-				return 'a';
-			}
-
-			if (var0 == 231) {
-				return 'c';
-			}
-
-			if (var0 >= 232 && var0 <= 235) {
-				return 'e';
-			}
-
-			if (var0 >= 236 && var0 <= 239) {
-				return 'i';
-			}
-
-			if (var0 == 241 && var1 != Language.Language_ES) {
-				return 'n';
-			}
-
-			if (var0 >= 242 && var0 <= 246) {
-				return 'o';
-			}
-
-			if (var0 >= 249 && var0 <= 252) {
-				return 'u';
-			}
-
-			if (var0 == 253 || var0 == 255) {
-				return 'y';
+	@ObfuscatedName("fa")
+	@ObfuscatedSignature(
+		signature = "(Ljava/lang/String;I)V",
+		garbageValue = "507388741"
+	)
+	@Export("doCheat")
+	static final void doCheat(String var0) {
+		if (var0.equalsIgnoreCase("toggleroof")) {
+			UserComparator10.clientPreferences.roofsHidden = !UserComparator10.clientPreferences.roofsHidden;
+			class40.savePreferences();
+			if (UserComparator10.clientPreferences.roofsHidden) {
+				GrandExchangeOfferAgeComparator.addGameMessage(99, "", "Roofs are now all hidden");
+			} else {
+				GrandExchangeOfferAgeComparator.addGameMessage(99, "", "Roofs will only be removed selectively");
 			}
 		}
 
-		if (var0 == 338) {
-			return 'O';
-		} else if (var0 == 339) {
-			return 'o';
-		} else if (var0 == 376) {
-			return 'Y';
-		} else {
-			return var0;
+		if (var0.equalsIgnoreCase("displayfps")) {
+			Client.displayFps = !Client.displayFps;
 		}
-	}
 
-	@ObfuscatedName("y")
-	@ObfuscatedSignature(
-		signature = "(II)I",
-		garbageValue = "-114703177"
-	)
-	@Export("Messages_getNextChatID")
-	static int Messages_getNextChatID(int var0) {
-		Message var1 = (Message)Messages.Messages_hashTable.get((long)var0);
-		if (var1 == null) {
-			return -1;
-		} else {
-			return var1.previousDual == Messages.Messages_queue.sentinel ? -1 : ((Message)var1.previousDual).count;
+		if (var0.equalsIgnoreCase("renderself")) {
+			Client.renderSelf = !Client.renderSelf;
 		}
-	}
 
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		signature = "(Lho;II)V",
-		garbageValue = "891811325"
-	)
-	@Export("Widget_setKeyIgnoreHeld")
-	static final void Widget_setKeyIgnoreHeld(Widget var0, int var1) {
-		if (var0.field2552 == null) {
-			throw new RuntimeException();
-		} else {
-			if (var0.field2684 == null) {
-				var0.field2684 = new int[var0.field2552.length];
+		if (var0.equalsIgnoreCase("mouseovertext")) {
+			Client.showMouseOverText = !Client.showMouseOverText;
+		}
+
+		if (Client.staffModLevel >= 2) {
+			if (var0.equalsIgnoreCase("errortest")) {
+				throw new RuntimeException();
 			}
 
-			var0.field2684[var1] = Integer.MAX_VALUE;
+			if (var0.equalsIgnoreCase("showcoord")) {
+				WorldMapRegion.worldMap.showCoord = !WorldMapRegion.worldMap.showCoord;
+			}
+
+			if (var0.equalsIgnoreCase("fpson")) {
+				Client.displayFps = true;
+			}
+
+			if (var0.equalsIgnoreCase("fpsoff")) {
+				Client.displayFps = false;
+			}
+
+			if (var0.equalsIgnoreCase("gc")) {
+				System.gc();
+			}
+
+			if (var0.equalsIgnoreCase("clientdrop")) {
+				Projectile.method2137();
+			}
 		}
+
+		PacketBufferNode var1 = ModelData0.getPacketBufferNode(ClientPacket.field2246, Client.packetWriter.isaacCipher);
+		var1.packetBuffer.writeByte(var0.length() + 1);
+		var1.packetBuffer.writeStringCp1252NullTerminated(var0);
+		Client.packetWriter.addNode(var1);
 	}
 }

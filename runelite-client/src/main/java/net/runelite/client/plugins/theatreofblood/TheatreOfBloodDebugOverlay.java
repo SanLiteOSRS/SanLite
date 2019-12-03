@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019, Juul <https://github.com/juuldamen>
+ * Copyright (c) 2019, Siraz
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -25,6 +25,9 @@
 package net.runelite.client.plugins.theatreofblood;
 
 import net.runelite.api.Client;
+import net.runelite.client.plugins.theatreofblood.encounters.Nylocas;
+import net.runelite.client.plugins.theatreofblood.encounters.PestilentBloat;
+import net.runelite.client.plugins.theatreofblood.encounters.Sotetseg;
 import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayPosition;
 import net.runelite.client.ui.overlay.components.LineComponent;
@@ -70,11 +73,6 @@ public class TheatreOfBloodDebugOverlay extends Overlay
 					.right("" + plugin.getCurrentEncounter().getEncounter())
 					.build());
 
-			panelComponent.getChildren().add(LineComponent.builder()
-					.left("Current encounter started")
-					.right("" + plugin.getCurrentEncounter().isStarted())
-					.build());
-
 			if (plugin.getCurrentEncounter().getNpc() != null)
 			{
 				panelComponent.getChildren().add(LineComponent.builder()
@@ -89,6 +87,46 @@ public class TheatreOfBloodDebugOverlay extends Overlay
 						.left("Number of AoE effects")
 						.right("" + plugin.getCurrentEncounter().getAoeEffects().size())
 						.build());
+			}
+
+			if (plugin.getCurrentEncounter().getGameObjects() != null)
+			{
+				panelComponent.getChildren().add(LineComponent.builder()
+						.left("Number of encounter game objects")
+						.right("" + plugin.getCurrentEncounter().getGameObjects().size())
+						.build());
+			}
+
+			switch (plugin.getCurrentEncounter().getEncounter())
+			{
+				case PESTILENT_BLOAT:
+					PestilentBloat pestilentBloat = (PestilentBloat) plugin.getCurrentEncounter();
+					panelComponent.getChildren().add(LineComponent.builder()
+							.left("Remaining sleep client ticks")
+							.right("" + pestilentBloat.getRemainingSleepClientTicks())
+							.build());
+					break;
+				case NYLOCAS:
+					Nylocas nylocas = (Nylocas) plugin.getCurrentEncounter();
+					panelComponent.getChildren().add(LineComponent.builder()
+							.left("Number of npcs")
+							.right("" + client.getNpcs().size())
+							.build());
+					panelComponent.getChildren().add(LineComponent.builder()
+							.left("Number of highlighted Nylocas npcs")
+							.right("" + nylocas.getHighlightedNylocasNpcs().size())
+							.build());
+					break;
+				case SOTETSEG:
+					Sotetseg sotetseg = (Sotetseg) plugin.getCurrentEncounter();
+					panelComponent.getChildren().add(LineComponent.builder()
+							.left("Maze Active")
+							.right("" + sotetseg.isMazeActive())
+							.build());
+					panelComponent.getChildren().add(LineComponent.builder()
+							.left("Number of active red maze tiles")
+							.right(sotetseg.getActiveMazeTiles() != null ? "" + sotetseg.getActiveMazeTiles().size() : "null")
+							.build());
 			}
 
 			return panelComponent.render(graphics);

@@ -2,35 +2,28 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hk")
+@ObfuscatedName("ha")
 public class class210 {
-	@ObfuscatedName("z")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "Lht;"
+		signature = "Lhg;"
 	)
 	@Export("huffman")
-	public static Huffman huffman;
-
-	@ObfuscatedName("z")
+	static Huffman huffman;
+	@ObfuscatedName("df")
 	@ObfuscatedSignature(
-		signature = "(ILjava/lang/String;Ljava/lang/String;B)V",
-		garbageValue = "-65"
+		signature = "Lij;"
 	)
-	@Export("addGameMessage")
-	static void addGameMessage(int var0, String var1, String var2) {
-		WorldMapData_1.addChatMessage(var0, var1, var2, (String)null);
-	}
+	@Export("archive15")
+	static Archive archive15;
 
-	@ObfuscatedName("fl")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "2143242016"
+		signature = "(IB)Z",
+		garbageValue = "1"
 	)
-	static void method3939() {
-		PacketBufferNode var0 = InterfaceParent.getPacketBufferNode(ClientPacket.field2256, Client.packetWriter.isaacCipher);
-		var0.packetBuffer.writeByte(class247.getWindowedMode());
-		var0.packetBuffer.writeShort(FloorDecoration.canvasWidth);
-		var0.packetBuffer.writeShort(WallDecoration.canvasHeight);
-		Client.packetWriter.addNode(var0);
+	@Export("isWorldMapEvent")
+	public static boolean isWorldMapEvent(int var0) {
+		return var0 == 10 || var0 == 11 || var0 == 12 || var0 == 13 || var0 == 14 || var0 == 15 || var0 == 16 || var0 == 17;
 	}
 }

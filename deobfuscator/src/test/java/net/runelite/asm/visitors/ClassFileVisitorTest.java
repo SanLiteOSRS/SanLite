@@ -30,6 +30,7 @@ import net.runelite.asm.ClassGroup;
 import net.runelite.deob.DeobTestProperties;
 import net.runelite.deob.TemporyFolderLocation;
 import net.runelite.deob.util.JarUtil;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
@@ -43,6 +44,7 @@ public class ClassFileVisitorTest
 	public TemporaryFolder folder = TemporyFolderLocation.getTemporaryFolder();
 
 	@Test
+	@Ignore
 	public void test() throws Exception
 	{
 		ClassGroup group = JarUtil.loadJar(new File(properties.getVanillaClient()));

@@ -1,20 +1,13 @@
 import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hi")
+@ObfuscatedName("hw")
 public class class223 {
-	@ObfuscatedName("fw")
-	@ObfuscatedGetter(
-		intValue = -369406041
-	)
-	@Export("baseX")
-	static int baseX;
-	@ObfuscatedName("jk")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "Lbi;"
+		signature = "Lhf;"
 	)
-	@Export("localPlayer")
-	static Player localPlayer;
+	@Export("WorldMapElement_archive")
+	public static AbstractArchive WorldMapElement_archive;
 }

@@ -178,24 +178,6 @@ public abstract class RSActorMixin implements RSActor
 		return Perspective.localToMinimap(client, getLocalLocation());
 	}
 
-	@FieldHook("x")
-	@Inject
-	public void actorPositionXChanged(int idx)
-	{
-		ActorPositionChanged actorPositionChanged = new ActorPositionChanged();
-		actorPositionChanged.setActor(this);
-		client.getCallbacks().post(actorPositionChanged);
-	}
-
-	@FieldHook("y")
-	@Inject
-	public void actorPositionYChanged(int idx)
-	{
-		ActorPositionChanged actorPositionChanged = new ActorPositionChanged();
-		actorPositionChanged.setActor(this);
-		client.getCallbacks().post(actorPositionChanged);
-	}
-
 	@FieldHook("sequence")
 	@Inject
 	public void animationChanged(int idx)
@@ -261,11 +243,14 @@ public abstract class RSActorMixin implements RSActor
 	{
 		if (healthRatio == 0)
 		{
-			if (this == client.getLocalPlayer())
+			if (this instanceof Player)
 			{
-				client.getLogger().debug("You died!");
+				if (this.equals(client.getLocalPlayer()))
+				{
+					client.getLogger().debug("You died!");
+				}
 
-				LocalPlayerDeath event = new LocalPlayerDeath();
+				PlayerDeath event = new PlayerDeath((Player) this);
 				client.getCallbacks().post(event);
 			}
 			else if (this instanceof RSNPC)

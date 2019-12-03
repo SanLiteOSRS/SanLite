@@ -4,25 +4,37 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bz")
+@ObfuscatedName("bm")
 @Implements("ItemContainer")
 public class ItemContainer extends Node {
-	@ObfuscatedName("z")
+	@ObfuscatedName("oc")
 	@ObfuscatedSignature(
-		signature = "Llq;"
+		signature = "Lfk;"
+	)
+	@Export("mouseWheel")
+	static MouseWheel mouseWheel;
+	@ObfuscatedName("u")
+	@ObfuscatedSignature(
+		signature = "Lle;"
 	)
 	@Export("itemContainers")
 	static NodeHashTable itemContainers;
-	@ObfuscatedName("mu")
-	@ObfuscatedGetter(
-		intValue = -1316536921
+	@ObfuscatedName("bq")
+	@ObfuscatedSignature(
+		signature = "[Llm;"
 	)
-	@Export("selectedSpellFlags")
-	static int selectedSpellFlags;
-	@ObfuscatedName("n")
+	@Export("worldSelectFlagSprites")
+	static IndexedSprite[] worldSelectFlagSprites;
+	@ObfuscatedName("hs")
+	@ObfuscatedGetter(
+		intValue = 778957861
+	)
+	@Export("cameraPitch")
+	static int cameraPitch;
+	@ObfuscatedName("f")
 	@Export("ids")
 	int[] ids;
-	@ObfuscatedName("v")
+	@ObfuscatedName("b")
 	@Export("quantities")
 	int[] quantities;
 
@@ -35,55 +47,19 @@ public class ItemContainer extends Node {
 		this.quantities = new int[]{0};
 	}
 
-	@ObfuscatedName("z")
-	@ObfuscatedSignature(
-		signature = "(Lhp;Lhp;Lhp;I)V",
-		garbageValue = "376678600"
-	)
-	public static void method1190(AbstractArchive var0, AbstractArchive var1, AbstractArchive var2) {
-		SequenceDefinition.SequenceDefinition_archive = var0;
-		SequenceDefinition.SequenceDefinition_animationsArchive = var1;
-		class188.SequenceDefinition_skeletonsArchive = var2;
+	@ObfuscatedName("h")
+	@Export("Entity_unpackID")
+	public static int Entity_unpackID(long var0) {
+		return (int)(var0 >>> 17 & 4294967295L);
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("gp")
 	@ObfuscatedSignature(
-		signature = "(I)Lfz;",
-		garbageValue = "1488138254"
+		signature = "(Lbt;II)V",
+		garbageValue = "1416714498"
 	)
-	@Export("newClock")
-	public static Clock newClock() {
-		try {
-			return new NanoClock();
-		} catch (Throwable var1) {
-			return new MilliClock();
-		}
-	}
-
-	@ObfuscatedName("io")
-	@ObfuscatedSignature(
-		signature = "(IIIIIIIII)V",
-		garbageValue = "-57501603"
-	)
-	@Export("drawWidgets")
-	static final void drawWidgets(int var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7) {
-		if (WorldMapData_0.loadInterface(var0)) {
-			GrandExchangeOffer.field61 = null;
-			ScriptEvent.drawInterface(UserComparator5.Widget_interfaceComponents[var0], -1, var1, var2, var3, var4, var5, var6, var7);
-			if (GrandExchangeOffer.field61 != null) {
-				ScriptEvent.drawInterface(GrandExchangeOffer.field61, -1412584499, var1, var2, var3, var4, class227.field3061, Occluder.field1889, var7);
-				GrandExchangeOffer.field61 = null;
-			}
-
-		} else {
-			if (var7 != -1) {
-				Client.field841[var7] = true;
-			} else {
-				for (int var8 = 0; var8 < 100; ++var8) {
-					Client.field841[var8] = true;
-				}
-			}
-
-		}
+	@Export("getActorScreenLocation")
+	static final void getActorScreenLocation(Actor var0, int var1) {
+		TextureProvider.worldToScreen(var0.x, var0.y, var1);
 	}
 }

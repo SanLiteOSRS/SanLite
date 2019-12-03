@@ -1,48 +1,40 @@
+import java.net.MalformedURLException;
+import java.net.URL;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("aw")
+@ObfuscatedName("am")
 @Implements("WorldMapLabel")
 public class WorldMapLabel {
-	@ObfuscatedName("cj")
-	@ObfuscatedSignature(
-		signature = "Lbn;"
-	)
-	@Export("mouseRecorder")
-	static MouseRecorder mouseRecorder;
-	@ObfuscatedName("db")
-	@ObfuscatedSignature(
-		signature = "Lie;"
-	)
-	@Export("archive19")
-	static Archive archive19;
-	@ObfuscatedName("z")
+	@ObfuscatedName("n")
+	static int[][][] field233;
+	@ObfuscatedName("u")
 	@Export("text")
 	String text;
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = -38349507
+		intValue = 1976792999
 	)
 	@Export("width")
 	int width;
-	@ObfuscatedName("v")
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = -212014043
+		intValue = 916086533
 	)
 	@Export("height")
 	int height;
-	@ObfuscatedName("u")
+	@ObfuscatedName("g")
 	@ObfuscatedSignature(
-		signature = "Lg;"
+		signature = "La;"
 	)
 	@Export("size")
 	WorldMapLabelSize size;
 
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;IILg;)V"
+		signature = "(Ljava/lang/String;IILa;)V"
 	)
 	WorldMapLabel(String var1, int var2, int var3, WorldMapLabelSize var4) {
 		this.text = var1;
@@ -51,29 +43,148 @@ public class WorldMapLabel {
 		this.size = var4;
 	}
 
-	@ObfuscatedName("ah")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "(ILhb;ZI)V",
-		garbageValue = "203573450"
+		signature = "(Lby;I)V",
+		garbageValue = "1976611888"
 	)
-	static void method439(int var0, Coord var1, boolean var2) {
-		WorldMapArea var3 = Decimator.getWorldMap().getMapArea(var0);
-		int var4 = class223.localPlayer.plane;
-		int var5 = class223.baseX * 64 + (class223.localPlayer.x >> 7);
-		int var6 = class286.baseY * 64 + (class223.localPlayer.y * 682054857 >> 7);
-		Coord var7 = new Coord(var4, var5, var6);
-		Decimator.getWorldMap().method6426(var3, var7, var1, var2);
+	@Export("runScriptEvent")
+	public static void runScriptEvent(ScriptEvent var0) {
+		GrandExchangeOfferNameComparator.runScript(var0, 500000);
 	}
 
-	@ObfuscatedName("kq")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "125"
+		signature = "(IILfg;Lfh;I)Z",
+		garbageValue = "1885611430"
 	)
-	@Export("Clan_leaveChat")
-	static final void Clan_leaveChat() {
-		PacketBufferNode var0 = InterfaceParent.getPacketBufferNode(ClientPacket.field2237, Client.packetWriter.isaacCipher);
-		var0.packetBuffer.writeByte(0);
-		Client.packetWriter.addNode(var0);
+	static final boolean method434(int var0, int var1, RouteStrategy var2, CollisionMap var3) {
+		int var4 = var0;
+		int var5 = var1;
+		byte var6 = 64;
+		byte var7 = 64;
+		int var8 = var0 - var6;
+		int var9 = var1 - var7;
+		class173.directions[var6][var7] = 99;
+		class173.distances[var6][var7] = 0;
+		byte var10 = 0;
+		int var11 = 0;
+		class173.bufferX[var10] = var0;
+		byte var10001 = var10;
+		int var18 = var10 + 1;
+		class173.bufferY[var10001] = var1;
+		int[][] var12 = var3.flags;
+
+		while (var18 != var11) {
+			var4 = class173.bufferX[var11];
+			var5 = class173.bufferY[var11];
+			var11 = var11 + 1 & 4095;
+			int var16 = var4 - var8;
+			int var17 = var5 - var9;
+			int var13 = var4 - var3.xInset;
+			int var14 = var5 - var3.yInset;
+			if (var2.hasArrived(1, var4, var5, var3)) {
+				class173.field2103 = var4;
+				class173.field2100 = var5;
+				return true;
+			}
+
+			int var15 = class173.distances[var16][var17] + 1;
+			if (var16 > 0 && class173.directions[var16 - 1][var17] == 0 && (var12[var13 - 1][var14] & 19136776) == 0) {
+				class173.bufferX[var18] = var4 - 1;
+				class173.bufferY[var18] = var5;
+				var18 = var18 + 1 & 4095;
+				class173.directions[var16 - 1][var17] = 2;
+				class173.distances[var16 - 1][var17] = var15;
+			}
+
+			if (var16 < 127 && class173.directions[var16 + 1][var17] == 0 && (var12[var13 + 1][var14] & 19136896) == 0) {
+				class173.bufferX[var18] = var4 + 1;
+				class173.bufferY[var18] = var5;
+				var18 = var18 + 1 & 4095;
+				class173.directions[var16 + 1][var17] = 8;
+				class173.distances[var16 + 1][var17] = var15;
+			}
+
+			if (var17 > 0 && class173.directions[var16][var17 - 1] == 0 && (var12[var13][var14 - 1] & 19136770) == 0) {
+				class173.bufferX[var18] = var4;
+				class173.bufferY[var18] = var5 - 1;
+				var18 = var18 + 1 & 4095;
+				class173.directions[var16][var17 - 1] = 1;
+				class173.distances[var16][var17 - 1] = var15;
+			}
+
+			if (var17 < 127 && class173.directions[var16][var17 + 1] == 0 && (var12[var13][var14 + 1] & 19136800) == 0) {
+				class173.bufferX[var18] = var4;
+				class173.bufferY[var18] = var5 + 1;
+				var18 = var18 + 1 & 4095;
+				class173.directions[var16][var17 + 1] = 4;
+				class173.distances[var16][var17 + 1] = var15;
+			}
+
+			if (var16 > 0 && var17 > 0 && class173.directions[var16 - 1][var17 - 1] == 0 && (var12[var13 - 1][var14 - 1] & 19136782) == 0 && (var12[var13 - 1][var14] & 19136776) == 0 && (var12[var13][var14 - 1] & 19136770) == 0) {
+				class173.bufferX[var18] = var4 - 1;
+				class173.bufferY[var18] = var5 - 1;
+				var18 = var18 + 1 & 4095;
+				class173.directions[var16 - 1][var17 - 1] = 3;
+				class173.distances[var16 - 1][var17 - 1] = var15;
+			}
+
+			if (var16 < 127 && var17 > 0 && class173.directions[var16 + 1][var17 - 1] == 0 && (var12[var13 + 1][var14 - 1] & 19136899) == 0 && (var12[var13 + 1][var14] & 19136896) == 0 && (var12[var13][var14 - 1] & 19136770) == 0) {
+				class173.bufferX[var18] = var4 + 1;
+				class173.bufferY[var18] = var5 - 1;
+				var18 = var18 + 1 & 4095;
+				class173.directions[var16 + 1][var17 - 1] = 9;
+				class173.distances[var16 + 1][var17 - 1] = var15;
+			}
+
+			if (var16 > 0 && var17 < 127 && class173.directions[var16 - 1][var17 + 1] == 0 && (var12[var13 - 1][var14 + 1] & 19136824) == 0 && (var12[var13 - 1][var14] & 19136776) == 0 && (var12[var13][var14 + 1] & 19136800) == 0) {
+				class173.bufferX[var18] = var4 - 1;
+				class173.bufferY[var18] = var5 + 1;
+				var18 = var18 + 1 & 4095;
+				class173.directions[var16 - 1][var17 + 1] = 6;
+				class173.distances[var16 - 1][var17 + 1] = var15;
+			}
+
+			if (var16 < 127 && var17 < 127 && class173.directions[var16 + 1][var17 + 1] == 0 && (var12[var13 + 1][var14 + 1] & 19136992) == 0 && (var12[var13 + 1][var14] & 19136896) == 0 && (var12[var13][var14 + 1] & 19136800) == 0) {
+				class173.bufferX[var18] = var4 + 1;
+				class173.bufferY[var18] = var5 + 1;
+				var18 = var18 + 1 & 4095;
+				class173.directions[var16 + 1][var17 + 1] = 12;
+				class173.distances[var16 + 1][var17 + 1] = var15;
+			}
+		}
+
+		class173.field2103 = var4;
+		class173.field2100 = var5;
+		return false;
+	}
+
+	@ObfuscatedName("f")
+	@ObfuscatedSignature(
+		signature = "(Ljava/lang/String;B)Z",
+		garbageValue = "-25"
+	)
+	@Export("isValidURL")
+	static boolean isValidURL(String var0) {
+		if (var0 == null) {
+			return false;
+		} else {
+			try {
+				new URL(var0);
+				return true;
+			} catch (MalformedURLException var2) {
+				return false;
+			}
+		}
+	}
+
+	@ObfuscatedName("l")
+	@ObfuscatedSignature(
+		signature = "(Lcf;I)V",
+		garbageValue = "1228779335"
+	)
+	public static final void method433(class99 var0) {
+		Interpreter.pcmPlayerProvider = var0;
 	}
 }

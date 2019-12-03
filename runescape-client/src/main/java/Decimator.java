@@ -3,19 +3,32 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("dr")
+@ObfuscatedName("dn")
 @Implements("Decimator")
 public class Decimator {
-	@ObfuscatedName("u")
+	@ObfuscatedName("w")
+	@ObfuscatedSignature(
+		signature = "Llm;"
+	)
+	@Export("logoSprite")
+	static IndexedSprite logoSprite;
+	@ObfuscatedName("hh")
 	@ObfuscatedGetter(
-		intValue = -222965331
+		intValue = -1979391885
+	)
+	@Export("cameraYaw")
+	static int cameraYaw;
+	@ObfuscatedName("g")
+	@ObfuscatedGetter(
+		intValue = 169220929
 	)
 	@Export("inputRate")
 	int inputRate;
-	@ObfuscatedName("r")
+	@ObfuscatedName("z")
 	@ObfuscatedGetter(
-		intValue = 747601715
+		intValue = 1367353289
 	)
 	@Export("outputRate")
 	int outputRate;
@@ -72,15 +85,15 @@ public class Decimator {
 		}
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
 		signature = "([BI)[B",
-		garbageValue = "906746870"
+		garbageValue = "-1845568783"
 	)
 	@Export("resample")
 	byte[] resample(byte[] var1) {
 		if (this.table != null) {
-			int var2 = (int)((long)var1.length * (long)this.outputRate / (long)this.inputRate) + 14;
+			int var2 = (int)((long)this.outputRate * (long)var1.length / (long)this.inputRate) + 14;
 			int[] var3 = new int[var2];
 			int var4 = 0;
 			int var5 = 0;
@@ -92,7 +105,7 @@ public class Decimator {
 
 				int var9;
 				for (var9 = 0; var9 < 14; ++var9) {
-					var3[var4 + var9] += var7 * var8[var9];
+					var3[var4 + var9] += var8[var9] * var7;
 				}
 
 				var5 += this.outputRate;
@@ -118,118 +131,57 @@ public class Decimator {
 		return var1;
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
 		signature = "(II)I",
-		garbageValue = "1984702959"
+		garbageValue = "1828348822"
 	)
 	@Export("scaleRate")
 	int scaleRate(int var1) {
 		if (this.table != null) {
-			var1 = (int)((long)var1 * (long)this.outputRate / (long)this.inputRate);
+			var1 = (int)((long)this.outputRate * (long)var1 / (long)this.inputRate);
 		}
 
 		return var1;
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
 		signature = "(II)I",
-		garbageValue = "-1527580857"
+		garbageValue = "-925934558"
 	)
 	@Export("scalePosition")
 	int scalePosition(int var1) {
 		if (this.table != null) {
-			var1 = (int)((long)var1 * (long)this.outputRate / (long)this.inputRate) + 6;
+			var1 = (int)((long)this.outputRate * (long)var1 / (long)this.inputRate) + 6;
 		}
 
 		return var1;
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(II)Lij;",
-		garbageValue = "-1096040565"
+		signature = "(ILci;ZI)I",
+		garbageValue = "1172796739"
 	)
-	@Export("WorldMapElement_get")
-	public static WorldMapElement WorldMapElement_get(int var0) {
-		return var0 >= 0 && var0 < WorldMapElement.WorldMapElement_cached.length && WorldMapElement.WorldMapElement_cached[var0] != null ? WorldMapElement.WorldMapElement_cached[var0] : new WorldMapElement(var0);
-	}
-
-	@ObfuscatedName("ei")
-	@ObfuscatedSignature(
-		signature = "(I)Lla;",
-		garbageValue = "-695758013"
-	)
-	@Export("getWorldMap")
-	static WorldMap getWorldMap() {
-		return Tiles.worldMap;
-	}
-
-	@ObfuscatedName("hz")
-	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "851552801"
-	)
-	static final void method2496() {
-		PacketBuffer var0 = Client.packetWriter.packetBuffer;
-		var0.importIndex();
-		int var1 = var0.readBits(8);
-		int var2;
-		if (var1 < Client.npcCount) {
-			for (var2 = var1; var2 < Client.npcCount; ++var2) {
-				Client.field758[++Client.field640 - 1] = Client.npcIndices[var2];
+	static int method2564(int var0, Script var1, boolean var2) {
+		Widget var3 = var2 ? Interpreter.field1090 : class188.field2352;
+		if (var0 == ScriptOpcodes.CC_GETINVOBJECT) {
+			Interpreter.Interpreter_intStack[++GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize - 1] = var3.itemId;
+			return 1;
+		} else if (var0 == ScriptOpcodes.CC_GETINVCOUNT) {
+			if (var3.itemId != -1) {
+				Interpreter.Interpreter_intStack[++GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize - 1] = var3.itemQuantity;
+			} else {
+				Interpreter.Interpreter_intStack[++GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize - 1] = 0;
 			}
-		}
 
-		if (var1 > Client.npcCount) {
-			throw new RuntimeException("");
+			return 1;
+		} else if (var0 == ScriptOpcodes.CC_GETID) {
+			Interpreter.Interpreter_intStack[++GrandExchangeOfferTotalQuantityComparator.Interpreter_intStackSize - 1] = var3.childIndex;
+			return 1;
 		} else {
-			Client.npcCount = 0;
-
-			for (var2 = 0; var2 < var1; ++var2) {
-				int var3 = Client.npcIndices[var2];
-				NPC var4 = Client.npcs[var3];
-				int var5 = var0.readBits(1);
-				if (var5 == 0) {
-					Client.npcIndices[++Client.npcCount - 1] = var3;
-					var4.npcCycle = Client.cycle;
-				} else {
-					int var6 = var0.readBits(2);
-					if (var6 == 0) {
-						Client.npcIndices[++Client.npcCount - 1] = var3;
-						var4.npcCycle = Client.cycle;
-						Client.field681[++Client.field633 - 1] = var3;
-					} else {
-						int var7;
-						int var8;
-						if (var6 == 1) {
-							Client.npcIndices[++Client.npcCount - 1] = var3;
-							var4.npcCycle = Client.cycle;
-							var7 = var0.readBits(3);
-							var4.method2044(var7, (byte)1);
-							var8 = var0.readBits(1);
-							if (var8 == 1) {
-								Client.field681[++Client.field633 - 1] = var3;
-							}
-						} else if (var6 == 2) {
-							Client.npcIndices[++Client.npcCount - 1] = var3;
-							var4.npcCycle = Client.cycle;
-							var7 = var0.readBits(3);
-							var4.method2044(var7, (byte)2);
-							var8 = var0.readBits(3);
-							var4.method2044(var8, (byte)2);
-							int var9 = var0.readBits(1);
-							if (var9 == 1) {
-								Client.field681[++Client.field633 - 1] = var3;
-							}
-						} else if (var6 == 3) {
-							Client.field758[++Client.field640 - 1] = var3;
-						}
-					}
-				}
-			}
-
+			return 2;
 		}
 	}
 }

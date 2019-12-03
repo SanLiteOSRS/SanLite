@@ -1,9 +1,9 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 
-@ObfuscatedName("ka")
+@ObfuscatedName("kz")
 public class class300 {
-	@ObfuscatedName("z")
+	@ObfuscatedName("u")
 	@Export("writeRandomDat")
 	public static void writeRandomDat(byte[] var0, int var1, byte[] var2, int var3, int var4) {
 		if (var2 == var0) {

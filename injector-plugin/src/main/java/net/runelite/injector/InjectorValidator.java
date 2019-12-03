@@ -24,15 +24,16 @@
  */
 package net.runelite.injector;
 
-import java.lang.reflect.Method;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
 import net.runelite.asm.ClassFile;
 import net.runelite.asm.ClassGroup;
 import net.runelite.asm.signature.Signature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.lang.reflect.Method;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
 /**
  * Verifies the injected jar is valid
@@ -104,7 +105,7 @@ class InjectorValidator
 				if (cf.findMethodDeep(method.getName()) == null)
 				{
 					logger.warn("Class {} implements interface {} but not does implement method {}",
-						cf.getName(), c.getSimpleName(), method);
+							cf.getName(), c.getSimpleName(), method);
 					++missing;
 				}
 				else
@@ -123,7 +124,7 @@ class InjectorValidator
 			if (signatures.contains(nas))
 			{
 				logger.error("Class {} has duplicate method with same name and signature {} {}",
-					cf.getName(), method.getName(), method.getDescriptor());
+						cf.getName(), method.getName(), method.getDescriptor());
 				++error;
 			}
 
@@ -186,11 +187,7 @@ class InjectorValidator
 			{
 				return false;
 			}
-			if (!Objects.equals(this.signature, other.signature))
-			{
-				return false;
-			}
-			return true;
+			return Objects.equals(this.signature, other.signature);
 		}
 	}
 }

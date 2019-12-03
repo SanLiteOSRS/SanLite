@@ -4,48 +4,54 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("dj")
+@ObfuscatedName("du")
 @Implements("FloorDecoration")
 public final class FloorDecoration {
-	@ObfuscatedName("d")
-	@ObfuscatedGetter(
-		intValue = 1829552079
-	)
-	@Export("canvasWidth")
-	public static int canvasWidth;
-	@ObfuscatedName("z")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "Ler;"
+		signature = "[[Lhl;"
 	)
-	@Export("entity")
-	public Entity entity;
-	@ObfuscatedName("n")
+	@Export("Widget_interfaceComponents")
+	public static Widget[][] Widget_interfaceComponents;
+	@ObfuscatedName("hj")
 	@ObfuscatedGetter(
-		intValue = 1834213503
+		intValue = -787534095
+	)
+	@Export("cameraZ")
+	static int cameraZ;
+	@ObfuscatedName("u")
+	@ObfuscatedGetter(
+		intValue = 1000348855
 	)
 	@Export("tileHeight")
 	int tileHeight;
-	@ObfuscatedName("v")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = 461857131
+		intValue = -2093523795
 	)
 	@Export("x")
 	int x;
-	@ObfuscatedName("u")
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = -848464295
+		intValue = -386924544
 	)
 	@Export("y")
 	int y;
-	@ObfuscatedName("r")
+	@ObfuscatedName("g")
+	@ObfuscatedSignature(
+		signature = "Lee;"
+	)
+	@Export("entity")
+	public Entity entity;
+	@ObfuscatedName("z")
 	@ObfuscatedGetter(
-		longValue = 3642112439868332829L
+		longValue = -2591467341780492125L
 	)
 	@Export("tag")
 	public long tag;
 	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = -1953587145
+		intValue = 424120209
 	)
 	@Export("flags")
 	int flags;
@@ -53,48 +59,28 @@ public final class FloorDecoration {
 	FloorDecoration() {
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "(II)Lhs;",
-		garbageValue = "-1156266256"
+		signature = "(CI)Z",
+		garbageValue = "-345109095"
 	)
-	public static ServerBuild method2837(int var0) {
-		ServerBuild[] var1 = new ServerBuild[]{ServerBuild.BUILDLIVE, ServerBuild.LIVE, ServerBuild.RC, ServerBuild.WIP};
-		ServerBuild[] var2 = var1;
-
-		for (int var3 = 0; var3 < var2.length; ++var3) {
-			ServerBuild var4 = var2[var3];
-			if (var0 == var4.field3079) {
-				return var4;
-			}
+	@Export("isCharPrintable")
+	public static boolean isCharPrintable(char var0) {
+		if (var0 >= ' ' && var0 <= '~') {
+			return true;
+		} else if (var0 >= 160 && var0 <= 255) {
+			return true;
+		} else {
+			return var0 == 8364 || var0 == 338 || var0 == 8212 || var0 == 339 || var0 == 376;
 		}
-
-		return null;
 	}
 
-	@ObfuscatedName("jl")
+	@ObfuscatedName("fe")
 	@ObfuscatedSignature(
-		signature = "(IIIILlf;Lhz;S)V",
-		garbageValue = "1700"
+		signature = "(IB)I",
+		garbageValue = "3"
 	)
-	@Export("worldToMinimap")
-	static final void worldToMinimap(int var0, int var1, int var2, int var3, Sprite var4, SpriteMask var5) {
-		int var6 = var3 * var3 + var2 * var2;
-		if (var6 > 4225 && var6 < 90000) {
-			int var7 = Client.camAngleY & 2047;
-			int var8 = Rasterizer3D.Rasterizer3D_sine[var7];
-			int var9 = Rasterizer3D.Rasterizer3D_cosine[var7];
-			int var10 = var9 * var2 + var3 * var8 >> 16;
-			int var11 = var3 * var9 - var8 * var2 >> 16;
-			double var12 = Math.atan2((double)var10, (double)var11);
-			int var14 = var5.width / 2 - 25;
-			int var15 = (int)(Math.sin(var12) * (double)var14);
-			int var16 = (int)(Math.cos(var12) * (double)var14);
-			byte var17 = 20;
-			PendingSpawn.redHintArrowSprite.method6067(var15 + (var0 + var5.width / 2 - var17 / 2), var5.height / 2 + var1 - var17 / 2 - var16 - 10, var17, var17, 15, 15, var12, 256);
-		} else {
-			class208.drawSpriteOnMinimap(var0, var1, var2, var3, var4, var5);
-		}
-
+	static int method2888(int var0) {
+		return var0 * 3 + 600;
 	}
 }

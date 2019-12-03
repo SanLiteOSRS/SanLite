@@ -1,11 +1,13 @@
-import net.runelite.mapping.ObfuscatedGetter;
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
+import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ln")
+@ObfuscatedName("ls")
 public class class319 {
-	@ObfuscatedName("u")
-	@ObfuscatedGetter(
-		intValue = 2052078695
+	@ObfuscatedName("y")
+	@ObfuscatedSignature(
+		signature = "Lln;"
 	)
-	public static int field3843;
+	@Export("rightTitleSprite")
+	static Sprite rightTitleSprite;
 }

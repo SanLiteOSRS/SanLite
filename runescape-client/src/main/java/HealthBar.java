@@ -1,42 +1,48 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cz")
+@ObfuscatedName("cm")
 @Implements("HealthBar")
 public class HealthBar extends Node {
-	@ObfuscatedName("bu")
-	@ObfuscatedSignature(
-		signature = "Llp;"
+	@ObfuscatedName("ay")
+	@ObfuscatedGetter(
+		intValue = -1667121911
 	)
-	@Export("worldSelectRightSprite")
-	static IndexedSprite worldSelectRightSprite;
-	@ObfuscatedName("v")
+	static int field1115;
+	@ObfuscatedName("kt")
+	@ObfuscatedGetter(
+		intValue = 751391879
+	)
+	@Export("menuX")
+	static int menuX;
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		signature = "Lip;"
+		signature = "Liz;"
 	)
 	@Export("definition")
 	HealthBarDefinition definition;
-	@ObfuscatedName("u")
+	@ObfuscatedName("g")
 	@ObfuscatedSignature(
-		signature = "Ljs;"
+		signature = "Ljm;"
 	)
 	@Export("updates")
 	IterableNodeDeque updates;
 
 	@ObfuscatedSignature(
-		signature = "(Lip;)V"
+		signature = "(Liz;)V"
 	)
 	HealthBar(HealthBarDefinition var1) {
 		this.updates = new IterableNodeDeque();
 		this.definition = var1;
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
 		signature = "(IIIIB)V",
-		garbageValue = "1"
+		garbageValue = "34"
 	)
 	@Export("put")
 	void put(int var1, int var2, int var3, int var4) {
@@ -69,10 +75,10 @@ public class HealthBar extends Node {
 		}
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "(IB)Lbq;",
-		garbageValue = "109"
+		signature = "(II)Lbl;",
+		garbageValue = "-1781435459"
 	)
 	@Export("get")
 	HealthBarUpdate get(int var1) {
@@ -83,7 +89,7 @@ public class HealthBar extends Node {
 				var2 = var3;
 			}
 
-			if (this.definition.int5 + var2.cycleOffset + var2.cycle > var1) {
+			if (this.definition.int5 + var2.cycle + var2.cycleOffset > var1) {
 				return var2;
 			} else {
 				var2.remove();
@@ -94,91 +100,78 @@ public class HealthBar extends Node {
 		}
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
 		signature = "(I)Z",
-		garbageValue = "-783831173"
+		garbageValue = "1222201022"
 	)
 	@Export("isEmpty")
 	boolean isEmpty() {
-		return this.updates.method4763();
+		return this.updates.method4911();
 	}
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Llb;III)I",
-		garbageValue = "-1932083268"
+		signature = "(I)V",
+		garbageValue = "-154641567"
 	)
-	static int method2030(IterableNodeHashTable var0, int var1, int var2) {
-		if (var0 == null) {
-			return var2;
-		} else {
-			IntegerNode var3 = (IntegerNode)var0.get((long)var1);
-			return var3 == null ? var2 : var3.integer;
-		}
+	public static void method2054() {
+		Widget.Widget_cachedSprites.clear();
+		Widget.Widget_cachedModels.clear();
+		Widget.Widget_cachedFonts.clear();
+		Widget.Widget_cachedSpriteMasks.clear();
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("hh")
 	@ObfuscatedSignature(
-		signature = "(IZI)Ljava/lang/String;",
-		garbageValue = "878473077"
+		signature = "(III)V",
+		garbageValue = "1071237867"
 	)
-	@Export("intToString")
-	public static String intToString(int var0, boolean var1) {
-		if (var1 && var0 >= 0) {
-			int var3 = var0;
-			String var2;
-			if (var1 && var0 >= 0) {
-				int var4 = 2;
+	@Export("updateItemPile")
+	static final void updateItemPile(int var0, int var1) {
+		NodeDeque var2 = Client.groundItems[ClientPacket.Client_plane][var0][var1];
+		if (var2 == null) {
+			class2.scene.removeGroundItemPile(ClientPacket.Client_plane, var0, var1);
+		} else {
+			long var3 = -99999999L;
+			TileItem var5 = null;
 
-				for (int var5 = var0 / 10; var5 != 0; ++var4) {
-					var5 /= 10;
+			TileItem var6;
+			for (var6 = (TileItem)var2.last(); var6 != null; var6 = (TileItem)var2.previous()) {
+				ItemDefinition var7 = Interpreter.ItemDefinition_get(var6.id);
+				long var8 = (long)var7.price;
+				if (var7.isStackable == 1) {
+					var8 *= (long)(var6.quantity + 1);
 				}
 
-				char[] var6 = new char[var4];
-				var6[0] = '+';
+				if (var8 > var3) {
+					var3 = var8;
+					var5 = var6;
+				}
+			}
 
-				for (int var7 = var4 - 1; var7 > 0; --var7) {
-					int var8 = var3;
-					var3 /= 10;
-					int var9 = var8 - var3 * 10;
-					if (var9 >= 10) {
-						var6[var7] = (char)(var9 + 87);
-					} else {
-						var6[var7] = (char)(var9 + 48);
+			if (var5 == null) {
+				class2.scene.removeGroundItemPile(ClientPacket.Client_plane, var0, var1);
+			} else {
+				var2.addLast(var5);
+				TileItem var12 = null;
+				TileItem var11 = null;
+
+				for (var6 = (TileItem)var2.last(); var6 != null; var6 = (TileItem)var2.previous()) {
+					if (var6.id != var5.id) {
+						if (var12 == null) {
+							var12 = var6;
+						}
+
+						if (var12.id != var6.id && var11 == null) {
+							var11 = var6;
+						}
 					}
 				}
 
-				var2 = new String(var6);
-			} else {
-				var2 = Integer.toString(var0, 10);
+				long var9 = MouseHandler.calculateTag(var0, var1, 3, false, 0);
+				class2.scene.newGroundItemPile(ClientPacket.Client_plane, var0, var1, class195.getTileHeight(var0 * 128 + 64, var1 * 128 + 64, ClientPacket.Client_plane), var5, var9, var12, var11);
 			}
-
-			return var2;
-		} else {
-			return Integer.toString(var0);
 		}
-	}
-
-	@ObfuscatedName("fr")
-	@ObfuscatedSignature(
-		signature = "(Lby;I)V",
-		garbageValue = "1394806934"
-	)
-	static final void method2028(Actor var0) {
-		if (var0.field976 == Client.cycle || var0.sequence == -1 || var0.sequenceDelay != 0 || var0.sequenceFrameCycle + 1 > GrandExchangeOfferUnitPriceComparator.SequenceDefinition_get(var0.sequence).frameLengths[var0.sequenceFrame]) {
-			int var1 = var0.field976 - var0.field948;
-			int var2 = Client.cycle - var0.field948;
-			int var3 = var0.size * -527978816 + var0.field971 * 128;
-			int var4 = var0.size * -527978816 + var0.field973 * 128;
-			int var5 = var0.field972 * 128 + var0.size * -527978816;
-			int var6 = var0.size * -527978816 + var0.field974 * 128;
-			var0.x = (var2 * var5 + var3 * (var1 - var2)) / var1;
-			var0.y = (var6 * var2 + var4 * (var1 - var2)) / var1 * -944175751;
-		}
-
-		var0.field949 = 0;
-		var0.orientation = var0.field977;
-		var0.rotation = var0.orientation;
 	}
 }

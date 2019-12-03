@@ -44,7 +44,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
 public class BankPluginTest
@@ -80,8 +80,6 @@ public class BankPluginTest
 		when(client.getItemContainer(InventoryID.BANK)).thenReturn(itemContainer);
 
 		ItemDefinition comp = mock(ItemDefinition.class);
-		when(comp.getId())
-			.thenReturn(itemId);
 
 		// 60k HA price * 30 = 1.8m
 		when(comp.getPrice())
