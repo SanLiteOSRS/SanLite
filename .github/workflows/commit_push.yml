@@ -5,7 +5,7 @@ on: [push]
 jobs:
   build-test:
     runs-on: ubuntu-latest
-    name: Build
+    name: Build & test
 
     steps:
       - name: Checkout
@@ -29,5 +29,5 @@ jobs:
         run: mvn -B package -DskipTests --file pom.xml
       
       - name: Test with Maven
-        run: mvn test -X
+        run: mvn test
 
