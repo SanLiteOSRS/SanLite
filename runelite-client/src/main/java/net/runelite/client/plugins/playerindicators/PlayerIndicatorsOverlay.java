@@ -25,12 +25,7 @@
  */
 package net.runelite.client.plugins.playerindicators;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.ClanMemberRank;
 import net.runelite.api.Player;
 import net.runelite.api.Point;
@@ -42,6 +37,12 @@ import net.runelite.client.ui.overlay.OverlayPriority;
 import net.runelite.client.ui.overlay.OverlayUtil;
 import net.runelite.client.util.Text;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+
+@Slf4j
 @Singleton
 public class PlayerIndicatorsOverlay extends Overlay
 {
@@ -66,35 +67,40 @@ public class PlayerIndicatorsOverlay extends Overlay
 	@Override
 	public Dimension render(Graphics2D graphics)
 	{
-		playerIndicatorsService.forEachPlayer((player, color) -> renderPlayerOverlay(graphics, player, color));
+		playerIndicatorsService.forEachPlayer((player, type) -> checkPlayerTypes(graphics, player, type));
 		return null;
 	}
 
-	private void renderPlayerOverlay(Graphics2D graphics, Player actor, Color color)
+	private void renderPlayerNames(Graphics2D graphics, Player player, PlayerIndicatorType type, PlayerNameLocation nameLocation, Color color)
 	{
-		final PlayerNameLocation drawPlayerNamesConfig = config.playerNamePosition();
-		if (drawPlayerNamesConfig == PlayerNameLocation.DISABLED)
+		if (nameLocation == PlayerNameLocation.DISABLED)
 		{
 			return;
 		}
 
 		final int zOffset;
-		switch (drawPlayerNamesConfig)
+		switch (nameLocation)
 		{
 			case MODEL_CENTER:
 			case MODEL_RIGHT:
-				zOffset = actor.getLogicalHeight() / 2;
+				zOffset = player.getLogicalHeight() / 2;
 				break;
 			default:
-				zOffset = actor.getLogicalHeight() + ACTOR_OVERHEAD_TEXT_MARGIN;
+				zOffset = player.getLogicalHeight() + ACTOR_OVERHEAD_TEXT_MARGIN;
 		}
 
-		final String name = Text.sanitize(actor.getName());
-		Point textLocation = actor.getCanvasTextLocation(graphics, name, zOffset);
-
-		if (drawPlayerNamesConfig == PlayerNameLocation.MODEL_RIGHT)
+		final String playerName = player.getName();
+		if (playerName == null)
 		{
-			textLocation = actor.getCanvasTextLocation(graphics, "", zOffset);
+			return;
+		}
+
+		final String name = Text.sanitize(playerName);
+		Point textLocation = player.getCanvasTextLocation(graphics, name, zOffset);
+
+		if (nameLocation == PlayerNameLocation.MODEL_RIGHT)
+		{
+			textLocation = player.getCanvasTextLocation(graphics, "", zOffset);
 
 			if (textLocation == null)
 			{
@@ -109,41 +115,76 @@ public class PlayerIndicatorsOverlay extends Overlay
 			return;
 		}
 
-		if (config.showClanRanks() && actor.isClanMember())
+		if (config.showClanRanks() && type == PlayerIndicatorType.CLAN_MEMBER)
 		{
-			final ClanMemberRank rank = clanManager.getRank(name);
-
-			if (rank != ClanMemberRank.UNRANKED)
+			Point clanRankTextLocation = renderClanRanks(graphics, name, textLocation, nameLocation);
+			if (clanRankTextLocation != null)
 			{
-				final BufferedImage clanchatImage = clanManager.getClanImage(rank);
-
-				if (clanchatImage != null)
-				{
-					final int clanImageWidth = clanchatImage.getWidth();
-					final int clanImageTextMargin;
-					final int clanImageNegativeMargin;
-
-					if (drawPlayerNamesConfig == PlayerNameLocation.MODEL_RIGHT)
-					{
-						clanImageTextMargin = clanImageWidth;
-						clanImageNegativeMargin = 0;
-					}
-					else
-					{
-						clanImageTextMargin = clanImageWidth / 2;
-						clanImageNegativeMargin = clanImageWidth / 2;
-					}
-
-					final int textHeight = graphics.getFontMetrics().getHeight() - graphics.getFontMetrics().getMaxDescent();
-					final Point imageLocation = new Point(textLocation.getX() - clanImageNegativeMargin - 1, textLocation.getY() - textHeight / 2 - clanchatImage.getHeight() / 2);
-					OverlayUtil.renderImageLocation(graphics, imageLocation, clanchatImage);
-
-					// move text
-					textLocation = new Point(textLocation.getX() + clanImageTextMargin, textLocation.getY());
-				}
+				textLocation = clanRankTextLocation;
 			}
 		}
 
 		OverlayUtil.renderTextLocation(graphics, textLocation, name, color);
+	}
+
+	private Point renderClanRanks(Graphics2D graphics, String name, Point textLocation, PlayerNameLocation nameLocation)
+	{
+		final ClanMemberRank rank = clanManager.getRank(name);
+
+		if (rank != ClanMemberRank.UNRANKED)
+		{
+			final BufferedImage clanChatImage = clanManager.getClanImage(rank);
+
+			if (clanChatImage != null)
+			{
+				final int clanImageWidth = clanChatImage.getWidth();
+				final int clanImageTextMargin;
+				final int clanImageNegativeMargin;
+
+				if (nameLocation == PlayerNameLocation.MODEL_RIGHT)
+				{
+					clanImageTextMargin = clanImageWidth;
+					clanImageNegativeMargin = 0;
+				}
+				else
+				{
+					clanImageTextMargin = clanImageWidth / 2;
+					clanImageNegativeMargin = clanImageWidth / 2;
+				}
+
+				final int textHeight = graphics.getFontMetrics().getHeight() - graphics.getFontMetrics().getMaxDescent();
+				final Point imageLocation = new Point(textLocation.getX() - clanImageNegativeMargin - 1, textLocation.getY() - textHeight / 2 - clanChatImage.getHeight() / 2);
+				OverlayUtil.renderImageLocation(graphics, imageLocation, clanChatImage);
+
+				// move text
+				return new Point(textLocation.getX() + clanImageTextMargin, textLocation.getY());
+			}
+		}
+		return null;
+	}
+
+	private void checkPlayerTypes(Graphics2D graphics, Player player, PlayerIndicatorType type)
+	{
+		// TODO: Render clan icons
+		switch (type)
+		{
+			case OWN_PLAYER:
+				renderPlayerNames(graphics, player, type, config.ownPlayerNamePosition(), config.getOwnPlayerColor());
+				break;
+			case FRIEND:
+				renderPlayerNames(graphics, player, type, config.friendPlayerNamePosition(), config.getFriendColor());
+				break;
+			case CLAN_MEMBER:
+				renderPlayerNames(graphics, player, type, config.clanPlayerNamePosition(), config.getClanMemberColor());
+				break;
+			case TEAM_CAPE_MEMBER:
+				renderPlayerNames(graphics, player, type, config.teamPlayerNamePosition(), config.getTeamMemberColor());
+				break;
+			case NON_CLAN_MEMBER:
+				renderPlayerNames(graphics, player, type, config.nonClanPlayerNamePosition(), config.getNonClanMemberColor());
+				break;
+			default:
+				log.warn("Tried rendering name for player: {} with unknown PlayerIndicatorType: {}", player.getName(), type);
+		}
 	}
 }

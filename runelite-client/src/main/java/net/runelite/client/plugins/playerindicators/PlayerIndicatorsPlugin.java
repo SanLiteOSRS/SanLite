@@ -95,6 +95,7 @@ public class PlayerIndicatorsPlugin extends Plugin
 	@Subscribe
 	public void onMenuEntryAdded(MenuEntryAdded menuEntryAdded)
 	{
+		// TODO: Add separate color configs
 		int type = menuEntryAdded.getType();
 
 		if (type >= 2000)
@@ -147,7 +148,7 @@ public class PlayerIndicatorsPlugin extends Plugin
 
 			if (color != config.getFriendColor())
 			{
-				if (config.drawClanMemberNames() && player.isClanMember())
+				if (config.highlightClanMembers() && player.isClanMember())
 				{
 					color = config.getClanMemberColor();
 
@@ -172,7 +173,8 @@ public class PlayerIndicatorsPlugin extends Plugin
 				MenuEntry[] menuEntries = client.getMenuEntries();
 				MenuEntry lastEntry = menuEntries[menuEntries.length - 1];
 
-				if (color != null && config.colorPlayerMenu())
+				// FIXME: temp
+				if (color != null && config.colorFriendPlayerMenu())
 				{
 					// strip out existing <col...
 					String target = lastEntry.getTarget();

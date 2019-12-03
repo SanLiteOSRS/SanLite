@@ -25,16 +25,14 @@
 
 package net.runelite.client.plugins.playerindicators;
 
-import java.awt.Dimension;
-import java.awt.Graphics2D;
-import java.awt.Polygon;
-import javax.inject.Inject;
-import net.runelite.client.ui.overlay.Overlay;
-import net.runelite.client.ui.overlay.OverlayLayer;
-import net.runelite.client.ui.overlay.OverlayPosition;
-import net.runelite.client.ui.overlay.OverlayPriority;
-import net.runelite.client.ui.overlay.OverlayUtil;
+import lombok.extern.slf4j.Slf4j;
+import net.runelite.api.Player;
+import net.runelite.client.ui.overlay.*;
 
+import javax.inject.Inject;
+import java.awt.*;
+
+@Slf4j
 public class PlayerIndicatorsTileOverlay extends Overlay
 {
 	private final PlayerIndicatorsService playerIndicatorsService;
@@ -53,21 +51,48 @@ public class PlayerIndicatorsTileOverlay extends Overlay
 	@Override
 	public Dimension render(Graphics2D graphics)
 	{
-		if (!config.drawTiles())
+		if (!config.drawOwnTiles() && !config.drawFriendTiles() && !config.drawClanTiles() && !config.drawTeamTiles()
+				&& !config.drawNonClanTiles())
 		{
 			return null;
 		}
 
-		playerIndicatorsService.forEachPlayer((player, color) ->
+		playerIndicatorsService.forEachPlayer((player, type) ->
 		{
-			final Polygon poly = player.getCanvasTilePoly();
-
-			if (poly != null)
+			switch (type)
 			{
-				OverlayUtil.renderPolygon(graphics, poly, color);
+				case OWN_PLAYER:
+					renderTileOverlay(graphics, player, config.getOwnPlayerColor(), config.drawOwnTiles());
+					break;
+				case FRIEND:
+					renderTileOverlay(graphics, player, config.getFriendColor(), config.drawFriendTiles());
+					break;
+				case CLAN_MEMBER:
+					renderTileOverlay(graphics, player, config.getClanMemberColor(), config.drawClanTiles());
+					break;
+				case TEAM_CAPE_MEMBER:
+					renderTileOverlay(graphics, player, config.getTeamMemberColor(), config.drawTeamTiles());
+					break;
+				case NON_CLAN_MEMBER:
+					renderTileOverlay(graphics, player, config.getNonClanMemberColor(), config.drawNonClanTiles());
+					break;
+				default:
+					log.warn("Tried rendering tile overlay for player: {} with unknown PlayerIndicatorType: {}", player.getName(), type);
 			}
 		});
 
 		return null;
+	}
+
+	private void renderTileOverlay(Graphics2D graphics, Player player, Color color, boolean drawTileOverlay)
+	{
+		if (drawTileOverlay)
+		{
+			final Polygon poly = player.getCanvasTilePoly();
+			if (poly != null)
+			{
+				OverlayUtil.renderPolygon(graphics, poly, color);
+			}
+		}
 	}
 }
