@@ -25,7 +25,6 @@
 package net.runelite.client.plugins.alchemicalhydra;
 
 import com.google.inject.Provides;
-import javafx.scene.control.Toggle;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.*;
