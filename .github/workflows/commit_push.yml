@@ -32,4 +32,4 @@ jobs:
         run: mvn test
 
       - name: Check for Checkstyle violations
-        run: mvn checkstyle:check -Dcheckstyle.skip=false
+        run: mvn -B checkstyle:check -Dcheckstyle.skip=false
