@@ -34,11 +34,12 @@ import net.runelite.api.Item;
 import net.runelite.api.ItemDefinition;
 import net.runelite.api.ItemID;
 import net.runelite.client.game.ItemManager;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import org.mockito.junit.MockitoJUnitRunner;
@@ -88,6 +89,5 @@ public class ContainerCalculationTest
 
 		assertTrue(prices.getHighAlchPrice() > Integer.MAX_VALUE);
 		assertTrue(prices.getGePrice() > Integer.MAX_VALUE);
-		fail();
 	}
 }
