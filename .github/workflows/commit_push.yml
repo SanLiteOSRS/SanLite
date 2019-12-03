@@ -28,8 +28,8 @@ jobs:
       - name: Build with Maven
         run: mvn -B package -DskipTests --file pom.xml
       
-      - name: Test with Maven
-        run: mvn test
-
       - name: Check for Checkstyle violations
         run: mvn -B checkstyle:check -Dcheckstyle.skip=false
+      
+      - name: Test with Maven
+        run: mvn test
