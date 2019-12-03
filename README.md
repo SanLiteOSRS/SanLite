@@ -1,5 +1,5 @@
 ![](https://i.imgur.com/Kk1sml0.png)
-# SanLite [![Actions Status](https://github.com/SanLiteOSRS/SanLite/workflows/SanLite%20CI%20-%20Push/badge.svg?branch=master)](https://github.com/SanLiteOSRS/SanLite/actions) [![Discord](https://img.shields.io/discord/634166880411713576?style=flat&logo=discord)](https://discord.gg/hNgWmk6)
+# SanLite [![Actions Status](https://github.com/SanLiteOSRS/SanLite/workflows/SanLite%20CI%20-%20Push/badge.svg)](https://github.com/SanLiteOSRS/SanLite/actions) [![Discord](https://img.shields.io/discord/634166880411713576?style=flat&logo=discord)](https://discord.gg/hNgWmk6)
 
 SanLite is a custom version of the popular Old School RuneScape client RuneLite.
 
