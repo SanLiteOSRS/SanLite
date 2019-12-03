@@ -89,5 +89,6 @@ public class ContainerCalculationTest
 
 		assertTrue(prices.getHighAlchPrice() > Integer.MAX_VALUE);
 		assertTrue(prices.getGePrice() > Integer.MAX_VALUE);
+		fail();
 	}
 }
