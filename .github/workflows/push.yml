@@ -1,4 +1,4 @@
-name: SanLite CI - Commit push
+name: SanLite CI - Push
 
 on: [push]
 
