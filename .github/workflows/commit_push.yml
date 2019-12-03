@@ -25,11 +25,8 @@ jobs:
           java-version: 8
           java-package: jdk+fx
 
-      - name: Build with Maven
-        run: mvn -B package -DskipTests --file pom.xml
-      
-      - name: Check for Checkstyle violations
-        run: mvn -B checkstyle:check -Dcheckstyle.skip=false
+      - name: Build with Maven & check for Checkstyle violations
+        run: mvn -B package -DskipTests -Dcheckstyle.skip=false --file pom.xml
       
       - name: Test with Maven
         run: mvn test
