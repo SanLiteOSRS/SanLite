@@ -3,9 +3,9 @@ name: SanLite CI - Commit push
 on: [push]
 
 jobs:
-  build-test:
+  build-test-checkstyle:
     runs-on: ubuntu-latest
-    name: Build & test
+    name: Build, test & checkstyle
 
     steps:
       - name: Checkout
@@ -31,3 +31,5 @@ jobs:
       - name: Test with Maven
         run: mvn test
 
+      - name: Check for Checkstyle violations
+        run: mvn checkstyle:check -Dcheckstyle.skip=false
