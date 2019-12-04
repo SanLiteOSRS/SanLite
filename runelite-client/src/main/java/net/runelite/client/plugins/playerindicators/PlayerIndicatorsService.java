@@ -1,5 +1,7 @@
 /*
  * Copyright (c) 2018, Tomas Slusny <slusnucky@gmail.com>
+ * Copyright (c) 2019, Jajack
+ * Copyright (c) 2019, Siraz <https://github.com/Sirazzz>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -32,7 +34,7 @@ import javax.inject.Singleton;
 import java.util.function.BiConsumer;
 
 @Singleton
-public class PlayerIndicatorsService
+class PlayerIndicatorsService
 {
 	private final Client client;
 	private final PlayerIndicatorsConfig config;
@@ -44,10 +46,10 @@ public class PlayerIndicatorsService
 		this.client = client;
 	}
 
-	public void forEachPlayer(final BiConsumer<Player, PlayerIndicatorType> consumer)
+	void forEachPlayer(final BiConsumer<Player, PlayerIndicatorType> consumer)
 	{
-		if (!config.highlightOwnPlayer() && !config.highlightClanMembers()
-				&& !config.highlightFriends() && !config.highlightNonClanMembers() && !config.highlightTeamMembers())
+		if (!config.highlightOwnPlayer() && !config.highlightClanMembers() && !config.highlightFriends() &&
+				!config.highlightOfflineFriends() && !config.highlightNonClanMembers() && !config.highlightTeamMembers())
 		{
 			return;
 		}
@@ -124,5 +126,78 @@ public class PlayerIndicatorsService
 				consumer.accept(player, PlayerIndicatorType.NON_CLAN_MEMBER);
 			}
 		}
+	}
+
+	PlayerIndicatorType getPlayerIndicatorType(Player player)
+	{
+		if (!config.highlightOwnPlayer() && !config.highlightClanMembers()
+				&& !config.highlightFriends() && !config.highlightNonClanMembers() && !config.highlightTeamMembers())
+		{
+			return null;
+		}
+
+		final Player localPlayer = client.getLocalPlayer();
+		if (localPlayer == null)
+		{
+			return null;
+		}
+
+		if (player == null || player.getName() == null)
+		{
+			return null;
+		}
+
+		// Own player
+		if (config.highlightOwnPlayer() && player == localPlayer)
+		{
+			return PlayerIndicatorType.OWN_PLAYER;
+		}
+		else if (player == localPlayer)
+		{
+			return null;
+		}
+
+		final boolean isClanMember = player.isClanMember();
+
+		// Friends
+		if (config.highlightFriends() && player.isFriend())
+		{
+			if (config.disableFriendHighlightIfClanMember() && isClanMember)
+			{
+				return PlayerIndicatorType.CLAN_MEMBER;
+			}
+
+			return PlayerIndicatorType.FRIEND;
+		}
+
+		// Appear offline friends
+		if (config.highlightOfflineFriends() && client.isFriended(player.getName(), false))
+		{
+			if (config.disableFriendHighlightIfClanMember() && isClanMember)
+			{
+				return PlayerIndicatorType.CLAN_MEMBER;
+			}
+
+			return PlayerIndicatorType.FRIEND;
+		}
+
+		// Clan members
+		if (config.highlightClanMembers() && isClanMember)
+		{
+			return PlayerIndicatorType.CLAN_MEMBER;
+		}
+
+		// Team-cape members
+		if (config.highlightTeamMembers() && localPlayer.getTeam() > 0 && localPlayer.getTeam() == player.getTeam())
+		{
+			return PlayerIndicatorType.TEAM_CAPE_MEMBER;
+		}
+
+		// Non-clan members
+		if (config.highlightNonClanMembers() && !isClanMember)
+		{
+			return PlayerIndicatorType.NON_CLAN_MEMBER;
+		}
+		return null;
 	}
 }

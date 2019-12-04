@@ -1,5 +1,7 @@
 /*
  * Copyright (c) 2018, Kamiel <https://github.com/Kamielvf>
+ * Copyright (c) 2019, Jajack
+ * Copyright (c) 2019, Siraz <https://github.com/Sirazzz>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,8 +53,8 @@ public class PlayerIndicatorsTileOverlay extends Overlay
 	@Override
 	public Dimension render(Graphics2D graphics)
 	{
-		if (!config.drawOwnTiles() && !config.drawFriendTiles() && !config.drawClanTiles() && !config.drawTeamTiles()
-				&& !config.drawNonClanTiles())
+		if (!config.drawOwnPlayerTiles() && !config.drawFriendTiles() && !config.drawClanMemberTiles() &&
+				!config.drawTeamMemberTiles() && !config.drawNonClanMemberTiles())
 		{
 			return null;
 		}
@@ -62,19 +64,19 @@ public class PlayerIndicatorsTileOverlay extends Overlay
 			switch (type)
 			{
 				case OWN_PLAYER:
-					renderTileOverlay(graphics, player, config.getOwnPlayerColor(), config.drawOwnTiles());
+					renderTileOverlay(graphics, player, config.getOwnPlayerColor(), config.drawOwnPlayerTiles());
 					break;
 				case FRIEND:
 					renderTileOverlay(graphics, player, config.getFriendColor(), config.drawFriendTiles());
 					break;
 				case CLAN_MEMBER:
-					renderTileOverlay(graphics, player, config.getClanMemberColor(), config.drawClanTiles());
+					renderTileOverlay(graphics, player, config.getClanMemberColor(), config.drawClanMemberTiles());
 					break;
 				case TEAM_CAPE_MEMBER:
-					renderTileOverlay(graphics, player, config.getTeamMemberColor(), config.drawTeamTiles());
+					renderTileOverlay(graphics, player, config.getTeamMemberColor(), config.drawTeamMemberTiles());
 					break;
 				case NON_CLAN_MEMBER:
-					renderTileOverlay(graphics, player, config.getNonClanMemberColor(), config.drawNonClanTiles());
+					renderTileOverlay(graphics, player, config.getNonClanMemberColor(), config.drawNonClanMemberTiles());
 					break;
 				default:
 					log.warn("Tried rendering tile overlay for player: {} with unknown PlayerIndicatorType: {}", player.getName(), type);

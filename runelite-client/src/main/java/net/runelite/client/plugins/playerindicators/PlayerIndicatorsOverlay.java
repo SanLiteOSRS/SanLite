@@ -1,6 +1,8 @@
 /*
  * Copyright (c) 2018, Tomas Slusny <slusnucky@gmail.com>
  * Copyright (c) 2019, Jordan Atwood <nightfirecat@protonmail.com>
+ * Copyright (c) 2019, Jajack
+ * Copyright (c) 2019, Siraz <https://github.com/Sirazzz>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -71,7 +73,31 @@ public class PlayerIndicatorsOverlay extends Overlay
 		return null;
 	}
 
-	private void renderPlayerNames(Graphics2D graphics, Player player, PlayerIndicatorType type, PlayerNameLocation nameLocation, Color color)
+	private void checkPlayerTypes(Graphics2D graphics, Player player, PlayerIndicatorType type)
+	{
+		switch (type)
+		{
+			case OWN_PLAYER:
+				renderPlayerName(graphics, player, type, config.getOwnPlayerNamePosition(), config.getOwnPlayerColor());
+				break;
+			case FRIEND:
+				renderPlayerName(graphics, player, type, config.getFriendPlayerNamePosition(), config.getFriendColor());
+				break;
+			case CLAN_MEMBER:
+				renderPlayerName(graphics, player, type, config.getClanMemberPlayerNamePosition(), config.getClanMemberColor());
+				break;
+			case TEAM_CAPE_MEMBER:
+				renderPlayerName(graphics, player, type, config.getTeamPlayerNamePosition(), config.getTeamMemberColor());
+				break;
+			case NON_CLAN_MEMBER:
+				renderPlayerName(graphics, player, type, config.getNonClanPlayerNamePosition(), config.getNonClanMemberColor());
+				break;
+			default:
+				log.warn("Tried rendering name for player: {} with unknown PlayerIndicatorType: {}", player.getName(), type);
+		}
+	}
+
+	private void renderPlayerName(Graphics2D graphics, Player player, PlayerIndicatorType type, PlayerNameLocation nameLocation, Color color)
 	{
 		if (nameLocation == PlayerNameLocation.DISABLED)
 		{
@@ -117,7 +143,7 @@ public class PlayerIndicatorsOverlay extends Overlay
 
 		if (config.showClanRanks() && type == PlayerIndicatorType.CLAN_MEMBER)
 		{
-			Point clanRankTextLocation = renderClanRanks(graphics, name, textLocation, nameLocation);
+			Point clanRankTextLocation = getNameTextLocationWithClanRank(graphics, name, textLocation, nameLocation);
 			if (clanRankTextLocation != null)
 			{
 				textLocation = clanRankTextLocation;
@@ -127,7 +153,7 @@ public class PlayerIndicatorsOverlay extends Overlay
 		OverlayUtil.renderTextLocation(graphics, textLocation, name, color);
 	}
 
-	private Point renderClanRanks(Graphics2D graphics, String name, Point textLocation, PlayerNameLocation nameLocation)
+	private Point getNameTextLocationWithClanRank(Graphics2D graphics, String name, Point textLocation, PlayerNameLocation nameLocation)
 	{
 		final ClanMemberRank rank = clanManager.getRank(name);
 
@@ -161,30 +187,5 @@ public class PlayerIndicatorsOverlay extends Overlay
 			}
 		}
 		return null;
-	}
-
-	private void checkPlayerTypes(Graphics2D graphics, Player player, PlayerIndicatorType type)
-	{
-		// TODO: Render clan icons
-		switch (type)
-		{
-			case OWN_PLAYER:
-				renderPlayerNames(graphics, player, type, config.ownPlayerNamePosition(), config.getOwnPlayerColor());
-				break;
-			case FRIEND:
-				renderPlayerNames(graphics, player, type, config.friendPlayerNamePosition(), config.getFriendColor());
-				break;
-			case CLAN_MEMBER:
-				renderPlayerNames(graphics, player, type, config.clanPlayerNamePosition(), config.getClanMemberColor());
-				break;
-			case TEAM_CAPE_MEMBER:
-				renderPlayerNames(graphics, player, type, config.teamPlayerNamePosition(), config.getTeamMemberColor());
-				break;
-			case NON_CLAN_MEMBER:
-				renderPlayerNames(graphics, player, type, config.nonClanPlayerNamePosition(), config.getNonClanMemberColor());
-				break;
-			default:
-				log.warn("Tried rendering name for player: {} with unknown PlayerIndicatorType: {}", player.getName(), type);
-		}
 	}
 }

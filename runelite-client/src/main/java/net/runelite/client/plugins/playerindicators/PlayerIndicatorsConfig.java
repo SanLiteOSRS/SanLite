@@ -1,5 +1,7 @@
 /*
  * Copyright (c) 2018, Tomas Slusny <slusnucky@gmail.com>
+ * Copyright (c) 2019, Jajack
+ * Copyright (c) 2019, Siraz <https://github.com/Sirazzz>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -24,11 +26,12 @@
  */
 package net.runelite.client.plugins.playerindicators;
 
-import java.awt.Color;
 import net.runelite.client.config.Config;
 import net.runelite.client.config.ConfigGroup;
 import net.runelite.client.config.ConfigItem;
 import net.runelite.client.config.PlayerNameLocation;
+
+import java.awt.*;
 
 @ConfigGroup("playerindicators")
 public interface PlayerIndicatorsConfig extends Config
@@ -47,7 +50,7 @@ public interface PlayerIndicatorsConfig extends Config
 
 	@ConfigItem(
 			position = 1,
-			keyName = "ownNameColor",
+			keyName = "ownPlayerColor",
 			name = "Own player color",
 			description = "Color of your own player",
 			group = "Own player"
@@ -59,12 +62,12 @@ public interface PlayerIndicatorsConfig extends Config
 
 	@ConfigItem(
 			position = 2,
-			keyName = "drawOwnTiles",
+			keyName = "drawOwnPlayerTiles",
 			name = "Draw tiles under own player",
 			description = "Configures whether or not tiles under own player should be drawn",
 			group = "Own player"
 	)
-	default boolean drawOwnTiles()
+	default boolean drawOwnPlayerTiles()
 	{
 		return false;
 	}
@@ -76,19 +79,19 @@ public interface PlayerIndicatorsConfig extends Config
 			description = "Configures the position of drawn own player name, or if they should be disabled",
 			group = "Own player"
 	)
-	default PlayerNameLocation ownPlayerNamePosition()
+	default PlayerNameLocation getOwnPlayerNamePosition()
 	{
 		return PlayerNameLocation.ABOVE_HEAD;
 	}
 
 	@ConfigItem(
 			position = 4,
-			keyName = "drawOwnPlayerMinimapNames",
+			keyName = "drawOwnPlayerMinimapName",
 			name = "Draw own player name on minimap",
 			description = "Configures whether or not minimap names for own player with rendered names should be drawn",
 			group = "Own player"
 	)
-	default boolean drawOwnPlayerMinimapNames()
+	default boolean drawOwnPlayerMinimapName()
 	{
 		return false;
 	}
@@ -160,7 +163,7 @@ public interface PlayerIndicatorsConfig extends Config
 			description = "Configures the position of drawn friend names, or if they should be disabled",
 			group = "Friends"
 	)
-	default PlayerNameLocation friendPlayerNamePosition()
+	default PlayerNameLocation getFriendPlayerNamePosition()
 	{
 		return PlayerNameLocation.ABOVE_HEAD;
 	}
@@ -215,12 +218,12 @@ public interface PlayerIndicatorsConfig extends Config
 
 	@ConfigItem(
 			position = 15,
-			keyName = "drawClanTiles",
+			keyName = "drawClanMemberTiles",
 			name = "Draw tiles under clan members",
 			description = "Configures whether or not tiles under highlighted clan members should be drawn",
 			group = "Clan members"
 	)
-	default boolean drawClanTiles()
+	default boolean drawClanMemberTiles()
 	{
 		return false;
 	}
@@ -232,7 +235,7 @@ public interface PlayerIndicatorsConfig extends Config
 			description = "Configures the position of drawn clan member names, or if they should be disabled",
 			group = "Clan members"
 	)
-	default PlayerNameLocation clanPlayerNamePosition()
+	default PlayerNameLocation getClanMemberPlayerNamePosition()
 	{
 		return PlayerNameLocation.ABOVE_HEAD;
 	}
@@ -244,7 +247,7 @@ public interface PlayerIndicatorsConfig extends Config
 			description = "Configures whether or not minimap names for clan members with rendered names should be drawn",
 			group = "Clan members"
 	)
-	default boolean drawClanMinimapNames()
+	default boolean drawClanMemberMinimapNames()
 	{
 		return false;
 	}
@@ -256,7 +259,7 @@ public interface PlayerIndicatorsConfig extends Config
 			description = "Color right click menu for clan members",
 			group = "Clan members"
 	)
-	default boolean colorClanPlayerMenu()
+	default boolean colorClanMemberPlayerMenu()
 	{
 		return true;
 	}
@@ -292,7 +295,7 @@ public interface PlayerIndicatorsConfig extends Config
 			description = "Configures whether or not tiles under highlighted team members should be drawn",
 			group = "Team cape members"
 	)
-	default boolean drawTeamTiles()
+	default boolean drawTeamMemberTiles()
 	{
 		return false;
 	}
@@ -304,7 +307,7 @@ public interface PlayerIndicatorsConfig extends Config
 			description = "Configures the position of drawn team member names, or if they should be disabled",
 			group = "Team cape members"
 	)
-	default PlayerNameLocation teamPlayerNamePosition()
+	default PlayerNameLocation getTeamPlayerNamePosition()
 	{
 		return PlayerNameLocation.ABOVE_HEAD;
 	}
@@ -328,7 +331,7 @@ public interface PlayerIndicatorsConfig extends Config
 			description = "Color right click menu for team members",
 			group = "Team cape members"
 	)
-	default boolean colorTeamPlayerMenu()
+	default boolean colorTeamMemberPlayerMenu()
 	{
 		return true;
 	}
@@ -364,7 +367,7 @@ public interface PlayerIndicatorsConfig extends Config
 			description = "Configures whether or not tiles under highlighted non-clan members should be drawn",
 			group = "Non-clan members"
 	)
-	default boolean drawNonClanTiles()
+	default boolean drawNonClanMemberTiles()
 	{
 		return false;
 	}
@@ -376,7 +379,7 @@ public interface PlayerIndicatorsConfig extends Config
 			description = "Configures the position of drawn non-clan member names, or if they should be disabled",
 			group = "Non-clan members"
 	)
-	default PlayerNameLocation nonClanPlayerNamePosition()
+	default PlayerNameLocation getNonClanPlayerNamePosition()
 	{
 		return PlayerNameLocation.ABOVE_HEAD;
 	}
@@ -388,7 +391,7 @@ public interface PlayerIndicatorsConfig extends Config
 			description = "Configures whether or not minimap names for non-clan members with rendered names should be drawn",
 			group = "Non-clan members"
 	)
-	default boolean drawNonClanMinimapNames()
+	default boolean drawNonClanMemberMinimapNames()
 	{
 		return false;
 	}
@@ -400,7 +403,7 @@ public interface PlayerIndicatorsConfig extends Config
 			description = "Color right click menu for non-clan members",
 			group = "Non-clan members"
 	)
-	default boolean colorNonClanPlayerMenu()
+	default boolean colorNonClanMemberPlayerMenu()
 	{
 		return true;
 	}
