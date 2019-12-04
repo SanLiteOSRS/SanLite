@@ -128,7 +128,7 @@ class PlayerIndicatorsService
 		}
 	}
 
-	PlayerIndicatorType getPlayerIndicatorType(Player player)
+	PlayerIndicatorType getMenuEntryPlayerIndicatorType(Player player)
 	{
 		if (!config.highlightOwnPlayer() && !config.highlightClanMembers()
 				&& !config.highlightFriends() && !config.highlightNonClanMembers() && !config.highlightTeamMembers())
@@ -137,22 +137,7 @@ class PlayerIndicatorsService
 		}
 
 		final Player localPlayer = client.getLocalPlayer();
-		if (localPlayer == null)
-		{
-			return null;
-		}
-
-		if (player == null || player.getName() == null)
-		{
-			return null;
-		}
-
-		// Own player
-		if (config.highlightOwnPlayer() && player == localPlayer)
-		{
-			return PlayerIndicatorType.OWN_PLAYER;
-		}
-		else if (player == localPlayer)
+		if (localPlayer == null || player == null || player.getName() == null || localPlayer == player)
 		{
 			return null;
 		}
@@ -160,7 +145,7 @@ class PlayerIndicatorsService
 		final boolean isClanMember = player.isClanMember();
 
 		// Friends
-		if (config.highlightFriends() && player.isFriend())
+		if (config.highlightFriends() && config.colorFriendPlayerMenu() && player.isFriend())
 		{
 			if (config.disableFriendHighlightIfClanMember() && isClanMember)
 			{
@@ -171,7 +156,7 @@ class PlayerIndicatorsService
 		}
 
 		// Appear offline friends
-		if (config.highlightOfflineFriends() && client.isFriended(player.getName(), false))
+		if (config.highlightOfflineFriends() && config.colorFriendPlayerMenu() && client.isFriended(player.getName(), false))
 		{
 			if (config.disableFriendHighlightIfClanMember() && isClanMember)
 			{
@@ -182,19 +167,20 @@ class PlayerIndicatorsService
 		}
 
 		// Clan members
-		if (config.highlightClanMembers() && isClanMember)
+		if (config.highlightClanMembers() && config.colorClanMemberPlayerMenu() && isClanMember)
 		{
 			return PlayerIndicatorType.CLAN_MEMBER;
 		}
 
 		// Team-cape members
-		if (config.highlightTeamMembers() && localPlayer.getTeam() > 0 && localPlayer.getTeam() == player.getTeam())
+		if (config.highlightTeamMembers() && config.colorTeamMemberPlayerMenu() && localPlayer.getTeam() > 0 &&
+				localPlayer.getTeam() == player.getTeam())
 		{
 			return PlayerIndicatorType.TEAM_CAPE_MEMBER;
 		}
 
 		// Non-clan members
-		if (config.highlightNonClanMembers() && !isClanMember)
+		if (config.highlightNonClanMembers() && config.colorNonClanMemberPlayerMenu() && !isClanMember)
 		{
 			return PlayerIndicatorType.NON_CLAN_MEMBER;
 		}

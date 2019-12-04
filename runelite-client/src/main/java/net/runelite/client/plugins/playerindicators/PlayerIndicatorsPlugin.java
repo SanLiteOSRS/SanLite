@@ -140,7 +140,7 @@ public class PlayerIndicatorsPlugin extends Plugin
 				return;
 			}
 
-			PlayerIndicatorType playerIndicatorType = playerIndicatorsService.getPlayerIndicatorType(player);
+			PlayerIndicatorType playerIndicatorType = playerIndicatorsService.getMenuEntryPlayerIndicatorType(player);
 			if (playerIndicatorType == null)
 				return;
 
