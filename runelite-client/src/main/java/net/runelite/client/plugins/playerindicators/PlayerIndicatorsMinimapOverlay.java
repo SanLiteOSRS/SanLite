@@ -1,5 +1,7 @@
 /*
  * Copyright (c) 2018, Tomas Slusny <slusnucky@gmail.com>
+ * Copyright (c) 2019, Jajack
+ * Copyright (c) 2019, Siraz <https://github.com/Sirazzz>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -24,18 +26,15 @@
  */
 package net.runelite.client.plugins.playerindicators;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics2D;
+import lombok.extern.slf4j.Slf4j;
+import net.runelite.api.Player;
+import net.runelite.client.ui.overlay.*;
+
 import javax.inject.Inject;
 import javax.inject.Singleton;
-import net.runelite.api.Player;
-import net.runelite.client.ui.overlay.Overlay;
-import net.runelite.client.ui.overlay.OverlayLayer;
-import net.runelite.client.ui.overlay.OverlayPosition;
-import net.runelite.client.ui.overlay.OverlayPriority;
-import net.runelite.client.ui.overlay.OverlayUtil;
+import java.awt.*;
 
+@Slf4j
 @Singleton
 public class PlayerIndicatorsMinimapOverlay extends Overlay
 {
@@ -55,21 +54,56 @@ public class PlayerIndicatorsMinimapOverlay extends Overlay
 	@Override
 	public Dimension render(Graphics2D graphics)
 	{
-		playerIndicatorsService.forEachPlayer((player, color) -> renderPlayerOverlay(graphics, player, color));
+		if (!config.drawOwnPlayerMinimapName() && !config.drawFriendMinimapNames() && !config.drawClanMemberMinimapNames() &&
+				!config.drawTeamMinimapNames() && !config.drawNonClanMemberMinimapNames())
+		{
+			return null;
+		}
+
+		playerIndicatorsService.forEachPlayer((player, type) -> renderPlayerOverlay(graphics, player, type));
 		return null;
 	}
 
-	private void renderPlayerOverlay(Graphics2D graphics, Player actor, Color color)
+	private void renderPlayerOverlay(Graphics2D graphics, Player player, PlayerIndicatorType type)
 	{
-		final String name = actor.getName().replace('\u00A0', ' ');
+		switch (type)
+		{
+			case OWN_PLAYER:
+				renderMinimapOverlay(graphics, player, config.getOwnPlayerColor(), config.drawOwnPlayerMinimapName());
+				break;
+			case FRIEND:
+				renderMinimapOverlay(graphics, player, config.getFriendColor(), config.drawFriendMinimapNames());
+				break;
+			case CLAN_MEMBER:
+				renderMinimapOverlay(graphics, player, config.getClanMemberColor(), config.drawClanMemberMinimapNames());
+				break;
+			case TEAM_CAPE_MEMBER:
+				renderMinimapOverlay(graphics, player, config.getTeamMemberColor(), config.drawTeamMinimapNames());
+				break;
+			case NON_CLAN_MEMBER:
+				renderMinimapOverlay(graphics, player, config.getNonClanMemberColor(), config.drawNonClanMemberMinimapNames());
+				break;
+			default:
+				log.warn("Tried rendering minimap name for player: {} with unknown PlayerIndicatorType: {}", player.getName(), type);
+		}
+	}
 
-		if (config.drawMinimapNames())
+	private void renderMinimapOverlay(Graphics2D graphics, Player actor, Color color, boolean drawMinimapName)
+	{
+		final String name = actor.getName();
+		if (name == null)
+		{
+			return;
+		}
+
+		final String cleanedName = name.replace('\u00A0', ' ');
+		if (drawMinimapName)
 		{
 			final net.runelite.api.Point minimapLocation = actor.getMinimapLocation();
 
 			if (minimapLocation != null)
 			{
-				OverlayUtil.renderTextLocation(graphics, minimapLocation, name, color);
+				OverlayUtil.renderTextLocation(graphics, minimapLocation, cleanedName, color);
 			}
 		}
 	}
