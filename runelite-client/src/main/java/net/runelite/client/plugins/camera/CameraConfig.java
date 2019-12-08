@@ -22,15 +22,15 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.client.plugins.zoom;
+package net.runelite.client.plugins.camera;
 
 import net.runelite.client.config.Config;
 import net.runelite.client.config.ConfigGroup;
 import net.runelite.client.config.ConfigItem;
 import net.runelite.client.config.Range;
 
-@ConfigGroup("zoom")
-public interface ZoomConfig extends Config
+@ConfigGroup("zoom") // using the old plugin's group name
+public interface CameraConfig extends Config
 {
 	int OUTER_LIMIT_MIN = -400;
 	int OUTER_LIMIT_MAX = 400;
@@ -42,10 +42,10 @@ public interface ZoomConfig extends Config
 	int INNER_ZOOM_LIMIT = 1004;
 
 	@ConfigItem(
-		keyName = "inner",
-		name = "Expand inner zoom limit",
-		description = "Configures whether or not the inner zoom limit is reduced",
-		position = 1
+			keyName = "inner",
+			name = "Expand inner zoom limit",
+			description = "Configures whether or not the inner zoom limit is reduced",
+			position = 1
 	)
 	default boolean innerLimit()
 	{
@@ -53,14 +53,14 @@ public interface ZoomConfig extends Config
 	}
 
 	@Range(
-		min = OUTER_LIMIT_MIN,
-		max = OUTER_LIMIT_MAX
+			min = OUTER_LIMIT_MIN,
+			max = OUTER_LIMIT_MAX
 	)
 	@ConfigItem(
-		keyName = "outerLimit",
-		name = "Expand outer zoom limit",
-		description = "Configures how much the outer zoom limit is adjusted",
-		position = 2
+			keyName = "outerLimit",
+			name = "Expand outer zoom limit",
+			description = "Configures how much the outer zoom limit is adjusted",
+			position = 2
 	)
 	default int outerLimit()
 	{
@@ -68,10 +68,10 @@ public interface ZoomConfig extends Config
 	}
 
 	@ConfigItem(
-		keyName = "relaxCameraPitch",
-		name = "Vertical camera",
-		description = "Relax the camera's upper pitch limit",
-		position = 3
+			keyName = "relaxCameraPitch",
+			name = "Vertical camera",
+			description = "Relax the camera's upper pitch limit",
+			position = 3
 	)
 	default boolean relaxCameraPitch()
 	{
@@ -79,10 +79,10 @@ public interface ZoomConfig extends Config
 	}
 
 	@ConfigItem(
-		keyName = "controlFunction",
-		name = "Control Function",
-		description = "Configures the zoom function when control is pressed",
-		position = 4
+			keyName = "controlFunction",
+			name = "Control Function",
+			description = "Configures the zoom function when control is pressed",
+			position = 4
 	)
 	default ControlFunction controlFunction()
 	{
@@ -90,14 +90,14 @@ public interface ZoomConfig extends Config
 	}
 
 	@ConfigItem(
-		keyName = "ctrlZoomValue",
-		name = "Reset zoom position",
-		description = "Position of zoom when it is reset",
-		position = 5
+			keyName = "ctrlZoomValue",
+			name = "Reset zoom position",
+			description = "Position of zoom when it is reset",
+			position = 5
 	)
 	@Range(
-		min = OUTER_LIMIT_MIN,
-		max = INNER_ZOOM_LIMIT
+			min = OUTER_LIMIT_MIN,
+			max = INNER_ZOOM_LIMIT
 	)
 	default int ctrlZoomValue()
 	{
@@ -105,14 +105,46 @@ public interface ZoomConfig extends Config
 	}
 
 	@ConfigItem(
-		keyName = "zoomIncrement",
-		name = "Zoom Speed",
-		description = "Speed of zoom",
-		position = 6
+			keyName = "zoomIncrement",
+			name = "Zoom Speed",
+			description = "Speed of zoom",
+			position = 6
 	)
 	default int zoomIncrement()
 	{
 		return 25;
 	}
 
+	@ConfigItem(
+			keyName = "rightClickMovesCamera",
+			name = "Right click moves camera",
+			description = "Remaps right click to middle mouse click if there are no menu options",
+			position = 7
+	)
+	default boolean rightClickMovesCamera()
+	{
+		return false;
+	}
+
+	@ConfigItem(
+			keyName = "ignoreExamine",
+			name = "Ignore Examine",
+			description = "Ignore the Examine menu entry",
+			position = 8
+	)
+	default boolean ignoreExamine()
+	{
+		return false;
+	}
+
+	@ConfigItem(
+			keyName = "middleClickMenu",
+			name = "Middle-button opens menu",
+			description = "Middle-mouse button always opens the menu",
+			position = 9
+	)
+	default boolean middleClickMenu()
+	{
+		return false;
+	}
 }

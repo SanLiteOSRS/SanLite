@@ -74,7 +74,7 @@ class Library
 	private Book customerBook;
 
 	@Getter
-	private LibraryCustomer customer;
+	private int customerId;
 
 	Library()
 	{
@@ -93,9 +93,9 @@ class Library
 		return Collections.unmodifiableList(byIndex);
 	}
 
-	void setCustomer(LibraryCustomer customer, Book book)
+	void setCustomer(int customerId, Book book)
 	{
-		this.customer = customer;
+		this.customerId = customerId;
 		this.customerBook = book;
 	}
 
@@ -131,7 +131,7 @@ class Library
 		else if (state != SolvedState.NO_DATA)
 		{
 			// We know all of the possible things in this shelf.
-			if (book != null)
+			if (book != null || bookcase.getPossibleBooks().stream().noneMatch(Book::isDarkManuscript))
 			{
 				// Check to see if our guess is wrong
 				if (!bookcase.getPossibleBooks().contains(book))
@@ -227,27 +227,27 @@ class Library
 			}
 
 			IntStream.range(0, sequences.size())
-				.filter(i -> certainty[i] == max)
-				.forEach(isequence ->
-				{
-					List<Book> sequence = sequences.get(isequence);
-					int zero = getBookcaseZeroIndexForSequenceWithBook(sequence, bookcaseIndex, book);
-
-					for (int i = 0; i < byIndex.size(); i++)
+					.filter(i -> certainty[i] == max)
+					.forEach(isequence ->
 					{
-						int ai = (i + zero) % byIndex.size();
-						Bookcase iBookcase = byIndex.get(ai);
-						if (iBookcase.getBook() == null)
+						List<Book> sequence = sequences.get(isequence);
+						int zero = getBookcaseZeroIndexForSequenceWithBook(sequence, bookcaseIndex, book);
+
+						for (int i = 0; i < byIndex.size(); i++)
 						{
-							int iseq = i / step;
-							if (i % step == 0 && iseq < sequence.size())
+							int ai = (i + zero) % byIndex.size();
+							Bookcase iBookcase = byIndex.get(ai);
+							if (iBookcase.getBook() == null)
 							{
-								Book seqBook = sequence.get(iseq);
-								iBookcase.getPossibleBooks().add(seqBook);
+								int iseq = i / step;
+								if (i % step == 0 && iseq < sequence.size())
+								{
+									Book seqBook = sequence.get(iseq);
+									iBookcase.getPossibleBooks().add(seqBook);
+								}
 							}
 						}
-					}
-				});
+					});
 			if (IntStream.range(0, certainty.length).filter(i -> certainty[i] == max).count() == 1)
 			{
 				state = SolvedState.COMPLETE;
@@ -275,146 +275,146 @@ class Library
 	private List<List<Book>> populateSequences()
 	{
 		List<List<Book>> books = Arrays.asList(
-			Arrays.asList(
-				DARK_MANUSCRIPT_13516,
-				KILLING_OF_A_KING,
-				DARK_MANUSCRIPT_13520,
-				IDEOLOGY_OF_DARKNESS,
-				RADAS_JOURNEY,
-				TRANSVERGENCE_THEORY,
-				TRISTESSAS_TRAGEDY,
-				DARK_MANUSCRIPT_13523,
-				DARK_MANUSCRIPT_13521,
-				RADAS_CENSUS,
-				TREACHERY_OF_ROYALTY,
-				HOSIDIUS_LETTER,
-				DARK_MANUSCRIPT_13519,
-				RICKTORS_DIARY_7,
-				DARK_MANUSCRIPT_13514,
-				EATHRAM_RADA_EXTRACT,
-				DARK_MANUSCRIPT_13522,
-				VARLAMORE_ENVOY,
-				WINTERTODT_PARABLE,
-				TWILL_ACCORD,
-				DARK_MANUSCRIPT_13515,
-				BYRNES_CORONATION_SPEECH,
-				DARK_MANUSCRIPT_13517,
-				SOUL_JOURNEY,
-				DARK_MANUSCRIPT_13518,
-				TRANSPORTATION_INCANTATIONS
-			),
-			Arrays.asList(
-				DARK_MANUSCRIPT_13516,
-				KILLING_OF_A_KING,
-				DARK_MANUSCRIPT_13520,
-				IDEOLOGY_OF_DARKNESS,
-				RADAS_JOURNEY,
-				TRANSVERGENCE_THEORY,
-				TRISTESSAS_TRAGEDY,
-				DARK_MANUSCRIPT_13523,
-				DARK_MANUSCRIPT_13521,
-				RADAS_CENSUS,
-				TREACHERY_OF_ROYALTY,
-				HOSIDIUS_LETTER,
-				VARLAMORE_ENVOY,
-				DARK_MANUSCRIPT_13519,
-				RICKTORS_DIARY_7,
-				DARK_MANUSCRIPT_13514,
-				EATHRAM_RADA_EXTRACT,
-				DARK_MANUSCRIPT_13522,
-				SOUL_JOURNEY,
-				WINTERTODT_PARABLE,
-				TWILL_ACCORD,
-				DARK_MANUSCRIPT_13515,
-				BYRNES_CORONATION_SPEECH,
-				DARK_MANUSCRIPT_13517,
-				DARK_MANUSCRIPT_13518,
-				TRANSPORTATION_INCANTATIONS
-			),
-			Arrays.asList(
-				RICKTORS_DIARY_7,
-				VARLAMORE_ENVOY,
-				DARK_MANUSCRIPT_13514,
-				EATHRAM_RADA_EXTRACT,
-				IDEOLOGY_OF_DARKNESS,
-				DARK_MANUSCRIPT_13516,
-				DARK_MANUSCRIPT_13521,
-				RADAS_CENSUS,
-				DARK_MANUSCRIPT_13515,
-				KILLING_OF_A_KING,
-				DARK_MANUSCRIPT_13520,
-				TREACHERY_OF_ROYALTY,
-				HOSIDIUS_LETTER,
-				DARK_MANUSCRIPT_13519,
-				BYRNES_CORONATION_SPEECH,
-				DARK_MANUSCRIPT_13517,
-				SOUL_JOURNEY,
-				DARK_MANUSCRIPT_13522,
-				WINTERTODT_PARABLE,
-				TWILL_ACCORD,
-				RADAS_JOURNEY,
-				TRANSVERGENCE_THEORY,
-				TRISTESSAS_TRAGEDY,
-				DARK_MANUSCRIPT_13523,
-				DARK_MANUSCRIPT_13518,
-				TRANSPORTATION_INCANTATIONS
-			),
-			Arrays.asList(
-				RADAS_CENSUS,
-				DARK_MANUSCRIPT_13522,
-				RICKTORS_DIARY_7,
-				DARK_MANUSCRIPT_13514,
-				EATHRAM_RADA_EXTRACT,
-				DARK_MANUSCRIPT_13516,
-				KILLING_OF_A_KING,
-				DARK_MANUSCRIPT_13520,
-				HOSIDIUS_LETTER,
-				DARK_MANUSCRIPT_13519,
-				DARK_MANUSCRIPT_13521,
-				WINTERTODT_PARABLE,
-				TWILL_ACCORD,
-				DARK_MANUSCRIPT_13515,
-				BYRNES_CORONATION_SPEECH,
-				DARK_MANUSCRIPT_13517,
-				IDEOLOGY_OF_DARKNESS,
-				RADAS_JOURNEY,
-				TRANSVERGENCE_THEORY,
-				TRISTESSAS_TRAGEDY,
-				DARK_MANUSCRIPT_13523,
-				TREACHERY_OF_ROYALTY,
-				DARK_MANUSCRIPT_13518,
-				TRANSPORTATION_INCANTATIONS,
-				SOUL_JOURNEY,
-				VARLAMORE_ENVOY
-			),
-			Arrays.asList(
-				RADAS_CENSUS,
-				TRANSVERGENCE_THEORY,
-				TREACHERY_OF_ROYALTY,
-				RADAS_JOURNEY,
-				KILLING_OF_A_KING,
-				DARK_MANUSCRIPT_13520,
-				VARLAMORE_ENVOY,
-				DARK_MANUSCRIPT_13522,
-				BYRNES_CORONATION_SPEECH,
-				DARK_MANUSCRIPT_13517,
-				HOSIDIUS_LETTER,
-				DARK_MANUSCRIPT_13516,
-				DARK_MANUSCRIPT_13519,
-				TRISTESSAS_TRAGEDY,
-				DARK_MANUSCRIPT_13523,
-				DARK_MANUSCRIPT_13521,
-				RICKTORS_DIARY_7,
-				DARK_MANUSCRIPT_13514,
-				IDEOLOGY_OF_DARKNESS,
-				WINTERTODT_PARABLE,
-				TWILL_ACCORD,
-				SOUL_JOURNEY,
-				DARK_MANUSCRIPT_13515,
-				EATHRAM_RADA_EXTRACT,
-				DARK_MANUSCRIPT_13518,
-				TRANSPORTATION_INCANTATIONS
-			)
+				Arrays.asList(
+						DARK_MANUSCRIPT_13516,
+						KILLING_OF_A_KING,
+						DARK_MANUSCRIPT_13520,
+						IDEOLOGY_OF_DARKNESS,
+						RADAS_JOURNEY,
+						TRANSVERGENCE_THEORY,
+						TRISTESSAS_TRAGEDY,
+						DARK_MANUSCRIPT_13523,
+						DARK_MANUSCRIPT_13521,
+						RADAS_CENSUS,
+						TREACHERY_OF_ROYALTY,
+						HOSIDIUS_LETTER,
+						DARK_MANUSCRIPT_13519,
+						RICKTORS_DIARY_7,
+						DARK_MANUSCRIPT_13514,
+						EATHRAM_RADA_EXTRACT,
+						DARK_MANUSCRIPT_13522,
+						VARLAMORE_ENVOY,
+						WINTERTODT_PARABLE,
+						TWILL_ACCORD,
+						DARK_MANUSCRIPT_13515,
+						BYRNES_CORONATION_SPEECH,
+						DARK_MANUSCRIPT_13517,
+						SOUL_JOURNEY,
+						DARK_MANUSCRIPT_13518,
+						TRANSPORTATION_INCANTATIONS
+				),
+				Arrays.asList(
+						DARK_MANUSCRIPT_13516,
+						KILLING_OF_A_KING,
+						DARK_MANUSCRIPT_13520,
+						IDEOLOGY_OF_DARKNESS,
+						RADAS_JOURNEY,
+						TRANSVERGENCE_THEORY,
+						TRISTESSAS_TRAGEDY,
+						DARK_MANUSCRIPT_13523,
+						DARK_MANUSCRIPT_13521,
+						RADAS_CENSUS,
+						TREACHERY_OF_ROYALTY,
+						HOSIDIUS_LETTER,
+						VARLAMORE_ENVOY,
+						DARK_MANUSCRIPT_13519,
+						RICKTORS_DIARY_7,
+						DARK_MANUSCRIPT_13514,
+						EATHRAM_RADA_EXTRACT,
+						DARK_MANUSCRIPT_13522,
+						SOUL_JOURNEY,
+						WINTERTODT_PARABLE,
+						TWILL_ACCORD,
+						DARK_MANUSCRIPT_13515,
+						BYRNES_CORONATION_SPEECH,
+						DARK_MANUSCRIPT_13517,
+						DARK_MANUSCRIPT_13518,
+						TRANSPORTATION_INCANTATIONS
+				),
+				Arrays.asList(
+						RICKTORS_DIARY_7,
+						VARLAMORE_ENVOY,
+						DARK_MANUSCRIPT_13514,
+						EATHRAM_RADA_EXTRACT,
+						IDEOLOGY_OF_DARKNESS,
+						DARK_MANUSCRIPT_13516,
+						DARK_MANUSCRIPT_13521,
+						RADAS_CENSUS,
+						DARK_MANUSCRIPT_13515,
+						KILLING_OF_A_KING,
+						DARK_MANUSCRIPT_13520,
+						TREACHERY_OF_ROYALTY,
+						HOSIDIUS_LETTER,
+						DARK_MANUSCRIPT_13519,
+						BYRNES_CORONATION_SPEECH,
+						DARK_MANUSCRIPT_13517,
+						SOUL_JOURNEY,
+						DARK_MANUSCRIPT_13522,
+						WINTERTODT_PARABLE,
+						TWILL_ACCORD,
+						RADAS_JOURNEY,
+						TRANSVERGENCE_THEORY,
+						TRISTESSAS_TRAGEDY,
+						DARK_MANUSCRIPT_13523,
+						DARK_MANUSCRIPT_13518,
+						TRANSPORTATION_INCANTATIONS
+				),
+				Arrays.asList(
+						RADAS_CENSUS,
+						DARK_MANUSCRIPT_13522,
+						RICKTORS_DIARY_7,
+						DARK_MANUSCRIPT_13514,
+						EATHRAM_RADA_EXTRACT,
+						DARK_MANUSCRIPT_13516,
+						KILLING_OF_A_KING,
+						DARK_MANUSCRIPT_13520,
+						HOSIDIUS_LETTER,
+						DARK_MANUSCRIPT_13519,
+						DARK_MANUSCRIPT_13521,
+						WINTERTODT_PARABLE,
+						TWILL_ACCORD,
+						DARK_MANUSCRIPT_13515,
+						BYRNES_CORONATION_SPEECH,
+						DARK_MANUSCRIPT_13517,
+						IDEOLOGY_OF_DARKNESS,
+						RADAS_JOURNEY,
+						TRANSVERGENCE_THEORY,
+						TRISTESSAS_TRAGEDY,
+						DARK_MANUSCRIPT_13523,
+						TREACHERY_OF_ROYALTY,
+						DARK_MANUSCRIPT_13518,
+						TRANSPORTATION_INCANTATIONS,
+						SOUL_JOURNEY,
+						VARLAMORE_ENVOY
+				),
+				Arrays.asList(
+						RADAS_CENSUS,
+						TRANSVERGENCE_THEORY,
+						TREACHERY_OF_ROYALTY,
+						RADAS_JOURNEY,
+						KILLING_OF_A_KING,
+						DARK_MANUSCRIPT_13520,
+						VARLAMORE_ENVOY,
+						DARK_MANUSCRIPT_13522,
+						BYRNES_CORONATION_SPEECH,
+						DARK_MANUSCRIPT_13517,
+						HOSIDIUS_LETTER,
+						DARK_MANUSCRIPT_13516,
+						DARK_MANUSCRIPT_13519,
+						TRISTESSAS_TRAGEDY,
+						DARK_MANUSCRIPT_13523,
+						DARK_MANUSCRIPT_13521,
+						RICKTORS_DIARY_7,
+						DARK_MANUSCRIPT_13514,
+						IDEOLOGY_OF_DARKNESS,
+						WINTERTODT_PARABLE,
+						TWILL_ACCORD,
+						SOUL_JOURNEY,
+						DARK_MANUSCRIPT_13515,
+						EATHRAM_RADA_EXTRACT,
+						DARK_MANUSCRIPT_13518,
+						TRANSPORTATION_INCANTATIONS
+				)
 		);
 
 		for (int i = 0; i < books.size(); i++)

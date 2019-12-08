@@ -388,6 +388,11 @@ public class MenuEntrySwapperPlugin extends Plugin
 				swap("send-parcel", option, target, index);
 			}
 
+			if (config.swapCaptainKhaled() && target.contains("captain khaled"))
+			{
+				swap("task", option, target, index);
+			}
+
 			if (config.swapBank())
 			{
 				swap("bank", option, target, index);
@@ -401,6 +406,11 @@ public class MenuEntrySwapperPlugin extends Plugin
 			if (config.swapExchange())
 			{
 				swap("exchange", option, target, index);
+			}
+
+			if (config.swapHelp())
+			{
+				swap("help", option, target, index);
 			}
 
 			if (config.swapDarkMage())

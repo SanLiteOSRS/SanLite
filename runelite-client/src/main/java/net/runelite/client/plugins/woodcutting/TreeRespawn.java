@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2018 Abex
+ * Copyright (c) 2019, Adam <Adam@sigterm.info>
+ * Copyright (c) 2019, David <Dava96@github.com>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,46 +23,24 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.client.plugins.kourendlibrary;
+package net.runelite.client.plugins.woodcutting;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.time.Instant;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import net.runelite.api.coords.LocalPoint;
 
-import net.runelite.api.NpcID;
-
-enum LibraryCustomer
+@AllArgsConstructor
+@Getter
+class TreeRespawn
 {
-	VILLIA(NpcID.VILLIA, "Villia"),
-	PROFESSOR_GRACKLEBONE(NpcID.PROFESSOR_GRACKLEBONE, "Prof. Gracklebone"),
-	SAM(NpcID.SAM_7049, "Sam");
+	private final Tree tree;
+	private final LocalPoint location;
+	private final Instant startTime;
+	private final int respawnTime;
 
-	@Getter
-	private final int id;
-
-	@Getter
-	private final String name;
-
-	private static final Map<Integer, LibraryCustomer> byId = buildIdMap();
-
-	LibraryCustomer(int id, String name)
+	boolean isExpired()
 	{
-		this.id = id;
-		this.name = name;
-	}
-
-	static LibraryCustomer getById(int id)
-	{
-		return byId.get(id);
-	}
-
-	private static Map<Integer, LibraryCustomer> buildIdMap()
-	{
-		Map<Integer, LibraryCustomer> byId = new HashMap<>();
-		for (LibraryCustomer c : values())
-		{
-			byId.put(c.id, c);
-		}
-		return byId;
+		return Instant.now().isAfter(startTime.plusMillis(respawnTime));
 	}
 }

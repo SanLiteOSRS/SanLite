@@ -288,6 +288,7 @@ public class MappingDumper
 
 
 	@Test
+	@Ignore
 	public void dump() throws IOException
 	{
 		ClassGroup group = JarUtil.loadJar(new File(properties.getRsClient()));
@@ -423,6 +424,7 @@ public class MappingDumper
 	}
 
 	@Test
+	@Ignore
 	public void dumpJson() throws IOException
 	{
 		ClassGroup group = JarUtil.loadJar(new File(properties.getRsClient()));

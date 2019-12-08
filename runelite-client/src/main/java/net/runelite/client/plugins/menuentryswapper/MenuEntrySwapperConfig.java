@@ -133,6 +133,16 @@ public interface MenuEntrySwapperConfig extends Config
 	}
 
 	@ConfigItem(
+			keyName = "swapCaptainKhaled",
+			name = "Task",
+			description = "Swap Talk-to with Task for Captain Khaled in Port Piscarilius"
+	)
+	default boolean swapCaptainKhaled()
+	{
+		return false;
+	}
+
+	@ConfigItem(
 			keyName = "swapDecant",
 			name = "Decant",
 			description = "Swap Talk-to with Decant for Bob Barter and Murky Matt at the Grand Exchange."
@@ -163,9 +173,9 @@ public interface MenuEntrySwapperConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "swapHardWoodGrove",
-			name = "Hardwood Grove",
-			description = "Swap Quick-Pay(100) and Send-Parcel at Hardwood Grove"
+		keyName = "swapHardWoodGrove",
+		name = "Hardwood Grove",
+		description = "Swap Quick-Pay(100) and Send-Parcel at Hardwood Grove"
 	)
 	default boolean swapHardWoodGrove()
 	{
@@ -183,6 +193,16 @@ public interface MenuEntrySwapperConfig extends Config
 	}
 
 	@ConfigItem(
+			keyName = "swapHelp",
+			name = "Help",
+			description = "Swap Talk-to with Help on Arceuus library customers"
+	)
+	default boolean swapHelp()
+	{
+		return true;
+	}
+
+	@ConfigItem(
 			keyName = "swapHomePortal",
 			name = "Home",
 			description = "Swap Enter with Home or Build or Friend's house on Portal"
@@ -193,9 +213,9 @@ public interface MenuEntrySwapperConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "swapHouseAdvertisement",
-			name = "House Advertisement",
-			description = "Swap View with Add-House or Visit-Last on House Advertisement board"
+		keyName = "swapHouseAdvertisement",
+		name = "House Advertisement",
+		description = "Swap View with Add-House or Visit-Last on House Advertisement board"
 	)
 	default HouseAdvertisementMode swapHouseAdvertisement()
 	{
@@ -310,7 +330,7 @@ public interface MenuEntrySwapperConfig extends Config
 	)
 	default boolean swapEnchant()
 	{
-		return true;
+	return true;
 	}
 
 	@ConfigItem(
@@ -320,7 +340,7 @@ public interface MenuEntrySwapperConfig extends Config
 	)
 	default boolean swapTeleportSpell()
 	{
-		return false;
+	return false;
 	}
 
 	@ConfigItem(
@@ -330,7 +350,7 @@ public interface MenuEntrySwapperConfig extends Config
 	)
 	default boolean swapStartMinigame()
 	{
-		return true;
+	return true;
 	}
 
 	@ConfigItem(
@@ -340,7 +360,7 @@ public interface MenuEntrySwapperConfig extends Config
 	)
 	default boolean swapQuickLeave()
 	{
-		return false;
+	return false;
 	}
 
 	@ConfigItem(
@@ -350,7 +370,7 @@ public interface MenuEntrySwapperConfig extends Config
 	)
 	default ShopSwapOptions swapStoreBuy()
 	{
-		return ShopSwapOptions.Value;
+	return ShopSwapOptions.Value;
 	}
 
 	@ConfigItem(
@@ -360,6 +380,6 @@ public interface MenuEntrySwapperConfig extends Config
 	)
 	default ShopSwapOptions swapStoreSell()
 	{
-		return ShopSwapOptions.Value;
+	return ShopSwapOptions.Value;
 	}
 }
