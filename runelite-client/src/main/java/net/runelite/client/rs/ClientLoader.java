@@ -30,6 +30,7 @@ import com.google.common.base.Strings;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.client.RuneLiteProperties;
 import net.runelite.client.ui.FatalErrorDialog;
+import net.runelite.http.api.worlds.World;
 import okhttp3.HttpUrl;
 
 import javax.swing.*;
@@ -37,6 +38,7 @@ import java.applet.Applet;
 import java.io.IOException;
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.util.Map;
 import java.util.function.Supplier;
 
 import static net.runelite.client.rs.ClientUpdateCheckMode.NONE;
@@ -50,7 +52,7 @@ public class ClientLoader implements Supplier<Applet>
 	private ClientUpdateCheckMode updateCheckMode;
 	private Object client = null;
 
-	private HostSupplier hostSupplier = new HostSupplier();
+	private WorldSupplier worldSupplier = new WorldSupplier();
 	private RSConfig config;
 
 	public ClientLoader(ClientUpdateCheckMode updateCheckMode)
@@ -130,7 +132,7 @@ public class ClientLoader implements Supplier<Applet>
 			catch (IOException e)
 			{
 				log.info("Failed to get jav_config from host \"{}\" ({})", url.host(), e.getMessage());
-				String host = hostSupplier.get();
+				String host = worldSupplier.get().getAddress();
 				url = url.newBuilder().host(host).build();
 				err = e;
 			}
@@ -153,8 +155,13 @@ public class ClientLoader implements Supplier<Applet>
 			}
 
 			// Randomize the codebase
-			String codebase = hostSupplier.get();
-			backupConfig.setCodebase("http://" + codebase + "/");
+			World world = worldSupplier.get();
+			backupConfig.setCodebase("http://" + world.getAddress() + "/");
+
+			// Update the world applet parameter
+			Map<String, String> appletProperties = backupConfig.getAppletProperties();
+			appletProperties.put(backupConfig.getRuneLiteWorldParam(), Integer.toString(world.getId()));
+
 			config = backupConfig;
 		}
 		catch (IOException ex)
