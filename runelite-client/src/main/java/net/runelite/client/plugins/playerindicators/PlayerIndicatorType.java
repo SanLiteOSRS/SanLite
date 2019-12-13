@@ -30,5 +30,6 @@ public enum PlayerIndicatorType
 	CLAN_MEMBER,
 	NON_CLAN_MEMBER,
 	TEAM_CAPE_MEMBER,
-	OWN_PLAYER
+	OWN_PLAYER,
+	NONE
 }

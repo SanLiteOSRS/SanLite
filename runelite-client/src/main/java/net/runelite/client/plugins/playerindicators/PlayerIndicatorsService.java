@@ -184,6 +184,52 @@ class PlayerIndicatorsService
 		{
 			return PlayerIndicatorType.NON_CLAN_MEMBER;
 		}
-		return null;
+		return PlayerIndicatorType.NONE;
+	}
+
+	PlayerIndicatorType getPlayerIndicatorType(Player player)
+	{
+		final Player localPlayer = client.getLocalPlayer();
+		if (localPlayer == null || player == null || player.getName() == null || localPlayer == player)
+		{
+			return null;
+		}
+
+		final boolean isClanMember = player.isClanMember();
+
+		// Friends
+		if (player.isFriend())
+		{
+			if (config.disableFriendHighlightIfClanMember() && isClanMember)
+			{
+				return PlayerIndicatorType.CLAN_MEMBER;
+			}
+
+			return PlayerIndicatorType.FRIEND;
+		}
+
+		// Appear offline friends
+		if (client.isFriended(player.getName(), false))
+		{
+			if (config.disableFriendHighlightIfClanMember() && isClanMember)
+			{
+				return PlayerIndicatorType.CLAN_MEMBER;
+			}
+
+			return PlayerIndicatorType.FRIEND;
+		}
+
+		// Clan members
+		if (isClanMember)
+		{
+			return PlayerIndicatorType.CLAN_MEMBER;
+		}
+
+		// Team-cape members
+		if (localPlayer.getTeam() > 0 && localPlayer.getTeam() == player.getTeam())
+		{
+			return PlayerIndicatorType.TEAM_CAPE_MEMBER;
+		}
+		return PlayerIndicatorType.NON_CLAN_MEMBER;
 	}
 }

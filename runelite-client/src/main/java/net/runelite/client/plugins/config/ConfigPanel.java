@@ -562,7 +562,7 @@ public class ConfigPanel extends PluginPanel
 
 		final PluginListItem runeLite = new PluginListItem(this, runeLiteConfig, PluginType.RUNELITE,
 				configManager.getConfigDescriptor(runeLiteConfig),
-				CLIENT_SETTINGS_PLUGIN, "SanLite client settings", "sanlite", "client", "settings",
+				CLIENT_SETTINGS_PLUGIN, "SanLite client settings", "sanlite", "runelite", "client", "settings",
 				"resolution", "notifications", "font");
 		runeLite.setPinned(pinnedPlugins.contains(CLIENT_SETTINGS_PLUGIN));
 		return runeLite;
