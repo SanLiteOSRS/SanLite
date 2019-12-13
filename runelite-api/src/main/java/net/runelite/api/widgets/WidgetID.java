@@ -341,6 +341,7 @@ public class WidgetID
 	{
 		static final int MINIMAP = 3;
 		static final int MINIMAP_DRAW_AREA = 8;
+		static final int MULTI_COMBAT_ICON = 21;
 		static final int CLAN_CHAT_TAB = 32;
 		static final int FRIENDS_TAB = 34;
 		static final int IGNORES_TAB = 33;
@@ -377,6 +378,8 @@ public class WidgetID
 
 	static class ResizableViewport
 	{
+		static final int MULTI_COMBAT_ICON = 17;
+		static final int CHATBOX = 30;
 		static final int CLAN_CHAT_TAB = 36;
 		static final int FRIENDS_TAB = 38;
 		static final int IGNORES_TAB = 37;
@@ -754,6 +757,7 @@ public class WidgetID
 	{
 		static final int BOUNTY_HUNTER_INFO = 6;
 		static final int KILLDEATH_RATIO = 34;
+		static final int AREA_INDICATOR = 53;
 		static final int SKULL_CONTAINER = 54;
 		static final int SAFE_ZONE = 56;
 		static final int WILDERNESS_LEVEL = 59; // this can also be the Deadman Mode "Protection" text
