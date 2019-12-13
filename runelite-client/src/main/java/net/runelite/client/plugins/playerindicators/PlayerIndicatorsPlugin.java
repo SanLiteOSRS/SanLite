@@ -27,21 +27,24 @@
 package net.runelite.client.plugins.playerindicators;
 
 import com.google.inject.Provides;
-import net.runelite.api.ClanMemberRank;
-import net.runelite.api.Client;
-import net.runelite.api.MenuEntry;
-import net.runelite.api.Player;
+import net.runelite.api.*;
 import net.runelite.api.events.MenuEntryAdded;
+import net.runelite.api.events.PlayerSpawned;
+import net.runelite.client.Notifier;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
+import net.runelite.client.events.ConfigChanged;
 import net.runelite.client.game.ClanManager;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
+import net.runelite.client.plugins.PluginType;
 import net.runelite.client.ui.overlay.OverlayManager;
 import net.runelite.client.util.ColorUtil;
+import net.runelite.client.util.Text;
 
 import javax.inject.Inject;
 import java.awt.*;
+import java.util.List;
 
 import static net.runelite.api.ClanMemberRank.UNRANKED;
 import static net.runelite.api.MenuAction.*;
@@ -49,7 +52,8 @@ import static net.runelite.api.MenuAction.*;
 @PluginDescriptor(
 		name = "Player Indicators",
 		description = "Highlight players on-screen and/or on the minimap",
-		tags = {"highlight", "minimap", "overlay", "players", "friend", "finder", "offline", "pvp", "name"}
+		tags = {"highlight", "minimap", "overlay", "players", "friend", "finder", "offline", "pvp", "name", "notifications"},
+		type = PluginType.SANLITE
 )
 public class PlayerIndicatorsPlugin extends Plugin
 {
@@ -77,6 +81,12 @@ public class PlayerIndicatorsPlugin extends Plugin
 	@Inject
 	private ClanManager clanManager;
 
+	@Inject
+	private Notifier notifier;
+
+	private int lastPlayerSpawnNotificationGameTick = -1;
+	private List<String> ignoredPlayerNames;
+
 	@Provides
 	PlayerIndicatorsConfig provideConfig(ConfigManager configManager)
 	{
@@ -89,6 +99,7 @@ public class PlayerIndicatorsPlugin extends Plugin
 		overlayManager.add(playerIndicatorsOverlay);
 		overlayManager.add(playerIndicatorsTileOverlay);
 		overlayManager.add(playerIndicatorsMinimapOverlay);
+		ignoredPlayerNames = getIgnoredPlayerNames();
 	}
 
 	@Override
@@ -97,6 +108,20 @@ public class PlayerIndicatorsPlugin extends Plugin
 		overlayManager.remove(playerIndicatorsOverlay);
 		overlayManager.remove(playerIndicatorsTileOverlay);
 		overlayManager.remove(playerIndicatorsMinimapOverlay);
+	}
+
+	@Subscribe
+	public void onConfigChanged(ConfigChanged configChanged)
+	{
+		if (configChanged.getGroup().equals("playerindicators") && configChanged.getKey().equals("ignoredPlayerNames"))
+		{
+			ignoredPlayerNames = getIgnoredPlayerNames();
+		}
+	}
+
+	private List<String> getIgnoredPlayerNames()
+	{
+		return Text.fromCSV(config.getIgnoredPlayerNames());
 	}
 
 	@Subscribe
@@ -141,7 +166,7 @@ public class PlayerIndicatorsPlugin extends Plugin
 			}
 
 			PlayerIndicatorType playerIndicatorType = playerIndicatorsService.getMenuEntryPlayerIndicatorType(player);
-			if (playerIndicatorType == null)
+			if (playerIndicatorType == null || playerIndicatorType == PlayerIndicatorType.NONE)
 				return;
 
 			switch (playerIndicatorType)
@@ -198,5 +223,37 @@ public class PlayerIndicatorsPlugin extends Plugin
 		}
 
 		client.setMenuEntries(menuEntries);
+	}
+
+	@Subscribe
+	public void onPlayerSpawned(PlayerSpawned event)
+	{
+		checkPlayerSpawned(event);
+	}
+
+	private void checkPlayerSpawned(PlayerSpawned event)
+	{
+		Player player = event.getPlayer();
+		if (player == null || player == client.getLocalPlayer() || !config.notifyOnNonClanMemberSpawned())
+			return;
+
+		PlayerIndicatorType playerIndicatorType = playerIndicatorsService.getPlayerIndicatorType(player);
+		if (playerIndicatorType == null || !playerIndicatorType.equals(PlayerIndicatorType.NON_CLAN_MEMBER))
+			return;
+
+		// Only send notifications in PvP zones
+		if (client.getVar(Varbits.IN_PVP_AREA) != 1 && client.getVar(Varbits.IN_WILDERNESS) != 1 &&
+				client.getWorldType().stream().noneMatch(x -> x == WorldType.DEADMAN))
+			return;
+
+		// Check if enough time has expired since the last notification
+		if (client.getTickCount() < lastPlayerSpawnNotificationGameTick + config.delayBetweenPlayerSpawnedNotifications())
+			return;
+
+		if (ignoredPlayerNames.contains(player.getName()))
+			return;
+
+		notifier.notify("[" + player.getName() + "] has spawned!");
+		lastPlayerSpawnNotificationGameTick = client.getTickCount();
 	}
 }

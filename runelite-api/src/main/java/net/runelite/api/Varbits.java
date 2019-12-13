@@ -61,6 +61,7 @@ public enum Varbits
 	 * Grand Exchange
 	 */
 	GRAND_EXCHANGE_PRICE_PER_ITEM(4398),
+	GRAND_EXCHANGE_UNKNOWN_1(4399),
 
 	/**
 	 * Runepouch
