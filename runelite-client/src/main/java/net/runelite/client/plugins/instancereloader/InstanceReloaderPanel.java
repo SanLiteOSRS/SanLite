@@ -47,6 +47,12 @@ class InstanceReloaderPanel extends PluginPanel
 
 	void init()
 	{
+		// To prevent having more than one panel when the plugin gets disabled and enabled again
+		if (this.getComponents().length > 0)
+		{
+			return;
+		}
+
 		setLayout(new GridLayout(2, 1));
 		setBackground(ColorScheme.DARK_GRAY_COLOR);
 		setBorder(new EmptyBorder(10, 10, 10, 10));
