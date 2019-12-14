@@ -124,6 +124,7 @@ public class PestilentBloat extends TheatreOfBloodEncounter
 			}
 			else if (getRemainingSleepClientTicks() <= 0)
 			{
+				//Reset hand cycle count here as theres a small chance hands can fall the same time bloat sleeps, wait till sleep is over to make sure this doesn't affect the counting
 				handFallCycleCount = 0;
 				wakeUp(clientTick);
 			}

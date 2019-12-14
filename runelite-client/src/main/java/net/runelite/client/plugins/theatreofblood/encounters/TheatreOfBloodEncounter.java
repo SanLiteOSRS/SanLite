@@ -31,8 +31,8 @@ import net.runelite.api.GameObject;
 import net.runelite.api.GraphicsObject;
 import net.runelite.api.NPC;
 import net.runelite.api.NpcID;
-import net.runelite.client.plugins.theatreofblood.TheatreOfBloodConfig;
 
+import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,6 +40,7 @@ import java.util.List;
 public class TheatreOfBloodEncounter
 {
 
+	@Inject
 	private TheatreOfBloodConfig config;
 
 	@Getter
@@ -168,7 +169,8 @@ public class TheatreOfBloodEncounter
 	public String convertTimerFormat(int clientTicksRemaining)
 	{
 		String remainingTime = "";
-		log.debug(config.getTimerFormat() + " getTimerFormat");
+		log.debug("config: {}", config == null);
+		log.debug("config timer: {}", config.getTimerFormat() == null);
 		switch (config.getTimerFormat())
 		{
 			case SECONDS_MILLISECONDS:

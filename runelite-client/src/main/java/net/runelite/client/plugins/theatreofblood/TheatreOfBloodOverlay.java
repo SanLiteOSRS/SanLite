@@ -211,7 +211,7 @@ public class TheatreOfBloodOverlay extends Overlay
 		{
 			color = config.getBloatAsleepColor();
 		}
-		else if (pestilentBloat.getHandFallCycleCount() == 7 || pestilentBloat.getHandFallCycleCount() == 8 || pestilentBloat.getHandFallCycleCount() < 17)
+		else if (pestilentBloat.getHandFallCycleCount() == 7 || pestilentBloat.getHandFallCycleCount() == 8 || pestilentBloat.getHandFallCycleCount() > 15)
 		{
 			color = config.getBloatWarningColor();
 		}
