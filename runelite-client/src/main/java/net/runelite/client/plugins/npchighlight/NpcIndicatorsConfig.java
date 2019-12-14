@@ -107,4 +107,15 @@ public interface NpcIndicatorsConfig extends Config
 	{
 		return false;
 	}
+
+	@ConfigItem(
+		position = 7,
+		keyName = "respawnHighlightColor",
+		name = "Respawn Color",
+		description = "Color of the NPC respawn highlight"
+	)
+	default Color getRespawnHighlightColor()
+	{
+		return new Color(100, 100, 100);
+	}
 }
