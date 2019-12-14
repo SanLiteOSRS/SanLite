@@ -32,10 +32,12 @@ import net.runelite.api.events.*;
 import net.runelite.client.callback.ClientThread;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
+import net.runelite.client.events.ConfigChanged;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.plugins.PluginType;
 import net.runelite.client.ui.overlay.OverlayManager;
+
 
 import javax.inject.Inject;
 import java.util.Arrays;
@@ -55,7 +57,7 @@ public class AlchemicalHydraPlugin extends Plugin
 			5279, 5280,
 			5535, 5536
 	};
-
+	
 	@Inject
 	private Client client;
 

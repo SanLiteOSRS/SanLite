@@ -65,7 +65,7 @@ class CollapsibleEntry extends JPanel
 				));
 
 		JLabel nameLabel = new JLabel(name);
-		if (name.equals(PluginType.RUNELITE_USE_AT_OWN_RISK.toString()) || name.equals(PluginType.SANLITE_USE_AT_OWN_RISK.toString()))
+		if (name.equals(PluginType.SANLITE_USE_AT_OWN_RISK.toString()))
 		{
 			nameLabel.setForeground(Color.RED.darker());
 		}

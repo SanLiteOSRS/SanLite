@@ -25,10 +25,6 @@
 package net.runelite.injector;
 
 import com.google.common.collect.Lists;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
 import net.runelite.asm.Field;
 import net.runelite.asm.Method;
 import net.runelite.asm.Type;
@@ -38,22 +34,18 @@ import net.runelite.asm.attributes.code.InstructionType;
 import net.runelite.asm.attributes.code.Instructions;
 import net.runelite.asm.attributes.code.instruction.types.DupInstruction;
 import net.runelite.asm.attributes.code.instruction.types.SetFieldInstruction;
-import net.runelite.asm.attributes.code.instructions.ArrayStore;
-import net.runelite.asm.attributes.code.instructions.CheckCast;
-import net.runelite.asm.attributes.code.instructions.Dup;
-import net.runelite.asm.attributes.code.instructions.IMul;
-import net.runelite.asm.attributes.code.instructions.InvokeStatic;
-import net.runelite.asm.attributes.code.instructions.InvokeVirtual;
-import net.runelite.asm.attributes.code.instructions.LDC;
-import net.runelite.asm.attributes.code.instructions.LMul;
-import net.runelite.asm.attributes.code.instructions.PutField;
-import net.runelite.asm.attributes.code.instructions.Swap;
+import net.runelite.asm.attributes.code.instructions.*;
 import net.runelite.asm.execution.Execution;
 import net.runelite.asm.execution.InstructionContext;
 import net.runelite.asm.execution.StackContext;
 import net.runelite.asm.signature.Signature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 class InjectHook
 {
@@ -277,11 +269,11 @@ class InjectHook
 			}
 
 			InvokeVirtual invoke = new InvokeVirtual(ins,
-				new net.runelite.asm.pool.Method(
-					new net.runelite.asm.pool.Class(hookInfo.clazz),
-					hookInfo.method.getName(),
-					signature
-				)
+					new net.runelite.asm.pool.Method(
+							new net.runelite.asm.pool.Class(hookInfo.clazz),
+							hookInfo.method.getName(),
+							signature
+					)
 			);
 			ins.getInstructions().add(idx++, invoke);
 		}
@@ -300,11 +292,11 @@ class InjectHook
 			}
 
 			InvokeStatic invoke = new InvokeStatic(ins,
-				new net.runelite.asm.pool.Method(
-					new net.runelite.asm.pool.Class(hookInfo.clazz),
-					hookInfo.method.getName(),
-					signature
-				)
+					new net.runelite.asm.pool.Method(
+							new net.runelite.asm.pool.Class(hookInfo.clazz),
+							hookInfo.method.getName(),
+							signature
+					)
 			);
 			ins.getInstructions().add(idx++, invoke);
 		}
@@ -349,11 +341,11 @@ class InjectHook
 			}
 
 			InvokeVirtual invoke = new InvokeVirtual(ins,
-				new net.runelite.asm.pool.Method(
-					new net.runelite.asm.pool.Class(hookInfo.clazz),
-					hookInfo.method.getName(),
-					new Signature(HOOK_METHOD_SIGNATURE)
-				)
+					new net.runelite.asm.pool.Method(
+							new net.runelite.asm.pool.Class(hookInfo.clazz),
+							hookInfo.method.getName(),
+							new Signature(HOOK_METHOD_SIGNATURE)
+					)
 			);
 			ins.getInstructions().add(idx++, invoke);
 
@@ -370,11 +362,11 @@ class InjectHook
 			}
 
 			InvokeStatic invoke = new InvokeStatic(ins,
-				new net.runelite.asm.pool.Method(
-					new net.runelite.asm.pool.Class(hookInfo.clazz),
-					hookInfo.method.getName(),
-					new Signature(HOOK_METHOD_SIGNATURE)
-				)
+					new net.runelite.asm.pool.Method(
+							new net.runelite.asm.pool.Class(hookInfo.clazz),
+							hookInfo.method.getName(),
+							new Signature(HOOK_METHOD_SIGNATURE)
+					)
 			);
 			ins.getInstructions().add(idx++, invoke);
 		}

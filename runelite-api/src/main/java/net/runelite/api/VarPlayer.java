@@ -184,6 +184,11 @@ public enum VarPlayer
 	AREA_EFFECT_VOLUME(872),
 
 	/**
+	 * 0 = 2 buttons, 1 = 1 button
+	 */
+	MOUSE_BUTTONS(170),
+
+	/**
 	 * f2p Quest varbits, these don't hold the completion value.
 	 */
 	QUEST_BLACK_KNIGHTS_FORTRESS(130),

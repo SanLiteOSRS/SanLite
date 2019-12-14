@@ -24,23 +24,12 @@
  */
 package net.runelite.injector;
 
-import java.util.HashMap;
-import java.util.Map;
-import net.runelite.asm.ClassFile;
-import net.runelite.asm.ClassGroup;
-import net.runelite.asm.Field;
-import net.runelite.asm.Interfaces;
-import net.runelite.asm.Method;
-import net.runelite.asm.Type;
+import net.runelite.asm.*;
 import net.runelite.asm.attributes.Annotations;
 import net.runelite.asm.attributes.annotation.Annotation;
 import net.runelite.asm.attributes.code.Instruction;
 import net.runelite.asm.attributes.code.Instructions;
-import net.runelite.asm.attributes.code.instructions.ALoad;
-import net.runelite.asm.attributes.code.instructions.DLoad;
-import net.runelite.asm.attributes.code.instructions.FLoad;
-import net.runelite.asm.attributes.code.instructions.ILoad;
-import net.runelite.asm.attributes.code.instructions.LLoad;
+import net.runelite.asm.attributes.code.instructions.*;
 import net.runelite.asm.pool.Class;
 import net.runelite.asm.signature.Signature;
 import net.runelite.deob.DeobAnnotations;
@@ -51,13 +40,16 @@ import net.runelite.rs.api.RSClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static net.runelite.injector.InjectUtil.getFieldType;
 
 public class Inject
 {
-	public static final java.lang.Class<?> CLIENT_CLASS = RSClient.class;
-	public static final String API_PACKAGE_BASE = "net.runelite.rs.api.RS";
-	public static final String RL_API_PACKAGE_BASE = "net.runelite.api.";
+	static final java.lang.Class<?> CLIENT_CLASS = RSClient.class;
+	private static final String API_PACKAGE_BASE = "net.runelite.rs.api.RS";
+	private static final String RL_API_PACKAGE_BASE = "net.runelite.api.";
 	private static final Logger logger = LoggerFactory.getLogger(Inject.class);
 	private final InjectHookMethod hookMethod = new InjectHookMethod(this);
 
@@ -80,23 +72,23 @@ public class Inject
 	/**
 	 * Convert a java.lang.Class to a Type
 	 *
-	 * @param c
-	 * @return
+	 * @param aClass java class
+	 * @return type
 	 */
-	public static Type classToType(java.lang.Class<?> c)
+	static Type classToType(java.lang.Class<?> aClass)
 	{
 		int dimms = 0;
-		while (c.isArray())
+		while (aClass.isArray())
 		{
-			c = c.getComponentType();
+			aClass = aClass.getComponentType();
 			++dimms;
 		}
 
-		if (c.isPrimitive())
+		if (aClass.isPrimitive())
 		{
 			String s;
 
-			switch (c.getName())
+			switch (aClass.getName())
 			{
 				case "int":
 					s = "I";
@@ -126,16 +118,16 @@ public class Inject
 					s = "V";
 					break;
 				default:
-					throw new RuntimeException("unknown primitive type " + c.getName());
+					throw new RuntimeException("unknown primitive type " + aClass.getName());
 			}
 
 			return Type.getType(s, dimms);
 		}
 
-		return Type.getType("L" + c.getName().replace('.', '/') + ";", dimms);
+		return Type.getType("L" + aClass.getName().replace('.', '/') + ";", dimms);
 	}
 
-	public Signature getMethodSignature(Method m)
+	Signature getMethodSignature(Method m)
 	{
 		Signature signature = m.getDescriptor();
 
@@ -152,13 +144,13 @@ public class Inject
 	/**
 	 * Build a Signature from a java method
 	 *
-	 * @param method
-	 * @return
+	 * @param method method
+	 * @return signature
 	 */
-	public Signature javaMethodToSignature(java.lang.reflect.Method method)
+	Signature javaMethodToSignature(java.lang.reflect.Method method)
 	{
 		Signature.Builder builder = new Signature.Builder()
-			.setReturnType(classToType(method.getReturnType()));
+				.setReturnType(classToType(method.getReturnType()));
 		for (java.lang.Class<?> clazz : method.getParameterTypes())
 		{
 			builder.addArgument(classToType(clazz));
@@ -166,35 +158,35 @@ public class Inject
 		return builder.build();
 	}
 
-	public void run() throws InjectionException
+	void run() throws InjectionException
 	{
 		Map<ClassFile, java.lang.Class> implemented = new HashMap<>();
 
 		// inject interfaces first, so the validateTypeIsConvertibleTo
 		// check below works
-		for (ClassFile cf : deobfuscated.getClasses())
+		for (ClassFile classFile : deobfuscated.getClasses())
 		{
-			Annotations an = cf.getAnnotations();
+			Annotations annotations = classFile.getAnnotations();
 
-			if (an == null || an.size() == 0)
+			if (annotations == null || annotations.size() == 0)
 			{
 				continue;
 			}
 
-			String obfuscatedName = DeobAnnotations.getObfuscatedName(an);
+			String obfuscatedName = DeobAnnotations.getObfuscatedName(annotations);
 			if (obfuscatedName == null)
 			{
-				obfuscatedName = cf.getName();
+				obfuscatedName = classFile.getName();
 			}
 
 			ClassFile other = vanilla.findClass(obfuscatedName);
 			assert other != null : "unable to find vanilla class from obfuscated name: " + obfuscatedName;
 
-			java.lang.Class implementingClass = injectInterface(cf, other);
+			java.lang.Class implementingClass = injectInterface(classFile, other);
 			// it can not implement an interface but still have exported static fields, which are
 			// moved to client
 
-			implemented.put(cf, implementingClass);
+			implemented.put(classFile, implementingClass);
 		}
 
 		// Has to be done before mixins
@@ -206,40 +198,40 @@ public class Inject
 		mixinInjector.inject();
 		construct.inject(implemented);
 
-		for (ClassFile cf : deobfuscated.getClasses())
+		for (ClassFile classFile : deobfuscated.getClasses())
 		{
-			java.lang.Class implementingClass = implemented.get(cf);
-			Annotations an = cf.getAnnotations();
+			java.lang.Class implementingClass = implemented.get(classFile);
+			Annotations annotations = classFile.getAnnotations();
 
-			if (an == null || an.size() == 0)
+			if (annotations == null || annotations.size() == 0)
 			{
 				continue;
 			}
 
-			String obfuscatedName = DeobAnnotations.getObfuscatedName(an);
+			String obfuscatedName = DeobAnnotations.getObfuscatedName(annotations);
 			if (obfuscatedName == null)
 			{
-				obfuscatedName = cf.getName();
+				obfuscatedName = classFile.getName();
 			}
 
 			ClassFile other = vanilla.findClass(obfuscatedName);
 			assert other != null : "unable to find vanilla class from obfuscated name: " + obfuscatedName;
 
-			for (Field f : cf.getFields())
+			for (Field field : classFile.getFields())
 			{
-				an = f.getAnnotations();
+				annotations = field.getAnnotations();
 
-				if (an == null || an.find(DeobAnnotations.EXPORT) == null)
+				if (annotations == null || annotations.find(DeobAnnotations.EXPORT) == null)
 				{
 					continue; // not an exported field
 				}
 
-				Annotation exportAnnotation = an.find(DeobAnnotations.EXPORT);
+				Annotation exportAnnotation = annotations.find(DeobAnnotations.EXPORT);
 				String exportedName = exportAnnotation.getElement().getString();
 
-				obfuscatedName = DeobAnnotations.getObfuscatedName(an);
+				obfuscatedName = DeobAnnotations.getObfuscatedName(annotations);
 
-				Annotation getterAnnotation = an.find(DeobAnnotations.OBFUSCATED_GETTER);
+				Annotation getterAnnotation = annotations.find(DeobAnnotations.OBFUSCATED_GETTER);
 				Number getter = null;
 				if (getterAnnotation != null)
 				{
@@ -247,17 +239,17 @@ public class Inject
 				}
 				// the ob jar is the same as the vanilla so this field must exist in this class.
 
-				Type obType = getFieldType(f);
-				Field otherf = other.findField(obfuscatedName, obType);
-				assert otherf != null;
+				Type obType = getFieldType(field);
+				Field otherField = other.findField(obfuscatedName, obType);
+				assert otherField != null;
 
-				assert f.isStatic() == otherf.isStatic();
+				assert field.isStatic() == otherField.isStatic();
 
-				ClassFile targetClass = f.isStatic() ? vanilla.findClass("client") : other; // target class for getter
-				java.lang.Class targetApiClass = f.isStatic() ? CLIENT_CLASS : implementingClass; // target api class for getter
+				ClassFile targetClass = field.isStatic() ? vanilla.findClass("client") : other; // target class for getter
+				java.lang.Class targetApiClass = field.isStatic() ? CLIENT_CLASS : implementingClass; // target api class for getter
 				if (targetApiClass == null)
 				{
-					assert !f.isStatic();
+					assert !field.isStatic();
 
 					// non static field exported on non exported interface
 					logger.debug("Non static exported field {} on non exported interface", exportedName);
@@ -273,7 +265,7 @@ public class Inject
 						setter = DMath.modInverse(getter); // inverse getter to get the setter
 					}
 
-					setters.injectSetter(targetClass, targetApiClass, otherf, exportedName, setter);
+					setters.injectSetter(targetClass, targetApiClass, otherField, exportedName, setter);
 				}
 
 				apiMethod = findImportMethodOnApi(targetApiClass, exportedName, false);
@@ -284,32 +276,32 @@ public class Inject
 				}
 
 				// check that other field is convertible to the API methods return type
-				Type fieldType = otherf.getType();
+				Type fieldType = otherField.getType();
 				Type returnType = classToType(apiMethod.getReturnType());
 				if (!validateTypeIsConvertibleTo(fieldType, returnType))
 				{
 					throw new InjectionException("Type " + fieldType + " is not convertible to " + returnType + " for getter " + apiMethod);
 				}
 
-				getters.injectGetter(targetClass, apiMethod, otherf, getter);
+				getters.injectGetter(targetClass, apiMethod, otherField, getter);
 			}
 
-			for (Method m : cf.getMethods())
+			for (Method method : classFile.getMethods())
 			{
-				hookMethod.process(m);
-				invokes.process(m, other, implementingClass);
+				hookMethod.process(method);
+				invokes.process(method, other, implementingClass);
 			}
 		}
 
 		logger.info("Injected {} getters, {} setters, {} invokers",
-			getters.getInjectedGetters(),
-			setters.getInjectedSetters(), invokes.getInjectedInvokers());
+				getters.getInjectedGetters(),
+				setters.getInjectedSetters(), invokes.getInjectedInvokers());
 
 		new DrawAfterWidgets(this).inject();
 		new ScriptVM(this).inject();
 		new ClearColorBuffer(this).inject();
 		new RenderDraw(this).inject();
-		//new DrawMenu(this).inject(); TODO: Fix this injection
+		new DrawMenu(this).inject();
 		new Occluder(this).inject();
 		new HidePlayerAttacks(this).inject();
 	}
@@ -338,8 +330,8 @@ public class Inject
 		catch (ClassNotFoundException ex)
 		{
 			logger.trace("Class {} implements nonexistent interface {}, skipping interface injection",
-				cf.getName(),
-				ifaceName);
+					cf.getName(),
+					ifaceName);
 			return null;
 		}
 
@@ -352,7 +344,7 @@ public class Inject
 		return apiClass;
 	}
 
-	public java.lang.reflect.Method findImportMethodOnApi(java.lang.Class<?> clazz, String name, Boolean setter)
+	java.lang.reflect.Method findImportMethodOnApi(java.lang.Class<?> clazz, String name, Boolean setter)
 	{
 		for (java.lang.reflect.Method method : clazz.getDeclaredMethods())
 		{
@@ -383,12 +375,12 @@ public class Inject
 	/**
 	 * create a load instruction for a variable of type from a given index
 	 *
-	 * @param instructions
-	 * @param type
-	 * @param index
-	 * @return
+	 * @param instructions instructions
+	 * @param type         type
+	 * @param index        index
+	 * @return load instruction
 	 */
-	public Instruction createLoadForTypeIndex(Instructions instructions, Type type, int index)
+	Instruction createLoadForTypeIndex(Instructions instructions, Type type, int index)
 	{
 		if (type.getDimensions() > 0 || !type.isPrimitive())
 		{
@@ -540,7 +532,7 @@ public class Inject
 	private boolean check(java.lang.Class c, Type type)
 	{
 		String s = type.getInternalName()
-			.replace('/', '.');
+				.replace('/', '.');
 
 		if (c.getName().equals(s))
 		{

@@ -37,10 +37,7 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 import javax.swing.text.JTextComponent;
 import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.ClanMember;
-import net.runelite.api.Client;
-import net.runelite.api.Friend;
-import net.runelite.api.Player;
+import net.runelite.api.*;
 
 @Slf4j
 class NameAutocompleter implements KeyListener
@@ -195,10 +192,10 @@ class NameAutocompleter implements KeyListener
 		if (friends != null)
 		{
 			autocompleteName = Arrays.stream(friends)
-				.filter(Objects::nonNull)
-				.map(Friend::getName)
-				.filter(n -> pattern.matcher(n).matches())
-				.findFirst();
+					.filter(Objects::nonNull)
+					.map(Friend::getName)
+					.filter(n -> pattern.matcher(n).matches())
+					.findFirst();
 		}
 
 		// Search clan if a friend wasn't found
@@ -208,10 +205,10 @@ class NameAutocompleter implements KeyListener
 			if (clannies != null)
 			{
 				autocompleteName = Arrays.stream(clannies)
-					.filter(Objects::nonNull)
-					.map(ClanMember::getUsername)
-					.filter(n -> pattern.matcher(n).matches())
-					.findFirst();
+						.filter(Objects::nonNull)
+						.map(ClanMember::getUsername)
+						.filter(n -> pattern.matcher(n).matches())
+						.findFirst();
 			}
 		}
 
