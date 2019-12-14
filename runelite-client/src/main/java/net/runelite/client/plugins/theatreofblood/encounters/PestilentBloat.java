@@ -50,12 +50,16 @@ public class PestilentBloat extends TheatreOfBloodEncounter
 	@Getter
 	private int handFallCycleCount;
 
+	@Getter
+	private Integer lastHandFallSize;
+
 	public PestilentBloat(TheatreOfBloodEncounters encounter)
 	{
 		super(encounter);
 		wakeUpClientTick = -1;
 		lastSleepEndClientTick = 1;
 		remainingSleepClientTicks = -1;
+		lastHandFallSize = 0;
 	}
 
 	public boolean isHandAttack(int graphicsObjectId)
@@ -120,6 +124,7 @@ public class PestilentBloat extends TheatreOfBloodEncounter
 			}
 			else if (getRemainingSleepClientTicks() <= 0)
 			{
+				handFallCycleCount = 0;
 				wakeUp(clientTick);
 			}
 			else
@@ -136,14 +141,20 @@ public class PestilentBloat extends TheatreOfBloodEncounter
 	 */
 	public void checkHandAttackGraphicObjects(List<GraphicsObject> clientGraphicObjects)
 	{
-		setAoeEffects(
-				clientGraphicObjects.stream()
-						.filter(x -> isHandAttack(x.getId()))
-						.collect(Collectors.toList()));
+		List<GraphicsObject> handAttacks = clientGraphicObjects.stream()
+			.filter(x -> isHandAttack(x.getId()))
+			.collect(Collectors.toList());
 
-		clientGraphicObjects.stream()
-				.filter(x -> x.getId() == GraphicID.BLOAT_HAND_ATTACK_1)
-				.forEach(GraphicsObject -> handFallCycleCount++);
+		setAoeEffects(handAttacks);
+
+		if (handAttacks.size() != lastHandFallSize)
+		{
+			if (handAttacks.size() != 0)
+			{
+				handFallCycleCount++;
+			}
+			lastHandFallSize = handAttacks.size();
+		}
 	}
 
 	/**

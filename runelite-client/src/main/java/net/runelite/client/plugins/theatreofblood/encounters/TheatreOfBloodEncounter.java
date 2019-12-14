@@ -168,18 +168,24 @@ public class TheatreOfBloodEncounter
 	public String convertTimerFormat(int clientTicksRemaining)
 	{
 		String remainingTime = "";
+		log.debug(config.getTimerFormat() + " getTimerFormat");
 		switch (config.getTimerFormat())
 		{
 			case SECONDS_MILLISECONDS:
 				remainingTime = Math.abs((clientTicksRemaining / 5) / 10) + "." + (Math.abs((clientTicksRemaining / 5)) % 10);
+				log.debug(remainingTime + "second milliseconds");
 				break;
 
 			case SECONDS:
 				remainingTime = Integer.toString(Math.abs((clientTicksRemaining / 5) / 10));
+				log.debug(remainingTime + "seconds");
 				break;
 
 			case GAME_TICKS:
 				remainingTime = Integer.toString((int)Math.ceil(Math.abs((clientTicksRemaining / 5) / 10) * 0.6));
+				log.debug(remainingTime + "game ticks");
+				break;
+			default:
 				break;
 		}
 		return remainingTime;

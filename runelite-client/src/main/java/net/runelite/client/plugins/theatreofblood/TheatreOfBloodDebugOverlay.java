@@ -107,6 +107,10 @@ public class TheatreOfBloodDebugOverlay extends Overlay
 							.left("Number of falling hand cycles")
 							.right("" + pestilentBloat.getHandFallCycleCount())
 							.build());
+					panelComponent.getChildren().add(LineComponent.builder()
+							.left("Last hand fall size")
+							.right("" + pestilentBloat.getLastHandFallSize())
+							.build());
 					break;
 				case NYLOCAS:
 					Nylocas nylocas = (Nylocas) plugin.getCurrentEncounter();

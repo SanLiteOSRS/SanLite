@@ -146,10 +146,22 @@ public interface TheatreOfBloodConfig extends Config
 	}
 
 	@ConfigItem(
+			keyName = "bloatWarningColor",
+			name = "Sleep warning color",
+			description = "Color of Pestilent Bloat's highlight when it could sleep",
+			position = 9,
+			group = "Pestilent Bloat"
+	)
+	default Color getBloatWarningColor()
+	{
+		return Color.YELLOW;
+	}
+
+	@ConfigItem(
 			keyName = "bloatAsleepColor",
 			name = "Asleep color",
 			description = "Color of Pestilent Bloat's highlight when asleep",
-			position = 9,
+			position = 10,
 			group = "Pestilent Bloat"
 	)
 	default Color getBloatAsleepColor()
@@ -161,7 +173,7 @@ public interface TheatreOfBloodConfig extends Config
 			keyName = "displayBloatSleepTimer",
 			name = "Display sleep timer",
 			description = "Display a timer for the sleep duration of the Pestilent Bloat",
-			position = 10,
+			position = 11,
 			group = "Pestilent Bloat"
 	)
 	default boolean displayBloatSleepTimer()
@@ -173,7 +185,7 @@ public interface TheatreOfBloodConfig extends Config
 			keyName = "highlightAggressiveNylocas",
 			name = "Highlight aggressive Nylocas",
 			description = "Highlights Nylocas that are attacking you or your teammates",
-			position = 11,
+			position = 12,
 			group = "Nylocas"
 	)
 	default boolean highlightAggressiveNylocas()
@@ -185,7 +197,7 @@ public interface TheatreOfBloodConfig extends Config
 			keyName = "aggressiveNylocasColor",
 			name = "Aggressive Nylocas",
 			description = "Color of aggressive Nylocas highlights",
-			position = 12,
+			position = 13,
 			group = "Nylocas"
 	)
 	default Color getAggressiveNylocasColor()
@@ -197,7 +209,7 @@ public interface TheatreOfBloodConfig extends Config
 			keyName = "displayNylocasLifeTimerText",
 			name = "Display Nylocas life timers",
 			description = "Display Nylocas life timers when time till death is less than 5 seconds",
-			position = 13,
+			position = 14,
 			group = "Nylocas"
 	)
 	default boolean displayNylocasLifeTimerText()
@@ -209,7 +221,7 @@ public interface TheatreOfBloodConfig extends Config
 			keyName = "highlightSotetsegRedMazeTiles",
 			name = "Highlight red maze tiles",
 			description = "Highlight the red tiles during Sotetseg's maze",
-			position = 14,
+			position = 15,
 			group = "Sotetseg"
 	)
 	default boolean highlightSotetsegRedMazeTiles()
@@ -222,7 +234,7 @@ public interface TheatreOfBloodConfig extends Config
 			keyName = "sotetsegMazeTileColor",
 			name = "Maze tile markers",
 			description = "Color of Sotetseg's red maze tile markers",
-			position = 15,
+			position = 16,
 			group = "Sotetseg"
 	)
 	default Color getSotetsegMazeTileColor()
@@ -234,7 +246,7 @@ public interface TheatreOfBloodConfig extends Config
 			keyName = "highlightXarpusPoisonAttackTiles",
 			name = "Highlight poison attack tiles",
 			description = "Highlight the tiles for Xarpus poison attacks",
-			position = 16,
+			position = 17,
 			group = "Xarpus"
 	)
 	default boolean highlightXarpusPoisonAttackTiles()
@@ -246,7 +258,7 @@ public interface TheatreOfBloodConfig extends Config
 			keyName = "xarpusPoisonAttackColor",
 			name = "Poison attack marker",
 			description = "Color of Xarpus poison attack marker",
-			position = 17,
+			position = 18,
 			group = "Xarpus"
 	)
 	default Color getXarpusPoisonAttackColor()
@@ -258,7 +270,7 @@ public interface TheatreOfBloodConfig extends Config
 			keyName = "highlightXarpusHealingPoolTiles",
 			name = "Highlight healing pool tiles",
 			description = "Highlight the healing pool tiles during the Xarpus encounter",
-			position = 18,
+			position = 19,
 			group = "Xarpus"
 	)
 	default boolean highlightXarpusHealingPoolTiles()
@@ -270,7 +282,7 @@ public interface TheatreOfBloodConfig extends Config
 			keyName = "xarpusHealingPoolColor",
 			name = "Healing pool marker",
 			description = "Color of Xarpus healing pool marker",
-			position = 19,
+			position = 20,
 			group = "Xarpus"
 	)
 	default Color getXarpusHealingPoolColor()
@@ -282,7 +294,7 @@ public interface TheatreOfBloodConfig extends Config
 			keyName = "displayXarpusTurnTimer",
 			name = "Xarpus turn timer",
 			description = "Displays a timer until Xarpus next turn",
-			position = 20,
+			position = 21,
 			group = "Xarpus"
 	)
 	default boolean displayXarpusTurnTimer()
@@ -294,7 +306,7 @@ public interface TheatreOfBloodConfig extends Config
 			keyName = "displayP1AttackTimerText",
 			name = "Display Phase 1 Attack Timer",
 			description = "Displays a timer showing when verzik's next attack is on phase 1",
-			position = 21,
+			position = 22,
 			group = "Verzik Vitur"
 	)
 	default boolean displayP1AttackTimerText()
@@ -306,7 +318,7 @@ public interface TheatreOfBloodConfig extends Config
 			keyName = "displayP2AttackTimerText",
 			name = "Display Phase 2 Attack Timer",
 			description = "Displays a timer showing when verzik's next attack is on phase 2",
-			position = 22,
+			position = 23,
 			group = "Verzik Vitur"
 	)
 	default boolean displayP2AttackTimerText()
@@ -318,7 +330,7 @@ public interface TheatreOfBloodConfig extends Config
 			keyName = "displayP3AttackTimerText",
 			name = "Display Phase 3 Attack Timer",
 			description = "Displays a timer showing when verzik's next attack is on phase 3",
-			position = 23,
+			position = 24,
 			group = "Verzik Vitur"
 	)
 	default boolean displayP3AttackTimerText()
@@ -330,7 +342,7 @@ public interface TheatreOfBloodConfig extends Config
 			keyName = "highlightVerzikGreenOrbPoolTiles",
 			name = "Highlight green orb pool tiles",
 			description = "Highlight the tiles for Verzik's green orb pools",
-			position = 24,
+			position = 25,
 			group = "Verzik Vitur"
 	)
 	default boolean highlightVerzikGreenOrbPoolTiles()
@@ -342,7 +354,7 @@ public interface TheatreOfBloodConfig extends Config
 			keyName = "verzikGreenOrbPoolColor",
 			name = "Green orb pool marker",
 			description = "Color of Verzik's green orb pool marker",
-			position = 25,
+			position = 26,
 			group = "Verzik Vitur"
 	)
 	default Color getVerzikGreenOrbPoolColor()
@@ -354,7 +366,7 @@ public interface TheatreOfBloodConfig extends Config
 			keyName = "showDebugOverlay",
 			name = "Display debug overlay",
 			description = "Displays Theatre of Blood debug overlay. This contains variables that the plugin uses to function",
-			position = 26
+			position = 27
 	)
 	default boolean showDebugOverlay()
 	{
