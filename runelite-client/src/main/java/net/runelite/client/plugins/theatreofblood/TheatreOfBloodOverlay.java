@@ -225,8 +225,7 @@ public class TheatreOfBloodOverlay extends Overlay
 			return;
 		}
 
-		int remainingDuration = pestilentBloat.getRemainingSleepClientTicks() / 5;
-		String text = Math.abs(remainingDuration / 10) + "." + (Math.abs(remainingDuration) % 10);
+		String text = pestilentBloat.convertTimerFormat(pestilentBloat.getRemainingSleepClientTicks());
 
 		Point textLocation = pestilentBloat.getNpc().getCanvasTextLocation(graphics, text, 0);
 		if (textLocation == null)
@@ -267,8 +266,7 @@ public class TheatreOfBloodOverlay extends Overlay
 
 			if (timers.get(2) < (5000 / Constants.CLIENT_TICK_LENGTH))
 			{
-				int remainingDuration = timers.get(2) / 5;
-				String text = Math.abs(remainingDuration / 10) + "." + (Math.abs(remainingDuration) % 10);
+				String text = nylocas.convertTimerFormat(timers.get(2));
 
 				Point textLocation = aliveNylocas.getCanvasTextLocation(graphics, text, 0);
 				if (textLocation == null)
@@ -341,8 +339,7 @@ public class TheatreOfBloodOverlay extends Overlay
 			return;
 		}
 
-		int remainingDuration = xarpus.getRemainingTurnTime() / 5;
-		String text = Math.abs(remainingDuration / 10) + "." + (Math.abs(remainingDuration) % 10);
+		String text = xarpus.convertTimerFormat(xarpus.getRemainingTurnTime());
 
 		Point textLocation = xarpus.getNpc().getCanvasTextLocation(graphics, text, 0);
 		if (textLocation == null)
@@ -360,8 +357,7 @@ public class TheatreOfBloodOverlay extends Overlay
 			return;
 		}
 
-		int remainingDuration = verzik.getPhaseTimeTillNextAttack() / 5;
-		String text = Math.abs(remainingDuration / 10) + "." + (Math.abs(remainingDuration) % 10);
+		String text = verzik.convertTimerFormat(verzik.getPhaseTimeTillNextAttack());
 
 		Point textLocation = verzik.getNpc().getCanvasTextLocation(graphics, text, 0);
 		if (textLocation == null)

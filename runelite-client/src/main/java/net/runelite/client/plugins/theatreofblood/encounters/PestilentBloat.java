@@ -47,6 +47,9 @@ public class PestilentBloat extends TheatreOfBloodEncounter
 	@Setter
 	private int remainingSleepClientTicks;
 
+	@Getter
+	private int handFallCycleCount;
+
 	public PestilentBloat(TheatreOfBloodEncounters encounter)
 	{
 		super(encounter);
@@ -137,6 +140,10 @@ public class PestilentBloat extends TheatreOfBloodEncounter
 				clientGraphicObjects.stream()
 						.filter(x -> isHandAttack(x.getId()))
 						.collect(Collectors.toList()));
+
+		clientGraphicObjects.stream()
+				.filter(x -> x.getId() == GraphicID.BLOAT_HAND_ATTACK_1)
+				.forEach(GraphicsObject -> handFallCycleCount++);
 	}
 
 	/**

@@ -35,6 +35,17 @@ public interface TheatreOfBloodConfig extends Config
 {
 
 	@ConfigItem(
+			keyName = "timerFormat",
+			name = "Format for boss timers",
+			description = "Select the format that certain boss timers will be displayed in",
+			position = 0
+	)
+	default TheatreOfBloodTimerFormat getTimerFormat()
+	{
+		return TheatreOfBloodTimerFormat.SECONDS_MILLISECONDS;
+	}
+
+	@ConfigItem(
 			keyName = "highlightBloodSplatAttackTiles",
 			name = "Highlight blood splat tiles",
 			description = "Highlight the tiles for the Sugadinti maiden's blood splat attacks",

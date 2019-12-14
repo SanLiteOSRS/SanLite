@@ -103,6 +103,10 @@ public class TheatreOfBloodDebugOverlay extends Overlay
 							.left("Remaining sleep client ticks")
 							.right("" + pestilentBloat.getRemainingSleepClientTicks())
 							.build());
+					panelComponent.getChildren().add(LineComponent.builder()
+							.left("Number of falling hand cycles")
+							.right("" + pestilentBloat.getHandFallCycleCount())
+							.build());
 					break;
 				case NYLOCAS:
 					Nylocas nylocas = (Nylocas) plugin.getCurrentEncounter();
