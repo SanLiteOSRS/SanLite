@@ -408,9 +408,45 @@ public interface PlayerIndicatorsConfig extends Config
 		return true;
 	}
 
-
 	@ConfigItem(
 			position = 31,
+			keyName = "notifyOnNonClanMemberSpawned",
+			name = "Notify on non-clan member spawn",
+			description = "Receive a notification when a non-clan member appears by logging in or running into the player render range",
+			group = "Player spawn notifications"
+	)
+	default boolean notifyOnNonClanMemberSpawned()
+	{
+		return false;
+	}
+
+	@ConfigItem(
+			position = 32,
+			keyName = "delayBetweenPlayerSpawnedNotifications",
+			name = "Notification cooldown",
+			description = "Configures the minimum game ticks between player spawned notifications (600ms per tick)",
+			group = "Player spawn notifications"
+	)
+	default int delayBetweenPlayerSpawnedNotifications()
+	{
+		return 3;
+	}
+
+	@ConfigItem(
+			position = 33,
+			keyName = "ignoredPlayerNames",
+			name = "Ignored players",
+			description = "Configures players that will be ignored by player spawn notifications. Format: (name), (name)",
+			group = "Player spawn notifications"
+	)
+	default String getIgnoredPlayerNames()
+	{
+		return "";
+	}
+
+
+	@ConfigItem(
+			position = 34,
 			keyName = "clanMenuIcons",
 			name = "Show clan ranks",
 			description = "Add clan rank to right click menu and next to player names",

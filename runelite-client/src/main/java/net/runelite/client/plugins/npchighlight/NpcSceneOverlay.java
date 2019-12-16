@@ -104,7 +104,7 @@ public class NpcSceneOverlay extends Overlay
 			return;
 		}
 
-		final Color color = config.getHighlightColor();
+		final Color color = config.getRespawnHighlightColor();
 
 		final LocalPoint centerLp = new LocalPoint(
 			lp.getX() + Perspective.LOCAL_TILE_SIZE * (npc.getNpcSize() - 1) / 2,
