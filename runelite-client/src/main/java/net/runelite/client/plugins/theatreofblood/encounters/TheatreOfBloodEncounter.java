@@ -32,16 +32,12 @@ import net.runelite.api.GraphicsObject;
 import net.runelite.api.NPC;
 import net.runelite.api.NpcID;
 
-import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
 public class TheatreOfBloodEncounter
 {
-
-	@Inject
-	private TheatreOfBloodConfig config;
 
 	@Getter
 	private TheatreOfBloodEncounters encounter;
@@ -164,32 +160,5 @@ public class TheatreOfBloodEncounter
 			return null;
 		}
 		return (Verzik) this;
-	}
-
-	public String convertTimerFormat(int clientTicksRemaining)
-	{
-		String remainingTime = "";
-		log.debug("config: {}", config == null);
-		log.debug("config timer: {}", config.getTimerFormat() == null);
-		switch (config.getTimerFormat())
-		{
-			case SECONDS_MILLISECONDS:
-				remainingTime = Math.abs((clientTicksRemaining / 5) / 10) + "." + (Math.abs((clientTicksRemaining / 5)) % 10);
-				log.debug(remainingTime + "second milliseconds");
-				break;
-
-			case SECONDS:
-				remainingTime = Integer.toString(Math.abs((clientTicksRemaining / 5) / 10));
-				log.debug(remainingTime + "seconds");
-				break;
-
-			case GAME_TICKS:
-				remainingTime = Integer.toString((int)Math.ceil(Math.abs((clientTicksRemaining / 5) / 10) * 0.6));
-				log.debug(remainingTime + "game ticks");
-				break;
-			default:
-				break;
-		}
-		return remainingTime;
 	}
 }

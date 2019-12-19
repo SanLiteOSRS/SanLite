@@ -1,11 +1,9 @@
-package net.runelite.client.plugins.theatreofblood;
+package net.runelite.client.util;
 
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
-@Getter
 @RequiredArgsConstructor
-public enum TheatreOfBloodTimerFormat
+public enum TimerFormat
 {
 	SECONDS_MILLISECONDS("Seconds + Milliseconds"),
 	SECONDS("Seconds"),
@@ -13,3 +11,4 @@ public enum TheatreOfBloodTimerFormat
 
 	private final String value;
 }
+

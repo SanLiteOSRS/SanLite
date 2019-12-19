@@ -33,6 +33,7 @@ import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayLayer;
 import net.runelite.client.ui.overlay.OverlayPosition;
 import net.runelite.client.ui.overlay.OverlayUtil;
+import net.runelite.client.util.TickUtil;
 
 import javax.inject.Inject;
 import java.awt.*;
@@ -229,7 +230,7 @@ public class TheatreOfBloodOverlay extends Overlay
 			return;
 		}
 
-		String text = pestilentBloat.convertTimerFormat(pestilentBloat.getRemainingSleepClientTicks());
+		String text = TickUtil.convertTimerFormat(pestilentBloat.getRemainingSleepClientTicks(), config.getTimerFormat());
 
 		Point textLocation = pestilentBloat.getNpc().getCanvasTextLocation(graphics, text, 0);
 		if (textLocation == null)
@@ -270,7 +271,7 @@ public class TheatreOfBloodOverlay extends Overlay
 
 			if (timers.get(2) < (5000 / Constants.CLIENT_TICK_LENGTH))
 			{
-				String text = nylocas.convertTimerFormat(timers.get(2));
+				String text = TickUtil.convertTimerFormat(timers.get(2), config.getTimerFormat());
 
 				Point textLocation = aliveNylocas.getCanvasTextLocation(graphics, text, 0);
 				if (textLocation == null)
@@ -343,7 +344,7 @@ public class TheatreOfBloodOverlay extends Overlay
 			return;
 		}
 
-		String text = xarpus.convertTimerFormat(xarpus.getRemainingTurnTime());
+		String text = TickUtil.convertTimerFormat(xarpus.getRemainingTurnTime(), config.getTimerFormat());
 
 		Point textLocation = xarpus.getNpc().getCanvasTextLocation(graphics, text, 0);
 		if (textLocation == null)
@@ -361,7 +362,7 @@ public class TheatreOfBloodOverlay extends Overlay
 			return;
 		}
 
-		String text = verzik.convertTimerFormat(verzik.getPhaseTimeTillNextAttack());
+		String text = TickUtil.convertTimerFormat(verzik.getPhaseTimeTillNextAttack(), config.getTimerFormat());
 
 		Point textLocation = verzik.getNpc().getCanvasTextLocation(graphics, text, 0);
 		if (textLocation == null)

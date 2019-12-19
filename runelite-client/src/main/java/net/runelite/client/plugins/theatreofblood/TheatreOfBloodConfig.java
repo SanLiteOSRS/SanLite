@@ -27,6 +27,7 @@ package net.runelite.client.plugins.theatreofblood;
 import net.runelite.client.config.Config;
 import net.runelite.client.config.ConfigGroup;
 import net.runelite.client.config.ConfigItem;
+import net.runelite.client.util.TimerFormat;
 
 import java.awt.*;
 
@@ -40,9 +41,9 @@ public interface TheatreOfBloodConfig extends Config
 			description = "Select the format that certain boss timers will be displayed in",
 			position = 0
 	)
-	default TheatreOfBloodTimerFormat getTimerFormat()
+	default TimerFormat getTimerFormat()
 	{
-		return TheatreOfBloodTimerFormat.SECONDS_MILLISECONDS;
+		return TimerFormat.SECONDS_MILLISECONDS;
 	}
 
 	@ConfigItem(
