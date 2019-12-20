@@ -17,7 +17,8 @@ public class TickUtil
 				break;
 
 			case GAME_TICKS:
-				remainingTime = Integer.toString((int)Math.ceil(Math.abs((clientTicksRemaining / 5) / 10) * 0.6));
+				//remainingTime = Integer.toString((int)Math.ceil(Math.abs((clientTicksRemaining / 5) / 10) * 0.6));
+				remainingTime = Integer.toString((clientTicksRemaining * 30));
 				break;
 			default:
 				break;
