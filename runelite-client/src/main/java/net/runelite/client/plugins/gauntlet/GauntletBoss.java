@@ -27,7 +27,6 @@ package net.runelite.client.plugins.gauntlet;
 import lombok.Getter;
 import lombok.Setter;
 import net.runelite.api.NPC;
-import net.runelite.api.NpcID;
 import net.runelite.api.ProjectileID;
 
 import java.util.ArrayList;
@@ -35,6 +34,9 @@ import java.util.List;
 
 class GauntletBoss
 {
+	private static final int CRYSTALLINE_HUNLLEF_CRYSTAL_ID = 9025;
+	private static final int CORRUPTED_HUNLLEF_CRYSTAL_ID = 9039;
+
 	static final int ATTACK_RATE = 5; // 5 ticks between each attack
 	static final int ATTACKS_PER_SWITCH = 4; // 4 attacks per style switch
 
@@ -114,6 +116,6 @@ class GauntletBoss
 
 	boolean isNpcCrystalAttack(int npcId)
 	{
-		return npcId == NpcID.CRYSTALLINE_HUNLLEF_CRYSTAL || npcId == NpcID.CORRUPTED_HUNLLEF_CRYSTAL;
+		return npcId == CRYSTALLINE_HUNLLEF_CRYSTAL_ID || npcId == CORRUPTED_HUNLLEF_CRYSTAL_ID;
 	}
 }
