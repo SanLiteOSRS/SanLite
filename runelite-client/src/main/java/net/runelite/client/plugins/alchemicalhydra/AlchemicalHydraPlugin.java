@@ -38,7 +38,6 @@ import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.plugins.PluginType;
 import net.runelite.client.ui.overlay.OverlayManager;
 
-
 import javax.inject.Inject;
 import java.util.Arrays;
 import java.util.stream.Collectors;
@@ -57,7 +56,7 @@ public class AlchemicalHydraPlugin extends Plugin
 			5279, 5280,
 			5535, 5536
 	};
-	
+
 	@Inject
 	private Client client;
 
@@ -340,7 +339,7 @@ public class AlchemicalHydraPlugin extends Plugin
 		{
 			alchemicalHydra.setAoeEffects(
 					client.getGraphicsObjects().stream()
-							.filter(x -> alchemicalHydra.isSpecialAttack(x))
+							.filter(x -> alchemicalHydra.isSpecialAttack(x.getId()))
 							.collect(Collectors.toList()));
 		}
 	}
