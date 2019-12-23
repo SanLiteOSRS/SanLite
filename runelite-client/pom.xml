@@ -29,7 +29,7 @@
 	<parent>
 		<groupId>net.runelite</groupId>
 		<artifactId>runelite-parent</artifactId>
-		<version>1.5.43</version>
+		<version>1.6.0.1</version>
 	</parent>
 
 	<artifactId>client</artifactId>
@@ -281,7 +281,8 @@
 						<nonFilteredFileExtension>ttf</nonFilteredFileExtension>
 						<nonFilteredFileExtension>png</nonFilteredFileExtension>
 						<nonFilteredFileExtension>gif</nonFilteredFileExtension>
-					</nonFilteredFileExtensions>
+                        <nonFilteredFileExtension>wav</nonFilteredFileExtension>
+                    </nonFilteredFileExtensions>
 				</configuration>
 			</plugin>
 			<plugin>
