@@ -111,13 +111,6 @@ public abstract class RSClientMixin implements RSClient
 	private static boolean printMenuActions;
 
 	@Inject
-	@Override
-	public void setPrintMenuActions(boolean yes)
-	{
-		printMenuActions = yes;
-	}
-
-	@Inject
 	private static boolean hideFriendAttackOptions = false;
 
 	@Inject
@@ -134,6 +127,13 @@ public abstract class RSClientMixin implements RSClient
 
 	@Inject
 	private static Set<String> unhiddenCasts = new HashSet<String>();
+
+	@Inject
+	@Override
+	public void setPrintMenuActions(boolean yes)
+	{
+		printMenuActions = yes;
+	}
 
 	@Inject
 	@Override
