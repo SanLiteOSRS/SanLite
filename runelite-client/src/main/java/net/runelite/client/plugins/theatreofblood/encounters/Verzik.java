@@ -30,7 +30,10 @@ import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Constants;
 import net.runelite.api.GraphicID;
 import net.runelite.api.GraphicsObject;
+import net.runelite.api.NPC;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -38,7 +41,7 @@ import java.util.stream.Collectors;
 public class Verzik extends TheatreOfBloodEncounter
 {
 	//P4 = Below 20% HP P3, attack speed increases
-	private final int TIME_TILL_P1_START = 10200;
+	private final int TIME_TILL_P1_START = 11400;
 	private final int TIME_TILL_P2_START = 8400;
 	private final int TIME_TILL_P3_START = 3600;
 	private final int P1_ATTACK_SPEED = 8400;
@@ -54,7 +57,6 @@ public class Verzik extends TheatreOfBloodEncounter
 	private int attackCount;
 
 	@Getter
-	@Setter
 	private int phaseStartTime;
 
 	@Getter
@@ -66,14 +68,31 @@ public class Verzik extends TheatreOfBloodEncounter
 	@Getter
 	private int phaseTimeTillNextAttack;
 
+	private HashMap<String, Boolean> specials;
+
+	@Getter
+	private List<NPC> nylocas;
+
 	public Verzik(TheatreOfBloodEncounters encounter)
 	{
 		super(encounter);
 		phaseStartTime = -1;
 		phaseLastAttack = -1;
+		phaseNextAttack = -1;
 		phaseTimeTillNextAttack = -1;
 		verzikPhase = 0;
 		attackCount = 0;
+		nylocas = new ArrayList<>();
+		specials = new HashMap<>();
+		specials.put("nylocas", false);
+		specials.put("webs", false);
+		specials.put("pools", false);
+		specials.put("ball", false);
+	}
+
+	public static boolean isNylocasNpc(int npcId)
+	{
+		return npcId == 8383 || npcId == 8382 || npcId == 8381;
 	}
 
 	public boolean isGreenOrbPool(int graphicsObjectId)
@@ -123,23 +142,37 @@ public class Verzik extends TheatreOfBloodEncounter
 			phaseTimeTillNextAttack = phaseStartTime - phaseLastAttack;
 			phaseStartTime = -1;
 		}
-
-		if (phaseTimeTillNextAttack <= 0)
+		else if (specials.get("webs"))
 		{
-			attackCount++;
+			phaseLastAttack = -1;
+			phaseNextAttack = -1;
+			phaseTimeTillNextAttack = -1;
+			specials.replace("webs", false);
+		}
+		else if (specials.get("pools"))
+		{
+			phaseLastAttack = clientTick;
+			phaseNextAttack = clientTick + 630;
+			phaseTimeTillNextAttack = phaseNextAttack - phaseLastAttack;
+			specials.replace("pools", false);
+		}
+		else if (specials.get("ball"))
+		{
+			phaseLastAttack = clientTick;
+			phaseNextAttack = clientTick + 360;
+			phaseTimeTillNextAttack = phaseNextAttack - phaseLastAttack;
+			specials.replace("ball", false);
+		}
+		else if (phaseTimeTillNextAttack <= 0)
+		{
 			phaseLastAttack = clientTick;
 			phaseNextAttack = clientTick + attackSpeed;
-			phaseTimeTillNextAttack = phaseNextAttack + phaseLastAttack;
+			phaseTimeTillNextAttack = phaseNextAttack - phaseLastAttack;
 		}
 		else
 		{
 			phaseTimeTillNextAttack = phaseNextAttack - clientTick;
 		}
-	}
-
-	public String getOverheadText()
-	{
-		return getNpc().getOverheadText();
 	}
 
 	public void setPhaseStartTime(int clientTick)
@@ -163,5 +196,49 @@ public class Verzik extends TheatreOfBloodEncounter
 				break;
 
 		}
+	}
+
+	public void checkAttackCycle()
+	{
+		if (attackCount == 8)
+		{
+			//Webs
+			specials.replace("webs", true);
+		}
+		else if (attackCount == 12)
+		{
+			//Pools
+			specials.replace("pools", true);
+		}
+		else if (attackCount == 17)
+		{
+			//Ball
+			specials.replace("ball", true);
+		}
+		else if (attackCount == 18)
+		{
+			//Resets at 18 as ball special uses range attack animation, thanks jagex
+			attackCount = 0;
+		}
+
+		attackCount++;
+	}
+
+	public void addNylocasCrab(NPC npc)
+	{
+		nylocas.add(npc);
+	}
+
+	public void removeNylocasCrab(NPC npc)
+	{
+		nylocas.remove(npc);
+	}
+
+	//Needs to be stand alone method as verzik's distance to the center of the map is random. Meaning the only reliable way to get the end duration is the animation for webs.
+	public void addWebAnimation(int clientTick)
+	{
+		phaseLastAttack = clientTick;
+		phaseNextAttack = clientTick + 1200;
+		phaseTimeTillNextAttack = phaseNextAttack + phaseLastAttack;
 	}
 }

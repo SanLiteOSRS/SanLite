@@ -109,11 +109,6 @@ public class Xarpus extends TheatreOfBloodEncounter
 		}
 	}
 
-	public String getOverheadText()
-	{
-		return getNpc().getOverheadText();
-	}
-
 	public void checkTurnTimer(int clientTick)
 	{
 		if (nextTurnTime <= clientTick)

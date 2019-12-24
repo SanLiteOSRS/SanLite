@@ -27,8 +27,25 @@ package net.runelite.client.plugins.theatreofblood;
 import com.google.inject.Provides;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.*;
-import net.runelite.api.events.*;
+import net.runelite.api.Client;
+import net.runelite.api.GameObject;
+import net.runelite.api.GroundObject;
+import net.runelite.api.NpcID;
+import net.runelite.api.NPC;
+import net.runelite.api.ChatMessageType;
+import net.runelite.api.GameState;
+import net.runelite.api.events.GameObjectDespawned;
+import net.runelite.api.events.GameObjectSpawned;
+import net.runelite.api.events.GroundObjectDespawned;
+import net.runelite.api.events.GroundObjectSpawned;
+import net.runelite.api.events.NpcSpawned;
+import net.runelite.api.events.NpcDespawned;
+import net.runelite.api.events.ChatMessage;
+import net.runelite.api.events.GameStateChanged;
+import net.runelite.api.events.ClientTick;
+import net.runelite.api.events.VarbitChanged;
+import net.runelite.api.events.OverheadTextChanged;
+import net.runelite.api.events.AnimationChanged;
 import net.runelite.client.callback.ClientThread;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
@@ -341,7 +358,7 @@ public class TheatreOfBloodPlugin extends Plugin
 	public void onNpcSpawned(NpcSpawned event)
 	{
 		NPC npc = event.getNpc();
-		if (!TheatreOfBloodEncounter.isNpcTheatreOfBloodEncounter(npc.getId()) && !Nylocas.isNylocasNpc(npc.getId()))
+		if (!TheatreOfBloodEncounter.isNpcTheatreOfBloodEncounter(npc.getId()) && !Nylocas.isNylocasNpc(npc.getId()) && !Verzik.isNylocasNpc(npc.getId()))
 		{
 			return;
 		}
@@ -351,14 +368,27 @@ public class TheatreOfBloodPlugin extends Plugin
 			updateCurrentEncounter(npc.getId());
 		}
 
-		if (currentEncounter != null && !Nylocas.isNylocasNpc(npc.getId()))
+		if (currentEncounter != null && !Nylocas.isNylocasNpc(npc.getId()) && !Verzik.isNylocasNpc(npc.getId()))
 		{
 			currentEncounter.setNpc(npc);
 		}
 
-		if (currentEncounter.getEncounter() == TheatreOfBloodEncounters.NYLOCAS && Nylocas.isNylocasNpc(npc.getId()))
+		switch (currentEncounter.getEncounter())
 		{
-			currentEncounter.castToNylocas().addNylocasCrab(npc, client.getGameCycle());
+			case NYLOCAS:
+				if (Nylocas.isNylocasNpc(npc.getId()))
+				{
+					currentEncounter.castToNylocas().addNylocasCrab(npc, client.getGameCycle());
+				}
+				break;
+			case VERZIK_VITUR:
+				if (Verzik.isNylocasNpc(npc.getId()))
+				{
+					currentEncounter.castToVerzik().addNylocasCrab(npc);
+				}
+				break;
+			default:
+				break;
 		}
 	}
 
@@ -382,9 +412,22 @@ public class TheatreOfBloodPlugin extends Plugin
 			log.debug("Current encounter npc reset due to despawn of npc id: {}", npc.getId());
 		}
 
-		if (currentEncounter.getEncounter() == TheatreOfBloodEncounters.NYLOCAS && Nylocas.isNylocasNpc(npc.getId()))
+		switch (currentEncounter.getEncounter())
 		{
-			currentEncounter.castToNylocas().removeNylocasCrab(npc);
+			case NYLOCAS:
+				if (Nylocas.isNylocasNpc(npc.getId()))
+				{
+					currentEncounter.castToNylocas().removeNylocasCrab(npc);
+				}
+				break;
+			case VERZIK_VITUR:
+				if (Verzik.isNylocasNpc(npc.getId()))
+				{
+					currentEncounter.castToVerzik().removeNylocasCrab(npc);
+				}
+				break;
+			default:
+				break;
 		}
 	}
 
@@ -499,36 +542,39 @@ public class TheatreOfBloodPlugin extends Plugin
 	}
 
 	@Subscribe
-	protected void onGameTick(GameTick gametick)
+	protected void onOverheadTextChanged(OverheadTextChanged overheadTextChanged)
 	{
 		if (client.isInInstancedRegion() && currentEncounter != null && currentEncounter.getEncounter() != null)
 		{
 			switch (currentEncounter.getEncounter())
 			{
 				case XARPUS:
-					if (currentEncounter.castToXarpus().getOverheadText() != null)
+					if (overheadTextChanged.getOverheadText() != null)
 					{
-						log.debug("Is staring set to true");
-						currentEncounter.castToXarpus().setIsStaring(true);
-						currentEncounter.castToXarpus().setLastTurnTime(client.getGameCycle());
+						if (overheadTextChanged.getOverheadText().equals("Screeeeech!"))
+						{
+							log.debug("Is staring set to true");
+							currentEncounter.castToXarpus().setIsStaring(true);
+							currentEncounter.castToXarpus().setLastTurnTime(client.getGameCycle());
+						}
 					}
 					break;
 				case VERZIK_VITUR:
-					if (currentEncounter.castToVerzik().getOverheadText() != null)
+					if (overheadTextChanged.getOverheadText() != null)
 					{
-						if (currentEncounter.castToVerzik().getOverheadText().equals("You think you can defeat me?") && currentEncounter.castToVerzik().getVerzikPhase() != 2)
+						if (overheadTextChanged.getOverheadText().equals("You think you can defeat me?") && currentEncounter.castToVerzik().getVerzikPhase() != 2)
 						{
 							log.debug("P2 Starting");
 							currentEncounter.castToVerzik().setVerzikPhase(2);
 							currentEncounter.castToVerzik().setPhaseStartTime(client.getGameCycle());
 						}
-						if (currentEncounter.castToVerzik().getOverheadText().equals("Behold my true nature!") && currentEncounter.castToVerzik().getVerzikPhase() != 3)
+						if (overheadTextChanged.getOverheadText().equals("Behold my true nature!") && currentEncounter.castToVerzik().getVerzikPhase() != 3)
 						{
 							log.debug("P3 Starting");
 							currentEncounter.castToVerzik().setVerzikPhase(3);
 							currentEncounter.castToVerzik().setPhaseStartTime(client.getGameCycle());
 						}
-						if (currentEncounter.castToVerzik().getOverheadText().equals("I'm not finished with you just yet!") && currentEncounter.castToVerzik().getVerzikPhase() != 4)
+						if (overheadTextChanged.getOverheadText().equals("I'm not finished with you just yet!") && currentEncounter.castToVerzik().getVerzikPhase() != 4)
 						{
 							//P4 = Below 20% HP P3, attack speed increases
 							log.debug("P4 Starting");
@@ -556,6 +602,17 @@ public class TheatreOfBloodPlugin extends Plugin
 						log.debug("P1 Starting");
 						currentEncounter.castToVerzik().setVerzikPhase(1);
 						currentEncounter.castToVerzik().setPhaseStartTime(client.getGameCycle());
+					}
+					if (animationChanged.getActor().getAnimation() == 8123 || animationChanged.getActor().getAnimation() == 8124 || animationChanged.getActor().getAnimation() == 8125)
+					{
+						if (currentEncounter.castToVerzik().getVerzikPhase() > 2)
+						{
+							currentEncounter.castToVerzik().checkAttackCycle();
+						}
+					}
+					if (animationChanged.getActor().getAnimation() == 8127)
+					{
+						currentEncounter.castToVerzik().addWebAnimation(client.getGameCycle());
 					}
 					break;
 				default:

@@ -100,8 +100,10 @@ public class Nylocas extends TheatreOfBloodEncounter
 
 		//spawn time
 		timers.add(clientTick);
+
 		//explode time
 		timers.add(clientTick + (NYLOCAS_LIFE_LENGTH / Constants.CLIENT_TICK_LENGTH));
+
 		//time till explode
 		timers.add(timers.get(1) - timers.get(0));
 

@@ -199,6 +199,14 @@ public class TheatreOfBloodDebugOverlay extends Overlay
 							.left("Client Tick")
 							.right("" + client.getGameCycle())
 							.build());
+					panelComponent.getChildren().add(LineComponent.builder()
+							.left("Attack Count:")
+							.right("" + verzik.getAttackCount())
+							.build());
+					panelComponent.getChildren().add(LineComponent.builder()
+							.left("Nylocas crab counter:")
+							.right("" + verzik.getNylocas().size())
+							.build());
 			}
 
 			return panelComponent.render(graphics);

@@ -27,7 +27,11 @@ package net.runelite.client.plugins.theatreofblood.encounters;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.*;
+import net.runelite.api.AnimationID;
+import net.runelite.api.Constants;
+import net.runelite.api.GraphicID;
+import net.runelite.api.NPC;
+import net.runelite.api.GraphicsObject;
 
 import java.util.List;
 import java.util.stream.Collectors;

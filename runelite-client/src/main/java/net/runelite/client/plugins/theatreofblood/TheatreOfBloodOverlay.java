@@ -25,9 +25,15 @@
 package net.runelite.client.plugins.theatreofblood;
 
 import lombok.extern.slf4j.Slf4j;
+import net.runelite.api.Client;
+import net.runelite.api.GraphicsObject;
+import net.runelite.api.Perspective;
 import net.runelite.api.Point;
-import net.runelite.api.*;
 import net.runelite.api.coords.LocalPoint;
+import net.runelite.api.GameObject;
+import net.runelite.api.NPC;
+import net.runelite.api.Constants;
+import net.runelite.api.GroundObject;
 import net.runelite.client.plugins.theatreofblood.encounters.*;
 import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayLayer;
@@ -132,6 +138,10 @@ public class TheatreOfBloodOverlay extends Overlay
 				if (config.displayP3AttackTimerText() && encounter.getEncounter() == TheatreOfBloodEncounters.VERZIK_VITUR && encounter.castToVerzik().getVerzikPhase() >= 3)
 				{
 					renderVerzikAttackTimerText(graphics, (Verzik) encounter);
+				}
+				if (config.displayVerzikNylocasAggression() && encounter.getEncounter() == TheatreOfBloodEncounters.VERZIK_VITUR)
+				{
+					renderVerzikNylocasAggressionText(graphics, (Verzik) encounter);
 				}
 			}
 			// Nylocas - does not always have a boss npc
@@ -387,6 +397,27 @@ public class TheatreOfBloodOverlay extends Overlay
 					OverlayUtil.renderPolygon(graphics, polygon, config.getVerzikGreenOrbPoolColor());
 				}
 			}
+		}
+	}
+
+	private void renderVerzikNylocasAggressionText(Graphics2D graphics, Verzik verzik)
+	{
+		for (NPC npc : verzik.getNylocas())
+		{
+			if (npc.getInteracting() == null)
+			{
+				return;
+			}
+
+			String text = (npc.getInteracting().getName());
+			Point textLocation = npc.getCanvasTextLocation(graphics, text, 0);
+
+			if (textLocation == null)
+			{
+				return;
+			}
+
+			OverlayUtil.renderTextLocation(graphics, textLocation, text, Color.WHITE);
 		}
 	}
 }

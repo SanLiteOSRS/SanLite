@@ -340,10 +340,23 @@ public interface TheatreOfBloodConfig extends Config
 	}
 
 	@ConfigItem(
+			keyName = "displayVerzikNylocasAggression",
+			name = "Display names of players that Nylocas are aggroed to",
+			description = "Displays the name of players that Nylocas spawns are aggroed to",
+			position = 25,
+			group = "Verzik Vitur"
+	)
+	default boolean displayVerzikNylocasAggression()
+	{
+		return true;
+	}
+
+
+	@ConfigItem(
 			keyName = "highlightVerzikGreenOrbPoolTiles",
 			name = "Highlight green orb pool tiles",
 			description = "Highlight the tiles for Verzik's green orb pools",
-			position = 25,
+			position = 26,
 			group = "Verzik Vitur"
 	)
 	default boolean highlightVerzikGreenOrbPoolTiles()
@@ -355,7 +368,7 @@ public interface TheatreOfBloodConfig extends Config
 			keyName = "verzikGreenOrbPoolColor",
 			name = "Green orb pool marker",
 			description = "Color of Verzik's green orb pool marker",
-			position = 26,
+			position = 27,
 			group = "Verzik Vitur"
 	)
 	default Color getVerzikGreenOrbPoolColor()
@@ -367,7 +380,7 @@ public interface TheatreOfBloodConfig extends Config
 			keyName = "showDebugOverlay",
 			name = "Display debug overlay",
 			description = "Displays Theatre of Blood debug overlay. This contains variables that the plugin uses to function",
-			position = 27
+			position = 28
 	)
 	default boolean showDebugOverlay()
 	{
