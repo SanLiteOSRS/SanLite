@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2019, Siraz <https://github.com/Sirazzz>
+ * Copyright (c) 2019, Jajack
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -26,13 +27,12 @@ package net.runelite.client.plugins.theatreofblood.encounters;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.GroundObject;
 import net.runelite.api.ObjectID;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class Sotetseg extends TheatreOfBloodEncounter
@@ -65,7 +65,6 @@ public class Sotetseg extends TheatreOfBloodEncounter
 	{
 		if (activeMazeTiles == null)
 		{
-			log.debug("initialising array");
 			activeMazeTiles = new ArrayList<>();
 		}
 	}
@@ -77,7 +76,6 @@ public class Sotetseg extends TheatreOfBloodEncounter
 	{
 		if (activeMazeTiles != null)
 		{
-			log.debug("resetting array");
 			activeMazeTiles = null;
 		}
 	}
@@ -90,13 +88,12 @@ public class Sotetseg extends TheatreOfBloodEncounter
 	/**
 	 * Activates/deactivates the Sotetseg maze and adds red maze tiles to the active maze tiles list
 	 *
-	 * @param groundObject      ground object that triggered the function call
+	 * @param groundObject ground object that triggered the function call
 	 */
 	public void checkMazeTile(GroundObject groundObject)
 	{
 		if (!isActiveMazeTileObject(groundObject.getId()) && !isRedMazeTileObject(groundObject.getId()))
 		{
-			log.debug("Tile already highlighted");
 			return;
 		}
 
@@ -108,13 +105,30 @@ public class Sotetseg extends TheatreOfBloodEncounter
 			}
 			if (isRedMazeTileObject(groundObject.getId()) && !getActiveMazeTiles().contains(groundObject))
 			{
-				log.debug("Adding tile");
 				getActiveMazeTiles().add(groundObject);
 			}
 		}
 		else
 		{
 			resetMaze();
+		}
+	}
+
+	public void checkMazeActivityChanged(int varbitIndex, int encounterState)
+	{
+		if (varbitIndex == 1745)
+		{
+			if (encounterState == 2)
+			{
+				log.debug("Sotetseg maze activated");
+				setMazeActive(true);
+			}
+			else if (encounterState == 1)
+			{
+				log.debug("Sotetseg maze deactivated");
+				setMazeActive(false);
+				resetMaze();
+			}
 		}
 	}
 }

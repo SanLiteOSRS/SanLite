@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2019, Siraz <https://github.com/Sirazzz>
+ * Copyright (c) 2019, Jajack
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -27,11 +28,7 @@ package net.runelite.client.plugins.theatreofblood.encounters;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.AnimationID;
-import net.runelite.api.Constants;
-import net.runelite.api.GraphicID;
-import net.runelite.api.NPC;
-import net.runelite.api.GraphicsObject;
+import net.runelite.api.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -128,7 +125,8 @@ public class PestilentBloat extends TheatreOfBloodEncounter
 			}
 			else if (getRemainingSleepClientTicks() <= 0)
 			{
-				//Reset hand cycle count here as theres a small chance hands can fall the same time bloat sleeps, wait till sleep is over to make sure this doesn't affect the counting
+				// Reset hand cycle count here as there is a small chance hands can fall the same time bloat sleeps,
+				// wait till sleep is over to make sure this doesn't affect the counting
 				handFallCycleCount = 0;
 				wakeUp(clientTick);
 			}
@@ -147,8 +145,8 @@ public class PestilentBloat extends TheatreOfBloodEncounter
 	public void checkHandAttackGraphicObjects(List<GraphicsObject> clientGraphicObjects)
 	{
 		List<GraphicsObject> handAttacks = clientGraphicObjects.stream()
-			.filter(x -> isHandAttack(x.getId()))
-			.collect(Collectors.toList());
+				.filter(x -> isHandAttack(x.getId()))
+				.collect(Collectors.toList());
 
 		setAoeEffects(handAttacks);
 

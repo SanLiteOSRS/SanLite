@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2019, Siraz <https://github.com/Sirazzz>
+ * Copyright (c) 2019, Jajack
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -25,15 +26,9 @@
 package net.runelite.client.plugins.theatreofblood;
 
 import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.Client;
-import net.runelite.api.GraphicsObject;
-import net.runelite.api.Perspective;
 import net.runelite.api.Point;
+import net.runelite.api.*;
 import net.runelite.api.coords.LocalPoint;
-import net.runelite.api.GameObject;
-import net.runelite.api.NPC;
-import net.runelite.api.Constants;
-import net.runelite.api.GroundObject;
 import net.runelite.client.plugins.theatreofblood.encounters.*;
 import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayLayer;
@@ -144,6 +139,7 @@ public class TheatreOfBloodOverlay extends Overlay
 					renderVerzikNylocasAggressionText(graphics, (Verzik) encounter);
 				}
 			}
+
 			// Nylocas - does not always have a boss npc
 			if (config.highlightAggressiveNylocas() && encounter.getEncounter() == TheatreOfBloodEncounters.NYLOCAS)
 			{
@@ -277,10 +273,9 @@ public class TheatreOfBloodOverlay extends Overlay
 
 		for (NPC aliveNylocas : new ArrayList<>(nylocas.getAliveNylocas().keySet()))
 		{
-			List<Integer> timers = nylocas.getAliveNylocas().get(aliveNylocas);
-
-			if (timers.get(2) < (5000 / Constants.CLIENT_TICK_LENGTH))
+			if (nylocas.isNylocasAlmostExploding(aliveNylocas))
 			{
+				List<Integer> timers = nylocas.getAliveNylocas().get(aliveNylocas);
 				String text = TickUtil.convertTimerFormat(timers.get(2), config.getTimerFormat());
 
 				Point textLocation = aliveNylocas.getCanvasTextLocation(graphics, text, 0);

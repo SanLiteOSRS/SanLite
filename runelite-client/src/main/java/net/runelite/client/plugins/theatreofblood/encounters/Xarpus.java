@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2019, Siraz <https://github.com/Sirazzz>
+ * Copyright (c) 2019, Jajack
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -43,7 +44,7 @@ public class Xarpus extends TheatreOfBloodEncounter
 	@Setter
 	private Boolean isStaring = false;
 
-	private final int TURN_DURATION = 4800;
+	private final static int TURN_DURATION = 4800;
 
 	@Setter
 	@Getter
@@ -119,6 +120,15 @@ public class Xarpus extends TheatreOfBloodEncounter
 		else
 		{
 			remainingTurnTime = nextTurnTime - clientTick;
+		}
+	}
+
+	public void checkOverheadTextPhaseChange(String overheadText, int gameCycle)
+	{
+		if (overheadText.equals("Screeeeech!"))
+		{
+			setIsStaring(true);
+			setLastTurnTime(gameCycle);
 		}
 	}
 }

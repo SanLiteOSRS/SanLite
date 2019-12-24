@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2019, Siraz <https://github.com/Sirazzz>
+ * Copyright (c) 2019, Jajack
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -98,13 +99,13 @@ public class Nylocas extends TheatreOfBloodEncounter
 	{
 		List<Integer> timers = new ArrayList<>();
 
-		//spawn time
+		// Spawn time
 		timers.add(clientTick);
 
-		//explode time
+		// Explode time
 		timers.add(clientTick + (NYLOCAS_LIFE_LENGTH / Constants.CLIENT_TICK_LENGTH));
 
-		//time till explode
+		// Time till explode
 		timers.add(timers.get(1) - timers.get(0));
 
 		aliveNylocas.put(npc, timers);
@@ -129,5 +130,13 @@ public class Nylocas extends TheatreOfBloodEncounter
 
 			aliveNylocas.replace(nylocas, timers);
 		}
+	}
+
+	public boolean isNylocasAlmostExploding(NPC nylocas)
+	{
+		List<Integer> timers = getAliveNylocas().get(nylocas);
+
+		// Check if Nylocas is within 5 seconds of exploding
+		return timers.get(2) < (5000 / Constants.CLIENT_TICK_LENGTH);
 	}
 }
