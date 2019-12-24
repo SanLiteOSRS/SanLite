@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019, Siraz
+ * Copyright (c) 2019, Siraz <https://github.com/Sirazzz>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -131,17 +131,44 @@ class AlchemicalHydra
 		this.aoeEffects = new ArrayList<>();
 	}
 
-	boolean isSpecialAttack(GraphicsObject graphicsObject)
+	boolean isSpecialAttack(int graphicsObjectId)
 	{
-		return graphicsObject.getId() == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_BEFORE_LANDING ||
-				graphicsObject.getId() == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_1 ||
-				graphicsObject.getId() == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_2 ||
-				graphicsObject.getId() == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_3 ||
-				graphicsObject.getId() == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_4 ||
-				graphicsObject.getId() == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_5 ||
-				graphicsObject.getId() == GraphicID.ALCHEMICAL_HYDRA_LIGHTNING_ATTACK_1 ||
-				graphicsObject.getId() == GraphicID.ALCHEMICAL_HYDRA_LIGHTNING_ATTACK_2 ||
-				graphicsObject.getId() == GraphicID.ALCHEMICAL_HYDRA_FIRE_ATTACK;
+		return graphicsObjectId == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_BEFORE_LANDING ||
+				graphicsObjectId == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_1 ||
+				graphicsObjectId == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_2 ||
+				graphicsObjectId == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_3 ||
+				graphicsObjectId == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_4 ||
+				graphicsObjectId == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_5 ||
+				graphicsObjectId == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_6 ||
+				graphicsObjectId == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_7 ||
+				graphicsObjectId == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_8 ||
+				graphicsObjectId == GraphicID.ALCHEMICAL_HYDRA_LIGHTNING_ATTACK_1 ||
+				graphicsObjectId == GraphicID.ALCHEMICAL_HYDRA_LIGHTNING_ATTACK_2 ||
+				graphicsObjectId == GraphicID.ALCHEMICAL_HYDRA_FIRE_ATTACK;
+	}
+
+	boolean isPoisonSplatSpecialAttack(int graphicsObjectId)
+	{
+		return graphicsObjectId == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_BEFORE_LANDING ||
+				graphicsObjectId == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_1 ||
+				graphicsObjectId == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_2 ||
+				graphicsObjectId == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_3 ||
+				graphicsObjectId == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_4 ||
+				graphicsObjectId == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_5 ||
+				graphicsObjectId == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_6 ||
+				graphicsObjectId == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_7 ||
+				graphicsObjectId == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_8;
+	}
+
+	boolean isLightningSpecialAttack(int graphicsObjectId)
+	{
+		return graphicsObjectId == GraphicID.ALCHEMICAL_HYDRA_LIGHTNING_ATTACK_1 ||
+				graphicsObjectId == GraphicID.ALCHEMICAL_HYDRA_LIGHTNING_ATTACK_2;
+	}
+
+	boolean isFireSpecialAttack(int graphicsObjectId)
+	{
+		return graphicsObjectId == GraphicID.ALCHEMICAL_HYDRA_FIRE_ATTACK;
 	}
 
 	WorldPoint getChemicalPoolWorldPointForPhase()

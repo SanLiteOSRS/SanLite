@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019, Siraz
+ * Copyright (c) 2019, Siraz <https://github.com/Sirazzz>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -200,24 +200,15 @@ public class AlchemicalHydraOverlay extends Overlay
 
 			if (polygon != null)
 			{
-				if (graphicsObject.getId() == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_BEFORE_LANDING ||
-						graphicsObject.getId() == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_1 ||
-						graphicsObject.getId() == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_2 ||
-						graphicsObject.getId() == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_3 ||
-						graphicsObject.getId() == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_4 ||
-						graphicsObject.getId() == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_5 ||
-						graphicsObject.getId() == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_6 ||
-						graphicsObject.getId() == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_7 ||
-						graphicsObject.getId() == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_8)
+				if (alchemicalHydra.isPoisonSplatSpecialAttack(graphicsObject.getId()))
 				{
 					OverlayUtil.renderPolygon(graphics, polygon, config.getPoisonAttackColor());
 				}
-				else if (graphicsObject.getId() == GraphicID.ALCHEMICAL_HYDRA_LIGHTNING_ATTACK_1 ||
-						graphicsObject.getId() == GraphicID.ALCHEMICAL_HYDRA_LIGHTNING_ATTACK_2)
+				else if (alchemicalHydra.isLightningSpecialAttack(graphicsObject.getId()))
 				{
 					OverlayUtil.renderPolygon(graphics, polygon, config.getLightningAttackColor());
 				}
-				else if (graphicsObject.getId() == GraphicID.ALCHEMICAL_HYDRA_FIRE_ATTACK)
+				else if (alchemicalHydra.isFireSpecialAttack(graphicsObject.getId()))
 				{
 					OverlayUtil.renderPolygon(graphics, polygon, config.getFireAttackColor());
 				}
