@@ -428,9 +428,41 @@ public class AlchemicalHydraPlugin extends Plugin
 	@Subscribe
 	public void onNpcDespawned(NpcDespawned event)
 	{
-		if (event.getNpc().getId() == NpcID.ALCHEMICAL_HYDRA_8622)
+		if (isNpcAlchemicalHydra(event.getNpc().getId()))
 		{
 			reset();
+		}
+	}
+
+	@Subscribe
+	public void onGameObjectEntityChanged(GameObjectEntityChanged event)
+	{
+		// TODO: Vents change when you initially go in the room, explore other things like do they change on respawn?
+
+		if (inHydraInstance() && this.alchemicalHydra != null && alchemicalHydra.getNpc() != null &&
+				alchemicalHydra.getNpc().getInteracting() != null)
+		{
+			switch (alchemicalHydra.getCurrentHydraPhase())
+			{
+				case GREEN:
+					if (event.getGameObject().getId() == ObjectID.CHEMICAL_VENT_GREEN)
+					{
+						alchemicalHydra.checkChemicalVentStatus();
+					}
+					break;
+				case BLUE:
+					if (event.getGameObject().getId() == ObjectID.CHEMICAL_VENT_BLUE)
+					{
+						alchemicalHydra.checkChemicalVentStatus();
+					}
+					break;
+				case RED:
+					if (event.getGameObject().getId() == ObjectID.CHEMICAL_VENT_RED)
+					{
+						alchemicalHydra.checkChemicalVentStatus();
+					}
+					break;
+			}
 		}
 	}
 
@@ -442,6 +474,15 @@ public class AlchemicalHydraPlugin extends Plugin
 			checkGraphicObjects();
 			checkAlchemicalHydraAttacks();
 			checkAlchemicalHydraPhaseSwitch();
+		}
+	}
+
+	@Subscribe
+	protected void onGameTick(GameTick event)
+	{
+		if (inHydraInstance() && alchemicalHydra != null && alchemicalHydra.getTicksTillChemicalVentActive() != 0)
+		{
+			alchemicalHydra.setTicksTillChemicalVentActive(alchemicalHydra.getTicksTillChemicalVentActive() - 1);
 		}
 	}
 }

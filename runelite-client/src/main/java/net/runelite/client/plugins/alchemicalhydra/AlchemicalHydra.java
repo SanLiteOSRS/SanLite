@@ -42,6 +42,8 @@ class AlchemicalHydra
 	static final int ATTACKS_PER_SWITCH = 3; // 3 head attacks per style switch
 	static final int ATTACKS_PER_SPECIAL_ATTACK = 9; // 9 head attacks per special attack
 	static final int ATTACKS_PER_INITIAL_SPECIAL_ATTACK = 3; // 3 head attacks per initial phase special attack
+	static final int TICKS_BETWEEN_CHEMICAL_VENT_ACTIVATION = 5; // TODO: Double check
+	static final int CHEMICAL_VENT_ACTIVE_DURATION = 4; // Vents are active for 4 ticks
 
 	enum AttackStyle
 	{
@@ -82,6 +84,14 @@ class AlchemicalHydra
 	@Getter
 	@Setter
 	private boolean isWeakened;
+
+	@Getter
+	@Setter
+	private boolean isChemicalVentActive;
+
+	@Getter
+	@Setter
+	private int ticksTillChemicalVentActive;
 
 	@Getter
 	@Setter
@@ -187,5 +197,14 @@ class AlchemicalHydra
 				log.warn("Unreachable default case for getChemicalPoolWorldPointForPhase");
 				return null;
 		}
+	}
+
+	void checkChemicalVentStatus()
+	{
+		if (isChemicalVentActive())
+		{
+			setTicksTillChemicalVentActive(TICKS_BETWEEN_CHEMICAL_VENT_ACTIVATION);
+		}
+		setChemicalVentActive(!isChemicalVentActive());
 	}
 }

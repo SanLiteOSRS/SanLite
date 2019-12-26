@@ -121,6 +121,16 @@ public class AlchemicalHydraDebugOverlay extends Overlay
 					.right("" + plugin.getAlchemicalHydra().getAoeEffects().size())
 					.build());
 
+			panelComponent.getChildren().add(LineComponent.builder()
+					.left("Chemical vent active")
+					.right("" + plugin.getAlchemicalHydra().isChemicalVentActive())
+					.build());
+
+			panelComponent.getChildren().add(LineComponent.builder()
+					.left("Ticks till next active vent")
+					.right("" + plugin.getAlchemicalHydra().getTicksTillChemicalVentActive())
+					.build());
+
 			return panelComponent.render(graphics);
 		}
 		return null;

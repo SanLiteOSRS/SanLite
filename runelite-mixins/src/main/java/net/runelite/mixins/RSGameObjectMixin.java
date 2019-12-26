@@ -29,6 +29,8 @@ import net.runelite.api.Perspective;
 import net.runelite.api.Point;
 import net.runelite.api.coords.Angle;
 import net.runelite.api.coords.LocalPoint;
+import net.runelite.api.events.GameObjectEntityChanged;
+import net.runelite.api.mixins.FieldHook;
 import net.runelite.api.mixins.Inject;
 import net.runelite.api.mixins.Mixin;
 import net.runelite.api.mixins.Shadow;
@@ -55,6 +57,16 @@ public abstract class RSGameObjectMixin implements RSGameObject
 	public Point getSceneMaxLocation()
 	{
 		return new Point(getOffsetX(), getOffsetY());
+	}
+
+	@FieldHook("entity")
+	@Inject
+	public void GameObjectEntityChanged(int idx)
+	{
+		//client.getLogger().debug("GameObjectEntityChanged: {}", this.getId());
+		GameObjectEntityChanged gameObjectEntityChanged = new GameObjectEntityChanged();
+		gameObjectEntityChanged.setGameObject(this);
+		client.getCallbacks().post(gameObjectEntityChanged);
 	}
 
 	@Inject
