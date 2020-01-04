@@ -428,7 +428,7 @@ public class AlchemicalHydraPlugin extends Plugin
 	@Subscribe
 	public void onNpcDespawned(NpcDespawned event)
 	{
-		if (event.getNpc().getId() == NpcID.ALCHEMICAL_HYDRA_8622)
+		if (isNpcAlchemicalHydra(event.getNpc().getId()))
 		{
 			reset();
 		}
