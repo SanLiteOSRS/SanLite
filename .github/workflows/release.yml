@@ -31,11 +31,8 @@ jobs:
       - name: Build with Maven & check for Checkstyle violations
         run: mvn -B package -DskipTests -Dcheckstyle.skip=false --file pom.xml
       
-      - name: Test with Maven
-        run: mvn test
-      
       - name: Release
         uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/')
+        if: startsWith(github.ref, 'refs/tags/') && github.ref == 'refs/heads/master'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
