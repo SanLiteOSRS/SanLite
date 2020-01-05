@@ -2,9 +2,6 @@ name: SanLite CI - Release
 
 on:
   push:
-    branches:
-      - master
-      - 'feature/release-workflow'
     tags:
       - 'sanlite-*'
 
