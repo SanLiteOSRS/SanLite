@@ -42,7 +42,7 @@ jobs:
     steps:
       - name: Update release draft
         uses: release-drafter/release-drafter@v5
-        if: github.ref == 'refs/heads/master'
+        #if: github.ref == 'refs/heads/master'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
