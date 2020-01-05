@@ -1,6 +1,9 @@
 name: SanLite CI - Push
 
-on: [push]
+on:
+  push:
+    tags-ignore:
+      - '**'
 
 jobs:
   build-test-checkstyle:
