@@ -411,8 +411,6 @@ public class TheatreOfBloodPlugin extends Plugin
 					currentEncounter.castToVerzik().removeNylocasCrab(npc);
 				}
 				break;
-			default:
-				break;
 		}
 	}
 
@@ -504,8 +502,7 @@ public class TheatreOfBloodPlugin extends Plugin
 		{
 			if (currentEncounter.getEncounter() == TheatreOfBloodEncounters.SOTETSEG)
 			{
-				currentEncounter.castToSotetseg().checkMazeActivityChanged(varbitChanged.getIndex(),
-						client.getVar(TOB_ENCOUNTER_STATE));
+				currentEncounter.castToSotetseg().checkMazeActivityChanged(client.getVar(TOB_ENCOUNTER_STATE));
 			}
 		}
 	}
@@ -535,7 +532,12 @@ public class TheatreOfBloodPlugin extends Plugin
 	{
 		if (validateRegionAndCurrentEncounter())
 		{
-			NPC npc = (NPC) animationChanged.getActor();
+			if (!(animationChanged.getActor() instanceof NPC))
+			{
+				return;
+			}
+
+			final NPC npc = (NPC) animationChanged.getActor();
 			if (currentEncounter.getEncounter() == TheatreOfBloodEncounters.VERZIK_VITUR &&
 					TheatreOfBloodEncounter.isNpcTheatreOfBloodEncounter(npc.getId()))
 			{

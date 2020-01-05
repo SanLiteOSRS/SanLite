@@ -68,6 +68,11 @@ public class TheatreOfBloodDebugOverlay extends Overlay
 					.build());
 
 			panelComponent.getChildren().add(LineComponent.builder()
+					.left("Client Tick")
+					.right("" + client.getGameCycle())
+					.build());
+
+			panelComponent.getChildren().add(LineComponent.builder()
 					.left("Current encounter")
 					.right("" + plugin.getCurrentEncounter().getEncounter())
 					.build());
@@ -153,10 +158,6 @@ public class TheatreOfBloodDebugOverlay extends Overlay
 							.left("Remaining time")
 							.right("" + xarpus.getRemainingTurnTime())
 							.build());
-					panelComponent.getChildren().add(LineComponent.builder()
-							.left("Client Tick")
-							.right("" + client.getGameCycle())
-							.build());
 					break;
 				case VERZIK_VITUR:
 					Verzik verzik = (Verzik) plugin.getCurrentEncounter();
@@ -195,10 +196,6 @@ public class TheatreOfBloodDebugOverlay extends Overlay
 					panelComponent.getChildren().add(LineComponent.builder()
 							.left("Phase Start Time")
 							.right("" + verzik.getPhaseStartTime())
-							.build());
-					panelComponent.getChildren().add(LineComponent.builder()
-							.left("Client Tick")
-							.right("" + client.getGameCycle())
 							.build());
 					panelComponent.getChildren().add(LineComponent.builder()
 							.left("Attack Count:")

@@ -72,7 +72,7 @@ public class Sotetseg extends TheatreOfBloodEncounter
 	/**
 	 * Resets the active maze tiles list
 	 */
-	public void resetMaze()
+	private void resetMaze()
 	{
 		if (activeMazeTiles != null)
 		{
@@ -114,21 +114,17 @@ public class Sotetseg extends TheatreOfBloodEncounter
 		}
 	}
 
-	public void checkMazeActivityChanged(int varbitIndex, int encounterState)
+	public void checkMazeActivityChanged(int encounterState)
 	{
-		if (varbitIndex == 1745)
+		switch (encounterState)
 		{
-			if (encounterState == 2)
-			{
-				log.debug("Sotetseg maze activated");
-				setMazeActive(true);
-			}
-			else if (encounterState == 1)
-			{
-				log.debug("Sotetseg maze deactivated");
+			case 1:
 				setMazeActive(false);
 				resetMaze();
-			}
+				break;
+			case 2:
+				setMazeActive(true);
+				break;
 		}
 	}
 }

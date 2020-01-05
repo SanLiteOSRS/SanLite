@@ -122,18 +122,25 @@ public class TheatreOfBloodOverlay extends Overlay
 				{
 					renderVerzikGreenOrbPoolAoeEffects(graphics, (Verzik) encounter);
 				}
-				if (config.displayP1AttackTimerText() && encounter.getEncounter() == TheatreOfBloodEncounters.VERZIK_VITUR && encounter.castToVerzik().getVerzikPhase() == 1)
+
+				if (config.displayVerzikP1AttackTimer() && encounter.getEncounter() == TheatreOfBloodEncounters.VERZIK_VITUR &&
+						encounter.castToVerzik().getVerzikPhase() == 1)
 				{
 					renderVerzikAttackTimerText(graphics, (Verzik) encounter);
 				}
-				if (config.displayP2AttackTimerText() && encounter.getEncounter() == TheatreOfBloodEncounters.VERZIK_VITUR && encounter.castToVerzik().getVerzikPhase() == 2)
+
+				if (config.displayVerzikP2AttackTimer() && encounter.getEncounter() == TheatreOfBloodEncounters.VERZIK_VITUR &&
+						encounter.castToVerzik().getVerzikPhase() == 2)
 				{
 					renderVerzikAttackTimerText(graphics, (Verzik) encounter);
 				}
-				if (config.displayP3AttackTimerText() && encounter.getEncounter() == TheatreOfBloodEncounters.VERZIK_VITUR && encounter.castToVerzik().getVerzikPhase() >= 3)
+
+				if (config.displayVerzikP3AttackTimer() && encounter.getEncounter() == TheatreOfBloodEncounters.VERZIK_VITUR &&
+						encounter.castToVerzik().getVerzikPhase() >= 3)
 				{
 					renderVerzikAttackTimerText(graphics, (Verzik) encounter);
 				}
+
 				if (config.displayVerzikNylocasAggression() && encounter.getEncounter() == TheatreOfBloodEncounters.VERZIK_VITUR)
 				{
 					renderVerzikNylocasAggressionText(graphics, (Verzik) encounter);
@@ -145,6 +152,7 @@ public class TheatreOfBloodOverlay extends Overlay
 			{
 				renderAggressiveNylocasHighlights(graphics, (Nylocas) encounter);
 			}
+
 			if (config.displayNylocasLifeTimerText() && encounter.getEncounter() == TheatreOfBloodEncounters.NYLOCAS)
 			{
 				renderNylocasLifeTimerText(graphics, (Nylocas) encounter);
@@ -218,7 +226,8 @@ public class TheatreOfBloodOverlay extends Overlay
 		{
 			color = config.getBloatAsleepColor();
 		}
-		else if (pestilentBloat.getHandFallCycleCount() == 7 || pestilentBloat.getHandFallCycleCount() == 8 || pestilentBloat.getHandFallCycleCount() > 15)
+		else if (pestilentBloat.getHandFallCycleCount() == 7 || pestilentBloat.getHandFallCycleCount() == 8 ||
+				pestilentBloat.getHandFallCycleCount() > 15)
 		{
 			color = config.getBloatWarningColor();
 		}
@@ -404,15 +413,23 @@ public class TheatreOfBloodOverlay extends Overlay
 				return;
 			}
 
-			String text = (npc.getInteracting().getName());
+			String text = npc.getInteracting().getName();
 			Point textLocation = npc.getCanvasTextLocation(graphics, text, 0);
 
-			if (textLocation == null)
+			if (text == null || textLocation == null)
 			{
 				return;
 			}
 
-			OverlayUtil.renderTextLocation(graphics, textLocation, text, Color.WHITE);
+			Actor localPlayer = client.getLocalPlayer();
+			if (localPlayer == null)
+			{
+				return;
+			}
+
+			Color color = text.equals(client.getLocalPlayer().getName()) ? Color.RED : Color.WHITE;
+
+			OverlayUtil.renderTextLocation(graphics, textLocation, text, color);
 		}
 	}
 }

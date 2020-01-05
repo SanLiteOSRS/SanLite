@@ -43,9 +43,6 @@ public class Nylocas extends TheatreOfBloodEncounter
 	@Getter
 	private HashMap<NPC, List<Integer>> aliveNylocas;
 
-	@Getter
-	private List<Integer> debuglist;
-
 	private final static int NYLOCAS_LIFE_LENGTH = 31200;
 
 	public Nylocas(TheatreOfBloodEncounters encounter)
@@ -53,7 +50,6 @@ public class Nylocas extends TheatreOfBloodEncounter
 		super(encounter);
 		highlightedNylocasNpcs = new ArrayList<>();
 		aliveNylocas = new HashMap<>();
-		debuglist = new ArrayList<>();
 	}
 
 	public static boolean isNylocasNpc(int npcId)
