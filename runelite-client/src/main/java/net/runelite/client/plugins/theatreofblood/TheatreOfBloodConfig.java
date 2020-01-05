@@ -342,7 +342,7 @@ public interface TheatreOfBloodConfig extends Config
 
 	@ConfigItem(
 			keyName = "displayVerzikNylocasAggression",
-			name = "Display names of players that Nylocas are aggroed to",
+			name = "Display Nylocas target",
 			description = "Displays the name of players that Nylocas spawns are aggroed to",
 			position = 25,
 			group = "Verzik Vitur"
