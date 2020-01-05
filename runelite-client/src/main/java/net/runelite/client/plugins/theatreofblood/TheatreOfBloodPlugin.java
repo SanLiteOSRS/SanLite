@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2019, Siraz <https://github.com/Sirazzz>
+ * Copyright (c) 2019, Jajack
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -43,6 +44,8 @@ import net.runelite.client.util.Text;
 import javax.inject.Inject;
 import java.util.Arrays;
 import java.util.regex.Pattern;
+
+import static net.runelite.api.Varbits.TOB_ENCOUNTER_STATE;
 
 @Slf4j
 @PluginDescriptor(
@@ -226,9 +229,9 @@ public class TheatreOfBloodPlugin extends Plugin
 		final GroundObject object = event.getGroundObject();
 		switch (currentEncounter.getEncounter())
 		{
-//			case SOTETSEG:
-//				currentEncounter.castToSotetseg().checkMazeTile(object, false);
-//				break;
+			case SOTETSEG:
+				currentEncounter.castToSotetseg().checkMazeTile(object);
+				break;
 			case XARPUS:
 				currentEncounter.castToXarpus().addGroundObject(object);
 				break;
@@ -251,9 +254,9 @@ public class TheatreOfBloodPlugin extends Plugin
 		final GroundObject object = event.getGroundObject();
 		switch (currentEncounter.getEncounter())
 		{
-//			case SOTETSEG:
-//				currentEncounter.castToSotetseg().checkMazeTile(object, true);
-//				break;
+			case SOTETSEG:
+				currentEncounter.castToSotetseg().checkMazeTile(object);
+				break;
 			case XARPUS:
 				currentEncounter.castToXarpus().removeGroundObject(object);
 				break;
@@ -338,7 +341,7 @@ public class TheatreOfBloodPlugin extends Plugin
 	public void onNpcSpawned(NpcSpawned event)
 	{
 		NPC npc = event.getNpc();
-		if (!TheatreOfBloodEncounter.isNpcTheatreOfBloodEncounter(npc.getId()) && !Nylocas.isNylocasNpc(npc.getId()))
+		if (!TheatreOfBloodEncounter.isNpcTheatreOfBloodEncounter(npc.getId()) && !Nylocas.isNylocasNpc(npc.getId()) && !Verzik.isNylocasNpc(npc.getId()))
 		{
 			return;
 		}
@@ -346,11 +349,31 @@ public class TheatreOfBloodPlugin extends Plugin
 		if (currentEncounter == null)
 		{
 			updateCurrentEncounter(npc.getId());
+			if (currentEncounter == null)
+			{
+				return;
+			}
 		}
 
-		if (currentEncounter != null && !Nylocas.isNylocasNpc(npc.getId()))
+		if (!Nylocas.isNylocasNpc(npc.getId()) && !Verzik.isNylocasNpc(npc.getId()))
 		{
 			currentEncounter.setNpc(npc);
+		}
+
+		switch (currentEncounter.getEncounter())
+		{
+			case NYLOCAS:
+				if (Nylocas.isNylocasNpc(npc.getId()))
+				{
+					currentEncounter.castToNylocas().addNylocasCrab(npc, client.getGameCycle());
+				}
+				break;
+			case VERZIK_VITUR:
+				if (Verzik.isNylocasNpc(npc.getId()))
+				{
+					currentEncounter.castToVerzik().addNylocasCrab(npc);
+				}
+				break;
 		}
 	}
 
@@ -372,6 +395,22 @@ public class TheatreOfBloodPlugin extends Plugin
 		{
 			currentEncounter.setNpc(null);
 			log.debug("Current encounter npc reset due to despawn of npc id: {}", npc.getId());
+		}
+
+		switch (currentEncounter.getEncounter())
+		{
+			case NYLOCAS:
+				if (Nylocas.isNylocasNpc(npc.getId()))
+				{
+					currentEncounter.castToNylocas().removeNylocasCrab(npc);
+				}
+				break;
+			case VERZIK_VITUR:
+				if (Verzik.isNylocasNpc(npc.getId()))
+				{
+					currentEncounter.castToVerzik().removeNylocasCrab(npc);
+				}
+				break;
 		}
 	}
 
@@ -438,7 +477,71 @@ public class TheatreOfBloodPlugin extends Plugin
 					break;
 				case NYLOCAS:
 					currentEncounter.castToNylocas().checkNylocasAggressiveNpcs(client.getNpcs(), client.getPlayers());
+					currentEncounter.castToNylocas().checkNylocasTimers(client.getGameCycle());
 					break;
+				case XARPUS:
+					if (currentEncounter.castToXarpus().getIsStaring())
+					{
+						currentEncounter.castToXarpus().checkTurnTimer(client.getGameCycle());
+					}
+					break;
+				case VERZIK_VITUR:
+					if (currentEncounter.castToVerzik().getVerzikPhase() != 0)
+					{
+						currentEncounter.castToVerzik().checkAttackTimer(client.getGameCycle());
+					}
+					break;
+			}
+		}
+	}
+
+	@Subscribe
+	protected void onVarbitChanged(VarbitChanged varbitChanged)
+	{
+		if (client.isInInstancedRegion() && currentEncounter != null && currentEncounter.getEncounter() != null)
+		{
+			if (currentEncounter.getEncounter() == TheatreOfBloodEncounters.SOTETSEG)
+			{
+				currentEncounter.castToSotetseg().checkMazeActivityChanged(client.getVar(TOB_ENCOUNTER_STATE));
+			}
+		}
+	}
+
+	@Subscribe
+	protected void onOverheadTextChanged(OverheadTextChanged overheadTextChanged)
+	{
+		if (client.isInInstancedRegion() && currentEncounter != null && currentEncounter.getEncounter() != null &&
+				overheadTextChanged.getOverheadText() != null)
+		{
+			switch (currentEncounter.getEncounter())
+			{
+				case XARPUS:
+					currentEncounter.castToXarpus().checkOverheadTextPhaseChange(overheadTextChanged.getOverheadText(),
+							client.getGameCycle());
+					break;
+				case VERZIK_VITUR:
+					currentEncounter.castToVerzik().checkOverheadTextPhaseChange(overheadTextChanged.getOverheadText(),
+							client.getGameCycle());
+					break;
+			}
+		}
+	}
+
+	@Subscribe
+	protected void onAnimationChanged(AnimationChanged animationChanged)
+	{
+		if (validateRegionAndCurrentEncounter())
+		{
+			if (!(animationChanged.getActor() instanceof NPC))
+			{
+				return;
+			}
+
+			final NPC npc = (NPC) animationChanged.getActor();
+			if (currentEncounter.getEncounter() == TheatreOfBloodEncounters.VERZIK_VITUR &&
+					TheatreOfBloodEncounter.isNpcTheatreOfBloodEncounter(npc.getId()))
+			{
+				currentEncounter.castToVerzik().checkAnimationPhaseChange(npc.getAnimation(), client.getGameCycle());
 			}
 		}
 	}

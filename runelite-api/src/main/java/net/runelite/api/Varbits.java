@@ -312,7 +312,8 @@ public enum Varbits
 	TOB_ENCOUNTER_HEALTH_BAR_MAX_VALUE(6449), // Value is set from 1000 to 0 at the end of encounter
 
 	/**
-	 * Theatre of Blood orb varbits each number stands for the player's health on a scale of 1-27 (I think), 0 hides the orb
+	 * Theatre of Blood orb varbits each number stands for the player's health on a scale of 1-27,
+	 * 0 hides the orb, 31 turns the orb yellow
 	 */
 	THEATRE_OF_BLOOD_ORB_1(6442),
 	THEATRE_OF_BLOOD_ORB_2(6443),
