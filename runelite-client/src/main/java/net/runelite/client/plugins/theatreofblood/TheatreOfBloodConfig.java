@@ -335,7 +335,7 @@ public interface TheatreOfBloodConfig extends Config
 			position = 24,
 			group = "Verzik Vitur"
 	)
-	default boolean displayP3AttackTimerText()
+	default boolean displayVerzikP3AttackTimer()
 	{
 		return true;
 	}
