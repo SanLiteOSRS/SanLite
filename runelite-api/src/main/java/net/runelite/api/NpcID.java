@@ -98,7 +98,8 @@ public final class NpcID
 	public static final int GHOST_95 = 95;
 	public static final int GHOST_96 = 96;
 	public static final int GHOST_97 = 97;
-	public static final int DEATH_WING = 99;
+	public static final int GHOST_98 = 98;
+	public static final int GHOST_99 = 99;
 	public static final int ROCK_CRAB = 100;
 	public static final int ROCKS = 101;
 	public static final int ROCK_CRAB_102 = 102;
