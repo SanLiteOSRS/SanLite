@@ -30,3 +30,10 @@ jobs:
       
       - name: Test with Maven
         run: mvn test
+      
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/sanlite-*')
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        
