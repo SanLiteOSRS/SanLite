@@ -33,11 +33,11 @@ jobs:
   
   update-release-draft:
     runs-on: ubuntu-latest
-    name: Update release draft
-    #if: github.ref == 'refs/heads/master'
+    name: Create/update release draft
+    if: github.ref == 'refs/heads/master'
 
     steps:
-      - name: Update release draft
+      - name: Release drafter
         uses: release-drafter/release-drafter@v5.5.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
