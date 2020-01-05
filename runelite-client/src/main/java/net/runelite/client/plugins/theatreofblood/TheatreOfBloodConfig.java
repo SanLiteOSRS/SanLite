@@ -307,7 +307,7 @@ public interface TheatreOfBloodConfig extends Config
 	@ConfigItem(
 			keyName = "displayP1AttackTimerText",
 			name = "Display Phase 1 Attack Timer",
-			description = "Displays a timer showing when verzik's next attack is on phase 1",
+			description = "Displays a timer showing when Verzik's next attack is on phase 1",
 			position = 22,
 			group = "Verzik Vitur"
 	)
