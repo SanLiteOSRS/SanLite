@@ -16,7 +16,7 @@ class Bootstrap
 	private static String CLIENT_REPO_URL;
 
 	private Artifact[] artifacts;
-	String buildCommit = ""; // This should be the build commit for the release
+	private String buildCommit = ""; // This should be the build commit for the release
 	String artifactId = "sanlite-client";
 	String sanliteVersion = new BootstrapperProperties().getSanLiteVersion();
 	String runeliteVersion = new BootstrapperProperties().getRuneLiteVersion();
@@ -49,8 +49,9 @@ class Bootstrap
 		"-XX:+UseParNewGC",
 		"-Djna.nosys=true"};
 
-	Bootstrap(boolean isStaging)
+	Bootstrap(boolean isStaging, String buildCommit)
 	{
+		this.buildCommit = buildCommit;
 		if (isStaging)
 		{
 			CLIENT_REPO_URL = CLIENT_REPO_STAGING_URL;

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016-2017, Adam <Adam@sigterm.info>
+ * Copyright (c) 2019, Rami <https://github.com/Rami-J>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,39 +22,25 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+package net.runelite.client.plugins.menuentryswapper;
 
-package net.runelite.cache;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
-public enum ConfigType
+@Getter
+@RequiredArgsConstructor
+public enum GEItemCollectMode
 {
-	// types from https://github.com/im-frizzy/OpenRS/blob/master/source/net/openrs/cache/type/ConfigArchive.java
-	UNDERLAY(1),
-	IDENTKIT(3),
-	OVERLAY(4),
-	INV(5),
-	OBJECT(6),
-	ENUM(8),
-	NPC(9),
-	ITEM(10),
-	PARAMS(11),
-	SEQUENCE(12),
-	SPOTANIM(13),
-	VARBIT(14),
-	VARCLIENT(19),
-	VARCLIENTSTRING(15),
-	VARPLAYER(16),
-	STRUCT(34),
-	AREA(35);
+	DEFAULT("Default"),
+	ITEMS("Collect-items"),
+	NOTES("Collect-notes"),
+	BANK("Bank");
 
-	private final int id;
+	private final String name;
 
-	ConfigType(int id)
+	@Override
+	public String toString()
 	{
-		this.id = id;
-	}
-
-	public int getId()
-	{
-		return id;
+		return name;
 	}
 }

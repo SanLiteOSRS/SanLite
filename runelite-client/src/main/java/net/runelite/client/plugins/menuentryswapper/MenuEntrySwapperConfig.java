@@ -374,6 +374,26 @@ public interface MenuEntrySwapperConfig extends Config
 	}
 
 	@ConfigItem(
+			keyName = "swapGEItemCollect",
+			name = "GE Item Collect",
+			description = "Swap Collect-notes, Collect-items, or Bank options from GE offer"
+	)
+	default GEItemCollectMode swapGEItemCollect()
+	{
+		return GEItemCollectMode.DEFAULT;
+	}
+
+	@ConfigItem(
+			keyName = "swapGEAbort",
+			name = "GE Abort",
+			description = "Swap abort offer on Grand Exchange offers when shift-clicking"
+	)
+	default boolean swapGEAbort()
+	{
+		return false;
+	}
+
+	@ConfigItem(
 			keyName = "swapStoreBuy",
 			name = "Store Buy",
 			description = "Changes stores left-click buy options"
