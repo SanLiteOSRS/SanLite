@@ -46,7 +46,7 @@ public class Nylocas extends TheatreOfBloodEncounter
 	@Getter
 	private List<Integer> debuglist;
 
-	private final int NYLOCAS_LIFE_LENGTH = 31200;
+	private final static int NYLOCAS_LIFE_LENGTH = 31200;
 
 	public Nylocas(TheatreOfBloodEncounters encounter)
 	{
