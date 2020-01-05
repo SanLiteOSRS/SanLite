@@ -38,7 +38,7 @@ public interface TheatreOfBloodConfig extends Config
 
 	@ConfigItem(
 			keyName = "timerFormat",
-			name = "Format for boss timers",
+			name = "Timers format",
 			description = "Select the format that certain boss timers will be displayed in",
 			position = 0
 	)
