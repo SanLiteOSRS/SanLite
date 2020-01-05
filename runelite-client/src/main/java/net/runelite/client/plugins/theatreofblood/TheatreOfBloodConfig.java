@@ -295,7 +295,7 @@ public interface TheatreOfBloodConfig extends Config
 	@ConfigItem(
 			keyName = "displayXarpusTurnTimer",
 			name = "Xarpus turn timer",
-			description = "Displays a timer until Xarpus next turn",
+			description = "Displays a timer until Xarpus his next turn",
 			position = 21,
 			group = "Xarpus"
 	)
