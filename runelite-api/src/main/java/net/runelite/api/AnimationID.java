@@ -176,12 +176,6 @@ public final class AnimationID
 	public static final int MEJ_KOT_MELEE_ATTACK = 2637;
 	public static final int MEJ_KOT_HEAL_ATTACK = 2639;
 	public static final int HELLHOUND_DEFENCE = 6566;
-	public static final int VORKATH_WAKE_UP = 7950;
-	public static final int VORKATH_DEATH = 7949;
-	public static final int VORKATH_SLASH_ATTACK = 7951;
-	public static final int VORKATH_ATTACK = 7952;
-	public static final int VORKATH_FIRE_BOMB_OR_SPAWN_ATTACK = 7960;
-	public static final int VORKATH_ACID_ATTACK = 7957;
 	public static final int BLACKJACK_KO = 838;
 	public static final int VETION_EARTHQUAKE = 5507;
 	public static final int ZULRAH_DEATH = 5804;
@@ -238,6 +232,14 @@ public final class AnimationID
 	public static final int TEKTON_ENRAGE_AUTO1 = 7492;
 	public static final int TEKTON_ENRAGE_AUTO2 = 7493;
 	public static final int TEKTON_ENRAGE_AUTO3 = 7494;
+
+	// Vorkath
+	public static final int VORKATH_DEATH = 7949;
+	public static final int VORKATH_WAKE_UP = 7950;
+	public static final int VORKATH_SLASH_ATTACK = 7951;
+	public static final int VORKATH_ATTACK = 7952;
+	public static final int VORKATH_ACID_ATTACK = 7957;
+	public static final int VORKATH_FIRE_BOMB_OR_SPAWN_ATTACK = 7960;
 
 	// Pestilent Bloat
 	public static final int BLOAT_SLEEP = 8082;

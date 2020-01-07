@@ -157,10 +157,11 @@ public interface RuneLiteConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "notificationSound",
-			name = "Notification sound",
-			description = "Enables the playing of a beep sound when notifications are displayed",
-			position = 22
+		keyName = "notificationSound",
+		name = "Notification sound",
+		description = "Enables the playing of a beep sound when notifications are displayed",
+		position = 22,
+		group = "Notifications"
 	)
 	default Notifier.NativeCustomOff notificationSound()
 	{
