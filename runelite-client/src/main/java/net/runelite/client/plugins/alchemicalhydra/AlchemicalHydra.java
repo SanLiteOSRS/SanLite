@@ -184,8 +184,50 @@ class AlchemicalHydra
 			case JAD:
 				return null;
 			default:
-				log.warn("Unreachable default case for getChemicalPoolWorldPointForPhase");
+				log.warn("Unreachable default case when retrieving chemical pool world point");
 				return null;
+		}
+	}
+
+	void switchCurrentAttackStyle(AttackStyle newAttackStyle, int attackUntilSwitch)
+	{
+		setCurrentAttackStyle(newAttackStyle);
+		setAttacksUntilSwitch(attackUntilSwitch);
+		setChangedAttackStyleThisTick(true);
+	}
+
+	void switchPhase(AlchemicalHydra.Phase newPhase)
+	{
+		switch (newPhase)
+		{
+			case BLUE:
+				setCurrentHydraPhase(AlchemicalHydra.Phase.BLUE);
+				setAttacksUntilSpecialAttack(AlchemicalHydra.ATTACKS_PER_INITIAL_SPECIAL_ATTACK);
+				setWeakened(false);
+				break;
+			case RED:
+				setCurrentHydraPhase(AlchemicalHydra.Phase.RED);
+				setAttacksUntilSpecialAttack(AlchemicalHydra.ATTACKS_PER_INITIAL_SPECIAL_ATTACK);
+				setWeakened(false);
+				break;
+			case JAD:
+				// Determine which attack style the Jad phase will start with
+				if (getCurrentAttackStyle() == AlchemicalHydra.AttackStyle.MAGIC &&
+						getAttacksUntilSwitch() != AlchemicalHydra.ATTACKS_PER_SWITCH)
+				{
+					setCurrentAttackStyle(AlchemicalHydra.AttackStyle.RANGED);
+				}
+				else if (getCurrentAttackStyle() == AlchemicalHydra.AttackStyle.RANGED &&
+						getAttacksUntilSwitch() != AlchemicalHydra.ATTACKS_PER_SWITCH)
+				{
+					setCurrentAttackStyle(AlchemicalHydra.AttackStyle.MAGIC);
+				}
+
+				setCurrentHydraPhase(AlchemicalHydra.Phase.JAD);
+				setAttacksUntilSwitch(AlchemicalHydra.ATTACKS_PER_SWITCH);
+				setAttacksUntilSpecialAttack(AlchemicalHydra.ATTACKS_PER_SPECIAL_ATTACK);
+				setChangedAttackStyleThisTick(true);
+				break;
 		}
 	}
 }

@@ -83,7 +83,7 @@ public class AlchemicalHydraOverlay extends Overlay
 		switch (attackStyle)
 		{
 			case RANGED:
-				return iconManager.getSkillImage(Skill.RANGED);
+				return ImageUtil.resizeImage(iconManager.getSkillImage(Skill.RANGED), 25, 23);
 			case MAGIC:
 				return iconManager.getSkillImage(Skill.MAGIC);
 			case POISON:
