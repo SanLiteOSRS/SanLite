@@ -13,7 +13,7 @@ public class Bootstrapper
 	{
 		if (args.length > 1)
 		{
-			System.out.println("Too many arguments, format: buildCommit (optional)");
+			System.out.println("Too many arguments, syntax: buildCommit (optional)");
 			System.exit(1);
 		}
 
@@ -24,6 +24,7 @@ public class Bootstrapper
 		}
 
 		System.out.println("Generating bootstrap file");
+		System.out.println("Build commit: " + buildCommit);
 		generateBootstrap(false, buildCommit);
 
 		System.out.println("Generating staging bootstrap file");
