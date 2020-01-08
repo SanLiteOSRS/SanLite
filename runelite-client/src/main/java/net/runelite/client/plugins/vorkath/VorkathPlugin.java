@@ -27,10 +27,7 @@ package net.runelite.client.plugins.vorkath;
 import com.google.inject.Provides;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.Client;
-import net.runelite.api.NPC;
-import net.runelite.api.Projectile;
-import net.runelite.api.ProjectileID;
+import net.runelite.api.*;
 import net.runelite.api.events.*;
 import net.runelite.client.Notifier;
 import net.runelite.client.callback.ClientThread;
@@ -223,10 +220,8 @@ public class VorkathPlugin extends Plugin
 			return;
 		}
 
-		// TODO: This prevents firebomb from triggering
-		// The event fires once before the projectile starts moving,
-		// and we only want to check each projectile once
-		if (client.getGameCycle() >= projectile.getStartMovementCycle())
+		int ticksSinceLastAttack = client.getTickCount() - vorkath.getLastAttackTick();
+		if (ticksSinceLastAttack < Vorkath.ATTACK_RATE - 1 && vorkath.getLastAttackTick() != -100)
 		{
 			return;
 		}
@@ -236,17 +231,44 @@ public class VorkathPlugin extends Plugin
 			checkVorkathSpecialAttack(projectileId);
 		}
 
-		log.debug("Set recent projectile id: {}", projectileId);
-		vorkath.setRecentProjectileId(projectileId);
+		if (vorkath.isVorkathRegularAttackProjectile(projectileId))
+		{
+			vorkath.onRegularAttack(client.getTickCount());
+		}
 
-//
-//		int ticksSinceLastAttack = client.getTickCount() - vorkath.getLastAttackTick();
-//
-//		if (ticksSinceLastAttack >= 4 || vorkath.getLastAttackTick() == -100)
-//		{
-//			vorkath.setRecentProjectileId(projectile.getId());
-//			vorkath.setLastAttackTick(client.getTickCount());
-//			vorkath.setRemainingProjectileCount(vorkath.getRemainingProjectileCount() + 1);
-//		}
+		log.debug("Set recent projectile id: {}", projectileId);
+		vorkath.setRecentProjectileId(projectile.getId());
+		vorkath.setLastAttackTick(client.getTickCount());
+	}
+
+	@Subscribe
+	public void onAnimationChanged(AnimationChanged event)
+	{
+		if (!(event.getActor() instanceof NPC))
+		{
+			return;
+		}
+
+		NPC npc = (NPC) event.getActor();
+		if (!Vorkath.isNpcVorkath(npc.getId()))
+		{
+			return;
+		}
+
+		int animationId = npc.getAnimation();
+		switch (animationId)
+		{
+			case AnimationID.VORKATH_WAKE_UP:
+				vorkath.setAwake(true);
+				break;
+			case AnimationID.VORKATH_DEATH:
+				vorkath.resetFight();
+				break;
+			case AnimationID.VORKATH_SLASH_ATTACK:
+				log.debug("Vorkath slash attack {}", client.getTickCount());
+				vorkath.onRegularAttack(client.getTickCount());
+				break;
+		}
+
 	}
 }

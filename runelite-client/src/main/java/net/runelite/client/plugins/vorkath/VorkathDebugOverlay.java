@@ -58,12 +58,27 @@ public class VorkathDebugOverlay extends Overlay
 			panelComponent.getChildren().clear();
 
 			panelComponent.getChildren().add(TitleComponent.builder()
-					.text("Vorkath debug")
+					.text("Vorkath debug overlay")
 					.build());
 
 			panelComponent.getChildren().add(LineComponent.builder()
 					.left("Game tick")
 					.right("" + client.getTickCount())
+					.build());
+
+			panelComponent.getChildren().add(LineComponent.builder()
+					.left("Awake")
+					.right("" + vorkath.isAwake())
+					.build());
+
+			panelComponent.getChildren().add(LineComponent.builder()
+					.left("Current special attack style")
+					.right("" + vorkath.getCurrentSpecialAttackStyle())
+					.build());
+
+			panelComponent.getChildren().add(LineComponent.builder()
+					.left("Attacks until special attack")
+					.right("" + vorkath.getAttacksUntilSpecialAttack())
 					.build());
 
 			panelComponent.getChildren().add(LineComponent.builder()

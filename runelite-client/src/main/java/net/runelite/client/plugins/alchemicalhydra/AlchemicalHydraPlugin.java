@@ -274,23 +274,20 @@ public class AlchemicalHydraPlugin extends Plugin
 	private void checkAlchemicalHydraPhaseSwitch()
 	{
 		int animationId = alchemicalHydra.getNpc().getAnimation();
-		if (animationId != alchemicalHydra.getLastTickAnimation())
+		if (animationId == AnimationID.ALCHEMICAL_HYDRA_SWITCH_TO_BLUE_PHASE &&
+				alchemicalHydra.getCurrentHydraPhase() != AlchemicalHydra.Phase.BLUE)
 		{
-			if (animationId == AnimationID.ALCHEMICAL_HYDRA_SWITCH_TO_BLUE_PHASE &&
-					alchemicalHydra.getCurrentHydraPhase() != AlchemicalHydra.Phase.BLUE)
-			{
-				alchemicalHydra.switchPhase(AlchemicalHydra.Phase.BLUE);
-			}
-			else if (animationId == AnimationID.ALCHEMICAL_HYDRA_SWITCH_TO_RED_PHASE &&
-					alchemicalHydra.getCurrentHydraPhase() != AlchemicalHydra.Phase.RED)
-			{
-				alchemicalHydra.switchPhase(AlchemicalHydra.Phase.RED);
-			}
-			else if (animationId == AnimationID.ALCHEMICAL_HYDRA_SWITCH_TO_JAD_PHASE &&
-					alchemicalHydra.getCurrentHydraPhase() != AlchemicalHydra.Phase.JAD)
-			{
-				alchemicalHydra.switchPhase(AlchemicalHydra.Phase.JAD);
-			}
+			alchemicalHydra.switchPhase(AlchemicalHydra.Phase.BLUE);
+		}
+		else if (animationId == AnimationID.ALCHEMICAL_HYDRA_SWITCH_TO_RED_PHASE &&
+				alchemicalHydra.getCurrentHydraPhase() != AlchemicalHydra.Phase.RED)
+		{
+			alchemicalHydra.switchPhase(AlchemicalHydra.Phase.RED);
+		}
+		else if (animationId == AnimationID.ALCHEMICAL_HYDRA_SWITCH_TO_JAD_PHASE &&
+				alchemicalHydra.getCurrentHydraPhase() != AlchemicalHydra.Phase.JAD)
+		{
+			alchemicalHydra.switchPhase(AlchemicalHydra.Phase.JAD);
 		}
 	}
 
