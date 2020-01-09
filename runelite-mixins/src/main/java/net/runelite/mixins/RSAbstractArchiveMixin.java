@@ -1,21 +1,18 @@
 package net.runelite.mixins;
 
-import net.runelite.api.overlay.OverlayIndex;
 import com.google.common.hash.Hashing;
 import com.google.common.io.ByteStreams;
 import com.google.common.io.CharStreams;
+import net.runelite.api.mixins.*;
+import net.runelite.api.overlay.OverlayIndex;
+import net.runelite.rs.api.RSAbstractArchive;
+import net.runelite.rs.api.RSArchive;
+import net.runelite.rs.api.RSClient;
+import org.slf4j.Logger;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import net.runelite.api.mixins.Copy;
-import net.runelite.api.mixins.Inject;
-import net.runelite.api.mixins.Mixin;
-import net.runelite.api.mixins.Replace;
-import net.runelite.api.mixins.Shadow;
-import org.slf4j.Logger;
-import net.runelite.rs.api.RSAbstractArchive;
-import net.runelite.rs.api.RSClient;
-import net.runelite.rs.api.RSArchive;
 
 @Mixin(RSAbstractArchive.class)
 public abstract class RSAbstractArchiveMixin implements RSAbstractArchive
@@ -70,7 +67,7 @@ public abstract class RSAbstractArchiveMixin implements RSAbstractArchive
 			if (!overlayHash.equalsIgnoreCase(originalHash))
 			{
 				log.warn("Mismatch in overlaid cache archive hash for {}/{}: {} != {}",
-					archiveId, groupId, overlayHash, originalHash);
+						archiveId, groupId, overlayHash, originalHash);
 				overlayOutdated = true;
 				return rsData;
 			}

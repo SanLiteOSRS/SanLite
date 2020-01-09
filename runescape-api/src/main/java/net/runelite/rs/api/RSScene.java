@@ -13,6 +13,12 @@ public interface RSScene extends Scene
 	@Override
 	RSTile[][][] getTiles();
 
+	@Import("tileShape2D")
+	int[][] getTileShape2D();
+
+	@Import("tileRotation2D")
+	int[][] getTileRotation2D();
+
 	@Import("drawTile")
 	void draw(Tile tile, boolean var2);
 
@@ -36,4 +42,7 @@ public interface RSScene extends Scene
 
 	@Import("minPlane")
 	int getMinLevel();
+
+	@Import("newGroundItemPile")
+	void newGroundItemPile(int plane, int x, int y, int hash, RSEntity var5, long var6, RSEntity var7, RSEntity var8);
 }
