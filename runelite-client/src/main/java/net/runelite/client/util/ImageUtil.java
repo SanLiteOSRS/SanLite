@@ -363,9 +363,13 @@ public class ImageUtil
 				return ImageIO.read(c.getResourceAsStream(path));
 			}
 		}
+		catch (IllegalArgumentException e)
+		{
+			throw new IllegalArgumentException(path, e);
+		}
 		catch (IOException e)
 		{
-			throw new RuntimeException(e);
+			throw new RuntimeException(path, e);
 		}
 	}
 
@@ -526,5 +530,135 @@ public class ImageUtil
 		sprite.setOffsetY(0);
 
 		return sprite;
+	}
+
+	/**
+	 * Resize Sprite sprite to given width (newW) and height (newH)
+	 */
+	public static Sprite resizeSprite(final Client client, final Sprite sprite, int newW, int newH)
+	{
+		assert newW > 0 && newH > 0;
+
+		final int oldW = sprite.getWidth();
+		final int oldH = sprite.getHeight();
+
+		if (oldW == newW && oldH == newH)
+		{
+			return sprite;
+		}
+
+		final int[] canvas = new int[newW * newH];
+		final int[] pixels = sprite.getPixels();
+
+		final Sprite result = client.createSprite(canvas, newW, newH);
+
+		int pixelX = 0;
+		int pixelY = 0;
+
+		final int oldMaxW = sprite.getMaxWidth();
+		final int oldMaxH = sprite.getMaxHeight();
+
+		final int pixelW = (oldMaxW << 16) / newW;
+		final int pixelH = (oldMaxH << 16) / newH;
+
+		int xOffset = 0;
+		int yOffset = 0;
+
+		int canvasIdx;
+		if (sprite.getOffsetX() > 0)
+		{
+			canvasIdx = (pixelW + (sprite.getOffsetX() << 16) - 1) / pixelW;
+			xOffset += canvasIdx;
+			pixelX += canvasIdx * pixelW - (sprite.getOffsetX() << 16);
+		}
+
+		if (sprite.getOffsetY() > 0)
+		{
+			canvasIdx = (pixelH + (sprite.getOffsetY() << 16) - 1) / pixelH;
+			yOffset += canvasIdx;
+			pixelY += canvasIdx * pixelH - (sprite.getOffsetY() << 16);
+		}
+
+		if (oldW < oldMaxW)
+		{
+			newW = (pixelW + ((oldW << 16) - pixelX) - 1) / pixelW;
+		}
+
+		if (oldH < oldMaxH)
+		{
+			newH = (pixelH + ((oldH << 16) - pixelY) - 1) / pixelH;
+		}
+
+		canvasIdx = xOffset + yOffset * newW;
+		int canvasOffset = 0;
+		if (yOffset + newH > newH)
+		{
+			newH -= yOffset + newH - newH;
+		}
+
+		int tmp;
+		if (yOffset < 0)
+		{
+			tmp = -yOffset;
+			newH -= tmp;
+			canvasIdx += tmp * newW;
+			pixelY += pixelH * tmp;
+		}
+
+		if (newW + xOffset > newW)
+		{
+			tmp = newW + xOffset - newW;
+			newW -= tmp;
+			canvasOffset += tmp;
+		}
+
+		if (xOffset < 0)
+		{
+			tmp = -xOffset;
+			newW -= tmp;
+			canvasIdx += tmp;
+			pixelX += pixelW * tmp;
+			canvasOffset += tmp;
+		}
+
+		client.scaleSprite(canvas, pixels, 0, pixelX, pixelY, canvasIdx, canvasOffset, newW, newH, pixelW, pixelH, oldW);
+
+		return result;
+	}
+
+	/**
+	 * Draw foreground centered on top of background
+	 */
+	public static Sprite mergeSprites(final Client client, final Sprite background, final Sprite foreground)
+	{
+		assert foreground.getHeight() <= background.getHeight() && foreground.getWidth() <= background.getWidth() : "Background has to be larger than foreground";
+
+		final int[] canvas = Arrays.copyOf(background.getPixels(), background.getWidth() * background.getHeight());
+		final Sprite result = client.createSprite(canvas, background.getWidth(), background.getHeight());
+
+		final int bgWid = background.getWidth();
+		final int fgHgt = foreground.getHeight();
+		final int fgWid = foreground.getWidth();
+
+		final int xOffset = (bgWid - fgWid) / 2;
+		final int yOffset = (background.getHeight() - fgHgt) / 2;
+
+		final int[] fgPixels = foreground.getPixels();
+
+		for (int y1 = yOffset, y2 = 0; y2 < fgHgt; y1++, y2++)
+		{
+			int i1 = y1 * bgWid + xOffset;
+			int i2 = y2 * fgWid;
+
+			for (int x = 0; x < fgWid; x++, i1++, i2++)
+			{
+				if (fgPixels[i2] > 0)
+				{
+					canvas[i1] = fgPixels[i2];
+				}
+			}
+		}
+
+		return result;
 	}
 }

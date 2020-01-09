@@ -254,7 +254,7 @@ public class MenuManager
 	@Subscribe
 	public void onMenuEntryAdded(MenuEntryAdded event)
 	{
-		if (client.getSpellSelected())
+		if (client.isSpellSelected())
 		{
 			return;
 		}
