@@ -41,12 +41,8 @@ import net.runelite.rs.api.*;
 public abstract class RSSceneMixin implements RSScene
 {
 	private static final int DEFAULT_DISTANCE = 25;
-	private static final int MAX_DISTANCE = 90;
-
 	private static final int PITCH_LOWER_LIMIT = 128;
 	private static final int PITCH_UPPER_LIMIT = 383;
-
-	private static final int MAX_TARGET_DISTANCE = 45;
 
 	@Shadow("client")
 	static RSClient client;
@@ -620,15 +616,15 @@ public abstract class RSSceneMixin implements RSScene
 				return;
 			}
 
-			RSTileModel sceneTileModel = (RSTileModel) tile;
+			RSTileModel tileModel = (RSTileModel) tile;
 
-			final int[] faceX = sceneTileModel.getFaceX();
-			final int[] faceY = sceneTileModel.getFaceY();
-			final int[] faceZ = sceneTileModel.getFaceZ();
+			final int[] faceX = tileModel.getFaceX();
+			final int[] faceY = tileModel.getFaceY();
+			final int[] faceZ = tileModel.getFaceZ();
 
-			final int[] vertexX = sceneTileModel.getVertexX();
-			final int[] vertexY = sceneTileModel.getVertexY();
-			final int[] vertexZ = sceneTileModel.getVertexZ();
+			final int[] vertexX = tileModel.getVertexX();
+			final int[] vertexY = tileModel.getVertexY();
+			final int[] vertexZ = tileModel.getVertexZ();
 
 			final int vertexCount = vertexX.length;
 			final int faceCount = faceX.length;
