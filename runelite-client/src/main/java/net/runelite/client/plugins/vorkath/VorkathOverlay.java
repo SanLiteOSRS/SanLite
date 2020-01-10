@@ -28,6 +28,7 @@ import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Point;
 import net.runelite.api.*;
 import net.runelite.api.coords.LocalPoint;
+import net.runelite.api.coords.WorldPoint;
 import net.runelite.client.game.SpriteManager;
 import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayLayer;
@@ -37,15 +38,12 @@ import net.runelite.client.util.ImageUtil;
 
 import javax.inject.Inject;
 import java.awt.*;
-import java.awt.geom.Arc2D;
 import java.awt.image.BufferedImage;
+import java.util.List;
 
 @Slf4j
 public class VorkathOverlay extends Overlay
 {
-	private static final Color COLOR_ICON_BACKGROUND = new Color(0, 0, 0, 128);
-	private static final Color COLOR_ICON_BORDER = new Color(0, 0, 0, 255);
-	private static final Color COLOR_ICON_BORDER_FILL = new Color(219, 175, 0, 255);
 	private static final int ICON_WIDTH = 25;
 	private static final int ICON_HEIGHT = 25;
 	private static final int OVERLAY_ICON_DISTANCE = 30;
@@ -91,6 +89,26 @@ public class VorkathOverlay extends Overlay
 		Vorkath vorkath = plugin.getVorkath();
 		if (vorkath != null && vorkath.isAwake())
 		{
+			if (config.highlightAcidPoolTiles())
+			{
+				renderAcidPoolTileMarkers(graphics, vorkath);
+			}
+
+			if (config.displayAcidPhasePath())
+			{
+				renderAcidPhasePath(graphics, vorkath);
+			}
+
+			if (config.highlightFirebombTiles())
+			{
+				renderProjectiles(graphics, vorkath);
+			}
+
+			if (config.highlightZombifiedSpawn())
+			{
+				renderZombifiedSpawnHighlight(graphics, vorkath);
+			}
+
 			if (config.displayRemainingAttacksTillSpecial())
 			{
 				renderRemainingAttacksTillSpecial(graphics, vorkath);
@@ -100,23 +118,77 @@ public class VorkathOverlay extends Overlay
 			{
 				renderAttackTimer(graphics, vorkath);
 			}
-
-			if (config.highlightAcidPoolTiles())
-			{
-				renderAcidPoolTileMarkers(graphics, vorkath);
-			}
-
-			if (config.highlightZombifiedSpawn())
-			{
-				renderZombifiedSpawnHighlight(graphics, vorkath);
-			}
-
-			if (config.highlightFirebombTiles())
-			{
-				renderProjectiles(graphics, vorkath);
-			}
 		}
 		return null;
+	}
+
+	private void renderAcidPoolTileMarkers(Graphics2D graphics, Vorkath vorkath)
+	{
+		for (GameObject gameObject : vorkath.getGameObjects())
+		{
+			Polygon polygon = Perspective.getCanvasTilePoly(client, gameObject.getLocalLocation());
+			if (polygon != null)
+			{
+				OverlayUtil.renderPolygon(graphics, polygon, config.getAcidPoolColor());
+			}
+		}
+	}
+
+	private void renderAcidPhasePath(Graphics2D graphics, Vorkath vorkath)
+	{
+		List<WorldPoint> acidPathPoints = vorkath.getAcidPhasePathPoints();
+		if (!acidPathPoints.isEmpty())
+		{
+			for (WorldPoint acidFreeWorldPoint : acidPathPoints)
+			{
+				LocalPoint acidFreeLocalPoint = LocalPoint.fromWorld(client, acidFreeWorldPoint);
+				if (acidFreeLocalPoint == null)
+				{
+					continue;
+				}
+
+				OverlayUtil.renderPolygon(graphics, Perspective.getCanvasTilePoly(client,
+						acidFreeLocalPoint), config.getAcidPhasePathColor());
+			}
+		}
+	}
+
+	private void renderProjectiles(Graphics2D graphics, Vorkath vorkath)
+	{
+		for (VorkathProjectile projectile : vorkath.getProjectiles())
+		{
+			if (projectile.getTargetPoint() == null)
+			{
+				return;
+			}
+
+			if (projectile.getEndCycle() < client.getGameCycle())
+			{
+				vorkath.getProjectiles().remove(projectile);
+				return;
+			}
+
+			Polygon polygon = Perspective.getCanvasTileAreaPoly(client, projectile.getTargetPoint(), projectile.getTileSize());
+			if (polygon != null)
+			{
+				OverlayUtil.renderPolygon(graphics, polygon, config.getFirebombMarkerColor());
+			}
+		}
+	}
+
+	private void renderZombifiedSpawnHighlight(Graphics2D graphics, Vorkath vorkath)
+	{
+		if (vorkath.getZombifiedSpawn() != null)
+		{
+			final BufferedImage spriteCrumbleUndead = spriteManager.getSpriteImg(SpriteID.SPELL_CRUMBLE_UNDEAD, 0);
+			if (spriteCrumbleUndead == null)
+			{
+				return;
+			}
+
+			OverlayUtil.renderActorOverlayImage(graphics, vorkath.getZombifiedSpawn(), spriteCrumbleUndead,
+					config.getZombifiedSpawnColor(), 0);
+		}
 	}
 
 	private void renderRemainingAttacksTillSpecial(Graphics2D graphics, Vorkath vorkath)
@@ -126,51 +198,12 @@ public class VorkathOverlay extends Overlay
 		{
 			net.runelite.api.Point point = Perspective.localToCanvas(client, localPoint, client.getPlane(),
 					vorkath.getNpc().getLogicalHeight() + 16);
-			if (point != null)
-			{
-				point = new Point(point.getX(), point.getY());
-				int totalWidth = OVERLAY_ICON_MARGIN;
 
-				BufferedImage specialAttackStyleIcon = getSpecialAttackIcon(vorkath.getNextSpecialAttackStyle());
-				totalWidth += ICON_WIDTH;
+			int attacksLeft = vorkath.getAttacksUntilSpecialAttack() - Vorkath.ATTACKS_PER_SPECIAL_ATTACK;
+			OverlayUtil.renderCountCircle(graphics, Vorkath.ATTACKS_PER_SPECIAL_ATTACK, attacksLeft, point,
+					getSpecialAttackIcon(vorkath.getNextSpecialAttackStyle()), OVERLAY_ICON_MARGIN, ICON_WIDTH,
+					ICON_HEIGHT, OVERLAY_ICON_DISTANCE);
 
-				int bgPadding = 4;
-				int currentPosX = 0;
-
-				graphics.setStroke(new BasicStroke(2));
-				graphics.setColor(COLOR_ICON_BACKGROUND);
-				graphics.fillOval(
-						point.getX() - totalWidth / 2 + currentPosX - bgPadding,
-						point.getY() - ICON_HEIGHT / 2 - OVERLAY_ICON_DISTANCE - bgPadding,
-						ICON_WIDTH + bgPadding * 2,
-						ICON_HEIGHT + bgPadding * 2);
-
-				graphics.setColor(COLOR_ICON_BORDER);
-				graphics.drawOval(
-						point.getX() - totalWidth / 2 + currentPosX - bgPadding,
-						point.getY() - ICON_HEIGHT / 2 - OVERLAY_ICON_DISTANCE - bgPadding,
-						ICON_WIDTH + bgPadding * 2,
-						ICON_HEIGHT + bgPadding * 2);
-
-				graphics.drawImage(
-						specialAttackStyleIcon,
-						point.getX() - totalWidth / 2 + currentPosX,
-						point.getY() - ICON_HEIGHT / 2 - OVERLAY_ICON_DISTANCE,
-						null);
-
-				graphics.setColor(COLOR_ICON_BORDER_FILL);
-
-				Arc2D.Double arc = new Arc2D.Double(
-						point.getX() - totalWidth / 2 + currentPosX - bgPadding,
-						point.getY() - ICON_HEIGHT / 2 - OVERLAY_ICON_DISTANCE - bgPadding,
-						ICON_WIDTH + bgPadding * 2,
-						ICON_HEIGHT + bgPadding * 2,
-						90.0,
-						-360.0 * (Vorkath.ATTACKS_PER_SPECIAL_ATTACK -
-								vorkath.getAttacksUntilSpecialAttack()) / Vorkath.ATTACKS_PER_SPECIAL_ATTACK,
-						Arc2D.OPEN);
-				graphics.draw(arc);
-			}
 		}
 	}
 
@@ -197,55 +230,5 @@ public class VorkathOverlay extends Overlay
 
 		OverlayUtil.renderImageAndTextLocation(graphics, image, imageLocation, text,
 				ATTACK_TIMER_IMAGE_HEIGHT_OFFSET, ATTACK_TIMER_TEXT_WIDTH_OFFSET, config.getAttackTimerTextColor());
-	}
-
-	private void renderAcidPoolTileMarkers(Graphics2D graphics, Vorkath vorkath)
-	{
-		for (GameObject gameObject : vorkath.getGameObjects())
-		{
-			Polygon polygon = Perspective.getCanvasTilePoly(client, gameObject.getLocalLocation());
-			if (polygon != null)
-			{
-				OverlayUtil.renderPolygon(graphics, polygon, config.getAcidPoolColor());
-			}
-		}
-	}
-
-	private void renderZombifiedSpawnHighlight(Graphics2D graphics, Vorkath vorkath)
-	{
-		if (vorkath.getZombifiedSpawn() != null)
-		{
-			final BufferedImage spriteCrumbleUndead = spriteManager.getSpriteImg(SpriteID.SPELL_CRUMBLE_UNDEAD, 0);
-			if (spriteCrumbleUndead == null)
-			{
-				return;
-			}
-
-			OverlayUtil.renderActorOverlayImage(graphics, vorkath.getZombifiedSpawn(), spriteCrumbleUndead,
-					config.getZombifiedSpawnColor(), 0);
-		}
-	}
-
-	private void renderProjectiles(Graphics2D graphics, Vorkath vorkath)
-	{
-		for (VorkathProjectile projectile : vorkath.getProjectiles())
-		{
-			if (projectile.getTargetPoint() == null)
-			{
-				return;
-			}
-
-			if (projectile.getEndCycle() < client.getGameCycle())
-			{
-				vorkath.getProjectiles().remove(projectile);
-				return;
-			}
-
-			Polygon polygon = Perspective.getCanvasTileAreaPoly(client, projectile.getTargetPoint(), projectile.getTileSize());
-			if (polygon != null)
-			{
-				OverlayUtil.renderPolygon(graphics, polygon, config.getFirebombMarkerColor());
-			}
-		}
 	}
 }

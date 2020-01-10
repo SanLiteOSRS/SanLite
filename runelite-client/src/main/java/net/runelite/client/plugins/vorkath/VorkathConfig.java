@@ -27,6 +27,7 @@ package net.runelite.client.plugins.vorkath;
 import net.runelite.client.config.Config;
 import net.runelite.client.config.ConfigGroup;
 import net.runelite.client.config.ConfigItem;
+import net.runelite.client.config.Range;
 
 import java.awt.*;
 
@@ -185,10 +186,48 @@ public interface VorkathConfig extends Config
 	}
 
 	@ConfigItem(
+			keyName = "displayAcidPhasePath",
+			name = "Display closest acid phase path",
+			description = "Displays the most efficient acid free path during Vorkath's acid phase",
+			position = 13
+	)
+	default boolean displayAcidPhasePath()
+	{
+		return true;
+	}
+
+	@Range(
+			min = 4,
+			max = 16
+	)
+	@ConfigItem(
+			keyName = "minimumAcidPhasePathLength",
+			name = "Minimum acid phase path length",
+			description = "The minimum length of the displayed path during Vorkath's acid phase",
+			position = 14
+	)
+	default int getMinimumAcidPhasePathLength()
+	{
+		return 6;
+	}
+
+	@ConfigItem(
+			keyName = "acidPhasePathColor",
+			name = "Acid phase path",
+			description = "Color of the tile markers highlighting the most efficient acid free path during Vorkath's acid phase",
+			group = "Colors",
+			position = 15
+	)
+	default Color getAcidPhasePathColor()
+	{
+		return new Color(30, 70, 115);
+	}
+
+	@ConfigItem(
 			keyName = "showDebugOverlay",
 			name = "Display debug overlay",
 			description = "Displays plugin debug overlay. This contains variables that the plugin uses to function",
-			position = 13
+			position = 16
 	)
 	default boolean showDebugOverlay()
 	{

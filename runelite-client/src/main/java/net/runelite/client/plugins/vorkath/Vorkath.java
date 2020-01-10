@@ -29,6 +29,7 @@ import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.*;
 import net.runelite.api.coords.LocalPoint;
+import net.runelite.api.coords.WorldPoint;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -96,6 +97,10 @@ class Vorkath
 	@Setter
 	private List<VorkathProjectile> projectiles;
 
+	@Getter
+	@Setter
+	private List<WorldPoint> acidPhasePathPoints;
+
 	Vorkath(NPC npc)
 	{
 		this.npc = npc;
@@ -108,6 +113,7 @@ class Vorkath
 		this.remainingAcidPhaseAttacks = -1;
 		this.gameObjects = new ArrayList<>();
 		this.projectiles = new CopyOnWriteArrayList<>();
+		this.acidPhasePathPoints = new ArrayList<>();
 	}
 
 	static boolean isNpcVorkath(int npcId)
@@ -142,6 +148,19 @@ class Vorkath
 				projectileId == ProjectileID.VORKATH_ACID_PHASE_FIREBALL ||
 				projectileId == ProjectileID.VORKATH_ACID ||
 				projectileId == ProjectileID.VORKATH_SPAWN;
+	}
+
+	void resetFight()
+	{
+		this.isAwake = false;
+		this.nextSpecialAttackStyle = SpecialAttackStyle.UNKNOWN;
+		this.attacksUntilSpecialAttack = ATTACKS_PER_SPECIAL_ATTACK;
+		this.lastAttackTick = -100;
+		this.nextAttackTick = -100;
+		this.recentProjectileId = -1;
+		this.gameObjects.clear();
+		this.projectiles.clear();
+		log.debug("Vorkath fight reset");
 	}
 
 	void addAcidPoolObject(GameObject gameObject)
@@ -263,20 +282,121 @@ class Vorkath
 		{
 			setRemainingAcidPhaseAttacks(-1);
 			setNextAttackTick(attackGameTick + ATTACK_RATE);
+			getAcidPhasePathPoints().clear();
 			log.debug("{} | Acid phase end", attackGameTick);
 		}
 	}
 
-	void resetFight()
+	/**
+	 * Searches an acid free path that is the least amount of clicks for the player
+	 * Minimum path length is based on the user's config settings
+	 */
+	void calculateAcidPhasePath(Actor localPlayer, int minimumPathLength)
 	{
-		this.isAwake = false;
-		this.nextSpecialAttackStyle = SpecialAttackStyle.UNKNOWN;
-		this.attacksUntilSpecialAttack = ATTACKS_PER_SPECIAL_ATTACK;
-		this.lastAttackTick = -100;
-		this.nextAttackTick = -100;
-		this.recentProjectileId = -1;
-		this.gameObjects.clear();
-		this.projectiles.clear();
-		log.debug("Vorkath fight reset");
+		getAcidPhasePathPoints().clear();
+
+		List<WorldPoint> acidSpots = new ArrayList<>();
+		getGameObjects().stream()
+				.filter((x) -> x.getWorldLocation() != null)
+				.forEach((x) -> acidSpots.add(x.getWorldLocation()));
+
+
+		final int[][][] possiblePathDirections = {{{0, 1}, {0, -1}}, {{1, 0}, {-1, 0}}};
+
+		List<WorldPoint> bestPath = new ArrayList<>();
+		double bestClicksRequired = 99;
+
+		if (localPlayer == null)
+		{
+			return;
+		}
+
+		final WorldPoint playerLocation = localPlayer.getWorldLocation();
+		final WorldPoint vorkathLocation = getNpc().getWorldLocation();
+
+		final int maxX = vorkathLocation.getX() + 14;
+		final int minX = vorkathLocation.getX() - 8;
+		final int maxY = vorkathLocation.getY() - 1;
+		final int minY = vorkathLocation.getY() - 8;
+
+		// Attempt to search an acid free path, beginning at a location
+		// adjacent to the player's location (including diagonals)
+		for (int x = -1; x < 2; x++)
+		{
+			for (int y = -1; y < 2; y++)
+			{
+				final WorldPoint baseLocation = new WorldPoint(playerLocation.getX() + x,
+						playerLocation.getY() + y, playerLocation.getPlane());
+
+				if (acidSpots.contains(baseLocation) || baseLocation.getY() < minY || baseLocation.getY() > maxY)
+				{
+					continue;
+				}
+
+				// Search in X and Y direction
+				for (int d = 0; d < possiblePathDirections.length; d++)
+				{
+					// Calculate the clicks required to start walking on the path
+					double currentClicksRequired = Math.abs(x) + Math.abs(y);
+					if (currentClicksRequired < 2)
+					{
+						currentClicksRequired += Math.abs(y * possiblePathDirections[d][0][0]) +
+								Math.abs(x * possiblePathDirections[d][0][1]);
+					}
+					if (d == 0)
+					{
+						// Prioritize a path in the X direction (sideways)
+						currentClicksRequired += 0.5;
+					}
+
+					List<WorldPoint> currentPath = new ArrayList<>();
+					currentPath.add(baseLocation);
+
+					// Positive X (first iteration) or positive Y (second iteration)
+					for (int i = 1; i < 25; i++)
+					{
+						final WorldPoint testingLocation = new WorldPoint(baseLocation.getX() + i *
+								possiblePathDirections[d][0][0], baseLocation.getY() + i *
+								possiblePathDirections[d][0][1], baseLocation.getPlane());
+
+						if (acidSpots.contains(testingLocation) || testingLocation.getY() < minY ||
+								testingLocation.getY() > maxY || testingLocation.getX() < minX ||
+								testingLocation.getX() > maxX)
+						{
+							break;
+						}
+						currentPath.add(testingLocation);
+					}
+
+					// Negative X (first iteration) or positive Y (second iteration)
+					for (int i = 1; i < 25; i++)
+					{
+						final WorldPoint testingLocation = new WorldPoint(baseLocation.getX() + i *
+								possiblePathDirections[d][1][0], baseLocation.getY() + i *
+								possiblePathDirections[d][1][1], baseLocation.getPlane());
+
+						if (acidSpots.contains(testingLocation) || testingLocation.getY() < minY ||
+								testingLocation.getY() > maxY || testingLocation.getX() < minX ||
+								testingLocation.getX() > maxX)
+						{
+							break;
+						}
+						currentPath.add(testingLocation);
+					}
+
+					if (currentPath.size() >= minimumPathLength && currentClicksRequired < bestClicksRequired ||
+							(currentClicksRequired == bestClicksRequired && currentPath.size() > bestPath.size()))
+					{
+						bestPath = currentPath;
+						bestClicksRequired = currentClicksRequired;
+					}
+				}
+			}
+		}
+
+		if (bestClicksRequired != 99)
+		{
+			setAcidPhasePathPoints(bestPath);
+		}
 	}
 }

@@ -136,6 +136,35 @@ public class VorkathPlugin extends Plugin
 				vorkath != null;
 	}
 
+	/**
+	 * Sends a notification based on the projectile and the user's config settings
+	 *
+	 * @param projectileId Vorkath projectile id
+	 */
+	void sendVorkathAttackNotification(int projectileId)
+	{
+		if (config.notifyOnlyOutOfFocus() && clientUI.isFocused())
+		{
+			return;
+		}
+
+		switch (projectileId)
+		{
+			case ProjectileID.VORKATH_ICE_BREATH:
+				if (config.notifyOnZombifiedSpawn())
+					notifier.notify("Vorkath is about to summon a zombified spawn!");
+				break;
+			case ProjectileID.VORKATH_ACID:
+				if (config.notifyOnAcidPhase())
+					notifier.notify("Vorkath acid phase has started!");
+				break;
+			case ProjectileID.VORKATH_FIREBOMB:
+				if (config.notifyOnFirebomb())
+					notifier.notify("Vorkath launched a firebomb!");
+				break;
+		}
+	}
+
 	@Subscribe
 	public void onNpcSpawned(NpcSpawned event)
 	{
@@ -285,27 +314,15 @@ public class VorkathPlugin extends Plugin
 		vorkath.updateProjectiles(projectile, event.getPosition());
 	}
 
-	void sendVorkathAttackNotification(int projectileId)
+	@Subscribe
+	private void onGameTick(GameTick event)
 	{
-		if (config.notifyOnlyOutOfFocus() && clientUI.isFocused())
+		if (!validateInstanceAndNpc() || vorkath.getGameObjects().isEmpty() || !config.displayAcidPhasePath())
 		{
 			return;
 		}
 
-		switch (projectileId)
-		{
-			case ProjectileID.VORKATH_ICE_BREATH:
-				if (config.notifyOnZombifiedSpawn())
-					notifier.notify("Vorkath is about to summon a zombified spawn!");
-				break;
-			case ProjectileID.VORKATH_ACID:
-				if (config.notifyOnAcidPhase())
-					notifier.notify("Vorkath acid phase has started!");
-				break;
-			case ProjectileID.VORKATH_FIREBOMB:
-				if (config.notifyOnFirebomb())
-					notifier.notify("Vorkath launched a firebomb!");
-				break;
-		}
+		// Update the acid free path every tick to account for player movement
+		vorkath.calculateAcidPhasePath(client.getLocalPlayer(), config.getMinimumAcidPhasePathLength());
 	}
 }

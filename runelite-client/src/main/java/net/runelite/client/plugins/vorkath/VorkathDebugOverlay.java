@@ -130,6 +130,14 @@ public class VorkathDebugOverlay extends Overlay
 						.build());
 			}
 
+			if (vorkath.getAcidPhasePathPoints() != null)
+			{
+				panelComponent.getChildren().add(LineComponent.builder()
+						.left("Number of acid free path points")
+						.right("" + vorkath.getAcidPhasePathPoints().size())
+						.build());
+			}
+
 			return panelComponent.render(graphics);
 		}
 		return null;
