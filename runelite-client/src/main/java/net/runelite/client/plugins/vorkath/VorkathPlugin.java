@@ -39,6 +39,7 @@ import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.plugins.PluginType;
 import net.runelite.client.ui.ClientUI;
 import net.runelite.client.ui.overlay.OverlayManager;
+import net.runelite.client.util.Text;
 
 import javax.inject.Inject;
 import java.util.Arrays;
@@ -136,32 +137,6 @@ public class VorkathPlugin extends Plugin
 				vorkath != null;
 	}
 
-	private void checkVorkathSpecialAttack(int projectileId)
-	{
-		if (config.notifyOnlyOutOfFocus() && clientUI.isFocused())
-		{
-			return;
-		}
-
-		switch (projectileId)
-		{
-			case ProjectileID.VORKATH_FIREBOMB:
-				if (config.notifyOnFirebomb())
-					notifier.notify("Vorkath launched a firebomb!");
-				break;
-			case ProjectileID.VORKATH_ICE_BREATH:
-				if (vorkath.getRecentProjectileId() == ProjectileID.VORKATH_ICE_BREATH)
-				{
-					log.debug("Spawn notification already sent, last projectile id: {}", vorkath.getRecentProjectileId());
-					return;
-				}
-				log.debug("Sending spawn notification: {} id: {}", config.notifyOnZombifiedSpawn(), vorkath.getRecentProjectileId());
-				if (config.notifyOnZombifiedSpawn())
-					notifier.notify("Vorkath is about to summon a zombified spawn!");
-				break;
-		}
-	}
-
 	@Subscribe
 	public void onNpcSpawned(NpcSpawned event)
 	{
@@ -172,15 +147,26 @@ public class VorkathPlugin extends Plugin
 			{
 				vorkath = new Vorkath(npc);
 			}
+			else if (vorkath != null && Vorkath.isNpcZombifiedSpawn(npc.getId()))
+			{
+				vorkath.setZombifiedSpawn(npc);
+				log.debug("Set zombified spawn");
+			}
 		}
 	}
 
 	@Subscribe
 	public void onNpcDespawned(NpcDespawned event)
 	{
-		if (Vorkath.isNpcVorkath(event.getNpc().getId()))
+		NPC npc = event.getNpc();
+		if (Vorkath.isNpcVorkath(npc.getId()))
 		{
 			reset();
+		}
+		else if (vorkath != null && Vorkath.isNpcZombifiedSpawn(npc.getId()))
+		{
+			vorkath.setZombifiedSpawn(null);
+			log.debug("Removed zombified spawn");
 		}
 	}
 
@@ -202,43 +188,6 @@ public class VorkathPlugin extends Plugin
 			return;
 		}
 		vorkath.removeAcidPoolObject(event.getGameObject());
-	}
-
-	@Subscribe
-	public void onProjectileMoved(ProjectileMoved event)
-	{
-		if (!validateInstanceAndNpc())
-		{
-			return;
-		}
-
-		Projectile projectile = event.getProjectile();
-		int projectileId = projectile.getId();
-
-		if (!vorkath.isVorkathProjectile(projectileId))
-		{
-			return;
-		}
-
-		int ticksSinceLastAttack = client.getTickCount() - vorkath.getLastAttackTick();
-		if (ticksSinceLastAttack < Vorkath.ATTACK_RATE - 1 && vorkath.getLastAttackTick() != -100)
-		{
-			return;
-		}
-
-		if (vorkath.isVorkathSpecialProjectile(projectileId))
-		{
-			checkVorkathSpecialAttack(projectileId);
-		}
-
-		if (vorkath.isVorkathRegularAttackProjectile(projectileId))
-		{
-			vorkath.onRegularAttack(client.getTickCount());
-		}
-
-		log.debug("Set recent projectile id: {}", projectileId);
-		vorkath.setRecentProjectileId(projectile.getId());
-		vorkath.setLastAttackTick(client.getTickCount());
 	}
 
 	@Subscribe
@@ -265,10 +214,99 @@ public class VorkathPlugin extends Plugin
 				vorkath.resetFight();
 				break;
 			case AnimationID.VORKATH_SLASH_ATTACK:
-				log.debug("Vorkath slash attack {}", client.getTickCount());
+				log.debug("{} | Regular attack: slash | {}", client.getTickCount(), vorkath.getNextAttackTick());
 				vorkath.onRegularAttack(client.getTickCount());
 				break;
+			case AnimationID.VORKATH_FIRE_BOMB_OR_SPAWN_ATTACK:
+				if (vorkath.getRecentProjectileId() == ProjectileID.VORKATH_ICE_BREATH)
+				{
+					return;
+				}
+				log.debug("{} | Firebomb attack | {}", client.getTickCount(), vorkath.getNextAttackTick());
+				vorkath.onFirebombAttack(this, client.getTickCount());
+				break;
+		}
+	}
+
+	@Subscribe
+	private void onProjectileSpawned(ProjectileSpawned event)
+	{
+		if (!validateInstanceAndNpc())
+		{
+			return;
 		}
 
+		Projectile projectile = event.getProjectile();
+		int projectileId = projectile.getId();
+		if (!vorkath.isVorkathProjectile(projectileId))
+		{
+			return;
+		}
+
+		switch (projectileId)
+		{
+			case ProjectileID.VORKATH_DRAGON_BREATH:
+			case ProjectileID.VORKATH_MAGIC:
+			case ProjectileID.VORKATH_RANGED:
+			case ProjectileID.VORKATH_PRAYER_DISABLE:
+			case ProjectileID.VORKATH_VENOM_BREATH:
+				log.debug("{} | Regular attack: {} | {}", client.getTickCount(), projectileId, vorkath.getNextAttackTick());
+				vorkath.onRegularAttack(client.getTickCount());
+				break;
+			case ProjectileID.VORKATH_FIREBOMB:
+				vorkath.getProjectiles().add(new VorkathProjectile(projectile, projectile.getStartMovementCycle(),
+						projectile.getEndCycle(), 3));
+				break;
+			case ProjectileID.VORKATH_ICE_BREATH:
+			case ProjectileID.VORKATH_ACID:
+				vorkath.onSpecialAttack(projectile, this, client.getTickCount());
+				break;
+			case ProjectileID.VORKATH_ACID_PHASE_FIREBALL:
+				log.debug("{} | Acid fireball attack | {}", client.getTickCount(), vorkath.getNextAttackTick());
+				vorkath.onAcidPhaseFireballAttack(client.getTickCount());
+				break;
+		}
+		vorkath.setRecentProjectileId(projectile.getId());
+	}
+
+	@Subscribe
+	public void onProjectileMoved(ProjectileMoved event)
+	{
+		if (!validateInstanceAndNpc())
+		{
+			return;
+		}
+
+		Projectile projectile = event.getProjectile();
+		if (!vorkath.isVorkathProjectile(projectile.getId()) || vorkath.getProjectiles().size() == 0)
+		{
+			return;
+		}
+
+		vorkath.updateProjectiles(projectile, event.getPosition());
+	}
+
+	void sendVorkathAttackNotification(int projectileId)
+	{
+		if (config.notifyOnlyOutOfFocus() && clientUI.isFocused())
+		{
+			return;
+		}
+
+		switch (projectileId)
+		{
+			case ProjectileID.VORKATH_ICE_BREATH:
+				if (config.notifyOnZombifiedSpawn())
+					notifier.notify("Vorkath is about to summon a zombified spawn!");
+				break;
+			case ProjectileID.VORKATH_ACID:
+				if (config.notifyOnAcidPhase())
+					notifier.notify("Vorkath acid phase has started!");
+				break;
+			case ProjectileID.VORKATH_FIREBOMB:
+				if (config.notifyOnFirebomb())
+					notifier.notify("Vorkath launched a firebomb!");
+				break;
+		}
 	}
 }

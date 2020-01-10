@@ -72,13 +72,18 @@ public class VorkathDebugOverlay extends Overlay
 					.build());
 
 			panelComponent.getChildren().add(LineComponent.builder()
-					.left("Current special attack style")
-					.right("" + vorkath.getCurrentSpecialAttackStyle())
+					.left("Next special attack style")
+					.right("" + vorkath.getNextSpecialAttackStyle())
 					.build());
 
 			panelComponent.getChildren().add(LineComponent.builder()
 					.left("Attacks until special attack")
 					.right("" + vorkath.getAttacksUntilSpecialAttack())
+					.build());
+
+			panelComponent.getChildren().add(LineComponent.builder()
+					.left("Ticks till next attack")
+					.right("" + (vorkath.getNextAttackTick() - client.getTickCount()))
 					.build());
 
 			panelComponent.getChildren().add(LineComponent.builder()
@@ -96,11 +101,29 @@ public class VorkathDebugOverlay extends Overlay
 					.right("" + vorkath.getRecentProjectileId())
 					.build());
 
+			panelComponent.getChildren().add(LineComponent.builder()
+					.left("Remaining acid phase attacks")
+					.right("" + vorkath.getRemainingAcidPhaseAttacks())
+					.build());
+
+			panelComponent.getChildren().add(LineComponent.builder()
+					.left("Zombified spawn")
+					.right("" + vorkath.getZombifiedSpawn())
+					.build());
+
 			if (vorkath.getGameObjects() != null)
 			{
 				panelComponent.getChildren().add(LineComponent.builder()
 						.left("Number of encounter game objects")
 						.right("" + vorkath.getGameObjects().size())
+						.build());
+			}
+
+			if (vorkath.getGameObjects() != null)
+			{
+				panelComponent.getChildren().add(LineComponent.builder()
+						.left("Number of active projectiles")
+						.right("" + vorkath.getProjectiles().size())
 						.build());
 			}
 

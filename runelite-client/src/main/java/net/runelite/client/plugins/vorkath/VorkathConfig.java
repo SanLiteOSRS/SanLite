@@ -34,6 +34,36 @@ import java.awt.*;
 public interface VorkathConfig extends Config
 {
 	@ConfigItem(
+			keyName = "displayRemainingAttacksTillSpecial",
+			name = "Display attacks till next special attack",
+			description = "Displays the remaining attacks till Vorkath's next special attack"
+	)
+	default boolean displayRemainingAttacksTillSpecial()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+			keyName = "displayAttackTimer",
+			name = "Display attack timer",
+			description = "Displays a timer which shows the time until Vorkath's next attack"
+	)
+	default boolean displayAttackTimer()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+			keyName = "attackTimerTextColor",
+			name = "Attack timer text color",
+			description = "Color of attack timer text"
+	)
+	default Color getAttackTimerTextColor()
+	{
+		return new Color(255, 255, 255);
+	}
+
+	@ConfigItem(
 			keyName = "highlightAcidPoolTiles",
 			name = "Highlight acid pool tiles",
 			description = "Highlight the acid pool tiles during Vorkath's acid phase"
@@ -52,6 +82,59 @@ public interface VorkathConfig extends Config
 	default Color getAcidPoolColor()
 	{
 		return new Color(74, 178, 23);
+	}
+
+	@ConfigItem(
+			keyName = "highlightFirebombTiles",
+			name = "Highlight firebomb tiles",
+			description = "Highlight the tiles where Vorkath's firebomb is going to land"
+	)
+	default boolean highlightFirebombTiles()
+	{
+		return true;
+	}
+
+
+	@ConfigItem(
+			keyName = "firebombMarkerColor",
+			name = "Firebomb marker",
+			description = "Color of Vorkath's firebomb markers"
+	)
+	default Color getFirebombMarkerColor()
+	{
+		return new Color(226, 126, 35);
+	}
+
+	@ConfigItem(
+			keyName = "highlightZombifiedSpawn",
+			name = "Highlight acid pool tiles",
+			description = "Highlight the zombified spawn when summoned by Vorkath"
+	)
+	default boolean highlightZombifiedSpawn()
+	{
+		return true;
+	}
+
+
+	@ConfigItem(
+			keyName = "zombifiedSpawnColor",
+			name = "Zombified spawn color",
+			description = "Color of the highlight on the zombified spawn summoned by Vorkath"
+	)
+	default Color getZombifiedSpawnColor()
+	{
+		return new Color(80, 147, 133);
+	}
+
+	@ConfigItem(
+			keyName = "notifyOnAcidPhase",
+			name = "Notify on acid phase",
+			description = "Receive a notification when Vorkath uses his acid phase special attack",
+			group = "Notifications"
+	)
+	default boolean notifyOnAcidPhase()
+	{
+		return true;
 	}
 
 	@ConfigItem(

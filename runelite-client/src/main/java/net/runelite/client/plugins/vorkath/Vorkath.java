@@ -28,21 +28,29 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.*;
+import net.runelite.api.coords.LocalPoint;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 @Slf4j
-class Vorkath {
+class Vorkath
+{
+	private static final int ATTACK_RATE = 5; // 5 ticks between each attack
+	private static final int ACID_PHASE_START_DELAY = 4; // First fireball attack 4 ticks after acid phase start
+	private static final int ACID_PHASE_ATTACKS = 25; // 25 attacks per acid phase
+
+	static final int ATTACKS_PER_SPECIAL_ATTACK = 6; // 6 attacks per special attack
 	static final int[] VORKATH_REGION = {
 			9023
 	};
-	static final int ATTACK_RATE = 5; // 5 ticks between each attack
-	private static final int ATTACKS_PER_SPECIAL_ATTACK = 6; // 6 attacks per special attack
 
-	enum SpecialAttackStyle {
+	enum SpecialAttackStyle
+	{
+		UNKNOWN,
 		ACID,
-		ZOMBIFIED_SPAWN
+		ZOMBIFIED_SPAWN;
 	}
 
 	@Getter
@@ -54,7 +62,7 @@ class Vorkath {
 
 	@Getter
 	@Setter
-	private Vorkath.SpecialAttackStyle currentSpecialAttackStyle;
+	private Vorkath.SpecialAttackStyle nextSpecialAttackStyle;
 
 	@Getter
 	@Setter
@@ -74,19 +82,36 @@ class Vorkath {
 
 	@Getter
 	@Setter
+	private NPC zombifiedSpawn;
+
+	@Getter
+	@Setter
+	private int remainingAcidPhaseAttacks;
+
+	@Getter
+	@Setter
 	private List<GameObject> gameObjects;
 
-	Vorkath(NPC npc) {
+	@Getter
+	@Setter
+	private List<VorkathProjectile> projectiles;
+
+	Vorkath(NPC npc)
+	{
 		this.npc = npc;
 		this.isAwake = false;
+		this.nextSpecialAttackStyle = SpecialAttackStyle.UNKNOWN;
 		this.attacksUntilSpecialAttack = ATTACKS_PER_SPECIAL_ATTACK;
 		this.lastAttackTick = -100;
 		this.nextAttackTick = -100;
 		this.recentProjectileId = -1;
+		this.remainingAcidPhaseAttacks = -1;
 		this.gameObjects = new ArrayList<>();
+		this.projectiles = new CopyOnWriteArrayList<>();
 	}
 
-	static boolean isNpcVorkath(int npcId) {
+	static boolean isNpcVorkath(int npcId)
+	{
 		return npcId == NpcID.VORKATH ||
 				npcId == NpcID.VORKATH_8058 ||
 				npcId == NpcID.VORKATH_8059 ||
@@ -94,16 +119,19 @@ class Vorkath {
 				npcId == NpcID.VORKATH_8061;
 	}
 
-	static boolean isNpcZombifiedSpawn(int npcId) {
+	static boolean isNpcZombifiedSpawn(int npcId)
+	{
 		return npcId == NpcID.ZOMBIFIED_SPAWN ||
 				npcId == NpcID.ZOMBIFIED_SPAWN_8063;
 	}
 
-	private boolean isAcidPoolTileObject(int objectId) {
+	private boolean isAcidPoolTileObject(int objectId)
+	{
 		return objectId == ObjectID.ACID_POOL_32000;
 	}
 
-	boolean isVorkathProjectile(int projectileId) {
+	boolean isVorkathProjectile(int projectileId)
+	{
 		return projectileId == ProjectileID.VORKATH_DRAGON_BREATH ||
 				projectileId == ProjectileID.VORKATH_ICE_BREATH ||
 				projectileId == ProjectileID.VORKATH_VENOM_BREATH ||
@@ -116,64 +144,147 @@ class Vorkath {
 				projectileId == ProjectileID.VORKATH_SPAWN;
 	}
 
-	boolean isVorkathRegularProjectile(int projectileId) {
-		return projectileId == ProjectileID.VORKATH_DRAGON_BREATH ||
-				projectileId == ProjectileID.VORKATH_ICE_BREATH ||
-				projectileId == ProjectileID.VORKATH_VENOM_BREATH ||
-				projectileId == ProjectileID.VORKATH_PRAYER_DISABLE ||
-				projectileId == ProjectileID.VORKATH_FIREBOMB ||
-				projectileId == ProjectileID.VORKATH_RANGED ||
-				projectileId == ProjectileID.VORKATH_MAGIC;
-	}
-
-	boolean isVorkathSpecialProjectile(int projectileId) {
-		return projectileId == ProjectileID.VORKATH_ICE_BREATH ||
-				projectileId == ProjectileID.VORKATH_PRAYER_DISABLE ||
-				projectileId == ProjectileID.VORKATH_FIREBOMB ||
-				projectileId == ProjectileID.VORKATH_ACID ||
-				projectileId == ProjectileID.VORKATH_SPAWN;
-	}
-
-	boolean isVorkathRegularAttackProjectile(int projectileId) {
-		return projectileId == ProjectileID.VORKATH_DRAGON_BREATH ||
-				projectileId == ProjectileID.VORKATH_RANGED ||
-				projectileId == ProjectileID.VORKATH_MAGIC;
-	}
-
-	void addAcidPoolObject(GameObject gameObject) {
-		if (gameObject == null) {
+	void addAcidPoolObject(GameObject gameObject)
+	{
+		if (gameObject == null)
+		{
 			return;
 		}
 
-		if (isAcidPoolTileObject(gameObject.getId())) {
+		if (isAcidPoolTileObject(gameObject.getId()))
+		{
 			getGameObjects().add(gameObject);
 		}
 	}
 
-	void removeAcidPoolObject(GameObject gameObject) {
-		if (gameObject == null) {
+	void removeAcidPoolObject(GameObject gameObject)
+	{
+		if (gameObject == null)
+		{
 			return;
 		}
 
-		if (isAcidPoolTileObject(gameObject.getId())) {
+		if (isAcidPoolTileObject(gameObject.getId()))
+		{
 			getGameObjects().remove(gameObject);
 		}
 	}
 
-	void onRegularAttack(int attackGameTick) {
-		log.debug("Vorkath regular attack at game tick {}", attackGameTick);
+	void onRegularAttack(int attackGameTick)
+	{
+		int attacksUntilSpecial = getAttacksUntilSpecialAttack() - 1;
+		if (attacksUntilSpecial < 0)
+		{
+			log.warn("Attacks until special attack tried going below 0");
+			return;
+		}
+
 		setAttacksUntilSpecialAttack(getAttacksUntilSpecialAttack() - 1);
 		setLastAttackTick(attackGameTick);
 		setNextAttackTick(attackGameTick + ATTACK_RATE);
 	}
 
+	/**
+	 * Handles Vorkath's firebomb attack. Firebomb attacks come out 1 tick later than regular attacks
+	 * and due to their random nature this leads to small inaccuracies that cannot be prevented
+	 * The time till the next attack after a firebomb attack is 1 tick less because of this
+	 *
+	 * @param plugin         vorkath plugin
+	 * @param attackGameTick game tick the attack happened
+	 */
+	void onFirebombAttack(VorkathPlugin plugin, int attackGameTick)
+	{
+		int attacksUntilSpecial = getAttacksUntilSpecialAttack() - 1;
+		if (attacksUntilSpecial < 0)
+		{
+			log.warn("Attacks until special attack tried going below 0");
+			return;
+		}
+
+		plugin.sendVorkathAttackNotification(ProjectileID.VORKATH_FIREBOMB);
+		setAttacksUntilSpecialAttack(getAttacksUntilSpecialAttack() - 1);
+		setLastAttackTick(attackGameTick);
+		setNextAttackTick(attackGameTick + (ATTACK_RATE));
+	}
+
+	void updateProjectiles(Projectile projectile, LocalPoint position)
+	{
+		// Update firebomb projectile target point
+		getProjectiles().stream()
+				.filter(x -> projectile.getId() == ProjectileID.VORKATH_FIREBOMB && x.getProjectile() == projectile)
+				.forEach((x) -> x.setTargetPoint(position));
+	}
+
+	void onSpecialAttack(Projectile projectile, VorkathPlugin plugin, int attackGameTick)
+	{
+		int projectileId = projectile.getId();
+		switch (projectile.getId())
+		{
+			case ProjectileID.VORKATH_ICE_BREATH:
+				if (getRecentProjectileId() == ProjectileID.VORKATH_ICE_BREATH)
+				{
+					return;
+				}
+
+				log.debug("{} | Special attack: {} | {}", attackGameTick, projectileId, nextAttackTick);
+				plugin.sendVorkathAttackNotification(projectileId);
+				setAttacksUntilSpecialAttack(Vorkath.ATTACKS_PER_SPECIAL_ATTACK);
+				setNextSpecialAttackStyle(Vorkath.SpecialAttackStyle.ACID);
+				setLastAttackTick(attackGameTick);
+
+				// Time till next attack seems to range between 1-6 ticks after getting unfrozen
+				// so we wait until the next regular attack to prevent inaccuracies
+				setNextAttackTick(-1);
+				break;
+			case ProjectileID.VORKATH_ACID:
+				if (getRecentProjectileId() == ProjectileID.VORKATH_ACID)
+				{
+					return;
+				}
+
+				log.debug("{} | Special attack: {} | {}", attackGameTick, projectileId, nextAttackTick);
+				plugin.sendVorkathAttackNotification(projectileId);
+				setAttacksUntilSpecialAttack(Vorkath.ATTACKS_PER_SPECIAL_ATTACK);
+				setRemainingAcidPhaseAttacks(Vorkath.ACID_PHASE_ATTACKS);
+				setNextSpecialAttackStyle(Vorkath.SpecialAttackStyle.ZOMBIFIED_SPAWN);
+				setLastAttackTick(attackGameTick);
+				setNextAttackTick(attackGameTick + ACID_PHASE_START_DELAY);
+				log.debug("{} | Set next attack after acid start to tick {}", attackGameTick, nextAttackTick);
+				break;
+		}
+	}
+
+	void onAcidPhaseFireballAttack(int attackGameTick)
+	{
+		int remainingAttacks = getRemainingAcidPhaseAttacks() - 1;
+		if (remainingAttacks < 0)
+		{
+			log.warn("Remaining acid phase attacks tried going below 0");
+			return;
+		}
+
+		setRemainingAcidPhaseAttacks(getRemainingAcidPhaseAttacks() - 1);
+		setLastAttackTick(attackGameTick);
+		setNextAttackTick(attackGameTick + 1);
+
+		if (getRemainingAcidPhaseAttacks() == 0)
+		{
+			setRemainingAcidPhaseAttacks(-1);
+			setNextAttackTick(attackGameTick + ATTACK_RATE);
+			log.debug("{} | Acid phase end", attackGameTick);
+		}
+	}
+
 	void resetFight()
 	{
 		this.isAwake = false;
+		this.nextSpecialAttackStyle = SpecialAttackStyle.UNKNOWN;
 		this.attacksUntilSpecialAttack = ATTACKS_PER_SPECIAL_ATTACK;
 		this.lastAttackTick = -100;
 		this.nextAttackTick = -100;
 		this.recentProjectileId = -1;
 		this.gameObjects.clear();
+		this.projectiles.clear();
+		log.debug("Vorkath fight reset");
 	}
 }
