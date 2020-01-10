@@ -124,7 +124,7 @@ public interface AlchemicalHydraConfig extends Config
 	@ConfigItem(
 			keyName = "showDebugOverlay",
 			name = "Display debug overlay",
-			description = "Displays alchemical hydra debug overlay. This contains variables that the plugin uses to function",
+			description = "Displays plugin debug overlay. This displays variables that the plugin uses to function",
 			position = 9
 	)
 	default boolean showDebugOverlay()

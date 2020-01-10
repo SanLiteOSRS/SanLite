@@ -34,16 +34,20 @@ import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayLayer;
 import net.runelite.client.ui.overlay.OverlayPosition;
 import net.runelite.client.ui.overlay.OverlayUtil;
+import net.runelite.client.util.ImageUtil;
 import net.runelite.client.util.TickUtil;
 
 import javax.inject.Inject;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
 public class TheatreOfBloodOverlay extends Overlay
 {
+	private static final int VERZIK_ATTACK_TIMER_IMAGE_HEIGHT_OFFSET = 15;
+	private static final int VERZIK_ATTACK_TIMER_TEXT_WIDTH_OFFSET = 4;
 
 	private Client client;
 	private TheatreOfBloodPlugin plugin;
@@ -378,13 +382,15 @@ public class TheatreOfBloodOverlay extends Overlay
 
 		String text = TickUtil.convertTimerFormat(verzik.getPhaseTimeTillNextAttack(), config.getTimerFormat());
 
-		Point textLocation = verzik.getNpc().getCanvasTextLocation(graphics, text, 0);
-		if (textLocation == null)
+		BufferedImage image = ImageUtil.getResourceStreamFromClass(getClass(), "/skill_icons_small/attack.png");
+		Point imageLocation = verzik.getNpc().getCanvasTextLocation(graphics, text, 0);
+		if (imageLocation == null || image == null)
 		{
 			return;
 		}
 
-		OverlayUtil.renderTextLocation(graphics, textLocation, text, Color.WHITE);
+		OverlayUtil.renderImageAndTextLocation(graphics, image, imageLocation, text,
+				VERZIK_ATTACK_TIMER_IMAGE_HEIGHT_OFFSET, VERZIK_ATTACK_TIMER_TEXT_WIDTH_OFFSET, Color.WHITE);
 	}
 
 	private void renderVerzikGreenOrbPoolAoeEffects(Graphics2D graphics, Verzik verzik)
@@ -427,7 +433,7 @@ public class TheatreOfBloodOverlay extends Overlay
 				return;
 			}
 
-			Color color = text.equals(client.getLocalPlayer().getName()) ? Color.RED : Color.WHITE;
+			Color color = text.equals(localPlayer.getName()) ? Color.RED : Color.WHITE;
 
 			OverlayUtil.renderTextLocation(graphics, textLocation, text, color);
 		}

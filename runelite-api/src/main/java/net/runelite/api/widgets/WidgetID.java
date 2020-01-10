@@ -403,6 +403,7 @@ public class WidgetID
 
 	static class ResizableViewportBottomLine
 	{
+		static final int MULTI_COMBAT_ICON = 17;
 		static final int LOGOUT_BUTTON_OVERLAY = 30;
 		static final int CMB_TAB = 50;
 		static final int CMB_ICON = 58;

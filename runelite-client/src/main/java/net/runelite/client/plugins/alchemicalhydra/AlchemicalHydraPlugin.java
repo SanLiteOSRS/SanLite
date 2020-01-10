@@ -42,6 +42,8 @@ import javax.inject.Inject;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
+import static net.runelite.client.plugins.alchemicalhydra.AlchemicalHydra.ATTACK_RATE;
+
 @Slf4j
 @PluginDescriptor(
 		name = "Alchemical Hydra",
@@ -232,7 +234,7 @@ public class AlchemicalHydraPlugin extends Plugin
 			checkAlchemicalHydraSpecialAttack();
 		}
 		int tickCounter = client.getTickCount();
-		alchemicalHydra.setNextAttackTick(tickCounter + AlchemicalHydra.ATTACK_RATE);
+		alchemicalHydra.setNextAttackTick(tickCounter + ATTACK_RATE);
 	}
 
 	/**
@@ -274,23 +276,20 @@ public class AlchemicalHydraPlugin extends Plugin
 	private void checkAlchemicalHydraPhaseSwitch()
 	{
 		int animationId = alchemicalHydra.getNpc().getAnimation();
-		if (animationId != alchemicalHydra.getLastTickAnimation())
+		if (animationId == AnimationID.ALCHEMICAL_HYDRA_SWITCH_TO_BLUE_PHASE &&
+				alchemicalHydra.getCurrentHydraPhase() != AlchemicalHydra.Phase.BLUE)
 		{
-			if (animationId == AnimationID.ALCHEMICAL_HYDRA_SWITCH_TO_BLUE_PHASE &&
-					alchemicalHydra.getCurrentHydraPhase() != AlchemicalHydra.Phase.BLUE)
-			{
-				alchemicalHydra.switchPhase(AlchemicalHydra.Phase.BLUE);
-			}
-			else if (animationId == AnimationID.ALCHEMICAL_HYDRA_SWITCH_TO_RED_PHASE &&
-					alchemicalHydra.getCurrentHydraPhase() != AlchemicalHydra.Phase.RED)
-			{
-				alchemicalHydra.switchPhase(AlchemicalHydra.Phase.RED);
-			}
-			else if (animationId == AnimationID.ALCHEMICAL_HYDRA_SWITCH_TO_JAD_PHASE &&
-					alchemicalHydra.getCurrentHydraPhase() != AlchemicalHydra.Phase.JAD)
-			{
-				alchemicalHydra.switchPhase(AlchemicalHydra.Phase.JAD);
-			}
+			alchemicalHydra.switchPhase(AlchemicalHydra.Phase.BLUE);
+		}
+		else if (animationId == AnimationID.ALCHEMICAL_HYDRA_SWITCH_TO_RED_PHASE &&
+				alchemicalHydra.getCurrentHydraPhase() != AlchemicalHydra.Phase.RED)
+		{
+			alchemicalHydra.switchPhase(AlchemicalHydra.Phase.RED);
+		}
+		else if (animationId == AnimationID.ALCHEMICAL_HYDRA_SWITCH_TO_JAD_PHASE &&
+				alchemicalHydra.getCurrentHydraPhase() != AlchemicalHydra.Phase.JAD)
+		{
+			alchemicalHydra.switchPhase(AlchemicalHydra.Phase.JAD);
 		}
 	}
 
@@ -352,7 +351,7 @@ public class AlchemicalHydraPlugin extends Plugin
 
 			int ticksSinceLastAttack = client.getTickCount() - alchemicalHydra.getLastAttackTick();
 
-			if (ticksSinceLastAttack >= 4 || alchemicalHydra.getLastAttackTick() == -100)
+			if (ticksSinceLastAttack >= ATTACK_RATE - 1 || alchemicalHydra.getLastAttackTick() == -100)
 			{
 				alchemicalHydra.setRecentProjectileId(projectile.getId());
 				alchemicalHydra.setLastAttackTick(client.getTickCount());

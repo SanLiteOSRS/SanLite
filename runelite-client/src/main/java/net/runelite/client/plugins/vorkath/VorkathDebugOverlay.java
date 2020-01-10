@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019, Siraz <https://github.com/Sirazzz>
+ * Copyright (c) 2020, Siraz <https://github.com/Sirazzz>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,7 +22,7 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.client.plugins.alchemicalhydra;
+package net.runelite.client.plugins.vorkath;
 
 import net.runelite.api.Client;
 import net.runelite.client.ui.overlay.Overlay;
@@ -34,14 +34,14 @@ import net.runelite.client.ui.overlay.components.TitleComponent;
 import javax.inject.Inject;
 import java.awt.*;
 
-public class AlchemicalHydraDebugOverlay extends Overlay
+public class VorkathDebugOverlay extends Overlay
 {
 	private final Client client;
-	private final AlchemicalHydraPlugin plugin;
+	private final VorkathPlugin plugin;
 	private final PanelComponent panelComponent = new PanelComponent();
 
 	@Inject
-	AlchemicalHydraDebugOverlay(Client client, AlchemicalHydraPlugin plugin)
+	VorkathDebugOverlay(Client client, VorkathPlugin plugin)
 	{
 		this.client = client;
 		this.plugin = plugin;
@@ -52,12 +52,13 @@ public class AlchemicalHydraDebugOverlay extends Overlay
 	@Override
 	public Dimension render(Graphics2D graphics)
 	{
-		if (plugin.getAlchemicalHydra() != null)
+		Vorkath vorkath = plugin.getVorkath();
+		if (vorkath != null)
 		{
 			panelComponent.getChildren().clear();
 
 			panelComponent.getChildren().add(TitleComponent.builder()
-					.text("Alchemical Hydra debug")
+					.text("Vorkath debug overlay")
 					.build());
 
 			panelComponent.getChildren().add(LineComponent.builder()
@@ -66,59 +67,76 @@ public class AlchemicalHydraDebugOverlay extends Overlay
 					.build());
 
 			panelComponent.getChildren().add(LineComponent.builder()
-					.left("Phase")
-					.right("" + plugin.getAlchemicalHydra().getCurrentHydraPhase())
+					.left("Awake")
+					.right("" + vorkath.isAwake())
 					.build());
 
 			panelComponent.getChildren().add(LineComponent.builder()
-					.left("Current attack style")
-					.right("" + plugin.getAlchemicalHydra().getCurrentAttackStyle())
-					.build());
-
-			panelComponent.getChildren().add(LineComponent.builder()
-					.left("Current special attack style")
-					.right("" + plugin.getAlchemicalHydra().getCurrentSpecialAttackStyle())
-					.build());
-
-			panelComponent.getChildren().add(LineComponent.builder()
-					.left("Is weakened")
-					.right("" + plugin.getAlchemicalHydra().isWeakened())
-					.build());
-
-			panelComponent.getChildren().add(LineComponent.builder()
-					.left("Attacks until switch")
-					.right("" + plugin.getAlchemicalHydra().getAttacksUntilSwitch())
+					.left("Next special attack style")
+					.right("" + vorkath.getNextSpecialAttackStyle())
 					.build());
 
 			panelComponent.getChildren().add(LineComponent.builder()
 					.left("Attacks until special attack")
-					.right("" + plugin.getAlchemicalHydra().getAttacksUntilSpecialAttack()	)
+					.right("" + vorkath.getAttacksUntilSpecialAttack())
 					.build());
+
+			if (vorkath.getNextAttackTick() != -100)
+			{
+				panelComponent.getChildren().add(LineComponent.builder()
+						.left("Ticks till next attack")
+						.right("" + (vorkath.getNextAttackTick() - client.getTickCount()))
+						.build());
+			}
 
 			panelComponent.getChildren().add(LineComponent.builder()
 					.left("Next attack tick")
-					.right("" + plugin.getAlchemicalHydra().getNextAttackTick())
+					.right("" + vorkath.getNextAttackTick())
 					.build());
 
 			panelComponent.getChildren().add(LineComponent.builder()
 					.left("Last attack tick")
-					.right("" + plugin.getAlchemicalHydra().getLastAttackTick())
+					.right("" + vorkath.getLastAttackTick())
 					.build());
 
 			panelComponent.getChildren().add(LineComponent.builder()
 					.left("Recent projectile id")
-					.right("" + plugin.getAlchemicalHydra().getRecentProjectileId())
+					.right("" + vorkath.getRecentProjectileId())
 					.build());
 
 			panelComponent.getChildren().add(LineComponent.builder()
-					.left("Remaining projectile count")
-					.right("" + plugin.getAlchemicalHydra().getRemainingProjectileCount())
+					.left("Remaining acid phase attacks")
+					.right("" + vorkath.getRemainingAcidPhaseAttacks())
 					.build());
 
 			panelComponent.getChildren().add(LineComponent.builder()
-					.left("Number of AoE effects")
-					.right("" + plugin.getAlchemicalHydra().getAoeEffects().size())
+					.left("Zombified spawn")
+					.right("" + vorkath.getZombifiedSpawn())
 					.build());
+
+			if (vorkath.getGameObjects() != null)
+			{
+				panelComponent.getChildren().add(LineComponent.builder()
+						.left("Number of encounter game objects")
+						.right("" + vorkath.getGameObjects().size())
+						.build());
+			}
+
+			if (vorkath.getGameObjects() != null)
+			{
+				panelComponent.getChildren().add(LineComponent.builder()
+						.left("Number of active projectiles")
+						.right("" + vorkath.getProjectiles().size())
+						.build());
+			}
+
+			if (vorkath.getAcidPhasePathPoints() != null)
+			{
+				panelComponent.getChildren().add(LineComponent.builder()
+						.left("Number of acid free path points")
+						.right("" + vorkath.getAcidPhasePathPoints().size())
+						.build());
+			}
 
 			return panelComponent.render(graphics);
 		}
