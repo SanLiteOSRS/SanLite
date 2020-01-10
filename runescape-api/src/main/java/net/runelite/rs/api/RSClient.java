@@ -932,7 +932,7 @@ public interface RSClient extends RSGameShell, Client
 	int getIf1DraggedItemIndex();
 
 	@Import("isSpellSelected")
-	boolean getSpellSelected();
+	boolean isSpellSelected();
 
 	@Import("isSpellSelected")
 	@Override
@@ -1060,4 +1060,41 @@ public interface RSClient extends RSGameShell, Client
 
 	@Import("VarpDefinition_get")
 	RSVarpDefinition getVarpDefinition(int id);
+
+	@Import("insertMenuItem")
+	@Override
+	void insertMenuItem(String action, String target, int opcode, int identifier, int argument1, int argument2, boolean forceLeftClick);
+
+	@Import("selectedItemId")
+	@Override
+	void setSelectedItemID(int id);
+
+	@Import("selectedItemSlot")
+	@Override
+	void setSelectedItemSlot(int index);
+
+	@Import("selectedItemWidget")
+	@Override
+	void setSelectedItemWidget(int widgetID);
+
+	@Import("selectedSpellWidget")
+	@Override
+	int getSelectedSpellWidget();
+
+	@Import("selectedSpellWidget")
+	@Override
+	void setSelectedSpellWidget(int widgetID);
+
+	@Import("selectedSpellChildIndex")
+	@Override
+	int getSelectedSpellChildIndex();
+
+	@Import("selectedSpellChildIndex")
+	@Override
+	void setSelectedSpellChildIndex(int index);
+
+	@Import("Sprite_drawScaled")
+	@Override
+	void scaleSprite(int[] canvas, int[] pixels, int color, int pixelX, int pixelY, int canvasIdx, int canvasOffset, int newWidth, int newHeight, int pixelWidth, int pixelHeight, int oldWidth);
+
 }

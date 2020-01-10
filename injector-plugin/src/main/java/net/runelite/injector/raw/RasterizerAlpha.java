@@ -32,7 +32,6 @@ import net.runelite.asm.attributes.Code;
 import net.runelite.asm.attributes.code.Instruction;
 import net.runelite.asm.attributes.code.InstructionType;
 import net.runelite.asm.attributes.code.Instructions;
-import net.runelite.asm.attributes.code.instruction.types.FieldInstruction;
 import net.runelite.asm.attributes.code.instruction.types.GetFieldInstruction;
 import net.runelite.asm.attributes.code.instruction.types.LVTInstruction;
 import net.runelite.asm.attributes.code.instruction.types.PushConstantInstruction;
@@ -130,10 +129,10 @@ public class RasterizerAlpha
 							continue;
 
 						StackContext alphaPop = isub.getPops().get(0);
-						InstructionContext alphaPusher = alphaPop.getPushed().resolve(alphaPop);
+						InstructionContext alphaPusher = alphaPop.getPushed();
 						InstructionContext isubResult = isub.getPushes().get(0).getPopped().get(0);
 
-						if (pushesToSameField(isubResult, alphaPusher))
+						if (pushesToSameVar(isubResult, alphaPusher))
 						{
 							alphaPusher = resolveFieldThroughInvokes(alphaPop);
 
@@ -195,12 +194,13 @@ public class RasterizerAlpha
 		log.info("Injected {} DrawAlpha invokes and {} ors", counts[1], counts[0]);
 	}
 
-	private static boolean pushesToSameField(InstructionContext cA, InstructionContext cB)
+	private static boolean pushesToSameVar(InstructionContext cA, InstructionContext cB)
 	{
-		if (cA.getInstruction() instanceof FieldInstruction && cB instanceof FieldInstruction)
+		Instruction iA = cA.getInstruction(), iB = cB.getInstruction();
+		if (iA instanceof LVTInstruction && iB instanceof LVTInstruction)
 		{
-			Field a = ((FieldInstruction) cA.getInstruction()).getMyField();
-			Field b = ((FieldInstruction) cB.getInstruction()).getMyField();
+			int a = ((LVTInstruction) iA).getVariableIndex();
+			int b = ((LVTInstruction) iB).getVariableIndex();
 
 			return a == b;
 		}

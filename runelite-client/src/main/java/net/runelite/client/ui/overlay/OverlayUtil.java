@@ -27,6 +27,7 @@ package net.runelite.client.ui.overlay;
 import com.google.common.base.Strings;
 
 import java.awt.*;
+import java.awt.geom.Arc2D;
 import java.awt.image.BufferedImage;
 import net.runelite.api.Actor;
 import net.runelite.api.Client;
@@ -96,6 +97,14 @@ public class OverlayUtil
 		{
 			renderImageLocation(graphics, imageLocation, image);
 		}
+	}
+
+	public static void renderImageAndTextLocation(Graphics2D graphics, BufferedImage image, Point imageLoc,
+													String text, int imageYOffset, int textXOffset, Color color)
+	{
+		graphics.drawImage(image, imageLoc.getX(), imageLoc.getY() - imageYOffset, null);
+		Point textLocation = new Point(imageLoc.getX() + image.getWidth() + textXOffset, imageLoc.getY());
+		OverlayUtil.renderTextLocation(graphics, textLocation, text, color);
 	}
 
 	public static void renderImageLocation(Graphics2D graphics, Point imgLoc, BufferedImage image)
@@ -184,6 +193,54 @@ public class OverlayUtil
 			graphics.draw(area);
 			graphics.setColor(fillColor);
 			graphics.fill(area);
+		}
+	}
+
+	public static void renderCountCircle(Graphics2D graphics, int totalCount, int currentCount, Point point,
+											BufferedImage image, int imageMargin, int imageWidth, int imageHeight,
+											int imageDistance)
+	{
+		if (point != null)
+		{
+			point = new Point(point.getX(), point.getY());
+			int totalWidth = imageMargin;
+			totalWidth += imageWidth;
+
+			int bgPadding = 4;
+			int currentPosX = 0;
+
+			graphics.setStroke(new BasicStroke(2));
+			graphics.setColor(new Color(0, 0, 0, 128));
+			graphics.fillOval(
+					point.getX() - totalWidth / 2 + currentPosX - bgPadding,
+					point.getY() - imageHeight / 2 - imageDistance - bgPadding,
+					imageWidth + bgPadding * 2,
+					imageHeight + bgPadding * 2);
+
+			graphics.setColor(new Color(0, 0, 0, 255));
+			graphics.drawOval(
+					point.getX() - totalWidth / 2 + currentPosX - bgPadding,
+					point.getY() - imageHeight / 2 - imageDistance - bgPadding,
+					imageWidth + bgPadding * 2,
+					imageHeight + bgPadding * 2);
+
+			graphics.drawImage(
+					image,
+					point.getX() - totalWidth / 2 + currentPosX,
+					point.getY() - imageHeight / 2 - imageDistance,
+					null);
+
+			graphics.setColor(new Color(219, 175, 0, 255));
+
+			Arc2D.Double arc = new Arc2D.Double(
+					point.getX() - totalWidth / 2 + currentPosX - bgPadding,
+					point.getY() - imageHeight / 2 - imageDistance - bgPadding,
+					imageWidth + bgPadding * 2,
+					imageHeight + bgPadding * 2,
+					90.0,
+					-360.0 * (totalCount - currentCount) / totalCount,
+					Arc2D.OPEN);
+			graphics.draw(arc);
 		}
 	}
 
