@@ -116,7 +116,7 @@ public interface VorkathConfig extends Config
 
 	@ConfigItem(
 			keyName = "highlightZombifiedSpawn",
-			name = "Highlight acid pool tiles",
+			name = "Highlight zombified spawn",
 			description = "Highlight the zombified spawn when summoned by Vorkath",
 			position = 7
 	)
