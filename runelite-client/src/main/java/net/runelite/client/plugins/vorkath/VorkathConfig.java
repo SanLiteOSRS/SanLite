@@ -202,13 +202,13 @@ public interface VorkathConfig extends Config
 	)
 	@ConfigItem(
 			keyName = "minimumAcidPhasePathLength",
-			name = "Minimum acid phase path length",
-			description = "The minimum length of the displayed path during Vorkath's acid phase",
+			name = "Minimum path length",
+			description = "The minimum length in tiles of the displayed path during Vorkath's acid phase",
 			position = 14
 	)
 	default int getMinimumAcidPhasePathLength()
 	{
-		return 6;
+		return 7;
 	}
 
 	@ConfigItem(

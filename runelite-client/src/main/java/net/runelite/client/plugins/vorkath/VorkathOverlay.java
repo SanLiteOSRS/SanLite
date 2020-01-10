@@ -199,8 +199,8 @@ public class VorkathOverlay extends Overlay
 			net.runelite.api.Point point = Perspective.localToCanvas(client, localPoint, client.getPlane(),
 					vorkath.getNpc().getLogicalHeight() + 16);
 
-			int attacksLeft = vorkath.getAttacksUntilSpecialAttack() - Vorkath.ATTACKS_PER_SPECIAL_ATTACK;
-			OverlayUtil.renderCountCircle(graphics, Vorkath.ATTACKS_PER_SPECIAL_ATTACK, attacksLeft, point,
+			OverlayUtil.renderCountCircle(graphics, Vorkath.ATTACKS_PER_SPECIAL_ATTACK,
+					vorkath.getAttacksUntilSpecialAttack(), point,
 					getSpecialAttackIcon(vorkath.getNextSpecialAttackStyle()), OVERLAY_ICON_MARGIN, ICON_WIDTH,
 					ICON_HEIGHT, OVERLAY_ICON_DISTANCE);
 
