@@ -55,6 +55,7 @@ public class WidgetOverlay extends Overlay
 		.put(WidgetInfo.KOUREND_FAVOUR_OVERLAY, OverlayPosition.TOP_CENTER)
 		.put(WidgetInfo.PYRAMID_PLUNDER_DATA, OverlayPosition.TOP_CENTER)
 		.put(WidgetInfo.RESIZABLE_VIEWPORT_MULTI_COMBAT, OverlayPosition.BOTTOM_RIGHT)
+		.put(WidgetInfo.RESIZABLE_VIEWPORT_BOTTOM_LINE_MULTI_COMBAT, OverlayPosition.BOTTOM_RIGHT)
 		.put(WidgetInfo.FIXED_VIEWPORT_MULTI_COMBAT_ICON, OverlayPosition.BOTTOM_RIGHT)
 		.put(WidgetInfo.PVP_AREA_INDICATOR, OverlayPosition.BOTTOM_RIGHT)
 		.put(WidgetInfo.PVP_KILLDEATH_COUNTER, OverlayPosition.TOP_LEFT)
