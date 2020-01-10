@@ -98,6 +98,14 @@ public class OverlayUtil
 		}
 	}
 
+	public static void renderImageAndTextLocation(Graphics2D graphics, BufferedImage image, Point imageLoc,
+													String text, int imageYOffset, int textXOffset, Color color)
+	{
+		graphics.drawImage(image, imageLoc.getX(), imageLoc.getY() - imageYOffset, null);
+		Point textLocation = new Point(imageLoc.getX() + image.getWidth() + textXOffset, imageLoc.getY());
+		OverlayUtil.renderTextLocation(graphics, textLocation, text, color);
+	}
+
 	public static void renderImageLocation(Graphics2D graphics, Point imgLoc, BufferedImage image)
 	{
 		int x = imgLoc.getX();

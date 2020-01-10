@@ -81,10 +81,13 @@ public class VorkathDebugOverlay extends Overlay
 					.right("" + vorkath.getAttacksUntilSpecialAttack())
 					.build());
 
-			panelComponent.getChildren().add(LineComponent.builder()
-					.left("Ticks till next attack")
-					.right("" + (vorkath.getNextAttackTick() - client.getTickCount()))
-					.build());
+			if (vorkath.getNextAttackTick() != -100)
+			{
+				panelComponent.getChildren().add(LineComponent.builder()
+						.left("Ticks till next attack")
+						.right("" + (vorkath.getNextAttackTick() - client.getTickCount()))
+						.build());
+			}
 
 			panelComponent.getChildren().add(LineComponent.builder()
 					.left("Next attack tick")

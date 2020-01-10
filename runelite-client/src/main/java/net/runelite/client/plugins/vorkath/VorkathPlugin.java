@@ -39,7 +39,6 @@ import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.plugins.PluginType;
 import net.runelite.client.ui.ClientUI;
 import net.runelite.client.ui.overlay.OverlayManager;
-import net.runelite.client.util.Text;
 
 import javax.inject.Inject;
 import java.util.Arrays;
@@ -48,7 +47,7 @@ import java.util.Arrays;
 @PluginDescriptor(
 		name = "Vorkath",
 		description = "Helps with Vorkath's various encounter mechanics",
-		tags = {"combat", "overlay", "pve", "pvm", "vorkath", "ds2", "boss", "slayer", "dragon"},
+		tags = {"combat", "overlay", "pve", "pvm", "vorkath", "ds2", "boss", "dragon", "slayer", "blue"},
 		type = PluginType.SANLITE_USE_AT_OWN_RISK
 )
 public class VorkathPlugin extends Plugin

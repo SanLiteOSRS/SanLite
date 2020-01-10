@@ -35,8 +35,9 @@ public interface VorkathConfig extends Config
 {
 	@ConfigItem(
 			keyName = "displayRemainingAttacksTillSpecial",
-			name = "Display attacks till next special attack",
-			description = "Displays the remaining attacks till Vorkath's next special attack"
+			name = "Display attacks till next special",
+			description = "Displays the remaining attacks till Vorkath's next special attack",
+			position = 0
 	)
 	default boolean displayRemainingAttacksTillSpecial()
 	{
@@ -46,7 +47,8 @@ public interface VorkathConfig extends Config
 	@ConfigItem(
 			keyName = "displayAttackTimer",
 			name = "Display attack timer",
-			description = "Displays a timer which shows the time until Vorkath's next attack"
+			description = "Displays a timer which shows the time until Vorkath's next attack",
+			position = 1
 	)
 	default boolean displayAttackTimer()
 	{
@@ -56,7 +58,9 @@ public interface VorkathConfig extends Config
 	@ConfigItem(
 			keyName = "attackTimerTextColor",
 			name = "Attack timer text color",
-			description = "Color of attack timer text"
+			description = "Color of attack timer text",
+			group = "Colors",
+			position = 2
 	)
 	default Color getAttackTimerTextColor()
 	{
@@ -64,41 +68,22 @@ public interface VorkathConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "highlightAcidPoolTiles",
-			name = "Highlight acid pool tiles",
-			description = "Highlight the acid pool tiles during Vorkath's acid phase"
-	)
-	default boolean highlightAcidPoolTiles()
-	{
-		return true;
-	}
-
-
-	@ConfigItem(
-			keyName = "acidPoolColor",
-			name = "Acid pool marker",
-			description = "Color of acid pool tile markers"
-	)
-	default Color getAcidPoolColor()
-	{
-		return new Color(74, 178, 23);
-	}
-
-	@ConfigItem(
 			keyName = "highlightFirebombTiles",
 			name = "Highlight firebomb tiles",
-			description = "Highlight the tiles where Vorkath's firebomb is going to land"
+			description = "Highlight the tiles where Vorkath's firebomb is going to land",
+			position = 3
 	)
 	default boolean highlightFirebombTiles()
 	{
 		return true;
 	}
 
-
 	@ConfigItem(
 			keyName = "firebombMarkerColor",
-			name = "Firebomb marker",
-			description = "Color of Vorkath's firebomb markers"
+			name = "Firebomb tile marker",
+			description = "Color of Vorkath's firebomb markers",
+			group = "Colors",
+			position = 4
 	)
 	default Color getFirebombMarkerColor()
 	{
@@ -106,20 +91,45 @@ public interface VorkathConfig extends Config
 	}
 
 	@ConfigItem(
+			keyName = "highlightAcidPoolTiles",
+			name = "Highlight acid pool tiles",
+			description = "Highlight the acid pool tiles during Vorkath's acid phase",
+			position = 5
+	)
+	default boolean highlightAcidPoolTiles()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+			keyName = "acidPoolColor",
+			name = "Acid pool tile marker",
+			description = "Color of acid pool tile markers",
+			group = "Colors",
+			position = 6
+	)
+	default Color getAcidPoolColor()
+	{
+		return new Color(74, 178, 23);
+	}
+
+	@ConfigItem(
 			keyName = "highlightZombifiedSpawn",
 			name = "Highlight acid pool tiles",
-			description = "Highlight the zombified spawn when summoned by Vorkath"
+			description = "Highlight the zombified spawn when summoned by Vorkath",
+			position = 7
 	)
 	default boolean highlightZombifiedSpawn()
 	{
 		return true;
 	}
 
-
 	@ConfigItem(
 			keyName = "zombifiedSpawnColor",
 			name = "Zombified spawn color",
-			description = "Color of the highlight on the zombified spawn summoned by Vorkath"
+			description = "Color of the highlight on the zombified spawn summoned by Vorkath",
+			group = "Colors",
+			position = 8
 	)
 	default Color getZombifiedSpawnColor()
 	{
@@ -127,21 +137,11 @@ public interface VorkathConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "notifyOnAcidPhase",
-			name = "Notify on acid phase",
-			description = "Receive a notification when Vorkath uses his acid phase special attack",
-			group = "Notifications"
-	)
-	default boolean notifyOnAcidPhase()
-	{
-		return true;
-	}
-
-	@ConfigItem(
 			keyName = "notifyOnFirebomb",
 			name = "Notify on firebomb",
 			description = "Receive a notification when Vorkath launches a firebomb",
-			group = "Notifications"
+			group = "Notifications",
+			position = 9
 	)
 	default boolean notifyOnFirebomb()
 	{
@@ -149,31 +149,46 @@ public interface VorkathConfig extends Config
 	}
 
 	@ConfigItem(
+			keyName = "notifyOnAcidPhase",
+			name = "Notify on acid phase",
+			description = "Receive a notification when Vorkath uses his acid phase special attack",
+			group = "Notifications",
+			position = 10
+	)
+	default boolean notifyOnAcidPhase()
+	{
+		return false;
+	}
+
+	@ConfigItem(
 			keyName = "notifyOnZombifiedSpawn",
 			name = "Notify on spawn",
 			description = "Receive a notification when Vorkath summons a zombified spawn",
-			group = "Notifications"
+			group = "Notifications",
+			position = 11
 	)
 	default boolean notifyOnZombifiedSpawn()
 	{
-		return true;
+		return false;
 	}
 
 	@ConfigItem(
 			keyName = "notifyOnlyOutOfFocus",
 			name = "Only notify out of focus",
 			description = "Only send notifications when the client is out of focus",
-			group = "Notifications"
+			group = "Notifications",
+			position = 12
 	)
 	default boolean notifyOnlyOutOfFocus()
 	{
-		return true;
+		return false;
 	}
 
 	@ConfigItem(
 			keyName = "showDebugOverlay",
 			name = "Display debug overlay",
-			description = "Displays plugin debug overlay. This contains variables that the plugin uses to function"
+			description = "Displays plugin debug overlay. This contains variables that the plugin uses to function",
+			position = 13
 	)
 	default boolean showDebugOverlay()
 	{

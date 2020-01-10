@@ -195,9 +195,8 @@ public class VorkathOverlay extends Overlay
 			return;
 		}
 
-		graphics.drawImage(image, imageLocation.getX(), imageLocation.getY() - ATTACK_TIMER_IMAGE_HEIGHT_OFFSET, null);
-		Point textLocation = new Point(imageLocation.getX() + image.getWidth() + ATTACK_TIMER_TEXT_WIDTH_OFFSET, imageLocation.getY());
-		OverlayUtil.renderTextLocation(graphics, textLocation, text, config.getAttackTimerTextColor());
+		OverlayUtil.renderImageAndTextLocation(graphics, image, imageLocation, text,
+				ATTACK_TIMER_IMAGE_HEIGHT_OFFSET, ATTACK_TIMER_TEXT_WIDTH_OFFSET, config.getAttackTimerTextColor());
 	}
 
 	private void renderAcidPoolTileMarkers(Graphics2D graphics, Vorkath vorkath)

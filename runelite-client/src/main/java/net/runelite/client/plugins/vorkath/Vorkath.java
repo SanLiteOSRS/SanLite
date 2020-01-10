@@ -184,14 +184,6 @@ class Vorkath
 		setNextAttackTick(attackGameTick + ATTACK_RATE);
 	}
 
-	/**
-	 * Handles Vorkath's firebomb attack. Firebomb attacks come out 1 tick later than regular attacks
-	 * and due to their random nature this leads to small inaccuracies that cannot be prevented
-	 * The time till the next attack after a firebomb attack is 1 tick less because of this
-	 *
-	 * @param plugin         vorkath plugin
-	 * @param attackGameTick game tick the attack happened
-	 */
 	void onFirebombAttack(VorkathPlugin plugin, int attackGameTick)
 	{
 		int attacksUntilSpecial = getAttacksUntilSpecialAttack() - 1;
