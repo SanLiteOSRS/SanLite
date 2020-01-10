@@ -427,7 +427,7 @@ public class TheatreOfBloodOverlay extends Overlay
 				return;
 			}
 
-			Color color = text.equals(client.getLocalPlayer().getName()) ? Color.RED : Color.WHITE;
+			Color color = text.equals(localPlayer.getName()) ? Color.RED : Color.WHITE;
 
 			OverlayUtil.renderTextLocation(graphics, textLocation, text, color);
 		}

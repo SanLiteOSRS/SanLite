@@ -42,6 +42,8 @@ import javax.inject.Inject;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
+import static net.runelite.client.plugins.alchemicalhydra.AlchemicalHydra.ATTACK_RATE;
+
 @Slf4j
 @PluginDescriptor(
 		name = "Alchemical Hydra",
@@ -232,7 +234,7 @@ public class AlchemicalHydraPlugin extends Plugin
 			checkAlchemicalHydraSpecialAttack();
 		}
 		int tickCounter = client.getTickCount();
-		alchemicalHydra.setNextAttackTick(tickCounter + AlchemicalHydra.ATTACK_RATE);
+		alchemicalHydra.setNextAttackTick(tickCounter + ATTACK_RATE);
 	}
 
 	/**
@@ -349,7 +351,7 @@ public class AlchemicalHydraPlugin extends Plugin
 
 			int ticksSinceLastAttack = client.getTickCount() - alchemicalHydra.getLastAttackTick();
 
-			if (ticksSinceLastAttack >= 4 || alchemicalHydra.getLastAttackTick() == -100)
+			if (ticksSinceLastAttack >= ATTACK_RATE - 1 || alchemicalHydra.getLastAttackTick() == -100)
 			{
 				alchemicalHydra.setRecentProjectileId(projectile.getId());
 				alchemicalHydra.setLastAttackTick(client.getTickCount());
