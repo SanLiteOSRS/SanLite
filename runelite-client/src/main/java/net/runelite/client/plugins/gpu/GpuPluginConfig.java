@@ -75,7 +75,7 @@ public interface GpuPluginConfig extends Config
 	@ConfigItem(
 			keyName = "uiScalingMode",
 			name = "UI scaling mode",
-			description = "Sampling function to use for the UI in stretched mode",
+			description = "Sampling function to use for the UI",
 			position = 4
 	)
 	default UIScalingMode uiScalingMode()
