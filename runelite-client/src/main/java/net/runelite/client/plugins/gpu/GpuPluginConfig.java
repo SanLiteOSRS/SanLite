@@ -81,7 +81,7 @@ public interface GpuPluginConfig extends Config
 	)
 	default UIScalingMode uiScalingMode()
 	{
-		return UIScalingMode.CATMULL_ROM;
+		return UIScalingMode.NEAREST_NEIGHBOR;
 	}
 
 	@Range(
