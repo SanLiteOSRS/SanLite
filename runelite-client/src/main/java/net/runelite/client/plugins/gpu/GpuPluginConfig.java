@@ -28,10 +28,11 @@ import net.runelite.client.config.Config;
 import net.runelite.client.config.ConfigGroup;
 import net.runelite.client.config.ConfigItem;
 import net.runelite.client.config.Range;
-import static net.runelite.client.plugins.gpu.GpuPlugin.MAX_FOG_DEPTH;
 import net.runelite.client.plugins.gpu.config.AntiAliasingMode;
-import static net.runelite.client.plugins.gpu.GpuPlugin.MAX_DISTANCE;
 import net.runelite.client.plugins.gpu.config.UIScalingMode;
+
+import static net.runelite.client.plugins.gpu.GpuPlugin.MAX_DISTANCE;
+import static net.runelite.client.plugins.gpu.GpuPlugin.MAX_FOG_DEPTH;
 
 @ConfigGroup("gpu")
 public interface GpuPluginConfig extends Config
