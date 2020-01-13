@@ -76,12 +76,13 @@ public interface GpuPluginConfig extends Config
 	@ConfigItem(
 			keyName = "uiScalingMode",
 			name = "UI scaling mode",
-			description = "Sampling function to use for the UI",
+			description = "Sampling function to use for the UI. May look better using a higher resizable scaling %" +
+					" in the stretched mode plugin",
 			position = 4
 	)
 	default UIScalingMode uiScalingMode()
 	{
-		return UIScalingMode.NEAREST_NEIGHBOR;
+		return UIScalingMode.CATMULL_ROM;
 	}
 
 	@Range(
