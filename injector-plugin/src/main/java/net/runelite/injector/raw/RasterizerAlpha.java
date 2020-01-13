@@ -145,9 +145,9 @@ public class RasterizerAlpha
 						Instruction alphaPushI = alphaPusher.getInstruction();
 						if (alphaPushI instanceof GetStatic)
 						{
-							instrs.addInstruction(storeIdx++, new LDC(instrs, 255));
+							//instrs.addInstruction(storeIdx++, new LDC(instrs, 255));
 							instrs.addInstruction(storeIdx++, new GetStatic(instrs, ((GetStatic) alphaPushI).getField()));
-							instrs.addInstruction(storeIdx++, new ISub(instrs, InstructionType.ISUB));
+							//instrs.addInstruction(storeIdx++, new ISub(instrs, InstructionType.ISUB));
 						}
 						else if (alphaPushI instanceof LVTInstruction)
 						{
