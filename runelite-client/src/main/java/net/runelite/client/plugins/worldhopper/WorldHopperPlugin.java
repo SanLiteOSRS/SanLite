@@ -158,6 +158,8 @@ public class WorldHopperPlugin extends Plugin
 	@Getter(AccessLevel.PACKAGE)
 	private int currentPing;
 
+	private final Map<Integer, Integer> storedPings = new HashMap<>();
+
 	private final HotkeyListener previousKeyListener = new HotkeyListener(() -> config.previousKey())
 	{
 		@Override
