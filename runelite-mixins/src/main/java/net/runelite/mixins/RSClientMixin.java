@@ -641,15 +641,12 @@ public abstract class RSClientMixin implements RSClient
 		if (newCount == oldCount + 1)
 		{
 			MenuEntryAdded event = new MenuEntryAdded(
-				new MenuEntry(
 					client.getMenuOptions()[oldCount],
 					client.getMenuTargets()[oldCount],
 					client.getMenuIdentifiers()[oldCount],
 					client.getMenuOpcodes()[oldCount],
 					client.getMenuArguments1()[oldCount],
-					client.getMenuArguments2()[oldCount],
-					client.getMenuForceLeftClick()[oldCount]
-				)
+					client.getMenuArguments2()[oldCount]
 			);
 
 			client.getCallbacks().post(event);

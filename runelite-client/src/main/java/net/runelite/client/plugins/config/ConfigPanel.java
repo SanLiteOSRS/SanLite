@@ -23,6 +23,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package net.runelite.client.plugins.config;
+
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.client.config.*;
 import net.runelite.client.plugins.*;
@@ -63,7 +64,6 @@ public class ConfigPanel extends PluginPanel
 	private static final String COLLAPSIBLE_ENTRY_OPENED_CONFIG_KEY = "opened";
 	private static final String PINNED_PLUGINS_CONFIG_KEY = "pinnedPlugins";
 	static final String PINNED_COLLAPSIBLE_ENTRY_NAME = "Pinned";
-
 
 	private final PluginManager pluginManager;
 	private final ConfigManager configManager;
