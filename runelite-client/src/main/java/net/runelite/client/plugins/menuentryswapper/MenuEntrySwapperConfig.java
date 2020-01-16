@@ -394,6 +394,26 @@ public interface MenuEntrySwapperConfig extends Config
 	}
 
 	@ConfigItem(
+			keyName = "swapBankOp",
+			name = "Swap Bank Op",
+			description = "Swaps the extra menu option in banks (Wield, Eat, etc.) when holding shift"
+	)
+	default boolean swapBankOp()
+	{
+		return false;
+	}
+
+	@ConfigItem(
+			keyName = "swapNpcContact",
+			name = "NPC Contact",
+			description = "Swap NPC Contact with last contacted NPC when shift-clicking"
+	)
+	default boolean swapNpcContact()
+	{
+		return false;
+	}
+
+	@ConfigItem(
 			keyName = "swapStoreBuy",
 			name = "Store Buy",
 			description = "Changes stores left-click buy options"
