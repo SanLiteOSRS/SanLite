@@ -643,8 +643,8 @@ public abstract class RSClientMixin implements RSClient
 			MenuEntryAdded event = new MenuEntryAdded(
 					client.getMenuOptions()[oldCount],
 					client.getMenuTargets()[oldCount],
-					client.getMenuIdentifiers()[oldCount],
 					client.getMenuOpcodes()[oldCount],
+					client.getMenuIdentifiers()[oldCount],
 					client.getMenuArguments1()[oldCount],
 					client.getMenuArguments2()[oldCount]
 			);
