@@ -108,4 +108,15 @@ public interface BankConfig extends Config
 	{
 		return true;
 	}
+
+	@ConfigItem(
+		keyName = "keyboardPin",
+		name = "Keyboard bank pin",
+		description = "Enables you to type your bank pin",
+		position = 8
+	)
+	default boolean keyboardPin()
+	{
+		return false;
+	}
 }
