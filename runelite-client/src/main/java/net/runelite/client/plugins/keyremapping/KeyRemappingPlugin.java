@@ -74,7 +74,7 @@ public class KeyRemappingPlugin extends Plugin
 	private KeyRemappingListener inputListener;
 
 	@Inject
-	private BankConfig bankConfig;
+	private ConfigManager configManager;
 
 	@Getter(AccessLevel.PACKAGE)
 	@Setter(AccessLevel.PACKAGE)
@@ -117,12 +117,6 @@ public class KeyRemappingPlugin extends Plugin
 		return configManager.getConfig(KeyRemappingConfig.class);
 	}
 
-	@Provides
-	BankConfig getBankConfig(ConfigManager configManager)
-	{
-		return configManager.getConfig(BankConfig.class);
-	}
-
 	boolean chatboxFocused()
 	{
 		Widget chatboxParent = client.getWidget(WidgetInfo.CHATBOX_PARENT);
@@ -158,7 +152,7 @@ public class KeyRemappingPlugin extends Plugin
 	 */
 	boolean isBankPinKeyboardWidgetOpen()
 	{
-		return !isHidden(WidgetInfo.BANK_PIN_CONTAINER) && bankConfig.keyboardBankPin();
+		return !isHidden(WidgetInfo.BANK_PIN_CONTAINER) && configManager.getConfig(BankConfig.class).keyboardBankPin();
 	}
 
 	private boolean isHidden(WidgetInfo widgetInfo)

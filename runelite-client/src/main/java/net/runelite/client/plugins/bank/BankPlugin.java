@@ -72,7 +72,7 @@ import net.runelite.client.util.QuantityFormatter;
 @PluginDescriptor(
 	name = "Bank",
 	description = "Modifications to the banking interface",
-	tags = {"grand", "exchange", "high", "alchemy", "prices", "deposit"}
+	tags = {"grand", "exchange", "high", "alchemy", "prices", "deposit", "pin", "keyboard"}
 )
 public class BankPlugin extends Plugin
 {
