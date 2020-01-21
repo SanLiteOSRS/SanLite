@@ -45,6 +45,7 @@ import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.input.KeyManager;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
+import net.runelite.client.plugins.bank.BankConfig;
 import net.runelite.client.ui.JagexColors;
 import net.runelite.client.util.ColorUtil;
 
@@ -71,6 +72,9 @@ public class KeyRemappingPlugin extends Plugin
 
 	@Inject
 	private KeyRemappingListener inputListener;
+
+	@Inject
+	private BankConfig bankConfig;
 
 	@Getter(AccessLevel.PACKAGE)
 	@Setter(AccessLevel.PACKAGE)
@@ -113,6 +117,12 @@ public class KeyRemappingPlugin extends Plugin
 		return configManager.getConfig(KeyRemappingConfig.class);
 	}
 
+	@Provides
+	BankConfig getBankConfig(ConfigManager configManager)
+	{
+		return configManager.getConfig(BankConfig.class);
+	}
+
 	boolean chatboxFocused()
 	{
 		Widget chatboxParent = client.getWidget(WidgetInfo.CHATBOX_PARENT);
@@ -139,6 +149,16 @@ public class KeyRemappingPlugin extends Plugin
 		// so chatboxFocused() is true. The chatbox onkey script uses the following logic to ignore key presses,
 		// so we will use it too to not remap F-keys.
 		return isHidden(WidgetInfo.CHATBOX_MESSAGES) || isHidden(WidgetInfo.CHATBOX_TRANSPARENT_LINES);
+	}
+
+	/**
+	 * Checks if the bank pin widget is open and if the keyboard bank pin option is enabled in the bank plugin config.
+	 *
+	 * @return is bank pin widget open & keyboard bank pin enabled
+	 */
+	boolean isBankPinKeyboardWidgetOpen()
+	{
+		return !isHidden(WidgetInfo.BANK_PIN_CONTAINER) && bankConfig.keyboardBankPin();
 	}
 
 	private boolean isHidden(WidgetInfo widgetInfo)

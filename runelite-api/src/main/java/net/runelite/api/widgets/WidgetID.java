@@ -242,6 +242,7 @@ public class WidgetID
 	// Also used for many other interfaces!
 	static class BankPin
 	{
+		static final int CONTAINER = 1;
 		static final int TOP_LEFT_TEXT = 2;
 		static final int FIRST_ENTERED = 3;
 		static final int SECOND_ENTERED = 4;

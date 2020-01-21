@@ -1,22 +1,22 @@
 package net.runelite.client.plugins.bank;
 
-import lombok.extern.slf4j.Slf4j;
+import com.google.inject.Inject;
 import net.runelite.api.Client;
 import net.runelite.client.callback.ClientThread;
 import net.runelite.client.input.KeyListener;
 
 import java.awt.event.KeyEvent;
 
-@Slf4j
 public class BankPinKeyListener implements KeyListener
 {
 	private BankPlugin bankPlugin;
-	private Client client;
-	private ClientThread clientThread;
+	private final Client client;
+	private final ClientThread clientThread;
 
-	private int lastKeyCycle;
+	private int lastKeyInputCycle;
 
-	public BankPinKeyListener(BankPlugin bankPlugin, Client client, ClientThread clientThread)
+	@Inject
+	public BankPinKeyListener(BankPlugin bankPlugin, final Client client, final ClientThread clientThread)
 	{
 		this.bankPlugin = bankPlugin;
 		this.client = client;
@@ -31,17 +31,13 @@ public class BankPinKeyListener implements KeyListener
 			return;
 		}
 
-		log.debug("client: {}", client == null);
-		log.debug("gamecycle: {}", client.getGameCycle());
-		log.debug("lastKeyCycle: {}", lastKeyCycle);
-		if (client.getGameCycle() - lastKeyCycle <= 5)
+		if (client.getGameCycle() - lastKeyInputCycle <= 5)
 		{
 			keyEvent.consume();
 			return;
 		}
 
-		lastKeyCycle = client.getGameCycle();
-
+		lastKeyInputCycle = client.getGameCycle();
 		clientThread.invoke(() -> bankPlugin.handleBankPinKeyInput(keyEvent.getKeyChar()));
 		keyEvent.consume();
 	}
