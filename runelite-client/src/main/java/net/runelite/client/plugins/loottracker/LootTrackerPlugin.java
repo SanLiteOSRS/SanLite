@@ -57,15 +57,13 @@ import net.runelite.api.Client;
 import net.runelite.api.Constants;
 import net.runelite.api.GameState;
 import net.runelite.api.InventoryID;
-import net.runelite.api.ItemDefinition;
+import net.runelite.api.ItemComposition;
 import net.runelite.api.ItemContainer;
 import net.runelite.api.NPC;
 import net.runelite.api.Player;
 import net.runelite.api.SpriteID;
 import net.runelite.api.coords.WorldPoint;
 import net.runelite.api.events.ChatMessage;
-import net.runelite.client.eventbus.EventBus;
-import net.runelite.client.events.ConfigChanged;
 import net.runelite.api.events.GameStateChanged;
 import net.runelite.api.events.ItemContainerChanged;
 import net.runelite.api.events.WidgetLoaded;
@@ -74,7 +72,9 @@ import net.runelite.client.account.AccountSession;
 import net.runelite.client.account.SessionManager;
 import net.runelite.client.callback.ClientThread;
 import net.runelite.client.config.ConfigManager;
+import net.runelite.client.eventbus.EventBus;
 import net.runelite.client.eventbus.Subscribe;
+import net.runelite.client.events.ConfigChanged;
 import net.runelite.client.events.NpcLootReceived;
 import net.runelite.client.events.PlayerLootReceived;
 import net.runelite.client.events.SessionClose;
@@ -90,16 +90,17 @@ import net.runelite.client.ui.NavigationButton;
 import net.runelite.client.util.ImageUtil;
 import net.runelite.client.util.Text;
 import net.runelite.http.api.loottracker.GameItem;
+import net.runelite.http.api.loottracker.LootAggregate;
 import net.runelite.http.api.loottracker.LootRecord;
 import net.runelite.http.api.loottracker.LootRecordType;
 import net.runelite.http.api.loottracker.LootTrackerClient;
 import org.apache.commons.lang3.ArrayUtils;
 
 @PluginDescriptor(
-	name = "Loot Tracker",
-	description = "Tracks loot from monsters and minigames",
-	tags = {"drops"},
-	enabledByDefault = false
+		name = "Loot Tracker",
+		description = "Tracks loot from monsters and minigames",
+		tags = {"drops"},
+		enabledByDefault = false
 )
 @Slf4j
 public class LootTrackerPlugin extends Plugin
@@ -126,11 +127,11 @@ public class LootTrackerPlugin extends Plugin
 	private static final String CHEST_LOOTED_MESSAGE = "You find some treasure in the chest!";
 	private static final Pattern LARRAN_LOOTED_PATTERN = Pattern.compile("You have opened Larran's (big|small) chest .*");
 	private static final Map<Integer, String> CHEST_EVENT_TYPES = ImmutableMap.of(
-		5179, "Brimstone Chest",
-		11573, "Crystal Chest",
-		12093, "Larran's big chest",
-		13113, "Larran's small chest",
-		13151, "Elven Crystal Chest"
+			5179, "Brimstone Chest",
+			11573, "Crystal Chest",
+			12093, "Larran's big chest",
+			13113, "Larran's small chest",
+			13151, "Elven Crystal Chest"
 	);
 
 	// Last man standing map regions
@@ -252,11 +253,11 @@ public class LootTrackerPlugin extends Plugin
 		final BufferedImage icon = ImageUtil.getResourceStreamFromClass(getClass(), "panel_icon.png");
 
 		navButton = NavigationButton.builder()
-			.tooltip("Loot Tracker")
-			.icon(icon)
-			.priority(5)
-			.panel(panel)
-			.build();
+				.tooltip("Loot Tracker")
+				.icon(icon)
+				.priority(5)
+				.panel(panel)
+				.build();
 
 		clientToolbar.addNavigation(navButton);
 
@@ -276,13 +277,12 @@ public class LootTrackerPlugin extends Plugin
 
 				executor.submit(() ->
 				{
-					Collection<LootRecord> lootRecords;
-
 					if (!config.syncPanel())
 					{
 						return;
 					}
 
+					Collection<LootAggregate> lootRecords;
 					try
 					{
 						lootRecords = lootTrackerClient.get();
@@ -426,9 +426,9 @@ public class LootTrackerPlugin extends Plugin
 
 		// Convert container items to array of ItemStack
 		final Collection<ItemStack> items = Arrays.stream(container.getItems())
-			.filter(item -> item.getId() > 0)
-			.map(item -> new ItemStack(item.getId(), item.getQuantity(), client.getLocalPlayer().getLocalLocation()))
-			.collect(Collectors.toList());
+				.filter(item -> item.getId() > 0)
+				.map(item -> new ItemStack(item.getId(), item.getQuantity(), client.getLocalPlayer().getLocalLocation()))
+				.collect(Collectors.toList());
 
 		if (items.isEmpty())
 		{
@@ -519,9 +519,9 @@ public class LootTrackerPlugin extends Plugin
 	public void onItemContainerChanged(ItemContainerChanged event)
 	{
 		if (CHEST_EVENT_TYPES.containsValue(eventType)
-			|| HERBIBOAR_EVENT.equals(eventType)
-			|| HESPORI_EVENT.equals(eventType)
-			|| GAUNTLET_EVENT.equals(eventType))
+				|| HERBIBOAR_EVENT.equals(eventType)
+				|| HESPORI_EVENT.equals(eventType)
+				|| GAUNTLET_EVENT.equals(eventType))
 		{
 			if (event.getItemContainer() != client.getItemContainer(InventoryID.INVENTORY))
 			{
@@ -534,9 +534,9 @@ public class LootTrackerPlugin extends Plugin
 	}
 
 	@Schedule(
-		period = 5,
-		unit = ChronoUnit.MINUTES,
-		asynchronous = true
+			period = 5,
+			unit = ChronoUnit.MINUTES,
+			asynchronous = true
 	)
 	public void submitLootTask()
 	{
@@ -584,13 +584,13 @@ public class LootTrackerPlugin extends Plugin
 		{
 			Multiset<Integer> currentInventory = HashMultiset.create();
 			Arrays.stream(inventoryContainer.getItems())
-				.forEach(item -> currentInventory.add(item.getId(), item.getQuantity()));
+					.forEach(item -> currentInventory.add(item.getId(), item.getQuantity()));
 
 			final Multiset<Integer> diff = Multisets.difference(currentInventory, inventorySnapshot);
 
 			List<ItemStack> items = diff.entrySet().stream()
-				.map(e -> new ItemStack(e.getElement(), e.getCount(), client.getLocalPlayer().getLocalLocation()))
-				.collect(Collectors.toList());
+					.map(e -> new ItemStack(e.getElement(), e.getCount(), client.getLocalPlayer().getLocalLocation()))
+					.collect(Collectors.toList());
 
 			addLoot(chestType, -1, LootRecordType.EVENT, items);
 
@@ -622,48 +622,48 @@ public class LootTrackerPlugin extends Plugin
 
 	private LootTrackerItem buildLootTrackerItem(int itemId, int quantity)
 	{
-		final ItemDefinition itemComposition = itemManager.getItemComposition(itemId);
+		final ItemComposition itemComposition = itemManager.getItemComposition(itemId);
 		final int realItemId = itemComposition.getNote() != -1 ? itemComposition.getLinkedNoteId() : itemId;
-		final long gePrice = (long) itemManager.getItemPrice(realItemId) * (long) quantity;
-		final long haPrice = (long) Math.round(itemComposition.getPrice() * Constants.HIGH_ALCHEMY_MULTIPLIER) * (long) quantity;
+		final int gePrice = itemManager.getItemPrice(realItemId);
+		final int haPrice = Math.round(itemComposition.getPrice() * Constants.HIGH_ALCHEMY_MULTIPLIER);
 		final boolean ignored = ignoredItems.contains(itemComposition.getName());
 
 		return new LootTrackerItem(
-			itemId,
-			itemComposition.getName(),
-			quantity,
-			gePrice,
-			haPrice,
-			ignored);
+				itemId,
+				itemComposition.getName(),
+				quantity,
+				gePrice,
+				haPrice,
+				ignored);
 	}
 
 	private LootTrackerItem[] buildEntries(final Collection<ItemStack> itemStacks)
 	{
 		return itemStacks.stream()
-			.map(itemStack -> buildLootTrackerItem(itemStack.getId(), itemStack.getQuantity()))
-			.toArray(LootTrackerItem[]::new);
+				.map(itemStack -> buildLootTrackerItem(itemStack.getId(), itemStack.getQuantity()))
+				.toArray(LootTrackerItem[]::new);
 	}
 
 	private static Collection<GameItem> toGameItems(Collection<ItemStack> items)
 	{
 		return items.stream()
-			.map(item -> new GameItem(item.getId(), item.getQuantity()))
-			.collect(Collectors.toList());
+				.map(item -> new GameItem(item.getId(), item.getQuantity()))
+				.collect(Collectors.toList());
 	}
 
-	private Collection<LootTrackerRecord> convertToLootTrackerRecord(final Collection<LootRecord> records)
+	private Collection<LootTrackerRecord> convertToLootTrackerRecord(final Collection<LootAggregate> records)
 	{
 		return records.stream()
-			.sorted(Comparator.comparing(LootRecord::getTime))
-			.map(record ->
-			{
-				LootTrackerItem[] drops = record.getDrops().stream().map(itemStack ->
-					buildLootTrackerItem(itemStack.getId(), itemStack.getQty())
-				).toArray(LootTrackerItem[]::new);
+				.sorted(Comparator.comparing(LootAggregate::getLast_time))
+				.map(record ->
+				{
+					LootTrackerItem[] drops = record.getDrops().stream().map(itemStack ->
+							buildLootTrackerItem(itemStack.getId(), itemStack.getQty())
+					).toArray(LootTrackerItem[]::new);
 
-				return new LootTrackerRecord(record.getEventId(), "", drops);
-			})
-			.collect(Collectors.toCollection(ArrayList::new));
+					return new LootTrackerRecord(record.getEventId(), "", drops, record.getAmount());
+				})
+				.collect(Collectors.toCollection(ArrayList::new));
 	}
 
 	/**
