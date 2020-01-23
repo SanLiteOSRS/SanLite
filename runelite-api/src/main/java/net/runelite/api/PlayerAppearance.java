@@ -38,6 +38,11 @@ public interface PlayerAppearance
 	 * 256 will result in the kit ID. Values above 512 indicate an item
 	 * and can be converted to the item ID by subtracting 512.
 	 *
+	 * Each index in the array represents an equipment slot:
+	 * 0 = Helm | 1 = Cape | 2 = Necklace | 3 = Weapon
+	 * 4 = Body | 5 = Shield | 6 = Sleeves/arms | 7 = Legs
+	 * 8 = Hair | 9 = Hands | 10 = Boots | 11 = Jaw
+	 *
 	 * @return the equipment IDs
 	 */
 	int[] getEquipmentIds();
