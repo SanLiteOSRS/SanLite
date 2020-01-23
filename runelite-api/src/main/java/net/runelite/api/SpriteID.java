@@ -1627,4 +1627,6 @@ public final class SpriteID
 	public static final int HEALTHBAR_DEFAULT_FRONT_160PX = 2190;
 	public static final int HEALTHBAR_DEFAULT_BACK_160PX = 2191;
 	public static final int TWISTED_LEAGUES_QUESTION_MARK = 2390;
+	public static final int WIKI_DESELECTED = 2420;
+	public static final int WIKI_SELECTED = 2421;
 }
