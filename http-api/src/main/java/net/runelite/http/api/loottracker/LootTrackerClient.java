@@ -55,14 +55,14 @@ public class LootTrackerClient
 	public void submit(Collection<LootRecord> lootRecords)
 	{
 		HttpUrl url = RuneLiteAPI.getApiBase().newBuilder()
-			.addPathSegment("loottracker")
-			.build();
+				.addPathSegment("loottracker")
+				.build();
 
 		Request request = new Request.Builder()
-			.header(RuneLiteAPI.RUNELITE_AUTH, uuid.toString())
-			.post(RequestBody.create(JSON, GSON.toJson(lootRecords)))
-			.url(url)
-			.build();
+				.header(RuneLiteAPI.RUNELITE_AUTH, uuid.toString())
+				.post(RequestBody.create(JSON, GSON.toJson(lootRecords)))
+				.url(url)
+				.build();
 
 		RuneLiteAPI.CLIENT.newCall(request).enqueue(new Callback()
 		{
@@ -81,16 +81,16 @@ public class LootTrackerClient
 		});
 	}
 
-	public Collection<LootRecord> get() throws IOException
+	public Collection<LootAggregate> get() throws IOException
 	{
 		HttpUrl url = RuneLiteAPI.getApiBase().newBuilder()
-			.addPathSegment("loottracker")
-			.build();
+				.addPathSegment("loottracker")
+				.build();
 
 		Request request = new Request.Builder()
-			.header(RuneLiteAPI.RUNELITE_AUTH, uuid.toString())
-			.url(url)
-			.build();
+				.header(RuneLiteAPI.RUNELITE_AUTH, uuid.toString())
+				.url(url)
+				.build();
 
 		try (Response response = RuneLiteAPI.CLIENT.newCall(request).execute())
 		{
@@ -101,7 +101,7 @@ public class LootTrackerClient
 			}
 
 			InputStream in = response.body().byteStream();
-			return RuneLiteAPI.GSON.fromJson(new InputStreamReader(in), new TypeToken<List<LootRecord>>()
+			return RuneLiteAPI.GSON.fromJson(new InputStreamReader(in), new TypeToken<List<LootAggregate>>()
 			{
 			}.getType());
 		}
@@ -114,7 +114,7 @@ public class LootTrackerClient
 	public void delete(String eventId)
 	{
 		HttpUrl.Builder builder = RuneLiteAPI.getApiBase().newBuilder()
-			.addPathSegment("loottracker");
+				.addPathSegment("loottracker");
 
 		if (eventId != null)
 		{
@@ -122,10 +122,10 @@ public class LootTrackerClient
 		}
 
 		Request request = new Request.Builder()
-			.header(RuneLiteAPI.RUNELITE_AUTH, uuid.toString())
-			.delete()
-			.url(builder.build())
-			.build();
+				.header(RuneLiteAPI.RUNELITE_AUTH, uuid.toString())
+				.delete()
+				.url(builder.build())
+				.build();
 
 		RuneLiteAPI.CLIENT.newCall(request).enqueue(new Callback()
 		{
