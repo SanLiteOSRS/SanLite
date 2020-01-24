@@ -127,4 +127,15 @@ public interface TransmogConfig extends Config
 	{
 		return 0;
 	}
+
+	@ConfigItem(
+			keyName = "displayDebugOverlay",
+			name = "Display debug overlay",
+			description = "Display debug overlay",
+			position = 10
+	)
+	default boolean displayDebugOverlay()
+	{
+		return false;
+	}
 }

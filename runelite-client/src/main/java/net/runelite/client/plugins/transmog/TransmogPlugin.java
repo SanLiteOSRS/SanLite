@@ -43,6 +43,9 @@ public class TransmogPlugin extends Plugin
 	private OverlayManager overlayManager;
 
 	@Inject
+	private ConfigManager configManager;
+
+	@Inject
 	private TransmogConfig config;
 
 	@Getter(AccessLevel.PACKAGE)
@@ -65,7 +68,10 @@ public class TransmogPlugin extends Plugin
 	@Override
 	protected void startUp()
 	{
-		overlayManager.add(debugOverlay);
+		if (config.displayDebugOverlay())
+		{
+			overlayManager.add(debugOverlay);
+		}
 
 		final BufferedImage icon = ImageUtil.getResourceStreamFromClass(getClass(), "transmog_icon.png");
 		itemSearchPanel = injector.getInstance(ItemSearchPanel.class);
@@ -82,7 +88,10 @@ public class TransmogPlugin extends Plugin
 	@Override
 	protected void shutDown()
 	{
-		overlayManager.remove(debugOverlay);
+		if (config.displayDebugOverlay())
+		{
+			overlayManager.remove(debugOverlay);
+		}
 		clientToolbar.removeNavigation(button);
 	}
 
@@ -129,6 +138,15 @@ public class TransmogPlugin extends Plugin
 			case "jawId":
 				updatePlayerEquipment(KitType.JAW, config.getJawId());
 				break;
+		}
+
+		if (config.displayDebugOverlay())
+		{
+			overlayManager.add(debugOverlay);
+		}
+		else if (!config.displayDebugOverlay())
+		{
+			overlayManager.remove(debugOverlay);
 		}
 	}
 
