@@ -36,25 +36,10 @@ import javax.swing.SwingUtilities;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.AnimationID;
-import net.runelite.api.ChatMessageType;
-import net.runelite.api.Client;
-import net.runelite.api.InventoryID;
-import net.runelite.api.Item;
-import net.runelite.api.ItemContainer;
-import net.runelite.api.MenuAction;
-import net.runelite.api.NPC;
-import net.runelite.api.NpcID;
-import net.runelite.api.Player;
+import net.runelite.api.*;
 import net.runelite.api.coords.WorldPoint;
-import net.runelite.api.events.AnimationChanged;
-import net.runelite.api.events.ChatMessage;
-import net.runelite.api.events.NpcDespawned;
-import net.runelite.api.events.NpcSpawned;
+import net.runelite.api.events.*;
 import net.runelite.client.events.ConfigChanged;
-import net.runelite.api.events.GameTick;
-import net.runelite.api.events.ItemContainerChanged;
-import net.runelite.api.events.MenuOptionClicked;
 import net.runelite.api.widgets.Widget;
 import net.runelite.api.widgets.WidgetInfo;
 import net.runelite.client.config.ConfigManager;
@@ -159,6 +144,7 @@ public class KourendLibraryPlugin extends Plugin
 		lastBookcaseClick = null;
 		lastBookcaseAnimatedOn = null;
 		playerBooks = null;
+		npcsToMark.clear();
 	}
 
 	@Subscribe
@@ -171,29 +157,31 @@ public class KourendLibraryPlugin extends Plugin
 
 		if (ev.getKey().equals("hideVarlamoreEnvoy"))
 		{
-			panel.reload();
+			SwingUtilities.invokeLater(panel::reload);
 		}
-
-		SwingUtilities.invokeLater(() ->
+		else if (ev.getKey().equals("hideButton"))
 		{
-			if (!config.hideButton())
+			SwingUtilities.invokeLater(() ->
 			{
-				clientToolbar.addNavigation(navButton);
-			}
-			else
-			{
-				Player lp = client.getLocalPlayer();
-				boolean inRegion = lp != null && lp.getWorldLocation().getRegionID() == REGION;
-				if (inRegion)
+				if (!config.hideButton())
 				{
 					clientToolbar.addNavigation(navButton);
 				}
 				else
 				{
-					clientToolbar.removeNavigation(navButton);
+					Player lp = client.getLocalPlayer();
+					boolean inRegion = lp != null && lp.getWorldLocation().getRegionID() == REGION;
+					if (inRegion)
+					{
+						clientToolbar.addNavigation(navButton);
+					}
+					else
+					{
+						clientToolbar.removeNavigation(navButton);
+					}
 				}
-			}
-		});
+			});
+		}
 	}
 
 	@Subscribe
@@ -225,6 +213,16 @@ public class KourendLibraryPlugin extends Plugin
 				panel.update();
 				lastBookcaseAnimatedOn = null;
 			}
+		}
+	}
+
+	@Subscribe
+	public void onGameStateChanged(GameStateChanged event)
+	{
+		if (event.getGameState() == GameState.LOGIN_SCREEN ||
+				event.getGameState() == GameState.HOPPING)
+		{
+			npcsToMark.clear();
 		}
 	}
 

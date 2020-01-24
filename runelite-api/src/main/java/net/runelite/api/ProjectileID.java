@@ -52,7 +52,6 @@ public class ProjectileID
 	public static final int OLM_MAGE_ATTACK = 1339;
 	public static final int OLM_RANGE_ATTACK = 1340;
 
-	public static final int VORKATH_BOMB_AOE = 1481;
 	public static final int VORKATH_POISON_POOL_AOE = 1483;
 	public static final int VORKATH_TICK_FIRE_AOE = 1482;
 	public static final int VORKATH_SPAWN_AOE = 1484;
@@ -100,12 +99,16 @@ public class ProjectileID
 	/**
 	 * non AOE, regular projectiles
 	 */
-	public static final int VORKATH_DRAGONBREATH = 393;
+	public static final int VORKATH_DRAGON_BREATH = 393;
+	public static final int VORKATH_ICE_BREATH = 395;
+	public static final int VORKATH_VENOM_BREATH = 1470;
+	public static final int VORKATH_PRAYER_DISABLE = 1471;
 	public static final int VORKATH_RANGED = 1477;
 	public static final int VORKATH_MAGIC = 1479;
-	public static final int VORKATH_PRAYER_DISABLE = 1471;
-	public static final int VORKATH_VENOM = 1470;
-	public static final int VORKATH_ICE = 395;
+	public static final int VORKATH_FIREBOMB = 1481;
+	public static final int VORKATH_ACID_PHASE_FIREBALL = 1482;
+	public static final int VORKATH_ACID = 1483;
+	public static final int VORKATH_SPAWN = 1484;
 
 	// The Gauntlet
 	public static final int GAUNTLET_BOSS_MAGIC = 1707;

@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2019, Siraz <https://github.com/Sirazzz>
+ * Copyright (c) 2019, Jajack
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -27,12 +28,24 @@ package net.runelite.client.plugins.theatreofblood;
 import net.runelite.client.config.Config;
 import net.runelite.client.config.ConfigGroup;
 import net.runelite.client.config.ConfigItem;
+import net.runelite.client.util.TimerFormat;
 
 import java.awt.*;
 
 @ConfigGroup("Theatre of Blood")
 public interface TheatreOfBloodConfig extends Config
 {
+
+	@ConfigItem(
+			keyName = "timerFormat",
+			name = "Timers format",
+			description = "Select the format that certain boss timers will be displayed in",
+			position = 0
+	)
+	default TimerFormat getTimerFormat()
+	{
+		return TimerFormat.SECONDS_MILLISECONDS;
+	}
 
 	@ConfigItem(
 			keyName = "highlightBloodSplatAttackTiles",
@@ -135,10 +148,22 @@ public interface TheatreOfBloodConfig extends Config
 	}
 
 	@ConfigItem(
+			keyName = "bloatWarningColor",
+			name = "Sleep warning color",
+			description = "Color of Pestilent Bloat's highlight when it could sleep",
+			position = 9,
+			group = "Pestilent Bloat"
+	)
+	default Color getBloatWarningColor()
+	{
+		return Color.YELLOW;
+	}
+
+	@ConfigItem(
 			keyName = "bloatAsleepColor",
 			name = "Asleep color",
 			description = "Color of Pestilent Bloat's highlight when asleep",
-			position = 9,
+			position = 10,
 			group = "Pestilent Bloat"
 	)
 	default Color getBloatAsleepColor()
@@ -150,7 +175,7 @@ public interface TheatreOfBloodConfig extends Config
 			keyName = "displayBloatSleepTimer",
 			name = "Display sleep timer",
 			description = "Display a timer for the sleep duration of the Pestilent Bloat",
-			position = 10,
+			position = 11,
 			group = "Pestilent Bloat"
 	)
 	default boolean displayBloatSleepTimer()
@@ -162,7 +187,7 @@ public interface TheatreOfBloodConfig extends Config
 			keyName = "highlightAggressiveNylocas",
 			name = "Highlight aggressive Nylocas",
 			description = "Highlights Nylocas that are attacking you or your teammates",
-			position = 11,
+			position = 12,
 			group = "Nylocas"
 	)
 	default boolean highlightAggressiveNylocas()
@@ -174,7 +199,7 @@ public interface TheatreOfBloodConfig extends Config
 			keyName = "aggressiveNylocasColor",
 			name = "Aggressive Nylocas",
 			description = "Color of aggressive Nylocas highlights",
-			position = 12,
+			position = 13,
 			group = "Nylocas"
 	)
 	default Color getAggressiveNylocasColor()
@@ -182,36 +207,48 @@ public interface TheatreOfBloodConfig extends Config
 		return Color.RED;
 	}
 
-//	@ConfigItem(
-//			keyName = "highlightSotetsegRedMazeTiles",
-//			name = "Highlight red maze tiles",
-//			description = "Highlight the red tiles during Sotetseg's maze",
-//			position = 13,
-//			group = "Sotetseg"
-//	)
-//	default boolean highlightSotetsegRedMazeTiles()
-//	{
-//		return true;
-//	}
-//
-//
-//	@ConfigItem(
-//			keyName = "sotetsegMazeTileColor",
-//			name = "Maze tile markers",
-//			description = "Color of Sotetseg's red maze tile markers",
-//			position = 14,
-//			group = "Sotetseg"
-//	)
-//	default Color getSotetsegMazeTileColor()
-//	{
-//		return new Color(155, 0, 35);
-//	}
+	@ConfigItem(
+			keyName = "displayNylocasLifeTimerText",
+			name = "Display Nylocas life timers",
+			description = "Display Nylocas life timers when time till death is less than 5 seconds",
+			position = 14,
+			group = "Nylocas"
+	)
+	default boolean displayNylocasLifeTimerText()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+			keyName = "highlightSotetsegRedMazeTiles",
+			name = "Highlight red maze tiles",
+			description = "Highlight the red tiles during Sotetseg's maze",
+			position = 15,
+			group = "Sotetseg"
+	)
+	default boolean highlightSotetsegRedMazeTiles()
+	{
+		return true;
+	}
+
+
+	@ConfigItem(
+			keyName = "sotetsegMazeTileColor",
+			name = "Maze tile markers",
+			description = "Color of Sotetseg's red maze tile markers",
+			position = 16,
+			group = "Sotetseg"
+	)
+	default Color getSotetsegMazeTileColor()
+	{
+		return new Color(155, 0, 35);
+	}
 
 	@ConfigItem(
 			keyName = "highlightXarpusPoisonAttackTiles",
 			name = "Highlight poison attack tiles",
 			description = "Highlight the tiles for Xarpus poison attacks",
-			position = 15,
+			position = 17,
 			group = "Xarpus"
 	)
 	default boolean highlightXarpusPoisonAttackTiles()
@@ -219,12 +256,11 @@ public interface TheatreOfBloodConfig extends Config
 		return true;
 	}
 
-
 	@ConfigItem(
 			keyName = "xarpusPoisonAttackColor",
 			name = "Poison attack marker",
 			description = "Color of Xarpus poison attack marker",
-			position = 16,
+			position = 18,
 			group = "Xarpus"
 	)
 	default Color getXarpusPoisonAttackColor()
@@ -236,7 +272,7 @@ public interface TheatreOfBloodConfig extends Config
 			keyName = "highlightXarpusHealingPoolTiles",
 			name = "Highlight healing pool tiles",
 			description = "Highlight the healing pool tiles during the Xarpus encounter",
-			position = 17,
+			position = 19,
 			group = "Xarpus"
 	)
 	default boolean highlightXarpusHealingPoolTiles()
@@ -244,12 +280,11 @@ public interface TheatreOfBloodConfig extends Config
 		return true;
 	}
 
-
 	@ConfigItem(
 			keyName = "xarpusHealingPoolColor",
 			name = "Healing pool marker",
 			description = "Color of Xarpus healing pool marker",
-			position = 18,
+			position = 20,
 			group = "Xarpus"
 	)
 	default Color getXarpusHealingPoolColor()
@@ -258,10 +293,71 @@ public interface TheatreOfBloodConfig extends Config
 	}
 
 	@ConfigItem(
+			keyName = "displayXarpusTurnTimer",
+			name = "Xarpus turn timer",
+			description = "Displays a timer until Xarpus his next turn",
+			position = 21,
+			group = "Xarpus"
+	)
+	default boolean displayXarpusTurnTimer()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+			keyName = "displayVerzikP1AttackTimer",
+			name = "Display Phase 1 Attack Timer",
+			description = "Displays a timer showing when Verzik's next attack is on phase 1",
+			position = 22,
+			group = "Verzik Vitur"
+	)
+	default boolean displayVerzikP1AttackTimer()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+			keyName = "displayVerzikP2AttackTimer",
+			name = "Display Phase 2 Attack Timer",
+			description = "Displays a timer showing when Verzik's next attack is on phase 2",
+			position = 23,
+			group = "Verzik Vitur"
+	)
+	default boolean displayVerzikP2AttackTimer()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+			keyName = "displayVerzikP3AttackTimer",
+			name = "Display Phase 3 Attack Timer",
+			description = "Displays a timer showing when Verzik's next attack is on phase 3",
+			position = 24,
+			group = "Verzik Vitur"
+	)
+	default boolean displayVerzikP3AttackTimer()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+			keyName = "displayVerzikNylocasAggression",
+			name = "Display Nylocas target",
+			description = "Displays the name of players that Nylocas spawns are aggressive towards",
+			position = 25,
+			group = "Verzik Vitur"
+	)
+	default boolean displayVerzikNylocasAggression()
+	{
+		return true;
+	}
+
+
+	@ConfigItem(
 			keyName = "highlightVerzikGreenOrbPoolTiles",
 			name = "Highlight green orb pool tiles",
 			description = "Highlight the tiles for Verzik's green orb pools",
-			position = 19,
+			position = 26,
 			group = "Verzik Vitur"
 	)
 	default boolean highlightVerzikGreenOrbPoolTiles()
@@ -269,12 +365,11 @@ public interface TheatreOfBloodConfig extends Config
 		return true;
 	}
 
-
 	@ConfigItem(
 			keyName = "verzikGreenOrbPoolColor",
 			name = "Green orb pool marker",
 			description = "Color of Verzik's green orb pool marker",
-			position = 20,
+			position = 27,
 			group = "Verzik Vitur"
 	)
 	default Color getVerzikGreenOrbPoolColor()
@@ -286,7 +381,7 @@ public interface TheatreOfBloodConfig extends Config
 			keyName = "showDebugOverlay",
 			name = "Display debug overlay",
 			description = "Displays Theatre of Blood debug overlay. This contains variables that the plugin uses to function",
-			position = 21
+			position = 28
 	)
 	default boolean showDebugOverlay()
 	{

@@ -379,7 +379,7 @@ public class InterfaceStylesPlugin extends Plugin
 		restoreSprites();
 		restoreWidgetSprites();
 
-		BufferedImage compassImage = spriteManager.getSprite(SpriteID.COMPASS_TEXTURE, 0);
+		BufferedImage compassImage = spriteManager.getSpriteImg(SpriteID.COMPASS_TEXTURE, 0);
 
 		if (compassImage != null)
 		{

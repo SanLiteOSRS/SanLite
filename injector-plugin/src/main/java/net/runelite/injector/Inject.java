@@ -60,7 +60,7 @@ public class Inject
 
 	private final MixinInjector mixinInjector = new MixinInjector(this);
 
-	// deobfuscated contains exports etc to apply to vanilla
+	// Deobfuscated contains exports etc to apply to vanilla
 	private final ClassGroup deobfuscated, vanilla;
 
 	public Inject(ClassGroup deobfuscated, ClassGroup vanilla)

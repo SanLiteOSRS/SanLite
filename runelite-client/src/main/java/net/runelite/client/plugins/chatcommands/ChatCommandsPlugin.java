@@ -35,17 +35,8 @@ import java.util.regex.Pattern;
 import javax.inject.Inject;
 import lombok.Value;
 import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.ChatMessageType;
-import net.runelite.api.Client;
-import net.runelite.api.Constants;
-import net.runelite.api.Experience;
-import net.runelite.api.IconID;
+import net.runelite.api.*;
 import net.runelite.api.ItemDefinition;
-import net.runelite.api.MessageNode;
-import net.runelite.api.Player;
-import net.runelite.api.VarPlayer;
-import net.runelite.api.Varbits;
-import net.runelite.api.WorldType;
 import net.runelite.api.events.ChatMessage;
 import net.runelite.api.events.GameTick;
 import net.runelite.api.events.VarbitChanged;
@@ -79,15 +70,16 @@ import net.runelite.http.api.item.ItemPrice;
 import org.apache.commons.text.WordUtils;
 
 @PluginDescriptor(
-	name = "Chat Commands",
-	description = "Enable chat commands",
-	tags = {"grand", "exchange", "level", "prices"}
+		name = "Chat Commands",
+		description = "Enable chat commands",
+		tags = {"grand", "exchange", "level", "prices"}
 )
 @Slf4j
 public class ChatCommandsPlugin extends Plugin
 {
 	private static final Pattern KILLCOUNT_PATTERN = Pattern.compile("Your (.+) (?:kill|harvest|lap|completion) count is: <col=ff0000>(\\d+)</col>");
 	private static final Pattern RAIDS_PATTERN = Pattern.compile("Your completed (.+) count is: <col=ff0000>(\\d+)</col>");
+	private static final Pattern RAIDS_DURATION_PATTERN = Pattern.compile("Congratulations - your raid is complete! Duration <col=ff0000>([0-9:]+)</col>");
 	private static final Pattern WINTERTODT_PATTERN = Pattern.compile("Your subdued Wintertodt count is: <col=ff0000>(\\d+)</col>");
 	private static final Pattern BARROWS_PATTERN = Pattern.compile("Your Barrows chest count is: <col=ff0000>(\\d+)</col>");
 	private static final Pattern KILL_DURATION_PATTERN = Pattern.compile("(?i)^(?:Fight |Lap |Challenge |Corrupted challenge )?duration: <col=ff0000>[0-9:]+</col>\\. Personal best: ([0-9:]+)");
@@ -186,26 +178,26 @@ public class ChatCommandsPlugin extends Plugin
 	private void setKc(String boss, int killcount)
 	{
 		configManager.setConfiguration("killcount." + client.getUsername().toLowerCase(),
-			boss.toLowerCase(), killcount);
+				boss.toLowerCase(), killcount);
 	}
 
 	private int getKc(String boss)
 	{
 		Integer killCount = configManager.getConfiguration("killcount." + client.getUsername().toLowerCase(),
-			boss.toLowerCase(), int.class);
+				boss.toLowerCase(), int.class);
 		return killCount == null ? 0 : killCount;
 	}
 
 	private void setPb(String boss, int seconds)
 	{
 		configManager.setConfiguration("personalbest." + client.getUsername().toLowerCase(),
-			boss.toLowerCase(), seconds);
+				boss.toLowerCase(), seconds);
 	}
 
 	private int getPb(String boss)
 	{
 		Integer personalBest = configManager.getConfiguration("personalbest." + client.getUsername().toLowerCase(),
-			boss.toLowerCase(), int.class);
+				boss.toLowerCase(), int.class);
 		return personalBest == null ? 0 : personalBest;
 	}
 
@@ -213,8 +205,8 @@ public class ChatCommandsPlugin extends Plugin
 	public void onChatMessage(ChatMessage chatMessage)
 	{
 		if (chatMessage.getType() != ChatMessageType.TRADE
-			&& chatMessage.getType() != ChatMessageType.GAMEMESSAGE
-			&& chatMessage.getType() != ChatMessageType.SPAM)
+				&& chatMessage.getType() != ChatMessageType.GAMEMESSAGE
+				&& chatMessage.getType() != ChatMessageType.SPAM)
 		{
 			return;
 		}
@@ -256,6 +248,17 @@ public class ChatCommandsPlugin extends Plugin
 			int kc = Integer.parseInt(matcher.group(2));
 
 			setKc(boss, kc);
+			if (lastPb > -1)
+			{
+				// lastPb contains the last raid duration and not the personal best, because the raid
+				// complete message does not include the pb. We have to check if it is a new pb:
+				int currentPb = getPb(boss);
+				if (currentPb <= 0 || lastPb < currentPb)
+				{
+					setPb(boss, lastPb);
+				}
+				lastPb = -1;
+			}
 			lastBossKill = boss;
 			return;
 		}
@@ -317,29 +320,44 @@ public class ChatCommandsPlugin extends Plugin
 			matchPb(matcher);
 		}
 
+		matcher = RAIDS_DURATION_PATTERN.matcher(message);
+		if (matcher.find())
+		{
+			matchPb(matcher);
+		}
+
 		lastBossKill = null;
+	}
+
+	private static int timeStringToSeconds(String timeString)
+	{
+		String[] s = timeString.split(":");
+		if (s.length == 2) // mm:ss
+		{
+			return Integer.parseInt(s[0]) * 60 + Integer.parseInt(s[1]);
+		}
+		else if (s.length == 3) // h:mm:ss
+		{
+			return Integer.parseInt(s[0]) * 60 * 60 + Integer.parseInt(s[1]) * 60 + Integer.parseInt(s[2]);
+		}
+		return Integer.parseInt(timeString);
 	}
 
 	private void matchPb(Matcher matcher)
 	{
-		String personalBest = matcher.group(1);
-		String[] s = personalBest.split(":");
-		if (s.length == 2)
+		int seconds = timeStringToSeconds(matcher.group(1));
+		if (lastBossKill != null)
 		{
-			int seconds = Integer.parseInt(s[0]) * 60 + Integer.parseInt(s[1]);
-			if (lastBossKill != null)
-			{
-				// Most bosses sent boss kill message, and then pb message, so we
-				// use the remembered lastBossKill
-				log.debug("Got personal best for {}: {}", lastBossKill, seconds);
-				setPb(lastBossKill, seconds);
-				lastPb = -1;
-			}
-			else
-			{
-				// Some bosses send the pb message, and then the kill message!
-				lastPb = seconds;
-			}
+			// Most bosses sent boss kill message, and then pb message, so we
+			// use the remembered lastBossKill
+			log.debug("Got personal best for {}: {}", lastBossKill, seconds);
+			setPb(lastBossKill, seconds);
+			lastPb = -1;
+		}
+		else
+		{
+			// Some bosses send the pb message, and then the kill message!
+			lastPb = seconds;
 		}
 	}
 
@@ -358,7 +376,7 @@ public class ChatCommandsPlugin extends Plugin
 		Widget bossKills = client.getWidget(WidgetInfo.KILL_LOG_KILLS);
 
 		if (title == null || bossMonster == null || bossKills == null
-			|| !"Boss Kill Log".equals(title.getText()))
+				|| !"Boss Kill Log".equals(title.getText()))
 		{
 			return;
 		}
@@ -470,13 +488,13 @@ public class ChatCommandsPlugin extends Plugin
 		}
 
 		String response = new ChatMessageBuilder()
-			.append(ChatColorType.HIGHLIGHT)
-			.append(search)
-			.append(ChatColorType.NORMAL)
-			.append(" kill count: ")
-			.append(ChatColorType.HIGHLIGHT)
-			.append(Integer.toString(kc))
-			.build();
+				.append(ChatColorType.HIGHLIGHT)
+				.append(search)
+				.append(ChatColorType.NORMAL)
+				.append(" kill count: ")
+				.append(ChatColorType.HIGHLIGHT)
+				.append(Integer.toString(kc))
+				.build();
 
 		log.debug("Setting response {}", response);
 		final MessageNode messageNode = chatMessage.getMessageNode();
@@ -554,19 +572,19 @@ public class ChatCommandsPlugin extends Plugin
 		final int losingStreak = duels.getLosingStreak();
 
 		String response = new ChatMessageBuilder()
-			.append(ChatColorType.NORMAL)
-			.append("Duel Arena wins: ")
-			.append(ChatColorType.HIGHLIGHT)
-			.append(Integer.toString(wins))
-			.append(ChatColorType.NORMAL)
-			.append("   losses: ")
-			.append(ChatColorType.HIGHLIGHT)
-			.append(Integer.toString(losses))
-			.append(ChatColorType.NORMAL)
-			.append("   streak: ")
-			.append(ChatColorType.HIGHLIGHT)
-			.append(Integer.toString((winningStreak != 0 ? winningStreak : -losingStreak)))
-			.build();
+				.append(ChatColorType.NORMAL)
+				.append("Duel Arena wins: ")
+				.append(ChatColorType.HIGHLIGHT)
+				.append(Integer.toString(wins))
+				.append(ChatColorType.NORMAL)
+				.append("   losses: ")
+				.append(ChatColorType.HIGHLIGHT)
+				.append(Integer.toString(losses))
+				.append(ChatColorType.NORMAL)
+				.append("   streak: ")
+				.append(ChatColorType.HIGHLIGHT)
+				.append(Integer.toString((winningStreak != 0 ? winningStreak : -losingStreak)))
+				.build();
 
 		log.debug("Setting response {}", response);
 		final MessageNode messageNode = chatMessage.getMessageNode();
@@ -606,11 +624,11 @@ public class ChatCommandsPlugin extends Plugin
 		}
 
 		String response = new ChatMessageBuilder()
-			.append(ChatColorType.NORMAL)
-			.append("Quest points: ")
-			.append(ChatColorType.HIGHLIGHT)
-			.append(Integer.toString(qp))
-			.build();
+				.append(ChatColorType.NORMAL)
+				.append("Quest points: ")
+				.append(ChatColorType.HIGHLIGHT)
+				.append(Integer.toString(qp))
+				.build();
 
 		log.debug("Setting response {}", response);
 		final MessageNode messageNode = chatMessage.getMessageNode();
@@ -685,13 +703,13 @@ public class ChatCommandsPlugin extends Plugin
 		int seconds = pb % 60;
 
 		String response = new ChatMessageBuilder()
-			.append(ChatColorType.HIGHLIGHT)
-			.append(search)
-			.append(ChatColorType.NORMAL)
-			.append(" personal best: ")
-			.append(ChatColorType.HIGHLIGHT)
-			.append(String.format("%d:%02d", minutes, seconds))
-			.build();
+				.append(ChatColorType.HIGHLIGHT)
+				.append(search)
+				.append(ChatColorType.NORMAL)
+				.append(" personal best: ")
+				.append(ChatColorType.HIGHLIGHT)
+				.append(String.format("%d:%02d", minutes, seconds))
+				.build();
 
 		log.debug("Setting response {}", response);
 		final MessageNode messageNode = chatMessage.getMessageNode();
@@ -763,11 +781,11 @@ public class ChatCommandsPlugin extends Plugin
 		}
 
 		String response = new ChatMessageBuilder()
-			.append(ChatColorType.NORMAL)
-			.append("Barbarian Assault High-level gambles: ")
-			.append(ChatColorType.HIGHLIGHT)
-			.append(Integer.toString(gc))
-			.build();
+				.append(ChatColorType.NORMAL)
+				.append("Barbarian Assault High-level gambles: ")
+				.append(ChatColorType.HIGHLIGHT)
+				.append(Integer.toString(gc))
+				.build();
 
 		log.debug("Setting response {}", response);
 		final MessageNode messageNode = chatMessage.getMessageNode();
@@ -832,24 +850,24 @@ public class ChatCommandsPlugin extends Plugin
 			int itemPrice = item.getPrice();
 
 			final ChatMessageBuilder builder = new ChatMessageBuilder()
-				.append(ChatColorType.NORMAL)
-				.append("Price of ")
-				.append(ChatColorType.HIGHLIGHT)
-				.append(item.getName())
-				.append(ChatColorType.NORMAL)
-				.append(": GE average ")
-				.append(ChatColorType.HIGHLIGHT)
-				.append(QuantityFormatter.formatNumber(itemPrice));
-
-			ItemDefinition itemComposition = itemManager.getItemComposition(itemId);
-			if (itemComposition != null)
-			{
-				int alchPrice = Math.round(itemComposition.getPrice() * Constants.HIGH_ALCHEMY_MULTIPLIER);
-				builder
 					.append(ChatColorType.NORMAL)
-					.append(" HA value ")
+					.append("Price of ")
 					.append(ChatColorType.HIGHLIGHT)
-					.append(QuantityFormatter.formatNumber(alchPrice));
+					.append(item.getName())
+					.append(ChatColorType.NORMAL)
+					.append(": GE average ")
+					.append(ChatColorType.HIGHLIGHT)
+					.append(QuantityFormatter.formatNumber(itemPrice));
+
+			ItemDefinition itemDefinition = itemManager.getItemComposition(itemId);
+			if (itemDefinition != null)
+			{
+				int alchPrice = Math.round(itemDefinition.getPrice() * Constants.HIGH_ALCHEMY_MULTIPLIER);
+				builder
+						.append(ChatColorType.NORMAL)
+						.append(" HA value ")
+						.append(ChatColorType.HIGHLIGHT)
+						.append(QuantityFormatter.formatNumber(alchPrice));
 			}
 
 			String response = builder.build();
@@ -916,19 +934,19 @@ public class ChatCommandsPlugin extends Plugin
 			final Skill hiscoreSkill = result.getSkill();
 
 			final String response = new ChatMessageBuilder()
-				.append(ChatColorType.NORMAL)
-				.append("Level ")
-				.append(ChatColorType.HIGHLIGHT)
-				.append(skill.getName()).append(": ").append(String.valueOf(hiscoreSkill.getLevel()))
-				.append(ChatColorType.NORMAL)
-				.append(" Experience: ")
-				.append(ChatColorType.HIGHLIGHT)
-				.append(String.format("%,d", hiscoreSkill.getExperience()))
-				.append(ChatColorType.NORMAL)
-				.append(" Rank: ")
-				.append(ChatColorType.HIGHLIGHT)
-				.append(String.format("%,d", hiscoreSkill.getRank()))
-				.build();
+					.append(ChatColorType.NORMAL)
+					.append("Level ")
+					.append(ChatColorType.HIGHLIGHT)
+					.append(skill.getName()).append(": ").append(String.valueOf(hiscoreSkill.getLevel()))
+					.append(ChatColorType.NORMAL)
+					.append(" Experience: ")
+					.append(ChatColorType.HIGHLIGHT)
+					.append(String.format("%,d", hiscoreSkill.getExperience()))
+					.append(ChatColorType.NORMAL)
+					.append(" Rank: ")
+					.append(ChatColorType.HIGHLIGHT)
+					.append(String.format("%,d", hiscoreSkill.getRank()))
+					.build();
 
 			log.debug("Setting response {}", response);
 			final MessageNode messageNode = chatMessage.getMessageNode();
@@ -981,39 +999,39 @@ public class ChatCommandsPlugin extends Plugin
 			int combatLevel = Experience.getCombatLevel(attack, strength, defence, hitpoints, magic, ranged, prayer);
 
 			String response = new ChatMessageBuilder()
-				.append(ChatColorType.NORMAL)
-				.append("Combat Level: ")
-				.append(ChatColorType.HIGHLIGHT)
-				.append(String.valueOf(combatLevel))
-				.append(ChatColorType.NORMAL)
-				.append(" A: ")
-				.append(ChatColorType.HIGHLIGHT)
-				.append(String.valueOf(attack))
-				.append(ChatColorType.NORMAL)
-				.append(" S: ")
-				.append(ChatColorType.HIGHLIGHT)
-				.append(String.valueOf(strength))
-				.append(ChatColorType.NORMAL)
-				.append(" D: ")
-				.append(ChatColorType.HIGHLIGHT)
-				.append(String.valueOf(defence))
-				.append(ChatColorType.NORMAL)
-				.append(" H: ")
-				.append(ChatColorType.HIGHLIGHT)
-				.append(String.valueOf(hitpoints))
-				.append(ChatColorType.NORMAL)
-				.append(" R: ")
-				.append(ChatColorType.HIGHLIGHT)
-				.append(String.valueOf(ranged))
-				.append(ChatColorType.NORMAL)
-				.append(" P: ")
-				.append(ChatColorType.HIGHLIGHT)
-				.append(String.valueOf(prayer))
-				.append(ChatColorType.NORMAL)
-				.append(" M: ")
-				.append(ChatColorType.HIGHLIGHT)
-				.append(String.valueOf(magic))
-				.build();
+					.append(ChatColorType.NORMAL)
+					.append("Combat Level: ")
+					.append(ChatColorType.HIGHLIGHT)
+					.append(String.valueOf(combatLevel))
+					.append(ChatColorType.NORMAL)
+					.append(" A: ")
+					.append(ChatColorType.HIGHLIGHT)
+					.append(String.valueOf(attack))
+					.append(ChatColorType.NORMAL)
+					.append(" S: ")
+					.append(ChatColorType.HIGHLIGHT)
+					.append(String.valueOf(strength))
+					.append(ChatColorType.NORMAL)
+					.append(" D: ")
+					.append(ChatColorType.HIGHLIGHT)
+					.append(String.valueOf(defence))
+					.append(ChatColorType.NORMAL)
+					.append(" H: ")
+					.append(ChatColorType.HIGHLIGHT)
+					.append(String.valueOf(hitpoints))
+					.append(ChatColorType.NORMAL)
+					.append(" R: ")
+					.append(ChatColorType.HIGHLIGHT)
+					.append(String.valueOf(ranged))
+					.append(ChatColorType.NORMAL)
+					.append(" P: ")
+					.append(ChatColorType.HIGHLIGHT)
+					.append(String.valueOf(prayer))
+					.append(ChatColorType.NORMAL)
+					.append(" M: ")
+					.append(ChatColorType.HIGHLIGHT)
+					.append(String.valueOf(magic))
+					.build();
 
 			log.debug("Setting response {}", response);
 			final MessageNode messageNode = chatMessage.getMessageNode();
@@ -1094,17 +1112,17 @@ public class ChatCommandsPlugin extends Plugin
 			}
 
 			ChatMessageBuilder chatMessageBuilder = new ChatMessageBuilder()
-				.append(ChatColorType.NORMAL)
-				.append("Clue scroll (" + level + ")").append(": ")
-				.append(ChatColorType.HIGHLIGHT)
-				.append(Integer.toString(quantity));
+					.append(ChatColorType.NORMAL)
+					.append("Clue scroll (" + level + ")").append(": ")
+					.append(ChatColorType.HIGHLIGHT)
+					.append(Integer.toString(quantity));
 
 			if (rank != -1)
 			{
 				chatMessageBuilder.append(ChatColorType.NORMAL)
-					.append(" Rank: ")
-					.append(ChatColorType.HIGHLIGHT)
-					.append(String.format("%,d", rank));
+						.append(" Rank: ")
+						.append(ChatColorType.HIGHLIGHT)
+						.append(String.format("%,d", rank));
 			}
 
 			String response = chatMessageBuilder.build();
@@ -1134,7 +1152,7 @@ public class ChatCommandsPlugin extends Plugin
 
 		// If we are sending the message then just use the local hiscore endpoint for the world
 		if (chatMessage.getType().equals(ChatMessageType.PRIVATECHATOUT)
-			|| player.equals(localPlayer.getName()))
+				|| player.equals(localPlayer.getName()))
 		{
 			return new HiscoreLookup(localPlayer.getName(), hiscoreEndpoint);
 		}

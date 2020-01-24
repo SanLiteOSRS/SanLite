@@ -639,7 +639,7 @@ public class ClanChatPlugin extends Plugin
 			return;
 		}
 
-		final BufferedImage image = spriteManager.getSprite(SpriteID.TAB_CLAN_CHAT, 0);
+		final BufferedImage image = spriteManager.getSpriteImg(SpriteID.TAB_CLAN_CHAT, 0);
 		clanMemberCounter = new ClanChatIndicator(image, this);
 		infoBoxManager.addInfoBox(clanMemberCounter);
 	}

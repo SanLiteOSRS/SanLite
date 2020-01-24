@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2019, Siraz <https://github.com/Sirazzz>
+ * Copyright (c) 2019, Jajack
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,12 +48,19 @@ public class PestilentBloat extends TheatreOfBloodEncounter
 	@Setter
 	private int remainingSleepClientTicks;
 
+	@Getter
+	private int handFallCycleCount;
+
+	@Getter
+	private Integer lastHandFallSize;
+
 	public PestilentBloat(TheatreOfBloodEncounters encounter)
 	{
 		super(encounter);
 		wakeUpClientTick = -1;
 		lastSleepEndClientTick = 1;
 		remainingSleepClientTicks = -1;
+		lastHandFallSize = 0;
 	}
 
 	public boolean isHandAttack(int graphicsObjectId)
@@ -117,6 +125,9 @@ public class PestilentBloat extends TheatreOfBloodEncounter
 			}
 			else if (getRemainingSleepClientTicks() <= 0)
 			{
+				// Reset hand cycle count here as there is a small chance hands can fall the same time bloat sleeps,
+				// wait till sleep is over to make sure this doesn't affect the counting
+				handFallCycleCount = 0;
 				wakeUp(clientTick);
 			}
 			else
@@ -133,10 +144,20 @@ public class PestilentBloat extends TheatreOfBloodEncounter
 	 */
 	public void checkHandAttackGraphicObjects(List<GraphicsObject> clientGraphicObjects)
 	{
-		setAoeEffects(
-				clientGraphicObjects.stream()
-						.filter(x -> isHandAttack(x.getId()))
-						.collect(Collectors.toList()));
+		List<GraphicsObject> handAttacks = clientGraphicObjects.stream()
+				.filter(x -> isHandAttack(x.getId()))
+				.collect(Collectors.toList());
+
+		setAoeEffects(handAttacks);
+
+		if (handAttacks.size() != lastHandFallSize)
+		{
+			if (handAttacks.size() != 0)
+			{
+				handFallCycleCount++;
+			}
+			lastHandFallSize = handAttacks.size();
+		}
 	}
 
 	/**

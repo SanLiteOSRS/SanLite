@@ -1711,7 +1711,7 @@ public interface Client extends GameShell
 	/**
 	 * Is a widget is in target mode?
 	 */
-	boolean getSpellSelected();
+	boolean isSpellSelected();
 
 	/**
 	 * Sets if a widget is in target mode
@@ -1809,4 +1809,42 @@ public interface Client extends GameShell
 	 * Makes all widgets behave as if they are {@link WidgetConfig#WIDGET_USE_TARGET}
 	 */
 	void setAllWidgetsAreOpTargetable(boolean value);
+
+	/**
+	 * Adds a MenuEntry to the current menu.
+	 */
+	void insertMenuItem(String action, String target, int opcode, int identifier, int argument1, int argument2, boolean forceLeftClick);
+
+	void setSelectedItemID(int id);
+
+	void setSelectedItemWidget(int widgetID);
+
+	void setSelectedItemSlot(int idx);
+
+	int getSelectedSpellWidget();
+
+	void setSelectedSpellWidget(int widgetID);
+
+	int getSelectedSpellChildIndex();
+
+	void setSelectedSpellChildIndex(int index);
+
+	/**
+	 * Scales values from pixels onto canvas
+	 *
+	 * @param canvas       the array we're writing to
+	 * @param pixels       pixels to draw
+	 * @param color        should be 0
+	 * @param pixelX       x index
+	 * @param pixelY       y index
+	 * @param canvasIdx    index in canvas (canvas[canvasIdx])
+	 * @param canvasOffset x offset
+	 * @param newWidth     new width
+	 * @param newHeight    new height
+	 * @param pixelWidth   pretty much horizontal scale
+	 * @param pixelHeight  pretty much vertical scale
+	 * @param oldWidth     old width
+	 */
+	void scaleSprite(int[] canvas, int[] pixels, int color, int pixelX, int pixelY, int canvasIdx, int canvasOffset,
+						int newWidth, int newHeight, int pixelWidth, int pixelHeight, int oldWidth);
 }

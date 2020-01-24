@@ -641,15 +641,12 @@ public abstract class RSClientMixin implements RSClient
 		if (newCount == oldCount + 1)
 		{
 			MenuEntryAdded event = new MenuEntryAdded(
-				new MenuEntry(
 					client.getMenuOptions()[oldCount],
 					client.getMenuTargets()[oldCount],
-					client.getMenuIdentifiers()[oldCount],
 					client.getMenuOpcodes()[oldCount],
+					client.getMenuIdentifiers()[oldCount],
 					client.getMenuArguments1()[oldCount],
-					client.getMenuArguments2()[oldCount],
-					client.getMenuForceLeftClick()[oldCount]
-				)
+					client.getMenuArguments2()[oldCount]
 			);
 
 			client.getCallbacks().post(event);
@@ -1232,7 +1229,7 @@ public abstract class RSClientMixin implements RSClient
 	}
 
 	@Replace("menuAction")
-	static void rl$menuAction(int actionParam, int widgetId, int menuAction, int id, String menuOption, String menuTarget, int var6, int var7)
+	static void rl$menuAction(int actionParam, int widgetId, int menuAction, int id, String menuOption, String menuTarget, int canvasX, int canvasY)
 	{
 		boolean authentic = true;
 		if (menuTarget != null && menuTarget.startsWith("!AUTHENTIC"))
@@ -1243,7 +1240,8 @@ public abstract class RSClientMixin implements RSClient
 
 		if (printMenuActions && client.getLogger().isDebugEnabled())
 		{
-			client.getLogger().debug("Menuaction: {} {} {} {} {} {} {} {} {}", actionParam, widgetId, menuAction, id, menuOption, menuTarget, var6, var7, authentic);
+			client.getLogger().debug("MenuAction: {} {} {} {} {} {} {} {} {}", actionParam, widgetId, menuAction, id,
+					menuOption, menuTarget, canvasX, canvasY, authentic);
 		}
 
 		/* Along the way, the RuneScape client may change a menuAction by incrementing it with 2000.
@@ -1274,14 +1272,14 @@ public abstract class RSClientMixin implements RSClient
 		}
 
 		rs$menuAction(menuOptionClicked.getActionParam0(), menuOptionClicked.getActionParam1(), menuOptionClicked.getType(),
-				menuOptionClicked.getIdentifier(), menuOptionClicked.getOption(), menuOptionClicked.getTarget(), var6, var7);
+				menuOptionClicked.getIdentifier(), menuOptionClicked.getOption(), menuOptionClicked.getTarget(), canvasX, canvasY);
 	}
 
 	@Override
 	@Inject
-	public void invokeMenuAction(int actionParam, int widgetId, int menuAction, int id, String menuOption, String menuTarget, int var6, int var7)
+	public void invokeMenuAction(int actionParam, int widgetId, int menuAction, int id, String menuOption, String menuTarget, int canvasX, int canvasY)
 	{
-		client.sendMenuAction(actionParam, widgetId, menuAction, id, menuOption, "!AUTHENTIC" + menuTarget, var6, var7);
+		client.sendMenuAction(actionParam, widgetId, menuAction, id, menuOption, "!AUTHENTIC" + menuTarget, canvasX, canvasY);
 	}
 
 	@Inject
@@ -1325,7 +1323,7 @@ public abstract class RSClientMixin implements RSClient
 
 	@Inject
 	@MethodHook("openMenu")
-	public void menuOpened(int var1, int var2)
+	public void menuOpened(int x, int y)
 	{
 		final MenuOpened event = new MenuOpened();
 		event.setMenuEntries(getMenuEntries());
@@ -1603,7 +1601,7 @@ public abstract class RSClientMixin implements RSClient
 	@Inject
 	static boolean shouldHideAttackOptionFor(RSPlayer p)
 	{
-		if (client.getSpellSelected())
+		if (client.isSpellSelected())
 		{
 			return ((hideFriendCastOptions && p.isFriended()) || (hideClanmateCastOptions && p.isClanMember()))
 					&& !unhiddenCasts.contains(client.getSelectedSpellName().replaceAll("<[^>]*>", "").toLowerCase());

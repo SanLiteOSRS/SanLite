@@ -158,6 +158,8 @@ public class WorldHopperPlugin extends Plugin
 	@Getter(AccessLevel.PACKAGE)
 	private int currentPing;
 
+	private final Map<Integer, Integer> storedPings = new HashMap<>();
+
 	private final HotkeyListener previousKeyListener = new HotkeyListener(() -> config.previousKey())
 	{
 		@Override
@@ -803,7 +805,7 @@ public class WorldHopperPlugin extends Plugin
 			return;
 		}
 
-		int ping = Ping.ping(world);
+		int ping = ping(world);
 		log.trace("Ping for world {} is: {}", world.getId(), ping);
 		SwingUtilities.invokeLater(() -> panel.updatePing(world.getId(), ping));
 	}
@@ -827,9 +829,26 @@ public class WorldHopperPlugin extends Plugin
 			return;
 		}
 
-		currentPing = Ping.ping(currentWorld);
+		currentPing = ping(currentWorld);
 		log.trace("Ping for current world is: {}", currentPing);
 
 		SwingUtilities.invokeLater(() -> panel.updatePing(currentWorld.getId(), currentPing));
+	}
+
+	Integer getStoredPing(World world)
+	{
+		if (!config.ping())
+		{
+			return null;
+		}
+
+		return storedPings.get(world.getId());
+	}
+
+	private int ping(World world)
+	{
+		int ping = Ping.ping(world);
+		storedPings.put(world.getId(), ping);
+		return ping;
 	}
 }

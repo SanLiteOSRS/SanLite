@@ -254,7 +254,7 @@ public class MenuManager
 	@Subscribe
 	public void onMenuEntryAdded(MenuEntryAdded event)
 	{
-		if (client.getSpellSelected())
+		if (client.isSpellSelected())
 		{
 			return;
 		}
@@ -325,7 +325,7 @@ public class MenuManager
 				leftClickEntry = entry;
 				leftClickType = entry.getType();
 				entries.remove(leftClickEntry);
-				leftClickEntry.setType(MenuAction.WIDGET_DEFAULT.getId());
+				leftClickEntry.setType(MenuAction.CC_OP.getId());
 				entries.add(leftClickEntry);
 				break;
 			}
@@ -343,7 +343,7 @@ public class MenuManager
 					leftClickEntry = currentSwaps.get(swappedMenuEntry);
 					leftClickType = leftClickEntry.getType();
 					entries.remove(leftClickEntry);
-					leftClickEntry.setType(MenuAction.WIDGET_DEFAULT.getId());
+					leftClickEntry.setType(MenuAction.CC_OP.getId());
 					entries.add(leftClickEntry);
 					break;
 				}

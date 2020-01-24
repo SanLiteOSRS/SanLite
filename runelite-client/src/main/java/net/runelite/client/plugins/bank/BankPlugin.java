@@ -39,6 +39,10 @@ import java.util.regex.Pattern;
 import javax.inject.Inject;
 import net.runelite.api.Client;
 import static net.runelite.api.Constants.HIGH_ALCHEMY_MULTIPLIER;
+import static net.runelite.api.ScriptID.BANK_PIN_OP;
+import static net.runelite.api.widgets.WidgetInfo.*;
+import static net.runelite.api.widgets.WidgetInfo.BANK_PIN_INSTRUCTION_TEXT;
+
 import net.runelite.api.InventoryID;
 import net.runelite.api.Item;
 import net.runelite.api.ItemDefinition;
@@ -57,7 +61,9 @@ import net.runelite.api.widgets.WidgetInfo;
 import net.runelite.client.callback.ClientThread;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
+import net.runelite.client.events.ConfigChanged;
 import net.runelite.client.game.ItemManager;
+import net.runelite.client.input.KeyManager;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.plugins.banktags.tabs.BankSearch;
@@ -66,7 +72,7 @@ import net.runelite.client.util.QuantityFormatter;
 @PluginDescriptor(
 	name = "Bank",
 	description = "Modifications to the banking interface",
-	tags = {"grand", "exchange", "high", "alchemy", "prices", "deposit"}
+	tags = {"grand", "exchange", "high", "alchemy", "prices", "deposit", "pin", "keyboard"}
 )
 public class BankPlugin extends Plugin
 {
@@ -113,8 +119,18 @@ public class BankPlugin extends Plugin
 	@Inject
 	private ContainerCalculation seedVaultCalculation;
 
+	@Inject
+	private BankPinKeyListener bankPinKeyListener;
+
 	private boolean forceRightClickFlag;
 	private Multiset<Integer> itemQuantities; // bank item quantities for bank value search
+
+	private int enteredBankPinInput = -1;
+	private int enterBankPinIdx;
+	private boolean expectBankPinInput;
+
+	@Inject
+	private KeyManager keyManager;
 
 	@Provides
 	BankConfig getConfig(ConfigManager configManager)
@@ -123,11 +139,24 @@ public class BankPlugin extends Plugin
 	}
 
 	@Override
+	protected void startUp()
+	{
+		enteredBankPinInput = -1;
+		enterBankPinIdx = 0;
+		expectBankPinInput = false;
+	}
+
+	@Override
 	protected void shutDown()
 	{
 		clientThread.invokeLater(() -> bankSearch.reset(false));
 		forceRightClickFlag = false;
 		itemQuantities = null;
+
+		enteredBankPinInput = 0;
+		enterBankPinIdx = 0;
+		expectBankPinInput = false;
+		keyManager.unregisterKeyListener(bankPinKeyListener);
 	}
 
 	@Subscribe
@@ -149,6 +178,23 @@ public class BankPlugin extends Plugin
 				event.setForceRightClick(true);
 				return;
 			}
+		}
+	}
+
+	@Subscribe
+	private void onConfigChanged(ConfigChanged event)
+	{
+		if (!event.getGroup().equals("bank"))
+		{
+			return;
+		}
+
+		if (!config.keyboardBankPin())
+		{
+			enteredBankPinInput = 0;
+			enterBankPinIdx = 0;
+			expectBankPinInput = false;
+			keyManager.unregisterKeyListener(bankPinKeyListener);
 		}
 	}
 
@@ -194,6 +240,9 @@ public class BankPlugin extends Plugin
 					intStack[intStackSize - 2] = 1;
 				}
 
+				break;
+			case "bankPin":
+				checkBankPinEvent();
 				break;
 		}
 	}
@@ -429,5 +478,86 @@ public class BankPlugin extends Plugin
 			}
 		}
 		return set;
+	}
+
+	void handleBankPinKeyInput(char charInput)
+	{
+		if (client.getWidget(WidgetID.BANK_PIN_GROUP_ID, BANK_PIN_INSTRUCTION_TEXT.getChildId()) == null
+				|| !client.getWidget(BANK_PIN_INSTRUCTION_TEXT).getText().equals("First click the FIRST digit.")
+				&& !client.getWidget(BANK_PIN_INSTRUCTION_TEXT).getText().equals("Now click the SECOND digit.")
+				&& !client.getWidget(BANK_PIN_INSTRUCTION_TEXT).getText().equals("Time for the THIRD digit.")
+				&& !client.getWidget(BANK_PIN_INSTRUCTION_TEXT).getText().equals("Finally, the FOURTH digit."))
+
+		{
+			enteredBankPinInput = 0;
+			enterBankPinIdx = 0;
+			expectBankPinInput = false;
+			keyManager.unregisterKeyListener(bankPinKeyListener);
+			return;
+		}
+
+		if (!expectBankPinInput)
+		{
+			return;
+		}
+
+		int inputNumber = Character.getNumericValue(charInput);
+
+		// We gotta copy this cause enterIdx changes while the script is executing
+		int oldEnterIdx = enterBankPinIdx;
+
+		// Script 685 will call 653, which in turn will set expectInput to true
+		expectBankPinInput = false;
+		client.runScript(BANK_PIN_OP, inputNumber, enterBankPinIdx, enteredBankPinInput, BANK_PIN_EXIT_BUTTON.getId(),
+				BANK_PIN_FORGOT_BUTTON.getId(), BANK_PIN_1.getId(), BANK_PIN_2.getId(), BANK_PIN_3.getId(),
+				BANK_PIN_4.getId(), BANK_PIN_5.getId(), BANK_PIN_6.getId(), BANK_PIN_7.getId(), BANK_PIN_8.getId(),
+				BANK_PIN_9.getId(), BANK_PIN_10.getId(), BANK_PIN_FIRST_ENTERED.getId(),
+				BANK_PIN_SECOND_ENTERED.getId(), BANK_PIN_THIRD_ENTERED.getId(), BANK_PIN_FOURTH_ENTERED.getId(),
+				BANK_PIN_INSTRUCTION_TEXT.getId());
+
+		if (oldEnterIdx == 0)
+		{
+			enteredBankPinInput = inputNumber * 1000;
+		}
+		else if (oldEnterIdx == 1)
+		{
+			enteredBankPinInput += inputNumber * 100;
+		}
+		else if (oldEnterIdx == 2)
+		{
+			enteredBankPinInput += inputNumber * 10;
+		}
+	}
+
+	private void checkBankPinEvent()
+	{
+		if (!config.keyboardBankPin())
+		{
+			return;
+		}
+
+		int[] intStack = client.getIntStack();
+		int intStackSize = client.getIntStackSize();
+
+		// This'll be anywhere from -1 to 3
+		// 0 = first number, 1 second, etc
+		// Anything other than 0123 means the bank pin interface closes
+		int enterIdx = intStack[intStackSize - 1];
+
+		if (enterIdx < 0 || enterIdx > 3)
+		{
+			keyManager.unregisterKeyListener(bankPinKeyListener);
+			this.enterBankPinIdx = 0;
+			this.enteredBankPinInput = 0;
+			expectBankPinInput = false;
+			return;
+		}
+		else if (enterIdx == 0)
+		{
+			keyManager.registerKeyListener(bankPinKeyListener);
+		}
+
+		this.enterBankPinIdx = enterIdx;
+		expectBankPinInput = true;
 	}
 }

@@ -41,6 +41,7 @@ public class WidgetID
 	public static final int LOGOUT_PANEL_ID = 182;
 	public static final int BANK_GROUP_ID = 12;
 	public static final int BANK_INVENTORY_GROUP_ID = 15;
+	public static final int BANK_PIN_GROUP_ID = 213;
 	public static final int GRAND_EXCHANGE_INVENTORY_GROUP_ID = 467;
 	public static final int GRAND_EXCHANGE_GROUP_ID = 465;
 	public static final int DEPOSIT_BOX_GROUP_ID = 192;
@@ -155,7 +156,7 @@ public class WidgetID
 		static final int SEARCH = 24;
 		static final int SURFACE_SELECTOR = 32;
 		static final int TOOLTIP = 38;
-		static final int OPTION = 43;
+		static final int OPTION = 46;
 	}
 
 	static class SlayerRewards
@@ -227,15 +228,39 @@ public class WidgetID
 	{
 		static final int BANK_CONTAINER = 1;
 		static final int INVENTORY_ITEM_CONTAINER = 3;
-		static final int BANK_TITLE_BAR = 4;
-		static final int CONTENT_CONTAINER = 10;
-		static final int TAB_CONTAINER = 11;
-		static final int ITEM_CONTAINER = 13;
-		static final int SEARCH_BUTTON_BACKGROUND = 40;
-		static final int DEPOSIT_INVENTORY = 42;
-		static final int DEPOSIT_EQUIPMENT = 44;
-		static final int INCINERATOR = 46;
-		static final int INCINERATOR_CONFIRM = 47;
+		static final int BANK_TITLE_BAR = 3;
+		static final int CONTENT_CONTAINER = 8;
+		static final int TAB_CONTAINER = 9;
+		static final int ITEM_CONTAINER = 11;
+		static final int SEARCH_BUTTON_BACKGROUND = 38;
+		static final int DEPOSIT_INVENTORY = 40;
+		static final int DEPOSIT_EQUIPMENT = 42;
+		static final int INCINERATOR = 44;
+		static final int INCINERATOR_CONFIRM = 45;
+	}
+
+	// Also used for many other interfaces!
+	static class BankPin
+	{
+		static final int CONTAINER = 1;
+		static final int TOP_LEFT_TEXT = 2;
+		static final int FIRST_ENTERED = 3;
+		static final int SECOND_ENTERED = 4;
+		static final int THIRD_ENTERED = 5;
+		static final int FOURTH_ENTERED = 6;
+		static final int INSTRUCTION_TEXT = 10;
+		static final int EXIT_BUTTON = 13;
+		static final int FORGOT_BUTTON = 15;
+		static final int BUTTON_1 = 16;
+		static final int BUTTON_2 = 18;
+		static final int BUTTON_3 = 20;
+		static final int BUTTON_4 = 22;
+		static final int BUTTON_5 = 24;
+		static final int BUTTON_6 = 26;
+		static final int BUTTON_7 = 28;
+		static final int BUTTON_8 = 30;
+		static final int BUTTON_9 = 32;
+		static final int BUTTON_10 = 34;
 	}
 
 	static class GrandExchange
@@ -279,17 +304,6 @@ public class WidgetID
 
 	static class Equipment
 	{
-		static final int HELMET = 6;
-		static final int CAPE = 7;
-		static final int AMULET = 8;
-		static final int WEAPON = 9;
-		static final int BODY = 10;
-		static final int SHIELD = 11;
-		static final int LEGS = 12;
-		static final int GLOVES = 13;
-		static final int BOOTS = 14;
-		static final int RING = 15;
-		static final int AMMO = 16;
 		static final int INVENTORY_ITEM_CONTAINER = 0;
 	}
 
@@ -317,6 +331,7 @@ public class WidgetID
 		static final int RUN_ORB_TEXT = 23;
 		static final int SPEC_ORB = 28;
 		static final int WORLDMAP_ORB = 41;
+		static final int WIKI_BANNER = 43;
 	}
 
 	static class LoginClickToPlayScreen
@@ -414,6 +429,7 @@ public class WidgetID
 
 	static class ResizableViewportBottomLine
 	{
+		static final int MULTI_COMBAT_ICON = 17;
 		static final int LOGOUT_BUTTON_OVERLAY = 30;
 		static final int CMB_TAB = 50;
 		static final int CMB_ICON = 58;
@@ -852,9 +868,9 @@ public class WidgetID
 
 	static class Options
 	{
-		static final int MUSIC_SLIDER = 44;
-		static final int SOUND_EFFECT_SLIDER = 50;
-		static final int AREA_SOUND_SLIDER = 56;
+		static final int MUSIC_SLIDER = 38;
+		static final int SOUND_EFFECT_SLIDER = 44;
+		static final int AREA_SOUND_SLIDER = 50;
 	}
 
 	static class AchievementDiary
