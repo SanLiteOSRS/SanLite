@@ -183,7 +183,6 @@ public class ExaminePlugin extends Plugin
 
 		if (pending.isEmpty())
 		{
-			log.debug("Got examine without a pending examine?");
 			return;
 		}
 
