@@ -56,12 +56,12 @@ public interface AlchemicalHydraConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "highlightChemicalFountainStatus",
-			name = "Highlight chemical fountain status",
-			description = "Highlight the chemical fountain area and status depending on phase",
+			keyName = "highlightChemicalVentStatus",
+			name = "Highlight chemical vent status",
+			description = "Highlight the chemical vent area for the current phase and if the boss is in the area",
 			position = 3
 	)
-	default boolean highlightChemicalFountainStatus()
+	default boolean highlightChemicalVentStatus()
 	{
 		return true;
 	}
@@ -122,10 +122,21 @@ public interface AlchemicalHydraConfig extends Config
 	}
 
 	@ConfigItem(
+			keyName = "displayChemicalVentsTimer",
+			name = "Display chemical vents timer",
+			description = "Displays a timer to show the time till the next chemical vent activation",
+			position = 9
+	)
+	default boolean displayChemicalVentsTimer()
+	{
+		return true;
+	}
+
+	@ConfigItem(
 			keyName = "showDebugOverlay",
 			name = "Display debug overlay",
 			description = "Displays plugin debug overlay. This displays variables that the plugin uses to function",
-			position = 9
+			position = 10
 	)
 	default boolean showDebugOverlay()
 	{

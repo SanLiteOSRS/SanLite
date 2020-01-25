@@ -28,8 +28,6 @@ import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Point;
 import net.runelite.api.*;
 import net.runelite.api.coords.LocalPoint;
-import net.runelite.api.coords.WorldArea;
-import net.runelite.api.coords.WorldPoint;
 import net.runelite.client.game.SkillIconManager;
 import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayLayer;
@@ -42,10 +40,7 @@ import java.awt.*;
 import java.awt.geom.Arc2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-
-import static net.runelite.api.Perspective.getCanvasTileAreaPoly;
 
 @Slf4j
 public class AlchemicalHydraOverlay extends Overlay
@@ -78,7 +73,7 @@ public class AlchemicalHydraOverlay extends Overlay
 		this.plugin = plugin;
 	}
 
-	private BufferedImage getIcon(AlchemicalHydra.AttackStyle attackStyle)
+	private BufferedImage getAttackStyleIcon(AlchemicalHydra.AttackStyle attackStyle)
 	{
 		switch (attackStyle)
 		{
@@ -107,85 +102,9 @@ public class AlchemicalHydraOverlay extends Overlay
 				renderAoeEffects(graphics, alchemicalHydra);
 			}
 
-			if (config.highlightChemicalFountainStatus())
-			{
-				renderChemicalPoolsStatus(graphics, alchemicalHydra);
-			}
-
 			if (config.showAttackStyleCounter())
 			{
-				LocalPoint localPoint = alchemicalHydra.getNpc().getLocalLocation();
-				if (localPoint != null)
-				{
-					net.runelite.api.Point point = Perspective.localToCanvas(client, localPoint, client.getPlane(),
-							alchemicalHydra.getNpc().getLogicalHeight() + 16);
-					if (point != null)
-					{
-						point = new Point(point.getX(), point.getY());
-						List<BufferedImage> icons = new ArrayList<>();
-						int totalWidth = OVERLAY_ICON_MARGIN;
-
-						AlchemicalHydra.AttackStyle specialAttackStyle = alchemicalHydra.getCurrentSpecialAttackStyle();
-						if (specialAttackStyle != null)
-						{
-							BufferedImage specialAttackStyleIcon = getIcon(specialAttackStyle);
-							icons.add(specialAttackStyleIcon);
-							totalWidth += ICON_WIDTH;
-						}
-
-						AlchemicalHydra.AttackStyle attackStyle = alchemicalHydra.getCurrentAttackStyle();
-						if (attackStyle != null)
-						{
-							BufferedImage currentAttackStyleIcon = getIcon(attackStyle);
-							icons.add(currentAttackStyleIcon);
-							totalWidth += ICON_WIDTH;
-						}
-						int bgPadding = 4;
-						int currentPosX = 0;
-						for (int i = 0; i < icons.size(); i++)
-						{
-							BufferedImage icon = icons.get(i);
-							graphics.setStroke(new BasicStroke(2));
-							graphics.setColor(COLOR_ICON_BACKGROUND);
-							graphics.fillOval(
-									point.getX() - totalWidth / 2 + currentPosX - bgPadding,
-									point.getY() - ICON_HEIGHT / 2 - OVERLAY_ICON_DISTANCE - bgPadding,
-									ICON_WIDTH + bgPadding * 2,
-									ICON_HEIGHT + bgPadding * 2);
-
-							graphics.setColor(COLOR_ICON_BORDER);
-							graphics.drawOval(
-									point.getX() - totalWidth / 2 + currentPosX - bgPadding,
-									point.getY() - ICON_HEIGHT / 2 - OVERLAY_ICON_DISTANCE - bgPadding,
-									ICON_WIDTH + bgPadding * 2,
-									ICON_HEIGHT + bgPadding * 2);
-
-							graphics.drawImage(
-									icon,
-									point.getX() - totalWidth / 2 + currentPosX,
-									point.getY() - ICON_HEIGHT / 2 - OVERLAY_ICON_DISTANCE,
-									null);
-
-							graphics.setColor(COLOR_ICON_BORDER_FILL);
-
-							// Don't render arc for special attack because special attack icon is always first
-							if (icons.size() == 1 || icons.size() == 2 && i == 1)
-							{
-								Arc2D.Double arc = new Arc2D.Double(
-										point.getX() - totalWidth / 2 + currentPosX - bgPadding,
-										point.getY() - ICON_HEIGHT / 2 - OVERLAY_ICON_DISTANCE - bgPadding,
-										ICON_WIDTH + bgPadding * 2,
-										ICON_HEIGHT + bgPadding * 2,
-										90.0,
-										-360.0 * (AlchemicalHydra.ATTACKS_PER_SWITCH -
-												alchemicalHydra.getAttacksUntilSwitch()) / AlchemicalHydra.ATTACKS_PER_SWITCH,
-										Arc2D.OPEN);
-								graphics.draw(arc);
-							}
-							currentPosX += ICON_WIDTH + OVERLAY_ICON_MARGIN;
-						}
-					}
-				}
+				renderAttackStyleCounter(graphics, alchemicalHydra);
 			}
 		}
 		return null;
@@ -197,61 +116,105 @@ public class AlchemicalHydraOverlay extends Overlay
 		{
 			LocalPoint localPoint = graphicsObject.getLocation();
 			Polygon polygon = Perspective.getCanvasTilePoly(client, localPoint);
+			Polygon areaPolygon = Perspective.getCanvasTileAreaPoly(client, localPoint, 3);
 
-			if (polygon != null)
+			if (polygon == null || areaPolygon == null)
 			{
-				if (alchemicalHydra.isPoisonSplatSpecialAttack(graphicsObject.getId()))
-				{
-					OverlayUtil.renderPolygon(graphics, polygon, config.getPoisonAttackColor());
-				}
-				else if (alchemicalHydra.isLightningSpecialAttack(graphicsObject.getId()))
-				{
-					OverlayUtil.renderPolygon(graphics, polygon, config.getLightningAttackColor());
-				}
-				else if (alchemicalHydra.isFireSpecialAttack(graphicsObject.getId()))
-				{
-					OverlayUtil.renderPolygon(graphics, polygon, config.getFireAttackColor());
-				}
+				return;
+			}
+
+			if (alchemicalHydra.isPoisonSplatSpecialAttackBeforeLanding(graphicsObject.getId()))
+			{
+				OverlayUtil.renderPolygon(graphics, areaPolygon, config.getPoisonAttackColor());
+			}
+			else if (alchemicalHydra.isPoisonSplatSpecialAttack(graphicsObject.getId()))
+			{
+				OverlayUtil.renderPolygon(graphics, polygon, config.getPoisonAttackColor());
+			}
+			else if (alchemicalHydra.isLightningSpecialAttack(graphicsObject.getId()))
+			{
+				OverlayUtil.renderPolygon(graphics, polygon, config.getLightningAttackColor());
+			}
+			else if (alchemicalHydra.isFireSpecialAttack(graphicsObject.getId()))
+			{
+				OverlayUtil.renderPolygon(graphics, polygon, config.getFireAttackColor());
 			}
 		}
 	}
 
-	private void renderChemicalPoolsStatus(Graphics2D graphics, AlchemicalHydra alchemicalHydra)
+	private void renderAttackStyleCounter(Graphics2D graphics, AlchemicalHydra alchemicalHydra)
 	{
-		if (alchemicalHydra.isWeakened())
+		LocalPoint localPoint = alchemicalHydra.getNpc().getLocalLocation();
+		if (localPoint != null)
 		{
-			return;
+			net.runelite.api.Point point = Perspective.localToCanvas(client, localPoint, client.getPlane(),
+					alchemicalHydra.getNpc().getLogicalHeight() + 16);
+			if (point != null)
+			{
+				point = new Point(point.getX(), point.getY());
+				List<BufferedImage> icons = new ArrayList<>();
+				int totalWidth = OVERLAY_ICON_MARGIN;
+
+				AlchemicalHydra.AttackStyle specialAttackStyle = alchemicalHydra.getCurrentSpecialAttackStyle();
+				if (specialAttackStyle != null)
+				{
+					BufferedImage specialAttackStyleIcon = getAttackStyleIcon(specialAttackStyle);
+					icons.add(specialAttackStyleIcon);
+					totalWidth += ICON_WIDTH;
+				}
+
+				AlchemicalHydra.AttackStyle attackStyle = alchemicalHydra.getCurrentAttackStyle();
+				if (attackStyle != null)
+				{
+					BufferedImage currentAttackStyleIcon = getAttackStyleIcon(attackStyle);
+					icons.add(currentAttackStyleIcon);
+					totalWidth += ICON_WIDTH;
+				}
+				int bgPadding = 4;
+				int currentPosX = 0;
+				for (int i = 0; i < icons.size(); i++)
+				{
+					BufferedImage icon = icons.get(i);
+					graphics.setStroke(new BasicStroke(2));
+					graphics.setColor(COLOR_ICON_BACKGROUND);
+					graphics.fillOval(
+							point.getX() - totalWidth / 2 + currentPosX - bgPadding,
+							point.getY() - ICON_HEIGHT / 2 - OVERLAY_ICON_DISTANCE - bgPadding,
+							ICON_WIDTH + bgPadding * 2,
+							ICON_HEIGHT + bgPadding * 2);
+
+					graphics.setColor(COLOR_ICON_BORDER);
+					graphics.drawOval(
+							point.getX() - totalWidth / 2 + currentPosX - bgPadding,
+							point.getY() - ICON_HEIGHT / 2 - OVERLAY_ICON_DISTANCE - bgPadding,
+							ICON_WIDTH + bgPadding * 2,
+							ICON_HEIGHT + bgPadding * 2);
+
+					graphics.drawImage(
+							icon,
+							point.getX() - totalWidth / 2 + currentPosX,
+							point.getY() - ICON_HEIGHT / 2 - OVERLAY_ICON_DISTANCE,
+							null);
+
+					graphics.setColor(COLOR_ICON_BORDER_FILL);
+
+					// Don't render arc for special attack because special attack icon is always first
+					if (icons.size() == 1 || icons.size() == 2 && i == 1)
+					{
+						Arc2D.Double arc = new Arc2D.Double(
+								point.getX() - totalWidth / 2 + currentPosX - bgPadding,
+								point.getY() - ICON_HEIGHT / 2 - OVERLAY_ICON_DISTANCE - bgPadding,
+								ICON_WIDTH + bgPadding * 2,
+								ICON_HEIGHT + bgPadding * 2,
+								90.0,
+								-360.0 * (AlchemicalHydra.ATTACKS_PER_SWITCH -
+										alchemicalHydra.getAttacksUntilSwitch()) / AlchemicalHydra.ATTACKS_PER_SWITCH,
+								Arc2D.OPEN);
+						graphics.draw(arc);
+					}
+					currentPosX += ICON_WIDTH + OVERLAY_ICON_MARGIN;
+				}
+			}
 		}
-
-		Collection<WorldPoint> poolWorldPoints = WorldPoint.toLocalInstance(client, alchemicalHydra.getChemicalPoolWorldPointForPhase());
-
-		if (poolWorldPoints.size() > 1)
-		{
-			return;
-		}
-
-		WorldPoint worldPoint = null;
-		for (WorldPoint point : poolWorldPoints)
-		{
-			worldPoint = point;
-		}
-
-		LocalPoint localPoint = worldPoint != null ? LocalPoint.fromWorld(client, worldPoint) : null;
-		if (localPoint == null)
-		{
-			return;
-		}
-
-		final Polygon polygon = getCanvasTileAreaPoly(client, localPoint, 4);
-		if (polygon == null)
-		{
-			return;
-		}
-
-		Color color = alchemicalHydra.getNpc().getWorldArea().intersectsWith(
-				new WorldArea(worldPoint, 1, 1)) ? config.getOnChemicalPoolColor() : config.getNotOnChemicalPoolColor();
-		graphics.setColor(color);
-		graphics.setStroke(new BasicStroke(3));
-		graphics.draw(polygon);
 	}
 }
