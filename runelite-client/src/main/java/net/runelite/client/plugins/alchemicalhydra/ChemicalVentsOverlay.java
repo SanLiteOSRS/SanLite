@@ -75,13 +75,13 @@ public class ChemicalVentsOverlay extends Overlay
 
 	private void renderChemicalPoolsStatus(Graphics2D graphics, AlchemicalHydra alchemicalHydra)
 	{
-		if (alchemicalHydra.isWeakened())
+		if (alchemicalHydra.isWeakened() || alchemicalHydra.getCurrentPhase().equals(AlchemicalHydra.Phase.JAD))
 		{
 			return;
 		}
 
 		Collection<WorldPoint> poolWorldPoints = WorldPoint.toLocalInstance(client,
-				ChemicalVents.getChemicalPoolWorldPointForPhase(alchemicalHydra.getCurrentPhase()));
+				ChemicalVents.getChemicalVentWorldPointForPhase(alchemicalHydra.getCurrentPhase()));
 		if (poolWorldPoints.size() > 1)
 		{
 			return;
@@ -114,21 +114,27 @@ public class ChemicalVentsOverlay extends Overlay
 
 	private void renderChemicalPoolsTickTimer(Graphics2D graphics, ChemicalVents chemicalVents, AlchemicalHydra alchemicalHydra)
 	{
+		int remainingRoomEnteredGraceTick = chemicalVents.getRoomEnteredGraceExpiredTick() - client.getTickCount();
 		int ticksTillVentActivation = chemicalVents.getNextVentEntityChangeTick() - client.getTickCount();
-		if (alchemicalHydra.isWeakened() || alchemicalHydra.getCurrentPhase().equals(AlchemicalHydra.Phase.JAD) ||
-				ticksTillVentActivation < 0)
+		if (alchemicalHydra.getCurrentPhase().equals(AlchemicalHydra.Phase.JAD) || ticksTillVentActivation < 0 ||
+				remainingRoomEnteredGraceTick > 0)
 		{
 			return;
 		}
 
 		String text = String.valueOf(ticksTillVentActivation);
-		GameObject chemicalVent = chemicalVents.getChemicalVents().get(alchemicalHydra.getCurrentPhase());
+
+		AlchemicalHydra.Phase phase = alchemicalHydra.isWeakened()
+				? alchemicalHydra.getNextPhase(alchemicalHydra.getCurrentPhase())
+				: alchemicalHydra.getCurrentPhase();
+
+		GameObject chemicalVent = chemicalVents.getChemicalVents().get(phase);
 		if (chemicalVent == null)
 		{
 			return;
 		}
 
-		BufferedImage image = getChemicalVentIcon(alchemicalHydra.getCurrentPhase());
+		BufferedImage image = getChemicalVentIcon(phase);
 		Point imageLocation = chemicalVent.getCanvasTextLocation(graphics, text, 0);
 		if (imageLocation == null || image == null)
 		{

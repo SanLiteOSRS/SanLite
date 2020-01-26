@@ -39,20 +39,29 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static net.runelite.api.Constants.CHUNK_SIZE;
+
+
 @Slf4j
 public class ChemicalVents
 {
-	// Chemical vent game object entity changes starts with a 5 tick interval
+	// Chemical vent game object entity change cycle starts with a 5 tick interval
 	// The next change will be 3 ticks later after which the cycle will restart
 	private static final int TICKS_BETWEEN_CHEMICAL_VENT_ENTITY_CHANGE = 5;
-	private static final int TICKS_BETWEEN_CHEMICAL_VENT_ACTIVATION = 7;
 
-	private static final List<Point> ROOM_OUTSIDE_DOOR_SCENE_LOCATION = ImmutableList.of(
-			/*new Point(50, 59), new Point(50, 58), */new Point(51, 59), new Point(51, 58));
+	// Entered the instance from the east side (tiles will be in chunk 6, 7)
+	private static final List<Point> ROOM_OUTSIDE_DOOR_SCENE_LOCATION_1 = ImmutableList.of(
+			new Point(51, 59), new Point(51, 58));
+	private static final List<Point> ROOM_INSIDE_DOOR_SCENE_LOCATION_1 = ImmutableList.of(
+			new Point(52, 59), new Point(52, 58), new Point(53, 59),
+			new Point(53, 58), new Point(52, 60), new Point(53, 60));
 
-	private static final List<Point> ROOM_INSIDE_DOOR_SCENE_LOCATION = ImmutableList.of(
-			new Point(52, 59), new Point(52, 58)/*, new Point(53, 59),
-			new Point(53, 58), new Point(52, 60), new Point(53, 60)*/);
+	// Entered the instance from the west side (tiles will be in chunk 7, 7)
+	private static final List<Point> ROOM_OUTSIDE_DOOR_SCENE_LOCATION_2 = ImmutableList.of(
+			new Point(59, 59), new Point(59, 58));
+	private static final List<Point> ROOM_INSIDE_DOOR_SCENE_LOCATION_2 = ImmutableList.of(
+			new Point(60, 59), new Point(60, 58), new Point(61, 59),
+			new Point(61, 58), new Point(60, 60), new Point(61, 60));
 
 	@Getter
 	@Setter
@@ -64,7 +73,7 @@ public class ChemicalVents
 
 	@Getter
 	@Setter
-	private int nextChemicalVentActiveTick;
+	private int roomEnteredGraceExpiredTick;
 
 	@Getter
 	@Setter
@@ -73,7 +82,6 @@ public class ChemicalVents
 	public ChemicalVents()
 	{
 		this.nextVentEntityChangeTick = -100;
-		this.nextChemicalVentActiveTick = -100;
 		this.chemicalVents = new HashMap<>();
 	}
 
@@ -84,7 +92,7 @@ public class ChemicalVents
 				gameObjectId == ObjectID.CHEMICAL_VENT_RED;
 	}
 
-	static WorldPoint getChemicalPoolWorldPointForPhase(AlchemicalHydra.Phase phase)
+	static WorldPoint getChemicalVentWorldPointForPhase(AlchemicalHydra.Phase phase)
 	{
 		switch (phase)
 		{
@@ -95,22 +103,24 @@ public class ChemicalVents
 			case RED:
 				return new WorldPoint(1362, 10272, 0);
 			default:
+				log.warn("Tried retrieving chemical vent world point for unknown phase: {}", phase);
 				return null;
 		}
 	}
 
 	void checkChemicalVentStatus(int tickCount)
 	{
+		log.debug("Tick: {} | triggered", tickCount);
 		if (!isChemicalVentsActive())
 		{
 			return;
 		}
 
+		log.debug("Tick: {} | Vent entity change", tickCount);
 		if (tickCount >= nextVentEntityChangeTick)
 		{
-			log.debug("Tick: {} | Hydra fountain entity change accepted", tickCount);
-			setNextVentEntityChangeTick(tickCount + TICKS_BETWEEN_CHEMICAL_VENT_ENTITY_CHANGE);
-			setNextChemicalVentActiveTick(tickCount + TICKS_BETWEEN_CHEMICAL_VENT_ACTIVATION);
+			log.debug("Tick: {} | Vent entity change confirmed | Next: {}", tickCount, nextVentEntityChangeTick);
+			nextVentEntityChangeTick = tickCount + TICKS_BETWEEN_CHEMICAL_VENT_ENTITY_CHANGE;
 		}
 	}
 
@@ -123,18 +133,34 @@ public class ChemicalVents
 
 		LocalPoint localPoint = localPlayer.getLocalLocation();
 		Point playerScenePoint = new Point(localPoint.getSceneX(), localPoint.getSceneY());
-		/*log.debug("Player point: {}, {} | result outside: {} | result inside: {}", playerScenePoint.getX(), playerScenePoint.getY(),
-				ROOM_OUTSIDE_DOOR_SCENE_LOCATION.contains(playerScenePoint), ROOM_INSIDE_DOOR_SCENE_LOCATION.contains(playerScenePoint));*/
-		if (ROOM_OUTSIDE_DOOR_SCENE_LOCATION.contains(playerScenePoint))
+		Point currentChunk = new Point(localPoint.getSceneX() / CHUNK_SIZE, localPoint.getSceneY() / CHUNK_SIZE);
+
+		if (currentChunk.equals(new Point(6, 7)))
 		{
-			setChemicalVentsActive(false);
-			log.debug("Tick: {} | Left encounter room", tickCount);
+			if (ROOM_OUTSIDE_DOOR_SCENE_LOCATION_1.contains(playerScenePoint) && chemicalVentsActive)
+			{
+				chemicalVentsActive = false;
+				log.debug("Tick: {} | {} | Left encounter room", tickCount, currentChunk);
+			}
+			else if (ROOM_INSIDE_DOOR_SCENE_LOCATION_1.contains(playerScenePoint) && !chemicalVentsActive)
+			{
+				chemicalVentsActive = true;
+				roomEnteredGraceExpiredTick = tickCount + 5;
+				log.debug("Tick: {} | {} | Entered encounter room", tickCount, currentChunk);
+			}
+			return;
 		}
-		else if (ROOM_INSIDE_DOOR_SCENE_LOCATION.contains(playerScenePoint))
+
+		if (ROOM_OUTSIDE_DOOR_SCENE_LOCATION_2.contains(playerScenePoint) && chemicalVentsActive)
 		{
-			setChemicalVentsActive(true);
-			log.debug("Tick: {} | Entered encounter room", tickCount);
+			chemicalVentsActive = false;
+			log.debug("Tick: {} | {} | Left encounter room", tickCount, currentChunk);
+		}
+		else if (ROOM_INSIDE_DOOR_SCENE_LOCATION_2.contains(playerScenePoint) && !chemicalVentsActive)
+		{
+			chemicalVentsActive = true;
+			roomEnteredGraceExpiredTick = tickCount + 5;
+			log.debug("Tick: {} | {} | Entered encounter room", tickCount, currentChunk);
 		}
 	}
-
 }

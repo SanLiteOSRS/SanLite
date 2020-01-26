@@ -54,6 +54,9 @@ public class AlchemicalHydraOverlay extends Overlay
 	private static final int OVERLAY_ICON_DISTANCE = 30;
 	private static final int OVERLAY_ICON_MARGIN = 12;
 
+	private static final int ATTACK_TIMER_IMAGE_HEIGHT_OFFSET = 15;
+	private static final int ATTACK_TIMER_TEXT_WIDTH_OFFSET = 4;
+
 	private Client client;
 	private AlchemicalHydraPlugin plugin;
 
@@ -105,6 +108,11 @@ public class AlchemicalHydraOverlay extends Overlay
 			if (config.showAttackStyleCounter())
 			{
 				renderAttackStyleCounter(graphics, alchemicalHydra);
+			}
+
+			if (config.displayAttackTimer())
+			{
+				renderAttackTimer(graphics, alchemicalHydra);
 			}
 		}
 		return null;
@@ -216,5 +224,26 @@ public class AlchemicalHydraOverlay extends Overlay
 				}
 			}
 		}
+	}
+
+	private void renderAttackTimer(Graphics2D graphics, AlchemicalHydra alchemicalHydra)
+	{
+		int ticksTillNextAttack = alchemicalHydra.getNextAttackTick() - client.getTickCount();
+		if (ticksTillNextAttack < 0)
+		{
+			return;
+		}
+
+		String text = String.valueOf(ticksTillNextAttack);
+
+		BufferedImage image = ImageUtil.getResourceStreamFromClass(getClass(), "/skill_icons_small/attack.png");
+		Point imageLocation = alchemicalHydra.getNpc().getCanvasTextLocation(graphics, text, 0);
+		if (imageLocation == null || image == null)
+		{
+			return;
+		}
+
+		OverlayUtil.renderImageAndTextLocation(graphics, image, imageLocation, text,
+				ATTACK_TIMER_IMAGE_HEIGHT_OFFSET, ATTACK_TIMER_TEXT_WIDTH_OFFSET, config.getAttackTimerTextColor());
 	}
 }

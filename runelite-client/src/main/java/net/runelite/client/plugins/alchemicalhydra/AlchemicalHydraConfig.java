@@ -45,23 +45,35 @@ public interface AlchemicalHydraConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "highlightSpecialAttackTiles",
-			name = "Highlight special attack tiles",
-			description = "Highlight the tiles for the Alchemical Hydra's poison, lightning and fire attacks",
+			keyName = "displayAttackTimer",
+			name = "Display attack timer",
+			description = "Displays a timer which shows the ticks until the Alchemical Hydra's next attack",
 			position = 2
 	)
-	default boolean highlightSpecialAttackTiles()
+	default boolean displayAttackTimer()
 	{
 		return true;
 	}
 
 	@ConfigItem(
-			keyName = "highlightChemicalVentStatus",
-			name = "Highlight chemical vent status",
-			description = "Highlight the chemical vent area for the current phase and if the boss is in the area",
+			keyName = "attackTimerTextColor",
+			name = "Attack timer text color",
+			description = "Color of attack timer text",
+			group = "Colors",
 			position = 3
 	)
-	default boolean highlightChemicalVentStatus()
+	default Color getAttackTimerTextColor()
+	{
+		return new Color(255, 255, 255);
+	}
+
+	@ConfigItem(
+			keyName = "highlightSpecialAttackTiles",
+			name = "Highlight special attack tiles",
+			description = "Highlight the tiles for the Alchemical Hydra's poison, lightning and fire attacks",
+			position = 4
+	)
+	default boolean highlightSpecialAttackTiles()
 	{
 		return true;
 	}
@@ -70,6 +82,7 @@ public interface AlchemicalHydraConfig extends Config
 			keyName = "poisonAttackColor",
 			name = "Poison attack marker",
 			description = "Color of Alchemical Hydra's poison special attack marker",
+			group = "Colors",
 			position = 4
 	)
 	default Color getPoisonAttackColor()
@@ -81,6 +94,7 @@ public interface AlchemicalHydraConfig extends Config
 			keyName = "lightningAttackColor",
 			name = "Lightning marker",
 			description = "Color of Alchemical Hydra's lightning special attack marker",
+			group = "Colors",
 			position = 5
 	)
 	default Color getLightningAttackColor()
@@ -92,6 +106,7 @@ public interface AlchemicalHydraConfig extends Config
 			keyName = "fireAttackColor",
 			name = "Fire marker",
 			description = "Color of Alchemical Hydra's fire special attack marker",
+			group = "Colors",
 			position = 6
 	)
 	default Color getFireAttackColor()
@@ -103,6 +118,7 @@ public interface AlchemicalHydraConfig extends Config
 			keyName = "notOnChemicalPoolColor",
 			name = "Not on fountain marker",
 			description = "Color of chemical fountain marker while the Alchemical Hydra is not on it",
+			group = "Colors",
 			position = 7
 	)
 	default Color getNotOnChemicalPoolColor()
@@ -114,11 +130,23 @@ public interface AlchemicalHydraConfig extends Config
 			keyName = "onChemicalPoolColor",
 			name = "On fountain marker",
 			description = "Color of chemical fountain marker while the Alchemical Hydra is on it",
+			group = "Colors",
 			position = 8
 	)
 	default Color getOnChemicalPoolColor()
 	{
 		return new Color(Color.GREEN.getRGB());
+	}
+
+	@ConfigItem(
+			keyName = "highlightChemicalVentStatus",
+			name = "Highlight chemical vent status",
+			description = "Highlight the chemical vent area for the current phase and if the boss is in the area",
+			position = 5
+	)
+	default boolean highlightChemicalVentStatus()
+	{
+		return true;
 	}
 
 	@ConfigItem(
@@ -136,7 +164,7 @@ public interface AlchemicalHydraConfig extends Config
 			keyName = "showDebugOverlay",
 			name = "Display debug overlay",
 			description = "Displays plugin debug overlay. This displays variables that the plugin uses to function",
-			position = 10
+			position = 12
 	)
 	default boolean showDebugOverlay()
 	{

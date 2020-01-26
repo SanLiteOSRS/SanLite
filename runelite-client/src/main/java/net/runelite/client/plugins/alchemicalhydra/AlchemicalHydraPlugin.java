@@ -40,7 +40,6 @@ import net.runelite.client.ui.overlay.OverlayManager;
 
 import javax.inject.Inject;
 import java.util.Arrays;
-import java.util.stream.Collectors;
 
 import static net.runelite.client.plugins.alchemicalhydra.AlchemicalHydra.ATTACK_RATE;
 import static net.runelite.client.plugins.alchemicalhydra.AlchemicalHydra.ENRAGED_ATTACK_RATE;
@@ -149,64 +148,6 @@ public class AlchemicalHydraPlugin extends Plugin
 		alchemicalHydra = null;
 	}
 
-	/**
-	 * Checks what and when the next special attack should be.
-	 */
-	private void checkAlchemicalHydraSpecialAttacks()
-	{
-		if (alchemicalHydra.getCurrentSpecialAttackStyle() == null && alchemicalHydra.getAttacksUntilSpecialAttack() == 0)
-		{
-			switch (alchemicalHydra.getCurrentPhase())
-			{
-				case GREEN:
-				case JAD:
-					alchemicalHydra.setCurrentSpecialAttackStyle(AlchemicalHydra.AttackStyle.POISON);
-					break;
-				case BLUE:
-					alchemicalHydra.setCurrentSpecialAttackStyle(AlchemicalHydra.AttackStyle.LIGHTNING);
-					break;
-				case RED:
-					alchemicalHydra.setCurrentSpecialAttackStyle(AlchemicalHydra.AttackStyle.FIRE);
-					break;
-			}
-		}
-	}
-
-	/**
-	 * Checks for phase switches through animation id's. If this is the jad phase it will change
-	 * the next attack style when necessary.
-	 */
-	private void checkAlchemicalHydraPhaseSwitch()
-	{
-		int animationId = alchemicalHydra.getNpc().getAnimation();
-		if (animationId == AnimationID.ALCHEMICAL_HYDRA_SWITCH_TO_BLUE_PHASE &&
-				alchemicalHydra.getCurrentPhase() != AlchemicalHydra.Phase.BLUE)
-		{
-			alchemicalHydra.switchPhase(AlchemicalHydra.Phase.BLUE, client.getTickCount());
-		}
-		else if (animationId == AnimationID.ALCHEMICAL_HYDRA_SWITCH_TO_RED_PHASE &&
-				alchemicalHydra.getCurrentPhase() != AlchemicalHydra.Phase.RED)
-		{
-			alchemicalHydra.switchPhase(AlchemicalHydra.Phase.RED, client.getTickCount());
-		}
-		else if (animationId == AnimationID.ALCHEMICAL_HYDRA_SWITCH_TO_JAD_PHASE &&
-				alchemicalHydra.getCurrentPhase() != AlchemicalHydra.Phase.JAD)
-		{
-			alchemicalHydra.switchPhase(AlchemicalHydra.Phase.JAD, client.getTickCount());
-		}
-	}
-
-	/**
-	 * Checks if the client graphics objects contain a special attack object and updates the hydra aoeEffects list
-	 */
-	private void checkGraphicObjects()
-	{
-		alchemicalHydra.setAoeEffects(
-				client.getGraphicsObjects().stream()
-						.filter(x -> alchemicalHydra.isSpecialAttack(x.getId()))
-						.collect(Collectors.toList()));
-	}
-
 	private boolean inHydraInstance()
 	{
 		return Arrays.equals(client.getMapRegions(), HYDRA_REGIONS) && client.isInInstancedRegion();
@@ -296,7 +237,7 @@ public class AlchemicalHydraPlugin extends Plugin
 	@Subscribe
 	public void onGameObjectSpawned(GameObjectSpawned event)
 	{
-		if (inHydraInstance() && alchemicalHydra != null)
+		if (inHydraInstance())
 		{
 			if (chemicalVents == null)
 			{
@@ -362,10 +303,10 @@ public class AlchemicalHydraPlugin extends Plugin
 	@Subscribe
 	protected void onGameTick(GameTick event)
 	{
-		if (inHydraInstance() && chemicalVents != null)
+		/*if (inHydraInstance() && chemicalVents != null)
 		{
 			chemicalVents.checkInEncounterRoom(client.getLocalPlayer(), client.getTickCount());
-		}
+		}*/
 	}
 
 	@Subscribe
@@ -375,10 +316,19 @@ public class AlchemicalHydraPlugin extends Plugin
 		{
 			if (alchemicalHydra != null)
 			{
-				checkGraphicObjects();
-				checkAlchemicalHydraSpecialAttacks();
-				checkAlchemicalHydraPhaseSwitch();
+				alchemicalHydra.checkGraphicObjects(client.getGraphicsObjects());
+				alchemicalHydra.checkAlchemicalHydraSpecialAttacks(client.getTickCount());
+				alchemicalHydra.checkAlchemicalHydraPhaseSwitch(client.getTickCount());
 			}
+			if (chemicalVents != null) // TODO: move this back to game tick if possible
+			{
+				chemicalVents.checkInEncounterRoom(client.getLocalPlayer(), client.getTickCount());
+			}
+		}
+		else if (chemicalVents != null)
+		{
+			chemicalVents = null;
+			log.debug("Tick: {} |  Set chemical vents to null", client.getTickCount());
 		}
 	}
 }

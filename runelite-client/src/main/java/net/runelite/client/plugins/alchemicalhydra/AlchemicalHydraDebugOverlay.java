@@ -131,11 +131,6 @@ public class AlchemicalHydraDebugOverlay extends Overlay
 					.build());
 
 			panelComponent.getChildren().add(LineComponent.builder()
-					.left("Next chemical vent active tick")
-					.right("" + chemicalVents.getNextChemicalVentActiveTick())
-					.build());
-
-			panelComponent.getChildren().add(LineComponent.builder()
 					.left("Ticks till next vent active")
 					.right("" + (chemicalVents.getNextVentEntityChangeTick() - client.getTickCount()))
 					.build());
