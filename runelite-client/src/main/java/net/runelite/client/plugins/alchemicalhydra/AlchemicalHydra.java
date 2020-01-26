@@ -234,10 +234,10 @@ class AlchemicalHydra
 				currentPhase = Phase.JAD;
 				attacksUntilSwitch = ATTACKS_PER_SWITCH;
 				attacksUntilSpecialAttack = ATTACKS_PER_SPECIAL_ATTACK;
-				currentSpecialAttackStyle = null;
 				nextAttackTick = tickCount + SWITCH_TO_JAD_ATTACK_DELAY;
 				break;
 		}
+		currentSpecialAttackStyle = null;
 		log.debug("Tick: {} | Hydra switch phase to {} | Next: {}", tickCount, newPhase, nextAttackTick);
 	}
 

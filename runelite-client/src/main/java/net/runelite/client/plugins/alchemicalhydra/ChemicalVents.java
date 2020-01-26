@@ -49,6 +49,10 @@ public class ChemicalVents
 	// The next change will be 3 ticks later after which the cycle will restart
 	private static final int TICKS_BETWEEN_CHEMICAL_VENT_ENTITY_CHANGE = 5;
 
+	// The grace period when the player first enters the encounter room where
+	// the vent timers will not display. This is done to prevent inaccuracies
+	private static final int ROOM_ENTERED_GRACE_PERIOD_TICKS = 7;
+
 	// Entered the instance from the east side (tiles will be in chunk 6, 7)
 	private static final List<Point> ROOM_OUTSIDE_DOOR_SCENE_LOCATION_1 = ImmutableList.of(
 			new Point(51, 59), new Point(51, 58));
@@ -145,7 +149,7 @@ public class ChemicalVents
 			else if (ROOM_INSIDE_DOOR_SCENE_LOCATION_1.contains(playerScenePoint) && !chemicalVentsActive)
 			{
 				chemicalVentsActive = true;
-				roomEnteredGraceExpiredTick = tickCount + 5;
+				roomEnteredGraceExpiredTick = tickCount + ROOM_ENTERED_GRACE_PERIOD_TICKS;
 				log.debug("Tick: {} | {} | Entered encounter room", tickCount, currentChunk);
 			}
 			return;
@@ -159,7 +163,7 @@ public class ChemicalVents
 		else if (ROOM_INSIDE_DOOR_SCENE_LOCATION_2.contains(playerScenePoint) && !chemicalVentsActive)
 		{
 			chemicalVentsActive = true;
-			roomEnteredGraceExpiredTick = tickCount + 5;
+			roomEnteredGraceExpiredTick = tickCount + ROOM_ENTERED_GRACE_PERIOD_TICKS;
 			log.debug("Tick: {} | {} | Entered encounter room", tickCount, currentChunk);
 		}
 	}
