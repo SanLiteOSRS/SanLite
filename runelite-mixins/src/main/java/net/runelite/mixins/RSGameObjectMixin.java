@@ -63,10 +63,7 @@ public abstract class RSGameObjectMixin implements RSGameObject
 	@Inject
 	public void GameObjectEntityChanged(int idx)
 	{
-		//client.getLogger().debug("GameObjectEntityChanged: {}", this.getId());
-		GameObjectEntityChanged gameObjectEntityChanged = new GameObjectEntityChanged();
-		gameObjectEntityChanged.setGameObject(this);
-		client.getCallbacks().post(gameObjectEntityChanged);
+		client.getCallbacks().post(new GameObjectEntityChanged(this));
 	}
 
 	@Inject
