@@ -238,14 +238,10 @@ class AlchemicalHydra
 				break;
 		}
 		currentSpecialAttackStyle = null;
-		log.debug("Tick: {} | Hydra switch phase to {} | Next: {}", tickCount, newPhase, nextAttackTick);
 	}
 
 	void onAttack(int projectileId, int tickCount)
 	{
-		log.debug("Tick: {} | Phase: {} | Regular attack: {} | Next: {}", tickCount, currentPhase,
-				projectileIdToAttackStyle(projectileId), nextAttackTick);
-
 		recentProjectileId = projectileId;
 		lastAttackTick = tickCount;
 
@@ -266,15 +262,25 @@ class AlchemicalHydra
 		checkAttackStyleSwitch(projectileIdToAttackStyle(projectileId));
 	}
 
-	void onSpecialAttack(int projectileId, int tickCount)
+	/**
+	 * Handles the Alchemical Hydra's special attack for the current phase.
+	 *
+	 * @param id        projectile/animation id
+	 * @param tickCount current game tick
+	 */
+	void onSpecialAttack(int id, int tickCount)
 	{
-		log.debug("Tick: {} | Phase: {} | Special attack: {} | Next: {}", tickCount, currentPhase,
-				projectileIdToAttackStyle(projectileId), nextAttackTick);
-		if (currentPhase == Phase.JAD)
+		// In rare occasions the poison special attack during jad phase will not spawn a projectile
+		// So we use the jad phase poison attack animation id instead to make sure the attack is detected
+		if (currentPhase == Phase.JAD && id == AnimationID.ALCHEMICAL_HYDRA_JAD_PHASE_POISON_ATTACK)
 		{
 			// Jad poison attack uses enraged attack rate
 			attacksUntilSpecialAttack = ATTACKS_PER_SPECIAL_ATTACK * 3;
 			nextAttackTick = tickCount + ENRAGED_ATTACK_RATE;
+			recentProjectileId = ProjectileID.ALCHEMICAL_HYDRA_POISON;
+			lastAttackTick = tickCount;
+			currentSpecialAttackStyle = null;
+			return;
 		}
 		else if (currentPhase == Phase.RED)
 		{
@@ -283,7 +289,7 @@ class AlchemicalHydra
 			// Initial fire special to spawn the fire prison
 			if (recentProjectileId != ProjectileID.ALCHEMICAL_HYDRA_FIRE)
 			{
-				recentProjectileId = projectileId;
+				recentProjectileId = id;
 				lastAttackTick = tickCount;
 				currentSpecialAttackStyle = null;
 				nextAttackTick = tickCount + ATTACK_RATE;
@@ -299,7 +305,8 @@ class AlchemicalHydra
 			attacksUntilSpecialAttack = ATTACKS_PER_SPECIAL_ATTACK;
 			nextAttackTick = tickCount + ATTACK_RATE;
 		}
-		recentProjectileId = projectileId;
+
+		recentProjectileId = id;
 		lastAttackTick = tickCount;
 		currentSpecialAttackStyle = null;
 	}

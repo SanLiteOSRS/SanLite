@@ -24,7 +24,6 @@
  */
 package net.runelite.client.plugins.alchemicalhydra;
 
-import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Point;
 import net.runelite.api.*;
 import net.runelite.api.coords.LocalPoint;
@@ -42,7 +41,6 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
-@Slf4j
 public class AlchemicalHydraOverlay extends Overlay
 {
 

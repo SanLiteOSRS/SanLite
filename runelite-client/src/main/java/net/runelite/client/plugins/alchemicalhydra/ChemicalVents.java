@@ -41,7 +41,6 @@ import java.util.Map;
 
 import static net.runelite.api.Constants.CHUNK_SIZE;
 
-
 @Slf4j
 public class ChemicalVents
 {
@@ -114,16 +113,13 @@ public class ChemicalVents
 
 	void checkChemicalVentStatus(int tickCount)
 	{
-		log.debug("Tick: {} | triggered", tickCount);
 		if (!isChemicalVentsActive())
 		{
 			return;
 		}
 
-		log.debug("Tick: {} | Vent entity change", tickCount);
 		if (tickCount >= nextVentEntityChangeTick)
 		{
-			log.debug("Tick: {} | Vent entity change confirmed | Next: {}", tickCount, nextVentEntityChangeTick);
 			nextVentEntityChangeTick = tickCount + TICKS_BETWEEN_CHEMICAL_VENT_ENTITY_CHANGE;
 		}
 	}
@@ -144,13 +140,11 @@ public class ChemicalVents
 			if (ROOM_OUTSIDE_DOOR_SCENE_LOCATION_1.contains(playerScenePoint) && chemicalVentsActive)
 			{
 				chemicalVentsActive = false;
-				log.debug("Tick: {} | {} | Left encounter room", tickCount, currentChunk);
 			}
 			else if (ROOM_INSIDE_DOOR_SCENE_LOCATION_1.contains(playerScenePoint) && !chemicalVentsActive)
 			{
 				chemicalVentsActive = true;
 				roomEnteredGraceExpiredTick = tickCount + ROOM_ENTERED_GRACE_PERIOD_TICKS;
-				log.debug("Tick: {} | {} | Entered encounter room", tickCount, currentChunk);
 			}
 			return;
 		}
@@ -158,13 +152,11 @@ public class ChemicalVents
 		if (ROOM_OUTSIDE_DOOR_SCENE_LOCATION_2.contains(playerScenePoint) && chemicalVentsActive)
 		{
 			chemicalVentsActive = false;
-			log.debug("Tick: {} | {} | Left encounter room", tickCount, currentChunk);
 		}
 		else if (ROOM_INSIDE_DOOR_SCENE_LOCATION_2.contains(playerScenePoint) && !chemicalVentsActive)
 		{
 			chemicalVentsActive = true;
 			roomEnteredGraceExpiredTick = tickCount + ROOM_ENTERED_GRACE_PERIOD_TICKS;
-			log.debug("Tick: {} | {} | Entered encounter room", tickCount, currentChunk);
 		}
 	}
 }

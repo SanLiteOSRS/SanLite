@@ -26,7 +26,6 @@ package net.runelite.client.plugins.alchemicalhydra;
 
 import com.google.inject.Provides;
 import lombok.Getter;
-import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.*;
 import net.runelite.api.events.*;
 import net.runelite.client.callback.ClientThread;
@@ -44,11 +43,10 @@ import java.util.Arrays;
 import static net.runelite.client.plugins.alchemicalhydra.AlchemicalHydra.ATTACK_RATE;
 import static net.runelite.client.plugins.alchemicalhydra.AlchemicalHydra.ENRAGED_ATTACK_RATE;
 
-@Slf4j
 @PluginDescriptor(
 		name = "Alchemical Hydra",
-		description = "Displays Alchemical Hydra's next attack style and highlights encounter mechanics",
-		tags = {"combat", "overlay", "pve", "pvm", "hydra", "alchemical", "boss", "slayer"},
+		description = "Displays Alchemical Hydra's next attack style and other encounter mechanics",
+		tags = {"combat", "overlay", "pve", "pvm", "hydra", "alchemical", "boss", "slayer", "timer"},
 		type = PluginType.SANLITE_USE_AT_OWN_RISK
 )
 public class AlchemicalHydraPlugin extends Plugin
@@ -161,8 +159,23 @@ public class AlchemicalHydraPlugin extends Plugin
 			if ("The chemicals neutralise the Alchemical Hydra's defences!".equals(event.getMessage()))
 			{
 				alchemicalHydra.setWeakened(true);
-				log.debug("Tick: {} | Hydra was weakened", client.getTickCount());
 			}
+		}
+	}
+
+	@Subscribe
+	public void onAnimationChanged(AnimationChanged event)
+	{
+		if (!inHydraInstance() || alchemicalHydra == null)
+		{
+			return;
+		}
+
+		int animationId = event.getActor().getAnimation();
+		if (animationId == AnimationID.ALCHEMICAL_HYDRA_JAD_PHASE_POISON_ATTACK &&
+				alchemicalHydra.getAttacksUntilSpecialAttack() == 0)
+		{
+			alchemicalHydra.onSpecialAttack(animationId, client.getTickCount());
 		}
 	}
 
@@ -242,7 +255,6 @@ public class AlchemicalHydraPlugin extends Plugin
 			if (chemicalVents == null)
 			{
 				chemicalVents = new ChemicalVents();
-				log.debug("Chemical vents set");
 			}
 
 			GameObject gameObject = event.getGameObject();
@@ -301,15 +313,6 @@ public class AlchemicalHydraPlugin extends Plugin
 	}
 
 	@Subscribe
-	protected void onGameTick(GameTick event)
-	{
-		/*if (inHydraInstance() && chemicalVents != null)
-		{
-			chemicalVents.checkInEncounterRoom(client.getLocalPlayer(), client.getTickCount());
-		}*/
-	}
-
-	@Subscribe
 	protected void onClientTick(ClientTick event)
 	{
 		if (inHydraInstance())
@@ -320,7 +323,7 @@ public class AlchemicalHydraPlugin extends Plugin
 				alchemicalHydra.checkAlchemicalHydraSpecialAttacks(client.getTickCount());
 				alchemicalHydra.checkAlchemicalHydraPhaseSwitch(client.getTickCount());
 			}
-			if (chemicalVents != null) // TODO: move this back to game tick if possible
+			if (chemicalVents != null)
 			{
 				chemicalVents.checkInEncounterRoom(client.getLocalPlayer(), client.getTickCount());
 			}
@@ -328,7 +331,6 @@ public class AlchemicalHydraPlugin extends Plugin
 		else if (chemicalVents != null)
 		{
 			chemicalVents = null;
-			log.debug("Tick: {} |  Set chemical vents to null", client.getTickCount());
 		}
 	}
 }
