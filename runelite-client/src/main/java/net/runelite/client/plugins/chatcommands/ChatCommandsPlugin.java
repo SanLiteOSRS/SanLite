@@ -206,7 +206,8 @@ public class ChatCommandsPlugin extends Plugin
 	{
 		if (chatMessage.getType() != ChatMessageType.TRADE
 				&& chatMessage.getType() != ChatMessageType.GAMEMESSAGE
-				&& chatMessage.getType() != ChatMessageType.SPAM)
+				&& chatMessage.getType() != ChatMessageType.SPAM
+				&& chatMessage.getType() != ChatMessageType.FRIENDSCHATNOTIFICATION)
 		{
 			return;
 		}
