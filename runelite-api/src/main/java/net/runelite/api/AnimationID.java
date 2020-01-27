@@ -263,6 +263,7 @@ public final class AnimationID
 	public static final int HYDRA_MAGIC_4 = 8254;
 	public static final int HYDRA_POISON_4 = 8254;
 	public static final int HYDRA_RANGED_4 = 8255;
+	public static final int ALCHEMICAL_HYDRA_JAD_PHASE_POISON_ATTACK = 8256;
 	public static final int HYDRA_4_1 = 8257;
 	public static final int HYDRA_4_2 = 8258;
 

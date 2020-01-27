@@ -52,10 +52,11 @@ public class AlchemicalHydraDebugOverlay extends Overlay
 	@Override
 	public Dimension render(Graphics2D graphics)
 	{
-		if (plugin.getAlchemicalHydra() != null)
-		{
-			panelComponent.getChildren().clear();
+		panelComponent.getChildren().clear();
 
+		AlchemicalHydra alchemicalHydra = plugin.getAlchemicalHydra();
+		if (alchemicalHydra != null)
+		{
 			panelComponent.getChildren().add(TitleComponent.builder()
 					.text("Alchemical Hydra debug")
 					.build());
@@ -67,61 +68,78 @@ public class AlchemicalHydraDebugOverlay extends Overlay
 
 			panelComponent.getChildren().add(LineComponent.builder()
 					.left("Phase")
-					.right("" + plugin.getAlchemicalHydra().getCurrentHydraPhase())
+					.right("" + alchemicalHydra.getCurrentPhase())
 					.build());
 
 			panelComponent.getChildren().add(LineComponent.builder()
 					.left("Current attack style")
-					.right("" + plugin.getAlchemicalHydra().getCurrentAttackStyle())
+					.right("" + alchemicalHydra.getCurrentAttackStyle())
 					.build());
 
 			panelComponent.getChildren().add(LineComponent.builder()
 					.left("Current special attack style")
-					.right("" + plugin.getAlchemicalHydra().getCurrentSpecialAttackStyle())
+					.right("" + alchemicalHydra.getCurrentSpecialAttackStyle())
 					.build());
 
 			panelComponent.getChildren().add(LineComponent.builder()
 					.left("Is weakened")
-					.right("" + plugin.getAlchemicalHydra().isWeakened())
+					.right("" + alchemicalHydra.isWeakened())
 					.build());
 
 			panelComponent.getChildren().add(LineComponent.builder()
 					.left("Attacks until switch")
-					.right("" + plugin.getAlchemicalHydra().getAttacksUntilSwitch())
+					.right("" + alchemicalHydra.getAttacksUntilSwitch())
 					.build());
 
 			panelComponent.getChildren().add(LineComponent.builder()
 					.left("Attacks until special attack")
-					.right("" + plugin.getAlchemicalHydra().getAttacksUntilSpecialAttack()	)
+					.right("" + alchemicalHydra.getAttacksUntilSpecialAttack())
 					.build());
 
 			panelComponent.getChildren().add(LineComponent.builder()
 					.left("Next attack tick")
-					.right("" + plugin.getAlchemicalHydra().getNextAttackTick())
+					.right("" + alchemicalHydra.getNextAttackTick())
 					.build());
 
 			panelComponent.getChildren().add(LineComponent.builder()
 					.left("Last attack tick")
-					.right("" + plugin.getAlchemicalHydra().getLastAttackTick())
+					.right("" + alchemicalHydra.getLastAttackTick())
 					.build());
 
 			panelComponent.getChildren().add(LineComponent.builder()
 					.left("Recent projectile id")
-					.right("" + plugin.getAlchemicalHydra().getRecentProjectileId())
-					.build());
-
-			panelComponent.getChildren().add(LineComponent.builder()
-					.left("Remaining projectile count")
-					.right("" + plugin.getAlchemicalHydra().getRemainingProjectileCount())
+					.right("" + alchemicalHydra.getRecentProjectileId())
 					.build());
 
 			panelComponent.getChildren().add(LineComponent.builder()
 					.left("Number of AoE effects")
-					.right("" + plugin.getAlchemicalHydra().getAoeEffects().size())
+					.right("" + alchemicalHydra.getAoeEffects().size())
+					.build());
+		}
+
+		ChemicalVents chemicalVents = plugin.getChemicalVents();
+		if (chemicalVents != null)
+		{
+			panelComponent.getChildren().add(LineComponent.builder()
+					.left("Chemical vent active")
+					.right("" + chemicalVents.isChemicalVentsActive())
 					.build());
 
-			return panelComponent.render(graphics);
+			panelComponent.getChildren().add(LineComponent.builder()
+					.left("Next entity change tick")
+					.right("" + chemicalVents.getNextVentEntityChangeTick())
+					.build());
+
+			panelComponent.getChildren().add(LineComponent.builder()
+					.left("Ticks till next vent active")
+					.right("" + (chemicalVents.getNextVentEntityChangeTick() - client.getTickCount()))
+					.build());
+
+			panelComponent.getChildren().add(LineComponent.builder()
+					.left("Number of chemical vents")
+					.right("" + chemicalVents.getChemicalVents().size())
+					.build());
 		}
-		return null;
+		return panelComponent.render(graphics);
 	}
 }

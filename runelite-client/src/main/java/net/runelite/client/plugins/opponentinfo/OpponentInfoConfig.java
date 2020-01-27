@@ -58,11 +58,12 @@ public interface OpponentInfoConfig extends Config
 		name = "Show opponent's opponent",
 		description = "Toggle showing opponent's opponent if within a multi-combat area",
 		position = 2,
-		group = "Use at own risk"
+		warning = "This is a use at own risk option, Jagex does not officially allow this. Do you still want toggle" +
+				" this option?"
 	)
 	default boolean showOpponentsOpponent()
 	{
-		return true;
+		return false;
 	}
 
 	@ConfigItem(

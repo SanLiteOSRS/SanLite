@@ -36,11 +36,12 @@ public interface CorpConfig extends Config
 		name = "Left click walk on core",
 		description = "Prioritizes Walk here over Attack on the Dark energy core",
 		position = 1,
-		group = "Use at own risk"
+		warning = "This is a use at own risk option, Jagex does not officially allow this. Do you still want toggle" +
+				" this option?"
 	)
 	default boolean leftClickCore()
 	{
-		return true;
+		return false;
 	}
 
 	@ConfigItem(
