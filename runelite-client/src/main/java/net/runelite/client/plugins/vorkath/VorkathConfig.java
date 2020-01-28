@@ -48,7 +48,7 @@ public interface VorkathConfig extends Config
 	@ConfigItem(
 			keyName = "displayAttackTimer",
 			name = "Display attack timer",
-			description = "Displays a timer which shows the time until Vorkath's next attack",
+			description = "Displays a timer which shows the ticks until Vorkath's next attack",
 			position = 1
 	)
 	default boolean displayAttackTimer()

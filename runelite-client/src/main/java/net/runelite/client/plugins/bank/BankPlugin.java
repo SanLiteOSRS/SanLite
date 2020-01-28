@@ -66,13 +66,15 @@ import net.runelite.client.game.ItemManager;
 import net.runelite.client.input.KeyManager;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
+import net.runelite.client.plugins.PluginType;
 import net.runelite.client.plugins.banktags.tabs.BankSearch;
 import net.runelite.client.util.QuantityFormatter;
 
 @PluginDescriptor(
 	name = "Bank",
 	description = "Modifications to the banking interface",
-	tags = {"grand", "exchange", "high", "alchemy", "prices", "deposit", "pin", "keyboard"}
+	tags = {"grand", "exchange", "high", "alchemy", "prices", "deposit", "pin", "keyboard"},
+	type = PluginType.SANLITE
 )
 public class BankPlugin extends Plugin
 {
