@@ -1394,7 +1394,7 @@ public abstract class RSClientMixin implements RSClient
 			{
 				if (renderX >= minX && renderX <= maxX && renderY >= minY && renderY <= maxY)
 				{
-					WidgetItem widgetItem = new WidgetItem(widget.getItemId(), widget.getItemQuantity(), -1, widget.getBounds(), widget);
+					WidgetItem widgetItem = new WidgetItem(widget.getItemId(), widget.getItemQuantity(), -1, widget.getBounds(), widget, false);
 					callbacks.drawItem(widget.getItemId(), widgetItem);
 				}
 			}

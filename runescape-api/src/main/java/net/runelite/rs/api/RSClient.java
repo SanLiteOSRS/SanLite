@@ -1097,4 +1097,9 @@ public interface RSClient extends RSGameShell, Client
 	@Override
 	void scaleSprite(int[] canvas, int[] pixels, int color, int pixelX, int pixelY, int canvasIdx, int canvasOffset, int newWidth, int newHeight, int pixelWidth, int pixelHeight, int oldWidth);
 
+	@Import("draggedWidgetX")
+	int getDraggedWidgetX();
+
+	@Import("draggedWidgetY")
+	int getDraggedWidgetY();
 }
