@@ -1043,7 +1043,7 @@ public interface RSClient extends RSGameShell, Client
 	void setViewportWalking(boolean viewportWalking);
 
 	@Import("playMusicTrack")
-	void playMusicTrack(RSAbstractArchive var0, int var1, int var2, int var3, boolean var4);
+	void playMusicTrack(RSAbstractArchive var0, String var1, String var2, int var3, boolean var4);
 
 	@Import("midiPcmStream")
 	RSMidiPcmStream getMidiPcmStream();
