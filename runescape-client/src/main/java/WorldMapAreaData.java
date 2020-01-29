@@ -196,7 +196,7 @@ public class WorldMapAreaData extends WorldMapArea {
 	@Export("resumePauseWidget")
 	static void resumePauseWidget(int var0, int var1) {
 		PacketBufferNode var2 = TilePaint.getPacketBufferNode(ClientPacket.field2256, Client.packetWriter.isaacCipher);
-		var2.packetBuffer.writeIntME(var1);
+		var2.packetBuffer.writeShortLE(var1);
 		var2.packetBuffer.writeInt(var0);
 		Client.packetWriter.addNode(var2);
 	}

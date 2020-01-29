@@ -895,8 +895,8 @@ public class Buffer extends Node {
 		signature = "(II)V",
 		garbageValue = "1143249456"
 	)
-	@Export("writeIntME")
-	public void writeIntME(int var1) {
+	@Export("writeShortLE")
+	public void writeShortLE(int var1) {
 		this.array[++this.offset - 1] = (byte)var1;
 		this.array[++this.offset - 1] = (byte)(var1 >> 8);
 	}
@@ -916,7 +916,8 @@ public class Buffer extends Node {
 		signature = "(IB)V",
 		garbageValue = "73"
 	)
-	public void method5613(int var1) {
+	@Export("writeIntME")
+	public void writeIntME(int var1) {
 		this.array[++this.offset - 1] = (byte)(var1 + 128);
 		this.array[++this.offset - 1] = (byte)(var1 >> 8);
 	}

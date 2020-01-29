@@ -92,7 +92,7 @@ public class GrandExchangeEvents {
 				WorldMapSection2.clientPreferences.titleMusicDisabled = !WorldMapSection2.clientPreferences.titleMusicDisabled;
 				WorldMapData_1.savePreferences();
 				if (!WorldMapSection2.clientPreferences.titleMusicDisabled) {
-					class162.playMusicTrack(MouseHandler.archive6, "scape main", "", 255, false);
+					class162.method3523(MouseHandler.archive6, "scape main", "", 255, false);
 				} else {
 					class197.midiPcmStream.clear();
 					class197.field2414 = 1;
