@@ -1064,12 +1064,14 @@ public final class Client extends GameShell implements Usernamed {
 	@ObfuscatedGetter(
 		intValue = -509412397
 	)
-	static int field754;
+	@Export("draggedWidgetX")
+	static int draggedWidgetX;
 	@ObfuscatedName("jn")
 	@ObfuscatedGetter(
 		intValue = 24720215
 	)
-	static int field755;
+	@Export("draggedWidgetY")
+	static int draggedWidgetY;
 	@ObfuscatedName("jt")
 	@ObfuscatedGetter(
 		intValue = -200424637
@@ -1393,8 +1395,8 @@ public final class Client extends GameShell implements Usernamed {
 		field751 = 0;
 		field752 = 0;
 		dragItemSlotSource = 0;
-		field754 = 0;
-		field755 = 0;
+		draggedWidgetX = 0;
+		draggedWidgetY = 0;
 		dragItemSlotDestination = 0;
 		field757 = false;
 		itemDragDuration = 0;
@@ -3351,7 +3353,7 @@ public final class Client extends GameShell implements Usernamed {
 					field730 = false;
 					var14 = TilePaint.getPacketBufferNode(ClientPacket.field2208, packetWriter.isaacCipher);
 					var14.packetBuffer.method5787(camAngleY);
-					var14.packetBuffer.writeIntME(camAngleX);
+					var14.packetBuffer.writeShortLE(camAngleX);
 					packetWriter.addNode(var14);
 				}
 
@@ -3626,15 +3628,15 @@ public final class Client extends GameShell implements Usernamed {
 																			packetWriter.addNode(var43);
 																		}
 																	} else if (this.shouldLeftClickOpenMenu()) {
-																		this.openMenu(field754, field755);
+																		this.openMenu(draggedWidgetX, draggedWidgetY);
 																	} else if (menuOptionsCount > 0) {
-																		GrandExchangeOfferTotalQuantityComparator.method105(field754, field755);
+																		GrandExchangeOfferTotalQuantityComparator.method105(draggedWidgetX, draggedWidgetY);
 																	}
 
 																	field751 = 10;
 																	MouseHandler.MouseHandler_lastButton = 0;
 																	class185.dragInventoryWidget = null;
-																} else if (itemDragDuration >= 5 && (MouseHandler.MouseHandler_x > field754 + 5 || MouseHandler.MouseHandler_x < field754 - 5 || MouseHandler.MouseHandler_y > field755 + 5 || MouseHandler.MouseHandler_y < field755 - 5)) {
+																} else if (itemDragDuration >= 5 && (MouseHandler.MouseHandler_x > draggedWidgetX + 5 || MouseHandler.MouseHandler_x < draggedWidgetX - 5 || MouseHandler.MouseHandler_y > draggedWidgetY + 5 || MouseHandler.MouseHandler_y < draggedWidgetY - 5)) {
 																	field757 = true;
 																}
 															}
@@ -3642,7 +3644,7 @@ public final class Client extends GameShell implements Usernamed {
 															if (Scene.method3321()) {
 																var3 = Scene.Scene_selectedX;
 																var4 = Scene.Scene_selectedY;
-																var43 = TilePaint.getPacketBufferNode(ClientPacket.ClientPacket_field2180, packetWriter.isaacCipher);
+																var43 = TilePaint.getPacketBufferNode(ClientPacket.SEND_CLICK_PACKET, packetWriter.isaacCipher);
 																var43.packetBuffer.writeByte(5);
 																var43.packetBuffer.writeShort(Language.baseY * 64 + var4);
 																var43.packetBuffer.method5787(Messages.baseX * 64 + var3);
@@ -5700,7 +5702,7 @@ public final class Client extends GameShell implements Usernamed {
 				}
 
 				if (class185.dragInventoryWidget != null && !field757 && menuOptionsCount > 0 && !this.shouldLeftClickOpenMenu()) {
-					GrandExchangeOfferTotalQuantityComparator.method105(field754, field755);
+					GrandExchangeOfferTotalQuantityComparator.method105(draggedWidgetX, draggedWidgetY);
 				}
 
 				field757 = false;
@@ -5711,8 +5713,8 @@ public final class Client extends GameShell implements Usernamed {
 
 				class185.dragInventoryWidget = Varps.getWidget(var6);
 				dragItemSlotSource = var5;
-				field754 = MouseHandler.MouseHandler_lastPressedX;
-				field755 = MouseHandler.MouseHandler_lastPressedY;
+				draggedWidgetX = MouseHandler.MouseHandler_lastPressedX;
+				draggedWidgetY = MouseHandler.MouseHandler_lastPressedY;
 				if (var2 >= 0) {
 					WorldMapRegion.tempMenuAction = new MenuAction();
 					WorldMapRegion.tempMenuAction.param0 = menuArguments1[var2];
@@ -5878,12 +5880,12 @@ public final class Client extends GameShell implements Usernamed {
 
 					if (draggedOnWidget != null && ItemContainer.method1184(clickedWidget) != null) {
 						PacketBufferNode var9 = TilePaint.getPacketBufferNode(ClientPacket.field2242, packetWriter.isaacCipher);
-						var9.packetBuffer.method5613(draggedOnWidget.childIndex);
+						var9.packetBuffer.writeIntME(draggedOnWidget.childIndex);
 						var9.packetBuffer.method5787(clickedWidget.itemId);
 						var9.packetBuffer.method5622(clickedWidget.id);
 						var9.packetBuffer.method5622(draggedOnWidget.id);
-						var9.packetBuffer.writeIntME(draggedOnWidget.itemId);
-						var9.packetBuffer.writeIntME(clickedWidget.childIndex);
+						var9.packetBuffer.writeShortLE(draggedOnWidget.itemId);
+						var9.packetBuffer.writeShortLE(clickedWidget.childIndex);
 						packetWriter.addNode(var9);
 					}
 				} else if (this.shouldLeftClickOpenMenu()) {

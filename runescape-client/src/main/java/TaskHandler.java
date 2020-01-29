@@ -186,7 +186,8 @@ public class TaskHandler implements Runnable {
 		signature = "(ILii;IIIZI)V",
 		garbageValue = "869410445"
 	)
-	public static void method3554(int var0, AbstractArchive var1, int var2, int var3, int var4, boolean var5) {
+	@Export("playMusicTrack")
+	public static void playMusicTrack(int var0, AbstractArchive var1, int var2, int var3, int var4, boolean var5) {
 		class197.field2414 = 1;
 		UserComparator5.musicTrackArchive = var1;
 		class197.musicTrackGroupId = var2;

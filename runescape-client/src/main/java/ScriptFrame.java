@@ -112,13 +112,14 @@ public class ScriptFrame {
 		signature = "(Lbx;II)V",
 		garbageValue = "1584696624"
 	)
-	static final void method1161(Actor var0, int var1) {
+	@Export("updateActorSequence")
+	static final void updateActorSequence(Actor var0, int var1) {
 		if (var0.field985 >= Client.cycle) {
 			class185.method3685(var0);
 		} else if (var0.field986 >= Client.cycle) {
 			GrandExchangeEvent.method88(var0);
 		} else {
-			WorldMapRegion.updateActorSequence(var0);
+			WorldMapRegion.method565(var0);
 		}
 
 		if (var0.x < 128 || var0.y < 128 || var0.x >= 13184 || var0.y >= 13184) {

@@ -130,7 +130,7 @@ public class ScriptEvent extends Node {
 				} else if (var0 == 4) {
 					var8 = TilePaint.getPacketBufferNode(ClientPacket.field2216, Client.packetWriter.isaacCipher);
 					var8.packetBuffer.writeByte(0);
-					var8.packetBuffer.writeIntME(var3[var6]);
+					var8.packetBuffer.writeShortLE(var3[var6]);
 					Client.packetWriter.addNode(var8);
 				} else if (var0 == 6) {
 					var8 = TilePaint.getPacketBufferNode(ClientPacket.field2221, Client.packetWriter.isaacCipher);

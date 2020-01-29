@@ -78,12 +78,12 @@ public class UserComparator10 extends AbstractUserComparator {
 			Client.destinationY = var1;
 			var8 = TilePaint.getPacketBufferNode(ClientPacket.field2267, Client.packetWriter.isaacCipher);
 			var8.packetBuffer.method5787(class65.selectedItemSlot);
-			var8.packetBuffer.writeIntME(MusicPatch.selectedItemId);
-			var8.packetBuffer.method5613(var3);
+			var8.packetBuffer.writeShortLE(MusicPatch.selectedItemId);
+			var8.packetBuffer.writeIntME(var3);
 			var8.packetBuffer.method5604(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
-			var8.packetBuffer.method5613(Language.baseY * 64 + var1);
+			var8.packetBuffer.writeIntME(Language.baseY * 64 + var1);
 			var8.packetBuffer.method5623(FriendSystem.selectedItemWidget);
-			var8.packetBuffer.writeIntME(Messages.baseX * 64 + var0);
+			var8.packetBuffer.writeShortLE(Messages.baseX * 64 + var0);
 			Client.packetWriter.addNode(var8);
 		} else if (var2 == 2) {
 			Client.mouseCrossX = var6;
@@ -98,7 +98,7 @@ public class UserComparator10 extends AbstractUserComparator {
 			var8.packetBuffer.writeShort(Client.selectedSpellChildIndex);
 			var8.packetBuffer.method5604(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
 			var8.packetBuffer.writeShort(Language.baseY * 64 + var1);
-			var8.packetBuffer.writeIntME(Messages.baseX * 64 + var0);
+			var8.packetBuffer.writeShortLE(Messages.baseX * 64 + var0);
 			Client.packetWriter.addNode(var8);
 		} else if (var2 == 3) {
 			Client.mouseCrossX = var6;
@@ -109,8 +109,8 @@ public class UserComparator10 extends AbstractUserComparator {
 			Client.destinationY = var1;
 			var8 = TilePaint.getPacketBufferNode(ClientPacket.field2236, Client.packetWriter.isaacCipher);
 			var8.packetBuffer.method5602(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
-			var8.packetBuffer.writeIntME(Language.baseY * 64 + var1);
-			var8.packetBuffer.writeIntME(var3);
+			var8.packetBuffer.writeShortLE(Language.baseY * 64 + var1);
+			var8.packetBuffer.writeShortLE(var3);
 			var8.packetBuffer.method5787(Messages.baseX * 64 + var0);
 			Client.packetWriter.addNode(var8);
 		} else if (var2 == 4) {
@@ -134,10 +134,10 @@ public class UserComparator10 extends AbstractUserComparator {
 			Client.destinationX = var0;
 			Client.destinationY = var1;
 			var8 = TilePaint.getPacketBufferNode(ClientPacket.field2299, Client.packetWriter.isaacCipher);
-			var8.packetBuffer.writeIntME(var3);
+			var8.packetBuffer.writeShortLE(var3);
 			var8.packetBuffer.method5602(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
 			var8.packetBuffer.method5787(Messages.baseX * 64 + var0);
-			var8.packetBuffer.writeIntME(Language.baseY * 64 + var1);
+			var8.packetBuffer.writeShortLE(Language.baseY * 64 + var1);
 			Client.packetWriter.addNode(var8);
 		} else if (var2 == 6) {
 			Client.mouseCrossX = var6;
@@ -150,7 +150,7 @@ public class UserComparator10 extends AbstractUserComparator {
 			var8.packetBuffer.method5787(Messages.baseX * 64 + var0);
 			var8.packetBuffer.method5787(Language.baseY * 64 + var1);
 			var8.packetBuffer.method5603(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
-			var8.packetBuffer.writeIntME(var3);
+			var8.packetBuffer.writeShortLE(var3);
 			Client.packetWriter.addNode(var8);
 		} else {
 			PacketBufferNode var9;
@@ -168,8 +168,8 @@ public class UserComparator10 extends AbstractUserComparator {
 					var9.packetBuffer.method5602(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
 					var9.packetBuffer.method5787(var3);
 					var9.packetBuffer.writeInt(FriendSystem.selectedItemWidget);
-					var9.packetBuffer.method5613(class65.selectedItemSlot);
-					var9.packetBuffer.method5613(MusicPatch.selectedItemId);
+					var9.packetBuffer.writeIntME(class65.selectedItemSlot);
+					var9.packetBuffer.writeIntME(MusicPatch.selectedItemId);
 					Client.packetWriter.addNode(var9);
 				}
 			} else if (var2 == 8) {
@@ -212,7 +212,7 @@ public class UserComparator10 extends AbstractUserComparator {
 					Client.destinationX = var0;
 					Client.destinationY = var1;
 					var9 = TilePaint.getPacketBufferNode(ClientPacket.field2211, Client.packetWriter.isaacCipher);
-					var9.packetBuffer.method5613(var3);
+					var9.packetBuffer.writeIntME(var3);
 					var9.packetBuffer.method5604(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
 					Client.packetWriter.addNode(var9);
 				}
@@ -272,7 +272,7 @@ public class UserComparator10 extends AbstractUserComparator {
 						var9 = TilePaint.getPacketBufferNode(ClientPacket.field2290, Client.packetWriter.isaacCipher);
 						var9.packetBuffer.writeShort(MusicPatch.selectedItemId);
 						var9.packetBuffer.method5603(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
-						var9.packetBuffer.method5613(class65.selectedItemSlot);
+						var9.packetBuffer.writeIntME(class65.selectedItemSlot);
 						var9.packetBuffer.method5624(FriendSystem.selectedItemWidget);
 						var9.packetBuffer.method5787(var3);
 						Client.packetWriter.addNode(var9);
@@ -301,13 +301,13 @@ public class UserComparator10 extends AbstractUserComparator {
 					Client.destinationX = var0;
 					Client.destinationY = var1;
 					var8 = TilePaint.getPacketBufferNode(ClientPacket.field2272, Client.packetWriter.isaacCipher);
-					var8.packetBuffer.method5613(Language.baseY * 64 + var1);
-					var8.packetBuffer.method5613(Messages.baseX * 64 + var0);
+					var8.packetBuffer.writeIntME(Language.baseY * 64 + var1);
+					var8.packetBuffer.writeIntME(Messages.baseX * 64 + var0);
 					var8.packetBuffer.method5624(FriendSystem.selectedItemWidget);
 					var8.packetBuffer.writeShort(class65.selectedItemSlot);
-					var8.packetBuffer.method5613(MusicPatch.selectedItemId);
+					var8.packetBuffer.writeIntME(MusicPatch.selectedItemId);
 					var8.packetBuffer.method5604(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
-					var8.packetBuffer.method5613(var3);
+					var8.packetBuffer.writeIntME(var3);
 					Client.packetWriter.addNode(var8);
 				} else if (var2 == 17) {
 					Client.mouseCrossX = var6;
@@ -335,7 +335,7 @@ public class UserComparator10 extends AbstractUserComparator {
 					var8.packetBuffer.method5787(Messages.baseX * 64 + var0);
 					var8.packetBuffer.writeShort(var3);
 					var8.packetBuffer.method5603(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
-					var8.packetBuffer.writeIntME(Language.baseY * 64 + var1);
+					var8.packetBuffer.writeShortLE(Language.baseY * 64 + var1);
 					Client.packetWriter.addNode(var8);
 				} else if (var2 == 19) {
 					Client.mouseCrossX = var6;
@@ -345,10 +345,10 @@ public class UserComparator10 extends AbstractUserComparator {
 					Client.destinationX = var0;
 					Client.destinationY = var1;
 					var8 = TilePaint.getPacketBufferNode(ClientPacket.field2297, Client.packetWriter.isaacCipher);
-					var8.packetBuffer.writeIntME(Messages.baseX * 64 + var0);
+					var8.packetBuffer.writeShortLE(Messages.baseX * 64 + var0);
 					var8.packetBuffer.writeByte(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
 					var8.packetBuffer.method5787(var3);
-					var8.packetBuffer.writeIntME(Language.baseY * 64 + var1);
+					var8.packetBuffer.writeShortLE(Language.baseY * 64 + var1);
 					Client.packetWriter.addNode(var8);
 				} else if (var2 == 20) {
 					Client.mouseCrossX = var6;
@@ -358,10 +358,10 @@ public class UserComparator10 extends AbstractUserComparator {
 					Client.destinationX = var0;
 					Client.destinationY = var1;
 					var8 = TilePaint.getPacketBufferNode(ClientPacket.field2224, Client.packetWriter.isaacCipher);
-					var8.packetBuffer.writeIntME(Messages.baseX * 64 + var0);
+					var8.packetBuffer.writeShortLE(Messages.baseX * 64 + var0);
 					var8.packetBuffer.writeByte(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
 					var8.packetBuffer.method5787(var3);
-					var8.packetBuffer.writeIntME(Language.baseY * 64 + var1);
+					var8.packetBuffer.writeShortLE(Language.baseY * 64 + var1);
 					Client.packetWriter.addNode(var8);
 				} else if (var2 == 21) {
 					Client.mouseCrossX = var6;
@@ -371,10 +371,10 @@ public class UserComparator10 extends AbstractUserComparator {
 					Client.destinationX = var0;
 					Client.destinationY = var1;
 					var8 = TilePaint.getPacketBufferNode(ClientPacket.field2227, Client.packetWriter.isaacCipher);
-					var8.packetBuffer.writeIntME(Language.baseY * 64 + var1);
-					var8.packetBuffer.writeIntME(var3);
+					var8.packetBuffer.writeShortLE(Language.baseY * 64 + var1);
+					var8.packetBuffer.writeShortLE(var3);
 					var8.packetBuffer.method5602(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
-					var8.packetBuffer.method5613(Messages.baseX * 64 + var0);
+					var8.packetBuffer.writeIntME(Messages.baseX * 64 + var0);
 					Client.packetWriter.addNode(var8);
 				} else if (var2 == 22) {
 					Client.mouseCrossX = var6;
@@ -385,9 +385,9 @@ public class UserComparator10 extends AbstractUserComparator {
 					Client.destinationY = var1;
 					var8 = TilePaint.getPacketBufferNode(ClientPacket.field2301, Client.packetWriter.isaacCipher);
 					var8.packetBuffer.method5787(Messages.baseX * 64 + var0);
-					var8.packetBuffer.method5613(var3);
+					var8.packetBuffer.writeIntME(var3);
 					var8.packetBuffer.method5603(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
-					var8.packetBuffer.method5613(Language.baseY * 64 + var1);
+					var8.packetBuffer.writeIntME(Language.baseY * 64 + var1);
 					Client.packetWriter.addNode(var8);
 				} else if (var2 == 23) {
 					if (Client.isMenuOpen) {
@@ -471,7 +471,7 @@ public class UserComparator10 extends AbstractUserComparator {
 								var8.packetBuffer.method5787(class65.selectedItemSlot);
 								var8.packetBuffer.method5624(var1);
 								var8.packetBuffer.method5787(var0);
-								var8.packetBuffer.method5613(var3);
+								var8.packetBuffer.writeIntME(var3);
 								var8.packetBuffer.method5622(FriendSystem.selectedItemWidget);
 								Client.packetWriter.addNode(var8);
 								Client.field751 = 0;
@@ -479,9 +479,9 @@ public class UserComparator10 extends AbstractUserComparator {
 								Client.field752 = var0;
 							} else if (var2 == 32) {
 								var8 = TilePaint.getPacketBufferNode(ClientPacket.field2250, Client.packetWriter.isaacCipher);
-								var8.packetBuffer.writeIntME(var0);
+								var8.packetBuffer.writeShortLE(var0);
 								var8.packetBuffer.method5787(var3);
-								var8.packetBuffer.writeIntME(Client.selectedSpellChildIndex);
+								var8.packetBuffer.writeShortLE(Client.selectedSpellChildIndex);
 								var8.packetBuffer.method5622(var1);
 								var8.packetBuffer.method5622(FontName.selectedSpellWidget);
 								Client.packetWriter.addNode(var8);
@@ -490,9 +490,9 @@ public class UserComparator10 extends AbstractUserComparator {
 								Client.field752 = var0;
 							} else if (var2 == 33) {
 								var8 = TilePaint.getPacketBufferNode(ClientPacket.field2291, Client.packetWriter.isaacCipher);
-								var8.packetBuffer.method5613(var0);
+								var8.packetBuffer.writeIntME(var0);
 								var8.packetBuffer.writeInt(var1);
-								var8.packetBuffer.method5613(var3);
+								var8.packetBuffer.writeIntME(var3);
 								Client.packetWriter.addNode(var8);
 								Client.field751 = 0;
 								Skeleton.field1793 = Varps.getWidget(var1);
@@ -500,7 +500,7 @@ public class UserComparator10 extends AbstractUserComparator {
 							} else if (var2 == 34) {
 								var8 = TilePaint.getPacketBufferNode(ClientPacket.field2302, Client.packetWriter.isaacCipher);
 								var8.packetBuffer.method5787(var3);
-								var8.packetBuffer.method5613(var0);
+								var8.packetBuffer.writeIntME(var0);
 								var8.packetBuffer.method5622(var1);
 								Client.packetWriter.addNode(var8);
 								Client.field751 = 0;
@@ -509,7 +509,7 @@ public class UserComparator10 extends AbstractUserComparator {
 							} else if (var2 == 35) {
 								var8 = TilePaint.getPacketBufferNode(ClientPacket.field2259, Client.packetWriter.isaacCipher);
 								var8.packetBuffer.method5787(var0);
-								var8.packetBuffer.method5613(var3);
+								var8.packetBuffer.writeIntME(var3);
 								var8.packetBuffer.method5623(var1);
 								Client.packetWriter.addNode(var8);
 								Client.field751 = 0;
@@ -518,8 +518,8 @@ public class UserComparator10 extends AbstractUserComparator {
 							} else if (var2 == 36) {
 								var8 = TilePaint.getPacketBufferNode(ClientPacket.field2248, Client.packetWriter.isaacCipher);
 								var8.packetBuffer.method5622(var1);
-								var8.packetBuffer.writeIntME(var0);
-								var8.packetBuffer.writeIntME(var3);
+								var8.packetBuffer.writeShortLE(var0);
+								var8.packetBuffer.writeShortLE(var3);
 								Client.packetWriter.addNode(var8);
 								Client.field751 = 0;
 								Skeleton.field1793 = Varps.getWidget(var1);
@@ -527,7 +527,7 @@ public class UserComparator10 extends AbstractUserComparator {
 							} else if (var2 == 37) {
 								var8 = TilePaint.getPacketBufferNode(ClientPacket.field2226, Client.packetWriter.isaacCipher);
 								var8.packetBuffer.method5624(var1);
-								var8.packetBuffer.writeIntME(var3);
+								var8.packetBuffer.writeShortLE(var3);
 								var8.packetBuffer.method5787(var0);
 								Client.packetWriter.addNode(var8);
 								Client.field751 = 0;
@@ -552,8 +552,8 @@ public class UserComparator10 extends AbstractUserComparator {
 
 								if (var2 == 39) {
 									var8 = TilePaint.getPacketBufferNode(ClientPacket.field2253, Client.packetWriter.isaacCipher);
-									var8.packetBuffer.method5613(var3);
-									var8.packetBuffer.writeIntME(var0);
+									var8.packetBuffer.writeIntME(var3);
+									var8.packetBuffer.writeShortLE(var0);
 									var8.packetBuffer.method5622(var1);
 									Client.packetWriter.addNode(var8);
 									Client.field751 = 0;
@@ -562,8 +562,8 @@ public class UserComparator10 extends AbstractUserComparator {
 								} else if (var2 == 40) {
 									var8 = TilePaint.getPacketBufferNode(ClientPacket.field2268, Client.packetWriter.isaacCipher);
 									var8.packetBuffer.method5623(var1);
-									var8.packetBuffer.method5613(var3);
-									var8.packetBuffer.writeIntME(var0);
+									var8.packetBuffer.writeIntME(var3);
+									var8.packetBuffer.writeShortLE(var0);
 									Client.packetWriter.addNode(var8);
 									Client.field751 = 0;
 									Skeleton.field1793 = Varps.getWidget(var1);
@@ -579,7 +579,7 @@ public class UserComparator10 extends AbstractUserComparator {
 									Client.field752 = var0;
 								} else if (var2 == 42) {
 									var8 = TilePaint.getPacketBufferNode(ClientPacket.field2215, Client.packetWriter.isaacCipher);
-									var8.packetBuffer.writeIntME(var3);
+									var8.packetBuffer.writeShortLE(var3);
 									var8.packetBuffer.method5622(var1);
 									var8.packetBuffer.writeShort(var0);
 									Client.packetWriter.addNode(var8);
@@ -589,7 +589,7 @@ public class UserComparator10 extends AbstractUserComparator {
 								} else if (var2 == 43) {
 									var8 = TilePaint.getPacketBufferNode(ClientPacket.field2261, Client.packetWriter.isaacCipher);
 									var8.packetBuffer.method5787(var0);
-									var8.packetBuffer.writeIntME(var3);
+									var8.packetBuffer.writeShortLE(var3);
 									var8.packetBuffer.method5624(var1);
 									Client.packetWriter.addNode(var8);
 									Client.field751 = 0;
@@ -648,7 +648,7 @@ public class UserComparator10 extends AbstractUserComparator {
 										Client.destinationY = var1;
 										var9 = TilePaint.getPacketBufferNode(ClientPacket.field2216, Client.packetWriter.isaacCipher);
 										var9.packetBuffer.writeByte(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
-										var9.packetBuffer.writeIntME(var3);
+										var9.packetBuffer.writeShortLE(var3);
 										Client.packetWriter.addNode(var9);
 									}
 								} else if (var2 == 48) {
@@ -715,9 +715,9 @@ public class UserComparator10 extends AbstractUserComparator {
 												if (var16 != null) {
 													var9 = TilePaint.getPacketBufferNode(ClientPacket.field2264, Client.packetWriter.isaacCipher);
 													var9.packetBuffer.method5787(Client.field802);
-													var9.packetBuffer.writeIntME(var0);
+													var9.packetBuffer.writeShortLE(var0);
 													var9.packetBuffer.method5623(var1);
-													var9.packetBuffer.writeIntME(var16.itemId);
+													var9.packetBuffer.writeShortLE(var16.itemId);
 													var9.packetBuffer.method5623(FontName.selectedSpellWidget);
 													var9.packetBuffer.writeShort(Client.selectedSpellChildIndex);
 													Client.packetWriter.addNode(var9);
@@ -734,8 +734,8 @@ public class UserComparator10 extends AbstractUserComparator {
 												Client.destinationY = var1;
 												var8 = TilePaint.getPacketBufferNode(ClientPacket.field2292, Client.packetWriter.isaacCipher);
 												var8.packetBuffer.method5604(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
-												var8.packetBuffer.writeIntME(Messages.baseX * 64 + var0);
-												var8.packetBuffer.method5613(var3);
+												var8.packetBuffer.writeShortLE(Messages.baseX * 64 + var0);
+												var8.packetBuffer.writeIntME(var3);
 												var8.packetBuffer.writeShort(Language.baseY * 64 + var1);
 												Client.packetWriter.addNode(var8);
 												break label982;
@@ -747,7 +747,7 @@ public class UserComparator10 extends AbstractUserComparator {
 												Client.mouseCrossColor = 2;
 												Client.mouseCrossState = 0;
 												var8 = TilePaint.getPacketBufferNode(ClientPacket.field2228, Client.packetWriter.isaacCipher);
-												var8.packetBuffer.writeIntME(var3);
+												var8.packetBuffer.writeShortLE(var3);
 												Client.packetWriter.addNode(var8);
 												break label982;
 											}
@@ -766,7 +766,7 @@ public class UserComparator10 extends AbstractUserComparator {
 
 													if (var17 != null) {
 														var12 = TilePaint.getPacketBufferNode(ClientPacket.field2258, Client.packetWriter.isaacCipher);
-														var12.packetBuffer.method5613(var17.id);
+														var12.packetBuffer.writeIntME(var17.id);
 														Client.packetWriter.addNode(var12);
 													}
 												}
