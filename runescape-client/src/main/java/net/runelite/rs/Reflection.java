@@ -24,6 +24,10 @@
  */
 package net.runelite.rs;
 
+import net.runelite.mapping.ObfuscatedGetter;
+import net.runelite.mapping.ObfuscatedName;
+import net.runelite.mapping.ObfuscatedSignature;
+
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -39,9 +43,6 @@ import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
-import net.runelite.mapping.ObfuscatedGetter;
-import net.runelite.mapping.ObfuscatedName;
-import net.runelite.mapping.ObfuscatedSignature;
 
 public class Reflection
 {
