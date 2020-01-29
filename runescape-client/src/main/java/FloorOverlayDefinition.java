@@ -452,8 +452,8 @@ public class FloorOverlayDefinition extends DualNode {
 
 													if (var35 != null) {
 														if (var10 == class185.dragInventoryWidget && var30 == Client.dragItemSlotSource) {
-															var24 = MouseHandler.MouseHandler_x - Client.field754;
-															var25 = MouseHandler.MouseHandler_y - Client.field755;
+															var24 = MouseHandler.MouseHandler_x - Client.draggedWidgetX;
+															var25 = MouseHandler.MouseHandler_y - Client.draggedWidgetY;
 															if (var24 < 5 && var24 > -5) {
 																var24 = 0;
 															}
@@ -482,7 +482,7 @@ public class FloorOverlayDefinition extends DualNode {
 																	}
 
 																	var28.scrollY -= var29;
-																	Client.field755 += var29;
+																	Client.draggedWidgetY += var29;
 																	NPCDefinition.invalidateWidget(var28);
 																}
 
@@ -497,7 +497,7 @@ public class FloorOverlayDefinition extends DualNode {
 																	}
 
 																	var28.scrollY += var29;
-																	Client.field755 -= var29;
+																	Client.draggedWidgetY -= var29;
 																	NPCDefinition.invalidateWidget(var28);
 																}
 															}

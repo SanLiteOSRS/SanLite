@@ -23,8 +23,7 @@ public class class162 implements class161 {
 		signature = "(Lii;Ljava/lang/String;Ljava/lang/String;IZI)V",
 		garbageValue = "-1967656766"
 	)
-	@Export("playMusicTrack")
-	public static void playMusicTrack(AbstractArchive var0, String var1, String var2, int var3, boolean var4) {
+	public static void method3523(AbstractArchive var0, String var1, String var2, int var3, boolean var4) {
 		int var5 = var0.getGroupId(var1);
 		int var6 = var0.getFileId(var5, var2);
 		class197.field2414 = 1;

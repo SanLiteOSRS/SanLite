@@ -62,7 +62,7 @@ public abstract class Entity extends DualNode {
 		for (int var2 = 0; var2 < var0; ++var2) {
 			Player var3 = Client.players[var1[var2]];
 			if (var3 != null) {
-				ScriptFrame.method1161(var3, 1);
+				ScriptFrame.updateActorSequence(var3, 1);
 			}
 		}
 

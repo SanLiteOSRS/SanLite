@@ -66,7 +66,7 @@ public final class WorldMapSprite {
 			int var1 = Client.npcIndices[var0];
 			NPC var2 = Client.npcs[var1];
 			if (var2 != null) {
-				ScriptFrame.method1161(var2, var2.definition.size);
+				ScriptFrame.updateActorSequence(var2, var2.definition.size);
 			}
 		}
 

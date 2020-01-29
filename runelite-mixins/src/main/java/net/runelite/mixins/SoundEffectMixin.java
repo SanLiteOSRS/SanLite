@@ -103,17 +103,17 @@ public abstract class SoundEffectMixin implements RSClient
 	}
 
 	@Copy("updateActorSequence")
-	public static void rs$updateActorSequence(RSActor actor)
+	public static void rs$updateActorSequence(RSActor actor, int length)
 	{
 		throw new RuntimeException();
 	}
 
 	@Replace("updateActorSequence")
-	public static void rl$updateActorSequence(RSActor actor)
+	public static void rl$updateActorSequence(RSActor actor, int length)
 	{
 		lastSoundEffectSourceActor = actor;
 
-		rs$updateActorSequence(actor);
+		rs$updateActorSequence(actor, length);
 
 		lastSoundEffectSourceActor = null;
 	}

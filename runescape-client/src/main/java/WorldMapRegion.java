@@ -936,8 +936,7 @@ public class WorldMapRegion {
 		signature = "(Lbx;I)V",
 		garbageValue = "-1195764731"
 	)
-	@Export("updateActorSequence")
-	static final void updateActorSequence(Actor var0) {
+	static final void method565(Actor var0) {
 		var0.movementSequence = var0.readySequence;
 		if (var0.pathLength == 0) {
 			var0.field997 = 0;
@@ -1224,7 +1223,7 @@ public class WorldMapRegion {
 	public static void method563(int var0, int var1, int var2, boolean var3) {
 		PacketBufferNode var4 = TilePaint.getPacketBufferNode(ClientPacket.field2255, Client.packetWriter.isaacCipher);
 		var4.packetBuffer.writeInt(var3 ? Client.field727 : 0);
-		var4.packetBuffer.writeIntME(var0);
+		var4.packetBuffer.writeShortLE(var0);
 		var4.packetBuffer.writeShort(var1);
 		var4.packetBuffer.writeByte(var2);
 		Client.packetWriter.addNode(var4);
