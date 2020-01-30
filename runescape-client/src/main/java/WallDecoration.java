@@ -16,13 +16,13 @@ public final class WallDecoration {
 	int tileHeight;
 	@ObfuscatedName("t")
 	@ObfuscatedGetter(
-		intValue = -724566016
+		intValue = 915149021
 	)
 	@Export("x")
 	int x;
 	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = 357564416
+		intValue = 1541741189
 	)
 	@Export("y")
 	int y;

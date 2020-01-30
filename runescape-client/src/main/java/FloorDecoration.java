@@ -32,7 +32,7 @@ public final class FloorDecoration {
 	int x;
 	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = 168820736
+		intValue = -588436191
 	)
 	@Export("y")
 	int y;
