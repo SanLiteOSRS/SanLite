@@ -335,4 +335,11 @@ public final class AnimationID
 	public static final int ZALCANO_KNOCKED_DOWN = 8437;
 	public static final int ZALCANO_WAKE_UP = 8439;
 	public static final int ZALCANO_ROCK_GLOWING = 8448;
+
+	// Cerberus
+	public static final int CERBERUS_MAGE = 4486;
+	public static final int CERBERUS_RANGE = 4490;
+	public static final int CERBERUS_MELEE = 4491;
+	public static final int CERBERUS_GHOSTS = 4494;
+	public static final int CERBERUS_LAVA = 4493;
 }

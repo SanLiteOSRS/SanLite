@@ -31,12 +31,9 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import lombok.Getter;
-import net.runelite.api.GameState;
-import net.runelite.api.NPC;
-import net.runelite.api.events.GameStateChanged;
-import net.runelite.api.events.GameTick;
-import net.runelite.api.events.NpcDespawned;
-import net.runelite.api.events.NpcSpawned;
+import lombok.extern.slf4j.Slf4j;
+import net.runelite.api.*;
+import net.runelite.api.events.*;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
@@ -49,6 +46,8 @@ import net.runelite.client.ui.overlay.OverlayManager;
 	tags = {"bosses", "combat", "ghosts", "prayer", "pve", "overlay", "souls"},
 	type = PluginType.SANLITE_USE_AT_OWN_RISK
 )
+
+@Slf4j
 @Singleton
 public class CerberusPlugin extends Plugin
 {
@@ -61,17 +60,113 @@ public class CerberusPlugin extends Plugin
 	@Inject
 	private CerberusOverlay overlay;
 
+	@Inject
+	private CerberusDebugOverlay debugOverlay;
+
+	@Inject
+	private Client client;
+
+	@Getter
+	private int attackCount;
+
+	@Getter
+	private boolean encounter;
+
+	@Getter
+	private CerberusAttack nextAttack;
+
+	private NPC npc;
+
+	private final int[] CERBERUS_REGION_WEST = {
+			4626, 4627,
+			4882, 4883,
+			5138, 5139
+	};
+
+	private final int[] CERBERUS_REGION_EAST = {
+			5138, 5139,
+			5349, 5395,
+			5650, 5651
+	};
+
+	private final int[] CERBERUS_REGION_NORTH = {
+			4883, 4884,
+			5139, 5140,
+			5395, 5396
+	};
+
+	private ArrayList<int[]> CERBERUS_REGIONS = new ArrayList<>();
+
 	@Override
 	protected void startUp() throws Exception
 	{
 		overlayManager.add(overlay);
+		overlayManager.add(debugOverlay);
+		attackCount = 1;
+		nextAttack = CerberusAttack.TRIPLE;
+		encounter = false;
+		CERBERUS_REGIONS.add(CERBERUS_REGION_EAST);
+		CERBERUS_REGIONS.add(CERBERUS_REGION_NORTH);
+		CERBERUS_REGIONS.add(CERBERUS_REGION_WEST);
+
 	}
 
 	@Override
 	protected void shutDown() throws Exception
 	{
 		overlayManager.remove(overlay);
+		overlayManager.remove(debugOverlay);
 		ghosts.clear();
+		attackCount = 0;
+		nextAttack = null;
+		encounter = false;
+	}
+
+	private boolean isCerberusRegion()
+	{
+		boolean isInRegion = false;
+
+		for (int[] intArray : CERBERUS_REGIONS)
+		{
+			List<Integer> intListCerbRegion = new ArrayList<>(intArray.length);
+
+			for (int i : intArray)
+			{
+				intListCerbRegion.add(i);
+			}
+
+			List<Integer> intListMapRegion = new ArrayList<>(client.getMapRegions().length);
+
+			for (int i : client.getMapRegions())
+			{
+				intListMapRegion.add(i);
+			}
+
+			if (intListMapRegion.containsAll(intListCerbRegion))
+			{
+				isInRegion = true;
+			}
+			else
+			{
+				isInRegion = false;
+			}
+		}
+
+		return isInRegion;
+
+	}
+
+	@Subscribe
+	protected void onClientTick(ClientTick event)
+	{
+		if (isCerberusRegion())
+		{
+			encounter = true;
+		}
+		else
+		{
+			encounter = false;
+		}
 	}
 
 	@Subscribe
@@ -87,14 +182,27 @@ public class CerberusPlugin extends Plugin
 	@Subscribe
 	public void onNpcSpawned(final NpcSpawned event)
 	{
-		final NPC npc = event.getNpc();
-		CerberusGhost.fromNPC(npc).ifPresent(ghost -> ghosts.add(npc));
+		final NPC eventNpc = event.getNpc();
+
+		if (encounter && eventNpc.getId() == NpcID.CERBERUS)
+		{
+			npc = eventNpc;
+		}
+
+		CerberusGhost.fromNPC(eventNpc).ifPresent(ghost -> ghosts.add(eventNpc));
 	}
 
 	@Subscribe
 	public void onNpcDespawned(final NpcDespawned event)
 	{
-		ghosts.remove(event.getNpc());
+		final NPC eventNpc = event.getNpc();
+
+		if (encounter && eventNpc.getId() == NpcID.CERBERUS)
+		{
+			npc = null;
+		}
+
+		ghosts.remove(eventNpc);
 	}
 
 	@Subscribe
@@ -113,5 +221,49 @@ public class CerberusPlugin extends Plugin
 			// This will give use the current wave and order of the ghosts based on
 			// what ghost will attack first
 			.result());
+	}
+
+
+	@Subscribe
+	public void onAnimationChanged(AnimationChanged animation)
+	{
+		if (validateInstanceAndNpc())
+		{
+			if (animation.getActor().getAnimation() == AnimationID.CERBERUS_MAGE || animation.getActor().getAnimation() == AnimationID.CERBERUS_RANGE
+			|| animation.getActor().getAnimation() == AnimationID.CERBERUS_MELEE || animation.getActor().getAnimation() == AnimationID.CERBERUS_GHOSTS
+			|| animation.getActor().getAnimation() == AnimationID.CERBERUS_LAVA)
+			{
+				if ((attackCount - 1) % 10 == 0)
+				{
+					nextAttack = CerberusAttack.TRIPLE;
+					attackCount = attackCount - 2;
+				}
+				else if (attackCount % 7 == 0 && animation.getActor().getHealth() < 400)
+				{
+					nextAttack = CerberusAttack.GHOSTS;
+				}
+				else if (attackCount % 5 == 0 && animation.getActor().getHealth() < 200)
+				{
+					nextAttack = CerberusAttack.LAVA;
+				}
+				else
+				{
+					nextAttack = CerberusAttack.DEFAULT;
+				}
+				attackCount++;
+			}
+		}
+	}
+
+	public boolean validateInstanceAndNpc()
+	{
+		if (encounter && npc != null)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 }
