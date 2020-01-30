@@ -27,18 +27,18 @@ public final class ObjectSound extends Node {
 	int x;
 	@ObfuscatedName("e")
 	@ObfuscatedGetter(
-		intValue = 379220137
+		intValue = 1295537280
 	)
 	@Export("y")
 	int y;
 	@ObfuscatedName("i")
 	@ObfuscatedGetter(
-		intValue = -1169695104
+		intValue = 393514941
 	)
 	int field1069;
 	@ObfuscatedName("g")
 	@ObfuscatedGetter(
-		intValue = -711212539
+		intValue = -840891776
 	)
 	int field1080;
 	@ObfuscatedName("d")
