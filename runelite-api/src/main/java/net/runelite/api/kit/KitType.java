@@ -24,6 +24,8 @@
  */
 package net.runelite.api.kit;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 import net.runelite.api.PlayerAppearance;
 
 /**
@@ -34,39 +36,28 @@ import net.runelite.api.PlayerAppearance;
  * equipment {@link net.runelite.api.ItemContainer}, use
  * {@link net.runelite.api.EquipmentInventorySlot}.
  */
+@Getter
+@AllArgsConstructor
 public enum KitType
 {
-	HELMET(0),
-	CAPE(1),
-	AMULET(2),
-	WEAPON(3),
-	TORSO(4),
-	SHIELD(5),
-	LEGS(7),
-	HEAD(8),
-	HANDS(9),
-	BOOTS(10),
-	JAW(11),
-	RING(12),
-	AMMUNITION(13);
+	HELMET("Helmet", 0),
+	CAPE("Cape", 1),
+	AMULET("Amulet", 2),
+	WEAPON("Weapon", 3),
+	TORSO("Torso", 4),
+	SHIELD("Shield", 5),
+	LEGS("Legs", 7),
+	HEAD("Head", 8),
+	HANDS("Hands", 9),
+	BOOTS("Boots", 10),
+	JAW("Jaw", 11),
+	RING("Ring", 12),
+	AMMUNITION("Ammo", 13);
+
+	private final String name;
 
 	/**
-	 * Raw equipment index.
+	 * Raw equipment index for use in {@link PlayerAppearance#getEquipmentIds()}.
 	 */
 	private final int index;
-
-	KitType(int index)
-	{
-		this.index = index;
-	}
-
-	/**
-	 * Gets the raw equipment index for use in {@link PlayerAppearance#getEquipmentIds()}.
-	 *
-	 * @return raw equipment index
-	 */
-	public int getIndex()
-	{
-		return index;
-	}
 }

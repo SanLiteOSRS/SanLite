@@ -30,6 +30,8 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
 import javax.swing.border.EmptyBorder;
+
+import net.runelite.client.plugins.transmog.ComboBoxIconEntry;
 import net.runelite.client.ui.ColorScheme;
 import net.runelite.client.util.Text;
 
@@ -43,7 +45,7 @@ public final class ComboBoxListRenderer extends JLabel implements ListCellRender
 {
 
 	@Override
-	public Component getListCellRendererComponent(JList list, Object o, int index, boolean isSelected, boolean cellHasFocus)
+	public Component getListCellRendererComponent(JList list, Object object, int index, boolean isSelected, boolean cellHasFocus)
 	{
 		if (isSelected)
 		{
@@ -57,15 +59,22 @@ public final class ComboBoxListRenderer extends JLabel implements ListCellRender
 		}
 
 		setBorder(new EmptyBorder(5, 5, 5, 0));
+		setIcon(null);
 
 		String text;
-		if (o instanceof Enum)
+		if (object instanceof Enum)
 		{
-			text = Text.titleCase((Enum) o);
+			text = Text.titleCase((Enum) object);
+		}
+		else if (object instanceof ComboBoxIconEntry)
+		{
+			ComboBoxIconEntry comboBoxIconEntry = (ComboBoxIconEntry) object;
+			text = comboBoxIconEntry.getText();
+			setIcon(comboBoxIconEntry.getIcon());
 		}
 		else
 		{
-			text = o.toString();
+			text = object.toString();
 		}
 
 		setText(text);

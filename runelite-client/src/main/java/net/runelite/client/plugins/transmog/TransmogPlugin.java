@@ -1,13 +1,17 @@
 package net.runelite.client.plugins.transmog;
 
+import com.google.common.collect.ImmutableSet;
 import com.google.inject.Provides;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Client;
+import net.runelite.api.GameState;
 import net.runelite.api.Player;
+import net.runelite.api.events.GameStateChanged;
 import net.runelite.api.events.PlayerAppearanceChanged;
 import net.runelite.api.kit.KitType;
+import net.runelite.client.callback.ClientThread;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.events.ConfigChanged;
@@ -23,6 +27,7 @@ import javax.inject.Inject;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Slf4j
 @PluginDescriptor(
@@ -43,21 +48,30 @@ public class TransmogPlugin extends Plugin
 	private OverlayManager overlayManager;
 
 	@Inject
-	private ConfigManager configManager;
-
-	@Inject
 	private TransmogConfig config;
 
 	@Getter(AccessLevel.PACKAGE)
-	private ItemSearchPanel itemSearchPanel;
+	private TransmogPanel transmogPanel;
 
 	@Getter(AccessLevel.PACKAGE)
-	private NavigationButton button;
+	private NavigationButton transmogButton;
 
 	@Inject
 	private ClientToolbar clientToolbar;
 
+	@Inject
+	private ClientThread clientThread;
+
 	private final static int ARMS_EQUIPMENT_INDEX = 6;
+
+	@Getter
+	private static final Set<KitType> KIT_TYPE_BLACKLIST = ImmutableSet.of(KitType.AMMUNITION, KitType.RING, KitType.HEAD, KitType.JAW);
+
+
+	@Getter
+	private EquipmentSet currentEquipmentSet;
+
+	// TODO: Save selected set to config
 
 	@Provides
 	TransmogConfig provideConfig(ConfigManager configManager)
@@ -74,15 +88,15 @@ public class TransmogPlugin extends Plugin
 		}
 
 		final BufferedImage icon = ImageUtil.getResourceStreamFromClass(getClass(), "transmog_icon.png");
-		itemSearchPanel = injector.getInstance(ItemSearchPanel.class);
-		button = NavigationButton.builder()
-				.tooltip("Transmog")
+		transmogPanel = injector.getInstance(TransmogPanel.class);
+		transmogButton = NavigationButton.builder()
+				.tooltip("Transmog testy")
 				.icon(icon)
 				.priority(7)
-				.panel(itemSearchPanel)
+				.panel(transmogPanel)
 				.build();
 
-		clientToolbar.addNavigation(button);
+		clientToolbar.addNavigation(transmogButton);
 	}
 
 	@Override
@@ -92,7 +106,7 @@ public class TransmogPlugin extends Plugin
 		{
 			overlayManager.remove(debugOverlay);
 		}
-		clientToolbar.removeNavigation(button);
+		clientToolbar.removeNavigation(transmogButton);
 	}
 
 	@Subscribe
@@ -101,43 +115,6 @@ public class TransmogPlugin extends Plugin
 		if (!event.getGroup().equals("Transmog"))
 		{
 			return;
-		}
-
-		switch (event.getKey())
-		{
-			case "helmetId":
-				updatePlayerEquipment(KitType.HELMET, config.getHelmetId());
-				break;
-			case "capeId":
-				updatePlayerEquipment(KitType.CAPE, config.getCapeId());
-				break;
-			case "amuletId":
-				updatePlayerEquipment(KitType.AMULET, config.getAmuletId());
-				break;
-			case "weaponId":
-				updatePlayerEquipment(KitType.WEAPON, config.getWeaponId());
-				break;
-			case "torsoId":
-				updatePlayerEquipment(KitType.TORSO, config.getTorsoId());
-				break;
-			case "shieldId":
-				updatePlayerEquipment(KitType.SHIELD, config.getShieldId());
-				break;
-			case "legsId":
-				updatePlayerEquipment(KitType.LEGS, config.getLegsId());
-				break;
-			case "headId":
-				updatePlayerEquipment(KitType.HEAD, config.getHeadId());
-				break;
-			case "handsId":
-				updatePlayerEquipment(KitType.HANDS, config.getHandsId());
-				break;
-			case "bootsId":
-				updatePlayerEquipment(KitType.BOOTS, config.getBootsId());
-				break;
-			case "jawId":
-				updatePlayerEquipment(KitType.JAW, config.getJawId());
-				break;
 		}
 
 		if (config.displayDebugOverlay())
@@ -153,27 +130,41 @@ public class TransmogPlugin extends Plugin
 	@Subscribe
 	private void onPlayerAppearanceChanged(PlayerAppearanceChanged event)
 	{
+		updatePlayerEquipment(event.getPlayer());
+	}
+
+	void setCurrentEquipmentSet(EquipmentSet equipmentSet)
+	{
+		currentEquipmentSet = equipmentSet;
 		Player localPlayer = client.getLocalPlayer();
-		if (!event.getPlayer().equals(localPlayer))
+		if (localPlayer == null)
+		{
+			return;
+		}
+		updatePlayerEquipment(localPlayer);
+	}
+
+	private void updatePlayerEquipment(Player player)
+	{
+		Player localPlayer = client.getLocalPlayer();
+		if (!player.equals(localPlayer))
 		{
 			return;
 		}
 
-		updatePlayerEquipment(KitType.HELMET, config.getHelmetId());
-		updatePlayerEquipment(KitType.CAPE, config.getCapeId());
-		updatePlayerEquipment(KitType.AMULET, config.getAmuletId());
-		updatePlayerEquipment(KitType.WEAPON, config.getWeaponId());
-		updatePlayerEquipment(KitType.TORSO, config.getTorsoId());
-		updatePlayerEquipment(KitType.SHIELD, config.getShieldId());
-		updatePlayerEquipment(KitType.LEGS, config.getLegsId());
-		updatePlayerEquipment(KitType.HEAD, config.getHeadId());
-		updatePlayerEquipment(KitType.HANDS, config.getHandsId());
-		updatePlayerEquipment(KitType.BOOTS, config.getBootsId());
-		updatePlayerEquipment(KitType.JAW, config.getJawId());
-		log.debug("Updated appearance | player: {}", event.getPlayer().getName());
+		for (KitType kitType : KitType.values())
+		{
+			if (TransmogPlugin.getKIT_TYPE_BLACKLIST().contains(kitType))
+			{
+				continue;
+			}
+			int equipmentId = currentEquipmentSet != null ? currentEquipmentSet.getEquipmentSlotIdByKitType(kitType) : 0;
+			changePlayerKitTypeEquipmentId(kitType, equipmentId);
+		}
+		log.debug("Updated appearance | player: {}", player.getName());
 	}
 
-	void updatePlayerEquipment(KitType kitType, int newItemId)
+	void changePlayerKitTypeEquipmentId(KitType kitType, int newItemId)
 	{
 		Player localPlayer = client.getLocalPlayer();
 		if (localPlayer == null)
@@ -190,6 +181,7 @@ public class TransmogPlugin extends Plugin
 		log.debug("Update equipment type: {} to id: {}", kitType, newItemId);
 		localPlayer.getPlayerAppearance().getEquipmentIds()[kitType.getIndex()] = convertToEquipmentId(newItemId);
 
+		// TODO: Find out if its possible to check if the helm displays jaw & torso arms (eg. white apron)
 		// Set head/jaw/arms to 0 when equipping helmet/torso equipment to prevent those overriding the appearance
 		switch (kitType)
 		{
@@ -202,6 +194,16 @@ public class TransmogPlugin extends Plugin
 				log.debug("KitType: {} | Settings arms to 0", kitType);
 				localPlayer.getPlayerAppearance().getEquipmentIds()[ARMS_EQUIPMENT_INDEX] = 0;
 				break;
+		}
+	}
+
+	// TODO: This increases login screen load time, find a better location
+	@Subscribe
+	public void onGameStateChanged(GameStateChanged event)
+	{
+		if (event.getGameState() == GameState.LOGIN_SCREEN)
+		{
+			clientThread.invokeLater(() -> transmogPanel.populateSlots());
 		}
 	}
 
