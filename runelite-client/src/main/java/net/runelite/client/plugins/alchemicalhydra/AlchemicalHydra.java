@@ -343,6 +343,10 @@ class AlchemicalHydra
 			log.warn("De-sync switch to: {} | Attacks left: {}", attackStyle, attacksUntilSwitch);
 			switchCurrentAttackStyle(attackStyle, ATTACKS_PER_SWITCH - 1);
 		}
+		else if (currentAttackStyle != attackStyle)
+		{
+			log.warn("This attack: {} did not match current attack: {} | Attacks left: {}", attackStyle, currentAttackStyle, attacksUntilSwitch);
+		}
 	}
 
 	/**
