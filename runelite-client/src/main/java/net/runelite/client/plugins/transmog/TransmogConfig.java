@@ -9,6 +9,7 @@ public interface TransmogConfig extends Config
 {
 	String CONFIG_GROUP = "transmog";
 	String EQUIPMENT_SETS = "equipmentsets";
+	String CURRENT_EQUIPMENT_SET = "currentequipmentset";
 
 	@ConfigItem(
 			keyName = "displayDebugOverlay",

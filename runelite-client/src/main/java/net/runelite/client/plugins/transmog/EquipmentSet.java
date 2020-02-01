@@ -2,12 +2,14 @@ package net.runelite.client.plugins.transmog;
 
 import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.Setter;
 import net.runelite.api.kit.KitType;
 
 @Getter(AccessLevel.PACKAGE)
 public class EquipmentSet
 {
 	private String name;
+
 	private int helmet;
 	private int cape;
 	private int amulet;
@@ -17,6 +19,18 @@ public class EquipmentSet
 	private int legs;
 	private int hands;
 	private int boots;
+
+	@Setter(AccessLevel.PACKAGE)
+	private boolean isJawEnabled;
+
+	@Setter(AccessLevel.PACKAGE)
+	private boolean isHeadEnabled;
+
+	@Setter(AccessLevel.PACKAGE)
+	private boolean isArmsEnabled;
+
+	@Setter(AccessLevel.PACKAGE)
+	private boolean isHandsEnabled;
 
 	public EquipmentSet(String name)
 	{
@@ -98,6 +112,10 @@ public class EquipmentSet
 				", legs=" + legs +
 				", hands=" + hands +
 				", boots=" + boots +
+				", isJawEnabled=" + isJawEnabled +
+				", isHeadEnabled=" + isHeadEnabled +
+				", isArmsEnabled=" + isArmsEnabled +
+				", isHandsEnabled=" + isHandsEnabled +
 				'}';
 	}
 }

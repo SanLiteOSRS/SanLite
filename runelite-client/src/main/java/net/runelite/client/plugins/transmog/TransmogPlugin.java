@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableSet;
 import com.google.inject.Provides;
 import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Client;
 import net.runelite.api.GameState;
@@ -25,8 +26,6 @@ import net.runelite.client.util.ImageUtil;
 
 import javax.inject.Inject;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 
 @Slf4j
@@ -34,6 +33,7 @@ import java.util.Set;
 		name = "Transmog",
 		description = "Allows you to change the look of your gear to other items. This only shows up for yourself",
 		tags = {"gear", "appearance", "character", "look", "armour"},
+		enabledByDefault = false,
 		type = PluginType.SANLITE
 )
 public class TransmogPlugin extends Plugin
@@ -67,9 +67,12 @@ public class TransmogPlugin extends Plugin
 	@Getter
 	private static final Set<KitType> KIT_TYPE_BLACKLIST = ImmutableSet.of(KitType.AMMUNITION, KitType.RING, KitType.HEAD, KitType.JAW);
 
-
 	@Getter
 	private EquipmentSet currentEquipmentSet;
+
+	@Getter
+	@Setter
+	private boolean isCurrentEquipmentSetActive;
 
 	// TODO: Save selected set to config
 
@@ -90,9 +93,9 @@ public class TransmogPlugin extends Plugin
 		final BufferedImage icon = ImageUtil.getResourceStreamFromClass(getClass(), "transmog_icon.png");
 		transmogPanel = injector.getInstance(TransmogPanel.class);
 		transmogButton = NavigationButton.builder()
-				.tooltip("Transmog testy")
+				.tooltip("Transmog")
 				.icon(icon)
-				.priority(7)
+				.priority(6)
 				.panel(transmogPanel)
 				.build();
 
@@ -141,6 +144,7 @@ public class TransmogPlugin extends Plugin
 		{
 			return;
 		}
+		transmogPanel.updateCurrentSetActiveStatus(false);
 		updatePlayerEquipment(localPlayer);
 	}
 
@@ -152,9 +156,10 @@ public class TransmogPlugin extends Plugin
 			return;
 		}
 
+		transmogPanel.updateCurrentSetActiveStatus(true);
 		for (KitType kitType : KitType.values())
 		{
-			if (TransmogPlugin.getKIT_TYPE_BLACKLIST().contains(kitType))
+			if (KIT_TYPE_BLACKLIST.contains(kitType))
 			{
 				continue;
 			}
@@ -181,22 +186,20 @@ public class TransmogPlugin extends Plugin
 		log.debug("Update equipment type: {} to id: {}", kitType, newItemId);
 		localPlayer.getPlayerAppearance().getEquipmentIds()[kitType.getIndex()] = convertToEquipmentId(newItemId);
 
-		// TODO: Find out if its possible to check if the helm displays jaw & torso arms (eg. white apron)
-		// Set head/jaw/arms to 0 when equipping helmet/torso equipment to prevent those overriding the appearance
-		switch (kitType)
-		{
-			case HELMET:
-				log.debug("KitType: {} | Settings head/jaw to 0", kitType);
-				localPlayer.getPlayerAppearance().getEquipmentIds()[KitType.HEAD.getIndex()] = 0;
-				localPlayer.getPlayerAppearance().getEquipmentIds()[KitType.JAW.getIndex()] = 0;
-				break;
-			case TORSO:
-				log.debug("KitType: {} | Settings arms to 0", kitType);
-				localPlayer.getPlayerAppearance().getEquipmentIds()[ARMS_EQUIPMENT_INDEX] = 0;
-				break;
-		}
+		if (!currentEquipmentSet.isJawEnabled())
+			localPlayer.getPlayerAppearance().getEquipmentIds()[KitType.JAW.getIndex()] = 0;
+
+		if (!currentEquipmentSet.isHeadEnabled())
+			localPlayer.getPlayerAppearance().getEquipmentIds()[KitType.HEAD.getIndex()] = 0;
+
+		if (!currentEquipmentSet.isArmsEnabled())
+			localPlayer.getPlayerAppearance().getEquipmentIds()[ARMS_EQUIPMENT_INDEX] = 0;
+
+		if (!currentEquipmentSet.isHandsEnabled())
+			localPlayer.getPlayerAppearance().getEquipmentIds()[KitType.HANDS.getIndex()] = 0;
 	}
 
+	// TODO: Load after login if the plugin was initially disabled
 	// TODO: This increases login screen load time, find a better location
 	@Subscribe
 	public void onGameStateChanged(GameStateChanged event)
@@ -204,6 +207,7 @@ public class TransmogPlugin extends Plugin
 		if (event.getGameState() == GameState.LOGIN_SCREEN)
 		{
 			clientThread.invokeLater(() -> transmogPanel.populateSlots());
+			clientThread.invokeLater(() -> transmogPanel.populateEquipmentSlotsForCurrentSet());
 		}
 	}
 
@@ -226,39 +230,5 @@ public class TransmogPlugin extends Plugin
 			return itemId + 512;
 		}
 		return -1;
-	}
-
-	int convertToItemId(int equipmentId)
-	{
-		if (equipmentId >= 256 && equipmentId < 512)
-		{
-			return equipmentId - 256;
-		}
-		else if (equipmentId >= 512)
-		{
-			return equipmentId - 512;
-		}
-		return -1;
-	}
-
-	List<Integer> convertIds(int[] equipment)
-	{
-		List<Integer> equipmentList = new ArrayList<>();
-		for (int id : equipment)
-		{
-			if (id >= 256 && id < 512)
-			{
-				equipmentList.add(id - 256);
-				continue;
-			}
-			else if (id >= 512)
-			{
-				equipmentList.add(id - 512);
-				continue;
-			}
-			equipmentList.add(id);
-		}
-
-		return equipmentList;
 	}
 }

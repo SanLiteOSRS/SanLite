@@ -39,7 +39,8 @@ public class EquipmentSlot extends JComboBox<ComboBoxIconEntry>
 				null
 		);
 
-		setPreferredSize(new Dimension(200, 42));
+		setPreferredSize(new Dimension(205, 42));
+		setMaximumSize(new Dimension(205, 42));
 		setBackground(ColorScheme.DARK_GRAY_COLOR);
 		setRenderer(new ComboBoxListRenderer());
 		addItem(emptyEquipmentSlot);

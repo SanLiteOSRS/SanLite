@@ -39,11 +39,13 @@ public class TransmogDebugOverlay extends Overlay
 {
 	private final Client client;
 	private final PanelComponent panelComponent = new PanelComponent();
+	private final TransmogPlugin plugin;
 
 	@Inject
-	TransmogDebugOverlay(Client client)
+	TransmogDebugOverlay(Client client, TransmogPlugin plugin)
 	{
 		this.client = client;
+		this.plugin = plugin;
 		panelComponent.setPreferredSize(new Dimension(110, 0));
 		setPosition(OverlayPosition.BOTTOM_RIGHT);
 	}
@@ -126,6 +128,35 @@ public class TransmogDebugOverlay extends Overlay
 					.left("Jaw")
 					.right("" + equipmentIds[11])
 					.build());
+
+			panelComponent.getChildren().add(LineComponent.builder()
+					.left("Current set active")
+					.right("" + plugin.isCurrentEquipmentSetActive())
+					.build());
+
+			EquipmentSet equipmentSet = plugin.getCurrentEquipmentSet();
+			if (equipmentSet != null)
+			{
+				panelComponent.getChildren().add(LineComponent.builder()
+						.left("Display jaw")
+						.right("" + equipmentSet.isJawEnabled())
+						.build());
+
+				panelComponent.getChildren().add(LineComponent.builder()
+						.left("Display head")
+						.right("" + equipmentSet.isHeadEnabled())
+						.build());
+
+				panelComponent.getChildren().add(LineComponent.builder()
+						.left("Display arms")
+						.right("" + equipmentSet.isArmsEnabled())
+						.build());
+
+				panelComponent.getChildren().add(LineComponent.builder()
+						.left("Display hands")
+						.right("" + equipmentSet.isHandsEnabled())
+						.build());
+			}
 		}
 
 		return panelComponent.render(graphics);
