@@ -107,8 +107,8 @@ public class AlchemicalHydraDebugOverlay extends Overlay
 					.build());
 
 			panelComponent.getChildren().add(LineComponent.builder()
-					.left("Recent projectile id")
-					.right("" + alchemicalHydra.getRecentProjectileId())
+					.left("Last animation id")
+					.right("" + alchemicalHydra.getLastAnimationId())
 					.build());
 
 			panelComponent.getChildren().add(LineComponent.builder()

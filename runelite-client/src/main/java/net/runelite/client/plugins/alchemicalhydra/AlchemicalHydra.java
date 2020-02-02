@@ -107,14 +107,14 @@ class AlchemicalHydra
 
 	@Getter
 	@Setter
-	private int recentProjectileId;
+	private int lastAnimationId;
 
 	AlchemicalHydra(NPC npc)
 	{
 		this.npc = npc;
 		this.lastAttackTick = -100;
 		this.nextAttackTick = -100;
-		this.recentProjectileId = -1;
+		this.lastAnimationId = -1;
 		this.attacksUntilSwitch = ATTACKS_PER_SWITCH;
 		this.attacksUntilSpecialAttack = ATTACKS_PER_INITIAL_SPECIAL_ATTACK;
 		this.currentPhase = Phase.GREEN;
@@ -137,7 +137,7 @@ class AlchemicalHydra
 				projectileId == ProjectileID.ALCHEMICAL_HYDRA_FIRE;
 	}
 
-	boolean isSpecialAttack(int graphicsObjectId)
+	boolean isSpecialAttackGraphicsObject(int graphicsObjectId)
 	{
 		return graphicsObjectId == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_BEFORE_LANDING ||
 				graphicsObjectId == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_1 ||
@@ -152,6 +152,41 @@ class AlchemicalHydra
 				graphicsObjectId == GraphicID.ALCHEMICAL_HYDRA_LIGHTNING_ATTACK_2 ||
 				graphicsObjectId == GraphicID.ALCHEMICAL_HYDRA_FIRE_ATTACK;
 	}
+
+	boolean isAlchemicalHydraAnimation(int animationId)
+	{
+		return isSpecialAttackAnimation(animationId) || isRegularAttackAnimation(animationId) ||
+				isPhaseSwitchAnimation(animationId);
+	}
+
+	boolean isSpecialAttackAnimation(int animationId)
+	{
+		return animationId == AnimationID.ALCHEMICAL_HYDRA_GREEN_PHASE_POISON_ATTACK ||
+				animationId == AnimationID.ALCHEMICAL_HYDRA_BLUE_PHASE_LIGHTNING_ATTACK ||
+				animationId == AnimationID.ALCHEMICAL_HYDRA_RED_PHASE_FIRE_ATTACK ||
+				animationId == AnimationID.ALCHEMICAL_HYDRA_JAD_PHASE_POISON_ATTACK ||
+				animationId == AnimationID.ALCHEMICAL_HYDRA_JAD_PHASE_POISON_ATTACK_2;
+	}
+
+	boolean isRegularAttackAnimation(int animationId)
+	{
+		return animationId == AnimationID.ALCHEMICAL_HYDRA_GREEN_PHASE_MAGIC_ATTACK ||
+				animationId == AnimationID.ALCHEMICAL_HYDRA_GREEN_PHASE_RANGED_ATTACK ||
+				animationId == AnimationID.ALCHEMICAL_HYDRA_BLUE_PHASE_MAGIC_ATTACK ||
+				animationId == AnimationID.ALCHEMICAL_HYDRA_BLUE_PHASE_RANGED_ATTACK ||
+				animationId == AnimationID.ALCHEMICAL_HYDRA_RED_PHASE_MAGIC_ATTACK ||
+				animationId == AnimationID.ALCHEMICAL_HYDRA_RED_PHASE_RANGED_ATTACK ||
+				animationId == AnimationID.ALCHEMICAL_HYDRA_JAD_PHASE_MAGIC_ATTACK ||
+				animationId == AnimationID.ALCHEMICAL_HYDRA_JAD_PHASE_RANGED_ATTACK;
+	}
+
+	boolean isPhaseSwitchAnimation(int animationId)
+	{
+		return animationId == AnimationID.ALCHEMICAL_HYDRA_SWITCH_TO_BLUE_PHASE ||
+				animationId == AnimationID.ALCHEMICAL_HYDRA_SWITCH_TO_RED_PHASE ||
+				animationId == AnimationID.ALCHEMICAL_HYDRA_SWITCH_TO_JAD_PHASE;
+	}
+
 
 	boolean isPoisonSplatSpecialAttackBeforeLanding(int graphicsObjectId)
 	{
@@ -240,9 +275,10 @@ class AlchemicalHydra
 		currentSpecialAttackStyle = null;
 	}
 
-	void onAttack(int projectileId, int tickCount)
+	void onAttack(int animationId, int tickCount)
 	{
-		recentProjectileId = projectileId;
+		log.debug("Tick: {} | Regular attack: {} | Style: {} | Next: {}", tickCount, animationId, animationIdToAttackStyle(animationId), nextAttackTick);
+		lastAnimationId = animationId;
 		lastAttackTick = tickCount;
 
 		// Count ranged & magic attacks as three attacks during jad phase (attack style switches every other attack)
@@ -251,7 +287,7 @@ class AlchemicalHydra
 			nextAttackTick = tickCount + ENRAGED_ATTACK_RATE;
 			attacksUntilSwitch -= 3;
 			attacksUntilSpecialAttack -= 3;
-			checkAttackStyleSwitch(projectileIdToAttackStyle(projectileId));
+			checkAttackStyleSwitch(animationIdToAttackStyle(animationId));
 			return;
 		}
 
@@ -259,55 +295,61 @@ class AlchemicalHydra
 		nextAttackTick = tickCount + ATTACK_RATE;
 		attacksUntilSwitch--;
 		attacksUntilSpecialAttack--;
-		checkAttackStyleSwitch(projectileIdToAttackStyle(projectileId));
+		checkAttackStyleSwitch(animationIdToAttackStyle(animationId));
 	}
 
 	/**
 	 * Handles the Alchemical Hydra's special attack for the current phase.
 	 *
-	 * @param id        projectile/animation id
-	 * @param tickCount current game tick
+	 * @param animationId animation id
+	 * @param tickCount   current game tick
 	 */
-	void onSpecialAttack(int id, int tickCount)
+	void onSpecialAttack(int animationId, int tickCount)
 	{
-		// In rare occasions the poison special attack during jad phase will not spawn a projectile
-		// So we use the jad phase poison attack animation id instead to make sure the attack is detected
-		if (currentPhase == Phase.JAD && id == AnimationID.ALCHEMICAL_HYDRA_JAD_PHASE_POISON_ATTACK)
+		switch (animationId)
 		{
-			// Jad poison attack uses enraged attack rate
-			attacksUntilSpecialAttack = ATTACKS_PER_SPECIAL_ATTACK * 3;
-			nextAttackTick = tickCount + ENRAGED_ATTACK_RATE;
-			recentProjectileId = ProjectileID.ALCHEMICAL_HYDRA_POISON;
-			lastAttackTick = tickCount;
-			currentSpecialAttackStyle = null;
-			return;
-		}
-		else if (currentPhase == Phase.RED)
-		{
-			attacksUntilSpecialAttack = ATTACKS_PER_SPECIAL_ATTACK;
+			case AnimationID.ALCHEMICAL_HYDRA_GREEN_PHASE_POISON_ATTACK:
+			case AnimationID.ALCHEMICAL_HYDRA_BLUE_PHASE_LIGHTNING_ATTACK:
+			case AnimationID.ALCHEMICAL_HYDRA_JAD_PHASE_POISON_ATTACK:
+			case AnimationID.ALCHEMICAL_HYDRA_JAD_PHASE_POISON_ATTACK_2:
+				log.debug("Tick: {} | Poison/lightning attack: {} | Next: {}", tickCount, animationId, nextAttackTick);
+				// Jad phase has a faster attack rate
+				resetSpecialAttack(
+						currentPhase.equals(Phase.JAD) ? ATTACKS_PER_SPECIAL_ATTACK * 3 : ATTACKS_PER_SPECIAL_ATTACK,
+						currentPhase.equals(Phase.JAD) ? tickCount + ENRAGED_ATTACK_RATE : tickCount + ATTACK_RATE,
+						tickCount, animationId);
+				break;
+			case AnimationID.ALCHEMICAL_HYDRA_RED_PHASE_FIRE_ATTACK:
+				// Initial fire special to spawn the fire prison
+				if (lastAnimationId != AnimationID.ALCHEMICAL_HYDRA_RED_PHASE_FIRE_ATTACK)
+				{
+					resetSpecialAttack(ATTACKS_PER_SPECIAL_ATTACK, tickCount + ATTACK_RATE, tickCount, animationId);
+					log.debug("Tick: {} | Initial fire attack: {} | Next: {}", tickCount, animationId, nextAttackTick);
+					return;
+				}
 
-			// Initial fire special to spawn the fire prison
-			if (recentProjectileId != ProjectileID.ALCHEMICAL_HYDRA_FIRE)
-			{
-				recentProjectileId = id;
+				// Ignore second fire prison attack
+				if (tickCount - lastAttackTick < 5)
+				{
+					log.debug("Tick: {} | Ticks since last attack: {} | anim: {} | Next: {}", tickCount, tickCount - lastAttackTick, animationId, nextAttackTick);
+					return;
+				}
+
+				// Second fire special that follows the player
 				lastAttackTick = tickCount;
-				currentSpecialAttackStyle = null;
-				nextAttackTick = tickCount + ATTACK_RATE;
-				return;
-			}
-
-			// Second fire special that follows the player
-			nextAttackTick = tickCount + DELAY_AFTER_FIRE_SPECIAL_ATTACK;
+				nextAttackTick = tickCount + DELAY_AFTER_FIRE_SPECIAL_ATTACK;
+				lastAnimationId = animationId;
+				log.debug("Tick: {} | Second fire attack: {} | Next: {}", tickCount, animationId, nextAttackTick);
+				break;
 		}
-		else
-		{
-			// Poison & lightning special use regular attack rate
-			attacksUntilSpecialAttack = ATTACKS_PER_SPECIAL_ATTACK;
-			nextAttackTick = tickCount + ATTACK_RATE;
-		}
+	}
 
-		recentProjectileId = id;
+	void resetSpecialAttack(int attacksTillSpecial, int nextAttackTick, int tickCount, int animationId)
+	{
+		attacksUntilSpecialAttack = attacksTillSpecial;
+		this.nextAttackTick = nextAttackTick;
 		lastAttackTick = tickCount;
+		lastAnimationId = animationId;
 		currentSpecialAttackStyle = null;
 	}
 
@@ -328,20 +370,28 @@ class AlchemicalHydra
 		if (currentAttackStyle == null)
 		{
 			currentAttackStyle = attackStyle;
+			log.debug("Set current attack style: {} ", attackStyle);
+
+		}
+		// Correct attacks until switch value when de-sync might occur (eg. plugin enabled during kill)
+		else if (currentAttackStyle != attackStyle)
+		{
+			int attacksPerSwitch = currentPhase.equals(Phase.JAD) ? ATTACKS_PER_SWITCH - 3 : ATTACKS_PER_SWITCH - 1;
+			AttackStyle newJadPhaseAttackStyle = attackStyle.equals(AttackStyle.MAGIC) ? AttackStyle.RANGED : AttackStyle.MAGIC;
+
+			switchCurrentAttackStyle(currentPhase.equals(Phase.JAD) ? newJadPhaseAttackStyle : attackStyle, attacksPerSwitch);
+			log.warn("De-sync switch to: {} | Attacks left: {}", currentPhase.equals(Phase.JAD) ?
+					newJadPhaseAttackStyle : attackStyle, attacksUntilSwitch);
 		}
 		else if (attacksUntilSwitch <= 0 && currentAttackStyle == AttackStyle.MAGIC)
 		{
 			switchCurrentAttackStyle(AttackStyle.RANGED, ATTACKS_PER_SWITCH);
+			log.debug("Switched to attack style: {} ", AttackStyle.RANGED);
 		}
-		else if (attacksUntilSwitch <= 0 && currentAttackStyle == AttackStyle.RANGED)
+		else if (attacksUntilSwitch <= 0)
 		{
 			switchCurrentAttackStyle(AttackStyle.MAGIC, ATTACKS_PER_SWITCH);
-		}
-		// Correct attacks until switch value when de-sync might occur (eg. plugin enabled during kill)
-		else if (attacksUntilSwitch > 0 && currentAttackStyle != attackStyle)
-		{
-			log.warn("De-sync switch to: {} | Attacks left: {}", attackStyle, attacksUntilSwitch);
-			switchCurrentAttackStyle(attackStyle, ATTACKS_PER_SWITCH - 1);
+			log.debug("Switched to attack style: {} ", AttackStyle.MAGIC);
 		}
 	}
 
@@ -375,12 +425,13 @@ class AlchemicalHydra
 	}
 
 	/**
-	 * Checks for phase switches through animation id's. If this is the jad phase it will change
-	 * the next attack style when necessary.
+	 * Checks what the next phase is for the given animation id
+	 *
+	 * @param animationId phase switch animation id
+	 * @param tickCount   current game tick
 	 */
-	void checkAlchemicalHydraPhaseSwitch(int tickCount)
+	void checkAlchemicalHydraPhaseSwitch(int animationId, int tickCount)
 	{
-		int animationId = npc.getAnimation();
 		if (animationId == AnimationID.ALCHEMICAL_HYDRA_SWITCH_TO_BLUE_PHASE && currentPhase != Phase.BLUE)
 		{
 			switchPhase(Phase.BLUE, tickCount);
@@ -401,32 +452,51 @@ class AlchemicalHydra
 	void checkGraphicObjects(List<GraphicsObject> graphicsObjects)
 	{
 		aoeEffects = graphicsObjects.stream()
-				.filter(x -> isSpecialAttack(x.getId()))
+				.filter(x -> isSpecialAttackGraphicsObject(x.getId()))
 				.collect(Collectors.toList());
 	}
 
 	/**
-	 * Get an Alchemical Hydra attack style based on the given projectile id.
+	 * Get an Alchemical Hydra attack style based on the given animationId id.
 	 *
-	 * @param projectileId alchemical hydra projectile id
+	 * @param animationId alchemical hydra animation id
 	 * @return Alchemical Hydra attack style
 	 */
-	private AttackStyle projectileIdToAttackStyle(int projectileId)
+	private AttackStyle animationIdToAttackStyle(int animationId)
+	{
+		switch (animationId)
+		{
+			case AnimationID.ALCHEMICAL_HYDRA_GREEN_PHASE_RANGED_ATTACK:
+			case AnimationID.ALCHEMICAL_HYDRA_BLUE_PHASE_RANGED_ATTACK:
+			case AnimationID.ALCHEMICAL_HYDRA_RED_PHASE_RANGED_ATTACK:
+			case AnimationID.ALCHEMICAL_HYDRA_JAD_PHASE_RANGED_ATTACK:
+				return AttackStyle.RANGED;
+			case AnimationID.ALCHEMICAL_HYDRA_GREEN_PHASE_MAGIC_ATTACK:
+			case AnimationID.ALCHEMICAL_HYDRA_BLUE_PHASE_MAGIC_ATTACK:
+			case AnimationID.ALCHEMICAL_HYDRA_RED_PHASE_MAGIC_ATTACK:
+			case AnimationID.ALCHEMICAL_HYDRA_JAD_PHASE_MAGIC_ATTACK:
+				return AttackStyle.MAGIC;
+			default:
+				return null;
+		}
+	}
+
+	int projectileIdToAnimationId(int projectileId)
 	{
 		switch (projectileId)
 		{
-			case ProjectileID.ALCHEMICAL_HYDRA_RANGED:
-				return AttackStyle.RANGED;
 			case ProjectileID.ALCHEMICAL_HYDRA_MAGIC:
-				return AttackStyle.MAGIC;
+				return AnimationID.ALCHEMICAL_HYDRA_GREEN_PHASE_MAGIC_ATTACK;
+			case ProjectileID.ALCHEMICAL_HYDRA_RANGED:
+				return AnimationID.ALCHEMICAL_HYDRA_GREEN_PHASE_RANGED_ATTACK;
 			case ProjectileID.ALCHEMICAL_HYDRA_POISON:
-				return AttackStyle.POISON;
+				return AnimationID.ALCHEMICAL_HYDRA_GREEN_PHASE_POISON_ATTACK;
 			case ProjectileID.ALCHEMICAL_HYDRA_LIGHTNING:
-				return AttackStyle.LIGHTNING;
+				return AnimationID.ALCHEMICAL_HYDRA_BLUE_PHASE_LIGHTNING_ATTACK;
 			case ProjectileID.ALCHEMICAL_HYDRA_FIRE:
-				return AttackStyle.FIRE;
+				return AnimationID.ALCHEMICAL_HYDRA_RED_PHASE_FIRE_ATTACK;
 			default:
-				return null;
+				return -1;
 		}
 	}
 }

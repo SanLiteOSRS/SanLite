@@ -26,6 +26,7 @@ package net.runelite.client.plugins.alchemicalhydra;
 
 import com.google.inject.Provides;
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.*;
 import net.runelite.api.events.*;
 import net.runelite.client.callback.ClientThread;
@@ -40,15 +41,13 @@ import net.runelite.client.ui.overlay.OverlayManager;
 import javax.inject.Inject;
 import java.util.Arrays;
 
-import static net.runelite.client.plugins.alchemicalhydra.AlchemicalHydra.ATTACK_RATE;
-import static net.runelite.client.plugins.alchemicalhydra.AlchemicalHydra.ENRAGED_ATTACK_RATE;
-
 @PluginDescriptor(
 		name = "Alchemical Hydra",
 		description = "Displays Alchemical Hydra's next attack style and other encounter mechanics",
 		tags = {"combat", "overlay", "pve", "pvm", "hydra", "alchemical", "boss", "slayer", "timer"},
 		type = PluginType.SANLITE_USE_AT_OWN_RISK
 )
+@Slf4j
 public class AlchemicalHydraPlugin extends Plugin
 {
 
@@ -172,17 +171,45 @@ public class AlchemicalHydraPlugin extends Plugin
 		}
 
 		int animationId = event.getActor().getAnimation();
-		if (animationId == AnimationID.ALCHEMICAL_HYDRA_JAD_PHASE_POISON_ATTACK &&
-				alchemicalHydra.getAttacksUntilSpecialAttack() == 0)
+		if (!alchemicalHydra.isAlchemicalHydraAnimation(animationId))
+		{
+			return;
+		}
+
+		// Phase switch
+		if (alchemicalHydra.isPhaseSwitchAnimation(animationId))
+		{
+			alchemicalHydra.checkAlchemicalHydraPhaseSwitch(animationId, client.getTickCount());
+			return;
+		}
+
+		// Special attacks
+		if (alchemicalHydra.getAttacksUntilSpecialAttack() == 0 && alchemicalHydra.isSpecialAttackAnimation(animationId))
 		{
 			alchemicalHydra.onSpecialAttack(animationId, client.getTickCount());
+			return;
+		}
+
+		// Allow the second part of the fire special attack
+		if (animationId == AnimationID.ALCHEMICAL_HYDRA_RED_PHASE_FIRE_ATTACK)
+		{
+			alchemicalHydra.onSpecialAttack(animationId, client.getTickCount());
+			return;
+		}
+
+		// Regular attacks
+		if (alchemicalHydra.isRegularAttackAnimation(animationId))
+		{
+			alchemicalHydra.onAttack(animationId, client.getTickCount());
 		}
 	}
 
 	@Subscribe
 	public void onProjectileMoved(ProjectileMoved event)
 	{
-		if (inHydraInstance() && alchemicalHydra != null)
+		// Attack animations can be cancelled by the phase switching animation
+		// So we do a backup check to make sure all attacks are registered
+		if (inHydraInstance() && alchemicalHydra != null && client.getTickCount() > alchemicalHydra.getNextAttackTick())
 		{
 			Projectile projectile = event.getProjectile();
 			int projectileId = projectile.getId();
@@ -194,22 +221,27 @@ public class AlchemicalHydraPlugin extends Plugin
 
 			// The event fires once before the projectile starts moving,
 			// and we only want to check each projectile once
-			if (client.getGameCycle() >= projectile.getStartMovementCycle())
+			if (client.getGameCycle() >= projectile.getStartMovementCycle() + 20)
 			{
+				log.debug("Tick: {} | Projectile fallback denied: {} | gameCycle: {} | start: {}", client.getTickCount(), projectileId, client.getGameCycle(), projectile.getStartMovementCycle());
 				return;
 			}
 
+			log.debug("Tick: {} | Attack passed first checks: {}", client.getTickCount(), projectileId);
 			int ticksSinceLastAttack = client.getTickCount() - alchemicalHydra.getLastAttackTick();
-			int attackRate = alchemicalHydra.getCurrentPhase() == AlchemicalHydra.Phase.JAD ? ENRAGED_ATTACK_RATE : ATTACK_RATE;
+			int attackRate = alchemicalHydra.getCurrentPhase() == AlchemicalHydra.Phase.JAD ?
+					AlchemicalHydra.ENRAGED_ATTACK_RATE : AlchemicalHydra.ATTACK_RATE;
 			if (ticksSinceLastAttack >= attackRate || alchemicalHydra.getLastAttackTick() == -100)
 			{
 				if (AlchemicalHydra.isAlchemicalHydraSpecialAttackProjectile(projectileId))
 				{
-					alchemicalHydra.onSpecialAttack(projectileId, client.getTickCount());
+					log.debug("Tick: {} | Fallback special attack: {} | Next: {}", client.getTickCount(), projectileId, alchemicalHydra.getNextAttackTick());
+					alchemicalHydra.onSpecialAttack(alchemicalHydra.projectileIdToAnimationId(projectileId), client.getTickCount());
 					return;
 				}
 
-				alchemicalHydra.onAttack(projectileId, client.getTickCount());
+				log.debug("Tick: {} | Fallback regular attack: {} | Next: {}", client.getTickCount(), projectileId, alchemicalHydra.getNextAttackTick());
+				alchemicalHydra.onAttack(alchemicalHydra.projectileIdToAnimationId(projectileId), client.getTickCount());
 			}
 		}
 	}
@@ -321,7 +353,6 @@ public class AlchemicalHydraPlugin extends Plugin
 			{
 				alchemicalHydra.checkGraphicObjects(client.getGraphicsObjects());
 				alchemicalHydra.checkAlchemicalHydraSpecialAttacks(client.getTickCount());
-				alchemicalHydra.checkAlchemicalHydraPhaseSwitch(client.getTickCount());
 			}
 			if (chemicalVents != null)
 			{
