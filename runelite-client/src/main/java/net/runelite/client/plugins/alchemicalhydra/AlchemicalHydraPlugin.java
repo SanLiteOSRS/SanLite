@@ -200,7 +200,7 @@ public class AlchemicalHydraPlugin extends Plugin
 		// Regular attacks
 		if (alchemicalHydra.isRegularAttackAnimation(animationId))
 		{
-			alchemicalHydra.onAttack(animationId, client.getTickCount());
+			alchemicalHydra.onAttack(animationId, client.getTickCount(), false);
 		}
 	}
 
@@ -209,21 +209,21 @@ public class AlchemicalHydraPlugin extends Plugin
 	{
 		// Attack animations can be cancelled by the phase switching animation
 		// So we do a backup check to make sure all attacks are registered
-		if (inHydraInstance() && alchemicalHydra != null && client.getTickCount() > alchemicalHydra.getNextAttackTick())
+		if (inHydraInstance() && alchemicalHydra != null)
 		{
 			Projectile projectile = event.getProjectile();
 			int projectileId = projectile.getId();
 
-			if (!AlchemicalHydra.isAlchemicalHydraProjectile(projectileId))
+			// During the Jad phase animations can only be overridden by the death animation
+			if (!AlchemicalHydra.isAlchemicalHydraRegularAttackProjectile(projectileId) ||
+					alchemicalHydra.getCurrentPhase().equals(AlchemicalHydra.Phase.JAD))
 			{
 				return;
 			}
 
-			// The event fires once before the projectile starts moving,
-			// and we only want to check each projectile once
-			if (client.getGameCycle() >= projectile.getStartMovementCycle() + 20)
+			// If no attack was detected 1 tick after the predicted next attack tick use this projectile instead
+			if (client.getTickCount() < alchemicalHydra.getLastAttackTick() + AlchemicalHydra.ATTACK_RATE + 1)
 			{
-				log.debug("Tick: {} | Projectile fallback denied: {} | gameCycle: {} | start: {}", client.getTickCount(), projectileId, client.getGameCycle(), projectile.getStartMovementCycle());
 				return;
 			}
 
@@ -233,15 +233,8 @@ public class AlchemicalHydraPlugin extends Plugin
 					AlchemicalHydra.ENRAGED_ATTACK_RATE : AlchemicalHydra.ATTACK_RATE;
 			if (ticksSinceLastAttack >= attackRate || alchemicalHydra.getLastAttackTick() == -100)
 			{
-				if (AlchemicalHydra.isAlchemicalHydraSpecialAttackProjectile(projectileId))
-				{
-					log.debug("Tick: {} | Fallback special attack: {} | Next: {}", client.getTickCount(), projectileId, alchemicalHydra.getNextAttackTick());
-					alchemicalHydra.onSpecialAttack(alchemicalHydra.projectileIdToAnimationId(projectileId), client.getTickCount());
-					return;
-				}
-
 				log.debug("Tick: {} | Fallback regular attack: {} | Next: {}", client.getTickCount(), projectileId, alchemicalHydra.getNextAttackTick());
-				alchemicalHydra.onAttack(alchemicalHydra.projectileIdToAnimationId(projectileId), client.getTickCount());
+				alchemicalHydra.onAttack(alchemicalHydra.projectileIdToAnimationId(projectileId), client.getTickCount(), true);
 			}
 		}
 	}

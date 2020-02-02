@@ -121,20 +121,10 @@ class AlchemicalHydra
 		this.aoeEffects = new ArrayList<>();
 	}
 
-	static boolean isAlchemicalHydraProjectile(int projectileId)
+	static boolean isAlchemicalHydraRegularAttackProjectile(int projectileId)
 	{
 		return projectileId == ProjectileID.ALCHEMICAL_HYDRA_RANGED ||
-				projectileId == ProjectileID.ALCHEMICAL_HYDRA_MAGIC ||
-				projectileId == ProjectileID.ALCHEMICAL_HYDRA_POISON ||
-				projectileId == ProjectileID.ALCHEMICAL_HYDRA_LIGHTNING ||
-				projectileId == ProjectileID.ALCHEMICAL_HYDRA_FIRE;
-	}
-
-	static boolean isAlchemicalHydraSpecialAttackProjectile(int projectileId)
-	{
-		return projectileId == ProjectileID.ALCHEMICAL_HYDRA_POISON ||
-				projectileId == ProjectileID.ALCHEMICAL_HYDRA_LIGHTNING ||
-				projectileId == ProjectileID.ALCHEMICAL_HYDRA_FIRE;
+				projectileId == ProjectileID.ALCHEMICAL_HYDRA_MAGIC;
 	}
 
 	boolean isSpecialAttackGraphicsObject(int graphicsObjectId)
@@ -275,7 +265,7 @@ class AlchemicalHydra
 		currentSpecialAttackStyle = null;
 	}
 
-	void onAttack(int animationId, int tickCount)
+	void onAttack(int animationId, int tickCount, boolean fallbackAttack)
 	{
 		log.debug("Tick: {} | Regular attack: {} | Style: {} | Next: {}", tickCount, animationId, animationIdToAttackStyle(animationId), nextAttackTick);
 		lastAnimationId = animationId;
@@ -284,17 +274,22 @@ class AlchemicalHydra
 		// Count ranged & magic attacks as three attacks during jad phase (attack style switches every other attack)
 		if (currentPhase == Phase.JAD)
 		{
-			nextAttackTick = tickCount + ENRAGED_ATTACK_RATE;
-			attacksUntilSwitch -= 3;
-			attacksUntilSpecialAttack -= 3;
-			checkAttackStyleSwitch(animationIdToAttackStyle(animationId));
+			updateAttackValues(tickCount + ENRAGED_ATTACK_RATE, attacksUntilSwitch - 3, attacksUntilSpecialAttack - 3, animationId);
 			return;
 		}
 
 		// All other ranged/magic attacks
-		nextAttackTick = tickCount + ATTACK_RATE;
-		attacksUntilSwitch--;
-		attacksUntilSpecialAttack--;
+		// When a fallback attack is triggered the next attack tick is already increased by the phase switch
+		int attackRate = fallbackAttack ? 0 : ATTACK_RATE;
+		int attacksTillSpecial = fallbackAttack ? attacksUntilSpecialAttack : attacksUntilSpecialAttack - 1;
+		updateAttackValues(tickCount + attackRate, attacksUntilSwitch - 1, attacksTillSpecial, animationId);
+	}
+
+	private void updateAttackValues(int nextAttackTick, int attacksUntilSwitch, int attacksTillSpecial, int animationId)
+	{
+		this.nextAttackTick = nextAttackTick;
+		this.attacksUntilSwitch = attacksUntilSwitch;
+		this.attacksUntilSpecialAttack = attacksTillSpecial;
 		checkAttackStyleSwitch(animationIdToAttackStyle(animationId));
 	}
 
