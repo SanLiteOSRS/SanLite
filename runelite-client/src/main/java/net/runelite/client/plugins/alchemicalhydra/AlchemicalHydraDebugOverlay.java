@@ -77,6 +77,11 @@ public class AlchemicalHydraDebugOverlay extends Overlay
 					.build());
 
 			panelComponent.getChildren().add(LineComponent.builder()
+					.left("Last attack style")
+					.right("" + alchemicalHydra.getLastAttackStyle())
+					.build());
+
+			panelComponent.getChildren().add(LineComponent.builder()
 					.left("Current special attack style")
 					.right("" + alchemicalHydra.getCurrentSpecialAttackStyle())
 					.build());

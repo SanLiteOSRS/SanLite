@@ -79,6 +79,10 @@ class AlchemicalHydra
 
 	@Getter
 	@Setter
+	private AlchemicalHydra.AttackStyle lastAttackStyle;
+
+	@Getter
+	@Setter
 	private AlchemicalHydra.AttackStyle currentSpecialAttackStyle;
 
 	@Getter
@@ -247,15 +251,7 @@ class AlchemicalHydra
 				break;
 			case JAD:
 				// Determine which attack style the Jad phase will start with
-				if (currentAttackStyle == AttackStyle.MAGIC && attacksUntilSwitch != ATTACKS_PER_SWITCH)
-				{
-					currentAttackStyle = AttackStyle.RANGED;
-				}
-				else if (currentAttackStyle == AttackStyle.RANGED && attacksUntilSwitch != ATTACKS_PER_SWITCH)
-				{
-					currentAttackStyle = AttackStyle.MAGIC;
-				}
-
+				currentAttackStyle = determineInitialJadPhaseAttackStyle(lastAttackStyle);
 				currentPhase = Phase.JAD;
 				attacksUntilSwitch = ATTACKS_PER_SWITCH;
 				attacksUntilSpecialAttack = ATTACKS_PER_SPECIAL_ATTACK;
@@ -265,15 +261,39 @@ class AlchemicalHydra
 		currentSpecialAttackStyle = null;
 	}
 
+	private AttackStyle determineInitialJadPhaseAttackStyle(AttackStyle attackStyle)
+	{
+		if (attackStyle == AttackStyle.MAGIC)
+		{
+			log.debug("Determined initial jad attack: {} | Next: {}", AttackStyle.RANGED, nextAttackTick);
+			return AttackStyle.RANGED;
+		}
+		else if (attackStyle == AttackStyle.RANGED)
+		{
+			log.debug("Determined initial jad attack: {} | Next: {}", AttackStyle.MAGIC, nextAttackTick);
+			return AttackStyle.MAGIC;
+		}
+		log.warn("Could not determine initial jad attack | Next: {}", nextAttackTick);
+		return null;
+	}
+
 	void onAttack(int animationId, int tickCount, boolean fallbackAttack)
 	{
 		log.debug("Tick: {} | Regular attack: {} | Style: {} | Next: {}", tickCount, animationId, animationIdToAttackStyle(animationId), nextAttackTick);
 		lastAnimationId = animationId;
 		lastAttackTick = tickCount;
+		lastAttackStyle = animationIdToAttackStyle(animationId);
 
 		// Count ranged & magic attacks as three attacks during jad phase (attack style switches every other attack)
 		if (currentPhase == Phase.JAD)
 		{
+			if (fallbackAttack)
+			{
+				// Redetermine the initial jad attack since the fallback attack occurred after the phase switch
+				currentAttackStyle = determineInitialJadPhaseAttackStyle(lastAttackStyle);
+				log.debug("Tick: {} | Recalculated initial jad attack: {} | Next: {}", tickCount, currentAttackStyle, nextAttackTick);
+				return;
+			}
 			updateAttackValues(tickCount + ENRAGED_ATTACK_RATE, attacksUntilSwitch - 3, attacksUntilSpecialAttack - 3, animationId);
 			return;
 		}
@@ -371,7 +391,7 @@ class AlchemicalHydra
 		// Correct attacks until switch value when de-sync might occur (eg. plugin enabled during kill)
 		else if (currentAttackStyle != attackStyle)
 		{
-			int attacksPerSwitch = currentPhase.equals(Phase.JAD) ? ATTACKS_PER_SWITCH - 3 : ATTACKS_PER_SWITCH - 1;
+			int attacksPerSwitch = currentPhase.equals(Phase.JAD) ? ATTACKS_PER_SWITCH : ATTACKS_PER_SWITCH - 1;
 			AttackStyle newJadPhaseAttackStyle = attackStyle.equals(AttackStyle.MAGIC) ? AttackStyle.RANGED : AttackStyle.MAGIC;
 
 			switchCurrentAttackStyle(currentPhase.equals(Phase.JAD) ? newJadPhaseAttackStyle : attackStyle, attacksPerSwitch);
@@ -484,12 +504,6 @@ class AlchemicalHydra
 				return AnimationID.ALCHEMICAL_HYDRA_GREEN_PHASE_MAGIC_ATTACK;
 			case ProjectileID.ALCHEMICAL_HYDRA_RANGED:
 				return AnimationID.ALCHEMICAL_HYDRA_GREEN_PHASE_RANGED_ATTACK;
-			case ProjectileID.ALCHEMICAL_HYDRA_POISON:
-				return AnimationID.ALCHEMICAL_HYDRA_GREEN_PHASE_POISON_ATTACK;
-			case ProjectileID.ALCHEMICAL_HYDRA_LIGHTNING:
-				return AnimationID.ALCHEMICAL_HYDRA_BLUE_PHASE_LIGHTNING_ATTACK;
-			case ProjectileID.ALCHEMICAL_HYDRA_FIRE:
-				return AnimationID.ALCHEMICAL_HYDRA_RED_PHASE_FIRE_ATTACK;
 			default:
 				return -1;
 		}

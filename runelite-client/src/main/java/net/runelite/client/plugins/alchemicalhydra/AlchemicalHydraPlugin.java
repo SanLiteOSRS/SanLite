@@ -215,8 +215,7 @@ public class AlchemicalHydraPlugin extends Plugin
 			int projectileId = projectile.getId();
 
 			// During the Jad phase animations can only be overridden by the death animation
-			if (!AlchemicalHydra.isAlchemicalHydraRegularAttackProjectile(projectileId) ||
-					alchemicalHydra.getCurrentPhase().equals(AlchemicalHydra.Phase.JAD))
+			if (!AlchemicalHydra.isAlchemicalHydraRegularAttackProjectile(projectileId))
 			{
 				return;
 			}
