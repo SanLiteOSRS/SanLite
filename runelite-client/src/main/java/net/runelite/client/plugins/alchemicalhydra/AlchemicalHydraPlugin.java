@@ -26,7 +26,6 @@ package net.runelite.client.plugins.alchemicalhydra;
 
 import com.google.inject.Provides;
 import lombok.Getter;
-import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.*;
 import net.runelite.api.events.*;
 import net.runelite.client.callback.ClientThread;
@@ -47,7 +46,6 @@ import java.util.Arrays;
 		tags = {"combat", "overlay", "pve", "pvm", "hydra", "alchemical", "boss", "slayer", "timer"},
 		type = PluginType.SANLITE_USE_AT_OWN_RISK
 )
-@Slf4j
 public class AlchemicalHydraPlugin extends Plugin
 {
 
@@ -214,7 +212,6 @@ public class AlchemicalHydraPlugin extends Plugin
 			Projectile projectile = event.getProjectile();
 			int projectileId = projectile.getId();
 
-			// During the Jad phase animations can only be overridden by the death animation
 			if (!AlchemicalHydra.isAlchemicalHydraRegularAttackProjectile(projectileId))
 			{
 				return;
@@ -226,13 +223,11 @@ public class AlchemicalHydraPlugin extends Plugin
 				return;
 			}
 
-			log.debug("Tick: {} | Attack passed first checks: {}", client.getTickCount(), projectileId);
 			int ticksSinceLastAttack = client.getTickCount() - alchemicalHydra.getLastAttackTick();
 			int attackRate = alchemicalHydra.getCurrentPhase() == AlchemicalHydra.Phase.JAD ?
 					AlchemicalHydra.ENRAGED_ATTACK_RATE : AlchemicalHydra.ATTACK_RATE;
 			if (ticksSinceLastAttack >= attackRate || alchemicalHydra.getLastAttackTick() == -100)
 			{
-				log.debug("Tick: {} | Fallback regular attack: {} | Next: {}", client.getTickCount(), projectileId, alchemicalHydra.getNextAttackTick());
 				alchemicalHydra.onAttack(alchemicalHydra.projectileIdToAnimationId(projectileId), client.getTickCount(), true);
 			}
 		}

@@ -265,12 +265,10 @@ class AlchemicalHydra
 	{
 		if (attackStyle == AttackStyle.MAGIC)
 		{
-			log.debug("Determined initial jad attack: {} | Next: {}", AttackStyle.RANGED, nextAttackTick);
 			return AttackStyle.RANGED;
 		}
 		else if (attackStyle == AttackStyle.RANGED)
 		{
-			log.debug("Determined initial jad attack: {} | Next: {}", AttackStyle.MAGIC, nextAttackTick);
 			return AttackStyle.MAGIC;
 		}
 		log.warn("Could not determine initial jad attack | Next: {}", nextAttackTick);
@@ -279,7 +277,6 @@ class AlchemicalHydra
 
 	void onAttack(int animationId, int tickCount, boolean fallbackAttack)
 	{
-		log.debug("Tick: {} | Regular attack: {} | Style: {} | Next: {}", tickCount, animationId, animationIdToAttackStyle(animationId), nextAttackTick);
 		lastAnimationId = animationId;
 		lastAttackTick = tickCount;
 		lastAttackStyle = animationIdToAttackStyle(animationId);
@@ -291,7 +288,6 @@ class AlchemicalHydra
 			{
 				// Redetermine the initial jad attack since the fallback attack occurred after the phase switch
 				currentAttackStyle = determineInitialJadPhaseAttackStyle(lastAttackStyle);
-				log.debug("Tick: {} | Recalculated initial jad attack: {} | Next: {}", tickCount, currentAttackStyle, nextAttackTick);
 				return;
 			}
 			updateAttackValues(tickCount + ENRAGED_ATTACK_RATE, attacksUntilSwitch - 3, attacksUntilSpecialAttack - 3, animationId);
@@ -327,7 +323,6 @@ class AlchemicalHydra
 			case AnimationID.ALCHEMICAL_HYDRA_BLUE_PHASE_LIGHTNING_ATTACK:
 			case AnimationID.ALCHEMICAL_HYDRA_JAD_PHASE_POISON_ATTACK:
 			case AnimationID.ALCHEMICAL_HYDRA_JAD_PHASE_POISON_ATTACK_2:
-				log.debug("Tick: {} | Poison/lightning attack: {} | Next: {}", tickCount, animationId, nextAttackTick);
 				// Jad phase has a faster attack rate
 				resetSpecialAttack(
 						currentPhase.equals(Phase.JAD) ? ATTACKS_PER_SPECIAL_ATTACK * 3 : ATTACKS_PER_SPECIAL_ATTACK,
@@ -339,14 +334,12 @@ class AlchemicalHydra
 				if (lastAnimationId != AnimationID.ALCHEMICAL_HYDRA_RED_PHASE_FIRE_ATTACK)
 				{
 					resetSpecialAttack(ATTACKS_PER_SPECIAL_ATTACK, tickCount + ATTACK_RATE, tickCount, animationId);
-					log.debug("Tick: {} | Initial fire attack: {} | Next: {}", tickCount, animationId, nextAttackTick);
 					return;
 				}
 
 				// Ignore second fire prison attack
 				if (tickCount - lastAttackTick < 5)
 				{
-					log.debug("Tick: {} | Ticks since last attack: {} | anim: {} | Next: {}", tickCount, tickCount - lastAttackTick, animationId, nextAttackTick);
 					return;
 				}
 
@@ -354,7 +347,6 @@ class AlchemicalHydra
 				lastAttackTick = tickCount;
 				nextAttackTick = tickCount + DELAY_AFTER_FIRE_SPECIAL_ATTACK;
 				lastAnimationId = animationId;
-				log.debug("Tick: {} | Second fire attack: {} | Next: {}", tickCount, animationId, nextAttackTick);
 				break;
 		}
 	}
@@ -385,7 +377,6 @@ class AlchemicalHydra
 		if (currentAttackStyle == null)
 		{
 			currentAttackStyle = attackStyle;
-			log.debug("Set current attack style: {} ", attackStyle);
 
 		}
 		// Correct attacks until switch value when de-sync might occur (eg. plugin enabled during kill)
@@ -401,12 +392,10 @@ class AlchemicalHydra
 		else if (attacksUntilSwitch <= 0 && currentAttackStyle == AttackStyle.MAGIC)
 		{
 			switchCurrentAttackStyle(AttackStyle.RANGED, ATTACKS_PER_SWITCH);
-			log.debug("Switched to attack style: {} ", AttackStyle.RANGED);
 		}
 		else if (attacksUntilSwitch <= 0)
 		{
 			switchCurrentAttackStyle(AttackStyle.MAGIC, ATTACKS_PER_SWITCH);
-			log.debug("Switched to attack style: {} ", AttackStyle.MAGIC);
 		}
 	}
 
