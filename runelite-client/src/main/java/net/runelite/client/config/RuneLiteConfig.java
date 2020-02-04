@@ -252,6 +252,17 @@ public interface RuneLiteConfig extends Config
 	}
 
 	@ConfigItem(
+			keyName = "tooltipPosition",
+			name = "Tooltip Position",
+			description = "Configures whether to show the tooltip above or under the cursor",
+			position = 35
+	)
+	default TooltipPositionType tooltipPosition()
+	{
+		return TooltipPositionType.UNDER_CURSOR;
+	}
+
+	@ConfigItem(
 		keyName = "infoBoxVertical",
 		name = "Display infoboxes vertically",
 		description = "Toggles the infoboxes to display vertically",
@@ -277,11 +288,12 @@ public interface RuneLiteConfig extends Config
 
 	@ConfigItem(
 		keyName = "infoBoxSize",
-		name = "Infobox size (px)",
+		name = "Infobox size",
 		description = "Configures the size of each infobox in pixels",
 		position = 42,
 		group = "Infobox"
 	)
+	@Units(Units.PIXELS)
 	default int infoBoxSize()
 	{
 		return 35;

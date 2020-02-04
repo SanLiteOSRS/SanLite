@@ -40,8 +40,10 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.eq;
 import org.mockito.Mock;
+import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
@@ -76,6 +78,9 @@ public class IdleNotifierPluginTest
 	private NPC randomEvent;
 
 	@Mock
+	private NPC fishingSpot;
+
+	@Mock
 	private Player player;
 
 	@Before
@@ -94,6 +99,13 @@ public class IdleNotifierPluginTest
 		final NPCDefinition randomEventComp = mock(NPCDefinition.class);
 		when(randomEventComp.getActions()).thenReturn(randomEventActions);
 		when(randomEvent.getDefinition()).thenReturn(randomEventComp);
+
+		// Mock Fishing Spot
+		final String[] fishingSpotActions = new String[] { "Use-rod", "Examine" };
+		final NPCDefinition fishingSpotComp = mock(NPCDefinition.class);
+		when(fishingSpotComp.getActions()).thenReturn(fishingSpotActions);
+		when(fishingSpot.getDefinition()).thenReturn(fishingSpotComp);
+		when(fishingSpot.getName()).thenReturn("Fishing spot");
 
 		// Mock player
 		when(player.getName()).thenReturn(PLAYER_NAME);
@@ -248,6 +260,31 @@ public class IdleNotifierPluginTest
 		plugin.onGameTick(new GameTick());
 		plugin.onGameTick(new GameTick());
 		verify(notifier, times(1)).notify(any());
+	}
+
+	@Test
+	public void testSendOneNotificationForAnimationAndInteract()
+	{
+		when(player.getInteracting()).thenReturn(fishingSpot);
+		when(player.getAnimation()).thenReturn(AnimationID.FISHING_POLE_CAST);
+
+		AnimationChanged animationChanged = new AnimationChanged();
+		animationChanged.setActor(player);
+
+		plugin.onInteractingChanged(new InteractingChanged(player, fishingSpot));
+		plugin.onAnimationChanged(animationChanged);
+		plugin.onGameTick(new GameTick());
+
+		verify(notifier, never()).notify(anyString());
+
+		when(player.getAnimation()).thenReturn(AnimationID.IDLE);
+		lenient().when(player.getInteracting()).thenReturn(null);
+
+		plugin.onAnimationChanged(animationChanged);
+		plugin.onInteractingChanged(new InteractingChanged(player, null));
+		plugin.onGameTick(new GameTick());
+
+		verify(notifier).notify("[" + PLAYER_NAME + "] is now idle!");
 	}
 
 	@Test

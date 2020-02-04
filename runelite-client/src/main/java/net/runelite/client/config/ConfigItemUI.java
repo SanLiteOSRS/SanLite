@@ -18,6 +18,7 @@ import javax.swing.event.ChangeListener;
 import javax.swing.text.JTextComponent;
 import java.awt.*;
 import java.awt.event.*;
+import java.text.DecimalFormat;
 
 @Slf4j
 public class ConfigItemUI
@@ -83,6 +84,17 @@ public class ConfigItemUI
 		JFormattedTextField spinnerTextField = ((JSpinner.DefaultEditor) editor).getTextField();
 		spinnerTextField.setColumns(SPINNER_FIELD_WIDTH);
 		spinner.addChangeListener(ce -> changeConfiguration(listItem, config, spinner, cd, cid));
+
+		Units units = cid.getUnits();
+		if (units != null)
+		{
+			DecimalFormat df = ((JSpinner.NumberEditor) spinner.getEditor()).getFormat();
+			df.setPositiveSuffix(units.value());
+			df.setNegativeSuffix(units.value());
+			// Force update the spinner to have it add the units initially
+			spinnerTextField.setValue(value);
+		}
+
 		return spinner;
 	}
 

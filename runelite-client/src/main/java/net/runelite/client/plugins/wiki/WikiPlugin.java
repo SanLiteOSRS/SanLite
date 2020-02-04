@@ -24,6 +24,7 @@
  */
 package net.runelite.client.plugins.wiki;
 
+import com.google.inject.Provides;
 import java.util.Arrays;
 import java.util.stream.Stream;
 import javax.inject.Inject;
@@ -43,7 +44,9 @@ import net.runelite.api.widgets.WidgetInfo;
 import net.runelite.api.widgets.WidgetPositionMode;
 import net.runelite.api.widgets.WidgetType;
 import net.runelite.client.callback.ClientThread;
+import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
+import net.runelite.client.events.ConfigChanged;
 import net.runelite.client.game.ItemManager;
 import net.runelite.client.game.SpriteManager;
 import net.runelite.client.game.chatbox.ChatboxPanelManager;
@@ -80,6 +83,9 @@ public class WikiPlugin extends Plugin
 	private SpriteManager spriteManager;
 
 	@Inject
+	private WikiConfig config;
+
+	@Inject
 	private ClientThread clientThread;
 
 	@Inject
@@ -98,6 +104,14 @@ public class WikiPlugin extends Plugin
 
 	private boolean wikiSelected = false;
 
+	static final String CONFIG_GROUP_KEY = "wiki";
+
+	@Provides
+	WikiConfig getConfig(ConfigManager configManager)
+	{
+		return configManager.getConfig(WikiConfig.class);
+	}
+
 	@Override
 	public void startUp()
 	{
@@ -107,29 +121,32 @@ public class WikiPlugin extends Plugin
 	@Override
 	public void shutDown()
 	{
-		clientThread.invokeLater(() ->
+		clientThread.invokeLater(this::removeWidgets);
+	}
+
+	private void removeWidgets()
+	{
+
+		Widget minimapOrbs = client.getWidget(WidgetInfo.MINIMAP_ORBS);
+		if (minimapOrbs == null)
 		{
-			Widget minimapOrbs = client.getWidget(WidgetInfo.MINIMAP_ORBS);
-			if (minimapOrbs == null)
-			{
-				return;
-			}
-			Widget[] children = minimapOrbs.getChildren();
-			if (children == null || children.length < 1)
-			{
-				return;
-			}
-			children[0] = null;
+			return;
+		}
+		Widget[] children = minimapOrbs.getChildren();
+		if (children == null || children.length < 1)
+		{
+			return;
+		}
+		children[0] = null;
 
-			Widget vanilla = client.getWidget(WidgetInfo.MINIMAP_WIKI_BANNER);
-			if (vanilla != null)
-			{
-				vanilla.setHidden(false);
-			}
+		Widget vanilla = client.getWidget(WidgetInfo.MINIMAP_WIKI_BANNER);
+		if (vanilla != null)
+		{
+			vanilla.setHidden(false);
+		}
 
-			onDeselect();
-			client.setSpellSelected(false);
-		});
+		onDeselect();
+		client.setSpellSelected(false);
 	}
 
 	@Subscribe
@@ -174,16 +191,17 @@ public class WikiPlugin extends Plugin
 			icon.setSpriteId(SpriteID.WIKI_SELECTED);
 			client.setAllWidgetsAreOpTargetable(true);
 		});
-		icon.setAction(5, "Search"); // Start at option 5 so the target op is ontop
+
+		final int searchIndex = config.leftClickSearch() ? 4 : 5;
+		icon.setAction(searchIndex, "Search");
 		icon.setOnOpListener((JavaScriptCallback) ev ->
 		{
-			switch (ev.getOp())
+			if (ev.getOp() == searchIndex + 1)
 			{
-				case 6:
-					openSearchInput();
-					break;
+				openSearchInput();
 			}
 		});
+
 		// This doesn't always run because we cancel the menuop
 		icon.setOnTargetLeaveListener((JavaScriptCallback) ev -> onDeselect());
 		icon.revalidate();
@@ -195,6 +213,19 @@ public class WikiPlugin extends Plugin
 		if (ev.getWidget().getId() == WidgetInfo.MINIMAP_WIKI_BANNER.getId())
 		{
 			ev.getWidget().setHidden(true);
+		}
+	}
+
+	@Subscribe
+	public void onConfigChanged(ConfigChanged event)
+	{
+		if (event.getGroup().equals(CONFIG_GROUP_KEY))
+		{
+			clientThread.invokeLater(() ->
+			{
+				removeWidgets();
+				addWidgets();
+			});
 		}
 	}
 
