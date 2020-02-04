@@ -77,6 +77,11 @@ public class AlchemicalHydraDebugOverlay extends Overlay
 					.build());
 
 			panelComponent.getChildren().add(LineComponent.builder()
+					.left("Last attack style")
+					.right("" + alchemicalHydra.getLastAttackStyle())
+					.build());
+
+			panelComponent.getChildren().add(LineComponent.builder()
 					.left("Current special attack style")
 					.right("" + alchemicalHydra.getCurrentSpecialAttackStyle())
 					.build());
@@ -107,8 +112,8 @@ public class AlchemicalHydraDebugOverlay extends Overlay
 					.build());
 
 			panelComponent.getChildren().add(LineComponent.builder()
-					.left("Recent projectile id")
-					.right("" + alchemicalHydra.getRecentProjectileId())
+					.left("Last animation id")
+					.right("" + alchemicalHydra.getLastAnimationId())
 					.build());
 
 			panelComponent.getChildren().add(LineComponent.builder()

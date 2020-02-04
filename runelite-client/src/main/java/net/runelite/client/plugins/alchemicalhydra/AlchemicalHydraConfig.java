@@ -24,6 +24,7 @@
  */
 package net.runelite.client.plugins.alchemicalhydra;
 
+import net.runelite.client.config.Alpha;
 import net.runelite.client.config.Config;
 import net.runelite.client.config.ConfigGroup;
 import net.runelite.client.config.ConfigItem;
@@ -55,6 +56,7 @@ public interface AlchemicalHydraConfig extends Config
 		return true;
 	}
 
+	@Alpha
 	@ConfigItem(
 			keyName = "attackTimerTextColor",
 			name = "Attack timer text color",
@@ -78,6 +80,7 @@ public interface AlchemicalHydraConfig extends Config
 		return true;
 	}
 
+	@Alpha
 	@ConfigItem(
 			keyName = "poisonAttackColor",
 			name = "Poison attack marker",
@@ -90,6 +93,7 @@ public interface AlchemicalHydraConfig extends Config
 		return new Color(159, 219, 0);
 	}
 
+	@Alpha
 	@ConfigItem(
 			keyName = "lightningAttackColor",
 			name = "Lightning marker",
@@ -102,6 +106,7 @@ public interface AlchemicalHydraConfig extends Config
 		return new Color(3, 133, 219);
 	}
 
+	@Alpha
 	@ConfigItem(
 			keyName = "fireAttackColor",
 			name = "Fire marker",
@@ -114,6 +119,7 @@ public interface AlchemicalHydraConfig extends Config
 		return new Color(219, 116, 0, 255);
 	}
 
+	@Alpha
 	@ConfigItem(
 			keyName = "notOnChemicalPoolColor",
 			name = "Not on fountain marker",
@@ -126,6 +132,7 @@ public interface AlchemicalHydraConfig extends Config
 		return new Color(Color.RED.getRGB());
 	}
 
+	@Alpha
 	@ConfigItem(
 			keyName = "onChemicalPoolColor",
 			name = "On fountain marker",
