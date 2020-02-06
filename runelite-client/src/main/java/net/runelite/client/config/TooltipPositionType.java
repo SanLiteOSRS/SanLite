@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, Lotto <https://github.com/devLotto>
+ * Copyright (c) 2020, Crypthead <https://github.com/Crypthead>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,19 +22,23 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.client.plugins.screenshot.imgur;
+package net.runelite.client.config;
 
-import lombok.Data;
+import lombok.RequiredArgsConstructor;
+import lombok.Getter;
 
-@Data
-public class ImageUploadResponse
+@Getter
+@RequiredArgsConstructor
+public enum TooltipPositionType
 {
-	private Data data;
-	private boolean success;
+	ABOVE_CURSOR("Above cursor"),
+	UNDER_CURSOR("Under cursor");
 
-	@lombok.Data
-	public static class Data
+	private final String type;
+
+	@Override
+	public String toString()
 	{
-		private String link;
+		return type;
 	}
 }

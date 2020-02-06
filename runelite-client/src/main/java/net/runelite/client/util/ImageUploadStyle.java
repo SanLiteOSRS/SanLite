@@ -23,9 +23,9 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package net.runelite.client.plugins.screenshot;
+package net.runelite.client.util;
 
-public enum UploadStyle
+public enum ImageUploadStyle
 {
 	NEITHER,
 	IMGUR,
