@@ -4,7 +4,9 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.*;
+import net.runelite.client.util.ImageUtil;
 
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,10 +14,8 @@ import java.util.stream.Collectors;
 @Slf4j
 public class NightmareOfAshihama
 {
-	// TODO: Mechanic statics
 	static final int ATTACK_RATE = 6;
 
-	// TODO: Add attack styles
 	enum AttackStyle
 	{
 		MELEE,
@@ -23,7 +23,6 @@ public class NightmareOfAshihama
 		RANGED
 	}
 
-	// TODO: Add phases if required
 	enum Phase
 	{
 		START
@@ -50,6 +49,10 @@ public class NightmareOfAshihama
 
 	@Getter
 	@Setter
+	private List<NPC> activeTotems;
+
+	@Getter
+	@Setter
 	private int nextAttackTick;
 
 	@Getter
@@ -60,70 +63,76 @@ public class NightmareOfAshihama
 	@Setter
 	private int lastAnimationId;
 
-	@Getter
-	@Setter
-	private int lastProjectileId;
-
-	@Getter
-	private int amountOfAttacks;
-
 	NightmareOfAshihama(NPC npc)
 	{
 		this.npc = npc;
 		this.lastAttackTick = -100;
 		this.nextAttackTick = -100;
 		this.lastAnimationId = -1;
-		this.lastProjectileId = -1;
 		this.currentPhase = Phase.START;
 		this.graphicObjects = new ArrayList<>();
+		this.activeTotems = new ArrayList<>();
 	}
 
-	// TODO: Add ids
 	static boolean isNpcNightmare(int npcId)
 	{
-		return npcId == NpcID.ALCHEMICAL_HYDRA ||
-				npcId == NpcID.ALCHEMICAL_HYDRA_8616 ||
-				npcId == NpcID.ALCHEMICAL_HYDRA_8617 ||
-				npcId == NpcID.ALCHEMICAL_HYDRA_8618 ||
-				npcId == NpcID.ALCHEMICAL_HYDRA_8619 ||
-				npcId == NpcID.ALCHEMICAL_HYDRA_8620 ||
-				npcId == NpcID.ALCHEMICAL_HYDRA_8621 ||
-				npcId == NpcID.ALCHEMICAL_HYDRA_8622 ||
-				npcId == NpcID.ALCHEMICAL_HYDRA_8634;
+		return npcId == NpcID.THE_NIGHTMARE_9425 ||
+				npcId == NpcID.THE_NIGHTMARE_9426 ||
+				npcId == NpcID.THE_NIGHTMARE_9427 ||
+				npcId == NpcID.THE_NIGHTMARE_9428 ||
+				npcId == NpcID.THE_NIGHTMARE_9429 ||
+				npcId == NpcID.THE_NIGHTMARE_9430 ||
+				npcId == NpcID.THE_NIGHTMARE_9431 ||
+				npcId == NpcID.THE_NIGHTMARE_9432 ||
+				npcId == NpcID.THE_NIGHTMARE_9433;
 	}
 
-	// TODO: Add ids
-	static boolean isNightmareProjectile(int projectileId)
+	static boolean isNpcActiveTotem(int npcId)
 	{
-		return projectileId == ProjectileID.ALCHEMICAL_HYDRA_RANGED ||
-				projectileId == ProjectileID.ALCHEMICAL_HYDRA_MAGIC;
+		return npcId == NpcID.TOTEM_9435 ||
+				npcId == NpcID.TOTEM_9438 ||
+				npcId == NpcID.TOTEM_9441 ||
+				npcId == NpcID.TOTEM_9444;
+	}
+
+	boolean isRegularAttackAnimation(int animationId)
+	{
+		return animationId == AnimationID.NIGHTMARE_MELEE_ATTACK ||
+				animationId == AnimationID.NIGHTMARE_MAGIC_ATTACK ||
+				animationId == AnimationID.NIGHTMARE_RANGED_ATTACK;
 	}
 
 	boolean isGhostAttackGraphicsObjectId(int graphicsObjectId)
 	{
-		// TODO: Add attack id
 		return graphicsObjectId == GraphicID.NIGHTMARE_GHOST_ATTACK;
 	}
 
-	boolean isGraphicsObjectsId(int graphicsObjectId)
+	boolean isNightmareGraphicsObject(int graphicsObjectId)
 	{
-		// TODO: Add graphic object id's
-		return graphicsObjectId == GraphicID.GREY_BUBBLE_TELEPORT;
+		return graphicsObjectId == GraphicID.NIGHTMARE_GHOST_ATTACK;
 	}
 
 	void onAttack(int animationId, int tickCount)
 	{
-		amountOfAttacks++;
 		lastAnimationId = animationId;
 		lastAttackTick = tickCount;
-		log.debug("Tick: {} | Nightmare animation id: {} | Amount: {}", tickCount, animationId, amountOfAttacks);
+		nextAttackTick = tickCount + ATTACK_RATE;
+		lastAttackStyle = currentAttackStyle;
+		currentAttackStyle = animationIdToAttackStyle(animationId);
+
+		log.debug("Tick: {} | Nightmare regular attack: {} | Next: {}", tickCount, animationIdToAttackStyle(animationId), nextAttackTick);
 	}
 
-	void onProjectile(int projectileId, int tickCount)
+	void onDeath()
 	{
-		lastProjectileId = projectileId;
-		lastAttackTick = tickCount;
-		log.debug("Tick: {} | Nightmare projectile id: {}", tickCount, projectileId);
+		lastAttackTick = -100;
+		nextAttackTick = -100;
+		lastAttackStyle = null;
+		currentAttackStyle = null;
+		lastAnimationId = -1;
+		currentPhase = Phase.START;
+		graphicObjects.clear();
+		activeTotems.clear();
 	}
 
 	/**
@@ -131,8 +140,44 @@ public class NightmareOfAshihama
 	 */
 	void checkGraphicObjects(List<GraphicsObject> graphicsObjects)
 	{
-		graphicsObjects = graphicsObjects.stream()
-				.filter(x -> isGraphicsObjectsId(x.getId()))
+		this.graphicObjects = graphicsObjects.stream()
+				.filter(x -> isNightmareGraphicsObject(x.getId()))
 				.collect(Collectors.toList());
+	}
+
+	/**
+	 * Checks if the client NPC's contain an active totem and sets those to the list
+	 */
+	void checkActiveTotems(List<NPC> npcs)
+	{
+		this.activeTotems = npcs.stream()
+				.filter(x -> isNpcActiveTotem(x.getId()))
+				.collect(Collectors.toList());
+	}
+
+	static BufferedImage getPrayersShuffledIcon()
+	{
+		return ImageUtil.getResourceStreamFromClass(NightmareOfAshihama.class, "prayers_shuffled.png");
+	}
+
+	/**
+	 * Get The Nightmare attack style based on the given animation id.
+	 *
+	 * @param animationId The Nightmare animation id
+	 * @return The Nightmare attack style
+	 */
+	private AttackStyle animationIdToAttackStyle(int animationId)
+	{
+		switch (animationId)
+		{
+			case AnimationID.NIGHTMARE_MELEE_ATTACK:
+				return AttackStyle.MELEE;
+			case AnimationID.NIGHTMARE_MAGIC_ATTACK:
+				return AttackStyle.MAGIC;
+			case AnimationID.NIGHTMARE_RANGED_ATTACK:
+				return AttackStyle.RANGED;
+			default:
+				return null;
+		}
 	}
 }

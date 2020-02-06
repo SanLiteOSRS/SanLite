@@ -73,23 +73,13 @@ public class NightmareOfAshihamaDebugOverlay extends Overlay
 					.build());
 
 			panelComponent.getChildren().add(LineComponent.builder()
-					.left("Last projectile id")
-					.right("" + nightmare.getLastProjectileId())
+					.left("Number of active totems")
+					.right("" + nightmare.getActiveTotems().size())
 					.build());
 
 			panelComponent.getChildren().add(LineComponent.builder()
 					.left("Number of graphic effects")
 					.right("" + nightmare.getGraphicObjects().size())
-					.build());
-
-			panelComponent.getChildren().add(LineComponent.builder()
-					.left("Amount of attacks")
-					.right("" + nightmare.getAmountOfAttacks())
-					.build());
-
-			panelComponent.getChildren().add(LineComponent.builder()
-					.left("In instance")
-					.right("" + client.isInInstancedRegion())
 					.build());
 		}
 		return panelComponent.render(graphics);
