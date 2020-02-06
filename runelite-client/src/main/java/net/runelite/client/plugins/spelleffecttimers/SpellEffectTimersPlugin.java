@@ -142,7 +142,7 @@ public class SpellEffectTimersPlugin extends Plugin
 			case FREEZE_IMMUNITY:
 			case TELEBLOCK_IMMUNITY:
 				return;
-			case SOTD_SPEC:
+			case STAFF_OF_THE_DEAD_SPECIAL:
 				checkSotdSpellEffect(spotAnimationChanged, actor, spellEffect);
 				break;
 			case TELEBLOCK:
@@ -265,7 +265,7 @@ public class SpellEffectTimersPlugin extends Plugin
 		{
 			if (spotAnimationChanged.getActor().equals(spellEffectInfo.getActor()))
 			{
-				if (spellEffectInfo.getSpellEffect().equals(SpellEffect.SOTD_SPEC))
+				if (spellEffectInfo.getSpellEffect().equals(SpellEffect.STAFF_OF_THE_DEAD_SPECIAL))
 				{
 					return;
 				}
