@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, Cameron <https://github.com/noremac201>
+ * Copyright (c) 2020, Henry Darnell <hjdarnel@gmail.com>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,71 +22,23 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.client.plugins.experiencedrop;
+package net.runelite.client.plugins.wiki;
 
-import java.awt.Color;
 import net.runelite.client.config.Config;
 import net.runelite.client.config.ConfigGroup;
 import net.runelite.client.config.ConfigItem;
-import net.runelite.client.config.Units;
 
-@ConfigGroup("xpdrop")
-public interface XpDropConfig extends Config
+@ConfigGroup(WikiPlugin.CONFIG_GROUP_KEY)
+public interface WikiConfig extends Config
 {
 	@ConfigItem(
-		keyName = "hideSkillIcons",
-		name = "Hide skill icons",
-		description = "Configure if XP drops will show their respective skill icons",
-		position = 0
+			keyName = "leftClickSearch",
+			name = "Left Click Search",
+			description = "Swap left-click on the Wiki button to Search",
+			position = 1
 	)
-	default boolean hideSkillIcons()
+	default boolean leftClickSearch()
 	{
 		return false;
 	}
-
-	@ConfigItem(
-		keyName = "meleePrayerColor",
-		name = "Melee Prayer Color",
-		description = "XP drop color when a melee prayer is active",
-		position = 1
-	)
-	default Color getMeleePrayerColor()
-	{
-		return new Color(0x15, 0x80, 0xAD);
-	}
-
-	@ConfigItem(
-		keyName = "rangePrayerColor",
-		name = "Range Prayer Color",
-		description = "XP drop color when a range prayer is active",
-		position = 2
-	)
-	default Color getRangePrayerColor()
-	{
-		return new Color(0x15, 0x80, 0xAD);
-	}
-
-	@ConfigItem(
-		keyName = "magePrayerColor",
-		name = "Mage Prayer Color",
-		description = "XP drop color when a mage prayer is active",
-		position = 3
-	)
-	default Color getMagePrayerColor()
-	{
-		return new Color(0x15, 0x80, 0xAD);
-	}
-
-	@ConfigItem(
-		keyName = "fakeXpDropDelay",
-		name = "Fake Xp Drop delay",
-		description = "Configures how many ticks should pass between fake XP drops, 0 to disable",
-		position = 4
-	)
-	@Units(Units.TICKS)
-	default int fakeXpDropDelay()
-	{
-		return 0;
-	}
-
 }

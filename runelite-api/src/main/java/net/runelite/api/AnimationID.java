@@ -244,28 +244,23 @@ public final class AnimationID
 	// Pestilent Bloat
 	public static final int BLOAT_SLEEP = 8082;
 
-	// Hydra
-	public static final int HYDRA_POISON_1 = 8234;
-	public static final int HYDRA_RANGED_1 = 8235;
-	public static final int HYDRA_MAGIC_1 = 8236;
+	// Alchemical Hydra
+	public static final int ALCHEMICAL_HYDRA_GREEN_PHASE_POISON_ATTACK = 8234;
+	public static final int ALCHEMICAL_HYDRA_GREEN_PHASE_RANGED_ATTACK = 8235;
+	public static final int ALCHEMICAL_HYDRA_GREEN_PHASE_MAGIC_ATTACK = 8236;
 	public static final int ALCHEMICAL_HYDRA_SWITCH_TO_BLUE_PHASE = 8237;
-	public static final int HYDRA_1_2 = 8238;
-	public static final int HYDRA_LIGHTNING = 8241;
-	public static final int HYDRA_RANGED_2 = 8242;
-	public static final int HYDRA_MAGIC_2 = 8243;
+	public static final int ALCHEMICAL_HYDRA_BLUE_PHASE_LIGHTNING_ATTACK = 8241;
+	public static final int ALCHEMICAL_HYDRA_BLUE_PHASE_RANGED_ATTACK = 8242;
+	public static final int ALCHEMICAL_HYDRA_BLUE_PHASE_MAGIC_ATTACK = 8243;
 	public static final int ALCHEMICAL_HYDRA_SWITCH_TO_RED_PHASE = 8244;
-	public static final int HYDRA_2_2 = 8245;
-	public static final int HYDRA_FIRE = 8248;
-	public static final int HYDRA_RANGED_3 = 8249;
-	public static final int HYDRA_MAGIC_3 = 8250;
+	public static final int ALCHEMICAL_HYDRA_RED_PHASE_FIRE_ATTACK = 8248;
+	public static final int ALCHEMICAL_HYDRA_RED_PHASE_RANGED_ATTACK = 8249;
+	public static final int ALCHEMICAL_HYDRA_RED_PHASE_MAGIC_ATTACK = 8250;
 	public static final int ALCHEMICAL_HYDRA_SWITCH_TO_JAD_PHASE = 8251;
-	public static final int HYDRA_3_2 = 8252;
-	public static final int HYDRA_MAGIC_4 = 8254;
-	public static final int HYDRA_POISON_4 = 8254;
-	public static final int HYDRA_RANGED_4 = 8255;
-	public static final int ALCHEMICAL_HYDRA_JAD_PHASE_POISON_ATTACK = 8256;
-	public static final int HYDRA_4_1 = 8257;
-	public static final int HYDRA_4_2 = 8258;
+	public static final int ALCHEMICAL_HYDRA_JAD_PHASE_MAGIC_ATTACK = 8255;
+	public static final int ALCHEMICAL_HYDRA_JAD_PHASE_RANGED_ATTACK = 8256;
+	public static final int ALCHEMICAL_HYDRA_JAD_PHASE_POISON_ATTACK = 8255;
+	public static final int ALCHEMICAL_HYDRA_JAD_PHASE_POISON_ATTACK_2 = 8256;
 
 	// Inferno animations
 	public static final int JAL_NIB = 7574;
