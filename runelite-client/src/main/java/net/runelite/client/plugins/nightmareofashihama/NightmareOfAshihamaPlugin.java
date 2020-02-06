@@ -29,7 +29,7 @@ import java.util.Arrays;
 public class NightmareOfAshihamaPlugin extends Plugin
 {
 	private static final int[] ENCOUNTER_REGIONS = {
-			// TODO: Add encounter regions
+			15258, 15259, 15260, 15514, 15515, 15516, 15770, 15771, 15772
 	};
 
 	@Inject

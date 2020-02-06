@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 public class NightmareOfAshihama
 {
 	// TODO: Mechanic statics
-	static final int ATTACK_RATE = -1;
+	static final int ATTACK_RATE = 6;
 
 	// TODO: Add attack styles
 	enum AttackStyle
@@ -102,7 +102,7 @@ public class NightmareOfAshihama
 	boolean isGhostAttackGraphicsObjectId(int graphicsObjectId)
 	{
 		// TODO: Add attack id
-		return graphicsObjectId == GraphicID.GREY_BUBBLE_TELEPORT;
+		return graphicsObjectId == GraphicID.NIGHTMARE_GHOST_ATTACK;
 	}
 
 	boolean isGraphicsObjectsId(int graphicsObjectId)
