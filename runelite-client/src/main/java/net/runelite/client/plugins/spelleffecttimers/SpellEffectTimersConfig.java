@@ -81,6 +81,17 @@ public interface SpellEffectTimersConfig extends Config
 
 	@ConfigItem(
 			position = 4,
+			keyName = "showSotdSpecActiveOverlay",
+			name = "Show SOTD spec active",
+			description = "Configures if the staff of the dead icon is shown when a player has the effects of the staff of the dead special attack"
+	)
+	default boolean showSotdSpecActiveOverlay()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+			position = 5,
 			keyName = "showSpellImage",
 			name = "Show spell image",
 			description = "Configures if spell images are displayed on spell effect timers"
@@ -91,7 +102,7 @@ public interface SpellEffectTimersConfig extends Config
 	}
 
 	@ConfigItem(
-			position = 5,
+			position = 6,
 			keyName = "timersFontSize",
 			name = "Text size",
 			description = "Text size for timers"
@@ -102,7 +113,7 @@ public interface SpellEffectTimersConfig extends Config
 	}
 
 	@ConfigItem(
-			position = 6,
+			position = 7,
 			keyName = "timersFontStyle",
 			name = "Font style",
 			description = "Font style for timers. Choose between bold, italics or plain"
@@ -113,7 +124,7 @@ public interface SpellEffectTimersConfig extends Config
 	}
 
 	@ConfigItem(
-			position = 7,
+			position = 8,
 			keyName = "timersFontColor",
 			name = "Font color",
 			description = "Color of timers font"

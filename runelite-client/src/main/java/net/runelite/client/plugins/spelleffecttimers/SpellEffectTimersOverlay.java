@@ -67,7 +67,7 @@ public class SpellEffectTimersOverlay extends Overlay
 	@Override
 	public Dimension render(Graphics2D graphics)
 	{
-		if (!config.showFreezeTimersOverlay() && !config.showTeleblockTimersOverlay() && !config.showVengTimersOverlay() && !config.showVengActiveOverlay())
+		if (!config.showFreezeTimersOverlay() && !config.showTeleblockTimersOverlay() && !config.showVengTimersOverlay() && !config.showVengActiveOverlay() && !config.showTeleblockTimersOverlay())
 		{
 			return null;
 		}
@@ -100,6 +100,13 @@ public class SpellEffectTimersOverlay extends Overlay
 			if (config.showVengActiveOverlay())
 			{
 				if (spellEffectInfo.getSpellEffect().equals(SpellEffect.VENGEANCE_ACTIVE))
+				{
+					drawSpellEffectOverlay(graphics, spellEffectInfo);
+				}
+			}
+			if (config.showSotdSpecActiveOverlay())
+			{
+				if (spellEffectInfo.getSpellEffect().equals((SpellEffect.SOTD_SPEC)))
 				{
 					drawSpellEffectOverlay(graphics, spellEffectInfo);
 				}

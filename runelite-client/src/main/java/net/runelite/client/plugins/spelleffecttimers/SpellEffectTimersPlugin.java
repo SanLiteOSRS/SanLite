@@ -142,6 +142,9 @@ public class SpellEffectTimersPlugin extends Plugin
 			case FREEZE_IMMUNITY:
 			case TELEBLOCK_IMMUNITY:
 				return;
+			case SOTD_SPEC:
+				checkSotdSpellEffect(spotAnimationChanged, actor, spellEffect);
+				break;
 			case TELEBLOCK:
 				checkTeleblockSpellEffect(actor, spellEffect);
 				break;
@@ -253,6 +256,21 @@ public class SpellEffectTimersPlugin extends Plugin
 		}
 
 		spellEffects.add(new SpellEffectInfo(actor, SpellEffect.VENGEANCE_ACTIVE, client.getGameCycle(), false));
+	}
+
+	private void checkSotdSpellEffect(SpotAnimationChanged spotAnimationChanged, Actor actor, SpellEffect spellEffect)
+	{
+		spellEffects.add(new SpellEffectInfo(actor, spellEffect, client.getGameCycle(), false));
+		for (SpellEffectInfo spellEffectInfo : spellEffects)
+		{
+			if (spotAnimationChanged.getActor().equals(spellEffectInfo.getActor()))
+			{
+				if (spellEffectInfo.getSpellEffect().equals(SpellEffect.SOTD_SPEC))
+				{
+					return;
+				}
+			}
+		}
 	}
 
 	@Subscribe
