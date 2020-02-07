@@ -58,6 +58,9 @@ public class NightmareOfAshihamaPlugin extends Plugin
 	private NightmareOfAshihamaOverlay nightmareOverlay;
 
 	@Inject
+	private NightmareOfAshihamaCurrentAttackOverlay currentAttackOverlay;
+
+	@Inject
 	private NightmareOfAshihamaDebugOverlay debugOverlay;
 
 	@Inject
@@ -80,6 +83,7 @@ public class NightmareOfAshihamaPlugin extends Plugin
 	{
 		prayersShuffledIcon = NightmareOfAshihama.getPrayersShuffledIcon();
 		overlayManager.add(nightmareOverlay);
+		overlayManager.add(currentAttackOverlay);
 		if (config.showDebugOverlay())
 		{
 			overlayManager.add(debugOverlay);
@@ -91,6 +95,7 @@ public class NightmareOfAshihamaPlugin extends Plugin
 	protected void shutDown() throws Exception
 	{
 		overlayManager.remove(nightmareOverlay);
+		overlayManager.remove(currentAttackOverlay);
 		if (config.showDebugOverlay())
 		{
 			overlayManager.remove(debugOverlay);
