@@ -1,9 +1,6 @@
 package net.runelite.client.plugins.nightmareofashihama;
 
-import net.runelite.client.config.Alpha;
-import net.runelite.client.config.Config;
-import net.runelite.client.config.ConfigGroup;
-import net.runelite.client.config.ConfigItem;
+import net.runelite.client.config.*;
 
 import java.awt.*;
 
@@ -14,6 +11,7 @@ public interface NightmareOfAshihamaConfig extends Config
 			keyName = "displayCurrentAttack",
 			name = "Display current attack",
 			description = "Displays the attack above The Nightmare when it does it. Useful for playing without sound",
+			group = "Current attack",
 			position = 1
 	)
 	default boolean displayCurrentAttack()
@@ -21,11 +19,27 @@ public interface NightmareOfAshihamaConfig extends Config
 		return true;
 	}
 
+	@Range(
+			min = -125,
+			max = 65
+	)
+	@ConfigItem(
+			keyName = "currentAttackHeight",
+			name = "Icon height",
+			description = "The height of the current attack icon that is display on The Nightmare",
+			group = "Current attack",
+			position = 2
+	)
+	default int getCurrentAttackHeight()
+	{
+		return 30;
+	}
+
 	@ConfigItem(
 			keyName = "displayPrayersCursedTimer",
 			name = "Display prayers cursed timer",
 			description = "Displays a timer with the remaining duration of the prayers shuffle curse",
-			position = 2
+			position = 3
 	)
 	default boolean displayPrayersCursedTimer()
 	{
@@ -37,7 +51,7 @@ public interface NightmareOfAshihamaConfig extends Config
 			name = "Notify on prayers shuffled",
 			description = "Sends a notification when The Nightmare shuffles your prayers",
 			group = "Notifications",
-			position = 3
+			position = 4
 	)
 	default boolean notifyOnPrayersShuffled()
 	{
@@ -49,7 +63,7 @@ public interface NightmareOfAshihamaConfig extends Config
 			name = "Notify on parasite",
 			description = "Sends a notification when a parasite impregnates you",
 			group = "Notifications",
-			position = 4
+			position = 5
 	)
 	default boolean notifyOnParasite()
 	{
@@ -61,7 +75,7 @@ public interface NightmareOfAshihamaConfig extends Config
 			name = "Notify on drowsy",
 			description = "Sends a notification when you get affected by the drowsy effect",
 			group = "Notifications",
-			position = 5
+			position = 6
 	)
 	default boolean notifyOnDrowsy()
 	{
@@ -72,7 +86,7 @@ public interface NightmareOfAshihamaConfig extends Config
 			keyName = "highlightActiveTotems",
 			name = "Highlight active totems",
 			description = "Highlight The Nightmare's totems when they are damageable",
-			position = 6
+			position = 7
 	)
 	default boolean highlightActiveTotems()
 	{
@@ -85,7 +99,7 @@ public interface NightmareOfAshihamaConfig extends Config
 			name = "Active totem color",
 			description = "Color of The Nightmare's active totems",
 			group = "Colors",
-			position = 7
+			position = 8
 	)
 	default Color getActiveTotemColor()
 	{
@@ -96,7 +110,7 @@ public interface NightmareOfAshihamaConfig extends Config
 			keyName = "highlightGhostAttackTiles",
 			name = "Highlight ghost attack tiles",
 			description = "Highlight the tiles for The Nightmare's ghost attacks",
-			position = 8
+			position = 9
 	)
 	default boolean highlightGhostAttackTiles()
 	{
@@ -109,7 +123,7 @@ public interface NightmareOfAshihamaConfig extends Config
 			name = "Ghost attack marker",
 			description = "Color of The Nightmare's ghost attack marker",
 			group = "Colors",
-			position = 9
+			position = 10
 	)
 	default Color getGhostAttackColor()
 	{
@@ -117,10 +131,34 @@ public interface NightmareOfAshihamaConfig extends Config
 	}
 
 	@ConfigItem(
+			keyName = "highlightInfectiousSpores",
+			name = "Highlight infectious spores",
+			description = "Highlight the tiles for The Nightmare's infectious spores",
+			position = 11
+	)
+	default boolean highlightInfectiousSpores()
+	{
+		return true;
+	}
+
+	@Alpha
+	@ConfigItem(
+			keyName = "infectiousSporesColor",
+			name = "Infectious spore marker",
+			description = "Color of The Nightmare's infectious spore tile marker",
+			group = "Colors",
+			position = 12
+	)
+	default Color getInfectiousSporesColor()
+	{
+		return new Color(105, 81, 71);
+	}
+
+	@ConfigItem(
 			keyName = "showDebugOverlay",
 			name = "Display debug overlay",
 			description = "Displays plugin debug overlay. This displays variables that the plugin uses to function",
-			position = 10
+			position = 13
 	)
 	default boolean showDebugOverlay()
 	{

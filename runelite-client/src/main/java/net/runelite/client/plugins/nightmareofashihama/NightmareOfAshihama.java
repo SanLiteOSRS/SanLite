@@ -49,6 +49,10 @@ public class NightmareOfAshihama
 
 	@Getter
 	@Setter
+	private List<GameObject> gameObjects;
+
+	@Getter
+	@Setter
 	private List<NPC> activeTotems;
 
 	@Getter
@@ -71,6 +75,7 @@ public class NightmareOfAshihama
 		this.lastAnimationId = -1;
 		this.currentPhase = Phase.START;
 		this.graphicObjects = new ArrayList<>();
+		this.gameObjects = new ArrayList<>();
 		this.activeTotems = new ArrayList<>();
 	}
 
@@ -110,6 +115,11 @@ public class NightmareOfAshihama
 	boolean isNightmareGraphicsObject(int graphicsObjectId)
 	{
 		return graphicsObjectId == GraphicID.NIGHTMARE_GHOST_ATTACK;
+	}
+
+	boolean isInfectiousSporeGameObjectId(int gameObjectId)
+	{
+		return gameObjectId == ObjectID.SPORE_37739;
 	}
 
 	void onAttack(int animationId, int tickCount)
