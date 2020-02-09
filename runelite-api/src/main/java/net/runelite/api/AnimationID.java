@@ -340,6 +340,7 @@ public final class AnimationID
 	public static final int NIGHTMARE_SURGE_ATTACK = 8597;
 	public static final int NIGHTMARE_GHOST_AOE_ATTACK = 8598;
 	public static final int NIGHTMARE_CURSE_PRAYERS_ATTACK = 8599;
+	public static final int NIGHTMARE_SPAWN_INFECTIOUS_SPORES = 8600;
 	public static final int NIGHTMARE_SPAWN_ROOM_SECTION_FLOWERS = 8601;
 	public static final int NIGHTMARE_CHANNEL_DEVASTATING_ATTACK = 8604;
 	public static final int NIGHTMARE_UNKNOWN_1 = 8605;

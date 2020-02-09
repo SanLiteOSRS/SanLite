@@ -41,27 +41,17 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Stream;
 import javax.inject.Inject;
+import javax.inject.Named;
+import joptsimple.internal.Strings;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.ChatMessageType;
-import net.runelite.api.Client;
-import net.runelite.api.GameObject;
-import net.runelite.api.GameState;
-import net.runelite.api.InventoryID;
-import net.runelite.api.Item;
+import net.runelite.api.*;
 import net.runelite.api.ItemDefinition;
-import net.runelite.api.ItemID;
-import net.runelite.api.NPC;
 import net.runelite.api.ObjectDefinition;
-import net.runelite.api.Point;
-import net.runelite.api.Scene;
-import net.runelite.api.ScriptID;
-import net.runelite.api.Tile;
-import net.runelite.api.TileObject;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.coords.WorldPoint;
 import net.runelite.api.events.ChatMessage;
-import net.runelite.client.events.ConfigChanged;
+import net.runelite.api.events.CommandExecuted;
 import net.runelite.api.events.GameStateChanged;
 import net.runelite.api.events.GameTick;
 import net.runelite.api.events.ItemContainerChanged;
@@ -74,6 +64,7 @@ import net.runelite.api.widgets.WidgetID;
 import net.runelite.api.widgets.WidgetInfo;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
+import net.runelite.client.events.ConfigChanged;
 import net.runelite.client.game.ItemManager;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
@@ -104,9 +95,9 @@ import net.runelite.client.util.ImageUtil;
 import net.runelite.client.util.Text;
 
 @PluginDescriptor(
-	name = "Clue Scroll",
-	description = "Show answers to clue scroll riddles, anagrams, ciphers, and cryptic clues",
-	tags = {"arrow", "hints", "world", "map", "coordinates", "emotes"}
+		name = "Clue Scroll",
+		description = "Show answers to clue scroll riddles, anagrams, ciphers, and cryptic clues",
+		tags = {"arrow", "hints", "world", "map", "coordinates", "emotes"}
 )
 @Slf4j
 public class ClueScrollPlugin extends Plugin
@@ -115,11 +106,11 @@ public class ClueScrollPlugin extends Plugin
 	private static final Color HIGHLIGHT_HOVER_BORDER_COLOR = HIGHLIGHT_BORDER_COLOR.darker();
 	private static final Color HIGHLIGHT_FILL_COLOR = new Color(0, 255, 0, 20);
 	private static final int[] REGION_MIRRORS = {
-		// Prifddinas
-		12894, 8755,
-		12895, 8756,
-		13150, 9011,
-		13151, 9012
+			// Prifddinas
+			12894, 8755,
+			12895, 8756,
+			13150, 9011,
+			13151, 9012
 	};
 
 	@Getter
@@ -164,6 +155,10 @@ public class ClueScrollPlugin extends Plugin
 
 	@Inject
 	private WorldMapPointManager worldMapPointManager;
+
+	@Inject
+	@Named("developerMode")
+	boolean developerMode;
 
 	private BufferedImage emoteImage;
 	private BufferedImage mapArrow;
@@ -226,9 +221,9 @@ public class ClueScrollPlugin extends Plugin
 		{
 			String text = Text.removeTags(event.getMessage());
 			if (text.equals("Skill challenge completed.") ||
-				text.equals("You have completed your master level challenge!") ||
-				text.startsWith("You have completed Charlie's task,") ||
-				text.equals("You have completed this challenge scroll."))
+					text.equals("You have completed your master level challenge!") ||
+					text.startsWith("You have completed Charlie's task,") ||
+					text.equals("You have completed this challenge scroll."))
 			{
 				((SkillChallengeClue) clue).setChallengeCompleted(true);
 			}
@@ -379,9 +374,9 @@ public class ClueScrollPlugin extends Plugin
 			{
 				// Only set the location hint arrow if we do not already have more accurate location
 				if (location.isInScene(client)
-					&& config.displayHintArrows()
-					&& (client.getHintArrowNpc() == null
-					|| !npcsToMark.contains(client.getHintArrowNpc())))
+						&& config.displayHintArrows()
+						&& (client.getHintArrowNpc() == null
+						|| !npcsToMark.contains(client.getHintArrowNpc())))
 				{
 					client.setHintArrow(location);
 				}
@@ -404,26 +399,42 @@ public class ClueScrollPlugin extends Plugin
 		// These clues use a single item ID, so we cannot detect step changes based on the item ID changing
 		final Widget chatDialogClueItem = client.getWidget(WidgetInfo.DIALOG_SPRITE_SPRITE);
 		if (chatDialogClueItem != null
-			&& (chatDialogClueItem.getItemId() == ItemID.CLUE_SCROLL_BEGINNER || chatDialogClueItem.getItemId() == ItemID.CLUE_SCROLL_MASTER))
+				&& (chatDialogClueItem.getItemId() == ItemID.CLUE_SCROLL_BEGINNER || chatDialogClueItem.getItemId() == ItemID.CLUE_SCROLL_MASTER))
 		{
 			resetClue(true);
 		}
 
-		// If we have a clue, save that knowledge
-		// so the clue window doesn't have to be open.
-		updateClue(findClueScroll());
+		final Widget clueScrollText = client.getWidget(WidgetInfo.CLUE_SCROLL_TEXT);
+
+		if (clueScrollText != null)
+		{
+			ClueScroll clueScroll = findClueScroll(clueScrollText.getText());
+			updateClue(clueScroll);
+		}
 	}
 
 	@Subscribe
 	public void onWidgetLoaded(WidgetLoaded event)
 	{
 		if (event.getGroupId() < WidgetID.BEGINNER_CLUE_MAP_CHAMPIONS_GUILD
-			|| event.getGroupId() > WidgetID.BEGINNER_CLUE_MAP_WIZARDS_TOWER)
+				|| event.getGroupId() > WidgetID.BEGINNER_CLUE_MAP_WIZARDS_TOWER)
 		{
 			return;
 		}
 
 		updateClue(BeginnerMapClue.forWidgetID(event.getGroupId()));
+	}
+
+	@Subscribe
+	public void onCommandExecuted(CommandExecuted commandExecuted)
+	{
+		if (developerMode && commandExecuted.getCommand().equals("clue"))
+		{
+			String text = Strings.join(commandExecuted.getArguments(), " ");
+			ClueScroll clueScroll = findClueScroll(text);
+			log.debug("Found clue scroll for '{}': {}", text, clueScroll);
+			updateClue(clueScroll);
+		}
 	}
 
 	public BufferedImage getClueScrollImage()
@@ -483,17 +494,10 @@ public class ClueScrollPlugin extends Plugin
 		}
 	}
 
-	private ClueScroll findClueScroll()
+	private ClueScroll findClueScroll(String rawText)
 	{
-		final Widget clueScrollText = client.getWidget(WidgetInfo.CLUE_SCROLL_TEXT);
-
-		if (clueScrollText == null)
-		{
-			return null;
-		}
-
 		// Remove line breaks and also the rare occasion where there are double line breaks
-		final String text = Text.sanitizeMultilineText(clueScrollText.getText()).toLowerCase();
+		final String text = Text.sanitizeMultilineText(rawText).toLowerCase();
 
 		// Early return if this is same clue as already existing one
 		if (clue instanceof TextClueScroll)
@@ -506,7 +510,7 @@ public class ClueScrollPlugin extends Plugin
 
 		if (text.startsWith("i'd like to hear some music."))
 		{
-			return MusicClue.forText(clueScrollText.getText());
+			return MusicClue.forText(rawText);
 		}
 
 		if (text.contains("degrees") && text.contains("minutes"))
@@ -561,7 +565,7 @@ public class ClueScrollPlugin extends Plugin
 			return hotColdClue;
 		}
 
-		final SkillChallengeClue skillChallengeClue = SkillChallengeClue.forText(text, clueScrollText.getText());
+		final SkillChallengeClue skillChallengeClue = SkillChallengeClue.forText(text, rawText);
 
 		if (skillChallengeClue != null)
 		{
@@ -569,7 +573,7 @@ public class ClueScrollPlugin extends Plugin
 		}
 
 		// three step cryptic clues need unedited text to check which steps are already done
-		final ThreeStepCrypticClue threeStepCrypticClue = ThreeStepCrypticClue.forText(text, clueScrollText.getText());
+		final ThreeStepCrypticClue threeStepCrypticClue = ThreeStepCrypticClue.forText(text, rawText);
 
 		if (threeStepCrypticClue != null)
 		{
@@ -577,7 +581,7 @@ public class ClueScrollPlugin extends Plugin
 		}
 
 		// We have unknown clue, reset
-		log.warn("Encountered unhandled clue text: {}", clueScrollText.getText());
+		log.warn("Encountered unhandled clue text: {}", rawText);
 		resetClue(true);
 		return null;
 	}
@@ -748,6 +752,8 @@ public class ClueScrollPlugin extends Plugin
 
 		resetClue(false);
 		checkClueNPCs(clue, client.getCachedNPCs());
+		// If we have a clue, save that knowledge
+		// so the clue window doesn't have to be open.
 		this.clue = clue;
 	}
 
@@ -765,24 +771,24 @@ public class ClueScrollPlugin extends Plugin
 		Point windowLocation = container.getCanvasLocation();
 
 		if (windowLocation.getY() > canvasLocation.getY() + toHighlight.getHeight()
-			|| windowLocation.getY() + container.getHeight() < canvasLocation.getY())
+				|| windowLocation.getY() + container.getHeight() < canvasLocation.getY())
 		{
 			return;
 		}
 
 		// Visible area of widget
 		Area widgetArea = new Area(
-			new Rectangle(
-				canvasLocation.getX() - padding.x,
-				Math.max(canvasLocation.getY(), windowLocation.getY()) - padding.y,
-				toHighlight.getWidth() + padding.x + padding.width,
-				Math.min(
-					Math.min(windowLocation.getY() + container.getHeight() - canvasLocation.getY(), toHighlight.getHeight()),
-					Math.min(canvasLocation.getY() + toHighlight.getHeight() - windowLocation.getY(), toHighlight.getHeight())) + padding.y + padding.height
-			));
+				new Rectangle(
+						canvasLocation.getX() - padding.x,
+						Math.max(canvasLocation.getY(), windowLocation.getY()) - padding.y,
+						toHighlight.getWidth() + padding.x + padding.width,
+						Math.min(
+								Math.min(windowLocation.getY() + container.getHeight() - canvasLocation.getY(), toHighlight.getHeight()),
+								Math.min(canvasLocation.getY() + toHighlight.getHeight() - windowLocation.getY(), toHighlight.getHeight())) + padding.y + padding.height
+				));
 
 		OverlayUtil.renderHoverableArea(graphics, widgetArea, client.getMouseCanvasPosition(),
-			HIGHLIGHT_FILL_COLOR, HIGHLIGHT_BORDER_COLOR, HIGHLIGHT_HOVER_BORDER_COLOR);
+				HIGHLIGHT_FILL_COLOR, HIGHLIGHT_BORDER_COLOR, HIGHLIGHT_HOVER_BORDER_COLOR);
 
 		if (text == null)
 		{
@@ -792,8 +798,8 @@ public class ClueScrollPlugin extends Plugin
 		FontMetrics fontMetrics = graphics.getFontMetrics();
 
 		textComponent.setPosition(new java.awt.Point(
-			canvasLocation.getX() + toHighlight.getWidth() / 2 - fontMetrics.stringWidth(text) / 2,
-			canvasLocation.getY() + fontMetrics.getHeight()));
+				canvasLocation.getX() + toHighlight.getWidth() / 2 - fontMetrics.stringWidth(text) / 2,
+				canvasLocation.getY() + fontMetrics.getHeight()));
 		textComponent.setText(text);
 		textComponent.render(graphics);
 	}
@@ -817,13 +823,13 @@ public class ClueScrollPlugin extends Plugin
 		}
 		averageCentralY /= nonnullCount;
 		final int newScroll = Math.max(0, Math.min(parent.getScrollHeight(),
-			averageCentralY - parent.getHeight() / 2));
+				averageCentralY - parent.getHeight() / 2));
 
 		client.runScript(
-			ScriptID.UPDATE_SCROLLBAR,
-			scrollbar.getId(),
-			list.getId(),
-			newScroll
+				ScriptID.UPDATE_SCROLLBAR,
+				scrollbar.getId(),
+				list.getId(),
+				newScroll
 		);
 	}
 
@@ -846,7 +852,7 @@ public class ClueScrollPlugin extends Plugin
 			if (region == (toOverworld ? real : overworld))
 			{
 				return WorldPoint.fromRegion(toOverworld ? overworld : real,
-					worldPoint.getRegionX(), worldPoint.getRegionY(), worldPoint.getPlane());
+						worldPoint.getRegionX(), worldPoint.getRegionY(), worldPoint.getPlane());
 			}
 		}
 		return worldPoint;

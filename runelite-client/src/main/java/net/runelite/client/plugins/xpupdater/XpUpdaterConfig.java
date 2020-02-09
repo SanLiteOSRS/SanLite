@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, Kruithne <kruithne@gmail.com>
+ * Copyright (c) 2020, Alexsuperfly <alexsuperfly@users.noreply.github.com>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,37 +22,34 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.client.plugins.customcursor;
+package net.runelite.client.plugins.xpupdater;
 
-import java.awt.image.BufferedImage;
-import javax.annotation.Nullable;
-import lombok.Getter;
-import net.runelite.client.util.ImageUtil;
+import net.runelite.client.config.Config;
+import net.runelite.client.config.ConfigGroup;
+import net.runelite.client.config.ConfigItem;
 
-@Getter
-public enum CustomCursor
+@ConfigGroup("xpupdater")
+public interface XpUpdaterConfig extends Config
 {
-	RS3_GOLD("RS3 Gold", "cursor-rs3-gold.png"),
-	RS3_SILVER("RS3 Silver", "cursor-rs3-silver.png"),
-	DRAGON_DAGGER("Dragon Dagger", "cursor-dragon-dagger.png"),
-	DRAGON_DAGGER_POISON("Dragon Dagger (p)", "cursor-dragon-dagger-p.png"),
-	TROUT("Trout", "cursor-trout.png"),
-	DRAGON_SCIMITAR("Dragon Scimitar", "cursor-dragon-scimitar.png"),
-	CUSTOM_IMAGE("Custom Image");
-
-	private final String name;
-	@Nullable
-	private final BufferedImage cursorImage;
-
-	CustomCursor(String name)
+	@ConfigItem(
+			position = 1,
+			keyName = "cml",
+			name = "Crystal Math Labs",
+			description = "Automatically updates your stats on crystalmathlabs.com when you log out"
+	)
+	default boolean cml()
 	{
-		this.name = name;
-		this.cursorImage = null;
+		return false;
 	}
 
-	CustomCursor(String name, String icon)
+	@ConfigItem(
+			position = 2,
+			keyName = "templeosrs",
+			name = "TempleOSRS",
+			description = "Automatically updates your stats on templeosrs.com when you log out"
+	)
+	default boolean templeosrs()
 	{
-		this.name = name;
-		this.cursorImage = ImageUtil.getResourceStreamFromClass(CustomCursorPlugin.class, icon);
+		return false;
 	}
 }

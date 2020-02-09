@@ -78,8 +78,13 @@ public class NightmareOfAshihamaDebugOverlay extends Overlay
 					.build());
 
 			panelComponent.getChildren().add(LineComponent.builder()
-					.left("Number of graphic effects")
+					.left("Number of graphic objects")
 					.right("" + nightmare.getGraphicObjects().size())
+					.build());
+
+			panelComponent.getChildren().add(LineComponent.builder()
+					.left("Number of game objects")
+					.right("" + nightmare.getGameObjects().size())
 					.build());
 		}
 		return panelComponent.render(graphics);

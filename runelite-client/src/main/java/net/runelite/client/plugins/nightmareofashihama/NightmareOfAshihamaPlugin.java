@@ -3,10 +3,7 @@ package net.runelite.client.plugins.nightmareofashihama;
 import com.google.inject.Provides;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.AnimationID;
-import net.runelite.api.Client;
-import net.runelite.api.GameState;
-import net.runelite.api.NPC;
+import net.runelite.api.*;
 import net.runelite.api.events.*;
 import net.runelite.client.Notifier;
 import net.runelite.client.callback.ClientThread;
@@ -58,6 +55,9 @@ public class NightmareOfAshihamaPlugin extends Plugin
 	private NightmareOfAshihamaOverlay nightmareOverlay;
 
 	@Inject
+	private NightmareOfAshihamaCurrentAttackOverlay currentAttackOverlay;
+
+	@Inject
 	private NightmareOfAshihamaDebugOverlay debugOverlay;
 
 	@Inject
@@ -80,6 +80,7 @@ public class NightmareOfAshihamaPlugin extends Plugin
 	{
 		prayersShuffledIcon = NightmareOfAshihama.getPrayersShuffledIcon();
 		overlayManager.add(nightmareOverlay);
+		overlayManager.add(currentAttackOverlay);
 		if (config.showDebugOverlay())
 		{
 			overlayManager.add(debugOverlay);
@@ -91,6 +92,7 @@ public class NightmareOfAshihamaPlugin extends Plugin
 	protected void shutDown() throws Exception
 	{
 		overlayManager.remove(nightmareOverlay);
+		overlayManager.remove(currentAttackOverlay);
 		if (config.showDebugOverlay())
 		{
 			overlayManager.remove(debugOverlay);
@@ -188,6 +190,36 @@ public class NightmareOfAshihamaPlugin extends Plugin
 		}
 
 		nightmare.onAttack(animationId, client.getTickCount());
+	}
+
+	@Subscribe
+	public void onGameObjectSpawned(GameObjectSpawned event)
+	{
+		if (!inEncounterInstance() || nightmare == null)
+		{
+			return;
+		}
+
+		int id = event.getGameObject().getId();
+		if (id == ObjectID.SPORE_37739)
+		{
+			nightmare.getGameObjects().add(event.getGameObject());
+		}
+	}
+
+	@Subscribe
+	public void onGameObjectDespawned(GameObjectDespawned event)
+	{
+		if (nightmare == null)
+		{
+			return;
+		}
+
+		int id = event.getGameObject().getId();
+		if (id == ObjectID.SPORE_37739)
+		{
+			nightmare.getGameObjects().remove(event.getGameObject());
+		}
 	}
 
 	@Subscribe
