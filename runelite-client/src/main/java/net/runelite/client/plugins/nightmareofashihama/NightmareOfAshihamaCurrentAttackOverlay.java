@@ -21,7 +21,6 @@ public class NightmareOfAshihamaCurrentAttackOverlay extends Overlay
 	private static final Color COLOR_ICON_BORDER = new Color(0, 0, 0, 255);
 	private static final int ICON_WIDTH = 25;
 	private static final int ICON_HEIGHT = 25;
-	private static final int OVERLAY_ICON_DISTANCE = 30;
 	private static final int OVERLAY_ICON_MARGIN = 12;
 
 	private Client client;
@@ -92,25 +91,26 @@ public class NightmareOfAshihamaCurrentAttackOverlay extends Overlay
 				int bgPadding = 4;
 				int currentPosX = 0;
 
+				int overlayIconDistance = config.getCurrentAttackHeight();
 				graphics.setStroke(new BasicStroke(2));
 				graphics.setColor(COLOR_ICON_BACKGROUND);
 				graphics.fillOval(
 						point.getX() - totalWidth / 2 + currentPosX - bgPadding,
-						point.getY() - ICON_HEIGHT / 2 - OVERLAY_ICON_DISTANCE - bgPadding,
+						point.getY() - ICON_HEIGHT / 2 - overlayIconDistance - bgPadding,
 						ICON_WIDTH + bgPadding * 2,
 						ICON_HEIGHT + bgPadding * 2);
 
 				graphics.setColor(COLOR_ICON_BORDER);
 				graphics.drawOval(
 						point.getX() - totalWidth / 2 + currentPosX - bgPadding,
-						point.getY() - ICON_HEIGHT / 2 - OVERLAY_ICON_DISTANCE - bgPadding,
+						point.getY() - ICON_HEIGHT / 2 - overlayIconDistance - bgPadding,
 						ICON_WIDTH + bgPadding * 2,
 						ICON_HEIGHT + bgPadding * 2);
 
 				graphics.drawImage(
 						getAttackStyleIcon(nightmare.getCurrentAttackStyle()),
 						point.getX() - totalWidth / 2 + currentPosX,
-						point.getY() - ICON_HEIGHT / 2 - OVERLAY_ICON_DISTANCE,
+						point.getY() - ICON_HEIGHT / 2 - overlayIconDistance,
 						null);
 			}
 		}

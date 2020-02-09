@@ -1,9 +1,6 @@
 package net.runelite.client.plugins.nightmareofashihama;
 
-import net.runelite.api.Client;
-import net.runelite.api.GraphicsObject;
-import net.runelite.api.NPC;
-import net.runelite.api.Perspective;
+import net.runelite.api.*;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayLayer;
@@ -45,6 +42,11 @@ public class NightmareOfAshihamaOverlay extends Overlay
 			{
 				renderGhostAttackTileMarkers(graphics, nightmare);
 			}
+
+			if (config.highlightInfectiousSpores())
+			{
+				renderInfectiousSporesTileMarkers(graphics, nightmare);
+			}
 		}
 		return null;
 	}
@@ -65,20 +67,54 @@ public class NightmareOfAshihamaOverlay extends Overlay
 
 	private void renderGhostAttackTileMarkers(Graphics2D graphics, NightmareOfAshihama nightmare)
 	{
+		NPC nightmareNpc = nightmare.getNpc();
+		if (nightmare.getNpc().getAnimation() == AnimationID.NIGHTMARE_GHOST_AOE_ATTACK)
+		{
+			LocalPoint localPoint = nightmareNpc.getLocalLocation();
+			Polygon areaPolygon = Perspective.getCanvasTileAreaPoly(client, localPoint, 5);
+			if (areaPolygon == null)
+			{
+				return;
+			}
+
+			OverlayUtil.renderPolygon(graphics, areaPolygon, config.getGhostAttackColor());
+		}
+
 		for (GraphicsObject graphicsObject : nightmare.getGraphicObjects())
 		{
+			if (!nightmare.isGhostAttackGraphicsObjectId(graphicsObject.getId()))
+			{
+				return;
+			}
+
 			LocalPoint localPoint = graphicsObject.getLocation();
 			Polygon polygon = Perspective.getCanvasTilePoly(client, localPoint);
-
 			if (polygon == null)
 			{
 				return;
 			}
 
-			if (nightmare.isGhostAttackGraphicsObjectId(graphicsObject.getId()))
+			OverlayUtil.renderPolygon(graphics, polygon, config.getGhostAttackColor());
+		}
+	}
+
+	private void renderInfectiousSporesTileMarkers(Graphics2D graphics, NightmareOfAshihama nightmare)
+	{
+		for (GameObject gameObject : nightmare.getGameObjects())
+		{
+			if (!nightmare.isInfectiousSporeGameObjectId(gameObject.getId()))
 			{
-				OverlayUtil.renderPolygon(graphics, polygon, config.getGhostAttackColor());
+				return;
 			}
+
+			LocalPoint localPoint = gameObject.getLocalLocation();
+			Polygon areaPolygon = Perspective.getCanvasTileAreaPoly(client, localPoint, 3);
+			if (areaPolygon == null)
+			{
+				return;
+			}
+
+			OverlayUtil.renderPolygon(graphics, areaPolygon, config.getInfectiousSporesColor());
 		}
 	}
 }
