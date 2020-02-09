@@ -52,16 +52,8 @@ import javax.swing.SwingUtilities;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.ChatMessageType;
-import net.runelite.api.Client;
-import net.runelite.api.Constants;
-import net.runelite.api.GameState;
-import net.runelite.api.InventoryID;
+import net.runelite.api.*;
 import net.runelite.api.ItemDefinition;
-import net.runelite.api.ItemContainer;
-import net.runelite.api.NPC;
-import net.runelite.api.Player;
-import net.runelite.api.SpriteID;
 import net.runelite.api.coords.WorldPoint;
 import net.runelite.api.events.ChatMessage;
 import net.runelite.api.events.GameStateChanged;
@@ -612,7 +604,7 @@ public class LootTrackerPlugin extends Plugin
 		}
 
 		config.setIgnoredItems(Text.toCSV(ignoredItemSet));
-		panel.updateIgnoredRecords();
+		// the config changed will update the panel
 	}
 
 	boolean isIgnored(String name)
