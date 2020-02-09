@@ -20,8 +20,8 @@ public interface NightmareOfAshihamaConfig extends Config
 	}
 
 	@Range(
-			min = -200,
-			max = 150
+			min = -125,
+			max = 65
 	)
 	@ConfigItem(
 			keyName = "currentAttackHeight",
