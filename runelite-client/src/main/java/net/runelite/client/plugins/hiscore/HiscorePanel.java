@@ -105,12 +105,12 @@ public class HiscorePanel extends PluginPanel
 			GIANT_MOLE, GROTESQUE_GUARDIANS, HESPORI,
 			KALPHITE_QUEEN, KING_BLACK_DRAGON, KRAKEN,
 			KREEARRA, KRIL_TSUTSAROTH, MIMIC,
-			OBOR, SARACHNIS, SCORPIA,
-			SKOTIZO, THE_GAUNTLET, THE_CORRUPTED_GAUNTLET,
-			THEATRE_OF_BLOOD, THERMONUCLEAR_SMOKE_DEVIL, TZKAL_ZUK,
-			TZTOK_JAD, VENENATIS, VETION,
-			VORKATH, WINTERTODT, ZALCANO,
-			ZULRAH
+			NIGHTMARE, OBOR, SARACHNIS,
+			SCORPIA, SKOTIZO, THE_GAUNTLET,
+			THE_CORRUPTED_GAUNTLET, THEATRE_OF_BLOOD, THERMONUCLEAR_SMOKE_DEVIL,
+			TZKAL_ZUK, TZTOK_JAD, VENENATIS,
+			VETION, VORKATH, WINTERTODT,
+			ZALCANO, ZULRAH
 	);
 
 	@Inject
@@ -545,6 +545,7 @@ public class HiscorePanel extends PluginPanel
 					{
 						content += "<p><span style = 'color:white'>Score:</span> " + QuantityFormatter.formatNumber(bountyHunterRogue.getLevel()) + "</p>";
 					}
+					break;
 				}
 				case BOUNTY_HUNTER_HUNTER:
 				{
