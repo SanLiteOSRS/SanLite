@@ -61,6 +61,7 @@ import net.runelite.client.util.ColorUtil;
 import net.runelite.client.util.ImageUtil;
 import net.runelite.client.util.QuantityFormatter;
 import net.runelite.client.util.SwingUtil;
+import net.runelite.http.api.loottracker.LootRecordType;
 import net.runelite.http.api.loottracker.LootTrackerClient;
 
 class LootTrackerPanel extends PluginPanel
@@ -123,6 +124,7 @@ class LootTrackerPanel extends PluginPanel
 	private boolean groupLoot;
 	private boolean hideIgnoredItems;
 	private String currentView;
+	private LootRecordType currentType;
 
 	static
 	{
@@ -235,6 +237,7 @@ class LootTrackerPanel extends PluginPanel
 		backBtn.addActionListener(ev ->
 		{
 			currentView = null;
+			currentType = null;
 			backBtn.setVisible(false);
 			detailsTitle.setText("");
 			rebuild();
@@ -284,9 +287,9 @@ class LootTrackerPanel extends PluginPanel
 			}
 
 			// If not in detailed view, remove all, otherwise only remove for the currently detailed title
-			sessionRecords.removeIf(r -> r.matches(currentView));
-			aggregateRecords.removeIf(r -> r.matches(currentView));
-			boxes.removeIf(b -> b.matches(currentView));
+			sessionRecords.removeIf(r -> r.matches(currentView, currentType));
+			aggregateRecords.removeIf(r -> r.matches(currentView, currentType));
+			boxes.removeIf(b -> b.matches(currentView, currentType));
 			updateOverall();
 			logsContainer.removeAll();
 			logsContainer.repaint();
@@ -337,10 +340,18 @@ class LootTrackerPanel extends PluginPanel
 	 * Creates a subtitle, adds a new entry and then passes off to the render methods, that will decide
 	 * how to display this new data.
 	 */
-	void add(final String eventName, final int actorLevel, LootTrackerItem[] items)
+	void add(final String eventName, final LootRecordType type, final int actorLevel, LootTrackerItem[] items)
 	{
-		final String subTitle = actorLevel > -1 ? "(lvl-" + actorLevel + ")" : "";
-		final LootTrackerRecord record = new LootTrackerRecord(eventName, subTitle, items, 1);
+		final String subTitle;
+		if (type == LootRecordType.PICKPOCKET)
+		{
+			subTitle = "(pickpocket)";
+		}
+		else
+		{
+			subTitle = actorLevel > -1 ? "(lvl-" + actorLevel + ")" : "";
+		}
+		final LootTrackerRecord record = new LootTrackerRecord(eventName, subTitle, type, items, 1);
 		sessionRecords.add(record);
 
 		LootTrackerBox box = buildBox(record);
@@ -463,7 +474,7 @@ class LootTrackerPanel extends PluginPanel
 	private LootTrackerBox buildBox(LootTrackerRecord record)
 	{
 		// If this record is not part of current view, return
-		if (!record.matches(currentView))
+		if (!record.matches(currentView, currentType))
 		{
 			return null;
 		}
@@ -487,7 +498,7 @@ class LootTrackerPanel extends PluginPanel
 		overallPanel.setVisible(true);
 
 		// Create box
-		final LootTrackerBox box = new LootTrackerBox(itemManager, record.getTitle(), record.getSubTitle(),
+		final LootTrackerBox box = new LootTrackerBox(itemManager, record.getTitle(), record.getType(), record.getSubTitle(),
 				hideIgnoredItems, config.priceType(), config.showPriceType(), plugin::toggleItem);
 		box.addKill(record);
 
@@ -523,7 +534,7 @@ class LootTrackerPanel extends PluginPanel
 		{
 			Predicate<LootTrackerRecord> match = groupLoot
 					// With grouped loot, remove any record with this title
-					? r -> r.matches(record.getTitle())
+					? r -> r.matches(record.getTitle(), record.getType())
 					// Otherwise remove specifically this entry
 					: r -> r.equals(record);
 			sessionRecords.removeIf(match);
@@ -548,6 +559,7 @@ class LootTrackerPanel extends PluginPanel
 		details.addActionListener(e ->
 		{
 			currentView = record.getTitle();
+			currentType = record.getType();
 			detailsTitle.setText(currentView);
 			backBtn.setVisible(true);
 			rebuild();
@@ -575,7 +587,7 @@ class LootTrackerPanel extends PluginPanel
 
 		for (LootTrackerRecord record : concat(aggregateRecords, sessionRecords))
 		{
-			if (!record.matches(currentView))
+			if (!record.matches(currentView, currentType))
 			{
 				continue;
 			}

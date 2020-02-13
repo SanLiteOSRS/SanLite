@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, Psikoi <https://github.com/psikoi>
+ * Copyright (c) 2020, Trevor <https://github.com/Trevor159>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,35 +22,24 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.client.plugins.loottracker;
+package net.runelite.api.events;
 
-import lombok.NonNull;
-import lombok.Value;
-import net.runelite.http.api.loottracker.LootRecordType;
+import lombok.Data;
+import net.runelite.api.ScriptEvent;
 
-@Value
-class LootTrackerRecord
+/**
+ * An event that is fired before the designated script is ran
+ */
+@Data
+public class ScriptPreFired
 {
-	@NonNull
-	private final String title;
-	private final String subTitle;
-	private final LootRecordType type;
-	private final LootTrackerItem[] items;
-	private final int kills;
+	/**
+	 * The script id of the invoked script
+	 */
+	private final int scriptId;
 
 	/**
-	 * Checks if this record matches specified id
-	 *
-	 * @param id other record id
-	 * @return true if match is made
+	 * The input of the script invoke, this will be null unless it is the root script
 	 */
-	boolean matches(final String id, LootRecordType type)
-	{
-		if (id == null)
-		{
-			return true;
-		}
-
-		return title.equals(id) && this.type == type;
-	}
+	private ScriptEvent scriptEvent;
 }
