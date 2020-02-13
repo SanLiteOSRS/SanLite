@@ -24,11 +24,17 @@
  */
 package net.runelite.mixins;
 
+import java.util.ArrayList;
+import java.util.Stack;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import net.runelite.api.Client;
+import static net.runelite.api.Opcodes.INVOKE;
+import static net.runelite.api.Opcodes.RETURN;
+import static net.runelite.api.Opcodes.RUNELITE_EXECUTE;
 import net.runelite.api.events.ScriptCallbackEvent;
+import net.runelite.api.events.ScriptPostFired;
+import net.runelite.api.events.ScriptPreFired;
 import net.runelite.api.mixins.Copy;
 import net.runelite.api.mixins.Inject;
 import net.runelite.api.mixins.Mixin;
@@ -38,8 +44,6 @@ import net.runelite.api.widgets.JavaScriptCallback;
 import net.runelite.rs.api.RSClient;
 import net.runelite.rs.api.RSScript;
 import net.runelite.rs.api.RSScriptEvent;
-
-import static net.runelite.api.Opcodes.RUNELITE_EXECUTE;
 
 @Mixin(RSClient.class)
 public abstract class ScriptVMMixin implements RSClient
@@ -55,10 +59,21 @@ public abstract class ScriptVMMixin implements RSClient
 	@Inject
 	private static int currentScriptPC;
 
+	@Inject
+	private static ScriptPostFired deferredEvent = null;
+
+	@Inject
+	private static Stack<Integer> scriptIds = new Stack<>();
+
 	// Call is injected into runScript by the ScriptVM raw injector
 	@Inject
 	static boolean vmExecuteOpcode(int opcode)
 	{
+		if (deferredEvent != null)
+		{
+			client.getCallbacks().post(deferredEvent);
+			deferredEvent = null;
+		}
 		if (opcode == RUNELITE_EXECUTE)
 		{
 			assert currentScript.getInstructions()[currentScriptPC] == RUNELITE_EXECUTE;
@@ -105,6 +120,19 @@ public abstract class ScriptVMMixin implements RSClient
 			client.getCallbacks().post(event);
 			return true;
 		}
+		else if (opcode == INVOKE)
+		{
+			int id = currentScript.getIntOperands()[currentScriptPC];
+			scriptIds.push(id);
+			client.getCallbacks().post(new ScriptPreFired(id));
+		}
+		else if (opcode == RETURN)
+		{
+			if (scriptIds.size() > 1) // let the runScript method handle the final script
+			{
+				deferredEvent = new ScriptPostFired(scriptIds.pop()); // fire the event when we've left the script
+			}
+		}
 		return false;
 	}
 
@@ -122,22 +150,53 @@ public abstract class ScriptVMMixin implements RSClient
 		{
 			try
 			{
+				ScriptPreFired scriptPreFired = new ScriptPreFired(-1);
+				scriptPreFired.setScriptEvent(event);
+				client.getCallbacks().post(scriptPreFired);
+
 				((JavaScriptCallback) arguments[0]).run(event);
+
+				ScriptPostFired scriptPostFired = new ScriptPostFired(-1);
+				client.getCallbacks().post(scriptPostFired);
 			}
 			catch (Exception e)
 			{
 				client.getLogger().error("Error in JavaScriptCallback", e);
 			}
-			return;
 		}
+		else
+		{
+			try
+			{
+				try
+				{
+					scriptIds.push((Integer) event.getArguments()[0]); // this is safe because it will always be the script id
 
-		try
-		{
-			rs$runScript(event, maxExecutionTime);
-		}
-		finally
-		{
-			currentScript = null;
+					ScriptPreFired scriptPreFired = new ScriptPreFired(scriptIds.peek()); // peek doesn't remove the top item
+					scriptPreFired.setScriptEvent(event);
+					client.getCallbacks().post(scriptPreFired);
+				}
+				catch (ClassCastException ignored)
+				{
+				}
+
+				rs$runScript(event, maxExecutionTime);
+
+				if (!scriptIds.empty())
+				{
+					ScriptPostFired scriptPostFired = new ScriptPostFired(scriptIds.pop()); // hopefully the stack should be dry at this point
+					assert scriptIds.empty() : "Script ID stack should be empty! Contains: " + getAllScriptIds();
+					client.getCallbacks().post(scriptPostFired);
+				}
+			}
+			finally
+			{
+				currentScript = null;
+				while (!scriptIds.empty())
+				{
+					scriptIds.pop(); // make sure the stack is empty, something disastrous happened
+				}
+			}
 		}
 	}
 
@@ -151,5 +210,26 @@ public abstract class ScriptVMMixin implements RSClient
 		RSScriptEvent se = createScriptEvent();
 		se.setArguments(args);
 		runScript(se, 5000000);
+	}
+
+	@Inject
+	private static String getAllScriptIds()
+	{
+		ArrayList<Integer> ids = new ArrayList<>(scriptIds);
+		StringBuilder sb = new StringBuilder();
+		boolean first = true;
+		for (Object item : ids)
+		{
+			if (first)
+			{
+				first = false;
+			}
+			else
+			{
+				sb.append(", ");
+			}
+			sb.append(item);
+		}
+		return sb.toString();
 	}
 }
