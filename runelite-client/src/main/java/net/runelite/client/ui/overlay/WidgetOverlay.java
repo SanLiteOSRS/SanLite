@@ -45,6 +45,8 @@ public class WidgetOverlay extends Overlay
 		.put(WidgetInfo.FOSSIL_ISLAND_OXYGENBAR, OverlayPosition.TOP_LEFT)
 		.put(WidgetInfo.EXPERIENCE_TRACKER_WIDGET, OverlayPosition.TOP_RIGHT)
 		.put(WidgetInfo.RAIDS_POINTS_INFOBOX, OverlayPosition.TOP_RIGHT)
+		.put(WidgetInfo.TOB_PARTY_INTERFACE, OverlayPosition.TOP_LEFT)
+		.put(WidgetInfo.TOB_PARTY_STATS, OverlayPosition.TOP_LEFT)
 		.put(WidgetInfo.GWD_KC, OverlayPosition.TOP_RIGHT)
 		.put(WidgetInfo.TITHE_FARM, OverlayPosition.TOP_RIGHT)
 		.put(WidgetInfo.PEST_CONTROL_BOAT_INFO, OverlayPosition.TOP_LEFT)
@@ -61,6 +63,9 @@ public class WidgetOverlay extends Overlay
 		.put(WidgetInfo.FIXED_VIEWPORT_MULTI_COMBAT_ICON, OverlayPosition.BOTTOM_RIGHT)
 		.put(WidgetInfo.PVP_AREA_INDICATOR, OverlayPosition.BOTTOM_RIGHT)
 		.put(WidgetInfo.PVP_KILLDEATH_COUNTER, OverlayPosition.TOP_LEFT)
+		.put(WidgetInfo.WINTERTODT_RESPAWN_TIMER, OverlayPosition.TOP_LEFT)
+		.put(WidgetInfo.WINTERTODT_POINTS, OverlayPosition.TOP_LEFT)
+		.put(WidgetInfo.WINTERTODT_HEALTHBAR, OverlayPosition.TOP_LEFT)
 		.build();
 
 	public static Collection<WidgetOverlay> createOverlays(final Client client)
