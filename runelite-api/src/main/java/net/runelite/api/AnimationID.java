@@ -245,6 +245,8 @@ public final class AnimationID
 	public static final int BLOAT_SLEEP = 8082;
 
 	// Alchemical Hydra
+	public static final int ALCHEMICAL_HYDRA_GREEN_PHASE_WALKING = 8232;
+	public static final int ALCHEMICAL_HYDRA_GREEN_PHASE_IDLE = 8233;
 	public static final int ALCHEMICAL_HYDRA_GREEN_PHASE_POISON_ATTACK = 8234;
 	public static final int ALCHEMICAL_HYDRA_GREEN_PHASE_RANGED_ATTACK = 8235;
 	public static final int ALCHEMICAL_HYDRA_GREEN_PHASE_MAGIC_ATTACK = 8236;
