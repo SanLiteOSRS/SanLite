@@ -151,7 +151,6 @@ public class WidgetID
 	public static final int GWD_KC_GROUP_ID = 406;
 	public static final int LMS_GROUP_ID = 333;
 	public static final int LMS_INGAME_GROUP_ID = 328;
-	public static final int WINTERTODT_GROUP_ID = 396;
 
 	static class WorldMap
 	{
@@ -901,13 +900,5 @@ public class WidgetID
 	static class LmsKDA
 	{
 		static final int INFO = 4;
-	}
-
-	static class Wintertodt
-	{
-		static final int CONTAINER = 2;
-		static final int RESPAWN_TIMER = 3;
-		static final int POINTS = 4;
-		static final int HEALTHBAR = 16;
 	}
 }

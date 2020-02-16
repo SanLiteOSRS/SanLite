@@ -63,9 +63,6 @@ public class WidgetOverlay extends Overlay
 		.put(WidgetInfo.FIXED_VIEWPORT_MULTI_COMBAT_ICON, OverlayPosition.BOTTOM_RIGHT)
 		.put(WidgetInfo.PVP_AREA_INDICATOR, OverlayPosition.BOTTOM_RIGHT)
 		.put(WidgetInfo.PVP_KILLDEATH_COUNTER, OverlayPosition.TOP_LEFT)
-		.put(WidgetInfo.WINTERTODT_RESPAWN_TIMER, OverlayPosition.TOP_LEFT)
-		.put(WidgetInfo.WINTERTODT_POINTS, OverlayPosition.TOP_LEFT)
-		.put(WidgetInfo.WINTERTODT_HEALTHBAR, OverlayPosition.TOP_LEFT)
 		.build();
 
 	public static Collection<WidgetOverlay> createOverlays(final Client client)
