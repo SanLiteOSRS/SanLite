@@ -80,4 +80,7 @@ public class GraphicID
 	public static final int ALCHEMICAL_HYDRA_LIGHTNING_ATTACK_1 = 1664;
 	public static final int ALCHEMICAL_HYDRA_LIGHTNING_ATTACK_2 = 1666;
 	public static final int ALCHEMICAL_HYDRA_FIRE_ATTACK = 1668;
+
+	// The Nightmare of Ashihama
+	public static final int NIGHTMARE_GHOST_ATTACK = 1767;
 }

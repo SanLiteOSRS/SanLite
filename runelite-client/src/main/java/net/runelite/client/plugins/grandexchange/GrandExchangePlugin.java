@@ -43,6 +43,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.*;
+import net.runelite.api.ItemDefinition;
 import net.runelite.api.events.ChatMessage;
 import net.runelite.client.events.ConfigChanged;
 import net.runelite.api.events.FocusChanged;
@@ -51,7 +52,6 @@ import net.runelite.api.events.GrandExchangeOfferChanged;
 import net.runelite.api.events.MenuEntryAdded;
 import net.runelite.api.events.ScriptCallbackEvent;
 import net.runelite.api.events.WidgetLoaded;
-import net.runelite.api.events.ScriptCallbackEvent;
 import net.runelite.api.widgets.Widget;
 import net.runelite.api.widgets.WidgetID;
 import net.runelite.api.widgets.WidgetInfo;
@@ -78,9 +78,9 @@ import net.runelite.http.api.osbuddy.OSBGrandExchangeClient;
 import net.runelite.http.api.osbuddy.OSBGrandExchangeResult;
 
 @PluginDescriptor(
-	name = "Grand Exchange",
-	description = "Provide additional and/or easier access to Grand Exchange information",
-	tags = {"external", "integration", "notifications", "panel", "prices", "trade"}
+		name = "Grand Exchange",
+		description = "Provide additional and/or easier access to Grand Exchange information",
+		tags = {"external", "integration", "notifications", "panel", "prices", "trade"}
 )
 @Slf4j
 public class GrandExchangePlugin extends Plugin
@@ -186,11 +186,11 @@ public class GrandExchangePlugin extends Plugin
 		final BufferedImage icon = ImageUtil.getResourceStreamFromClass(getClass(), "ge_icon.png");
 
 		button = NavigationButton.builder()
-			.tooltip("Grand Exchange")
-			.icon(icon)
-			.priority(3)
-			.panel(panel)
-			.build();
+				.tooltip("Grand Exchange")
+				.icon(icon)
+				.priority(3)
+				.panel(panel)
+				.build();
 
 		clientToolbar.addNavigation(button);
 
@@ -286,8 +286,14 @@ public class GrandExchangePlugin extends Plugin
 			return;
 		}
 
-		// Only interested in offers which are fully bought/sold
-		if (offer.getState() != GrandExchangeOfferState.BOUGHT && offer.getState() != GrandExchangeOfferState.SOLD)
+		if (offer.getState() != GrandExchangeOfferState.BOUGHT && offer.getState() != GrandExchangeOfferState.SOLD &&
+				offer.getState() != GrandExchangeOfferState.CANCELLED_BUY && offer.getState() != GrandExchangeOfferState.CANCELLED_SELL)
+		{
+			return;
+		}
+
+		// Cancelled offers may have been cancelled before buying/selling any items
+		if (offer.getQuantitySold() == 0)
 		{
 			return;
 		}
@@ -299,12 +305,12 @@ public class GrandExchangePlugin extends Plugin
 		}
 
 		// getPrice() is the price of the offer, not necessarily what the item bought at
-		int priceEach = offer.getSpent() / offer.getTotalQuantity();
+		int priceEach = offer.getSpent() / offer.getQuantitySold();
 
 		GrandExchangeTrade grandExchangeTrade = new GrandExchangeTrade();
-		grandExchangeTrade.setBuy(offer.getState() == GrandExchangeOfferState.BOUGHT);
+		grandExchangeTrade.setBuy(offer.getState() == GrandExchangeOfferState.BOUGHT || offer.getState() == GrandExchangeOfferState.CANCELLED_BUY);
 		grandExchangeTrade.setItemId(offer.getItemId());
-		grandExchangeTrade.setQuantity(offer.getTotalQuantity());
+		grandExchangeTrade.setQuantity(offer.getQuantitySold());
 		grandExchangeTrade.setPrice(priceEach);
 
 		log.debug("Submitting trade: {}", grandExchangeTrade);
