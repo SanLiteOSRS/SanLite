@@ -45,15 +45,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-@Slf4j
 @PluginDescriptor(
 		name = "Spell Effect Timers",
-		description = "Shows spell effect timers for freezes, vengeance and teleblock",
+		description = "Shows spell effect timers for freezes, vengeance, staff of the dead and teleblock",
 		tags = {"spell", "effect", "timers", "freeze", "timers", "barrage", "freezy", "ancients", "overlay", "root",
-				"vengeance", "teleblock", "veng", "tb", "pvp"},
+				"vengeance", "teleblock", "veng", "tb", "pvp", "sotd", "staff", "spec"},
 		enabledByDefault = false,
 		type = PluginType.SANLITE_USE_AT_OWN_RISK
 )
+@Slf4j
 public class SpellEffectTimersPlugin extends Plugin
 {
 
@@ -123,6 +123,7 @@ public class SpellEffectTimersPlugin extends Plugin
 		}
 
 		int spotAnimation = actor.getSpotAnimation();
+		log.debug(spotAnimation + " " + actor.getName());
 		if (spotAnimation == 0)
 		{
 			return;
@@ -260,17 +261,11 @@ public class SpellEffectTimersPlugin extends Plugin
 
 	private void checkSotdSpellEffect(SpotAnimationChanged spotAnimationChanged, Actor actor, SpellEffect spellEffect)
 	{
+		spellEffects.removeIf(x -> x.getSpellEffect().getSpellType().equals((SpellEffectType.STAFF_OF_THE_DEAD_SPECIAL)) &&
+				x.getActor().equals(spotAnimationChanged.getActor()));
+
 		spellEffects.add(new SpellEffectInfo(actor, spellEffect, client.getGameCycle(), false));
-		for (SpellEffectInfo spellEffectInfo : spellEffects)
-		{
-			if (spotAnimationChanged.getActor().equals(spellEffectInfo.getActor()))
-			{
-				if (spellEffectInfo.getSpellEffect().equals(SpellEffect.STAFF_OF_THE_DEAD_SPECIAL))
-				{
-					return;
-				}
-			}
-		}
+
 	}
 
 	@Subscribe

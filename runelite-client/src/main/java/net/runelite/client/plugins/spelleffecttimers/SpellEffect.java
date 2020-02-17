@@ -45,7 +45,10 @@ public enum SpellEffect
 	VENGEANCE_OTHER("Vengeance Other", SpellEffectType.VENGEANCE, 725, false, -1, "vengeance.png"),
 	VENGEANCE("Vengeance", SpellEffectType.VENGEANCE, 726, false, 30000, "vengeance.png"),
 	VENGEANCE_ACTIVE("Vengeance Active", SpellEffectType.VENGEANCE, -1, false, -1, "vengeance_white.png"),
-	STAFF_OF_THE_DEAD_SPECIAL("Staff Of The Dead Special", SpellEffectType.STAFF_OF_THE_DEAD_SPECIAL, 1516, false, 60000, "sotd.png");
+	STAFF_OF_THE_DEAD_SPECIAL("Staff Of The Dead Special", SpellEffectType.STAFF_OF_THE_DEAD_SPECIAL, 1228, false, 60000, "sotd.png"),
+	STAFF_OF_LIGHT_SPECIAL("Staff Of Light Special", SpellEffectType.STAFF_OF_THE_DEAD_SPECIAL, 1516, false, 60000, "sotd.png"),
+	STAFF_OF_BALANCE_SPECIAL("Staff Of Balance Special", SpellEffectType.STAFF_OF_THE_DEAD_SPECIAL, 1733, false, 60000, "sotd.png"),
+	TOXIC_STAFF_OF_THE_DEAD_SPECIAL("Toxic Staff Of The Dead Special", SpellEffectType.STAFF_OF_THE_DEAD_SPECIAL, 1228, false, 60000, "sotd.png");
 
 	@Getter(AccessLevel.PACKAGE)
 	private final String name;
