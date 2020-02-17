@@ -103,6 +103,17 @@ public class TheatreOfBloodDebugOverlay extends Overlay
 
 			switch (plugin.getCurrentEncounter().getEncounter())
 			{
+				case SUGADINTI_MAIDEN:
+					SugadintiMaiden sugadintiMaiden = (SugadintiMaiden) plugin.getCurrentEncounter();
+					panelComponent.getChildren().add(LineComponent.builder()
+							.left("Percent")
+							.right("" + sugadintiMaiden.getPercent())
+							.build());
+					panelComponent.getChildren().add(LineComponent.builder()
+							.left("Start Time")
+							.right("" + sugadintiMaiden.getStartTime())
+							.build());
+					break;
 				case PESTILENT_BLOAT:
 					PestilentBloat pestilentBloat = (PestilentBloat) plugin.getCurrentEncounter();
 					panelComponent.getChildren().add(LineComponent.builder()

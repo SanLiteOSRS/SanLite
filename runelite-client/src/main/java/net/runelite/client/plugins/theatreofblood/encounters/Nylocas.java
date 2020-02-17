@@ -27,15 +27,25 @@ package net.runelite.client.plugins.theatreofblood.encounters;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.*;
+import net.runelite.client.chat.ChatColorType;
+import net.runelite.client.chat.ChatMessageBuilder;
+import net.runelite.client.chat.ChatMessageManager;
+import net.runelite.client.chat.QueuedMessage;
 
+import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 public class Nylocas extends TheatreOfBloodEncounter
 {
+	@Inject
+	private ChatMessageManager chatMessageManager;
+
 	@Getter
 	@Setter
 	private List<NPC> highlightedNylocasNpcs;
@@ -45,11 +55,16 @@ public class Nylocas extends TheatreOfBloodEncounter
 
 	private final static int NYLOCAS_LIFE_LENGTH = 31200;
 
+	private int startTime;
+
+	private boolean messageSent;
+
 	public Nylocas(TheatreOfBloodEncounters encounter)
 	{
 		super(encounter);
 		highlightedNylocasNpcs = new ArrayList<>();
 		aliveNylocas = new HashMap<>();
+		messageSent = false;
 	}
 
 	public static boolean isNylocasNpc(int npcId)
@@ -134,5 +149,32 @@ public class Nylocas extends TheatreOfBloodEncounter
 
 		// Check if Nylocas is within 5 seconds of exploding
 		return timers.get(2) < (5000 / Constants.CLIENT_TICK_LENGTH);
+	}
+
+	public void startTimer(int clientTick)
+	{
+		startTime = clientTick;
+	}
+
+	public void nlyoSpawned (int clientTick)
+	{
+		if (!messageSent)
+		{
+			int secondsTaken = (int)Math.ceil(((clientTick - startTime) / 5.0) / 10.0);
+			String minutes = Integer.toString(secondsTaken / 60);
+			String seconds = Integer.toString(secondsTaken % 60);
+
+			log.warn("Nylocas boss spawn: " + minutes + "minute(s) " + seconds + " second(s).");
+			final String currentTimeMessage = new ChatMessageBuilder()
+					.append(ChatColorType.HIGHLIGHT)
+					.append("Nylocas boss spawn: " + minutes + "minute(s) " + seconds + " second(s).")
+					.build();
+			chatMessageManager.queue(
+					QueuedMessage.builder()
+							.type(ChatMessageType.CONSOLE)
+							.runeLiteFormattedMessage(currentTimeMessage)
+							.build());
+			messageSent = true;
+		}
 	}
 }

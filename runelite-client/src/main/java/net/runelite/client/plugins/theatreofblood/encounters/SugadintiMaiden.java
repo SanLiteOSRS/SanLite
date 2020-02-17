@@ -24,16 +24,29 @@
  */
 package net.runelite.client.plugins.theatreofblood.encounters;
 
-import net.runelite.api.GameObject;
-import net.runelite.api.GraphicID;
-import net.runelite.api.GraphicsObject;
-import net.runelite.api.NullObjectID;
+import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
+import net.runelite.api.*;
+import net.runelite.client.chat.ChatColorType;
+import net.runelite.client.chat.ChatMessageBuilder;
+import net.runelite.client.chat.ChatMessageManager;
+import net.runelite.client.chat.QueuedMessage;
 
+import javax.inject.Inject;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 public class SugadintiMaiden extends TheatreOfBloodEncounter
 {
+	@Getter
+	private int startTime;
+	@Getter
+	private int percent;
+
+	@Inject
+	private ChatMessageManager chatMessageManager;
+
 	public SugadintiMaiden(TheatreOfBloodEncounters encounter)
 	{
 		super(encounter);
@@ -96,5 +109,49 @@ public class SugadintiMaiden extends TheatreOfBloodEncounter
 				clientGraphicObjects.stream()
 						.filter(x -> isBloodSplatAttack(x.getId()))
 						.collect(Collectors.toList()));
+	}
+
+	public void startTimer(int clientTick)
+	{
+		startTime = clientTick;
+		percent = 100;
+	}
+
+	public void checkMaidenHealth(int health, int clientTick)
+	{
+		if (health == 0) return;
+
+		if (percent == 100 && health <= 700)
+		{
+			percent = 70;
+			int secondsTaken = (int)Math.ceil(((clientTick - startTime) / 5.0) / 10.0);
+			sendChatMessage(Integer.toString(percent), Integer.toString(secondsTaken / 60), Integer.toString(secondsTaken % 60));
+		}
+		else if (percent == 70 && health <= 500)
+		{
+			percent = 50;
+			int secondsTaken = (int)Math.ceil(((clientTick - startTime) / 5.0) / 10.0);
+			sendChatMessage(Integer.toString(percent), Integer.toString(secondsTaken / 60), Integer.toString(secondsTaken % 60));
+		}
+		else if (percent == 50 && health <= 300)
+		{
+			percent = 30;
+			int secondsTaken = (int)Math.ceil(((clientTick - startTime) / 5.0) / 10.0);
+			sendChatMessage(Integer.toString(percent), Integer.toString(secondsTaken / 60), Integer.toString(secondsTaken % 60));
+		}
+	}
+
+	private void sendChatMessage(String percent, String minutes, String seconds)
+	{
+		log.warn(percent + " % " + minutes + "minutes " + seconds + " seconds");
+		final String currentTimeMessage = new ChatMessageBuilder()
+				.append(ChatColorType.HIGHLIGHT)
+				.append("Maiden " + percent + "% health: " + minutes + " minute(s)" + seconds + " second(s).")
+				.build();
+		chatMessageManager.queue(
+				QueuedMessage.builder()
+						.type(ChatMessageType.CONSOLE)
+						.runeLiteFormattedMessage(currentTimeMessage)
+						.build());
 	}
 }

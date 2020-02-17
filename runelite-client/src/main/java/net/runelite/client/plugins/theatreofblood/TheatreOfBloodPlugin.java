@@ -45,6 +45,7 @@ import javax.inject.Inject;
 import java.util.Arrays;
 import java.util.regex.Pattern;
 
+import static net.runelite.api.Varbits.TOB_ENCOUNTER_HEALTH_BAR;
 import static net.runelite.api.Varbits.TOB_ENCOUNTER_STATE;
 
 @Slf4j
@@ -287,6 +288,7 @@ public class TheatreOfBloodPlugin extends Plugin
 			if (Arrays.equals(worldRegion, NYLOCAS_REGIONS))
 			{
 				currentEncounter = new Nylocas(TheatreOfBloodEncounters.NYLOCAS);
+				currentEncounter.castToNylocas().startTimer(client.getGameCycle());
 				log.debug("Current encounter set to Nylocas: {}", currentEncounter);
 			}
 
@@ -299,6 +301,7 @@ public class TheatreOfBloodPlugin extends Plugin
 				case NpcID.THE_MAIDEN_OF_SUGADINTI_8364:
 				case NpcID.THE_MAIDEN_OF_SUGADINTI_8365:
 					currentEncounter = new SugadintiMaiden(TheatreOfBloodEncounters.SUGADINTI_MAIDEN);
+					currentEncounter.castToMaiden().startTimer(client.getGameCycle());
 					log.debug("Current encounter set to Maiden: {}", currentEncounter);
 					break;
 				case NpcID.PESTILENT_BLOAT:
@@ -358,6 +361,11 @@ public class TheatreOfBloodPlugin extends Plugin
 		if (!Nylocas.isNylocasNpc(npc.getId()) && !Verzik.isNylocasNpc(npc.getId()))
 		{
 			currentEncounter.setNpc(npc);
+			if (currentEncounter.getEncounter() == TheatreOfBloodEncounters.NYLOCAS)
+			{
+				log.warn(npc.getId() + " npc id");
+				currentEncounter.castToNylocas().nlyoSpawned(client.getGameCycle());
+			}
 		}
 
 		switch (currentEncounter.getEncounter())
@@ -500,9 +508,15 @@ public class TheatreOfBloodPlugin extends Plugin
 	{
 		if (client.isInInstancedRegion() && currentEncounter != null && currentEncounter.getEncounter() != null)
 		{
-			if (currentEncounter.getEncounter() == TheatreOfBloodEncounters.SOTETSEG)
+			switch (currentEncounter.getEncounter())
 			{
-				currentEncounter.castToSotetseg().checkMazeActivityChanged(client.getVar(TOB_ENCOUNTER_STATE));
+
+				case SUGADINTI_MAIDEN:
+					currentEncounter.castToMaiden().checkMaidenHealth(client.getVar(TOB_ENCOUNTER_HEALTH_BAR), client.getGameCycle());
+					break;
+				case SOTETSEG:
+					currentEncounter.castToSotetseg().checkMazeActivityChanged(client.getVar(TOB_ENCOUNTER_STATE));
+					break;
 			}
 		}
 	}
