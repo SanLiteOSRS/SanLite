@@ -244,27 +244,23 @@ public final class AnimationID
 	// Pestilent Bloat
 	public static final int BLOAT_SLEEP = 8082;
 
-	// Hydra
-	public static final int HYDRA_POISON_1 = 8234;
-	public static final int HYDRA_RANGED_1 = 8235;
-	public static final int HYDRA_MAGIC_1 = 8236;
+	// Alchemical Hydra
+	public static final int ALCHEMICAL_HYDRA_GREEN_PHASE_POISON_ATTACK = 8234;
+	public static final int ALCHEMICAL_HYDRA_GREEN_PHASE_RANGED_ATTACK = 8235;
+	public static final int ALCHEMICAL_HYDRA_GREEN_PHASE_MAGIC_ATTACK = 8236;
 	public static final int ALCHEMICAL_HYDRA_SWITCH_TO_BLUE_PHASE = 8237;
-	public static final int HYDRA_1_2 = 8238;
-	public static final int HYDRA_LIGHTNING = 8241;
-	public static final int HYDRA_RANGED_2 = 8242;
-	public static final int HYDRA_MAGIC_2 = 8243;
+	public static final int ALCHEMICAL_HYDRA_BLUE_PHASE_LIGHTNING_ATTACK = 8241;
+	public static final int ALCHEMICAL_HYDRA_BLUE_PHASE_RANGED_ATTACK = 8242;
+	public static final int ALCHEMICAL_HYDRA_BLUE_PHASE_MAGIC_ATTACK = 8243;
 	public static final int ALCHEMICAL_HYDRA_SWITCH_TO_RED_PHASE = 8244;
-	public static final int HYDRA_2_2 = 8245;
-	public static final int HYDRA_FIRE = 8248;
-	public static final int HYDRA_RANGED_3 = 8249;
-	public static final int HYDRA_MAGIC_3 = 8250;
+	public static final int ALCHEMICAL_HYDRA_RED_PHASE_FIRE_ATTACK = 8248;
+	public static final int ALCHEMICAL_HYDRA_RED_PHASE_RANGED_ATTACK = 8249;
+	public static final int ALCHEMICAL_HYDRA_RED_PHASE_MAGIC_ATTACK = 8250;
 	public static final int ALCHEMICAL_HYDRA_SWITCH_TO_JAD_PHASE = 8251;
-	public static final int HYDRA_3_2 = 8252;
-	public static final int HYDRA_MAGIC_4 = 8254;
-	public static final int HYDRA_POISON_4 = 8254;
-	public static final int HYDRA_RANGED_4 = 8255;
-	public static final int HYDRA_4_1 = 8257;
-	public static final int HYDRA_4_2 = 8258;
+	public static final int ALCHEMICAL_HYDRA_JAD_PHASE_MAGIC_ATTACK = 8255;
+	public static final int ALCHEMICAL_HYDRA_JAD_PHASE_RANGED_ATTACK = 8256;
+	public static final int ALCHEMICAL_HYDRA_JAD_PHASE_POISON_ATTACK = 8255;
+	public static final int ALCHEMICAL_HYDRA_JAD_PHASE_POISON_ATTACK_2 = 8256;
 
 	// Inferno animations
 	public static final int JAL_NIB = 7574;
@@ -336,6 +332,26 @@ public final class AnimationID
 	public static final int ZALCANO_WAKE_UP = 8439;
 	public static final int ZALCANO_ROCK_GLOWING = 8448;
 
+	// The Nightmare of Ashihama
+	public static final int NIGHTMARE_SPAWN_SLEEPWALKERS = 8572;
+	public static final int NIGHTMARE_MELEE_ATTACK = 8594;
+	public static final int NIGHTMARE_MAGIC_ATTACK = 8595;
+	public static final int NIGHTMARE_RANGED_ATTACK = 8596;
+	public static final int NIGHTMARE_SURGE_ATTACK = 8597;
+	public static final int NIGHTMARE_GHOST_AOE_ATTACK = 8598;
+	public static final int NIGHTMARE_CURSE_PRAYERS_ATTACK = 8599;
+	public static final int NIGHTMARE_SPAWN_INFECTIOUS_SPORES = 8600;
+	public static final int NIGHTMARE_SPAWN_ROOM_SECTION_FLOWERS = 8601;
+	public static final int NIGHTMARE_CHANNEL_DEVASTATING_ATTACK = 8604;
+	public static final int NIGHTMARE_UNKNOWN_1 = 8605;
+	public static final int NIGHTMARE_PARASITE_ATTACK = 8606;
+	public static final int NIGHTMARE_JUMP_DOWN = 8607;
+	public static final int NIGHTMARE_JUMP_UP = 8609;
+	public static final int NIGHTMARE_JUMP_UP_2 = 8610;
+	public static final int NIGHTMARE_WAKE_UP = 8611;
+	public static final int NIGHTMARE_DEATH = 8612;
+    
+    
 	// Cerberus
 	public static final int CERBERUS_MAGE = 4486;
 	public static final int CERBERUS_RANGE = 4490;

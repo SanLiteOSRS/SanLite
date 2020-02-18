@@ -217,7 +217,7 @@ public class VorkathOverlay extends Overlay
 
 		String text = vorkath.getRemainingAcidPhaseAttacks() != -1
 				? String.valueOf(vorkath.getRemainingAcidPhaseAttacks())
-				: String.valueOf(vorkath.getNextAttackTick() - client.getTickCount());
+				: String.valueOf(ticksTillNextAttack);
 
 		BufferedImage image = vorkath.getRemainingAcidPhaseAttacks() != -1
 				? spriteManager.getSpriteImg(SpriteID.SPELL_FIRE_SURGE, 0)

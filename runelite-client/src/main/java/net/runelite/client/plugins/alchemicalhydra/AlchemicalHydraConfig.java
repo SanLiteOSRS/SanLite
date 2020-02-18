@@ -24,6 +24,7 @@
  */
 package net.runelite.client.plugins.alchemicalhydra;
 
+import net.runelite.client.config.Alpha;
 import net.runelite.client.config.Config;
 import net.runelite.client.config.ConfigGroup;
 import net.runelite.client.config.ConfigItem;
@@ -45,31 +46,46 @@ public interface AlchemicalHydraConfig extends Config
 	}
 
 	@ConfigItem(
+			keyName = "displayAttackTimer",
+			name = "Display attack timer",
+			description = "Displays a timer which shows the ticks until the Alchemical Hydra's next attack",
+			position = 2
+	)
+	default boolean displayAttackTimer()
+	{
+		return true;
+	}
+
+	@Alpha
+	@ConfigItem(
+			keyName = "attackTimerTextColor",
+			name = "Attack timer text color",
+			description = "Color of attack timer text",
+			group = "Colors",
+			position = 3
+	)
+	default Color getAttackTimerTextColor()
+	{
+		return new Color(255, 255, 255);
+	}
+
+	@ConfigItem(
 			keyName = "highlightSpecialAttackTiles",
 			name = "Highlight special attack tiles",
 			description = "Highlight the tiles for the Alchemical Hydra's poison, lightning and fire attacks",
-			position = 2
+			position = 4
 	)
 	default boolean highlightSpecialAttackTiles()
 	{
 		return true;
 	}
 
-	@ConfigItem(
-			keyName = "highlightChemicalFountainStatus",
-			name = "Highlight chemical fountain status",
-			description = "Highlight the chemical fountain area and status depending on phase",
-			position = 3
-	)
-	default boolean highlightChemicalFountainStatus()
-	{
-		return true;
-	}
-
+	@Alpha
 	@ConfigItem(
 			keyName = "poisonAttackColor",
 			name = "Poison attack marker",
 			description = "Color of Alchemical Hydra's poison special attack marker",
+			group = "Colors",
 			position = 4
 	)
 	default Color getPoisonAttackColor()
@@ -77,10 +93,12 @@ public interface AlchemicalHydraConfig extends Config
 		return new Color(159, 219, 0);
 	}
 
+	@Alpha
 	@ConfigItem(
 			keyName = "lightningAttackColor",
 			name = "Lightning marker",
 			description = "Color of Alchemical Hydra's lightning special attack marker",
+			group = "Colors",
 			position = 5
 	)
 	default Color getLightningAttackColor()
@@ -88,10 +106,12 @@ public interface AlchemicalHydraConfig extends Config
 		return new Color(3, 133, 219);
 	}
 
+	@Alpha
 	@ConfigItem(
 			keyName = "fireAttackColor",
 			name = "Fire marker",
 			description = "Color of Alchemical Hydra's fire special attack marker",
+			group = "Colors",
 			position = 6
 	)
 	default Color getFireAttackColor()
@@ -99,10 +119,12 @@ public interface AlchemicalHydraConfig extends Config
 		return new Color(219, 116, 0, 255);
 	}
 
+	@Alpha
 	@ConfigItem(
 			keyName = "notOnChemicalPoolColor",
 			name = "Not on fountain marker",
 			description = "Color of chemical fountain marker while the Alchemical Hydra is not on it",
+			group = "Colors",
 			position = 7
 	)
 	default Color getNotOnChemicalPoolColor()
@@ -110,10 +132,12 @@ public interface AlchemicalHydraConfig extends Config
 		return new Color(Color.RED.getRGB());
 	}
 
+	@Alpha
 	@ConfigItem(
 			keyName = "onChemicalPoolColor",
 			name = "On fountain marker",
 			description = "Color of chemical fountain marker while the Alchemical Hydra is on it",
+			group = "Colors",
 			position = 8
 	)
 	default Color getOnChemicalPoolColor()
@@ -122,10 +146,32 @@ public interface AlchemicalHydraConfig extends Config
 	}
 
 	@ConfigItem(
+			keyName = "highlightChemicalVentStatus",
+			name = "Highlight chemical vent status",
+			description = "Highlight the chemical vent area for the current phase and if the boss is in the area",
+			position = 5
+	)
+	default boolean highlightChemicalVentStatus()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+			keyName = "displayChemicalVentsTimer",
+			name = "Display chemical vents timer",
+			description = "Displays a timer to show the time till the next chemical vent activation",
+			position = 9
+	)
+	default boolean displayChemicalVentsTimer()
+	{
+		return true;
+	}
+
+	@ConfigItem(
 			keyName = "showDebugOverlay",
 			name = "Display debug overlay",
 			description = "Displays plugin debug overlay. This displays variables that the plugin uses to function",
-			position = 9
+			position = 12
 	)
 	default boolean showDebugOverlay()
 	{

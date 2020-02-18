@@ -643,8 +643,8 @@ public abstract class RSClientMixin implements RSClient
 			MenuEntryAdded event = new MenuEntryAdded(
 					client.getMenuOptions()[oldCount],
 					client.getMenuTargets()[oldCount],
-					client.getMenuIdentifiers()[oldCount],
 					client.getMenuOpcodes()[oldCount],
+					client.getMenuIdentifiers()[oldCount],
 					client.getMenuArguments1()[oldCount],
 					client.getMenuArguments2()[oldCount]
 			);
@@ -1394,7 +1394,7 @@ public abstract class RSClientMixin implements RSClient
 			{
 				if (renderX >= minX && renderX <= maxX && renderY >= minY && renderY <= maxY)
 				{
-					WidgetItem widgetItem = new WidgetItem(widget.getItemId(), widget.getItemQuantity(), -1, widget.getBounds(), widget);
+					WidgetItem widgetItem = new WidgetItem(widget.getItemId(), widget.getItemQuantity(), -1, widget.getBounds(), widget, null);
 					callbacks.drawItem(widget.getItemId(), widgetItem);
 				}
 			}
@@ -1633,7 +1633,7 @@ public abstract class RSClientMixin implements RSClient
 	{
 		if (volume > 0 && client.getMusicVolume() <= 0 && client.getCurrentTrackGroupId() != -1)
 		{
-			client.playMusicTrack(client.getMusicTracks(), client.getCurrentTrackGroupId(), 0, volume, false);
+			client.playMusicTrack(1000, client.getMusicTracks(), client.getCurrentTrackGroupId(), 0, volume, false);
 		}
 
 		client.setClientMusicVolume(volume);
