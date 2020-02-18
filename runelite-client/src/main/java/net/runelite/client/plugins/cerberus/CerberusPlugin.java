@@ -67,7 +67,7 @@ public class CerberusPlugin extends Plugin
 	private Client client;
 
 	@Getter
-	private int attackCount;
+	private Cerberus cerberus;
 
 	@Getter
 	private boolean encounter;
@@ -102,8 +102,6 @@ public class CerberusPlugin extends Plugin
 	{
 		overlayManager.add(overlay);
 		overlayManager.add(debugOverlay);
-		attackCount = 1;
-		nextAttack = CerberusAttack.TRIPLE;
 		encounter = false;
 		CERBERUS_REGIONS.add(CERBERUS_REGION_EAST);
 		CERBERUS_REGIONS.add(CERBERUS_REGION_NORTH);
@@ -117,7 +115,6 @@ public class CerberusPlugin extends Plugin
 		overlayManager.remove(overlay);
 		overlayManager.remove(debugOverlay);
 		ghosts.clear();
-		attackCount = 0;
 		nextAttack = null;
 		encounter = false;
 	}
@@ -186,7 +183,7 @@ public class CerberusPlugin extends Plugin
 
 		if (encounter && eventNpc.getId() == NpcID.CERBERUS)
 		{
-			npc = eventNpc;
+			cerberus = new Cerberus(eventNpc);
 		}
 
 		CerberusGhost.fromNPC(eventNpc).ifPresent(ghost -> ghosts.add(eventNpc));
@@ -199,7 +196,7 @@ public class CerberusPlugin extends Plugin
 
 		if (encounter && eventNpc.getId() == NpcID.CERBERUS)
 		{
-			npc = null;
+			cerberus = null;
 		}
 
 		ghosts.remove(eventNpc);
@@ -233,24 +230,24 @@ public class CerberusPlugin extends Plugin
 			|| animation.getActor().getAnimation() == AnimationID.CERBERUS_MELEE || animation.getActor().getAnimation() == AnimationID.CERBERUS_GHOSTS
 			|| animation.getActor().getAnimation() == AnimationID.CERBERUS_LAVA)
 			{
-				if ((attackCount - 1) % 10 == 0)
+				if ((cerberus.getAttackCount() - 1) % 10 == 0)
 				{
-					nextAttack = CerberusAttack.TRIPLE;
-					attackCount = attackCount - 2;
+					cerberus.setCurrentAttack(Cerberus.Attack.TRIPLE);
+					cerberus.setAttackCount(cerberus.getAttackCount() - 2);
 				}
-				else if (attackCount % 7 == 0 && animation.getActor().getHealth() < 400)
+				else if (cerberus.getAttackCount() % 7 == 0 && animation.getActor().getHealth() < 400)
 				{
-					nextAttack = CerberusAttack.GHOSTS;
+					cerberus.setCurrentAttack(Cerberus.Attack.GHOSTS);
 				}
-				else if (attackCount % 5 == 0 && animation.getActor().getHealth() < 200)
+				else if (cerberus.getAttackCount() % 5 == 0 && animation.getActor().getHealth() < 200)
 				{
-					nextAttack = CerberusAttack.LAVA;
+					cerberus.setCurrentAttack(Cerberus.Attack.LAVA);
 				}
 				else
 				{
-					nextAttack = CerberusAttack.DEFAULT;
+					cerberus.setCurrentAttack(Cerberus.Attack.DEFAULT);
 				}
-				attackCount++;
+				cerberus.setAttackCount(cerberus.getAttackCount() + 1);
 			}
 		}
 	}

@@ -15,6 +15,7 @@ public class CerberusDebugOverlay extends Overlay
 	private final Client client;
 	private final CerberusPlugin plugin;
 	private final PanelComponent panelComponent = new PanelComponent();
+	private final Cerberus cerberus;
 
 	@Inject
 	CerberusDebugOverlay(Client client, CerberusPlugin plugin)
@@ -23,6 +24,7 @@ public class CerberusDebugOverlay extends Overlay
 		this.plugin = plugin;
 		panelComponent.setPreferredSize(new Dimension(260, 0));
 		setPosition(OverlayPosition.TOP_LEFT);
+		this.cerberus = plugin.getCerberus();
 	}
 
 	@Override
@@ -43,12 +45,12 @@ public class CerberusDebugOverlay extends Overlay
 
 			panelComponent.getChildren().add(LineComponent.builder()
 					.left("Next Attack")
-					.right("" + plugin.getNextAttack())
+					.right("" + cerberus.getCurrentAttack())
 					.build());
 
 			panelComponent.getChildren().add(LineComponent.builder()
 					.left("Attack count")
-					.right("" + plugin.getAttackCount())
+					.right("" + cerberus.getAttackCount())
 					.build());
 
 
