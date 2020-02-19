@@ -22,7 +22,7 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.client.plugins.cerberus;
+/*package net.runelite.client.plugins.cerberus;
 
 import com.google.common.collect.ImmutableMap;
 import java.util.Map;
@@ -63,8 +63,10 @@ public enum CerberusGhost
 	 * @param npc npc
 	 * @return optional ghost
 	 */
+/*
 	public static Optional<CerberusGhost> fromNPC(final NPC npc)
 	{
 		return npc == null ? Optional.empty() : Optional.ofNullable(MAP.get(npc.getId()));
 	}
 }
+*/

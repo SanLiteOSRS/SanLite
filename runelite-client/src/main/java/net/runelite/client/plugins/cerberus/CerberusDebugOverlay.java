@@ -15,7 +15,6 @@ public class CerberusDebugOverlay extends Overlay
 	private final Client client;
 	private final CerberusPlugin plugin;
 	private final PanelComponent panelComponent = new PanelComponent();
-	private final Cerberus cerberus;
 
 	@Inject
 	CerberusDebugOverlay(Client client, CerberusPlugin plugin)
@@ -24,13 +23,13 @@ public class CerberusDebugOverlay extends Overlay
 		this.plugin = plugin;
 		panelComponent.setPreferredSize(new Dimension(260, 0));
 		setPosition(OverlayPosition.TOP_LEFT);
-		this.cerberus = plugin.getCerberus();
 	}
 
 	@Override
 	public Dimension render(Graphics2D graphics)
 	{
-		if (plugin.isEncounter())
+		Cerberus cerberus = plugin.getCerberus();
+		if (plugin.validateInstanceAndNpc())
 		{
 			panelComponent.getChildren().clear();
 
@@ -51,6 +50,26 @@ public class CerberusDebugOverlay extends Overlay
 			panelComponent.getChildren().add(LineComponent.builder()
 					.left("Attack count")
 					.right("" + cerberus.getAttackCount())
+					.build());
+
+			panelComponent.getChildren().add(LineComponent.builder()
+					.left("Cerberus HP")
+					.right("" + cerberus.getHealth())
+					.build());
+
+			panelComponent.getChildren().add(LineComponent.builder()
+					.left("Ghosts List Size")
+					.right("" + cerberus.getGhosts().size())
+					.build());
+
+			panelComponent.getChildren().add(LineComponent.builder()
+					.left("Ghosts Cycle Count")
+					.right("" + cerberus.getGhostsCycleCount())
+					.build());
+
+			panelComponent.getChildren().add(LineComponent.builder()
+					.left("NPC ID at list location 0")
+					.right("" + cerberus.getGhosts().get(0).getId())
 					.build());
 
 

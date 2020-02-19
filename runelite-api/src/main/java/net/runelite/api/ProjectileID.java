@@ -119,4 +119,9 @@ public class ProjectileID
 	public static final int CORRUPTED_GAUNTLET_BOSS_MAGIC_DISABLE_PRAYERS = 1714;
 
 	public static final int ZALCANO_PROJECTILE = 1728;
+
+	//Cerberus Ghosts
+	public static final int CERBERUS_GHOST_MELEE = 1248;
+	public static final int CERBERUS_GHOST_MAGE = 100;
+	public static final int CERBERUS_GHOST_RANGE = 34;
 }
