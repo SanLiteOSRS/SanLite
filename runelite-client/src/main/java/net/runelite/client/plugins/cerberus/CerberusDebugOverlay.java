@@ -1,3 +1,4 @@
+/*
 package net.runelite.client.plugins.cerberus;
 
 import net.runelite.api.Client;
@@ -43,7 +44,12 @@ public class CerberusDebugOverlay extends Overlay
 					.build());
 
 			panelComponent.getChildren().add(LineComponent.builder()
-					.left("Next Attack")
+					.left("Client tick")
+					.right("" + client.getGameCycle())
+					.build());
+
+			panelComponent.getChildren().add(LineComponent.builder()
+					.left("Current Attack")
 					.right("" + cerberus.getCurrentAttack())
 					.build());
 
@@ -68,8 +74,23 @@ public class CerberusDebugOverlay extends Overlay
 					.build());
 
 			panelComponent.getChildren().add(LineComponent.builder()
-					.left("NPC ID at list location 0")
-					.right("" + cerberus.getGhosts().get(0).getId())
+					.left("Triple Attack Count")
+					.right("" + cerberus.getTripleAttackCount())
+					.build());
+
+			panelComponent.getChildren().add(LineComponent.builder()
+					.left("Triple Attack")
+					.right("" + cerberus.isTripleAttack())
+					.build());
+
+			panelComponent.getChildren().add(LineComponent.builder()
+					.left("Time of last attack")
+					.right("" + cerberus.getTimeOfLastAnimation())
+					.build());
+
+			panelComponent.getChildren().add(LineComponent.builder()
+					.left("Pools list size")
+					.right("" + cerberus.getPoolsGraphicObjects().size())
 					.build());
 
 
@@ -78,3 +99,4 @@ public class CerberusDebugOverlay extends Overlay
 		return null;
 	}
 }
+*/

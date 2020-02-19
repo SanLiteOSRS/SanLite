@@ -120,6 +120,10 @@ public class ProjectileID
 
 	public static final int ZALCANO_PROJECTILE = 1728;
 
+	//Cerberus
+	public static final int CERBERUS_MAGE = 1242;
+	public static final int CERBERUS_RANGE = 1245;
+
 	//Cerberus Ghosts
 	public static final int CERBERUS_GHOST_MELEE = 1248;
 	public static final int CERBERUS_GHOST_MAGE = 100;

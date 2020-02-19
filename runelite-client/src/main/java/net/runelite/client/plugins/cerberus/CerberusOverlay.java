@@ -30,19 +30,14 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.Client;
-import net.runelite.api.Perspective;
+import net.runelite.api.*;
 import net.runelite.api.Point;
-import net.runelite.api.Skill;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.client.game.SkillIconManager;
-import net.runelite.client.plugins.nightmareofashihama.NightmareOfAshihama;
 import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayLayer;
 import net.runelite.client.ui.overlay.OverlayPosition;
-import net.runelite.client.ui.overlay.components.ComponentOrientation;
-import net.runelite.client.ui.overlay.components.ImageComponent;
-import net.runelite.client.ui.overlay.components.PanelComponent;
+import net.runelite.client.ui.overlay.OverlayUtil;
 import net.runelite.client.util.ImageUtil;
 
 @Singleton
@@ -53,8 +48,6 @@ public class CerberusOverlay extends Overlay
 	private CerberusPlugin plugin;
 	@Inject
 	private Client client;
-	//private final SkillIconManager iconManager;
-	//private final PanelComponent panelComponent = new PanelComponent();
 
 	private static final Color COLOR_ICON_BACKGROUND = new Color(0, 0, 0, 128);
 	private static final Color COLOR_ICON_BORDER = new Color(0, 0, 0, 255);
@@ -70,9 +63,6 @@ public class CerberusOverlay extends Overlay
 	{
 		this.plugin = plugin;
 		this.client = client;
-		//this.iconManager = iconManager;
-		//setPosition(OverlayPosition.BOTTOM_RIGHT);
-		//panelComponent.setOrientation(ComponentOrientation.HORIZONTAL);
 
 		setPosition(OverlayPosition.DYNAMIC);
 		setLayer(OverlayLayer.UNDER_WIDGETS);
@@ -100,35 +90,32 @@ public class CerberusOverlay extends Overlay
 		if (cerberus != null)
 		{
 			renderCurrentAttackOverhead(graphics, cerberus);
+			if (!cerberus.getPoolsGraphicObjects().isEmpty())
+			{
+				renderPoolsTileMarkers(graphics, cerberus);
+			}
 		}
 		return null;
+	}
 
-		/*
-		if (plugin.getGhosts().isEmpty())
+	private void renderPoolsTileMarkers(Graphics2D graphics, Cerberus cerberus)
+	{
+		for (GraphicsObject graphicsObject : cerberus.getPoolsGraphicObjects())
 		{
-			return null;
+			LocalPoint localPoint = graphicsObject.getLocation();
+			Polygon areaPolygon = Perspective.getCanvasTileAreaPoly(client, localPoint, 3);
+			if (areaPolygon == null)
+			{
+				return;
+			}
+
+			OverlayUtil.renderPolygon(graphics, areaPolygon, new Color(255, 0, 0));
 		}
-
-		panelComponent.getChildren().clear();
-
-		// Ghosts are already sorted
-		plugin.getGhosts().stream()
-			// Iterate only through the correct amount of ghosts
-			.limit(CerberusGhost.values().length)
-			.forEach(npc -> CerberusGhost
-				.fromNPC(npc)
-				.ifPresent(ghost -> panelComponent
-					.getChildren()
-					.add(new ImageComponent(iconManager.getSkillImage(ghost.getType())))));
-
-
-		return panelComponent.render(graphics);
-		 */
 	}
 
 	private void renderCurrentAttackOverhead(Graphics2D graphics, Cerberus cerberus)
 	{
-		if (cerberus.getNextAttackStyle() == null)
+		if (cerberus.getCurrentAttackStyle() == null)
 		{
 			return;
 		}
@@ -164,7 +151,7 @@ public class CerberusOverlay extends Overlay
 						ICON_HEIGHT + bgPadding * 2);
 
 				graphics.drawImage(
-						getAttackStyleIcon(cerberus.getNextAttackStyle()),
+						getAttackStyleIcon(cerberus.getCurrentAttackStyle()),
 						point.getX() - totalWidth / 2 + currentPosX,
 						point.getY() - ICON_HEIGHT / 2 - overlayIconDistance,
 						null);

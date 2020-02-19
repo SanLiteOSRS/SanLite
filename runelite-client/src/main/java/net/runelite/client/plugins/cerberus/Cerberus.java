@@ -8,6 +8,7 @@ import net.runelite.api.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 class Cerberus
@@ -48,7 +49,7 @@ class Cerberus
 	private Attack nextAttack;
 
 	@Getter
-	private AttackStyle nextAttackStyle;
+	private AttackStyle currentAttackStyle;
 
 	@Getter
 	@Setter
@@ -78,79 +79,108 @@ class Cerberus
 	private int ghostsCycleCount;
 
 	@Getter
+	@Setter
+	private int timeOfLastAnimation;
+
+	@Getter
 	private final List<NPC> ghosts = new ArrayList<>();
+
+	@Getter
+	private List<GraphicsObject> poolsGraphicObjects = new ArrayList<>();
 
 	Cerberus(NPC npc)
 	{
 		this.npc = npc;
-		this.attackCount = 0;
+		this.attackCount = 1;
 		this.currentAttack = Attack.TRIPLE;
 		this.tripleAttackCount = 0;
 		this.tripleAttack = false;
-		this.nextAttackStyle = AttackStyle.MAGE;
+		this.currentAttackStyle = AttackStyle.MAGE;
 		this.ghostsCycleCount = 0;
+		this.timeOfLastAnimation = 0;
 	}
 
 	boolean isCerberusAttack(int animID)
 	{
-		return animID == AnimationID.CERBERUS_MAGE || animID == AnimationID.CERBERUS_RANGE
-				|| animID == AnimationID.CERBERUS_MELEE || animID == AnimationID.CERBERUS_GHOSTS
-				|| animID == AnimationID.CERBERUS_LAVA;
+		return animID == AnimationID.CERBERUS_MAGE || animID == AnimationID.CERBERUS_RANGE ||
+				animID == AnimationID.CERBERUS_MELEE || animID == AnimationID.CERBERUS_LAVA ||
+				animID == AnimationID.CERBERUS_GHOSTS;
 	}
 
 	boolean isCerberusGhost(int npcID)
 	{
-		return npcID == CerberusGhost.MAGE.getNpcId() ||
-				npcID == CerberusGhost.MELEE.getNpcId() ||
+		return npcID == CerberusGhost.MAGE.getNpcId() || npcID == CerberusGhost.MELEE.getNpcId() ||
 				npcID == CerberusGhost.RANGE.getNpcId();
 	}
 
 	boolean isGhostProjectile(int projectileID)
 	{
-		return projectileID == ProjectileID.CERBERUS_GHOST_MAGE ||
-				projectileID == ProjectileID.CERBERUS_GHOST_RANGE ||
+		return projectileID == ProjectileID.CERBERUS_GHOST_MAGE || projectileID == ProjectileID.CERBERUS_GHOST_RANGE ||
 				projectileID == ProjectileID.CERBERUS_GHOST_MELEE;
+	}
+
+	boolean isGhostsOverheadText()
+	{
+		boolean result = false;
+		if (npc.getOverheadText() != null)
+		{
+			if (npc.getOverheadText().equals("Aaarrrooooooo"))
+			{
+				result = true;
+			}
+		}
+		return result;
+	}
+
+	boolean isCerberusProjectile(int projectileID)
+	{
+		return projectileID == ProjectileID.CERBERUS_MAGE || projectileID == ProjectileID.CERBERUS_RANGE;
+	}
+
+	boolean isPoolGraphicsObject(int graphicsID)
+	{
+		return graphicsID == GraphicID.CERBERUS_POOL;
 	}
 
 	void setNextPrayer()
 	{
-		if (isGhostsActive())
+		if (ghostsActive && !ghosts.isEmpty())
 		{
-			if (getGhosts().get(ghostsCycleCount).getId() == CerberusGhost.MAGE.getNpcId())
+			if (ghosts.get(ghostsCycleCount - 1).getId() == CerberusGhost.MAGE.getNpcId())
 			{
-				nextAttackStyle = AttackStyle.MAGE;
+				currentAttackStyle = AttackStyle.MAGE;
 			}
-			else if (getGhosts().get(ghostsCycleCount).getId() == CerberusGhost.RANGE.getNpcId())
+			else if (ghosts.get(ghostsCycleCount - 1).getId() == CerberusGhost.RANGE.getNpcId())
 			{
-				nextAttackStyle = AttackStyle.RANGE;
+				currentAttackStyle = AttackStyle.RANGE;
 			}
-			else if (getGhosts().get(ghostsCycleCount).getId() == CerberusGhost.MELEE.getNpcId())
+			else if (ghosts.get(ghostsCycleCount - 1).getId() == CerberusGhost.MELEE.getNpcId())
 			{
-				nextAttackStyle = AttackStyle.MELEE;
+				currentAttackStyle = AttackStyle.MELEE;
 			}
 		}
 		else if (currentAttack == Attack.DEFAULT)
 		{
-			nextAttackStyle = AttackStyle.MAGE;
+			currentAttackStyle = AttackStyle.MAGE;
 		}
 		else
 		{
 			switch (currentAttack)
 			{
 				case LAVA:
-					nextAttackStyle = AttackStyle.MAGE;
+					currentAttackStyle = AttackStyle.MAGE;
 					break;
 				case TRIPLE:
 					switch (tripleAttackCount)
 					{
 						case 0:
-							nextAttackStyle = AttackStyle.MAGE;
+							currentAttackStyle = AttackStyle.MAGE;
 							break;
 						case 1:
-							nextAttackStyle = AttackStyle.RANGE;
+							currentAttackStyle = AttackStyle.RANGE;
 							break;
 						case 2:
-							nextAttackStyle = AttackStyle.MELEE;
+							currentAttackStyle = AttackStyle.MELEE;
 							break;
 					}
 					break;
@@ -160,18 +190,24 @@ class Cerberus
 
 	void checkGhostCycle()
 	{
-		if (ghostsCycleCount == 2)
+		if (ghostsCycleCount == 4)
 		{
 			ghostsCycleCount = 0;
 			ghostsActive = false;
 		}
 	}
 
+	void checkPoolSpawns(List<GraphicsObject> graphicsObjects)
+	{
+		poolsGraphicObjects = graphicsObjects.stream()
+				.filter(x -> isPoolGraphicsObject(x.getId()))
+				.collect(Collectors.toList());
+	}
+
 	void updateHealth()
 	{
 		final NPC cerberus = npc;
 		final int lastMaxHealth = 600;
-
 
 		int lastRatio = 0;
 		int lastHealthScale = 0;

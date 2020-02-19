@@ -83,4 +83,8 @@ public class GraphicID
 
 	// The Nightmare of Ashihama
 	public static final int NIGHTMARE_GHOST_ATTACK = 1767;
+
+	//Cerberus
+	public static final int CERBERUS_POOL = 1246;
+	public static final int CERBERUS_POOL_DESPAWN = 1247;
 }

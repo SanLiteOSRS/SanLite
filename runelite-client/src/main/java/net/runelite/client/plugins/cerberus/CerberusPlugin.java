@@ -43,8 +43,8 @@ import net.runelite.client.ui.overlay.OverlayManager;
 
 @PluginDescriptor(
 	name = "Cerberus",
-	description = "Show what to pray against the summoned souls",
-	tags = {"bosses", "combat", "ghosts", "prayer", "pve", "overlay", "souls"},
+	description = "Show what to pray against Cerberus, including special attacks",
+	tags = {"bosses", "combat", "ghosts", "prayer", "pve", "overlay", "souls", "pvm", "cerb", "cerberus"},
 	type = PluginType.SANLITE_USE_AT_OWN_RISK
 )
 
@@ -58,8 +58,8 @@ public class CerberusPlugin extends Plugin
 	@Inject
 	private CerberusOverlay overlay;
 
-	@Inject
-	private CerberusDebugOverlay debugOverlay;
+	//@Inject
+	//private CerberusDebugOverlay debugOverlay;
 
 	@Inject
 	private Client client;
@@ -97,23 +97,24 @@ public class CerberusPlugin extends Plugin
 				npcID == NpcID.CERBERUS_5866;
 	}
 
+	private List<GraphicsObject> graphicsObjects = new ArrayList<>();
+
 	@Override
 	protected void startUp() throws Exception
 	{
 		overlayManager.add(overlay);
-		overlayManager.add(debugOverlay);
+		//overlayManager.add(debugOverlay);
 		encounter = false;
 		CERBERUS_REGIONS.add(CERBERUS_REGION_EAST);
 		CERBERUS_REGIONS.add(CERBERUS_REGION_NORTH);
 		CERBERUS_REGIONS.add(CERBERUS_REGION_WEST);
-
 	}
 
 	@Override
 	protected void shutDown() throws Exception
 	{
 		overlayManager.remove(overlay);
-		overlayManager.remove(debugOverlay);
+		//overlayManager.remove(debugOverlay);
 		encounter = false;
 	}
 
@@ -162,6 +163,45 @@ public class CerberusPlugin extends Plugin
 		{
 			encounter = false;
 		}
+
+		if (validateInstanceAndNpc())
+		{
+			cerberus.updateHealth();
+			cerberus.setNextPrayer();
+			cerberus.checkPoolSpawns(client.getGraphicsObjects());
+
+			if (!cerberus.getGhosts().isEmpty())
+			{
+				cerberus.getGhosts().sort((a, b) -> ComparisonChain.start()
+						.compare(a.getLocalLocation().getX(), b.getLocalLocation().getX())
+						.result());
+
+				if (cerberus.getGhosts().size() > 3)
+				{
+					cerberus.getGhosts().sort((a, b) -> ComparisonChain.start()
+							.compare(a.getLocalLocation().getY(), b.getLocalLocation().getY())
+							.result());
+				}
+			}
+
+			if ((cerberus.getAttackCount() - 1) % 10 == 0)
+			{
+				cerberus.setTripleAttack(true);
+				cerberus.setCurrentAttack(Cerberus.Attack.TRIPLE);
+			}
+			else if (cerberus.getAttackCount() % 7 == 0 && cerberus.getHealth() < 400)
+			{
+				cerberus.setCurrentAttack(Cerberus.Attack.GHOSTS);
+			}
+			else if (cerberus.getAttackCount() % 5 == 0 && cerberus.getHealth() < 200)
+			{
+				cerberus.setCurrentAttack(Cerberus.Attack.LAVA);
+			}
+			else
+			{
+				cerberus.setCurrentAttack(Cerberus.Attack.DEFAULT);
+			}
+		}
 	}
 
 	@Subscribe
@@ -171,13 +211,14 @@ public class CerberusPlugin extends Plugin
 
 		if (encounter && isNpcCerberus(eventNpc.getId()))
 		{
-			log.warn("NPC set to Cerberus");
 			cerberus = new Cerberus(eventNpc);
 		}
-		else if (encounter && cerberus.isCerberusGhost(eventNpc.getId()))
+		else if (cerberus != null)
 		{
-			cerberus.getGhosts().add(eventNpc);
-			cerberus.setGhostsActive(true);
+			if (encounter && cerberus.isCerberusGhost(eventNpc.getId()))
+			{
+				cerberus.getGhosts().add(eventNpc);
+			}
 		}
 	}
 
@@ -199,79 +240,30 @@ public class CerberusPlugin extends Plugin
 		}
 	}
 
-	@Subscribe
-	public void onGameTick(GameTick gameTick)
-	{
-		if (validateInstanceAndNpc())
-		{
-			cerberus.updateHealth();
-
-			if (!cerberus.getGhosts().isEmpty())
-			{
-				cerberus.getGhosts().sort((a, b) -> ComparisonChain.start()
-					// First, sort by the southernmost ghost (e.g with lowest y)
-					.compare(a.getLocalLocation().getY(), b.getLocalLocation().getY())
-					// Then, sort by the westernmost ghost (e.g with lowest x)
-					.compare(a.getLocalLocation().getX(), b.getLocalLocation().getX())
-					// This will give use the current wave and order of the ghosts based on
-					// what ghost will attack first
-					.result());
-			}
-		}
-	}
 
 	@Subscribe
 	public void onAnimationChanged(AnimationChanged animation)
 	{
 		if (validateInstanceAndNpc())
 		{
-			if (cerberus.isCerberusAttack(animation.getActor().getAnimation()))
+			if ((client.getGameCycle() - cerberus.getTimeOfLastAnimation()) >= 170 || cerberus.isTripleAttack())
 			{
-				log.warn("Cerb Animation " + animation.getActor().getAnimation());
-				if ((cerberus.getAttackCount()) % 10 == 0)
+				if (cerberus.isCerberusAttack(animation.getActor().getAnimation()))
 				{
-					cerberus.setTripleAttack(true);
-					cerberus.setCurrentAttack(Cerberus.Attack.TRIPLE);
-				}
-				else if (cerberus.getAttackCount() % 7 == 0 && cerberus.getHealth() < 400)
-				{
-					log.warn("Ghosts - HP = " + cerberus.getHealth());
-					cerberus.setCurrentAttack(Cerberus.Attack.GHOSTS);
-				}
-				else if (cerberus.getAttackCount() % 5 == 0 && cerberus.getHealth() < 200)
-				{
-					log.warn("Lava - HP = " + cerberus.getHealth());
-					cerberus.setCurrentAttack(Cerberus.Attack.LAVA);
-				}
-				else
-				{
-					log.warn("Default");
-					cerberus.setCurrentAttack(Cerberus.Attack.DEFAULT);
-				}
-
-
-				if (cerberus.isTripleAttack())
-				{
-					if (cerberus.getTripleAttackCount() == 2)
+					if (cerberus.isTripleAttack())
 					{
-						cerberus.setNextPrayer();
-						cerberus.setAttackCount(cerberus.getAttackCount() + 1);
-						cerberus.setTripleAttack(false);
-						cerberus.setTripleAttackCount(0);
-						log.warn("Triple completed");
-						log.warn("Attack added");
+						if (cerberus.getNpc().getAnimation() == AnimationID.CERBERUS_MELEE)
+						{
+							cerberus.setAttackCount(cerberus.getAttackCount() + 1);
+							cerberus.setTripleAttack(false);
+							cerberus.setTripleAttackCount(0);
+						}
 					}
 					else
 					{
-						cerberus.setNextPrayer();
-						cerberus.setTripleAttackCount(cerberus.getTripleAttackCount() + 1);
+						cerberus.setAttackCount(cerberus.getAttackCount() + 1);
 					}
-				}
-				else
-				{
-					cerberus.setNextPrayer();
-					cerberus.setAttackCount(cerberus.getAttackCount() + 1);
-					log.warn("Attack added");
+					cerberus.setTimeOfLastAnimation(client.getGameCycle());
 				}
 			}
 		}
@@ -280,10 +272,29 @@ public class CerberusPlugin extends Plugin
 	@Subscribe
 	private void onProjectileSpawned(ProjectileSpawned event)
 	{
-		if (cerberus.isGhostProjectile(event.getProjectile().getId()))
+		if (validateInstanceAndNpc())
 		{
-			cerberus.setGhostsCycleCount(cerberus.getGhostsCycleCount() + 1);
-			cerberus.checkGhostCycle();
+			if (cerberus.isGhostProjectile(event.getProjectile().getId()))
+			{
+				cerberus.setGhostsCycleCount(cerberus.getGhostsCycleCount() + 1);
+				cerberus.checkGhostCycle();
+			}
+
+			if ((client.getGameCycle() - cerberus.getTimeOfLastAnimation()) >= 170 || cerberus.isTripleAttack())
+			{
+				if (cerberus.isCerberusProjectile(event.getProjectile().getId()))
+				{
+					if (cerberus.isTripleAttack())
+					{
+						cerberus.setTripleAttackCount(cerberus.getTripleAttackCount() + 1);
+					}
+					else
+					{
+						cerberus.setAttackCount(cerberus.getAttackCount() + 1);
+						cerberus.setTimeOfLastAnimation(client.getGameCycle());
+					}
+				}
+			}
 		}
 	}
 
@@ -296,6 +307,22 @@ public class CerberusPlugin extends Plugin
 		else
 		{
 			return false;
+		}
+	}
+
+	@Subscribe
+	public void onOverheadTextChanged(OverheadTextChanged event)
+	{
+		if (cerberus != null)
+		{
+			if (event.getActor() == cerberus.getNpc())
+			{
+				if (cerberus.isGhostsOverheadText())
+				{
+					cerberus.setGhostsActive(true);
+					cerberus.setGhostsCycleCount(1);
+				}
+			}
 		}
 	}
 }
