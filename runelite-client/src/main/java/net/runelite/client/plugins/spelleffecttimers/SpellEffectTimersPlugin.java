@@ -94,6 +94,7 @@ public class SpellEffectTimersPlugin extends Plugin
 	@Subscribe
 	public void onSpotAnimationChanged(SpotAnimationChanged spotAnimationChanged)
 	{
+		log.warn(spotAnimationChanged.getActor().getSpotAnimation() + " = spot anim id");
 		// Edge cases causing the plugin to not detect freezes
 		// 1. Ahrim's full set effect spot anim overriding (id 400)
 		// 2. Elysian hit effect might also trigger this
