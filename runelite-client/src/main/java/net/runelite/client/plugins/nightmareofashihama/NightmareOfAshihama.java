@@ -81,7 +81,7 @@ public class NightmareOfAshihama
 
 	static boolean isNpcNightmare(int npcId)
 	{
-		return npcId == NpcID.THE_NIGHTMARE_9425 ||
+		return npcId == NpcID.THE_NIGHTMARE ||
 				npcId == NpcID.THE_NIGHTMARE_9426 ||
 				npcId == NpcID.THE_NIGHTMARE_9427 ||
 				npcId == NpcID.THE_NIGHTMARE_9428 ||

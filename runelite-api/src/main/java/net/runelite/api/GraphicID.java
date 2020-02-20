@@ -50,12 +50,19 @@ public class GraphicID
 	public static final int STAFF_OF_THE_DEAD = 1228;
 	public static final int IMBUED_HEART = 1316;
 	public static final int FLYING_FISH = 1387;
+	public static final int XERIC_TELEPORT = 1612;
+
+	// Chambers of Xeric
 	public static final int OLM_BURN = 1351;
 	public static final int OLM_LIGHTNING = 1356;
-	public static final int OLM_TELEPORT = 1359;
-	public static final int OLM_HEAL = 1363;
-	public static final int OLM_CRYSTAL = 1447;
-	public static final int XERIC_TELEPORT = 1612;
+	public static final int OLM_FALLING_CRYSTAL = 1357;
+	public static final int OLM_FALLING_CRYSTAL_SHATTER = 1358;
+	public static final int OLM_TELEPORT_WHITE = 1359;
+	public static final int OLM_TELEPORT_GREEN = 1360;
+	public static final int OLM_TELEPORT_YELLOW = 1361;
+	public static final int OLM_TELEPORT_PURPLE = 1362;
+	public static final int OLM_BLUE_HEAL_POOL = 1363;
+	public static final int OLM_FALLING_CRYSTAL_SHADOW = 1447;
 
 	// Theatre of Blood
 	public static final int XARPUS_POISON_SPLAT_ON_LANDING = 1556;
@@ -68,7 +75,7 @@ public class GraphicID
 	public static final int VERZIK_GREEN_ORB_POOL  = 1595;
 
 	// Alchemical Hydra
-	public static final int ALCHEMICAL_HYDRA_POISON_SPLAT_BEFORE_LANDING = 1645;
+	public static final int ALCHEMICAL_HYDRA_POISON_SPLAT_ON_LANDING = 1645;
 	public static final int ALCHEMICAL_HYDRA_POISON_SPLAT_1 = 1654;
 	public static final int ALCHEMICAL_HYDRA_POISON_SPLAT_2 = 1655;
 	public static final int ALCHEMICAL_HYDRA_POISON_SPLAT_3 = 1656;
@@ -77,8 +84,8 @@ public class GraphicID
 	public static final int ALCHEMICAL_HYDRA_POISON_SPLAT_6 = 1659;
 	public static final int ALCHEMICAL_HYDRA_POISON_SPLAT_7 = 1660;
 	public static final int ALCHEMICAL_HYDRA_POISON_SPLAT_8 = 1661;
-	public static final int ALCHEMICAL_HYDRA_LIGHTNING_ATTACK_1 = 1664;
-	public static final int ALCHEMICAL_HYDRA_LIGHTNING_ATTACK_2 = 1666;
+	public static final int ALCHEMICAL_HYDRA_FLOATING_LIGHTNING_ORB = 1664;
+	public static final int ALCHEMICAL_HYDRA_LIGHTNING_ATTACK = 1666;
 	public static final int ALCHEMICAL_HYDRA_FIRE_ATTACK = 1668;
 
 	// The Nightmare of Ashihama
