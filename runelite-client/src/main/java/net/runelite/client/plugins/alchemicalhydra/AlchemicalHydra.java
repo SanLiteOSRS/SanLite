@@ -133,7 +133,7 @@ class AlchemicalHydra
 
 	boolean isSpecialAttackGraphicsObject(int graphicsObjectId)
 	{
-		return graphicsObjectId == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_BEFORE_LANDING ||
+		return graphicsObjectId == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_ON_LANDING ||
 				graphicsObjectId == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_1 ||
 				graphicsObjectId == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_2 ||
 				graphicsObjectId == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_3 ||
@@ -142,8 +142,8 @@ class AlchemicalHydra
 				graphicsObjectId == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_6 ||
 				graphicsObjectId == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_7 ||
 				graphicsObjectId == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_8 ||
-				graphicsObjectId == GraphicID.ALCHEMICAL_HYDRA_LIGHTNING_ATTACK_1 ||
-				graphicsObjectId == GraphicID.ALCHEMICAL_HYDRA_LIGHTNING_ATTACK_2 ||
+				graphicsObjectId == GraphicID.ALCHEMICAL_HYDRA_FLOATING_LIGHTNING_ORB ||
+				graphicsObjectId == GraphicID.ALCHEMICAL_HYDRA_LIGHTNING_ATTACK ||
 				graphicsObjectId == GraphicID.ALCHEMICAL_HYDRA_FIRE_ATTACK;
 	}
 
@@ -184,12 +184,12 @@ class AlchemicalHydra
 
 	boolean isPoisonSplatSpecialAttackBeforeLanding(int graphicsObjectId)
 	{
-		return graphicsObjectId == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_BEFORE_LANDING;
+		return graphicsObjectId == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_ON_LANDING;
 	}
 
 	boolean isPoisonSplatSpecialAttack(int graphicsObjectId)
 	{
-		return graphicsObjectId == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_BEFORE_LANDING ||
+		return graphicsObjectId == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_ON_LANDING ||
 				graphicsObjectId == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_1 ||
 				graphicsObjectId == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_2 ||
 				graphicsObjectId == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_3 ||
@@ -202,8 +202,8 @@ class AlchemicalHydra
 
 	boolean isLightningSpecialAttack(int graphicsObjectId)
 	{
-		return graphicsObjectId == GraphicID.ALCHEMICAL_HYDRA_LIGHTNING_ATTACK_1 ||
-				graphicsObjectId == GraphicID.ALCHEMICAL_HYDRA_LIGHTNING_ATTACK_2;
+		return graphicsObjectId == GraphicID.ALCHEMICAL_HYDRA_FLOATING_LIGHTNING_ORB ||
+				graphicsObjectId == GraphicID.ALCHEMICAL_HYDRA_LIGHTNING_ATTACK;
 	}
 
 	boolean isFireSpecialAttack(int graphicsObjectId)
