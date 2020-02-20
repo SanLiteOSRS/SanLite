@@ -25,8 +25,8 @@
  */
 package net.runelite.client.plugins.timers;
 
-import com.google.common.annotations.VisibleForTesting;
 import com.google.inject.Provides;
+import java.time.Duration;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.inject.Inject;
@@ -35,6 +35,7 @@ import net.runelite.api.Actor;
 import net.runelite.api.AnimationID;
 import net.runelite.api.ChatMessageType;
 import net.runelite.api.Client;
+import net.runelite.api.Constants;
 import net.runelite.api.EquipmentInventorySlot;
 import net.runelite.api.GameState;
 import net.runelite.api.InventoryID;
@@ -44,12 +45,11 @@ import net.runelite.api.ItemID;
 import net.runelite.api.NPC;
 import net.runelite.api.NpcID;
 import net.runelite.api.Player;
-import net.runelite.api.Skill;
+import net.runelite.api.VarPlayer;
 import net.runelite.api.Varbits;
 import net.runelite.api.WorldType;
 import net.runelite.api.coords.WorldPoint;
 import net.runelite.api.events.AnimationChanged;
-import net.runelite.api.events.StatChanged;
 import net.runelite.api.events.ChatMessage;
 import net.runelite.client.events.ConfigChanged;
 import net.runelite.api.events.GameStateChanged;
@@ -59,6 +59,7 @@ import net.runelite.api.events.ItemContainerChanged;
 import net.runelite.api.events.PlayerDeath;
 import net.runelite.api.events.MenuOptionClicked;
 import net.runelite.api.events.NpcDespawned;
+import net.runelite.api.events.PlayerDeath;
 import net.runelite.api.events.VarbitChanged;
 import net.runelite.api.events.WidgetHiddenChanged;
 import net.runelite.api.widgets.Widget;
@@ -67,6 +68,7 @@ import net.runelite.api.widgets.WidgetInfo;
 import static net.runelite.api.widgets.WidgetInfo.PVP_WORLD_SAFE_ZONE;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
+import net.runelite.client.events.ConfigChanged;
 import net.runelite.client.game.ItemManager;
 import net.runelite.client.game.SpriteManager;
 import net.runelite.client.plugins.Plugin;
@@ -114,9 +116,8 @@ public class TimersPlugin extends Plugin
 	private static final Pattern FULL_TELEBLOCK_PATTERN = Pattern.compile("<col=4f006f>A Tele Block spell has been cast on you by (.+)\\. It will expire in 5 minutes\\.</col>");
 	private static final Pattern HALF_TELEBLOCK_PATTERN = Pattern.compile("<col=4f006f>A Tele Block spell has been cast on you by (.+)\\. It will expire in 2 minutes, 30 seconds\\.</col>");
 	private static final Pattern DIVINE_POTION_PATTERN = Pattern.compile("You drink some of your divine (.+) potion\\.");
-
-	@VisibleForTesting
-	static final int IMBUED_HEART_MIN_CERTAIN_BOOST_LEVEL = 40; // Before this level, other effects can grant boosts of equal amounts
+	private static final int VENOM_VALUE_CUTOFF = -40; // Antivenom < -40 <= Antipoison < 0
+	private static final int POISON_TICK_LENGTH = 30;
 
 	private TimerTimer freezeTimer;
 	private int freezeTime = -1; // time frozen, in game ticks
@@ -125,6 +126,8 @@ public class TimersPlugin extends Plugin
 	private int lastWildernessVarb;
 	private int lastVengCooldownVarb;
 	private int lastIsVengeancedVarb;
+	private int lastPoisonVarp;
+	private int nextPoisonTick;
 	private WorldPoint lastPoint;
 	private TeleportWidget lastTeleportClicked;
 	private int lastAnimation;
@@ -162,6 +165,8 @@ public class TimersPlugin extends Plugin
 		lastAnimation = -1;
 		loggedInRace = false;
 		widgetHiddenChangedOnPvpWorld = false;
+		lastPoisonVarp = 0;
+		nextPoisonTick = 0;
 	}
 
 	@Subscribe
@@ -170,6 +175,7 @@ public class TimersPlugin extends Plugin
 		int raidVarb = client.getVar(Varbits.IN_RAID);
 		int vengCooldownVarb = client.getVar(Varbits.VENGEANCE_COOLDOWN);
 		int isVengeancedVarb = client.getVar(Varbits.VENGEANCE_ACTIVE);
+		int poisonVarp = client.getVar(VarPlayer.POISON);
 
 		if (lastRaidVarb != raidVarb)
 		{
@@ -221,6 +227,36 @@ public class TimersPlugin extends Plugin
 
 			lastWildernessVarb = inWilderness;
 		}
+
+		if (lastPoisonVarp != poisonVarp && config.showAntiPoison())
+		{
+			final int tickCount = client.getTickCount();
+
+			if (nextPoisonTick - tickCount <= 0 || lastPoisonVarp == 0)
+			{
+				nextPoisonTick = tickCount + POISON_TICK_LENGTH;
+			}
+
+			if (poisonVarp >= 0)
+			{
+				removeGameTimer(ANTIPOISON);
+				removeGameTimer(ANTIVENOM);
+			}
+			else if (poisonVarp >= VENOM_VALUE_CUTOFF)
+			{
+				Duration duration = Duration.ofMillis((long) Constants.GAME_TICK_LENGTH * (nextPoisonTick - tickCount + Math.abs((poisonVarp + 1) * POISON_TICK_LENGTH)));
+				removeGameTimer(ANTIVENOM);
+				createGameTimer(ANTIPOISON, duration);
+			}
+			else
+			{
+				Duration duration = Duration.ofMillis((long) Constants.GAME_TICK_LENGTH * (nextPoisonTick - tickCount + Math.abs((poisonVarp + 1 - VENOM_VALUE_CUTOFF) * POISON_TICK_LENGTH)));
+				removeGameTimer(ANTIPOISON);
+				createGameTimer(ANTIVENOM, duration);
+			}
+
+			lastPoisonVarp = poisonVarp;
+		}
 	}
 
 	@Subscribe
@@ -241,17 +277,6 @@ public class TimersPlugin extends Plugin
 		{
 			removeGameTimer(HOME_TELEPORT);
 			removeGameTimer(MINIGAME_TELEPORT);
-		}
-
-		if (!config.showAntiPoison())
-		{
-			removeGameTimer(ANTIDOTEPLUS);
-			removeGameTimer(ANTIDOTEPLUSPLUS);
-			removeGameTimer(SANFEW);
-			removeGameTimer(ANTIVENOM);
-			removeGameTimer(ANTIVENOMPLUS);
-			removeGameTimer(ANTIVENOM_ANTIPOISON);
-			removeGameTimer(ANTIVENOMPLUS_ANTIPOSION);
 		}
 
 		if (!config.showAntiFire())
@@ -337,63 +362,17 @@ public class TimersPlugin extends Plugin
 			removeGameTimer(ICEBLITZ);
 			removeGameTimer(ICEBARRAGE);
 		}
+
+		if (!config.showAntiPoison())
+		{
+			removeGameTimer(ANTIPOISON);
+			removeGameTimer(ANTIVENOM);
+		}
 	}
 
 	@Subscribe
 	public void onMenuOptionClicked(MenuOptionClicked event)
 	{
-		if (config.showAntiPoison()
-			&& event.getOption().contains("Drink")
-			&& (event.getIdentifier() == ItemID.ANTIDOTE1_5958
-			|| event.getIdentifier() == ItemID.ANTIDOTE2_5956
-			|| event.getIdentifier() == ItemID.ANTIDOTE3_5954
-			|| event.getIdentifier() == ItemID.ANTIDOTE4_5952))
-		{
-			// Needs menu option hook because drink message is intercepting with antipoison message
-			createGameTimer(ANTIDOTEPLUSPLUS);
-			return;
-		}
-
-		if (config.showAntiPoison()
-			&& event.getOption().contains("Drink")
-			&& (event.getIdentifier() == ItemID.ANTIDOTE1
-			|| event.getIdentifier() == ItemID.ANTIDOTE2
-			|| event.getIdentifier() == ItemID.ANTIDOTE3
-			|| event.getIdentifier() == ItemID.ANTIDOTE4
-			|| event.getIdentifier() == ItemID.ANTIDOTE_MIX1
-			|| event.getIdentifier() == ItemID.ANTIDOTE_MIX2))
-		{
-			// Needs menu option hook because drink message is intercepting with antipoison message
-			createGameTimer(ANTIDOTEPLUS);
-			return;
-		}
-
-		if (config.showAntiPoison()
-			&& event.getOption().contains("Drink")
-			&& (event.getIdentifier() == ItemID.ANTIPOISON1
-			|| event.getIdentifier() == ItemID.ANTIPOISON2
-			|| event.getIdentifier() == ItemID.ANTIPOISON3
-			|| event.getIdentifier() == ItemID.ANTIPOISON4
-			|| event.getIdentifier() == ItemID.ANTIPOISON_MIX1
-			|| event.getIdentifier() == ItemID.ANTIPOISON_MIX2))
-		{
-			createGameTimer(ANTIPOISON);
-			return;
-		}
-
-		if (config.showAntiPoison()
-			&& event.getOption().contains("Drink")
-			&& (event.getIdentifier() == ItemID.SUPERANTIPOISON1
-			|| event.getIdentifier() == ItemID.SUPERANTIPOISON2
-			|| event.getIdentifier() == ItemID.SUPERANTIPOISON3
-			|| event.getIdentifier() == ItemID.SUPERANTIPOISON4
-			|| event.getIdentifier() == ItemID.ANTIPOISON_SUPERMIX1
-			|| event.getIdentifier() == ItemID.ANTIPOISON_SUPERMIX2))
-		{
-			createGameTimer(SUPERANTIPOISON);
-			return;
-		}
-
 		if (config.showStamina()
 			&& event.getOption().contains("Drink")
 			&& (event.getIdentifier() == ItemID.STAMINA_MIX1
@@ -523,12 +502,6 @@ public class TimersPlugin extends Plugin
 			removeGameTimer(CANNON);
 		}
 
-		if (config.showAntiPoison() && event.getMessage().contains(SUPER_ANTIVENOM_DRINK_MESSAGE))
-		{
-			createGameTimer(ANTIVENOMPLUS);
-			createGameTimer(ANTIVENOMPLUS_ANTIPOSION);
-		}
-
 		if (config.showMagicImbue() && event.getMessage().equals(MAGIC_IMBUE_MESSAGE))
 		{
 			createGameTimer(MAGICIMBUE);
@@ -579,17 +552,6 @@ public class TimersPlugin extends Plugin
 		if (config.showImbuedHeart() && event.getMessage().equals(IMBUED_HEART_READY_MESSAGE))
 		{
 			removeGameTimer(IMBUEDHEART);
-		}
-
-		if (config.showAntiPoison() && event.getMessage().contains(ANTIVENOM_DRINK_MESSAGE))
-		{
-			createGameTimer(ANTIVENOM);
-			createGameTimer(ANTIVENOM_ANTIPOISON);
-		}
-
-		if (config.showAntiPoison() && event.getMessage().contains(SANFEW_SERUM_DRINK_MESSAGE))
-		{
-			createGameTimer(SANFEW);
 		}
 
 		if (config.showPrayerEnhance() && event.getMessage().startsWith("You drink some of your") && event.getMessage().contains("prayer enhance"))
@@ -898,29 +860,20 @@ public class TimersPlugin extends Plugin
 		}
 	}
 
-	@Subscribe
-	public void onStatChanged(StatChanged statChanged)
+	private TimerTimer createGameTimer(final GameTimer timer)
 	{
-		if (statChanged.getSkill() != Skill.MAGIC || !config.showImbuedHeart())
+		if (timer.getDuration() == null)
 		{
-			return;
+			throw new IllegalArgumentException("Timer with no duration");
 		}
-
-		final int magicLevel = statChanged.getLevel();
-		final int boostAmount = statChanged.getBoostedLevel() - magicLevel;
-		final int heartBoost = 1 + (magicLevel / 10);
-
-		if (magicLevel >= IMBUED_HEART_MIN_CERTAIN_BOOST_LEVEL && boostAmount == heartBoost)
-		{
-			createGameTimer(IMBUEDHEART);
-		}
+		return createGameTimer(timer, timer.getDuration());
 	}
 
-	private TimerTimer createGameTimer(final GameTimer timer)
+	private TimerTimer createGameTimer(final GameTimer timer, Duration duration)
 	{
 		removeGameTimer(timer);
 
-		TimerTimer t = new TimerTimer(timer, this);
+		TimerTimer t = new TimerTimer(timer, duration, this);
 		switch (timer.getImageType())
 		{
 			case SPRITE:
