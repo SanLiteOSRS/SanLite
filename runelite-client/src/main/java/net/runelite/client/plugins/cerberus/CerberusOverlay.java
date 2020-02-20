@@ -63,7 +63,6 @@ public class CerberusOverlay extends Overlay
 	{
 		this.plugin = plugin;
 		this.client = client;
-
 		setPosition(OverlayPosition.DYNAMIC);
 		setLayer(OverlayLayer.UNDER_WIDGETS);
 	}
@@ -79,6 +78,7 @@ public class CerberusOverlay extends Overlay
 			case MAGE:
 				return iconManager.getSkillImage(Skill.MAGIC);
 		}
+
 		return null;
 	}
 
@@ -90,11 +90,13 @@ public class CerberusOverlay extends Overlay
 		if (cerberus != null)
 		{
 			renderCurrentAttackOverhead(graphics, cerberus);
+
 			if (!cerberus.getPoolsGraphicObjects().isEmpty())
 			{
 				renderPoolsTileMarkers(graphics, cerberus);
 			}
 		}
+
 		return null;
 	}
 
@@ -104,6 +106,7 @@ public class CerberusOverlay extends Overlay
 		{
 			LocalPoint localPoint = graphicsObject.getLocation();
 			Polygon areaPolygon = Perspective.getCanvasTileAreaPoly(client, localPoint, 3);
+
 			if (areaPolygon == null)
 			{
 				return;
@@ -119,7 +122,9 @@ public class CerberusOverlay extends Overlay
 		{
 			return;
 		}
+
 		LocalPoint localPoint = cerberus.getNpc().getLocalLocation();
+
 		if (localPoint != null)
 		{
 			net.runelite.api.Point point = Perspective.localToCanvas(client, localPoint, client.getPlane(),

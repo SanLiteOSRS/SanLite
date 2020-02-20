@@ -246,7 +246,7 @@ public class CerberusPlugin extends Plugin
 	{
 		if (validateInstanceAndNpc())
 		{
-			if ((client.getGameCycle() - cerberus.getTimeOfLastAnimation()) >= 170 || cerberus.isTripleAttack())
+			if (cerberus.isValidCerberusAttack(client.getGameCycle()))
 			{
 				if (cerberus.isCerberusAttack(animation.getActor().getAnimation()))
 				{
@@ -280,7 +280,7 @@ public class CerberusPlugin extends Plugin
 				cerberus.checkGhostCycle();
 			}
 
-			if ((client.getGameCycle() - cerberus.getTimeOfLastAnimation()) >= 170 || cerberus.isTripleAttack())
+			if (cerberus.isValidCerberusAttack(client.getGameCycle()))
 			{
 				if (cerberus.isCerberusProjectile(event.getProjectile().getId()))
 				{

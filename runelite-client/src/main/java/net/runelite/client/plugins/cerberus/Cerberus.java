@@ -45,10 +45,6 @@ class Cerberus
 	private NPC npc;
 
 	@Getter
-	@Setter
-	private Attack nextAttack;
-
-	@Getter
 	private AttackStyle currentAttackStyle;
 
 	@Getter
@@ -140,6 +136,11 @@ class Cerberus
 	boolean isPoolGraphicsObject(int graphicsID)
 	{
 		return graphicsID == GraphicID.CERBERUS_POOL;
+	}
+
+	boolean isValidCerberusAttack(int clientTick)
+	{
+		return (clientTick - timeOfLastAnimation) >= 170 || isTripleAttack();
 	}
 
 	void setNextPrayer()
