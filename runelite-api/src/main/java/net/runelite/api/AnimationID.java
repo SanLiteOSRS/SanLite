@@ -356,8 +356,7 @@ public final class AnimationID
 	public static final int NIGHTMARE_JUMP_UP_2 = 8610;
 	public static final int NIGHTMARE_WAKE_UP = 8611;
 	public static final int NIGHTMARE_DEATH = 8612;
-    
-    
+
 	// Cerberus
 	public static final int CERBERUS_MAGE = 4489;
 	public static final int CERBERUS_RANGE = 4490;
