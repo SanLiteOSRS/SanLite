@@ -3,7 +3,6 @@ package net.runelite.client.plugins.attacktimer;
 import net.runelite.api.Actor;
 import net.runelite.api.Client;
 import net.runelite.api.Point;
-import net.runelite.client.config.FontStyle;
 import net.runelite.client.ui.overlay.*;
 
 import javax.inject.Inject;
@@ -14,15 +13,17 @@ import java.awt.*;
 public class AttackTimerOverlay extends Overlay
 {
 	private final AttackTimerPlugin plugin;
+	private final AttackTimerConfig config;
 
 	@Inject
 	private Client client;
 
 	@Inject
-	AttackTimerOverlay(final AttackTimerPlugin plugin, final Client client)
+	AttackTimerOverlay(final AttackTimerPlugin plugin, final Client client, final AttackTimerConfig config)
 	{
 		this.plugin = plugin;
 		this.client = client;
+		this.config = config;
 		setPriority(OverlayPriority.HIGHEST);
 		setPosition(OverlayPosition.DYNAMIC);
 		setLayer(OverlayLayer.UNDER_WIDGETS);
@@ -43,13 +44,13 @@ public class AttackTimerOverlay extends Overlay
 	{
 		Actor actor = client.getLocalPlayer();
 		String text = Integer.toString(plugin.getTicksTillNextAttack());
-		Point actorTextPoint = actor.getCanvasTextLocation(graphics, text, 0);
+		Point actorTextPoint = actor.getCanvasTextLocation(graphics, text, config.getZOffset());
 
 		if (actorTextPoint == null)
 		{
 			return;
 		}
 
-		OverlayUtil.renderTextLocation(graphics, text, 16, FontStyle.BOLD.getFont(), new Color(255, 255, 255, 255), actorTextPoint, false, 0);
+		OverlayUtil.renderTextLocation(graphics, text, config.getTimerFontSize(), config.getTimerFontStyle().getFont(), config.getTimerFontColor(), actorTextPoint, false, 0);
 	}
 }

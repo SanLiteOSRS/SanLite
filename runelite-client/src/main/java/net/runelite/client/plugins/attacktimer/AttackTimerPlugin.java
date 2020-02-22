@@ -2,15 +2,18 @@ package net.runelite.client.plugins.attacktimer;
 
 
 import com.google.common.collect.ImmutableMap;
+import com.google.inject.Provides;
 import lombok.Getter;
 import net.runelite.api.AnimationID;
 import net.runelite.api.Client;
 import net.runelite.api.events.AnimationChanged;
 import net.runelite.api.events.GameTick;
+import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.plugins.PluginType;
+import net.runelite.client.plugins.combattickcounter.CombatTickCounterConfig;
 import net.runelite.client.ui.overlay.OverlayManager;
 
 import javax.inject.Inject;
@@ -101,6 +104,12 @@ public class AttackTimerPlugin extends Plugin
 
 			.put(7555, 6) // Ballista Accurate, Rapid, Longrange
 			.build();
+
+	@Provides
+	AttackTimerConfig provideConfig(ConfigManager configManager)
+	{
+		return configManager.getConfig(AttackTimerConfig.class);
+	}
 
 	@Override
 	protected void startUp() throws Exception
