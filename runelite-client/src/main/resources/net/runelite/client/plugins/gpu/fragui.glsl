@@ -24,12 +24,13 @@
  */
 #version 330
 
-uniform sampler2D tex;
-
 #define SAMPLING_DEFAULT 0
 #define SAMPLING_MITCHELL 1
 #define SAMPLING_CATROM 2
 #define SAMPLING_XBR 3
+
+uniform sampler2D tex;
+
 uniform int samplingMode;
 uniform ivec2 sourceDimensions;
 uniform ivec2 targetDimensions;
