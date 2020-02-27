@@ -37,7 +37,6 @@ public interface CerberusConfig extends Config
 			keyName = "lavaPoolColor",
 			name = "Lava pool marker",
 			description = "Color of Cerberus's lava pool tile markers",
-			group = "Colors",
 			position = 3
 	)
 	default Color getLavaPoolColor()
