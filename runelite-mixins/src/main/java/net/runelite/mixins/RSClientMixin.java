@@ -1034,6 +1034,23 @@ public abstract class RSClientMixin implements RSClient
 		}
 	}
 
+	@Copy("findItemDefinitions")
+	public static void rs$findItemDefinitions(String var0, boolean var1)
+	{
+		throw new RuntimeException();
+	}
+
+	@Replace("findItemDefinitions")
+	public static void rl$findItemDefinitions(String var0, boolean var1)
+	{
+		GrandExchangeSearched event = new GrandExchangeSearched();
+		client.getCallbacks().post(event);
+		if (!event.isConsumed())
+		{
+			rs$findItemDefinitions(var0, var1);
+		}
+	}
+
 	@Inject
 	@FieldHook("grandExchangeOffers")
 	public static void onGrandExchangeOffersChanged(int idx)
