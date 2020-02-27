@@ -1847,4 +1847,19 @@ public interface Client extends GameShell
 	 */
 	void scaleSprite(int[] canvas, int[] pixels, int color, int pixelX, int pixelY, int canvasIdx, int canvasOffset,
 						int newWidth, int newHeight, int pixelWidth, int pixelHeight, int oldWidth);
+
+	/**
+	 * Sets the result count for GE search
+	 */
+	void setGeSearchResultCount(int count);
+
+	/**
+	 * Sets the array of item ids for GE search
+	 */
+	void setGeSearchResultIds(short[] ids);
+
+	/**
+	 * Sets the starting index in the item id array for GE search
+	 */
+	void setGeSearchResultIndex(int index);
 }

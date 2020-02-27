@@ -23,30 +23,19 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-// General case cubic filter
-float cubic_custom(float x, float b, float c)
-{
-    /* A generalized cubic filter as described by Mitchell and Netravali is defined by the piecewise equation:
-     * if abs(x) < 1
-     *  y = 1/6 * ( (12 - 9b - 6c) * abs(x)^3 + (-18 + 12b + 6c) * abs(x)^2 + (6 - 2b) )
-     * if abs(x) >= 1 and < 2
-     *  y = 1/6 * ( (-1b - 6c) * abs(x)^3 + (6b + 30c) * abs(x)^2 + (-12b - 48c) * abs(x) + (8b + 24c) )
-     * otherwise
-     *  y = 0
-     * This produces a bell curve centered on 0 with a width of 2.
-     */
-
-    float t = abs(x);       // absolute value of the x coordinate
-    float t2 = t * t;       // t squared
-    float t3 = t * t * t;   // t cubed
-
-    if (t < 1)                                                  // This part defines the [-1,1] region of the curve.
-        return 1.0/6 * ( (12 - 9 * b - 6 * c) * t3 + (-18 + 12 * b + 6 * c) * t2 + (6 - 2 * b) );
-    else if (t < 2)                                             // This part defines the [-2,-1] and [1,2] regions.
-        return 1.0/6 * ( (-1 * b - 6 * c) * t3 + (6 * b + 30 * c) * t2 + (-12 * b - 48 * c) * t + (8 * b + 24 * c) );
-    else                                                        // Outside of [-2,2], the value is 0.
-        return 0;
-}
+/* Bicubic sampling takes neighboring pixels into account using a cubic filter for pixel weights.
+ *
+ * A generalized cubic filter as described by Mitchell and Netravali is defined by the piecewise equation:
+ * if abs(x) < 1
+ *  y = 1/6 * ( (12 - 9b - 6c) * abs(x)^3 + (-18 + 12b + 6c) * abs(x)^2 + (6 - 2b) )
+ * if abs(x) >= 1 and < 2
+ *  y = 1/6 * ( (-1b - 6c) * abs(x)^3 + (6b + 30c) * abs(x)^2 + (-12b - 48c) * abs(x) + (8b + 24c) )
+ * otherwise
+ *  y = 0
+ * This produces a bell curve centered on 0 with a width of 2.
+ *
+ * The 2 functions below are specific cases of the cubic filter with particular values of a and b.
+ */
 
 // Cubic filter with Catmull-Rom parameters
 float catmull_rom(float x)
@@ -64,11 +53,11 @@ float catmull_rom(float x)
     float t3 = t * t * t;
 
     if (t < 1)
-        return 1.5 * t3 - 2.5 * t2 + 1;
+        return 1.5 * t3 - 2.5 * t2 + 1.0;
     else if (t < 2)
-        return -0.5 * t3 + 2.5 * t2 - 4 * t + 2;
+        return -0.5 * t3 + 2.5 * t2 - 4.0 * t + 2.0;
     else
-        return 0;
+        return 0.0;
 }
 
 float mitchell(float x)
@@ -83,11 +72,11 @@ float mitchell(float x)
     float t3 = t * t * t;
 
     if (t < 1)
-        return 7.0/6 * t3 + -2 * t2 + 8.0/9;
+        return 7.0/6.0 * t3 + -2.0 * t2 + 8.0/9.0;
     else if (t < 2)
-        return -7.0/18 * t3 + 2 * t2 - 10.0/3 * t + 16.0/9;
+        return -7.0/18.0 * t3 + 2.0 * t2 - 10.0/3.0 * t + 16.0/9.0;
     else
-        return 0;
+        return 0.0;
 }
 
 #define CR_AR_STRENGTH 0.9
@@ -103,17 +92,18 @@ float d(vec2 pt1, vec2 pt2)
 }
 
 // Samples a texture using a 4x4 kernel.
-vec4 textureCubic(sampler2D sampler, vec2 texCoords, int mode){
+vec4 textureCubic(sampler2D sampler, vec2 texCoords, int mode)
+{
     vec2 texSize = textureSize(sampler, 0);
     vec2 texelSize = 1.0 / texSize;
-    texCoords *= texSize;
-    texCoords -= 0.5;
+    vec2 texelFCoords = texCoords * texSize;
+    texelFCoords -= 0.5;
 
     vec4 nSum = vec4( 0.0, 0.0, 0.0, 0.0 );
     vec4 nDenom = vec4( 0.0, 0.0, 0.0, 0.0 );
 
-    ivec2 texelCoords = ivec2(floor(texCoords));
-    vec2 coordFract = fract(texCoords);
+    vec2 coordFract = fract(texelFCoords);
+    texCoords -= coordFract * texelSize;
 
     vec4 c;
 
@@ -126,8 +116,8 @@ vec4 textureCubic(sampler2D sampler, vec2 texCoords, int mode){
         {
             for (int n = -1; n <= 2; n++)
             {
-                // get the raw texel, bypassing any other filters
-                vec4 vecData = texelFetch(sampler, texelCoords + ivec2(m, n), 0);
+                // this would use texelFetch, but that would require manual implementation of texture wrapping
+                vec4 vecData = texture(sampler, texCoords + vec2(m, n) * texelSize);
 
                 // update min and max as we go
                 min_sample = min(min_sample, vecData);
@@ -157,8 +147,8 @@ vec4 textureCubic(sampler2D sampler, vec2 texCoords, int mode){
         {
             for (int n = -1; n <= 2; n++)
             {
-                // get the raw texel, bypassing any other filters
-                vec4 vecData = texelFetch(sampler, texelCoords + ivec2(m, n), 0);
+                // this would use texelFetch, but that would require manual implementation of texture wrapping
+                vec4 vecData = texture(sampler, texCoords + vec2(m, n) * texelSize);
 
                 // calculate weight based on distance of the current texel offset from the sub-texel position of the sampling location
                 float w = mitchell( d(vec2(m, n), coordFract) );
