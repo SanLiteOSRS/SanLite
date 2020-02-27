@@ -26,49 +26,55 @@
 package net.runelite.client.plugins.cerberus;
 
 import com.google.common.collect.ComparisonChain;
-import java.util.ArrayList;
-import java.util.List;
-import javax.inject.Inject;
-import javax.inject.Singleton;
-
+import com.google.inject.Provides;
 import lombok.Getter;
-import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.*;
+import net.runelite.api.AnimationID;
+import net.runelite.api.Client;
+import net.runelite.api.NPC;
+import net.runelite.api.NpcID;
 import net.runelite.api.events.*;
+import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
+import net.runelite.client.events.ConfigChanged;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.plugins.PluginType;
 import net.runelite.client.ui.overlay.OverlayManager;
 
-@PluginDescriptor(
-	name = "Cerberus",
-	description = "Show what to pray against Cerberus, including special attacks",
-	tags = {"bosses", "combat", "ghosts", "prayer", "pve", "overlay", "souls", "pvm", "cerb", "cerberus"},
-	type = PluginType.SANLITE_USE_AT_OWN_RISK
-)
+import javax.inject.Inject;
+import javax.inject.Singleton;
+import java.util.ArrayList;
+import java.util.List;
 
-@Slf4j
+@PluginDescriptor(
+		name = "Cerberus",
+		description = "Show what to pray against Cerberus, including special attacks",
+		tags = {"bosses", "combat", "ghosts", "prayer", "pve", "overlay", "souls", "pvm", "cerberus", "slayer"},
+		type = PluginType.SANLITE_USE_AT_OWN_RISK
+)
 @Singleton
 public class CerberusPlugin extends Plugin
 {
 	@Inject
+	private Client client;
+
+	@Inject
 	private OverlayManager overlayManager;
+
+	@Inject
+	private CerberusConfig config;
 
 	@Inject
 	private CerberusOverlay overlay;
 
-	//@Inject
-	//private CerberusDebugOverlay debugOverlay;
-
 	@Inject
-	private Client client;
+	private CerberusDebugOverlay debugOverlay;
 
 	@Getter
 	private Cerberus cerberus;
 
 	@Getter
-	private boolean encounter;
+	private boolean inEncounterRegion;
 
 	private final int[] CERBERUS_REGION_WEST = {
 			4626, 4627,
@@ -97,14 +103,21 @@ public class CerberusPlugin extends Plugin
 				npcID == NpcID.CERBERUS_5866;
 	}
 
-	private List<GraphicsObject> graphicsObjects = new ArrayList<>();
+	@Provides
+	CerberusConfig getConfig(ConfigManager configManager)
+	{
+		return configManager.getConfig(CerberusConfig.class);
+	}
 
 	@Override
 	protected void startUp() throws Exception
 	{
 		overlayManager.add(overlay);
-		//overlayManager.add(debugOverlay);
-		encounter = false;
+		if (config.showDebugOverlay())
+		{
+			overlayManager.add(debugOverlay);
+		}
+		inEncounterRegion = false;
 		CERBERUS_REGIONS.add(CERBERUS_REGION_EAST);
 		CERBERUS_REGIONS.add(CERBERUS_REGION_NORTH);
 		CERBERUS_REGIONS.add(CERBERUS_REGION_WEST);
@@ -114,14 +127,29 @@ public class CerberusPlugin extends Plugin
 	protected void shutDown() throws Exception
 	{
 		overlayManager.remove(overlay);
-		//overlayManager.remove(debugOverlay);
-		encounter = false;
+		if (config.showDebugOverlay())
+		{
+			overlayManager.remove(debugOverlay);
+		}
+		inEncounterRegion = false;
+	}
+
+	@Subscribe
+	public void onConfigChanged(ConfigChanged event)
+	{
+		if (config.showDebugOverlay())
+		{
+			overlayManager.add(debugOverlay);
+		}
+		else if (!config.showDebugOverlay())
+		{
+			overlayManager.remove(debugOverlay);
+		}
 	}
 
 	private boolean isCerberusRegion()
 	{
 		boolean isInRegion = false;
-
 		for (int[] intArray : CERBERUS_REGIONS)
 		{
 			List<Integer> intListCerbRegion = new ArrayList<>(intArray.length);
@@ -138,31 +166,15 @@ public class CerberusPlugin extends Plugin
 				intListMapRegion.add(i);
 			}
 
-			if (intListMapRegion.containsAll(intListCerbRegion))
-			{
-				isInRegion = true;
-			}
-			else
-			{
-				isInRegion = false;
-			}
+			isInRegion = intListMapRegion.containsAll(intListCerbRegion);
 		}
-
 		return isInRegion;
-
 	}
 
 	@Subscribe
 	protected void onClientTick(ClientTick event)
 	{
-		if (isCerberusRegion())
-		{
-			encounter = true;
-		}
-		else
-		{
-			encounter = false;
-		}
+		inEncounterRegion = isCerberusRegion();
 
 		if (validateInstanceAndNpc())
 		{
@@ -209,13 +221,13 @@ public class CerberusPlugin extends Plugin
 	{
 		final NPC eventNpc = event.getNpc();
 
-		if (encounter && isNpcCerberus(eventNpc.getId()))
+		if (inEncounterRegion && isNpcCerberus(eventNpc.getId()))
 		{
 			cerberus = new Cerberus(eventNpc);
 		}
 		else if (cerberus != null)
 		{
-			if (encounter && cerberus.isCerberusGhost(eventNpc.getId()))
+			if (inEncounterRegion && cerberus.isCerberusGhost(eventNpc.getId()))
 			{
 				cerberus.getGhosts().add(eventNpc);
 			}
@@ -300,14 +312,7 @@ public class CerberusPlugin extends Plugin
 
 	public boolean validateInstanceAndNpc()
 	{
-		if (encounter && cerberus != null)
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
+		return inEncounterRegion && cerberus != null;
 	}
 
 	@Subscribe

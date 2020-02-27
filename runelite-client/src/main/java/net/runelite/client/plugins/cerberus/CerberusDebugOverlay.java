@@ -1,4 +1,3 @@
-/*
 package net.runelite.client.plugins.cerberus;
 
 import net.runelite.api.Client;
@@ -99,4 +98,3 @@ public class CerberusDebugOverlay extends Overlay
 		return null;
 	}
 }
-*/

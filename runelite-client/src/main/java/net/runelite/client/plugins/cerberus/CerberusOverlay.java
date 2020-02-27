@@ -24,14 +24,8 @@
  */
 package net.runelite.client.plugins.cerberus;
 
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import javax.inject.Inject;
-import javax.inject.Singleton;
-
-import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.*;
 import net.runelite.api.Point;
+import net.runelite.api.*;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.client.game.SkillIconManager;
 import net.runelite.client.ui.overlay.Overlay;
@@ -40,20 +34,28 @@ import net.runelite.client.ui.overlay.OverlayPosition;
 import net.runelite.client.ui.overlay.OverlayUtil;
 import net.runelite.client.util.ImageUtil;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+
 @Singleton
-@Slf4j
 public class CerberusOverlay extends Overlay
 {
-	@Inject
-	private CerberusPlugin plugin;
-	@Inject
-	private Client client;
-
 	private static final Color COLOR_ICON_BACKGROUND = new Color(0, 0, 0, 128);
 	private static final Color COLOR_ICON_BORDER = new Color(0, 0, 0, 255);
 	private static final int ICON_WIDTH = 25;
 	private static final int ICON_HEIGHT = 25;
 	private static final int OVERLAY_ICON_MARGIN = 12;
+
+	@Inject
+	private Client client;
+
+	@Inject
+	private CerberusPlugin plugin;
+
+	@Inject
+	private CerberusConfig config;
 
 	@Inject
 	private SkillIconManager iconManager;
@@ -78,25 +80,25 @@ public class CerberusOverlay extends Overlay
 			case MAGE:
 				return iconManager.getSkillImage(Skill.MAGIC);
 		}
-
 		return null;
 	}
 
 	@Override
 	public Dimension render(Graphics2D graphics)
 	{
-
 		Cerberus cerberus = plugin.getCerberus();
 		if (cerberus != null)
 		{
-			renderCurrentAttackOverhead(graphics, cerberus);
+			if (config.showAttackStyleCounter())
+			{
+				renderCurrentAttackOverhead(graphics, cerberus);
+			}
 
-			if (!cerberus.getPoolsGraphicObjects().isEmpty())
+			if (config.highlightLavaPoolTiles())
 			{
 				renderPoolsTileMarkers(graphics, cerberus);
 			}
 		}
-
 		return null;
 	}
 
@@ -112,7 +114,7 @@ public class CerberusOverlay extends Overlay
 				return;
 			}
 
-			OverlayUtil.renderPolygon(graphics, areaPolygon, new Color(255, 0, 0));
+			OverlayUtil.renderPolygon(graphics, areaPolygon, config.getLavaPoolColor());
 		}
 	}
 
@@ -124,7 +126,6 @@ public class CerberusOverlay extends Overlay
 		}
 
 		LocalPoint localPoint = cerberus.getNpc().getLocalLocation();
-
 		if (localPoint != null)
 		{
 			net.runelite.api.Point point = Perspective.localToCanvas(client, localPoint, client.getPlane(),
