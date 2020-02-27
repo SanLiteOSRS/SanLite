@@ -45,7 +45,7 @@
         <glslang.path></glslang.path>
 
 		<rs.version>188</rs.version>
-		<sanlite.version>1.12.5</sanlite.version>
+		<sanlite.version>1.13.0</sanlite.version>
 	</properties>
 
 	<licenses>
