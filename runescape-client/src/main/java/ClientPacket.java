@@ -6,7 +6,7 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("gi")
 @Implements("ClientPacket")
-public class ClientPacket implements class181 {
+public class ClientPacket implements Packet {
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
 		signature = "Lgi;"
@@ -221,8 +221,7 @@ public class ClientPacket implements class181 {
 	@ObfuscatedSignature(
 		signature = "Lgi;"
 	)
-	@Export("ClientPacket_SEND_CLICK_PACKET")
-	public static final ClientPacket SEND_CLICK_PACKET;
+	public static final ClientPacket field2207;
 	@ObfuscatedName("am")
 	@ObfuscatedSignature(
 		signature = "Lgi;"
@@ -569,7 +568,7 @@ public class ClientPacket implements class181 {
 		field2242 = new ClientPacket(39, 16);
 		field2243 = new ClientPacket(40, 3);
 		field2244 = new ClientPacket(41, 7);
-		SEND_CLICK_PACKET = new ClientPacket(42, -1);
+		field2207 = new ClientPacket(42, -1);
 		field2245 = new ClientPacket(43, 7);
 		field2247 = new ClientPacket(44, 0);
 		field2241 = new ClientPacket(45, -2);

@@ -3644,7 +3644,7 @@ public final class Client extends GameShell implements Usernamed {
 															if (Scene.method3321()) {
 																var3 = Scene.Scene_selectedX;
 																var4 = Scene.Scene_selectedY;
-																var43 = TilePaint.getPacketBufferNode(ClientPacket.SEND_CLICK_PACKET, packetWriter.isaacCipher);
+																var43 = TilePaint.getPacketBufferNode(ClientPacket.field2207, packetWriter.isaacCipher);
 																var43.packetBuffer.writeByte(5);
 																var43.packetBuffer.writeShort(Language.baseY * 64 + var4);
 																var43.packetBuffer.method5787(Messages.baseX * 64 + var3);
