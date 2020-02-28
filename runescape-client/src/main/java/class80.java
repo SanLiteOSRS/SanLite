@@ -1,4 +1,6 @@
 import java.math.BigInteger;
+
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -40,8 +42,9 @@ public class class80 {
 		signature = "(I)V",
 		garbageValue = "-1745616388"
 	)
-	static final void method2097() {
-		class60.method1188("You can't add yourself to your own ignore list");
+	@Export("FriendSystem_addIgnorePlayerLocalGameMessage")
+	static final void FriendSystem_addIgnorePlayerLocalGameMessage() {
+		class60.FriendSystem_sendAddPlayerGameMessage("You can't add yourself to your own ignore list");
 	}
 
 	@ObfuscatedName("ka")

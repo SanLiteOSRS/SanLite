@@ -505,7 +505,8 @@ public class WorldMapArea {
 		signature = "(B)V",
 		garbageValue = "20"
 	)
-	static final void method425() {
-		class60.method1188("Your friend list is full. Max of 200 for free users, and 400 for members");
+	@Export("FriendSystem_addFriendListFullGameMessage")
+	static final void FriendSystem_addFriendListFullGameMessage() {
+		class60.FriendSystem_sendAddPlayerGameMessage("Your friend list is full. Max of 200 for free users, and 400 for members");
 	}
 }

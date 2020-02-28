@@ -1,3 +1,4 @@
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -19,8 +20,9 @@ public class class60 {
 		signature = "(Ljava/lang/String;I)V",
 		garbageValue = "399191905"
 	)
-	static final void method1188(String var0) {
-		ClientPreferences.addGameMessage(30, "", var0);
+	@Export("FriendSystem_sendAddPlayerGameMessage")
+	static final void FriendSystem_sendAddPlayerGameMessage(String playerName) {
+		ClientPreferences.addGameMessage(30, "", playerName);
 	}
 
 	@ObfuscatedName("in")

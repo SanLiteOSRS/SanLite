@@ -1,3 +1,4 @@
+import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -29,7 +30,8 @@ public class ModelData0 {
 		signature = "(Ljava/lang/String;I)V",
 		garbageValue = "-1996001757"
 	)
-	static final void method3323(String var0) {
-		class60.method1188(var0 + " is already on your ignore list");
+	@Export("FriendSystem_addIgnoreAlreadyIgnoredGameMessage")
+	static final void FriendSystem_addIgnoreAlreadyIgnoredGameMessage(String var0) {
+		class60.FriendSystem_sendAddPlayerGameMessage(var0 + " is already on your ignore list");
 	}
 }
