@@ -540,9 +540,9 @@ public class MusicPatch extends Node {
 	)
 	static int method3962(int var0, Script var1, boolean var2) {
 		if (var0 == ScriptOpcodes.FRIEND_COUNT) {
-			if (KeyHandler.friendSystem.field1063 == 0) {
+			if (KeyHandler.friendSystem.loadingProgress == 0) {
 				Interpreter.Interpreter_intStack[++class320.Interpreter_intStackSize - 1] = -2;
-			} else if (KeyHandler.friendSystem.field1063 == 1) {
+			} else if (KeyHandler.friendSystem.loadingProgress == 1) {
 				Interpreter.Interpreter_intStack[++class320.Interpreter_intStackSize - 1] = -1;
 			} else {
 				Interpreter.Interpreter_intStack[++class320.Interpreter_intStackSize - 1] = KeyHandler.friendSystem.friendsList.getSize();
@@ -553,7 +553,7 @@ public class MusicPatch extends Node {
 			int var3;
 			if (var0 == ScriptOpcodes.FRIEND_GETNAME) {
 				var3 = Interpreter.Interpreter_intStack[--class320.Interpreter_intStackSize];
-				if (KeyHandler.friendSystem.method1857() && var3 >= 0 && var3 < KeyHandler.friendSystem.friendsList.getSize()) {
+				if (KeyHandler.friendSystem.isFriendSystemDataLoaded() && var3 >= 0 && var3 < KeyHandler.friendSystem.friendsList.getSize()) {
 					Friend var8 = (Friend)KeyHandler.friendSystem.friendsList.get(var3);
 					Interpreter.Interpreter_stringStack[++Message.Interpreter_stringStackSize - 1] = var8.getName();
 					Interpreter.Interpreter_stringStack[++Message.Interpreter_stringStackSize - 1] = var8.getPreviousName();
@@ -565,7 +565,7 @@ public class MusicPatch extends Node {
 				return 1;
 			} else if (var0 == ScriptOpcodes.FRIEND_GETWORLD) {
 				var3 = Interpreter.Interpreter_intStack[--class320.Interpreter_intStackSize];
-				if (KeyHandler.friendSystem.method1857() && var3 >= 0 && var3 < KeyHandler.friendSystem.friendsList.getSize()) {
+				if (KeyHandler.friendSystem.isFriendSystemDataLoaded() && var3 >= 0 && var3 < KeyHandler.friendSystem.friendsList.getSize()) {
 					Interpreter.Interpreter_intStack[++class320.Interpreter_intStackSize - 1] = ((Buddy)KeyHandler.friendSystem.friendsList.get(var3)).world;
 				} else {
 					Interpreter.Interpreter_intStack[++class320.Interpreter_intStackSize - 1] = 0;
@@ -574,7 +574,7 @@ public class MusicPatch extends Node {
 				return 1;
 			} else if (var0 == ScriptOpcodes.FRIEND_GETRANK) {
 				var3 = Interpreter.Interpreter_intStack[--class320.Interpreter_intStackSize];
-				if (KeyHandler.friendSystem.method1857() && var3 >= 0 && var3 < KeyHandler.friendSystem.friendsList.getSize()) {
+				if (KeyHandler.friendSystem.isFriendSystemDataLoaded() && var3 >= 0 && var3 < KeyHandler.friendSystem.friendsList.getSize()) {
 					Interpreter.Interpreter_intStack[++class320.Interpreter_intStackSize - 1] = ((Buddy)KeyHandler.friendSystem.friendsList.get(var3)).rank;
 				} else {
 					Interpreter.Interpreter_intStack[++class320.Interpreter_intStackSize - 1] = 0;
@@ -670,7 +670,7 @@ public class MusicPatch extends Node {
 					MenuAction.Clan_leaveChat();
 					return 1;
 				} else if (var0 == ScriptOpcodes.IGNORE_COUNT) {
-					if (!KeyHandler.friendSystem.method1857()) {
+					if (!KeyHandler.friendSystem.isFriendSystemDataLoaded()) {
 						Interpreter.Interpreter_intStack[++class320.Interpreter_intStackSize - 1] = -1;
 					} else {
 						Interpreter.Interpreter_intStack[++class320.Interpreter_intStackSize - 1] = KeyHandler.friendSystem.ignoreList.getSize();
@@ -679,7 +679,7 @@ public class MusicPatch extends Node {
 					return 1;
 				} else if (var0 == ScriptOpcodes.IGNORE_GETNAME) {
 					var3 = Interpreter.Interpreter_intStack[--class320.Interpreter_intStackSize];
-					if (KeyHandler.friendSystem.method1857() && var3 >= 0 && var3 < KeyHandler.friendSystem.ignoreList.getSize()) {
+					if (KeyHandler.friendSystem.isFriendSystemDataLoaded() && var3 >= 0 && var3 < KeyHandler.friendSystem.ignoreList.getSize()) {
 						Ignored var4 = (Ignored)KeyHandler.friendSystem.ignoreList.get(var3);
 						Interpreter.Interpreter_stringStack[++Message.Interpreter_stringStackSize - 1] = var4.getName();
 						Interpreter.Interpreter_stringStack[++Message.Interpreter_stringStackSize - 1] = var4.getPreviousName();

@@ -42,13 +42,14 @@ public class FriendSystem {
 	@ObfuscatedGetter(
 		intValue = -154816357
 	)
-	int field1063;
+	@Export("loadingProgress")
+	int loadingProgress;
 
 	@ObfuscatedSignature(
 		signature = "(Lmv;)V"
 	)
 	FriendSystem(LoginType var1) {
-		this.field1063 = 0;
+		this.loadingProgress = 0;
 		this.loginType = var1;
 		this.friendsList = new FriendsList(var1);
 		this.ignoreList = new IgnoreList(var1);
@@ -59,8 +60,8 @@ public class FriendSystem {
 		signature = "(I)Z",
 		garbageValue = "-1947292888"
 	)
-	boolean method1857() {
-		return this.field1063 == 2;
+	boolean isFriendSystemDataLoaded() {
+		return this.loadingProgress == 2;
 	}
 
 	@ObfuscatedName("t")
@@ -68,8 +69,8 @@ public class FriendSystem {
 		signature = "(I)V",
 		garbageValue = "1940001821"
 	)
-	final void method1858() {
-		this.field1063 = 1;
+	final void readFriendSystemCount() {
+		this.loadingProgress = 1;
 	}
 
 	@ObfuscatedName("o")
@@ -80,7 +81,7 @@ public class FriendSystem {
 	@Export("readUpdate")
 	final void readUpdate(Buffer var1, int var2) {
 		this.friendsList.read(var1, var2);
-		this.field1063 = 2;
+		this.loadingProgress = 2;
 		WorldMapID.FriendSystem_invalidateFriends();
 	}
 
@@ -114,7 +115,7 @@ public class FriendSystem {
 	)
 	@Export("clear")
 	final void clear() {
-		this.field1063 = 0;
+		this.loadingProgress = 0;
 		this.friendsList.clear();
 		this.ignoreList.clear();
 	}

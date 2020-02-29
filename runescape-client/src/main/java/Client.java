@@ -5352,7 +5352,7 @@ public final class Client extends GameShell implements Usernamed {
 				}
 
 				if (ServerPacket.field2193 == var1.serverPacket) {
-					KeyHandler.friendSystem.method1858();
+					KeyHandler.friendSystem.readFriendSystemCount();
 					field839 = cycleCntr;
 					var1.serverPacket = null;
 					return true;
