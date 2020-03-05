@@ -30,12 +30,11 @@ import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor
-public enum WintertodtNotifyMode
+public enum WintertodtNotifyDamage
 {
-	NONE("None"),
-	WHEN_DAMAGED("Damage Taken"),
-	ONLY_WHEN_INTERRUPTED("Action Interrupted"),
-	EITHER("Either");
+	OFF("Off"),
+	INTERRUPT("On Interrupt"),
+	ALWAYS("Always");
 
 	private final String name;
 
