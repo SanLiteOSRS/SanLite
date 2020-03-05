@@ -233,7 +233,8 @@ public class ItemStatOverlay extends Overlay
 		return b.toString();
 	}
 
-	private String buildStatBonusString(ItemStats s)
+	@VisibleForTesting
+	String buildStatBonusString(ItemStats s)
 	{
 		ItemStats other = null;
 		final ItemEquipmentStats currentEquipment = s.getEquipment();
