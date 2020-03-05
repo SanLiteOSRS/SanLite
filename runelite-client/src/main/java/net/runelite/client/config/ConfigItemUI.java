@@ -88,11 +88,7 @@ public class ConfigItemUI
 		Units units = cid.getUnits();
 		if (units != null)
 		{
-			DecimalFormat df = ((JSpinner.NumberEditor) spinner.getEditor()).getFormat();
-			df.setPositiveSuffix(units.value());
-			df.setNegativeSuffix(units.value());
-			// Force update the spinner to have it add the units initially
-			spinnerTextField.setValue(value);
+			spinnerTextField.setFormatterFactory(new UnitFormatterFactory(units));
 		}
 
 		return spinner;
