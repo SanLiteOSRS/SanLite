@@ -169,7 +169,7 @@ public class GrandExchangeEvents {
 								Login.Login_response2 = "Your normal account will not be affected.";
 								Login.Login_response3 = "";
 								Login.loginIndex = 1;
-								class81.method2099();
+								class81.Login_changeLoginFieldIfUsernameRemembered();
 							} else if ((Client.worldProperties & 4) != 0) {
 								if ((Client.worldProperties & 1024) != 0) {
 									Login.Login_response1 = "This is a <col=ffff00>High Risk <col=ff0000>PvP<col=ffffff> world.";
@@ -183,14 +183,14 @@ public class GrandExchangeEvents {
 
 								Login.Login_response0 = "Warning!";
 								Login.loginIndex = 1;
-								class81.method2099();
+								class81.Login_changeLoginFieldIfUsernameRemembered();
 							} else if ((Client.worldProperties & 1024) != 0) {
 								Login.Login_response1 = "This is a <col=ffff00>High Risk<col=ffffff> world.";
 								Login.Login_response2 = "The Protect Item prayer will";
 								Login.Login_response3 = "not work on this world.";
 								Login.Login_response0 = "Warning!";
 								Login.loginIndex = 1;
-								class81.method2099();
+								class81.Login_changeLoginFieldIfUsernameRemembered();
 							} else {
 								ViewportMouse.Login_promptCredentials(false);
 							}
@@ -299,7 +299,7 @@ public class GrandExchangeEvents {
 									if (!WorldMapSection2.clientPreferences.hideUsername) {
 										Login.Login_username = "";
 										WorldMapSection2.clientPreferences.rememberedUsername = null;
-										class81.method2099();
+										class81.Login_changeLoginFieldIfUsernameRemembered();
 									}
 
 									WorldMapData_1.savePreferences();

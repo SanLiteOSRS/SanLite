@@ -99,7 +99,8 @@ public final class FloorDecoration {
 		signature = "(Ljava/lang/String;I)V",
 		garbageValue = "-2102248580"
 	)
-	static final void method2912(String var0) {
-		class60.method1188("Please remove " + var0 + " from your friend list first");
+	@Export("FriendSystem_addIgnoreAlreadyFriendedGameMessage")
+	static final void FriendSystem_addIgnoreAlreadyFriendedGameMessage(String var0) {
+		class60.FriendSystem_sendAddPlayerGameMessage("Please remove " + var0 + " from your friend list first");
 	}
 }

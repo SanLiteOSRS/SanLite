@@ -60,7 +60,8 @@ public final class class43 {
 		signature = "(Ljava/lang/String;I)V",
 		garbageValue = "-67193374"
 	)
-	static final void method817(String var0) {
+	@Export("FriendSystem_sendIgnorePlayerClientPacket")
+	static final void FriendSystem_sendIgnorePlayerClientPacket(String var0) {
 		PacketBufferNode var1 = TilePaint.getPacketBufferNode(ClientPacket.field2240, Client.packetWriter.isaacCipher);
 		var1.packetBuffer.writeByte(Buddy.stringCp1252NullTerminatedByteSize(var0));
 		var1.packetBuffer.writeStringCp1252NullTerminated(var0);
