@@ -84,7 +84,7 @@ public class CerberusPlugin extends Plugin
 
 	private final int[] CERBERUS_REGION_EAST = {
 			5138, 5139,
-			5349, 5395,
+			5394, 5395,
 			5650, 5651
 	};
 
@@ -166,7 +166,10 @@ public class CerberusPlugin extends Plugin
 				intListMapRegion.add(i);
 			}
 
-			isInRegion = intListMapRegion.containsAll(intListCerbRegion);
+			if (!isInRegion)
+			{
+				isInRegion = intListMapRegion.containsAll(intListCerbRegion);
+			}
 		}
 		return isInRegion;
 	}
