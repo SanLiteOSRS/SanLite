@@ -18,7 +18,6 @@ import javax.swing.event.ChangeListener;
 import javax.swing.text.JTextComponent;
 import java.awt.*;
 import java.awt.event.*;
-import java.text.DecimalFormat;
 
 @Slf4j
 public class ConfigItemUI
