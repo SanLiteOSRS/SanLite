@@ -119,6 +119,7 @@ public class WidgetID
 	public static final int WORLD_SWITCHER_GROUP_ID = 69;
 	public static final int DIALOG_OPTION_GROUP_ID = 219;
 	public static final int DIALOG_PLAYER_GROUP_ID = 217;
+	public static final int DRIFT_NET_FISHING_REWARD_GROUP_ID = 607;
 	public static final int FOSSIL_ISLAND_OXYGENBAR_ID = 609;
 	public static final int MINIGAME_TAB_ID = 76;
 	public static final int SPELLBOOK_GROUP_ID = 218;
@@ -151,6 +152,8 @@ public class WidgetID
 	public static final int GWD_KC_GROUP_ID = 406;
 	public static final int LMS_GROUP_ID = 333;
 	public static final int LMS_INGAME_GROUP_ID = 328;
+	public static final int ADVENTURE_LOG_ID = 187;
+	public static final int COUNTERS_LOG_GROUP_ID = 625;
 
 	static class WorldMap
 	{
@@ -878,9 +881,9 @@ public class WidgetID
 
 	static class Options
 	{
-		static final int MUSIC_SLIDER = 38;
-		static final int SOUND_EFFECT_SLIDER = 44;
-		static final int AREA_SOUND_SLIDER = 50;
+		static final int MUSIC_SLIDER = 37;
+		static final int SOUND_EFFECT_SLIDER = 43;
+		static final int AREA_SOUND_SLIDER = 49;
 	}
 
 	static class AchievementDiary
@@ -901,5 +904,16 @@ public class WidgetID
 	static class LmsKDA
 	{
 		static final int INFO = 4;
+	}
+
+	static class AdventureLog
+	{
+		static final int CONTAINER = 0;
+	}
+
+	static class CountersLog
+	{
+		static final int OWNER = 4;
+		static final int TEXT = 6;
 	}
 }

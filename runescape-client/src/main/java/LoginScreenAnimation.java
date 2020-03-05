@@ -563,8 +563,9 @@ public class LoginScreenAnimation {
 		signature = "(Ljava/lang/String;I)V",
 		garbageValue = "-2014430142"
 	)
-	static final void method1837(String var0) {
-		class60.method1188(var0 + " is already on your friend list");
+	@Export("FriendSystem_addFriendAlreadyFriendedGameMessage")
+	static final void FriendSystem_addFriendAlreadyFriendedGameMessage(String var0) {
+		class60.FriendSystem_sendAddPlayerGameMessage(var0 + " is already on your friend list");
 	}
 
 	@ObfuscatedName("aq")

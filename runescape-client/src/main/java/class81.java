@@ -8,7 +8,7 @@ public class class81 {
 		signature = "(I)V",
 		garbageValue = "-2019499752"
 	)
-	static void method2099() {
+	static void Login_changeLoginFieldIfUsernameRemembered() {
 		if (Client.Login_isUsernameRemembered && Login.Login_username != null && Login.Login_username.length() > 0) {
 			Login.currentLoginField = 1;
 		} else {

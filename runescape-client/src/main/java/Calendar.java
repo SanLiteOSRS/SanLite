@@ -35,7 +35,8 @@ public class Calendar {
 		signature = "(Ljava/lang/String;I)V",
 		garbageValue = "-1040616662"
 	)
-	static final void method4014(String var0) {
-		class60.method1188("Please remove " + var0 + " from your ignore list first");
+	@Export("FriendSystem_addFriendAlreadyIgnoredGameMessage")
+	static final void FriendSystem_addFriendAlreadyIgnoredGameMessage(String var0) {
+		class60.FriendSystem_sendAddPlayerGameMessage("Please remove " + var0 + " from your ignore list first");
 	}
 }

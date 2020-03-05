@@ -65,8 +65,9 @@ public class WorldMapLabel {
 		signature = "(B)V",
 		garbageValue = "43"
 	)
-	static final void method439() {
-		class60.method1188("You can't add yourself to your own friend list");
+	@Export("FriendSystem_addFriendLocalGameMessage")
+	static final void FriendSystem_addFriendLocalGameMessage() {
+		class60.FriendSystem_sendAddPlayerGameMessage("You can't add yourself to your own friend list");
 	}
 
 	@ObfuscatedName("fp")

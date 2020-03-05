@@ -42,13 +42,14 @@ public class FriendSystem {
 	@ObfuscatedGetter(
 		intValue = -154816357
 	)
-	int field1063;
+	@Export("loadingProgress")
+	int loadingProgress;
 
 	@ObfuscatedSignature(
 		signature = "(Lmv;)V"
 	)
 	FriendSystem(LoginType var1) {
-		this.field1063 = 0;
+		this.loadingProgress = 0;
 		this.loginType = var1;
 		this.friendsList = new FriendsList(var1);
 		this.ignoreList = new IgnoreList(var1);
@@ -59,8 +60,8 @@ public class FriendSystem {
 		signature = "(I)Z",
 		garbageValue = "-1947292888"
 	)
-	boolean method1857() {
-		return this.field1063 == 2;
+	boolean isFriendSystemDataLoaded() {
+		return this.loadingProgress == 2;
 	}
 
 	@ObfuscatedName("t")
@@ -68,8 +69,8 @@ public class FriendSystem {
 		signature = "(I)V",
 		garbageValue = "1940001821"
 	)
-	final void method1858() {
-		this.field1063 = 1;
+	final void readFriendSystemCount() {
+		this.loadingProgress = 1;
 	}
 
 	@ObfuscatedName("o")
@@ -80,7 +81,7 @@ public class FriendSystem {
 	@Export("readUpdate")
 	final void readUpdate(Buffer var1, int var2) {
 		this.friendsList.read(var1, var2);
-		this.field1063 = 2;
+		this.loadingProgress = 2;
 		WorldMapID.FriendSystem_invalidateFriends();
 	}
 
@@ -114,7 +115,7 @@ public class FriendSystem {
 	)
 	@Export("clear")
 	final void clear() {
-		this.field1063 = 0;
+		this.loadingProgress = 0;
 		this.friendsList.clear();
 		this.ignoreList.clear();
 	}
@@ -160,13 +161,13 @@ public class FriendSystem {
 			Username var2 = new Username(var1, this.loginType);
 			if (var2.hasCleanName()) {
 				if (this.friendsListIsFull()) {
-					WorldMapArea.method425();
+					WorldMapArea.FriendSystem_addFriendListFullGameMessage();
 				} else if (class192.localPlayer.username.equals(var2)) {
-					WorldMapLabel.method439();
+					WorldMapLabel.FriendSystem_addFriendLocalGameMessage();
 				} else if (this.isFriended(var2, false)) {
-					LoginScreenAnimation.method1837(var1);
+					LoginScreenAnimation.FriendSystem_addFriendAlreadyFriendedGameMessage(var1);
 				} else if (this.isIgnored(var2)) {
-					Calendar.method4014(var1);
+					Calendar.FriendSystem_addFriendAlreadyIgnoredGameMessage(var1);
 				} else {
 					PacketBufferNode var3 = TilePaint.getPacketBufferNode(ClientPacket.field2260, Client.packetWriter.isaacCipher);
 					var3.packetBuffer.writeByte(Buddy.stringCp1252NullTerminatedByteSize(var1));
@@ -198,15 +199,15 @@ public class FriendSystem {
 			Username var2 = new Username(var1, this.loginType);
 			if (var2.hasCleanName()) {
 				if (this.canAddIgnore()) {
-					class60.method1188("Your ignore list is full. Max of 100 for free users, and 400 for members");
+					class60.FriendSystem_sendAddPlayerGameMessage("Your ignore list is full. Max of 100 for free users, and 400 for members");
 				} else if (class192.localPlayer.username.equals(var2)) {
-					class80.method2097();
+					class80.FriendSystem_addIgnorePlayerLocalGameMessage();
 				} else if (this.isIgnored(var2)) {
-					ModelData0.method3323(var1);
+					ModelData0.FriendSystem_addIgnoreAlreadyIgnoredGameMessage(var1);
 				} else if (this.isFriended(var2, false)) {
-					FloorDecoration.method2912(var1);
+					FloorDecoration.FriendSystem_addIgnoreAlreadyFriendedGameMessage(var1);
 				} else {
-					class43.method817(var1);
+					class43.FriendSystem_sendIgnorePlayerClientPacket(var1);
 				}
 			}
 		}

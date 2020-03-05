@@ -115,7 +115,7 @@ public class ViewportMouse {
 			}
 		}
 
-		class81.method2099();
+		class81.Login_changeLoginFieldIfUsernameRemembered();
 	}
 
 	@ObfuscatedName("y")

@@ -468,7 +468,7 @@ public class ConfigPanel extends PluginPanel
 
 			for (PluginListItem pluginListItem : collapsibleEntry.getCollapsibleEntryItems())
 			{
-				if (pinned == pluginListItem.isPinned() && pluginListItem.matchesSearchTerms(searchTerms))
+				if (pinned == pluginListItem.isPinned() && Text.matchesSearchTerms(searchTerms, pluginListItem.getKeywords()))
 				{
 					mainPanel.add(pluginListItem);
 				}
