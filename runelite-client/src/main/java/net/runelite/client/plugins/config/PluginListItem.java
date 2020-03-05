@@ -38,7 +38,6 @@ import net.runelite.client.ui.PluginPanel;
 import net.runelite.client.ui.components.IconButton;
 import net.runelite.client.util.ImageUtil;
 import net.runelite.client.util.LinkBrowser;
-import org.apache.commons.text.similarity.JaroWinklerDistance;
 
 import javax.annotation.Nullable;
 import javax.swing.*;
@@ -55,7 +54,6 @@ import java.util.List;
 @Slf4j
 public class PluginListItem extends JPanel
 {
-	private static final JaroWinklerDistance DISTANCE = new JaroWinklerDistance();
 	private static final String RUNELITE_WIKI_FORMAT = "https://github.com/runelite/runelite/wiki/%s";
 
 	private static final ImageIcon CONFIG_ICON;
@@ -95,6 +93,7 @@ public class PluginListItem extends JPanel
 	@Setter
 	private CollapsibleEntry parentCollapsibleEntry;
 
+	@Getter
 	private final List<String> keywords = new ArrayList<>();
 
 	private final IconButton pinButton = new IconButton(OFF_STAR);
@@ -281,24 +280,6 @@ public class PluginListItem extends JPanel
 	{
 		button.setIcon(isPluginEnabled ? ON_SWITCHER : OFF_SWITCHER);
 		button.setToolTipText(isPluginEnabled ? "Disable plugin" : "Enable plugin");
-	}
-
-	/**
-	 * Checks if all the search terms in the given list matches at least one keyword.
-	 *
-	 * @return true if all search terms matches at least one keyword, or false if otherwise.
-	 */
-	boolean matchesSearchTerms(String[] searchTerms)
-	{
-		for (String term : searchTerms)
-		{
-			if (keywords.stream().noneMatch((t) -> t.contains(term) ||
-					DISTANCE.apply(t, term) > 0.9))
-			{
-				return false;
-			}
-		}
-		return true;
 	}
 
 	private void openGroupConfigPanel()
