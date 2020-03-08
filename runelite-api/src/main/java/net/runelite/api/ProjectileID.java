@@ -53,25 +53,36 @@ public class ProjectileID
 	public static final int DEMONIC_GORILLA_MAGIC = 1304;
 
 	// Cerberus
+	public static final int CERBERUS_MAGE = 1242;
+	public static final int CERBERUS_RANGE = 1245;
 	public static final int CERBERUS_FIRE = 1247;
+
+	// Cerberus souls
+	public static final int CERBERUS_GHOST_MELEE = 1248;
+	public static final int CERBERUS_GHOST_MAGE = 100;
+	public static final int CERBERUS_GHOST_RANGE = 34;
 
 	// Wintertodt
 	public static final int WINTERTODT_SNOW_FALL_AOE = 1310;
 
-	// Grotesque Guardians
-	public static final int DAWN_FREEZE = 1445;
-	public static final int DUSK_CEILING = 1435;
+	// Chambers of Xeric - Lizardman Shamans
+	public static final int LIZARDMAN_SHAMAN_RANGED_ATTACK = 1291;
+	public static final int LIZARDMAN_SHAMAN_ACID_AOE = 1293;
 
 	// Chambers of Xeric - Ice Demon
 	public static final int ICE_DEMON_RANGED_AOE = 1324;
 	public static final int ICE_DEMON_ICE_BARRAGE_AOE = 366;
 
 	// Chambers of Xeric - Vasa Nistirio
-	public static final int VASA_AWAKEN_AOE = 1327;
+	public static final int VASA_TELEPORT_AOE = 1327;
 	public static final int VASA_RANGED_AOE = 1329;
 
 	// Chambers of Xeric - Tekton
 	public static final int TEKTON_METEOR_AOE = 660;
+
+	// Chambers of Xeric - Vespula
+	public static final int VESPULA_TOXIC_AOE = 1364;
+	public static final int VESPULA_PORTAL_AOE = 1366;
 
 	// Chambers of Xeric - The Great Olm
 	public static final int OLM_MAGE_ATTACK = 1339;
@@ -82,6 +93,10 @@ public class ProjectileID
 	public static final int OLM_ACID_TRAIL = 1354;
 	public static final int OLM_HEAL_POOL_AOE = 1355;
 	public static final int OLM_FALLING_CRYSTAL_AOE = 1357;
+
+	// Grotesque Guardians
+	public static final int DUSK_CEILING = 1435;
+	public static final int DAWN_FREEZE = 1445;
 
 	// Galvek
 	public static final int GALVEK_MINE = 1495;
@@ -123,13 +138,4 @@ public class ProjectileID
 
 	// Zalcano
 	public static final int ZALCANO_PROJECTILE = 1728;
-
-	//Cerberus
-	public static final int CERBERUS_MAGE = 1242;
-	public static final int CERBERUS_RANGE = 1245;
-
-	//Cerberus Ghosts
-	public static final int CERBERUS_GHOST_MELEE = 1248;
-	public static final int CERBERUS_GHOST_MAGE = 100;
-	public static final int CERBERUS_GHOST_RANGE = 34;
 }

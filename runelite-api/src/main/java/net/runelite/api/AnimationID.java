@@ -164,6 +164,8 @@ public final class AnimationID
 	public static final int PISCARILIUS_CRANE_REPAIR = 7199;
 	public static final int HOME_MAKE_TABLET = 4067;
 	public static final int DRAGONFIRE_SHIELD_SPECIAL = 6696;
+	public static final int BARRAGE_ANIMATION = 1979;
+	public static final int CHIN_ANIMATION = 7618;
 
 	// NPC animations
 	public static final int TZTOK_JAD_RANGE_ATTACK = 2652;
@@ -222,66 +224,6 @@ public final class AnimationID
 	public static final int HIGH_LEVEL_MAGIC_ATTACK = 1167;
 	public static final int BLOWPIPE_ATTACK = 5061;
 
-	// Tekton
-	public static final int TEKTON_ANVIL = 7475;
-	public static final int TEKTON_AUTO1 = 7482;
-	public static final int TEKTON_AUTO2 = 7483;
-	public static final int TEKTON_AUTO3 = 7484;
-	public static final int TEKTON_FAST_AUTO1 = 7478;
-	public static final int TEKTON_FAST_AUTO2 = 7488;
-	public static final int TEKTON_ENRAGE_AUTO1 = 7492;
-	public static final int TEKTON_ENRAGE_AUTO2 = 7493;
-	public static final int TEKTON_ENRAGE_AUTO3 = 7494;
-
-	// Vorkath
-	public static final int VORKATH_DEATH = 7949;
-	public static final int VORKATH_WAKE_UP = 7950;
-	public static final int VORKATH_SLASH_ATTACK = 7951;
-	public static final int VORKATH_ATTACK = 7952;
-	public static final int VORKATH_ACID_ATTACK = 7957;
-	public static final int VORKATH_FIRE_BOMB_OR_SPAWN_ATTACK = 7960;
-
-	// Pestilent Bloat
-	public static final int BLOAT_SLEEP = 8082;
-
-	// Alchemical Hydra
-	public static final int ALCHEMICAL_HYDRA_GREEN_PHASE_WALKING = 8232;
-	public static final int ALCHEMICAL_HYDRA_GREEN_PHASE_IDLE = 8233;
-	public static final int ALCHEMICAL_HYDRA_GREEN_PHASE_POISON_ATTACK = 8234;
-	public static final int ALCHEMICAL_HYDRA_GREEN_PHASE_RANGED_ATTACK = 8235;
-	public static final int ALCHEMICAL_HYDRA_GREEN_PHASE_MAGIC_ATTACK = 8236;
-	public static final int ALCHEMICAL_HYDRA_SWITCH_TO_BLUE_PHASE = 8237;
-	public static final int ALCHEMICAL_HYDRA_BLUE_PHASE_LIGHTNING_ATTACK = 8241;
-	public static final int ALCHEMICAL_HYDRA_BLUE_PHASE_RANGED_ATTACK = 8242;
-	public static final int ALCHEMICAL_HYDRA_BLUE_PHASE_MAGIC_ATTACK = 8243;
-	public static final int ALCHEMICAL_HYDRA_SWITCH_TO_RED_PHASE = 8244;
-	public static final int ALCHEMICAL_HYDRA_RED_PHASE_FIRE_ATTACK = 8248;
-	public static final int ALCHEMICAL_HYDRA_RED_PHASE_RANGED_ATTACK = 8249;
-	public static final int ALCHEMICAL_HYDRA_RED_PHASE_MAGIC_ATTACK = 8250;
-	public static final int ALCHEMICAL_HYDRA_SWITCH_TO_JAD_PHASE = 8251;
-	public static final int ALCHEMICAL_HYDRA_JAD_PHASE_MAGIC_ATTACK = 8255;
-	public static final int ALCHEMICAL_HYDRA_JAD_PHASE_RANGED_ATTACK = 8256;
-	public static final int ALCHEMICAL_HYDRA_JAD_PHASE_POISON_ATTACK = 8255;
-	public static final int ALCHEMICAL_HYDRA_JAD_PHASE_POISON_ATTACK_2 = 8256;
-
-	// Inferno animations
-	public static final int JAL_NIB = 7574;
-	public static final int JAL_MEJRAH = 7578;
-	public static final int JAL_MEJRAH_STAND = 7577;
-	public static final int JAL_AK_RANGE_ATTACK = 7581;
-	public static final int JAL_AK_MELEE_ATTACK = 7582;
-	public static final int JAL_AK_MAGIC_ATTACK = 7583;
-	public static final int JAL_IMKOT = 7597;
-	public static final int JAL_XIL_MELEE_ATTACK = 7604;
-	public static final int JAL_XIL_RANGE_ATTACK = 7605;
-	public static final int JAL_ZEK_MAGE_ATTACK = 7610;
-	public static final int JAL_ZEK_MELEE_ATTACK = 7612;
-	public static final int JALTOK_JAD_MELEE_ATTACK = 7590;
-	public static final int JALTOK_JAD_MAGE_ATTACK = 7592;
-	public static final int JALTOK_JAD_RANGE_ATTACK = 7593;
-	public static final int TZKAL_ZUK = 7566;
-	public static final int JAL_MEJJAK = 2858;
-
 	// General Graardor
 	public static final int MINION_AUTO1 = 6154;
 	public static final int MINION_AUTO2 = 6156;
@@ -318,11 +260,102 @@ public final class AnimationID
 	public static final int DAGANNOTH_PRIME_ATTACK = 2854;
 	public static final int DAGANNOTH_SUPREME_ATTACK = 2855;
 
+	// Cerberus
+	public static final int CERBERUS_MAGE = 4489;
+	public static final int CERBERUS_RANGE = 4490;
+	public static final int CERBERUS_MELEE = 4491;
+	public static final int CERBERUS_GHOSTS = 4494;
+	public static final int CERBERUS_LAVA = 4493;
+
 	// Lizardman shaman
 	public static final int LIZARDMAN_SHAMAN_SPAWN = 7157;
 
-	public static final int BARRAGE_ANIMATION = 1979;
-	public static final int CHIN_ANIMATION = 7618;
+	// Chambers of Xeric - Vasa Nistirio
+	public static final int VASA_WAKE_UP = 7408;
+	public static final int VASA_TELEPORT = 7409;
+	public static final int VASA_START_GLOWING_ROCK_CHANNEL = 7412;
+	public static final int VASA_END_GLOWING_ROCK_CHANNEL = 7414;
+	public static final int VASA_DEATH = 7415;
+
+	// Chambers of Xeric - Muttadiles
+	public static final int SMALL_MUTTADILE_DEATH = 7426;
+
+	// Chambers of Xeric - Vanguards
+	public static final int VANGUARDS_WAKE_UP = 7428;
+	public static final int VANGUARDS_INTERMISSION_SLIDING = 7431;
+	public static final int VANGUARDS_MAGE_AWAKE_IDLE = 7433;
+	public static final int VANGUARDS_MAGE_ATTACK = 7436;
+	public static final int VANGUARDS_MELEE_AWAKE_IDLE = 7438;
+	public static final int VANGUARDS_MELEE_ATTACK = 7441;
+	public static final int VANGUARDS_RANGE_AWAKE_IDLE = 7443;
+	public static final int VANGUARDS_RANGE_ATTACK = 7446;
+
+	// Chambers of Xeric - Vespula
+	public static final int VESPULA_GROUNDED_RANGED_ATTACK = 7450;
+	public static final int VESPULA_FLYING_MELEE_ATTACK = 7454;
+	public static final int VESPULA_FLYING_RANGED_ATTACK = 7454;
+
+	// Chambers of Xeric - Tekton
+	public static final int TEKTON_WAKE_UP = 7475;
+	public static final int TEKTON_START_ANVIL_CHANNEL = 7475;
+	public static final int TEKTON_FAST_AUTO1 = 7478;
+	public static final int TEKTON_STAB_ATTACK = 7482;
+	public static final int TEKTON_SLASH_ATTACK = 7483;
+	public static final int TEKTON_CRUSH_ATTACK = 7484;
+	public static final int TEKTON_END_ANVIL_CHANNEL = 7487;
+	public static final int TEKTON_FAST_AUTO2 = 7488;
+	public static final int TEKTON_ENRAGED_CRUSH_ATTACK = 7492;
+	public static final int TEKTON_ENRAGED_STAB_ATTACK = 7493;
+	public static final int TEKTON_ENRAGED_SLASH_ATTACK = 7494;
+
+	// Inferno animations
+	public static final int JAL_NIB = 7574;
+	public static final int JAL_MEJRAH = 7578;
+	public static final int JAL_MEJRAH_STAND = 7577;
+	public static final int JAL_AK_RANGE_ATTACK = 7581;
+	public static final int JAL_AK_MELEE_ATTACK = 7582;
+	public static final int JAL_AK_MAGIC_ATTACK = 7583;
+	public static final int JAL_IMKOT = 7597;
+	public static final int JAL_XIL_MELEE_ATTACK = 7604;
+	public static final int JAL_XIL_RANGE_ATTACK = 7605;
+	public static final int JAL_ZEK_MAGE_ATTACK = 7610;
+	public static final int JAL_ZEK_MELEE_ATTACK = 7612;
+	public static final int JALTOK_JAD_MELEE_ATTACK = 7590;
+	public static final int JALTOK_JAD_MAGE_ATTACK = 7592;
+	public static final int JALTOK_JAD_RANGE_ATTACK = 7593;
+	public static final int TZKAL_ZUK = 7566;
+	public static final int JAL_MEJJAK = 2858;
+
+	// Vorkath
+	public static final int VORKATH_DEATH = 7949;
+	public static final int VORKATH_WAKE_UP = 7950;
+	public static final int VORKATH_SLASH_ATTACK = 7951;
+	public static final int VORKATH_ATTACK = 7952;
+	public static final int VORKATH_ACID_ATTACK = 7957;
+	public static final int VORKATH_FIRE_BOMB_OR_SPAWN_ATTACK = 7960;
+
+	// Pestilent Bloat
+	public static final int BLOAT_SLEEP = 8082;
+
+	// Alchemical Hydra
+	public static final int ALCHEMICAL_HYDRA_GREEN_PHASE_WALKING = 8232;
+	public static final int ALCHEMICAL_HYDRA_GREEN_PHASE_IDLE = 8233;
+	public static final int ALCHEMICAL_HYDRA_GREEN_PHASE_POISON_ATTACK = 8234;
+	public static final int ALCHEMICAL_HYDRA_GREEN_PHASE_RANGED_ATTACK = 8235;
+	public static final int ALCHEMICAL_HYDRA_GREEN_PHASE_MAGIC_ATTACK = 8236;
+	public static final int ALCHEMICAL_HYDRA_SWITCH_TO_BLUE_PHASE = 8237;
+	public static final int ALCHEMICAL_HYDRA_BLUE_PHASE_LIGHTNING_ATTACK = 8241;
+	public static final int ALCHEMICAL_HYDRA_BLUE_PHASE_RANGED_ATTACK = 8242;
+	public static final int ALCHEMICAL_HYDRA_BLUE_PHASE_MAGIC_ATTACK = 8243;
+	public static final int ALCHEMICAL_HYDRA_SWITCH_TO_RED_PHASE = 8244;
+	public static final int ALCHEMICAL_HYDRA_RED_PHASE_FIRE_ATTACK = 8248;
+	public static final int ALCHEMICAL_HYDRA_RED_PHASE_RANGED_ATTACK = 8249;
+	public static final int ALCHEMICAL_HYDRA_RED_PHASE_MAGIC_ATTACK = 8250;
+	public static final int ALCHEMICAL_HYDRA_SWITCH_TO_JAD_PHASE = 8251;
+	public static final int ALCHEMICAL_HYDRA_JAD_PHASE_MAGIC_ATTACK = 8255;
+	public static final int ALCHEMICAL_HYDRA_JAD_PHASE_RANGED_ATTACK = 8256;
+	public static final int ALCHEMICAL_HYDRA_JAD_PHASE_POISON_ATTACK = 8255;
+	public static final int ALCHEMICAL_HYDRA_JAD_PHASE_POISON_ATTACK_2 = 8256;
 
 	// The Gauntlet
 	public static final int GAUNTLET_BOSS_CRYSTAL_ATTACK = 8418;
@@ -356,12 +389,4 @@ public final class AnimationID
 	public static final int NIGHTMARE_JUMP_UP_2 = 8610;
 	public static final int NIGHTMARE_WAKE_UP = 8611;
 	public static final int NIGHTMARE_DEATH = 8612;
-
-	// Cerberus
-	public static final int CERBERUS_MAGE = 4489;
-	public static final int CERBERUS_RANGE = 4490;
-	public static final int CERBERUS_MELEE = 4491;
-	public static final int CERBERUS_GHOSTS = 4494;
-	public static final int CERBERUS_LAVA = 4493;
-
 }

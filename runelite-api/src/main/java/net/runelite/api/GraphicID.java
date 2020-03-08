@@ -52,7 +52,20 @@ public class GraphicID
 	public static final int FLYING_FISH = 1387;
 	public static final int XERIC_TELEPORT = 1612;
 
-	// Chambers of Xeric
+	// Chambers of Xeric - Tekton
+	public static final int TEKTON_COMET_AOE_HIT = 659;
+
+	// Chambers of Xeric - Lizardman Shamans
+	public static final int LIZARDMAN_SHAMAN_ACID_AOE_HIT = 1294;
+
+	// Chambers of Xeric - Vasa Nistirio
+	public static final int VASA_TELEPORT_AOE_HIT = 1328;
+	public static final int VASA_RANGED_ROCK_HIT = 1330;
+
+	// Chambers of Xeric - Vespula
+	public static final int VESPINE_SOLDIER_DEATH_EXPLOSION = 1368;
+
+	// Chambers of Xeric - The Great Olm
 	public static final int OLM_BURN = 1351;
 	public static final int OLM_LIGHTNING = 1356;
 	public static final int OLM_FALLING_CRYSTAL = 1357;
