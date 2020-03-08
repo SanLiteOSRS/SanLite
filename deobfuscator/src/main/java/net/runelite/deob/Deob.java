@@ -64,14 +64,14 @@ public class Deob
 {
 	private static final Logger logger = LoggerFactory.getLogger(Deob.class);
 
-	public static final int OBFUSCATED_NAME_MAX_LEN = 2;
+	public static final int OBFUSCATED_NAME_MAX_LEN = 3;
 	private static final boolean CHECK_EXEC = false;
 
 	public static void main(String[] args) throws IOException
 	{
 		if (args == null || args.length < 2)
 		{
-			System.err.println("Syntax: input_jar output_jar || input_jar output_jar rl");
+			System.err.println("Syntax: input_jar output_jar");
 			System.exit(-1);
 		}
 
@@ -140,7 +140,7 @@ public class Deob
 			new GetPathTransformer().transform(group);
 			new ClientErrorTransformer().transform(group);
 			new ReflectionTransformer().transform(group);
-			new MaxMemoryTransformer().transform(group);
+			//new MaxMemoryTransformer().transform(group);
 			//new RuneliteBufferTransformer().transform(group);
 		}
 
@@ -152,7 +152,15 @@ public class Deob
 
 	public static boolean isObfuscated(String name)
 	{
-		return name.length() <= OBFUSCATED_NAME_MAX_LEN || name.startsWith("method") || name.startsWith("vmethod") || name.startsWith("field") || name.startsWith("class") || name.startsWith("__");
+		if (name.length() <= OBFUSCATED_NAME_MAX_LEN)
+		{
+			return !name.equals("run") && !name.equals("add");
+		}
+		return name.startsWith("method")
+				|| name.startsWith("vmethod")
+				|| name.startsWith("field")
+				|| name.startsWith("class")
+				|| name.startsWith("__");
 	}
 
 	private static void runMath(ClassGroup group)

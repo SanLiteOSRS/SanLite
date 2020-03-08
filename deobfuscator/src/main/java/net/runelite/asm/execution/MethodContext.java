@@ -72,7 +72,7 @@ public class MethodContext
 
 	public Collection<InstructionContext> getInstructionContexts()
 	{
-		return (Collection) contexts.values();
+		return contexts.values();
 	}
 
 	public void reset()

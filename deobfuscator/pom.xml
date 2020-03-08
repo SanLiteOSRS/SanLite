@@ -76,6 +76,11 @@
             <artifactId>asm-debug-all</artifactId>
             <version>5.2</version>
         </dependency>
+        <dependency>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
+            <version>18.0.0</version>
+        </dependency>
 
         <dependency>
             <groupId>net.runelite.rs</groupId>

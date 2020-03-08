@@ -28,7 +28,6 @@ import java.io.File;
 import java.io.IOException;
 import net.runelite.deob.DeobTestProperties;
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -38,7 +37,6 @@ public class ClientVersionTest
 	public DeobTestProperties properties = new DeobTestProperties();
 
 	@Test
-	@Ignore
 	public void test() throws IOException
 	{
 		ClientVersion ver = new ClientVersion(new File(properties.getVanillaClient()));
