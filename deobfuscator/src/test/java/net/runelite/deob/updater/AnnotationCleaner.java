@@ -2,19 +2,17 @@ package net.runelite.deob.updater;
 
 import com.google.common.base.Strings;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import net.runelite.asm.ClassFile;
 import net.runelite.asm.ClassGroup;
 import net.runelite.asm.Field;
 import net.runelite.asm.Method;
 import net.runelite.asm.attributes.Annotations;
-import net.runelite.asm.attributes.annotation.Annotation;
-import net.runelite.asm.attributes.annotation.Element;
 import net.runelite.deob.Deob;
 import net.runelite.deob.DeobAnnotations;
 import net.runelite.deob.DeobTestProperties;
 import net.runelite.deob.util.JarUtil;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
@@ -29,9 +27,9 @@ public class AnnotationCleaner
 	public DeobTestProperties properties = new DeobTestProperties();
 
 	@Test
-	@Ignore
 	public void checkMappings() throws Exception
 	{
+		final List<String> missing = new ArrayList<>();
 		File client = new File(properties.getRsClient());
 		ClassGroup group = JarUtil.loadJar(client);
 
@@ -41,17 +39,21 @@ public class AnnotationCleaner
 			{
 				continue;
 			}
+			final String className = c.getClassName();
 
 			log.debug("Checking {}", c.toString());
 
 			String implementingName = DeobAnnotations.getImplements(c);
 			if (!Strings.isNullOrEmpty(implementingName))
 			{
-				assertEquals(c + " implements " + implementingName + " but is called " + c.getClassName(), implementingName, c.getClassName());
+				if (!implementingName.equals(className))
+				{
+					missing.add("Implements: " + className + " != " + implementingName);
+				}
 			}
-			else
+			else if (!Deob.isObfuscated(c.getClassName()))
 			{
-				assertTrue(c + " isn't obfuscated but doesn't have @Implements", Deob.isObfuscated(c.getClassName()));
+				missing.add("Implements: " + className + " == missing");
 			}
 
 			for (Field f : c.getFields())
@@ -63,29 +65,50 @@ public class AnnotationCleaner
 
 				if (exportedName == null)
 				{
-					assertTrue("Field " + c.getClassName() + '.' + fieldName + " isn't obfuscated but doesn't have @Export.", Deob.isObfuscated(fieldName) || fieldName.equals(DeobAnnotations.getObfuscatedName(an)) || DeobAnnotations.getObfuscatedName(an) == null);
-					continue;
+					if (!Deob.isObfuscated(fieldName) && DeobAnnotations.getObfuscatedName(an) != null)
+					{
+						missing.add("Export: (field)  " + className + '.' + fieldName + " == missing");
+					}
 				}
-
-				assertEquals("Field " + c.getClassName() + '.' + fieldName + " has " + exportedName + " in @Export", fieldName, exportedName);
+				else if (!fieldName.equals(exportedName))
+				{
+					missing.add("Export: (field)  " + className + '.' + fieldName + " != " + exportedName);
+				}
 			}
 
 			for (Method m : c.getMethods())
 			{
 				Annotations an = m.getAnnotations();
 
-				String fieldName = m.getName();
+				String methodName = m.getName();
 				String exportedName = DeobAnnotations.getExportedName(an);
 
 				if (exportedName == null)
 				{
-					assertTrue("Method " + c.getClassName() + '.' + fieldName + " isn't obfuscated but doesn't have @Export.", Deob.isObfuscated(fieldName) || fieldName.equals(DeobAnnotations.getObfuscatedName(an)) || DeobAnnotations.getObfuscatedName(an) == null);
-					continue;
+					if (!Deob.isObfuscated(methodName) && DeobAnnotations.getObfuscatedName(an) != null)
+					{
+						missing.add("Export: (method) " + className + '.' + methodName + " == missing");
+					}
 				}
-
-				assertEquals("Method " + c.getClassName() + '.' + fieldName + " has " + exportedName + " in @Export", fieldName, exportedName);
+				else if (!methodName.equals(exportedName))
+				{
+					missing.add("Export: (method) " + className + '.' + methodName + " != " + exportedName);
+				}
 			}
 		}
+
+		if (missing.isEmpty())
+		{
+			return;
+		}
+
+		log.error("{} missing annotations!", missing.size());
+		for (String s : missing)
+		{
+			log.error(s);
+		}
+
+		throw new Exception();
 	}
 
 	@Test
@@ -93,113 +116,11 @@ public class AnnotationCleaner
 	public void fixMappings() throws Exception
 	{
 		File client = new File(properties.getRsClient());
+
 		ClassGroup group = JarUtil.loadJar(client);
-		int impl = 0,
-				meth = 0,
-				field = 0;
 
-		for (ClassFile c : group.getClasses())
-		{
-			if (c.getName().contains("runelite"))
-			{
-				continue;
-			}
+		new AnnotationAdder(group).run();
 
-			log.debug("Checking {}", c.toString());
-
-			String implementingName = DeobAnnotations.getImplements(c);
-			if (!Strings.isNullOrEmpty(implementingName))
-			{
-				// TODO: Fix error
-				assertEquals(c + " implements " + implementingName + " but is called " + c.getClassName(), implementingName, c.getClassName());
-			}
-			else
-			{
-				if (!Deob.isObfuscated(c.getClassName()))
-				{
-					Annotations an = c.getAnnotations();
-
-					Annotation implAn = new Annotation(an);
-					implAn.setType(DeobAnnotations.IMPLEMENTS);
-
-					Element value = new Element(implAn);
-					value.setValue(c.getClassName());
-					value.setName("value");
-
-					implAn.addElement(value);
-					an.addAnnotation(implAn);
-					impl++;
-				}
-			}
-
-			for (Field f : c.getFields())
-			{
-				Annotations an = f.getAnnotations();
-
-				String fieldName = f.getName();
-				String exportedName = DeobAnnotations.getExportedName(an);
-
-				if (exportedName == null && Deob.isObfuscated(fieldName) ||  fieldName.equals(DeobAnnotations.getObfuscatedName(an)) || DeobAnnotations.getObfuscatedName(an) == null)
-				{
-					continue;
-				}
-
-				if (!fieldName.equals(exportedName))
-				{
-					log.info("Changed export from {} to {}", exportedName, fieldName);
-					Annotation a = an.find(DeobAnnotations.EXPORT);
-					if (a == null)
-					{
-						a = new Annotation(an);
-						a.setType(DeobAnnotations.EXPORT);
-
-						Element value = new Element(a);
-						value.setValue(fieldName);
-						value.setName("value");
-						a.addElement(value);
-						an.addAnnotation(a);
-
-					}
-					a.getElement().setValue(fieldName);
-					field++;
-				}
-			}
-
-			for (Method m : c.getMethods())
-			{
-				Annotations an = m.getAnnotations();
-
-				String fieldName = m.getName();
-				String exportedName = DeobAnnotations.getExportedName(an);
-
-				if (exportedName == null && Deob.isObfuscated(fieldName) || fieldName.equals(DeobAnnotations.getObfuscatedName(an)) || DeobAnnotations.getObfuscatedName(an) == null)
-				{
-					continue;
-				}
-
-				if (!fieldName.equals(exportedName))
-				{
-					log.info("Changed export from {} to {}", exportedName, fieldName);
-					Annotation a = an.find(DeobAnnotations.EXPORT);
-					if (a == null)
-					{
-						a = new Annotation(an);
-						a.setType(DeobAnnotations.EXPORT);
-
-						Element value = new Element(a);
-						value.setValue(fieldName);
-						value.setName("value");
-						a.addElement(value);
-						an.addAnnotation(a);
-
-					}
-					a.getElement().setValue(fieldName);
-					meth++;
-				}
-			}
-		}
-
-		log.info("Changed {} classes, {} methods, {} fields", impl, meth, field);
-		JarUtil.saveJar(group, new File("./rs_client_annotations_cleaned.jar"));
+		JarUtil.saveJar(group, new File("./fixed-rs-client.jar"));
 	}
 }
