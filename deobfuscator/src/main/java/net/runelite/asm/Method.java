@@ -282,7 +282,6 @@ public class Method implements Annotated, Named
 		return annotations;
 	}
 
-	@SuppressWarnings("unchecked")
 	public <T extends Instruction & LVTInstruction> List<T> findLVTInstructionsForVariable(int index)
 	{
 		List<T> list = new ArrayList<>();

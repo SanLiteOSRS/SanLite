@@ -14,7 +14,6 @@ public class ArrayElement extends Element<List> implements Iterable<Object>
 		this.value = new ArrayList<>();
 	}
 
-	@SuppressWarnings("unchecked")
 	public void addValue(Object value)
 	{
 		this.value.add(value);
@@ -28,13 +27,11 @@ public class ArrayElement extends Element<List> implements Iterable<Object>
 
 	@NotNull
 	@Override
-	@SuppressWarnings("unchecked")
 	public Iterator<Object> iterator()
 	{
 		return this.value.iterator();
 	}
 
-	@SuppressWarnings("unchecked")
 	public Stream<Object> stream()
 	{
 		return this.value.stream();
