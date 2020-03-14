@@ -34,6 +34,7 @@ import net.runelite.client.callback.ClientThread;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.events.ConfigChanged;
+import net.runelite.client.game.AreaOfEffectProjectile;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.plugins.PluginType;
@@ -281,10 +282,6 @@ public class VorkathPlugin extends Plugin
 				log.debug("{} | Regular attack: {} | {}", client.getTickCount(), projectileId, vorkath.getNextAttackTick());
 				vorkath.onRegularAttack(client.getTickCount());
 				break;
-			case ProjectileID.VORKATH_FIREBOMB:
-				vorkath.getProjectiles().add(new VorkathProjectile(projectile, projectile.getStartMovementCycle(),
-						projectile.getEndCycle(), 3));
-				break;
 			case ProjectileID.VORKATH_ICE_BREATH:
 			case ProjectileID.VORKATH_ACID:
 				vorkath.onSpecialAttack(projectile, this, client.getTickCount());
@@ -306,12 +303,16 @@ public class VorkathPlugin extends Plugin
 		}
 
 		Projectile projectile = event.getProjectile();
-		if (!vorkath.isVorkathProjectile(projectile.getId()) || vorkath.getProjectiles().size() == 0)
+		if (!vorkath.isVorkathProjectile(projectile.getId()) || projectile.getInteracting() != null)
 		{
 			return;
 		}
 
-		vorkath.updateProjectiles(projectile, event.getPosition());
+		if (projectile.getId() == ProjectileID.VORKATH_FIREBOMB)
+		{
+			vorkath.getAreaOfEffectProjectiles().add(new AreaOfEffectProjectile(projectile, 3, event.getPosition(),
+					config.getFirebombMarkerColor()));
+		}
 	}
 
 	@Subscribe

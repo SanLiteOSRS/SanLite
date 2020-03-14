@@ -30,6 +30,7 @@ import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.*;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.coords.WorldPoint;
+import net.runelite.client.game.AreaOfEffectProjectile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -95,7 +96,7 @@ class Vorkath
 
 	@Getter
 	@Setter
-	private List<VorkathProjectile> projectiles;
+	private List<AreaOfEffectProjectile> areaOfEffectProjectiles;
 
 	@Getter
 	@Setter
@@ -112,7 +113,7 @@ class Vorkath
 		this.recentProjectileId = -1;
 		this.remainingAcidPhaseAttacks = -1;
 		this.gameObjects = new ArrayList<>();
-		this.projectiles = new CopyOnWriteArrayList<>();
+		this.areaOfEffectProjectiles = new CopyOnWriteArrayList<>();
 		this.acidPhasePathPoints = new ArrayList<>();
 	}
 
@@ -159,7 +160,7 @@ class Vorkath
 		this.nextAttackTick = -100;
 		this.recentProjectileId = -1;
 		this.gameObjects.clear();
-		this.projectiles.clear();
+		this.areaOfEffectProjectiles.clear();
 		log.debug("Vorkath fight reset");
 	}
 
@@ -216,14 +217,6 @@ class Vorkath
 		setAttacksUntilSpecialAttack(getAttacksUntilSpecialAttack() - 1);
 		setLastAttackTick(attackGameTick);
 		setNextAttackTick(attackGameTick + (ATTACK_RATE));
-	}
-
-	void updateProjectiles(Projectile projectile, LocalPoint position)
-	{
-		// Update firebomb projectile target point
-		getProjectiles().stream()
-				.filter(x -> projectile.getId() == ProjectileID.VORKATH_FIREBOMB && x.getProjectile() == projectile)
-				.forEach((x) -> x.setTargetPoint(position));
 	}
 
 	void onSpecialAttack(Projectile projectile, VorkathPlugin plugin, int attackGameTick)

@@ -29,7 +29,6 @@ public class TickUtil
 	public static String convertTimerFormat(int clientTicksRemaining, TimerFormat formatTo)
 	{
 		String remainingTime = "";
-
 		switch (formatTo)
 		{
 			case SECONDS_MILLISECONDS:
