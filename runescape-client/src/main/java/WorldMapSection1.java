@@ -230,7 +230,7 @@ public class WorldMapSection1 implements WorldMapSection {
 			}
 		}
 
-		Tiles.method1156();
+		Tiles.Scene_drawGraphicsObjects();
 		GrandExchangeOfferUnitPriceComparator.setViewportShape(var0, var1, var2, var3, true);
 		var0 = Client.viewportOffsetX;
 		var1 = Client.viewportOffsetY;

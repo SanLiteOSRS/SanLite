@@ -1,8 +1,4 @@
-import net.runelite.mapping.Export;
-import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
-import net.runelite.mapping.ObfuscatedName;
-import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.mapping.*;
 
 @ObfuscatedName("bk")
 @Implements("Tiles")
@@ -161,7 +157,8 @@ public final class Tiles {
 		signature = "(I)V",
 		garbageValue = "1651271456"
 	)
-	static final void method1156() {
+	@Export("Scene_drawGraphicsObjects")
+	static final void Scene_drawGraphicsObjects() {
 		for (GraphicsObject var0 = (GraphicsObject)Client.graphicsObjects.last(); var0 != null; var0 = (GraphicsObject)Client.graphicsObjects.previous()) {
 			if (var0.plane == Clock.Client_plane && !var0.isFinished) {
 				if (Client.cycle >= var0.cycleStart) {
