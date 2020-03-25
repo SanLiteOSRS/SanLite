@@ -81,13 +81,13 @@ public class ImageUtilTest
 	public void grayscaleOffset()
 	{
 		// grayscaleOffset(BufferedImage image, int offset)
-		assertTrue(bufferedImagesEqual(oneByOne(BLACK), ImageUtil.luminanceScale(oneByOne(BLACK), -255)));
-		assertTrue(bufferedImagesEqual(oneByOne(new Color(50, 50, 50)), ImageUtil.luminanceScale(oneByOne(BLACK), 50)));
-		assertTrue(bufferedImagesEqual(oneByOne(GRAY), ImageUtil.luminanceScale(oneByOne(BLACK), 128)));
-		assertTrue(bufferedImagesEqual(oneByOne(BLACK), ImageUtil.luminanceScale(oneByOne(GRAY), -255)));
-		assertTrue(bufferedImagesEqual(oneByOne(WHITE), ImageUtil.luminanceScale(oneByOne(BLACK), 255)));
-		assertTrue(bufferedImagesEqual(oneByOne(new Color(200, 200, 200)), ImageUtil.luminanceScale(oneByOne(WHITE), -55)));
-		assertTrue(bufferedImagesEqual(oneByOne(WHITE), ImageUtil.luminanceScale(oneByOne(WHITE), 55)));
+		assertTrue(bufferedImagesEqual(oneByOne(BLACK), ImageUtil.luminanceOffset(oneByOne(BLACK), -255)));
+		assertTrue(bufferedImagesEqual(oneByOne(new Color(50, 50, 50)), ImageUtil.luminanceOffset(oneByOne(BLACK), 50)));
+		assertTrue(bufferedImagesEqual(oneByOne(GRAY), ImageUtil.luminanceOffset(oneByOne(BLACK), 128)));
+		assertTrue(bufferedImagesEqual(oneByOne(BLACK), ImageUtil.luminanceOffset(oneByOne(GRAY), -255)));
+		assertTrue(bufferedImagesEqual(oneByOne(WHITE), ImageUtil.luminanceOffset(oneByOne(BLACK), 255)));
+		assertTrue(bufferedImagesEqual(oneByOne(new Color(200, 200, 200)), ImageUtil.luminanceOffset(oneByOne(WHITE), -55)));
+		assertTrue(bufferedImagesEqual(oneByOne(WHITE), ImageUtil.luminanceOffset(oneByOne(WHITE), 55)));
 
 		// grayscaleOffset(BufferedImage image, float percentage)
 		assertTrue(bufferedImagesEqual(oneByOne(BLACK), ImageUtil.luminanceScale(oneByOne(BLACK), 0f)));
@@ -131,16 +131,16 @@ public class ImageUtilTest
 	public void grayscaleImage()
 	{
 		final BufferedImage[] grayscaleColors = new BufferedImage[] {
-			oneByOne(WHITE),
-			oneByOne(GRAY),
-			oneByOne(BLACK),
-			oneByOne(BLACK_HALF_TRANSPARENT),
-			oneByOne(BLACK_TRANSPARENT),
+				oneByOne(WHITE),
+				oneByOne(GRAY),
+				oneByOne(BLACK),
+				oneByOne(BLACK_HALF_TRANSPARENT),
+				oneByOne(BLACK_TRANSPARENT),
 		};
 		final BufferedImage[] nonGrayscaleColors = new BufferedImage[] {
-			oneByOne(RED),
-			oneByOne(GREEN),
-			oneByOne(BLUE),
+				oneByOne(RED),
+				oneByOne(GREEN),
+				oneByOne(BLUE),
 		};
 
 		for (BufferedImage image : grayscaleColors)
@@ -174,21 +174,21 @@ public class ImageUtilTest
 		assertEquals(34, stretched.getHeight());
 
 		final BufferedImage[] assertSameAfterResize = new BufferedImage[] {
-			oneByOne(WHITE),
-			oneByOne(GRAY),
-			oneByOne(BLACK),
-			oneByOne(RED),
-			oneByOne(GREEN),
-			oneByOne(BLUE),
-			oneByOne(BLACK_HALF_TRANSPARENT),
-			oneByOne(BLACK_TRANSPARENT),
-			centeredPixel(WHITE),
-			centeredPixel(GRAY),
-			centeredPixel(BLACK),
-			BLACK_PIXEL_TOP_LEFT,
-			BLACK_PIXEL_TOP_RIGHT,
-			BLACK_PIXEL_BOTTOM_LEFT,
-			BLACK_PIXEL_BOTTOM_RIGHT,
+				oneByOne(WHITE),
+				oneByOne(GRAY),
+				oneByOne(BLACK),
+				oneByOne(RED),
+				oneByOne(GREEN),
+				oneByOne(BLUE),
+				oneByOne(BLACK_HALF_TRANSPARENT),
+				oneByOne(BLACK_TRANSPARENT),
+				centeredPixel(WHITE),
+				centeredPixel(GRAY),
+				centeredPixel(BLACK),
+				BLACK_PIXEL_TOP_LEFT,
+				BLACK_PIXEL_TOP_RIGHT,
+				BLACK_PIXEL_BOTTOM_LEFT,
+				BLACK_PIXEL_BOTTOM_RIGHT,
 		};
 		for (BufferedImage image : assertSameAfterResize)
 		{
@@ -381,7 +381,7 @@ public class ImageUtilTest
 				final int green = (color & 0xff00) >> 8;
 				final int blue = color & 0xff;
 				if (red != green
-					|| green != blue)
+						|| green != blue)
 				{
 					return false;
 				}
