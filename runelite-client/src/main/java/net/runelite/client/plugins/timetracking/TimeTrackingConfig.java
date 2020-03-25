@@ -39,10 +39,10 @@ public interface TimeTrackingConfig extends Config
 	String STOPWATCHES = "stopwatches";
 
 	@ConfigItem(
-			keyName = "estimateRelative",
-			name = "Show relative time",
-			description = "Show amount of time remaining instead of completion time",
-			position = 1
+		keyName = "estimateRelative",
+		name = "Show relative time",
+		description = "Show amount of time remaining instead of completion time",
+		position = 1
 	)
 	default boolean estimateRelative()
 	{
@@ -50,10 +50,10 @@ public interface TimeTrackingConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "timerNotification",
-			name = "Timer notification",
-			description = "Notify you whenever a timer has finished counting down",
-			position = 2
+		keyName = "timerNotification",
+		name = "Timer notification",
+		description = "Notify you whenever a timer has finished counting down",
+		position = 2
 	)
 	default boolean timerNotification()
 	{
@@ -61,10 +61,10 @@ public interface TimeTrackingConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "birdHouseNotification",
-			name = "Bird house notification",
-			description = "Notify you when all bird houses are full",
-			position = 3
+		keyName = "birdHouseNotification",
+		name = "Bird house notification",
+		description = "Notify you when all bird houses are full",
+		position = 3
 	)
 	default boolean birdHouseNotification()
 	{
@@ -72,10 +72,10 @@ public interface TimeTrackingConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "defaultTimerMinutes",
-			name = "Default Time",
-			description = "The default time for the timer in minutes",
-			position = 4
+		keyName = "defaultTimerMinutes",
+		name = "Default Time",
+		description = "The default time for the timer in minutes",
+		position = 4
 	)
 	@Units(Units.MINUTES)
 	default int defaultTimerMinutes()
@@ -84,10 +84,10 @@ public interface TimeTrackingConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "sortOrder",
-			name = "Sort Order",
-			description = "The order in which to sort the timers",
-			position = 5
+		keyName = "sortOrder",
+		name = "Sort Order",
+		description = "The order in which to sort the timers",
+		position = 5
 	)
 	default SortOrder sortOrder()
 	{
@@ -95,10 +95,10 @@ public interface TimeTrackingConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "timerWarningThreshold",
-			name = "Timer Warning Threshold",
-			description = "The time at which to change the timer color to the warning color",
-			position = 6
+		keyName = "timerWarningThreshold",
+		name = "Timer Warning Threshold",
+		description = "The time at which to change the timer color to the warning color",
+		position = 6
 	)
 	@Units(Units.SECONDS)
 	default int timerWarningThreshold()
@@ -107,10 +107,10 @@ public interface TimeTrackingConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "activeTab",
-			name = "Active Tab",
-			description = "The currently selected tab",
-			hidden = true
+		keyName = "activeTab",
+		name = "Active Tab",
+		description = "The currently selected tab",
+		hidden = true
 	)
 	default Tab activeTab()
 	{
@@ -118,10 +118,10 @@ public interface TimeTrackingConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "activeTab",
-			name = "",
-			description = "",
-			hidden = true
+		keyName = "activeTab",
+		name = "",
+		description = "",
+		hidden = true
 	)
 	void setActiveTab(Tab t);
 }

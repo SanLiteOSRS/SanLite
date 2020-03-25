@@ -469,9 +469,9 @@ public class OverlayRenderer extends MouseAdapter implements KeyListener
 		if (!isResizeable && (layer == OverlayLayer.ABOVE_SCENE || layer == OverlayLayer.UNDER_WIDGETS))
 		{
 			graphics.setClip(client.getViewportXOffset(),
-					client.getViewportYOffset(),
-					client.getViewportWidth(),
-					client.getViewportHeight());
+				client.getViewportYOffset(),
+				client.getViewportWidth(),
+				client.getViewportHeight());
 		}
 		else
 		{
@@ -562,25 +562,25 @@ public class OverlayRenderer extends MouseAdapter implements KeyListener
 	private OverlayBounds buildSnapCorners()
 	{
 		final Point topLeftPoint = new Point(
-				viewportOffset + BORDER,
-				viewportOffset + BORDER_TOP);
+			viewportOffset + BORDER,
+			viewportOffset + BORDER_TOP);
 
 		final Point topCenterPoint = new Point(
-				viewportOffset + viewportBounds.width / 2,
-				viewportOffset + BORDER
+			viewportOffset + viewportBounds.width / 2,
+			viewportOffset + BORDER
 		);
 
 		final Point topRightPoint = new Point(
-				viewportOffset + viewportBounds.width - BORDER,
-				topCenterPoint.y);
+			viewportOffset + viewportBounds.width - BORDER,
+			topCenterPoint.y);
 
 		final Point bottomLeftPoint = new Point(
-				topLeftPoint.x,
-				viewportOffset + viewportBounds.height - BORDER);
+			topLeftPoint.x,
+			viewportOffset + viewportBounds.height - BORDER);
 
 		final Point bottomRightPoint = new Point(
-				topRightPoint.x,
-				bottomLeftPoint.y);
+			topRightPoint.x,
+			bottomLeftPoint.y);
 
 		// Check to see if chat box is minimized
 		if (isResizeable && chatboxHidden)
@@ -589,21 +589,21 @@ public class OverlayRenderer extends MouseAdapter implements KeyListener
 		}
 
 		final Point rightChatboxPoint = isResizeable ? new Point(
-				viewportOffset + chatboxBounds.width - BORDER,
-				bottomLeftPoint.y) : bottomRightPoint;
+			viewportOffset + chatboxBounds.width - BORDER,
+			bottomLeftPoint.y) : bottomRightPoint;
 
 		final Point canvasTopRightPoint = isResizeable ? new Point(
-				(int)client.getRealDimensions().getWidth(),
-				0) : topRightPoint;
+			(int)client.getRealDimensions().getWidth(),
+			0) : topRightPoint;
 
 		return new OverlayBounds(
-				new Rectangle(topLeftPoint, SNAP_CORNER_SIZE),
-				new Rectangle(topCenterPoint, SNAP_CORNER_SIZE),
-				new Rectangle(topRightPoint, SNAP_CORNER_SIZE),
-				new Rectangle(bottomLeftPoint, SNAP_CORNER_SIZE),
-				new Rectangle(bottomRightPoint, SNAP_CORNER_SIZE),
-				new Rectangle(rightChatboxPoint, SNAP_CORNER_SIZE),
-				new Rectangle(canvasTopRightPoint, SNAP_CORNER_SIZE));
+			new Rectangle(topLeftPoint, SNAP_CORNER_SIZE),
+			new Rectangle(topCenterPoint, SNAP_CORNER_SIZE),
+			new Rectangle(topRightPoint, SNAP_CORNER_SIZE),
+			new Rectangle(bottomLeftPoint, SNAP_CORNER_SIZE),
+			new Rectangle(bottomRightPoint, SNAP_CORNER_SIZE),
+			new Rectangle(rightChatboxPoint, SNAP_CORNER_SIZE),
+			new Rectangle(canvasTopRightPoint, SNAP_CORNER_SIZE));
 	}
 
 	private MenuEntry[] createRightClickMenuEntries(Overlay overlay)

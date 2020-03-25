@@ -58,9 +58,9 @@ import net.runelite.client.ui.NavigationButton;
 import net.runelite.client.util.ImageUtil;
 
 @PluginDescriptor(
-		name = "Time Tracking",
-		description = "Enable the Time Tracking panel, which contains timers, stopwatches, and farming and bird house trackers",
-		tags = {"birdhouse", "farming", "hunter", "notifications", "skilling", "stopwatches", "timers", "panel"}
+	name = "Time Tracking",
+	description = "Enable the Time Tracking panel, which contains timers, stopwatches, and farming and bird house trackers",
+	tags = {"birdhouse", "farming", "hunter", "notifications", "skilling", "stopwatches", "timers", "panel"}
 )
 public class TimeTrackingPlugin extends Plugin
 {
@@ -116,11 +116,11 @@ public class TimeTrackingPlugin extends Plugin
 		panel = new TimeTrackingPanel(itemManager, config, farmingTracker, birdHouseTracker, clockManager);
 
 		navButton = NavigationButton.builder()
-				.tooltip("Time Tracking")
-				.icon(icon)
-				.panel(panel)
-				.priority(4)
-				.build();
+			.tooltip("Time Tracking")
+			.icon(icon)
+			.panel(panel)
+			.priority(4)
+			.build();
 
 		clientToolbar.addNavigation(navButton);
 

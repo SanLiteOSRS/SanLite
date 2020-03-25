@@ -199,7 +199,7 @@ public class Text
 		for (String term : searchTerms)
 		{
 			if (keywords.stream().noneMatch((t) -> t.contains(term) ||
-					DISTANCE.apply(t, term) > 0.9))
+				DISTANCE.apply(t, term) > 0.9))
 			{
 				return false;
 			}

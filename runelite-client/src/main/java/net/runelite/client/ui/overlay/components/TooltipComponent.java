@@ -77,7 +77,7 @@ public class TooltipComponent implements LayoutableRenderableEntity
 
 		// Render tooltip - background
 		final Rectangle tooltipBackground = new Rectangle(x, y,
-				tooltipWidth + OFFSET * 2, tooltipHeight + OFFSET * 2);
+			tooltipWidth + OFFSET * 2, tooltipHeight + OFFSET * 2);
 		final BackgroundComponent backgroundComponent = new BackgroundComponent();
 		backgroundComponent.setBackgroundColor(backgroundColor);
 		backgroundComponent.setRectangle(tooltipBackground);

@@ -25,6 +25,7 @@
  */
 package net.runelite.client.util;
 
+import com.google.common.base.Strings;
 import java.awt.Toolkit;
 import java.awt.TrayIcon;
 import java.awt.datatransfer.Clipboard;
@@ -44,8 +45,6 @@ import javax.annotation.Nullable;
 import javax.imageio.ImageIO;
 import javax.inject.Inject;
 import javax.inject.Singleton;
-
-import com.google.common.base.Strings;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Client;
@@ -83,6 +82,7 @@ public class ImageCapture
 	 *
 	 * @param screenshot BufferedImage to capture.
 	 * @param fileName Filename to use, without file extension.
+	 * @param subDir Directory within the player screenshots dir to store the captured screenshot to.
 	 * @param notify Send a notification to the system tray when the image is captured.
 	 * @param imageUploadStyle which method to use to upload the screenshot (Imgur or directly to clipboard).
 	 */
@@ -192,10 +192,10 @@ public class ImageCapture
 		String json = RuneLiteAPI.GSON.toJson(new ImageUploadRequest(screenshotFile));
 
 		Request request = new Request.Builder()
-				.url(IMGUR_IMAGE_UPLOAD_URL)
-				.addHeader("Authorization", "Client-ID " + RuneLiteProperties.getImgurClientId())
-				.post(RequestBody.create(JSON, json))
-				.build();
+			.url(IMGUR_IMAGE_UPLOAD_URL)
+			.addHeader("Authorization", "Client-ID " + RuneLiteProperties.getImgurClientId())
+			.post(RequestBody.create(JSON, json))
+			.build();
 
 		RuneLiteAPI.CLIENT.newCall(request).enqueue(new Callback()
 		{
@@ -211,7 +211,7 @@ public class ImageCapture
 				try (InputStream in = response.body().byteStream())
 				{
 					ImageUploadResponse imageUploadResponse = RuneLiteAPI.GSON
-							.fromJson(new InputStreamReader(in), ImageUploadResponse.class);
+						.fromJson(new InputStreamReader(in), ImageUploadResponse.class);
 
 					if (imageUploadResponse.isSuccess())
 					{
