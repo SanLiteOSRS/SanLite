@@ -33,6 +33,7 @@ import com.google.inject.Injector;
 import java.io.File;
 import java.lang.management.ManagementFactory;
 import java.lang.management.RuntimeMXBean;
+import java.nio.file.Paths;
 import java.util.Locale;
 import javax.annotation.Nullable;
 import javax.inject.Provider;
@@ -41,6 +42,8 @@ import javax.swing.SwingUtilities;
 import joptsimple.ArgumentAcceptingOptionSpec;
 import joptsimple.OptionParser;
 import joptsimple.OptionSet;
+import joptsimple.ValueConversionException;
+import joptsimple.ValueConverter;
 import joptsimple.util.EnumConverter;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
@@ -83,6 +86,8 @@ public class RuneLite
 	public static final File PROFILES_DIR = new File(RUNELITE_DIR, "profiles");
 	public static final File SCREENSHOT_DIR = new File(RUNELITE_DIR, "screenshots");
 	public static final File LOGS_DIR = new File(RUNELITE_DIR, "logs");
+	public static final File DEFAULT_SESSION_FILE = new File(RUNELITE_DIR, "session");
+	public static final File DEFAULT_CONFIG_FILE = new File(RUNELITE_DIR, "settings.properties");
 	private static final SanLiteSplashScreen splashScreen = new SanLiteSplashScreen();
 
 	@Getter
@@ -170,6 +175,16 @@ public class RuneLite
 		parser.accepts("local-injected", "Use local injected-client");
 		parser.accepts("no-splash-screen", "Do not show the splash screen");
 
+		final ArgumentAcceptingOptionSpec<File> sessionfile = parser.accepts("sessionfile", "Use a specified session file")
+				.withRequiredArg()
+				.withValuesConvertedBy(new ConfigFileConverter())
+				.defaultsTo(DEFAULT_SESSION_FILE);
+
+		final ArgumentAcceptingOptionSpec<File> configfile = parser.accepts("config", "Use a specified config file")
+				.withRequiredArg()
+				.withValuesConvertedBy(new ConfigFileConverter())
+				.defaultsTo(DEFAULT_CONFIG_FILE);
+
 		final ArgumentAcceptingOptionSpec<ClientUpdateCheckMode> updateMode = parser
 			.accepts("rs", "Select client type")
 			.withRequiredArg()
@@ -212,14 +227,14 @@ public class RuneLite
 				log.error("Classes are out of date; Build with maven again.");
 			}
 		});
-		
+
 		if (!options.has("no-splash-screen"))
 		{
 			splashScreen.open(6);
 		}
 
 		splashScreen.setMessage("Starting SanLite Injector");
-		
+
 		try
 		{
 			final ClientLoader clientLoader = new ClientLoader(options.valueOf(updateMode));
@@ -234,7 +249,10 @@ public class RuneLite
 
 			final long start = System.currentTimeMillis();
 
-			injector = Guice.createInjector(new RuneLiteModule(clientLoader));
+			injector = Guice.createInjector(new RuneLiteModule(
+					clientLoader,
+					options.valueOf(sessionfile),
+					options.valueOf(configfile)));
 
 			injector.getInstance(RuneLite.class).start();
 
@@ -346,5 +364,44 @@ public class RuneLite
 	public static void setInjector(Injector injector)
 	{
 		RuneLite.injector = injector;
+	}
+
+	private static class ConfigFileConverter implements ValueConverter<File>
+	{
+		@Override
+		public File convert(String fileName)
+		{
+			final File file;
+
+			if (Paths.get(fileName).isAbsolute()
+					|| fileName.startsWith("./")
+					|| fileName.startsWith(".\\"))
+			{
+				file = new File(fileName);
+			}
+			else
+			{
+				file = new File(RuneLite.RUNELITE_DIR, fileName);
+			}
+
+			if (file.exists() && (!file.isFile() || !file.canWrite()))
+			{
+				throw new ValueConversionException(String.format("File %s is not accessible", file.getAbsolutePath()));
+			}
+
+			return file;
+		}
+
+		@Override
+		public Class<? extends File> valueType()
+		{
+			return File.class;
+		}
+
+		@Override
+		public String valuePattern()
+		{
+			return null;
+		}
 	}
 }

@@ -46,8 +46,8 @@ import net.runelite.api.events.WidgetLoaded;
 import net.runelite.api.vars.AccountType;
 import net.runelite.api.widgets.Widget;
 import static net.runelite.api.widgets.WidgetID.ADVENTURE_LOG_ID;
-import static net.runelite.api.widgets.WidgetID.KILL_LOGS_GROUP_ID;
 import static net.runelite.api.widgets.WidgetID.COUNTERS_LOG_GROUP_ID;
+import static net.runelite.api.widgets.WidgetID.KILL_LOGS_GROUP_ID;
 import net.runelite.api.widgets.WidgetInfo;
 import net.runelite.client.chat.ChatColorType;
 import net.runelite.client.chat.ChatCommandManager;
@@ -93,7 +93,6 @@ public class ChatCommandsPlugin extends Plugin
 	private static final Pattern ADVENTURE_LOG_TITLE_PATTERN = Pattern.compile("The Exploits of (.+)");
 	private static final Pattern ADVENTURE_LOG_PB_PATTERN = Pattern.compile("([a-zA-Z]+(?: [a-zA-Z]+)*) Fastest (?:kill|run): ([0-9:]+)");
 
-
 	private static final String TOTAL_LEVEL_COMMAND_STRING = "!total";
 	private static final String PRICE_COMMAND_STRING = "!price";
 	private static final String LEVEL_COMMAND_STRING = "!lvl";
@@ -111,8 +110,6 @@ public class ChatCommandsPlugin extends Plugin
 	@VisibleForTesting
 	static final int ADV_LOG_EXPLOITS_TEXT_INDEX = 1;
 
-
-	private final HiscoreClient hiscoreClient = new HiscoreClient();
 	private final ChatClient chatClient = new ChatClient();
 
 	private boolean bossLogLoaded;
@@ -149,6 +146,9 @@ public class ChatCommandsPlugin extends Plugin
 
 	@Inject
 	private ChatKeyboardListener chatKeyboardListener;
+
+	@Inject
+	private HiscoreClient hiscoreClient;
 
 	@Override
 	public void startUp()
@@ -924,10 +924,10 @@ public class ChatCommandsPlugin extends Plugin
 					.append(ChatColorType.HIGHLIGHT)
 					.append(QuantityFormatter.formatNumber(itemPrice));
 
-			ItemDefinition itemDefinition = itemManager.getItemComposition(itemId);
-			if (itemDefinition != null)
+			ItemDefinition itemComposition = itemManager.getItemComposition(itemId);
+			if (itemComposition != null)
 			{
-				int alchPrice = Math.round(itemDefinition.getPrice() * Constants.HIGH_ALCHEMY_MULTIPLIER);
+				int alchPrice = Math.round(itemComposition.getPrice() * Constants.HIGH_ALCHEMY_MULTIPLIER);
 				builder
 						.append(ChatColorType.NORMAL)
 						.append(" HA value ")
@@ -998,21 +998,27 @@ public class ChatCommandsPlugin extends Plugin
 
 			final Skill hiscoreSkill = result.getSkill();
 
-			final String response = new ChatMessageBuilder()
+			ChatMessageBuilder chatMessageBuilder = new ChatMessageBuilder()
 					.append(ChatColorType.NORMAL)
 					.append("Level ")
 					.append(ChatColorType.HIGHLIGHT)
 					.append(skill.getName()).append(": ").append(String.valueOf(hiscoreSkill.getLevel()))
-					.append(ChatColorType.NORMAL)
-					.append(" Experience: ")
-					.append(ChatColorType.HIGHLIGHT)
-					.append(String.format("%,d", hiscoreSkill.getExperience()))
-					.append(ChatColorType.NORMAL)
-					.append(" Rank: ")
-					.append(ChatColorType.HIGHLIGHT)
-					.append(String.format("%,d", hiscoreSkill.getRank()))
-					.build();
+					.append(ChatColorType.NORMAL);
+			if (hiscoreSkill.getExperience() != -1)
+			{
+				chatMessageBuilder.append(" Experience: ")
+						.append(ChatColorType.HIGHLIGHT)
+						.append(String.format("%,d", hiscoreSkill.getExperience()))
+						.append(ChatColorType.NORMAL);
+			}
+			if (hiscoreSkill.getRank() != -1)
+			{
+				chatMessageBuilder.append(" Rank: ")
+						.append(ChatColorType.HIGHLIGHT)
+						.append(String.format("%,d", hiscoreSkill.getRank()));
+			}
 
+			final String response = chatMessageBuilder.build();
 			log.debug("Setting response {}", response);
 			final MessageNode messageNode = chatMessage.getMessageNode();
 			messageNode.setRuneLiteFormatMessage(response);

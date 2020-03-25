@@ -34,6 +34,7 @@ import lombok.Setter;
 import net.runelite.api.Client;
 import static net.runelite.api.MenuAction.RUNELITE_OVERLAY;
 import static net.runelite.api.MenuAction.RUNELITE_OVERLAY_CONFIG;
+import net.runelite.client.game.WorldService;
 import net.runelite.client.plugins.raids.solver.Room;
 import net.runelite.client.ui.overlay.Overlay;
 import static net.runelite.client.ui.overlay.OverlayManager.OPTION_CONFIGURE;
@@ -44,6 +45,9 @@ import net.runelite.client.ui.overlay.components.ComponentConstants;
 import net.runelite.client.ui.overlay.components.LineComponent;
 import net.runelite.client.ui.overlay.components.PanelComponent;
 import net.runelite.client.ui.overlay.components.TitleComponent;
+import net.runelite.http.api.worlds.World;
+import net.runelite.http.api.worlds.WorldRegion;
+import net.runelite.http.api.worlds.WorldResult;
 
 public class RaidsOverlay extends Overlay
 {
@@ -59,6 +63,9 @@ public class RaidsOverlay extends Overlay
 	@Getter
 	@Setter
 	private boolean scoutOverlayShown = false;
+
+	@Inject
+	private WorldService worldService;
 
 	@Inject
 	private RaidsOverlay(Client client, RaidsPlugin plugin, RaidsConfig config)
@@ -112,7 +119,20 @@ public class RaidsOverlay extends Overlay
 			color = Color.RED;
 			String clanOwnerString = client.getClanOwner();
 			FontMetrics metrics = graphics.getFontMetrics();
+
 			String worldString = "W" + client.getWorld();
+			WorldResult worldResult = worldService.getWorlds();
+			if (worldResult != null)
+			{
+				World world = worldResult.findWorld(client.getWorld());
+				WorldRegion region = world.getRegion();
+				if (region != null)
+				{
+					String countryCode = region.getAlpha2();
+					worldString += " (" + countryCode + ")";
+				}
+			}
+
 			String clanOwner = "Join a CC";
 			if (!clanOwnerString.isEmpty())
 			{

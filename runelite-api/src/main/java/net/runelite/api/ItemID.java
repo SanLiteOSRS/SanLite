@@ -7347,7 +7347,7 @@ public final class ItemID
 	public static final int ABSORPTION_2 = 11736;
 	public static final int ABSORPTION_1 = 11737;
 	public static final int HERB_BOX = 11738;
-	public static final int OPENED_HERB_BOX = 11739;
+	public static final int OPEN_HERB_BOX = 11739;
 	public static final int SCROLL_OF_REDIRECTION = 11740;
 	public static final int RIMMINGTON_TELEPORT = 11741;
 	public static final int TAVERLEY_TELEPORT = 11742;

@@ -24,6 +24,7 @@
  */
 package net.runelite.client.plugins.hiscore;
 
+import com.google.common.collect.EvictingQueue;
 import com.google.inject.Inject;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -32,14 +33,17 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.regex.Pattern;
 import javax.annotation.Nullable;
+import javax.inject.Singleton;
 import javax.swing.SwingUtilities;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 import javax.swing.text.JTextComponent;
+import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.*;
 
 @Slf4j
+@Singleton
 class NameAutocompleter implements KeyListener
 {
 	/**
@@ -52,7 +56,12 @@ class NameAutocompleter implements KeyListener
 	 */
 	private static final Pattern INVALID_CHARS = Pattern.compile("[^a-zA-Z0-9_ -]");
 
+	private static final int MAX_SEARCH_HISTORY = 25;
+
 	private final Client client;
+	private final HiscoreConfig hiscoreConfig;
+
+	private final EvictingQueue<String> searchHistory = EvictingQueue.create(MAX_SEARCH_HISTORY);
 
 	/**
 	 * The name currently being autocompleted.
@@ -65,9 +74,10 @@ class NameAutocompleter implements KeyListener
 	private Pattern autocompleteNamePattern;
 
 	@Inject
-	private NameAutocompleter(@Nullable Client client)
+	private NameAutocompleter(@Nullable Client client, HiscoreConfig hiscoreConfig)
 	{
 		this.client = client;
+		this.hiscoreConfig = hiscoreConfig;
 	}
 
 	@Override
@@ -85,6 +95,11 @@ class NameAutocompleter implements KeyListener
 	@Override
 	public void keyTyped(KeyEvent e)
 	{
+		if (!hiscoreConfig.autocomplete())
+		{
+			return;
+		}
+
 		final JTextComponent input = (JTextComponent)e.getSource();
 		final String inputText = input.getText();
 
@@ -100,7 +115,7 @@ class NameAutocompleter implements KeyListener
 		// Don't attempt to autocomplete if the name is invalid.
 		// This condition is also true when the user presses a key like backspace.
 		if (INVALID_CHARS.matcher(charToInsert).find()
-			|| INVALID_CHARS.matcher(inputText).find())
+				|| INVALID_CHARS.matcher(inputText).find())
 		{
 			return;
 		}
@@ -153,9 +168,9 @@ class NameAutocompleter implements KeyListener
 				try
 				{
 					input.getDocument().insertString(
-						nameStart.length(),
-						name.substring(nameStart.length()),
-						null);
+							nameStart.length(),
+							name.substring(nameStart.length()),
+							null);
 					input.select(nameStart.length(), name.length());
 				}
 				catch (BadLocationException ex)
@@ -177,25 +192,30 @@ class NameAutocompleter implements KeyListener
 		// Matching non-breaking spaces is necessary because the API
 		// returns non-breaking spaces when a name has whitespace.
 		pattern = Pattern.compile(
-			"(?i)^" + nameStart.replaceAll("[ _-]", "[ _" + NBSP + "-]") + ".+?");
+				"(?i)^" + nameStart.replaceAll("[ _-]", "[ _" + NBSP + "-]") + ".+?");
 
 		if (client == null)
 		{
 			return false;
 		}
 
-		autocompleteName = Optional.empty();
+		// Search all previous successful queries
+		autocompleteName = searchHistory.stream()
+				.filter(n -> pattern.matcher(n).matches())
+				.findFirst();
 
-		// TODO: Search lookup history
-
-		Friend[] friends = client.getFriends();
-		if (friends != null)
+		// Search friends if previous searches weren't matched
+		if (!autocompleteName.isPresent())
 		{
-			autocompleteName = Arrays.stream(friends)
-					.filter(Objects::nonNull)
-					.map(Friend::getName)
-					.filter(n -> pattern.matcher(n).matches())
-					.findFirst();
+			Friend[] friends = client.getFriends();
+			if (friends != null)
+			{
+				autocompleteName = Arrays.stream(friends)
+						.filter(Objects::nonNull)
+						.map(Friend::getName)
+						.filter(n -> pattern.matcher(n).matches())
+						.findFirst();
+			}
 		}
 
 		// Search clan if a friend wasn't found
@@ -217,17 +237,17 @@ class NameAutocompleter implements KeyListener
 		{
 			final Player[] cachedPlayers = client.getCachedPlayers();
 			autocompleteName = Arrays.stream(cachedPlayers)
-				.filter(Objects::nonNull)
-				.map(Player::getName)
-				.filter(n -> pattern.matcher(n).matches())
-				.findFirst();
+					.filter(Objects::nonNull)
+					.map(Player::getName)
+					.filter(n -> pattern.matcher(n).matches())
+					.findFirst();
 		}
 
 		if (autocompleteName.isPresent())
 		{
 			this.autocompleteName = autocompleteName.get().replace(NBSP, " ");
 			this.autocompleteNamePattern = Pattern.compile(
-				"(?i)^" + this.autocompleteName.replaceAll("[ _-]", "[ _-]") + "$");
+					"(?i)^" + this.autocompleteName.replaceAll("[ _-]", "[ _-]") + "$");
 		}
 		else
 		{
@@ -236,6 +256,14 @@ class NameAutocompleter implements KeyListener
 		}
 
 		return autocompleteName.isPresent();
+	}
+
+	void addToSearchHistory(@NonNull String name)
+	{
+		if (!searchHistory.contains(name))
+		{
+			searchHistory.offer(name);
+		}
 	}
 
 	private boolean isExpectedNext(JTextComponent input, String nextChar)

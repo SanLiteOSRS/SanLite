@@ -36,12 +36,22 @@ public interface ObjectIndicatorsConfig extends Config
 {
 	@Alpha
 	@ConfigItem(
-		keyName = "markerColor",
-		name = "Marker color",
-		description = "Configures the color of object marker"
+			keyName = "markerColor",
+			name = "Marker color",
+			description = "Configures the color of object marker"
 	)
 	default Color markerColor()
 	{
 		return Color.YELLOW;
+	}
+
+	@ConfigItem(
+			keyName = "rememberObjectColors",
+			name = "Remember color per object",
+			description = "Color objects using the color from time of marking"
+	)
+	default boolean rememberObjectColors()
+	{
+		return false;
 	}
 }
