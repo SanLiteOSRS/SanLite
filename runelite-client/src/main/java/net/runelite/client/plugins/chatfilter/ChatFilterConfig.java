@@ -33,10 +33,10 @@ import net.runelite.client.config.ConfigItem;
 public interface ChatFilterConfig extends Config
 {
 	@ConfigItem(
-		keyName = "filterType",
-		name = "Filter type",
-		description = "Configures how the messages are filtered",
-		position = 1
+			keyName = "filterType",
+			name = "Filter type",
+			description = "Configures how the messages are filtered",
+			position = 1
 	)
 	default ChatFilterType filterType()
 	{
@@ -44,11 +44,10 @@ public interface ChatFilterConfig extends Config
 	}
 
 	@ConfigItem(
-		keyName = "filteredWords",
-		name = "Filtered Words",
-		description = "List of filtered words, separated by commas",
-		position = 2,
-		group = "Filtered Words"
+			keyName = "filteredWords",
+			name = "Filtered Words",
+			description = "List of filtered words, separated by commas",
+			position = 2
 	)
 	default String filteredWords()
 	{
@@ -56,11 +55,10 @@ public interface ChatFilterConfig extends Config
 	}
 
 	@ConfigItem(
-		keyName = "filteredRegex",
-		name = "Filtered Regex",
-		description = "List of regular expressions to filter, one per line",
-		position = 3,
-		group = "Filtered Regex"
+			keyName = "filteredRegex",
+			name = "Filtered Regex",
+			description = "List of regular expressions to filter, one per line",
+			position = 3
 	)
 	default String filteredRegex()
 	{
@@ -68,10 +66,21 @@ public interface ChatFilterConfig extends Config
 	}
 
 	@ConfigItem(
-		keyName = "filterFriends",
-		name = "Filter Friends",
-		description = "Filter your friends' messages",
-		position = 4
+			keyName = "filteredNames",
+			name = "Filtered Names",
+			description = "List of filtered names, one per line. Accepts regular expressions",
+			position = 4
+	)
+	default String filteredNames()
+	{
+		return "";
+	}
+
+	@ConfigItem(
+			keyName = "filterFriends",
+			name = "Filter Friends",
+			description = "Filter your friends' messages",
+			position = 5
 	)
 	default boolean filterFriends()
 	{
@@ -79,10 +88,10 @@ public interface ChatFilterConfig extends Config
 	}
 
 	@ConfigItem(
-		keyName = "filterClan",
-		name = "Filter Clan Chat Members",
-		description = "Filter your clan chat members' messages",
-		position = 5
+			keyName = "filterClan",
+			name = "Filter Clan Chat Members",
+			description = "Filter your clan chat members' messages",
+			position = 6
 	)
 	default boolean filterClan()
 	{
@@ -90,10 +99,10 @@ public interface ChatFilterConfig extends Config
 	}
 
 	@ConfigItem(
-		keyName = "filterLogin",
-		name = "Filter Logged In/Out Messages",
-		description = "Filter your private chat to remove logged in/out messages",
-		position = 6
+			keyName = "filterLogin",
+			name = "Filter Logged In/Out Messages",
+			description = "Filter your private chat to remove logged in/out messages",
+			position = 7
 	)
 	default boolean filterLogin()
 	{

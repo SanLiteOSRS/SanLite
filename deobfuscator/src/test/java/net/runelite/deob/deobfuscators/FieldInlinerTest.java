@@ -31,7 +31,10 @@ import net.runelite.asm.ClassGroup;
 import net.runelite.deob.DeobTestProperties;
 import net.runelite.deob.TemporyFolderLocation;
 import net.runelite.deob.util.JarUtil;
-import org.junit.*;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
 public class FieldInlinerTest
@@ -57,7 +60,6 @@ public class FieldInlinerTest
 	}
 
 	@Test
-	@Ignore
 	public void testRun()
 	{
 		FieldInliner fi = new FieldInliner();

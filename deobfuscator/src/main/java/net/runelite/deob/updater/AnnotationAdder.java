@@ -8,6 +8,7 @@ import net.runelite.asm.Method;
 import net.runelite.asm.attributes.Annotations;
 import net.runelite.asm.attributes.annotation.Annotation;
 import net.runelite.asm.attributes.annotation.Element;
+import net.runelite.asm.attributes.annotation.SimpleElement;
 import net.runelite.deob.Deob;
 import net.runelite.deob.DeobAnnotations;
 import org.slf4j.Logger;
@@ -50,12 +51,9 @@ public class AnnotationAdder
 				{
 					Annotations an = c.getAnnotations();
 
-					Annotation implAn = new Annotation(an);
-					implAn.setType(DeobAnnotations.IMPLEMENTS);
+					Annotation implAn = new Annotation(DeobAnnotations.IMPLEMENTS);
 
-					Element value = new Element(implAn);
-					value.setValue(c.getClassName());
-					value.setName("value");
+					Element value = new SimpleElement(c.getClassName());
 
 					implAn.addElement(value);
 					an.addAnnotation(implAn);
@@ -81,12 +79,9 @@ public class AnnotationAdder
 					Annotation a = an.find(DeobAnnotations.EXPORT);
 					if (a == null)
 					{
-						a = new Annotation(an);
-						a.setType(DeobAnnotations.EXPORT);
+						a = new Annotation(DeobAnnotations.EXPORT);
 
-						Element value = new Element(a);
-						value.setValue(fieldName);
-						value.setName("value");
+						Element value = new SimpleElement(fieldName);
 						a.addElement(value);
 						an.addAnnotation(a);
 
@@ -111,20 +106,17 @@ public class AnnotationAdder
 				if (!methodName.equals(exportedName))
 				{
 					log.info("Changed export from {} to {}", exportedName, methodName);
-					Annotation a = an.find(DeobAnnotations.EXPORT);
-					if (a == null)
+					Annotation annotation = an.find(DeobAnnotations.EXPORT);
+					if (annotation == null)
 					{
-						a = new Annotation(an);
-						a.setType(DeobAnnotations.EXPORT);
+						annotation = new Annotation(DeobAnnotations.EXPORT);
 
-						Element value = new Element(a);
-						value.setValue(methodName);
-						value.setName("value");
-						a.addElement(value);
-						an.addAnnotation(a);
+						Element value = new SimpleElement(methodName);
+						annotation.addElement(value);
+						an.addAnnotation(annotation);
 
 					}
-					a.getElement().setValue(methodName);
+					annotation.getElement().setValue(methodName);
 					meth++;
 				}
 			}

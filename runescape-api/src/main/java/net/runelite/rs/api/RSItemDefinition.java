@@ -69,6 +69,18 @@ public interface RSItemDefinition extends ItemDefinition
 	@Override
 	int getShiftClickActionIndex();
 
+	@Import("model")
+	@Override
+	int getInventoryModel();
+
+	@Import("recolorTo")
+	@Override
+	short[] getColorToReplaceWith();
+
+	@Import("retextureTo")
+	@Override
+	short[] getTextureToReplaceWith();
+
 	@Import("getModel")
 	RSModel getModel(int quantity);
 }

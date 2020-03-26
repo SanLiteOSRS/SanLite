@@ -24,6 +24,7 @@
  */
 package net.runelite.client.ui.overlay.worldmap;
 
+import com.google.common.base.Splitter;
 import java.awt.Dimension;
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
@@ -33,8 +34,6 @@ import java.awt.image.BufferedImage;
 import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Singleton;
-
-import com.google.common.base.Splitter;
 import net.runelite.api.Client;
 import net.runelite.api.Point;
 import net.runelite.api.RenderOverview;

@@ -95,11 +95,11 @@ public class OverlayRenderer extends MouseAdapter implements KeyListener
 
 	@Inject
 	private OverlayRenderer(
-		final Client client,
-		final OverlayManager overlayManager,
-		final RuneLiteConfig runeLiteConfig,
-		final MouseManager mouseManager,
-		final KeyManager keyManager)
+			final Client client,
+			final OverlayManager overlayManager,
+			final RuneLiteConfig runeLiteConfig,
+			final MouseManager mouseManager,
+			final KeyManager keyManager)
 	{
 		this.client = client;
 		this.overlayManager = overlayManager;
@@ -155,8 +155,8 @@ public class OverlayRenderer extends MouseAdapter implements KeyListener
 	public void render(Graphics2D graphics, final OverlayLayer layer)
 	{
 		if (layer != OverlayLayer.ABOVE_MAP
-			&& client.getWidget(WidgetInfo.FULLSCREEN_MAP_ROOT) != null
-			&& !client.getWidget(WidgetInfo.FULLSCREEN_MAP_ROOT).isHidden())
+				&& client.getWidget(WidgetInfo.FULLSCREEN_MAP_ROOT) != null
+				&& !client.getWidget(WidgetInfo.FULLSCREEN_MAP_ROOT).isHidden())
 		{
 			return;
 		}
@@ -164,10 +164,10 @@ public class OverlayRenderer extends MouseAdapter implements KeyListener
 		final List<Overlay> overlays = overlayManager.getLayer(layer);
 
 		if (overlays == null
-			|| overlays.isEmpty()
-			|| client.getGameState() != GameState.LOGGED_IN
-			|| client.getWidget(WidgetInfo.LOGIN_CLICK_TO_PLAY_SCREEN) != null
-			|| client.getViewportWidget() == null)
+				|| overlays.isEmpty()
+				|| client.getGameState() != GameState.LOGGED_IN
+				|| client.getWidget(WidgetInfo.LOGIN_CLICK_TO_PLAY_SCREEN) != null
+				|| client.getViewportWidget() == null)
 		{
 			return;
 		}
@@ -185,8 +185,8 @@ public class OverlayRenderer extends MouseAdapter implements KeyListener
 		if (layer == OverlayLayer.UNDER_WIDGETS && movedOverlay != null && movedOverlay.getPosition() != OverlayPosition.DETACHED)
 		{
 			final OverlayBounds translatedSnapCorners = snapCorners.translated(
-				-SNAP_CORNER_SIZE.width,
-				-SNAP_CORNER_SIZE.height);
+					-SNAP_CORNER_SIZE.width,
+					-SNAP_CORNER_SIZE.height);
 
 			final Color previous = graphics.getColor();
 
@@ -223,7 +223,7 @@ public class OverlayRenderer extends MouseAdapter implements KeyListener
 			if (!isResizeable)
 			{
 				// On fixed mode, ABOVE_CHATBOX_RIGHT is in the same location as
-				// BOTTOM_RIGHT and CANVAST_TOP_RIGHT is same as TOP_RIGHT.
+				// BOTTOM_RIGHT and CANVAS_TOP_RIGHT is same as TOP_RIGHT.
 				// Just use BOTTOM_RIGHT and TOP_RIGHT to prevent overlays from
 				// drawing over each other.
 				switch (overlayPosition)
@@ -304,9 +304,14 @@ public class OverlayRenderer extends MouseAdapter implements KeyListener
 						graphics.setColor(previous);
 					}
 
-					if (menuEntries == null && !client.isMenuOpen() && !client.isSpellSelected() && bounds.contains(mouse))
+					if (!client.isMenuOpen() && !client.isSpellSelected() && bounds.contains(mouse))
 					{
-						menuEntries = createRightClickMenuEntries(overlay);
+						if (menuEntries == null)
+						{
+							menuEntries = createRightClickMenuEntries(overlay);
+						}
+
+						overlay.onMouseOver();
 					}
 				}
 			}

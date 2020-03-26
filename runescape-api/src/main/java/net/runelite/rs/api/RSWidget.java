@@ -55,6 +55,9 @@ public interface RSWidget extends Widget
 	@Import("modelType")
 	int getModelType();
 
+	@Import("modelType")
+	void setModelType(int modelType);
+
 	@Import("actions")
 	@Override
 	String[] getActions();

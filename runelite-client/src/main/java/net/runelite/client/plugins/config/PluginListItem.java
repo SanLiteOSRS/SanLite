@@ -113,9 +113,9 @@ public class PluginListItem extends JPanel
 		CONFIG_ICON = new ImageIcon(configIcon);
 		ON_SWITCHER = new ImageIcon(onSwitcher);
 		ON_STAR = new ImageIcon(onStar);
-		CONFIG_ICON_HOVER = new ImageIcon(ImageUtil.grayscaleOffset(configIcon, -100));
+		CONFIG_ICON_HOVER = new ImageIcon(ImageUtil.luminanceScale(configIcon, -100));
 		BufferedImage offSwitcherImage = ImageUtil.flipImage(
-				ImageUtil.grayscaleOffset(
+				ImageUtil.luminanceScale(
 						ImageUtil.grayscaleImage(onSwitcher),
 						0.61f
 				),
@@ -123,7 +123,7 @@ public class PluginListItem extends JPanel
 				false
 		);
 		OFF_SWITCHER = new ImageIcon(offSwitcherImage);
-		BufferedImage offStar = ImageUtil.grayscaleOffset(
+		BufferedImage offStar = ImageUtil.luminanceScale(
 				ImageUtil.grayscaleImage(onStar),
 				0.77f
 		);
