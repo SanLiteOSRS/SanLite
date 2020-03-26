@@ -55,6 +55,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.inject.Singleton;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.coords.WorldPoint;
@@ -86,11 +87,15 @@ public class ConfigManager
 	private final ConfigInvocationHandler handler = new ConfigInvocationHandler(this);
 	private final Properties properties = new Properties();
 	private final Map<String, String> pendingChanges = new HashMap<>();
+	private final File settingsFileInput;
 
 	@Inject
-	public ConfigManager(ScheduledExecutorService scheduledExecutorService)
+	public ConfigManager(
+			@Named("config") File config,
+			ScheduledExecutorService scheduledExecutorService)
 	{
 		this.executor = scheduledExecutorService;
+		this.settingsFileInput = config;
 		this.propertiesFile = getPropertiesFile();
 
 		executor.scheduleWithFixedDelay(this::sendConfig, 30, 30, TimeUnit.SECONDS);
@@ -119,7 +124,7 @@ public class ConfigManager
 
 	private File getLocalPropertiesFile()
 	{
-		return new File(RuneLite.RUNELITE_DIR, SETTINGS_FILE_NAME);
+		return settingsFileInput;
 	}
 
 	private File getPropertiesFile()
@@ -132,7 +137,7 @@ public class ConfigManager
 		else
 		{
 			File profileDir = new File(RuneLite.PROFILES_DIR, session.getUsername().toLowerCase());
-			return new File(profileDir, SETTINGS_FILE_NAME);
+			return new File(profileDir, RuneLite.DEFAULT_CONFIG_FILE.getName());
 		}
 	}
 
@@ -325,7 +330,7 @@ public class ConfigManager
 
 		parent.mkdirs();
 
-		File tempFile = new File(parent, SETTINGS_FILE_NAME + ".tmp");
+		File tempFile = new File(parent, RuneLite.DEFAULT_CONFIG_FILE.getName() + ".tmp");
 
 		try (FileOutputStream out = new FileOutputStream(tempFile))
 		{

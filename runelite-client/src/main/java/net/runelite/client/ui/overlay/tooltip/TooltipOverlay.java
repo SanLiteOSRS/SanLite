@@ -38,6 +38,7 @@ import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayLayer;
 import net.runelite.client.ui.overlay.OverlayPosition;
 import net.runelite.client.ui.overlay.OverlayPriority;
+import net.runelite.client.ui.overlay.components.LayoutableRenderableEntity;
 import net.runelite.client.ui.overlay.components.TooltipComponent;
 
 @Singleton
@@ -90,20 +91,29 @@ public class TooltipOverlay extends Overlay
 
 		final int tooltipX = Math.min(canvasWidth - prevBounds.width, mouseCanvasPosition.getX());
 		final int tooltipY = runeLiteConfig.tooltipPosition() == TooltipPositionType.ABOVE_CURSOR
-				? Math.max(0, mouseCanvasPosition.getY() - prevBounds.height)
-				: Math.min(canvasHeight - prevBounds.height, mouseCanvasPosition.getY() + UNDER_OFFSET);
+			? Math.max(0, mouseCanvasPosition.getY() - prevBounds.height)
+			: Math.min(canvasHeight - prevBounds.height, mouseCanvasPosition.getY() + UNDER_OFFSET);
 
 		final Rectangle newBounds = new Rectangle(tooltipX, tooltipY, 0, 0);
 
 		for (Tooltip tooltip : tooltips)
 		{
-			final TooltipComponent tooltipComponent = new TooltipComponent();
-			tooltipComponent.setModIcons(client.getModIcons());
-			tooltipComponent.setText(tooltip.getText());
+			final LayoutableRenderableEntity entity;
 
-			tooltipComponent.setPosition(new Point(tooltipX, tooltipY + newBounds.height));
+			if (tooltip.getComponent() != null)
+			{
+				entity = tooltip.getComponent();
+			}
+			else
+			{
+				final TooltipComponent tooltipComponent = new TooltipComponent();
+				tooltipComponent.setModIcons(client.getModIcons());
+				tooltipComponent.setText(tooltip.getText());
+				entity = tooltipComponent;
+			}
 
-			final Dimension dimension = tooltipComponent.render(graphics);
+			entity.setPreferredLocation(new Point(tooltipX, tooltipY + newBounds.height));
+			final Dimension dimension = entity.render(graphics);
 
 			// Create incremental tooltip newBounds
 			newBounds.height += dimension.height + PADDING;

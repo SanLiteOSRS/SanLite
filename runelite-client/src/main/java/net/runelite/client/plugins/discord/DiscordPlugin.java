@@ -75,9 +75,9 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 @PluginDescriptor(
-	name = "Discord",
-	description = "Show your status and activity in the Discord user panel",
-	tags = {"action", "activity", "external", "integration", "status"}
+		name = "Discord",
+		description = "Show your status and activity in the Discord user panel",
+		tags = {"action", "activity", "external", "integration", "status"}
 )
 @Slf4j
 public class DiscordPlugin extends Plugin
@@ -119,11 +119,11 @@ public class DiscordPlugin extends Plugin
 		final BufferedImage icon = ImageUtil.getResourceStreamFromClass(getClass(), "discord.png");
 
 		discordButton = NavigationButton.builder()
-			.tab(false)
-			.tooltip("Join Discord")
-			.icon(icon)
-			.onClick(() -> LinkBrowser.browse(RuneLiteProperties.getDiscordInvite()))
-			.build();
+				.tab(false)
+				.tooltip("Join Discord")
+				.icon(icon)
+				.onClick(() -> LinkBrowser.browse(RuneLiteProperties.getDiscordInvite()))
+				.build();
 
 		clientToolbar.addNavigation(discordButton);
 		checkForGameStateUpdate();
@@ -270,8 +270,8 @@ public class DiscordPlugin extends Plugin
 		log.debug("Got user avatar {}", url);
 
 		final Request request = new Request.Builder()
-			.url(url)
-			.build();
+				.url(url)
+				.build();
 
 		RuneLiteAPI.CLIENT.newCall(request).enqueue(new Callback()
 		{
@@ -292,7 +292,11 @@ public class DiscordPlugin extends Plugin
 					}
 
 					final InputStream inputStream = response.body().byteStream();
-					final BufferedImage image = ImageIO.read(inputStream);
+					final BufferedImage image;
+					synchronized (ImageIO.class)
+					{
+						image = ImageIO.read(inputStream);
+					}
 					memberById.setAvatar(image);
 				}
 				finally
@@ -319,8 +323,8 @@ public class DiscordPlugin extends Plugin
 			if (discordService.getCurrentUser() != null)
 			{
 				final DiscordUserInfo userInfo = new DiscordUserInfo(
-					discordService.getCurrentUser().userId,
-					discordService.getCurrentUser().avatar);
+						discordService.getCurrentUser().userId,
+						discordService.getCurrentUser().avatar);
 
 				userInfo.setMemberId(localMember.getMemberId());
 				wsClient.send(userInfo);
@@ -341,8 +345,8 @@ public class DiscordPlugin extends Plugin
 	}
 
 	@Schedule(
-		period = 1,
-		unit = ChronoUnit.MINUTES
+			period = 1,
+			unit = ChronoUnit.MINUTES
 	)
 	public void checkForValidStatus()
 	{
@@ -359,8 +363,8 @@ public class DiscordPlugin extends Plugin
 		// Game state update does also full reset of discord state
 		discordState.reset();
 		discordState.triggerEvent(client.getGameState() == GameState.LOGGED_IN
-			? DiscordGameEventType.IN_GAME
-			: DiscordGameEventType.IN_MENU);
+				? DiscordGameEventType.IN_GAME
+				: DiscordGameEventType.IN_MENU);
 	}
 
 	private void checkForAreaUpdate()

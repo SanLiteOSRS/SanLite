@@ -225,7 +225,14 @@ public enum Varbits
 	HB_TRAIL_31372(5750),
 
 	HB_FINISH(5766),
-	HB_STARTED(5767), //not working
+
+	/**
+	 * Started hunting Herbiboar.
+	 * <br>
+	 * NOTE: This value remains at 0 even after starting a Herbiboar trail up until searching the first object along the
+	 * hunting path.
+	 */
+	HB_STARTED(5767),
 
 	/**
 	 * Barbarian Assault
@@ -247,12 +254,12 @@ public enum Varbits
 
 	/**
 	 * Blast Furnace Bar Dispenser
-	 * <p>
+	 *
 	 * These are the expected values:
-	 * 0 = No bars being processed
-	 * 1 = Ores are being processed on the conveyor belt, bar dispenser cannot be checked
-	 * 2 = Bars are cooling down
-	 * 3 = Bars can be collected
+	 *	0 = No bars being processed
+	 *	1 = Ores are being processed on the conveyor belt, bar dispenser cannot be checked
+	 *	2 = Bars are cooling down
+	 *	3 = Bars can be collected
 	 */
 	BAR_DISPENSER(936),
 
@@ -264,11 +271,11 @@ public enum Varbits
 
 	/**
 	 * Experience tracker
-	 * <p>
+	 *
 	 * EXPERIENCE_TRACKER_POSITION expected values:
-	 * 0 = Right
-	 * 1 = Middle
-	 * 2 = Left
+	 *   0 = Right
+	 *   1 = Middle
+	 *   2 = Left
 	 */
 	EXPERIENCE_TRACKER_POSITION(4692),
 	EXPERIENCE_TRACKER_COUNTER(4697),
@@ -367,7 +374,7 @@ public enum Varbits
 	 * Pyramid plunder
 	 */
 	PYRAMID_PLUNDER_TIMER(2375),
-	PYRAMID_PLUNDER_ROOM(2374),
+	PYRAMID_PLUNDER_ROOM(2377),
 
 	/**
 	 * Barrows
@@ -423,7 +430,7 @@ public enum Varbits
 	/**
 	 * This varbit tracks how much bonemeal has been redeemed from Robin
 	 * The player gets 13 for each diary completed above and including Medium, for a maxiumum of 39
-	 */
+ 	*/
 	DAILY_BONEMEAL_STATE(4543),
 
 	DAILY_DYNAMITE_COLLECTED(7939),
@@ -488,6 +495,34 @@ public enum Varbits
 	 * The varbit that stores the oxygen percentage for player
 	 */
 	OXYGEN_LEVEL(5811),
+
+	/**
+	 * Drift net status
+	 *
+	 * Expected values
+	 *  0 = Unset
+	 *  1 = Set up
+	 *  2 = Caught some fish
+	 *  3 = Full
+	 */
+	NORTH_NET_STATUS(5812),
+	SOUTH_NET_STATUS(5814),
+
+	/**
+	 * Drift net catch count
+	 */
+	NORTH_NET_CATCH_COUNT(5813),
+	SOUTH_NET_CATCH_COUNT(5815),
+
+	/**
+	 * Drift net collect interface
+	 *
+	 * Expected values:
+	 *  0 = Not open
+	 *  1 = North interface open
+	 *  2 = South interface open
+	 */
+	DRIFT_NET_COLLECT(5933),
 
 	/**
 	 * Corp beast damage

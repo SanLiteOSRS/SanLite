@@ -47,6 +47,7 @@ import net.runelite.api.events.MenuOpened;
 import net.runelite.api.events.MenuOptionClicked;
 import net.runelite.api.events.PostItemDefinition;
 import net.runelite.api.events.WidgetMenuOptionClicked;
+import net.runelite.api.widgets.WidgetID;
 import net.runelite.api.widgets.WidgetInfo;
 import net.runelite.client.callback.ClientThread;
 import net.runelite.client.config.ConfigManager;
@@ -105,6 +106,14 @@ public class MenuEntrySwapperPlugin extends Plugin
 		MenuAction.NPC_FOURTH_OPTION,
 		MenuAction.NPC_FIFTH_OPTION,
 		MenuAction.EXAMINE_NPC);
+
+	private static final Set<String> ESSENCE_MINE_NPCS = ImmutableSet.of(
+			"aubury",
+			"wizard sedridor",
+			"wizard distentor",
+			"wizard cromperty",
+			"brimstail"
+	);
 
 	@Inject
 	private Client client;
@@ -316,8 +325,8 @@ public class MenuEntrySwapperPlugin extends Plugin
 				&& menuEntryAdded.getOption().startsWith("Deposit-"))
 		{
 			ShiftDepositMode shiftDepositMode = config.bankDepositShiftClick();
-			final int actionId = shiftDepositMode.getMenuAction().getId();
-			final int opId = shiftDepositMode.getIdentifier();
+			final int opId = WidgetInfo.TO_GROUP(menuEntryAdded.getActionParam1()) == WidgetID.DEPOSIT_BOX_GROUP_ID ? shiftDepositMode.getIdentifierDepositBox() : shiftDepositMode.getIdentifier();
+			final int actionId = opId >= 6 ? MenuAction.CC_OP_LOW_PRIORITY.getId() : MenuAction.CC_OP.getId();
 			bankModeSwap(actionId, opId);
 		}
 
@@ -469,6 +478,11 @@ public class MenuEntrySwapperPlugin extends Plugin
 				swap("help", option, target, index);
 			}
 
+			if (config.swapNets())
+			{
+				swap("nets", option, target, index);
+			}
+
 			if (config.swapDarkMage())
 			{
 				swap("repairs", option, target, index);
@@ -530,6 +544,11 @@ public class MenuEntrySwapperPlugin extends Plugin
 			if (config.swapStartMinigame())
 			{
 				swap("start-minigame", option, target, index);
+			}
+
+			if (config.swapEssenceMineTeleport() && ESSENCE_MINE_NPCS.contains(target))
+			{
+				swap("teleport", option, target, index);
 			}
 		}
 		else if (config.swapQuickLeave() && option.equals("leave tomb") && target.equals("tomb door"))

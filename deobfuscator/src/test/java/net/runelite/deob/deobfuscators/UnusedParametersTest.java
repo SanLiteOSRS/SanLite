@@ -61,32 +61,32 @@ public class UnusedParametersTest
 
 	@Test
 	public void testRun()
-	{	
+	{
 		RenameUnique r = new RenameUnique();
 		r.run(group);
 		r = null;
 		System.gc();
-		
+
 		RuntimeExceptions re = new RuntimeExceptions();
 		re.run(group);
 		re = null;
 		System.gc();
-		
+
 		UnreachedCode uc = new UnreachedCode();
 		uc.run(group);
 		uc = null;
 		System.gc();
-		
+
 		UnusedMethods um = new UnusedMethods();
 		um.run(group);
 		um = null;
 		System.gc();
-		
+
 		IllegalStateExceptions ise = new IllegalStateExceptions();
 		ise.run(group);
 		ise = null;
 		System.gc();
-		
+
 		UnusedParameters cp = new UnusedParameters();
 		cp.run(group);
 		cp = null;

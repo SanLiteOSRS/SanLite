@@ -109,7 +109,6 @@ public abstract class WidgetItemOverlay extends Overlay
 				shouldClip |= itemCanvasBounds.x < parentBounds.x && itemCanvasBounds.x + itemCanvasBounds.width >= parentBounds.x;
 				shouldClip |= itemCanvasBounds.x < parentBounds.x + parentBounds.width && itemCanvasBounds.x + itemCanvasBounds.width >= parentBounds.x + parentBounds.width;
 			}
-
 			if (shouldClip)
 			{
 				if (curClipParent != parent)
