@@ -44,8 +44,8 @@
 		<checkstyle.skip>true</checkstyle.skip>
         <glslang.path></glslang.path>
 
-		<rs.version>188</rs.version>
-		<sanlite.version>1.13.1</sanlite.version>
+		<rs.version>189</rs.version>
+		<sanlite.version>1.13.2</sanlite.version>
 	</properties>
 
 	<licenses>
