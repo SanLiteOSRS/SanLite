@@ -53,8 +53,8 @@ public class WidgetInfoTableModel extends AbstractTableModel
 		clientThread.invoke(() ->
 		{
 			Map<WidgetField, Object> newValues = w == null ? null : fields.stream().collect(ImmutableMap.toImmutableMap(
-				Function.identity(),
-				i -> i.getValue(w)
+					Function.identity(),
+					i -> i.getValue(w)
 			));
 			SwingUtilities.invokeLater(() ->
 			{
@@ -144,9 +144,9 @@ public class WidgetInfoTableModel extends AbstractTableModel
 		out.add(new WidgetField<>("Hidden", Widget::isHidden));
 		out.add(new WidgetField<>("Text", Widget::getText, Widget::setText, String.class));
 		out.add(new WidgetField<>("TextColor",
-			w -> Integer.toString(w.getTextColor(), 16),
-			(w, str) -> w.setTextColor(Integer.parseInt(str, 16)),
-			String.class
+				w -> Integer.toString(w.getTextColor(), 16),
+				(w, str) -> w.setTextColor(Integer.parseInt(str, 16)),
+				String.class
 		));
 		out.add(new WidgetField<>("Opacity", Widget::getOpacity, Widget::setOpacity, Integer.class));
 		out.add(new WidgetField<>("FontId", Widget::getFontId, Widget::setFontId, Integer.class));
@@ -155,7 +155,12 @@ public class WidgetInfoTableModel extends AbstractTableModel
 		out.add(new WidgetField<>("ItemId", Widget::getItemId, Widget::setItemId, Integer.class));
 		out.add(new WidgetField<>("ItemQuantity", Widget::getItemQuantity, Widget::setItemQuantity, Integer.class));
 		out.add(new WidgetField<>("ItemQuantityMode", Widget::getItemQuantityMode, Widget::setItemQuantityMode, Integer.class));
-		out.add(new WidgetField<>("ModelId", Widget::getModelId));
+		out.add(new WidgetField<>("ModelId", Widget::getModelId, Widget::setModelId, Integer.class));
+		out.add(new WidgetField<>("ModelType", Widget::getModelType, Widget::setModelType, Integer.class));
+		out.add(new WidgetField<>("RotationX", Widget::getRotationX, Widget::setRotationX, Integer.class));
+		out.add(new WidgetField<>("RotationY", Widget::getRotationY, Widget::setRotationY, Integer.class));
+		out.add(new WidgetField<>("RotationZ", Widget::getRotationZ, Widget::setRotationZ, Integer.class));
+		out.add(new WidgetField<>("ModelZoom", Widget::getModelZoom, Widget::setModelZoom, Integer.class));
 		out.add(new WidgetField<>("SpriteId", Widget::getSpriteId, Widget::setSpriteId, Integer.class));
 		out.add(new WidgetField<>("BorderType", Widget::getBorderType, Widget::setBorderType, Integer.class));
 		out.add(new WidgetField<>("IsIf3", Widget::isIf3));

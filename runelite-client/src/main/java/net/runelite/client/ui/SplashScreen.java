@@ -33,7 +33,6 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import javax.annotation.Nullable;
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -46,6 +45,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.plaf.basic.BasicProgressBarUI;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.client.ui.skin.SubstanceRuneLiteLookAndFeel;
+import net.runelite.client.util.ImageUtil;
 import org.pushingpixels.substance.internal.SubstanceSynapse;
 
 @Slf4j
@@ -68,7 +68,7 @@ public class SplashScreen extends JFrame implements ActionListener
 
 	private SplashScreen() throws IOException
 	{
-		BufferedImage logo = ImageIO.read(SplashScreen.class.getResourceAsStream("runelite_transparent.png"));
+		BufferedImage logo = ImageUtil.getResourceStreamFromClass(SplashScreen.class, "runelite_transparent.png");
 
 		setTitle("RuneLite Launcher");
 
@@ -215,8 +215,8 @@ public class SplashScreen extends JFrame implements ActionListener
 	}
 
 	public static void stage(double startProgress, double endProgress,
-		@Nullable String actionText, String subActionText,
-		int done, int total, boolean mib)
+								@Nullable String actionText, String subActionText,
+								int done, int total, boolean mib)
 	{
 		String progress;
 		if (mib)

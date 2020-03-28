@@ -1,38 +1,41 @@
 import net.runelite.mapping.Export;
-import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("lf")
-@Implements("FillMode")
+@ObfuscatedName("lu")
 public enum FillMode implements Enumerated {
-	@ObfuscatedName("c")
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		signature = "Llf;"
+		signature = "Llu;"
 	)
 	@Export("SOLID")
 	SOLID(0, 0),
-	@ObfuscatedName("t")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		signature = "Llf;"
+		signature = "Llu;"
 	)
-	field3858(1, 1),
-	@ObfuscatedName("o")
+	field3874(1, 1),
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "Llf;"
+		signature = "Llu;"
 	)
-	field3854(2, 2);
+	field3875(2, 2);
 
 	@ObfuscatedName("e")
-	@ObfuscatedGetter(
-		intValue = -999027833
+	@ObfuscatedSignature(
+		signature = "Ldh;"
 	)
-	@Export("value")
-	public final int value;
-	@ObfuscatedName("i")
+	@Export("soundSystem")
+	static SoundSystem soundSystem;
+	@ObfuscatedName("d")
 	@ObfuscatedGetter(
-		intValue = 2109460743
+		intValue = 1537098807
+	)
+	public final int value;
+	@ObfuscatedName("w")
+	@ObfuscatedGetter(
+		intValue = -92633923
 	)
 	@Export("id")
 	final int id;
@@ -42,10 +45,10 @@ public enum FillMode implements Enumerated {
 		this.id = var4;
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
 		signature = "(B)I",
-		garbageValue = "1"
+		garbageValue = "56"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {

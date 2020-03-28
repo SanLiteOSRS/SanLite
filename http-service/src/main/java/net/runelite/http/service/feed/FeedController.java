@@ -38,6 +38,7 @@ import net.runelite.http.service.feed.osrsnews.OSRSNewsService;
 import net.runelite.http.service.feed.twitter.TwitterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.CacheControl;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -122,13 +123,14 @@ public class FeedController
 	{
 		if (memoizedFeed == null)
 		{
-			return ResponseEntity.notFound()
-				.build();
+			return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE)
+					.cacheControl(CacheControl.noCache())
+					.build();
 		}
 
 		return ResponseEntity.ok()
-			.eTag(memoizedFeed.hash)
-			.cacheControl(CacheControl.maxAge(10, TimeUnit.MINUTES).cachePublic())
-			.body(memoizedFeed.feedResult);
+				.eTag(memoizedFeed.hash)
+				.cacheControl(CacheControl.maxAge(10, TimeUnit.MINUTES).cachePublic())
+				.body(memoizedFeed.feedResult);
 	}
 }

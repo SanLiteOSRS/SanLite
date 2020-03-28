@@ -42,6 +42,7 @@ import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.*;
 import net.runelite.api.ItemDefinition;
+import net.runelite.api.ScriptID;
 import net.runelite.api.events.ChatMessage;
 import net.runelite.client.events.ConfigChanged;
 import net.runelite.api.events.FocusChanged;
@@ -49,6 +50,7 @@ import net.runelite.api.events.GameStateChanged;
 import net.runelite.api.events.GrandExchangeOfferChanged;
 import net.runelite.api.events.MenuEntryAdded;
 import net.runelite.api.events.ScriptCallbackEvent;
+import net.runelite.api.events.ScriptPostFired;
 import net.runelite.api.events.WidgetLoaded;
 import net.runelite.api.widgets.Widget;
 import net.runelite.api.widgets.WidgetID;
@@ -427,6 +429,17 @@ public class GrandExchangePlugin extends Plugin
 				grandExchangeItem = null;
 				break;
 		}
+	}
+
+	@Subscribe
+	public void onScriptPostFired(ScriptPostFired event)
+	{
+		// GE offers setup init
+		if (event.getScriptId() != ScriptID.GE_OFFERS_SETUP_BUILD)
+		{
+			return;
+		}
+		rebuildGeText();
 	}
 
 	@Subscribe

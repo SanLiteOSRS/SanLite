@@ -48,7 +48,6 @@ public class ClientSessionManager
 	private ScheduledFuture<?> scheduledFuture;
 	private UUID sessionId;
 
-
 	@Inject
 	ClientSessionManager(ScheduledExecutorService executorService, @Nullable Client client)
 	{
@@ -85,7 +84,7 @@ public class ClientSessionManager
 			}
 			sessionId = null;
 		}
-		
+
 		scheduledFuture.cancel(true);
 	}
 
@@ -109,9 +108,9 @@ public class ClientSessionManager
 		boolean loggedIn = false;
 		if (client != null)
 		{
-			loggedIn = client.getGameState() != GameState.LOGIN_SCREEN;
+			GameState gameState = client.getGameState();
+			loggedIn = gameState.getState() >= GameState.LOADING.getState();
 		}
-
 
 		try
 		{

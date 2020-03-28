@@ -29,9 +29,11 @@ import net.runelite.api.Constants;
 import net.runelite.client.Notifier;
 import net.runelite.client.ui.ContainableFrame;
 
-@ConfigGroup("runelite")
+@ConfigGroup(RuneLiteConfig.GROUP_NAME)
 public interface RuneLiteConfig extends Config
 {
+	String GROUP_NAME = "runelite";
+
 	@ConfigItem(
 		keyName = "gameSize",
 		name = "Game size",
@@ -297,5 +299,16 @@ public interface RuneLiteConfig extends Config
 	default int infoBoxSize()
 	{
 		return 35;
+	}
+
+	@ConfigItem(
+			keyName = "blockExtraMouseButtons",
+			name = "Block Extra Mouse Buttons",
+			description = "Blocks extra mouse buttons (4 and above)",
+			position = 43
+	)
+	default boolean blockExtraMouseButtons()
+	{
+		return true;
 	}
 }
