@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, Adam <Adam@sigterm.info>
+ * Copyright (c) 2020 Abex
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,47 +22,28 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.http.service.worlds;
+package net.runelite.client.plugins.grounditems;
 
-import java.io.IOException;
-import java.util.concurrent.TimeUnit;
-import net.runelite.http.api.worlds.WorldResult;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.CacheControl;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import joptsimple.internal.Strings;
+import org.junit.Assert;
+import static net.runelite.client.plugins.grounditems.ItemThreshold.Inequality.*;
+import org.junit.Test;
 
-@RestController
-@RequestMapping("/worlds")
-public class WorldController
+public class ItemThresholdTest
 {
-	@Autowired
-	private WorldsService worldsService;
-
-	private WorldResult worldResult;
-
-	@GetMapping
-	public ResponseEntity<WorldResult> listWorlds()
+	@Test
+	public void test()
 	{
-		if (worldResult == null)
-		{
-			return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE)
-					.cacheControl(CacheControl.noCache())
-					.build();
-		}
-
-		return ResponseEntity.ok()
-				.cacheControl(CacheControl.maxAge(10, TimeUnit.MINUTES).cachePublic())
-				.body(worldResult);
+		Assert.assertEquals(ItemThreshold.fromConfigEntry("Dharok's platebody 100"), new ItemThreshold("Dharok's platebody 100", 0, MORE_THAN));
+		Assert.assertEquals(ItemThreshold.fromConfigEntry("Dharok's platebody 100<100"), new ItemThreshold("Dharok's platebody 100", 100, LESS_THAN));
+		Assert.assertEquals(ItemThreshold.fromConfigEntry("Dharok's platebody > 100"), new ItemThreshold("Dharok's platebody", 100, MORE_THAN));
+		Assert.assertEquals(ItemThreshold.fromConfigEntry("Dharok's platebody < 10 0"), new ItemThreshold("Dharok's platebody", 0, MORE_THAN));
 	}
 
-	@Scheduled(fixedDelay = 60_000L)
-	public void refreshWorlds() throws IOException
+	@Test(timeout = 100)
+	public void testExplosive()
 	{
-		worldResult = worldsService.getWorlds();
+		String name = "archer" + Strings.repeat('e', 50000) + "s ring";
+		Assert.assertEquals(ItemThreshold.fromConfigEntry(name + " < 387"), new ItemThreshold(name, 387, LESS_THAN));
 	}
 }
