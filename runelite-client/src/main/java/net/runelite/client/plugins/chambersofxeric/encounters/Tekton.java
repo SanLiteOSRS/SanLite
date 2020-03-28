@@ -24,10 +24,10 @@
  */
 package net.runelite.client.plugins.chambersofxeric.encounters;
 
-public class Tekton extends ChambersOfXericEncounter
+public class Tekton extends ChambersOfXericRaid
 {
-	public Tekton(ChambersOfXericEncounters encounter)
+	public Tekton()
 	{
-		super(encounter);
+		super();
 	}
 }

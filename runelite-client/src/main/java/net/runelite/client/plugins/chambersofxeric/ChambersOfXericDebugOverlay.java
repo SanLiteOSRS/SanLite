@@ -25,7 +25,6 @@
 package net.runelite.client.plugins.chambersofxeric;
 
 import net.runelite.api.Client;
-import net.runelite.client.plugins.theatreofblood.encounters.*;
 import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayPosition;
 import net.runelite.client.ui.overlay.components.LineComponent;
@@ -76,34 +75,45 @@ public class ChambersOfXericDebugOverlay extends Overlay
 					.right("" + plugin.isInChambersOfXeric())
 					.build());
 
-			if (plugin.getCurrentEncounter() != null)
+			if (plugin.getCurrentRaid() != null)
 			{
 				panelComponent.getChildren().add(LineComponent.builder()
-						.left("Current encounter")
-						.right("" + plugin.getCurrentEncounter().getEncounter())
+						.left("Current raid set")
+						.right(String.valueOf(plugin.getCurrentRaid() != null))
 						.build());
 
-				if (plugin.getCurrentEncounter().getNpc() != null)
+//				panelComponent.getChildren().add(LineComponent.builder()
+//						.left("Healing cycles till reset")
+//						.right("" + plugin.getCurrentRaid().getRemainingVasaHealingCycles())
+//						.build());
+//
+//				panelComponent.getChildren().add(LineComponent.builder()
+//						.left("Current crystal remaining cycles")
+//						.right("" + ((plugin.getCurrentRaid().getStartVasaHealingCycle() +
+//								plugin.getCurrentRaid().getRemainingVasaHealingCycles()) - client.getGameCycle()))
+//						.build());
+
+				if (plugin.getCurrentRaid().getAreaOfEffectProjectiles() != null)
 				{
 					panelComponent.getChildren().add(LineComponent.builder()
-							.left("Current encounter npc")
-							.right("" + plugin.getCurrentEncounter().getNpc().getName())
+							.left("Number of AoE projectiles")
+							.right("" + plugin.getCurrentRaid().getAreaOfEffectProjectiles().size())
 							.build());
 				}
 
-				if (plugin.getCurrentEncounter().getAoeEffects() != null)
+				if (plugin.getCurrentRaid().getGraphicObjects() != null)
 				{
 					panelComponent.getChildren().add(LineComponent.builder()
 							.left("Number of graphics objects")
-							.right("" + plugin.getCurrentEncounter().getAoeEffects().size())
+							.right("" + plugin.getCurrentRaid().getGraphicObjects().size())
 							.build());
 				}
 
-				if (plugin.getCurrentEncounter().getGameObjects() != null)
+				if (plugin.getCurrentRaid().getGameObjects() != null)
 				{
 					panelComponent.getChildren().add(LineComponent.builder()
 							.left("Number of encounter game objects")
-							.right("" + plugin.getCurrentEncounter().getGameObjects().size())
+							.right("" + plugin.getCurrentRaid().getGameObjects().size())
 							.build());
 				}
 			}

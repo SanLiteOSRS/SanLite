@@ -27,11 +27,8 @@ package net.runelite.client.plugins.chambersofxeric;
 import com.google.inject.Provides;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.Client;
-import net.runelite.api.GameState;
-import net.runelite.api.Varbits;
-import net.runelite.api.events.GameStateChanged;
-import net.runelite.api.events.VarbitChanged;
+import net.runelite.api.*;
+import net.runelite.api.events.*;
 import net.runelite.client.callback.ClientThread;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
@@ -39,15 +36,15 @@ import net.runelite.client.events.ConfigChanged;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.plugins.PluginType;
-import net.runelite.client.plugins.theatreofblood.encounters.TheatreOfBloodEncounter;
+import net.runelite.client.plugins.chambersofxeric.encounters.ChambersOfXericRaid;
+import net.runelite.client.plugins.chambersofxeric.encounters.VasaNistirio;
 import net.runelite.client.ui.overlay.OverlayManager;
 
 import javax.inject.Inject;
-import java.util.Arrays;
 
 @Slf4j
 @PluginDescriptor(
-		name = "Chambers",
+		name = "CoX Beta",
 		description = "Helps with the various boss encounters in the Chambers of Xeric",
 		tags = {"cox", "raids", "chambers of xeric", "pvm", "overlay", "boss"},
 		type = PluginType.SANLITE_USE_AT_OWN_RISK
@@ -73,7 +70,7 @@ public class ChambersOfXericPlugin extends Plugin
 	private ClientThread clientThread;
 
 	@Getter
-	private TheatreOfBloodEncounter currentEncounter;
+	private ChambersOfXericRaid currentRaid;
 
 	@Getter
 	private boolean isInChambersOfXeric;
@@ -92,7 +89,7 @@ public class ChambersOfXericPlugin extends Plugin
 		{
 			overlayManager.add(debugOverlay);
 		}
-		clientThread.invoke(this::resetCurrentEncounter);
+		clientThread.invoke(this::resetEncounter);
 	}
 
 	@Override
@@ -103,7 +100,7 @@ public class ChambersOfXericPlugin extends Plugin
 		{
 			overlayManager.remove(debugOverlay);
 		}
-		resetCurrentEncounter();
+		resetEncounter();
 	}
 
 	@Subscribe
@@ -119,35 +116,10 @@ public class ChambersOfXericPlugin extends Plugin
 		}
 	}
 
-	private void resetCurrentEncounter()
+	private void resetEncounter()
 	{
-		currentEncounter = null;
+		currentRaid = null;
 		log.debug("Current encounter reset");
-	}
-
-	/**
-	 * Checks for graphic objects depending on the current encounter
-	 */
-	private void checkGraphicObjects()
-	{
-		switch (currentEncounter.getEncounter())
-		{
-			case SUGADINTI_MAIDEN:
-				currentEncounter.castToMaiden().checkBloodSplatGraphicObjects(client.getGraphicsObjects());
-				break;
-			case PESTILENT_BLOAT:
-				currentEncounter.castToBloat().checkHandAttackGraphicObjects(client.getGraphicsObjects());
-				break;
-			case VERZIK_VITUR:
-				currentEncounter.castToVerzik().checkGreenOrbPoolGraphicObjects(client.getGraphicsObjects());
-				break;
-		}
-	}
-
-	@Subscribe
-	public void onVarbitChanged(VarbitChanged event)
-	{
-		isInChambersOfXeric = checkInChambersOfXeric();
 	}
 
 	private boolean checkInChambersOfXeric()
@@ -160,6 +132,172 @@ public class ChambersOfXericPlugin extends Plugin
 		return client.getVar(Varbits.IN_RAID) == 1;
 	}
 
+	boolean validateRaidPresence()
+	{
+		return isInChambersOfXeric && currentRaid != null;
+	}
+
+	@Subscribe
+	private void onAnimationChanged(AnimationChanged event)
+	{
+		if (!validateRaidPresence() || !(event.getActor() instanceof NPC))
+		{
+			return;
+		}
+
+		NPC npc = (NPC) event.getActor();
+		int npcId = npc.getId();
+		if (!ChambersOfXericRaid.isNpcChambersOfXericEncounter(npcId))
+		{
+			return;
+		}
+
+		if (VasaNistirio.isNpcVasaNistirio(npcId))
+		{
+
+			switch (npc.getAnimation())
+			{
+//				case AnimationID.VASA_START_GLOWING_ROCK_CHANNEL:
+//					currentRaid.onVasaHealingStart(client.getGameCycle());
+//					break;
+//				case AnimationID.VASA_END_GLOWING_ROCK_CHANNEL:
+//					currentRaid.onVasaHealingEnd(client.getGameCycle());
+//					break;
+			}
+		}
+	}
+
+	@Subscribe
+	private void onProjectileSpawned(ProjectileSpawned event)
+	{
+		if (!validateRaidPresence())
+		{
+			return;
+		}
+
+		Projectile projectile = event.getProjectile();
+		int projectileId = projectile.getId();
+		if (!ChambersOfXericRaid.isCoxAoeProjectile(projectileId))
+		{
+			return;
+		}
+
+		log.debug("CT: {} | Projectile {} spawned", client.getGameCycle(), event.getProjectile().getId());
+	}
+
+	@Subscribe
+	public void onHitsplatApplied(HitsplatApplied event)
+	{
+		Player player = client.getLocalPlayer();
+		if (player == null)
+			return;
+
+		if (event.getActor().equals(player))
+		{
+			log.debug("CT: {} | Local player hit for {}", client.getGameCycle(), event.getHitsplat().getAmount());
+		}
+	}
+
+	@Subscribe
+	public void onProjectileMoved(ProjectileMoved event)
+	{
+		if (!validateRaidPresence())
+		{
+			return;
+		}
+
+		Projectile projectile = event.getProjectile();
+		if (!ChambersOfXericRaid.isCoxAoeProjectile(projectile.getId()) || projectile.getInteracting() != null)
+		{
+			return;
+		}
+
+		currentRaid.onAreaOfEffectProjectile(projectile, event.getPosition(), config, client.getGameCycle());
+	}
+
+	@Subscribe
+	public void onGraphicsObjectCreated(GraphicsObjectCreated event)
+	{
+		if (!validateRaidPresence())
+		{
+			return;
+		}
+
+		log.debug("CT: {} | Gfx object spawned: {}", client.getGameCycle(), event.getGraphicsObject().getId());
+		GraphicsObject graphicsObject = event.getGraphicsObject();
+		if (!ChambersOfXericRaid.isCoxGraphicsObject(graphicsObject.getId()))
+		{
+			return;
+		}
+
+		currentRaid.onGraphicsObject(graphicsObject, config);
+		log.debug("CT: {} | Gfx object added: {}", client.getGameCycle(), event.getGraphicsObject().getId());
+	}
+
+	@Subscribe
+	public void onGraphicsObjectDespawned(GraphicsObjectDespawned event)
+	{
+		if (!validateRaidPresence())
+		{
+			return;
+		}
+
+		log.debug("CT: {} | Gfx object despawned: {}", client.getGameCycle(), event.getGraphicsObject().getId());
+		GraphicsObject graphicsObject = event.getGraphicsObject();
+		if (!ChambersOfXericRaid.isCoxGraphicsObject(graphicsObject.getId()))
+		{
+			return;
+		}
+
+		currentRaid.getGraphicObjects().remove(graphicsObject);
+		log.debug("CT: {} | Gfx object removed: {}", client.getGameCycle(), event.getGraphicsObject().getId());
+	}
+
+	@Subscribe
+	public void onNpcSpawned(NpcSpawned event)
+	{
+		if (!validateRaidPresence())
+		{
+			return;
+		}
+
+		NPC npc = event.getNpc();
+		if (!ChambersOfXericRaid.isNpcChambersOfXericEncounter(npc.getId()))
+		{
+			return;
+		}
+
+		currentRaid.onNpcSpawned(npc, config, client.getGameCycle());
+	}
+
+	@Subscribe
+	public void onNpcDespawned(NpcDespawned event)
+	{
+		if (!validateRaidPresence())
+		{
+			return;
+		}
+
+		NPC npc = event.getNpc();
+		if (!ChambersOfXericRaid.isNpcChambersOfXericEncounter(npc.getId()))
+		{
+			return;
+		}
+
+		currentRaid.onNpcDespawned(npc, client.getGameCycle());
+	}
+
+
+	@Subscribe
+	public void onVarbitChanged(VarbitChanged event)
+	{
+		isInChambersOfXeric = checkInChambersOfXeric();
+		if (isInChambersOfXeric && currentRaid == null)
+		{
+			currentRaid = new ChambersOfXericRaid();
+		}
+	}
+
 	/**
 	 * Resets the current encounter on login, connection lost and hopping
 	 *
@@ -168,25 +306,10 @@ public class ChambersOfXericPlugin extends Plugin
 	@Subscribe
 	public void onGameStateChanged(GameStateChanged event)
 	{
-//		GameState gameState = event.getGameState();
-//		if (gameState == GameState.LOGGING_IN || gameState == GameState.CONNECTION_LOST || gameState == GameState.HOPPING)
-//		{
-//			resetCurrentEncounter();
-//		}
-//
-//		if (gameState == GameState.LOADING)
-//		{
-//			int[] mapRegion = client.getMapRegions();
-//			if (mapRegion == null)
-//			{
-//				return;
-//			}
-//
-//			// Reset encounter when the players leaves the Theatre of Blood
-//			if (Arrays.equals(mapRegion, THEATRE_OF_BLOOD_OUTSIDE_REGIONS))
-//			{
-//				resetCurrentEncounter();
-//			}
-//		}
+		GameState gameState = event.getGameState();
+		if (gameState == GameState.LOGGING_IN || gameState == GameState.CONNECTION_LOST || gameState == GameState.HOPPING)
+		{
+			resetEncounter();
+		}
 	}
 }
