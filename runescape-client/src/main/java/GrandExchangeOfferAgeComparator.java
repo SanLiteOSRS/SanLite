@@ -1232,7 +1232,8 @@ final class GrandExchangeOfferAgeComparator implements Comparator {
 		signature = "(I)V",
 		garbageValue = "-2010586363"
 	)
-	static final void method249() {
+	@Export("Scene_drawGraphicsObjects")
+	static final void Scene_drawGraphicsObjects() {
 		for (GraphicsObject var0 = (GraphicsObject)Client.graphicsObjects.last(); var0 != null; var0 = (GraphicsObject)Client.graphicsObjects.previous()) {
 			if (var0.plane == ScriptEvent.Client_plane && !var0.isFinished) {
 				if (Client.cycle >= var0.cycleStart) {
