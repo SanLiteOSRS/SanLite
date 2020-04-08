@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, Adam <Adam@sigterm.info>
+ * Copyright (c) 2020, Dennis <me@dennis.dev>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,15 +22,13 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.http.api.item;
+package net.runelite.client.plugins.grandexchange;
 
-import lombok.Data;
-
-@Data
-public class Item
+public enum GrandExchangeSearchMode
 {
-	private int id;
-	private String name;
-	private String description;
-	private ItemType type;
+	DEFAULT,
+
+	FUZZY_FALLBACK,
+
+	FUZZY_ONLY
 }

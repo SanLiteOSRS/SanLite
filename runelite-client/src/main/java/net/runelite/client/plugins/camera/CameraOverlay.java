@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, Adam <Adam@sigterm.info>
+ * Copyright (c) 2020, Sean Dewar <https://github.com/seandewar>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,76 +22,53 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.client.plugins.prayer;
+package net.runelite.client.plugins.camera;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
-import java.awt.geom.Rectangle2D;
 import javax.inject.Inject;
 import net.runelite.api.Client;
+import net.runelite.api.Point;
+import net.runelite.api.VarClientInt;
 import net.runelite.api.widgets.Widget;
 import net.runelite.api.widgets.WidgetInfo;
 import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayLayer;
 import net.runelite.client.ui.overlay.OverlayPosition;
+import net.runelite.client.ui.overlay.tooltip.Tooltip;
+import net.runelite.client.ui.overlay.tooltip.TooltipManager;
 
-class PrayerFlickOverlay extends Overlay
+class CameraOverlay extends Overlay
 {
+	private final CameraConfig config;
 	private final Client client;
-	private final PrayerConfig config;
-	private final PrayerPlugin plugin;
+	private final TooltipManager tooltipManager;
 
 	@Inject
-	private PrayerFlickOverlay(Client client, PrayerConfig config, PrayerPlugin plugin)
+	private CameraOverlay(final CameraConfig config, final Client client, final TooltipManager tooltipManager)
 	{
+		this.config = config;
+		this.client = client;
+		this.tooltipManager = tooltipManager;
 		setPosition(OverlayPosition.DYNAMIC);
 		setLayer(OverlayLayer.ABOVE_WIDGETS);
-		this.client = client;
-		this.config = config;
-		this.plugin = plugin;
 	}
 
 	@Override
-	public Dimension render(Graphics2D graphics)
+	public Dimension render(final Graphics2D graphics)
 	{
-		// If there are no prayers active or flick location is set to the prayer bar we don't require the flick helper
-		if ((!plugin.isPrayersActive() && !config.prayerFlickAlwaysOn())
-			|| config.prayerFlickLocation().equals(PrayerFlickLocation.NONE)
-			|| config.prayerFlickLocation().equals(PrayerFlickLocation.PRAYER_BAR))
+		final Widget slider = client.getWidget(WidgetInfo.OPTIONS_CAMERA_ZOOM_SLIDER_HANDLE);
+		final Point mousePos = client.getMouseCanvasPosition();
+
+		if (slider == null || slider.isHidden() || !slider.getBounds().contains(mousePos.getX(), mousePos.getY()))
 		{
 			return null;
 		}
 
-		Widget xpOrb = client.getWidget(WidgetInfo.MINIMAP_QUICK_PRAYER_ORB);
-		if (xpOrb == null || xpOrb.isHidden())
-		{
-			return null;
-		}
+		final int value = client.getVar(VarClientInt.CAMERA_ZOOM_RESIZABLE_VIEWPORT);
+		final int max = config.innerLimit() ? config.INNER_ZOOM_LIMIT : CameraPlugin.DEFAULT_INNER_ZOOM_LIMIT;
 
-		Rectangle2D bounds = xpOrb.getBounds().getBounds2D();
-		if (bounds.getX() <= 0)
-		{
-			return null;
-		}
-
-		//Purposefully using height twice here as the bounds of the prayer orb includes the number sticking out the side
-		int orbInnerHeight = (int) bounds.getHeight();
-		int orbInnerWidth = orbInnerHeight;
-
-		int orbInnerX = (int) (bounds.getX() + 24);//x pos of the inside of the prayer orb
-		int orbInnerY = (int) (bounds.getY() - 1);//y pos of the inside of the prayer orb
-
-		double t = plugin.getTickProgress();
-
-		int xOffset = (int) (-Math.cos(t) * orbInnerWidth / 2) + orbInnerWidth / 2;
-		int indicatorHeight = (int) (Math.sin(t) * orbInnerHeight);
-
-		int yOffset = (orbInnerHeight / 2) - (indicatorHeight / 2);
-
-		graphics.setColor(Color.cyan);
-		graphics.fillRect(orbInnerX + xOffset, orbInnerY + yOffset, 1, indicatorHeight);
-
-		return new Dimension((int) bounds.getWidth(), (int) bounds.getHeight());
+		tooltipManager.add(new Tooltip("Camera Zoom: " + value + " / " + max));
+		return null;
 	}
 }

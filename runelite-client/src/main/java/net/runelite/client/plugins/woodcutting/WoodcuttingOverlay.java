@@ -81,35 +81,35 @@ class WoodcuttingOverlay extends Overlay
 		panelComponent.getChildren().clear();
 
 		Axe axe = plugin.getAxe();
-		if (axe != null && axe.getAnimId() == client.getLocalPlayer().getAnimation())
+		if (axe != null && axe.matchesChoppingAnimation(client.getLocalPlayer()))
 		{
 			panelComponent.getChildren().add(TitleComponent.builder()
-				.text("Woodcutting")
-				.color(Color.GREEN)
-				.build());
+					.text("Woodcutting")
+					.color(Color.GREEN)
+					.build());
 		}
 		else
 		{
 			panelComponent.getChildren().add(TitleComponent.builder()
-				.text("NOT woodcutting")
-				.color(Color.RED)
-				.build());
+					.text("NOT woodcutting")
+					.color(Color.RED)
+					.build());
 		}
 
 		int actions = xpTrackerService.getActions(Skill.WOODCUTTING);
 		if (actions > 0)
 		{
 			panelComponent.getChildren().add(LineComponent.builder()
-				.left("Logs cut:")
-				.right(Integer.toString(actions))
-				.build());
+					.left("Logs cut:")
+					.right(Integer.toString(actions))
+					.build());
 
 			if (actions > 2)
 			{
 				panelComponent.getChildren().add(LineComponent.builder()
-					.left("Logs/hr:")
-					.right(Integer.toString(xpTrackerService.getActionsHr(Skill.WOODCUTTING)))
-					.build());
+						.left("Logs/hr:")
+						.right(Integer.toString(xpTrackerService.getActionsHr(Skill.WOODCUTTING)))
+						.build());
 			}
 		}
 

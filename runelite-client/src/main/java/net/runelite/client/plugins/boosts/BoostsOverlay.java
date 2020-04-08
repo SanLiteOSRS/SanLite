@@ -27,6 +27,7 @@ package net.runelite.client.plugins.boosts;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
+import java.util.Set;
 import javax.inject.Inject;
 import net.runelite.api.Client;
 import static net.runelite.api.MenuAction.RUNELITE_OVERLAY_CONFIG;
@@ -74,9 +75,9 @@ class BoostsOverlay extends Overlay
 		if (nextChange != -1)
 		{
 			panelComponent.getChildren().add(LineComponent.builder()
-				.left("Next + restore in")
-				.right(String.valueOf(plugin.getChangeTime(nextChange)))
-				.build());
+					.left("Next + restore in")
+					.right(String.valueOf(plugin.getChangeTime(nextChange)))
+					.build());
 		}
 
 		nextChange = plugin.getChangeUpTicks();
@@ -84,23 +85,24 @@ class BoostsOverlay extends Overlay
 		if (nextChange != -1)
 		{
 			panelComponent.getChildren().add(LineComponent.builder()
-				.left("Next - restore in")
-				.right(String.valueOf(plugin.getChangeTime(nextChange)))
-				.build());
+					.left("Next - restore in")
+					.right(String.valueOf(plugin.getChangeTime(nextChange)))
+					.build());
+		}
+
+		final Set<Skill> boostedSkills = plugin.getSkillsToDisplay();
+
+		if (boostedSkills.isEmpty())
+		{
+			return panelComponent.render(graphics);
 		}
 
 		if (plugin.canShowBoosts())
 		{
-			for (Skill skill : plugin.getShownSkills())
+			for (Skill skill : boostedSkills)
 			{
 				final int boosted = client.getBoostedSkillLevel(skill);
 				final int base = client.getRealSkillLevel(skill);
-
-				if (boosted == base)
-				{
-					continue;
-				}
-
 				final int boost = boosted - base;
 				final Color strColor = getTextColor(boost);
 				String str;
@@ -116,14 +118,14 @@ class BoostsOverlay extends Overlay
 				else
 				{
 					str = ColorUtil.prependColorTag(Integer.toString(boosted), strColor)
-						+ ColorUtil.prependColorTag("/" + base, Color.WHITE);
+							+ ColorUtil.prependColorTag("/" + base, Color.WHITE);
 				}
 
 				panelComponent.getChildren().add(LineComponent.builder()
-					.left(skill.getName())
-					.right(str)
-					.rightColor(strColor)
-					.build());
+						.left(skill.getName())
+						.right(str)
+						.rightColor(strColor)
+						.build());
 			}
 		}
 
