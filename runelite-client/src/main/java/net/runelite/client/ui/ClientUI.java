@@ -42,7 +42,10 @@ import java.awt.TrayIcon;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
+import java.time.Duration;
 import javax.annotation.Nullable;
 import javax.inject.Inject;
 import javax.inject.Provider;
@@ -64,11 +67,12 @@ import net.runelite.api.Constants;
 import net.runelite.api.GameState;
 import net.runelite.api.Player;
 import net.runelite.api.Point;
+import net.runelite.client.eventbus.EventBus;
+import net.runelite.client.events.ClientShutdown;
 import net.runelite.client.events.ConfigChanged;
 import net.runelite.api.events.GameStateChanged;
 import net.runelite.api.widgets.Widget;
 import net.runelite.api.widgets.WidgetInfo;
-import net.runelite.client.RuneLite;
 import net.runelite.client.RuneLiteProperties;
 import net.runelite.client.callback.ClientThread;
 import net.runelite.client.config.ConfigManager;
@@ -115,6 +119,8 @@ public class ClientUI
 	private final Applet client;
 	private final ConfigManager configManager;
 	private final Provider<ClientThread> clientThreadProvider;
+	private final EventBus eventBus;
+
 	private final CardLayout cardLayout = new CardLayout();
 	private final Rectangle sidebarButtonPosition = new Rectangle();
 	private boolean withTitleBar;
@@ -140,7 +146,8 @@ public class ClientUI
 		MouseManager mouseManager,
 		@Nullable Applet client,
 		ConfigManager configManager,
-		Provider<ClientThread> clientThreadProvider)
+		Provider<ClientThread> clientThreadProvider,
+		EventBus eventBus)
 	{
 		this.config = config;
 		this.keyManager = keyManager;
@@ -148,6 +155,7 @@ public class ClientUI
 		this.client = client;
 		this.configManager = configManager;
 		this.clientThreadProvider = clientThreadProvider;
+		this.eventBus = eventBus;
 	}
 
 	@Subscribe
@@ -288,14 +296,19 @@ public class ClientUI
 
 	/**
 	 * Initialize UI.
-	 * @param runelite runelite instance that will be shut down on exit
-	 * @throws Exception exception that can occur during creation of the UI
 	 */
-	public void init(final RuneLite runelite) throws Exception
+	public void init() throws Exception
 	{
 		SwingUtilities.invokeAndWait(() ->
 		{
-			SwingUtil.setupRuneLiteLookAndFeel();
+			// Set some sensible swing defaults
+			SwingUtil.setupDefaults();
+
+			// Use substance look and feel
+			SwingUtil.setTheme(new SubstanceRuneLiteLookAndFeel());
+
+			// Use custom UI font
+			SwingUtil.setFont(FontManager.getRunescapeFont());
 
 			// Create main window
 			frame = new ContainableFrame();
@@ -309,14 +322,36 @@ public class ClientUI
 			frame.setLocationRelativeTo(frame.getOwner());
 			frame.setResizable(true);
 
-			SwingUtil.addGracefulExitCallback(frame,
-				() ->
+			frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+			frame.addWindowListener(new WindowAdapter()
+			{
+				@Override
+				public void windowClosing(WindowEvent event)
 				{
-					saveClientBoundsConfig();
-					runelite.shutdown();
-				},
-				this::showWarningOnExit
-			);
+					int result = JOptionPane.OK_OPTION;
+
+					if (showWarningOnExit())
+					{
+						try
+						{
+							result = JOptionPane.showConfirmDialog(
+									frame,
+									"Are you sure you want to exit?", "Exit",
+									JOptionPane.OK_CANCEL_OPTION,
+									JOptionPane.QUESTION_MESSAGE);
+						}
+						catch (Exception e)
+						{
+							log.warn("Unexpected exception occurred while check for confirm required", e);
+						}
+					}
+
+					if (result == JOptionPane.OK_OPTION)
+					{
+						shutdownClient();
+					}
+				}
+			});
 
 			container = new JPanel();
 			container.setLayout(new BoxLayout(container, BoxLayout.X_AXIS));
@@ -338,7 +373,7 @@ public class ClientUI
 
 			// Add key listener
 			final HotkeyListener sidebarListener = new HotkeyListener(() ->
-				new Keybind(KeyEvent.VK_F11, InputEvent.CTRL_DOWN_MASK))
+					new Keybind(KeyEvent.VK_F11, InputEvent.CTRL_DOWN_MASK))
 			{
 				@Override
 				public void hotkeyPressed()
@@ -427,16 +462,16 @@ public class ClientUI
 			sidebarClosedIcon = ImageUtil.flipImage(sidebarOpenIcon, true, false);
 
 			sidebarNavigationButton = NavigationButton
-				.builder()
-				.priority(100)
-				.icon(sidebarClosedIcon)
-				.onClick(this::toggleSidebar)
-				.build();
+					.builder()
+					.priority(100)
+					.icon(sidebarClosedIcon)
+					.onClick(this::toggleSidebar)
+					.build();
 
 			sidebarNavigationJButton = SwingUtil.createSwingButton(
-				sidebarNavigationButton,
-				0,
-				null);
+					sidebarNavigationButton,
+					0,
+					null);
 
 			titleToolbar.addComponent(sidebarNavigationButton, sidebarNavigationJButton);
 			toggleSidebar();
@@ -533,6 +568,45 @@ public class ClientUI
 		return false;
 	}
 
+	private void shutdownClient()
+	{
+		saveClientBoundsConfig();
+		ClientShutdown csev = new ClientShutdown();
+		eventBus.post(csev);
+		new Thread(() ->
+		{
+			csev.waitForAllConsumers(Duration.ofSeconds(10));
+
+			if (client != null)
+			{
+				// The client can call System.exit when it's done shutting down
+				// if it doesn't though, we want to exit anyway, so race it
+				int clientShutdownWaitMS;
+				if (client instanceof Client)
+				{
+					((Client) client).stopNow();
+					clientShutdownWaitMS = 1000;
+				}
+				else
+				{
+					// it will continue rendering for about 4 seconds before attempting shutdown if its vanilla
+					client.stop();
+					frame.setVisible(false);
+					clientShutdownWaitMS = 6000;
+				}
+
+				try
+				{
+					Thread.sleep(clientShutdownWaitMS);
+				}
+				catch (InterruptedException ignored)
+				{
+				}
+			}
+			System.exit(0);
+		}, "RuneLite Shutdown").start();
+	}
+
 	/**
 	 * Paint this component to target graphics
 	 *
@@ -589,7 +663,7 @@ public class ClientUI
 	}
 
 	/**
-	 * Changes cursor for client window. Requires ${@link ClientUI#init(RuneLite)} to be called first.
+	 * Changes cursor for client window. Requires ${@link ClientUI#init()} to be called first.
 	 * FIXME: This is working properly only on Windows, Linux and Mac are displaying cursor incorrectly
 	 * @param image cursor image
 	 * @param name  cursor name

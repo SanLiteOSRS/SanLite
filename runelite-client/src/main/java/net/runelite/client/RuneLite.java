@@ -330,10 +330,11 @@ public class RuneLite
 		// Start client session
 		splashScreen.setMessage("Starting session");
 		clientSessionManager.start();
+		eventBus.register(clientSessionManager);
 
 		// Initialize UI
 		splashScreen.setMessage("Starting core interface");
-		clientUI.init(this);
+		clientUI.init();
 
 		// Close the splash screen
 		splashScreen.close();
@@ -348,6 +349,8 @@ public class RuneLite
 		eventBus.register(drawManager);
 		eventBus.register(infoBoxManager);
 		eventBus.register(tooltipManager);
+		eventBus.register(configManager);
+		eventBus.register(discordService);
 
 		if (!isOutdated)
 		{
@@ -376,13 +379,6 @@ public class RuneLite
 		pluginManager.startPlugins();
 
 		clientUI.show();
-	}
-
-	public void shutdown()
-	{
-		configManager.sendConfig();
-		clientSessionManager.shutdown();
-		discordService.close();
 	}
 
 	@VisibleForTesting
