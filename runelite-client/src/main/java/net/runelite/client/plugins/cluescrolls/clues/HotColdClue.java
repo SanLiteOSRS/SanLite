@@ -26,7 +26,6 @@
 package net.runelite.client.plugins.cluescrolls.clues;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.util.Arrays;
 import java.util.Collection;
@@ -59,19 +58,18 @@ import net.runelite.client.ui.overlay.components.TitleComponent;
 @Slf4j
 public class HotColdClue extends ClueScroll implements LocationClueScroll, LocationsClueScroll, TextClueScroll, NpcClueScroll
 {
-	private static final int HOT_COLD_PANEL_WIDTH = 200;
 	private static final HotColdClue BEGINNER_CLUE = new HotColdClue("Buried beneath the ground, who knows where it's found. Lucky for you, A man called Reldo may have a clue.",
-		"Reldo",
-		"Speak to Reldo to receive a strange device.",
-		new WorldPoint(3211, 3494, 0));
+			"Reldo",
+			"Speak to Reldo to receive a strange device.",
+			new WorldPoint(3211, 3494, 0));
 	private static final HotColdClue MASTER_CLUE = new HotColdClue("Buried beneath the ground, who knows where it's found. Lucky for you, A man called Jorral may have a clue.",
-		"Jorral",
-		"Speak to Jorral to receive a strange device.",
-		new WorldPoint(2436, 3347, 0));
+			"Jorral",
+			"Speak to Jorral to receive a strange device.",
+			new WorldPoint(2436, 3347, 0));
 	private static final HotColdClue MASTER_CLUE_LEAGUE = new HotColdClue("Buried beneath the ground, who knows where it's found. Lucky for you, A man called Watson may have a clue.",
-		"Watson",
-		"Speak to Watson to receive a strange device.",
-		new WorldPoint(1645, 3572, 0));
+			"Watson",
+			"Speak to Watson to receive a strange device.",
+			new WorldPoint(1645, 3572, 0));
 
 	private final String text;
 	private final String npc;
@@ -139,9 +137,8 @@ public class HotColdClue extends ClueScroll implements LocationClueScroll, Locat
 		}
 
 		panelComponent.getChildren().add(TitleComponent.builder()
-			.text("Hot/Cold Clue")
-			.build());
-		panelComponent.setPreferredSize(new Dimension(HOT_COLD_PANEL_WIDTH, 0));
+				.text("Hot/Cold Clue")
+				.build());
 
 		// strange device has not been tested yet, show how to get it
 		if (hotColdSolver.getLastWorldPoint() == null && location == null)
@@ -149,28 +146,28 @@ public class HotColdClue extends ClueScroll implements LocationClueScroll, Locat
 			if (getNpc() != null)
 			{
 				panelComponent.getChildren().add(LineComponent.builder()
-					.left("NPC:")
-					.build());
+						.left("NPC:")
+						.build());
 				panelComponent.getChildren().add(LineComponent.builder()
-					.left(getNpc())
-					.leftColor(TITLED_CONTENT_COLOR)
-					.build());
+						.left(getNpc())
+						.leftColor(TITLED_CONTENT_COLOR)
+						.build());
 			}
 
 			panelComponent.getChildren().add(LineComponent.builder()
-				.left("Solution:")
-				.build());
+					.left("Solution:")
+					.build());
 			panelComponent.getChildren().add(LineComponent.builder()
-				.left(getSolution())
-				.leftColor(TITLED_CONTENT_COLOR)
-				.build());
+					.left(getSolution())
+					.leftColor(TITLED_CONTENT_COLOR)
+					.build());
 		}
 		// strange device has been tested, show possible locations for final dig spot
 		else
 		{
 			panelComponent.getChildren().add(LineComponent.builder()
-				.left("Possible locations:")
-				.build());
+					.left("Possible locations:")
+					.build());
 
 			final Map<HotColdArea, Integer> locationCounts = new EnumMap<>(HotColdArea.class);
 			final Collection<HotColdLocation> digLocations = hotColdSolver.getPossibleLocations();
@@ -194,9 +191,9 @@ public class HotColdClue extends ClueScroll implements LocationClueScroll, Locat
 				for (HotColdArea area : locationCounts.keySet())
 				{
 					panelComponent.getChildren().add(LineComponent.builder()
-						.left(area.getName())
-						.right(Integer.toString(locationCounts.get(area)))
-						.build());
+							.left(area.getName())
+							.right(Integer.toString(locationCounts.get(area)))
+							.build());
 				}
 			}
 			else
@@ -204,17 +201,17 @@ public class HotColdClue extends ClueScroll implements LocationClueScroll, Locat
 				for (HotColdArea area : locationCounts.keySet())
 				{
 					panelComponent.getChildren().add(LineComponent.builder()
-						.left(area.getName() + ':')
-						.build());
+							.left(area.getName() + ':')
+							.build());
 
 					for (HotColdLocation hotColdLocation : digLocations)
 					{
 						if (hotColdLocation.getHotColdArea() == area)
 						{
 							panelComponent.getChildren().add(LineComponent.builder()
-								.left("- " + hotColdLocation.getArea())
-								.leftColor(Color.LIGHT_GRAY)
-								.build());
+									.left("- " + hotColdLocation.getArea())
+									.leftColor(Color.LIGHT_GRAY)
+									.build());
 						}
 					}
 				}
@@ -311,7 +308,7 @@ public class HotColdClue extends ClueScroll implements LocationClueScroll, Locat
 
 		boolean master = this == MASTER_CLUE || this == MASTER_CLUE_LEAGUE;
 		if ((this == BEGINNER_CLUE && temperature == HotColdTemperature.BEGINNER_VISIBLY_SHAKING)
-			|| (master && temperature == HotColdTemperature.MASTER_VISIBLY_SHAKING))
+				|| (master && temperature == HotColdTemperature.MASTER_VISIBLY_SHAKING))
 		{
 			markFinalSpot(localWorld);
 		}
@@ -348,14 +345,14 @@ public class HotColdClue extends ClueScroll implements LocationClueScroll, Locat
 		else
 		{
 			log.warn("Hot cold solver could not be initialized, clue type is unknown; text: {}, npc: {}, solution: {}",
-				text, npc, solution);
+					text, npc, solution);
 			hotColdSolver = null;
 			return;
 		}
 
 		final Set<HotColdLocation> locations = Arrays.stream(HotColdLocation.values())
-			.filter(l -> l.isBeginnerClue() == isBeginner)
-			.collect(Collectors.toSet());
+				.filter(l -> l.isBeginnerClue() == isBeginner)
+				.collect(Collectors.toSet());
 		hotColdSolver = new HotColdSolver(locations);
 	}
 

@@ -30,20 +30,17 @@ import java.time.Duration;
 import java.time.Instant;
 import javax.inject.Inject;
 import static net.runelite.api.MenuAction.RUNELITE_OVERLAY_CONFIG;
-import net.runelite.client.ui.overlay.Overlay;
 import static net.runelite.client.ui.overlay.OverlayManager.OPTION_CONFIGURE;
 import net.runelite.client.ui.overlay.OverlayMenuEntry;
+import net.runelite.client.ui.overlay.OverlayPanel;
 import net.runelite.client.ui.overlay.OverlayPosition;
 import net.runelite.client.ui.overlay.OverlayPriority;
 import net.runelite.client.ui.overlay.components.LineComponent;
-import net.runelite.client.ui.overlay.components.PanelComponent;
 
-class LapCounterOverlay extends Overlay
+class LapCounterOverlay extends OverlayPanel
 {
 	private final AgilityPlugin plugin;
 	private final AgilityConfig config;
-
-	private final PanelComponent panelComponent = new PanelComponent();
 
 	@Inject
 	private LapCounterOverlay(AgilityPlugin plugin, AgilityConfig config)
@@ -62,9 +59,9 @@ class LapCounterOverlay extends Overlay
 		AgilitySession session = plugin.getSession();
 
 		if (!config.showLapCount() ||
-			session == null ||
-			session.getLastLapCompleted() == null ||
-			session.getCourse() == null)
+				session == null ||
+				session.getLastLapCompleted() == null ||
+				session.getCourse() == null)
 		{
 			return null;
 		}
@@ -79,20 +76,19 @@ class LapCounterOverlay extends Overlay
 			return null;
 		}
 
-		panelComponent.getChildren().clear();
 		panelComponent.getChildren().add(LineComponent.builder()
-			.left("Total Laps:")
-			.right(Integer.toString(session.getTotalLaps()))
-			.build());
+				.left("Total Laps:")
+				.right(Integer.toString(session.getTotalLaps()))
+				.build());
 
 		if (config.lapsToLevel() && session.getLapsTillGoal() > 0)
 		{
 			panelComponent.getChildren().add(LineComponent.builder()
-				.left("Laps until goal:")
-				.right(Integer.toString(session.getLapsTillGoal()))
-				.build());
+					.left("Laps until goal:")
+					.right(Integer.toString(session.getLapsTillGoal()))
+					.build());
 		}
 
-		return panelComponent.render(graphics);
+		return super.render(graphics);
 	}
 }

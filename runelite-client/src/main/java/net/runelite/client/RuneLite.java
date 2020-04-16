@@ -289,6 +289,9 @@ public class RuneLite
 			injector.injectMembers(client);
 		}
 
+		// Register event listeners that rely on config changes
+		eventBus.register(tooltipManager);
+
 		// Load user configuration
 		splashScreen.setMessage("Loading configuration");
 		configManager.load();
@@ -348,7 +351,6 @@ public class RuneLite
 		eventBus.register(overlayManager);
 		eventBus.register(drawManager);
 		eventBus.register(infoBoxManager);
-		eventBus.register(tooltipManager);
 		eventBus.register(configManager);
 		eventBus.register(discordService);
 

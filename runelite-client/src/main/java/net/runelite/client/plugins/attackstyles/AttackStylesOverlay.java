@@ -29,18 +29,16 @@ import java.awt.Dimension;
 import java.awt.Graphics2D;
 import javax.inject.Inject;
 import static net.runelite.api.MenuAction.RUNELITE_OVERLAY_CONFIG;
-import net.runelite.client.ui.overlay.Overlay;
 import static net.runelite.client.ui.overlay.OverlayManager.OPTION_CONFIGURE;
 import net.runelite.client.ui.overlay.OverlayMenuEntry;
+import net.runelite.client.ui.overlay.OverlayPanel;
 import net.runelite.client.ui.overlay.OverlayPosition;
-import net.runelite.client.ui.overlay.components.PanelComponent;
 import net.runelite.client.ui.overlay.components.TitleComponent;
 
-class AttackStylesOverlay extends Overlay
+class AttackStylesOverlay extends OverlayPanel
 {
 	private final AttackStylesPlugin plugin;
 	private final AttackStylesConfig config;
-	private final PanelComponent panelComponent = new PanelComponent();
 
 	@Inject
 	private AttackStylesOverlay(AttackStylesPlugin plugin, AttackStylesConfig config)
@@ -55,7 +53,6 @@ class AttackStylesOverlay extends Overlay
 	@Override
 	public Dimension render(Graphics2D graphics)
 	{
-		panelComponent.getChildren().clear();
 		boolean warnedSkillSelected = plugin.isWarnedSkillSelected();
 
 		if (warnedSkillSelected || config.alwaysShowStyle())
@@ -70,15 +67,15 @@ class AttackStylesOverlay extends Overlay
 			final String attackStyleString = attackStyle.getName();
 
 			panelComponent.getChildren().add(TitleComponent.builder()
-				.text(attackStyleString)
-				.color(warnedSkillSelected ? Color.RED : Color.WHITE)
-				.build());
+					.text(attackStyleString)
+					.color(warnedSkillSelected ? Color.RED : Color.WHITE)
+					.build());
 
 			panelComponent.setPreferredSize(new Dimension(
-				graphics.getFontMetrics().stringWidth(attackStyleString) + 10,
-				0));
+					graphics.getFontMetrics().stringWidth(attackStyleString) + 10,
+					0));
 
-			return panelComponent.render(graphics);
+			return super.render(graphics);
 		}
 
 		return null;
