@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, Adam <Adam@sigterm.info>
+ * Copyright (c) 2020, Dennis <me@dennis.dev>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,21 +22,13 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.http.api.item;
+package net.runelite.client.plugins.grandexchange;
 
-import java.util.List;
-
-public class SearchResult
+public enum GrandExchangeSearchMode
 {
-	private List<Item> items;
+	DEFAULT,
 
-	public List<Item> getItems()
-	{
-		return items;
-	}
+	FUZZY_FALLBACK,
 
-	public void setItems(List<Item> items)
-	{
-		this.items = items;
-	}
+	FUZZY_ONLY
 }

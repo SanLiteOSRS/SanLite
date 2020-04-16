@@ -46,10 +46,13 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import javax.annotation.Nullable;
 import javax.inject.Inject;
 import javax.swing.SwingUtilities;
 import lombok.AccessLevel;
@@ -71,6 +74,7 @@ import net.runelite.client.callback.ClientThread;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.EventBus;
 import net.runelite.client.eventbus.Subscribe;
+import net.runelite.client.events.ClientShutdown;
 import net.runelite.client.events.ConfigChanged;
 import net.runelite.client.events.NpcLootReceived;
 import net.runelite.client.events.PlayerLootReceived;
@@ -108,8 +112,10 @@ public class LootTrackerPlugin extends Plugin
 	private static final int THEATRE_OF_BLOOD_REGION = 12867;
 
 	// Herbiboar loot handling
-	private static final String HERBIBOAR_LOOTED_MESSAGE = "You harvest herbs from the herbiboar, whereupon it escapes.";
+	@VisibleForTesting
+	static final String HERBIBOAR_LOOTED_MESSAGE = "You harvest herbs from the herbiboar, whereupon it escapes.";
 	private static final String HERBIBOAR_EVENT = "Herbiboar";
+	private static final Pattern HERBIBOAR_HERB_SACK_PATTERN = Pattern.compile(".+(Grimy .+?) herb.+");
 
 	// Hespori loot handling
 	private static final String HESPORI_LOOTED_MESSAGE = "You have successfully cleared this patch for new crops.";
@@ -330,6 +336,16 @@ public class LootTrackerPlugin extends Plugin
 	}
 
 	@Subscribe
+	public void onClientShutdown(ClientShutdown event)
+	{
+		Future<Void> future = submitLoot();
+		if (future != null)
+		{
+			event.waitFor(future);
+		}
+	}
+
+	@Subscribe
 	public void onGameStateChanged(final GameStateChanged event)
 	{
 		if (event.getGameState() == GameState.LOADING)
@@ -492,10 +508,14 @@ public class LootTrackerPlugin extends Plugin
 
 		if (message.equals(HERBIBOAR_LOOTED_MESSAGE))
 		{
+			if (processHerbiboarHerbSackLoot(event.getTimestamp()))
+			{
+				return;
+			}
+
 			eventType = HERBIBOAR_EVENT;
 			lootRecordType = LootRecordType.EVENT;
 			takeInventorySnapshot();
-
 			return;
 		}
 
@@ -614,14 +634,15 @@ public class LootTrackerPlugin extends Plugin
 		submitLoot();
 	}
 
-	private void submitLoot()
+	@Nullable
+	private CompletableFuture<Void> submitLoot()
 	{
 		List<LootRecord> copy;
 		synchronized (queuedLoots)
 		{
 			if (queuedLoots.isEmpty())
 			{
-				return;
+				return null;
 			}
 
 			copy = new ArrayList<>(queuedLoots);
@@ -630,12 +651,13 @@ public class LootTrackerPlugin extends Plugin
 
 		if (lootTrackerClient == null || !config.saveLoot())
 		{
-			return;
+			return null;
 		}
 
 		log.debug("Submitting {} loot records", copy.size());
 
-		lootTrackerClient.submit(copy);
+		CompletableFuture<Void> future = lootTrackerClient.submit(copy);
+		return future;
 	}
 
 	private void takeInventorySnapshot()
@@ -667,6 +689,34 @@ public class LootTrackerPlugin extends Plugin
 
 			inventorySnapshot = null;
 		}
+	}
+
+	private boolean processHerbiboarHerbSackLoot(int timestamp)
+	{
+		List<ItemStack> herbs = new ArrayList<>();
+
+		for (MessageNode messageNode : client.getMessages())
+		{
+			if (messageNode.getTimestamp() != timestamp
+					|| messageNode.getType() != ChatMessageType.SPAM)
+			{
+				continue;
+			}
+
+			Matcher matcher = HERBIBOAR_HERB_SACK_PATTERN.matcher(messageNode.getValue());
+			if (matcher.matches())
+			{
+				herbs.add(new ItemStack(itemManager.search(matcher.group(1)).get(0).getId(), 1, client.getLocalPlayer().getLocalLocation()));
+			}
+		}
+
+		if (herbs.isEmpty())
+		{
+			return false;
+		}
+
+		addLoot(HERBIBOAR_EVENT, -1, LootRecordType.EVENT, herbs);
+		return true;
 	}
 
 	void toggleItem(String name, boolean ignore)

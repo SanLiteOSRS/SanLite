@@ -25,7 +25,10 @@
 package net.runelite.client.plugins.antidrag;
 
 import net.runelite.api.Constants;
-import net.runelite.client.config.*;
+import net.runelite.client.config.AllKeyCodeKeybind;
+import net.runelite.client.config.Config;
+import net.runelite.client.config.ConfigGroup;
+import net.runelite.client.config.ConfigItem;
 
 import java.awt.event.KeyEvent;
 
@@ -33,14 +36,37 @@ import java.awt.event.KeyEvent;
 public interface AntiDragConfig extends Config
 {
 	@ConfigItem(
-		keyName = "dragDelay",
-		name = "Drag Delay",
-		description = "Configures the inventory drag delay in client ticks (20ms)",
-		position = 1
+			keyName = "dragDelay",
+			name = "Drag Delay",
+			description = "Configures the inventory drag delay in client ticks (20ms)",
+			position = 1
 	)
 	default int dragDelay()
 	{
 		return Constants.GAME_TICK_LENGTH / Constants.CLIENT_TICK_LENGTH; // one game tick
+	}
+
+	@ConfigItem(
+			keyName = "onKeybindOnly",
+			name = "On Keybind Only",
+			description = "Configures whether to only adjust the delay while holding an anti drag keybind",
+			position = 2
+	)
+	default boolean onKeybindOnly()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+			keyName = "enableInBankWithoutKeybind",
+			name = "Enable in bank without keybind",
+			description = "Configures whether the drag delay is enabled for items in the bank when not using " +
+					"the keybind only setting",
+			position = 3
+	)
+	default boolean enableInBankWithoutKeybind()
+	{
+		return false;
 	}
 
 	@ConfigItem(

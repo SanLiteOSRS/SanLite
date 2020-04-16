@@ -173,8 +173,8 @@ public final class ScriptID
 	 *
 	 * Updates the VarClientInts (73, 74) to this same value
 	 * <ul>
-	 * <li> int  Reset zoom position </li>
-	 * <li> int  Reset zoom position </li>
+	 * <li> int  Reset zoom position for fixed viewport mode</li>
+	 * <li> int  Reset zoom position for resizable viewport mode</li>
 	 * </ul>
 	 */
 	@ScriptArguments(integer = 2)
@@ -255,6 +255,12 @@ public final class ScriptID
 	public static final int GE_OFFERS_SETUP_BUILD = 779;
 
 	/**
+	 * Builds the grand exchange item search widget
+	 */
+	@ScriptArguments(integer = 3)
+	public static final int GE_ITEM_SEARCH = 752;
+
+	/**
 	 * Builds the quest list inside the quest tab that shows each quest's progress
 	 */
 	@ScriptArguments(integer = 3)
@@ -297,4 +303,13 @@ public final class ScriptID
 	 */
 	@ScriptArguments(integer = 7)
 	public static final int IGNORE_UPDATE = 630;
+
+	/**
+	 * Called in an onTimer, determines whether to layout the bank during a search
+	 * <ul>
+	 * <li> int (WidgetID) * 16, various widgets making up the bank interface </li>
+	 * </ul>
+	 */
+	@ScriptArguments(integer = 16)
+	public static final int BANKMAIN_SEARCH_REFRESH = 283;
 }

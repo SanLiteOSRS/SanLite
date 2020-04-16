@@ -24,14 +24,34 @@
  */
 package net.runelite.client.ui.overlay.tooltip;
 
+import com.google.common.base.Strings;
+import com.google.common.collect.ImmutableList;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import javax.inject.Inject;
 import javax.inject.Singleton;
 import lombok.Getter;
+import net.runelite.client.config.ConfigManager;
+import net.runelite.client.eventbus.Subscribe;
+import net.runelite.client.events.ConfigChanged;
 
 @Singleton
 public class TooltipManager
 {
+	private static final Collection<String> TO_RESET = ImmutableList.of(
+			"TooltipOverlay_preferredLocation",
+			"TooltipOverlay_preferredPosition"
+	);
+
+	private final ConfigManager configManager;
+
+	@Inject
+	private TooltipManager(final ConfigManager configManager)
+	{
+		this.configManager = configManager;
+	}
+
 	@Getter
 	private final List<Tooltip> tooltips = new ArrayList<>();
 
@@ -48,5 +68,18 @@ public class TooltipManager
 	public void clear()
 	{
 		tooltips.clear();
+	}
+
+	@Subscribe
+	public void onConfigChanged(final ConfigChanged event)
+	{
+		// Temporary fix for resetting repositioned tooltip overlay
+		// TODO: Remove this eventually
+		if (event.getGroup().equals("runelite") &&
+				TO_RESET.contains(event.getKey()) &&
+				!Strings.isNullOrEmpty(event.getNewValue()))
+		{
+			configManager.unsetConfiguration(event.getGroup(), event.getKey());
+		}
 	}
 }

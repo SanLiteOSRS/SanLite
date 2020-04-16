@@ -27,17 +27,12 @@ package net.runelite.client.util;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.util.Enumeration;
-import java.util.concurrent.Callable;
 import java.util.function.BiConsumer;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.swing.*;
-
-import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
 
 import javax.swing.border.EmptyBorder;
 import javax.swing.plaf.FontUIResource;
@@ -184,48 +179,6 @@ public class SwingUtil
 	}
 
 	/**
-	 * Add graceful exit callback.
-	 *
-	 * @param frame           the frame
-	 * @param callback        the callback
-	 * @param confirmRequired the confirm required
-	 */
-	public static void addGracefulExitCallback(@Nonnull final JFrame frame, @Nonnull final Runnable callback, @Nonnull final Callable<Boolean> confirmRequired)
-	{
-		frame.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-		frame.addWindowListener(new WindowAdapter()
-		{
-			@Override
-			public void windowClosing(WindowEvent event)
-			{
-				int result = JOptionPane.OK_OPTION;
-
-				try
-				{
-					if (confirmRequired.call())
-					{
-						result = JOptionPane.showConfirmDialog(
-							frame,
-							"Are you sure you want to exit?", "Exit",
-							JOptionPane.OK_CANCEL_OPTION,
-							JOptionPane.QUESTION_MESSAGE);
-					}
-				}
-				catch (Exception e)
-				{
-					log.warn("Unexpected exception occurred while check for confirm required", e);
-				}
-
-				if (result == JOptionPane.OK_OPTION)
-				{
-					callback.run();
-					System.exit(0);
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create swing button from navigation button.
 	 *
 	 * @param navigationButton the navigation button
@@ -291,6 +244,7 @@ public class SwingUtil
 
 	public static void addModalTooltip(AbstractButton button, String on, String off)
 	{
+		button.setToolTipText(button.isSelected() ? on : off);
 		button.addItemListener(l -> button.setToolTipText(button.isSelected() ? on : off));
 	}
 

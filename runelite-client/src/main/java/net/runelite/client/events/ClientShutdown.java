@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, Adam <Adam@sigterm.info>
+ * Copyright (c) 2020 Abex
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,13 +22,51 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.http.service.item;
+package net.runelite.client.events;
 
-import java.util.List;
-import lombok.Data;
+import java.time.Duration;
+import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import lombok.Value;
+import lombok.extern.slf4j.Slf4j;
 
-@Data
-public class RSSearch
+@Value
+@Slf4j
+public class ClientShutdown
 {
-	private List<RSItem> items;
+	private Queue<Future<?>> tasks = new ConcurrentLinkedQueue<>();
+
+	public void waitFor(Future<?> future)
+	{
+		tasks.add(future);
+	}
+
+	public void waitForAllConsumers(Duration totalTimeout)
+	{
+		long deadline = System.nanoTime() + totalTimeout.toNanos();
+		for (Future<?> task; (task = tasks.poll()) != null; )
+		{
+			long timeout = deadline - System.nanoTime();
+			if (timeout < 0)
+			{
+				log.warn("Timed out waiting for task completion");
+				return;
+			}
+
+			try
+			{
+				task.get(timeout, TimeUnit.NANOSECONDS);
+			}
+			catch (ThreadDeath d)
+			{
+				throw d;
+			}
+			catch (Throwable t)
+			{
+				log.warn("Error during shutdown: ", t);
+			}
+		}
+	}
 }

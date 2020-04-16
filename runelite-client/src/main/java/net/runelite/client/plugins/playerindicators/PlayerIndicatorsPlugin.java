@@ -242,7 +242,7 @@ public class PlayerIndicatorsPlugin extends Plugin
 			return;
 
 		// Only send notifications in PvP zones
-		if (client.getVar(Varbits.IN_PVP_AREA) != 1 && client.getVar(Varbits.IN_WILDERNESS) != 1 &&
+		if (client.getVar(Varbits.PVP_SPEC_ORB) != 1 && client.getVar(Varbits.IN_WILDERNESS) != 1 &&
 				client.getWorldType().stream().noneMatch(x -> x == WorldType.DEADMAN))
 			return;
 

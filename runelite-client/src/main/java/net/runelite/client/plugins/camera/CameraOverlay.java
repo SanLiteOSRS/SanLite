@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, honeyhoney <https://github.com/honeyhoney>
+ * Copyright (c) 2020, Sean Dewar <https://github.com/seandewar>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,62 +22,53 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.client.plugins.attackstyles;
+package net.runelite.client.plugins.camera;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import javax.inject.Inject;
-import static net.runelite.api.MenuAction.RUNELITE_OVERLAY_CONFIG;
-import static net.runelite.client.ui.overlay.OverlayManager.OPTION_CONFIGURE;
-import net.runelite.client.ui.overlay.OverlayMenuEntry;
-import net.runelite.client.ui.overlay.OverlayPanel;
+import net.runelite.api.Client;
+import net.runelite.api.Point;
+import net.runelite.api.VarClientInt;
+import net.runelite.api.widgets.Widget;
+import net.runelite.api.widgets.WidgetInfo;
+import net.runelite.client.ui.overlay.Overlay;
+import net.runelite.client.ui.overlay.OverlayLayer;
 import net.runelite.client.ui.overlay.OverlayPosition;
-import net.runelite.client.ui.overlay.components.TitleComponent;
+import net.runelite.client.ui.overlay.tooltip.Tooltip;
+import net.runelite.client.ui.overlay.tooltip.TooltipManager;
 
-class AttackStylesOverlay extends OverlayPanel
+class CameraOverlay extends Overlay
 {
-	private final AttackStylesPlugin plugin;
-	private final AttackStylesConfig config;
+	private final CameraConfig config;
+	private final Client client;
+	private final TooltipManager tooltipManager;
 
 	@Inject
-	private AttackStylesOverlay(AttackStylesPlugin plugin, AttackStylesConfig config)
+	private CameraOverlay(final CameraConfig config, final Client client, final TooltipManager tooltipManager)
 	{
-		super(plugin);
-		setPosition(OverlayPosition.ABOVE_CHATBOX_RIGHT);
-		this.plugin = plugin;
 		this.config = config;
-		getMenuEntries().add(new OverlayMenuEntry(RUNELITE_OVERLAY_CONFIG, OPTION_CONFIGURE, "Attack style overlay"));
+		this.client = client;
+		this.tooltipManager = tooltipManager;
+		setPosition(OverlayPosition.DYNAMIC);
+		setLayer(OverlayLayer.ABOVE_WIDGETS);
 	}
 
 	@Override
-	public Dimension render(Graphics2D graphics)
+	public Dimension render(final Graphics2D graphics)
 	{
-		boolean warnedSkillSelected = plugin.isWarnedSkillSelected();
+		final Widget slider = client.getWidget(WidgetInfo.OPTIONS_CAMERA_ZOOM_SLIDER_HANDLE);
+		final Point mousePos = client.getMouseCanvasPosition();
 
-		if (warnedSkillSelected || config.alwaysShowStyle())
+		if (slider == null || slider.isHidden() || !slider.getBounds().contains(mousePos.getX(), mousePos.getY()))
 		{
-			final AttackStyle attackStyle = plugin.getAttackStyle();
-
-			if (attackStyle == null)
-			{
-				return null;
-			}
-
-			final String attackStyleString = attackStyle.getName();
-
-			panelComponent.getChildren().add(TitleComponent.builder()
-					.text(attackStyleString)
-					.color(warnedSkillSelected ? Color.RED : Color.WHITE)
-					.build());
-
-			panelComponent.setPreferredSize(new Dimension(
-					graphics.getFontMetrics().stringWidth(attackStyleString) + 10,
-					0));
-
-			return super.render(graphics);
+			return null;
 		}
 
+		final int value = client.getVar(VarClientInt.CAMERA_ZOOM_RESIZABLE_VIEWPORT);
+		final int max = config.innerLimit() ? config.INNER_ZOOM_LIMIT : CameraPlugin.DEFAULT_INNER_ZOOM_LIMIT;
+
+		tooltipManager.add(new Tooltip("Camera Zoom: " + value + " / " + max));
 		return null;
 	}
 }
