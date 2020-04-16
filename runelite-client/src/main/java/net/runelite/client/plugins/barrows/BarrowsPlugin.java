@@ -331,10 +331,6 @@ public class BarrowsPlugin extends Plugin
 	private boolean isInCrypt()
 	{
 		Player localPlayer = client.getLocalPlayer();
-		if (localPlayer == null)
-		{
-			return false;
-		}
-		return localPlayer.getWorldLocation().getRegionID() == CRYPT_REGION_ID;
+		return localPlayer != null && localPlayer.getWorldLocation().getRegionID() == CRYPT_REGION_ID;
 	}
 }

@@ -50,20 +50,20 @@ class BookPanel extends JPanel
 		location.setFont(FontManager.getRunescapeSmallFont());
 
 		layout.setVerticalGroup(layout.createParallelGroup()
-			.addComponent(image)
-			.addGroup(layout.createSequentialGroup()
-				.addComponent(name)
-				.addComponent(location)
-			)
+				.addComponent(image)
+				.addGroup(layout.createSequentialGroup()
+						.addComponent(name)
+						.addComponent(location)
+				)
 		);
 
 		layout.setHorizontalGroup(layout.createSequentialGroup()
-			.addComponent(image)
-			.addGap(8)
-			.addGroup(layout.createParallelGroup()
-				.addComponent(name)
-				.addComponent(location)
-			)
+				.addComponent(image)
+				.addGap(8)
+				.addGroup(layout.createParallelGroup()
+						.addComponent(name)
+						.addComponent(location)
+				)
 		);
 
 		// AWT's Z order is weird. This put image at the back of the stack
@@ -77,6 +77,14 @@ class BookPanel extends JPanel
 
 	void setIsTarget(boolean target)
 	{
-		location.setForeground(target ? Color.GREEN : Color.WHITE);
+		location.setForeground(target ? Color.GREEN : Color.ORANGE);
+	}
+
+	void setIsHeld(boolean held)
+	{
+		if (held)
+		{
+			location.setForeground(Color.WHITE);
+		}
 	}
 }

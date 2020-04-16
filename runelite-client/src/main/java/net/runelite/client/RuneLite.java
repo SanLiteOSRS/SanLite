@@ -75,6 +75,7 @@ import net.runelite.client.ui.overlay.OverlayRenderer;
 import net.runelite.client.ui.overlay.WidgetOverlay;
 import net.runelite.client.ui.overlay.infobox.InfoBoxManager;
 import net.runelite.client.ui.overlay.infobox.InfoBoxOverlay;
+import net.runelite.client.ui.overlay.tooltip.TooltipManager;
 import net.runelite.client.ui.overlay.tooltip.TooltipOverlay;
 import net.runelite.client.ui.overlay.worldmap.WorldMapOverlay;
 import net.runelite.client.ws.PartyService;
@@ -125,6 +126,9 @@ public class RuneLite
 
 	@Inject
 	private OverlayManager overlayManager;
+
+	@Inject
+	private TooltipManager tooltipManager;
 
 	@Inject
 	private Provider<PartyService> partyService;
@@ -285,6 +289,9 @@ public class RuneLite
 			injector.injectMembers(client);
 		}
 
+		// Register event listeners that rely on config changes
+		eventBus.register(tooltipManager);
+
 		// Load user configuration
 		splashScreen.setMessage("Loading configuration");
 		configManager.load();
@@ -326,10 +333,11 @@ public class RuneLite
 		// Start client session
 		splashScreen.setMessage("Starting session");
 		clientSessionManager.start();
+		eventBus.register(clientSessionManager);
 
 		// Initialize UI
 		splashScreen.setMessage("Starting core interface");
-		clientUI.init(this);
+		clientUI.init();
 
 		// Close the splash screen
 		splashScreen.close();
@@ -343,6 +351,8 @@ public class RuneLite
 		eventBus.register(overlayManager);
 		eventBus.register(drawManager);
 		eventBus.register(infoBoxManager);
+		eventBus.register(configManager);
+		eventBus.register(discordService);
 
 		if (!isOutdated)
 		{
@@ -371,13 +381,6 @@ public class RuneLite
 		pluginManager.startPlugins();
 
 		clientUI.show();
-	}
-
-	public void shutdown()
-	{
-		configManager.sendConfig();
-		clientSessionManager.shutdown();
-		discordService.close();
 	}
 
 	@VisibleForTesting

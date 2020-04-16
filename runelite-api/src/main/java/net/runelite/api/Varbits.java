@@ -767,7 +767,15 @@ public enum Varbits
 
 	WITHDRAW_X_AMOUNT(3960),
 
-	IN_PVP_AREA(8121);
+	/**
+	 * Whether the Special Attack orb is disabled due to being in a PvP area
+	 *
+	 * 0 = Enabled (player is not in PvP)
+	 * 1 = Disabled (player in in PvP)
+	 *
+	 * @see <a href="https://oldschool.runescape.wiki/w/Minimap#Special_attack_orb">The OSRS Wiki's Minimap page</a>
+	 */
+	PVP_SPEC_ORB(8121);
 
 	/**
 	 * The raw varbit ID.
