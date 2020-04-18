@@ -775,7 +775,17 @@ public enum Varbits
 	 *
 	 * @see <a href="https://oldschool.runescape.wiki/w/Minimap#Special_attack_orb">The OSRS Wiki's Minimap page</a>
 	 */
-	PVP_SPEC_ORB(8121);
+	PVP_SPEC_ORB(8121),
+
+	CLAN_WARS_ARENA_UNKNOWN_1(4285),
+	/**
+	 * The value of this equals the remaining ticks till the countdown finished.
+	 * Starts at 204 (~2 minutes) in a normal Clan Wars match. Value decreases by 3 every 3 ticks.
+	 */
+	CLAN_WARS_ARENA_COUNTDOWN_TIMER(4286),
+	CLAN_WARS_ARENA_UNKNOWN_2(4287),
+	CLAN_WARS_ARENA_UNKNOWN_3(4288),
+	CLAN_WARS_ARENA_UNKNOWN_4(4289);
 
 	/**
 	 * The raw varbit ID.
