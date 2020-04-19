@@ -112,6 +112,9 @@ public final class AnimationID
 	public static final int FISHING_BAREHAND_CAUGHT_SWORDFISH_2 = 6708;
 	public static final int FISHING_BAREHAND_CAUGHT_TUNA_1 = 6710;
 	public static final int FISHING_BAREHAND_CAUGHT_TUNA_2 = 6711;
+	public static final int FISHING_PEARL_ROD = 8188;
+	public static final int FISHING_PEARL_FLY_ROD = 8189;
+	public static final int FISHING_PEARL_BARBARIAN_ROD = 8190;
 	public static final int MINING_BRONZE_PICKAXE = 625;
 	public static final int MINING_IRON_PICKAXE = 626;
 	public static final int MINING_STEEL_PICKAXE = 627;
@@ -145,6 +148,7 @@ public final class AnimationID
 	public static final int HERBLORE_POTIONMAKING = 363; //used for both herb and secondary
 	public static final int MAGIC_CHARGING_ORBS = 726;
 	public static final int MAGIC_MAKE_TABLET = 4068;
+	public static final int TABLET_TELEPORT = 4069;
 	public static final int MAGIC_ENCHANTING_JEWELRY = 931;
 	public static final int MAGIC_ENCHANTING_AMULET_1 = 719; // sapphire, opal, diamond
 	public static final int MAGIC_ENCHANTING_AMULET_2 = 720; // emerald, jade, dragonstone
@@ -174,7 +178,15 @@ public final class AnimationID
 	public static final int SAND_COLLECTION = 895;
 	public static final int PISCARILIUS_CRANE_REPAIR = 7199;
 	public static final int HOME_MAKE_TABLET = 4067;
+	public static final int PULL_LEVER = 2140;
 	public static final int DRAGONFIRE_SHIELD_SPECIAL = 6696;
+	public static final int STANDARD_PURPLE_TELEPORT = 714;
+	public static final int ECTOPHIAL_TELEPORT = 878;
+	public static final int FAIRY_RING_TELEPORT = 3265;
+	public static final int SCROLL_TELEPORT = 3864;
+	public static final int XERICS_TALISMAN_TELEPORT = 3865;
+	public static final int WILDERNESS_OBELISK_TELEPORT = 3945;
+	public static final int SEED_POD_TELEPORT = 4544;
 
 	// NPC animations
 	public static final int TZTOK_JAD_RANGE_ATTACK = 2652;

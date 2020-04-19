@@ -51,7 +51,7 @@ import net.runelite.client.plugins.PluginType;
 	description = "Prevent dragging an item for a specified delay",
 	tags = {"antidrag", "delay", "inventory", "items", "keybind"},
 	enabledByDefault = false,
-	type = PluginType.SANLITE
+	type = PluginType.SANLITE_USE_AT_OWN_RISK
 )
 @Slf4j
 public class AntiDragPlugin extends Plugin implements KeyListener
@@ -71,6 +71,8 @@ public class AntiDragPlugin extends Plugin implements KeyListener
 
 	@Inject
 	private KeyManager keyManager;
+
+	private boolean held;
 
 	@Provides
 	AntiDragConfig getConfig(ConfigManager configManager)
@@ -119,6 +121,7 @@ public class AntiDragPlugin extends Plugin implements KeyListener
 			}
 
 			setDragDelay();
+			held = true;
 		}
 	}
 
@@ -133,6 +136,7 @@ public class AntiDragPlugin extends Plugin implements KeyListener
 			}
 
 			resetDragDelay();
+			held = false;
 		}
 	}
 
@@ -143,6 +147,7 @@ public class AntiDragPlugin extends Plugin implements KeyListener
 		{
 			if (config.onKeybindOnly())
 			{
+				held = false;
 				clientThread.invoke(this::resetDragDelay);
 			}
 			else
@@ -157,6 +162,7 @@ public class AntiDragPlugin extends Plugin implements KeyListener
 	{
 		if (!focusChanged.isFocused())
 		{
+			held = false;
 			clientThread.invoke(this::resetDragDelay);
 		}
 		else if (!config.onKeybindOnly())
@@ -168,7 +174,7 @@ public class AntiDragPlugin extends Plugin implements KeyListener
 	@Subscribe
 	public void onWidgetLoaded(WidgetLoaded widgetLoaded)
 	{
-		if (widgetLoaded.getGroupId() == WidgetID.BANK_GROUP_ID && config.enableInBankWithoutKeybind() && !config.onKeybindOnly())
+		if (widgetLoaded.getGroupId() == WidgetID.BANK_GROUP_ID && (!config.onKeybindOnly() || held))
 		{
 			setBankDragDelay(config.dragDelay());
 		}
