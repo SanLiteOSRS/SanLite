@@ -412,7 +412,8 @@ public interface PlayerIndicatorsConfig extends Config
 			position = 31,
 			keyName = "notifyOnNonClanMemberSpawned",
 			name = "Notify on non-clan member spawn",
-			description = "Receive a notification when a non-clan member appears by logging in or running into the player render range in a PvP zone",
+			description = "Receive a notification when a non-clan member appears by logging in or running into the " +
+					"player render range in a PvP zone. Notifications will not be triggered in safe death PvP areas",
 			group = "Player spawn notifications"
 	)
 	default boolean notifyOnNonClanMemberSpawned()
