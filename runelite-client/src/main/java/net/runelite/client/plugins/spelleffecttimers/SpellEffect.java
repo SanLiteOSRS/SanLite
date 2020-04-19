@@ -76,6 +76,17 @@ public enum SpellEffect
 		return false;
 	}
 
+	static boolean isSpellEffectTypeFreeze(int spotAnimationId)
+	{
+		return spotAnimationId == BIND.spotAnimationId ||
+				spotAnimationId == SNARE.spotAnimationId ||
+				spotAnimationId == ENTANGLE.spotAnimationId ||
+				spotAnimationId == ICE_RUSH.spotAnimationId ||
+				spotAnimationId == ICE_BURST.spotAnimationId ||
+				spotAnimationId == ICE_BLITZ.spotAnimationId ||
+				spotAnimationId == ICE_BARRAGE.spotAnimationId;
+	}
+
 	static SpellEffect getFromSpotAnimation(int spotAnimationId)
 	{
 		for (SpellEffect spellEffect : values())
