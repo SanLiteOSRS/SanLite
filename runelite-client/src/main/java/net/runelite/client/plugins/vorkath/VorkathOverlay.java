@@ -29,12 +29,15 @@ import net.runelite.api.Point;
 import net.runelite.api.*;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.coords.WorldPoint;
+import net.runelite.client.game.AreaOfEffectProjectile;
 import net.runelite.client.game.SpriteManager;
 import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayLayer;
 import net.runelite.client.ui.overlay.OverlayPosition;
 import net.runelite.client.ui.overlay.OverlayUtil;
 import net.runelite.client.util.ImageUtil;
+import net.runelite.client.util.TickUtil;
+import net.runelite.client.util.TimerFormat;
 
 import javax.inject.Inject;
 import java.awt.*;
@@ -101,7 +104,7 @@ public class VorkathOverlay extends Overlay
 
 			if (config.highlightFirebombTiles())
 			{
-				renderProjectiles(graphics, vorkath);
+				renderAreaOfEffectProjectiles(graphics, vorkath);
 			}
 
 			if (config.highlightZombifiedSpawn())
@@ -153,19 +156,19 @@ public class VorkathOverlay extends Overlay
 		}
 	}
 
-	private void renderProjectiles(Graphics2D graphics, Vorkath vorkath)
+	private void renderAreaOfEffectProjectiles(Graphics2D graphics, Vorkath vorkath)
 	{
-		for (VorkathProjectile projectile : vorkath.getProjectiles())
+		for (AreaOfEffectProjectile projectile : vorkath.getAreaOfEffectProjectiles())
 		{
 			if (projectile.getTargetPoint() == null)
 			{
-				return;
+				continue;
 			}
 
 			if (projectile.getEndCycle() < client.getGameCycle())
 			{
-				vorkath.getProjectiles().remove(projectile);
-				return;
+				vorkath.getAreaOfEffectProjectiles().remove(projectile);
+				continue;
 			}
 
 			Polygon polygon = Perspective.getCanvasTileAreaPoly(client, projectile.getTargetPoint(), projectile.getTileSize());
@@ -173,6 +176,21 @@ public class VorkathOverlay extends Overlay
 			{
 				OverlayUtil.renderPolygon(graphics, polygon, config.getFirebombMarkerColor());
 			}
+
+			if (!config.displayRemainingFirebombDuration())
+			{
+				continue;
+			}
+
+			String remainingCycles = TickUtil.convertTimerFormat(projectile.getEndCycle() - client.getGameCycle(),
+					TimerFormat.SECONDS_MILLISECONDS);
+			Point textPoint = Perspective.getCanvasTextLocation(client, graphics, projectile.getTargetPoint(), remainingCycles, 0);
+			if (textPoint == null)
+			{
+				continue;
+			}
+
+			OverlayUtil.renderTextLocation(graphics, textPoint, remainingCycles, Color.WHITE);
 		}
 	}
 

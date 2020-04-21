@@ -47,20 +47,32 @@ public class ProjectileID
 	public static final int CORPOREAL_BEAST_AOE = 315;
 	public static final int CORPOREAL_BEAST_DARK_CORE_AOE = 319;
 
+	// Deranged Archaeologist
+	public static final int DERANGED_ARCHAEOLOGIST_RANGED = 1259;
+	public static final int DERANGED_ARCHAEOLOGIST_BOOK_AOE = 1260;
+
 	// Demonic Gorillas
 	public static final int DEMONIC_GORILLA_BOULDER = 856;
 	public static final int DEMONIC_GORILLA_RANGED = 1302;
 	public static final int DEMONIC_GORILLA_MAGIC = 1304;
 
 	// Cerberus
+	public static final int CERBERUS_MAGE = 1242;
+	public static final int CERBERUS_RANGE = 1245;
 	public static final int CERBERUS_FIRE = 1247;
+	public static final int CERBERUS_GHOST_MELEE = 1248;
+	public static final int CERBERUS_GHOST_MAGE = 100;
+	public static final int CERBERUS_GHOST_RANGE = 34;
 
 	// Wintertodt
 	public static final int WINTERTODT_SNOW_FALL_AOE = 1310;
 
-	// Grotesque Guardians
-	public static final int DAWN_FREEZE = 1445;
-	public static final int DUSK_CEILING = 1435;
+	// Chambers of Xeric - Lizardman Shamans
+	public static final int LIZARDMAN_SHAMAN_RANGED_ATTACK = 1291;
+	public static final int LIZARDMAN_SHAMAN_ACID_AOE = 1293;
+
+	// Chambers of Xeric - Guardians
+	public static final int GUARDIANS_ROCK_FALLING_AOE = 645;
 
 	// Chambers of Xeric - Ice Demon
 	public static final int ICE_DEMON_RANGED_AOE = 1324;
@@ -68,7 +80,7 @@ public class ProjectileID
 
 	// Chambers of Xeric - Vasa Nistirio
 	public static final int VASA_AWAKEN_AOE = 1327;
-	public static final int VASA_RANGED_AOE = 1329;
+	public static final int VASA_RANGED_BOULDER_AOE = 1329;
 
 	// Chambers of Xeric - Tekton
 	public static final int TEKTON_METEOR_AOE = 660;
@@ -76,12 +88,24 @@ public class ProjectileID
 	// Chambers of Xeric - The Great Olm
 	public static final int OLM_MAGE_ATTACK = 1339;
 	public static final int OLM_RANGE_ATTACK = 1340;
-	public static final int OLM_FIRE_LINE = 1347;
-	public static final int OLM_BURNING = 1349;
-	public static final int OLM_FALLING_CRYSTAL_TRAIL = 1352;
-	public static final int OLM_ACID_TRAIL = 1354;
-	public static final int OLM_HEAL_POOL_AOE = 1355;
+	public static final int OLM_MAGE_ORB_ATTACK_1 = 1341;
+	public static final int OLM_MAGE_ORB_ATTACK_2 = 1342;
+	public static final int OLM_RANGED_ORB_ATTACK_1 = 1343;
+	public static final int OLM_RANGED_ORB_ATTACK_2 = 1344;
+	public static final int OLM_MELEE_ORB_ATTACK_1 = 1345;
+	public static final int OLM_MELEE_ORB_ATTACK_2 = 1346;
+	public static final int OLM_FIRE_WALL_SPAWN_AOE_1 = 1347;
+	public static final int OLM_FIRE_WALL_SPAWN_AOE_2 = 1348;
+	public static final int OLM_BURN_ATTACK_1 = 1349;
+	public static final int OLM_BURN_ATTACK_2 = 1350;
+	public static final int OLM_FALLING_SPIKE_AOE = 1352;
+	public static final int OLM_ACID_POOL_AOE = 1354;
+	public static final int OLM_HEALING_POOL_AOE = 1355;
 	public static final int OLM_FALLING_CRYSTAL_AOE = 1357;
+
+	// Grotesque Guardians
+	public static final int DAWN_FREEZE = 1445;
+	public static final int DUSK_CEILING = 1435;
 
 	// Galvek
 	public static final int GALVEK_MINE = 1495;
@@ -124,12 +148,6 @@ public class ProjectileID
 	// Zalcano
 	public static final int ZALCANO_PROJECTILE = 1728;
 
-	//Cerberus
-	public static final int CERBERUS_MAGE = 1242;
-	public static final int CERBERUS_RANGE = 1245;
-
-	//Cerberus Ghosts
-	public static final int CERBERUS_GHOST_MELEE = 1248;
-	public static final int CERBERUS_GHOST_MAGE = 100;
-	public static final int CERBERUS_GHOST_RANGE = 34;
+	// Basilisk Knights
+	public static final int BASILISK_KNIGHT_STONE_ENTOMB_AOE = 1744;
 }
