@@ -49,8 +49,8 @@ import java.util.*;
 		description = "Shows spell effect timers for freezes, vengeance and teleblock",
 		tags = {"spell", "effect", "timers", "freeze", "timers", "barrage", "freezy", "ancients", "overlay", "root",
 				"vengeance", "teleblock", "veng", "tb", "pvp"},
-		enabledByDefault = false,
-		type = PluginType.SANLITE_USE_AT_OWN_RISK
+		type = PluginType.SANLITE_USE_AT_OWN_RISK,
+		enabledByDefault = false
 )
 public class SpellEffectTimersPlugin extends Plugin
 {

@@ -44,7 +44,8 @@ import java.util.Arrays;
 		name = "Alchemical Hydra",
 		description = "Displays Alchemical Hydra's next attack style and other encounter mechanics",
 		tags = {"combat", "overlay", "pve", "pvm", "hydra", "alchemical", "boss", "slayer", "timer"},
-		type = PluginType.SANLITE_USE_AT_OWN_RISK
+		type = PluginType.SANLITE_USE_AT_OWN_RISK,
+		enabledByDefault = false
 )
 public class AlchemicalHydraPlugin extends Plugin
 {

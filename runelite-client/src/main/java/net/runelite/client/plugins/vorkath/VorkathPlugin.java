@@ -49,7 +49,8 @@ import java.util.Arrays;
 		name = "Vorkath",
 		description = "Helps with Vorkath's various encounter mechanics",
 		tags = {"combat", "overlay", "pve", "pvm", "vorkath", "ds2", "boss", "dragon", "slayer", "blue"},
-		type = PluginType.SANLITE_USE_AT_OWN_RISK
+		type = PluginType.SANLITE_USE_AT_OWN_RISK,
+		enabledByDefault = false
 )
 public class VorkathPlugin extends Plugin
 {

@@ -25,28 +25,11 @@
 package net.runelite.client.plugins.corp;
 
 import com.google.inject.Provides;
-import java.util.HashSet;
-import java.util.Set;
-import javax.inject.Inject;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.Actor;
-import net.runelite.api.ChatMessageType;
-import net.runelite.api.Client;
-import net.runelite.api.GameState;
-import net.runelite.api.MenuAction;
-import static net.runelite.api.MenuAction.MENU_ACTION_DEPRIORITIZE_OFFSET;
-import net.runelite.api.MenuEntry;
-import net.runelite.api.NPC;
-import net.runelite.api.NpcID;
-import net.runelite.api.Varbits;
-import net.runelite.api.events.GameStateChanged;
-import net.runelite.api.events.HitsplatApplied;
-import net.runelite.api.events.InteractingChanged;
-import net.runelite.api.events.MenuEntryAdded;
-import net.runelite.api.events.NpcDespawned;
-import net.runelite.api.events.NpcSpawned;
+import net.runelite.api.*;
+import net.runelite.api.events.*;
 import net.runelite.client.chat.ChatColorType;
 import net.runelite.client.chat.ChatMessageBuilder;
 import net.runelite.client.chat.ChatMessageManager;
@@ -58,11 +41,18 @@ import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.plugins.PluginType;
 import net.runelite.client.ui.overlay.OverlayManager;
 
+import javax.inject.Inject;
+import java.util.HashSet;
+import java.util.Set;
+
+import static net.runelite.api.MenuAction.MENU_ACTION_DEPRIORITIZE_OFFSET;
+
 @PluginDescriptor(
-	name = "Corporeal Beast",
-	description = "Show damage statistics and highlight dark energy cores",
-	tags = {"bosses", "combat", "pve", "overlay"},
-	type = PluginType.SANLITE_USE_AT_OWN_RISK
+		name = "Corporeal Beast",
+		description = "Show damage statistics and highlight dark energy cores",
+		tags = {"bosses", "combat", "pve", "overlay"},
+		type = PluginType.SANLITE_USE_AT_OWN_RISK,
+		enabledByDefault = false
 )
 @Slf4j
 public class CorpPlugin extends Plugin
@@ -172,20 +162,20 @@ public class CorpPlugin extends Plugin
 			{
 				// Show kill stats
 				String message = new ChatMessageBuilder()
-					.append(ChatColorType.NORMAL)
-					.append("Corporeal Beast: Your damage: ")
-					.append(ChatColorType.HIGHLIGHT)
-					.append(Integer.toString(yourDamage))
-					.append(ChatColorType.NORMAL)
-					.append(", Total damage: ")
-					.append(ChatColorType.HIGHLIGHT)
-					.append(Integer.toString(totalDamage))
-					.build();
+						.append(ChatColorType.NORMAL)
+						.append("Corporeal Beast: Your damage: ")
+						.append(ChatColorType.HIGHLIGHT)
+						.append(Integer.toString(yourDamage))
+						.append(ChatColorType.NORMAL)
+						.append(", Total damage: ")
+						.append(ChatColorType.HIGHLIGHT)
+						.append(Integer.toString(totalDamage))
+						.build();
 
 				chatMessageManager.queue(QueuedMessage.builder()
-					.type(ChatMessageType.CONSOLE)
-					.runeLiteFormattedMessage(message)
-					.build());
+						.type(ChatMessageType.CONSOLE)
+						.runeLiteFormattedMessage(message)
+						.build());
 			}
 		}
 		else if (npc == core)
@@ -231,7 +221,7 @@ public class CorpPlugin extends Plugin
 	public void onMenuEntryAdded(MenuEntryAdded menuEntryAdded)
 	{
 		if (menuEntryAdded.getType() != NPC_SECTION_ACTION
-			|| !config.leftClickCore() || !menuEntryAdded.getOption().equals(ATTACK))
+				|| !config.leftClickCore() || !menuEntryAdded.getOption().equals(ATTACK))
 		{
 			return;
 		}

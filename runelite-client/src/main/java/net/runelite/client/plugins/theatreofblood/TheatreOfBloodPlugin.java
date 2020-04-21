@@ -52,7 +52,8 @@ import static net.runelite.api.Varbits.TOB_ENCOUNTER_STATE;
 		name = "Theatre of Blood",
 		description = "Helps with the various boss mechanics in the Theatre of Blood",
 		tags = {"tob", "raids", "theatre", "blood", "theatre of blood", "pvm", "overlay", "boss"},
-		type = PluginType.SANLITE_USE_AT_OWN_RISK
+		type = PluginType.SANLITE_USE_AT_OWN_RISK,
+		enabledByDefault = false
 )
 public class TheatreOfBloodPlugin extends Plugin
 {
