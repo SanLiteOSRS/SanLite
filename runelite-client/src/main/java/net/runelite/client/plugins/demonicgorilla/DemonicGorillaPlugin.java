@@ -536,7 +536,7 @@ public class DemonicGorillaPlugin extends Plugin
 		int projectileId = projectile.getId();
 		if (projectileId != ProjectileID.DEMONIC_GORILLA_RANGED &&
 			projectileId != ProjectileID.DEMONIC_GORILLA_MAGIC &&
-			projectileId != ProjectileID.DEMONIC_GORILLA_BOULDER)
+			projectileId != ProjectileID.DEMONIC_GORILLA_BOULDER_AOE)
 		{
 			return;
 		}
@@ -548,7 +548,7 @@ public class DemonicGorillaPlugin extends Plugin
 			return;
 		}
 
-		if (projectileId == ProjectileID.DEMONIC_GORILLA_BOULDER)
+		if (projectileId == ProjectileID.DEMONIC_GORILLA_BOULDER_AOE)
 		{
 			recentBoulders.add(WorldPoint.fromLocal(client, event.getPosition()));
 		}

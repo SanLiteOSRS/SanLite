@@ -45,10 +45,11 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 @PluginDescriptor(
-		name = "Area Of Effect Warnings",
-		description = "Highlights tiles of area of effect projectiles",
-		tags = {"aoe", "projectiles", "highlight", "pvm", "overlay", "boss", "encounter"},
-		type = PluginType.SANLITE_USE_AT_OWN_RISK
+		name = "Area of Effect Warnings",
+		description = "Highlights the target tiles for area of effect projectiles",
+		tags = {"aoe", "projectile", "highlight", "pvm", "overlay", "boss", "encounter", "tile"},
+		type = PluginType.SANLITE_USE_AT_OWN_RISK,
+		enabledByDefault = false
 )
 public class AoeWarningsPlugin extends Plugin
 {
@@ -122,21 +123,167 @@ public class AoeWarningsPlugin extends Plugin
 	{
 		switch (projectile.getId())
 		{
+			// Corporeal Beast
 			case ProjectileID.CORPOREAL_BEAST_AOE:
 				if (config.highlightCorporealBeastAttackTiles())
 					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 3, targetPoint, config.getCorporealBeastSplashAttackColor()));
 				break;
-			case ProjectileID.DERANGED_ARCHAEOLOGIST_BOOK_AOE:
+			case ProjectileID.CORPOREAL_BEAST_DARK_CORE_AOE:
+				if (config.highlightDarkCoreLandingSpot())
+					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 3, targetPoint, config.getDarkCoreLandingSpotColor()));
+				break;
+
+			// Crazy/deranged archaeologist
+			case ProjectileID.CRAZY_AND_DERANGED_ARCHAEOLOGIST_BOOK_AOE:
 				if (config.highlightDerangedArchaeologistBookAttackTiles())
 					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 3, targetPoint, config.getDerangedArchaeologistBookAttackColor()));
 				break;
+
+			// Basilisk Knights
 			case ProjectileID.BASILISK_KNIGHT_STONE_ENTOMB_AOE:
 				if (config.highlightBasiliskKnightEntombAttackTiles())
 					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 1, targetPoint, config.getBasiliskKnightsEntombAttackColor()));
 				break;
+
+			// Lizardman Shamans
+			case ProjectileID.LIZARDMAN_SHAMAN_ACID_AOE:
+				if (config.highlightShamansAcidAttackTiles())
+					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 5, targetPoint, config.getShamansAcidAttackColor()));
+				break;
+
+			// Chambers of Xeric
 			case ProjectileID.TEKTON_METEOR_AOE:
 				if (config.highlightTektonMeteors())
 					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 3, targetPoint, config.getTektonMeteorsColor()));
+				break;
+			case ProjectileID.ICE_DEMON_RANGED_AOE:
+				if (config.highlightIceDemonIceBoulders())
+					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 3, targetPoint, config.getIceDemonIceBoulderColor()));
+				break;
+			case ProjectileID.ICE_DEMON_ICE_BARRAGE_AOE:
+				if (config.highlightIceDemonIceBarrage())
+					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 3, targetPoint, config.getIceDemonIceBarrageColor()));
+				break;
+			case ProjectileID.GUARDIANS_ROCK_FALLING_AOE:
+				if (config.highlightGuardiansFallingRocks())
+					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 3, targetPoint, config.getGuardiansFallingRocksColor()));
+				break;
+			case ProjectileID.VASA_AWAKEN_AOE:
+				if (config.highlightVasaTeleportAttackTiles())
+					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 3, targetPoint, config.getVasaTeleportAttackColor()));
+				break;
+			case ProjectileID.VASA_RANGED_BOULDER_AOE:
+				// Vasa Nistirio's boulder attack hits around 400 milliseconds before it ends
+				if (config.highlightVasaBoulderAttackTiles())
+					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, projectile.getEndCycle() - 20, 3, targetPoint, config.getVasaBoulderAttackColor()));
+				break;
+			case ProjectileID.OLM_FALLING_CRYSTAL_AOE:
+				if (config.highlightOlmFallingCrystals())
+					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 3, targetPoint, config.getOlmFallingCrystalsColor()));
+				break;
+			case ProjectileID.OLM_FALLING_SPIKE_AOE:
+				if (config.highlightOlmFallingSpikes())
+					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 1, targetPoint, config.getOlmFallingSpikesColor()));
+				break;
+			case ProjectileID.OLM_HEALING_POOL_AOE:
+				if (config.highlightOlmHealingPools())
+					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 1, targetPoint, config.getOlmHealingPoolsColor()));
+				break;
+			case ProjectileID.OLM_ACID_POOL_AOE:
+				if (config.highlightOlmAcidPools())
+					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 1, targetPoint, config.getOlmAcidPoolsColor()));
+
+				// Vorkath
+			case ProjectileID.VORKATH_FIREBOMB:
+				if (config.highlightVorkathFirebombTiles())
+					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 3, targetPoint, config.getVorkathFirebombMarkerColor()));
+				break;
+			case ProjectileID.VORKATH_ACID_PHASE_FIREBALL_AOE:
+				if (config.highlightVorkathFireballTiles())
+					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 1, targetPoint, config.getVorkathFireballMarkerColor()));
+				break;
+			case ProjectileID.VORKATH_ACID_AOE:
+				if (config.highlightVorkathAcidPhaseTiles())
+					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 1, targetPoint, config.getVorkathAcidPhaseMarkerColor()));
+				break;
+			case ProjectileID.VORKATH_ZOMBIFIED_SPAWN_AOE:
+				if (config.highlightVorkathZombifiedSpawnTiles())
+					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 1, targetPoint, config.getVorkathZombifiedSpawnMarkerColor()));
+
+				// Galvek
+			case ProjectileID.GALVEK_MINE:
+				if (config.highlightGalvekMine())
+					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 3, targetPoint, config.getGalvekMineColor()));
+				break;
+			case ProjectileID.GALVEK_BOMB:
+				if (config.highlightGalvekFirebomb())
+					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 3, targetPoint, config.getGalvekFirebombColor()));
+				break;
+
+			// Wintertodt
+			case ProjectileID.WINTERTODT_SNOW_FALL_AOE:
+				if (config.highlightWintertodtSnowfall())
+					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 3, targetPoint, config.getWintertodtSnowfallColor()));
+				break;
+
+			// Slayer
+			case ProjectileID.MARBLE_GARGOYLE_AOE:
+				if (config.highlightMarbleGargoyleStoneBall())
+					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 1, targetPoint, config.getMarbleGargoyleStoneBallColor()));
+				break;
+			case ProjectileID.ADAMANT_DRAGON_POISON_AOE:
+				if (config.highlightAdamantDragonPoisonAttack())
+					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 1, targetPoint, config.getAdamantDragonPoisonAttackColor()));
+				break;
+			case ProjectileID.DRAKE_BREATH_AOE:
+				if (config.highlightDrakeFireBreath())
+					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 1, targetPoint, config.getDrakeFireBreathColor()));
+				break;
+
+			// Theatre of Blood
+			case ProjectileID.SUGADINTI_MAIDEN_BLOOD_SPLAT_AOE:
+				if (config.highlightMaidenBloodSplatAttack())
+					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 1, targetPoint, config.getMaidenBloodSplatAttackColor()));
+				break;
+
+			// Cerberus
+			case ProjectileID.CERBERUS_LAVA_POOL_AOE:
+				if (config.highlightCerberusLavaPool())
+					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 3, targetPoint, config.getCerberusLavaPoolAttackColor()));
+				break;
+
+			// Chaos Fanatic
+			case ProjectileID.CHAOS_FANATIC_AOE:
+				if (config.highlightChaosFanaticGreenOrbs())
+					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 1, targetPoint, config.getChaosFanaticGreenOrbsColor()));
+				break;
+
+			// Vetion
+			case ProjectileID.VETION_LIGHTNING_AOE:
+				if (config.highlightVetionLightning())
+					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 1, targetPoint, config.getVetionLightningAttackColor()));
+				break;
+
+			// Demonic Gorillas
+			case ProjectileID.DEMONIC_GORILLA_BOULDER_AOE:
+				if (config.highlightDemonicGorillaBoulder())
+					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 1, targetPoint, config.getDemonicGorillasBoulderColor()));
+				break;
+
+			// Zalcano
+			case ProjectileID.ZALCANO_SPAWN_GOLEM_AOE:
+				if (config.highlightZalcanoGolemSpawn())
+					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 1, targetPoint, config.getZalcanoGolemSpawnColor()));
+				break;
+
+			// Zulrah
+			case ProjectileID.ZULRAH_POISON_CLOUD_AOE:
+				if (config.highlightZulrahPoisonCloud())
+					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 3, targetPoint, config.getZulrahPoisonCloudsColor()));
+				break;
+			case ProjectileID.ZULRAH_SNAKELING_SPAWN_AOE:
+				if (config.highlightZulrahSnakelingSpawn())
+					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 1, targetPoint, config.getZulrahSnakelingSpawnColor()));
 				break;
 		}
 	}

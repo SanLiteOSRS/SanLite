@@ -78,4 +78,17 @@ public class AreaOfEffectProjectile
 		this.targetPoint = targetPoint;
 		this.highlightColor = highlightColor;
 	}
+
+	public AreaOfEffectProjectile(Projectile projectile, int endCycle, int tileSize, LocalPoint targetPoint, Color highlightColor)
+	{
+		if (projectile == null || projectile.getInteracting() != null)
+			throw new IllegalArgumentException("Projectile is null or is not an area of effect projectile");
+
+		this.projectile = projectile;
+		this.startCycle = projectile.getStartMovementCycle();
+		this.endCycle = endCycle;
+		this.tileSize = tileSize;
+		this.targetPoint = targetPoint;
+		this.highlightColor = highlightColor;
+	}
 }

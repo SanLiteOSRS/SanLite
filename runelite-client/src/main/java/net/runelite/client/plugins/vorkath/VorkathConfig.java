@@ -69,40 +69,6 @@ public interface VorkathConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "highlightFirebombTiles",
-			name = "Highlight firebomb tiles",
-			description = "Highlight the tiles where Vorkath's firebomb is going to land",
-			position = 3
-	)
-	default boolean highlightFirebombTiles()
-	{
-		return true;
-	}
-
-	@ConfigItem(
-			keyName = "displayRemainingFirebombDuration",
-			name = "Show remaining firebomb duration",
-			description = "Display the remaining time until Vorkath's firebomb hits the area.",
-			position = 4
-	)
-	default boolean displayRemainingFirebombDuration()
-	{
-		return true;
-	}
-
-	@ConfigItem(
-			keyName = "firebombMarkerColor",
-			name = "Firebomb tile marker",
-			description = "Color of Vorkath's firebomb markers",
-			group = "Colors",
-			position = 5
-	)
-	default Color getFirebombMarkerColor()
-	{
-		return new Color(226, 126, 35);
-	}
-
-	@ConfigItem(
 			keyName = "highlightAcidPoolTiles",
 			name = "Highlight acid pool tiles",
 			description = "Highlight the acid pool tiles during Vorkath's acid phase",

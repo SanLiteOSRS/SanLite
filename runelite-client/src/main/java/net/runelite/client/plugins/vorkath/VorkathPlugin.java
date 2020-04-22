@@ -34,7 +34,6 @@ import net.runelite.client.callback.ClientThread;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.events.ConfigChanged;
-import net.runelite.client.game.AreaOfEffectProjectile;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.plugins.PluginType;
@@ -156,7 +155,7 @@ public class VorkathPlugin extends Plugin
 				if (config.notifyOnZombifiedSpawn())
 					notifier.notify("Vorkath is about to summon a zombified spawn!");
 				break;
-			case ProjectileID.VORKATH_ACID:
+			case ProjectileID.VORKATH_ACID_AOE:
 				if (config.notifyOnAcidPhase())
 					notifier.notify("Vorkath acid phase has started!");
 				break;
@@ -284,36 +283,15 @@ public class VorkathPlugin extends Plugin
 				vorkath.onRegularAttack(client.getTickCount());
 				break;
 			case ProjectileID.VORKATH_ICE_BREATH:
-			case ProjectileID.VORKATH_ACID:
+			case ProjectileID.VORKATH_ACID_AOE:
 				vorkath.onSpecialAttack(projectile, this, client.getTickCount());
 				break;
-			case ProjectileID.VORKATH_ACID_PHASE_FIREBALL:
+			case ProjectileID.VORKATH_ACID_PHASE_FIREBALL_AOE:
 				log.debug("{} | Acid fireball attack | {}", client.getTickCount(), vorkath.getNextAttackTick());
 				vorkath.onAcidPhaseFireballAttack(client.getTickCount());
 				break;
 		}
 		vorkath.setRecentProjectileId(projectile.getId());
-	}
-
-	@Subscribe
-	public void onProjectileMoved(ProjectileMoved event)
-	{
-		if (!validateInstanceAndNpc())
-		{
-			return;
-		}
-
-		Projectile projectile = event.getProjectile();
-		if (!vorkath.isVorkathProjectile(projectile.getId()) || projectile.getInteracting() != null)
-		{
-			return;
-		}
-
-		if (projectile.getId() == ProjectileID.VORKATH_FIREBOMB)
-		{
-			vorkath.getAreaOfEffectProjectiles().add(new AreaOfEffectProjectile(projectile, 3, event.getPosition(),
-					config.getFirebombMarkerColor()));
-		}
 	}
 
 	@Subscribe
