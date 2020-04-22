@@ -190,6 +190,30 @@ public class LinkBrowser
 	}
 
 	/**
+	 * Tries to open the specified {@code File} with the systems default text editor. If operation fails
+	 * an error message is displayed with the option to copy the absolute file path to clipboard.
+	 *
+	 * @param file the File instance of the log file
+	 * @return did the file open successfully?
+	 */
+	public static boolean openLocalFile(final File file)
+	{
+		if (file == null || !file.exists())
+		{
+			return false;
+		}
+
+		if (attemptDesktopOpen(file.getAbsolutePath()))
+		{
+			log.debug("Opened file through Desktop#edit to {}", file);
+			return true;
+		}
+
+		showMessageBox("Unable to open file. Press 'OK' and the file path will be copied to your clipboard", file.getAbsolutePath());
+		return false;
+	}
+
+	/**
 	 * Open swing message box with specified message and copy data to clipboard
 	 * @param message message to show
 	 */
