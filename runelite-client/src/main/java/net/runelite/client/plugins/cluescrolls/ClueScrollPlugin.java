@@ -36,12 +36,10 @@ import java.awt.Rectangle;
 import java.awt.geom.Area;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
-import java.util.stream.Stream;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.inject.Inject;
@@ -51,6 +49,7 @@ import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.*;
 import net.runelite.api.ItemDefinition;
+import net.runelite.api.ItemContainer;
 import net.runelite.api.ObjectDefinition;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.coords.WorldPoint;
@@ -308,10 +307,10 @@ public class ClueScrollPlugin extends Plugin
 		// Check if item was removed from inventory
 		if (clue != null && clueItemId != null)
 		{
-			final Stream<Item> items = Arrays.stream(event.getItemContainer().getItems());
+			ItemContainer itemContainer = event.getItemContainer();
 
 			// Check if clue was removed from inventory
-			if (items.noneMatch(item -> itemManager.getItemComposition(item.getId()).getId() == clueItemId))
+			if (!itemContainer.contains(clueItemId))
 			{
 				resetClue(true);
 			}
@@ -320,7 +319,7 @@ public class ClueScrollPlugin extends Plugin
 		// if three step clue check for clue scroll pieces
 		if (clue instanceof ThreeStepCrypticClue)
 		{
-			if (((ThreeStepCrypticClue) clue).update(client, event, itemManager))
+			if (((ThreeStepCrypticClue) clue).update(event.getContainerId(), event.getItemContainer()))
 			{
 				worldMapPointsSet = false;
 				npcsToMark.clear();

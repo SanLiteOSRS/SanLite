@@ -25,11 +25,13 @@
 package net.runelite.mixins;
 
 import net.runelite.api.InventoryID;
-import net.runelite.api.mixins.*;
 import net.runelite.api.Item;
 import net.runelite.api.events.ItemContainerChanged;
+import net.runelite.api.mixins.*;
 import net.runelite.rs.api.RSClient;
 import net.runelite.rs.api.RSItemContainer;
+
+import javax.annotation.Nonnull;
 
 @Mixin(RSItemContainer.class)
 public abstract class RSItemContainerMixin implements RSItemContainer
@@ -43,6 +45,7 @@ public abstract class RSItemContainerMixin implements RSItemContainer
 	@Inject
 	static private int rl$lastContainer;
 
+	@Nonnull
 	@Inject
 	@Override
 	public Item[] getItems()
@@ -54,13 +57,48 @@ public abstract class RSItemContainerMixin implements RSItemContainer
 		for (int i = 0; i < itemIds.length; ++i)
 		{
 			Item item = new Item(
-				itemIds[i],
-				stackSizes[i]
+					itemIds[i],
+					stackSizes[i]
 			);
 			items[i] = item;
 		}
 
 		return items;
+	}
+
+	@Inject
+	@Override
+	public Item getItem(int slot)
+	{
+		return new Item(getItemIds()[slot], getStackSizes()[slot]);
+	}
+
+	@Inject
+	@Override
+	public boolean contains(int itemId)
+	{
+		for (int id : getItemIds())
+		{
+			if (id == itemId)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+	@Inject
+	@Override
+	public int count(int itemId)
+	{
+		for (Item item : getItems())
+		{
+			if (item.getId() == itemId)
+			{
+				return item.getQuantity();
+			}
+		}
+		return -1;
 	}
 
 	@Copy("itemContainerSetItem")

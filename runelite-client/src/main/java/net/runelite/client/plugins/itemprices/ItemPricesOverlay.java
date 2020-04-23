@@ -28,8 +28,15 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import javax.inject.Inject;
-
-import net.runelite.api.*;
+import net.runelite.api.Client;
+import net.runelite.api.Constants;
+import net.runelite.api.InventoryID;
+import net.runelite.api.Item;
+import net.runelite.api.ItemDefinition;
+import net.runelite.api.ItemContainer;
+import net.runelite.api.ItemID;
+import net.runelite.api.MenuAction;
+import net.runelite.api.MenuEntry;
 import net.runelite.api.widgets.WidgetID;
 import net.runelite.api.widgets.WidgetInfo;
 import net.runelite.client.game.ItemManager;
@@ -146,9 +153,9 @@ class ItemPricesOverlay extends Overlay
 
 		// Inventory item
 		if (widgetId == INVENTORY_ITEM_WIDGETID ||
-				widgetId == BANK_INVENTORY_ITEM_WIDGETID ||
-				widgetId == EXPLORERS_RING_ITEM_WIDGETID ||
-				widgetId == SEED_VAULT_INVENTORY_ITEM_WIDGETID)
+			widgetId == BANK_INVENTORY_ITEM_WIDGETID ||
+			widgetId == EXPLORERS_RING_ITEM_WIDGETID ||
+			widgetId == SEED_VAULT_INVENTORY_ITEM_WIDGETID)
 		{
 			container = client.getItemContainer(InventoryID.INVENTORY);
 		}
@@ -157,7 +164,6 @@ class ItemPricesOverlay extends Overlay
 		{
 			container = client.getItemContainer(InventoryID.BANK);
 		}
-
 		// Seed vault item
 		else if (widgetId == SEED_VAULT_ITEM_WIDGETID)
 		{
@@ -170,11 +176,10 @@ class ItemPricesOverlay extends Overlay
 		}
 
 		// Find the item in the container to get stack size
-		final Item[] items = container.getItems();
 		final int index = menuEntry.getParam0();
-		if (index < items.length)
+		final Item item = container.getItem(index);
+		if (item != null)
 		{
-			final Item item = items[index];
 			return getItemStackValueText(item);
 		}
 
@@ -239,7 +244,7 @@ class ItemPricesOverlay extends Overlay
 	{
 		if (gePrice > 0)
 		{
-			itemStringBuilder.append("EX: ")
+			itemStringBuilder.append("GE: ")
 				.append(QuantityFormatter.quantityToStackSize((long) gePrice * qty))
 				.append(" gp");
 			if (config.showEA() && qty > 1)
@@ -273,7 +278,7 @@ class ItemPricesOverlay extends Overlay
 
 			itemStringBuilder.append("</br>");
 			itemStringBuilder.append("HA Profit: ")
-				.append(ColorUtil.wrapWithColorTag(String.valueOf(haProfit * qty), haColor))
+				.append(ColorUtil.wrapWithColorTag(String.valueOf((long) haProfit * qty), haColor))
 				.append(" gp");
 			if (config.showEA() && qty > 1)
 			{
