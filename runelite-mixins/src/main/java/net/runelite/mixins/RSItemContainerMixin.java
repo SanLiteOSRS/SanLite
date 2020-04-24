@@ -24,7 +24,6 @@
  */
 package net.runelite.mixins;
 
-import net.runelite.api.InventoryID;
 import net.runelite.api.Item;
 import net.runelite.api.events.ItemContainerChanged;
 import net.runelite.api.mixins.*;
@@ -39,11 +38,8 @@ public abstract class RSItemContainerMixin implements RSItemContainer
 	@Shadow("client")
 	private static RSClient client;
 
-	@Inject
-	static private int rl$lastCycle;
-
-	@Inject
-	static private int rl$lastContainer;
+	@Shadow("changedItemContainers")
+	private static int[] changedItemContainers;
 
 	@Nonnull
 	@Inject
@@ -57,8 +53,8 @@ public abstract class RSItemContainerMixin implements RSItemContainer
 		for (int i = 0; i < itemIds.length; ++i)
 		{
 			Item item = new Item(
-					itemIds[i],
-					stackSizes[i]
+				itemIds[i],
+				stackSizes[i]
 			);
 			items[i] = item;
 		}
@@ -101,35 +97,21 @@ public abstract class RSItemContainerMixin implements RSItemContainer
 		return -1;
 	}
 
-	@Copy("itemContainerSetItem")
-	static void rs$itemContainerSetItem(int itemContainerId, int index, int itemId, int itemQuantity)
+	@FieldHook("changedItemContainers")
+	@Inject
+	public static void onItemContainerUpdate(int idx)
 	{
-	}
-
-	@Replace("itemContainerSetItem")
-	static void rl$itemContainerSetItem(int itemContainerId, int index, int itemId, int itemQuantity)
-	{
-		rs$itemContainerSetItem(itemContainerId, index, itemId, itemQuantity);
-
-		int cycle = client.getGameCycle();
-
-		if (rl$lastCycle == cycle && rl$lastContainer == itemContainerId)
+		if (idx != -1)
 		{
-			// Limit item container updates to one per cycle per container
-			return;
+			int changedId = idx - 1 & 31;
+			int containerId = changedItemContainers[changedId];
+
+			RSItemContainer changedContainer = (RSItemContainer) client.getItemContainers().get(containerId);
+
+			if (changedContainer != null)
+			{
+				client.getCallbacks().postDeferred(new ItemContainerChanged(containerId, changedContainer));
+			}
 		}
-
-		InventoryID container = InventoryID.getValue(itemContainerId);
-
-		if (container == null)
-		{
-			return;
-		}
-
-		rl$lastCycle = cycle;
-		rl$lastContainer = itemContainerId;
-
-		ItemContainerChanged event = new ItemContainerChanged(itemContainerId, client.getItemContainer(container));
-		client.getCallbacks().postDeferred(event);
 	}
 }
