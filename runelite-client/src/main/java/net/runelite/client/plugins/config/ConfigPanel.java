@@ -46,7 +46,6 @@ import java.awt.font.TextAttribute;
 import java.awt.image.BufferedImage;
 import java.util.List;
 import java.util.*;
-import java.util.concurrent.ScheduledExecutorService;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -67,7 +66,6 @@ public class ConfigPanel extends PluginPanel
 
 	private final PluginManager pluginManager;
 	private final ConfigManager configManager;
-	private final ScheduledExecutorService executorService;
 	private final RuneLiteConfig runeLiteConfig;
 	private final ChatColorConfig chatColorConfig;
 	private final ColorPickerManager colorPickerManager;
@@ -88,13 +86,12 @@ public class ConfigPanel extends PluginPanel
 		BACK_ICON_HOVER = new ImageIcon(ImageUtil.alphaOffset(backIcon, -100));
 	}
 
-	ConfigPanel(PluginManager pluginManager, ConfigManager configManager, ScheduledExecutorService executorService,
-				RuneLiteConfig runeLiteConfig, ChatColorConfig chatColorConfig, ColorPickerManager colorPickerManager)
+	ConfigPanel(PluginManager pluginManager, ConfigManager configManager, RuneLiteConfig runeLiteConfig,
+				ChatColorConfig chatColorConfig, ColorPickerManager colorPickerManager)
 	{
 		super(false);
 		this.pluginManager = pluginManager;
 		this.configManager = configManager;
-		this.executorService = executorService;
 		this.runeLiteConfig = runeLiteConfig;
 		this.chatColorConfig = chatColorConfig;
 		this.colorPickerManager = colorPickerManager;
@@ -291,7 +288,7 @@ public class ConfigPanel extends PluginPanel
 	 * Updates the collapsible entry item list with the updated list item and sorts the list.
 	 *
 	 * @param collapsibleEntry collapsible entry (eg. plugin type SanLite)
-	 * @param pluginListItem updated plugin list item
+	 * @param pluginListItem   updated plugin list item
 	 */
 	private void updateCollapsibleEntryListItems(CollapsibleEntry collapsibleEntry, PluginListItem pluginListItem)
 	{
@@ -779,7 +776,7 @@ public class ConfigPanel extends PluginPanel
 	 */
 	void startPlugin(Plugin plugin, PluginListItem listItem)
 	{
-		executorService.submit(() ->
+		SwingUtilities.invokeLater(() ->
 		{
 			pluginManager.setPluginEnabled(plugin, true);
 
@@ -804,7 +801,7 @@ public class ConfigPanel extends PluginPanel
 	 */
 	void stopPlugin(Plugin plugin, PluginListItem listItem)
 	{
-		executorService.submit(() ->
+		SwingUtilities.invokeLater(() ->
 		{
 			pluginManager.setPluginEnabled(plugin, false);
 
