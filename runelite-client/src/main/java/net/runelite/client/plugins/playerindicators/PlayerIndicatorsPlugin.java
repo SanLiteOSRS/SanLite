@@ -35,6 +35,7 @@ import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.events.ConfigChanged;
 import net.runelite.client.game.ClanManager;
+import net.runelite.client.game.SafeDeathPvpRegions;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.plugins.PluginType;
@@ -245,6 +246,12 @@ public class PlayerIndicatorsPlugin extends Plugin
 		if (client.getVar(Varbits.PVP_SPEC_ORB) != 1 && client.getVar(Varbits.IN_WILDERNESS) != 1 &&
 				client.getWorldType().stream().noneMatch(x -> x == WorldType.DEADMAN))
 			return;
+
+		// Do not trigger if the region is a safe death PvP zone (e.g. Duel Arena)
+		if (SafeDeathPvpRegions.inSafeDeathPvpArea(client.getMapRegions()))
+		{
+			return;
+		}
 
 		// Check if enough time has expired since the last notification
 		if (client.getTickCount() < lastPlayerSpawnNotificationGameTick + config.delayBetweenPlayerSpawnedNotifications())

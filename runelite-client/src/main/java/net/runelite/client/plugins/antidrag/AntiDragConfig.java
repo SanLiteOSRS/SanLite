@@ -58,18 +58,6 @@ public interface AntiDragConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "enableInBankWithoutKeybind",
-			name = "Enable in bank without keybind",
-			description = "Configures whether the drag delay is enabled for items in the bank when not using " +
-					"the keybind only setting",
-			position = 3
-	)
-	default boolean enableInBankWithoutKeybind()
-	{
-		return false;
-	}
-
-	@ConfigItem(
 			keyName = "keybind1",
 			name = "Keybind 1",
 			description = "First key that when held down delays dragging items",
