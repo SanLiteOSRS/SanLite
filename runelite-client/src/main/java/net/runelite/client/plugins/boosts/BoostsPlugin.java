@@ -51,24 +51,24 @@ import net.runelite.client.ui.overlay.infobox.InfoBoxManager;
 import net.runelite.client.util.ImageUtil;
 
 @PluginDescriptor(
-		name = "Boosts Information",
-		description = "Show combat and/or skill boost information",
-		tags = {"combat", "notifications", "skilling", "overlay"}
+	name = "Boosts Information",
+	description = "Show combat and/or skill boost information",
+	tags = {"combat", "notifications", "skilling", "overlay"}
 )
 @Singleton
 public class BoostsPlugin extends Plugin
 {
 	private static final Set<Skill> BOOSTABLE_COMBAT_SKILLS = ImmutableSet.of(
-			Skill.ATTACK,
-			Skill.STRENGTH,
-			Skill.DEFENCE,
-			Skill.RANGED,
-			Skill.MAGIC);
+		Skill.ATTACK,
+		Skill.STRENGTH,
+		Skill.DEFENCE,
+		Skill.RANGED,
+		Skill.MAGIC);
 
 	private static final Set<Skill> BOOSTABLE_NON_COMBAT_SKILLS = ImmutableSet.of(
-			Skill.MINING, Skill.AGILITY, Skill.SMITHING, Skill.HERBLORE, Skill.FISHING, Skill.THIEVING,
-			Skill.COOKING, Skill.CRAFTING, Skill.FIREMAKING, Skill.FLETCHING, Skill.WOODCUTTING, Skill.RUNECRAFT,
-			Skill.SLAYER, Skill.FARMING, Skill.CONSTRUCTION, Skill.HUNTER);
+		Skill.MINING, Skill.AGILITY, Skill.SMITHING, Skill.HERBLORE, Skill.FISHING, Skill.THIEVING,
+		Skill.COOKING, Skill.CRAFTING, Skill.FIREMAKING, Skill.FLETCHING, Skill.WOODCUTTING, Skill.RUNECRAFT,
+		Skill.SLAYER, Skill.FARMING, Skill.CONSTRUCTION, Skill.HUNTER);
 
 	@Inject
 	private Notifier notifier;

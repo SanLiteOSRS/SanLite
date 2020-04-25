@@ -57,7 +57,8 @@ import net.runelite.client.plugins.PluginType;
 @PluginDescriptor(
 	name = "Reorder Prayers",
 	description = "Reorder the prayers displayed on the Prayer panel",
-	type = PluginType.SANLITE_USE_AT_OWN_RISK
+	type = PluginType.SANLITE_USE_AT_OWN_RISK,
+	enabledByDefault = false
 )
 public class ReorderPrayersPlugin extends Plugin
 {

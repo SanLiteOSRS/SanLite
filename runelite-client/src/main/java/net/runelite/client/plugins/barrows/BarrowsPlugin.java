@@ -61,7 +61,8 @@ import java.util.Set;
 		name = "Barrows Brothers",
 		description = "Show helpful information for the Barrows minigame",
 		tags = {"combat", "minigame", "minimap", "bosses", "pve", "pvm"},
-		type = PluginType.SANLITE_USE_AT_OWN_RISK
+		type = PluginType.SANLITE_USE_AT_OWN_RISK,
+		enabledByDefault = false
 )
 public class BarrowsPlugin extends Plugin
 {

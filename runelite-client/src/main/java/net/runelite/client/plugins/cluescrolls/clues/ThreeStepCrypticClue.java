@@ -28,21 +28,16 @@ import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.util.AbstractMap;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Stream;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import net.runelite.api.Client;
 import net.runelite.api.InventoryID;
-import net.runelite.api.Item;
+import net.runelite.api.ItemContainer;
 import static net.runelite.api.ItemID.TORN_CLUE_SCROLL_PART_1;
 import static net.runelite.api.ItemID.TORN_CLUE_SCROLL_PART_2;
 import static net.runelite.api.ItemID.TORN_CLUE_SCROLL_PART_3;
 import net.runelite.api.coords.WorldPoint;
-import net.runelite.api.events.ItemContainerChanged;
-import net.runelite.client.game.ItemManager;
 import static net.runelite.client.plugins.cluescrolls.ClueScrollOverlay.TITLED_CONTENT_COLOR;
 import net.runelite.client.plugins.cluescrolls.ClueScrollPlugin;
 import net.runelite.client.ui.overlay.components.LineComponent;
@@ -103,9 +98,9 @@ public class ThreeStepCrypticClue extends ClueScroll implements TextClueScroll, 
 				panelComponent.getChildren().add(TitleComponent.builder().text("Cryptic Clue #" + (i + 1)).build());
 				panelComponent.getChildren().add(LineComponent.builder().left("Solution:").build());
 				panelComponent.getChildren().add(LineComponent.builder()
-					.left(c.getSolution())
-					.leftColor(TITLED_CONTENT_COLOR)
-					.build());
+						.left(c.getSolution())
+						.leftColor(TITLED_CONTENT_COLOR)
+						.build());
 			}
 		}
 	}
@@ -122,26 +117,22 @@ public class ThreeStepCrypticClue extends ClueScroll implements TextClueScroll, 
 		}
 	}
 
-	public boolean update(Client client, final ItemContainerChanged event, ItemManager itemManager)
+	public boolean update(int containerId, final ItemContainer itemContainer)
 	{
-		if (event.getItemContainer() == client.getItemContainer(InventoryID.INVENTORY))
+		if (containerId == InventoryID.INVENTORY.getId())
 		{
-			boolean success = false;
-			success |= checkForPart(event, itemManager, TORN_CLUE_SCROLL_PART_1, 0);
-			success |= checkForPart(event, itemManager, TORN_CLUE_SCROLL_PART_2, 1);
-			success |= checkForPart(event, itemManager, TORN_CLUE_SCROLL_PART_3, 2);
-			return success;
+			return checkForPart(itemContainer, TORN_CLUE_SCROLL_PART_1, 0) ||
+					checkForPart(itemContainer, TORN_CLUE_SCROLL_PART_2, 1) ||
+					checkForPart(itemContainer, TORN_CLUE_SCROLL_PART_3, 2);
 		}
 
 		return false;
 	}
 
-	private boolean checkForPart(final ItemContainerChanged event, ItemManager itemManager, int clueScrollPart, int index)
+	private boolean checkForPart(final ItemContainer itemContainer, int clueScrollPart, int index)
 	{
-		final Stream<Item> items = Arrays.stream(event.getItemContainer().getItems());
-
 		// If we have the part then that step is done
-		if (items.anyMatch(item -> itemManager.getItemComposition(item.getId()).getId() == clueScrollPart))
+		if (itemContainer.contains(clueScrollPart))
 		{
 			final Map.Entry<CrypticClue, Boolean> entry = clueSteps.get(index);
 
@@ -174,26 +165,26 @@ public class ThreeStepCrypticClue extends ClueScroll implements TextClueScroll, 
 	public WorldPoint[] getLocations()
 	{
 		return clueSteps.stream()
-			.filter(s -> !s.getValue())
-			.map(s -> s.getKey().getLocation())
-			.toArray(WorldPoint[]::new);
+				.filter(s -> !s.getValue())
+				.map(s -> s.getKey().getLocation())
+				.toArray(WorldPoint[]::new);
 	}
 
 	@Override
 	public String[] getNpcs()
 	{
 		return clueSteps.stream()
-			.filter(s -> !s.getValue())
-			.map(s -> s.getKey().getNpc())
-			.toArray(String[]::new);
+				.filter(s -> !s.getValue())
+				.map(s -> s.getKey().getNpc())
+				.toArray(String[]::new);
 	}
 
 	@Override
 	public int[] getObjectIds()
 	{
 		return clueSteps.stream()
-			.filter(s -> !s.getValue())
-			.mapToInt(s -> s.getKey().getObjectId())
-			.toArray();
+				.filter(s -> !s.getValue())
+				.mapToInt(s -> s.getKey().getObjectId())
+				.toArray();
 	}
 }

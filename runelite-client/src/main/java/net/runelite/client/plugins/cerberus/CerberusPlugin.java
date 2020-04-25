@@ -50,7 +50,8 @@ import java.util.List;
 		name = "Cerberus",
 		description = "Show what to pray against Cerberus, including special attacks",
 		tags = {"bosses", "combat", "ghosts", "prayer", "pve", "overlay", "souls", "pvm", "cerberus", "slayer"},
-		type = PluginType.SANLITE_USE_AT_OWN_RISK
+		type = PluginType.SANLITE_USE_AT_OWN_RISK,
+		enabledByDefault = false
 )
 @Singleton
 public class CerberusPlugin extends Plugin

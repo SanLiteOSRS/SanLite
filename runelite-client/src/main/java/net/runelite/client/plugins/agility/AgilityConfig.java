@@ -34,10 +34,10 @@ import net.runelite.client.config.Units;
 public interface AgilityConfig extends Config
 {
 	@ConfigItem(
-			keyName = "showClickboxes",
-			name = "Show Clickboxes",
-			description = "Show agility course obstacle clickboxes",
-			position = 0
+		keyName = "showClickboxes",
+		name = "Show Clickboxes",
+		description = "Show agility course obstacle clickboxes",
+		position = 0
 	)
 	default boolean showClickboxes()
 	{
@@ -45,10 +45,10 @@ public interface AgilityConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "showLapCount",
-			name = "Show Lap Count",
-			description = "Enable/disable the lap counter",
-			position = 1
+		keyName = "showLapCount",
+		name = "Show Lap Count",
+		description = "Enable/disable the lap counter",
+		position = 1
 	)
 	default boolean showLapCount()
 	{
@@ -56,10 +56,10 @@ public interface AgilityConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "lapTimeout",
-			name = "Hide Lap Count",
-			description = "Time until the lap counter hides/resets",
-			position = 2
+		keyName = "lapTimeout",
+		name = "Hide Lap Count",
+		description = "Time until the lap counter hides/resets",
+		position = 2
 	)
 	@Units(Units.MINUTES)
 	default int lapTimeout()
@@ -68,10 +68,10 @@ public interface AgilityConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "lapsToLevel",
-			name = "Show Laps Until Goal",
-			description = "Show number of laps remaining until next goal is reached.",
-			position = 3
+		keyName = "lapsToLevel",
+		name = "Show Laps Until Goal",
+		description = "Show number of laps remaining until next goal is reached.",
+		position = 3
 	)
 	default boolean lapsToLevel()
 	{
@@ -79,10 +79,21 @@ public interface AgilityConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "overlayColor",
-			name = "Overlay Color",
-			description = "Color of Agility overlay",
-			position = 4
+		keyName = "lapsPerHour",
+		name = "Show Laps Per Hour",
+		description = "Shows how many laps you can expect to complete per hour.",
+		position = 4
+	)
+	default boolean lapsPerHour()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+		keyName = "overlayColor",
+		name = "Overlay Color",
+		description = "Color of Agility overlay",
+		position = 5
 	)
 	default Color getOverlayColor()
 	{
@@ -90,10 +101,10 @@ public interface AgilityConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "highlightMarks",
-			name = "Highlight Marks of Grace",
-			description = "Enable/disable the highlighting of retrievable Marks of Grace",
-			position = 5
+		keyName = "highlightMarks",
+		name = "Highlight Marks of Grace",
+		description = "Enable/disable the highlighting of retrievable Marks of Grace",
+		position = 6
 	)
 	default boolean highlightMarks()
 	{
@@ -101,10 +112,10 @@ public interface AgilityConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "markHighlight",
-			name = "Mark Highlight Color",
-			description = "Color of highlighted Marks of Grace",
-			position = 6
+		keyName = "markHighlight",
+		name = "Mark Highlight Color",
+		description = "Color of highlighted Marks of Grace",
+		position = 7
 	)
 	default Color getMarkColor()
 	{
@@ -112,10 +123,10 @@ public interface AgilityConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "highlightShortcuts",
-			name = "Highlight Agility Shortcuts",
-			description = "Enable/disable the highlighting of Agility shortcuts",
-			position = 7
+		keyName = "highlightShortcuts",
+		name = "Highlight Agility Shortcuts",
+		description = "Enable/disable the highlighting of Agility shortcuts",
+		position = 8
 	)
 	default boolean highlightShortcuts()
 	{
@@ -123,10 +134,10 @@ public interface AgilityConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "trapOverlay",
-			name = "Show Trap Overlay",
-			description = "Enable/disable the highlighting of traps on Agility courses",
-			position = 8
+		keyName = "trapOverlay",
+		name = "Show Trap Overlay",
+		description = "Enable/disable the highlighting of traps on Agility courses",
+		position = 9
 	)
 	default boolean showTrapOverlay()
 	{
@@ -134,10 +145,10 @@ public interface AgilityConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "trapHighlight",
-			name = "Trap Overlay Color",
-			description = "Color of Agility trap overlay",
-			position = 9
+		keyName = "trapHighlight",
+		name = "Trap Overlay Color",
+		description = "Color of Agility trap overlay",
+		position = 10
 	)
 	default Color getTrapColor()
 	{
@@ -145,10 +156,10 @@ public interface AgilityConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "agilityArenaNotifier",
-			name = "Agility Arena notifier",
-			description = "Notify on ticket location change in Agility Arena",
-			position = 10
+		keyName = "agilityArenaNotifier",
+		name = "Agility Arena notifier",
+		description = "Notify on ticket location change in Agility Arena",
+		position = 11
 	)
 	default boolean notifyAgilityArena()
 	{
@@ -156,10 +167,10 @@ public interface AgilityConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "agilityArenaTimer",
-			name = "Agility Arena timer",
-			description = "Configures whether Agility Arena timer is displayed",
-			position = 11
+		keyName = "agilityArenaTimer",
+		name = "Agility Arena timer",
+		description = "Configures whether Agility Arena timer is displayed",
+		position = 12
 	)
 	default boolean showAgilityArenaTimer()
 	{
@@ -167,10 +178,10 @@ public interface AgilityConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "highlightStick",
-			name = "Highlight Stick",
-			description = "Highlight the retrievable stick in the Werewolf Agility Course",
-			position = 12
+		keyName = "highlightStick",
+		name = "Highlight Stick",
+		description = "Highlight the retrievable stick in the Werewolf Agility Course",
+		position = 13
 	)
 	default boolean highlightStick()
 	{
@@ -178,10 +189,10 @@ public interface AgilityConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "stickHighlightColor",
-			name = "Stick Highlight Color",
-			description = "Color of highlighted stick",
-			position = 13
+		keyName = "stickHighlightColor",
+		name = "Stick Highlight Color",
+		description = "Color of highlighted stick",
+		position = 14
 	)
 	default Color stickHighlightColor()
 	{

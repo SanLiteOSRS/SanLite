@@ -54,10 +54,10 @@ import net.runelite.client.ws.PartyService;
 import net.runelite.client.ws.WSClient;
 
 @PluginDescriptor(
-		name = "Special Attack Counter",
-		description = "Track DWH, Arclight, Darklight, and BGS special attacks used on NPCs",
-		tags = {"combat", "npcs", "overlay"},
-		enabledByDefault = false
+	name = "Special Attack Counter",
+	description = "Track DWH, Arclight, Darklight, and BGS special attacks used on NPCs",
+	tags = {"combat", "npcs", "overlay"},
+	enabledByDefault = false
 )
 @Slf4j
 public class SpecialCounterPlugin extends Plugin
@@ -168,7 +168,7 @@ public class SpecialCounterPlugin extends Plugin
 		Hitsplat hitsplat = hitsplatApplied.getHitsplat();
 		Hitsplat.HitsplatType hitsplatType = hitsplat.getHitsplatType();
 		// Ignore all hitsplats other than mine
-		if ((hitsplatType != Hitsplat.HitsplatType.DAMAGE_ME && hitsplatType != Hitsplat.HitsplatType.BLOCK_ME) || target == client.getLocalPlayer())
+		if (!hitsplat.isMine() || target == client.getLocalPlayer())
 		{
 			return;
 		}
@@ -280,15 +280,11 @@ public class SpecialCounterPlugin extends Plugin
 			return null;
 		}
 
-		Item[] items = equipment.getItems();
-		int weaponIdx = EquipmentInventorySlot.WEAPON.getSlotIdx();
-
-		if (items == null || weaponIdx >= items.length)
+		Item weapon = equipment.getItem(EquipmentInventorySlot.WEAPON.getSlotIdx());
+		if (weapon == null)
 		{
 			return null;
 		}
-
-		Item weapon = items[weaponIdx];
 
 		for (SpecialWeapon specialWeapon : SpecialWeapon.values())
 		{
@@ -307,7 +303,7 @@ public class SpecialCounterPlugin extends Plugin
 		if (counter == null)
 		{
 			counter = new SpecialCounter(itemManager.getImage(specialWeapon.getItemID()), this,
-					hit, specialWeapon);
+				hit, specialWeapon);
 			infoBoxManager.addInfoBox(counter);
 			specialCounter[specialWeapon.ordinal()] = counter;
 		}

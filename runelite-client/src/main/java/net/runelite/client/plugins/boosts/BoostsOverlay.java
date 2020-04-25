@@ -71,9 +71,9 @@ class BoostsOverlay extends OverlayPanel
 		if (nextChange != -1)
 		{
 			panelComponent.getChildren().add(LineComponent.builder()
-					.left("Next + restore in")
-					.right(String.valueOf(plugin.getChangeTime(nextChange)))
-					.build());
+				.left("Next + restore in")
+				.right(String.valueOf(plugin.getChangeTime(nextChange)))
+				.build());
 		}
 
 		nextChange = plugin.getChangeUpTicks();
@@ -81,9 +81,9 @@ class BoostsOverlay extends OverlayPanel
 		if (nextChange != -1)
 		{
 			panelComponent.getChildren().add(LineComponent.builder()
-					.left("Next - restore in")
-					.right(String.valueOf(plugin.getChangeTime(nextChange)))
-					.build());
+				.left("Next - restore in")
+				.right(String.valueOf(plugin.getChangeTime(nextChange)))
+				.build());
 		}
 
 		final Set<Skill> boostedSkills = plugin.getSkillsToDisplay();
@@ -114,14 +114,14 @@ class BoostsOverlay extends OverlayPanel
 				else
 				{
 					str = ColorUtil.prependColorTag(Integer.toString(boosted), strColor)
-							+ ColorUtil.prependColorTag("/" + base, Color.WHITE);
+						+ ColorUtil.prependColorTag("/" + base, Color.WHITE);
 				}
 
 				panelComponent.getChildren().add(LineComponent.builder()
-						.left(skill.getName())
-						.right(str)
-						.rightColor(strColor)
-						.build());
+					.left(skill.getName())
+					.right(str)
+					.rightColor(strColor)
+					.build());
 			}
 		}
 

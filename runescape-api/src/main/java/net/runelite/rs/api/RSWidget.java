@@ -311,6 +311,10 @@ public interface RSWidget extends Widget
 	@Override
 	void setHasListener(boolean hasListener);
 
+	@Import("onOp")
+	@Override
+	Object[] getOnOpListener();
+
 	@Import("onKey")
 	@Override
 	Object[] getOnKeyListener();
@@ -319,9 +323,9 @@ public interface RSWidget extends Widget
 	@Override
 	Object[] getOnLoadListener();
 
-	@Import("onOp")
+	@Import("onInvTransmit")
 	@Override
-	Object[] getOnOp();
+	Object[] getOnInvTransmitListener();
 
 	@Import("onDialogAbort")
 	@Override
@@ -484,10 +488,6 @@ public interface RSWidget extends Widget
 
 	@Import("modelFrameCycle")
 	int getModelFrameCycle();
-
-	@Import("onInvTransmit")
-	@Override
-	Object[] getOnInvTransmit();
 
 	@Import("containsMouse")
 	@Override

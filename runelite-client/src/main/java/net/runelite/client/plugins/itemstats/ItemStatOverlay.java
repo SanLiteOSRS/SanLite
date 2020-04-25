@@ -29,8 +29,12 @@ import com.google.inject.Inject;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
-
-import net.runelite.api.*;
+import net.runelite.api.Client;
+import net.runelite.api.EquipmentInventorySlot;
+import net.runelite.api.InventoryID;
+import net.runelite.api.Item;
+import net.runelite.api.ItemContainer;
+import net.runelite.api.MenuEntry;
 import net.runelite.api.widgets.Widget;
 import net.runelite.api.widgets.WidgetInfo;
 import net.runelite.client.game.ItemManager;
@@ -89,12 +93,12 @@ public class ItemStatOverlay extends Overlay
 		final Widget widget = client.getWidget(group, child);
 
 		if (widget == null
-				|| !(group == WidgetInfo.INVENTORY.getGroupId()
+			|| !(group == WidgetInfo.INVENTORY.getGroupId()
 				|| group == WidgetInfo.EQUIPMENT.getGroupId()
 				|| group == WidgetInfo.EQUIPMENT_INVENTORY_ITEMS_CONTAINER.getGroupId()
 				|| (config.showStatsInBank()
-				&& (group == WidgetInfo.BANK_ITEM_CONTAINER.getGroupId()
-				|| group == WidgetInfo.BANK_INVENTORY_ITEMS_CONTAINER.getGroupId()))))
+					&& (group == WidgetInfo.BANK_ITEM_CONTAINER.getGroupId()
+						|| group == WidgetInfo.BANK_INVENTORY_ITEMS_CONTAINER.getGroupId()))))
 		{
 			return null;
 		}
@@ -110,8 +114,8 @@ public class ItemStatOverlay extends Overlay
 			}
 		}
 		else if (group == WidgetInfo.EQUIPMENT_INVENTORY_ITEMS_CONTAINER.getGroupId()
-				|| group == WidgetInfo.BANK_ITEM_CONTAINER.getGroupId()
-				|| group == WidgetInfo.BANK_INVENTORY_ITEMS_CONTAINER.getGroupId())
+			|| group == WidgetInfo.BANK_ITEM_CONTAINER.getGroupId()
+			|| group == WidgetInfo.BANK_INVENTORY_ITEMS_CONTAINER.getGroupId())
 		{
 			int index = entry.getParam0();
 			if (index > -1)
@@ -195,23 +199,22 @@ public class ItemStatOverlay extends Overlay
 	}
 
 	private String buildStatRow(
-			final String label,
-			final double value,
-			final double diffValue,
-			final boolean inverse,
-			final boolean showPercent)
+		final String label,
+		final double value,
+		final double diffValue,
+		final boolean inverse,
+		final boolean showPercent)
 	{
-
 		return buildStatRow(label, value, diffValue, inverse, showPercent, true);
 	}
 
 	private String buildStatRow(
-			final String label,
-			final double value,
-			final double diffValue,
-			final boolean inverse,
-			final boolean showPercent,
-			final boolean showBase)
+		final String label,
+		final double value,
+		final double diffValue,
+		final boolean inverse,
+		final boolean showPercent,
+		final boolean showBase)
 	{
 		final StringBuilder b = new StringBuilder();
 
@@ -242,16 +245,12 @@ public class ItemStatOverlay extends Overlay
 		ItemContainer c = client.getItemContainer(InventoryID.EQUIPMENT);
 		if (s.isEquipable() && currentEquipment != null && c != null)
 		{
-			final Item[] items = c.getItems();
 			final int slot = currentEquipment.getSlot();
 
-			if (slot != -1 && slot < items.length)
+			final Item item = c.getItem(slot);
+			if (item != null)
 			{
-				final Item item = items[slot];
-				if (item != null)
-				{
-					other = itemManager.getItemStats(item.getId(), false);
-				}
+				other = itemManager.getItemStats(item.getId(), false);
 			}
 
 			if (other == null && slot == EquipmentInventorySlot.WEAPON.getSlotIdx())

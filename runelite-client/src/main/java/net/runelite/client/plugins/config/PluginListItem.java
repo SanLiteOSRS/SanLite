@@ -28,6 +28,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import net.runelite.client.RuneLiteProperties;
 import net.runelite.client.config.Config;
 import net.runelite.client.config.ConfigDescriptor;
 import net.runelite.client.plugins.Plugin;
@@ -54,7 +55,7 @@ import java.util.List;
 @Slf4j
 public class PluginListItem extends JPanel
 {
-	private static final String RUNELITE_WIKI_FORMAT = "https://github.com/runelite/runelite/wiki/%s";
+	private static final String RUNELITE_WIKI_FORMAT = RuneLiteProperties.getWikiLink() + "/%s";
 
 	private static final ImageIcon CONFIG_ICON;
 	private static final ImageIcon CONFIG_ICON_HOVER;

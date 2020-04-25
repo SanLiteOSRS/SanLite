@@ -81,20 +81,19 @@ public class ItemChargePlugin extends Plugin
 	private static final String RING_OF_FORGING_USED_TEXT = "You retrieve a bar of iron.";
 	private static final String RING_OF_FORGING_BREAK_TEXT = "<col=7f007f>Your Ring of Forging has melted.</col>";
 	private static final Pattern AMULET_OF_CHEMISTRY_CHECK_PATTERN = Pattern.compile(
-			"Your amulet of chemistry has (\\d) charges? left\\."
+		"Your amulet of chemistry has (\\d) charges? left\\."
 	);
 	private static final Pattern AMULET_OF_CHEMISTRY_USED_PATTERN = Pattern.compile(
-			"Your amulet of chemistry helps you create a 4-dose potion\\. (?:<col=ff0000>)?It has (\\d|one) charges? left\\."
+		"Your amulet of chemistry helps you create a 4-dose potion\\. (?:<col=ff0000>)?It has (\\d|one) charges? left\\."
 	);
 	private static final String AMULET_OF_CHEMISTRY_BREAK_TEXT = "Your amulet of chemistry helps you create a 4-dose potion. <col=ff0000>It then crumbles to dust.</col>";
 	private static final Pattern AMULET_OF_BOUNTY_CHECK_PATTERN = Pattern.compile(
-			"Your amulet of bounty has (\\d+) charges? left\\."
+		"Your amulet of bounty has (\\d+) charges? left\\."
 	);
 	private static final Pattern AMULET_OF_BOUNTY_USED_PATTERN = Pattern.compile(
-			"Your amulet of bounty saves some seeds for you\\. (?:<col=ff0000>)?It has (\\d) charges? left\\."
+		"Your amulet of bounty saves some seeds for you\\. (?:<col=ff0000>)?It has (\\d) charges? left\\."
 	);
 	private static final String AMULET_OF_BOUNTY_BREAK_TEXT = "Your amulet of bounty saves some seeds for you. <col=ff0000>It then crumbles to dust.</col>";
-
 
 	private static final int MAX_DODGY_CHARGES = 10;
 	private static final int MAX_BINDING_CHARGES = 16;
@@ -213,8 +212,8 @@ public class ItemChargePlugin extends Plugin
 			Matcher dodgyCheckMatcher = DODGY_CHECK_PATTERN.matcher(message);
 			Matcher dodgyProtectMatcher = DODGY_PROTECT_PATTERN.matcher(message);
 			Matcher dodgyBreakMatcher = DODGY_BREAK_PATTERN.matcher(message);
-			Matcher bindingNecklaceCheckMatcher = BINDING_CHECK_PATTERN.matcher(event.getMessage());
-			Matcher bindingNecklaceUsedMatcher = BINDING_USED_PATTERN.matcher(event.getMessage());
+			Matcher bindingNecklaceCheckMatcher = BINDING_CHECK_PATTERN.matcher(message);
+			Matcher bindingNecklaceUsedMatcher = BINDING_USED_PATTERN.matcher(message);
 			Matcher ringOfForgingCheckMatcher = RING_OF_FORGING_CHECK_PATTERN.matcher(message);
 			Matcher amuletOfChemistryCheckMatcher = AMULET_OF_CHEMISTRY_CHECK_PATTERN.matcher(message);
 			Matcher amuletOfChemistryUsedMatcher = AMULET_OF_CHEMISTRY_USED_PATTERN.matcher(message);
@@ -321,9 +320,7 @@ public class ItemChargePlugin extends Plugin
 					return;
 				}
 
-				Item[] items = equipment.getItems();
-				if (EquipmentInventorySlot.RING.getSlotIdx() < items.length
-					&& items[EquipmentInventorySlot.RING.getSlotIdx()].getId() == ItemID.RING_OF_FORGING)
+				if (equipment.contains(ItemID.RING_OF_FORGING))
 				{
 					int charges = Ints.constrainToRange(config.ringOfForging() - 1, 0, MAX_RING_OF_FORGING_CHARGES);
 					updateRingOfForgingCharges(charges);

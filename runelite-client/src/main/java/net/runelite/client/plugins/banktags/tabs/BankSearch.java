@@ -76,7 +76,7 @@ public class BankSearch
 			return;
 		}
 
-		Object[] scriptArgs = bankContainer.getOnInvTransmit();
+		Object[] scriptArgs = bankContainer.getOnInvTransmitListener();
 		if (scriptArgs == null)
 		{
 			return;
