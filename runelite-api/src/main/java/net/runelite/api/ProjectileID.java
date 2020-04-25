@@ -84,6 +84,12 @@ public class ProjectileID
 	public static final int ICE_DEMON_RANGED_AOE = 1324;
 	public static final int ICE_DEMON_ICE_BARRAGE_AOE = 366;
 
+	// Chambers of Xeric - Vanguards
+	public static final int MAGE_VANGUARD_METEOR_TARGETED_AND_AOE = 1331;
+	public static final int RANGED_VANGUARD_ROCKS_1_AOE = 1332;
+	public static final int RANGED_VANGUARD_ROCKS_2_AOE = 1333;
+	public static final int RANGED_VANGUARD_REGULAR_ROCK_ATTACK = 1334;
+
 	// Chambers of Xeric - Vasa Nistirio
 	public static final int VASA_AWAKEN_AOE = 1327;
 	public static final int VASA_RANGED_BOULDER_AOE = 1329;
