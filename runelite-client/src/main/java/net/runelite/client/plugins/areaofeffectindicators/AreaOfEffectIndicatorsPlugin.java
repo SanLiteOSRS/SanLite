@@ -22,7 +22,7 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.client.plugins.aoewarnings;
+package net.runelite.client.plugins.areaofeffectindicators;
 
 import com.google.inject.Provides;
 import lombok.Getter;
@@ -34,7 +34,6 @@ import net.runelite.api.events.GameStateChanged;
 import net.runelite.api.events.ProjectileMoved;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
-import net.runelite.client.game.AreaOfEffectProjectile;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.plugins.PluginType;
@@ -51,25 +50,25 @@ import java.util.concurrent.CopyOnWriteArrayList;
 		type = PluginType.SANLITE_USE_AT_OWN_RISK,
 		enabledByDefault = false
 )
-public class AoeWarningsPlugin extends Plugin
+public class AreaOfEffectIndicatorsPlugin extends Plugin
 {
 
 	@Inject
-	private AoeWarningsConfig config;
+	private AreaOfEffectIndicatorsConfig config;
 
 	@Inject
 	private OverlayManager overlayManager;
 
 	@Inject
-	private AoeWarningsOverlay overlay;
+	private AreaOfEffectIndicatorsOverlay overlay;
 
 	@Getter
 	private List<AreaOfEffectProjectile> areaOfEffectProjectiles;
 
 	@Provides
-	AoeWarningsConfig getConfig(ConfigManager configManager)
+	AreaOfEffectIndicatorsConfig getConfig(ConfigManager configManager)
 	{
-		return configManager.getConfig(AoeWarningsConfig.class);
+		return configManager.getConfig(AreaOfEffectIndicatorsConfig.class);
 	}
 
 	@Override

@@ -22,7 +22,7 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.client.plugins.aoewarnings;
+package net.runelite.client.plugins.areaofeffectindicators;
 
 import net.runelite.client.config.Alpha;
 import net.runelite.client.config.Config;
@@ -32,7 +32,7 @@ import net.runelite.client.config.ConfigItem;
 import java.awt.*;
 
 @ConfigGroup("aoewarnings")
-public interface AoeWarningsConfig extends Config
+public interface AreaOfEffectIndicatorsConfig extends Config
 {
 	@ConfigItem(
 			keyName = "highlightCorporealBeastSplashAttackTiles",

@@ -22,12 +22,11 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.client.plugins.aoewarnings;
+package net.runelite.client.plugins.areaofeffectindicators;
 
 import net.runelite.api.Client;
 import net.runelite.api.Perspective;
 import net.runelite.api.Point;
-import net.runelite.client.game.AreaOfEffectProjectile;
 import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayLayer;
 import net.runelite.client.ui.overlay.OverlayPosition;
@@ -40,16 +39,16 @@ import java.awt.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class AoeWarningsOverlay extends Overlay
+public class AreaOfEffectIndicatorsOverlay extends Overlay
 {
 	private Client client;
-	private AoeWarningsPlugin plugin;
+	private AreaOfEffectIndicatorsPlugin plugin;
 
 	@Inject
-	private AoeWarningsConfig config;
+	private AreaOfEffectIndicatorsConfig config;
 
 	@Inject
-	public AoeWarningsOverlay(Client client, AoeWarningsPlugin plugin)
+	public AreaOfEffectIndicatorsOverlay(Client client, AreaOfEffectIndicatorsPlugin plugin)
 	{
 		setPosition(OverlayPosition.DYNAMIC);
 		setLayer(OverlayLayer.ABOVE_SCENE);
