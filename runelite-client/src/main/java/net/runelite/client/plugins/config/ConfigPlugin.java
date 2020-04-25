@@ -25,7 +25,6 @@
 package net.runelite.client.plugins.config;
 
 import java.awt.image.BufferedImage;
-import java.util.concurrent.ScheduledExecutorService;
 import javax.inject.Inject;
 import javax.swing.SwingUtilities;
 import net.runelite.api.MenuAction;
@@ -62,9 +61,6 @@ public class ConfigPlugin extends Plugin
 	private PluginManager pluginManager;
 
 	@Inject
-	private ScheduledExecutorService executorService;
-
-	@Inject
 	private RuneLiteConfig runeLiteConfig;
 
 	@Inject
@@ -79,7 +75,7 @@ public class ConfigPlugin extends Plugin
 	@Override
 	protected void startUp() throws Exception
 	{
-		configPanel = new ConfigPanel(pluginManager, configManager, executorService, runeLiteConfig, chatColorConfig, colorPickerManager);
+		configPanel = new ConfigPanel(pluginManager, configManager, runeLiteConfig, chatColorConfig, colorPickerManager);
 
 		final BufferedImage icon = ImageUtil.getResourceStreamFromClass(getClass(), "config_icon.png");
 
