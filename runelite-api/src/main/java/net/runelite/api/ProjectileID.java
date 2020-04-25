@@ -35,11 +35,13 @@ public class ProjectileID
 	public static final int GRANITE_CANNONBALL = 1443;
 
 	public static final int TELEKINETIC_SPELL = 143;
+	public static final int SCORPIA_OFFSPRING_RANGED_ATTACK = 663;
 	public static final int ADAMANT_DRAGON_POISON_AOE = 1486;
 	public static final int VETION_LIGHTNING_AOE = 280;
 	public static final int CHAOS_FANATIC_AOE = 551;
 	public static final int DRAKE_BREATH_AOE = 1637;
 	public static final int MARBLE_GARGOYLE_AOE = 1453;
+	public static final int ELVEN_TRAITOR_EXPLOSIVE_ARROW_AOE = 1693;
 
 	// Corporeal Beast
 	public static final int CORPOREAL_BEAST_AOE = 315;
@@ -164,10 +166,15 @@ public class ProjectileID
 	// Alchemical Hydra
 	public static final int ALCHEMICAL_HYDRA_MAGIC = 1662;
 	public static final int ALCHEMICAL_HYDRA_RANGED = 1663;
-	public static final int ALCHEMICAL_HYDRA_POISON = 1644;
+	public static final int ALCHEMICAL_HYDRA_POISON_AOE = 1644;
 	public static final int ALCHEMICAL_HYDRA_LIGHTNING = 1664;
 	public static final int ALCHEMICAL_HYDRA_LIGHTNING_2 = 1665;
 	public static final int ALCHEMICAL_HYDRA_FIRE = 1667;
+
+	// Sarachnis
+	public static final int SPAWN_OF_SARACHNIS_MAGE_ATTACK = 1682;
+	public static final int SARACHNIS_RANGED_ATTACK = 1686;
+	public static final int SARACHNIS_WEB_ATTACK = 1687;
 
 	// The Gauntlet
 	public static final int GAUNTLET_BOSS_MAGIC = 1707;

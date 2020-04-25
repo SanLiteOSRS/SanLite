@@ -45,7 +45,7 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 @PluginDescriptor(
-		name = "Area of Effect Warnings",
+		name = "Area of Effect Indicators",
 		description = "Highlights the target tiles for area of effect projectiles",
 		tags = {"aoe", "projectile", "highlight", "pvm", "overlay", "boss", "encounter", "tile"},
 		type = PluginType.SANLITE_USE_AT_OWN_RISK,
@@ -63,9 +63,6 @@ public class AoeWarningsPlugin extends Plugin
 	@Inject
 	private AoeWarningsOverlay overlay;
 
-	@Inject
-	private AoeWarningsDebugOverlay debugOverlay;
-
 	@Getter
 	private List<AreaOfEffectProjectile> areaOfEffectProjectiles;
 
@@ -79,10 +76,6 @@ public class AoeWarningsPlugin extends Plugin
 	protected void startUp() throws Exception
 	{
 		overlayManager.add(overlay);
-		if (config.showDebugOverlay())
-		{
-			overlayManager.add(debugOverlay);
-		}
 		areaOfEffectProjectiles = new CopyOnWriteArrayList<>();
 	}
 
@@ -90,10 +83,6 @@ public class AoeWarningsPlugin extends Plugin
 	protected void shutDown() throws Exception
 	{
 		overlayManager.remove(overlay);
-		if (config.showDebugOverlay())
-		{
-			overlayManager.remove(debugOverlay);
-		}
 		areaOfEffectProjectiles = null;
 	}
 
@@ -123,6 +112,12 @@ public class AoeWarningsPlugin extends Plugin
 	{
 		switch (projectile.getId())
 		{
+			// Alchemical Hydra
+			case ProjectileID.ALCHEMICAL_HYDRA_POISON_AOE:
+				if (config.highlightAlchemicalHydraPoisonAttack())
+					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 3, targetPoint, config.getAlchemicalHydraPoisonAttackColor()));
+				break;
+
 			// Corporeal Beast
 			case ProjectileID.CORPOREAL_BEAST_AOE:
 				if (config.highlightCorporealBeastAttackTiles())
@@ -245,11 +240,33 @@ public class AoeWarningsPlugin extends Plugin
 				if (config.highlightMaidenBloodSplatAttack())
 					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 1, targetPoint, config.getMaidenBloodSplatAttackColor()));
 				break;
+			case ProjectileID.XARPUS_ACID_BALL_AOE:
+				if (config.highlightXarpusAcidAttack())
+					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 3, targetPoint, config.getXarpusAcidAttackColor()));
+				break;
+			case ProjectileID.VERZIK_SKULL_ATTACK_AOE:
+				if (config.highlightVerzikSkullAttack())
+					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 1, targetPoint, config.getVerzikSkullAttackColor()));
+				break;
+			case ProjectileID.VERZIK_WEB_ATTACK_AOE:
+				if (config.highlightVerzikWebAttack())
+					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 1, targetPoint, config.getVerzikWebAttackColor()));
+				break;
 
 			// Cerberus
 			case ProjectileID.CERBERUS_LAVA_POOL_AOE:
 				if (config.highlightCerberusLavaPool())
 					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 3, targetPoint, config.getCerberusLavaPoolAttackColor()));
+				break;
+
+			// Grotesque Guardians
+			case ProjectileID.DUSK_FALLING_CEILING_DEBRIS_AOE:
+				if (config.highlightDuskFallingCeilingDebris())
+					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 3, targetPoint, config.getDuskFallingCeilingDebrisColor()));
+				break;
+			case ProjectileID.DAWN_FREEZE_ROCK_AOE:
+				if (config.highlightDawnFreezeRock())
+					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 3, targetPoint, config.getDawnFreezeRockColor()));
 				break;
 
 			// Chaos Fanatic
@@ -279,11 +296,17 @@ public class AoeWarningsPlugin extends Plugin
 			// Zulrah
 			case ProjectileID.ZULRAH_POISON_CLOUD_AOE:
 				if (config.highlightZulrahPoisonCloud())
-					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 3, targetPoint, config.getZulrahPoisonCloudsColor()));
+					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 4, targetPoint, config.getZulrahPoisonCloudsColor()));
 				break;
 			case ProjectileID.ZULRAH_SNAKELING_SPAWN_AOE:
 				if (config.highlightZulrahSnakelingSpawn())
 					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 1, targetPoint, config.getZulrahSnakelingSpawnColor()));
+				break;
+
+			// Elven Traitor
+			case ProjectileID.ELVEN_TRAITOR_EXPLOSIVE_ARROW_AOE:
+				if (config.highlightElvenTraitorExplosiveArrow())
+					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 1, targetPoint, config.getElvenTraitorExplosiveArrowColor()));
 				break;
 		}
 	}
