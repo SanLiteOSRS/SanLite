@@ -64,7 +64,8 @@ import net.runelite.client.ui.overlay.OverlayManager;
 	name = "Demonic Gorillas",
 	description = "Count demonic gorilla attacks and display their next possible attack styles",
 	tags = {"combat", "overlay", "pve", "pvm"},
-	type = PluginType.SANLITE_USE_AT_OWN_RISK
+	type = PluginType.SANLITE_USE_AT_OWN_RISK,
+	enabledByDefault = false
 )
 public class DemonicGorillaPlugin extends Plugin
 {
@@ -535,7 +536,7 @@ public class DemonicGorillaPlugin extends Plugin
 		int projectileId = projectile.getId();
 		if (projectileId != ProjectileID.DEMONIC_GORILLA_RANGED &&
 			projectileId != ProjectileID.DEMONIC_GORILLA_MAGIC &&
-			projectileId != ProjectileID.DEMONIC_GORILLA_BOULDER)
+			projectileId != ProjectileID.DEMONIC_GORILLA_BOULDER_AOE)
 		{
 			return;
 		}
@@ -547,7 +548,7 @@ public class DemonicGorillaPlugin extends Plugin
 			return;
 		}
 
-		if (projectileId == ProjectileID.DEMONIC_GORILLA_BOULDER)
+		if (projectileId == ProjectileID.DEMONIC_GORILLA_BOULDER_AOE)
 		{
 			recentBoulders.add(WorldPoint.fromLocal(client, event.getPosition()));
 		}

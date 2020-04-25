@@ -519,17 +519,13 @@ public abstract class RSClientMixin implements RSClient
 			logger.debug("getSkillExperience called for {}!", skill);
 			return (int) getOverallExperience();
 		}
-
-		int idx = skill.ordinal();
-
 		// I'm not certain exactly how needed this is, but if the Skill enum is updated in the future
 		// to hold something else that's not reported it'll save us from an ArrayIndexOutOfBoundsException.
-		if (idx >= experiences.length)
+		else
 		{
-			return -1;
+			int idx = skill.ordinal();
+			return idx >= experiences.length ? -1 : experiences[idx];
 		}
-
-		return experiences[idx];
 	}
 
 	@Inject
@@ -930,47 +926,26 @@ public abstract class RSClientMixin implements RSClient
 		}
 	}
 
-	@FieldHook("experience")
+	@FieldHook("changedSkills")
 	@Inject
-	public static void experiencedChanged(int idx)
+	public static void statChanged(int idx)
 	{
-		Skill[] possibleSkills = Skill.values();
-
-		// We subtract one here because 'Overall' isn't considered a skill that's updated.
-		if (idx < possibleSkills.length - 1)
+		if (idx != -1)
 		{
-			Skill updatedSkill = possibleSkills[idx];
-			StatChanged statChanged = new StatChanged(
-					updatedSkill,
-					client.getSkillExperience(updatedSkill),
-					client.getRealSkillLevel(updatedSkill),
-					client.getBoostedSkillLevel(updatedSkill)
-			);
-			client.getCallbacks().post(statChanged);
-		}
-	}
+			int changedSkillIdx = idx - 1 & 31;
+			int skillIdx = client.getChangedSkills()[changedSkillIdx];
+			Skill[] skills = Skill.values();
 
-	@FieldHook("currentLevels")
-	@Inject
-	public static void boostedSkillLevelsChanged(int idx)
-	{
-		if (idx == 0)
-		{
-			return;
-		}
+			if (skillIdx >= 0 && skillIdx < skills.length - 1)
+			{
+				StatChanged statChanged = new StatChanged(
+						skills[skillIdx],
+						client.getSkillExperiences()[skillIdx],
+						client.getRealSkillLevels()[skillIdx],
+						client.getBoostedSkillLevels()[skillIdx]);
 
-		int changedSkillIdx = idx - 1 & 31;
-		int skillIdx = client.getChangedSkills()[changedSkillIdx];
-		Skill[] skills = Skill.values();
-		if (skillIdx >= 0 && skillIdx < skills.length - 1)
-		{
-			StatChanged statChanged = new StatChanged(
-					skills[skillIdx],
-					client.getSkillExperiences()[skillIdx],
-					client.getRealSkillLevels()[skillIdx],
-					client.getBoostedSkillLevels()[skillIdx]
-			);
-			client.getCallbacks().post(statChanged);
+				client.getCallbacks().post(statChanged);
+			}
 		}
 	}
 

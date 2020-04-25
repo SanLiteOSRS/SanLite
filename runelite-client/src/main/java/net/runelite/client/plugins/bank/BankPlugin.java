@@ -37,60 +37,51 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.inject.Inject;
-import net.runelite.api.Client;
-import static net.runelite.api.Constants.HIGH_ALCHEMY_MULTIPLIER;
-import static net.runelite.api.ScriptID.BANK_PIN_OP;
-import static net.runelite.api.widgets.WidgetInfo.*;
-import static net.runelite.api.widgets.WidgetInfo.BANK_PIN_INSTRUCTION_TEXT;
+import lombok.extern.slf4j.Slf4j;
+import net.runelite.api.*;
 
-import net.runelite.api.InventoryID;
-import net.runelite.api.Item;
+import static net.runelite.api.Constants.HIGH_ALCHEMY_MULTIPLIER;
+
 import net.runelite.api.ItemDefinition;
-import net.runelite.api.ItemContainer;
-import net.runelite.api.ItemID;
-import net.runelite.api.MenuEntry;
-import net.runelite.api.ScriptID;
-import net.runelite.api.VarClientStr;
-import net.runelite.api.Varbits;
 import net.runelite.api.events.ItemContainerChanged;
 import net.runelite.api.events.MenuEntryAdded;
 import net.runelite.api.events.MenuShouldLeftClick;
 import net.runelite.api.events.ScriptCallbackEvent;
 import net.runelite.api.events.ScriptPostFired;
 import net.runelite.api.events.WidgetLoaded;
+import net.runelite.api.widgets.JavaScriptCallback;
 import net.runelite.api.widgets.Widget;
 import net.runelite.api.widgets.WidgetID;
 import net.runelite.api.widgets.WidgetInfo;
+import static net.runelite.api.widgets.WidgetInfo.TO_CHILD;
+import static net.runelite.api.widgets.WidgetInfo.TO_GROUP;
 import net.runelite.client.callback.ClientThread;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
-import net.runelite.client.events.ConfigChanged;
 import net.runelite.client.game.ItemManager;
-import net.runelite.client.input.KeyManager;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
-import net.runelite.client.plugins.PluginType;
 import net.runelite.client.plugins.banktags.tabs.BankSearch;
 import net.runelite.client.util.QuantityFormatter;
 
 @PluginDescriptor(
-	name = "Bank",
-	description = "Modifications to the banking interface",
-	tags = {"grand", "exchange", "high", "alchemy", "prices", "deposit", "pin", "keyboard"},
-	type = PluginType.SANLITE
+		name = "Bank",
+		description = "Modifications to the banking interface",
+		tags = {"grand", "exchange", "high", "alchemy", "prices", "deposit"}
 )
+@Slf4j
 public class BankPlugin extends Plugin
 {
 	private static final List<Varbits> TAB_VARBITS = ImmutableList.of(
-		Varbits.BANK_TAB_ONE_COUNT,
-		Varbits.BANK_TAB_TWO_COUNT,
-		Varbits.BANK_TAB_THREE_COUNT,
-		Varbits.BANK_TAB_FOUR_COUNT,
-		Varbits.BANK_TAB_FIVE_COUNT,
-		Varbits.BANK_TAB_SIX_COUNT,
-		Varbits.BANK_TAB_SEVEN_COUNT,
-		Varbits.BANK_TAB_EIGHT_COUNT,
-		Varbits.BANK_TAB_NINE_COUNT
+			Varbits.BANK_TAB_ONE_COUNT,
+			Varbits.BANK_TAB_TWO_COUNT,
+			Varbits.BANK_TAB_THREE_COUNT,
+			Varbits.BANK_TAB_FOUR_COUNT,
+			Varbits.BANK_TAB_FIVE_COUNT,
+			Varbits.BANK_TAB_SIX_COUNT,
+			Varbits.BANK_TAB_SEVEN_COUNT,
+			Varbits.BANK_TAB_EIGHT_COUNT,
+			Varbits.BANK_TAB_NINE_COUNT
 	);
 
 	private static final String DEPOSIT_WORN = "Deposit worn items";
@@ -100,8 +91,8 @@ public class BankPlugin extends Plugin
 
 	private static final String NUMBER_REGEX = "[0-9]+(\\.[0-9]+)?[kmb]?";
 	private static final Pattern VALUE_SEARCH_PATTERN = Pattern.compile("^(?<mode>ge|ha|alch)?" +
-		" *(((?<op>[<>=]|>=|<=) *(?<num>" + NUMBER_REGEX + "))|" +
-		"((?<num1>" + NUMBER_REGEX + ") *- *(?<num2>" + NUMBER_REGEX + ")))$", Pattern.CASE_INSENSITIVE);
+			" *(((?<op>[<>=]|>=|<=) *(?<num>" + NUMBER_REGEX + "))|" +
+			"((?<num1>" + NUMBER_REGEX + ") *- *(?<num2>" + NUMBER_REGEX + ")))$", Pattern.CASE_INSENSITIVE);
 
 	@Inject
 	private Client client;
@@ -124,32 +115,14 @@ public class BankPlugin extends Plugin
 	@Inject
 	private ContainerCalculation seedVaultCalculation;
 
-	@Inject
-	private BankPinKeyListener bankPinKeyListener;
-
 	private boolean forceRightClickFlag;
 	private Multiset<Integer> itemQuantities; // bank item quantities for bank value search
 	private String searchString;
-
-	private int enteredBankPinInput = -1;
-	private int enterBankPinIdx;
-	private boolean expectBankPinInput;
-
-	@Inject
-	private KeyManager keyManager;
 
 	@Provides
 	BankConfig getConfig(ConfigManager configManager)
 	{
 		return configManager.getConfig(BankConfig.class);
-	}
-
-	@Override
-	protected void startUp()
-	{
-		enteredBankPinInput = -1;
-		enterBankPinIdx = 0;
-		expectBankPinInput = false;
 	}
 
 	@Override
@@ -159,11 +132,6 @@ public class BankPlugin extends Plugin
 		forceRightClickFlag = false;
 		itemQuantities = null;
 		searchString = null;
-
-		enteredBankPinInput = 0;
-		enterBankPinIdx = 0;
-		expectBankPinInput = false;
-		keyManager.unregisterKeyListener(bankPinKeyListener);
 	}
 
 	@Subscribe
@@ -179,8 +147,8 @@ public class BankPlugin extends Plugin
 		for (MenuEntry entry : menuEntries)
 		{
 			if ((entry.getOption().equals(DEPOSIT_WORN) && config.rightClickBankEquip())
-				|| (entry.getOption().equals(DEPOSIT_INVENTORY) && config.rightClickBankInventory())
-				|| (entry.getOption().equals(DEPOSIT_LOOT) && config.rightClickBankLoot()))
+					|| (entry.getOption().equals(DEPOSIT_INVENTORY) && config.rightClickBankInventory())
+					|| (entry.getOption().equals(DEPOSIT_LOOT) && config.rightClickBankLoot()))
 			{
 				event.setForceRightClick(true);
 				return;
@@ -189,28 +157,11 @@ public class BankPlugin extends Plugin
 	}
 
 	@Subscribe
-	private void onConfigChanged(ConfigChanged event)
-	{
-		if (!event.getGroup().equals("bank"))
-		{
-			return;
-		}
-
-		if (!config.keyboardBankPin())
-		{
-			enteredBankPinInput = 0;
-			enterBankPinIdx = 0;
-			expectBankPinInput = false;
-			keyManager.unregisterKeyListener(bankPinKeyListener);
-		}
-	}
-
-	@Subscribe
 	public void onMenuEntryAdded(MenuEntryAdded event)
 	{
 		if ((event.getOption().equals(DEPOSIT_WORN) && config.rightClickBankEquip())
-			|| (event.getOption().equals(DEPOSIT_INVENTORY) && config.rightClickBankInventory())
-			|| (event.getOption().equals(DEPOSIT_LOOT) && config.rightClickBankLoot()))
+				|| (event.getOption().equals(DEPOSIT_INVENTORY) && config.rightClickBankInventory())
+				|| (event.getOption().equals(DEPOSIT_LOOT) && config.rightClickBankLoot()))
 		{
 			forceRightClickFlag = true;
 		}
@@ -248,9 +199,41 @@ public class BankPlugin extends Plugin
 				}
 
 				break;
-			case "bankPin":
-				checkBankPinEvent();
+			case "bankpinButtonSetup":
+			{
+				if (!config.bankPinKeyboard())
+				{
+					return;
+				}
+
+				final int compId = intStack[intStackSize - 2];
+				final int buttonId = intStack[intStackSize - 1];
+				Widget button = client.getWidget(TO_GROUP(compId), TO_CHILD(compId));
+				Widget buttonRect = button.getChild(0);
+
+				final Object[] onOpListener = buttonRect.getOnOpListener();
+				buttonRect.setOnKeyListener((JavaScriptCallback) e ->
+				{
+					int typedChar = e.getTypedKeyChar() - '0';
+					if (typedChar != buttonId)
+					{
+						return;
+					}
+
+					log.debug("Bank pin keypress");
+
+					final String input = client.getVar(VarClientStr.CHATBOX_TYPED_TEXT);
+					clientThread.invokeLater(() ->
+					{
+						// reset chatbox input to avoid pin going to chatbox..
+						client.setVar(VarClientStr.CHATBOX_TYPED_TEXT, input);
+						client.runScript(ScriptID.CHAT_PROMPT_INIT);
+
+						client.runScript(onOpListener);
+					});
+				});
 				break;
+			}
 		}
 	}
 
@@ -310,7 +293,7 @@ public class BankPlugin extends Plugin
 
 			if (config.showHA())
 			{
-				strCurrentTab += "EX: ";
+				strCurrentTab += "GE: ";
 			}
 
 			if (config.showExact())
@@ -503,86 +486,5 @@ public class BankPlugin extends Plugin
 			}
 		}
 		return set;
-	}
-
-	void handleBankPinKeyInput(char charInput)
-	{
-		if (client.getWidget(WidgetID.BANK_PIN_GROUP_ID, BANK_PIN_INSTRUCTION_TEXT.getChildId()) == null
-				|| !client.getWidget(BANK_PIN_INSTRUCTION_TEXT).getText().equals("First click the FIRST digit.")
-				&& !client.getWidget(BANK_PIN_INSTRUCTION_TEXT).getText().equals("Now click the SECOND digit.")
-				&& !client.getWidget(BANK_PIN_INSTRUCTION_TEXT).getText().equals("Time for the THIRD digit.")
-				&& !client.getWidget(BANK_PIN_INSTRUCTION_TEXT).getText().equals("Finally, the FOURTH digit."))
-
-		{
-			enteredBankPinInput = 0;
-			enterBankPinIdx = 0;
-			expectBankPinInput = false;
-			keyManager.unregisterKeyListener(bankPinKeyListener);
-			return;
-		}
-
-		if (!expectBankPinInput)
-		{
-			return;
-		}
-
-		int inputNumber = Character.getNumericValue(charInput);
-
-		// We gotta copy this cause enterIdx changes while the script is executing
-		int oldEnterIdx = enterBankPinIdx;
-
-		// Script 685 will call 653, which in turn will set expectInput to true
-		expectBankPinInput = false;
-		client.runScript(BANK_PIN_OP, inputNumber, enterBankPinIdx, enteredBankPinInput, BANK_PIN_EXIT_BUTTON.getId(),
-				BANK_PIN_FORGOT_BUTTON.getId(), BANK_PIN_1.getId(), BANK_PIN_2.getId(), BANK_PIN_3.getId(),
-				BANK_PIN_4.getId(), BANK_PIN_5.getId(), BANK_PIN_6.getId(), BANK_PIN_7.getId(), BANK_PIN_8.getId(),
-				BANK_PIN_9.getId(), BANK_PIN_10.getId(), BANK_PIN_FIRST_ENTERED.getId(),
-				BANK_PIN_SECOND_ENTERED.getId(), BANK_PIN_THIRD_ENTERED.getId(), BANK_PIN_FOURTH_ENTERED.getId(),
-				BANK_PIN_INSTRUCTION_TEXT.getId());
-
-		if (oldEnterIdx == 0)
-		{
-			enteredBankPinInput = inputNumber * 1000;
-		}
-		else if (oldEnterIdx == 1)
-		{
-			enteredBankPinInput += inputNumber * 100;
-		}
-		else if (oldEnterIdx == 2)
-		{
-			enteredBankPinInput += inputNumber * 10;
-		}
-	}
-
-	private void checkBankPinEvent()
-	{
-		if (!config.keyboardBankPin())
-		{
-			return;
-		}
-
-		int[] intStack = client.getIntStack();
-		int intStackSize = client.getIntStackSize();
-
-		// This'll be anywhere from -1 to 3
-		// 0 = first number, 1 second, etc
-		// Anything other than 0123 means the bank pin interface closes
-		int enterIdx = intStack[intStackSize - 1];
-
-		if (enterIdx < 0 || enterIdx > 3)
-		{
-			keyManager.unregisterKeyListener(bankPinKeyListener);
-			this.enterBankPinIdx = 0;
-			this.enteredBankPinInput = 0;
-			expectBankPinInput = false;
-			return;
-		}
-		else if (enterIdx == 0)
-		{
-			keyManager.registerKeyListener(bankPinKeyListener);
-		}
-
-		this.enterBankPinIdx = enterIdx;
-		expectBankPinInput = true;
 	}
 }

@@ -99,11 +99,6 @@ public class VorkathOverlay extends Overlay
 				renderAcidPhasePath(graphics, vorkath);
 			}
 
-			if (config.highlightFirebombTiles())
-			{
-				renderProjectiles(graphics, vorkath);
-			}
-
 			if (config.highlightZombifiedSpawn())
 			{
 				renderZombifiedSpawnHighlight(graphics, vorkath);
@@ -149,29 +144,6 @@ public class VorkathOverlay extends Overlay
 
 				OverlayUtil.renderPolygon(graphics, Perspective.getCanvasTilePoly(client,
 						acidFreeLocalPoint), config.getAcidPhasePathColor());
-			}
-		}
-	}
-
-	private void renderProjectiles(Graphics2D graphics, Vorkath vorkath)
-	{
-		for (VorkathProjectile projectile : vorkath.getProjectiles())
-		{
-			if (projectile.getTargetPoint() == null)
-			{
-				return;
-			}
-
-			if (projectile.getEndCycle() < client.getGameCycle())
-			{
-				vorkath.getProjectiles().remove(projectile);
-				return;
-			}
-
-			Polygon polygon = Perspective.getCanvasTileAreaPoly(client, projectile.getTargetPoint(), projectile.getTileSize());
-			if (polygon != null)
-			{
-				OverlayUtil.renderPolygon(graphics, polygon, config.getFirebombMarkerColor());
 			}
 		}
 	}

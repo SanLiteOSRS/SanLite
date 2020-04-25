@@ -37,13 +37,13 @@ import net.runelite.client.plugins.gpu.config.UIScalingMode;
 public interface GpuPluginConfig extends Config
 {
 	@Range(
-		max = MAX_DISTANCE
+			max = MAX_DISTANCE
 	)
 	@ConfigItem(
-		keyName = "drawDistance",
-		name = "Draw Distance",
-		description = "Draw distance",
-		position = 1
+			keyName = "drawDistance",
+			name = "Draw Distance",
+			description = "Draw distance",
+			position = 1
 	)
 	default int drawDistance()
 	{
@@ -51,10 +51,10 @@ public interface GpuPluginConfig extends Config
 	}
 
 	@ConfigItem(
-		keyName = "smoothBanding",
-		name = "Remove Color Banding",
-		description = "Smooths out the color banding that is present in the CPU renderer",
-		position = 2
+			keyName = "smoothBanding",
+			name = "Remove Color Banding",
+			description = "Smooths out the color banding that is present in the CPU renderer",
+			position = 2
 	)
 	default boolean smoothBanding()
 	{
@@ -62,10 +62,10 @@ public interface GpuPluginConfig extends Config
 	}
 
 	@ConfigItem(
-		keyName = "antiAliasingMode",
-		name = "Anti Aliasing",
-		description = "Configures the anti-aliasing mode",
-		position = 3
+			keyName = "antiAliasingMode",
+			name = "Anti Aliasing",
+			description = "Configures the anti-aliasing mode",
+			position = 3
 	)
 	default AntiAliasingMode antiAliasingMode()
 	{
@@ -73,10 +73,10 @@ public interface GpuPluginConfig extends Config
 	}
 
 	@ConfigItem(
-		keyName = "uiScalingMode",
-		name = "UI scaling mode",
-		description = "Sampling function to use for the UI in stretched mode",
-		position = 4
+			keyName = "uiScalingMode",
+			name = "UI scaling mode",
+			description = "Sampling function to use for the UI in stretched mode",
+			position = 4
 	)
 	default UIScalingMode uiScalingMode()
 	{
@@ -84,16 +84,27 @@ public interface GpuPluginConfig extends Config
 	}
 
 	@Range(
-		max = MAX_FOG_DEPTH
+			max = MAX_FOG_DEPTH
 	)
 	@ConfigItem(
-		keyName = "fogDepth",
-		name = "Fog depth",
-		description = "Distance from the scene edge the fog starts",
-		position = 5
+			keyName = "fogDepth",
+			name = "Fog depth",
+			description = "Distance from the scene edge the fog starts",
+			position = 5
 	)
 	default int fogDepth()
 	{
 		return 0;
+	}
+
+	@ConfigItem(
+			keyName = "useComputeShaders",
+			name = "Compute Shaders",
+			description = "Offloads face sorting to GPU, enabling extended draw distance. Requires plugin restart.",
+			position = 6
+	)
+	default boolean useComputeShaders()
+	{
+		return true;
 	}
 }

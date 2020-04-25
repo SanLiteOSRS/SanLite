@@ -23,4 +23,10 @@ public interface RSScriptEvent extends ScriptEvent
 
 	@Import("mouseX")
 	int getMouseX();
+
+	@Import("keyTyped")
+	int getTypedKeyCode();
+
+	@Import("keyPressed")
+	int getTypedKeyChar();
 }

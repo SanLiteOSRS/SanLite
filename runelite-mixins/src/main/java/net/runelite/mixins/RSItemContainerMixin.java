@@ -24,12 +24,13 @@
  */
 package net.runelite.mixins;
 
-import net.runelite.api.InventoryID;
-import net.runelite.api.mixins.*;
 import net.runelite.api.Item;
 import net.runelite.api.events.ItemContainerChanged;
+import net.runelite.api.mixins.*;
 import net.runelite.rs.api.RSClient;
 import net.runelite.rs.api.RSItemContainer;
+
+import javax.annotation.Nonnull;
 
 @Mixin(RSItemContainer.class)
 public abstract class RSItemContainerMixin implements RSItemContainer
@@ -37,12 +38,10 @@ public abstract class RSItemContainerMixin implements RSItemContainer
 	@Shadow("client")
 	private static RSClient client;
 
-	@Inject
-	static private int rl$lastCycle;
+	@Shadow("changedItemContainers")
+	private static int[] changedItemContainers;
 
-	@Inject
-	static private int rl$lastContainer;
-
+	@Nonnull
 	@Inject
 	@Override
 	public Item[] getItems()
@@ -63,35 +62,56 @@ public abstract class RSItemContainerMixin implements RSItemContainer
 		return items;
 	}
 
-	@Copy("itemContainerSetItem")
-	static void rs$itemContainerSetItem(int itemContainerId, int index, int itemId, int itemQuantity)
+	@Inject
+	@Override
+	public Item getItem(int slot)
 	{
+		return new Item(getItemIds()[slot], getStackSizes()[slot]);
 	}
 
-	@Replace("itemContainerSetItem")
-	static void rl$itemContainerSetItem(int itemContainerId, int index, int itemId, int itemQuantity)
+	@Inject
+	@Override
+	public boolean contains(int itemId)
 	{
-		rs$itemContainerSetItem(itemContainerId, index, itemId, itemQuantity);
-
-		int cycle = client.getGameCycle();
-
-		if (rl$lastCycle == cycle && rl$lastContainer == itemContainerId)
+		for (int id : getItemIds())
 		{
-			// Limit item container updates to one per cycle per container
-			return;
+			if (id == itemId)
+			{
+				return true;
+			}
 		}
+		return false;
+	}
 
-		InventoryID container = InventoryID.getValue(itemContainerId);
-
-		if (container == null)
+	@Inject
+	@Override
+	public int count(int itemId)
+	{
+		for (Item item : getItems())
 		{
-			return;
+			if (item.getId() == itemId)
+			{
+				return item.getQuantity();
+			}
 		}
+		return -1;
+	}
 
-		rl$lastCycle = cycle;
-		rl$lastContainer = itemContainerId;
+	@FieldHook("changedItemContainers")
+	@Inject
+	public static void onItemContainerUpdate(int idx)
+	{
+		if (idx != -1)
+		{
+			int changedId = idx - 1 & 31;
+			int containerId = changedItemContainers[changedId];
 
-		ItemContainerChanged event = new ItemContainerChanged(itemContainerId, client.getItemContainer(container));
-		client.getCallbacks().postDeferred(event);
+			RSItemContainer changedContainer = (RSItemContainer) client.getItemContainers().get(containerId);
+
+			if (changedContainer != null)
+			{
+				client.getCallbacks().postDeferred(new ItemContainerChanged(containerId, changedContainer));
+			}
+		}
 	}
 }

@@ -1,10 +1,8 @@
-import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
-import net.runelite.mapping.ObfuscatedName;
-import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.mapping.*;
 
 @ObfuscatedName("aw")
-public class class51 implements WorldMapSection {
+@Implements("WorldMapSection3")
+public class WorldMapSection3 implements WorldMapSection {
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
 		signature = "Lkx;"
@@ -64,7 +62,7 @@ public class class51 implements WorldMapSection {
 	)
 	int field395;
 
-	class51() {
+	WorldMapSection3() {
 	}
 
 	@ObfuscatedName("x")

@@ -135,7 +135,7 @@ class Cerberus
 
 	boolean isPoolGraphicsObject(int graphicsID)
 	{
-		return graphicsID == GraphicID.CERBERUS_POOL;
+		return graphicsID == GraphicID.CERBERUS_LAVA_POOL;
 	}
 
 	boolean isValidCerberusAttack(int clientTick)

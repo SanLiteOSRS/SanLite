@@ -74,7 +74,7 @@ public class BoostIndicator extends InfoBox
 	public Color getTextColor()
 	{
 		int boosted = client.getBoostedSkillLevel(skill),
-				base = client.getRealSkillLevel(skill);
+			base = client.getRealSkillLevel(skill);
 
 		if (boosted < base)
 		{

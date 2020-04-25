@@ -28,12 +28,10 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.*;
-import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.coords.WorldPoint;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 @Slf4j
 class Vorkath
@@ -95,10 +93,6 @@ class Vorkath
 
 	@Getter
 	@Setter
-	private List<VorkathProjectile> projectiles;
-
-	@Getter
-	@Setter
 	private List<WorldPoint> acidPhasePathPoints;
 
 	Vorkath(NPC npc)
@@ -112,7 +106,6 @@ class Vorkath
 		this.recentProjectileId = -1;
 		this.remainingAcidPhaseAttacks = -1;
 		this.gameObjects = new ArrayList<>();
-		this.projectiles = new CopyOnWriteArrayList<>();
 		this.acidPhasePathPoints = new ArrayList<>();
 	}
 
@@ -145,9 +138,9 @@ class Vorkath
 				projectileId == ProjectileID.VORKATH_RANGED ||
 				projectileId == ProjectileID.VORKATH_MAGIC ||
 				projectileId == ProjectileID.VORKATH_FIREBOMB ||
-				projectileId == ProjectileID.VORKATH_ACID_PHASE_FIREBALL ||
-				projectileId == ProjectileID.VORKATH_ACID ||
-				projectileId == ProjectileID.VORKATH_SPAWN;
+				projectileId == ProjectileID.VORKATH_ACID_PHASE_FIREBALL_AOE ||
+				projectileId == ProjectileID.VORKATH_ACID_AOE ||
+				projectileId == ProjectileID.VORKATH_ZOMBIFIED_SPAWN_AOE;
 	}
 
 	void resetFight()
@@ -159,7 +152,6 @@ class Vorkath
 		this.nextAttackTick = -100;
 		this.recentProjectileId = -1;
 		this.gameObjects.clear();
-		this.projectiles.clear();
 		log.debug("Vorkath fight reset");
 	}
 
@@ -218,14 +210,6 @@ class Vorkath
 		setNextAttackTick(attackGameTick + (ATTACK_RATE));
 	}
 
-	void updateProjectiles(Projectile projectile, LocalPoint position)
-	{
-		// Update firebomb projectile target point
-		getProjectiles().stream()
-				.filter(x -> projectile.getId() == ProjectileID.VORKATH_FIREBOMB && x.getProjectile() == projectile)
-				.forEach((x) -> x.setTargetPoint(position));
-	}
-
 	void onSpecialAttack(Projectile projectile, VorkathPlugin plugin, int attackGameTick)
 	{
 		int projectileId = projectile.getId();
@@ -247,8 +231,8 @@ class Vorkath
 				// so we wait until the next regular attack to prevent inaccuracies
 				setNextAttackTick(-1);
 				break;
-			case ProjectileID.VORKATH_ACID:
-				if (getRecentProjectileId() == ProjectileID.VORKATH_ACID)
+			case ProjectileID.VORKATH_ACID_AOE:
+				if (getRecentProjectileId() == ProjectileID.VORKATH_ACID_AOE)
 				{
 					return;
 				}
