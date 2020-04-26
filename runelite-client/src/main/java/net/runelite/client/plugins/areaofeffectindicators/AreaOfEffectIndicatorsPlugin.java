@@ -198,8 +198,9 @@ public class AreaOfEffectIndicatorsPlugin extends Plugin
 			case ProjectileID.OLM_ACID_POOL_AOE:
 				if (config.highlightOlmAcidPools())
 					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 1, targetPoint, config.getOlmAcidPoolsColor()));
+				break;
 
-				// Vorkath
+			// Vorkath
 			case ProjectileID.VORKATH_FIREBOMB:
 				if (config.highlightVorkathFirebombTiles())
 					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 3, targetPoint, config.getVorkathFirebombMarkerColor()));
@@ -215,8 +216,9 @@ public class AreaOfEffectIndicatorsPlugin extends Plugin
 			case ProjectileID.VORKATH_ZOMBIFIED_SPAWN_AOE:
 				if (config.highlightVorkathZombifiedSpawnTiles())
 					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 1, targetPoint, config.getVorkathZombifiedSpawnMarkerColor()));
+				break;
 
-				// Galvek
+			// Galvek
 			case ProjectileID.GALVEK_MINE:
 				if (config.highlightGalvekMine())
 					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 3, targetPoint, config.getGalvekMineColor()));
