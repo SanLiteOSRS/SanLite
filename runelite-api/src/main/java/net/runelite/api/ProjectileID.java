@@ -90,6 +90,10 @@ public class ProjectileID
 	public static final int RANGED_VANGUARD_ROCKS_2_AOE = 1333;
 	public static final int RANGED_VANGUARD_REGULAR_ROCK_ATTACK = 1334;
 
+	// Chambers of Xeric - Vespula
+	public static final int VESPULA_TOXIC_ATTACK_TARGETED_AND_AOE = 1364;
+	public static final int VESPULA_ABYSSAL_PORTAL_WAVE_AOE = 1366;
+
 	// Chambers of Xeric - Vasa Nistirio
 	public static final int VASA_AWAKEN_AOE = 1327;
 	public static final int VASA_RANGED_BOULDER_AOE = 1329;

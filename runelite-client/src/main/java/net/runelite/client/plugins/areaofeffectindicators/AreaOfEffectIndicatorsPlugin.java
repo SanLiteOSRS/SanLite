@@ -167,12 +167,13 @@ public class AreaOfEffectIndicatorsPlugin extends Plugin
 					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 3, targetPoint, config.getMageVanguardMeteorColor()));
 				break;
 			case ProjectileID.RANGED_VANGUARD_ROCKS_1_AOE:
-				if (config.highlightRangedVanguardRocks())
-					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 3, targetPoint, config.getRangedVanguardRocksColor()));
-				break;
 			case ProjectileID.RANGED_VANGUARD_ROCKS_2_AOE:
 				if (config.highlightRangedVanguardRocks())
 					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 3, targetPoint, config.getRangedVanguardRocksColor()));
+				break;
+			case ProjectileID.VESPULA_TOXIC_ATTACK_TARGETED_AND_AOE:
+				if (config.highlightVespulaToxicAttack())
+					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 3, targetPoint, config.getVespulaToxicAttackColor()));
 				break;
 			case ProjectileID.VASA_AWAKEN_AOE:
 				if (config.highlightVasaTeleportAttackTiles())

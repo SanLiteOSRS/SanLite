@@ -236,7 +236,7 @@ public interface AreaOfEffectIndicatorsConfig extends Config
 
 	@ConfigItem(
 			keyName = "highlightGuardiansFallingRocks",
-			name = "Highlight gaurdians falling rocks",
+			name = "Highlight guardians falling rocks",
 			description = "Highlight the Guardians falling rock attack",
 			group = "Chambers of Xeric",
 			position = 17
@@ -310,11 +310,36 @@ public interface AreaOfEffectIndicatorsConfig extends Config
 	}
 
 	@ConfigItem(
+			keyName = "highlightVespulaToxicAttack",
+			name = "Highlight Vespula toxic attack",
+			description = "Highlight Vespula's toxic attack target tiles",
+			group = "Chambers of Xeric",
+			position = 23
+	)
+	default boolean highlightVespulaToxicAttack()
+	{
+		return true;
+	}
+
+	@Alpha
+	@ConfigItem(
+			keyName = "vespulaToxicAttackColor",
+			name = "Toxic attack color",
+			description = "Color of Vespula's toxic attack tile marker",
+			group = "Chambers of Xeric",
+			position = 24
+	)
+	default Color getVespulaToxicAttackColor()
+	{
+		return new Color(89, 188, 41);
+	}
+
+	@ConfigItem(
 			keyName = "highlightVasaTeleportAttackTiles",
 			name = "Highlight Vasa teleport attack",
 			description = "Highlight the tiles of Vasa Nistirio's teleport explosion attack",
 			group = "Chambers of Xeric",
-			position = 23
+			position = 25
 	)
 	default boolean highlightVasaTeleportAttackTiles()
 	{
@@ -327,7 +352,7 @@ public interface AreaOfEffectIndicatorsConfig extends Config
 			name = "Teleport attack marker",
 			description = "Color of Vasa Nistirio teleport explosion attack marker",
 			group = "Chambers of Xeric",
-			position = 24
+			position = 26
 	)
 	default Color getVasaTeleportAttackColor()
 	{
@@ -339,7 +364,7 @@ public interface AreaOfEffectIndicatorsConfig extends Config
 			name = "Highlight Vasa boulder attack",
 			description = "Highlight the boulder attack tiles during the Vasa Nistirio encounter",
 			group = "Chambers of Xeric",
-			position = 25
+			position = 27
 	)
 	default boolean highlightVasaBoulderAttackTiles()
 	{
@@ -352,7 +377,7 @@ public interface AreaOfEffectIndicatorsConfig extends Config
 			name = "Boulder attack marker",
 			description = "Color of Vasa Nistirio boulder attack marker",
 			group = "Chambers of Xeric",
-			position = 26
+			position = 28
 	)
 	default Color getVasaBoulderAttackColor()
 	{
@@ -364,7 +389,7 @@ public interface AreaOfEffectIndicatorsConfig extends Config
 			name = "Highlight Olm falling crystals",
 			description = "Highlight the tiles of the falling crystals during the last phase of the Great Olm encounter",
 			group = "Chambers of Xeric",
-			position = 27
+			position = 29
 	)
 	default boolean highlightOlmFallingCrystals()
 	{
@@ -377,7 +402,7 @@ public interface AreaOfEffectIndicatorsConfig extends Config
 			name = "Falling crystal color",
 			description = "Color of the falling crystals tile markers during the last phase of the Great Olm encounter",
 			group = "Chambers of Xeric",
-			position = 28
+			position = 30
 	)
 	default Color getOlmFallingCrystalsColor()
 	{
@@ -389,7 +414,7 @@ public interface AreaOfEffectIndicatorsConfig extends Config
 			name = "Highlight Olm falling spikes",
 			description = "Highlight the tiles of the falling spikes during the Great Olm encounter",
 			group = "Chambers of Xeric",
-			position = 29
+			position = 31
 	)
 	default boolean highlightOlmFallingSpikes()
 	{
@@ -402,7 +427,7 @@ public interface AreaOfEffectIndicatorsConfig extends Config
 			name = "Falling spike color",
 			description = "Color of the falling spike attack tile markers during the Great Olm encounter",
 			group = "Chambers of Xeric",
-			position = 30
+			position = 32
 	)
 	default Color getOlmFallingSpikesColor()
 	{
@@ -414,7 +439,7 @@ public interface AreaOfEffectIndicatorsConfig extends Config
 			name = "Highlight Olm healing pools",
 			description = "Highlight the tiles of healing pools during the Great Olm encounter",
 			group = "Chambers of Xeric",
-			position = 31
+			position = 33
 	)
 	default boolean highlightOlmHealingPools()
 	{
@@ -427,7 +452,7 @@ public interface AreaOfEffectIndicatorsConfig extends Config
 			name = "Healing pools color",
 			description = "Color of the of healing pools tile markers during the Great Olm encounter",
 			group = "Chambers of Xeric",
-			position = 32
+			position = 34
 	)
 	default Color getOlmHealingPoolsColor()
 	{
@@ -439,7 +464,7 @@ public interface AreaOfEffectIndicatorsConfig extends Config
 			name = "Highlight Olm acid pools",
 			description = "Highlight the tiles of acid pools during the Great Olm encounter",
 			group = "Chambers of Xeric",
-			position = 33
+			position = 35
 	)
 	default boolean highlightOlmAcidPools()
 	{
@@ -449,10 +474,10 @@ public interface AreaOfEffectIndicatorsConfig extends Config
 	@Alpha
 	@ConfigItem(
 			keyName = "olmAcidPoolsColor",
-			name = "Healing pools color",
+			name = "Acid pools color",
 			description = "Color of the of acid pools tile markers during the Great Olm encounter",
 			group = "Chambers of Xeric",
-			position = 34
+			position = 36
 	)
 	default Color getOlmAcidPoolsColor()
 	{
