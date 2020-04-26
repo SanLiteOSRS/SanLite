@@ -161,7 +161,7 @@ public interface AreaOfEffectIndicatorsConfig extends Config
 
 	@ConfigItem(
 			keyName = "highlightTektonMeteors",
-			name = "Highlight meteors",
+			name = "Highlight Tekton meteors",
 			description = "Highlight Tekton's meteor attack during the Anvil phase",
 			group = "Chambers of Xeric",
 			position = 11
@@ -174,7 +174,7 @@ public interface AreaOfEffectIndicatorsConfig extends Config
 	@Alpha
 	@ConfigItem(
 			keyName = "tektonMeteorsColor",
-			name = "Meteors color",
+			name = "Tekton meteors color",
 			description = "Color of Tekton's meteor attack tile marker during the Anvil phase",
 			group = "Chambers of Xeric",
 			position = 12
@@ -186,7 +186,7 @@ public interface AreaOfEffectIndicatorsConfig extends Config
 
 	@ConfigItem(
 			keyName = "highlightIceDemonIceBarrage",
-			name = "Highlight ice barrage attack",
+			name = "Highlight Ice Demon barrage",
 			description = "Highlight Ice Demon's ice barrage attack",
 			group = "Chambers of Xeric",
 			position = 13
@@ -211,7 +211,7 @@ public interface AreaOfEffectIndicatorsConfig extends Config
 
 	@ConfigItem(
 			keyName = "highlightIceDemonIceBoulders",
-			name = "Highlight ice boulders",
+			name = "Highlight Ice demon boulders",
 			description = "Highlight Ice Demon's ice boulder attack",
 			group = "Chambers of Xeric",
 			position = 15
@@ -236,7 +236,7 @@ public interface AreaOfEffectIndicatorsConfig extends Config
 
 	@ConfigItem(
 			keyName = "highlightGuardiansFallingRocks",
-			name = "Highlight falling rocks",
+			name = "Highlight guardians falling rocks",
 			description = "Highlight the Guardians falling rock attack",
 			group = "Chambers of Xeric",
 			position = 17
@@ -260,11 +260,86 @@ public interface AreaOfEffectIndicatorsConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "highlightVasaTeleportAttackTiles",
-			name = "Highlight teleport attack tiles",
-			description = "Highlight the tiles of Vasa Nistirio's teleport explosion attack",
+			keyName = "highlightMageVanguardMeteors",
+			name = "Highlight mage vanguard meteors",
+			description = "Highlight the mage Vanguard's falling meteor attack",
 			group = "Chambers of Xeric",
 			position = 19
+	)
+	default boolean highlightMageVanguardMeteors()
+	{
+		return true;
+	}
+
+	@Alpha
+	@ConfigItem(
+			keyName = "mageVanguardMeteorColor",
+			name = "Vanguards meteor color",
+			description = "Color of the mage Vanguard's falling meteor attack tile marker",
+			group = "Chambers of Xeric",
+			position = 20
+	)
+	default Color getMageVanguardMeteorColor()
+	{
+		return new Color(199, 69, 21);
+	}
+
+	@ConfigItem(
+			keyName = "highlightRangedVanguardRocks",
+			name = "Highlight ranged vanguard rocks",
+			description = "Highlight the ranged Vanguard's thrown rocks attack",
+			group = "Chambers of Xeric",
+			position = 21
+	)
+	default boolean highlightRangedVanguardRocks()
+	{
+		return true;
+	}
+
+	@Alpha
+	@ConfigItem(
+			keyName = "rangedVanguardRocksColor",
+			name = "Vanguards rocks color",
+			description = "Color of the ranged Vanguard's thrown rocks attack tile marker",
+			group = "Chambers of Xeric",
+			position = 22
+	)
+	default Color getRangedVanguardRocksColor()
+	{
+		return new Color(83, 50, 33);
+	}
+
+	@ConfigItem(
+			keyName = "highlightVespulaToxicAttack",
+			name = "Highlight Vespula toxic attack",
+			description = "Highlight Vespula's toxic attack target tiles",
+			group = "Chambers of Xeric",
+			position = 23
+	)
+	default boolean highlightVespulaToxicAttack()
+	{
+		return true;
+	}
+
+	@Alpha
+	@ConfigItem(
+			keyName = "vespulaToxicAttackColor",
+			name = "Toxic attack color",
+			description = "Color of Vespula's toxic attack tile marker",
+			group = "Chambers of Xeric",
+			position = 24
+	)
+	default Color getVespulaToxicAttackColor()
+	{
+		return new Color(89, 188, 41);
+	}
+
+	@ConfigItem(
+			keyName = "highlightVasaTeleportAttackTiles",
+			name = "Highlight Vasa teleport attack",
+			description = "Highlight the tiles of Vasa Nistirio's teleport explosion attack",
+			group = "Chambers of Xeric",
+			position = 25
 	)
 	default boolean highlightVasaTeleportAttackTiles()
 	{
@@ -277,7 +352,7 @@ public interface AreaOfEffectIndicatorsConfig extends Config
 			name = "Teleport attack marker",
 			description = "Color of Vasa Nistirio teleport explosion attack marker",
 			group = "Chambers of Xeric",
-			position = 20
+			position = 26
 	)
 	default Color getVasaTeleportAttackColor()
 	{
@@ -286,10 +361,10 @@ public interface AreaOfEffectIndicatorsConfig extends Config
 
 	@ConfigItem(
 			keyName = "highlightVasaBoulderAttackTiles",
-			name = "Highlight boulder attack tiles",
+			name = "Highlight Vasa boulder attack",
 			description = "Highlight the boulder attack tiles during the Vasa Nistirio encounter",
 			group = "Chambers of Xeric",
-			position = 21
+			position = 27
 	)
 	default boolean highlightVasaBoulderAttackTiles()
 	{
@@ -302,7 +377,7 @@ public interface AreaOfEffectIndicatorsConfig extends Config
 			name = "Boulder attack marker",
 			description = "Color of Vasa Nistirio boulder attack marker",
 			group = "Chambers of Xeric",
-			position = 22
+			position = 28
 	)
 	default Color getVasaBoulderAttackColor()
 	{
@@ -311,10 +386,10 @@ public interface AreaOfEffectIndicatorsConfig extends Config
 
 	@ConfigItem(
 			keyName = "highlightOlmFallingCrystals",
-			name = "Highlight falling crystals",
+			name = "Highlight Olm falling crystals",
 			description = "Highlight the tiles of the falling crystals during the last phase of the Great Olm encounter",
 			group = "Chambers of Xeric",
-			position = 23
+			position = 29
 	)
 	default boolean highlightOlmFallingCrystals()
 	{
@@ -327,7 +402,7 @@ public interface AreaOfEffectIndicatorsConfig extends Config
 			name = "Falling crystal color",
 			description = "Color of the falling crystals tile markers during the last phase of the Great Olm encounter",
 			group = "Chambers of Xeric",
-			position = 24
+			position = 30
 	)
 	default Color getOlmFallingCrystalsColor()
 	{
@@ -336,10 +411,10 @@ public interface AreaOfEffectIndicatorsConfig extends Config
 
 	@ConfigItem(
 			keyName = "highlightOlmFallingSpikes",
-			name = "Highlight falling spikes",
+			name = "Highlight Olm falling spikes",
 			description = "Highlight the tiles of the falling spikes during the Great Olm encounter",
 			group = "Chambers of Xeric",
-			position = 25
+			position = 31
 	)
 	default boolean highlightOlmFallingSpikes()
 	{
@@ -352,7 +427,7 @@ public interface AreaOfEffectIndicatorsConfig extends Config
 			name = "Falling spike color",
 			description = "Color of the falling spike attack tile markers during the Great Olm encounter",
 			group = "Chambers of Xeric",
-			position = 26
+			position = 32
 	)
 	default Color getOlmFallingSpikesColor()
 	{
@@ -361,10 +436,10 @@ public interface AreaOfEffectIndicatorsConfig extends Config
 
 	@ConfigItem(
 			keyName = "highlightOlmHealingPools",
-			name = "Highlight healing pools",
+			name = "Highlight Olm healing pools",
 			description = "Highlight the tiles of healing pools during the Great Olm encounter",
 			group = "Chambers of Xeric",
-			position = 27
+			position = 33
 	)
 	default boolean highlightOlmHealingPools()
 	{
@@ -377,7 +452,7 @@ public interface AreaOfEffectIndicatorsConfig extends Config
 			name = "Healing pools color",
 			description = "Color of the of healing pools tile markers during the Great Olm encounter",
 			group = "Chambers of Xeric",
-			position = 28
+			position = 34
 	)
 	default Color getOlmHealingPoolsColor()
 	{
@@ -386,10 +461,10 @@ public interface AreaOfEffectIndicatorsConfig extends Config
 
 	@ConfigItem(
 			keyName = "highlightOlmAcidPools",
-			name = "Highlight acid pools",
+			name = "Highlight Olm acid pools",
 			description = "Highlight the tiles of acid pools during the Great Olm encounter",
 			group = "Chambers of Xeric",
-			position = 29
+			position = 35
 	)
 	default boolean highlightOlmAcidPools()
 	{
@@ -399,10 +474,10 @@ public interface AreaOfEffectIndicatorsConfig extends Config
 	@Alpha
 	@ConfigItem(
 			keyName = "olmAcidPoolsColor",
-			name = "Healing pools color",
+			name = "Acid pools color",
 			description = "Color of the of acid pools tile markers during the Great Olm encounter",
 			group = "Chambers of Xeric",
-			position = 30
+			position = 36
 	)
 	default Color getOlmAcidPoolsColor()
 	{
