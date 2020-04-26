@@ -162,6 +162,19 @@ public class AreaOfEffectIndicatorsPlugin extends Plugin
 				if (config.highlightGuardiansFallingRocks())
 					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 3, targetPoint, config.getGuardiansFallingRocksColor()));
 				break;
+			case ProjectileID.MAGE_VANGUARD_METEOR_TARGETED_AND_AOE:
+				if (config.highlightMageVanguardMeteors())
+					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 3, targetPoint, config.getMageVanguardMeteorColor()));
+				break;
+			case ProjectileID.RANGED_VANGUARD_ROCKS_1_AOE:
+			case ProjectileID.RANGED_VANGUARD_ROCKS_2_AOE:
+				if (config.highlightRangedVanguardRocks())
+					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 3, targetPoint, config.getRangedVanguardRocksColor()));
+				break;
+			case ProjectileID.VESPULA_TOXIC_ATTACK_TARGETED_AND_AOE:
+				if (config.highlightVespulaToxicAttack())
+					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 3, targetPoint, config.getVespulaToxicAttackColor()));
+				break;
 			case ProjectileID.VASA_AWAKEN_AOE:
 				if (config.highlightVasaTeleportAttackTiles())
 					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 3, targetPoint, config.getVasaTeleportAttackColor()));
@@ -186,8 +199,9 @@ public class AreaOfEffectIndicatorsPlugin extends Plugin
 			case ProjectileID.OLM_ACID_POOL_AOE:
 				if (config.highlightOlmAcidPools())
 					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 1, targetPoint, config.getOlmAcidPoolsColor()));
+				break;
 
-				// Vorkath
+			// Vorkath
 			case ProjectileID.VORKATH_FIREBOMB:
 				if (config.highlightVorkathFirebombTiles())
 					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 3, targetPoint, config.getVorkathFirebombMarkerColor()));
@@ -203,8 +217,9 @@ public class AreaOfEffectIndicatorsPlugin extends Plugin
 			case ProjectileID.VORKATH_ZOMBIFIED_SPAWN_AOE:
 				if (config.highlightVorkathZombifiedSpawnTiles())
 					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 1, targetPoint, config.getVorkathZombifiedSpawnMarkerColor()));
+				break;
 
-				// Galvek
+			// Galvek
 			case ProjectileID.GALVEK_MINE:
 				if (config.highlightGalvekMine())
 					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 3, targetPoint, config.getGalvekMineColor()));
