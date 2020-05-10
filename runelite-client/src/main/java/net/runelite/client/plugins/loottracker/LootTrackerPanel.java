@@ -35,6 +35,7 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
 import javax.swing.BorderFactory;
@@ -84,11 +85,11 @@ class LootTrackerPanel extends PluginPanel
 	private static final ImageIcon EXPAND_ICON;
 
 	private static final String HTML_LABEL_TEMPLATE =
-			"<html><body style='color:%s'>%s<span style='color:white'>%s</span></body></html>";
+		"<html><body style='color:%s'>%s<span style='color:white'>%s</span></body></html>";
 	private static final String SYNC_RESET_ALL_WARNING_TEXT =
-			"This will permanently delete the current loot from both the client and the RuneLite website.";
+		"This will permanently delete the current loot from both the client and the RuneLite website.";
 	private static final String NO_SYNC_RESET_ALL_WARNING_TEXT =
-			"This will permanently delete the current loot from the client.";
+		"This will permanently delete the current loot from the client.";
 
 	// When there is no loot, display this
 	private final PluginErrorPanel errorPanel = new PluginErrorPanel();
@@ -252,8 +253,8 @@ class LootTrackerPanel extends PluginPanel
 
 		// Create panel that will contain overall data
 		overallPanel.setBorder(BorderFactory.createCompoundBorder(
-				BorderFactory.createMatteBorder(5, 0, 0, 0, ColorScheme.DARK_GRAY_COLOR),
-				BorderFactory.createEmptyBorder(8, 10, 8, 10)
+			BorderFactory.createMatteBorder(5, 0, 0, 0, ColorScheme.DARK_GRAY_COLOR),
+			BorderFactory.createEmptyBorder(8, 10, 8, 10)
 		));
 		overallPanel.setBackground(ColorScheme.DARKER_GRAY_COLOR);
 		overallPanel.setLayout(new BorderLayout());
@@ -278,9 +279,9 @@ class LootTrackerPanel extends PluginPanel
 			final LootTrackerClient client = plugin.getLootTrackerClient();
 			final boolean syncLoot = client != null && config.syncPanel();
 			final int result = JOptionPane.showOptionDialog(overallPanel,
-					syncLoot ? SYNC_RESET_ALL_WARNING_TEXT : NO_SYNC_RESET_ALL_WARNING_TEXT,
-					"Are you sure?", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE,
-					null, new String[]{"Yes", "No"}, "No");
+				syncLoot ? SYNC_RESET_ALL_WARNING_TEXT : NO_SYNC_RESET_ALL_WARNING_TEXT,
+				"Are you sure?", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE,
+				null, new String[]{"Yes", "No"}, "No");
 
 			if (result != JOptionPane.YES_OPTION)
 			{
@@ -327,8 +328,8 @@ class LootTrackerPanel extends PluginPanel
 	private boolean isAllCollapsed()
 	{
 		return boxes.stream()
-				.filter(LootTrackerBox::isCollapsed)
-				.count() == boxes.size();
+			.filter(LootTrackerBox::isCollapsed)
+			.count() == boxes.size();
 	}
 
 	void loadHeaderIcon(BufferedImage img)
@@ -354,6 +355,11 @@ class LootTrackerPanel extends PluginPanel
 		}
 		final LootTrackerRecord record = new LootTrackerRecord(eventName, subTitle, type, items, 1);
 		sessionRecords.add(record);
+
+		if (hideIgnoredItems && plugin.isEventIgnored(eventName))
+		{
+			return;
+		}
 
 		LootTrackerBox box = buildBox(record);
 		if (box != null)
@@ -450,15 +456,12 @@ class LootTrackerPanel extends PluginPanel
 		}
 		else
 		{
-			int start = 0;
-			if (sessionRecords.size() > MAX_LOOT_BOXES)
-			{
-				start = sessionRecords.size() - MAX_LOOT_BOXES;
-			}
-			for (int i = start; i < sessionRecords.size(); i++)
-			{
-				buildBox(sessionRecords.get(i));
-			}
+			sessionRecords.stream()
+				.sorted(Collections.reverseOrder())
+				// filter records prior to limiting so that it is limited to the correct amount
+				.filter(r -> !hideIgnoredItems || !plugin.isEventIgnored(r.getTitle()))
+				.limit(MAX_LOOT_BOXES)
+				.forEach(this::buildBox);
 		}
 
 		boxes.forEach(LootTrackerBox::rebuild);
@@ -476,6 +479,12 @@ class LootTrackerPanel extends PluginPanel
 	{
 		// If this record is not part of current view, return
 		if (!record.matches(currentView, currentType))
+		{
+			return null;
+		}
+
+		final boolean isIgnored = plugin.isEventIgnored(record.getTitle());
+		if (hideIgnoredItems && isIgnored)
 		{
 			return null;
 		}
@@ -500,13 +509,17 @@ class LootTrackerPanel extends PluginPanel
 
 		// Create box
 		final LootTrackerBox box = new LootTrackerBox(itemManager, record.getTitle(), record.getType(), record.getSubTitle(),
-				hideIgnoredItems, config.priceType(), config.showPriceType(), plugin::toggleItem);
+			hideIgnoredItems, config.priceType(), config.showPriceType(), plugin::toggleItem, plugin::toggleEvent, isIgnored);
 		box.addKill(record);
 
-		// Create popup menu
-		final JPopupMenu popupMenu = new JPopupMenu();
-		popupMenu.setBorder(new EmptyBorder(5, 5, 5, 5));
-		box.setComponentPopupMenu(popupMenu);
+		// Use the existing popup menu or create a new one
+		JPopupMenu popupMenu = box.getComponentPopupMenu();
+		if (popupMenu == null)
+		{
+			popupMenu = new JPopupMenu();
+			popupMenu.setBorder(new EmptyBorder(5, 5, 5, 5));
+			box.setComponentPopupMenu(popupMenu);
+		}
 
 		// Create collapse event
 		box.addMouseListener(new MouseAdapter()
@@ -534,10 +547,10 @@ class LootTrackerPanel extends PluginPanel
 		reset.addActionListener(e ->
 		{
 			Predicate<LootTrackerRecord> match = groupLoot
-					// With grouped loot, remove any record with this title
-					? r -> r.matches(record.getTitle(), record.getType())
-					// Otherwise remove specifically this entry
-					: r -> r.equals(record);
+				// With grouped loot, remove any record with this title
+				? r -> r.matches(record.getTitle(), record.getType())
+				// Otherwise remove specifically this entry
+				: r -> r.equals(record);
 			sessionRecords.removeIf(match);
 			aggregateRecords.removeIf(match);
 			boxes.remove(box);
@@ -593,6 +606,11 @@ class LootTrackerPanel extends PluginPanel
 				continue;
 			}
 
+			if (hideIgnoredItems && plugin.isEventIgnored(record.getTitle()))
+			{
+				continue;
+			}
+
 			int present = record.getItems().length;
 
 			for (LootTrackerItem item : record.getItems())
@@ -622,7 +640,7 @@ class LootTrackerPanel extends PluginPanel
 		overallKillsLabel.setText(htmlLabel("Total count: ", overallKills));
 		overallGpLabel.setText(htmlLabel("Total " + priceType + "value: ", config.priceType() == LootTrackerPriceType.HIGH_ALCHEMY ? overallHa : overallGe));
 		overallGpLabel.setToolTipText("<html>Total GE price: " + QuantityFormatter.formatNumber(overallGe)
-				+ "<br>Total HA price: " + QuantityFormatter.formatNumber(overallHa) + "</html>");
+			+ "<br>Total HA price: " + QuantityFormatter.formatNumber(overallHa) + "</html>");
 		updateCollapseText();
 	}
 
