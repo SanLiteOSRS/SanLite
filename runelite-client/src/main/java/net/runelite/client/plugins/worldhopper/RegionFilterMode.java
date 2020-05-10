@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, TheStonedTurtle <https://github.com/TheStonedTurtle>
+ * Copyright (c) 2019, Liam Edwards <http://github.com/Spedwards>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,45 +22,37 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.client.plugins.chathistory;
+package net.runelite.client.plugins.worldhopper;
 
-import net.runelite.client.config.Config;
-import net.runelite.client.config.ConfigGroup;
-import net.runelite.client.config.ConfigItem;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import net.runelite.http.api.worlds.WorldRegion;
 
-@ConfigGroup("chathistory")
-public interface ChatHistoryConfig extends Config
+@NoArgsConstructor
+@AllArgsConstructor
+public enum RegionFilterMode
 {
-	@ConfigItem(
-		keyName = "retainChatHistory",
-		name = "Retain Chat History",
-		description = "Retains chat history when logging in/out or world hopping",
-		position = 0
-	)
-	default boolean retainChatHistory()
-	{
-		return true;
-	}
+	NONE,
+	AUSTRALIA(WorldRegion.AUSTRALIA),
+	GERMANY(WorldRegion.GERMANY),
+	UNITED_KINGDOM(WorldRegion.UNITED_KINGDOM)
+			{
+				@Override
+				public String toString()
+				{
+					return "U.K.";
+				}
+			},
+	UNITED_STATES(WorldRegion.UNITED_STATES_OF_AMERICA)
+			{
+				@Override
+				public String toString()
+				{
+					return "USA";
+				}
+			};
 
-	@ConfigItem(
-		keyName = "pmTargetCycling",
-		name = "PM Target Cycling",
-		description = "Pressing Tab while sending a PM will cycle the target username based on PM history",
-		position = 1
-	)
-	default boolean pmTargetCycling()
-	{
-		return true;
-	}
-
-	@ConfigItem(
-			keyName = "copyToClipboard",
-			name = "Copy to clipboard",
-			description = "Add option on chat messages to copy them to clipboard",
-			position = 2
-	)
-	default boolean copyToClipboard()
-	{
-		return true;
-	}
+	@Getter
+	private WorldRegion region;
 }
