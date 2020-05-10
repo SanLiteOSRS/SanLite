@@ -212,10 +212,10 @@ class Cerberus
 
 		int lastRatio = 0;
 		int lastHealthScale = 0;
-		if (cerberus.getHealth() > 0)
+		if (cerberus.getHealthScale() > 0)
 		{
 			lastRatio = cerberus.getHealthRatio();
-			lastHealthScale = cerberus.getHealth();
+			lastHealthScale = cerberus.getHealthScale();
 
 		}
 
