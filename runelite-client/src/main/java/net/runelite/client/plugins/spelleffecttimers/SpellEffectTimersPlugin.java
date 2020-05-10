@@ -411,8 +411,8 @@ public class SpellEffectTimersPlugin extends Plugin
 				{
 					new ArrayList<>(spellEffects).stream()
 							.filter(x -> x.getActor().equals(entry.getKey()) &&
-									x.getRemainingTime() < (0.9 * x.spellDurationToSpellTime(
-											x.getSpellEffect().getSpellLength())))
+									x.getRemainingTime() < (0.9 * x.spellDurationToSpellTime(x.getSpellEffect().getSpellLength())) &&
+									x.getSpellEffect().getSpellType().equals(SpellEffectType.FREEZE))
 							.forEach((spellEffect) -> spellEffects.remove(spellEffect));
 					frozenActors.remove(entry.getKey());
 				});

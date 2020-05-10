@@ -66,7 +66,13 @@ public abstract class RSItemContainerMixin implements RSItemContainer
 	@Override
 	public Item getItem(int slot)
 	{
-		return new Item(getItemIds()[slot], getStackSizes()[slot]);
+		int[] itemIds = getItemIds();
+		if (slot >= 0 && slot < itemIds.length && itemIds[slot] != -1)
+		{
+			return new Item(itemIds[slot], getStackSizes()[slot]);
+		}
+
+		return null;
 	}
 
 	@Inject
@@ -87,14 +93,26 @@ public abstract class RSItemContainerMixin implements RSItemContainer
 	@Override
 	public int count(int itemId)
 	{
-		for (Item item : getItems())
+		int[] itemIds = getItemIds();
+		int count = 0;
+
+		for (int i = 0; i < itemIds.length; i++)
 		{
-			if (item.getId() == itemId)
+			if (itemIds[i] != itemId)
 			{
-				return item.getQuantity();
+				continue;
 			}
+
+			int stack = getStackSizes()[i];
+			if (stack > 1)
+			{
+				return stack;
+			}
+
+			count++;
 		}
-		return -1;
+
+		return count;
 	}
 
 	@FieldHook("changedItemContainers")
