@@ -26,8 +26,9 @@
  */
 package net.runelite.client.plugins.banktags;
 
-import com.google.inject.Provides;
+import com.google.common.collect.Lists;
 import com.google.common.primitives.Shorts;
+import com.google.inject.Provides;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseWheelEvent;
 import java.util.ArrayList;
@@ -40,16 +41,24 @@ import java.util.function.Consumer;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import javax.inject.Inject;
-
-import net.runelite.api.*;
+import net.runelite.api.Client;
+import net.runelite.api.InventoryID;
+import net.runelite.api.Item;
+import net.runelite.api.ItemDefinition;
+import net.runelite.api.ItemContainer;
+import net.runelite.api.MenuAction;
+import net.runelite.api.MenuEntry;
+import net.runelite.api.VarClientInt;
+import net.runelite.api.VarClientStr;
+import net.runelite.client.events.ConfigChanged;
 import net.runelite.api.events.DraggingWidgetChanged;
 import net.runelite.api.events.FocusChanged;
 import net.runelite.api.events.GameTick;
+import net.runelite.api.events.GrandExchangeSearched;
 import net.runelite.api.events.MenuEntryAdded;
 import net.runelite.api.events.MenuOptionClicked;
 import net.runelite.api.events.ScriptCallbackEvent;
 import net.runelite.api.events.WidgetLoaded;
-import net.runelite.api.events.GrandExchangeSearched;
 import net.runelite.api.vars.InputType;
 import net.runelite.api.widgets.Widget;
 import net.runelite.api.widgets.WidgetID;
@@ -57,7 +66,6 @@ import net.runelite.api.widgets.WidgetInfo;
 import net.runelite.client.callback.ClientThread;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
-import net.runelite.client.events.ConfigChanged;
 import net.runelite.client.game.ItemManager;
 import net.runelite.client.game.ItemVariationMapping;
 import net.runelite.client.game.SpriteManager;
@@ -88,6 +96,7 @@ public class BankTagsPlugin extends Plugin implements MouseWheelListener, KeyLis
 	public static final String TAG_SEARCH = "tag:";
 	private static final String EDIT_TAGS_MENU_OPTION = "Edit-tags";
 	public static final String ICON_SEARCH = "icon_";
+	public static final String TAG_TABS_CONFIG = "tagtabs";
 	public static final String VAR_TAG_SUFFIX = "*";
 
 	private static final int MAX_RESULT_COUNT = 250;
@@ -142,6 +151,36 @@ public class BankTagsPlugin extends Plugin implements MouseWheelListener, KeyLis
 	{
 		return configManager.getConfig(BankTagsConfig.class);
 	}
+
+	@Override
+	public void resetConfiguration()
+	{
+		List<String> extraKeys = Lists.newArrayList(
+			CONFIG_GROUP + "." + TagManager.ITEM_KEY_PREFIX,
+			CONFIG_GROUP + "." + ICON_SEARCH,
+			CONFIG_GROUP + "." + TAG_TABS_CONFIG
+		);
+
+		for (String prefix : extraKeys)
+		{
+			List<String> keys = configManager.getConfigurationKeys(prefix);
+			for (String key : keys)
+			{
+				String[] str = key.split("\\.", 2);
+				if (str.length == 2)
+				{
+					configManager.unsetConfiguration(str[0], str[1]);
+				}
+			}
+		}
+
+		clientThread.invokeLater(() ->
+		{
+			tabInterface.destroy();
+			tabInterface.init();
+		});
+	}
+
 
 	@Override
 	public void startUp()
@@ -213,7 +252,6 @@ public class BankTagsPlugin extends Plugin implements MouseWheelListener, KeyLis
 		mouseManager.unregisterMouseWheelListener(this);
 		clientThread.invokeLater(tabInterface::destroy);
 		spriteManager.removeSpriteOverrides(TabSprites.values());
-
 		shiftPressed = false;
 	}
 
@@ -230,20 +268,19 @@ public class BankTagsPlugin extends Plugin implements MouseWheelListener, KeyLis
 
 		final String tag = input.substring(TAG_SEARCH.length()).trim();
 		final Set<Integer> ids = tagManager.getItemsForTag(tag)
-				.stream()
-				.mapToInt(Math::abs)
-				.mapToObj(ItemVariationMapping::getVariations)
-				.flatMap(Collection::stream)
-				.distinct()
-				.filter(i -> itemManager.getItemComposition(i).isTradeable())
-				.limit(MAX_RESULT_COUNT)
-				.collect(Collectors.toCollection(TreeSet::new));
+			.stream()
+			.mapToInt(Math::abs)
+			.mapToObj(ItemVariationMapping::getVariations)
+			.flatMap(Collection::stream)
+			.distinct()
+			.filter(i -> itemManager.getItemComposition(i).isTradeable())
+			.limit(MAX_RESULT_COUNT)
+			.collect(Collectors.toCollection(TreeSet::new));
 
 		client.setGeSearchResultIndex(0);
 		client.setGeSearchResultCount(ids.size());
 		client.setGeSearchResultIds(Shorts.toArray(ids));
 	}
-
 
 	@Subscribe
 	public void onScriptCallbackEvent(ScriptCallbackEvent event)
@@ -407,7 +444,7 @@ public class BankTagsPlugin extends Plugin implements MouseWheelListener, KeyLis
 	@Subscribe
 	public void onConfigChanged(ConfigChanged configChanged)
 	{
-		if (configChanged.getGroup().equals("banktags") && configChanged.getKey().equals("useTabs"))
+		if (configChanged.getGroup().equals(CONFIG_GROUP) && configChanged.getKey().equals("useTabs"))
 		{
 			if (config.tabs())
 			{

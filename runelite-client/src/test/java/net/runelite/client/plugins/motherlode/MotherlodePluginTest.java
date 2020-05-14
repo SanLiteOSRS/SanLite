@@ -116,16 +116,16 @@ public class MotherlodePluginTest
 		// Create before inventory
 		ItemContainer inventory = mock(ItemContainer.class);
 		Item[] items = new Item[]{
-				item(ItemID.RUNITE_ORE, 1),
-				item(ItemID.GOLDEN_NUGGET, 4),
-				item(ItemID.COAL, 1),
-				item(ItemID.COAL, 1),
-				item(ItemID.COAL, 1),
-				item(ItemID.COAL, 1),
+			item(ItemID.RUNITE_ORE, 1),
+			item(ItemID.GOLDEN_NUGGET, 4),
+			item(ItemID.COAL, 1),
+			item(ItemID.COAL, 1),
+			item(ItemID.COAL, 1),
+			item(ItemID.COAL, 1),
 
 		};
 		when(inventory.getItems())
-				.thenReturn(items);
+			.thenReturn(items);
 		when(client.getItemContainer(InventoryID.INVENTORY)).thenReturn(inventory);
 
 		// Withdraw 20
@@ -135,20 +135,20 @@ public class MotherlodePluginTest
 		inventory = mock(ItemContainer.class);
 		// +1 rune, +4 nugget, +2 coal, +1 addy
 		items = new Item[]{
-				item(ItemID.RUNITE_ORE, 1),
-				item(ItemID.RUNITE_ORE, 1),
-				item(ItemID.GOLDEN_NUGGET, 8),
-				item(ItemID.COAL, 1),
-				item(ItemID.COAL, 1),
-				item(ItemID.COAL, 1),
-				item(ItemID.COAL, 1),
-				item(ItemID.COAL, 1),
-				item(ItemID.COAL, 1),
-				item(ItemID.ADAMANTITE_ORE, 1),
+			item(ItemID.RUNITE_ORE, 1),
+			item(ItemID.RUNITE_ORE, 1),
+			item(ItemID.GOLDEN_NUGGET, 8),
+			item(ItemID.COAL, 1),
+			item(ItemID.COAL, 1),
+			item(ItemID.COAL, 1),
+			item(ItemID.COAL, 1),
+			item(ItemID.COAL, 1),
+			item(ItemID.COAL, 1),
+			item(ItemID.ADAMANTITE_ORE, 1),
 
 		};
 		when(inventory.getItems())
-				.thenReturn(items);
+			.thenReturn(items);
 		when(client.getItemContainer(InventoryID.INVENTORY)).thenReturn(inventory);
 
 		// Trigger comparison

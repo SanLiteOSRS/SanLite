@@ -39,8 +39,6 @@ import java.awt.LayoutManager;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.TrayIcon;
-import java.awt.event.InputEvent;
-import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -67,9 +65,6 @@ import net.runelite.api.Constants;
 import net.runelite.api.GameState;
 import net.runelite.api.Player;
 import net.runelite.api.Point;
-import net.runelite.client.eventbus.EventBus;
-import net.runelite.client.events.ClientShutdown;
-import net.runelite.client.events.ConfigChanged;
 import net.runelite.api.events.GameStateChanged;
 import net.runelite.api.widgets.Widget;
 import net.runelite.api.widgets.WidgetInfo;
@@ -77,10 +72,12 @@ import net.runelite.client.RuneLiteProperties;
 import net.runelite.client.callback.ClientThread;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.config.ExpandResizeType;
-import net.runelite.client.config.Keybind;
 import net.runelite.client.config.RuneLiteConfig;
 import net.runelite.client.config.WarningOnExit;
+import net.runelite.client.eventbus.EventBus;
 import net.runelite.client.eventbus.Subscribe;
+import net.runelite.client.events.ClientShutdown;
+import net.runelite.client.events.ConfigChanged;
 import net.runelite.client.events.NavigationButtonAdded;
 import net.runelite.client.events.NavigationButtonRemoved;
 import net.runelite.client.input.KeyManager;
@@ -93,6 +90,7 @@ import net.runelite.client.util.ImageUtil;
 import net.runelite.client.util.OSType;
 import net.runelite.client.util.OSXUtil;
 import net.runelite.client.util.SwingUtil;
+import net.runelite.client.util.WinUtil;
 import org.pushingpixels.substance.internal.SubstanceSynapse;
 import org.pushingpixels.substance.internal.utils.SubstanceCoreUtilities;
 import org.pushingpixels.substance.internal.utils.SubstanceTitlePaneUtilities;
@@ -140,6 +138,7 @@ public class ClientUI
 	private JButton sidebarNavigationJButton;
 	private Dimension lastClientSize;
 	private Cursor defaultCursor;
+	private String clientTitle;
 
 	@Inject
 	private ClientUI(
@@ -291,7 +290,7 @@ public class ClientUI
 				return false;
 			}
 
-			frame.setTitle(RuneLiteProperties.getTitle() + " - " + name);
+			frame.setTitle(clientTitle + " - " + name);
 			return true;
 		});
 	}
@@ -318,7 +317,8 @@ public class ClientUI
 			// Try to enable fullscreen on OSX
 			OSXUtil.tryEnableFullscreen(frame);
 
-			frame.setTitle(RuneLiteProperties.getTitle());
+			clientTitle = RuneLiteProperties.getTitle();
+			frame.setTitle(clientTitle);
 			frame.setIconImage(ICON);
 			frame.getLayeredPane().setCursor(Cursor.getDefaultCursor()); // Prevent substance from using a resize cursor for pointing
 			frame.setLocationRelativeTo(frame.getOwner());
@@ -337,10 +337,10 @@ public class ClientUI
 						try
 						{
 							result = JOptionPane.showConfirmDialog(
-									frame,
-									"Are you sure you want to exit?", "Exit",
-									JOptionPane.OK_CANCEL_OPTION,
-									JOptionPane.QUESTION_MESSAGE);
+								frame,
+								"Are you sure you want to exit?", "Exit",
+								JOptionPane.OK_CANCEL_OPTION,
+								JOptionPane.QUESTION_MESSAGE);
 						}
 						catch (Exception e)
 						{
@@ -374,8 +374,7 @@ public class ClientUI
 			frame.add(container);
 
 			// Add key listener
-			final HotkeyListener sidebarListener = new HotkeyListener(() ->
-					new Keybind(KeyEvent.VK_F11, InputEvent.CTRL_DOWN_MASK))
+			final HotkeyListener sidebarListener = new HotkeyListener(config::sidebarToggleKey)
 			{
 				@Override
 				public void hotkeyPressed()
@@ -386,6 +385,17 @@ public class ClientUI
 
 			sidebarListener.setEnabledOnLogin(true);
 			keyManager.registerKeyListener(sidebarListener);
+
+			final HotkeyListener pluginPanelListener = new HotkeyListener(config::panelToggleKey)
+			{
+				@Override
+				public void hotkeyPressed()
+				{
+					togglePluginPanel();
+				}
+			};
+
+			keyManager.registerKeyListener(pluginPanelListener);
 
 			// Add mouse listener
 			final MouseListener mouseListener = new MouseAdapter()
@@ -465,16 +475,16 @@ public class ClientUI
 			sidebarClosedIcon = ImageUtil.flipImage(sidebarOpenIcon, true, false);
 
 			sidebarNavigationButton = NavigationButton
-					.builder()
-					.priority(100)
-					.icon(sidebarClosedIcon)
-					.onClick(this::toggleSidebar)
-					.build();
+				.builder()
+				.priority(100)
+				.icon(sidebarClosedIcon)
+				.onClick(this::toggleSidebar)
+				.build();
 
 			sidebarNavigationJButton = SwingUtil.createSwingButton(
-					sidebarNavigationButton,
-					0,
-					null);
+				sidebarNavigationButton,
+				0,
+				null);
 
 			titleToolbar.addComponent(sidebarNavigationButton, sidebarNavigationJButton);
 			toggleSidebar();
@@ -490,7 +500,7 @@ public class ClientUI
 			frame.revalidateMinimumSize();
 
 			// Create tray icon (needs to be created after frame is packed)
-			trayIcon = SwingUtil.createTrayIcon(ICON, RuneLiteProperties.getTitle(), frame);
+			trayIcon = SwingUtil.createTrayIcon(ICON, clientTitle, frame);
 
 			// Move frame around (needs to be done after frame is packed)
 			if (config.rememberScreenBounds())
@@ -550,9 +560,9 @@ public class ClientUI
 		if (client != null && !(client instanceof Client))
 		{
 			SwingUtilities.invokeLater(() -> JOptionPane.showMessageDialog(frame,
-				"SanLite has not yet been updated to work with the latest\n"
+				clientTitle + " has not yet been updated to work with the latest\n"
 					+ "game update, it will work with reduced functionality until then.",
-				"SanLite is outdated", INFORMATION_MESSAGE));
+				clientTitle + " is outdated", INFORMATION_MESSAGE));
 		}
 	}
 
@@ -656,12 +666,38 @@ public class ClientUI
 	 */
 	public void requestFocus()
 	{
-		if (OSType.getOSType() == OSType.MacOS)
+		switch (OSType.getOSType())
 		{
-			OSXUtil.requestFocus();
+			case MacOS:
+				// On OSX Component::requestFocus has no visible effect, so we use our OSX-specific
+				// requestUserAttention()
+				OSXUtil.requestUserAttention();
+				break;
+			default:
+				frame.requestFocus();
 		}
 
-		frame.requestFocus();
+		giveClientFocus();
+	}
+
+	/**
+	 * Attempt to forcibly bring the client frame to front
+	 */
+	public void forceFocus()
+	{
+		switch (OSType.getOSType())
+		{
+			case MacOS:
+				OSXUtil.requestForeground();
+				break;
+			case Windows:
+				WinUtil.requestForeground(frame);
+				break;
+			default:
+				frame.requestFocus();
+				break;
+		}
+
 		giveClientFocus();
 	}
 
@@ -840,6 +876,26 @@ public class ClientUI
 		}
 	}
 
+	private void togglePluginPanel()
+	{
+		// Toggle plugin panel open
+		final boolean pluginPanelOpen = pluginPanel != null;
+
+		if (currentButton != null)
+		{
+			currentButton.setSelected(!pluginPanelOpen);
+		}
+
+		if (pluginPanelOpen)
+		{
+			contract();
+		}
+		else
+		{
+			expand(currentNavButton);
+		}
+	}
+
 	private void expand(@Nullable NavigationButton button)
 	{
 		if (button == null)
@@ -931,12 +987,12 @@ public class ClientUI
 
 			if (player != null && player.getName() != null)
 			{
-				frame.setTitle(RuneLiteProperties.getTitle() + " - " + player.getName());
+				frame.setTitle(clientTitle + " - " + player.getName());
 			}
 		}
 		else
 		{
-			frame.setTitle(RuneLiteProperties.getTitle());
+			frame.setTitle(clientTitle);
 		}
 
 		if (frame.isAlwaysOnTopSupported())

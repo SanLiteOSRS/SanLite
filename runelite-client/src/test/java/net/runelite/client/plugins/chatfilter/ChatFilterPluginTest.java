@@ -83,7 +83,7 @@ public class ChatFilterPluginTest
 		event.setScript(null);
 		event.setEventName("chatFilterCheck");
 		int[] simulatedIntStack =
-				new int[]{1, messageType.getType(), 1}; // is msg allowed to show, ChatMessageType.PUBLICCHAT, message id
+			new int[]{1, messageType.getType(), 1}; // is msg allowed to show, ChatMessageType.PUBLICCHAT, message id
 		String[] simulatedStringStack = new String[]{chatMessage};
 		IterableHashTable<MessageNode> messageTable = mock(IterableHashTable.class);
 		MessageNode mockedMsgNode = mockMessageNode(sender);

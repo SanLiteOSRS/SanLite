@@ -51,28 +51,28 @@ public class ClueScrollOverlay extends OverlayPanel
 {
 	private static final ItemRequirement HAS_SPADE = new SingleItemRequirement(SPADE);
 	private static final ItemRequirement HAS_LIGHT = new AnyRequirementCollection("Light Source",
-			item(LIT_TORCH),
-			item(LIT_CANDLE),
-			item(LIT_BLACK_CANDLE),
-			item(CANDLE_LANTERN_4531),
-			item(CANDLE_LANTERN_4534), // lit black candle lantern
-			item(OIL_LAMP_4524),
-			item(OIL_LANTERN_4539),
-			item(BULLSEYE_LANTERN_4550),
-			item(SAPPHIRE_LANTERN_4702),
-			item(EMERALD_LANTERN_9065),
-			item(MINING_HELMET),
-			item(FIREMAKING_CAPE),
-			item(FIREMAKING_CAPE_10659),
-			item(FIREMAKING_CAPET),
-			item(KANDARIN_HEADGEAR_1),
-			item(KANDARIN_HEADGEAR_2),
-			item(KANDARIN_HEADGEAR_3),
-			item(KANDARIN_HEADGEAR_4),
-			item(BRUMA_TORCH),
-			item(MAX_CAPE),
-			item(MAX_CAPE_13282),
-			item(MAX_CAPE_13342));
+		item(LIT_TORCH),
+		item(LIT_CANDLE),
+		item(LIT_BLACK_CANDLE),
+		item(CANDLE_LANTERN_4531),
+		item(CANDLE_LANTERN_4534), // lit black candle lantern
+		item(OIL_LAMP_4524),
+		item(OIL_LANTERN_4539),
+		item(BULLSEYE_LANTERN_4550),
+		item(SAPPHIRE_LANTERN_4702),
+		item(EMERALD_LANTERN_9065),
+		item(MINING_HELMET),
+		item(FIREMAKING_CAPE),
+		item(FIREMAKING_CAPE_10659),
+		item(FIREMAKING_CAPET),
+		item(KANDARIN_HEADGEAR_1),
+		item(KANDARIN_HEADGEAR_2),
+		item(KANDARIN_HEADGEAR_3),
+		item(KANDARIN_HEADGEAR_4),
+		item(BRUMA_TORCH),
+		item(MAX_CAPE),
+		item(MAX_CAPE_13282),
+		item(MAX_CAPE_13342));
 
 	public static final Color TITLED_CONTENT_COLOR = new Color(190, 190, 190);
 
@@ -115,12 +115,21 @@ public class ClueScrollOverlay extends OverlayPanel
 		}
 
 		if (clue.isRequiresLight()
-				&& ((clue.getHasFirePit() == null || client.getVar(clue.getHasFirePit()) != 1)
+			&& ((clue.getHasFirePit() == null || client.getVar(clue.getHasFirePit()) != 1)
 				&& (inventoryItems == null || !HAS_LIGHT.fulfilledBy(inventoryItems))
-				&& (equippedItems == null || !HAS_LIGHT.fulfilledBy(equippedItems))))
+					&& (equippedItems == null || !HAS_LIGHT.fulfilledBy(equippedItems))))
 		{
 			panelComponent.getChildren().add(LineComponent.builder().left("").build());
 			panelComponent.getChildren().add(LineComponent.builder().left("Requires Light Source!").leftColor(Color.RED).build());
+		}
+
+		if (clue.getEnemy() != null)
+		{
+			panelComponent.getChildren().add(LineComponent.builder().left("").build());
+			panelComponent.getChildren().add(LineComponent.builder()
+				.left(clue.getEnemy().getText())
+				.leftColor(Color.YELLOW)
+				.build());
 		}
 
 		return super.render(graphics);

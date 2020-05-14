@@ -279,12 +279,12 @@ public class MenuEntrySwapperPluginTest
 
 		//Quick-enter, Enter
 		entries = new MenuEntry[]{
-				menu("Cancel", "", MenuAction.CANCEL),
-				menu("Examine", "Formidable Passage", MenuAction.EXAMINE_OBJECT),
-				menu("Walk here", "", MenuAction.WALK),
+			menu("Cancel", "", MenuAction.CANCEL),
+			menu("Examine", "Formidable Passage", MenuAction.EXAMINE_OBJECT),
+			menu("Walk here", "", MenuAction.WALK),
 
-				menu("Quick-Enter", "Formidable Passage", MenuAction.GAME_OBJECT_SECOND_OPTION),
-				menu("Enter", "Formidable Passage", MenuAction.GAME_OBJECT_FIRST_OPTION),
+			menu("Quick-Enter", "Formidable Passage", MenuAction.GAME_OBJECT_SECOND_OPTION),
+			menu("Enter", "Formidable Passage", MenuAction.GAME_OBJECT_FIRST_OPTION),
 		};
 
 		menuEntrySwapperPlugin.onClientTick(new ClientTick());
@@ -293,12 +293,12 @@ public class MenuEntrySwapperPluginTest
 		verify(client).setMenuEntries(argumentCaptor.capture());
 
 		assertArrayEquals(new MenuEntry[]{
-				menu("Cancel", "", MenuAction.CANCEL),
-				menu("Examine", "Formidable Passage", MenuAction.EXAMINE_OBJECT),
-				menu("Walk here", "", MenuAction.WALK),
+			menu("Cancel", "", MenuAction.CANCEL),
+			menu("Examine", "Formidable Passage", MenuAction.EXAMINE_OBJECT),
+			menu("Walk here", "", MenuAction.WALK),
 
-				menu("Enter", "Formidable Passage", MenuAction.GAME_OBJECT_FIRST_OPTION),
-				menu("Quick-Enter", "Formidable Passage", MenuAction.GAME_OBJECT_SECOND_OPTION),
+			menu("Enter", "Formidable Passage", MenuAction.GAME_OBJECT_FIRST_OPTION),
+			menu("Quick-Enter", "Formidable Passage", MenuAction.GAME_OBJECT_SECOND_OPTION),
 		}, argumentCaptor.getValue());
 	}
 
@@ -309,27 +309,27 @@ public class MenuEntrySwapperPluginTest
 		menuEntrySwapperPlugin.setShiftModifier(true);
 
 		entries = new MenuEntry[]{
-				menu("Cancel", "", MenuAction.CANCEL),
-				menu("Wield", "Abyssal whip", MenuAction.CC_OP_LOW_PRIORITY, 9),
-				menu("Deposit-1", "Abyssal whip", MenuAction.CC_OP, 2),
+			menu("Cancel", "", MenuAction.CANCEL),
+			menu("Wield", "Abyssal whip", MenuAction.CC_OP_LOW_PRIORITY, 9),
+			menu("Deposit-1", "Abyssal whip", MenuAction.CC_OP, 2),
 		};
 
 		menuEntrySwapperPlugin.onMenuEntryAdded(new MenuEntryAdded(
-				"Deposit-1",
-				"Abyssal whip",
-				MenuAction.CC_OP.getId(),
-				2,
-				-1,
-				-1
+			"Deposit-1",
+			"Abyssal whip",
+			MenuAction.CC_OP.getId(),
+			2,
+			-1,
+			-1
 		));
 
 		ArgumentCaptor<MenuEntry[]> argumentCaptor = ArgumentCaptor.forClass(MenuEntry[].class);
 		verify(client).setMenuEntries(argumentCaptor.capture());
 
 		assertArrayEquals(new MenuEntry[]{
-				menu("Cancel", "", MenuAction.CANCEL),
-				menu("Deposit-1", "Abyssal whip", MenuAction.CC_OP, 2),
-				menu("Wield", "Abyssal whip", MenuAction.CC_OP, 9),
+			menu("Cancel", "", MenuAction.CANCEL),
+			menu("Deposit-1", "Abyssal whip", MenuAction.CC_OP, 2),
+			menu("Wield", "Abyssal whip", MenuAction.CC_OP, 9),
 		}, argumentCaptor.getValue());
 	}
 
@@ -340,29 +340,29 @@ public class MenuEntrySwapperPluginTest
 		menuEntrySwapperPlugin.setShiftModifier(true);
 
 		entries = new MenuEntry[]{
-				menu("Cancel", "", MenuAction.CANCEL),
-				menu("Wield", "Rune arrow", MenuAction.CC_OP_LOW_PRIORITY, 9),
-				menu("Deposit-All", "Rune arrow", MenuAction.CC_OP_LOW_PRIORITY, 8),
-				menu("Deposit-1", "Rune arrow", MenuAction.CC_OP, 2),
+			menu("Cancel", "", MenuAction.CANCEL),
+			menu("Wield", "Rune arrow", MenuAction.CC_OP_LOW_PRIORITY, 9),
+			menu("Deposit-All", "Rune arrow", MenuAction.CC_OP_LOW_PRIORITY, 8),
+			menu("Deposit-1", "Rune arrow", MenuAction.CC_OP, 2),
 		};
 
 		menuEntrySwapperPlugin.onMenuEntryAdded(new MenuEntryAdded(
-				"Deposit-1",
-				"Rune arrow",
-				MenuAction.CC_OP.getId(),
-				2,
-				-1,
-				-1
+			"Deposit-1",
+			"Rune arrow",
+			MenuAction.CC_OP.getId(),
+			2,
+			-1,
+			-1
 		));
 
 		ArgumentCaptor<MenuEntry[]> argumentCaptor = ArgumentCaptor.forClass(MenuEntry[].class);
 		verify(client).setMenuEntries(argumentCaptor.capture());
 
 		assertArrayEquals(new MenuEntry[]{
-				menu("Cancel", "", MenuAction.CANCEL),
-				menu("Wield", "Rune arrow", MenuAction.CC_OP_LOW_PRIORITY, 9),
-				menu("Deposit-1", "Rune arrow", MenuAction.CC_OP, 2),
-				menu("Deposit-All", "Rune arrow", MenuAction.CC_OP, 8),
+			menu("Cancel", "", MenuAction.CANCEL),
+			menu("Wield", "Rune arrow", MenuAction.CC_OP_LOW_PRIORITY, 9),
+			menu("Deposit-1", "Rune arrow", MenuAction.CC_OP, 2),
+			menu("Deposit-All", "Rune arrow", MenuAction.CC_OP, 8),
 		}, argumentCaptor.getValue());
 	}
 }

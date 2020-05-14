@@ -51,7 +51,22 @@ import java.util.stream.Collectors;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import lombok.Getter;
-import net.runelite.api.*;
+import net.runelite.api.Client;
+import net.runelite.api.Constants;
+import net.runelite.api.InventoryID;
+import net.runelite.api.Item;
+import net.runelite.api.ItemDefinition;
+import net.runelite.api.ItemContainer;
+import net.runelite.api.MenuAction;
+import net.runelite.api.MenuEntry;
+import net.runelite.api.Point;
+import net.runelite.api.ScriptEvent;
+import net.runelite.api.ScriptID;
+import net.runelite.api.SoundEffectID;
+import net.runelite.api.SpriteID;
+import net.runelite.api.VarClientInt;
+import net.runelite.api.VarClientStr;
+import net.runelite.api.Varbits;
 import net.runelite.api.events.MenuEntryAdded;
 import net.runelite.api.events.MenuOptionClicked;
 import net.runelite.api.events.ScriptCallbackEvent;
@@ -370,6 +385,11 @@ public class TabInterface
 				{
 					notifier.notify("Failed to import tag tab from clipboard, invalid format.");
 				}
+				break;
+			case NewTab.OPEN_TAB_MENU:
+				client.setVarbit(Varbits.CURRENT_BANK_TAB, 0);
+				openTag(TAB_MENU_KEY);
+				break;
 		}
 	}
 
@@ -770,7 +790,7 @@ public class TabInterface
 				}
 			}
 			else if ((isTabMenuActive() && draggedWidget.getId() == draggedOn.getId() && draggedOn.getId() != parent.getId())
-					|| (parent.getId() == draggedOn.getId() && parent.getId() == draggedWidget.getId()))
+				|| (parent.getId() == draggedOn.getId() && parent.getId() == draggedWidget.getId()))
 			{
 				// Reorder tag tabs
 				moveTagTab(draggedWidget, draggedOn);
@@ -878,13 +898,13 @@ public class TabInterface
 		if (tagTab.getMenu() == null)
 		{
 			Widget menu = createGraphic(
-					client.getWidget(WidgetInfo.BANK_ITEM_CONTAINER),
-					ColorUtil.wrapWithColorTag(tagTab.getTag(), HILIGHT_COLOR),
-					-1,
-					tagTab.getIconItemId(),
-					BANK_ITEM_WIDTH, BANK_ITEM_HEIGHT,
-					BANK_ITEM_START_X, BANK_ITEM_START_Y,
-					true);
+				client.getWidget(WidgetInfo.BANK_ITEM_CONTAINER),
+				ColorUtil.wrapWithColorTag(tagTab.getTag(), HILIGHT_COLOR),
+				-1,
+				tagTab.getIconItemId(),
+				BANK_ITEM_WIDTH, BANK_ITEM_HEIGHT,
+				BANK_ITEM_START_X, BANK_ITEM_START_Y,
+				true);
 			addTabActions(menu);
 			addTabOptions(menu);
 			if (activeTab != null && activeTab.getTag().equals(TAB_MENU_KEY))
@@ -992,7 +1012,7 @@ public class TabInterface
 		}
 
 		int proposedIndex = currentTabIndex + direction;
-		int numTabs = tabManager.size() + 1;
+		int numTabs = tabManager.size();
 
 		if (proposedIndex >= numTabs || proposedIndex < 0)
 		{
@@ -1086,7 +1106,7 @@ public class TabInterface
 	{
 		int y = bounds.y + MARGIN + BUTTON_HEIGHT;
 
-		if (maxTabs > tabManager.size())
+		if (maxTabs >= tabManager.size())
 		{
 			currentTabIndex = 0;
 		}
@@ -1132,8 +1152,6 @@ public class TabInterface
 				itemX += BANK_ITEM_X_PADDING + BANK_ITEM_WIDTH;
 			}
 		}
-
-		updateWidget(newTab, y);
 
 		boolean hidden = !(tabManager.size() > 0);
 
@@ -1186,7 +1204,7 @@ public class TabInterface
 		t.setHidden(y < (bounds.y + BUTTON_HEIGHT + MARGIN) || y > (bounds.y + bounds.height - TAB_HEIGHT - MARGIN - BUTTON_HEIGHT));
 		t.revalidate();
 	}
-	
+
 	private ItemDefinition getItem(int idx)
 	{
 		ItemContainer bankContainer = client.getItemContainer(InventoryID.BANK);

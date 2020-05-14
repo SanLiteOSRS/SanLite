@@ -37,21 +37,21 @@ public enum RegionFilterMode
 	AUSTRALIA(WorldRegion.AUSTRALIA),
 	GERMANY(WorldRegion.GERMANY),
 	UNITED_KINGDOM(WorldRegion.UNITED_KINGDOM)
+		{
+			@Override
+			public String toString()
 			{
-				@Override
-				public String toString()
-				{
-					return "U.K.";
-				}
-			},
+				return "U.K.";
+			}
+		},
 	UNITED_STATES(WorldRegion.UNITED_STATES_OF_AMERICA)
+		{
+			@Override
+			public String toString()
 			{
-				@Override
-				public String toString()
-				{
-					return "USA";
-				}
-			};
+				return "USA";
+			}
+		};
 
 	@Getter
 	private WorldRegion region;

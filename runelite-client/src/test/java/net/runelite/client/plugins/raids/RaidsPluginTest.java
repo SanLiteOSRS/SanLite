@@ -167,8 +167,8 @@ public class RaidsPluginTest
 
 		ItemContainer itemContainer = mock(ItemContainer.class);
 		when(itemContainer.getItems()).thenReturn(new Item[]{
-				new Item(ItemID.TWISTED_BOW, 1),
-				new Item(ItemID.PURE_ESSENCE, 42)
+			new Item(ItemID.TWISTED_BOW, 1),
+			new Item(ItemID.PURE_ESSENCE, 42)
 		});
 		when(client.getItemContainer(InventoryID.CHAMBERS_OF_XERIC_CHEST)).thenReturn(itemContainer);
 

@@ -42,8 +42,8 @@ public class BankSearch
 
 	@Inject
 	private BankSearch(
-			final Client client,
-			final ClientThread clientThread
+		final Client client,
+		final ClientThread clientThread
 	)
 	{
 		this.client = client;

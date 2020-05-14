@@ -190,8 +190,8 @@ class WorldTableRow extends JPanel
 	void setFavoriteMenu(boolean favorite)
 	{
 		String favoriteAction = favorite ?
-				"Remove " + world.getId() + " from favorites" :
-				"Add " + world.getId() + " to favorites";
+			"Remove " + world.getId() + " from favorites" :
+			"Add " + world.getId() + " to favorites";
 
 		favoriteMenuOption.setText(favoriteAction);
 
@@ -245,8 +245,8 @@ class WorldTableRow extends JPanel
 			return;
 		}
 		else if (world.getTypes().contains(WorldType.PVP)
-				|| world.getTypes().contains(WorldType.HIGH_RISK)
-				|| world.getTypes().contains(WorldType.DEADMAN))
+			|| world.getTypes().contains(WorldType.HIGH_RISK)
+			|| world.getTypes().contains(WorldType.DEADMAN))
 		{
 			activityField.setForeground(DANGEROUS_WORLD);
 		}
