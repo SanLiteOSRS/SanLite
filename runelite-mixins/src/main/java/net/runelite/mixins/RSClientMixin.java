@@ -38,6 +38,7 @@ import net.runelite.api.widgets.*;
 import net.runelite.rs.api.*;
 import org.slf4j.Logger;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.inject.Named;
 import java.util.*;
@@ -384,6 +385,13 @@ public abstract class RSClientMixin implements RSClient
 	}
 
 	@Inject
+	public void addChatMessage(int type, String name, String message, String sender)
+	{
+		assert this.isClientThread() : "addChatMessage must be called on client thread";
+		addRSChatMessage(type, name, message, sender);
+	}
+
+	@Inject
 	@Override
 	public void addChatMessage(ChatMessageType type, String name, String message, String sender)
 	{
@@ -398,10 +406,18 @@ public abstract class RSClientMixin implements RSClient
 	}
 
 	@Inject
+	public void setGameState(int state)
+	{
+		assert this.isClientThread() : "setGameState must be called on client thread";
+		client.setRSGameState(state);
+	}
+
+	@Inject
 	@Override
 	public void setGameState(GameState gameState)
 	{
-		client.setGameState(gameState.getState());
+		assert this.isClientThread();
+		setGameState(gameState.getState());
 	}
 
 	@Inject
@@ -416,6 +432,11 @@ public abstract class RSClientMixin implements RSClient
 	public Widget[] getWidgetRoots()
 	{
 		int topGroup = getWidgetRoot();
+		if (topGroup == -1)
+		{
+			return new Widget[]{};
+		}
+
 		List<Widget> widgets = new ArrayList<Widget>();
 		for (RSWidget widget : getWidgets()[topGroup])
 		{
@@ -863,6 +884,13 @@ public abstract class RSClientMixin implements RSClient
 		DraggingWidgetChanged draggingWidgetChanged = new DraggingWidgetChanged();
 		draggingWidgetChanged.setDraggingWidget(client.isDraggingWidget());
 		client.getCallbacks().post(draggingWidgetChanged);
+	}
+
+	@Inject
+	public RSSprite createItemSprite(int itemId, int quantity, int border, int shadowColor, int stackable, boolean noted)
+	{
+		assert isClientThread() : "createItemSprite must be called on client thread";
+		return createRSItemSprite(itemId, quantity, border, shadowColor, stackable, noted);
 	}
 
 	@Inject
@@ -1729,9 +1757,31 @@ public abstract class RSClientMixin implements RSClient
 	@Override
 	public void stopNow()
 	{
-		if (this == getGameShell() && !isKilled())
-		{
-			setStopTimeMs(getCurrentTimeMillis());
-		}
+		setStopTimeMs(1L);
+	}
+
+	@Inject
+	@Override
+	public ObjectDefinition getObjectDefinition(int objectId)
+	{
+		assert this.isClientThread() : "getObjectDefinition must be called on client thread";
+		return getRSObjectDefinition(objectId);
+	}
+
+	@Inject
+	@Override
+	@Nonnull
+	public ItemDefinition getItemDefinition(int id)
+	{
+		assert this.isClientThread() : "getItemDefinition must be called on client thread";
+		return getRSItemDefinition(id);
+	}
+
+	@Inject
+	@Override
+	public NPCDefinition getNpcDefinition(int id)
+	{
+		assert this.isClientThread() : "getNpcDefinition must be called on client thread";
+		return getRSNpcDefinition(id);
 	}
 }
