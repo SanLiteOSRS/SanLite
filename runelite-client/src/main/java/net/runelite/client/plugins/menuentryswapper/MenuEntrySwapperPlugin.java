@@ -108,11 +108,11 @@ public class MenuEntrySwapperPlugin extends Plugin
 		MenuAction.EXAMINE_NPC);
 
 	private static final Set<String> ESSENCE_MINE_NPCS = ImmutableSet.of(
-			"aubury",
-			"wizard sedridor",
-			"wizard distentor",
-			"wizard cromperty",
-			"brimstail"
+		"aubury",
+		"wizard sedridor",
+		"wizard distentor",
+		"wizard cromperty",
+		"brimstail"
 	);
 
 	@Inject
@@ -322,8 +322,8 @@ public class MenuEntrySwapperPlugin extends Plugin
 		// Deposit- op 1 is the current withdraw amount 1/5/10/x for deposit box interface
 		// Deposit- op 2 is the current withdraw amount 1/5/10/x for bank interface
 		if (shiftModifier && config.bankDepositShiftClick() != ShiftDepositMode.OFF
-				&& menuEntryAdded.getType() == MenuAction.CC_OP.getId() && (menuEntryAdded.getIdentifier() == 2 || menuEntryAdded.getIdentifier() == 1)
-				&& menuEntryAdded.getOption().startsWith("Deposit-"))
+			&& menuEntryAdded.getType() == MenuAction.CC_OP.getId() && (menuEntryAdded.getIdentifier() == 2 || menuEntryAdded.getIdentifier() == 1)
+			&& menuEntryAdded.getOption().startsWith("Deposit-"))
 		{
 			ShiftDepositMode shiftDepositMode = config.bankDepositShiftClick();
 			final int opId = WidgetInfo.TO_GROUP(menuEntryAdded.getActionParam1()) == WidgetID.DEPOSIT_BOX_GROUP_ID ? shiftDepositMode.getIdentifierDepositBox() : shiftDepositMode.getIdentifier();
@@ -334,8 +334,8 @@ public class MenuEntrySwapperPlugin extends Plugin
 		// Swap to shift-click withdraw behavior
 		// Deposit- op 1 is the current withdraw amount 1/5/10/x
 		if (shiftModifier && config.bankWithdrawShiftClick() != ShiftWithdrawMode.OFF
-				&& menuEntryAdded.getType() == MenuAction.CC_OP.getId() && menuEntryAdded.getIdentifier() == 1
-				&& menuEntryAdded.getOption().startsWith("Withdraw-"))
+			&& menuEntryAdded.getType() == MenuAction.CC_OP.getId() && menuEntryAdded.getIdentifier() == 1
+			&& menuEntryAdded.getOption().startsWith("Withdraw-"))
 		{
 			ShiftWithdrawMode shiftWithdrawMode = config.bankWithdrawShiftClick();
 			final int actionId = shiftWithdrawMode.getMenuAction().getId();
@@ -642,6 +642,10 @@ public class MenuEntrySwapperPlugin extends Plugin
 		else if (config.swapBirdhouseEmpty() && option.equals("interact") && target.contains("birdhouse"))
 		{
 			swap("empty", option, target, index);
+		}
+		else if (config.swapGauntlet() && option.equals("enter") && target.equals("the gauntlet"))
+		{
+			swap("enter-corrupted", option, target, index);
 		}
 		else if (config.swapQuick() && option.equals("enter"))
 		{

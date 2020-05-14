@@ -43,7 +43,7 @@ public interface ItemContainer extends Node
 	/**
 	 * Gets an item from the container at the given slot.
 	 *
-	 * @param slot-
+	 * @param slot
 	 * @return the item
 	 * @see Item
 	 */

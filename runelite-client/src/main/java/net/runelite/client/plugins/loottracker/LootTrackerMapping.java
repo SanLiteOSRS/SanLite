@@ -24,13 +24,9 @@
  */
 package net.runelite.client.plugins.loottracker;
 
-import com.google.common.base.Strings;
 import com.google.common.collect.ImmutableMap;
 import lombok.AllArgsConstructor;
-import net.runelite.api.ItemDefinition;
 import net.runelite.api.ItemID;
-import net.runelite.client.game.ItemManager;
-import net.runelite.client.game.ItemStack;
 
 @AllArgsConstructor
 enum LootTrackerMapping
@@ -57,25 +53,8 @@ enum LootTrackerMapping
 		MAPPINGS = map.build();
 	}
 
-	private static int map(int itemId, ItemManager itemManager)
+	static int map(int itemId, String name)
 	{
-		ItemDefinition itemComp = itemManager.getItemComposition(itemId);
-		if (Strings.isNullOrEmpty(itemComp.getName()))
-		{
-			return itemId;
-		}
-
-		return MAPPINGS.getOrDefault(itemComp.getName(), itemId);
-	}
-
-	static ItemStack map(ItemStack item, ItemManager itemManager)
-	{
-		int baseId = map(item.getId(), itemManager);
-		if (baseId == item.getId())
-		{
-			return item;
-		}
-
-		return new ItemStack(baseId, item.getQuantity(), item.getLocation());
+		return MAPPINGS.getOrDefault(name, itemId);
 	}
 }

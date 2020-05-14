@@ -52,24 +52,24 @@ public class ShaderTest
 		Assume.assumeFalse("glslang.path is not set", Strings.isNullOrEmpty(verifier));
 
 		Template[] templates = {
-				new Template()
-						.addInclude(GpuPlugin.class)
-						.add(key ->
+			new Template()
+				.addInclude(GpuPlugin.class)
+				.add(key ->
+			{
+				if ("version_header".equals(key))
 				{
-					if ("version_header".equals(key))
-					{
-						return GpuPlugin.WINDOWS_VERSION_HEADER;
-					}
-					return null;
-				}),
+					return GpuPlugin.WINDOWS_VERSION_HEADER;
+				}
+				return null;
+			}),
 		};
 
 		Shader[] shaders = {
-				GpuPlugin.PROGRAM,
-				GpuPlugin.COMPUTE_PROGRAM,
-				GpuPlugin.SMALL_COMPUTE_PROGRAM,
-				GpuPlugin.UNORDERED_COMPUTE_PROGRAM,
-				GpuPlugin.UI_PROGRAM,
+			GpuPlugin.PROGRAM,
+			GpuPlugin.COMPUTE_PROGRAM,
+			GpuPlugin.SMALL_COMPUTE_PROGRAM,
+			GpuPlugin.UNORDERED_COMPUTE_PROGRAM,
+			GpuPlugin.UI_PROGRAM,
 		};
 
 		for (Template t : templates)

@@ -39,12 +39,23 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
+import javax.annotation.Nullable;
 import javax.inject.Inject;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.*;
+import net.runelite.api.Client;
+import net.runelite.api.DecorativeObject;
+import net.runelite.api.GameObject;
+import net.runelite.api.GameState;
+import net.runelite.api.GroundObject;
+import net.runelite.api.MenuAction;
+import net.runelite.api.MenuEntry;
 import net.runelite.api.ObjectDefinition;
+import net.runelite.api.Scene;
+import net.runelite.api.Tile;
+import net.runelite.api.TileObject;
+import net.runelite.api.WallObject;
 import net.runelite.api.coords.WorldPoint;
 import net.runelite.api.events.DecorativeObjectDespawned;
 import net.runelite.api.events.DecorativeObjectSpawned;
@@ -68,10 +79,10 @@ import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.ui.overlay.OverlayManager;
 
 @PluginDescriptor(
-		name = "Object Markers",
-		description = "Enable marking of objects using the Shift key",
-		tags = {"overlay", "objects", "mark", "marker"},
-		enabledByDefault = false
+	name = "Object Markers",
+	description = "Enable marking of objects using the Shift key",
+	tags = {"overlay", "objects", "mark", "marker"},
+	enabledByDefault = false
 )
 @Slf4j
 public class ObjectIndicatorsPlugin extends Plugin implements KeyListener
@@ -325,7 +336,8 @@ public class ObjectIndicatorsPlugin extends Plugin implements KeyListener
 					&& worldPoint.getPlane() == objectPoint.getZ())
 			{
 				// Transform object to get the name which matches against what we've stored
-				if (objectPoint.getName().equals(getObjectComposition(object.getId()).getName()))
+				ObjectDefinition composition = getObjectComposition(object.getId());
+				if (composition != null && objectPoint.getName().equals(composition.getName()))
 				{
 					log.debug("Marking object {} due to matching {}", object, objectPoint);
 					objects.add(new ColorTileObject(object, objectPoint.getColor()));
@@ -415,13 +427,13 @@ public class ObjectIndicatorsPlugin extends Plugin implements KeyListener
 		final int regionId = worldPoint.getRegionID();
 		final Color color = config.markerColor();
 		final ObjectPoint point = new ObjectPoint(
-				object.getId(),
-				name,
-				regionId,
-				worldPoint.getRegionX(),
-				worldPoint.getRegionY(),
-				worldPoint.getPlane(),
-				color);
+			object.getId(),
+			name,
+			regionId,
+			worldPoint.getRegionX(),
+			worldPoint.getRegionY(),
+			worldPoint.getPlane(),
+			color);
 
 		Set<ObjectPoint> objectPoints = points.computeIfAbsent(regionId, k -> new HashSet<>());
 
@@ -432,9 +444,9 @@ public class ObjectIndicatorsPlugin extends Plugin implements KeyListener
 			// 2) not a multiloc, but an object has spawned with an identical name and a different
 			//    id as what was originally marked
 			if (!objectPoints.removeIf(op -> ((op.getId() == -1 || op.getId() == object.getId()) || op.getName().equals(objectComposition.getName()))
-					&& op.getRegionX() == worldPoint.getRegionX()
-					&& op.getRegionY() == worldPoint.getRegionY()
-					&& op.getZ() == worldPoint.getPlane()))
+				&& op.getRegionX() == worldPoint.getRegionX()
+				&& op.getRegionY() == worldPoint.getRegionY()
+				&& op.getZ() == worldPoint.getPlane()))
 			{
 				log.warn("unable to find object point for unmarked object {}", object.getId());
 			}
@@ -480,10 +492,11 @@ public class ObjectIndicatorsPlugin extends Plugin implements KeyListener
 		// in most cases due to the specific object being identified being ambiguous, so remove
 		// them
 		return points.stream()
-				.filter(point -> !point.getName().equals("null"))
-				.collect(Collectors.toSet());
+			.filter(point -> !point.getName().equals("null"))
+			.collect(Collectors.toSet());
 	}
 
+	@Nullable
 	private ObjectDefinition getObjectComposition(int id)
 	{
 		ObjectDefinition objectComposition = client.getObjectDefinition(id);

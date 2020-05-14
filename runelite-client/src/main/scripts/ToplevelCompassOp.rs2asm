@@ -15,7 +15,7 @@
    if_icmpne              LABEL10
    jump                   LABEL11
 LABEL10:
-   return
+   return                
 LABEL11:
    ; switch on op index
    iload 0
@@ -45,11 +45,11 @@ LOOK:
    iconst                 2266
    iconst                 1
    iconst                 0
-   sound_synth
+   sound_synth           
    iconst                 225
    iconst                 5
-   randominc
+   randominc             
    add
    iload                  1 ; load target angle
    cam_forceangle
-   return
+   return                

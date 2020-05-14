@@ -103,9 +103,9 @@ public interface ItemStatConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "showStatsInBank",
-			name = "Show Stats In Bank",
-			description = "Show item stats on bank items tooltip"
+		keyName = "showStatsInBank",
+		name = "Show Stats In Bank",
+		description = "Show item stats on bank items tooltip"
 	)
 	default boolean showStatsInBank()
 	{
@@ -113,9 +113,9 @@ public interface ItemStatConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "alwaysShowBaseStats",
-			name = "Always Show Base Stats",
-			description = "Always include the base items stats in the tooltip"
+		keyName = "alwaysShowBaseStats",
+		name = "Always Show Base Stats",
+		description = "Always include the base items stats in the tooltip"
 	)
 	default boolean alwaysShowBaseStats()
 	{

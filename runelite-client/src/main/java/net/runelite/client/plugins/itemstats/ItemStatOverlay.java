@@ -107,8 +107,8 @@ public class ItemStatOverlay extends Overlay
 		int itemId = entry.getIdentifier();
 
 		if (group == WidgetInfo.EQUIPMENT.getGroupId() ||
-				// For bank worn equipment, check widget parent to differentiate from normal bank items
-				(group == WidgetID.BANK_GROUP_ID && widget.getParentId() == WidgetInfo.BANK_EQUIPMENT_CONTAINER.getId()))
+			// For bank worn equipment, check widget parent to differentiate from normal bank items
+			(group == WidgetID.BANK_GROUP_ID && widget.getParentId() == WidgetInfo.BANK_EQUIPMENT_CONTAINER.getId()))
 		{
 			final Widget widgetItem = widget.getChild(1);
 			if (widgetItem != null)

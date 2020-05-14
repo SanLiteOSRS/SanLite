@@ -92,7 +92,7 @@ import org.apache.commons.lang3.ArrayUtils;
 @PluginDescriptor(
 	name = "World Hopper",
 	description = "Allows you to quickly hop worlds",
-	tags = {"ping"}
+	tags = {"ping", "switcher"}
 )
 @Slf4j
 public class WorldHopperPlugin extends Plugin
@@ -775,7 +775,7 @@ public class WorldHopperPlugin extends Plugin
 
 		for (World world : worldResult.getWorlds())
 		{
-			int ping = Ping.ping(world);
+			int ping = ping(world);
 			SwingUtilities.invokeLater(() -> panel.updatePing(world.getId(), ping));
 		}
 
