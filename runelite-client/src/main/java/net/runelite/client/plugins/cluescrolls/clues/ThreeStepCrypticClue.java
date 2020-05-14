@@ -98,9 +98,9 @@ public class ThreeStepCrypticClue extends ClueScroll implements TextClueScroll, 
 				panelComponent.getChildren().add(TitleComponent.builder().text("Cryptic Clue #" + (i + 1)).build());
 				panelComponent.getChildren().add(LineComponent.builder().left("Solution:").build());
 				panelComponent.getChildren().add(LineComponent.builder()
-						.left(c.getSolution())
-						.leftColor(TITLED_CONTENT_COLOR)
-						.build());
+					.left(c.getSolution())
+					.leftColor(TITLED_CONTENT_COLOR)
+					.build());
 			}
 		}
 	}
@@ -122,8 +122,8 @@ public class ThreeStepCrypticClue extends ClueScroll implements TextClueScroll, 
 		if (containerId == InventoryID.INVENTORY.getId())
 		{
 			return checkForPart(itemContainer, TORN_CLUE_SCROLL_PART_1, 0) ||
-					checkForPart(itemContainer, TORN_CLUE_SCROLL_PART_2, 1) ||
-					checkForPart(itemContainer, TORN_CLUE_SCROLL_PART_3, 2);
+				checkForPart(itemContainer, TORN_CLUE_SCROLL_PART_2, 1) ||
+				checkForPart(itemContainer, TORN_CLUE_SCROLL_PART_3, 2);
 		}
 
 		return false;
@@ -165,26 +165,26 @@ public class ThreeStepCrypticClue extends ClueScroll implements TextClueScroll, 
 	public WorldPoint[] getLocations()
 	{
 		return clueSteps.stream()
-				.filter(s -> !s.getValue())
-				.map(s -> s.getKey().getLocation())
-				.toArray(WorldPoint[]::new);
+			.filter(s -> !s.getValue())
+			.map(s -> s.getKey().getLocation())
+			.toArray(WorldPoint[]::new);
 	}
 
 	@Override
 	public String[] getNpcs()
 	{
 		return clueSteps.stream()
-				.filter(s -> !s.getValue())
-				.map(s -> s.getKey().getNpc())
-				.toArray(String[]::new);
+			.filter(s -> !s.getValue())
+			.map(s -> s.getKey().getNpc())
+			.toArray(String[]::new);
 	}
 
 	@Override
 	public int[] getObjectIds()
 	{
 		return clueSteps.stream()
-				.filter(s -> !s.getValue())
-				.mapToInt(s -> s.getKey().getObjectId())
-				.toArray();
+			.filter(s -> !s.getValue())
+			.mapToInt(s -> s.getKey().getObjectId())
+			.toArray();
 	}
 }

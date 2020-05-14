@@ -102,12 +102,12 @@ public class PluginManager
 	@Inject
 	@VisibleForTesting
 	PluginManager(
-			@Named("developerMode") final boolean developerMode,
-			final EventBus eventBus,
-			final Scheduler scheduler,
-			final ConfigManager configManager,
-			final ScheduledExecutorService executor,
-			final Provider<GameEventManager> sceneTileManager)
+		@Named("developerMode") final boolean developerMode,
+		final EventBus eventBus,
+		final Scheduler scheduler,
+		final ConfigManager configManager,
+		final ScheduledExecutorService executor,
+		final Provider<GameEventManager> sceneTileManager)
 	{
 		this.developerMode = developerMode;
 		this.eventBus = eventBus;
@@ -267,18 +267,18 @@ public class PluginManager
 		ClassPath classPath = ClassPath.from(getClass().getClassLoader());
 
 		List<Class<?>> plugins = classPath.getTopLevelClassesRecursive(PLUGIN_PACKAGE).stream()
-				.map(ClassInfo::load)
-				.collect(Collectors.toList());
+			.map(ClassInfo::load)
+			.collect(Collectors.toList());
 
 		loadPlugins(plugins, (loaded, total) ->
-				SplashScreen.stage(.60, .70, null, "Loading Plugins", loaded, total, false));
+			SplashScreen.stage(.60, .70, null, "Loading Plugins", loaded, total, false));
 	}
 
 	public List<Plugin> loadPlugins(List<Class<?>> plugins, BiConsumer<Integer, Integer> onPluginLoaded) throws PluginInstantiationException
 	{
 		MutableGraph<Class<? extends Plugin>> graph = GraphBuilder
-				.directed()
-				.build();
+			.directed()
+			.build();
 
 		for (Class<?> clazz : plugins)
 		{
@@ -539,12 +539,12 @@ public class PluginManager
 				final MethodType subscription = MethodType.methodType(method.getReturnType(), method.getParameterTypes());
 				final MethodHandle target = caller.findVirtual(clazz, method.getName(), subscription);
 				final CallSite site = LambdaMetafactory.metafactory(
-						caller,
-						"run",
-						MethodType.methodType(Runnable.class, clazz),
-						subscription,
-						target,
-						subscription);
+					caller,
+					"run",
+					MethodType.methodType(Runnable.class, clazz),
+					subscription,
+					target,
+					subscription);
 
 				final MethodHandle factory = site.getTarget();
 				runnable = (Runnable) factory.bindTo(plugin).invokeExact();
@@ -589,8 +589,8 @@ public class PluginManager
 		MutableGraph<T> graphCopy = Graphs.copyOf(graph);
 		List<T> l = new ArrayList<>();
 		Set<T> s = graphCopy.nodes().stream()
-				.filter(node -> graphCopy.inDegree(node) == 0)
-				.collect(Collectors.toSet());
+			.filter(node -> graphCopy.inDegree(node) == 0)
+			.collect(Collectors.toSet());
 		while (!s.isEmpty())
 		{
 			Iterator<T> it = s.iterator();

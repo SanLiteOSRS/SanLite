@@ -33,11 +33,11 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.lang.reflect.InvocationTargetException;
 import java.time.LocalDate;
+import java.util.Map;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.function.Consumer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import javax.annotation.Nullable;
 import javax.inject.Inject;
 import javax.swing.SwingUtilities;
 import lombok.AccessLevel;
@@ -63,6 +63,7 @@ import static net.runelite.api.widgets.WidgetID.LEVEL_UP_GROUP_ID;
 import static net.runelite.api.widgets.WidgetID.QUEST_COMPLETED_GROUP_ID;
 import static net.runelite.api.widgets.WidgetID.THEATRE_OF_BLOOD_REWARD_GROUP_ID;
 import net.runelite.api.widgets.WidgetInfo;
+import net.runelite.api.events.ScriptCallbackEvent;
 import net.runelite.client.Notifier;
 import static net.runelite.client.RuneLite.SCREENSHOT_DIR;
 import net.runelite.client.config.ConfigManager;
@@ -77,7 +78,11 @@ import net.runelite.client.ui.ClientUI;
 import net.runelite.client.ui.DrawManager;
 import net.runelite.client.ui.NavigationButton;
 import net.runelite.client.ui.overlay.OverlayManager;
-import net.runelite.client.util.*;
+import net.runelite.client.util.HotkeyListener;
+import net.runelite.client.util.ImageCapture;
+import net.runelite.client.util.ImageUtil;
+import net.runelite.client.util.LinkBrowser;
+import net.runelite.client.util.Text;
 
 @PluginDescriptor(
 	name = "Screenshot",
@@ -87,6 +92,10 @@ import net.runelite.client.util.*;
 @Slf4j
 public class ScreenshotPlugin extends Plugin
 {
+	private static final String CHEST_LOOTED_MESSAGE = "You find some treasure in the chest!";
+	private static final Map<Integer, String> CHEST_LOOT_EVENTS = ImmutableMap.of(12127, "The Gauntlet");
+	private static final int GAUNTLET_REGION = 7512;
+	private static final int CORRUPTED_GAUNTLET_REGION = 7768;
 	private static final Pattern NUMBER_PATTERN = Pattern.compile("([0-9]+)");
 	private static final Pattern LEVEL_UP_PATTERN = Pattern.compile(".*Your ([a-zA-Z]+) (?:level is|are)? now (\\d+)\\.");
 	private static final Pattern BOSSKILL_MESSAGE_PATTERN = Pattern.compile("Your (.+) kill count is: <col=ff0000>(\\d+)</col>.");
@@ -151,6 +160,8 @@ public class ScreenshotPlugin extends Plugin
 
 	private NavigationButton titleBarButton;
 
+	private String kickPlayerName;
+
 	private final HotkeyListener hotkeyListener = new HotkeyListener(() -> config.hotkey())
 	{
 		@Override
@@ -200,6 +211,7 @@ public class ScreenshotPlugin extends Plugin
 		overlayManager.remove(screenshotOverlay);
 		clientToolbar.removeNavigation(titleBarButton);
 		keyManager.unregisterKeyListener(hotkeyListener);
+		kickPlayerName = null;
 	}
 
 	@Subscribe
@@ -265,9 +277,25 @@ public class ScreenshotPlugin extends Plugin
 	}
 
 	@Subscribe
+	public void onScriptCallbackEvent(ScriptCallbackEvent e)
+	{
+		if (!"confirmClanKick".equals(e.getEventName()))
+		{
+			return;
+		}
+
+		final String[] stringStack = client.getStringStack();
+		final int stringSize = client.getStringStackSize();
+		kickPlayerName = stringStack[stringSize - 1];
+	}
+
+	@Subscribe
 	public void onChatMessage(ChatMessage event)
 	{
-		if (event.getType() != ChatMessageType.GAMEMESSAGE && event.getType() != ChatMessageType.SPAM && event.getType() != ChatMessageType.TRADE)
+		if (event.getType() != ChatMessageType.GAMEMESSAGE
+			&& event.getType() != ChatMessageType.SPAM
+			&& event.getType() != ChatMessageType.TRADE
+			&& event.getType() != ChatMessageType.FRIENDSCHATNOTIFICATION)
 		{
 			return;
 		}
@@ -325,6 +353,17 @@ public class ScreenshotPlugin extends Plugin
 			}
 		}
 
+		if (config.screenshotCcKick() && chatMessage.equals("Your request to kick/ban this user was successful."))
+		{
+			if (kickPlayerName == null)
+			{
+				return;
+			}
+
+			takeScreenshot("Kick " + kickPlayerName, "Clan Chat Kicks");
+			kickPlayerName = null;
+		}
+
 		if (config.screenshotPet() && PET_MESSAGES.stream().anyMatch(chatMessage::contains))
 		{
 			String fileName = "Pet";
@@ -343,6 +382,16 @@ public class ScreenshotPlugin extends Plugin
 			}
 		}
 
+		if (chatMessage.equals(CHEST_LOOTED_MESSAGE) && config.screenshotRewards())
+		{
+			final int regionID = client.getLocalPlayer().getWorldLocation().getRegionID();
+			String eventName = CHEST_LOOT_EVENTS.get(regionID);
+			if (eventName != null)
+			{
+				takeScreenshot(eventName, "Chest Loot");
+			}
+		}
+
 		if (config.screenshotValuableDrop())
 		{
 			Matcher m = VALUABLE_DROP_PATTERN.matcher(chatMessage);
@@ -354,7 +403,7 @@ public class ScreenshotPlugin extends Plugin
 			}
 		}
 
-		if (config.screenshotUntradeableDrop())
+		if (config.screenshotUntradeableDrop() && !isInsideGauntlet())
 		{
 			Matcher m = UNTRADEABLE_DROP_PATTERN.matcher(chatMessage);
 			if (m.matches())
@@ -382,8 +431,7 @@ public class ScreenshotPlugin extends Plugin
 	public void onWidgetLoaded(WidgetLoaded event)
 	{
 		String fileName;
-		@Nullable
-		String screenshotSubDir = null;
+		String screenshotSubDir;
 		int groupId = event.getGroupId();
 
 		switch (groupId)
@@ -482,6 +530,7 @@ public class ScreenshotPlugin extends Plugin
 				}
 
 				fileName = Character.toUpperCase(clueType.charAt(0)) + clueType.substring(1) + "(" + clueNumber + ")";
+				screenshotSubDir = "Clue Scroll Rewards";
 				clueType = null;
 				clueNumber = null;
 				break;
@@ -589,6 +638,14 @@ public class ScreenshotPlugin extends Plugin
 		// Draw the game onto the screenshot
 		graphics.drawImage(image, gameOffsetX, gameOffsetY, null);
 		imageCapture.takeScreenshot(screenshot, fileName, subDir, config.notifyWhenTaken(), config.uploadScreenshot());
+	}
+
+	private boolean isInsideGauntlet()
+	{
+		return this.client.isInInstancedRegion()
+			&& this.client.getMapRegions().length > 0
+			&& (this.client.getMapRegions()[0] == GAUNTLET_REGION
+			|| this.client.getMapRegions()[0] == CORRUPTED_GAUNTLET_REGION);
 	}
 
 	@VisibleForTesting

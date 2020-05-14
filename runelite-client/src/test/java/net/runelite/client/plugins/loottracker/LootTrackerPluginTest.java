@@ -35,9 +35,13 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.ScheduledExecutorService;
 import javax.inject.Inject;
-
-import net.runelite.api.*;
+import net.runelite.api.ChatMessageType;
+import net.runelite.api.Client;
 import net.runelite.api.ItemDefinition;
+import net.runelite.api.ItemID;
+import net.runelite.api.IterableHashTable;
+import net.runelite.api.MessageNode;
+import net.runelite.api.Player;
 import net.runelite.api.coords.WorldPoint;
 import net.runelite.api.events.ChatMessage;
 import net.runelite.client.account.SessionManager;
@@ -67,20 +71,20 @@ import org.mockito.junit.MockitoJUnitRunner;
 public class LootTrackerPluginTest
 {
 	private static final Map<Integer, String> HERB_IDS_TO_NAMES = ImmutableMap.<Integer, String>builder()
-			.put(ItemID.GRIMY_GUAM_LEAF, "Grimy guam leaf")
-			.put(ItemID.GRIMY_MARRENTILL, "Grimy marrentill")
-			.put(ItemID.GRIMY_TARROMIN, "Grimy tarromin")
-			.put(ItemID.GRIMY_HARRALANDER, "Grimy harralander")
-			.put(ItemID.GRIMY_RANARR_WEED, "Grimy ranarr weed")
-			.put(ItemID.GRIMY_IRIT_LEAF, "Grimy irit leaf")
-			.put(ItemID.GRIMY_AVANTOE, "Grimy avantoe")
-			.put(ItemID.GRIMY_KWUARM, "Grimy kwuarm")
-			.put(ItemID.GRIMY_SNAPDRAGON, "Grimy snapdragon")
-			.put(ItemID.GRIMY_CADANTINE, "Grimy cadantine")
-			.put(ItemID.GRIMY_LANTADYME, "Grimy lantadyme")
-			.put(ItemID.GRIMY_DWARF_WEED, "Grimy dwarf weed")
-			.put(ItemID.GRIMY_TORSTOL, "Grimy torstol")
-			.build();
+		.put(ItemID.GRIMY_GUAM_LEAF, "Grimy guam leaf")
+		.put(ItemID.GRIMY_MARRENTILL, "Grimy marrentill")
+		.put(ItemID.GRIMY_TARROMIN, "Grimy tarromin")
+		.put(ItemID.GRIMY_HARRALANDER, "Grimy harralander")
+		.put(ItemID.GRIMY_RANARR_WEED, "Grimy ranarr weed")
+		.put(ItemID.GRIMY_IRIT_LEAF, "Grimy irit leaf")
+		.put(ItemID.GRIMY_AVANTOE, "Grimy avantoe")
+		.put(ItemID.GRIMY_KWUARM, "Grimy kwuarm")
+		.put(ItemID.GRIMY_SNAPDRAGON, "Grimy snapdragon")
+		.put(ItemID.GRIMY_CADANTINE, "Grimy cadantine")
+		.put(ItemID.GRIMY_LANTADYME, "Grimy lantadyme")
+		.put(ItemID.GRIMY_DWARF_WEED, "Grimy dwarf weed")
+		.put(ItemID.GRIMY_TORSTOL, "Grimy torstol")
+		.build();
 
 	@Mock
 	@Bind
@@ -155,25 +159,6 @@ public class LootTrackerPluginTest
 	}
 
 	@Test
-	public void testClueStacks()
-	{
-		when(itemManager.getItemComposition(ItemID.CLUE_SCROLL_MEDIUM)).thenAnswer(invocation -> mockItem("Clue scroll (medium)"));
-		when(itemManager.getItemComposition(ItemID.CLUE_SCROLL_MEDIUM_3602)).thenAnswer(invocation -> mockItem("Clue scroll (medium)"));
-		when(itemManager.getItemComposition(ItemID.GRACEFUL_HOOD_13579)).thenAnswer(invocation -> mockItem("Graceful hood"));
-		Collection<ItemStack> stack = lootTrackerPlugin.stack(
-				Arrays.asList(
-						new ItemStack(ItemID.CLUE_SCROLL_MEDIUM, 1, null),
-						new ItemStack(ItemID.CLUE_SCROLL_MEDIUM_3602, 1, null),
-						new ItemStack(ItemID.GRACEFUL_HOOD_13579, 1, null)
-				)
-		);
-		assertEquals(Arrays.asList(
-				new ItemStack(ItemID.CLUE_SCROLL_MEDIUM, 2, null),
-				new ItemStack(ItemID.GRACEFUL_HOOD_13579, 1, null)
-		), stack);
-	}
-
-	@Test
 	public void testHerbiboarHerbSack()
 	{
 		for (Map.Entry<Integer, String> herb : HERB_IDS_TO_NAMES.entrySet())
@@ -210,8 +195,8 @@ public class LootTrackerPluginTest
 			lootTrackerPluginSpy.onChatMessage(chatMessage);
 
 			verify(lootTrackerPluginSpy).addLoot("Herbiboar", -1, LootRecordType.EVENT, Arrays.asList(
-					new ItemStack(id, 1, null),
-					new ItemStack(id, 1, null)
+				new ItemStack(id, 1, null),
+				new ItemStack(id, 1, null)
 			));
 			// Check the event type is null, which means the plugin isn't waiting on an inventory change event
 			assertNull(lootTrackerPlugin.eventType);

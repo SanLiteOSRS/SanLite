@@ -55,41 +55,41 @@ public class ItemStatOverlayTest
 {
 	// Weapon definitions
 	private static final ItemStats ABYSSAL_DAGGER = new ItemStats(false, true, 0.453, 8,
-			ItemEquipmentStats.builder()
-					.slot(EquipmentInventorySlot.WEAPON.getSlotIdx())
-					.astab(75)
-					.aslash(40)
-					.acrush(-4)
-					.amagic(1)
-					.dmagic(1)
-					.str(75)
-					.aspeed(4)
-					.build());
+		ItemEquipmentStats.builder()
+			.slot(EquipmentInventorySlot.WEAPON.getSlotIdx())
+			.astab(75)
+			.aslash(40)
+			.acrush(-4)
+			.amagic(1)
+			.dmagic(1)
+			.str(75)
+			.aspeed(4)
+			.build());
 	private static final ItemStats KATANA = new ItemStats(false, true, 0, 8,
-			ItemEquipmentStats.builder()
-					.slot(EquipmentInventorySlot.WEAPON.getSlotIdx())
-					.astab(7)
-					.aslash(45)
-					.dstab(3)
-					.dslash(7)
-					.dcrush(7)
-					.drange(-3)
-					.str(40)
-					.aspeed(4)
-					.build());
+		ItemEquipmentStats.builder()
+			.slot(EquipmentInventorySlot.WEAPON.getSlotIdx())
+			.astab(7)
+			.aslash(45)
+			.dstab(3)
+			.dslash(7)
+			.dcrush(7)
+			.drange(-3)
+			.str(40)
+			.aspeed(4)
+			.build());
 	private static final ItemStats BLOWPIPE = new ItemStats(false, true, 0, 0,
-			ItemEquipmentStats.builder()
-					.slot(EquipmentInventorySlot.WEAPON.getSlotIdx())
-					.arange(60)
-					.rstr(40)
-					.aspeed(3)
-					.build());
+		ItemEquipmentStats.builder()
+			.slot(EquipmentInventorySlot.WEAPON.getSlotIdx())
+			.arange(60)
+			.rstr(40)
+			.aspeed(3)
+			.build());
 	private static final ItemStats HEAVY_BALLISTA = new ItemStats(false, true, 4, 8,
-			ItemEquipmentStats.builder()
-					.slot(EquipmentInventorySlot.WEAPON.getSlotIdx())
-					.arange(110)
-					.aspeed(7)
-					.build());
+		ItemEquipmentStats.builder()
+			.slot(EquipmentInventorySlot.WEAPON.getSlotIdx())
+			.arange(110)
+			.aspeed(7)
+			.build());
 
 	@Inject
 	ItemStatOverlay overlay;
@@ -118,7 +118,6 @@ public class ItemStatOverlayTest
 		when(config.colorBetterUncapped()).thenReturn(new Color(0));
 		when(config.colorWorse()).thenReturn(new Color(0));
 	}
-
 
 	@Test
 	public void testUnarmedAttackSpeed()

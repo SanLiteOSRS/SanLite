@@ -216,9 +216,9 @@ class DiscordState
 		if (DiscordGameEventType.IN_MENU.getState().equals(eventWithTime.getType().getState()) && now.isAfter(eventWithTime.getStart().plus(actionTimeout)))
 		{
 			final DiscordPresence presence = lastPresence
-					.toBuilder()
-					.startTimestamp(null)
-					.build();
+				.toBuilder()
+				.startTimestamp(null)
+				.build();
 			lastPresence = presence;
 			discordService.updatePresence(presence);
 		}

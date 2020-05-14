@@ -71,10 +71,10 @@ public interface WorldHopperConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "quickHopRegionFilter",
-			name = "Quick-hop region",
-			description = "Limit quick-hopping to worlds of a specific region",
-			position = 3
+		keyName = "quickHopRegionFilter",
+		name = "Quick-hop region",
+		description = "Limit quick-hopping to worlds of a specific region",
+		position = 3
 	)
 	default RegionFilterMode quickHopRegionFilter()
 	{
@@ -83,7 +83,7 @@ public interface WorldHopperConfig extends Config
 
 	@ConfigItem(
 		keyName = "showSidebar",
-		name = "Show world hopper sidebar",
+		name = "Show world switcher sidebar",
 		description = "Show sidebar containing all worlds that mimics in-game interface",
 		position = 4
 	)

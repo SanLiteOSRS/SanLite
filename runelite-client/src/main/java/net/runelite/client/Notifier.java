@@ -33,7 +33,11 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.TrayIcon;
-import java.io.*;
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.Instant;
@@ -42,8 +46,11 @@ import java.util.List;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import javax.inject.Singleton;
-import javax.sound.sampled.*;
-
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -153,9 +160,14 @@ public class Notifier
 			return;
 		}
 
-		if (runeLiteConfig.requestFocusOnNotification())
+		switch (runeLiteConfig.notificationRequestFocus())
 		{
-			clientUI.requestFocus();
+			case REQUEST:
+				clientUI.requestFocus();
+				break;
+			case FORCE:
+				clientUI.forceFocus();
+				break;
 		}
 
 		if (runeLiteConfig.enableTrayNotifications())

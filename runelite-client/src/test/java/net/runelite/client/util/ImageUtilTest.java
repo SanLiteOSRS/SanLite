@@ -131,16 +131,16 @@ public class ImageUtilTest
 	public void grayscaleImage()
 	{
 		final BufferedImage[] grayscaleColors = new BufferedImage[] {
-				oneByOne(WHITE),
-				oneByOne(GRAY),
-				oneByOne(BLACK),
-				oneByOne(BLACK_HALF_TRANSPARENT),
-				oneByOne(BLACK_TRANSPARENT),
+			oneByOne(WHITE),
+			oneByOne(GRAY),
+			oneByOne(BLACK),
+			oneByOne(BLACK_HALF_TRANSPARENT),
+			oneByOne(BLACK_TRANSPARENT),
 		};
 		final BufferedImage[] nonGrayscaleColors = new BufferedImage[] {
-				oneByOne(RED),
-				oneByOne(GREEN),
-				oneByOne(BLUE),
+			oneByOne(RED),
+			oneByOne(GREEN),
+			oneByOne(BLUE),
 		};
 
 		for (BufferedImage image : grayscaleColors)
@@ -174,21 +174,21 @@ public class ImageUtilTest
 		assertEquals(34, stretched.getHeight());
 
 		final BufferedImage[] assertSameAfterResize = new BufferedImage[] {
-				oneByOne(WHITE),
-				oneByOne(GRAY),
-				oneByOne(BLACK),
-				oneByOne(RED),
-				oneByOne(GREEN),
-				oneByOne(BLUE),
-				oneByOne(BLACK_HALF_TRANSPARENT),
-				oneByOne(BLACK_TRANSPARENT),
-				centeredPixel(WHITE),
-				centeredPixel(GRAY),
-				centeredPixel(BLACK),
-				BLACK_PIXEL_TOP_LEFT,
-				BLACK_PIXEL_TOP_RIGHT,
-				BLACK_PIXEL_BOTTOM_LEFT,
-				BLACK_PIXEL_BOTTOM_RIGHT,
+			oneByOne(WHITE),
+			oneByOne(GRAY),
+			oneByOne(BLACK),
+			oneByOne(RED),
+			oneByOne(GREEN),
+			oneByOne(BLUE),
+			oneByOne(BLACK_HALF_TRANSPARENT),
+			oneByOne(BLACK_TRANSPARENT),
+			centeredPixel(WHITE),
+			centeredPixel(GRAY),
+			centeredPixel(BLACK),
+			BLACK_PIXEL_TOP_LEFT,
+			BLACK_PIXEL_TOP_RIGHT,
+			BLACK_PIXEL_BOTTOM_LEFT,
+			BLACK_PIXEL_BOTTOM_RIGHT,
 		};
 		for (BufferedImage image : assertSameAfterResize)
 		{
@@ -381,7 +381,7 @@ public class ImageUtilTest
 				final int green = (color & 0xff00) >> 8;
 				final int blue = color & 0xff;
 				if (red != green
-						|| green != blue)
+					|| green != blue)
 				{
 					return false;
 				}
