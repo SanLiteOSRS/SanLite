@@ -29,8 +29,10 @@ package net.runelite.client.plugins.menuentryswapper;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ImmutableSet;
 import com.google.inject.Provides;
+
 import java.util.List;
 import java.util.Set;
+import java.util.regex.Pattern;
 import javax.inject.Inject;
 import lombok.Getter;
 import lombok.Setter;
@@ -114,6 +116,8 @@ public class MenuEntrySwapperPlugin extends Plugin
 		"wizard cromperty",
 		"brimstail"
 	);
+
+	private static final Pattern ESSENCE_POUCH_PATTERN = Pattern.compile("(small|medium|large|giant) pouch");
 
 	@Inject
 	private Client client;
@@ -312,30 +316,37 @@ public class MenuEntrySwapperPlugin extends Plugin
 	}
 
 	@Subscribe
-	public void onMenuEntryAdded(MenuEntryAdded menuEntryAdded)
+	public void onMenuEntryAdded(MenuEntryAdded event)
 	{
 		// This swap needs to happen prior to drag start on click, which happens during
 		// widget ticking and prior to our client tick event. This is because drag start
 		// is what builds the context menu row which is what the eventual click will use
 
-		// Swap to shift-click deposit behavior
 		// Deposit- op 1 is the current withdraw amount 1/5/10/x for deposit box interface
 		// Deposit- op 2 is the current withdraw amount 1/5/10/x for bank interface
-		if (shiftModifier && config.bankDepositShiftClick() != ShiftDepositMode.OFF
-			&& menuEntryAdded.getType() == MenuAction.CC_OP.getId() && (menuEntryAdded.getIdentifier() == 2 || menuEntryAdded.getIdentifier() == 1)
-			&& menuEntryAdded.getOption().startsWith("Deposit-"))
+		if (event.getType() == MenuAction.CC_OP.getId() && (event.getIdentifier() == 2 || event.getIdentifier() == 1)
+				&& event.getOption().startsWith("Deposit-"))
 		{
-			ShiftDepositMode shiftDepositMode = config.bankDepositShiftClick();
-			final int opId = WidgetInfo.TO_GROUP(menuEntryAdded.getActionParam1()) == WidgetID.DEPOSIT_BOX_GROUP_ID ? shiftDepositMode.getIdentifierDepositBox() : shiftDepositMode.getIdentifier();
-			final int actionId = opId >= 6 ? MenuAction.CC_OP_LOW_PRIORITY.getId() : MenuAction.CC_OP.getId();
-			bankModeSwap(actionId, opId);
+			// Swap to shift-click deposit behavior
+			if (shiftModifier && config.bankDepositShiftClick() != ShiftDepositMode.OFF)
+			{
+				ShiftDepositMode shiftDepositMode = config.bankDepositShiftClick();
+				final int opId = WidgetInfo.TO_GROUP(event.getActionParam1()) == WidgetID.DEPOSIT_BOX_GROUP_ID ? shiftDepositMode.getIdentifierDepositBox() : shiftDepositMode.getIdentifier();
+				final int actionId = opId >= 6 ? MenuAction.CC_OP_LOW_PRIORITY.getId() : MenuAction.CC_OP.getId();
+				bankModeSwap(actionId, opId);
+			}
+			else if (config.swapFillPouchInBank() && event.getIdentifier() != 1 &&
+					ESSENCE_POUCH_PATTERN.matcher(Text.standardize(event.getTarget().toLowerCase())).matches())
+			{
+				bankModeSwap(MenuAction.CC_OP_LOW_PRIORITY.getId(), 9, "fill");
+			}
 		}
 
 		// Swap to shift-click withdraw behavior
 		// Deposit- op 1 is the current withdraw amount 1/5/10/x
 		if (shiftModifier && config.bankWithdrawShiftClick() != ShiftWithdrawMode.OFF
-			&& menuEntryAdded.getType() == MenuAction.CC_OP.getId() && menuEntryAdded.getIdentifier() == 1
-			&& menuEntryAdded.getOption().startsWith("Withdraw-"))
+			&& event.getType() == MenuAction.CC_OP.getId() && event.getIdentifier() == 1
+			&& event.getOption().startsWith("Withdraw-"))
 		{
 			ShiftWithdrawMode shiftWithdrawMode = config.bankWithdrawShiftClick();
 			final int actionId = shiftWithdrawMode.getMenuAction().getId();
@@ -353,6 +364,29 @@ public class MenuEntrySwapperPlugin extends Plugin
 			MenuEntry entry = menuEntries[i];
 
 			if (entry.getType() == entryTypeId && entry.getIdentifier() == entryIdentifier)
+			{
+				// Raise the priority of the op so it doesn't get sorted later
+				entry.setType(MenuAction.CC_OP.getId());
+
+				menuEntries[i] = menuEntries[menuEntries.length - 1];
+				menuEntries[menuEntries.length - 1] = entry;
+
+				client.setMenuEntries(menuEntries);
+				break;
+			}
+		}
+	}
+
+	private void bankModeSwap(int entryTypeId, int entryIdentifier, String option)
+	{
+		MenuEntry[] menuEntries = client.getMenuEntries();
+
+		for (int i = menuEntries.length - 1; i >= 0; --i)
+		{
+			MenuEntry entry = menuEntries[i];
+
+			if (entry.getType() == entryTypeId && entry.getIdentifier() == entryIdentifier &&
+					entry.getOption().toLowerCase().equals(option.toLowerCase()))
 			{
 				// Raise the priority of the op so it doesn't get sorted later
 				entry.setType(MenuAction.CC_OP.getId());
@@ -800,9 +834,6 @@ public class MenuEntrySwapperPlugin extends Plugin
 				case CHANGE_TO_50:
 					swap ("buy 50", option, target, index);
 					break;
-				case Value:
-
-				default:
 
 			}
 			switch (config.swapStoreSell())
@@ -819,11 +850,11 @@ public class MenuEntrySwapperPlugin extends Plugin
 				case CHANGE_TO_50:
 					swap ("sell 50", option, target, index);
 					break;
-				case Value:
-
-				default:
-					break;
 			}
+		}
+		else if (config.swapEmptyEssencePouch() && option.equals("fill"))
+		{
+			swap("empty", option, target, index);
 		}
 
 		if (shiftModifier && config.swapTeleportSpell())
