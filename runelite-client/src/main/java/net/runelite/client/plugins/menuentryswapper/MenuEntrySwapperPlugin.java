@@ -403,20 +403,20 @@ public class MenuEntrySwapperPlugin extends Plugin
 	@Subscribe
 	public void onMenuOptionClicked(MenuOptionClicked event)
 	{
-		if (event.getMenuAction() != MenuAction.RUNELITE || event.getActionParam1() != WidgetInfo.INVENTORY.getId())
+		if (event.getMenuAction() != MenuAction.RUNELITE || event.getWidgetId() != WidgetInfo.INVENTORY.getId())
 		{
 			return;
 		}
 
-		int itemId = event.getIdentifier();
+		int itemId = event.getId();
 
 		if (itemId == -1)
 		{
 			return;
 		}
 
-		String option = event.getOption();
-		String target = event.getTarget();
+		String option = event.getMenuOption();
+		String target = event.getMenuTarget();
 		ItemDefinition itemComposition = client.getItemDefinition(itemId);
 
 		if (option.equals(RESET) && target.equals(MENU_TARGET))

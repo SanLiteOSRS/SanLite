@@ -687,7 +687,7 @@ public class GroundItemsPlugin extends Plugin
 	{
 		if (menuOptionClicked.getMenuAction() == MenuAction.ITEM_DROP)
 		{
-			int itemId = menuOptionClicked.getIdentifier();
+			int itemId = menuOptionClicked.getId();
 			// Keep a queue of recently dropped items to better detect
 			// item spawns that are drops
 			droppedItemQueue.add(itemId);

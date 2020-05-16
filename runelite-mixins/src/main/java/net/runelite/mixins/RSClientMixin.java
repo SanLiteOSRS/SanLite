@@ -115,73 +115,13 @@ public abstract class RSClientMixin implements RSClient
 			.build();
 
 	@Inject
-	private static boolean printMenuActions;
-
-	@Inject
-	private static boolean hideFriendAttackOptions = false;
-
-	@Inject
-	private static boolean hideClanmateAttackOptions = false;
-
-	@Inject
-	private static boolean hideFriendCastOptions = false;
-
-	@Inject
-	private static boolean hideClanmateCastOptions = false;
-
-	@Inject
 	private static boolean allWidgetsAreOpTargetable = false;
-
-	@Inject
-	private static Set<String> unhiddenCasts = new HashSet<String>();
-
-	@Inject
-	@Override
-	public void setPrintMenuActions(boolean yes)
-	{
-		printMenuActions = yes;
-	}
-
-	@Inject
-	@Override
-	public void setHideFriendAttackOptions(boolean yes)
-	{
-		hideFriendAttackOptions = yes;
-	}
-
-	@Inject
-	@Override
-	public void setHideFriendCastOptions(boolean yes)
-	{
-		hideFriendCastOptions = yes;
-	}
-
-	@Inject
-	@Override
-	public void setHideClanmateAttackOptions(boolean yes)
-	{
-		hideClanmateAttackOptions = yes;
-	}
-
-	@Inject
-	@Override
-	public void setHideClanmateCastOptions(boolean yes)
-	{
-		hideClanmateCastOptions = yes;
-	}
 
 	@Inject
 	@Override
 	public void setAllWidgetsAreOpTargetable(boolean yes)
 	{
 		allWidgetsAreOpTargetable = yes;
-	}
-
-	@Inject
-	@Override
-	public void setUnhiddenCasts(Set<String> casts)
-	{
-		unhiddenCasts = casts;
 	}
 
 	@Inject
@@ -1262,19 +1202,6 @@ public abstract class RSClientMixin implements RSClient
 	@Replace("menuAction")
 	static void rl$menuAction(int actionParam, int widgetId, int menuAction, int id, String menuOption, String menuTarget, int canvasX, int canvasY)
 	{
-		boolean authentic = true;
-		if (menuTarget != null && menuTarget.startsWith("!AUTHENTIC"))
-		{
-			authentic = false;
-			menuTarget = menuTarget.substring(10);
-		}
-
-		if (printMenuActions && client.getLogger().isDebugEnabled())
-		{
-			client.getLogger().debug("MenuAction: {} {} {} {} {} {} {} {} {}", actionParam, widgetId, menuAction, id,
-					menuOption, menuTarget, canvasX, canvasY, authentic);
-		}
-
 		/* Along the way, the RuneScape client may change a menuAction by incrementing it with 2000.
 		 * I have no idea why, but it does. Their code contains the same conditional statement.
 		 */
@@ -1283,18 +1210,13 @@ public abstract class RSClientMixin implements RSClient
 			menuAction -= 2000;
 		}
 
-		final MenuOptionClicked menuOptionClicked = new MenuOptionClicked(
-				new MenuEntry(
-						menuOption,
-						menuTarget,
-						id,
-						menuAction,
-						actionParam,
-						widgetId,
-						false
-				),
-				authentic
-		);
+		final MenuOptionClicked menuOptionClicked = new MenuOptionClicked();
+		menuOptionClicked.setActionParam(actionParam);
+		menuOptionClicked.setMenuOption(menuOption);
+		menuOptionClicked.setMenuTarget(menuTarget);
+		menuOptionClicked.setMenuAction(MenuAction.of(menuAction));
+		menuOptionClicked.setId(id);
+		menuOptionClicked.setWidgetId(widgetId);
 		client.getCallbacks().post(menuOptionClicked);
 
 		if (menuOptionClicked.isConsumed())
@@ -1302,15 +1224,14 @@ public abstract class RSClientMixin implements RSClient
 			return;
 		}
 
-		rs$menuAction(menuOptionClicked.getActionParam0(), menuOptionClicked.getActionParam1(), menuOptionClicked.getType(),
-				menuOptionClicked.getIdentifier(), menuOptionClicked.getOption(), menuOptionClicked.getTarget(), canvasX, canvasY);
+		rs$menuAction(actionParam, widgetId, menuAction, id, menuOption, menuTarget, canvasX, canvasY);
 	}
 
 	@Override
 	@Inject
 	public void invokeMenuAction(int actionParam, int widgetId, int menuAction, int id, String menuOption, String menuTarget, int canvasX, int canvasY)
 	{
-		client.sendMenuAction(actionParam, widgetId, menuAction, id, menuOption, "!AUTHENTIC" + menuTarget, canvasX, canvasY);
+		client.sendMenuAction(actionParam, widgetId, menuAction, id, menuOption, menuTarget, canvasX, canvasY);
 	}
 
 	@Inject
@@ -1627,18 +1548,6 @@ public abstract class RSClientMixin implements RSClient
 	{
 		getHealthBarCache().reset();
 		getHealthBarSpriteCache().reset();
-	}
-
-	@Inject
-	static boolean shouldHideAttackOptionFor(RSPlayer p)
-	{
-		if (client.isSpellSelected())
-		{
-			return ((hideFriendCastOptions && p.isFriended()) || (hideClanmateCastOptions && p.isClanMember()))
-					&& !unhiddenCasts.contains(client.getSelectedSpellName().replaceAll("<[^>]*>", "").toLowerCase());
-		}
-
-		return ((hideFriendAttackOptions && p.isFriended()) || (hideClanmateAttackOptions && p.isClanMember()));
 	}
 
 	@Inject

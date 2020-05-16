@@ -29,7 +29,6 @@ import java.awt.Dimension;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import net.runelite.api.coords.LocalPoint;
@@ -1770,42 +1769,9 @@ public interface Client extends GameShell
 
 	MouseRecorder getMouseRecorder();
 
-	void setPrintMenuActions(boolean b);
-
 	String getSelectedSpellName();
 
 	void setSelectedSpellName(String name);
-
-	/**
-	 * Set whether or not player attack options will be hidden for friends
-	 */
-	void setHideFriendAttackOptions(boolean yes);
-
-	/**
-	 * Set whether or not player cast options will be hidden for friends
-	 */
-	void setHideFriendCastOptions(boolean yes);
-
-	/**
-	 * Set whether or not player attack options will be hidden for clanmates
-	 */
-	void setHideClanmateAttackOptions(boolean yes);
-
-	/**
-	 * Set whether or not player cast options will be hidden for clanmates
-	 */
-	void setHideClanmateCastOptions(boolean yes);
-
-	/**
-	 * Set spells excluded from above hiding
-	 */
-	void setUnhiddenCasts(Set<String> casts);
-
-	/**
-	 * Sorts the current menu entries in the same way the client does this.
-	 * The last entry will be the left click one after this.
-	 */
-	void sortMenuEntries();
 
 	/**
 	 * Add player to friendlist

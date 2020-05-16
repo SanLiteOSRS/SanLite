@@ -250,12 +250,12 @@ public class HerbiboarPlugin extends Plugin
 			return;
 		}
 
-		switch (Text.removeTags(menuOpt.getTarget()))
+		switch (Text.removeTags(menuOpt.getMenuTarget()))
 		{
 			case "Rock":
 			case "Mushroom":
 			case "Driftwood":
-				startPoint = WorldPoint.fromScene(client, menuOpt.getActionParam0(), menuOpt.getActionParam1(), client.getPlane());
+				startPoint = WorldPoint.fromScene(client, menuOpt.getActionParam(), menuOpt.getWidgetId(), client.getPlane());
 		}
 	}
 

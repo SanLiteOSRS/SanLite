@@ -288,12 +288,12 @@ public class NpcIndicatorsPlugin extends Plugin
 	public void onMenuOptionClicked(MenuOptionClicked click)
 	{
 		if (click.getMenuAction() != MenuAction.RUNELITE ||
-			!(click.getOption().equals(TAG) || click.getOption().equals(UNTAG)))
+			!(click.getMenuOption().equals(TAG) || click.getMenuOption().equals(UNTAG)))
 		{
 			return;
 		}
 
-		final int id = click.getIdentifier();
+		final int id = click.getId();
 		final Integer removedId = npcTags.remove(id);
 		final NPC[] cachedNPCs = client.getCachedNPCs();
 		final NPC npc = cachedNPCs[id];

@@ -100,7 +100,7 @@ public class ExaminePlugin extends Plugin
 	@Subscribe
 	public void onMenuOptionClicked(MenuOptionClicked event)
 	{
-		if (!Text.removeTags(event.getOption()).equals("Examine"))
+		if (!Text.removeTags(event.getMenuOption()).equals("Examine"))
 		{
 			return;
 		}
@@ -112,24 +112,24 @@ public class ExaminePlugin extends Plugin
 			case EXAMINE_ITEM:
 			{
 				type = ExamineType.ITEM;
-				id = event.getIdentifier();
+				id = event.getId();
 
-				int widgetId = event.getActionParam1();
+				int widgetId = event.getWidgetId();
 				int widgetGroup = TO_GROUP(widgetId);
 				int widgetChild = TO_CHILD(widgetId);
 				Widget widget = client.getWidget(widgetGroup, widgetChild);
-				WidgetItem widgetItem = widget.getWidgetItem(event.getActionParam0());
+				WidgetItem widgetItem = widget.getWidgetItem(event.getActionParam());
 				quantity = widgetItem != null && widgetItem.getId() >= 0 ? widgetItem.getQuantity() : 1;
 				break;
 			}
 			case EXAMINE_ITEM_GROUND:
 				type = ExamineType.ITEM;
-				id = event.getIdentifier();
+				id = event.getId();
 				break;
 			case CC_OP_LOW_PRIORITY:
 			{
 				type = ExamineType.ITEM_BANK_EQ;
-				int[] qi = findItemFromWidget(event.getActionParam1(), event.getActionParam0());
+				int[] qi = findItemFromWidget(event.getWidgetId(), event.getActionParam());
 				if (qi == null)
 				{
 					log.debug("Examine for item with unknown widget: {}", event);
@@ -141,11 +141,11 @@ public class ExaminePlugin extends Plugin
 			}
 			case EXAMINE_OBJECT:
 				type = ExamineType.OBJECT;
-				id = event.getIdentifier();
+				id = event.getId();
 				break;
 			case EXAMINE_NPC:
 				type = ExamineType.NPC;
-				id = event.getIdentifier();
+				id = event.getId();
 				break;
 			default:
 				return;

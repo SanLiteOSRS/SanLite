@@ -640,12 +640,12 @@ public class LootTrackerPlugin extends Plugin
 	{
 		// There are some pickpocket targets who show up in the chat box with a different name (e.g. H.A.M. members -> man/woman)
 		// We use the value selected from the right-click menu as a fallback for the event lookup in those cases.
-		if (event.getOption().equals("Pickpocket"))
+		if (event.getMenuOption().equals("Pickpocket"))
 		{
-			lastPickpocketTarget = Text.removeTags(event.getTarget());
+			lastPickpocketTarget = Text.removeTags(event.getMenuTarget());
 		}
 
-		if (event.getOption().equals("Take") && event.getIdentifier() == ItemID.SEED_PACK)
+		if (event.getMenuOption().equals("Take") && event.getId() == ItemID.SEED_PACK)
 		{
 			eventType = SEEDPACK_EVENT;
 			lootRecordType = LootRecordType.EVENT;

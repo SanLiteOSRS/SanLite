@@ -31,12 +31,10 @@ import com.google.inject.testing.fieldbinder.Bind;
 import com.google.inject.testing.fieldbinder.BoundFieldModule;
 import net.runelite.api.Client;
 import net.runelite.api.MenuAction;
-import net.runelite.api.MenuEntry;
 import net.runelite.api.events.MenuOptionClicked;
 import net.runelite.api.events.PlayerMenuOptionClicked;
 import net.runelite.client.eventbus.EventBus;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
@@ -66,11 +64,11 @@ public class MenuManagerTest
 	}
 
 	@Test
-	@Ignore
 	public void testPlayerMenuOptionClicked()
 	{
-		MenuOptionClicked event = new MenuOptionClicked(new MenuEntry(
-				null, "username<col=40ff00>  (level-42)", -1, MenuAction.RUNELITE.ordinal(), -1, -1, false));
+		MenuOptionClicked event = new MenuOptionClicked();
+		event.setMenuAction(MenuAction.RUNELITE);
+		event.setMenuTarget("username<col=40ff00>  (level-42)");
 
 		menuManager.onMenuOptionClicked(event);
 
@@ -81,11 +79,11 @@ public class MenuManagerTest
 	}
 
 	@Test
-	@Ignore
 	public void testPlayerMenuOptionWithBountyHunterEmblemClicked()
 	{
-		MenuOptionClicked event = new MenuOptionClicked(new MenuEntry(
-				null, "username<img=20>5<col=40ff00>  (level-42)", -1, MenuAction.RUNELITE.ordinal(), -1, -1, false));
+		MenuOptionClicked event = new MenuOptionClicked();
+		event.setMenuAction(MenuAction.RUNELITE);
+		event.setMenuTarget("username<img=20>5<col=40ff00>  (level-42)");
 
 		menuManager.onMenuOptionClicked(event);
 
