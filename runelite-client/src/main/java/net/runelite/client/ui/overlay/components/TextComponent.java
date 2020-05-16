@@ -57,22 +57,22 @@ public class TextComponent implements RenderableEntity
 			for (String textSplitOnCol : parts)
 			{
 				final String textWithoutCol = Text.removeTags(textSplitOnCol);
+				String colColor = "";
 
 				int beginIndex = textSplitOnCol.indexOf("=");
 				int endIndex = textSplitOnCol.indexOf(">");
-				if (beginIndex < 0 || endIndex < 0)
-				{
-					continue;
-				}
 
-				final String colColor = textSplitOnCol.substring(beginIndex + 1, endIndex);
+				if (beginIndex > 0 && endIndex > 0)
+				{
+					colColor = textSplitOnCol.substring(beginIndex + 1, endIndex);
+				}
 
 				// shadow
 				graphics.setColor(Color.BLACK);
 				graphics.drawString(textWithoutCol, x + 1, position.y + 1);
 
 				// actual text
-				graphics.setColor(Color.decode("#" + colColor));
+				graphics.setColor(!colColor.isEmpty() ? Color.decode("#" + colColor) : color);
 				graphics.drawString(textWithoutCol, x, position.y);
 
 				x += fontMetrics.stringWidth(textWithoutCol);
