@@ -26,11 +26,20 @@ package net.runelite.client.plugins.gpu;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
-
-import net.runelite.api.*;
+import net.runelite.api.Client;
+import net.runelite.api.Constants;
+import net.runelite.api.DecorativeObject;
+import net.runelite.api.GameObject;
+import net.runelite.api.GroundObject;
+import net.runelite.api.Model;
+import net.runelite.api.Perspective;
+import net.runelite.api.Point;
 import net.runelite.api.Renderable;
+import net.runelite.api.Scene;
 import net.runelite.api.SceneTileModel;
 import net.runelite.api.SceneTilePaint;
+import net.runelite.api.Tile;
+import net.runelite.api.WallObject;
 
 @Singleton
 class SceneUploader
@@ -168,9 +177,9 @@ class SceneUploader
 			}
 			Point tilePoint = tile.getSceneLocation();
 			int len = upload(sceneTilePaint,
-					tile.getRenderLevel(), tilePoint.getX(), tilePoint.getY(),
-					vertexBuffer, uvBuffer,
-					0, 0, false);
+				tile.getRenderLevel(), tilePoint.getX(), tilePoint.getY(),
+				vertexBuffer, uvBuffer,
+				0, 0, false);
 			sceneTilePaint.setBufferLen(len);
 			offset += len;
 			if (sceneTilePaint.getTexture() != -1)
@@ -193,9 +202,9 @@ class SceneUploader
 			}
 			Point tilePoint = tile.getSceneLocation();
 			int len = upload(sceneTileModel,
-					tilePoint.getX(), tilePoint.getY(),
-					vertexBuffer, uvBuffer,
-					0, 0, false);
+				tilePoint.getX(), tilePoint.getY(),
+				vertexBuffer, uvBuffer,
+				0, 0, false);
 			sceneTileModel.setBufferLen(len);
 			offset += len;
 			if (sceneTileModel.getTriangleTextureId() != null)
@@ -263,7 +272,7 @@ class SceneUploader
 	}
 
 	int upload(SceneTilePaint tile, int tileZ, int tileX, int tileY, GpuIntBuffer vertexBuffer, GpuFloatBuffer uvBuffer,
-				int offsetX, int offsetY, boolean padUvs)
+		int offsetX, int offsetY, boolean padUvs)
 	{
 		final int[][][] tileHeights = client.getTileHeights();
 
@@ -336,7 +345,7 @@ class SceneUploader
 	}
 
 	int upload(SceneTileModel sceneTileModel, int tileX, int tileY, GpuIntBuffer vertexBuffer, GpuFloatBuffer uvBuffer,
-			int offsetX, int offsetY, boolean padUvs)
+		int offsetX, int offsetY, boolean padUvs)
 	{
 		final int[] faceX = sceneTileModel.getFaceX();
 		final int[] faceY = sceneTileModel.getFaceY();
@@ -449,7 +458,7 @@ class SceneUploader
 	}
 
 	int pushFace(Model model, int face, boolean padUvs, GpuIntBuffer vertexBuffer, GpuFloatBuffer uvBuffer,
-				int xOffset, int yOffset, int zOffset, int orientation)
+		int xOffset, int yOffset, int zOffset, int orientation)
 	{
 		final int[] vertexX = model.getVerticesX();
 		final int[] vertexY = model.getVerticesY();

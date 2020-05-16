@@ -641,7 +641,7 @@ public class ClanChatPlugin extends Plugin
 			return;
 		}
 
-		final BufferedImage image = spriteManager.getSpriteImg(SpriteID.TAB_CLAN_CHAT, 0);
+		final BufferedImage image = spriteManager.getSprite(SpriteID.TAB_CLAN_CHAT, 0);
 		clanMemberCounter = new ClanChatIndicator(image, this);
 		infoBoxManager.addInfoBox(clanMemberCounter);
 	}
@@ -649,15 +649,15 @@ public class ClanChatPlugin extends Plugin
 	private void confirmKickPlayer(final String kickPlayerName)
 	{
 		chatboxPanelManager.openTextMenuInput("Attempting to kick: " + kickPlayerName)
-				.option("1. Confirm kick", () ->
-						clientThread.invoke(() ->
-						{
-							kickConfirmed = true;
-							client.runScript(ScriptID.CLAN_SEND_KICK, kickPlayerName);
-							kickConfirmed = false;
-						})
-				)
-				.option("2. Cancel", Runnables::doNothing)
-				.build();
+			.option("1. Confirm kick", () ->
+				clientThread.invoke(() ->
+				{
+					kickConfirmed = true;
+					client.runScript(ScriptID.CLAN_SEND_KICK, kickPlayerName);
+					kickConfirmed = false;
+				})
+			)
+			.option("2. Cancel", Runnables::doNothing)
+			.build();
 	}
 }

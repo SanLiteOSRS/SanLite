@@ -123,10 +123,10 @@ public interface ChatCommandsConfig extends Config
 	}
 
 	@ConfigItem(
-			position = 8,
-			keyName = "bh",
-			name = "BH Command",
-			description = "Configures whether the Bounty Hunter - Hunter command is enabled<br> !bh"
+		position = 8,
+		keyName = "bh",
+		name = "BH Command",
+		description = "Configures whether the Bounty Hunter - Hunter command is enabled<br> !bh"
 	)
 	default boolean bh()
 	{
@@ -134,10 +134,10 @@ public interface ChatCommandsConfig extends Config
 	}
 
 	@ConfigItem(
-			position = 9,
-			keyName = "bhRogue",
-			name = "BH Rogue Command",
-			description = "Configures whether the Bounty Hunter - Rogue command is enabled<br> !bhrogue"
+		position = 9,
+		keyName = "bhRogue",
+		name = "BH Rogue Command",
+		description = "Configures whether the Bounty Hunter - Rogue command is enabled<br> !bhrogue"
 	)
 	default boolean bhRogue()
 	{
@@ -145,10 +145,10 @@ public interface ChatCommandsConfig extends Config
 	}
 
 	@ConfigItem(
-			position = 10,
-			keyName = "lms",
-			name = "LMS Command",
-			description = "Configures whether the Last Man Standing command is enabled<br> !lms"
+		position = 10,
+		keyName = "lms",
+		name = "LMS Command",
+		description = "Configures whether the Last Man Standing command is enabled<br> !lms"
 	)
 	default boolean lms()
 	{
@@ -156,10 +156,10 @@ public interface ChatCommandsConfig extends Config
 	}
 
 	@ConfigItem(
-			position = 11,
-			keyName = "clearSingleWord",
-			name = "Clear Single Word",
-			description = "Enable hot key to clear single word at a time"
+		position = 11,
+		keyName = "clearSingleWord",
+		name = "Clear Single Word",
+		description = "Enable hot key to clear single word at a time"
 	)
 	default Keybind clearSingleWord()
 	{
@@ -167,10 +167,10 @@ public interface ChatCommandsConfig extends Config
 	}
 
 	@ConfigItem(
-			position = 12,
-			keyName = "clearEntireChatBox",
-			name = "Clear Chat Box",
-			description = "Enable hotkey to clear entire chat box"
+		position = 12,
+		keyName = "clearEntireChatBox",
+		name = "Clear Chat Box",
+		description = "Enable hotkey to clear entire chat box"
 	)
 	default Keybind clearChatBox()
 	{

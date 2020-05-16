@@ -110,24 +110,24 @@ class CorpDamageOverlay extends OverlayPanel
 
 				panelComponent.setPreferredSize(new Dimension(textWidth, 0));
 				panelComponent.getChildren().add(LineComponent.builder()
-						.left(text)
-						.leftColor(Color.RED)
-						.build());
+					.left(text)
+					.leftColor(Color.RED)
+					.build());
 			}
 		}
 
 		if (config.showDamage())
 		{
 			panelComponent.getChildren().add(LineComponent.builder()
-					.left("Your damage")
-					.right(Integer.toString(myDamage))
-					.rightColor(damageForKill > 0 && myDamage >= damageForKill ? Color.GREEN : Color.RED)
-					.build());
+				.left("Your damage")
+				.right(Integer.toString(myDamage))
+				.rightColor(damageForKill > 0 && myDamage >= damageForKill ? Color.GREEN : Color.RED)
+				.build());
 
 			panelComponent.getChildren().add(LineComponent.builder()
-					.left("Total damage")
-					.right(Integer.toString(totalDamage))
-					.build());
+				.left("Total damage")
+				.right(Integer.toString(totalDamage))
+				.build());
 		}
 
 		return super.render(graphics);

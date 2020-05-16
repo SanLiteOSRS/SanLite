@@ -270,7 +270,7 @@ class InstanceMapOverlay extends Overlay
 	{
 		if (closeButtonImage == null)
 		{
-			closeButtonImage = spriteManager.getSpriteImg(WINDOW_CLOSE_BUTTON_RED_X, 0);
+			closeButtonImage = spriteManager.getSprite(WINDOW_CLOSE_BUTTON_RED_X, 0);
 		}
 		return closeButtonImage;
 	}
@@ -280,7 +280,7 @@ class InstanceMapOverlay extends Overlay
 	{
 		if (closeButtonHoveredImage == null)
 		{
-			closeButtonHoveredImage = spriteManager.getSpriteImg(WINDOW_CLOSE_BUTTON_RED_X_HOVERED, 0);
+			closeButtonHoveredImage = spriteManager.getSprite(WINDOW_CLOSE_BUTTON_RED_X_HOVERED, 0);
 		}
 		return closeButtonHoveredImage;
 	}

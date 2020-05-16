@@ -31,13 +31,27 @@ import java.time.Instant;
 import java.util.Arrays;
 import java.util.List;
 import javax.inject.Inject;
-
-import net.runelite.api.*;
-
+import net.runelite.api.Actor;
+import net.runelite.api.AnimationID;
 import static net.runelite.api.AnimationID.*;
-
+import net.runelite.api.Client;
+import net.runelite.api.Constants;
+import net.runelite.api.GameState;
+import net.runelite.api.GraphicID;
+import net.runelite.api.Hitsplat;
+import net.runelite.api.NPC;
+import net.runelite.api.NPCComposition;
+import net.runelite.api.Player;
+import net.runelite.api.Skill;
+import net.runelite.api.VarPlayer;
+import net.runelite.api.Varbits;
 import net.runelite.api.coords.WorldPoint;
-import net.runelite.api.events.*;
+import net.runelite.api.events.AnimationChanged;
+import net.runelite.api.events.GameStateChanged;
+import net.runelite.api.events.GameTick;
+import net.runelite.api.events.GraphicChanged;
+import net.runelite.api.events.HitsplatApplied;
+import net.runelite.api.events.InteractingChanged;
 import net.runelite.client.Notifier;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
@@ -191,6 +205,7 @@ public class IdleNotifierPlugin extends Plugin
 			case FISHING_PEARL_ROD:
 			case FISHING_PEARL_FLY_ROD:
 			case FISHING_PEARL_BARBARIAN_ROD:
+			case FISHING_PEARL_OILY_ROD:
 			/* Mining(Normal) */
 			case MINING_BRONZE_PICKAXE:
 			case MINING_IRON_PICKAXE:
@@ -363,7 +378,7 @@ public class IdleNotifierPlugin extends Plugin
 		final Hitsplat hitsplat = event.getHitsplat();
 
 		if (hitsplat.getHitsplatType() == Hitsplat.HitsplatType.DAMAGE_ME
-				|| hitsplat.getHitsplatType() == Hitsplat.HitsplatType.BLOCK_ME)
+			|| hitsplat.getHitsplatType() == Hitsplat.HitsplatType.BLOCK_ME)
 		{
 			lastCombatCountdown = HIGHEST_MONSTER_ATTACK_SPEED;
 		}

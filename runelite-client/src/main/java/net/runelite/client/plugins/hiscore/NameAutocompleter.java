@@ -40,7 +40,10 @@ import javax.swing.text.Document;
 import javax.swing.text.JTextComponent;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.*;
+import net.runelite.api.ClanMember;
+import net.runelite.api.Client;
+import net.runelite.api.Friend;
+import net.runelite.api.Player;
 
 @Slf4j
 @Singleton
@@ -115,7 +118,7 @@ class NameAutocompleter implements KeyListener
 		// Don't attempt to autocomplete if the name is invalid.
 		// This condition is also true when the user presses a key like backspace.
 		if (INVALID_CHARS.matcher(charToInsert).find()
-				|| INVALID_CHARS.matcher(inputText).find())
+			|| INVALID_CHARS.matcher(inputText).find())
 		{
 			return;
 		}
@@ -168,9 +171,9 @@ class NameAutocompleter implements KeyListener
 				try
 				{
 					input.getDocument().insertString(
-							nameStart.length(),
-							name.substring(nameStart.length()),
-							null);
+						nameStart.length(),
+						name.substring(nameStart.length()),
+						null);
 					input.select(nameStart.length(), name.length());
 				}
 				catch (BadLocationException ex)
@@ -192,7 +195,7 @@ class NameAutocompleter implements KeyListener
 		// Matching non-breaking spaces is necessary because the API
 		// returns non-breaking spaces when a name has whitespace.
 		pattern = Pattern.compile(
-				"(?i)^" + nameStart.replaceAll("[ _-]", "[ _" + NBSP + "-]") + ".+?");
+			"(?i)^" + nameStart.replaceAll("[ _-]", "[ _" + NBSP + "-]") + ".+?");
 
 		if (client == null)
 		{
@@ -201,8 +204,8 @@ class NameAutocompleter implements KeyListener
 
 		// Search all previous successful queries
 		autocompleteName = searchHistory.stream()
-				.filter(n -> pattern.matcher(n).matches())
-				.findFirst();
+			.filter(n -> pattern.matcher(n).matches())
+			.findFirst();
 
 		// Search friends if previous searches weren't matched
 		if (!autocompleteName.isPresent())
@@ -237,17 +240,17 @@ class NameAutocompleter implements KeyListener
 		{
 			final Player[] cachedPlayers = client.getCachedPlayers();
 			autocompleteName = Arrays.stream(cachedPlayers)
-					.filter(Objects::nonNull)
-					.map(Player::getName)
-					.filter(n -> pattern.matcher(n).matches())
-					.findFirst();
+				.filter(Objects::nonNull)
+				.map(Player::getName)
+				.filter(n -> pattern.matcher(n).matches())
+				.findFirst();
 		}
 
 		if (autocompleteName.isPresent())
 		{
 			this.autocompleteName = autocompleteName.get().replace(NBSP, " ");
 			this.autocompleteNamePattern = Pattern.compile(
-					"(?i)^" + this.autocompleteName.replaceAll("[ _-]", "[ _-]") + "$");
+				"(?i)^" + this.autocompleteName.replaceAll("[ _-]", "[ _-]") + "$");
 		}
 		else
 		{

@@ -39,7 +39,6 @@ import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 import net.runelite.api.Client;
 import net.runelite.api.GameState;
-import net.runelite.api.IndexDataBase;
 import net.runelite.api.SpritePixels;
 import net.runelite.client.callback.ClientThread;
 import net.runelite.client.ui.overlay.infobox.InfoBox;
@@ -63,25 +62,8 @@ public class SpriteManager
 		.expireAfterAccess(1, TimeUnit.HOURS)
 		.build();
 
-	public SpritePixels getSprite(int id)
-	{
-		final IndexDataBase spriteDb = client.getIndexSprites();
-		if (spriteDb == null)
-		{
-			return null;
-		}
-
-		final SpritePixels[] spritePixels = client.getSprites(spriteDb, id, 0);
-		if (spritePixels == null)
-		{
-			return null;
-		}
-
-		return spritePixels[0];
-	}
-
 	@Nullable
-	public BufferedImage getSpriteImg(int archive, int file)
+	public BufferedImage getSprite(int archive, int file)
 	{
 		assert client.isClientThread();
 		if (client.getGameState().ordinal() < GameState.LOGIN_SCREEN.ordinal())
@@ -119,7 +101,7 @@ public class SpriteManager
 
 		clientThread.invoke(() ->
 		{
-			BufferedImage img = getSpriteImg(archive, file);
+			BufferedImage img = getSprite(archive, file);
 			if (img == null)
 			{
 				// Cache isn't loaded yet

@@ -60,8 +60,8 @@ public class ChatKeyboardListener implements KeyListener
 		{
 			int inputTye = client.getVar(VarClientInt.INPUT_TYPE);
 			String input = inputTye == InputType.NONE.getType()
-					? client.getVar(VarClientStr.CHATBOX_TYPED_TEXT)
-					: client.getVar(VarClientStr.INPUT_TEXT);
+				? client.getVar(VarClientStr.CHATBOX_TYPED_TEXT)
+				: client.getVar(VarClientStr.INPUT_TEXT);
 
 			if (input != null)
 			{

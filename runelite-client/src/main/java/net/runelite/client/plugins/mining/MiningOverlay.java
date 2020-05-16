@@ -104,7 +104,7 @@ class MiningOverlay extends Overlay
 
 			// Recolour pie on motherlode veins or Lovakite ore during the portion of the timer where they may respawn
 			if ((rock == Rock.ORE_VEIN && percent > ORE_VEIN_RANDOM_PERCENT_THRESHOLD)
-					|| (rock == Rock.LOVAKITE && percent > LOVAKITE_ORE_RANDOM_PERCENT_THRESHOLD))
+				|| (rock == Rock.LOVAKITE && percent > LOVAKITE_ORE_RANDOM_PERCENT_THRESHOLD))
 			{
 				pieFillColor = Color.GREEN;
 				pieBorderColor = DARK_GREEN;

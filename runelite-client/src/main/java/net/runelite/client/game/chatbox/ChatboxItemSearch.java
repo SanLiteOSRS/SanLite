@@ -310,7 +310,7 @@ public class ChatboxItemSearch extends ChatboxTextInput
 			{
 				// Check if the results already contain the same item image
 				ItemIcon itemIcon = new ItemIcon(itemComposition.getInventoryModel(),
-						itemComposition.getColorToReplaceWith(), itemComposition.getTextureToReplaceWith());
+					itemComposition.getColorToReplaceWith(), itemComposition.getTextureToReplaceWith());
 				if (itemIcons.contains(itemIcon))
 				{
 					continue;

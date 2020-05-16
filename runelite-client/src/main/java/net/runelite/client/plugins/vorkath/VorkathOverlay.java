@@ -152,7 +152,7 @@ public class VorkathOverlay extends Overlay
 	{
 		if (vorkath.getZombifiedSpawn() != null)
 		{
-			final BufferedImage spriteCrumbleUndead = spriteManager.getSpriteImg(SpriteID.SPELL_CRUMBLE_UNDEAD, 0);
+			final BufferedImage spriteCrumbleUndead = spriteManager.getSprite(SpriteID.SPELL_CRUMBLE_UNDEAD, 0);
 			if (spriteCrumbleUndead == null)
 			{
 				return;
@@ -192,7 +192,7 @@ public class VorkathOverlay extends Overlay
 				: String.valueOf(ticksTillNextAttack);
 
 		BufferedImage image = vorkath.getRemainingAcidPhaseAttacks() != -1
-				? spriteManager.getSpriteImg(SpriteID.SPELL_FIRE_SURGE, 0)
+				? spriteManager.getSprite(SpriteID.SPELL_FIRE_SURGE, 0)
 				: ImageUtil.getResourceStreamFromClass(getClass(), "/skill_icons_small/attack.png");
 		Point imageLocation = vorkath.getNpc().getCanvasTextLocation(graphics, text, 0);
 		if (imageLocation == null || image == null)

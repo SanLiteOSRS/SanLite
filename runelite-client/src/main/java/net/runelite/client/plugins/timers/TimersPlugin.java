@@ -377,7 +377,7 @@ public class TimersPlugin extends Plugin
 			|| event.getId() == ItemID.EGNIOL_POTION_3
 			|| event.getId() == ItemID.EGNIOL_POTION_4))
 		{
-			// Needs menu option hook because mixes use a common drink message, distinct from their standard potion meszsages
+			// Needs menu option hook because mixes use a common drink message, distinct from their standard potion messages
 			createGameTimer(STAMINA);
 			return;
 		}

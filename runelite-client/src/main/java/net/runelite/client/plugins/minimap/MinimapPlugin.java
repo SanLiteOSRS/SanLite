@@ -56,7 +56,7 @@ public class MinimapPlugin extends Plugin
 	@Inject
 	private MinimapConfig config;
 
-	private SpritePixels[] originalDotSpritePixels;
+	private SpritePixels[] originalDotSprites;
 
 	@Provides
 	private MinimapConfig provideConfig(ConfigManager configManager)
@@ -82,7 +82,7 @@ public class MinimapPlugin extends Plugin
 	@Subscribe
 	public void onGameStateChanged(GameStateChanged event)
 	{
-		if (event.getGameState() == GameState.LOGIN_SCREEN && originalDotSpritePixels == null)
+		if (event.getGameState() == GameState.LOGIN_SCREEN && originalDotSprites == null)
 		{
 			storeOriginalDots();
 			replaceMapDots();
@@ -173,18 +173,18 @@ public class MinimapPlugin extends Plugin
 			return;
 		}
 
-		originalDotSpritePixels = Arrays.copyOf(originalDots, originalDots.length);
+		originalDotSprites = Arrays.copyOf(originalDots, originalDots.length);
 	}
 
 	private void restoreOriginalDots()
 	{
 		SpritePixels[] mapDots = client.getMapDots();
 
-		if (originalDotSpritePixels == null || mapDots == null)
+		if (originalDotSprites == null || mapDots == null)
 		{
 			return;
 		}
 
-		System.arraycopy(originalDotSpritePixels, 0, mapDots, 0, mapDots.length);
+		System.arraycopy(originalDotSprites, 0, mapDots, 0, mapDots.length);
 	}
 }

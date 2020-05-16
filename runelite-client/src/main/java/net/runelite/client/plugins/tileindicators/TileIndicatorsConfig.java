@@ -77,9 +77,9 @@ public interface TileIndicatorsConfig extends Config
 
 	@Alpha
 	@ConfigItem(
-			keyName = "highlightCurrentColor",
-			name = "Color of current true tile highlighting",
-			description = "Configures the highlight color of current true tile"
+		keyName = "highlightCurrentColor",
+		name = "Color of current true tile highlighting",
+		description = "Configures the highlight color of current true tile"
 	)
 	default Color highlightCurrentColor()
 	{
@@ -87,9 +87,9 @@ public interface TileIndicatorsConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "highlightCurrentTile",
-			name = "Highlight current true tile",
-			description = "Highlights true tile player is on as seen by server"
+		keyName = "highlightCurrentTile",
+		name = "Highlight current true tile",
+		description = "Highlights true tile player is on as seen by server"
 	)
 	default boolean highlightCurrentTile()
 	{

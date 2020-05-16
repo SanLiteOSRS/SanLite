@@ -76,9 +76,9 @@ import net.runelite.client.ui.overlay.OverlayManager;
 import net.runelite.client.ui.overlay.infobox.InfoBoxManager;
 
 @PluginDescriptor(
-		name = "Agility",
-		description = "Show helpful information about agility courses and obstacles",
-		tags = {"grace", "marks", "overlay", "shortcuts", "skilling", "traps"}
+	name = "Agility",
+	description = "Show helpful information about agility courses and obstacles",
+	tags = {"grace", "marks", "overlay", "shortcuts", "skilling", "traps"}
 )
 @PluginDependency(XpTrackerPlugin.class)
 @Slf4j
@@ -215,9 +215,9 @@ public class AgilityPlugin extends Plugin
 		// Get course
 		Courses course = Courses.getCourse(client.getLocalPlayer().getWorldLocation().getRegionID());
 		if (course == null
-				|| (course.getCourseEndWorldPoints().length == 0
-				? Math.abs(course.getLastObstacleXp() - skillGained) > 1
-				: Arrays.stream(course.getCourseEndWorldPoints()).noneMatch(wp -> wp.equals(client.getLocalPlayer().getWorldLocation()))))
+			|| (course.getCourseEndWorldPoints().length == 0
+			? Math.abs(course.getLastObstacleXp() - skillGained) > 1
+			: Arrays.stream(course.getCourseEndWorldPoints()).noneMatch(wp -> wp.equals(client.getLocalPlayer().getWorldLocation()))))
 		{
 			return;
 		}
@@ -283,7 +283,7 @@ public class AgilityPlugin extends Plugin
 			lastArenaTicketPosition = newTicketPosition;
 
 			if (oldTickPosition != null && newTicketPosition != null
-					&& (oldTickPosition.getX() != newTicketPosition.getX() || oldTickPosition.getY() != newTicketPosition.getY()))
+				&& (oldTickPosition.getX() != newTicketPosition.getX() || oldTickPosition.getY() != newTicketPosition.getY()))
 			{
 				log.debug("Ticked position moved from {} to {}", oldTickPosition, newTicketPosition);
 
@@ -405,8 +405,8 @@ public class AgilityPlugin extends Plugin
 		}
 
 		if (Obstacles.COURSE_OBSTACLE_IDS.contains(newObject.getId()) ||
-				(Obstacles.TRAP_OBSTACLE_IDS.contains(newObject.getId())
-						&& Obstacles.TRAP_OBSTACLE_REGIONS.contains(newObject.getWorldLocation().getRegionID())))
+			(Obstacles.TRAP_OBSTACLE_IDS.contains(newObject.getId())
+				&& Obstacles.TRAP_OBSTACLE_REGIONS.contains(newObject.getWorldLocation().getRegionID())))
 		{
 			obstacles.put(newObject, new Obstacle(tile, null));
 		}

@@ -287,7 +287,7 @@ public class ObjectIndicatorsPlugin extends Plugin implements KeyListener
 	public void onMenuOptionClicked(MenuOptionClicked event)
 	{
 		if (event.getMenuAction() != MenuAction.RUNELITE
-				|| !(event.getMenuOption().equals(MARK) || event.getMenuOption().equals(UNMARK)))
+			|| !(event.getMenuOption().equals(MARK) || event.getMenuOption().equals(UNMARK)))
 		{
 			return;
 		}
@@ -307,8 +307,8 @@ public class ObjectIndicatorsPlugin extends Plugin implements KeyListener
 
 		// object.getId() is always the base object id, getObjectComposition transforms it to
 		// the correct object we see
-		ObjectComposition objectComposition = getObjectComposition(object.getId());
-		String name = objectComposition.getName();
+		ObjectComposition objectDefinition = getObjectComposition(object.getId());
+		String name = objectDefinition.getName();
 		// Name is probably never "null" - however prevent adding it if it is, as it will
 		// become ambiguous as objects with no name are assigned name "null"
 		if (Strings.isNullOrEmpty(name) || name.equals("null"))
@@ -316,7 +316,7 @@ public class ObjectIndicatorsPlugin extends Plugin implements KeyListener
 			return;
 		}
 
-		markObject(objectComposition, name, object);
+		markObject(objectDefinition, name, object);
 	}
 
 	private void checkObjectPoints(TileObject object)

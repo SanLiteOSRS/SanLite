@@ -62,10 +62,10 @@ import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.ui.overlay.OverlayManager;
 
 @PluginDescriptor(
-		name = "Drift Net",
-		description = "Display information about drift nets",
-		tags = {"hunter", "fishing", "drift", "net"},
-		enabledByDefault = false
+	name = "Drift Net",
+	description = "Display information about drift nets",
+	tags = {"hunter", "fishing", "drift", "net"},
+	enabledByDefault = false
 )
 public class DriftNetPlugin extends Plugin
 {
@@ -94,8 +94,8 @@ public class DriftNetPlugin extends Plugin
 	private Map<NPC, Integer> taggedFish = new HashMap<>();
 	@Getter
 	private final List<DriftNet> NETS = ImmutableList.of(
-			new DriftNet(NullObjectID.NULL_31433, Varbits.NORTH_NET_STATUS, Varbits.NORTH_NET_CATCH_COUNT),
-			new DriftNet(NullObjectID.NULL_31434, Varbits.SOUTH_NET_STATUS, Varbits.SOUTH_NET_CATCH_COUNT));
+		new DriftNet(NullObjectID.NULL_31433, Varbits.NORTH_NET_STATUS, Varbits.NORTH_NET_CATCH_COUNT),
+		new DriftNet(NullObjectID.NULL_31434, Varbits.SOUTH_NET_STATUS, Varbits.SOUTH_NET_CATCH_COUNT));
 
 	@Getter
 	private boolean inDriftNetArea;
@@ -187,9 +187,9 @@ public class DriftNetPlugin extends Plugin
 	public void onInteractingChanged(InteractingChanged event)
 	{
 		if (armInteraction
-				&& event.getSource() == client.getLocalPlayer()
-				&& event.getTarget() instanceof NPC
-				&& ((NPC) event.getTarget()).getId() == NpcID.FISH_SHOAL)
+			&& event.getSource() == client.getLocalPlayer()
+			&& event.getTarget() instanceof NPC
+			&& ((NPC) event.getTarget()).getId() == NpcID.FISH_SHOAL)
 		{
 			tagFish(event.getTarget());
 			armInteraction = false;

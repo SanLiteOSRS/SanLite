@@ -68,8 +68,10 @@ public class ItemVariationMapping
 				builder.put(id, base);
 				invertedBuilder.put(base, id);
 			}
+
 			invertedBuilder.put(base, base);
 		}
+
 		INVERTED_MAPPINGS = invertedBuilder.build();
 		MAPPINGS = builder.build();
 	}
@@ -84,7 +86,6 @@ public class ItemVariationMapping
 	{
 		return MAPPINGS.getOrDefault(itemId, itemId);
 	}
-
 
 	/**
 	 * Get item ids for provided variation item id.

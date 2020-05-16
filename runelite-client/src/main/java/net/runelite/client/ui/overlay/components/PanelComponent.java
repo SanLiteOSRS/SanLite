@@ -62,10 +62,10 @@ public class PanelComponent implements LayoutableRenderableEntity
 
 	@Setter
 	private Rectangle border = new Rectangle(
-			ComponentConstants.STANDARD_BORDER,
-			ComponentConstants.STANDARD_BORDER,
-			ComponentConstants.STANDARD_BORDER,
-			ComponentConstants.STANDARD_BORDER);
+		ComponentConstants.STANDARD_BORDER,
+		ComponentConstants.STANDARD_BORDER,
+		ComponentConstants.STANDARD_BORDER,
+		ComponentConstants.STANDARD_BORDER);
 
 	@Setter
 	private Point gap = new Point(0, 0);
@@ -82,8 +82,8 @@ public class PanelComponent implements LayoutableRenderableEntity
 
 		// Calculate panel dimension
 		final Dimension dimension = new Dimension(
-				border.x + childDimensions.width + border.width,
-				border.y + childDimensions.height + border.height);
+			border.x + childDimensions.width + border.width,
+			border.y + childDimensions.height + border.height);
 
 		// Render background
 		if (backgroundColor != null)
@@ -104,8 +104,8 @@ public class PanelComponent implements LayoutableRenderableEntity
 
 		// Create child preferred size
 		final Dimension childPreferredSize = new Dimension(
-				preferredSize.width - border.x - border.width,
-				preferredSize.height - border.y - border.height);
+			preferredSize.width - border.x - border.width,
+			preferredSize.height - border.y - border.height);
 
 		// Calculate max width/height for infoboxes
 		int totalHeight = 0;

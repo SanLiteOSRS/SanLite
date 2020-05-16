@@ -72,12 +72,12 @@ public class FriendListPlugin extends Plugin
 				final int limit = isMember ? MAX_FRIENDS_P2P : MAX_FRIENDS_F2P;
 
 				final String title = "Friends - W" +
-						world +
-						" (" +
-						friendCount +
-						"/" +
-						limit +
-						")";
+					world +
+					" (" +
+					friendCount +
+					"/" +
+					limit +
+					")";
 
 				setFriendsListTitle(title);
 			}
@@ -90,12 +90,12 @@ public class FriendListPlugin extends Plugin
 				final int limit = isMember ? MAX_IGNORES_P2P : MAX_IGNORES_F2P;
 
 				final String title = "Ignores - W" +
-						world +
-						" (" +
-						ignoreCount +
-						"/" +
-						limit +
-						")";
+					world +
+					" (" +
+					ignoreCount +
+					"/" +
+					limit +
+					")";
 
 				setIgnoreListTitle(title);
 			}

@@ -404,9 +404,9 @@ public class DevToolsPlugin extends Plugin
 					message = String.format("Set configuration %s.%s to %s (was: %s)", group, key, value, current);
 				}
 				chatMessageManager.queue(QueuedMessage.builder()
-						.type(ChatMessageType.GAMEMESSAGE)
-						.runeLiteFormattedMessage(new ChatMessageBuilder().append(message).build())
-						.build());
+					.type(ChatMessageType.GAMEMESSAGE)
+					.runeLiteFormattedMessage(new ChatMessageBuilder().append(message).build())
+					.build());
 				break;
 			}
 			case "getconf":
@@ -415,9 +415,9 @@ public class DevToolsPlugin extends Plugin
 				String value = configManager.getConfiguration(group, key);
 				final String message = String.format("%s.%s = %s", group, key, value);
 				chatMessageManager.queue(QueuedMessage.builder()
-						.type(ChatMessageType.GAMEMESSAGE)
-						.runeLiteFormattedMessage(new ChatMessageBuilder().append(message).build())
-						.build());
+					.type(ChatMessageType.GAMEMESSAGE)
+					.runeLiteFormattedMessage(new ChatMessageBuilder().append(message).build())
+					.build());
 				break;
 			}
 		}

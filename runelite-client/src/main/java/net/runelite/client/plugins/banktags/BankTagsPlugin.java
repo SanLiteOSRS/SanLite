@@ -252,6 +252,7 @@ public class BankTagsPlugin extends Plugin implements MouseWheelListener, KeyLis
 		mouseManager.unregisterMouseWheelListener(this);
 		clientThread.invokeLater(tabInterface::destroy);
 		spriteManager.removeSpriteOverrides(TabSprites.values());
+
 		shiftPressed = false;
 	}
 

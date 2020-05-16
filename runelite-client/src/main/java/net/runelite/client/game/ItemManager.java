@@ -409,13 +409,13 @@ public class ItemManager
 			{
 				return false;
 			}
-			SpritePixels spritePixels = client.createItemSprite(itemId, quantity, 1, SpritePixels.DEFAULT_SHADOW_COLOR,
+			SpritePixels sprite = client.createItemSprite(itemId, quantity, 1, SpritePixels.DEFAULT_SHADOW_COLOR,
 				stackable ? 1 : 0, false, CLIENT_DEFAULT_ZOOM);
-			if (spritePixels == null)
+			if (sprite == null)
 			{
 				return false;
 			}
-			spritePixels.toBufferedImage(img);
+			sprite.toBufferedImage(img);
 			img.loaded();
 			return true;
 		});
@@ -470,8 +470,8 @@ public class ItemManager
 	 */
 	private BufferedImage loadItemOutline(final int itemId, final int itemQuantity, final Color outlineColor)
 	{
-		final SpritePixels itemSpritePixels = client.createItemSprite(itemId, itemQuantity, 1, 0, 0, true, 710);
-		return itemSpritePixels.toBufferedOutline(outlineColor);
+		final SpritePixels itemSprite = client.createItemSprite(itemId, itemQuantity, 1, 0, 0, true, 710);
+		return itemSprite.toBufferedOutline(outlineColor);
 	}
 
 	/**

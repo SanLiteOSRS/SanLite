@@ -44,11 +44,11 @@ import net.runelite.client.ui.overlay.components.TitleComponent;
 class MotherlodeOverlay extends OverlayPanel
 {
 	private static final Set<Integer> MINING_ANIMATION_IDS = ImmutableSet.of(
-			MINING_MOTHERLODE_BRONZE, MINING_MOTHERLODE_IRON, MINING_MOTHERLODE_STEEL,
-			MINING_MOTHERLODE_BLACK, MINING_MOTHERLODE_MITHRIL, MINING_MOTHERLODE_ADAMANT,
-			MINING_MOTHERLODE_RUNE, MINING_MOTHERLODE_GILDED, MINING_MOTHERLODE_DRAGON,
-			MINING_MOTHERLODE_DRAGON_UPGRADED, MINING_MOTHERLODE_DRAGON_OR, MINING_MOTHERLODE_INFERNAL,
-			MINING_MOTHERLODE_CRYSTAL
+		MINING_MOTHERLODE_BRONZE, MINING_MOTHERLODE_IRON, MINING_MOTHERLODE_STEEL,
+		MINING_MOTHERLODE_BLACK, MINING_MOTHERLODE_MITHRIL, MINING_MOTHERLODE_ADAMANT,
+		MINING_MOTHERLODE_RUNE, MINING_MOTHERLODE_GILDED, MINING_MOTHERLODE_DRAGON,
+		MINING_MOTHERLODE_DRAGON_UPGRADED, MINING_MOTHERLODE_DRAGON_OR, MINING_MOTHERLODE_INFERNAL,
+		MINING_MOTHERLODE_CRYSTAL
 	);
 	static final String MINING_RESET = "Reset";
 
@@ -97,28 +97,28 @@ class MotherlodeOverlay extends OverlayPanel
 			if (MINING_ANIMATION_IDS.contains(client.getLocalPlayer().getAnimation()))
 			{
 				panelComponent.getChildren().add(TitleComponent.builder()
-						.text("Mining")
-						.color(Color.GREEN)
-						.build());
+					.text("Mining")
+					.color(Color.GREEN)
+					.build());
 			}
 			else
 			{
 				panelComponent.getChildren().add(TitleComponent.builder()
-						.text("NOT mining")
-						.color(Color.RED)
-						.build());
+					.text("NOT mining")
+					.color(Color.RED)
+					.build());
 			}
 		}
 
 		panelComponent.getChildren().add(LineComponent.builder()
-				.left("Pay-dirt mined:")
-				.right(Integer.toString(session.getTotalMined()))
-				.build());
+			.left("Pay-dirt mined:")
+			.right(Integer.toString(session.getTotalMined()))
+			.build());
 
 		panelComponent.getChildren().add(LineComponent.builder()
-				.left("Pay-dirt/hr:")
-				.right(session.getRecentMined() > 2 ? Integer.toString(session.getPerHour()) : "")
-				.build());
+			.left("Pay-dirt/hr:")
+			.right(session.getRecentMined() > 2 ? Integer.toString(session.getPerHour()) : "")
+			.build());
 
 		return super.render(graphics);
 	}

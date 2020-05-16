@@ -131,10 +131,10 @@ public interface PrayerConfig extends Config
 	}
 
 	@ConfigItem(
-			position = 9,
-			keyName = "replaceOrbText",
-			name = "Replace orb text with prayer time left",
-			description = "Show time remaining of current prayers in the prayer orb."
+		position = 9,
+		keyName = "replaceOrbText",
+		name = "Replace orb text with prayer time left",
+		description = "Show time remaining of current prayers in the prayer orb."
 	)
 	default boolean replaceOrbText()
 	{

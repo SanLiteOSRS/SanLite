@@ -78,9 +78,9 @@ public class BarrowsPlugin extends Plugin
 
 	private static final Set<Integer> BARROWS_LADDERS = Sets.newHashSet(NullObjectID.NULL_20675, NullObjectID.NULL_20676, NullObjectID.NULL_20677);
 	private static final ImmutableList<WidgetInfo> POSSIBLE_SOLUTIONS = ImmutableList.of(
-			WidgetInfo.BARROWS_PUZZLE_ANSWER1,
-			WidgetInfo.BARROWS_PUZZLE_ANSWER2,
-			WidgetInfo.BARROWS_PUZZLE_ANSWER3
+		WidgetInfo.BARROWS_PUZZLE_ANSWER1,
+		WidgetInfo.BARROWS_PUZZLE_ANSWER2,
+		WidgetInfo.BARROWS_PUZZLE_ANSWER3
 	);
 
 	private static final long PRAYER_DRAIN_INTERVAL_MS = 18200;
@@ -273,16 +273,16 @@ public class BarrowsPlugin extends Plugin
 			}
 
 			final ChatMessageBuilder message = new ChatMessageBuilder()
-					.append(ChatColorType.HIGHLIGHT)
-					.append("Your chest is worth around ")
-					.append(QuantityFormatter.formatNumber(chestPrice))
-					.append(" coins.")
-					.append(ChatColorType.NORMAL);
+				.append(ChatColorType.HIGHLIGHT)
+				.append("Your chest is worth around ")
+				.append(QuantityFormatter.formatNumber(chestPrice))
+				.append(" coins.")
+				.append(ChatColorType.NORMAL);
 
 			chatMessageManager.queue(QueuedMessage.builder()
-					.type(ChatMessageType.ITEM_EXAMINE)
-					.runeLiteFormattedMessage(message.build())
-					.build());
+				.type(ChatMessageType.ITEM_EXAMINE)
+				.runeLiteFormattedMessage(message.build())
+				.build());
 		}
 		else if (event.getGroupId() == WidgetID.BARROWS_PUZZLE_GROUP_ID)
 		{
@@ -307,11 +307,11 @@ public class BarrowsPlugin extends Plugin
 		if (config.showPrayerDrainTimer())
 		{
 			final LoopTimer loopTimer = new LoopTimer(
-					PRAYER_DRAIN_INTERVAL_MS,
-					ChronoUnit.MILLIS,
-					null,
-					this,
-					true);
+				PRAYER_DRAIN_INTERVAL_MS,
+				ChronoUnit.MILLIS,
+				null,
+				this,
+				true);
 
 			spriteManager.getSpriteAsync(SpriteID.TAB_PRAYER, 0, loopTimer);
 

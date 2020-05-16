@@ -70,9 +70,9 @@ import net.runelite.client.ui.overlay.OverlayManager;
 import net.runelite.client.util.ImageUtil;
 
 @PluginDescriptor(
-		name = "Kourend Library",
-		description = "Show where the books are found in the Kourend Library",
-		tags = {"arceuus", "magic", "runecrafting", "overlay", "panel"}
+	name = "Kourend Library",
+	description = "Show where the books are found in the Kourend Library",
+	tags = {"arceuus", "magic", "runecrafting", "overlay", "panel"}
 )
 @Slf4j
 public class KourendLibraryPlugin extends Plugin
@@ -134,11 +134,11 @@ public class KourendLibraryPlugin extends Plugin
 		final BufferedImage icon = ImageUtil.getResourceStreamFromClass(getClass(), "panel_icon.png");
 
 		navButton = NavigationButton.builder()
-				.tooltip("Kourend Library")
-				.priority(6)
-				.icon(icon)
-				.panel(panel)
-				.build();
+			.tooltip("Kourend Library")
+			.priority(6)
+			.icon(icon)
+			.panel(panel)
+			.build();
 
 		overlayManager.add(overlay);
 		overlayManager.add(tutorialOverlay);
@@ -246,7 +246,7 @@ public class KourendLibraryPlugin extends Plugin
 	public void onGameStateChanged(GameStateChanged event)
 	{
 		if (event.getGameState() == GameState.LOGIN_SCREEN ||
-				event.getGameState() == GameState.HOPPING)
+			event.getGameState() == GameState.HOPPING)
 		{
 			npcsToMark.clear();
 		}

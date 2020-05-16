@@ -82,33 +82,33 @@ public class MotherlodeGemOverlay extends OverlayPanel
 		if (diamondsFound > 0)
 		{
 			panelComponent.getChildren().add(LineComponent.builder()
-					.left("Diamonds:")
-					.right(Integer.toString(diamondsFound))
-					.build());
+				.left("Diamonds:")
+				.right(Integer.toString(diamondsFound))
+				.build());
 		}
 
 		if (rubiesFound > 0)
 		{
 			panelComponent.getChildren().add(LineComponent.builder()
-					.left("Rubies:")
-					.right(Integer.toString(rubiesFound))
-					.build());
+				.left("Rubies:")
+				.right(Integer.toString(rubiesFound))
+				.build());
 		}
 
 		if (emeraldsFound > 0)
 		{
 			panelComponent.getChildren().add(LineComponent.builder()
-					.left("Emeralds:")
-					.right(Integer.toString(emeraldsFound))
-					.build());
+				.left("Emeralds:")
+				.right(Integer.toString(emeraldsFound))
+				.build());
 		}
 
 		if (sapphiresFound > 0)
 		{
 			panelComponent.getChildren().add(LineComponent.builder()
-					.left("Sapphires:")
-					.right(Integer.toString(sapphiresFound))
-					.build());
+				.left("Sapphires:")
+				.right(Integer.toString(sapphiresFound))
+				.build());
 		}
 
 		return super.render(graphics);

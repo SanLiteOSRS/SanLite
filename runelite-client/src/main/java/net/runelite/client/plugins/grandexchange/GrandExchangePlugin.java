@@ -2,6 +2,7 @@
  * Copyright (c) 2019, Adam <Adam@sigterm.info>
  * Copyright (c) 2017, Robbie <https://github.com/rbbi>
  * Copyright (c) 2018, SomeoneWithAnInternetConnection
+ * Copyright (c) 2020, Dennis <me@dennis.dev>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,12 +52,17 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.*;
+import net.runelite.api.ChatMessageType;
+import net.runelite.api.Client;
+import net.runelite.api.GameState;
+import net.runelite.api.GrandExchangeOffer;
+import net.runelite.api.GrandExchangeOfferState;
 import net.runelite.api.ItemComposition;
+import net.runelite.api.MenuAction;
+import net.runelite.api.MenuEntry;
 import net.runelite.api.ScriptID;
 import net.runelite.api.VarClientStr;
 import net.runelite.api.events.ChatMessage;
-import net.runelite.client.events.ConfigChanged;
 import net.runelite.api.events.FocusChanged;
 import net.runelite.api.events.GameStateChanged;
 import net.runelite.api.events.GrandExchangeOfferChanged;
@@ -73,6 +79,7 @@ import net.runelite.client.account.AccountSession;
 import net.runelite.client.account.SessionManager;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
+import net.runelite.client.events.ConfigChanged;
 import net.runelite.client.events.SessionClose;
 import net.runelite.client.events.SessionOpen;
 import net.runelite.client.game.ItemManager;
@@ -94,9 +101,9 @@ import net.runelite.http.api.osbuddy.OSBGrandExchangeResult;
 import org.apache.commons.text.similarity.FuzzyScore;
 
 @PluginDescriptor(
-		name = "Grand Exchange",
-		description = "Provide additional and/or easier access to Grand Exchange information",
-		tags = {"external", "integration", "notifications", "panel", "prices", "trade"}
+	name = "Grand Exchange",
+	description = "Provide additional and/or easier access to Grand Exchange information",
+	tags = {"external", "integration", "notifications", "panel", "prices", "trade"}
 )
 @Slf4j
 public class GrandExchangePlugin extends Plugin
@@ -250,11 +257,11 @@ public class GrandExchangePlugin extends Plugin
 		final BufferedImage icon = ImageUtil.getResourceStreamFromClass(getClass(), "ge_icon.png");
 
 		button = NavigationButton.builder()
-				.tooltip("Grand Exchange")
-				.icon(icon)
-				.priority(3)
-				.panel(panel)
-				.build();
+			.tooltip("Grand Exchange")
+			.icon(icon)
+			.priority(3)
+			.panel(panel)
+			.build();
 
 		clientToolbar.addNavigation(button);
 
@@ -350,7 +357,7 @@ public class GrandExchangePlugin extends Plugin
 		}
 
 		if (offer.getState() != GrandExchangeOfferState.BOUGHT && offer.getState() != GrandExchangeOfferState.SOLD &&
-				offer.getState() != GrandExchangeOfferState.CANCELLED_BUY && offer.getState() != GrandExchangeOfferState.CANCELLED_SELL)
+			offer.getState() != GrandExchangeOfferState.CANCELLED_BUY && offer.getState() != GrandExchangeOfferState.CANCELLED_SELL)
 		{
 			return;
 		}
@@ -580,7 +587,7 @@ public class GrandExchangePlugin extends Plugin
 			List<Integer> ids = IntStream.range(0, client.getItemCount())
 					.mapToObj(itemManager::getItemComposition)
 					.filter(item -> item.isTradeable() && item.getNote() == -1
-							&& item.getName().toLowerCase().contains(input))
+						&& item.getName().toLowerCase().contains(input))
 					.limit(MAX_RESULT_COUNT + 1)
 					.sorted(Comparator.comparing(ItemComposition::getName))
 					.map(ItemComposition::getId)
@@ -617,7 +624,7 @@ public class GrandExchangePlugin extends Plugin
 					.filter(item -> item.isTradeable() && item.getNote() == -1)
 					.filter(item -> getScore.applyAsInt(item) > 0)
 					.sorted(Comparator.comparingInt(getScore).reversed()
-							.thenComparing(ItemComposition::getName))
+						.thenComparing(ItemComposition::getName))
 					.limit(MAX_RESULT_COUNT)
 					.map(ItemComposition::getId)
 					.collect(Collectors.toList());
@@ -632,11 +639,6 @@ public class GrandExchangePlugin extends Plugin
 	@Subscribe
 	public void onScriptCallbackEvent(ScriptCallbackEvent event)
 	{
-		if (event.getEventName().equals("geBuilt"))
-		{
-			rebuildGeText();
-		}
-
 		if (!event.getEventName().equals("setGETitle") || !config.showTotal())
 		{
 			return;

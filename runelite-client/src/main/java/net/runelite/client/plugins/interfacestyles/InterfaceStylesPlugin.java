@@ -72,7 +72,7 @@ public class InterfaceStylesPlugin extends Plugin
 	@Inject
 	private SpriteManager spriteManager;
 
-	private SpritePixels[] defaultCrossSpritePixels;
+	private SpritePixels[] defaultCrossSprites;
 
 	@Provides
 	InterfaceStylesConfig provideConfig(ConfigManager configManager)
@@ -332,31 +332,31 @@ public class InterfaceStylesPlugin extends Plugin
 		{
 			// If we've already replaced them,
 			// we don't need to replace them again
-			if (defaultCrossSpritePixels != null)
+			if (defaultCrossSprites != null)
 			{
 				return;
 			}
 
-			SpritePixels[] crossSpritePixels = client.getCrossSprites();
+			SpritePixels[] crossSprites = client.getCrossSprites();
 
-			if (crossSpritePixels == null)
+			if (crossSprites == null)
 			{
 				return;
 			}
 
-			defaultCrossSpritePixels = new SpritePixels[crossSpritePixels.length];
-			System.arraycopy(crossSpritePixels, 0, defaultCrossSpritePixels, 0, defaultCrossSpritePixels.length);
+			defaultCrossSprites = new SpritePixels[crossSprites.length];
+			System.arraycopy(crossSprites, 0, defaultCrossSprites, 0, defaultCrossSprites.length);
 
-			for (int i = 0; i < crossSpritePixels.length; i++)
+			for (int i = 0; i < crossSprites.length; i++)
 			{
-				SpritePixels newSpritePixels = getFileSpritePixels("rs3/cross_sprites/" + i + ".png");
+				SpritePixels newSprite = getFileSpritePixels("rs3/cross_sprites/" + i + ".png");
 
-				if (newSpritePixels == null)
+				if (newSprite == null)
 				{
 					continue;
 				}
 
-				crossSpritePixels[i] = newSpritePixels;
+				crossSprites[i] = newSprite;
 			}
 		}
 		else
@@ -367,19 +367,19 @@ public class InterfaceStylesPlugin extends Plugin
 
 	private void restoreCrossSprites()
 	{
-		if (defaultCrossSpritePixels == null)
+		if (defaultCrossSprites == null)
 		{
 			return;
 		}
 
-		SpritePixels[] crossSpritePixels = client.getCrossSprites();
+		SpritePixels[] crossSprites = client.getCrossSprites();
 
-		if (crossSpritePixels != null && defaultCrossSpritePixels.length == crossSpritePixels.length)
+		if (crossSprites != null && defaultCrossSprites.length == crossSprites.length)
 		{
-			System.arraycopy(defaultCrossSpritePixels, 0, crossSpritePixels, 0, defaultCrossSpritePixels.length);
+			System.arraycopy(defaultCrossSprites, 0, crossSprites, 0, defaultCrossSprites.length);
 		}
 
-		defaultCrossSpritePixels = null;
+		defaultCrossSprites = null;
 	}
 
 	private void restoreWidgetDimensions()
@@ -400,7 +400,7 @@ public class InterfaceStylesPlugin extends Plugin
 		restoreSprites();
 		restoreWidgetSprites();
 
-		BufferedImage compassImage = spriteManager.getSpriteImg(SpriteID.COMPASS_TEXTURE, 0);
+		BufferedImage compassImage = spriteManager.getSprite(SpriteID.COMPASS_TEXTURE, 0);
 
 		if (compassImage != null)
 		{

@@ -74,12 +74,12 @@ public class XpGlobesOverlay extends Overlay
 
 	@Inject
 	private XpGlobesOverlay(
-			Client client,
-			XpGlobesPlugin plugin,
-			XpGlobesConfig config,
-			XpTrackerService xpTrackerService,
-			SkillIconManager iconManager,
-			TooltipManager tooltipManager)
+		Client client,
+		XpGlobesPlugin plugin,
+		XpGlobesConfig config,
+		XpTrackerService xpTrackerService,
+		SkillIconManager iconManager,
+		TooltipManager tooltipManager)
 	{
 		super(plugin);
 		this.iconManager = iconManager;
@@ -163,20 +163,20 @@ public class XpGlobesOverlay extends Overlay
 		graphics.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL, RenderingHints.VALUE_STROKE_PURE);
 
 		drawProgressArc(
-				graphics,
-				x, y,
-				config.xpOrbSize(), config.xpOrbSize(),
-				PROGRESS_RADIUS_REMAINDER, radiusToGoalXp,
-				5,
-				config.progressOrbOutLineColor()
+			graphics,
+			x, y,
+			config.xpOrbSize(), config.xpOrbSize(),
+			PROGRESS_RADIUS_REMAINDER, radiusToGoalXp,
+			5,
+			config.progressOrbOutLineColor()
 		);
 		drawProgressArc(
-				graphics,
-				x, y,
-				config.xpOrbSize(), config.xpOrbSize(),
-				PROGRESS_RADIUS_START, radiusCurrentXp,
-				config.progressArcStrokeWidth(),
-				config.enableCustomArcColor() ? config.progressArcColor() : SkillColor.find(skillToDraw.getSkill()).getColor());
+			graphics,
+			x, y,
+			config.xpOrbSize(), config.xpOrbSize(),
+			PROGRESS_RADIUS_START, radiusCurrentXp,
+			config.progressArcStrokeWidth(),
+			config.enableCustomArcColor() ? config.progressArcColor() : SkillColor.find(skillToDraw.getSkill()).getColor());
 	}
 
 	private void drawProgressLabel(Graphics2D graphics, XpGlobe globe, int startXp, int goalXp, int x, int y)
@@ -202,10 +202,10 @@ public class XpGlobesOverlay extends Overlay
 		graphics.setStroke(new BasicStroke(strokeWidth, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL));
 		graphics.setColor(color);
 		graphics.draw(new Arc2D.Double(
-				x, y,
-				w, h,
-				radiusStart, radiusEnd,
-				Arc2D.OPEN));
+			x, y,
+			w, h,
+			radiusStart, radiusEnd,
+			Arc2D.OPEN));
 		graphics.setStroke(stroke);
 	}
 
@@ -228,10 +228,10 @@ public class XpGlobesOverlay extends Overlay
 		}
 
 		graphics.drawImage(
-				skillImage,
-				x + (config.xpOrbSize() / 2) - (skillImage.getWidth() / 2),
-				y + (config.xpOrbSize() / 2) - (skillImage.getHeight() / 2),
-				null
+			skillImage,
+			x + (config.xpOrbSize() / 2) - (skillImage.getWidth() / 2),
+			y + (config.xpOrbSize() / 2) - (skillImage.getHeight() / 2),
+			null
 		);
 	}
 
@@ -250,15 +250,15 @@ public class XpGlobesOverlay extends Overlay
 		xpTooltip.getChildren().clear();
 
 		xpTooltip.getChildren().add(LineComponent.builder()
-				.left(skillName)
-				.right(skillLevel)
-				.build());
+			.left(skillName)
+			.right(skillLevel)
+			.build());
 
 		xpTooltip.getChildren().add(LineComponent.builder()
-				.left("Current XP:")
-				.leftColor(Color.ORANGE)
-				.right(skillCurrentXp)
-				.build());
+			.left("Current XP:")
+			.leftColor(Color.ORANGE)
+			.right(skillCurrentXp)
+			.build());
 
 		if (goalXp > mouseOverSkill.getCurrentXp())
 		{

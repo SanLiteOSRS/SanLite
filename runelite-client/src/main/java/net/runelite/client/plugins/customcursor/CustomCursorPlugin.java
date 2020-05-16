@@ -47,9 +47,9 @@ import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.ui.ClientUI;
 
 @PluginDescriptor(
-		name = "Custom Cursor",
-		description = "Replaces your mouse cursor image",
-		enabledByDefault = false
+	name = "Custom Cursor",
+	description = "Replaces your mouse cursor image",
+	enabledByDefault = false
 )
 @Slf4j
 public class CustomCursorPlugin extends Plugin
