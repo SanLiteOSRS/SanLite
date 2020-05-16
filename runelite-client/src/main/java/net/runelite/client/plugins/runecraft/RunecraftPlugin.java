@@ -26,34 +26,54 @@ package net.runelite.client.plugins.runecraft;
 
 import com.google.common.collect.ImmutableList;
 import com.google.inject.Provides;
-import lombok.AccessLevel;
-import lombok.Getter;
-import net.runelite.api.*;
-import net.runelite.api.events.*;
-import net.runelite.client.Notifier;
-import net.runelite.client.config.ConfigManager;
-import net.runelite.client.eventbus.Subscribe;
-import net.runelite.client.events.ConfigChanged;
-import net.runelite.client.menus.MenuManager;
-import net.runelite.client.plugins.Plugin;
-import net.runelite.client.plugins.PluginDescriptor;
-import net.runelite.client.plugins.PluginType;
-import net.runelite.client.ui.overlay.OverlayManager;
-
-import javax.inject.Inject;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
-
-import static net.runelite.client.plugins.runecraft.AbyssRifts.*;
+import javax.inject.Inject;
+import lombok.AccessLevel;
+import lombok.Getter;
+import net.runelite.api.ChatMessageType;
+import net.runelite.api.Client;
+import net.runelite.api.DecorativeObject;
+import net.runelite.api.GameState;
+import net.runelite.api.InventoryID;
+import net.runelite.api.Item;
+import net.runelite.api.ItemID;
+import net.runelite.api.NPC;
+import net.runelite.api.NpcID;
+import net.runelite.api.events.ChatMessage;
+import net.runelite.api.events.DecorativeObjectDespawned;
+import net.runelite.api.events.DecorativeObjectSpawned;
+import net.runelite.api.events.GameStateChanged;
+import net.runelite.api.events.ItemContainerChanged;
+import net.runelite.api.events.NpcDespawned;
+import net.runelite.api.events.NpcSpawned;
+import net.runelite.client.Notifier;
+import net.runelite.client.config.ConfigManager;
+import net.runelite.client.eventbus.Subscribe;
+import net.runelite.client.events.ConfigChanged;
+import net.runelite.client.plugins.Plugin;
+import net.runelite.client.plugins.PluginDescriptor;
+import static net.runelite.client.plugins.runecraft.AbyssRifts.AIR_RIFT;
+import static net.runelite.client.plugins.runecraft.AbyssRifts.BLOOD_RIFT;
+import static net.runelite.client.plugins.runecraft.AbyssRifts.BODY_RIFT;
+import static net.runelite.client.plugins.runecraft.AbyssRifts.CHAOS_RIFT;
+import static net.runelite.client.plugins.runecraft.AbyssRifts.COSMIC_RIFT;
+import static net.runelite.client.plugins.runecraft.AbyssRifts.DEATH_RIFT;
+import static net.runelite.client.plugins.runecraft.AbyssRifts.EARTH_RIFT;
+import static net.runelite.client.plugins.runecraft.AbyssRifts.FIRE_RIFT;
+import static net.runelite.client.plugins.runecraft.AbyssRifts.LAW_RIFT;
+import static net.runelite.client.plugins.runecraft.AbyssRifts.MIND_RIFT;
+import static net.runelite.client.plugins.runecraft.AbyssRifts.NATURE_RIFT;
+import static net.runelite.client.plugins.runecraft.AbyssRifts.SOUL_RIFT;
+import static net.runelite.client.plugins.runecraft.AbyssRifts.WATER_RIFT;
+import net.runelite.client.ui.overlay.OverlayManager;
 
 @PluginDescriptor(
-		name = "Runecrafting",
-		description = "Show minimap icons, clickboxes for abyssal rifts and left-click swap for pouches in bank",
-		tags = {"abyssal", "minimap", "overlay", "rifts", "rc", "runecrafting", "pouch", "rune", "essence", "swap"},
-		type = PluginType.SANLITE_USE_AT_OWN_RISK,
-		enabledByDefault = false
+	name = "Runecraft",
+	description = "Show minimap icons and clickboxes for abyssal rifts",
+	tags = {"abyssal", "minimap", "overlay", "rifts", "rc", "runecrafting"}
 )
 public class RunecraftPlugin extends Plugin
 {
@@ -78,9 +98,6 @@ public class RunecraftPlugin extends Plugin
 	private NPC darkMage;
 
 	@Inject
-	private Client client;
-
-	@Inject
 	private OverlayManager overlayManager;
 
 	@Inject
@@ -95,9 +112,6 @@ public class RunecraftPlugin extends Plugin
 	@Inject
 	private Notifier notifier;
 
-	@Inject
-	private MenuManager menuManager;
-
 	@Provides
 	RunecraftConfig getConfig(ConfigManager configManager)
 	{
@@ -110,16 +124,6 @@ public class RunecraftPlugin extends Plugin
 		overlayManager.add(abyssOverlay);
 		overlayManager.add(abyssMinimapOverlay);
 		updateRifts();
-
-		if (config.leftClickEmptyPouch())
-		{
-			addSwapEmpty();
-		}
-
-		if (config.leftClickFillPouchInBank())
-		{
-			addSwapFillPouchInBank();
-		}
 	}
 
 	@Override
@@ -130,16 +134,6 @@ public class RunecraftPlugin extends Plugin
 		abyssObjects.clear();
 		darkMage = null;
 		degradedPouchInInventory = false;
-
-		if (config.leftClickEmptyPouch())
-		{
-			removeSwapEmpty();
-		}
-
-		if (config.leftClickFillPouchInBank())
-		{
-			removeSwapFillPouchInBank();
-		}
 	}
 
 	@Subscribe
@@ -149,49 +143,6 @@ public class RunecraftPlugin extends Plugin
 		{
 			updateRifts();
 		}
-		if (event.getKey().equals("leftClickEmptyPouch"))
-		{
-			addSwapEmpty();
-		}
-
-		if (event.getKey().equals("leftClickFillPouchInBank"))
-		{
-			addSwapFillPouchInBank();
-		}
-	}
-
-	private void addSwapEmpty()
-	{
-		if (config.leftClickEmptyPouch())
-		{
-			menuManager.addMenuEntrySwap("fill", "pouch", "empty", "pouch", true, false);
-		}
-		else
-		{
-			menuManager.removeMenuEntrySwap("fill", "pouch", "empty", "pouch", true, false);
-		}
-	}
-
-	private void removeSwapEmpty()
-	{
-		menuManager.removeMenuEntrySwap("fill", "pouch", "empty", "pouch", true, false);
-	}
-
-	private void addSwapFillPouchInBank()
-	{
-		if (config.leftClickFillPouchInBank())
-		{
-			menuManager.addMenuEntrySwap("deposit", "pouch", 2, 57, "fill", "pouch", 9, 1007);
-		}
-		else
-		{
-			menuManager.removeMenuEntrySwap("deposit", "pouch", 2, 57, "fill", "pouch", 9, 1007);
-		}
-	}
-
-	private void removeSwapFillPouchInBank()
-	{
-		menuManager.removeMenuEntrySwap("deposit", "pouch", 2, 57, "fill", "pouch", 9, 1007);
 	}
 
 	@Subscribe
