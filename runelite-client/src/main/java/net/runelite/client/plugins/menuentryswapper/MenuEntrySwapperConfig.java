@@ -529,4 +529,14 @@ public interface MenuEntrySwapperConfig extends Config
 	{
 		return false;
 	}
+
+	@ConfigItem(
+			keyName = "swapCastBloom",
+			name = "Swap cast bloom",
+			description = "Swap Wield to Cast Bloom for the silver sickle (b)"
+	)
+	default boolean swapCastBloom()
+	{
+		return false;
+	}
 }
