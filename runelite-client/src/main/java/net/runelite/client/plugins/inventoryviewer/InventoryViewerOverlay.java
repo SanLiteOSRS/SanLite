@@ -31,7 +31,7 @@ import java.awt.image.BufferedImage;
 import javax.inject.Inject;
 
 import net.runelite.api.*;
-import net.runelite.api.ItemDefinition;
+import net.runelite.api.ItemComposition;
 import net.runelite.client.game.ItemManager;
 import net.runelite.client.ui.overlay.OverlayPanel;
 import net.runelite.client.ui.overlay.OverlayPosition;
@@ -96,7 +96,7 @@ class InventoryViewerOverlay extends OverlayPanel
 
 	private BufferedImage getImage(Item item)
 	{
-		ItemDefinition itemComposition = itemManager.getItemComposition(item.getId());
+		ItemComposition itemComposition = itemManager.getItemComposition(item.getId());
 		return itemManager.getImage(item.getId(), item.getQuantity(), itemComposition.isStackable());
 	}
 }

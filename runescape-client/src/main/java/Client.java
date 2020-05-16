@@ -4962,7 +4962,7 @@ public final class Client extends GameShell implements Usernamed {
 					var5 = var3.method5619();
 					var6 = var3.method5621();
 					var47 = MusicPatchNode.getWidget(var6);
-					ItemDefinition var56;
+					ItemComposition var56;
 					if (!var47.isIf3) {
 						if (var16 == -1) {
 							var47.modelType = 0;

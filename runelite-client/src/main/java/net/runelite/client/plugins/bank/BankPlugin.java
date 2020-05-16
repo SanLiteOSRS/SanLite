@@ -42,7 +42,7 @@ import net.runelite.api.*;
 
 import static net.runelite.api.Constants.HIGH_ALCHEMY_MULTIPLIER;
 
-import net.runelite.api.ItemDefinition;
+import net.runelite.api.ItemComposition;
 import net.runelite.api.events.ItemContainerChanged;
 import net.runelite.api.events.MenuEntryAdded;
 import net.runelite.api.events.MenuShouldLeftClick;
@@ -408,7 +408,7 @@ public class BankPlugin extends Plugin
 			itemQuantities = getBankItemSet();
 		}
 
-		final ItemDefinition itemComposition = itemManager.getItemComposition(itemId);
+		final ItemComposition itemComposition = itemManager.getItemComposition(itemId);
 		long gePrice = (long) itemManager.getItemPrice(itemId) * (long) itemQuantities.count(itemId);
 		long haPrice = (long) (itemComposition.getPrice() * HIGH_ALCHEMY_MULTIPLIER) * (long) itemQuantities.count(itemId);
 

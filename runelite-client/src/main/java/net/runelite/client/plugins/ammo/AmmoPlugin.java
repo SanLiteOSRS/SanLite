@@ -96,7 +96,7 @@ public class AmmoPlugin extends Plugin
 		if (items.length > EquipmentInventorySlot.WEAPON.getSlotIdx())
 		{
 			final Item weapon = items[EquipmentInventorySlot.WEAPON.getSlotIdx()];
-			final ItemDefinition weaponComp = itemManager.getItemComposition(weapon.getId());
+			final ItemComposition weaponComp = itemManager.getItemComposition(weapon.getId());
 			if (weaponComp.isStackable())
 			{
 				updateInfobox(weapon, weaponComp);
@@ -111,7 +111,7 @@ public class AmmoPlugin extends Plugin
 		}
 
 		final Item ammo = items[EquipmentInventorySlot.AMMO.getSlotIdx()];
-		final ItemDefinition comp = itemManager.getItemComposition(ammo.getId());
+		final ItemComposition comp = itemManager.getItemComposition(ammo.getId());
 
 		if (!comp.isStackable())
 		{
@@ -122,7 +122,7 @@ public class AmmoPlugin extends Plugin
 		updateInfobox(ammo, comp);
 	}
 
-	private void updateInfobox(final Item item, final ItemDefinition comp)
+	private void updateInfobox(final Item item, final ItemComposition comp)
 	{
 		if (counterBox != null && counterBox.getItemID() == item.getId())
 		{

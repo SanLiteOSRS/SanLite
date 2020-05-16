@@ -48,12 +48,12 @@ import net.runelite.api.Client;
 import net.runelite.api.Constants;
 import static net.runelite.api.Constants.CLIENT_DEFAULT_ZOOM;
 import net.runelite.api.GameState;
-import net.runelite.api.ItemDefinition;
+import net.runelite.api.ItemComposition;
 import net.runelite.api.ItemID;
 import static net.runelite.api.ItemID.*;
 import net.runelite.api.Sprite;
 import net.runelite.api.events.GameStateChanged;
-import net.runelite.api.events.PostItemDefinition;
+import net.runelite.api.events.PostItemComposition;
 import net.runelite.client.callback.ClientThread;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.util.AsyncBufferedImage;
@@ -89,7 +89,7 @@ public class ItemManager
 	private Map<Integer, ItemPrice> itemPrices = Collections.emptyMap();
 	private Map<Integer, ItemStats> itemStats = Collections.emptyMap();
 	private final LoadingCache<ImageKey, AsyncBufferedImage> itemImages;
-	private final LoadingCache<Integer, ItemDefinition> itemCompositions;
+	private final LoadingCache<Integer, ItemComposition> itemCompositions;
 	private final LoadingCache<OutlineKey, BufferedImage> itemOutlines;
 
 	// Worn items with weight reducing property have a different worn and inventory ItemID
@@ -182,10 +182,10 @@ public class ItemManager
 		itemCompositions = CacheBuilder.newBuilder()
 			.maximumSize(1024L)
 			.expireAfterAccess(1, TimeUnit.HOURS)
-			.build(new CacheLoader<Integer, ItemDefinition>()
+			.build(new CacheLoader<Integer, ItemComposition>()
 			{
 				@Override
-				public ItemDefinition load(Integer key) throws Exception
+				public ItemComposition load(Integer key) throws Exception
 				{
 					return client.getItemDefinition(key);
 				}
@@ -256,9 +256,9 @@ public class ItemManager
 	}
 
 	@Subscribe
-	public void onPostItemDefinition(PostItemDefinition event)
+	public void onPostItemComposition(PostItemComposition event)
 	{
-		itemCompositions.put(event.getItemDefinition().getId(), event.getItemDefinition());
+		itemCompositions.put(event.getItemComposition().getId(), event.getItemComposition());
 	}
 
 	/**
@@ -329,7 +329,7 @@ public class ItemManager
 	@Nullable
 	public ItemStats getItemStats(int itemId, boolean allowNote)
 	{
-		ItemDefinition itemComposition = getItemComposition(itemId);
+		ItemComposition itemComposition = getItemComposition(itemId);
 
 		if (itemComposition == null || itemComposition.getName() == null || (!allowNote && itemComposition.getNote() != -1))
 		{
@@ -368,7 +368,7 @@ public class ItemManager
 	 * @return item composition
 	 */
 	@Nonnull
-	public ItemDefinition getItemComposition(int itemId)
+	public ItemComposition getItemComposition(int itemId)
 	{
 		assert client.isClientThread() : "getItemComposition must be called on client thread";
 		return itemCompositions.getUnchecked(itemId);
@@ -379,7 +379,7 @@ public class ItemManager
 	 */
 	public int canonicalize(int itemID)
 	{
-		ItemDefinition itemComposition = getItemComposition(itemID);
+		ItemComposition itemComposition = getItemComposition(itemID);
 
 		if (itemComposition.getNote() != -1)
 		{

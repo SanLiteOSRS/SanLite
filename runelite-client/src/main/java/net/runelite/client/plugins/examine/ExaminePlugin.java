@@ -198,7 +198,7 @@ public class ExaminePlugin extends Plugin
 		log.debug("Got examine for {} {}: {}", pendingExamine.getType(), pendingExamine.getId(), event.getMessage());
 
 		// If it is an item, show the price of it
-		final ItemDefinition itemComposition;
+		final ItemComposition itemComposition;
 		if (pendingExamine.getType() == ExamineType.ITEM || pendingExamine.getType() == ExamineType.ITEM_BANK_EQ)
 		{
 			final int itemId = pendingExamine.getId();
@@ -318,7 +318,7 @@ public class ExaminePlugin extends Plugin
 		return null;
 	}
 
-	private void getItemPrice(int id, ItemDefinition itemComposition, int quantity)
+	private void getItemPrice(int id, ItemComposition itemComposition, int quantity)
 	{
 		// quantity is at least 1
 		quantity = Math.max(1, quantity);

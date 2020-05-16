@@ -38,7 +38,7 @@ import lombok.Getter;
 import lombok.Setter;
 import net.runelite.api.Client;
 import net.runelite.api.GameState;
-import net.runelite.api.ItemDefinition;
+import net.runelite.api.ItemComposition;
 import net.runelite.api.MenuAction;
 import net.runelite.api.MenuEntry;
 import net.runelite.api.NPC;
@@ -47,7 +47,7 @@ import net.runelite.api.events.FocusChanged;
 import net.runelite.api.events.MenuEntryAdded;
 import net.runelite.api.events.MenuOpened;
 import net.runelite.api.events.MenuOptionClicked;
-import net.runelite.api.events.PostItemDefinition;
+import net.runelite.api.events.PostItemComposition;
 import net.runelite.api.events.WidgetMenuOptionClicked;
 import net.runelite.api.widgets.WidgetID;
 import net.runelite.api.widgets.WidgetInfo;
@@ -280,7 +280,7 @@ public class MenuEntrySwapperPlugin extends Plugin
 			return;
 		}
 
-		ItemDefinition itemComposition = client.getItemDefinition(itemId);
+		ItemComposition itemComposition = client.getItemDefinition(itemId);
 		String itemName = itemComposition.getName();
 		String option = "Use";
 		int shiftClickActionIndex = itemComposition.getShiftClickActionIndex();
@@ -417,7 +417,7 @@ public class MenuEntrySwapperPlugin extends Plugin
 
 		String option = event.getMenuOption();
 		String target = event.getMenuTarget();
-		ItemDefinition itemComposition = client.getItemDefinition(itemId);
+		ItemComposition itemComposition = client.getItemDefinition(itemId);
 
 		if (option.equals(RESET) && target.equals(MENU_TARGET))
 		{
@@ -930,9 +930,9 @@ public class MenuEntrySwapperPlugin extends Plugin
 	}
 
 	@Subscribe
-	public void onPostItemDefinition(PostItemDefinition event)
+	public void onPostItemComposition(PostItemComposition event)
 	{
-		ItemDefinition itemComposition = event.getItemDefinition();
+		ItemComposition itemComposition = event.getItemComposition();
 		Integer option = getSwapConfig(itemComposition.getId());
 
 		if (option != null)

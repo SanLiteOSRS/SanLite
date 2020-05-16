@@ -37,7 +37,7 @@ import javax.inject.Inject;
 import lombok.Value;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.*;
-import net.runelite.api.ItemDefinition;
+import net.runelite.api.ItemComposition;
 import net.runelite.api.events.ChatMessage;
 import net.runelite.api.events.GameStateChanged;
 import net.runelite.api.events.GameTick;
@@ -924,7 +924,7 @@ public class ChatCommandsPlugin extends Plugin
 					.append(ChatColorType.HIGHLIGHT)
 					.append(QuantityFormatter.formatNumber(itemPrice));
 
-			ItemDefinition itemComposition = itemManager.getItemComposition(itemId);
+			ItemComposition itemComposition = itemManager.getItemComposition(itemId);
 			if (itemComposition != null)
 			{
 				int alchPrice = Math.round(itemComposition.getPrice() * Constants.HIGH_ALCHEMY_MULTIPLIER);

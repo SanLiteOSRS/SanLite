@@ -53,7 +53,7 @@ import net.runelite.api.GameObject;
 import net.runelite.api.GameState;
 import net.runelite.api.InventoryID;
 import net.runelite.api.Item;
-import net.runelite.api.ItemDefinition;
+import net.runelite.api.ItemComposition;
 import net.runelite.api.ItemContainer;
 import net.runelite.api.ItemID;
 import net.runelite.api.MenuAction;
@@ -291,7 +291,7 @@ public class ClueScrollPlugin extends Plugin
 	{
 		if (event.getMenuOption() != null && event.getMenuOption().equals("Read"))
 		{
-			final ItemDefinition itemComposition = itemManager.getItemComposition(event.getId());
+			final ItemComposition itemComposition = itemManager.getItemComposition(event.getId());
 
 			if (itemComposition != null && (itemComposition.getName().startsWith("Clue scroll") || itemComposition.getName().startsWith("Challenge scroll")))
 			{

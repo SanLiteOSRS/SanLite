@@ -44,7 +44,7 @@ import javax.inject.Inject;
 import net.runelite.api.Client;
 import net.runelite.api.InventoryID;
 import net.runelite.api.Item;
-import net.runelite.api.ItemDefinition;
+import net.runelite.api.ItemComposition;
 import net.runelite.api.ItemContainer;
 import net.runelite.api.MenuAction;
 import net.runelite.api.MenuEntry;
@@ -391,7 +391,7 @@ public class BankTagsPlugin extends Plugin implements MouseWheelListener, KeyLis
 			}
 
 			int itemId = item.getId();
-			ItemDefinition itemComposition = itemManager.getItemComposition(itemId);
+			ItemComposition itemComposition = itemManager.getItemComposition(itemId);
 			String name = itemComposition.getName();
 
 			// Get both tags and vartags and append * to end of vartags name

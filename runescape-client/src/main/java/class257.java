@@ -9,8 +9,8 @@ public class class257 {
 		garbageValue = "1"
 	)
 	public static void method4558() {
-		ItemDefinition.ItemDefinition_cached.clear();
-		ItemDefinition.ItemDefinition_cachedModels.clear();
-		ItemDefinition.ItemDefinition_cachedSprites.clear();
+		ItemComposition.ItemDefinition_cached.clear();
+		ItemComposition.ItemDefinition_cachedModels.clear();
+		ItemComposition.ItemDefinition_cachedSprites.clear();
 	}
 }

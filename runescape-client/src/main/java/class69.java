@@ -105,7 +105,7 @@ public class class69 {
 		int var3 = 0;
 
 		for (int var4 = 0; var4 < class336.ItemDefinition_fileCount; ++var4) {
-			ItemDefinition var5 = AbstractWorldMapData.ItemDefinition_get(var4);
+			ItemComposition var5 = AbstractWorldMapData.ItemDefinition_get(var4);
 			if ((!var1 || var5.isTradable) && var5.noteTemplate == -1 && var5.name.toLowerCase().indexOf(var0) != -1) {
 				if (var3 >= 250) {
 					TextureProvider.foundItemIdCount = -1;

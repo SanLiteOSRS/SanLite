@@ -208,7 +208,7 @@ public class WorldMapLabelSize {
 						RouteStrategy.field2106 = var0;
 						if (var0.itemIds[var19] > 0) {
 							label336: {
-								ItemDefinition var8 = AbstractWorldMapData.ItemDefinition_get(var0.itemIds[var19] - 1);
+								ItemComposition var8 = AbstractWorldMapData.ItemDefinition_get(var0.itemIds[var19] - 1);
 								boolean var9;
 								int var10;
 								if (Client.isItemSelected == 1) {

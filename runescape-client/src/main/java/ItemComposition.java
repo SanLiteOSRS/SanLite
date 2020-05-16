@@ -5,8 +5,8 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("jx")
-@Implements("ItemDefinition")
-public class ItemDefinition extends DualNode {
+@Implements("ItemComposition")
+public class ItemComposition extends DualNode {
 	@ObfuscatedName("e")
 	@ObfuscatedSignature(
 		signature = "Leg;"
@@ -281,7 +281,7 @@ public class ItemDefinition extends DualNode {
 		ItemDefinition_cachedSprites = new EvictingDualNodeHashTable(200);
 	}
 
-	ItemDefinition() {
+	ItemComposition() {
 		this.name = "null";
 		this.zoom2d = 2000;
 		this.xan2d = 0;
@@ -482,7 +482,7 @@ public class ItemDefinition extends DualNode {
 		garbageValue = "98"
 	)
 	@Export("genCert")
-	void genCert(ItemDefinition var1, ItemDefinition var2) {
+	void genCert(ItemComposition var1, ItemComposition var2) {
 		this.model = var1.model;
 		this.zoom2d = var1.zoom2d;
 		this.xan2d = var1.xan2d;
@@ -506,7 +506,7 @@ public class ItemDefinition extends DualNode {
 		garbageValue = "2110553543"
 	)
 	@Export("genBought")
-	void genBought(ItemDefinition var1, ItemDefinition var2) {
+	void genBought(ItemComposition var1, ItemComposition var2) {
 		this.model = var1.model;
 		this.zoom2d = var1.zoom2d;
 		this.xan2d = var1.xan2d;
@@ -550,7 +550,7 @@ public class ItemDefinition extends DualNode {
 		garbageValue = "231591867"
 	)
 	@Export("genPlaceholder")
-	void genPlaceholder(ItemDefinition var1, ItemDefinition var2) {
+	void genPlaceholder(ItemComposition var1, ItemComposition var2) {
 		this.model = var1.model;
 		this.zoom2d = var1.zoom2d;
 		this.xan2d = var1.xan2d;
@@ -675,7 +675,7 @@ public class ItemDefinition extends DualNode {
 		garbageValue = "-2117466306"
 	)
 	@Export("getCountObj")
-	public ItemDefinition getCountObj(int var1) {
+	public ItemComposition getCountObj(int var1) {
 		if (this.countobj != null && var1 > 1) {
 			int var2 = -1;
 

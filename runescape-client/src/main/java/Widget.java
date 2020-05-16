@@ -1448,7 +1448,7 @@ public class Widget extends Node {
 				}
 
 				if (var5 == 4) {
-					ItemDefinition var9 = AbstractWorldMapData.ItemDefinition_get(var6);
+					ItemComposition var9 = AbstractWorldMapData.ItemDefinition_get(var6);
 					var8 = var9.getModelData(10);
 					if (var8 == null) {
 						field2565 = true;

@@ -1,9 +1,9 @@
 package net.runelite.rs.api;
 
-import net.runelite.api.ItemDefinition;
+import net.runelite.api.ItemComposition;
 import net.runelite.mapping.Import;
 
-public interface RSItemDefinition extends ItemDefinition
+public interface RSItemComposition extends ItemComposition
 {
 	@Import("name")
 	@Override
@@ -44,10 +44,6 @@ public interface RSItemDefinition extends ItemDefinition
 	@Import("isTradable")
 	@Override
 	boolean isTradeable();
-
-	@Import("isTradable")
-	@Override
-	void setTradeable(boolean yes);
 
 	/**
 	 * You probably want {@link #isStackable}

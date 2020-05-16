@@ -227,7 +227,7 @@ public final class WorldMapRectangle {
 					NodeDeque var29 = Client.groundItems[ScriptEvent.Client_plane][var22][var12];
 					if (var29 != null) {
 						for (TileItem var33 = (TileItem)var29.first(); var33 != null; var33 = (TileItem)var29.next()) {
-							ItemDefinition var31 = AbstractWorldMapData.ItemDefinition_get(var33.id);
+							ItemComposition var31 = AbstractWorldMapData.ItemDefinition_get(var33.id);
 							if (Client.isItemSelected == 1) {
 								IgnoreList.insertMenuItemNoShift("Use", Client.selectedItemName + " " + "->" + " " + class297.colorStartTag(16748608) + var31.name, 16, var33.id, var22, var12);
 							} else if (Client.isSpellSelected) {

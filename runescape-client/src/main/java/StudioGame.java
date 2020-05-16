@@ -481,7 +481,7 @@ public enum StudioGame implements Enumerated {
 											}
 
 											if (var10.isIf3 && var10.itemId != -1) {
-												ItemDefinition var46 = AbstractWorldMapData.ItemDefinition_get(var10.itemId);
+												ItemComposition var46 = AbstractWorldMapData.ItemDefinition_get(var10.itemId);
 												var45 = var46.name;
 												if (var45 == null) {
 													var45 = "null";
@@ -559,7 +559,7 @@ public enum StudioGame implements Enumerated {
 											}
 										}
 									} else {
-										ItemDefinition var34;
+										ItemComposition var34;
 										if (var10.type == 6) {
 											boolean var36 = GrandExchangeOfferAgeComparator.runCs1(var10);
 											if (var36) {

@@ -52,7 +52,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.*;
-import net.runelite.api.ItemDefinition;
+import net.runelite.api.ItemComposition;
 import net.runelite.api.ScriptID;
 import net.runelite.api.VarClientStr;
 import net.runelite.api.events.ChatMessage;
@@ -332,7 +332,7 @@ public class GrandExchangePlugin extends Plugin
 		final int slot = offerEvent.getSlot();
 		final GrandExchangeOffer offer = offerEvent.getOffer();
 
-		ItemDefinition offerItem = itemManager.getItemComposition(offer.getItemId());
+		ItemComposition offerItem = itemManager.getItemComposition(offer.getItemId());
 		boolean shouldStack = offerItem.isStackable() || offer.getTotalQuantity() > 1;
 		BufferedImage itemImage = itemManager.getImage(offer.getItemId(), offer.getTotalQuantity(), shouldStack);
 		SwingUtilities.invokeLater(() -> panel.getOffersPanel().updateOffer(offerItem, itemImage, offer, slot));
@@ -582,8 +582,8 @@ public class GrandExchangePlugin extends Plugin
 					.filter(item -> item.isTradeable() && item.getNote() == -1
 							&& item.getName().toLowerCase().contains(input))
 					.limit(MAX_RESULT_COUNT + 1)
-					.sorted(Comparator.comparing(ItemDefinition::getName))
-					.map(ItemDefinition::getId)
+					.sorted(Comparator.comparing(ItemComposition::getName))
+					.map(ItemComposition::getId)
 					.collect(Collectors.toList());
 			if (ids.size() > MAX_RESULT_COUNT)
 			{
@@ -602,7 +602,7 @@ public class GrandExchangePlugin extends Plugin
 		{
 			// We do this so that for example the items "Anti-venom ..." are still at the top
 			// when searching "anti venom"
-			ToIntFunction<ItemDefinition> getScore = item ->
+			ToIntFunction<ItemComposition> getScore = item ->
 			{
 				int score = FUZZY.fuzzyScore(item.getName(), input);
 				if (item.getName().contains("-"))
@@ -617,9 +617,9 @@ public class GrandExchangePlugin extends Plugin
 					.filter(item -> item.isTradeable() && item.getNote() == -1)
 					.filter(item -> getScore.applyAsInt(item) > 0)
 					.sorted(Comparator.comparingInt(getScore).reversed()
-							.thenComparing(ItemDefinition::getName))
+							.thenComparing(ItemComposition::getName))
 					.limit(MAX_RESULT_COUNT)
-					.map(ItemDefinition::getId)
+					.map(ItemComposition::getId)
 					.collect(Collectors.toList());
 
 			client.setGeSearchResultCount(ids.size());

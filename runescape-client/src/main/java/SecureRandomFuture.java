@@ -109,13 +109,13 @@ public class SecureRandomFuture {
 		long var6 = ((long)var3 << 42) + ((long)var1 << 16) + (long)var0 + ((long)var2 << 38) + ((long)var4 << 40);
 		Sprite var8;
 		if (!var5) {
-			var8 = (Sprite)ItemDefinition.ItemDefinition_cachedSprites.get(var6);
+			var8 = (Sprite) ItemComposition.ItemDefinition_cachedSprites.get(var6);
 			if (var8 != null) {
 				return var8;
 			}
 		}
 
-		ItemDefinition var9 = AbstractWorldMapData.ItemDefinition_get(var0);
+		ItemComposition var9 = AbstractWorldMapData.ItemDefinition_get(var0);
 		if (var1 > 1 && var9.countobj != null) {
 			int var10 = -1;
 
@@ -204,7 +204,7 @@ public class SecureRandomFuture {
 			}
 
 			if (!var5) {
-				ItemDefinition.ItemDefinition_cachedSprites.put(var8, var6);
+				ItemComposition.ItemDefinition_cachedSprites.put(var8, var6);
 			}
 
 			Rasterizer2D.Rasterizer2D_replace(var12, var13, var14);
