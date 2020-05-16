@@ -59,35 +59,35 @@ public abstract class RouteStrategy {
 	@Export("getGcDuration")
 	protected static int getGcDuration() {
 		int var0 = 0;
-		if (GameShell.garbageCollector == null || !GameShell.garbageCollector.isValid()) {
+		if (GameEngine.garbageCollector == null || !GameEngine.garbageCollector.isValid()) {
 			try {
 				Iterator var1 = ManagementFactory.getGarbageCollectorMXBeans().iterator();
 
 				while (var1.hasNext()) {
 					GarbageCollectorMXBean var2 = (GarbageCollectorMXBean)var1.next();
 					if (var2.isValid()) {
-						GameShell.garbageCollector = var2;
-						GameShell.garbageCollectorLastCheckTimeMs = -1L;
-						GameShell.garbageCollectorLastCollectionTime = -1L;
+						GameEngine.garbageCollector = var2;
+						GameEngine.garbageCollectorLastCheckTimeMs = -1L;
+						GameEngine.garbageCollectorLastCollectionTime = -1L;
 					}
 				}
 			} catch (Throwable var11) {
 			}
 		}
 
-		if (GameShell.garbageCollector != null) {
+		if (GameEngine.garbageCollector != null) {
 			long var9 = class217.currentTimeMillis();
-			long var3 = GameShell.garbageCollector.getCollectionTime();
-			if (-1L != GameShell.garbageCollectorLastCollectionTime) {
-				long var5 = var3 - GameShell.garbageCollectorLastCollectionTime;
-				long var7 = var9 - GameShell.garbageCollectorLastCheckTimeMs;
+			long var3 = GameEngine.garbageCollector.getCollectionTime();
+			if (-1L != GameEngine.garbageCollectorLastCollectionTime) {
+				long var5 = var3 - GameEngine.garbageCollectorLastCollectionTime;
+				long var7 = var9 - GameEngine.garbageCollectorLastCheckTimeMs;
 				if (var7 != 0L) {
 					var0 = (int)(100L * var5 / var7);
 				}
 			}
 
-			GameShell.garbageCollectorLastCollectionTime = var3;
-			GameShell.garbageCollectorLastCheckTimeMs = var9;
+			GameEngine.garbageCollectorLastCollectionTime = var3;
+			GameEngine.garbageCollectorLastCheckTimeMs = var9;
 		}
 
 		return var0;

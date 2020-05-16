@@ -31,7 +31,7 @@ import java.awt.Graphics2D;
 import javax.inject.Inject;
 import net.runelite.api.Client;
 import net.runelite.api.NPC;
-import net.runelite.api.NPCDefinition;
+import net.runelite.api.NPCComposition;
 import net.runelite.api.Point;
 import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayLayer;
@@ -67,8 +67,8 @@ public class NpcMinimapOverlay extends Overlay
 
 	private void renderNpcOverlay(Graphics2D graphics, NPC actor, String name, Color color)
 	{
-		NPCDefinition npcComposition = actor.getTransformedDefinition();
-		if (npcComposition == null || !npcComposition.isInteractable())
+		NPCComposition npcComposition = actor.getTransformedComposition();
+		if (npcComposition == null || !npcComposition.isInteractible())
 		{
 			return;
 		}

@@ -34,7 +34,7 @@ import net.runelite.api.Client;
 import net.runelite.api.GameState;
 import net.runelite.api.Hitsplat;
 import net.runelite.api.NPC;
-import net.runelite.api.NPCDefinition;
+import net.runelite.api.NPCComposition;
 import net.runelite.api.Player;
 import net.runelite.api.VarPlayer;
 import net.runelite.api.coords.WorldPoint;
@@ -98,21 +98,21 @@ public class IdleNotifierPluginTest
 
 		// Mock monster
 		final String[] monsterActions = new String[] { "Attack", "Examine" };
-		final NPCDefinition monsterComp = mock(NPCDefinition.class);
+		final NPCComposition monsterComp = mock(NPCComposition.class);
 		when(monsterComp.getActions()).thenReturn(monsterActions);
-		when(monster.getDefinition()).thenReturn(monsterComp);
+		when(monster.getComposition()).thenReturn(monsterComp);
 
 		// Mock random event
 		final String[] randomEventActions = new String[] { "Talk-to", "Dismiss", "Examine" };
-		final NPCDefinition randomEventComp = mock(NPCDefinition.class);
+		final NPCComposition randomEventComp = mock(NPCComposition.class);
 		when(randomEventComp.getActions()).thenReturn(randomEventActions);
-		when(randomEvent.getDefinition()).thenReturn(randomEventComp);
+		when(randomEvent.getComposition()).thenReturn(randomEventComp);
 
 		// Mock Fishing Spot
 		final String[] fishingSpotActions = new String[] { "Use-rod", "Examine" };
-		final NPCDefinition fishingSpotComp = mock(NPCDefinition.class);
+		final NPCComposition fishingSpotComp = mock(NPCComposition.class);
 		when(fishingSpotComp.getActions()).thenReturn(fishingSpotActions);
-		when(fishingSpot.getDefinition()).thenReturn(fishingSpotComp);
+		when(fishingSpot.getComposition()).thenReturn(fishingSpotComp);
 		when(fishingSpot.getName()).thenReturn("Fishing spot");
 
 		// Mock player

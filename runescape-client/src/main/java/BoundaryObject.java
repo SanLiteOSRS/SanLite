@@ -43,13 +43,13 @@ public final class BoundaryObject {
 		signature = "Lee;"
 	)
 	@Export("entity1")
-	public Entity entity1;
+	public Renderable entity1;
 	@ObfuscatedName("q")
 	@ObfuscatedSignature(
 		signature = "Lee;"
 	)
 	@Export("entity2")
-	public Entity entity2;
+	public Renderable entity2;
 	@ObfuscatedName("z")
 	@ObfuscatedGetter(
 		longValue = 8712969699368096229L

@@ -42,7 +42,7 @@ public interface Player extends Actor
 	 *
 	 * @return the composition
 	 */
-	PlayerAppearance getPlayerAppearance();
+	PlayerComposition getPlayerComposition();
 
 	/**
 	 * Gets the polygons that make up the players model.

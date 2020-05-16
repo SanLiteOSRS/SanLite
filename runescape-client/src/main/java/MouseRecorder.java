@@ -636,7 +636,7 @@ public class MouseRecorder implements Runnable {
 							var28 = "";
 							break;
 						default:
-							ObjectDefinition.Login_promptCredentials(false);
+							ObjectComposition.Login_promptCredentials(false);
 						}
 
 						var0.drawCentered(var4, Login.loginBoxX + 180, var46, 16776960, 0);
@@ -832,14 +832,14 @@ public class MouseRecorder implements Runnable {
 
 			if (var0 != 5 && var0 != 10) {
 				if (var0 == 20) {
-					class299.method5349(PlayerAppearance.archive10, class228.archive8, true, Client.gameState == 11 ? 4 : 0);
+					class299.method5349(PlayerComposition.archive10, class228.archive8, true, Client.gameState == 11 ? 4 : 0);
 				} else if (var0 == 11) {
-					class299.method5349(PlayerAppearance.archive10, class228.archive8, false, 4);
+					class299.method5349(PlayerComposition.archive10, class228.archive8, false, 4);
 				} else {
 					Calendar.method4032();
 				}
 			} else {
-				class299.method5349(PlayerAppearance.archive10, class228.archive8, true, 0);
+				class299.method5349(PlayerComposition.archive10, class228.archive8, true, 0);
 			}
 
 			Client.gameState = var0;

@@ -53,7 +53,7 @@ import net.runelite.api.events.AnimationChanged;
 import net.runelite.api.events.ChatMessage;
 import net.runelite.api.events.GameStateChanged;
 import net.runelite.api.events.GameTick;
-import net.runelite.api.events.SpotAnimationChanged;
+import net.runelite.api.events.GraphicChanged;
 import net.runelite.api.events.ItemContainerChanged;
 import net.runelite.api.events.MenuOptionClicked;
 import net.runelite.api.events.NpcDespawned;
@@ -740,7 +740,7 @@ public class TimersPlugin extends Plugin
 	}
 
 	@Subscribe
-	public void onSpotAnimationChanged(SpotAnimationChanged event)
+	public void onGraphicChanged(GraphicChanged event)
 	{
 		Actor actor = event.getActor();
 
@@ -749,24 +749,24 @@ public class TimersPlugin extends Plugin
 			return;
 		}
 
-		if (config.showImbuedHeart() && actor.getSpotAnimation() == IMBUEDHEART.getGraphicId())
+		if (config.showImbuedHeart() && actor.getGraphic() == IMBUEDHEART.getGraphicId())
 		{
 			createGameTimer(IMBUEDHEART);
 		}
 
 		if (config.showFreezes())
 		{
-			if (actor.getSpotAnimation() == BIND.getGraphicId())
+			if (actor.getGraphic() == BIND.getGraphicId())
 			{
 				createGameTimer(BIND);
 			}
 
-			if (actor.getSpotAnimation() == SNARE.getGraphicId())
+			if (actor.getGraphic() == SNARE.getGraphicId())
 			{
 				createGameTimer(SNARE);
 			}
 
-			if (actor.getSpotAnimation() == ENTANGLE.getGraphicId())
+			if (actor.getGraphic() == ENTANGLE.getGraphicId())
 			{
 				createGameTimer(ENTANGLE);
 			}
@@ -774,19 +774,19 @@ public class TimersPlugin extends Plugin
 			// downgrade freeze based on graphic, if at the same tick as the freeze message
 			if (freezeTime == client.getTickCount())
 			{
-				if (actor.getSpotAnimation() == ICERUSH.getGraphicId())
+				if (actor.getGraphic() == ICERUSH.getGraphicId())
 				{
 					removeGameTimer(ICEBARRAGE);
 					freezeTimer = createGameTimer(ICERUSH);
 				}
 
-				if (actor.getSpotAnimation() == ICEBURST.getGraphicId())
+				if (actor.getGraphic() == ICEBURST.getGraphicId())
 				{
 					removeGameTimer(ICEBARRAGE);
 					freezeTimer = createGameTimer(ICEBURST);
 				}
 
-				if (actor.getSpotAnimation() == ICEBLITZ.getGraphicId())
+				if (actor.getGraphic() == ICEBLITZ.getGraphicId())
 				{
 					removeGameTimer(ICEBARRAGE);
 					freezeTimer = createGameTimer(ICEBLITZ);

@@ -109,7 +109,7 @@ public class IdleNotifierPlugin extends Plugin
 			return;
 		}
 
-		int graphic = localPlayer.getSpotAnimation();
+		int graphic = localPlayer.getGraphic();
 		int animation = localPlayer.getAnimation();
 		switch (animation)
 		{
@@ -302,7 +302,7 @@ public class IdleNotifierPlugin extends Plugin
 		}
 
 		final NPC npc = (NPC) target;
-		final NPCDefinition npcComposition = npc.getDefinition();
+		final NPCComposition npcComposition = npc.getComposition();
 		final List<String> npcMenuActions = Arrays.asList(npcComposition.getActions());
 
 		if (npcMenuActions.contains("Attack"))
@@ -370,7 +370,7 @@ public class IdleNotifierPlugin extends Plugin
 	}
 
 	@Subscribe
-	public void onSpotAnimationChanged(SpotAnimationChanged event)
+	public void onGraphicChanged(GraphicChanged event)
 	{
 		Actor actor = event.getActor();
 
@@ -379,7 +379,7 @@ public class IdleNotifierPlugin extends Plugin
 			return;
 		}
 
-		if (actor.getSpotAnimation() == GraphicID.SPLASH)
+		if (actor.getGraphic() == GraphicID.SPLASH)
 		{
 			lastCombatCountdown = HIGHEST_MONSTER_ATTACK_SPEED;
 		}

@@ -254,7 +254,7 @@ public class class41 {
 		int var3 = (int)var0.key;
 		var0.remove();
 		if (var1) {
-			EnumDefinition.method4614(var2);
+			EnumComposition.method4614(var2);
 		}
 
 		LoginScreenAnimation.method1938(var2);

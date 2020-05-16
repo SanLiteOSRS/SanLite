@@ -567,7 +567,7 @@ public enum Varbits
 	 * 0 = standard
 	 * 1 = ancients
 	 * 2 = lunars
-	 * 3 = arrceus
+	 * 3 = arceuus
 	 **/
 	SPELLBOOK_ID(4070),
 

@@ -275,7 +275,7 @@ public class WikiPlugin extends Plugin
 				{
 					type = "npc";
 					NPC npc = client.getCachedNPCs()[ev.getId()];
-					NPCDefinition nc = npc.getTransformedDefinition();
+					NPCComposition nc = npc.getTransformedComposition();
 					id = nc.getId();
 					name = nc.getName();
 					location = npc.getWorldLocation();
@@ -284,7 +284,7 @@ public class WikiPlugin extends Plugin
 				case SPELL_CAST_ON_GAME_OBJECT:
 				{
 					type = "object";
-					ObjectDefinition lc = client.getObjectDefinition(ev.getId());
+					ObjectComposition lc = client.getObjectDefinition(ev.getId());
 					if (lc.getImpostorIds() != null)
 					{
 						lc = lc.getImpostor();

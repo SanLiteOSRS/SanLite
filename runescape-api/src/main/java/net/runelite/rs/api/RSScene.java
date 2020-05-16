@@ -44,5 +44,5 @@ public interface RSScene extends Scene
 	int getMinLevel();
 
 	@Import("newGroundItemPile")
-	void newGroundItemPile(int plane, int x, int y, int hash, RSEntity var5, long var6, RSEntity var7, RSEntity var8);
+	void newGroundItemPile(int plane, int x, int y, int hash, RSRenderable var5, long var6, RSRenderable var7, RSRenderable var8);
 }

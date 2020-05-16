@@ -248,7 +248,7 @@ public class NpcAggroAreaPlugin extends Plugin
 
 	private boolean isNpcMatch(NPC npc)
 	{
-		NPCDefinition composition = npc.getTransformedDefinition();
+		NPCComposition composition = npc.getTransformedComposition();
 		if (composition == null)
 		{
 			return false;

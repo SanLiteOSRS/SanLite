@@ -30,7 +30,7 @@ public class VarpDefinition extends DualNode {
 		signature = "[Lla;"
 	)
 	@Export("mapDotSprites")
-	static Sprite[] mapDotSprites;
+	static SpritePixels[] mapDotSprites;
 	@ObfuscatedName("d")
 	@ObfuscatedGetter(
 		intValue = -2041406857

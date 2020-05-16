@@ -67,7 +67,7 @@ public class GrandExchangeOfferOwnWorldComparator implements Comparator {
 	)
 	@Export("runScriptEvent")
 	public static void runScriptEvent(ScriptEvent var0) {
-		PlayerAppearance.runScript(var0, 500000);
+		PlayerComposition.runScript(var0, 500000);
 	}
 
 	@ObfuscatedName("w")

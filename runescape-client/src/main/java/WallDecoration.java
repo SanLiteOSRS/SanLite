@@ -54,13 +54,13 @@ public final class WallDecoration {
 		signature = "Lee;"
 	)
 	@Export("entity1")
-	public Entity entity1;
+	public Renderable entity1;
 	@ObfuscatedName("t")
 	@ObfuscatedSignature(
 		signature = "Lee;"
 	)
 	@Export("entity2")
-	public Entity entity2;
+	public Renderable entity2;
 	@ObfuscatedName("e")
 	@ObfuscatedGetter(
 		longValue = -7258048285485333861L

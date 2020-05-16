@@ -55,19 +55,8 @@ import jogamp.nativewindow.jawt.x11.X11JAWTWindow;
 import jogamp.nativewindow.macosx.OSXUtil;
 import jogamp.newt.awt.NewtFactoryAWT;
 import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.BufferProvider;
-import net.runelite.api.Client;
-import net.runelite.api.Constants;
-import net.runelite.api.Entity;
-import net.runelite.api.GameState;
-import net.runelite.api.Model;
-import net.runelite.api.NodeCache;
-import net.runelite.api.Perspective;
-import net.runelite.api.Scene;
-import net.runelite.api.TileModel;
-import net.runelite.api.TilePaint;
-import net.runelite.api.Texture;
-import net.runelite.api.TextureProvider;
+import net.runelite.api.*;
+import net.runelite.api.Renderable;
 import net.runelite.api.events.GameStateChanged;
 import net.runelite.api.hooks.DrawCallbacks;
 import net.runelite.client.callback.ClientThread;
@@ -780,7 +769,7 @@ public class GpuPlugin extends Plugin implements DrawCallbacks
 
 	@Override
 	public void drawScenePaint(int orientation, int pitchSin, int pitchCos, int yawSin, int yawCos, int x, int y, int z,
-							TilePaint paint, int tileZ, int tileX, int tileY,
+							SceneTilePaint paint, int tileZ, int tileX, int tileY,
 							int zoom, int centerX, int centerY)
 	{
 		if (!useComputeShaders)
@@ -817,7 +806,7 @@ public class GpuPlugin extends Plugin implements DrawCallbacks
 
 	@Override
 	public void drawSceneModel(int orientation, int pitchSin, int pitchCos, int yawSin, int yawCos, int x, int y, int z,
-							TileModel model, int tileZ, int tileX, int tileY,
+							SceneTileModel model, int tileZ, int tileX, int tileY,
 							int zoom, int centerX, int centerY)
 	{
 		if (!useComputeShaders)
@@ -1405,7 +1394,7 @@ public class GpuPlugin extends Plugin implements DrawCallbacks
 	 * @param hash
 	 */
 	@Override
-	public void draw(Entity renderable, int orientation, int pitchSin, int pitchCos, int yawSin, int yawCos, int x, int y, int z, long hash)
+	public void draw(Renderable renderable, int orientation, int pitchSin, int pitchCos, int yawSin, int yawCos, int x, int y, int z, long hash)
 	{
 		if (!useComputeShaders)
 		{

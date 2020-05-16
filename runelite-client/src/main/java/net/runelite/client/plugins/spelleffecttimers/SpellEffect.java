@@ -53,7 +53,7 @@ public enum SpellEffect
 	private final SpellEffectType spellType;
 
 	@Getter(AccessLevel.PACKAGE)
-	private final int spotAnimationId;
+	private final int graphicId;
 
 	@Getter(AccessLevel.PACKAGE)
 	private final boolean isHalvable;
@@ -68,7 +68,7 @@ public enum SpellEffect
 	{
 		for (SpellEffect spellEffect : values())
 		{
-			if (spellEffect.getSpotAnimationId() == spotAnimationId && spellEffect.getSpotAnimationId() != -1)
+			if (spellEffect.getGraphicId() == spotAnimationId && spellEffect.getGraphicId() != -1)
 			{
 				return true;
 			}
@@ -78,20 +78,20 @@ public enum SpellEffect
 
 	static boolean isSpellEffectTypeFreeze(int spotAnimationId)
 	{
-		return spotAnimationId == BIND.spotAnimationId ||
-				spotAnimationId == SNARE.spotAnimationId ||
-				spotAnimationId == ENTANGLE.spotAnimationId ||
-				spotAnimationId == ICE_RUSH.spotAnimationId ||
-				spotAnimationId == ICE_BURST.spotAnimationId ||
-				spotAnimationId == ICE_BLITZ.spotAnimationId ||
-				spotAnimationId == ICE_BARRAGE.spotAnimationId;
+		return spotAnimationId == BIND.graphicId ||
+				spotAnimationId == SNARE.graphicId ||
+				spotAnimationId == ENTANGLE.graphicId ||
+				spotAnimationId == ICE_RUSH.graphicId ||
+				spotAnimationId == ICE_BURST.graphicId ||
+				spotAnimationId == ICE_BLITZ.graphicId ||
+				spotAnimationId == ICE_BARRAGE.graphicId;
 	}
 
-	static SpellEffect getFromSpotAnimation(int spotAnimationId)
+	static SpellEffect getFromGraphicId(int graphicId)
 	{
 		for (SpellEffect spellEffect : values())
 		{
-			if (spellEffect.getSpotAnimationId() == spotAnimationId)
+			if (spellEffect.getGraphicId() == graphicId)
 			{
 				return spellEffect;
 			}

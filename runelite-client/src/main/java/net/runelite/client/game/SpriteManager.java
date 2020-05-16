@@ -40,7 +40,7 @@ import javax.swing.SwingUtilities;
 import net.runelite.api.Client;
 import net.runelite.api.GameState;
 import net.runelite.api.IndexDataBase;
-import net.runelite.api.Sprite;
+import net.runelite.api.SpritePixels;
 import net.runelite.client.callback.ClientThread;
 import net.runelite.client.ui.overlay.infobox.InfoBox;
 import net.runelite.client.ui.overlay.infobox.InfoBoxManager;
@@ -63,7 +63,7 @@ public class SpriteManager
 		.expireAfterAccess(1, TimeUnit.HOURS)
 		.build();
 
-	public Sprite getSprite(int id)
+	public SpritePixels getSprite(int id)
 	{
 		final IndexDataBase spriteDb = client.getIndexSprites();
 		if (spriteDb == null)
@@ -71,13 +71,13 @@ public class SpriteManager
 			return null;
 		}
 
-		final Sprite[] sprites = client.getSprites(spriteDb, id, 0);
-		if (sprites == null)
+		final SpritePixels[] spritePixels = client.getSprites(spriteDb, id, 0);
+		if (spritePixels == null)
 		{
 			return null;
 		}
 
-		return sprites[0];
+		return spritePixels[0];
 	}
 
 	@Nullable
@@ -96,7 +96,7 @@ public class SpriteManager
 			return cached;
 		}
 
-		Sprite[] sp = client.getSprites(client.getIndexSprites(), archive, 0);
+		SpritePixels[] sp = client.getSprites(client.getIndexSprites(), archive, 0);
 		if (sp == null)
 		{
 			return null;
@@ -176,12 +176,12 @@ public class SpriteManager
 
 		clientThread.invokeLater(() ->
 		{
-			Map<Integer, Sprite> overrides = client.getSpriteOverrides();
+			Map<Integer, SpritePixels> overrides = client.getSpriteOverrides();
 			Class<?> owner = add[0].getClass();
 			for (SpriteOverride o : add)
 			{
 				BufferedImage image = ImageUtil.getResourceStreamFromClass(owner, o.getFileName());
-				Sprite sp = ImageUtil.getImageSpritePixels(image, client);
+				SpritePixels sp = ImageUtil.getImageSpritePixels(image, client);
 				overrides.put(o.getSpriteId(), sp);
 			}
 		});
@@ -191,7 +191,7 @@ public class SpriteManager
 	{
 		clientThread.invokeLater(() ->
 		{
-			Map<Integer, Sprite> overrides = client.getSpriteOverrides();
+			Map<Integer, SpritePixels> overrides = client.getSpriteOverrides();
 			for (SpriteOverride o : remove)
 			{
 				overrides.remove(o.getSpriteId());

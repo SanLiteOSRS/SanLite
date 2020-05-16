@@ -47,7 +47,7 @@ public class class200 {
 		garbageValue = "1925772237"
 	)
 	@Export("convertJpgToSprite")
-	public static final Sprite convertJpgToSprite(byte[] var0) {
+	public static final SpritePixels convertJpgToSprite(byte[] var0) {
 		BufferedImage var1 = null;
 
 		try {
@@ -57,11 +57,11 @@ public class class200 {
 			int[] var4 = new int[var3 * var2];
 			PixelGrabber var5 = new PixelGrabber(var1, 0, 0, var2, var3, var4, 0, var2);
 			var5.grabPixels();
-			return new Sprite(var4, var2, var3);
+			return new SpritePixels(var4, var2, var3);
 		} catch (IOException var7) {
 		} catch (InterruptedException var8) {
 		}
 
-		return new Sprite(0, 0);
+		return new SpritePixels(0, 0);
 	}
 }

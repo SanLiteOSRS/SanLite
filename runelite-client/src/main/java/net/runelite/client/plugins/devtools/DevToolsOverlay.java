@@ -129,12 +129,12 @@ class DevToolsOverlay extends Overlay
 		{
 			if (p != local)
 			{
-				String text = p.getName() + " (A: " + p.getAnimation() + ") (G: " + p.getSpotAnimation()  + ")" + " (GF:" + p.getSpotAnimationFrame() + ")";
+				String text = p.getName() + " (A: " + p.getAnimation() + ") (G: " + p.getGraphic()  + ")" + " (GF:" + p.setSpotAnimFrame() + ")";
 				OverlayUtil.renderActorOverlay(graphics, p, text, BLUE);
 			}
 		}
 
-		String text = local.getName() + " (A: " + local.getAnimation() + ") (G: " + local.getSpotAnimation() + ")" + " (GF:" + local.getSpotAnimationFrame() + ")";
+		String text = local.getName() + " (A: " + local.getAnimation() + ") (G: " + local.getGraphic() + ")" + " (GF:" + local.setSpotAnimFrame() + ")";
 		OverlayUtil.renderActorOverlay(graphics, local, text, CYAN);
 		renderPlayerWireframe(graphics, local, CYAN);
 	}
@@ -144,11 +144,11 @@ class DevToolsOverlay extends Overlay
 		List<NPC> npcs = client.getNpcs();
 		for (NPC npc : npcs)
 		{
-			NPCDefinition composition = npc.getDefinition();
+			NPCComposition composition = npc.getComposition();
 			Color color = composition.getCombatLevel() > 1 ? YELLOW : ORANGE;
 			if (composition.getConfigs() != null)
 			{
-				NPCDefinition transformedComposition = composition.transform();
+				NPCComposition transformedComposition = composition.transform();
 				if (transformedComposition == null)
 				{
 					color = GRAY;
@@ -163,8 +163,8 @@ class DevToolsOverlay extends Overlay
 				composition.getName(),
 				composition.getId(),
 				npc.getAnimation(),
-				npc.getSpotAnimation(),
-				npc.getSpotAnimationFrame());
+				npc.getGraphic(),
+				npc.setSpotAnimFrame());
 
 			OverlayUtil.renderActorOverlay(graphics, npc, text, color);
 		}
@@ -239,7 +239,7 @@ class DevToolsOverlay extends Overlay
 
 	private void renderGroundItems(Graphics2D graphics, Tile tile, Player player)
 	{
-		TileItemPile itemLayer = tile.getItemLayer();
+		ItemLayer itemLayer = tile.getItemLayer();
 		if (itemLayer != null)
 		{
 			if (player.getLocalLocation().distanceTo(itemLayer.getLocalLocation()) <= MAX_DISTANCE)

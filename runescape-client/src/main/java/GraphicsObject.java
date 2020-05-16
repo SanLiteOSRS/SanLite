@@ -8,7 +8,8 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("cs")
 @Implements("GraphicsObject")
-public final class GraphicsObject extends Entity {
+public final class GraphicsObject extends Renderable
+{
 	@ObfuscatedName("aw")
 	@ObfuscatedGetter(
 		intValue = 2069035029

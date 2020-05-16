@@ -25,7 +25,7 @@
 package net.runelite.rs.api;
 
 import net.runelite.api.Client;
-import net.runelite.api.Sprite;
+import net.runelite.api.SpritePixels;
 import net.runelite.api.World;
 import net.runelite.api.widgets.Widget;
 
@@ -33,7 +33,7 @@ import java.util.Map;
 import net.runelite.mapping.Construct;
 import net.runelite.mapping.Import;
 
-public interface RSClient extends RSGameShell, Client
+public interface RSClient extends RSGameEngine, Client
 {
 	@Import("cameraX")
 	@Override
@@ -334,10 +334,10 @@ public interface RSClient extends RSGameShell, Client
 	void addRSChatMessage(int type, String name, String message, String sender);
 
 	@Import("getObjectDefinition")
-	RSObjectDefinition getRSObjectDefinition(int objectId);
+	RSObjectComposition getRSObjectDefinition(int objectId);
 
 	@Import("getNpcDefinition")
-	RSNPCDefinition getRSNpcDefinition(int npcId);
+	RSNPCComposition getRSNpcDefinition(int npcId);
 
 	@Import("viewportZoom")
 	@Override
@@ -401,7 +401,7 @@ public interface RSClient extends RSGameShell, Client
 	RSItemComposition getRSItemDefinition(int itemId);
 
 	@Import("getItemSprite")
-	RSSprite createRSItemSprite(int itemId, int quantity, int thickness, int borderColor, int stackable, boolean noted);
+	RSSpritePixels createRSItemSprite(int itemId, int quantity, int thickness, int borderColor, int stackable, boolean noted);
 
 	@Import("menuAction")
 	void sendMenuAction(int n2, int n3, int n4, int n5, String string, String string2, int n6, int n7);
@@ -554,10 +554,10 @@ public interface RSClient extends RSGameShell, Client
 
 	@Import("mapIcons")
 	@Override
-	RSSprite[] getMapIcons();
+	RSSpritePixels[] getMapIcons();
 
 	@Import("mapDotSprites")
-	RSSprite[] getMapDots();
+	RSSpritePixels[] getMapDots();
 
 	@Import("AbstractFont_modIconSprites")
 	@Override
@@ -572,7 +572,7 @@ public interface RSClient extends RSGameShell, Client
 
 	@Construct
 	@Override
-	RSSprite createSprite(int[] pixels, int width, int height);
+	RSSpritePixels createSpritePixels(int[] pixels, int width, int height);
 
 	@Import("destinationX")
 	int getDestinationX();
@@ -763,10 +763,10 @@ public interface RSClient extends RSGameShell, Client
 	RSFrames getFrames(int frameId);
 
 	@Import("sceneMinimapSprite")
-	RSSprite getMinimapSprite();
+	RSSpritePixels getMinimapSprite();
 
 	@Import("sceneMinimapSprite")
-	void setMinimapSprite(Sprite spritePixels);
+	void setMinimapSprite(SpritePixels spritePixels);
 
 	@Import("drawObject")
 	void drawObject(int z, int x, int y, int randomColor1, int randomColor2);
@@ -828,7 +828,7 @@ public interface RSClient extends RSGameShell, Client
 	int getFlags();
 
 	@Import("compass")
-	void setCompass(Sprite spritePixels);
+	void setCompass(SpritePixels spritePixels);
 
 	@Import("Widget_cachedSprites")
 	@Override
@@ -836,7 +836,7 @@ public interface RSClient extends RSGameShell, Client
 
 	@Import("ItemDefinition_cached")
 	@Override
-	RSEvictingDualNodeHashTable getItemDefinitionCache();
+	RSEvictingDualNodeHashTable getItemCompositionCache();
 
 	@Import("oculusOrbState")
 	@Override
@@ -980,14 +980,14 @@ public interface RSClient extends RSGameShell, Client
 	int getIf1DraggedItemIndex();
 
 	@Import("isSpellSelected")
-	boolean isSpellSelected();
+	boolean getSpellSelected();
 
 	@Import("isSpellSelected")
 	@Override
 	void setSpellSelected(boolean selected);
 
 	@Import("getEnum")
-	RSEnumDefinition getRsEnum(int id);
+	RSEnumComposition getRsEnum(int id);
 
 	@Import("menuX")
 	int getMenuX();
@@ -1101,7 +1101,7 @@ public interface RSClient extends RSGameShell, Client
 
 	@Import("crossSprites")
 	@Override
-	RSSprite[] getCrossSprites();
+	RSSpritePixels[] getCrossSprites();
 
 	@Import("ItemDefinition_fileCount")
 	int getItemCount();
@@ -1152,7 +1152,7 @@ public interface RSClient extends RSGameShell, Client
 	int getDraggedWidgetY();
 
 	@Import("gameShell")
-	RSGameShell getGameShell();
+	RSGameEngine getGameShell();
 
 	@Import("isKilled")
 	boolean isKilled();

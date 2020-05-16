@@ -55,7 +55,7 @@ public class class247 {
 			}
 		}
 
-		Sprite var11 = new Sprite(var6, var2, var2);
+		SpritePixels var11 = new SpritePixels(var6, var2, var2);
 		this.spriteMap.put(var1, var11);
 	}
 
@@ -64,12 +64,12 @@ public class class247 {
 		signature = "(II)Lla;",
 		garbageValue = "1164975013"
 	)
-	Sprite method4402(int var1) {
+	SpritePixels method4402(int var1) {
 		if (!this.spriteMap.containsKey(var1)) {
 			this.method4411(var1);
 		}
 
-		return (Sprite)this.spriteMap.get(var1);
+		return (SpritePixels)this.spriteMap.get(var1);
 	}
 
 	@ObfuscatedName("d")
@@ -99,9 +99,9 @@ public class class247 {
 		signature = "(IILla;FI)V",
 		garbageValue = "1134396059"
 	)
-	public final void method4407(int var1, int var2, Sprite var3, float var4) {
+	public final void method4407(int var1, int var2, SpritePixels var3, float var4) {
 		int var5 = (int)(var4 * 18.0F);
-		Sprite var6 = this.method4402(var5);
+		SpritePixels var6 = this.method4402(var5);
 		int var7 = var5 * 2 + 1;
 		Bounds var8 = new Bounds(0, 0, var3.subWidth, var3.subHeight);
 		Bounds var9 = new Bounds(0, 0);
@@ -150,7 +150,7 @@ public class class247 {
 		signature = "(Lla;Lla;Lld;I)V",
 		garbageValue = "-1592905794"
 	)
-	void method4426(Sprite var1, Sprite var2, Bounds var3) {
+	void method4426(SpritePixels var1, SpritePixels var2, Bounds var3) {
 		if (var3.highX != 0 && var3.highY != 0) {
 			int var4 = 0;
 			int var5 = 0;

@@ -10,7 +10,7 @@ public class class69 {
 		signature = "[Lla;"
 	)
 	@Export("worldSelectBackSprites")
-	static Sprite[] worldSelectBackSprites;
+	static SpritePixels[] worldSelectBackSprites;
 	@ObfuscatedName("fm")
 	@ObfuscatedGetter(
 		intValue = 731242929

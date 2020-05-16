@@ -200,14 +200,14 @@ public abstract class RSPlayerMixin implements RSPlayer
 		}
 		int actionFrame = getActionFrame();
 		int poseFrame = getPoseFrame();
-		int spotAnimFrame = getSpotAnimationFrame();
+		int spotAnimFrame = setSpotAnimFrame();
 		try
 		{
 			// combine the frames with the frame cycle so we can access this information in the sequence methods
 			// without having to change method calls
 			setActionFrame(Integer.MIN_VALUE | getActionFrameCycle() << 16 | actionFrame);
 			setPoseFrame(Integer.MIN_VALUE | getPoseFrameCycle() << 16 | poseFrame);
-			setSpotAnimationFrame(Integer.MIN_VALUE | getSpotAnimationFrameCycle() << 16 | spotAnimFrame);
+			setSpotAnimFrame(Integer.MIN_VALUE | getGraphicFrameCycle() << 16 | spotAnimFrame);
 			return rs$getModel();
 		}
 		finally
@@ -215,7 +215,7 @@ public abstract class RSPlayerMixin implements RSPlayer
 			// reset frames
 			setActionFrame(actionFrame);
 			setPoseFrame(poseFrame);
-			setSpotAnimationFrame(spotAnimFrame);
+			setSpotAnimFrame(spotAnimFrame);
 		}
 	}
 

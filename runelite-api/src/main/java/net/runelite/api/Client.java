@@ -44,7 +44,7 @@ import org.slf4j.Logger;
 /**
  * Represents the RuneScape client.
  */
-public interface Client extends GameShell
+public interface Client extends GameEngine
 {
 	/**
 	 * The client invokes these callbacks to communicate to
@@ -383,7 +383,7 @@ public interface Client extends GameShell
 	 * @return the created sprite
 	 */
 	@Nullable
-	Sprite createItemSprite(int itemId, int quantity, int border, int shadowColor, int stackable, boolean noted, int scale);
+	SpritePixels createItemSprite(int itemId, int quantity, int border, int shadowColor, int stackable, boolean noted, int scale);
 
 	/**
 	 * Loads and creates the sprite images of the passed archive and file IDs.
@@ -394,7 +394,7 @@ public interface Client extends GameShell
 	 * @return the sprite image of the file
 	 */
 	@Nullable
-	Sprite[] getSprites(IndexDataBase source, int archiveId, int fileId);
+	SpritePixels[] getSprites(IndexDataBase source, int archiveId, int fileId);
 
 	/**
 	 * Gets the sprite index.
@@ -866,7 +866,7 @@ public interface Client extends GameShell
 	 * @return the corresponding object composition
 	 * @see ObjectID
 	 */
-	ObjectDefinition getObjectDefinition(int objectId);
+	ObjectComposition getObjectDefinition(int objectId);
 
 	/**
 	 * Gets the NPC composition corresponding to an NPCs ID.
@@ -875,7 +875,7 @@ public interface Client extends GameShell
 	 * @return the corresponding NPC composition
 	 * @see NpcID
 	 */
-	NPCDefinition getNpcDefinition(int npcId);
+	NPCComposition getNpcDefinition(int npcId);
 
 	/**
 	 * Gets an array of all world areas
@@ -896,7 +896,7 @@ public interface Client extends GameShell
 	 *
 	 * @return all mini-map dots
 	 */
-	Sprite[] getMapDots();
+	SpritePixels[] getMapDots();
 
 	/**
 	 * Gets the local clients game cycle.
@@ -912,7 +912,7 @@ public interface Client extends GameShell
 	 *
 	 * @return the map icons
 	 */
-	Sprite[] getMapIcons();
+	SpritePixels[] getMapIcons();
 
 	/**
 	 * Gets an array of mod icon sprites.
@@ -944,7 +944,7 @@ public interface Client extends GameShell
 	 * @param height the height
 	 * @return the sprite image
 	 */
-	Sprite createSprite(int[] pixels, int width, int height);
+	SpritePixels createSpritePixels(int[] pixels, int width, int height);
 
 	/**
 	 * Gets the location of the local player.
@@ -1269,7 +1269,7 @@ public interface Client extends GameShell
 	 * factors towards {@code zero} when stretching.
 	 *
 	 * @param state new integer scaling state
-	 */
+	*/
 	void setStretchedIntegerScaling(boolean state);
 
 	/**
@@ -1331,7 +1331,7 @@ public interface Client extends GameShell
 	 * @param z the plane
 	 * @return the map sprite
 	 */
-	Sprite drawInstanceMap(int z);
+	SpritePixels drawInstanceMap(int z);
 
 	/**
 	 * Executes a client script from the cache
@@ -1590,7 +1590,7 @@ public interface Client extends GameShell
 	 * The key value in the map corresponds to the ID of the sprite,
 	 * and the value the sprite to replace it with.
 	 */
-	Map<Integer, Sprite> getSpriteOverrides();
+	Map<Integer, SpritePixels> getSpriteOverrides();
 
 	/**
 	 * Gets a mapping of widget sprites to override.
@@ -1598,14 +1598,14 @@ public interface Client extends GameShell
 	 * The key value in the map corresponds to the packed widget ID,
 	 * and the value the sprite to replace the widgets sprite with.
 	 */
-	Map<Integer, Sprite> getWidgetSpriteOverrides();
+	Map<Integer, SpritePixels> getWidgetSpriteOverrides();
 
 	/**
 	 * Sets the compass sprite.
 	 *
-	 * @param sprite the new sprite
+	 * @param spritePixels the new sprite
 	 */
-	void setCompass(Sprite sprite);
+	void setCompass(SpritePixels spritePixels);
 
 	/**
 	 * Returns widget sprite cache, to be used with {@link Client#getSpriteOverrides()}
@@ -1731,7 +1731,7 @@ public interface Client extends GameShell
 	/**
 	 * Is a widget is in target mode?
 	 */
-	boolean isSpellSelected();
+	boolean getSpellSelected();
 
 	/**
 	 * Sets if a widget is in target mode
@@ -1739,16 +1739,16 @@ public interface Client extends GameShell
 	void setSpellSelected(boolean selected);
 
 	/**
-	 * Returns client item definition cache
+	 * Returns client item composition cache
 	 */
-	NodeCache getItemDefinitionCache();
+	NodeCache getItemCompositionCache();
 
 	/**
 	 * Returns the array of cross sprites that appear and animate when left-clicking
 	 */
-	Sprite[] getCrossSprites();
+	SpritePixels[] getCrossSprites();
 
-	EnumDefinition getEnum(int id);
+	EnumComposition getEnum(int id);
 
 	void draw2010Menu();
 
@@ -1771,21 +1771,9 @@ public interface Client extends GameShell
 	 */
 	void invokeMenuAction(int param0, int param1, int type, int id, String menuEntry, String targetString, int canvasX, int canvasY);
 
-	MouseRecorder getMouseRecorder();
-
 	String getSelectedSpellName();
 
 	void setSelectedSpellName(String name);
-
-	/**
-	 * Add player to friendlist
-	 */
-	void addFriend(String name);
-
-	/**
-	 * Remove player from friendlist
-	 */
-	void removeFriend(String name);
 
 	/*
 	 * Returns the max item index + 1 from cache

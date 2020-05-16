@@ -225,7 +225,7 @@ public enum ModeWhere implements Enumerated {
 		} else if (var0 < 4000) {
 			return class224.method4124(var0, var1, var2);
 		} else if (var0 < 4100) {
-			return ObjectDefinition.method4710(var0, var1, var2);
+			return ObjectComposition.method4710(var0, var1, var2);
 		} else if (var0 < 4200) {
 			return AbstractWorldMapData.method384(var0, var1, var2);
 		} else if (var0 < 4300) {

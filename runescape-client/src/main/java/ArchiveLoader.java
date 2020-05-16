@@ -124,7 +124,7 @@ public class ArchiveLoader {
 				for (var8 = 0; var8 < Client.npcCount; ++var8) {
 					NPC var16 = Client.npcs[Client.npcIndices[var8]];
 					if (var16 != null && var16.isVisible()) {
-						NPCDefinition var18 = var16.definition;
+						NPCComposition var18 = var16.definition;
 						if (var18 != null && var18.transforms != null) {
 							var18 = var18.transform();
 						}

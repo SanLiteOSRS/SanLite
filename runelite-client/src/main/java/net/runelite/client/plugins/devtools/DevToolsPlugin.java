@@ -344,15 +344,15 @@ public class DevToolsPlugin extends Plugin
 			{
 				int id = Integer.parseInt(args[0]);
 				Player localPlayer = client.getLocalPlayer();
-				localPlayer.setSpotAnimation(id);
-				localPlayer.setSpotAnimationFrame(0);
+				localPlayer.setGraphic(id);
+				localPlayer.setSpotAnimFrame(0);
 				break;
 			}
 			case "transform":
 			{
 				int id = Integer.parseInt(args[0]);
 				Player player = client.getLocalPlayer();
-				player.getPlayerAppearance().setTransformedNpcId(id);
+				player.getPlayerComposition().setTransformedNpcId(id);
 				player.setIdlePoseAnimation(-1);
 				player.setPoseAnimation(-1);
 				break;
@@ -361,8 +361,8 @@ public class DevToolsPlugin extends Plugin
 			{
 				int id = Integer.parseInt(args[0]);
 				Player player = client.getLocalPlayer();
-				player.getPlayerAppearance().getEquipmentIds()[KitType.CAPE.getIndex()] = id + 512;
-				player.getPlayerAppearance().setHash();
+				player.getPlayerComposition().getEquipmentIds()[KitType.CAPE.getIndex()] = id + 512;
+				player.getPlayerComposition().setHash();
 				break;
 			}
 			case "sound":

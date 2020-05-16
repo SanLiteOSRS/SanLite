@@ -54,7 +54,7 @@ final class GrandExchangeOfferAgeComparator implements Comparator {
 		garbageValue = "1934352071"
 	)
 	@Export("doCycleTitle")
-	static void doCycleTitle(GameShell var0) {
+	static void doCycleTitle(GameEngine var0) {
 		int var4;
 		if (Login.worldSelectOpen) {
 			while (true) {
@@ -277,7 +277,7 @@ final class GrandExchangeOfferAgeComparator implements Comparator {
 								Login.loginIndex = 1;
 								FontName.method5388();
 							} else {
-								ObjectDefinition.Login_promptCredentials(false);
+								ObjectComposition.Login_promptCredentials(false);
 							}
 						}
 					} else {
@@ -289,7 +289,7 @@ final class GrandExchangeOfferAgeComparator implements Comparator {
 									var34 = PacketWriter.loginBoxCenter - 80;
 									var8 = 321;
 									if (var4 == 1 && var46 >= var34 - 75 && var46 <= var34 + 75 && var33 >= var8 - 20 && var33 <= var8 + 20) {
-										ObjectDefinition.Login_promptCredentials(false);
+										ObjectComposition.Login_promptCredentials(false);
 									}
 
 									var34 = PacketWriter.loginBoxCenter + 80;
@@ -300,7 +300,7 @@ final class GrandExchangeOfferAgeComparator implements Comparator {
 								}
 
 								if (class3.field16 == 84) {
-									ObjectDefinition.Login_promptCredentials(false);
+									ObjectComposition.Login_promptCredentials(false);
 								} else if (class3.field16 == 13) {
 									Login.loginIndex = 0;
 								}
@@ -541,7 +541,7 @@ final class GrandExchangeOfferAgeComparator implements Comparator {
 								var34 = Login.loginBoxX + 180;
 								var8 = 276;
 								if (var4 == 1 && var46 >= var34 - 75 && var46 <= var34 + 75 && var33 >= var8 - 20 && var33 <= var8 + 20) {
-									ObjectDefinition.Login_promptCredentials(false);
+									ObjectComposition.Login_promptCredentials(false);
 								}
 
 								var34 = Login.loginBoxX + 180;
@@ -639,7 +639,7 @@ final class GrandExchangeOfferAgeComparator implements Comparator {
 
 									var34 = Login.loginBoxX + 180 + 80;
 									if (var4 == 1 && var46 >= var34 - 75 && var46 <= var34 + 75 && var33 >= var8 - 20 && var33 <= var8 + 20) {
-										ObjectDefinition.Login_promptCredentials(true);
+										ObjectComposition.Login_promptCredentials(true);
 									}
 
 									var36 = 361;
@@ -661,7 +661,7 @@ final class GrandExchangeOfferAgeComparator implements Comparator {
 										}
 
 										if (class3.field16 == 13) {
-											ObjectDefinition.Login_promptCredentials(true);
+											ObjectComposition.Login_promptCredentials(true);
 										} else {
 											if (class3.field16 == 85 && Login.Login_username.length() > 0) {
 												Login.Login_username = Login.Login_username.substring(0, Login.Login_username.length() - 1);
@@ -690,7 +690,7 @@ final class GrandExchangeOfferAgeComparator implements Comparator {
 
 										var34 = Login.loginBoxX + 180 + 80;
 										if (var4 == 1 && var46 >= var34 - 75 && var46 <= var34 + 75 && var33 >= var8 - 20 && var33 <= var8 + 20) {
-											ObjectDefinition.Login_promptCredentials(true);
+											ObjectComposition.Login_promptCredentials(true);
 										}
 									} else if (Login.loginIndex == 8) {
 										var34 = Login.loginBoxX + 180 - 80;
@@ -704,7 +704,7 @@ final class GrandExchangeOfferAgeComparator implements Comparator {
 
 										var34 = Login.loginBoxX + 180 + 80;
 										if (var4 == 1 && var46 >= var34 - 75 && var46 <= var34 + 75 && var33 >= var8 - 20 && var33 <= var8 + 20) {
-											ObjectDefinition.Login_promptCredentials(true);
+											ObjectComposition.Login_promptCredentials(true);
 										}
 									} else if (Login.loginIndex == 12) {
 										String var29 = "";
@@ -716,7 +716,7 @@ final class GrandExchangeOfferAgeComparator implements Comparator {
 											var29 = "https://support.runescape.com/hc/en-gb/articles/206103939-My-account-is-locked";
 											break;
 										default:
-											ObjectDefinition.Login_promptCredentials(false);
+											ObjectComposition.Login_promptCredentials(false);
 										}
 
 										var37 = Login.loginBoxX + 180;
@@ -731,13 +731,13 @@ final class GrandExchangeOfferAgeComparator implements Comparator {
 										var37 = Login.loginBoxX + 180;
 										var36 = 326;
 										if (var4 == 1 && var46 >= var37 - 75 && var46 <= var37 + 75 && var33 >= var36 - 20 && var33 <= var36 + 20) {
-											ObjectDefinition.Login_promptCredentials(false);
+											ObjectComposition.Login_promptCredentials(false);
 										}
 									} else if (Login.loginIndex == 24) {
 										var34 = Login.loginBoxX + 180;
 										var8 = 301;
 										if (var4 == 1 && var46 >= var34 - 75 && var46 <= var34 + 75 && var33 >= var8 - 20 && var33 <= var8 + 20) {
-											ObjectDefinition.Login_promptCredentials(false);
+											ObjectComposition.Login_promptCredentials(false);
 										}
 									}
 								} else {
@@ -746,14 +746,14 @@ final class GrandExchangeOfferAgeComparator implements Comparator {
 											if (!class22.isKeyDown()) {
 												var35 = 321;
 												if (var4 == 1 && var33 >= var35 - 20 && var33 <= var35 + 20) {
-													ObjectDefinition.Login_promptCredentials(true);
+													ObjectComposition.Login_promptCredentials(true);
 												}
 
 												return;
 											}
 										} while(class3.field16 != 84 && class3.field16 != 13);
 
-										ObjectDefinition.Login_promptCredentials(true);
+										ObjectComposition.Login_promptCredentials(true);
 									}
 								}
 							}

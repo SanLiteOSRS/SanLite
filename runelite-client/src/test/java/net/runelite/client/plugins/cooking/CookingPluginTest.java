@@ -33,7 +33,7 @@ import net.runelite.api.Client;
 import net.runelite.api.GraphicID;
 import net.runelite.api.Player;
 import net.runelite.api.events.ChatMessage;
-import net.runelite.api.events.SpotAnimationChanged;
+import net.runelite.api.events.GraphicChanged;
 import net.runelite.client.game.ItemManager;
 import net.runelite.client.ui.overlay.OverlayManager;
 import net.runelite.client.ui.overlay.infobox.InfoBoxManager;
@@ -113,14 +113,14 @@ public class CookingPluginTest
 	public void testOnGraphicChanged()
 	{
 		Player player = mock(Player.class);
-		when(player.getSpotAnimation()).thenReturn(GraphicID.WINE_MAKE);
+		when(player.getGraphic()).thenReturn(GraphicID.WINE_MAKE);
 
 		when(config.fermentTimer()).thenReturn(true);
 		when(client.getLocalPlayer()).thenReturn(player);
 
-		SpotAnimationChanged graphicChanged = new SpotAnimationChanged();
+		GraphicChanged graphicChanged = new GraphicChanged();
 		graphicChanged.setActor(player);
-		cookingPlugin.onSpotAnimationChanged(graphicChanged);
+		cookingPlugin.onGraphicChanged(graphicChanged);
 
 		verify(infoBoxManager).addInfoBox(any(FermentTimer.class));
 	}

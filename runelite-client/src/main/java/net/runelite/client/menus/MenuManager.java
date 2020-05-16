@@ -42,7 +42,7 @@ import net.runelite.api.Client;
 import net.runelite.api.IconID;
 import net.runelite.api.MenuAction;
 import net.runelite.api.MenuEntry;
-import net.runelite.api.NPCDefinition;
+import net.runelite.api.NPCComposition;
 import net.runelite.api.events.MenuEntryAdded;
 import net.runelite.api.events.MenuOptionClicked;
 import net.runelite.api.events.NpcActionChanged;
@@ -123,7 +123,7 @@ public class MenuManager
 	@Subscribe
 	public void onMenuEntryAdded(MenuEntryAdded event)
 	{
-		if (client.isSpellSelected())
+		if (client.getSpellSelected())
 		{
 			return;
 		}
@@ -203,14 +203,14 @@ public class MenuManager
 	@Subscribe
 	public void onNpcActionChanged(NpcActionChanged event)
 	{
-		NPCDefinition composition = event.getNpcDefinition();
+		NPCComposition composition = event.getNpcComposition();
 		for (String npcOption : npcMenuOptions)
 		{
 			addNpcOption(composition, npcOption);
 		}
 	}
 
-	private void addNpcOption(NPCDefinition composition, String npcOption)
+	private void addNpcOption(NPCComposition composition, String npcOption)
 	{
 		String[] actions = composition.getActions();
 		int unused = -1;
@@ -232,7 +232,7 @@ public class MenuManager
 		actions[unused] = npcOption;
 	}
 
-	private void removeNpcOption(NPCDefinition composition, String npcOption)
+	private void removeNpcOption(NPCComposition composition, String npcOption)
 	{
 		String[] actions = composition.getActions();
 

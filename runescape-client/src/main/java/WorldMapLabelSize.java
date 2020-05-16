@@ -93,9 +93,9 @@ public class WorldMapLabelSize {
 		garbageValue = "-1100564340"
 	)
 	public static void method290(AbstractArchive var0, AbstractArchive var1, boolean var2) {
-		ObjectDefinition.ObjectDefinition_archive = var0;
-		ObjectDefinition.ObjectDefinition_modelsArchive = var1;
-		ObjectDefinition.ObjectDefinition_isLowDetail = var2;
+		ObjectComposition.ObjectDefinition_archive = var0;
+		ObjectComposition.ObjectDefinition_modelsArchive = var1;
+		ObjectComposition.ObjectDefinition_isLowDetail = var2;
 	}
 
 	@ObfuscatedName("w")

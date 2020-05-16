@@ -51,7 +51,7 @@ import net.runelite.api.GameState;
 import net.runelite.api.ItemComposition;
 import net.runelite.api.ItemID;
 import static net.runelite.api.ItemID.*;
-import net.runelite.api.Sprite;
+import net.runelite.api.SpritePixels;
 import net.runelite.api.events.GameStateChanged;
 import net.runelite.api.events.PostItemComposition;
 import net.runelite.client.callback.ClientThread;
@@ -263,7 +263,7 @@ public class ItemManager
 
 	/**
 	 * Invalidates internal item manager item composition cache (but not client item composition cache)
-	 * @see Client#getItemDefinitionCache()
+	 * @see Client#getItemCompositionCache()
 	 */
 	public void invalidateItemCompositionCache()
 	{
@@ -409,13 +409,13 @@ public class ItemManager
 			{
 				return false;
 			}
-			Sprite sprite = client.createItemSprite(itemId, quantity, 1, Sprite.DEFAULT_SHADOW_COLOR,
+			SpritePixels spritePixels = client.createItemSprite(itemId, quantity, 1, SpritePixels.DEFAULT_SHADOW_COLOR,
 				stackable ? 1 : 0, false, CLIENT_DEFAULT_ZOOM);
-			if (sprite == null)
+			if (spritePixels == null)
 			{
 				return false;
 			}
-			sprite.toBufferedImage(img);
+			spritePixels.toBufferedImage(img);
 			img.loaded();
 			return true;
 		});
@@ -470,8 +470,8 @@ public class ItemManager
 	 */
 	private BufferedImage loadItemOutline(final int itemId, final int itemQuantity, final Color outlineColor)
 	{
-		final Sprite itemSprite = client.createItemSprite(itemId, itemQuantity, 1, 0, 0, true, 710);
-		return itemSprite.toBufferedOutline(outlineColor);
+		final SpritePixels itemSpritePixels = client.createItemSprite(itemId, itemQuantity, 1, 0, 0, true, 710);
+		return itemSpritePixels.toBufferedOutline(outlineColor);
 	}
 
 	/**

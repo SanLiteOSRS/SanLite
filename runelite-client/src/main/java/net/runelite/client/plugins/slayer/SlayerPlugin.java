@@ -621,7 +621,7 @@ public class SlayerPlugin extends Plugin
 		{
 			if (name.contains(target))
 			{
-				NPCDefinition composition = npc.getTransformedDefinition();
+				NPCComposition composition = npc.getTransformedComposition();
 
 				if (composition != null)
 				{

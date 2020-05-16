@@ -18,7 +18,7 @@ public class class299 {
 		signature = "[Lla;"
 	)
 	@Export("crossSprites")
-	static Sprite[] crossSprites;
+	static SpritePixels[] crossSprites;
 
 	static {
 		field3646 = new char[64];

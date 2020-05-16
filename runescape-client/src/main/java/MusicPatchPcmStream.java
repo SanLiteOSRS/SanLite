@@ -212,7 +212,7 @@ public class MusicPatchPcmStream extends PcmStream {
 	static void method4004() {
 		Client.mouseLastLastPressedTimeMillis = 1L;
 		MidiPcmStream.mouseRecorder.index = 0;
-		GameShell.hasFocus = true;
+		GameEngine.hasFocus = true;
 		Client.hadFocus = true;
 		Client.field904 = -1L;
 		class25.method277();
@@ -280,7 +280,7 @@ public class MusicPatchPcmStream extends PcmStream {
 		UserComparator4.varcs.clearTransient();
 		Client.followerIndex = -1;
 		if (Client.rootInterface != -1) {
-			EnumDefinition.method4614(Client.rootInterface);
+			EnumComposition.method4614(Client.rootInterface);
 		}
 
 		for (InterfaceParent var4 = (InterfaceParent)Client.interfaceParents.first(); var4 != null; var4 = (InterfaceParent)Client.interfaceParents.next()) {

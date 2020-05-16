@@ -108,11 +108,11 @@ public final class WorldMapSprite {
 		signature = "(B)[Lla;",
 		garbageValue = "10"
 	)
-	static Sprite[] method516() {
-		Sprite[] var0 = new Sprite[class335.SpriteBuffer_spriteCount];
+	static SpritePixels[] method516() {
+		SpritePixels[] var0 = new SpritePixels[class335.SpriteBuffer_spriteCount];
 
 		for (int var1 = 0; var1 < class335.SpriteBuffer_spriteCount; ++var1) {
-			Sprite var2 = var0[var1] = new Sprite();
+			SpritePixels var2 = var0[var1] = new SpritePixels();
 			var2.width = class335.SpriteBuffer_spriteWidth;
 			var2.height = class335.SpriteBuffer_spriteHeight;
 			var2.xOffset = class335.SpriteBuffer_xOffsets[var1];

@@ -57,7 +57,7 @@ final class class1 implements class0 {
 		garbageValue = "-12"
 	)
 	@Export("worldToMinimap")
-	static final void worldToMinimap(int var0, int var1, int var2, int var3, Sprite var4, SpriteMask var5) {
+	static final void worldToMinimap(int var0, int var1, int var2, int var3, SpritePixels var4, SpriteMask var5) {
 		int var6 = var3 * var3 + var2 * var2;
 		if (var6 > 4225 && var6 < 90000) {
 			int var7 = Client.camAngleY & 2047;

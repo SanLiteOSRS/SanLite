@@ -110,7 +110,7 @@ public abstract class RSClientMixin implements RSClient
 	static int skyboxColor;
 
 	@Inject
-	private final Cache<Integer, RSEnumDefinition> enumCache = CacheBuilder.newBuilder()
+	private final Cache<Integer, RSEnumComposition> enumCache = CacheBuilder.newBuilder()
 			.maximumSize(64)
 			.build();
 
@@ -827,7 +827,7 @@ public abstract class RSClientMixin implements RSClient
 	}
 
 	@Inject
-	public RSSprite createItemSprite(int itemId, int quantity, int border, int shadowColor, int stackable, boolean noted)
+	public RSSpritePixels createItemSprite(int itemId, int quantity, int border, int shadowColor, int stackable, boolean noted)
 	{
 		assert isClientThread() : "createItemSprite must be called on client thread";
 		return createRSItemSprite(itemId, quantity, border, shadowColor, stackable, noted);
@@ -835,7 +835,7 @@ public abstract class RSClientMixin implements RSClient
 
 	@Inject
 	@Override
-	public Sprite createItemSprite(int itemId, int quantity, int border, int shadowColor, int stackable, boolean noted, int scale)
+	public SpritePixels createItemSprite(int itemId, int quantity, int border, int shadowColor, int stackable, boolean noted, int scale)
 	{
 		assert isClientThread();
 		int zoom = get3dZoom();
@@ -1417,7 +1417,7 @@ public abstract class RSClientMixin implements RSClient
 
 	@Inject
 	@Override
-	public RSSprite[] getSprites(IndexDataBase source, int archiveId, int fileId)
+	public RSSpritePixels[] getSprites(IndexDataBase source, int archiveId, int fileId)
 	{
 		RSAbstractArchive rsSource = (RSAbstractArchive) source;
 		byte[] configData = rsSource.getConfigData(archiveId, fileId);
@@ -1438,7 +1438,7 @@ public abstract class RSClientMixin implements RSClient
 		byte[][] spritePixelsArray = getSpritePixels();
 		int[] indexedSpritePalette = getIndexedSpritePalette();
 
-		RSSprite[] array = new RSSprite[indexedSpriteCount];
+		RSSpritePixels[] array = new RSSpritePixels[indexedSpriteCount];
 
 		for (int i = 0; i < indexedSpriteCount; ++i)
 		{
@@ -1448,7 +1448,7 @@ public abstract class RSClientMixin implements RSClient
 			byte[] pixelArray = spritePixelsArray[i];
 			int[] pixels = new int[width * height];
 
-			RSSprite spritePixels = createSprite(pixels, width, height);
+			RSSpritePixels spritePixels = createSpritePixels(pixels, width, height);
 			spritePixels.setMaxHeight(maxHeight);
 			spritePixels.setMaxWidth(maxWidth);
 			spritePixels.setOffsetX(offsetX[i]);
@@ -1527,11 +1527,11 @@ public abstract class RSClientMixin implements RSClient
 
 	@Inject
 	@Override
-	public EnumDefinition getEnum(int id)
+	public EnumComposition getEnum(int id)
 	{
 		assert isClientThread() : "getEnum must be called on client thread";
 
-		RSEnumDefinition rsEnumDefinition = enumCache.getIfPresent(id);
+		RSEnumComposition rsEnumDefinition = enumCache.getIfPresent(id);
 		if (rsEnumDefinition != null)
 		{
 			return rsEnumDefinition;
@@ -1549,23 +1549,6 @@ public abstract class RSClientMixin implements RSClient
 		getHealthBarCache().reset();
 		getHealthBarSpriteCache().reset();
 	}
-
-	@Inject
-	@Override
-	public void addFriend(String friend)
-	{
-		RSFriendSystem friendSystem = getFriendManager();
-		friendSystem.addFriend(friend);
-	}
-
-	@Inject
-	@Override
-	public void removeFriend(String friend)
-	{
-		RSFriendSystem friendSystem = getFriendManager();
-		friendSystem.removeFriend(friend);
-	}
-
 
 	@Inject
 	@Override
@@ -1671,7 +1654,7 @@ public abstract class RSClientMixin implements RSClient
 
 	@Inject
 	@Override
-	public ObjectDefinition getObjectDefinition(int objectId)
+	public ObjectComposition getObjectDefinition(int objectId)
 	{
 		assert this.isClientThread() : "getObjectDefinition must be called on client thread";
 		return getRSObjectDefinition(objectId);
@@ -1688,7 +1671,7 @@ public abstract class RSClientMixin implements RSClient
 
 	@Inject
 	@Override
-	public NPCDefinition getNpcDefinition(int id)
+	public NPCComposition getNpcDefinition(int id)
 	{
 		assert this.isClientThread() : "getNpcDefinition must be called on client thread";
 		return getRSNpcDefinition(id);

@@ -52,7 +52,7 @@ public class WorldMapIcon_0 extends AbstractWorldMapIcon {
 		this.element = var3;
 		this.label = var4;
 		WorldMapElement var5 = class25.WorldMapElement_get(this.getElement());
-		Sprite var6 = var5.getSpriteBool(false);
+		SpritePixels var6 = var5.getSpriteBool(false);
 		if (var6 != null) {
 			this.subWidth = var6.subWidth;
 			this.subHeight = var6.subHeight;

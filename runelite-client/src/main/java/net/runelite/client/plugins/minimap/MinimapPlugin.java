@@ -30,7 +30,7 @@ import java.util.Arrays;
 import javax.inject.Inject;
 import net.runelite.api.Client;
 import net.runelite.api.GameState;
-import net.runelite.api.Sprite;
+import net.runelite.api.SpritePixels;
 import net.runelite.client.events.ConfigChanged;
 import net.runelite.api.events.GameStateChanged;
 import net.runelite.api.events.WidgetHiddenChanged;
@@ -56,7 +56,7 @@ public class MinimapPlugin extends Plugin
 	@Inject
 	private MinimapConfig config;
 
-	private Sprite[] originalDotSprites;
+	private SpritePixels[] originalDotSpritePixels;
 
 	@Provides
 	private MinimapConfig provideConfig(ConfigManager configManager)
@@ -82,7 +82,7 @@ public class MinimapPlugin extends Plugin
 	@Subscribe
 	public void onGameStateChanged(GameStateChanged event)
 	{
-		if (event.getGameState() == GameState.LOGIN_SCREEN && originalDotSprites == null)
+		if (event.getGameState() == GameState.LOGIN_SCREEN && originalDotSpritePixels == null)
 		{
 			storeOriginalDots();
 			replaceMapDots();
@@ -138,7 +138,7 @@ public class MinimapPlugin extends Plugin
 
 	private void replaceMapDots()
 	{
-		Sprite[] mapDots = client.getMapDots();
+		SpritePixels[] mapDots = client.getMapDots();
 
 		if (mapDots == null)
 		{
@@ -166,25 +166,25 @@ public class MinimapPlugin extends Plugin
 
 	private void storeOriginalDots()
 	{
-		Sprite[] originalDots = client.getMapDots();
+		SpritePixels[] originalDots = client.getMapDots();
 
 		if (originalDots == null)
 		{
 			return;
 		}
 
-		originalDotSprites = Arrays.copyOf(originalDots, originalDots.length);
+		originalDotSpritePixels = Arrays.copyOf(originalDots, originalDots.length);
 	}
 
 	private void restoreOriginalDots()
 	{
-		Sprite[] mapDots = client.getMapDots();
+		SpritePixels[] mapDots = client.getMapDots();
 
-		if (originalDotSprites == null || mapDots == null)
+		if (originalDotSpritePixels == null || mapDots == null)
 		{
 			return;
 		}
 
-		System.arraycopy(originalDotSprites, 0, mapDots, 0, mapDots.length);
+		System.arraycopy(originalDotSpritePixels, 0, mapDots, 0, mapDots.length);
 	}
 }

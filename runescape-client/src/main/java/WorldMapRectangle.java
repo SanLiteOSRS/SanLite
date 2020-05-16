@@ -108,7 +108,7 @@ public final class WorldMapRectangle {
 				int var13 = class276.method5036(var8);
 				int var14 = WorldMapIcon_1.method407(var8);
 				if (var13 == 2 && GrandExchangeOfferWorldComparator.scene.getObjectFlags(ScriptEvent.Client_plane, var22, var12, var9) >= 0) {
-					ObjectDefinition var15 = WorldMapSection2.getObjectDefinition(var14);
+					ObjectComposition var15 = WorldMapSection2.getObjectDefinition(var14);
 					if (var15.transforms != null) {
 						var15 = var15.transform();
 					}

@@ -37,7 +37,7 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.*;
-import net.runelite.api.NPCDefinition;
+import net.runelite.api.NPCComposition;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.coords.WorldPoint;
 import net.runelite.api.events.AnimationChanged;
@@ -289,7 +289,7 @@ public class LootManager
 
 		final int x = location.getSceneX();
 		final int y = location.getSceneY();
-		final int size = npc.getDefinition().getSize();
+		final int size = npc.getComposition().getSize();
 
 		// Some NPCs drop items onto multiple tiles
 		final List<ItemStack> allItems = new ArrayList<>();
@@ -371,7 +371,7 @@ public class LootManager
 
 	private WorldPoint getAdjacentSquareLootTile(NPC npc)
 	{
-		final NPCDefinition composition = npc.getDefinition();
+		final NPCComposition composition = npc.getComposition();
 		final WorldPoint worldLocation = npc.getWorldLocation();
 		int x = worldLocation.getX();
 		int y = worldLocation.getY();
