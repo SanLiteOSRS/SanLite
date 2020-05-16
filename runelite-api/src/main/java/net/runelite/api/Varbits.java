@@ -541,6 +541,15 @@ public enum Varbits
 	BANK_REARRANGE_MODE(3959),
 	CURRENT_BANK_TAB(4150),
 
+	/**
+	 * 0 = withdraw/deposit 1
+	 * 1 = withdraw/deposit 5
+	 * 2 = withdraw/deposit 10
+	 * 3 = withdraw/deposit X
+	 * 4 = withdraw/deposit all
+	 */
+	BANK_QUANTITY_MODE(6590),
+
 	WORLDHOPPER_FAVORITE_1(4597),
 	WORLDHOPPER_FAVORITE_2(4598),
 
