@@ -1328,7 +1328,7 @@ public class ChatCommandsPlugin extends Plugin
 
 		// If we are sending the message then just use the local hiscore endpoint for the world
 		if (chatMessage.getType().equals(ChatMessageType.PRIVATECHATOUT)
-				|| player.equals(localPlayer.getName()))
+			|| player.equals(localPlayer.getName()))
 		{
 			return new HiscoreLookup(localPlayer.getName(), hiscoreEndpoint);
 		}

@@ -25,6 +25,7 @@
 package net.runelite.api.events;
 
 import lombok.Value;
+import net.runelite.api.Nameable;
 
 /**
  * An event trigger when a player is removed from the friend or ignore list.
@@ -35,5 +36,5 @@ public class RemovedFriend
 	/**
 	 * The removed friend or ignore entry
 	 */
-	private final String name;
+	private final Nameable nameable;
 }

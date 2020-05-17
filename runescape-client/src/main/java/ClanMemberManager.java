@@ -5,8 +5,8 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ko")
-@Implements("ClanChat")
-public class ClanChat extends UserList {
+@Implements("ClanMemberManager")
+public class ClanMemberManager extends UserList {
 	@ObfuscatedName("m")
 	@ObfuscatedSignature(
 		signature = "Lmx;"
@@ -43,7 +43,7 @@ public class ClanChat extends UserList {
 	@ObfuscatedSignature(
 		signature = "(Lmx;Lkt;)V"
 	)
-	public ClanChat(LoginType var1, Usernamed var2) {
+	public ClanMemberManager(LoginType var1, Usernamed var2) {
 		super(100);
 		this.name = null;
 		this.owner = null;

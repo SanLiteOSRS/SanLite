@@ -370,7 +370,7 @@ public class MouseRecorder implements Runnable {
 					var0.draw("Login: ", Login.loginBoxX + 180 - 110, var47, 16777215, 0);
 					var48 = 200;
 
-					for (var25 = ClanChat.method5318(); var0.stringWidth(var25) > var48; var25 = var25.substring(0, var25.length() - 1)) {
+					for (var25 = ClanMemberManager.method5318(); var0.stringWidth(var25) > var48; var25 = var25.substring(0, var25.length() - 1)) {
 					}
 
 					var0.draw(AbstractFont.escapeBrackets(var25), Login.loginBoxX + 180 - 70, var47, 16777215, 0);
@@ -437,7 +437,7 @@ public class MouseRecorder implements Runnable {
 						var0.draw("Login: ", PacketWriter.loginBoxCenter - 110, var47, 16777215, 0);
 						var48 = 200;
 
-						for (var25 = ClanChat.method5318(); var0.stringWidth(var25) > var48; var25 = var25.substring(1)) {
+						for (var25 = ClanMemberManager.method5318(); var0.stringWidth(var25) > var48; var25 = var25.substring(1)) {
 						}
 
 						var0.draw(AbstractFont.escapeBrackets(var25) + (Login.currentLoginField == 0 & Client.cycle % 40 < 20 ? class297.colorStartTag(16776960) + "|" : ""), PacketWriter.loginBoxCenter - 70, var47, 16777215, 0);
@@ -563,7 +563,7 @@ public class MouseRecorder implements Runnable {
 						var0.draw("Username/email: ", Login.loginBoxX + 180 - 145, var47, 16777215, 0);
 						var48 = 174;
 
-						for (var25 = ClanChat.method5318(); var0.stringWidth(var25) > var48; var25 = var25.substring(1)) {
+						for (var25 = ClanMemberManager.method5318(); var0.stringWidth(var25) > var48; var25 = var25.substring(1)) {
 						}
 
 						var0.draw(AbstractFont.escapeBrackets(var25) + (Client.cycle % 40 < 20 ? class297.colorStartTag(16776960) + "|" : ""), Login.loginBoxX + 180 - 34, var47, 16777215, 0);

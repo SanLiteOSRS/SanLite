@@ -30,6 +30,7 @@ import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import javax.inject.Inject;
 import lombok.Getter;
+import net.runelite.api.ClanMemberManager;
 import net.runelite.api.Client;
 import static net.runelite.api.MenuAction.RUNELITE_OVERLAY;
 import static net.runelite.api.MenuAction.RUNELITE_OVERLAY_CONFIG;
@@ -103,7 +104,7 @@ public class RaidsOverlay extends OverlayPanel
 		if (config.ccDisplay())
 		{
 			color = Color.RED;
-			String clanOwnerString = client.getClanOwner();
+			ClanMemberManager clanMemberManager = client.getClanMemberManager();
 			FontMetrics metrics = graphics.getFontMetrics();
 
 			String worldString = "W" + client.getWorld();
@@ -120,9 +121,9 @@ public class RaidsOverlay extends OverlayPanel
 			}
 
 			String clanOwner = "Join a CC";
-			if (!clanOwnerString.isEmpty())
+			if (clanMemberManager != null)
 			{
-				clanOwner = clanOwnerString;
+				clanOwner = clanMemberManager.getClanOwner();
 				color = Color.ORANGE;
 			}
 

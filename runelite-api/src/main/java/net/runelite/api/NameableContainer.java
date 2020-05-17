@@ -29,14 +29,14 @@ public interface NameableContainer<T extends Nameable>
 	/**
 	 * Get the number of members in this container
 	 *
-	 * @return
+	 * @return members count
 	 */
 	int getCount();
 
 	/**
 	 * Get the members in this container
 	 *
-	 * @return
+	 * @return nameable container
 	 */
 	T[] getMembers();
 
@@ -44,7 +44,7 @@ public interface NameableContainer<T extends Nameable>
 	 * Find a nameable by name
 	 *
 	 * @param name the name
-	 * @return
+	 * @return nameable
 	 */
 	T findByName(String name);
 }

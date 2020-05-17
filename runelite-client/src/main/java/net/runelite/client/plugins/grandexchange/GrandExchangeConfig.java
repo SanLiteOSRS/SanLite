@@ -98,10 +98,10 @@ public interface GrandExchangeConfig extends Config
 	}
 
 	@ConfigItem(
-			position = 7,
-			keyName = "highlightSearchMatch",
-			name = "Highlight Search Match",
-			description = "Highlights the search match with an underline"
+		position = 7,
+		keyName = "highlightSearchMatch",
+		name = "Highlight Search Match",
+		description = "Highlights the search match with an underline"
 	)
 	default boolean highlightSearchMatch()
 	{
@@ -109,13 +109,13 @@ public interface GrandExchangeConfig extends Config
 	}
 
 	@ConfigItem(
-			position = 8,
-			keyName = "geSearchMode",
-			name = "Search Mode",
-			description = "The search mode to use for the GE<br>"
-					+ "Default - Matches exact text only<br>"
-					+ "Fuzzy Only - Matches inexact text such as 'sara sword'<br>"
-					+ "Fuzzy Fallback - Uses default search, falling back to fuzzy search if no results were found"
+		position = 8,
+		keyName = "geSearchMode",
+		name = "Search Mode",
+		description = "The search mode to use for the GE<br>"
+			+ "Default - Matches exact text only<br>"
+			+ "Fuzzy Only - Matches inexact text such as 'sara sword'<br>"
+			+ "Fuzzy Fallback - Uses default search, falling back to fuzzy search if no results were found"
 	)
 	default GrandExchangeSearchMode geSearchMode()
 	{

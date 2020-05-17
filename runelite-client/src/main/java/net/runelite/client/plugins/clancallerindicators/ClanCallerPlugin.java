@@ -36,6 +36,7 @@ import net.runelite.api.events.MenuEntryAdded;
 import net.runelite.api.events.PlayerDespawned;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
+import net.runelite.client.game.ClanManager;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.plugins.PluginType;
@@ -79,6 +80,9 @@ public class ClanCallerPlugin extends Plugin
 	@Inject
 	private Client client;
 
+	@Inject
+	private ClanManager clanManager;
+
 	@Getter
 	private List<Player> callersList = new ArrayList<>();
 
@@ -116,28 +120,36 @@ public class ClanCallerPlugin extends Plugin
 		pilesList.clear();
 		for (Player player : client.getPlayers())
 		{
-			//Checks if player is currently a caller or pile
-			if (!callersList.contains(player.getName()) && !pilesList.contains(player.getName()))
+			String name = player.getName();
+
+			// Checks if player is currently a caller or pile
+			if (!callersList.contains(player) && !pilesList.contains(player))
 			{
-				//If it is a clan member, it can only be a caller
-				if (client.isClanMember(player.getName()))
+				// If it is a clan member, it can only be a caller
+				if (clanManager.isClanMember(name))
 				{
 					for (String caller : callersListString)
 					{
-						if (caller.equals(player.getName()) && !callersList.contains(player))
+						if (caller.equals(name) && !callersList.contains(player))
 						{
 							callersList.add(player);
 						}
 					}
 				}
-				//If it is not a clan member, it can only be a pile
-				else if (!client.isClanMember(player.getName()))
+				// If it is not a clan member, it can only be a pile
+				else if (!clanManager.isClanMember(name))
 				{
 					for (Player caller : callersList)
 					{
 						if (caller.getInteracting() != null)
 						{
-							if (caller.getInteracting().getName().equals(player.getName()))
+							String callerName = caller.getInteracting().getName();
+							if (callerName == null)
+							{
+								continue;
+							}
+
+							if (callerName.equals(name))
 							{
 								pilesList.add(player);
 							}

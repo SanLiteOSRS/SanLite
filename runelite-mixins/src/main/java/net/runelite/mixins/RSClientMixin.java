@@ -697,43 +697,7 @@ public abstract class RSClientMixin implements RSClient
 
 	@Inject
 	@Override
-	public int getClanChatCount()
-	{
-		final RSClanChat clanMemberManager = getClanMemberManager();
-		return clanMemberManager != null ? clanMemberManager.getCount() : 0;
-	}
-
-	@Inject
-	@Override
-	public ClanMember[] getClanMembers()
-	{
-		final RSClanChat clanMemberManager = getClanMemberManager();
-		if (clanMemberManager == null)
-		{
-			return null;
-		}
-
-		final int count = clanMemberManager.getCount();
-		return Arrays.copyOf(clanMemberManager.getNameables(), count);
-	}
-
-	@Inject
-	@Override
-	public String getClanOwner()
-	{
-		return getClanMemberManager().getClanOwner();
-	}
-
-	@Inject
-	@Override
-	public String getClanChatName()
-	{
-		return getClanMemberManager().getClanChatName();
-	}
-
-	@Inject
-	@Override
-	public Friend[] getFriends()
+	public NameableContainer<Friend> getFriendContainer()
 	{
 		final RSFriendSystem friendManager = getFriendManager();
 		if (friendManager == null)
@@ -741,38 +705,12 @@ public abstract class RSClientMixin implements RSClient
 			return null;
 		}
 
-		final RSFriendsList friendContainer = friendManager.getFriendContainer();
-		if (friendContainer == null)
-		{
-			return null;
-		}
-
-		final int count = friendContainer.getCount();
-		return Arrays.copyOf(friendContainer.getNameables(), count);
+		return friendManager.getFriendContainer();
 	}
 
 	@Inject
 	@Override
-	public int getFriendsCount()
-	{
-		final RSFriendSystem friendManager = getFriendManager();
-		if (friendManager == null)
-		{
-			return -1;
-		}
-
-		final RSFriendsList friendContainer = friendManager.getFriendContainer();
-		if (friendContainer == null)
-		{
-			return -1;
-		}
-
-		return friendContainer.getCount();
-	}
-
-	@Inject
-	@Override
-	public Ignore[] getIgnores()
+	public NameableContainer<Ignore> getIgnoreContainer()
 	{
 		final RSFriendSystem friendManager = getFriendManager();
 		if (friendManager == null)
@@ -780,41 +718,7 @@ public abstract class RSClientMixin implements RSClient
 			return null;
 		}
 
-		final RSIgnoreList ignoreContainer = friendManager.getIgnoreContainer();
-		if (ignoreContainer == null)
-		{
-			return null;
-		}
-
-		final int count = ignoreContainer.getCount();
-		return Arrays.copyOf(ignoreContainer.getNameables(), count);
-	}
-
-	@Inject
-	@Override
-	public int getIgnoreCount()
-	{
-		final RSFriendSystem friendManager = getFriendManager();
-		if (friendManager == null)
-		{
-			return -1;
-		}
-
-		final RSIgnoreList ignoreContainer = friendManager.getIgnoreContainer();
-		if (ignoreContainer == null)
-		{
-			return -1;
-		}
-
-		return ignoreContainer.getCount();
-	}
-
-	@Inject
-	@Override
-	public boolean isClanMember(String name)
-	{
-		final RSClanChat clanMemberManager = getClanMemberManager();
-		return clanMemberManager != null && clanMemberManager.isMember(createName(name, getLoginType()));
+		return friendManager.getIgnoreContainer();
 	}
 
 	@FieldHook("isDraggingWidget")

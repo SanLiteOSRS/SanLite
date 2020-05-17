@@ -4901,7 +4901,7 @@ public final class Client extends GameEngine implements Usernamed {
 						InterfaceParent.clanChat = null;
 					} else {
 						if (InterfaceParent.clanChat == null) {
-							InterfaceParent.clanChat = new ClanChat(WorldMapIcon_0.loginType, WorldMapSection1.client);
+							InterfaceParent.clanChat = new ClanMemberManager(WorldMapIcon_0.loginType, WorldMapSection1.client);
 						}
 
 						InterfaceParent.clanChat.readUpdate(var3);
