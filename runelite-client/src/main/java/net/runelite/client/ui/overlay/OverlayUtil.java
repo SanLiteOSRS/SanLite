@@ -258,7 +258,7 @@ public class OverlayUtil
 
 	public static void renderTextLocation(Graphics2D graphics, String txtString, int fontSize, int fontStyle, Color fontColor, Point canvasPoint, boolean shadows, int yOffset)
 	{
-		graphics.setFont(new Font("RuneScape Standard", fontStyle, fontSize));
+		graphics.setFont(new Font("RuneScape", fontStyle, fontSize));
 		if (canvasPoint != null)
 		{
 			final Point canvasCenterPoint = new Point(
