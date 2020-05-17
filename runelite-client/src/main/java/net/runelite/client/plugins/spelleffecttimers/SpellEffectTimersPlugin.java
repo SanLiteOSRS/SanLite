@@ -225,6 +225,19 @@ public class SpellEffectTimersPlugin extends Plugin
 		frozenActors.entrySet().removeIf(x -> x.getKey().equals(event.getActor()));
 	}
 
+	@Subscribe
+	public void onPlayerDeath(PlayerDeath event)
+	{
+		Player player = event.getPlayer();
+		if (player == null)
+		{
+			return;
+		}
+
+		spellEffects.removeIf(x -> x.getActor().equals(player));
+		frozenActors.entrySet().removeIf(x -> x.getKey().equals(player));
+	}
+
 	private void cacheTeleblock(SpellEffectInfo teleblockSpellEffect)
 	{
 		cachedTeleblocks.put(teleblockSpellEffect, client.getTickCount());
