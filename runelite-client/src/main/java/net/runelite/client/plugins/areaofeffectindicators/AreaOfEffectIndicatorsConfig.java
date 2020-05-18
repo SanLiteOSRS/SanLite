@@ -24,10 +24,7 @@
  */
 package net.runelite.client.plugins.areaofeffectindicators;
 
-import net.runelite.client.config.Alpha;
-import net.runelite.client.config.Config;
-import net.runelite.client.config.ConfigGroup;
-import net.runelite.client.config.ConfigItem;
+import net.runelite.client.config.*;
 
 import java.awt.*;
 
@@ -1120,5 +1117,16 @@ public interface AreaOfEffectIndicatorsConfig extends Config
 	default boolean displayRemainingProjectileDuration()
 	{
 		return true;
+	}
+
+	@ConfigItem(
+			keyName = "tileMarkersLineSize",
+			name = "Tile markers line size",
+			description = "The size of the outside line for tile markers",
+			position = 82
+	)
+	default StrokeSize getTileMarkersLineSize()
+	{
+		return StrokeSize.NORMAL;
 	}
 }

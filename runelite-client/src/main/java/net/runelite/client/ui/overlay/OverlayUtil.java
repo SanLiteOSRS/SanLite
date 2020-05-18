@@ -62,6 +62,17 @@ public class OverlayUtil
 		graphics.setStroke(originalStroke);
 	}
 
+	public static void renderPolygon(Graphics2D graphics, Shape poly, Color color, int strokeSize)
+	{
+		graphics.setColor(color);
+		final Stroke originalStroke = graphics.getStroke();
+		graphics.setStroke(new BasicStroke(strokeSize));
+		graphics.draw(poly);
+		graphics.setColor(new Color(0, 0, 0, 50));
+		graphics.fill(poly);
+		graphics.setStroke(originalStroke);
+	}
+
 	public static void renderMinimapLocation(Graphics2D graphics, Point mini, Color color)
 	{
 		graphics.setColor(Color.BLACK);
