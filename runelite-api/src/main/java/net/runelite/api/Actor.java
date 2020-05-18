@@ -158,7 +158,7 @@ public interface Actor extends Renderable
 
 	void setGraphic(int graphicId);
 
-	int setSpotAnimFrame();
+	int getSpotAnimFrame();
 
 	void setSpotAnimFrame(int spotAnimFrame);
 

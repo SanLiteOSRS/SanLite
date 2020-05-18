@@ -83,7 +83,7 @@ public interface RSActor extends RSRenderable, Actor
 	void setGraphic(int id);
 
 	@Import("spotAnimationFrame")
-	int setSpotAnimFrame();
+	int getSpotAnimFrame();
 
 	@Import("spotAnimationFrame")
 	@Override
