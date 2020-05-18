@@ -1004,14 +1004,20 @@ public interface RSClient extends RSGameEngine, Client
 	@Import("fontBold12")
 	RSFont getFontBold12();
 
-	@Import("Rasterizer2D_drawHorizontalLine")
-	void rasterizerDrawHorizontalLine(int x, int y, int w, int rgb);
+	@Import("Rasterizer2D_drawHorizontalLineAlpha")
+	void rasterizerDrawHorizontalLineAlpha(int x, int y, int w, int rgb, int a);
 
 	@Import("Rasterizer2D_drawVerticalLine")
 	void rasterizerDrawVerticalLine(int x, int y, int h, int rgb);
 
+	@Import("Rasterizer2D_drawVerticalLineAlpha")
+	void rasterizerDrawVerticalLineAlpha(int x, int y, int h, int rgb, int a);
+
 	@Import("Rasterizer2D_fillRectangleGradient")
 	void rasterizerDrawGradient(int x, int y, int w, int h, int rgbTop, int rgbBottom);
+
+	@Import("Rasterizer2D_fillRectangleGradientAlpha")
+	void rasterizerDrawGradientAlpha(int x, int y, int w, int h, int rgbTop, int rgbBottom, int alphaTop, int alphaBottom);
 
 	@Import("Rasterizer2D_fillRectangleAlpha")
 	void rasterizerFillRectangleAlpha(int x, int y, int w, int h, int rgb, int a);
@@ -1019,8 +1025,14 @@ public interface RSClient extends RSGameEngine, Client
 	@Import("Rasterizer2D_drawRectangle")
 	void rasterizerDrawRectangle(int x, int y, int w, int h, int rgb);
 
+	@Import("Rasterizer2D_drawRectangleAlpha")
+	void rasterizerDrawRectangleAlpha(int x, int y, int w, int h, int rgb, int a);
+
 	@Import("drawCircle")
 	void rasterizerDrawCircle(int x, int y, int r, int rgb);
+
+	@Import("Rasterizer2D_drawCircleAlpha")
+	void rasterizerDrawCircleAlpha(int x, int y, int r, int rgb, int a);
 
 	@Import("HealthBarDefinition_cached")
 	RSEvictingDualNodeHashTable getHealthBarCache();
