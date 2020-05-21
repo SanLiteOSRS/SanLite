@@ -65,6 +65,15 @@ LABEL36:
    iload                  17
    iload                  13
    if_sethide            
+   iload                  16
+   invoke                 3369
+   iconst                 3368
+   iload                  16
+   iconst                 1141
+   iconst                 1
+   sconst                 "IY"
+   iload                  16
+   if_setonvartransmit
    iconst                 441
    iconst                 0
    iconst                 0
@@ -79,14 +88,14 @@ LABEL36:
    if_setposition        
    get_varbit             8352
    iconst                 1
-   if_icmpeq              LABEL58
-   jump                   LABEL85
-LABEL58:
+   if_icmpeq              LABEL67
+   jump                   LABEL94
+LABEL67:
    get_varbit             5364
    iconst                 0
-   if_icmpeq              LABEL62
-   jump                   LABEL85
-LABEL62:
+   if_icmpeq              LABEL71
+   jump                   LABEL94
+LABEL71:
    iload                  12
    if_getx               
    iload                  12
@@ -109,51 +118,51 @@ LABEL62:
    iconst                 0
    iload                  4
    if_setsize            
-   jump                   LABEL121
-LABEL85:
+   jump                   LABEL130
+LABEL94:
    get_varbit             8352
    iconst                 0
-   if_icmpeq              LABEL89
-   jump                   LABEL100
-LABEL89:
+   if_icmpeq              LABEL98
+   jump                   LABEL109
+LABEL98:
    get_varbit             5364
    iconst                 1
-   if_icmpeq              LABEL93
-   jump                   LABEL100
-LABEL93:
+   if_icmpeq              LABEL102
+   jump                   LABEL109
+LABEL102:
    iconst                 37
    iconst                 37
    iconst                 1
    iconst                 0
    iload                  4
    if_setsize            
-   jump                   LABEL121
-LABEL100:
+   jump                   LABEL130
+LABEL109:
    get_varbit             8352
    iconst                 1
-   if_icmpeq              LABEL104
-   jump                   LABEL115
-LABEL104:
+   if_icmpeq              LABEL113
+   jump                   LABEL124
+LABEL113:
    get_varbit             5364
    iconst                 1
-   if_icmpeq              LABEL108
-   jump                   LABEL115
-LABEL108:
+   if_icmpeq              LABEL117
+   jump                   LABEL124
+LABEL117:
    iconst                 74
    iconst                 37
    iconst                 1
    iconst                 0
    iload                  4
    if_setsize            
-   jump                   LABEL121
-LABEL115:
+   jump                   LABEL130
+LABEL124:
    iconst                 0
    iconst                 37
    iconst                 1
    iconst                 0
    iload                  4
    if_setsize            
-LABEL121:
+LABEL130:
    iconst                 1
    iload                  10
    if_sethide            
@@ -163,38 +172,38 @@ LABEL121:
    istore                 18
    get_varbit             4170
    iconst                 3
-   if_icmpeq              LABEL132
-   jump                   LABEL165
-LABEL132:
+   if_icmpeq              LABEL141
+   jump                   LABEL174
+LABEL141:
    get_varbit             4171
    iconst                 0
-   if_icmpgt              LABEL160
+   if_icmpgt              LABEL169
    get_varbit             4172
    iconst                 0
-   if_icmpgt              LABEL160
+   if_icmpgt              LABEL169
    get_varbit             4173
    iconst                 0
-   if_icmpgt              LABEL160
+   if_icmpgt              LABEL169
    get_varbit             4174
    iconst                 0
-   if_icmpgt              LABEL160
+   if_icmpgt              LABEL169
    get_varbit             4175
    iconst                 0
-   if_icmpgt              LABEL160
+   if_icmpgt              LABEL169
    get_varbit             4176
    iconst                 0
-   if_icmpgt              LABEL160
+   if_icmpgt              LABEL169
    get_varbit             4177
    iconst                 0
-   if_icmpgt              LABEL160
+   if_icmpgt              LABEL169
    get_varbit             4178
    iconst                 0
-   if_icmpgt              LABEL160
+   if_icmpgt              LABEL169
    get_varbit             4179
    iconst                 0
-   if_icmpgt              LABEL160
-   jump                   LABEL163
-LABEL160:
+   if_icmpgt              LABEL169
+   jump                   LABEL172
+LABEL169:
    iconst                 0
    istore                 18
    jump                   LABEL165
