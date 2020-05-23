@@ -56,11 +56,11 @@ class WorldSupplier implements Supplier<World>
 		try
 		{
 			List<World> newWorlds = new WorldClient(RuneLiteAPI.CLIENT)
-					.lookupWorlds()
-					.getWorlds()
-					.stream()
-					.filter(w -> w.getTypes().isEmpty() || EnumSet.of(WorldType.MEMBERS).equals(w.getTypes()))
-					.collect(Collectors.toList());
+				.lookupWorlds()
+				.getWorlds()
+				.stream()
+				.filter(w -> w.getTypes().isEmpty() || EnumSet.of(WorldType.MEMBERS).equals(w.getTypes()))
+				.collect(Collectors.toList());
 
 			Collections.shuffle(newWorlds, random);
 
@@ -75,9 +75,9 @@ class WorldSupplier implements Supplier<World>
 		{
 			int id = random.nextInt(50) + 1;
 			World world = World.builder()
-					.id(300 + id) // worlds start at 300
-					.address("oldschool" + id + ".runescape.COM")
-					.build();
+				.id(300 + id) // worlds start at 300
+				.address("oldschool" + id + ".runescape.COM")
+				.build();
 			worlds.add(world);
 		}
 

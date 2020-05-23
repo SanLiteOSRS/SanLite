@@ -163,7 +163,7 @@ public class TheatreOfBloodDebugOverlay extends Overlay
 					Verzik verzik = (Verzik) plugin.getCurrentEncounter();
 					panelComponent.getChildren().add(LineComponent.builder()
 							.left("Spot Animation ID")
-							.right("" + verzik.getNpc().getSpotAnimation())
+							.right("" + verzik.getNpc().getGraphic())
 							.build());
 					panelComponent.getChildren().add(LineComponent.builder()
 							.left("Animation ID")

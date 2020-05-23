@@ -67,39 +67,39 @@ import net.runelite.client.util.Text;
 import org.apache.commons.lang3.ArrayUtils;
 
 @PluginDescriptor(
-		name = "Herbiboar",
-		description = "Highlight starting rocks, trails, and the objects to search at the end of each trail",
-		tags = {"herblore", "hunter", "skilling", "overlay"}
+	name = "Herbiboar",
+	description = "Highlight starting rocks, trails, and the objects to search at the end of each trail",
+	tags = {"herblore", "hunter", "skilling", "overlay"}
 )
 @Slf4j
 @Getter
 public class HerbiboarPlugin extends Plugin
 {
 	private static final List<WorldPoint> END_LOCATIONS = ImmutableList.of(
-			new WorldPoint(3693, 3798, 0),
-			new WorldPoint(3702, 3808, 0),
-			new WorldPoint(3703, 3826, 0),
-			new WorldPoint(3710, 3881, 0),
-			new WorldPoint(3700, 3877, 0),
-			new WorldPoint(3715, 3840, 0),
-			new WorldPoint(3751, 3849, 0),
-			new WorldPoint(3685, 3869, 0),
-			new WorldPoint(3681, 3863, 0)
+		new WorldPoint(3693, 3798, 0),
+		new WorldPoint(3702, 3808, 0),
+		new WorldPoint(3703, 3826, 0),
+		new WorldPoint(3710, 3881, 0),
+		new WorldPoint(3700, 3877, 0),
+		new WorldPoint(3715, 3840, 0),
+		new WorldPoint(3751, 3849, 0),
+		new WorldPoint(3685, 3869, 0),
+		new WorldPoint(3681, 3863, 0)
 	);
 
 	private static final Set<Integer> START_OBJECT_IDS = ImmutableSet.of(
-			ROCK_30519,
-			MUSHROOM_30520,
-			ROCK_30521,
-			ROCK_30522,
-			DRIFTWOOD_30523
+		ROCK_30519,
+		MUSHROOM_30520,
+		ROCK_30521,
+		ROCK_30522,
+		DRIFTWOOD_30523
 	);
 
 	private static final List<Integer> HERBIBOAR_REGIONS = ImmutableList.of(
-			14652,
-			14651,
-			14908,
-			14907
+		14652,
+		14651,
+		14908,
+		14907
 	);
 
 	@Inject
@@ -250,12 +250,12 @@ public class HerbiboarPlugin extends Plugin
 			return;
 		}
 
-		switch (Text.removeTags(menuOpt.getTarget()))
+		switch (Text.removeTags(menuOpt.getMenuTarget()))
 		{
 			case "Rock":
 			case "Mushroom":
 			case "Driftwood":
-				startPoint = WorldPoint.fromScene(client, menuOpt.getActionParam0(), menuOpt.getActionParam1(), client.getPlane());
+				startPoint = WorldPoint.fromScene(client, menuOpt.getActionParam(), menuOpt.getWidgetId(), client.getPlane());
 		}
 	}
 

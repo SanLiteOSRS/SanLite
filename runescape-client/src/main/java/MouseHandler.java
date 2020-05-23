@@ -273,7 +273,7 @@ public class MouseHandler implements MouseListener, MouseMotionListener, FocusLi
 		garbageValue = "-50420172"
 	)
 	public static void method1206(AbstractArchive var0) {
-		EnumDefinition.EnumDefinition_archive = var0;
+		EnumComposition.EnumDefinition_archive = var0;
 	}
 
 	@ObfuscatedName("x")

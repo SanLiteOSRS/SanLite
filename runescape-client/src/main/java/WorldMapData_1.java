@@ -265,7 +265,7 @@ public class WorldMapData_1 extends AbstractWorldMapData {
 				}
 
 				if (var17 != null) {
-					ObjectDefinition var18 = WorldMapSection2.getObjectDefinition(var5);
+					ObjectComposition var18 = WorldMapSection2.getObjectDefinition(var5);
 					int var19;
 					int var20;
 					if (var8 != 1 && var8 != 3) {

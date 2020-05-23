@@ -24,11 +24,8 @@
  */
 package net.runelite.api.events;
 
-import lombok.AccessLevel;
 import lombok.Data;
-import lombok.Setter;
 import net.runelite.api.MenuAction;
-import net.runelite.api.MenuEntry;
 
 /**
  * An event where a menu option has been clicked.
@@ -44,83 +41,37 @@ import net.runelite.api.MenuEntry;
 @Data
 public class MenuOptionClicked
 {
-	public MenuOptionClicked(MenuEntry entry)
-	{
-		menuEntry = entry;
-		authentic = true;
-	}
-
-	public MenuOptionClicked(MenuEntry entry, boolean authentic)
-	{
-		menuEntry = entry;
-		this.authentic = authentic;
-	}
-
 	/**
-	 * The MenuEntry object representing what was clicked
+	 * The action parameter used in the click.
 	 */
-	private MenuEntry menuEntry;
+	private int actionParam;
 
 	/**
 	 * The option text added to the menu.
 	 */
-	public String getOption()
-	{
-		return menuEntry.getOption();
-	}
+	private String menuOption;
 
 	/**
 	 * The target of the action.
 	 */
-	public String getTarget()
-	{
-		return menuEntry.getTarget();
-	}
-
-	/**
-	 * MenuAction type as int.
-	 */
-	public int getType()
-	{
-		return menuEntry.getType();
-	}
-
-	/**
-	 * The ID of the object, actor, or item that the interaction targets.
-	 */
-	public int getIdentifier()
-	{
-		return menuEntry.getIdentifier();
-	}
-
-	/**
-	 * The action parameter used in the click.
-	 */
-	public int getActionParam0()
-	{
-		return menuEntry.getParam0();
-	}
-
-	/**
-	 * A second additional parameter for the action.
-	 */
-	public int getActionParam1()
-	{
-		return menuEntry.getParam1();
-	}
-
-	public boolean isForceLeftClick()
-	{
-		return menuEntry.isForceLeftClick();
-	}
+	private String menuTarget;
 
 	/**
 	 * The action performed.
 	 */
-	public MenuAction getMenuAction()
-	{
-		return MenuAction.of(getType());
-	}
+	private MenuAction menuAction;
+
+	/**
+	 * The ID of the object, actor, or item that the interaction targets.
+	 */
+	private int id;
+
+	/**
+	 * The ID of the widget where the menu was clicked.
+	 *
+	 * @see net.runelite.api.widgets.WidgetID
+	 */
+	private int widgetId;
 
 	/**
 	 * Whether or not the event has been consumed by a subscriber.
@@ -138,10 +89,4 @@ public class MenuOptionClicked
 	{
 		this.consumed = true;
 	}
-
-	/**
-	 * Whether or not the event is authentic.
-	 */
-	@Setter(AccessLevel.PRIVATE)
-	private boolean authentic;
 }

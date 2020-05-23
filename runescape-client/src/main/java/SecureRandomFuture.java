@@ -99,7 +99,7 @@ public class SecureRandomFuture {
 		garbageValue = "-2006803252"
 	)
 	@Export("getItemSprite")
-	public static final Sprite getItemSprite(int var0, int var1, int var2, int var3, int var4, boolean var5) {
+	public static final SpritePixels getItemSprite(int var0, int var1, int var2, int var3, int var4, boolean var5) {
 		if (var1 == -1) {
 			var4 = 0;
 		} else if (var4 == 2 && var1 != 1) {
@@ -107,15 +107,15 @@ public class SecureRandomFuture {
 		}
 
 		long var6 = ((long)var3 << 42) + ((long)var1 << 16) + (long)var0 + ((long)var2 << 38) + ((long)var4 << 40);
-		Sprite var8;
+		SpritePixels var8;
 		if (!var5) {
-			var8 = (Sprite)ItemDefinition.ItemDefinition_cachedSprites.get(var6);
+			var8 = (SpritePixels) ItemComposition.ItemDefinition_cachedSprites.get(var6);
 			if (var8 != null) {
 				return var8;
 			}
 		}
 
-		ItemDefinition var9 = AbstractWorldMapData.ItemDefinition_get(var0);
+		ItemComposition var9 = AbstractWorldMapData.ItemDefinition_get(var0);
 		if (var1 > 1 && var9.countobj != null) {
 			int var10 = -1;
 
@@ -134,7 +134,7 @@ public class SecureRandomFuture {
 		if (var19 == null) {
 			return null;
 		} else {
-			Sprite var20 = null;
+			SpritePixels var20 = null;
 			if (var9.noteTemplate != -1) {
 				var20 = getItemSprite(var9.note, 10, 1, 0, 0, true);
 				if (var20 == null) {
@@ -157,7 +157,7 @@ public class SecureRandomFuture {
 			int var14 = Rasterizer2D.Rasterizer2D_height;
 			int[] var15 = new int[4];
 			Rasterizer2D.Rasterizer2D_getClipArray(var15);
-			var8 = new Sprite(36, 32);
+			var8 = new SpritePixels(36, 32);
 			Rasterizer2D.Rasterizer2D_replace(var8.pixels, 36, 32);
 			Rasterizer2D.Rasterizer2D_clear();
 			Rasterizer3D.Rasterizer3D_setClipFromRasterizer2D();
@@ -204,7 +204,7 @@ public class SecureRandomFuture {
 			}
 
 			if (!var5) {
-				ItemDefinition.ItemDefinition_cachedSprites.put(var8, var6);
+				ItemComposition.ItemDefinition_cachedSprites.put(var8, var6);
 			}
 
 			Rasterizer2D.Rasterizer2D_replace(var12, var13, var14);

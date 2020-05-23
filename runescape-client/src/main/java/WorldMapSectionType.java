@@ -118,7 +118,7 @@ public enum WorldMapSectionType implements Enumerated {
 						ScriptEvent var4 = new ScriptEvent();
 						var4.widget = var3;
 						var4.args = var3.onLoad;
-						PlayerAppearance.runScript(var4, 5000000);
+						PlayerComposition.runScript(var4, 5000000);
 					}
 				}
 

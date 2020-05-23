@@ -29,7 +29,7 @@ import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 import net.runelite.api.NPC;
-import net.runelite.api.NPCDefinition;
+import net.runelite.api.NPCComposition;
 import net.runelite.api.coords.WorldPoint;
 
 class MemorizedNpc
@@ -69,7 +69,7 @@ class MemorizedNpc
 		this.respawnTime = -1;
 		this.diedOnTick = -1;
 
-		final NPCDefinition composition = npc.getTransformedDefinition();
+		final NPCComposition composition = npc.getTransformedComposition();
 
 		if (composition != null)
 		{

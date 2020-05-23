@@ -38,13 +38,13 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
-import net.runelite.api.ItemDefinition;
+import net.runelite.api.ItemComposition;
 import net.runelite.client.callback.ClientThread;
-import net.runelite.client.util.AsyncBufferedImage;
 import net.runelite.client.game.ItemManager;
 import net.runelite.client.ui.ColorScheme;
 import net.runelite.client.ui.components.IconTextField;
 import net.runelite.client.ui.components.PluginErrorPanel;
+import net.runelite.client.util.AsyncBufferedImage;
 import net.runelite.http.api.item.ItemPrice;
 import net.runelite.http.api.item.ItemStats;
 
@@ -203,7 +203,7 @@ class GrandExchangeSearchPanel extends JPanel
 
 			int itemId = item.getId();
 
-			ItemDefinition itemComp = itemManager.getItemComposition(itemId);
+			ItemComposition itemComp = itemManager.getItemComposition(itemId);
 			ItemStats itemStats = itemManager.getItemStats(itemId, false);
 
 			int itemPrice = item.getPrice();

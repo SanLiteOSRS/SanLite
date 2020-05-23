@@ -68,7 +68,7 @@ public class ScriptFrame {
 			int[] var11 = ArchiveDisk.sceneMinimapSprite.pixels;
 			var12 = var1 * 4 + (103 - var2) * 2048 + 24624;
 			var13 = WorldMapRectangle.Entity_unpackID(var5);
-			ObjectDefinition var14 = WorldMapSection2.getObjectDefinition(var13);
+			ObjectComposition var14 = WorldMapSection2.getObjectDefinition(var13);
 			if (var14.mapSceneId != -1) {
 				IndexedSprite var15 = class169.mapSceneSprites[var14.mapSceneId];
 				if (var15 != null) {
@@ -145,7 +145,7 @@ public class ScriptFrame {
 			var8 = var7 >> 6 & 3;
 			var9 = var7 & 31;
 			var10 = WorldMapRectangle.Entity_unpackID(var5);
-			ObjectDefinition var24 = WorldMapSection2.getObjectDefinition(var10);
+			ObjectComposition var24 = WorldMapSection2.getObjectDefinition(var10);
 			int var19;
 			if (var24.mapSceneId != -1) {
 				IndexedSprite var18 = class169.mapSceneSprites[var24.mapSceneId];
@@ -179,7 +179,7 @@ public class ScriptFrame {
 		var5 = GrandExchangeOfferWorldComparator.scene.getFloorDecorationTag(var0, var1, var2);
 		if (0L != var5) {
 			var7 = WorldMapRectangle.Entity_unpackID(var5);
-			ObjectDefinition var20 = WorldMapSection2.getObjectDefinition(var7);
+			ObjectComposition var20 = WorldMapSection2.getObjectDefinition(var7);
 			if (var20.mapSceneId != -1) {
 				IndexedSprite var21 = class169.mapSceneSprites[var20.mapSceneId];
 				if (var21 != null) {

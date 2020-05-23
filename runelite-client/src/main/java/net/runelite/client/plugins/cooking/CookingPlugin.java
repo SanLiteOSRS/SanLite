@@ -40,7 +40,7 @@ import net.runelite.api.MenuAction;
 import net.runelite.api.Player;
 import net.runelite.api.events.ChatMessage;
 import net.runelite.api.events.GameTick;
-import net.runelite.api.events.SpotAnimationChanged;
+import net.runelite.api.events.GraphicChanged;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.events.OverlayMenuClicked;
@@ -133,7 +133,7 @@ public class CookingPlugin extends Plugin
 	}
 
 	@Subscribe
-	public void onSpotAnimationChanged(SpotAnimationChanged graphicChanged)
+	public void onGraphicChanged(GraphicChanged graphicChanged)
 	{
 		Player player = client.getLocalPlayer();
 
@@ -142,7 +142,7 @@ public class CookingPlugin extends Plugin
 			return;
 		}
 
-		if (player.getSpotAnimation() == GraphicID.WINE_MAKE && config.fermentTimer())
+		if (player.getGraphic() == GraphicID.WINE_MAKE && config.fermentTimer())
 		{
 			Optional<FermentTimer> fermentTimerOpt = infoBoxManager.getInfoBoxes().stream()
 				.filter(FermentTimer.class::isInstance)

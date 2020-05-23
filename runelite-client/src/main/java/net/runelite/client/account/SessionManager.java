@@ -62,10 +62,10 @@ public class SessionManager
 
 	@Inject
 	private SessionManager(
-			@Named("sessionfile") File sessionfile,
-			ConfigManager configManager,
-			EventBus eventBus,
-			WSClient wsClient)
+		@Named("sessionfile") File sessionfile,
+		ConfigManager configManager,
+		EventBus eventBus,
+		WSClient wsClient)
 	{
 		this.configManager = configManager;
 		this.eventBus = eventBus;

@@ -65,8 +65,8 @@ public class LocationOverlay extends OverlayPanel
 		if (client.isInInstancedRegion())
 		{
 			panelComponent.getChildren().add(LineComponent.builder()
-					.left("Instance")
-					.build());
+				.left("Instance")
+				.build());
 
 			int[][][] instanceTemplateChunks = client.getInstanceTemplateChunks();
 			int z = client.getPlane();
@@ -77,9 +77,9 @@ public class LocationOverlay extends OverlayPanel
 			int chunkX = (chunkData >> 14 & 0x3FF) * CHUNK_SIZE;
 
 			panelComponent.getChildren().add(LineComponent.builder()
-					.left("Chunk " + localPoint.getSceneX() / CHUNK_SIZE + "," + localPoint.getSceneY() / CHUNK_SIZE)
-					.right(rotation + " " + chunkX + " " + chunkY)
-					.build());
+				.left("Chunk " + localPoint.getSceneX() / CHUNK_SIZE + "," + localPoint.getSceneY() / CHUNK_SIZE)
+				.right(rotation + " " + chunkX + " " + chunkY)
+				.build());
 		}
 
 		panelComponent.getChildren().add(LineComponent.builder()
@@ -98,19 +98,19 @@ public class LocationOverlay extends OverlayPanel
 				.build());
 
 		panelComponent.getChildren().add(LineComponent.builder()
-				.left("Tile")
-				.right(localWorld.getX() + ", " + localWorld.getY() + ", " + client.getPlane())
-				.build());
+			.left("Tile")
+			.right(localWorld.getX() + ", " + localWorld.getY() + ", " + client.getPlane())
+			.build());
 
 		for (int i = 0; i < client.getMapRegions().length; i++)
 		{
 			int region = client.getMapRegions()[i];
 
 			panelComponent.getChildren().add(LineComponent.builder()
-					.left((i == 0) ? "Map regions" : " ")
-					.right(String.valueOf(region))
-					.rightColor((region == regionID) ? Color.GREEN : Color.WHITE)
-					.build());
+				.left((i == 0) ? "Map regions" : " ")
+				.right(String.valueOf(region))
+				.rightColor((region == regionID) ? Color.GREEN : Color.WHITE)
+				.build());
 		}
 
 		return super.render(graphics);

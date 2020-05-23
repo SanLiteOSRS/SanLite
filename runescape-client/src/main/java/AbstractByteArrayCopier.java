@@ -773,7 +773,7 @@ public abstract class AbstractByteArrayCopier {
 												Client.mouseCrossState = 0;
 												var13 = Client.npcs[var3];
 												if (var13 != null) {
-													NPCDefinition var17 = var13.definition;
+													NPCComposition var17 = var13.definition;
 													if (var17.transforms != null) {
 														var17 = var17.transform();
 													}

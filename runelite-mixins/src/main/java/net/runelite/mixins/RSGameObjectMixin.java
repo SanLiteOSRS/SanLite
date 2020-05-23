@@ -35,7 +35,7 @@ import net.runelite.api.mixins.Inject;
 import net.runelite.api.mixins.Mixin;
 import net.runelite.api.mixins.Shadow;
 import net.runelite.rs.api.RSClient;
-import net.runelite.rs.api.RSEntity;
+import net.runelite.rs.api.RSRenderable;
 import net.runelite.rs.api.RSGameObject;
 import net.runelite.rs.api.RSModel;
 
@@ -70,7 +70,7 @@ public abstract class RSGameObjectMixin implements RSGameObject
 	@Override
 	public RSModel getModel()
 	{
-		RSEntity renderable = getEntity();
+		RSRenderable renderable = getRenderable();
 		if (renderable == null)
 		{
 			return null;

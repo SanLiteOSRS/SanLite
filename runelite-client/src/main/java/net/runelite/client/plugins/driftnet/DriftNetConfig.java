@@ -36,10 +36,10 @@ import net.runelite.client.config.Units;
 public interface DriftNetConfig extends Config
 {
 	@ConfigItem(
-			position = 1,
-			keyName = "showNetStatus",
-			name = "Show net status",
-			description = "Show net status and fish count"
+		position = 1,
+		keyName = "showNetStatus",
+		name = "Show net status",
+		description = "Show net status and fish count"
 	)
 	default boolean showNetStatus()
 	{
@@ -47,10 +47,10 @@ public interface DriftNetConfig extends Config
 	}
 
 	@ConfigItem(
-			position = 2,
-			keyName = "countColor",
-			name = "Fish count color",
-			description = "Color of the fish count text"
+		position = 2,
+		keyName = "countColor",
+		name = "Fish count color",
+		description = "Color of the fish count text"
 	)
 	default Color countColor()
 	{
@@ -58,10 +58,10 @@ public interface DriftNetConfig extends Config
 	}
 
 	@ConfigItem(
-			position = 3,
-			keyName = "highlightUntaggedFish",
-			name = "Highlight untagged fish",
-			description = "Highlight the untagged fish"
+		position = 3,
+		keyName = "highlightUntaggedFish",
+		name = "Highlight untagged fish",
+		description = "Highlight the untagged fish"
 	)
 	default boolean highlightUntaggedFish()
 	{
@@ -69,14 +69,14 @@ public interface DriftNetConfig extends Config
 	}
 
 	@ConfigItem(
-			position = 4,
-			keyName = "timeoutDelay",
-			name = "Tagged timeout",
-			description = "Time required for a tag to expire"
+		position = 4,
+		keyName = "timeoutDelay",
+		name = "Tagged timeout",
+		description = "Time required for a tag to expire"
 	)
 	@Range(
-			min = 1,
-			max = 60
+		min = 1,
+		max = 60
 	)
 	@Units(Units.TICKS)
 	default int timeoutDelay()
@@ -85,10 +85,10 @@ public interface DriftNetConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "untaggedFishColor",
-			name = "Untagged fish color",
-			description = "Color of untagged fish",
-			position = 5
+		keyName = "untaggedFishColor",
+		name = "Untagged fish color",
+		description = "Color of untagged fish",
+		position = 5
 	)
 	default Color untaggedFishColor()
 	{

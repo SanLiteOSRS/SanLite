@@ -104,17 +104,17 @@ class NightmareZoneOverlay extends OverlayPanel
 		final int totalPoints = currentPoints + client.getVar(VarPlayer.NMZ_REWARD_POINTS);
 
 		panelComponent.getChildren().add(LineComponent.builder()
-				.left("Points: ")
-				.right(QuantityFormatter.formatNumber(currentPoints))
-				.build());
+			.left("Points: ")
+			.right(QuantityFormatter.formatNumber(currentPoints))
+			.build());
 		panelComponent.getChildren().add(LineComponent.builder()
-				.left("Points/Hr: ")
-				.right(QuantityFormatter.formatNumber(plugin.getPointsPerHour()))
-				.build());
+			.left("Points/Hr: ")
+			.right(QuantityFormatter.formatNumber(plugin.getPointsPerHour()))
+			.build());
 		panelComponent.getChildren().add(LineComponent.builder()
-				.left("Total: ")
-				.right(QuantityFormatter.formatNumber(totalPoints))
-				.build());
+			.left("Total: ")
+			.right(QuantityFormatter.formatNumber(totalPoints))
+			.build());
 
 		return super.render(graphics);
 	}

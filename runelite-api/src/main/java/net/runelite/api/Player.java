@@ -42,7 +42,7 @@ public interface Player extends Actor
 	 *
 	 * @return the composition
 	 */
-	PlayerAppearance getPlayerAppearance();
+	PlayerComposition getPlayerComposition();
 
 	/**
 	 * Gets the polygons that make up the players model.
@@ -87,4 +87,18 @@ public interface Player extends Actor
 	 */
 	@Nullable
 	SkullIcon getSkullIcon();
+
+	/**
+	 * Sets the displayed skull icon of the player.
+	 *
+	 * @param skullIconId skull icon id
+	 */
+	void setSkullIcon(int skullIconId);
+
+	/**
+	 * Checks whether the player has a skull icon from a dangerous PvP activity.
+	 *
+	 * @return true if the player is skulled, false otherwise
+	 */
+	boolean isSkulled();
 }

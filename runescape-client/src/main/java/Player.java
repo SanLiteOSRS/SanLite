@@ -18,7 +18,7 @@ public final class Player extends Actor {
 		signature = "Lhk;"
 	)
 	@Export("appearance")
-	PlayerAppearance appearance;
+	PlayerComposition appearance;
 	@ObfuscatedName("k")
 	@ObfuscatedGetter(
 		intValue = -955452579
@@ -278,7 +278,7 @@ public final class Player extends Actor {
 		}
 
 		if (this.appearance == null) {
-			this.appearance = new PlayerAppearance();
+			this.appearance = new PlayerComposition();
 		}
 
 		this.appearance.update(var4, var9, var2 == 1, var3);

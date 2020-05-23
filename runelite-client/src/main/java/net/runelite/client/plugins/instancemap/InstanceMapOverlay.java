@@ -36,7 +36,7 @@ import lombok.Getter;
 import lombok.Setter;
 import net.runelite.api.Client;
 import net.runelite.api.Player;
-import net.runelite.api.Sprite;
+import net.runelite.api.SpritePixels;
 import net.runelite.api.Tile;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.events.GameStateChanged;
@@ -169,7 +169,7 @@ class InstanceMapOverlay extends Overlay
 
 		if (image == null)
 		{
-			Sprite map = client.drawInstanceMap(viewedPlane);
+			SpritePixels map = client.drawInstanceMap(viewedPlane);
 			image = minimapToBufferedImage(map);
 			synchronized (this)
 			{
@@ -253,7 +253,7 @@ class InstanceMapOverlay extends Overlay
 		mapImage = null;
 	}
 
-	private static BufferedImage minimapToBufferedImage(Sprite spritePixels)
+	private static BufferedImage minimapToBufferedImage(SpritePixels spritePixels)
 	{
 		int width = spritePixels.getWidth();
 		int height = spritePixels.getHeight();
@@ -270,7 +270,7 @@ class InstanceMapOverlay extends Overlay
 	{
 		if (closeButtonImage == null)
 		{
-			closeButtonImage = spriteManager.getSpriteImg(WINDOW_CLOSE_BUTTON_RED_X, 0);
+			closeButtonImage = spriteManager.getSprite(WINDOW_CLOSE_BUTTON_RED_X, 0);
 		}
 		return closeButtonImage;
 	}
@@ -280,7 +280,7 @@ class InstanceMapOverlay extends Overlay
 	{
 		if (closeButtonHoveredImage == null)
 		{
-			closeButtonHoveredImage = spriteManager.getSpriteImg(WINDOW_CLOSE_BUTTON_RED_X_HOVERED, 0);
+			closeButtonHoveredImage = spriteManager.getSprite(WINDOW_CLOSE_BUTTON_RED_X_HOVERED, 0);
 		}
 		return closeButtonHoveredImage;
 	}

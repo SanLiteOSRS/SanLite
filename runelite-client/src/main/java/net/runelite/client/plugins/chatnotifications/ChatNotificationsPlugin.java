@@ -157,8 +157,8 @@ public class ChatNotificationsPlugin extends Plugin
 		{
 			String username = client.getLocalPlayer().getName();
 			String pattern = Arrays.stream(username.split(" "))
-					.map(s -> s.isEmpty() ? "" : Pattern.quote(s))
-					.collect(Collectors.joining("[\u00a0\u0020]")); // space or nbsp
+				.map(s -> s.isEmpty() ? "" : Pattern.quote(s))
+				.collect(Collectors.joining("[\u00a0\u0020]")); // space or nbsp
 			usernameMatcher = Pattern.compile("\\b" + pattern + "\\b", Pattern.CASE_INSENSITIVE);
 			usernameReplacer = "<col" + ChatColorType.HIGHLIGHT.name() + "><u>" + username + "</u><col" + ChatColorType.NORMAL.name() + ">";
 		}

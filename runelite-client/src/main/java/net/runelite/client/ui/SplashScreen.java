@@ -215,8 +215,8 @@ public class SplashScreen extends JFrame implements ActionListener
 	}
 
 	public static void stage(double startProgress, double endProgress,
-								@Nullable String actionText, String subActionText,
-								int done, int total, boolean mib)
+		@Nullable String actionText, String subActionText,
+		int done, int total, boolean mib)
 	{
 		String progress;
 		if (mib)

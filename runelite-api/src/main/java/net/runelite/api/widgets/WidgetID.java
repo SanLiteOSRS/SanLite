@@ -41,7 +41,6 @@ public class WidgetID
 	public static final int LOGOUT_PANEL_ID = 182;
 	public static final int BANK_GROUP_ID = 12;
 	public static final int BANK_INVENTORY_GROUP_ID = 15;
-	public static final int BANK_PIN_GROUP_ID = 213;
 	public static final int GRAND_EXCHANGE_INVENTORY_GROUP_ID = 467;
 	public static final int GRAND_EXCHANGE_GROUP_ID = 465;
 	public static final int DEPOSIT_BOX_GROUP_ID = 192;
@@ -155,6 +154,7 @@ public class WidgetID
 	public static final int ADVENTURE_LOG_ID = 187;
 	public static final int COUNTERS_LOG_GROUP_ID = 625;
 	public static final int GAUNTLET_TIMER_GROUP_ID = 637;
+	public static final int BANK_PIN_GROUP_ID = 213;
 
 	static class WorldMap
 	{
@@ -263,8 +263,8 @@ public class WidgetID
 		static final int DEPOSIT_EQUIPMENT = 43;
 		static final int INCINERATOR = 45;
 		static final int INCINERATOR_CONFIRM = 46;
-		static final int EQUIPMENT_CONTENT_CONTAINER = 67;
-		static final int EQUIPMENT_BUTTON = 108;
+		static final int EQUIPMENT_CONTENT_CONTAINER = 68;
+		static final int EQUIPMENT_BUTTON = 109;
 	}
 
 	// Also used for many other interfaces

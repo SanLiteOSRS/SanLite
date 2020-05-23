@@ -639,7 +639,7 @@ public class ClientPacket implements class190 {
 		signature = "(Liy;IIB)[Lla;",
 		garbageValue = "119"
 	)
-	public static Sprite[] method3688(AbstractArchive var0, int var1, int var2) {
+	public static SpritePixels[] method3688(AbstractArchive var0, int var1, int var2) {
 		return !UserComparator7.method3516(var0, var1, var2) ? null : WorldMapSprite.method516();
 	}
 

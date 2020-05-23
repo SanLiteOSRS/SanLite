@@ -304,7 +304,7 @@ public class Coord {
 		if (var10 >= var0 && var10 < var0 + var2 && var11 >= var1 && var11 < var3 + var1) {
 			AbstractSocket.method5886(var10 - var0, var11 - var1);
 		} else {
-			GameShell.method1155();
+			GameEngine.method1155();
 		}
 
 		ChatChannel.playPcmPlayers();

@@ -51,7 +51,7 @@ import net.runelite.api.GameState;
 import net.runelite.api.GroundObject;
 import net.runelite.api.MenuAction;
 import net.runelite.api.MenuEntry;
-import net.runelite.api.ObjectDefinition;
+import net.runelite.api.ObjectComposition;
 import net.runelite.api.Scene;
 import net.runelite.api.Tile;
 import net.runelite.api.TileObject;
@@ -287,19 +287,19 @@ public class ObjectIndicatorsPlugin extends Plugin implements KeyListener
 	public void onMenuOptionClicked(MenuOptionClicked event)
 	{
 		if (event.getMenuAction() != MenuAction.RUNELITE
-				|| !(event.getOption().equals(MARK) || event.getOption().equals(UNMARK)))
+			|| !(event.getMenuOption().equals(MARK) || event.getMenuOption().equals(UNMARK)))
 		{
 			return;
 		}
 
 		Scene scene = client.getScene();
 		Tile[][][] tiles = scene.getTiles();
-		final int x = event.getActionParam0();
-		final int y = event.getActionParam1();
+		final int x = event.getActionParam();
+		final int y = event.getWidgetId();
 		final int z = client.getPlane();
 		final Tile tile = tiles[z][x][y];
 
-		TileObject object = findTileObject(tile, event.getIdentifier());
+		TileObject object = findTileObject(tile, event.getId());
 		if (object == null)
 		{
 			return;
@@ -307,7 +307,7 @@ public class ObjectIndicatorsPlugin extends Plugin implements KeyListener
 
 		// object.getId() is always the base object id, getObjectComposition transforms it to
 		// the correct object we see
-		ObjectDefinition objectDefinition = getObjectComposition(object.getId());
+		ObjectComposition objectDefinition = getObjectComposition(object.getId());
 		String name = objectDefinition.getName();
 		// Name is probably never "null" - however prevent adding it if it is, as it will
 		// become ambiguous as objects with no name are assigned name "null"
@@ -336,7 +336,7 @@ public class ObjectIndicatorsPlugin extends Plugin implements KeyListener
 					&& worldPoint.getPlane() == objectPoint.getZ())
 			{
 				// Transform object to get the name which matches against what we've stored
-				ObjectDefinition composition = getObjectComposition(object.getId());
+				ObjectComposition composition = getObjectComposition(object.getId());
 				if (composition != null && objectPoint.getName().equals(composition.getName()))
 				{
 					log.debug("Marking object {} due to matching {}", object, objectPoint);
@@ -399,7 +399,7 @@ public class ObjectIndicatorsPlugin extends Plugin implements KeyListener
 
 		// Menu action EXAMINE_OBJECT sends the transformed object id, not the base id, unlike
 		// all of the GAME_OBJECT_OPTION actions, so check the id against the impostor ids
-		final ObjectDefinition comp = client.getObjectDefinition(tileObject.getId());
+		final ObjectComposition comp = client.getObjectDefinition(tileObject.getId());
 
 		if (comp.getImpostorIds() != null)
 		{
@@ -421,7 +421,7 @@ public class ObjectIndicatorsPlugin extends Plugin implements KeyListener
 	 * @param name name of objectComposition
 	 * @param object tile object, for multilocs object.getId() is the base id
 	 */
-	private void markObject(ObjectDefinition objectComposition, String name, final TileObject object)
+	private void markObject(ObjectComposition objectComposition, String name, final TileObject object)
 	{
 		final WorldPoint worldPoint = WorldPoint.fromLocalInstance(client, object.getLocalLocation());
 		final int regionId = worldPoint.getRegionID();
@@ -497,9 +497,9 @@ public class ObjectIndicatorsPlugin extends Plugin implements KeyListener
 	}
 
 	@Nullable
-	private ObjectDefinition getObjectComposition(int id)
+	private ObjectComposition getObjectComposition(int id)
 	{
-		ObjectDefinition objectComposition = client.getObjectDefinition(id);
+		ObjectComposition objectComposition = client.getObjectDefinition(id);
 		return objectComposition.getImpostorIds() == null ? objectComposition : objectComposition.getImpostor();
 	}
 }

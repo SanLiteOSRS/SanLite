@@ -57,10 +57,6 @@ public interface WallObject extends TileObject
 	 */
 	int getConfig();
 
-	Entity getEntity1();
-
-	Entity getEntity2();
-
 	Model getModelA();
 
 	Model getModelB();
@@ -74,4 +70,8 @@ public interface WallObject extends TileObject
 	Shape getConvexHull();
 
 	Shape getConvexHull2();
+
+	Renderable getRenderable1();
+
+	Renderable getRenderable2();
 }

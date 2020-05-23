@@ -38,11 +38,17 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.inject.Inject;
 import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.*;
-
+import net.runelite.api.Client;
 import static net.runelite.api.Constants.HIGH_ALCHEMY_MULTIPLIER;
-
-import net.runelite.api.ItemDefinition;
+import net.runelite.api.InventoryID;
+import net.runelite.api.Item;
+import net.runelite.api.ItemComposition;
+import net.runelite.api.ItemContainer;
+import net.runelite.api.ItemID;
+import net.runelite.api.MenuEntry;
+import net.runelite.api.ScriptID;
+import net.runelite.api.VarClientStr;
+import net.runelite.api.Varbits;
 import net.runelite.api.events.ItemContainerChanged;
 import net.runelite.api.events.MenuEntryAdded;
 import net.runelite.api.events.MenuShouldLeftClick;
@@ -65,23 +71,23 @@ import net.runelite.client.plugins.banktags.tabs.BankSearch;
 import net.runelite.client.util.QuantityFormatter;
 
 @PluginDescriptor(
-		name = "Bank",
-		description = "Modifications to the banking interface",
-		tags = {"grand", "exchange", "high", "alchemy", "prices", "deposit"}
+	name = "Bank",
+	description = "Modifications to the banking interface",
+	tags = {"grand", "exchange", "high", "alchemy", "prices", "deposit"}
 )
 @Slf4j
 public class BankPlugin extends Plugin
 {
 	private static final List<Varbits> TAB_VARBITS = ImmutableList.of(
-			Varbits.BANK_TAB_ONE_COUNT,
-			Varbits.BANK_TAB_TWO_COUNT,
-			Varbits.BANK_TAB_THREE_COUNT,
-			Varbits.BANK_TAB_FOUR_COUNT,
-			Varbits.BANK_TAB_FIVE_COUNT,
-			Varbits.BANK_TAB_SIX_COUNT,
-			Varbits.BANK_TAB_SEVEN_COUNT,
-			Varbits.BANK_TAB_EIGHT_COUNT,
-			Varbits.BANK_TAB_NINE_COUNT
+		Varbits.BANK_TAB_ONE_COUNT,
+		Varbits.BANK_TAB_TWO_COUNT,
+		Varbits.BANK_TAB_THREE_COUNT,
+		Varbits.BANK_TAB_FOUR_COUNT,
+		Varbits.BANK_TAB_FIVE_COUNT,
+		Varbits.BANK_TAB_SIX_COUNT,
+		Varbits.BANK_TAB_SEVEN_COUNT,
+		Varbits.BANK_TAB_EIGHT_COUNT,
+		Varbits.BANK_TAB_NINE_COUNT
 	);
 
 	private static final String DEPOSIT_WORN = "Deposit worn items";
@@ -91,8 +97,8 @@ public class BankPlugin extends Plugin
 
 	private static final String NUMBER_REGEX = "[0-9]+(\\.[0-9]+)?[kmb]?";
 	private static final Pattern VALUE_SEARCH_PATTERN = Pattern.compile("^(?<mode>ge|ha|alch)?" +
-			" *(((?<op>[<>=]|>=|<=) *(?<num>" + NUMBER_REGEX + "))|" +
-			"((?<num1>" + NUMBER_REGEX + ") *- *(?<num2>" + NUMBER_REGEX + ")))$", Pattern.CASE_INSENSITIVE);
+		" *(((?<op>[<>=]|>=|<=) *(?<num>" + NUMBER_REGEX + "))|" +
+		"((?<num1>" + NUMBER_REGEX + ") *- *(?<num2>" + NUMBER_REGEX + ")))$", Pattern.CASE_INSENSITIVE);
 
 	@Inject
 	private Client client;
@@ -147,8 +153,8 @@ public class BankPlugin extends Plugin
 		for (MenuEntry entry : menuEntries)
 		{
 			if ((entry.getOption().equals(DEPOSIT_WORN) && config.rightClickBankEquip())
-					|| (entry.getOption().equals(DEPOSIT_INVENTORY) && config.rightClickBankInventory())
-					|| (entry.getOption().equals(DEPOSIT_LOOT) && config.rightClickBankLoot()))
+				|| (entry.getOption().equals(DEPOSIT_INVENTORY) && config.rightClickBankInventory())
+				|| (entry.getOption().equals(DEPOSIT_LOOT) && config.rightClickBankLoot()))
 			{
 				event.setForceRightClick(true);
 				return;
@@ -160,8 +166,8 @@ public class BankPlugin extends Plugin
 	public void onMenuEntryAdded(MenuEntryAdded event)
 	{
 		if ((event.getOption().equals(DEPOSIT_WORN) && config.rightClickBankEquip())
-				|| (event.getOption().equals(DEPOSIT_INVENTORY) && config.rightClickBankInventory())
-				|| (event.getOption().equals(DEPOSIT_LOOT) && config.rightClickBankLoot()))
+			|| (event.getOption().equals(DEPOSIT_INVENTORY) && config.rightClickBankInventory())
+			|| (event.getOption().equals(DEPOSIT_LOOT) && config.rightClickBankLoot()))
 		{
 			forceRightClickFlag = true;
 		}
@@ -408,7 +414,7 @@ public class BankPlugin extends Plugin
 			itemQuantities = getBankItemSet();
 		}
 
-		final ItemDefinition itemComposition = itemManager.getItemComposition(itemId);
+		final ItemComposition itemComposition = itemManager.getItemComposition(itemId);
 		long gePrice = (long) itemManager.getItemPrice(itemId) * (long) itemQuantities.count(itemId);
 		long haPrice = (long) (itemComposition.getPrice() * HIGH_ALCHEMY_MULTIPLIER) * (long) itemQuantities.count(itemId);
 

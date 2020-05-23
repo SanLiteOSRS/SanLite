@@ -197,13 +197,13 @@ public class WorldMapSection2 implements WorldMapSection {
 		garbageValue = "1650295452"
 	)
 	@Export("getObjectDefinition")
-	public static ObjectDefinition getObjectDefinition(int var0) {
-		ObjectDefinition var1 = (ObjectDefinition)ObjectDefinition.ObjectDefinition_cached.get((long)var0);
+	public static ObjectComposition getObjectDefinition(int var0) {
+		ObjectComposition var1 = (ObjectComposition) ObjectComposition.ObjectDefinition_cached.get((long)var0);
 		if (var1 != null) {
 			return var1;
 		} else {
-			byte[] var2 = ObjectDefinition.ObjectDefinition_archive.takeFile(6, var0);
-			var1 = new ObjectDefinition();
+			byte[] var2 = ObjectComposition.ObjectDefinition_archive.takeFile(6, var0);
+			var1 = new ObjectComposition();
 			var1.id = var0;
 			if (var2 != null) {
 				var1.decode(new Buffer(var2));
@@ -215,7 +215,7 @@ public class WorldMapSection2 implements WorldMapSection {
 				var1.boolean1 = false;
 			}
 
-			ObjectDefinition.ObjectDefinition_cached.put(var1, (long)var0);
+			ObjectComposition.ObjectDefinition_cached.put(var1, (long)var0);
 			return var1;
 		}
 	}

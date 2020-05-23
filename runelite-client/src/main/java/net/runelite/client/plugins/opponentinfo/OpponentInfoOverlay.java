@@ -37,6 +37,7 @@ import net.runelite.api.Client;
 import static net.runelite.api.MenuAction.RUNELITE_OVERLAY_CONFIG;
 import net.runelite.api.NPC;
 import net.runelite.api.Player;
+import net.runelite.api.Varbits;
 import net.runelite.client.game.HiscoreManager;
 import net.runelite.client.game.NPCManager;
 import static net.runelite.client.ui.overlay.OverlayManager.OPTION_CONFIGURE;
@@ -65,14 +66,15 @@ class OpponentInfoOverlay extends OverlayPanel
 	private int lastRatio = 0;
 	private int lastHealthScale = 0;
 	private String opponentName;
+	private String opponentsOpponentName;
 
 	@Inject
 	private OpponentInfoOverlay(
-			Client client,
-			OpponentInfoPlugin opponentInfoPlugin,
-			OpponentInfoConfig opponentInfoConfig,
-			HiscoreManager hiscoreManager,
-			NPCManager npcManager)
+		Client client,
+		OpponentInfoPlugin opponentInfoPlugin,
+		OpponentInfoConfig opponentInfoConfig,
+		HiscoreManager hiscoreManager,
+		NPCManager npcManager)
 	{
 		super(opponentInfoPlugin);
 		this.client = client;
@@ -125,6 +127,17 @@ class OpponentInfoOverlay extends OverlayPanel
 			}
 		}
 
+		final Actor opponentsOpponent = opponent.getInteracting();
+		if (opponentsOpponent != null
+				&& (opponentsOpponent != client.getLocalPlayer() || client.getVar(Varbits.MULTICOMBAT_AREA) == 1))
+		{
+			opponentsOpponentName = Text.removeTags(opponentsOpponent.getName());
+		}
+		else
+		{
+			opponentsOpponentName = null;
+		}
+
 		if (opponentName == null)
 		{
 			return null;
@@ -136,8 +149,8 @@ class OpponentInfoOverlay extends OverlayPanel
 		int panelWidth = Math.max(ComponentConstants.STANDARD_WIDTH, fontMetrics.stringWidth(opponentName) + ComponentConstants.STANDARD_BORDER + ComponentConstants.STANDARD_BORDER);
 		panelComponent.setPreferredSize(new Dimension(panelWidth, 0));
 		panelComponent.getChildren().add(TitleComponent.builder()
-				.text(opponentName)
-				.build());
+			.text(opponentName)
+			.build());
 
 		// Health bar
 		if (lastRatio >= 0 && lastHealthScale > 0)
@@ -149,7 +162,7 @@ class OpponentInfoOverlay extends OverlayPanel
 			final HitpointsDisplayStyle displayStyle = opponentInfoConfig.hitpointsDisplayStyle();
 
 			if ((displayStyle == HitpointsDisplayStyle.HITPOINTS || displayStyle == HitpointsDisplayStyle.BOTH)
-					&& lastMaxHealth != null)
+				&& lastMaxHealth != null)
 			{
 				// This is the reverse of the calculation of healthRatio done by the server
 				// which is: healthRatio = 1 + (healthScale - 1) * health / maxHealth (if health > 0, 0 otherwise)
@@ -185,7 +198,7 @@ class OpponentInfoOverlay extends OverlayPanel
 
 				// Show both the hitpoint and percentage values if enabled in the config
 				final ProgressBarComponent.LabelDisplayMode progressBarDisplayMode = displayStyle == HitpointsDisplayStyle.BOTH ?
-						ProgressBarComponent.LabelDisplayMode.BOTH : ProgressBarComponent.LabelDisplayMode.FULL;
+					ProgressBarComponent.LabelDisplayMode.BOTH : ProgressBarComponent.LabelDisplayMode.FULL;
 
 				progressBarComponent.setLabelDisplayMode(progressBarDisplayMode);
 				progressBarComponent.setMaximum(lastMaxHealth);
@@ -198,6 +211,16 @@ class OpponentInfoOverlay extends OverlayPanel
 			}
 
 			panelComponent.getChildren().add(progressBarComponent);
+		}
+
+		// Opponents opponent
+		if (opponentsOpponentName != null && opponentInfoConfig.showOpponentsOpponent())
+		{
+			panelWidth = Math.max(panelWidth, fontMetrics.stringWidth(opponentsOpponentName));
+			panelComponent.setPreferredSize(new Dimension(panelWidth, 0));
+			panelComponent.getChildren().add(TitleComponent.builder()
+					.text(opponentsOpponentName)
+					.build());
 		}
 
 		return super.render(graphics);

@@ -27,7 +27,7 @@ public class Login {
 		signature = "Lla;"
 	)
 	@Export("leftTitleSprite")
-	static Sprite leftTitleSprite;
+	static SpritePixels leftTitleSprite;
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
 		signature = "Lle;"

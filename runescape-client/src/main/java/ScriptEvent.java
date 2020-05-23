@@ -106,7 +106,7 @@ public class ScriptEvent extends Node {
 		garbageValue = "-20"
 	)
 	@Export("drawSpriteOnMinimap")
-	static final void drawSpriteOnMinimap(int var0, int var1, int var2, int var3, Sprite var4, SpriteMask var5) {
+	static final void drawSpriteOnMinimap(int var0, int var1, int var2, int var3, SpritePixels var4, SpriteMask var5) {
 		if (var4 != null) {
 			int var6 = Client.camAngleY & 2047;
 			int var7 = var3 * var3 + var2 * var2;

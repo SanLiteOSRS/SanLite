@@ -87,7 +87,7 @@ public final class ObjectSound extends Node {
 		signature = "Ljw;"
 	)
 	@Export("obj")
-	ObjectDefinition obj;
+	ObjectComposition obj;
 
 	static {
 		objectSounds = new NodeDeque();
@@ -104,7 +104,7 @@ public final class ObjectSound extends Node {
 	@Export("set")
 	void set() {
 		int var1 = this.soundEffectId;
-		ObjectDefinition var2 = this.obj.transform();
+		ObjectComposition var2 = this.obj.transform();
 		if (var2 != null) {
 			this.soundEffectId = var2.ambientSoundId;
 			this.field1106 = var2.int4 * 128;

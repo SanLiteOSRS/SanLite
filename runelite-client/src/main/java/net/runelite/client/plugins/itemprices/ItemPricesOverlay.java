@@ -32,7 +32,7 @@ import net.runelite.api.Client;
 import net.runelite.api.Constants;
 import net.runelite.api.InventoryID;
 import net.runelite.api.Item;
-import net.runelite.api.ItemDefinition;
+import net.runelite.api.ItemComposition;
 import net.runelite.api.ItemContainer;
 import net.runelite.api.ItemID;
 import net.runelite.api.MenuAction;
@@ -201,7 +201,7 @@ class ItemPricesOverlay extends Overlay
 			return QuantityFormatter.formatNumber(qty * 1000) + " gp";
 		}
 
-		ItemDefinition itemDef = itemManager.getItemComposition(id);
+		ItemComposition itemDef = itemManager.getItemComposition(id);
 		if (itemDef.getNote() != -1)
 		{
 			id = itemDef.getLinkedNoteId();

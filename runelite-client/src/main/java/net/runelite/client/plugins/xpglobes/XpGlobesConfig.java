@@ -166,7 +166,7 @@ public interface XpGlobesConfig extends Config
 		description = "Change the duration the xp orbs are visible",
 		position = 11
 	)
-	@Units(Units.PIXELS)
+	@Units(Units.SECONDS)
 	default int xpOrbDuration()
 	{
 		return 10;

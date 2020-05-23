@@ -29,7 +29,7 @@ public class FileSystem {
 		garbageValue = "-28"
 	)
 	static final boolean method3588(int var0, int var1) {
-		ObjectDefinition var2 = WorldMapSection2.getObjectDefinition(var0);
+		ObjectComposition var2 = WorldMapSection2.getObjectDefinition(var0);
 		if (var1 == 11) {
 			var1 = 10;
 		}

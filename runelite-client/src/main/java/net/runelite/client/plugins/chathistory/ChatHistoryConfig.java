@@ -54,10 +54,10 @@ public interface ChatHistoryConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "copyToClipboard",
-			name = "Copy to clipboard",
-			description = "Add option on chat messages to copy them to clipboard",
-			position = 2
+		keyName = "copyToClipboard",
+		name = "Copy to clipboard",
+		description = "Add option on chat messages to copy them to clipboard",
+		position = 2
 	)
 	default boolean copyToClipboard()
 	{

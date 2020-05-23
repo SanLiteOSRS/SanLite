@@ -24,10 +24,7 @@
  */
 package net.runelite.client.plugins.vorkath;
 
-import net.runelite.client.config.Config;
-import net.runelite.client.config.ConfigGroup;
-import net.runelite.client.config.ConfigItem;
-import net.runelite.client.config.Range;
+import net.runelite.client.config.*;
 
 import java.awt.*;
 
@@ -201,10 +198,21 @@ public interface VorkathConfig extends Config
 	}
 
 	@ConfigItem(
+			keyName = "tileMarkersLineSize",
+			name = "Tile markers line size",
+			description = "The size of the outside line for tile markers",
+			position = 17
+	)
+	default StrokeSize getTileMarkersLineSize()
+	{
+		return StrokeSize.NORMAL;
+	}
+
+	@ConfigItem(
 			keyName = "showDebugOverlay",
 			name = "Display debug overlay",
 			description = "Displays plugin debug overlay. This contains variables that the plugin uses to function",
-			position = 17
+			position = 18
 	)
 	default boolean showDebugOverlay()
 	{

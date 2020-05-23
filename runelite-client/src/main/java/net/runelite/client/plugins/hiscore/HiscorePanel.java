@@ -83,39 +83,39 @@ public class HiscorePanel extends PluginPanel
 	 * Real skills, ordered in the way they should be displayed in the panel.
 	 */
 	private static final List<HiscoreSkill> SKILLS = ImmutableList.of(
-			ATTACK, HITPOINTS, MINING,
-			STRENGTH, AGILITY, SMITHING,
-			DEFENCE, HERBLORE, FISHING,
-			RANGED, THIEVING, COOKING,
-			PRAYER, CRAFTING, FIREMAKING,
-			MAGIC, FLETCHING, WOODCUTTING,
-			RUNECRAFT, SLAYER, FARMING,
-			CONSTRUCTION, HUNTER
+		ATTACK, HITPOINTS, MINING,
+		STRENGTH, AGILITY, SMITHING,
+		DEFENCE, HERBLORE, FISHING,
+		RANGED, THIEVING, COOKING,
+		PRAYER, CRAFTING, FIREMAKING,
+		MAGIC, FLETCHING, WOODCUTTING,
+		RUNECRAFT, SLAYER, FARMING,
+		CONSTRUCTION, HUNTER
 	);
 
 	/**
 	 * Bosses, ordered in the way they should be displayed in the panel.
 	 */
 	private static final List<HiscoreSkill> BOSSES = ImmutableList.of(
-			ABYSSAL_SIRE, ALCHEMICAL_HYDRA, BARROWS_CHESTS,
-			BRYOPHYTA, CALLISTO, CERBERUS,
-			CHAMBERS_OF_XERIC, CHAMBERS_OF_XERIC_CHALLENGE_MODE, CHAOS_ELEMENTAL,
-			CHAOS_FANATIC, COMMANDER_ZILYANA, CORPOREAL_BEAST,
-			DAGANNOTH_PRIME, DAGANNOTH_REX, DAGANNOTH_SUPREME,
-			CRAZY_ARCHAEOLOGIST, DERANGED_ARCHAEOLOGIST, GENERAL_GRAARDOR,
-			GIANT_MOLE, GROTESQUE_GUARDIANS, HESPORI,
-			KALPHITE_QUEEN, KING_BLACK_DRAGON, KRAKEN,
-			KREEARRA, KRIL_TSUTSAROTH, MIMIC,
-			NIGHTMARE, OBOR, SARACHNIS,
-			SCORPIA, SKOTIZO, THE_GAUNTLET,
-			THE_CORRUPTED_GAUNTLET, THEATRE_OF_BLOOD, THERMONUCLEAR_SMOKE_DEVIL,
-			TZKAL_ZUK, TZTOK_JAD, VENENATIS,
-			VETION, VORKATH, WINTERTODT,
-			ZALCANO, ZULRAH
+		ABYSSAL_SIRE, ALCHEMICAL_HYDRA, BARROWS_CHESTS,
+		BRYOPHYTA, CALLISTO, CERBERUS,
+		CHAMBERS_OF_XERIC, CHAMBERS_OF_XERIC_CHALLENGE_MODE, CHAOS_ELEMENTAL,
+		CHAOS_FANATIC, COMMANDER_ZILYANA, CORPOREAL_BEAST,
+		DAGANNOTH_PRIME, DAGANNOTH_REX, DAGANNOTH_SUPREME,
+		CRAZY_ARCHAEOLOGIST, DERANGED_ARCHAEOLOGIST, GENERAL_GRAARDOR,
+		GIANT_MOLE, GROTESQUE_GUARDIANS, HESPORI,
+		KALPHITE_QUEEN, KING_BLACK_DRAGON, KRAKEN,
+		KREEARRA, KRIL_TSUTSAROTH, MIMIC,
+		NIGHTMARE, OBOR, SARACHNIS,
+		SCORPIA, SKOTIZO, THE_GAUNTLET,
+		THE_CORRUPTED_GAUNTLET, THEATRE_OF_BLOOD, THERMONUCLEAR_SMOKE_DEVIL,
+		TZKAL_ZUK, TZTOK_JAD, VENENATIS,
+		VETION, VORKATH, WINTERTODT,
+		ZALCANO, ZULRAH
 	);
 
 	private static final HiscoreEndpoint[] ENDPOINTS = new HiscoreEndpoint[] {
-			HiscoreEndpoint.NORMAL, HiscoreEndpoint.IRONMAN, HiscoreEndpoint.HARDCORE_IRONMAN, HiscoreEndpoint.ULTIMATE_IRONMAN, HiscoreEndpoint.DEADMAN, HiscoreEndpoint.TOURNAMENT
+		HiscoreEndpoint.NORMAL, HiscoreEndpoint.IRONMAN, HiscoreEndpoint.HARDCORE_IRONMAN, HiscoreEndpoint.ULTIMATE_IRONMAN, HiscoreEndpoint.DEADMAN, HiscoreEndpoint.TOURNAMENT
 	};
 
 	@Inject
@@ -445,13 +445,13 @@ public class HiscorePanel extends PluginPanel
 				if (result.getPlayer() != null)
 				{
 					int combatLevel = Experience.getCombatLevel(
-							result.getAttack().getLevel(),
-							result.getStrength().getLevel(),
-							result.getDefence().getLevel(),
-							result.getHitpoints().getLevel(),
-							result.getMagic().getLevel(),
-							result.getRanged().getLevel(),
-							result.getPrayer().getLevel()
+						result.getAttack().getLevel(),
+						result.getStrength().getLevel(),
+						result.getDefence().getLevel(),
+						result.getHitpoints().getLevel(),
+						result.getMagic().getLevel(),
+						result.getRanged().getLevel(),
+						result.getPrayer().getLevel()
 					);
 					label.setText(Integer.toString(combatLevel));
 				}
@@ -505,19 +505,19 @@ public class HiscorePanel extends PluginPanel
 		if (skill == null)
 		{
 			double combatLevel = Experience.getCombatLevelPrecise(
-					result.getAttack().getLevel(),
-					result.getStrength().getLevel(),
-					result.getDefence().getLevel(),
-					result.getHitpoints().getLevel(),
-					result.getMagic().getLevel(),
-					result.getRanged().getLevel(),
-					result.getPrayer().getLevel()
+				result.getAttack().getLevel(),
+				result.getStrength().getLevel(),
+				result.getDefence().getLevel(),
+				result.getHitpoints().getLevel(),
+				result.getMagic().getLevel(),
+				result.getRanged().getLevel(),
+				result.getPrayer().getLevel()
 			);
 
 			double combatExperience = result.getAttack().getExperience()
-					+ result.getStrength().getExperience() + result.getDefence().getExperience()
-					+ result.getHitpoints().getExperience() + result.getMagic().getExperience()
-					+ result.getRanged().getExperience() + result.getPrayer().getExperience();
+				+ result.getStrength().getExperience() + result.getDefence().getExperience()
+				+ result.getHitpoints().getExperience() + result.getMagic().getExperience()
+				+ result.getRanged().getExperience() + result.getPrayer().getExperience();
 
 			content += "<p><span style = 'color:white'>Skill:</span> Combat</p>";
 			content += "<p><span style = 'color:white'>Exact Combat Level:</span> " + QuantityFormatter.formatNumber(combatLevel) + "</p>";
@@ -667,11 +667,11 @@ public class HiscorePanel extends PluginPanel
 
 				// had to wrap the bar with an empty div, if i added the margin directly to the bar, it would mess up
 				content += "<div style = 'margin-top:3px'>"
-						+ "<div style = 'background: #070707; border: 1px solid #070707; height: 6px; width: 100%;'>"
-						+ "<div style = 'height: 6px; width: " + progress + "%; background: #dc8a00;'>"
-						+ "</div>"
-						+ "</div>"
-						+ "</div>";
+					+ "<div style = 'background: #070707; border: 1px solid #070707; height: 6px; width: 100%;'>"
+					+ "<div style = 'height: 6px; width: " + progress + "%; background: #dc8a00;'>"
+					+ "</div>"
+					+ "</div>"
+					+ "</div>";
 			}
 		}
 

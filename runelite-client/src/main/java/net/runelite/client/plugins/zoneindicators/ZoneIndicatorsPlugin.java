@@ -184,7 +184,7 @@ public class ZoneIndicatorsPlugin extends Plugin
 			return false;
 		}
 
-		ObjectDefinition objectComposition = client.getObjectDefinition(wallObject.getId());
+		ObjectComposition objectComposition = client.getObjectDefinition(wallObject.getId());
 
 		if (objectComposition == null)
 		{

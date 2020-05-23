@@ -162,9 +162,9 @@ public interface PohConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "showMythicalCape",
-			name = "Show Mythical Cape",
-			description = "Configures whether or not the Mythical Cape is displayed"
+		keyName = "showMythicalCape",
+		name = "Show Mythical Cape",
+		description = "Configures whether or not the Mythical Cape is displayed"
 	)
 	default boolean showMythicalCape()
 	{

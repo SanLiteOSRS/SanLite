@@ -106,7 +106,7 @@ class FishingSpotOverlay extends Overlay
 			}
 
 			Color color;
-			if (npc.getSpotAnimation() == GraphicID.FLYING_FISH)
+			if (npc.getGraphic() == GraphicID.FLYING_FISH)
 			{
 				color = config.getMinnowsOverlayColor();
 			}

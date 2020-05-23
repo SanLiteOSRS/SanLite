@@ -31,7 +31,7 @@ import java.awt.*;
  */
 public interface GroundObject extends TileObject
 {
-	Entity getEntity();
+	Renderable getRenderable();
 
 	Model getModel();
 

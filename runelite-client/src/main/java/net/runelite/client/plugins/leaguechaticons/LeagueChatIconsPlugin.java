@@ -31,12 +31,14 @@ import javax.inject.Inject;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.ChatPlayer;
 import net.runelite.api.ClanMember;
+import net.runelite.api.ClanMemberManager;
 import net.runelite.api.Client;
 import net.runelite.api.Friend;
 import net.runelite.api.GameState;
 import net.runelite.api.IconID;
 import net.runelite.api.IndexedSprite;
 import net.runelite.api.MessageNode;
+import net.runelite.api.NameableContainer;
 import net.runelite.api.Player;
 import net.runelite.api.events.ChatMessage;
 import net.runelite.api.events.GameStateChanged;
@@ -332,32 +334,17 @@ public class LeagueChatIconsPlugin extends Plugin
 	{
 		// Search clan members first, because if a friend is in the clan chat but their private
 		// chat is 'off', then we won't know the world
-		ClanMember[] clanMembers = client.getClanMembers();
-
-		if (clanMembers != null)
+		ClanMemberManager clanMemberManager = client.getClanMemberManager();
+		if (clanMemberManager != null)
 		{
-			for (ClanMember clanMember : clanMembers)
+			ClanMember clanMember = clanMemberManager.findByName(name);
+			if (clanMember != null)
 			{
-				if (clanMember != null && clanMember.getUsername().equals(name))
-				{
-					return clanMember;
-				}
+				return clanMember;
 			}
 		}
 
-		Friend[] friends = client.getFriends();
-
-		if (friends != null)
-		{
-			for (Friend friend : friends)
-			{
-				if (friend != null && friend.getName().equals(name))
-				{
-					return friend;
-				}
-			}
-		}
-
-		return null;
+		NameableContainer<Friend> friendContainer = client.getFriendContainer();
+		return friendContainer.findByName(name);
 	}
 }

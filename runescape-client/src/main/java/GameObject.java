@@ -53,7 +53,7 @@ public final class GameObject {
 		signature = "Lee;"
 	)
 	@Export("entity")
-	public Entity entity;
+	public Renderable entity;
 	@ObfuscatedName("q")
 	@ObfuscatedGetter(
 		intValue = 1786771811

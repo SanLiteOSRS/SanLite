@@ -181,7 +181,7 @@ public class SoundCache {
 				int var39 = WorldMapRectangle.Entity_unpackID(var7);
 				int var40 = var12 & 31;
 				int var41 = var12 >> 6 & 3;
-				ObjectDefinition var13;
+				ObjectComposition var13;
 				if (var1 == 0) {
 					GrandExchangeOfferWorldComparator.scene.removeBoundaryObject(var0, var2, var3);
 					var13 = WorldMapSection2.getObjectDefinition(var39);
@@ -223,7 +223,7 @@ public class SoundCache {
 
 				Scene var42 = GrandExchangeOfferWorldComparator.scene;
 				CollisionMap var14 = Client.collisionMaps[var0];
-				ObjectDefinition var15 = WorldMapSection2.getObjectDefinition(var4);
+				ObjectComposition var15 = WorldMapSection2.getObjectDefinition(var4);
 				int var16;
 				int var17;
 				if (var5 != 1 && var5 != 3) {
@@ -269,10 +269,10 @@ public class SoundCache {
 					if (var15.animationId == -1 && var15.transforms == null) {
 						var29 = var15.getModel(22, var5, var22, var24, var23, var25);
 					} else {
-						var29 = new DynamicObject(var4, 22, var5, var12, var2, var3, var15.animationId, true, (Entity)null);
+						var29 = new DynamicObject(var4, 22, var5, var12, var2, var3, var15.animationId, true, (Renderable)null);
 					}
 
-					var42.newFloorDecoration(var0, var2, var3, var23, (Entity)var29, var26, var28);
+					var42.newFloorDecoration(var0, var2, var3, var23, (Renderable)var29, var26, var28);
 					if (var15.interactType == 1) {
 						var14.setBlockedByFloorDec(var2, var3);
 					}
@@ -281,10 +281,10 @@ public class SoundCache {
 						if (var15.animationId == -1 && var15.transforms == null) {
 							var29 = var15.getModel(var6, var5, var22, var24, var23, var25);
 						} else {
-							var29 = new DynamicObject(var4, var6, var5, var12, var2, var3, var15.animationId, true, (Entity)null);
+							var29 = new DynamicObject(var4, var6, var5, var12, var2, var3, var15.animationId, true, (Renderable)null);
 						}
 
-						var42.method3187(var0, var2, var3, var23, 1, 1, (Entity)var29, 0, var26, var28);
+						var42.method3187(var0, var2, var3, var23, 1, 1, (Renderable)var29, 0, var26, var28);
 						if (var15.interactType != 0) {
 							var14.addGameObject(var2, var3, var16, var17, var15.boolean1);
 						}
@@ -292,10 +292,10 @@ public class SoundCache {
 						if (var15.animationId == -1 && var15.transforms == null) {
 							var29 = var15.getModel(0, var5, var22, var24, var23, var25);
 						} else {
-							var29 = new DynamicObject(var4, 0, var5, var12, var2, var3, var15.animationId, true, (Entity)null);
+							var29 = new DynamicObject(var4, 0, var5, var12, var2, var3, var15.animationId, true, (Renderable)null);
 						}
 
-						var42.newBoundaryObject(var0, var2, var3, var23, (Entity)var29, (Entity)null, Tiles.field544[var5], 0, var26, var28);
+						var42.newBoundaryObject(var0, var2, var3, var23, (Renderable)var29, (Renderable)null, Tiles.field544[var5], 0, var26, var28);
 						if (var15.interactType != 0) {
 							var14.method3630(var2, var3, var6, var5, var15.boolean1);
 						}
@@ -303,10 +303,10 @@ public class SoundCache {
 						if (var15.animationId == -1 && var15.transforms == null) {
 							var29 = var15.getModel(1, var5, var22, var24, var23, var25);
 						} else {
-							var29 = new DynamicObject(var4, 1, var5, var12, var2, var3, var15.animationId, true, (Entity)null);
+							var29 = new DynamicObject(var4, 1, var5, var12, var2, var3, var15.animationId, true, (Renderable)null);
 						}
 
-						var42.newBoundaryObject(var0, var2, var3, var23, (Entity)var29, (Entity)null, Tiles.field542[var5], 0, var26, var28);
+						var42.newBoundaryObject(var0, var2, var3, var23, (Renderable)var29, (Renderable)null, Tiles.field542[var5], 0, var26, var28);
 						if (var15.interactType != 0) {
 							var14.method3630(var2, var3, var6, var5, var15.boolean1);
 						}
@@ -320,11 +320,11 @@ public class SoundCache {
 								var30 = var15.getModel(2, var5 + 4, var22, var24, var23, var25);
 								var31 = var15.getModel(2, var35, var22, var24, var23, var25);
 							} else {
-								var30 = new DynamicObject(var4, 2, var5 + 4, var12, var2, var3, var15.animationId, true, (Entity)null);
-								var31 = new DynamicObject(var4, 2, var35, var12, var2, var3, var15.animationId, true, (Entity)null);
+								var30 = new DynamicObject(var4, 2, var5 + 4, var12, var2, var3, var15.animationId, true, (Renderable)null);
+								var31 = new DynamicObject(var4, 2, var35, var12, var2, var3, var15.animationId, true, (Renderable)null);
 							}
 
-							var42.newBoundaryObject(var0, var2, var3, var23, (Entity)var30, (Entity)var31, Tiles.field544[var5], Tiles.field544[var35], var26, var28);
+							var42.newBoundaryObject(var0, var2, var3, var23, (Renderable)var30, (Renderable)var31, Tiles.field544[var5], Tiles.field544[var35], var26, var28);
 							if (var15.interactType != 0) {
 								var14.method3630(var2, var3, var6, var5, var15.boolean1);
 							}
@@ -332,10 +332,10 @@ public class SoundCache {
 							if (var15.animationId == -1 && var15.transforms == null) {
 								var29 = var15.getModel(3, var5, var22, var24, var23, var25);
 							} else {
-								var29 = new DynamicObject(var4, 3, var5, var12, var2, var3, var15.animationId, true, (Entity)null);
+								var29 = new DynamicObject(var4, 3, var5, var12, var2, var3, var15.animationId, true, (Renderable)null);
 							}
 
-							var42.newBoundaryObject(var0, var2, var3, var23, (Entity)var29, (Entity)null, Tiles.field542[var5], 0, var26, var28);
+							var42.newBoundaryObject(var0, var2, var3, var23, (Renderable)var29, (Renderable)null, Tiles.field542[var5], 0, var26, var28);
 							if (var15.interactType != 0) {
 								var14.method3630(var2, var3, var6, var5, var15.boolean1);
 							}
@@ -343,10 +343,10 @@ public class SoundCache {
 							if (var15.animationId == -1 && var15.transforms == null) {
 								var29 = var15.getModel(var6, var5, var22, var24, var23, var25);
 							} else {
-								var29 = new DynamicObject(var4, var6, var5, var12, var2, var3, var15.animationId, true, (Entity)null);
+								var29 = new DynamicObject(var4, var6, var5, var12, var2, var3, var15.animationId, true, (Renderable)null);
 							}
 
-							var42.method3187(var0, var2, var3, var23, 1, 1, (Entity)var29, 0, var26, var28);
+							var42.method3187(var0, var2, var3, var23, 1, 1, (Renderable)var29, 0, var26, var28);
 							if (var15.interactType != 0) {
 								var14.addGameObject(var2, var3, var16, var17, var15.boolean1);
 							}
@@ -354,10 +354,10 @@ public class SoundCache {
 							if (var15.animationId == -1 && var15.transforms == null) {
 								var29 = var15.getModel(4, var5, var22, var24, var23, var25);
 							} else {
-								var29 = new DynamicObject(var4, 4, var5, var12, var2, var3, var15.animationId, true, (Entity)null);
+								var29 = new DynamicObject(var4, 4, var5, var12, var2, var3, var15.animationId, true, (Renderable)null);
 							}
 
-							var42.newWallDecoration(var0, var2, var3, var23, (Entity)var29, (Entity)null, Tiles.field544[var5], 0, 0, 0, var26, var28);
+							var42.newWallDecoration(var0, var2, var3, var23, (Renderable)var29, (Renderable)null, Tiles.field544[var5], 0, 0, 0, var26, var28);
 						} else {
 							Object var32;
 							long var36;
@@ -371,10 +371,10 @@ public class SoundCache {
 								if (var15.animationId == -1 && var15.transforms == null) {
 									var32 = var15.getModel(4, var5, var22, var24, var23, var25);
 								} else {
-									var32 = new DynamicObject(var4, 4, var5, var12, var2, var3, var15.animationId, true, (Entity)null);
+									var32 = new DynamicObject(var4, 4, var5, var12, var2, var3, var15.animationId, true, (Renderable)null);
 								}
 
-								var42.newWallDecoration(var0, var2, var3, var23, (Entity)var32, (Entity)null, Tiles.field544[var5], 0, var35 * Tiles.field541[var5], var35 * Tiles.field547[var5], var26, var28);
+								var42.newWallDecoration(var0, var2, var3, var23, (Renderable)var32, (Renderable)null, Tiles.field544[var5], 0, var35 * Tiles.field541[var5], var35 * Tiles.field547[var5], var26, var28);
 							} else if (var6 == 6) {
 								var35 = 8;
 								var36 = var42.getBoundaryObjectTag(var0, var2, var3);
@@ -385,19 +385,19 @@ public class SoundCache {
 								if (var15.animationId == -1 && var15.transforms == null) {
 									var32 = var15.getModel(4, var5 + 4, var22, var24, var23, var25);
 								} else {
-									var32 = new DynamicObject(var4, 4, var5 + 4, var12, var2, var3, var15.animationId, true, (Entity)null);
+									var32 = new DynamicObject(var4, 4, var5 + 4, var12, var2, var3, var15.animationId, true, (Renderable)null);
 								}
 
-								var42.newWallDecoration(var0, var2, var3, var23, (Entity)var32, (Entity)null, 256, var5, var35 * Tiles.field546[var5], var35 * Tiles.field552[var5], var26, var28);
+								var42.newWallDecoration(var0, var2, var3, var23, (Renderable)var32, (Renderable)null, 256, var5, var35 * Tiles.field546[var5], var35 * Tiles.field552[var5], var26, var28);
 							} else if (var6 == 7) {
 								int var38 = var5 + 2 & 3;
 								if (var15.animationId == -1 && var15.transforms == null) {
 									var29 = var15.getModel(4, var38 + 4, var22, var24, var23, var25);
 								} else {
-									var29 = new DynamicObject(var4, 4, var38 + 4, var12, var2, var3, var15.animationId, true, (Entity)null);
+									var29 = new DynamicObject(var4, 4, var38 + 4, var12, var2, var3, var15.animationId, true, (Renderable)null);
 								}
 
-								var42.newWallDecoration(var0, var2, var3, var23, (Entity)var29, (Entity)null, 256, var38, 0, 0, var26, var28);
+								var42.newWallDecoration(var0, var2, var3, var23, (Renderable)var29, (Renderable)null, 256, var38, 0, 0, var26, var28);
 							} else if (var6 == 8) {
 								var35 = 8;
 								var36 = var42.getBoundaryObjectTag(var0, var2, var3);
@@ -411,11 +411,11 @@ public class SoundCache {
 									var32 = var15.getModel(4, var5 + 4, var22, var24, var23, var25);
 									var33 = var15.getModel(4, var34 + 4, var22, var24, var23, var25);
 								} else {
-									var32 = new DynamicObject(var4, 4, var5 + 4, var12, var2, var3, var15.animationId, true, (Entity)null);
-									var33 = new DynamicObject(var4, 4, var34 + 4, var12, var2, var3, var15.animationId, true, (Entity)null);
+									var32 = new DynamicObject(var4, 4, var5 + 4, var12, var2, var3, var15.animationId, true, (Renderable)null);
+									var33 = new DynamicObject(var4, 4, var34 + 4, var12, var2, var3, var15.animationId, true, (Renderable)null);
 								}
 
-								var42.newWallDecoration(var0, var2, var3, var23, (Entity)var32, (Entity)var33, 256, var5, var35 * Tiles.field546[var5], var35 * Tiles.field552[var5], var26, var28);
+								var42.newWallDecoration(var0, var2, var3, var23, (Renderable)var32, (Renderable)var33, 256, var5, var35 * Tiles.field546[var5], var35 * Tiles.field552[var5], var26, var28);
 							}
 						}
 					}
@@ -423,11 +423,11 @@ public class SoundCache {
 					if (var15.animationId == -1 && var15.transforms == null) {
 						var29 = var15.getModel(10, var5, var22, var24, var23, var25);
 					} else {
-						var29 = new DynamicObject(var4, 10, var5, var12, var2, var3, var15.animationId, true, (Entity)null);
+						var29 = new DynamicObject(var4, 10, var5, var12, var2, var3, var15.animationId, true, (Renderable)null);
 					}
 
 					if (var29 != null) {
-						var42.method3187(var0, var2, var3, var23, var16, var17, (Entity)var29, var6 == 11 ? 256 : 0, var26, var28);
+						var42.method3187(var0, var2, var3, var23, var16, var17, (Renderable)var29, var6 == 11 ? 256 : 0, var26, var28);
 					}
 
 					if (var15.interactType != 0) {

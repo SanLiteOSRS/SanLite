@@ -162,20 +162,20 @@ public class CorpPlugin extends Plugin
 			{
 				// Show kill stats
 				String message = new ChatMessageBuilder()
-						.append(ChatColorType.NORMAL)
-						.append("Corporeal Beast: Your damage: ")
-						.append(ChatColorType.HIGHLIGHT)
-						.append(Integer.toString(yourDamage))
-						.append(ChatColorType.NORMAL)
-						.append(", Total damage: ")
-						.append(ChatColorType.HIGHLIGHT)
-						.append(Integer.toString(totalDamage))
-						.build();
+					.append(ChatColorType.NORMAL)
+					.append("Corporeal Beast: Your damage: ")
+					.append(ChatColorType.HIGHLIGHT)
+					.append(Integer.toString(yourDamage))
+					.append(ChatColorType.NORMAL)
+					.append(", Total damage: ")
+					.append(ChatColorType.HIGHLIGHT)
+					.append(Integer.toString(totalDamage))
+					.build();
 
 				chatMessageManager.queue(QueuedMessage.builder()
-						.type(ChatMessageType.CONSOLE)
-						.runeLiteFormattedMessage(message)
-						.build());
+					.type(ChatMessageType.CONSOLE)
+					.runeLiteFormattedMessage(message)
+					.build());
 			}
 		}
 		else if (npc == core)

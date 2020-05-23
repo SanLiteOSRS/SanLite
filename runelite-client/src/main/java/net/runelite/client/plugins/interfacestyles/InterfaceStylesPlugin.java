@@ -34,7 +34,7 @@ import net.runelite.api.Client;
 import net.runelite.api.GameState;
 import net.runelite.api.HealthBar;
 import net.runelite.api.SpriteID;
-import net.runelite.api.Sprite;
+import net.runelite.api.SpritePixels;
 import net.runelite.api.events.BeforeMenuRender;
 import net.runelite.api.events.BeforeRender;
 import net.runelite.client.events.ConfigChanged;
@@ -72,7 +72,7 @@ public class InterfaceStylesPlugin extends Plugin
 	@Inject
 	private SpriteManager spriteManager;
 
-	private Sprite[] defaultCrossSprites;
+	private SpritePixels[] defaultCrossSprites;
 
 	@Provides
 	InterfaceStylesConfig provideConfig(ConfigManager configManager)
@@ -175,7 +175,12 @@ public class InterfaceStylesPlugin extends Plugin
 	{
 		if (config.hdMenu())
 		{
-			client.draw2010Menu();
+			client.draw2010Menu(config.menuAlpha());
+			event.consume();
+		}
+		else if (config.menuAlpha() != 255)
+		{
+			client.drawOriginalMenu(config.menuAlpha());
 			event.consume();
 		}
 	}
@@ -193,7 +198,7 @@ public class InterfaceStylesPlugin extends Plugin
 						? skin.getExtendSkin().toString()
 						: skin.toString();
 					String file = configSkin + "/" + spriteOverride.getSpriteID() + ".png";
-					Sprite spritePixels = getFileSpritePixels(file);
+					SpritePixels spritePixels = getFileSpritePixels(file);
 
 					if (spriteOverride.getSpriteID() == SpriteID.COMPASS_TEXTURE)
 					{
@@ -230,7 +235,7 @@ public class InterfaceStylesPlugin extends Plugin
 					? configuredSkin.getExtendSkin().toString()
 					: configuredSkin.toString();
 				String file = configSkin + "/widget/" + widgetOverride.getName() + ".png";
-				Sprite spritePixels = getFileSpritePixels(file);
+				SpritePixels spritePixels = getFileSpritePixels(file);
 
 				if (spritePixels != null)
 				{
@@ -254,7 +259,7 @@ public class InterfaceStylesPlugin extends Plugin
 		}
 	}
 
-	private Sprite getFileSpritePixels(String file)
+	private SpritePixels getFileSpritePixels(String file)
 	{
 		try
 		{
@@ -337,19 +342,19 @@ public class InterfaceStylesPlugin extends Plugin
 				return;
 			}
 
-			Sprite[] crossSprites = client.getCrossSprites();
+			SpritePixels[] crossSprites = client.getCrossSprites();
 
 			if (crossSprites == null)
 			{
 				return;
 			}
 
-			defaultCrossSprites = new Sprite[crossSprites.length];
+			defaultCrossSprites = new SpritePixels[crossSprites.length];
 			System.arraycopy(crossSprites, 0, defaultCrossSprites, 0, defaultCrossSprites.length);
 
 			for (int i = 0; i < crossSprites.length; i++)
 			{
-				Sprite newSprite = getFileSpritePixels("rs3/cross_sprites/" + i + ".png");
+				SpritePixels newSprite = getFileSpritePixels("rs3/cross_sprites/" + i + ".png");
 
 				if (newSprite == null)
 				{
@@ -372,7 +377,7 @@ public class InterfaceStylesPlugin extends Plugin
 			return;
 		}
 
-		Sprite[] crossSprites = client.getCrossSprites();
+		SpritePixels[] crossSprites = client.getCrossSprites();
 
 		if (crossSprites != null && defaultCrossSprites.length == crossSprites.length)
 		{
@@ -400,11 +405,11 @@ public class InterfaceStylesPlugin extends Plugin
 		restoreSprites();
 		restoreWidgetSprites();
 
-		BufferedImage compassImage = spriteManager.getSpriteImg(SpriteID.COMPASS_TEXTURE, 0);
+		BufferedImage compassImage = spriteManager.getSprite(SpriteID.COMPASS_TEXTURE, 0);
 
 		if (compassImage != null)
 		{
-			Sprite compass = ImageUtil.getImageSpritePixels(compassImage, client);
+			SpritePixels compass = ImageUtil.getImageSpritePixels(compassImage, client);
 			client.setCompass(compass);
 		}
 	}

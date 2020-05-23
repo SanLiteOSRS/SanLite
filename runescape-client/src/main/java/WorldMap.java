@@ -260,7 +260,7 @@ public class WorldMap {
 		signature = "Lla;"
 	)
 	@Export("sprite")
-	Sprite sprite;
+	SpritePixels sprite;
 	@ObfuscatedName("bh")
 	@ObfuscatedGetter(
 		intValue = -1704097389
@@ -827,7 +827,7 @@ public class WorldMap {
 				if (this.sprite != null && this.sprite.subWidth == var8 && this.sprite.subHeight == var9) {
 					Arrays.fill(this.sprite.pixels, 0);
 				} else {
-					this.sprite = new Sprite(var8, var9);
+					this.sprite = new SpritePixels(var8, var9);
 				}
 
 				this.minCachedTileX = this.getDisplayX() - var5 / 2 - var7;

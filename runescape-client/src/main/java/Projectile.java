@@ -6,7 +6,8 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ct")
 @Implements("Projectile")
-public final class Projectile extends Entity {
+public final class Projectile extends Renderable
+{
 	@ObfuscatedName("sj")
 	@ObfuscatedSignature(
 		signature = "Lco;"

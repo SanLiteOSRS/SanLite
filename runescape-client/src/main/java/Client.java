@@ -15,7 +15,7 @@ import netscape.javascript.JSObject;
 
 @Implements("Client")
 @ObfuscatedName("client")
-public final class Client extends GameShell implements Usernamed {
+public final class Client extends GameEngine implements Usernamed {
 	@ObfuscatedName("nc")
 	@ObfuscatedSignature(
 		signature = "Lhe;"
@@ -233,7 +233,7 @@ public final class Client extends GameShell implements Usernamed {
 		signature = "Lhk;"
 	)
 	@Export("playerAppearance")
-	static PlayerAppearance playerAppearance;
+	static PlayerComposition playerAppearance;
 	@ObfuscatedName("qy")
 	@ObfuscatedGetter(
 		intValue = 1461372687
@@ -422,7 +422,7 @@ public final class Client extends GameShell implements Usernamed {
 		signature = "[Lla;"
 	)
 	@Export("mapIcons")
-	static Sprite[] mapIcons;
+	static SpritePixels[] mapIcons;
 	@ObfuscatedName("ph")
 	@ObfuscatedGetter(
 		intValue = 180652911
@@ -1518,7 +1518,7 @@ public final class Client extends GameShell implements Usernamed {
 		mapIconCount = 0;
 		mapIconXs = new int[1000];
 		mapIconYs = new int[1000];
-		mapIcons = new Sprite[1000];
+		mapIcons = new SpritePixels[1000];
 		destinationX = 0;
 		destinationY = 0;
 		minimapState = 0;
@@ -1552,7 +1552,7 @@ public final class Client extends GameShell implements Usernamed {
 		viewportWidth = 0;
 		viewportHeight = 0;
 		viewportZoom = 0;
-		playerAppearance = new PlayerAppearance();
+		playerAppearance = new PlayerComposition();
 		field945 = -1;
 		field946 = -1;
 		platformInfoProvider = new DesktopPlatformInfoProvider();
@@ -1610,8 +1610,8 @@ public final class Client extends GameShell implements Usernamed {
 		class280.port3 = WorldMapLabelSize.port1;
 		WorldMapLabel.field278 = class224.field2544;
 		VertexNormal.field1764 = class224.field2547;
-		PlayerAppearance.field2539 = class224.field2546;
-		PlayerAppearance.field2535 = class224.field2545;
+		PlayerComposition.field2539 = class224.field2546;
+		PlayerComposition.field2535 = class224.field2545;
 		WorldMapLabel.urlRequester = new UrlRequester();
 		this.setUpKeyboard();
 		this.setUpMouse();
@@ -1726,28 +1726,28 @@ public final class Client extends GameShell implements Usernamed {
 
 				if (gameState == 0) {
 					class237.load();
-					GameShell.clock.mark();
+					GameEngine.clock.mark();
 
 					for (var5 = 0; var5 < 32; ++var5) {
-						GameShell.graphicsTickTimes[var5] = 0L;
+						GameEngine.graphicsTickTimes[var5] = 0L;
 					}
 
 					for (var5 = 0; var5 < 32; ++var5) {
-						GameShell.clientTickTimes[var5] = 0L;
+						GameEngine.clientTickTimes[var5] = 0L;
 					}
 
 					ModelData0.gameCyclesToDo = 0;
 				} else if (gameState == 5) {
 					GrandExchangeOfferAgeComparator.doCycleTitle(this);
 					class237.load();
-					GameShell.clock.mark();
+					GameEngine.clock.mark();
 
 					for (var5 = 0; var5 < 32; ++var5) {
-						GameShell.graphicsTickTimes[var5] = 0L;
+						GameEngine.graphicsTickTimes[var5] = 0L;
 					}
 
 					for (var5 = 0; var5 < 32; ++var5) {
-						GameShell.clientTickTimes[var5] = 0L;
+						GameEngine.clientTickTimes[var5] = 0L;
 					}
 
 					ModelData0.gameCyclesToDo = 0;
@@ -2741,7 +2741,7 @@ public final class Client extends GameShell implements Usernamed {
 					}
 
 					if (var14 != 0) {
-						PlayerAppearance.getLoginError(var14);
+						PlayerComposition.getLoginError(var14);
 						return;
 					}
 
@@ -2868,7 +2868,7 @@ public final class Client extends GameShell implements Usernamed {
 				var33.packetBuffer.writeInt(AbstractWorldMapIcon.archive7.hash);
 				var33.packetBuffer.writeInt(class228.archive8.hash);
 				var33.packetBuffer.writeInt(SecureRandomFuture.archive9.hash);
-				var33.packetBuffer.writeInt(PlayerAppearance.archive10.hash);
+				var33.packetBuffer.writeInt(PlayerComposition.archive10.hash);
 				var33.packetBuffer.writeInt(WorldMapRegion.archive11.hash);
 				var33.packetBuffer.writeInt(class41.archive12.hash);
 				var33.packetBuffer.writeInt(NPC.archive13.hash);
@@ -2912,7 +2912,7 @@ public final class Client extends GameShell implements Usernamed {
 					loginState = 17;
 				} else {
 					if (var36 != 69) {
-						PlayerAppearance.getLoginError(var36);
+						PlayerComposition.getLoginError(var36);
 						return;
 					}
 
@@ -2944,7 +2944,7 @@ public final class Client extends GameShell implements Usernamed {
 						throw new IllegalArgumentException();
 					}
 				} catch (Exception var23) {
-					PlayerAppearance.getLoginError(22);
+					PlayerComposition.getLoginError(22);
 					return;
 				}
 			}
@@ -2954,7 +2954,7 @@ public final class Client extends GameShell implements Usernamed {
 				this.field719.method110();
 				this.field719 = null;
 				if (this.field718 == null) {
-					PlayerAppearance.getLoginError(22);
+					PlayerComposition.getLoginError(22);
 					return;
 				}
 
@@ -3113,7 +3113,7 @@ public final class Client extends GameShell implements Usernamed {
 								++field713;
 								loginState = 0;
 							} else {
-								PlayerAppearance.getLoginError(-3);
+								PlayerComposition.getLoginError(-3);
 							}
 						}
 					} else {
@@ -3190,7 +3190,7 @@ public final class Client extends GameShell implements Usernamed {
 				++field713;
 				loginState = 0;
 			} else {
-				PlayerAppearance.getLoginError(-2);
+				PlayerComposition.getLoginError(-2);
 			}
 		}
 	}
@@ -3426,14 +3426,14 @@ public final class Client extends GameShell implements Usernamed {
 							packetWriter.addNode(var15);
 						}
 
-						if (GameShell.hasFocus && !hadFocus) {
+						if (GameEngine.hasFocus && !hadFocus) {
 							hadFocus = true;
 							var15 = FaceNormal.getPacketBufferNode(ClientPacket.field2261, packetWriter.isaacCipher);
 							var15.packetBuffer.writeByte(1);
 							packetWriter.addNode(var15);
 						}
 
-						if (!GameShell.hasFocus && hadFocus) {
+						if (!GameEngine.hasFocus && hadFocus) {
 							hadFocus = false;
 							var15 = FaceNormal.getPacketBufferNode(ClientPacket.field2261, packetWriter.isaacCipher);
 							var15.packetBuffer.writeByte(0);
@@ -4448,7 +4448,7 @@ public final class Client extends GameShell implements Usernamed {
 				if (ServerPacket.field2162 == var1.serverPacket) {
 					var60 = var3.readUnsignedByte() == 1;
 					if (var60) {
-						TilePaint.field1802 = class217.currentTimeMillis() - var3.readLong();
+						SceneTilePaint.field1802 = class217.currentTimeMillis() - var3.readLong();
 						GrandExchangeEvent.grandExchangeEvents = new GrandExchangeEvents(var3, true);
 					} else {
 						GrandExchangeEvent.grandExchangeEvents = null;
@@ -4901,7 +4901,7 @@ public final class Client extends GameShell implements Usernamed {
 						InterfaceParent.clanChat = null;
 					} else {
 						if (InterfaceParent.clanChat == null) {
-							InterfaceParent.clanChat = new ClanChat(WorldMapIcon_0.loginType, WorldMapSection1.client);
+							InterfaceParent.clanChat = new ClanMemberManager(WorldMapIcon_0.loginType, WorldMapSection1.client);
 						}
 
 						InterfaceParent.clanChat.readUpdate(var3);
@@ -4962,7 +4962,7 @@ public final class Client extends GameShell implements Usernamed {
 					var5 = var3.method5619();
 					var6 = var3.method5621();
 					var47 = MusicPatchNode.getWidget(var6);
-					ItemDefinition var56;
+					ItemComposition var56;
 					if (!var47.isIf3) {
 						if (var16 == -1) {
 							var47.modelType = 0;
@@ -5229,7 +5229,7 @@ public final class Client extends GameShell implements Usernamed {
 					PacketBufferNode var46 = FaceNormal.getPacketBufferNode(ClientPacket.field2218, packetWriter.isaacCipher);
 					var46.packetBuffer.writeShortLE(var16);
 					var46.packetBuffer.method5617(var5);
-					var46.packetBuffer.method5727(GameShell.fps);
+					var46.packetBuffer.method5727(GameEngine.fps);
 					var46.packetBuffer.method5727(var6);
 					packetWriter.addNode(var46);
 					var1.serverPacket = null;

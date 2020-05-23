@@ -321,10 +321,10 @@ public class Scene {
 	@ObfuscatedName("v")
 	@Export("addTile")
 	public void addTile(int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, int var9, int var10, int var11, int var12, int var13, int var14, int var15, int var16, int var17, int var18, int var19, int var20) {
-		TilePaint var21;
+		SceneTilePaint var21;
 		int var22;
 		if (var4 == 0) {
-			var21 = new TilePaint(var11, var12, var13, var14, -1, var19, false);
+			var21 = new SceneTilePaint(var11, var12, var13, var14, -1, var19, false);
 
 			for (var22 = var1; var22 >= 0; --var22) {
 				if (this.tiles[var22][var2][var3] == null) {
@@ -334,7 +334,7 @@ public class Scene {
 
 			this.tiles[var1][var2][var3].paint = var21;
 		} else if (var4 != 1) {
-			TileModel var23 = new TileModel(var4, var5, var6, var2, var3, var7, var8, var9, var10, var11, var12, var13, var14, var15, var16, var17, var18, var19, var20);
+			SceneTileModel var23 = new SceneTileModel(var4, var5, var6, var2, var3, var7, var8, var9, var10, var11, var12, var13, var14, var15, var16, var17, var18, var19, var20);
 
 			for (var22 = var1; var22 >= 0; --var22) {
 				if (this.tiles[var22][var2][var3] == null) {
@@ -344,7 +344,7 @@ public class Scene {
 
 			this.tiles[var1][var2][var3].model = var23;
 		} else {
-			var21 = new TilePaint(var15, var16, var17, var18, var6, var20, var8 == var7 && var7 == var9 && var10 == var7);
+			var21 = new SceneTilePaint(var15, var16, var17, var18, var6, var20, var8 == var7 && var7 == var9 && var10 == var7);
 
 			for (var22 = var1; var22 >= 0; --var22) {
 				if (this.tiles[var22][var2][var3] == null) {
@@ -361,7 +361,7 @@ public class Scene {
 		signature = "(IIIILee;JI)V"
 	)
 	@Export("newFloorDecoration")
-	public void newFloorDecoration(int var1, int var2, int var3, int var4, Entity var5, long var6, int var8) {
+	public void newFloorDecoration(int var1, int var2, int var3, int var4, Renderable var5, long var6, int var8) {
 		if (var5 != null) {
 			FloorDecoration var9 = new FloorDecoration();
 			var9.entity = var5;
@@ -383,8 +383,8 @@ public class Scene {
 		signature = "(IIIILee;JLee;Lee;)V"
 	)
 	@Export("newGroundItemPile")
-	public void newGroundItemPile(int var1, int var2, int var3, int var4, Entity var5, long var6, Entity var8, Entity var9) {
-		TileItemPile var10 = new TileItemPile();
+	public void newGroundItemPile(int var1, int var2, int var3, int var4, Renderable var5, long var6, Renderable var8, Renderable var9) {
+		ItemLayer var10 = new ItemLayer();
 		var10.first = var5;
 		var10.x = var2 * 128 + 64;
 		var10.y = var3 * 128 + 64;
@@ -419,7 +419,7 @@ public class Scene {
 		signature = "(IIIILee;Lee;IIJI)V"
 	)
 	@Export("newBoundaryObject")
-	public void newBoundaryObject(int var1, int var2, int var3, int var4, Entity var5, Entity var6, int var7, int var8, long var9, int var11) {
+	public void newBoundaryObject(int var1, int var2, int var3, int var4, Renderable var5, Renderable var6, int var7, int var8, long var9, int var11) {
 		if (var5 != null || var6 != null) {
 			BoundaryObject var12 = new BoundaryObject();
 			var12.tag = var9;
@@ -447,7 +447,7 @@ public class Scene {
 		signature = "(IIIILee;Lee;IIIIJI)V"
 	)
 	@Export("newWallDecoration")
-	public void newWallDecoration(int var1, int var2, int var3, int var4, Entity var5, Entity var6, int var7, int var8, int var9, int var10, long var11, int var13) {
+	public void newWallDecoration(int var1, int var2, int var3, int var4, Renderable var5, Renderable var6, int var7, int var8, int var9, int var10, long var11, int var13) {
 		if (var5 != null) {
 			WallDecoration var14 = new WallDecoration();
 			var14.tag = var11;
@@ -476,7 +476,7 @@ public class Scene {
 	@ObfuscatedSignature(
 		signature = "(IIIIIILee;IJI)Z"
 	)
-	public boolean method3187(int var1, int var2, int var3, int var4, int var5, int var6, Entity var7, int var8, long var9, int var11) {
+	public boolean method3187(int var1, int var2, int var3, int var4, int var5, int var6, Renderable var7, int var8, long var9, int var11) {
 		if (var7 == null) {
 			return true;
 		} else {
@@ -491,7 +491,7 @@ public class Scene {
 		signature = "(IIIIILee;IJZ)Z"
 	)
 	@Export("drawEntity")
-	public boolean drawEntity(int var1, int var2, int var3, int var4, int var5, Entity var6, int var7, long var8, boolean var10) {
+	public boolean drawEntity(int var1, int var2, int var3, int var4, int var5, Renderable var6, int var7, long var8, boolean var10) {
 		if (var6 == null) {
 			return true;
 		} else {
@@ -530,7 +530,7 @@ public class Scene {
 		signature = "(IIIIILee;IJIIII)Z"
 	)
 	@Export("addNullableObject")
-	public boolean addNullableObject(int var1, int var2, int var3, int var4, int var5, Entity var6, int var7, long var8, int var10, int var11, int var12, int var13) {
+	public boolean addNullableObject(int var1, int var2, int var3, int var4, int var5, Renderable var6, int var7, long var8, int var10, int var11, int var12, int var13) {
 		return var6 == null ? true : this.newGameObject(var1, var10, var11, var12 - var10 + 1, var13 - var11 + 1, var2, var3, var4, var6, var7, true, var8, 0);
 	}
 
@@ -539,7 +539,7 @@ public class Scene {
 		signature = "(IIIIIIIILee;IZJI)Z"
 	)
 	@Export("newGameObject")
-	boolean newGameObject(int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, Entity var9, int var10, boolean var11, long var12, int var14) {
+	boolean newGameObject(int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, Renderable var9, int var10, boolean var11, long var12, int var14) {
 		int var16;
 		for (int var15 = var2; var15 < var2 + var4; ++var15) {
 			for (var16 = var3; var16 < var3 + var5; ++var16) {
@@ -985,7 +985,7 @@ public class Scene {
 	public void drawTileMinimap(int[] var1, int var2, int var3, int var4, int var5, int var6) {
 		Tile var7 = this.tiles[var4][var5][var6];
 		if (var7 != null) {
-			TilePaint var8 = var7.paint;
+			SceneTilePaint var8 = var7.paint;
 			int var10;
 			if (var8 != null) {
 				int var9 = var8.rgb;
@@ -1000,7 +1000,7 @@ public class Scene {
 
 				}
 			} else {
-				TileModel var18 = var7.model;
+				SceneTileModel var18 = var7.model;
 				if (var18 != null) {
 					var10 = var18.shape;
 					int var11 = var18.rotation;
@@ -1479,7 +1479,7 @@ public class Scene {
 													var22.entity.draw(0, Scene_cameraPitchSine, Scene_cameraPitchCosine, Scene_cameraYawSine, Scene_cameraYawCosine, var22.x * 4096 - Scene_cameraX, var22.tileHeight - Scene_cameraY, var22.y * 4096 - Scene_cameraZ, var22.tag);
 												}
 
-												TileItemPile var23 = var3.tileItemPile;
+												ItemLayer var23 = var3.tileItemPile;
 												if (var23 != null && var23.height == 0) {
 													if (var23.second != null) {
 														var23.second.draw(0, Scene_cameraPitchSine, Scene_cameraPitchCosine, Scene_cameraYawSine, Scene_cameraYawCosine, var23.x * 4096 - Scene_cameraX, var23.tileHeight - Scene_cameraY, var23.y * 4096 - Scene_cameraZ, var23.tag);
@@ -1697,7 +1697,7 @@ public class Scene {
 
 			var3.drawSecondary = false;
 			--tileUpdateCount;
-			TileItemPile var32 = var3.tileItemPile;
+			ItemLayer var32 = var3.tileItemPile;
 			if (var32 != null && var32.height != 0) {
 				if (var32.second != null) {
 					var32.second.draw(0, Scene_cameraPitchSine, Scene_cameraPitchCosine, Scene_cameraYawSine, Scene_cameraYawCosine, var32.x * 4096 - Scene_cameraX, var32.tileHeight - Scene_cameraY - var32.height, var32.y * 4096 - Scene_cameraZ, var32.tag);
@@ -1797,7 +1797,7 @@ public class Scene {
 		signature = "(Lev;IIIIIII)V"
 	)
 	@Export("drawTileUnderlay")
-	void drawTileUnderlay(TilePaint var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8) {
+	void drawTileUnderlay(SceneTilePaint var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8) {
 		int var9;
 		int var10 = var9 = (var7 << 7) - Scene_cameraX;
 		int var11;
@@ -1908,7 +1908,7 @@ public class Scene {
 		signature = "(Lex;IIIIII)V"
 	)
 	@Export("drawTileOverlay")
-	void drawTileOverlay(TileModel var1, int var2, int var3, int var4, int var5, int var6, int var7) {
+	void drawTileOverlay(SceneTileModel var1, int var2, int var3, int var4, int var5, int var6, int var7) {
 		int var8 = var1.vertexX.length;
 
 		int var9;
@@ -1930,13 +1930,13 @@ public class Scene {
 			}
 
 			if (var1.triangleTextureId != null) {
-				TileModel.field1613[var9] = var10;
-				TileModel.field1623[var9] = var13;
-				TileModel.field1620[var9] = var12;
+				SceneTileModel.field1613[var9] = var10;
+				SceneTileModel.field1623[var9] = var13;
+				SceneTileModel.field1620[var9] = var12;
 			}
 
-			TileModel.field1615[var9] = var10 * Rasterizer3D.Rasterizer3D_zoom / var12 + Rasterizer3D.Rasterizer3D_clipMidX;
-			TileModel.field1605[var9] = var13 * Rasterizer3D.Rasterizer3D_zoom / var12 + Rasterizer3D.Rasterizer3D_clipMidY;
+			SceneTileModel.field1615[var9] = var10 * Rasterizer3D.Rasterizer3D_zoom / var12 + Rasterizer3D.Rasterizer3D_clipMidX;
+			SceneTileModel.field1605[var9] = var13 * Rasterizer3D.Rasterizer3D_zoom / var12 + Rasterizer3D.Rasterizer3D_clipMidY;
 		}
 
 		Rasterizer3D.Rasterizer3D_alpha = 0;
@@ -1946,12 +1946,12 @@ public class Scene {
 			var10 = var1.faceX[var9];
 			var11 = var1.faceY[var9];
 			var12 = var1.faceZ[var9];
-			var13 = TileModel.field1615[var10];
-			int var14 = TileModel.field1615[var11];
-			int var15 = TileModel.field1615[var12];
-			int var16 = TileModel.field1605[var10];
-			int var17 = TileModel.field1605[var11];
-			int var18 = TileModel.field1605[var12];
+			var13 = SceneTileModel.field1615[var10];
+			int var14 = SceneTileModel.field1615[var11];
+			int var15 = SceneTileModel.field1615[var12];
+			int var16 = SceneTileModel.field1605[var10];
+			int var17 = SceneTileModel.field1605[var11];
+			int var18 = SceneTileModel.field1605[var12];
 			if ((var13 - var14) * (var18 - var17) - (var16 - var17) * (var15 - var14) > 0) {
 				Rasterizer3D.field1778 = false;
 				if (var13 < 0 || var14 < 0 || var15 < 0 || var13 > Rasterizer3D.Rasterizer3D_clipWidth || var14 > Rasterizer3D.Rasterizer3D_clipWidth || var15 > Rasterizer3D.Rasterizer3D_clipWidth) {
@@ -1966,9 +1966,9 @@ public class Scene {
 				if (var1.triangleTextureId != null && var1.triangleTextureId[var9] != -1) {
 					if (!Scene_isLowDetail) {
 						if (var1.isFlat) {
-							Rasterizer3D.drawTexturedTile(var16, var17, var18, var13, var14, var15, var1.triangleColorA[var9], var1.triangleColorB[var9], var1.triangleColorC[var9], TileModel.field1613[0], TileModel.field1613[1], TileModel.field1613[3], TileModel.field1623[0], TileModel.field1623[1], TileModel.field1623[3], TileModel.field1620[0], TileModel.field1620[1], TileModel.field1620[3], var1.triangleTextureId[var9]);
+							Rasterizer3D.drawTexturedTile(var16, var17, var18, var13, var14, var15, var1.triangleColorA[var9], var1.triangleColorB[var9], var1.triangleColorC[var9], SceneTileModel.field1613[0], SceneTileModel.field1613[1], SceneTileModel.field1613[3], SceneTileModel.field1623[0], SceneTileModel.field1623[1], SceneTileModel.field1623[3], SceneTileModel.field1620[0], SceneTileModel.field1620[1], SceneTileModel.field1620[3], var1.triangleTextureId[var9]);
 						} else {
-							Rasterizer3D.drawTexturedTile(var16, var17, var18, var13, var14, var15, var1.triangleColorA[var9], var1.triangleColorB[var9], var1.triangleColorC[var9], TileModel.field1613[var10], TileModel.field1613[var11], TileModel.field1613[var12], TileModel.field1623[var10], TileModel.field1623[var11], TileModel.field1623[var12], TileModel.field1620[var10], TileModel.field1620[var11], TileModel.field1620[var12], var1.triangleTextureId[var9]);
+							Rasterizer3D.drawTexturedTile(var16, var17, var18, var13, var14, var15, var1.triangleColorA[var9], var1.triangleColorB[var9], var1.triangleColorC[var9], SceneTileModel.field1613[var10], SceneTileModel.field1613[var11], SceneTileModel.field1613[var12], SceneTileModel.field1623[var10], SceneTileModel.field1623[var11], SceneTileModel.field1623[var12], SceneTileModel.field1620[var10], SceneTileModel.field1620[var11], SceneTileModel.field1620[var12], var1.triangleTextureId[var9]);
 						}
 					} else {
 						int var19 = Rasterizer3D.Rasterizer3D_textureLoader.getAverageTextureRGB(var1.triangleTextureId[var9]);

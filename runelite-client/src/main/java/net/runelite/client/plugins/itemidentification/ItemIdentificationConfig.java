@@ -105,9 +105,9 @@ public interface ItemIdentificationConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "showPotions",
-			name = "Potions",
-			description = "Show identification on Potions"
+		keyName = "showPotions",
+		name = "Potions",
+		description = "Show identification on Potions"
 	)
 	default boolean showPotions()
 	{
@@ -115,9 +115,9 @@ public interface ItemIdentificationConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "showImplingJars",
-			name = "Impling jars",
-			description = "Show identification on Impling jars"
+		keyName = "showImplingJars",
+		name = "Impling jars",
+		description = "Show identification on Impling jars"
 	)
 	default boolean showImplingJars()
 	{

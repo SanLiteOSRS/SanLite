@@ -42,7 +42,7 @@ public final class WorldMapManager {
 		signature = "Lla;"
 	)
 	@Export("compositeTextureSprite")
-	Sprite compositeTextureSprite;
+	SpritePixels compositeTextureSprite;
 	@ObfuscatedName("w")
 	@Export("icons")
 	HashMap icons;

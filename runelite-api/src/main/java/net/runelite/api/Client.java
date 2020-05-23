@@ -29,7 +29,6 @@ import java.awt.Dimension;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import net.runelite.api.coords.LocalPoint;
@@ -45,7 +44,7 @@ import org.slf4j.Logger;
 /**
  * Represents the RuneScape client.
  */
-public interface Client extends GameShell
+public interface Client extends GameEngine
 {
 	/**
 	 * The client invokes these callbacks to communicate to
@@ -350,11 +349,15 @@ public interface Client extends GameShell
 	 * Gets the logged in player instance.
 	 *
 	 * @return the logged in player
-	 *
-	 * (getLocalPlayerIndex returns the local index, useful for menus/interacting)
 	 */
 	@Nullable
 	Player getLocalPlayer();
+
+	/**
+	 * Retrieves the local player index
+	 *
+	 * @return local player index
+	 */
 	int getLocalPlayerIndex();
 
 	/**
@@ -365,7 +368,7 @@ public interface Client extends GameShell
 	 * @see ItemID
 	 */
 	@Nonnull
-	ItemDefinition getItemDefinition(int id);
+	ItemComposition getItemDefinition(int id);
 
 	/**
 	 * Creates an item icon sprite with passed variables.
@@ -380,7 +383,7 @@ public interface Client extends GameShell
 	 * @return the created sprite
 	 */
 	@Nullable
-	Sprite createItemSprite(int itemId, int quantity, int border, int shadowColor, int stackable, boolean noted, int scale);
+	SpritePixels createItemSprite(int itemId, int quantity, int border, int shadowColor, int stackable, boolean noted, int scale);
 
 	/**
 	 * Loads and creates the sprite images of the passed archive and file IDs.
@@ -391,7 +394,7 @@ public interface Client extends GameShell
 	 * @return the sprite image of the file
 	 */
 	@Nullable
-	Sprite[] getSprites(IndexDataBase source, int archiveId, int fileId);
+	SpritePixels[] getSprites(IndexDataBase source, int archiveId, int fileId);
 
 	/**
 	 * Gets the sprite index.
@@ -863,7 +866,7 @@ public interface Client extends GameShell
 	 * @return the corresponding object composition
 	 * @see ObjectID
 	 */
-	ObjectDefinition getObjectDefinition(int objectId);
+	ObjectComposition getObjectDefinition(int objectId);
 
 	/**
 	 * Gets the NPC composition corresponding to an NPCs ID.
@@ -872,7 +875,7 @@ public interface Client extends GameShell
 	 * @return the corresponding NPC composition
 	 * @see NpcID
 	 */
-	NPCDefinition getNpcDefinition(int npcId);
+	NPCComposition getNpcDefinition(int npcId);
 
 	/**
 	 * Gets an array of all world areas
@@ -893,7 +896,7 @@ public interface Client extends GameShell
 	 *
 	 * @return all mini-map dots
 	 */
-	Sprite[] getMapDots();
+	SpritePixels[] getMapDots();
 
 	/**
 	 * Gets the local clients game cycle.
@@ -909,7 +912,7 @@ public interface Client extends GameShell
 	 *
 	 * @return the map icons
 	 */
-	Sprite[] getMapIcons();
+	SpritePixels[] getMapIcons();
 
 	/**
 	 * Gets an array of mod icon sprites.
@@ -941,7 +944,7 @@ public interface Client extends GameShell
 	 * @param height the height
 	 * @return the sprite image
 	 */
-	Sprite createSprite(int[] pixels, int width, int height);
+	SpritePixels createSpritePixels(int[] pixels, int width, int height);
 
 	/**
 	 * Gets the location of the local player.
@@ -1136,68 +1139,26 @@ public interface Client extends GameShell
 	boolean isFriended(String name, boolean mustBeLoggedIn);
 
 	/**
-	 * Gets the number of players in the clan chat.
+	 * Retrieve the clan member manager
 	 *
-	 * @return the number of clan chat members
+	 * @return clan member manager
 	 */
-	int getClanChatCount();
+	@Nullable
+	ClanMemberManager getClanMemberManager();
 
 	/**
-	 * Gets an array of players in the clan chat.
+	 * Retrieve the nameable container containing friends
 	 *
-	 * @return the clan chat members, null if not in a clan
+	 * @return friend container
 	 */
-	ClanMember[] getClanMembers();
+	NameableContainer<Friend> getFriendContainer();
 
 	/**
-	 * Gets the clan owner of the currently joined clan chat
+	 * Retrieve the nameable container containing ignores
 	 *
-	 * @return
+	 * @return ignore container
 	 */
-	String getClanOwner();
-
-	/**
-	 * Gets the clan chat name of the currently joined clan chat
-	 *
-	 * @return
-	 */
-	String getClanChatName();
-
-	/**
-	 * Gets an array of players in the friends list.
-	 *
-	 * @return the friends list
-	 */
-	Friend[] getFriends();
-
-	/**
-	 * Gets the number of friends on the friends list.
-	 *
-	 * @return
-	 */
-	int getFriendsCount();
-
-	/**
-	 * Gets an array of players on the ignore list.
-	 *
-	 * @return
-	 */
-	Ignore[] getIgnores();
-
-	/**
-	 * Gets the number of ignored players on the ignore list.
-	 *
-	 * @return
-	 */
-	int getIgnoreCount();
-
-	/**
-	 * Checks whether a player is in the same clan chat.
-	 *
-	 * @param name the name of the player
-	 * @return true if the player is in clan chat
-	 */
-	boolean isClanMember(String name);
+	NameableContainer<Ignore> getIgnoreContainer();
 
 	/**
 	 * Gets the clients saved preferences.
@@ -1266,7 +1227,7 @@ public interface Client extends GameShell
 	 * factors towards {@code zero} when stretching.
 	 *
 	 * @param state new integer scaling state
-	 */
+	*/
 	void setStretchedIntegerScaling(boolean state);
 
 	/**
@@ -1328,7 +1289,7 @@ public interface Client extends GameShell
 	 * @param z the plane
 	 * @return the map sprite
 	 */
-	Sprite drawInstanceMap(int z);
+	SpritePixels drawInstanceMap(int z);
 
 	/**
 	 * Executes a client script from the cache
@@ -1587,7 +1548,7 @@ public interface Client extends GameShell
 	 * The key value in the map corresponds to the ID of the sprite,
 	 * and the value the sprite to replace it with.
 	 */
-	Map<Integer, Sprite> getSpriteOverrides();
+	Map<Integer, SpritePixels> getSpriteOverrides();
 
 	/**
 	 * Gets a mapping of widget sprites to override.
@@ -1595,14 +1556,14 @@ public interface Client extends GameShell
 	 * The key value in the map corresponds to the packed widget ID,
 	 * and the value the sprite to replace the widgets sprite with.
 	 */
-	Map<Integer, Sprite> getWidgetSpriteOverrides();
+	Map<Integer, SpritePixels> getWidgetSpriteOverrides();
 
 	/**
 	 * Sets the compass sprite.
 	 *
-	 * @param sprite the new sprite
+	 * @param spritePixels the new sprite
 	 */
-	void setCompass(Sprite sprite);
+	void setCompass(SpritePixels spritePixels);
 
 	/**
 	 * Returns widget sprite cache, to be used with {@link Client#getSpriteOverrides()}
@@ -1728,7 +1689,7 @@ public interface Client extends GameShell
 	/**
 	 * Is a widget is in target mode?
 	 */
-	boolean isSpellSelected();
+	boolean getSpellSelected();
 
 	/**
 	 * Sets if a widget is in target mode
@@ -1736,18 +1697,30 @@ public interface Client extends GameShell
 	void setSpellSelected(boolean selected);
 
 	/**
-	 * Returns client item definition cache
+	 * Returns client item composition cache
 	 */
-	NodeCache getItemDefinitionCache();
+	NodeCache getItemCompositionCache();
 
 	/**
 	 * Returns the array of cross sprites that appear and animate when left-clicking
 	 */
-	Sprite[] getCrossSprites();
+	SpritePixels[] getCrossSprites();
 
-	EnumDefinition getEnum(int id);
+	EnumComposition getEnum(int id);
 
-	void draw2010Menu();
+	/**
+	 * Draws a menu in the 2010 interface style.
+	 *
+	 * @param alpha background transparency of the menu
+	 */
+	void draw2010Menu(int alpha);
+
+	/**
+	 * Draws a menu in the OSRS interface style.
+	 *
+	 * @param alpha background transparency of the menu
+	 */
+	void drawOriginalMenu(int alpha);
 
 	void resetHealthBarCaches();
 
@@ -1768,54 +1741,9 @@ public interface Client extends GameShell
 	 */
 	void invokeMenuAction(int param0, int param1, int type, int id, String menuEntry, String targetString, int canvasX, int canvasY);
 
-	MouseRecorder getMouseRecorder();
-
-	void setPrintMenuActions(boolean b);
-
 	String getSelectedSpellName();
 
 	void setSelectedSpellName(String name);
-
-	/**
-	 * Set whether or not player attack options will be hidden for friends
-	 */
-	void setHideFriendAttackOptions(boolean yes);
-
-	/**
-	 * Set whether or not player cast options will be hidden for friends
-	 */
-	void setHideFriendCastOptions(boolean yes);
-
-	/**
-	 * Set whether or not player attack options will be hidden for clanmates
-	 */
-	void setHideClanmateAttackOptions(boolean yes);
-
-	/**
-	 * Set whether or not player cast options will be hidden for clanmates
-	 */
-	void setHideClanmateCastOptions(boolean yes);
-
-	/**
-	 * Set spells excluded from above hiding
-	 */
-	void setUnhiddenCasts(Set<String> casts);
-
-	/**
-	 * Sorts the current menu entries in the same way the client does this.
-	 * The last entry will be the left click one after this.
-	 */
-	void sortMenuEntries();
-
-	/**
-	 * Add player to friendlist
-	 */
-	void addFriend(String name);
-
-	/**
-	 * Remove player from friendlist
-	 */
-	void removeFriend(String name);
 
 	/*
 	 * Returns the max item index + 1 from cache

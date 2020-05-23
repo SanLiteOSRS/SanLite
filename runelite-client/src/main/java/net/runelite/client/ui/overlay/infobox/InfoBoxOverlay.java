@@ -57,10 +57,10 @@ public class InfoBoxOverlay extends OverlayPanel
 
 	@Inject
 	private InfoBoxOverlay(
-			InfoBoxManager infoboxManager,
-			TooltipManager tooltipManager,
-			Client client,
-			RuneLiteConfig config)
+		InfoBoxManager infoboxManager,
+		TooltipManager tooltipManager,
+		Client client,
+		RuneLiteConfig config)
 	{
 		this.tooltipManager = tooltipManager;
 		this.infoboxManager = infoboxManager;
@@ -89,8 +89,8 @@ public class InfoBoxOverlay extends OverlayPanel
 		// to the last infobox prior to wrapping too.
 		panelComponent.setPreferredSize(new Dimension(DEFAULT_WRAP_COUNT * (config.infoBoxSize() + GAP), DEFAULT_WRAP_COUNT * (config.infoBoxSize() + GAP)));
 		panelComponent.setOrientation(config.infoBoxVertical()
-				? ComponentOrientation.VERTICAL
-				: ComponentOrientation.HORIZONTAL);
+			? ComponentOrientation.VERTICAL
+			: ComponentOrientation.HORIZONTAL);
 
 		for (InfoBox box : infoBoxes)
 		{
@@ -111,6 +111,7 @@ public class InfoBoxOverlay extends OverlayPanel
 			infoBoxComponent.setImage(box.getScaledImage());
 			infoBoxComponent.setTooltip(box.getTooltip());
 			infoBoxComponent.setPreferredSize(new Dimension(config.infoBoxSize(), config.infoBoxSize()));
+			infoBoxComponent.setBackgroundColor(config.overlayBackgroundColor());
 			panelComponent.getChildren().add(infoBoxComponent);
 		}
 

@@ -235,7 +235,8 @@ public class PlayerIndicatorsPlugin extends Plugin
 	private void checkPlayerSpawned(PlayerSpawned event)
 	{
 		Player player = event.getPlayer();
-		if (player == null || player == client.getLocalPlayer() || !config.notifyOnNonClanMemberSpawned())
+		if (player == null || player == client.getLocalPlayer() || !config.notifyOnNonClanMemberSpawned() ||
+				(config.notifyOnlyOnSkulledPlayers() && !player.isSkulled()))
 			return;
 
 		PlayerIndicatorType playerIndicatorType = playerIndicatorsService.getPlayerIndicatorType(player);

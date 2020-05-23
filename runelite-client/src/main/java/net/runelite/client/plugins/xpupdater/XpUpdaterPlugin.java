@@ -50,10 +50,10 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 @PluginDescriptor(
-		name = "XP Updater",
-		description = "Automatically updates your stats on external xptrackers when you log out",
-		tags = {"cml", "crystalmathlabs", "templeosrs", "temple", "wom", "wiseoldman", "wise old man", "external", "integration"},
-		enabledByDefault = false
+	name = "XP Updater",
+	description = "Automatically updates your stats on external xptrackers when you log out",
+	tags = {"cml", "crystalmathlabs", "templeosrs", "temple", "wom", "wiseoldman", "wise old man", "external", "integration"},
+	enabledByDefault = false
 )
 @Slf4j
 public class XpUpdaterPlugin extends Plugin
@@ -170,22 +170,22 @@ public class XpUpdaterPlugin extends Plugin
 		if (config.wiseoldman())
 		{
 			HttpUrl url = new HttpUrl.Builder()
-					.scheme("https")
-					.host("wiseoldman.net")
-					.addPathSegment("api")
-					.addPathSegment("players")
-					.addPathSegment("track")
-					.build();
+				.scheme("https")
+				.host("wiseoldman.net")
+				.addPathSegment("api")
+				.addPathSegment("players")
+				.addPathSegment("track")
+				.build();
 
 			RequestBody formBody = new FormBody.Builder()
-					.add("username", username)
-					.build();
+				.add("username", username)
+				.build();
 
 			Request request = new Request.Builder()
-					.header("User-Agent", "RuneLite")
-					.url(url)
-					.post(formBody)
-					.build();
+				.header("User-Agent", "RuneLite")
+				.url(url)
+				.post(formBody)
+				.build();
 
 			sendRequest("Wise Old Man", request);
 		}

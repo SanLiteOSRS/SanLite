@@ -157,11 +157,11 @@ public class HealthBarDefinition extends DualNode {
 		garbageValue = "1701"
 	)
 	@Export("getFrontSprite")
-	public Sprite getFrontSprite() {
+	public SpritePixels getFrontSprite() {
 		if (this.frontSpriteID < 0) {
 			return null;
 		} else {
-			Sprite var1 = (Sprite)HealthBarDefinition_cachedSprites.get((long)this.frontSpriteID);
+			SpritePixels var1 = (SpritePixels)HealthBarDefinition_cachedSprites.get((long)this.frontSpriteID);
 			if (var1 != null) {
 				return var1;
 			} else {
@@ -181,11 +181,11 @@ public class HealthBarDefinition extends DualNode {
 		garbageValue = "1861000233"
 	)
 	@Export("getBackSprite")
-	public Sprite getBackSprite() {
+	public SpritePixels getBackSprite() {
 		if (this.backSpriteID < 0) {
 			return null;
 		} else {
-			Sprite var1 = (Sprite)HealthBarDefinition_cachedSprites.get((long)this.backSpriteID);
+			SpritePixels var1 = (SpritePixels)HealthBarDefinition_cachedSprites.get((long)this.backSpriteID);
 			if (var1 != null) {
 				return var1;
 			} else {
