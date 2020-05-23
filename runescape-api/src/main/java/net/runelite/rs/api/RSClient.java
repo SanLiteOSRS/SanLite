@@ -1174,4 +1174,7 @@ public interface RSClient extends RSGameEngine, Client
 
 	@Import("currentTimeMillis")
 	long getCurrentTimeMillis();
+
+	@Import("headIconPkSprites")
+	RSSpritePixels[] getHeadIconPkSprites();
 }

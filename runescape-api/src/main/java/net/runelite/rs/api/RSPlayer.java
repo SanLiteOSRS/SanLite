@@ -65,4 +65,7 @@ public interface RSPlayer extends RSActor, Player
 
 	@Import("headIconPk")
 	int getRsSkullIcon();
+
+	@Import("headIconPk")
+	void setRsSkullIcon(int skullIconId);
 }

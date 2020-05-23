@@ -371,6 +371,12 @@ public class DevToolsPlugin extends Plugin
 				client.playSoundEffect(id);
 				break;
 			}
+			case "skull":
+			{
+				int id = Integer.parseInt(args[0]);
+				client.getLocalPlayer().setSkullIcon(id);
+				break;
+			}
 			case "msg":
 			{
 				client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", String.join(" ", args), "");
