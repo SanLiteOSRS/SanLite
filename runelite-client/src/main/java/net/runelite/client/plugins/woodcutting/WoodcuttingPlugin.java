@@ -63,10 +63,10 @@ import net.runelite.client.ui.overlay.OverlayManager;
 import net.runelite.client.ui.overlay.OverlayMenuEntry;
 
 @PluginDescriptor(
-		name = "Woodcutting",
-		description = "Show woodcutting statistics and/or bird nest notifications",
-		tags = {"birds", "nest", "notifications", "overlay", "skilling", "wc"},
-		enabledByDefault = false
+	name = "Woodcutting",
+	description = "Show woodcutting statistics and/or bird nest notifications",
+	tags = {"birds", "nest", "notifications", "overlay", "skilling", "wc"},
+	enabledByDefault = false
 )
 @PluginDependency(XpTrackerPlugin.class)
 @Slf4j
@@ -137,8 +137,8 @@ public class WoodcuttingPlugin extends Plugin
 	{
 		OverlayMenuEntry overlayMenuEntry = overlayMenuClicked.getEntry();
 		if (overlayMenuEntry.getMenuAction() == MenuAction.RUNELITE_OVERLAY
-				&& overlayMenuClicked.getEntry().getOption().equals(WoodcuttingOverlay.WOODCUTTING_RESET)
-				&& overlayMenuClicked.getOverlay() == overlay)
+			&& overlayMenuClicked.getEntry().getOption().equals(WoodcuttingOverlay.WOODCUTTING_RESET)
+			&& overlayMenuClicked.getOverlay() == overlay)
 		{
 			session = null;
 		}

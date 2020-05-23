@@ -5,7 +5,7 @@ import net.runelite.api.mixins.Inject;
 import net.runelite.api.mixins.MethodHook;
 import net.runelite.api.mixins.Mixin;
 import net.runelite.api.mixins.Shadow;
-import net.runelite.rs.api.RSClanChat;
+import net.runelite.rs.api.RSClanMemberManager;
 import net.runelite.rs.api.RSClient;
 import net.runelite.rs.api.RSMessage;
 
@@ -76,8 +76,7 @@ public abstract class RSMessageMixin implements RSMessage
 	@Override
 	public boolean isFromClanMate()
 	{
-		RSClanChat cc = client.getClanMemberManager();
-
-		return cc != null && cc.isMember(this.getSenderUsername());
+		RSClanMemberManager clanMemberManager = client.getClanMemberManager();
+		return clanMemberManager != null && clanMemberManager.findByName(this.getSenderUsername().getName()) != null;
 	}
 }

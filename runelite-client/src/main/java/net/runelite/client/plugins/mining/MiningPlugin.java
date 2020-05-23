@@ -55,10 +55,10 @@ import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.ui.overlay.OverlayManager;
 
 @PluginDescriptor(
-		name = "Mining",
-		description = "Show ore respawn timers",
-		tags = {"overlay", "skilling", "timers"},
-		enabledByDefault = false
+	name = "Mining",
+	description = "Show ore respawn timers",
+	tags = {"overlay", "skilling", "timers"},
+	enabledByDefault = false
 )
 public class MiningPlugin extends Plugin
 {

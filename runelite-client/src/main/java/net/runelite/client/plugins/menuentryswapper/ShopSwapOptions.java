@@ -31,7 +31,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum ShopSwapOptions
 {
-	Value("Value"),
+	VALUE("Value"),
 	CHANGE_TO_1("1"),
 	CHANGE_TO_5("5"),
 	CHANGE_TO_10("10"),

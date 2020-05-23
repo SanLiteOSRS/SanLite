@@ -110,7 +110,7 @@ public class WorldMapIcon_1 extends AbstractWorldMapIcon {
 		this.element = WorldMapSection2.getObjectDefinition(this.objectDefId).transform().mapIconId;
 		this.label = this.region.createMapLabel(class25.WorldMapElement_get(this.element));
 		WorldMapElement var1 = class25.WorldMapElement_get(this.getElement());
-		Sprite var2 = var1.getSpriteBool(false);
+		SpritePixels var2 = var1.getSpriteBool(false);
 		if (var2 != null) {
 			this.subWidth = var2.subWidth;
 			this.subHeight = var2.subHeight;

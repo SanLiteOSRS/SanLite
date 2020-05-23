@@ -22,7 +22,7 @@ public class RenderDraw
 	private static final net.runelite.asm.pool.Method RENDER_DRAW = new net.runelite.asm.pool.Method(
 			new Class("net.runelite.client.callback.Hooks"),
 			"renderDraw",
-			new Signature("(Lnet/runelite/api/Entity;IIIIIIIIJ)V")
+			new Signature("(Lnet/runelite/api/Renderable;IIIIIIIIJ)V")
 	);
 	private static final int EXPECTED_METHOD_CALLS = 21;
 
@@ -39,7 +39,7 @@ public class RenderDraw
 		 * This class replaces entity draw invocation instructions
 		 * with the renderDraw method on draw callbacks
 		 */
-		final net.runelite.asm.pool.Method draw = InjectUtil.findMethod(inject, "draw", "Entity").getPoolMethod();
+		final net.runelite.asm.pool.Method draw = InjectUtil.findMethod(inject, "draw", "Renderable").getPoolMethod();
 		final net.runelite.asm.Method drawTile = InjectUtil.findMethod(inject, "drawTile", "Scene");
 
 		Instructions instructions = drawTile.getCode().getInstructions();

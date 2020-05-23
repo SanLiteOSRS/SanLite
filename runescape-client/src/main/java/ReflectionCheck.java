@@ -14,7 +14,7 @@ public class ReflectionCheck extends Node {
 		signature = "[Lla;"
 	)
 	@Export("headIconPrayerSprites")
-	static Sprite[] headIconPrayerSprites;
+	static SpritePixels[] headIconPrayerSprites;
 	@ObfuscatedName("x")
 	@ObfuscatedGetter(
 		intValue = 1911756689

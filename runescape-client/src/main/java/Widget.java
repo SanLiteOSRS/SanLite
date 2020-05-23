@@ -1266,7 +1266,7 @@ public class Widget extends Node {
 		garbageValue = "-39"
 	)
 	@Export("getSprite")
-	public Sprite getSprite(boolean var1) {
+	public SpritePixels getSprite(boolean var1) {
 		field2565 = false;
 		int var2;
 		if (var1) {
@@ -1279,7 +1279,7 @@ public class Widget extends Node {
 			return null;
 		} else {
 			long var3 = ((long)this.spriteShadow << 40) + ((this.spriteFlipH ? 1L : 0L) << 39) + (long)var2 + ((long)this.outline << 36) + ((this.spriteFlipV ? 1L : 0L) << 38);
-			Sprite var5 = (Sprite)Widget_cachedSprites.get(var3);
+			SpritePixels var5 = (SpritePixels)Widget_cachedSprites.get(var3);
 			if (var5 != null) {
 				return var5;
 			} else {
@@ -1361,14 +1361,14 @@ public class Widget extends Node {
 		garbageValue = "14"
 	)
 	@Export("getInventorySprite")
-	public Sprite getInventorySprite(int var1) {
+	public SpritePixels getInventorySprite(int var1) {
 		field2565 = false;
 		if (var1 >= 0 && var1 < this.inventorySprites.length) {
 			int var2 = this.inventorySprites[var1];
 			if (var2 == -1) {
 				return null;
 			} else {
-				Sprite var3 = (Sprite)Widget_cachedSprites.get((long)var2);
+				SpritePixels var3 = (SpritePixels)Widget_cachedSprites.get((long)var2);
 				if (var3 != null) {
 					return var3;
 				} else {
@@ -1393,7 +1393,7 @@ public class Widget extends Node {
 		garbageValue = "73"
 	)
 	@Export("getModel")
-	public Model getModel(SequenceDefinition var1, int var2, boolean var3, PlayerAppearance var4) {
+	public Model getModel(SequenceDefinition var1, int var2, boolean var3, PlayerComposition var4) {
 		field2565 = false;
 		int var5;
 		int var6;
@@ -1448,7 +1448,7 @@ public class Widget extends Node {
 				}
 
 				if (var5 == 4) {
-					ItemDefinition var9 = AbstractWorldMapData.ItemDefinition_get(var6);
+					ItemComposition var9 = AbstractWorldMapData.ItemDefinition_get(var6);
 					var8 = var9.getModelData(10);
 					if (var8 == null) {
 						field2565 = true;
@@ -1489,11 +1489,11 @@ public class Widget extends Node {
 			if (var5 != null) {
 				return var5;
 			} else {
-				Sprite var6 = this.getSprite(var1);
+				SpritePixels var6 = this.getSprite(var1);
 				if (var6 == null) {
 					return null;
 				} else {
-					Sprite var7 = var6.copyNormalized();
+					SpritePixels var7 = var6.copyNormalized();
 					int[] var8 = new int[var7.subHeight];
 					int[] var9 = new int[var7.subHeight];
 

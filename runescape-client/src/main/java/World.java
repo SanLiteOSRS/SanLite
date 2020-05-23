@@ -179,7 +179,7 @@ public class World {
 
 			TileItem var6;
 			for (var6 = (TileItem)var2.last(); var6 != null; var6 = (TileItem)var2.previous()) {
-				ItemDefinition var7 = AbstractWorldMapData.ItemDefinition_get(var6.id);
+				ItemComposition var7 = AbstractWorldMapData.ItemDefinition_get(var6.id);
 				long var8 = (long)var7.price;
 				if (var7.isStackable == 1) {
 					var8 *= (long)(var6.quantity + 1);

@@ -219,7 +219,7 @@ public class WorldMapSection1 implements WorldMapSection {
 	static final void drawActor2d(Actor var0, int var1, int var2, int var3, int var4, int var5) {
 		if (var0 != null && var0.isVisible()) {
 			if (var0 instanceof NPC) {
-				NPCDefinition var6 = ((NPC)var0).definition;
+				NPCComposition var6 = ((NPC)var0).definition;
 				if (var6.transforms != null) {
 					var6 = var6.transform();
 				}
@@ -282,8 +282,8 @@ public class WorldMapSection1 implements WorldMapSection {
 						}
 					} else {
 						HealthBarDefinition var91 = var88.definition;
-						Sprite var76 = var91.getBackSprite();
-						Sprite var14 = var91.getFrontSprite();
+						SpritePixels var76 = var91.getBackSprite();
+						SpritePixels var14 = var91.getFrontSprite();
 						int var16 = 0;
 						if (var76 != null && var14 != null) {
 							if (var91.widthPadding * 2 < var14.subWidth) {
@@ -390,7 +390,7 @@ public class WorldMapSection1 implements WorldMapSection {
 					}
 				}
 			} else {
-				NPCDefinition var90 = ((NPC)var0).definition;
+				NPCComposition var90 = ((NPC)var0).definition;
 				if (var90.transforms != null) {
 					var90 = var90.transform();
 				}
@@ -477,10 +477,10 @@ public class WorldMapSection1 implements WorldMapSection {
 								Client.viewportTempY -= 10;
 							}
 
-							Sprite var82 = null;
-							Sprite var83 = null;
-							Sprite var84 = null;
-							Sprite var85 = null;
+							SpritePixels var82 = null;
+							SpritePixels var83 = null;
+							SpritePixels var84 = null;
+							SpritePixels var85 = null;
 							var22 = 0;
 							var23 = 0;
 							int var24 = 0;
@@ -489,10 +489,10 @@ public class WorldMapSection1 implements WorldMapSection {
 							int var27 = 0;
 							int var28 = 0;
 							int var29 = 0;
-							Sprite var30 = null;
-							Sprite var31 = null;
-							Sprite var32 = null;
-							Sprite var33 = null;
+							SpritePixels var30 = null;
+							SpritePixels var31 = null;
+							SpritePixels var32 = null;
+							SpritePixels var33 = null;
 							int var34 = 0;
 							int var35 = 0;
 							int var36 = 0;

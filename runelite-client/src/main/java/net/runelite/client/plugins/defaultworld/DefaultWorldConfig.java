@@ -40,7 +40,7 @@ public interface DefaultWorldConfig extends Config
 	)
 	default int getWorld()
 	{
-		return 496;
+		return 0;
 	}
 
 	@ConfigItem(

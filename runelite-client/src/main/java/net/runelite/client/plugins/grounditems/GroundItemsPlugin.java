@@ -53,7 +53,7 @@ import lombok.Value;
 import net.runelite.api.Client;
 import net.runelite.api.Constants;
 import net.runelite.api.GameState;
-import net.runelite.api.ItemDefinition;
+import net.runelite.api.ItemComposition;
 import net.runelite.api.ItemID;
 import net.runelite.api.MenuAction;
 import net.runelite.api.MenuEntry;
@@ -378,7 +378,7 @@ public class GroundItemsPlugin extends Plugin
 	{
 		// Collect the data for the item
 		final int itemId = item.getId();
-		final ItemDefinition itemComposition = itemManager.getItemComposition(itemId);
+		final ItemComposition itemComposition = itemManager.getItemComposition(itemId);
 		final int realItemId = itemComposition.getNote() != -1 ? itemComposition.getLinkedNoteId() : itemId;
 		final int alchPrice = Math.round(itemComposition.getPrice() * Constants.HIGH_ALCHEMY_MULTIPLIER);
 		final boolean dropped = tile.getWorldLocation().equals(client.getLocalPlayer().getWorldLocation()) && droppedItemQueue.remove(itemId);
@@ -687,7 +687,7 @@ public class GroundItemsPlugin extends Plugin
 	{
 		if (menuOptionClicked.getMenuAction() == MenuAction.ITEM_DROP)
 		{
-			int itemId = menuOptionClicked.getIdentifier();
+			int itemId = menuOptionClicked.getId();
 			// Keep a queue of recently dropped items to better detect
 			// item spawns that are drops
 			droppedItemQueue.add(itemId);

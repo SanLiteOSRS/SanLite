@@ -30,7 +30,13 @@ import java.util.stream.Stream;
 import javax.inject.Inject;
 import javax.inject.Provider;
 import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.*;
+import net.runelite.api.Client;
+import net.runelite.api.MenuAction;
+import net.runelite.api.MenuEntry;
+import net.runelite.api.NPC;
+import net.runelite.api.NPCComposition;
+import net.runelite.api.ObjectComposition;
+import net.runelite.api.SpriteID;
 import net.runelite.api.coords.WorldPoint;
 import net.runelite.api.events.MenuEntryAdded;
 import net.runelite.api.events.MenuOptionClicked;
@@ -266,7 +272,7 @@ public class WikiPlugin extends Plugin
 				case SPELL_CAST_ON_GROUND_ITEM:
 				{
 					type = "item";
-					id = itemManager.canonicalize(ev.getIdentifier());
+					id = itemManager.canonicalize(ev.getId());
 					name = itemManager.getItemComposition(id).getName();
 					location = null;
 					break;
@@ -274,8 +280,8 @@ public class WikiPlugin extends Plugin
 				case SPELL_CAST_ON_NPC:
 				{
 					type = "npc";
-					NPC npc = client.getCachedNPCs()[ev.getIdentifier()];
-					NPCDefinition nc = npc.getTransformedDefinition();
+					NPC npc = client.getCachedNPCs()[ev.getId()];
+					NPCComposition nc = npc.getTransformedComposition();
 					id = nc.getId();
 					name = nc.getName();
 					location = npc.getWorldLocation();
@@ -284,18 +290,18 @@ public class WikiPlugin extends Plugin
 				case SPELL_CAST_ON_GAME_OBJECT:
 				{
 					type = "object";
-					ObjectDefinition lc = client.getObjectDefinition(ev.getIdentifier());
+					ObjectComposition lc = client.getObjectDefinition(ev.getId());
 					if (lc.getImpostorIds() != null)
 					{
 						lc = lc.getImpostor();
 					}
 					id = lc.getId();
 					name = lc.getName();
-					location = WorldPoint.fromScene(client, ev.getActionParam0(), ev.getActionParam1(), client.getPlane());
+					location = WorldPoint.fromScene(client, ev.getActionParam(), ev.getWidgetId(), client.getPlane());
 					break;
 				}
 				case SPELL_CAST_ON_WIDGET:
-					Widget w = getWidget(ev.getActionParam1(), ev.getActionParam0());
+					Widget w = getWidget(ev.getWidgetId(), ev.getActionParam());
 
 					if (w.getType() == WidgetType.GRAPHIC && w.getItemId() != -1)
 					{
@@ -335,14 +341,14 @@ public class WikiPlugin extends Plugin
 		if (ev.getMenuAction() == MenuAction.RUNELITE)
 		{
 			boolean quickguide = false;
-			switch (ev.getOption())
+			switch (ev.getMenuOption())
 			{
 				case MENUOP_QUICKGUIDE:
 					quickguide = true;
 					//fallthrough;
 				case MENUOP_GUIDE:
 					ev.consume();
-					String quest = Text.removeTags(ev.getTarget());
+					String quest = Text.removeTags(ev.getMenuTarget());
 					HttpUrl.Builder ub = WIKI_BASE.newBuilder()
 						.addPathSegment("w")
 						.addPathSegment(quest)
@@ -356,7 +362,7 @@ public class WikiPlugin extends Plugin
 				case MENUOP_WIKI:
 					LinkBrowser.browse(WIKI_BASE.newBuilder()
 						.addPathSegment("w")
-						.addPathSegment(Text.removeTags(ev.getTarget()))
+						.addPathSegment(Text.removeTags(ev.getMenuTarget()))
 						.addQueryParameter(UTM_SORUCE_KEY, UTM_SORUCE_VALUE)
 						.build().toString());
 

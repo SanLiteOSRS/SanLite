@@ -55,7 +55,7 @@ import net.runelite.api.Client;
 import net.runelite.api.Constants;
 import net.runelite.api.InventoryID;
 import net.runelite.api.Item;
-import net.runelite.api.ItemDefinition;
+import net.runelite.api.ItemComposition;
 import net.runelite.api.ItemContainer;
 import net.runelite.api.MenuAction;
 import net.runelite.api.MenuEntry;
@@ -282,9 +282,9 @@ public class TabInterface
 			.filter(id -> id != -1)
 			.collect(Collectors.toList());
 
-		if (!Strings.isNullOrEmpty(event.getTarget()))
+		if (!Strings.isNullOrEmpty(event.getMenuTarget()))
 		{
-			if (activeTab != null && Text.removeTags(event.getTarget()).equals(activeTab.getTag()))
+			if (activeTab != null && Text.removeTags(event.getMenuTarget()).equals(activeTab.getTag()))
 			{
 				for (Integer item : items)
 				{
@@ -702,17 +702,17 @@ public class TabInterface
 
 		if (chatboxPanelManager.getCurrentInput() != null
 			&& event.getMenuAction() != MenuAction.CANCEL
-			&& !event.getOption().equals(SCROLL_UP)
-			&& !event.getOption().equals(SCROLL_DOWN))
+			&& !event.getMenuOption().equals(SCROLL_UP)
+			&& !event.getMenuOption().equals(SCROLL_DOWN))
 		{
 			chatboxPanelManager.close();
 		}
 
-		if ((event.getIdentifier() == WidgetInfo.BANK_ITEM_CONTAINER.getId()
-				|| event.getIdentifier() == WidgetInfo.BANK_INVENTORY_ITEMS_CONTAINER.getId())
+		if ((event.getWidgetId() == WidgetInfo.BANK_ITEM_CONTAINER.getId()
+				|| event.getWidgetId() == WidgetInfo.BANK_INVENTORY_ITEMS_CONTAINER.getId())
 			&& event.getMenuAction() == MenuAction.CC_OP_LOW_PRIORITY
-			&& (event.getOption().equalsIgnoreCase("withdraw-x")
-				|| event.getOption().equalsIgnoreCase("deposit-x")))
+			&& (event.getMenuOption().equalsIgnoreCase("withdraw-x")
+				|| event.getMenuOption().equalsIgnoreCase("deposit-x")))
 		{
 			waitSearchTick = true;
 			rememberedSearch = client.getVar(VarClientStr.INPUT_TEXT);
@@ -720,7 +720,7 @@ public class TabInterface
 		}
 
 		if (activeTab != null
-			&& event.getOption().equals("Search")
+			&& event.getMenuOption().equals("Search")
 			&& client.getWidget(WidgetInfo.BANK_SEARCH_BUTTON_BACKGROUND).getSpriteId() != SpriteID.EQUIPMENT_SLOT_SELECTED)
 		{
 			activateTab(null);
@@ -730,27 +730,27 @@ public class TabInterface
 			client.setVar(VarClientInt.INPUT_TYPE, 0);
 		}
 		else if (activeTab != null
-			&& event.getOption().startsWith("View tab"))
+			&& event.getMenuOption().startsWith("View tab"))
 		{
 			activateTab(null);
 		}
 		else if (activeTab != null
-			&& event.getActionParam1() == WidgetInfo.BANK_ITEM_CONTAINER.getId()
+			&& event.getWidgetId() == WidgetInfo.BANK_ITEM_CONTAINER.getId()
 			&& event.getMenuAction() == MenuAction.RUNELITE
-			&& event.getOption().startsWith(REMOVE_TAG))
+			&& event.getMenuOption().startsWith(REMOVE_TAG))
 		{
 			// Add "remove" menu entry to all items in bank while tab is selected
 			event.consume();
-			final ItemDefinition item = getItem(event.getActionParam0());
+			final ItemComposition item = getItem(event.getActionParam());
 			final int itemId = item.getId();
 			tagManager.removeTag(itemId, activeTab.getTag());
 			bankSearch.search(InputType.SEARCH, TAG_SEARCH + activeTab.getTag(), true);
 		}
 		else if (event.getMenuAction() == MenuAction.RUNELITE
-			&& ((event.getActionParam1() == WidgetInfo.BANK_DEPOSIT_INVENTORY.getId() && event.getOption().equals(TAG_INVENTORY))
-			|| (event.getActionParam1() == WidgetInfo.BANK_DEPOSIT_EQUIPMENT.getId() && event.getOption().equals(TAG_GEAR))))
+			&& ((event.getWidgetId() == WidgetInfo.BANK_DEPOSIT_INVENTORY.getId() && event.getMenuOption().equals(TAG_INVENTORY))
+			|| (event.getWidgetId() == WidgetInfo.BANK_DEPOSIT_EQUIPMENT.getId() && event.getMenuOption().equals(TAG_GEAR))))
 		{
-			handleDeposit(event, event.getActionParam1() == WidgetInfo.BANK_DEPOSIT_INVENTORY.getId());
+			handleDeposit(event, event.getWidgetId() == WidgetInfo.BANK_DEPOSIT_INVENTORY.getId());
 		}
 	}
 
@@ -1205,7 +1205,7 @@ public class TabInterface
 		t.revalidate();
 	}
 
-	private ItemDefinition getItem(int idx)
+	private ItemComposition getItem(int idx)
 	{
 		ItemContainer bankContainer = client.getItemContainer(InventoryID.BANK);
 		Item item = bankContainer.getItems()[idx];

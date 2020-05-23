@@ -503,7 +503,7 @@ class WidgetInspector extends JFrame
 		client.setSpellSelected(false);
 		ev.consume();
 
-		Object target = getWidgetOrWidgetItemForMenuOption(ev.getMenuAction().getId(), ev.getActionParam0(), ev.getIdentifier());
+		Object target = getWidgetOrWidgetItemForMenuOption(ev.getMenuAction().getId(), ev.getActionParam(), ev.getWidgetId());
 		if (target == null)
 		{
 			return;

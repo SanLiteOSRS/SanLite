@@ -92,9 +92,9 @@ public class PartyStatsOverlay extends OverlayPanel
 					if (only1)
 					{
 						panelComponent.getChildren().add(TitleComponent.builder()
-								.text("No other party members")
-								.color(Color.RED)
-								.build());
+							.text("No other party members")
+							.color(Color.RED)
+							.build());
 					}
 
 					return;
@@ -104,9 +104,9 @@ public class PartyStatsOverlay extends OverlayPanel
 				panel.getChildren().clear();
 
 				final TitleComponent name = TitleComponent.builder()
-						.text(v.getName())
-						.color(config.recolorNames() ? v.getColor() : Color.WHITE)
-						.build();
+					.text(v.getName())
+					.color(config.recolorNames() ? v.getColor() : Color.WHITE)
+					.build();
 
 				panel.getChildren().add(name);
 

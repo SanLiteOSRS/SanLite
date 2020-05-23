@@ -483,7 +483,7 @@ public class Huffman {
 		garbageValue = "-1258139515"
 	)
 	public static void method4048() {
-		PlayerAppearance.PlayerAppearance_cachedModels.clear();
+		PlayerComposition.PlayerAppearance_cachedModels.clear();
 	}
 
 	@ObfuscatedName("fp")

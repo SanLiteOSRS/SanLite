@@ -12,7 +12,7 @@ public class DirectByteArrayCopier extends AbstractByteArrayCopier {
 		signature = "Lla;"
 	)
 	@Export("rightTitleSprite")
-	static Sprite rightTitleSprite;
+	static SpritePixels rightTitleSprite;
 	@ObfuscatedName("dh")
 	@ObfuscatedSignature(
 		signature = "Lih;"

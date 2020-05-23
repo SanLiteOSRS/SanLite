@@ -55,10 +55,10 @@ import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.ui.overlay.OverlayManager;
 
 @PluginDescriptor(
-		name = "Camera",
-		description = "Expands zoom limit, provides vertical camera, and remaps mouse input keys",
-		tags = {"zoom", "limit", "vertical", "click", "mouse"},
-		enabledByDefault = false
+	name = "Camera",
+	description = "Expands zoom limit, provides vertical camera, and remaps mouse input keys",
+	tags = {"zoom", "limit", "vertical", "click", "mouse"},
+	enabledByDefault = false
 )
 public class CameraPlugin extends Plugin implements KeyListener, MouseListener
 {
@@ -114,7 +114,6 @@ public class CameraPlugin extends Plugin implements KeyListener, MouseListener
 		middleClick = false;
 		menuHasEntries = false;
 		copyConfigs();
-		client.setCameraPitchRelaxerEnabled(config.relaxCameraPitch());
 		keyManager.registerKeyListener(this);
 		mouseManager.registerMouseListener(this);
 		overlayManager.add(cameraOverlay);
@@ -340,14 +339,14 @@ public class CameraPlugin extends Plugin implements KeyListener, MouseListener
 				rightClick = true;
 				// Change the mousePressed() MouseEvent to the middle mouse button
 				mouseEvent = new MouseEvent((java.awt.Component) mouseEvent.getSource(),
-						mouseEvent.getID(),
-						mouseEvent.getWhen(),
-						mouseEvent.getModifiersEx(),
-						mouseEvent.getX(),
-						mouseEvent.getY(),
-						mouseEvent.getClickCount(),
-						mouseEvent.isPopupTrigger(),
-						MouseEvent.BUTTON2);
+					mouseEvent.getID(),
+					mouseEvent.getWhen(),
+					mouseEvent.getModifiersEx(),
+					mouseEvent.getX(),
+					mouseEvent.getY(),
+					mouseEvent.getClickCount(),
+					mouseEvent.isPopupTrigger(),
+					MouseEvent.BUTTON2);
 			}
 		}
 		else if (SwingUtilities.isMiddleMouseButton((mouseEvent)) && config.middleClickMenu())
@@ -356,14 +355,14 @@ public class CameraPlugin extends Plugin implements KeyListener, MouseListener
 			middleClick = true;
 			// Chance the middle mouse button MouseEvent to a right-click
 			mouseEvent = new MouseEvent((java.awt.Component) mouseEvent.getSource(),
-					mouseEvent.getID(),
-					mouseEvent.getWhen(),
-					mouseEvent.getModifiersEx(),
-					mouseEvent.getX(),
-					mouseEvent.getY(),
-					mouseEvent.getClickCount(),
-					mouseEvent.isPopupTrigger(),
-					MouseEvent.BUTTON3);
+				mouseEvent.getID(),
+				mouseEvent.getWhen(),
+				mouseEvent.getModifiersEx(),
+				mouseEvent.getX(),
+				mouseEvent.getY(),
+				mouseEvent.getClickCount(),
+				mouseEvent.isPopupTrigger(),
+				MouseEvent.BUTTON3);
 		}
 		return mouseEvent;
 	}
@@ -379,14 +378,14 @@ public class CameraPlugin extends Plugin implements KeyListener, MouseListener
 			rightClick = false;
 			// Change the MouseEvent to button 2 so the middle mouse button will be released
 			mouseEvent = new MouseEvent((java.awt.Component) mouseEvent.getSource(),
-					mouseEvent.getID(),
-					mouseEvent.getWhen(),
-					mouseEvent.getModifiersEx(),
-					mouseEvent.getX(),
-					mouseEvent.getY(),
-					mouseEvent.getClickCount(),
-					mouseEvent.isPopupTrigger(),
-					MouseEvent.BUTTON2);
+				mouseEvent.getID(),
+				mouseEvent.getWhen(),
+				mouseEvent.getModifiersEx(),
+				mouseEvent.getX(),
+				mouseEvent.getY(),
+				mouseEvent.getClickCount(),
+				mouseEvent.isPopupTrigger(),
+				MouseEvent.BUTTON2);
 
 		}
 		if (middleClick)
@@ -394,14 +393,14 @@ public class CameraPlugin extends Plugin implements KeyListener, MouseListener
 			middleClick = false;
 			// Change the MouseEvent ot button 3 so the right mouse button will be released
 			mouseEvent = new MouseEvent((java.awt.Component) mouseEvent.getSource(),
-					mouseEvent.getID(),
-					mouseEvent.getWhen(),
-					mouseEvent.getModifiersEx(),
-					mouseEvent.getX(),
-					mouseEvent.getY(),
-					mouseEvent.getClickCount(),
-					mouseEvent.isPopupTrigger(),
-					MouseEvent.BUTTON3);
+				mouseEvent.getID(),
+				mouseEvent.getWhen(),
+				mouseEvent.getModifiersEx(),
+				mouseEvent.getX(),
+				mouseEvent.getY(),
+				mouseEvent.getClickCount(),
+				mouseEvent.isPopupTrigger(),
+				MouseEvent.BUTTON3);
 		}
 		return mouseEvent;
 	}

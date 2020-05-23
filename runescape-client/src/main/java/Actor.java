@@ -6,7 +6,8 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("cw")
 @Implements("Actor")
-public abstract class Actor extends Entity {
+public abstract class Actor extends Renderable
+{
 	@ObfuscatedName("an")
 	@Export("isWalking")
 	boolean isWalking;

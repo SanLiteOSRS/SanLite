@@ -100,7 +100,7 @@ public class SpellEffectTimersPlugin extends Plugin
 	}
 
 	@Subscribe
-	public void onSpotAnimationChanged(SpotAnimationChanged spotAnimationChanged)
+	public void onGraphicChanged(GraphicChanged graphicChanged)
 	{
 		// Edge cases causing the plugin to not detect freezes
 		// 1. Ahrim's full set effect spot anim overriding (id 400)
@@ -114,13 +114,13 @@ public class SpellEffectTimersPlugin extends Plugin
 			return;
 		}
 
-		Actor actor = spotAnimationChanged.getActor();
+		Actor actor = graphicChanged.getActor();
 		if (actor == null)
 		{
 			return;
 		}
 
-		int spotAnimation = actor.getSpotAnimation();
+		int spotAnimation = actor.getGraphic();
 		if (spotAnimation == 0)
 		{
 			return;
@@ -142,7 +142,7 @@ public class SpellEffectTimersPlugin extends Plugin
 			return;
 		}
 
-		SpellEffect spellEffect = SpellEffect.getFromSpotAnimation(actor.getSpotAnimation());
+		SpellEffect spellEffect = SpellEffect.getFromGraphicId(actor.getGraphic());
 		if (spellEffect == null)
 		{
 			return;
@@ -151,7 +151,7 @@ public class SpellEffectTimersPlugin extends Plugin
 		switch (spellEffect.getSpellType())
 		{
 			case FREEZE:
-				checkFreezeSpellEffect(spotAnimationChanged, actor, spellEffect);
+				checkFreezeSpellEffect(graphicChanged, actor, spellEffect);
 				break;
 			case FREEZE_IMMUNITY:
 			case TELEBLOCK_IMMUNITY:
@@ -160,7 +160,7 @@ public class SpellEffectTimersPlugin extends Plugin
 				checkTeleblockSpellEffect(actor, spellEffect);
 				break;
 			case VENGEANCE:
-				checkVengSpellEffect(spotAnimationChanged, actor, spellEffect);
+				checkVengSpellEffect(graphicChanged, actor, spellEffect);
 				return;
 			default:
 				log.warn("Player spell effect has unknown type");
@@ -225,6 +225,19 @@ public class SpellEffectTimersPlugin extends Plugin
 		frozenActors.entrySet().removeIf(x -> x.getKey().equals(event.getActor()));
 	}
 
+	@Subscribe
+	public void onPlayerDeath(PlayerDeath event)
+	{
+		Player player = event.getPlayer();
+		if (player == null)
+		{
+			return;
+		}
+
+		spellEffects.removeIf(x -> x.getActor().equals(player));
+		frozenActors.entrySet().removeIf(x -> x.getKey().equals(player));
+	}
+
 	private void cacheTeleblock(SpellEffectInfo teleblockSpellEffect)
 	{
 		cachedTeleblocks.put(teleblockSpellEffect, client.getTickCount());
@@ -260,12 +273,12 @@ public class SpellEffectTimersPlugin extends Plugin
 		checkExpiredSpellEffects();
 	}
 
-	private void checkFreezeSpellEffect(SpotAnimationChanged spotAnimationChanged, Actor actor, SpellEffect spellEffect)
+	private void checkFreezeSpellEffect(GraphicChanged graphicChanged, Actor actor, SpellEffect spellEffect)
 	{
 		List<SpellEffectInfo> actorFreezeSpellEffects = new ArrayList<>();
 		for (SpellEffectInfo spellEffectInfo : spellEffects)
 		{
-			if (spotAnimationChanged.getActor().equals(spellEffectInfo.getActor()))
+			if (graphicChanged.getActor().equals(spellEffectInfo.getActor()))
 			{
 				SpellEffectType spellType = spellEffectInfo.getSpellEffect().getSpellType();
 				if (spellType.equals(SpellEffectType.FREEZE_IMMUNITY))
@@ -383,12 +396,12 @@ public class SpellEffectTimersPlugin extends Plugin
 		cachedTeleblocks.remove(spellEffectInfo);
 	}
 
-	private void checkVengSpellEffect(SpotAnimationChanged spotAnimationChanged, Actor actor, SpellEffect spellEffect)
+	private void checkVengSpellEffect(GraphicChanged graphicChanged, Actor actor, SpellEffect spellEffect)
 	{
 		spellEffects.add(new SpellEffectInfo(actor, spellEffect, client.getGameCycle(), false));
 		for (SpellEffectInfo spellEffectInfo : spellEffects)
 		{
-			if (spotAnimationChanged.getActor().equals(spellEffectInfo.getActor()))
+			if (graphicChanged.getActor().equals(spellEffectInfo.getActor()))
 			{
 				if (spellEffectInfo.getSpellEffect().equals(SpellEffect.VENGEANCE_ACTIVE))
 				{

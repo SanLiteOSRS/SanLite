@@ -97,7 +97,7 @@ public class WorldMapRegion {
 		int var5 = this.regionX;
 		int var6 = this.regionY;
 		int var7 = this.pixelsPerTile;
-		Sprite var4 = (Sprite)WorldMapRegion_cachedSprites.get(HorizontalAlignment.method4777(var5, var6, var7));
+		SpritePixels var4 = (SpritePixels)WorldMapRegion_cachedSprites.get(HorizontalAlignment.method4777(var5, var6, var7));
 		if (var4 != null) {
 			if (var3 == this.pixelsPerTile * 64) {
 				var4.drawAt(var1, var2);
@@ -157,7 +157,7 @@ public class WorldMapRegion {
 
 						for (int var11 = 0; var11 < var10.length; ++var11) {
 							WorldMapDecoration var12 = var10[var11];
-							ObjectDefinition var13 = WorldMapSection2.getObjectDefinition(var12.objectDefinitionId);
+							ObjectComposition var13 = WorldMapSection2.getObjectDefinition(var12.objectDefinitionId);
 							if (Tiles.method1239(var13)) {
 								this.getIcon(var13, var8, var6, var7, var5);
 								continue label50;
@@ -176,7 +176,7 @@ public class WorldMapRegion {
 		garbageValue = "-332727967"
 	)
 	@Export("getIcon")
-	void getIcon(ObjectDefinition var1, int var2, int var3, int var4, AbstractWorldMapData var5) {
+	void getIcon(ObjectComposition var1, int var2, int var3, int var4, AbstractWorldMapData var5) {
 		Coord var6 = new Coord(var2, var3 + this.regionX * 64, this.regionY * 64 + var4);
 		Coord var7 = null;
 		if (this.worldMapData_0 != null) {
@@ -303,7 +303,7 @@ public class WorldMapRegion {
 		if (this.worldMapData_0 != null || !this.worldMapData1List.isEmpty()) {
 			int var7 = this.regionX;
 			int var8 = this.regionY;
-			Sprite var6 = (Sprite)WorldMapRegion_cachedSprites.get(HorizontalAlignment.method4777(var7, var8, var1));
+			SpritePixels var6 = (SpritePixels)WorldMapRegion_cachedSprites.get(HorizontalAlignment.method4777(var7, var8, var1));
 			if (var6 == null) {
 				boolean var9 = true;
 				var9 &= this.loadGeography(var4);
@@ -324,7 +324,7 @@ public class WorldMapRegion {
 						var12 = new WorldMapSprite(class200.convertJpgToSprite(var10).pixels);
 					}
 
-					Sprite var14 = new Sprite(this.pixelsPerTile * 64, this.pixelsPerTile * 64);
+					SpritePixels var14 = new SpritePixels(this.pixelsPerTile * 64, this.pixelsPerTile * 64);
 					var14.setRaster();
 					if (this.worldMapData_0 != null) {
 						this.method531(var2, var3, var12);
@@ -520,7 +520,7 @@ public class WorldMapRegion {
 
 				for (int var8 = 0; var8 < var7.length; ++var8) {
 					WorldMapDecoration var9 = var7[var8];
-					if (!Entity.method3374(var9.decoration)) {
+					if (!Renderable.method3374(var9.decoration)) {
 						int var11 = var9.decoration;
 						boolean var10 = var11 == WorldMapDecorationType.field2740.id;
 						if (!var10) {
@@ -528,7 +528,7 @@ public class WorldMapRegion {
 						}
 					}
 
-					ObjectDefinition var12 = WorldMapSection2.getObjectDefinition(var9.objectDefinitionId);
+					ObjectComposition var12 = WorldMapSection2.getObjectDefinition(var9.objectDefinitionId);
 					if (var12.mapSceneId != -1) {
 						if (var12.mapSceneId != 46 && var12.mapSceneId != 52) {
 							var4[var12.mapSceneId].method6211(this.pixelsPerTile * var1, this.pixelsPerTile * (63 - var2), this.pixelsPerTile * 2, this.pixelsPerTile * 2);
@@ -558,7 +558,7 @@ public class WorldMapRegion {
 					int var10 = var8.decoration;
 					boolean var9 = var10 >= WorldMapDecorationType.field2732.id && var10 <= WorldMapDecorationType.field2742.id || var10 == WorldMapDecorationType.field2722.id;
 					if (var9) {
-						ObjectDefinition var11 = WorldMapSection2.getObjectDefinition(var8.objectDefinitionId);
+						ObjectComposition var11 = WorldMapSection2.getObjectDefinition(var8.objectDefinitionId);
 						int var12 = var11.int1 != 0 ? -3407872 : -3355444;
 						if (var8.decoration == WorldMapDecorationType.field2732.id) {
 							this.method552(var1, var2, var8.rotation, var12);
@@ -663,7 +663,7 @@ public class WorldMapRegion {
 	)
 	@Export("drawBackgroundCircle")
 	void drawBackgroundCircle(WorldMapElement var1, int var2, int var3, int var4, int var5) {
-		Sprite var6 = var1.getSpriteBool(false);
+		SpritePixels var6 = var1.getSpriteBool(false);
 		if (var6 != null) {
 			var6.drawTransBgAt(var2 - var6.subWidth / 2, var3 - var6.subHeight / 2);
 			if (var4 % var5 < var5 / 2) {
@@ -691,7 +691,7 @@ public class WorldMapRegion {
 		garbageValue = "15"
 	)
 	void method543(WorldMapElement var1, int var2, int var3) {
-		Sprite var4 = var1.getSpriteBool(false);
+		SpritePixels var4 = var1.getSpriteBool(false);
 		if (var4 != null) {
 			int var5 = this.method546(var4, var1.horizontalAlignment);
 			int var6 = this.method547(var4, var1.verticalAlignment);
@@ -745,7 +745,7 @@ public class WorldMapRegion {
 		signature = "(Lla;Lje;B)I",
 		garbageValue = "1"
 	)
-	int method546(Sprite var1, HorizontalAlignment var2) {
+	int method546(SpritePixels var1, HorizontalAlignment var2) {
 		switch(var2.value) {
 		case 0:
 			return -var1.subWidth / 2;
@@ -761,7 +761,7 @@ public class WorldMapRegion {
 		signature = "(Lla;Lie;B)I",
 		garbageValue = "-110"
 	)
-	int method547(Sprite var1, VerticalAlignment var2) {
+	int method547(SpritePixels var1, VerticalAlignment var2) {
 		switch(var2.value) {
 		case 0:
 			return 0;
@@ -953,7 +953,7 @@ public class WorldMapRegion {
 		garbageValue = "-283435223"
 	)
 	@Export("addNpcToMenu")
-	static final void addNpcToMenu(NPCDefinition var0, int var1, int var2, int var3) {
+	static final void addNpcToMenu(NPCComposition var0, int var1, int var2, int var3) {
 		if (Client.menuOptionsCount < 400) {
 			if (var0.transforms != null) {
 				var0 = var0.transform();

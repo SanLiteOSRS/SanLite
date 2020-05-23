@@ -180,7 +180,7 @@ public class FloorUnderlayDefinition extends DualNode {
 		signature = "(Liy;Ljava/lang/String;Ljava/lang/String;I)[Lla;",
 		garbageValue = "-1984453529"
 	)
-	public static Sprite[] method4507(AbstractArchive var0, String var1, String var2) {
+	public static SpritePixels[] method4507(AbstractArchive var0, String var1, String var2) {
 		int var3 = var0.getGroupId(var1);
 		int var4 = var0.getFileId(var3, var2);
 		return ClientPacket.method3688(var0, var3, var4);

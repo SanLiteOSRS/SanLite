@@ -172,7 +172,7 @@ public class GrandExchangeEvents {
 		AbstractWorldMapIcon.archive7.clearFiles();
 		class228.archive8.clearFiles();
 		SecureRandomFuture.archive9.clearFiles();
-		PlayerAppearance.archive10.clearFiles();
+		PlayerComposition.archive10.clearFiles();
 		WorldMapRegion.archive11.clearFiles();
 		class41.archive12.clearFiles();
 	}

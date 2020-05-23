@@ -6,7 +6,8 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("cf")
 @Implements("TileItem")
-public final class TileItem extends Entity {
+public final class TileItem extends Renderable
+{
 	@ObfuscatedName("i")
 	@ObfuscatedSignature(
 		signature = "Lag;"

@@ -18,7 +18,7 @@ public final class NPC extends Actor {
 		signature = "Ljj;"
 	)
 	@Export("definition")
-	NPCDefinition definition;
+	NPCComposition definition;
 
 	NPC() {
 	}

@@ -136,7 +136,7 @@ public final class class13 {
 					return 1;
 				} else if (var0 == ScriptOpcodes.CLAN_KICKUSER) {
 					var5 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];
-					PlayerAppearance.clanKickUser(var5);
+					PlayerComposition.clanKickUser(var5);
 					return 1;
 				} else if (var0 == ScriptOpcodes.CLAN_GETCHATRANK) {
 					Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = InterfaceParent.clanChat != null ? InterfaceParent.clanChat.rank : 0;

@@ -95,7 +95,7 @@ public class AreaOfEffectIndicatorsOverlay extends Overlay
 				continue;
 			}
 
-			OverlayUtil.renderPolygon(graphics, polygon, projectile.getHighlightColor());
+			OverlayUtil.renderPolygon(graphics, polygon, projectile.getHighlightColor(), config.getTileMarkersLineSize().getSize());
 
 			if (!config.displayRemainingProjectileDuration())
 			{

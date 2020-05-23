@@ -250,13 +250,13 @@ public abstract class AbstractWorldMapData {
 		garbageValue = "86"
 	)
 	@Export("ItemDefinition_get")
-	public static ItemDefinition ItemDefinition_get(int var0) {
-		ItemDefinition var1 = (ItemDefinition)ItemDefinition.ItemDefinition_cached.get((long)var0);
+	public static ItemComposition ItemDefinition_get(int var0) {
+		ItemComposition var1 = (ItemComposition) ItemComposition.ItemDefinition_cached.get((long)var0);
 		if (var1 != null) {
 			return var1;
 		} else {
 			byte[] var2 = PrivateChatMode.ItemDefinition_archive.takeFile(10, var0);
-			var1 = new ItemDefinition();
+			var1 = new ItemComposition();
 			var1.id = var0;
 			if (var2 != null) {
 				var1.decode(new Buffer(var2));
@@ -300,7 +300,7 @@ public abstract class AbstractWorldMapData {
 				}
 			}
 
-			ItemDefinition.ItemDefinition_cached.put(var1, (long)var0);
+			ItemComposition.ItemDefinition_cached.put(var1, (long)var0);
 			return var1;
 		}
 	}

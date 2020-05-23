@@ -28,29 +28,19 @@ import java.awt.Polygon;
 import java.awt.Shape;
 import java.util.ArrayList;
 
-import net.runelite.api.HeadIcon;
+import net.runelite.api.*;
+
 import static net.runelite.api.HeadIcon.MAGIC;
 import static net.runelite.api.HeadIcon.MELEE;
 import static net.runelite.api.HeadIcon.RANGED;
 import static net.runelite.api.HeadIcon.REDEMPTION;
 import static net.runelite.api.HeadIcon.RETRIBUTION;
 import static net.runelite.api.HeadIcon.SMITE;
-import net.runelite.api.Model;
-import net.runelite.api.Perspective;
-import net.runelite.api.SkullIcon;
-import static net.runelite.api.SkullIcon.DEAD_MAN_FIVE;
-import static net.runelite.api.SkullIcon.DEAD_MAN_FOUR;
-import static net.runelite.api.SkullIcon.DEAD_MAN_ONE;
-import static net.runelite.api.SkullIcon.DEAD_MAN_THREE;
-import static net.runelite.api.SkullIcon.DEAD_MAN_TWO;
-import static net.runelite.api.SkullIcon.SKULL;
-import static net.runelite.api.SkullIcon.SKULL_FIGHT_PIT;
+import static net.runelite.api.SkullIcon.*;
+
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.mixins.*;
-import net.runelite.rs.api.RSClient;
-import net.runelite.rs.api.RSModel;
-import net.runelite.rs.api.RSPlayer;
-import net.runelite.rs.api.RSUsername;
+import net.runelite.rs.api.*;
 
 @Mixin(RSPlayer.class)
 public abstract class RSPlayerMixin implements RSPlayer
@@ -115,6 +105,18 @@ public abstract class RSPlayerMixin implements RSPlayer
 				return SKULL;
 			case 1:
 				return SKULL_FIGHT_PIT;
+			case 2:
+				return SKULL_BOUNTY_HUNTER_TIER_ONE;
+			case 3:
+				return SKULL_BOUNTY_HUNTER_TIER_TWO;
+			case 4:
+				return SKULL_BOUNTY_HUNTER_TIER_THREE;
+			case 5:
+				return SKULL_BOUNTY_HUNTER_TIER_FOUR;
+			case 6:
+				return SKULL_BOUNTY_HUNTER_TIER_FIVE;
+			case 7:
+				return SKULL_BOUNTY_HUNTER_TIER_SIX;
 			case 8:
 				return DEAD_MAN_FIVE;
 			case 9:
@@ -125,9 +127,42 @@ public abstract class RSPlayerMixin implements RSPlayer
 				return DEAD_MAN_TWO;
 			case 12:
 				return DEAD_MAN_ONE;
+			case 13:
+				return SKULL_BOUNTY_HUNTER_TIER_SEVEN;
+			case 14:
+				return SKULL_BOUNTY_HUNTER_TIER_EIGHT;
+			case 15:
+				return SKULL_BOUNTY_HUNTER_TIER_NINE;
+			case 16:
+				return SKULL_BOUNTY_HUNTER_TIER_TEN;
 			default:
 				return null;
 		}
+	}
+
+	@Inject
+	@Override
+	public void setSkullIcon(int skullIconId)
+	{
+		RSSpritePixels[] skullSprites = client.getHeadIconPkSprites();
+		if (skullSprites == null)
+			return;
+
+		if (skullIconId < 0 || skullIconId > (skullSprites.length - 1))
+			return;
+
+		setRsSkullIcon(skullIconId);
+	}
+
+	@Inject
+	@Override
+	public boolean isSkulled()
+	{
+		SkullIcon skullIcon = getSkullIcon();
+		if (skullIcon == null)
+			return false;
+
+		return skullIcon != SKULL_FIGHT_PIT;
 	}
 
 	@Inject
@@ -200,14 +235,14 @@ public abstract class RSPlayerMixin implements RSPlayer
 		}
 		int actionFrame = getActionFrame();
 		int poseFrame = getPoseFrame();
-		int spotAnimFrame = getSpotAnimationFrame();
+		int spotAnimFrame = getSpotAnimFrame();
 		try
 		{
 			// combine the frames with the frame cycle so we can access this information in the sequence methods
 			// without having to change method calls
 			setActionFrame(Integer.MIN_VALUE | getActionFrameCycle() << 16 | actionFrame);
 			setPoseFrame(Integer.MIN_VALUE | getPoseFrameCycle() << 16 | poseFrame);
-			setSpotAnimationFrame(Integer.MIN_VALUE | getSpotAnimationFrameCycle() << 16 | spotAnimFrame);
+			setSpotAnimFrame(Integer.MIN_VALUE | getGraphicFrameCycle() << 16 | spotAnimFrame);
 			return rs$getModel();
 		}
 		finally
@@ -215,7 +250,7 @@ public abstract class RSPlayerMixin implements RSPlayer
 			// reset frames
 			setActionFrame(actionFrame);
 			setPoseFrame(poseFrame);
-			setSpotAnimationFrame(spotAnimFrame);
+			setSpotAnimFrame(spotAnimFrame);
 		}
 	}
 

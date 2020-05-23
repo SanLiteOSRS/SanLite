@@ -45,22 +45,23 @@ import net.runelite.api.events.OverheadTextChanged;
 import net.runelite.api.events.ScriptCallbackEvent;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
+import net.runelite.client.game.ClanManager;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.util.Text;
 import org.apache.commons.lang3.StringUtils;
 
 @PluginDescriptor(
-		name = "Chat Filter",
-		description = "Censor user configurable words or patterns from chat",
-		enabledByDefault = false
+	name = "Chat Filter",
+	description = "Censor user configurable words or patterns from chat",
+	enabledByDefault = false
 )
 public class ChatFilterPlugin extends Plugin
 {
 	private static final Splitter NEWLINE_SPLITTER = Splitter
-			.on("\n")
-			.omitEmptyStrings()
-			.trimResults();
+		.on("\n")
+		.omitEmptyStrings()
+		.trimResults();
 
 	@VisibleForTesting
 	static final String CENSOR_MESSAGE = "Hey, everyone, I just tried to say something very silly!";
@@ -74,6 +75,9 @@ public class ChatFilterPlugin extends Plugin
 
 	@Inject
 	private ChatFilterConfig config;
+
+	@Inject
+	private ClanManager clanManager;
 
 	@Provides
 	ChatFilterConfig provideConfig(ConfigManager configManager)
@@ -178,14 +182,14 @@ public class ChatFilterPlugin extends Plugin
 	{
 		boolean isMessageFromSelf = playerName.equals(client.getLocalPlayer().getName());
 		return !isMessageFromSelf &&
-				(config.filterFriends() || !client.isFriended(playerName, false)) &&
-				(config.filterClan() || !client.isClanMember(playerName));
+			(config.filterFriends() || !client.isFriended(playerName, false)) &&
+			(config.filterClan() || !clanManager.isClanMember(playerName));
 	}
 
 	String censorMessage(final String username, final String message)
 	{
 		String strippedMessage = jagexPrintableCharMatcher.retainFrom(message)
-				.replace('\u00A0', ' ');
+			.replace('\u00A0', ' ');
 		if (shouldFilterByName(username))
 		{
 			switch (config.filterType())
@@ -234,18 +238,18 @@ public class ChatFilterPlugin extends Plugin
 		filteredNamePatterns.clear();
 
 		Text.fromCSV(config.filteredWords()).stream()
-				.map(s -> Pattern.compile(Pattern.quote(s), Pattern.CASE_INSENSITIVE))
-				.forEach(filteredPatterns::add);
+			.map(s -> Pattern.compile(Pattern.quote(s), Pattern.CASE_INSENSITIVE))
+			.forEach(filteredPatterns::add);
 
 		NEWLINE_SPLITTER.splitToList(config.filteredRegex()).stream()
-				.map(ChatFilterPlugin::compilePattern)
-				.filter(Objects::nonNull)
-				.forEach(filteredPatterns::add);
+			.map(ChatFilterPlugin::compilePattern)
+			.filter(Objects::nonNull)
+			.forEach(filteredPatterns::add);
 
 		NEWLINE_SPLITTER.splitToList(config.filteredNames()).stream()
-				.map(ChatFilterPlugin::compilePattern)
-				.filter(Objects::nonNull)
-				.forEach(filteredNamePatterns::add);
+			.map(ChatFilterPlugin::compilePattern)
+			.filter(Objects::nonNull)
+			.forEach(filteredNamePatterns::add);
 	}
 
 	private static Pattern compilePattern(String pattern)

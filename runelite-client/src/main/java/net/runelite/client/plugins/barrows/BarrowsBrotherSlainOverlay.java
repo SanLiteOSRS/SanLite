@@ -77,10 +77,10 @@ public class BarrowsBrotherSlainOverlay extends OverlayPanel
 			final boolean brotherSlain = client.getVar(brother.getKilledVarbit()) > 0;
 			String slain = brotherSlain ? "\u2713" : "\u2717";
 			panelComponent.getChildren().add(LineComponent.builder()
-					.left(brother.getName())
-					.right(slain)
-					.rightColor(brotherSlain ? Color.GREEN : Color.RED)
-					.build());
+				.left(brother.getName())
+				.right(slain)
+				.rightColor(brotherSlain ? Color.GREEN : Color.RED)
+				.build());
 		}
 
 		float rewardPercent = client.getVar(Varbits.BARROWS_REWARD_POTENTIAL) / 10.0f;

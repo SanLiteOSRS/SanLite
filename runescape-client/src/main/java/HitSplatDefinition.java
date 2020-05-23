@@ -274,11 +274,11 @@ public class HitSplatDefinition extends DualNode {
 		signature = "(I)Lla;",
 		garbageValue = "1656176054"
 	)
-	public Sprite method4642() {
+	public SpritePixels method4642() {
 		if (this.field3330 < 0) {
 			return null;
 		} else {
-			Sprite var1 = (Sprite)HitSplatDefinition_cachedSprites.get((long)this.field3330);
+			SpritePixels var1 = (SpritePixels)HitSplatDefinition_cachedSprites.get((long)this.field3330);
 			if (var1 != null) {
 				return var1;
 			} else {
@@ -297,11 +297,11 @@ public class HitSplatDefinition extends DualNode {
 		signature = "(I)Lla;",
 		garbageValue = "-743591767"
 	)
-	public Sprite method4631() {
+	public SpritePixels method4631() {
 		if (this.field3331 < 0) {
 			return null;
 		} else {
-			Sprite var1 = (Sprite)HitSplatDefinition_cachedSprites.get((long)this.field3331);
+			SpritePixels var1 = (SpritePixels)HitSplatDefinition_cachedSprites.get((long)this.field3331);
 			if (var1 != null) {
 				return var1;
 			} else {
@@ -320,11 +320,11 @@ public class HitSplatDefinition extends DualNode {
 		signature = "(I)Lla;",
 		garbageValue = "-1442192880"
 	)
-	public Sprite method4632() {
+	public SpritePixels method4632() {
 		if (this.field3332 < 0) {
 			return null;
 		} else {
-			Sprite var1 = (Sprite)HitSplatDefinition_cachedSprites.get((long)this.field3332);
+			SpritePixels var1 = (SpritePixels)HitSplatDefinition_cachedSprites.get((long)this.field3332);
 			if (var1 != null) {
 				return var1;
 			} else {
@@ -343,11 +343,11 @@ public class HitSplatDefinition extends DualNode {
 		signature = "(I)Lla;",
 		garbageValue = "-2137932181"
 	)
-	public Sprite method4633() {
+	public SpritePixels method4633() {
 		if (this.field3333 < 0) {
 			return null;
 		} else {
-			Sprite var1 = (Sprite)HitSplatDefinition_cachedSprites.get((long)this.field3333);
+			SpritePixels var1 = (SpritePixels)HitSplatDefinition_cachedSprites.get((long)this.field3333);
 			if (var1 != null) {
 				return var1;
 			} else {

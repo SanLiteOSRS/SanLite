@@ -36,7 +36,7 @@ public final class FloorDecoration {
 		signature = "Lee;"
 	)
 	@Export("entity")
-	public Entity entity;
+	public Renderable entity;
 	@ObfuscatedName("v")
 	@ObfuscatedGetter(
 		intValue = 1370776167

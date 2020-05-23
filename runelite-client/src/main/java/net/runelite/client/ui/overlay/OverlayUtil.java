@@ -25,9 +25,16 @@
 package net.runelite.client.ui.overlay;
 
 import com.google.common.base.Strings;
-
-import java.awt.*;
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics2D;
 import java.awt.geom.Arc2D;
+import java.awt.Polygon;
+import java.awt.RenderingHints;
+import java.awt.Shape;
+import java.awt.Stroke;
 import java.awt.image.BufferedImage;
 import net.runelite.api.Actor;
 import net.runelite.api.Client;
@@ -49,6 +56,17 @@ public class OverlayUtil
 		graphics.setColor(color);
 		final Stroke originalStroke = graphics.getStroke();
 		graphics.setStroke(new BasicStroke(2));
+		graphics.draw(poly);
+		graphics.setColor(new Color(0, 0, 0, 50));
+		graphics.fill(poly);
+		graphics.setStroke(originalStroke);
+	}
+
+	public static void renderPolygon(Graphics2D graphics, Shape poly, Color color, int strokeSize)
+	{
+		graphics.setColor(color);
+		final Stroke originalStroke = graphics.getStroke();
+		graphics.setStroke(new BasicStroke(strokeSize));
 		graphics.draw(poly);
 		graphics.setColor(new Color(0, 0, 0, 50));
 		graphics.fill(poly);
@@ -251,7 +269,7 @@ public class OverlayUtil
 
 	public static void renderTextLocation(Graphics2D graphics, String txtString, int fontSize, int fontStyle, Color fontColor, Point canvasPoint, boolean shadows, int yOffset)
 	{
-		graphics.setFont(new Font("RuneScape Standard", fontStyle, fontSize));
+		graphics.setFont(new Font("RuneScape", fontStyle, fontSize));
 		if (canvasPoint != null)
 		{
 			final Point canvasCenterPoint = new Point(

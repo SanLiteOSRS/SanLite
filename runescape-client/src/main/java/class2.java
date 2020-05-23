@@ -94,7 +94,7 @@ final class class2 implements class0 {
 			int var5 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
 			var3.itemId = var4;
 			var3.itemQuantity = var5;
-			ItemDefinition var6 = AbstractWorldMapData.ItemDefinition_get(var4);
+			ItemComposition var6 = AbstractWorldMapData.ItemDefinition_get(var4);
 			var3.modelAngleX = var6.xan2d;
 			var3.modelAngleY = var6.yan2d;
 			var3.modelAngleZ = var6.zan2d;

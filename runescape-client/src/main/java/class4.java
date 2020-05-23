@@ -24,7 +24,7 @@ final class class4 implements class0 {
 		signature = "[Lla;"
 	)
 	@Export("headIconHintSprites")
-	static Sprite[] headIconHintSprites;
+	static SpritePixels[] headIconHintSprites;
 
 	@ObfuscatedName("x")
 	@ObfuscatedSignature(

@@ -56,9 +56,9 @@ import net.runelite.client.ui.overlay.infobox.InfoBoxManager;
 import net.runelite.http.api.item.ItemStats;
 
 @PluginDescriptor(
-		name = "Prayer",
-		description = "Show various information related to prayer",
-		tags = {"combat", "flicking", "overlay"}
+	name = "Prayer",
+	description = "Show various information related to prayer",
+	tags = {"combat", "flicking", "overlay"}
 )
 public class PrayerPlugin extends Plugin
 {
@@ -210,7 +210,7 @@ public class PrayerPlugin extends Plugin
 				{
 					PrayerCounter counter = prayerCounter[ord] = new PrayerCounter(this, prayerType);
 					spriteManager.getSpriteAsync(prayerType.getSpriteID(), 0,
-							counter::setImage);
+						counter::setImage);
 					infoBoxManager.addInfoBox(counter);
 				}
 			}

@@ -88,16 +88,16 @@ class KourendLibraryPanel extends PluginPanel
 		c.gridx = 0;
 		c.gridy = 0;
 		Stream.of(Book.values())
-				.filter(b -> !b.isDarkManuscript())
-				.filter(b -> !config.hideVarlamoreEnvoy() || b != Book.VARLAMORE_ENVOY)
-				.sorted(Comparator.comparing(Book::getShortName))
-				.forEach(b ->
-				{
-					BookPanel p = new BookPanel(b);
-					bookPanels.put(b, p);
-					books.add(p, c);
-					c.gridy++;
-				});
+			.filter(b -> !b.isDarkManuscript())
+			.filter(b -> !config.hideVarlamoreEnvoy() || b != Book.VARLAMORE_ENVOY)
+			.sorted(Comparator.comparing(Book::getShortName))
+			.forEach(b ->
+			{
+				BookPanel p = new BookPanel(b);
+				bookPanels.put(b, p);
+				books.add(p, c);
+				c.gridy++;
+			});
 
 		JButton reset = new JButton("Reset", RESET_ICON);
 		reset.setRolloverIcon(RESET_HOVER_ICON);

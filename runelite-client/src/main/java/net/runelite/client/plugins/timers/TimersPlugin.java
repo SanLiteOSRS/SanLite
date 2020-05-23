@@ -53,7 +53,7 @@ import net.runelite.api.events.AnimationChanged;
 import net.runelite.api.events.ChatMessage;
 import net.runelite.api.events.GameStateChanged;
 import net.runelite.api.events.GameTick;
-import net.runelite.api.events.SpotAnimationChanged;
+import net.runelite.api.events.GraphicChanged;
 import net.runelite.api.events.ItemContainerChanged;
 import net.runelite.api.events.MenuOptionClicked;
 import net.runelite.api.events.NpcDespawned;
@@ -369,23 +369,23 @@ public class TimersPlugin extends Plugin
 	public void onMenuOptionClicked(MenuOptionClicked event)
 	{
 		if (config.showStamina()
-			&& event.getOption().contains("Drink")
-			&& (event.getIdentifier() == ItemID.STAMINA_MIX1
-			|| event.getIdentifier() == ItemID.STAMINA_MIX2
-			|| event.getIdentifier() == ItemID.EGNIOL_POTION_1
-			|| event.getIdentifier() == ItemID.EGNIOL_POTION_2
-			|| event.getIdentifier() == ItemID.EGNIOL_POTION_3
-			|| event.getIdentifier() == ItemID.EGNIOL_POTION_4))
+			&& event.getMenuOption().contains("Drink")
+			&& (event.getId() == ItemID.STAMINA_MIX1
+			|| event.getId() == ItemID.STAMINA_MIX2
+			|| event.getId() == ItemID.EGNIOL_POTION_1
+			|| event.getId() == ItemID.EGNIOL_POTION_2
+			|| event.getId() == ItemID.EGNIOL_POTION_3
+			|| event.getId() == ItemID.EGNIOL_POTION_4))
 		{
-			// Needs menu option hook because mixes use a common drink message, distinct from their standard potion meszsages
+			// Needs menu option hook because mixes use a common drink message, distinct from their standard potion messages
 			createGameTimer(STAMINA);
 			return;
 		}
 
 		if (config.showAntiFire()
-			&& event.getOption().contains("Drink")
-			&& (event.getIdentifier() == ItemID.ANTIFIRE_MIX1
-			|| event.getIdentifier() == ItemID.ANTIFIRE_MIX2))
+			&& event.getMenuOption().contains("Drink")
+			&& (event.getId() == ItemID.ANTIFIRE_MIX1
+			|| event.getId() == ItemID.ANTIFIRE_MIX2))
 		{
 			// Needs menu option hook because mixes use a common drink message, distinct from their standard potion messages
 			createGameTimer(ANTIFIRE);
@@ -393,9 +393,9 @@ public class TimersPlugin extends Plugin
 		}
 
 		if (config.showAntiFire()
-			&& event.getOption().contains("Drink")
-			&& (event.getIdentifier() == ItemID.EXTENDED_ANTIFIRE_MIX1
-			|| event.getIdentifier() == ItemID.EXTENDED_ANTIFIRE_MIX2))
+			&& event.getMenuOption().contains("Drink")
+			&& (event.getId() == ItemID.EXTENDED_ANTIFIRE_MIX1
+			|| event.getId() == ItemID.EXTENDED_ANTIFIRE_MIX2))
 		{
 			// Needs menu option hook because mixes use a common drink message, distinct from their standard potion messages
 			createGameTimer(EXANTIFIRE);
@@ -403,9 +403,9 @@ public class TimersPlugin extends Plugin
 		}
 
 		if (config.showAntiFire()
-			&& event.getOption().contains("Drink")
-			&& (event.getIdentifier() == ItemID.SUPER_ANTIFIRE_MIX1
-			|| event.getIdentifier() == ItemID.SUPER_ANTIFIRE_MIX2))
+			&& event.getMenuOption().contains("Drink")
+			&& (event.getId() == ItemID.SUPER_ANTIFIRE_MIX1
+			|| event.getId() == ItemID.SUPER_ANTIFIRE_MIX2))
 		{
 			// Needs menu option hook because mixes use a common drink message, distinct from their standard potion messages
 			createGameTimer(SUPERANTIFIRE);
@@ -413,16 +413,16 @@ public class TimersPlugin extends Plugin
 		}
 
 		if (config.showAntiFire()
-			&& event.getOption().contains("Drink")
-			&& (event.getIdentifier() == ItemID.EXTENDED_SUPER_ANTIFIRE_MIX1
-			|| event.getIdentifier() == ItemID.EXTENDED_SUPER_ANTIFIRE_MIX2))
+			&& event.getMenuOption().contains("Drink")
+			&& (event.getId() == ItemID.EXTENDED_SUPER_ANTIFIRE_MIX1
+			|| event.getId() == ItemID.EXTENDED_SUPER_ANTIFIRE_MIX2))
 		{
 			// Needs menu option hook because mixes use a common drink message, distinct from their standard potion messages
 			createGameTimer(EXSUPERANTIFIRE);
 			return;
 		}
 
-		TeleportWidget teleportWidget = TeleportWidget.of(event.getActionParam1());
+		TeleportWidget teleportWidget = TeleportWidget.of(event.getWidgetId());
 		if (teleportWidget != null)
 		{
 			lastTeleportClicked = teleportWidget;
@@ -740,7 +740,7 @@ public class TimersPlugin extends Plugin
 	}
 
 	@Subscribe
-	public void onSpotAnimationChanged(SpotAnimationChanged event)
+	public void onGraphicChanged(GraphicChanged event)
 	{
 		Actor actor = event.getActor();
 
@@ -749,24 +749,24 @@ public class TimersPlugin extends Plugin
 			return;
 		}
 
-		if (config.showImbuedHeart() && actor.getSpotAnimation() == IMBUEDHEART.getGraphicId())
+		if (config.showImbuedHeart() && actor.getGraphic() == IMBUEDHEART.getGraphicId())
 		{
 			createGameTimer(IMBUEDHEART);
 		}
 
 		if (config.showFreezes())
 		{
-			if (actor.getSpotAnimation() == BIND.getGraphicId())
+			if (actor.getGraphic() == BIND.getGraphicId())
 			{
 				createGameTimer(BIND);
 			}
 
-			if (actor.getSpotAnimation() == SNARE.getGraphicId())
+			if (actor.getGraphic() == SNARE.getGraphicId())
 			{
 				createGameTimer(SNARE);
 			}
 
-			if (actor.getSpotAnimation() == ENTANGLE.getGraphicId())
+			if (actor.getGraphic() == ENTANGLE.getGraphicId())
 			{
 				createGameTimer(ENTANGLE);
 			}
@@ -774,19 +774,19 @@ public class TimersPlugin extends Plugin
 			// downgrade freeze based on graphic, if at the same tick as the freeze message
 			if (freezeTime == client.getTickCount())
 			{
-				if (actor.getSpotAnimation() == ICERUSH.getGraphicId())
+				if (actor.getGraphic() == ICERUSH.getGraphicId())
 				{
 					removeGameTimer(ICEBARRAGE);
 					freezeTimer = createGameTimer(ICERUSH);
 				}
 
-				if (actor.getSpotAnimation() == ICEBURST.getGraphicId())
+				if (actor.getGraphic() == ICEBURST.getGraphicId())
 				{
 					removeGameTimer(ICEBARRAGE);
 					freezeTimer = createGameTimer(ICEBURST);
 				}
 
-				if (actor.getSpotAnimation() == ICEBLITZ.getGraphicId())
+				if (actor.getGraphic() == ICEBLITZ.getGraphicId())
 				{
 					removeGameTimer(ICEBARRAGE);
 					freezeTimer = createGameTimer(ICEBLITZ);

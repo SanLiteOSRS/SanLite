@@ -17,7 +17,7 @@ public class ChatChannel {
 		signature = "Lla;"
 	)
 	@Export("compass")
-	static Sprite compass;
+	static SpritePixels compass;
 	@ObfuscatedName("m")
 	@ObfuscatedSignature(
 		signature = "[Lby;"

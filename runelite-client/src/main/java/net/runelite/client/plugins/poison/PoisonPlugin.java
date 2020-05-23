@@ -249,7 +249,7 @@ public class PoisonPlugin extends Plugin
 	private BufferedImage getSplat(int id, int damage)
 	{
 		//Get a copy of the hitsplat to get a clean one each time
-		final BufferedImage rawSplat = spriteManager.getSpriteImg(id, 0);
+		final BufferedImage rawSplat = spriteManager.getSprite(id, 0);
 		if (rawSplat == null)
 		{
 			return null;

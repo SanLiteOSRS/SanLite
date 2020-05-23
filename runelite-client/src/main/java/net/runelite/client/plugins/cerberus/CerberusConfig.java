@@ -1,9 +1,6 @@
 package net.runelite.client.plugins.cerberus;
 
-import net.runelite.client.config.Alpha;
-import net.runelite.client.config.Config;
-import net.runelite.client.config.ConfigGroup;
-import net.runelite.client.config.ConfigItem;
+import net.runelite.client.config.*;
 
 import java.awt.*;
 
@@ -45,10 +42,21 @@ public interface CerberusConfig extends Config
 	}
 
 	@ConfigItem(
+			keyName = "tileMarkersLineSize",
+			name = "Tile markers line size",
+			description = "The size of the outside line for tile markers",
+			position = 4
+	)
+	default StrokeSize getTileMarkersLineSize()
+	{
+		return StrokeSize.NORMAL;
+	}
+
+	@ConfigItem(
 			keyName = "showDebugOverlay",
 			name = "Display debug overlay",
 			description = "Displays plugin debug overlay. This displays variables that the plugin uses to function",
-			position = 4
+			position = 5
 	)
 	default boolean showDebugOverlay()
 	{

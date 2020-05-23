@@ -140,10 +140,10 @@ public interface ClanChatConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "confirmKicks",
-			name = "Confirm Kicks",
-			description = "Shows a chat prompt to confirm kicks",
-			position = 9
+		keyName = "confirmKicks",
+		name = "Confirm Kicks",
+		description = "Shows a chat prompt to confirm kicks",
+		position = 9
 	)
 	default boolean confirmKicks()
 	{
@@ -151,10 +151,10 @@ public interface ClanChatConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "showIgnores",
-			name = "Recolor ignored players",
-			description = "Recolors players that are on your ignore list",
-			position = 10
+		keyName = "showIgnores",
+		name = "Recolor ignored players",
+		description = "Recolors players that are on your ignore list",
+		position = 10
 	)
 	default boolean showIgnores()
 	{
@@ -162,10 +162,10 @@ public interface ClanChatConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "showIgnoresColor",
-			name = "Ignored color",
-			description = "Allows you to change the color of the ignored players in your clan chat",
-			position = 11
+		keyName = "showIgnoresColor",
+		name = "Ignored color",
+		description = "Allows you to change the color of the ignored players in your clan chat",
+		position = 11
 	)
 	default Color showIgnoresColor()
 	{

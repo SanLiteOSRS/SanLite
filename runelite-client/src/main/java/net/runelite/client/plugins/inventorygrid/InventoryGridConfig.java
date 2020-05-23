@@ -62,11 +62,10 @@ public interface InventoryGridConfig extends Config
 		return true;
 	}
 
-
 	@ConfigItem(
-			keyName = "dragDelay",
-			name = "Drag delay",
-			description = "Time to wait after an item press before the overlay is enabled"
+		keyName = "dragDelay",
+		name = "Drag delay",
+		description = "Time to wait after an item press before the overlay is enabled"
 	)
 	@Units(Units.MILLISECONDS)
 	default int dragDelay()

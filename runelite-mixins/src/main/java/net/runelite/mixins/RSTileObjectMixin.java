@@ -18,7 +18,7 @@ import net.runelite.rs.api.*;
 	@Mixin(RSWallDecoration.class),
 	@Mixin(RSGameObject.class),
 	@Mixin(RSFloorDecoration.class),
-	@Mixin(RSTileItemPile.class),
+	@Mixin(RSItemLayer.class),
 	@Mixin(RSBoundaryObject.class)
 })
 public abstract class RSTileObjectMixin implements TileObject

@@ -42,9 +42,9 @@ public interface CombatLevelConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "showPreciseCombatLevel",
-			name = "Show precise combat level",
-			description = "Displays your combat level with accurate decimals."
+		keyName = "showPreciseCombatLevel",
+		name = "Show precise combat level",
+		description = "Displays your combat level with accurate decimals."
 	)
 	default boolean showPreciseCombatLevel()
 	{
