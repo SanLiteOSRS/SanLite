@@ -26,10 +26,7 @@
  */
 package net.runelite.client.plugins.playerindicators;
 
-import net.runelite.client.config.Config;
-import net.runelite.client.config.ConfigGroup;
-import net.runelite.client.config.ConfigItem;
-import net.runelite.client.config.PlayerNameLocation;
+import net.runelite.client.config.*;
 
 import java.awt.*;
 
@@ -423,6 +420,19 @@ public interface PlayerIndicatorsConfig extends Config
 
 	@ConfigItem(
 			position = 32,
+			keyName = "notifyOnlyOnSkulledPlayers",
+			name = "Notify only on skulled players",
+			description = "Only receive player spawn notifications for skulled players",
+			group = "Player spawn notifications"
+	)
+	default boolean notifyOnlyOnSkulledPlayers()
+	{
+		return false;
+	}
+
+	@Units(Units.TICKS)
+	@ConfigItem(
+			position = 33,
 			keyName = "delayBetweenPlayerSpawnedNotifications",
 			name = "Notification cooldown",
 			description = "Configures the minimum game ticks between player spawned notifications (600ms per tick)",
@@ -434,7 +444,7 @@ public interface PlayerIndicatorsConfig extends Config
 	}
 
 	@ConfigItem(
-			position = 33,
+			position = 34,
 			keyName = "ignoredPlayerNames",
 			name = "Ignored players",
 			description = "Configures players that will be ignored by player spawn notifications. Format: (name), (name)",
@@ -447,7 +457,7 @@ public interface PlayerIndicatorsConfig extends Config
 
 
 	@ConfigItem(
-			position = 34,
+			position = 35,
 			keyName = "clanMenuIcons",
 			name = "Show clan ranks",
 			description = "Add clan rank to right click menu and next to player names",
