@@ -6,12 +6,14 @@ import net.runelite.api.mixins.MethodHook;
 import net.runelite.api.mixins.Mixin;
 import net.runelite.api.mixins.Shadow;
 import net.runelite.rs.api.RSClient;
-import net.runelite.rs.api.RSUser;
-import net.runelite.rs.api.RSUserList;
+import net.runelite.rs.api.RSNameable;
+import net.runelite.rs.api.RSNameableContainer;
 import net.runelite.rs.api.RSUsername;
 
-@Mixin(RSUserList.class)
-public abstract class RSUserListMixin implements RSUserList
+import java.util.Arrays;
+
+@Mixin(RSNameableContainer.class)
+public abstract class RSNameableContainerMixin implements RSNameableContainer
 {
 	@Shadow("client")
 	private static RSClient client;
@@ -35,7 +37,7 @@ public abstract class RSUserListMixin implements RSUserList
 	 */
 	@Inject
 	@Override
-	public void rl$remove(RSUser nameable)
+	public void rl$remove(RSNameable nameable)
 	{
 	}
 
@@ -48,9 +50,16 @@ public abstract class RSUserListMixin implements RSUserList
 
 	@Inject
 	@MethodHook("remove")
-	public void remove(RSUser nameable)
+	public void remove(RSNameable nameable)
 	{
 		rl$remove(nameable);
+	}
+
+	@Inject
+	@Override
+	public Nameable[] getMembers()
+	{
+		return Arrays.copyOf(this.getRSMembers(), this.getCount());
 	}
 
 	@Inject

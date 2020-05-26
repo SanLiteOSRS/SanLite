@@ -222,7 +222,7 @@ public class class237 {
 						VarpDefinition.VarpDefinition_archive = var14;
 						VarpDefinition.VarpDefinition_fileCount = VarpDefinition.VarpDefinition_archive.getGroupFileCount(16);
 						World.method1908(WorldMapSprite.archive3, AbstractWorldMapIcon.archive7, class228.archive8, NPC.archive13);
-						UserList.method5179(GrandExchangeOffer.archive2);
+						NameableContainer.method5179(GrandExchangeOffer.archive2);
 						MouseHandler.method1206(GrandExchangeOffer.archive2);
 						Players.method2251(GrandExchangeOffer.archive2);
 						Archive var15 = GrandExchangeOffer.archive2;

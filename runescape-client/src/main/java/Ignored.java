@@ -7,7 +7,8 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("km")
 @Implements("Ignored")
-public class Ignored extends User {
+public class Ignored extends Nameable
+{
 	@ObfuscatedName("ab")
 	@Export("loginScreenFontMetrics")
 	static FontMetrics loginScreenFontMetrics;
@@ -37,7 +38,7 @@ public class Ignored extends User {
 		garbageValue = "-1956183743"
 	)
 	@Export("compareTo_user")
-	public int compareTo_user(User var1) {
+	public int compareTo_user(Nameable var1) {
 		return this.compareTo_ignored((Ignored)var1);
 	}
 

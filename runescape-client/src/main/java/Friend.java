@@ -54,7 +54,7 @@ public class Friend extends Buddy {
 		garbageValue = "-1956183743"
 	)
 	@Export("compareTo_user")
-	public int compareTo_user(User var1) {
+	public int compareTo_user(Nameable var1) {
 		return this.compareToFriend((Friend)var1);
 	}
 
