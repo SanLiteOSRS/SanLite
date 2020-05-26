@@ -4,8 +4,8 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("jd")
-@Implements("User")
-public class User implements Comparable {
+@Implements("Nameable")
+public class Nameable implements Comparable {
 	@ObfuscatedName("k")
 	@ObfuscatedSignature(
 		signature = "Lku;"
@@ -19,7 +19,7 @@ public class User implements Comparable {
 	@Export("previousUsername")
 	Username previousUsername;
 
-	User() {
+	Nameable() {
 	}
 
 	@ObfuscatedName("ar")
@@ -73,11 +73,11 @@ public class User implements Comparable {
 		garbageValue = "-1956183743"
 	)
 	@Export("compareTo_user")
-	public int compareTo_user(User var1) {
+	public int compareTo_user(Nameable var1) {
 		return this.username.compareToTyped(var1.username);
 	}
 
 	public int compareTo(Object var1) {
-		return this.compareTo_user((User)var1);
+		return this.compareTo_user((Nameable)var1);
 	}
 }
