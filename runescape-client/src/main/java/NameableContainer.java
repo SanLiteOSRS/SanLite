@@ -9,8 +9,9 @@ import net.runelite.mapping.ObfuscatedSignature;
 import net.runelite.rs.ScriptOpcodes;
 
 @ObfuscatedName("kw")
-@Implements("UserList")
-public abstract class UserList {
+@Implements("NameableContainer")
+public abstract class NameableContainer
+{
 	@ObfuscatedName("d")
 	@ObfuscatedGetter(
 		intValue = 359260523
@@ -28,7 +29,7 @@ public abstract class UserList {
 		signature = "[Ljd;"
 	)
 	@Export("array")
-	User[] array;
+	Nameable[] array;
 	@ObfuscatedName("q")
 	@Export("usernamesMap")
 	HashMap usernamesMap;
@@ -39,7 +40,7 @@ public abstract class UserList {
 	@Export("comparator")
 	Comparator comparator;
 
-	UserList(int var1) {
+	NameableContainer(int var1) {
 		this.size = 0;
 		this.comparator = null;
 		this.capacity = var1;
@@ -54,7 +55,7 @@ public abstract class UserList {
 		garbageValue = "-1332552421"
 	)
 	@Export("newInstance")
-	abstract User newInstance();
+	abstract Nameable newInstance();
 
 	@ObfuscatedName("m")
 	@ObfuscatedSignature(
@@ -62,7 +63,7 @@ public abstract class UserList {
 		garbageValue = "-667029686"
 	)
 	@Export("newTypedArray")
-	abstract User[] newTypedArray(int var1);
+	abstract Nameable[] newTypedArray(int var1);
 
 	@ObfuscatedName("e")
 	@ObfuscatedSignature(
@@ -117,8 +118,8 @@ public abstract class UserList {
 		garbageValue = "2044020824"
 	)
 	@Export("getByUsername")
-	public User getByUsername(Username var1) {
-		User var2 = this.getByCurrentUsername(var1);
+	public Nameable getByUsername(Username var1) {
+		Nameable var2 = this.getByCurrentUsername(var1);
 		return var2 != null ? var2 : this.getByPreviousUsername(var1);
 	}
 
@@ -128,8 +129,8 @@ public abstract class UserList {
 		garbageValue = "-678771148"
 	)
 	@Export("getByCurrentUsername")
-	User getByCurrentUsername(Username var1) {
-		return !var1.hasCleanName() ? null : (User)this.usernamesMap.get(var1);
+	Nameable getByCurrentUsername(Username var1) {
+		return !var1.hasCleanName() ? null : (Nameable)this.usernamesMap.get(var1);
 	}
 
 	@ObfuscatedName("g")
@@ -138,8 +139,8 @@ public abstract class UserList {
 		garbageValue = "1317746514"
 	)
 	@Export("getByPreviousUsername")
-	User getByPreviousUsername(Username var1) {
-		return !var1.hasCleanName() ? null : (User)this.previousUsernamesMap.get(var1);
+	Nameable getByPreviousUsername(Username var1) {
+		return !var1.hasCleanName() ? null : (Nameable)this.previousUsernamesMap.get(var1);
 	}
 
 	@ObfuscatedName("i")
@@ -149,7 +150,7 @@ public abstract class UserList {
 	)
 	@Export("removeByUsername")
 	public final boolean removeByUsername(Username var1) {
-		User var2 = this.getByCurrentUsername(var1);
+		Nameable var2 = this.getByCurrentUsername(var1);
 		if (var2 == null) {
 			return false;
 		} else {
@@ -164,7 +165,7 @@ public abstract class UserList {
 		garbageValue = "-941355814"
 	)
 	@Export("remove")
-	final void remove(User var1) {
+	final void remove(Nameable var1) {
 		int var2 = this.indexOf(var1);
 		if (var2 != -1) {
 			this.arrayRemove(var2);
@@ -178,7 +179,7 @@ public abstract class UserList {
 		garbageValue = "-2093018234"
 	)
 	@Export("addLastNoPreviousUsername")
-	User addLastNoPreviousUsername(Username var1) {
+	Nameable addLastNoPreviousUsername(Username var1) {
 		return this.addLast(var1, (Username)null);
 	}
 
@@ -188,11 +189,11 @@ public abstract class UserList {
 		garbageValue = "50"
 	)
 	@Export("addLast")
-	User addLast(Username var1, Username var2) {
+	Nameable addLast(Username var1, Username var2) {
 		if (this.getByCurrentUsername(var1) != null) {
 			throw new IllegalStateException();
 		} else {
-			User var3 = this.newInstance();
+			Nameable var3 = this.newInstance();
 			var3.set(var1, var2);
 			this.arrayAddLast(var3);
 			this.mapPut(var3);
@@ -206,7 +207,7 @@ public abstract class UserList {
 		garbageValue = "-13330"
 	)
 	@Export("get")
-	public final User get(int var1) {
+	public final Nameable get(int var1) {
 		if (var1 >= 0 && var1 < this.size) {
 			return this.array[var1];
 		} else {
@@ -235,7 +236,7 @@ public abstract class UserList {
 		garbageValue = "577990406"
 	)
 	@Export("changeName")
-	final void changeName(User var1, Username var2, Username var3) {
+	final void changeName(Nameable var1, Username var2, Username var3) {
 		this.mapRemove(var1);
 		var1.set(var2, var3);
 		this.mapPut(var1);
@@ -247,7 +248,7 @@ public abstract class UserList {
 		garbageValue = "-1683425809"
 	)
 	@Export("indexOf")
-	final int indexOf(User var1) {
+	final int indexOf(Nameable var1) {
 		for (int var2 = 0; var2 < this.size; ++var2) {
 			if (this.array[var2] == var1) {
 				return var2;
@@ -263,7 +264,7 @@ public abstract class UserList {
 		garbageValue = "28"
 	)
 	@Export("mapRemove")
-	final void mapRemove(User var1) {
+	final void mapRemove(Nameable var1) {
 		if (this.usernamesMap.remove(var1.username) == null) {
 			throw new IllegalStateException();
 		} else {
@@ -280,7 +281,7 @@ public abstract class UserList {
 		garbageValue = "1612214268"
 	)
 	@Export("arrayAddLast")
-	final void arrayAddLast(User var1) {
+	final void arrayAddLast(Nameable var1) {
 		this.array[++this.size - 1] = var1;
 	}
 
@@ -290,10 +291,10 @@ public abstract class UserList {
 		garbageValue = "1080849523"
 	)
 	@Export("mapPut")
-	final void mapPut(User var1) {
+	final void mapPut(Nameable var1) {
 		this.usernamesMap.put(var1.username, var1);
 		if (var1.previousUsername != null) {
-			User var2 = (User)this.previousUsernamesMap.put(var1.previousUsername, var1);
+			Nameable var2 = (Nameable)this.previousUsernamesMap.put(var1.previousUsername, var1);
 			if (var2 != null && var2 != var1) {
 				var2.previousUsername = null;
 			}

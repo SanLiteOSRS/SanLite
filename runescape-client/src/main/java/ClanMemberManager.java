@@ -6,7 +6,8 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ko")
 @Implements("ClanMemberManager")
-public class ClanMemberManager extends UserList {
+public class ClanMemberManager extends NameableContainer
+{
 	@ObfuscatedName("m")
 	@ObfuscatedSignature(
 		signature = "Lmx;"
@@ -58,7 +59,7 @@ public class ClanMemberManager extends UserList {
 		garbageValue = "-1332552421"
 	)
 	@Export("newInstance")
-	User newInstance() {
+	Nameable newInstance() {
 		return new ClanMate();
 	}
 
@@ -68,7 +69,7 @@ public class ClanMemberManager extends UserList {
 		garbageValue = "-667029686"
 	)
 	@Export("newTypedArray")
-	User[] newTypedArray(int var1) {
+	Nameable[] newTypedArray(int var1) {
 		return new ClanMate[var1];
 	}
 

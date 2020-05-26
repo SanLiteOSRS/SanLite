@@ -29,7 +29,7 @@ public abstract class RSClanMemberManagerMixin implements ClanMemberManager
 	}
 
 	@Inject
-	public void rl$remove(RSUser nameable)
+	public void rl$remove(RSNameable nameable)
 	{
 		ClanMember member = findByName(nameable.getName());
 		if (member == null)

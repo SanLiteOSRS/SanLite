@@ -175,7 +175,7 @@ public enum ModeWhere implements Enumerated {
 		} else if (var0 < 1100) {
 			return SecureRandomCallable.method1249(var0, var1, var2);
 		} else if (var0 < 1200) {
-			return UserList.method5225(var0, var1, var2);
+			return NameableContainer.method5225(var0, var1, var2);
 		} else if (var0 < 1300) {
 			return class2.method28(var0, var1, var2);
 		} else if (var0 < 1400) {
@@ -195,7 +195,7 @@ public enum ModeWhere implements Enumerated {
 		} else if (var0 < 2100) {
 			return SecureRandomCallable.method1249(var0, var1, var2);
 		} else if (var0 < 2200) {
-			return UserList.method5225(var0, var1, var2);
+			return NameableContainer.method5225(var0, var1, var2);
 		} else if (var0 < 2300) {
 			return class2.method28(var0, var1, var2);
 		} else if (var0 < 2400) {

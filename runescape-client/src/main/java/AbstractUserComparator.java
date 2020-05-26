@@ -39,7 +39,7 @@ public abstract class AbstractUserComparator implements Comparator {
 		garbageValue = "1451673304"
 	)
 	@Export("compareUser")
-	protected final int compareUser(User var1, User var2) {
+	protected final int compareUser(Nameable var1, Nameable var2) {
 		return this.nextComparator == null ? 0 : this.nextComparator.compare(var1, var2);
 	}
 
