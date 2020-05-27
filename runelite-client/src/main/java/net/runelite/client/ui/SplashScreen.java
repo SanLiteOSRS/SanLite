@@ -43,15 +43,19 @@ import javax.swing.Timer;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.plaf.basic.BasicProgressBarUI;
+
 import lombok.extern.slf4j.Slf4j;
+import net.runelite.client.RuneLiteProperties;
 import net.runelite.client.ui.skin.SubstanceRuneLiteLookAndFeel;
 import net.runelite.client.util.ImageUtil;
+import net.runelite.client.util.SwingUtil;
 import org.pushingpixels.substance.internal.SubstanceSynapse;
 
 @Slf4j
 public class SplashScreen extends JFrame implements ActionListener
 {
 	private static final int WIDTH = 200;
+	private static final int INITIAL_HEIGHT = 180;
 	private static final int PAD = 10;
 
 	private static SplashScreen INSTANCE;
@@ -68,9 +72,9 @@ public class SplashScreen extends JFrame implements ActionListener
 
 	private SplashScreen() throws IOException
 	{
-		BufferedImage logo = ImageUtil.getResourceStreamFromClass(SplashScreen.class, "runelite_transparent.png");
+		BufferedImage logo = ImageUtil.getResourceStreamFromClass(SplashScreen.class, "sanlite_transparent.png");
 
-		setTitle("RuneLite Launcher");
+		setTitle(RuneLiteProperties.getTitle() + " Launcher");
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setUndecorated(true);
@@ -79,19 +83,25 @@ public class SplashScreen extends JFrame implements ActionListener
 		Container pane = getContentPane();
 		pane.setBackground(ColorScheme.DARKER_GRAY_COLOR);
 
-		Font font = new Font(Font.DIALOG, Font.PLAIN, 12);
-
 		JLabel logoLabel = new JLabel(new ImageIcon(logo));
 		pane.add(logoLabel);
 		logoLabel.setBounds(0, 0, WIDTH, WIDTH);
 
-		int y = WIDTH;
+		int y = INITIAL_HEIGHT;
+
+		JLabel clientVersion = new JLabel("Version " + RuneLiteProperties.getSanLiteVersion());
+		pane.add(clientVersion);
+		clientVersion.setForeground(Color.WHITE);
+		clientVersion.setBounds(0, INITIAL_HEIGHT, WIDTH, 16);
+		clientVersion.setHorizontalAlignment(SwingConstants.CENTER);
+		clientVersion.setFont(FontManager.getRunescapeSmallFont());
+		clientVersion.setForeground(clientVersion.getForeground().darker());
+		y += clientVersion.getHeight() + PAD;
 
 		pane.add(action);
 		action.setForeground(Color.WHITE);
 		action.setBounds(0, y, WIDTH, 16);
 		action.setHorizontalAlignment(SwingConstants.CENTER);
-		action.setFont(font);
 		y += action.getHeight() + PAD;
 
 		pane.add(progress);
@@ -99,7 +109,7 @@ public class SplashScreen extends JFrame implements ActionListener
 		progress.setBackground(ColorScheme.BRAND_BLUE.darker().darker());
 		progress.setBorder(new EmptyBorder(0, 0, 0, 0));
 		progress.setBounds(0, y, WIDTH, 14);
-		progress.setFont(font);
+		progress.setFont(FontManager.getRunescapeSmallFont().deriveFont(Font.PLAIN, 16));
 		progress.setUI(new BasicProgressBarUI()
 		{
 			@Override
@@ -120,7 +130,6 @@ public class SplashScreen extends JFrame implements ActionListener
 		subAction.setForeground(Color.LIGHT_GRAY);
 		subAction.setBounds(0, y, WIDTH, 16);
 		subAction.setHorizontalAlignment(SwingConstants.CENTER);
-		subAction.setFont(font);
 		y += subAction.getHeight() + PAD;
 
 		setSize(WIDTH, y);
@@ -174,13 +183,10 @@ public class SplashScreen extends JFrame implements ActionListener
 					boolean hasLAF = UIManager.getLookAndFeel() instanceof SubstanceRuneLiteLookAndFeel;
 					if (!hasLAF)
 					{
-						UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+						SwingUtil.setupRuneLiteLookAndFeel();
 					}
 					INSTANCE = new SplashScreen();
-					if (hasLAF)
-					{
-						INSTANCE.getRootPane().putClientProperty(SubstanceSynapse.COLORIZATION_FACTOR, 1.0);
-					}
+					INSTANCE.getRootPane().putClientProperty(SubstanceSynapse.COLORIZATION_FACTOR, 1.0);
 				}
 				catch (Exception e)
 				{
