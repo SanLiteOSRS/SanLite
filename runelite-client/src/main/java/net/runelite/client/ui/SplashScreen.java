@@ -48,8 +48,8 @@ import lombok.extern.slf4j.Slf4j;
 import net.runelite.client.RuneLiteProperties;
 import net.runelite.client.ui.skin.SubstanceRuneLiteLookAndFeel;
 import net.runelite.client.util.ImageUtil;
-import net.runelite.client.util.SwingUtil;
 import org.pushingpixels.substance.internal.SubstanceSynapse;
+import sun.swing.SwingUtilities2;
 
 @Slf4j
 public class SplashScreen extends JFrame implements ActionListener
@@ -95,6 +95,7 @@ public class SplashScreen extends JFrame implements ActionListener
 		clientVersion.setBounds(0, INITIAL_HEIGHT, WIDTH, 16);
 		clientVersion.setHorizontalAlignment(SwingConstants.CENTER);
 		clientVersion.setFont(FontManager.getRunescapeSmallFont());
+		clientVersion.putClientProperty(SwingUtilities2.AA_TEXT_PROPERTY_KEY, null);
 		clientVersion.setForeground(clientVersion.getForeground().darker());
 		y += clientVersion.getHeight() + PAD;
 
@@ -102,6 +103,8 @@ public class SplashScreen extends JFrame implements ActionListener
 		action.setForeground(Color.WHITE);
 		action.setBounds(0, y, WIDTH, 16);
 		action.setHorizontalAlignment(SwingConstants.CENTER);
+		action.setFont(FontManager.getRunescapeFont());
+		action.putClientProperty(SwingUtilities2.AA_TEXT_PROPERTY_KEY, null);
 		y += action.getHeight() + PAD;
 
 		pane.add(progress);
@@ -124,12 +127,15 @@ public class SplashScreen extends JFrame implements ActionListener
 				return Color.BLACK;
 			}
 		});
+		progress.putClientProperty(SwingUtilities2.AA_TEXT_PROPERTY_KEY, null);
 		y += 12 + PAD;
 
 		pane.add(subAction);
 		subAction.setForeground(Color.LIGHT_GRAY);
 		subAction.setBounds(0, y, WIDTH, 16);
 		subAction.setHorizontalAlignment(SwingConstants.CENTER);
+		subAction.setFont(FontManager.getRunescapeFont());
+		subAction.putClientProperty(SwingUtilities2.AA_TEXT_PROPERTY_KEY, null);
 		y += subAction.getHeight() + PAD;
 
 		setSize(WIDTH, y);
@@ -183,10 +189,13 @@ public class SplashScreen extends JFrame implements ActionListener
 					boolean hasLAF = UIManager.getLookAndFeel() instanceof SubstanceRuneLiteLookAndFeel;
 					if (!hasLAF)
 					{
-						SwingUtil.setupRuneLiteLookAndFeel();
+						UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
 					}
 					INSTANCE = new SplashScreen();
-					INSTANCE.getRootPane().putClientProperty(SubstanceSynapse.COLORIZATION_FACTOR, 1.0);
+					if (hasLAF)
+					{
+						INSTANCE.getRootPane().putClientProperty(SubstanceSynapse.COLORIZATION_FACTOR, 1.0);
+					}
 				}
 				catch (Exception e)
 				{
