@@ -473,7 +473,7 @@ public class MenuEntrySwapperPlugin extends Plugin
 
 		if (option.equals("talk-to"))
 		{
-			if (config.swapPickpocket() && shouldSwapPickpocket(target))
+			if (config.swapPickpocket())
 			{
 				swap("pickpocket", option, target, index);
 			}
@@ -746,6 +746,18 @@ public class MenuEntrySwapperPlugin extends Plugin
 		{
 			swap("pick-lots", option, target, index);
 		}
+		else if (option.equals("value"))
+		{
+			if (config.shopBuy() != null && config.shopBuy() != BuyMode.OFF)
+			{
+				swap(config.shopBuy().getOption(), option, target, index);
+			}
+
+			if (config.shopSell() != null && config.shopSell() != SellMode.OFF)
+			{
+				swap(config.shopSell().getOption(), option, target, index);
+			}
+		}
 		else if (shiftModifier && option.equals("view offer") && config.swapGEAbort())
 		{
 			swap("abort offer", option, target, index);
@@ -823,40 +835,6 @@ public class MenuEntrySwapperPlugin extends Plugin
 					break;
 			}
 		}
-		else if (option.equals("value"))
-		{
-			switch (config.swapStoreBuy())
-			{
-				case CHANGE_TO_1:
-					swap ("buy 1", option, target, index);
-					break;
-				case CHANGE_TO_5:
-					swap ("buy 5", option, target, index);
-					break;
-				case CHANGE_TO_10:
-					swap ("buy 10", option, target, index);
-					break;
-				case CHANGE_TO_50:
-					swap ("buy 50", option, target, index);
-					break;
-
-			}
-			switch (config.swapStoreSell())
-			{
-				case CHANGE_TO_1:
-					swap ("sell 1", option, target, index);
-					break;
-				case CHANGE_TO_5:
-					swap ("sell 5", option, target, index);
-					break;
-				case CHANGE_TO_10:
-					swap ("sell 10", option, target, index);
-					break;
-				case CHANGE_TO_50:
-					swap ("sell 50", option, target, index);
-					break;
-			}
-		}
 		else if (config.swapEmptyEssencePouch() && option.equals("fill"))
 		{
 			swap("empty", option, target, index);
@@ -893,11 +871,6 @@ public class MenuEntrySwapperPlugin extends Plugin
 		{
 			swap("cast", option, target, index);
 		}
-	}
-
-	private static boolean shouldSwapPickpocket(String target)
-	{
-		return !target.startsWith("villager") && !target.startsWith("bandit") && !target.startsWith("menaphite thug");
 	}
 
 	@Subscribe
