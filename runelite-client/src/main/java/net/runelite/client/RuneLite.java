@@ -31,10 +31,8 @@ import com.google.inject.Guice;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
 import java.io.File;
-import java.io.IOException;
 import java.lang.management.ManagementFactory;
 import java.lang.management.RuntimeMXBean;
-import java.lang.reflect.InvocationTargetException;
 import java.nio.file.Paths;
 import java.util.Locale;
 import javax.annotation.Nullable;
@@ -62,7 +60,6 @@ import net.runelite.client.game.ItemManager;
 import net.runelite.client.game.LootManager;
 import net.runelite.client.game.chatbox.ChatboxPanelManager;
 import net.runelite.client.menus.MenuManager;
-import net.runelite.client.plugins.PluginInstantiationException;
 import net.runelite.client.plugins.PluginManager;
 import net.runelite.client.rs.ClientLoader;
 import net.runelite.client.rs.ClientUpdateCheckMode;
@@ -75,7 +72,6 @@ import net.runelite.client.ui.overlay.OverlayRenderer;
 import net.runelite.client.ui.overlay.WidgetOverlay;
 import net.runelite.client.ui.overlay.infobox.InfoBoxManager;
 import net.runelite.client.ui.overlay.infobox.InfoBoxOverlay;
-import net.runelite.client.ui.overlay.tooltip.TooltipManager;
 import net.runelite.client.ui.overlay.tooltip.TooltipOverlay;
 import net.runelite.client.ui.overlay.worldmap.WorldMapOverlay;
 import net.runelite.client.ws.PartyService;
@@ -125,9 +121,6 @@ public class RuneLite
 
 	@Inject
 	private OverlayManager overlayManager;
-
-	@Inject
-	private TooltipManager tooltipManager;
 
 	@Inject
 	private Provider<PartyService> partyService;
@@ -251,9 +244,9 @@ public class RuneLite
 			final long start = System.currentTimeMillis();
 
 			injector = Guice.createInjector(new RuneLiteModule(
-					clientLoader,
-					options.valueOf(sessionfile),
-					options.valueOf(configfile)));
+				clientLoader,
+				options.valueOf(sessionfile),
+				options.valueOf(configfile)));
 
 			injector.getInstance(RuneLite.class).start();
 
@@ -286,11 +279,9 @@ public class RuneLite
 			injector.injectMembers(client);
 		}
 
-		// Register event listeners that rely on config changes
-		eventBus.register(tooltipManager);
+		SplashScreen.stage(.57, null, "Loading configuration");
 
 		// Load user configuration
-		SplashScreen.stage(.57, null, "Loading configuration");
 		configManager.load();
 
 		// Load the session, including saved configuration
@@ -301,24 +292,7 @@ public class RuneLite
 
 		// Load the plugins, but does not start them yet.
 		// This will initialize configuration
-		try
-		{
-			SwingUtilities.invokeAndWait(() ->
-			{
-				try
-				{
-					pluginManager.loadCorePlugins();
-				}
-				catch (PluginInstantiationException | IOException ex)
-				{
-					log.error("Unable to load core plugins", ex);
-				}
-			});
-		}
-		catch (InterruptedException | InvocationTargetException e)
-		{
-			throw new RuntimeException(e);
-		}
+		pluginManager.loadCorePlugins();
 
 		SplashScreen.stage(.70, null, "Finalizing configuration");
 
@@ -330,8 +304,9 @@ public class RuneLite
 		clientSessionManager.start();
 		eventBus.register(clientSessionManager);
 
-		// Initialize UI
 		SplashScreen.stage(.75, null, "Starting core interface");
+
+		// Initialize UI
 		clientUI.init();
 
 		// Initialize Discord service
