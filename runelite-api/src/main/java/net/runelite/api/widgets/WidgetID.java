@@ -267,30 +267,6 @@ public class WidgetID
 		static final int EQUIPMENT_BUTTON = 109;
 	}
 
-	// Also used for many other interfaces
-	static class BankPin
-	{
-		static final int CONTAINER = 1;
-		static final int TOP_LEFT_TEXT = 2;
-		static final int FIRST_ENTERED = 3;
-		static final int SECOND_ENTERED = 4;
-		static final int THIRD_ENTERED = 5;
-		static final int FOURTH_ENTERED = 6;
-		static final int INSTRUCTION_TEXT = 10;
-		static final int EXIT_BUTTON = 13;
-		static final int FORGOT_BUTTON = 15;
-		static final int BUTTON_1 = 16;
-		static final int BUTTON_2 = 18;
-		static final int BUTTON_3 = 20;
-		static final int BUTTON_4 = 22;
-		static final int BUTTON_5 = 24;
-		static final int BUTTON_6 = 26;
-		static final int BUTTON_7 = 28;
-		static final int BUTTON_8 = 30;
-		static final int BUTTON_9 = 32;
-		static final int BUTTON_10 = 34;
-	}
-
 	static class GrandExchange
 	{
 		static final int WINDOW_CONTAINER = 0;
@@ -494,6 +470,12 @@ public class WidgetID
 	{
 		static final int PARENT = 0;
 		static final int BUTTONS = 1;
+		static final int TAB_ALL = 4;
+		static final int TAB_GAME = 8;
+		static final int TAB_PUBLIC = 13;
+		static final int TAB_PRIVATE = 18;
+		static final int TAB_CLAN = 23;
+		static final int TAB_TRADE = 28;
 		static final int REPORT_TEXT = 36;
 		static final int FRAME = 37;
 		static final int TRANSPARENT_BACKGROUND = 38;
@@ -658,7 +640,7 @@ public class WidgetID
 
 	static class Raids
 	{
-		static final int POINTS_INFOBOX = 6;
+		static final int POINTS_INFOBOX = 7;
 	}
 
 	static class Tob
@@ -947,5 +929,28 @@ public class WidgetID
 	static class GauntletTimer
 	{
 		static final int CONTAINER = 2;
+	}
+
+	static class BankPin
+	{
+		static final int CONTAINER = 0;
+		static final int TOP_LEFT_TEXT = 2;
+		static final int FIRST_ENTERED = 3;
+		static final int SECOND_ENTERED = 4;
+		static final int THIRD_ENTERED = 5;
+		static final int FOURTH_ENTERED = 6;
+		static final int INSTRUCTION_TEXT = 10;
+		static final int EXIT_BUTTON = 13;
+		static final int FORGOT_BUTTON = 15;
+		static final int BUTTON_1 = 16;
+		static final int BUTTON_2 = 18;
+		static final int BUTTON_3 = 20;
+		static final int BUTTON_4 = 22;
+		static final int BUTTON_5 = 24;
+		static final int BUTTON_6 = 26;
+		static final int BUTTON_7 = 28;
+		static final int BUTTON_8 = 30;
+		static final int BUTTON_9 = 32;
+		static final int BUTTON_10 = 34;
 	}
 }
