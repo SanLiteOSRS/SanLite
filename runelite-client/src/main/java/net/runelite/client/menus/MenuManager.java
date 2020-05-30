@@ -69,9 +69,9 @@ public class MenuManager
 	private final Client client;
 	private final EventBus eventBus;
 
-	// Maps the indexes that are being used to the menu option.
+	//Maps the indexes that are being used to the menu option.
 	private final Map<Integer, String> playerMenuIndexMap = new HashMap<>();
-	// Used to manage custom non-player menu options
+	//Used to manage custom non-player menu options
 	private final Multimap<Integer, WidgetMenuOption> managedMenuOptions = HashMultimap.create();
 	private final Set<String> npcMenuOptions = new HashSet<>();
 
@@ -253,9 +253,10 @@ public class MenuManager
 	@Subscribe
 	public void onMenuOptionClicked(MenuOptionClicked event)
 	{
-		if (event.getMenuAction() != MenuAction.RUNELITE)
+		if (event.getMenuAction() != MenuAction.RUNELITE
+			&& event.getMenuAction() != MenuAction.RUNELITE_PLAYER)
 		{
-			return; // not a player menu
+			return; // not a managed widget option or custom player option
 		}
 
 		int widgetId = event.getWidgetId();
@@ -294,7 +295,7 @@ public class MenuManager
 	{
 		client.getPlayerOptions()[playerOptionIndex] = menuText;
 		client.getPlayerOptionsPriorities()[playerOptionIndex] = true;
-		client.getPlayerMenuTypes()[playerOptionIndex] = MenuAction.RUNELITE.getId();
+		client.getPlayerMenuTypes()[playerOptionIndex] = MenuAction.RUNELITE_PLAYER.getId();
 
 		playerMenuIndexMap.put(playerOptionIndex, menuText);
 	}

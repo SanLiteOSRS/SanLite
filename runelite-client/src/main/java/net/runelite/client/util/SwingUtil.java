@@ -34,9 +34,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.swing.*;
 
-import javax.swing.border.EmptyBorder;
 import javax.swing.plaf.FontUIResource;
-import javax.swing.plaf.basic.BasicProgressBarUI;
 
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.client.ui.ColorScheme;
@@ -76,14 +74,6 @@ public class SwingUtil
 		UIManager.put("FormattedTextField.selectionForeground", Color.WHITE);
 		UIManager.put("TextArea.selectionBackground", ColorScheme.BRAND_BLUE_TRANSPARENT);
 		UIManager.put("TextArea.selectionForeground", Color.WHITE);
-		UIManager.put("ProgressBar.background", ColorScheme.BRAND_BLUE_TRANSPARENT.darker());
-		UIManager.put("ProgressBar.foreground", ColorScheme.BRAND_BLUE);
-		UIManager.put("ProgressBar.selectionBackground", ColorScheme.BRAND_BLUE);
-		UIManager.put("ProgressBar.selectionForeground", Color.BLACK);
-		UIManager.put("ProgressBar.border", new EmptyBorder(0, 0, 0, 0));
-		UIManager.put("ProgressBar.verticalSize", new Dimension(16, 10));
-		UIManager.put("ProgressBar.horizontalSize", new Dimension(10, 16));
-		UIManager.put("ProgressBarUI", BasicProgressBarUI.class.getName());
 
 		// Do not render shadows under popups/tooltips.
 		// Fixes black boxes under popups that are above the game applet.

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, Adam <Adam@sigterm.info>
+ * Copyright (c) 2020, Hydrox6 <ikada@protonmail.ch>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,28 +22,38 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.mixins;
+package net.runelite.client.plugins.loginscreen;
 
-import net.runelite.api.mixins.Inject;
-import net.runelite.api.mixins.Mixin;
-import net.runelite.rs.api.RSFriend;
-import net.runelite.rs.api.RSUsername;
+import lombok.Getter;
 
-@Mixin(RSFriend.class)
-public abstract class RSFriendMixin implements RSFriend
+public enum LoginScreenOverride
 {
-	@Override
-	@Inject
-	public String getName()
+	OFF,
+	NORMAL("normal.jpg"),
+	OLD("old.jpg"),
+	CHRISTMAS("christmas.jpg"),
+	CHAMBERS_OF_XERIC("cox.jpg"),
+	DRAGON_SLAYER_2("ds2.jpg"),
+	FOSSIL_ISLAND("fossil_island.jpg"),
+	HALLOWEEN("halloween.jpg"),
+	HALLOWEEN_2019("halloween_2019.jpg"),
+	INFERNO("inferno.jpg"),
+	KEBOS("kebos.jpg"),
+	MONKEY_MADNESS_2("mm2.jpg"),
+	PRIFDDINAS("prifddinas.jpg"),
+	THEATRE_OF_BLOOD("tob.jpg"),
+	CUSTOM;
+
+	@Getter
+	private final String fileName;
+
+	LoginScreenOverride()
 	{
-		return getRsName().getName();
+		this.fileName = null;
 	}
 
-	@Override
-	@Inject
-	public String getPrevName()
+	LoginScreenOverride(String fileName)
 	{
-		RSUsername prevName = getRsPrevName();
-		return prevName == null ? null : prevName.getName();
+		this.fileName = fileName;
 	}
 }
