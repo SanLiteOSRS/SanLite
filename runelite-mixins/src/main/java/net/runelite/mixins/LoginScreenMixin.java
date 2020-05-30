@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020, Siraz <https://github.com/Sirazzz>
+ * Copyright (c) 2020, Owain van Brakel <https://github.com/Owain94>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -24,41 +24,79 @@
  */
 package net.runelite.mixins;
 
-import net.runelite.api.events.NameableNameChanged;
+import net.runelite.api.GameState;
+import net.runelite.api.SpritePixels;
 import net.runelite.api.mixins.FieldHook;
 import net.runelite.api.mixins.Inject;
 import net.runelite.api.mixins.Mixin;
 import net.runelite.api.mixins.Shadow;
 import net.runelite.rs.api.RSClient;
-import net.runelite.rs.api.RSNameable;
-import net.runelite.rs.api.RSUsername;
 
-@Mixin(RSNameable.class)
-public abstract class RSNameableMixin implements RSNameable
+@Mixin(RSClient.class)
+public abstract class LoginScreenMixin implements RSClient
 {
 	@Shadow("client")
 	private static RSClient client;
 
 	@Inject
-	@Override
-	public String getName()
+	private static boolean shouldRenderLoginScreenFire = true;
+
+	@Inject
+	private static SpritePixels loginScreenBackground;
+
+	@Inject
+	public void setShouldRenderLoginScreenFire(boolean shouldRender)
 	{
-		return getRsName().getName();
+		shouldRenderLoginScreenFire = shouldRender;
 	}
 
 	@Inject
-	@Override
-	public String getPrevName()
+	public boolean shouldRenderLoginScreenFire()
 	{
-		RSUsername prevName = getRsPrevName();
-		return prevName == null ? null : prevName.getName();
+		return shouldRenderLoginScreenFire;
 	}
 
 	@Inject
-	@FieldHook("username")
-	public void onNameableNameChanged(int idx)
+	public void setLoginScreen(SpritePixels background)
 	{
-		NameableNameChanged event = new NameableNameChanged(this);
-		client.getCallbacks().post(event);
+		assert client.isClientThread() : "setLoginScreen must be called on client thread";
+
+		loginScreenBackground = background;
+		client.clearLoginScreen(false);
+		if (client.getGameState() == GameState.LOGIN_SCREEN)
+		{
+			try
+			{
+				client.setGameState(GameState.UNKNOWN);
+			}
+			finally
+			{
+				client.setGameState(GameState.LOGIN_SCREEN);
+			}
+		}
+	}
+
+	@Inject
+	@FieldHook("leftTitleSprite")
+	static void setLeftTitleSprite(int idx)
+	{
+		SpritePixels loginScreen = loginScreenBackground;
+
+		if (loginScreen != null)
+		{
+			client.setLeftTitleSprite(loginScreen);
+		}
+	}
+
+	@Inject
+	@FieldHook("rightTitleSprite")
+	static void setRightTitleSprite(int idx)
+	{
+		SpritePixels loginScreen = loginScreenBackground;
+
+		if (loginScreen != null && loginScreen.getWidth() > 383)
+		{
+			client.setRightTitleSprite(client.createSpritePixels(new int[]{loginScreen.getPixels()[383]}, 1, 1));
+		}
 	}
 }

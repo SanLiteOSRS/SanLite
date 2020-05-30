@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020, Siraz <https://github.com/Sirazzz>
+ * Copyright (c) 2020, Owain van Brakel <https://github.com/Owain94>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -24,41 +24,31 @@
  */
 package net.runelite.mixins;
 
-import net.runelite.api.events.NameableNameChanged;
-import net.runelite.api.mixins.FieldHook;
-import net.runelite.api.mixins.Inject;
+import net.runelite.api.mixins.Copy;
 import net.runelite.api.mixins.Mixin;
+import net.runelite.api.mixins.Replace;
 import net.runelite.api.mixins.Shadow;
 import net.runelite.rs.api.RSClient;
-import net.runelite.rs.api.RSNameable;
-import net.runelite.rs.api.RSUsername;
+import net.runelite.rs.api.RSLoginScreenAnimation;
 
-@Mixin(RSNameable.class)
-public abstract class RSNameableMixin implements RSNameable
+@Mixin(RSLoginScreenAnimation.class)
+public abstract class RSLoginScreenAnimationMixin implements RSLoginScreenAnimation
 {
 	@Shadow("client")
 	private static RSClient client;
 
-	@Inject
-	@Override
-	public String getName()
+	@Copy("draw")
+	void rs$draw(int var1, int var2)
 	{
-		return getRsName().getName();
+		throw new RuntimeException();
 	}
 
-	@Inject
-	@Override
-	public String getPrevName()
+	@Replace("draw")
+	void rl$draw(int var1, int var2)
 	{
-		RSUsername prevName = getRsPrevName();
-		return prevName == null ? null : prevName.getName();
-	}
-
-	@Inject
-	@FieldHook("username")
-	public void onNameableNameChanged(int idx)
-	{
-		NameableNameChanged event = new NameableNameChanged(this);
-		client.getCallbacks().post(event);
+		if (client.shouldRenderLoginScreenFire())
+		{
+			rs$draw(var1, var2);
+		}
 	}
 }
