@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, Ethan <http://github.com/shmeeps>
+ * Copyright (c) 2020, Sam <dasistkeinnamen@gmail.com>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,13 +29,13 @@ import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor
-public enum ShopSwapOptions
+public enum BuyMode
 {
-	VALUE("Value"),
-	CHANGE_TO_1("1"),
-	CHANGE_TO_5("5"),
-	CHANGE_TO_10("10"),
-	CHANGE_TO_50("50");
+	OFF(null),
+	BUY_1("buy 1"),
+	BUY_5("buy 5"),
+	BUY_10("buy 10"),
+	BUY_50("buy 50");
 
-	private final String name;
+	private final String option;
 }

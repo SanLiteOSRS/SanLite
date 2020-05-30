@@ -454,6 +454,28 @@ public interface MenuEntrySwapperConfig extends Config
 	}
 
 	@ConfigItem(
+		keyName = "shopBuy",
+		name = "Shop Buy Shift-Click",
+		description = "Swaps the Buy options with Value on items in shops.",
+		group = "Stores"
+	)
+	default BuyMode shopBuy()
+	{
+		return BuyMode.OFF;
+	}
+
+	@ConfigItem(
+		keyName = "shopSell",
+		name = "Shop Sell Shift-Click",
+		description = "Swaps the Sell options with Value on items in your inventory when selling to shops.",
+		group = "Stores"
+	)
+	default SellMode shopSell()
+	{
+		return SellMode.OFF;
+	}
+
+	@ConfigItem(
 			keyName = "swapEssenceMineTeleport",
 			name = "Essence Mine Teleport",
 			description = "Swaps Talk-To with Teleport for NPCs which teleport you to the essence mine",
@@ -484,28 +506,6 @@ public interface MenuEntrySwapperConfig extends Config
 	default boolean swapGauntlet()
 	{
 		return false;
-	}
-
-	@ConfigItem(
-			keyName = "swapStoreBuy",
-			name = "Store Buy",
-			description = "Changes the left-click buy option for stores",
-			group = "Stores"
-	)
-	default ShopSwapOptions swapStoreBuy()
-	{
-		return ShopSwapOptions.VALUE;
-	}
-
-	@ConfigItem(
-			keyName = "swapStoreSell",
-			name = "Store Sell",
-			description = "Changes the left-click sell option for stores",
-			group = "Stores"
-	)
-	default ShopSwapOptions swapStoreSell()
-	{
-		return ShopSwapOptions.VALUE;
 	}
 
 	@ConfigItem(

@@ -44,8 +44,8 @@ class NpcAggroAreaNotWorkingOverlay extends OverlayPanel
 		this.config = config;
 
 		panelComponent.getChildren().add(LineComponent.builder()
-				.left("Unaggressive NPC timers will start working when you teleport far away or enter a dungeon.")
-				.build());
+			.left("Unaggressive NPC timers will start working when you teleport far away or enter a dungeon.")
+			.build());
 
 		setPriority(OverlayPriority.LOW);
 		setPosition(OverlayPosition.TOP_LEFT);

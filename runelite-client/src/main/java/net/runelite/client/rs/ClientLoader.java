@@ -30,6 +30,7 @@ import com.google.common.base.Strings;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.client.RuneLiteProperties;
 import net.runelite.client.ui.FatalErrorDialog;
+import net.runelite.client.ui.SplashScreen;
 import net.runelite.http.api.worlds.World;
 import okhttp3.HttpUrl;
 
@@ -66,6 +67,7 @@ public class ClientLoader implements Supplier<Applet>
 		if (client == null)
 		{
 			client = doLoad();
+			SplashScreen.stage(.465, "Starting", "Starting Old School RuneScape");
 		}
 
 		if (client instanceof Throwable)
@@ -84,15 +86,19 @@ public class ClientLoader implements Supplier<Applet>
 
 		try
 		{
+			SplashScreen.stage(0, null, "Fetching applet viewer config");
 			downloadConfig();
 
+			SplashScreen.stage(.05, null, "Waiting for other clients to start");
 			switch (updateCheckMode)
 			{
 				case AUTO:
 				case CUSTOM:
+					SplashScreen.stage(.40, null, "Loading client");
 					return loadRuneLite(config);
 				default:
 				case VANILLA:
+					SplashScreen.stage(.40, null, "Loading client");
 					return loadVanilla(config);
 				case NONE:
 					return null;
