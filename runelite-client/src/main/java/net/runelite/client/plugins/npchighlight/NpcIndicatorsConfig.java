@@ -100,6 +100,17 @@ public interface NpcIndicatorsConfig extends Config
 
 	@ConfigItem(
 		position = 6,
+		keyName = "highlightDeadNPCs",
+		name = "Highlight dead NPCs",
+		description = "Highlight dead NPCs"
+	)
+	default boolean highlightDeadNpcs()
+	{
+		return false;
+	}
+
+	@ConfigItem(
+		position = 7,
 		keyName = "showRespawnTimer",
 		name = "Show respawn timer",
 		description = "Show respawn timer of tagged NPCs")
@@ -109,7 +120,7 @@ public interface NpcIndicatorsConfig extends Config
 	}
 
 	@ConfigItem(
-		position = 7,
+		position = 8,
 		keyName = "respawnHighlightColor",
 		name = "Respawn Color",
 		description = "Color of the NPC respawn highlight"
