@@ -38,26 +38,26 @@ import org.sql2o.Sql2o;
 public class GrandExchangeService
 {
 	private static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS `ge_trades` (\n" +
-			"  `id` int(11) NOT NULL AUTO_INCREMENT,\n" +
-			"  `user` int(11) NOT NULL,\n" +
-			"  `action` enum('BUY','SELL') NOT NULL,\n" +
-			"  `item` int(11) NOT NULL,\n" +
-			"  `quantity` int(11) NOT NULL,\n" +
-			"  `price` int(11) NOT NULL,\n" +
-			"  `time` timestamp NOT NULL DEFAULT current_timestamp(),\n" +
-			"  PRIMARY KEY (`id`),\n" +
-			"  KEY `user_time` (`user`, `time`),\n" +
-			"  KEY `time` (`time`),\n" +
-			"  CONSTRAINT `ge_trades_ibfk_1` FOREIGN KEY (`user`) REFERENCES `users` (`id`)\n" +
-			") ENGINE=InnoDB;";
+		"  `id` int(11) NOT NULL AUTO_INCREMENT,\n" +
+		"  `user` int(11) NOT NULL,\n" +
+		"  `action` enum('BUY','SELL') NOT NULL,\n" +
+		"  `item` int(11) NOT NULL,\n" +
+		"  `quantity` int(11) NOT NULL,\n" +
+		"  `price` int(11) NOT NULL,\n" +
+		"  `time` timestamp NOT NULL DEFAULT current_timestamp(),\n" +
+		"  PRIMARY KEY (`id`),\n" +
+		"  KEY `user_time` (`user`, `time`),\n" +
+		"  KEY `time` (`time`),\n" +
+		"  CONSTRAINT `ge_trades_ibfk_1` FOREIGN KEY (`user`) REFERENCES `users` (`id`)\n" +
+		") ENGINE=InnoDB;";
 
 	private final Sql2o sql2o;
 	private final int historyDays;
 
 	@Autowired
 	public GrandExchangeService(
-			@Qualifier("Runelite SQL2O") Sql2o sql2o,
-			@Value("${runelite.ge.history}") int historyDays
+		@Qualifier("Runelite SQL2O") Sql2o sql2o,
+		@Value("${runelite.ge.history}") int historyDays
 	)
 	{
 		this.sql2o = sql2o;
@@ -75,13 +75,13 @@ public class GrandExchangeService
 		try (Connection con = sql2o.open())
 		{
 			con.createQuery("insert into ge_trades (user, action, item, quantity, price) values (:user," +
-					" :action, :item, :quantity, :price)")
-					.addParameter("user", userId)
-					.addParameter("action", grandExchangeTrade.isBuy() ? "BUY" : "SELL")
-					.addParameter("item", grandExchangeTrade.getItemId())
-					.addParameter("quantity", grandExchangeTrade.getQuantity())
-					.addParameter("price", grandExchangeTrade.getPrice())
-					.executeUpdate();
+				" :action, :item, :quantity, :price)")
+				.addParameter("user", userId)
+				.addParameter("action", grandExchangeTrade.isBuy() ? "BUY" : "SELL")
+				.addParameter("item", grandExchangeTrade.getItemId())
+				.addParameter("quantity", grandExchangeTrade.getQty())
+				.addParameter("price", grandExchangeTrade.getSpent() / grandExchangeTrade.getQty())
+				.executeUpdate();
 		}
 	}
 
@@ -90,10 +90,10 @@ public class GrandExchangeService
 		try (Connection con = sql2o.open())
 		{
 			return con.createQuery("select id, user, action, item, quantity, price, time from ge_trades where user = :user limit :limit offset :offset")
-					.addParameter("user", userId)
-					.addParameter("limit", limit)
-					.addParameter("offset", offset)
-					.executeAndFetch(TradeEntry.class);
+				.addParameter("user", userId)
+				.addParameter("limit", limit)
+				.addParameter("offset", offset)
+				.executeAndFetch(TradeEntry.class);
 		}
 	}
 
@@ -102,8 +102,8 @@ public class GrandExchangeService
 		try (Connection con = sql2o.open())
 		{
 			con.createQuery("delete from ge_trades where user = :user")
-					.addParameter("user", userId)
-					.executeUpdate();
+				.addParameter("user", userId)
+				.executeUpdate();
 		}
 	}
 
@@ -113,7 +113,7 @@ public class GrandExchangeService
 		try (Connection con = sql2o.open())
 		{
 			con.createQuery("delete from ge_trades where time < current_timestamp - interval " + historyDays + " day")
-					.executeUpdate();
+				.executeUpdate();
 		}
 	}
 }

@@ -60,22 +60,22 @@ public class ItemService
 	private static final HttpUrl RS_PRICE_URL = HttpUrl.parse(BASE + "/api/graph");
 
 	private static final String CREATE_ITEMS = "CREATE TABLE IF NOT EXISTS `items` (\n"
-			+ "  `id` int(11) NOT NULL,\n"
-			+ "  `name` tinytext NOT NULL,\n"
-			+ "  `description` tinytext NOT NULL,\n"
-			+ "  `type` enum('DEFAULT') NOT NULL,\n"
-			+ "  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,\n"
-			+ "  PRIMARY KEY (`id`)\n"
-			+ ") ENGINE=InnoDB";
+		+ "  `id` int(11) NOT NULL,\n"
+		+ "  `name` tinytext NOT NULL,\n"
+		+ "  `description` tinytext NOT NULL,\n"
+		+ "  `type` enum('DEFAULT') NOT NULL,\n"
+		+ "  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,\n"
+		+ "  PRIMARY KEY (`id`)\n"
+		+ ") ENGINE=InnoDB";
 
 	private static final String CREATE_PRICES = "CREATE TABLE IF NOT EXISTS `prices` (\n"
-			+ "  `item` int(11) NOT NULL,\n"
-			+ "  `price` int(11) NOT NULL,\n"
-			+ "  `time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',\n"
-			+ "  `fetched_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',\n"
-			+ "  UNIQUE KEY `item_time` (`item`,`time`),\n"
-			+ "  KEY `item_fetched_time` (`item`,`fetched_time`)\n"
-			+ ") ENGINE=InnoDB";
+		+ "  `item` int(11) NOT NULL,\n"
+		+ "  `price` int(11) NOT NULL,\n"
+		+ "  `time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',\n"
+		+ "  `fetched_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',\n"
+		+ "  UNIQUE KEY `item_time` (`item`,`time`),\n"
+		+ "  KEY `item_fetched_time` (`item`,`fetched_time`)\n"
+		+ ") ENGINE=InnoDB";
 
 	private final Sql2o sql2o;
 	private final CacheService cacheService;
@@ -93,10 +93,10 @@ public class ItemService
 		try (Connection con = sql2o.open())
 		{
 			con.createQuery(CREATE_ITEMS)
-					.executeUpdate();
+				.executeUpdate();
 
 			con.createQuery(CREATE_PRICES)
-					.executeUpdate();
+				.executeUpdate();
 		}
 	}
 
@@ -105,8 +105,8 @@ public class ItemService
 		try (Connection con = sql2o.open())
 		{
 			return con.createQuery("select id, name, description, type from items where id = :id")
-					.addParameter("id", itemId)
-					.executeAndFetchFirst(ItemEntry.class);
+				.addParameter("id", itemId)
+				.executeAndFetchFirst(ItemEntry.class);
 		}
 	}
 
@@ -115,15 +115,15 @@ public class ItemService
 		if (time != null)
 		{
 			return con.createQuery("select item, name, price, time, fetched_time from prices t1 join items t2 on t1.item=t2.id where item = :item and time <= :time order by time desc limit 1")
-					.addParameter("item", itemId)
-					.addParameter("time", time.toString())
-					.executeAndFetchFirst(PriceEntry.class);
+				.addParameter("item", itemId)
+				.addParameter("time", time.toString())
+				.executeAndFetchFirst(PriceEntry.class);
 		}
 		else
 		{
 			return con.createQuery("select item, name, price, time, fetched_time from prices t1 join items t2 on t1.item=t2.id where item = :item order by time desc limit 1")
-					.addParameter("item", itemId)
-					.executeAndFetchFirst(PriceEntry.class);
+				.addParameter("item", itemId)
+				.executeAndFetchFirst(PriceEntry.class);
 		}
 	}
 
@@ -173,13 +173,13 @@ public class ItemService
 			try (Connection con = sql2o.open())
 			{
 				con.createQuery("insert into items (id, name, description, type) values (:id,"
-						+ " :name, :description, :type) ON DUPLICATE KEY UPDATE name = :name,"
-						+ " description = :description, type = :type")
-						.addParameter("id", rsItem.getId())
-						.addParameter("name", rsItem.getName())
-						.addParameter("description", rsItem.getDescription())
-						.addParameter("type", rsItem.getType())
-						.executeUpdate();
+					+ " :name, :description, :type) ON DUPLICATE KEY UPDATE name = :name,"
+					+ " description = :description, type = :type")
+					.addParameter("id", rsItem.getId())
+					.addParameter("name", rsItem.getName())
+					.addParameter("description", rsItem.getDescription())
+					.addParameter("type", rsItem.getType())
+					.executeUpdate();
 			}
 
 			ItemEntry item = new ItemEntry();
@@ -215,7 +215,7 @@ public class ItemService
 			Instant now = Instant.now();
 
 			Query query = con.createQuery("insert into prices (item, price, time, fetched_time) values (:item, :price, :time, :fetched_time) "
-					+ "ON DUPLICATE KEY UPDATE price = VALUES(price), fetched_time = VALUES(fetched_time)");
+				+ "ON DUPLICATE KEY UPDATE price = VALUES(price), fetched_time = VALUES(fetched_time)");
 
 			for (Map.Entry<Long, Integer> entry : rsprice.getDaily().entrySet())
 			{
@@ -232,11 +232,11 @@ public class ItemService
 				entries.add(priceEntry);
 
 				query
-						.addParameter("item", itemId)
-						.addParameter("price", price)
-						.addParameter("time", time)
-						.addParameter("fetched_time", now)
-						.addToBatch();
+					.addParameter("item", itemId)
+					.addParameter("price", price)
+					.addParameter("time", time)
+					.addParameter("fetched_time", now)
+					.addToBatch();
 			}
 
 			query.executeBatch();
@@ -251,8 +251,8 @@ public class ItemService
 		try (Connection con = sql2o.beginTransaction())
 		{
 			Query query = con.createQuery("select t2.item, t3.name, t2.time, prices.price, prices.fetched_time from (select t1.item as item, max(t1.time) as time from prices t1 group by item) t2 " +
-					" join prices on t2.item=prices.item and t2.time=prices.time" +
-					" join items t3 on t2.item=t3.id");
+				" join prices on t2.item=prices.item and t2.time=prices.time" +
+				" join items t3 on t2.item=t3.id");
 			return query.executeAndFetch(PriceEntry.class);
 		}
 	}
@@ -260,13 +260,13 @@ public class ItemService
 	private RSItem fetchRSItem(int itemId) throws IOException
 	{
 		HttpUrl itemUrl = RS_ITEM_URL
-				.newBuilder()
-				.addQueryParameter("item", "" + itemId)
-				.build();
+			.newBuilder()
+			.addQueryParameter("item", "" + itemId)
+			.build();
 
 		Request request = new Request.Builder()
-				.url(itemUrl)
-				.build();
+			.url(itemUrl)
+			.build();
 
 		RSItemResponse itemResponse = fetchJson(request, RSItemResponse.class);
 		return itemResponse.getItem();
@@ -276,13 +276,13 @@ public class ItemService
 	private RSPrices fetchRSPrices(int itemId) throws IOException
 	{
 		HttpUrl priceUrl = RS_PRICE_URL
-				.newBuilder()
-				.addPathSegment(itemId + ".json")
-				.build();
+			.newBuilder()
+			.addPathSegment(itemId + ".json")
+			.build();
 
 		Request request = new Request.Builder()
-				.url(priceUrl)
-				.build();
+			.url(priceUrl)
+			.build();
 
 		return fetchJson(request, RSPrices.class);
 	}
@@ -333,9 +333,9 @@ public class ItemService
 		}
 
 		tradeableItems = items.stream()
-				.filter(ItemDefinition::isTradeable)
-				.mapToInt(ItemDefinition::getId)
-				.toArray();
+			.filter(ItemDefinition::isTradeable)
+			.mapToInt(ItemDefinition::getId)
+			.toArray();
 
 		log.debug("Loaded {} tradeable items", tradeableItems.length);
 	}

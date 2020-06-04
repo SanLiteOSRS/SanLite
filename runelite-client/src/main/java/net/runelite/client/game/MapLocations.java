@@ -3482,6 +3482,13 @@ public class MapLocations
 				1550, 9874,
 				1553, 9874,
 				1553, 9872);
+
+		// Darkmeyer bank
+		addPolygonTo(PVP_WORLD_SAFE_ZONES,
+				3601, 3365,
+				3601, 3371,
+				3610, 3371,
+				3610, 3365);
 	}
 
 	private static void defineWilderness()

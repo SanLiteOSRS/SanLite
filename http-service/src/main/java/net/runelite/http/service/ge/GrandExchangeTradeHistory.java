@@ -22,60 +22,17 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.http.api.npc;
+package net.runelite.http.service.ge;
 
-import com.google.gson.JsonParseException;
-import com.google.gson.reflect.TypeToken;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.lang.reflect.Type;
-import java.util.Map;
-import lombok.Value;
-import lombok.extern.slf4j.Slf4j;
-import net.runelite.http.api.RuneLiteAPI;
-import okhttp3.HttpUrl;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
+import java.time.Instant;
+import lombok.Data;
 
-@Slf4j
-@Value
-public class NpcInfoClient
+@Data
+class GrandExchangeTradeHistory
 {
-	private final OkHttpClient client;
-
-	public Map<Integer, NpcInfo> getNpcs() throws IOException
-	{
-		HttpUrl.Builder urlBuilder = RuneLiteAPI.getStaticBase().newBuilder()
-			.addPathSegment("npcs")
-			.addPathSegment("npcs.min.json");
-
-		HttpUrl url = urlBuilder.build();
-
-		log.debug("Built URI: {}", url);
-
-		Request request = new Request.Builder()
-			.url(url)
-			.build();
-
-		try (Response response = client.newCall(request).execute())
-		{
-			if (!response.isSuccessful())
-			{
-				log.warn("Error looking up npcs: {}", response);
-				return null;
-			}
-
-			InputStream in = response.body().byteStream();
-			final Type typeToken = new TypeToken<Map<Integer, NpcInfo>>()
-			{
-			}.getType();
-			return RuneLiteAPI.GSON.fromJson(new InputStreamReader(in), typeToken);
-		}
-		catch (JsonParseException ex)
-		{
-			throw new IOException(ex);
-		}
-	}
+	private boolean buy;
+	private int itemId;
+	private int quantity;
+	private int price;
+	private Instant time;
 }

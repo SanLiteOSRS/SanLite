@@ -83,17 +83,17 @@ public class ConfigClient
 		CompletableFuture<Void> future = new CompletableFuture<>();
 
 		HttpUrl url = RuneLiteAPI.getApiBase().newBuilder()
-				.addPathSegment("config")
-				.addPathSegment(key)
-				.build();
+			.addPathSegment("config")
+			.addPathSegment(key)
+			.build();
 
 		logger.debug("Built URI: {}", url);
 
 		Request request = new Request.Builder()
-				.put(RequestBody.create(TEXT_PLAIN, value))
-				.header(RuneLiteAPI.RUNELITE_AUTH, uuid.toString())
-				.url(url)
-				.build();
+			.put(RequestBody.create(TEXT_PLAIN, value))
+			.header(RuneLiteAPI.RUNELITE_AUTH, uuid.toString())
+			.url(url)
+			.build();
 
 		RuneLiteAPI.CLIENT.newCall(request).enqueue(new Callback()
 		{
@@ -121,17 +121,17 @@ public class ConfigClient
 		CompletableFuture<Void> future = new CompletableFuture<>();
 
 		HttpUrl url = RuneLiteAPI.getApiBase().newBuilder()
-				.addPathSegment("config")
-				.addPathSegment(key)
-				.build();
+			.addPathSegment("config")
+			.addPathSegment(key)
+			.build();
 
 		logger.debug("Built URI: {}", url);
 
 		Request request = new Request.Builder()
-				.delete()
-				.header(RuneLiteAPI.RUNELITE_AUTH, uuid.toString())
-				.url(url)
-				.build();
+			.delete()
+			.header(RuneLiteAPI.RUNELITE_AUTH, uuid.toString())
+			.url(url)
+			.build();
 
 		RuneLiteAPI.CLIENT.newCall(request).enqueue(new Callback()
 		{

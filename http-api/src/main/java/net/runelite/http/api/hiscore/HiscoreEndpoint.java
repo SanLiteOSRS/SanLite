@@ -26,7 +26,6 @@
 
 package net.runelite.http.api.hiscore;
 
-
 import lombok.Getter;
 import okhttp3.HttpUrl;
 

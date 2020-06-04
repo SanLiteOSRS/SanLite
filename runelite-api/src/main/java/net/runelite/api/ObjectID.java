@@ -1921,8 +1921,8 @@ public final class ObjectID
 	public static final int FUNGI_ON_LOG = 3509;
 	public static final int ROTTING_BRANCH = 3510;
 	public static final int BUDDING_BRANCH = 3511;
-	public static final int A_SMALL_BUSH = 3512;
-	public static final int A_GOLDEN_PEAR_BUSH = 3513;
+	public static final int SMALL_BUSH = 3512;
+	public static final int GOLDEN_PEAR_BUSH = 3513;
 	public static final int ROTTING_TREE = 3514;
 	public static final int GROTTO = 3516;
 	public static final int GROTTO_TREE = 3517;
@@ -7158,7 +7158,7 @@ public final class ObjectID
 	public static final int TABLE_12734 = 12734;
 	public static final int CLOSED_CHEST_12735 = 12735;
 	public static final int OPEN_CHEST_12736 = 12736;
-	public static final int BROKEN_DOWN_WALL = 12737;
+	public static final int BROKEN_WALL_12737 = 12737;
 	public static final int RUBBLE_12739 = 12739;
 	public static final int RUBBLE_12740 = 12740;
 	public static final int FALLEN_WALL = 12741;
@@ -7200,7 +7200,7 @@ public final class ObjectID
 	public static final int BANK_BOOTH_12799 = 12799;
 	public static final int BANK_BOOTH_12800 = 12800;
 	public static final int BANK_BOOTH_12801 = 12801;
-	public static final int TOMB_12802 = 12802;
+	public static final int COFFIN_12802 = 12802;
 	public static final int BARREL_12804 = 12804;
 	public static final int BROKEN_FURNACE = 12806;
 	public static final int REPAIRED_FURNACE = 12807;
@@ -7216,7 +7216,7 @@ public final class ObjectID
 	public static final int EXIT_PATH = 12820;
 	public static final int PILE_OF_BRICKS_12844 = 12844;
 	public static final int TABLE_12855 = 12855;
-	public static final int STORE_DOOR = 12856;
+	public static final int DOOR_12856 = 12856;
 	public static final int BAR_PUMPS_12857 = 12857;
 	public static final int TRAPDOOR_12872 = 12872;
 	public static final int BOOKCASE_12873 = 12873;
@@ -7923,8 +7923,8 @@ public final class ObjectID
 	public static final int RIPPLES = 13842;
 	public static final int SWAMP_TREE = 13843;
 	public static final int SWAMP_TREE_13844 = 13844;
-	public static final int SWAMP_TREE_13845 = 13845;
-	public static final int VINE_HANGING_FROM_BRANCH = 13846;
+	public static final int SWAMP_TREE_BRANCH = 13845;
+	public static final int SWAMP_TREE_BRANCH_13846 = 13846;
 	public static final int SWAMP_TREE_13847 = 13847;
 	public static final int SWAMP_TREE_13848 = 13848;
 	public static final int SWAMP_TREE_13849 = 13849;

@@ -124,13 +124,13 @@ public class FeedController
 		if (memoizedFeed == null)
 		{
 			return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE)
-					.cacheControl(CacheControl.noCache())
-					.build();
+				.cacheControl(CacheControl.noCache())
+				.build();
 		}
 
 		return ResponseEntity.ok()
-				.eTag(memoizedFeed.hash)
-				.cacheControl(CacheControl.maxAge(10, TimeUnit.MINUTES).cachePublic())
-				.body(memoizedFeed.feedResult);
+			.eTag(memoizedFeed.hash)
+			.cacheControl(CacheControl.maxAge(10, TimeUnit.MINUTES).cachePublic())
+			.body(memoizedFeed.feedResult);
 	}
 }
