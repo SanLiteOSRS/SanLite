@@ -51,13 +51,13 @@ public class WorldController
 		if (worldResult == null)
 		{
 			return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE)
-					.cacheControl(CacheControl.noCache())
-					.build();
+				.cacheControl(CacheControl.noCache())
+				.build();
 		}
 
 		return ResponseEntity.ok()
-				.cacheControl(CacheControl.maxAge(10, TimeUnit.MINUTES).cachePublic())
-				.body(worldResult);
+			.cacheControl(CacheControl.maxAge(10, TimeUnit.MINUTES).cachePublic())
+			.body(worldResult);
 	}
 
 	@Scheduled(fixedDelay = 60_000L)

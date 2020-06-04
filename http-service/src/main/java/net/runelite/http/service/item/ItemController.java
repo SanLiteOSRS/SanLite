@@ -78,22 +78,22 @@ public class ItemController
 		this.itemService = itemService;
 
 		memoizedPrices = Suppliers.memoizeWithExpiration(() -> new MemoizedPrices(itemService.fetchPrices().stream()
-				.map(priceEntry ->
-				{
-					ItemPrice itemPrice = new ItemPrice();
-					itemPrice.setId(priceEntry.getItem());
-					itemPrice.setName(priceEntry.getName());
-					itemPrice.setPrice(priceEntry.getPrice());
-					itemPrice.setTime(priceEntry.getTime());
-					return itemPrice;
-				})
-				.toArray(ItemPrice[]::new)), 30, TimeUnit.MINUTES);
+			.map(priceEntry ->
+			{
+				ItemPrice itemPrice = new ItemPrice();
+				itemPrice.setId(priceEntry.getItem());
+				itemPrice.setName(priceEntry.getName());
+				itemPrice.setPrice(priceEntry.getPrice());
+				itemPrice.setTime(priceEntry.getTime());
+				return itemPrice;
+			})
+			.toArray(ItemPrice[]::new)), 30, TimeUnit.MINUTES);
 	}
 
 	@GetMapping("/{itemId}/price")
 	public ResponseEntity<ItemPrice> itemPrice(
-			@PathVariable int itemId,
-			@RequestParam(required = false) Instant time
+		@PathVariable int itemId,
+		@RequestParam(required = false) Instant time
 	)
 	{
 		Instant now = Instant.now();
@@ -111,16 +111,16 @@ public class ItemController
 			{
 				// we maybe can't backfill this
 				return ResponseEntity.notFound()
-						.cacheControl(CacheControl.maxAge(30, TimeUnit.MINUTES).cachePublic())
-						.build();
+					.cacheControl(CacheControl.maxAge(30, TimeUnit.MINUTES).cachePublic())
+					.build();
 			}
 		}
 		else if (priceEntry == null)
 		{
 			// Price is unknown
 			return ResponseEntity.notFound()
-					.cacheControl(CacheControl.maxAge(30, TimeUnit.MINUTES).cachePublic())
-					.build();
+				.cacheControl(CacheControl.maxAge(30, TimeUnit.MINUTES).cachePublic())
+				.build();
 		}
 
 		ItemPrice itemPrice = new ItemPrice();
@@ -130,8 +130,8 @@ public class ItemController
 		itemPrice.setTime(priceEntry.getTime());
 
 		return ResponseEntity.ok()
-				.cacheControl(CacheControl.maxAge(30, TimeUnit.MINUTES).cachePublic())
-				.body(itemPrice);
+			.cacheControl(CacheControl.maxAge(30, TimeUnit.MINUTES).cachePublic())
+			.body(itemPrice);
 	}
 
 	@GetMapping("/price")
@@ -145,16 +145,16 @@ public class ItemController
 		List<PriceEntry> prices = itemService.getPrices(itemIds);
 
 		return prices.stream()
-				.map(priceEntry ->
-				{
-					ItemPrice itemPrice = new ItemPrice();
-					itemPrice.setId(priceEntry.getItem());
-					itemPrice.setName(priceEntry.getName());
-					itemPrice.setPrice(priceEntry.getPrice());
-					itemPrice.setTime(priceEntry.getTime());
-					return itemPrice;
-				})
-				.toArray(ItemPrice[]::new);
+			.map(priceEntry ->
+			{
+				ItemPrice itemPrice = new ItemPrice();
+				itemPrice.setId(priceEntry.getItem());
+				itemPrice.setName(priceEntry.getName());
+				itemPrice.setPrice(priceEntry.getPrice());
+				itemPrice.setTime(priceEntry.getTime());
+				return itemPrice;
+			})
+			.toArray(ItemPrice[]::new);
 	}
 
 	@GetMapping("/prices")
@@ -162,8 +162,8 @@ public class ItemController
 	{
 		MemoizedPrices memorizedPrices = this.memoizedPrices.get();
 		return ResponseEntity.ok()
-				.eTag(memorizedPrices.hash)
-				.cacheControl(CacheControl.maxAge(30, TimeUnit.MINUTES).cachePublic())
-				.body(memorizedPrices.prices);
+			.eTag(memorizedPrices.hash)
+			.cacheControl(CacheControl.maxAge(30, TimeUnit.MINUTES).cachePublic())
+			.body(memorizedPrices.prices);
 	}
 }

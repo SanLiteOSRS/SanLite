@@ -77,7 +77,7 @@ public class LootTrackerControllerTest
 	public void before() throws IOException
 	{
 		when(authFilter.handle(any(HttpServletRequest.class), any(HttpServletResponse.class)))
-				.thenReturn(mock(SessionEntry.class));
+			.thenReturn(mock(SessionEntry.class));
 
 		when(redisPool.getResource()).thenReturn(mock(Jedis.class));
 	}
@@ -92,7 +92,7 @@ public class LootTrackerControllerTest
 
 		String data = RuneLiteAPI.GSON.toJson(Collections.singletonList(lootRecord));
 		mockMvc.perform(post("/loottracker").content(data).contentType(MediaType.APPLICATION_JSON))
-				.andExpect(status().isOk());
+			.andExpect(status().isOk());
 
 		verify(lootTrackerService).store(eq(Collections.singletonList(lootRecord)), anyInt());
 	}

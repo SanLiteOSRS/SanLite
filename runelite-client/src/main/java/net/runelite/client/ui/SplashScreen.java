@@ -43,13 +43,11 @@ import javax.swing.Timer;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.plaf.basic.BasicProgressBarUI;
-
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.client.RuneLiteProperties;
 import net.runelite.client.ui.skin.SubstanceRuneLiteLookAndFeel;
 import net.runelite.client.util.ImageUtil;
 import org.pushingpixels.substance.internal.SubstanceSynapse;
-import sun.swing.SwingUtilities2;
 
 @Slf4j
 public class SplashScreen extends JFrame implements ActionListener
@@ -83,6 +81,8 @@ public class SplashScreen extends JFrame implements ActionListener
 		Container pane = getContentPane();
 		pane.setBackground(ColorScheme.DARKER_GRAY_COLOR);
 
+		Font font = new Font(Font.DIALOG, Font.PLAIN, 12);
+
 		JLabel logoLabel = new JLabel(new ImageIcon(logo));
 		pane.add(logoLabel);
 		logoLabel.setBounds(0, 0, WIDTH, WIDTH);
@@ -94,17 +94,15 @@ public class SplashScreen extends JFrame implements ActionListener
 		clientVersion.setForeground(Color.WHITE);
 		clientVersion.setBounds(0, INITIAL_HEIGHT, WIDTH, 16);
 		clientVersion.setHorizontalAlignment(SwingConstants.CENTER);
-		clientVersion.setFont(FontManager.getRunescapeSmallFont());
-		clientVersion.putClientProperty(SwingUtilities2.AA_TEXT_PROPERTY_KEY, null);
 		clientVersion.setForeground(clientVersion.getForeground().darker());
+		clientVersion.setFont(font);
 		y += clientVersion.getHeight() + PAD;
 
 		pane.add(action);
 		action.setForeground(Color.WHITE);
 		action.setBounds(0, y, WIDTH, 16);
 		action.setHorizontalAlignment(SwingConstants.CENTER);
-		action.setFont(FontManager.getRunescapeFont());
-		action.putClientProperty(SwingUtilities2.AA_TEXT_PROPERTY_KEY, null);
+		action.setFont(font);
 		y += action.getHeight() + PAD;
 
 		pane.add(progress);
@@ -112,7 +110,7 @@ public class SplashScreen extends JFrame implements ActionListener
 		progress.setBackground(ColorScheme.BRAND_BLUE.darker().darker());
 		progress.setBorder(new EmptyBorder(0, 0, 0, 0));
 		progress.setBounds(0, y, WIDTH, 14);
-		progress.setFont(FontManager.getRunescapeSmallFont().deriveFont(Font.PLAIN, 16));
+		progress.setFont(font);
 		progress.setUI(new BasicProgressBarUI()
 		{
 			@Override
@@ -127,15 +125,13 @@ public class SplashScreen extends JFrame implements ActionListener
 				return Color.BLACK;
 			}
 		});
-		progress.putClientProperty(SwingUtilities2.AA_TEXT_PROPERTY_KEY, null);
 		y += 12 + PAD;
 
 		pane.add(subAction);
 		subAction.setForeground(Color.LIGHT_GRAY);
 		subAction.setBounds(0, y, WIDTH, 16);
 		subAction.setHorizontalAlignment(SwingConstants.CENTER);
-		subAction.setFont(FontManager.getRunescapeFont());
-		subAction.putClientProperty(SwingUtilities2.AA_TEXT_PROPERTY_KEY, null);
+		subAction.setFont(font);
 		y += subAction.getHeight() + PAD;
 
 		setSize(WIDTH, y);
