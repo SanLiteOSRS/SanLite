@@ -28,13 +28,17 @@ import com.google.inject.Provides;
 import java.awt.event.KeyEvent;
 import javax.inject.Inject;
 
-import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Client;
+import net.runelite.api.GameState;
 import net.runelite.api.events.FocusChanged;
+import net.runelite.api.events.WidgetLoaded;
 import net.runelite.api.widgets.Widget;
+import net.runelite.api.widgets.WidgetID;
 import net.runelite.api.widgets.WidgetInfo;
+import net.runelite.client.callback.ClientThread;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
+import net.runelite.client.events.ConfigChanged;
 import net.runelite.client.input.KeyListener;
 import net.runelite.client.input.KeyManager;
 import net.runelite.client.plugins.Plugin;
@@ -46,21 +50,27 @@ import net.runelite.client.plugins.PluginType;
 	description = "Prevent dragging an item for a specified delay",
 	tags = {"antidrag", "delay", "inventory", "items", "keybind"},
 	enabledByDefault = false,
-	type = PluginType.SANLITE
+	type = PluginType.SANLITE_USE_AT_OWN_RISK
 )
-@Slf4j
 public class AntiDragPlugin extends Plugin implements KeyListener
 {
+	static final String CONFIG_GROUP = "antiDrag";
+
 	private static final int DEFAULT_DELAY = 5;
 
 	@Inject
 	private Client client;
 
 	@Inject
+	private ClientThread clientThread;
+
+	@Inject
 	private AntiDragConfig config;
 
 	@Inject
 	private KeyManager keyManager;
+
+	private boolean held;
 
 	@Provides
 	AntiDragConfig getConfig(ConfigManager configManager)
@@ -71,13 +81,24 @@ public class AntiDragPlugin extends Plugin implements KeyListener
 	@Override
 	protected void startUp() throws Exception
 	{
+		if (client.getGameState() == GameState.LOGGED_IN)
+		{
+			clientThread.invokeLater(() ->
+			{
+				if (!config.onKeybindOnly())
+				{
+					setDragDelay();
+				}
+			});
+		}
+
 		keyManager.registerKeyListener(this);
 	}
 
 	@Override
 	protected void shutDown() throws Exception
 	{
-		client.setInventoryDragDelay(DEFAULT_DELAY);
+		clientThread.invoke(this::resetDragDelay);
 		keyManager.unregisterKeyListener(this);
 	}
 
@@ -92,20 +113,45 @@ public class AntiDragPlugin extends Plugin implements KeyListener
 	{
 		if (e.getKeyCode() == config.keybind1().getKeyCode() || e.getKeyCode() == config.keybind2().getKeyCode())
 		{
-			final int delay = config.dragDelay();
-			client.setInventoryDragDelay(delay);
-			setBankDragDelay(delay);
+			if (!config.onKeybindOnly())
+			{
+				return;
+			}
+
+			setDragDelay();
+			held = true;
 		}
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e)
 	{
-
 		if (e.getKeyCode() == config.keybind1().getKeyCode() || e.getKeyCode() == config.keybind2().getKeyCode())
 		{
-			client.setInventoryDragDelay(DEFAULT_DELAY);
-			setBankDragDelay(DEFAULT_DELAY);
+			if (!config.onKeybindOnly())
+			{
+				return;
+			}
+
+			resetDragDelay();
+			held = false;
+		}
+	}
+
+	@Subscribe
+	public void onConfigChanged(ConfigChanged event)
+	{
+		if (event.getGroup().equals(CONFIG_GROUP))
+		{
+			if (config.onKeybindOnly())
+			{
+				held = false;
+				clientThread.invoke(this::resetDragDelay);
+			}
+			else
+			{
+				clientThread.invoke(this::setDragDelay);
+			}
 		}
 	}
 
@@ -114,8 +160,21 @@ public class AntiDragPlugin extends Plugin implements KeyListener
 	{
 		if (!focusChanged.isFocused())
 		{
-			client.setInventoryDragDelay(DEFAULT_DELAY);
-			setBankDragDelay(DEFAULT_DELAY);
+			held = false;
+			clientThread.invoke(this::resetDragDelay);
+		}
+		else if (!config.onKeybindOnly())
+		{
+			clientThread.invoke(this::setDragDelay);
+		}
+	}
+
+	@Subscribe
+	public void onWidgetLoaded(WidgetLoaded widgetLoaded)
+	{
+		if (widgetLoaded.getGroupId() == WidgetID.BANK_GROUP_ID && (!config.onKeybindOnly() || held))
+		{
+			setBankDragDelay(config.dragDelay());
 		}
 	}
 
@@ -130,5 +189,17 @@ public class AntiDragPlugin extends Plugin implements KeyListener
 				item.setDragDeadTime(delay);
 			}
 		}
+	}
+
+	private void setDragDelay()
+	{
+		client.setInventoryDragDelay(config.dragDelay());
+		setBankDragDelay(config.dragDelay());
+	}
+
+	private void resetDragDelay()
+	{
+		client.setInventoryDragDelay(DEFAULT_DELAY);
+		setBankDragDelay(DEFAULT_DELAY);
 	}
 }

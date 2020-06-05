@@ -28,7 +28,6 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ObjectArrays;
 import com.google.inject.Provides;
 import java.awt.image.BufferedImage;
-import java.lang.reflect.InvocationTargetException;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -57,10 +56,10 @@ import net.runelite.client.util.Text;
 import org.apache.commons.lang3.ArrayUtils;
 
 @PluginDescriptor(
-		name = "HiScore",
-		description = "Enable the HiScore panel and an optional Lookup option on players",
-		tags = {"panel", "players"},
-		loadWhenOutdated = true
+	name = "HiScore",
+	description = "Enable the HiScore panel and an optional Lookup option on players",
+	tags = {"panel", "players"},
+	loadWhenOutdated = true
 )
 public class HiscorePlugin extends Plugin
 {
@@ -102,11 +101,11 @@ public class HiscorePlugin extends Plugin
 		final BufferedImage icon = ImageUtil.getResourceStreamFromClass(getClass(), "normal.png");
 
 		navButton = NavigationButton.builder()
-				.tooltip("Hiscore")
-				.icon(icon)
-				.priority(5)
-				.panel(hiscorePanel)
-				.build();
+			.tooltip("Hiscore")
+			.icon(icon)
+			.priority(5)
+			.panel(hiscorePanel)
+			.build();
 
 		clientToolbar.addNavigation(navButton);
 
@@ -213,23 +212,12 @@ public class HiscorePlugin extends Plugin
 
 	private void lookupPlayer(String playerName)
 	{
-		executor.execute(() ->
+		SwingUtilities.invokeLater(() ->
 		{
-			try
+			if (!navButton.isSelected())
 			{
-				SwingUtilities.invokeAndWait(() ->
-				{
-					if (!navButton.isSelected())
-					{
-						navButton.getOnSelect().run();
-					}
-				});
+				navButton.getOnSelect().run();
 			}
-			catch (InterruptedException | InvocationTargetException e)
-			{
-				throw new RuntimeException(e);
-			}
-
 			hiscorePanel.lookup(playerName);
 		});
 	}

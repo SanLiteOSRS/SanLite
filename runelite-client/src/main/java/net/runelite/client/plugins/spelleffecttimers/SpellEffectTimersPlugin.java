@@ -41,9 +41,7 @@ import net.runelite.client.plugins.PluginType;
 import net.runelite.client.ui.overlay.OverlayManager;
 
 import javax.inject.Inject;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 @Slf4j
 @PluginDescriptor(
@@ -51,11 +49,12 @@ import java.util.List;
 		description = "Shows spell effect timers for freezes, vengeance and teleblock",
 		tags = {"spell", "effect", "timers", "freeze", "timers", "barrage", "freezy", "ancients", "overlay", "root",
 				"vengeance", "teleblock", "veng", "tb", "pvp"},
-		enabledByDefault = false,
-		type = PluginType.SANLITE_USE_AT_OWN_RISK
+		type = PluginType.SANLITE_USE_AT_OWN_RISK,
+		enabledByDefault = false
 )
 public class SpellEffectTimersPlugin extends Plugin
 {
+	private static final int CACHED_TELEBLOCK_TIMEOUT_TICKS = 34;
 
 	@Inject
 	private Client client;
@@ -70,10 +69,13 @@ public class SpellEffectTimersPlugin extends Plugin
 	private SpellEffectTimersConfig config;
 
 	@Getter(AccessLevel.PACKAGE)
-	private List<SpellEffectInfo> spellEffects = new ArrayList<>();
+	private List<SpellEffectInfo> spellEffects;
 
-	@Getter
-	private HashMap<Actor, WorldPoint> frozenActors = new HashMap<>();
+	@Getter(AccessLevel.PACKAGE)
+	private Map<Actor, WorldPoint> frozenActors;
+
+	@Getter(AccessLevel.PACKAGE)
+	private Map<SpellEffectInfo, Integer> cachedTeleblocks;
 
 	@Provides
 	public SpellEffectTimersConfig getConfig(ConfigManager configManager)
@@ -83,16 +85,22 @@ public class SpellEffectTimersPlugin extends Plugin
 
 	public void startUp()
 	{
+		spellEffects = new ArrayList<>();
+		frozenActors = new HashMap<>();
+		cachedTeleblocks = new HashMap<>();
 		overlayManager.add(overlay);
 	}
 
 	public void shutDown()
 	{
+		spellEffects = null;
+		frozenActors = null;
+		cachedTeleblocks = null;
 		overlayManager.remove(overlay);
 	}
 
 	@Subscribe
-	public void onSpotAnimationChanged(SpotAnimationChanged spotAnimationChanged)
+	public void onGraphicChanged(GraphicChanged graphicChanged)
 	{
 		// Edge cases causing the plugin to not detect freezes
 		// 1. Ahrim's full set effect spot anim overriding (id 400)
@@ -106,29 +114,35 @@ public class SpellEffectTimersPlugin extends Plugin
 			return;
 		}
 
-		Actor actor = spotAnimationChanged.getActor();
+		Actor actor = graphicChanged.getActor();
 		if (actor == null)
 		{
 			return;
 		}
 
-		if (!SpellEffect.isSpellEffect(actor.getSpotAnimation()))
-		{
-			return;
-		}
-
-		if (actor.equals(client.getLocalPlayer()))
-		{
-			return;
-		}
-
-		int spotAnimation = actor.getSpotAnimation();
+		int spotAnimation = actor.getGraphic();
 		if (spotAnimation == 0)
 		{
 			return;
 		}
 
-		SpellEffect spellEffect = SpellEffect.getFromSpotAnimation(actor.getSpotAnimation());
+		if (!SpellEffect.isSpellEffect(spotAnimation))
+		{
+			return;
+		}
+
+		if (actor instanceof NPC && !config.showFreezeTimersOnNpcs())
+		{
+			return;
+		}
+
+		if (actor.equals(client.getLocalPlayer()) && !config.showFreezeTimerOnOwnPlayer() ||
+				actor.equals(client.getLocalPlayer()) && !SpellEffect.isSpellEffectTypeFreeze(spotAnimation))
+		{
+			return;
+		}
+
+		SpellEffect spellEffect = SpellEffect.getFromGraphicId(actor.getGraphic());
 		if (spellEffect == null)
 		{
 			return;
@@ -137,7 +151,7 @@ public class SpellEffectTimersPlugin extends Plugin
 		switch (spellEffect.getSpellType())
 		{
 			case FREEZE:
-				checkFreezeSpellEffect(spotAnimationChanged, actor, spellEffect);
+				checkFreezeSpellEffect(graphicChanged, actor, spellEffect);
 				break;
 			case FREEZE_IMMUNITY:
 			case TELEBLOCK_IMMUNITY:
@@ -146,19 +160,125 @@ public class SpellEffectTimersPlugin extends Plugin
 				checkTeleblockSpellEffect(actor, spellEffect);
 				break;
 			case VENGEANCE:
-				checkVengSpellEffect(spotAnimationChanged, actor, spellEffect);
+				checkVengSpellEffect(graphicChanged, actor, spellEffect);
 				return;
 			default:
 				log.warn("Player spell effect has unknown type");
 		}
 	}
 
-	private void checkFreezeSpellEffect(SpotAnimationChanged spotAnimationChanged, Actor actor, SpellEffect spellEffect)
+	@Subscribe
+	public void onOverheadTextChanged(OverheadTextChanged overheadTextChanged)
+	{
+		spellEffects.removeIf(x -> x.getSpellEffect().equals(SpellEffect.VENGEANCE_ACTIVE) &&
+				x.getActor().equals(overheadTextChanged.getActor()) &&
+				overheadTextChanged.getOverheadText().equals("Taste vengeance!"));
+	}
+
+	@Subscribe
+	public void onAnimationChanged(AnimationChanged event)
+	{
+		Actor actor = event.getActor();
+		if (actor == null)
+		{
+			return;
+		}
+
+		removeTeleblockOnTeleport(actor);
+	}
+
+	@Subscribe
+	public void onPlayerSpawned(PlayerSpawned event)
+	{
+		Actor actor = event.getActor();
+		if (actor == null)
+		{
+			return;
+		}
+
+		String name = actor.getName();
+
+		// Re-add teleblock spell effect if the player had one cached
+		if (config.showTeleblockTimersOverlay() && name != null)
+		{
+			final String cleanedName = name.replace('\u00A0', ' ');
+			cachedTeleblocks.entrySet().stream()
+					.filter(x -> Objects.equals(Objects.requireNonNull(x.getKey().getActor().getName()).replace('\u00A0', ' '), cleanedName))
+					.findFirst()
+					.ifPresent(x -> addTeleblockFromCache(x.getKey(), actor));
+		}
+	}
+
+	@Subscribe
+	public void onPlayerDespawned(PlayerDespawned event)
+	{
+		if (config.showTeleblockTimersOverlay())
+		{
+			// Cache teleblock spell effect
+			spellEffects.stream()
+					.filter(x -> x.getActor().equals(event.getActor()) && x.getSpellEffect().getSpellType().equals(SpellEffectType.TELEBLOCK))
+					.findFirst()
+					.ifPresent(this::cacheTeleblock);
+		}
+
+		spellEffects.removeIf(x -> x.getActor().equals(event.getActor()));
+		frozenActors.entrySet().removeIf(x -> x.getKey().equals(event.getActor()));
+	}
+
+	@Subscribe
+	public void onPlayerDeath(PlayerDeath event)
+	{
+		Player player = event.getPlayer();
+		if (player == null)
+		{
+			return;
+		}
+
+		spellEffects.removeIf(x -> x.getActor().equals(player));
+		frozenActors.entrySet().removeIf(x -> x.getKey().equals(player));
+	}
+
+	private void cacheTeleblock(SpellEffectInfo teleblockSpellEffect)
+	{
+		cachedTeleblocks.put(teleblockSpellEffect, client.getTickCount());
+	}
+
+	@Subscribe
+	public void onNpcDespawned(NpcDespawned npcDespawned)
+	{
+		spellEffects.removeIf(x -> x.getActor().equals(npcDespawned.getActor()));
+		frozenActors.entrySet().removeIf(x -> x.getKey().equals(npcDespawned.getActor()));
+	}
+
+	@Subscribe
+	public void onGameTick(GameTick gameTick)
+	{
+		if (frozenActors != null && frozenActors.size() > 0)
+		{
+			checkIfAnyFrozenActorsMoved();
+		}
+
+		if (config.showTeleblockTimersOverlay())
+		{
+			checkRemoveTeleblockSpellEffect();
+		}
+
+		// Remove cached teleblock if the player does not show up again within the timeout period
+		cachedTeleblocks.entrySet().removeIf(x -> x.getValue() + CACHED_TELEBLOCK_TIMEOUT_TICKS < client.getTickCount());
+	}
+
+	@Subscribe
+	public void onClientTick(ClientTick clientTick)
+	{
+		checkExpiredSpellEffects();
+	}
+
+	private void checkFreezeSpellEffect(GraphicChanged graphicChanged, Actor actor, SpellEffect spellEffect)
 	{
 		List<SpellEffectInfo> actorFreezeSpellEffects = new ArrayList<>();
 		for (SpellEffectInfo spellEffectInfo : spellEffects)
 		{
-			if (spotAnimationChanged.getActor().equals(spellEffectInfo.getActor()))
+			if (graphicChanged.getActor().equals(spellEffectInfo.getActor()))
 			{
 				SpellEffectType spellType = spellEffectInfo.getSpellEffect().getSpellType();
 				if (spellType.equals(SpellEffectType.FREEZE_IMMUNITY))
@@ -175,7 +295,7 @@ public class SpellEffectTimersPlugin extends Plugin
 
 		for (SpellEffectInfo spellEffectInfo : actorFreezeSpellEffects)
 		{
-			// Checks if the actor is already frozen. Extra second to prevent freeze & immunity timers both triggering.
+			// Checks if the actor is already frozen. Extra client tick to prevent freeze & immunity timers both triggering
 			if (spellEffectInfo.getExpireClientTick() + 1 > client.getGameCycle())
 			{
 				return;
@@ -238,12 +358,50 @@ public class SpellEffectTimersPlugin extends Plugin
 		}
 	}
 
-	private void checkVengSpellEffect(SpotAnimationChanged spotAnimationChanged, Actor actor, SpellEffect spellEffect)
+	private void removeTeleblockOnTeleport(Actor actor)
+	{
+		SpellEffectInfo spellEffectInfo = spellEffects.stream()
+				.filter(x -> x.getActor().equals(actor) && x.getSpellEffect().getSpellType().equals(SpellEffectType.TELEBLOCK))
+				.findFirst()
+				.orElse(null);
+
+		if (spellEffectInfo == null)
+		{
+			return;
+		}
+
+		int animationId = actor.getAnimation();
+		if (animationId == -1)
+		{
+			return;
+		}
+
+		if (animationId == AnimationID.STANDARD_PURPLE_TELEPORT ||
+				animationId == AnimationID.SEED_POD_TELEPORT ||
+				animationId == AnimationID.WILDERNESS_OBELISK_TELEPORT ||
+				animationId == AnimationID.XERICS_TALISMAN_TELEPORT ||
+				animationId == AnimationID.FAIRY_RING_TELEPORT ||
+				animationId == AnimationID.ECTOPHIAL_TELEPORT ||
+				animationId == AnimationID.SCROLL_TELEPORT ||
+				animationId == AnimationID.TABLET_TELEPORT)
+		{
+			spellEffects.remove(spellEffectInfo);
+		}
+	}
+
+	void addTeleblockFromCache(SpellEffectInfo spellEffectInfo, Actor newActor)
+	{
+		spellEffectInfo.setActor(newActor);
+		spellEffects.add(spellEffectInfo);
+		cachedTeleblocks.remove(spellEffectInfo);
+	}
+
+	private void checkVengSpellEffect(GraphicChanged graphicChanged, Actor actor, SpellEffect spellEffect)
 	{
 		spellEffects.add(new SpellEffectInfo(actor, spellEffect, client.getGameCycle(), false));
 		for (SpellEffectInfo spellEffectInfo : spellEffects)
 		{
-			if (spotAnimationChanged.getActor().equals(spellEffectInfo.getActor()))
+			if (graphicChanged.getActor().equals(spellEffectInfo.getActor()))
 			{
 				if (spellEffectInfo.getSpellEffect().equals(SpellEffect.VENGEANCE_ACTIVE))
 				{
@@ -253,48 +411,6 @@ public class SpellEffectTimersPlugin extends Plugin
 		}
 
 		spellEffects.add(new SpellEffectInfo(actor, SpellEffect.VENGEANCE_ACTIVE, client.getGameCycle(), false));
-	}
-
-	@Subscribe
-	public void onOverheadTextChanged(OverheadTextChanged overheadTextChanged)
-	{
-		spellEffects.removeIf(x -> x.getSpellEffect().equals(SpellEffect.VENGEANCE_ACTIVE) &&
-				x.getActor().equals(overheadTextChanged.getActor()) &&
-				overheadTextChanged.getOverheadText().equals("Taste vengeance!"));
-	}
-
-	@Subscribe
-	public void onPlayerDespawned(PlayerDespawned playerDespawned)
-	{
-		spellEffects.removeIf(x -> x.getActor().equals(playerDespawned.getActor()));
-		frozenActors.entrySet().removeIf(x -> x.getKey().equals(playerDespawned.getActor()));
-	}
-
-	@Subscribe
-	public void onNpcDespawned(NpcDespawned npcDespawned)
-	{
-		spellEffects.removeIf(x -> x.getActor().equals(npcDespawned.getActor()));
-		frozenActors.entrySet().removeIf(x -> x.getKey().equals(npcDespawned.getActor()));
-	}
-
-	@Subscribe
-	public void onGameTick(GameTick gameTick)
-	{
-		if (frozenActors != null && frozenActors.size() > 0)
-		{
-			checkIfAnyFrozenActorsMoved();
-		}
-
-		if (config.showTeleblockTimersOverlay())
-		{
-			checkRemoveTeleblockSpellEffect();
-		}
-	}
-
-	@Subscribe
-	public void onClientTick(ClientTick clientTick)
-	{
-		checkExpiredSpellEffects();
 	}
 
 	/**
@@ -308,8 +424,8 @@ public class SpellEffectTimersPlugin extends Plugin
 				{
 					new ArrayList<>(spellEffects).stream()
 							.filter(x -> x.getActor().equals(entry.getKey()) &&
-									x.getRemainingTime() < (0.9 * x.spellDurationToSpellTime(
-											x.getSpellEffect().getSpellLength())))
+									x.getRemainingTime() < (0.9 * x.spellDurationToSpellTime(x.getSpellEffect().getSpellLength())) &&
+									x.getSpellEffect().getSpellType().equals(SpellEffectType.FREEZE))
 							.forEach((spellEffect) -> spellEffects.remove(spellEffect));
 					frozenActors.remove(entry.getKey());
 				});

@@ -1,6 +1,7 @@
 /*
  * Copyright (c) 2018, terminatusx <jbfleischman@gmail.com>
  * Copyright (c) 2018, Adam <Adam@sigterm.info>
+ * Copyright (c) 2020, loldudester <HannahRyanster@gmail.com>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -37,6 +38,17 @@ import net.runelite.client.plugins.wintertodt.config.WintertodtNotifyDamage;
 public interface WintertodtConfig extends Config
 {
 	@ConfigItem(
+		position = 0,
+		keyName = "showOverlay",
+		name = "Show Overlay",
+		description = "Toggles the status overlay"
+	)
+	default boolean showOverlay()
+	{
+		return true;
+	}
+
+	@ConfigItem(
 		position = 1,
 		keyName = "damageNotificationColor",
 		name = "Damage Notification Color",
@@ -63,10 +75,10 @@ public interface WintertodtConfig extends Config
 	}
 
 	@ConfigItem(
-			position = 3,
-			keyName = "notifyCold",
-			name = "Ambient Damage Notification",
-			description = "Notifies when hit by the Wintertodt's ambient cold damage"
+		position = 3,
+		keyName = "notifyCold",
+		name = "Ambient Damage Notification",
+		description = "Notifies when hit by the Wintertodt's ambient cold damage"
 	)
 	default WintertodtNotifyDamage notifyCold()
 	{
@@ -74,10 +86,10 @@ public interface WintertodtConfig extends Config
 	}
 
 	@ConfigItem(
-			position = 4,
-			keyName = "notifySnowfall",
-			name = "Snowfall Damage Notification",
-			description = "Notifies when hit by the Wintertodt's snowfall attack"
+		position = 4,
+		keyName = "notifySnowfall",
+		name = "Snowfall Damage Notification",
+		description = "Notifies when hit by the Wintertodt's snowfall attack"
 	)
 	default WintertodtNotifyDamage notifySnowfall()
 	{
@@ -85,10 +97,10 @@ public interface WintertodtConfig extends Config
 	}
 
 	@ConfigItem(
-			position = 5,
-			keyName = "notifyBrazierDamage",
-			name = "Brazier Damage Notification",
-			description = "Notifies when hit by the brazier breaking"
+		position = 5,
+		keyName = "notifyBrazierDamage",
+		name = "Brazier Damage Notification",
+		description = "Notifies when hit by the brazier breaking"
 	)
 	default WintertodtNotifyDamage notifyBrazierDamage()
 	{
@@ -96,10 +108,10 @@ public interface WintertodtConfig extends Config
 	}
 
 	@ConfigItem(
-			position = 6,
-			keyName = "notifyFullInv",
-			name = "Full Inventory Notification",
-			description = "Notifies when your inventory fills up with bruma roots"
+		position = 6,
+		keyName = "notifyFullInv",
+		name = "Full Inventory Notification",
+		description = "Notifies when your inventory fills up with bruma roots"
 	)
 	default boolean notifyFullInv()
 	{
@@ -107,10 +119,10 @@ public interface WintertodtConfig extends Config
 	}
 
 	@ConfigItem(
-			position = 7,
-			keyName = "notifyEmptyInv",
-			name = "Empty Inventory Notification",
-			description = "Notifies when you run out of bruma roots"
+		position = 7,
+		keyName = "notifyEmptyInv",
+		name = "Empty Inventory Notification",
+		description = "Notifies when you run out of bruma roots"
 	)
 	default boolean notifyEmptyInv()
 	{
@@ -118,10 +130,10 @@ public interface WintertodtConfig extends Config
 	}
 
 	@ConfigItem(
-			position = 8,
-			keyName = "notifyBrazierOut",
-			name = "Brazier Extinguish Notification",
-			description = "Notifies when the brazier goes out"
+		position = 8,
+		keyName = "notifyBrazierOut",
+		name = "Brazier Extinguish Notification",
+		description = "Notifies when the brazier goes out"
 	)
 	default boolean notifyBrazierOut()
 	{

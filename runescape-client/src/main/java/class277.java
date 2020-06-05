@@ -18,8 +18,8 @@ public class class277 {
 		garbageValue = "-1950063557"
 	)
 	public static void method5038() {
-		NPCDefinition.NpcDefinition_cached.clear();
-		NPCDefinition.NpcDefinition_cachedModels.clear();
+		NPCComposition.NpcDefinition_cached.clear();
+		NPCComposition.NpcDefinition_cachedModels.clear();
 	}
 
 	@ObfuscatedName("hz")

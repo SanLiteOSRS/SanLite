@@ -29,6 +29,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import java.util.List;
 import java.util.Map;
+import javax.annotation.Nullable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import net.runelite.api.Client;
@@ -42,6 +43,8 @@ enum DiscordGameEventType
 
 	IN_GAME("In Game", -3),
 	IN_MENU("In Menu", -3),
+	PLAYING_DEADMAN("Playing Deadman Mode", -3),
+	PLAYING_PVP("Playing in a PVP world", -3),
 	TRAINING_ATTACK(Skill.ATTACK),
 	TRAINING_DEFENCE(Skill.DEFENCE),
 	TRAINING_STRENGTH(Skill.STRENGTH),
@@ -183,7 +186,7 @@ enum DiscordGameEventType
 	DUNGEON_GOBLIN_CAVE("Goblin Cave", DiscordAreaType.DUNGEONS, 10393),
 	DUNGEON_GRAND_TREE_TUNNELS("Grand Tree Tunnels", DiscordAreaType.DUNGEONS, 9882),
 	DUNGEON_HAM("H.A.M Dungeon", DiscordAreaType.DUNGEONS, 12694, 10321),
-	DUNGEON_IORWERTH("Iorwerth Dungeon", DiscordAreaType.DUNGEONS, 12738, 12993, 12994),
+	DUNGEON_IORWERTH("Iorwerth Dungeon", DiscordAreaType.DUNGEONS, 12737, 12738, 12993, 12994),
 	DUNGEON_JATIZSO_MINES("Jatizso Mines", DiscordAreaType.DUNGEONS, 9631),
 	DUNGEON_JIGGIG_BURIAL_TOMB("Jiggig Burial Tomb", DiscordAreaType.DUNGEONS, 9875, 9874),
 	DUNGEON_JOGRE("Jogre Dungeon", DiscordAreaType.DUNGEONS, 11412),
@@ -287,15 +290,26 @@ enum DiscordGameEventType
 		FROM_VARBITS = fromVarbitsBuilder.build();
 	}
 
+	@Nullable
 	private String imageKey;
+
+	@Nullable
 	private String state;
+
+	@Nullable
 	private String details;
+
 	private int priority;
 	private boolean shouldClear;
 	private boolean shouldTimeout;
 
+	@Nullable
 	private DiscordAreaType discordAreaType;
+
+	@Nullable
 	private Varbits varbits;
+
+	@Nullable
 	private int[] regionIds;
 
 	DiscordGameEventType(Skill skill)
@@ -308,7 +322,6 @@ enum DiscordGameEventType
 		this.details = training(skill);
 		this.priority = priority;
 		this.imageKey = imageKeyOf(skill);
-		this.priority = priority;
 		this.shouldTimeout = true;
 	}
 

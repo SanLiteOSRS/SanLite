@@ -42,10 +42,10 @@ public interface CameraConfig extends Config
 	int INNER_ZOOM_LIMIT = 1004;
 
 	@ConfigItem(
-			keyName = "inner",
-			name = "Expand inner zoom limit",
-			description = "Configures whether or not the inner zoom limit is reduced",
-			position = 1
+		keyName = "inner",
+		name = "Expand inner zoom limit",
+		description = "Configures whether or not the inner zoom limit is reduced",
+		position = 1
 	)
 	default boolean innerLimit()
 	{
@@ -53,14 +53,14 @@ public interface CameraConfig extends Config
 	}
 
 	@Range(
-			min = OUTER_LIMIT_MIN,
-			max = OUTER_LIMIT_MAX
+		min = OUTER_LIMIT_MIN,
+		max = OUTER_LIMIT_MAX
 	)
 	@ConfigItem(
-			keyName = "outerLimit",
-			name = "Expand outer zoom limit",
-			description = "Configures how much the outer zoom limit is adjusted",
-			position = 2
+		keyName = "outerLimit",
+		name = "Expand outer zoom limit",
+		description = "Configures how much the outer zoom limit is adjusted",
+		position = 2
 	)
 	default int outerLimit()
 	{
@@ -68,10 +68,10 @@ public interface CameraConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "relaxCameraPitch",
-			name = "Vertical camera",
-			description = "Relax the camera's upper pitch limit",
-			position = 3
+		keyName = "relaxCameraPitch",
+		name = "Vertical camera",
+		description = "Relax the camera's upper pitch limit",
+		position = 3
 	)
 	default boolean relaxCameraPitch()
 	{
@@ -79,10 +79,10 @@ public interface CameraConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "controlFunction",
-			name = "Control Function",
-			description = "Configures the zoom function when control is pressed",
-			position = 4
+		keyName = "controlFunction",
+		name = "Control Function",
+		description = "Configures the zoom function when control is pressed",
+		position = 4
 	)
 	default ControlFunction controlFunction()
 	{
@@ -90,14 +90,14 @@ public interface CameraConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "ctrlZoomValue",
-			name = "Reset zoom position",
-			description = "Position of zoom when it is reset",
-			position = 5
+		keyName = "ctrlZoomValue",
+		name = "Reset zoom position",
+		description = "Position of zoom when it is reset",
+		position = 5
 	)
 	@Range(
-			min = OUTER_LIMIT_MIN,
-			max = INNER_ZOOM_LIMIT
+		min = OUTER_LIMIT_MIN,
+		max = INNER_ZOOM_LIMIT
 	)
 	default int ctrlZoomValue()
 	{
@@ -105,10 +105,10 @@ public interface CameraConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "zoomIncrement",
-			name = "Zoom Speed",
-			description = "Speed of zoom",
-			position = 6
+		keyName = "zoomIncrement",
+		name = "Zoom Speed",
+		description = "Speed of zoom",
+		position = 6
 	)
 	default int zoomIncrement()
 	{
@@ -116,10 +116,10 @@ public interface CameraConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "rightClickMovesCamera",
-			name = "Right click moves camera",
-			description = "Remaps right click to middle mouse click if there are no menu options",
-			position = 7
+		keyName = "rightClickMovesCamera",
+		name = "Right click moves camera",
+		description = "Remaps right click to middle mouse click if there are no menu options",
+		position = 7
 	)
 	default boolean rightClickMovesCamera()
 	{
@@ -127,10 +127,10 @@ public interface CameraConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "ignoreExamine",
-			name = "Ignore Examine",
-			description = "Ignore the Examine menu entry",
-			position = 8
+		keyName = "ignoreExamine",
+		name = "Ignore Examine",
+		description = "Ignore the Examine menu entry",
+		position = 8
 	)
 	default boolean ignoreExamine()
 	{
@@ -138,10 +138,10 @@ public interface CameraConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "middleClickMenu",
-			name = "Middle-button opens menu",
-			description = "Middle-mouse button always opens the menu",
-			position = 9
+		keyName = "middleClickMenu",
+		name = "Middle-button opens menu",
+		description = "Middle-mouse button always opens the menu",
+		position = 9
 	)
 	default boolean middleClickMenu()
 	{
@@ -149,13 +149,35 @@ public interface CameraConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "compassLook",
-			name = "Compass options",
-			description = "Adds Look South, East, and West options to the compass",
-			position = 10
+		keyName = "compassLook",
+		name = "Compass options",
+		description = "Adds Look South, East, and West options to the compass",
+		position = 10
 	)
 	default boolean compassLook()
 	{
 		return true;
+	}
+
+	@ConfigItem(
+		keyName = "invertYaw",
+		name = "Invert Yaw",
+		description = "Makes moving the camera horizontally with the mouse backwards",
+		position = 11
+	)
+	default boolean invertYaw()
+	{
+		return false;
+	}
+
+	@ConfigItem(
+		keyName = "invertPitch",
+		name = "Invert Pitch",
+		description = "Makes moving the camera vertically with the mouse backwards",
+		position = 12
+	)
+	default boolean invertPitch()
+	{
+		return false;
 	}
 }

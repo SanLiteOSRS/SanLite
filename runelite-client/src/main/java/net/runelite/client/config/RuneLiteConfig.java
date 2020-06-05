@@ -24,10 +24,14 @@
  */
 package net.runelite.client.config;
 
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
 import net.runelite.api.Constants;
 import net.runelite.client.Notifier;
 import net.runelite.client.ui.ContainableFrame;
+import net.runelite.client.ui.overlay.components.ComponentConstants;
 
 @ConfigGroup(RuneLiteConfig.GROUP_NAME)
 public interface RuneLiteConfig extends Config
@@ -92,7 +96,7 @@ public interface RuneLiteConfig extends Config
 	@ConfigItem(
 		keyName = "uiEnableCustomChrome",
 		name = "Enable custom window chrome",
-		description = "Use SanLite's custom window title and borders.",
+		description = "Use the clients custom window title and borders.",
 		warning = "Please restart your client after changing this setting",
 		position = 15
 	)
@@ -101,11 +105,26 @@ public interface RuneLiteConfig extends Config
 		return true;
 	}
 
+	@Range(
+		min = 10,
+		max = 100
+	)
+	@ConfigItem(
+		keyName = "uiWindowOpacity",
+		name = "Window opacity",
+		description = "Set the windows opacity. Requires \"Enable custom window chrome\" to be enabled.",
+		position = 16
+	)
+	default int windowOpacity()
+	{
+		return 100;
+	}
+
 	@ConfigItem(
 		keyName = "gameAlwaysOnTop",
 		name = "Enable client always on top",
 		description = "The game will always be on the top of the screen",
-		position = 16
+		position = 17
 	)
 	default boolean gameAlwaysOnTop()
 	{
@@ -116,7 +135,7 @@ public interface RuneLiteConfig extends Config
 		keyName = "warningOnExit",
 		name = "Display warning on exit",
 		description = "Toggles a warning popup when trying to exit the client",
-		position = 17
+		position = 18
 	)
 	default WarningOnExit warningOnExit()
 	{
@@ -127,7 +146,7 @@ public interface RuneLiteConfig extends Config
 		keyName = "usernameInTitle",
 		name = "Show display name in title",
 		description = "Toggles displaying of local player's display name in client title",
-		position = 18
+		position = 19
 	)
 	default boolean usernameInTitle()
 	{
@@ -149,13 +168,13 @@ public interface RuneLiteConfig extends Config
 	@ConfigItem(
 		keyName = "notificationRequestFocus",
 		name = "Request focus on notification",
-		description = "Toggles window focus request",
+		description = "Configures the window focus request type on notification",
 		position = 21,
 		group = "Notifications"
 	)
-	default boolean requestFocusOnNotification()
+	default RequestFocusType notificationRequestFocus()
 	{
-		return true;
+		return RequestFocusType.OFF;
 	}
 
 	@ConfigItem(
@@ -254,10 +273,10 @@ public interface RuneLiteConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "tooltipPosition",
-			name = "Tooltip Position",
-			description = "Configures whether to show the tooltip above or under the cursor",
-			position = 35
+		keyName = "tooltipPosition",
+		name = "Tooltip Position",
+		description = "Configures whether to show the tooltip above or under the cursor",
+		position = 35
 	)
 	default TooltipPositionType tooltipPosition()
 	{
@@ -277,18 +296,6 @@ public interface RuneLiteConfig extends Config
 	}
 
 	@ConfigItem(
-		keyName = "infoBoxWrap",
-		name = "Infobox wrap count",
-		description = "Configures the amount of infoboxes shown before wrapping",
-		position = 41,
-		group = "Infobox"
-	)
-	default int infoBoxWrap()
-	{
-		return 4;
-	}
-
-	@ConfigItem(
 		keyName = "infoBoxSize",
 		name = "Infobox size",
 		description = "Configures the size of each infobox in pixels",
@@ -302,13 +309,47 @@ public interface RuneLiteConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "blockExtraMouseButtons",
-			name = "Block Extra Mouse Buttons",
-			description = "Blocks extra mouse buttons (4 and above)",
-			position = 43
+		keyName = "overlayBackgroundColor",
+		name = "Overlay Color",
+		description = "Configures the background color of infoboxes and overlays",
+		position = 43
+	)
+	@Alpha
+	default Color overlayBackgroundColor()
+	{
+		return ComponentConstants.STANDARD_BACKGROUND_COLOR;
+	}
+
+	@ConfigItem(
+		keyName = "blockExtraMouseButtons",
+		name = "Block Extra Mouse Buttons",
+		description = "Blocks extra mouse buttons (4 and above)",
+		position = 44
 	)
 	default boolean blockExtraMouseButtons()
 	{
 		return true;
+	}
+
+	@ConfigItem(
+		keyName = "sidebarToggleKey",
+		name = "Sidebar Toggle Key",
+		description = "The key that will toggle the sidebar (accepts modifiers)",
+		position = 45
+	)
+	default Keybind sidebarToggleKey()
+	{
+		return new Keybind(KeyEvent.VK_F11, InputEvent.CTRL_DOWN_MASK);
+	}
+
+	@ConfigItem(
+		keyName = "panelToggleKey",
+		name = "Plugin Panel Toggle Key",
+		description = "The key that will toggle the current or last opened plugin panel (accepts modifiers)",
+		position = 46
+	)
+	default Keybind panelToggleKey()
+	{
+		return new Keybind(KeyEvent.VK_F12, InputEvent.CTRL_DOWN_MASK);
 	}
 }

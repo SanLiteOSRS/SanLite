@@ -47,6 +47,28 @@ public interface SpellEffectTimersConfig extends Config
 	}
 
 	@ConfigItem(
+			position = 0,
+			keyName = "showFreezeTimersOnNpcs",
+			name = "Show freeze timers on NPC's",
+			description = "Configures if the freeze timer is shown on NPC's"
+	)
+	default boolean showFreezeTimersOnNpcs()
+	{
+		return false;
+	}
+
+	@ConfigItem(
+			position = 0,
+			keyName = "showFreezeTimerOnOwnPlayer",
+			name = "Show freeze timers on self",
+			description = "Configures if the freeze timer is shown on your own player character"
+	)
+	default boolean showFreezeTimerOnOwnPlayer()
+	{
+		return false;
+	}
+
+	@ConfigItem(
 			position = 1,
 			keyName = "showTeleblockTimersOverlay",
 			name = "Show teleblock timers",

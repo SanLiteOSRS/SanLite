@@ -83,10 +83,10 @@ public class PluginManagerTest
 	public void before() throws IOException
 	{
 		Injector injector = Guice.createInjector(Modules
-				.override(new RuneLiteModule(() -> null,
-						RuneLite.DEFAULT_SESSION_FILE,
-						RuneLite.DEFAULT_CONFIG_FILE))
-				.with(BoundFieldModule.of(this)));
+			.override(new RuneLiteModule(() -> null,
+				RuneLite.DEFAULT_SESSION_FILE,
+				RuneLite.DEFAULT_CONFIG_FILE))
+			.with(BoundFieldModule.of(this)));
 
 		RuneLite.setInjector(injector);
 
@@ -119,10 +119,10 @@ public class PluginManagerTest
 		pluginManager.loadCorePlugins();
 		Collection<Plugin> plugins = pluginManager.getPlugins();
 		long expected = pluginClasses.stream()
-				.map(cl -> (PluginDescriptor) cl.getAnnotation(PluginDescriptor.class))
-				.filter(Objects::nonNull)
-				.filter(PluginDescriptor::loadWhenOutdated)
-				.count();
+			.map(cl -> (PluginDescriptor) cl.getAnnotation(PluginDescriptor.class))
+			.filter(Objects::nonNull)
+			.filter(PluginDescriptor::loadWhenOutdated)
+			.count();
 		assertEquals(expected, plugins.size());
 
 		pluginManager = new PluginManager(false, null, null, null, null, null);
@@ -134,10 +134,10 @@ public class PluginManagerTest
 		plugins.forEach(eventBus::register);
 
 		expected = pluginClasses.stream()
-				.map(cl -> (PluginDescriptor) cl.getAnnotation(PluginDescriptor.class))
-				.filter(Objects::nonNull)
-				.filter(pd -> !pd.developerPlugin())
-				.count();
+			.map(cl -> (PluginDescriptor) cl.getAnnotation(PluginDescriptor.class))
+			.filter(Objects::nonNull)
+			.filter(pd -> !pd.developerPlugin())
+			.count();
 		assertEquals(expected, plugins.size());
 	}
 
@@ -147,8 +147,8 @@ public class PluginManagerTest
 		List<Module> modules = new ArrayList<>();
 		modules.add(new GraphvizModule());
 		modules.add(new RuneLiteModule(() -> null,
-				RuneLite.DEFAULT_SESSION_FILE,
-				RuneLite.DEFAULT_CONFIG_FILE));
+			RuneLite.DEFAULT_SESSION_FILE,
+			RuneLite.DEFAULT_CONFIG_FILE));
 
 		PluginManager pluginManager = new PluginManager(true, null, null, null, null, null);
 		pluginManager.loadCorePlugins();

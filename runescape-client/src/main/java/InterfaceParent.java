@@ -12,7 +12,7 @@ public class InterfaceParent extends Node {
 		signature = "Lko;"
 	)
 	@Export("clanChat")
-	static ClanChat clanChat;
+	static ClanMemberManager clanChat;
 	@ObfuscatedName("v")
 	@ObfuscatedGetter(
 		intValue = -1870800307

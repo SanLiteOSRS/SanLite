@@ -14,7 +14,7 @@ public class WorldMapAreaData extends WorldMapArea {
 		signature = "[Lla;"
 	)
 	@Export("mapMarkerSprites")
-	static Sprite[] mapMarkerSprites;
+	static SpritePixels[] mapMarkerSprites;
 	@ObfuscatedName("n")
 	@Export("worldMapData0Set")
 	HashSet worldMapData0Set;

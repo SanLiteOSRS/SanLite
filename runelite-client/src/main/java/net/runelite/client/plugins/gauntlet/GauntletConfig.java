@@ -27,6 +27,7 @@ package net.runelite.client.plugins.gauntlet;
 import net.runelite.client.config.Config;
 import net.runelite.client.config.ConfigGroup;
 import net.runelite.client.config.ConfigItem;
+import net.runelite.client.config.StrokeSize;
 
 import java.awt.*;
 
@@ -237,10 +238,21 @@ public interface GauntletConfig extends Config
 	}
 
 	@ConfigItem(
-			position = 19,
+			keyName = "tileMarkersLineSize",
+			name = "Tile markers line size",
+			description = "The size of the outside line for tile markers",
+			position = 19
+	)
+	default StrokeSize getTileMarkersLineSize()
+	{
+		return StrokeSize.NORMAL;
+	}
+
+	@ConfigItem(
 			keyName = "showDebugOverlay",
 			name = "Display debug overlay",
-			description = "Displays Gauntlet boss debug overlay. This contains variables that the plugin uses to function"
+			description = "Displays Gauntlet boss debug overlay. This contains variables that the plugin uses to function",
+			position = 20
 	)
 	default boolean showDebugOverlay()
 	{

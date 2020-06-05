@@ -30,7 +30,11 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.UUID;
 import net.runelite.http.api.RuneLiteAPI;
-import okhttp3.*;
+import okhttp3.HttpUrl;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+import okhttp3.ResponseBody;
 
 class SessionClient
 {
@@ -57,7 +61,7 @@ class SessionClient
 		}
 	}
 
-	void ping(UUID uuid, Boolean loggedIn) throws IOException
+	void ping(UUID uuid, boolean loggedIn) throws IOException
 	{
 		HttpUrl url = RuneLiteAPI.getSessionBase().newBuilder()
 			.addPathSegment("ping")
@@ -66,6 +70,7 @@ class SessionClient
 			.build();
 
 		Request request = new Request.Builder()
+			.post(RequestBody.create(null, new byte[0]))
 			.url(url)
 			.build();
 

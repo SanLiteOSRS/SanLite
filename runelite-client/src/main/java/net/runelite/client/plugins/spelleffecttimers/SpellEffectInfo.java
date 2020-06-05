@@ -34,7 +34,8 @@ import net.runelite.api.Constants;
 class SpellEffectInfo
 {
 	@Getter(AccessLevel.PACKAGE)
-	private final Actor actor;
+	@Setter(AccessLevel.PACKAGE)
+	private Actor actor;
 
 	@Getter(AccessLevel.PACKAGE)
 	private final SpellEffect spellEffect;

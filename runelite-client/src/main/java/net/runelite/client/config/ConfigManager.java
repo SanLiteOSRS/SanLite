@@ -50,19 +50,31 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.Instant;
-import java.util.*;
+import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Properties;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
+import javax.annotation.Nullable;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.coords.WorldPoint;
-import net.runelite.client.events.ConfigChanged;
 import net.runelite.client.RuneLite;
 import net.runelite.client.account.AccountSession;
 import net.runelite.client.eventbus.EventBus;
+import net.runelite.client.eventbus.Subscribe;
+import net.runelite.client.events.ClientShutdown;
+import net.runelite.client.events.ConfigChanged;
 import net.runelite.client.util.ColorUtil;
 import net.runelite.http.api.config.ConfigClient;
 import net.runelite.http.api.config.ConfigEntry;
@@ -72,7 +84,6 @@ import net.runelite.http.api.config.Configuration;
 @Slf4j
 public class ConfigManager
 {
-	private static final String SETTINGS_FILE_NAME = "settings.properties";
 	private static final DateFormat TIME_FORMAT = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
 
 	@Inject
@@ -91,8 +102,8 @@ public class ConfigManager
 
 	@Inject
 	public ConfigManager(
-			@Named("config") File config,
-			ScheduledExecutorService scheduledExecutorService)
+		@Named("config") File config,
+		ScheduledExecutorService scheduledExecutorService)
 	{
 		this.executor = scheduledExecutorService;
 		this.settingsFileInput = config;
@@ -347,7 +358,6 @@ public class ConfigManager
 		{
 			log.debug("atomic move not supported", ex);
 			Files.move(tempFile.toPath(), propertiesFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
-
 		}
 	}
 
@@ -708,27 +718,39 @@ public class ConfigManager
 		return object.toString();
 	}
 
-	public void sendConfig()
+	@Subscribe(priority = 100)
+	private void onClientShutdown(ClientShutdown e)
 	{
+		Future<Void> f = sendConfig();
+		if (f != null)
+		{
+			e.waitFor(f);
+		}
+	}
+
+	@Nullable
+	private CompletableFuture<Void> sendConfig()
+	{
+		CompletableFuture<Void> future = null;
 		boolean changed;
 		synchronized (pendingChanges)
 		{
 			if (client != null)
 			{
-				for (Map.Entry<String, String> entry : pendingChanges.entrySet())
+				future = CompletableFuture.allOf(pendingChanges.entrySet().stream().map(entry ->
 				{
 					String key = entry.getKey();
 					String value = entry.getValue();
 
 					if (Strings.isNullOrEmpty(value))
 					{
-						client.unset(key);
+						return client.unset(key);
 					}
 					else
 					{
-						client.set(key, value);
+						return client.set(key, value);
 					}
-				}
+				}).toArray(CompletableFuture[]::new));
 			}
 			changed = !pendingChanges.isEmpty();
 			pendingChanges.clear();
@@ -745,5 +767,7 @@ public class ConfigManager
 				log.warn("unable to save configuration file", ex);
 			}
 		}
+
+		return future;
 	}
 }

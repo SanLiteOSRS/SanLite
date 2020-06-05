@@ -93,9 +93,9 @@ public class WorldMapLabelSize {
 		garbageValue = "-1100564340"
 	)
 	public static void method290(AbstractArchive var0, AbstractArchive var1, boolean var2) {
-		ObjectDefinition.ObjectDefinition_archive = var0;
-		ObjectDefinition.ObjectDefinition_modelsArchive = var1;
-		ObjectDefinition.ObjectDefinition_isLowDetail = var2;
+		ObjectComposition.ObjectDefinition_archive = var0;
+		ObjectComposition.ObjectDefinition_modelsArchive = var1;
+		ObjectComposition.ObjectDefinition_isLowDetail = var2;
 	}
 
 	@ObfuscatedName("w")
@@ -208,7 +208,7 @@ public class WorldMapLabelSize {
 						RouteStrategy.field2106 = var0;
 						if (var0.itemIds[var19] > 0) {
 							label336: {
-								ItemDefinition var8 = AbstractWorldMapData.ItemDefinition_get(var0.itemIds[var19] - 1);
+								ItemComposition var8 = AbstractWorldMapData.ItemDefinition_get(var0.itemIds[var19] - 1);
 								boolean var9;
 								int var10;
 								if (Client.isItemSelected == 1) {

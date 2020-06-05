@@ -235,7 +235,7 @@ public enum StudioGame implements Enumerated {
 							if (var10.contentType == 1336) {
 								if (Client.displayFps) {
 									var13 += 15;
-									WorldMapData_0.fontPlain12.drawRightAligned("Fps:" + GameShell.fps, var12 + var10.width, var13, 16776960, -1);
+									WorldMapData_0.fontPlain12.drawRightAligned("Fps:" + GameEngine.fps, var12 + var10.width, var13, 16776960, -1);
 									var13 += 15;
 									Runtime var41 = Runtime.getRuntime();
 									var20 = (int)((var41.totalMemory() - var41.freeMemory()) / 1024L);
@@ -337,7 +337,7 @@ public enum StudioGame implements Enumerated {
 
 											if (var10.itemIds[var19] <= 0) {
 												if (var10.inventorySprites != null && var19 < 20) {
-													Sprite var43 = var10.getInventorySprite(var19);
+													SpritePixels var43 = var10.getInventorySprite(var19);
 													if (var43 != null) {
 														var43.drawTransBgAt(var22, var23);
 													} else if (Widget.field2565) {
@@ -349,7 +349,7 @@ public enum StudioGame implements Enumerated {
 												boolean var38 = false;
 												var26 = var10.itemIds[var19] - 1;
 												if (var22 + 32 > var2 && var22 < var4 && var23 + 32 > var3 && var23 < var5 || var10 == class236.dragInventoryWidget && var19 == Client.dragItemSlotSource) {
-													Sprite var27;
+													SpritePixels var27;
 													if (Client.isItemSelected == 1 && var19 == Client.selectedItemSlot && var10.id == WorldMapSection2.selectedItemWidget) {
 														var27 = SecureRandomFuture.getItemSprite(var26, var10.itemQuantities[var19], 2, 0, 2, false);
 													} else {
@@ -481,7 +481,7 @@ public enum StudioGame implements Enumerated {
 											}
 
 											if (var10.isIf3 && var10.itemId != -1) {
-												ItemDefinition var46 = AbstractWorldMapData.ItemDefinition_get(var10.itemId);
+												ItemComposition var46 = AbstractWorldMapData.ItemDefinition_get(var10.itemId);
 												var45 = var46.name;
 												if (var45 == null) {
 													var45 = "null";
@@ -504,7 +504,7 @@ public enum StudioGame implements Enumerated {
 											var39.drawLines(var45, var12, var13, var10.width, var10.height, var20, var10.textShadowed ? 0 : -1, var10.textXAlignment, var10.textYAlignment, var10.textLineHeight);
 										}
 									} else if (var10.type == 5) {
-										Sprite var40;
+										SpritePixels var40;
 										if (!var10.isIf3) {
 											var40 = var10.getSprite(GrandExchangeOfferAgeComparator.runCs1(var10));
 											if (var40 != null) {
@@ -559,7 +559,7 @@ public enum StudioGame implements Enumerated {
 											}
 										}
 									} else {
-										ItemDefinition var34;
+										ItemComposition var34;
 										if (var10.type == 6) {
 											boolean var36 = GrandExchangeOfferAgeComparator.runCs1(var10);
 											if (var36) {

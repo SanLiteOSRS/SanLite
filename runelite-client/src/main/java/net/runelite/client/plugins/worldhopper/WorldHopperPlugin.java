@@ -31,7 +31,6 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ObjectArrays;
 import com.google.inject.Provides;
 import java.awt.image.BufferedImage;
-import java.time.Duration;
 import java.time.Instant;
 import java.util.EnumSet;
 import java.util.HashMap;
@@ -50,11 +49,13 @@ import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.ChatMessageType;
 import net.runelite.api.ChatPlayer;
 import net.runelite.api.ClanMember;
+import net.runelite.api.ClanMemberManager;
 import net.runelite.api.Client;
 import net.runelite.api.Friend;
 import net.runelite.api.GameState;
 import net.runelite.api.MenuAction;
 import net.runelite.api.MenuEntry;
+import net.runelite.api.NameableContainer;
 import net.runelite.api.Varbits;
 import net.runelite.api.events.ChatMessage;
 import net.runelite.api.events.GameStateChanged;
@@ -93,13 +94,13 @@ import org.apache.commons.lang3.ArrayUtils;
 @PluginDescriptor(
 	name = "World Hopper",
 	description = "Allows you to quickly hop worlds",
-	tags = {"ping"}
+	tags = {"ping", "switcher"}
 )
 @Slf4j
 public class WorldHopperPlugin extends Plugin
 {
 	private static final int REFRESH_THROTTLE = 60_000; // ms
-	private static final int TICK_THROTTLE = (int) Duration.ofMinutes(10).toMillis();
+	private static final int MAX_PLAYER_COUNT = 1950;
 
 	private static final int DISPLAY_SWITCHER_MAX_ATTEMPTS = 3;
 
@@ -559,6 +560,12 @@ public class WorldHopperPlugin extends Plugin
 
 			world = worlds.get(worldIdx);
 
+			// Check world region if filter is enabled
+			if (config.quickHopRegionFilter() != RegionFilterMode.NONE && world.getRegion() != config.quickHopRegionFilter().getRegion())
+			{
+				continue;
+			}
+
 			EnumSet<WorldType> types = world.getTypes().clone();
 
 			types.remove(WorldType.BOUNTY);
@@ -580,6 +587,12 @@ public class WorldHopperPlugin extends Plugin
 				{
 					log.warn("Failed to parse total level requirement for target world", ex);
 				}
+			}
+
+			// Avoid switching to near-max population worlds, as it will refuse to allow the hop if the world is full
+			if (world.getPlayers() >= MAX_PLAYER_COUNT)
+			{
+				continue;
 			}
 
 			// Break out if we've found a good world to hop to
@@ -720,30 +733,20 @@ public class WorldHopperPlugin extends Plugin
 
 		// Search clan members first, because if a friend is in the clan chat but their private
 		// chat is 'off', then the hop-to option will not get shown in the menu (issue #5679).
-		ClanMember[] clanMembers = client.getClanMembers();
-
-		if (clanMembers != null)
+		ClanMemberManager clanMemberManager = client.getClanMemberManager();
+		if (clanMemberManager != null)
 		{
-			for (ClanMember clanMember : clanMembers)
+			ClanMember clanMember = clanMemberManager.findByName(cleanName);
+			if (clanMember != null)
 			{
-				if (clanMember != null && clanMember.getUsername().equals(cleanName))
-				{
-					return clanMember;
-				}
+				return clanMember;
 			}
 		}
 
-		Friend[] friends = client.getFriends();
-
-		if (friends != null)
+		NameableContainer<Friend> friendContainer = client.getFriendContainer();
+		if (friendContainer != null)
 		{
-			for (Friend friend : friends)
-			{
-				if (friend != null && friend.getName().equals(cleanName))
-				{
-					return friend;
-				}
-			}
+			return friendContainer.findByName(cleanName);
 		}
 
 		return null;
@@ -764,7 +767,7 @@ public class WorldHopperPlugin extends Plugin
 
 		for (World world : worldResult.getWorlds())
 		{
-			int ping = Ping.ping(world);
+			int ping = ping(world);
 			SwingUtilities.invokeLater(() -> panel.updatePing(world.getId(), ping));
 		}
 

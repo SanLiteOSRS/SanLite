@@ -60,6 +60,7 @@ public abstract class SoundEffectMixin implements RSClient
 	@Override
 	public void playSoundEffect(int id, int x, int y, int range, int delay)
 	{
+		assert this.isClientThread() : "playSoundEffect must be called on client thread";
 		int position = ((x & 255) << 16) + ((y & 255) << 8) + (range & 255);
 
 		int[] queuedSoundEffectIDs = getQueuedSoundEffectIDs();
@@ -82,6 +83,7 @@ public abstract class SoundEffectMixin implements RSClient
 	@Override
 	public void playSoundEffect(int id, int volume)
 	{
+		assert this.isClientThread() : "playSoundEffect must be called on client thread";
 		RSSoundEffect soundEffect = getTrack(getIndexCache4(), id, 0);
 		if (soundEffect == null)
 		{

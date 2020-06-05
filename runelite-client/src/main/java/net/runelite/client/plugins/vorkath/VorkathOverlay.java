@@ -102,11 +102,6 @@ public class VorkathOverlay extends Overlay
 				renderAcidPhasePath(graphics, vorkath);
 			}
 
-			if (config.highlightFirebombTiles())
-			{
-				renderAreaOfEffectProjectiles(graphics, vorkath);
-			}
-
 			if (config.highlightZombifiedSpawn())
 			{
 				renderZombifiedSpawnHighlight(graphics, vorkath);
@@ -132,7 +127,8 @@ public class VorkathOverlay extends Overlay
 			Polygon polygon = Perspective.getCanvasTilePoly(client, gameObject.getLocalLocation());
 			if (polygon != null)
 			{
-				OverlayUtil.renderPolygon(graphics, polygon, config.getAcidPoolColor());
+				OverlayUtil.renderPolygon(graphics, polygon, config.getAcidPoolColor(),
+						config.getTileMarkersLineSize().getSize());
 			}
 		}
 	}
@@ -151,46 +147,8 @@ public class VorkathOverlay extends Overlay
 				}
 
 				OverlayUtil.renderPolygon(graphics, Perspective.getCanvasTilePoly(client,
-						acidFreeLocalPoint), config.getAcidPhasePathColor());
+						acidFreeLocalPoint), config.getAcidPhasePathColor(), config.getTileMarkersLineSize().getSize());
 			}
-		}
-	}
-
-	private void renderAreaOfEffectProjectiles(Graphics2D graphics, Vorkath vorkath)
-	{
-		for (AreaOfEffectProjectile projectile : vorkath.getAreaOfEffectProjectiles())
-		{
-			if (projectile.getTargetPoint() == null)
-			{
-				continue;
-			}
-
-			if (projectile.getEndCycle() < client.getGameCycle())
-			{
-				vorkath.getAreaOfEffectProjectiles().remove(projectile);
-				continue;
-			}
-
-			Polygon polygon = Perspective.getCanvasTileAreaPoly(client, projectile.getTargetPoint(), projectile.getTileSize());
-			if (polygon != null)
-			{
-				OverlayUtil.renderPolygon(graphics, polygon, config.getFirebombMarkerColor());
-			}
-
-			if (!config.displayRemainingFirebombDuration())
-			{
-				continue;
-			}
-
-			String remainingCycles = TickUtil.convertTimerFormat(projectile.getEndCycle() - client.getGameCycle(),
-					TimerFormat.SECONDS_MILLISECONDS);
-			Point textPoint = Perspective.getCanvasTextLocation(client, graphics, projectile.getTargetPoint(), remainingCycles, 0);
-			if (textPoint == null)
-			{
-				continue;
-			}
-
-			OverlayUtil.renderTextLocation(graphics, textPoint, remainingCycles, Color.WHITE);
 		}
 	}
 
@@ -198,7 +156,7 @@ public class VorkathOverlay extends Overlay
 	{
 		if (vorkath.getZombifiedSpawn() != null)
 		{
-			final BufferedImage spriteCrumbleUndead = spriteManager.getSpriteImg(SpriteID.SPELL_CRUMBLE_UNDEAD, 0);
+			final BufferedImage spriteCrumbleUndead = spriteManager.getSprite(SpriteID.SPELL_CRUMBLE_UNDEAD, 0);
 			if (spriteCrumbleUndead == null)
 			{
 				return;
@@ -238,7 +196,7 @@ public class VorkathOverlay extends Overlay
 				: String.valueOf(ticksTillNextAttack);
 
 		BufferedImage image = vorkath.getRemainingAcidPhaseAttacks() != -1
-				? spriteManager.getSpriteImg(SpriteID.SPELL_FIRE_SURGE, 0)
+				? spriteManager.getSprite(SpriteID.SPELL_FIRE_SURGE, 0)
 				: ImageUtil.getResourceStreamFromClass(getClass(), "/skill_icons_small/attack.png");
 		Point imageLocation = vorkath.getNpc().getCanvasTextLocation(graphics, text, 0);
 		if (imageLocation == null || image == null)

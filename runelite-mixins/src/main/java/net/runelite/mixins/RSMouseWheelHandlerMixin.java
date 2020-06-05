@@ -25,7 +25,6 @@
 package net.runelite.mixins;
 
 import java.awt.event.MouseWheelEvent;
-
 import net.runelite.api.mixins.Copy;
 import net.runelite.api.mixins.Mixin;
 import net.runelite.api.mixins.Replace;

@@ -33,6 +33,7 @@ import java.io.InputStreamReader;
 import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.http.api.RuneLiteAPI;
@@ -52,17 +53,19 @@ public class LootTrackerClient
 
 	private final UUID uuid;
 
-	public void submit(Collection<LootRecord> lootRecords)
+	public CompletableFuture<Void> submit(Collection<LootRecord> lootRecords)
 	{
+		CompletableFuture<Void> future = new CompletableFuture<>();
+
 		HttpUrl url = RuneLiteAPI.getApiBase().newBuilder()
-				.addPathSegment("loottracker")
-				.build();
+			.addPathSegment("loottracker")
+			.build();
 
 		Request request = new Request.Builder()
-				.header(RuneLiteAPI.RUNELITE_AUTH, uuid.toString())
-				.post(RequestBody.create(JSON, GSON.toJson(lootRecords)))
-				.url(url)
-				.build();
+			.header(RuneLiteAPI.RUNELITE_AUTH, uuid.toString())
+			.post(RequestBody.create(JSON, GSON.toJson(lootRecords)))
+			.url(url)
+			.build();
 
 		RuneLiteAPI.CLIENT.newCall(request).enqueue(new Callback()
 		{
@@ -70,6 +73,7 @@ public class LootTrackerClient
 			public void onFailure(Call call, IOException e)
 			{
 				log.warn("unable to submit loot", e);
+				future.completeExceptionally(e);
 			}
 
 			@Override
@@ -77,20 +81,23 @@ public class LootTrackerClient
 			{
 				log.debug("Submitted loot");
 				response.close();
+				future.complete(null);
 			}
 		});
+
+		return future;
 	}
 
 	public Collection<LootAggregate> get() throws IOException
 	{
 		HttpUrl url = RuneLiteAPI.getApiBase().newBuilder()
-				.addPathSegment("loottracker")
-				.build();
+			.addPathSegment("loottracker")
+			.build();
 
 		Request request = new Request.Builder()
-				.header(RuneLiteAPI.RUNELITE_AUTH, uuid.toString())
-				.url(url)
-				.build();
+			.header(RuneLiteAPI.RUNELITE_AUTH, uuid.toString())
+			.url(url)
+			.build();
 
 		try (Response response = RuneLiteAPI.CLIENT.newCall(request).execute())
 		{
@@ -114,7 +121,7 @@ public class LootTrackerClient
 	public void delete(String eventId)
 	{
 		HttpUrl.Builder builder = RuneLiteAPI.getApiBase().newBuilder()
-				.addPathSegment("loottracker");
+			.addPathSegment("loottracker");
 
 		if (eventId != null)
 		{
@@ -122,10 +129,10 @@ public class LootTrackerClient
 		}
 
 		Request request = new Request.Builder()
-				.header(RuneLiteAPI.RUNELITE_AUTH, uuid.toString())
-				.delete()
-				.url(builder.build())
-				.build();
+			.header(RuneLiteAPI.RUNELITE_AUTH, uuid.toString())
+			.delete()
+			.url(builder.build())
+			.build();
 
 		RuneLiteAPI.CLIENT.newCall(request).enqueue(new Callback()
 		{

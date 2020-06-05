@@ -110,7 +110,7 @@ public class WorldMapIcon_1 extends AbstractWorldMapIcon {
 		this.element = WorldMapSection2.getObjectDefinition(this.objectDefId).transform().mapIconId;
 		this.label = this.region.createMapLabel(class25.WorldMapElement_get(this.element));
 		WorldMapElement var1 = class25.WorldMapElement_get(this.getElement());
-		Sprite var2 = var1.getSpriteBool(false);
+		SpritePixels var2 = var1.getSpriteBool(false);
 		if (var2 != null) {
 			this.subWidth = var2.subWidth;
 			this.subHeight = var2.subHeight;
@@ -144,7 +144,7 @@ public class WorldMapIcon_1 extends AbstractWorldMapIcon {
 			Client.isResizable = false;
 		}
 
-		if (class74.getWindowedMode() == 1) {
+		if (ApproximateRouteStrategy.getWindowedMode() == 1) {
 			WorldMapSection1.client.setMaxCanvasSize(765, 503);
 		} else {
 			WorldMapSection1.client.setMaxCanvasSize(7680, 2160);
@@ -152,7 +152,7 @@ public class WorldMapIcon_1 extends AbstractWorldMapIcon {
 
 		if (Client.gameState >= 25) {
 			PacketBufferNode var1 = FaceNormal.getPacketBufferNode(ClientPacket.field2257, Client.packetWriter.isaacCipher);
-			var1.packetBuffer.writeByte(class74.getWindowedMode());
+			var1.packetBuffer.writeByte(ApproximateRouteStrategy.getWindowedMode());
 			var1.packetBuffer.writeShort(WorldMapLabel.canvasWidth);
 			var1.packetBuffer.writeShort(Varps.canvasHeight);
 			Client.packetWriter.addNode(var1);

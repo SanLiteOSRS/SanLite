@@ -39,7 +39,7 @@ public abstract class AbstractUserComparator implements Comparator {
 		garbageValue = "1451673304"
 	)
 	@Export("compareUser")
-	protected final int compareUser(User var1, User var2) {
+	protected final int compareUser(Nameable var1, Nameable var2) {
 		return this.nextComparator == null ? 0 : this.nextComparator.compare(var1, var2);
 	}
 
@@ -63,7 +63,7 @@ public abstract class AbstractUserComparator implements Comparator {
 				Interpreter.Interpreter_intStackSize -= 2;
 				var3 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
 				var4 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
-				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = class201.method3761(var3, var4);
+				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = ModeWhere.method3761(var3, var4);
 				return 1;
 			} else if (var0 == ScriptOpcodes.INV_GETNUM) {
 				Interpreter.Interpreter_intStackSize -= 2;
@@ -120,7 +120,7 @@ public abstract class AbstractUserComparator implements Comparator {
 					Interpreter.Interpreter_intStackSize -= 2;
 					var3 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize] + 32768;
 					var4 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
-					Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = class201.method3761(var3, var4);
+					Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = ModeWhere.method3761(var3, var4);
 					return 1;
 				} else if (var0 == ScriptOpcodes.INVOTHER_GETNUM) {
 					Interpreter.Interpreter_intStackSize -= 2;

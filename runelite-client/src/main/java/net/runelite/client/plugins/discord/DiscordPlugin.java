@@ -75,9 +75,9 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 @PluginDescriptor(
-		name = "Discord",
-		description = "Show your status and activity in the Discord user panel",
-		tags = {"action", "activity", "external", "integration", "status"}
+	name = "Discord",
+	description = "Show your status and activity in the Discord user panel",
+	tags = {"action", "activity", "external", "integration", "status"}
 )
 @Slf4j
 public class DiscordPlugin extends Plugin
@@ -119,11 +119,11 @@ public class DiscordPlugin extends Plugin
 		final BufferedImage icon = ImageUtil.getResourceStreamFromClass(getClass(), "discord.png");
 
 		discordButton = NavigationButton.builder()
-				.tab(false)
-				.tooltip("Join Discord")
-				.icon(icon)
-				.onClick(() -> LinkBrowser.browse(RuneLiteProperties.getDiscordInvite()))
-				.build();
+			.tab(false)
+			.tooltip("Join Discord")
+			.icon(icon)
+			.onClick(() -> LinkBrowser.browse(RuneLiteProperties.getDiscordInvite()))
+			.build();
 
 		clientToolbar.addNavigation(discordButton);
 		checkForGameStateUpdate();
@@ -270,8 +270,8 @@ public class DiscordPlugin extends Plugin
 		log.debug("Got user avatar {}", url);
 
 		final Request request = new Request.Builder()
-				.url(url)
-				.build();
+			.url(url)
+			.build();
 
 		RuneLiteAPI.CLIENT.newCall(request).enqueue(new Callback()
 		{
@@ -323,8 +323,8 @@ public class DiscordPlugin extends Plugin
 			if (discordService.getCurrentUser() != null)
 			{
 				final DiscordUserInfo userInfo = new DiscordUserInfo(
-						discordService.getCurrentUser().userId,
-						discordService.getCurrentUser().avatar);
+					discordService.getCurrentUser().userId,
+					discordService.getCurrentUser().avatar);
 
 				userInfo.setMemberId(localMember.getMemberId());
 				wsClient.send(userInfo);
@@ -345,8 +345,8 @@ public class DiscordPlugin extends Plugin
 	}
 
 	@Schedule(
-			period = 1,
-			unit = ChronoUnit.MINUTES
+		period = 1,
+		unit = ChronoUnit.MINUTES
 	)
 	public void checkForValidStatus()
 	{
@@ -363,8 +363,8 @@ public class DiscordPlugin extends Plugin
 		// Game state update does also full reset of discord state
 		discordState.reset();
 		discordState.triggerEvent(client.getGameState() == GameState.LOGGED_IN
-				? DiscordGameEventType.IN_GAME
-				: DiscordGameEventType.IN_MENU);
+			? DiscordGameEventType.IN_GAME
+			: DiscordGameEventType.IN_MENU);
 	}
 
 	private void checkForAreaUpdate()
@@ -381,7 +381,28 @@ public class DiscordPlugin extends Plugin
 			return;
 		}
 
-		final DiscordGameEventType discordGameEventType = DiscordGameEventType.fromRegion(playerRegionID);
+		final EnumSet<WorldType> worldType = client.getWorldType();
+
+		if (worldType.contains(WorldType.DEADMAN))
+		{
+			discordState.triggerEvent(DiscordGameEventType.PLAYING_DEADMAN);
+			return;
+		}
+		else if (WorldType.isPvpWorld(worldType))
+		{
+			discordState.triggerEvent(DiscordGameEventType.PLAYING_PVP);
+			return;
+		}
+
+		DiscordGameEventType discordGameEventType = DiscordGameEventType.fromRegion(playerRegionID);
+
+		// NMZ uses the same region ID as KBD. KBD is always on plane 0 and NMZ is always above plane 0
+		// Since KBD requires going through the wilderness there is no EventType for it
+		if (DiscordGameEventType.MG_NIGHTMARE_ZONE == discordGameEventType
+			&& client.getLocalPlayer().getWorldLocation().getPlane() == 0)
+		{
+			discordGameEventType = null;
+		}
 
 		if (discordGameEventType == null)
 		{
@@ -401,14 +422,6 @@ public class DiscordPlugin extends Plugin
 	private boolean showArea(final DiscordGameEventType event)
 	{
 		if (event == null)
-		{
-			return false;
-		}
-
-		final EnumSet<WorldType> worldType = client.getWorldType();
-
-		// Do not show location in PVP activities
-		if (WorldType.isPvpWorld(worldType))
 		{
 			return false;
 		}

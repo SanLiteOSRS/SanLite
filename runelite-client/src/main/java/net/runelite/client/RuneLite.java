@@ -31,10 +31,8 @@ import com.google.inject.Guice;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
 import java.io.File;
-import java.io.IOException;
 import java.lang.management.ManagementFactory;
 import java.lang.management.RuntimeMXBean;
-import java.lang.reflect.InvocationTargetException;
 import java.nio.file.Paths;
 import java.util.Locale;
 import javax.annotation.Nullable;
@@ -62,14 +60,13 @@ import net.runelite.client.game.ItemManager;
 import net.runelite.client.game.LootManager;
 import net.runelite.client.game.chatbox.ChatboxPanelManager;
 import net.runelite.client.menus.MenuManager;
-import net.runelite.client.plugins.PluginInstantiationException;
 import net.runelite.client.plugins.PluginManager;
 import net.runelite.client.rs.ClientLoader;
 import net.runelite.client.rs.ClientUpdateCheckMode;
 import net.runelite.client.ui.ClientUI;
 import net.runelite.client.ui.DrawManager;
 import net.runelite.client.ui.FatalErrorDialog;
-import net.runelite.client.ui.SanLiteSplashScreen;
+import net.runelite.client.ui.SplashScreen;
 import net.runelite.client.ui.overlay.OverlayManager;
 import net.runelite.client.ui.overlay.OverlayRenderer;
 import net.runelite.client.ui.overlay.WidgetOverlay;
@@ -91,7 +88,6 @@ public class RuneLite
 	public static final File LOGS_DIR = new File(RUNELITE_DIR, "logs");
 	public static final File DEFAULT_SESSION_FILE = new File(RUNELITE_DIR, "session");
 	public static final File DEFAULT_CONFIG_FILE = new File(RUNELITE_DIR, "settings.properties");
-	private static final SanLiteSplashScreen splashScreen = new SanLiteSplashScreen();
 
 	@Getter
 	private static Injector injector;
@@ -176,7 +172,6 @@ public class RuneLite
 		final OptionParser parser = new OptionParser();
 		parser.accepts("debug", "Show extra debugging output");
 		parser.accepts("local-injected", "Use local injected-client");
-		parser.accepts("no-splash-screen", "Do not show the splash screen");
 
 		final ArgumentAcceptingOptionSpec<File> sessionfile = parser.accepts("sessionfile", "Use a specified session file")
 			.withRequiredArg()
@@ -231,12 +226,8 @@ public class RuneLite
 			}
 		});
 
-		if (!options.has("no-splash-screen"))
-		{
-			splashScreen.open(6);
-		}
-
-		splashScreen.setMessage("Starting SanLite Injector");
+		SplashScreen.init();
+		SplashScreen.stage(0, "Retrieving client", "");
 
 		try
 		{
@@ -253,9 +244,9 @@ public class RuneLite
 			final long start = System.currentTimeMillis();
 
 			injector = Guice.createInjector(new RuneLiteModule(
-					clientLoader,
-					options.valueOf(sessionfile),
-					options.valueOf(configfile)));
+				clientLoader,
+				options.valueOf(sessionfile),
+				options.valueOf(configfile)));
 
 			injector.getInstance(RuneLite.class).start();
 
@@ -266,11 +257,14 @@ public class RuneLite
 		}
 		catch (Exception e)
 		{
-			log.warn("Failure during startup", e);
-			splashScreen.close();
+			log.error("Failure during startup", e);
 			SwingUtilities.invokeLater(() ->
 				new FatalErrorDialog("SanLite has encountered an unexpected error during startup.")
 					.open());
+		}
+		finally
+		{
+			SplashScreen.stop();
 		}
 	}
 
@@ -285,54 +279,35 @@ public class RuneLite
 			injector.injectMembers(client);
 		}
 
+		SplashScreen.stage(.57, null, "Loading configuration");
+
 		// Load user configuration
-		splashScreen.setMessage("Loading configuration");
 		configManager.load();
 
 		// Load the session, including saved configuration
 		sessionManager.loadSession();
 
 		// Tell the plugin manager if client is outdated or not
-		splashScreen.setMessage("Loading plugins");
 		pluginManager.setOutdated(isOutdated);
 
 		// Load the plugins, but does not start them yet.
 		// This will initialize configuration
-		try
-		{
-			SwingUtilities.invokeAndWait(() ->
-			{
-				try
-				{
-					pluginManager.loadCorePlugins();
-				}
-				catch (PluginInstantiationException | IOException ex)
-				{
-					log.error("Unable to load core plugins", ex);
-				}
-			});
-		}
-		catch (InterruptedException | InvocationTargetException e)
-		{
-			throw new RuntimeException(e);
-		}
+		pluginManager.loadCorePlugins();
 
-		splashScreen.setMessage("Finalizing configuration");
+		SplashScreen.stage(.70, null, "Finalizing configuration");
 
 		// Plugins have provided their config, so set default config
 		// to main settings
 		pluginManager.loadDefaultPluginConfiguration(null);
 
 		// Start client session
-		splashScreen.setMessage("Starting session");
 		clientSessionManager.start();
+		eventBus.register(clientSessionManager);
+
+		SplashScreen.stage(.75, null, "Starting core interface");
 
 		// Initialize UI
-		splashScreen.setMessage("Starting core interface");
-		clientUI.init(this);
-
-		// Close the splash screen
-		splashScreen.close();
+		clientUI.init();
 
 		// Initialize Discord service
 		discordService.init();
@@ -343,6 +318,8 @@ public class RuneLite
 		eventBus.register(overlayManager);
 		eventBus.register(drawManager);
 		eventBus.register(infoBoxManager);
+		eventBus.register(configManager);
+		eventBus.register(discordService);
 
 		if (!isOutdated)
 		{
@@ -370,14 +347,9 @@ public class RuneLite
 		// Start plugins
 		pluginManager.startPlugins();
 
-		clientUI.show();
-	}
+		SplashScreen.stop();
 
-	public void shutdown()
-	{
-		configManager.sendConfig();
-		clientSessionManager.shutdown();
-		discordService.close();
+		clientUI.show();
 	}
 
 	@VisibleForTesting

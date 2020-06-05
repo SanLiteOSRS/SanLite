@@ -44,7 +44,7 @@ import java.util.function.Predicate;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Client;
 import net.runelite.api.IndexedSprite;
-import net.runelite.api.Sprite;
+import net.runelite.api.SpritePixels;
 
 /**
  * Various Image/BufferedImage utilities.
@@ -451,7 +451,7 @@ public class ImageUtil
 	 * @param client Current client instance
 	 * @return       The buffered image as a sprite image
 	 */
-	public static Sprite getImageSpritePixels(BufferedImage image, Client client)
+	public static SpritePixels getImageSpritePixels(BufferedImage image, Client client)
 	{
 		int[] pixels = new int[image.getWidth() * image.getHeight()];
 
@@ -476,7 +476,7 @@ public class ImageUtil
 			log.debug("PixelGrabber was interrupted: ", ex);
 		}
 
-		return client.createSprite(pixels, image.getWidth(), image.getHeight());
+		return client.createSpritePixels(pixels, image.getWidth(), image.getHeight());
 	}
 
 	/**
@@ -552,28 +552,28 @@ public class ImageUtil
 	/**
 	 * Resize Sprite sprite to given width (newW) and height (newH)
 	 */
-	public static Sprite resizeSprite(final Client client, final Sprite sprite, int newW, int newH)
+	public static SpritePixels resizeSprite(final Client client, final SpritePixels spritePixels, int newW, int newH)
 	{
 		assert newW > 0 && newH > 0;
 
-		final int oldW = sprite.getWidth();
-		final int oldH = sprite.getHeight();
+		final int oldW = spritePixels.getWidth();
+		final int oldH = spritePixels.getHeight();
 
 		if (oldW == newW && oldH == newH)
 		{
-			return sprite;
+			return spritePixels;
 		}
 
 		final int[] canvas = new int[newW * newH];
-		final int[] pixels = sprite.getPixels();
+		final int[] pixels = spritePixels.getPixels();
 
-		final Sprite result = client.createSprite(canvas, newW, newH);
+		final SpritePixels result = client.createSpritePixels(canvas, newW, newH);
 
 		int pixelX = 0;
 		int pixelY = 0;
 
-		final int oldMaxW = sprite.getMaxWidth();
-		final int oldMaxH = sprite.getMaxHeight();
+		final int oldMaxW = spritePixels.getMaxWidth();
+		final int oldMaxH = spritePixels.getMaxHeight();
 
 		final int pixelW = (oldMaxW << 16) / newW;
 		final int pixelH = (oldMaxH << 16) / newH;
@@ -582,18 +582,18 @@ public class ImageUtil
 		int yOffset = 0;
 
 		int canvasIdx;
-		if (sprite.getOffsetX() > 0)
+		if (spritePixels.getOffsetX() > 0)
 		{
-			canvasIdx = (pixelW + (sprite.getOffsetX() << 16) - 1) / pixelW;
+			canvasIdx = (pixelW + (spritePixels.getOffsetX() << 16) - 1) / pixelW;
 			xOffset += canvasIdx;
-			pixelX += canvasIdx * pixelW - (sprite.getOffsetX() << 16);
+			pixelX += canvasIdx * pixelW - (spritePixels.getOffsetX() << 16);
 		}
 
-		if (sprite.getOffsetY() > 0)
+		if (spritePixels.getOffsetY() > 0)
 		{
-			canvasIdx = (pixelH + (sprite.getOffsetY() << 16) - 1) / pixelH;
+			canvasIdx = (pixelH + (spritePixels.getOffsetY() << 16) - 1) / pixelH;
 			yOffset += canvasIdx;
-			pixelY += canvasIdx * pixelH - (sprite.getOffsetY() << 16);
+			pixelY += canvasIdx * pixelH - (spritePixels.getOffsetY() << 16);
 		}
 
 		if (oldW < oldMaxW)
@@ -646,12 +646,12 @@ public class ImageUtil
 	/**
 	 * Draw foreground centered on top of background
 	 */
-	public static Sprite mergeSprites(final Client client, final Sprite background, final Sprite foreground)
+	public static SpritePixels mergeSprites(final Client client, final SpritePixels background, final SpritePixels foreground)
 	{
 		assert foreground.getHeight() <= background.getHeight() && foreground.getWidth() <= background.getWidth() : "Background has to be larger than foreground";
 
 		final int[] canvas = Arrays.copyOf(background.getPixels(), background.getWidth() * background.getHeight());
-		final Sprite result = client.createSprite(canvas, background.getWidth(), background.getHeight());
+		final SpritePixels result = client.createSpritePixels(canvas, background.getWidth(), background.getHeight());
 
 		final int bgWid = background.getWidth();
 		final int fgHgt = foreground.getHeight();

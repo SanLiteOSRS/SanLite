@@ -84,13 +84,13 @@ public final class Tiles {
 		signature = "(Ljw;I)Z",
 		garbageValue = "-1065823023"
 	)
-	static boolean method1239(ObjectDefinition var0) {
+	static boolean method1239(ObjectComposition var0) {
 		if (var0.transforms != null) {
 			int[] var1 = var0.transforms;
 
 			for (int var2 = 0; var2 < var1.length; ++var2) {
 				int var3 = var1[var2];
-				ObjectDefinition var4 = WorldMapSection2.getObjectDefinition(var3);
+				ObjectComposition var4 = WorldMapSection2.getObjectDefinition(var3);
 				if (var4.mapIconId != -1) {
 					return true;
 				}

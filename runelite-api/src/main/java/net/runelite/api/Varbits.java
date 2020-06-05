@@ -310,6 +310,9 @@ public enum Varbits
 	PERSONAL_POINTS(5422),
 	RAID_PARTY_SIZE(5424),
 
+	// 0 = raid not started, >0 = raid started
+	RAID_STATE(5425),
+
 	/**
 	 * Making Friends with My Arm fire pits
 	 *
@@ -538,6 +541,15 @@ public enum Varbits
 	BANK_REARRANGE_MODE(3959),
 	CURRENT_BANK_TAB(4150),
 
+	/**
+	 * 0 = withdraw/deposit 1
+	 * 1 = withdraw/deposit 5
+	 * 2 = withdraw/deposit 10
+	 * 3 = withdraw/deposit X
+	 * 4 = withdraw/deposit all
+	 */
+	BANK_QUANTITY_MODE(6590),
+
 	WORLDHOPPER_FAVORITE_1(4597),
 	WORLDHOPPER_FAVORITE_2(4598),
 
@@ -555,7 +567,7 @@ public enum Varbits
 	 * 0 = standard
 	 * 1 = ancients
 	 * 2 = lunars
-	 * 3 = arrceus
+	 * 3 = arceuus
 	 **/
 	SPELLBOOK_ID(4070),
 
@@ -767,7 +779,25 @@ public enum Varbits
 
 	WITHDRAW_X_AMOUNT(3960),
 
-	IN_PVP_AREA(8121);
+	/**
+	 * Whether the Special Attack orb is disabled due to being in a PvP area
+	 *
+	 * 0 = Enabled (player is not in PvP)
+	 * 1 = Disabled (player in in PvP)
+	 *
+	 * @see <a href="https://oldschool.runescape.wiki/w/Minimap#Special_attack_orb">The OSRS Wiki's Minimap page</a>
+	 */
+	PVP_SPEC_ORB(8121),
+
+	CLAN_WARS_ARENA_UNKNOWN_1(4285),
+	/**
+	 * The value of this equals the remaining ticks till the countdown finished.
+	 * Starts at 204 (~2 minutes) in a normal Clan Wars match. Value decreases by 3 every 3 ticks.
+	 */
+	CLAN_WARS_ARENA_COUNTDOWN_TIMER(4286),
+	CLAN_WARS_ARENA_UNKNOWN_2(4287),
+	CLAN_WARS_ARENA_UNKNOWN_3(4288),
+	CLAN_WARS_ARENA_UNKNOWN_4(4289);
 
 	/**
 	 * The raw varbit ID.

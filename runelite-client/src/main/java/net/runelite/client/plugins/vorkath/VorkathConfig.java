@@ -24,10 +24,7 @@
  */
 package net.runelite.client.plugins.vorkath;
 
-import net.runelite.client.config.Config;
-import net.runelite.client.config.ConfigGroup;
-import net.runelite.client.config.ConfigItem;
-import net.runelite.client.config.Range;
+import net.runelite.client.config.*;
 
 import java.awt.*;
 
@@ -66,40 +63,6 @@ public interface VorkathConfig extends Config
 	default Color getAttackTimerTextColor()
 	{
 		return new Color(255, 255, 255);
-	}
-
-	@ConfigItem(
-			keyName = "highlightFirebombTiles",
-			name = "Highlight firebomb tiles",
-			description = "Highlight the tiles where Vorkath's firebomb is going to land",
-			position = 3
-	)
-	default boolean highlightFirebombTiles()
-	{
-		return true;
-	}
-
-	@ConfigItem(
-			keyName = "displayRemainingFirebombDuration",
-			name = "Show remaining firebomb duration",
-			description = "Display the remaining time until Vorkath's firebomb hits the area.",
-			position = 4
-	)
-	default boolean displayRemainingFirebombDuration()
-	{
-		return true;
-	}
-
-	@ConfigItem(
-			keyName = "firebombMarkerColor",
-			name = "Firebomb tile marker",
-			description = "Color of Vorkath's firebomb markers",
-			group = "Colors",
-			position = 5
-	)
-	default Color getFirebombMarkerColor()
-	{
-		return new Color(226, 126, 35);
 	}
 
 	@ConfigItem(
@@ -235,10 +198,21 @@ public interface VorkathConfig extends Config
 	}
 
 	@ConfigItem(
+			keyName = "tileMarkersLineSize",
+			name = "Tile markers line size",
+			description = "The size of the outside line for tile markers",
+			position = 17
+	)
+	default StrokeSize getTileMarkersLineSize()
+	{
+		return StrokeSize.NORMAL;
+	}
+
+	@ConfigItem(
 			keyName = "showDebugOverlay",
 			name = "Display debug overlay",
 			description = "Displays plugin debug overlay. This contains variables that the plugin uses to function",
-			position = 17
+			position = 18
 	)
 	default boolean showDebugOverlay()
 	{

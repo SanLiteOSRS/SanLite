@@ -451,7 +451,7 @@ public class PuzzleSolverOverlay extends Overlay
 
 	private BufferedImage getDownArrow()
 	{
-		return spriteManager.getSpriteImg(MINIMAP_DESTINATION_FLAG, 1);
+		return spriteManager.getSprite(MINIMAP_DESTINATION_FLAG, 1);
 	}
 
 	private BufferedImage getUpArrow()

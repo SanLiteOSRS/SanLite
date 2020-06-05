@@ -76,6 +76,11 @@ public class GraphicID
 	public static final int VESPINE_SOLDIER_DEATH_EXPLOSION = 1368;
 
 	// Chambers of Xeric - The Great Olm
+	// Cerberus
+	public static final int CERBERUS_LAVA_POOL = 1246;
+
+	// Chambers of Xeric
+	public static final int CERBERUS_LAVA_POOL_DESPAWN = 1247;
 	public static final int OLM_BURN = 1351;
 	public static final int OLM_CRYSTAL_SPIKE_HIT = 1353;
 	public static final int OLM_LIGHTNING = 1356;
@@ -88,7 +93,14 @@ public class GraphicID
 	public static final int OLM_FALLING_CRYSTAL_SHADOW = 1447;
 
 	// Theatre of Blood
+	public static final int XARPUS_EXHUMED_DESPAWN = 1549;
 	public static final int XARPUS_POISON_SPLAT_ON_LANDING = 1556;
+	public static final int NYLOCAS_SMALL_MELEE_SPIDER_DESPAWN = 1562;
+	public static final int NYLOCAS_SMALL_RANGED_SPIDER_DESPAWN = 1563;
+	public static final int NYLOCAS_SMALL_MAGIC_SPIDER_DESPAWN = 1564;
+	public static final int NYLOCAS_SMALL_MELEE_SPIDER_FAST_DESPAWN = 1565;
+	public static final int NYLOCAS_SMALL_RANGED_SPIDER_FAST_DESPAWN = 1566;
+	public static final int NYLOCAS_SMALL_MAGIC_SPIDER_FAST_DESPAWN = 1567;
 	public static final int BLOAT_HAND_ATTACK_1 = 1570;
 	public static final int BLOAT_HAND_ATTACK_2 = 1571;
 	public static final int BLOAT_HAND_ATTACK_3 = 1572;
@@ -111,10 +123,10 @@ public class GraphicID
 	public static final int ALCHEMICAL_HYDRA_LIGHTNING_ATTACK = 1666;
 	public static final int ALCHEMICAL_HYDRA_FIRE_ATTACK = 1668;
 
+	// Zalcano
+	public static final int ZALCANO_FALLING_ROCK = 1727;
+	public static final int ZALCANO_GOLEM_SPAWN_EXPLOSION = 1730;
+
 	// The Nightmare of Ashihama
 	public static final int NIGHTMARE_GHOST_ATTACK = 1767;
-
-	//Cerberus
-	public static final int CERBERUS_POOL = 1246;
-	public static final int CERBERUS_POOL_DESPAWN = 1247;
 }

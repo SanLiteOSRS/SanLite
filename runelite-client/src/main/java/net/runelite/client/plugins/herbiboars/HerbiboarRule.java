@@ -83,7 +83,7 @@ enum HerbiboarRule
 		for (HerbiboarRule rule : values())
 		{
 			if (lastIndex > 0 && rule.matches(currentPath.get(lastIndex - 1).getGroup(), goingTo)
-					|| lastIndex == 0 && rule.matches(start, goingTo))
+			|| lastIndex == 0 && rule.matches(start, goingTo))
 			{
 				return true;
 			}
@@ -105,6 +105,6 @@ enum HerbiboarRule
 	boolean matches(HerbiboarStart fromStart, HerbiboarSearchSpot.Group fromGroup, HerbiboarSearchSpot.Group to)
 	{
 		return this.to == to
-				&& (fromStart != null && this.fromStart == fromStart || fromGroup != null && this.fromGroup == fromGroup);
+			&& (fromStart != null && this.fromStart == fromStart || fromGroup != null && this.fromGroup == fromGroup);
 	}
 }

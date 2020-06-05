@@ -217,10 +217,10 @@ public interface ItemChargeConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "showAmuletOfChemistryCharges",
-			name = "Show Amulet of Chemistry Charges",
-			description = "Configures if amulet of chemistry item charge is shown",
-			position = 16
+		keyName = "showAmuletOfChemistryCharges",
+		name = "Show Amulet of Chemistry Charges",
+		description = "Configures if amulet of chemistry item charge is shown",
+		position = 16
 	)
 	default boolean showAmuletOfChemistryCharges()
 	{
@@ -228,10 +228,10 @@ public interface ItemChargeConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "amuletOfChemistry",
-			name = "",
-			description = "",
-			hidden = true
+		keyName = "amuletOfChemistry",
+		name = "",
+		description = "",
+		hidden = true
 	)
 	default int amuletOfChemistry()
 	{
@@ -239,17 +239,17 @@ public interface ItemChargeConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "amuletOfChemistry",
-			name = "",
-			description = ""
+		keyName = "amuletOfChemistry",
+		name = "",
+		description = ""
 	)
 	void amuletOfChemistry(int amuletOfChemistry);
 
 	@ConfigItem(
-			keyName = "showAmuletOfBountyCharges",
-			name = "Show Amulet of Bounty Charges",
-			description = "Configures if amulet of bounty item charge is shown",
-			position = 17
+		keyName = "showAmuletOfBountyCharges",
+		name = "Show Amulet of Bounty Charges",
+		description = "Configures if amulet of bounty item charge is shown",
+		position = 17
 	)
 	default boolean showAmuletOfBountyCharges()
 	{
@@ -257,10 +257,10 @@ public interface ItemChargeConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "amuletOfBounty",
-			name = "",
-			description = "",
-			hidden = true
+		keyName = "amuletOfBounty",
+		name = "",
+		description = "",
+		hidden = true
 	)
 	default int amuletOfBounty()
 	{
@@ -268,9 +268,9 @@ public interface ItemChargeConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "amuletOfBounty",
-			name = "",
-			description = ""
+		keyName = "amuletOfBounty",
+		name = "",
+		description = ""
 	)
 	void amuletOfBounty(int amuletOfBounty);
 
@@ -401,6 +401,17 @@ public interface ItemChargeConfig extends Config
 		position = 24
 	)
 	default boolean showInfoboxes()
+	{
+		return false;
+	}
+
+	@ConfigItem(
+		keyName = "showPotionDoseCount",
+		name = "Show Potion Doses",
+		description = "Configures if potion doses are shown",
+		position = 25
+	)
+	default boolean showPotionDoseCount()
 	{
 		return false;
 	}

@@ -51,12 +51,10 @@ import net.runelite.api.WorldType;
 import net.runelite.api.coords.WorldPoint;
 import net.runelite.api.events.AnimationChanged;
 import net.runelite.api.events.ChatMessage;
-import net.runelite.client.events.ConfigChanged;
 import net.runelite.api.events.GameStateChanged;
 import net.runelite.api.events.GameTick;
-import net.runelite.api.events.SpotAnimationChanged;
+import net.runelite.api.events.GraphicChanged;
 import net.runelite.api.events.ItemContainerChanged;
-import net.runelite.api.events.PlayerDeath;
 import net.runelite.api.events.MenuOptionClicked;
 import net.runelite.api.events.NpcDespawned;
 import net.runelite.api.events.PlayerDeath;
@@ -87,7 +85,6 @@ public class TimersPlugin extends Plugin
 {
 	private static final String ANTIFIRE_DRINK_MESSAGE = "You drink some of your antifire potion.";
 	private static final String ANTIFIRE_EXPIRED_MESSAGE = "<col=7f007f>Your antifire potion has expired.</col>";
-	private static final String ANTIVENOM_DRINK_MESSAGE = "You drink some of your antivenom potion";
 	private static final String CANNON_FURNACE_MESSAGE = "You add the furnace.";
 	private static final String CANNON_PICKUP_MESSAGE = "You pick up the cannon. It's really heavy.";
 	private static final String CANNON_REPAIR_MESSAGE = "You repair your cannon, restoring it to working order.";
@@ -96,11 +93,11 @@ public class TimersPlugin extends Plugin
 	private static final String EXTENDED_ANTIFIRE_DRINK_MESSAGE = "You drink some of your extended antifire potion.";
 	private static final String EXTENDED_SUPER_ANTIFIRE_DRINK_MESSAGE = "You drink some of your extended super antifire potion.";
 	private static final String FROZEN_MESSAGE = "<col=ef1020>You have been frozen!</col>";
+	private static final String GAUNTLET_ENTER_MESSAGE = "You enter the Gauntlet.";
 	private static final String GOD_WARS_ALTAR_MESSAGE = "you recharge your prayer.";
 	private static final String IMBUED_HEART_READY_MESSAGE = "<col=ef1020>Your imbued heart has regained its magical power.</col>";
 	private static final String MAGIC_IMBUE_EXPIRED_MESSAGE = "Your Magic Imbue charge has ended.";
 	private static final String MAGIC_IMBUE_MESSAGE = "You are charged to combine runes!";
-	private static final String SANFEW_SERUM_DRINK_MESSAGE = "You drink some of your Sanfew Serum.";
 	private static final String STAFF_OF_THE_DEAD_SPEC_EXPIRED_MESSAGE = "Your protection fades away";
 	private static final String STAFF_OF_THE_DEAD_SPEC_MESSAGE = "Spirits of deceased evildoers offer you their protection";
 	private static final String STAMINA_DRINK_MESSAGE = "You drink some of your stamina potion.";
@@ -108,13 +105,12 @@ public class TimersPlugin extends Plugin
 	private static final String STAMINA_EXPIRED_MESSAGE = "<col=8f4808>Your stamina potion has expired.</col>";
 	private static final String SUPER_ANTIFIRE_DRINK_MESSAGE = "You drink some of your super antifire potion";
 	private static final String SUPER_ANTIFIRE_EXPIRED_MESSAGE = "<col=7f007f>Your super antifire potion has expired.</col>";
-	private static final String SUPER_ANTIVENOM_DRINK_MESSAGE = "You drink some of your super antivenom potion";
-	private static final String KILLED_TELEBLOCK_OPPONENT_TEXT = "<col=4f006f>Your Tele Block has been removed because you killed ";
+	private static final String KILLED_TELEBLOCK_OPPONENT_TEXT = "Your Tele Block has been removed because you killed ";
 	private static final String PRAYER_ENHANCE_EXPIRED = "<col=ff0000>Your prayer enhance effect has worn off.</col>";
 
-	private static final Pattern DEADMAN_HALF_TELEBLOCK_PATTERN = Pattern.compile("<col=4f006f>A Tele Block spell has been cast on you by (.+)\\. It will expire in 1 minute, 15 seconds\\.</col>");
-	private static final Pattern FULL_TELEBLOCK_PATTERN = Pattern.compile("<col=4f006f>A Tele Block spell has been cast on you by (.+)\\. It will expire in 5 minutes\\.</col>");
-	private static final Pattern HALF_TELEBLOCK_PATTERN = Pattern.compile("<col=4f006f>A Tele Block spell has been cast on you by (.+)\\. It will expire in 2 minutes, 30 seconds\\.</col>");
+	private static final Pattern DEADMAN_HALF_TELEBLOCK_PATTERN = Pattern.compile("A Tele Block spell has been cast on you by (.+)\\. It will expire in 1 minute, 15 seconds\\.</col>");
+	private static final Pattern FULL_TELEBLOCK_PATTERN = Pattern.compile("A Tele Block spell has been cast on you by (.+)\\. It will expire in 5 minutes\\.</col>");
+	private static final Pattern HALF_TELEBLOCK_PATTERN = Pattern.compile("A Tele Block spell has been cast on you by (.+)\\. It will expire in 2 minutes, 30 seconds\\.</col>");
 	private static final Pattern DIVINE_POTION_PATTERN = Pattern.compile("You drink some of your divine (.+) potion\\.");
 	private static final int VENOM_VALUE_CUTOFF = -40; // Antivenom < -40 <= Antipoison < 0
 	private static final int POISON_TICK_LENGTH = 30;
@@ -374,23 +370,23 @@ public class TimersPlugin extends Plugin
 	public void onMenuOptionClicked(MenuOptionClicked event)
 	{
 		if (config.showStamina()
-			&& event.getOption().contains("Drink")
-			&& (event.getIdentifier() == ItemID.STAMINA_MIX1
-			|| event.getIdentifier() == ItemID.STAMINA_MIX2
-			|| event.getIdentifier() == ItemID.EGNIOL_POTION_1
-			|| event.getIdentifier() == ItemID.EGNIOL_POTION_2
-			|| event.getIdentifier() == ItemID.EGNIOL_POTION_3
-			|| event.getIdentifier() == ItemID.EGNIOL_POTION_4))
+			&& event.getMenuOption().contains("Drink")
+			&& (event.getId() == ItemID.STAMINA_MIX1
+			|| event.getId() == ItemID.STAMINA_MIX2
+			|| event.getId() == ItemID.EGNIOL_POTION_1
+			|| event.getId() == ItemID.EGNIOL_POTION_2
+			|| event.getId() == ItemID.EGNIOL_POTION_3
+			|| event.getId() == ItemID.EGNIOL_POTION_4))
 		{
-			// Needs menu option hook because mixes use a common drink message, distinct from their standard potion meszsages
+			// Needs menu option hook because mixes use a common drink message, distinct from their standard potion messages
 			createGameTimer(STAMINA);
 			return;
 		}
 
 		if (config.showAntiFire()
-			&& event.getOption().contains("Drink")
-			&& (event.getIdentifier() == ItemID.ANTIFIRE_MIX1
-			|| event.getIdentifier() == ItemID.ANTIFIRE_MIX2))
+			&& event.getMenuOption().contains("Drink")
+			&& (event.getId() == ItemID.ANTIFIRE_MIX1
+			|| event.getId() == ItemID.ANTIFIRE_MIX2))
 		{
 			// Needs menu option hook because mixes use a common drink message, distinct from their standard potion messages
 			createGameTimer(ANTIFIRE);
@@ -398,9 +394,9 @@ public class TimersPlugin extends Plugin
 		}
 
 		if (config.showAntiFire()
-			&& event.getOption().contains("Drink")
-			&& (event.getIdentifier() == ItemID.EXTENDED_ANTIFIRE_MIX1
-			|| event.getIdentifier() == ItemID.EXTENDED_ANTIFIRE_MIX2))
+			&& event.getMenuOption().contains("Drink")
+			&& (event.getId() == ItemID.EXTENDED_ANTIFIRE_MIX1
+			|| event.getId() == ItemID.EXTENDED_ANTIFIRE_MIX2))
 		{
 			// Needs menu option hook because mixes use a common drink message, distinct from their standard potion messages
 			createGameTimer(EXANTIFIRE);
@@ -408,9 +404,9 @@ public class TimersPlugin extends Plugin
 		}
 
 		if (config.showAntiFire()
-			&& event.getOption().contains("Drink")
-			&& (event.getIdentifier() == ItemID.SUPER_ANTIFIRE_MIX1
-			|| event.getIdentifier() == ItemID.SUPER_ANTIFIRE_MIX2))
+			&& event.getMenuOption().contains("Drink")
+			&& (event.getId() == ItemID.SUPER_ANTIFIRE_MIX1
+			|| event.getId() == ItemID.SUPER_ANTIFIRE_MIX2))
 		{
 			// Needs menu option hook because mixes use a common drink message, distinct from their standard potion messages
 			createGameTimer(SUPERANTIFIRE);
@@ -418,16 +414,16 @@ public class TimersPlugin extends Plugin
 		}
 
 		if (config.showAntiFire()
-			&& event.getOption().contains("Drink")
-			&& (event.getIdentifier() == ItemID.EXTENDED_SUPER_ANTIFIRE_MIX1
-			|| event.getIdentifier() == ItemID.EXTENDED_SUPER_ANTIFIRE_MIX2))
+			&& event.getMenuOption().contains("Drink")
+			&& (event.getId() == ItemID.EXTENDED_SUPER_ANTIFIRE_MIX1
+			|| event.getId() == ItemID.EXTENDED_SUPER_ANTIFIRE_MIX2))
 		{
 			// Needs menu option hook because mixes use a common drink message, distinct from their standard potion messages
 			createGameTimer(EXSUPERANTIFIRE);
 			return;
 		}
 
-		TeleportWidget teleportWidget = TeleportWidget.of(event.getActionParam1());
+		TeleportWidget teleportWidget = TeleportWidget.of(event.getWidgetId());
 		if (teleportWidget != null)
 		{
 			lastTeleportClicked = teleportWidget;
@@ -447,7 +443,7 @@ public class TimersPlugin extends Plugin
 			createGameTimer(STAMINA);
 		}
 
-		if (config.showStamina() && event.getMessage().equals(STAMINA_EXPIRED_MESSAGE))
+		if (config.showStamina() && (event.getMessage().equals(STAMINA_EXPIRED_MESSAGE) || event.getMessage().equals(GAUNTLET_ENTER_MESSAGE)))
 		{
 			removeGameTimer(STAMINA);
 		}
@@ -533,7 +529,7 @@ public class TimersPlugin extends Plugin
 			{
 				createGameTimer(DMM_HALFTB);
 			}
-			else if (event.getMessage().startsWith(KILLED_TELEBLOCK_OPPONENT_TEXT))
+			else if (event.getMessage().contains(KILLED_TELEBLOCK_OPPONENT_TEXT))
 			{
 				removeTbTimers();
 			}
@@ -619,6 +615,14 @@ public class TimersPlugin extends Plugin
 
 					case "magic":
 						createGameTimer(DIVINE_MAGIC);
+						break;
+
+					case "bastion":
+						createGameTimer(DIVINE_BASTION);
+						break;
+
+					case "battlemage":
+						createGameTimer(DIVINE_BATTLEMAGE);
 						break;
 				}
 			}
@@ -737,7 +741,7 @@ public class TimersPlugin extends Plugin
 	}
 
 	@Subscribe
-	public void onSpotAnimationChanged(SpotAnimationChanged event)
+	public void onGraphicChanged(GraphicChanged event)
 	{
 		Actor actor = event.getActor();
 
@@ -746,24 +750,24 @@ public class TimersPlugin extends Plugin
 			return;
 		}
 
-		if (config.showImbuedHeart() && actor.getSpotAnimation() == IMBUEDHEART.getGraphicId())
+		if (config.showImbuedHeart() && actor.getGraphic() == IMBUEDHEART.getGraphicId())
 		{
 			createGameTimer(IMBUEDHEART);
 		}
 
 		if (config.showFreezes())
 		{
-			if (actor.getSpotAnimation() == BIND.getGraphicId())
+			if (actor.getGraphic() == BIND.getGraphicId())
 			{
 				createGameTimer(BIND);
 			}
 
-			if (actor.getSpotAnimation() == SNARE.getGraphicId())
+			if (actor.getGraphic() == SNARE.getGraphicId())
 			{
 				createGameTimer(SNARE);
 			}
 
-			if (actor.getSpotAnimation() == ENTANGLE.getGraphicId())
+			if (actor.getGraphic() == ENTANGLE.getGraphicId())
 			{
 				createGameTimer(ENTANGLE);
 			}
@@ -771,19 +775,19 @@ public class TimersPlugin extends Plugin
 			// downgrade freeze based on graphic, if at the same tick as the freeze message
 			if (freezeTime == client.getTickCount())
 			{
-				if (actor.getSpotAnimation() == ICERUSH.getGraphicId())
+				if (actor.getGraphic() == ICERUSH.getGraphicId())
 				{
 					removeGameTimer(ICEBARRAGE);
 					freezeTimer = createGameTimer(ICERUSH);
 				}
 
-				if (actor.getSpotAnimation() == ICEBURST.getGraphicId())
+				if (actor.getGraphic() == ICEBURST.getGraphicId())
 				{
 					removeGameTimer(ICEBARRAGE);
 					freezeTimer = createGameTimer(ICEBURST);
 				}
 
-				if (actor.getSpotAnimation() == ICEBLITZ.getGraphicId())
+				if (actor.getGraphic() == ICEBLITZ.getGraphicId())
 				{
 					removeGameTimer(ICEBARRAGE);
 					freezeTimer = createGameTimer(ICEBLITZ);
@@ -803,16 +807,8 @@ public class TimersPlugin extends Plugin
 		ItemContainer container = itemContainerChanged.getItemContainer();
 		if (container == client.getItemContainer(InventoryID.EQUIPMENT))
 		{
-			Item[] items = container.getItems();
-			int weaponIdx = EquipmentInventorySlot.WEAPON.getSlotIdx();
+			Item weapon = container.getItem(EquipmentInventorySlot.WEAPON.getSlotIdx());
 
-			if (items == null || weaponIdx >= items.length)
-			{
-				removeGameTimer(STAFF_OF_THE_DEAD);
-				return;
-			}
-
-			Item weapon = items[weaponIdx];
 			if (weapon == null)
 			{
 				removeGameTimer(STAFF_OF_THE_DEAD);

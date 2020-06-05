@@ -27,10 +27,10 @@ package net.runelite.rs.api;
 import net.runelite.api.Actor;
 import net.runelite.mapping.Import;
 
-public interface RSActor extends RSEntity, Actor
+public interface RSActor extends RSRenderable, Actor
 {
 	@Import("targetIndex")
-	int getRSInteracting();
+	int getInteractingIndex();
 
 	@Import("overheadText")
 	@Override
@@ -76,21 +76,21 @@ public interface RSActor extends RSEntity, Actor
 	// Spot animation (aka graphic)
 	@Import("spotAnimation")
 	@Override
-	int getSpotAnimation();
+	int getGraphic();
 
 	@Import("spotAnimation")
 	@Override
-	void setSpotAnimation(int id);
+	void setGraphic(int id);
 
 	@Import("spotAnimationFrame")
-	int getSpotAnimationFrame();
+	int getSpotAnimFrame();
 
 	@Import("spotAnimationFrame")
 	@Override
-	void setSpotAnimationFrame(int id);
+	void setSpotAnimFrame(int id);
 
 	@Import("spotAnimationFrameCycle")
-	int getSpotAnimationFrameCycle();
+	int getGraphicFrameCycle();
 
 	// Idle animation
 	@Import("readySequence")

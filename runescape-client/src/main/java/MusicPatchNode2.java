@@ -56,7 +56,7 @@ public class MusicPatchNode2 {
 		garbageValue = "273345835"
 	)
 	@Export("SpriteBuffer_getSprite")
-	public static Sprite SpriteBuffer_getSprite(AbstractArchive var0, int var1, int var2) {
+	public static SpritePixels SpriteBuffer_getSprite(AbstractArchive var0, int var1, int var2) {
 		return !UserComparator7.method3516(var0, var1, var2) ? null : ArchiveDisk.method5932();
 	}
 

@@ -153,7 +153,7 @@ public class class22 {
 			return 1;
 		} else {
 			int var4;
-			ItemDefinition var5;
+			ItemComposition var5;
 			if (var0 == ScriptOpcodes.OC_OP) {
 				Interpreter.Interpreter_intStackSize -= 2;
 				var3 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
@@ -187,7 +187,7 @@ public class class22 {
 				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = AbstractWorldMapData.ItemDefinition_get(var3).isStackable == 1 ? 1 : 0;
 				return 1;
 			} else {
-				ItemDefinition var6;
+				ItemComposition var6;
 				if (var0 == ScriptOpcodes.OC_CERT) {
 					var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
 					var6 = AbstractWorldMapData.ItemDefinition_get(var3);
@@ -345,7 +345,7 @@ public class class22 {
 
 			if (!var12) {
 				if (Client.musicVolume != 0 && Client.currentTrackGroupId != -1) {
-					class74.method1321(AbstractWorldMapIcon.archive6, Client.currentTrackGroupId, 0, Client.musicVolume, false);
+					ApproximateRouteStrategy.method1321(AbstractWorldMapIcon.archive6, Client.currentTrackGroupId, 0, Client.musicVolume, false);
 				}
 
 				Client.field915 = false;
@@ -433,7 +433,7 @@ public class class22 {
 					((TextureProvider)Rasterizer3D.Rasterizer3D_textureLoader).setBrightness(0.6D);
 				}
 
-				ItemDefinition.ItemDefinition_cachedSprites.clear();
+				ItemComposition.ItemDefinition_cachedSprites.clear();
 			}
 
 			if (var4 == 3) {
@@ -460,7 +460,7 @@ public class class22 {
 
 				if (var3 != Client.musicVolume) {
 					if (Client.musicVolume == 0 && Client.currentTrackGroupId != -1) {
-						class74.method1321(AbstractWorldMapIcon.archive6, Client.currentTrackGroupId, 0, var3, false);
+						ApproximateRouteStrategy.method1321(AbstractWorldMapIcon.archive6, Client.currentTrackGroupId, 0, var3, false);
 						Client.field915 = false;
 					} else if (var3 == 0) {
 						Client.method1496();

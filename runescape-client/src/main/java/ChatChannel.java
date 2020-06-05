@@ -17,7 +17,7 @@ public class ChatChannel {
 		signature = "Lla;"
 	)
 	@Export("compass")
-	static Sprite compass;
+	static SpritePixels compass;
 	@ObfuscatedName("m")
 	@ObfuscatedSignature(
 		signature = "[Lby;"
@@ -171,6 +171,6 @@ public class ChatChannel {
 			}
 		}
 
-		MusicPatchNode.method3922(class49.menuWidth / 2 + WorldMapDecoration.menuX, PacketBufferNode.menuY);
+		MusicPatchNode.method3922(WorldMapScaleHandler.menuWidth / 2 + WorldMapDecoration.menuX, PacketBufferNode.menuY);
 	}
 }

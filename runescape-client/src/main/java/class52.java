@@ -16,7 +16,7 @@ public final class class52 {
 		signature = "[Lla;"
 	)
 	@Export("headIconPkSprites")
-	static Sprite[] headIconPkSprites;
+	static SpritePixels[] headIconPkSprites;
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
@@ -72,7 +72,7 @@ public final class class52 {
 			Interpreter.Interpreter_intStackSize -= 2;
 			var3 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
 			var4 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
-			EnumDefinition var5 = class58.getEnum(var3);
+			EnumComposition var5 = class58.getEnum(var3);
 			if (var5.outputType != 's') {
 			}
 
@@ -92,7 +92,7 @@ public final class class52 {
 		} else if (var0 != ScriptOpcodes.ENUM) {
 			if (var0 == ScriptOpcodes.ENUM_GETOUTPUTCOUNT) {
 				var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-				EnumDefinition var10 = class58.getEnum(var3);
+				EnumComposition var10 = class58.getEnum(var3);
 				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var10.size();
 				return 1;
 			} else {
@@ -104,7 +104,7 @@ public final class class52 {
 			var4 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
 			int var9 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 2];
 			var6 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 3];
-			EnumDefinition var7 = class58.getEnum(var9);
+			EnumComposition var7 = class58.getEnum(var9);
 			if (var3 == var7.inputType && var4 == var7.outputType) {
 				for (int var8 = 0; var8 < var7.outputCount; ++var8) {
 					if (var6 == var7.keys[var8]) {

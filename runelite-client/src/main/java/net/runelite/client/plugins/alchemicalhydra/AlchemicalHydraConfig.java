@@ -24,10 +24,7 @@
  */
 package net.runelite.client.plugins.alchemicalhydra;
 
-import net.runelite.client.config.Alpha;
-import net.runelite.client.config.Config;
-import net.runelite.client.config.ConfigGroup;
-import net.runelite.client.config.ConfigItem;
+import net.runelite.client.config.*;
 
 import java.awt.*;
 
@@ -116,7 +113,7 @@ public interface AlchemicalHydraConfig extends Config
 	)
 	default Color getFireAttackColor()
 	{
-		return new Color(219, 116, 0, 255);
+		return new Color(219, 116, 0, 150);
 	}
 
 	@Alpha
@@ -168,10 +165,21 @@ public interface AlchemicalHydraConfig extends Config
 	}
 
 	@ConfigItem(
+			keyName = "tileMarkersLineSize",
+			name = "Tile markers line size",
+			description = "The size of the outside line for tile markers",
+			position = 10
+	)
+	default StrokeSize getTileMarkersLineSize()
+	{
+		return StrokeSize.NORMAL;
+	}
+
+	@ConfigItem(
 			keyName = "showDebugOverlay",
 			name = "Display debug overlay",
 			description = "Displays plugin debug overlay. This displays variables that the plugin uses to function",
-			position = 12
+			position = 11
 	)
 	default boolean showDebugOverlay()
 	{

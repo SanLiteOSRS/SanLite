@@ -28,8 +28,15 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import javax.inject.Inject;
-
-import net.runelite.api.*;
+import net.runelite.api.Client;
+import net.runelite.api.Constants;
+import net.runelite.api.InventoryID;
+import net.runelite.api.Item;
+import net.runelite.api.ItemComposition;
+import net.runelite.api.ItemContainer;
+import net.runelite.api.ItemID;
+import net.runelite.api.MenuAction;
+import net.runelite.api.MenuEntry;
 import net.runelite.api.widgets.WidgetID;
 import net.runelite.api.widgets.WidgetInfo;
 import net.runelite.client.game.ItemManager;
@@ -86,12 +93,13 @@ class ItemPricesOverlay extends Overlay
 		final MenuAction action = MenuAction.of(menuEntry.getType());
 		final int widgetId = menuEntry.getParam1();
 		final int groupId = WidgetInfo.TO_GROUP(widgetId);
+		final boolean isAlching = menuEntry.getOption().equals("Cast") && menuEntry.getTarget().contains("High Level Alchemy");
 
 		// Tooltip action type handling
 		switch (action)
 		{
 			case ITEM_USE_ON_WIDGET:
-				if (!config.showWhileAlching() || !menuEntry.getOption().equals("Cast") || !menuEntry.getTarget().contains("High Level Alchemy"))
+				if (!config.showWhileAlching() || !isAlching)
 				{
 					break;
 				}
@@ -111,7 +119,7 @@ class ItemPricesOverlay extends Overlay
 							return null;
 						}
 					case WidgetID.INVENTORY_GROUP_ID:
-						if (config.hideInventory())
+						if (config.hideInventory() && !(config.showWhileAlching() && isAlching))
 						{
 							return null;
 						}
@@ -146,9 +154,9 @@ class ItemPricesOverlay extends Overlay
 
 		// Inventory item
 		if (widgetId == INVENTORY_ITEM_WIDGETID ||
-				widgetId == BANK_INVENTORY_ITEM_WIDGETID ||
-				widgetId == EXPLORERS_RING_ITEM_WIDGETID ||
-				widgetId == SEED_VAULT_INVENTORY_ITEM_WIDGETID)
+			widgetId == BANK_INVENTORY_ITEM_WIDGETID ||
+			widgetId == EXPLORERS_RING_ITEM_WIDGETID ||
+			widgetId == SEED_VAULT_INVENTORY_ITEM_WIDGETID)
 		{
 			container = client.getItemContainer(InventoryID.INVENTORY);
 		}
@@ -157,7 +165,6 @@ class ItemPricesOverlay extends Overlay
 		{
 			container = client.getItemContainer(InventoryID.BANK);
 		}
-
 		// Seed vault item
 		else if (widgetId == SEED_VAULT_ITEM_WIDGETID)
 		{
@@ -170,11 +177,10 @@ class ItemPricesOverlay extends Overlay
 		}
 
 		// Find the item in the container to get stack size
-		final Item[] items = container.getItems();
 		final int index = menuEntry.getParam0();
-		if (index < items.length)
+		final Item item = container.getItem(index);
+		if (item != null)
 		{
-			final Item item = items[index];
 			return getItemStackValueText(item);
 		}
 
@@ -183,7 +189,7 @@ class ItemPricesOverlay extends Overlay
 
 	private String getItemStackValueText(Item item)
 	{
-		int id = item.getId();
+		int id = itemManager.canonicalize(item.getId());
 		int qty = item.getQuantity();
 
 		// Special case for coins and platinum tokens
@@ -196,12 +202,7 @@ class ItemPricesOverlay extends Overlay
 			return QuantityFormatter.formatNumber(qty * 1000) + " gp";
 		}
 
-		ItemDefinition itemDef = itemManager.getItemComposition(id);
-		if (itemDef.getNote() != -1)
-		{
-			id = itemDef.getLinkedNoteId();
-			itemDef = itemManager.getItemComposition(id);
-		}
+		ItemComposition itemDef = itemManager.getItemComposition(id);
 
 		// Only check prices for things with store prices
 		if (itemDef.getPrice() <= 0)
@@ -239,7 +240,7 @@ class ItemPricesOverlay extends Overlay
 	{
 		if (gePrice > 0)
 		{
-			itemStringBuilder.append("EX: ")
+			itemStringBuilder.append("GE: ")
 				.append(QuantityFormatter.quantityToStackSize((long) gePrice * qty))
 				.append(" gp");
 			if (config.showEA() && qty > 1)
@@ -273,7 +274,7 @@ class ItemPricesOverlay extends Overlay
 
 			itemStringBuilder.append("</br>");
 			itemStringBuilder.append("HA Profit: ")
-				.append(ColorUtil.wrapWithColorTag(String.valueOf(haProfit * qty), haColor))
+				.append(ColorUtil.wrapWithColorTag(String.valueOf((long) haProfit * qty), haColor))
 				.append(" gp");
 			if (config.showEA() && qty > 1)
 			{

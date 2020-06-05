@@ -27,12 +27,12 @@ public class UserComparator1 implements Comparator {
 		garbageValue = "-1609540202"
 	)
 	@Export("compare_bridged")
-	int compare_bridged(User var1, User var2) {
+	int compare_bridged(Nameable var1, Nameable var2) {
 		return this.reversed ? var1.compareTo_user(var2) : var2.compareTo_user(var1);
 	}
 
 	public int compare(Object var1, Object var2) {
-		return this.compare_bridged((User)var1, (User)var2);
+		return this.compare_bridged((Nameable)var1, (Nameable)var2);
 	}
 
 	public boolean equals(Object var1) {

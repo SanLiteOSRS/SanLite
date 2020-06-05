@@ -45,12 +45,28 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.IntPredicate;
 import java.util.stream.Collectors;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import lombok.Getter;
-import net.runelite.api.*;
+import net.runelite.api.Client;
+import net.runelite.api.Constants;
+import net.runelite.api.InventoryID;
+import net.runelite.api.Item;
+import net.runelite.api.ItemComposition;
+import net.runelite.api.ItemContainer;
+import net.runelite.api.MenuAction;
+import net.runelite.api.MenuEntry;
+import net.runelite.api.Point;
+import net.runelite.api.ScriptEvent;
+import net.runelite.api.ScriptID;
+import net.runelite.api.SoundEffectID;
+import net.runelite.api.SpriteID;
+import net.runelite.api.VarClientInt;
+import net.runelite.api.VarClientStr;
+import net.runelite.api.Varbits;
 import net.runelite.api.events.MenuEntryAdded;
 import net.runelite.api.events.MenuOptionClicked;
 import net.runelite.api.events.ScriptCallbackEvent;
@@ -59,6 +75,7 @@ import net.runelite.api.widgets.ItemQuantityMode;
 import net.runelite.api.widgets.JavaScriptCallback;
 import net.runelite.api.widgets.Widget;
 import net.runelite.api.widgets.WidgetConfig;
+import net.runelite.api.widgets.WidgetID;
 import net.runelite.api.widgets.WidgetInfo;
 import net.runelite.api.widgets.WidgetSizeMode;
 import net.runelite.api.widgets.WidgetType;
@@ -219,6 +236,35 @@ public class TabInterface
 			client.setVarbit(Varbits.CURRENT_BANK_TAB, 0);
 			openTag(config.tab());
 		}
+
+		Widget equipmentButton = client.getWidget(WidgetInfo.BANK_EQUIPMENT_BUTTON);
+		Widget titleBar = client.getWidget(WidgetInfo.BANK_TITLE_BAR);
+		if (equipmentButton == null || titleBar == null || titleBar.getOriginalX() > 0)
+		{
+			// don't keep moving widgets if they have already been moved
+			return;
+		}
+
+		equipmentButton.setOriginalX(6);
+		equipmentButton.setOriginalY(4);
+		equipmentButton.revalidate();
+
+		// the bank item count is 3 widgets
+		for (int child = WidgetInfo.BANK_ITEM_COUNT_TOP.getChildId(); child <= WidgetInfo.BANK_ITEM_COUNT_BOTTOM.getChildId(); child++)
+		{
+			Widget widget = client.getWidget(WidgetID.BANK_GROUP_ID, child);
+			if (widget == null)
+			{
+				return;
+			}
+
+			widget.setOriginalX(widget.getOriginalX() + equipmentButton.getWidth());
+			widget.revalidate();
+		}
+
+		titleBar.setOriginalX(equipmentButton.getWidth() / 2);
+		titleBar.setOriginalWidth(titleBar.getWidth() - equipmentButton.getWidth());
+		titleBar.revalidate();
 	}
 
 	private void handleDeposit(MenuOptionClicked event, Boolean inventory)
@@ -236,9 +282,9 @@ public class TabInterface
 			.filter(id -> id != -1)
 			.collect(Collectors.toList());
 
-		if (!Strings.isNullOrEmpty(event.getTarget()))
+		if (!Strings.isNullOrEmpty(event.getMenuTarget()))
 		{
-			if (activeTab != null && Text.removeTags(event.getTarget()).equals(activeTab.getTag()))
+			if (activeTab != null && Text.removeTags(event.getMenuTarget()).equals(activeTab.getTag()))
 			{
 				for (Integer item : items)
 				{
@@ -253,7 +299,7 @@ public class TabInterface
 
 		chatboxPanelManager.openTextInput((inventory ? "Inventory " : "Equipment ") + " tags:")
 			.addCharValidator(FILTERED_CHARS)
-			.onDone((newTags) ->
+			.onDone((Consumer<String>) (newTags) ->
 				clientThread.invoke(() ->
 				{
 					final List<String> tags = Text.fromCSV(newTags.toLowerCase());
@@ -275,7 +321,7 @@ public class TabInterface
 			case NewTab.NEW_TAB:
 				chatboxPanelManager.openTextInput("Tag name")
 					.addCharValidator(FILTERED_CHARS)
-					.onDone((tagName) -> clientThread.invoke(() ->
+					.onDone((Consumer<String>) (tagName) -> clientThread.invoke(() ->
 					{
 						if (!Strings.isNullOrEmpty(tagName))
 						{
@@ -339,6 +385,11 @@ public class TabInterface
 				{
 					notifier.notify("Failed to import tag tab from clipboard, invalid format.");
 				}
+				break;
+			case NewTab.OPEN_TAB_MENU:
+				client.setVarbit(Varbits.CURRENT_BANK_TAB, 0);
+				openTag(TAB_MENU_KEY);
+				break;
 		}
 	}
 
@@ -355,6 +406,7 @@ public class TabInterface
 				if (tab.equals(activeTab))
 				{
 					bankSearch.reset(true);
+					rememberedSearch = "";
 
 					clientThread.invokeLater(() -> client.runScript(ScriptID.MESSAGE_LAYER_CLOSE, 0, 0));
 				}
@@ -651,17 +703,17 @@ public class TabInterface
 
 		if (chatboxPanelManager.getCurrentInput() != null
 			&& event.getMenuAction() != MenuAction.CANCEL
-			&& !event.getOption().equals(SCROLL_UP)
-			&& !event.getOption().equals(SCROLL_DOWN))
+			&& !event.getMenuOption().equals(SCROLL_UP)
+			&& !event.getMenuOption().equals(SCROLL_DOWN))
 		{
 			chatboxPanelManager.close();
 		}
 
-		if ((event.getIdentifier() == WidgetInfo.BANK_ITEM_CONTAINER.getId()
-				|| event.getIdentifier() == WidgetInfo.BANK_INVENTORY_ITEMS_CONTAINER.getId())
+		if ((event.getWidgetId() == WidgetInfo.BANK_ITEM_CONTAINER.getId()
+				|| event.getWidgetId() == WidgetInfo.BANK_INVENTORY_ITEMS_CONTAINER.getId())
 			&& event.getMenuAction() == MenuAction.CC_OP_LOW_PRIORITY
-			&& (event.getOption().equalsIgnoreCase("withdraw-x")
-				|| event.getOption().equalsIgnoreCase("deposit-x")))
+			&& (event.getMenuOption().equalsIgnoreCase("withdraw-x")
+				|| event.getMenuOption().equalsIgnoreCase("deposit-x")))
 		{
 			waitSearchTick = true;
 			rememberedSearch = client.getVar(VarClientStr.INPUT_TEXT);
@@ -669,7 +721,7 @@ public class TabInterface
 		}
 
 		if (activeTab != null
-			&& event.getOption().equals("Search")
+			&& event.getMenuOption().equals("Search")
 			&& client.getWidget(WidgetInfo.BANK_SEARCH_BUTTON_BACKGROUND).getSpriteId() != SpriteID.EQUIPMENT_SLOT_SELECTED)
 		{
 			activateTab(null);
@@ -679,27 +731,27 @@ public class TabInterface
 			client.setVar(VarClientInt.INPUT_TYPE, 0);
 		}
 		else if (activeTab != null
-			&& event.getOption().startsWith("View tab"))
+			&& event.getMenuOption().startsWith("View tab"))
 		{
 			activateTab(null);
 		}
 		else if (activeTab != null
-			&& event.getActionParam1() == WidgetInfo.BANK_ITEM_CONTAINER.getId()
+			&& event.getWidgetId() == WidgetInfo.BANK_ITEM_CONTAINER.getId()
 			&& event.getMenuAction() == MenuAction.RUNELITE
-			&& event.getOption().startsWith(REMOVE_TAG))
+			&& event.getMenuOption().startsWith(REMOVE_TAG))
 		{
 			// Add "remove" menu entry to all items in bank while tab is selected
 			event.consume();
-			final ItemDefinition item = getItem(event.getActionParam0());
+			final ItemComposition item = getItem(event.getActionParam());
 			final int itemId = item.getId();
 			tagManager.removeTag(itemId, activeTab.getTag());
 			bankSearch.search(InputType.SEARCH, TAG_SEARCH + activeTab.getTag(), true);
 		}
 		else if (event.getMenuAction() == MenuAction.RUNELITE
-			&& ((event.getActionParam1() == WidgetInfo.BANK_DEPOSIT_INVENTORY.getId() && event.getOption().equals(TAG_INVENTORY))
-			|| (event.getActionParam1() == WidgetInfo.BANK_DEPOSIT_EQUIPMENT.getId() && event.getOption().equals(TAG_GEAR))))
+			&& ((event.getWidgetId() == WidgetInfo.BANK_DEPOSIT_INVENTORY.getId() && event.getMenuOption().equals(TAG_INVENTORY))
+			|| (event.getWidgetId() == WidgetInfo.BANK_DEPOSIT_EQUIPMENT.getId() && event.getMenuOption().equals(TAG_GEAR))))
 		{
-			handleDeposit(event, event.getActionParam1() == WidgetInfo.BANK_DEPOSIT_INVENTORY.getId());
+			handleDeposit(event, event.getWidgetId() == WidgetInfo.BANK_DEPOSIT_INVENTORY.getId());
 		}
 	}
 
@@ -739,7 +791,7 @@ public class TabInterface
 				}
 			}
 			else if ((isTabMenuActive() && draggedWidget.getId() == draggedOn.getId() && draggedOn.getId() != parent.getId())
-					|| (parent.getId() == draggedOn.getId() && parent.getId() == draggedWidget.getId()))
+				|| (parent.getId() == draggedOn.getId() && parent.getId() == draggedWidget.getId()))
 			{
 				// Reorder tag tabs
 				moveTagTab(draggedWidget, draggedOn);
@@ -847,13 +899,13 @@ public class TabInterface
 		if (tagTab.getMenu() == null)
 		{
 			Widget menu = createGraphic(
-					client.getWidget(WidgetInfo.BANK_ITEM_CONTAINER),
-					ColorUtil.wrapWithColorTag(tagTab.getTag(), HILIGHT_COLOR),
-					-1,
-					tagTab.getIconItemId(),
-					BANK_ITEM_WIDTH, BANK_ITEM_HEIGHT,
-					BANK_ITEM_START_X, BANK_ITEM_START_Y,
-					true);
+				client.getWidget(WidgetInfo.BANK_ITEM_CONTAINER),
+				ColorUtil.wrapWithColorTag(tagTab.getTag(), HILIGHT_COLOR),
+				-1,
+				tagTab.getIconItemId(),
+				BANK_ITEM_WIDTH, BANK_ITEM_HEIGHT,
+				BANK_ITEM_START_X, BANK_ITEM_START_Y,
+				true);
 			addTabActions(menu);
 			addTabOptions(menu);
 			if (activeTab != null && activeTab.getTag().equals(TAB_MENU_KEY))
@@ -888,7 +940,7 @@ public class TabInterface
 	{
 		chatboxPanelManager.openTextInput("Enter new tag name for tag \"" + oldTag + "\":")
 			.addCharValidator(FILTERED_CHARS)
-			.onDone((newTag) -> clientThread.invoke(() ->
+			.onDone((Consumer<String>) (newTag) -> clientThread.invoke(() ->
 			{
 				if (!Strings.isNullOrEmpty(newTag) && !newTag.equalsIgnoreCase(oldTag))
 				{
@@ -961,7 +1013,7 @@ public class TabInterface
 		}
 
 		int proposedIndex = currentTabIndex + direction;
-		int numTabs = tabManager.size() + 1;
+		int numTabs = tabManager.size();
 
 		if (proposedIndex >= numTabs || proposedIndex < 0)
 		{
@@ -1055,7 +1107,7 @@ public class TabInterface
 	{
 		int y = bounds.y + MARGIN + BUTTON_HEIGHT;
 
-		if (maxTabs > tabManager.size())
+		if (maxTabs >= tabManager.size())
 		{
 			currentTabIndex = 0;
 		}
@@ -1101,8 +1153,6 @@ public class TabInterface
 				itemX += BANK_ITEM_X_PADDING + BANK_ITEM_WIDTH;
 			}
 		}
-
-		updateWidget(newTab, y);
 
 		boolean hidden = !(tabManager.size() > 0);
 
@@ -1155,8 +1205,8 @@ public class TabInterface
 		t.setHidden(y < (bounds.y + BUTTON_HEIGHT + MARGIN) || y > (bounds.y + bounds.height - TAB_HEIGHT - MARGIN - BUTTON_HEIGHT));
 		t.revalidate();
 	}
-	
-	private ItemDefinition getItem(int idx)
+
+	private ItemComposition getItem(int idx)
 	{
 		ItemContainer bankContainer = client.getItemContainer(InventoryID.BANK);
 		Item item = bankContainer.getItems()[idx];

@@ -31,15 +31,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.inject.Inject;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.*;
-
+import net.runelite.api.Client;
+import net.runelite.api.ItemID;
 import static net.runelite.api.ItemID.AGILITY_ARENA_TICKET;
+import net.runelite.api.Player;
+import net.runelite.api.Skill;
 import static net.runelite.api.Skill.AGILITY;
-
+import net.runelite.api.Tile;
+import net.runelite.api.TileItem;
+import net.runelite.api.TileObject;
 import net.runelite.api.coords.WorldPoint;
-import net.runelite.client.events.ConfigChanged;
 import net.runelite.api.events.DecorativeObjectChanged;
 import net.runelite.api.events.DecorativeObjectDespawned;
 import net.runelite.api.events.DecorativeObjectSpawned;
@@ -60,6 +64,7 @@ import net.runelite.api.events.WallObjectSpawned;
 import net.runelite.client.Notifier;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
+import net.runelite.client.events.ConfigChanged;
 import net.runelite.client.game.AgilityShortcut;
 import net.runelite.client.game.ItemManager;
 import net.runelite.client.plugins.Plugin;
@@ -123,6 +128,9 @@ public class AgilityPlugin extends Plugin
 	@Getter
 	private int agilityLevel;
 
+	@Getter(AccessLevel.PACKAGE)
+	private Tile stickTile;
+
 	@Provides
 	AgilityConfig getConfig(ConfigManager configManager)
 	{
@@ -146,6 +154,7 @@ public class AgilityPlugin extends Plugin
 		obstacles.clear();
 		session = null;
 		agilityLevel = 0;
+		stickTile = null;
 	}
 
 	@Subscribe
@@ -162,6 +171,7 @@ public class AgilityPlugin extends Plugin
 			case LOADING:
 				marksOfGrace.clear();
 				obstacles.clear();
+				stickTile = null;
 				break;
 			case LOGGED_IN:
 				if (!isInAgilityArena())
@@ -240,13 +250,25 @@ public class AgilityPlugin extends Plugin
 		{
 			marksOfGrace.add(tile);
 		}
+
+		if (item.getId() == ItemID.STICK)
+		{
+			stickTile = tile;
+		}
 	}
 
 	@Subscribe
 	public void onItemDespawned(ItemDespawned itemDespawned)
 	{
+		final TileItem item = itemDespawned.getItem();
 		final Tile tile = itemDespawned.getTile();
+
 		marksOfGrace.remove(tile);
+
+		if (item.getId() == ItemID.STICK && stickTile == tile)
+		{
+			stickTile = null;
+		}
 	}
 
 	@Subscribe
@@ -383,6 +405,7 @@ public class AgilityPlugin extends Plugin
 		}
 
 		if (Obstacles.COURSE_OBSTACLE_IDS.contains(newObject.getId()) ||
+			Obstacles.PORTAL_OBSTACLE_IDS.contains(newObject.getId()) ||
 			(Obstacles.TRAP_OBSTACLE_IDS.contains(newObject.getId())
 				&& Obstacles.TRAP_OBSTACLE_REGIONS.contains(newObject.getWorldLocation().getRegionID())))
 		{

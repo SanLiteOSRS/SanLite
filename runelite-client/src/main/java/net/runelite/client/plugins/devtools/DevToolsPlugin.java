@@ -344,15 +344,15 @@ public class DevToolsPlugin extends Plugin
 			{
 				int id = Integer.parseInt(args[0]);
 				Player localPlayer = client.getLocalPlayer();
-				localPlayer.setSpotAnimation(id);
-				localPlayer.setSpotAnimationFrame(0);
+				localPlayer.setGraphic(id);
+				localPlayer.setSpotAnimFrame(0);
 				break;
 			}
 			case "transform":
 			{
 				int id = Integer.parseInt(args[0]);
 				Player player = client.getLocalPlayer();
-				player.getPlayerAppearance().setTransformedNpcId(id);
+				player.getPlayerComposition().setTransformedNpcId(id);
 				player.setIdlePoseAnimation(-1);
 				player.setPoseAnimation(-1);
 				break;
@@ -361,14 +361,20 @@ public class DevToolsPlugin extends Plugin
 			{
 				int id = Integer.parseInt(args[0]);
 				Player player = client.getLocalPlayer();
-				player.getPlayerAppearance().getEquipmentIds()[KitType.CAPE.getIndex()] = id + 512;
-				player.getPlayerAppearance().setHash();
+				player.getPlayerComposition().getEquipmentIds()[KitType.CAPE.getIndex()] = id + 512;
+				player.getPlayerComposition().setHash();
 				break;
 			}
 			case "sound":
 			{
 				int id = Integer.parseInt(args[0]);
 				client.playSoundEffect(id);
+				break;
+			}
+			case "skull":
+			{
+				int id = Integer.parseInt(args[0]);
+				client.getLocalPlayer().setSkullIcon(id);
 				break;
 			}
 			case "msg":
@@ -404,9 +410,9 @@ public class DevToolsPlugin extends Plugin
 					message = String.format("Set configuration %s.%s to %s (was: %s)", group, key, value, current);
 				}
 				chatMessageManager.queue(QueuedMessage.builder()
-						.type(ChatMessageType.GAMEMESSAGE)
-						.runeLiteFormattedMessage(new ChatMessageBuilder().append(message).build())
-						.build());
+					.type(ChatMessageType.GAMEMESSAGE)
+					.runeLiteFormattedMessage(new ChatMessageBuilder().append(message).build())
+					.build());
 				break;
 			}
 			case "getconf":
@@ -415,9 +421,9 @@ public class DevToolsPlugin extends Plugin
 				String value = configManager.getConfiguration(group, key);
 				final String message = String.format("%s.%s = %s", group, key, value);
 				chatMessageManager.queue(QueuedMessage.builder()
-						.type(ChatMessageType.GAMEMESSAGE)
-						.runeLiteFormattedMessage(new ChatMessageBuilder().append(message).build())
-						.build());
+					.type(ChatMessageType.GAMEMESSAGE)
+					.runeLiteFormattedMessage(new ChatMessageBuilder().append(message).build())
+					.build());
 				break;
 			}
 		}

@@ -118,12 +118,12 @@ public interface MessageNode extends Node
 	void setTimestamp(int timestamp);
 
 	/**
-	 * Returns yes if the message is from a friend
+	 * Returns true if the message is from a friend
 	 */
 	boolean isFromFriend();
 
 	/**
-	 * Returns yes if the message is from a clanmate
+	 * Returns true if the message is from a clanmate
 	 */
 	boolean isFromClanMate();
 }

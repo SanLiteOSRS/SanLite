@@ -37,7 +37,7 @@ import javax.inject.Singleton;
 import lombok.Getter;
 import lombok.Value;
 import net.runelite.api.Client;
-import net.runelite.api.ItemDefinition;
+import net.runelite.api.ItemComposition;
 import net.runelite.api.widgets.ItemQuantityMode;
 import net.runelite.api.widgets.JavaScriptCallback;
 import net.runelite.api.widgets.Widget;
@@ -62,7 +62,7 @@ public class ChatboxItemSearch extends ChatboxTextInput
 	private final ItemManager itemManager;
 	private final Client client;
 
-	private Map<Integer, ItemDefinition> results = new LinkedHashMap<>();
+	private Map<Integer, ItemComposition> results = new LinkedHashMap<>();
 	private String tooltipText;
 	private int index = -1;
 
@@ -132,7 +132,7 @@ public class ChatboxItemSearch extends ChatboxTextInput
 		int x = PADDING;
 		int y = PADDING * 3;
 		int idx = 0;
-		for (ItemDefinition itemComposition : results.values())
+		for (ItemComposition itemComposition : results.values())
 		{
 			Widget item = container.createChild(-1, WidgetType.GRAPHIC);
 			item.setXPositionMode(WidgetPositionMode.ABSOLUTE_LEFT);
@@ -301,7 +301,7 @@ public class ChatboxItemSearch extends ChatboxTextInput
 		Set<ItemIcon> itemIcons = new HashSet<>();
 		for (int i = 0; i < client.getItemCount() && results.size() < MAX_RESULTS; i++)
 		{
-			ItemDefinition itemComposition = itemManager.getItemComposition(itemManager.canonicalize(i));
+			ItemComposition itemComposition = itemManager.getItemComposition(itemManager.canonicalize(i));
 			String name = itemComposition.getName().toLowerCase();
 
 			// The client assigns "null" to item names of items it doesn't know about
@@ -310,7 +310,7 @@ public class ChatboxItemSearch extends ChatboxTextInput
 			{
 				// Check if the results already contain the same item image
 				ItemIcon itemIcon = new ItemIcon(itemComposition.getInventoryModel(),
-						itemComposition.getColorToReplaceWith(), itemComposition.getTextureToReplaceWith());
+					itemComposition.getColorToReplaceWith(), itemComposition.getTextureToReplaceWith());
 				if (itemIcons.contains(itemIcon))
 				{
 					continue;

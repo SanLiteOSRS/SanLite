@@ -80,7 +80,7 @@ public class Buffer extends Node {
 	@Export("releaseArray")
 	public void releaseArray() {
 		if (this.array != null) {
-			class51.ByteArrayPool_release(this.array);
+			WorldMapSection3.ByteArrayPool_release(this.array);
 		}
 
 		this.array = null;
@@ -222,7 +222,7 @@ public class Buffer extends Node {
 
 		this.array[++this.offset - 1] = 0;
 		this.writeVarInt(var4);
-		this.offset += Entity.method3372(this.array, this.offset, var1);
+		this.offset += Renderable.method3372(this.array, this.offset, var1);
 	}
 
 	@ObfuscatedName("bg")

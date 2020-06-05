@@ -28,7 +28,7 @@ import java.awt.Rectangle;
 import java.util.Collection;
 import net.runelite.api.FontTypeFace;
 import net.runelite.api.Point;
-import net.runelite.api.Sprite;
+import net.runelite.api.SpritePixels;
 
 /**
  * Represents an on-screen UI element that is drawn on the canvas.
@@ -694,18 +694,32 @@ public interface Widget
 	void revalidateScroll();
 
 	/**
-	 * Array of widget key listeners
+	 * Gets the script and arguments to be ran when a menu action is clicked.
+	 *
+	 * @return
+	 */
+	Object[] getOnOpListener();
+
+	/**
+	 * Gets the script and arguments to be ran when a key is pressed.
+	 *
+	 * @return
 	 */
 	Object[] getOnKeyListener();
 
 	/**
-	 * Array of widget load listeners
+	 * Gets the script and arguments to be ran when a interface is loaded.
+	 *
+	 * @return
 	 */
 	Object[] getOnLoadListener();
 
-	Object[] getOnInvTransmit();
-
-	Object[] getOnOp();
+	/**
+	 * Gets the script and arguments to be ran when one of the listened for inventories changes.
+	 *
+	 * @return
+	 */
+	Object[] getOnInvTransmitListener();
 
 	/**
 	 * Returns the archive id of the font used
@@ -887,7 +901,7 @@ public interface Widget
 	 */
 	void setTargetVerb(String targetVerb);
 
-	Sprite getSprite();
+	SpritePixels getSprite();
 
 	/**
 	 * Returns true if your mouse pointer is over this widget or any of its children.

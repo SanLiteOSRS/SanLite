@@ -6,7 +6,8 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ke")
 @Implements("Buddy")
-public class Buddy extends User {
+public class Buddy extends Nameable
+{
 	@ObfuscatedName("w")
 	@ObfuscatedGetter(
 		intValue = 1726409249

@@ -28,12 +28,12 @@ import com.google.common.collect.ImmutableSet;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.Set;
+import javax.annotation.Nullable;
 import lombok.Getter;
 import net.runelite.api.NPC;
 import static net.runelite.api.NullObjectID.NULL_1293;
+import net.runelite.api.ObjectComposition;
 import static net.runelite.api.ObjectID.*;
-
-import net.runelite.api.ObjectDefinition;
 import net.runelite.api.TileObject;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.coords.WorldPoint;
@@ -47,8 +47,6 @@ import net.runelite.client.ui.overlay.OverlayUtil;
 import net.runelite.client.ui.overlay.components.LineComponent;
 import net.runelite.client.ui.overlay.components.PanelComponent;
 import net.runelite.client.ui.overlay.components.TitleComponent;
-
-import javax.annotation.Nullable;
 
 @Getter
 public class CrypticClue extends ClueScroll implements TextClueScroll, NpcClueScroll, ObjectClueScroll
@@ -232,7 +230,7 @@ public class CrypticClue extends ClueScroll implements TextClueScroll, NpcClueSc
 		new CrypticClue("Dig under Razorlor's toad batta.", new WorldPoint(3139, 4554, 0), "Dig on the toad batta spawn in Tarn's Lair."),
 		new CrypticClue("Talk to Cassie in Falador.", "Cassie", new WorldPoint(2975, 3383, 0), "Cassie is found just south-east of the northern Falador gate."),
 		new CrypticClue("Faint sounds of 'Arr', fire giants found deep, the eastern tip of a lake, are the rewards you could reap.", new WorldPoint(3055, 10338, 0), "Dig south of the pillar in the Deep Wilderness Dungeon in the room with the fire giants."),
-		new CrypticClue("If you're feeling brave, dig beneath the dragon's eye.", new WorldPoint(2410, 4714, 0), "Dig below the mossy rock under the Viyeldi caves (Legend's Quest). Items needed: Pickaxe, unpowered orb, lockpick, spade, and any charge orb spell."),
+		new CrypticClue("If you're feeling brave, dig beneath the dragon's eye.", new WorldPoint(2410, 4714, 0), "Dig below the mossy rock under the Viyeldi caves (Legend's Quest). Items needed: Pickaxe, unpowered orb, lockpick, spade, any charge orb spell, and either 79 agility or an axe and machete."),
 		new CrypticClue("Search the tents in the Imperial Guard camp in Burthorpe for some boxes.", BOXES_3686, new WorldPoint(2885, 3540, 0), "Search in the tents in northwest corner of the camp."),
 		new CrypticClue("A dwarf, approaching death, but very much in the light.", "Thorgel", new WorldPoint(1863, 4639, 0), "Thorgel at the entrance to the Death altar"),
 		new CrypticClue("You must be 100 to play with me.", "Squire (Veteran)", new WorldPoint(2638, 2656, 0), "Speak to the Veteran boat squire at Pest Control"),
@@ -269,7 +267,7 @@ public class CrypticClue extends ClueScroll implements TextClueScroll, NpcClueSc
 		new CrypticClue("In a town where everyone has perfect vision, seek some locked drawers in a house that sits opposite a workshop.", "Chicken", DRAWERS_25766, new WorldPoint(2709, 3478, 0), "The Seers' Village house south of the Elemental Workshop entrance. Kill any Chicken to obtain a key."),
 		new CrypticClue("The treasure is buried in a small building full of bones. Here is a hint: it's not near a graveyard.", new WorldPoint(3356, 3507, 0), "In the western building near the Limestone quarry east of Varrock. Dig south of the box of bones in the smaller building."),
 		new CrypticClue("Search the crates in East Ardougne's general store.", CRATE_357, new WorldPoint(2615, 3291, 0), "Located south of the Ardougne church."),
-		new CrypticClue("Come brave adventurer, your sense is on fire. If you talk to me, it's an old god you desire.", "Viggora", null, "Speak to Viggora"),
+		new CrypticClue("Come brave adventurer, your sense is on fire. If you talk to me, it's an old god you desire.", "Viggora", null, "Speak to Viggora while wearing a ring of visibility and a Ghostspeak amulet."),
 		new CrypticClue("2 musical birds. Dig in front of the spinning light.", new WorldPoint(2671, 10396, 0), "Dig in front of the spinning light in Ping and Pong's room inside the Iceberg"),
 		new CrypticClue("Search the wheelbarrow in Rimmington mine.", WHEELBARROW_9625, new WorldPoint(2978, 3239, 0), "The Rimmington mining site is located north of Rimmington."),
 		new CrypticClue("Belladonna, my dear. If only I had gloves, then I could hold you at last.", "Tool Leprechaun", new WorldPoint(3088, 3357, 0), "Talk to Tool Leprechaun at Draynor Manor"),
@@ -286,7 +284,7 @@ public class CrypticClue extends ClueScroll implements TextClueScroll, NpcClueSc
 		new CrypticClue("Search the crates in the most north-western house in Al Kharid.", CRATE_358, new WorldPoint(3289, 3202, 0), "Search the crates in the house, marked with a icon, southeast of the gem stall."),
 		new CrypticClue("You will have to fly high where a sword cannot help you.", null, "Kill an Aviansie."),
 		new CrypticClue("A massive battle rages beneath so be careful when you dig by the large broken crossbow.", new WorldPoint(2927, 3761, 0), "NE of the God Wars Dungeon entrance, climb the rocky handholds & dig by large crossbow."),
-		new CrypticClue("Mix yellow with blue and add heat, make sure you bring protection.", null, "Kill a green dragon."),
+		new CrypticClue("Mix yellow with blue and add heat, make sure you bring protection.", null, "Kill a green or brutal green dragon."),
 		new CrypticClue("Speak to Ellis in Al Kharid.", "Ellis", new WorldPoint(3276, 3191, 0), "Ellis is tanner just north of Al Kharid bank."),
 		new CrypticClue("Search the chests in the Dwarven Mine.", CLOSED_CHEST_375, new WorldPoint(3000, 9798, 0), "The chest is on the western wall, where Hura's Crossbow Shop is, in the Dwarven Mine."),
 		new CrypticClue("In a while...", null, "Kill a crocodile."),
@@ -400,7 +398,7 @@ public class CrypticClue extends ClueScroll implements TextClueScroll, NpcClueSc
 
 		if (objectId != -1)
 		{
-			ObjectDefinition object = plugin.getClient().getObjectDefinition(objectId);
+			ObjectComposition object = plugin.getClient().getObjectDefinition(objectId);
 
 			if (object != null && object.getImpostorIds() != null)
 			{

@@ -34,18 +34,17 @@ import javax.inject.Inject;
 import net.runelite.api.Client;
 import static net.runelite.api.MenuAction.RUNELITE_OVERLAY;
 import net.runelite.api.Player;
-import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayMenuEntry;
+import net.runelite.client.ui.overlay.OverlayPanel;
 import net.runelite.client.ui.overlay.components.ComponentConstants;
 import net.runelite.client.ui.overlay.components.LineComponent;
-import net.runelite.client.ui.overlay.components.PanelComponent;
 import net.runelite.client.ui.overlay.components.TitleComponent;
 import net.runelite.client.ui.overlay.tooltip.Tooltip;
 import net.runelite.client.ui.overlay.tooltip.TooltipManager;
 import net.runelite.client.util.QuantityFormatter;
 import net.runelite.client.ws.PartyService;
 
-class DpsOverlay extends Overlay
+class DpsOverlay extends OverlayPanel
 {
 	private static final DecimalFormat DPS_FORMAT = new DecimalFormat("#0.0");
 	private static final int PANEL_WIDTH_OFFSET = 10; // assumes 8 for panel component border + 2px between left and right
@@ -60,11 +59,9 @@ class DpsOverlay extends Overlay
 	private final Client client;
 	private final TooltipManager tooltipManager;
 
-	private final PanelComponent panelComponent = new PanelComponent();
-
 	@Inject
 	DpsOverlay(DpsCounterPlugin dpsCounterPlugin, DpsConfig dpsConfig, PartyService partyService, Client client,
-				TooltipManager tooltipManager)
+		TooltipManager tooltipManager)
 	{
 		super(dpsCounterPlugin);
 		this.dpsCounterPlugin = dpsCounterPlugin;
@@ -108,13 +105,11 @@ class DpsOverlay extends Overlay
 		DpsMember total = dpsCounterPlugin.getTotal();
 		boolean paused = total.isPaused();
 
-		panelComponent.getChildren().clear();
-
 		final String title = (inParty ? "Party " : "") + (showDamage ? "Damage" : "DPS") + (paused ? " (paused)" : "");
 		panelComponent.getChildren().add(
-				TitleComponent.builder()
-						.text(title)
-						.build());
+			TitleComponent.builder()
+				.text(title)
+				.build());
 
 		int maxWidth = ComponentConstants.STANDARD_WIDTH;
 		FontMetrics fontMetrics = graphics.getFontMetrics();
@@ -125,10 +120,10 @@ class DpsOverlay extends Overlay
 			String right = showDamage ? QuantityFormatter.formatNumber(dpsMember.getDamage()) : DPS_FORMAT.format(dpsMember.getDps());
 			maxWidth = Math.max(maxWidth, fontMetrics.stringWidth(left) + fontMetrics.stringWidth(right));
 			panelComponent.getChildren().add(
-					LineComponent.builder()
-							.left(left)
-							.right(right)
-							.build());
+				LineComponent.builder()
+					.left(left)
+					.right(right)
+					.build());
 		}
 
 		panelComponent.setPreferredSize(new Dimension(maxWidth + PANEL_WIDTH_OFFSET, 0));
@@ -143,15 +138,15 @@ class DpsOverlay extends Overlay
 				if (self != null && total.getDamage() > self.getDamage())
 				{
 					panelComponent.getChildren().add(
-							LineComponent.builder()
-									.left(total.getName())
-									.right(showDamage ? Integer.toString(total.getDamage()) : DPS_FORMAT.format(total.getDps()))
-									.build());
+						LineComponent.builder()
+							.left(total.getName())
+							.right(showDamage ? Integer.toString(total.getDamage()) : DPS_FORMAT.format(total.getDps()))
+							.build());
 				}
 			}
 		}
 
-		return panelComponent.render(graphics);
+		return super.render(graphics);
 	}
 
 	void setPaused(boolean paused)

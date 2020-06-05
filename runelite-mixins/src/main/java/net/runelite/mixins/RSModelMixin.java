@@ -25,10 +25,9 @@
 package net.runelite.mixins;
 
 import java.awt.Shape;
-import java.util.ArrayList;
-import java.util.List;
 import net.runelite.api.Model;
 import net.runelite.api.Perspective;
+import net.runelite.api.hooks.DrawCallbacks;
 import net.runelite.api.mixins.Copy;
 import net.runelite.api.mixins.Inject;
 import net.runelite.api.mixins.MethodHook;
@@ -36,8 +35,6 @@ import net.runelite.api.mixins.Mixin;
 import net.runelite.api.mixins.Replace;
 import net.runelite.api.mixins.Shadow;
 import net.runelite.api.model.Jarvis;
-import net.runelite.api.model.Triangle;
-import net.runelite.api.model.Vertex;
 import net.runelite.rs.api.RSAnimation;
 import net.runelite.rs.api.RSClient;
 import net.runelite.rs.api.RSFrames;
@@ -107,57 +104,6 @@ public abstract class RSModelMixin implements RSModel
 		setFaceTextureVCoordinates(v);
 	}
 
-	@Override
-	@Inject
-	public List<Vertex> getVertices()
-	{
-		int[] verticesX = getVerticesX();
-		int[] verticesY = getVerticesY();
-		int[] verticesZ = getVerticesZ();
-
-		List<Vertex> vertices = new ArrayList<Vertex>(getVerticesCount());
-
-		for (int i = 0; i < getVerticesCount(); ++i)
-		{
-			Vertex v = new Vertex(
-				verticesX[i],
-				verticesY[i],
-				verticesZ[i]
-			);
-			vertices.add(v);
-		}
-
-		return vertices;
-	}
-
-	@Override
-	@Inject
-	public List<Triangle> getTriangles()
-	{
-		int[] trianglesX = getTrianglesX();
-		int[] trianglesY = getTrianglesY();
-		int[] trianglesZ = getTrianglesZ();
-
-		List<Vertex> vertices = getVertices();
-		List<Triangle> triangles = new ArrayList<Triangle>(getTrianglesCount());
-
-		for (int i = 0; i < getTrianglesCount(); ++i)
-		{
-			int triangleX = trianglesX[i];
-			int triangleY = trianglesY[i];
-			int triangleZ = trianglesZ[i];
-
-			Triangle triangle = new Triangle(
-				vertices.get(triangleX),
-				vertices.get(triangleY),
-				vertices.get(triangleZ)
-			);
-			triangles.add(triangle);
-		}
-
-		return triangles;
-	}
-
 	@Copy("contourGround")
 	public abstract Model rs$contourGround(int[][] tileHeights, int packedX, int height, int packedY, boolean copy, int contouredGround);
 
@@ -173,6 +119,19 @@ public abstract class RSModelMixin implements RSModel
 			rsModel.setFaceTextureVCoordinates(rl$faceTextureVCoordinates);
 		}
 		return model;
+	}
+
+	@Copy("drawFace")
+	public abstract void rs$drawFace(int face);
+
+	@Replace("drawFace")
+	public void rl$drawFace(int face)
+	{
+		DrawCallbacks callbacks = client.getDrawCallbacks();
+		if (callbacks == null || !callbacks.drawFace(this, face))
+		{
+			rs$drawFace(face);
+		}
 	}
 
 	@MethodHook("buildSharedModel")

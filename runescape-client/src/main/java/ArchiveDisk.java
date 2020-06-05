@@ -14,7 +14,7 @@ public final class ArchiveDisk {
 		signature = "Lla;"
 	)
 	@Export("sceneMinimapSprite")
-	static Sprite sceneMinimapSprite;
+	static SpritePixels sceneMinimapSprite;
 	@ObfuscatedName("x")
 	@Export("ArchiveDisk_buffer")
 	static byte[] ArchiveDisk_buffer;
@@ -354,8 +354,8 @@ public final class ArchiveDisk {
 		signature = "(I)Lla;",
 		garbageValue = "-389802701"
 	)
-	static Sprite method5932() {
-		Sprite var0 = new Sprite();
+	static SpritePixels method5932() {
+		SpritePixels var0 = new SpritePixels();
 		var0.width = class335.SpriteBuffer_spriteWidth;
 		var0.height = class335.SpriteBuffer_spriteHeight;
 		var0.xOffset = class335.SpriteBuffer_xOffsets[0];

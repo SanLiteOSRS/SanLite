@@ -1,7 +1,4 @@
-import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
-import net.runelite.mapping.ObfuscatedName;
-import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.mapping.*;
 
 @ObfuscatedName("hx")
 @Implements("Strings")
@@ -35,12 +32,13 @@ public class Strings {
 		signature = "(IS)Lii;",
 		garbageValue = "18624"
 	)
-	public static ServerBuild method4219(int var0) {
-		ServerBuild[] var1 = Language.method3751();
+	@Export("GameBuild_get")
+	public static GameBuild GameBuild_get(int var0) {
+		GameBuild[] var1 = Language.method3751();
 
 		for (int var2 = 0; var2 < var1.length; ++var2) {
-			ServerBuild var3 = var1[var2];
-			if (var0 == var3.field3101) {
+			GameBuild var3 = var1[var2];
+			if (var0 == var3.buildId) {
 				return var3;
 			}
 		}

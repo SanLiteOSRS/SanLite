@@ -44,6 +44,7 @@ import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.plaf.basic.BasicProgressBarUI;
 import lombok.extern.slf4j.Slf4j;
+import net.runelite.client.RuneLiteProperties;
 import net.runelite.client.ui.skin.SubstanceRuneLiteLookAndFeel;
 import net.runelite.client.util.ImageUtil;
 import org.pushingpixels.substance.internal.SubstanceSynapse;
@@ -52,6 +53,7 @@ import org.pushingpixels.substance.internal.SubstanceSynapse;
 public class SplashScreen extends JFrame implements ActionListener
 {
 	private static final int WIDTH = 200;
+	private static final int INITIAL_HEIGHT = 180;
 	private static final int PAD = 10;
 
 	private static SplashScreen INSTANCE;
@@ -68,9 +70,9 @@ public class SplashScreen extends JFrame implements ActionListener
 
 	private SplashScreen() throws IOException
 	{
-		BufferedImage logo = ImageUtil.getResourceStreamFromClass(SplashScreen.class, "runelite_transparent.png");
+		BufferedImage logo = ImageUtil.getResourceStreamFromClass(SplashScreen.class, "sanlite_transparent.png");
 
-		setTitle("RuneLite Launcher");
+		setTitle(RuneLiteProperties.getTitle() + " Launcher");
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setUndecorated(true);
@@ -85,7 +87,16 @@ public class SplashScreen extends JFrame implements ActionListener
 		pane.add(logoLabel);
 		logoLabel.setBounds(0, 0, WIDTH, WIDTH);
 
-		int y = WIDTH;
+		int y = INITIAL_HEIGHT;
+
+		JLabel clientVersion = new JLabel("Version " + RuneLiteProperties.getSanLiteVersion());
+		pane.add(clientVersion);
+		clientVersion.setForeground(Color.WHITE);
+		clientVersion.setBounds(0, INITIAL_HEIGHT, WIDTH, 16);
+		clientVersion.setHorizontalAlignment(SwingConstants.CENTER);
+		clientVersion.setForeground(clientVersion.getForeground().darker());
+		clientVersion.setFont(font);
+		y += clientVersion.getHeight() + PAD;
 
 		pane.add(action);
 		action.setForeground(Color.WHITE);
@@ -215,8 +226,8 @@ public class SplashScreen extends JFrame implements ActionListener
 	}
 
 	public static void stage(double startProgress, double endProgress,
-								@Nullable String actionText, String subActionText,
-								int done, int total, boolean mib)
+		@Nullable String actionText, String subActionText,
+		int done, int total, boolean mib)
 	{
 		String progress;
 		if (mib)

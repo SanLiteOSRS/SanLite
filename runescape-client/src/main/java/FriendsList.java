@@ -6,7 +6,8 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("kr")
 @Implements("FriendsList")
-public class FriendsList extends UserList {
+public class FriendsList extends NameableContainer
+{
 	@ObfuscatedName("k")
 	@ObfuscatedSignature(
 		signature = "Lmx;"
@@ -41,7 +42,7 @@ public class FriendsList extends UserList {
 		garbageValue = "-1332552421"
 	)
 	@Export("newInstance")
-	User newInstance() {
+	Nameable newInstance() {
 		return new Friend();
 	}
 
@@ -51,7 +52,7 @@ public class FriendsList extends UserList {
 		garbageValue = "-667029686"
 	)
 	@Export("newTypedArray")
-	User[] newTypedArray(int var1) {
+	Nameable[] newTypedArray(int var1) {
 		return new Friend[var1];
 	}
 

@@ -1921,8 +1921,8 @@ public final class ObjectID
 	public static final int FUNGI_ON_LOG = 3509;
 	public static final int ROTTING_BRANCH = 3510;
 	public static final int BUDDING_BRANCH = 3511;
-	public static final int A_SMALL_BUSH = 3512;
-	public static final int A_GOLDEN_PEAR_BUSH = 3513;
+	public static final int SMALL_BUSH = 3512;
+	public static final int GOLDEN_PEAR_BUSH = 3513;
 	public static final int ROTTING_TREE = 3514;
 	public static final int GROTTO = 3516;
 	public static final int GROTTO_TREE = 3517;
@@ -7158,7 +7158,7 @@ public final class ObjectID
 	public static final int TABLE_12734 = 12734;
 	public static final int CLOSED_CHEST_12735 = 12735;
 	public static final int OPEN_CHEST_12736 = 12736;
-	public static final int BROKEN_DOWN_WALL = 12737;
+	public static final int BROKEN_WALL_12737 = 12737;
 	public static final int RUBBLE_12739 = 12739;
 	public static final int RUBBLE_12740 = 12740;
 	public static final int FALLEN_WALL = 12741;
@@ -7200,7 +7200,7 @@ public final class ObjectID
 	public static final int BANK_BOOTH_12799 = 12799;
 	public static final int BANK_BOOTH_12800 = 12800;
 	public static final int BANK_BOOTH_12801 = 12801;
-	public static final int TOMB_12802 = 12802;
+	public static final int COFFIN_12802 = 12802;
 	public static final int BARREL_12804 = 12804;
 	public static final int BROKEN_FURNACE = 12806;
 	public static final int REPAIRED_FURNACE = 12807;
@@ -7216,7 +7216,7 @@ public final class ObjectID
 	public static final int EXIT_PATH = 12820;
 	public static final int PILE_OF_BRICKS_12844 = 12844;
 	public static final int TABLE_12855 = 12855;
-	public static final int STORE_DOOR = 12856;
+	public static final int DOOR_12856 = 12856;
 	public static final int BAR_PUMPS_12857 = 12857;
 	public static final int TRAPDOOR_12872 = 12872;
 	public static final int BOOKCASE_12873 = 12873;
@@ -7923,8 +7923,8 @@ public final class ObjectID
 	public static final int RIPPLES = 13842;
 	public static final int SWAMP_TREE = 13843;
 	public static final int SWAMP_TREE_13844 = 13844;
-	public static final int SWAMP_TREE_13845 = 13845;
-	public static final int VINE_HANGING_FROM_BRANCH = 13846;
+	public static final int SWAMP_TREE_BRANCH = 13845;
+	public static final int SWAMP_TREE_BRANCH_13846 = 13846;
 	public static final int SWAMP_TREE_13847 = 13847;
 	public static final int SWAMP_TREE_13848 = 13848;
 	public static final int SWAMP_TREE_13849 = 13849;
@@ -15803,6 +15803,7 @@ public final class ObjectID
 	public static final int POOL_OF_NIGHTMARES = 29706;
 	public static final int POOL_OF_NIGHTMARES_29707 = 29707;
 	public static final int SCOREBOARD_29708 = 29708;
+	public static final int HAMMER_29711 = 29711;
 	public static final int NOTICEBOARD_29718 = 29718;
 	public static final int BALLISTA_29719 = 29719;
 	public static final int STAIRCASE_29720 = 29720;
@@ -16023,6 +16024,14 @@ public final class ObjectID
 	public static final int PAINTING_30155 = 30155;
 	public static final int FURNACE_30157 = 30157;
 	public static final int FURNACE_30158 = 30158;
+	public static final int RETURN_ORB = 30160;
+	public static final int LARGE_DOOR_30162 = 30162;
+	public static final int LARGE_DOOR_30163 = 30163;
+	public static final int DOOR_30164 = 30164;
+	public static final int GATE_30165 = 30165;
+	public static final int GATE_30166 = 30166;
+	public static final int DOOR_30167 = 30167;
+	public static final int BOOKCASE_30168 = 30168;
 	public static final int CRACK_30169 = 30169;
 	public static final int ROOT_30170 = 30170;
 	public static final int PORTAL_30172 = 30172;
@@ -16899,6 +16908,7 @@ public final class ObjectID
 	public static final int OLD_PASSAGEWAY = 31891;
 	public static final int OLD_PASSAGEWAY_31892 = 31892;
 	public static final int VELVET_CHAIR_31898 = 31898;
+	public static final int BOOKCASE_31899 = 31899;
 	public static final int GOBLIN_CROWD_31900 = 31900;
 	public static final int GOBLIN_CROWD_31901 = 31901;
 	public static final int SLAYER_HELMET_DISPLAY_CASE = 31902;
@@ -18503,6 +18513,7 @@ public final class ObjectID
 	public static final int ATTAS_PLANT_DISPLAY = 34685;
 	public static final int LEATHER_SHIELDS = 34686;
 	public static final int BRYOPHYTA_DISPLAY = 34687;
+	public static final int BOOKCASE_34688 = 34688;
 	public static final int BLOOMING_HESPORI_SPROUT = 34705;
 	public static final int SHRIVELLED_PLANT = 34706;
 	public static final int TWISTED_BUSH = 34712;
@@ -18579,7 +18590,6 @@ public final class ObjectID
 	public static final int RUBBLE_34804 = 34804;
 	public static final int RUBBLE_34805 = 34805;
 	public static final int JADFEST_PORTAL = 34826;
-	public static final int HANDY_PORTAL = 34827;
 	public static final int LARRANS_SMALL_CHEST_34828 = 34828;
 	public static final int LARRANS_BIG_CHEST = 34829;
 	public static final int LARRANS_BIG_CHEST_34830 = 34830;
@@ -19538,7 +19548,11 @@ public final class ObjectID
 	public static final int NIGHTMARE_DISPLAY = 37629;
 	public static final int NIGHTMARE_TOPIARY = 37630;
 	public static final int SUPPLIES_37631 = 37631;
+	public static final int BOOKCASE_37725 = 37725;
 	public static final int BANNER_37726 = 37726;
+	public static final int BOOKCASE_37727 = 37727;
+	public static final int RANGE_37728 = 37728;
+	public static final int TELESCOPE_37729 = 37729;
 	public static final int ENERGY_BARRIER_37730 = 37730;
 	public static final int ENERGY_BARRIER_37731 = 37731;
 	public static final int SPORE = 37738;
@@ -19581,7 +19595,39 @@ public final class ObjectID
 	public static final int CRATE_37936 = 37936;
 	public static final int DOOR_37937 = 37937;
 	public static final int DOOR_37938 = 37938;
+	public static final int NAVIGATORS_TABLE = 37939;
+	public static final int DOOR_37940 = 37940;
+	public static final int DOOR_37941 = 37941;
+	public static final int LADDER_37942 = 37942;
+	public static final int LADDER_37943 = 37943;
+	public static final int ROCKS_37944 = 37944;
+	public static final int ROCKS_37945 = 37945;
+	public static final int ROCKS_37946 = 37946;
+	public static final int FURNACE_37947 = 37947;
+	public static final int GATE_37948 = 37948;
 	public static final int SCOREBOARD_37949 = 37949;
 	public static final int COFFIN_37951 = 37951;
+	public static final int GATE_37952 = 37952;
+	public static final int GATE_37953 = 37953;
+	public static final int GATE_37954 = 37954;
+	public static final int LADDER_37955 = 37955;
+	public static final int LADDER_37956 = 37956;
+	public static final int HANDY_PORTAL = 37957;
+	public static final int BANK_BOOTH_37959 = 37959;
+	public static final int DOOR_37961 = 37961;
+	public static final int DOOR_37963 = 37963;
+	public static final int DOOR_37964 = 37964;
+	public static final int TREE_37965 = 37965;
+	public static final int TREE_37966 = 37966;
+	public static final int TREE_37967 = 37967;
+	public static final int TREE_37968 = 37968;
+	public static final int OAK_37969 = 37969;
+	public static final int OAK_37970 = 37970;
+	public static final int TREE_37971 = 37971;
+	public static final int TREE_37972 = 37972;
+	public static final int TREE_37973 = 37973;
+	public static final int TREE_37974 = 37974;
+	public static final int TREE_37975 = 37975;
+	public static final int MASSIVE_STORAGE_UNIT = 37978;
 	/* This file is automatically generated. Do not edit. */
 }

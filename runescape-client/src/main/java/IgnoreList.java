@@ -6,7 +6,8 @@ import net.runelite.rs.ScriptOpcodes;
 
 @ObfuscatedName("jb")
 @Implements("IgnoreList")
-public class IgnoreList extends UserList {
+public class IgnoreList extends NameableContainer
+{
 	@ObfuscatedName("bt")
 	@ObfuscatedSignature(
 		signature = "Lgl;"
@@ -34,7 +35,7 @@ public class IgnoreList extends UserList {
 		garbageValue = "-1332552421"
 	)
 	@Export("newInstance")
-	User newInstance() {
+	Nameable newInstance() {
 		return new Ignored();
 	}
 
@@ -44,7 +45,7 @@ public class IgnoreList extends UserList {
 		garbageValue = "-667029686"
 	)
 	@Export("newTypedArray")
-	User[] newTypedArray(int var1) {
+	Nameable[] newTypedArray(int var1) {
 		return new Ignored[var1];
 	}
 

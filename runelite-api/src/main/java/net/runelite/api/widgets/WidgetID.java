@@ -41,7 +41,6 @@ public class WidgetID
 	public static final int LOGOUT_PANEL_ID = 182;
 	public static final int BANK_GROUP_ID = 12;
 	public static final int BANK_INVENTORY_GROUP_ID = 15;
-	public static final int BANK_PIN_GROUP_ID = 213;
 	public static final int GRAND_EXCHANGE_INVENTORY_GROUP_ID = 467;
 	public static final int GRAND_EXCHANGE_GROUP_ID = 465;
 	public static final int DEPOSIT_BOX_GROUP_ID = 192;
@@ -155,6 +154,7 @@ public class WidgetID
 	public static final int ADVENTURE_LOG_ID = 187;
 	public static final int COUNTERS_LOG_GROUP_ID = 625;
 	public static final int GAUNTLET_TIMER_GROUP_ID = 637;
+	public static final int BANK_PIN_GROUP_ID = 213;
 
 	static class WorldMap
 	{
@@ -162,7 +162,7 @@ public class WidgetID
 		static final int OVERVIEW_MAP = 10;
 		static final int SEARCH = 25;
 		static final int SURFACE_SELECTOR = 33;
-		static final int TOOLTIP = 39;
+		static final int TOOLTIP = 41;
 		static final int OPTION = 46;
 	}
 
@@ -216,11 +216,27 @@ public class WidgetID
 	static class FriendList
 	{
 		static final int TITLE = 3;
+		static final int FULL_CONTAINER = 5;
+		static final int SORT_BY_NAME_BUTTON = 7;
+		static final int SORT_BY_LAST_WORLD_CHANGE_BUTTON = 8;
+		static final int SORT_BY_WORLD_BUTTON = 9;
+		static final int LEGACY_SORT_BUTTON = 10;
+		static final int NAMES_CONTAINER = 11;
+		static final int SCROLL_BAR = 12;
+		static final int LOADING_TEXT = 13;
+		static final int PREVIOUS_NAME_HOLDER = 18;
 	}
 
 	static class IgnoreList
 	{
 		static final int TITLE = 3;
+		static final int FULL_CONTAINER = 5;
+		static final int SORT_BY_NAME_BUTTON = 7;
+		static final int LEGACY_SORT_BUTTON = 8;
+		static final int NAMES_CONTAINER = 9;
+		static final int SCROLL_BAR = 10;
+		static final int LOADING_TEXT = 11;
+		static final int PREVIOUS_NAME_HOLDER = 16;
 	}
 
 	static class ClanChat
@@ -236,38 +252,19 @@ public class WidgetID
 		static final int BANK_CONTAINER = 1;
 		static final int INVENTORY_ITEM_CONTAINER = 3;
 		static final int BANK_TITLE_BAR = 3;
-		static final int CONTENT_CONTAINER = 8;
-		static final int TAB_CONTAINER = 9;
-		static final int ITEM_CONTAINER = 11;
-		static final int SEARCH_BUTTON_BACKGROUND = 38;
-		static final int DEPOSIT_INVENTORY = 40;
-		static final int DEPOSIT_EQUIPMENT = 42;
-		static final int INCINERATOR = 44;
-		static final int INCINERATOR_CONFIRM = 45;
-	}
-
-	// Also used for many other interfaces!
-	static class BankPin
-	{
-		static final int CONTAINER = 1;
-		static final int TOP_LEFT_TEXT = 2;
-		static final int FIRST_ENTERED = 3;
-		static final int SECOND_ENTERED = 4;
-		static final int THIRD_ENTERED = 5;
-		static final int FOURTH_ENTERED = 6;
-		static final int INSTRUCTION_TEXT = 10;
-		static final int EXIT_BUTTON = 13;
-		static final int FORGOT_BUTTON = 15;
-		static final int BUTTON_1 = 16;
-		static final int BUTTON_2 = 18;
-		static final int BUTTON_3 = 20;
-		static final int BUTTON_4 = 22;
-		static final int BUTTON_5 = 24;
-		static final int BUTTON_6 = 26;
-		static final int BUTTON_7 = 28;
-		static final int BUTTON_8 = 30;
-		static final int BUTTON_9 = 32;
-		static final int BUTTON_10 = 34;
+		static final int ITEM_COUNT_TOP = 5;
+		static final int ITEM_COUNT_BAR = 6;
+		static final int ITEM_COUNT_BOTTOM = 7;
+		static final int CONTENT_CONTAINER = 9;
+		static final int TAB_CONTAINER = 10;
+		static final int ITEM_CONTAINER = 12;
+		static final int SEARCH_BUTTON_BACKGROUND = 39;
+		static final int DEPOSIT_INVENTORY = 41;
+		static final int DEPOSIT_EQUIPMENT = 43;
+		static final int INCINERATOR = 45;
+		static final int INCINERATOR_CONFIRM = 46;
+		static final int EQUIPMENT_CONTENT_CONTAINER = 68;
+		static final int EQUIPMENT_BUTTON = 109;
 	}
 
 	static class GrandExchange
@@ -333,6 +330,7 @@ public class WidgetID
 		static final int HEALTH_ORB = 2;
 		static final int PRAYER_ORB = 12;
 		static final int QUICK_PRAYER_ORB = 14; // Has the "Quick-prayers" name
+		static final int PRAYER_ORB_TEXT = 15;
 		static final int RUN_ORB = 20;
 		static final int TOGGLE_RUN_ORB = 22; // Has the "Toggle run" name
 		static final int RUN_ORB_TEXT = 23;
@@ -472,15 +470,24 @@ public class WidgetID
 	{
 		static final int PARENT = 0;
 		static final int BUTTONS = 1;
+		static final int TAB_ALL = 4;
+		static final int TAB_GAME = 8;
+		static final int TAB_PUBLIC = 13;
+		static final int TAB_PRIVATE = 18;
+		static final int TAB_CLAN = 23;
+		static final int TAB_TRADE = 28;
 		static final int REPORT_TEXT = 36;
 		static final int FRAME = 37;
 		static final int TRANSPARENT_BACKGROUND = 38;
 		static final int CONTAINER = 40;
 		static final int TITLE = 44;
 		static final int FULL_INPUT = 45;
-		static final int MESSAGES = 55;
-		static final int TRANSPARENT_BACKGROUND_LINES = 56;
-		static final int INPUT = 57;
+		static final int GE_SEARCH_RESULTS = 53;
+		static final int MESSAGES = 56;
+		static final int TRANSPARENT_BACKGROUND_LINES = 57;
+		static final int INPUT = 58;
+		static final int MESSAGE_LINES = 59;
+		static final int FIRST_MESSAGE = 60;
 	}
 
 	static class Prayer
@@ -633,7 +640,7 @@ public class WidgetID
 
 	static class Raids
 	{
-		static final int POINTS_INFOBOX = 6;
+		static final int POINTS_INFOBOX = 7;
 	}
 
 	static class Tob
@@ -882,6 +889,7 @@ public class WidgetID
 
 	static class Options
 	{
+		static final int CAMERA_ZOOM_SLIDER_HANDLE = 15;
 		static final int MUSIC_SLIDER = 37;
 		static final int SOUND_EFFECT_SLIDER = 43;
 		static final int AREA_SOUND_SLIDER = 49;
@@ -921,5 +929,28 @@ public class WidgetID
 	static class GauntletTimer
 	{
 		static final int CONTAINER = 2;
+	}
+
+	static class BankPin
+	{
+		static final int CONTAINER = 0;
+		static final int TOP_LEFT_TEXT = 2;
+		static final int FIRST_ENTERED = 3;
+		static final int SECOND_ENTERED = 4;
+		static final int THIRD_ENTERED = 5;
+		static final int FOURTH_ENTERED = 6;
+		static final int INSTRUCTION_TEXT = 10;
+		static final int EXIT_BUTTON = 13;
+		static final int FORGOT_BUTTON = 15;
+		static final int BUTTON_1 = 16;
+		static final int BUTTON_2 = 18;
+		static final int BUTTON_3 = 20;
+		static final int BUTTON_4 = 22;
+		static final int BUTTON_5 = 24;
+		static final int BUTTON_6 = 26;
+		static final int BUTTON_7 = 28;
+		static final int BUTTON_8 = 30;
+		static final int BUTTON_9 = 32;
+		static final int BUTTON_10 = 34;
 	}
 }

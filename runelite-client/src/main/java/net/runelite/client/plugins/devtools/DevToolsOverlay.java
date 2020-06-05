@@ -37,7 +37,25 @@ import java.awt.geom.Rectangle2D;
 import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Singleton;
-import net.runelite.api.*;
+import net.runelite.api.Actor;
+import net.runelite.api.Client;
+import net.runelite.api.Constants;
+import net.runelite.api.DecorativeObject;
+import net.runelite.api.GameObject;
+import net.runelite.api.GraphicsObject;
+import net.runelite.api.TileItem;
+import net.runelite.api.GroundObject;
+import net.runelite.api.ItemLayer;
+import net.runelite.api.NPC;
+import net.runelite.api.NPCComposition;
+import net.runelite.api.Node;
+import net.runelite.api.Perspective;
+import net.runelite.api.Player;
+import net.runelite.api.Point;
+import net.runelite.api.Projectile;
+import net.runelite.api.Scene;
+import net.runelite.api.Tile;
+import net.runelite.api.WallObject;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.widgets.Widget;
 import net.runelite.api.widgets.WidgetInfo;
@@ -129,12 +147,12 @@ class DevToolsOverlay extends Overlay
 		{
 			if (p != local)
 			{
-				String text = p.getName() + " (A: " + p.getAnimation() + ") (G: " + p.getSpotAnimation()  + ")" + "(GF:" + p.getSpotAnimationFrame() + ")";
+				String text = p.getName() + " (A: " + p.getAnimation() + ") (G: " + p.getGraphic()  + ")" + " (GF:" + p.getSpotAnimFrame() + ")";
 				OverlayUtil.renderActorOverlay(graphics, p, text, BLUE);
 			}
 		}
 
-		String text = local.getName() + " (A: " + local.getAnimation() + ") (G: " + local.getSpotAnimation() + ")" + "(GF:" + local.getSpotAnimationFrame() + ")";
+		String text = local.getName() + " (A: " + local.getAnimation() + ") (G: " + local.getGraphic() + ")" + " (GF:" + local.getSpotAnimFrame() + ")";
 		OverlayUtil.renderActorOverlay(graphics, local, text, CYAN);
 		renderPlayerWireframe(graphics, local, CYAN);
 	}
@@ -144,11 +162,11 @@ class DevToolsOverlay extends Overlay
 		List<NPC> npcs = client.getNpcs();
 		for (NPC npc : npcs)
 		{
-			NPCDefinition composition = npc.getDefinition();
+			NPCComposition composition = npc.getComposition();
 			Color color = composition.getCombatLevel() > 1 ? YELLOW : ORANGE;
 			if (composition.getConfigs() != null)
 			{
-				NPCDefinition transformedComposition = composition.transform();
+				NPCComposition transformedComposition = composition.transform();
 				if (transformedComposition == null)
 				{
 					color = GRAY;
@@ -163,8 +181,8 @@ class DevToolsOverlay extends Overlay
 				composition.getName(),
 				composition.getId(),
 				npc.getAnimation(),
-				npc.getSpotAnimation(),
-				npc.getSpotAnimationFrame());
+				npc.getGraphic(),
+				npc.getSpotAnimFrame());
 
 			OverlayUtil.renderActorOverlay(graphics, npc, text, color);
 		}
@@ -239,7 +257,7 @@ class DevToolsOverlay extends Overlay
 
 	private void renderGroundItems(Graphics2D graphics, Tile tile, Player player)
 	{
-		TileItemPile itemLayer = tile.getItemLayer();
+		ItemLayer itemLayer = tile.getItemLayer();
 		if (itemLayer != null)
 		{
 			if (player.getLocalLocation().distanceTo(itemLayer.getLocalLocation()) <= MAX_DISTANCE)

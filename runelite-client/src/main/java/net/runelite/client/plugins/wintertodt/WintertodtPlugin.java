@@ -1,6 +1,7 @@
 /*
  * Copyright (c) 2018, terminatusx <jbfleischman@gmail.com>
  * Copyright (c) 2018, Adam <Adam@sigterm.info>
+ * Copyright (c) 2020, loldudester <HannahRyanster@gmail.com>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -43,6 +44,7 @@ import static net.runelite.api.AnimationID.WOODCUTTING_BLACK;
 import static net.runelite.api.AnimationID.WOODCUTTING_BRONZE;
 import static net.runelite.api.AnimationID.WOODCUTTING_CRYSTAL;
 import static net.runelite.api.AnimationID.WOODCUTTING_DRAGON;
+import static net.runelite.api.AnimationID.WOODCUTTING_GILDED;
 import static net.runelite.api.AnimationID.WOODCUTTING_INFERNAL;
 import static net.runelite.api.AnimationID.WOODCUTTING_IRON;
 import static net.runelite.api.AnimationID.WOODCUTTING_MITHRIL;
@@ -328,7 +330,6 @@ public class WintertodtPlugin extends Plugin
 		if (!neverNotify)
 		{
 			boolean shouldNotify = false;
-
 			switch (interruptType)
 			{
 				case COLD:
@@ -410,6 +411,7 @@ public class WintertodtPlugin extends Plugin
 			case WOODCUTTING_MITHRIL:
 			case WOODCUTTING_ADAMANT:
 			case WOODCUTTING_RUNE:
+			case WOODCUTTING_GILDED:
 			case WOODCUTTING_DRAGON:
 			case WOODCUTTING_INFERNAL:
 			case WOODCUTTING_3A_AXE:

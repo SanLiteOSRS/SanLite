@@ -108,7 +108,7 @@ public class ItemContainer extends Node {
 		garbageValue = "1190936651"
 	)
 	@Export("addWidgetItemMenuItem")
-	static final void addWidgetItemMenuItem(Widget var0, ItemDefinition var1, int var2, int var3, boolean var4) {
+	static final void addWidgetItemMenuItem(Widget var0, ItemComposition var1, int var2, int var3, boolean var4) {
 		String[] var5 = var1.inventoryActions;
 		byte var6 = -1;
 		String var7 = null;

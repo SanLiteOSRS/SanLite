@@ -55,7 +55,8 @@ import net.runelite.http.api.hiscore.HiscoreEndpoint;
 	name = "Opponent Information",
 	description = "Show name and hitpoints information about the NPC you are fighting",
 	tags = {"combat", "health", "hitpoints", "npcs", "overlay"},
-	type = PluginType.SANLITE_USE_AT_OWN_RISK
+	type = PluginType.SANLITE_USE_AT_OWN_RISK,
+	enabledByDefault = false
 )
 public class OpponentInfoPlugin extends Plugin
 {
@@ -115,7 +116,11 @@ public class OpponentInfoPlugin extends Plugin
 		}
 
 		final EnumSet<WorldType> worldType = client.getWorldType();
-		if (worldType.contains(WorldType.DEADMAN))
+		if (worldType.contains(WorldType.DEADMAN_TOURNAMENT))
+		{
+			hiscoreEndpoint = HiscoreEndpoint.TOURNAMENT;
+		}
+		else if (worldType.contains(WorldType.DEADMAN))
 		{
 			hiscoreEndpoint = HiscoreEndpoint.DEADMAN;
 		}

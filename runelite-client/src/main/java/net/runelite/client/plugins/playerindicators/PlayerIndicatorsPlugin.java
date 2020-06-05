@@ -35,6 +35,7 @@ import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.events.ConfigChanged;
 import net.runelite.client.game.ClanManager;
+import net.runelite.client.game.SafeDeathPvpRegions;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.plugins.PluginType;
@@ -150,7 +151,7 @@ public class PlayerIndicatorsPlugin extends Plugin
 				|| type == PLAYER_SIXTH_OPTION.getId()
 				|| type == PLAYER_SEVENTH_OPTION.getId()
 				|| type == PLAYER_EIGTH_OPTION.getId()
-				|| type == RUNELITE.getId())
+				|| type == RUNELITE_PLAYER.getId())
 		{
 			Player[] players = client.getCachedPlayers();
 			Player player = null;
@@ -234,7 +235,8 @@ public class PlayerIndicatorsPlugin extends Plugin
 	private void checkPlayerSpawned(PlayerSpawned event)
 	{
 		Player player = event.getPlayer();
-		if (player == null || player == client.getLocalPlayer() || !config.notifyOnNonClanMemberSpawned())
+		if (player == null || player == client.getLocalPlayer() || !config.notifyOnNonClanMemberSpawned() ||
+				(config.notifyOnlyOnSkulledPlayers() && !player.isSkulled()))
 			return;
 
 		PlayerIndicatorType playerIndicatorType = playerIndicatorsService.getPlayerIndicatorType(player);
@@ -242,9 +244,15 @@ public class PlayerIndicatorsPlugin extends Plugin
 			return;
 
 		// Only send notifications in PvP zones
-		if (client.getVar(Varbits.IN_PVP_AREA) != 1 && client.getVar(Varbits.IN_WILDERNESS) != 1 &&
+		if (client.getVar(Varbits.PVP_SPEC_ORB) != 1 && client.getVar(Varbits.IN_WILDERNESS) != 1 &&
 				client.getWorldType().stream().noneMatch(x -> x == WorldType.DEADMAN))
 			return;
+
+		// Do not trigger if the region is a safe death PvP zone (e.g. Duel Arena)
+		if (SafeDeathPvpRegions.inSafeDeathPvpArea(client.getMapRegions()))
+		{
+			return;
+		}
 
 		// Check if enough time has expired since the last notification
 		if (client.getTickCount() < lastPlayerSpawnNotificationGameTick + config.delayBetweenPlayerSpawnedNotifications())

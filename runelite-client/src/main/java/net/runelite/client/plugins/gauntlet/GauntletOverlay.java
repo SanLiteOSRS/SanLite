@@ -170,7 +170,8 @@ public class GauntletOverlay extends Overlay
 			{
 				if (gauntletBoss.isNpcCrystalAttack(npc.getId()))
 				{
-					OverlayUtil.renderPolygon(graphics, polygon, config.getCrystalAttackColor());
+					OverlayUtil.renderPolygon(graphics, polygon, config.getCrystalAttackColor(),
+							config.getTileMarkersLineSize().getSize());
 				}
 			}
 		}

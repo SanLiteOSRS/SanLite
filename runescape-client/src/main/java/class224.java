@@ -178,7 +178,7 @@ public class class224 {
 					} else if (var0 == ScriptOpcodes.TRADINGPOST_GETOFFERAGE) {
 						var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
 						var11 = (GrandExchangeEvent)GrandExchangeEvent.grandExchangeEvents.events.get(var3);
-						long var5 = class217.currentTimeMillis() - TilePaint.field1802 - var11.age;
+						long var5 = class217.currentTimeMillis() - SceneTilePaint.field1802 - var11.age;
 						int var7 = (int)(var5 / 3600000L);
 						int var8 = (int)((var5 - (long)(var7 * 3600000)) / 60000L);
 						int var9 = (int)((var5 - (long)(var7 * 3600000) - (long)(var8 * 60000)) / 1000L);

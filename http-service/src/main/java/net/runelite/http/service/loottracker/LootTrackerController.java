@@ -96,7 +96,7 @@ public class LootTrackerController
 
 	@DeleteMapping
 	public void deleteLoot(HttpServletRequest request, HttpServletResponse response,
-							@RequestParam(required = false) String eventId) throws IOException
+		@RequestParam(required = false) String eventId) throws IOException
 	{
 		SessionEntry e = auth.handle(request, response);
 		if (e == null)

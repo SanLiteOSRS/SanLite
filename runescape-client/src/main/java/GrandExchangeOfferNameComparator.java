@@ -24,7 +24,7 @@ final class GrandExchangeOfferNameComparator implements Comparator {
 		signature = "Lla;"
 	)
 	@Export("redHintArrowSprite")
-	static Sprite redHintArrowSprite;
+	static SpritePixels redHintArrowSprite;
 
 	@ObfuscatedName("x")
 	@ObfuscatedSignature(

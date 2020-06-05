@@ -122,14 +122,6 @@ public class VorkathDebugOverlay extends Overlay
 						.build());
 			}
 
-			if (vorkath.getGameObjects() != null)
-			{
-				panelComponent.getChildren().add(LineComponent.builder()
-						.left("Number of active AoE projectiles")
-						.right("" + vorkath.getAreaOfEffectProjectiles().size())
-						.build());
-			}
-
 			if (vorkath.getAcidPhasePathPoints() != null)
 			{
 				panelComponent.getChildren().add(LineComponent.builder()

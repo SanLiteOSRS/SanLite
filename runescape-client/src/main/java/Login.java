@@ -9,7 +9,8 @@ import net.runelite.mapping.ObfuscatedSignature;
 @Implements("Login")
 public class Login {
 	@ObfuscatedName("m")
-	static boolean field1205;
+	@Export("clearLoginScreen")
+	static boolean clearLoginScreen;
 	@ObfuscatedName("k")
 	@ObfuscatedGetter(
 		intValue = -1204959409
@@ -27,7 +28,7 @@ public class Login {
 		signature = "Lla;"
 	)
 	@Export("leftTitleSprite")
-	static Sprite leftTitleSprite;
+	static SpritePixels leftTitleSprite;
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
 		signature = "Lle;"

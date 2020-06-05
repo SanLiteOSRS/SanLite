@@ -14,20 +14,20 @@ public class class237 {
 		garbageValue = "386633685"
 	)
 	@Export("getNpcDefinition")
-	public static NPCDefinition getNpcDefinition(int var0) {
-		NPCDefinition var1 = (NPCDefinition)NPCDefinition.NpcDefinition_cached.get((long)var0);
+	public static NPCComposition getNpcDefinition(int var0) {
+		NPCComposition var1 = (NPCComposition) NPCComposition.NpcDefinition_cached.get((long)var0);
 		if (var1 != null) {
 			return var1;
 		} else {
-			byte[] var2 = NPCDefinition.NpcDefinition_archive.takeFile(9, var0);
-			var1 = new NPCDefinition();
+			byte[] var2 = NPCComposition.NpcDefinition_archive.takeFile(9, var0);
+			var1 = new NPCComposition();
 			var1.id = var0;
 			if (var2 != null) {
 				var1.decode(new Buffer(var2));
 			}
 
 			var1.postDecode();
-			NPCDefinition.NpcDefinition_cached.put(var1, (long)var0);
+			NPCComposition.NpcDefinition_cached.put(var1, (long)var0);
 			return var1;
 		}
 	}
@@ -47,7 +47,7 @@ public class class237 {
 				Client.collisionMaps[var0] = new CollisionMap(104, 104);
 			}
 
-			ArchiveDisk.sceneMinimapSprite = new Sprite(512, 512);
+			ArchiveDisk.sceneMinimapSprite = new SpritePixels(512, 512);
 			Login.Login_loadingText = "Starting game engine...";
 			Login.Login_loadingPercent = 5;
 			Client.titleLoadingStage = 20;
@@ -66,7 +66,7 @@ public class class237 {
 			AbstractWorldMapIcon.archive7 = ChatChannel.newArchive(7, false, true, true);
 			class228.archive8 = ChatChannel.newArchive(8, false, true, true);
 			SecureRandomFuture.archive9 = ChatChannel.newArchive(9, false, true, true);
-			PlayerAppearance.archive10 = ChatChannel.newArchive(10, false, true, true);
+			PlayerComposition.archive10 = ChatChannel.newArchive(10, false, true, true);
 			WorldMapRegion.archive11 = ChatChannel.newArchive(11, false, true, true);
 			class41.archive12 = ChatChannel.newArchive(12, false, true, true);
 			NPC.archive13 = ChatChannel.newArchive(13, true, false, true);
@@ -91,7 +91,7 @@ public class class237 {
 			var0 += AbstractWorldMapIcon.archive7.percentage() * 56 / 100;
 			var0 += class228.archive8.percentage() * 2 / 100;
 			var0 += SecureRandomFuture.archive9.percentage() * 2 / 100;
-			var0 += PlayerAppearance.archive10.percentage() * 2 / 100;
+			var0 += PlayerComposition.archive10.percentage() * 2 / 100;
 			var0 += WorldMapRegion.archive11.percentage() * 2 / 100;
 			var0 += class41.archive12.percentage() * 2 / 100;
 			var0 += NPC.archive13.percentage() * 2 / 100;
@@ -170,7 +170,7 @@ public class class237 {
 			} else {
 				int var26;
 				if (Client.titleLoadingStage == 60) {
-					var0 = class92.method2156(PlayerAppearance.archive10, class228.archive8);
+					var0 = class92.method2156(PlayerComposition.archive10, class228.archive8);
 					var26 = class7.method98();
 					if (var0 < var26) {
 						Login.Login_loadingText = "Loading title screen - " + var0 * 100 / var26 + "%";
@@ -194,8 +194,8 @@ public class class237 {
 						WorldMapLabelSize.method290(GrandExchangeOffer.archive2, AbstractWorldMapIcon.archive7, Client.isLowDetail);
 						var2 = GrandExchangeOffer.archive2;
 						var3 = AbstractWorldMapIcon.archive7;
-						NPCDefinition.NpcDefinition_archive = var2;
-						NPCDefinition.NpcDefinition_modelArchive = var3;
+						NPCComposition.NpcDefinition_archive = var2;
+						NPCComposition.NpcDefinition_modelArchive = var3;
 						KeyHandler.method940(GrandExchangeOffer.archive2);
 						Archive var29 = GrandExchangeOffer.archive2;
 						Archive var5 = AbstractWorldMapIcon.archive7;
@@ -205,7 +205,7 @@ public class class237 {
 						GrandExchangeOffer.ItemDefinition_modelArchive = var5;
 						class169.ItemDefinition_inMembersWorld = var6;
 						class336.ItemDefinition_fileCount = PrivateChatMode.ItemDefinition_archive.getGroupFileCount(10);
-						class51.ItemDefinition_fontPlain11 = var7;
+						WorldMapSection3.ItemDefinition_fontPlain11 = var7;
 						Archive var8 = GrandExchangeOffer.archive2;
 						Archive var9 = ArchiveDiskAction.archive0;
 						Archive var10 = DirectByteArrayCopier.archive1;
@@ -222,7 +222,7 @@ public class class237 {
 						VarpDefinition.VarpDefinition_archive = var14;
 						VarpDefinition.VarpDefinition_fileCount = VarpDefinition.VarpDefinition_archive.getGroupFileCount(16);
 						World.method1908(WorldMapSprite.archive3, AbstractWorldMapIcon.archive7, class228.archive8, NPC.archive13);
-						UserList.method5179(GrandExchangeOffer.archive2);
+						NameableContainer.method5179(GrandExchangeOffer.archive2);
 						MouseHandler.method1206(GrandExchangeOffer.archive2);
 						Players.method2251(GrandExchangeOffer.archive2);
 						Archive var15 = GrandExchangeOffer.archive2;
@@ -395,11 +395,11 @@ public class class237 {
 					Login.Login_loadingPercent = 92;
 					Client.titleLoadingStage = 120;
 				} else if (Client.titleLoadingStage == 120) {
-					if (!PlayerAppearance.archive10.tryLoadFileByNames("huffman", "")) {
+					if (!PlayerComposition.archive10.tryLoadFileByNames("huffman", "")) {
 						Login.Login_loadingText = "Loading wordpack - " + 0 + "%";
 						Login.Login_loadingPercent = 94;
 					} else {
-						Huffman var25 = new Huffman(PlayerAppearance.archive10.takeFileByNames("huffman", ""));
+						Huffman var25 = new Huffman(PlayerComposition.archive10.takeFileByNames("huffman", ""));
 						class219.huffman = var25;
 						Login.Login_loadingText = "Loaded wordpack";
 						Login.Login_loadingPercent = 94;

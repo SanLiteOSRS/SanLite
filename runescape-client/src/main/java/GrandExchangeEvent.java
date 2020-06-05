@@ -227,7 +227,7 @@ public class GrandExchangeEvent {
 								var17 = var3 + var15;
 								var18 = var14 + var4;
 								if (var17 > 0 && var18 > 0 && var17 < 103 && var18 < 103) {
-									ObjectDefinition var19 = WorldMapSection2.getObjectDefinition(var9);
+									ObjectComposition var19 = WorldMapSection2.getObjectDefinition(var9);
 									if (var16 != 22 || !Client.isLowDetail || var19.int1 != 0 || var19.interactType == 1 || var19.boolean2) {
 										if (!var19.needsModelFiles()) {
 											++Client.field734;
@@ -505,7 +505,7 @@ public class GrandExchangeEvent {
 													var28 = var27 >> 2;
 													var29 = var27 & 3;
 													if (var6 == var26 && var25 >= var15 && var25 < var15 + 8 && var24 >= var16 && var24 < var16 + 8) {
-														ObjectDefinition var48 = WorldMapSection2.getObjectDefinition(var20);
+														ObjectComposition var48 = WorldMapSection2.getObjectDefinition(var20);
 														int var31 = var13 + Language.method3749(var25 & 7, var24 & 7, var50, var48.sizeX, var48.sizeY, var29);
 														int var32 = var14 + method166(var25 & 7, var24 & 7, var50, var48.sizeX, var48.sizeY, var29);
 														if (var31 > 0 && var32 > 0 && var31 < 103 && var32 < 103) {
@@ -559,7 +559,7 @@ public class GrandExchangeEvent {
 
 				ChatChannel.playPcmPlayers();
 				ScriptFrame.method1241();
-				ObjectDefinition.ObjectDefinition_cachedModelData.clear();
+				ObjectComposition.ObjectDefinition_cachedModelData.clear();
 				PacketBufferNode var53;
 				if (WorldMapSection1.client.hasFrame()) {
 					var53 = FaceNormal.getPacketBufferNode(ClientPacket.field2215, Client.packetWriter.isaacCipher);
@@ -589,7 +589,7 @@ public class GrandExchangeEvent {
 				class348.field4061 = null;
 				Tiles.field539 = null;
 				Tiles.field540 = null;
-				class51.field404 = null;
+				WorldMapSection3.field404 = null;
 				SoundCache.field1462 = null;
 				Tiles.field545 = null;
 				GrandExchangeOfferAgeComparator.Tiles_hue = null;
@@ -599,14 +599,14 @@ public class GrandExchangeEvent {
 				FriendSystem.field1086 = null;
 				var53 = FaceNormal.getPacketBufferNode(ClientPacket.field2241, Client.packetWriter.isaacCipher);
 				Client.packetWriter.addNode(var53);
-				GameShell.clock.mark();
+				GameEngine.clock.mark();
 
 				for (var4 = 0; var4 < 32; ++var4) {
-					GameShell.graphicsTickTimes[var4] = 0L;
+					GameEngine.graphicsTickTimes[var4] = 0L;
 				}
 
 				for (var4 = 0; var4 < 32; ++var4) {
-					GameShell.clientTickTimes[var4] = 0L;
+					GameEngine.clientTickTimes[var4] = 0L;
 				}
 
 				ModelData0.gameCyclesToDo = 0;
