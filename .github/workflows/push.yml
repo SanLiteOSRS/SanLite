@@ -35,16 +35,3 @@ jobs:
       
       - name: Test with Maven
         run: mvn test
-  
-  update-release-draft:
-    runs-on: ubuntu-latest
-    name: Create/update release draft
-    if: github.ref == 'refs/heads/master'
-
-    steps:
-      - name: Release drafter
-        uses: release-drafter/release-drafter@v5.5.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-        
