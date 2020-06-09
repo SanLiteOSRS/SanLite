@@ -24,7 +24,19 @@
  */
 package net.runelite.client.util;
 
-import java.awt.*;
+import java.awt.AWTException;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.Frame;
+import java.awt.Image;
+import java.awt.Insets;
+import java.awt.SecondaryLoop;
+import java.awt.SystemTray;
+import java.awt.Toolkit;
+import java.awt.TrayIcon;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
@@ -32,16 +44,21 @@ import java.util.Enumeration;
 import java.util.function.BiConsumer;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import javax.swing.*;
-
+import javax.swing.AbstractButton;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
+import javax.swing.LookAndFeel;
+import javax.swing.SwingUtilities;
+import javax.swing.ToolTipManager;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.plaf.FontUIResource;
-
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.client.ui.ColorScheme;
-import net.runelite.client.ui.FontManager;
 import net.runelite.client.ui.NavigationButton;
 import net.runelite.client.ui.components.CustomScrollBarUI;
-import net.runelite.client.ui.skin.SubstanceRuneLiteLookAndFeel;
 import org.pushingpixels.substance.internal.SubstanceSynapse;
 
 /**
@@ -50,8 +67,6 @@ import org.pushingpixels.substance.internal.SubstanceSynapse;
 @Slf4j
 public class SwingUtil
 {
-	private static boolean lookAndFeelIsSet = false;
-
 	/**
 	 * Sets some sensible defaults for swing.
 	 * IMPORTANT! Needs to be called before main frame creation
@@ -285,26 +300,6 @@ public class SwingUtil
 			SecondaryLoop l = eq.createSecondaryLoop();
 			SwingUtilities.invokeLater(l::exit);
 			l.enter();
-		}
-	}
-
-	/**
-	 * Sets up the RuneLite look and feel. Checks to see if the look and feel
-	 * was already set up before running in case the splash screen has already
-	 * set up the theme.
-	 * This must be run inside the Swing Event Dispatch thread.
-	 */
-	public static void setupRuneLiteLookAndFeel()
-	{
-		if (!lookAndFeelIsSet)
-		{
-			lookAndFeelIsSet = true;
-			// Set some sensible swing defaults
-			SwingUtil.setupDefaults();
-			// Use substance look and feel
-			SwingUtil.setTheme(new SubstanceRuneLiteLookAndFeel());
-			// Use custom UI font
-			SwingUtil.setFont(FontManager.getRunescapeFont());
 		}
 	}
 }

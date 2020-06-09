@@ -43,4 +43,10 @@ public interface TileItem extends Renderable
 	 * @return the items quantity
 	 */
 	int getQuantity();
+
+	/**
+	 * Time in game ticks when the item spawned (relative to us)
+	 * @return game ticks
+	 */
+	int getSpawnTime();
 }

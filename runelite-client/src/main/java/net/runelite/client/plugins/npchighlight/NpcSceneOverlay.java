@@ -108,7 +108,7 @@ public class NpcSceneOverlay extends Overlay
 			return;
 		}
 
-		final Color color = config.getRespawnHighlightColor();
+		final Color color = config.getHighlightColor();
 
 		final LocalPoint centerLp = new LocalPoint(
 			lp.getX() + Perspective.LOCAL_TILE_SIZE * (npc.getNpcSize() - 1) / 2,
@@ -147,7 +147,7 @@ public class NpcSceneOverlay extends Overlay
 	{
 		NPCComposition npcComposition = actor.getTransformedComposition();
 		if (npcComposition == null || !npcComposition.isInteractible()
-			|| (actor.isDead() && !config.highlightDeadNpcs()))
+			|| (actor.isDead() && config.ignoreDeadNpcs()))
 		{
 			return;
 		}
