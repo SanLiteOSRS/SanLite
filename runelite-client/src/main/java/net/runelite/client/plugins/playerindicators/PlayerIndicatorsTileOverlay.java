@@ -79,7 +79,7 @@ public class PlayerIndicatorsTileOverlay extends Overlay
 					renderTileOverlay(graphics, player, config.getNonClanMemberColor(), config.drawNonClanMemberTiles());
 					break;
 				default:
-					log.warn("Tried rendering tile overlay for player: {} with unknown PlayerIndicatorType: {}", player.getName(), type);
+					log.warn("Tried rendering tile overlay for player: {} with unknown type: {}", player.getName(), type);
 			}
 		});
 

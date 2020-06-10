@@ -12,7 +12,6 @@ import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.events.ConfigChanged;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
-import net.runelite.client.plugins.PluginType;
 import net.runelite.client.ui.overlay.OverlayManager;
 import net.runelite.client.ui.overlay.infobox.InfoBoxManager;
 import net.runelite.client.ui.overlay.infobox.Timer;
@@ -25,9 +24,8 @@ import java.util.Arrays;
 @PluginDescriptor(
 		name = "Nightmare of Ashihama",
 		description = "Helps with the various mechanics in the Nightmare of Ashihama encounter",
-		tags = {"combat", "overlay", "pve", "pvm", "the nightmare", "boss", "group", "timer", "encounter"},
-		enabledByDefault = false,
-		type = PluginType.SANLITE_USE_AT_OWN_RISK
+		tags = {"combat", "overlay", "pve", "pvm", "the nightmare", "boss", "group", "timer", "encounter", "sanlite"},
+		enabledByDefault = false
 )
 @Slf4j
 public class NightmareOfAshihamaPlugin extends Plugin

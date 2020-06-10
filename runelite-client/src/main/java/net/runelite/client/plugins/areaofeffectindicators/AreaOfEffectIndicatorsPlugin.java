@@ -36,7 +36,6 @@ import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
-import net.runelite.client.plugins.PluginType;
 import net.runelite.client.ui.overlay.OverlayManager;
 
 import javax.inject.Inject;
@@ -46,8 +45,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 @PluginDescriptor(
 		name = "Area of Effect Indicators",
 		description = "Highlights the target tiles for area of effect projectiles",
-		tags = {"aoe", "projectile", "highlight", "pvm", "overlay", "boss", "encounter", "tile"},
-		type = PluginType.SANLITE_USE_AT_OWN_RISK,
+		tags = {"aoe", "projectile", "highlight", "pvm", "overlay", "boss", "encounter", "tile", "sanlite"},
 		enabledByDefault = false
 )
 public class AreaOfEffectIndicatorsPlugin extends Plugin

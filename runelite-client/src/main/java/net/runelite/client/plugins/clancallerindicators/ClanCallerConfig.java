@@ -24,16 +24,27 @@
  */
 package net.runelite.client.plugins.clancallerindicators;
 
-import net.runelite.client.config.Config;
-import net.runelite.client.config.ConfigGroup;
-import net.runelite.client.config.ConfigItem;
-import net.runelite.client.config.PlayerNameLocation;
+import net.runelite.client.config.*;
 
 import java.awt.*;
 
 @ConfigGroup("clancallerindicators")
 public interface ClanCallerConfig extends Config
 {
+	@ConfigSection(
+			name = "Caller(s) highlight",
+			description = "Highlight options for callers",
+			position = 99
+	)
+	String callersSection = "callers";
+
+	@ConfigSection(
+			name = "Pile highlight",
+			description = "Highlight options for the pile",
+			position = 99
+	)
+	String pileSection = "pile";
+
 	@ConfigItem(
 			position = 1,
 			keyName = "highlightCallers",
@@ -83,7 +94,7 @@ public interface ClanCallerConfig extends Config
 			keyName = "callerNamePosition",
 			name = "Caller name position",
 			description = "Configures the position of drawn caller player names, or if they should be disabled",
-			group = "Caller(s) highlight"
+			section = callersSection
 	)
 	default PlayerNameLocation callerNamePosition()
 	{
@@ -95,7 +106,7 @@ public interface ClanCallerConfig extends Config
 			keyName = "drawCallerPlayerTiles",
 			name = "Draw tiles under callers characters",
 			description = "Configures whether or not tiles under callers characters should be drawn",
-			group = "Caller(s) highlight"
+			section = callersSection
 	)
 	default boolean drawCallerTiles()
 	{
@@ -107,7 +118,7 @@ public interface ClanCallerConfig extends Config
 			keyName = "drawCallerMinimapNames",
 			name = "Draw caller names on minimap",
 			description = "Configures whether or not minimap names for callers characters with rendered names should be drawn",
-			group = "Caller(s) highlight"
+			section = callersSection
 	)
 	default boolean drawCallerMinimapNames()
 	{
@@ -119,7 +130,7 @@ public interface ClanCallerConfig extends Config
 			keyName = "pileNamePosition",
 			name = "Piles name position",
 			description = "Configures the position of drawn pile player names, or if they should be disabled",
-			group = "Pile highlight"
+			section = pileSection
 	)
 	default PlayerNameLocation pileNamePosition()
 	{
@@ -131,7 +142,7 @@ public interface ClanCallerConfig extends Config
 			keyName = "drawPilePlayerTiles",
 			name = "Draw tiles under piles characters",
 			description = "Configures whether or not tiles under piles characters should be drawn",
-			group = "Pile highlight"
+			section = pileSection
 	)
 	default boolean drawPileTiles()
 	{
@@ -143,7 +154,7 @@ public interface ClanCallerConfig extends Config
 			keyName = "drawPileMinimapNames",
 			name = "Draw piles names on minimap",
 			description = "Configures whether or not minimap names for piles characters with rendered names should be drawn",
-			group = "Pile highlight"
+			section = pileSection
 	)
 	default boolean drawPileMinimapNames()
 	{
@@ -155,7 +166,7 @@ public interface ClanCallerConfig extends Config
 			keyName = "callerNameColor",
 			name = "Caller color",
 			description = "Color of callers",
-			group = "Caller(s) highlight"
+			section = callersSection
 	)
 	default Color getCallerColor()
 	{
@@ -167,7 +178,7 @@ public interface ClanCallerConfig extends Config
 			keyName = "callerPileColor",
 			name = "Callers pile color",
 			description = "Color of callers pile",
-			group = "Pile highlight"
+			section = pileSection
 	)
 	default Color getCallerPileColor()
 	{

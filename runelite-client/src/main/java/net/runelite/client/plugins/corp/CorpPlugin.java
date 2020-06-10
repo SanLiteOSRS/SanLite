@@ -38,7 +38,6 @@ import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
-import net.runelite.client.plugins.PluginType;
 import net.runelite.client.ui.overlay.OverlayManager;
 
 import javax.inject.Inject;
@@ -50,9 +49,7 @@ import static net.runelite.api.MenuAction.MENU_ACTION_DEPRIORITIZE_OFFSET;
 @PluginDescriptor(
 		name = "Corporeal Beast",
 		description = "Show damage statistics and highlight dark energy cores",
-		tags = {"bosses", "combat", "pve", "overlay"},
-		type = PluginType.SANLITE_USE_AT_OWN_RISK,
-		enabledByDefault = false
+		tags = {"bosses", "combat", "pve", "overlay", "sanlite"}
 )
 @Slf4j
 public class CorpPlugin extends Plugin

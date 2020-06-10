@@ -31,6 +31,13 @@ import java.awt.*;
 @ConfigGroup("Alchemical Hydra")
 public interface AlchemicalHydraConfig extends Config
 {
+	@ConfigSection(
+			name = "Colors",
+			description = "Options for colors used throughout the plugin",
+			position = 11
+	)
+	String colorsSection = "colors";
+
 	@ConfigItem(
 			keyName = "showAttackStyleCounter",
 			name = "Show attack style counter",
@@ -58,7 +65,7 @@ public interface AlchemicalHydraConfig extends Config
 			keyName = "attackTimerTextColor",
 			name = "Attack timer text color",
 			description = "Color of attack timer text",
-			group = "Colors",
+			section = colorsSection,
 			position = 3
 	)
 	default Color getAttackTimerTextColor()
@@ -82,7 +89,7 @@ public interface AlchemicalHydraConfig extends Config
 			keyName = "poisonAttackColor",
 			name = "Poison attack marker",
 			description = "Color of Alchemical Hydra's poison special attack marker",
-			group = "Colors",
+			section = colorsSection,
 			position = 4
 	)
 	default Color getPoisonAttackColor()
@@ -95,7 +102,7 @@ public interface AlchemicalHydraConfig extends Config
 			keyName = "lightningAttackColor",
 			name = "Lightning marker",
 			description = "Color of Alchemical Hydra's lightning special attack marker",
-			group = "Colors",
+			section = colorsSection,
 			position = 5
 	)
 	default Color getLightningAttackColor()
@@ -108,7 +115,7 @@ public interface AlchemicalHydraConfig extends Config
 			keyName = "fireAttackColor",
 			name = "Fire marker",
 			description = "Color of Alchemical Hydra's fire special attack marker",
-			group = "Colors",
+			section = colorsSection,
 			position = 6
 	)
 	default Color getFireAttackColor()
@@ -121,7 +128,7 @@ public interface AlchemicalHydraConfig extends Config
 			keyName = "notOnChemicalPoolColor",
 			name = "Not on fountain marker",
 			description = "Color of chemical fountain marker while the Alchemical Hydra is not on it",
-			group = "Colors",
+			section = colorsSection,
 			position = 7
 	)
 	default Color getNotOnChemicalPoolColor()
@@ -134,7 +141,7 @@ public interface AlchemicalHydraConfig extends Config
 			keyName = "onChemicalPoolColor",
 			name = "On fountain marker",
 			description = "Color of chemical fountain marker while the Alchemical Hydra is on it",
-			group = "Colors",
+			section = colorsSection,
 			position = 8
 	)
 	default Color getOnChemicalPoolColor()

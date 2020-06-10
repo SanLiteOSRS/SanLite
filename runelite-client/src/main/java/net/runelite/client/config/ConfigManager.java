@@ -51,7 +51,6 @@ import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Arrays;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -469,8 +468,32 @@ public class ConfigManager
 			throw new IllegalArgumentException("Not a config group");
 		}
 
+		final List<ConfigSectionDescriptor> sections = Arrays.stream(inter.getDeclaredFields())
+			.filter(m -> m.isAnnotationPresent(ConfigSection.class) && m.getType() == String.class)
+			.map(m ->
+			{
+				try
+				{
+					return new ConfigSectionDescriptor(
+						String.valueOf(m.get(inter)),
+						m.getDeclaredAnnotation(ConfigSection.class)
+					);
+				}
+				catch (IllegalAccessException e)
+				{
+					log.warn("Unable to load section {}::{}", inter.getSimpleName(), m.getName());
+					return null;
+				}
+			})
+			.filter(Objects::nonNull)
+			.sorted((a, b) -> ComparisonChain.start()
+				.compare(a.getSection().position(), b.getSection().position())
+				.compare(a.getSection().name(), b.getSection().name())
+				.result())
+			.collect(Collectors.toList());
+
 		final List<ConfigItemDescriptor> items = Arrays.stream(inter.getMethods())
-			.filter(m -> m.getParameterCount() == 0)
+			.filter(m -> m.getParameterCount() == 0 && m.isAnnotationPresent(ConfigItem.class))
 			.map(m -> new ConfigItemDescriptor(
 				m.getDeclaredAnnotation(ConfigItem.class),
 				m.getReturnType(),
@@ -484,40 +507,7 @@ public class ConfigManager
 				.result())
 			.collect(Collectors.toList());
 
-		return new ConfigDescriptor(group, createConfigItemGroups(items));
-	}
-
-	private List<ConfigItemsGroup> createConfigItemGroups(List<ConfigItemDescriptor> itemDescriptors)
-	{
-		List<ConfigItemsGroup> itemGroups = new ArrayList<>();
-
-		for (ConfigItemDescriptor itemDescriptor : itemDescriptors)
-		{
-			String groupName = itemDescriptor.getItem().group();
-			boolean found = false;
-			for (ConfigItemsGroup itemsGroup : itemGroups)
-			{
-				if (itemsGroup.getGroup().equals(groupName))
-				{
-					itemsGroup.addItem(itemDescriptor);
-					found = true;
-					break;
-				}
-			}
-			if (!found)
-			{
-				ConfigItemsGroup newGroup = new ConfigItemsGroup(groupName);
-				newGroup.addItem(itemDescriptor);
-				itemGroups.add(newGroup);
-			}
-		}
-
-		itemGroups = itemGroups.stream().sorted((a, b) -> ComparisonChain.start()
-				.compare(a.getGroup(), b.getGroup())
-				.result())
-				.collect(Collectors.toList());
-
-		return itemGroups;
+		return new ConfigDescriptor(group, sections, items);
 	}
 
 	/**

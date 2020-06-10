@@ -24,22 +24,9 @@
  */
 package net.runelite.client.config;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-
-@Getter
-@RequiredArgsConstructor
 public enum RequestFocusType
 {
-	OFF("Off"),
-	REQUEST("Request"),
-	FORCE("Force");
-
-	private final String type;
-
-	@Override
-	public String toString()
-	{
-		return type;
-	}
+	OFF,
+	REQUEST,
+	FORCE;
 }

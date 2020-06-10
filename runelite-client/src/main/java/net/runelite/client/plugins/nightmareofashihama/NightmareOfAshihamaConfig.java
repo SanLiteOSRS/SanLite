@@ -7,11 +7,32 @@ import java.awt.*;
 @ConfigGroup("nightmareofashihama")
 public interface NightmareOfAshihamaConfig extends Config
 {
+	@ConfigSection(
+			name = "Current attack style",
+			description = "Options for The Nightmare's current attack style highlight",
+			position = 0
+	)
+	String currentAttackStyleSection = "currentAttackStyle";
+
+	@ConfigSection(
+			name = "Notifications",
+			description = "Options for plugins notifications",
+			position = 14
+	)
+	String notificationsSection = "notifications";
+
+	@ConfigSection(
+			name = "Colors",
+			description = "Options for colors used throughout the plugin",
+			position = 14
+	)
+	String colorsSection = "colors";
+
 	@ConfigItem(
 			keyName = "displayCurrentAttack",
 			name = "Display current attack",
 			description = "Displays the attack above The Nightmare when it does it. Useful for playing without sound",
-			group = "Current attack",
+			section = currentAttackStyleSection,
 			position = 1
 	)
 	default boolean displayCurrentAttack()
@@ -27,7 +48,7 @@ public interface NightmareOfAshihamaConfig extends Config
 			keyName = "currentAttackHeight",
 			name = "Icon height",
 			description = "The height of the current attack icon that is display on The Nightmare",
-			group = "Current attack",
+			section = currentAttackStyleSection,
 			position = 2
 	)
 	default int getCurrentAttackHeight()
@@ -50,7 +71,7 @@ public interface NightmareOfAshihamaConfig extends Config
 			keyName = "notifyOnPrayersShuffled",
 			name = "Notify on prayers shuffled",
 			description = "Sends a notification when The Nightmare shuffles your prayers",
-			group = "Notifications",
+			section = notificationsSection,
 			position = 4
 	)
 	default boolean notifyOnPrayersShuffled()
@@ -62,7 +83,7 @@ public interface NightmareOfAshihamaConfig extends Config
 			keyName = "notifyOnParasite",
 			name = "Notify on parasite",
 			description = "Sends a notification when a parasite impregnates you",
-			group = "Notifications",
+			section = notificationsSection,
 			position = 5
 	)
 	default boolean notifyOnParasite()
@@ -74,7 +95,7 @@ public interface NightmareOfAshihamaConfig extends Config
 			keyName = "notifyOnDrowsy",
 			name = "Notify on drowsy",
 			description = "Sends a notification when you get affected by the drowsy effect",
-			group = "Notifications",
+			section = notificationsSection,
 			position = 6
 	)
 	default boolean notifyOnDrowsy()
@@ -98,7 +119,7 @@ public interface NightmareOfAshihamaConfig extends Config
 			keyName = "activeTotemColor",
 			name = "Active totem color",
 			description = "Color of The Nightmare's active totems",
-			group = "Colors",
+			section = colorsSection,
 			position = 8
 	)
 	default Color getActiveTotemColor()
@@ -122,7 +143,7 @@ public interface NightmareOfAshihamaConfig extends Config
 			keyName = "ghostAttackColor",
 			name = "Ghost attack marker",
 			description = "Color of The Nightmare's ghost attack marker",
-			group = "Colors",
+			section = colorsSection,
 			position = 10
 	)
 	default Color getGhostAttackColor()
@@ -146,7 +167,7 @@ public interface NightmareOfAshihamaConfig extends Config
 			keyName = "infectiousSporesColor",
 			name = "Infectious spore marker",
 			description = "Color of The Nightmare's infectious spore tile marker",
-			group = "Colors",
+			section = colorsSection,
 			position = 12
 	)
 	default Color getInfectiousSporesColor()

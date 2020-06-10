@@ -131,6 +131,7 @@ class Library
 		else if (state != SolvedState.NO_DATA)
 		{
 			// Reset if the book we found isn't what we expected
+
 			if (book != null && !bookcase.getPossibleBooks().contains(book))
 			{
 				reset();

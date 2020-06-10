@@ -38,7 +38,6 @@ import net.runelite.client.game.ClanManager;
 import net.runelite.client.game.SafeDeathPvpRegions;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
-import net.runelite.client.plugins.PluginType;
 import net.runelite.client.ui.overlay.OverlayManager;
 import net.runelite.client.util.ColorUtil;
 import net.runelite.client.util.Text;
@@ -51,10 +50,9 @@ import static net.runelite.api.ClanMemberRank.UNRANKED;
 import static net.runelite.api.MenuAction.*;
 
 @PluginDescriptor(
-		name = "Player Indicators",
-		description = "Highlight players on-screen and/or on the minimap",
-		tags = {"highlight", "minimap", "overlay", "players", "friend", "finder", "offline", "pvp", "name", "notifications"},
-		type = PluginType.SANLITE
+	name = "Player Indicators",
+	description = "Highlight players on-screen and/or on the minimap",
+	tags = {"highlight", "minimap", "overlay", "players", "friend", "finder", "offline", "pvp", "name", "notifications", "sanlite"}
 )
 public class PlayerIndicatorsPlugin extends Plugin
 {

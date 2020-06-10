@@ -25,10 +25,8 @@
 package net.runelite.client.plugins.npcunaggroarea;
 
 import java.awt.Color;
-import net.runelite.client.config.Alpha;
-import net.runelite.client.config.Config;
-import net.runelite.client.config.ConfigGroup;
-import net.runelite.client.config.ConfigItem;
+
+import net.runelite.client.config.*;
 
 @ConfigGroup("npcUnaggroArea")
 public interface NpcAggroAreaConfig extends Config
@@ -38,6 +36,13 @@ public interface NpcAggroAreaConfig extends Config
 	String CONFIG_CENTER2 = "center2";
 	String CONFIG_LOCATION = "location";
 	String CONFIG_DURATION = "duration";
+
+	@ConfigSection(
+			name = "NPC Names",
+			description = "List of NPC names",
+			position = 99
+	)
+	String npcNamesSection = "npcNames";
 
 	@ConfigItem(
 		keyName = "npcUnaggroAlwaysActive",
@@ -55,7 +60,7 @@ public interface NpcAggroAreaConfig extends Config
 		name = "NPC names",
 		description = "Enter names of NPCs where you wish to use this plugin",
 		position = 2,
-		group = "NPC Names"
+		section = npcNamesSection
 	)
 	default String npcNamePatterns()
 	{

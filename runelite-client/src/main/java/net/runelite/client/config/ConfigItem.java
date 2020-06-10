@@ -41,11 +41,11 @@ public @interface ConfigItem
 
 	String description();
 
-	String group() default "";
-
 	boolean hidden() default false;
 
 	String warning() default "";
 
 	boolean secret() default false;
+
+	String section() default "";
 }
