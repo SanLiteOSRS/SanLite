@@ -70,10 +70,6 @@ public class ProjectileID
 	public static final int CERBERUS_GHOST_MAGE = 100;
 	public static final int CERBERUS_GHOST_RANGE = 34;
 
-	// Cerberus souls
-	public static final int CERBERUS_GHOST_MELEE = 1248;
-	public static final int CERBERUS_GHOST_MAGE = 100;
-	public static final int CERBERUS_GHOST_RANGE = 34;
 
 	// Wintertodt
 	public static final int WINTERTODT_SNOW_FALL_AOE = 1310;

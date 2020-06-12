@@ -131,7 +131,7 @@ public class ChambersOfXericRaid
 	{
 		return projectileId == ProjectileID.GUARDIANS_ROCK_FALLING_AOE ||
 				projectileId == ProjectileID.VASA_RANGED_BOULDER_AOE ||
-				projectileId == ProjectileID.VASA_TELEPORT_AOE ||
+				projectileId == ProjectileID.VASA_AWAKEN_AOE ||
 				projectileId == ProjectileID.LIZARDMAN_SHAMAN_ACID_AOE ||
 				projectileId == ProjectileID.OLM_FALLING_SPIKE_AOE ||
 				projectileId == ProjectileID.OLM_ACID_POOL_AOE ||
@@ -153,7 +153,7 @@ public class ChambersOfXericRaid
 					log.debug("CT: {} | guardians falling rock spawned", cycle);
 				areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 3, targetPoint, config.getGuardiansFallingRocksColor()));
 				break;
-			case ProjectileID.VASA_TELEPORT_AOE:
+			case ProjectileID.VASA_AWAKEN_AOE:
 				if (config.highlightVasaTeleportAttackTiles())
 					log.debug("CT: {} | vasa teleport attack spawned", cycle);
 				areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 3, targetPoint, config.getVasaTeleportAttackColor()));

@@ -42,7 +42,7 @@ public class VasaNistirio
 
 	public static boolean isVasaTeleportProjectileId(int projectileId)
 	{
-		return projectileId == ProjectileID.VASA_TELEPORT_AOE;
+		return projectileId == ProjectileID.VASA_AWAKEN_AOE;
 	}
 
 	public void onVasaHealingStart(int cycle)
