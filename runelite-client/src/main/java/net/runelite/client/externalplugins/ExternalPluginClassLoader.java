@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019, Davis Cook <https://github.com/daviscook477>
+ * Copyright (c) 2019 Abex
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,11 +22,20 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.api.events;
+package net.runelite.client.externalplugins;
 
-/**
- * an event posted when a cannonball is fired
- */
-public class CannonballFired
+import java.net.URL;
+import java.net.URLClassLoader;
+import lombok.Getter;
+
+class ExternalPluginClassLoader extends URLClassLoader
 {
+	@Getter
+	private final ExternalPluginManifest manifest;
+
+	ExternalPluginClassLoader(ExternalPluginManifest manifest, URL[] urls)
+	{
+		super(urls, ExternalPluginClassLoader.class.getClassLoader());
+		this.manifest = manifest;
+	}
 }

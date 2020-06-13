@@ -38,7 +38,6 @@ import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.events.ConfigChanged;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
-import net.runelite.client.plugins.PluginType;
 import net.runelite.client.ui.overlay.OverlayManager;
 
 import javax.inject.Inject;
@@ -49,8 +48,7 @@ import java.util.List;
 @PluginDescriptor(
 		name = "Cerberus",
 		description = "Show what to pray against Cerberus, including special attacks",
-		tags = {"bosses", "combat", "ghosts", "prayer", "pve", "overlay", "souls", "pvm", "cerberus", "slayer"},
-		type = PluginType.SANLITE_USE_AT_OWN_RISK,
+		tags = {"bosses", "combat", "ghosts", "prayer", "pve", "overlay", "souls", "pvm", "cerberus", "slayer", "sanlite"},
 		enabledByDefault = false
 )
 @Singleton

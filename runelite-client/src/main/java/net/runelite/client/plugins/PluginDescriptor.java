@@ -48,8 +48,6 @@ public @interface PluginDescriptor
 	 */
 	String[] tags() default {};
 
-	PluginType type() default PluginType.RUNELITE;
-
 	boolean enabledByDefault() default true;
 
 	/**

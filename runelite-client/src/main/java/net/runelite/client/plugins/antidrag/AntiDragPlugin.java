@@ -43,14 +43,12 @@ import net.runelite.client.input.KeyListener;
 import net.runelite.client.input.KeyManager;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
-import net.runelite.client.plugins.PluginType;
 
 @PluginDescriptor(
 	name = "Anti Drag",
 	description = "Prevent dragging an item for a specified delay",
-	tags = {"antidrag", "delay", "inventory", "items", "keybind"},
-	enabledByDefault = false,
-	type = PluginType.SANLITE_USE_AT_OWN_RISK
+	tags = {"antidrag", "delay", "inventory", "items", "keybind", "sanlite"},
+	enabledByDefault = false
 )
 public class AntiDragPlugin extends Plugin implements KeyListener
 {
@@ -70,7 +68,8 @@ public class AntiDragPlugin extends Plugin implements KeyListener
 	@Inject
 	private KeyManager keyManager;
 
-	private boolean held;
+	private boolean enableKeybindHeld;
+	private boolean disableKeybindHeld;
 
 	@Provides
 	AntiDragConfig getConfig(ConfigManager configManager)
@@ -102,6 +101,11 @@ public class AntiDragPlugin extends Plugin implements KeyListener
 		keyManager.unregisterKeyListener(this);
 	}
 
+	private boolean isEnableKeybindKeyCode(KeyEvent e)
+	{
+		return e.getKeyCode() == config.keybind1().getKeyCode() || e.getKeyCode() == config.keybind2().getKeyCode();
+	}
+
 	@Override
 	public void keyTyped(KeyEvent e)
 	{
@@ -111,30 +115,30 @@ public class AntiDragPlugin extends Plugin implements KeyListener
 	@Override
 	public void keyPressed(KeyEvent e)
 	{
-		if (e.getKeyCode() == config.keybind1().getKeyCode() || e.getKeyCode() == config.keybind2().getKeyCode())
+		if (e.getKeyCode() == config.ignoreKeybind().getKeyCode())
 		{
-			if (!config.onKeybindOnly())
-			{
-				return;
-			}
-
+			resetDragDelay();
+			disableKeybindHeld = true;
+		}
+		else if (isEnableKeybindKeyCode(e) && config.onKeybindOnly())
+		{
 			setDragDelay();
-			held = true;
+			enableKeybindHeld = true;
 		}
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e)
 	{
-		if (e.getKeyCode() == config.keybind1().getKeyCode() || e.getKeyCode() == config.keybind2().getKeyCode())
+		if (e.getKeyCode() == config.ignoreKeybind().getKeyCode())
 		{
-			if (!config.onKeybindOnly())
-			{
-				return;
-			}
-
+			setDragDelay();
+			disableKeybindHeld = false;
+		}
+		else if (isEnableKeybindKeyCode(e) && config.onKeybindOnly())
+		{
 			resetDragDelay();
-			held = false;
+			enableKeybindHeld = false;
 		}
 	}
 
@@ -143,9 +147,14 @@ public class AntiDragPlugin extends Plugin implements KeyListener
 	{
 		if (event.getGroup().equals(CONFIG_GROUP))
 		{
+			if (!config.enableIgnoreKeybind())
+			{
+				disableKeybindHeld = false;
+			}
+
 			if (config.onKeybindOnly())
 			{
-				held = false;
+				enableKeybindHeld = false;
 				clientThread.invoke(this::resetDragDelay);
 			}
 			else
@@ -160,7 +169,8 @@ public class AntiDragPlugin extends Plugin implements KeyListener
 	{
 		if (!focusChanged.isFocused())
 		{
-			held = false;
+			enableKeybindHeld = false;
+			disableKeybindHeld = false;
 			clientThread.invoke(this::resetDragDelay);
 		}
 		else if (!config.onKeybindOnly())
@@ -172,7 +182,7 @@ public class AntiDragPlugin extends Plugin implements KeyListener
 	@Subscribe
 	public void onWidgetLoaded(WidgetLoaded widgetLoaded)
 	{
-		if (widgetLoaded.getGroupId() == WidgetID.BANK_GROUP_ID && (!config.onKeybindOnly() || held))
+		if (widgetLoaded.getGroupId() == WidgetID.BANK_GROUP_ID && (!config.onKeybindOnly() || enableKeybindHeld) && !disableKeybindHeld)
 		{
 			setBankDragDelay(config.dragDelay());
 		}

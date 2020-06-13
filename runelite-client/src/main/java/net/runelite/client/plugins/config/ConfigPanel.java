@@ -24,671 +24,300 @@
  */
 package net.runelite.client.plugins.config;
 
-import lombok.extern.slf4j.Slf4j;
-import net.runelite.client.config.*;
-import net.runelite.client.plugins.*;
-import net.runelite.client.ui.ColorScheme;
-import net.runelite.client.ui.DynamicGridLayout;
-import net.runelite.client.ui.PluginPanel;
-import net.runelite.client.ui.components.IconButton;
-import net.runelite.client.ui.components.IconTextField;
-import net.runelite.client.ui.components.colorpicker.ColorPickerManager;
-import net.runelite.client.util.ImageUtil;
-import net.runelite.client.util.Text;
-
-import javax.swing.*;
+import com.google.common.base.Strings;
+import com.google.common.collect.ComparisonChain;
+import com.google.common.primitives.Ints;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.ItemEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
+import javax.inject.Inject;
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
+import javax.swing.JLabel;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JScrollPane;
+import javax.swing.JSpinner;
+import javax.swing.JTextArea;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.SpinnerModel;
+import javax.swing.SpinnerNumberModel;
+import javax.swing.SwingUtilities;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
-import java.awt.*;
-import java.awt.font.TextAttribute;
-import java.awt.image.BufferedImage;
-import java.util.List;
-import java.util.*;
-import java.util.stream.Collectors;
+import javax.swing.border.MatteBorder;
+import javax.swing.event.ChangeListener;
+import javax.swing.text.JTextComponent;
+import lombok.extern.slf4j.Slf4j;
+import net.runelite.client.config.ConfigDescriptor;
+import net.runelite.client.config.ConfigGroup;
+import net.runelite.client.config.ConfigItem;
+import net.runelite.client.config.ConfigItemDescriptor;
+import net.runelite.client.config.ConfigManager;
+import net.runelite.client.config.ConfigObject;
+import net.runelite.client.config.ConfigSection;
+import net.runelite.client.config.ConfigSectionDescriptor;
+import net.runelite.client.config.AllKeyCodeKeybind;
+import net.runelite.client.config.Keybind;
+import net.runelite.client.config.ModifierlessKeybind;
+import net.runelite.client.config.Range;
+import net.runelite.client.config.Units;
+import net.runelite.client.eventbus.Subscribe;
+import net.runelite.client.events.ExternalPluginsChanged;
+import net.runelite.client.events.PluginChanged;
+import net.runelite.client.externalplugins.ExternalPluginManager;
+import net.runelite.client.externalplugins.ExternalPluginManifest;
+import net.runelite.client.plugins.Plugin;
+import net.runelite.client.plugins.PluginManager;
+import net.runelite.client.ui.ColorScheme;
+import net.runelite.client.ui.DynamicGridLayout;
+import net.runelite.client.ui.FontManager;
+import net.runelite.client.ui.PluginPanel;
+import net.runelite.client.ui.components.ComboBoxListRenderer;
+import net.runelite.client.ui.components.colorpicker.ColorPickerManager;
+import net.runelite.client.ui.components.colorpicker.RuneliteColorPicker;
+import net.runelite.client.util.ColorUtil;
+import net.runelite.client.util.ImageUtil;
+import net.runelite.client.util.SwingUtil;
+import net.runelite.client.util.Text;
 
 @Slf4j
-public class ConfigPanel extends PluginPanel
+class ConfigPanel extends PluginPanel
 {
-	private static final int SCROLLBAR_WIDTH = 17;
-	private static final int OFFSET = 6;
-	private static final ImageIcon BACK_ICON;
-	private static final ImageIcon BACK_ICON_HOVER;
+	private static final int SPINNER_FIELD_WIDTH = 6;
+	private static final ImageIcon SECTION_EXPAND_ICON;
+	private static final ImageIcon SECTION_EXPAND_ICON_HOVER;
+	private static final ImageIcon SECTION_RETRACT_ICON;
+	private static final ImageIcon SECTION_RETRACT_ICON_HOVER;
+	static final ImageIcon BACK_ICON;
+	static final ImageIcon BACK_ICON_HOVER;
 
-	private static final String CLIENT_SETTINGS_GROUP_NAME = RuneLiteConfig.class.getAnnotation(ConfigGroup.class).value();
-	private static final String CLIENT_SETTINGS_PLUGIN = "Client Settings";
-	private static final String CHAT_COLOR_PLUGIN = "Chat Color";
-	private static final String COLLAPSIBLE_ENTRY_CONFIG_KEY = "collapsibleEntry";
-	private static final String COLLAPSIBLE_ENTRY_OPENED_CONFIG_KEY = "opened";
-	private static final String PINNED_PLUGINS_CONFIG_KEY = "pinnedPlugins";
-	static final String PINNED_COLLAPSIBLE_ENTRY_NAME = "Pinned";
+	private static final Map<ConfigSectionDescriptor, Boolean> sectionExpandStates = new HashMap<>();
 
-	private final PluginManager pluginManager;
-	private final ConfigManager configManager;
-	private final RuneLiteConfig runeLiteConfig;
-	private final ChatColorConfig chatColorConfig;
-	private final ColorPickerManager colorPickerManager;
+	private final FixedWidthPanel mainPanel;
+	private final JLabel title;
+	private final PluginToggleButton pluginToggle;
 
-	private final IconTextField searchBar = new IconTextField();
-	private final List<CollapsibleEntry> collapsibleEntries = new ArrayList<>();
-	private final JPanel topPanel;
-	private final JPanel mainPanel;
-	private final JScrollPane scrollPane;
+	@Inject
+	private PluginListPanel pluginList;
 
-	private boolean showingPluginList = true;
-	private int scrollBarPosition = 0;
+	@Inject
+	private ConfigManager configManager;
+
+	@Inject
+	private PluginManager pluginManager;
+
+	@Inject
+	private ExternalPluginManager externalPluginManager;
+
+	@Inject
+	private ColorPickerManager colorPickerManager;
+
+	private PluginConfigurationDescriptor pluginConfig = null;
 
 	static
 	{
 		final BufferedImage backIcon = ImageUtil.getResourceStreamFromClass(ConfigPanel.class, "config_back_icon.png");
 		BACK_ICON = new ImageIcon(backIcon);
 		BACK_ICON_HOVER = new ImageIcon(ImageUtil.alphaOffset(backIcon, -100));
+
+		BufferedImage sectionRetractIcon = ImageUtil.getResourceStreamFromClass(ConfigPanel.class, "/util/arrow_right.png");
+		sectionRetractIcon = ImageUtil.luminanceOffset(sectionRetractIcon, -121);
+		SECTION_EXPAND_ICON = new ImageIcon(sectionRetractIcon);
+		SECTION_EXPAND_ICON_HOVER = new ImageIcon(ImageUtil.alphaOffset(sectionRetractIcon, -100));
+		final BufferedImage sectionExpandIcon = ImageUtil.rotateImage(sectionRetractIcon, Math.PI / 2);
+		SECTION_RETRACT_ICON = new ImageIcon(sectionExpandIcon);
+		SECTION_RETRACT_ICON_HOVER = new ImageIcon(ImageUtil.alphaOffset(sectionExpandIcon, -100));
 	}
 
-	ConfigPanel(PluginManager pluginManager, ConfigManager configManager, RuneLiteConfig runeLiteConfig,
-				ChatColorConfig chatColorConfig, ColorPickerManager colorPickerManager)
+	public ConfigPanel()
 	{
 		super(false);
-		this.pluginManager = pluginManager;
-		this.configManager = configManager;
-		this.runeLiteConfig = runeLiteConfig;
-		this.chatColorConfig = chatColorConfig;
-		this.colorPickerManager = colorPickerManager;
-
-		searchBar.setIcon(IconTextField.Icon.SEARCH);
-		searchBar.setPreferredSize(new Dimension(PluginPanel.PANEL_WIDTH - 20, 30));
-		searchBar.setBackground(ColorScheme.DARKER_GRAY_COLOR);
-		searchBar.setHoverBackgroundColor(ColorScheme.DARK_GRAY_HOVER_COLOR);
-		searchBar.getDocument().addDocumentListener(new DocumentListener()
-		{
-			@Override
-			public void insertUpdate(DocumentEvent e)
-			{
-				onSearchBarChanged();
-			}
-
-			@Override
-			public void removeUpdate(DocumentEvent e)
-			{
-				onSearchBarChanged();
-			}
-
-			@Override
-			public void changedUpdate(DocumentEvent e)
-			{
-				onSearchBarChanged();
-			}
-		});
 
 		setLayout(new BorderLayout());
 		setBackground(ColorScheme.DARK_GRAY_COLOR);
 
-		topPanel = new JPanel();
+		JPanel topPanel = new JPanel();
 		topPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
-		topPanel.setLayout(new BorderLayout(0, OFFSET));
+		topPanel.setLayout(new BorderLayout(0, BORDER_OFFSET));
 		add(topPanel, BorderLayout.NORTH);
 
 		mainPanel = new FixedWidthPanel();
 		mainPanel.setBorder(new EmptyBorder(8, 10, 10, 10));
-		mainPanel.setLayout(new DynamicGridLayout(0, 1, 0, 4));
+		mainPanel.setLayout(new DynamicGridLayout(0, 1, 0, 5));
 		mainPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
 
 		JPanel northPanel = new FixedWidthPanel();
 		northPanel.setLayout(new BorderLayout());
 		northPanel.add(mainPanel, BorderLayout.NORTH);
 
-		scrollPane = new JScrollPane(northPanel);
+		JScrollPane scrollPane = new JScrollPane(northPanel);
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		add(scrollPane, BorderLayout.CENTER);
 
-		initializePluginList();
-		refreshPluginList();
-	}
-
-	/**
-	 * Creates entries for all plugin types and retrieves the list of plugins per type to draw in the main panel.
-	 */
-	private void initializePluginList()
-	{
-		// Add collapsible entry for pinned plugins
-		CollapsibleEntry pinnedPluginsCollapsibleEntry = new CollapsibleEntry(PINNED_COLLAPSIBLE_ENTRY_NAME, this, getPinnedPluginsListItems());
-		pinnedPluginsCollapsibleEntry.getCollapsibleEntryItems().forEach(item -> item.setParentCollapsibleEntry(pinnedPluginsCollapsibleEntry));
-
-		collapsibleEntries.add(pinnedPluginsCollapsibleEntry);
-		pinnedPluginsCollapsibleEntry.setVisible(getPinnedPluginNames().size() > 0);
-		pinnedPluginsCollapsibleEntry.setPreferredSize(new Dimension(PluginPanel.PANEL_WIDTH, getPinnedPluginNames().size() > 0 ? 30 : 0));
-
-		// Populate pluginTypeList with collapsible entries and all non-hidden plugins
-		for (PluginType pluginType : PluginType.values())
-		{
-			CollapsibleEntry collapsibleEntry = new CollapsibleEntry(pluginType.toString(), this, getPluginListByType(pluginType));
-			collapsibleEntry.getCollapsibleEntryItems().forEach(item -> item.setParentCollapsibleEntry(collapsibleEntry));
-			collapsibleEntry.setDisplayedEntryItems(collapsibleEntry.getDisplayedCollapsibleEntryItems());
-			collapsibleEntries.add(collapsibleEntry);
-		}
-
-		for (CollapsibleEntry collapsibleEntry : collapsibleEntries)
-		{
-			mainPanel.add(collapsibleEntry);
-		}
-	}
-
-	/**
-	 * Retrieves list of all plugin list items with the specified type
-	 *
-	 * @param pluginType plugin type
-	 * @return List of all PluginListItems by specified type
-	 */
-	private List<PluginListItem> getPluginListByType(PluginType pluginType)
-	{
-		List<PluginListItem> pluginListItems = new ArrayList<>();
-		final List<String> pinnedPlugins = getPinnedPluginNames();
-
-		// Filter on plugin type and filter out hidden plugins
-		pluginManager.getPlugins().stream()
-				.filter(plugin -> !plugin.getClass().getAnnotation(PluginDescriptor.class).hidden()
-						&& plugin.getClass().getAnnotation(PluginDescriptor.class).type().equals(pluginType))
-				.forEach(plugin ->
-				{
-					final PluginDescriptor descriptor = plugin.getClass().getAnnotation(PluginDescriptor.class);
-					final Config config = pluginManager.getPluginConfigProxy(plugin);
-					final ConfigDescriptor configDescriptor = config == null ? null : configManager.getConfigDescriptor(config);
-
-					final PluginListItem listItem = new PluginListItem(this, plugin, plugin.getClass().getAnnotation(PluginDescriptor.class).type(), descriptor, config, configDescriptor);
-					listItem.setPinned(pinnedPlugins.contains(listItem.getName()));
-					pluginListItems.add(listItem);
-				});
-
-		if (pluginType.equals(PluginType.RUNELITE))
-		{
-			// Add special entries for core client configurations
-			final PluginListItem runeLite = createClientSettingsPlugin();
-			final PluginListItem chatColor = createCreateChatColorPlugin();
-
-			pluginListItems.add(runeLite);
-			pluginListItems.add(chatColor);
-		}
-		pluginListItems.sort(Comparator.comparing(PluginListItem::getName));
-		return pluginListItems;
-	}
-
-	/**
-	 * Retrieves a list of all pinned plugins
-	 *
-	 * @return list of pinned plugins
-	 */
-	private List<PluginListItem> getPinnedPluginsListItems()
-	{
-		List<PluginListItem> pluginListItems = new ArrayList<>();
-		final List<String> pinnedPlugins = getPinnedPluginNames();
-
-		// Filter on plugin type and collapse state, also filter out hidden plugins
-		pluginManager.getPlugins().stream()
-				.filter(plugin -> !plugin.getClass().getAnnotation(PluginDescriptor.class).hidden()
-						&& pinnedPlugins.contains(plugin.getClass().getAnnotation(PluginDescriptor.class).name()))
-				.forEach(plugin ->
-				{
-					final PluginDescriptor descriptor = plugin.getClass().getAnnotation(PluginDescriptor.class);
-					final Config config = pluginManager.getPluginConfigProxy(plugin);
-					final ConfigDescriptor configDescriptor = config == null ? null : configManager.getConfigDescriptor(config);
-
-					final PluginListItem collapsibleEntryItem = new PluginListItem(this, plugin, plugin.getClass().getAnnotation(PluginDescriptor.class).type(), descriptor, config, configDescriptor);
-					collapsibleEntryItem.setPinned(pinnedPlugins.contains(collapsibleEntryItem.getName()));
-					pluginListItems.add(collapsibleEntryItem);
-				});
-
-		// Add special entries for core client configurations
-		if (pinnedPlugins.contains(CLIENT_SETTINGS_PLUGIN))
-		{
-			final PluginListItem runeLite = createClientSettingsPlugin();
-			pluginListItems.add(runeLite);
-		}
-
-		if (pinnedPlugins.contains(CHAT_COLOR_PLUGIN))
-		{
-			final PluginListItem chatColor = createCreateChatColorPlugin();
-			pluginListItems.add(chatColor);
-		}
-
-		pluginListItems.sort(Comparator.comparing(PluginListItem::getName));
-		return pluginListItems;
-	}
-
-	/**
-	 * Updates the collapsible entry item list with the changed plugin list item
-	 *
-	 * @param pluginListItem updated plugin list item
-	 */
-	void updateCollapsibleEntryListItem(PluginListItem pluginListItem)
-	{
-		CollapsibleEntry entry = pluginListItem.getParentCollapsibleEntry();
-		if (entry.getName().equals(PINNED_COLLAPSIBLE_ENTRY_NAME))
-		{
-			for (CollapsibleEntry collapsibleEntry : collapsibleEntries)
-			{
-				if (collapsibleEntry.getCollapsibleEntryItems().size() == 0)
-				{
-					continue;
-				}
-
-				if (pluginListItem.getPluginType() == collapsibleEntry.getCollapsibleEntryItems().get(0).getPluginType())
-				{
-					updateCollapsibleEntryListItems(collapsibleEntry, pluginListItem);
-				}
-			}
-		}
-		else
-		{
-			updateCollapsibleEntryListItems(pluginListItem.getParentCollapsibleEntry(), pluginListItem);
-		}
-	}
-
-	/**
-	 * Updates the collapsible entry item list with the updated list item and sorts the list.
-	 *
-	 * @param collapsibleEntry collapsible entry (eg. plugin type SanLite)
-	 * @param pluginListItem   updated plugin list item
-	 */
-	private void updateCollapsibleEntryListItems(CollapsibleEntry collapsibleEntry, PluginListItem pluginListItem)
-	{
-		for (PluginListItem listItem : new ArrayList<>(collapsibleEntry.getCollapsibleEntryItems()))
-		{
-			if (listItem.getName().equals(pluginListItem.getName()))
-			{
-				collapsibleEntry.getCollapsibleEntryItems().remove(listItem);
-				collapsibleEntry.getCollapsibleEntryItems().add(pluginListItem);
-				collapsibleEntry.getCollapsibleEntryItems().sort(Comparator.comparing(PluginListItem::getName));
-			}
-		}
-	}
-
-	/**
-	 * Sets visibility of the pinned collapsible entry based on pinned plugins size.
-	 */
-	void setPinnedCollapsibleEntryVisibility()
-	{
-		for (CollapsibleEntry collapsibleEntry : collapsibleEntries)
-		{
-			if (collapsibleEntry.getName().equals(PINNED_COLLAPSIBLE_ENTRY_NAME))
-			{
-				collapsibleEntry.setVisible(getPinnedPluginNames().size() > 0);
-				collapsibleEntry.setPreferredSize(new Dimension(PluginPanel.PANEL_WIDTH, getPinnedPluginNames().size() > 0 ? 30 : 0));
-			}
-		}
-	}
-
-	/**
-	 * Updates displayed collapsible entry items for each collapsible entry on plugin item pin.
-	 * The pinned collapsible entry is updated last.
-	 *
-	 * @param pluginListItem updated plugin list item
-	 */
-	void refreshCollapsibleEntriesDisplayedListOnPin(PluginListItem pluginListItem)
-	{
-		updatePinnedCollapsibleEntryItemsList(pluginListItem);
-		for (CollapsibleEntry collapsibleEntry : collapsibleEntries)
-		{
-			// All collapsible entries should update entry item lists before the pinned collapsible entry
-			if (!collapsibleEntry.getName().equals(PINNED_COLLAPSIBLE_ENTRY_NAME))
-			{
-				collapsibleEntry.setDisplayedEntryItems(collapsibleEntry.getDisplayedCollapsibleEntryItems());
-			}
-			else if (collapsibleEntry.getName().equals(PINNED_COLLAPSIBLE_ENTRY_NAME))
-			{
-				collapsibleEntry.setDisplayedEntryItems(collapsibleEntry.getDisplayedPinnedCollapsibleEntryItems());
-			}
-		}
-	}
-
-	private void updatePinnedCollapsibleEntryItemsList(PluginListItem pluginListItem)
-	{
-		CollapsibleEntry pinnedCollapsibleEntry = null;
-		for (CollapsibleEntry collapsibleEntry : collapsibleEntries)
-		{
-			if (collapsibleEntry.getName().equals(PINNED_COLLAPSIBLE_ENTRY_NAME))
-			{
-				pinnedCollapsibleEntry = collapsibleEntry;
-			}
-		}
-
-		if (pinnedCollapsibleEntry != null)
-		{
-			if (pluginListItem.isPinned())
-			{
-				pinnedCollapsibleEntry.addToCollapsibleEntryItems(pluginListItem);
-			}
-			else
-			{
-				pinnedCollapsibleEntry.removeFromCollapsibleEntryItems(pluginListItem);
-			}
-		}
-		else
-		{
-			log.error("Could not find pinned collapsible entry for updating entry items list");
-		}
-	}
-
-	void refreshPluginList()
-	{
-		// Update enabled / disabled status of all displayed items
-		collapsibleEntries.forEach(collapsibleEntry ->
-		{
-			collapsibleEntry.getCollapsibleEntryItems().forEach(pluginListItem ->
-			{
-				final Plugin plugin = pluginListItem.getPlugin();
-				if (plugin != null)
-				{
-					pluginListItem.setPluginEnabled(pluginManager.isPluginEnabled(plugin));
-				}
-			});
-
-			if (showingPluginList)
-			{
-				openConfigList();
-			}
-		});
-
-		// Update full items list to show accurate status on search results
-		collapsibleEntries.forEach(collapsibleEntry ->
-				collapsibleEntry.getCollapsibleEntryItems().forEach(pluginListItem ->
-				{
-					final Plugin plugin = pluginListItem.getPlugin();
-					if (plugin != null)
-					{
-						pluginListItem.setPluginEnabled(pluginManager.isPluginEnabled(plugin));
-					}
-				}));
-	}
-
-	void openConfigList()
-	{
-		if (showingPluginList)
-		{
-			scrollBarPosition = scrollPane.getVerticalScrollBar().getValue();
-		}
-
-		showingPluginList = true;
-
-		topPanel.removeAll();
-		mainPanel.removeAll();
-		topPanel.add(searchBar, BorderLayout.CENTER);
-
-		onSearchBarChanged();
-		searchBar.requestFocusInWindow();
-		validate();
-		scrollPane.getVerticalScrollBar().setValue(scrollBarPosition);
-	}
-
-	/**
-	 * Triggered when the the text value of the search bar changes. Redraws the main panel with the matching components
-	 */
-	private void onSearchBarChanged()
-	{
-		final String text = searchBar.getText();
-		mainPanel.removeAll();
-
-		showMatchingPlugins(true, text);
-		showMatchingPlugins(false, text);
-
-		revalidate();
-	}
-
-	/**
-	 * Adds the matching plugin components to the main panel.
-	 *
-	 * @param pinned show only pinned plugins
-	 * @param text   text for searching matching plugins
-	 */
-	private void showMatchingPlugins(boolean pinned, String text)
-	{
-		// Re-add normal config panel items on empty search. This is triggered on startup.
-		if (text.isEmpty())
-		{
-			mainPanel.removeAll();
-			collapsibleEntries.forEach(collapsibleEntry ->
-			{
-				mainPanel.add(collapsibleEntry);
-				collapsibleEntry.getDisplayedEntryItems().forEach(mainPanel::add);
-			});
-
-			return;
-		}
-
-		final String[] searchTerms = text.toLowerCase().split(" ");
-		for (CollapsibleEntry collapsibleEntry : collapsibleEntries)
-		{
-			if (collapsibleEntry.getName().equals(PINNED_COLLAPSIBLE_ENTRY_NAME))
-			{
-				continue;
-			}
-
-			for (PluginListItem pluginListItem : collapsibleEntry.getCollapsibleEntryItems())
-			{
-				if (pinned == pluginListItem.isPinned() && Text.matchesSearchTerms(searchTerms, pluginListItem.getKeywords()))
-				{
-					mainPanel.add(pluginListItem);
-				}
-			}
-		}
-	}
-
-	/**
-	 * Retrieves all pinned plugin names from the client settings file
-	 *
-	 * @return list of pinned plugin names
-	 */
-	private List<String> getPinnedPluginNames()
-	{
-		final String config = configManager.getConfiguration(CLIENT_SETTINGS_GROUP_NAME, PINNED_PLUGINS_CONFIG_KEY);
-
-		if (config == null)
-		{
-			return Collections.emptyList();
-		}
-
-		return Text.fromCSV(config);
-	}
-
-	/**
-	 * Saves all pinned plugins to the client settings file
-	 */
-	void savePinnedPlugins()
-	{
-		StringBuilder value = new StringBuilder();
-		for (CollapsibleEntry collapsibleEntry : collapsibleEntries)
-		{
-			if (collapsibleEntry.getName().equals(PINNED_COLLAPSIBLE_ENTRY_NAME))
-			{
-				continue;
-			}
-
-			String result = collapsibleEntry.getCollapsibleEntryItems().stream()
-					.filter(PluginListItem::isPinned)
-					.map(PluginListItem::getName)
-					.collect(Collectors.joining(","));
-
-			if (!value.toString().isEmpty() && !result.isEmpty())
-			{
-				value.append(",");
-			}
-
-			value.append(result);
-		}
-		configManager.setConfiguration(CLIENT_SETTINGS_GROUP_NAME, PINNED_PLUGINS_CONFIG_KEY, value.toString());
-	}
-
-	/**
-	 * Retrieves all opened collapsible entry names from the client settings file
-	 *
-	 * @return list of opened collapsible entry names
-	 */
-	List<String> getOpenedCollapsibleEntries()
-	{
-		final String config = configManager.getConfiguration(COLLAPSIBLE_ENTRY_CONFIG_KEY, COLLAPSIBLE_ENTRY_OPENED_CONFIG_KEY);
-
-		if (config == null)
-		{
-			return Collections.emptyList();
-		}
-
-		return Text.fromCSV(config);
-	}
-
-	/**
-	 * Save collapsible entry isOpened state to client settings file
-	 */
-	void saveCollapsibleEntryIsOpenedState()
-	{
-		String value = collapsibleEntries.stream()
-				.filter(CollapsibleEntry::isOpened)
-				.map(CollapsibleEntry::getName)
-				.collect(Collectors.joining(","));
-
-		configManager.setConfiguration(COLLAPSIBLE_ENTRY_CONFIG_KEY, COLLAPSIBLE_ENTRY_OPENED_CONFIG_KEY, value);
-	}
-
-	/**
-	 * Creates a plugin list item for the client settings plugin because this plugin is not in the plugin manager list.
-	 *
-	 * @return Client settings plugin as plugin list item
-	 */
-	private PluginListItem createClientSettingsPlugin()
-	{
-		final List<String> pinnedPlugins = getPinnedPluginNames();
-
-		final PluginListItem runeLite = new PluginListItem(this, runeLiteConfig, PluginType.RUNELITE,
-				configManager.getConfigDescriptor(runeLiteConfig),
-				CLIENT_SETTINGS_PLUGIN, "SanLite client settings", "sanlite", "runelite", "client", "settings",
-				"resolution", "notifications", "font", "notification", "size", "position", "window", "chrome",
-				"focus", "font", "overlay", "tooltip", "infobox");
-		runeLite.setPinned(pinnedPlugins.contains(CLIENT_SETTINGS_PLUGIN));
-		return runeLite;
-	}
-
-	/**
-	 * Creates a plugin list item for the chat color plugin because this plugin is not in the plugin manager list.
-	 *
-	 * @return Chat color plugin as plugin list item
-	 */
-	private PluginListItem createCreateChatColorPlugin()
-	{
-		final List<String> pinnedPlugins = getPinnedPluginNames();
-
-		final PluginListItem chatColor = new PluginListItem(this, chatColorConfig, PluginType.RUNELITE,
-				configManager.getConfigDescriptor(chatColorConfig),
-				CHAT_COLOR_PLUGIN, "Recolor chat text", "color", "colour", "messages", "chat", "chatbox");
-		chatColor.setPinned(pinnedPlugins.contains(CHAT_COLOR_PLUGIN));
-		return chatColor;
-	}
-
-	public void openGroupConfigPanel(PluginListItem listItem, Config config, ConfigDescriptor cd)
-	{
-		showingPluginList = false;
-
-		scrollBarPosition = scrollPane.getVerticalScrollBar().getValue();
-		topPanel.removeAll();
-		mainPanel.removeAll();
-
-		final IconButton topPanelBackButton = new IconButton(BACK_ICON, BACK_ICON_HOVER);
+		JButton topPanelBackButton = new JButton(BACK_ICON);
+		topPanelBackButton.setRolloverIcon(BACK_ICON_HOVER);
+		SwingUtil.removeButtonDecorations(topPanelBackButton);
 		topPanelBackButton.setPreferredSize(new Dimension(22, 0));
 		topPanelBackButton.setBorder(new EmptyBorder(0, 0, 0, 5));
-		topPanelBackButton.addActionListener(e -> openConfigList());
+		topPanelBackButton.addActionListener(e -> pluginList.getMuxer().popState());
 		topPanelBackButton.setToolTipText("Back");
 		topPanel.add(topPanelBackButton, BorderLayout.WEST);
 
-		topPanel.add(listItem.createToggleButton(), BorderLayout.EAST);
-
-		String name = listItem.getName();
-		JLabel title = new JLabel(name);
+		pluginToggle = new PluginToggleButton();
+		topPanel.add(pluginToggle, BorderLayout.EAST);
+		title = new JLabel();
 		title.setForeground(Color.WHITE);
-		title.setToolTipText("<html>" + name + ":<br>" + listItem.getDescription() + "</html>");
-		PluginListItem.addLabelPopupMenu(title, PluginListItem.wikiLinkMenuItem(listItem.getName()));
+
 		topPanel.add(title);
-
-		for (ConfigItemsGroup cig : cd.getItemGroups())
-		{
-			boolean isOpened = false;
-			if (!cig.getGroup().equals(""))
-			{
-				String header = cig.getGroup();
-
-				JPanel collapsibleEntryPanel = new JPanel();
-				collapsibleEntryPanel.setLayout(new BorderLayout());
-				collapsibleEntryPanel.setMinimumSize(new Dimension(PANEL_WIDTH, 0));
-				collapsibleEntryPanel.setBackground(ColorScheme.DARK_GRAY_HOVER_COLOR);
-				collapsibleEntryPanel.setBorder(
-						new CompoundBorder(
-								BorderFactory.createMatteBorder(1, 1, 1, 1, ColorScheme.SCROLL_TRACK_COLOR),
-								BorderFactory.createMatteBorder(1, 1, 1, 1, ColorScheme.DARKER_GRAY_HOVER_COLOR)
-						));
-
-				JLabel headerLabel = new JLabel(header);
-				headerLabel.setPreferredSize(new Dimension(PANEL_WIDTH, (int) headerLabel.getPreferredSize().getHeight() + 10));
-				headerLabel.setFont(headerLabel.getFont().deriveFont(Collections.singletonMap(TextAttribute.WEIGHT, TextAttribute.WEIGHT_SEMIBOLD)));
-				String stringOpened = configManager.getConfiguration(cd.getGroup().value(), cig.getGroup() + "_opened");
-
-				if (stringOpened != null)
-					isOpened = Boolean.parseBoolean(stringOpened);
-
-				JButton collapsibleEntryBtn = new JButton(isOpened ? "˅" : ">");
-				collapsibleEntryBtn.setPreferredSize(new Dimension(20, 20));
-				collapsibleEntryBtn.setFont(collapsibleEntryBtn.getFont().deriveFont(16.0f));
-				collapsibleEntryBtn.setBorder(null);
-				collapsibleEntryBtn.setMargin(new Insets(0, 10, 0, 10));
-				collapsibleEntryBtn.addActionListener(ae -> changeGroupCollapse(listItem, config, collapsibleEntryBtn, cd, cig));
-				headerLabel.setBorder(new EmptyBorder(0, 6, 0, 0));
-
-				collapsibleEntryPanel.add(collapsibleEntryBtn, BorderLayout.WEST);
-				collapsibleEntryPanel.add(headerLabel, BorderLayout.CENTER);
-
-				mainPanel.add(collapsibleEntryPanel);
-			}
-
-			if (!isOpened && !cig.getGroup().equals(""))
-				continue;
-
-			createConfigItems(cig.getItems(), cd, listItem, config);
-		}
-
-		JButton resetButton = new JButton("Reset");
-		resetButton.addActionListener((e) ->
-		{
-			final int result = JOptionPane.showOptionDialog(resetButton, "Are you sure you want to reset this plugin's configuration?",
-					"Are you sure?", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE,
-					null, new String[] {"Yes", "No"}, "No");
-
-			if (result == JOptionPane.YES_OPTION)
-			{
-				configManager.setDefaultConfiguration(config, true);
-
-				// Reload configuration panel
-				openGroupConfigPanel(listItem, config, cd);
-			}
-		});
-		mainPanel.add(resetButton);
-
-		JButton backButton = new JButton("Back");
-		backButton.addActionListener(e -> openConfigList());
-		mainPanel.add(backButton);
-
-		revalidate();
-		scrollPane.getVerticalScrollBar().setValue(0);
 	}
 
-	/**
-	 * Creates UI components for all config item descriptors
-	 *
-	 * @param itemDescriptors list of config item descriptors
-	 * @param cd              config descriptor
-	 * @param listItem        plugin list item
-	 * @param config          plugin config
-	 */
-	private void createConfigItems(Collection<ConfigItemDescriptor> itemDescriptors, ConfigDescriptor cd, PluginListItem listItem, Config config)
+	void init(PluginConfigurationDescriptor pluginConfig)
 	{
-		ConfigItemUI configItemUI = new ConfigItemUI(configManager, this, colorPickerManager);
+		assert this.pluginConfig == null;
+		this.pluginConfig = pluginConfig;
 
-		for (ConfigItemDescriptor cid : itemDescriptors)
+		String name = pluginConfig.getName();
+		title.setText(name);
+		title.setForeground(Color.WHITE);
+		title.setToolTipText("<html>" + name + ":<br>" + pluginConfig.getDescription() + "</html>");
+
+		ExternalPluginManifest mf = pluginConfig.getExternalPluginManifest();
+		JMenuItem uninstallItem = null;
+		if (mf != null)
+		{
+			uninstallItem = new JMenuItem("Uninstall");
+			uninstallItem.addActionListener(ev -> externalPluginManager.remove(mf.getInternalName()));
+		}
+
+		PluginListItem.addLabelPopupMenu(title, pluginConfig.createSupportMenuItem(), uninstallItem);
+
+		if (pluginConfig.getPlugin() != null)
+		{
+			pluginToggle.setSelected(pluginManager.isPluginEnabled(pluginConfig.getPlugin()));
+			pluginToggle.addItemListener(i ->
+			{
+				if (pluginToggle.isSelected())
+				{
+					pluginList.startPlugin(pluginConfig.getPlugin());
+				}
+				else
+				{
+					pluginList.stopPlugin(pluginConfig.getPlugin());
+				}
+			});
+		}
+		else
+		{
+			pluginToggle.setVisible(false);
+		}
+
+		rebuild();
+	}
+
+	private void toggleSection(ConfigSectionDescriptor csd, JButton button, JPanel contents)
+	{
+		boolean newState = !contents.isVisible();
+		contents.setVisible(newState);
+		button.setIcon(newState ? SECTION_RETRACT_ICON : SECTION_EXPAND_ICON);
+		button.setRolloverIcon(newState ? SECTION_RETRACT_ICON_HOVER : SECTION_EXPAND_ICON_HOVER);
+		button.setToolTipText(newState ? "Retract" : "Expand");
+		sectionExpandStates.put(csd, newState);
+		SwingUtilities.invokeLater(contents::revalidate);
+	}
+
+	private void rebuild()
+	{
+		mainPanel.removeAll();
+
+		ConfigDescriptor cd = pluginConfig.getConfigDescriptor();
+
+		final Map<String, JPanel> sectionWidgets = new HashMap<>();
+		final Map<ConfigObject, JPanel> topLevelPanels = new TreeMap<>((a, b) ->
+			ComparisonChain.start()
+			.compare(a.position(), b.position())
+			.compare(a.name(), b.name())
+			.result());
+
+		for (ConfigSectionDescriptor csd : cd.getSections())
+		{
+			ConfigSection cs = csd.getSection();
+			final boolean isOpen = sectionExpandStates.getOrDefault(csd, !cs.closedByDefault());
+
+			final JPanel section = new JPanel();
+			section.setLayout(new BoxLayout(section, BoxLayout.Y_AXIS));
+			section.setMinimumSize(new Dimension(PANEL_WIDTH, 0));
+
+			final JPanel sectionHeader = new JPanel();
+			sectionHeader.setLayout(new BorderLayout());
+			sectionHeader.setMinimumSize(new Dimension(PANEL_WIDTH, 0));
+			// For whatever reason, the header extends out by a single pixel when closed. Adding a single pixel of
+			// border on the right only affects the width when closed, fixing the issue.
+			sectionHeader.setBorder(new CompoundBorder(
+				new MatteBorder(0, 0, 1, 0, ColorScheme.MEDIUM_GRAY_COLOR),
+				new EmptyBorder(0, 0, 3, 1)));
+			section.add(sectionHeader, BorderLayout.NORTH);
+
+			final JButton sectionToggle = new JButton(isOpen ? SECTION_RETRACT_ICON : SECTION_EXPAND_ICON);
+			sectionToggle.setRolloverIcon(isOpen ? SECTION_RETRACT_ICON_HOVER : SECTION_EXPAND_ICON_HOVER);
+			sectionToggle.setPreferredSize(new Dimension(18, 0));
+			sectionToggle.setBorder(new EmptyBorder(0, 0, 0, 5));
+			sectionToggle.setToolTipText(isOpen ? "Retract" : "Expand");
+			SwingUtil.removeButtonDecorations(sectionToggle);
+			sectionHeader.add(sectionToggle, BorderLayout.WEST);
+
+			String name = cs.name();
+			final JLabel sectionName = new JLabel(name);
+			sectionName.setForeground(ColorScheme.BRAND_BLUE);
+			sectionName.setFont(FontManager.getRunescapeBoldFont());
+			sectionName.setToolTipText("<html>" + name + ":<br>" + cs.description() + "</html>");
+			sectionHeader.add(sectionName, BorderLayout.CENTER);
+
+			final JPanel sectionContents = new JPanel();
+			sectionContents.setLayout(new DynamicGridLayout(0, 1, 0, 5));
+			sectionContents.setMinimumSize(new Dimension(PANEL_WIDTH, 0));
+			sectionContents.setBorder(new CompoundBorder(
+				new MatteBorder(0, 0, 1, 0, ColorScheme.MEDIUM_GRAY_COLOR),
+				new EmptyBorder(BORDER_OFFSET, 0, BORDER_OFFSET, 0)));
+			sectionContents.setVisible(isOpen);
+			section.add(sectionContents, BorderLayout.SOUTH);
+
+			// Add listeners to each part of the header so that it's easier to toggle them
+			final MouseAdapter adapter = new MouseAdapter()
+			{
+				@Override
+				public void mouseClicked(MouseEvent e)
+				{
+					toggleSection(csd, sectionToggle, sectionContents);
+				}
+			};
+			sectionToggle.addActionListener(actionEvent -> toggleSection(csd, sectionToggle, sectionContents));
+			sectionName.addMouseListener(adapter);
+			sectionHeader.addMouseListener(adapter);
+
+			sectionWidgets.put(csd.getKey(), sectionContents);
+
+			topLevelPanels.put(csd, section);
+		}
+
+		for (ConfigItemDescriptor cid : cd.getItems())
 		{
 			if (cid.getItem().hidden())
 			{
@@ -698,154 +327,303 @@ public class ConfigPanel extends PluginPanel
 			JPanel item = new JPanel();
 			item.setLayout(new BorderLayout());
 			item.setMinimumSize(new Dimension(PANEL_WIDTH, 0));
-
-			String itemName = cid.getItem().name();
-			JLabel configEntryName = new JLabel(itemName);
-			configEntryName.setPreferredSize(new Dimension(PANEL_WIDTH, (int) configEntryName.getPreferredSize().getHeight()));
+			String name = cid.getItem().name();
+			JLabel configEntryName = new JLabel(name);
 			configEntryName.setForeground(Color.WHITE);
-			configEntryName.setToolTipText("<html>" + itemName + ":<br>" + cid.getItem().description() + "</html>");
+			configEntryName.setToolTipText("<html>" + name + ":<br>" + cid.getItem().description() + "</html>");
+			PluginListItem.addLabelPopupMenu(configEntryName, createResetMenuItem(pluginConfig, cid));
 			item.add(configEntryName, BorderLayout.CENTER);
 
 			if (cid.getType() == boolean.class)
 			{
-				item.add(configItemUI.createCheckboxConfigItem(listItem, config, cd, cid), BorderLayout.EAST);
+				JCheckBox checkbox = new JCheckBox();
+				checkbox.setBackground(ColorScheme.LIGHT_GRAY_COLOR);
+				checkbox.setSelected(Boolean.parseBoolean(configManager.getConfiguration(cd.getGroup().value(), cid.getItem().keyName())));
+				checkbox.addActionListener(ae -> changeConfiguration(checkbox, cd, cid));
+
+				item.add(checkbox, BorderLayout.EAST);
 			}
 
 			if (cid.getType() == int.class)
 			{
-				item.add(configItemUI.createSpinnerConfigItem(listItem, config, cd, cid), BorderLayout.EAST);
+				int value = Integer.parseInt(configManager.getConfiguration(cd.getGroup().value(), cid.getItem().keyName()));
+
+				Range range = cid.getRange();
+				int min = 0, max = Integer.MAX_VALUE;
+				if (range != null)
+				{
+					min = range.min();
+					max = range.max();
+				}
+
+				// Config may previously have been out of range
+				value = Ints.constrainToRange(value, min, max);
+
+				SpinnerModel model = new SpinnerNumberModel(value, min, max, 1);
+				JSpinner spinner = new JSpinner(model);
+				Component editor = spinner.getEditor();
+				JFormattedTextField spinnerTextField = ((JSpinner.DefaultEditor) editor).getTextField();
+				spinnerTextField.setColumns(SPINNER_FIELD_WIDTH);
+				spinner.addChangeListener(ce -> changeConfiguration(spinner, cd, cid));
+
+				Units units = cid.getUnits();
+				if (units != null)
+				{
+					spinnerTextField.setFormatterFactory(new UnitFormatterFactory(units));
+				}
+
+				item.add(spinner, BorderLayout.EAST);
 			}
 
 			if (cid.getType() == String.class)
 			{
-				item.add(configItemUI.createTextConfigItem(listItem, config, cd, cid), BorderLayout.SOUTH);
+				JTextComponent textField;
+
+				if (cid.getItem().secret())
+				{
+					textField = new JPasswordField();
+				}
+				else
+				{
+					final JTextArea textArea = new JTextArea();
+					textArea.setLineWrap(true);
+					textArea.setWrapStyleWord(true);
+					textField = textArea;
+				}
+
+				textField.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+				textField.setText(configManager.getConfiguration(cd.getGroup().value(), cid.getItem().keyName()));
+
+				textField.addFocusListener(new FocusAdapter()
+				{
+					@Override
+					public void focusLost(FocusEvent e)
+					{
+						changeConfiguration(textField, cd, cid);
+					}
+				});
+
+				item.add(textField, BorderLayout.SOUTH);
 			}
 
 			if (cid.getType() == Color.class)
 			{
-				item.add(configItemUI.createColorPickerButtonConfigItem(listItem, config, cd, cid), BorderLayout.EAST);
+				String existing = configManager.getConfiguration(cd.getGroup().value(), cid.getItem().keyName());
+
+				Color existingColor;
+				JButton colorPickerBtn;
+
+				if (existing == null)
+				{
+					existingColor = Color.BLACK;
+					colorPickerBtn = new JButton("Pick a color");
+				}
+				else
+				{
+					existingColor = ColorUtil.fromString(existing);
+					colorPickerBtn = new JButton(ColorUtil.toHexColor(existingColor).toUpperCase());
+				}
+
+				colorPickerBtn.setFocusable(false);
+				colorPickerBtn.setBackground(existingColor);
+				colorPickerBtn.addMouseListener(new MouseAdapter()
+				{
+					@Override
+					public void mouseClicked(MouseEvent e)
+					{
+						RuneliteColorPicker colorPicker = colorPickerManager.create(
+							SwingUtilities.windowForComponent(ConfigPanel.this),
+							colorPickerBtn.getBackground(),
+							cid.getItem().name(),
+							cid.getAlpha() == null);
+						colorPicker.setLocation(getLocationOnScreen());
+						colorPicker.setOnColorChange(c ->
+						{
+							colorPickerBtn.setBackground(c);
+							colorPickerBtn.setText(ColorUtil.toHexColor(c).toUpperCase());
+						});
+						colorPicker.setOnClose(c -> changeConfiguration(colorPicker, cd, cid));
+						colorPicker.setVisible(true);
+					}
+				});
+
+				item.add(colorPickerBtn, BorderLayout.EAST);
 			}
 
 			if (cid.getType() == Dimension.class)
 			{
-				item.add(configItemUI.createDimensionConfigItem(cd, cid), BorderLayout.EAST);
+				JPanel dimensionPanel = new JPanel();
+				dimensionPanel.setLayout(new BorderLayout());
+
+				String str = configManager.getConfiguration(cd.getGroup().value(), cid.getItem().keyName());
+				String[] splitStr = str.split("x");
+				int width = Integer.parseInt(splitStr[0]);
+				int height = Integer.parseInt(splitStr[1]);
+
+				SpinnerModel widthModel = new SpinnerNumberModel(width, 0, Integer.MAX_VALUE, 1);
+				JSpinner widthSpinner = new JSpinner(widthModel);
+				Component widthEditor = widthSpinner.getEditor();
+				JFormattedTextField widthSpinnerTextField = ((JSpinner.DefaultEditor) widthEditor).getTextField();
+				widthSpinnerTextField.setColumns(4);
+
+				SpinnerModel heightModel = new SpinnerNumberModel(height, 0, Integer.MAX_VALUE, 1);
+				JSpinner heightSpinner = new JSpinner(heightModel);
+				Component heightEditor = heightSpinner.getEditor();
+				JFormattedTextField heightSpinnerTextField = ((JSpinner.DefaultEditor) heightEditor).getTextField();
+				heightSpinnerTextField.setColumns(4);
+
+				ChangeListener listener = e ->
+					configManager.setConfiguration(cd.getGroup().value(), cid.getItem().keyName(), widthSpinner.getValue() + "x" + heightSpinner.getValue());
+
+				widthSpinner.addChangeListener(listener);
+				heightSpinner.addChangeListener(listener);
+
+				dimensionPanel.add(widthSpinner, BorderLayout.WEST);
+				dimensionPanel.add(new JLabel(" x "), BorderLayout.CENTER);
+				dimensionPanel.add(heightSpinner, BorderLayout.EAST);
+
+				item.add(dimensionPanel, BorderLayout.EAST);
 			}
 
 			if (cid.getType().isEnum())
 			{
-				item.add(configItemUI.createComboBoxConfigItem(listItem, config, cd, cid), BorderLayout.EAST);
+				Class<? extends Enum> type = (Class<? extends Enum>) cid.getType();
+				JComboBox box = new JComboBox(type.getEnumConstants());
+				box.setPreferredSize(new Dimension(box.getPreferredSize().width, 25));
+				box.setRenderer(new ComboBoxListRenderer());
+				box.setForeground(Color.WHITE);
+				box.setFocusable(false);
+				box.setPrototypeDisplayValue("XXXXXXXX"); //sorry but this is the way to keep the size of the combobox in check.
+				try
+				{
+					Enum selectedItem = Enum.valueOf(type, configManager.getConfiguration(cd.getGroup().value(), cid.getItem().keyName()));
+					box.setSelectedItem(selectedItem);
+					box.setToolTipText(Text.titleCase(selectedItem));
+				}
+				catch (IllegalArgumentException ex)
+				{
+					log.debug("invalid seleced item", ex);
+				}
+				box.addItemListener(e ->
+				{
+					if (e.getStateChange() == ItemEvent.SELECTED)
+					{
+						changeConfiguration(box, cd, cid);
+						box.setToolTipText(Text.titleCase((Enum) box.getSelectedItem()));
+					}
+				});
+				item.add(box, BorderLayout.EAST);
 			}
 
 			if (cid.getType() == Keybind.class || cid.getType() == ModifierlessKeybind.class || cid.getType() == AllKeyCodeKeybind.class)
 			{
-				item.add(configItemUI.createKeybindConfigItem(listItem, config, cd, cid), BorderLayout.EAST);
-			}
-			mainPanel.add(item);
-		}
-	}
+				Keybind startingValue = configManager.getConfiguration(cd.getGroup().value(),
+					cid.getItem().keyName(),
+					(Class<? extends Keybind>) cid.getType());
 
-	/**
-	 * Changes the collapse state of a collapsible entry within a plugin configuration panel
-	 *
-	 * @param listItem  plugin list item
-	 * @param config    plugin config
-	 * @param component collapsible entry component
-	 * @param cd        config descriptor
-	 * @param cig       config items group
-	 */
-	private void changeGroupCollapse(PluginListItem listItem, Config config, JComponent component, ConfigDescriptor cd, ConfigItemsGroup cig)
-	{
-		if (component instanceof JButton)
-		{
-			String stringOpened = configManager.getConfiguration(cd.getGroup().value(), cig.getGroup() + "_opened");
-			boolean opened = true;
+				HotkeyButton button = new HotkeyButton(startingValue, cid.getType() == ModifierlessKeybind.class, cid.getType() == AllKeyCodeKeybind.class);
 
-			if (stringOpened != null)
-				opened = !Boolean.parseBoolean(stringOpened);
-
-			configManager.setConfiguration(cd.getGroup().value(), cig.getGroup() + "_opened", opened);
-			openGroupConfigPanel(listItem, config, cd);
-		}
-	}
-
-	/**
-	 * Enable a plugin in the config panel.
-	 *
-	 * @param plugin   plugin
-	 * @param listItem plugin list item
-	 */
-	void startPlugin(Plugin plugin, PluginListItem listItem)
-	{
-		SwingUtilities.invokeLater(() ->
-		{
-			pluginManager.setPluginEnabled(plugin, true);
-
-			try
-			{
-				pluginManager.startPlugin(plugin);
-			}
-			catch (PluginInstantiationException ex)
-			{
-				log.warn("Error when starting plugin {}", plugin.getClass().getSimpleName(), ex);
-			}
-
-			listItem.setPluginEnabled(true);
-		});
-	}
-
-	/**
-	 * Disable a plugin in the config panel.
-	 *
-	 * @param plugin   plugin
-	 * @param listItem plugin list item
-	 */
-	void stopPlugin(Plugin plugin, PluginListItem listItem)
-	{
-		SwingUtilities.invokeLater(() ->
-		{
-			pluginManager.setPluginEnabled(plugin, false);
-
-			try
-			{
-				pluginManager.stopPlugin(plugin);
-			}
-			catch (PluginInstantiationException ex)
-			{
-				log.warn("Error when stopping plugin {}", plugin.getClass().getSimpleName(), ex);
-			}
-
-			listItem.setPluginEnabled(false);
-		});
-	}
-
-	/**
-	 * Opens configuration panel from right-clicking an overlay on the game canvas.
-	 *
-	 * @param configGroup plugin config group
-	 */
-	void openConfigurationPanel(String configGroup)
-	{
-		for (CollapsibleEntry collapsibleEntry : collapsibleEntries)
-		{
-			for (PluginListItem pluginListItem : collapsibleEntry.getCollapsibleEntryItems())
-			{
-				if (pluginListItem.getName().equals(configGroup))
+				button.addFocusListener(new FocusAdapter()
 				{
-					openGroupConfigPanel(pluginListItem, pluginListItem.getConfig(), pluginListItem.getConfigDescriptor());
-					break;
-				}
+					@Override
+					public void focusLost(FocusEvent e)
+					{
+						changeConfiguration(button, cd, cid);
+					}
+				});
+
+				item.add(button, BorderLayout.EAST);
+			}
+
+			JPanel section = sectionWidgets.get(cid.getItem().section());
+			if (section == null)
+			{
+				topLevelPanels.put(cid, item);
+			}
+			else
+			{
+				section.add(item);
 			}
 		}
+
+		topLevelPanels.values().forEach(mainPanel::add);
+
+		JButton resetButton = new JButton("Reset");
+		resetButton.addActionListener((e) ->
+		{
+			final int result = JOptionPane.showOptionDialog(resetButton, "Are you sure you want to reset this plugin's configuration?",
+				"Are you sure?", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE,
+				null, new String[]{"Yes", "No"}, "No");
+
+			if (result == JOptionPane.YES_OPTION)
+			{
+				configManager.setDefaultConfiguration(pluginConfig.getConfig(), true);
+
+				// Reset non-config panel keys
+				Plugin plugin = pluginConfig.getPlugin();
+				if (plugin != null)
+				{
+					plugin.resetConfiguration();
+				}
+
+				rebuild();
+			}
+		});
+		mainPanel.add(resetButton);
+
+		JButton backButton = new JButton("Back");
+		backButton.addActionListener(e -> pluginList.getMuxer().popState());
+		mainPanel.add(backButton);
+
+		revalidate();
 	}
 
-	@Override
-	public void onActivate()
+	private void changeConfiguration(Component component, ConfigDescriptor cd, ConfigItemDescriptor cid)
 	{
-		super.onActivate();
+		final ConfigItem configItem = cid.getItem();
 
-		if (searchBar.getParent() != null)
+		if (!Strings.isNullOrEmpty(configItem.warning()))
 		{
-			searchBar.requestFocusInWindow();
+			final int result = JOptionPane.showOptionDialog(component, configItem.warning(),
+				"Are you sure?", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE,
+				null, new String[]{"Yes", "No"}, "No");
+
+			if (result != JOptionPane.YES_OPTION)
+			{
+				rebuild();
+				return;
+			}
+		}
+
+		if (component instanceof JCheckBox)
+		{
+			JCheckBox checkbox = (JCheckBox) component;
+			configManager.setConfiguration(cd.getGroup().value(), cid.getItem().keyName(), "" + checkbox.isSelected());
+		}
+		else if (component instanceof JSpinner)
+		{
+			JSpinner spinner = (JSpinner) component;
+			configManager.setConfiguration(cd.getGroup().value(), cid.getItem().keyName(), "" + spinner.getValue());
+		}
+		else if (component instanceof JTextComponent)
+		{
+			JTextComponent textField = (JTextComponent) component;
+			configManager.setConfiguration(cd.getGroup().value(), cid.getItem().keyName(), textField.getText());
+		}
+		else if (component instanceof RuneliteColorPicker)
+		{
+			RuneliteColorPicker colorPicker = (RuneliteColorPicker) component;
+			configManager.setConfiguration(cd.getGroup().value(), cid.getItem().keyName(), colorPicker.getSelectedColor().getRGB() + "");
+		}
+		else if (component instanceof JComboBox)
+		{
+			JComboBox jComboBox = (JComboBox) component;
+			configManager.setConfiguration(cd.getGroup().value(), cid.getItem().keyName(), ((Enum) jComboBox.getSelectedItem()).name());
+		}
+		else if (component instanceof HotkeyButton)
+		{
+			HotkeyButton hotkeyButton = (HotkeyButton) component;
+			configManager.setConfiguration(cd.getGroup().value(), cid.getItem().keyName(), hotkeyButton.getValue());
 		}
 	}
 
@@ -855,13 +633,44 @@ public class ConfigPanel extends PluginPanel
 		return new Dimension(PANEL_WIDTH + SCROLLBAR_WIDTH, super.getPreferredSize().height);
 	}
 
-	private class FixedWidthPanel extends JPanel
+	@Subscribe
+	public void onPluginChanged(PluginChanged event)
 	{
-		@Override
-		public Dimension getPreferredSize()
+		if (event.getPlugin() == this.pluginConfig.getPlugin())
 		{
-			return new Dimension(PANEL_WIDTH, super.getPreferredSize().height);
+			SwingUtilities.invokeLater(() ->
+			{
+				pluginToggle.setSelected(event.isLoaded());
+			});
 		}
+	}
 
+	@Subscribe
+	private void onExternalPluginsChanged(ExternalPluginsChanged ev)
+	{
+		if (pluginManager.getPlugins().stream()
+			.noneMatch(p -> p == this.pluginConfig.getPlugin()))
+		{
+			pluginList.getMuxer().popState();
+		}
+		SwingUtilities.invokeLater(this::rebuild);
+	}
+
+	private JMenuItem createResetMenuItem(PluginConfigurationDescriptor pluginConfig, ConfigItemDescriptor configItemDescriptor)
+	{
+		JMenuItem menuItem = new JMenuItem("Reset");
+		menuItem.addActionListener(e ->
+		{
+			ConfigDescriptor configDescriptor = pluginConfig.getConfigDescriptor();
+			ConfigGroup configGroup = configDescriptor.getGroup();
+			ConfigItem configItem = configItemDescriptor.getItem();
+
+			// To reset one item we'll just unset it and then apply defaults over the whole group
+			configManager.unsetConfiguration(configGroup.value(), configItem.keyName());
+			configManager.setDefaultConfiguration(pluginConfig.getConfig(), false);
+
+			rebuild();
+		});
+		return menuItem;
 	}
 }

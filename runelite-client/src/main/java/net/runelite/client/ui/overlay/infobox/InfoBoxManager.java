@@ -39,7 +39,6 @@ import net.runelite.client.config.RuneLiteConfig;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.events.ConfigChanged;
 import net.runelite.client.util.AsyncBufferedImage;
-import net.runelite.client.plugins.PluginDescriptor;
 
 @Singleton
 @Slf4j
@@ -75,7 +74,7 @@ public class InfoBoxManager
 			int idx = Collections.binarySearch(infoBoxes, infoBox, (b1, b2) -> ComparisonChain
 				.start()
 				.compare(b1.getPriority(), b2.getPriority())
-				.compare(b1.getPlugin().getClass().getAnnotation(PluginDescriptor.class).name(), b2.getPlugin().getClass().getAnnotation(PluginDescriptor.class).name())
+				.compare(b1.getPlugin().getName(), b2.getPlugin().getName())
 				.result());
 			infoBoxes.add(idx < 0 ? -idx - 1 : idx, infoBox);
 		}
