@@ -116,6 +116,11 @@ public class ChambersOfXericDebugOverlay extends Overlay
 							.right("" + plugin.getCurrentRaid().getGameObjects().size())
 							.build());
 				}
+
+				panelComponent.getChildren().add(LineComponent.builder()
+						.left("Number of alive vanguards")
+						.right("" + plugin.getCurrentRaid().getAliveVanguards().size())
+						.build());
 			}
 			return panelComponent.render(graphics);
 		}

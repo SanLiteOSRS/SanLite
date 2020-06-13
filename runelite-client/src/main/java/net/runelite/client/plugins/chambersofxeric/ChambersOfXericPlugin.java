@@ -37,6 +37,7 @@ import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.plugins.PluginType;
 import net.runelite.client.plugins.chambersofxeric.encounters.ChambersOfXericRaid;
+import net.runelite.client.plugins.chambersofxeric.encounters.Vanguard;
 import net.runelite.client.plugins.chambersofxeric.encounters.VasaNistirio;
 import net.runelite.client.ui.overlay.OverlayManager;
 
@@ -262,6 +263,7 @@ public class ChambersOfXericPlugin extends Plugin
 		}
 
 		NPC npc = event.getNpc();
+		System.out.println(npc.getName() + " spawned" + npc.getId() + " id");
 		if (!ChambersOfXericRaid.isNpcChambersOfXericEncounter(npc.getId()))
 		{
 			return;
@@ -310,6 +312,20 @@ public class ChambersOfXericPlugin extends Plugin
 		if (gameState == GameState.LOGGING_IN || gameState == GameState.CONNECTION_LOST || gameState == GameState.HOPPING)
 		{
 			resetEncounter();
+		}
+	}
+
+	@Subscribe
+	public void onGameTick(GameTick event)
+	{
+		if (!validateRaidPresence())
+		{
+			return;
+		}
+
+		if (!currentRaid.getAliveVanguards().isEmpty())
+		{
+			currentRaid.getAliveVanguards().forEach(Vanguard::updateHP);
 		}
 	}
 }

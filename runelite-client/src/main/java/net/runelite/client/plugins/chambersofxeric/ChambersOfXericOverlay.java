@@ -31,6 +31,7 @@ import net.runelite.api.coords.LocalPoint;
 import net.runelite.client.game.AreaOfEffectProjectile;
 import net.runelite.client.plugins.chambersofxeric.encounters.ChambersOfXericRaid;
 //import net.runelite.client.plugins.chambersofxeric.encounters.VasaNistirio;
+import net.runelite.client.plugins.chambersofxeric.encounters.Vanguard;
 import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayLayer;
 import net.runelite.client.ui.overlay.OverlayPosition;
@@ -79,6 +80,7 @@ public class ChambersOfXericOverlay extends Overlay
 //		renderVasaDamageArea(graphics, raid.getHighlightedNpcs());
 		renderGraphicsObjects(graphics, raid.getGraphicObjects());
 //		renderGlowingCrystalDuration(graphics, raid);
+		renderVanguardsInformation(graphics, raid);
 		return null;
 	}
 
@@ -283,4 +285,50 @@ public class ChambersOfXericOverlay extends Overlay
 //
 //		OverlayUtil.renderTextLocation(graphics, point, remainingDuration, Color.WHITE);
 //	}
+
+	private void renderVanguardsInformation(Graphics2D graphics, ChambersOfXericRaid raid)
+	{
+		List<Vanguard> aliveVanguards = raid.getAliveVanguards();
+
+		if (aliveVanguards.isEmpty())
+		{
+			return;
+		}
+
+		for (Vanguard aliveVanguard : aliveVanguards)
+		{
+			String text = String.valueOf(aliveVanguard.getVangPercent());
+
+			if (aliveVanguard.getVangPercent() <= 0)
+			{
+				return;
+			}
+
+			NPC vanguard = aliveVanguard.getNpc();
+
+			Point textLocation = vanguard.getCanvasTextLocation(graphics, text, 0);
+
+			if (textLocation == null)
+			{
+				return;
+			}
+
+			Color colour = Color.WHITE;
+
+			switch (aliveVanguard.getNpc().getId())
+			{
+				case NpcID.VANGUARD_7527:
+					colour = Color.RED;
+					break;
+				case NpcID.VANGUARD_7528:
+					colour = Color.GREEN;
+					break;
+				case NpcID.VANGUARD_7529:
+					colour = Color.BLUE;
+					break;
+			}
+
+			OverlayUtil.renderTextLocation(graphics, textLocation, text, colour);
+		}
+	}
 }

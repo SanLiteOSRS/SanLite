@@ -53,6 +53,9 @@ public class ChambersOfXericRaid
 	@Getter
 	private List<NPC> highlightedNpcs;
 
+	@Getter
+	private List<Vanguard> aliveVanguards;
+
 
 	public ChambersOfXericRaid()
 	{
@@ -60,6 +63,7 @@ public class ChambersOfXericRaid
 		this.gameObjects = new ArrayList<>();
 		this.areaOfEffectProjectiles = new CopyOnWriteArrayList<>();
 		this.highlightedNpcs = new ArrayList<>();
+		this.aliveVanguards = new ArrayList<>();
 	}
 
 	/**
@@ -231,6 +235,12 @@ public class ChambersOfXericRaid
 					highlightedNpcs.add(npc);
 				log.debug("CT: {} | Vasa glowing crystal spawned", cycle);
 				break;
+			case NpcID.VANGUARD:
+			case NpcID.VANGUARD_7527:
+			case NpcID.VANGUARD_7528:
+			case NpcID.VANGUARD_7529:
+				aliveVanguards.add(new Vanguard(npc));
+				break;
 		}
 	}
 
@@ -240,6 +250,12 @@ public class ChambersOfXericRaid
 		{
 			case NpcID.GLOWING_CRYSTAL:
 				highlightedNpcs.remove(npc);
+				break;
+			case NpcID.VANGUARD:
+			case NpcID.VANGUARD_7527:
+			case NpcID.VANGUARD_7528:
+			case NpcID.VANGUARD_7529:
+				aliveVanguards.removeIf(Vanguard -> Vanguard.getNpc().equals(npc));
 				break;
 		}
 	}
