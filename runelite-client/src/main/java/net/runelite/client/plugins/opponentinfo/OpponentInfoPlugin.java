@@ -53,7 +53,7 @@ import net.runelite.http.api.hiscore.HiscoreEndpoint;
 @PluginDescriptor(
 	name = "Opponent Information",
 	description = "Show name and hitpoints information about the NPC you are fighting",
-	tags = {"combat", "health", "hitpoints", "npcs", "overlay"}
+	tags = {"combat", "health", "hitpoints", "npcs", "overlay", "sanlite"}
 )
 public class OpponentInfoPlugin extends Plugin
 {
