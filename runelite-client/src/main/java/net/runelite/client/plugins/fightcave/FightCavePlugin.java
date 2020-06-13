@@ -36,14 +36,12 @@ import net.runelite.api.events.NpcSpawned;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
-import net.runelite.client.plugins.PluginType;
 import net.runelite.client.ui.overlay.OverlayManager;
 
 @PluginDescriptor(
 		name = "Fight Cave",
 		description = "Show what to pray against Jad",
-		tags = {"bosses", "combat", "minigame", "overlay", "prayer", "pve", "pvm", "jad", "fight", "cave"},
-		type = PluginType.SANLITE_USE_AT_OWN_RISK,
+		tags = {"bosses", "combat", "minigame", "overlay", "prayer", "pve", "pvm", "jad", "fight", "cave", "sanlite"},
 		enabledByDefault = false
 )
 public class FightCavePlugin extends Plugin

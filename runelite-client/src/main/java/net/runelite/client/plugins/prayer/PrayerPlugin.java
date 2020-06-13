@@ -315,7 +315,7 @@ public class PrayerPlugin extends Plugin
 	private void removeOverheadsIndicators()
 	{
 		infoBoxManager.removeIf(entry -> entry instanceof PrayerCounter
-				&& ((PrayerCounter) entry).getPrayerType().isOverhead());
+			&& ((PrayerCounter) entry).getPrayerType().isOverhead());
 	}
 
 	private void setPrayerOrbText(String text)

@@ -55,6 +55,7 @@ import net.runelite.client.chat.CommandManager;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.discord.DiscordService;
 import net.runelite.client.eventbus.EventBus;
+import net.runelite.client.externalplugins.ExternalPluginManager;
 import net.runelite.client.game.ClanManager;
 import net.runelite.client.game.ItemManager;
 import net.runelite.client.game.LootManager;
@@ -83,6 +84,7 @@ public class RuneLite
 {
 	public static final File RUNELITE_DIR = new File(System.getProperty("user.home"), ".sanlite");
 	public static final File CACHE_DIR = new File(RUNELITE_DIR, "cache");
+	public static final File PLUGINS_DIR = new File(RUNELITE_DIR, "plugins");
 	public static final File PROFILES_DIR = new File(RUNELITE_DIR, "profiles");
 	public static final File SCREENSHOT_DIR = new File(RUNELITE_DIR, "screenshots");
 	public static final File LOGS_DIR = new File(RUNELITE_DIR, "logs");
@@ -94,6 +96,9 @@ public class RuneLite
 
 	@Inject
 	private PluginManager pluginManager;
+
+	@Inject
+	private ExternalPluginManager externalPluginManager;
 
 	@Inject
 	private EventBus eventBus;
@@ -293,6 +298,7 @@ public class RuneLite
 		// Load the plugins, but does not start them yet.
 		// This will initialize configuration
 		pluginManager.loadCorePlugins();
+		externalPluginManager.loadExternalPlugins();
 
 		SplashScreen.stage(.70, null, "Finalizing configuration");
 
@@ -315,6 +321,7 @@ public class RuneLite
 		// Register event listeners
 		eventBus.register(clientUI);
 		eventBus.register(pluginManager);
+		eventBus.register(externalPluginManager);
 		eventBus.register(overlayManager);
 		eventBus.register(drawManager);
 		eventBus.register(infoBoxManager);

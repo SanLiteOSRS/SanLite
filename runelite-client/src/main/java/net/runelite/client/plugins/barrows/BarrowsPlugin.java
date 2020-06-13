@@ -45,7 +45,6 @@ import net.runelite.client.game.ItemManager;
 import net.runelite.client.game.SpriteManager;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
-import net.runelite.client.plugins.PluginType;
 import net.runelite.client.ui.overlay.OverlayManager;
 import net.runelite.client.ui.overlay.infobox.InfoBoxManager;
 import net.runelite.client.ui.overlay.infobox.InfoBoxPriority;
@@ -60,9 +59,7 @@ import java.util.Set;
 @PluginDescriptor(
 		name = "Barrows Brothers",
 		description = "Show helpful information for the Barrows minigame",
-		tags = {"combat", "minigame", "minimap", "bosses", "pve", "pvm"},
-		type = PluginType.SANLITE_USE_AT_OWN_RISK,
-		enabledByDefault = false
+		tags = {"combat", "minigame", "minimap", "bosses", "pve", "pvm", "sanlite"}
 )
 public class BarrowsPlugin extends Plugin
 {

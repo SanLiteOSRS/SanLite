@@ -31,6 +31,20 @@ import java.awt.*;
 @ConfigGroup("Vorkath")
 public interface VorkathConfig extends Config
 {
+	@ConfigSection(
+			name = "Colors",
+			description = "Options for colors used throughout the plugin",
+			position = 99
+	)
+	String colorsSection = "colors";
+
+	@ConfigSection(
+			name = "Notifications",
+			description = "Options for plugins notifications",
+			position = 99
+	)
+	String notificationsSection = "notifications";
+
 	@ConfigItem(
 			keyName = "displayRemainingAttacksTillSpecial",
 			name = "Display attacks till next special",
@@ -57,7 +71,7 @@ public interface VorkathConfig extends Config
 			keyName = "attackTimerTextColor",
 			name = "Attack timer text color",
 			description = "Color of attack timer text",
-			group = "Colors",
+			section = colorsSection,
 			position = 2
 	)
 	default Color getAttackTimerTextColor()
@@ -80,7 +94,7 @@ public interface VorkathConfig extends Config
 			keyName = "acidPoolColor",
 			name = "Acid pool tile marker",
 			description = "Color of acid pool tile markers",
-			group = "Colors",
+			section = colorsSection,
 			position = 7
 	)
 	default Color getAcidPoolColor()
@@ -103,7 +117,7 @@ public interface VorkathConfig extends Config
 			keyName = "zombifiedSpawnColor",
 			name = "Zombified spawn color",
 			description = "Color of the highlight on the zombified spawn summoned by Vorkath",
-			group = "Colors",
+			section = colorsSection,
 			position = 9
 	)
 	default Color getZombifiedSpawnColor()
@@ -115,7 +129,7 @@ public interface VorkathConfig extends Config
 			keyName = "notifyOnFirebomb",
 			name = "Notify on firebomb",
 			description = "Receive a notification when Vorkath launches a firebomb",
-			group = "Notifications",
+			section = notificationsSection,
 			position = 10
 	)
 	default boolean notifyOnFirebomb()
@@ -127,7 +141,7 @@ public interface VorkathConfig extends Config
 			keyName = "notifyOnAcidPhase",
 			name = "Notify on acid phase",
 			description = "Receive a notification when Vorkath uses his acid phase special attack",
-			group = "Notifications",
+			section = notificationsSection,
 			position = 11
 	)
 	default boolean notifyOnAcidPhase()
@@ -139,7 +153,7 @@ public interface VorkathConfig extends Config
 			keyName = "notifyOnZombifiedSpawn",
 			name = "Notify on spawn",
 			description = "Receive a notification when Vorkath summons a zombified spawn",
-			group = "Notifications",
+			section = notificationsSection,
 			position = 12
 	)
 	default boolean notifyOnZombifiedSpawn()
@@ -151,7 +165,7 @@ public interface VorkathConfig extends Config
 			keyName = "notifyOnlyOutOfFocus",
 			name = "Only notify out of focus",
 			description = "Only send notifications when the client is out of focus",
-			group = "Notifications",
+			section = notificationsSection,
 			position = 13
 	)
 	default boolean notifyOnlyOutOfFocus()
@@ -189,7 +203,7 @@ public interface VorkathConfig extends Config
 			keyName = "acidPhasePathColor",
 			name = "Acid phase path",
 			description = "Color of the tile markers highlighting the most efficient acid free path during Vorkath's acid phase",
-			group = "Colors",
+			section = colorsSection,
 			position = 16
 	)
 	default Color getAcidPhasePathColor()

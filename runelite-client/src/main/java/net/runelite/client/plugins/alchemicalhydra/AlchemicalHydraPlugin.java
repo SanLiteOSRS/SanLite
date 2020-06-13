@@ -34,7 +34,6 @@ import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.events.ConfigChanged;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
-import net.runelite.client.plugins.PluginType;
 import net.runelite.client.ui.overlay.OverlayManager;
 
 import javax.inject.Inject;
@@ -43,8 +42,7 @@ import java.util.Arrays;
 @PluginDescriptor(
 		name = "Alchemical Hydra",
 		description = "Displays Alchemical Hydra's next attack style and other encounter mechanics",
-		tags = {"combat", "overlay", "pve", "pvm", "hydra", "alchemical", "boss", "slayer", "timer"},
-		type = PluginType.SANLITE_USE_AT_OWN_RISK,
+		tags = {"combat", "overlay", "pve", "pvm", "hydra", "alchemical", "boss", "slayer", "timer", "sanlite"},
 		enabledByDefault = false
 )
 public class AlchemicalHydraPlugin extends Plugin

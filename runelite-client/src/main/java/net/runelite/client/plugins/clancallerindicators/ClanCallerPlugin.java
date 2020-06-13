@@ -39,7 +39,6 @@ import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.game.ClanManager;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
-import net.runelite.client.plugins.PluginType;
 import net.runelite.client.ui.overlay.OverlayManager;
 import net.runelite.client.util.ColorUtil;
 import net.runelite.client.util.Text;
@@ -54,9 +53,8 @@ import static net.runelite.api.MenuAction.*;
 @PluginDescriptor(
 		name = "Clan Caller Indicators",
 		description = "Highlight players that your clans caller is hitting",
-		tags = {"highlight", "minimap", "overlay", "players", "clan", "caller", "pile", "rsb", "rsc"},
-		enabledByDefault = false,
-		type = PluginType.SANLITE_USE_AT_OWN_RISK
+		tags = {"highlight", "minimap", "overlay", "players", "clan", "caller", "pile", "rsb", "rsc", "sanlite"},
+		enabledByDefault = false
 )
 
 @Singleton

@@ -52,12 +52,11 @@ import net.runelite.client.menus.MenuManager;
 import net.runelite.client.menus.WidgetMenuOption;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
-import net.runelite.client.plugins.PluginType;
 
 @PluginDescriptor(
 	name = "Reorder Prayers",
 	description = "Reorder the prayers displayed on the Prayer panel",
-	type = PluginType.SANLITE_USE_AT_OWN_RISK,
+	tags = {"interface", "ui", "prayer", "sanlite"},
 	enabledByDefault = false
 )
 public class ReorderPrayersPlugin extends Plugin

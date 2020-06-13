@@ -661,7 +661,7 @@ public class MusicPlugin extends Plugin
 	public void onSoundEffectPlayed(SoundEffectPlayed soundEffectPlayed)
 	{
 		if (musicConfig.mutePrayerSounds()
-				&& PRAYER_SOUNDS.contains(soundEffectPlayed.getSoundId()))
+			&& PRAYER_SOUNDS.contains(soundEffectPlayed.getSoundId()))
 		{
 			soundEffectPlayed.consume();
 		}
