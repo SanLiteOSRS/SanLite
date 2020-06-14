@@ -449,13 +449,6 @@ public abstract class RSClientMixin implements RSClient
 
 	@Inject
 	@Override
-	public int getVarpValue(int varpId)
-	{
-		return getVarpValue(getVarps(), varpId);
-	}
-
-	@Inject
-	@Override
 	public void setVarpValue(int[] varps, int varpId, int value)
 	{
 		varps[varpId] = value;
@@ -684,10 +677,6 @@ public abstract class RSClientMixin implements RSClient
 		setSceneLowMemory(lowMemory);
 		setAudioHighMemory(true);
 		setObjectDefinitionLowDetail(lowMemory);
-		if (getGameState() == GameState.LOGGED_IN)
-		{
-			setGameState(GameState.LOADING);
-		}
 	}
 
 	@Inject

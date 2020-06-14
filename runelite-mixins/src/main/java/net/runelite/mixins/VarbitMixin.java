@@ -40,13 +40,6 @@ public abstract class VarbitMixin implements RSClient
 
 	@Inject
 	@Override
-	public int getVarbitValue(int varbitId)
-	{
-		return getVarbitValue(getVarps(), varbitId);
-	}
-
-	@Inject
-	@Override
 	public void setVarbit(Varbits varbit, int value)
 	{
 		int varbitId = varbit.getId();
@@ -103,15 +96,8 @@ public abstract class VarbitMixin implements RSClient
 	@Override
 	public int getVar(VarClientInt varClientInt)
 	{
-		return getVarcIntValue(varClientInt.getIndex());
-	}
-
-	@Inject
-	@Override
-	public int getVarcIntValue(int varcIntId)
-	{
 		Map<Integer, Object> varcmap = getVarcMap();
-		Object object = varcmap.get(varcIntId);
+		Object object = varcmap.get(varClientInt.getIndex());
 		return object instanceof Integer ? (Integer) object : 0;
 	}
 
@@ -119,15 +105,8 @@ public abstract class VarbitMixin implements RSClient
 	@Override
 	public String getVar(VarClientStr varClientStr)
 	{
-		return getVarcStrValue(varClientStr.getIndex());
-	}
-
-	@Inject
-	@Override
-	public String getVarcStrValue(int varcStrId)
-	{
 		Map<Integer, Object> varcmap = getVarcMap();
-		Object var2 = varcmap.get(varcStrId);
+		Object var2 = varcmap.get(varClientStr.getIndex());
 		return var2 instanceof String ? (String) var2 : "";
 	}
 
