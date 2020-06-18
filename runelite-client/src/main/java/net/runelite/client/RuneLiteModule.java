@@ -34,6 +34,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.function.Supplier;
 import javax.annotation.Nullable;
 import javax.inject.Singleton;
+import lombok.AllArgsConstructor;
 import net.runelite.api.Client;
 import net.runelite.api.hooks.Callbacks;
 import net.runelite.client.account.SessionManager;
@@ -55,26 +56,21 @@ import okhttp3.OkHttpClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+@AllArgsConstructor
 public class RuneLiteModule extends AbstractModule
 {
 	private static final int MAX_OKHTTP_CACHE_SIZE = 20 * 1024 * 1024; // 20mb
 
 	private final Supplier<Applet> clientLoader;
+	private final boolean safeMode;
 	private final File sessionfile;
 	private final File config;
-
-	public RuneLiteModule(Supplier<Applet> clientLoader, File sessionfile, File config)
-	{
-		this.clientLoader = clientLoader;
-		this.sessionfile = sessionfile;
-		this.config = config;
-	}
-
 
 	@Override
 	protected void configure()
 	{
 		bindConstant().annotatedWith(Names.named("developerMode")).to(true);
+		bindConstant().annotatedWith(Names.named("safeMode")).to(safeMode);
 		bind(File.class).annotatedWith(Names.named("sessionfile")).toInstance(sessionfile);
 		bind(File.class).annotatedWith(Names.named("config")).toInstance(config);
 		bind(ScheduledExecutorService.class).toInstance(new ExecutorServiceExceptionLogger(Executors.newSingleThreadScheduledExecutor()));

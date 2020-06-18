@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 Sebastiaan <https://github.com/SebastiaanVanspauwen>
+ * Copyright (c) 2018, Adam <Adam@sigterm.info>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,37 +22,21 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.client.plugins.clanchat;
+package net.runelite.api;
 
-import java.awt.Color;
-import java.awt.image.BufferedImage;
-import net.runelite.client.ui.overlay.infobox.Counter;
-
-class ClanChatIndicator extends Counter
+public interface FriendsChatManager extends NameableContainer<FriendsChatMember>
 {
-	private final ClanChatPlugin plugin;
+	/**
+	 * Gets the owner of the currently joined friends chat
+	 *
+	 * @return
+	 */
+	String getOwner();
 
-	ClanChatIndicator(BufferedImage image, ClanChatPlugin plugin)
-	{
-		super(image, plugin, plugin.getClanAmount());
-		this.plugin = plugin;
-	}
-
-	@Override
-	public int getCount()
-	{
-		return plugin.getClanAmount();
-	}
-
-	@Override
-	public String getTooltip()
-	{
-		return plugin.getClanAmount() + " clan member(s) near you";
-	}
-
-	@Override
-	public Color getTextColor()
-	{
-		return Color.WHITE;
-	}
+	/**
+	 * Gets the name of the currently joined friends chat
+	 *
+	 * @return
+	 */
+	String getName();
 }

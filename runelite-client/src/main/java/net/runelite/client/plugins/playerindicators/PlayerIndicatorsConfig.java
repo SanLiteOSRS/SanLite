@@ -50,12 +50,12 @@ public interface PlayerIndicatorsConfig extends Config
 	String friendsSection = "friends";
 
 	@ConfigSection(
-			name = "Clan members",
-			description = "Highlight options for clan members",
+			name = "Friends chat members",
+			description = "Highlight options for friends chat members",
 			closedByDefault = true,
 			position = 99
 	)
-	String clanMembersSection = "clanMembers";
+	String friendsChatMembersSection = "friendsChatMembers";
 
 	@ConfigSection(
 			name = "Team cape members",
@@ -66,12 +66,12 @@ public interface PlayerIndicatorsConfig extends Config
 	String teamCapeMembersSection = "teamCapeMembers";
 
 	@ConfigSection(
-			name = "Non-clan members",
-			description = "Highlight options for non-clan members",
+			name = "Others",
+			description = "Highlight options for other players",
 			closedByDefault = true,
 			position = 99
 	)
-	String nonClanMembersSection = "nonClanMembers";
+	String othersSection = "others";
 
 	@ConfigSection(
 			name = "Player spawn notifications",
@@ -168,11 +168,11 @@ public interface PlayerIndicatorsConfig extends Config
 	@ConfigItem(
 			position = 7,
 			keyName = "disableFriendHighlightIfClanMember",
-			name = "Do not highlight clan members",
-			description = "Configures whether or not friends who are also in your clan chat should be highlighted as a friend",
+			name = "Do not highlight friends chat members",
+			description = "Configures whether or not friends who are also in your friends chat should be highlighted as a friend",
 			section = friendsSection
 	)
-	default boolean disableFriendHighlightIfClanMember()
+	default boolean disableFriendHighlightIfFriendsChatMember()
 	{
 		return false;
 	}
@@ -240,11 +240,11 @@ public interface PlayerIndicatorsConfig extends Config
 	@ConfigItem(
 			position = 13,
 			keyName = "drawClanMemberNames",
-			name = "Highlight clan members",
-			description = "Configures whether or clan members should be highlighted",
-			section = clanMembersSection
+			name = "Highlight friends chat members",
+			description = "Configures if friends chat members should be highlighted",
+			section = friendsChatMembersSection
 	)
-	default boolean highlightClanMembers()
+	default boolean highlightFriendsChatMembers()
 	{
 		return true;
 	}
@@ -252,11 +252,11 @@ public interface PlayerIndicatorsConfig extends Config
 	@ConfigItem(
 			position = 14,
 			keyName = "clanMemberColor",
-			name = "Clan member color",
-			description = "Color of clan members",
-			section = clanMembersSection
+			name = "Friends chat member color",
+			description = "Color of friends chat members",
+			section = friendsChatMembersSection
 	)
-	default Color getClanMemberColor()
+	default Color getFriendsChatMemberColor()
 	{
 		return new Color(170, 0, 255);
 	}
@@ -264,11 +264,11 @@ public interface PlayerIndicatorsConfig extends Config
 	@ConfigItem(
 			position = 15,
 			keyName = "drawClanMemberTiles",
-			name = "Draw tiles under clan members",
-			description = "Configures whether or not tiles under highlighted clan members should be drawn",
-			section = clanMembersSection
+			name = "Draw tiles under friends chat members",
+			description = "Configures whether or not tiles under highlighted friends chat members should be drawn",
+			section = friendsChatMembersSection
 	)
-	default boolean drawClanMemberTiles()
+	default boolean drawFriendsChatMemberTiles()
 	{
 		return false;
 	}
@@ -277,10 +277,10 @@ public interface PlayerIndicatorsConfig extends Config
 			position = 16,
 			keyName = "clanPlayerNamePosition",
 			name = "Name position",
-			description = "Configures the position of drawn clan member names, or if they should be disabled",
-			section = clanMembersSection
+			description = "Configures the position of drawn friends chat member names, or if they should be disabled",
+			section = friendsChatMembersSection
 	)
-	default PlayerNameLocation getClanMemberPlayerNamePosition()
+	default PlayerNameLocation getFriendsChatMemberPlayerNamePosition()
 	{
 		return PlayerNameLocation.ABOVE_HEAD;
 	}
@@ -288,11 +288,11 @@ public interface PlayerIndicatorsConfig extends Config
 	@ConfigItem(
 			position = 17,
 			keyName = "drawClanMinimapNames",
-			name = "Draw clan member names on minimap",
-			description = "Configures whether or not minimap names for clan members with rendered names should be drawn",
-			section = clanMembersSection
+			name = "Draw friends chat member names on minimap",
+			description = "Configures whether or not minimap names for friends chat members with rendered names should be drawn",
+			section = friendsChatMembersSection
 	)
-	default boolean drawClanMemberMinimapNames()
+	default boolean drawFriendsChatMemberMinimapNames()
 	{
 		return false;
 	}
@@ -300,11 +300,11 @@ public interface PlayerIndicatorsConfig extends Config
 	@ConfigItem(
 			position = 18,
 			keyName = "colorClanPlayerMenu",
-			name = "Colorize player menu for clan members",
-			description = "Color right click menu for clan members",
-			section = clanMembersSection
+			name = "Colorize player menu for friends chat members",
+			description = "Color right click menu for friends chat members",
+			section = friendsChatMembersSection
 	)
-	default boolean colorClanMemberPlayerMenu()
+	default boolean colorFriendsChatMemberPlayerMenu()
 	{
 		return true;
 	}
@@ -384,11 +384,11 @@ public interface PlayerIndicatorsConfig extends Config
 	@ConfigItem(
 			position = 25,
 			keyName = "drawNonClanMemberNames",
-			name = "Highlight non-clan members",
-			description = "Configures whether or not non-clan members should be highlighted",
-			section = nonClanMembersSection
+			name = "Highlight others",
+			description = "Configures whether or not other players should be highlighted",
+			section = othersSection
 	)
-	default boolean highlightNonClanMembers()
+	default boolean highlightOthers()
 	{
 		return false;
 	}
@@ -396,11 +396,11 @@ public interface PlayerIndicatorsConfig extends Config
 	@ConfigItem(
 			position = 26,
 			keyName = "nonClanMemberColor",
-			name = "Non-clan member color",
-			description = "Color of non-clan member names",
-			section = nonClanMembersSection
+			name = "Others color",
+			description = "Color of other players names",
+			section = othersSection
 	)
-	default Color getNonClanMemberColor()
+	default Color getOthersColor()
 	{
 		return Color.RED;
 	}
@@ -408,11 +408,11 @@ public interface PlayerIndicatorsConfig extends Config
 	@ConfigItem(
 			position = 27,
 			keyName = "drawNonClanTiles",
-			name = "Draw tiles under non-clan members",
-			description = "Configures whether or not tiles under highlighted non-clan members should be drawn",
-			section = nonClanMembersSection
+			name = "Draw tiles under other players",
+			description = "Configures whether or not tiles under highlighted other players should be drawn",
+			section = othersSection
 	)
-	default boolean drawNonClanMemberTiles()
+	default boolean drawOthersTiles()
 	{
 		return false;
 	}
@@ -421,10 +421,10 @@ public interface PlayerIndicatorsConfig extends Config
 			position = 28,
 			keyName = "nonClanPlayerNamePosition",
 			name = "Name position",
-			description = "Configures the position of drawn non-clan member names, or if they should be disabled",
-			section = nonClanMembersSection
+			description = "Configures the position of drawn other player names, or if they should be disabled",
+			section = othersSection
 	)
-	default PlayerNameLocation getNonClanPlayerNamePosition()
+	default PlayerNameLocation getOthersPlayerNamePosition()
 	{
 		return PlayerNameLocation.ABOVE_HEAD;
 	}
@@ -432,11 +432,11 @@ public interface PlayerIndicatorsConfig extends Config
 	@ConfigItem(
 			position = 29,
 			keyName = "drawNonClanMinimapNames",
-			name = "Draw non clan member names on minimap",
-			description = "Configures whether or not minimap names for non-clan members with rendered names should be drawn",
-			section = nonClanMembersSection
+			name = "Draw other player names on minimap",
+			description = "Configures whether or not minimap names for other players with rendered names should be drawn",
+			section = othersSection
 	)
-	default boolean drawNonClanMemberMinimapNames()
+	default boolean drawOthersMinimapNames()
 	{
 		return false;
 	}
@@ -444,11 +444,11 @@ public interface PlayerIndicatorsConfig extends Config
 	@ConfigItem(
 			position = 30,
 			keyName = "colorNonClanPlayerMenu",
-			name = "Colorize player menu for non clan members",
-			description = "Color right click menu for non-clan members",
-			section = nonClanMembersSection
+			name = "Colorize player menu for other players",
+			description = "Color right click menu for other players",
+			section = othersSection
 	)
-	default boolean colorNonClanMemberPlayerMenu()
+	default boolean colorOthersPlayerMenu()
 	{
 		return true;
 	}
@@ -456,12 +456,12 @@ public interface PlayerIndicatorsConfig extends Config
 	@ConfigItem(
 			position = 31,
 			keyName = "notifyOnNonClanMemberSpawned",
-			name = "Notify on non-clan member spawn",
-			description = "Receive a notification when a non-clan member appears by logging in or running into the " +
+			name = "Notify on other player spawn",
+			description = "Receive a notification when a other player appears by logging in or running into the " +
 					"player render range in a PvP zone. Notifications will not be triggered in safe death PvP areas",
 			section = playerSpawnNotificationsSection
 	)
-	default boolean notifyOnNonClanMemberSpawned()
+	default boolean notifyOnOtherPlayerSpawned()
 	{
 		return false;
 	}
@@ -506,11 +506,11 @@ public interface PlayerIndicatorsConfig extends Config
 	@ConfigItem(
 			position = 35,
 			keyName = "clanMenuIcons",
-			name = "Show clan ranks",
-			description = "Add clan rank to right click menu and next to player names",
-			section = clanMembersSection
+			name = "Show friends chat ranks",
+			description = "Add friends chat rank to right click menu and next to player names",
+			section = friendsChatMembersSection
 	)
-	default boolean showClanRanks()
+	default boolean showFriendsChatRanks()
 	{
 		return true;
 	}

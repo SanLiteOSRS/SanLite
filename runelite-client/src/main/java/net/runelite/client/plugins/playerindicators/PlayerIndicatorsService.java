@@ -48,8 +48,8 @@ class PlayerIndicatorsService
 
 	void forEachPlayer(final BiConsumer<Player, PlayerIndicatorType> consumer)
 	{
-		if (!config.highlightOwnPlayer() && !config.highlightClanMembers() && !config.highlightFriends() &&
-				!config.highlightOfflineFriends() && !config.highlightNonClanMembers() && !config.highlightTeamMembers())
+		if (!config.highlightOwnPlayer() && !config.highlightFriendsChatMembers() && !config.highlightFriends() &&
+				!config.highlightOfflineFriends() && !config.highlightOthers() && !config.highlightTeamMembers())
 		{
 			return;
 		}
@@ -78,14 +78,14 @@ class PlayerIndicatorsService
 				continue;
 			}
 
-			final boolean isClanMember = player.isClanMember();
+			final boolean isFriendsChatMember = player.isFriendsChatMember();
 
 			// Friends
 			if (config.highlightFriends() && player.isFriend())
 			{
-				if (config.disableFriendHighlightIfClanMember() && isClanMember)
+				if (config.disableFriendHighlightIfFriendsChatMember() && isFriendsChatMember)
 				{
-					consumer.accept(player, PlayerIndicatorType.CLAN_MEMBER);
+					consumer.accept(player, PlayerIndicatorType.FRIENDS_CHAT_MEMBERS);
 					continue;
 				}
 
@@ -96,9 +96,9 @@ class PlayerIndicatorsService
 			// Appear offline friends
 			if (config.highlightOfflineFriends() && client.isFriended(player.getName(), false))
 			{
-				if (config.disableFriendHighlightIfClanMember() && isClanMember)
+				if (config.disableFriendHighlightIfFriendsChatMember() && isFriendsChatMember)
 				{
-					consumer.accept(player, PlayerIndicatorType.CLAN_MEMBER);
+					consumer.accept(player, PlayerIndicatorType.FRIENDS_CHAT_MEMBERS);
 					continue;
 				}
 
@@ -107,9 +107,9 @@ class PlayerIndicatorsService
 			}
 
 			// Clan members
-			if (config.highlightClanMembers() && isClanMember)
+			if (config.highlightFriendsChatMembers() && isFriendsChatMember)
 			{
-				consumer.accept(player, PlayerIndicatorType.CLAN_MEMBER);
+				consumer.accept(player, PlayerIndicatorType.FRIENDS_CHAT_MEMBERS);
 				continue;
 			}
 
@@ -121,7 +121,7 @@ class PlayerIndicatorsService
 			}
 
 			// Non-clan members
-			if (config.highlightNonClanMembers() && !isClanMember)
+			if (config.highlightOthers() && !isFriendsChatMember)
 			{
 				consumer.accept(player, PlayerIndicatorType.NON_CLAN_MEMBER);
 			}
@@ -130,8 +130,8 @@ class PlayerIndicatorsService
 
 	PlayerIndicatorType getMenuEntryPlayerIndicatorType(Player player)
 	{
-		if (!config.highlightOwnPlayer() && !config.highlightClanMembers()
-				&& !config.highlightFriends() && !config.highlightNonClanMembers() && !config.highlightTeamMembers())
+		if (!config.highlightOwnPlayer() && !config.highlightFriendsChatMembers()
+				&& !config.highlightFriends() && !config.highlightOthers() && !config.highlightTeamMembers())
 		{
 			return null;
 		}
@@ -142,14 +142,14 @@ class PlayerIndicatorsService
 			return null;
 		}
 
-		final boolean isClanMember = player.isClanMember();
+		final boolean isFriendsChatMember = player.isFriendsChatMember();
 
 		// Friends
 		if (config.highlightFriends() && config.colorFriendPlayerMenu() && player.isFriend())
 		{
-			if (config.disableFriendHighlightIfClanMember() && isClanMember)
+			if (config.disableFriendHighlightIfFriendsChatMember() && isFriendsChatMember)
 			{
-				return PlayerIndicatorType.CLAN_MEMBER;
+				return PlayerIndicatorType.FRIENDS_CHAT_MEMBERS;
 			}
 
 			return PlayerIndicatorType.FRIEND;
@@ -158,18 +158,18 @@ class PlayerIndicatorsService
 		// Appear offline friends
 		if (config.highlightOfflineFriends() && config.colorFriendPlayerMenu() && client.isFriended(player.getName(), false))
 		{
-			if (config.disableFriendHighlightIfClanMember() && isClanMember)
+			if (config.disableFriendHighlightIfFriendsChatMember() && isFriendsChatMember)
 			{
-				return PlayerIndicatorType.CLAN_MEMBER;
+				return PlayerIndicatorType.FRIENDS_CHAT_MEMBERS;
 			}
 
 			return PlayerIndicatorType.FRIEND;
 		}
 
 		// Clan members
-		if (config.highlightClanMembers() && config.colorClanMemberPlayerMenu() && isClanMember)
+		if (config.highlightFriendsChatMembers() && config.colorFriendsChatMemberPlayerMenu() && isFriendsChatMember)
 		{
-			return PlayerIndicatorType.CLAN_MEMBER;
+			return PlayerIndicatorType.FRIENDS_CHAT_MEMBERS;
 		}
 
 		// Team-cape members
@@ -180,11 +180,11 @@ class PlayerIndicatorsService
 		}
 
 		// Non-clan members
-		if (config.highlightNonClanMembers() && config.colorNonClanMemberPlayerMenu() && !isClanMember)
+		if (config.highlightOthers() && config.colorOthersPlayerMenu() && !isFriendsChatMember)
 		{
 			return PlayerIndicatorType.NON_CLAN_MEMBER;
 		}
-		return PlayerIndicatorType.NONE;
+		return PlayerIndicatorType.OTHER_PLAYER;
 	}
 
 	PlayerIndicatorType getPlayerIndicatorType(Player player)
@@ -195,14 +195,14 @@ class PlayerIndicatorsService
 			return null;
 		}
 
-		final boolean isClanMember = player.isClanMember();
+		final boolean isFriendsChatMember = player.isFriendsChatMember();
 
 		// Friends
 		if (player.isFriend())
 		{
-			if (config.disableFriendHighlightIfClanMember() && isClanMember)
+			if (config.disableFriendHighlightIfFriendsChatMember() && isFriendsChatMember)
 			{
-				return PlayerIndicatorType.CLAN_MEMBER;
+				return PlayerIndicatorType.FRIENDS_CHAT_MEMBERS;
 			}
 
 			return PlayerIndicatorType.FRIEND;
@@ -211,18 +211,18 @@ class PlayerIndicatorsService
 		// Appear offline friends
 		if (client.isFriended(player.getName(), false))
 		{
-			if (config.disableFriendHighlightIfClanMember() && isClanMember)
+			if (config.disableFriendHighlightIfFriendsChatMember() && isFriendsChatMember)
 			{
-				return PlayerIndicatorType.CLAN_MEMBER;
+				return PlayerIndicatorType.FRIENDS_CHAT_MEMBERS;
 			}
 
 			return PlayerIndicatorType.FRIEND;
 		}
 
 		// Clan members
-		if (isClanMember)
+		if (isFriendsChatMember)
 		{
-			return PlayerIndicatorType.CLAN_MEMBER;
+			return PlayerIndicatorType.FRIENDS_CHAT_MEMBERS;
 		}
 
 		// Team-cape members
