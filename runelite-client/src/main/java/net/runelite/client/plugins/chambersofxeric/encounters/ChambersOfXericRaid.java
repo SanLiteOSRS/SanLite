@@ -239,7 +239,11 @@ public class ChambersOfXericRaid
 			case NpcID.VANGUARD_7527:
 			case NpcID.VANGUARD_7528:
 			case NpcID.VANGUARD_7529:
-				aliveVanguards.add(new Vanguard(npc));
+				System.out.println("Attempted to add vanguard: " + npc.getId());
+				if (!aliveVanguards.contains(new Vanguard(npc)))
+				{
+					aliveVanguards.add(new Vanguard(npc));
+				}
 				break;
 		}
 	}
@@ -255,7 +259,7 @@ public class ChambersOfXericRaid
 			case NpcID.VANGUARD_7527:
 			case NpcID.VANGUARD_7528:
 			case NpcID.VANGUARD_7529:
-				aliveVanguards.removeIf(Vanguard -> Vanguard.getNpc().equals(npc));
+				aliveVanguards.removeIf(Vanguard -> Vanguard.getVanguard().equals(npc));
 				break;
 		}
 	}

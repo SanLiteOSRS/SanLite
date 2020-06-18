@@ -121,6 +121,34 @@ public class ChambersOfXericDebugOverlay extends Overlay
 						.left("Number of alive vanguards")
 						.right("" + plugin.getCurrentRaid().getAliveVanguards().size())
 						.build());
+
+				if (plugin.getCurrentRaid().getAliveVanguards().size() == 3)
+				{
+					panelComponent.getChildren().add(LineComponent.builder()
+							.left("Vanguard 1 style")
+							.right("" + plugin.getCurrentRaid().getAliveVanguards().get(0).getVangStyle().toString())
+							.build());
+					panelComponent.getChildren().add(LineComponent.builder()
+							.left("Vanguard 1 health")
+							.right("" + plugin.getCurrentRaid().getAliveVanguards().get(0).getVangPercent())
+							.build());
+					panelComponent.getChildren().add(LineComponent.builder()
+							.left("Vanguard 2 style")
+							.right("" + plugin.getCurrentRaid().getAliveVanguards().get(1).getVangStyle().toString())
+							.build());
+					panelComponent.getChildren().add(LineComponent.builder()
+							.left("Vanguard 2 health")
+							.right("" + plugin.getCurrentRaid().getAliveVanguards().get(1).getVangPercent())
+							.build());
+					panelComponent.getChildren().add(LineComponent.builder()
+							.left("Vanguard 3 style")
+							.right("" + plugin.getCurrentRaid().getAliveVanguards().get(2).getVangStyle().toString())
+							.build());
+					panelComponent.getChildren().add(LineComponent.builder()
+							.left("Vanguard 3 health")
+							.right("" + plugin.getCurrentRaid().getAliveVanguards().get(2).getVangPercent())
+							.build());
+				}
 			}
 			return panelComponent.render(graphics);
 		}

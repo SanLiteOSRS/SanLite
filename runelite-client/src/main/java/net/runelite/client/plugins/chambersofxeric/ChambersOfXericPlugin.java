@@ -325,6 +325,7 @@ public class ChambersOfXericPlugin extends Plugin
 
 		if (!currentRaid.getAliveVanguards().isEmpty())
 		{
+			currentRaid.getAliveVanguards().forEach(Vanguard::setVanguardStyle);
 			currentRaid.getAliveVanguards().forEach(Vanguard::updateHP);
 		}
 	}

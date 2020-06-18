@@ -297,14 +297,14 @@ public class ChambersOfXericOverlay extends Overlay
 
 		for (Vanguard aliveVanguard : aliveVanguards)
 		{
-			String text = String.valueOf(aliveVanguard.getVangPercent());
+			String text = aliveVanguard.getVangPercent() + "%";
 
-			if (aliveVanguard.getVangPercent() <= 0)
+			if (aliveVanguard.getVangPercent() < 0)
 			{
 				return;
 			}
 
-			NPC vanguard = aliveVanguard.getNpc();
+			NPC vanguard = aliveVanguard.getVanguard();
 
 			Point textLocation = vanguard.getCanvasTextLocation(graphics, text, 0);
 
@@ -315,16 +315,16 @@ public class ChambersOfXericOverlay extends Overlay
 
 			Color colour = Color.WHITE;
 
-			switch (aliveVanguard.getNpc().getId())
+			switch (aliveVanguard.getVangStyle())
 			{
-				case NpcID.VANGUARD_7527:
+				case MELEE:
 					colour = Color.RED;
 					break;
-				case NpcID.VANGUARD_7528:
+				case RANGE:
 					colour = Color.GREEN;
 					break;
-				case NpcID.VANGUARD_7529:
-					colour = Color.BLUE;
+				case MAGE:
+					colour = Color.CYAN;
 					break;
 			}
 
