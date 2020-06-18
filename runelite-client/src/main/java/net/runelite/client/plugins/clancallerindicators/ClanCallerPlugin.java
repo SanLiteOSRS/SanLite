@@ -36,7 +36,7 @@ import net.runelite.api.events.MenuEntryAdded;
 import net.runelite.api.events.PlayerDespawned;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
-import net.runelite.client.game.ClanManager;
+import net.runelite.client.game.FriendChatManager;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.ui.overlay.OverlayManager;
@@ -79,7 +79,7 @@ public class ClanCallerPlugin extends Plugin
 	private Client client;
 
 	@Inject
-	private ClanManager clanManager;
+	private FriendChatManager friendsChatManager;
 
 	@Getter
 	private List<Player> callersList = new ArrayList<>();
@@ -124,7 +124,7 @@ public class ClanCallerPlugin extends Plugin
 			if (!callersList.contains(player) && !pilesList.contains(player))
 			{
 				// If it is a clan member, it can only be a caller
-				if (clanManager.isClanMember(name))
+				if (friendsChatManager.isMember(name))
 				{
 					for (String caller : callersListString)
 					{
@@ -135,7 +135,7 @@ public class ClanCallerPlugin extends Plugin
 					}
 				}
 				// If it is not a clan member, it can only be a pile
-				else if (!clanManager.isClanMember(name))
+				else if (!friendsChatManager.isMember(name))
 				{
 					for (Player caller : callersList)
 					{

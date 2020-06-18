@@ -664,7 +664,7 @@ public interface RSClient extends RSGameEngine, Client
 	RSFriendSystem getFriendManager();
 
 	@Import("clanChat")
-	RSClanMemberManager getClanMemberManager();
+	RSFriendsChatManager getFriendsChatManager();
 
 	@Import("loginType")
 	RSLoginType getLoginType();

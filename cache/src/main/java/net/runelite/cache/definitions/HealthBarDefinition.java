@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019, Adam <Adam@sigterm.info>
+ * Copyright (c) 2020, Trevor <https://github.com/Trevor159>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,15 +22,22 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.client.plugins.clanchat;
+package net.runelite.cache.definitions;
 
-import lombok.Value;
-import net.runelite.api.MessageNode;
+import lombok.Data;
 
-@Value
-class ClanJoinMessage
+@Data
+public class HealthBarDefinition
 {
-	private final MessageNode messageNode;
-	private final int getMessageId;
-	private final int tick;
+	public int id;
+	public int field3276;
+	public int field3277;
+	public int field3278;
+	public int field3283;
+	public int field3272;
+	public int field3275;
+	public int healthBarFrontSpriteId;
+	public int healthBarBackSpriteId;
+	public int healthScale;
+	public int healthBarPadding;
 }

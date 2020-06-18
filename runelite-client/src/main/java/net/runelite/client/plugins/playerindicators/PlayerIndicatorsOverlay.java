@@ -28,11 +28,11 @@
 package net.runelite.client.plugins.playerindicators;
 
 import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.ClanMemberRank;
+import net.runelite.api.FriendsChatRank;
 import net.runelite.api.Player;
 import net.runelite.api.Point;
 import net.runelite.client.config.PlayerNameLocation;
-import net.runelite.client.game.ClanManager;
+import net.runelite.client.game.FriendChatManager;
 import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayPosition;
 import net.runelite.client.ui.overlay.OverlayPriority;
@@ -53,15 +53,15 @@ public class PlayerIndicatorsOverlay extends Overlay
 
 	private final PlayerIndicatorsService playerIndicatorsService;
 	private final PlayerIndicatorsConfig config;
-	private final ClanManager clanManager;
+	private final FriendChatManager friendsChatManager;
 
 	@Inject
 	private PlayerIndicatorsOverlay(PlayerIndicatorsConfig config, PlayerIndicatorsService playerIndicatorsService,
-									ClanManager clanManager)
+			FriendChatManager friendsChatManager)
 	{
 		this.config = config;
 		this.playerIndicatorsService = playerIndicatorsService;
-		this.clanManager = clanManager;
+		this.friendsChatManager = friendsChatManager;
 		setPosition(OverlayPosition.DYNAMIC);
 		setPriority(OverlayPriority.MED);
 	}
@@ -83,14 +83,14 @@ public class PlayerIndicatorsOverlay extends Overlay
 			case FRIEND:
 				renderPlayerName(graphics, player, type, config.getFriendPlayerNamePosition(), config.getFriendColor());
 				break;
-			case CLAN_MEMBER:
-				renderPlayerName(graphics, player, type, config.getClanMemberPlayerNamePosition(), config.getClanMemberColor());
+			case FRIENDS_CHAT_MEMBERS:
+				renderPlayerName(graphics, player, type, config.getFriendsChatMemberPlayerNamePosition(), config.getFriendsChatMemberColor());
 				break;
 			case TEAM_CAPE_MEMBER:
 				renderPlayerName(graphics, player, type, config.getTeamPlayerNamePosition(), config.getTeamMemberColor());
 				break;
 			case NON_CLAN_MEMBER:
-				renderPlayerName(graphics, player, type, config.getNonClanPlayerNamePosition(), config.getNonClanMemberColor());
+				renderPlayerName(graphics, player, type, config.getOthersPlayerNamePosition(), config.getOthersColor());
 				break;
 			default:
 				log.warn("Tried rendering name for player: {} with unknown PlayerIndicatorType: {}", player.getName(), type);
@@ -141,7 +141,7 @@ public class PlayerIndicatorsOverlay extends Overlay
 			return;
 		}
 
-		if (config.showClanRanks() && type == PlayerIndicatorType.CLAN_MEMBER)
+		if (config.showFriendsChatRanks() && type == PlayerIndicatorType.FRIENDS_CHAT_MEMBERS)
 		{
 			Point clanRankTextLocation = getNameTextLocationWithClanRank(graphics, name, textLocation, nameLocation);
 			if (clanRankTextLocation != null)
@@ -155,11 +155,11 @@ public class PlayerIndicatorsOverlay extends Overlay
 
 	private Point getNameTextLocationWithClanRank(Graphics2D graphics, String name, Point textLocation, PlayerNameLocation nameLocation)
 	{
-		final ClanMemberRank rank = clanManager.getRank(name);
+		final FriendsChatRank rank = friendsChatManager.getRank(name);
 
-		if (rank != ClanMemberRank.UNRANKED)
+		if (rank != FriendsChatRank.UNRANKED)
 		{
-			final BufferedImage clanChatImage = clanManager.getClanImage(rank);
+			final BufferedImage clanChatImage = friendsChatManager.getRankImage(rank);
 
 			if (clanChatImage != null)
 			{

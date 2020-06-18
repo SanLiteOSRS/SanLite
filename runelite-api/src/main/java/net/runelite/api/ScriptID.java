@@ -104,21 +104,10 @@ public final class ScriptID
 	public static final int MESSAGE_LAYER_OPEN = 677;
 
 	/**
-	 * Clicking bank pin buttons runs this
-	 */
-	@ScriptArguments(integer = 20)
-	public static final int BANK_PIN_OP = 685;
-
-	/**
 	 * Builds the chatbox input widget
 	 */
 	@ScriptArguments()
 	public static final int CHAT_PROMPT_INIT = 223;
-	
-	/**
-	 * Joins the corresponding minigame chat
-	 */
-	public static final int FORCE_JOIN_CC = 437;
 
 	/**
 	 * Displays the game messages when clicking on an item inside the Items Kept on Death interface
@@ -213,13 +202,13 @@ public final class ScriptID
 	public static final int XPDROP_DISABLED = 2091;
 
 	/**
-	 * Attempts to kick the specified player from the Clan Chat
+	 * Attempts to kick the specified player from the friends chat
 	 * <ul>
 	 * <li>String Players in-game name</li>
 	 * </ul>
 	 */
 	@ScriptArguments(string = 1)
-	public static final int CLAN_SEND_KICK = 215;
+	public static final int FRIENDS_CHAT_SEND_KICK = 215;
 
 	/**
 	 * Join a clan chat channel
@@ -232,21 +221,16 @@ public final class ScriptID
 	public static final int PUBLIC_MSG = 13337;
 
 	/**
-	 * Clicking bank pin buttons runs this
-	 */
-	public static final int BANK_PIN_BUTTON_CLICK = 685;
-
-	/**
 	 * Builds the items kept on death widget
 	 */
 	@ScriptArguments(integer = 4, string = 2)
 	public static final int DEATH_KEEP_BUILD = 1601;
 
 	/**
-	 * Builds the widget that holds all of the players inside a clan chat
+	 * Builds the widget that holds all of the players inside a friends chat
 	 */
 	@ScriptArguments(integer = 15)
-	public static final int CLAN_CHAT_CHANNEL_BUILD = 1658;
+	public static final int FRIENDS_CHAT_CHANNEL_REBUILD = 1658;
 
 	/**
 	 * Builds the widget for making an offer in Grand Exchange

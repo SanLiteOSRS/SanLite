@@ -58,7 +58,7 @@ public interface MessageNode extends Node
 	void setName(String name);
 
 	/**
-	 * Gets the sender of the message (ie. clan name).
+	 * Gets the sender of the message (ie. friends chat name).
 	 *
 	 * @return the message sender
 	 */
@@ -125,5 +125,5 @@ public interface MessageNode extends Node
 	/**
 	 * Returns true if the message is from a clanmate
 	 */
-	boolean isFromClanMate();
+	boolean isFromFriendsChatMember();
 }
