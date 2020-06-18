@@ -337,7 +337,7 @@ public class GrandExchangeEvent {
 									Login.Login_username = "";
 									Login.Login_password = "";
 									WorldMapSprite.field264 = 0;
-									ClanMate.otp = "";
+									FriendsChatMember.otp = "";
 									Login.field1223 = true;
 								}
 
@@ -397,7 +397,7 @@ public class GrandExchangeEvent {
 															Login.Login_username = "";
 															Login.Login_password = "";
 															WorldMapSprite.field264 = 0;
-															ClanMate.otp = "";
+															FriendsChatMember.otp = "";
 															Login.field1223 = true;
 														}
 													}
@@ -478,14 +478,14 @@ public class GrandExchangeEvent {
 									var24 = Login.loginBoxX + 180 - 80;
 									var8 = 321;
 									if (var16 == 1 && var22 >= var24 - 75 && var22 <= var24 + 75 && var23 >= var8 - 20 && var23 <= var8 + 20) {
-										ClanMate.otp.trim();
-										if (ClanMate.otp.length() != 6) {
+										FriendsChatMember.otp.trim();
+										if (FriendsChatMember.otp.length() != 6) {
 											MusicPatchPcmStream.setLoginResponseString("", "Please enter a 6-digit PIN.", "");
 											return;
 										}
 
-										WorldMapSprite.field264 = Integer.parseInt(ClanMate.otp);
-										ClanMate.otp = "";
+										WorldMapSprite.field264 = Integer.parseInt(FriendsChatMember.otp);
+										FriendsChatMember.otp = "";
 										SequenceDefinition.method4973(true);
 										MusicPatchPcmStream.setLoginResponseString("", "Connecting to server...", "");
 										ClientPreferences.updateGameState(20);
@@ -506,7 +506,7 @@ public class GrandExchangeEvent {
 										Login.Login_username = "";
 										Login.Login_password = "";
 										WorldMapSprite.field264 = 0;
-										ClanMate.otp = "";
+										FriendsChatMember.otp = "";
 									}
 
 									while (WorldMapManager.isKeyDown()) {
@@ -524,29 +524,29 @@ public class GrandExchangeEvent {
 											Login.Login_username = "";
 											Login.Login_password = "";
 											WorldMapSprite.field264 = 0;
-											ClanMate.otp = "";
+											FriendsChatMember.otp = "";
 										} else {
-											if (SecureRandomCallable.field546 == 85 && ClanMate.otp.length() > 0) {
-												ClanMate.otp = ClanMate.otp.substring(0, ClanMate.otp.length() - 1);
+											if (SecureRandomCallable.field546 == 85 && FriendsChatMember.otp.length() > 0) {
+												FriendsChatMember.otp = FriendsChatMember.otp.substring(0, FriendsChatMember.otp.length() - 1);
 											}
 
 											if (SecureRandomCallable.field546 == 84) {
-												ClanMate.otp.trim();
-												if (ClanMate.otp.length() != 6) {
+												FriendsChatMember.otp.trim();
+												if (FriendsChatMember.otp.length() != 6) {
 													MusicPatchPcmStream.setLoginResponseString("", "Please enter a 6-digit PIN.", "");
 													return;
 												}
 
-												WorldMapSprite.field264 = Integer.parseInt(ClanMate.otp);
-												ClanMate.otp = "";
+												WorldMapSprite.field264 = Integer.parseInt(FriendsChatMember.otp);
+												FriendsChatMember.otp = "";
 												SequenceDefinition.method4973(true);
 												MusicPatchPcmStream.setLoginResponseString("", "Connecting to server...", "");
 												ClientPreferences.updateGameState(20);
 												return;
 											}
 
-											if (var9 && ClanMate.otp.length() < 6) {
-												ClanMate.otp = ClanMate.otp + class58.field442;
+											if (var9 && FriendsChatMember.otp.length() < 6) {
+												FriendsChatMember.otp = FriendsChatMember.otp + class58.field442;
 											}
 										}
 									}

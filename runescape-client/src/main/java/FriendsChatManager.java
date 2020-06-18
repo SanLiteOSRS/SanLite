@@ -7,8 +7,8 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("kk")
-@Implements("ClanMemberManager")
-public class ClanMemberManager extends NameableContainer {
+@Implements("FriendsChatManager")
+public class FriendsChatManager extends NameableContainer {
 	@ObfuscatedName("o")
 	@ObfuscatedSignature(
 		signature = "Lmo;"
@@ -45,7 +45,7 @@ public class ClanMemberManager extends NameableContainer {
 	@ObfuscatedSignature(
 		signature = "(Lmo;Lkp;)V"
 	)
-	public ClanMemberManager(LoginType var1, Usernamed var2) {
+	public FriendsChatManager(LoginType var1, Usernamed var2) {
 		super(100);
 		this.name = null;
 		this.owner = null;
@@ -61,7 +61,7 @@ public class ClanMemberManager extends NameableContainer {
 	)
 	@Export("newInstance")
 	Nameable newInstance() {
-		return new ClanMate();
+		return new FriendsChatMember();
 	}
 
 	@ObfuscatedName("o")
@@ -71,7 +71,7 @@ public class ClanMemberManager extends NameableContainer {
 	)
 	@Export("newTypedArray")
 	Nameable[] newTypedArray(int var1) {
-		return new ClanMate[var1];
+		return new FriendsChatMember[var1];
 	}
 
 	@ObfuscatedName("q")
@@ -166,7 +166,7 @@ public class ClanMemberManager extends NameableContainer {
 			this.clear();
 
 			for (int var5 = 0; var5 < var4; ++var5) {
-				ClanMate var6 = (ClanMate)this.addLastNoPreviousUsername(new Username(var1.readStringCp1252NullTerminated(), this.loginType));
+				FriendsChatMember var6 = (FriendsChatMember)this.addLastNoPreviousUsername(new Username(var1.readStringCp1252NullTerminated(), this.loginType));
 				int var7 = var1.readUnsignedShort();
 				var6.set(var7, ++this.field3663 - 1);
 				var6.rank = var1.readByte();
@@ -191,25 +191,25 @@ public class ClanMemberManager extends NameableContainer {
 			var5 = true;
 		}
 
-		ClanMate var6;
+		FriendsChatMember var6;
 		if (var5) {
 			if (this.getSize() == 0) {
 				return;
 			}
 
-			var6 = (ClanMate)this.getByCurrentUsername(var2);
+			var6 = (FriendsChatMember)this.getByCurrentUsername(var2);
 			if (var6 != null && var6.getWorld() == var3) {
 				this.remove(var6);
 			}
 		} else {
 			var1.readStringCp1252NullTerminated();
-			var6 = (ClanMate)this.getByCurrentUsername(var2);
+			var6 = (FriendsChatMember)this.getByCurrentUsername(var2);
 			if (var6 == null) {
 				if (this.getSize() > super.capacity) {
 					return;
 				}
 
-				var6 = (ClanMate)this.addLastNoPreviousUsername(var2);
+				var6 = (FriendsChatMember)this.addLastNoPreviousUsername(var2);
 			}
 
 			var6.set(var3, ++this.field3663 - 1);
@@ -227,7 +227,7 @@ public class ClanMemberManager extends NameableContainer {
 	@Export("clearFriends")
 	public final void clearFriends() {
 		for (int var1 = 0; var1 < this.getSize(); ++var1) {
-			((ClanMate)this.get(var1)).clearIsFriend();
+			((FriendsChatMember)this.get(var1)).clearIsFriend();
 		}
 
 	}
@@ -240,7 +240,7 @@ public class ClanMemberManager extends NameableContainer {
 	@Export("invalidateIgnoreds")
 	public final void invalidateIgnoreds() {
 		for (int var1 = 0; var1 < this.getSize(); ++var1) {
-			((ClanMate)this.get(var1)).clearIsIgnored();
+			((FriendsChatMember)this.get(var1)).clearIsIgnored();
 		}
 
 	}
@@ -251,7 +251,7 @@ public class ClanMemberManager extends NameableContainer {
 		garbageValue = "244481619"
 	)
 	@Export("isLocalPlayer")
-	final void isLocalPlayer(ClanMate var1) {
+	final void isLocalPlayer(FriendsChatMember var1) {
 		if (var1.getUsername().equals(this.localUser.username())) {
 			this.rank = var1.rank;
 		}

@@ -946,7 +946,7 @@ public class WorldMapRegion {
 			}
 
 			WorldMapSprite.field264 = 0;
-			ClanMate.otp = "";
+			FriendsChatMember.otp = "";
 			Login.field1223 = true;
 			Login.worldSelectOpen = false;
 			if (!NetSocket.clientPreferences.titleMusicDisabled) {

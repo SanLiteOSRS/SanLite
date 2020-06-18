@@ -50,8 +50,8 @@ public abstract class EntityHiderMixin implements RSScene
 	@Shadow("hideFriends")
 	private static boolean hideFriends;
 
-	@Shadow("hideClanMates")
-	private static boolean hideClanMates;
+	@Shadow("hideFriendsChatMembers")
+	private static boolean hideFriendsChatMembers;
 
 	@Shadow("hideLocalPlayer")
 	private static boolean hideLocalPlayer;
@@ -143,7 +143,7 @@ public abstract class EntityHiderMixin implements RSScene
 					return false;
 				}
 
-				return (!hideFriends && player.isFriend()) || (!isLocalPlayer && !hideClanMates && player.isClanMember());
+				return (!hideFriends && player.isFriend()) || (!isLocalPlayer && !hideFriendsChatMembers && player.isFriendsChatMember());
 			}
 		}
 		else if (entity instanceof RSNPC)

@@ -2281,7 +2281,7 @@ public final class Client extends GameEngine implements Usernamed {
 
 					if (js5ConnectState == 2) {
 						if (useBufferedSocket) {
-							GameObject.js5Socket = ClanMemberManager.method5441((Socket)js5SocketTask.result, 40000, 5000);
+							GameObject.js5Socket = FriendsChatManager.method5441((Socket)js5SocketTask.result, 40000, 5000);
 						} else {
 							GameObject.js5Socket = new NetSocket((Socket)js5SocketTask.result, GrandExchangeOfferAgeComparator.taskHandler, 5000);
 						}
@@ -2461,7 +2461,7 @@ public final class Client extends GameEngine implements Usernamed {
 
 				if (ArchiveLoader.socketTask.status == 1) {
 					if (useBufferedSocket) {
-						var1 = ClanMemberManager.method5441((Socket)ArchiveLoader.socketTask.result, 40000, 5000);
+						var1 = FriendsChatManager.method5441((Socket)ArchiveLoader.socketTask.result, 40000, 5000);
 					} else {
 						var1 = new NetSocket((Socket)ArchiveLoader.socketTask.result, GrandExchangeOfferAgeComparator.taskHandler, 5000);
 					}
@@ -4849,7 +4849,7 @@ public final class Client extends GameEngine implements Usernamed {
 						ClientPreferences.clanChat = null;
 					} else {
 						if (ClientPreferences.clanChat == null) {
-							ClientPreferences.clanChat = new ClanMemberManager(class195.loginType, WorldMapSectionType.client);
+							ClientPreferences.clanChat = new FriendsChatManager(class195.loginType, WorldMapSectionType.client);
 						}
 
 						ClientPreferences.clanChat.readUpdate(var3);

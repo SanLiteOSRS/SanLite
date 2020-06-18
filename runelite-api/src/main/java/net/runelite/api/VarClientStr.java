@@ -42,7 +42,7 @@ public enum VarClientStr
 	DUEL_OPPONENT_NAME(357),
 	INPUT_TEXT(359),
 	PRIVATE_MESSAGE_TARGET(360),
-	RECENT_CLAN_CHAT(362);
+	RECENT_FRIENDS_CHAT(362);
 
 	private final int index;
 }

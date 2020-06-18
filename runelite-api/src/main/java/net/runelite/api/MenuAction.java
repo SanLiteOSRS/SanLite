@@ -277,7 +277,17 @@ public enum MenuAction
 	 * a player and have its identifier set to a player index.
 	 */
 	RUNELITE_PLAYER(1503),
+	/**
+	 * Menu action for InfoBox menu entries
+	 */
+	RUNELITE_INFOBOX(1504),
+	/**
+	 * Menu action for following other players
+	 */
 	FOLLOW(2046),
+	/**
+	 * Menu action for trading other players
+	 */
 	TRADE(2047),
 
 	/**

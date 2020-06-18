@@ -537,7 +537,7 @@ public class World {
 							var23 += 15;
 							var0.drawCentered(Login.Login_response3, Login.loginBoxX + 180, var23, 16777215, 0);
 							var23 += 15;
-							var0.draw("PIN: " + WorldMapRegion.method613(ClanMate.otp) + (Client.cycle % 40 < 20 ? ItemContainer.colorStartTag(16776960) + "|" : ""), Login.loginBoxX + 180 - 108, var23, 16777215, 0);
+							var0.draw("PIN: " + WorldMapRegion.method613(FriendsChatMember.otp) + (Client.cycle % 40 < 20 ? ItemContainer.colorStartTag(16776960) + "|" : ""), Login.loginBoxX + 180 - 108, var23, 16777215, 0);
 							var23 -= 8;
 							var0.draw("Trust this computer", Login.loginBoxX + 180 - 9, var23, 16776960, 0);
 							var23 += 15;

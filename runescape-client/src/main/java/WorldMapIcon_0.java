@@ -119,14 +119,14 @@ public class WorldMapIcon_0 extends AbstractWorldMapIcon {
 			var3 = ItemLayer.Client_plane;
 			int var9 = class182.baseX * 64 + (class60.localPlayer.x >> 7);
 			int var5 = SecureRandomFuture.baseY * 64 + (class60.localPlayer.y >> 7);
-			ClanMemberManager.getWorldMap().method6532(var3, var9, var5, true);
+			FriendsChatManager.getWorldMap().method6532(var3, var9, var5, true);
 			return 1;
 		} else {
 			WorldMapArea var11;
 			if (var0 == ScriptOpcodes.WORLDMAP_GETMAPNAME) {
 				var3 = Interpreter.Interpreter_intStack[--UrlRequester.Interpreter_intStackSize];
 				String var16 = "";
-				var11 = ClanMemberManager.getWorldMap().getMapArea(var3);
+				var11 = FriendsChatManager.getWorldMap().getMapArea(var3);
 				if (var11 != null) {
 					var16 = var11.getExternalName();
 				}
@@ -135,45 +135,45 @@ public class WorldMapIcon_0 extends AbstractWorldMapIcon {
 				return 1;
 			} else if (var0 == ScriptOpcodes.WORLDMAP_SETMAP) {
 				var3 = Interpreter.Interpreter_intStack[--UrlRequester.Interpreter_intStackSize];
-				ClanMemberManager.getWorldMap().setCurrentMapAreaId(var3);
+				FriendsChatManager.getWorldMap().setCurrentMapAreaId(var3);
 				return 1;
 			} else if (var0 == ScriptOpcodes.WORLDMAP_GETZOOM) {
-				Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = ClanMemberManager.getWorldMap().getZoomLevel();
+				Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = FriendsChatManager.getWorldMap().getZoomLevel();
 				return 1;
 			} else if (var0 == ScriptOpcodes.WORLDMAP_SETZOOM) {
 				var3 = Interpreter.Interpreter_intStack[--UrlRequester.Interpreter_intStackSize];
-				ClanMemberManager.getWorldMap().setZoomPercentage(var3);
+				FriendsChatManager.getWorldMap().setZoomPercentage(var3);
 				return 1;
 			} else if (var0 == ScriptOpcodes.WORLDMAP_ISLOADED) {
-				Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = ClanMemberManager.getWorldMap().isCacheLoaded() ? 1 : 0;
+				Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = FriendsChatManager.getWorldMap().isCacheLoaded() ? 1 : 0;
 				return 1;
 			} else {
 				Coord var15;
 				if (var0 == ScriptOpcodes.WORLDMAP_JUMPTODISPLAYCOORD) {
 					var15 = new Coord(Interpreter.Interpreter_intStack[--UrlRequester.Interpreter_intStackSize]);
-					ClanMemberManager.getWorldMap().setWorldMapPositionTarget(var15.x, var15.y);
+					FriendsChatManager.getWorldMap().setWorldMapPositionTarget(var15.x, var15.y);
 					return 1;
 				} else if (var0 == ScriptOpcodes.WORLDMAP_JUMPTODISPLAYCOORD_INSTANT) {
 					var15 = new Coord(Interpreter.Interpreter_intStack[--UrlRequester.Interpreter_intStackSize]);
-					ClanMemberManager.getWorldMap().setWorldMapPositionTargetInstant(var15.x, var15.y);
+					FriendsChatManager.getWorldMap().setWorldMapPositionTargetInstant(var15.x, var15.y);
 					return 1;
 				} else if (var0 == ScriptOpcodes.WORLDMAP_JUMPTOSOURCECOORD) {
 					var15 = new Coord(Interpreter.Interpreter_intStack[--UrlRequester.Interpreter_intStackSize]);
-					ClanMemberManager.getWorldMap().jumpToSourceCoord(var15.plane, var15.x, var15.y);
+					FriendsChatManager.getWorldMap().jumpToSourceCoord(var15.plane, var15.x, var15.y);
 					return 1;
 				} else if (var0 == ScriptOpcodes.WORLDMAP_JUMPTOSOURCECOORD_INSTANT) {
 					var15 = new Coord(Interpreter.Interpreter_intStack[--UrlRequester.Interpreter_intStackSize]);
-					ClanMemberManager.getWorldMap().jumpToSourceCoordInstant(var15.plane, var15.x, var15.y);
+					FriendsChatManager.getWorldMap().jumpToSourceCoordInstant(var15.plane, var15.x, var15.y);
 					return 1;
 				} else if (var0 == ScriptOpcodes.WORLDMAP_GETDISPLAYPOSITION) {
-					Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = ClanMemberManager.getWorldMap().getDisplayX();
-					Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = ClanMemberManager.getWorldMap().getDisplayY();
+					Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = FriendsChatManager.getWorldMap().getDisplayX();
+					Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = FriendsChatManager.getWorldMap().getDisplayY();
 					return 1;
 				} else {
 					WorldMapArea var13;
 					if (var0 == ScriptOpcodes.WORLDMAP_GETCONFIGORIGIN) {
 						var3 = Interpreter.Interpreter_intStack[--UrlRequester.Interpreter_intStackSize];
-						var13 = ClanMemberManager.getWorldMap().getMapArea(var3);
+						var13 = FriendsChatManager.getWorldMap().getMapArea(var3);
 						if (var13 == null) {
 							Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = 0;
 						} else {
@@ -183,7 +183,7 @@ public class WorldMapIcon_0 extends AbstractWorldMapIcon {
 						return 1;
 					} else if (var0 == ScriptOpcodes.WORLDMAP_GETCONFIGSIZE) {
 						var3 = Interpreter.Interpreter_intStack[--UrlRequester.Interpreter_intStackSize];
-						var13 = ClanMemberManager.getWorldMap().getMapArea(var3);
+						var13 = FriendsChatManager.getWorldMap().getMapArea(var3);
 						if (var13 == null) {
 							Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = 0;
 							Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = 0;
@@ -195,7 +195,7 @@ public class WorldMapIcon_0 extends AbstractWorldMapIcon {
 						return 1;
 					} else if (var0 == ScriptOpcodes.WORLDMAP_GETCONFIGBOUNDS) {
 						var3 = Interpreter.Interpreter_intStack[--UrlRequester.Interpreter_intStackSize];
-						var13 = ClanMemberManager.getWorldMap().getMapArea(var3);
+						var13 = FriendsChatManager.getWorldMap().getMapArea(var3);
 						if (var13 == null) {
 							Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = 0;
 							Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = 0;
@@ -211,7 +211,7 @@ public class WorldMapIcon_0 extends AbstractWorldMapIcon {
 						return 1;
 					} else if (var0 == ScriptOpcodes.WORLDMAP_GETCONFIGZOOM) {
 						var3 = Interpreter.Interpreter_intStack[--UrlRequester.Interpreter_intStackSize];
-						var13 = ClanMemberManager.getWorldMap().getMapArea(var3);
+						var13 = FriendsChatManager.getWorldMap().getMapArea(var3);
 						if (var13 == null) {
 							Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = -1;
 						} else {
@@ -220,7 +220,7 @@ public class WorldMapIcon_0 extends AbstractWorldMapIcon {
 
 						return 1;
 					} else if (var0 == 6615) {
-						var15 = ClanMemberManager.getWorldMap().getDisplayCoord();
+						var15 = FriendsChatManager.getWorldMap().getDisplayCoord();
 						if (var15 == null) {
 							Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = -1;
 							Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = -1;
@@ -231,11 +231,11 @@ public class WorldMapIcon_0 extends AbstractWorldMapIcon {
 
 						return 1;
 					} else if (var0 == ScriptOpcodes.WORLDMAP_GETCURRENTMAP) {
-						Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = ClanMemberManager.getWorldMap().currentMapAreaId();
+						Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = FriendsChatManager.getWorldMap().currentMapAreaId();
 						return 1;
 					} else if (var0 == ScriptOpcodes.WORLDMAP_GETDISPLAYCOORD) {
 						var15 = new Coord(Interpreter.Interpreter_intStack[--UrlRequester.Interpreter_intStackSize]);
-						var13 = ClanMemberManager.getWorldMap().getCurrentMapArea();
+						var13 = FriendsChatManager.getWorldMap().getCurrentMapArea();
 						if (var13 == null) {
 							Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = -1;
 							Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = -1;
@@ -256,7 +256,7 @@ public class WorldMapIcon_0 extends AbstractWorldMapIcon {
 						Coord var7;
 						if (var0 == 6618) {
 							var15 = new Coord(Interpreter.Interpreter_intStack[--UrlRequester.Interpreter_intStackSize]);
-							var13 = ClanMemberManager.getWorldMap().getCurrentMapArea();
+							var13 = FriendsChatManager.getWorldMap().getCurrentMapArea();
 							if (var13 == null) {
 								Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = -1;
 								Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = -1;
@@ -289,7 +289,7 @@ public class WorldMapIcon_0 extends AbstractWorldMapIcon {
 								UrlRequester.Interpreter_intStackSize -= 2;
 								var3 = Interpreter.Interpreter_intStack[UrlRequester.Interpreter_intStackSize];
 								var12 = new Coord(Interpreter.Interpreter_intStack[UrlRequester.Interpreter_intStackSize + 1]);
-								var11 = ClanMemberManager.getWorldMap().getMapArea(var3);
+								var11 = FriendsChatManager.getWorldMap().getMapArea(var3);
 								if (var11 == null) {
 									Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = 0;
 									return 1;
@@ -298,12 +298,12 @@ public class WorldMapIcon_0 extends AbstractWorldMapIcon {
 									return 1;
 								}
 							} else if (var0 == ScriptOpcodes.WORLDMAP_GETSIZE) {
-								Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = ClanMemberManager.getWorldMap().getDisplayWith();
-								Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = ClanMemberManager.getWorldMap().getDisplayHeight();
+								Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = FriendsChatManager.getWorldMap().getDisplayWith();
+								Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = FriendsChatManager.getWorldMap().getDisplayHeight();
 								return 1;
 							} else if (var0 == 6623) {
 								var15 = new Coord(Interpreter.Interpreter_intStack[--UrlRequester.Interpreter_intStackSize]);
-								var13 = ClanMemberManager.getWorldMap().mapAreaAtCoord(var15.plane, var15.x, var15.y);
+								var13 = FriendsChatManager.getWorldMap().mapAreaAtCoord(var15.plane, var15.x, var15.y);
 								if (var13 == null) {
 									Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = -1;
 								} else {
@@ -312,37 +312,37 @@ public class WorldMapIcon_0 extends AbstractWorldMapIcon {
 
 								return 1;
 							} else if (var0 == 6624) {
-								ClanMemberManager.getWorldMap().setMaxFlashCount(Interpreter.Interpreter_intStack[--UrlRequester.Interpreter_intStackSize]);
+								FriendsChatManager.getWorldMap().setMaxFlashCount(Interpreter.Interpreter_intStack[--UrlRequester.Interpreter_intStackSize]);
 								return 1;
 							} else if (var0 == 6625) {
-								ClanMemberManager.getWorldMap().resetMaxFlashCount();
+								FriendsChatManager.getWorldMap().resetMaxFlashCount();
 								return 1;
 							} else if (var0 == 6626) {
-								ClanMemberManager.getWorldMap().setCyclesPerFlash(Interpreter.Interpreter_intStack[--UrlRequester.Interpreter_intStackSize]);
+								FriendsChatManager.getWorldMap().setCyclesPerFlash(Interpreter.Interpreter_intStack[--UrlRequester.Interpreter_intStackSize]);
 								return 1;
 							} else if (var0 == 6627) {
-								ClanMemberManager.getWorldMap().resetCyclesPerFlash();
+								FriendsChatManager.getWorldMap().resetCyclesPerFlash();
 								return 1;
 							} else {
 								boolean var10;
 								if (var0 == ScriptOpcodes.WORLDMAP_PERPETUALFLASH) {
 									var10 = Interpreter.Interpreter_intStack[--UrlRequester.Interpreter_intStackSize] == 1;
-									ClanMemberManager.getWorldMap().setPerpetualFlash(var10);
+									FriendsChatManager.getWorldMap().setPerpetualFlash(var10);
 									return 1;
 								} else if (var0 == ScriptOpcodes.WORLDMAP_FLASHELEMENT) {
 									var3 = Interpreter.Interpreter_intStack[--UrlRequester.Interpreter_intStackSize];
-									ClanMemberManager.getWorldMap().flashElement(var3);
+									FriendsChatManager.getWorldMap().flashElement(var3);
 									return 1;
 								} else if (var0 == ScriptOpcodes.WORLDMAP_FLASHELEMENTCATEGORY) {
 									var3 = Interpreter.Interpreter_intStack[--UrlRequester.Interpreter_intStackSize];
-									ClanMemberManager.getWorldMap().flashCategory(var3);
+									FriendsChatManager.getWorldMap().flashCategory(var3);
 									return 1;
 								} else if (var0 == ScriptOpcodes.WORLDMAP_STOPCURRENTFLASHES) {
-									ClanMemberManager.getWorldMap().stopCurrentFlashes();
+									FriendsChatManager.getWorldMap().stopCurrentFlashes();
 									return 1;
 								} else if (var0 == ScriptOpcodes.WORLDMAP_DISABLEELEMENTS) {
 									var10 = Interpreter.Interpreter_intStack[--UrlRequester.Interpreter_intStackSize] == 1;
-									ClanMemberManager.getWorldMap().setElementsDisabled(var10);
+									FriendsChatManager.getWorldMap().setElementsDisabled(var10);
 									return 1;
 								} else {
 									boolean var4;
@@ -350,30 +350,30 @@ public class WorldMapIcon_0 extends AbstractWorldMapIcon {
 										UrlRequester.Interpreter_intStackSize -= 2;
 										var3 = Interpreter.Interpreter_intStack[UrlRequester.Interpreter_intStackSize];
 										var4 = Interpreter.Interpreter_intStack[UrlRequester.Interpreter_intStackSize + 1] == 1;
-										ClanMemberManager.getWorldMap().disableElement(var3, var4);
+										FriendsChatManager.getWorldMap().disableElement(var3, var4);
 										return 1;
 									} else if (var0 == ScriptOpcodes.WORLDMAP_DISABLEELEMENTCATEGORY) {
 										UrlRequester.Interpreter_intStackSize -= 2;
 										var3 = Interpreter.Interpreter_intStack[UrlRequester.Interpreter_intStackSize];
 										var4 = Interpreter.Interpreter_intStack[UrlRequester.Interpreter_intStackSize + 1] == 1;
-										ClanMemberManager.getWorldMap().setCategoryDisabled(var3, var4);
+										FriendsChatManager.getWorldMap().setCategoryDisabled(var3, var4);
 										return 1;
 									} else if (var0 == ScriptOpcodes.WORLDMAP_GETDISABLEELEMENTS) {
-										Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = ClanMemberManager.getWorldMap().getElementsDisabled() ? 1 : 0;
+										Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = FriendsChatManager.getWorldMap().getElementsDisabled() ? 1 : 0;
 										return 1;
 									} else if (var0 == ScriptOpcodes.WORLDMAP_GETDISABLEELEMENT) {
 										var3 = Interpreter.Interpreter_intStack[--UrlRequester.Interpreter_intStackSize];
-										Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = ClanMemberManager.getWorldMap().isElementDisabled(var3) ? 1 : 0;
+										Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = FriendsChatManager.getWorldMap().isElementDisabled(var3) ? 1 : 0;
 										return 1;
 									} else if (var0 == ScriptOpcodes.WORLDMAP_GETDISABLEELEMENTCATEGORY) {
 										var3 = Interpreter.Interpreter_intStack[--UrlRequester.Interpreter_intStackSize];
-										Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = ClanMemberManager.getWorldMap().isCategoryDisabled(var3) ? 1 : 0;
+										Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = FriendsChatManager.getWorldMap().isCategoryDisabled(var3) ? 1 : 0;
 										return 1;
 									} else if (var0 == 6638) {
 										UrlRequester.Interpreter_intStackSize -= 2;
 										var3 = Interpreter.Interpreter_intStack[UrlRequester.Interpreter_intStackSize];
 										var12 = new Coord(Interpreter.Interpreter_intStack[UrlRequester.Interpreter_intStackSize + 1]);
-										var7 = ClanMemberManager.getWorldMap().method6575(var3, var12);
+										var7 = FriendsChatManager.getWorldMap().method6575(var3, var12);
 										if (var7 == null) {
 											Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = -1;
 										} else {
@@ -384,7 +384,7 @@ public class WorldMapIcon_0 extends AbstractWorldMapIcon {
 									} else {
 										AbstractWorldMapIcon var8;
 										if (var0 == ScriptOpcodes.WORLDMAP_LISTELEMENT_START) {
-											var8 = ClanMemberManager.getWorldMap().iconStart();
+											var8 = FriendsChatManager.getWorldMap().iconStart();
 											if (var8 == null) {
 												Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = -1;
 												Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = -1;
@@ -395,7 +395,7 @@ public class WorldMapIcon_0 extends AbstractWorldMapIcon {
 
 											return 1;
 										} else if (var0 == ScriptOpcodes.WORLDMAP_LISTELEMENT_NEXT) {
-											var8 = ClanMemberManager.getWorldMap().iconNext();
+											var8 = FriendsChatManager.getWorldMap().iconNext();
 											if (var8 == null) {
 												Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = -1;
 												Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = -1;

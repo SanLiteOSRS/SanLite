@@ -348,11 +348,11 @@ public class WorldMapElement extends DualNode {
 		garbageValue = "284772848"
 	)
 	static void method4566(int var0, Coord var1, boolean var2) {
-		WorldMapArea var3 = ClanMemberManager.getWorldMap().getMapArea(var0);
+		WorldMapArea var3 = FriendsChatManager.getWorldMap().getMapArea(var0);
 		int var4 = class60.localPlayer.plane;
 		int var5 = class182.baseX * 64 + (class60.localPlayer.x >> 7);
 		int var6 = SecureRandomFuture.baseY * 64 + (class60.localPlayer.y >> 7);
 		Coord var7 = new Coord(var4, var5, var6);
-		ClanMemberManager.getWorldMap().method6538(var3, var7, var1, var2);
+		FriendsChatManager.getWorldMap().method6538(var3, var7, var1, var2);
 	}
 }

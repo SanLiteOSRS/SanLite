@@ -29,7 +29,7 @@
 	<parent>
 		<groupId>net.runelite</groupId>
 		<artifactId>runelite-parent</artifactId>
-		<version>1.6.19</version>
+		<version>1.6.20</version>
 	</parent>
 
 	<artifactId>client</artifactId>
@@ -41,14 +41,6 @@
 
 		<jarsigner.skip>true</jarsigner.skip>
 	</properties>
-
-    <repositories>
-        <repository>
-            <id>SanLite</id>
-            <name>SanLite</name>
-            <url>https://raw.githubusercontent.com/sanliteosrs/maven-repo/master</url>
-        </repository>
-    </repositories>
 
 	<dependencies>
 		<dependency>
@@ -207,7 +199,6 @@
 			<groupId>com.google.code.findbugs</groupId>
 			<artifactId>jsr305</artifactId>
 			<version>3.0.2</version>
-			<scope>provided</scope>
 		</dependency>
 
 		<dependency>

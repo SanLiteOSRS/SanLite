@@ -381,7 +381,7 @@ final class class4 implements class0 {
 					return 1;
 				} else if (var0 == ScriptOpcodes.CLAN_ISFRIEND) {
 					var3 = Interpreter.Interpreter_intStack[--UrlRequester.Interpreter_intStackSize];
-					if (ClientPreferences.clanChat != null && var3 < ClientPreferences.clanChat.getSize() && ((ClanMate)ClientPreferences.clanChat.get(var3)).isFriend()) {
+					if (ClientPreferences.clanChat != null && var3 < ClientPreferences.clanChat.getSize() && ((FriendsChatMember)ClientPreferences.clanChat.get(var3)).isFriend()) {
 						Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = 1;
 					} else {
 						Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = 0;
@@ -550,7 +550,7 @@ final class class4 implements class0 {
 					}
 				} else {
 					var3 = Interpreter.Interpreter_intStack[--UrlRequester.Interpreter_intStackSize];
-					if (ClientPreferences.clanChat != null && var3 < ClientPreferences.clanChat.getSize() && ((ClanMate)ClientPreferences.clanChat.get(var3)).isIgnored()) {
+					if (ClientPreferences.clanChat != null && var3 < ClientPreferences.clanChat.getSize() && ((FriendsChatMember)ClientPreferences.clanChat.get(var3)).isIgnored()) {
 						Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = 1;
 					} else {
 						Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = 0;

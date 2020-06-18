@@ -24,17 +24,17 @@
  */
 package net.runelite.mixins;
 
-import net.runelite.api.ClanMember;
-import net.runelite.api.ClanMemberManager;
-import net.runelite.api.events.ClanMemberJoined;
-import net.runelite.api.events.ClanMemberLeft;
+import net.runelite.api.FriendsChatManager;
+import net.runelite.api.FriendsChatMember;
+import net.runelite.api.events.FriendsChatMemberJoined;
+import net.runelite.api.events.FriendsChatMemberLeft;
 import net.runelite.api.mixins.Inject;
 import net.runelite.api.mixins.Mixin;
 import net.runelite.api.mixins.Shadow;
 import net.runelite.rs.api.*;
 
-@Mixin(RSClanMemberManager.class)
-public abstract class RSClanMemberManagerMixin implements ClanMemberManager
+@Mixin(RSFriendsChatManager.class)
+public abstract class RSFriendsChatManagerMixin implements FriendsChatManager
 {
 	@Shadow("client")
 	private static RSClient client;
@@ -42,26 +42,26 @@ public abstract class RSClanMemberManagerMixin implements ClanMemberManager
 	@Inject
 	public void rl$add(RSUsername name, RSUsername prevName)
 	{
-		ClanMember member = findByName(name.getName());
+		FriendsChatMember member = findByName(name.getName());
 		if (member == null)
 		{
 			return;
 		}
 
-		ClanMemberJoined event = new ClanMemberJoined(member);
+		FriendsChatMemberJoined event = new FriendsChatMemberJoined(member);
 		client.getCallbacks().postDeferred(event);
 	}
 
 	@Inject
 	public void rl$remove(RSNameable nameable)
 	{
-		ClanMember member = findByName(nameable.getName());
+		FriendsChatMember member = findByName(nameable.getName());
 		if (member == null)
 		{
 			return;
 		}
 
-		ClanMemberLeft event = new ClanMemberLeft(member);
+		FriendsChatMemberLeft event = new FriendsChatMemberLeft(member);
 		client.getCallbacks().postDeferred(event);
 	}
 }

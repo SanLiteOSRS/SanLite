@@ -4,8 +4,8 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ji")
-@Implements("ClanMate")
-public class ClanMate extends Buddy {
+@Implements("FriendsChatMember")
+public class FriendsChatMember extends Buddy {
 	@ObfuscatedName("bk")
 	@Export("otp")
 	static String otp;
@@ -22,7 +22,7 @@ public class ClanMate extends Buddy {
 	@Export("ignored")
 	TriBool ignored;
 
-	ClanMate() {
+	FriendsChatMember() {
 		this.friend = TriBool.TriBool_unknown;
 		this.ignored = TriBool.TriBool_unknown;
 	}

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, trimbe <github.com/trimbe>
+ * Copyright (c) 2020, Adam <Adam@sigterm.info>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,16 +22,15 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.api.events;
+package net.runelite.client.events;
 
 import lombok.Value;
-import net.runelite.api.ClanMember;
+import net.runelite.client.ui.overlay.OverlayMenuEntry;
+import net.runelite.client.ui.overlay.infobox.InfoBox;
 
 @Value
-public class ClanMemberJoined
+public class InfoBoxMenuClicked
 {
-	/**
-	 * The ClanMember that joined
-	 */
-	private ClanMember member;
+	private OverlayMenuEntry entry;
+	private InfoBox infoBox;
 }

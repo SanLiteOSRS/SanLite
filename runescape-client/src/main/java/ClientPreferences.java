@@ -15,7 +15,7 @@ public class ClientPreferences {
 		signature = "Lkk;"
 	)
 	@Export("clanChat")
-	static ClanMemberManager clanChat;
+	static FriendsChatManager clanChat;
 	@ObfuscatedName("m")
 	@ObfuscatedGetter(
 		intValue = -833768267

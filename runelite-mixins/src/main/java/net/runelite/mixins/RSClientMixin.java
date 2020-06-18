@@ -970,9 +970,9 @@ public abstract class RSClientMixin implements RSClient
 
 	@FieldHook("clanChat")
 	@Inject
-	public static void clanMemberManagerChanged(int idx)
+	public static void friendsChatMemberManagerChanged(int idx)
 	{
-		client.getCallbacks().post(new ClanChanged(client.getClanMemberManager() != null));
+		client.getCallbacks().post(new FriendsChatChanged(client.getFriendsChatManager() != null));
 	}
 
 	@FieldHook("canvasWidth")
