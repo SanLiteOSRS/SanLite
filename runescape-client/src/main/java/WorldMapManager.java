@@ -15,7 +15,7 @@ import net.runelite.rs.ScriptOpcodes;
 public final class WorldMapManager {
 	@ObfuscatedName("rn")
 	@ObfuscatedGetter(
-		intValue = -898361216
+		intValue = -1416304591
 	)
 	static int field348;
 	@ObfuscatedName("m")
@@ -71,7 +71,7 @@ public final class WorldMapManager {
 	final HashMap fonts;
 	@ObfuscatedName("y")
 	@ObfuscatedGetter(
-		intValue = 1020000704
+		intValue = 1626550247
 	)
 	@Export("tileX")
 	int tileX;
@@ -89,7 +89,7 @@ public final class WorldMapManager {
 	int tileWidth;
 	@ObfuscatedName("k")
 	@ObfuscatedGetter(
-		intValue = -780949184
+		intValue = -750399835
 	)
 	@Export("tileHeight")
 	int tileHeight;
