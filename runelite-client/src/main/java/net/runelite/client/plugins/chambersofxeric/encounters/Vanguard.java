@@ -2,16 +2,18 @@ package net.runelite.client.plugins.chambersofxeric.encounters;
 
 import lombok.Getter;
 import lombok.Setter;
+import net.runelite.api.Client;
 import net.runelite.api.NPC;
 import net.runelite.api.NpcID;
+import net.runelite.api.widgets.Widget;
+import net.runelite.api.widgets.WidgetInfo;
 import net.runelite.client.game.NPCManager;
+import net.runelite.client.util.Text;
 
 import javax.inject.Inject;
 
 public class Vanguard
 {
-	@Inject
-	private NPCManager npcManager;
 
 	Vanguard(NPC npc)
 	{
@@ -27,6 +29,9 @@ public class Vanguard
 		UNKNOWN
 	}
 
+	@Inject
+	Client client;
+
 	@Getter
 	@Setter
 	Style vangStyle;
@@ -38,6 +43,9 @@ public class Vanguard
 	@Getter
 	@Setter
 	NPC vanguard;
+
+	@Getter
+	int maxHP = 0;
 
 
 	/*
@@ -95,11 +103,11 @@ public class Vanguard
 
 	private int getHealth()
 	{
-		int lastMaxHealth = 100;
+		int lastMaxHealth;
 
 		if (vanguard != null)
 		{
-			//lastMaxHealth = npcManager.getHealth(vanguard.getId());
+			lastMaxHealth = maxHP;
 
 
 			int lastRatio = 0;
@@ -151,5 +159,19 @@ public class Vanguard
 			}
 		}
 		return 100;
+	}
+
+	public void setMaxHP()
+	{
+		Widget hpWidget = client.getWidget(WidgetInfo.HEALTH_BAR_HP);
+		String hpText = hpWidget.getText();
+
+		hpText = hpText.split("/")[1];
+		int hp = Integer.parseInt(Text.sanitize(hpText));
+
+		if (hp > 0)
+		{
+			this.maxHP = hp;
+		}
 	}
 }
