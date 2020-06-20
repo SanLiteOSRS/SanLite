@@ -243,16 +243,18 @@ public interface Widget
 	void setName(String name);
 
 	/**
-	 * Gets the model ID displayed in the widget.
+	 * Gets the Model/NPC/Item ID displayed in the widget.
+	 *
+	 * @see WidgetModelType
 	 */
 	int getModelId();
 
 	/**
-	 * Sets the model ID displayed in the widget.
+	 * Sets the Model/NPC/Item ID displayed in the widget.
 	 *
-	 * @param modelId the new model ID
+	 * @see WidgetModelType
 	 */
-	void setModelId(int modelId);
+	void setModelId(int id);
 
 	/**
 	 * Gets the model type of the widget.
@@ -268,6 +270,20 @@ public interface Widget
 	 * @see WidgetModelType
 	 */
 	void setModelType(int type);
+
+	/**
+	 * Gets the sequence ID used to animate the model in the widget
+	 *
+	 * @see net.runelite.api.AnimationID
+	 */
+	int getAnimationId();
+
+	/**
+	 * Sets the sequence ID used to animate the model in the widget
+	 *
+	 * @see net.runelite.api.AnimationID
+	 */
+	void setAnimationId(int animationId);
 
 	/**
 	 * Gets the x rotation of the model displayed in the widget.
@@ -336,6 +352,16 @@ public interface Widget
 	 * @see net.runelite.api.SpriteID
 	 */
 	int getSpriteId();
+
+	/**
+	 * Gets if sprites are repeated or stretched
+	 */
+	boolean getSpriteTiling();
+
+	/**
+	 * Sets if sprites are repeated or stretched
+	 */
+	void setSpriteTiling(boolean tiling);
 
 	/**
 	 * Sets the sprite ID displayed in the widget.

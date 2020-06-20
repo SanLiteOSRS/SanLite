@@ -36,7 +36,6 @@ import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.events.ConfigChanged;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
-import net.runelite.client.plugins.PluginType;
 import net.runelite.client.plugins.theatreofblood.encounters.*;
 import net.runelite.client.ui.overlay.OverlayManager;
 import net.runelite.client.util.Text;
@@ -51,8 +50,7 @@ import static net.runelite.api.Varbits.TOB_ENCOUNTER_STATE;
 @PluginDescriptor(
 		name = "Theatre of Blood",
 		description = "Helps with the various boss mechanics in the Theatre of Blood",
-		tags = {"tob", "raids", "theatre", "blood", "theatre of blood", "pvm", "overlay", "boss"},
-		type = PluginType.SANLITE_USE_AT_OWN_RISK,
+		tags = {"tob", "raids", "theatre", "blood", "theatre of blood", "pvm", "overlay", "boss", "sanlite"},
 		enabledByDefault = false
 )
 public class TheatreOfBloodPlugin extends Plugin

@@ -48,8 +48,6 @@ public @interface PluginDescriptor
 	 */
 	String[] tags() default {};
 
-	PluginType type() default PluginType.RUNELITE;
-
 	boolean enabledByDefault() default true;
 
 	/**
@@ -60,4 +58,6 @@ public @interface PluginDescriptor
 	boolean developerPlugin() default false;
 
 	boolean loadWhenOutdated() default false;
+
+	boolean loadInSafeMode() default true;
 }

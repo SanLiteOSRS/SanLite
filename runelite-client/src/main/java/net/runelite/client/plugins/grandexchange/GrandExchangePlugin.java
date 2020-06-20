@@ -180,6 +180,7 @@ public class GrandExchangePlugin extends Plugin
 
 	private Widget grandExchangeText;
 	private Widget grandExchangeItem;
+	private String grandExchangeExamine;
 
 	private int osbItem;
 	private OSBGrandExchangeResult osbGrandExchangeResult;
@@ -420,7 +421,6 @@ public class GrandExchangePlugin extends Plugin
 			grandExchangeTrade.setBuy(state == GrandExchangeOfferState.BUYING);
 			grandExchangeTrade.setItemId(offer.getItemId());
 			grandExchangeTrade.setTotal(offer.getTotalQuantity());
-			grandExchangeTrade.setSpent(0);
 			grandExchangeTrade.setOffer(offer.getPrice());
 			grandExchangeTrade.setSlot(slot);
 			grandExchangeTrade.setWorldType(getGeWorldType());
@@ -475,7 +475,8 @@ public class GrandExchangePlugin extends Plugin
 		grandExchangeTrade.setQty(offer.getQuantitySold());
 		grandExchangeTrade.setDqty(qty);
 		grandExchangeTrade.setTotal(offer.getTotalQuantity());
-		grandExchangeTrade.setSpent(dspent);
+		grandExchangeTrade.setDspent(dspent);
+		grandExchangeTrade.setSpent(offer.getSpent());
 		grandExchangeTrade.setOffer(offer.getPrice());
 		grandExchangeTrade.setSlot(slot);
 		grandExchangeTrade.setWorldType(getGeWorldType());
@@ -842,8 +843,13 @@ public class GrandExchangePlugin extends Plugin
 			return;
 		}
 
-		String[] lines = geText.getText().split("<br>");
-		String text = lines[0]; // remove any limit or OSB ge values
+		if (geText.getText() == grandExchangeExamine)
+		{
+			// if we've already set the text, don't set it again
+			return;
+		}
+
+		String text = geText.getText();
 
 		if (config.enableGELimits())
 		{
@@ -866,6 +872,7 @@ public class GrandExchangePlugin extends Plugin
 			}
 		}
 
+		grandExchangeExamine = text;
 		geText.setText(text);
 
 		if (!config.enableOsbPrices())
@@ -876,7 +883,8 @@ public class GrandExchangePlugin extends Plugin
 		// If we already have the result, use it
 		if (osbGrandExchangeResult != null && osbGrandExchangeResult.getItem_id() == itemId && osbGrandExchangeResult.getOverall_average() > 0)
 		{
-			geText.setText(text + OSB_GE_TEXT + QuantityFormatter.formatNumber(osbGrandExchangeResult.getOverall_average()));
+			grandExchangeExamine = text + OSB_GE_TEXT + QuantityFormatter.formatNumber(osbGrandExchangeResult.getOverall_average());
+			geText.setText(grandExchangeExamine);
 		}
 
 		if (osbItem == itemId)
@@ -895,9 +903,13 @@ public class GrandExchangePlugin extends Plugin
 			try
 			{
 				final OSBGrandExchangeResult result = CLIENT.lookupItem(itemId);
-				osbGrandExchangeResult = result;
-				// Update the text on the widget too
-				geText.setText(start + OSB_GE_TEXT + QuantityFormatter.formatNumber(result.getOverall_average()));
+				if (result != null && result.getOverall_average() > 0)
+				{
+					osbGrandExchangeResult = result;
+					// Update the text on the widget too
+					grandExchangeExamine = start + OSB_GE_TEXT + QuantityFormatter.formatNumber(result.getOverall_average());
+					geText.setText(grandExchangeExamine);
+				}
 			}
 			catch (IOException e)
 			{

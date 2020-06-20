@@ -105,7 +105,7 @@ import net.runelite.http.api.ws.messages.party.PartyChatMessage;
 @PluginDescriptor(
 	name = "Chambers Of Xeric",
 	description = "Show helpful information for the Chambers of Xeric raid",
-	tags = {"combat", "raid", "overlay", "pve", "pvm", "bosses"}
+	tags = {"combat", "raid", "overlay", "pve", "pvm", "bosses", "cox"}
 )
 @Slf4j
 public class RaidsPlugin extends Plugin
@@ -201,8 +201,8 @@ public class RaidsPlugin extends Plugin
 
 	/*
 	 * if the player is in a raid party or not
-	 * This will be set when someone in the clan chat clicks the "make party" button on the raids widget
-	 * It will change again when someone from your clan enters the raid to generate it
+	 * This will be set when someone in the friends chat clicks the "make party" button on the raids widget
+	 * It will change again when someone from your friends chat enters the raid to generate it
 	 * It will be reset when the raid starts but not if they leave the raid while it has not started yet
 	 */
 	@Getter

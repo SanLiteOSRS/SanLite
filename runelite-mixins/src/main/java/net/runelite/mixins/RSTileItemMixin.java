@@ -22,6 +22,9 @@ public abstract class RSTileItemMixin implements RSTileItem
 	private int rl$sceneY = -1;
 
 	@Inject
+	public int spawnTime = client.getTickCount();
+
+	@Inject
 	RSTileItemMixin()
 	{
 	}
@@ -96,5 +99,12 @@ public abstract class RSTileItemMixin implements RSTileItem
 	public void setY(int y)
 	{
 		rl$sceneY = y;
+	}
+
+	@Inject
+	@Override
+	public int getSpawnTime()
+	{
+		return spawnTime;
 	}
 }

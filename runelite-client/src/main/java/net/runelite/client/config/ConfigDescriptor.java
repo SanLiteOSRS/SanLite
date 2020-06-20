@@ -24,56 +24,20 @@
  */
 package net.runelite.client.config;
 
-import lombok.extern.slf4j.Slf4j;
+import lombok.Getter;
+import java.util.Collection;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-
-@Slf4j
+@Getter
 public class ConfigDescriptor
 {
 	private final ConfigGroup group;
-	private final List<ConfigItemsGroup> itemGroups;
+	private final Collection<ConfigSectionDescriptor> sections;
+	private final Collection<ConfigItemDescriptor> items;
 
-	ConfigDescriptor(ConfigGroup group, List<ConfigItemsGroup> itemGroups)
+	public ConfigDescriptor(ConfigGroup group, Collection<ConfigSectionDescriptor> sections, Collection<ConfigItemDescriptor> items)
 	{
 		this.group = group;
-		this.itemGroups = itemGroups;
-		this.itemGroups.sort(Comparator.comparing(ConfigItemsGroup::getGroup));
-		moveEmptyItemsGroupToLastIndex();
-	}
-
-	public ConfigGroup getGroup()
-	{
-		return group;
-	}
-
-	public List<ConfigItemsGroup> getItemGroups()
-	{
-		return itemGroups;
-	}
-
-	public List<ConfigItemDescriptor> getItems()
-	{
-		List<ConfigItemDescriptor> allItems = new ArrayList<>();
-		for (ConfigItemsGroup group : itemGroups)
-		{
-			allItems.addAll(group.getItems());
-		}
-		return allItems;
-	}
-
-	private void moveEmptyItemsGroupToLastIndex()
-	{
-		for (ConfigItemsGroup configItemsGroup : this.itemGroups)
-		{
-			if (configItemsGroup.getGroup().equals(""))
-			{
-				this.itemGroups.remove(configItemsGroup);
-				this.itemGroups.add(configItemsGroup);
-				break;
-			}
-		}
+		this.sections = sections;
+		this.items = items;
 	}
 }

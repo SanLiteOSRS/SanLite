@@ -95,9 +95,17 @@ public interface RSActor extends RSRenderable, Actor
 	// Idle animation
 	@Import("readySequence")
 	@Override
+	int getIdlePoseAnimation();
+
+	@Import("readySequence")
+	@Override
 	void setIdlePoseAnimation(int animation);
 
-	// Movement animation (aka poseAnimation)
+	// Movement animation (aka pose animation)
+	@Import("movementSequence")
+	@Override
+	int getPoseAnimation();
+
 	@Import("movementSequence")
 	@Override
 	void setPoseAnimation(int animation);

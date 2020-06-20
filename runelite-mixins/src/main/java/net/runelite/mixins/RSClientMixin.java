@@ -449,6 +449,13 @@ public abstract class RSClientMixin implements RSClient
 
 	@Inject
 	@Override
+	public int getVarpValue(int varpId)
+	{
+		return getVarpValue(getVarps(), varpId);
+	}
+
+	@Inject
+	@Override
 	public void setVarpValue(int[] varps, int varpId, int value)
 	{
 		varps[varpId] = value;
@@ -677,6 +684,10 @@ public abstract class RSClientMixin implements RSClient
 		setSceneLowMemory(lowMemory);
 		setAudioHighMemory(true);
 		setObjectDefinitionLowDetail(lowMemory);
+		if (getGameState() == GameState.LOGGED_IN)
+		{
+			setGameState(GameState.LOADING);
+		}
 	}
 
 	@Inject
@@ -959,9 +970,9 @@ public abstract class RSClientMixin implements RSClient
 
 	@FieldHook("clanChat")
 	@Inject
-	public static void clanMemberManagerChanged(int idx)
+	public static void friendsChatMemberManagerChanged(int idx)
 	{
-		client.getCallbacks().post(new ClanChanged(client.getClanMemberManager() != null));
+		client.getCallbacks().post(new FriendsChatChanged(client.getFriendsChatManager() != null));
 	}
 
 	@FieldHook("canvasWidth")

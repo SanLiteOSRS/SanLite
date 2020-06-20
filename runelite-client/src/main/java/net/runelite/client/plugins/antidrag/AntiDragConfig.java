@@ -25,19 +25,16 @@
 package net.runelite.client.plugins.antidrag;
 
 import net.runelite.api.Constants;
-import net.runelite.client.config.AllKeyCodeKeybind;
-import net.runelite.client.config.Config;
-import net.runelite.client.config.ConfigGroup;
-import net.runelite.client.config.ConfigItem;
+import net.runelite.client.config.*;
 
 import java.awt.event.KeyEvent;
 
-@ConfigGroup("antiDrag")
+@ConfigGroup(AntiDragPlugin.CONFIG_GROUP)
 public interface AntiDragConfig extends Config
 {
 	@ConfigItem(
 			keyName = "dragDelay",
-			name = "Drag Delay",
+			name = "Drag delay",
 			description = "Configures the inventory drag delay in client ticks (20ms)",
 			position = 1
 	)
@@ -48,7 +45,7 @@ public interface AntiDragConfig extends Config
 
 	@ConfigItem(
 			keyName = "onKeybindOnly",
-			name = "On Keybind Only",
+			name = "On keybind only",
 			description = "Configures whether to only adjust the delay while holding an anti drag keybind",
 			position = 2
 	)
@@ -58,10 +55,21 @@ public interface AntiDragConfig extends Config
 	}
 
 	@ConfigItem(
+			keyName = "enableIgnoreKeybind",
+			name = "Enable ignore keybind",
+			description = "Configures whether to ignore the delay while holding the ignore keybind",
+			position = 3
+	)
+	default boolean enableIgnoreKeybind()
+	{
+		return true;
+	}
+
+	@ConfigItem(
 			keyName = "keybind1",
 			name = "Keybind 1",
 			description = "First key that when held down delays dragging items",
-			position = 0
+			position = 4
 	)
 	default AllKeyCodeKeybind keybind1()
 	{
@@ -72,10 +80,21 @@ public interface AntiDragConfig extends Config
 			keyName = "keybind2",
 			name = "Keybind 2",
 			description = "Second key that when held down delays dragging items",
-			position = 0
+			position = 5
 	)
 	default AllKeyCodeKeybind keybind2()
 	{
 		return new AllKeyCodeKeybind(KeyEvent.VK_CONTROL, 0);
+	}
+
+	@ConfigItem(
+			keyName = "ignoreKeybind",
+			name = "Ignore keybind",
+			description = "Key that when held down will disable dragging delay on items",
+			position = 6
+	)
+	default AllKeyCodeKeybind ignoreKeybind()
+	{
+		return new AllKeyCodeKeybind(KeyEvent.VK_UNDEFINED, 0);
 	}
 }

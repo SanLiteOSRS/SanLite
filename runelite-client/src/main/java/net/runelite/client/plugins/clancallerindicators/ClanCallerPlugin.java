@@ -36,10 +36,9 @@ import net.runelite.api.events.MenuEntryAdded;
 import net.runelite.api.events.PlayerDespawned;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
-import net.runelite.client.game.ClanManager;
+import net.runelite.client.game.FriendChatManager;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
-import net.runelite.client.plugins.PluginType;
 import net.runelite.client.ui.overlay.OverlayManager;
 import net.runelite.client.util.ColorUtil;
 import net.runelite.client.util.Text;
@@ -54,9 +53,8 @@ import static net.runelite.api.MenuAction.*;
 @PluginDescriptor(
 		name = "Clan Caller Indicators",
 		description = "Highlight players that your clans caller is hitting",
-		tags = {"highlight", "minimap", "overlay", "players", "clan", "caller", "pile", "rsb", "rsc"},
-		enabledByDefault = false,
-		type = PluginType.SANLITE_USE_AT_OWN_RISK
+		tags = {"highlight", "minimap", "overlay", "players", "clan", "caller", "pile", "rsb", "rsc", "sanlite"},
+		enabledByDefault = false
 )
 
 @Singleton
@@ -81,7 +79,7 @@ public class ClanCallerPlugin extends Plugin
 	private Client client;
 
 	@Inject
-	private ClanManager clanManager;
+	private FriendChatManager friendsChatManager;
 
 	@Getter
 	private List<Player> callersList = new ArrayList<>();
@@ -126,7 +124,7 @@ public class ClanCallerPlugin extends Plugin
 			if (!callersList.contains(player) && !pilesList.contains(player))
 			{
 				// If it is a clan member, it can only be a caller
-				if (clanManager.isClanMember(name))
+				if (friendsChatManager.isMember(name))
 				{
 					for (String caller : callersListString)
 					{
@@ -137,7 +135,7 @@ public class ClanCallerPlugin extends Plugin
 					}
 				}
 				// If it is not a clan member, it can only be a pile
-				else if (!clanManager.isClanMember(name))
+				else if (!friendsChatManager.isMember(name))
 				{
 					for (Player caller : callersList)
 					{

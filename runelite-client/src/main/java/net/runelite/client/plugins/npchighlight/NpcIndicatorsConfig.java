@@ -100,13 +100,13 @@ public interface NpcIndicatorsConfig extends Config
 
 	@ConfigItem(
 		position = 6,
-		keyName = "highlightDeadNPCs",
-		name = "Highlight dead NPCs",
-		description = "Highlight dead NPCs"
+		keyName = "ignoreDeadNpcs",
+		name = "Ignore dead NPCs",
+		description = "Prevents highlighting NPCs after they are dead"
 	)
-	default boolean highlightDeadNpcs()
+	default boolean ignoreDeadNpcs()
 	{
-		return false;
+		return true;
 	}
 
 	@ConfigItem(
@@ -120,13 +120,10 @@ public interface NpcIndicatorsConfig extends Config
 	}
 
 	@ConfigItem(
-		position = 8,
-		keyName = "respawnHighlightColor",
-		name = "Respawn Color",
-		description = "Color of the NPC respawn highlight"
+		position = 7,
+		keyName = "deadNpcMenuColor",
+		name = "Dead NPC menu color",
+		description = "Color of the NPC menus for dead NPCs"
 	)
-	default Color getRespawnHighlightColor()
-	{
-		return new Color(100, 100, 100);
-	}
+	Color deadNpcMenuColor();
 }

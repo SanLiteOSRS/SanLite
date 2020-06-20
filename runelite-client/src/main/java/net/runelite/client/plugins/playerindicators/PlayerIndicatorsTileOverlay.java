@@ -53,8 +53,8 @@ public class PlayerIndicatorsTileOverlay extends Overlay
 	@Override
 	public Dimension render(Graphics2D graphics)
 	{
-		if (!config.drawOwnPlayerTiles() && !config.drawFriendTiles() && !config.drawClanMemberTiles() &&
-				!config.drawTeamMemberTiles() && !config.drawNonClanMemberTiles())
+		if (!config.drawOwnPlayerTiles() && !config.drawFriendTiles() && !config.drawFriendsChatMemberTiles() &&
+				!config.drawTeamMemberTiles() && !config.drawOthersTiles())
 		{
 			return null;
 		}
@@ -69,17 +69,17 @@ public class PlayerIndicatorsTileOverlay extends Overlay
 				case FRIEND:
 					renderTileOverlay(graphics, player, config.getFriendColor(), config.drawFriendTiles());
 					break;
-				case CLAN_MEMBER:
-					renderTileOverlay(graphics, player, config.getClanMemberColor(), config.drawClanMemberTiles());
+				case FRIENDS_CHAT_MEMBERS:
+					renderTileOverlay(graphics, player, config.getFriendsChatMemberColor(), config.drawFriendsChatMemberTiles());
 					break;
 				case TEAM_CAPE_MEMBER:
 					renderTileOverlay(graphics, player, config.getTeamMemberColor(), config.drawTeamMemberTiles());
 					break;
 				case NON_CLAN_MEMBER:
-					renderTileOverlay(graphics, player, config.getNonClanMemberColor(), config.drawNonClanMemberTiles());
+					renderTileOverlay(graphics, player, config.getOthersColor(), config.drawOthersTiles());
 					break;
 				default:
-					log.warn("Tried rendering tile overlay for player: {} with unknown PlayerIndicatorType: {}", player.getName(), type);
+					log.warn("Tried rendering tile overlay for player: {} with unknown type: {}", player.getName(), type);
 			}
 		});
 

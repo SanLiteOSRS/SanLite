@@ -31,6 +31,8 @@ import java.util.List;
 import java.util.Map;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+
+import net.runelite.api.annotations.VisibleForExternalPlugins;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.coords.WorldPoint;
 import net.runelite.api.hooks.Callbacks;
@@ -718,6 +720,42 @@ public interface Client extends GameEngine
 	String getVar(VarClientStr varClientStr);
 
 	/**
+	 * Gets the value of a given VarPlayer.
+	 *
+	 * @param varpId the VarPlayer id
+	 * @return the value
+	 */
+	@VisibleForExternalPlugins
+	int getVarpValue(int varpId);
+
+	/**
+	 * Gets the value of a given Varbit.
+	 *
+	 * @param varbitId the varbit id
+	 * @return the value
+	 */
+	@VisibleForExternalPlugins
+	int getVarbitValue(int varbitId);
+
+	/**
+	 * Gets the value of a given VarClientInt
+	 *
+	 * @param varcIntId the VarClientInt id
+	 * @return the value
+	 */
+	@VisibleForExternalPlugins
+	int getVarcIntValue(int varcIntId);
+
+	/**
+	 * Gets the value of a given VarClientStr
+	 *
+	 * @param varcStrId the VarClientStr id
+	 * @return the value
+	 */
+	@VisibleForExternalPlugins
+	String getVarcStrValue(int varcStrId);
+
+	/**
 	 * Sets a VarClientString to the passed value
 	 */
 	void setVar(VarClientStr varClientStr, String value);
@@ -1143,12 +1181,12 @@ public interface Client extends GameEngine
 	boolean isFriended(String name, boolean mustBeLoggedIn);
 
 	/**
-	 * Retrieve the clan member manager
+	 * Retrieve the friends chat manager
 	 *
-	 * @return clan member manager
+	 * @return
 	 */
 	@Nullable
-	ClanMemberManager getClanMemberManager();
+	FriendsChatManager getFriendsChatManager();
 
 	/**
 	 * Retrieve the nameable container containing friends
@@ -1471,11 +1509,11 @@ public interface Client extends GameEngine
 	void setFriendsHidden(boolean state);
 
 	/**
-	 * Sets whether or not clan mates are hidden.
+	 * Sets whether or not friends chat members are hidden.
 	 *
-	 * @param state the new clan mates hidden state
+	 * @param state the new friends chat member hidden state
 	 */
-	void setClanMatesHidden(boolean state);
+	void setFriendsChatMembersHidden(boolean state);
 
 	/**
 	 * Sets whether the local player is hidden.

@@ -57,14 +57,12 @@ import net.runelite.client.callback.ClientThread;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
-import net.runelite.client.plugins.PluginType;
 import net.runelite.client.ui.overlay.OverlayManager;
 
 @PluginDescriptor(
 	name = "Demonic Gorillas",
 	description = "Count demonic gorilla attacks and display their next possible attack styles",
-	tags = {"combat", "overlay", "pve", "pvm"},
-	type = PluginType.SANLITE_USE_AT_OWN_RISK,
+	tags = {"combat", "overlay", "pve", "pvm", "sanlite"},
 	enabledByDefault = false
 )
 public class DemonicGorillaPlugin extends Plugin
