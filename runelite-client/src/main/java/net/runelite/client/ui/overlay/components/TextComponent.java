@@ -43,6 +43,7 @@ public class TextComponent implements RenderableEntity
 	private String text;
 	private Point position = new Point();
 	private Color color = Color.WHITE;
+	private boolean outline;
 
 	@Override
 	public Dimension render(Graphics2D graphics)
@@ -57,22 +58,25 @@ public class TextComponent implements RenderableEntity
 			for (String textSplitOnCol : parts)
 			{
 				final String textWithoutCol = Text.removeTags(textSplitOnCol);
-				String colColor = "";
+				final String colColor = textSplitOnCol.substring(textSplitOnCol.indexOf("=") + 1, textSplitOnCol.indexOf(">"));
 
-				int beginIndex = textSplitOnCol.indexOf("=");
-				int endIndex = textSplitOnCol.indexOf(">");
+				graphics.setColor(Color.BLACK);
 
-				if (beginIndex > 0 && endIndex > 0)
+				if (outline)
 				{
-					colColor = textSplitOnCol.substring(beginIndex + 1, endIndex);
+					graphics.drawString(textWithoutCol, x, position.y + 1);
+					graphics.drawString(textWithoutCol, x, position.y - 1);
+					graphics.drawString(textWithoutCol, x + 1, position.y);
+					graphics.drawString(textWithoutCol, x - 1, position.y);
+				}
+				else
+				{
+					// shadow
+					graphics.drawString(textWithoutCol, x + 1, position.y + 1);
 				}
 
-				// shadow
-				graphics.setColor(Color.BLACK);
-				graphics.drawString(textWithoutCol, x + 1, position.y + 1);
-
 				// actual text
-				graphics.setColor(!colColor.isEmpty() ? Color.decode("#" + colColor) : color);
+				graphics.setColor(Color.decode("#" + colColor));
 				graphics.drawString(textWithoutCol, x, position.y);
 
 				x += fontMetrics.stringWidth(textWithoutCol);
@@ -80,9 +84,20 @@ public class TextComponent implements RenderableEntity
 		}
 		else
 		{
-			// shadow
 			graphics.setColor(Color.BLACK);
-			graphics.drawString(text, position.x + 1, position.y + 1);
+
+			if (outline)
+			{
+				graphics.drawString(text, position.x, position.y + 1);
+				graphics.drawString(text, position.x, position.y - 1);
+				graphics.drawString(text, position.x + 1, position.y);
+				graphics.drawString(text, position.x - 1, position.y);
+			}
+			else
+			{
+				// shadow
+				graphics.drawString(text, position.x + 1, position.y + 1);
+			}
 
 			// actual text
 			graphics.setColor(color);
