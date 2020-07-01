@@ -14,6 +14,7 @@ import net.runelite.rs.api.RSItemComposition;
 public abstract class RSItemCompositionMixin implements RSItemComposition
 {
 	private static final int DEFAULT_CUSTOM_SHIFT_CLICK_INDEX = -2;
+	private static final float HIGH_ALCHEMY_MULTIPLIER = 0.6F;
 
 	@Shadow("client")
 	private static RSClient client;
@@ -31,6 +32,13 @@ public abstract class RSItemCompositionMixin implements RSItemComposition
 	public boolean isStackable()
 	{
 		return getIsStackable() != 0;
+	}
+
+	@Inject
+	@Override
+	public int getHaPrice()
+	{
+		return Math.round(this.getPrice() * HIGH_ALCHEMY_MULTIPLIER);
 	}
 
 	@Inject

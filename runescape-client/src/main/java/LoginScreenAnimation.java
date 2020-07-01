@@ -649,7 +649,7 @@ public class LoginScreenAnimation {
 							UrlRequester.Interpreter_intStackSize -= 2;
 							var7 = Interpreter.Interpreter_intStack[UrlRequester.Interpreter_intStackSize];
 							var8 = Interpreter.Interpreter_intStack[UrlRequester.Interpreter_intStackSize + 1];
-							var9 = VarbitDefinition.getParamDefinition(var8);
+							var9 = VarbitComposition.getParamDefinition(var8);
 							if (var9.isString()) {
 								Interpreter.Interpreter_stringStack[++WorldMapEvent.Interpreter_stringStackSize - 1] = StudioGame.getNpcDefinition(var7).getStringParam(var8, var9.defaultStr);
 							} else {
@@ -661,7 +661,7 @@ public class LoginScreenAnimation {
 							UrlRequester.Interpreter_intStackSize -= 2;
 							var7 = Interpreter.Interpreter_intStack[UrlRequester.Interpreter_intStackSize];
 							var8 = Interpreter.Interpreter_intStack[UrlRequester.Interpreter_intStackSize + 1];
-							var9 = VarbitDefinition.getParamDefinition(var8);
+							var9 = VarbitComposition.getParamDefinition(var8);
 							if (var9.isString()) {
 								Interpreter.Interpreter_stringStack[++WorldMapEvent.Interpreter_stringStackSize - 1] = Canvas.getObjectDefinition(var7).getStringParam(var8, var9.defaultStr);
 							} else {
@@ -673,7 +673,7 @@ public class LoginScreenAnimation {
 							UrlRequester.Interpreter_intStackSize -= 2;
 							var7 = Interpreter.Interpreter_intStack[UrlRequester.Interpreter_intStackSize];
 							var8 = Interpreter.Interpreter_intStack[UrlRequester.Interpreter_intStackSize + 1];
-							var9 = VarbitDefinition.getParamDefinition(var8);
+							var9 = VarbitComposition.getParamDefinition(var8);
 							if (var9.isString()) {
 								Interpreter.Interpreter_stringStack[++WorldMapEvent.Interpreter_stringStackSize - 1] = KitDefinition.ItemDefinition_get(var7).getStringParam(var8, var9.defaultStr);
 							} else {
@@ -685,7 +685,7 @@ public class LoginScreenAnimation {
 							UrlRequester.Interpreter_intStackSize -= 2;
 							var7 = Interpreter.Interpreter_intStack[UrlRequester.Interpreter_intStackSize];
 							var8 = Interpreter.Interpreter_intStack[UrlRequester.Interpreter_intStackSize + 1];
-							var9 = VarbitDefinition.getParamDefinition(var8);
+							var9 = VarbitComposition.getParamDefinition(var8);
 							if (var9.isString()) {
 								Interpreter.Interpreter_stringStack[++WorldMapEvent.Interpreter_stringStackSize - 1] = class224.StructDefinition_getStructDefinition(var7).getStringParam(var8, var9.defaultStr);
 							} else {

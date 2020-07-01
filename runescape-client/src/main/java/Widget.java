@@ -1537,18 +1537,18 @@ public class Widget extends Node {
 	)
 	@Export("getVarbit")
 	public static int getVarbit(int var0) {
-		VarbitDefinition var2 = (VarbitDefinition)VarbitDefinition.VarbitDefinition_cached.get((long)var0);
-		VarbitDefinition var1;
+		VarbitComposition var2 = (VarbitComposition) VarbitComposition.VarbitDefinition_cached.get((long)var0);
+		VarbitComposition var1;
 		if (var2 != null) {
 			var1 = var2;
 		} else {
-			byte[] var7 = VarbitDefinition.VarbitDefinition_archive.takeFile(14, var0);
-			var2 = new VarbitDefinition();
+			byte[] var7 = VarbitComposition.VarbitDefinition_archive.takeFile(14, var0);
+			var2 = new VarbitComposition();
 			if (var7 != null) {
 				var2.decode(new Buffer(var7));
 			}
 
-			VarbitDefinition.VarbitDefinition_cached.put(var2, (long)var0);
+			VarbitComposition.VarbitDefinition_cached.put(var2, (long)var0);
 			var1 = var2;
 		}
 

@@ -457,6 +457,9 @@ public interface RSClient extends RSGameEngine, Client
 	@Import("SpriteBuffer_spritePalette")
 	void setIndexedSpritePalette(int[] indexedSpritePalette);
 
+	@Import("archive2")
+	RSArchive getIndexConfig();
+
 	@Import("archive6")
 	RSArchive getMusicTracks();
 
@@ -672,8 +675,11 @@ public interface RSClient extends RSGameEngine, Client
 	@Construct
 	RSUsername createName(String name, RSLoginType type);
 
-	@Import("getVarbit")
-	int getVarbit(int varbitId);
+	@Construct
+	RSBuffer createBuffer(byte[] bytes);
+
+	@Construct
+	RSVarbitComposition createVarbitComposition();
 
 	@Import("VarbitDefinition_cached")
 	RSEvictingDualNodeHashTable getVarbitCache();

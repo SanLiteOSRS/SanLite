@@ -17,18 +17,18 @@ public class class257 {
 		garbageValue = "-540216390"
 	)
 	public static void method4679(int var0, int var1) {
-		VarbitDefinition var3 = (VarbitDefinition)VarbitDefinition.VarbitDefinition_cached.get((long)var0);
-		VarbitDefinition var2;
+		VarbitComposition var3 = (VarbitComposition) VarbitComposition.VarbitDefinition_cached.get((long)var0);
+		VarbitComposition var2;
 		if (var3 != null) {
 			var2 = var3;
 		} else {
-			byte[] var8 = VarbitDefinition.VarbitDefinition_archive.takeFile(14, var0);
-			var3 = new VarbitDefinition();
+			byte[] var8 = VarbitComposition.VarbitDefinition_archive.takeFile(14, var0);
+			var3 = new VarbitComposition();
 			if (var8 != null) {
 				var3.decode(new Buffer(var8));
 			}
 
-			VarbitDefinition.VarbitDefinition_cached.put(var3, (long)var0);
+			VarbitComposition.VarbitDefinition_cached.put(var3, (long)var0);
 			var2 = var3;
 		}
 
