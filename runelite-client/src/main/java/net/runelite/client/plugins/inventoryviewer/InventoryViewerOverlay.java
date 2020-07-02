@@ -29,16 +29,19 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
 import javax.inject.Inject;
-
-import net.runelite.api.*;
+import net.runelite.api.Client;
+import net.runelite.api.Constants;
+import net.runelite.api.InventoryID;
+import net.runelite.api.Item;
+import net.runelite.api.ItemComposition;
+import net.runelite.api.ItemContainer;
 import net.runelite.client.game.ItemManager;
-import net.runelite.client.ui.overlay.Overlay;
+import net.runelite.client.ui.overlay.OverlayPanel;
 import net.runelite.client.ui.overlay.OverlayPosition;
 import net.runelite.client.ui.overlay.components.ComponentOrientation;
 import net.runelite.client.ui.overlay.components.ImageComponent;
-import net.runelite.client.ui.overlay.components.PanelComponent;
 
-class InventoryViewerOverlay extends Overlay
+class InventoryViewerOverlay extends OverlayPanel
 {
 	private static final int INVENTORY_SIZE = 28;
 	private static final ImageComponent PLACEHOLDER_IMAGE = new ImageComponent(
@@ -47,14 +50,13 @@ class InventoryViewerOverlay extends Overlay
 	private final Client client;
 	private final ItemManager itemManager;
 
-	private final PanelComponent panelComponent = new PanelComponent();
-
 	@Inject
 	private InventoryViewerOverlay(Client client, ItemManager itemManager)
 	{
 		setPosition(OverlayPosition.BOTTOM_RIGHT);
-		panelComponent.setWrapping(4);
+		panelComponent.setWrap(true);
 		panelComponent.setGap(new Point(6, 4));
+		panelComponent.setPreferredSize(new Dimension(4 * (Constants.ITEM_SPRITE_WIDTH + 6), 0));
 		panelComponent.setOrientation(ComponentOrientation.HORIZONTAL);
 		this.itemManager = itemManager;
 		this.client = client;
@@ -69,8 +71,6 @@ class InventoryViewerOverlay extends Overlay
 		{
 			return null;
 		}
-
-		panelComponent.getChildren().clear();
 
 		final Item[] items = itemContainer.getItems();
 
@@ -94,12 +94,12 @@ class InventoryViewerOverlay extends Overlay
 			panelComponent.getChildren().add(PLACEHOLDER_IMAGE);
 		}
 
-		return panelComponent.render(graphics);
+		return super.render(graphics);
 	}
 
 	private BufferedImage getImage(Item item)
 	{
-		ItemDefinition itemComposition = itemManager.getItemComposition(item.getId());
+		ItemComposition itemComposition = itemManager.getItemComposition(item.getId());
 		return itemManager.getImage(item.getId(), item.getQuantity(), itemComposition.isStackable());
 	}
 }

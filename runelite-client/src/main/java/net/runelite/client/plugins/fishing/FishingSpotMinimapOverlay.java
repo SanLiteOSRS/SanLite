@@ -32,6 +32,7 @@ import lombok.AccessLevel;
 import lombok.Setter;
 import net.runelite.api.GraphicID;
 import net.runelite.api.NPC;
+import net.runelite.client.game.FishingSpot;
 import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayLayer;
 import net.runelite.client.ui.overlay.OverlayPosition;
@@ -76,7 +77,7 @@ class FishingSpotMinimapOverlay extends Overlay
 				continue;
 			}
 
-			Color color = npc.getSpotAnimation() == GraphicID.FLYING_FISH
+			Color color = npc.getGraphic() == GraphicID.FLYING_FISH
 				? config.getMinnowsOverlayColor()
 				: config.getOverlayColor();
 

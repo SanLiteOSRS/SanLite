@@ -3,16 +3,16 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hb")
+@ObfuscatedName("ht")
 @Implements("Varps")
 public class Varps {
-	@ObfuscatedName("c")
+	@ObfuscatedName("m")
 	@Export("Varps_masks")
 	static int[] Varps_masks;
-	@ObfuscatedName("t")
+	@ObfuscatedName("o")
 	@Export("Varps_temp")
 	public static int[] Varps_temp;
-	@ObfuscatedName("o")
+	@ObfuscatedName("q")
 	@Export("Varps_main")
 	public static int[] Varps_main;
 
@@ -29,36 +29,13 @@ public class Varps {
 		Varps_main = new int[4000];
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		signature = "(III)I",
-		garbageValue = "1638867489"
+		signature = "(CB)Z",
+		garbageValue = "72"
 	)
-	static int method4043(int var0, int var1) {
-		ItemContainer var2 = (ItemContainer)ItemContainer.itemContainers.get((long)var0);
-		if (var2 == null) {
-			return -1;
-		} else {
-			return var1 >= 0 && var1 < var2.ids.length ? var2.ids[var1] : -1;
-		}
-	}
-
-	@ObfuscatedName("t")
-	@ObfuscatedSignature(
-		signature = "(II)Lhn;",
-		garbageValue = "1215015650"
-	)
-	@Export("getWidget")
-	public static Widget getWidget(int var0) {
-		int var1 = var0 >> 16;
-		int var2 = var0 & 65535;
-		if (WorldMapLabel.Widget_interfaceComponents[var1] == null || WorldMapLabel.Widget_interfaceComponents[var1][var2] == null) {
-			boolean var3 = ScriptFrame.loadInterface(var1);
-			if (!var3) {
-				return null;
-			}
-		}
-
-		return WorldMapLabel.Widget_interfaceComponents[var1][var2];
+	@Export("isAlphaNumeric")
+	public static boolean isAlphaNumeric(char var0) {
+		return var0 >= '0' && var0 <= '9' || var0 >= 'A' && var0 <= 'Z' || var0 >= 'a' && var0 <= 'z';
 	}
 }

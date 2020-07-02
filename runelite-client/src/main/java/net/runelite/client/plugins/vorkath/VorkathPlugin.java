@@ -36,7 +36,6 @@ import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.events.ConfigChanged;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
-import net.runelite.client.plugins.PluginType;
 import net.runelite.client.ui.ClientUI;
 import net.runelite.client.ui.overlay.OverlayManager;
 
@@ -47,8 +46,8 @@ import java.util.Arrays;
 @PluginDescriptor(
 		name = "Vorkath",
 		description = "Helps with Vorkath's various encounter mechanics",
-		tags = {"combat", "overlay", "pve", "pvm", "vorkath", "ds2", "boss", "dragon", "slayer", "blue"},
-		type = PluginType.SANLITE_USE_AT_OWN_RISK
+		tags = {"combat", "overlay", "pve", "pvm", "vorkath", "ds2", "boss", "dragon", "slayer", "blue", "sanlite"},
+		enabledByDefault = false
 )
 public class VorkathPlugin extends Plugin
 {
@@ -154,7 +153,7 @@ public class VorkathPlugin extends Plugin
 				if (config.notifyOnZombifiedSpawn())
 					notifier.notify("Vorkath is about to summon a zombified spawn!");
 				break;
-			case ProjectileID.VORKATH_ACID:
+			case ProjectileID.VORKATH_ACID_AOE:
 				if (config.notifyOnAcidPhase())
 					notifier.notify("Vorkath acid phase has started!");
 				break;
@@ -281,37 +280,16 @@ public class VorkathPlugin extends Plugin
 				log.debug("{} | Regular attack: {} | {}", client.getTickCount(), projectileId, vorkath.getNextAttackTick());
 				vorkath.onRegularAttack(client.getTickCount());
 				break;
-			case ProjectileID.VORKATH_FIREBOMB:
-				vorkath.getProjectiles().add(new VorkathProjectile(projectile, projectile.getStartMovementCycle(),
-						projectile.getEndCycle(), 3));
-				break;
 			case ProjectileID.VORKATH_ICE_BREATH:
-			case ProjectileID.VORKATH_ACID:
+			case ProjectileID.VORKATH_ACID_AOE:
 				vorkath.onSpecialAttack(projectile, this, client.getTickCount());
 				break;
-			case ProjectileID.VORKATH_ACID_PHASE_FIREBALL:
+			case ProjectileID.VORKATH_ACID_PHASE_FIREBALL_AOE:
 				log.debug("{} | Acid fireball attack | {}", client.getTickCount(), vorkath.getNextAttackTick());
 				vorkath.onAcidPhaseFireballAttack(client.getTickCount());
 				break;
 		}
 		vorkath.setRecentProjectileId(projectile.getId());
-	}
-
-	@Subscribe
-	public void onProjectileMoved(ProjectileMoved event)
-	{
-		if (!validateInstanceAndNpc())
-		{
-			return;
-		}
-
-		Projectile projectile = event.getProjectile();
-		if (!vorkath.isVorkathProjectile(projectile.getId()) || vorkath.getProjectiles().size() == 0)
-		{
-			return;
-		}
-
-		vorkath.updateProjectiles(projectile, event.getPosition());
 	}
 
 	@Subscribe

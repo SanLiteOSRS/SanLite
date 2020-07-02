@@ -70,6 +70,7 @@ import net.runelite.http.api.hiscore.HiscoreSkill;
 import static net.runelite.http.api.hiscore.HiscoreSkill.*;
 import net.runelite.http.api.hiscore.HiscoreSkillType;
 import net.runelite.http.api.hiscore.Skill;
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 
 @Slf4j
@@ -82,36 +83,40 @@ public class HiscorePanel extends PluginPanel
 	 * Real skills, ordered in the way they should be displayed in the panel.
 	 */
 	private static final List<HiscoreSkill> SKILLS = ImmutableList.of(
-			ATTACK, HITPOINTS, MINING,
-			STRENGTH, AGILITY, SMITHING,
-			DEFENCE, HERBLORE, FISHING,
-			RANGED, THIEVING, COOKING,
-			PRAYER, CRAFTING, FIREMAKING,
-			MAGIC, FLETCHING, WOODCUTTING,
-			RUNECRAFT, SLAYER, FARMING,
-			CONSTRUCTION, HUNTER
+		ATTACK, HITPOINTS, MINING,
+		STRENGTH, AGILITY, SMITHING,
+		DEFENCE, HERBLORE, FISHING,
+		RANGED, THIEVING, COOKING,
+		PRAYER, CRAFTING, FIREMAKING,
+		MAGIC, FLETCHING, WOODCUTTING,
+		RUNECRAFT, SLAYER, FARMING,
+		CONSTRUCTION, HUNTER
 	);
 
 	/**
 	 * Bosses, ordered in the way they should be displayed in the panel.
 	 */
 	private static final List<HiscoreSkill> BOSSES = ImmutableList.of(
-			ABYSSAL_SIRE, ALCHEMICAL_HYDRA, BARROWS_CHESTS,
-			BRYOPHYTA, CALLISTO, CERBERUS,
-			CHAMBERS_OF_XERIC, CHAMBERS_OF_XERIC_CHALLENGE_MODE, CHAOS_ELEMENTAL,
-			CHAOS_FANATIC, COMMANDER_ZILYANA, CORPOREAL_BEAST,
-			DAGANNOTH_PRIME, DAGANNOTH_REX, DAGANNOTH_SUPREME,
-			CRAZY_ARCHAEOLOGIST, DERANGED_ARCHAEOLOGIST, GENERAL_GRAARDOR,
-			GIANT_MOLE, GROTESQUE_GUARDIANS, HESPORI,
-			KALPHITE_QUEEN, KING_BLACK_DRAGON, KRAKEN,
-			KREEARRA, KRIL_TSUTSAROTH, MIMIC,
-			NIGHTMARE, OBOR, SARACHNIS,
-			SCORPIA, SKOTIZO, THE_GAUNTLET,
-			THE_CORRUPTED_GAUNTLET, THEATRE_OF_BLOOD, THERMONUCLEAR_SMOKE_DEVIL,
-			TZKAL_ZUK, TZTOK_JAD, VENENATIS,
-			VETION, VORKATH, WINTERTODT,
-			ZALCANO, ZULRAH
+		ABYSSAL_SIRE, ALCHEMICAL_HYDRA, BARROWS_CHESTS,
+		BRYOPHYTA, CALLISTO, CERBERUS,
+		CHAMBERS_OF_XERIC, CHAMBERS_OF_XERIC_CHALLENGE_MODE, CHAOS_ELEMENTAL,
+		CHAOS_FANATIC, COMMANDER_ZILYANA, CORPOREAL_BEAST,
+		DAGANNOTH_PRIME, DAGANNOTH_REX, DAGANNOTH_SUPREME,
+		CRAZY_ARCHAEOLOGIST, DERANGED_ARCHAEOLOGIST, GENERAL_GRAARDOR,
+		GIANT_MOLE, GROTESQUE_GUARDIANS, HESPORI,
+		KALPHITE_QUEEN, KING_BLACK_DRAGON, KRAKEN,
+		KREEARRA, KRIL_TSUTSAROTH, MIMIC,
+		NIGHTMARE, OBOR, SARACHNIS,
+		SCORPIA, SKOTIZO, THE_GAUNTLET,
+		THE_CORRUPTED_GAUNTLET, THEATRE_OF_BLOOD, THERMONUCLEAR_SMOKE_DEVIL,
+		TZKAL_ZUK, TZTOK_JAD, VENENATIS,
+		VETION, VORKATH, WINTERTODT,
+		ZALCANO, ZULRAH
 	);
+
+	private static final HiscoreEndpoint[] ENDPOINTS = new HiscoreEndpoint[] {
+		HiscoreEndpoint.NORMAL, HiscoreEndpoint.IRONMAN, HiscoreEndpoint.HARDCORE_IRONMAN, HiscoreEndpoint.ULTIMATE_IRONMAN, HiscoreEndpoint.DEADMAN, HiscoreEndpoint.TOURNAMENT
+	};
 
 	@Inject
 	ScheduledExecutorService executor;
@@ -121,6 +126,7 @@ public class HiscorePanel extends PluginPanel
 	private Client client;
 
 	private final HiscoreConfig config;
+	private final NameAutocompleter nameAutocompleter;
 
 	private final IconTextField searchBar;
 
@@ -141,10 +147,11 @@ public class HiscorePanel extends PluginPanel
 	private boolean loading = false;
 
 	@Inject
-	public HiscorePanel(HiscoreConfig config)
+	public HiscorePanel(HiscoreConfig config, NameAutocompleter nameAutocompleter)
 	{
 		super();
 		this.config = config;
+		this.nameAutocompleter = nameAutocompleter;
 
 		// The layout seems to be ignoring the top margin and only gives it
 		// a 2-3 pixel margin, so I set the value to 18 to compensate
@@ -187,7 +194,7 @@ public class HiscorePanel extends PluginPanel
 
 				if (localPlayer != null)
 				{
-					executor.execute(() -> lookup(localPlayer.getName()));
+					lookup(localPlayer.getName());
 				}
 			}
 		});
@@ -198,7 +205,7 @@ public class HiscorePanel extends PluginPanel
 		tabGroup = new MaterialTabGroup();
 		tabGroup.setLayout(new GridLayout(1, 5, 7, 7));
 
-		for (HiscoreEndpoint endpoint : HiscoreEndpoint.values())
+		for (HiscoreEndpoint endpoint : ENDPOINTS)
 		{
 			final BufferedImage iconImage = ImageUtil.getResourceStreamFromClass(getClass(), endpoint.name().toLowerCase() + ".png");
 
@@ -295,6 +302,13 @@ public class HiscorePanel extends PluginPanel
 
 		add(bossPanel, c);
 		c.gridy++;
+
+		addInputKeyListener(nameAutocompleter);
+	}
+
+	void shutdown()
+	{
+		removeInputKeyListener(nameAutocompleter);
 	}
 
 	@Override
@@ -349,7 +363,7 @@ public class HiscorePanel extends PluginPanel
 	{
 		searchBar.setText(username);
 		resetEndpoints();
-		lookup();
+		executor.execute(this::lookup);
 	}
 
 	private void lookup()
@@ -418,6 +432,8 @@ public class HiscorePanel extends PluginPanel
 		searchBar.setEditable(true);
 		loading = false;
 
+		nameAutocompleter.addToSearchHistory(result.getPlayer().toLowerCase());
+
 		for (Map.Entry<HiscoreSkill, JLabel> entry : skillLabels.entrySet())
 		{
 			HiscoreSkill skill = entry.getKey();
@@ -429,13 +445,13 @@ public class HiscorePanel extends PluginPanel
 				if (result.getPlayer() != null)
 				{
 					int combatLevel = Experience.getCombatLevel(
-							result.getAttack().getLevel(),
-							result.getStrength().getLevel(),
-							result.getDefence().getLevel(),
-							result.getHitpoints().getLevel(),
-							result.getMagic().getLevel(),
-							result.getRanged().getLevel(),
-							result.getPrayer().getLevel()
+						result.getAttack().getLevel(),
+						result.getStrength().getLevel(),
+						result.getDefence().getLevel(),
+						result.getHitpoints().getLevel(),
+						result.getMagic().getLevel(),
+						result.getRanged().getLevel(),
+						result.getPrayer().getLevel()
 					);
 					label.setText(Integer.toString(combatLevel));
 				}
@@ -489,19 +505,19 @@ public class HiscorePanel extends PluginPanel
 		if (skill == null)
 		{
 			double combatLevel = Experience.getCombatLevelPrecise(
-					result.getAttack().getLevel(),
-					result.getStrength().getLevel(),
-					result.getDefence().getLevel(),
-					result.getHitpoints().getLevel(),
-					result.getMagic().getLevel(),
-					result.getRanged().getLevel(),
-					result.getPrayer().getLevel()
+				result.getAttack().getLevel(),
+				result.getStrength().getLevel(),
+				result.getDefence().getLevel(),
+				result.getHitpoints().getLevel(),
+				result.getMagic().getLevel(),
+				result.getRanged().getLevel(),
+				result.getPrayer().getLevel()
 			);
 
 			double combatExperience = result.getAttack().getExperience()
-					+ result.getStrength().getExperience() + result.getDefence().getExperience()
-					+ result.getHitpoints().getExperience() + result.getMagic().getExperience()
-					+ result.getRanged().getExperience() + result.getPrayer().getExperience();
+				+ result.getStrength().getExperience() + result.getDefence().getExperience()
+				+ result.getHitpoints().getExperience() + result.getMagic().getExperience()
+				+ result.getRanged().getExperience() + result.getPrayer().getExperience();
 
 			content += "<p><span style = 'color:white'>Skill:</span> Combat</p>";
 			content += "<p><span style = 'color:white'>Exact Combat Level:</span> " + QuantityFormatter.formatNumber(combatLevel) + "</p>";
@@ -651,11 +667,11 @@ public class HiscorePanel extends PluginPanel
 
 				// had to wrap the bar with an empty div, if i added the margin directly to the bar, it would mess up
 				content += "<div style = 'margin-top:3px'>"
-						+ "<div style = 'background: #070707; border: 1px solid #070707; height: 6px; width: 100%;'>"
-						+ "<div style = 'height: 6px; width: " + progress + "%; background: #dc8a00;'>"
-						+ "</div>"
-						+ "</div>"
-						+ "</div>";
+					+ "<div style = 'background: #070707; border: 1px solid #070707; height: 6px; width: 100%;'>"
+					+ "<div style = 'height: 6px; width: " + progress + "%; background: #dc8a00;'>"
+					+ "</div>"
+					+ "</div>"
+					+ "</div>";
 			}
 		}
 
@@ -670,7 +686,9 @@ public class HiscorePanel extends PluginPanel
 	private void resetEndpoints()
 	{
 		// Select the correct tab based on the world type.
-		tabGroup.select(tabGroup.getTab(selectWorldEndpoint().ordinal()));
+		HiscoreEndpoint endpoint = selectWorldEndpoint();
+		int idx = ArrayUtils.indexOf(ENDPOINTS, endpoint);
+		tabGroup.select(tabGroup.getTab(idx));
 	}
 
 	private HiscoreEndpoint selectWorldEndpoint()
@@ -679,7 +697,11 @@ public class HiscorePanel extends PluginPanel
 		{
 			EnumSet<WorldType> wTypes = client.getWorldType();
 
-			if (wTypes.contains(WorldType.DEADMAN))
+			if (wTypes.contains(WorldType.DEADMAN_TOURNAMENT))
+			{
+				return HiscoreEndpoint.TOURNAMENT;
+			}
+			else if (wTypes.contains(WorldType.DEADMAN))
 			{
 				return HiscoreEndpoint.DEADMAN;
 			}

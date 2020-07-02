@@ -4,25 +4,25 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bt")
+@ObfuscatedName("bx")
 @Implements("MouseRecorder")
 public class MouseRecorder implements Runnable {
-	@ObfuscatedName("c")
+	@ObfuscatedName("m")
 	@Export("isRunning")
 	boolean isRunning;
-	@ObfuscatedName("t")
+	@ObfuscatedName("o")
 	@Export("lock")
 	Object lock;
-	@ObfuscatedName("o")
+	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = 114290231
+		intValue = -1800286553
 	)
 	@Export("index")
 	int index;
-	@ObfuscatedName("e")
+	@ObfuscatedName("j")
 	@Export("xs")
 	int[] xs;
-	@ObfuscatedName("i")
+	@ObfuscatedName("p")
 	@Export("ys")
 	int[] ys;
 	@ObfuscatedName("g")
@@ -39,7 +39,7 @@ public class MouseRecorder implements Runnable {
 	}
 
 	public void run() {
-		for (; this.isRunning; FriendLoginUpdate.method5325(50L)) {
+		while (this.isRunning) {
 			synchronized(this.lock) {
 				if (this.index < 500) {
 					this.xs[this.index] = MouseHandler.MouseHandler_x;
@@ -48,153 +48,163 @@ public class MouseRecorder implements Runnable {
 					++this.index;
 				}
 			}
+
+			SpriteMask.method4111(49L);
+			SpriteMask.method4111(1L);
 		}
 
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		signature = "(Lkp;Llp;B)Llp;",
-		garbageValue = "-44"
+		signature = "(DDII)[D",
+		garbageValue = "-2077426308"
 	)
-	@Export("readStringIntParameters")
-	static final IterableNodeHashTable readStringIntParameters(Buffer var0, IterableNodeHashTable var1) {
-		int var2 = var0.readUnsignedByte();
-		int var3;
-		if (var1 == null) {
-			var3 = DynamicObject.method2293(var2);
-			var1 = new IterableNodeHashTable(var3);
+	public static double[] method1248(double var0, double var2, int var4) {
+		int var5 = var4 * 2 + 1;
+		double[] var6 = new double[var5];
+		int var7 = -var4;
+
+		for (int var8 = 0; var7 <= var4; ++var8) {
+			double var15 = ((double)var7 - var0) / var2;
+			double var13 = Math.exp(-var15 * var15 / 2.0D) / Math.sqrt(6.283185307179586D);
+			double var11 = var13 / var2;
+			var6[var8] = var11;
+			++var7;
 		}
 
-		for (var3 = 0; var3 < var2; ++var3) {
-			boolean var4 = var0.readUnsignedByte() == 1;
-			int var5 = var0.readMedium();
-			Object var6;
-			if (var4) {
-				var6 = new ObjectNode(var0.readStringCp1252NullTerminated());
-			} else {
-				var6 = new IntegerNode(var0.readInt());
-			}
-
-			var1.put((Node)var6, (long)var5);
-		}
-
-		return var1;
+		return var6;
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("g")
 	@ObfuscatedSignature(
-		signature = "(Lii;Lii;Lii;Lgw;I)Z",
-		garbageValue = "1360847882"
+		signature = "([BIII)Ljava/lang/String;",
+		garbageValue = "-2086998807"
 	)
-	public static boolean method1208(AbstractArchive var0, AbstractArchive var1, AbstractArchive var2, MidiPcmStream var3) {
-		class197.musicPatchesArchive = var0;
-		class197.musicSamplesArchive = var1;
-		UserComparator10.soundEffectsArchive = var2;
-		class197.midiPcmStream = var3;
-		return true;
-	}
+	@Export("decodeStringCp1252")
+	public static String decodeStringCp1252(byte[] var0, int var1, int var2) {
+		char[] var3 = new char[var2];
+		int var4 = 0;
 
-	@ObfuscatedName("w")
-	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "-64"
-	)
-	static final void method1209() {
-		if (!ViewportMouse.ViewportMouse_false0) {
-			int var0 = Scene.Scene_cameraPitchSine;
-			int var1 = Scene.Scene_cameraPitchCosine;
-			int var2 = Scene.Scene_cameraYawSine;
-			int var3 = Scene.Scene_cameraYawCosine;
-			byte var4 = 50;
-			short var5 = 3500;
-			int var6 = (ViewportMouse.ViewportMouse_x - Rasterizer3D.Rasterizer3D_clipMidX) * var4 / Rasterizer3D.Rasterizer3D_zoom;
-			int var7 = (ViewportMouse.ViewportMouse_y - Rasterizer3D.Rasterizer3D_clipMidY) * var4 / Rasterizer3D.Rasterizer3D_zoom;
-			int var8 = (ViewportMouse.ViewportMouse_x - Rasterizer3D.Rasterizer3D_clipMidX) * var5 / Rasterizer3D.Rasterizer3D_zoom;
-			int var9 = (ViewportMouse.ViewportMouse_y - Rasterizer3D.Rasterizer3D_clipMidY) * var5 / Rasterizer3D.Rasterizer3D_zoom;
-			int var10 = Rasterizer3D.method3087(var7, var4, var1, var0);
-			int var11 = Rasterizer3D.method3088(var7, var4, var1, var0);
-			var7 = var10;
-			var10 = Rasterizer3D.method3087(var9, var5, var1, var0);
-			int var12 = Rasterizer3D.method3088(var9, var5, var1, var0);
-			var9 = var10;
-			var10 = Rasterizer3D.method3112(var6, var11, var3, var2);
-			var11 = Rasterizer3D.method3086(var6, var11, var3, var2);
-			var6 = var10;
-			var10 = Rasterizer3D.method3112(var8, var12, var3, var2);
-			var12 = Rasterizer3D.method3086(var8, var12, var3, var2);
-			ViewportMouse.field1729 = (var10 + var6) / 2;
-			ViewportMouse.field1731 = (var9 + var7) / 2;
-			ViewportMouse.field1736 = (var11 + var12) / 2;
-			TextureProvider.field1512 = (var10 - var6) / 2;
-			ViewportMouse.field1733 = (var9 - var7) / 2;
-			ViewportMouse.field1742 = (var12 - var11) / 2;
-			UserComparator7.field1978 = Math.abs(TextureProvider.field1512);
-			class4.field26 = Math.abs(ViewportMouse.field1733);
-			class43.field381 = Math.abs(ViewportMouse.field1742);
-		}
-	}
+		for (int var5 = 0; var5 < var2; ++var5) {
+			int var6 = var0[var5 + var1] & 255;
+			if (var6 != 0) {
+				if (var6 >= 128 && var6 < 160) {
+					char var7 = class297.cp1252AsciiExtension[var6 - 128];
+					if (var7 == 0) {
+						var7 = '?';
+					}
 
-	@ObfuscatedName("gd")
-	@ObfuscatedSignature(
-		signature = "(I)Z",
-		garbageValue = "1367330545"
-	)
-	static boolean method1210() {
-		return (Client.drawPlayerNames & 4) != 0;
-	}
+					var6 = var7;
+				}
 
-	@ObfuscatedName("hc")
-	@ObfuscatedSignature(
-		signature = "(IIIB)V",
-		garbageValue = "5"
-	)
-	@Export("worldToScreen")
-	static final void worldToScreen(int var0, int var1, int var2) {
-		if (var0 >= 128 && var1 >= 128 && var0 <= 13056 && var1 <= 13056) {
-			int var3 = WorldMapSectionType.getTileHeight(var0, var1, Clock.Client_plane) - var2;
-			var0 -= HitSplatDefinition.cameraX;
-			var3 -= class51.cameraY;
-			var1 -= Actor.cameraZ;
-			int var4 = Rasterizer3D.Rasterizer3D_sine[GrandExchangeOffer.cameraPitch];
-			int var5 = Rasterizer3D.Rasterizer3D_cosine[GrandExchangeOffer.cameraPitch];
-			int var6 = Rasterizer3D.Rasterizer3D_sine[FriendSystem.cameraYaw];
-			int var7 = Rasterizer3D.Rasterizer3D_cosine[FriendSystem.cameraYaw];
-			int var8 = var6 * var1 + var0 * var7 >> 16;
-			var1 = var7 * var1 - var0 * var6 >> 16;
-			var0 = var8;
-			var8 = var5 * var3 - var4 * var1 >> 16;
-			var1 = var3 * var4 + var5 * var1 >> 16;
-			if (var1 >= 50) {
-				Client.viewportTempX = var0 * Client.viewportZoom / var1 + Client.viewportWidth / 2;
-				Client.viewportTempY = var8 * Client.viewportZoom / var1 + Client.viewportHeight / 2;
-			} else {
-				Client.viewportTempX = -1;
-				Client.viewportTempY = -1;
-			}
-
-		} else {
-			Client.viewportTempX = -1;
-			Client.viewportTempY = -1;
-		}
-	}
-
-	@ObfuscatedName("lr")
-	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;I)Ljava/lang/String;",
-		garbageValue = "1867958927"
-	)
-	static String method1207(String var0) {
-		PlayerType[] var1 = SecureRandomFuture.PlayerType_values();
-
-		for (int var2 = 0; var2 < var1.length; ++var2) {
-			PlayerType var3 = var1[var2];
-			if (var3.modIcon != -1 && var0.startsWith(Language.method3728(var3.modIcon))) {
-				var0 = var0.substring(6 + Integer.toString(var3.modIcon).length());
-				break;
+				var3[var4++] = (char)var6;
 			}
 		}
 
-		return var0;
+		return new String(var3, 0, var4);
+	}
+
+	@ObfuscatedName("t")
+	@ObfuscatedSignature(
+		signature = "(I)V",
+		garbageValue = "-150787474"
+	)
+	public static void method1251() {
+		ItemComposition.ItemDefinition_cachedSprites.clear();
+	}
+
+	@ObfuscatedName("fi")
+	@ObfuscatedSignature(
+		signature = "(I)V",
+		garbageValue = "-1161280240"
+	)
+	@Export("logOut")
+	static final void logOut() {
+		Client.packetWriter.close();
+		FloorOverlayDefinition.FloorOverlayDefinition_cached.clear();
+		FloorUnderlayDefinition.FloorUnderlayDefinition_cached.clear();
+		Renderable.method3387();
+		ObjectComposition.ObjectDefinition_cached.clear();
+		ObjectComposition.ObjectDefinition_cachedModelData.clear();
+		ObjectComposition.ObjectDefinition_cachedEntities.clear();
+		ObjectComposition.ObjectDefinition_cachedModels.clear();
+		NPCComposition.NpcDefinition_cached.clear();
+		NPCComposition.NpcDefinition_cachedModels.clear();
+		ItemComposition.ItemDefinition_cached.clear();
+		ItemComposition.ItemDefinition_cachedModels.clear();
+		ItemComposition.ItemDefinition_cachedSprites.clear();
+		AttackOption.method2181();
+		class60.method972();
+		KitDefinition.method4624();
+		HealthBar.method2133();
+		HitSplatDefinition.HitSplatDefinition_cached.clear();
+		HitSplatDefinition.HitSplatDefinition_cachedSprites.clear();
+		HitSplatDefinition.HitSplatDefinition_cachedFonts.clear();
+		AbstractWorldMapData.method343();
+		StructDefinition.StructDefinition_cached.clear();
+		ParamDefinition.ParamDefinition_cached.clear();
+		WorldMapElement.WorldMapElement_cachedSprites.clear();
+		ObjectSound.method2007();
+		ObjectSound.method2008();
+		((TextureProvider)Rasterizer3D.Rasterizer3D_textureLoader).clear();
+		Script.Script_cached.clear();
+		MilliClock.archive0.clearFiles();
+		Message.archive1.clearFiles();
+		class105.archive3.clearFiles();
+		GrandExchangeOffer.archive4.clearFiles();
+		WorldMapRectangle.archive5.clearFiles();
+		UserComparator7.archive6.clearFiles();
+		Projectile.archive7.clearFiles();
+		GrandExchangeEvent.archive8.clearFiles();
+		Tile.archive9.clearFiles();
+		GraphicsObject.archive10.clearFiles();
+		WorldMapData_0.archive11.clearFiles();
+		Message.archive12.clearFiles();
+		UserComparator3.scene.clear();
+
+		for (int var0 = 0; var0 < 4; ++var0) {
+			Client.collisionMaps[var0].clear();
+		}
+
+		System.gc();
+		class206.field2439 = 1;
+		Huffman.musicTrackArchive = null;
+		class206.musicTrackGroupId = -1;
+		MilliClock.musicTrackFileId = -1;
+		class206.musicTrackVolume = 0;
+		class336.musicTrackBoolean = false;
+		class206.field2442 = 2;
+		Client.currentTrackGroupId = -1;
+		Client.field743 = false;
+
+		for (ObjectSound var1 = (ObjectSound)ObjectSound.objectSounds.last(); var1 != null; var1 = (ObjectSound)ObjectSound.objectSounds.previous()) {
+			if (var1.stream1 != null) {
+				class60.pcmStreamMixer.removeSubStream(var1.stream1);
+				var1.stream1 = null;
+			}
+
+			if (var1.stream2 != null) {
+				class60.pcmStreamMixer.removeSubStream(var1.stream2);
+				var1.stream2 = null;
+			}
+		}
+
+		ObjectSound.objectSounds.clear();
+		ClientPreferences.updateGameState(10);
+	}
+
+	@ObfuscatedName("fy")
+	@ObfuscatedSignature(
+		signature = "(IIB)V",
+		garbageValue = "-126"
+	)
+	@Export("playSoundJingle")
+	static void playSoundJingle(int var0, int var1) {
+		if (Client.musicVolume != 0 && var0 != -1) {
+			UserComparator9.method3513(WorldMapData_0.archive11, var0, 0, Client.musicVolume, false);
+			Client.field743 = true;
+		}
+
 	}
 }

@@ -32,10 +32,10 @@ import net.runelite.client.config.ConfigItem;
 public interface WikiConfig extends Config
 {
 	@ConfigItem(
-			keyName = "leftClickSearch",
-			name = "Left Click Search",
-			description = "Swap left-click on the Wiki button to Search",
-			position = 1
+		keyName = "leftClickSearch",
+		name = "Left Click Search",
+		description = "Swap left-click on the Wiki button to Search",
+		position = 1
 	)
 	default boolean leftClickSearch()
 	{

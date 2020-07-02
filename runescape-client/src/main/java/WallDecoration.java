@@ -3,74 +3,73 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("en")
+@ObfuscatedName("ep")
 @Implements("WallDecoration")
 public final class WallDecoration {
-	@ObfuscatedName("c")
+	@ObfuscatedName("m")
 	@ObfuscatedGetter(
-		intValue = 1358140077
+		intValue = 1099689565
 	)
 	@Export("tileHeight")
 	int tileHeight;
-	@ObfuscatedName("t")
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = 915149021
+		intValue = 1128423733
 	)
 	@Export("x")
 	int x;
-	@ObfuscatedName("o")
+	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = 1541741189
+		intValue = -242275183
 	)
 	@Export("y")
 	int y;
-	@ObfuscatedName("e")
+	@ObfuscatedName("j")
 	@ObfuscatedGetter(
-		intValue = -696517801
+		intValue = 255410517
 	)
 	@Export("orientation")
 	int orientation;
-	@ObfuscatedName("i")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = 748186775
+		intValue = -1472318581
 	)
 	@Export("orientation2")
 	int orientation2;
 	@ObfuscatedName("g")
 	@ObfuscatedGetter(
-		intValue = 1886905411
+		intValue = 96520519
 	)
 	@Export("xOffset")
 	int xOffset;
-	@ObfuscatedName("d")
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = -275876635
+		intValue = -752151105
 	)
 	@Export("yOffset")
 	int yOffset;
-	@ObfuscatedName("l")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "Leq;"
+		signature = "Lel;"
 	)
 	@Export("entity1")
-	public Entity entity1;
-	@ObfuscatedName("j")
+	public Renderable entity1;
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		signature = "Leq;"
+		signature = "Lel;"
 	)
 	@Export("entity2")
-	public Entity entity2;
-	@ObfuscatedName("m")
+	public Renderable entity2;
+	@ObfuscatedName("z")
 	@ObfuscatedGetter(
-		longValue = 1621741553403153851L
+		longValue = 7567781693564802897L
 	)
 	@Export("tag")
 	public long tag;
-	@ObfuscatedName("p")
+	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		intValue = -183294239
+		intValue = 1087358253
 	)
 	@Export("flags")
 	int flags;
@@ -80,64 +79,99 @@ public final class WallDecoration {
 		this.flags = 0;
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("fu")
 	@ObfuscatedSignature(
-		signature = "(Lkp;I)Ljava/lang/String;",
-		garbageValue = "267409657"
+		signature = "(Ljava/lang/String;I)V",
+		garbageValue = "764201281"
 	)
-	public static String method3356(Buffer var0) {
-		return method3358(var0, 32767);
-	}
+	@Export("doCheat")
+	static final void doCheat(String var0) {
+		if (var0.equalsIgnoreCase("toggleroof")) {
+			NetSocket.clientPreferences.roofsHidden = !NetSocket.clientPreferences.roofsHidden;
+			SpriteMask.savePreferences();
+			if (NetSocket.clientPreferences.roofsHidden) {
+				ObjectSound.addGameMessage(99, "", "Roofs are now all hidden");
+			} else {
+				ObjectSound.addGameMessage(99, "", "Roofs will only be removed selectively");
+			}
+		}
 
-	@ObfuscatedName("e")
-	@ObfuscatedSignature(
-		signature = "(Lkp;II)Ljava/lang/String;",
-		garbageValue = "149938652"
-	)
-	static String method3358(Buffer var0, int var1) {
-		try {
-			int var2 = var0.readUShortSmart();
-			if (var2 > var1) {
-				var2 = var1;
+		if (var0.equalsIgnoreCase("displayfps")) {
+			Client.displayFps = !Client.displayFps;
+		}
+
+		if (var0.equalsIgnoreCase("renderself")) {
+			Client.renderSelf = !Client.renderSelf;
+		}
+
+		if (var0.equalsIgnoreCase("mouseovertext")) {
+			Client.showMouseOverText = !Client.showMouseOverText;
+		}
+
+		if (Client.staffModLevel >= 2) {
+			if (var0.equalsIgnoreCase("errortest")) {
+				throw new RuntimeException();
 			}
 
-			byte[] var3 = new byte[var2];
-			var0.offset += class210.huffman.decompress(var0.array, var0.offset, var3, 0, var2);
-			String var4 = ScriptFrame.decodeStringCp1252(var3, 0, var2);
-			return var4;
-		} catch (Exception var6) {
-			return "Cabbage";
+			if (var0.equalsIgnoreCase("showcoord")) {
+				class228.worldMap.showCoord = !class228.worldMap.showCoord;
+			}
+
+			if (var0.equalsIgnoreCase("fpson")) {
+				Client.displayFps = true;
+			}
+
+			if (var0.equalsIgnoreCase("fpsoff")) {
+				Client.displayFps = false;
+			}
+
+			if (var0.equalsIgnoreCase("gc")) {
+				System.gc();
+			}
+
+			if (var0.equalsIgnoreCase("clientdrop")) {
+				CollisionMap.method3707();
+			}
 		}
+
+		PacketBufferNode var1 = UserComparator4.getPacketBufferNode(ClientPacket.field2268, Client.packetWriter.isaacCipher);
+		var1.packetBuffer.writeByte(var0.length() + 1);
+		var1.packetBuffer.writeStringCp1252NullTerminated(var0);
+		Client.packetWriter.addNode(var1);
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("ir")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "777331787"
+		signature = "(Lhd;Ljo;IIZI)V",
+		garbageValue = "-771039466"
 	)
-	public static void method3359() {
-		WorldMapElement.WorldMapElement_cachedSprites.clear();
-	}
+	@Export("addWidgetItemMenuItem")
+	static final void addWidgetItemMenuItem(Widget var0, ItemComposition var1, int var2, int var3, boolean var4) {
+		String[] var5 = var1.inventoryActions;
+		byte var6 = -1;
+		String var7 = null;
+		if (var5 != null && var5[var3] != null) {
+			if (var3 == 0) {
+				var6 = 33;
+			} else if (var3 == 1) {
+				var6 = 34;
+			} else if (var3 == 2) {
+				var6 = 35;
+			} else if (var3 == 3) {
+				var6 = 36;
+			} else {
+				var6 = 37;
+			}
 
-	@ObfuscatedName("ae")
-	@ObfuscatedSignature(
-		signature = "(ILce;ZI)I",
-		garbageValue = "2015482933"
-	)
-	static int method3357(int var0, Script var1, boolean var2) {
-		if (var0 == ScriptOpcodes.SOUND_SYNTH) {
-			class320.Interpreter_intStackSize -= 3;
-			AbstractWorldMapIcon.queueSoundEffect(Interpreter.Interpreter_intStack[class320.Interpreter_intStackSize], Interpreter.Interpreter_intStack[class320.Interpreter_intStackSize + 1], Interpreter.Interpreter_intStack[class320.Interpreter_intStackSize + 2]);
-			return 1;
-		} else if (var0 == ScriptOpcodes.SOUND_SONG) {
-			BufferedSink.playSong(Interpreter.Interpreter_intStack[--class320.Interpreter_intStackSize]);
-			return 1;
-		} else if (var0 == ScriptOpcodes.SOUND_JINGLE) {
-			class320.Interpreter_intStackSize -= 2;
-			class49.playSoundJingle(Interpreter.Interpreter_intStack[class320.Interpreter_intStackSize], Interpreter.Interpreter_intStack[class320.Interpreter_intStackSize + 1]);
-			return 1;
-		} else {
-			return 2;
+			var7 = var5[var3];
+		} else if (var3 == 4) {
+			var6 = 37;
+			var7 = "Drop";
 		}
+
+		if (var6 != -1 && var7 != null) {
+			ApproximateRouteStrategy.insertMenuItem(var7, ItemContainer.colorStartTag(16748608) + var1.name, var6, var1.id, var2, var0.id, var4);
+		}
+
 	}
 }

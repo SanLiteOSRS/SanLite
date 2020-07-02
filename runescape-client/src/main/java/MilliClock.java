@@ -4,176 +4,202 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fj")
+@ObfuscatedName("fw")
 @Implements("MilliClock")
 public class MilliClock extends Clock {
-	@ObfuscatedName("x")
-	@ObfuscatedSignature(
-		signature = "[Lme;"
-	)
-	@Export("JagexCache_idxFiles")
-	public static BufferedFile[] JagexCache_idxFiles;
-	@ObfuscatedName("b")
-	public static String field2015;
-	@ObfuscatedName("db")
-	@ObfuscatedSignature(
-		signature = "Lia;"
-	)
-	@Export("archive12")
-	static Archive archive12;
-	@ObfuscatedName("c")
-	long[] field2011;
-	@ObfuscatedName("t")
+	@ObfuscatedName("u")
 	@ObfuscatedGetter(
-		intValue = 1924438695
+		intValue = -41163463
 	)
-	int field2009;
+	@Export("musicTrackFileId")
+	public static int musicTrackFileId;
+	@ObfuscatedName("ds")
+	@ObfuscatedSignature(
+		signature = "Lig;"
+	)
+	@Export("archive0")
+	static Archive archive0;
+	@ObfuscatedName("fx")
+	@ObfuscatedGetter(
+		longValue = -6195405350753601003L
+	)
+	static long field2046;
+	@ObfuscatedName("m")
+	long[] field2041;
 	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = 990081357
+		intValue = -1698832719
 	)
-	int field2008;
-	@ObfuscatedName("e")
+	int field2044;
+	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		longValue = 1282621302724329393L
+		intValue = 402474679
 	)
-	long field2013;
-	@ObfuscatedName("i")
+	int field2040;
+	@ObfuscatedName("j")
 	@ObfuscatedGetter(
-		intValue = -552407369
+		longValue = -6603351747931687267L
 	)
-	int field2012;
+	long field2042;
+	@ObfuscatedName("p")
+	@ObfuscatedGetter(
+		intValue = 830495451
+	)
+	int field2038;
 	@ObfuscatedName("g")
 	@ObfuscatedGetter(
-		intValue = 1470332853
+		intValue = -819539781
 	)
-	int field2014;
+	int field2043;
 
-	MilliClock() {
-		this.field2011 = new long[10];
-		this.field2009 = 256;
-		this.field2008 = 1;
-		this.field2012 = 0;
-		this.field2013 = WorldMapIcon_0.currentTimeMillis();
+	public MilliClock() {
+		this.field2041 = new long[10];
+		this.field2044 = 256;
+		this.field2040 = 1;
+		this.field2038 = 0;
+		this.field2042 = currentTimeMillis();
 
 		for (int var1 = 0; var1 < 10; ++var1) {
-			this.field2011[var1] = this.field2013;
+			this.field2041[var1] = this.field2042;
 		}
 
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "29"
+		signature = "(I)V",
+		garbageValue = "-1017447827"
 	)
 	@Export("mark")
 	public void mark() {
 		for (int var1 = 0; var1 < 10; ++var1) {
-			this.field2011[var1] = 0L;
+			this.field2041[var1] = 0L;
 		}
 
-	}
-
-	@ObfuscatedName("t")
-	@ObfuscatedSignature(
-		signature = "(III)I",
-		garbageValue = "-561232674"
-	)
-	@Export("wait")
-	public int wait(int var1, int var2) {
-		int var3 = this.field2009;
-		int var4 = this.field2008;
-		this.field2009 = 300;
-		this.field2008 = 1;
-		this.field2013 = WorldMapIcon_0.currentTimeMillis();
-		if (this.field2011[this.field2014] == 0L) {
-			this.field2009 = var3;
-			this.field2008 = var4;
-		} else if (this.field2013 > this.field2011[this.field2014]) {
-			this.field2009 = (int)((long)(var1 * 2560) / (this.field2013 - this.field2011[this.field2014]));
-		}
-
-		if (this.field2009 < 25) {
-			this.field2009 = 25;
-		}
-
-		if (this.field2009 > 256) {
-			this.field2009 = 256;
-			this.field2008 = (int)((long)var1 - (this.field2013 - this.field2011[this.field2014]) / 10L);
-		}
-
-		if (this.field2008 > var1) {
-			this.field2008 = var1;
-		}
-
-		this.field2011[this.field2014] = this.field2013;
-		this.field2014 = (this.field2014 + 1) % 10;
-		int var5;
-		if (this.field2008 > 1) {
-			for (var5 = 0; var5 < 10; ++var5) {
-				if (0L != this.field2011[var5]) {
-					this.field2011[var5] += (long)this.field2008;
-				}
-			}
-		}
-
-		if (this.field2008 < var2) {
-			this.field2008 = var2;
-		}
-
-		FriendLoginUpdate.method5325((long)this.field2008);
-
-		for (var5 = 0; this.field2012 < 256; this.field2012 += this.field2009) {
-			++var5;
-		}
-
-		this.field2012 &= 255;
-		return var5;
 	}
 
 	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "(III)Lce;",
-		garbageValue = "-230494464"
+		signature = "(III)I",
+		garbageValue = "-1786752641"
 	)
-	static Script method3529(int var0, int var1) {
-		Script var2 = (Script)Script.Script_cached.get((long)(var0 << 16));
-		if (var2 != null) {
-			return var2;
-		} else {
-			String var3 = String.valueOf(var0);
-			int var4 = archive12.getGroupId(var3);
-			if (var4 == -1) {
-				return null;
-			} else {
-				byte[] var5 = archive12.takeFileFlat(var4);
-				if (var5 != null) {
-					if (var5.length <= 1) {
-						return null;
-					}
+	@Export("wait")
+	public int wait(int var1, int var2) {
+		int var3 = this.field2044;
+		int var4 = this.field2040;
+		this.field2044 = 300;
+		this.field2040 = 1;
+		this.field2042 = currentTimeMillis();
+		if (this.field2041[this.field2043] == 0L) {
+			this.field2044 = var3;
+			this.field2040 = var4;
+		} else if (this.field2042 > this.field2041[this.field2043]) {
+			this.field2044 = (int)((long)(var1 * 2560) / (this.field2042 - this.field2041[this.field2043]));
+		}
 
-					var2 = Clock.newScript(var5);
-					if (var2 != null) {
-						Script.Script_cached.put(var2, (long)(var0 << 16));
-						return var2;
-					}
+		if (this.field2044 < 25) {
+			this.field2044 = 25;
+		}
+
+		if (this.field2044 > 256) {
+			this.field2044 = 256;
+			this.field2040 = (int)((long)var1 - (this.field2042 - this.field2041[this.field2043]) / 10L);
+		}
+
+		if (this.field2040 > var1) {
+			this.field2040 = var1;
+		}
+
+		this.field2041[this.field2043] = this.field2042;
+		this.field2043 = (this.field2043 + 1) % 10;
+		if (this.field2040 > 1) {
+			for (int var5 = 0; var5 < 10; ++var5) {
+				if (0L != this.field2041[var5]) {
+					this.field2041[var5] += (long)this.field2040;
 				}
-
-				return null;
 			}
 		}
+
+		if (this.field2040 < var2) {
+			this.field2040 = var2;
+		}
+
+		long var8 = (long)this.field2040;
+		if (var8 > 0L) {
+			if (var8 % 10L == 0L) {
+				SpriteMask.method4111(var8 - 1L);
+				SpriteMask.method4111(1L);
+			} else {
+				SpriteMask.method4111(var8);
+			}
+		}
+
+		int var7;
+		for (var7 = 0; this.field2038 < 256; this.field2038 += this.field2044) {
+			++var7;
+		}
+
+		this.field2038 &= 255;
+		return var7;
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-1997111110"
+		signature = "(I)J",
+		garbageValue = "301883572"
 	)
-	public static void method3535() {
-		Widget.Widget_cachedSprites.clear();
-		Widget.Widget_cachedModels.clear();
-		Widget.Widget_cachedFonts.clear();
-		Widget.Widget_cachedSpriteMasks.clear();
+	@Export("currentTimeMillis")
+	public static final synchronized long currentTimeMillis() {
+		long var0 = System.currentTimeMillis();
+		if (var0 < class306.field3723) {
+			class306.field3726 += class306.field3723 - var0;
+		}
+
+		class306.field3723 = var0;
+		return var0 + class306.field3726;
+	}
+
+	@ObfuscatedName("jh")
+	@ObfuscatedSignature(
+		signature = "(Lhd;S)Z",
+		garbageValue = "442"
+	)
+	static final boolean method3586(Widget var0) {
+		int var1 = var0.contentType;
+		if (var1 == 205) {
+			Client.logoutTimer = 250;
+			return true;
+		} else {
+			int var2;
+			int var3;
+			if (var1 >= 300 && var1 <= 313) {
+				var2 = (var1 - 300) / 2;
+				var3 = var1 & 1;
+				Client.playerAppearance.changeAppearance(var2, var3 == 1);
+			}
+
+			if (var1 >= 314 && var1 <= 323) {
+				var2 = (var1 - 314) / 2;
+				var3 = var1 & 1;
+				Client.playerAppearance.method4139(var2, var3 == 1);
+			}
+
+			if (var1 == 324) {
+				Client.playerAppearance.changeSex(false);
+			}
+
+			if (var1 == 325) {
+				Client.playerAppearance.changeSex(true);
+			}
+
+			if (var1 == 326) {
+				PacketBufferNode var4 = UserComparator4.getPacketBufferNode(ClientPacket.field2283, Client.packetWriter.isaacCipher);
+				Client.playerAppearance.write(var4.packetBuffer);
+				Client.packetWriter.addNode(var4);
+				return true;
+			} else {
+				return false;
+			}
+		}
 	}
 }

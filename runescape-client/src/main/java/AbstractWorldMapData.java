@@ -1,3 +1,4 @@
+import java.awt.Component;
 import java.util.LinkedList;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
@@ -5,119 +6,108 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("b")
+@ObfuscatedName("ax")
 @Implements("AbstractWorldMapData")
 public abstract class AbstractWorldMapData {
-	@ObfuscatedName("ai")
+	@ObfuscatedName("m")
 	@ObfuscatedGetter(
-		intValue = 1805663379
-	)
-	static int field190;
-	@ObfuscatedName("gv")
-	@ObfuscatedSignature(
-		signature = "[Llt;"
-	)
-	@Export("mapDotSprites")
-	static Sprite[] mapDotSprites;
-	@ObfuscatedName("c")
-	@ObfuscatedGetter(
-		intValue = -349527232
+		intValue = 964251648
 	)
 	@Export("regionXLow")
 	int regionXLow;
-	@ObfuscatedName("t")
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = 1227157504
+		intValue = -1071034368
 	)
 	@Export("regionYLow")
 	int regionYLow;
-	@ObfuscatedName("o")
+	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = -1468899765
+		intValue = -718032253
 	)
 	@Export("regionX")
 	int regionX;
-	@ObfuscatedName("e")
+	@ObfuscatedName("j")
 	@ObfuscatedGetter(
-		intValue = 1986069101
+		intValue = -2006912863
 	)
 	@Export("regionY")
 	int regionY;
-	@ObfuscatedName("i")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = -1726472533
+		intValue = -1970114381
 	)
 	@Export("minPlane")
 	int minPlane;
 	@ObfuscatedName("g")
 	@ObfuscatedGetter(
-		intValue = -1228656521
+		intValue = -352793185
 	)
 	@Export("planes")
 	int planes;
-	@ObfuscatedName("d")
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = -672684543
+		intValue = 449340635
 	)
 	@Export("groupId")
 	int groupId;
-	@ObfuscatedName("l")
+	@ObfuscatedName("u")
 	@ObfuscatedGetter(
-		intValue = -199023581
+		intValue = 1711100227
 	)
 	@Export("fileId")
 	int fileId;
-	@ObfuscatedName("j")
+	@ObfuscatedName("a")
 	@Export("floorUnderlayIds")
 	short[][][] floorUnderlayIds;
-	@ObfuscatedName("m")
+	@ObfuscatedName("z")
 	@Export("floorOverlayIds")
 	short[][][] floorOverlayIds;
-	@ObfuscatedName("p")
-	byte[][][] field188;
-	@ObfuscatedName("h")
+	@ObfuscatedName("w")
+	byte[][][] field185;
+	@ObfuscatedName("y")
 	byte[][][] field175;
-	@ObfuscatedName("v")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "[[[[Lu;"
+		signature = "[[[[Lak;"
 	)
 	@Export("decorations")
 	WorldMapDecoration[][][][] decorations;
-	@ObfuscatedName("n")
-	boolean field174;
-	@ObfuscatedName("x")
-	boolean field185;
+	@ObfuscatedName("h")
+	boolean field188;
+	@ObfuscatedName("k")
+	boolean field179;
 
 	AbstractWorldMapData() {
 		this.groupId = -1;
 		this.fileId = -1;
 		new LinkedList();
-		this.field174 = false;
-		this.field185 = false;
+		this.field188 = false;
+		this.field179 = false;
 	}
 
-	@ObfuscatedName("t")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "(Lkp;S)V",
-		garbageValue = "-30591"
+		signature = "(Lkn;I)V",
+		garbageValue = "-1774414997"
 	)
 	@Export("readGeography")
 	abstract void readGeography(Buffer var1);
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
 		signature = "(I)Z",
-		garbageValue = "1888663118"
+		garbageValue = "923610125"
 	)
 	@Export("isFullyLoaded")
 	boolean isFullyLoaded() {
-		return this.field174 && this.field185;
+		return this.field188 && this.field179;
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		signature = "(Lii;I)V",
-		garbageValue = "-60010713"
+		signature = "(Lic;S)V",
+		garbageValue = "19318"
 	)
 	@Export("loadGeography")
 	void loadGeography(AbstractArchive var1) {
@@ -125,53 +115,53 @@ public abstract class AbstractWorldMapData {
 			byte[] var2 = var1.takeFile(this.groupId, this.fileId);
 			if (var2 != null) {
 				this.readGeography(new Buffer(var2));
-				this.field174 = true;
-				this.field185 = true;
+				this.field188 = true;
+				this.field179 = true;
 			}
 
 		}
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "559104793"
+		garbageValue = "1097959131"
 	)
 	@Export("reset")
 	void reset() {
 		this.floorUnderlayIds = null;
 		this.floorOverlayIds = null;
-		this.field188 = null;
+		this.field185 = null;
 		this.field175 = null;
 		this.decorations = null;
-		this.field174 = false;
-		this.field185 = false;
+		this.field188 = false;
+		this.field179 = false;
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		signature = "(IILkp;I)V",
-		garbageValue = "-1538793396"
+		signature = "(IILkn;I)V",
+		garbageValue = "929230318"
 	)
 	@Export("readTile")
 	void readTile(int var1, int var2, Buffer var3) {
 		int var4 = var3.readUnsignedByte();
 		if (var4 != 0) {
 			if ((var4 & 1) != 0) {
-				this.method257(var1, var2, var3, var4);
+				this.method319(var1, var2, var3, var4);
 			} else {
-				this.method258(var1, var2, var3, var4);
+				this.method320(var1, var2, var3, var4);
 			}
 
 		}
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(IILkp;II)V",
-		garbageValue = "1470319349"
+		signature = "(IILkn;II)V",
+		garbageValue = "1830113999"
 	)
-	void method257(int var1, int var2, Buffer var3, int var4) {
+	void method319(int var1, int var2, Buffer var3, int var4) {
 		boolean var5 = (var4 & 2) != 0;
 		if (var5) {
 			this.floorOverlayIds[0][var1][var2] = (short)var3.readUnsignedByte();
@@ -180,12 +170,12 @@ public abstract class AbstractWorldMapData {
 		this.floorUnderlayIds[0][var1][var2] = (short)var3.readUnsignedByte();
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(IILkp;II)V",
-		garbageValue = "-2109689105"
+		signature = "(IILkn;IB)V",
+		garbageValue = "73"
 	)
-	void method258(int var1, int var2, Buffer var3, int var4) {
+	void method320(int var1, int var2, Buffer var3, int var4) {
 		int var5 = ((var4 & 24) >> 3) + 1;
 		boolean var6 = (var4 & 2) != 0;
 		boolean var7 = (var4 & 4) != 0;
@@ -201,7 +191,7 @@ public abstract class AbstractWorldMapData {
 				if (var10 != 0) {
 					this.floorOverlayIds[var9][var1][var2] = (short)var10;
 					var11 = var3.readUnsignedByte();
-					this.field188[var9][var1][var2] = (byte)(var11 >> 2);
+					this.field185[var9][var1][var2] = (byte)(var11 >> 2);
 					this.field175[var9][var1][var2] = (byte)(var11 & 3);
 				}
 			}
@@ -214,7 +204,7 @@ public abstract class AbstractWorldMapData {
 					WorldMapDecoration[] var14 = this.decorations[var8][var1][var2] = new WorldMapDecoration[var9];
 
 					for (var11 = 0; var11 < var9; ++var11) {
-						int var12 = var3.method5593();
+						int var12 = var3.method5843();
 						int var13 = var3.readUnsignedByte();
 						var14[var11] = new WorldMapDecoration(var12, var13 >> 2, var13 & 3);
 					}
@@ -224,23 +214,55 @@ public abstract class AbstractWorldMapData {
 
 	}
 
-	@ObfuscatedName("x")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "-1419701819"
+		signature = "(B)I",
+		garbageValue = "3"
 	)
 	@Export("getRegionX")
 	int getRegionX() {
 		return this.regionX;
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "879615206"
+		signature = "(B)I",
+		garbageValue = "-4"
 	)
 	@Export("getRegionY")
 	int getRegionY() {
 		return this.regionY;
+	}
+
+	@ObfuscatedName("m")
+	@ObfuscatedSignature(
+		signature = "(Ljava/awt/Component;I)V",
+		garbageValue = "-1541126292"
+	)
+	static void method342(Component var0) {
+		var0.addMouseListener(MouseHandler.MouseHandler_instance);
+		var0.addMouseMotionListener(MouseHandler.MouseHandler_instance);
+		var0.addFocusListener(MouseHandler.MouseHandler_instance);
+	}
+
+	@ObfuscatedName("g")
+	@ObfuscatedSignature(
+		signature = "(I)V",
+		garbageValue = "2015859206"
+	)
+	public static void method343() {
+		HealthBarDefinition.HealthBarDefinition_cached.clear();
+		HealthBarDefinition.HealthBarDefinition_cachedSprites.clear();
+	}
+
+	@ObfuscatedName("a")
+	@ObfuscatedSignature(
+		signature = "(I)V",
+		garbageValue = "324919704"
+	)
+	static final void method328() {
+		Object var10000 = null;
+		String var0 = "Your friend list is full. Max of 200 for free users, and 400 for members";
+		ObjectSound.addGameMessage(30, "", var0);
 	}
 }

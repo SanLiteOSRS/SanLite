@@ -2,34 +2,37 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("el")
+@ObfuscatedName("en")
 @Implements("ModelData0")
 public class ModelData0 {
 	ModelData0() {
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		signature = "(IIII)I",
-		garbageValue = "-1209977249"
+		signature = "(CI)C",
+		garbageValue = "-706706502"
 	)
-	public static int method3322(int var0, int var1, int var2) {
-		var2 &= 3;
-		if (var2 == 0) {
-			return var0;
-		} else if (var2 == 1) {
-			return var1;
+	static char method3374(char var0) {
+		if (var0 == 198) {
+			return 'E';
+		} else if (var0 == 230) {
+			return 'e';
+		} else if (var0 == 223) {
+			return 's';
+		} else if (var0 == 338) {
+			return 'E';
 		} else {
-			return var2 == 2 ? 7 - var0 : 7 - var1;
+			return (char)(var0 == 339 ? 'e' : '\u0000');
 		}
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("ii")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;I)V",
-		garbageValue = "-1996001757"
+		signature = "(I)Z",
+		garbageValue = "1532544056"
 	)
-	static final void method3323(String var0) {
-		class60.method1188(var0 + " is already on your ignore list");
+	static boolean method3375() {
+		return Client.tapToDrop || KeyHandler.KeyHandler_pressedKeys[81];
 	}
 }

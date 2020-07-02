@@ -34,10 +34,10 @@ import net.runelite.client.Notifier;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.events.ConfigChanged;
-import net.runelite.client.game.ClanManager;
+import net.runelite.client.game.FriendChatManager;
+import net.runelite.client.game.SafeDeathPvpRegions;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
-import net.runelite.client.plugins.PluginType;
 import net.runelite.client.ui.overlay.OverlayManager;
 import net.runelite.client.util.ColorUtil;
 import net.runelite.client.util.Text;
@@ -46,14 +46,13 @@ import javax.inject.Inject;
 import java.awt.*;
 import java.util.List;
 
-import static net.runelite.api.ClanMemberRank.UNRANKED;
+import static net.runelite.api.FriendsChatRank.UNRANKED;
 import static net.runelite.api.MenuAction.*;
 
 @PluginDescriptor(
-		name = "Player Indicators",
-		description = "Highlight players on-screen and/or on the minimap",
-		tags = {"highlight", "minimap", "overlay", "players", "friend", "finder", "offline", "pvp", "name", "notifications"},
-		type = PluginType.SANLITE
+	name = "Player Indicators",
+	description = "Highlight players on-screen and/or on the minimap",
+	tags = {"highlight", "minimap", "overlay", "players", "friend", "finder", "offline", "pvp", "name", "notifications", "sanlite"}
 )
 public class PlayerIndicatorsPlugin extends Plugin
 {
@@ -79,7 +78,7 @@ public class PlayerIndicatorsPlugin extends Plugin
 	private Client client;
 
 	@Inject
-	private ClanManager clanManager;
+	private FriendChatManager clanManager;
 
 	@Inject
 	private Notifier notifier;
@@ -127,8 +126,8 @@ public class PlayerIndicatorsPlugin extends Plugin
 	@Subscribe
 	public void onMenuEntryAdded(MenuEntryAdded menuEntryAdded)
 	{
-		if (!config.colorFriendPlayerMenu() && !config.colorClanMemberPlayerMenu() && !config.colorTeamMemberPlayerMenu() &&
-				!config.colorNonClanMemberPlayerMenu())
+		if (!config.colorFriendPlayerMenu() && !config.colorFriendsChatMemberPlayerMenu() && !config.colorTeamMemberPlayerMenu() &&
+				!config.colorOthersPlayerMenu())
 		{
 			return;
 		}
@@ -150,7 +149,7 @@ public class PlayerIndicatorsPlugin extends Plugin
 				|| type == PLAYER_SIXTH_OPTION.getId()
 				|| type == PLAYER_SEVENTH_OPTION.getId()
 				|| type == PLAYER_EIGTH_OPTION.getId()
-				|| type == RUNELITE.getId())
+				|| type == RUNELITE_PLAYER.getId())
 		{
 			Player[] players = client.getCachedPlayers();
 			Player player = null;
@@ -166,7 +165,7 @@ public class PlayerIndicatorsPlugin extends Plugin
 			}
 
 			PlayerIndicatorType playerIndicatorType = playerIndicatorsService.getMenuEntryPlayerIndicatorType(player);
-			if (playerIndicatorType == null || playerIndicatorType == PlayerIndicatorType.NONE)
+			if (playerIndicatorType == null || playerIndicatorType == PlayerIndicatorType.OTHER_PLAYER)
 				return;
 
 			switch (playerIndicatorType)
@@ -174,14 +173,14 @@ public class PlayerIndicatorsPlugin extends Plugin
 				case FRIEND:
 					colorMenuEntry(player, playerIndicatorType, config.getFriendColor(), config.colorFriendPlayerMenu());
 					break;
-				case CLAN_MEMBER:
-					colorMenuEntry(player, playerIndicatorType, config.getClanMemberColor(), config.colorClanMemberPlayerMenu());
+				case FRIENDS_CHAT_MEMBERS:
+					colorMenuEntry(player, playerIndicatorType, config.getFriendsChatMemberColor(), config.colorFriendsChatMemberPlayerMenu());
 					break;
 				case TEAM_CAPE_MEMBER:
 					colorMenuEntry(player, playerIndicatorType, config.getTeamMemberColor(), config.colorTeamMemberPlayerMenu());
 					break;
 				case NON_CLAN_MEMBER:
-					colorMenuEntry(player, playerIndicatorType, config.getNonClanMemberColor(), config.colorNonClanMemberPlayerMenu());
+					colorMenuEntry(player, playerIndicatorType, config.getOthersColor(), config.colorOthersPlayerMenu());
 					break;
 			}
 		}
@@ -195,9 +194,9 @@ public class PlayerIndicatorsPlugin extends Plugin
 		}
 
 		int image = -1;
-		if (playerIndicatorType == PlayerIndicatorType.CLAN_MEMBER)
+		if (playerIndicatorType == PlayerIndicatorType.FRIENDS_CHAT_MEMBERS)
 		{
-			ClanMemberRank rank = clanManager.getRank(player.getName());
+			FriendsChatRank rank = clanManager.getRank(player.getName());
 			if (rank != UNRANKED)
 			{
 				image = clanManager.getIconNumber(rank);
@@ -217,7 +216,7 @@ public class PlayerIndicatorsPlugin extends Plugin
 
 		lastEntry.setTarget(ColorUtil.prependColorTag(target, entryColor));
 
-		if (image != -1 && config.showClanRanks())
+		if (image != -1 && config.showFriendsChatRanks())
 		{
 			lastEntry.setTarget("<img=" + image + ">" + lastEntry.getTarget());
 		}
@@ -234,7 +233,8 @@ public class PlayerIndicatorsPlugin extends Plugin
 	private void checkPlayerSpawned(PlayerSpawned event)
 	{
 		Player player = event.getPlayer();
-		if (player == null || player == client.getLocalPlayer() || !config.notifyOnNonClanMemberSpawned())
+		if (player == null || player == client.getLocalPlayer() || !config.notifyOnOtherPlayerSpawned() ||
+				(config.notifyOnlyOnSkulledPlayers() && !player.isSkulled()))
 			return;
 
 		PlayerIndicatorType playerIndicatorType = playerIndicatorsService.getPlayerIndicatorType(player);
@@ -242,9 +242,15 @@ public class PlayerIndicatorsPlugin extends Plugin
 			return;
 
 		// Only send notifications in PvP zones
-		if (client.getVar(Varbits.IN_PVP_AREA) != 1 && client.getVar(Varbits.IN_WILDERNESS) != 1 &&
+		if (client.getVar(Varbits.PVP_SPEC_ORB) != 1 && client.getVar(Varbits.IN_WILDERNESS) != 1 &&
 				client.getWorldType().stream().noneMatch(x -> x == WorldType.DEADMAN))
 			return;
+
+		// Do not trigger if the region is a safe death PvP zone (e.g. Duel Arena)
+		if (SafeDeathPvpRegions.inSafeDeathPvpArea(client.getMapRegions()))
+		{
+			return;
+		}
 
 		// Check if enough time has expired since the last notification
 		if (client.getTickCount() < lastPlayerSpawnNotificationGameTick + config.delayBetweenPlayerSpawnedNotifications())

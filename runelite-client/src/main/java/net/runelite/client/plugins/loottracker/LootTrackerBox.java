@@ -84,14 +84,16 @@ class LootTrackerBox extends JPanel
 	private BiConsumer<String, Boolean> onItemToggle;
 
 	LootTrackerBox(
-			final ItemManager itemManager,
-			final String id,
-			final LootRecordType lootRecordType,
-			@Nullable final String subtitle,
-			final boolean hideIgnoredItems,
-			final LootTrackerPriceType priceType,
-			final boolean showPriceType,
-			final BiConsumer<String, Boolean> onItemToggle)
+		final ItemManager itemManager,
+		final String id,
+		final LootRecordType lootRecordType,
+		@Nullable final String subtitle,
+		final boolean hideIgnoredItems,
+		final LootTrackerPriceType priceType,
+		final boolean showPriceType,
+		final BiConsumer<String, Boolean> onItemToggle,
+		final BiConsumer<String, Boolean> onEventToggle,
+		final boolean eventIgnored)
 	{
 		this.id = id;
 		this.lootRecordType = lootRecordType;
@@ -106,7 +108,7 @@ class LootTrackerBox extends JPanel
 
 		logTitle.setLayout(new BoxLayout(logTitle, BoxLayout.X_AXIS));
 		logTitle.setBorder(new EmptyBorder(7, 7, 7, 7));
-		logTitle.setBackground(ColorScheme.DARKER_GRAY_COLOR.darker());
+		logTitle.setBackground(eventIgnored ? ColorScheme.DARKER_GRAY_HOVER_COLOR : ColorScheme.DARKER_GRAY_COLOR.darker());
 
 		JLabel titleLabel = new JLabel();
 		titleLabel.setText(Text.removeTags(id));
@@ -135,6 +137,15 @@ class LootTrackerBox extends JPanel
 
 		add(logTitle, BorderLayout.NORTH);
 		add(itemContainer, BorderLayout.CENTER);
+
+		// Create popup menu for ignoring the loot event
+		final JPopupMenu popupMenu = new JPopupMenu();
+		popupMenu.setBorder(new EmptyBorder(5, 5, 5, 5));
+		this.setComponentPopupMenu(popupMenu);
+
+		final JMenuItem toggle = new JMenuItem(eventIgnored ? "Include loot" : "Hide loot");
+		toggle.addActionListener(e -> onEventToggle.accept(id, !eventIgnored));
+		popupMenu.add(toggle);
 	}
 
 	/**
@@ -190,18 +201,22 @@ class LootTrackerBox extends JPanel
 		outer:
 		for (LootTrackerItem item : record.getItems())
 		{
+			final int mappedItemId = LootTrackerMapping.map(item.getId(), item.getName());
 			// Combine it into an existing item if one already exists
 			for (int idx = 0; idx < items.size(); ++idx)
 			{
 				LootTrackerItem i = items.get(idx);
-				if (item.getId() == i.getId())
+				if (mappedItemId == i.getId())
 				{
 					items.set(idx, new LootTrackerItem(i.getId(), i.getName(), i.getQuantity() + item.getQuantity(), i.getGePrice(), i.getHaPrice(), i.isIgnored()));
 					continue outer;
 				}
 			}
 
-			items.add(item);
+			final LootTrackerItem mappedItem = mappedItemId == item.getId()
+				? item // reuse existing item
+				: new LootTrackerItem(mappedItemId, item.getName(), item.getQuantity(), item.getGePrice(), item.getHaPrice(), item.isIgnored());
+			items.add(mappedItem);
 		}
 	}
 
@@ -222,6 +237,7 @@ class LootTrackerBox extends JPanel
 		if (kills > 1)
 		{
 			subTitleLabel.setText("x " + kills);
+			subTitleLabel.setToolTipText(QuantityFormatter.formatNumber(totalPrice / kills) + " gp (average)");
 		}
 
 		validate();
@@ -284,12 +300,12 @@ class LootTrackerBox extends JPanel
 		}
 
 		ToLongFunction<LootTrackerItem> getPrice = priceType == LootTrackerPriceType.HIGH_ALCHEMY
-				? LootTrackerItem::getTotalHaPrice
-				: LootTrackerItem::getTotalGePrice;
+			? LootTrackerItem::getTotalHaPrice
+			: LootTrackerItem::getTotalGePrice;
 
 		totalPrice = items.stream()
-				.mapToLong(getPrice)
-				.sum();
+			.mapToLong(getPrice)
+			.sum();
 
 		items.sort(Comparator.comparingLong(getPrice).reversed());
 
@@ -360,7 +376,7 @@ class LootTrackerBox extends JPanel
 		final long haPrice = item.getTotalHaPrice();
 		final String ignoredLabel = item.isIgnored() ? " - Ignored" : "";
 		return "<html>" + name + " x " + quantity + ignoredLabel
-				+ "<br>GE: " + QuantityFormatter.quantityToStackSize(gePrice)
-				+ "<br>HA: " + QuantityFormatter.quantityToStackSize(haPrice) + "</html>";
+			+ "<br>GE: " + QuantityFormatter.quantityToStackSize(gePrice)
+			+ "<br>HA: " + QuantityFormatter.quantityToStackSize(haPrice) + "</html>";
 	}
 }

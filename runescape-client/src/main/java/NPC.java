@@ -3,28 +3,34 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cg")
+@ObfuscatedName("cv")
 @Implements("NPC")
 public final class NPC extends Actor {
-	@ObfuscatedName("i")
-	@Export("SpriteBuffer_yOffsets")
-	public static int[] SpriteBuffer_yOffsets;
-	@ObfuscatedName("c")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "Liz;"
+		signature = "Lic;"
+	)
+	@Export("SpotAnimationDefinition_modelArchive")
+	static AbstractArchive SpotAnimationDefinition_modelArchive;
+	@ObfuscatedName("p")
+	@Export("SpriteBuffer_yOffsets")
+	static int[] SpriteBuffer_yOffsets;
+	@ObfuscatedName("m")
+	@ObfuscatedSignature(
+		signature = "Ljz;"
 	)
 	@Export("definition")
-	NPCDefinition definition;
+	NPCComposition definition;
 
 	NPC() {
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
 		signature = "(IBI)V",
-		garbageValue = "-1099283793"
+		garbageValue = "-676669615"
 	)
-	final void method2083(int var1, byte var2) {
+	final void method2150(int var1, byte var2) {
 		int var3 = super.pathX[0];
 		int var4 = super.pathY[0];
 		if (var1 == 0) {
@@ -63,7 +69,7 @@ public final class NPC extends Actor {
 			--var4;
 		}
 
-		if (super.sequence != -1 && GraphicsDefaults.SequenceDefinition_get(super.sequence).field3524 == 1) {
+		if (super.sequence != -1 && NetSocket.SequenceDefinition_get(super.sequence).field3560 == 1) {
 			super.sequence = -1;
 		}
 
@@ -82,13 +88,13 @@ public final class NPC extends Actor {
 		super.pathTraversed[0] = var2;
 	}
 
-	@ObfuscatedName("t")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "(IIZB)V",
-		garbageValue = "0"
+		signature = "(IIZI)V",
+		garbageValue = "-1996954385"
 	)
-	final void method2077(int var1, int var2, boolean var3) {
-		if (super.sequence != -1 && GraphicsDefaults.SequenceDefinition_get(super.sequence).field3524 == 1) {
+	final void method2142(int var1, int var2, boolean var3) {
+		if (super.sequence != -1 && NetSocket.SequenceDefinition_get(super.sequence).field3560 == 1) {
 			super.sequence = -1;
 		}
 
@@ -114,26 +120,26 @@ public final class NPC extends Actor {
 		}
 
 		super.pathLength = 0;
-		super.field998 = 0;
-		super.field997 = 0;
+		super.field1023 = 0;
+		super.field1022 = 0;
 		super.pathX[0] = var1;
 		super.pathY[0] = var2;
-		super.x = super.pathX[0] * 128 + super.field942 * 42205184;
-		super.y = super.pathY[0] * 128 + super.field942 * 42205184;
+		super.x = super.field967 * -1977020416 + super.pathX[0] * 128;
+		super.y = super.pathY[0] * 128 + super.field967 * -1977020416;
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		signature = "(I)Ldx;",
-		garbageValue = "-2133076860"
+		signature = "(I)Lef;",
+		garbageValue = "1832696685"
 	)
 	@Export("getModel")
 	protected final Model getModel() {
 		if (this.definition == null) {
 			return null;
 		} else {
-			SequenceDefinition var1 = super.sequence != -1 && super.sequenceDelay == 0 ? GraphicsDefaults.SequenceDefinition_get(super.sequence) : null;
-			SequenceDefinition var2 = super.movementSequence != -1 && (super.movementSequence != super.readySequence || var1 == null) ? GraphicsDefaults.SequenceDefinition_get(super.movementSequence) : null;
+			SequenceDefinition var1 = super.sequence != -1 && super.sequenceDelay == 0 ? NetSocket.SequenceDefinition_get(super.sequence) : null;
+			SequenceDefinition var2 = super.movementSequence != -1 && (super.readySequence != super.movementSequence || var1 == null) ? NetSocket.SequenceDefinition_get(super.movementSequence) : null;
 			Model var3 = this.definition.getModel(var1, super.sequenceFrame, var2, super.movementFrame);
 			if (var3 == null) {
 				return null;
@@ -141,9 +147,9 @@ public final class NPC extends Actor {
 				var3.calculateBoundsCylinder();
 				super.defaultHeight = var3.height;
 				if (super.spotAnimation != -1 && super.spotAnimationFrame != -1) {
-					Model var4 = class65.SpotAnimationDefinition_get(super.spotAnimation).getModel(super.spotAnimationFrame);
+					Model var4 = class4.SpotAnimationDefinition_get(super.spotAnimation).getModel(super.spotAnimationFrame);
 					if (var4 != null) {
-						var4.offsetBy(0, -super.field980, 0);
+						var4.offsetBy(0, -super.field1005, 0);
 						Model[] var5 = new Model[]{var3, var4};
 						var3 = new Model(var5, 2);
 					}
@@ -158,146 +164,46 @@ public final class NPC extends Actor {
 		}
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(I)Z",
-		garbageValue = "-515224238"
+		signature = "(B)Z",
+		garbageValue = "1"
 	)
 	@Export("isVisible")
 	final boolean isVisible() {
 		return this.definition != null;
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "(II)Z",
-		garbageValue = "-728200028"
+		signature = "(Lkn;I)Ljava/lang/String;",
+		garbageValue = "1758966720"
 	)
-	public static boolean method2088(int var0) {
-		return (var0 >> 21 & 1) != 0;
+	public static String method2157(Buffer var0) {
+		return UserComparator5.method3534(var0, 32767);
 	}
 
-	@ObfuscatedName("x")
+	@ObfuscatedName("g")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-213957915"
+		signature = "(S)V",
+		garbageValue = "-25347"
 	)
-	static void method2079() {
-		Login.loginIndex = 24;
-		Tiles.setLoginResponseString("The game servers are currently being updated.", "Please wait a few minutes and try again.", "");
-	}
+	static void method2156() {
+		Players.Players_count = 0;
 
-	@ObfuscatedName("ib")
-	@ObfuscatedSignature(
-		signature = "(IIIILjava/lang/String;I)V",
-		garbageValue = "-1867991224"
-	)
-	@Export("widgetDefaultMenuAction")
-	static void widgetDefaultMenuAction(int var0, int var1, int var2, int var3, String var4) {
-		Widget var5 = SpriteMask.getWidgetChild(var1, var2);
-		if (var5 != null) {
-			if (var5.onOp != null) {
-				ScriptEvent var6 = new ScriptEvent();
-				var6.widget = var5;
-				var6.opIndex = var0;
-				var6.targetName = var4;
-				var6.args = var5.onOp;
-				class4.runScriptEvent(var6);
-			}
-
-			boolean var11 = true;
-			if (var5.contentType > 0) {
-				var11 = BufferedSink.method5915(var5);
-			}
-
-			if (var11) {
-				int var8 = WorldMapIcon_0.getWidgetClickMask(var5);
-				int var9 = var0 - 1;
-				boolean var7 = (var8 >> var9 + 1 & 1) != 0;
-				if (var7) {
-					PacketBufferNode var10;
-					if (var0 == 1) {
-						var10 = TilePaint.getPacketBufferNode(ClientPacket.field2234, Client.packetWriter.isaacCipher);
-						var10.packetBuffer.writeInt(var1);
-						var10.packetBuffer.writeShort(var2);
-						var10.packetBuffer.writeShort(var3);
-						Client.packetWriter.addNode(var10);
-					}
-
-					if (var0 == 2) {
-						var10 = TilePaint.getPacketBufferNode(ClientPacket.field2209, Client.packetWriter.isaacCipher);
-						var10.packetBuffer.writeInt(var1);
-						var10.packetBuffer.writeShort(var2);
-						var10.packetBuffer.writeShort(var3);
-						Client.packetWriter.addNode(var10);
-					}
-
-					if (var0 == 3) {
-						var10 = TilePaint.getPacketBufferNode(ClientPacket.field2205, Client.packetWriter.isaacCipher);
-						var10.packetBuffer.writeInt(var1);
-						var10.packetBuffer.writeShort(var2);
-						var10.packetBuffer.writeShort(var3);
-						Client.packetWriter.addNode(var10);
-					}
-
-					if (var0 == 4) {
-						var10 = TilePaint.getPacketBufferNode(ClientPacket.field2273, Client.packetWriter.isaacCipher);
-						var10.packetBuffer.writeInt(var1);
-						var10.packetBuffer.writeShort(var2);
-						var10.packetBuffer.writeShort(var3);
-						Client.packetWriter.addNode(var10);
-					}
-
-					if (var0 == 5) {
-						var10 = TilePaint.getPacketBufferNode(ClientPacket.field2237, Client.packetWriter.isaacCipher);
-						var10.packetBuffer.writeInt(var1);
-						var10.packetBuffer.writeShort(var2);
-						var10.packetBuffer.writeShort(var3);
-						Client.packetWriter.addNode(var10);
-					}
-
-					if (var0 == 6) {
-						var10 = TilePaint.getPacketBufferNode(ClientPacket.field2257, Client.packetWriter.isaacCipher);
-						var10.packetBuffer.writeInt(var1);
-						var10.packetBuffer.writeShort(var2);
-						var10.packetBuffer.writeShort(var3);
-						Client.packetWriter.addNode(var10);
-					}
-
-					if (var0 == 7) {
-						var10 = TilePaint.getPacketBufferNode(ClientPacket.field2204, Client.packetWriter.isaacCipher);
-						var10.packetBuffer.writeInt(var1);
-						var10.packetBuffer.writeShort(var2);
-						var10.packetBuffer.writeShort(var3);
-						Client.packetWriter.addNode(var10);
-					}
-
-					if (var0 == 8) {
-						var10 = TilePaint.getPacketBufferNode(ClientPacket.field2254, Client.packetWriter.isaacCipher);
-						var10.packetBuffer.writeInt(var1);
-						var10.packetBuffer.writeShort(var2);
-						var10.packetBuffer.writeShort(var3);
-						Client.packetWriter.addNode(var10);
-					}
-
-					if (var0 == 9) {
-						var10 = TilePaint.getPacketBufferNode(ClientPacket.field2212, Client.packetWriter.isaacCipher);
-						var10.packetBuffer.writeInt(var1);
-						var10.packetBuffer.writeShort(var2);
-						var10.packetBuffer.writeShort(var3);
-						Client.packetWriter.addNode(var10);
-					}
-
-					if (var0 == 10) {
-						var10 = TilePaint.getPacketBufferNode(ClientPacket.field2303, Client.packetWriter.isaacCipher);
-						var10.packetBuffer.writeInt(var1);
-						var10.packetBuffer.writeShort(var2);
-						var10.packetBuffer.writeShort(var3);
-						Client.packetWriter.addNode(var10);
-					}
-
-				}
-			}
+		for (int var0 = 0; var0 < 2048; ++var0) {
+			Players.field1279[var0] = null;
+			Players.field1278[var0] = 1;
 		}
+
+	}
+
+	@ObfuscatedName("ai")
+	@ObfuscatedSignature(
+		signature = "(Ldh;I)V",
+		garbageValue = "2097901447"
+	)
+	public static final void method2144(PlayerProvider var0) {
+		HealthBarUpdate.pcmPlayerProvider = var0;
 	}
 }

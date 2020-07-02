@@ -48,9 +48,9 @@ import java.util.Set;
 import net.runelite.api.Client;
 import net.runelite.client.RuneLite;
 import net.runelite.client.RuneLiteModule;
-import net.runelite.client.eventbus.EventBus;
 import net.runelite.client.config.Config;
 import net.runelite.client.config.ConfigItem;
+import net.runelite.client.eventbus.EventBus;
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Rule;
@@ -83,7 +83,9 @@ public class PluginManagerTest
 	public void before() throws IOException
 	{
 		Injector injector = Guice.createInjector(Modules
-			.override(new RuneLiteModule(() -> null))
+			.override(new RuneLiteModule(() -> null, false,
+				RuneLite.DEFAULT_SESSION_FILE,
+				RuneLite.DEFAULT_CONFIG_FILE))
 			.with(BoundFieldModule.of(this)));
 
 		RuneLite.setInjector(injector);
@@ -112,7 +114,7 @@ public class PluginManagerTest
 	@Test
 	public void testLoadPlugins() throws Exception
 	{
-		PluginManager pluginManager = new PluginManager(false, null, null, null, null, null);
+		PluginManager pluginManager = new PluginManager(false, false, null, null, null, null, null);
 		pluginManager.setOutdated(true);
 		pluginManager.loadCorePlugins();
 		Collection<Plugin> plugins = pluginManager.getPlugins();
@@ -123,7 +125,7 @@ public class PluginManagerTest
 			.count();
 		assertEquals(expected, plugins.size());
 
-		pluginManager = new PluginManager(false, null, null, null, null, null);
+		pluginManager = new PluginManager(false, false, null, null, null, null, null);
 		pluginManager.loadCorePlugins();
 		plugins = pluginManager.getPlugins();
 
@@ -144,9 +146,11 @@ public class PluginManagerTest
 	{
 		List<Module> modules = new ArrayList<>();
 		modules.add(new GraphvizModule());
-		modules.add(new RuneLiteModule(() -> null));
+		modules.add(new RuneLiteModule(() -> null, false,
+			RuneLite.DEFAULT_SESSION_FILE,
+			RuneLite.DEFAULT_CONFIG_FILE));
 
-		PluginManager pluginManager = new PluginManager(true, null, null, null, null, null);
+		PluginManager pluginManager = new PluginManager(true, false, null, null, null, null, null);
 		pluginManager.loadCorePlugins();
 		for (Plugin p : pluginManager.getPlugins())
 		{

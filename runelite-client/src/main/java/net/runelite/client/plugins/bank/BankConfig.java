@@ -110,13 +110,12 @@ public interface BankConfig extends Config
 	}
 
 	@ConfigItem(
-		keyName = "keyboardBankPin",
-		name = "Keyboard bank pin",
-		description = "Enables you to type your bank pin. DISCLAIMER: If you get keylogged this would allow the " +
-				"attacker to see your bank pin!",
+		keyName = "bankPinKeyboard",
+		name = "Keyboard Bankpin",
+		description = "Allows using the keyboard keys for bank pin input",
 		position = 8
 	)
-	default boolean keyboardBankPin()
+	default boolean bankPinKeyboard()
 	{
 		return false;
 	}

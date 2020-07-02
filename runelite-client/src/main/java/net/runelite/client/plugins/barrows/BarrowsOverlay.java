@@ -72,7 +72,7 @@ class BarrowsOverlay extends Overlay
 			final List<NPC> npcs = client.getNpcs();
 			for (NPC npc : npcs)
 			{
-				final NPCDefinition composition = npc.getDefinition();
+				final NPCComposition composition = npc.getComposition();
 
 				if (composition != null && !composition.isMinimapVisible())
 				{
@@ -157,8 +157,8 @@ class BarrowsOverlay extends Overlay
 			return;
 		}
 
-		ObjectDefinition objectComp = client.getObjectDefinition(wall.getId());
-		ObjectDefinition impostor = objectComp.getImpostorIds() != null ? objectComp.getImpostor() : null;
+		ObjectComposition objectComp = client.getObjectDefinition(wall.getId());
+		ObjectComposition impostor = objectComp.getImpostorIds() != null ? objectComp.getImpostor() : null;
 
 		if (impostor != null && impostor.getActions()[0] != null)
 		{
@@ -192,7 +192,7 @@ class BarrowsOverlay extends Overlay
 			return;
 		}
 
-		ObjectDefinition objectComp = client.getObjectDefinition(ladder.getId());
+		ObjectComposition objectComp = client.getObjectDefinition(ladder.getId());
 
 		if (objectComp.getImpostorIds() != null && objectComp.getImpostor() != null)
 		{

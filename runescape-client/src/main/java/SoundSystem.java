@@ -1,14 +1,27 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("dl")
+@ObfuscatedName("dg")
 @Implements("SoundSystem")
 public class SoundSystem implements Runnable {
-	@ObfuscatedName("c")
+	@ObfuscatedName("n")
+	@ObfuscatedGetter(
+		intValue = 140612879
+	)
+	static int field1466;
+	@ObfuscatedName("hm")
 	@ObfuscatedSignature(
-		signature = "[Ldw;"
+		signature = "[Llz;"
+	)
+	@Export("headIconHintSprites")
+	static SpritePixels[] headIconHintSprites;
+	@ObfuscatedName("m")
+	@ObfuscatedSignature(
+		signature = "[Ldt;"
 	)
 	@Export("players")
 	volatile PcmPlayer[] players;
@@ -26,76 +39,69 @@ public class SoundSystem implements Runnable {
 				}
 			}
 		} catch (Exception var4) {
-			class225.RunException_sendStackTrace((String)null, var4);
+			class197.RunException_sendStackTrace((String)null, var4);
 		}
 
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
-		signature = "(Lii;Lii;Lii;Lii;I)V",
-		garbageValue = "-1591363880"
+		signature = "(IB)I",
+		garbageValue = "101"
 	)
-	public static void method2562(AbstractArchive var0, AbstractArchive var1, AbstractArchive var2, AbstractArchive var3) {
-		class197.Widget_archive = var0;
-		Calendar.Widget_modelsArchive = var1;
-		Username.Widget_spritesArchive = var2;
-		class162.Widget_fontsArchive = var3;
-		WorldMapLabel.Widget_interfaceComponents = new Widget[class197.Widget_archive.getGroupCount()][];
-		class197.Widget_loadedInterfaces = new boolean[class197.Widget_archive.getGroupCount()];
+	public static int method2628(int var0) {
+		return class279.method5159(ViewportMouse.ViewportMouse_entityTags[var0]);
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(I)Z",
-		garbageValue = "-660130030"
+		signature = "(B)V",
+		garbageValue = "-123"
 	)
-	@Export("isKeyDown")
-	public static final boolean isKeyDown() {
-		synchronized(KeyHandler.KeyHandler_instance) {
-			if (KeyHandler.field408 == KeyHandler.field406) {
-				return false;
-			} else {
-				RouteStrategy.field2102 = KeyHandler.field403[KeyHandler.field406];
-				class51.field432 = KeyHandler.field410[KeyHandler.field406];
-				KeyHandler.field406 = KeyHandler.field406 + 1 & 127;
-				return true;
+	public static void method2629() {
+		try {
+			JagexCache.JagexCache_dat2File.close();
+
+			for (int var0 = 0; var0 < WorldMapDecoration.idxCount; ++var0) {
+				JagexCache.JagexCache_idxFiles[var0].close();
 			}
+
+			JagexCache.JagexCache_idx255File.close();
+			JagexCache.JagexCache_randomDat.close();
+		} catch (Exception var2) {
 		}
+
 	}
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "1995069725"
+		signature = "(ILcs;ZI)I",
+		garbageValue = "1398391910"
 	)
-	static void method2563() {
-		Messages.Messages_channels.clear();
-		Messages.Messages_hashTable.clear();
-		Messages.Messages_queue.clear();
-		Messages.Messages_count = 0;
-	}
-
-	@ObfuscatedName("aq")
-	@ObfuscatedSignature(
-		signature = "(Lir;I)Z",
-		garbageValue = "-676934548"
-	)
-	static boolean method2565(ObjectDefinition var0) {
-		if (var0.transforms != null) {
-			int[] var1 = var0.transforms;
-
-			for (int var2 = 0; var2 < var1.length; ++var2) {
-				int var3 = var1[var2];
-				ObjectDefinition var4 = Occluder.getObjectDefinition(var3);
-				if (var4.mapIconId != -1) {
-					return true;
-				}
-			}
-		} else if (var0.mapIconId != -1) {
-			return true;
+	static int method2630(int var0, Script var1, boolean var2) {
+		Widget var3;
+		if (var0 >= 2000) {
+			var0 -= 1000;
+			var3 = WorldMapSprite.getWidget(Interpreter.Interpreter_intStack[--UrlRequester.Interpreter_intStackSize]);
+		} else {
+			var3 = var2 ? KeyHandler.field407 : SecureRandomCallable.field544;
 		}
 
-		return false;
+		if (var0 == ScriptOpcodes.CC_CALLONRESIZE) {
+			if (Interpreter.field1132 >= 10) {
+				throw new RuntimeException();
+			} else if (var3.onResize == null) {
+				return 0;
+			} else {
+				ScriptEvent var4 = new ScriptEvent();
+				var4.widget = var3;
+				var4.args = var3.onResize;
+				var4.field600 = Interpreter.field1132 + 1;
+				Client.scriptEvents.addFirst(var4);
+				return 1;
+			}
+		} else {
+			return 2;
+		}
 	}
 }

@@ -3,11 +3,11 @@
 .string_stack_count 0
 .int_var_count      5
 .string_var_count   0
-   iconst                 10616887
+   iconst                 10616888
    if_gethide            
    iconst                 1
    if_icmpeq              LABEL9
-   iconst                 10616888
+   iconst                 10616889
    if_gethide            
    iconst                 1
    if_icmpeq              LABEL9
@@ -38,8 +38,8 @@ LABEL20:
    iconst                 1
    if_icmpeq              LABEL31
    iconst                 0                 ; Modified to enable clanchat input
-   sconst                 "clanchatInput"
-   runelite_callback
+   sconst                 "friendsChatInput"
+   runelite_callback     
    iconst                 1
    if_icmpeq              LABEL31           ; Compare to 1
    jump                   LABEL37
@@ -52,7 +52,7 @@ LABEL35:
    iconst                 1
    istore                 4
 LABEL37:
-   staffmodlevel
+   staffmodlevel         
    iconst                 0
    if_icmpgt              LABEL41
    jump                   LABEL43
@@ -67,7 +67,7 @@ LABEL43:
 LABEL47:
    sconst                 "`"
    iload                  1
-   string_indexof_char
+   string_indexof_char   
    iconst                 -1
    if_icmpne              LABEL53
    jump                   LABEL58
@@ -77,7 +77,7 @@ LABEL53:
    if_icmpeq              LABEL57
    jump                   LABEL58
 LABEL57:
-   return
+   return                
 LABEL58:
    iload                  0
    iconst                 84
@@ -93,7 +93,7 @@ LABEL67:
    get_varc_string        335
    sconst                 "/"
    iconst                 0
-   string_indexof_string
+   string_indexof_string 
    iconst                 0
    if_icmpeq              LABEL77
    iload                  4
@@ -101,7 +101,7 @@ LABEL67:
    if_icmpeq              LABEL77
    jump                   LABEL112
 LABEL77:
-   clan_getchatcount
+   clan_getchatcount     
    iconst                 0
    if_icmpgt              LABEL81
    jump                   LABEL108
@@ -116,14 +116,14 @@ LABEL85:
    if_icmpeq              LABEL89
    jump                   LABEL90
 LABEL89:
-   return
+   return                
 LABEL90:
    get_varbit             4394
    iconst                 1
    if_icmpeq              LABEL94
    jump                   LABEL96
 LABEL94:
-   clan_leavechat
+   clan_leavechat        
    jump                   LABEL107
 LABEL96:
    iload                  4
@@ -133,7 +133,7 @@ LABEL96:
 LABEL100:
    sconst                 "/"
    get_varc_string        335
-   append
+   append                
    set_varc_string        335
 LABEL104:
    get_varc_string        335
@@ -151,7 +151,7 @@ LABEL112:
    get_varc_string        335
    sconst                 "::"
    iconst                 0
-   string_indexof_string
+   string_indexof_string 
    iconst                 0
    if_icmpeq              LABEL119
    jump                   LABEL186
@@ -164,38 +164,38 @@ LABEL123:
    get_varc_string        335
    sconst                 "::toggleroof"
    iconst                 0
-   string_indexof_string
+   string_indexof_string 
    iconst                 0
    if_icmpeq              LABEL130
    jump                   LABEL144
 LABEL130:
-   getremoveroofs
+   getremoveroofs        
    iconst                 1
    if_icmpeq              LABEL134
    jump                   LABEL139
 LABEL134:
    iconst                 0
-   setremoveroofs
+   setremoveroofs        
    sconst                 "Roofs will only be removed selectively."
-   mes
+   mes                   
    jump                   LABEL143
 LABEL139:
    iconst                 1
-   setremoveroofs
+   setremoveroofs        
    sconst                 "Roofs are now all hidden."
-   mes
+   mes                   
 LABEL143:
    jump                   LABEL181
 LABEL144:
    get_varc_string        335
    sconst                 "::wiki "
    iconst                 0
-   string_indexof_string
+   string_indexof_string 
    iconst                 0
    if_icmpeq              LABEL156
    get_varc_string        335
    sconst                 "::wiki"
-   compare
+   compare               
    iconst                 0
    if_icmpeq              LABEL156
    sconst                 "runeliteCommand" ; load callback name
@@ -209,7 +209,7 @@ LABEL159:
    get_varc_string        335
    sconst                 "::bank"
    iconst                 0
-   string_indexof_string
+   string_indexof_string 
    iconst                 0
    if_icmpeq              LABEL166
    jump                   LABEL170
@@ -223,13 +223,13 @@ LABEL170:
    invoke                 224
    set_varc_string        335
    get_varc_string        335
-   string_length
+   string_length         
    istore                 2
    get_varc_string        335
    iconst                 2
    iload                  2
-   substring
-   docheat
+   substring             
+   docheat               
 LABEL181:
    jump                   LABEL185
 LABEL182:
@@ -284,50 +284,50 @@ LABEL214:
    jump                   LABEL256
 LABEL218:
    get_varc_string        356
-   string_length
+   string_length         
    iconst                 0
    if_icmpgt              LABEL223
    jump                   LABEL243
 LABEL223:
    get_varc_string        356
-   friend_test
+   friend_test           
    iconst                 1
    if_icmpeq              LABEL228
    jump                   LABEL231
 LABEL228:
    get_varc_string        356
    invoke                 107
-   return
+   return                
 LABEL231:
    get_varc_int           60
-   clientclock
+   clientclock           
    if_icmpgt              LABEL235
    jump                   LABEL236
 LABEL235:
-   return
+   return                
 LABEL236:
-   clientclock
+   clientclock           
    iconst                 50
-   add
+   add                   
    set_varc_int           60
    sconst                 "That player was not found on your Friends list."
-   mes
-   return
+   mes                   
+   return                
 LABEL243:
    get_varc_int           60
-   clientclock
+   clientclock           
    if_icmpgt              LABEL247
    jump                   LABEL248
 LABEL247:
-   return
+   return                
 LABEL248:
-   clientclock
+   clientclock           
    iconst                 50
-   add
+   add                   
    set_varc_int           60
    sconst                 "You haven't received any messages to which you can reply."
-   mes
-   return
+   mes                   
+   return                
    jump                   LABEL262
 LABEL256:
    get_varc_string        335

@@ -4,51 +4,51 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ce")
+@ObfuscatedName("cs")
 @Implements("Script")
 public class Script extends DualNode {
-	@ObfuscatedName("c")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		signature = "Leh;"
+		signature = "Lec;"
 	)
 	@Export("Script_cached")
 	static EvictingDualNodeHashTable Script_cached;
-	@ObfuscatedName("t")
+	@ObfuscatedName("o")
 	@Export("opcodes")
 	int[] opcodes;
-	@ObfuscatedName("o")
+	@ObfuscatedName("q")
 	@Export("intOperands")
 	int[] intOperands;
-	@ObfuscatedName("e")
+	@ObfuscatedName("j")
 	@Export("stringOperands")
 	String[] stringOperands;
-	@ObfuscatedName("i")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = 1871581323
+		intValue = 701670427
 	)
 	@Export("localIntCount")
 	int localIntCount;
 	@ObfuscatedName("g")
 	@ObfuscatedGetter(
-		intValue = 822375411
+		intValue = 12358867
 	)
 	@Export("localStringCount")
 	int localStringCount;
-	@ObfuscatedName("d")
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = -1252836573
+		intValue = 2127952993
 	)
 	@Export("intArgumentCount")
 	int intArgumentCount;
-	@ObfuscatedName("l")
+	@ObfuscatedName("u")
 	@ObfuscatedGetter(
-		intValue = -1735199639
+		intValue = -983920549
 	)
 	@Export("stringArgumentCount")
 	int stringArgumentCount;
-	@ObfuscatedName("j")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		signature = "[Llp;"
+		signature = "[Llf;"
 	)
 	@Export("switches")
 	IterableNodeHashTable[] switches;
@@ -60,38 +60,13 @@ public class Script extends DualNode {
 	Script() {
 	}
 
-	@ObfuscatedName("i")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		signature = "(IB)[Llp;",
-		garbageValue = "1"
+		signature = "(II)[Llf;",
+		garbageValue = "-978861309"
 	)
 	@Export("newIterableNodeHashTable")
 	IterableNodeHashTable[] newIterableNodeHashTable(int var1) {
 		return new IterableNodeHashTable[var1];
-	}
-
-	@ObfuscatedName("kh")
-	@ObfuscatedSignature(
-		signature = "(IIIILlt;Lhf;I)V",
-		garbageValue = "631816704"
-	)
-	@Export("drawSpriteOnMinimap")
-	static final void drawSpriteOnMinimap(int var0, int var1, int var2, int var3, Sprite var4, SpriteMask var5) {
-		if (var4 != null) {
-			int var6 = Client.camAngleY & 2047;
-			int var7 = var3 * var3 + var2 * var2;
-			if (var7 <= 6400) {
-				int var8 = Rasterizer3D.Rasterizer3D_sine[var6];
-				int var9 = Rasterizer3D.Rasterizer3D_cosine[var6];
-				int var10 = var3 * var8 + var9 * var2 >> 16;
-				int var11 = var3 * var9 - var8 * var2 >> 16;
-				if (var7 > 2500) {
-					var4.method6207(var10 + var5.width / 2 - var4.width / 2, var5.height / 2 - var11 - var4.height / 2, var0, var1, var5.width, var5.height, var5.xStarts, var5.xWidths);
-				} else {
-					var4.drawTransBgAt(var0 + var10 + var5.width / 2 - var4.width / 2, var5.height / 2 + var1 - var11 - var4.height / 2);
-				}
-
-			}
-		}
 	}
 }

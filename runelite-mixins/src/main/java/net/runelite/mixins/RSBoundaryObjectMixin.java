@@ -34,7 +34,7 @@ import net.runelite.api.mixins.Mixin;
 import net.runelite.api.mixins.Shadow;
 import net.runelite.rs.api.RSBoundaryObject;
 import net.runelite.rs.api.RSClient;
-import net.runelite.rs.api.RSEntity;
+import net.runelite.rs.api.RSRenderable;
 import net.runelite.rs.api.RSModel;
 
 @Mixin(RSBoundaryObject.class)
@@ -63,7 +63,7 @@ public abstract class RSBoundaryObjectMixin implements RSBoundaryObject
 	@Inject
 	public RSModel getModelA()
 	{
-		RSEntity entity = getEntity1();
+		RSRenderable entity = getRenderable1();
 		if (entity == null)
 		{
 			return null;
@@ -82,7 +82,7 @@ public abstract class RSBoundaryObjectMixin implements RSBoundaryObject
 	@Inject
 	public RSModel getModelB()
 	{
-		RSEntity entity = getEntity2();
+		RSRenderable entity = getRenderable2();
 		if (entity == null)
 		{
 			return null;

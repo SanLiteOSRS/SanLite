@@ -4,21 +4,21 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("lc")
+@ObfuscatedName("lo")
 @Implements("AbstractRasterProvider")
 public abstract class AbstractRasterProvider {
-	@ObfuscatedName("o")
+	@ObfuscatedName("q")
 	@Export("pixels")
 	public int[] pixels;
-	@ObfuscatedName("e")
+	@ObfuscatedName("j")
 	@ObfuscatedGetter(
-		intValue = -677565243
+		intValue = 1291852267
 	)
 	@Export("width")
 	public int width;
-	@ObfuscatedName("i")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = 1515017949
+		intValue = -1133589313
 	)
 	@Export("height")
 	public int height;
@@ -26,51 +26,29 @@ public abstract class AbstractRasterProvider {
 	protected AbstractRasterProvider() {
 	}
 
-	@ObfuscatedName("t")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "(III)V",
-		garbageValue = "-529782293"
+		signature = "(IIB)V",
+		garbageValue = "-5"
 	)
 	@Export("drawFull")
 	public abstract void drawFull(int var1, int var2);
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
 		signature = "(IIIII)V",
-		garbageValue = "934582222"
+		garbageValue = "-1334771637"
 	)
 	@Export("draw")
 	public abstract void draw(int var1, int var2, int var3, int var4);
 
-	@ObfuscatedName("y")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "-96"
+		signature = "(I)V",
+		garbageValue = "25855118"
 	)
 	@Export("apply")
 	public final void apply() {
 		Rasterizer2D.Rasterizer2D_replace(this.pixels, this.width, this.height);
-	}
-
-	@ObfuscatedName("fx")
-	@ObfuscatedSignature(
-		signature = "(I)Z",
-		garbageValue = "-569880085"
-	)
-	static boolean method6151() {
-		if (Client.archiveLoaders != null && Client.archiveLoadersDone < Client.archiveLoaders.size()) {
-			while (Client.archiveLoadersDone < Client.archiveLoaders.size()) {
-				ArchiveLoader var0 = (ArchiveLoader)Client.archiveLoaders.get(Client.archiveLoadersDone);
-				if (!var0.isLoaded()) {
-					return false;
-				}
-
-				++Client.archiveLoadersDone;
-			}
-
-			return true;
-		} else {
-			return true;
-		}
 	}
 }

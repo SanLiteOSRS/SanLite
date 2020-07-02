@@ -32,41 +32,48 @@ import java.awt.Point;
 import java.util.regex.Pattern;
 import lombok.Setter;
 import net.runelite.client.ui.overlay.RenderableEntity;
+import net.runelite.client.util.Text;
 
 @Setter
 public class TextComponent implements RenderableEntity
 {
 	private static final String COL_TAG_REGEX = "(<col=([0-9a-fA-F]){2,6}>)";
 	private static final Pattern COL_TAG_PATTERN_W_LOOKAHEAD = Pattern.compile("(?=" + COL_TAG_REGEX + ")");
-	private static final Pattern COL_TAG_PATTERN = Pattern.compile(COL_TAG_REGEX);
 
 	private String text;
 	private Point position = new Point();
 	private Color color = Color.WHITE;
-
-	public static String textWithoutColTags(String text)
-	{
-		return COL_TAG_PATTERN.matcher(text).replaceAll("");
-	}
+	private boolean outline;
 
 	@Override
 	public Dimension render(Graphics2D graphics)
 	{
 		final FontMetrics fontMetrics = graphics.getFontMetrics();
 
-		if (COL_TAG_PATTERN.matcher(text).find())
+		if (COL_TAG_PATTERN_W_LOOKAHEAD.matcher(text).find())
 		{
 			final String[] parts = COL_TAG_PATTERN_W_LOOKAHEAD.split(text);
 			int x = position.x;
 
 			for (String textSplitOnCol : parts)
 			{
-				final String textWithoutCol = textWithoutColTags(textSplitOnCol);
+				final String textWithoutCol = Text.removeTags(textSplitOnCol);
 				final String colColor = textSplitOnCol.substring(textSplitOnCol.indexOf("=") + 1, textSplitOnCol.indexOf(">"));
 
-				// shadow
 				graphics.setColor(Color.BLACK);
-				graphics.drawString(textWithoutCol, x + 1, position.y + 1);
+
+				if (outline)
+				{
+					graphics.drawString(textWithoutCol, x, position.y + 1);
+					graphics.drawString(textWithoutCol, x, position.y - 1);
+					graphics.drawString(textWithoutCol, x + 1, position.y);
+					graphics.drawString(textWithoutCol, x - 1, position.y);
+				}
+				else
+				{
+					// shadow
+					graphics.drawString(textWithoutCol, x + 1, position.y + 1);
+				}
 
 				// actual text
 				graphics.setColor(Color.decode("#" + colColor));
@@ -77,9 +84,20 @@ public class TextComponent implements RenderableEntity
 		}
 		else
 		{
-			// shadow
 			graphics.setColor(Color.BLACK);
-			graphics.drawString(text, position.x + 1, position.y + 1);
+
+			if (outline)
+			{
+				graphics.drawString(text, position.x, position.y + 1);
+				graphics.drawString(text, position.x, position.y - 1);
+				graphics.drawString(text, position.x + 1, position.y);
+				graphics.drawString(text, position.x - 1, position.y);
+			}
+			else
+			{
+				// shadow
+				graphics.drawString(text, position.x + 1, position.y + 1);
+			}
 
 			// actual text
 			graphics.setColor(color);

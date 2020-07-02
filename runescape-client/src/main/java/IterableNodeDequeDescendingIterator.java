@@ -4,38 +4,38 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jv")
+@ObfuscatedName("ju")
 @Implements("IterableNodeDequeDescendingIterator")
 public class IterableNodeDequeDescendingIterator implements Iterator {
-	@ObfuscatedName("c")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		signature = "Ljj;"
+		signature = "Ljx;"
 	)
 	@Export("deque")
 	IterableNodeDeque deque;
-	@ObfuscatedName("t")
-	@ObfuscatedSignature(
-		signature = "Lft;"
-	)
-	Node field3538;
 	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "Lft;"
+		signature = "Lgr;"
+	)
+	Node field3573;
+	@ObfuscatedName("q")
+	@ObfuscatedSignature(
+		signature = "Lgr;"
 	)
 	@Export("last")
 	Node last;
 
 	@ObfuscatedSignature(
-		signature = "(Ljj;)V"
+		signature = "(Ljx;)V"
 	)
 	IterableNodeDequeDescendingIterator(IterableNodeDeque var1) {
 		this.last = null;
 		this.setDeque(var1);
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("g")
 	@ObfuscatedSignature(
-		signature = "(Ljj;)V"
+		signature = "(Ljx;)V"
 	)
 	@Export("setDeque")
 	void setDeque(IterableNodeDeque var1) {
@@ -43,24 +43,24 @@ public class IterableNodeDequeDescendingIterator implements Iterator {
 		this.start();
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("n")
 	@Export("start")
 	void start() {
-		this.field3538 = this.deque != null ? this.deque.sentinel.previous : null;
+		this.field3573 = this.deque != null ? this.deque.sentinel.previous : null;
 		this.last = null;
 	}
 
 	public boolean hasNext() {
-		return this.deque.sentinel != this.field3538;
+		return this.deque.sentinel != this.field3573;
 	}
 
 	public Object next() {
-		Node var1 = this.field3538;
+		Node var1 = this.field3573;
 		if (var1 == this.deque.sentinel) {
 			var1 = null;
-			this.field3538 = null;
+			this.field3573 = null;
 		} else {
-			this.field3538 = var1.previous;
+			this.field3573 = var1.previous;
 		}
 
 		this.last = var1;
@@ -68,11 +68,7 @@ public class IterableNodeDequeDescendingIterator implements Iterator {
 	}
 
 	public void remove() {
-		if (this.last == null) {
-			throw new IllegalStateException();
-		} else {
-			this.last.remove();
-			this.last = null;
-		}
+		this.last.remove();
+		this.last = null;
 	}
 }

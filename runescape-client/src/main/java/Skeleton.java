@@ -1,40 +1,33 @@
-import java.util.Iterator;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ec")
+@ObfuscatedName("er")
 @Implements("Skeleton")
 public class Skeleton extends Node {
-	@ObfuscatedName("hx")
+	@ObfuscatedName("aq")
 	@ObfuscatedGetter(
-		intValue = 1721561941
+		intValue = -47286483
 	)
-	@Export("oculusOrbFocalPointY")
-	static int oculusOrbFocalPointY;
-	@ObfuscatedName("jv")
-	@ObfuscatedSignature(
-		signature = "Lhn;"
-	)
-	static Widget field1793;
-	@ObfuscatedName("c")
+	static int field1826;
+	@ObfuscatedName("m")
 	@ObfuscatedGetter(
-		intValue = -1632248683
+		intValue = -747457743
 	)
 	@Export("id")
 	int id;
-	@ObfuscatedName("t")
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = 705396631
+		intValue = 386205487
 	)
 	@Export("count")
 	int count;
-	@ObfuscatedName("o")
+	@ObfuscatedName("q")
 	@Export("transformTypes")
 	int[] transformTypes;
-	@ObfuscatedName("e")
+	@ObfuscatedName("j")
 	@Export("labels")
 	int[][] labels;
 
@@ -62,28 +55,60 @@ public class Skeleton extends Node {
 
 	}
 
-	@ObfuscatedName("g")
+	@ObfuscatedName("iz")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "483242164"
+		signature = "(ZB)V",
+		garbageValue = "38"
 	)
-	public static void method3152() {
-		FloorOverlayDefinition.FloorOverlayDefinition_cached.clear();
+	@Export("setTapToDrop")
+	static void setTapToDrop(boolean var0) {
+		Client.tapToDrop = var0;
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("jo")
 	@ObfuscatedSignature(
-		signature = "(B)Ljava/lang/String;",
-		garbageValue = "91"
+		signature = "([Lhd;IB)V",
+		garbageValue = "34"
 	)
-	static String method3153() {
-		String var0 = "";
+	@Export("runComponentCloseListeners")
+	static final void runComponentCloseListeners(Widget[] var0, int var1) {
+		for (int var2 = 0; var2 < var0.length; ++var2) {
+			Widget var3 = var0[var2];
+			if (var3 != null) {
+				if (var3.type == 0) {
+					if (var3.children != null) {
+						runComponentCloseListeners(var3.children, var1);
+					}
 
-		Message var2;
-		for (Iterator var1 = Messages.Messages_hashTable.iterator(); var1.hasNext(); var0 = var0 + var2.sender + ':' + var2.text + '\n') {
-			var2 = (Message)var1.next();
+					InterfaceParent var4 = (InterfaceParent)Client.interfaceParents.get((long)var3.id);
+					if (var4 != null) {
+						Language.runIntfCloseListeners(var4.group, var1);
+					}
+				}
+
+				ScriptEvent var5;
+				if (var1 == 0 && var3.onDialogAbort != null) {
+					var5 = new ScriptEvent();
+					var5.widget = var3;
+					var5.args = var3.onDialogAbort;
+					InterfaceParent.runScriptEvent(var5);
+				}
+
+				if (var1 == 1 && var3.onSubChange != null) {
+					if (var3.childIndex >= 0) {
+						Widget var6 = WorldMapSprite.getWidget(var3.id);
+						if (var6 == null || var6.children == null || var3.childIndex >= var6.children.length || var3 != var6.children[var3.childIndex]) {
+							continue;
+						}
+					}
+
+					var5 = new ScriptEvent();
+					var5.widget = var3;
+					var5.args = var3.onSubChange;
+					InterfaceParent.runScriptEvent(var5);
+				}
+			}
 		}
 
-		return var0;
 	}
 }

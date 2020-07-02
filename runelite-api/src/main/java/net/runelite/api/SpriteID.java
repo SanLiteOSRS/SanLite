@@ -776,7 +776,7 @@ public final class SpriteID
 	public static final int RS2_TAB_EQUIPMENT = 778;
 	public static final int RS2_TAB_PRAYER = 779;
 	public static final int TAB_MAGIC = 780;
-	public static final int RS2_TAB_CLAN_CHAT = 781;
+	public static final int RS2_TAB_FRIENDS_CHAT = 781;
 	public static final int TAB_FRIENDS = 782;
 	public static final int TAB_IGNORES = 783;
 	public static final int RS2_TAB_LOGOUT = 784;
@@ -888,7 +888,7 @@ public final class SpriteID
 	public static final int TAB_EQUIPMENT = 901;
 	public static final int TAB_PRAYER = 902;
 	public static final int UNUSED_TAB_MAGIC_903 = 903;
-	public static final int TAB_CLAN_CHAT = 904;
+	public static final int TAB_FRIENDS_CHAT = 904;
 	public static final int TAB_LOGOUT = 907;
 	public static final int TAB_OPTIONS = 908;
 	public static final int TAB_EMOTES = 909;
@@ -977,15 +977,15 @@ public final class SpriteID
 	public static final int STASH_UNITS_SLANTED_TAB_EDGE_LEFT_HOVERED = 1001;
 	public static final int STASH_UNITS_SLANTED_TAB_MIDDLE_HOVERED = 1002;
 	public static final int STASH_UNITS_SLANTED_TAB_EDGE_RIGHT_HOVERED = 1003;
-	public static final int CLAN_CHAT_RANK_SMILEY_FRIEND = 1004;
-	public static final int CLAN_CHAT_RANK_CROWN_JAGEX_MODERATOR = 1005;
-	public static final int CLAN_CHAT_RANK_KEY_CHANNEL_OWNER = 1006;
-	public static final int CLAN_CHAT_RANK_GOLD_STAR_GENERAL = 1007;
-	public static final int CLAN_CHAT_RANK_SILVER_STAR_CAPTAIN = 1008;
-	public static final int CLAN_CHAT_RANK_BRONZE_STAR_LIEUTENANT = 1009;
-	public static final int CLAN_CHAT_RANK_TRIPLE_CHEVRON_SERGEANT = 1010;
-	public static final int CLAN_CHAT_RANK_DOUBLE_CHEVRON_CORPORAL = 1011;
-	public static final int CLAN_CHAT_RANK_SINGLE_CHEVRON_RECRUIT = 1012;
+	public static final int FRIENDS_CHAT_RANK_SMILEY_FRIEND = 1004;
+	public static final int FRIENDS_CHAT_RANK_CROWN_JAGEX_MODERATOR = 1005;
+	public static final int FRIENDS_CHAT_RANK_KEY_CHANNEL_OWNER = 1006;
+	public static final int FRIENDS_CHAT_RANK_GOLD_STAR_GENERAL = 1007;
+	public static final int FRIENDS_CHAT_RANK_SILVER_STAR_CAPTAIN = 1008;
+	public static final int FRIENDS_CHAT_RANK_BRONZE_STAR_LIEUTENANT = 1009;
+	public static final int FRIENDS_CHAT_RANK_TRIPLE_CHEVRON_SERGEANT = 1010;
+	public static final int FRIENDS_CHAT_RANK_DOUBLE_CHEVRON_CORPORAL = 1011;
+	public static final int FRIENDS_CHAT_RANK_SINGLE_CHEVRON_RECRUIT = 1012;
 	public static final int UNKNOWN_BUTTON_METAL_CORNERS = 1013;
 	public static final int UNKNOWN_BUTTON_METAL_CORNERS_HOVERED = 1014;
 	public static final int UNKNOWN_SLANTED_TAB_LONG = 1015;
@@ -1017,7 +1017,7 @@ public final class SpriteID
 	public static final int BANK_DEPOSIT_INVENTORY = 1041;
 	public static final int BANK_DEPOSIT_EQUIPMENT = 1042;
 	public static final int BANK_SEARCH = 1043;
-	public static final int MINIMAP_MARKER_PURPLE_PLAYER_CLAN_CHAT = 1044;
+	public static final int MINIMAP_MARKER_PURPLE_PLAYER_FRIENDS_CHAT = 1044;
 	public static final int OPTIONS_PROFANITY_FILTER = 1045;
 	public static final int PLAYER_KILLER_SKULL_1046 = 1046;
 	public static final int PLAYER_KILLING_DISABLED_OVERLAY = 1047;
@@ -1293,7 +1293,7 @@ public final class SpriteID
 	public static final int SPELL_REANIMATE_CROPS_DISABLED = 1327;
 	/* Unmapped: 1328~1337 */
 	public static final int WORLD_SWITCHER_WORLD_STAR_BLUE = 1338;
-	public static final int GAMEBLAST16_PROMO_BANNER = 1339;
+	public static final int HITSPLAT_DARK_GREEN_VENOM = 1339;
 	public static final int FAIRY_RING_REMOVE_FAVOURITE = 1340;
 	public static final int FAIRY_RING_ADD_FAVOURITE = 1341;
 	public static final int BANK_PLACEHOLDERS_LOCK = 1342;
@@ -1317,7 +1317,7 @@ public final class SpriteID
 	public static final int HITSPLAT_GREEN_POISON = 1360;
 	public static final int HITSPLAT_ORANGE = 1361;
 	public static final int HITSPLAT_ORANGE_DISEASE = 1362;
-	public static final int HITSPLAT_DARK_GREEN_VENOM = 1363;
+	public static final int HITSPLAT_GREY = 1363;
 	public static final int BOUNTY_HUNTER_SKIP_TARGET = 1364;
 	public static final int BOUNTY_HUNTER_SKIP_TARGET_HOVERED = 1365;
 	public static final int HOUSE_VIEWER_ROTATE_CLOCKWISE = 1366;

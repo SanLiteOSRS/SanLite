@@ -1,15 +1,30 @@
-import java.io.File;
-import java.io.RandomAccessFile;
-import java.util.LinkedHashMap;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fp")
+@ObfuscatedName("fy")
 @Implements("UserComparator3")
 public class UserComparator3 extends AbstractUserComparator {
-	@ObfuscatedName("c")
+	@ObfuscatedName("a")
+	@ObfuscatedGetter(
+		intValue = 822744565
+	)
+	static int field2009;
+	@ObfuscatedName("gj")
+	@ObfuscatedSignature(
+		signature = "Lem;"
+	)
+	@Export("scene")
+	static Scene scene;
+	@ObfuscatedName("jf")
+	@ObfuscatedSignature(
+		signature = "Ldu;"
+	)
+	@Export("textureProvider")
+	static TextureProvider textureProvider;
+	@ObfuscatedName("m")
 	@Export("reversed")
 	final boolean reversed;
 
@@ -17,10 +32,10 @@ public class UserComparator3 extends AbstractUserComparator {
 		this.reversed = var1;
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		signature = "(Lje;Lje;I)I",
-		garbageValue = "-1179985017"
+		signature = "(Lkx;Lkx;I)I",
+		garbageValue = "1287219897"
 	)
 	@Export("compareBuddy")
 	int compareBuddy(Buddy var1, Buddy var2) {
@@ -35,112 +50,132 @@ public class UserComparator3 extends AbstractUserComparator {
 		return this.compareBuddy((Buddy)var1, (Buddy)var2);
 	}
 
-	@ObfuscatedName("t")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;I)Ljava/io/File;",
-		garbageValue = "1177059768"
+		signature = "(CB)B",
+		garbageValue = "-48"
 	)
-	@Export("getFile")
-	public static File getFile(String var0) {
-		if (!FileSystem.FileSystem_hasPermissions) {
-			throw new RuntimeException("");
+	@Export("charToByteCp1252")
+	public static byte charToByteCp1252(char var0) {
+		byte var1;
+		if (var0 > 0 && var0 < 128 || var0 >= 160 && var0 <= 255) {
+			var1 = (byte)var0;
+		} else if (var0 == 8364) {
+			var1 = -128;
+		} else if (var0 == 8218) {
+			var1 = -126;
+		} else if (var0 == 402) {
+			var1 = -125;
+		} else if (var0 == 8222) {
+			var1 = -124;
+		} else if (var0 == 8230) {
+			var1 = -123;
+		} else if (var0 == 8224) {
+			var1 = -122;
+		} else if (var0 == 8225) {
+			var1 = -121;
+		} else if (var0 == 710) {
+			var1 = -120;
+		} else if (var0 == 8240) {
+			var1 = -119;
+		} else if (var0 == 352) {
+			var1 = -118;
+		} else if (var0 == 8249) {
+			var1 = -117;
+		} else if (var0 == 338) {
+			var1 = -116;
+		} else if (var0 == 381) {
+			var1 = -114;
+		} else if (var0 == 8216) {
+			var1 = -111;
+		} else if (var0 == 8217) {
+			var1 = -110;
+		} else if (var0 == 8220) {
+			var1 = -109;
+		} else if (var0 == 8221) {
+			var1 = -108;
+		} else if (var0 == 8226) {
+			var1 = -107;
+		} else if (var0 == 8211) {
+			var1 = -106;
+		} else if (var0 == 8212) {
+			var1 = -105;
+		} else if (var0 == 732) {
+			var1 = -104;
+		} else if (var0 == 8482) {
+			var1 = -103;
+		} else if (var0 == 353) {
+			var1 = -102;
+		} else if (var0 == 8250) {
+			var1 = -101;
+		} else if (var0 == 339) {
+			var1 = -100;
+		} else if (var0 == 382) {
+			var1 = -98;
+		} else if (var0 == 376) {
+			var1 = -97;
 		} else {
-			File var1 = (File)FileSystem.FileSystem_cacheFiles.get(var0);
-			if (var1 != null) {
-				return var1;
-			} else {
-				File var2 = new File(FileSystem.FileSystem_cacheDir, var0);
-				RandomAccessFile var3 = null;
-
-				try {
-					File var4 = new File(var2.getParent());
-					if (!var4.exists()) {
-						throw new RuntimeException("");
-					} else {
-						var3 = new RandomAccessFile(var2, "rw");
-						int var5 = var3.read();
-						var3.seek(0L);
-						var3.write(var5);
-						var3.seek(0L);
-						var3.close();
-						FileSystem.FileSystem_cacheFiles.put(var0, var2);
-						return var2;
-					}
-				} catch (Exception var8) {
-					try {
-						if (var3 != null) {
-							var3.close();
-							var3 = null;
-						}
-					} catch (Exception var7) {
-					}
-
-					throw new RuntimeException();
-				}
-			}
-		}
-	}
-
-	@ObfuscatedName("t")
-	@ObfuscatedSignature(
-		signature = "(III)I",
-		garbageValue = "184774945"
-	)
-	@Export("ItemContainer_getCount")
-	static int ItemContainer_getCount(int var0, int var1) {
-		ItemContainer var2 = (ItemContainer)ItemContainer.itemContainers.get((long)var0);
-		if (var2 == null) {
-			return 0;
-		} else {
-			return var1 >= 0 && var1 < var2.quantities.length ? var2.quantities[var1] : 0;
-		}
-	}
-
-	@ObfuscatedName("ar")
-	@ObfuscatedSignature(
-		signature = "(IB)I",
-		garbageValue = "-49"
-	)
-	static int method3499(int var0) {
-		return (int)((Math.log((double)var0) / Interpreter.field1097 - 7.0D) * 256.0D);
-	}
-
-	@ObfuscatedName("fu")
-	@ObfuscatedSignature(
-		signature = "(ZB)V",
-		garbageValue = "-62"
-	)
-	static final void method3497(boolean var0) {
-		if (var0) {
-			Client.field682 = Login.field1185 ? class160.field1996 : class160.field1995;
-		} else {
-			LinkedHashMap var1 = WorldMapSection2.clientPreferences.parameters;
-			String var3 = Login.Login_username;
-			int var4 = var3.length();
-			int var5 = 0;
-
-			for (int var6 = 0; var6 < var4; ++var6) {
-				var5 = (var5 << 5) - var5 + var3.charAt(var6);
-			}
-
-			Client.field682 = var1.containsKey(var5) ? class160.field1994 : class160.field1993;
+			var1 = 63;
 		}
 
+		return var1;
 	}
 
-	@ObfuscatedName("fv")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "762095007"
+		signature = "(Lic;Lic;ZLko;S)V",
+		garbageValue = "22791"
 	)
-	@Export("playPcmPlayers")
-	static final void playPcmPlayers() {
-		if (class43.pcmPlayer1 != null) {
-			class43.pcmPlayer1.run();
+	public static void method3548(AbstractArchive var0, AbstractArchive var1, boolean var2, Font var3) {
+		VarcInt.ItemDefinition_archive = var0;
+		ItemComposition.ItemDefinition_modelArchive = var1;
+		SoundCache.ItemDefinition_inMembersWorld = var2;
+		HitSplatDefinition.ItemDefinition_fileCount = VarcInt.ItemDefinition_archive.getGroupFileCount(10);
+		class234.ItemDefinition_fontPlain11 = var3;
+	}
+
+	@ObfuscatedName("if")
+	@ObfuscatedSignature(
+		signature = "(Lhd;IIZS)V",
+		garbageValue = "1700"
+	)
+	@Export("alignWidgetSize")
+	static void alignWidgetSize(Widget var0, int var1, int var2, boolean var3) {
+		int var4 = var0.width;
+		int var5 = var0.height;
+		if (var0.widthAlignment == 0) {
+			var0.width = var0.rawWidth;
+		} else if (var0.widthAlignment == 1) {
+			var0.width = var1 - var0.rawWidth;
+		} else if (var0.widthAlignment == 2) {
+			var0.width = var0.rawWidth * var1 >> 14;
 		}
 
-		if (WorldMapLabelSize.pcmPlayer0 != null) {
-			WorldMapLabelSize.pcmPlayer0.run();
+		if (var0.heightAlignment == 0) {
+			var0.height = var0.rawHeight;
+		} else if (var0.heightAlignment == 1) {
+			var0.height = var2 - var0.rawHeight;
+		} else if (var0.heightAlignment == 2) {
+			var0.height = var2 * var0.rawHeight >> 14;
+		}
+
+		if (var0.widthAlignment == 4) {
+			var0.width = var0.field2741 * var0.height / var0.field2641;
+		}
+
+		if (var0.heightAlignment == 4) {
+			var0.height = var0.width * var0.field2641 / var0.field2741;
+		}
+
+		if (var0.contentType == 1337) {
+			Client.viewportWidget = var0;
+		}
+
+		if (var3 && var0.onResize != null && (var4 != var0.width || var5 != var0.height)) {
+			ScriptEvent var6 = new ScriptEvent();
+			var6.widget = var0;
+			var6.args = var0.onResize;
+			Client.scriptEvents.addFirst(var6);
 		}
 
 	}

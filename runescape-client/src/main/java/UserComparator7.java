@@ -4,15 +4,21 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ed")
+@ObfuscatedName("fk")
 @Implements("UserComparator7")
 public class UserComparator7 extends AbstractUserComparator {
-	@ObfuscatedName("p")
-	@ObfuscatedGetter(
-		intValue = -625495169
-	)
-	static int field1978;
 	@ObfuscatedName("c")
+	@ObfuscatedGetter(
+		intValue = -221140543
+	)
+	static int field2003;
+	@ObfuscatedName("dv")
+	@ObfuscatedSignature(
+		signature = "Lig;"
+	)
+	@Export("archive6")
+	static Archive archive6;
+	@ObfuscatedName("m")
 	@Export("reversed")
 	final boolean reversed;
 
@@ -20,10 +26,10 @@ public class UserComparator7 extends AbstractUserComparator {
 		this.reversed = var1;
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		signature = "(Lje;Lje;I)I",
-		garbageValue = "1453601865"
+		signature = "(Lkx;Lkx;B)I",
+		garbageValue = "-76"
 	)
 	@Export("compareBuddy")
 	int compareBuddy(Buddy var1, Buddy var2) {
@@ -38,12 +44,75 @@ public class UserComparator7 extends AbstractUserComparator {
 		return this.compareBuddy((Buddy)var1, (Buddy)var2);
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "941993017"
+		signature = "(Ljava/lang/CharSequence;I)Z",
+		garbageValue = "-71116023"
 	)
-	public static void method3481() {
-		StructDefinition.StructDefinition_cached.clear();
+	@Export("isNumber")
+	public static boolean isNumber(CharSequence var0) {
+		boolean var2 = false;
+		boolean var3 = false;
+		int var4 = 0;
+		int var5 = var0.length();
+		int var6 = 0;
+
+		boolean var1;
+		while (true) {
+			if (var6 >= var5) {
+				var1 = var3;
+				break;
+			}
+
+			label84: {
+				char var7 = var0.charAt(var6);
+				if (var6 == 0) {
+					if (var7 == '-') {
+						var2 = true;
+						break label84;
+					}
+
+					if (var7 == '+') {
+						break label84;
+					}
+				}
+
+				int var9;
+				if (var7 >= '0' && var7 <= '9') {
+					var9 = var7 - '0';
+				} else if (var7 >= 'A' && var7 <= 'Z') {
+					var9 = var7 - '7';
+				} else {
+					if (var7 < 'a' || var7 > 'z') {
+						var1 = false;
+						break;
+					}
+
+					var9 = var7 - 'W';
+				}
+
+				if (var9 >= 10) {
+					var1 = false;
+					break;
+				}
+
+				if (var2) {
+					var9 = -var9;
+				}
+
+				int var8 = var9 + var4 * 10;
+				if (var4 != var8 / 10) {
+					var1 = false;
+					break;
+				}
+
+				var4 = var8;
+				var3 = true;
+			}
+
+			++var6;
+		}
+
+		return var1;
 	}
 }

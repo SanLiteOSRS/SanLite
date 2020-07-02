@@ -30,14 +30,15 @@ import java.util.Arrays;
 import javax.inject.Inject;
 import net.runelite.api.Client;
 import net.runelite.api.GameState;
-import net.runelite.api.Sprite;
-import net.runelite.client.events.ConfigChanged;
+import net.runelite.api.ScriptID;
+import net.runelite.api.SpritePixels;
 import net.runelite.api.events.GameStateChanged;
-import net.runelite.api.events.WidgetHiddenChanged;
+import net.runelite.api.events.ScriptPostFired;
 import net.runelite.api.widgets.Widget;
 import net.runelite.api.widgets.WidgetInfo;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
+import net.runelite.client.events.ConfigChanged;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 
@@ -56,7 +57,7 @@ public class MinimapPlugin extends Plugin
 	@Inject
 	private MinimapConfig config;
 
-	private Sprite[] originalDotSprites;
+	private SpritePixels[] originalDotSprites;
 
 	@Provides
 	private MinimapConfig provideConfig(ConfigManager configManager)
@@ -107,9 +108,12 @@ public class MinimapPlugin extends Plugin
 	}
 
 	@Subscribe
-	public void onWidgetHiddenChanged(WidgetHiddenChanged event)
+	public void onScriptPostFired(ScriptPostFired scriptPostFired)
 	{
-		updateMinimapWidgetVisibility(config.hideMinimap());
+		if (scriptPostFired.getScriptId() == ScriptID.TOPLEVEL_REDRAW)
+		{
+			updateMinimapWidgetVisibility(config.hideMinimap());
+		}
 	}
 
 	private void updateMinimapWidgetVisibility(boolean enable)
@@ -138,7 +142,7 @@ public class MinimapPlugin extends Plugin
 
 	private void replaceMapDots()
 	{
-		Sprite[] mapDots = client.getMapDots();
+		SpritePixels[] mapDots = client.getMapDots();
 
 		if (mapDots == null)
 		{
@@ -160,13 +164,13 @@ public class MinimapPlugin extends Plugin
 		colors[2] = config.playerColor();
 		colors[3] = config.friendColor();
 		colors[4] = config.teamColor();
-		colors[5] = config.clanColor();
+		colors[5] = config.friendsChatColor();
 		return colors;
 	}
 
 	private void storeOriginalDots()
 	{
-		Sprite[] originalDots = client.getMapDots();
+		SpritePixels[] originalDots = client.getMapDots();
 
 		if (originalDots == null)
 		{
@@ -178,7 +182,7 @@ public class MinimapPlugin extends Plugin
 
 	private void restoreOriginalDots()
 	{
-		Sprite[] mapDots = client.getMapDots();
+		SpritePixels[] mapDots = client.getMapDots();
 
 		if (originalDotSprites == null || mapDots == null)
 		{

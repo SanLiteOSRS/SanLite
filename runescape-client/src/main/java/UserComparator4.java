@@ -1,17 +1,13 @@
-import java.io.IOException;
 import java.util.Comparator;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ez")
+@ObfuscatedName("fc")
 @Implements("UserComparator4")
 public class UserComparator4 implements Comparator {
-	@ObfuscatedName("r")
-	@Export("userHomeDirectory")
-	public static String userHomeDirectory;
-	@ObfuscatedName("c")
+	@ObfuscatedName("m")
 	@Export("reversed")
 	final boolean reversed;
 
@@ -19,93 +15,136 @@ public class UserComparator4 implements Comparator {
 		this.reversed = var1;
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		signature = "(Lje;Lje;I)I",
-		garbageValue = "-1549144493"
+		signature = "(Lkx;Lkx;I)I",
+		garbageValue = "-1314738925"
 	)
 	@Export("compare_bridged")
 	int compare_bridged(Buddy var1, Buddy var2) {
 		return this.reversed ? var1.int2 - var2.int2 : var2.int2 - var1.int2;
 	}
 
-	public boolean equals(Object var1) {
-		return super.equals(var1);
-	}
-
 	public int compare(Object var1, Object var2) {
 		return this.compare_bridged((Buddy)var1, (Buddy)var2);
 	}
 
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "80"
-	)
-	static void method3451() {
-		if (TaskHandler.javaVendor.toLowerCase().indexOf("microsoft") != -1) {
-			KeyHandler.KeyHandler_keyCodes[186] = 57;
-			KeyHandler.KeyHandler_keyCodes[187] = 27;
-			KeyHandler.KeyHandler_keyCodes[188] = 71;
-			KeyHandler.KeyHandler_keyCodes[189] = 26;
-			KeyHandler.KeyHandler_keyCodes[190] = 72;
-			KeyHandler.KeyHandler_keyCodes[191] = 73;
-			KeyHandler.KeyHandler_keyCodes[192] = 58;
-			KeyHandler.KeyHandler_keyCodes[219] = 42;
-			KeyHandler.KeyHandler_keyCodes[220] = 74;
-			KeyHandler.KeyHandler_keyCodes[221] = 43;
-			KeyHandler.KeyHandler_keyCodes[222] = 59;
-			KeyHandler.KeyHandler_keyCodes[223] = 28;
-		} else {
-			KeyHandler.KeyHandler_keyCodes[44] = 71;
-			KeyHandler.KeyHandler_keyCodes[45] = 26;
-			KeyHandler.KeyHandler_keyCodes[46] = 72;
-			KeyHandler.KeyHandler_keyCodes[47] = 73;
-			KeyHandler.KeyHandler_keyCodes[59] = 57;
-			KeyHandler.KeyHandler_keyCodes[61] = 27;
-			KeyHandler.KeyHandler_keyCodes[91] = 42;
-			KeyHandler.KeyHandler_keyCodes[92] = 74;
-			KeyHandler.KeyHandler_keyCodes[93] = 43;
-			KeyHandler.KeyHandler_keyCodes[192] = 28;
-			KeyHandler.KeyHandler_keyCodes[222] = 58;
-			KeyHandler.KeyHandler_keyCodes[520] = 59;
-		}
-
+	public boolean equals(Object var1) {
+		return super.equals(var1);
 	}
 
 	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		signature = "(IIB)I",
-		garbageValue = "0"
+		signature = "(Lgn;Llb;I)Lgj;",
+		garbageValue = "527815306"
 	)
-	static final int method3450(int var0, int var1) {
-		int var2 = class289.method5358(var0 - 1, var1 - 1) + class289.method5358(var0 + 1, var1 - 1) + class289.method5358(var0 - 1, 1 + var1) + class289.method5358(1 + var0, var1 + 1);
-		int var3 = class289.method5358(var0 - 1, var1) + class289.method5358(1 + var0, var1) + class289.method5358(var0, var1 - 1) + class289.method5358(var0, var1 + 1);
-		int var4 = class289.method5358(var0, var1);
-		return var2 / 16 + var3 / 8 + var4 / 4;
+	@Export("getPacketBufferNode")
+	public static PacketBufferNode getPacketBufferNode(ClientPacket var0, IsaacCipher var1) {
+		PacketBufferNode var2;
+		if (PacketBufferNode.PacketBufferNode_packetBufferNodeCount == 0) {
+			var2 = new PacketBufferNode();
+		} else {
+			var2 = PacketBufferNode.PacketBufferNode_packetBufferNodes[--PacketBufferNode.PacketBufferNode_packetBufferNodeCount];
+		}
+
+		var2.clientPacket = var0;
+		var2.clientPacketLength = var0.length;
+		if (var2.clientPacketLength == -1) {
+			var2.packetBuffer = new PacketBuffer(260);
+		} else if (var2.clientPacketLength == -2) {
+			var2.packetBuffer = new PacketBuffer(10000);
+		} else if (var2.clientPacketLength <= 18) {
+			var2.packetBuffer = new PacketBuffer(20);
+		} else if (var2.clientPacketLength <= 98) {
+			var2.packetBuffer = new PacketBuffer(100);
+		} else {
+			var2.packetBuffer = new PacketBuffer(260);
+		}
+
+		var2.packetBuffer.setIsaacCipher(var1);
+		var2.packetBuffer.writeByteIsaac(var2.clientPacket.id);
+		var2.index = 0;
+		return var2;
 	}
 
-	@ObfuscatedName("hp")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		signature = "(ZI)V",
-		garbageValue = "1183662404"
+		signature = "(Lic;Lic;Lic;Lic;B)V",
+		garbageValue = "-47"
 	)
-	static final void method3442(boolean var0) {
-		UserComparator3.playPcmPlayers();
-		++Client.packetWriter.pendingWrites;
-		if (Client.packetWriter.pendingWrites >= 50 || var0) {
-			Client.packetWriter.pendingWrites = 0;
-			if (!Client.field800 && Client.packetWriter.getSocket() != null) {
-				PacketBufferNode var1 = TilePaint.getPacketBufferNode(ClientPacket.field2247, Client.packetWriter.isaacCipher);
-				Client.packetWriter.addNode(var1);
+	public static void method3495(AbstractArchive var0, AbstractArchive var1, AbstractArchive var2, AbstractArchive var3) {
+		Widget.Widget_archive = var0;
+		SecureRandomCallable.Widget_modelsArchive = var1;
+		class349.Widget_spritesArchive = var2;
+		WorldMapLabel.Widget_fontsArchive = var3;
+		Widget.Widget_interfaceComponents = new Widget[Widget.Widget_archive.getGroupCount()][];
+		UserComparator6.Widget_loadedInterfaces = new boolean[Widget.Widget_archive.getGroupCount()];
+	}
 
-				try {
-					Client.packetWriter.flush();
-				} catch (IOException var3) {
-					Client.field800 = true;
+	@ObfuscatedName("j")
+	@ObfuscatedSignature(
+		signature = "(II)Z",
+		garbageValue = "-2121734057"
+	)
+	@Export("loadInterface")
+	public static boolean loadInterface(int var0) {
+		if (UserComparator6.Widget_loadedInterfaces[var0]) {
+			return true;
+		} else if (!Widget.Widget_archive.tryLoadGroup(var0)) {
+			return false;
+		} else {
+			int var1 = Widget.Widget_archive.getGroupFileCount(var0);
+			if (var1 == 0) {
+				UserComparator6.Widget_loadedInterfaces[var0] = true;
+				return true;
+			} else {
+				if (Widget.Widget_interfaceComponents[var0] == null) {
+					Widget.Widget_interfaceComponents[var0] = new Widget[var1];
 				}
-			}
 
+				for (int var2 = 0; var2 < var1; ++var2) {
+					if (Widget.Widget_interfaceComponents[var0][var2] == null) {
+						byte[] var3 = Widget.Widget_archive.takeFile(var0, var2);
+						if (var3 != null) {
+							Widget.Widget_interfaceComponents[var0][var2] = new Widget();
+							Widget.Widget_interfaceComponents[var0][var2].id = var2 + (var0 << 16);
+							if (var3[0] == -1) {
+								Widget.Widget_interfaceComponents[var0][var2].decode(new Buffer(var3));
+							} else {
+								Widget.Widget_interfaceComponents[var0][var2].decodeLegacy(new Buffer(var3));
+							}
+						}
+					}
+				}
+
+				UserComparator6.Widget_loadedInterfaces[var0] = true;
+				return true;
+			}
+		}
+	}
+
+	@ObfuscatedName("at")
+	@ObfuscatedSignature(
+		signature = "(II)V",
+		garbageValue = "1503044626"
+	)
+	@Export("runWidgetOnLoadListener")
+	static void runWidgetOnLoadListener(int var0) {
+		if (var0 != -1) {
+			if (loadInterface(var0)) {
+				Widget[] var1 = Widget.Widget_interfaceComponents[var0];
+
+				for (int var2 = 0; var2 < var1.length; ++var2) {
+					Widget var3 = var1[var2];
+					if (var3.onLoad != null) {
+						ScriptEvent var4 = new ScriptEvent();
+						var4.widget = var3;
+						var4.args = var3.onLoad;
+						WorldMapLabel.runScript(var4, 5000000);
+					}
+				}
+
+			}
 		}
 	}
 }

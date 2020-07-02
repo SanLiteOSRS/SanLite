@@ -36,9 +36,9 @@ import net.runelite.api.events.MenuEntryAdded;
 import net.runelite.api.events.PlayerDespawned;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
+import net.runelite.client.game.FriendChatManager;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
-import net.runelite.client.plugins.PluginType;
 import net.runelite.client.ui.overlay.OverlayManager;
 import net.runelite.client.util.ColorUtil;
 import net.runelite.client.util.Text;
@@ -53,9 +53,8 @@ import static net.runelite.api.MenuAction.*;
 @PluginDescriptor(
 		name = "Clan Caller Indicators",
 		description = "Highlight players that your clans caller is hitting",
-		tags = {"highlight", "minimap", "overlay", "players", "clan", "caller", "pile", "rsb", "rsc"},
-		enabledByDefault = false,
-		type = PluginType.SANLITE_USE_AT_OWN_RISK
+		tags = {"highlight", "minimap", "overlay", "players", "clan", "caller", "pile", "rsb", "rsc", "sanlite"},
+		enabledByDefault = false
 )
 
 @Singleton
@@ -78,6 +77,9 @@ public class ClanCallerPlugin extends Plugin
 
 	@Inject
 	private Client client;
+
+	@Inject
+	private FriendChatManager friendsChatManager;
 
 	@Getter
 	private List<Player> callersList = new ArrayList<>();
@@ -116,28 +118,36 @@ public class ClanCallerPlugin extends Plugin
 		pilesList.clear();
 		for (Player player : client.getPlayers())
 		{
-			//Checks if player is currently a caller or pile
-			if (!callersList.contains(player.getName()) && !pilesList.contains(player.getName()))
+			String name = player.getName();
+
+			// Checks if player is currently a caller or pile
+			if (!callersList.contains(player) && !pilesList.contains(player))
 			{
-				//If it is a clan member, it can only be a caller
-				if (client.isClanMember(player.getName()))
+				// If it is a clan member, it can only be a caller
+				if (friendsChatManager.isMember(name))
 				{
 					for (String caller : callersListString)
 					{
-						if (caller.equals(player.getName()) && !callersList.contains(player))
+						if (caller.equals(name) && !callersList.contains(player))
 						{
 							callersList.add(player);
 						}
 					}
 				}
-				//If it is not a clan member, it can only be a pile
-				else if (!client.isClanMember(player.getName()))
+				// If it is not a clan member, it can only be a pile
+				else if (!friendsChatManager.isMember(name))
 				{
 					for (Player caller : callersList)
 					{
 						if (caller.getInteracting() != null)
 						{
-							if (caller.getInteracting().getName().equals(player.getName()))
+							String callerName = caller.getInteracting().getName();
+							if (callerName == null)
+							{
+								continue;
+							}
+
+							if (callerName.equals(name))
 							{
 								pilesList.add(player);
 							}

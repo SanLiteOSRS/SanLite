@@ -28,7 +28,6 @@ import java.io.File;
 import net.runelite.asm.ClassGroup;
 import net.runelite.deob.DeobTestProperties;
 import net.runelite.deob.util.JarUtil;
-import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -38,7 +37,6 @@ public class ExecutionTest
 	public DeobTestProperties properties = new DeobTestProperties();
 
 	@Test
-	@Ignore
 	public void test() throws Exception
 	{
 		ClassGroup group1 = JarUtil.loadJar(new File(properties.getVanillaClient()));

@@ -29,13 +29,8 @@ import net.runelite.api.mixins.Inject;
 import net.runelite.api.mixins.Mixin;
 import net.runelite.api.mixins.Replace;
 import net.runelite.api.mixins.Shadow;
-import net.runelite.rs.api.RSActor;
-import net.runelite.rs.api.RSClient;
-import net.runelite.rs.api.RSEntity;
-import net.runelite.rs.api.RSNPC;
-import net.runelite.rs.api.RSPlayer;
-import net.runelite.rs.api.RSProjectile;
-import net.runelite.rs.api.RSScene;
+import net.runelite.rs.api.*;
+import net.runelite.rs.api.RSRenderable;
 
 @Mixin(RSScene.class)
 public abstract class EntityHiderMixin implements RSScene
@@ -55,8 +50,8 @@ public abstract class EntityHiderMixin implements RSScene
 	@Shadow("hideFriends")
 	private static boolean hideFriends;
 
-	@Shadow("hideClanMates")
-	private static boolean hideClanMates;
+	@Shadow("hideFriendsChatMembers")
+	private static boolean hideFriendsChatMembers;
 
 	@Shadow("hideLocalPlayer")
 	private static boolean hideLocalPlayer;
@@ -80,10 +75,10 @@ public abstract class EntityHiderMixin implements RSScene
 	private static boolean hideProjectiles;
 
 	@Copy("newGameObject")
-	abstract boolean addEntityMarker(int var1, int var2, int var3, int var4, int var5, int x, int y, int var8, RSEntity entity, int var10, boolean var11, long var12, int var13);
+	abstract boolean addEntityMarker(int var1, int var2, int var3, int var4, int var5, int x, int y, int var8, RSRenderable entity, int var10, boolean var11, long var12, int var13);
 
 	@Replace("newGameObject")
-	boolean rl$addEntityMarker(int var1, int var2, int var3, int var4, int var5, int x, int y, int var8, RSEntity entity, int var10, boolean var11, long var12, int var13)
+	boolean rl$addEntityMarker(int var1, int var2, int var3, int var4, int var5, int x, int y, int var8, RSRenderable entity, int var10, boolean var11, long var12, int var13)
 	{
 		final boolean shouldDraw = shouldDraw(entity, false);
 
@@ -148,7 +143,7 @@ public abstract class EntityHiderMixin implements RSScene
 					return false;
 				}
 
-				return (!hideFriends && player.isFriend()) || (!isLocalPlayer && !hideClanMates && player.isClanMember());
+				return (!hideFriends && player.isFriend()) || (!isLocalPlayer && !hideFriendsChatMembers && player.isFriendsChatMember());
 			}
 		}
 		else if (entity instanceof RSNPC)
@@ -165,7 +160,7 @@ public abstract class EntityHiderMixin implements RSScene
 
 			if (hidePets)
 			{
-				if (npc.getDefinition().isFollower())
+				if (npc.getComposition().isFollower())
 				{
 					return false;
 				}

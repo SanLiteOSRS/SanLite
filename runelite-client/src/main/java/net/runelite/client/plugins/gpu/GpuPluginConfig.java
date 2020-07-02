@@ -28,23 +28,22 @@ import net.runelite.client.config.Config;
 import net.runelite.client.config.ConfigGroup;
 import net.runelite.client.config.ConfigItem;
 import net.runelite.client.config.Range;
-import net.runelite.client.plugins.gpu.config.AntiAliasingMode;
-import net.runelite.client.plugins.gpu.config.UIScalingMode;
-
-import static net.runelite.client.plugins.gpu.GpuPlugin.MAX_DISTANCE;
 import static net.runelite.client.plugins.gpu.GpuPlugin.MAX_FOG_DEPTH;
+import net.runelite.client.plugins.gpu.config.AntiAliasingMode;
+import static net.runelite.client.plugins.gpu.GpuPlugin.MAX_DISTANCE;
+import net.runelite.client.plugins.gpu.config.UIScalingMode;
 
 @ConfigGroup("gpu")
 public interface GpuPluginConfig extends Config
 {
 	@Range(
-			max = MAX_DISTANCE
+		max = MAX_DISTANCE
 	)
 	@ConfigItem(
-			keyName = "drawDistance",
-			name = "Draw Distance",
-			description = "Draw distance",
-			position = 1
+		keyName = "drawDistance",
+		name = "Draw Distance",
+		description = "Draw distance",
+		position = 1
 	)
 	default int drawDistance()
 	{
@@ -52,10 +51,10 @@ public interface GpuPluginConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "smoothBanding",
-			name = "Remove Color Banding",
-			description = "Smooths out the color banding that is present in the CPU renderer",
-			position = 2
+		keyName = "smoothBanding",
+		name = "Remove Color Banding",
+		description = "Smooths out the color banding that is present in the CPU renderer",
+		position = 2
 	)
 	default boolean smoothBanding()
 	{
@@ -63,10 +62,10 @@ public interface GpuPluginConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "antiAliasingMode",
-			name = "Anti Aliasing",
-			description = "Configures the anti-aliasing mode",
-			position = 3
+		keyName = "antiAliasingMode",
+		name = "Anti Aliasing",
+		description = "Configures the anti-aliasing mode",
+		position = 3
 	)
 	default AntiAliasingMode antiAliasingMode()
 	{
@@ -74,28 +73,39 @@ public interface GpuPluginConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "uiScalingMode",
-			name = "UI scaling mode",
-			description = "Sampling function to use for the UI. May look better using a higher resizable scaling %" +
-					" in the stretched mode plugin",
-			position = 4
+		keyName = "uiScalingMode",
+		name = "UI scaling mode",
+		description = "Sampling function to use for the UI in stretched mode",
+		position = 4
 	)
 	default UIScalingMode uiScalingMode()
 	{
-		return UIScalingMode.CATMULL_ROM;
+		return UIScalingMode.LINEAR;
 	}
 
 	@Range(
-			max = MAX_FOG_DEPTH
+		max = MAX_FOG_DEPTH
 	)
 	@ConfigItem(
-			keyName = "fogDepth",
-			name = "Fog depth",
-			description = "Distance from the scene edge the fog starts",
-			position = 5
+		keyName = "fogDepth",
+		name = "Fog depth",
+		description = "Distance from the scene edge the fog starts",
+		position = 5
 	)
 	default int fogDepth()
 	{
 		return 0;
+	}
+
+	@ConfigItem(
+		keyName = "useComputeShaders",
+		name = "Compute Shaders",
+		description = "Offloads face sorting to GPU, enabling extended draw distance. Requires plugin restart.",
+		warning = "This feature requires OpenGL 4.3 to use. Please check that your GPU supports this.\nRestart the plugin for changes to take effect.",
+		position = 6
+	)
+	default boolean useComputeShaders()
+	{
+		return true;
 	}
 }

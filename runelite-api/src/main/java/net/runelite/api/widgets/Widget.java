@@ -26,11 +26,9 @@ package net.runelite.api.widgets;
 
 import java.awt.Rectangle;
 import java.util.Collection;
-
 import net.runelite.api.FontTypeFace;
 import net.runelite.api.Point;
-import net.runelite.api.Sprite;
-import net.runelite.api.SpriteID;
+import net.runelite.api.SpritePixels;
 
 /**
  * Represents an on-screen UI element that is drawn on the canvas.
@@ -245,32 +243,131 @@ public interface Widget
 	void setName(String name);
 
 	/**
-	 * Gets the model ID displayed in the widget.
+	 * Gets the Model/NPC/Item ID displayed in the widget.
 	 *
-	 * @return the model ID
+	 * @see WidgetModelType
 	 */
 	int getModelId();
 
 	/**
-	 * Sets the model ID displayed in the widget
+	 * Sets the Model/NPC/Item ID displayed in the widget.
 	 *
-	 * @param modelId the new model ID
+	 * @see WidgetModelType
 	 */
-	void setModelId(int modelId);
+	void setModelId(int id);
+
+	/**
+	 * Gets the model type of the widget.
+	 *
+	 * @see WidgetModelType
+	 */
+	int getModelType();
+
+	/**
+	 * Sets the model type of the widget.
+	 *
+	 * @param type the new model type
+	 * @see WidgetModelType
+	 */
+	void setModelType(int type);
+
+	/**
+	 * Gets the sequence ID used to animate the model in the widget
+	 *
+	 * @see net.runelite.api.AnimationID
+	 */
+	int getAnimationId();
+
+	/**
+	 * Sets the sequence ID used to animate the model in the widget
+	 *
+	 * @see net.runelite.api.AnimationID
+	 */
+	void setAnimationId(int animationId);
+
+	/**
+	 * Gets the x rotation of the model displayed in the widget.
+	 * 0 = no rotation, 2047 = full rotation
+	 */
+	int getRotationX();
+
+	/**
+	 * Sets the x rotation of the model displayed in the widget.
+	 * <br>
+	 * Note: Setting this value outside of the input range defined by {@link Widget#getRotationX()} will cause a client
+	 *       crash.
+	 *
+	 * @param modelX the new model x rotation value
+	 */
+	void setRotationX(int modelX);
+
+	/**
+	 * Gets the y rotation of the model displayed in the widget.
+	 * 0 = no rotation, 2047 = full rotation
+	 */
+	int getRotationY();
+
+	/**
+	 * Sets the y rotation of the model displayed in the widget.
+	 * <br>
+	 * Note: Setting this value outside of the input range defined by {@link Widget#getRotationY()} will cause a client
+	 *       crash.
+	 *
+	 * @param modelY the new model y rotation value
+	 */
+	void setRotationY(int modelY);
+
+	/**
+	 * Gets the z rotation of the model displayed in the widget.
+	 * 0 = no rotation, 2047 = full rotation
+	 */
+	int getRotationZ();
+
+	/**
+	 * Sets the z rotation of the model displayed in the widget.
+	 * <br>
+	 * Note: Setting this value outside of the input range defined by {@link Widget#getRotationZ()} will cause a client
+	 *       crash.
+	 *
+	 * @param modelZ the new model z rotation value
+	 */
+	void setRotationZ(int modelZ);
+
+	/**
+	 * Gets the amount zoomed in on the model displayed in the widget.
+	 */
+	int getModelZoom();
+
+	/**
+	 * Sets the amount zoomed in on the model displayed in the widget.
+	 *
+	 * @param modelZoom the new model zoom value
+	 */
+	void setModelZoom(int modelZoom);
 
 	/**
 	 * Gets the sprite ID displayed in the widget.
 	 *
 	 * @return the sprite ID
-	 * @see SpriteID
+	 * @see net.runelite.api.SpriteID
 	 */
 	int getSpriteId();
+
+	/**
+	 * Gets if sprites are repeated or stretched
+	 */
+	boolean getSpriteTiling();
+
+	/**
+	 * Sets if sprites are repeated or stretched
+	 */
+	void setSpriteTiling(boolean tiling);
 
 	/**
 	 * Sets the sprite ID displayed in the widget.
 	 *
 	 * @param spriteId the sprite ID
-	 * @see SpriteID
+	 * @see net.runelite.api.SpriteID
 	 */
 	void setSpriteId(int spriteId);
 
@@ -302,62 +399,6 @@ public interface Widget
 	 * The index of this widget in it's parent's children array
 	 */
 	int getIndex();
-
-	/**
-	 * Gets the x rotation of the model displayed in the widget
-	 *
-	 * @return the x rotation
-	 */
-	int getRotationX();
-
-	/**
-	 * Sets the x rotation of the model displayed in the widget
-	 *
-	 * @param rotationX 0 = no rotation, 2047 = full rotation, outside range = crash
-	 */
-	void setRotationX(int rotationX);
-
-	/**
-	 * Gets the y rotation of the model displayed in the widget
-	 *
-	 * @return the y rotation
-	 */
-	int getRotationY();
-
-	/**
-	 * Sets the y rotation of the model displayed in the widget
-	 *
-	 * @param rotationY 0 = no rotation, 2047 = full rotation, outside range = crash
-	 */
-	void setRotationY(int rotationY);
-
-	/**
-	 * Gets the z rotation of the model displayed in the widget
-	 *
-	 * @return the z rotation
-	 */
-	int getRotationZ();
-
-	/**
-	 * Sets the z rotation of the model displayed in the widget
-	 *
-	 * @param rotationZ 0 = no rotation, 2047 = full rotation, outside range = crash
-	 */
-	void setRotationZ(int rotationZ);
-
-	/**
-	 * Gets the amount zoomed in on the model displayed in the widget
-	 *
-	 * @return the amount zoomed in
-	 */
-	int getModelZoom();
-
-	/**
-	 * Sets the amount zoomed in on the model displayed in the widget
-	 *
-	 * @param modelZoom the new zoom amount
-	 */
-	void setModelZoom(int modelZoom);
 
 	/**
 	 * Gets the location the widget is being drawn on the canvas.
@@ -679,18 +720,32 @@ public interface Widget
 	void revalidateScroll();
 
 	/**
-	 * Array of widget key listeners
+	 * Gets the script and arguments to be ran when a menu action is clicked.
+	 *
+	 * @return
+	 */
+	Object[] getOnOpListener();
+
+	/**
+	 * Gets the script and arguments to be ran when a key is pressed.
+	 *
+	 * @return
 	 */
 	Object[] getOnKeyListener();
 
 	/**
-	 * Array of widget load listeners
+	 * Gets the script and arguments to be ran when a interface is loaded.
+	 *
+	 * @return
 	 */
 	Object[] getOnLoadListener();
 
-	Object[] getOnInvTransmit();
-
-	Object[] getOnOp();
+	/**
+	 * Gets the script and arguments to be ran when one of the listened for inventories changes.
+	 *
+	 * @return
+	 */
+	Object[] getOnInvTransmitListener();
 
 	/**
 	 * Returns the archive id of the font used
@@ -872,7 +927,7 @@ public interface Widget
 	 */
 	void setTargetVerb(String targetVerb);
 
-	Sprite getSprite();
+	SpritePixels getSprite();
 
 	/**
 	 * Returns true if your mouse pointer is over this widget or any of its children.

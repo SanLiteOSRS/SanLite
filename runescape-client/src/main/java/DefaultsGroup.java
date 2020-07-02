@@ -4,49 +4,26 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("kn")
+@ObfuscatedName("lm")
 @Implements("DefaultsGroup")
 public class DefaultsGroup {
-	@ObfuscatedName("c")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		signature = "Lkn;"
+		signature = "Llm;"
 	)
-	static final DefaultsGroup field3793;
-	@ObfuscatedName("t")
+	static final DefaultsGroup field3822;
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = 1864717017
+		intValue = -1462614597
 	)
 	@Export("group")
 	final int group;
 
 	static {
-		field3793 = new DefaultsGroup(3);
+		field3822 = new DefaultsGroup(3);
 	}
 
 	DefaultsGroup(int var1) {
 		this.group = var1;
-	}
-
-	@ObfuscatedName("j")
-	@ObfuscatedSignature(
-		signature = "(I)Lbg;",
-		garbageValue = "310437659"
-	)
-	@Export("getNextWorldListWorld")
-	static World getNextWorldListWorld() {
-		return World.World_listCount < World.World_count ? class96.World_worlds[++World.World_listCount - 1] : null;
-	}
-
-	@ObfuscatedName("kz")
-	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-245092845"
-	)
-	static final void method5953() {
-		for (int var0 = 0; var0 < Players.Players_count; ++var0) {
-			Player var1 = Client.players[Players.Players_indices[var0]];
-			var1.clearIsInClanChat();
-		}
-
 	}
 }

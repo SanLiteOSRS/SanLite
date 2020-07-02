@@ -32,11 +32,17 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.regex.Pattern;
+import javax.annotation.Nullable;
 import javax.inject.Inject;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.*;
+import net.runelite.api.ChatMessageType;
+import net.runelite.api.Client;
+import net.runelite.api.GameObject;
+import net.runelite.api.MenuAction;
+import net.runelite.api.Player;
+import net.runelite.api.Point;
 import net.runelite.api.coords.WorldPoint;
 import net.runelite.api.events.AnimationChanged;
 import net.runelite.api.events.ChatMessage;
@@ -87,9 +93,11 @@ public class WoodcuttingPlugin extends Plugin
 	private WoodcuttingConfig config;
 
 	@Getter
+	@Nullable
 	private WoodcuttingSession session;
 
 	@Getter
+	@Nullable
 	private Axe axe;
 
 	@Getter
@@ -144,13 +152,19 @@ public class WoodcuttingPlugin extends Plugin
 
 		respawns.removeIf(TreeRespawn::isExpired);
 
-		if (session == null || session.getLastLogCut() == null)
+		if (session == null || session.getLastChopping() == null)
 		{
 			return;
 		}
 
+		if (axe != null && axe.matchesChoppingAnimation(client.getLocalPlayer()))
+		{
+			session.setLastChopping();
+			return;
+		}
+
 		Duration statTimeout = Duration.ofMinutes(config.statTimeout());
-		Duration sinceCut = Duration.between(session.getLastLogCut(), Instant.now());
+		Duration sinceCut = Duration.between(session.getLastChopping(), Instant.now());
 
 		if (sinceCut.compareTo(statTimeout) >= 0)
 		{
@@ -171,7 +185,7 @@ public class WoodcuttingPlugin extends Plugin
 					session = new WoodcuttingSession();
 				}
 
-				session.setLastLogCut();
+				session.setLastChopping();
 			}
 
 			if (event.getMessage().contains("A bird's nest falls out of the tree") && config.showNestNotification())

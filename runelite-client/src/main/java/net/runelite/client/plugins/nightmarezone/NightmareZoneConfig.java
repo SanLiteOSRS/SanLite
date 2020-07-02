@@ -35,7 +35,7 @@ public interface NightmareZoneConfig extends Config
 	@ConfigItem(
 		keyName = "moveoverlay",
 		name = "Override NMZ overlay",
-		description = "Overrides the overlay so it doesn't conflict with other SanLite plugins",
+		description = "Overrides the overlay so it doesn't conflict with other plugins",
 		position = 1
 	)
 	default boolean moveOverlay()

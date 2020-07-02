@@ -3,13 +3,13 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jh")
+@ObfuscatedName("kp")
 @Implements("Usernamed")
 public interface Usernamed {
-	@ObfuscatedName("ky")
+	@ObfuscatedName("kr")
 	@ObfuscatedSignature(
-		signature = "(I)Ljz;",
-		garbageValue = "2135870107"
+		signature = "(B)Lkq;",
+		garbageValue = "-76"
 	)
 	@Export("username")
 	Username username();

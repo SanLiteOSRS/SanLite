@@ -54,8 +54,8 @@ public class PlayerIndicatorsMinimapOverlay extends Overlay
 	@Override
 	public Dimension render(Graphics2D graphics)
 	{
-		if (!config.drawOwnPlayerMinimapName() && !config.drawFriendMinimapNames() && !config.drawClanMemberMinimapNames() &&
-				!config.drawTeamMinimapNames() && !config.drawNonClanMemberMinimapNames())
+		if (!config.drawOwnPlayerMinimapName() && !config.drawFriendMinimapNames() && !config.drawFriendsChatMemberMinimapNames() &&
+				!config.drawTeamMinimapNames() && !config.drawOthersMinimapNames())
 		{
 			return null;
 		}
@@ -74,14 +74,14 @@ public class PlayerIndicatorsMinimapOverlay extends Overlay
 			case FRIEND:
 				renderMinimapOverlay(graphics, player, config.getFriendColor(), config.drawFriendMinimapNames());
 				break;
-			case CLAN_MEMBER:
-				renderMinimapOverlay(graphics, player, config.getClanMemberColor(), config.drawClanMemberMinimapNames());
+			case FRIENDS_CHAT_MEMBERS:
+				renderMinimapOverlay(graphics, player, config.getFriendsChatMemberColor(), config.drawFriendsChatMemberMinimapNames());
 				break;
 			case TEAM_CAPE_MEMBER:
 				renderMinimapOverlay(graphics, player, config.getTeamMemberColor(), config.drawTeamMinimapNames());
 				break;
 			case NON_CLAN_MEMBER:
-				renderMinimapOverlay(graphics, player, config.getNonClanMemberColor(), config.drawNonClanMemberMinimapNames());
+				renderMinimapOverlay(graphics, player, config.getOthersColor(), config.drawOthersMinimapNames());
 				break;
 			default:
 				log.warn("Tried rendering minimap name for player: {} with unknown PlayerIndicatorType: {}", player.getName(), type);

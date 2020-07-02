@@ -29,6 +29,7 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ListMultimap;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -36,8 +37,15 @@ import java.util.Set;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.*;
-import net.runelite.api.NPCDefinition;
+import net.runelite.api.AnimationID;
+import net.runelite.api.Client;
+import net.runelite.api.ItemID;
+import net.runelite.api.NPC;
+import net.runelite.api.NPCComposition;
+import net.runelite.api.NpcID;
+import net.runelite.api.Player;
+import net.runelite.api.Tile;
+import net.runelite.api.TileItem;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.coords.WorldPoint;
 import net.runelite.api.events.AnimationChanged;
@@ -58,7 +66,7 @@ import net.runelite.client.events.PlayerLootReceived;
 public class LootManager
 {
 	private static final Map<Integer, Integer> NPC_DEATH_ANIMATIONS = ImmutableMap.of(
-			NpcID.CAVE_KRAKEN, AnimationID.CAVE_KRAKEN_DEATH
+		NpcID.CAVE_KRAKEN, AnimationID.CAVE_KRAKEN_DEATH
 	);
 
 	private final EventBus eventBus;
@@ -289,7 +297,7 @@ public class LootManager
 
 		final int x = location.getSceneX();
 		final int y = location.getSceneY();
-		final int size = npc.getDefinition().getSize();
+		final int size = npc.getComposition().getSize();
 
 		// Some NPCs drop items onto multiple tiles
 		final List<ItemStack> allItems = new ArrayList<>();
@@ -371,7 +379,7 @@ public class LootManager
 
 	private WorldPoint getAdjacentSquareLootTile(NPC npc)
 	{
-		final NPCDefinition composition = npc.getDefinition();
+		final NPCComposition composition = npc.getComposition();
 		final WorldPoint worldLocation = npc.getWorldLocation();
 		int x = worldLocation.getX();
 		int y = worldLocation.getY();
@@ -395,5 +403,26 @@ public class LootManager
 		}
 
 		return new WorldPoint(x, y, worldLocation.getPlane());
+	}
+
+	/**
+	 * Get the list of items present at the provided WorldPoint that spawned this tick.
+	 *
+	 * @param worldPoint the location in question
+	 * @return the list of item stacks
+	 */
+	public Collection<ItemStack> getItemSpawns(WorldPoint worldPoint)
+	{
+		LocalPoint localPoint = LocalPoint.fromWorld(client, worldPoint);
+		if (localPoint == null)
+		{
+			return Collections.emptyList();
+		}
+
+		final int sceneX = localPoint.getSceneX();
+		final int sceneY = localPoint.getSceneY();
+		final int packed = sceneX << 8 | sceneY;
+		final List<ItemStack> itemStacks = itemSpawns.get(packed);
+		return Collections.unmodifiableList(itemStacks);
 	}
 }

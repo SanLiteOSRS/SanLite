@@ -357,9 +357,9 @@ public class ScriptInspector extends JFrame
 	public void close()
 	{
 		configManager.setConfiguration("devtools", "highlights",
-				Text.toCSV(Lists.transform(new ArrayList<>(highlights), String::valueOf)));
+			Text.toCSV(Lists.transform(new ArrayList<>(highlights), String::valueOf)));
 		configManager.setConfiguration("devtools", "blacklist",
-				Text.toCSV(Lists.transform(new ArrayList<>(blacklist), String::valueOf)));
+			Text.toCSV(Lists.transform(new ArrayList<>(blacklist), String::valueOf)));
 		currentNode = null;
 		eventBus.unregister(this);
 		setVisible(false);
@@ -381,8 +381,8 @@ public class ScriptInspector extends JFrame
 				JLabel header = new JLabel("Tick " + tick);
 				header.setFont(FontManager.getRunescapeSmallFont());
 				header.setBorder(new CompoundBorder(
-						BorderFactory.createMatteBorder(0, 0, 1, 0, ColorScheme.LIGHT_GRAY_COLOR),
-						BorderFactory.createEmptyBorder(3, 6, 0, 0)
+					BorderFactory.createMatteBorder(0, 0, 1, 0, ColorScheme.LIGHT_GRAY_COLOR),
+					BorderFactory.createEmptyBorder(3, 6, 0, 0)
 				));
 				tracker.add(header);
 			}

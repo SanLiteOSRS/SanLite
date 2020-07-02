@@ -3,88 +3,77 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("bs")
+@ObfuscatedName("bt")
 @Implements("PendingSpawn")
 public final class PendingSpawn extends Node {
-	@ObfuscatedName("sx")
-	@ObfuscatedSignature(
-		signature = "Ld;"
-	)
-	@Export("grandExchangeEvents")
-	static GrandExchangeEvents grandExchangeEvents;
-	@ObfuscatedName("hu")
+	@ObfuscatedName("m")
 	@ObfuscatedGetter(
-		intValue = -1923954935
-	)
-	@Export("oculusOrbFocalPointX")
-	static int oculusOrbFocalPointX;
-	@ObfuscatedName("c")
-	@ObfuscatedGetter(
-		intValue = -1349370787
+		intValue = 1985828823
 	)
 	@Export("plane")
 	int plane;
-	@ObfuscatedName("t")
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = 304063961
+		intValue = -1983032759
 	)
 	@Export("type")
 	int type;
-	@ObfuscatedName("o")
+	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = -340804777
+		intValue = -1818060675
 	)
 	@Export("x")
 	int x;
-	@ObfuscatedName("e")
+	@ObfuscatedName("j")
 	@ObfuscatedGetter(
-		intValue = 1612075495
+		intValue = 1999145911
 	)
 	@Export("y")
 	int y;
-	@ObfuscatedName("i")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = 1762819513
+		intValue = 386133029
 	)
 	@Export("objectId")
 	int objectId;
 	@ObfuscatedName("g")
 	@ObfuscatedGetter(
-		intValue = 51558137
+		intValue = 1588520035
 	)
-	int field935;
-	@ObfuscatedName("d")
+	int field956;
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = 1078181875
+		intValue = 1476403807
 	)
-	int field924;
-	@ObfuscatedName("l")
+	int field957;
+	@ObfuscatedName("u")
 	@ObfuscatedGetter(
-		intValue = 869281397
+		intValue = -1658497211
 	)
 	@Export("id")
 	int id;
-	@ObfuscatedName("j")
+	@ObfuscatedName("a")
 	@ObfuscatedGetter(
-		intValue = -186510347
+		intValue = -1422873381
 	)
 	@Export("orientation")
 	int orientation;
-	@ObfuscatedName("m")
+	@ObfuscatedName("z")
 	@ObfuscatedGetter(
-		intValue = 1858623199
+		intValue = 1345962763
 	)
-	int field933;
-	@ObfuscatedName("p")
+	int field962;
+	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		intValue = -260343907
+		intValue = -577159519
 	)
 	@Export("delay")
 	int delay;
-	@ObfuscatedName("h")
+	@ObfuscatedName("y")
 	@ObfuscatedGetter(
-		intValue = 1816335395
+		intValue = 790870073
 	)
 	@Export("hitpoints")
 	int hitpoints;
@@ -94,28 +83,75 @@ public final class PendingSpawn extends Node {
 		this.hitpoints = -1;
 	}
 
-	@ObfuscatedName("d")
+	@ObfuscatedName("g")
 	@ObfuscatedSignature(
-		signature = "(I)Llt;",
-		garbageValue = "-728987489"
+		signature = "(Lic;Ljava/lang/String;Ljava/lang/String;I)[Llh;",
+		garbageValue = "574747014"
 	)
-	static Sprite method1738() {
-		Sprite var0 = new Sprite();
-		var0.width = GZipDecompressor.SpriteBuffer_spriteWidth;
-		var0.height = class326.SpriteBuffer_spriteHeight;
-		var0.xOffset = Huffman.SpriteBuffer_xOffsets[0];
-		var0.yOffset = NPC.SpriteBuffer_yOffsets[0];
-		var0.subWidth = class326.SpriteBuffer_spriteWidths[0];
-		var0.subHeight = class326.SpriteBuffer_spriteHeights[0];
-		int var1 = var0.subWidth * var0.subHeight;
-		byte[] var2 = class326.SpriteBuffer_pixels[0];
-		var0.pixels = new int[var1];
+	public static IndexedSprite[] method1806(AbstractArchive var0, String var1, String var2) {
+		int var3 = var0.getGroupId(var1);
+		int var4 = var0.getFileId(var3, var2);
+		return HealthBar.method2125(var0, var3, var4);
+	}
 
-		for (int var3 = 0; var3 < var1; ++var3) {
-			var0.pixels[var3] = class326.SpriteBuffer_spritePalette[var2[var3] & 255];
+	@ObfuscatedName("a")
+	@ObfuscatedSignature(
+		signature = "(Lhd;I[B[BI)V",
+		garbageValue = "-1571904788"
+	)
+	@Export("Widget_setKey")
+	static final void Widget_setKey(Widget var0, int var1, byte[] var2, byte[] var3) {
+		if (var0.field2647 == null) {
+			if (var2 == null) {
+				return;
+			}
+
+			var0.field2647 = new byte[11][];
+			var0.field2678 = new byte[11][];
+			var0.field2679 = new int[11];
+			var0.field2680 = new int[11];
 		}
 
-		DynamicObject.method2292();
-		return var0;
+		var0.field2647[var1] = var2;
+		if (var2 != null) {
+			var0.field2709 = true;
+		} else {
+			var0.field2709 = false;
+
+			for (int var4 = 0; var4 < var0.field2647.length; ++var4) {
+				if (var0.field2647[var4] != null) {
+					var0.field2709 = true;
+					break;
+				}
+			}
+		}
+
+		var0.field2678[var1] = var3;
+	}
+
+	@ObfuscatedName("k")
+	@ObfuscatedSignature(
+		signature = "(ILcs;ZI)I",
+		garbageValue = "556274205"
+	)
+	static int method1808(int var0, Script var1, boolean var2) {
+		Widget var3 = var2 ? KeyHandler.field407 : SecureRandomCallable.field544;
+		if (var0 == ScriptOpcodes.CC_GETINVOBJECT) {
+			Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = var3.itemId;
+			return 1;
+		} else if (var0 == ScriptOpcodes.CC_GETINVCOUNT) {
+			if (var3.itemId != -1) {
+				Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = var3.itemQuantity;
+			} else {
+				Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = 0;
+			}
+
+			return 1;
+		} else if (var0 == ScriptOpcodes.CC_GETID) {
+			Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = var3.childIndex;
+			return 1;
+		} else {
+			return 2;
+		}
 	}
 }

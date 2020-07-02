@@ -55,6 +55,15 @@ public interface RSWidget extends Widget
 	@Import("modelType")
 	int getModelType();
 
+	@Import("modelType")
+	void setModelType(int modelType);
+
+	@Import("sequenceId")
+	int getAnimationId();
+
+	@Import("sequenceId")
+	void setAnimationId(int animationId);
+
 	@Import("actions")
 	@Override
 	String[] getActions();
@@ -221,6 +230,14 @@ public interface RSWidget extends Widget
 	@Override
 	void setSpriteId(int spriteId);
 
+	@Import("spriteTiling")
+	@Override
+	boolean getSpriteTiling();
+
+	@Import("spriteTiling")
+	@Override
+	void setSpriteTiling(boolean tiling);
+
 	@Import("outline")
 	@Override
 	int getBorderType();
@@ -308,6 +325,10 @@ public interface RSWidget extends Widget
 	@Override
 	void setHasListener(boolean hasListener);
 
+	@Import("onOp")
+	@Override
+	Object[] getOnOpListener();
+
 	@Import("onKey")
 	@Override
 	Object[] getOnKeyListener();
@@ -316,9 +337,9 @@ public interface RSWidget extends Widget
 	@Override
 	Object[] getOnLoadListener();
 
-	@Import("onOp")
+	@Import("onInvTransmit")
 	@Override
-	Object[] getOnOp();
+	Object[] getOnInvTransmitListener();
 
 	@Import("onDialogAbort")
 	@Override
@@ -482,16 +503,12 @@ public interface RSWidget extends Widget
 	@Import("modelFrameCycle")
 	int getModelFrameCycle();
 
-	@Import("onInvTransmit")
-	@Override
-	Object[] getOnInvTransmit();
-
 	@Import("containsMouse")
 	@Override
 	boolean containsMouse();
 
 	@Import("getSprite")
-	RSSprite getSprite(boolean b);
+	RSSpritePixels getSprite(boolean b);
 
 	@Import("onRelease")
 	@Override

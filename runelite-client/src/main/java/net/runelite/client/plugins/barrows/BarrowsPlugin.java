@@ -45,7 +45,6 @@ import net.runelite.client.game.ItemManager;
 import net.runelite.client.game.SpriteManager;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
-import net.runelite.client.plugins.PluginType;
 import net.runelite.client.ui.overlay.OverlayManager;
 import net.runelite.client.ui.overlay.infobox.InfoBoxManager;
 import net.runelite.client.ui.overlay.infobox.InfoBoxPriority;
@@ -60,8 +59,7 @@ import java.util.Set;
 @PluginDescriptor(
 		name = "Barrows Brothers",
 		description = "Show helpful information for the Barrows minigame",
-		tags = {"combat", "minigame", "minimap", "bosses", "pve", "pvm"},
-		type = PluginType.SANLITE_USE_AT_OWN_RISK
+		tags = {"combat", "minigame", "minimap", "bosses", "pve", "pvm", "sanlite"}
 )
 public class BarrowsPlugin extends Plugin
 {
@@ -77,9 +75,9 @@ public class BarrowsPlugin extends Plugin
 
 	private static final Set<Integer> BARROWS_LADDERS = Sets.newHashSet(NullObjectID.NULL_20675, NullObjectID.NULL_20676, NullObjectID.NULL_20677);
 	private static final ImmutableList<WidgetInfo> POSSIBLE_SOLUTIONS = ImmutableList.of(
-			WidgetInfo.BARROWS_PUZZLE_ANSWER1,
-			WidgetInfo.BARROWS_PUZZLE_ANSWER2,
-			WidgetInfo.BARROWS_PUZZLE_ANSWER3
+		WidgetInfo.BARROWS_PUZZLE_ANSWER1,
+		WidgetInfo.BARROWS_PUZZLE_ANSWER2,
+		WidgetInfo.BARROWS_PUZZLE_ANSWER3
 	);
 
 	private static final long PRAYER_DRAIN_INTERVAL_MS = 18200;
@@ -272,16 +270,16 @@ public class BarrowsPlugin extends Plugin
 			}
 
 			final ChatMessageBuilder message = new ChatMessageBuilder()
-					.append(ChatColorType.HIGHLIGHT)
-					.append("Your chest is worth around ")
-					.append(QuantityFormatter.formatNumber(chestPrice))
-					.append(" coins.")
-					.append(ChatColorType.NORMAL);
+				.append(ChatColorType.HIGHLIGHT)
+				.append("Your chest is worth around ")
+				.append(QuantityFormatter.formatNumber(chestPrice))
+				.append(" coins.")
+				.append(ChatColorType.NORMAL);
 
 			chatMessageManager.queue(QueuedMessage.builder()
-					.type(ChatMessageType.ITEM_EXAMINE)
-					.runeLiteFormattedMessage(message.build())
-					.build());
+				.type(ChatMessageType.ITEM_EXAMINE)
+				.runeLiteFormattedMessage(message.build())
+				.build());
 		}
 		else if (event.getGroupId() == WidgetID.BARROWS_PUZZLE_GROUP_ID)
 		{
@@ -306,11 +304,11 @@ public class BarrowsPlugin extends Plugin
 		if (config.showPrayerDrainTimer())
 		{
 			final LoopTimer loopTimer = new LoopTimer(
-					PRAYER_DRAIN_INTERVAL_MS,
-					ChronoUnit.MILLIS,
-					null,
-					this,
-					true);
+				PRAYER_DRAIN_INTERVAL_MS,
+				ChronoUnit.MILLIS,
+				null,
+				this,
+				true);
 
 			spriteManager.getSpriteAsync(SpriteID.TAB_PRAYER, 0, loopTimer);
 
@@ -331,10 +329,6 @@ public class BarrowsPlugin extends Plugin
 	private boolean isInCrypt()
 	{
 		Player localPlayer = client.getLocalPlayer();
-		if (localPlayer == null)
-		{
-			return false;
-		}
-		return localPlayer.getWorldLocation().getRegionID() == CRYPT_REGION_ID;
+		return localPlayer != null && localPlayer.getWorldLocation().getRegionID() == CRYPT_REGION_ID;
 	}
 }

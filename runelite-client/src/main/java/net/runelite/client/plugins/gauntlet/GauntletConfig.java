@@ -24,15 +24,20 @@
  */
 package net.runelite.client.plugins.gauntlet;
 
-import net.runelite.client.config.Config;
-import net.runelite.client.config.ConfigGroup;
-import net.runelite.client.config.ConfigItem;
+import net.runelite.client.config.*;
 
 import java.awt.*;
 
 @ConfigGroup("Gauntlet Boss")
 public interface GauntletConfig extends Config
 {
+	@ConfigSection(
+			name = "Resource spots",
+			description = "Options for highlighting resource spots in the Gauntlet",
+			position = 20
+	)
+	String resourceSpotsSection = "resourceSpots";
+
 	@ConfigItem(
 			position = 1,
 			keyName = "showAttackStyleCounter",
@@ -71,7 +76,7 @@ public interface GauntletConfig extends Config
 			keyName = "showResourceSpotsObjectMarkers",
 			name = "Display resource spot object marker",
 			description = "Configures whether the resource spots objects are highlighted",
-			group = "Resource spots"
+			section = resourceSpotsSection
 	)
 	default boolean showResourceSpotsObjectMarkers()
 	{
@@ -83,7 +88,7 @@ public interface GauntletConfig extends Config
 			keyName = "showResourceSpotsTiles",
 			name = "Display resource spot tiles",
 			description = "Configures whether tiles for resource spots are highlighted",
-			group = "Resource spots"
+			section = resourceSpotsSection
 	)
 	default boolean showResourceSpotsTiles()
 	{
@@ -95,7 +100,7 @@ public interface GauntletConfig extends Config
 			keyName = "showResourceSpotsNames",
 			name = "Display resource spot names",
 			description = "Configures whether names for resource spots are displayed",
-			group = "Resource spots"
+			section = resourceSpotsSection
 	)
 	default boolean showResourceSpotsNames()
 	{
@@ -107,7 +112,7 @@ public interface GauntletConfig extends Config
 			keyName = "showResourceSpotsOnMinimap",
 			name = "Display resource spot on minimap",
 			description = "Configures whether resource spots are displayed on the minimap",
-			group = "Resource spots"
+			section = resourceSpotsSection
 	)
 	default boolean showResourceSpotsOnMinimap()
 	{
@@ -119,7 +124,7 @@ public interface GauntletConfig extends Config
 			keyName = "showPaddlefishSpots",
 			name = "Display paddlefish markers",
 			description = "Configures whether paddlefish spots are displayed with the resource spot markers",
-			group = "Resource spots"
+			section = resourceSpotsSection
 	)
 	default boolean showPaddlefishSpots()
 	{
@@ -131,7 +136,7 @@ public interface GauntletConfig extends Config
 			keyName = "paddlefishSpotColor",
 			name = "Paddlefish spot color",
 			description = "Color of paddlefish fishing spots resource spot markers",
-			group = "Resource spots"
+			section = resourceSpotsSection
 	)
 	default Color getPaddlefishSpotColor()
 	{
@@ -144,7 +149,7 @@ public interface GauntletConfig extends Config
 			keyName = "showCrystalDeposits",
 			name = "Display crystal deposit markers",
 			description = "Configures whether crystal deposits are displayed with the resource spot markers",
-			group = "Resource spots"
+			section = resourceSpotsSection
 	)
 	default boolean showCrystalDeposits()
 	{
@@ -156,7 +161,7 @@ public interface GauntletConfig extends Config
 			keyName = "crystalDepositColor",
 			name = "Crystal deposit color",
 			description = "Color of crystal deposit spots resource spot markers",
-			group = "Resource spots"
+			section = resourceSpotsSection
 	)
 	default Color getCrystalDepositColor()
 	{
@@ -168,7 +173,7 @@ public interface GauntletConfig extends Config
 			keyName = "showGrymRoots",
 			name = "Display Grym roots markers",
 			description = "Configures whether Grym roots are displayed with the resource spot markers",
-			group = "Resource spots"
+			section = resourceSpotsSection
 	)
 	default boolean showGrymRoots()
 	{
@@ -180,7 +185,7 @@ public interface GauntletConfig extends Config
 			keyName = "grymRootColor",
 			name = "Grym root color",
 			description = "Color of grym root spots resource spot markers",
-			group = "Resource spots"
+			section = resourceSpotsSection
 	)
 	default Color getGrymRootColor()
 	{
@@ -193,7 +198,7 @@ public interface GauntletConfig extends Config
 			keyName = "showPhrenRoots",
 			name = "Display Phren roots markers",
 			description = "Configures whether Phren roots are displayed with the resource spot markers",
-			group = "Resource spots"
+			section = resourceSpotsSection
 	)
 	default boolean showPhrenRoots()
 	{
@@ -205,7 +210,7 @@ public interface GauntletConfig extends Config
 			keyName = "phrenRootsColor",
 			name = "Phren roots color",
 			description = "Color of phren roots spots resource spot markers",
-			group = "Resource spots"
+			section = resourceSpotsSection
 	)
 	default Color getPhrenRootsColor()
 	{
@@ -217,7 +222,7 @@ public interface GauntletConfig extends Config
 			keyName = "showLinumTirinum",
 			name = "Display Linum Tirinum markers",
 			description = "Configures whether Linum Tirinum are displayed with the resource spot markers",
-			group = "Resource spots"
+			section = resourceSpotsSection
 	)
 	default boolean showLinumTirinum()
 	{
@@ -229,7 +234,7 @@ public interface GauntletConfig extends Config
 			keyName = "linumTirinumColor",
 			name = "Linum Tirinum color",
 			description = "Color of linum tirinum spots resource spot markers",
-			group = "Resource spots"
+			section = resourceSpotsSection
 	)
 	default Color getLinumTirinumColor()
 	{
@@ -237,10 +242,21 @@ public interface GauntletConfig extends Config
 	}
 
 	@ConfigItem(
-			position = 19,
+			keyName = "tileMarkersLineSize",
+			name = "Tile markers line size",
+			description = "The size of the outside line for tile markers",
+			position = 19
+	)
+	default StrokeSize getTileMarkersLineSize()
+	{
+		return StrokeSize.NORMAL;
+	}
+
+	@ConfigItem(
 			keyName = "showDebugOverlay",
 			name = "Display debug overlay",
-			description = "Displays Gauntlet boss debug overlay. This contains variables that the plugin uses to function"
+			description = "Displays Gauntlet boss debug overlay. This contains variables that the plugin uses to function",
+			position = 20
 	)
 	default boolean showDebugOverlay()
 	{

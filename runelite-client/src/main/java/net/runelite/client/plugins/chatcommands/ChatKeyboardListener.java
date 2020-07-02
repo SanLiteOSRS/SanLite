@@ -60,8 +60,8 @@ public class ChatKeyboardListener implements KeyListener
 		{
 			int inputTye = client.getVar(VarClientInt.INPUT_TYPE);
 			String input = inputTye == InputType.NONE.getType()
-					? client.getVar(VarClientStr.CHATBOX_TYPED_TEXT)
-					: client.getVar(VarClientStr.INPUT_TEXT);
+				? client.getVar(VarClientStr.CHATBOX_TYPED_TEXT)
+				: client.getVar(VarClientStr.INPUT_TEXT);
 
 			if (input != null)
 			{
@@ -72,16 +72,8 @@ public class ChatKeyboardListener implements KeyListener
 				}
 
 				// find next word
-				int idx = input.lastIndexOf(' ');
-				final String replacement;
-				if (idx != -1)
-				{
-					replacement = input.substring(0, idx);
-				}
-				else
-				{
-					replacement = "";
-				}
+				int idx = input.lastIndexOf(' ') + 1;
+				final String replacement = input.substring(0, idx);
 
 				clientThread.invoke(() -> applyText(inputTye, replacement));
 			}

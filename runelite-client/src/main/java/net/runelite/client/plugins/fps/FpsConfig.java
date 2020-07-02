@@ -45,8 +45,8 @@ public interface FpsConfig extends Config
 	}
 
 	@Range(
-			min = 1,
-			max = 50
+		min = 1,
+		max = 50
 	)
 	@ConfigItem(
 		keyName = "maxFps",
@@ -71,8 +71,8 @@ public interface FpsConfig extends Config
 	}
 
 	@Range(
-			min = 1,
-			max = 50
+		min = 1,
+		max = 50
 	)
 	@ConfigItem(
 		keyName = "maxFpsUnfocused",

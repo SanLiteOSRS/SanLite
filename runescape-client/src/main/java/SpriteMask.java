@@ -4,25 +4,25 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hf")
+@ObfuscatedName("hh")
 @Implements("SpriteMask")
 public class SpriteMask extends DualNode {
-	@ObfuscatedName("c")
+	@ObfuscatedName("m")
 	@ObfuscatedGetter(
-		intValue = -1040001761
+		intValue = 293169349
 	)
 	@Export("width")
 	public final int width;
-	@ObfuscatedName("t")
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = -1175946867
+		intValue = -1667471455
 	)
 	@Export("height")
 	public final int height;
-	@ObfuscatedName("o")
+	@ObfuscatedName("q")
 	@Export("xWidths")
 	public final int[] xWidths;
-	@ObfuscatedName("e")
+	@ObfuscatedName("j")
 	@Export("xStarts")
 	public final int[] xStarts;
 
@@ -33,10 +33,10 @@ public class SpriteMask extends DualNode {
 		this.xStarts = var4;
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
 		signature = "(III)Z",
-		garbageValue = "2110686779"
+		garbageValue = "-679501708"
 	)
 	@Export("contains")
 	public boolean contains(int var1, int var2) {
@@ -50,99 +50,83 @@ public class SpriteMask extends DualNode {
 		return false;
 	}
 
-	@ObfuscatedName("o")
-	@ObfuscatedSignature(
-		signature = "(IIB)Lhn;",
-		garbageValue = "-27"
-	)
-	@Export("getWidgetChild")
-	public static Widget getWidgetChild(int var0, int var1) {
-		Widget var2 = Varps.getWidget(var0);
-		if (var1 == -1) {
-			return var2;
-		} else {
-			return var2 != null && var2.children != null && var1 < var2.children.length ? var2.children[var1] : null;
+	@ObfuscatedName("m")
+	public static final void method4111(long var0) {
+		try {
+			Thread.sleep(var0);
+		} catch (InterruptedException var3) {
 		}
+
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "398303875"
+		signature = "(I)V",
+		garbageValue = "39704682"
 	)
-	public static int method4038() {
-		return ++MouseHandler.MouseHandler_idleCycles - 1;
-	}
+	@Export("savePreferences")
+	static void savePreferences() {
+		AccessFile var0 = null;
 
-	@ObfuscatedName("j")
-	@ObfuscatedSignature(
-		signature = "([BI)V",
-		garbageValue = "-1864431963"
-	)
-	@Export("SpriteBuffer_decode")
-	public static void SpriteBuffer_decode(byte[] var0) {
-		Buffer var1 = new Buffer(var0);
-		var1.offset = var0.length - 2;
-		class326.SpriteBuffer_spriteCount = var1.readUnsignedShort();
-		Huffman.SpriteBuffer_xOffsets = new int[class326.SpriteBuffer_spriteCount];
-		NPC.SpriteBuffer_yOffsets = new int[class326.SpriteBuffer_spriteCount];
-		class326.SpriteBuffer_spriteWidths = new int[class326.SpriteBuffer_spriteCount];
-		class326.SpriteBuffer_spriteHeights = new int[class326.SpriteBuffer_spriteCount];
-		class326.SpriteBuffer_pixels = new byte[class326.SpriteBuffer_spriteCount][];
-		var1.offset = var0.length - 7 - class326.SpriteBuffer_spriteCount * 8;
-		GZipDecompressor.SpriteBuffer_spriteWidth = var1.readUnsignedShort();
-		class326.SpriteBuffer_spriteHeight = var1.readUnsignedShort();
-		int var2 = (var1.readUnsignedByte() & 255) + 1;
-
-		int var3;
-		for (var3 = 0; var3 < class326.SpriteBuffer_spriteCount; ++var3) {
-			Huffman.SpriteBuffer_xOffsets[var3] = var1.readUnsignedShort();
+		try {
+			var0 = GameEngine.getPreferencesFile("", GrandExchangeOfferWorldComparator.field54.name, true);
+			Buffer var1 = NetSocket.clientPreferences.toBuffer();
+			var0.write(var1.array, 0, var1.offset);
+		} catch (Exception var3) {
 		}
 
-		for (var3 = 0; var3 < class326.SpriteBuffer_spriteCount; ++var3) {
-			NPC.SpriteBuffer_yOffsets[var3] = var1.readUnsignedShort();
-		}
-
-		for (var3 = 0; var3 < class326.SpriteBuffer_spriteCount; ++var3) {
-			class326.SpriteBuffer_spriteWidths[var3] = var1.readUnsignedShort();
-		}
-
-		for (var3 = 0; var3 < class326.SpriteBuffer_spriteCount; ++var3) {
-			class326.SpriteBuffer_spriteHeights[var3] = var1.readUnsignedShort();
-		}
-
-		var1.offset = var0.length - 7 - class326.SpriteBuffer_spriteCount * 8 - (var2 - 1) * 3;
-		class326.SpriteBuffer_spritePalette = new int[var2];
-
-		for (var3 = 1; var3 < var2; ++var3) {
-			class326.SpriteBuffer_spritePalette[var3] = var1.readMedium();
-			if (class326.SpriteBuffer_spritePalette[var3] == 0) {
-				class326.SpriteBuffer_spritePalette[var3] = 1;
+		try {
+			if (var0 != null) {
+				var0.closeSync(true);
 			}
+		} catch (Exception var2) {
 		}
 
-		var1.offset = 0;
+	}
 
-		for (var3 = 0; var3 < class326.SpriteBuffer_spriteCount; ++var3) {
-			int var4 = class326.SpriteBuffer_spriteWidths[var3];
-			int var5 = class326.SpriteBuffer_spriteHeights[var3];
-			int var6 = var5 * var4;
-			byte[] var7 = new byte[var6];
-			class326.SpriteBuffer_pixels[var3] = var7;
-			int var8 = var1.readUnsignedByte();
-			int var9;
-			if (var8 == 0) {
-				for (var9 = 0; var9 < var6; ++var9) {
-					var7[var9] = var1.readByte();
+	@ObfuscatedName("km")
+	@ObfuscatedSignature(
+		signature = "(Ljava/lang/String;ZI)V",
+		garbageValue = "2008753616"
+	)
+	@Export("findItemDefinitions")
+	static void findItemDefinitions(String var0, boolean var1) {
+		var0 = var0.toLowerCase();
+		short[] var2 = new short[16];
+		int var3 = 0;
+
+		for (int var4 = 0; var4 < HitSplatDefinition.ItemDefinition_fileCount; ++var4) {
+			ItemComposition var5 = KitDefinition.ItemDefinition_get(var4);
+			if ((!var1 || var5.isTradable) && var5.noteTemplate == -1 && var5.name.toLowerCase().indexOf(var0) != -1) {
+				if (var3 >= 250) {
+					ItemLayer.foundItemIdCount = -1;
+					WorldMapScaleHandler.foundItemIds = null;
+					return;
 				}
-			} else if (var8 == 1) {
-				for (var9 = 0; var9 < var4; ++var9) {
-					for (int var10 = 0; var10 < var5; ++var10) {
-						var7[var9 + var10 * var4] = var1.readByte();
+
+				if (var3 >= var2.length) {
+					short[] var6 = new short[var2.length * 2];
+
+					for (int var7 = 0; var7 < var3; ++var7) {
+						var6[var7] = var2[var7];
 					}
+
+					var2 = var6;
 				}
+
+				var2[var3++] = (short)var4;
 			}
 		}
 
+		WorldMapScaleHandler.foundItemIds = var2;
+		ArchiveLoader.foundItemIndex = 0;
+		ItemLayer.foundItemIdCount = var3;
+		String[] var8 = new String[ItemLayer.foundItemIdCount];
+
+		for (int var9 = 0; var9 < ItemLayer.foundItemIdCount; ++var9) {
+			var8[var9] = KitDefinition.ItemDefinition_get(var2[var9]).name;
+		}
+
+		WorldMapDecoration.method400(var8, WorldMapScaleHandler.foundItemIds);
 	}
 }

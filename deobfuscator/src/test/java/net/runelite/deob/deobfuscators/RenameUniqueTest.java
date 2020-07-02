@@ -38,7 +38,11 @@ import net.runelite.deob.Deob;
 import net.runelite.deob.DeobTestProperties;
 import net.runelite.deob.TemporyFolderLocation;
 import net.runelite.deob.util.JarUtil;
-import org.junit.*;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
 public class RenameUniqueTest
@@ -64,7 +68,6 @@ public class RenameUniqueTest
 	}
 	
 	@Test
-	@Ignore
 	public void testRun()
 	{
 		RenameUnique renameUnique = new RenameUnique();
@@ -109,7 +112,9 @@ public class RenameUniqueTest
 
 			InvokeInstruction ii = (InvokeInstruction) i;
 			Assert.assertTrue(ii.getMethod().getName().length() > Deob.OBFUSCATED_NAME_MAX_LEN
-				|| ii.getMethod().getClazz().getName().length() > Deob.OBFUSCATED_NAME_MAX_LEN);
+					|| ii.getMethod().getClazz().getName().length() > Deob.OBFUSCATED_NAME_MAX_LEN
+					|| ii.getMethod().getName().equals("run")
+					|| ii.getMethod().getName().equals("add"));
 		}
 	}
 }

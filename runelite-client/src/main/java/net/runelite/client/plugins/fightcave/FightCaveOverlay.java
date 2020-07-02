@@ -82,6 +82,6 @@ public class FightCaveOverlay extends Overlay
 	private BufferedImage getPrayerImage(JadAttack attack)
 	{
 		final int prayerSpriteID = attack == JadAttack.MAGIC ? SpriteID.PRAYER_PROTECT_FROM_MAGIC : SpriteID.PRAYER_PROTECT_FROM_MISSILES;
-		return spriteManager.getSpriteImg(prayerSpriteID, 0);
+		return spriteManager.getSprite(prayerSpriteID, 0);
 	}
 }

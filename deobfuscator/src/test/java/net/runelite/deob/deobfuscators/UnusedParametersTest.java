@@ -31,7 +31,10 @@ import net.runelite.asm.ClassGroup;
 import net.runelite.deob.DeobTestProperties;
 import net.runelite.deob.TemporyFolderLocation;
 import net.runelite.deob.util.JarUtil;
-import org.junit.*;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
 public class UnusedParametersTest
@@ -57,34 +60,33 @@ public class UnusedParametersTest
 	}
 
 	@Test
-	@Ignore
 	public void testRun()
-	{	
+	{
 		RenameUnique r = new RenameUnique();
 		r.run(group);
 		r = null;
 		System.gc();
-		
+
 		RuntimeExceptions re = new RuntimeExceptions();
 		re.run(group);
 		re = null;
 		System.gc();
-		
+
 		UnreachedCode uc = new UnreachedCode();
 		uc.run(group);
 		uc = null;
 		System.gc();
-		
+
 		UnusedMethods um = new UnusedMethods();
 		um.run(group);
 		um = null;
 		System.gc();
-		
+
 		IllegalStateExceptions ise = new IllegalStateExceptions();
 		ise.run(group);
 		ise = null;
 		System.gc();
-		
+
 		UnusedParameters cp = new UnusedParameters();
 		cp.run(group);
 		cp = null;

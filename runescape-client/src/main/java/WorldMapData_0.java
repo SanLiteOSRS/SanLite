@@ -2,73 +2,63 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("w")
+@ObfuscatedName("i")
 @Implements("WorldMapData_0")
 public class WorldMapData_0 extends AbstractWorldMapData {
-	@ObfuscatedName("sk")
-	@Export("foundItemIds")
-	static short[] foundItemIds;
-	@ObfuscatedName("fm")
+	@ObfuscatedName("dq")
 	@ObfuscatedSignature(
-		signature = "Lei;"
+		signature = "Lig;"
 	)
-	@Export("urlRequester")
-	static UrlRequester urlRequester;
-	@ObfuscatedName("fg")
+	@Export("archive11")
+	static Archive archive11;
+	@ObfuscatedName("ej")
 	@ObfuscatedSignature(
-		signature = "Lko;"
+		signature = "Lig;"
 	)
-	@Export("fontPlain11")
-	static Font fontPlain11;
-	@ObfuscatedName("gh")
-	@ObfuscatedSignature(
-		signature = "[Llt;"
-	)
-	@Export("crossSprites")
-	static Sprite[] crossSprites;
+	@Export("archive19")
+	static Archive archive19;
 
 	WorldMapData_0() {
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		signature = "(Lkp;B)V",
-		garbageValue = "-109"
+		signature = "(Lkn;I)V",
+		garbageValue = "-1154990112"
 	)
 	@Export("init")
 	void init(Buffer var1) {
 		int var2 = var1.readUnsignedByte();
-		if (var2 != WorldMapID.field277.value) {
+		if (var2 != WorldMapID.field301.value) {
 			throw new IllegalStateException("");
 		} else {
 			super.minPlane = var1.readUnsignedByte();
 			super.planes = var1.readUnsignedByte();
-			super.regionXLow = var1.readUnsignedShort() * 64;
+			super.regionXLow = var1.readUnsignedShort() * 4096;
 			super.regionYLow = var1.readUnsignedShort() * 4096;
 			super.regionX = var1.readUnsignedShort();
 			super.regionY = var1.readUnsignedShort();
-			super.groupId = var1.method5593();
-			super.fileId = var1.method5593();
+			super.groupId = var1.method5843();
+			super.fileId = var1.method5843();
 		}
 	}
 
-	@ObfuscatedName("t")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "(Lkp;S)V",
-		garbageValue = "-30591"
+		signature = "(Lkn;I)V",
+		garbageValue = "-1774414997"
 	)
 	@Export("readGeography")
 	void readGeography(Buffer var1) {
 		super.planes = Math.min(super.planes, 4);
 		super.floorUnderlayIds = new short[1][64][64];
 		super.floorOverlayIds = new short[super.planes][64][64];
-		super.field188 = new byte[super.planes][64][64];
+		super.field185 = new byte[super.planes][64][64];
 		super.field175 = new byte[super.planes][64][64];
 		super.decorations = new WorldMapDecoration[super.planes][64][64][];
 		int var2 = var1.readUnsignedByte();
-		if (var2 != class30.field270.value) {
+		if (var2 != class39.field296.value) {
 			throw new IllegalStateException("");
 		} else {
 			int var3 = var1.readUnsignedByte();
@@ -91,7 +81,7 @@ public class WorldMapData_0 extends AbstractWorldMapData {
 			return false;
 		} else {
 			WorldMapData_0 var2 = (WorldMapData_0)var1;
-			return var2.regionX == super.regionX && var2.regionY == super.regionY;
+			return super.regionX == var2.regionX && var2.regionY == super.regionY;
 		}
 	}
 
@@ -100,76 +90,51 @@ public class WorldMapData_0 extends AbstractWorldMapData {
 	}
 
 	@ObfuscatedName("o")
-	@ObfuscatedSignature(
-		signature = "(ILii;Ljava/lang/String;Ljava/lang/String;IZI)V",
-		garbageValue = "-1022524213"
-	)
-	public static void method189(int var0, AbstractArchive var1, String var2, String var3, int var4, boolean var5) {
-		int var6 = var1.getGroupId(var2);
-		int var7 = var1.getFileId(var6, var3);
-		TaskHandler.playMusicTrack(var0, var1, var6, var7, var4, var5);
-	}
+	@Export("base37DecodeLong")
+	public static String base37DecodeLong(long var0) {
+		if (var0 > 0L && var0 < 6582952005840035281L) {
+			if (var0 % 37L == 0L) {
+				return null;
+			} else {
+				int var2 = 0;
 
-	@ObfuscatedName("i")
-	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "1"
-	)
-	public static void method181() {
-		SpotAnimationDefinition.SpotAnimationDefinition_cached.clear();
-		SpotAnimationDefinition.SpotAnimationDefinition_cachedModels.clear();
-	}
-
-	@ObfuscatedName("x")
-	@ObfuscatedSignature(
-		signature = "(III)Z",
-		garbageValue = "-1614694262"
-	)
-	static final boolean method187(int var0, int var1) {
-		ObjectDefinition var2 = Occluder.getObjectDefinition(var0);
-		if (var1 == 11) {
-			var1 = 10;
-		}
-
-		if (var1 >= 5 && var1 <= 8) {
-			var1 = 4;
-		}
-
-		return var2.method4675(var1);
-	}
-
-	@ObfuscatedName("w")
-	@ObfuscatedSignature(
-		signature = "(ILce;ZI)I",
-		garbageValue = "-1897390403"
-	)
-	static int method175(int var0, Script var1, boolean var2) {
-		Widget var3 = var2 ? class186.field2331 : MidiPcmStream.field2444;
-		if (var0 == ScriptOpcodes.CC_GETTARGETMASK) {
-			Interpreter.Interpreter_intStack[++class320.Interpreter_intStackSize - 1] = class83.method2108(WorldMapIcon_0.getWidgetClickMask(var3));
-			return 1;
-		} else if (var0 != ScriptOpcodes.CC_GETOP) {
-			if (var0 == ScriptOpcodes.CC_GETOPBASE) {
-				if (var3.dataText == null) {
-					Interpreter.Interpreter_stringStack[++Message.Interpreter_stringStackSize - 1] = "";
-				} else {
-					Interpreter.Interpreter_stringStack[++Message.Interpreter_stringStackSize - 1] = var3.dataText;
+				for (long var3 = var0; var3 != 0L; var3 /= 37L) {
+					++var2;
 				}
 
-				return 1;
-			} else {
-				return 2;
+				StringBuilder var5;
+				char var8;
+				for (var5 = new StringBuilder(var2); var0 != 0L; var5.append(var8)) {
+					long var6 = var0;
+					var0 /= 37L;
+					var8 = class298.base37Table[(int)(var6 - 37L * var0)];
+					if (var8 == '_') {
+						int var9 = var5.length() - 1;
+						var5.setCharAt(var9, Character.toUpperCase(var5.charAt(var9)));
+						var8 = 160;
+					}
+				}
+
+				var5.reverse();
+				var5.setCharAt(0, Character.toUpperCase(var5.charAt(0)));
+				return var5.toString();
 			}
 		} else {
-			int var4 = Interpreter.Interpreter_intStack[--class320.Interpreter_intStackSize];
-			--var4;
-			if (var3.actions != null && var4 < var3.actions.length && var3.actions[var4] != null) {
-				Interpreter.Interpreter_stringStack[++Message.Interpreter_stringStackSize - 1] = var3.actions[var4];
-			} else {
-				Interpreter.Interpreter_stringStack[++Message.Interpreter_stringStackSize - 1] = "";
-			}
-
-			return 1;
+			return null;
 		}
+	}
+
+	@ObfuscatedName("he")
+	@ObfuscatedSignature(
+		signature = "(IIIII)V",
+		garbageValue = "-992239935"
+	)
+	static final void method243(int var0, int var1, int var2, int var3) {
+		for (int var4 = 0; var4 < Client.rootWidgetCount; ++var4) {
+			if (Client.rootWidgetXs[var4] + Client.rootWidgetWidths[var4] > var0 && Client.rootWidgetXs[var4] < var0 + var2 && Client.rootWidgetHeights[var4] + Client.rootWidgetYs[var4] > var1 && Client.rootWidgetYs[var4] < var3 + var1) {
+				Client.field879[var4] = true;
+			}
+		}
+
 	}
 }

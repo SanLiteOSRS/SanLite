@@ -7,39 +7,46 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bj")
+@ObfuscatedName("cz")
 @Implements("ClientPreferences")
 public class ClientPreferences {
-	@ObfuscatedName("c")
+	@ObfuscatedName("pv")
+	@ObfuscatedSignature(
+		signature = "Lkk;"
+	)
+	@Export("clanChat")
+	static FriendsChatManager clanChat;
+	@ObfuscatedName("m")
 	@ObfuscatedGetter(
-		intValue = 1562806739
+		intValue = -833768267
 	)
 	@Export("ClientPreferences_optionCount")
 	static int ClientPreferences_optionCount;
-	@ObfuscatedName("fb")
+	@ObfuscatedName("bp")
 	@ObfuscatedSignature(
-		signature = "Lkr;"
+		signature = "Llh;"
 	)
-	static AbstractSocket field1052;
-	@ObfuscatedName("o")
+	@Export("worldSelectRightSprite")
+	static IndexedSprite worldSelectRightSprite;
+	@ObfuscatedName("q")
 	@Export("roofsHidden")
 	boolean roofsHidden;
-	@ObfuscatedName("e")
+	@ObfuscatedName("j")
 	@Export("titleMusicDisabled")
 	boolean titleMusicDisabled;
-	@ObfuscatedName("i")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = -122570971
+		intValue = -1665448065
 	)
 	@Export("windowMode")
 	int windowMode;
 	@ObfuscatedName("g")
 	@Export("rememberedUsername")
 	String rememberedUsername;
-	@ObfuscatedName("d")
+	@ObfuscatedName("n")
 	@Export("hideUsername")
 	boolean hideUsername;
-	@ObfuscatedName("l")
+	@ObfuscatedName("u")
 	@Export("parameters")
 	LinkedHashMap parameters;
 
@@ -52,11 +59,11 @@ public class ClientPreferences {
 		this.rememberedUsername = null;
 		this.hideUsername = false;
 		this.parameters = new LinkedHashMap();
-		this.method1849(true);
+		this.method1911(true);
 	}
 
 	@ObfuscatedSignature(
-		signature = "(Lkp;)V"
+		signature = "(Lkn;)V"
 	)
 	ClientPreferences(Buffer var1) {
 		this.windowMode = 1;
@@ -96,26 +103,26 @@ public class ClientPreferences {
 					this.hideUsername = var1.readBoolean();
 				}
 			} else {
-				this.method1849(true);
+				this.method1911(true);
 			}
 		} else {
-			this.method1849(true);
+			this.method1911(true);
 		}
 
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
 		signature = "(ZI)V",
-		garbageValue = "1265192708"
+		garbageValue = "-943142768"
 	)
-	void method1849(boolean var1) {
+	void method1911(boolean var1) {
 	}
 
-	@ObfuscatedName("t")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "(I)Lkp;",
-		garbageValue = "-1961223036"
+		signature = "(S)Lkn;",
+		garbageValue = "128"
 	)
 	@Export("toBuffer")
 	Buffer toBuffer() {
@@ -138,167 +145,89 @@ public class ClientPreferences {
 		return var1;
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(I)[Llf;",
-		garbageValue = "-1068264717"
+		signature = "(IIB)I",
+		garbageValue = "116"
 	)
-	@Export("FillMode_values")
-	public static FillMode[] FillMode_values() {
-		return new FillMode[]{FillMode.field3858, FillMode.SOLID, FillMode.field3854};
+	static final int method1914(int var0, int var1) {
+		int var2 = var0 + var1 * 57;
+		var2 ^= var2 << 13;
+		int var3 = var2 * (var2 * var2 * 15731 + 789221) + 1376312589 & Integer.MAX_VALUE;
+		return var3 >> 19 & 255;
 	}
 
-	@ObfuscatedName("t")
+	@ObfuscatedName("ed")
 	@ObfuscatedSignature(
-		signature = "(ILjava/lang/String;Ljava/lang/String;I)V",
-		garbageValue = "-756119302"
+		signature = "(IB)V",
+		garbageValue = "-82"
 	)
-	@Export("addGameMessage")
-	static void addGameMessage(int var0, String var1, String var2) {
-		class173.addChatMessage(var0, var1, var2, (String)null);
-	}
-
-	@ObfuscatedName("o")
-	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-1958479056"
-	)
-	public static void method1854() {
-		while (true) {
-			ArchiveDiskAction var0;
-			synchronized(ArchiveDiskActionHandler.ArchiveDiskActionHandler_requestQueue) {
-				var0 = (ArchiveDiskAction)ArchiveDiskActionHandler.ArchiveDiskActionHandler_responseQueue.removeLast();
+	@Export("updateGameState")
+	static void updateGameState(int var0) {
+		if (var0 != Client.gameState) {
+			if (Client.gameState == 0) {
+				WorldMapSectionType.client.method1017();
 			}
 
-			if (var0 == null) {
-				return;
-			}
-
-			var0.archive.load(var0.archiveDisk, (int)var0.key, var0.data, false);
-		}
-	}
-
-	@ObfuscatedName("o")
-	@ObfuscatedSignature(
-		signature = "([BIIIIIII[Lfv;I)V",
-		garbageValue = "-1733201175"
-	)
-	static final void method1853(byte[] var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7, CollisionMap[] var8) {
-		int var10;
-		for (int var9 = 0; var9 < 8; ++var9) {
-			for (var10 = 0; var10 < 8; ++var10) {
-				if (var9 + var2 > 0 && var9 + var2 < 103 && var3 + var10 > 0 && var3 + var10 < 103) {
-					int[] var10000 = var8[var1].flags[var9 + var2];
-					var10000[var10 + var3] &= -16777217;
+			if (var0 == 20 || var0 == 40 || var0 == 45) {
+				Client.loginState = 0;
+				Client.field705 = 0;
+				Client.field706 = 0;
+				Client.timer.method5184(var0);
+				if (var0 != 20) {
+					SequenceDefinition.method4973(false);
 				}
 			}
-		}
 
-		Buffer var13 = new Buffer(var0);
-
-		for (var10 = 0; var10 < 4; ++var10) {
-			for (int var11 = 0; var11 < 64; ++var11) {
-				for (int var12 = 0; var12 < 64; ++var12) {
-					if (var10 == var4 && var11 >= var5 && var11 < var5 + 8 && var12 >= var6 && var12 < var6 + 8) {
-						WorldMapArea.loadTerrain(var13, var1, var2 + ModelData0.method3322(var11 & 7, var12 & 7, var7), var3 + ViewportMouse.method3059(var11 & 7, var12 & 7, var7), 0, 0, var7);
-					} else {
-						WorldMapArea.loadTerrain(var13, 0, -1, -1, 0, 0, 0);
-					}
-				}
+			if (var0 != 20 && var0 != 40 && class8.field35 != null) {
+				class8.field35.close();
+				class8.field35 = null;
 			}
-		}
 
-	}
+			if (Client.gameState == 25) {
+				Client.field809 = 0;
+				Client.field822 = 0;
+				Client.field759 = 1;
+				Client.field690 = 0;
+				Client.field729 = 1;
+			}
 
-	@ObfuscatedName("gh")
-	@ObfuscatedSignature(
-		signature = "(Lba;I)Z",
-		garbageValue = "-1602315616"
-	)
-	static boolean method1840(Player var0) {
-		if (Client.drawPlayerNames == 0) {
-			return false;
-		} else {
-			boolean var1;
-			if (class192.localPlayer == var0) {
-				var1 = (Client.drawPlayerNames & 8) != 0;
-				return var1;
+			if (var0 != 5 && var0 != 10) {
+				if (var0 == 20) {
+					WorldMapRegion.method541(GraphicsObject.archive10, GrandExchangeEvent.archive8, true, Client.gameState == 11 ? 4 : 0);
+				} else if (var0 == 11) {
+					WorldMapRegion.method541(GraphicsObject.archive10, GrandExchangeEvent.archive8, false, 4);
+				} else if (GrandExchangeOfferAgeComparator.clearLoginScreen) {
+					HealthBar.titleboxSprite = null;
+					Fonts.titlebuttonSprite = null;
+					Login.runesSprite = null;
+					Login.leftTitleSprite = null;
+					ItemContainer.rightTitleSprite = null;
+					Login.logoSprite = null;
+					Decimator.title_muteSprite = null;
+					Login.options_buttons_0Sprite = null;
+					GameEngine.options_buttons_2Sprite = null;
+					class90.worldSelectBackSprites = null;
+					SpotAnimationDefinition.worldSelectFlagSprites = null;
+					GrandExchangeEvent.worldSelectArrows = null;
+					class228.worldSelectStars = null;
+					WorldMapIcon_1.field206 = null;
+					Login.loginScreenRunesAnimation.method1878();
+					class206.field2439 = 1;
+					Huffman.musicTrackArchive = null;
+					class206.musicTrackGroupId = -1;
+					MilliClock.musicTrackFileId = -1;
+					class206.musicTrackVolume = 0;
+					class336.musicTrackBoolean = false;
+					class206.field2442 = 2;
+					class41.method624(true);
+					GrandExchangeOfferAgeComparator.clearLoginScreen = false;
+				}
 			} else {
-				var1 = MouseRecorder.method1210() || LoginScreenAnimation.method1819() && var0.isFriend();
-				if (!var1) {
-					boolean var2 = (Client.drawPlayerNames & 2) != 0;
-					var1 = var2 && var0.isClanMember();
-				}
-
-				return var1;
-			}
-		}
-	}
-
-	@ObfuscatedName("hy")
-	@ObfuscatedSignature(
-		signature = "(S)V",
-		garbageValue = "14321"
-	)
-	static final void method1852() {
-		PacketBuffer var0 = Client.packetWriter.packetBuffer;
-		var0.importIndex();
-		int var1 = var0.readBits(8);
-		int var2;
-		if (var1 < Client.npcCount) {
-			for (var2 = var1; var2 < Client.npcCount; ++var2) {
-				Client.field828[++Client.field766 - 1] = Client.npcIndices[var2];
-			}
-		}
-
-		if (var1 > Client.npcCount) {
-			throw new RuntimeException("");
-		} else {
-			Client.npcCount = 0;
-
-			for (var2 = 0; var2 < var1; ++var2) {
-				int var3 = Client.npcIndices[var2];
-				NPC var4 = Client.npcs[var3];
-				int var5 = var0.readBits(1);
-				if (var5 == 0) {
-					Client.npcIndices[++Client.npcCount - 1] = var3;
-					var4.npcCycle = Client.cycle;
-				} else {
-					int var6 = var0.readBits(2);
-					if (var6 == 0) {
-						Client.npcIndices[++Client.npcCount - 1] = var3;
-						var4.npcCycle = Client.cycle;
-						Client.field867[++Client.field690 - 1] = var3;
-					} else {
-						int var7;
-						int var8;
-						if (var6 == 1) {
-							Client.npcIndices[++Client.npcCount - 1] = var3;
-							var4.npcCycle = Client.cycle;
-							var7 = var0.readBits(3);
-							var4.method2083(var7, (byte)1);
-							var8 = var0.readBits(1);
-							if (var8 == 1) {
-								Client.field867[++Client.field690 - 1] = var3;
-							}
-						} else if (var6 == 2) {
-							Client.npcIndices[++Client.npcCount - 1] = var3;
-							var4.npcCycle = Client.cycle;
-							var7 = var0.readBits(3);
-							var4.method2083(var7, (byte)2);
-							var8 = var0.readBits(3);
-							var4.method2083(var8, (byte)2);
-							int var9 = var0.readBits(1);
-							if (var9 == 1) {
-								Client.field867[++Client.field690 - 1] = var3;
-							}
-						} else if (var6 == 3) {
-							Client.field828[++Client.field766 - 1] = var3;
-						}
-					}
-				}
+				WorldMapRegion.method541(GraphicsObject.archive10, GrandExchangeEvent.archive8, true, 0);
 			}
 
+			Client.gameState = var0;
 		}
 	}
 }

@@ -1,182 +1,215 @@
-import java.io.File;
-import java.io.IOException;
-import java.io.RandomAccessFile;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("e")
+@ObfuscatedName("j")
 public class class3 implements Enumerated {
-	@ObfuscatedName("c")
+	@ObfuscatedName("qs")
 	@ObfuscatedSignature(
-		signature = "Le;"
+		signature = "Llz;"
 	)
-	public static final class3 field22;
-	@ObfuscatedName("t")
+	@Export("sceneMinimapSprite")
+	static SpritePixels sceneMinimapSprite;
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		signature = "Le;"
+		signature = "Lj;"
 	)
-	public static final class3 field15;
+	public static final class3 field10;
 	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "Le;"
+		signature = "Lj;"
 	)
-	public static final class3 field16;
-	@ObfuscatedName("e")
-	@ObfuscatedGetter(
-		intValue = -794176661
-	)
-	final int field17;
-	@ObfuscatedName("i")
-	@ObfuscatedGetter(
-		intValue = 500011769
-	)
-	public final int field18;
-	@ObfuscatedName("g")
-	final Class field19;
-	@ObfuscatedName("d")
+	public static final class3 field8;
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		signature = "Lc;"
+		signature = "Lj;"
 	)
-	final class0 field20;
+	public static final class3 field9;
+	@ObfuscatedName("j")
+	@ObfuscatedGetter(
+		intValue = 1514445555
+	)
+	final int field14;
+	@ObfuscatedName("p")
+	@ObfuscatedGetter(
+		intValue = -658537441
+	)
+	public final int field15;
+	@ObfuscatedName("g")
+	public final Class field12;
+	@ObfuscatedName("n")
+	@ObfuscatedSignature(
+		signature = "Lm;"
+	)
+	public final class0 field13;
 
 	static {
-		field22 = new class3(0, 0, Integer.class, new class1());
-		field15 = new class3(1, 1, Long.class, new class2());
-		field16 = new class3(2, 2, String.class, new class4());
+		field10 = new class3(2, 0, Integer.class, new class1());
+		field8 = new class3(1, 1, Long.class, new class2());
+		field9 = new class3(0, 2, String.class, new class4());
 	}
 
 	@ObfuscatedSignature(
-		signature = "(IILjava/lang/Class;Lc;)V"
+		signature = "(IILjava/lang/Class;Lm;)V"
 	)
 	class3(int var1, int var2, Class var3, class0 var4) {
-		this.field17 = var1;
-		this.field18 = var2;
-		this.field19 = var3;
-		this.field20 = var4;
+		this.field14 = var1;
+		this.field15 = var2;
+		this.field12 = var3;
+		this.field13 = var4;
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		signature = "(B)I",
-		garbageValue = "1"
+		signature = "(I)I",
+		garbageValue = "-995092303"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
-		return this.field18;
+		return this.field15;
 	}
 
-	@ObfuscatedName("i")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "(Lkp;I)Ljava/lang/Object;",
-		garbageValue = "1079792403"
+		signature = "(Lkn;I)Ljava/lang/Object;",
+		garbageValue = "-1114505867"
 	)
-	public Object method38(Buffer var1) {
-		return this.field20.vmethod53(var1);
+	public Object method40(Buffer var1) {
+		return this.field13.vmethod47(var1);
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/Class;I)Le;",
-		garbageValue = "1607211171"
+		signature = "(I)[Lu;",
+		garbageValue = "849855680"
 	)
-	public static class3 method51(Class var0) {
-		class3[] var1 = new class3[]{field15, field22, field16};
-		class3[] var2 = var1;
+	public static class7[] method41() {
+		return new class7[]{class7.field30};
+	}
 
-		for (int var3 = 0; var3 < var2.length; ++var3) {
-			class3 var4 = var2[var3];
-			if (var4.field19 == var0) {
-				return var4;
+	@ObfuscatedName("q")
+	@ObfuscatedSignature(
+		signature = "(III)Lbr;",
+		garbageValue = "-1323441814"
+	)
+	@Export("Messages_getByChannelAndID")
+	static Message Messages_getByChannelAndID(int var0, int var1) {
+		ChatChannel var2 = (ChatChannel)Messages.Messages_channels.get(var0);
+		return var2.getMessage(var1);
+	}
+
+	@ObfuscatedName("a")
+	@ObfuscatedSignature(
+		signature = "(B)Lch;",
+		garbageValue = "12"
+	)
+	@Export("getNextWorldListWorld")
+	static World getNextWorldListWorld() {
+		return World.World_listCount < World.World_count ? class13.World_worlds[++World.World_listCount - 1] : null;
+	}
+
+	@ObfuscatedName("w")
+	@ObfuscatedSignature(
+		signature = "([BI)V",
+		garbageValue = "-2060767069"
+	)
+	@Export("SpriteBuffer_decode")
+	public static void SpriteBuffer_decode(byte[] var0) {
+		Buffer var1 = new Buffer(var0);
+		var1.offset = var0.length - 2;
+		class335.SpriteBuffer_spriteCount = var1.readUnsignedShort();
+		class335.SpriteBuffer_xOffsets = new int[class335.SpriteBuffer_spriteCount];
+		NPC.SpriteBuffer_yOffsets = new int[class335.SpriteBuffer_spriteCount];
+		class335.SpriteBuffer_spriteWidths = new int[class335.SpriteBuffer_spriteCount];
+		class335.SpriteBuffer_spriteHeights = new int[class335.SpriteBuffer_spriteCount];
+		ItemComposition.SpriteBuffer_pixels = new byte[class335.SpriteBuffer_spriteCount][];
+		var1.offset = var0.length - 7 - class335.SpriteBuffer_spriteCount * 8;
+		class335.SpriteBuffer_spriteWidth = var1.readUnsignedShort();
+		UserComparator8.SpriteBuffer_spriteHeight = var1.readUnsignedShort();
+		int var2 = (var1.readUnsignedByte() & 255) + 1;
+
+		int var3;
+		for (var3 = 0; var3 < class335.SpriteBuffer_spriteCount; ++var3) {
+			class335.SpriteBuffer_xOffsets[var3] = var1.readUnsignedShort();
+		}
+
+		for (var3 = 0; var3 < class335.SpriteBuffer_spriteCount; ++var3) {
+			NPC.SpriteBuffer_yOffsets[var3] = var1.readUnsignedShort();
+		}
+
+		for (var3 = 0; var3 < class335.SpriteBuffer_spriteCount; ++var3) {
+			class335.SpriteBuffer_spriteWidths[var3] = var1.readUnsignedShort();
+		}
+
+		for (var3 = 0; var3 < class335.SpriteBuffer_spriteCount; ++var3) {
+			class335.SpriteBuffer_spriteHeights[var3] = var1.readUnsignedShort();
+		}
+
+		var1.offset = var0.length - 7 - class335.SpriteBuffer_spriteCount * 8 - (var2 - 1) * 3;
+		class335.SpriteBuffer_spritePalette = new int[var2];
+
+		for (var3 = 1; var3 < var2; ++var3) {
+			class335.SpriteBuffer_spritePalette[var3] = var1.readMedium();
+			if (class335.SpriteBuffer_spritePalette[var3] == 0) {
+				class335.SpriteBuffer_spritePalette[var3] = 1;
 			}
 		}
 
-		return null;
-	}
+		var1.offset = 0;
 
-	@ObfuscatedName("t")
-	@ObfuscatedSignature(
-		signature = "(Ljava/lang/Object;Lkp;B)V",
-		garbageValue = "-3"
-	)
-	public static void method35(Object var0, Buffer var1) {
-		class0 var2 = method36(var0.getClass());
-		var2.vmethod55(var0, var1);
-	}
-
-	@ObfuscatedName("o")
-	@ObfuscatedSignature(
-		signature = "(Ljava/lang/Class;I)Lc;",
-		garbageValue = "-201332195"
-	)
-	static class0 method36(Class var0) {
-		class3 var1 = method51(var0);
-		if (var1 == null) {
-			throw new IllegalArgumentException();
-		} else {
-			return var1.field20;
-		}
-	}
-
-	@ObfuscatedName("o")
-	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "-95"
-	)
-	public static void method52() {
-		try {
-			File var0 = new File(UserComparator4.userHomeDirectory, "random.dat");
-			int var2;
-			if (var0.exists()) {
-				JagexCache.JagexCache_randomDat = new BufferedFile(new AccessFile(var0, "rw", 25L), 24, 0);
-			} else {
-				label37:
-				for (int var1 = 0; var1 < class42.field373.length; ++var1) {
-					for (var2 = 0; var2 < ChatChannel.field1291.length; ++var2) {
-						File var3 = new File(ChatChannel.field1291[var2] + class42.field373[var1] + File.separatorChar + "random.dat");
-						if (var3.exists()) {
-							JagexCache.JagexCache_randomDat = new BufferedFile(new AccessFile(var3, "rw", 25L), 24, 0);
-							break label37;
-						}
+		for (var3 = 0; var3 < class335.SpriteBuffer_spriteCount; ++var3) {
+			int var4 = class335.SpriteBuffer_spriteWidths[var3];
+			int var5 = class335.SpriteBuffer_spriteHeights[var3];
+			int var6 = var5 * var4;
+			byte[] var7 = new byte[var6];
+			ItemComposition.SpriteBuffer_pixels[var3] = var7;
+			int var8 = var1.readUnsignedByte();
+			int var9;
+			if (var8 == 0) {
+				for (var9 = 0; var9 < var6; ++var9) {
+					var7[var9] = var1.readByte();
+				}
+			} else if (var8 == 1) {
+				for (var9 = 0; var9 < var4; ++var9) {
+					for (int var10 = 0; var10 < var5; ++var10) {
+						var7[var9 + var10 * var4] = var1.readByte();
 					}
 				}
 			}
-
-			if (JagexCache.JagexCache_randomDat == null) {
-				RandomAccessFile var4 = new RandomAccessFile(var0, "rw");
-				var2 = var4.read();
-				var4.seek(0L);
-				var4.write(var2);
-				var4.seek(0L);
-				var4.close();
-				JagexCache.JagexCache_randomDat = new BufferedFile(new AccessFile(var0, "rw", 25L), 24, 0);
-			}
-		} catch (IOException var5) {
 		}
 
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("fg")
 	@ObfuscatedSignature(
-		signature = "(IIII)I",
-		garbageValue = "310348252"
+		signature = "(I)V",
+		garbageValue = "-2027582422"
 	)
-	static final int method49(int var0, int var1, int var2) {
-		int var3 = var0 / var2;
-		int var4 = var0 & var2 - 1;
-		int var5 = var1 / var2;
-		int var6 = var1 & var2 - 1;
-		int var7 = UserComparator4.method3450(var3, var5);
-		int var8 = UserComparator4.method3450(var3 + 1, var5);
-		int var9 = UserComparator4.method3450(var3, var5 + 1);
-		int var10 = UserComparator4.method3450(var3 + 1, var5 + 1);
-		int var12 = 65536 - Rasterizer3D.Rasterizer3D_cosine[var4 * 1024 / var2] >> 1;
-		int var11 = ((65536 - var12) * var7 >> 16) + (var8 * var12 >> 16);
-		int var14 = 65536 - Rasterizer3D.Rasterizer3D_cosine[var4 * 1024 / var2] >> 1;
-		int var13 = ((65536 - var14) * var9 >> 16) + (var10 * var14 >> 16);
-		int var16 = 65536 - Rasterizer3D.Rasterizer3D_cosine[var6 * 1024 / var2] >> 1;
-		int var15 = ((65536 - var16) * var11 >> 16) + (var16 * var13 >> 16);
-		return var15;
+	static final void method33() {
+		int[] var0 = Players.Players_indices;
+
+		int var1;
+		for (var1 = 0; var1 < Players.Players_count; ++var1) {
+			Player var2 = Client.players[var0[var1]];
+			if (var2 != null && var2.overheadTextCyclesRemaining > 0) {
+				--var2.overheadTextCyclesRemaining;
+				if (var2.overheadTextCyclesRemaining == 0) {
+					var2.overheadText = null;
+				}
+			}
+		}
+
+		for (var1 = 0; var1 < Client.npcCount; ++var1) {
+			int var4 = Client.npcIndices[var1];
+			NPC var3 = Client.npcs[var4];
+			if (var3 != null && var3.overheadTextCyclesRemaining > 0) {
+				--var3.overheadTextCyclesRemaining;
+				if (var3.overheadTextCyclesRemaining == 0) {
+					var3.overheadText = null;
+				}
+			}
+		}
+
 	}
 }

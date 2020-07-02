@@ -4,167 +4,167 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ki")
+@ObfuscatedName("lk")
 @Implements("BZip2State")
 public final class BZip2State {
-	@ObfuscatedName("c")
-	final int field3736;
-	@ObfuscatedName("t")
-	final int field3718;
+	@ObfuscatedName("m")
+	final int field3750;
 	@ObfuscatedName("o")
-	final int field3748;
-	@ObfuscatedName("e")
-	final int field3720;
-	@ObfuscatedName("i")
-	final int field3717;
+	final int field3784;
+	@ObfuscatedName("q")
+	final int field3749;
+	@ObfuscatedName("j")
+	final int field3755;
+	@ObfuscatedName("p")
+	final int field3751;
 	@ObfuscatedName("g")
-	final int field3722;
-	@ObfuscatedName("d")
+	final int field3752;
+	@ObfuscatedName("n")
 	@Export("inputArray")
 	byte[] inputArray;
-	@ObfuscatedName("l")
+	@ObfuscatedName("u")
 	@ObfuscatedGetter(
-		intValue = -807035473
+		intValue = 2048322099
 	)
 	@Export("nextByte")
 	int nextByte;
-	@ObfuscatedName("j")
+	@ObfuscatedName("a")
 	@ObfuscatedGetter(
-		intValue = -1509070377
+		intValue = -2079551029
 	)
 	@Export("nextBit_unused")
 	int nextBit_unused;
-	@ObfuscatedName("m")
+	@ObfuscatedName("z")
 	@Export("outputArray")
 	byte[] outputArray;
-	@ObfuscatedName("p")
+	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		intValue = -902711531
+		intValue = -521485937
 	)
 	@Export("next_out")
 	int next_out;
-	@ObfuscatedName("h")
+	@ObfuscatedName("y")
 	@ObfuscatedGetter(
-		intValue = 1633057799
+		intValue = -962372007
 	)
 	@Export("outputLength")
 	int outputLength;
-	@ObfuscatedName("v")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = 135980565
+		intValue = -1091946921
 	)
-	int field3729;
-	@ObfuscatedName("n")
+	int field3783;
+	@ObfuscatedName("h")
 	@Export("out_char")
 	byte out_char;
-	@ObfuscatedName("x")
+	@ObfuscatedName("k")
 	@ObfuscatedGetter(
-		intValue = 1481212591
+		intValue = -475619831
 	)
 	@Export("su_rNToGo")
 	int su_rNToGo;
-	@ObfuscatedName("w")
+	@ObfuscatedName("r")
 	@ObfuscatedGetter(
-		intValue = -29854091
+		intValue = 37444239
 	)
 	@Export("bsBuff")
 	int bsBuff;
-	@ObfuscatedName("k")
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = -725667235
+		intValue = 590709617
 	)
 	@Export("bsLive")
 	int bsLive;
-	@ObfuscatedName("q")
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = -1401293824
+		intValue = 134089728
 	)
 	@Export("blockSize100k")
 	int blockSize100k;
-	@ObfuscatedName("z")
+	@ObfuscatedName("d")
 	@ObfuscatedGetter(
-		intValue = 2006117845
+		intValue = 1631921855
 	)
 	@Export("originalPointer")
 	int originalPointer;
-	@ObfuscatedName("y")
+	@ObfuscatedName("e")
 	@ObfuscatedGetter(
-		intValue = -1496152105
+		intValue = 755758005
 	)
-	int field3746;
-	@ObfuscatedName("f")
+	int field3779;
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = 2017789723
+		intValue = 1026760725
 	)
 	@Export("su_ch2")
 	int su_ch2;
-	@ObfuscatedName("b")
+	@ObfuscatedName("t")
 	@Export("unzftab")
 	int[] unzftab;
-	@ObfuscatedName("r")
+	@ObfuscatedName("x")
 	@ObfuscatedGetter(
-		intValue = -2065710979
+		intValue = -819259021
 	)
 	@Export("nblocks_used")
 	int nblocks_used;
-	@ObfuscatedName("s")
+	@ObfuscatedName("b")
 	@Export("cftab")
 	int[] cftab;
-	@ObfuscatedName("u")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = -402806649
+		intValue = -420415873
 	)
 	@Export("nInUse")
 	int nInUse;
-	@ObfuscatedName("ae")
+	@ObfuscatedName("ah")
 	@Export("inUse")
 	boolean[] inUse;
-	@ObfuscatedName("af")
+	@ObfuscatedName("ai")
 	@Export("inUse16")
 	boolean[] inUse16;
-	@ObfuscatedName("az")
+	@ObfuscatedName("ao")
 	@Export("seqToUnseq")
 	byte[] seqToUnseq;
-	@ObfuscatedName("ax")
+	@ObfuscatedName("ae")
 	@Export("ll8")
 	byte[] ll8;
-	@ObfuscatedName("aj")
+	@ObfuscatedName("ax")
 	@Export("getAndMoveToFrontDecode_yy")
 	int[] getAndMoveToFrontDecode_yy;
-	@ObfuscatedName("au")
+	@ObfuscatedName("ag")
 	@Export("selector")
 	byte[] selector;
-	@ObfuscatedName("ay")
+	@ObfuscatedName("ab")
 	@Export("selectorMtf")
 	byte[] selectorMtf;
-	@ObfuscatedName("aa")
+	@ObfuscatedName("am")
 	@Export("temp_charArray2d")
 	byte[][] temp_charArray2d;
-	@ObfuscatedName("aq")
+	@ObfuscatedName("ak")
 	@Export("limit")
 	int[][] limit;
-	@ObfuscatedName("as")
+	@ObfuscatedName("ad")
 	@Export("base")
 	int[][] base;
-	@ObfuscatedName("ak")
+	@ObfuscatedName("as")
 	@Export("perm")
 	int[][] perm;
-	@ObfuscatedName("ac")
+	@ObfuscatedName("ar")
 	@Export("minLens")
 	int[] minLens;
-	@ObfuscatedName("aw")
+	@ObfuscatedName("ap")
 	@ObfuscatedGetter(
-		intValue = 1642554811
+		intValue = 202332287
 	)
-	int field3754;
+	int field3766;
 
 	BZip2State() {
-		this.field3736 = 4096;
-		this.field3718 = 16;
-		this.field3748 = 258;
-		this.field3720 = 6;
-		this.field3717 = 50;
-		this.field3722 = 18002;
+		this.field3750 = 4096;
+		this.field3784 = 16;
+		this.field3749 = 258;
+		this.field3755 = 6;
+		this.field3751 = 50;
+		this.field3752 = 18002;
 		this.nextByte = 0;
 		this.next_out = 0;
 		this.unzftab = new int[256];
@@ -183,16 +183,25 @@ public final class BZip2State {
 		this.minLens = new int[6];
 	}
 
-	@ObfuscatedName("ae")
+	@ObfuscatedName("iq")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;IB)V",
-		garbageValue = "84"
+		signature = "(Ljava/lang/String;Lhd;I)Ljava/lang/String;",
+		garbageValue = "-1638627143"
 	)
-	static final void method5833(String var0, int var1) {
-		PacketBufferNode var2 = TilePaint.getPacketBufferNode(ClientPacket.field2265, Client.packetWriter.isaacCipher);
-		var2.packetBuffer.writeByte(Buddy.stringCp1252NullTerminatedByteSize(var0) + 1);
-		var2.packetBuffer.writeStringCp1252NullTerminated(var0);
-		var2.packetBuffer.method5603(var1);
-		Client.packetWriter.addNode(var2);
+	static String method6001(String var0, Widget var1) {
+		if (var0.indexOf("%") != -1) {
+			for (int var2 = 1; var2 <= 5; ++var2) {
+				while (true) {
+					int var3 = var0.indexOf("%" + var2);
+					if (var3 == -1) {
+						break;
+					}
+
+					var0 = var0.substring(0, var3) + class225.method4182(Canvas.method923(var1, var2 - 1)) + var0.substring(var3 + 2);
+				}
+			}
+		}
+
+		return var0;
 	}
 }

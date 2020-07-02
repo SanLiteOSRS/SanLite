@@ -33,7 +33,6 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import javax.annotation.Nullable;
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -45,13 +44,16 @@ import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.plaf.basic.BasicProgressBarUI;
 import lombok.extern.slf4j.Slf4j;
+import net.runelite.client.RuneLiteProperties;
 import net.runelite.client.ui.skin.SubstanceRuneLiteLookAndFeel;
+import net.runelite.client.util.ImageUtil;
 import org.pushingpixels.substance.internal.SubstanceSynapse;
 
 @Slf4j
 public class SplashScreen extends JFrame implements ActionListener
 {
 	private static final int WIDTH = 200;
+	private static final int INITIAL_HEIGHT = 180;
 	private static final int PAD = 10;
 
 	private static SplashScreen INSTANCE;
@@ -68,9 +70,9 @@ public class SplashScreen extends JFrame implements ActionListener
 
 	private SplashScreen() throws IOException
 	{
-		BufferedImage logo = ImageIO.read(SplashScreen.class.getResourceAsStream("runelite_transparent.png"));
+		BufferedImage logo = ImageUtil.getResourceStreamFromClass(SplashScreen.class, "sanlite_transparent.png");
 
-		setTitle("RuneLite Launcher");
+		setTitle(RuneLiteProperties.getTitle() + " Launcher");
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setUndecorated(true);
@@ -85,7 +87,16 @@ public class SplashScreen extends JFrame implements ActionListener
 		pane.add(logoLabel);
 		logoLabel.setBounds(0, 0, WIDTH, WIDTH);
 
-		int y = WIDTH;
+		int y = INITIAL_HEIGHT;
+
+		JLabel clientVersion = new JLabel("Version " + RuneLiteProperties.getSanLiteVersion());
+		pane.add(clientVersion);
+		clientVersion.setForeground(Color.WHITE);
+		clientVersion.setBounds(0, INITIAL_HEIGHT, WIDTH, 16);
+		clientVersion.setHorizontalAlignment(SwingConstants.CENTER);
+		clientVersion.setForeground(clientVersion.getForeground().darker());
+		clientVersion.setFont(font);
+		y += clientVersion.getHeight() + PAD;
 
 		pane.add(action);
 		action.setForeground(Color.WHITE);
