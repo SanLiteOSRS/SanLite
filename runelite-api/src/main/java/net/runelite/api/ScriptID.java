@@ -110,17 +110,6 @@ public final class ScriptID
 	public static final int CHAT_PROMPT_INIT = 223;
 
 	/**
-	 * Displays the game messages when clicking on an item inside the Items Kept on Death interface
-	 * <ul>
-	 * <li> int (boolean) Item kept on death </li>
-	 * <li> int Item Quantity </li>
-	 * <li> String Item Name </li>
-	 * </ul>
-	 */
-	@ScriptArguments(integer = 2, string = 1)
-	public static final int DEATH_KEEP_ITEM_EXAMINE = 1603;
-
-	/**
 	 * Checks the state of the given stash unit.
 	 * <ul>
 	 * <li>int (loc) The stash unit object id</li>
@@ -219,12 +208,6 @@ public final class ScriptID
 	 * Send a public message
 	 */
 	public static final int PUBLIC_MSG = 13337;
-
-	/**
-	 * Builds the items kept on death widget
-	 */
-	@ScriptArguments(integer = 4, string = 2)
-	public static final int DEATH_KEEP_BUILD = 1601;
 
 	/**
 	 * Builds the widget that holds all of the players inside a friends chat
