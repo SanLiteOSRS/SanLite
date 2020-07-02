@@ -245,7 +245,7 @@ public abstract class RSActorMixin implements RSActor
 		{
 			if (this instanceof Player)
 			{
-				final PlayerDeath event = new PlayerDeath((Player) this);
+				final ActorDeath event = new ActorDeath((Player) this);
 				client.getCallbacks().post(event);
 			}
 			else if (this instanceof RSNPC)
