@@ -100,7 +100,7 @@ public class SpellEffectTimersPlugin extends Plugin
 	@Subscribe
 	public void onGraphicChanged(GraphicChanged graphicChanged)
 	{
-		log.warn(spotAnimationChanged.getActor().getSpotAnimation() + " = spot anim id");
+		log.warn(graphicChanged.getActor().getGraphic() + " = graphic id");
 		// Edge cases causing the plugin to not detect freezes
 		// 1. Ahrim's full set effect spot anim overriding (id 400)
 		// 2. Elysian hit effect might also trigger this
@@ -156,7 +156,7 @@ public class SpellEffectTimersPlugin extends Plugin
 			case TELEBLOCK_IMMUNITY:
 				return;
 			case STAFF_OF_THE_DEAD_SPECIAL:
-				checkSotdSpellEffect(spotAnimationChanged, actor, spellEffect);
+				checkSotdSpellEffect(graphicChanged, actor, spellEffect);
 				break;
 			case TELEBLOCK:
 				checkTeleblockSpellEffect(actor, spellEffect);
@@ -415,13 +415,27 @@ public class SpellEffectTimersPlugin extends Plugin
 		spellEffects.add(new SpellEffectInfo(actor, SpellEffect.VENGEANCE_ACTIVE, client.getGameCycle(), false));
 	}
 
+	private void checkSotdSpellEffect(GraphicChanged graphicChanged, Actor actor, SpellEffect spellEffect)
+	{
+		spellEffects.removeIf(x -> x.getSpellEffect().getSpellType().equals((SpellEffectType.STAFF_OF_THE_DEAD_SPECIAL)) &&
+				x.getActor().equals(graphicChanged.getActor()));
+
+		spellEffects.add(new SpellEffectInfo(actor, spellEffect, client.getGameCycle(), false));
+
+	}
+
 	/**
 	 * Remove freeze timer if actor moves during freeze duration but after initial grace period (first 10% of freeze duration)
+	 * Checks for if the actor moved more than 1 square to account for dragon spear specials
 	 */
 	private void checkIfAnyFrozenActorsMoved()
 	{
 		new HashMap<>(frozenActors).entrySet().stream()
-				.filter(x -> !x.getKey().getWorldLocation().equals(x.getValue()))
+				.filter(x -> x.getKey().getWorldLocation().getX() != (x.getValue().getX() - 1)
+						&& x.getKey().getWorldLocation().getX() != (x.getValue().getX() + 1)
+						&& x.getKey().getWorldLocation().getY() != (x.getValue().getY() - 1)
+						&& x.getKey().getWorldLocation().getX() != (x.getValue().getY() + 1)
+						&& x.getKey().getWorldLocation() != (x.getValue()))
 				.forEach((entry) ->
 				{
 					new ArrayList<>(spellEffects).stream()
