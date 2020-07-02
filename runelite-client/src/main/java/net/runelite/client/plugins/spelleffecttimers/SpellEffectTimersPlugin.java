@@ -232,6 +232,11 @@ public class SpellEffectTimersPlugin extends Plugin
 			return;
 		}
 
+		if (!(actor instanceof Player))
+		{
+			return;
+		}
+
 		spellEffects.removeIf(x -> x.getActor().equals(actor));
 		frozenActors.entrySet().removeIf(x -> x.getKey().equals(actor));
 	}

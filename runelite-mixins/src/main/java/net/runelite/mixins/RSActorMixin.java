@@ -51,7 +51,6 @@ import net.runelite.rs.api.RSHealthBar;
 import net.runelite.rs.api.RSHealthBarDefinition;
 import net.runelite.rs.api.RSHealthBarUpdate;
 import net.runelite.rs.api.RSIterableNodeDeque;
-import net.runelite.rs.api.RSNPC;
 import net.runelite.rs.api.RSNode;
 
 @Mixin(RSActor.class)
@@ -243,15 +242,8 @@ public abstract class RSActorMixin implements RSActor
 	{
 		if (healthRatio == 0)
 		{
-			if (this instanceof Player)
-			{
-				final ActorDeath event = new ActorDeath((Player) this);
-				client.getCallbacks().post(event);
-			}
-			else if (this instanceof RSNPC)
-			{
-				((RSNPC) this).setDead(true);
-			}
+			final ActorDeath event = new ActorDeath(this);
+			client.getCallbacks().post(event);
 		}
 	}
 
