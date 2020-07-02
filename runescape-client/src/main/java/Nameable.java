@@ -133,8 +133,8 @@ public class Nameable implements Comparable {
 		} else {
 			if (Fonts.ByteArrayPool_arrays != null) {
 				for (int var1 = 0; var1 < ParamDefinition.ByteArrayPool_alternativeSizes.length; ++var1) {
-					if (var0.length == ParamDefinition.ByteArrayPool_alternativeSizes[var1] && VarbitDefinition.ByteArrayPool_altSizeArrayCounts[var1] < Fonts.ByteArrayPool_arrays[var1].length) {
-						Fonts.ByteArrayPool_arrays[var1][VarbitDefinition.ByteArrayPool_altSizeArrayCounts[var1]++] = var0;
+					if (var0.length == ParamDefinition.ByteArrayPool_alternativeSizes[var1] && VarbitComposition.ByteArrayPool_altSizeArrayCounts[var1] < Fonts.ByteArrayPool_arrays[var1].length) {
+						Fonts.ByteArrayPool_arrays[var1][VarbitComposition.ByteArrayPool_altSizeArrayCounts[var1]++] = var0;
 						return;
 					}
 				}

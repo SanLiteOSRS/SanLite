@@ -1591,4 +1591,11 @@ public abstract class RSClientMixin implements RSClient
 		assert this.isClientThread() : "getNpcDefinition must be called on client thread";
 		return getRSNpcDefinition(id);
 	}
+
+	@Inject
+	@Override
+	public boolean isKeyPressed(int keycode)
+	{
+		return client.getPressedKeys()[keycode];
+	}
 }

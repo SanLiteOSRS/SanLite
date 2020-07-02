@@ -535,7 +535,7 @@ public class HealthBar extends Node {
 						SequenceDefinition.SequenceDefinition_skeletonsArchive = var8;
 						MenuAction.method2171(Clock.archive2, Projectile.archive7);
 						Archive var9 = Clock.archive2;
-						VarbitDefinition.VarbitDefinition_archive = var9;
+						VarbitComposition.VarbitDefinition_archive = var9;
 						TileItem.method2256(Clock.archive2);
 						UserComparator4.method3495(class105.archive3, Projectile.archive7, GrandExchangeEvent.archive8, GameBuild.archive13);
 						Archive var10 = Clock.archive2;

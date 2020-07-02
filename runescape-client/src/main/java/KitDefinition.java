@@ -289,7 +289,7 @@ public class KitDefinition extends DualNode {
 					boolean var3 = false;
 
 					for (Node var4 = var1.params.first(); var4 != null; var4 = var1.params.next()) {
-						ParamDefinition var5 = VarbitDefinition.getParamDefinition((int)var4.key);
+						ParamDefinition var5 = VarbitComposition.getParamDefinition((int)var4.key);
 						if (var5.autoDisable) {
 							var4.remove();
 						} else {
@@ -393,6 +393,6 @@ public class KitDefinition extends DualNode {
 		garbageValue = "1137606481"
 	)
 	public static void method4624() {
-		VarbitDefinition.VarbitDefinition_cached.clear();
+		VarbitComposition.VarbitDefinition_cached.clear();
 	}
 }

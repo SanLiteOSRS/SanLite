@@ -24,8 +24,10 @@
  */
 package net.runelite.client.plugins.examine;
 
+import com.google.common.annotations.VisibleForTesting;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
+import com.google.inject.Provides;
 import java.time.Instant;
 import java.util.ArrayDeque;
 import java.util.Deque;
@@ -34,7 +36,6 @@ import javax.inject.Inject;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.ChatMessageType;
 import net.runelite.api.Client;
-import net.runelite.api.Constants;
 import net.runelite.api.ItemComposition;
 import net.runelite.api.ItemID;
 import net.runelite.api.events.ChatMessage;
@@ -58,6 +59,7 @@ import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.util.QuantityFormatter;
 import net.runelite.client.util.Text;
 import net.runelite.http.api.examine.ExamineClient;
+import okhttp3.OkHttpClient;
 
 /**
  * Submits examine info to the api
@@ -90,6 +92,12 @@ public class ExaminePlugin extends Plugin
 
 	@Inject
 	private ChatMessageManager chatMessageManager;
+
+	@Provides
+	ExamineClient provideExamineClient(OkHttpClient okHttpClient)
+	{
+		return new ExamineClient(okHttpClient);
+	}
 
 	@Subscribe
 	public void onGameStateChanged(GameStateChanged event)
@@ -313,13 +321,13 @@ public class ExaminePlugin extends Plugin
 		return null;
 	}
 
-	private void getItemPrice(int id, ItemComposition itemComposition, int quantity)
+	@VisibleForTesting
+	void getItemPrice(int id, ItemComposition itemComposition, int quantity)
 	{
 		// quantity is at least 1
 		quantity = Math.max(1, quantity);
-		int itemCompositionPrice = itemComposition.getPrice();
-		final long gePrice = itemManager.getItemPrice(id);
-		final long alchPrice = itemCompositionPrice <= 0 ? 0 : Math.round(itemCompositionPrice * Constants.HIGH_ALCHEMY_MULTIPLIER);
+		final int gePrice = itemManager.getItemPrice(id);
+		final int alchPrice = itemComposition.getHaPrice();
 
 		if (gePrice > 0 || alchPrice > 0)
 		{
@@ -346,7 +354,7 @@ public class ExaminePlugin extends Plugin
 					.append(ChatColorType.NORMAL)
 					.append(" GE average ")
 					.append(ChatColorType.HIGHLIGHT)
-					.append(QuantityFormatter.formatNumber(gePrice * quantity));
+					.append(QuantityFormatter.formatNumber((long) gePrice * quantity));
 
 				if (quantity > 1)
 				{
@@ -366,7 +374,7 @@ public class ExaminePlugin extends Plugin
 					.append(ChatColorType.NORMAL)
 					.append(" HA value ")
 					.append(ChatColorType.HIGHLIGHT)
-					.append(QuantityFormatter.formatNumber(alchPrice * quantity));
+					.append(QuantityFormatter.formatNumber((long) alchPrice * quantity));
 
 				if (quantity > 1)
 				{

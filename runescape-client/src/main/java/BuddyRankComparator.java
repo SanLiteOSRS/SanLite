@@ -41,7 +41,7 @@ public class BuddyRankComparator extends AbstractUserComparator {
 		garbageValue = "-1830826767"
 	)
 	static String method3556(String var0) {
-		PlayerType[] var1 = VarbitDefinition.PlayerType_values();
+		PlayerType[] var1 = VarbitComposition.PlayerType_values();
 
 		for (int var2 = 0; var2 < var1.length; ++var2) {
 			PlayerType var3 = var1[var2];

@@ -4074,7 +4074,7 @@ public final class Client extends GameEngine implements Usernamed {
 					var39 = var3.readStringCp1252NullTerminated();
 					var17 = (long)var3.readUnsignedShort();
 					var7 = (long)var3.readMedium();
-					PlayerType var9 = (PlayerType)FaceNormal.findEnumerated(VarbitDefinition.PlayerType_values(), var3.readUnsignedByte());
+					PlayerType var9 = (PlayerType)FaceNormal.findEnumerated(VarbitComposition.PlayerType_values(), var3.readUnsignedByte());
 					long var10 = var7 + (var17 << 32);
 					boolean var12 = false;
 
@@ -4273,7 +4273,7 @@ public final class Client extends GameEngine implements Usernamed {
 					var17 = var3.readLong();
 					var7 = (long)var3.readUnsignedShort();
 					var23 = (long)var3.readMedium();
-					PlayerType var44 = (PlayerType)FaceNormal.findEnumerated(VarbitDefinition.PlayerType_values(), var3.readUnsignedByte());
+					PlayerType var44 = (PlayerType)FaceNormal.findEnumerated(VarbitComposition.PlayerType_values(), var3.readUnsignedByte());
 					var25 = var23 + (var7 << 32);
 					boolean var14 = false;
 

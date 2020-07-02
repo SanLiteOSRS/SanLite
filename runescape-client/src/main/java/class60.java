@@ -117,7 +117,7 @@ public class class60 {
 			int var15;
 			if ((var6 & 1) != 0) {
 				var8 = var0.readUnsignedShort();
-				PlayerType var16 = (PlayerType)FaceNormal.findEnumerated(VarbitDefinition.PlayerType_values(), var0.method5936());
+				PlayerType var16 = (PlayerType)FaceNormal.findEnumerated(VarbitComposition.PlayerType_values(), var0.method5936());
 				boolean var10 = var0.readUnsignedByte() == 1;
 				var11 = var0.method5746();
 				var12 = var0.offset;
