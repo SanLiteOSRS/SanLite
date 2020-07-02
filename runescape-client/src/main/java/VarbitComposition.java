@@ -5,8 +5,8 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("iv")
-@Implements("VarbitDefinition")
-public class VarbitDefinition extends DualNode {
+@Implements("VarbitComposition")
+public class VarbitComposition extends DualNode {
 	@ObfuscatedName("m")
 	@ObfuscatedSignature(
 		signature = "Lic;"

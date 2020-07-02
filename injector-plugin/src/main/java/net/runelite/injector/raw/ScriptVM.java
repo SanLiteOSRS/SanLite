@@ -98,13 +98,13 @@ public class ScriptVM
 		 */
 		final String scriptObName = DeobAnnotations.getObfuscatedName(inject.getDeobfuscated().findClass("Script").getAnnotations());
 
-		final Method runScript = findStaticMethod(vanilla, "copy$runScript");
-		final Method vmExecuteOpcode = findStaticMethod(vanilla, "vmExecuteOpcode");
-
 		final Field scriptInstructions = findDeobField(inject, "opcodes");
 		final Field scriptStatePC = findDeobField(inject, "pc");
 
-		final Field currentScriptField = findObField(inject, "currentScript");
+		// Next 4 should be injected by mixins
+		final Method runScript = findStaticMethod(vanilla, "copy$runScript");
+		final Method vmExecuteOpcode = findStaticMethod(vanilla, "vmExecuteOpcode");
+		final Method setCurrentScript = findStaticMethod(vanilla, "setCurrentScript");
 		final Field currentScriptPCField = findObField(inject, "currentScriptPC");
 
 		Execution e = new Execution(inject.getVanilla());
@@ -232,7 +232,7 @@ public class ScriptVM
 					{
 						instrIter.previous();
 						instrIter.add(new Dup(instrs));
-						instrIter.add(new PutStatic(instrs, currentScriptField));
+						instrIter.add(new InvokeStatic(instrs, setCurrentScript.getPoolMethod()));
 						instrIter.next();
 					}
 				}

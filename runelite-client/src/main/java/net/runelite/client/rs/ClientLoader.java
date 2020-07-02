@@ -41,6 +41,7 @@ import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.Map;
 import java.util.function.Supplier;
+import okhttp3.OkHttpClient;
 
 import static net.runelite.client.rs.ClientUpdateCheckMode.NONE;
 
@@ -50,15 +51,21 @@ public class ClientLoader implements Supplier<Applet>
 	private static final int NUM_ATTEMPTS = 6;
 	public static boolean USE_LOCAL_INJECTED = false;
 
+	private final OkHttpClient okHttpClient;
+	private final ClientConfigLoader clientConfigLoader;
 	private ClientUpdateCheckMode updateCheckMode;
+	private final WorldSupplier worldSupplier;
+
 	private Object client = null;
 
-	private WorldSupplier worldSupplier = new WorldSupplier();
 	private RSConfig config;
 
-	public ClientLoader(ClientUpdateCheckMode updateCheckMode)
+	public ClientLoader(OkHttpClient okHttpClient, ClientUpdateCheckMode updateCheckMode)
 	{
+		this.okHttpClient = okHttpClient;
+		this.clientConfigLoader = new ClientConfigLoader(okHttpClient);
 		this.updateCheckMode = updateCheckMode;
+		this.worldSupplier = new WorldSupplier(okHttpClient);
 	}
 
 	@Override
@@ -126,7 +133,7 @@ public class ClientLoader implements Supplier<Applet>
 		{
 			try
 			{
-				config = ClientConfigLoader.fetch(url);
+				config = clientConfigLoader.fetch(url);
 
 				if (Strings.isNullOrEmpty(config.getCodeBase()) || Strings.isNullOrEmpty(config.getInitialJar()) || Strings.isNullOrEmpty(config.getInitialClass()))
 				{
@@ -148,7 +155,7 @@ public class ClientLoader implements Supplier<Applet>
 
 		try
 		{
-			RSConfig backupConfig = ClientConfigLoader.fetch(HttpUrl.parse(RuneLiteProperties.getJavConfigBackup()));
+			RSConfig backupConfig = clientConfigLoader.fetch(HttpUrl.parse(RuneLiteProperties.getJavConfigBackup()));
 
 			if (Strings.isNullOrEmpty(backupConfig.getCodeBase()) || Strings.isNullOrEmpty(backupConfig.getInitialJar()) || Strings.isNullOrEmpty(backupConfig.getInitialClass()))
 			{

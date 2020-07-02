@@ -24,14 +24,7 @@
  */
 package net.runelite.mixins;
 
-import java.util.ArrayList;
-import java.util.Stack;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import net.runelite.api.Client;
-import static net.runelite.api.Opcodes.INVOKE;
-import static net.runelite.api.Opcodes.RETURN;
-import static net.runelite.api.Opcodes.RUNELITE_EXECUTE;
 import net.runelite.api.events.ScriptCallbackEvent;
 import net.runelite.api.events.ScriptPostFired;
 import net.runelite.api.events.ScriptPreFired;
@@ -45,13 +38,17 @@ import net.runelite.rs.api.RSClient;
 import net.runelite.rs.api.RSScript;
 import net.runelite.rs.api.RSScriptEvent;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import static net.runelite.api.Opcodes.*;
+
 @Mixin(RSClient.class)
 public abstract class ScriptVMMixin implements RSClient
 {
 	@Shadow("client")
 	private static Client client;
 
-	// This field is set by the ScriptVM raw injector
 	@Inject
 	private static RSScript currentScript;
 
@@ -59,79 +56,71 @@ public abstract class ScriptVMMixin implements RSClient
 	@Inject
 	private static int currentScriptPC;
 
+	// Call is injected by the ScriptVM raw injector
 	@Inject
-	private static ScriptPostFired deferredEvent = null;
-
-	@Inject
-	private static Stack<Integer> scriptIds = new Stack<>();
+	static void setCurrentScript(RSScript script)
+	{
+		currentScript = script;
+	}
 
 	// Call is injected into runScript by the ScriptVM raw injector
 	@Inject
 	static boolean vmExecuteOpcode(int opcode)
 	{
-		if (deferredEvent != null)
+		switch (opcode)
 		{
-			client.getCallbacks().post(deferredEvent);
-			deferredEvent = null;
-		}
-		if (opcode == RUNELITE_EXECUTE)
-		{
-			assert currentScript.getInstructions()[currentScriptPC] == RUNELITE_EXECUTE;
+			case RUNELITE_EXECUTE:
+				assert currentScript.getInstructions()[currentScriptPC] == RUNELITE_EXECUTE;
 
-			int stringStackSize = client.getStringStackSize();
-			String stringOp = client.getStringStack()[--stringStackSize];
-			client.setStringStackSize(stringStackSize);
-
-			if ("debug".equals(stringOp))
-			{
-				int intStackSize = client.getIntStackSize();
-
-				String fmt = client.getStringStack()[--stringStackSize];
-				StringBuffer out = new StringBuffer();
-				Matcher m = Pattern.compile("%(.)").matcher(fmt);
-				for (; m.find(); )
-				{
-					m.appendReplacement(out, "");
-					switch (m.group(1).charAt(0))
-					{
-						case 'i':
-						case 'd':
-							out.append(client.getIntStack()[--intStackSize]);
-							break;
-						case 's':
-							out.append(client.getStringStack()[--stringStackSize]);
-							break;
-						default:
-							out.append(m.group(0)).append("=unknown");
-					}
-				}
-				m.appendTail(out);
-
-				client.getLogger().debug(out.toString());
-
+				int stringStackSize = client.getStringStackSize();
+				String stringOp = client.getStringStack()[--stringStackSize];
 				client.setStringStackSize(stringStackSize);
-				client.setIntStackSize(intStackSize);
-				return true;
-			}
 
-			ScriptCallbackEvent event = new ScriptCallbackEvent();
-			event.setScript(currentScript);
-			event.setEventName(stringOp);
-			client.getCallbacks().post(event);
-			return true;
-		}
-		else if (opcode == INVOKE)
-		{
-			int id = currentScript.getIntOperands()[currentScriptPC];
-			scriptIds.push(id);
-			client.getCallbacks().post(new ScriptPreFired(id));
-		}
-		else if (opcode == RETURN)
-		{
-			if (scriptIds.size() > 1) // let the runScript method handle the final script
-			{
-				deferredEvent = new ScriptPostFired(scriptIds.pop()); // fire the event when we've left the script
-			}
+				if ("debug".equals(stringOp))
+				{
+					int intStackSize = client.getIntStackSize();
+
+					String format = client.getStringStack()[--stringStackSize];
+					StringBuffer output = new StringBuffer();
+					Matcher matcher = Pattern.compile("%(.)").matcher(format);
+
+					while (matcher.find())
+					{
+						matcher.appendReplacement(output, "");
+						switch (matcher.group(1).charAt(0))
+						{
+							case 'd':
+							case 'i':
+								output.append(client.getIntStack()[--intStackSize]);
+								break;
+							case 's':
+								output.append(client.getStringStack()[--stringStackSize]);
+								break;
+							default:
+								output.append(matcher.group(0)).append("=unknown");
+						}
+					}
+
+					matcher.appendTail(output);
+					client.getLogger().debug(output.toString());
+
+					client.setStringStackSize(stringStackSize);
+					client.setIntStackSize(intStackSize);
+					return true;
+				}
+
+				ScriptCallbackEvent event = new ScriptCallbackEvent();
+				event.setScript(currentScript);
+				event.setEventName(stringOp);
+				client.getCallbacks().post(event);
+				return true;
+			case INVOKE:
+				int scriptId = currentScript.getIntOperands()[currentScriptPC];
+				client.getCallbacks().post(new ScriptPreFired(scriptId));
+				return false;
+			case RETURN:
+				client.getCallbacks().post(new ScriptPostFired((int) currentScript.getHash()));
+				return false;
 		}
 		return false;
 	}
@@ -146,56 +135,30 @@ public abstract class ScriptVMMixin implements RSClient
 	static void rl$runScript(RSScriptEvent event, int maxExecutionTime)
 	{
 		Object[] arguments = event.getArguments();
-		if (arguments != null && arguments.length > 0 && arguments[0] instanceof JavaScriptCallback)
+		assert arguments != null && arguments.length > 0;
+		if (arguments[0] instanceof JavaScriptCallback)
 		{
 			try
 			{
-				ScriptPreFired scriptPreFired = new ScriptPreFired(-1);
-				scriptPreFired.setScriptEvent(event);
-				client.getCallbacks().post(scriptPreFired);
-
 				((JavaScriptCallback) arguments[0]).run(event);
-
-				ScriptPostFired scriptPostFired = new ScriptPostFired(-1);
-				client.getCallbacks().post(scriptPostFired);
 			}
 			catch (Exception e)
 			{
 				client.getLogger().error("Error in JavaScriptCallback", e);
 			}
 		}
-		else
+		else if (arguments[0] instanceof Integer)
 		{
 			try
 			{
-				try
-				{
-					scriptIds.push((Integer) event.getArguments()[0]); // this is safe because it will always be the script id
-
-					ScriptPreFired scriptPreFired = new ScriptPreFired(scriptIds.peek()); // peek doesn't remove the top item
-					scriptPreFired.setScriptEvent(event);
-					client.getCallbacks().post(scriptPreFired);
-				}
-				catch (ClassCastException ignored)
-				{
-				}
-
+				final ScriptPreFired scriptPreFired = new ScriptPreFired((int) arguments[0]);
+				scriptPreFired.setScriptEvent(event);
+				client.getCallbacks().post(scriptPreFired);
 				rs$runScript(event, maxExecutionTime);
-
-				if (!scriptIds.empty())
-				{
-					ScriptPostFired scriptPostFired = new ScriptPostFired(scriptIds.pop()); // hopefully the stack should be dry at this point
-					assert scriptIds.empty() : "Script ID stack should be empty! Contains: " + getAllScriptIds();
-					client.getCallbacks().post(scriptPostFired);
-				}
 			}
 			finally
 			{
 				currentScript = null;
-				while (!scriptIds.empty())
-				{
-					scriptIds.pop(); // make sure the stack is empty, something disastrous happened
-				}
 			}
 		}
 	}
@@ -210,26 +173,5 @@ public abstract class ScriptVMMixin implements RSClient
 		RSScriptEvent se = createScriptEvent();
 		se.setArguments(args);
 		runScript(se, 5000000);
-	}
-
-	@Inject
-	private static String getAllScriptIds()
-	{
-		ArrayList<Integer> ids = new ArrayList<>(scriptIds);
-		StringBuilder sb = new StringBuilder();
-		boolean first = true;
-		for (Object item : ids)
-		{
-			if (first)
-			{
-				first = false;
-			}
-			else
-			{
-				sb.append(", ");
-			}
-			sb.append(item);
-		}
-		return sb.toString();
 	}
 }

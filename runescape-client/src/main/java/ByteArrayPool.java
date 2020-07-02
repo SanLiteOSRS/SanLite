@@ -85,9 +85,9 @@ public class ByteArrayPool {
 				if (ParamDefinition.ByteArrayPool_alternativeSizes[var4] != var0) {
 					if (var0 < ParamDefinition.ByteArrayPool_alternativeSizes[var4]) {
 					}
-				} else if (VarbitDefinition.ByteArrayPool_altSizeArrayCounts[var4] > 0) {
-					byte[] var3 = Fonts.ByteArrayPool_arrays[var4][--VarbitDefinition.ByteArrayPool_altSizeArrayCounts[var4]];
-					Fonts.ByteArrayPool_arrays[var4][VarbitDefinition.ByteArrayPool_altSizeArrayCounts[var4]] = null;
+				} else if (VarbitComposition.ByteArrayPool_altSizeArrayCounts[var4] > 0) {
+					byte[] var3 = Fonts.ByteArrayPool_arrays[var4][--VarbitComposition.ByteArrayPool_altSizeArrayCounts[var4]];
+					Fonts.ByteArrayPool_arrays[var4][VarbitComposition.ByteArrayPool_altSizeArrayCounts[var4]] = null;
 					return var3;
 				}
 			}
