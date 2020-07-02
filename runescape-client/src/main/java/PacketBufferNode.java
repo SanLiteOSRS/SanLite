@@ -70,7 +70,7 @@ public class PacketBufferNode extends Node {
 		garbageValue = "1965042826"
 	)
 	static final int method3750(int var0, int var1) {
-		int var2 = VarbitDefinition.method4696(45365 + var0, var1 + 91923, 4) - 128 + (VarbitDefinition.method4696(var0 + 10294, 37821 + var1, 2) - 128 >> 1) + (VarbitDefinition.method4696(var0, var1, 1) - 128 >> 2);
+		int var2 = VarbitComposition.method4696(45365 + var0, var1 + 91923, 4) - 128 + (VarbitComposition.method4696(var0 + 10294, 37821 + var1, 2) - 128 >> 1) + (VarbitComposition.method4696(var0, var1, 1) - 128 >> 2);
 		var2 = (int)(0.3D * (double)var2) + 35;
 		if (var2 < 10) {
 			var2 = 10;

@@ -28,19 +28,25 @@ import com.google.inject.Guice;
 import com.google.inject.testing.fieldbinder.Bind;
 import com.google.inject.testing.fieldbinder.BoundFieldModule;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.concurrent.ScheduledExecutorService;
 import javax.inject.Inject;
 import net.runelite.api.ChatMessageType;
 import static net.runelite.api.ChatMessageType.GAMEMESSAGE;
 import net.runelite.api.Client;
 import net.runelite.api.GameState;
+import net.runelite.api.Hitsplat;
 import net.runelite.api.MessageNode;
+import net.runelite.api.NPC;
+import net.runelite.api.NPCComposition;
 import net.runelite.api.Player;
 import net.runelite.api.Skill;
 import net.runelite.api.coords.LocalPoint;
+import net.runelite.api.events.ActorDeath;
 import net.runelite.api.events.ChatMessage;
 import net.runelite.api.events.GameStateChanged;
 import net.runelite.api.events.GameTick;
+import net.runelite.api.events.HitsplatApplied;
 import net.runelite.api.events.StatChanged;
 import net.runelite.api.widgets.Widget;
 import net.runelite.api.widgets.WidgetInfo;
@@ -527,10 +533,10 @@ public class SlayerPluginTest
 		when(client.getLocalPlayer()).thenReturn(player);
 
 		StatChanged statChanged = new StatChanged(
-			Skill.SLAYER,
-			100,
-			2,
-			2
+				Skill.SLAYER,
+				100,
+				2,
+				2
 		);
 		slayerPlugin.onStatChanged(statChanged);
 
@@ -538,10 +544,10 @@ public class SlayerPluginTest
 		slayerPlugin.setAmount(143);
 
 		statChanged = new StatChanged(
-			Skill.SLAYER,
-			110,
-			2,
-			2
+				Skill.SLAYER,
+				110,
+				2,
+				2
 		);
 		slayerPlugin.onStatChanged(statChanged);
 
@@ -556,10 +562,10 @@ public class SlayerPluginTest
 		when(client.getLocalPlayer()).thenReturn(player);
 
 		StatChanged statChanged = new StatChanged(
-			Skill.SLAYER,
-			100,
-			2,
-			2
+				Skill.SLAYER,
+				100,
+				2,
+				2
 		);
 		slayerPlugin.onStatChanged(statChanged);
 
@@ -569,10 +575,10 @@ public class SlayerPluginTest
 		assert Task.getTask("Monster") == null;
 
 		statChanged = new StatChanged(
-			Skill.SLAYER,
-			110,
-			2,
-			2
+				Skill.SLAYER,
+				110,
+				2,
+				2
 		);
 		slayerPlugin.onStatChanged(statChanged);
 
@@ -587,10 +593,10 @@ public class SlayerPluginTest
 		when(client.getLocalPlayer()).thenReturn(player);
 
 		StatChanged statChanged = new StatChanged(
-			Skill.SLAYER,
-			100,
-			2,
-			2
+				Skill.SLAYER,
+				100,
+				2,
+				2
 		);
 		slayerPlugin.onStatChanged(statChanged);
 
@@ -599,10 +605,10 @@ public class SlayerPluginTest
 
 		// One bat kill
 		statChanged = new StatChanged(
-			Skill.SLAYER,
-			110,
-			2,
-			2
+				Skill.SLAYER,
+				110,
+				2,
+				2
 		);
 		slayerPlugin.onStatChanged(statChanged);
 
@@ -610,10 +616,10 @@ public class SlayerPluginTest
 
 		// One Jad kill
 		statChanged = new StatChanged(
-			Skill.SLAYER,
-			25360,
-			-1,
-			-1
+				Skill.SLAYER,
+				25360,
+				-1,
+				-1
 		);
 		slayerPlugin.onStatChanged(statChanged);
 
@@ -628,10 +634,10 @@ public class SlayerPluginTest
 		when(client.getLocalPlayer()).thenReturn(player);
 
 		StatChanged statChanged = new StatChanged(
-			Skill.SLAYER,
-			110,
-			2,
-			2
+				Skill.SLAYER,
+				110,
+				2,
+				2
 		);
 		slayerPlugin.onStatChanged(statChanged);
 
@@ -640,10 +646,10 @@ public class SlayerPluginTest
 
 		// One bat kill
 		statChanged = new StatChanged(
-			Skill.SLAYER,
-			125,
-			2,
-			2
+				Skill.SLAYER,
+				125,
+				2,
+				2
 		);
 		slayerPlugin.onStatChanged(statChanged);
 
@@ -651,10 +657,10 @@ public class SlayerPluginTest
 
 		// One Zuk kill
 		statChanged = new StatChanged(
-			Skill.SLAYER,
-			102_015,
-			-1,
-			-1
+				Skill.SLAYER,
+				102_015,
+				-1,
+				-1
 		);
 		slayerPlugin.onStatChanged(statChanged);
 
@@ -771,7 +777,7 @@ public class SlayerPluginTest
 		slayerPlugin.onChatMessage(chatMessage);
 
 		assertEquals("Suqahs", slayerPlugin.getTaskName());
-		slayerPlugin.killedOne();
+		slayerPlugin.killed(1);
 		assertEquals(30, slayerPlugin.getAmount());
 	}
 
@@ -830,18 +836,18 @@ public class SlayerPluginTest
 		slayerPlugin.setAmount(35);
 
 		StatChanged statChanged = new StatChanged(
-			Skill.SLAYER,
-			0,
-			1,
-			1
+				Skill.SLAYER,
+				0,
+				1,
+				1
 		);
 		slayerPlugin.onStatChanged(statChanged);
 
 		statChanged = new StatChanged(
-			Skill.SLAYER,
-			27,
-			1,
-			1
+				Skill.SLAYER,
+				27,
+				1,
+				1
 		);
 		slayerPlugin.onStatChanged(statChanged);
 
@@ -862,5 +868,68 @@ public class SlayerPluginTest
 		slayerPlugin.onGameStateChanged(loggedIn);
 
 		verify(infoBoxManager, never()).addInfoBox(any());
+	}
+
+	@Test
+	public void testMultikill()
+	{
+		final Player player = mock(Player.class);
+		when(player.getLocalLocation()).thenReturn(new LocalPoint(0, 0));
+		when(client.getLocalPlayer()).thenReturn(player);
+
+		// Setup xp cache
+		StatChanged statChanged = new StatChanged(
+				Skill.SLAYER,
+				0,
+				1,
+				1
+		);
+		slayerPlugin.onStatChanged(statChanged);
+
+		NPCComposition npcComposition = mock(NPCComposition.class);
+		when(npcComposition.getActions()).thenReturn(new String[]{"Attack"});
+
+		NPC npc1 = mock(NPC.class);
+		when(npc1.getName()).thenReturn("Suqah");
+		when(npc1.getTransformedComposition()).thenReturn(npcComposition);
+
+		NPC npc2 = mock(NPC.class);
+		when(npc2.getName()).thenReturn("Suqah");
+		when(npc2.getTransformedComposition()).thenReturn(npcComposition);
+
+		when(client.getNpcs()).thenReturn(Arrays.asList(npc1, npc2));
+
+		// Set task
+		Widget npcDialog = mock(Widget.class);
+		when(npcDialog.getText()).thenReturn(TASK_NEW);
+		when(client.getWidget(WidgetInfo.DIALOG_NPC_TEXT)).thenReturn(npcDialog);
+		slayerPlugin.onGameTick(new GameTick());
+
+		// Damage both npcs
+		Hitsplat hitsplat = new Hitsplat(Hitsplat.HitsplatType.DAMAGE_ME, 1, 1);
+		HitsplatApplied hitsplatApplied = new HitsplatApplied();
+		hitsplatApplied.setHitsplat(hitsplat);
+		hitsplatApplied.setActor(npc1);
+		slayerPlugin.onHitsplatApplied(hitsplatApplied);
+
+		hitsplatApplied.setActor(npc2);
+		slayerPlugin.onHitsplatApplied(hitsplatApplied);
+
+		// Kill both npcs
+		slayerPlugin.onActorDeath(new ActorDeath(npc1));
+		slayerPlugin.onActorDeath(new ActorDeath(npc2));
+
+		slayerPlugin.onGameTick(new GameTick());
+
+		statChanged = new StatChanged(
+				Skill.SLAYER,
+				105,
+				2,
+				2
+		);
+		slayerPlugin.onStatChanged(statChanged);
+
+		assertEquals("Suqahs", slayerPlugin.getTaskName());
+		assertEquals(229, slayerPlugin.getAmount()); // 2 kills
 	}
 }
