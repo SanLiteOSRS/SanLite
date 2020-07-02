@@ -434,7 +434,7 @@ public class SpellEffectTimersPlugin extends Plugin
 				.filter(x -> x.getKey().getWorldLocation().getX() != (x.getValue().getX() - 1)
 						&& x.getKey().getWorldLocation().getX() != (x.getValue().getX() + 1)
 						&& x.getKey().getWorldLocation().getY() != (x.getValue().getY() - 1)
-						&& x.getKey().getWorldLocation().getX() != (x.getValue().getY() + 1)
+						&& x.getKey().getWorldLocation().getY() != (x.getValue().getY() + 1)
 						&& x.getKey().getWorldLocation() != (x.getValue()))
 				.forEach((entry) ->
 				{
