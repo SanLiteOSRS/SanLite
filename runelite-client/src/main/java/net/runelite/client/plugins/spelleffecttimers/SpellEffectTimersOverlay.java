@@ -106,7 +106,7 @@ public class SpellEffectTimersOverlay extends Overlay
 			}
 			if (config.showSotdSpecActiveOverlay())
 			{
-				if (spellEffectInfo.getSpellEffect().equals((SpellEffect.STAFF_OF_THE_DEAD_SPECIAL)))
+				if (spellEffectInfo.getSpellEffect().getSpellType().equals((SpellEffectType.STAFF_OF_THE_DEAD_SPECIAL)))
 				{
 					drawSpellEffectOverlay(graphics, spellEffectInfo);
 				}

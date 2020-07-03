@@ -100,7 +100,6 @@ public class SpellEffectTimersPlugin extends Plugin
 	@Subscribe
 	public void onGraphicChanged(GraphicChanged graphicChanged)
 	{
-		log.warn(graphicChanged.getActor().getGraphic() + " = graphic id");
 		// Edge cases causing the plugin to not detect freezes
 		// 1. Ahrim's full set effect spot anim overriding (id 400)
 		// 2. Elysian hit effect might also trigger this
@@ -162,7 +161,7 @@ public class SpellEffectTimersPlugin extends Plugin
 				checkTeleblockSpellEffect(actor, spellEffect);
 				break;
 			case VENGEANCE:
-				checkVengSpellEffect(graphicChanged, actor, spellEffect);
+				checkVengSpellEffect(actor, spellEffect);
 				return;
 			default:
 				log.warn("Player spell effect has unknown type");
@@ -184,6 +183,14 @@ public class SpellEffectTimersPlugin extends Plugin
 		if (actor == null)
 		{
 			return;
+		}
+
+		if (config.showVengTimersOverlay())
+		{
+			if (event.getActor().getAnimation() == 4411)
+			{
+				spellEffects.add(new SpellEffectInfo(actor, SpellEffect.VENGEANCE, client.getGameCycle(), false));
+			}
 		}
 
 		removeTeleblockOnTeleport(actor);
@@ -403,12 +410,12 @@ public class SpellEffectTimersPlugin extends Plugin
 		cachedTeleblocks.remove(spellEffectInfo);
 	}
 
-	private void checkVengSpellEffect(GraphicChanged graphicChanged, Actor actor, SpellEffect spellEffect)
+	private void checkVengSpellEffect(Actor actor, SpellEffect spellEffect)
 	{
 		spellEffects.add(new SpellEffectInfo(actor, spellEffect, client.getGameCycle(), false));
 		for (SpellEffectInfo spellEffectInfo : spellEffects)
 		{
-			if (graphicChanged.getActor().equals(spellEffectInfo.getActor()))
+			if (actor.equals(spellEffectInfo.getActor()))
 			{
 				if (spellEffectInfo.getSpellEffect().equals(SpellEffect.VENGEANCE_ACTIVE))
 				{
@@ -422,34 +429,73 @@ public class SpellEffectTimersPlugin extends Plugin
 
 	private void checkSotdSpellEffect(GraphicChanged graphicChanged, Actor actor, SpellEffect spellEffect)
 	{
-		spellEffects.removeIf(x -> x.getSpellEffect().getSpellType().equals((SpellEffectType.STAFF_OF_THE_DEAD_SPECIAL)) &&
-				x.getActor().equals(graphicChanged.getActor()));
+		spellEffects.removeIf(x -> x.getSpellEffect().getSpellType().equals((SpellEffectType.STAFF_OF_THE_DEAD_SPECIAL))
+				&& x.getActor().equals(graphicChanged.getActor()));
 
 		spellEffects.add(new SpellEffectInfo(actor, spellEffect, client.getGameCycle(), false));
 
 	}
 
 	/**
-	 * Remove freeze timer if actor moves during freeze duration but after initial grace period (first 10% of freeze duration)
+	 * Remove freeze timer if actor moves during freeze duration
 	 * Checks for if the actor moved more than 1 square to account for dragon spear specials
 	 */
 	private void checkIfAnyFrozenActorsMoved()
 	{
+		for (Map.Entry<Actor, WorldPoint> frozenActor : frozenActors.entrySet()) {
+			Actor actor = frozenActor.getKey();
+			WorldPoint oldLocation = frozenActor.getValue();
+
+			//Checks if actor moved 1 square
+			if (actor.getWorldLocation().getX() == (oldLocation.getX() - 1)
+					|| actor.getWorldLocation().getX() == (oldLocation.getX() + 1)
+					|| actor.getWorldLocation().getY() == (oldLocation.getY() - 1)
+					|| actor.getWorldLocation().getY() == (oldLocation.getY() + 1))
+			{
+				//Set stored freeze location to new location after the spear, so that multiple spear specs wont cause issues
+				frozenActor.setValue(actor.getWorldLocation());
+			}
+			//Will run if actor has moved and the movement isnt 1 square
+			else if (!actor.getWorldLocation().equals(oldLocation))
+			{
+				new ArrayList<>(spellEffects).stream()
+						.filter(x -> x.getActor().equals(actor) &&
+								x.getSpellEffect().getSpellType().equals(SpellEffectType.FREEZE))
+						.forEach((spellEffect) ->
+						{
+							frozenActors.remove(actor);
+							spellEffects.remove(spellEffect);
+						});
+			}
+		}
+		/**
+		//Update location if only 1 square moved
 		new HashMap<>(frozenActors).entrySet().stream()
-				.filter(x -> x.getKey().getWorldLocation().getX() != (x.getValue().getX() - 1)
-						&& x.getKey().getWorldLocation().getX() != (x.getValue().getX() + 1)
-						&& x.getKey().getWorldLocation().getY() != (x.getValue().getY() - 1)
-						&& x.getKey().getWorldLocation().getY() != (x.getValue().getY() + 1)
-						&& x.getKey().getWorldLocation() != (x.getValue()))
+				.filter(x -> x.getKey().getWorldLocation().getX() == (x.getValue().getX() - 1)
+						|| x.getKey().getWorldLocation().getX() == (x.getValue().getX() + 1)
+						|| x.getKey().getWorldLocation().getY() == (x.getValue().getY() - 1)
+						|| x.getKey().getWorldLocation().getY() == (x.getValue().getY() + 1))
+				.forEach((entry) ->
+				{
+					entry.setValue(entry.getKey().getWorldLocation());
+				});
+
+		//Remove if location still different
+		new HashMap<>(frozenActors).entrySet().stream()
+				.filter(x -> !x.getKey().getWorldLocation().equals(x.getValue()))
 				.forEach((entry) ->
 				{
 					new ArrayList<>(spellEffects).stream()
 							.filter(x -> x.getActor().equals(entry.getKey()) &&
-									x.getRemainingTime() < (0.9 * x.spellDurationToSpellTime(x.getSpellEffect().getSpellLength())) &&
 									x.getSpellEffect().getSpellType().equals(SpellEffectType.FREEZE))
-							.forEach((spellEffect) -> spellEffects.remove(spellEffect));
-					frozenActors.remove(entry.getKey());
+							.forEach((spellEffect) ->
+							{
+								frozenActors.remove(entry.getKey());
+								spellEffects.remove(spellEffect);
+							});
+
 				});
+		 **/
 	}
 
 	private void checkExpiredSpellEffects()
