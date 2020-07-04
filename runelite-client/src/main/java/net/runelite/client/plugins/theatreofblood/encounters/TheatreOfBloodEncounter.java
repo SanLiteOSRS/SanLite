@@ -96,6 +96,12 @@ public class TheatreOfBloodEncounter
 				npcId == NpcID.VERZIK_VITUR_8375;
 	}
 
+	public static boolean isTheatreOfBloodNpc(int npcId)
+	{
+		return TheatreOfBloodEncounter.isNpcTheatreOfBloodEncounter(npcId) || Nylocas.isNylocasNpc(npcId) ||
+				Verzik.isNylocasNpc(npcId) || SugadintiMaiden.isBloodSpawn(npcId);
+	}
+
 	public SugadintiMaiden castToMaiden()
 	{
 		if (this.encounter != TheatreOfBloodEncounters.SUGADINTI_MAIDEN)

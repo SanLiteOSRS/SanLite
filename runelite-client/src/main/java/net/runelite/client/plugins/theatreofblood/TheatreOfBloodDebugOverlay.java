@@ -27,6 +27,7 @@ package net.runelite.client.plugins.theatreofblood;
 
 import net.runelite.api.Client;
 import net.runelite.client.plugins.theatreofblood.encounters.*;
+import net.runelite.client.plugins.theatreofblood.encounters.Sotetseg;
 import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayPosition;
 import net.runelite.client.ui.overlay.components.LineComponent;
@@ -59,6 +60,7 @@ public class TheatreOfBloodDebugOverlay extends Overlay
 			panelComponent.getChildren().clear();
 
 			panelComponent.getChildren().add(TitleComponent.builder()
+					.color(Color.RED.darker())
 					.text("Theatre of Blood debug")
 					.build());
 
@@ -103,6 +105,13 @@ public class TheatreOfBloodDebugOverlay extends Overlay
 
 			switch (plugin.getCurrentEncounter().getEncounter())
 			{
+				case SUGADINTI_MAIDEN:
+					SugadintiMaiden sugadintiMaiden = (SugadintiMaiden) plugin.getCurrentEncounter();
+					panelComponent.getChildren().add(LineComponent.builder()
+							.left("Number of Blood Spawns")
+							.right("" + sugadintiMaiden.getBloodSpawns().size())
+							.build());
+					break;
 				case PESTILENT_BLOAT:
 					PestilentBloat pestilentBloat = (PestilentBloat) plugin.getCurrentEncounter();
 					panelComponent.getChildren().add(LineComponent.builder()

@@ -28,10 +28,7 @@ package net.runelite.client.plugins.theatreofblood.encounters;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.Constants;
-import net.runelite.api.GraphicID;
-import net.runelite.api.GraphicsObject;
-import net.runelite.api.NPC;
+import net.runelite.api.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -272,22 +269,25 @@ public class Verzik extends TheatreOfBloodEncounter
 
 	public void checkAnimationPhaseChange(int animationId, int gameCycle)
 	{
-		if (animationId == 8110 && getVerzikPhase() != 1)
+		if (animationId == AnimationID.VERZIK_PHASE_1_MAGIC_ATTACK && getVerzikPhase() != 1)
 		{
 			log.debug("Verzik phase 1 starting");
 			setVerzikPhase(1);
 			setPhaseStartTime(gameCycle);
 		}
 
-		if (animationId == 8123 || animationId == 8124 || animationId == 8125)
+		if (animationId == AnimationID.VERZIK_PHASE_3_MELEE_ATTACK ||
+				animationId == AnimationID.VERZIK_PHASE_3_MAGIC_ATTACK ||
+				animationId == AnimationID.VERZIK_PHASE_3_RANGED_ATTACK)
 		{
 			if (getVerzikPhase() > 2)
 			{
+				log.debug("{} | Verzik P3 | Checking attack: {}", gameCycle, animationId);
 				checkAttackCycle();
 			}
 		}
 
-		if (animationId == 8127)
+		if (animationId == AnimationID.VERZIK_PHASE_3_WEB_ATTACK)
 		{
 			addWebAnimation(gameCycle);
 		}
