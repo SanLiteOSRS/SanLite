@@ -186,13 +186,15 @@ public class ProjectileID
 	public static final int SARACHNIS_RANGED_ATTACK = 1686;
 	public static final int SARACHNIS_WEB_ATTACK = 1687;
 
-	// The Gauntlet
-	public static final int GAUNTLET_BOSS_MAGIC = 1707;
-	public static final int CORRUPTED_GAUNTLET_BOSS_MAGIC = 1708;
-	public static final int GAUNTLET_BOSS_RANGED = 1711;
-	public static final int CORRUPTED_GAUNTLET_BOSS_RANGED = 1712;
-	public static final int GAUNTLET_BOSS_MAGIC_DISABLE_PRAYERS = 1713;
-	public static final int CORRUPTED_GAUNTLET_BOSS_MAGIC_DISABLE_PRAYERS = 1714;
+	// The Gauntlet - Crystalline Hunllef
+	public static final int CRYSTALLINE_HUNLLEF_MAGIC_ATTACK = 1707;
+	public static final int CRYSTALLINE_HUNLLEF_RANGED_ATTACK = 1711;
+	public static final int CRYSTALLINE_HUNLLEF_DISABLE_PRAYERS_ATTACK = 1713;
+
+	// The Gauntlet - Corrupted Hunllef
+	public static final int CORRUPTED_HUNLLEF_MAGIC_ATTACK = 1708;
+	public static final int CORRUPTED_HUNLLEF_RANGED_ATTACK = 1712;
+	public static final int CORRUPTED_HUNLLEF_DISABLE_PRAYERS_ATTACK = 1714;
 
 	// Zalcano
 	public static final int ZALCANO_ROCK_PROJECTILE_AOE = 1728;

@@ -158,8 +158,7 @@ class AlchemicalHydra
 		return animationId == AnimationID.ALCHEMICAL_HYDRA_GREEN_PHASE_POISON_ATTACK ||
 				animationId == AnimationID.ALCHEMICAL_HYDRA_BLUE_PHASE_LIGHTNING_ATTACK ||
 				animationId == AnimationID.ALCHEMICAL_HYDRA_RED_PHASE_FIRE_ATTACK ||
-				animationId == AnimationID.ALCHEMICAL_HYDRA_JAD_PHASE_POISON_ATTACK ||
-				animationId == AnimationID.ALCHEMICAL_HYDRA_JAD_PHASE_POISON_ATTACK_2;
+				animationId == AnimationID.ALCHEMICAL_HYDRA_JAD_PHASE_RANGED_OR_POISON_ATTACK;
 	}
 
 	boolean isRegularAttackAnimation(int animationId)
@@ -171,7 +170,7 @@ class AlchemicalHydra
 				animationId == AnimationID.ALCHEMICAL_HYDRA_RED_PHASE_MAGIC_ATTACK ||
 				animationId == AnimationID.ALCHEMICAL_HYDRA_RED_PHASE_RANGED_ATTACK ||
 				animationId == AnimationID.ALCHEMICAL_HYDRA_JAD_PHASE_MAGIC_ATTACK ||
-				animationId == AnimationID.ALCHEMICAL_HYDRA_JAD_PHASE_RANGED_ATTACK;
+				animationId == AnimationID.ALCHEMICAL_HYDRA_JAD_PHASE_RANGED_OR_POISON_ATTACK;
 	}
 
 	boolean isPhaseSwitchAnimation(int animationId)
@@ -321,8 +320,7 @@ class AlchemicalHydra
 		{
 			case AnimationID.ALCHEMICAL_HYDRA_GREEN_PHASE_POISON_ATTACK:
 			case AnimationID.ALCHEMICAL_HYDRA_BLUE_PHASE_LIGHTNING_ATTACK:
-			case AnimationID.ALCHEMICAL_HYDRA_JAD_PHASE_POISON_ATTACK:
-			case AnimationID.ALCHEMICAL_HYDRA_JAD_PHASE_POISON_ATTACK_2:
+			case AnimationID.ALCHEMICAL_HYDRA_JAD_PHASE_RANGED_OR_POISON_ATTACK:
 				// Jad phase has a faster attack rate
 				resetSpecialAttack(
 						currentPhase.equals(Phase.JAD) ? ATTACKS_PER_SPECIAL_ATTACK * 3 : ATTACKS_PER_SPECIAL_ATTACK,
@@ -473,7 +471,7 @@ class AlchemicalHydra
 			case AnimationID.ALCHEMICAL_HYDRA_GREEN_PHASE_RANGED_ATTACK:
 			case AnimationID.ALCHEMICAL_HYDRA_BLUE_PHASE_RANGED_ATTACK:
 			case AnimationID.ALCHEMICAL_HYDRA_RED_PHASE_RANGED_ATTACK:
-			case AnimationID.ALCHEMICAL_HYDRA_JAD_PHASE_RANGED_ATTACK:
+			case AnimationID.ALCHEMICAL_HYDRA_JAD_PHASE_RANGED_OR_POISON_ATTACK:
 				return AttackStyle.RANGED;
 			case AnimationID.ALCHEMICAL_HYDRA_GREEN_PHASE_MAGIC_ATTACK:
 			case AnimationID.ALCHEMICAL_HYDRA_BLUE_PHASE_MAGIC_ATTACK:
