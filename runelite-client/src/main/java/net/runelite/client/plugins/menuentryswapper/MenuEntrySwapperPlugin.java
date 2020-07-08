@@ -354,6 +354,8 @@ public class MenuEntrySwapperPlugin extends Plugin
 
 		swap("fill", "empty", config::swapEmptyEssencePouch);
 
+		swap("eat", "guzzle", config::swapGuzzleRockCake);
+
 		swapTeleport("varrock teleport", "grand exchange");
 		swapTeleport("camelot teleport", "seers'");
 		swapTeleport("watchtower teleport", "yanille");
