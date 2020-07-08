@@ -59,7 +59,7 @@ import net.runelite.api.Client;
 import net.runelite.api.MenuAction;
 import net.runelite.api.MenuEntry;
 import net.runelite.api.SpriteID;
-import net.runelite.api.events.ConfigChanged;
+import net.runelite.client.events.ConfigChanged;
 import net.runelite.api.events.MenuEntryAdded;
 import net.runelite.api.events.MenuOptionClicked;
 import net.runelite.api.widgets.JavaScriptCallback;
@@ -503,7 +503,7 @@ class WidgetInspector extends JFrame
 		client.setSpellSelected(false);
 		ev.consume();
 
-		Object target = getWidgetOrWidgetItemForMenuOption(ev.getMenuAction().getId(), ev.getActionParam0(), ev.getIdentifier());
+		Object target = getWidgetOrWidgetItemForMenuOption(ev.getMenuAction().getId(), ev.getActionParam(), ev.getWidgetId());
 		if (target == null)
 		{
 			return;

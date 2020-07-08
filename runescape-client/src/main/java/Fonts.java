@@ -4,27 +4,36 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ko")
+@ObfuscatedName("kv")
 @Implements("Fonts")
 public class Fonts {
-	@ObfuscatedName("a")
+	@ObfuscatedName("g")
 	@ObfuscatedSignature(
-		signature = "Lhq;"
+		signature = "Llh;"
+	)
+	@Export("titlebuttonSprite")
+	static IndexedSprite titlebuttonSprite;
+	@ObfuscatedName("a")
+	@Export("ByteArrayPool_arrays")
+	static byte[][][] ByteArrayPool_arrays;
+	@ObfuscatedName("m")
+	@ObfuscatedSignature(
+		signature = "Lic;"
 	)
 	@Export("spritesArchive")
 	AbstractArchive spritesArchive;
-	@ObfuscatedName("t")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "Lhq;"
+		signature = "Lic;"
 	)
 	@Export("fontsArchive")
 	AbstractArchive fontsArchive;
-	@ObfuscatedName("n")
+	@ObfuscatedName("q")
 	@Export("map")
 	HashMap map;
 
 	@ObfuscatedSignature(
-		signature = "(Lhq;Lhq;)V"
+		signature = "(Lic;Lic;)V"
 	)
 	public Fonts(AbstractArchive var1, AbstractArchive var2) {
 		this.spritesArchive = var1;
@@ -32,10 +41,10 @@ public class Fonts {
 		this.map = new HashMap();
 	}
 
-	@ObfuscatedName("a")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		signature = "([Lkq;B)Ljava/util/HashMap;",
-		garbageValue = "-73"
+		signature = "([Lke;B)Ljava/util/HashMap;",
+		garbageValue = "-100"
 	)
 	@Export("createMap")
 	public HashMap createMap(FontName[] var1) {
@@ -52,7 +61,7 @@ public class Fonts {
 				String var9 = var5.name;
 				int var10 = var7.getGroupId(var9);
 				int var11 = var7.getFileId(var10, "");
-				Font var6 = class269.method5061(var7, var8, var10, var11);
+				Font var6 = Frames.method3394(var7, var8, var10, var11);
 				if (var6 != null) {
 					this.map.put(var5, var6);
 					var2.put(var5, var6);

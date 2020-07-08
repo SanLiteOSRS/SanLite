@@ -12,7 +12,7 @@ import net.runelite.api.Client;
 import net.runelite.api.GameState;
 import net.runelite.api.Player;
 import net.runelite.api.events.AnimationChanged;
-import net.runelite.api.events.ConfigChanged;
+import net.runelite.client.events.ConfigChanged;
 import net.runelite.api.events.GameStateChanged;
 import net.runelite.api.events.GameTick;
 import net.runelite.api.kit.KitType;
@@ -21,7 +21,6 @@ import net.runelite.client.eventbus.EventBus;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
-import net.runelite.client.plugins.PluginType;
 import net.runelite.client.ui.overlay.OverlayManager;
 
 import javax.inject.Inject;
@@ -36,8 +35,7 @@ import static net.runelite.api.AnimationID.BLOWPIPE_ATTACK;
 @PluginDescriptor(
 		name = "Combat Tick Counter",
 		description = "Count the amount of perfect combat ticks performed by each player",
-		tags = {"combat", "counter", "tick", "pvm", "overlay", "boss"},
-		type = PluginType.SANLITE,
+		tags = {"combat", "counter", "tick", "pvm", "overlay", "boss", "sanlite"},
 		enabledByDefault = false
 )
 @Singleton
@@ -240,7 +238,7 @@ public class CombatTickCounterPlugin extends Plugin
 					if (VARIABLES.containsKey(animation))
 					{
 						long ticks = VARIABLES.get(animation);
-						if (((Player) actor).getPlayerAppearance().getEquipmentId(KitType.WEAPON) == 23360)
+						if (((Player) actor).getPlayerComposition().getEquipmentId(KitType.WEAPON) == 23360)
 						{
 							ticks = 3;
 						}

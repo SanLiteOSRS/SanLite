@@ -1,8 +1,3 @@
-import java.awt.image.BufferedImage;
-import java.awt.image.PixelGrabber;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import javax.imageio.ImageIO;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
@@ -12,45 +7,45 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("av")
 @Implements("WorldMapSection1")
 public class WorldMapSection1 implements WorldMapSection {
-	@ObfuscatedName("br")
+	@ObfuscatedName("lg")
 	@ObfuscatedSignature(
-		signature = "Lgw;"
+		signature = "Lhd;"
 	)
-	@Export("clientLanguage")
-	static Language clientLanguage;
-	@ObfuscatedName("a")
+	@Export("mousedOverWidgetIf1")
+	static Widget mousedOverWidgetIf1;
+	@ObfuscatedName("m")
 	@ObfuscatedGetter(
-		intValue = 1154068221
+		intValue = 421699515
 	)
 	@Export("minPlane")
 	int minPlane;
-	@ObfuscatedName("t")
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = -1054158347
+		intValue = -758111591
 	)
 	@Export("planes")
 	int planes;
-	@ObfuscatedName("n")
+	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = -1028854111
+		intValue = -796724619
 	)
 	@Export("regionStartX")
 	int regionStartX;
-	@ObfuscatedName("q")
+	@ObfuscatedName("j")
 	@ObfuscatedGetter(
-		intValue = -1350471723
+		intValue = 843613977
 	)
 	@Export("regionStartY")
 	int regionStartY;
-	@ObfuscatedName("v")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = -1028705705
+		intValue = 670440885
 	)
 	@Export("regionEndX")
 	int regionEndX;
-	@ObfuscatedName("l")
+	@ObfuscatedName("g")
 	@ObfuscatedGetter(
-		intValue = -615162757
+		intValue = 374420035
 	)
 	@Export("regionEndY")
 	int regionEndY;
@@ -58,10 +53,10 @@ public class WorldMapSection1 implements WorldMapSection {
 	WorldMapSection1() {
 	}
 
-	@ObfuscatedName("a")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		signature = "(Laa;B)V",
-		garbageValue = "-111"
+		signature = "(Lad;I)V",
+		garbageValue = "411670415"
 	)
 	@Export("expandBounds")
 	public void expandBounds(WorldMapArea var1) {
@@ -83,10 +78,10 @@ public class WorldMapSection1 implements WorldMapSection {
 
 	}
 
-	@ObfuscatedName("t")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "(IIII)Z",
-		garbageValue = "-1417818612"
+		signature = "(IIIB)Z",
+		garbageValue = "2"
 	)
 	@Export("containsCoord")
 	public boolean containsCoord(int var1, int var2, int var3) {
@@ -97,20 +92,20 @@ public class WorldMapSection1 implements WorldMapSection {
 		}
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		signature = "(III)Z",
-		garbageValue = "-2132898041"
+		signature = "(IIB)Z",
+		garbageValue = "48"
 	)
 	@Export("containsPosition")
 	public boolean containsPosition(int var1, int var2) {
 		return var1 >> 6 == this.regionEndX && var2 >> 6 == this.regionEndY;
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
 		signature = "(IIII)[I",
-		garbageValue = "1209167521"
+		garbageValue = "459340529"
 	)
 	@Export("getBorderTileLengths")
 	public int[] getBorderTileLengths(int var1, int var2, int var3) {
@@ -122,10 +117,10 @@ public class WorldMapSection1 implements WorldMapSection {
 		}
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		signature = "(IIS)Lhf;",
-		garbageValue = "7283"
+		signature = "(III)Lhg;",
+		garbageValue = "1240901536"
 	)
 	@Export("coord")
 	public Coord coord(int var1, int var2) {
@@ -138,10 +133,10 @@ public class WorldMapSection1 implements WorldMapSection {
 		}
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("g")
 	@ObfuscatedSignature(
-		signature = "(Lkc;I)V",
-		garbageValue = "-568369534"
+		signature = "(Lkn;B)V",
+		garbageValue = "0"
 	)
 	@Export("read")
 	public void read(Buffer var1) {
@@ -154,78 +149,62 @@ public class WorldMapSection1 implements WorldMapSection {
 		this.postRead();
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
 		signature = "(B)V",
-		garbageValue = "0"
+		garbageValue = "-123"
 	)
 	@Export("postRead")
 	void postRead() {
 	}
 
-	@ObfuscatedName("a")
-	static double method636(double var0, double var2, double var4) {
-		double var8 = (var0 - var2) / var4;
-		double var6 = Math.exp(var8 * -var8 / 2.0D) / Math.sqrt(6.283185307179586D);
-		return var6 / var4;
+	@ObfuscatedName("m")
+	@ObfuscatedSignature(
+		signature = "(Lic;Ljava/lang/String;Ljava/lang/String;IZI)V",
+		garbageValue = "-1968156146"
+	)
+	public static void method656(AbstractArchive var0, String var1, String var2, int var3, boolean var4) {
+		int var5 = var0.getGroupId(var1);
+		int var6 = var0.getFileId(var5, var2);
+		UserComparator9.method3513(var0, var5, var6, var3, var4);
 	}
 
-	@ObfuscatedName("a")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
-		signature = "([BS)Llx;",
-		garbageValue = "-10858"
+		signature = "(IZIZI)V",
+		garbageValue = "1727413002"
 	)
-	@Export("convertJpgToSprite")
-	public static final Sprite convertJpgToSprite(byte[] var0) {
-		BufferedImage var1 = null;
-
-		try {
-			var1 = ImageIO.read(new ByteArrayInputStream(var0));
-			int var2 = var1.getWidth();
-			int var3 = var1.getHeight();
-			int[] var4 = new int[var2 * var3];
-			PixelGrabber var5 = new PixelGrabber(var1, 0, 0, var2, var3, var4, 0, var2);
-			var5.grabPixels();
-			return new Sprite(var4, var2, var3);
-		} catch (IOException var7) {
-		} catch (InterruptedException var8) {
-		}
-
-		return new Sprite(0, 0);
-	}
-
-	@ObfuscatedName("hf")
-	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-1373255332"
-	)
-	static final void method622() {
-		Client.field745 = 0;
-		int var0 = UserComparator8.baseX * 64 + (class215.localPlayer.x >> 7);
-		int var1 = HealthBar.baseY * 64 + (class215.localPlayer.y >> 7);
-		if (var0 >= 3053 && var0 <= 3156 && var1 >= 3056 && var1 <= 3136) {
-			Client.field745 = 1;
-		}
-
-		if (var0 >= 3072 && var0 <= 3118 && var1 >= 9492 && var1 <= 9535) {
-			Client.field745 = 1;
-		}
-
-		if (Client.field745 == 1 && var0 >= 3139 && var0 <= 3199 && var1 >= 3008 && var1 <= 3062) {
-			Client.field745 = 0;
+	@Export("sortWorldList")
+	static void sortWorldList(int var0, boolean var1, int var2, boolean var3) {
+		if (class13.World_worlds != null) {
+			Tiles.doWorldSorting(0, class13.World_worlds.length - 1, var0, var1, var2, var3);
 		}
 
 	}
 
-	@ObfuscatedName("lk")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "1886233259"
+		signature = "(Ljava/lang/String;I)V",
+		garbageValue = "-1443767280"
 	)
-	static void method650() {
-		if (Client.oculusOrbState == 1) {
-			Client.field645 = true;
-		}
+	static final void method655(String var0) {
+		StringBuilder var10000 = (new StringBuilder()).append(var0);
+		Object var10001 = null;
+		String var1 = var10000.append(" is already on your ignore list").toString();
+		ObjectSound.addGameMessage(30, "", var1);
+	}
 
+	@ObfuscatedName("jt")
+	@ObfuscatedSignature(
+		signature = "(IB)V",
+		garbageValue = "23"
+	)
+	static void method648(int var0) {
+		class169.tempMenuAction = new MenuAction();
+		class169.tempMenuAction.param0 = Client.menuArguments1[var0];
+		class169.tempMenuAction.param1 = Client.menuArguments2[var0];
+		class169.tempMenuAction.opcode = Client.menuOpcodes[var0];
+		class169.tempMenuAction.identifier = Client.menuIdentifiers[var0];
+		class169.tempMenuAction.action = Client.menuActions[var0];
 	}
 }

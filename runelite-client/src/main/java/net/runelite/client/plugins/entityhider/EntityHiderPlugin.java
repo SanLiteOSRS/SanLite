@@ -29,9 +29,7 @@ import com.google.inject.Provides;
 import javax.inject.Inject;
 import net.runelite.api.Client;
 import net.runelite.api.GameState;
-import net.runelite.api.Player;
-import net.runelite.api.coords.WorldPoint;
-import net.runelite.api.events.ConfigChanged;
+import net.runelite.client.events.ConfigChanged;
 import net.runelite.api.events.GameStateChanged;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
@@ -75,25 +73,27 @@ public class EntityHiderPlugin extends Plugin
 	{
 		if (event.getGameState() == GameState.LOGGED_IN)
 		{
-			client.setIsHidingEntities(isPlayerRegionAllowed());
+			client.setIsHidingEntities(true);
 		}
 	}
 
 	private void updateConfig()
 	{
-		client.setIsHidingEntities(isPlayerRegionAllowed());
+		client.setIsHidingEntities(true);
 
 		client.setPlayersHidden(config.hidePlayers());
 		client.setPlayersHidden2D(config.hidePlayers2D());
 
 		client.setFriendsHidden(config.hideFriends());
-		client.setClanMatesHidden(config.hideClanMates());
+		client.setFriendsChatMembersHidden(config.hideFriendsChatMembers());
 
 		client.setLocalPlayerHidden(config.hideLocalPlayer());
 		client.setLocalPlayerHidden2D(config.hideLocalPlayer2D());
 
 		client.setNPCsHidden(config.hideNPCs());
 		client.setNPCsHidden2D(config.hideNPCs2D());
+
+		client.setPetsHidden(config.hidePets());
 
 		client.setAttackersHidden(config.hideAttackers());
 
@@ -109,7 +109,7 @@ public class EntityHiderPlugin extends Plugin
 		client.setPlayersHidden2D(false);
 
 		client.setFriendsHidden(false);
-		client.setClanMatesHidden(false);
+		client.setFriendsChatMembersHidden(false);
 
 		client.setLocalPlayerHidden(false);
 		client.setLocalPlayerHidden2D(false);
@@ -117,23 +117,10 @@ public class EntityHiderPlugin extends Plugin
 		client.setNPCsHidden(false);
 		client.setNPCsHidden2D(false);
 
+		client.setPetsHidden(false);
+
 		client.setAttackersHidden(false);
 
 		client.setProjectilesHidden(false);
-	}
-
-	private boolean isPlayerRegionAllowed()
-	{
-		final Player localPlayer = client.getLocalPlayer();
-
-		if (localPlayer == null)
-		{
-			return true;
-		}
-
-		final int playerRegionID = WorldPoint.fromLocalInstance(client, localPlayer.getLocalLocation()).getRegionID();
-
-		// 9520 = Castle Wars
-		return playerRegionID != 9520;
 	}
 }

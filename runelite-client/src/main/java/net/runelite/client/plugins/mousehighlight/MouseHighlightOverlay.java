@@ -33,6 +33,7 @@ import net.runelite.api.MenuAction;
 import net.runelite.api.MenuEntry;
 import net.runelite.api.VarClientInt;
 import net.runelite.api.widgets.Widget;
+import net.runelite.api.widgets.WidgetID;
 import net.runelite.api.widgets.WidgetInfo;
 import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayPosition;
@@ -75,7 +76,7 @@ class MouseHighlightOverlay extends Overlay
 		String option = menuEntry.getOption();
 		int type = menuEntry.getType();
 
-		if (type == MenuAction.RUNELITE_OVERLAY.getId() || type == MenuAction.EXAMINE_ITEM_BANK_EQ.getId())
+		if (type == MenuAction.RUNELITE_OVERLAY.getId() || type == MenuAction.CC_OP_LOW_PRIORITY.getId())
 		{
 			// These are always right click only
 			return null;
@@ -112,6 +113,11 @@ class MouseHighlightOverlay extends Overlay
 		}
 
 		if (!config.chatboxTooltip() && groupId == WidgetInfo.CHATBOX.getGroupId())
+		{
+			return null;
+		}
+
+		if (config.disableSpellbooktooltip() && groupId == WidgetID.SPELLBOOK_GROUP_ID)
 		{
 			return null;
 		}

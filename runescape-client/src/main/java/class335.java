@@ -1,30 +1,31 @@
+import net.runelite.mapping.Export;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
-import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("lg")
-public abstract class class335 {
-	@ObfuscatedName("bq")
-	static String field4016;
-
-	@ObfuscatedName("jk")
-	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;Lhi;B)Ljava/lang/String;",
-		garbageValue = "38"
+public class class335 {
+	@ObfuscatedName("m")
+	@ObfuscatedGetter(
+		intValue = 238852743
 	)
-	static String method6599(String var0, Widget var1) {
-		if (var0.indexOf("%") != -1) {
-			for (int var2 = 1; var2 <= 5; ++var2) {
-				while (true) {
-					int var3 = var0.indexOf("%" + var2);
-					if (var3 == -1) {
-						break;
-					}
-
-					var0 = var0.substring(0, var3) + class173.method3677(class4.method73(var1, var2 - 1)) + var0.substring(var3 + 2);
-				}
-			}
-		}
-
-		return var0;
-	}
+	@Export("SpriteBuffer_spriteCount")
+	static int SpriteBuffer_spriteCount;
+	@ObfuscatedName("o")
+	@ObfuscatedGetter(
+		intValue = 1435600367
+	)
+	@Export("SpriteBuffer_spriteWidth")
+	static int SpriteBuffer_spriteWidth;
+	@ObfuscatedName("j")
+	@Export("SpriteBuffer_xOffsets")
+	static int[] SpriteBuffer_xOffsets;
+	@ObfuscatedName("g")
+	@Export("SpriteBuffer_spriteWidths")
+	static int[] SpriteBuffer_spriteWidths;
+	@ObfuscatedName("n")
+	@Export("SpriteBuffer_spriteHeights")
+	static int[] SpriteBuffer_spriteHeights;
+	@ObfuscatedName("u")
+	@Export("SpriteBuffer_spritePalette")
+	static int[] SpriteBuffer_spritePalette;
 }

@@ -42,6 +42,10 @@ public interface RSWidget extends Widget
 	@Override
 	int getModelId();
 
+	@Import("modelId")
+	@Override
+	void setModelId(int modelId);
+
 	@Import("itemIds")
 	int[] getItemIds();
 
@@ -50,6 +54,15 @@ public interface RSWidget extends Widget
 
 	@Import("modelType")
 	int getModelType();
+
+	@Import("modelType")
+	void setModelType(int modelType);
+
+	@Import("sequenceId")
+	int getAnimationId();
+
+	@Import("sequenceId")
+	void setAnimationId(int animationId);
 
 	@Import("actions")
 	@Override
@@ -129,6 +142,38 @@ public interface RSWidget extends Widget
 	@Import("childIndex")
 	void setIndex(int index);
 
+	@Import("modelAngleX")
+	@Override
+	int getRotationX();
+
+	@Import("modelAngleX")
+	@Override
+	void setRotationX(int rotationX);
+
+	@Import("modelAngleY")
+	@Override
+	int getRotationY();
+
+	@Import("modelAngleY")
+	@Override
+	void setRotationY(int rotationY);
+
+	@Import("modelAngleZ")
+	@Override
+	int getRotationZ();
+
+	@Import("modelAngleZ")
+	@Override
+	void setRotationZ(int rotationZ);
+
+	@Import("modelZoom")
+	@Override
+	int getModelZoom();
+
+	@Import("modelZoom")
+	@Override
+	void setModelZoom(int modelZoom);
+
 	@Import("contentType")
 	@Override
 	int getContentType();
@@ -184,6 +229,14 @@ public interface RSWidget extends Widget
 	@Import("spriteId2")
 	@Override
 	void setSpriteId(int spriteId);
+
+	@Import("spriteTiling")
+	@Override
+	boolean getSpriteTiling();
+
+	@Import("spriteTiling")
+	@Override
+	void setSpriteTiling(boolean tiling);
 
 	@Import("outline")
 	@Override
@@ -272,6 +325,10 @@ public interface RSWidget extends Widget
 	@Override
 	void setHasListener(boolean hasListener);
 
+	@Import("onOp")
+	@Override
+	Object[] getOnOpListener();
+
 	@Import("onKey")
 	@Override
 	Object[] getOnKeyListener();
@@ -280,9 +337,9 @@ public interface RSWidget extends Widget
 	@Override
 	Object[] getOnLoadListener();
 
-	@Import("onOp")
+	@Import("onInvTransmit")
 	@Override
-	Object[] getOnOp();
+	Object[] getOnInvTransmitListener();
 
 	@Import("onDialogAbort")
 	@Override
@@ -446,16 +503,12 @@ public interface RSWidget extends Widget
 	@Import("modelFrameCycle")
 	int getModelFrameCycle();
 
-	@Import("onInvTransmit")
-	@Override
-	Object[] getOnInvTransmit();
-
 	@Import("containsMouse")
 	@Override
 	boolean containsMouse();
 
 	@Import("getSprite")
-	RSSprite getSprite(boolean b);
+	RSSpritePixels getSprite(boolean b);
 
 	@Import("onRelease")
 	@Override

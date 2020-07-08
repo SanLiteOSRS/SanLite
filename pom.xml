@@ -28,7 +28,7 @@
 
 	<groupId>net.runelite</groupId>
 	<artifactId>runelite-parent</artifactId>
-	<version>1.5.39</version>
+	<version>1.6.21.1</version>
 	<packaging>pom</packaging>
 
 	<name>RuneLite</name>
@@ -38,13 +38,15 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
+		<java.release>8</java.release>
 		<lombok.version>1.18.4</lombok.version>
 
 		<maven.javadoc.skip>true</maven.javadoc.skip>
 		<checkstyle.skip>true</checkstyle.skip>
+		<glslang.path></glslang.path>
 
-		<rs.version>185</rs.version>
-		<sanlite.version>1.7.3</sanlite.version>
+		<rs.version>190</rs.version>
+		<sanlite.version>1.15.5</sanlite.version>
 	</properties>
 
 	<licenses>
@@ -60,7 +62,7 @@
 		<url>https://github.com/runelite/runelite</url>
 		<connection>scm:git:git://github.com/runelite/runelite</connection>
 		<developerConnection>scm:git:git@github.com:runelite/runelite</developerConnection>
-		<tag>runelite-parent-1.5.39</tag>
+		<tag>runelite-parent-1.6.21.1</tag>
 	</scm>
 
 	<developers>
@@ -84,12 +86,12 @@
 	<repositories>
 		<repository>
 			<id>maven-central</id>
-			<url>http://repo1.maven.org/maven2</url>
+			<url>https://repo.maven.apache.org/maven2</url>
 		</repository>
 		<repository>
 			<id>runelite</id>
 			<name>RuneLite</name>
-			<url>http://repo.runelite.net</url>
+			<url>https://repo.runelite.net</url>
 			<snapshots>
 				<enabled>true</enabled>
 				<updatePolicy>always</updatePolicy>
@@ -99,12 +101,12 @@
 	<pluginRepositories>
 		<pluginRepository>
 			<id>maven-central-plugins</id>
-			<url>http://repo1.maven.org/maven2</url>
+			<url>https://repo.maven.apache.org/maven2</url>
 		</pluginRepository>
 		<pluginRepository>
 			<id>runelite-plugins</id>
 			<name>RuneLite Plugins</name>
-			<url>http://repo.runelite.net</url>
+			<url>https://repo.runelite.net</url>
 			<snapshots>
 				<enabled>true</enabled>
 				<updatePolicy>always</updatePolicy>
@@ -128,9 +130,6 @@
         <module>injected-client</module>
         <module>http-api</module>
 		<module>http-service</module>
-		<module>protocol-api</module>
-		<module>protocol</module>
-        <module>scripts</module>
 	</modules>
 
 	<dependencyManagement>
@@ -161,6 +160,25 @@
 		</dependencies>
 	</dependencyManagement>
 
+	<profiles>
+		<profile>
+			<id>java9</id>
+			<activation>
+				<jdk>[1.9,)</jdk>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-compiler-plugin</artifactId>
+						<configuration>
+							<release>${java.release}</release>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
 	<build>
 		<plugins>
 			<plugin>
@@ -180,6 +198,9 @@
 				<configuration>
 					<enableAssertions>true</enableAssertions>
 					<argLine>-Xmx512m</argLine>
+					<systemProperties>
+						<glslang.path>${glslang.path}</glslang.path>
+					</systemProperties>
 				</configuration>
 			</plugin>
 			<plugin>

@@ -223,15 +223,6 @@ class WorldSwitcherPanel extends PluginPanel
 		}
 	}
 
-	void resetAllFavoriteMenus()
-	{
-		for (WorldTableRow row : rows)
-		{
-			row.setFavoriteMenu(false);
-		}
-
-	}
-
 	void populate(List<World> worlds)
 	{
 		rows.clear();
@@ -378,7 +369,7 @@ class WorldSwitcherPanel extends PluginPanel
 	 */
 	private WorldTableRow buildRow(World world, boolean stripe, boolean current, boolean favorite)
 	{
-		WorldTableRow row = new WorldTableRow(world, current, favorite,
+		WorldTableRow row = new WorldTableRow(world, current, favorite, plugin.getStoredPing(world),
 			world1 ->
 			{
 				plugin.hopTo(world1);

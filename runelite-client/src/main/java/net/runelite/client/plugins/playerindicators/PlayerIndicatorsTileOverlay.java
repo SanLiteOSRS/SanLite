@@ -1,5 +1,7 @@
 /*
  * Copyright (c) 2018, Kamiel <https://github.com/Kamielvf>
+ * Copyright (c) 2019, Jajack
+ * Copyright (c) 2019, Siraz <https://github.com/Sirazzz>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -25,16 +27,14 @@
 
 package net.runelite.client.plugins.playerindicators;
 
-import java.awt.Dimension;
-import java.awt.Graphics2D;
-import java.awt.Polygon;
-import javax.inject.Inject;
-import net.runelite.client.ui.overlay.Overlay;
-import net.runelite.client.ui.overlay.OverlayLayer;
-import net.runelite.client.ui.overlay.OverlayPosition;
-import net.runelite.client.ui.overlay.OverlayPriority;
-import net.runelite.client.ui.overlay.OverlayUtil;
+import lombok.extern.slf4j.Slf4j;
+import net.runelite.api.Player;
+import net.runelite.client.ui.overlay.*;
 
+import javax.inject.Inject;
+import java.awt.*;
+
+@Slf4j
 public class PlayerIndicatorsTileOverlay extends Overlay
 {
 	private final PlayerIndicatorsService playerIndicatorsService;
@@ -53,21 +53,48 @@ public class PlayerIndicatorsTileOverlay extends Overlay
 	@Override
 	public Dimension render(Graphics2D graphics)
 	{
-		if (!config.drawTiles())
+		if (!config.drawOwnPlayerTiles() && !config.drawFriendTiles() && !config.drawFriendsChatMemberTiles() &&
+				!config.drawTeamMemberTiles() && !config.drawOthersTiles())
 		{
 			return null;
 		}
 
-		playerIndicatorsService.forEachPlayer((player, color) ->
+		playerIndicatorsService.forEachPlayer((player, type) ->
 		{
-			final Polygon poly = player.getCanvasTilePoly();
-
-			if (poly != null)
+			switch (type)
 			{
-				OverlayUtil.renderPolygon(graphics, poly, color);
+				case OWN_PLAYER:
+					renderTileOverlay(graphics, player, config.getOwnPlayerColor(), config.drawOwnPlayerTiles());
+					break;
+				case FRIEND:
+					renderTileOverlay(graphics, player, config.getFriendColor(), config.drawFriendTiles());
+					break;
+				case FRIENDS_CHAT_MEMBERS:
+					renderTileOverlay(graphics, player, config.getFriendsChatMemberColor(), config.drawFriendsChatMemberTiles());
+					break;
+				case TEAM_CAPE_MEMBER:
+					renderTileOverlay(graphics, player, config.getTeamMemberColor(), config.drawTeamMemberTiles());
+					break;
+				case NON_CLAN_MEMBER:
+					renderTileOverlay(graphics, player, config.getOthersColor(), config.drawOthersTiles());
+					break;
+				default:
+					log.warn("Tried rendering tile overlay for player: {} with unknown type: {}", player.getName(), type);
 			}
 		});
 
 		return null;
+	}
+
+	private void renderTileOverlay(Graphics2D graphics, Player player, Color color, boolean drawTileOverlay)
+	{
+		if (drawTileOverlay)
+		{
+			final Polygon poly = player.getCanvasTilePoly();
+			if (poly != null)
+			{
+				OverlayUtil.renderPolygon(graphics, poly, color);
+			}
+		}
 	}
 }

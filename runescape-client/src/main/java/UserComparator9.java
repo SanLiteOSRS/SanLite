@@ -3,16 +3,22 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ey")
+@ObfuscatedName("ft")
 @Implements("UserComparator9")
 public class UserComparator9 extends AbstractUserComparator {
-	@ObfuscatedName("l")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		signature = "Llw;"
+		signature = "Lkn;"
 	)
-	@Export("titlebuttonSprite")
-	static IndexedSprite titlebuttonSprite;
-	@ObfuscatedName("a")
+	@Export("NetCache_reference")
+	public static Buffer NetCache_reference;
+	@ObfuscatedName("bw")
+	@ObfuscatedSignature(
+		signature = "Lgz;"
+	)
+	@Export("clientLanguage")
+	static Language clientLanguage;
+	@ObfuscatedName("m")
 	@Export("reversed")
 	final boolean reversed;
 
@@ -20,10 +26,10 @@ public class UserComparator9 extends AbstractUserComparator {
 		this.reversed = var1;
 	}
 
-	@ObfuscatedName("a")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		signature = "(Ljx;Ljx;B)I",
-		garbageValue = "-80"
+		signature = "(Lkx;Lkx;I)I",
+		garbageValue = "239506152"
 	)
 	@Export("compareBuddy")
 	int compareBuddy(Buddy var1, Buddy var2) {
@@ -38,47 +44,57 @@ public class UserComparator9 extends AbstractUserComparator {
 		return this.compareBuddy((Buddy)var1, (Buddy)var2);
 	}
 
-	@ObfuscatedName("a")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		signature = "(II)I",
-		garbageValue = "-728098315"
+		signature = "(I)[Lgx;",
+		garbageValue = "-1951189301"
 	)
-	@Export("getVarbit")
-	public static int getVarbit(int var0) {
-		VarbitDefinition var2 = (VarbitDefinition)VarbitDefinition.VarbitDefinition_cached.get((long)var0);
-		VarbitDefinition var1;
-		if (var2 != null) {
-			var1 = var2;
-		} else {
-			byte[] var7 = VarbitDefinition.VarbitDefinition_archive.takeFile(14, var0);
-			var2 = new VarbitDefinition();
-			if (var7 != null) {
-				var2.decode(new Buffer(var7));
-			}
-
-			VarbitDefinition.VarbitDefinition_cached.put(var2, (long)var0);
-			var1 = var2;
-		}
-
-		int var3 = var1.baseVar;
-		int var4 = var1.startBit;
-		int var5 = var1.endBit;
-		int var6 = Varps.Varps_masks[var5 - var4];
-		return Varps.Varps_main[var3] >> var4 & var6;
+	static LoginPacket[] method3512() {
+		return new LoginPacket[]{LoginPacket.field2346, LoginPacket.field2347, LoginPacket.field2345, LoginPacket.field2350, LoginPacket.field2352, LoginPacket.field2348};
 	}
 
-	@ObfuscatedName("lc")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;S)V",
-		garbageValue = "11607"
+		signature = "(I)V",
+		garbageValue = "17173130"
 	)
-	@Export("clanKickUser")
-	static final void clanKickUser(String var0) {
-		if (class4.clanChat != null) {
-			PacketBufferNode var1 = SoundSystem.getPacketBufferNode(ClientPacket.field2195, Client.packetWriter.isaacCipher);
-			var1.packetBuffer.writeByte(UserComparator6.stringCp1252NullTerminatedByteSize(var0));
-			var1.packetBuffer.writeStringCp1252NullTerminated(var0);
-			Client.packetWriter.addNode(var1);
+	public static void method3509() {
+		if (MouseHandler.MouseHandler_instance != null) {
+			synchronized(MouseHandler.MouseHandler_instance) {
+				MouseHandler.MouseHandler_instance = null;
+			}
 		}
+
+	}
+
+	@ObfuscatedName("o")
+	@ObfuscatedSignature(
+		signature = "(Lic;IIIZB)V",
+		garbageValue = "18"
+	)
+	public static void method3513(AbstractArchive var0, int var1, int var2, int var3, boolean var4) {
+		class206.field2439 = 1;
+		Huffman.musicTrackArchive = var0;
+		class206.musicTrackGroupId = var1;
+		MilliClock.musicTrackFileId = var2;
+		class206.musicTrackVolume = var3;
+		class336.musicTrackBoolean = var4;
+		class206.field2442 = 10000;
+	}
+
+	@ObfuscatedName("fx")
+	@ObfuscatedSignature(
+		signature = "(IB)V",
+		garbageValue = "41"
+	)
+	@Export("playSong")
+	static void playSong(int var0) {
+		if (var0 == -1 && !Client.field743) {
+			class89.method2161();
+		} else if (var0 != -1 && var0 != Client.currentTrackGroupId && Client.musicVolume != 0 && !Client.field743) {
+			MenuAction.playMusicTrack(2, UserComparator7.archive6, var0, 0, Client.musicVolume, false);
+		}
+
+		Client.currentTrackGroupId = var0;
 	}
 }

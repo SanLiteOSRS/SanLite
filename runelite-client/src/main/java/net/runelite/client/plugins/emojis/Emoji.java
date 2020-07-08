@@ -79,7 +79,17 @@ enum Emoji
 	PARTY_POPPER("@@@"),
 	EYES("O.O"),
 	SWEAT(";;"),
-	PILE_OF_POO("~@~");
+	PILE_OF_POO("~@~"),
+	FIRE("(/\\)"),
+	ALIEN("(@.@)"),
+	EGGPLANT("8=D"),
+	WAVE("(^_^)/"),
+	HEART_EYES("(*.*)"),
+	FACEPALM("M-)"),
+	PENSIVE("V_V"),
+	ACORN("<lt>D~"), // <D~
+	GORILLA(":G"),
+	;
 
 	private static final Map<String, Emoji> emojiMap;
 

@@ -24,16 +24,20 @@
  */
 package net.runelite.client.plugins.examine;
 
+import com.google.common.annotations.VisibleForTesting;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
+import com.google.inject.Provides;
 import java.time.Instant;
 import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.concurrent.ScheduledExecutorService;
 import java.util.regex.Pattern;
 import javax.inject.Inject;
 import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.*;
+import net.runelite.api.ChatMessageType;
+import net.runelite.api.Client;
+import net.runelite.api.ItemComposition;
+import net.runelite.api.ItemID;
 import net.runelite.api.events.ChatMessage;
 import net.runelite.api.events.GameStateChanged;
 import net.runelite.api.events.MenuOptionClicked;
@@ -55,6 +59,7 @@ import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.util.QuantityFormatter;
 import net.runelite.client.util.Text;
 import net.runelite.http.api.examine.ExamineClient;
+import okhttp3.OkHttpClient;
 
 /**
  * Submits examine info to the api
@@ -88,8 +93,11 @@ public class ExaminePlugin extends Plugin
 	@Inject
 	private ChatMessageManager chatMessageManager;
 
-	@Inject
-	private ScheduledExecutorService executor;
+	@Provides
+	ExamineClient provideExamineClient(OkHttpClient okHttpClient)
+	{
+		return new ExamineClient(okHttpClient);
+	}
 
 	@Subscribe
 	public void onGameStateChanged(GameStateChanged event)
@@ -100,7 +108,7 @@ public class ExaminePlugin extends Plugin
 	@Subscribe
 	public void onMenuOptionClicked(MenuOptionClicked event)
 	{
-		if (!Text.removeTags(event.getOption()).equals("Examine"))
+		if (!Text.removeTags(event.getMenuOption()).equals("Examine"))
 		{
 			return;
 		}
@@ -112,20 +120,24 @@ public class ExaminePlugin extends Plugin
 			case EXAMINE_ITEM:
 			{
 				type = ExamineType.ITEM;
-				id = event.getIdentifier();
+				id = event.getId();
 
-				int widgetId = event.getActionParam1();
+				int widgetId = event.getWidgetId();
 				int widgetGroup = TO_GROUP(widgetId);
 				int widgetChild = TO_CHILD(widgetId);
 				Widget widget = client.getWidget(widgetGroup, widgetChild);
-				WidgetItem widgetItem = widget.getWidgetItem(event.getActionParam0());
+				WidgetItem widgetItem = widget.getWidgetItem(event.getActionParam());
 				quantity = widgetItem != null && widgetItem.getId() >= 0 ? widgetItem.getQuantity() : 1;
 				break;
 			}
-			case EXAMINE_ITEM_BANK_EQ:
+			case EXAMINE_ITEM_GROUND:
+				type = ExamineType.ITEM;
+				id = event.getId();
+				break;
+			case CC_OP_LOW_PRIORITY:
 			{
 				type = ExamineType.ITEM_BANK_EQ;
-				int[] qi = findItemFromWidget(event.getActionParam1(), event.getActionParam0());
+				int[] qi = findItemFromWidget(event.getWidgetId(), event.getActionParam());
 				if (qi == null)
 				{
 					log.debug("Examine for item with unknown widget: {}", event);
@@ -137,11 +149,11 @@ public class ExaminePlugin extends Plugin
 			}
 			case EXAMINE_OBJECT:
 				type = ExamineType.OBJECT;
-				id = event.getIdentifier();
+				id = event.getId();
 				break;
 			case EXAMINE_NPC:
 				type = ExamineType.NPC;
-				id = event.getIdentifier();
+				id = event.getId();
 				break;
 			default:
 				return;
@@ -179,7 +191,6 @@ public class ExaminePlugin extends Plugin
 
 		if (pending.isEmpty())
 		{
-			log.debug("Got examine without a pending examine?");
 			return;
 		}
 
@@ -195,7 +206,7 @@ public class ExaminePlugin extends Plugin
 		log.debug("Got examine for {} {}: {}", pendingExamine.getType(), pendingExamine.getId(), event.getMessage());
 
 		// If it is an item, show the price of it
-		final ItemDefinition itemComposition;
+		final ItemComposition itemComposition;
 		if (pendingExamine.getType() == ExamineType.ITEM || pendingExamine.getType() == ExamineType.ITEM_BANK_EQ)
 		{
 			final int itemId = pendingExamine.getId();
@@ -207,12 +218,7 @@ public class ExaminePlugin extends Plugin
 			}
 
 			itemComposition = itemManager.getItemComposition(itemId);
-
-			if (itemComposition != null)
-			{
-				final int id = itemManager.canonicalize(itemComposition.getId());
-				executor.submit(() -> getItemPrice(id, itemComposition, itemQuantity));
-			}
+			getItemPrice(itemComposition.getId(), itemComposition, itemQuantity);
 		}
 		else
 		{
@@ -315,13 +321,13 @@ public class ExaminePlugin extends Plugin
 		return null;
 	}
 
-	private void getItemPrice(int id, ItemDefinition itemComposition, int quantity)
+	@VisibleForTesting
+	void getItemPrice(int id, ItemComposition itemComposition, int quantity)
 	{
 		// quantity is at least 1
 		quantity = Math.max(1, quantity);
-		int itemCompositionPrice = itemComposition.getPrice();
 		final int gePrice = itemManager.getItemPrice(id);
-		final int alchPrice = itemCompositionPrice <= 0 ? 0 : Math.round(itemCompositionPrice * Constants.HIGH_ALCHEMY_MULTIPLIER);
+		final int alchPrice = itemComposition.getHaPrice();
 
 		if (gePrice > 0 || alchPrice > 0)
 		{
@@ -348,7 +354,7 @@ public class ExaminePlugin extends Plugin
 					.append(ChatColorType.NORMAL)
 					.append(" GE average ")
 					.append(ChatColorType.HIGHLIGHT)
-					.append(QuantityFormatter.formatNumber(gePrice * quantity));
+					.append(QuantityFormatter.formatNumber((long) gePrice * quantity));
 
 				if (quantity > 1)
 				{
@@ -368,7 +374,7 @@ public class ExaminePlugin extends Plugin
 					.append(ChatColorType.NORMAL)
 					.append(" HA value ")
 					.append(ChatColorType.HIGHLIGHT)
-					.append(QuantityFormatter.formatNumber(alchPrice * quantity));
+					.append(QuantityFormatter.formatNumber((long) alchPrice * quantity));
 
 				if (quantity > 1)
 				{

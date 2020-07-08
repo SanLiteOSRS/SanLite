@@ -25,8 +25,16 @@
 package net.runelite.client.ui.overlay;
 
 import com.google.common.base.Strings;
-
-import java.awt.*;
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics2D;
+import java.awt.geom.Arc2D;
+import java.awt.Polygon;
+import java.awt.RenderingHints;
+import java.awt.Shape;
+import java.awt.Stroke;
 import java.awt.image.BufferedImage;
 import net.runelite.api.Actor;
 import net.runelite.api.Client;
@@ -48,6 +56,17 @@ public class OverlayUtil
 		graphics.setColor(color);
 		final Stroke originalStroke = graphics.getStroke();
 		graphics.setStroke(new BasicStroke(2));
+		graphics.draw(poly);
+		graphics.setColor(new Color(0, 0, 0, 50));
+		graphics.fill(poly);
+		graphics.setStroke(originalStroke);
+	}
+
+	public static void renderPolygon(Graphics2D graphics, Shape poly, Color color, int strokeSize)
+	{
+		graphics.setColor(color);
+		final Stroke originalStroke = graphics.getStroke();
+		graphics.setStroke(new BasicStroke(strokeSize));
 		graphics.draw(poly);
 		graphics.setColor(new Color(0, 0, 0, 50));
 		graphics.fill(poly);
@@ -96,6 +115,14 @@ public class OverlayUtil
 		{
 			renderImageLocation(graphics, imageLocation, image);
 		}
+	}
+
+	public static void renderImageAndTextLocation(Graphics2D graphics, BufferedImage image, Point imageLoc,
+													String text, int imageYOffset, int textXOffset, Color color)
+	{
+		graphics.drawImage(image, imageLoc.getX(), imageLoc.getY() - imageYOffset, null);
+		Point textLocation = new Point(imageLoc.getX() + image.getWidth() + textXOffset, imageLoc.getY());
+		OverlayUtil.renderTextLocation(graphics, textLocation, text, color);
 	}
 
 	public static void renderImageLocation(Graphics2D graphics, Point imgLoc, BufferedImage image)
@@ -187,6 +214,54 @@ public class OverlayUtil
 		}
 	}
 
+	public static void renderCountCircle(Graphics2D graphics, int totalCount, int currentCount, Point point,
+											BufferedImage image, int imageMargin, int imageWidth, int imageHeight,
+											int imageDistance)
+	{
+		if (point != null)
+		{
+			point = new Point(point.getX(), point.getY());
+			int totalWidth = imageMargin;
+			totalWidth += imageWidth;
+
+			int bgPadding = 4;
+			int currentPosX = 0;
+
+			graphics.setStroke(new BasicStroke(2));
+			graphics.setColor(new Color(0, 0, 0, 128));
+			graphics.fillOval(
+					point.getX() - totalWidth / 2 + currentPosX - bgPadding,
+					point.getY() - imageHeight / 2 - imageDistance - bgPadding,
+					imageWidth + bgPadding * 2,
+					imageHeight + bgPadding * 2);
+
+			graphics.setColor(new Color(0, 0, 0, 255));
+			graphics.drawOval(
+					point.getX() - totalWidth / 2 + currentPosX - bgPadding,
+					point.getY() - imageHeight / 2 - imageDistance - bgPadding,
+					imageWidth + bgPadding * 2,
+					imageHeight + bgPadding * 2);
+
+			graphics.drawImage(
+					image,
+					point.getX() - totalWidth / 2 + currentPosX,
+					point.getY() - imageHeight / 2 - imageDistance,
+					null);
+
+			graphics.setColor(new Color(219, 175, 0, 255));
+
+			Arc2D.Double arc = new Arc2D.Double(
+					point.getX() - totalWidth / 2 + currentPosX - bgPadding,
+					point.getY() - imageHeight / 2 - imageDistance - bgPadding,
+					imageWidth + bgPadding * 2,
+					imageHeight + bgPadding * 2,
+					90.0,
+					-360.0 * (totalCount - currentCount) / totalCount,
+					Arc2D.OPEN);
+			graphics.draw(arc);
+		}
+	}
+
 	public static void setGraphicProperties(Graphics2D graphics)
 	{
 		graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
@@ -194,7 +269,7 @@ public class OverlayUtil
 
 	public static void renderTextLocation(Graphics2D graphics, String txtString, int fontSize, int fontStyle, Color fontColor, Point canvasPoint, boolean shadows, int yOffset)
 	{
-		graphics.setFont(new Font("RuneScape Standard", fontStyle, fontSize));
+		graphics.setFont(new Font("RuneScape", fontStyle, fontSize));
 		if (canvasPoint != null)
 		{
 			final Point canvasCenterPoint = new Point(

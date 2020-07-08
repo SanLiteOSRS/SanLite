@@ -57,14 +57,13 @@ import net.runelite.client.callback.ClientThread;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
-import net.runelite.client.plugins.PluginType;
 import net.runelite.client.ui.overlay.OverlayManager;
 
 @PluginDescriptor(
 	name = "Demonic Gorillas",
 	description = "Count demonic gorilla attacks and display their next possible attack styles",
-	tags = {"combat", "overlay", "pve", "pvm"},
-	type = PluginType.RUNELITE_USE_AT_OWN_RISK
+	tags = {"combat", "overlay", "pve", "pvm", "sanlite"},
+	enabledByDefault = false
 )
 public class DemonicGorillaPlugin extends Plugin
 {
@@ -535,7 +534,7 @@ public class DemonicGorillaPlugin extends Plugin
 		int projectileId = projectile.getId();
 		if (projectileId != ProjectileID.DEMONIC_GORILLA_RANGED &&
 			projectileId != ProjectileID.DEMONIC_GORILLA_MAGIC &&
-			projectileId != ProjectileID.DEMONIC_GORILLA_BOULDER)
+			projectileId != ProjectileID.DEMONIC_GORILLA_BOULDER_AOE)
 		{
 			return;
 		}
@@ -547,7 +546,7 @@ public class DemonicGorillaPlugin extends Plugin
 			return;
 		}
 
-		if (projectileId == ProjectileID.DEMONIC_GORILLA_BOULDER)
+		if (projectileId == ProjectileID.DEMONIC_GORILLA_BOULDER_AOE)
 		{
 			recentBoulders.add(WorldPoint.fromLocal(client, event.getPosition()));
 		}
@@ -591,7 +590,7 @@ public class DemonicGorillaPlugin extends Plugin
 					shouldDecreaseCounter = true;
 				}
 				else if (target.getRecentHitsplats().stream()
-					.anyMatch(x -> x.getHitsplatType() == Hitsplat.HitsplatType.BLOCK))
+					.anyMatch(x -> x.getHitsplatType() == Hitsplat.HitsplatType.BLOCK_ME))
 				{
 					// A blue hitsplat appeared, so we assume the gorilla hit a 0
 					shouldDecreaseCounter = true;
@@ -638,8 +637,8 @@ public class DemonicGorillaPlugin extends Plugin
 		{
 			DemonicGorilla gorilla = gorillas.get(event.getActor());
 			Hitsplat.HitsplatType hitsplatType = event.getHitsplat().getHitsplatType();
-			if (gorilla != null && (hitsplatType == Hitsplat.HitsplatType.BLOCK ||
-				hitsplatType == Hitsplat.HitsplatType.DAMAGE))
+			if (gorilla != null && (hitsplatType == Hitsplat.HitsplatType.BLOCK_ME ||
+				hitsplatType == Hitsplat.HitsplatType.DAMAGE_ME))
 			{
 				gorilla.setTakenDamageRecently(true);
 			}

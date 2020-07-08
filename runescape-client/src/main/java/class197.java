@@ -1,89 +1,82 @@
+import java.io.DataInputStream;
+import java.net.URL;
 import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gh")
+@ObfuscatedName("gg")
 public class class197 {
-	@ObfuscatedName("a")
+	@ObfuscatedName("qy")
 	@ObfuscatedSignature(
-		signature = "Lhq;"
+		signature = "Ldv;"
 	)
-	@Export("musicPatchesArchive")
-	public static AbstractArchive musicPatchesArchive;
-	@ObfuscatedName("t")
-	@ObfuscatedSignature(
-		signature = "Lhq;"
-	)
-	@Export("musicSamplesArchive")
-	public static AbstractArchive musicSamplesArchive;
-	@ObfuscatedName("n")
-	@ObfuscatedSignature(
-		signature = "Lhq;"
-	)
-	@Export("soundEffectsArchive")
-	public static AbstractArchive soundEffectsArchive;
-	@ObfuscatedName("q")
-	@ObfuscatedSignature(
-		signature = "Lgg;"
-	)
-	@Export("midiPcmStream")
-	public static MidiPcmStream midiPcmStream;
-	@ObfuscatedName("v")
-	@ObfuscatedGetter(
-		intValue = -1610594971
-	)
-	public static int field2377;
-	@ObfuscatedName("o")
-	@ObfuscatedGetter(
-		intValue = 319435127
-	)
-	@Export("musicTrackFileId")
-	public static int musicTrackFileId;
-	@ObfuscatedName("i")
-	@ObfuscatedGetter(
-		intValue = -1006961815
-	)
-	@Export("musicTrackVolume")
-	public static int musicTrackVolume;
-	@ObfuscatedName("d")
-	@ObfuscatedGetter(
-		intValue = -1415687209
-	)
-	public static int field2384;
-	@ObfuscatedName("p")
-	@ObfuscatedSignature(
-		signature = "Lgb;"
-	)
-	@Export("musicTrack")
-	public static MusicTrack musicTrack;
+	@Export("decimator")
+	static Decimator decimator;
+	@ObfuscatedName("m")
+	static int[] field2379;
 
 	static {
-		field2377 = 0;
-	}
+		new Object();
+		field2379 = new int[33];
+		field2379[0] = 0;
+		int var0 = 2;
 
-	@ObfuscatedName("a")
-	@ObfuscatedSignature(
-		signature = "(Lhq;Lhq;Lhq;I)V",
-		garbageValue = "1749712810"
-	)
-	public static void method3793(AbstractArchive var0, AbstractArchive var1, AbstractArchive var2) {
-		SequenceDefinition.SequenceDefinition_archive = var0;
-		DevicePcmPlayerProvider.SequenceDefinition_animationsArchive = var1;
-		SequenceDefinition.SequenceDefinition_skeletonsArchive = var2;
-	}
-
-	@ObfuscatedName("lr")
-	@ObfuscatedSignature(
-		signature = "(II)V",
-		garbageValue = "-224459169"
-	)
-	static void method3792(int var0) {
-		for (IntegerNode var1 = (IntegerNode)Client.widgetClickMasks.first(); var1 != null; var1 = (IntegerNode)Client.widgetClickMasks.next()) {
-			if ((long)var0 == (var1.key >> 48 & 65535L)) {
-				var1.remove();
-			}
+		for (int var1 = 1; var1 < 33; ++var1) {
+			field2379[var1] = var0 - 1;
+			var0 += var0;
 		}
 
+	}
+
+	@ObfuscatedName("m")
+	@ObfuscatedSignature(
+		signature = "(Ljava/lang/String;Ljava/lang/Throwable;I)V",
+		garbageValue = "-1357689499"
+	)
+	@Export("RunException_sendStackTrace")
+	public static void RunException_sendStackTrace(String var0, Throwable var1) {
+		if (var1 != null) {
+			var1.printStackTrace();
+		} else {
+			try {
+				String var2 = "";
+				if (var1 != null) {
+					var2 = class332.method6316(var1);
+				}
+
+				if (var0 != null) {
+					if (var1 != null) {
+						var2 = var2 + " | ";
+					}
+
+					var2 = var2 + var0;
+				}
+
+				System.out.println("Error: " + var2);
+				var2 = var2.replace(':', '.');
+				var2 = var2.replace('@', '_');
+				var2 = var2.replace('&', '_');
+				var2 = var2.replace('#', '_');
+				if (RunException.RunException_applet == null) {
+					return;
+				}
+
+				URL var3 = new URL(RunException.RunException_applet.getCodeBase(), "clienterror.ws?c=" + RunException.RunException_revision + "&u=" + RunException.localPlayerName + "&v1=" + TaskHandler.javaVendor + "&v2=" + TaskHandler.javaVersion + "&ct=" + RunException.clientType + "&e=" + var2);
+				DataInputStream var4 = new DataInputStream(var3.openStream());
+				var4.read();
+				var4.close();
+			} catch (Exception var5) {
+			}
+
+		}
+	}
+
+	@ObfuscatedName("m")
+	@ObfuscatedSignature(
+		signature = "(Lic;I)V",
+		garbageValue = "-1399485116"
+	)
+	public static void method3771(AbstractArchive var0) {
+		StructDefinition.StructDefinition_archive = var0;
 	}
 }

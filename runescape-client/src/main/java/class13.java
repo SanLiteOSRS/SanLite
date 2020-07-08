@@ -1,24 +1,25 @@
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("k")
-public class class13 {
-	@ObfuscatedName("n")
+@ObfuscatedName("h")
+public final class class13 {
+	@ObfuscatedName("sz")
 	@ObfuscatedSignature(
-		signature = "(CS)Z",
-		garbageValue = "32317"
+		signature = "Lmc;"
 	)
-	public static final boolean method200(char var0) {
-		return var0 == 160 || var0 == ' ' || var0 == '_' || var0 == '-';
-	}
-
-	@ObfuscatedName("fi")
+	@Export("platformInfo")
+	static PlatformInfo platformInfo;
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "2"
+		signature = "[Lch;"
 	)
-	static final void method199() {
-		Scene.Scene_isLowDetail = false;
-		Client.isLowDetail = false;
-	}
+	@Export("World_worlds")
+	static World[] World_worlds;
+	@ObfuscatedName("bo")
+	@ObfuscatedSignature(
+		signature = "Llh;"
+	)
+	@Export("worldSelectLeftSprite")
+	static IndexedSprite worldSelectLeftSprite;
 }

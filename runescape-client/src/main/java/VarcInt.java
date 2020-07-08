@@ -3,33 +3,34 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("iz")
+@ObfuscatedName("iu")
 @Implements("VarcInt")
 public class VarcInt extends DualNode {
-	@ObfuscatedName("ns")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		signature = "[Lhi;"
-	)
-	static Widget[] field3218;
-	@ObfuscatedName("a")
-	@ObfuscatedSignature(
-		signature = "Lhq;"
+		signature = "Lic;"
 	)
 	@Export("VarcInt_archive")
 	public static AbstractArchive VarcInt_archive;
-	@ObfuscatedName("t")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "Leb;"
+		signature = "Lec;"
 	)
 	@Export("VarcInt_cached")
-	static EvictingDualNodeHashTable VarcInt_cached;
-	@ObfuscatedName("gi")
+	public static EvictingDualNodeHashTable VarcInt_cached;
+	@ObfuscatedName("g")
 	@ObfuscatedSignature(
-		signature = "[Llw;"
+		signature = "Lic;"
 	)
-	@Export("modIconSprites")
-	static IndexedSprite[] modIconSprites;
-	@ObfuscatedName("n")
+	@Export("ItemDefinition_archive")
+	static AbstractArchive ItemDefinition_archive;
+	@ObfuscatedName("eu")
+	@ObfuscatedSignature(
+		signature = "Lig;"
+	)
+	@Export("archive18")
+	static Archive archive18;
+	@ObfuscatedName("q")
 	@Export("persist")
 	public boolean persist;
 
@@ -37,46 +38,52 @@ public class VarcInt extends DualNode {
 		VarcInt_cached = new EvictingDualNodeHashTable(64);
 	}
 
-	VarcInt() {
+	public VarcInt() {
 		this.persist = false;
 	}
 
-	@ObfuscatedName("t")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		signature = "(Lkc;I)V",
-		garbageValue = "-542237401"
+		signature = "(Lkn;B)V",
+		garbageValue = "121"
 	)
-	void method4496(Buffer var1) {
+	public void method4573(Buffer var1) {
 		while (true) {
 			int var2 = var1.readUnsignedByte();
 			if (var2 == 0) {
 				return;
 			}
 
-			this.method4497(var1, var2);
+			this.method4569(var1, var2);
 		}
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "(Lkc;II)V",
-		garbageValue = "-1028868558"
+		signature = "(Lkn;II)V",
+		garbageValue = "1038318542"
 	)
-	void method4497(Buffer var1, int var2) {
+	void method4569(Buffer var1, int var2) {
 		if (var2 == 2) {
 			this.persist = true;
 		}
 
 	}
 
-	@ObfuscatedName("gc")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-1686094781"
+		signature = "(Ldf;I)V",
+		garbageValue = "1745274917"
 	)
-	static void method4495() {
-		if (Client.combatTargetPlayerIndex >= 0 && Client.players[Client.combatTargetPlayerIndex] != null) {
-			Player.addPlayerToScene(Client.players[Client.combatTargetPlayerIndex], false);
+	@Export("PcmStream_disable")
+	static final void PcmStream_disable(PcmStream var0) {
+		var0.active = false;
+		if (var0.sound != null) {
+			var0.sound.position = 0;
+		}
+
+		for (PcmStream var1 = var0.firstSubStream(); var1 != null; var1 = var0.nextSubStream()) {
+			PcmStream_disable(var1);
 		}
 
 	}

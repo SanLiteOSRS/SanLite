@@ -61,6 +61,7 @@ public enum Varbits
 	 * Grand Exchange
 	 */
 	GRAND_EXCHANGE_PRICE_PER_ITEM(4398),
+	GRAND_EXCHANGE_UNKNOWN_1(4399),
 
 	/**
 	 * Runepouch
@@ -224,7 +225,14 @@ public enum Varbits
 	HB_TRAIL_31372(5750),
 
 	HB_FINISH(5766),
-	HB_STARTED(5767), //not working
+
+	/**
+	 * Started hunting Herbiboar.
+	 * <br>
+	 * NOTE: This value remains at 0 even after starting a Herbiboar trail up until searching the first object along the
+	 * hunting path.
+	 */
+	HB_STARTED(5767),
 
 	/**
 	 * Barbarian Assault
@@ -246,12 +254,12 @@ public enum Varbits
 
 	/**
 	 * Blast Furnace Bar Dispenser
-	 * <p>
+	 *
 	 * These are the expected values:
-	 * 0 = No bars being processed
-	 * 1 = Ores are being processed on the conveyor belt, bar dispenser cannot be checked
-	 * 2 = Bars are cooling down
-	 * 3 = Bars can be collected
+	 *	0 = No bars being processed
+	 *	1 = Ores are being processed on the conveyor belt, bar dispenser cannot be checked
+	 *	2 = Bars are cooling down
+	 *	3 = Bars can be collected
 	 */
 	BAR_DISPENSER(936),
 
@@ -263,11 +271,11 @@ public enum Varbits
 
 	/**
 	 * Experience tracker
-	 * <p>
+	 *
 	 * EXPERIENCE_TRACKER_POSITION expected values:
-	 * 0 = Right
-	 * 1 = Middle
-	 * 2 = Left
+	 *   0 = Right
+	 *   1 = Middle
+	 *   2 = Left
 	 */
 	EXPERIENCE_TRACKER_POSITION(4692),
 	EXPERIENCE_TRACKER_COUNTER(4697),
@@ -302,6 +310,20 @@ public enum Varbits
 	PERSONAL_POINTS(5422),
 	RAID_PARTY_SIZE(5424),
 
+	// 0 = raid not started, >0 = raid started
+	RAID_STATE(5425),
+
+	/**
+	 * Making Friends with My Arm fire pits
+	 *
+	 * Expected values:
+	 *  0 = Not built
+	 *  1 = Built
+	 */
+	FIRE_PIT_GIANT_MOLE(6532),
+	FIRE_PIT_LUMBRIDGE_SWAMP(6533),
+	FIRE_PIT_MOS_LE_HARMLESS(6544),
+
 	/**
 	 * Theatre of Blood 1=In Party, 2=Inside/Spectator, 3=Dead Spectating
 	 */
@@ -311,7 +333,8 @@ public enum Varbits
 	TOB_ENCOUNTER_HEALTH_BAR_MAX_VALUE(6449), // Value is set from 1000 to 0 at the end of encounter
 
 	/**
-	 * Theatre of Blood orb varbits each number stands for the player's health on a scale of 1-27 (I think), 0 hides the orb
+	 * Theatre of Blood orb varbits each number stands for the player's health on a scale of 1-27,
+	 * 0 hides the orb, 31 turns the orb yellow
 	 */
 	THEATRE_OF_BLOOD_ORB_1(6442),
 	THEATRE_OF_BLOOD_ORB_2(6443),
@@ -353,8 +376,10 @@ public enum Varbits
 	/**
 	 * Pyramid plunder
 	 */
+	PYRAMID_PLUNDER_ROOM_LOCATION(2365),
 	PYRAMID_PLUNDER_TIMER(2375),
-	PYRAMID_PLUNDER_ROOM(2374),
+	PYRAMID_PLUNDER_THIEVING_LEVEL(2376),
+	PYRAMID_PLUNDER_ROOM(2377),
 
 	/**
 	 * Barrows
@@ -410,7 +435,7 @@ public enum Varbits
 	/**
 	 * This varbit tracks how much bonemeal has been redeemed from Robin
 	 * The player gets 13 for each diary completed above and including Medium, for a maxiumum of 39
-	 */
+ 	*/
 	DAILY_BONEMEAL_STATE(4543),
 
 	DAILY_DYNAMITE_COLLECTED(7939),
@@ -477,6 +502,34 @@ public enum Varbits
 	OXYGEN_LEVEL(5811),
 
 	/**
+	 * Drift net status
+	 *
+	 * Expected values
+	 *  0 = Unset
+	 *  1 = Set up
+	 *  2 = Caught some fish
+	 *  3 = Full
+	 */
+	NORTH_NET_STATUS(5812),
+	SOUTH_NET_STATUS(5814),
+
+	/**
+	 * Drift net catch count
+	 */
+	NORTH_NET_CATCH_COUNT(5813),
+	SOUTH_NET_CATCH_COUNT(5815),
+
+	/**
+	 * Drift net collect interface
+	 *
+	 * Expected values:
+	 *  0 = Not open
+	 *  1 = North interface open
+	 *  2 = South interface open
+	 */
+	DRIFT_NET_COLLECT(5933),
+
+	/**
 	 * Corp beast damage
 	 */
 	CORP_DAMAGE(999),
@@ -487,10 +540,20 @@ public enum Varbits
 	SUPERIOR_ENABLED(5362),
 	FOSSIL_ISLAND_WYVERN_DISABLE(6251),
 
+	BANK_REARRANGE_MODE(3959),
 	CURRENT_BANK_TAB(4150),
 
-	WORLDHOPPER_FAVROITE_1(4597),
-	WORLDHOPPER_FAVROITE_2(4598),
+	/**
+	 * 0 = withdraw/deposit 1
+	 * 1 = withdraw/deposit 5
+	 * 2 = withdraw/deposit 10
+	 * 3 = withdraw/deposit X
+	 * 4 = withdraw/deposit all
+	 */
+	BANK_QUANTITY_MODE(6590),
+
+	WORLDHOPPER_FAVORITE_1(4597),
+	WORLDHOPPER_FAVORITE_2(4598),
 
 	/**
 	 * Vengeance is active
@@ -506,7 +569,7 @@ public enum Varbits
 	 * 0 = standard
 	 * 1 = ancients
 	 * 2 = lunars
-	 * 3 = arrceus
+	 * 3 = arceuus
 	 **/
 	SPELLBOOK_ID(4070),
 
@@ -557,6 +620,15 @@ public enum Varbits
 	EXPLORER_RING_RUNENERGY(4553),
 
 	WINTERTODT_TIMER(7980),
+
+	/**
+	 * Twisted league
+	 */
+	TWISTED_LEAGUE_RELIC_1(10049),
+	TWISTED_LEAGUE_RELIC_2(10050),
+	TWISTED_LEAGUE_RELIC_3(10051),
+	TWISTED_LEAGUE_RELIC_4(10052),
+	TWISTED_LEAGUE_RELIC_5(10053),
 
 	/**
 	 * Temple Trekking
@@ -709,7 +781,25 @@ public enum Varbits
 
 	WITHDRAW_X_AMOUNT(3960),
 
-	IN_PVP_AREA(8121);
+	/**
+	 * Whether the Special Attack orb is disabled due to being in a PvP area
+	 *
+	 * 0 = Enabled (player is not in PvP)
+	 * 1 = Disabled (player in in PvP)
+	 *
+	 * @see <a href="https://oldschool.runescape.wiki/w/Minimap#Special_attack_orb">The OSRS Wiki's Minimap page</a>
+	 */
+	PVP_SPEC_ORB(8121),
+
+	CLAN_WARS_ARENA_UNKNOWN_1(4285),
+	/**
+	 * The value of this equals the remaining ticks till the countdown finished.
+	 * Starts at 204 (~2 minutes) in a normal Clan Wars match. Value decreases by 3 every 3 ticks.
+	 */
+	CLAN_WARS_ARENA_COUNTDOWN_TIMER(4286),
+	CLAN_WARS_ARENA_UNKNOWN_2(4287),
+	CLAN_WARS_ARENA_UNKNOWN_3(4288),
+	CLAN_WARS_ARENA_UNKNOWN_4(4289);
 
 	/**
 	 * The raw varbit ID.

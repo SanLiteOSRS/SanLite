@@ -1,82 +1,79 @@
-import java.io.File;
-import java.io.RandomAccessFile;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("bn")
+@ObfuscatedName("bt")
 @Implements("PendingSpawn")
 public final class PendingSpawn extends Node {
-	@ObfuscatedName("a")
+	@ObfuscatedName("m")
 	@ObfuscatedGetter(
-		intValue = -1584679065
+		intValue = 1985828823
 	)
 	@Export("plane")
 	int plane;
-	@ObfuscatedName("t")
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = -1530621461
+		intValue = -1983032759
 	)
 	@Export("type")
 	int type;
-	@ObfuscatedName("n")
+	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = -1386695055
+		intValue = -1818060675
 	)
 	@Export("x")
 	int x;
-	@ObfuscatedName("q")
+	@ObfuscatedName("j")
 	@ObfuscatedGetter(
-		intValue = -1902286249
+		intValue = 1999145911
 	)
 	@Export("y")
 	int y;
-	@ObfuscatedName("v")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = 1162414355
+		intValue = 386133029
 	)
 	@Export("objectId")
 	int objectId;
-	@ObfuscatedName("l")
+	@ObfuscatedName("g")
 	@ObfuscatedGetter(
-		intValue = 1880086587
+		intValue = 1588520035
 	)
-	int field913;
-	@ObfuscatedName("c")
+	int field956;
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = 1367998823
+		intValue = 1476403807
 	)
-	int field914;
-	@ObfuscatedName("o")
+	int field957;
+	@ObfuscatedName("u")
 	@ObfuscatedGetter(
-		intValue = 1222529831
+		intValue = -1658497211
 	)
 	@Export("id")
 	int id;
-	@ObfuscatedName("i")
+	@ObfuscatedName("a")
 	@ObfuscatedGetter(
-		intValue = 235222743
+		intValue = -1422873381
 	)
 	@Export("orientation")
 	int orientation;
-	@ObfuscatedName("d")
+	@ObfuscatedName("z")
 	@ObfuscatedGetter(
-		intValue = 2005302789
+		intValue = 1345962763
 	)
-	int field917;
-	@ObfuscatedName("m")
+	int field962;
+	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		intValue = -1677449417
+		intValue = -577159519
 	)
 	@Export("delay")
 	int delay;
-	@ObfuscatedName("p")
+	@ObfuscatedName("y")
 	@ObfuscatedGetter(
-		intValue = 2086246849
+		intValue = 790870073
 	)
 	@Export("hitpoints")
 	int hitpoints;
@@ -86,105 +83,75 @@ public final class PendingSpawn extends Node {
 		this.hitpoints = -1;
 	}
 
+	@ObfuscatedName("g")
+	@ObfuscatedSignature(
+		signature = "(Lic;Ljava/lang/String;Ljava/lang/String;I)[Llh;",
+		garbageValue = "574747014"
+	)
+	public static IndexedSprite[] method1806(AbstractArchive var0, String var1, String var2) {
+		int var3 = var0.getGroupId(var1);
+		int var4 = var0.getFileId(var3, var2);
+		return HealthBar.method2125(var0, var3, var4);
+	}
+
 	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;I)Ljava/io/File;",
-		garbageValue = "1594273687"
+		signature = "(Lhd;I[B[BI)V",
+		garbageValue = "-1571904788"
 	)
-	@Export("getFile")
-	static File getFile(String var0) {
-		if (!FileSystem.FileSystem_hasPermissions) {
-			throw new RuntimeException("");
+	@Export("Widget_setKey")
+	static final void Widget_setKey(Widget var0, int var1, byte[] var2, byte[] var3) {
+		if (var0.field2647 == null) {
+			if (var2 == null) {
+				return;
+			}
+
+			var0.field2647 = new byte[11][];
+			var0.field2678 = new byte[11][];
+			var0.field2679 = new int[11];
+			var0.field2680 = new int[11];
+		}
+
+		var0.field2647[var1] = var2;
+		if (var2 != null) {
+			var0.field2709 = true;
 		} else {
-			File var1 = (File)FileSystem.FileSystem_cacheFiles.get(var0);
-			if (var1 != null) {
-				return var1;
+			var0.field2709 = false;
+
+			for (int var4 = 0; var4 < var0.field2647.length; ++var4) {
+				if (var0.field2647[var4] != null) {
+					var0.field2709 = true;
+					break;
+				}
+			}
+		}
+
+		var0.field2678[var1] = var3;
+	}
+
+	@ObfuscatedName("k")
+	@ObfuscatedSignature(
+		signature = "(ILcs;ZI)I",
+		garbageValue = "556274205"
+	)
+	static int method1808(int var0, Script var1, boolean var2) {
+		Widget var3 = var2 ? KeyHandler.field407 : SecureRandomCallable.field544;
+		if (var0 == ScriptOpcodes.CC_GETINVOBJECT) {
+			Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = var3.itemId;
+			return 1;
+		} else if (var0 == ScriptOpcodes.CC_GETINVCOUNT) {
+			if (var3.itemId != -1) {
+				Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = var3.itemQuantity;
 			} else {
-				File var2 = new File(FileSystem.FileSystem_cacheDir, var0);
-				RandomAccessFile var3 = null;
-
-				try {
-					File var4 = new File(var2.getParent());
-					if (!var4.exists()) {
-						throw new RuntimeException("");
-					} else {
-						var3 = new RandomAccessFile(var2, "rw");
-						int var5 = var3.read();
-						var3.seek(0L);
-						var3.write(var5);
-						var3.seek(0L);
-						var3.close();
-						FileSystem.FileSystem_cacheFiles.put(var0, var2);
-						return var2;
-					}
-				} catch (Exception var8) {
-					try {
-						if (var3 != null) {
-							var3.close();
-							var3 = null;
-						}
-					} catch (Exception var7) {
-					}
-
-					throw new RuntimeException();
-				}
-			}
-		}
-	}
-
-	@ObfuscatedName("ak")
-	@ObfuscatedSignature(
-		signature = "(Lff;IIB)Ldq;",
-		garbageValue = "0"
-	)
-	public static final PcmPlayer method1809(TaskHandler var0, int var1, int var2) {
-		if (PcmPlayer.PcmPlayer_sampleRate * 22050 == 0) {
-			throw new IllegalStateException();
-		} else if (var1 >= 0 && var1 < 2) {
-			if (var2 < 256) {
-				var2 = 256;
+				Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = 0;
 			}
 
-			try {
-				PcmPlayer var3 = class188.pcmPlayerProvider.player();
-				var3.samples = new int[256 * (InterfaceParent.PcmPlayer_stereo ? 2 : 1)];
-				var3.field1388 = var2;
-				var3.init();
-				var3.capacity = (var2 & -1024) + 1024;
-				if (var3.capacity > 16384) {
-					var3.capacity = 16384;
-				}
-
-				var3.open(var3.capacity);
-				if (ParamDefinition.PcmPlayer_count > 0 && VerticalAlignment.soundSystem == null) {
-					VerticalAlignment.soundSystem = new SoundSystem();
-					SecureRandomCallable.soundSystemExecutor = Executors.newScheduledThreadPool(1);
-					SecureRandomCallable.soundSystemExecutor.scheduleAtFixedRate(VerticalAlignment.soundSystem, 0L, 10L, TimeUnit.MILLISECONDS);
-				}
-
-				if (VerticalAlignment.soundSystem != null) {
-					if (VerticalAlignment.soundSystem.players[var1] != null) {
-						throw new IllegalArgumentException();
-					}
-
-					VerticalAlignment.soundSystem.players[var1] = var3;
-				}
-
-				return var3;
-			} catch (Throwable var4) {
-				return new PcmPlayer();
-			}
+			return 1;
+		} else if (var0 == ScriptOpcodes.CC_GETID) {
+			Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = var3.childIndex;
+			return 1;
 		} else {
-			throw new IllegalArgumentException();
+			return 2;
 		}
-	}
-
-	@ObfuscatedName("lm")
-	@ObfuscatedSignature(
-		signature = "(B)Z",
-		garbageValue = "92"
-	)
-	public static boolean method1807() {
-		return Client.staffModLevel >= 2;
 	}
 }

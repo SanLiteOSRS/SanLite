@@ -44,7 +44,7 @@ public abstract class EntityHiderBridgeMixin implements RSClient
 	public static boolean hideFriends;
 
 	@Inject
-	public static boolean hideClanMates;
+	public static boolean hideFriendsChatMembers;
 
 	@Inject
 	public static boolean hideLocalPlayer;
@@ -57,6 +57,9 @@ public abstract class EntityHiderBridgeMixin implements RSClient
 
 	@Inject
 	public static boolean hideNPCs2D;
+
+	@Inject
+	public static boolean hidePets;
 
 	@Inject
 	public static boolean hideAttackers;
@@ -94,9 +97,9 @@ public abstract class EntityHiderBridgeMixin implements RSClient
 
 	@Inject
 	@Override
-	public void setClanMatesHidden(boolean state)
+	public void setFriendsChatMembersHidden(boolean state)
 	{
-		hideClanMates = state;
+		hideFriendsChatMembers = state;
 	}
 
 	@Inject
@@ -125,6 +128,13 @@ public abstract class EntityHiderBridgeMixin implements RSClient
 	public void setNPCsHidden2D(boolean state)
 	{
 		hideNPCs2D = state;
+	}
+
+	@Inject
+	@Override
+	public void setPetsHidden(boolean state)
+	{
+		hidePets = state;
 	}
 
 	@Inject

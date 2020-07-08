@@ -28,14 +28,19 @@ import com.google.gson.JsonParseException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import lombok.AllArgsConstructor;
 import net.runelite.http.api.RuneLiteAPI;
 import okhttp3.HttpUrl;
+import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
+@AllArgsConstructor
 public class ChatClient
 {
+	private final OkHttpClient client;
+
 	public boolean submitKc(String username, String boss, int kc) throws IOException
 	{
 		HttpUrl url = RuneLiteAPI.getApiBase().newBuilder()
@@ -51,7 +56,7 @@ public class ChatClient
 			.url(url)
 			.build();
 
-		try (Response response = RuneLiteAPI.CLIENT.newCall(request).execute())
+		try (Response response = client.newCall(request).execute())
 		{
 			return response.isSuccessful();
 		}
@@ -70,7 +75,7 @@ public class ChatClient
 			.url(url)
 			.build();
 
-		try (Response response = RuneLiteAPI.CLIENT.newCall(request).execute())
+		try (Response response = client.newCall(request).execute())
 		{
 			if (!response.isSuccessful())
 			{
@@ -94,7 +99,7 @@ public class ChatClient
 			.url(url)
 			.build();
 
-		try (Response response = RuneLiteAPI.CLIENT.newCall(request).execute())
+		try (Response response = client.newCall(request).execute())
 		{
 			return response.isSuccessful();
 		}
@@ -112,7 +117,7 @@ public class ChatClient
 			.url(url)
 			.build();
 
-		try (Response response = RuneLiteAPI.CLIENT.newCall(request).execute())
+		try (Response response = client.newCall(request).execute())
 		{
 			if (!response.isSuccessful())
 			{
@@ -139,7 +144,7 @@ public class ChatClient
 			.url(url)
 			.build();
 
-		try (Response response = RuneLiteAPI.CLIENT.newCall(request).execute())
+		try (Response response = client.newCall(request).execute())
 		{
 			return response.isSuccessful();
 		}
@@ -157,7 +162,7 @@ public class ChatClient
 			.url(url)
 			.build();
 
-		try (Response response = RuneLiteAPI.CLIENT.newCall(request).execute())
+		try (Response response = client.newCall(request).execute())
 		{
 			if (!response.isSuccessful())
 			{
@@ -188,7 +193,7 @@ public class ChatClient
 			.url(url)
 			.build();
 
-		try (Response response = RuneLiteAPI.CLIENT.newCall(request).execute())
+		try (Response response = client.newCall(request).execute())
 		{
 			return response.isSuccessful();
 		}
@@ -207,7 +212,7 @@ public class ChatClient
 			.url(url)
 			.build();
 
-		try (Response response = RuneLiteAPI.CLIENT.newCall(request).execute())
+		try (Response response = client.newCall(request).execute())
 		{
 			if (!response.isSuccessful())
 			{
@@ -231,7 +236,7 @@ public class ChatClient
 			.url(url)
 			.build();
 
-		try (Response response = RuneLiteAPI.CLIENT.newCall(request).execute())
+		try (Response response = client.newCall(request).execute())
 		{
 			return response.isSuccessful();
 		}
@@ -249,7 +254,7 @@ public class ChatClient
 			.url(url)
 			.build();
 
-		try (Response response = RuneLiteAPI.CLIENT.newCall(request).execute())
+		try (Response response = client.newCall(request).execute())
 		{
 			if (!response.isSuccessful())
 			{
@@ -276,7 +281,7 @@ public class ChatClient
 			.url(url)
 			.build();
 
-		try (Response response = RuneLiteAPI.CLIENT.newCall(request).execute())
+		try (Response response = client.newCall(request).execute())
 		{
 			return response.isSuccessful();
 		}
@@ -294,7 +299,7 @@ public class ChatClient
 			.url(url)
 			.build();
 
-		try (Response response = RuneLiteAPI.CLIENT.newCall(request).execute())
+		try (Response response = client.newCall(request).execute())
 		{
 			if (!response.isSuccessful())
 			{
@@ -303,6 +308,53 @@ public class ChatClient
 
 			InputStream in = response.body().byteStream();
 			return RuneLiteAPI.GSON.fromJson(new InputStreamReader(in), Duels.class);
+		}
+		catch (JsonParseException ex)
+		{
+			throw new IOException(ex);
+		}
+	}
+
+	public boolean submitLayout(String username, LayoutRoom[] rooms) throws IOException
+	{
+		HttpUrl url = RuneLiteAPI.getApiBase().newBuilder()
+			.addPathSegment("chat")
+			.addPathSegment("layout")
+			.addQueryParameter("name", username)
+			.build();
+
+		Request request = new Request.Builder()
+			.post(RequestBody.create(RuneLiteAPI.JSON, RuneLiteAPI.GSON.toJson(rooms)))
+			.url(url)
+			.build();
+
+		try (Response response = client.newCall(request).execute())
+		{
+			return response.isSuccessful();
+		}
+	}
+
+	public LayoutRoom[] getLayout(String username) throws IOException
+	{
+		HttpUrl url = RuneLiteAPI.getApiBase().newBuilder()
+			.addPathSegment("chat")
+			.addPathSegment("layout")
+			.addQueryParameter("name", username)
+			.build();
+
+		Request request = new Request.Builder()
+			.url(url)
+			.build();
+
+		try (Response response = client.newCall(request).execute())
+		{
+			if (!response.isSuccessful())
+			{
+				throw new IOException("Unable to look up layout!");
+			}
+
+			InputStream in = response.body().byteStream();
+			return RuneLiteAPI.GSON.fromJson(new InputStreamReader(in), LayoutRoom[].class);
 		}
 		catch (JsonParseException ex)
 		{

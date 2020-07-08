@@ -28,14 +28,20 @@ package net.runelite.client.rs;
 
 import com.google.common.base.Strings;
 import lombok.extern.slf4j.Slf4j;
+import net.runelite.client.RuneLiteProperties;
 import net.runelite.client.ui.FatalErrorDialog;
+import net.runelite.client.ui.SplashScreen;
+import net.runelite.http.api.worlds.World;
+import okhttp3.HttpUrl;
 
 import javax.swing.*;
 import java.applet.Applet;
 import java.io.IOException;
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.util.Map;
 import java.util.function.Supplier;
+import okhttp3.OkHttpClient;
 
 import static net.runelite.client.rs.ClientUpdateCheckMode.NONE;
 
@@ -45,12 +51,21 @@ public class ClientLoader implements Supplier<Applet>
 	private static final int NUM_ATTEMPTS = 6;
 	public static boolean USE_LOCAL_INJECTED = false;
 
+	private final OkHttpClient okHttpClient;
+	private final ClientConfigLoader clientConfigLoader;
 	private ClientUpdateCheckMode updateCheckMode;
+	private final WorldSupplier worldSupplier;
+
 	private Object client = null;
 
-	public ClientLoader(ClientUpdateCheckMode updateCheckMode)
+	private RSConfig config;
+
+	public ClientLoader(OkHttpClient okHttpClient, ClientUpdateCheckMode updateCheckMode)
 	{
+		this.okHttpClient = okHttpClient;
+		this.clientConfigLoader = new ClientConfigLoader(okHttpClient);
 		this.updateCheckMode = updateCheckMode;
+		this.worldSupplier = new WorldSupplier(okHttpClient);
 	}
 
 	@Override
@@ -59,6 +74,7 @@ public class ClientLoader implements Supplier<Applet>
 		if (client == null)
 		{
 			client = doLoad();
+			SplashScreen.stage(.465, "Starting", "Starting Old School RuneScape");
 		}
 
 		if (client instanceof Throwable)
@@ -77,43 +93,19 @@ public class ClientLoader implements Supplier<Applet>
 
 		try
 		{
-			HostSupplier hostSupplier = new HostSupplier();
+			SplashScreen.stage(0, null, "Fetching applet viewer config");
+			downloadConfig();
 
-			String host = null;
-			RSConfig config;
-			for (int attempt = 0; ; attempt++)
-			{
-				try
-				{
-					config = ClientConfigLoader.fetch(host);
-
-					if (Strings.isNullOrEmpty(config.getCodeBase()) || Strings.isNullOrEmpty(config.getInitialJar()) || Strings.isNullOrEmpty(config.getInitialClass()))
-					{
-						throw new IOException("Invalid or missing jav_config");
-					}
-
-					break;
-				}
-				catch (IOException e)
-				{
-					log.info("Failed to get jav_config from host \"{}\" ({})", host, e.getMessage());
-
-					if (attempt >= NUM_ATTEMPTS)
-					{
-						throw e;
-					}
-
-					host = hostSupplier.get();
-				}
-			}
-
+			SplashScreen.stage(.05, null, "Waiting for other clients to start");
 			switch (updateCheckMode)
 			{
 				case AUTO:
 				case CUSTOM:
+					SplashScreen.stage(.40, null, "Loading client");
 					return loadRuneLite(config);
 				default:
 				case VANILLA:
+					SplashScreen.stage(.40, null, "Loading client");
 					return loadVanilla(config);
 				case NONE:
 					return null;
@@ -130,6 +122,64 @@ public class ClientLoader implements Supplier<Applet>
 
 			SwingUtilities.invokeLater(() -> FatalErrorDialog.showNetErrorWindow("loading the client", e));
 			return e;
+		}
+	}
+
+	private void downloadConfig() throws IOException
+	{
+		HttpUrl url = HttpUrl.parse(RuneLiteProperties.getJavConfig());
+		IOException err = null;
+		for (int attempt = 0; attempt < NUM_ATTEMPTS; attempt++)
+		{
+			try
+			{
+				config = clientConfigLoader.fetch(url);
+
+				if (Strings.isNullOrEmpty(config.getCodeBase()) || Strings.isNullOrEmpty(config.getInitialJar()) || Strings.isNullOrEmpty(config.getInitialClass()))
+				{
+					throw new IOException("Invalid or missing jav_config");
+				}
+
+				return;
+			}
+			catch (IOException e)
+			{
+				log.info("Failed to get jav_config from host \"{}\" ({})", url.host(), e.getMessage());
+				String host = worldSupplier.get().getAddress();
+				url = url.newBuilder().host(host).build();
+				err = e;
+			}
+		}
+
+		log.info("Falling back to backup client config");
+
+		try
+		{
+			RSConfig backupConfig = clientConfigLoader.fetch(HttpUrl.parse(RuneLiteProperties.getJavConfigBackup()));
+
+			if (Strings.isNullOrEmpty(backupConfig.getCodeBase()) || Strings.isNullOrEmpty(backupConfig.getInitialJar()) || Strings.isNullOrEmpty(backupConfig.getInitialClass()))
+			{
+				throw new IOException("Invalid or missing jav_config");
+			}
+
+			if (Strings.isNullOrEmpty(backupConfig.getRuneLiteGamepack()))
+			{
+				throw new IOException("Backup config does not have RuneLite gamepack url");
+			}
+
+			// Randomize the codebase
+			World world = worldSupplier.get();
+			backupConfig.setCodebase("http://" + world.getAddress() + "/");
+
+			// Update the world applet parameter
+			Map<String, String> appletProperties = backupConfig.getAppletProperties();
+			appletProperties.put(backupConfig.getRuneLiteWorldParam(), Integer.toString(world.getId()));
+
+			config = backupConfig;
+		}
+		catch (IOException ex)
+		{
+			throw err; // use error from Jagex's servers
 		}
 	}
 

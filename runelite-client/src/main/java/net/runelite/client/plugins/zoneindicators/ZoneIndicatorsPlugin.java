@@ -7,7 +7,7 @@ import net.runelite.api.*;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.coords.WorldArea;
 import net.runelite.api.coords.WorldPoint;
-import net.runelite.api.events.ConfigChanged;
+import net.runelite.client.events.ConfigChanged;
 import net.runelite.api.events.GameStateChanged;
 import net.runelite.api.geometry.Geometry;
 import net.runelite.client.callback.ClientThread;
@@ -17,7 +17,6 @@ import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.game.MapLocations;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
-import net.runelite.client.plugins.PluginType;
 import net.runelite.client.ui.overlay.OverlayManager;
 
 import javax.inject.Inject;
@@ -29,8 +28,7 @@ import java.util.Arrays;
 @PluginDescriptor(
 		name = "Zone Indicators",
 		description = "Show borders of multi combat zones, wilderness levels and PvP/Deadman safezones",
-		tags = {"multi combat", "lines", "pvp", "deadman", "safezones", "wilderness", "overlay"},
-		type = PluginType.SANLITE_USE_AT_OWN_RISK,
+		tags = {"multi combat", "lines", "pvp", "deadman", "safezones", "wilderness", "overlay", "sanlite"},
 		enabledByDefault = false
 )
 @Singleton
@@ -184,7 +182,7 @@ public class ZoneIndicatorsPlugin extends Plugin
 			return false;
 		}
 
-		ObjectDefinition objectComposition = client.getObjectDefinition(wallObject.getId());
+		ObjectComposition objectComposition = client.getObjectDefinition(wallObject.getId());
 
 		if (objectComposition == null)
 		{
@@ -242,10 +240,8 @@ public class ZoneIndicatorsPlugin extends Plugin
 
 	private void findLinesInScene()
 	{
-		inDeadman = client.getWorldType().stream().anyMatch(x ->
-				x == WorldType.DEADMAN || x == WorldType.SEASONAL_DEADMAN);
-		inPvp = client.getWorldType().stream().anyMatch(x ->
-				x == WorldType.PVP || x == WorldType.HIGH_RISK);
+		inDeadman = client.getWorldType().stream().anyMatch(x -> x == WorldType.DEADMAN);
+		inPvp = client.getWorldType().stream().anyMatch(x -> x == WorldType.PVP || x == WorldType.HIGH_RISK);
 
 		Rectangle sceneRect = new Rectangle(
 				client.getBaseX() + 1, client.getBaseY() + 1,

@@ -1,55 +1,50 @@
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.Reflection;
 
-@ObfuscatedName("kq")
+@ObfuscatedName("ke")
 @Implements("FontName")
 public class FontName {
-	@ObfuscatedName("a")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		signature = "Lkq;"
+		signature = "Lke;"
 	)
 	@Export("FontName_plain11")
 	public static final FontName FontName_plain11;
-	@ObfuscatedName("t")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "Lkq;"
+		signature = "Lke;"
 	)
 	@Export("FontName_plain12")
 	public static final FontName FontName_plain12;
-	@ObfuscatedName("n")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		signature = "Lkq;"
+		signature = "Lke;"
 	)
 	@Export("FontName_bold12")
 	public static final FontName FontName_bold12;
-	@ObfuscatedName("q")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
-		signature = "Lkq;"
+		signature = "Lke;"
 	)
 	@Export("FontName_verdana11")
 	public static final FontName FontName_verdana11;
-	@ObfuscatedName("v")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		signature = "Lkq;"
+		signature = "Lke;"
 	)
 	@Export("FontName_verdana13")
 	public static final FontName FontName_verdana13;
-	@ObfuscatedName("l")
+	@ObfuscatedName("g")
 	@ObfuscatedSignature(
-		signature = "Lkq;"
+		signature = "Lke;"
 	)
 	@Export("FontName_verdana15")
 	public static final FontName FontName_verdana15;
-	@ObfuscatedName("o")
-	@ObfuscatedSignature(
-		signature = "Llx;"
-	)
-	@Export("rightTitleSprite")
-	static Sprite rightTitleSprite;
-	@ObfuscatedName("c")
+	@ObfuscatedName("n")
 	@Export("name")
 	String name;
 
@@ -66,126 +61,95 @@ public class FontName {
 		this.name = var1;
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;I)Ljava/lang/Class;",
-		garbageValue = "703814886"
+		signature = "(B)Lch;",
+		garbageValue = "-18"
 	)
-	@Export("loadClassFromDescriptor")
-	static Class loadClassFromDescriptor(String var0) throws ClassNotFoundException {
-		if (var0.equals("B")) {
-			return Byte.TYPE;
-		} else if (var0.equals("I")) {
-			return Integer.TYPE;
-		} else if (var0.equals("S")) {
-			return Short.TYPE;
-		} else if (var0.equals("J")) {
-			return Long.TYPE;
-		} else if (var0.equals("Z")) {
-			return Boolean.TYPE;
-		} else if (var0.equals("F")) {
-			return Float.TYPE;
-		} else if (var0.equals("D")) {
-			return Double.TYPE;
-		} else if (var0.equals("C")) {
-			return Character.TYPE;
-		} else {
-			return var0.equals("void") ? Void.TYPE : Reflection.findClass(var0);
-		}
+	@Export("worldListStart")
+	static World worldListStart() {
+		World.World_listCount = 0;
+		return class3.getNextWorldListWorld();
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		signature = "(II)V",
-		garbageValue = "348293638"
+		signature = "(Lhd;II)V",
+		garbageValue = "1462159307"
 	)
-	@Export("clearItemContainer")
-	static void clearItemContainer(int var0) {
-		ItemContainer var1 = (ItemContainer)ItemContainer.itemContainers.get((long)var0);
-		if (var1 != null) {
-			for (int var2 = 0; var2 < var1.ids.length; ++var2) {
-				var1.ids[var2] = -1;
-				var1.quantities[var2] = 0;
+	@Export("Widget_setKeyIgnoreHeld")
+	static final void Widget_setKeyIgnoreHeld(Widget var0, int var1) {
+		if (var0.field2647 == null) {
+			throw new RuntimeException();
+		} else {
+			if (var0.field2723 == null) {
+				var0.field2723 = new int[var0.field2647.length];
 			}
 
+			var0.field2723[var1] = Integer.MAX_VALUE;
 		}
 	}
 
-	@ObfuscatedName("gh")
+	@ObfuscatedName("ae")
 	@ObfuscatedSignature(
-		signature = "(II)V",
-		garbageValue = "-837375180"
+		signature = "(Lfm;III)Ldt;",
+		garbageValue = "273987431"
 	)
-	@Export("setWindowedMode")
-	static void setWindowedMode(int var0) {
-		Client.field736 = 0L;
-		if (var0 >= 2) {
-			Client.isResizable = true;
-		} else {
-			Client.isResizable = false;
-		}
+	public static final PcmPlayer method5519(TaskHandler var0, int var1, int var2) {
+		if (class237.field3113 == 0) {
+			throw new IllegalStateException();
+		} else if (var1 >= 0 && var1 < 2) {
+			if (var2 < 256) {
+				var2 = 256;
+			}
 
-		if (WallDecoration.getWindowedMode() == 1) {
-			WorldMapID.client.setMaxCanvasSize(765, 503);
-		} else {
-			WorldMapID.client.setMaxCanvasSize(7680, 2160);
-		}
-
-		if (Client.gameState >= 25) {
-			PacketBufferNode var1 = SoundSystem.getPacketBufferNode(ClientPacket.field2257, Client.packetWriter.isaacCipher);
-			var1.packetBuffer.writeByte(WallDecoration.getWindowedMode());
-			var1.packetBuffer.writeShort(class286.canvasWidth);
-			var1.packetBuffer.writeShort(FloorUnderlayDefinition.canvasHeight);
-			Client.packetWriter.addNode(var1);
-		}
-
-	}
-
-	@ObfuscatedName("hw")
-	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-1528266884"
-	)
-	static final void method5386() {
-		for (GraphicsObject var0 = (GraphicsObject)Client.graphicsObjects.last(); var0 != null; var0 = (GraphicsObject)Client.graphicsObjects.previous()) {
-			if (var0.plane == Player.Client_plane && !var0.isFinished) {
-				if (Client.cycle >= var0.cycleStart) {
-					var0.advance(Client.field693);
-					if (var0.isFinished) {
-						var0.remove();
-					} else {
-						WorldMapArea.scene.drawEntity(var0.plane, var0.x, var0.y, var0.height, 60, var0, 0, -1L, false);
-					}
+			try {
+				PcmPlayer var3 = HealthBarUpdate.pcmPlayerProvider.player();
+				var3.samples = new int[256 * (Messages.PcmPlayer_stereo ? 2 : 1)];
+				var3.field1443 = var2;
+				var3.init();
+				var3.capacity = (var2 & -1024) + 1024;
+				if (var3.capacity > 16384) {
+					var3.capacity = 16384;
 				}
-			} else {
-				var0.remove();
-			}
-		}
 
+				var3.open(var3.capacity);
+				if (UserComparator3.field2009 > 0 && PcmPlayer.soundSystem == null) {
+					PcmPlayer.soundSystem = new SoundSystem();
+					class227.soundSystemExecutor = Executors.newScheduledThreadPool(1);
+					class227.soundSystemExecutor.scheduleAtFixedRate(PcmPlayer.soundSystem, 0L, 10L, TimeUnit.MILLISECONDS);
+				}
+
+				if (PcmPlayer.soundSystem != null) {
+					if (PcmPlayer.soundSystem.players[var1] != null) {
+						throw new IllegalArgumentException();
+					}
+
+					PcmPlayer.soundSystem.players[var1] = var3;
+				}
+
+				return var3;
+			} catch (Throwable var4) {
+				return new PcmPlayer();
+			}
+		} else {
+			throw new IllegalArgumentException();
+		}
 	}
 
-	@ObfuscatedName("lp")
+	@ObfuscatedName("hk")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "-1324423171"
+		garbageValue = "1542752856"
 	)
-	static void method5387() {
-		if (Client.field645 && class215.localPlayer != null) {
-			int var0 = class215.localPlayer.pathX[0];
-			int var1 = class215.localPlayer.pathY[0];
-			if (var0 < 0 || var1 < 0 || var0 >= 104 || var1 >= 104) {
-				return;
-			}
-
-			IgnoreList.oculusOrbFocalPointX = class215.localPlayer.x;
-			int var2 = GraphicsObject.getTileHeight(class215.localPlayer.x, class215.localPlayer.y, Player.Client_plane) - Client.camFollowHeight;
-			if (var2 < Tiles.field497) {
-				Tiles.field497 = var2;
-			}
-
-			AbstractArchive.oculusOrbFocalPointY = class215.localPlayer.y;
-			Client.field645 = false;
-		}
-
+	@Export("addCancelMenuEntry")
+	static void addCancelMenuEntry() {
+		Client.menuOptionsCount = 0;
+		Client.isMenuOpen = false;
+		Client.menuActions[0] = "Cancel";
+		Client.menuTargets[0] = "";
+		Client.menuOpcodes[0] = 1006;
+		Client.menuShiftClick[0] = false;
+		Client.menuOptionsCount = 1;
 	}
 }

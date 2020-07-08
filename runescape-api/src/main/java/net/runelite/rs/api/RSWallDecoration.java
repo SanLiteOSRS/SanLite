@@ -26,11 +26,11 @@ public interface RSWallDecoration extends DecorativeObject
 
 	@Import("entity1")
 	@Override
-	RSEntity getEntity1();
+	RSRenderable getRenderable();
 
 	@Import("entity2")
 	@Override
-	RSEntity getEntity2();
+	RSRenderable getRenderable2();
 
 	void setPlane(int plane);
 }

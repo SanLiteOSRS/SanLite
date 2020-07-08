@@ -2,513 +2,520 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("t")
+@ObfuscatedName("o")
 final class class1 implements class0 {
-	@ObfuscatedName("ou")
-	@ObfuscatedSignature(
-		signature = "Lcz;"
-	)
-	@Export("varcs")
-	static Varcs varcs;
-	@ObfuscatedName("a")
-	@ObfuscatedSignature(
-		signature = "Lhq;"
-	)
-	@Export("InvDefinition_archive")
-	public static AbstractArchive InvDefinition_archive;
-	@ObfuscatedName("gh")
-	@ObfuscatedSignature(
-		signature = "Llx;"
-	)
-	@Export("compass")
-	static Sprite compass;
+	@ObfuscatedName("go")
+	@Export("regionMapArchives")
+	static byte[][] regionMapArchives;
 
-	@ObfuscatedName("a")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/Object;Lkc;B)V",
-		garbageValue = "25"
+		signature = "(Ljava/lang/Object;Lkn;B)V",
+		garbageValue = "0"
 	)
-	public void vmethod89(Object var1, Buffer var2) {
-		this.method12((Integer)var1, var2);
-	}
-
-	@ObfuscatedName("t")
-	@ObfuscatedSignature(
-		signature = "(Lkc;I)Ljava/lang/Object;",
-		garbageValue = "242985434"
-	)
-	public Object vmethod74(Buffer var1) {
-		return var1.readInt();
-	}
-
-	@ObfuscatedName("p")
-	@ObfuscatedSignature(
-		signature = "(Ljava/lang/Integer;Lkc;I)V",
-		garbageValue = "1640474163"
-	)
-	void method12(Integer var1, Buffer var2) {
-		var2.writeInt(var1);
-	}
-
-	@ObfuscatedName("q")
-	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "646080011"
-	)
-	public static int method26() {
-		return KeyHandler.KeyHandler_idleCycles;
+	public void vmethod59(Object var1, Buffer var2) {
+		this.method8((Integer)var1, var2);
 	}
 
 	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "(I)Lbk;",
-		garbageValue = "1796263151"
+		signature = "(Lkn;B)Ljava/lang/Object;",
+		garbageValue = "114"
 	)
-	@Export("getNextWorldListWorld")
-	static World getNextWorldListWorld() {
-		return World.World_listCount < World.World_count ? Username.World_worlds[++World.World_listCount - 1] : null;
+	public Object vmethod47(Buffer var1) {
+		return var1.readInt();
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "(Lks;Lks;Lks;I)V",
-		garbageValue = "-196875939"
+		signature = "(Ljava/lang/Integer;Lkn;I)V",
+		garbageValue = "554078910"
 	)
-	@Export("drawTitle")
-	static void drawTitle(Font var0, Font var1, Font var2) {
-		Login.xPadding = (class286.canvasWidth - 765) / 2;
-		Login.loginBoxX = Login.xPadding + 202;
-		class192.loginBoxCenter = Login.loginBoxX + 180;
-		if (Login.worldSelectOpen) {
-			UrlRequester.method3383(var0, var1);
+	void method8(Integer var1, Buffer var2) {
+		var2.writeInt(var1);
+	}
+
+	@ObfuscatedName("o")
+	@ObfuscatedSignature(
+		signature = "(Ljava/lang/Throwable;Ljava/lang/String;)Lmr;"
+	)
+	@Export("newRunException")
+	public static RunException newRunException(Throwable var0, String var1) {
+		RunException var2;
+		if (var0 instanceof RunException) {
+			var2 = (RunException)var0;
+			var2.message = var2.message + ' ' + var1;
 		} else {
-			Login.leftTitleSprite.drawAt(Login.xPadding, 0);
-			FontName.rightTitleSprite.drawAt(Login.xPadding + 382, 0);
-			Tiles.logoSprite.drawAt(Login.xPadding + 382 - Tiles.logoSprite.subWidth / 2, 18);
-			int var4;
-			if (Client.gameState == 0 || Client.gameState == 5) {
-				byte var3 = 20;
-				var0.drawCentered("RuneScape is loading - please wait...", Login.loginBoxX + 180, 245 - var3, 16777215, -1);
-				var4 = 253 - var3;
-				Rasterizer2D.Rasterizer2D_drawRectangle(Login.loginBoxX + 180 - 152, var4, 304, 34, 9179409);
-				Rasterizer2D.Rasterizer2D_drawRectangle(Login.loginBoxX + 180 - 151, var4 + 1, 302, 32, 0);
-				Rasterizer2D.Rasterizer2D_fillRectangle(Login.loginBoxX + 180 - 150, var4 + 2, Login.Login_loadingPercent * 3, 30, 9179409);
-				Rasterizer2D.Rasterizer2D_fillRectangle(Login.loginBoxX + 180 - 150 + Login.Login_loadingPercent * 3, var4 + 2, 300 - Login.Login_loadingPercent * 3, 30, 0);
-				var0.drawCentered(Login.Login_loadingText, Login.loginBoxX + 180, 276 - var3, 16777215, -1);
-			}
+			var2 = new RunException(var0, var1);
+		}
 
-			String var5;
-			String var7;
-			String var8;
-			int var9;
-			char[] var10;
-			int var11;
-			short var25;
-			int var26;
-			short var27;
-			if (Client.gameState == 20) {
-				NPC.titleboxSprite.drawAt(Login.loginBoxX + 180 - NPC.titleboxSprite.subWidth / 2, 271 - NPC.titleboxSprite.subHeight / 2);
-				var25 = 201;
-				var0.drawCentered(Login.Login_response1, Login.loginBoxX + 180, var25, 16776960, 0);
-				var26 = var25 + 15;
-				var0.drawCentered(Login.Login_response2, Login.loginBoxX + 180, var26, 16776960, 0);
-				var26 += 15;
-				var0.drawCentered(Login.Login_response3, Login.loginBoxX + 180, var26, 16776960, 0);
-				var26 += 15;
-				var26 += 7;
-				if (Login.loginIndex != 4) {
-					var0.draw("Login: ", Login.loginBoxX + 180 - 110, var26, 16777215, 0);
-					var27 = 200;
+		return var2;
+	}
 
-					for (var5 = ScriptEvent.method1277(); var0.stringWidth(var5) > var27; var5 = var5.substring(0, var5.length() - 1)) {
-					}
-
-					var0.draw(AbstractFont.escapeBrackets(var5), Login.loginBoxX + 180 - 70, var26, 16777215, 0);
-					var26 += 15;
-					var7 = Login.Login_password;
-					var9 = var7.length();
-					var10 = new char[var9];
-
-					for (var11 = 0; var11 < var9; ++var11) {
-						var10[var11] = '*';
-					}
-
-					var8 = new String(var10);
-
-					for (var8 = var8; var0.stringWidth(var8) > var27; var8 = var8.substring(1)) {
-					}
-
-					var0.draw("Password: " + var8, Login.loginBoxX + 180 - 108, var26, 16777215, 0);
-					var26 += 15;
+	@ObfuscatedName("j")
+	@ObfuscatedSignature(
+		signature = "(IIIII)V",
+		garbageValue = "-345681310"
+	)
+	static void method16(int var0, int var1, int var2, int var3) {
+		for (ObjectSound var4 = (ObjectSound)ObjectSound.objectSounds.last(); var4 != null; var4 = (ObjectSound)ObjectSound.objectSounds.previous()) {
+			if (var4.soundEffectId != -1 || var4.soundEffectIds != null) {
+				int var5 = 0;
+				if (var1 > var4.field1103 * 16384) {
+					var5 += var1 - var4.field1103 * 16384;
+				} else if (var1 < var4.x * 128) {
+					var5 += var4.x * 128 - var1;
 				}
-			}
 
-			if (Client.gameState == 10 || Client.gameState == 11) {
-				NPC.titleboxSprite.drawAt(Login.loginBoxX, 171);
-				short var19;
-				if (Login.loginIndex == 0) {
-					var25 = 251;
-					var0.drawCentered("Welcome to RuneScape", Login.loginBoxX + 180, var25, 16776960, 0);
-					var26 = var25 + 30;
-					var4 = Login.loginBoxX + 180 - 80;
-					var19 = 291;
-					UserComparator9.titlebuttonSprite.drawAt(var4 - 73, var19 - 20);
-					var0.drawLines("New User", var4 - 73, var19 - 20, 144, 40, 16777215, 0, 1, 1, 0);
-					var4 = Login.loginBoxX + 180 + 80;
-					UserComparator9.titlebuttonSprite.drawAt(var4 - 73, var19 - 20);
-					var0.drawLines("Existing User", var4 - 73, var19 - 20, 144, 40, 16777215, 0, 1, 1, 0);
-				} else if (Login.loginIndex == 1) {
-					var0.drawCentered(Login.Login_response0, Login.loginBoxX + 180, 201, 16776960, 0);
-					var25 = 236;
-					var0.drawCentered(Login.Login_response1, Login.loginBoxX + 180, var25, 16777215, 0);
-					var26 = var25 + 15;
-					var0.drawCentered(Login.Login_response2, Login.loginBoxX + 180, var26, 16777215, 0);
-					var26 += 15;
-					var0.drawCentered(Login.Login_response3, Login.loginBoxX + 180, var26, 16777215, 0);
-					var26 += 15;
-					var4 = Login.loginBoxX + 180 - 80;
-					var19 = 321;
-					UserComparator9.titlebuttonSprite.drawAt(var4 - 73, var19 - 20);
-					var0.drawCentered("Continue", var4, var19 + 5, 16777215, 0);
-					var4 = Login.loginBoxX + 180 + 80;
-					UserComparator9.titlebuttonSprite.drawAt(var4 - 73, var19 - 20);
-					var0.drawCentered("Cancel", var4, var19 + 5, 16777215, 0);
-				} else {
-					IndexedSprite var29;
-					if (Login.loginIndex == 2) {
-						var25 = 201;
-						var0.drawCentered(Login.Login_response1, class192.loginBoxCenter, var25, 16776960, 0);
-						var26 = var25 + 15;
-						var0.drawCentered(Login.Login_response2, class192.loginBoxCenter, var26, 16776960, 0);
-						var26 += 15;
-						var0.drawCentered(Login.Login_response3, class192.loginBoxCenter, var26, 16776960, 0);
-						var26 += 15;
-						var26 += 7;
-						var0.draw("Login: ", class192.loginBoxCenter - 110, var26, 16777215, 0);
-						var27 = 200;
-
-						for (var5 = ScriptEvent.method1277(); var0.stringWidth(var5) > var27; var5 = var5.substring(1)) {
-						}
-
-						var0.draw(AbstractFont.escapeBrackets(var5) + (Login.currentLoginField == 0 & Client.cycle % 40 < 20 ? AbstractArchive.colorStartTag(16776960) + "|" : ""), class192.loginBoxCenter - 70, var26, 16777215, 0);
-						var26 += 15;
-						var7 = Login.Login_password;
-						var9 = var7.length();
-						var10 = new char[var9];
-
-						for (var11 = 0; var11 < var9; ++var11) {
-							var10[var11] = '*';
-						}
-
-						var8 = new String(var10);
-
-						for (var8 = var8; var0.stringWidth(var8) > var27; var8 = var8.substring(1)) {
-						}
-
-						var0.draw("Password: " + var8 + (Login.currentLoginField == 1 & Client.cycle % 40 < 20 ? AbstractArchive.colorStartTag(16776960) + "|" : ""), class192.loginBoxCenter - 108, var26, 16777215, 0);
-						var26 += 15;
-						var25 = 277;
-						var9 = class192.loginBoxCenter + -117;
-						boolean var30 = Client.Login_isUsernameRemembered;
-						boolean var12 = Login.field1159;
-						var29 = var30 ? (var12 ? class4.field23 : Login.options_buttons_2Sprite) : (var12 ? class51.field412 : UserComparator8.options_buttons_0Sprite);
-						var29.drawAt(var9, var25);
-						var9 = var9 + var29.subWidth + 5;
-						var1.draw("Remember username", var9, var25 + 13, 16776960, 0);
-						var9 = class192.loginBoxCenter + 24;
-						boolean var15 = ScriptEvent.clientPreferences.hideUsername;
-						boolean var16 = Login.field1175;
-						IndexedSprite var14 = var15 ? (var16 ? class4.field23 : Login.options_buttons_2Sprite) : (var16 ? class51.field412 : UserComparator8.options_buttons_0Sprite);
-						var14.drawAt(var9, var25);
-						var9 = var9 + var14.subWidth + 5;
-						var1.draw("Hide username", var9, var25 + 13, 16776960, 0);
-						var26 = var25 + 15;
-						int var17 = class192.loginBoxCenter - 80;
-						short var18 = 321;
-						UserComparator9.titlebuttonSprite.drawAt(var17 - 73, var18 - 20);
-						var0.drawCentered("Login", var17, var18 + 5, 16777215, 0);
-						var17 = class192.loginBoxCenter + 80;
-						UserComparator9.titlebuttonSprite.drawAt(var17 - 73, var18 - 20);
-						var0.drawCentered("Cancel", var17, var18 + 5, 16777215, 0);
-						var25 = 357;
-						switch(Login.field1166) {
-						case 2:
-							VarbitDefinition.field3288 = "Having trouble logging in?";
-							break;
-						default:
-							VarbitDefinition.field3288 = "Can't login? Click here.";
-						}
-
-						WorldMapLabel.field225 = new Bounds(class192.loginBoxCenter, var25, var1.stringWidth(VarbitDefinition.field3288), 11);
-						WorldMapManager.field319 = new Bounds(class192.loginBoxCenter, var25, var1.stringWidth("Still having trouble logging in?"), 11);
-						var1.drawCentered(VarbitDefinition.field3288, class192.loginBoxCenter, var25, 16777215, 0);
-					} else if (Login.loginIndex == 3) {
-						var25 = 201;
-						var0.drawCentered("Invalid credentials.", Login.loginBoxX + 180, var25, 16776960, 0);
-						var26 = var25 + 20;
-						var1.drawCentered("For accounts created after 24th November 2010, please use your", Login.loginBoxX + 180, var26, 16776960, 0);
-						var26 += 15;
-						var1.drawCentered("email address to login. Otherwise please login with your username.", Login.loginBoxX + 180, var26, 16776960, 0);
-						var26 += 15;
-						var4 = Login.loginBoxX + 180;
-						var19 = 276;
-						UserComparator9.titlebuttonSprite.drawAt(var4 - 73, var19 - 20);
-						var2.drawCentered("Try again", var4, var19 + 5, 16777215, 0);
-						var4 = Login.loginBoxX + 180;
-						var19 = 326;
-						UserComparator9.titlebuttonSprite.drawAt(var4 - 73, var19 - 20);
-						var2.drawCentered("Forgotten password?", var4, var19 + 5, 16777215, 0);
-					} else if (Login.loginIndex == 4) {
-						var0.drawCentered("Authenticator", Login.loginBoxX + 180, 201, 16776960, 0);
-						var25 = 236;
-						var0.drawCentered(Login.Login_response1, Login.loginBoxX + 180, var25, 16777215, 0);
-						var26 = var25 + 15;
-						var0.drawCentered(Login.Login_response2, Login.loginBoxX + 180, var26, 16777215, 0);
-						var26 += 15;
-						var0.drawCentered(Login.Login_response3, Login.loginBoxX + 180, var26, 16777215, 0);
-						var26 += 15;
-						var5 = "PIN: ";
-						var7 = class268.otp;
-						var9 = var7.length();
-						var10 = new char[var9];
-
-						for (var11 = 0; var11 < var9; ++var11) {
-							var10[var11] = '*';
-						}
-
-						var8 = new String(var10);
-						var0.draw(var5 + var8 + (Client.cycle % 40 < 20 ? AbstractArchive.colorStartTag(16776960) + "|" : ""), Login.loginBoxX + 180 - 108, var26, 16777215, 0);
-						var26 -= 8;
-						var0.draw("Trust this computer", Login.loginBoxX + 180 - 9, var26, 16776960, 0);
-						var26 += 15;
-						var0.draw("for 30 days: ", Login.loginBoxX + 180 - 9, var26, 16776960, 0);
-						int var23 = Login.loginBoxX + 180 - 9 + var0.stringWidth("for 30 days: ") + 15;
-						var9 = var26 - var0.ascent;
-						if (Login.field1177) {
-							var29 = Login.options_buttons_2Sprite;
-						} else {
-							var29 = UserComparator8.options_buttons_0Sprite;
-						}
-
-						var29.drawAt(var23, var9);
-						var26 += 15;
-						var11 = Login.loginBoxX + 180 - 80;
-						short var31 = 321;
-						UserComparator9.titlebuttonSprite.drawAt(var11 - 73, var31 - 20);
-						var0.drawCentered("Continue", var11, var31 + 5, 16777215, 0);
-						var11 = Login.loginBoxX + 180 + 80;
-						UserComparator9.titlebuttonSprite.drawAt(var11 - 73, var31 - 20);
-						var0.drawCentered("Cancel", var11, var31 + 5, 16777215, 0);
-						var1.drawCentered("<u=ff>Can't Log In?</u>", Login.loginBoxX + 180, var31 + 36, 255, 0);
-					} else if (Login.loginIndex == 5) {
-						var0.drawCentered("Forgotten your password?", Login.loginBoxX + 180, 201, 16776960, 0);
-						var25 = 221;
-						var2.drawCentered(Login.Login_response1, Login.loginBoxX + 180, var25, 16776960, 0);
-						var26 = var25 + 15;
-						var2.drawCentered(Login.Login_response2, Login.loginBoxX + 180, var26, 16776960, 0);
-						var26 += 15;
-						var2.drawCentered(Login.Login_response3, Login.loginBoxX + 180, var26, 16776960, 0);
-						var26 += 15;
-						var26 += 14;
-						var0.draw("Username/email: ", Login.loginBoxX + 180 - 145, var26, 16777215, 0);
-						var27 = 174;
-
-						for (var5 = ScriptEvent.method1277(); var0.stringWidth(var5) > var27; var5 = var5.substring(1)) {
-						}
-
-						var0.draw(AbstractFont.escapeBrackets(var5) + (Client.cycle % 40 < 20 ? AbstractArchive.colorStartTag(16776960) + "|" : ""), Login.loginBoxX + 180 - 34, var26, 16777215, 0);
-						var26 += 15;
-						int var6 = Login.loginBoxX + 180 - 80;
-						short var24 = 321;
-						UserComparator9.titlebuttonSprite.drawAt(var6 - 73, var24 - 20);
-						var0.drawCentered("Recover", var6, var24 + 5, 16777215, 0);
-						var6 = Login.loginBoxX + 180 + 80;
-						UserComparator9.titlebuttonSprite.drawAt(var6 - 73, var24 - 20);
-						var0.drawCentered("Back", var6, var24 + 5, 16777215, 0);
-						var24 = 356;
-						var1.drawCentered("Still having trouble logging in?", class192.loginBoxCenter, var24, 268435455, 0);
-					} else if (Login.loginIndex == 6) {
-						var25 = 201;
-						var0.drawCentered(Login.Login_response1, Login.loginBoxX + 180, var25, 16776960, 0);
-						var26 = var25 + 15;
-						var0.drawCentered(Login.Login_response2, Login.loginBoxX + 180, var26, 16776960, 0);
-						var26 += 15;
-						var0.drawCentered(Login.Login_response3, Login.loginBoxX + 180, var26, 16776960, 0);
-						var26 += 15;
-						var4 = Login.loginBoxX + 180;
-						var19 = 321;
-						UserComparator9.titlebuttonSprite.drawAt(var4 - 73, var19 - 20);
-						var0.drawCentered("Back", var4, var19 + 5, 16777215, 0);
-					} else if (Login.loginIndex == 7) {
-						var25 = 216;
-						var0.drawCentered("Your date of birth isn't set.", Login.loginBoxX + 180, var25, 16776960, 0);
-						var26 = var25 + 15;
-						var2.drawCentered("Please verify your account status by", Login.loginBoxX + 180, var26, 16776960, 0);
-						var26 += 15;
-						var2.drawCentered("setting your date of birth.", Login.loginBoxX + 180, var26, 16776960, 0);
-						var26 += 15;
-						var4 = Login.loginBoxX + 180 - 80;
-						var19 = 321;
-						UserComparator9.titlebuttonSprite.drawAt(var4 - 73, var19 - 20);
-						var0.drawCentered("Set Date of Birth", var4, var19 + 5, 16777215, 0);
-						var4 = Login.loginBoxX + 180 + 80;
-						UserComparator9.titlebuttonSprite.drawAt(var4 - 73, var19 - 20);
-						var0.drawCentered("Back", var4, var19 + 5, 16777215, 0);
-					} else if (Login.loginIndex == 8) {
-						var25 = 216;
-						var0.drawCentered("Sorry, but your account is not eligible to play.", Login.loginBoxX + 180, var25, 16776960, 0);
-						var26 = var25 + 15;
-						var2.drawCentered("For more information, please take a look at", Login.loginBoxX + 180, var26, 16776960, 0);
-						var26 += 15;
-						var2.drawCentered("our privacy policy.", Login.loginBoxX + 180, var26, 16776960, 0);
-						var26 += 15;
-						var4 = Login.loginBoxX + 180 - 80;
-						var19 = 321;
-						UserComparator9.titlebuttonSprite.drawAt(var4 - 73, var19 - 20);
-						var0.drawCentered("Privacy Policy", var4, var19 + 5, 16777215, 0);
-						var4 = Login.loginBoxX + 180 + 80;
-						UserComparator9.titlebuttonSprite.drawAt(var4 - 73, var19 - 20);
-						var0.drawCentered("Back", var4, var19 + 5, 16777215, 0);
-					} else if (Login.loginIndex == 12) {
-						var25 = 201;
-						String var22 = "";
-						var5 = "";
-						String var21 = "";
-						switch(Login.field1156) {
-						case 0:
-							var22 = "Your account has been disabled.";
-							var5 = Strings.field2797;
-							var21 = "";
-							break;
-						case 1:
-							var22 = "Account locked as we suspect it has been stolen.";
-							var5 = Strings.field3006;
-							var21 = "";
-							break;
-						default:
-							UserComparator3.method3519(false);
-						}
-
-						var0.drawCentered(var22, Login.loginBoxX + 180, var25, 16776960, 0);
-						var26 = var25 + 15;
-						var2.drawCentered(var5, Login.loginBoxX + 180, var26, 16776960, 0);
-						var26 += 15;
-						var2.drawCentered(var21, Login.loginBoxX + 180, var26, 16776960, 0);
-						var26 += 15;
-						int var34 = Login.loginBoxX + 180;
-						short var33 = 276;
-						UserComparator9.titlebuttonSprite.drawAt(var34 - 73, var33 - 20);
-						var0.drawCentered("Support Page", var34, var33 + 5, 16777215, 0);
-						var34 = Login.loginBoxX + 180;
-						var33 = 326;
-						UserComparator9.titlebuttonSprite.drawAt(var34 - 73, var33 - 20);
-						var0.drawCentered("Back", var34, var33 + 5, 16777215, 0);
-					} else if (Login.loginIndex == 24) {
-						var25 = 221;
-						var0.drawCentered(Login.Login_response1, Login.loginBoxX + 180, var25, 16777215, 0);
-						var26 = var25 + 15;
-						var0.drawCentered(Login.Login_response2, Login.loginBoxX + 180, var26, 16777215, 0);
-						var26 += 15;
-						var0.drawCentered(Login.Login_response3, Login.loginBoxX + 180, var26, 16777215, 0);
-						var26 += 15;
-						var4 = Login.loginBoxX + 180;
-						var19 = 301;
-						UserComparator9.titlebuttonSprite.drawAt(var4 - 73, var19 - 20);
-						var0.drawCentered("Ok", var4, var19 + 5, 16777215, 0);
-					}
+				if (var2 > var4.field1104 * 16384) {
+					var5 += var2 - var4.field1104 * 16384;
+				} else if (var2 < var4.y * 16384) {
+					var5 += var4.y * 16384 - var2;
 				}
-			}
 
-			if (Client.gameState >= 10) {
-				int[] var20 = new int[4];
-				Rasterizer2D.Rasterizer2D_getClipArray(var20);
-				Rasterizer2D.Rasterizer2D_setClip(Login.xPadding, 0, Login.xPadding + 765, FloorUnderlayDefinition.canvasHeight);
-				Login.loginScreenRunesAnimation.draw(Login.xPadding - 22, Client.cycle);
-				Login.loginScreenRunesAnimation.draw(Login.xPadding + 22 + 765 - 128, Client.cycle);
-				Rasterizer2D.Rasterizer2D_setClipArray(var20);
-			}
+				if (var5 - 64 <= var4.field1105 && Client.areaSoundEffectVolume != 0 && var0 == var4.plane) {
+					var5 -= 64;
+					if (var5 < 0) {
+						var5 = 0;
+					}
 
-			Decimator.title_muteSprite[ScriptEvent.clientPreferences.titleMusicDisabled ? 1 : 0].drawAt(Login.xPadding + 765 - 40, 463);
-			if (Client.gameState > 5 && Language.Language_EN == WorldMapSection1.clientLanguage) {
-				if (Message.field587 != null) {
-					var26 = Login.xPadding + 5;
-					var27 = 463;
-					byte var32 = 100;
-					byte var28 = 35;
-					Message.field587.drawAt(var26, var27);
-					var0.drawCentered("World" + " " + Client.worldId, var32 / 2 + var26, var28 / 2 + var27 - 2, 16777215, 0);
-					if (class96.World_request != null) {
-						var1.drawCentered("Loading...", var32 / 2 + var26, var28 / 2 + var27 + 12, 16777215, 0);
+					int var6 = (var4.field1105 - var5) * Client.areaSoundEffectVolume / var4.field1105;
+					if (var4.stream1 == null) {
+						if (var4.soundEffectId >= 0) {
+							SoundEffect var7 = SoundEffect.readSoundEffect(GrandExchangeOffer.archive4, var4.soundEffectId, 0);
+							if (var7 != null) {
+								RawSound var8 = var7.toRawSound().resample(class197.decimator);
+								RawPcmStream var9 = RawPcmStream.createRawPcmStream(var8, 100, var6);
+								var9.setNumLoops(-1);
+								class60.pcmStreamMixer.addSubStream(var9);
+								var4.stream1 = var9;
+							}
+						}
 					} else {
-						var1.drawCentered("Click to switch", var32 / 2 + var26, var28 / 2 + var27 + 12, 16777215, 0);
+						var4.stream1.method2677(var6);
+					}
+
+					if (var4.stream2 == null) {
+						if (var4.soundEffectIds != null && (var4.field1111 -= var3) <= 0) {
+							int var11 = (int)(Math.random() * (double)var4.soundEffectIds.length);
+							SoundEffect var12 = SoundEffect.readSoundEffect(GrandExchangeOffer.archive4, var4.soundEffectIds[var11], 0);
+							if (var12 != null) {
+								RawSound var13 = var12.toRawSound().resample(class197.decimator);
+								RawPcmStream var10 = RawPcmStream.createRawPcmStream(var13, 100, var6);
+								var10.setNumLoops(0);
+								class60.pcmStreamMixer.addSubStream(var10);
+								var4.stream2 = var10;
+								var4.field1111 = var4.field1108 + (int)(Math.random() * (double)(var4.field1115 - var4.field1108));
+							}
+						}
+					} else {
+						var4.stream2.method2677(var6);
+						if (!var4.stream2.hasNext()) {
+							var4.stream2 = null;
+						}
 					}
 				} else {
-					Message.field587 = ClientPacket.SpriteBuffer_getIndexedSpriteByName(GrandExchangeOfferUnitPriceComparator.archive8, "sl_button", "");
+					if (var4.stream1 != null) {
+						class60.pcmStreamMixer.removeSubStream(var4.stream1);
+						var4.stream1 = null;
+					}
+
+					if (var4.stream2 != null) {
+						class60.pcmStreamMixer.removeSubStream(var4.stream2);
+						var4.stream2 = null;
+					}
+				}
+			}
+		}
+
+	}
+
+	@ObfuscatedName("j")
+	@ObfuscatedSignature(
+		signature = "(CLgz;I)I",
+		garbageValue = "393583355"
+	)
+	@Export("lowercaseChar")
+	static int lowercaseChar(char var0, Language var1) {
+		int var2 = var0 << 4;
+		if (Character.isUpperCase(var0) || Character.isTitleCase(var0)) {
+			var0 = Character.toLowerCase(var0);
+			var2 = (var0 << 4) + 1;
+		}
+
+		if (var0 == 241 && var1 == Language.Language_ES) {
+			var2 = 1762;
+		}
+
+		return var2;
+	}
+
+	@ObfuscatedName("y")
+	@ObfuscatedSignature(
+		signature = "(B)I",
+		garbageValue = "25"
+	)
+	static final int method17() {
+		return ViewportMouse.ViewportMouse_x;
+	}
+
+	@ObfuscatedName("fo")
+	@ObfuscatedSignature(
+		signature = "(Lhd;III)V",
+		garbageValue = "45098661"
+	)
+	@Export("checkIfMinimapClicked")
+	static final void checkIfMinimapClicked(Widget var0, int var1, int var2) {
+		if (Client.minimapState == 0 || Client.minimapState == 3) {
+			if (!Client.isMenuOpen && (MouseHandler.MouseHandler_lastButton == 1 || !ArchiveLoader.mouseCam && MouseHandler.MouseHandler_lastButton == 4)) {
+				SpriteMask var3 = var0.getSpriteMask(true);
+				if (var3 == null) {
+					return;
+				}
+
+				int var4 = MouseHandler.MouseHandler_lastPressedX - var1;
+				int var5 = MouseHandler.MouseHandler_lastPressedY - var2;
+				if (var3.contains(var4, var5)) {
+					var4 -= var3.width / 2;
+					var5 -= var3.height / 2;
+					int var6 = Client.camAngleY & 2047;
+					int var7 = Rasterizer3D.Rasterizer3D_sine[var6];
+					int var8 = Rasterizer3D.Rasterizer3D_cosine[var6];
+					int var9 = var8 * var4 + var7 * var5 >> 11;
+					int var10 = var8 * var5 - var7 * var4 >> 11;
+					int var11 = var9 + class60.localPlayer.x >> 7;
+					int var12 = class60.localPlayer.y - var10 >> 7;
+					PacketBufferNode var13 = UserComparator4.getPacketBufferNode(ClientPacket.field2289, Client.packetWriter.isaacCipher);
+					var13.packetBuffer.writeByte(18);
+					var13.packetBuffer.writeShort(SecureRandomFuture.baseY * 64 + var12);
+					var13.packetBuffer.writeShort(class182.baseX * 64 + var11);
+					var13.packetBuffer.method5744(KeyHandler.KeyHandler_pressedKeys[82] ? (KeyHandler.KeyHandler_pressedKeys[81] ? 2 : 1) : 0);
+					var13.packetBuffer.writeByte(var4);
+					var13.packetBuffer.writeByte(var5);
+					var13.packetBuffer.writeShort(Client.camAngleY);
+					var13.packetBuffer.writeByte(57);
+					var13.packetBuffer.writeByte(0);
+					var13.packetBuffer.writeByte(0);
+					var13.packetBuffer.writeByte(89);
+					var13.packetBuffer.writeShort(class60.localPlayer.x);
+					var13.packetBuffer.writeShort(class60.localPlayer.y);
+					var13.packetBuffer.writeByte(63);
+					Client.packetWriter.addNode(var13);
+					Client.destinationX = var11;
+					Client.destinationY = var12;
 				}
 			}
 
 		}
 	}
 
-	@ObfuscatedName("fx")
+	@ObfuscatedName("hm")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "12"
+		signature = "(IIIIIIII)V",
+		garbageValue = "1438850851"
 	)
-	static final void method27() {
-		Client.packetWriter.close();
-		FloorOverlayDefinition.FloorOverlayDefinition_cached.clear();
-		Login.method2211();
-		WorldMapCacheName.method682();
-		ObjectDefinition.ObjectDefinition_cached.clear();
-		ObjectDefinition.ObjectDefinition_cachedModelData.clear();
-		ObjectDefinition.ObjectDefinition_cachedEntities.clear();
-		ObjectDefinition.ObjectDefinition_cachedModels.clear();
-		NPCDefinition.NpcDefinition_cached.clear();
-		NPCDefinition.NpcDefinition_cachedModels.clear();
-		FriendSystem.method1991();
-		BuddyRankComparator.method3521();
-		class81.method2160();
-		VarbitDefinition.VarbitDefinition_cached.clear();
-		WorldMapRectangle.method331();
-		HitSplatDefinition.HitSplatDefinition_cached.clear();
-		HitSplatDefinition.HitSplatDefinition_cachedSprites.clear();
-		HitSplatDefinition.HitSplatDefinition_cachedFonts.clear();
-		HealthBarDefinition.HealthBarDefinition_cached.clear();
-		HealthBarDefinition.HealthBarDefinition_cachedSprites.clear();
-		StructDefinition.StructDefinition_cached.clear();
-		ParamDefinition.ParamDefinition_cached.clear();
-		MusicPatchNode.method3921();
-		DirectByteArrayCopier.method4049();
-		Widget.Widget_cachedSprites.clear();
-		Widget.Widget_cachedModels.clear();
-		Widget.Widget_cachedFonts.clear();
-		Widget.Widget_cachedSpriteMasks.clear();
-		((TextureProvider)Rasterizer3D.Rasterizer3D_textureLoader).clear();
-		Script.Script_cached.clear();
-		BuddyRankComparator.archive0.clearFiles();
-		LoginPacket.archive1.clearFiles();
-		SpriteMask.archive3.clearFiles();
-		NetFileRequest.archive4.clearFiles();
-		WorldMapRectangle.archive5.clearFiles();
-		class216.archive6.clearFiles();
-		Language.archive7.clearFiles();
-		GrandExchangeOfferUnitPriceComparator.archive8.clearFiles();
-		WorldMapSprite.archive9.clearFiles();
-		WorldMapID.archive10.clearFiles();
-		Decimator.archive11.clearFiles();
-		Occluder.archive12.clearFiles();
-		WorldMapArea.scene.clear();
+	@Export("addPendingSpawnToScene")
+	static final void addPendingSpawnToScene(int var0, int var1, int var2, int var3, int var4, int var5, int var6) {
+		if (var2 >= 1 && var3 >= 1 && var2 <= 102 && var3 <= 102) {
+			if (Client.isLowDetail && var0 != ItemLayer.Client_plane) {
+				return;
+			}
 
-		for (int var0 = 0; var0 < 4; ++var0) {
-			Client.collisionMaps[var0].clear();
+			long var7 = 0L;
+			boolean var9 = true;
+			boolean var10 = false;
+			boolean var11 = false;
+			if (var1 == 0) {
+				var7 = UserComparator3.scene.getBoundaryObjectTag(var0, var2, var3);
+			}
+
+			if (var1 == 1) {
+				var7 = UserComparator3.scene.getWallDecorationTag(var0, var2, var3);
+			}
+
+			if (var1 == 2) {
+				var7 = UserComparator3.scene.getGameObjectTag(var0, var2, var3);
+			}
+
+			if (var1 == 3) {
+				var7 = UserComparator3.scene.getFloorDecorationTag(var0, var2, var3);
+			}
+
+			int var12;
+			if (var7 != 0L) {
+				var12 = UserComparator3.scene.getObjectFlags(var0, var2, var3, var7);
+				int var39 = Language.Entity_unpackID(var7);
+				int var40 = var12 & 31;
+				int var41 = var12 >> 6 & 3;
+				ObjectComposition var13;
+				if (var1 == 0) {
+					UserComparator3.scene.removeBoundaryObject(var0, var2, var3);
+					var13 = Canvas.getObjectDefinition(var39);
+					if (var13.interactType != 0) {
+						Client.collisionMaps[var0].method3702(var2, var3, var40, var41, var13.boolean1);
+					}
+				}
+
+				if (var1 == 1) {
+					UserComparator3.scene.removeWallDecoration(var0, var2, var3);
+				}
+
+				if (var1 == 2) {
+					UserComparator3.scene.removeGameObject(var0, var2, var3);
+					var13 = Canvas.getObjectDefinition(var39);
+					if (var2 + var13.sizeX > 103 || var3 + var13.sizeX > 103 || var2 + var13.sizeY > 103 || var3 + var13.sizeY > 103) {
+						return;
+					}
+
+					if (var13.interactType != 0) {
+						Client.collisionMaps[var0].setFlagOffNonSquare(var2, var3, var13.sizeX, var13.sizeY, var41, var13.boolean1);
+					}
+				}
+
+				if (var1 == 3) {
+					UserComparator3.scene.removeFloorDecoration(var0, var2, var3);
+					var13 = Canvas.getObjectDefinition(var39);
+					if (var13.interactType == 1) {
+						Client.collisionMaps[var0].method3689(var2, var3);
+					}
+				}
+			}
+
+			if (var4 >= 0) {
+				var12 = var0;
+				if (var0 < 3 && (Tiles.Tiles_renderFlags[1][var2][var3] & 2) == 2) {
+					var12 = var0 + 1;
+				}
+
+				Scene var42 = UserComparator3.scene;
+				CollisionMap var14 = Client.collisionMaps[var0];
+				ObjectComposition var15 = Canvas.getObjectDefinition(var4);
+				int var16;
+				int var17;
+				if (var5 != 1 && var5 != 3) {
+					var16 = var15.sizeX;
+					var17 = var15.sizeY;
+				} else {
+					var16 = var15.sizeY;
+					var17 = var15.sizeX;
+				}
+
+				int var18;
+				int var19;
+				if (var16 + var2 <= 104) {
+					var18 = (var16 >> 1) + var2;
+					var19 = var2 + (var16 + 1 >> 1);
+				} else {
+					var18 = var2;
+					var19 = var2 + 1;
+				}
+
+				int var20;
+				int var21;
+				if (var3 + var17 <= 104) {
+					var20 = var3 + (var17 >> 1);
+					var21 = var3 + (var17 + 1 >> 1);
+				} else {
+					var20 = var3;
+					var21 = var3 + 1;
+				}
+
+				int[][] var22 = Tiles.Tiles_heights[var12];
+				int var23 = var22[var18][var21] + var22[var18][var20] + var22[var19][var20] + var22[var19][var21] >> 2;
+				int var24 = (var2 << 7) + (var16 << 6);
+				int var25 = (var3 << 7) + (var17 << 6);
+				long var26 = class206.calculateTag(var2, var3, 2, var15.int1 == 0, var4);
+				int var28 = (var5 << 6) + var6;
+				if (var15.int3 == 1) {
+					var28 += 256;
+				}
+
+				Object var29;
+				if (var6 == 22) {
+					if (var15.animationId == -1 && var15.transforms == null) {
+						var29 = var15.getModel(22, var5, var22, var24, var23, var25);
+					} else {
+						var29 = new DynamicObject(var4, 22, var5, var12, var2, var3, var15.animationId, true, (Renderable)null);
+					}
+
+					var42.newFloorDecoration(var0, var2, var3, var23, (Renderable)var29, var26, var28);
+					if (var15.interactType == 1) {
+						var14.setBlockedByFloorDec(var2, var3);
+					}
+				} else if (var6 != 10 && var6 != 11) {
+					if (var6 >= 12) {
+						if (var15.animationId == -1 && var15.transforms == null) {
+							var29 = var15.getModel(var6, var5, var22, var24, var23, var25);
+						} else {
+							var29 = new DynamicObject(var4, var6, var5, var12, var2, var3, var15.animationId, true, (Renderable)null);
+						}
+
+						var42.method3356(var0, var2, var3, var23, 1, 1, (Renderable)var29, 0, var26, var28);
+						if (var15.interactType != 0) {
+							var14.addGameObject(var2, var3, var16, var17, var15.boolean1);
+						}
+					} else if (var6 == 0) {
+						if (var15.animationId == -1 && var15.transforms == null) {
+							var29 = var15.getModel(0, var5, var22, var24, var23, var25);
+						} else {
+							var29 = new DynamicObject(var4, 0, var5, var12, var2, var3, var15.animationId, true, (Renderable)null);
+						}
+
+						var42.newBoundaryObject(var0, var2, var3, var23, (Renderable)var29, (Renderable)null, Tiles.field527[var5], 0, var26, var28);
+						if (var15.interactType != 0) {
+							var14.method3680(var2, var3, var6, var5, var15.boolean1);
+						}
+					} else if (var6 == 1) {
+						if (var15.animationId == -1 && var15.transforms == null) {
+							var29 = var15.getModel(1, var5, var22, var24, var23, var25);
+						} else {
+							var29 = new DynamicObject(var4, 1, var5, var12, var2, var3, var15.animationId, true, (Renderable)null);
+						}
+
+						var42.newBoundaryObject(var0, var2, var3, var23, (Renderable)var29, (Renderable)null, Tiles.field528[var5], 0, var26, var28);
+						if (var15.interactType != 0) {
+							var14.method3680(var2, var3, var6, var5, var15.boolean1);
+						}
+					} else {
+						int var35;
+						if (var6 == 2) {
+							var35 = var5 + 1 & 3;
+							Object var30;
+							Object var31;
+							if (var15.animationId == -1 && var15.transforms == null) {
+								var30 = var15.getModel(2, var5 + 4, var22, var24, var23, var25);
+								var31 = var15.getModel(2, var35, var22, var24, var23, var25);
+							} else {
+								var30 = new DynamicObject(var4, 2, var5 + 4, var12, var2, var3, var15.animationId, true, (Renderable)null);
+								var31 = new DynamicObject(var4, 2, var35, var12, var2, var3, var15.animationId, true, (Renderable)null);
+							}
+
+							var42.newBoundaryObject(var0, var2, var3, var23, (Renderable)var30, (Renderable)var31, Tiles.field527[var5], Tiles.field527[var35], var26, var28);
+							if (var15.interactType != 0) {
+								var14.method3680(var2, var3, var6, var5, var15.boolean1);
+							}
+						} else if (var6 == 3) {
+							if (var15.animationId == -1 && var15.transforms == null) {
+								var29 = var15.getModel(3, var5, var22, var24, var23, var25);
+							} else {
+								var29 = new DynamicObject(var4, 3, var5, var12, var2, var3, var15.animationId, true, (Renderable)null);
+							}
+
+							var42.newBoundaryObject(var0, var2, var3, var23, (Renderable)var29, (Renderable)null, Tiles.field528[var5], 0, var26, var28);
+							if (var15.interactType != 0) {
+								var14.method3680(var2, var3, var6, var5, var15.boolean1);
+							}
+						} else if (var6 == 9) {
+							if (var15.animationId == -1 && var15.transforms == null) {
+								var29 = var15.getModel(var6, var5, var22, var24, var23, var25);
+							} else {
+								var29 = new DynamicObject(var4, var6, var5, var12, var2, var3, var15.animationId, true, (Renderable)null);
+							}
+
+							var42.method3356(var0, var2, var3, var23, 1, 1, (Renderable)var29, 0, var26, var28);
+							if (var15.interactType != 0) {
+								var14.addGameObject(var2, var3, var16, var17, var15.boolean1);
+							}
+						} else if (var6 == 4) {
+							if (var15.animationId == -1 && var15.transforms == null) {
+								var29 = var15.getModel(4, var5, var22, var24, var23, var25);
+							} else {
+								var29 = new DynamicObject(var4, 4, var5, var12, var2, var3, var15.animationId, true, (Renderable)null);
+							}
+
+							var42.newWallDecoration(var0, var2, var3, var23, (Renderable)var29, (Renderable)null, Tiles.field527[var5], 0, 0, 0, var26, var28);
+						} else {
+							Object var32;
+							long var36;
+							if (var6 == 5) {
+								var35 = 16;
+								var36 = var42.getBoundaryObjectTag(var0, var2, var3);
+								if (var36 != 0L) {
+									var35 = Canvas.getObjectDefinition(Language.Entity_unpackID(var36)).int2;
+								}
+
+								if (var15.animationId == -1 && var15.transforms == null) {
+									var32 = var15.getModel(4, var5, var22, var24, var23, var25);
+								} else {
+									var32 = new DynamicObject(var4, 4, var5, var12, var2, var3, var15.animationId, true, (Renderable)null);
+								}
+
+								var42.newWallDecoration(var0, var2, var3, var23, (Renderable)var32, (Renderable)null, Tiles.field527[var5], 0, var35 * Tiles.field523[var5], var35 * Tiles.field529[var5], var26, var28);
+							} else if (var6 == 6) {
+								var35 = 8;
+								var36 = var42.getBoundaryObjectTag(var0, var2, var3);
+								if (var36 != 0L) {
+									var35 = Canvas.getObjectDefinition(Language.Entity_unpackID(var36)).int2 / 2;
+								}
+
+								if (var15.animationId == -1 && var15.transforms == null) {
+									var32 = var15.getModel(4, var5 + 4, var22, var24, var23, var25);
+								} else {
+									var32 = new DynamicObject(var4, 4, var5 + 4, var12, var2, var3, var15.animationId, true, (Renderable)null);
+								}
+
+								var42.newWallDecoration(var0, var2, var3, var23, (Renderable)var32, (Renderable)null, 256, var5, var35 * Tiles.field531[var5], var35 * Tiles.field533[var5], var26, var28);
+							} else if (var6 == 7) {
+								int var38 = var5 + 2 & 3;
+								if (var15.animationId == -1 && var15.transforms == null) {
+									var29 = var15.getModel(4, var38 + 4, var22, var24, var23, var25);
+								} else {
+									var29 = new DynamicObject(var4, 4, var38 + 4, var12, var2, var3, var15.animationId, true, (Renderable)null);
+								}
+
+								var42.newWallDecoration(var0, var2, var3, var23, (Renderable)var29, (Renderable)null, 256, var38, 0, 0, var26, var28);
+							} else if (var6 == 8) {
+								var35 = 8;
+								var36 = var42.getBoundaryObjectTag(var0, var2, var3);
+								if (var36 != 0L) {
+									var35 = Canvas.getObjectDefinition(Language.Entity_unpackID(var36)).int2 / 2;
+								}
+
+								int var34 = var5 + 2 & 3;
+								Object var33;
+								if (var15.animationId == -1 && var15.transforms == null) {
+									var32 = var15.getModel(4, var5 + 4, var22, var24, var23, var25);
+									var33 = var15.getModel(4, var34 + 4, var22, var24, var23, var25);
+								} else {
+									var32 = new DynamicObject(var4, 4, var5 + 4, var12, var2, var3, var15.animationId, true, (Renderable)null);
+									var33 = new DynamicObject(var4, 4, var34 + 4, var12, var2, var3, var15.animationId, true, (Renderable)null);
+								}
+
+								var42.newWallDecoration(var0, var2, var3, var23, (Renderable)var32, (Renderable)var33, 256, var5, var35 * Tiles.field531[var5], var35 * Tiles.field533[var5], var26, var28);
+							}
+						}
+					}
+				} else {
+					if (var15.animationId == -1 && var15.transforms == null) {
+						var29 = var15.getModel(10, var5, var22, var24, var23, var25);
+					} else {
+						var29 = new DynamicObject(var4, 10, var5, var12, var2, var3, var15.animationId, true, (Renderable)null);
+					}
+
+					if (var29 != null) {
+						var42.method3356(var0, var2, var3, var23, var16, var17, (Renderable)var29, var6 == 11 ? 256 : 0, var26, var28);
+					}
+
+					if (var15.interactType != 0) {
+						var14.addGameObject(var2, var3, var16, var17, var15.boolean1);
+					}
+				}
+			}
 		}
 
-		System.gc();
-		class80.method2147(2);
-		Client.currentTrackGroupId = -1;
-		Client.field855 = false;
-		GameShell.method1141();
-		Tile.updateGameState(10);
+	}
+
+	@ObfuscatedName("hn")
+	@ObfuscatedSignature(
+		signature = "(IIIII)V",
+		garbageValue = "-569208973"
+	)
+	static final void method7(int var0, int var1, int var2, int var3) {
+		for (int var4 = 0; var4 < Client.rootWidgetCount; ++var4) {
+			if (Client.rootWidgetXs[var4] + Client.rootWidgetWidths[var4] > var0 && Client.rootWidgetXs[var4] < var0 + var2 && Client.rootWidgetYs[var4] + Client.rootWidgetHeights[var4] > var1 && Client.rootWidgetYs[var4] < var3 + var1) {
+				Client.field813[var4] = true;
+			}
+		}
+
 	}
 }

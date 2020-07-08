@@ -68,10 +68,10 @@ public interface EntityHiderConfig extends Config
 	@ConfigItem(
 		position = 4,
 		keyName = "hideClanMates",
-		name = "Hide Clan Mates",
-		description = "Configures whether or not clan mates are hidden"
+		name = "Hide Friends Chat members",
+		description = "Configures whether or not friends chat members are hidden"
 	)
-	default boolean hideClanMates()
+	default boolean hideFriendsChatMembers()
 	{
 		return false;
 	}
@@ -122,6 +122,17 @@ public interface EntityHiderConfig extends Config
 
 	@ConfigItem(
 		position = 9,
+		keyName = "hidePets",
+		name = "Hide Pets",
+		description = "Configures whether or not other player pets are hidden"
+	)
+	default boolean hidePets()
+	{
+		return false;
+	}
+
+	@ConfigItem(
+		position = 10,
 		keyName = "hideAttackers",
 		name = "Hide Attackers",
 		description = "Configures whether or not NPCs/players attacking you are hidden"
@@ -132,7 +143,7 @@ public interface EntityHiderConfig extends Config
 	}
 
 	@ConfigItem(
-		position = 10,
+		position = 11,
 		keyName = "hideProjectiles",
 		name = "Hide Projectiles",
 		description = "Configures whether or not projectiles are hidden"

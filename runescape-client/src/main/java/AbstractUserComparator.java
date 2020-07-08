@@ -5,25 +5,26 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jr")
+@ObfuscatedName("jk")
 @Implements("AbstractUserComparator")
 public abstract class AbstractUserComparator implements Comparator {
-	@ObfuscatedName("rb")
+	@ObfuscatedName("ix")
 	@ObfuscatedGetter(
-		intValue = -1217958016
+		intValue = -1488914561
 	)
-	static int field3583;
-	@ObfuscatedName("t")
+	@Export("selectedItemWidget")
+	static int selectedItemWidget;
+	@ObfuscatedName("o")
 	@Export("nextComparator")
 	Comparator nextComparator;
 
 	protected AbstractUserComparator() {
 	}
 
-	@ObfuscatedName("d")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "(Ljava/util/Comparator;B)V",
-		garbageValue = "115"
+		signature = "(Ljava/util/Comparator;S)V",
+		garbageValue = "-28900"
 	)
 	@Export("addComparator")
 	final void addComparator(Comparator var1) {
@@ -35,13 +36,13 @@ public abstract class AbstractUserComparator implements Comparator {
 
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		signature = "(Ljg;Ljg;B)I",
-		garbageValue = "124"
+		signature = "(Ljf;Ljf;I)I",
+		garbageValue = "864234218"
 	)
 	@Export("compareUser")
-	protected final int compareUser(User var1, User var2) {
+	protected final int compareUser(Nameable var1, Nameable var2) {
 		return this.nextComparator == null ? 0 : this.nextComparator.compare(var1, var2);
 	}
 

@@ -4,24 +4,24 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jx")
+@ObfuscatedName("kx")
 @Implements("Buddy")
-public class Buddy extends User {
-	@ObfuscatedName("v")
+public class Buddy extends Nameable {
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = 1646057305
+		intValue = 746026781
 	)
 	@Export("world")
 	public int world;
-	@ObfuscatedName("l")
+	@ObfuscatedName("g")
 	@ObfuscatedGetter(
-		intValue = 1797004239
+		intValue = 2013337995
 	)
 	@Export("int2")
 	public int int2;
-	@ObfuscatedName("c")
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = 48717521
+		intValue = 1889859317
 	)
 	@Export("rank")
 	public int rank;
@@ -30,10 +30,10 @@ public class Buddy extends User {
 		this.world = -1;
 	}
 
-	@ObfuscatedName("bx")
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		signature = "(IIB)V",
-		garbageValue = "-15"
+		signature = "(III)V",
+		garbageValue = "-820539853"
 	)
 	@Export("set")
 	void set(int var1, int var2) {
@@ -41,120 +41,140 @@ public class Buddy extends User {
 		this.int2 = var2;
 	}
 
-	@ObfuscatedName("bl")
+	@ObfuscatedName("az")
 	@ObfuscatedSignature(
 		signature = "(I)I",
-		garbageValue = "-319513783"
+		garbageValue = "1724193250"
 	)
 	@Export("getWorld")
 	public int getWorld() {
 		return this.world;
 	}
 
-	@ObfuscatedName("bh")
+	@ObfuscatedName("aq")
 	@ObfuscatedSignature(
-		signature = "(B)Z",
-		garbageValue = "0"
+		signature = "(I)Z",
+		garbageValue = "-279238296"
 	)
 	@Export("hasWorld")
 	public boolean hasWorld() {
 		return this.world > 0;
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		signature = "(CI)C",
-		garbageValue = "129853061"
+		signature = "(III)I",
+		garbageValue = "562871414"
 	)
-	public static char method5233(char var0) {
-		switch(var0) {
-		case ' ':
-		case '-':
-		case '_':
-		case ' ':
-			return '_';
-		case '#':
-		case '[':
-		case ']':
-			return var0;
-		case 'À':
-		case 'Á':
-		case 'Â':
-		case 'Ã':
-		case 'Ä':
-		case 'à':
-		case 'á':
-		case 'â':
-		case 'ã':
-		case 'ä':
-			return 'a';
-		case 'Ç':
-		case 'ç':
-			return 'c';
-		case 'È':
-		case 'É':
-		case 'Ê':
-		case 'Ë':
-		case 'è':
-		case 'é':
-		case 'ê':
-		case 'ë':
-			return 'e';
-		case 'Í':
-		case 'Î':
-		case 'Ï':
-		case 'í':
-		case 'î':
-		case 'ï':
-			return 'i';
-		case 'Ñ':
-		case 'ñ':
-			return 'n';
-		case 'Ò':
-		case 'Ó':
-		case 'Ô':
-		case 'Õ':
-		case 'Ö':
-		case 'ò':
-		case 'ó':
-		case 'ô':
-		case 'õ':
-		case 'ö':
-			return 'o';
-		case 'Ù':
-		case 'Ú':
-		case 'Û':
-		case 'Ü':
-		case 'ù':
-		case 'ú':
-		case 'û':
-		case 'ü':
-			return 'u';
-		case 'ß':
-			return 'b';
-		case 'ÿ':
-		case 'Ÿ':
-			return 'y';
-		default:
-			return Character.toLowerCase(var0);
+	static int method5363(int var0, int var1) {
+		FloorOverlayDefinition var3 = (FloorOverlayDefinition)FloorOverlayDefinition.FloorOverlayDefinition_cached.get((long)var0);
+		FloorOverlayDefinition var2;
+		if (var3 != null) {
+			var2 = var3;
+		} else {
+			byte[] var4 = FloorOverlayDefinition.FloorOverlayDefinition_archive.takeFile(4, var0);
+			var3 = new FloorOverlayDefinition();
+			if (var4 != null) {
+				var3.decode(new Buffer(var4), var0);
+			}
+
+			var3.postDecode();
+			FloorOverlayDefinition.FloorOverlayDefinition_cached.put(var3, (long)var0);
+			var2 = var3;
+		}
+
+		if (var2 == null) {
+			return var1;
+		} else if (var2.secondaryRgb >= 0) {
+			return var2.secondaryRgb | -16777216;
+		} else {
+			int var5;
+			byte var6;
+			int var8;
+			int var9;
+			if (var2.texture >= 0) {
+				var5 = Rasterizer3D.Rasterizer3D_textureLoader.getAverageTextureRGB(var2.texture);
+				var6 = 96;
+				if (var5 == -2) {
+					var8 = 12345678;
+				} else if (var5 == -1) {
+					if (var6 < 0) {
+						var6 = 0;
+					} else if (var6 > 127) {
+						var6 = 127;
+					}
+
+					var9 = 127 - var6;
+					var8 = var9;
+				} else {
+					var9 = var6 * (var5 & 127) / 128;
+					if (var9 < 2) {
+						var9 = 2;
+					} else if (var9 > 126) {
+						var9 = 126;
+					}
+
+					var8 = var9 + (var5 & 65408);
+				}
+
+				return Rasterizer3D.Rasterizer3D_colorPalette[var8] | -16777216;
+			} else if (var2.primaryRgb == 16711935) {
+				return var1;
+			} else {
+				var8 = Players.method2285(var2.hue, var2.saturation, var2.lightness);
+				var6 = 96;
+				if (var8 == -2) {
+					var5 = 12345678;
+				} else if (var8 == -1) {
+					if (var6 < 0) {
+						var6 = 0;
+					} else if (var6 > 127) {
+						var6 = 127;
+					}
+
+					var9 = 127 - var6;
+					var5 = var9;
+				} else {
+					var9 = var6 * (var8 & 127) / 128;
+					if (var9 < 2) {
+						var9 = 2;
+					} else if (var9 > 126) {
+						var9 = 126;
+					}
+
+					var5 = var9 + (var8 & 65408);
+				}
+
+				return Rasterizer3D.Rasterizer3D_colorPalette[var5] | -16777216;
+			}
 		}
 	}
 
-	@ObfuscatedName("ah")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "(IB)I",
-		garbageValue = "116"
+		signature = "(Lic;III)Llh;",
+		garbageValue = "214880487"
 	)
-	static int method5245(int var0) {
-		return (int)Math.pow(2.0D, (double)((float)var0 / 256.0F + 7.0F));
+	static IndexedSprite method5355(AbstractArchive var0, int var1, int var2) {
+		byte[] var4 = var0.takeFile(var1, var2);
+		boolean var3;
+		if (var4 == null) {
+			var3 = false;
+		} else {
+			class3.SpriteBuffer_decode(var4);
+			var3 = true;
+		}
+
+		return !var3 ? null : AttackOption.method2173();
 	}
 
-	@ObfuscatedName("bh")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;I)I",
-		garbageValue = "-2095111578"
+		signature = "(IS)V",
+		garbageValue = "1714"
 	)
-	public static int method5244(String var0) {
-		return var0.length() + 2;
+	static void method5349(int var0) {
+		Login.loginIndex = 12;
+		Login.field1212 = var0;
 	}
 }

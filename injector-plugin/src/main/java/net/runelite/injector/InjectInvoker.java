@@ -24,7 +24,6 @@
  */
 package net.runelite.injector;
 
-import java.util.List;
 import net.runelite.asm.ClassFile;
 import net.runelite.asm.ClassGroup;
 import net.runelite.asm.Method;
@@ -34,22 +33,16 @@ import net.runelite.asm.attributes.Code;
 import net.runelite.asm.attributes.code.Instruction;
 import net.runelite.asm.attributes.code.InstructionType;
 import net.runelite.asm.attributes.code.Instructions;
-import net.runelite.asm.attributes.code.instructions.ALoad;
-import net.runelite.asm.attributes.code.instructions.BiPush;
-import net.runelite.asm.attributes.code.instructions.CheckCast;
-import net.runelite.asm.attributes.code.instructions.DLoad;
-import net.runelite.asm.attributes.code.instructions.InvokeStatic;
-import net.runelite.asm.attributes.code.instructions.InvokeVirtual;
-import net.runelite.asm.attributes.code.instructions.LDC;
-import net.runelite.asm.attributes.code.instructions.LLoad;
-import net.runelite.asm.attributes.code.instructions.Return;
-import net.runelite.asm.attributes.code.instructions.SiPush;
+import net.runelite.asm.attributes.code.instructions.*;
 import net.runelite.asm.signature.Signature;
 import net.runelite.deob.DeobAnnotations;
-import static net.runelite.deob.DeobAnnotations.EXPORT;
-import static org.objectweb.asm.Opcodes.ACC_PUBLIC;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.List;
+
+import static net.runelite.deob.DeobAnnotations.EXPORT;
+import static org.objectweb.asm.Opcodes.ACC_PUBLIC;
 
 class InjectInvoker
 {
@@ -67,59 +60,60 @@ class InjectInvoker
 	/**
 	 * Inject an invoker for a method
 	 *
-	 * @param m                 Method in the deobfuscated client to inject an invoker for
+	 * @param method            Method in the deobfuscated client to inject an invoker for
 	 * @param other             Class in the vanilla client of the same class m is a
 	 *                          member of
 	 * @param implementingClass Java class for the API interface the class
 	 *                          will implement
 	 */
-	void process(Method m, ClassFile other, java.lang.Class<?> implementingClass)
+	void process(Method method, ClassFile other, java.lang.Class<?> implementingClass)
 	{
-		Annotations an = m.getAnnotations();
+		Annotations annotations = method.getAnnotations();
 
-		if (an == null || an.find(EXPORT) == null)
+		if (annotations == null || annotations.find(EXPORT) == null)
 		{
 			return; // not an exported method
 		}
 
-		String exportedName = DeobAnnotations.getExportedName(an);
-		String obfuscatedName = DeobAnnotations.getObfuscatedName(an);
+		String exportedName = DeobAnnotations.getExportedName(annotations);
+		String obfuscatedName = DeobAnnotations.getObfuscatedName(annotations);
 
 		if (obfuscatedName == null)
 		{
-			obfuscatedName = m.getName();
+			obfuscatedName = method.getName();
 		}
 
-		String garbage = DeobAnnotations.getObfuscatedValue(m);
-		Method otherm = other.findMethod(obfuscatedName, inject.getMethodSignature(m));
+		String garbage = DeobAnnotations.getObfuscatedValue(method);
+		Method otherMethod = other.findMethod(obfuscatedName, inject.getMethodSignature(method));
 
-		assert otherm != null;
-		assert m.isStatic() == otherm.isStatic();
+		assert otherMethod != null;
+		assert method.isStatic() == otherMethod.isStatic();
 
 		ClassGroup vanilla = inject.getVanilla();
 
-		ClassFile targetClass = m.isStatic() ? vanilla.findClass("client") : other;
+		ClassFile targetClass = method.isStatic() ? vanilla.findClass("client") : other;
 
 		// Place into implementing class, unless the method is static
-		java.lang.Class<?> targetClassJava = m.isStatic() ? Inject.CLIENT_CLASS : implementingClass;
+		java.lang.Class<?> targetClassJava = method.isStatic() ? Inject.CLIENT_CLASS : implementingClass;
 
 		if (targetClassJava == null)
 		{
-			assert !m.isStatic();
+			assert !method.isStatic();
 
 			// non static exported method on non exported interface, weird.
 			logger.debug("Non static exported method {} on non exported interface", exportedName);
 			return;
 		}
 
-		java.lang.reflect.Method apiMethod = inject.findImportMethodOnApi(targetClassJava, exportedName, null); // api method to invoke 'otherm'
+		// api method to invoke 'otherMethod'
+		java.lang.reflect.Method apiMethod = inject.findImportMethodOnApi(targetClassJava, exportedName, null);
 		if (apiMethod == null)
 		{
 			logger.debug("Unable to find api method on {} with imported name {}, not injecting invoker", targetClassJava, exportedName);
 			return;
 		}
 
-		injectInvoker(targetClass, apiMethod, m, otherm, garbage);
+		injectInvoker(targetClass, apiMethod, method, otherMethod, garbage);
 		++injectedInvokers;
 	}
 

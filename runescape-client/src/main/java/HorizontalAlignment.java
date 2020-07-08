@@ -4,38 +4,37 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("in")
+@ObfuscatedName("jc")
 @Implements("HorizontalAlignment")
 public enum HorizontalAlignment implements Enumerated {
-	@ObfuscatedName("a")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		signature = "Lin;"
+		signature = "Ljc;"
 	)
-	field3449(0, 0),
-	@ObfuscatedName("t")
+	field3488(2, 0),
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "Lin;"
+		signature = "Ljc;"
 	)
 	@Export("HorizontalAlignment_centered")
 	HorizontalAlignment_centered(1, 1),
-	@ObfuscatedName("n")
-	@ObfuscatedSignature(
-		signature = "Lin;"
-	)
-	field3447(2, 2);
-
-	@ObfuscatedName("i")
-	@Export("ByteArrayPool_arrays")
-	static byte[][][] ByteArrayPool_arrays;
 	@ObfuscatedName("q")
+	@ObfuscatedSignature(
+		signature = "Ljc;"
+	)
+	field3492(0, 2);
+
+	@ObfuscatedName("bq")
+	static String field3489;
+	@ObfuscatedName("j")
 	@ObfuscatedGetter(
-		intValue = 1143014811
+		intValue = -1908984303
 	)
 	@Export("value")
 	public final int value;
-	@ObfuscatedName("v")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = -510132141
+		intValue = 1088861253
 	)
 	@Export("id")
 	final int id;
@@ -45,10 +44,10 @@ public enum HorizontalAlignment implements Enumerated {
 		this.id = var4;
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
 		signature = "(I)I",
-		garbageValue = "-1993081102"
+		garbageValue = "-995092303"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {

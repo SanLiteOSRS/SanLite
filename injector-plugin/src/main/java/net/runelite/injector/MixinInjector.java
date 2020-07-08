@@ -26,13 +26,6 @@ package net.runelite.injector;
 
 import com.google.common.reflect.ClassPath;
 import com.google.common.reflect.ClassPath.ClassInfo;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.ListIterator;
-import java.util.Map;
 import net.runelite.api.mixins.Mixin;
 import net.runelite.asm.ClassFile;
 import net.runelite.asm.Field;
@@ -42,27 +35,18 @@ import net.runelite.asm.attributes.Code;
 import net.runelite.asm.attributes.annotation.Annotation;
 import net.runelite.asm.attributes.code.Instruction;
 import net.runelite.asm.attributes.code.Instructions;
-import net.runelite.asm.attributes.code.instruction.types.FieldInstruction;
-import net.runelite.asm.attributes.code.instruction.types.InvokeInstruction;
-import net.runelite.asm.attributes.code.instruction.types.LVTInstruction;
-import net.runelite.asm.attributes.code.instruction.types.PushConstantInstruction;
-import net.runelite.asm.attributes.code.instruction.types.ReturnInstruction;
-import net.runelite.asm.attributes.code.instructions.ALoad;
-import net.runelite.asm.attributes.code.instructions.ANewArray;
-import net.runelite.asm.attributes.code.instructions.CheckCast;
-import net.runelite.asm.attributes.code.instructions.GetField;
-import net.runelite.asm.attributes.code.instructions.ILoad;
-import net.runelite.asm.attributes.code.instructions.InvokeDynamic;
-import net.runelite.asm.attributes.code.instructions.InvokeSpecial;
-import net.runelite.asm.attributes.code.instructions.InvokeStatic;
-import net.runelite.asm.attributes.code.instructions.Pop;
-import net.runelite.asm.attributes.code.instructions.PutField;
+import net.runelite.asm.attributes.code.instruction.types.*;
+import net.runelite.asm.attributes.code.instructions.*;
 import net.runelite.asm.signature.Signature;
 import net.runelite.asm.visitors.ClassFileVisitor;
 import net.runelite.deob.DeobAnnotations;
 import org.objectweb.asm.ClassReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.*;
 
 import static net.runelite.injector.InjectUtil.*;
 
@@ -74,8 +58,8 @@ public class MixinInjector
 	private static final Type SHADOW = new Type("Lnet/runelite/api/mixins/Shadow;");
 	private static final Type COPY = new Type("Lnet/runelite/api/mixins/Copy;");
 	private static final Type REPLACE = new Type("Lnet/runelite/api/mixins/Replace;");
-	private static final Type FIELDHOOK = new Type("Lnet/runelite/api/mixins/FieldHook;");
-	private static final Type METHODHOOK = new Type("Lnet/runelite/api/mixins/MethodHook;");
+	private static final Type FIELD_HOOK = new Type("Lnet/runelite/api/mixins/FieldHook;");
+	private static final Type METHOD_HOOK = new Type("Lnet/runelite/api/mixins/MethodHook;");
 	private static final Type JAVAX_INJECT = new Type("Ljavax/inject/Inject;");
 	private static final Type NAMED = new Type("Ljavax/inject/Named;");
 
@@ -313,7 +297,7 @@ public class MixinInjector
 	}
 
 	private void injectMethods(ClassFile mixinCf, ClassFile cf, Map<net.runelite.asm.pool.Field, Field> shadowFields)
-		throws InjectionException
+			throws InjectionException
 	{
 		// Keeps mappings between methods annotated with @Copy -> the copied method within the vanilla pack
 		Map<net.runelite.asm.pool.Method, CopiedMethod> copiedMethods = new HashMap<>();
@@ -392,7 +376,7 @@ public class MixinInjector
 				care of the garbage parameter itself.
 			 */
 			boolean hasGarbageValue = method.getDescriptor().size() != obMethod.getDescriptor().size()
-				&& deobMethod.getDescriptor().size() < obMethodSignature.size();
+					&& deobMethod.getDescriptor().size() < obMethodSignature.size();
 			copiedMethods.put(method.getPoolMethod(), new CopiedMethod(copy, hasGarbageValue));
 
 			logger.debug("Injected copy of {} to {}", obMethod, copy);
@@ -414,8 +398,8 @@ public class MixinInjector
 				}
 
 				Method[] originalMethods = cf.getMethods().stream()
-					.filter(n -> n.getName().equals(method.getName()))
-					.toArray(Method[]::new);
+						.filter(n -> n.getName().equals(method.getName()))
+						.toArray(Method[]::new);
 				// If there isn't a <clinit> already just inject ours, otherwise rename it
 				// This is always true for <init>
 				String name = method.getName();
@@ -532,7 +516,7 @@ public class MixinInjector
 				if (method.isStatic() != deobMethod.isStatic())
 				{
 					throw new InjectionException("Mixin method " + method + " should be "
-						+ (deobMethod.isStatic() ? "static" : "non-static"));
+							+ (deobMethod.isStatic() ? "static" : "non-static"));
 				}
 
 				String obMethodName = DeobAnnotations.getObfuscatedName(deobMethod.getAnnotations());
@@ -565,7 +549,7 @@ public class MixinInjector
 				if (!returnType.equals(deobReturnType))
 				{
 					ClassFile deobReturnTypeClassFile = inject.getDeobfuscated()
-						.findClass(deobReturnType.getInternalName());
+							.findClass(deobReturnType.getInternalName());
 					if (deobReturnTypeClassFile != null)
 					{
 						ClassFile obReturnTypeClass = toObClass(inject.getVanilla(), deobReturnTypeClassFile);
@@ -590,13 +574,13 @@ public class MixinInjector
 				moveCode(obMethod, method.getCode());
 
 				boolean hasGarbageValue = method.getDescriptor().size() != obMethod.getDescriptor().size()
-					&& deobMethod.getDescriptor().size() < obMethodSignature.size();
+						&& deobMethod.getDescriptor().size() < obMethodSignature.size();
 
 				if (hasGarbageValue)
 				{
 					int garbageIndex = obMethod.isStatic()
-						? obMethod.getDescriptor().size() - 1
-						: obMethod.getDescriptor().size();
+							? obMethod.getDescriptor().size() - 1
+							: obMethod.getDescriptor().size();
 
 					/*
 						If the mixin method doesn't have the garbage parameter,
@@ -636,7 +620,7 @@ public class MixinInjector
 	private void setOwnersToTargetClass(ClassFile mixinCf, ClassFile cf, Method method,
 										Map<net.runelite.asm.pool.Field, Field> shadowFields,
 										Map<net.runelite.asm.pool.Method, CopiedMethod> copiedMethods)
-		throws InjectionException
+			throws InjectionException
 	{
 		ListIterator<Instruction> iterator = method.getCode().getInstructions().getInstructions().listIterator();
 
@@ -672,8 +656,8 @@ public class MixinInjector
 					if (copiedMethod.hasGarbageValue)
 					{
 						int garbageIndex = copiedMethod.obMethod.isStatic()
-							? copiedMethod.obMethod.getDescriptor().size() - 1
-							: copiedMethod.obMethod.getDescriptor().size();
+								? copiedMethod.obMethod.getDescriptor().size() - 1
+								: copiedMethod.obMethod.getDescriptor().size();
 
 						iterator.previous();
 						iterator.add(new ILoad(method.getCode().getInstructions(), garbageIndex));
@@ -683,9 +667,9 @@ public class MixinInjector
 				else if (ii.getMethod().getClazz().getName().equals(mixinCf.getName()))
 				{
 					ii.setMethod(new net.runelite.asm.pool.Method(
-						new net.runelite.asm.pool.Class(cf.getName()),
-						ii.getMethod().getName(),
-						ii.getMethod().getType()
+							new net.runelite.asm.pool.Class(cf.getName()),
+							ii.getMethod().getName(),
+							ii.getMethod().getType()
 					));
 				}
 			}
@@ -701,9 +685,9 @@ public class MixinInjector
 				else if (fi.getField().getClazz().getName().equals(mixinCf.getName()))
 				{
 					fi.setField(new net.runelite.asm.pool.Field(
-						new net.runelite.asm.pool.Class(cf.getName()),
-						fi.getField().getName(),
-						fi.getField().getType()
+							new net.runelite.asm.pool.Class(cf.getName()),
+							fi.getField().getName(),
+							fi.getField().getType()
 					));
 				}
 			}
@@ -737,7 +721,7 @@ public class MixinInjector
 	}
 
 	private Method findDeobMethod(ClassFile deobCf, String deobMethodName, Signature descriptor)
-		throws InjectionException
+			throws InjectionException
 	{
 		List<Method> matchingMethods = new ArrayList<>();
 
@@ -844,7 +828,7 @@ public class MixinInjector
 			InvokeStatic is = (InvokeStatic) i;
 
 			if (is.getMethod().getClazz() != mixinCf.getPoolClass()
-				&& is.getMethod().getClazz().getName().startsWith(MIXIN_BASE.replace(".", "/")))
+					&& is.getMethod().getClazz().getName().startsWith(MIXIN_BASE.replace(".", "/")))
 			{
 				throw new InjectionException("Invoking static methods of other mixins is not supported");
 			}
@@ -880,7 +864,7 @@ public class MixinInjector
 			{
 				for (Method method : mixinCf.getMethods())
 				{
-					Annotation fieldHook = method.getAnnotations().find(FIELDHOOK);
+					Annotation fieldHook = method.getAnnotations().find(FIELD_HOOK);
 					if (fieldHook != null)
 					{
 						String hookName = fieldHook.getElement().getString();
@@ -954,7 +938,7 @@ public class MixinInjector
 			{
 				for (Method method : mixinCf.getMethods())
 				{
-					Annotation methodHook = method.getAnnotations().find(METHODHOOK);
+					Annotation methodHook = method.getAnnotations().find(METHOD_HOOK);
 
 					if (methodHook == null)
 					{

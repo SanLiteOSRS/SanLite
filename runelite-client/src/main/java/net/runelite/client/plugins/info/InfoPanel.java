@@ -34,6 +34,7 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
 import java.util.concurrent.ScheduledExecutorService;
 import javax.annotation.Nullable;
 import javax.inject.Singleton;
@@ -58,6 +59,8 @@ import net.runelite.client.ui.PluginPanel;
 import net.runelite.client.util.ImageUtil;
 import net.runelite.client.util.LinkBrowser;
 
+import static net.runelite.client.RuneLite.*;
+
 @Singleton
 public class InfoPanel extends PluginPanel
 {
@@ -65,6 +68,9 @@ public class InfoPanel extends PluginPanel
 
 	private static final ImageIcon ARROW_RIGHT_ICON;
 	private static final ImageIcon GITHUB_ICON;
+	private static final ImageIcon FOLDER_ICON;
+	private static final ImageIcon LOGS_ICON;
+	private static final ImageIcon SCREENSHOT_ICON;
 	private static final ImageIcon DISCORD_ICON;
 	private static final ImageIcon WIKI_ICON;
 	private static final ImageIcon IMPORT_ICON;
@@ -94,6 +100,9 @@ public class InfoPanel extends PluginPanel
 	{
 		ARROW_RIGHT_ICON = new ImageIcon(ImageUtil.getResourceStreamFromClass(InfoPanel.class, "/util/arrow_right.png"));
 		GITHUB_ICON = new ImageIcon(ImageUtil.getResourceStreamFromClass(InfoPanel.class, "github_icon.png"));
+		FOLDER_ICON = new ImageIcon(ImageUtil.getResourceStreamFromClass(InfoPanel.class, "folder_icon.png"));
+		LOGS_ICON = new ImageIcon(ImageUtil.getResourceStreamFromClass(InfoPanel.class, "logs_icon.png"));
+		SCREENSHOT_ICON = new ImageIcon(ImageUtil.getResourceStreamFromClass(InfoPanel.class, "screenshot_icon.png"));
 		DISCORD_ICON = new ImageIcon(ImageUtil.getResourceStreamFromClass(InfoPanel.class, "discord_icon.png"));
 		WIKI_ICON = new ImageIcon(ImageUtil.getResourceStreamFromClass(InfoPanel.class, "wiki_icon.png"));
 		IMPORT_ICON = new ImageIcon(ImageUtil.getResourceStreamFromClass(InfoPanel.class, "import_icon.png"));
@@ -112,10 +121,11 @@ public class InfoPanel extends PluginPanel
 
 		final Font smallFont = FontManager.getRunescapeSmallFont();
 
+		String clientTitle = RuneLiteProperties.getTitle();
 		JLabel version = new JLabel(htmlLabel("RuneLite version: ", RuneLiteProperties.getVersion()));
 		version.setFont(smallFont);
 
-		JLabel sanliteVersion = new JLabel(htmlLabel("SanLite version: ", RuneLiteProperties.getSanLiteVersion()));
+		JLabel sanliteVersion = new JLabel(htmlLabel(clientTitle + " version: ", RuneLiteProperties.getSanLiteVersion()));
 		sanliteVersion.setFont(smallFont);
 
 		JLabel revision = new JLabel();
@@ -150,8 +160,8 @@ public class InfoPanel extends PluginPanel
 			}
 		});
 
-		versionPanel.add(version);
 		versionPanel.add(sanliteVersion);
+		versionPanel.add(version);
 		versionPanel.add(revision);
 		versionPanel.add(launcher);
 		versionPanel.add(Box.createGlue());
@@ -176,8 +186,11 @@ public class InfoPanel extends PluginPanel
 		});
 
 		actionsContainer.add(buildLinkPanel(GITHUB_ICON, "Report an issue or", "make a suggestion", RuneLiteProperties.getGithubLink()));
-		actionsContainer.add(buildLinkPanel(DISCORD_ICON, "Talk to us on our", "discord server", RuneLiteProperties.getDiscordInvite()));
-		actionsContainer.add(buildLinkPanel(WIKI_ICON, "Information about", "RuneLite and plugins", RuneLiteProperties.getWikiLink()));
+		actionsContainer.add(buildLinkPanel(DISCORD_ICON, "Talk to us on our", "Discord server", RuneLiteProperties.getDiscordInvite()));
+		actionsContainer.add(buildLinkPanel(WIKI_ICON, "Information about", clientTitle + " and plugins", RuneLiteProperties.getWikiLink()));
+		actionsContainer.add(buildLinkPanel(FOLDER_ICON, "Open " + clientTitle + " directory", "to view your settings file", RUNELITE_DIR));
+		actionsContainer.add(buildLinkPanel(LOGS_ICON, "Open the logs directory", "to assist with bug reports", LOGS_DIR));
+		actionsContainer.add(buildLinkPanel(SCREENSHOT_ICON, "Open screenshot directory", "to view your images", SCREENSHOT_DIR));
 
 		add(versionPanel, BorderLayout.NORTH);
 		add(actionsContainer, BorderLayout.CENTER);
@@ -192,6 +205,14 @@ public class InfoPanel extends PluginPanel
 	private static JPanel buildLinkPanel(ImageIcon icon, String topText, String bottomText, String url)
 	{
 		return buildLinkPanel(icon, topText, bottomText, () -> LinkBrowser.browse(url));
+	}
+
+	/**
+	 * Builds a link panel with a given icon, text and directory to open.
+	 */
+	private JPanel buildLinkPanel(ImageIcon icon, String topText, String bottomText, File dir)
+	{
+		return buildLinkPanel(icon, topText, bottomText, () -> LinkBrowser.openLocalFile(dir));
 	}
 
 	/**

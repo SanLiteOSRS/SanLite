@@ -4,42 +4,30 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hf")
+@ObfuscatedName("hg")
 @Implements("Coord")
 public class Coord {
-	@ObfuscatedName("i")
-	@ObfuscatedSignature(
-		signature = "Lhq;"
-	)
-	@Export("Widget_archive")
-	static AbstractArchive Widget_archive;
-	@ObfuscatedName("dv")
-	@ObfuscatedSignature(
-		signature = "Lij;"
-	)
-	@Export("archive15")
-	static Archive archive15;
-	@ObfuscatedName("a")
+	@ObfuscatedName("m")
 	@ObfuscatedGetter(
-		intValue = 440805047
+		intValue = -1064559233
 	)
 	@Export("plane")
 	public int plane;
-	@ObfuscatedName("t")
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = 649013739
+		intValue = 381144149
 	)
 	@Export("x")
 	public int x;
-	@ObfuscatedName("n")
+	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = 1217821847
+		intValue = -63925861
 	)
 	@Export("y")
 	public int y;
 
 	@ObfuscatedSignature(
-		signature = "(Lhf;)V"
+		signature = "(Lhg;)V"
 	)
 	public Coord(Coord var1) {
 		this.plane = var1.plane;
@@ -64,20 +52,20 @@ public class Coord {
 
 	}
 
-	@ObfuscatedName("a")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "-1545441296"
+		signature = "(B)I",
+		garbageValue = "57"
 	)
 	@Export("packed")
 	public int packed() {
 		return this.plane << 28 | this.x << 14 | this.y;
 	}
 
-	@ObfuscatedName("t")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "(Lhf;I)Z",
-		garbageValue = "472807046"
+		signature = "(Lhg;I)Z",
+		garbageValue = "1413568323"
 	)
 	@Export("equalsCoord")
 	boolean equalsCoord(Coord var1) {
@@ -90,22 +78,14 @@ public class Coord {
 		}
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;I)Ljava/lang/String;",
-		garbageValue = "-1765692684"
+		signature = "(Ljava/lang/String;S)Ljava/lang/String;",
+		garbageValue = "-17265"
 	)
 	@Export("toString")
 	String toString(String var1) {
 		return this.plane + var1 + (this.x >> 6) + var1 + (this.y >> 6) + var1 + (this.x & 63) + var1 + (this.y & 63);
-	}
-
-	public boolean equals(Object var1) {
-		if (this == var1) {
-			return true;
-		} else {
-			return !(var1 instanceof Coord) ? false : this.equalsCoord((Coord)var1);
-		}
 	}
 
 	public int hashCode() {
@@ -116,57 +96,89 @@ public class Coord {
 		return this.toString(",");
 	}
 
-	public String abf() {
-		return this.toString(",");
-	}
-
-	@ObfuscatedName("t")
-	@ObfuscatedSignature(
-		signature = "(IB)Lih;",
-		garbageValue = "-87"
-	)
-	@Export("getEnum")
-	public static EnumDefinition getEnum(int var0) {
-		EnumDefinition var1 = (EnumDefinition)EnumDefinition.EnumDefinition_cached.get((long)var0);
-		if (var1 != null) {
-			return var1;
+	public boolean equals(Object var1) {
+		if (this == var1) {
+			return true;
 		} else {
-			byte[] var2 = EnumDefinition.EnumDefinition_archive.takeFile(8, var0);
-			var1 = new EnumDefinition();
-			if (var2 != null) {
-				var1.decode(new Buffer(var2));
-			}
-
-			EnumDefinition.EnumDefinition_cached.put(var1, (long)var0);
-			return var1;
+			return !(var1 instanceof Coord) ? false : this.equalsCoord((Coord)var1);
 		}
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("am")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-1708484762"
+		signature = "([BB)[B",
+		garbageValue = "113"
 	)
-	static void method4091() {
-		if (Login.field1188) {
-			NPC.titleboxSprite = null;
-			UserComparator9.titlebuttonSprite = null;
-			class208.runesSprite = null;
-			Login.leftTitleSprite = null;
-			FontName.rightTitleSprite = null;
-			Tiles.logoSprite = null;
-			Decimator.title_muteSprite = null;
-			UserComparator8.options_buttons_0Sprite = null;
-			Login.options_buttons_2Sprite = null;
-			GrandExchangeEvent.worldSelectBackSprites = null;
-			JagexCache.worldSelectFlagSprites = null;
-			StudioGame.worldSelectArrows = null;
-			Interpreter.worldSelectStars = null;
-			Message.field587 = null;
-			Login.loginScreenRunesAnimation.method1908();
-			class80.method2147(2);
-			UrlRequester.method3381(true);
-			Login.field1188 = false;
+	@Export("decompressBytes")
+	static final byte[] decompressBytes(byte[] var0) {
+		Buffer var1 = new Buffer(var0);
+		int var2 = var1.readUnsignedByte();
+		int var3 = var1.readInt();
+		if (var3 < 0 || AbstractArchive.field3177 != 0 && var3 > AbstractArchive.field3177) {
+			throw new RuntimeException();
+		} else if (var2 == 0) {
+			byte[] var4 = new byte[var3];
+			var1.readBytes(var4, 0, var3);
+			return var4;
+		} else {
+			int var6 = var1.readInt();
+			if (var6 >= 0 && (AbstractArchive.field3177 == 0 || var6 <= AbstractArchive.field3177)) {
+				byte[] var5 = new byte[var6];
+				if (var2 == 1) {
+					BZip2Decompressor.BZip2Decompressor_decompress(var5, var6, var0, var3, 9);
+				} else {
+					AbstractArchive.gzipDecompressor.decompress(var1, var5);
+				}
+
+				return var5;
+			} else {
+				throw new RuntimeException();
+			}
 		}
+	}
+
+	@ObfuscatedName("iy")
+	@ObfuscatedSignature(
+		signature = "(Lhd;IIIIIIB)V",
+		garbageValue = "-69"
+	)
+	static final void method4135(Widget var0, int var1, int var2, int var3, int var4, int var5, int var6) {
+		if (Client.field740) {
+			Client.alternativeScrollbarWidth = 32;
+		} else {
+			Client.alternativeScrollbarWidth = 0;
+		}
+
+		Client.field740 = false;
+		int var7;
+		if (MouseHandler.MouseHandler_currentButton == 1 || !ArchiveLoader.mouseCam && MouseHandler.MouseHandler_currentButton == 4) {
+			if (var5 >= var1 && var5 < var1 + 16 && var6 >= var2 && var6 < var2 + 16) {
+				var0.scrollY -= 4;
+				class234.invalidateWidget(var0);
+			} else if (var5 >= var1 && var5 < var1 + 16 && var6 >= var3 + var2 - 16 && var6 < var3 + var2) {
+				var0.scrollY += 4;
+				class234.invalidateWidget(var0);
+			} else if (var5 >= var1 - Client.alternativeScrollbarWidth && var5 < Client.alternativeScrollbarWidth + var1 + 16 && var6 >= var2 + 16 && var6 < var3 + var2 - 16) {
+				var7 = var3 * (var3 - 32) / var4;
+				if (var7 < 8) {
+					var7 = 8;
+				}
+
+				int var8 = var6 - var2 - 16 - var7 / 2;
+				int var9 = var3 - 32 - var7;
+				var0.scrollY = var8 * (var4 - var3) / var9;
+				class234.invalidateWidget(var0);
+				Client.field740 = true;
+			}
+		}
+
+		if (Client.mouseWheelRotation != 0) {
+			var7 = var0.width;
+			if (var5 >= var1 - var7 && var6 >= var2 && var5 < var1 + 16 && var6 <= var3 + var2) {
+				var0.scrollY += Client.mouseWheelRotation * 45;
+				class234.invalidateWidget(var0);
+			}
+		}
+
 	}
 }

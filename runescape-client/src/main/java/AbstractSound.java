@@ -2,10 +2,10 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 
-@ObfuscatedName("dg")
+@ObfuscatedName("dy")
 @Implements("AbstractSound")
 public abstract class AbstractSound extends Node {
-	@ObfuscatedName("l")
+	@ObfuscatedName("g")
 	@Export("position")
 	int position;
 

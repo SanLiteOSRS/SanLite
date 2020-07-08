@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2019, Siraz, Jajack
+ * Copyright (c) 2019, Siraz <https://github.com/Sirazzz>
+ * Copyright (c) 2019, Jajack
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -43,6 +44,28 @@ public interface SpellEffectTimersConfig extends Config
 	default boolean showFreezeTimersOverlay()
 	{
 		return true;
+	}
+
+	@ConfigItem(
+			position = 0,
+			keyName = "showFreezeTimersOnNpcs",
+			name = "Show freeze timers on NPC's",
+			description = "Configures if the freeze timer is shown on NPC's"
+	)
+	default boolean showFreezeTimersOnNpcs()
+	{
+		return false;
+	}
+
+	@ConfigItem(
+			position = 0,
+			keyName = "showFreezeTimerOnOwnPlayer",
+			name = "Show freeze timers on self",
+			description = "Configures if the freeze timer is shown on your own player character"
+	)
+	default boolean showFreezeTimerOnOwnPlayer()
+	{
+		return false;
 	}
 
 	@ConfigItem(

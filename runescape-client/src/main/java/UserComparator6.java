@@ -3,16 +3,19 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fi")
+@ObfuscatedName("fo")
 @Implements("UserComparator6")
 public class UserComparator6 extends AbstractUserComparator {
-	@ObfuscatedName("k")
+	@ObfuscatedName("u")
+	@Export("Widget_loadedInterfaces")
+	static boolean[] Widget_loadedInterfaces;
+	@ObfuscatedName("gp")
 	@ObfuscatedSignature(
-		signature = "Lho;"
+		signature = "[Llh;"
 	)
-	@Export("NetCache_currentResponse")
-	public static NetFileRequest NetCache_currentResponse;
-	@ObfuscatedName("a")
+	@Export("mapSceneSprites")
+	static IndexedSprite[] mapSceneSprites;
+	@ObfuscatedName("m")
 	@Export("reversed")
 	final boolean reversed;
 
@@ -20,10 +23,10 @@ public class UserComparator6 extends AbstractUserComparator {
 		this.reversed = var1;
 	}
 
-	@ObfuscatedName("a")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		signature = "(Ljx;Ljx;B)I",
-		garbageValue = "67"
+		signature = "(Lkx;Lkx;S)I",
+		garbageValue = "2600"
 	)
 	@Export("compareBuddy")
 	int compareBuddy(Buddy var1, Buddy var2) {
@@ -38,13 +41,30 @@ public class UserComparator6 extends AbstractUserComparator {
 		return this.compareBuddy((Buddy)var1, (Buddy)var2);
 	}
 
-	@ObfuscatedName("bx")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;I)I",
-		garbageValue = "-1769639463"
+		signature = "(IIB)I",
+		garbageValue = "-59"
 	)
-	@Export("stringCp1252NullTerminatedByteSize")
-	public static int stringCp1252NullTerminatedByteSize(String var0) {
-		return var0.length() + 1;
+	@Export("ItemContainer_getCount")
+	static int ItemContainer_getCount(int var0, int var1) {
+		ItemContainer var2 = (ItemContainer)ItemContainer.itemContainers.get((long)var0);
+		if (var2 == null) {
+			return 0;
+		} else {
+			return var1 >= 0 && var1 < var2.quantities.length ? var2.quantities[var1] : 0;
+		}
+	}
+
+	@ObfuscatedName("gf")
+	@ObfuscatedSignature(
+		signature = "(B)V",
+		garbageValue = "0"
+	)
+	static void method3564() {
+		if (Client.renderSelf) {
+			class9.addPlayerToScene(class60.localPlayer, false);
+		}
+
 	}
 }

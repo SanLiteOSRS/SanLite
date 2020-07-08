@@ -4,12 +4,12 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fn")
+@ObfuscatedName("fs")
 @Implements("NanoClock")
 public class NanoClock extends Clock {
-	@ObfuscatedName("a")
+	@ObfuscatedName("m")
 	@ObfuscatedGetter(
-		longValue = 3388451480976067985L
+		longValue = -6841910125641657071L
 	)
 	@Export("lastTimeNano")
 	long lastTimeNano;
@@ -18,41 +18,50 @@ public class NanoClock extends Clock {
 		this.lastTimeNano = System.nanoTime();
 	}
 
-	@ObfuscatedName("a")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "1605126906"
+		garbageValue = "-1017447827"
 	)
 	@Export("mark")
 	public void mark() {
 		this.lastTimeNano = System.nanoTime();
 	}
 
-	@ObfuscatedName("t")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
 		signature = "(III)I",
-		garbageValue = "432238723"
+		garbageValue = "-1786752641"
 	)
 	@Export("wait")
 	public int wait(int var1, int var2) {
-		long var3 = 1000000L * (long)var2;
+		long var3 = (long)var2 * 1000000L;
 		long var5 = this.lastTimeNano - System.nanoTime();
 		if (var5 < var3) {
 			var5 = var3;
 		}
 
-		ClanChat.method5311(var5 / 1000000L);
-		long var7 = System.nanoTime();
-
-		int var9;
-		for (var9 = 0; var9 < 10 && (var9 < 1 || this.lastTimeNano < var7); this.lastTimeNano += 1000000L * (long)var1) {
-			++var9;
+		long var7 = var5 / 1000000L;
+		if (var7 > 0L) {
+			if (0L == var7 % 10L) {
+				SpriteMask.method4111(var7 - 1L);
+				SpriteMask.method4111(1L);
+			} else {
+				SpriteMask.method4111(var7);
+			}
 		}
 
-		if (this.lastTimeNano < var7) {
-			this.lastTimeNano = var7;
+		long var9 = System.nanoTime();
+
+		int var11;
+		for (var11 = 0; var11 < 10 && (var11 < 1 || this.lastTimeNano < var9); this.lastTimeNano += (long)var1 * 1000000L) {
+			++var11;
 		}
 
-		return var9;
+		if (this.lastTimeNano < var9) {
+			this.lastTimeNano = var9;
+		}
+
+		return var11;
 	}
 }

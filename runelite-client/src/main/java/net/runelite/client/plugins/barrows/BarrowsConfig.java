@@ -37,11 +37,11 @@ public interface BarrowsConfig extends Config
 		name = "Show Minimap in tunnels",
 		description = "Configures whether or not the minimap is displayed",
 		position = 0,
-		group = "Use at own risk"
+		warning = "This is a use at own risk option, do you still want toggle this option?"
 	)
 	default boolean showMinimap()
 	{
-		return true;
+		return false;
 	}
 
 	@ConfigItem(

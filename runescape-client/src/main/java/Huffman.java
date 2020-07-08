@@ -1,24 +1,25 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("hx")
+@ObfuscatedName("he")
 @Implements("Huffman")
 public class Huffman {
-	@ObfuscatedName("as")
-	@ObfuscatedGetter(
-		intValue = 821038913
+	@ObfuscatedName("g")
+	@ObfuscatedSignature(
+		signature = "Lic;"
 	)
-	static int field2491;
-	@ObfuscatedName("a")
+	@Export("musicTrackArchive")
+	public static AbstractArchive musicTrackArchive;
+	@ObfuscatedName("m")
 	@Export("masks")
 	int[] masks;
-	@ObfuscatedName("t")
+	@ObfuscatedName("o")
 	@Export("bits")
 	byte[] bits;
-	@ObfuscatedName("n")
+	@ObfuscatedName("q")
 	@Export("keys")
 	int[] keys;
 
@@ -105,10 +106,10 @@ public class Huffman {
 
 	}
 
-	@ObfuscatedName("a")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		signature = "([BII[BIB)I",
-		garbageValue = "14"
+		signature = "([BII[BII)I",
+		garbageValue = "1506774655"
 	)
 	@Export("compress")
 	int compress(byte[] var1, int var2, int var3, byte[] var4, int var5) {
@@ -126,7 +127,7 @@ public class Huffman {
 			int var11 = var7 >> 3;
 			int var12 = var7 & 7;
 			var6 &= -var12 >> 31;
-			int var13 = (var10 + var12 - 1 >> 3) + var11;
+			int var13 = (var12 + var10 - 1 >> 3) + var11;
 			var12 += 24;
 			var4[var11] = (byte)(var6 |= var9 >>> var12);
 			if (var11 < var13) {
@@ -156,10 +157,10 @@ public class Huffman {
 		return (var7 + 7 >> 3) - var5;
 	}
 
-	@ObfuscatedName("t")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "([BI[BIIB)I",
-		garbageValue = "-1"
+		signature = "([BI[BIII)I",
+		garbageValue = "-417422425"
 	)
 	@Export("decompress")
 	int decompress(byte[] var1, int var2, byte[] var3, int var4, int var5) {
@@ -300,25 +301,33 @@ public class Huffman {
 		}
 	}
 
-	@ObfuscatedName("a")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		signature = "([I[II)V",
-		garbageValue = "1107408934"
+		signature = "(ILcs;ZI)I",
+		garbageValue = "-2030952139"
 	)
-	public static void method4052(int[] var0, int[] var1) {
-		if (var0 != null && var1 != null) {
-			ByteArrayPool.ByteArrayPool_alternativeSizes = var0;
-			class222.ByteArrayPool_altSizeArrayCounts = new int[var0.length];
-			HorizontalAlignment.ByteArrayPool_arrays = new byte[var0.length][][];
-
-			for (int var2 = 0; var2 < ByteArrayPool.ByteArrayPool_alternativeSizes.length; ++var2) {
-				HorizontalAlignment.ByteArrayPool_arrays[var2] = new byte[var1[var2]][];
-			}
-
+	static int method4099(int var0, Script var1, boolean var2) {
+		Widget var3 = WorldMapSprite.getWidget(Interpreter.Interpreter_intStack[--UrlRequester.Interpreter_intStackSize]);
+		if (var0 == ScriptOpcodes.IF_GETX) {
+			Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = var3.x;
+			return 1;
+		} else if (var0 == ScriptOpcodes.IF_GETY) {
+			Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = var3.y;
+			return 1;
+		} else if (var0 == ScriptOpcodes.IF_GETWIDTH) {
+			Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = var3.width;
+			return 1;
+		} else if (var0 == ScriptOpcodes.IF_GETHEIGHT) {
+			Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = var3.height;
+			return 1;
+		} else if (var0 == ScriptOpcodes.IF_GETHIDE) {
+			Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = var3.isHidden ? 1 : 0;
+			return 1;
+		} else if (var0 == ScriptOpcodes.IF_GETLAYER) {
+			Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = var3.parentId;
+			return 1;
 		} else {
-			ByteArrayPool.ByteArrayPool_alternativeSizes = null;
-			class222.ByteArrayPool_altSizeArrayCounts = null;
-			HorizontalAlignment.ByteArrayPool_arrays = null;
+			return 2;
 		}
 	}
 }

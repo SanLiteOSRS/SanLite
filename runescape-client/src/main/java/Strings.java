@@ -1,25 +1,25 @@
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 
-@ObfuscatedName("hm")
+@ObfuscatedName("hc")
 @Implements("Strings")
 public class Strings {
-	@ObfuscatedName("bd")
-	public static String field2797;
-	@ObfuscatedName("cb")
-	public static String field3006;
-	@ObfuscatedName("jw")
-	public static String field2894;
-	@ObfuscatedName("jt")
-	public static String field3013;
+	@ObfuscatedName("be")
+	public static String field2845;
+	@ObfuscatedName("ca")
+	public static String field2856;
+	@ObfuscatedName("jx")
+	public static String field3060;
+	@ObfuscatedName("jp")
+	public static String field3061;
 	@ObfuscatedName("jn")
-	public static String field3014;
+	public static String field3062;
 
 	static {
-		field2797 = "Please visit the support page for assistance.";
-		field3006 = "Please visit the support page for assistance.";
-		field2894 = "";
-		field3013 = "Page has opened in a new window.";
-		field3014 = "(Please check your popup blocker.)";
+		field2845 = "Please visit the support page for assistance.";
+		field2856 = "Please visit the support page for assistance.";
+		field3060 = "";
+		field3061 = "Page has opened in a new window.";
+		field3062 = "(Please check your popup blocker.)";
 	}
 }

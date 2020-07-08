@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2019, Siraz
+ * Copyright (c) 2019, Siraz <https://github.com/Sirazzz>
+ * Copyright (c) 2019, Jajack
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -25,9 +26,7 @@
 package net.runelite.client.plugins.theatreofblood;
 
 import net.runelite.api.Client;
-import net.runelite.client.plugins.theatreofblood.encounters.Nylocas;
-import net.runelite.client.plugins.theatreofblood.encounters.PestilentBloat;
-import net.runelite.client.plugins.theatreofblood.encounters.Sotetseg;
+import net.runelite.client.plugins.theatreofblood.encounters.*;
 import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayPosition;
 import net.runelite.client.ui.overlay.components.LineComponent;
@@ -69,6 +68,11 @@ public class TheatreOfBloodDebugOverlay extends Overlay
 					.build());
 
 			panelComponent.getChildren().add(LineComponent.builder()
+					.left("Client Tick")
+					.right("" + client.getGameCycle())
+					.build());
+
+			panelComponent.getChildren().add(LineComponent.builder()
 					.left("Current encounter")
 					.right("" + plugin.getCurrentEncounter().getEncounter())
 					.build());
@@ -105,6 +109,14 @@ public class TheatreOfBloodDebugOverlay extends Overlay
 							.left("Remaining sleep client ticks")
 							.right("" + pestilentBloat.getRemainingSleepClientTicks())
 							.build());
+					panelComponent.getChildren().add(LineComponent.builder()
+							.left("Number of falling hand cycles")
+							.right("" + pestilentBloat.getHandFallCycleCount())
+							.build());
+					panelComponent.getChildren().add(LineComponent.builder()
+							.left("Last hand fall size")
+							.right("" + pestilentBloat.getLastHandFallSize())
+							.build());
 					break;
 				case NYLOCAS:
 					Nylocas nylocas = (Nylocas) plugin.getCurrentEncounter();
@@ -126,6 +138,72 @@ public class TheatreOfBloodDebugOverlay extends Overlay
 					panelComponent.getChildren().add(LineComponent.builder()
 							.left("Number of active red maze tiles")
 							.right(sotetseg.getActiveMazeTiles() != null ? "" + sotetseg.getActiveMazeTiles().size() : "null")
+							.build());
+					break;
+				case XARPUS:
+					Xarpus xarpus = (Xarpus) plugin.getCurrentEncounter();
+					panelComponent.getChildren().add(LineComponent.builder()
+							.left("Is staring")
+							.right("" + xarpus.getIsStaring())
+							.build());
+					panelComponent.getChildren().add(LineComponent.builder()
+							.left("Last turn")
+							.right("" + xarpus.getLastTurnTime())
+							.build());
+					panelComponent.getChildren().add(LineComponent.builder()
+							.left("Next turn")
+							.right("" + xarpus.getNextTurnTime())
+							.build());
+					panelComponent.getChildren().add(LineComponent.builder()
+							.left("Remaining time")
+							.right("" + xarpus.getRemainingTurnTime())
+							.build());
+					break;
+				case VERZIK_VITUR:
+					Verzik verzik = (Verzik) plugin.getCurrentEncounter();
+					panelComponent.getChildren().add(LineComponent.builder()
+							.left("Spot Animation ID")
+							.right("" + verzik.getNpc().getGraphic())
+							.build());
+					panelComponent.getChildren().add(LineComponent.builder()
+							.left("Animation ID")
+							.right("" + verzik.getNpc().getAnimation())
+							.build());
+					panelComponent.getChildren().add(LineComponent.builder()
+							.left("Overhead Text")
+							.right("" + verzik.getNpc().getOverheadText())
+							.build());
+					panelComponent.getChildren().add(LineComponent.builder()
+							.left("Attack Count")
+							.right("" + verzik.getAttackCount())
+							.build());
+					panelComponent.getChildren().add(LineComponent.builder()
+							.left("Phase")
+							.right("" + verzik.getVerzikPhase())
+							.build());
+					panelComponent.getChildren().add(LineComponent.builder()
+							.left("Phase Last Attack")
+							.right("" + verzik.getPhaseLastAttack())
+							.build());
+					panelComponent.getChildren().add(LineComponent.builder()
+							.left("Phase Next Attack")
+							.right("" + verzik.getPhaseNextAttack())
+							.build());
+					panelComponent.getChildren().add(LineComponent.builder()
+							.left("Phase Time till next Attack")
+							.right("" + verzik.getPhaseTimeTillNextAttack())
+							.build());
+					panelComponent.getChildren().add(LineComponent.builder()
+							.left("Phase Start Time")
+							.right("" + verzik.getPhaseStartTime())
+							.build());
+					panelComponent.getChildren().add(LineComponent.builder()
+							.left("Attack Count:")
+							.right("" + verzik.getAttackCount())
+							.build());
+					panelComponent.getChildren().add(LineComponent.builder()
+							.left("Nylocas crab counter:")
+							.right("" + verzik.getNylocas().size())
 							.build());
 			}
 

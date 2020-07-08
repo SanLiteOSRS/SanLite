@@ -37,7 +37,25 @@ import java.awt.geom.Rectangle2D;
 import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Singleton;
-import net.runelite.api.*;
+import net.runelite.api.Actor;
+import net.runelite.api.Client;
+import net.runelite.api.Constants;
+import net.runelite.api.DecorativeObject;
+import net.runelite.api.GameObject;
+import net.runelite.api.GraphicsObject;
+import net.runelite.api.TileItem;
+import net.runelite.api.GroundObject;
+import net.runelite.api.ItemLayer;
+import net.runelite.api.NPC;
+import net.runelite.api.NPCComposition;
+import net.runelite.api.Node;
+import net.runelite.api.Perspective;
+import net.runelite.api.Player;
+import net.runelite.api.Point;
+import net.runelite.api.Projectile;
+import net.runelite.api.Scene;
+import net.runelite.api.Tile;
+import net.runelite.api.WallObject;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.widgets.Widget;
 import net.runelite.api.widgets.WidgetInfo;
@@ -129,12 +147,12 @@ class DevToolsOverlay extends Overlay
 		{
 			if (p != local)
 			{
-				String text = p.getName() + " (A: " + p.getAnimation() + ") (G: " + p.getSpotAnimation()  + ")" + "(GF:" + p.getSpotAnimationFrame() + ")";
+				String text = p.getName() + " (A: " + p.getAnimation() + ") (P: " + p.getPoseAnimation() + ") (G: " + p.getGraphic()  + ") (GF:" + p.getSpotAnimFrame() + ")";
 				OverlayUtil.renderActorOverlay(graphics, p, text, BLUE);
 			}
 		}
 
-		String text = local.getName() + " (A: " + local.getAnimation() + ") (G: " + local.getSpotAnimation() + ")" + "(GF:" + local.getSpotAnimationFrame() + ")";
+		String text = local.getName() + " (A: " + local.getAnimation() + ") (P: " + local.getPoseAnimation() + ") (G: " + local.getGraphic() + ") (GF:" + local.getSpotAnimFrame() + ")";
 		OverlayUtil.renderActorOverlay(graphics, local, text, CYAN);
 		renderPlayerWireframe(graphics, local, CYAN);
 	}
@@ -144,11 +162,11 @@ class DevToolsOverlay extends Overlay
 		List<NPC> npcs = client.getNpcs();
 		for (NPC npc : npcs)
 		{
-			NPCDefinition composition = npc.getDefinition();
+			NPCComposition composition = npc.getComposition();
 			Color color = composition.getCombatLevel() > 1 ? YELLOW : ORANGE;
 			if (composition.getConfigs() != null)
 			{
-				NPCDefinition transformedComposition = composition.transform();
+				NPCComposition transformedComposition = composition.transform();
 				if (transformedComposition == null)
 				{
 					color = GRAY;
@@ -159,13 +177,9 @@ class DevToolsOverlay extends Overlay
 				}
 			}
 
-			String text = String.format("%s (ID: %d) (A: %d) (G: %d) (GF: %d)",
-				composition.getName(),
-				composition.getId(),
-				npc.getAnimation(),
-				npc.getSpotAnimation(),
-				npc.getSpotAnimationFrame());
-
+			String text = composition.getName() + " (ID:" + composition.getId() + ")" +
+				" (A: " + npc.getAnimation() + ") (P: " + npc.getPoseAnimation() + ") (G: " + npc.getGraphic() +
+					") (GF:" + npc.getSpotAnimFrame() + ")";
 			OverlayUtil.renderActorOverlay(graphics, npc, text, color);
 		}
 	}
@@ -239,7 +253,7 @@ class DevToolsOverlay extends Overlay
 
 	private void renderGroundItems(Graphics2D graphics, Tile tile, Player player)
 	{
-		TileItemPile itemLayer = tile.getItemLayer();
+		ItemLayer itemLayer = tile.getItemLayer();
 		if (itemLayer != null)
 		{
 			if (player.getLocalLocation().distanceTo(itemLayer.getLocalLocation()) <= MAX_DISTANCE)
@@ -364,15 +378,46 @@ class DevToolsOverlay extends Overlay
 
 		for (Projectile projectile : projectiles)
 		{
-			int projectileId = projectile.getId();
-			String text = "(ID: " + projectileId + ")";
-			int x = (int) projectile.getX();
-			int y = (int) projectile.getY();
-			LocalPoint projectilePoint = new LocalPoint(x, y);
-			Point textLocation = Perspective.getCanvasTextLocation(client, graphics, projectilePoint, text, 0);
-			if (textLocation != null)
+			int originX = projectile.getX1();
+			int originY = projectile.getY1();
+
+			LocalPoint tilePoint = new LocalPoint(originX, originY);
+			Polygon poly = Perspective.getCanvasTilePoly(client, tilePoint);
+
+			if (poly != null)
 			{
-				OverlayUtil.renderTextLocation(graphics, textLocation, text, Color.RED);
+				OverlayUtil.renderPolygon(graphics, poly, Color.RED);
+			}
+
+			int projectileId = projectile.getId();
+			Actor projectileInteracting = projectile.getInteracting();
+
+			String infoString = "";
+
+			if (projectileInteracting == null)
+			{
+				infoString += "AoE";
+			}
+			else
+			{
+				infoString += "Targeted (T: " + projectileInteracting.getName() + ")";
+			}
+
+			infoString += " (ID: " + projectileId + ")";
+
+			if (projectileInteracting != null)
+			{
+				OverlayUtil.renderActorOverlay(graphics, projectile.getInteracting(), infoString, Color.RED);
+			}
+			else
+			{
+				LocalPoint projectilePoint = new LocalPoint((int) projectile.getX(), (int) projectile.getY());
+				Point textLocation = Perspective.getCanvasTextLocation(client, graphics, projectilePoint, infoString, 0);
+
+				if (textLocation != null)
+				{
+					OverlayUtil.renderTextLocation(graphics, textLocation, infoString, Color.RED);
+				}
 			}
 		}
 	}

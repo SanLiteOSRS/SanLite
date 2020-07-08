@@ -4,30 +4,30 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("lp")
+@ObfuscatedName("ml")
 @Implements("WorldMapArchiveLoader")
 public class WorldMapArchiveLoader {
-	@ObfuscatedName("v")
+	@ObfuscatedName("p")
 	@Export("cacheName")
 	String cacheName;
-	@ObfuscatedName("l")
+	@ObfuscatedName("g")
 	@ObfuscatedSignature(
-		signature = "Lhq;"
+		signature = "Lic;"
 	)
 	@Export("archive")
 	AbstractArchive archive;
-	@ObfuscatedName("c")
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = -1799315399
+		intValue = 1583552183
 	)
 	@Export("percentLoaded")
 	int percentLoaded;
-	@ObfuscatedName("o")
+	@ObfuscatedName("u")
 	@Export("loaded")
 	boolean loaded;
 
 	@ObfuscatedSignature(
-		signature = "(Lhq;)V"
+		signature = "(Lic;)V"
 	)
 	WorldMapArchiveLoader(AbstractArchive var1) {
 		this.percentLoaded = 0;
@@ -35,10 +35,10 @@ public class WorldMapArchiveLoader {
 		this.archive = var1;
 	}
 
-	@ObfuscatedName("a")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
 		signature = "(Ljava/lang/String;I)V",
-		garbageValue = "926060886"
+		garbageValue = "796588704"
 	)
 	@Export("reset")
 	void reset(String var1) {
@@ -52,15 +52,15 @@ public class WorldMapArchiveLoader {
 		}
 	}
 
-	@ObfuscatedName("t")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
 		signature = "(I)I",
-		garbageValue = "-910181849"
+		garbageValue = "-1901724660"
 	)
 	@Export("load")
 	int load() {
 		if (this.percentLoaded < 33) {
-			if (!this.archive.tryLoadFileByNames(WorldMapCacheName.field289.name, this.cacheName)) {
+			if (!this.archive.tryLoadFileByNames(WorldMapCacheName.field325.name, this.cacheName)) {
 				return this.percentLoaded;
 			}
 
@@ -68,7 +68,7 @@ public class WorldMapArchiveLoader {
 		}
 
 		if (this.percentLoaded == 33) {
-			if (this.archive.isValidFileName(WorldMapCacheName.field290.name, this.cacheName) && !this.archive.tryLoadFileByNames(WorldMapCacheName.field290.name, this.cacheName)) {
+			if (this.archive.isValidFileName(WorldMapCacheName.field324.name, this.cacheName) && !this.archive.tryLoadFileByNames(WorldMapCacheName.field324.name, this.cacheName)) {
 				return this.percentLoaded;
 			}
 
@@ -76,7 +76,7 @@ public class WorldMapArchiveLoader {
 		}
 
 		if (this.percentLoaded == 66) {
-			if (!this.archive.tryLoadFileByNames(this.cacheName, WorldMapCacheName.field292.name)) {
+			if (!this.archive.tryLoadFileByNames(this.cacheName, WorldMapCacheName.field326.name)) {
 				return this.percentLoaded;
 			}
 
@@ -87,20 +87,20 @@ public class WorldMapArchiveLoader {
 		return this.percentLoaded;
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		signature = "(B)Z",
-		garbageValue = "71"
+		signature = "(I)Z",
+		garbageValue = "-1377768408"
 	)
 	@Export("isLoaded")
 	boolean isLoaded() {
 		return this.loaded;
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
-		signature = "(B)I",
-		garbageValue = "25"
+		signature = "(I)I",
+		garbageValue = "-1099667221"
 	)
 	@Export("getPercentLoaded")
 	int getPercentLoaded() {

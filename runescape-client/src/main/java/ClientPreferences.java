@@ -7,34 +7,46 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bw")
+@ObfuscatedName("cz")
 @Implements("ClientPreferences")
 public class ClientPreferences {
-	@ObfuscatedName("a")
+	@ObfuscatedName("pv")
+	@ObfuscatedSignature(
+		signature = "Lkk;"
+	)
+	@Export("clanChat")
+	static FriendsChatManager clanChat;
+	@ObfuscatedName("m")
 	@ObfuscatedGetter(
-		intValue = 1383703517
+		intValue = -833768267
 	)
 	@Export("ClientPreferences_optionCount")
 	static int ClientPreferences_optionCount;
-	@ObfuscatedName("n")
+	@ObfuscatedName("bp")
+	@ObfuscatedSignature(
+		signature = "Llh;"
+	)
+	@Export("worldSelectRightSprite")
+	static IndexedSprite worldSelectRightSprite;
+	@ObfuscatedName("q")
 	@Export("roofsHidden")
 	boolean roofsHidden;
-	@ObfuscatedName("q")
+	@ObfuscatedName("j")
 	@Export("titleMusicDisabled")
 	boolean titleMusicDisabled;
-	@ObfuscatedName("v")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = 1268365417
+		intValue = -1665448065
 	)
 	@Export("windowMode")
 	int windowMode;
-	@ObfuscatedName("l")
+	@ObfuscatedName("g")
 	@Export("rememberedUsername")
 	String rememberedUsername;
-	@ObfuscatedName("c")
+	@ObfuscatedName("n")
 	@Export("hideUsername")
 	boolean hideUsername;
-	@ObfuscatedName("o")
+	@ObfuscatedName("u")
 	@Export("parameters")
 	LinkedHashMap parameters;
 
@@ -47,11 +59,11 @@ public class ClientPreferences {
 		this.rememberedUsername = null;
 		this.hideUsername = false;
 		this.parameters = new LinkedHashMap();
-		this.method1910(true);
+		this.method1911(true);
 	}
 
 	@ObfuscatedSignature(
-		signature = "(Lkc;)V"
+		signature = "(Lkn;)V"
 	)
 	ClientPreferences(Buffer var1) {
 		this.windowMode = 1;
@@ -91,26 +103,26 @@ public class ClientPreferences {
 					this.hideUsername = var1.readBoolean();
 				}
 			} else {
-				this.method1910(true);
+				this.method1911(true);
 			}
 		} else {
-			this.method1910(true);
+			this.method1911(true);
 		}
 
 	}
 
-	@ObfuscatedName("a")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
 		signature = "(ZI)V",
-		garbageValue = "271600309"
+		garbageValue = "-943142768"
 	)
-	void method1910(boolean var1) {
+	void method1911(boolean var1) {
 	}
 
-	@ObfuscatedName("t")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "(I)Lkc;",
-		garbageValue = "1659906273"
+		signature = "(S)Lkn;",
+		garbageValue = "128"
 	)
 	@Export("toBuffer")
 	Buffer toBuffer() {
@@ -133,13 +145,89 @@ public class ClientPreferences {
 		return var1;
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/CharSequence;I)I",
-		garbageValue = "1282610090"
+		signature = "(IIB)I",
+		garbageValue = "116"
 	)
-	@Export("parseInt")
-	public static int parseInt(CharSequence var0) {
-		return class192.parseIntCustomRadix(var0, 10, true);
+	static final int method1914(int var0, int var1) {
+		int var2 = var0 + var1 * 57;
+		var2 ^= var2 << 13;
+		int var3 = var2 * (var2 * var2 * 15731 + 789221) + 1376312589 & Integer.MAX_VALUE;
+		return var3 >> 19 & 255;
+	}
+
+	@ObfuscatedName("ed")
+	@ObfuscatedSignature(
+		signature = "(IB)V",
+		garbageValue = "-82"
+	)
+	@Export("updateGameState")
+	static void updateGameState(int var0) {
+		if (var0 != Client.gameState) {
+			if (Client.gameState == 0) {
+				WorldMapSectionType.client.method1017();
+			}
+
+			if (var0 == 20 || var0 == 40 || var0 == 45) {
+				Client.loginState = 0;
+				Client.field705 = 0;
+				Client.field706 = 0;
+				Client.timer.method5184(var0);
+				if (var0 != 20) {
+					SequenceDefinition.method4973(false);
+				}
+			}
+
+			if (var0 != 20 && var0 != 40 && class8.field35 != null) {
+				class8.field35.close();
+				class8.field35 = null;
+			}
+
+			if (Client.gameState == 25) {
+				Client.field809 = 0;
+				Client.field822 = 0;
+				Client.field759 = 1;
+				Client.field690 = 0;
+				Client.field729 = 1;
+			}
+
+			if (var0 != 5 && var0 != 10) {
+				if (var0 == 20) {
+					WorldMapRegion.method541(GraphicsObject.archive10, GrandExchangeEvent.archive8, true, Client.gameState == 11 ? 4 : 0);
+				} else if (var0 == 11) {
+					WorldMapRegion.method541(GraphicsObject.archive10, GrandExchangeEvent.archive8, false, 4);
+				} else if (GrandExchangeOfferAgeComparator.clearLoginScreen) {
+					HealthBar.titleboxSprite = null;
+					Fonts.titlebuttonSprite = null;
+					Login.runesSprite = null;
+					Login.leftTitleSprite = null;
+					ItemContainer.rightTitleSprite = null;
+					Login.logoSprite = null;
+					Decimator.title_muteSprite = null;
+					Login.options_buttons_0Sprite = null;
+					GameEngine.options_buttons_2Sprite = null;
+					class90.worldSelectBackSprites = null;
+					SpotAnimationDefinition.worldSelectFlagSprites = null;
+					GrandExchangeEvent.worldSelectArrows = null;
+					class228.worldSelectStars = null;
+					WorldMapIcon_1.field206 = null;
+					Login.loginScreenRunesAnimation.method1878();
+					class206.field2439 = 1;
+					Huffman.musicTrackArchive = null;
+					class206.musicTrackGroupId = -1;
+					MilliClock.musicTrackFileId = -1;
+					class206.musicTrackVolume = 0;
+					class336.musicTrackBoolean = false;
+					class206.field2442 = 2;
+					class41.method624(true);
+					GrandExchangeOfferAgeComparator.clearLoginScreen = false;
+				}
+			} else {
+				WorldMapRegion.method541(GraphicsObject.archive10, GrandExchangeEvent.archive8, true, 0);
+			}
+
+			Client.gameState = var0;
+		}
 	}
 }

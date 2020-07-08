@@ -1,32 +1,30 @@
 package net.runelite.injector.raw;
 
-import com.google.common.base.Stopwatch;
 import net.runelite.asm.attributes.code.Instruction;
 import net.runelite.asm.attributes.code.Instructions;
 import net.runelite.asm.attributes.code.instructions.InvokeStatic;
 import net.runelite.asm.attributes.code.instructions.InvokeVirtual;
 import net.runelite.asm.pool.Class;
-import net.runelite.asm.pool.Method;
 import net.runelite.asm.signature.Signature;
 import net.runelite.injector.Inject;
+import net.runelite.injector.InjectUtil;
 import net.runelite.injector.InjectionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static net.runelite.injector.InjectUtil.findMethod;
+import java.util.ListIterator;
 
 public class RenderDraw
 {
 	private static final Logger log = LoggerFactory.getLogger(RenderDraw.class);
-	private static final net.runelite.asm.pool.Method renderDraw = new net.runelite.asm.pool.Method(
-		new Class("net.runelite.client.callback.Hooks"),
-		"renderDraw",
-		new Signature("(Lnet/runelite/api/Entity;IIIIIIIIJ)V")
-	);
 	private final Inject inject;
+
+	private static final net.runelite.asm.pool.Method RENDER_DRAW = new net.runelite.asm.pool.Method(
+			new Class("net.runelite.client.callback.Hooks"),
+			"renderDraw",
+			new Signature("(Lnet/runelite/api/Renderable;IIIIIIIIJ)V")
+	);
+	private static final int EXPECTED_METHOD_CALLS = 21;
 
 	public RenderDraw(Inject inject)
 	{
@@ -35,55 +33,31 @@ public class RenderDraw
 
 	public void inject() throws InjectionException
 	{
-		Stopwatch stopwatch = Stopwatch.createStarted();
+		int replaced = 0;
 
-		net.runelite.asm.Method obmethod = findMethod(inject, "drawTile", "Scene");
-		Method renderDraw = findMethod(inject, "draw", "Entity").getPoolMethod();
+		/*
+		 * This class replaces entity draw invocation instructions
+		 * with the renderDraw method on draw callbacks
+		 */
+		final net.runelite.asm.pool.Method draw = InjectUtil.findMethod(inject, "draw", "Renderable").getPoolMethod();
+		final net.runelite.asm.Method drawTile = InjectUtil.findMethod(inject, "drawTile", "Scene");
 
-		Instructions ins = obmethod.getCode().getInstructions();
-		replace(ins, renderDraw);
-
-		log.info("RenderDraw took {}", stopwatch.toString());
-	}
-
-	private void replace(Instructions ins, net.runelite.asm.pool.Method meth) throws InjectionException
-	{
-		List<Instruction> insList = new ArrayList<>();
-		int count = 0;
-		for (Instruction i : ins.getInstructions())
+		Instructions instructions = drawTile.getCode().getInstructions();
+		for (ListIterator<Instruction> iterator = instructions.getInstructions().listIterator(); iterator.hasNext(); )
 		{
-			if (i instanceof InvokeVirtual)
+			Instruction instruction = iterator.next();
+			if (instruction instanceof InvokeVirtual)
 			{
-				if (((InvokeVirtual) i).getMethod().equals(meth))
+				if (((InvokeVirtual) instruction).getMethod().equals(draw))
 				{
-					int index = ins.getInstructions().indexOf(i);
-					count++;
-					log.debug("Found renderDraw at index {}, {} found.", index, count);
-
-					insList.add(i);
+					iterator.set(new InvokeStatic(instructions, RENDER_DRAW));
+					log.debug("Replaced method call at {}", instruction);
+					++replaced;
 				}
 			}
 		}
 
-		if (count != 21)
-		{
-			log.warn("Found {} draws while 21 were expected. There might've been a revision update", count);
-		}
-		else
-		{
-			log.info("RenderDraw replaced {} method calls", count);
-		}
-
-		if (count < 21)
-		{
-			throw new InjectionException("Not all renderDraws were found");
-		}
-
-
-		for (Instruction i : insList)
-		{
-			Instruction invoke = new InvokeStatic(ins, renderDraw);
-			ins.replace(i, invoke);
-		}
+		if (replaced != EXPECTED_METHOD_CALLS)
+			throw new InjectionException("[RenderDraw] Did not replace the expected amount of method calls");
 	}
 }

@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2019, Siraz
+ * Copyright (c) 2019, Siraz <https://github.com/Sirazzz>
+ * Copyright (c) 2019, Jajack
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -33,13 +34,20 @@ import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayLayer;
 import net.runelite.client.ui.overlay.OverlayPosition;
 import net.runelite.client.ui.overlay.OverlayUtil;
+import net.runelite.client.util.ImageUtil;
+import net.runelite.client.util.TickUtil;
 
 import javax.inject.Inject;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.List;
 
 @Slf4j
 public class TheatreOfBloodOverlay extends Overlay
 {
+	private static final int VERZIK_ATTACK_TIMER_IMAGE_HEIGHT_OFFSET = 15;
+	private static final int VERZIK_ATTACK_TIMER_TEXT_WIDTH_OFFSET = 4;
 
 	private Client client;
 	private TheatreOfBloodPlugin plugin;
@@ -92,10 +100,10 @@ public class TheatreOfBloodOverlay extends Overlay
 				}
 
 				// Sotetseg
-//				if (config.highlightSotetsegRedMazeTiles() && encounter.getEncounter() == TheatreOfBloodEncounters.SOTETSEG)
-//				{
-//					renderSotetsegMazeTiles(graphics, (Sotetseg) encounter);
-//				}
+				if (config.highlightSotetsegRedMazeTiles() && encounter.getEncounter() == TheatreOfBloodEncounters.SOTETSEG)
+				{
+					renderSotetsegMazeTiles(graphics, (Sotetseg) encounter);
+				}
 
 				// Xarpus
 				if (config.highlightXarpusPoisonAttackTiles() && encounter.getEncounter() == TheatreOfBloodEncounters.XARPUS)
@@ -108,16 +116,50 @@ public class TheatreOfBloodOverlay extends Overlay
 					renderXarpusHealingPoolTileObjects(graphics, (Xarpus) encounter);
 				}
 
+				if (config.displayXarpusTurnTimer() && encounter.getEncounter() == TheatreOfBloodEncounters.XARPUS)
+				{
+					renderXarpusTurnTimerText(graphics, (Xarpus) encounter);
+				}
+
 				// Verzik Vitur
 				if (config.highlightVerzikGreenOrbPoolTiles() && encounter.getEncounter() == TheatreOfBloodEncounters.VERZIK_VITUR)
 				{
 					renderVerzikGreenOrbPoolAoeEffects(graphics, (Verzik) encounter);
 				}
+
+				if (config.displayVerzikP1AttackTimer() && encounter.getEncounter() == TheatreOfBloodEncounters.VERZIK_VITUR &&
+						encounter.castToVerzik().getVerzikPhase() == 1)
+				{
+					renderVerzikAttackTimerText(graphics, (Verzik) encounter);
+				}
+
+				if (config.displayVerzikP2AttackTimer() && encounter.getEncounter() == TheatreOfBloodEncounters.VERZIK_VITUR &&
+						encounter.castToVerzik().getVerzikPhase() == 2)
+				{
+					renderVerzikAttackTimerText(graphics, (Verzik) encounter);
+				}
+
+				if (config.displayVerzikP3AttackTimer() && encounter.getEncounter() == TheatreOfBloodEncounters.VERZIK_VITUR &&
+						encounter.castToVerzik().getVerzikPhase() >= 3)
+				{
+					renderVerzikAttackTimerText(graphics, (Verzik) encounter);
+				}
+
+				if (config.displayVerzikNylocasAggression() && encounter.getEncounter() == TheatreOfBloodEncounters.VERZIK_VITUR)
+				{
+					renderVerzikNylocasAggressionText(graphics, (Verzik) encounter);
+				}
 			}
+
 			// Nylocas - does not always have a boss npc
 			if (config.highlightAggressiveNylocas() && encounter.getEncounter() == TheatreOfBloodEncounters.NYLOCAS)
 			{
 				renderAggressiveNylocasHighlights(graphics, (Nylocas) encounter);
+			}
+
+			if (config.displayNylocasLifeTimerText() && encounter.getEncounter() == TheatreOfBloodEncounters.NYLOCAS)
+			{
+				renderNylocasLifeTimerText(graphics, (Nylocas) encounter);
 			}
 		}
 		return null;
@@ -188,6 +230,11 @@ public class TheatreOfBloodOverlay extends Overlay
 		{
 			color = config.getBloatAsleepColor();
 		}
+		else if (pestilentBloat.getHandFallCycleCount() == 7 || pestilentBloat.getHandFallCycleCount() == 8 ||
+				pestilentBloat.getHandFallCycleCount() > 15)
+		{
+			color = config.getBloatWarningColor();
+		}
 		else
 		{
 			color = config.getBloatAwakeColor();
@@ -202,8 +249,7 @@ public class TheatreOfBloodOverlay extends Overlay
 			return;
 		}
 
-		int remainingDuration = pestilentBloat.getRemainingSleepClientTicks() / 5;
-		String text = Math.abs(remainingDuration / 10) + "." + (Math.abs(remainingDuration) % 10);
+		String text = TickUtil.convertTimerFormat(pestilentBloat.getRemainingSleepClientTicks(), config.getTimerFormat());
 
 		Point textLocation = pestilentBloat.getNpc().getCanvasTextLocation(graphics, text, 0);
 		if (textLocation == null)
@@ -231,24 +277,49 @@ public class TheatreOfBloodOverlay extends Overlay
 		}
 	}
 
-//	private void renderSotetsegMazeTiles(Graphics2D graphics, Sotetseg sotetseg)
-//	{
-//		if (sotetseg.getActiveMazeTiles() == null)
-//		{
-//			return;
-//		}
-//
-//		for (GroundObject groundObject : sotetseg.getActiveMazeTiles())
-//		{
-//			LocalPoint localPoint = groundObject.getLocalLocation();
-//			Polygon polygon = Perspective.getCanvasTilePoly(client, localPoint);
-//
-//			if (polygon != null)
-//			{
-//				OverlayUtil.renderPolygon(graphics, polygon, config.getSotetsegMazeTileColor());
-//			}
-//		}
-//	}
+	private void renderNylocasLifeTimerText(Graphics2D graphics, Nylocas nylocas)
+	{
+		if (nylocas.getAliveNylocas() == null)
+		{
+			return;
+		}
+
+		for (NPC aliveNylocas : new ArrayList<>(nylocas.getAliveNylocas().keySet()))
+		{
+			if (nylocas.isNylocasAlmostExploding(aliveNylocas))
+			{
+				List<Integer> timers = nylocas.getAliveNylocas().get(aliveNylocas);
+				String text = TickUtil.convertTimerFormat(timers.get(2), config.getTimerFormat());
+
+				Point textLocation = aliveNylocas.getCanvasTextLocation(graphics, text, 0);
+				if (textLocation == null)
+				{
+					return;
+				}
+
+				OverlayUtil.renderTextLocation(graphics, textLocation, text, Color.WHITE);
+			}
+		}
+	}
+
+	private void renderSotetsegMazeTiles(Graphics2D graphics, Sotetseg sotetseg)
+	{
+		if (sotetseg.getActiveMazeTiles() == null)
+		{
+			return;
+		}
+
+		for (GroundObject groundObject : sotetseg.getActiveMazeTiles())
+		{
+			LocalPoint localPoint = groundObject.getLocalLocation();
+			Polygon polygon = Perspective.getCanvasTilePoly(client, localPoint);
+
+			if (polygon != null)
+			{
+				OverlayUtil.renderPolygon(graphics, polygon, config.getSotetsegMazeTileColor());
+			}
+		}
+	}
 
 	private void renderXarpusPoisonTileObjects(Graphics2D graphics, Xarpus xarpus)
 	{
@@ -284,6 +355,44 @@ public class TheatreOfBloodOverlay extends Overlay
 		}
 	}
 
+	private void renderXarpusTurnTimerText(Graphics2D graphics, Xarpus xarpus)
+	{
+		if (xarpus.getRemainingTurnTime() <= 0)
+		{
+			return;
+		}
+
+		String text = TickUtil.convertTimerFormat(xarpus.getRemainingTurnTime(), config.getTimerFormat());
+
+		Point textLocation = xarpus.getNpc().getCanvasTextLocation(graphics, text, 0);
+		if (textLocation == null)
+		{
+			return;
+		}
+
+		OverlayUtil.renderTextLocation(graphics, textLocation, text, Color.WHITE);
+	}
+
+	private void renderVerzikAttackTimerText(Graphics2D graphics, Verzik verzik)
+	{
+		if (verzik.getPhaseTimeTillNextAttack() < 0)
+		{
+			return;
+		}
+
+		String text = TickUtil.convertTimerFormat(verzik.getPhaseTimeTillNextAttack(), config.getTimerFormat());
+
+		BufferedImage image = ImageUtil.getResourceStreamFromClass(getClass(), "/skill_icons_small/attack.png");
+		Point imageLocation = verzik.getNpc().getCanvasTextLocation(graphics, text, 0);
+		if (imageLocation == null || image == null)
+		{
+			return;
+		}
+
+		OverlayUtil.renderImageAndTextLocation(graphics, image, imageLocation, text,
+				VERZIK_ATTACK_TIMER_IMAGE_HEIGHT_OFFSET, VERZIK_ATTACK_TIMER_TEXT_WIDTH_OFFSET, Color.WHITE);
+	}
+
 	private void renderVerzikGreenOrbPoolAoeEffects(Graphics2D graphics, Verzik verzik)
 	{
 		for (GraphicsObject graphicsObject : verzik.getAoeEffects())
@@ -298,6 +407,35 @@ public class TheatreOfBloodOverlay extends Overlay
 					OverlayUtil.renderPolygon(graphics, polygon, config.getVerzikGreenOrbPoolColor());
 				}
 			}
+		}
+	}
+
+	private void renderVerzikNylocasAggressionText(Graphics2D graphics, Verzik verzik)
+	{
+		for (NPC npc : verzik.getNylocas())
+		{
+			if (npc.getInteracting() == null)
+			{
+				return;
+			}
+
+			String text = npc.getInteracting().getName();
+			Point textLocation = npc.getCanvasTextLocation(graphics, text, 0);
+
+			if (text == null || textLocation == null)
+			{
+				return;
+			}
+
+			Actor localPlayer = client.getLocalPlayer();
+			if (localPlayer == null)
+			{
+				return;
+			}
+
+			Color color = text.equals(localPlayer.getName()) ? Color.RED : Color.WHITE;
+
+			OverlayUtil.renderTextLocation(graphics, textLocation, text, color);
 		}
 	}
 }

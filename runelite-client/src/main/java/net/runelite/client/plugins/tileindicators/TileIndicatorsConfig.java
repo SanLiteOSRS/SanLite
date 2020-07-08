@@ -25,10 +25,8 @@
 package net.runelite.client.plugins.tileindicators;
 
 import java.awt.Color;
-import net.runelite.client.config.Alpha;
-import net.runelite.client.config.Config;
-import net.runelite.client.config.ConfigGroup;
-import net.runelite.client.config.ConfigItem;
+
+import net.runelite.client.config.*;
 
 @ConfigGroup("tileindicators")
 public interface TileIndicatorsConfig extends Config
@@ -73,5 +71,37 @@ public interface TileIndicatorsConfig extends Config
 	default boolean highlightHoveredTile()
 	{
 		return false;
+	}
+
+	@Alpha
+	@ConfigItem(
+		keyName = "highlightCurrentColor",
+		name = "Color of current true tile highlighting",
+		description = "Configures the highlight color of current true tile"
+	)
+	default Color highlightCurrentColor()
+	{
+		return Color.CYAN;
+	}
+
+	@ConfigItem(
+		keyName = "highlightCurrentTile",
+		name = "Highlight current true tile",
+		description = "Highlights true tile player is on as seen by server"
+	)
+	default boolean highlightCurrentTile()
+	{
+		return false;
+	}
+
+	@ConfigItem(
+			keyName = "tileMarkersLineSize",
+			name = "Tile markers line size",
+			description = "The size of the outside line for tile markers",
+			position = 1
+	)
+	default StrokeSize getTileMarkersLineSize()
+	{
+		return StrokeSize.NORMAL;
 	}
 }

@@ -1,99 +1,89 @@
-import java.awt.Desktop;
-import java.awt.Desktop.Action;
 import java.io.IOException;
-import java.net.URI;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("cp")
+@ObfuscatedName("dx")
 @Implements("PacketWriter")
 public class PacketWriter {
-	@ObfuscatedName("ry")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		signature = "Lbb;"
-	)
-	@Export("friendSystem")
-	public static FriendSystem friendSystem;
-	@ObfuscatedName("a")
-	@ObfuscatedSignature(
-		signature = "Lku;"
+		signature = "Llj;"
 	)
 	@Export("socket")
 	AbstractSocket socket;
-	@ObfuscatedName("t")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "Ljm;"
+		signature = "Ljx;"
 	)
 	@Export("packetBufferNodes")
 	IterableNodeDeque packetBufferNodes;
-	@ObfuscatedName("n")
+	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = 150566237
+		intValue = -315328335
 	)
 	@Export("bufferSize")
 	int bufferSize;
-	@ObfuscatedName("q")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
-		signature = "Lkc;"
+		signature = "Lkn;"
 	)
 	@Export("buffer")
 	Buffer buffer;
-	@ObfuscatedName("v")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		signature = "Llm;"
+		signature = "Llb;"
 	)
 	@Export("isaacCipher")
 	public IsaacCipher isaacCipher;
-	@ObfuscatedName("l")
+	@ObfuscatedName("g")
 	@ObfuscatedSignature(
-		signature = "Lkf;"
+		signature = "Lkb;"
 	)
 	@Export("packetBuffer")
 	PacketBuffer packetBuffer;
-	@ObfuscatedName("c")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "Lga;"
+		signature = "Lgu;"
 	)
 	@Export("serverPacket")
 	ServerPacket serverPacket;
-	@ObfuscatedName("o")
+	@ObfuscatedName("u")
 	@ObfuscatedGetter(
-		intValue = 969841253
+		intValue = -1069759871
 	)
 	@Export("serverPacketLength")
 	int serverPacketLength;
-	@ObfuscatedName("i")
-	boolean field1287;
-	@ObfuscatedName("d")
+	@ObfuscatedName("a")
+	boolean field1347;
+	@ObfuscatedName("z")
 	@ObfuscatedGetter(
-		intValue = 1257964487
+		intValue = 1004833869
 	)
-	int field1291;
-	@ObfuscatedName("m")
+	int field1348;
+	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		intValue = 34585799
+		intValue = -126397603
 	)
 	@Export("pendingWrites")
 	int pendingWrites;
-	@ObfuscatedName("p")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "Lga;"
+		signature = "Lgu;"
 	)
-	ServerPacket field1290;
+	ServerPacket field1350;
+	@ObfuscatedName("c")
+	@ObfuscatedSignature(
+		signature = "Lgu;"
+	)
+	ServerPacket field1351;
 	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "Lga;"
+		signature = "Lgu;"
 	)
-	ServerPacket field1286;
-	@ObfuscatedName("k")
-	@ObfuscatedSignature(
-		signature = "Lga;"
-	)
-	ServerPacket field1292;
+	ServerPacket field1342;
 
 	PacketWriter() {
 		this.packetBufferNodes = new IterableNodeDeque();
@@ -102,15 +92,15 @@ public class PacketWriter {
 		this.packetBuffer = new PacketBuffer(40000);
 		this.serverPacket = null;
 		this.serverPacketLength = 0;
-		this.field1287 = true;
-		this.field1291 = 0;
+		this.field1347 = true;
+		this.field1348 = 0;
 		this.pendingWrites = 0;
 	}
 
-	@ObfuscatedName("a")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
 		signature = "(B)V",
-		garbageValue = "47"
+		garbageValue = "65"
 	)
 	@Export("clearBuffer")
 	final void clearBuffer() {
@@ -118,10 +108,10 @@ public class PacketWriter {
 		this.bufferSize = 0;
 	}
 
-	@ObfuscatedName("t")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "-1645356656"
+		garbageValue = "1917984042"
 	)
 	@Export("flush")
 	final void flush() throws IOException {
@@ -146,10 +136,10 @@ public class PacketWriter {
 
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		signature = "(Lgk;B)V",
-		garbageValue = "-13"
+		signature = "(Lgj;I)V",
+		garbageValue = "-251135286"
 	)
 	@Export("addNode")
 	public final void addNode(PacketBufferNode var1) {
@@ -159,20 +149,20 @@ public class PacketWriter {
 		this.bufferSize += var1.index;
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
-		signature = "(Lku;B)V",
-		garbageValue = "4"
+		signature = "(Llj;I)V",
+		garbageValue = "-1410560856"
 	)
 	@Export("setSocket")
 	void setSocket(AbstractSocket var1) {
 		this.socket = var1;
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "-1408755030"
+		garbageValue = "446694129"
 	)
 	@Export("close")
 	void close() {
@@ -183,95 +173,23 @@ public class PacketWriter {
 
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("g")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "906651954"
+		garbageValue = "-2011501008"
 	)
 	@Export("removeSocket")
 	void removeSocket() {
 		this.socket = null;
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(I)Lku;",
-		garbageValue = "-814852778"
+		signature = "(I)Llj;",
+		garbageValue = "2137567404"
 	)
 	@Export("getSocket")
 	AbstractSocket getSocket() {
 		return this.socket;
-	}
-
-	@ObfuscatedName("a")
-	@ObfuscatedSignature(
-		signature = "(Lhq;Lhq;I)V",
-		garbageValue = "1551523322"
-	)
-	public static void method2372(AbstractArchive var0, AbstractArchive var1) {
-		SpotAnimationDefinition.SpotAnimationDefinition_archive = var0;
-		SpotAnimationDefinition.SpotAnimationDefinition_modelArchive = var1;
-	}
-
-	@ObfuscatedName("n")
-	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;ZLjava/lang/String;ZI)V",
-		garbageValue = "762135204"
-	)
-	static void method2374(String var0, boolean var1, String var2, boolean var3) {
-		if (var1) {
-			if (!var3 && Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Action.BROWSE)) {
-				try {
-					Desktop.getDesktop().browse(new URI(var0));
-					return;
-				} catch (Exception var5) {
-				}
-			}
-
-			if (class51.field416.startsWith("win") && !var3) {
-				class226.method4222(var0, 0, "openjs");
-				return;
-			}
-
-			if (class51.field416.startsWith("mac")) {
-				class226.method4222(var0, 1, var2);
-				return;
-			}
-
-			class226.method4222(var0, 2, "openjs");
-		} else {
-			class226.method4222(var0, 3, "openjs");
-		}
-
-	}
-
-	@ObfuscatedName("e")
-	@ObfuscatedSignature(
-		signature = "(ILcj;ZI)I",
-		garbageValue = "-1319808417"
-	)
-	static int method2379(int var0, Script var1, boolean var2) {
-		Widget var3 = PacketBufferNode.getWidget(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);
-		if (var0 == ScriptOpcodes.IF_GETX) {
-			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.x;
-			return 1;
-		} else if (var0 == ScriptOpcodes.IF_GETY) {
-			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.y;
-			return 1;
-		} else if (var0 == ScriptOpcodes.IF_GETWIDTH) {
-			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.width;
-			return 1;
-		} else if (var0 == ScriptOpcodes.IF_GETHEIGHT) {
-			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.height;
-			return 1;
-		} else if (var0 == ScriptOpcodes.IF_GETHIDE) {
-			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.isHidden ? 1 : 0;
-			return 1;
-		} else if (var0 == ScriptOpcodes.IF_GETLAYER) {
-			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.parentId;
-			return 1;
-		} else {
-			return 2;
-		}
 	}
 }

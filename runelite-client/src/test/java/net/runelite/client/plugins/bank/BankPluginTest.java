@@ -25,6 +25,7 @@
  */
 package net.runelite.client.plugins.bank;
 
+import com.google.common.collect.ImmutableList;
 import com.google.inject.Guice;
 import com.google.inject.testing.fieldbinder.Bind;
 import com.google.inject.testing.fieldbinder.BoundFieldModule;
@@ -32,11 +33,12 @@ import javax.inject.Inject;
 import net.runelite.api.Client;
 import net.runelite.api.InventoryID;
 import net.runelite.api.Item;
-import net.runelite.api.ItemDefinition;
+import net.runelite.api.ItemComposition;
 import net.runelite.api.ItemContainer;
 import net.runelite.api.ItemID;
 import net.runelite.client.game.ItemManager;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
@@ -44,7 +46,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
 public class BankPluginTest
@@ -79,11 +81,11 @@ public class BankPluginTest
 		when(itemContainer.getItems()).thenReturn(new Item[]{new Item(itemId, 30)});
 		when(client.getItemContainer(InventoryID.BANK)).thenReturn(itemContainer);
 
-		ItemDefinition comp = mock(ItemDefinition.class);
+		ItemComposition comp = mock(ItemComposition.class);
 
 		// 60k HA price * 30 = 1.8m
-		when(comp.getPrice())
-			.thenReturn(100_000);
+		when(comp.getHaPrice())
+			.thenReturn(60_000);
 
 		// 400k GE Price * 30 = 12m
 		when(itemManager.getItemPrice(itemId))
@@ -104,5 +106,32 @@ public class BankPluginTest
 		assertFalse(bankPlugin.valueSearch(itemId, "ge > 0.02b"));
 
 		assertFalse(bankPlugin.valueSearch(itemId, "1000k"));
+	}
+
+	@Test
+	public void testCalculate()
+	{
+		Item coins = new Item(ItemID.COINS_995, Integer.MAX_VALUE);
+
+		Item whip = new Item(ItemID.ABYSSAL_WHIP, 1_000_000_000);
+
+		Item[] items = ImmutableList.of(
+			coins,
+			whip
+		).toArray(new Item[0]);
+
+		ItemComposition whipComp = mock(ItemComposition.class);
+		when(whipComp.getHaPrice())
+			.thenReturn(4); // 4 * 1m overflows
+		when(itemManager.getItemComposition(ItemID.ABYSSAL_WHIP))
+			.thenReturn(whipComp);
+		when(itemManager.getItemPrice(ItemID.ABYSSAL_WHIP))
+			.thenReturn(3); // 1b * 3 overflows
+
+		final ContainerPrices prices = bankPlugin.calculate(items);
+		assertNotNull(prices);
+
+		assertTrue(prices.getHighAlchPrice() > Integer.MAX_VALUE);
+		assertTrue(prices.getGePrice() > Integer.MAX_VALUE);
 	}
 }

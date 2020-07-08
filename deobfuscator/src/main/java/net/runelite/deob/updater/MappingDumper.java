@@ -36,7 +36,7 @@ public class MappingDumper
 		MappingDumper.group = group;
 	}
 
-	public void dump(final File outputFile) throws IOException
+	public void dump(final File outputFile)
 	{
 		Stopwatch st = Stopwatch.createStarted();
 		group.buildClassGraph();

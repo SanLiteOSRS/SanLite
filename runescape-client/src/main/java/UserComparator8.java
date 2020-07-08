@@ -4,22 +4,16 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ez")
+@ObfuscatedName("fp")
 @Implements("UserComparator8")
 public class UserComparator8 extends AbstractUserComparator {
-	@ObfuscatedName("m")
-	@ObfuscatedSignature(
-		signature = "Llw;"
-	)
-	@Export("options_buttons_0Sprite")
-	static IndexedSprite options_buttons_0Sprite;
-	@ObfuscatedName("fa")
+	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = 1075800505
+		intValue = 682159937
 	)
-	@Export("baseX")
-	static int baseX;
-	@ObfuscatedName("a")
+	@Export("SpriteBuffer_spriteHeight")
+	static int SpriteBuffer_spriteHeight;
+	@ObfuscatedName("m")
 	@Export("reversed")
 	final boolean reversed;
 
@@ -27,10 +21,10 @@ public class UserComparator8 extends AbstractUserComparator {
 		this.reversed = var1;
 	}
 
-	@ObfuscatedName("a")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		signature = "(Ljx;Ljx;I)I",
-		garbageValue = "-2099102147"
+		signature = "(Lkx;Lkx;B)I",
+		garbageValue = "101"
 	)
 	@Export("compareBuddy")
 	int compareBuddy(Buddy var1, Buddy var2) {
@@ -49,19 +43,12 @@ public class UserComparator8 extends AbstractUserComparator {
 		return this.compareBuddy((Buddy)var1, (Buddy)var2);
 	}
 
-	@ObfuscatedName("c")
-	@Export("Entity_unpackID")
-	public static int Entity_unpackID(long var0) {
-		return (int)(var0 >>> 17 & 4294967295L);
-	}
-
-	@ObfuscatedName("d")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		signature = "(CI)Z",
-		garbageValue = "-1252421563"
+		signature = "(Lic;B)V",
+		garbageValue = "-79"
 	)
-	@Export("isAlphaNumeric")
-	public static boolean isAlphaNumeric(char var0) {
-		return var0 >= '0' && var0 <= '9' || var0 >= 'A' && var0 <= 'Z' || var0 >= 'a' && var0 <= 'z';
+	public static void method3520(AbstractArchive var0) {
+		class349.EnumDefinition_archive = var0;
 	}
 }

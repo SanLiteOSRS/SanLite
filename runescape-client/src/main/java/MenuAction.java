@@ -4,76 +4,80 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cd")
+@ObfuscatedName("cu")
 @Implements("MenuAction")
 public class MenuAction {
-	@ObfuscatedName("qj")
-	@ObfuscatedSignature(
-		signature = "Ldq;"
-	)
-	@Export("pcmPlayer1")
-	static PcmPlayer pcmPlayer1;
-	@ObfuscatedName("a")
+	@ObfuscatedName("m")
 	@ObfuscatedGetter(
-		intValue = -1613868885
+		intValue = 1178399769
 	)
-	@Export("argument1")
-	int argument1;
-	@ObfuscatedName("t")
-	@Export("action")
-	String action;
-	@ObfuscatedName("n")
+	@Export("param0")
+	int param0;
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = -872703787
+		intValue = 1300782503
 	)
-	@Export("argument2")
-	int argument2;
+	@Export("param1")
+	int param1;
 	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = 553279575
+		intValue = 1809063501
 	)
 	@Export("opcode")
 	int opcode;
-	@ObfuscatedName("v")
+	@ObfuscatedName("j")
 	@ObfuscatedGetter(
-		intValue = -1804422619
+		intValue = -1681239955
 	)
-	@Export("argument0")
-	int argument0;
+	@Export("identifier")
+	int identifier;
+	@ObfuscatedName("p")
+	@Export("action")
+	String action;
 
 	MenuAction() {
 	}
 
-	@ObfuscatedName("t")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		signature = "(II)Lim;",
-		garbageValue = "-2086805733"
+		signature = "([BZI)Ljava/lang/Object;",
+		garbageValue = "1257898423"
 	)
-	@Export("SpotAnimationDefinition_get")
-	public static SpotAnimationDefinition SpotAnimationDefinition_get(int var0) {
-		SpotAnimationDefinition var1 = (SpotAnimationDefinition)SpotAnimationDefinition.SpotAnimationDefinition_cached.get((long)var0);
-		if (var1 != null) {
-			return var1;
+	public static Object method2169(byte[] var0, boolean var1) {
+		if (var0 == null) {
+			return null;
+		} else if (var0.length > 136) {
+			DirectByteArrayCopier var2 = new DirectByteArrayCopier();
+			var2.set(var0);
+			return var2;
 		} else {
-			byte[] var2 = SpotAnimationDefinition.SpotAnimationDefinition_archive.takeFile(13, var0);
-			var1 = new SpotAnimationDefinition();
-			var1.id = var0;
-			if (var2 != null) {
-				var1.decode(new Buffer(var2));
-			}
-
-			SpotAnimationDefinition.SpotAnimationDefinition_cached.put(var1, (long)var0);
-			return var1;
+			return var0;
 		}
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		signature = "(Lhq;III)Llx;",
-		garbageValue = "1380862020"
+		signature = "(Lic;Lic;I)V",
+		garbageValue = "1591696142"
 	)
-	@Export("SpriteBuffer_getSprite")
-	public static Sprite SpriteBuffer_getSprite(AbstractArchive var0, int var1, int var2) {
-		return !class32.method618(var0, var1, var2) ? null : Username.method5282();
+	public static void method2171(AbstractArchive var0, AbstractArchive var1) {
+		SpotAnimationDefinition.SpotAnimationDefinition_archive = var0;
+		NPC.SpotAnimationDefinition_modelArchive = var1;
+	}
+
+	@ObfuscatedName("p")
+	@ObfuscatedSignature(
+		signature = "(ILic;IIIZI)V",
+		garbageValue = "896837453"
+	)
+	@Export("playMusicTrack")
+	public static void playMusicTrack(int var0, AbstractArchive var1, int var2, int var3, int var4, boolean var5) {
+		class206.field2439 = 1;
+		Huffman.musicTrackArchive = var1;
+		class206.musicTrackGroupId = var2;
+		MilliClock.musicTrackFileId = var3;
+		class206.musicTrackVolume = var4;
+		class336.musicTrackBoolean = var5;
+		class206.field2442 = var0;
 	}
 }

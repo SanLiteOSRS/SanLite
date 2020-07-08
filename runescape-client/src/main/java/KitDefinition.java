@@ -4,52 +4,61 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("io")
+@ObfuscatedName("ir")
 @Implements("KitDefinition")
 public class KitDefinition extends DualNode {
-	@ObfuscatedName("a")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		signature = "Lhq;"
+		signature = "Lic;"
 	)
 	@Export("KitDefinition_archive")
-	public static AbstractArchive KitDefinition_archive;
-	@ObfuscatedName("n")
+	static AbstractArchive KitDefinition_archive;
+	@ObfuscatedName("o")
+	@ObfuscatedSignature(
+		signature = "Lic;"
+	)
+	@Export("KitDefinition_modelsArchive")
+	static AbstractArchive KitDefinition_modelsArchive;
+	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = 582717835
+		intValue = -413504447
 	)
 	@Export("KitDefinition_fileCount")
 	public static int KitDefinition_fileCount;
-	@ObfuscatedName("q")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
-		signature = "Leb;"
+		signature = "Lec;"
 	)
 	@Export("KitDefinition_cached")
 	static EvictingDualNodeHashTable KitDefinition_cached;
-	@ObfuscatedName("v")
+	@ObfuscatedName("i")
+	@Export("BZip2Decompressor_block")
+	static int[] BZip2Decompressor_block;
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = -846711719
+		intValue = 1201846847
 	)
 	@Export("bodypartID")
 	public int bodypartID;
-	@ObfuscatedName("l")
+	@ObfuscatedName("g")
 	@Export("models2")
 	int[] models2;
-	@ObfuscatedName("c")
+	@ObfuscatedName("n")
 	@Export("recolorFrom")
 	short[] recolorFrom;
-	@ObfuscatedName("o")
+	@ObfuscatedName("u")
 	@Export("recolorTo")
 	short[] recolorTo;
-	@ObfuscatedName("i")
+	@ObfuscatedName("a")
 	@Export("retextureFrom")
 	short[] retextureFrom;
-	@ObfuscatedName("d")
+	@ObfuscatedName("z")
 	@Export("retextureTo")
 	short[] retextureTo;
-	@ObfuscatedName("m")
+	@ObfuscatedName("w")
 	@Export("models")
 	int[] models;
-	@ObfuscatedName("p")
+	@ObfuscatedName("y")
 	@Export("nonSelectable")
 	public boolean nonSelectable;
 
@@ -63,10 +72,10 @@ public class KitDefinition extends DualNode {
 		this.nonSelectable = false;
 	}
 
-	@ObfuscatedName("t")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		signature = "(Lkc;I)V",
-		garbageValue = "-1072389484"
+		signature = "(Lkn;I)V",
+		garbageValue = "856121726"
 	)
 	@Export("decode")
 	void decode(Buffer var1) {
@@ -80,10 +89,10 @@ public class KitDefinition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
-		signature = "(Lkc;II)V",
-		garbageValue = "1034745229"
+		signature = "(Lkn;IB)V",
+		garbageValue = "-72"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
@@ -126,10 +135,10 @@ public class KitDefinition extends DualNode {
 
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
 		signature = "(I)Z",
-		garbageValue = "2037455287"
+		garbageValue = "1376663595"
 	)
 	@Export("ready")
 	public boolean ready() {
@@ -139,7 +148,7 @@ public class KitDefinition extends DualNode {
 			boolean var1 = true;
 
 			for (int var2 = 0; var2 < this.models2.length; ++var2) {
-				if (!class43.KitDefinition_modelsArchive.tryLoadFile(this.models2[var2], 0)) {
+				if (!KitDefinition_modelsArchive.tryLoadFile(this.models2[var2], 0)) {
 					var1 = false;
 				}
 			}
@@ -148,10 +157,10 @@ public class KitDefinition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("g")
 	@ObfuscatedSignature(
-		signature = "(I)Ldu;",
-		garbageValue = "1847415813"
+		signature = "(I)Lek;",
+		garbageValue = "-730489630"
 	)
 	@Export("getModelData")
 	public ModelData getModelData() {
@@ -161,7 +170,7 @@ public class KitDefinition extends DualNode {
 			ModelData[] var1 = new ModelData[this.models2.length];
 
 			for (int var2 = 0; var2 < this.models2.length; ++var2) {
-				var1[var2] = ModelData.ModelData_get(class43.KitDefinition_modelsArchive, this.models2[var2], 0);
+				var1[var2] = ModelData.ModelData_get(KitDefinition_modelsArchive, this.models2[var2], 0);
 			}
 
 			ModelData var4;
@@ -188,16 +197,16 @@ public class KitDefinition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
 		signature = "(I)Z",
-		garbageValue = "1557117338"
+		garbageValue = "1413999109"
 	)
-	public boolean method4549() {
+	public boolean method4636() {
 		boolean var1 = true;
 
 		for (int var2 = 0; var2 < 5; ++var2) {
-			if (this.models[var2] != -1 && !class43.KitDefinition_modelsArchive.tryLoadFile(this.models[var2], 0)) {
+			if (this.models[var2] != -1 && !KitDefinition_modelsArchive.tryLoadFile(this.models[var2], 0)) {
 				var1 = false;
 			}
 		}
@@ -205,10 +214,10 @@ public class KitDefinition extends DualNode {
 		return var1;
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "(I)Ldu;",
-		garbageValue = "1574535853"
+		signature = "(B)Lek;",
+		garbageValue = "-127"
 	)
 	@Export("getKitDefinitionModels")
 	public ModelData getKitDefinitionModels() {
@@ -217,7 +226,7 @@ public class KitDefinition extends DualNode {
 
 		for (int var3 = 0; var3 < 5; ++var3) {
 			if (this.models[var3] != -1) {
-				var1[var2++] = ModelData.ModelData_get(class43.KitDefinition_modelsArchive, this.models[var3], 0);
+				var1[var2++] = ModelData.ModelData_get(KitDefinition_modelsArchive, this.models[var3], 0);
 			}
 		}
 
@@ -236,5 +245,154 @@ public class KitDefinition extends DualNode {
 		}
 
 		return var5;
+	}
+
+	@ObfuscatedName("o")
+	@ObfuscatedSignature(
+		signature = "(II)Ljo;",
+		garbageValue = "1649830223"
+	)
+	@Export("ItemDefinition_get")
+	public static ItemComposition ItemDefinition_get(int var0) {
+		ItemComposition var1 = (ItemComposition)ItemComposition.ItemDefinition_cached.get((long)var0);
+		if (var1 != null) {
+			return var1;
+		} else {
+			byte[] var2 = VarcInt.ItemDefinition_archive.takeFile(10, var0);
+			var1 = new ItemComposition();
+			var1.id = var0;
+			if (var2 != null) {
+				var1.decode(new Buffer(var2));
+			}
+
+			var1.post();
+			if (var1.noteTemplate != -1) {
+				var1.genCert(ItemDefinition_get(var1.noteTemplate), ItemDefinition_get(var1.note));
+			}
+
+			if (var1.notedId != -1) {
+				var1.genBought(ItemDefinition_get(var1.notedId), ItemDefinition_get(var1.unnotedId));
+			}
+
+			if (var1.placeholderTemplate != -1) {
+				var1.genPlaceholder(ItemDefinition_get(var1.placeholderTemplate), ItemDefinition_get(var1.placeholder));
+			}
+
+			if (!SoundCache.ItemDefinition_inMembersWorld && var1.isMembersOnly) {
+				var1.name = "Members object";
+				var1.isTradable = false;
+				var1.groundActions = null;
+				var1.inventoryActions = null;
+				var1.shiftClickIndex = -1;
+				var1.team = 0;
+				if (var1.params != null) {
+					boolean var3 = false;
+
+					for (Node var4 = var1.params.first(); var4 != null; var4 = var1.params.next()) {
+						ParamDefinition var5 = VarbitComposition.getParamDefinition((int)var4.key);
+						if (var5.autoDisable) {
+							var4.remove();
+						} else {
+							var3 = true;
+						}
+					}
+
+					if (!var3) {
+						var1.params = null;
+					}
+				}
+			}
+
+			ItemComposition.ItemDefinition_cached.put(var1, (long)var0);
+			return var1;
+		}
+	}
+
+	@ObfuscatedName("q")
+	@ObfuscatedSignature(
+		signature = "(CB)C",
+		garbageValue = "0"
+	)
+	static char method4650(char var0) {
+		switch(var0) {
+		case ' ':
+		case '-':
+		case '_':
+		case ' ':
+			return '_';
+		case '#':
+		case '[':
+		case ']':
+			return var0;
+		case 'À':
+		case 'Á':
+		case 'Â':
+		case 'Ã':
+		case 'Ä':
+		case 'à':
+		case 'á':
+		case 'â':
+		case 'ã':
+		case 'ä':
+			return 'a';
+		case 'Ç':
+		case 'ç':
+			return 'c';
+		case 'È':
+		case 'É':
+		case 'Ê':
+		case 'Ë':
+		case 'è':
+		case 'é':
+		case 'ê':
+		case 'ë':
+			return 'e';
+		case 'Í':
+		case 'Î':
+		case 'Ï':
+		case 'í':
+		case 'î':
+		case 'ï':
+			return 'i';
+		case 'Ñ':
+		case 'ñ':
+			return 'n';
+		case 'Ò':
+		case 'Ó':
+		case 'Ô':
+		case 'Õ':
+		case 'Ö':
+		case 'ò':
+		case 'ó':
+		case 'ô':
+		case 'õ':
+		case 'ö':
+			return 'o';
+		case 'Ù':
+		case 'Ú':
+		case 'Û':
+		case 'Ü':
+		case 'ù':
+		case 'ú':
+		case 'û':
+		case 'ü':
+			return 'u';
+		case 'ß':
+			return 'b';
+		case 'ÿ':
+		case 'Ÿ':
+			return 'y';
+		default:
+			return Character.toLowerCase(var0);
+		}
+	}
+
+	@ObfuscatedName("q")
+	@ObfuscatedSignature(
+		signature = "(I)V",
+		garbageValue = "1137606481"
+	)
+	public static void method4624() {
+		VarbitComposition.VarbitDefinition_cached.clear();
 	}
 }

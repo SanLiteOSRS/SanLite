@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019, Siraz
+ * Copyright (c) 2019, Siraz <https://github.com/Sirazzz>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -170,7 +170,8 @@ public class GauntletOverlay extends Overlay
 			{
 				if (gauntletBoss.isNpcCrystalAttack(npc.getId()))
 				{
-					OverlayUtil.renderPolygon(graphics, polygon, config.getCrystalAttackColor());
+					OverlayUtil.renderPolygon(graphics, polygon, config.getCrystalAttackColor(),
+							config.getTileMarkersLineSize().getSize());
 				}
 			}
 		}

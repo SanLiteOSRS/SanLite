@@ -26,7 +26,7 @@ package net.runelite.client.plugins.cluescrolls.clues.item;
 
 import net.runelite.api.Client;
 import net.runelite.api.Item;
-import net.runelite.api.ItemDefinition;
+import net.runelite.api.ItemComposition;
 
 public class MultipleOfItemRequirement implements ItemRequirement
 {
@@ -48,11 +48,16 @@ public class MultipleOfItemRequirement implements ItemRequirement
 	@Override
 	public boolean fulfilledBy(Item[] items)
 	{
+		int quantityFound = 0;
 		for (Item item : items)
 		{
-			if (item.getId() == itemId && item.getQuantity() >= quantity)
+			if (item.getId() == itemId)
 			{
-				return true;
+				quantityFound += item.getQuantity();
+				if (quantityFound >= quantity)
+				{
+					return true;
+				}
 			}
 		}
 
@@ -62,7 +67,7 @@ public class MultipleOfItemRequirement implements ItemRequirement
 	@Override
 	public String getCollectiveName(Client client)
 	{
-		ItemDefinition definition = client.getItemDefinition(itemId);
+		ItemComposition definition = client.getItemDefinition(itemId);
 
 		if (definition == null)
 		{

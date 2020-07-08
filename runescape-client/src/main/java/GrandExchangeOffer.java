@@ -3,54 +3,52 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.rs.ScriptOpcodes;
 
 @ObfuscatedName("d")
 @Implements("GrandExchangeOffer")
 public class GrandExchangeOffer {
-	@ObfuscatedName("aq")
-	@Export("fontHelvetica13")
-	static java.awt.Font fontHelvetica13;
-	@ObfuscatedName("go")
-	@ObfuscatedGetter(
-		intValue = 1997230309
-	)
-	static int field61;
-	@ObfuscatedName("jo")
+	@ObfuscatedName("ad")
 	@ObfuscatedSignature(
-		signature = "Lhi;"
+		signature = "Llv;"
 	)
-	@Export("dragInventoryWidget")
-	static Widget dragInventoryWidget;
-	@ObfuscatedName("a")
+	static Bounds field87;
+	@ObfuscatedName("db")
+	@ObfuscatedSignature(
+		signature = "Lig;"
+	)
+	@Export("archive4")
+	static Archive archive4;
+	@ObfuscatedName("m")
 	@Export("state")
 	byte state;
-	@ObfuscatedName("t")
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = 517689507
+		intValue = -1112039617
 	)
 	@Export("id")
 	public int id;
-	@ObfuscatedName("n")
+	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = 969157751
+		intValue = 416176327
 	)
 	@Export("unitPrice")
 	public int unitPrice;
-	@ObfuscatedName("q")
+	@ObfuscatedName("j")
 	@ObfuscatedGetter(
-		intValue = 1699214933
+		intValue = -981210321
 	)
 	@Export("totalQuantity")
 	public int totalQuantity;
-	@ObfuscatedName("v")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = 573459647
+		intValue = 1341718687
 	)
 	@Export("currentQuantity")
 	public int currentQuantity;
-	@ObfuscatedName("l")
+	@ObfuscatedName("g")
 	@ObfuscatedGetter(
-		intValue = 494126965
+		intValue = 1366605879
 	)
 	@Export("currentPrice")
 	public int currentPrice;
@@ -59,7 +57,7 @@ public class GrandExchangeOffer {
 	}
 
 	@ObfuscatedSignature(
-		signature = "(Lkc;Z)V",
+		signature = "(Lkn;Z)V",
 		garbageValue = "0"
 	)
 	public GrandExchangeOffer(Buffer var1, boolean var2) {
@@ -71,42 +69,42 @@ public class GrandExchangeOffer {
 		this.currentPrice = var1.readInt();
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		signature = "(B)I",
-		garbageValue = "-108"
+		signature = "(I)I",
+		garbageValue = "271165601"
 	)
 	@Export("status")
 	public int status() {
 		return this.state & 7;
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
 		signature = "(I)I",
-		garbageValue = "-928896233"
+		garbageValue = "-2130764898"
 	)
 	@Export("type")
 	public int type() {
 		return (this.state & 8) == 8 ? 1 : 0;
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		signature = "(IS)V",
-		garbageValue = "-24365"
+		signature = "(II)V",
+		garbageValue = "-308953741"
 	)
-	void method139(int var1) {
+	void method172(int var1) {
 		this.state &= -8;
 		this.state = (byte)(this.state | var1 & 7);
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("g")
 	@ObfuscatedSignature(
-		signature = "(II)V",
-		garbageValue = "-268336020"
+		signature = "(IB)V",
+		garbageValue = "1"
 	)
-	void method152(int var1) {
+	void method173(int var1) {
 		this.state &= -9;
 		if (var1 == 1) {
 			this.state = (byte)(this.state | 8);
@@ -114,158 +112,244 @@ public class GrandExchangeOffer {
 
 	}
 
-	@ObfuscatedName("a")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		signature = "(II)Lcj;",
-		garbageValue = "538429635"
+		signature = "([Lch;II[I[II)V",
+		garbageValue = "-1520869912"
 	)
-	@Export("getScript")
-	static Script getScript(int var0) {
-		Script var1 = (Script)Script.Script_cached.get((long)var0);
-		if (var1 != null) {
-			return var1;
+	@Export("sortWorlds")
+	static void sortWorlds(World[] var0, int var1, int var2, int[] var3, int[] var4) {
+		if (var1 < var2) {
+			int var5 = var1 - 1;
+			int var6 = var2 + 1;
+			int var7 = (var2 + var1) / 2;
+			World var8 = var0[var7];
+			var0[var7] = var0[var1];
+			var0[var1] = var8;
+
+			while (var5 < var6) {
+				boolean var9 = true;
+
+				int var10;
+				int var11;
+				int var12;
+				do {
+					--var6;
+
+					for (var10 = 0; var10 < 4; ++var10) {
+						if (var3[var10] == 2) {
+							var11 = var0[var6].index;
+							var12 = var8.index;
+						} else if (var3[var10] == 1) {
+							var11 = var0[var6].population;
+							var12 = var8.population;
+							if (var11 == -1 && var4[var10] == 1) {
+								var11 = 2001;
+							}
+
+							if (var12 == -1 && var4[var10] == 1) {
+								var12 = 2001;
+							}
+						} else if (var3[var10] == 3) {
+							var11 = var0[var6].isMembersOnly() ? 1 : 0;
+							var12 = var8.isMembersOnly() ? 1 : 0;
+						} else {
+							var11 = var0[var6].id;
+							var12 = var8.id;
+						}
+
+						if (var12 != var11) {
+							if ((var4[var10] != 1 || var11 <= var12) && (var4[var10] != 0 || var11 >= var12)) {
+								var9 = false;
+							}
+							break;
+						}
+
+						if (var10 == 3) {
+							var9 = false;
+						}
+					}
+				} while(var9);
+
+				var9 = true;
+
+				do {
+					++var5;
+
+					for (var10 = 0; var10 < 4; ++var10) {
+						if (var3[var10] == 2) {
+							var11 = var0[var5].index;
+							var12 = var8.index;
+						} else if (var3[var10] == 1) {
+							var11 = var0[var5].population;
+							var12 = var8.population;
+							if (var11 == -1 && var4[var10] == 1) {
+								var11 = 2001;
+							}
+
+							if (var12 == -1 && var4[var10] == 1) {
+								var12 = 2001;
+							}
+						} else if (var3[var10] == 3) {
+							var11 = var0[var5].isMembersOnly() ? 1 : 0;
+							var12 = var8.isMembersOnly() ? 1 : 0;
+						} else {
+							var11 = var0[var5].id;
+							var12 = var8.id;
+						}
+
+						if (var12 != var11) {
+							if ((var4[var10] != 1 || var11 >= var12) && (var4[var10] != 0 || var11 <= var12)) {
+								var9 = false;
+							}
+							break;
+						}
+
+						if (var10 == 3) {
+							var9 = false;
+						}
+					}
+				} while(var9);
+
+				if (var5 < var6) {
+					World var13 = var0[var5];
+					var0[var5] = var0[var6];
+					var0[var6] = var13;
+				}
+			}
+
+			sortWorlds(var0, var1, var6, var3, var4);
+			sortWorlds(var0, var6 + 1, var2, var3, var4);
+		}
+
+	}
+
+	@ObfuscatedName("t")
+	@ObfuscatedSignature(
+		signature = "(ILcs;ZI)I",
+		garbageValue = "-2096234716"
+	)
+	static int method194(int var0, Script var1, boolean var2) {
+		Widget var3;
+		if (var0 == ScriptOpcodes.IF_GETINVOBJECT) {
+			var3 = WorldMapSprite.getWidget(Interpreter.Interpreter_intStack[--UrlRequester.Interpreter_intStackSize]);
+			Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = var3.itemId;
+			return 1;
+		} else if (var0 == ScriptOpcodes.IF_GETINVCOUNT) {
+			var3 = WorldMapSprite.getWidget(Interpreter.Interpreter_intStack[--UrlRequester.Interpreter_intStackSize]);
+			if (var3.itemId != -1) {
+				Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = var3.itemQuantity;
+			} else {
+				Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = 0;
+			}
+
+			return 1;
+		} else if (var0 == ScriptOpcodes.IF_HASSUB) {
+			int var5 = Interpreter.Interpreter_intStack[--UrlRequester.Interpreter_intStackSize];
+			InterfaceParent var4 = (InterfaceParent)Client.interfaceParents.get((long)var5);
+			if (var4 != null) {
+				Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = 1;
+			} else {
+				Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = 0;
+			}
+
+			return 1;
+		} else if (var0 == ScriptOpcodes.IF_GETTOP) {
+			Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = Client.rootInterface;
+			return 1;
 		} else {
-			byte[] var2 = Occluder.archive12.takeFile(var0, 0);
-			if (var2 == null) {
-				return null;
-			} else {
-				var1 = WorldMapIcon_0.newScript(var2);
-				Script.Script_cached.put(var1, (long)var0);
-				return var1;
-			}
+			return 2;
 		}
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/CharSequence;II[BIB)I",
-		garbageValue = "-73"
+		signature = "(II)I",
+		garbageValue = "-1566307415"
 	)
-	@Export("encodeStringCp1252")
-	public static int encodeStringCp1252(CharSequence var0, int var1, int var2, byte[] var3, int var4) {
-		int var5 = var2 - var1;
-
-		for (int var6 = 0; var6 < var5; ++var6) {
-			char var7 = var0.charAt(var6 + var1);
-			if (var7 > 0 && var7 < 128 || var7 >= 160 && var7 <= 255) {
-				var3[var6 + var4] = (byte)var7;
-			} else if (var7 == 8364) {
-				var3[var6 + var4] = -128;
-			} else if (var7 == 8218) {
-				var3[var6 + var4] = -126;
-			} else if (var7 == 402) {
-				var3[var6 + var4] = -125;
-			} else if (var7 == 8222) {
-				var3[var6 + var4] = -124;
-			} else if (var7 == 8230) {
-				var3[var6 + var4] = -123;
-			} else if (var7 == 8224) {
-				var3[var6 + var4] = -122;
-			} else if (var7 == 8225) {
-				var3[var6 + var4] = -121;
-			} else if (var7 == 710) {
-				var3[var6 + var4] = -120;
-			} else if (var7 == 8240) {
-				var3[var6 + var4] = -119;
-			} else if (var7 == 352) {
-				var3[var6 + var4] = -118;
-			} else if (var7 == 8249) {
-				var3[var6 + var4] = -117;
-			} else if (var7 == 338) {
-				var3[var6 + var4] = -116;
-			} else if (var7 == 381) {
-				var3[var6 + var4] = -114;
-			} else if (var7 == 8216) {
-				var3[var6 + var4] = -111;
-			} else if (var7 == 8217) {
-				var3[var6 + var4] = -110;
-			} else if (var7 == 8220) {
-				var3[var6 + var4] = -109;
-			} else if (var7 == 8221) {
-				var3[var6 + var4] = -108;
-			} else if (var7 == 8226) {
-				var3[var6 + var4] = -107;
-			} else if (var7 == 8211) {
-				var3[var6 + var4] = -106;
-			} else if (var7 == 8212) {
-				var3[var6 + var4] = -105;
-			} else if (var7 == 732) {
-				var3[var6 + var4] = -104;
-			} else if (var7 == 8482) {
-				var3[var6 + var4] = -103;
-			} else if (var7 == 353) {
-				var3[var6 + var4] = -102;
-			} else if (var7 == 8250) {
-				var3[var6 + var4] = -101;
-			} else if (var7 == 339) {
-				var3[var6 + var4] = -100;
-			} else if (var7 == 382) {
-				var3[var6 + var4] = -98;
-			} else if (var7 == 376) {
-				var3[var6 + var4] = -97;
-			} else {
-				var3[var6 + var4] = 63;
-			}
-		}
-
-		return var5;
+	static int method176(int var0) {
+		return (int)Math.pow(2.0D, (double)((float)var0 / 256.0F + 7.0F));
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("hp")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V",
-		garbageValue = "-1089712950"
+		signature = "(I)V",
+		garbageValue = "-1931279198"
 	)
-	@Export("setLoginResponseString")
-	static void setLoginResponseString(String var0, String var1, String var2) {
-		Login.Login_response1 = var0;
-		Login.Login_response2 = var1;
-		Login.Login_response3 = var2;
+	@Export("Widget_runOnTargetLeave")
+	static void Widget_runOnTargetLeave() {
+		if (Client.isSpellSelected) {
+			Widget var0 = WorldMapLabelSize.getWidgetChild(ItemContainer.selectedSpellWidget, Client.selectedSpellChildIndex);
+			if (var0 != null && var0.onTargetLeave != null) {
+				ScriptEvent var1 = new ScriptEvent();
+				var1.widget = var0;
+				var1.args = var0.onTargetLeave;
+				InterfaceParent.runScriptEvent(var1);
+			}
+
+			Client.isSpellSelected = false;
+			class234.invalidateWidget(var0);
+		}
 	}
 
 	@ObfuscatedName("jm")
 	@ObfuscatedSignature(
-		signature = "(III)Ljava/lang/String;",
-		garbageValue = "76295628"
+		signature = "(III)V",
+		garbageValue = "2119897094"
 	)
-	static final String method159(int var0, int var1) {
-		int var2 = var1 - var0;
-		if (var2 < -9) {
-			return AbstractArchive.colorStartTag(16711680);
-		} else if (var2 < -6) {
-			return AbstractArchive.colorStartTag(16723968);
-		} else if (var2 < -3) {
-			return AbstractArchive.colorStartTag(16740352);
-		} else if (var2 < 0) {
-			return AbstractArchive.colorStartTag(16756736);
-		} else if (var2 > 9) {
-			return AbstractArchive.colorStartTag(65280);
-		} else if (var2 > 6) {
-			return AbstractArchive.colorStartTag(4259584);
-		} else if (var2 > 3) {
-			return AbstractArchive.colorStartTag(8453888);
-		} else {
-			return var2 > 0 ? AbstractArchive.colorStartTag(12648192) : AbstractArchive.colorStartTag(16776960);
+	static void method189(int var0, int var1) {
+		SecureRandomCallable.method1205(class169.tempMenuAction, var0, var1);
+		class169.tempMenuAction = null;
+	}
+
+	@ObfuscatedName("jf")
+	@ObfuscatedSignature(
+		signature = "(IIIILlz;Lhh;B)V",
+		garbageValue = "105"
+	)
+	@Export("drawSpriteOnMinimap")
+	static final void drawSpriteOnMinimap(int var0, int var1, int var2, int var3, SpritePixels var4, SpriteMask var5) {
+		if (var4 != null) {
+			int var6 = Client.camAngleY & 2047;
+			int var7 = var3 * var3 + var2 * var2;
+			if (var7 <= 6400) {
+				int var8 = Rasterizer3D.Rasterizer3D_sine[var6];
+				int var9 = Rasterizer3D.Rasterizer3D_cosine[var6];
+				int var10 = var9 * var2 + var3 * var8 >> 16;
+				int var11 = var3 * var9 - var8 * var2 >> 16;
+				if (var7 > 2500) {
+					var4.method6408(var10 + var5.width / 2 - var4.width / 2, var5.height / 2 - var11 - var4.height / 2, var0, var1, var5.width, var5.height, var5.xStarts, var5.xWidths);
+				} else {
+					var4.drawTransBgAt(var0 + var10 + var5.width / 2 - var4.width / 2, var5.height / 2 + var1 - var11 - var4.height / 2);
+				}
+
+			}
 		}
 	}
 
-	@ObfuscatedName("jq")
+	@ObfuscatedName("kp")
 	@ObfuscatedSignature(
-		signature = "(II)Ljava/lang/String;",
-		garbageValue = "354835371"
+		signature = "(I)V",
+		garbageValue = "-1908400826"
 	)
-	@Export("formatItemStacks")
-	static final String formatItemStacks(int var0) {
-		String var1 = Integer.toString(var0);
+	@Export("Clan_leaveChat")
+	static final void Clan_leaveChat() {
+		PacketBufferNode var0 = UserComparator4.getPacketBufferNode(ClientPacket.field2292, Client.packetWriter.isaacCipher);
+		var0.packetBuffer.writeByte(0);
+		Client.packetWriter.addNode(var0);
+	}
 
-		for (int var2 = var1.length() - 3; var2 > 0; var2 -= 3) {
-			var1 = var1.substring(0, var2) + "," + var1.substring(var2);
-		}
-
-		if (var1.length() > 9) {
-			return " " + AbstractArchive.colorStartTag(65408) + var1.substring(0, var1.length() - 8) + "M" + " " + " (" + var1 + ")" + "</col>";
-		} else {
-			return var1.length() > 6 ? " " + AbstractArchive.colorStartTag(16777215) + var1.substring(0, var1.length() - 4) + "K" + " " + " (" + var1 + ")" + "</col>" : " " + AbstractArchive.colorStartTag(16776960) + var1 + "</col>";
-		}
+	@ObfuscatedName("kj")
+	@ObfuscatedSignature(
+		signature = "(IIIZB)V",
+		garbageValue = "43"
+	)
+	public static void method191(int var0, int var1, int var2, boolean var3) {
+		PacketBufferNode var4 = UserComparator4.getPacketBufferNode(ClientPacket.field2277, Client.packetWriter.isaacCipher);
+		var4.packetBuffer.method5753(var1);
+		var4.packetBuffer.writeInt(var3 ? Client.field836 : 0);
+		var4.packetBuffer.method5898(var0);
+		var4.packetBuffer.writeIntME(var2);
+		Client.packetWriter.addNode(var4);
 	}
 }

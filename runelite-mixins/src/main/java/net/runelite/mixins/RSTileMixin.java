@@ -47,17 +47,8 @@ import net.runelite.api.mixins.FieldHook;
 import net.runelite.api.mixins.Inject;
 import net.runelite.api.mixins.Mixin;
 import net.runelite.api.mixins.Shadow;
-import net.runelite.rs.api.RSActor;
-import net.runelite.rs.api.RSClient;
-import net.runelite.rs.api.RSEntity;
-import net.runelite.rs.api.RSGameObject;
-import net.runelite.rs.api.RSGraphicsObject;
-import net.runelite.rs.api.RSTileItemPile;
-import net.runelite.rs.api.RSNode;
-import net.runelite.rs.api.RSNodeDeque;
-import net.runelite.rs.api.RSProjectile;
-import net.runelite.rs.api.RSTile;
-import net.runelite.rs.api.RSTileItem;
+import net.runelite.rs.api.*;
+import net.runelite.rs.api.RSRenderable;
 import org.slf4j.Logger;
 
 @Mixin(RSTile.class)
@@ -223,7 +214,7 @@ public abstract class RSTileMixin implements RSTile
 	@Override
 	public List<TileItem> getGroundItems()
 	{
-		TileItemPile layer = this.getItemLayer();
+		ItemLayer layer = this.getItemLayer();
 		if (layer == null)
 		{
 			return null;
@@ -386,13 +377,13 @@ public abstract class RSTileMixin implements RSTile
 		boolean currentInvalid = false, prevInvalid = false;
 		if (current != null)
 		{
-			RSEntity entity = current.getEntity();
+			RSRenderable entity = current.getRenderable();
 			currentInvalid = entity instanceof RSActor || entity instanceof RSProjectile || entity instanceof RSGraphicsObject;
 		}
 
 		if (previous != null)
 		{
-			RSEntity entity = previous.getEntity();
+			RSRenderable entity = previous.getRenderable();
 			prevInvalid = entity instanceof RSActor || entity instanceof RSProjectile || entity instanceof RSGraphicsObject;
 		}
 
@@ -476,7 +467,7 @@ public abstract class RSTileMixin implements RSTile
 			client.setLastItemDespawn(null);
 		}
 
-		RSTileItemPile itemLayer = (RSTileItemPile) getItemLayer();
+		RSItemLayer itemLayer = (RSItemLayer) getItemLayer();
 		if (itemLayer == null)
 		{
 			if (lastUnlink != null)

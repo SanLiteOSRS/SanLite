@@ -28,6 +28,7 @@ import com.google.common.collect.ImmutableSet;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.Set;
+import javax.annotation.Nullable;
 import lombok.Getter;
 import net.runelite.api.NPC;
 import net.runelite.api.ObjectID;
@@ -68,7 +69,7 @@ public class AnagramClue extends ClueScroll implements TextClueScroll, NpcClueSc
 		new AnagramClue("AREA CHEF TREK", "Father Aereck", new WorldPoint(3243, 3208, 0), "Lumbridge Church", "How many gravestones are in the church graveyard?", "19 or 20"),
 		new AnagramClue("BAIL TRIMS", "Brimstail", new WorldPoint(2402, 3419, 0), "West of Stronghold Slayer Cave"),
 		new AnagramClue("BAKER CLIMB", "Brambickle", new WorldPoint(2783, 3861, 0), "Trollweiss mountain"),
-		new AnagramClue("BLUE GRIM GUIDED", "Lumbridge Guide", new WorldPoint(3232, 3232, 0), "Lumbridge"),
+		new AnagramClue("BLUE GRIM GUIDED", "Lumbridge Guide", new WorldPoint(3238, 3220, 0), "Lumbridge"),
 		new AnagramClue("BY LOOK", "Bolkoy", new WorldPoint(2529, 3162, 0), "Tree Gnome Village general store", "How many flowers are there in the clearing below this platform?", "13"),
 		new AnagramClue("CALAMARI MADE MUD", "Madame Caldarium", new WorldPoint(2553, 2868, 0), "Corsair Cove", "What is 3(5-3)?", "6"),
 		new AnagramClue("CAR IF ICES", "Sacrifice", new WorldPoint(2209, 3056, 0), "Zul-Andra"),
@@ -77,6 +78,7 @@ public class AnagramClue extends ClueScroll implements TextClueScroll, NpcClueSc
 		new AnagramClue("C ON GAME HOC", "Gnome Coach", new WorldPoint(2395, 3486, 0), "Gnome Ball course", "How many gnomes on the Gnome ball field have red patches on their uniforms?", "6"),
 		new AnagramClue("COOL NERD", "Old crone", new WorldPoint(3462, 3557, 0), "East of the Slayer Tower", "What is the combined combat level of each species that live in Slayer tower?", "619"),
 		new AnagramClue("COPPER ORE CRYPTS", "Prospector Percy", new WorldPoint(3061, 3377, 0), "Motherlode Mine", "During a party, everyone shook hands with everyone else. There were 66 handshakes. How many people were at the party?", "12"),
+		new AnagramClue("DARN DRAKE", "Daer Krand", new WorldPoint(3728, 3302, 0), "Sisterhood Sanctuary (Slepe Dungeon, northeast of Nightmare Arena)"),
 		new AnagramClue("DED WAR", "Edward", new WorldPoint(3284, 3943, 0), "Inside Rogue's Castle"),
 		new AnagramClue("DEKAGRAM", "Dark mage", new WorldPoint(3039, 4835, 0), "Centre of the Abyss", "How many rifts are found here in the abyss?", "13"),
 		new AnagramClue("DO SAY MORE", "Doomsayer", new WorldPoint(3230, 3230, 0), "East of Lumbridge Castle", "What is 40 divided by 1/2 plus 15?", "95"),
@@ -104,7 +106,7 @@ public class AnagramClue extends ClueScroll implements TextClueScroll, NpcClueSc
 		new AnagramClue("I EAT ITS CHART HINTS DO U", "Shiratti the Custodian", new WorldPoint(3427, 2927, 0), "North of fountain, Nardah"),
 		new AnagramClue("I EVEN", "Nieve", new WorldPoint(2432, 3422, 0), "The slayer master in Gnome Stronghold", "How many farming patches are there in Gnome stronghold?", "2"),
 		new AnagramClue("I FAFFY RUN", "Fairy Nuff", new WorldPoint(3201, 3169, 0), "North of the bank in Zanaris"),
-		new AnagramClue("IM N ZEZIM", "Impling", new WorldPoint(2592, 4324, 0), "The Imp inside Puro-Puro"),
+		new AnagramClue("IM N ZEZIM", "Immenizz", new WorldPoint(2592, 4324, 0), "The Imp inside Puro-Puro"),
 		new AnagramClue("KAY SIR", "Sir Kay", new WorldPoint(2760, 3496, 0), "The courtyard in Camelot Castle", "How many fountains are there within the grounds of Camelot castle.", "6"),
 		new AnagramClue("LEAKEY", "Kaylee", new WorldPoint(2957, 3370, 0), "Rising Sun Inn in Falador", "How many chairs are there in the Rising Sun?", "18"),
 		new AnagramClue("LAND DOOMD", "Odd Old Man", new WorldPoint(3359, 3506, 0), "Limestone mine northeast of Varrock"),
@@ -113,7 +115,7 @@ public class AnagramClue extends ClueScroll implements TextClueScroll, NpcClueSc
 		new AnagramClue("LADDER MEMO GUV", "Guard Vemmeldo", new WorldPoint(2447, 3418, 1), "Gnome Stronghold Bank", "How many magic trees can you find inside the Gnome Stronghold?", "3"),
 		new AnagramClue("MAL IN TAU", "Luminata", new WorldPoint(3508, 3237, 0), "Near Burgh de Rott entrance"),
 		new AnagramClue("ME AM THE CALC", "Cam the Camel", new WorldPoint(3300, 3231, 0), "Outside Duel Arena"),
-		new AnagramClue("MACHETE CLAM", "Cam the Camel", new WorldPoint(3300, 3231, 0), "Outside Duel Arena", "How many items can carry water in RuneScape?", "6"),
+		new AnagramClue("MACHETE CLAM", "Cam the Camel", new WorldPoint(3300, 3231, 0), "Outside Duel Arena", "How many items can carry water in Gielinor?", "6"),
 		new AnagramClue("ME IF", "Femi", new WorldPoint(2461, 3382, 0), "Gates of Tree Gnome Stronghold"),
 		new AnagramClue("MOLD LA RAN", "Old Man Ral", new WorldPoint(3602, 3209, 0), "Meiyerditch"),
 		new AnagramClue("MOTHERBOARD", "Brother Omad", new WorldPoint(2606, 3211, 0), "Monastery south of Ardougne", "What is the next number? 12, 13, 15, 17, 111, 113, 117, 119, 123....?", "129"),
@@ -171,16 +173,18 @@ public class AnagramClue extends ClueScroll implements TextClueScroll, NpcClueSc
 	private final String npc;
 	private final WorldPoint location;
 	private final String area;
+	@Nullable
 	private final String question;
+	@Nullable
 	private final String answer;
 	private int objectId;
 
 	private AnagramClue(String text, String npc, WorldPoint location, String area)
 	{
-		this(text, npc, location, area, "", null);
+		this(text, npc, location, area, null, null);
 	}
 
-	private AnagramClue(String text, String npc, WorldPoint location, String area, String question, String answer)
+	private AnagramClue(String text, String npc, WorldPoint location, String area, @Nullable String question, @Nullable String answer)
 	{
 		this.text = text;
 		this.npc = npc;

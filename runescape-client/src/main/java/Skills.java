@@ -3,21 +3,15 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hd")
+@ObfuscatedName("hf")
 @Implements("Skills")
 public class Skills {
-	@ObfuscatedName("t")
+	@ObfuscatedName("o")
 	@Export("Skills_enabled")
 	public static final boolean[] Skills_enabled;
-	@ObfuscatedName("n")
+	@ObfuscatedName("q")
 	@Export("Skills_experienceTable")
 	public static int[] Skills_experienceTable;
-	@ObfuscatedName("fh")
-	@ObfuscatedSignature(
-		signature = "Lev;"
-	)
-	@Export("urlRequester")
-	static UrlRequester urlRequester;
 
 	static {
 		Skills_enabled = new boolean[]{true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, false, false};
@@ -33,25 +27,21 @@ public class Skills {
 
 	}
 
-	@ObfuscatedName("kc")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "3031310"
+		signature = "(B)[Lib;",
+		garbageValue = "0"
 	)
-	static final void method4218() {
-		PacketBufferNode var0 = SoundSystem.getPacketBufferNode(ClientPacket.field2265, Client.packetWriter.isaacCipher);
-		Client.packetWriter.addNode(var0);
+	public static StudioGame[] method4272() {
+		return new StudioGame[]{StudioGame.stellardawn, StudioGame.game5, StudioGame.game3, StudioGame.runescape, StudioGame.game4, StudioGame.oldscape};
+	}
 
-		for (InterfaceParent var1 = (InterfaceParent)Client.interfaceParents.first(); var1 != null; var1 = (InterfaceParent)Client.interfaceParents.next()) {
-			if (var1.type == 0 || var1.type == 3) {
-				GrandExchangeOfferOwnWorldComparator.closeInterface(var1, true);
-			}
-		}
-
-		if (Client.meslayerContinueWidget != null) {
-			GrandExchangeOfferAgeComparator.invalidateWidget(Client.meslayerContinueWidget);
-			Client.meslayerContinueWidget = null;
-		}
-
+	@ObfuscatedName("q")
+	@ObfuscatedSignature(
+		signature = "(I)I",
+		garbageValue = "-891910442"
+	)
+	public static int method4271() {
+		return ++MouseHandler.MouseHandler_idleCycles - 1;
 	}
 }

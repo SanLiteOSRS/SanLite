@@ -1,35 +1,43 @@
-import net.runelite.mapping.ObfuscatedGetter;
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ka")
-public final class class296 {
-	@ObfuscatedName("a")
-	@ObfuscatedGetter(
-		longValue = 2084337511336446697L
-	)
-	static long field3684;
-	@ObfuscatedName("t")
-	@ObfuscatedGetter(
-		longValue = 1232556563702335995L
-	)
-	static long field3683;
-
+@ObfuscatedName("ks")
+public class class296 {
 	@ObfuscatedName("j")
 	@ObfuscatedSignature(
-		signature = "(IIB)Z",
-		garbageValue = "1"
+		signature = "(CI)C",
+		garbageValue = "1101109074"
 	)
-	static final boolean method5491(int var0, int var1) {
-		ObjectDefinition var2 = WorldMapDecorationType.getObjectDefinition(var0);
-		if (var1 == 11) {
-			var1 = 10;
-		}
+	static char method5464(char var0) {
+		return var0 != 181 && var0 != 402 ? Character.toTitleCase(var0) : var0;
+	}
 
-		if (var1 >= 5 && var1 <= 8) {
-			var1 = 4;
-		}
+	@ObfuscatedName("z")
+	@ObfuscatedSignature(
+		signature = "(CI)Z",
+		garbageValue = "-2022540422"
+	)
+	@Export("isDigit")
+	public static boolean isDigit(char var0) {
+		return var0 >= '0' && var0 <= '9';
+	}
 
-		return var2.method4684(var1);
+	@ObfuscatedName("jy")
+	@ObfuscatedSignature(
+		signature = "(Lhd;IIII)V",
+		garbageValue = "-213876459"
+	)
+	@Export("drawCompass")
+	static final void drawCompass(Widget var0, int var1, int var2, int var3) {
+		SpriteMask var4 = var0.getSpriteMask(false);
+		if (var4 != null) {
+			if (Client.minimapState < 3) {
+				GrandExchangeOfferNameComparator.compass.drawRotatedMaskedCenteredAround(var1, var2, var4.width, var4.height, 25, 25, Client.camAngleY, 256, var4.xStarts, var4.xWidths);
+			} else {
+				Rasterizer2D.Rasterizer2D_fillMaskedRectangle(var1, var2, 0, var4.xStarts, var4.xWidths);
+			}
+
+		}
 	}
 }

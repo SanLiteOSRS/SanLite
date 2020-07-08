@@ -47,8 +47,7 @@ public interface ChatFilterConfig extends Config
 		keyName = "filteredWords",
 		name = "Filtered Words",
 		description = "List of filtered words, separated by commas",
-		position = 2,
-		group = "Filtered Words"
+		position = 2
 	)
 	default String filteredWords()
 	{
@@ -59,10 +58,20 @@ public interface ChatFilterConfig extends Config
 		keyName = "filteredRegex",
 		name = "Filtered Regex",
 		description = "List of regular expressions to filter, one per line",
-		position = 3,
-		group = "Filtered Regex"
+		position = 3
 	)
 	default String filteredRegex()
+	{
+		return "";
+	}
+
+	@ConfigItem(
+		keyName = "filteredNames",
+		name = "Filtered Names",
+		description = "List of filtered names, one per line. Accepts regular expressions",
+		position = 4
+	)
+	default String filteredNames()
 	{
 		return "";
 	}
@@ -71,7 +80,7 @@ public interface ChatFilterConfig extends Config
 		keyName = "filterFriends",
 		name = "Filter Friends",
 		description = "Filter your friends' messages",
-		position = 4
+		position = 5
 	)
 	default boolean filterFriends()
 	{
@@ -80,11 +89,11 @@ public interface ChatFilterConfig extends Config
 
 	@ConfigItem(
 		keyName = "filterClan",
-		name = "Filter Clan Chat Members",
-		description = "Filter your clan chat members' messages",
-		position = 5
+		name = "Filter Friends Chat Members",
+		description = "Filter your friends chat members' messages",
+		position = 6
 	)
-	default boolean filterClan()
+	default boolean filterFriendsChat()
 	{
 		return false;
 	}
@@ -93,10 +102,43 @@ public interface ChatFilterConfig extends Config
 		keyName = "filterLogin",
 		name = "Filter Logged In/Out Messages",
 		description = "Filter your private chat to remove logged in/out messages",
-		position = 6
+		position = 7
 	)
 	default boolean filterLogin()
 	{
 		return false;
+	}
+
+	@ConfigItem(
+		keyName = "collapseGameChat",
+		name = "Collapse Game Chat",
+		description = "Collapse duplicate game chat messages into a single line",
+		position = 9
+	)
+	default boolean collapseGameChat()
+	{
+		return false;
+	}
+
+	@ConfigItem(
+		keyName = "collapsePlayerChat",
+		name = "Collapse Player Chat",
+		description = "Collapse duplicate player chat messages into a single line",
+		position = 10
+	)
+	default boolean collapsePlayerChat()
+	{
+		return false;
+	}
+
+	@ConfigItem(
+		keyName = "maxRepeatedPublicChats",
+		name = "Max repeated public chats",
+		description = "Block player chat message if repeated this many times. 0 is off",
+		position = 11
+	)
+	default int maxRepeatedPublicChats()
+	{
+		return 0;
 	}
 }

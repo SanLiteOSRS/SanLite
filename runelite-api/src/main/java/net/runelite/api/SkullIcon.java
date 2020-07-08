@@ -34,26 +34,82 @@ public enum SkullIcon
 	 * White skull from PVP world or wilderness
 	 */
 	SKULL,
+
 	/**
 	 * Red skull from Tzhaar Fight Pits
 	 */
 	SKULL_FIGHT_PIT,
+
+	/**
+	 * Skull from Bounty Hunter when carrying a tier one emblem
+	 */
+	SKULL_BOUNTY_HUNTER_TIER_ONE,
+
+	/**
+	 * Skull from Bounty Hunter when carrying a tier two emblem
+	 */
+	SKULL_BOUNTY_HUNTER_TIER_TWO,
+
+	/**
+	 * Skull from Bounty Hunter when carrying a tier three emblem
+	 */
+	SKULL_BOUNTY_HUNTER_TIER_THREE,
+
+	/**
+	 * Skull from Bounty Hunter when carrying a tier four emblem
+	 */
+	SKULL_BOUNTY_HUNTER_TIER_FOUR,
+
+	/**
+	 * Skull from Bounty Hunter when carrying a tier five emblem
+	 */
+	SKULL_BOUNTY_HUNTER_TIER_FIVE,
+
+	/**
+	 * Skull from Bounty Hunter when carrying a tier six emblem
+	 */
+	SKULL_BOUNTY_HUNTER_TIER_SIX,
+
+	/**
+	 * Skull from Bounty Hunter when carrying a tier seven emblem
+	 */
+	SKULL_BOUNTY_HUNTER_TIER_SEVEN,
+
+	/**
+	 * Skull from Bounty Hunter when carrying a tier eight emblem
+	 */
+	SKULL_BOUNTY_HUNTER_TIER_EIGHT,
+
+	/**
+	 * Skull from Bounty Hunter when carrying a tier nine emblem
+	 */
+	SKULL_BOUNTY_HUNTER_TIER_NINE,
+
+	/**
+	 * Skull from Bounty Hunter when carrying a tier ten emblem
+	 */
+	SKULL_BOUNTY_HUNTER_TIER_TEN,
+
 	/**
 	 * Deadman mode sprite carrying one key
 	 */
 	DEAD_MAN_ONE,
+
 	/**
 	 * Deadman mode sprite carrying two keys
 	 */
 	DEAD_MAN_TWO,
+
 	/**
 	 * Deadman mode sprite carrying three keys
 	 */
 	DEAD_MAN_THREE,
+
 	/**
 	 * Deadman mode sprite carrying four keys
 	 */
 	DEAD_MAN_FOUR,
+
 	/**
 	 * Deadman mode sprite carrying five keys
 	 */

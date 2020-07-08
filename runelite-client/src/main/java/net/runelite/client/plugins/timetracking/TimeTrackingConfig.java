@@ -27,6 +27,7 @@ package net.runelite.client.plugins.timetracking;
 import net.runelite.client.config.Config;
 import net.runelite.client.config.ConfigGroup;
 import net.runelite.client.config.ConfigItem;
+import net.runelite.client.config.Units;
 
 @ConfigGroup("timetracking")
 public interface TimeTrackingConfig extends Config
@@ -71,14 +72,49 @@ public interface TimeTrackingConfig extends Config
 	}
 
 	@ConfigItem(
-		keyName = "defaultTimerMinutes",
-		name = "Default Time (Minutes)",
-		description = "The default time for the timer in minutes",
+		keyName = "farmingContractInfoBox",
+		name = "Show farming contract infobox",
+		description = "Show an infobox of your current farming contract when inside the farming guild",
 		position = 4
 	)
+	default boolean farmingContractInfoBox()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+		keyName = "defaultTimerMinutes",
+		name = "Default Time",
+		description = "The default time for the timer in minutes",
+		position = 5
+	)
+	@Units(Units.MINUTES)
 	default int defaultTimerMinutes()
 	{
 		return 5;
+	}
+
+	@ConfigItem(
+		keyName = "sortOrder",
+		name = "Sort Order",
+		description = "The order in which to sort the timers",
+		position = 6
+	)
+	default SortOrder sortOrder()
+	{
+		return SortOrder.NONE;
+	}
+
+	@ConfigItem(
+		keyName = "timerWarningThreshold",
+		name = "Timer Warning Threshold",
+		description = "The time at which to change the timer color to the warning color",
+		position = 6
+	)
+	@Units(Units.SECONDS)
+	default int timerWarningThreshold()
+	{
+		return 10;
 	}
 
 	@ConfigItem(

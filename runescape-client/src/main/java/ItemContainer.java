@@ -1,21 +1,39 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bu")
+@ObfuscatedName("bv")
 @Implements("ItemContainer")
 public class ItemContainer extends Node {
-	@ObfuscatedName("a")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		signature = "Llh;"
+		signature = "Lle;"
 	)
 	@Export("itemContainers")
 	static NodeHashTable itemContainers;
-	@ObfuscatedName("t")
+	@ObfuscatedName("u")
+	@ObfuscatedSignature(
+		signature = "Llz;"
+	)
+	@Export("rightTitleSprite")
+	static SpritePixels rightTitleSprite;
+	@ObfuscatedName("ak")
+	@ObfuscatedSignature(
+		signature = "Llv;"
+	)
+	static Bounds field567;
+	@ObfuscatedName("ma")
+	@ObfuscatedGetter(
+		intValue = -1890638997
+	)
+	@Export("selectedSpellWidget")
+	static int selectedSpellWidget;
+	@ObfuscatedName("o")
 	@Export("ids")
 	int[] ids;
-	@ObfuscatedName("n")
+	@ObfuscatedName("q")
 	@Export("quantities")
 	int[] quantities;
 
@@ -28,49 +46,71 @@ public class ItemContainer extends Node {
 		this.quantities = new int[]{0};
 	}
 
-	@ObfuscatedName("a")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "4"
+		signature = "(II)Lls;",
+		garbageValue = "-1724420240"
 	)
-	static void method1250() {
-		synchronized(ArchiveDiskActionHandler.ArchiveDiskActionHandler_lock) {
-			if (ArchiveDiskActionHandler.field3132 == 0) {
-				ArchiveDiskActionHandler.ArchiveDiskActionHandler_thread = new Thread(new ArchiveDiskActionHandler());
-				ArchiveDiskActionHandler.ArchiveDiskActionHandler_thread.setDaemon(true);
-				ArchiveDiskActionHandler.ArchiveDiskActionHandler_thread.start();
-				ArchiveDiskActionHandler.ArchiveDiskActionHandler_thread.setPriority(5);
+	public static PrivateChatMode method1232(int var0) {
+		PrivateChatMode[] var1 = new PrivateChatMode[]{PrivateChatMode.field3818, PrivateChatMode.field3820, PrivateChatMode.field3819};
+		PrivateChatMode[] var2 = var1;
+
+		for (int var3 = 0; var3 < var2.length; ++var3) {
+			PrivateChatMode var4 = var2[var3];
+			if (var0 == var4.field3817) {
+				return var4;
+			}
+		}
+
+		return null;
+	}
+
+	@ObfuscatedName("o")
+	@ObfuscatedSignature(
+		signature = "(II)Ljava/lang/String;",
+		garbageValue = "1507611056"
+	)
+	@Export("colorStartTag")
+	static String colorStartTag(int var0) {
+		return "<col=" + Integer.toHexString(var0) + ">";
+	}
+
+	@ObfuscatedName("o")
+	@ObfuscatedSignature(
+		signature = "(II)Ljr;",
+		garbageValue = "2131303603"
+	)
+	@Export("getEnum")
+	public static EnumComposition getEnum(int var0) {
+		EnumComposition var1 = (EnumComposition)EnumComposition.EnumDefinition_cached.get((long)var0);
+		if (var1 != null) {
+			return var1;
+		} else {
+			byte[] var2 = class349.EnumDefinition_archive.takeFile(8, var0);
+			var1 = new EnumComposition();
+			if (var2 != null) {
+				var1.decode(new Buffer(var2));
 			}
 
-			ArchiveDiskActionHandler.field3132 = 600;
+			EnumComposition.EnumDefinition_cached.put(var1, (long)var0);
+			return var1;
 		}
 	}
 
-	@ObfuscatedName("a")
+	@ObfuscatedName("g")
 	@ObfuscatedSignature(
-		signature = "([BIII)Ljava/lang/String;",
-		garbageValue = "2029003644"
+		signature = "(Lch;Lch;IZIZI)I",
+		garbageValue = "-1532099004"
 	)
-	public static String method1252(byte[] var0, int var1, int var2) {
-		StringBuilder var3 = new StringBuilder();
-
-		for (int var4 = var1; var4 < var2 + var1; var4 += 3) {
-			int var5 = var0[var4] & 255;
-			var3.append(class289.field3636[var5 >>> 2]);
-			if (var4 < var2 - 1) {
-				int var6 = var0[var4 + 1] & 255;
-				var3.append(class289.field3636[(var5 & 3) << 4 | var6 >>> 4]);
-				if (var4 < var2 - 2) {
-					int var7 = var0[var4 + 2] & 255;
-					var3.append(class289.field3636[(var6 & 15) << 2 | var7 >>> 6]).append(class289.field3636[var7 & 63]);
-				} else {
-					var3.append(class289.field3636[(var6 & 15) << 2]).append("=");
-				}
-			} else {
-				var3.append(class289.field3636[(var5 & 3) << 4]).append("==");
-			}
+	static int method1225(World var0, World var1, int var2, boolean var3, int var4, boolean var5) {
+		int var6 = Actor.compareWorlds(var0, var1, var2, var3);
+		if (var6 != 0) {
+			return var3 ? -var6 : var6;
+		} else if (var4 == -1) {
+			return 0;
+		} else {
+			int var7 = Actor.compareWorlds(var0, var1, var4, var5);
+			return var5 ? -var7 : var7;
 		}
-
-		return var3.toString();
 	}
 }

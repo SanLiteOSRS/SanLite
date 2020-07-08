@@ -31,6 +31,7 @@ import com.google.common.primitives.Ints;
 import com.google.inject.Provides;
 import java.awt.image.BufferedImage;
 import static java.lang.Math.min;
+import java.util.Arrays;
 import java.util.List;
 import javax.inject.Inject;
 import lombok.Getter;
@@ -48,12 +49,14 @@ import net.runelite.api.events.MenuEntryAdded;
 import net.runelite.api.events.StatChanged;
 import net.runelite.api.events.VarbitChanged;
 import net.runelite.api.kit.KitType;
+import net.runelite.client.chat.ChatMessageBuilder;
+import net.runelite.client.chat.ChatMessageManager;
+import net.runelite.client.chat.QueuedMessage;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.EventBus;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
-import net.runelite.client.plugins.PluginType;
 import net.runelite.client.ui.ClientToolbar;
 import net.runelite.client.ui.JagexColors;
 import net.runelite.client.ui.NavigationButton;
@@ -65,8 +68,7 @@ import org.slf4j.LoggerFactory;
 @PluginDescriptor(
 	name = "Developer Tools",
 	description = "Adds the developer tools button to side-panel with various tools to assist development of the client",
-	tags = {"panel", "dev", "camera", "debug"},
-	type = PluginType.SANLITE,
+	tags = {"panel", "dev", "camera", "debug", "sanlite"},
 	enabledByDefault = false,
 	developerPlugin = true
 )
@@ -109,6 +111,12 @@ public class DevToolsPlugin extends Plugin
 	@Inject
 	private EventBus eventBus;
 
+	@Inject
+	private ConfigManager configManager;
+
+	@Inject
+	private ChatMessageManager chatMessageManager;
+
 	private DevToolsButton players;
 	private DevToolsButton npcs;
 	private DevToolsButton groundItems;
@@ -133,6 +141,7 @@ public class DevToolsPlugin extends Plugin
 	private DevToolsButton widgetInspector;
 	private DevToolsButton varInspector;
 	private DevToolsButton soundEffects;
+	private DevToolsButton scriptInspector;
 	private NavigationButton navButton;
 
 	@Provides
@@ -174,6 +183,7 @@ public class DevToolsPlugin extends Plugin
 		widgetInspector = new DevToolsButton("Widget Inspector");
 		varInspector = new DevToolsButton("Var Inspector");
 		soundEffects = new DevToolsButton("Sound Effects");
+		scriptInspector = new DevToolsButton("Script Inspector");
 
 		overlayManager.add(overlay);
 		overlayManager.add(locationOverlay);
@@ -332,15 +342,15 @@ public class DevToolsPlugin extends Plugin
 			{
 				int id = Integer.parseInt(args[0]);
 				Player localPlayer = client.getLocalPlayer();
-				localPlayer.setSpotAnimation(id);
-				localPlayer.setSpotAnimationFrame(0);
+				localPlayer.setGraphic(id);
+				localPlayer.setSpotAnimFrame(0);
 				break;
 			}
 			case "transform":
 			{
 				int id = Integer.parseInt(args[0]);
 				Player player = client.getLocalPlayer();
-				player.getPlayerAppearance().setTransformedNpcId(id);
+				player.getPlayerComposition().setTransformedNpcId(id);
 				player.setIdlePoseAnimation(-1);
 				player.setPoseAnimation(-1);
 				break;
@@ -349,8 +359,8 @@ public class DevToolsPlugin extends Plugin
 			{
 				int id = Integer.parseInt(args[0]);
 				Player player = client.getLocalPlayer();
-				player.getPlayerAppearance().getEquipmentIds()[KitType.CAPE.getIndex()] = id + 512;
-				player.getPlayerAppearance().setHash();
+				player.getPlayerComposition().getEquipmentIds()[KitType.CAPE.getIndex()] = id + 512;
+				player.getPlayerComposition().setHash();
 				break;
 			}
 			case "sound":
@@ -359,9 +369,59 @@ public class DevToolsPlugin extends Plugin
 				client.playSoundEffect(id);
 				break;
 			}
+			case "skull":
+			{
+				int id = Integer.parseInt(args[0]);
+				client.getLocalPlayer().setSkullIcon(id);
+				break;
+			}
 			case "msg":
 			{
 				client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", String.join(" ", args), "");
+				break;
+			}
+			case "setconf":
+			{
+				// setconf group.key name = value
+				String group = args[0];
+				String key = args[1], value = "";
+				for (int i = 2; i < args.length; ++i)
+				{
+					if (args[i].equals("="))
+					{
+						value = String.join(" ", Arrays.copyOfRange(args, i + 1, args.length));
+						break;
+					}
+
+					key += " " + args[i];
+				}
+				String current = configManager.getConfiguration(group, key);
+				final String message;
+				if (value.isEmpty())
+				{
+					configManager.unsetConfiguration(group, key);
+					message = String.format("Unset configuration %s.%s (was: %s)", group, key, current);
+				}
+				else
+				{
+					configManager.setConfiguration(group, key, value);
+					message = String.format("Set configuration %s.%s to %s (was: %s)", group, key, value, current);
+				}
+				chatMessageManager.queue(QueuedMessage.builder()
+					.type(ChatMessageType.GAMEMESSAGE)
+					.runeLiteFormattedMessage(new ChatMessageBuilder().append(message).build())
+					.build());
+				break;
+			}
+			case "getconf":
+			{
+				String group = args[0], key = String.join(" ", Arrays.copyOfRange(args, 1, args.length));
+				String value = configManager.getConfiguration(group, key);
+				final String message = String.format("%s.%s = %s", group, key, value);
+				chatMessageManager.queue(QueuedMessage.builder()
+					.type(ChatMessageType.GAMEMESSAGE)
+					.runeLiteFormattedMessage(new ChatMessageBuilder().append(message).build())
+					.build());
 				break;
 			}
 		}

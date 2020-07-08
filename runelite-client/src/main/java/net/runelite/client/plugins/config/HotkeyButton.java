@@ -26,6 +26,8 @@ package net.runelite.client.plugins.config;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 import lombok.Getter;
 import net.runelite.client.config.AllKeyCodeKeybind;
@@ -40,7 +42,16 @@ public class HotkeyButton extends JButton
 	public HotkeyButton(Keybind value, boolean modifierless, boolean allKeyCode)
 	{
 		setValue(value);
-		addActionListener(e -> setValue(Keybind.NOT_SET));
+		addMouseListener(new MouseAdapter()
+		{
+			@Override
+			public void mouseReleased(MouseEvent e)
+			{
+				// We have to use a mouse adapter instead of an action listener so the press action key (space) can be bound
+				setValue(Keybind.NOT_SET);
+			}
+		});
+
 		addKeyListener(new KeyAdapter()
 		{
 			@Override

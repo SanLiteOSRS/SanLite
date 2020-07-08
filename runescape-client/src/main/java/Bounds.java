@@ -4,30 +4,30 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ls")
+@ObfuscatedName("lv")
 @Implements("Bounds")
 public class Bounds {
-	@ObfuscatedName("a")
+	@ObfuscatedName("m")
 	@ObfuscatedGetter(
-		intValue = -1735724601
+		intValue = -961758993
 	)
 	@Export("lowX")
 	public int lowX;
-	@ObfuscatedName("t")
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = -701395687
+		intValue = 1458350895
 	)
 	@Export("lowY")
 	public int lowY;
-	@ObfuscatedName("n")
+	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = -825003219
+		intValue = 875525085
 	)
 	@Export("highX")
 	public int highX;
-	@ObfuscatedName("q")
+	@ObfuscatedName("j")
 	@ObfuscatedGetter(
-		intValue = 1589322753
+		intValue = -1188404153
 	)
 	@Export("highY")
 	public int highY;
@@ -41,10 +41,10 @@ public class Bounds {
 		this(0, 0, var1, var2);
 	}
 
-	@ObfuscatedName("a")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		signature = "(IIB)V",
-		garbageValue = "0"
+		signature = "(III)V",
+		garbageValue = "-2102954293"
 	)
 	@Export("setLow")
 	public void setLow(int var1, int var2) {
@@ -52,10 +52,10 @@ public class Bounds {
 		this.lowY = var2;
 	}
 
-	@ObfuscatedName("t")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
 		signature = "(IIB)V",
-		garbageValue = "-111"
+		garbageValue = "-40"
 	)
 	@Export("setHigh")
 	public void setHigh(int var1, int var2) {
@@ -63,22 +63,22 @@ public class Bounds {
 		this.highY = var2;
 	}
 
-	@ObfuscatedName("n")
-	@ObfuscatedSignature(
-		signature = "(Lls;Lls;I)V",
-		garbageValue = "478225673"
-	)
-	public void method6020(Bounds var1, Bounds var2) {
-		this.method6035(var1, var2);
-		this.method6024(var1, var2);
-	}
-
 	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		signature = "(Lls;Lls;I)V",
-		garbageValue = "-1348909503"
+		signature = "(Llv;Llv;I)V",
+		garbageValue = "1555379366"
 	)
-	void method6035(Bounds var1, Bounds var2) {
+	public void method6202(Bounds var1, Bounds var2) {
+		this.method6199(var1, var2);
+		this.method6194(var1, var2);
+	}
+
+	@ObfuscatedName("j")
+	@ObfuscatedSignature(
+		signature = "(Llv;Llv;B)V",
+		garbageValue = "58"
+	)
+	void method6199(Bounds var1, Bounds var2) {
 		var2.lowX = this.lowX;
 		var2.highX = this.highX;
 		if (this.lowX < var1.lowX) {
@@ -86,8 +86,8 @@ public class Bounds {
 			var2.lowX = var1.lowX;
 		}
 
-		if (var2.method6025() > var1.method6025()) {
-			var2.highX -= var2.method6025() - var1.method6025();
+		if (var2.method6193() > var1.method6193()) {
+			var2.highX -= var2.method6193() - var1.method6193();
 		}
 
 		if (var2.highX < 0) {
@@ -96,12 +96,12 @@ public class Bounds {
 
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		signature = "(Lls;Lls;B)V",
-		garbageValue = "1"
+		signature = "(Llv;Llv;I)V",
+		garbageValue = "-810970943"
 	)
-	void method6024(Bounds var1, Bounds var2) {
+	void method6194(Bounds var1, Bounds var2) {
 		var2.lowY = this.lowY;
 		var2.highY = this.highY;
 		if (this.lowY < var1.lowY) {
@@ -109,8 +109,8 @@ public class Bounds {
 			var2.lowY = var1.lowY;
 		}
 
-		if (var2.method6026() > var1.method6026()) {
-			var2.highY -= var2.method6026() - var1.method6026();
+		if (var2.method6196() > var1.method6196()) {
+			var2.highY -= var2.method6196() - var1.method6196();
 		}
 
 		if (var2.highY < 0) {
@@ -119,29 +119,25 @@ public class Bounds {
 
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("g")
 	@ObfuscatedSignature(
-		signature = "(B)I",
-		garbageValue = "-20"
+		signature = "(I)I",
+		garbageValue = "515582700"
 	)
-	int method6025() {
-		return this.highX + this.lowX;
+	int method6193() {
+		return this.lowX + this.highX;
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(B)I",
-		garbageValue = "-30"
+		signature = "(I)I",
+		garbageValue = "-500619811"
 	)
-	int method6026() {
+	int method6196() {
 		return this.lowY + this.highY;
 	}
 
 	public String toString() {
-		return null;
-	}
-
-	public String abf() {
 		return null;
 	}
 }

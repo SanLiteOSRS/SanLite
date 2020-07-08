@@ -48,12 +48,9 @@ class GroundItem
 	private boolean tradeable;
 	@Nonnull
 	private LootType lootType;
-	/**
-	 * Is dropped by me
-	 */
-	private boolean isDropped;
 	@Nullable
 	private Instant spawnTime;
+	private boolean stackable;
 
 	int getHaPrice()
 	{

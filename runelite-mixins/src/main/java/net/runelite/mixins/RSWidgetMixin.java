@@ -205,22 +205,10 @@ public abstract class RSWidgetMixin implements RSWidget
 
 		Widget parent = getParent();
 
-		if (parent == null)
-		{
-			if (TO_GROUP(getId()) != client.getWidgetRoot())
-			{
-				// Widget has no parent and is not the root widget (which is always visible),
-				// so it's not visible.
-				return true;
-			}
-		}
-		else if (parent.isHidden())
-		{
-			// If the parent is hidden, this widget is also hidden.
-			return true;
-		}
-
-		return false;
+		// If the parent is hidden, this widget is also hidden.
+		// Widget has no parent and is not the root widget (which is always visible),
+		// so it's not visible.
+		return parent == null ? TO_GROUP(getId()) != client.getWidgetRoot() : parent.isHidden();
 	}
 
 	@Inject
@@ -297,8 +285,20 @@ public abstract class RSWidgetMixin implements RSWidget
 		int itemX = rl$x + ((ITEM_SLOT_SIZE + xPitch) * col);
 		int itemY = rl$y + ((ITEM_SLOT_SIZE + yPitch) * row);
 
-		Rectangle bounds = new Rectangle(itemX, itemY, ITEM_SLOT_SIZE, ITEM_SLOT_SIZE);
-		return new WidgetItem(itemId - 1, itemQuantity, index, bounds, this);
+		boolean isDragged = isWidgetItemDragged(index);
+		int dragOffsetX = 0;
+		int dragOffsetY = 0;
+
+		if (isDragged)
+		{
+			Point p = getWidgetItemDragOffsets();
+			dragOffsetX = p.getX();
+			dragOffsetY = p.getY();
+		}
+
+		Rectangle bounds = new Rectangle(itemX - 1, itemY - 1, ITEM_SLOT_SIZE, ITEM_SLOT_SIZE);
+		Rectangle draggedBounds = new Rectangle(itemX + dragOffsetX, itemY + dragOffsetY, ITEM_SLOT_SIZE, ITEM_SLOT_SIZE);
+		return new WidgetItem(itemId - 1, itemQuantity, index, bounds, this, draggedBounds);
 	}
 
 	@Inject
@@ -578,15 +578,42 @@ public abstract class RSWidgetMixin implements RSWidget
 	}
 
 	@Copy("getModel")
-	public abstract RSModel rs$getModel(RSSequenceDefinition sequence, int frame, boolean alternate, RSPlayerAppearance playerComposition);
+	public abstract RSModel rs$getModel(RSSequenceDefinition sequence, int frame, boolean alternate, RSPlayerComposition playerComposition);
 
 	@Replace("getModel")
-	public RSModel rl$getModel(RSSequenceDefinition sequence, int frame, boolean alternate, RSPlayerAppearance playerComposition)
+	public RSModel rl$getModel(RSSequenceDefinition sequence, int frame, boolean alternate, RSPlayerComposition playerComposition)
 	{
 		if (frame != -1 && client.isInterpolateWidgetAnimations())
 		{
 			frame = frame | getModelFrameCycle() << 16 | Integer.MIN_VALUE;
 		}
 		return rs$getModel(sequence, frame, alternate, playerComposition);
+	}
+
+	@Inject
+	@Override
+	public boolean isWidgetItemDragged(int index)
+	{
+		return client.getIf1DraggedWidget() == this && client.getItemPressedDuration() >= 5 &&
+			client.getIf1DraggedItemIndex() == index;
+	}
+
+	@Inject
+	public Point getWidgetItemDragOffsets()
+	{
+		int dragOffsetX = client.getMouseX() - client.getDraggedWidgetX();
+		int dragOffsetY = client.getMouseY() - client.getDraggedWidgetY();
+
+		if (dragOffsetX < 5 && dragOffsetX > -5)
+		{
+			dragOffsetX = 0;
+		}
+
+		if (dragOffsetY < 5 && dragOffsetY > -5)
+		{
+			dragOffsetY = 0;
+		}
+
+		return new Point(dragOffsetX, dragOffsetY);
 	}
 }

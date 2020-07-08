@@ -51,7 +51,12 @@ import net.runelite.api.Player;
 import net.runelite.api.Skill;
 import net.runelite.api.VarPlayer;
 import net.runelite.api.WorldType;
-import net.runelite.api.events.*;
+import net.runelite.api.events.GameStateChanged;
+import net.runelite.api.events.GameTick;
+import net.runelite.api.events.MenuEntryAdded;
+import net.runelite.api.events.MenuOptionClicked;
+import net.runelite.api.events.NpcDespawned;
+import net.runelite.api.events.StatChanged;
 import net.runelite.api.widgets.WidgetID;
 import static net.runelite.api.widgets.WidgetInfo.TO_GROUP;
 import net.runelite.client.config.ConfigManager;
@@ -68,6 +73,7 @@ import net.runelite.client.ui.overlay.OverlayManager;
 import net.runelite.client.util.ImageUtil;
 import net.runelite.client.util.Text;
 import net.runelite.http.api.xp.XpClient;
+import okhttp3.OkHttpClient;
 
 @PluginDescriptor(
 	name = "XP Tracker",
@@ -111,6 +117,9 @@ public class XpTrackerPlugin extends Plugin
 	@Inject
 	private OverlayManager overlayManager;
 
+	@Inject
+	private XpClient xpClient;
+
 	private NavigationButton navButton;
 	@Setter(AccessLevel.PACKAGE)
 	@VisibleForTesting
@@ -122,7 +131,6 @@ public class XpTrackerPlugin extends Plugin
 	private long lastXp = 0;
 	private boolean initializeTracker;
 
-	private final XpClient xpClient = new XpClient();
 	private final XpState xpState = new XpState();
 	private final XpPauseState xpPauseState = new XpPauseState();
 
@@ -130,6 +138,12 @@ public class XpTrackerPlugin extends Plugin
 	XpTrackerConfig provideConfig(ConfigManager configManager)
 	{
 		return configManager.getConfig(XpTrackerConfig.class);
+	}
+
+	@Provides
+	XpClient provideXpClient(OkHttpClient okHttpClient)
+	{
+		return new XpClient(okHttpClient);
 	}
 
 	@Override
@@ -364,7 +378,7 @@ public class XpTrackerPlugin extends Plugin
 		if (interacting instanceof NPC && COMBAT.contains(skill))
 		{
 			final NPC npc = (NPC) interacting;
-			xpState.updateNpcExperience(skill, npc, npcManager.getHealth(npc.getName(), npc.getCombatLevel()));
+			xpState.updateNpcExperience(skill, npc, npcManager.getHealth(npc.getId()));
 		}
 
 		final XpUpdateResult updateResult = xpState.updateSkill(skill, currentXp, startGoalXp, endGoalXp);
@@ -387,7 +401,7 @@ public class XpTrackerPlugin extends Plugin
 
 		for (Skill skill : COMBAT)
 		{
-			final XpUpdateResult updateResult = xpState.updateNpcKills(skill, npc, npcManager.getHealth(npc.getName(), npc.getCombatLevel()));
+			final XpUpdateResult updateResult = xpState.updateNpcKills(skill, npc, npcManager.getHealth(npc.getId()));
 			final boolean updated = XpUpdateResult.UPDATED.equals(updateResult);
 			xpPanel.updateSkillExperience(updated, xpPauseState.isPaused(skill), skill, xpState.getSkillSnapshot(skill));
 		}
@@ -496,7 +510,7 @@ public class XpTrackerPlugin extends Plugin
 	public void onMenuOptionClicked(MenuOptionClicked event)
 	{
 		if (event.getMenuAction().getId() != MenuAction.RUNELITE.getId()
-			|| TO_GROUP(event.getActionParam1()) != WidgetID.SKILLS_GROUP_ID)
+			|| TO_GROUP(event.getWidgetId()) != WidgetID.SKILLS_GROUP_ID)
 		{
 			return;
 		}
@@ -504,7 +518,7 @@ public class XpTrackerPlugin extends Plugin
 		final Skill skill;
 		try
 		{
-			skill = Skill.valueOf(Text.removeTags(event.getTarget()).toUpperCase());
+			skill = Skill.valueOf(Text.removeTags(event.getMenuTarget()).toUpperCase());
 		}
 		catch (IllegalArgumentException ex)
 		{
@@ -512,7 +526,7 @@ public class XpTrackerPlugin extends Plugin
 			return;
 		}
 
-		switch (event.getOption())
+		switch (event.getMenuOption())
 		{
 			case MENUOP_ADD_CANVAS_TRACKER:
 				addOverlay(skill);
@@ -665,7 +679,19 @@ public class XpTrackerPlugin extends Plugin
 			xpPauseState.tickXp(skill, skillExperience, xpTrackerConfig.pauseSkillAfter());
 		}
 
-		xpPauseState.tickLogout(xpTrackerConfig.pauseOnLogout(), !GameState.LOGIN_SCREEN.equals(client.getGameState()));
+		final boolean loggedIn;
+		switch (client.getGameState())
+		{
+			case LOGIN_SCREEN:
+			case LOGGING_IN:
+			case LOGIN_SCREEN_AUTHENTICATOR:
+				loggedIn = false;
+				break;
+			default:
+				loggedIn = true;
+				break;
+		}
+		xpPauseState.tickLogout(xpTrackerConfig.pauseOnLogout(), loggedIn);
 
 		if (lastTickMillis == 0)
 		{

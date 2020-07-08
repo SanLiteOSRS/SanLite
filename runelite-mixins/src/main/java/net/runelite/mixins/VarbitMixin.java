@@ -1,27 +1,27 @@
 package net.runelite.mixins;
 
-import com.google.common.cache.Cache;
-import com.google.common.cache.CacheBuilder;
 import net.runelite.api.VarClientInt;
 import net.runelite.api.VarClientStr;
 import net.runelite.api.Varbits;
+import com.google.common.cache.Cache;
+import com.google.common.cache.CacheBuilder;
+import java.util.Map;
 import net.runelite.api.mixins.Inject;
 import net.runelite.api.mixins.Mixin;
 import net.runelite.api.mixins.Shadow;
 import net.runelite.rs.api.RSClient;
-import net.runelite.rs.api.RSEvictingDualNodeHashTable;
-import net.runelite.rs.api.RSVarbitDefinition;
-
-import java.util.Map;
+import net.runelite.rs.api.RSVarbitComposition;
 
 @Mixin(RSClient.class)
 public abstract class VarbitMixin implements RSClient
 {
+	private static final int VARBITS_GROUP = 14;
+
 	@Shadow("client")
 	private static RSClient client;
 
 	@Inject
-	private Cache<Integer, RSVarbitDefinition> varbitCache = CacheBuilder.newBuilder()
+	private Cache<Integer, RSVarbitComposition> varbitCache = CacheBuilder.newBuilder()
 			.maximumSize(128)
 			.build();
 
@@ -40,6 +40,13 @@ public abstract class VarbitMixin implements RSClient
 
 	@Inject
 	@Override
+	public int getVarbitValue(int varbitId)
+	{
+		return getVarbitValue(getVarps(), varbitId);
+	}
+
+	@Inject
+	@Override
 	public void setVarbit(Varbits varbit, int value)
 	{
 		int varbitId = varbit.getId();
@@ -48,27 +55,47 @@ public abstract class VarbitMixin implements RSClient
 
 	@Inject
 	@Override
+	public RSVarbitComposition getVarbit(int id)
+	{
+		assert isClientThread();
+
+		RSVarbitComposition varbit;
+		varbit = varbitCache.getIfPresent(id);
+		if (varbit != null)
+		{
+			return varbit;
+		}
+		varbit = (RSVarbitComposition) getVarbitCache().get(id);
+		if (varbit != null && !(varbit.getIndex() == 0 && varbit.getMostSignificantBit() == 0 && varbit.getLeastSignificantBit() == 0))
+		{
+			return varbit;
+		}
+
+		byte[] fileData = getIndexConfig().getConfigData(VARBITS_GROUP, id);
+		if (fileData == null)
+		{
+			return null;
+		}
+		varbit = createVarbitComposition();
+		varbit.decode(createBuffer(fileData));
+		return varbit;
+	}
+
+	@Inject
+	@Override
 	public int getVarbitValue(int[] varps, int varbitId)
 	{
 		assert client.isClientThread();
 
-		RSVarbitDefinition v = varbitCache.getIfPresent(varbitId);
-		if (v == null)
+		RSVarbitComposition varbitComposition = getVarbit(varbitId);
+		if (varbitComposition == null)
 		{
-			client.getVarbit(varbitId); // load varbit into cache
-			RSEvictingDualNodeHashTable varbits = client.getVarbitCache();
-			v = (RSVarbitDefinition) varbits.get(varbitId); // get from cache
-			varbitCache.put(varbitId, v);
+			throw new IndexOutOfBoundsException(String.format("Varbit %d does not exist!", varbitId));
 		}
 
-		if (v.getIndex() == 0 && v.getLeastSignificantBit() == 0 && v.getMostSignificantBit() == 0)
-		{
-			throw new IndexOutOfBoundsException("Varbit " + varbitId + " does not exist");
-		}
-
-		int value = varps[v.getIndex()];
-		int lsb = v.getLeastSignificantBit();
-		int msb = v.getMostSignificantBit();
+		int value = varps[varbitComposition.getIndex()];
+		int lsb = varbitComposition.getLeastSignificantBit();
+		int msb = varbitComposition.getMostSignificantBit();
 		int mask = (1 << ((msb - lsb) + 1)) - 1;
 		return (value >> lsb) & mask;
 	}
@@ -77,27 +104,31 @@ public abstract class VarbitMixin implements RSClient
 	@Override
 	public void setVarbitValue(int[] varps, int varbitId, int value)
 	{
-		RSVarbitDefinition v = varbitCache.getIfPresent(varbitId);
-		if (v == null)
+		RSVarbitComposition varbitComposition = getVarbit(varbitId);
+		if (varbitComposition == null)
 		{
-			client.getVarbit(varbitId); // load varbit into cache
-			RSEvictingDualNodeHashTable varbits = client.getVarbitCache();
-			v = (RSVarbitDefinition) varbits.get(varbitId); // get from cache
-			varbitCache.put(varbitId, v);
+			throw new IndexOutOfBoundsException(String.format("Varbit %d does not exist!", varbitId));
 		}
 
-		int lsb = v.getLeastSignificantBit();
-		int msb = v.getMostSignificantBit();
+		int lsb = varbitComposition.getLeastSignificantBit();
+		int msb = varbitComposition.getMostSignificantBit();
 		int mask = (1 << ((msb - lsb) + 1)) - 1;
-		varps[v.getIndex()] = (varps[v.getIndex()] & ~(mask << lsb)) | ((value & mask) << lsb);
+		varps[varbitComposition.getIndex()] = (varps[varbitComposition.getIndex()] & ~(mask << lsb)) | ((value & mask) << lsb);
 	}
 
 	@Inject
 	@Override
 	public int getVar(VarClientInt varClientInt)
 	{
+		return getVarcIntValue(varClientInt.getIndex());
+	}
+
+	@Inject
+	@Override
+	public int getVarcIntValue(int varcIntId)
+	{
 		Map<Integer, Object> varcmap = getVarcMap();
-		Object object = varcmap.get(varClientInt.getIndex());
+		Object object = varcmap.get(varcIntId);
 		return object instanceof Integer ? (Integer) object : 0;
 	}
 
@@ -105,8 +136,15 @@ public abstract class VarbitMixin implements RSClient
 	@Override
 	public String getVar(VarClientStr varClientStr)
 	{
+		return getVarcStrValue(varClientStr.getIndex());
+	}
+
+	@Inject
+	@Override
+	public String getVarcStrValue(int varcStrId)
+	{
 		Map<Integer, Object> varcmap = getVarcMap();
-		Object var2 = varcmap.get(varClientStr.getIndex());
+		Object var2 = varcmap.get(varcStrId);
 		return var2 instanceof String ? (String) var2 : "";
 	}
 

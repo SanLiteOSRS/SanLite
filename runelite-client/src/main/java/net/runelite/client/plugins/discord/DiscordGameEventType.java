@@ -29,6 +29,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import java.util.List;
 import java.util.Map;
+import javax.annotation.Nullable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import net.runelite.api.Client;
@@ -42,6 +43,8 @@ enum DiscordGameEventType
 
 	IN_GAME("In Game", -3),
 	IN_MENU("In Menu", -3),
+	PLAYING_DEADMAN("Playing Deadman Mode", -3),
+	PLAYING_PVP("Playing in a PVP world", -3),
 	TRAINING_ATTACK(Skill.ATTACK),
 	TRAINING_DEFENCE(Skill.DEFENCE),
 	TRAINING_STRENGTH(Skill.STRENGTH),
@@ -85,6 +88,7 @@ enum DiscordGameEventType
 	BOSS_WINTERTODT("Wintertodt", DiscordAreaType.BOSSES, 6462),
 	BOSS_ZALCANO("Zalcano", DiscordAreaType.BOSSES, 13250),
 	BOSS_ZULRAH("Zulrah", DiscordAreaType.BOSSES, 9007),
+	BOSS_NIGHTMARE("Nightmare of Ashihama", DiscordAreaType.BOSSES, 15515),
 
 	// Cities
 	CITY_AL_KHARID("Al Kharid" , DiscordAreaType.CITIES, 13105, 13106),
@@ -100,6 +104,7 @@ enum DiscordGameEventType
 	CITY_CANIFIS("Canifis" , DiscordAreaType.CITIES, 13878),
 	CITY_CATHERBY("Catherby" , DiscordAreaType.CITIES, 11317, 11318, 11061),
 	CITY_CORSAIR_CAVE("Corsair Cove" , DiscordAreaType.CITIES, 10028, 10284),
+	CITY_DARKMEYER("Darkmeyer", DiscordAreaType.CITIES, 14388),
 	CITY_DORGESH_KAAN("Dorgesh-Kaan" , DiscordAreaType.CITIES, 10835, 10834),
 	CITY_DRAYNOR("Draynor" , DiscordAreaType.CITIES, 12338),
 	CITY_EDGEVILLE("Edgeville" , DiscordAreaType.CITIES, 12342),
@@ -117,7 +122,7 @@ enum DiscordGameEventType
 	CITY_LOVAKENGJ_HOUSE("Lovakengj" , DiscordAreaType.CITIES, 5692, 5948, 5691, 5947, 6203, 6202, 5690, 5946),
 	CITY_LUMBRIDGE("Lumbridge" , DiscordAreaType.CITIES, 12850),
 	CITY_LUNAR_ISLE("Lunar Isle" , DiscordAreaType.CITIES, 8253, 8252, 8509, 8508),
-	CITY_MEIYERDITCH("Meiyerditch" , DiscordAreaType.CITIES, 14132, 14388, 14387, 14386, 14385),
+	CITY_MEIYERDITCH("Meiyerditch" , DiscordAreaType.CITIES, 14132, 14387, 14386, 14385),
 	CITY_MISCELLANIA("Miscellania" , DiscordAreaType.CITIES, 10044, 10300),
 	CITY_MOS_LE_HARMLESS("Mos Le'Harmless" , DiscordAreaType.CITIES, 14638),
 	CITY_MORTTON("Mort'ton" , DiscordAreaType.CITIES, 13875),
@@ -182,7 +187,7 @@ enum DiscordGameEventType
 	DUNGEON_GOBLIN_CAVE("Goblin Cave", DiscordAreaType.DUNGEONS, 10393),
 	DUNGEON_GRAND_TREE_TUNNELS("Grand Tree Tunnels", DiscordAreaType.DUNGEONS, 9882),
 	DUNGEON_HAM("H.A.M Dungeon", DiscordAreaType.DUNGEONS, 12694, 10321),
-	DUNGEON_IORWERTH("Iorwerth Dungeon", DiscordAreaType.DUNGEONS, 12738, 12993, 12994),
+	DUNGEON_IORWERTH("Iorwerth Dungeon", DiscordAreaType.DUNGEONS, 12737, 12738, 12993, 12994),
 	DUNGEON_JATIZSO_MINES("Jatizso Mines", DiscordAreaType.DUNGEONS, 9631),
 	DUNGEON_JIGGIG_BURIAL_TOMB("Jiggig Burial Tomb", DiscordAreaType.DUNGEONS, 9875, 9874),
 	DUNGEON_JOGRE("Jogre Dungeon", DiscordAreaType.DUNGEONS, 11412),
@@ -225,6 +230,7 @@ enum DiscordGameEventType
 	DUNGEON_WITCHAVEN_SHRINE("Witchhaven Shrine Dungeon", DiscordAreaType.DUNGEONS, 10903),
 	DUNGEON_YANILLE_AGILITY("Yanille Agility Dungeon", DiscordAreaType.DUNGEONS, 10388),
 	DUNGEON_MOTHERLODE_MINE("Motherlode Mine", DiscordAreaType.DUNGEONS, 14679, 14680, 14681, 14935, 14936, 14937, 15191, 15192, 15193),
+	DUNGEON_NIGHTMARE("Nightmare Dungeon", DiscordAreaType.DUNGEONS, 14999, 15000, 15001, 15255, 15256, 15257, 15511, 15512, 15513),
 
 	// Minigames
 	MG_BARBARIAN_ASSAULT("Barbarian Assault", DiscordAreaType.MINIGAMES, 10332),
@@ -239,6 +245,7 @@ enum DiscordGameEventType
 	MG_GAUNTLET("Gauntlet", DiscordAreaType.MINIGAMES, 12995),
 	MG_INFERNO("The Inferno", DiscordAreaType.MINIGAMES, 9043),
 	MG_LAST_MAN_STANDING("Last Man Standing", DiscordAreaType.MINIGAMES, 13660, 13659, 13658, 13916, 13915, 13914),
+	MG_HALLOWED_SEPULCHRE("Hallowed Sepulchre", DiscordAreaType.MINIGAMES, 8797, 9051, 9052, 9053, 9054, 9309, 9563, 9565, 9821, 10074, 10075, 10077),
 	MG_MAGE_TRAINING_ARENA("Mage Training Arena", DiscordAreaType.MINIGAMES, 13462, 13463),
 	MG_NIGHTMARE_ZONE("Nightmare Zone", DiscordAreaType.MINIGAMES, 9033),
 	MG_PEST_CONTROL("Pest Control", DiscordAreaType.MINIGAMES, 10536),
@@ -285,15 +292,26 @@ enum DiscordGameEventType
 		FROM_VARBITS = fromVarbitsBuilder.build();
 	}
 
+	@Nullable
 	private String imageKey;
+
+	@Nullable
 	private String state;
+
+	@Nullable
 	private String details;
+
 	private int priority;
 	private boolean shouldClear;
 	private boolean shouldTimeout;
 
+	@Nullable
 	private DiscordAreaType discordAreaType;
+
+	@Nullable
 	private Varbits varbits;
+
+	@Nullable
 	private int[] regionIds;
 
 	DiscordGameEventType(Skill skill)
@@ -306,7 +324,6 @@ enum DiscordGameEventType
 		this.details = training(skill);
 		this.priority = priority;
 		this.imageKey = imageKeyOf(skill);
-		this.priority = priority;
 		this.shouldTimeout = true;
 	}
 

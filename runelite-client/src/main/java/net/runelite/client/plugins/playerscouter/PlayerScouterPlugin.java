@@ -27,13 +27,12 @@ package net.runelite.client.plugins.playerscouter;
 import com.google.inject.Provides;
 import lombok.Getter;
 import net.runelite.api.*;
-import net.runelite.api.events.ConfigChanged;
 import net.runelite.api.events.GameTick;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
+import net.runelite.client.events.ConfigChanged;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
-import net.runelite.client.plugins.PluginType;
 import net.runelite.client.ui.overlay.OverlayManager;
 import net.runelite.client.Notifier;
 import javax.inject.Inject;
@@ -42,9 +41,8 @@ import java.util.ArrayList;
 @PluginDescriptor(
 		name = "Player Scouter",
 		description = "Assists in scouting a certain player",
-		tags = {"scout, scouter, player, finder, overlay, notifications"},
-		enabledByDefault = false,
-		type = PluginType.SANLITE_USE_AT_OWN_RISK
+		tags = {"scout, scouter, player, finder, overlay, notifications", "sanlite"},
+		enabledByDefault = false
 )
 public class PlayerScouterPlugin extends Plugin
 {

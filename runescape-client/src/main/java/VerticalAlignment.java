@@ -1,45 +1,41 @@
-import java.io.IOException;
+import java.lang.management.GarbageCollectorMXBean;
+import java.lang.management.ManagementFactory;
+import java.util.Iterator;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ik")
+@ObfuscatedName("if")
 @Implements("VerticalAlignment")
 public enum VerticalAlignment implements Enumerated {
-	@ObfuscatedName("a")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		signature = "Lik;"
+		signature = "Lif;"
 	)
-	field3182(0, 0),
-	@ObfuscatedName("t")
+	field3226(2, 0),
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "Lik;"
+		signature = "Lif;"
 	)
 	@Export("VerticalAlignment_centered")
 	VerticalAlignment_centered(1, 1),
-	@ObfuscatedName("n")
-	@ObfuscatedSignature(
-		signature = "Lik;"
-	)
-	field3183(2, 2);
-
-	@ObfuscatedName("d")
-	@ObfuscatedSignature(
-		signature = "Ldl;"
-	)
-	@Export("soundSystem")
-	static SoundSystem soundSystem;
 	@ObfuscatedName("q")
+	@ObfuscatedSignature(
+		signature = "Lif;"
+	)
+	field3230(0, 2);
+
+	@ObfuscatedName("j")
 	@ObfuscatedGetter(
-		intValue = 190875525
+		intValue = -296657291
 	)
 	@Export("value")
 	public final int value;
-	@ObfuscatedName("v")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = 1999098453
+		intValue = -1007871837
 	)
 	@Export("id")
 	final int id;
@@ -49,86 +45,88 @@ public enum VerticalAlignment implements Enumerated {
 		this.id = var4;
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
 		signature = "(I)I",
-		garbageValue = "-1993081102"
+		garbageValue = "-995092303"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
 		return this.id;
 	}
 
-	@ObfuscatedName("a")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		signature = "(Lhx;B)V",
-		garbageValue = "-60"
+		signature = "(III)Lcs;",
+		garbageValue = "1496312280"
 	)
-	public static void method4451(Huffman var0) {
-		class210.huffman = var0;
-	}
-
-	@ObfuscatedName("t")
-	@ObfuscatedSignature(
-		signature = "(Lku;ZI)V",
-		garbageValue = "-239852992"
-	)
-	public static void method4450(AbstractSocket var0, boolean var1) {
-		if (NetCache.NetCache_socket != null) {
-			try {
-				NetCache.NetCache_socket.close();
-			} catch (Exception var6) {
-			}
-
-			NetCache.NetCache_socket = null;
-		}
-
-		NetCache.NetCache_socket = var0;
-		UrlRequester.method3381(var1);
-		NetCache.NetCache_responseHeaderBuffer.offset = 0;
-		UserComparator6.NetCache_currentResponse = null;
-		Frames.NetCache_responseArchiveBuffer = null;
-		NetCache.field3161 = 0;
-
-		while (true) {
-			NetFileRequest var2 = (NetFileRequest)NetCache.NetCache_pendingPriorityResponses.first();
-			if (var2 == null) {
-				while (true) {
-					var2 = (NetFileRequest)NetCache.NetCache_pendingResponses.first();
-					if (var2 == null) {
-						if (NetCache.field3165 != 0) {
-							try {
-								Buffer var7 = new Buffer(4);
-								var7.writeByte(4);
-								var7.writeByte(NetCache.field3165);
-								var7.writeShort(0);
-								NetCache.NetCache_socket.write(var7.array, 0, 4);
-							} catch (IOException var5) {
-								try {
-									NetCache.NetCache_socket.close();
-								} catch (Exception var4) {
-								}
-
-								++NetCache.NetCache_ioExceptions;
-								NetCache.NetCache_socket = null;
-							}
-						}
-
-						NetCache.NetCache_loadTime = 0;
-						NetCache.field3149 = PlayerAppearance.method4141();
-						return;
+	static Script method4517(int var0, int var1) {
+		Script var2 = (Script)Script.Script_cached.get((long)(var0 << 16));
+		if (var2 != null) {
+			return var2;
+		} else {
+			String var3 = String.valueOf(var0);
+			int var4 = Message.archive12.getGroupId(var3);
+			if (var4 == -1) {
+				return null;
+			} else {
+				byte[] var5 = Message.archive12.takeFileFlat(var4);
+				if (var5 != null) {
+					if (var5.length <= 1) {
+						return null;
 					}
 
-					NetCache.NetCache_pendingWritesQueue.addLast(var2);
-					NetCache.NetCache_pendingWrites.put(var2, var2.key);
-					++NetCache.NetCache_pendingWritesCount;
-					--NetCache.NetCache_pendingResponsesCount;
+					var2 = WorldMapAreaData.newScript(var5);
+					if (var2 != null) {
+						Script.Script_cached.put(var2, (long)(var0 << 16));
+						return var2;
+					}
+				}
+
+				return null;
+			}
+		}
+	}
+
+	@ObfuscatedName("ac")
+	@ObfuscatedSignature(
+		signature = "(I)I",
+		garbageValue = "735302127"
+	)
+	@Export("getGcDuration")
+	protected static int getGcDuration() {
+		int var0 = 0;
+		if (MusicPatchPcmStream.garbageCollector == null || !MusicPatchPcmStream.garbageCollector.isValid()) {
+			try {
+				Iterator var1 = ManagementFactory.getGarbageCollectorMXBeans().iterator();
+
+				while (var1.hasNext()) {
+					GarbageCollectorMXBean var2 = (GarbageCollectorMXBean)var1.next();
+					if (var2.isValid()) {
+						MusicPatchPcmStream.garbageCollector = var2;
+						GameEngine.garbageCollectorLastCheckTimeMs = -1L;
+						GameEngine.garbageCollectorLastCollectionTime = -1L;
+					}
+				}
+			} catch (Throwable var11) {
+			}
+		}
+
+		if (MusicPatchPcmStream.garbageCollector != null) {
+			long var9 = MilliClock.currentTimeMillis();
+			long var3 = MusicPatchPcmStream.garbageCollector.getCollectionTime();
+			if (GameEngine.garbageCollectorLastCollectionTime != -1L) {
+				long var5 = var3 - GameEngine.garbageCollectorLastCollectionTime;
+				long var7 = var9 - GameEngine.garbageCollectorLastCheckTimeMs;
+				if (var7 != 0L) {
+					var0 = (int)(100L * var5 / var7);
 				}
 			}
 
-			NetCache.NetCache_pendingPriorityWrites.put(var2, var2.key);
-			++NetCache.NetCache_pendingPriorityWritesCount;
-			--NetCache.NetCache_pendingPriorityResponsesCount;
+			GameEngine.garbageCollectorLastCollectionTime = var3;
+			GameEngine.garbageCollectorLastCheckTimeMs = var9;
 		}
+
+		return var0;
 	}
 }
