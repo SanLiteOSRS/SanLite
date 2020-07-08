@@ -9,15 +9,14 @@ import net.runelite.api.widgets.WidgetInfo;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
-import net.runelite.client.plugins.PluginType;
 
 import javax.inject.Inject;
+import java.awt.*;
 
 @PluginDescriptor(
 		name = "Hide RSN",
 		description = "Hide your own/clan members RSNs from the chatbox",
-		tags = {"hide", "rsn"},
-		type = PluginType.SANLITE
+		tags = {"hide", "rsn"}
 )
 
 @Singleton
@@ -26,36 +25,55 @@ public class HideRsnPlugin extends Plugin
 	@Inject
 	private Client client;
 
+	@Inject
+	private HideRsnConfig config;
 
 	@Override
 	protected void startUp() throws Exception
 	{
-		setRSN(true);
+		setRSN();
 	}
 
 	@Override
 	protected void shutDown() throws Exception
 	{
-		setRSN(false);
+		setRSN();
 	}
 
 	@Subscribe
 	public void onGameTick(GameTick gameTick)
 	{
 		int chatBoxHeight = 16;
-		Widget widget = client.getWidget(WidgetInfo.CHATBOX_MESSAGE);
+		Widget widget = client.getWidget(WidgetInfo.CHATBOX_INPUT);
 		Widget[] widgetArray = widget.getDynamicChildren();
 
 		//No need to update messages not viewable in the chatbox
 		for (int i = 0; i < chatBoxHeight; i++)
 		{
 			String[] splitRSN = widgetArray[i].getText().split(":");
-			if (client.isClanMember(splitRSN[0]) || client.getLocalPlayer().getName().equals(splitRSN[0]))
+			if (client.getLocalPlayer().getName().equals(splitRSN[0]))
 			{
-				widgetArray[i].setText("rev-rs.net:");
-				widgetArray[i + 1].setRelativeX(67);
+				String rsn = config.getCustomRSN();
+				widgetArray[i].setText(rsn);
+
+				int rsnLength = stringWidth(rsn);
+				//Calc name length
+
+				widgetArray[i + 1].setRelativeX(rsnLength);
 			}
 		}
+	}
+
+	private int stringWidth(String str)
+	{
+		int len = str.length();
+		char data[] = new char[len];
+		str.getChars(0, len, data, 0);
+		return charsWidth(data, 0, len);
+	}
+
+	private int charsWidth(char data[], int off, int len) {
+		return stringWidth(new String(data, off, len));
 	}
 
 	@Subscribe
@@ -63,24 +81,18 @@ public class HideRsnPlugin extends Plugin
 	{
 		if (scriptCallbackEvent.getEventName().equals("setChatboxInput"))
 		{
-			setRSN(true);
+			setRSN();
 		}
 	}
 
-	private void setRSN(Boolean custom)
+	private void setRSN()
 	{
+		String customRSN = config.getCustomRSN();
 		Widget chatboxInput = client.getWidget(WidgetInfo.CHATBOX_INPUT);
 		if (chatboxInput != null)
 		{
 			String[] splitRSN = chatboxInput.getText().split(":");
-			if (custom)
-			{
-				splitRSN[0] = "rev-rs.net:";
-			}
-			else
-			{
-				splitRSN[0] = client.getLocalPlayer().getName() + ":";
-			}
+			splitRSN[0] = customRSN + ":";
 			StringBuilder stringBuilder = new StringBuilder();
 
 			for (int i = 0; i < splitRSN.length; i++)
