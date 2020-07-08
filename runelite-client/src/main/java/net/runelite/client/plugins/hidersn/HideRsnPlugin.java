@@ -1,6 +1,5 @@
 package net.runelite.client.plugins.hidersn;
 
-import com.google.inject.Singleton;
 import net.runelite.api.Client;
 import net.runelite.api.events.GameTick;
 import net.runelite.api.events.ScriptCallbackEvent;
@@ -11,15 +10,13 @@ import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 
 import javax.inject.Inject;
-import java.awt.*;
 
 @PluginDescriptor(
 		name = "Hide RSN",
-		description = "Hide your own/clan members RSNs from the chatbox",
-		tags = {"hide", "rsn"}
+		description = "Hide your own RSN from the chatbox",
+		tags = {"hide", "rsn", "custom", "hidden"}
 )
 
-@Singleton
 public class HideRsnPlugin extends Plugin
 {
 	@Inject
@@ -37,7 +34,7 @@ public class HideRsnPlugin extends Plugin
 	@Override
 	protected void shutDown() throws Exception
 	{
-		setRSN();
+		setRSN(true);
 	}
 
 	@Subscribe
@@ -57,8 +54,6 @@ public class HideRsnPlugin extends Plugin
 				widgetArray[i].setText(rsn);
 
 				int rsnLength = stringWidth(rsn);
-				//Calc name length
-
 				widgetArray[i + 1].setRelativeX(rsnLength);
 			}
 		}
@@ -85,14 +80,23 @@ public class HideRsnPlugin extends Plugin
 		}
 	}
 
-	private void setRSN()
+	private void setRSN(boolean... optionalReset)
 	{
+		boolean reset = (optionalReset.length >= 1) ? optionalReset[0] : false;
 		String customRSN = config.getCustomRSN();
 		Widget chatboxInput = client.getWidget(WidgetInfo.CHATBOX_INPUT);
 		if (chatboxInput != null)
 		{
 			String[] splitRSN = chatboxInput.getText().split(":");
-			splitRSN[0] = customRSN + ":";
+			if (reset)
+			{
+				splitRSN[0] = customRSN + ":";
+			}
+			else
+			{
+				splitRSN[0] = client.getLocalPlayer().getName() + ":";
+			}
+
 			StringBuilder stringBuilder = new StringBuilder();
 
 			for (int i = 0; i < splitRSN.length; i++)
