@@ -1885,4 +1885,13 @@ public interface Client extends GameEngine
 	boolean isKeyPressed(int keycode);
 
 	boolean shouldRenderLoginScreenFire();
+
+	/**
+	 * Set the local player name shown in the chatbox
+	 *
+	 * @param name new local player name
+	 */
+	void setLocalPlayerName(String name);
+
+	String getLocalPlayerName();
 }

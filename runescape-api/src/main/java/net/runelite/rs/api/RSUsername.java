@@ -30,4 +30,7 @@ public interface RSUsername extends Comparable
 {
 	@Import("getName")
 	String getName();
+
+	@Import("name")
+	void setName(String name);
 }

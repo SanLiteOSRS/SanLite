@@ -1192,4 +1192,7 @@ public interface RSClient extends RSGameEngine, Client
 
 	@Import("rightTitleSprite")
 	void setRightTitleSprite(SpritePixels background);
+
+	@Import("username")
+	RSUsername getLocalPlayerUsername();
 }

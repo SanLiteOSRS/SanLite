@@ -1598,4 +1598,30 @@ public abstract class RSClientMixin implements RSClient
 	{
 		return client.getPressedKeys()[keycode];
 	}
+
+	@Inject
+	@Override
+	public void setLocalPlayerName(String name)
+	{
+		RSPlayer localPlayer = client.getLocalPlayer();
+		if (localPlayer == null)
+		{
+			return;
+		}
+
+		localPlayer.getRsName().setName(name);
+	}
+
+	@Inject
+	@Override
+	public String getLocalPlayerName()
+	{
+		RSPlayer localPlayer = client.getLocalPlayer();
+		if (localPlayer == null)
+		{
+			return null;
+		}
+
+		return localPlayer.getRsName().getName();
+	}
 }
