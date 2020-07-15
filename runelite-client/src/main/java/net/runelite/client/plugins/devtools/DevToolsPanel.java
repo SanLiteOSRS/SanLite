@@ -30,6 +30,7 @@ import java.awt.TrayIcon;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import javax.inject.Inject;
+import javax.sound.sampled.Clip;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import net.runelite.api.Client;
@@ -41,6 +42,8 @@ import net.runelite.client.ui.overlay.OverlayMenuEntry;
 import net.runelite.client.ui.overlay.infobox.Counter;
 import net.runelite.client.ui.overlay.infobox.InfoBoxManager;
 import net.runelite.client.util.ImageUtil;
+import net.runelite.client.game.SoundManager;
+import net.runelite.client.util.SoundUtil;
 
 class DevToolsPanel extends PluginPanel
 {
@@ -52,6 +55,7 @@ class DevToolsPanel extends PluginPanel
 	private final VarInspector varInspector;
 	private final ScriptInspector scriptInspector;
 	private final InfoBoxManager infoBoxManager;
+	private final SoundManager soundManager;
 	private final ScheduledExecutorService scheduledExecutorService;
 
 	@Inject
@@ -63,6 +67,7 @@ class DevToolsPanel extends PluginPanel
 		ScriptInspector scriptInspector,
 		Notifier notifier,
 		InfoBoxManager infoBoxManager,
+		SoundManager soundManager,
 		ScheduledExecutorService scheduledExecutorService)
 	{
 		super();
@@ -73,6 +78,7 @@ class DevToolsPanel extends PluginPanel
 		this.scriptInspector = scriptInspector;
 		this.notifier = notifier;
 		this.infoBoxManager = infoBoxManager;
+		this.soundManager = soundManager;
 		this.scheduledExecutorService = scheduledExecutorService;
 
 		setBackground(ColorScheme.DARK_GRAY_COLOR);
@@ -179,6 +185,30 @@ class DevToolsPanel extends PluginPanel
 		final JButton clearInfoboxBtn = new JButton("Clear Infobox");
 		clearInfoboxBtn.addActionListener(e -> infoBoxManager.removeIf(i -> true));
 		container.add(clearInfoboxBtn);
+
+		Clip customSoundClip = SoundUtil.getResourceStreamFromClass(getClass(), "custom_sound.wav");
+		final JButton customSoundBtn = new JButton("Custom Sound");
+		customSoundBtn.addActionListener(e ->
+		{
+			scheduledExecutorService.submit(() -> soundManager.playCustomSound(customSoundClip));
+		});
+		container.add(customSoundBtn);
+
+		Clip customSoundClip3 = SoundUtil.getResourceStreamFromClass(getClass(), "sas_victory.wav");
+		final JButton customSoundBtn3 = new JButton("Victory 1");
+		customSoundBtn3.addActionListener(e ->
+		{
+			scheduledExecutorService.submit(() -> soundManager.playCustomSound(customSoundClip3));
+		});
+		container.add(customSoundBtn3);
+
+		Clip customSoundClip2 = SoundUtil.getResourceStreamFromClass(getClass(), "rangers_victory.wav");
+		final JButton customSoundBtn2 = new JButton("Victory 2");
+		customSoundBtn2.addActionListener(e ->
+		{
+			scheduledExecutorService.submit(() -> soundManager.playCustomSound(customSoundClip2));
+		});
+		container.add(customSoundBtn2);
 
 		return container;
 	}

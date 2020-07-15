@@ -388,4 +388,18 @@ public interface RuneLiteConfig extends Config
 	{
 		return new Keybind(KeyEvent.VK_F12, InputEvent.CTRL_DOWN_MASK);
 	}
+
+	@Range(
+		max = 200
+	)
+	@ConfigItem(
+		keyName = "soundVolume",
+		name = "Sound Volume",
+		description = "The playback volume of non-game sounds from plugins",
+		position = 47
+	)
+	default int soundVolume()
+	{
+		return 30;
+	}
 }
