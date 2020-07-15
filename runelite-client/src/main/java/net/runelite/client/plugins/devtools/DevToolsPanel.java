@@ -186,29 +186,10 @@ class DevToolsPanel extends PluginPanel
 		clearInfoboxBtn.addActionListener(e -> infoBoxManager.removeIf(i -> true));
 		container.add(clearInfoboxBtn);
 
-		Clip customSoundClip = SoundUtil.getResourceStreamFromClass(getClass(), "custom_sound.wav");
 		final JButton customSoundBtn = new JButton("Custom Sound");
-		customSoundBtn.addActionListener(e ->
-		{
-			scheduledExecutorService.submit(() -> soundManager.playCustomSound(customSoundClip));
-		});
+		Clip customSoundClip = SoundUtil.getResourceStreamFromClass(getClass(), "custom_sound.wav");
+		customSoundBtn.addActionListener(e -> scheduledExecutorService.submit(() -> soundManager.playCustomSound(customSoundClip)));
 		container.add(customSoundBtn);
-
-		Clip customSoundClip3 = SoundUtil.getResourceStreamFromClass(getClass(), "sas_victory.wav");
-		final JButton customSoundBtn3 = new JButton("Victory 1");
-		customSoundBtn3.addActionListener(e ->
-		{
-			scheduledExecutorService.submit(() -> soundManager.playCustomSound(customSoundClip3));
-		});
-		container.add(customSoundBtn3);
-
-		Clip customSoundClip2 = SoundUtil.getResourceStreamFromClass(getClass(), "rangers_victory.wav");
-		final JButton customSoundBtn2 = new JButton("Victory 2");
-		customSoundBtn2.addActionListener(e ->
-		{
-			scheduledExecutorService.submit(() -> soundManager.playCustomSound(customSoundClip2));
-		});
-		container.add(customSoundBtn2);
 
 		return container;
 	}

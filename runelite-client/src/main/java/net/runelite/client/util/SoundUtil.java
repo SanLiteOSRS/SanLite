@@ -27,6 +27,7 @@ package net.runelite.client.util;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.sound.sampled.*;
+import java.io.BufferedInputStream;
 import java.io.IOException;
 
 /**
@@ -40,7 +41,7 @@ public class SoundUtil
 		try
 		{
 			Clip clip = AudioSystem.getClip();
-			clip.open(AudioSystem.getAudioInputStream(c.getResourceAsStream(path)));
+			clip.open(AudioSystem.getAudioInputStream(new BufferedInputStream(c.getResourceAsStream(path))));
 			return clip;
 		}
 		catch (IllegalArgumentException | UnsupportedAudioFileException e)
