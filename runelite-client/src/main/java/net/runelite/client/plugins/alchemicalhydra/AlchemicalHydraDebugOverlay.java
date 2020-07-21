@@ -26,6 +26,7 @@ package net.runelite.client.plugins.alchemicalhydra;
 
 import net.runelite.api.Client;
 import net.runelite.client.ui.overlay.Overlay;
+import net.runelite.client.ui.overlay.OverlayMenuEntry;
 import net.runelite.client.ui.overlay.OverlayPosition;
 import net.runelite.client.ui.overlay.components.LineComponent;
 import net.runelite.client.ui.overlay.components.PanelComponent;
@@ -33,6 +34,9 @@ import net.runelite.client.ui.overlay.components.TitleComponent;
 
 import javax.inject.Inject;
 import java.awt.*;
+
+import static net.runelite.api.MenuAction.RUNELITE_OVERLAY_CONFIG;
+import static net.runelite.client.ui.overlay.OverlayManager.OPTION_CONFIGURE;
 
 public class AlchemicalHydraDebugOverlay extends Overlay
 {
@@ -46,6 +50,7 @@ public class AlchemicalHydraDebugOverlay extends Overlay
 		this.client = client;
 		this.plugin = plugin;
 		panelComponent.setPreferredSize(new Dimension(260, 0));
+		getMenuEntries().add(new OverlayMenuEntry(RUNELITE_OVERLAY_CONFIG, OPTION_CONFIGURE, "Alchemical Hydra debug overlay"));
 		setPosition(OverlayPosition.TOP_LEFT);
 	}
 
@@ -58,6 +63,7 @@ public class AlchemicalHydraDebugOverlay extends Overlay
 		if (alchemicalHydra != null)
 		{
 			panelComponent.getChildren().add(TitleComponent.builder()
+					.color(Color.GREEN)
 					.text("Alchemical Hydra debug")
 					.build());
 

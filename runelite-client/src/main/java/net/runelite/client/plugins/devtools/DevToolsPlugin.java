@@ -364,6 +364,7 @@ public class DevToolsPlugin extends Plugin
 				break;
 			}
 			case "sound":
+			case "sfx":
 			{
 				int id = Integer.parseInt(args[0]);
 				client.playSoundEffect(id);
