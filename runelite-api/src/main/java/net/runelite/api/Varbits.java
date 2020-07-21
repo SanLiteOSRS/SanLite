@@ -799,7 +799,12 @@ public enum Varbits
 	CLAN_WARS_ARENA_COUNTDOWN_TIMER(4286),
 	CLAN_WARS_ARENA_UNKNOWN_2(4287),
 	CLAN_WARS_ARENA_UNKNOWN_3(4288),
-	CLAN_WARS_ARENA_UNKNOWN_4(4289);
+	CLAN_WARS_ARENA_UNKNOWN_4(4289),
+
+	/**
+	 * Whether the player is in the buffer zone between the Wilderness and Ferox's Enclave.
+	 */
+	FEROX_ENCLAVE_BUFFER_ZONE(10530);
 
 	/**
 	 * The raw varbit ID.
