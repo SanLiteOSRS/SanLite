@@ -88,7 +88,6 @@ public class NpcIndicatorsPlugin extends Plugin
 	private static final String TAG_ALL = "Tag-All";
 	private static final String UNTAG_ALL = "Un-tag-All";
 
-
 	private static final Set<MenuAction> NPC_MENU_ACTIONS = ImmutableSet.of(MenuAction.NPC_FIRST_OPTION, MenuAction.NPC_SECOND_OPTION,
 		MenuAction.NPC_THIRD_OPTION, MenuAction.NPC_FOURTH_OPTION, MenuAction.NPC_FIFTH_OPTION, MenuAction.SPELL_CAST_ON_NPC,
 		MenuAction.ITEM_USE_ON_NPC);
@@ -188,7 +187,6 @@ public class NpcIndicatorsPlugin extends Plugin
 	{
 		overlayManager.add(npcSceneOverlay);
 		overlayManager.add(npcMinimapOverlay);
-		highlights = getHighlights();
 		clientThread.invoke(() ->
 		{
 			skipNextSpawnCheck = true;
@@ -201,13 +199,16 @@ public class NpcIndicatorsPlugin extends Plugin
 	{
 		overlayManager.remove(npcSceneOverlay);
 		overlayManager.remove(npcMinimapOverlay);
-		deadNpcsToDisplay.clear();
-		memorizedNpcs.clear();
-		spawnedNpcsThisTick.clear();
-		despawnedNpcsThisTick.clear();
-		teleportGraphicsObjectSpawnedThisTick.clear();
-		npcTags.clear();
-		highlightedNpcs.clear();
+		clientThread.invoke(() ->
+		{
+			deadNpcsToDisplay.clear();
+			memorizedNpcs.clear();
+			spawnedNpcsThisTick.clear();
+			despawnedNpcsThisTick.clear();
+			teleportGraphicsObjectSpawnedThisTick.clear();
+			npcTags.clear();
+			highlightedNpcs.clear();
+		});
 	}
 
 	@Subscribe
@@ -232,8 +233,7 @@ public class NpcIndicatorsPlugin extends Plugin
 			return;
 		}
 
-		highlights = getHighlights();
-		rebuildAllNpcs();
+		clientThread.invoke(this::rebuildAllNpcs);
 	}
 
 	@Subscribe
@@ -286,8 +286,8 @@ public class NpcIndicatorsPlugin extends Plugin
 
 			final String npcName = npc.getName();
 			boolean matchesList = highlights.stream()
-					.filter(highlight -> !highlight.equalsIgnoreCase(npcName))
-					.anyMatch(highlight -> WildcardMatcher.matches(highlight, npcName));
+				.filter(highlight -> !highlight.equalsIgnoreCase(npcName))
+				.anyMatch(highlight -> WildcardMatcher.matches(highlight, npcName));
 
 			MenuEntry[] menuEntries = client.getMenuEntries();
 
@@ -324,8 +324,8 @@ public class NpcIndicatorsPlugin extends Plugin
 	public void onMenuOptionClicked(MenuOptionClicked click)
 	{
 		if (click.getMenuAction() != MenuAction.RUNELITE ||
-				!(click.getMenuOption().equals(TAG) || click.getMenuOption().equals(UNTAG) ||
-					click.getMenuOption().equals(TAG_ALL) || click.getMenuOption().equals(UNTAG_ALL)))
+			!(click.getMenuOption().equals(TAG) || click.getMenuOption().equals(UNTAG) ||
+				click.getMenuOption().equals(TAG_ALL) || click.getMenuOption().equals(UNTAG_ALL)))
 		{
 			return;
 		}
@@ -345,8 +345,11 @@ public class NpcIndicatorsPlugin extends Plugin
 
 			if (removed)
 			{
-				highlightedNpcs.remove(npc);
-				memorizedNpcs.remove(npc.getIndex());
+				if (!highlightMatchesNPCName(npc.getName()))
+				{
+					highlightedNpcs.remove(npc);
+					memorizedNpcs.remove(npc.getIndex());
+				}
 			}
 			else
 			{
@@ -386,17 +389,13 @@ public class NpcIndicatorsPlugin extends Plugin
 			return;
 		}
 
-		for (String highlight : highlights)
+		if (highlightMatchesNPCName(npcName))
 		{
-			if (WildcardMatcher.matches(highlight, npcName))
+			highlightedNpcs.add(npc);
+			if (!client.isInInstancedRegion())
 			{
-				highlightedNpcs.add(npc);
-				if (!client.isInInstancedRegion())
-				{
-					memorizeNpc(npc);
-					spawnedNpcsThisTick.add(npc);
-				}
-				break;
+				memorizeNpc(npc);
+				spawnedNpcsThisTick.add(npc);
 			}
 		}
 	}
@@ -518,8 +517,10 @@ public class NpcIndicatorsPlugin extends Plugin
 		return Text.fromCSV(configNpcs);
 	}
 
-	private void rebuildAllNpcs()
+	@VisibleForTesting
+	void rebuildAllNpcs()
 	{
+		highlights = getHighlights();
 		highlightedNpcs.clear();
 
 		if (client.getGameState() != GameState.LOGGED_IN &&
@@ -530,7 +531,6 @@ public class NpcIndicatorsPlugin extends Plugin
 			return;
 		}
 
-		outer:
 		for (NPC npc : client.getNpcs())
 		{
 			final String npcName = npc.getName();
@@ -546,22 +546,32 @@ public class NpcIndicatorsPlugin extends Plugin
 				continue;
 			}
 
-			for (String highlight : highlights)
+			if (highlightMatchesNPCName(npcName))
 			{
-				if (WildcardMatcher.matches(highlight, npcName))
+				if (!client.isInInstancedRegion())
 				{
-					if (!client.isInInstancedRegion())
-					{
-						memorizeNpc(npc);
-					}
-					highlightedNpcs.add(npc);
-					continue outer;
+					memorizeNpc(npc);
 				}
+				highlightedNpcs.add(npc);
+				continue;
 			}
 
 			// NPC is not highlighted
 			memorizedNpcs.remove(npc.getIndex());
 		}
+	}
+
+	private boolean highlightMatchesNPCName(String npcName)
+	{
+		for (String highlight : highlights)
+		{
+			if (WildcardMatcher.matches(highlight, npcName))
+			{
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	private void validateSpawnedNpcs()

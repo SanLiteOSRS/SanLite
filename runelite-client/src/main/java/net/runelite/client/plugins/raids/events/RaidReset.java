@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, Adam <Adam@sigterm.info>
+ * Copyright (c) 2020, Trevor <https://github.com/Trevor159>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,12 +22,13 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.client.input;
+package net.runelite.client.plugins.raids.events;
 
-public interface KeyListener extends java.awt.event.KeyListener
+/**
+ * An event that fires when the raid plugin resets
+ *
+ * This happens when the player leaves a raid and when the raid plugin turns off
+ */
+public class RaidReset
 {
-	default boolean isEnabledOnLoginScreen()
-	{
-		return false;
-	}
 }

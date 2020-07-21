@@ -200,16 +200,6 @@ public final class ScriptID
 	public static final int FRIENDS_CHAT_SEND_KICK = 215;
 
 	/**
-	 * Join a clan chat channel
-	 */
-	public static final int CUSTOM_JOIN_CLAN = 10690;
-
-	/**
-	 * Send a public message
-	 */
-	public static final int PUBLIC_MSG = 13337;
-
-	/**
 	 * Builds the widget that holds all of the players inside a friends chat
 	 */
 	@ScriptArguments(integer = 15)
@@ -297,4 +287,13 @@ public final class ScriptID
 	 */
 	@ScriptArguments(integer = 2)
 	public static final int TOPLEVEL_REDRAW = 907;
+
+	/**
+	 * Called to set position of an xpdrop text and sprite(s)
+	 * <ul>
+	 * <li> XP drop parent component </li>
+	 * </ul>
+	 */
+	@ScriptArguments(integer = 4, string = 1)
+	public static final int XPDROPS_SETDROPSIZE = 996;
 }
