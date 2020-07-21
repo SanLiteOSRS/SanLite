@@ -400,6 +400,6 @@ public interface RuneLiteConfig extends Config
 	)
 	default int soundVolume()
 	{
-		return 10;
+		return 50;
 	}
 }
