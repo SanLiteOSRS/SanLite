@@ -4,6 +4,7 @@ import java.awt.Color;
 import net.runelite.client.config.Config;
 import net.runelite.client.config.ConfigGroup;
 import net.runelite.client.config.ConfigItem;
+import net.runelite.client.config.Range;
 
 @ConfigGroup("Zone Indicators")
 public interface ZoneIndicatorsConfig extends Config
@@ -14,7 +15,7 @@ public interface ZoneIndicatorsConfig extends Config
 			description = "Determine where multi combat zones should be shown",
 			position = 1
 	)
-	default ZoneVisibility multiCombatZoneVisibility()
+	default ZoneVisibility getMultiCombatZoneVisibility()
 	{
 		return ZoneVisibility.SHOW_IN_PVP;
 	}
@@ -69,7 +70,7 @@ public interface ZoneIndicatorsConfig extends Config
 			description = "Choose color to use for marking multi combat zones",
 			position = 6
 	)
-	default Color multiCombatColor()
+	default Color getMultiCombatColor()
 	{
 		return new Color(237, 0, 0);
 	}
@@ -80,7 +81,7 @@ public interface ZoneIndicatorsConfig extends Config
 			description = "Choose color to use for marking safe zones in PvP/Deadman",
 			position = 7
 	)
-	default Color safeZoneColor()
+	default Color getSafeZoneColor()
 	{
 		return Color.GREEN;
 	}
@@ -91,7 +92,7 @@ public interface ZoneIndicatorsConfig extends Config
 			description = "Choose color to use for marking wilderness level lines",
 			position = 8
 	)
-	default Color wildernessLevelLinesColor()
+	default Color getWildernessLevelLinesColor()
 	{
 		return Color.WHITE;
 	}
@@ -102,9 +103,24 @@ public interface ZoneIndicatorsConfig extends Config
 			description = "Render multi lines, safe zone lines, and wilderness level lines as 1 pixel wide instead of 2",
 			position = 9
 	)
-	default boolean thinnerLines()
+	default boolean enableThinnerLines()
 	{
 		return false;
+	}
+
+	@Range(
+			min = 15,
+			max = 85
+	)
+	@ConfigItem(
+			keyName = "indicatorLinesDrawDistance",
+			name = "Lines draw distance",
+			description = "Maximum draw distance of indicator lines in tiles",
+			position = 10
+	)
+	default int getIndicatorLinesDrawDistance()
+	{
+		return 40;
 	}
 
 }
