@@ -115,7 +115,7 @@ public class AntiDragPlugin extends Plugin implements KeyListener
 	@Override
 	public void keyPressed(KeyEvent e)
 	{
-		if (e.getKeyCode() == config.ignoreKeybind().getKeyCode())
+		if (e.getKeyCode() == config.ignoreKeybind().getKeyCode() && config.enableIgnoreKeybind() && !config.onKeybindOnly())
 		{
 			resetDragDelay();
 			disableKeybindHeld = true;
@@ -130,7 +130,7 @@ public class AntiDragPlugin extends Plugin implements KeyListener
 	@Override
 	public void keyReleased(KeyEvent e)
 	{
-		if (e.getKeyCode() == config.ignoreKeybind().getKeyCode())
+		if (e.getKeyCode() == config.ignoreKeybind().getKeyCode() && config.enableIgnoreKeybind() && !config.onKeybindOnly())
 		{
 			setDragDelay();
 			disableKeybindHeld = false;

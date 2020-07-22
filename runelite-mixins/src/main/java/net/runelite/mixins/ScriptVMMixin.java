@@ -52,6 +52,9 @@ public abstract class ScriptVMMixin implements RSClient
 	@Inject
 	private static RSScript currentScript;
 
+	@Inject
+	private static RSScriptEvent rootScriptEvent;
+
 	// This field is set by the ScriptVM raw injector
 	@Inject
 	private static int currentScriptPC;
@@ -60,6 +63,18 @@ public abstract class ScriptVMMixin implements RSClient
 	@Inject
 	static void setCurrentScript(RSScript script)
 	{
+		if (rootScriptEvent != null)
+		{
+			if (script != null)
+			{
+				final ScriptPreFired scriptPreFired = new ScriptPreFired((int) script.getHash());
+				scriptPreFired.setScriptEvent(rootScriptEvent);
+				client.getCallbacks().post(scriptPreFired);
+			}
+
+			rootScriptEvent = null;
+		}
+
 		currentScript = script;
 	}
 
@@ -135,8 +150,7 @@ public abstract class ScriptVMMixin implements RSClient
 	static void rl$runScript(RSScriptEvent event, int maxExecutionTime)
 	{
 		Object[] arguments = event.getArguments();
-		assert arguments != null && arguments.length > 0;
-		if (arguments[0] instanceof JavaScriptCallback)
+		if (arguments != null && arguments.length > 0 && arguments[0] instanceof JavaScriptCallback)
 		{
 			try
 			{
@@ -147,13 +161,11 @@ public abstract class ScriptVMMixin implements RSClient
 				client.getLogger().error("Error in JavaScriptCallback", e);
 			}
 		}
-		else if (arguments[0] instanceof Integer)
+		else
 		{
 			try
 			{
-				final ScriptPreFired scriptPreFired = new ScriptPreFired((int) arguments[0]);
-				scriptPreFired.setScriptEvent(event);
-				client.getCallbacks().post(scriptPreFired);
+				rootScriptEvent = event;
 				rs$runScript(event, maxExecutionTime);
 			}
 			finally
@@ -170,8 +182,8 @@ public abstract class ScriptVMMixin implements RSClient
 		assert isClientThread();
 		assert currentScript == null;
 		assert args[0] instanceof Integer || args[0] instanceof JavaScriptCallback : "The first argument should always be a ScriptID!";
-		RSScriptEvent se = createScriptEvent();
-		se.setArguments(args);
-		runScript(se, 5000000);
+		RSScriptEvent scriptEvent = createScriptEvent();
+		scriptEvent.setArguments(args);
+		runScript(scriptEvent, 5000000);
 	}
 }

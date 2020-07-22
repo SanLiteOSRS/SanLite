@@ -66,6 +66,7 @@ import net.runelite.client.externalplugins.ExternalPluginManager;
 import net.runelite.client.game.FriendChatManager;
 import net.runelite.client.game.ItemManager;
 import net.runelite.client.game.LootManager;
+import net.runelite.client.game.SoundManager;
 import net.runelite.client.game.chatbox.ChatboxPanelManager;
 import net.runelite.client.menus.MenuManager;
 import net.runelite.client.plugins.PluginManager;
@@ -174,6 +175,9 @@ public class RuneLite
 
 	@Inject
 	private Provider<ChatboxPanelManager> chatboxPanelManager;
+
+	@Inject
+	private Provider<SoundManager> soundManager;
 
 	@Inject
 	private Provider<Hooks> hooks;
@@ -373,6 +377,7 @@ public class RuneLite
 			eventBus.register(commandManager.get());
 			eventBus.register(lootManager.get());
 			eventBus.register(chatboxPanelManager.get());
+			eventBus.register(soundManager.get());
 			eventBus.register(hooks.get());
 			eventBus.register(infoBoxOverlay.get());
 

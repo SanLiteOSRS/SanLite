@@ -96,6 +96,7 @@ import net.runelite.client.ui.ClientToolbar;
 import net.runelite.client.ui.NavigationButton;
 import net.runelite.client.util.ColorUtil;
 import net.runelite.client.util.ImageUtil;
+import net.runelite.client.util.LinkBrowser;
 import net.runelite.client.util.OSType;
 import net.runelite.client.util.QuantityFormatter;
 import net.runelite.client.util.Text;
@@ -617,7 +618,7 @@ public class GrandExchangePlugin extends Plugin
 			case WidgetID.GRAND_EXCHANGE_GROUP_ID:
 				Widget grandExchangeOffer = client.getWidget(WidgetInfo.GRAND_EXCHANGE_OFFER_CONTAINER);
 				grandExchangeText = client.getWidget(WidgetInfo.GRAND_EXCHANGE_OFFER_TEXT);
-				grandExchangeItem = grandExchangeOffer.getDynamicChildren()[OFFER_CONTAINER_ITEM];
+				grandExchangeItem = grandExchangeOffer.getChild(OFFER_CONTAINER_ITEM);
 				break;
 			// Grand exchange was closed (if it was open before).
 			case WidgetID.INVENTORY_GROUP_ID:
@@ -931,5 +932,14 @@ public class GrandExchangePlugin extends Plugin
 				log.debug("Error getting price of item {}", itemId, e);
 			}
 		});
+	}
+
+	static void openGeLink(String name, int itemId)
+	{
+		final String url = "https://services.runescape.com/m=itemdb_oldschool/"
+			+ name.replaceAll(" ", "+")
+			+ "/viewitem?obj="
+			+ itemId;
+		LinkBrowser.browse(url);
 	}
 }

@@ -30,9 +30,14 @@ import com.google.inject.Provides;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import static java.lang.Integer.max;
 import java.time.Duration;
 import java.time.Instant;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -51,8 +56,6 @@ import net.runelite.api.ItemID;
 import net.runelite.api.MessageNode;
 import net.runelite.api.NPC;
 import net.runelite.api.NPCComposition;
-
-import static java.lang.Integer.max;
 import static net.runelite.api.Skill.SLAYER;
 import net.runelite.api.coords.WorldPoint;
 import net.runelite.api.events.ActorDeath;
@@ -402,6 +405,7 @@ public class SlayerPlugin extends Plugin
 				removeCounter();
 			}
 		}
+
 		taggedNpcsDiedPrevTick = taggedNpcsDiedThisTick;
 		taggedNpcsDiedThisTick = 0;
 	}
@@ -560,7 +564,6 @@ public class SlayerPlugin extends Plugin
 		log.debug("Slayer xp change delta: {}, killed npcs: {}", delta, taggedNpcsDiedPrevTick);
 
 		final Task task = Task.getTask(taskName);
-
 		if (task != null && task.getExpectedKillExp() > 0)
 		{
 			// Only decrement a kill if the xp drop matches the expected drop. This is just for Tzhaar tasks.
@@ -630,6 +633,7 @@ public class SlayerPlugin extends Plugin
 		if (doubleTroubleExtraKill())
 		{
 			assert amt == 1;
+			amount--;
 		}
 
 		config.amount(amount); // save changed value
@@ -726,7 +730,7 @@ public class SlayerPlugin extends Plugin
 	{
 		taskName = name;
 		amount = amt;
-		initialAmount = initAmt;
+		initialAmount = Math.max(amt, initAmt);
 		taskLocation = location;
 		save();
 		removeCounter();

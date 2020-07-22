@@ -533,10 +533,10 @@ public class SlayerPluginTest
 		when(client.getLocalPlayer()).thenReturn(player);
 
 		StatChanged statChanged = new StatChanged(
-				Skill.SLAYER,
-				100,
-				2,
-				2
+			Skill.SLAYER,
+			100,
+			2,
+			2
 		);
 		slayerPlugin.onStatChanged(statChanged);
 
@@ -544,10 +544,10 @@ public class SlayerPluginTest
 		slayerPlugin.setAmount(143);
 
 		statChanged = new StatChanged(
-				Skill.SLAYER,
-				110,
-				2,
-				2
+			Skill.SLAYER,
+			110,
+			2,
+			2
 		);
 		slayerPlugin.onStatChanged(statChanged);
 
@@ -562,10 +562,10 @@ public class SlayerPluginTest
 		when(client.getLocalPlayer()).thenReturn(player);
 
 		StatChanged statChanged = new StatChanged(
-				Skill.SLAYER,
-				100,
-				2,
-				2
+			Skill.SLAYER,
+			100,
+			2,
+			2
 		);
 		slayerPlugin.onStatChanged(statChanged);
 
@@ -575,10 +575,10 @@ public class SlayerPluginTest
 		assert Task.getTask("Monster") == null;
 
 		statChanged = new StatChanged(
-				Skill.SLAYER,
-				110,
-				2,
-				2
+			Skill.SLAYER,
+			110,
+			2,
+			2
 		);
 		slayerPlugin.onStatChanged(statChanged);
 
@@ -593,10 +593,10 @@ public class SlayerPluginTest
 		when(client.getLocalPlayer()).thenReturn(player);
 
 		StatChanged statChanged = new StatChanged(
-				Skill.SLAYER,
-				100,
-				2,
-				2
+			Skill.SLAYER,
+			100,
+			2,
+			2
 		);
 		slayerPlugin.onStatChanged(statChanged);
 
@@ -605,10 +605,10 @@ public class SlayerPluginTest
 
 		// One bat kill
 		statChanged = new StatChanged(
-				Skill.SLAYER,
-				110,
-				2,
-				2
+			Skill.SLAYER,
+			110,
+			2,
+			2
 		);
 		slayerPlugin.onStatChanged(statChanged);
 
@@ -616,10 +616,10 @@ public class SlayerPluginTest
 
 		// One Jad kill
 		statChanged = new StatChanged(
-				Skill.SLAYER,
-				25360,
-				-1,
-				-1
+			Skill.SLAYER,
+			25360,
+			-1,
+			-1
 		);
 		slayerPlugin.onStatChanged(statChanged);
 
@@ -634,10 +634,10 @@ public class SlayerPluginTest
 		when(client.getLocalPlayer()).thenReturn(player);
 
 		StatChanged statChanged = new StatChanged(
-				Skill.SLAYER,
-				110,
-				2,
-				2
+			Skill.SLAYER,
+			110,
+			2,
+			2
 		);
 		slayerPlugin.onStatChanged(statChanged);
 
@@ -646,10 +646,10 @@ public class SlayerPluginTest
 
 		// One bat kill
 		statChanged = new StatChanged(
-				Skill.SLAYER,
-				125,
-				2,
-				2
+			Skill.SLAYER,
+			125,
+			2,
+			2
 		);
 		slayerPlugin.onStatChanged(statChanged);
 
@@ -657,10 +657,10 @@ public class SlayerPluginTest
 
 		// One Zuk kill
 		statChanged = new StatChanged(
-				Skill.SLAYER,
-				102_015,
-				-1,
-				-1
+			Skill.SLAYER,
+			102_015,
+			-1,
+			-1
 		);
 		slayerPlugin.onStatChanged(statChanged);
 
@@ -782,6 +782,17 @@ public class SlayerPluginTest
 	}
 
 	@Test
+	public void updateInitialAmount()
+	{
+		Widget npcDialog = mock(Widget.class);
+		when(npcDialog.getText()).thenReturn(TASK_EXISTING);
+		when(client.getWidget(WidgetInfo.DIALOG_NPC_TEXT)).thenReturn(npcDialog);
+		slayerPlugin.onGameTick(new GameTick());
+
+		assertEquals(222, slayerPlugin.getInitialAmount());
+	}
+
+	@Test
 	public void testTaskLookup() throws IOException
 	{
 		net.runelite.http.api.chat.Task task = new net.runelite.http.api.chat.Task();
@@ -836,18 +847,18 @@ public class SlayerPluginTest
 		slayerPlugin.setAmount(35);
 
 		StatChanged statChanged = new StatChanged(
-				Skill.SLAYER,
-				0,
-				1,
-				1
+			Skill.SLAYER,
+			0,
+			1,
+			1
 		);
 		slayerPlugin.onStatChanged(statChanged);
 
 		statChanged = new StatChanged(
-				Skill.SLAYER,
-				27,
-				1,
-				1
+			Skill.SLAYER,
+			27,
+			1,
+			1
 		);
 		slayerPlugin.onStatChanged(statChanged);
 
@@ -879,10 +890,10 @@ public class SlayerPluginTest
 
 		// Setup xp cache
 		StatChanged statChanged = new StatChanged(
-				Skill.SLAYER,
-				0,
-				1,
-				1
+			Skill.SLAYER,
+			0,
+			1,
+			1
 		);
 		slayerPlugin.onStatChanged(statChanged);
 
@@ -922,10 +933,10 @@ public class SlayerPluginTest
 		slayerPlugin.onGameTick(new GameTick());
 
 		statChanged = new StatChanged(
-				Skill.SLAYER,
-				105,
-				2,
-				2
+			Skill.SLAYER,
+			105,
+			2,
+			2
 		);
 		slayerPlugin.onStatChanged(statChanged);
 

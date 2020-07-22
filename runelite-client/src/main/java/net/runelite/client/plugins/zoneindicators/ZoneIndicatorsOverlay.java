@@ -18,13 +18,14 @@ import java.awt.geom.GeneralPath;
 @Singleton
 public class ZoneIndicatorsOverlay extends Overlay
 {
-	private final static int MAX_LOCAL_DRAW_LENGTH = 20 * Perspective.LOCAL_TILE_SIZE;
-
 	@Inject
 	private Client client;
 
 	@Inject
 	private ZoneIndicatorsPlugin plugin;
+
+	@Inject
+	private ZoneIndicatorsConfig config;
 
 	@Inject
 	public ZoneIndicatorsOverlay()
@@ -55,11 +56,12 @@ public class ZoneIndicatorsOverlay extends Overlay
 		}
 
 		LocalPoint playerLp = client.getLocalPlayer().getLocalLocation();
+		int maxDrawDistance = config.getIndicatorLinesDrawDistance() * Perspective.LOCAL_TILE_SIZE;
 		Rectangle viewArea = new Rectangle(
-				playerLp.getX() - MAX_LOCAL_DRAW_LENGTH,
-				playerLp.getY() - MAX_LOCAL_DRAW_LENGTH,
-				MAX_LOCAL_DRAW_LENGTH * 2,
-				MAX_LOCAL_DRAW_LENGTH * 2);
+				playerLp.getX() - maxDrawDistance,
+				playerLp.getY() - maxDrawDistance,
+				maxDrawDistance * 2,
+				maxDrawDistance * 2);
 
 		graphics.setColor(color);
 		if (plugin.isThinnerLines())

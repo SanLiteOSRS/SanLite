@@ -368,14 +368,14 @@ public class ZoneIndicatorsPlugin extends Plugin
 
 	private void updateConfig()
 	{
-		this.multiCombatZoneVisibility = config.multiCombatZoneVisibility();
+		this.multiCombatZoneVisibility = config.getMultiCombatZoneVisibility();
 		this.showPvpSafeZones = config.showPvpSafeZones();
 		this.showDeadmanSafeZones = config.showDeadmanSafeZones();
 		this.showWildernessLevelLines = config.showWildernessLevelLines();
 		this.showMinimapLines = config.showMinimapLines();
-		this.multiCombatColor = config.multiCombatColor();
-		this.safeZoneColor = config.safeZoneColor();
-		this.wildernessLevelLinesColor = config.wildernessLevelLinesColor();
-		this.thinnerLines = config.thinnerLines();
+		this.multiCombatColor = config.getMultiCombatColor();
+		this.safeZoneColor = config.getSafeZoneColor();
+		this.wildernessLevelLinesColor = config.getWildernessLevelLinesColor();
+		this.thinnerLines = config.enableThinnerLines();
 	}
 }
