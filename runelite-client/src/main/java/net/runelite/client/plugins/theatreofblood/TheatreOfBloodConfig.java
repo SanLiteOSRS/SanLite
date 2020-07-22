@@ -154,43 +154,6 @@ public interface TheatreOfBloodConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "highlightBloodSpawnMovementTiles",
-			name = "Highlight blood spawn movement",
-			description = "Highlight the current and future movement tiles for blood spawns",
-			position = 5,
-			section = sugadintiMaidenSection
-	)
-	default boolean highlightBloodSpawnMovementTiles()
-	{
-		return false;
-	}
-
-	@Alpha
-	@ConfigItem(
-			keyName = "bloodSpawnMovementTilesColor",
-			name = "Blood spawn movement",
-			description = "Color of the current and future movement tile markers for blood spawns",
-			position = 6,
-			section = sugadintiMaidenSection
-	)
-	default Color getBloodSpawnMovementTilesColor()
-	{
-		return new Color(183, 38, 21);
-	}
-
-	@ConfigItem(
-			keyName = "bloodSpawnFutureMovementTileOpacity",
-			name = "Movement tile opacity",
-			description = "Opacity of the future movement tile for blood spawns",
-			position = 7,
-			section = sugadintiMaidenSection
-	)
-	default int getBloodSpawnFutureMovementTileOpacity()
-	{
-		return 140;
-	}
-
-	@ConfigItem(
 			keyName = "highlightBloatHandAttackTiles",
 			name = "Highlight hand attack tiles",
 			description = "Highlight the tiles for the Pestilent Bloat's hand attacks",
@@ -386,7 +349,7 @@ public interface TheatreOfBloodConfig extends Config
 	)
 	default Color getXarpusPoisonAttackColor()
 	{
-		return new Color(159, 219, 0, 160);
+		return new Color(159, 219, 0, 100);
 	}
 
 	@ConfigItem(

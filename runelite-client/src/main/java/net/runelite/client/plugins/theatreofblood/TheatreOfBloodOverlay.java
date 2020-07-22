@@ -25,11 +25,9 @@
  */
 package net.runelite.client.plugins.theatreofblood;
 
-import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Point;
 import net.runelite.api.*;
 import net.runelite.api.coords.LocalPoint;
-import net.runelite.api.coords.WorldPoint;
 import net.runelite.client.plugins.theatreofblood.encounters.*;
 import net.runelite.client.plugins.theatreofblood.encounters.Sotetseg;
 import net.runelite.client.ui.overlay.Overlay;
@@ -45,7 +43,6 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
-@Slf4j
 public class TheatreOfBloodOverlay extends Overlay
 {
 	private static final int IMAGE_HEIGHT_OFFSET = 15;
@@ -80,9 +77,6 @@ public class TheatreOfBloodOverlay extends Overlay
 
 				if (config.highlightBloodSpawnTiles() && encounter.getEncounter().equals(TheatreOfBloodEncounters.SUGADINTI_MAIDEN))
 					renderMaidenBloodSpawnAoeEffects(graphics, (SugadintiMaiden) encounter);
-
-				if (config.highlightBloodSpawnMovementTiles() && encounter.getEncounter().equals(TheatreOfBloodEncounters.SUGADINTI_MAIDEN))
-					renderMaidenBloodSpawnMovementTilesHighlight(graphics, (SugadintiMaiden) encounter);
 
 				// Pestilent Bloat
 				if (config.highlightBloatHandAttackTiles() && encounter.getEncounter().equals(TheatreOfBloodEncounters.PESTILENT_BLOAT))
@@ -168,45 +162,6 @@ public class TheatreOfBloodOverlay extends Overlay
 					OverlayUtil.renderPolygon(graphics, polygon, config.getBloodSpawnBloodColor(),
 							config.getTileMarkersLineSize().getSize());
 				}
-			}
-		}
-	}
-
-	private void renderMaidenBloodSpawnMovementTilesHighlight(Graphics2D graphics, SugadintiMaiden sugadintiMaiden)
-	{
-		for (NPC npc : sugadintiMaiden.getBloodSpawns())
-		{
-			// Render current client tile
-			LocalPoint localPoint = npc.getLocalLocation();
-			Polygon polygon = Perspective.getCanvasTilePoly(client, localPoint);
-			if (polygon != null)
-			{
-				OverlayUtil.renderPolygon(graphics, polygon, config.getBloodSpawnMovementTilesColor(),
-						config.getTileMarkersLineSize().getSize());
-			}
-
-			// Render current server tile
-			final WorldPoint worldLocation = npc.getWorldLocation();
-			if (worldLocation == null)
-			{
-				continue;
-			}
-
-			final LocalPoint serverTileLocation = LocalPoint.fromWorld(client, worldLocation);
-			if (serverTileLocation == null)
-			{
-				continue;
-			}
-
-			Polygon serverTilePolygon = Perspective.getCanvasTilePoly(client, serverTileLocation);
-			if (serverTilePolygon != null)
-			{
-				Color color = new Color(
-						config.getBloodSpawnMovementTilesColor().getRed(),
-						config.getBloodSpawnMovementTilesColor().getGreen(),
-						config.getBloodSpawnMovementTilesColor().getBlue(),
-						config.getBloodSpawnFutureMovementTileOpacity());
-				OverlayUtil.renderPolygon(graphics, serverTilePolygon, color, config.getTileMarkersLineSize().getSize());
 			}
 		}
 	}

@@ -34,7 +34,7 @@ import java.util.stream.Collectors;
 public class SugadintiMaiden extends TheatreOfBloodEncounter
 {
 	@Getter
-	private List<NPC> bloodSpawns;
+	private final List<NPC> bloodSpawns;
 
 	public SugadintiMaiden(TheatreOfBloodEncounters encounter)
 	{

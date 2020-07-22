@@ -362,8 +362,10 @@ public final class AnimationID
 	public static final int SOTETSEG_REGULAR_PROJECTILE_ATTACK = 8139;
 
 	// Theatre of Blood - Verzik Vitur
-	public static final int VERZIK_PHASE_1_MAGIC_ATTACK = 8110;
+	public static final int VERZIK_PHASE_1_MAGIC_ATTACK = 8109;
+	public static final int VERZIK_PHASE_1_MAGIC_ATTACK_CHANNEL = 8110;
 	public static final int VERZIK_CHANGE_TO_PHASE_2 = 8111;
+	public static final int VERZIK_PHASE_2_MAGIC_ATTACK = 8114;
 	public static final int VERZIK_PHASE_2_BELLY_FLOP_ATTACK_1 = 8116;
 	public static final int VERZIK_PHASE_2_HEALING_CHANNEL = 8117;
 	public static final int VERZIK_PHASE_2_BELLY_FLOP_ATTACK_2 = 8118;
