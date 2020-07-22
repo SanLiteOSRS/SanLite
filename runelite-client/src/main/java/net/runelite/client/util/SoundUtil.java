@@ -26,7 +26,10 @@ package net.runelite.client.util;
 
 import lombok.extern.slf4j.Slf4j;
 
-import javax.sound.sampled.*;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 
@@ -44,18 +47,15 @@ public class SoundUtil
 			clip.open(AudioSystem.getAudioInputStream(new BufferedInputStream(c.getResourceAsStream(path))));
 			return clip;
 		}
-		catch (IllegalArgumentException | UnsupportedAudioFileException e)
+		catch (IllegalArgumentException | UnsupportedAudioFileException | LineUnavailableException e)
 		{
-			throw new IllegalArgumentException(path, e);
+			log.error("Could not retrieve audio clip from resource at path: {}", path, e);
 		}
 		catch (IOException e)
 		{
 			throw new RuntimeException(path, e);
 		}
-		catch (LineUnavailableException e)
-		{
-			log.error("Could not retrieve audio clip from resource");
-			return null;
-		}
+
+		return null;
 	}
 }
