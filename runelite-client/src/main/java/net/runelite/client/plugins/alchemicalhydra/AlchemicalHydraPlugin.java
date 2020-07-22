@@ -32,22 +32,34 @@ import net.runelite.client.callback.ClientThread;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.events.ConfigChanged;
+import net.runelite.client.game.SkillIconManager;
+import net.runelite.client.game.SoundManager;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.ui.overlay.OverlayManager;
+import net.runelite.client.util.ImageUtil;
+import net.runelite.client.util.SoundUtil;
 
 import javax.inject.Inject;
+import javax.sound.sampled.Clip;
+import java.awt.image.BufferedImage;
 import java.util.Arrays;
+import java.util.concurrent.ScheduledExecutorService;
 
 @PluginDescriptor(
 		name = "Alchemical Hydra",
-		description = "Displays Alchemical Hydra's next attack style and other encounter mechanics",
-		tags = {"combat", "overlay", "pve", "pvm", "hydra", "alchemical", "boss", "slayer", "timer", "sanlite"},
+		description = "Displays the Alchemical Hydra's next attack style and helps with other encounter mechanics",
+		tags = {"combat", "overlay", "pve", "pvm", "boss", "slayer", "timer", "sound", "sanlite"},
 		enabledByDefault = false
 )
 public class AlchemicalHydraPlugin extends Plugin
 {
 
+	private final Clip magicAudioClip = SoundUtil.getResourceStreamFromClass(getClass(), "magic.wav");
+	private final Clip rangedAudioClip = SoundUtil.getResourceStreamFromClass(getClass(), "ranged.wav");
+	private final Clip poisonAudioClip = SoundUtil.getResourceStreamFromClass(getClass(), "poison.wav");
+	private final Clip lightningAudioClip = SoundUtil.getResourceStreamFromClass(getClass(), "lightning.wav");
+	private final Clip fireAudioClip = SoundUtil.getResourceStreamFromClass(getClass(), "fire.wav");
 	private static final int[] HYDRA_REGIONS = {
 			5279, 5280,
 			5535, 5536
@@ -69,16 +81,65 @@ public class AlchemicalHydraPlugin extends Plugin
 	private ChemicalVentsOverlay chemicalVentsOverlay;
 
 	@Inject
+	private FixedAttackStyleOverlay fixedAttackStyleOverlay;
+
+	@Inject
 	private AlchemicalHydraDebugOverlay debugOverlay;
 
 	@Inject
 	private ClientThread clientThread;
+
+	@Inject
+	private ScheduledExecutorService scheduledExecutorService;
+
+	@Inject
+	private SoundManager soundManager;
 
 	@Getter
 	private AlchemicalHydra alchemicalHydra;
 
 	@Getter
 	private ChemicalVents chemicalVents;
+
+	@Inject
+	private SkillIconManager iconManager;
+
+	private Clip getAudioClipForAttackStyle(AlchemicalHydra.AttackStyle attackStyle)
+	{
+		switch (attackStyle)
+		{
+			case RANGED:
+				return rangedAudioClip;
+			case MAGIC:
+				return magicAudioClip;
+			case POISON:
+				return poisonAudioClip;
+			case LIGHTNING:
+				return lightningAudioClip;
+			case FIRE:
+				return fireAudioClip;
+			default:
+				return null;
+		}
+	}
+
+	BufferedImage getAttackStyleIcon(AlchemicalHydra.AttackStyle attackStyle)
+	{
+		switch (attackStyle)
+		{
+			case RANGED:
+				return ImageUtil.resizeImage(iconManager.getSkillImage(Skill.RANGED), 25, 23);
+			case MAGIC:
+				return iconManager.getSkillImage(Skill.MAGIC);
+			case POISON:
+				return ImageUtil.getResourceStreamFromClass(AlchemicalHydraPlugin.class, "poison_attack.png");
+			case LIGHTNING:
+				return ImageUtil.getResourceStreamFromClass(AlchemicalHydraPlugin.class, "lightning_attack.png");
+			case FIRE:
+				return ImageUtil.getResourceStreamFromClass(AlchemicalHydraPlugin.class, "fire_attack.png");
+		}
+		return null;
+	}
 
 	private static boolean isNpcAlchemicalHydra(int npcId)
 	{
@@ -102,24 +163,38 @@ public class AlchemicalHydraPlugin extends Plugin
 	@Override
 	protected void startUp() throws Exception
 	{
-		overlayManager.add(alchemicalHydraOverlay);
 		overlayManager.add(chemicalVentsOverlay);
+		overlayManager.add(alchemicalHydraOverlay);
 		if (config.showDebugOverlay())
 		{
 			overlayManager.add(debugOverlay);
 		}
+
+		if (config.getAttackStyleOverlayLocation().equals(AttackStyleOverlayLocation.FIXED) ||
+				config.getAttackStyleOverlayLocation().equals(AttackStyleOverlayLocation.BOTH))
+		{
+			overlayManager.add(fixedAttackStyleOverlay);
+		}
+
 		clientThread.invoke(this::reset);
 	}
 
 	@Override
 	protected void shutDown() throws Exception
 	{
-		overlayManager.remove(alchemicalHydraOverlay);
 		overlayManager.remove(chemicalVentsOverlay);
+		overlayManager.remove(alchemicalHydraOverlay);
 		if (config.showDebugOverlay())
 		{
 			overlayManager.remove(debugOverlay);
 		}
+
+		if (config.getAttackStyleOverlayLocation().equals(AttackStyleOverlayLocation.FIXED) ||
+				config.getAttackStyleOverlayLocation().equals(AttackStyleOverlayLocation.BOTH))
+		{
+			overlayManager.remove(fixedAttackStyleOverlay);
+		}
+
 		alchemicalHydra = null;
 		chemicalVents = null;
 	}
@@ -127,13 +202,20 @@ public class AlchemicalHydraPlugin extends Plugin
 	@Subscribe
 	public void onConfigChanged(ConfigChanged event)
 	{
-		if (config.showDebugOverlay())
+		switch (event.getKey())
 		{
-			overlayManager.add(debugOverlay);
-		}
-		else if (!config.showDebugOverlay())
-		{
-			overlayManager.remove(debugOverlay);
+			case "showDebugOverlay":
+				if (config.showDebugOverlay())
+					overlayManager.add(debugOverlay);
+				else if (!config.showDebugOverlay())
+					overlayManager.remove(debugOverlay);
+			case "attackStyleOverlayLocation":
+				if (config.getAttackStyleOverlayLocation().equals(AttackStyleOverlayLocation.FIXED) ||
+						config.getAttackStyleOverlayLocation().equals(AttackStyleOverlayLocation.BOTH))
+					overlayManager.add(fixedAttackStyleOverlay);
+				else if (config.getAttackStyleOverlayLocation().equals(AttackStyleOverlayLocation.ABOVE_HEAD))
+					overlayManager.remove(fixedAttackStyleOverlay);
+				break;
 		}
 	}
 
@@ -145,6 +227,21 @@ public class AlchemicalHydraPlugin extends Plugin
 	private boolean inHydraInstance()
 	{
 		return Arrays.equals(client.getMapRegions(), HYDRA_REGIONS) && client.isInInstancedRegion();
+	}
+
+	void playAttackStyleSwitchSound(AlchemicalHydra.AttackStyle attackStyle)
+	{
+		if (!config.playSoundOnAttackStyleSwitch() || !config.playSpecialAttackSoundWarning() &&
+				alchemicalHydra.isSpecialAttackStyle(attackStyle) ||
+				config.disableSwitchSoundsInJadPhase() && alchemicalHydra.getCurrentPhase().equals(AlchemicalHydra.Phase.JAD) &&
+						!alchemicalHydra.isSpecialAttackStyle(attackStyle) ||
+				config.playSpecialAttackSoundWarning() && alchemicalHydra.getAttacksUntilSpecialAttack() == 0 &&
+						!alchemicalHydra.isSpecialAttackStyle(attackStyle))
+		{
+			return;
+		}
+
+		scheduledExecutorService.submit(() -> soundManager.playCustomSound(getAudioClipForAttackStyle(attackStyle)));
 	}
 
 	@Subscribe
@@ -251,7 +348,7 @@ public class AlchemicalHydraPlugin extends Plugin
 			NPC npc = event.getNpc();
 			if (isNpcAlchemicalHydra(npc.getId()))
 			{
-				alchemicalHydra = new AlchemicalHydra(npc);
+				alchemicalHydra = new AlchemicalHydra(this, npc);
 			}
 		}
 	}

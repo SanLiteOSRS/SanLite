@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, Cameron <https://github.com/noremac201>
+ * Copyright (c) 2020, Siraz <https://github.com/Sirazzz>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,24 +22,40 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.client.plugins.experiencedrop;
+package net.runelite.client.util;
 
-import java.awt.Color;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 
-@AllArgsConstructor
-enum DefaultColors
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import java.io.BufferedInputStream;
+import java.io.IOException;
+
+/**
+ * Utility for handling custom sounds.
+ */
+@Slf4j
+public class SoundUtil
 {
-	WHITE(new Color(0xFF, 0xFF, 0xFF)),
-	LILAC(new Color(0xC8, 0xC8, 0xFF)),
-	CYAN(new Color(0x00, 0xFF, 0xFF)),
-	JADE(new Color(0xC8, 0xFF, 0xC8)),
-	LIME(new Color(0x64, 0xFF, 0x64)),
-	YELLOW(new Color(0xFF, 0xFF, 0x40)),
-	ORANGE(new Color(0xFF, 0x98, 0x1F)),
-	PINK(new Color(0xFF, 0xC8, 0xC8));
+	public static Clip getResourceStreamFromClass(final Class c, final String path)
+	{
+		try
+		{
+			Clip clip = AudioSystem.getClip();
+			clip.open(AudioSystem.getAudioInputStream(new BufferedInputStream(c.getResourceAsStream(path))));
+			return clip;
+		}
+		catch (IllegalArgumentException | UnsupportedAudioFileException | LineUnavailableException e)
+		{
+			log.error("Could not retrieve audio clip from resource at path: {}", path, e);
+		}
+		catch (IOException e)
+		{
+			throw new RuntimeException(path, e);
+		}
 
-	@Getter
-	private final Color color;
+		return null;
+	}
 }

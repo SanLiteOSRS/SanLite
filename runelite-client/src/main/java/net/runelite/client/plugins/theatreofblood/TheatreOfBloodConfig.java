@@ -25,10 +25,7 @@
  */
 package net.runelite.client.plugins.theatreofblood;
 
-import net.runelite.client.config.Config;
-import net.runelite.client.config.ConfigGroup;
-import net.runelite.client.config.ConfigItem;
-import net.runelite.client.config.ConfigSection;
+import net.runelite.client.config.*;
 import net.runelite.client.util.TimerFormat;
 
 import java.awt.*;
@@ -96,6 +93,17 @@ public interface TheatreOfBloodConfig extends Config
 	}
 
 	@ConfigItem(
+			keyName = "tileMarkersLineSize",
+			name = "Tile markers line size",
+			description = "The size of the outside line for tile markers",
+			position = 1
+	)
+	default StrokeSize getTileMarkersLineSize()
+	{
+		return StrokeSize.NORMAL;
+	}
+
+	@ConfigItem(
 			keyName = "highlightBloodSplatAttackTiles",
 			name = "Highlight blood splat tiles",
 			description = "Highlight the tiles for the Sugadinti maiden's blood splat attacks",
@@ -107,6 +115,7 @@ public interface TheatreOfBloodConfig extends Config
 		return true;
 	}
 
+	@Alpha
 	@ConfigItem(
 			keyName = "bloodSplatAttackColor",
 			name = "Blood splat marker",
@@ -121,7 +130,7 @@ public interface TheatreOfBloodConfig extends Config
 
 	@ConfigItem(
 			keyName = "highlightBloodSpawnTiles",
-			name = "Highlight blood spawn tiles",
+			name = "Highlight blood tiles",
 			description = "Highlight the tiles of blood left by blood spawns",
 			position = 3,
 			section = sugadintiMaidenSection
@@ -131,16 +140,17 @@ public interface TheatreOfBloodConfig extends Config
 		return true;
 	}
 
+	@Alpha
 	@ConfigItem(
 			keyName = "bloodSpawnBloodColor",
-			name = "Blood spawn blood marker",
+			name = "Blood spawn blood",
 			description = "Color of tiles of blood marker from blood spawns",
 			position = 4,
 			section = sugadintiMaidenSection
 	)
 	default Color getBloodSpawnBloodColor()
 	{
-		return new Color(119, 11, 11);
+		return new Color(119, 11, 11, 50);
 	}
 
 	@ConfigItem(
@@ -155,6 +165,7 @@ public interface TheatreOfBloodConfig extends Config
 		return true;
 	}
 
+	@Alpha
 	@ConfigItem(
 			keyName = "bloatHandAttackColor",
 			name = "Hand attack marker",
@@ -164,7 +175,7 @@ public interface TheatreOfBloodConfig extends Config
 	)
 	default Color getBloatHandAttackColor()
 	{
-		return new Color(39, 37, 36);
+		return new Color(22, 22, 22, 160);
 	}
 
 	@ConfigItem(
@@ -179,6 +190,7 @@ public interface TheatreOfBloodConfig extends Config
 		return true;
 	}
 
+	@Alpha
 	@ConfigItem(
 			keyName = "bloatAwakeColor",
 			name = "Awake color",
@@ -191,6 +203,7 @@ public interface TheatreOfBloodConfig extends Config
 		return Color.RED;
 	}
 
+	@Alpha
 	@ConfigItem(
 			keyName = "bloatWarningColor",
 			name = "Sleep warning color",
@@ -203,6 +216,7 @@ public interface TheatreOfBloodConfig extends Config
 		return Color.YELLOW;
 	}
 
+	@Alpha
 	@ConfigItem(
 			keyName = "bloatAsleepColor",
 			name = "Asleep color",
@@ -264,6 +278,31 @@ public interface TheatreOfBloodConfig extends Config
 	}
 
 	@ConfigItem(
+			keyName = "displayNylocasLExplosiveRadius",
+			name = "Display Nylocas explosion radius",
+			description = "Display the explosion radius for Nylocas which will explode in less than 5 seconds",
+			position = 15,
+			section = nylocasSection
+	)
+	default boolean displayNylocasLExplosiveRadius()
+	{
+		return true;
+	}
+
+	@Alpha
+	@ConfigItem(
+			keyName = "nylocasExplosiveRadiusColor",
+			name = "Explosion radius",
+			description = "Color of the explosion radius marker for Nylocas which will explode in less than 5 seconds",
+			position = 16,
+			section = nylocasSection
+	)
+	default Color getNylocasExplosiveRadiusColor()
+	{
+		return new Color(241, 87, 45);
+	}
+
+	@ConfigItem(
 			keyName = "highlightSotetsegRedMazeTiles",
 			name = "Highlight red maze tiles",
 			description = "Highlight the red tiles during Sotetseg's maze",
@@ -275,6 +314,7 @@ public interface TheatreOfBloodConfig extends Config
 		return true;
 	}
 
+	@Alpha
 	@ConfigItem(
 			keyName = "sotetsegMazeTileColor",
 			name = "Maze tile markers",
@@ -299,6 +339,7 @@ public interface TheatreOfBloodConfig extends Config
 		return true;
 	}
 
+	@Alpha
 	@ConfigItem(
 			keyName = "xarpusPoisonAttackColor",
 			name = "Poison attack marker",
@@ -308,7 +349,7 @@ public interface TheatreOfBloodConfig extends Config
 	)
 	default Color getXarpusPoisonAttackColor()
 	{
-		return new Color(159, 219, 0);
+		return new Color(159, 219, 0, 100);
 	}
 
 	@ConfigItem(
@@ -323,6 +364,7 @@ public interface TheatreOfBloodConfig extends Config
 		return true;
 	}
 
+	@Alpha
 	@ConfigItem(
 			keyName = "xarpusHealingPoolColor",
 			name = "Healing pool marker",
@@ -407,6 +449,7 @@ public interface TheatreOfBloodConfig extends Config
 		return true;
 	}
 
+	@Alpha
 	@ConfigItem(
 			keyName = "verzikGreenOrbPoolColor",
 			name = "Green orb pool marker",

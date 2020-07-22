@@ -48,18 +48,42 @@ public class GraphicID
 	public static final int BOOK_HOME_TELEPORT_3 = 803;
 	public static final int BOOK_HOME_TELEPORT_4 = 804;
 	public static final int STAFF_OF_THE_DEAD = 1228;
+	public static final int REANIMATE_SPELL_PURPLE_POOL = 1290;
 	public static final int IMBUED_HEART = 1316;
 	public static final int FLYING_FISH = 1387;
+	public static final int DRAGON_SWORD_SPECIAL_ATTACK = 1369;
+	public static final int CRAFT_WATER_STAFF = 1370;
+	public static final int CRAFT_EARTH_STAFF = 1371;
+	public static final int CRAFT_FIRE_STAFF = 1372;
+	public static final int SHOOT_DOUBLE_AMETHYST_ARROW = 1383;
+	public static final int SHOOT_AMETHYST_ARROW = 1385;
+	public static final int SKILL_MAX_LEVEL_FIREWORK_ALL = 1388;
+	public static final int SKILL_MAX_LEVEL_FIREWORK_ORANGE_RED = 1389;
+	public static final int FOSSIL_ISLAND_ZYGOMITE_SPAWN = 1390;
 	public static final int XERIC_TELEPORT = 1612;
 
 	// Cerberus
 	public static final int CERBERUS_LAVA_POOL = 1246;
 	public static final int CERBERUS_LAVA_POOL_DESPAWN = 1247;
 
-	// Chambers of Xeric
+	// Chambers of Xeric - Tekton
+	public static final int TEKTON_COMET_AOE_HIT = 659;
+
+	// Chambers of Xeric - Lizardman Shamans
+	public static final int LIZARDMAN_SHAMAN_ACID_AOE_HIT = 1294;
+	public static final int LIZARDMAN_SHAMAN_MINION_EXPLOSION = 1295;
+
+	// Chambers of Xeric - Vasa Nistirio
+	public static final int VASA_TELEPORT_EXPLOSION_HIT = 1328;
+	public static final int VASA_RANGED_ROCK_HIT = 1330;
+
+	// Chambers of Xeric - Vespula
+	public static final int VESPINE_SOLDIER_DEATH_EXPLOSION = 1368;
+
+	// Chambers of Xeric - The Great Olm
 	public static final int OLM_BURN = 1351;
+	public static final int OLM_CRYSTAL_SPIKE_HIT = 1353;
 	public static final int OLM_LIGHTNING = 1356;
-	public static final int OLM_FALLING_CRYSTAL = 1357;
 	public static final int OLM_FALLING_CRYSTAL_SHATTER = 1358;
 	public static final int OLM_TELEPORT_WHITE = 1359;
 	public static final int OLM_TELEPORT_GREEN = 1360;

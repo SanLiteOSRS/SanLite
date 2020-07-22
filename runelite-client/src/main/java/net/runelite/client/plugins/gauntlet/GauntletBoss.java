@@ -102,16 +102,16 @@ class GauntletBoss
 
 	boolean isGauntletBossRangedAttack(int projectileId)
 	{
-		return projectileId == ProjectileID.GAUNTLET_BOSS_RANGED ||
-				projectileId == ProjectileID.CORRUPTED_GAUNTLET_BOSS_RANGED;
+		return projectileId == ProjectileID.CRYSTALLINE_HUNLLEF_RANGED_ATTACK ||
+				projectileId == ProjectileID.CORRUPTED_HUNLLEF_RANGED_ATTACK;
 	}
 
 	boolean isGauntletBossMagicAttack(int projectileId)
 	{
-		return projectileId == ProjectileID.GAUNTLET_BOSS_MAGIC ||
-				projectileId == ProjectileID.GAUNTLET_BOSS_MAGIC_DISABLE_PRAYERS ||
-				projectileId == ProjectileID.CORRUPTED_GAUNTLET_BOSS_MAGIC ||
-				projectileId == ProjectileID.CORRUPTED_GAUNTLET_BOSS_MAGIC_DISABLE_PRAYERS;
+		return projectileId == ProjectileID.CRYSTALLINE_HUNLLEF_MAGIC_ATTACK ||
+				projectileId == ProjectileID.CRYSTALLINE_HUNLLEF_DISABLE_PRAYERS_ATTACK ||
+				projectileId == ProjectileID.CORRUPTED_HUNLLEF_MAGIC_ATTACK ||
+				projectileId == ProjectileID.CORRUPTED_HUNLLEF_DISABLE_PRAYERS_ATTACK;
 	}
 
 	boolean isNpcCrystalAttack(int npcId)

@@ -51,8 +51,8 @@ public class ChemicalVentsOverlay extends Overlay
 	@Inject
 	private AlchemicalHydraConfig config;
 
-	private Client client;
-	private AlchemicalHydraPlugin plugin;
+	private final Client client;
+	private final AlchemicalHydraPlugin plugin;
 
 	@Inject
 	public ChemicalVentsOverlay(Client client, AlchemicalHydraPlugin plugin)

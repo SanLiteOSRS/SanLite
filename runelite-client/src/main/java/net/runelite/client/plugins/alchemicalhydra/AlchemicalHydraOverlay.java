@@ -27,7 +27,6 @@ package net.runelite.client.plugins.alchemicalhydra;
 import net.runelite.api.Point;
 import net.runelite.api.*;
 import net.runelite.api.coords.LocalPoint;
-import net.runelite.client.game.SkillIconManager;
 import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayLayer;
 import net.runelite.client.ui.overlay.OverlayPosition;
@@ -55,15 +54,11 @@ public class AlchemicalHydraOverlay extends Overlay
 	private static final int ATTACK_TIMER_IMAGE_HEIGHT_OFFSET = 15;
 	private static final int ATTACK_TIMER_TEXT_WIDTH_OFFSET = 4;
 
-	private Client client;
-	private AlchemicalHydraPlugin plugin;
+	private final Client client;
+	private final AlchemicalHydraPlugin plugin;
 
 	@Inject
 	private AlchemicalHydraConfig config;
-
-	@Inject
-	private SkillIconManager iconManager;
-
 
 	@Inject
 	public AlchemicalHydraOverlay(Client client, AlchemicalHydraPlugin plugin)
@@ -72,24 +67,6 @@ public class AlchemicalHydraOverlay extends Overlay
 		setLayer(OverlayLayer.ABOVE_SCENE);
 		this.client = client;
 		this.plugin = plugin;
-	}
-
-	private BufferedImage getAttackStyleIcon(AlchemicalHydra.AttackStyle attackStyle)
-	{
-		switch (attackStyle)
-		{
-			case RANGED:
-				return ImageUtil.resizeImage(iconManager.getSkillImage(Skill.RANGED), 25, 23);
-			case MAGIC:
-				return iconManager.getSkillImage(Skill.MAGIC);
-			case POISON:
-				return ImageUtil.getResourceStreamFromClass(AlchemicalHydraPlugin.class, "poison_attack.png");
-			case LIGHTNING:
-				return ImageUtil.getResourceStreamFromClass(AlchemicalHydraPlugin.class, "lightning_attack.png");
-			case FIRE:
-				return ImageUtil.getResourceStreamFromClass(AlchemicalHydraPlugin.class, "fire_attack.png");
-		}
-		return null;
 	}
 
 	@Override
@@ -103,7 +80,9 @@ public class AlchemicalHydraOverlay extends Overlay
 				renderAoeEffects(graphics, alchemicalHydra);
 			}
 
-			if (config.showAttackStyleCounter())
+			if (config.showAttackStyleCounter() &&
+					(config.getAttackStyleOverlayLocation().equals(AttackStyleOverlayLocation.ABOVE_HEAD) ||
+							config.getAttackStyleOverlayLocation().equals(AttackStyleOverlayLocation.BOTH)))
 			{
 				renderAttackStyleCounter(graphics, alchemicalHydra);
 			}
@@ -122,29 +101,22 @@ public class AlchemicalHydraOverlay extends Overlay
 		{
 			LocalPoint localPoint = graphicsObject.getLocation();
 			Polygon polygon = Perspective.getCanvasTilePoly(client, localPoint);
-			Polygon areaPolygon = Perspective.getCanvasTileAreaPoly(client, localPoint, 3);
-
-			if (polygon == null || areaPolygon == null)
+			if (polygon == null)
 			{
 				return;
 			}
 
-			if (alchemicalHydra.isPoisonSplatSpecialAttackBeforeLanding(graphicsObject.getId()))
-			{
-				OverlayUtil.renderPolygon(graphics, areaPolygon, config.getPoisonAttackColor(),
-						config.getTileMarkersLineSize().getSize());
-			}
-			else if (alchemicalHydra.isPoisonSplatSpecialAttack(graphicsObject.getId()))
+			if (alchemicalHydra.isPoisonSplatSpecialAttack(graphicsObject.getId()))
 			{
 				OverlayUtil.renderPolygon(graphics, polygon, config.getPoisonAttackColor(),
 						config.getTileMarkersLineSize().getSize());
 			}
-			else if (alchemicalHydra.isLightningSpecialAttack(graphicsObject.getId()))
+			else if (graphicsObject.getId() == GraphicID.ALCHEMICAL_HYDRA_LIGHTNING_ATTACK)
 			{
 				OverlayUtil.renderPolygon(graphics, polygon, config.getLightningAttackColor(),
 						config.getTileMarkersLineSize().getSize());
 			}
-			else if (alchemicalHydra.isFireSpecialAttack(graphicsObject.getId()))
+			else if (graphicsObject.getId() == GraphicID.ALCHEMICAL_HYDRA_FIRE_ATTACK)
 			{
 				OverlayUtil.renderPolygon(graphics, polygon, config.getFireAttackColor(),
 						config.getTileMarkersLineSize().getSize());
@@ -168,7 +140,7 @@ public class AlchemicalHydraOverlay extends Overlay
 				AlchemicalHydra.AttackStyle specialAttackStyle = alchemicalHydra.getCurrentSpecialAttackStyle();
 				if (specialAttackStyle != null)
 				{
-					BufferedImage specialAttackStyleIcon = getAttackStyleIcon(specialAttackStyle);
+					BufferedImage specialAttackStyleIcon = plugin.getAttackStyleIcon(specialAttackStyle);
 					icons.add(specialAttackStyleIcon);
 					totalWidth += ICON_WIDTH;
 				}
@@ -176,7 +148,7 @@ public class AlchemicalHydraOverlay extends Overlay
 				AlchemicalHydra.AttackStyle attackStyle = alchemicalHydra.getCurrentAttackStyle();
 				if (attackStyle != null)
 				{
-					BufferedImage currentAttackStyleIcon = getAttackStyleIcon(attackStyle);
+					BufferedImage currentAttackStyleIcon = plugin.getAttackStyleIcon(attackStyle);
 					icons.add(currentAttackStyleIcon);
 					totalWidth += ICON_WIDTH;
 				}
