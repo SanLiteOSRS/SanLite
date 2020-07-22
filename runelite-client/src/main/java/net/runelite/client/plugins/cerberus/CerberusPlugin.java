@@ -266,7 +266,7 @@ public class CerberusPlugin extends Plugin
 				{
 					if (cerberus.isTripleAttack())
 					{
-						if (cerberus.getNpc().getAnimation() == AnimationID.CERBERUS_MELEE)
+						if (cerberus.getNpc().getAnimation() == AnimationID.CERBERUS_MELEE_ATTACK)
 						{
 							cerberus.setAttackCount(cerberus.getAttackCount() + 1);
 							cerberus.setTripleAttack(false);

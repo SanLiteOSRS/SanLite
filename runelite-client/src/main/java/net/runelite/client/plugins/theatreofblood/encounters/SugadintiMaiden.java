@@ -24,19 +24,27 @@
  */
 package net.runelite.client.plugins.theatreofblood.encounters;
 
-import net.runelite.api.GameObject;
-import net.runelite.api.GraphicID;
-import net.runelite.api.GraphicsObject;
-import net.runelite.api.NullObjectID;
+import lombok.Getter;
+import net.runelite.api.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class SugadintiMaiden extends TheatreOfBloodEncounter
 {
+	@Getter
+	private final List<NPC> bloodSpawns;
+
 	public SugadintiMaiden(TheatreOfBloodEncounters encounter)
 	{
 		super(encounter);
+		bloodSpawns = new ArrayList<>();
+	}
+
+	public static boolean isBloodSpawn(int npcId)
+	{
+		return npcId == NpcID.BLOOD_SPAWN;
 	}
 
 	public boolean isBloodSplatAttack(int graphicsObjectId)

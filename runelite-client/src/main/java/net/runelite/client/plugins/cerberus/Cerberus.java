@@ -98,9 +98,9 @@ class Cerberus
 
 	boolean isCerberusAttack(int animID)
 	{
-		return animID == AnimationID.CERBERUS_MAGE || animID == AnimationID.CERBERUS_RANGE ||
-				animID == AnimationID.CERBERUS_MELEE || animID == AnimationID.CERBERUS_LAVA ||
-				animID == AnimationID.CERBERUS_GHOSTS;
+		return animID == AnimationID.CERBERUS_MAGIC_ATTACK || animID == AnimationID.CERBERUS_RANGED_ATTACK ||
+				animID == AnimationID.CERBERUS_MELEE_ATTACK || animID == AnimationID.CERBERUS_LAVA_ATTACK ||
+				animID == AnimationID.CERBERUS_SUMMON_GHOSTS;
 	}
 
 	boolean isCerberusGhost(int npcID)

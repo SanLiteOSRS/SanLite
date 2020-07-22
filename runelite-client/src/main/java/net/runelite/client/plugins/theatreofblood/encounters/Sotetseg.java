@@ -27,16 +27,18 @@ package net.runelite.client.plugins.theatreofblood.encounters;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.GroundObject;
 import net.runelite.api.ObjectID;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Slf4j
 public class Sotetseg extends TheatreOfBloodEncounter
 {
+	private final static int MAZE_INACTIVE = 1;
+	private final static int MAZE_ACTIVE = 2;
+
+	@Getter
 	private List<GroundObject> activeMazeTiles;
 
 	@Getter
@@ -58,15 +60,19 @@ public class Sotetseg extends TheatreOfBloodEncounter
 		return objectId == ObjectID.TILE_33035;
 	}
 
+	private boolean isTileAlreadyAdded(GroundObject groundObject)
+	{
+		return activeMazeTiles.stream().anyMatch(object -> object.getX() == groundObject.getX() &&
+				object.getY() == groundObject.getY());
+	}
+
 	/**
 	 * Initializes the active maze tiles list
 	 */
 	private void activateMaze()
 	{
 		if (activeMazeTiles == null)
-		{
 			activeMazeTiles = new ArrayList<>();
-		}
 	}
 
 	/**
@@ -75,14 +81,7 @@ public class Sotetseg extends TheatreOfBloodEncounter
 	private void resetMaze()
 	{
 		if (activeMazeTiles != null)
-		{
 			activeMazeTiles = null;
-		}
-	}
-
-	public List<GroundObject> getActiveMazeTiles()
-	{
-		return activeMazeTiles;
 	}
 
 	/**
@@ -99,13 +98,14 @@ public class Sotetseg extends TheatreOfBloodEncounter
 
 		if (isMazeActive)
 		{
-			if (getActiveMazeTiles() == null)
+			if (activeMazeTiles == null)
 			{
 				activateMaze();
 			}
-			if (isRedMazeTileObject(groundObject.getId()) && !getActiveMazeTiles().contains(groundObject))
+
+			if (isRedMazeTileObject(groundObject.getId()) && !isTileAlreadyAdded(groundObject))
 			{
-				getActiveMazeTiles().add(groundObject);
+				activeMazeTiles.add(groundObject);
 			}
 		}
 		else
@@ -118,11 +118,11 @@ public class Sotetseg extends TheatreOfBloodEncounter
 	{
 		switch (encounterState)
 		{
-			case 1:
+			case MAZE_INACTIVE:
 				setMazeActive(false);
 				resetMaze();
 				break;
-			case 2:
+			case MAZE_ACTIVE:
 				setMazeActive(true);
 				break;
 		}
