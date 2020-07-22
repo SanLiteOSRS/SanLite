@@ -29,7 +29,9 @@ import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Point;
 import net.runelite.api.*;
 import net.runelite.api.coords.LocalPoint;
+import net.runelite.api.coords.WorldPoint;
 import net.runelite.client.plugins.theatreofblood.encounters.*;
+import net.runelite.client.plugins.theatreofblood.encounters.Sotetseg;
 import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayLayer;
 import net.runelite.client.ui.overlay.OverlayPosition;
@@ -46,11 +48,11 @@ import java.util.List;
 @Slf4j
 public class TheatreOfBloodOverlay extends Overlay
 {
-	private static final int VERZIK_ATTACK_TIMER_IMAGE_HEIGHT_OFFSET = 15;
-	private static final int VERZIK_ATTACK_TIMER_TEXT_WIDTH_OFFSET = 4;
+	private static final int IMAGE_HEIGHT_OFFSET = 15;
+	private static final int TIMER_TEXT_WIDTH_OFFSET = 4;
 
-	private Client client;
-	private TheatreOfBloodPlugin plugin;
+	private final Client client;
+	private final TheatreOfBloodPlugin plugin;
 
 	@Inject
 	private TheatreOfBloodConfig config;
@@ -59,7 +61,7 @@ public class TheatreOfBloodOverlay extends Overlay
 	public TheatreOfBloodOverlay(Client client, TheatreOfBloodPlugin plugin)
 	{
 		setPosition(OverlayPosition.DYNAMIC);
-		setLayer(OverlayLayer.ABOVE_SCENE);
+		setLayer(OverlayLayer.UNDER_WIDGETS);
 		this.client = client;
 		this.plugin = plugin;
 	}
@@ -73,94 +75,65 @@ public class TheatreOfBloodOverlay extends Overlay
 			if (encounter.getNpc() != null)
 			{
 				// Sugadinti Maiden
-				if (config.highlightBloodSplatAttackTiles() && encounter.getEncounter() == TheatreOfBloodEncounters.SUGADINTI_MAIDEN)
-				{
+				if (config.highlightBloodSplatAttackTiles() && encounter.getEncounter().equals(TheatreOfBloodEncounters.SUGADINTI_MAIDEN))
 					renderMaidenBloodSplatAoeEffects(graphics, (SugadintiMaiden) encounter);
-				}
 
-				if (config.highlightBloodSpawnTiles() && encounter.getEncounter() == TheatreOfBloodEncounters.SUGADINTI_MAIDEN)
-				{
+				if (config.highlightBloodSpawnTiles() && encounter.getEncounter().equals(TheatreOfBloodEncounters.SUGADINTI_MAIDEN))
 					renderMaidenBloodSpawnAoeEffects(graphics, (SugadintiMaiden) encounter);
-				}
+
+				if (config.highlightBloodSpawnMovementTiles() && encounter.getEncounter().equals(TheatreOfBloodEncounters.SUGADINTI_MAIDEN))
+					renderMaidenBloodSpawnMovementTilesHighlight(graphics, (SugadintiMaiden) encounter);
 
 				// Pestilent Bloat
-				if (config.highlightBloatHandAttackTiles() && encounter.getEncounter() == TheatreOfBloodEncounters.PESTILENT_BLOAT)
-				{
+				if (config.highlightBloatHandAttackTiles() && encounter.getEncounter().equals(TheatreOfBloodEncounters.PESTILENT_BLOAT))
 					renderBloatHandAoeEffects(graphics, (PestilentBloat) encounter);
-				}
 
-				if (config.highlightBloatStatus() && encounter.getEncounter() == TheatreOfBloodEncounters.PESTILENT_BLOAT)
-				{
+				if (config.highlightBloatStatus() && encounter.getEncounter().equals(TheatreOfBloodEncounters.PESTILENT_BLOAT))
 					renderPestilentBloatHull(graphics, (PestilentBloat) encounter);
-				}
 
-				if (config.displayBloatSleepTimer() && encounter.getEncounter() == TheatreOfBloodEncounters.PESTILENT_BLOAT)
-				{
+				if (config.displayBloatSleepTimer() && encounter.getEncounter().equals(TheatreOfBloodEncounters.PESTILENT_BLOAT))
 					renderPestilentBloatTimerText(graphics, (PestilentBloat) encounter);
-				}
 
 				// Sotetseg
-				if (config.highlightSotetsegRedMazeTiles() && encounter.getEncounter() == TheatreOfBloodEncounters.SOTETSEG)
-				{
+				if (config.highlightSotetsegRedMazeTiles() && encounter.getEncounter().equals(TheatreOfBloodEncounters.SOTETSEG))
 					renderSotetsegMazeTiles(graphics, (Sotetseg) encounter);
-				}
 
 				// Xarpus
-				if (config.highlightXarpusPoisonAttackTiles() && encounter.getEncounter() == TheatreOfBloodEncounters.XARPUS)
-				{
+				if (config.highlightXarpusPoisonAttackTiles() && encounter.getEncounter().equals(TheatreOfBloodEncounters.XARPUS))
 					renderXarpusPoisonTileObjects(graphics, (Xarpus) encounter);
-				}
 
-				if (config.highlightXarpusHealingPoolTiles() && encounter.getEncounter() == TheatreOfBloodEncounters.XARPUS)
-				{
+				if (config.highlightXarpusHealingPoolTiles() && encounter.getEncounter().equals(TheatreOfBloodEncounters.XARPUS))
 					renderXarpusHealingPoolTileObjects(graphics, (Xarpus) encounter);
-				}
 
-				if (config.displayXarpusTurnTimer() && encounter.getEncounter() == TheatreOfBloodEncounters.XARPUS)
-				{
-					renderXarpusTurnTimerText(graphics, (Xarpus) encounter);
-				}
+				if (config.displayXarpusTurnTimer() && encounter.getEncounter().equals(TheatreOfBloodEncounters.XARPUS))
+					renderXarpusTurnTimer(graphics, (Xarpus) encounter);
 
 				// Verzik Vitur
-				if (config.highlightVerzikGreenOrbPoolTiles() && encounter.getEncounter() == TheatreOfBloodEncounters.VERZIK_VITUR)
-				{
+				if (config.highlightVerzikGreenOrbPoolTiles() && encounter.getEncounter().equals(TheatreOfBloodEncounters.VERZIK_VITUR))
 					renderVerzikGreenOrbPoolAoeEffects(graphics, (Verzik) encounter);
-				}
 
-				if (config.displayVerzikP1AttackTimer() && encounter.getEncounter() == TheatreOfBloodEncounters.VERZIK_VITUR &&
+				if (config.displayVerzikP1AttackTimer() && encounter.getEncounter().equals(TheatreOfBloodEncounters.VERZIK_VITUR) &&
 						encounter.castToVerzik().getVerzikPhase() == 1)
-				{
 					renderVerzikAttackTimerText(graphics, (Verzik) encounter);
-				}
 
-				if (config.displayVerzikP2AttackTimer() && encounter.getEncounter() == TheatreOfBloodEncounters.VERZIK_VITUR &&
+				if (config.displayVerzikP2AttackTimer() && encounter.getEncounter().equals(TheatreOfBloodEncounters.VERZIK_VITUR) &&
 						encounter.castToVerzik().getVerzikPhase() == 2)
-				{
 					renderVerzikAttackTimerText(graphics, (Verzik) encounter);
-				}
 
-				if (config.displayVerzikP3AttackTimer() && encounter.getEncounter() == TheatreOfBloodEncounters.VERZIK_VITUR &&
+				if (config.displayVerzikP3AttackTimer() && encounter.getEncounter().equals(TheatreOfBloodEncounters.VERZIK_VITUR) &&
 						encounter.castToVerzik().getVerzikPhase() >= 3)
-				{
 					renderVerzikAttackTimerText(graphics, (Verzik) encounter);
-				}
 
-				if (config.displayVerzikNylocasAggression() && encounter.getEncounter() == TheatreOfBloodEncounters.VERZIK_VITUR)
-				{
+				if (config.displayVerzikNylocasAggression() && encounter.getEncounter().equals(TheatreOfBloodEncounters.VERZIK_VITUR))
 					renderVerzikNylocasAggressionText(graphics, (Verzik) encounter);
-				}
 			}
 
 			// Nylocas - does not always have a boss npc
-			if (config.highlightAggressiveNylocas() && encounter.getEncounter() == TheatreOfBloodEncounters.NYLOCAS)
-			{
+			if (config.highlightAggressiveNylocas() && encounter.getEncounter().equals(TheatreOfBloodEncounters.NYLOCAS))
 				renderAggressiveNylocasHighlights(graphics, (Nylocas) encounter);
-			}
 
-			if (config.displayNylocasLifeTimerText() && encounter.getEncounter() == TheatreOfBloodEncounters.NYLOCAS)
-			{
-				renderNylocasLifeTimerText(graphics, (Nylocas) encounter);
-			}
+			if (config.displayNylocasLifeTimerText() && encounter.getEncounter().equals(TheatreOfBloodEncounters.NYLOCAS))
+				renderNylocasLifeTimer(graphics, (Nylocas) encounter);
 		}
 		return null;
 	}
@@ -171,12 +144,12 @@ public class TheatreOfBloodOverlay extends Overlay
 		{
 			LocalPoint localPoint = graphicsObject.getLocation();
 			Polygon polygon = Perspective.getCanvasTilePoly(client, localPoint);
-
 			if (polygon != null)
 			{
 				if (sugadintiMaiden.isBloodSplatAttack(graphicsObject.getId()))
 				{
-					OverlayUtil.renderPolygon(graphics, polygon, config.getBloodSplatAttackColor());
+					OverlayUtil.renderPolygon(graphics, polygon, config.getBloodSplatAttackColor(),
+							config.getTileMarkersLineSize().getSize());
 				}
 			}
 		}
@@ -188,13 +161,52 @@ public class TheatreOfBloodOverlay extends Overlay
 		{
 			LocalPoint localPoint = gameObject.getLocalLocation();
 			Polygon polygon = Perspective.getCanvasTilePoly(client, localPoint);
-
 			if (polygon != null)
 			{
 				if (sugadintiMaiden.isBloodSpawnBloodTile(gameObject.getId()))
 				{
-					OverlayUtil.renderPolygon(graphics, polygon, config.getBloodSpawnBloodColor());
+					OverlayUtil.renderPolygon(graphics, polygon, config.getBloodSpawnBloodColor(),
+							config.getTileMarkersLineSize().getSize());
 				}
+			}
+		}
+	}
+
+	private void renderMaidenBloodSpawnMovementTilesHighlight(Graphics2D graphics, SugadintiMaiden sugadintiMaiden)
+	{
+		for (NPC npc : sugadintiMaiden.getBloodSpawns())
+		{
+			// Render current client tile
+			LocalPoint localPoint = npc.getLocalLocation();
+			Polygon polygon = Perspective.getCanvasTilePoly(client, localPoint);
+			if (polygon != null)
+			{
+				OverlayUtil.renderPolygon(graphics, polygon, config.getBloodSpawnMovementTilesColor(),
+						config.getTileMarkersLineSize().getSize());
+			}
+
+			// Render current server tile
+			final WorldPoint worldLocation = npc.getWorldLocation();
+			if (worldLocation == null)
+			{
+				continue;
+			}
+
+			final LocalPoint serverTileLocation = LocalPoint.fromWorld(client, worldLocation);
+			if (serverTileLocation == null)
+			{
+				continue;
+			}
+
+			Polygon serverTilePolygon = Perspective.getCanvasTilePoly(client, serverTileLocation);
+			if (serverTilePolygon != null)
+			{
+				Color color = new Color(
+						config.getBloodSpawnMovementTilesColor().getRed(),
+						config.getBloodSpawnMovementTilesColor().getGreen(),
+						config.getBloodSpawnMovementTilesColor().getBlue(),
+						config.getBloodSpawnFutureMovementTileOpacity());
+				OverlayUtil.renderPolygon(graphics, serverTilePolygon, color, config.getTileMarkersLineSize().getSize());
 			}
 		}
 	}
@@ -210,7 +222,8 @@ public class TheatreOfBloodOverlay extends Overlay
 			{
 				if (pestilentBloat.isHandAttack(graphicsObject.getId()))
 				{
-					OverlayUtil.renderPolygon(graphics, polygon, config.getBloatHandAttackColor());
+					OverlayUtil.renderPolygon(graphics, polygon, config.getBloatHandAttackColor(),
+							config.getTileMarkersLineSize().getSize());
 				}
 			}
 		}
@@ -239,7 +252,7 @@ public class TheatreOfBloodOverlay extends Overlay
 		{
 			color = config.getBloatAwakeColor();
 		}
-		OverlayUtil.renderPolygon(graphics, objectClickbox, color);
+		OverlayUtil.renderPolygon(graphics, objectClickbox, color, config.getTileMarkersLineSize().getSize());
 	}
 
 	private void renderPestilentBloatTimerText(Graphics2D graphics, PestilentBloat pestilentBloat)
@@ -272,32 +285,50 @@ public class TheatreOfBloodOverlay extends Overlay
 			Shape npcClickbox = npc.getConvexHull();
 			if (npcClickbox != null)
 			{
-				OverlayUtil.renderPolygon(graphics, npcClickbox, config.getAggressiveNylocasColor());
+				OverlayUtil.renderPolygon(graphics, npcClickbox, config.getAggressiveNylocasColor(),
+						config.getTileMarkersLineSize().getSize());
 			}
 		}
 	}
 
-	private void renderNylocasLifeTimerText(Graphics2D graphics, Nylocas nylocas)
+	private void renderNylocasLifeTimer(Graphics2D graphics, Nylocas nylocasEncounter)
 	{
-		if (nylocas.getAliveNylocas() == null)
+		if (nylocasEncounter.getAliveNylocas() == null)
 		{
 			return;
 		}
 
-		for (NPC aliveNylocas : new ArrayList<>(nylocas.getAliveNylocas().keySet()))
+		for (NPC nylocas : new ArrayList<>(nylocasEncounter.getAliveNylocas().keySet()))
 		{
-			if (nylocas.isNylocasAlmostExploding(aliveNylocas))
+			if (nylocasEncounter.isNylocasAlmostExploding(nylocas))
 			{
-				List<Integer> timers = nylocas.getAliveNylocas().get(aliveNylocas);
+				List<Integer> timers = nylocasEncounter.getAliveNylocas().get(nylocas);
 				String text = TickUtil.convertTimerFormat(timers.get(2), config.getTimerFormat());
 
-				Point textLocation = aliveNylocas.getCanvasTextLocation(graphics, text, 0);
+				BufferedImage image = ImageUtil.getResourceStreamFromClass(TheatreOfBloodPlugin.class, "explosion.png");
+				Point textLocation = nylocas.getCanvasTextLocation(graphics, text, 0);
 				if (textLocation == null)
 				{
-					return;
+					continue;
 				}
 
-				OverlayUtil.renderTextLocation(graphics, textLocation, text, Color.WHITE);
+				OverlayUtil.renderImageAndTextLocation(graphics, image, textLocation, text, IMAGE_HEIGHT_OFFSET,
+						TIMER_TEXT_WIDTH_OFFSET, Color.WHITE);
+
+				if (!config.displayNylocasLExplosiveRadius())
+				{
+					continue;
+				}
+
+				LocalPoint npcLocalPoint = nylocas.getLocalLocation();
+				Polygon polygon = Perspective.getCanvasTileAreaPoly(client, npcLocalPoint, 3);
+				if (polygon == null)
+				{
+					continue;
+				}
+
+				OverlayUtil.renderPolygon(graphics, polygon, config.getNylocasExplosiveRadiusColor(),
+						config.getTileMarkersLineSize().getSize());
 			}
 		}
 	}
@@ -316,7 +347,8 @@ public class TheatreOfBloodOverlay extends Overlay
 
 			if (polygon != null)
 			{
-				OverlayUtil.renderPolygon(graphics, polygon, config.getSotetsegMazeTileColor());
+				OverlayUtil.renderPolygon(graphics, polygon, config.getSotetsegMazeTileColor(),
+						config.getTileMarkersLineSize().getSize());
 			}
 		}
 	}
@@ -332,7 +364,8 @@ public class TheatreOfBloodOverlay extends Overlay
 			{
 				if (xarpus.isPoisonTileObject(groundObject.getId()))
 				{
-					OverlayUtil.renderPolygon(graphics, polygon, config.getXarpusPoisonAttackColor());
+					OverlayUtil.renderPolygon(graphics, polygon, config.getXarpusPoisonAttackColor(),
+							config.getTileMarkersLineSize().getSize());
 				}
 			}
 		}
@@ -349,13 +382,14 @@ public class TheatreOfBloodOverlay extends Overlay
 			{
 				if (xarpus.isHealingPoolTileObject(groundObject.getId()))
 				{
-					OverlayUtil.renderPolygon(graphics, polygon, config.getXarpusHealingPoolColor());
+					OverlayUtil.renderPolygon(graphics, polygon, config.getXarpusHealingPoolColor(),
+							config.getTileMarkersLineSize().getSize());
 				}
 			}
 		}
 	}
 
-	private void renderXarpusTurnTimerText(Graphics2D graphics, Xarpus xarpus)
+	private void renderXarpusTurnTimer(Graphics2D graphics, Xarpus xarpus)
 	{
 		if (xarpus.getRemainingTurnTime() <= 0)
 		{
@@ -364,13 +398,15 @@ public class TheatreOfBloodOverlay extends Overlay
 
 		String text = TickUtil.convertTimerFormat(xarpus.getRemainingTurnTime(), config.getTimerFormat());
 
+		BufferedImage image = ImageUtil.getResourceStreamFromClass(TheatreOfBloodPlugin.class, "xarpus_turn.png");
 		Point textLocation = xarpus.getNpc().getCanvasTextLocation(graphics, text, 0);
 		if (textLocation == null)
 		{
 			return;
 		}
 
-		OverlayUtil.renderTextLocation(graphics, textLocation, text, Color.WHITE);
+		OverlayUtil.renderImageAndTextLocation(graphics, image, textLocation, text, IMAGE_HEIGHT_OFFSET,
+				TIMER_TEXT_WIDTH_OFFSET, Color.WHITE);
 	}
 
 	private void renderVerzikAttackTimerText(Graphics2D graphics, Verzik verzik)
@@ -390,7 +426,7 @@ public class TheatreOfBloodOverlay extends Overlay
 		}
 
 		OverlayUtil.renderImageAndTextLocation(graphics, image, imageLocation, text,
-				VERZIK_ATTACK_TIMER_IMAGE_HEIGHT_OFFSET, VERZIK_ATTACK_TIMER_TEXT_WIDTH_OFFSET, Color.WHITE);
+				IMAGE_HEIGHT_OFFSET, TIMER_TEXT_WIDTH_OFFSET, Color.WHITE);
 	}
 
 	private void renderVerzikGreenOrbPoolAoeEffects(Graphics2D graphics, Verzik verzik)
@@ -404,7 +440,8 @@ public class TheatreOfBloodOverlay extends Overlay
 			{
 				if (verzik.isGreenOrbPool(graphicsObject.getId()))
 				{
-					OverlayUtil.renderPolygon(graphics, polygon, config.getVerzikGreenOrbPoolColor());
+					OverlayUtil.renderPolygon(graphics, polygon, config.getVerzikGreenOrbPoolColor(),
+							config.getTileMarkersLineSize().getSize());
 				}
 			}
 		}

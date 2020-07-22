@@ -37,6 +37,7 @@ import net.runelite.client.events.ConfigChanged;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.plugins.theatreofblood.encounters.*;
+import net.runelite.client.plugins.theatreofblood.encounters.Sotetseg;
 import net.runelite.client.ui.overlay.OverlayManager;
 import net.runelite.client.util.Text;
 
@@ -233,6 +234,7 @@ public class TheatreOfBloodPlugin extends Plugin
 				break;
 			case XARPUS:
 				currentEncounter.castToXarpus().addGroundObject(object);
+				log.debug("{} | {} | Xarpus exhumed spawned: {}", client.getGameCycle(), client.getTickCount(), object.getId());
 				break;
 		}
 	}
@@ -340,37 +342,43 @@ public class TheatreOfBloodPlugin extends Plugin
 	public void onNpcSpawned(NpcSpawned event)
 	{
 		NPC npc = event.getNpc();
-		if (!TheatreOfBloodEncounter.isNpcTheatreOfBloodEncounter(npc.getId()) && !Nylocas.isNylocasNpc(npc.getId()) && !Verzik.isNylocasNpc(npc.getId()))
+		int npcId = npc.getId();
+		if (!TheatreOfBloodEncounter.isTheatreOfBloodNpc(npcId))
 		{
 			return;
 		}
 
 		if (currentEncounter == null)
 		{
-			updateCurrentEncounter(npc.getId());
+			updateCurrentEncounter(npcId);
 			if (currentEncounter == null)
 			{
 				return;
 			}
 		}
 
-		if (!Nylocas.isNylocasNpc(npc.getId()) && !Verzik.isNylocasNpc(npc.getId()))
+		if (!Nylocas.isNylocasNpc(npcId) && !Verzik.isNylocasNpc(npcId) && !SugadintiMaiden.isBloodSpawn(npcId))
 		{
 			currentEncounter.setNpc(npc);
 		}
 
 		switch (currentEncounter.getEncounter())
 		{
+			case SUGADINTI_MAIDEN:
+				if (SugadintiMaiden.isBloodSpawn(npcId))
+					currentEncounter.castToMaiden().getBloodSpawns().add(npc);
+				break;
 			case NYLOCAS:
-				if (Nylocas.isNylocasNpc(npc.getId()))
-				{
+				if (Nylocas.isNylocasNpc(npcId))
 					currentEncounter.castToNylocas().addNylocasCrab(npc, client.getGameCycle());
-				}
 				break;
 			case VERZIK_VITUR:
-				if (Verzik.isNylocasNpc(npc.getId()))
+				if (Verzik.isNylocasNpc(npcId))
 				{
 					currentEncounter.castToVerzik().addNylocasCrab(npc);
+
+					// TODO: Temporary debug code
+					log.debug("{} | {} | Verzik crab spawned: {} | name: {}", client.getGameCycle(), client.getTickCount(), npcId, npc.getName());
 				}
 				break;
 		}
@@ -398,17 +406,17 @@ public class TheatreOfBloodPlugin extends Plugin
 
 		switch (currentEncounter.getEncounter())
 		{
+			case SUGADINTI_MAIDEN:
+				if (SugadintiMaiden.isBloodSpawn(npc.getId()))
+					currentEncounter.castToMaiden().getBloodSpawns().remove(npc);
+				break;
 			case NYLOCAS:
 				if (Nylocas.isNylocasNpc(npc.getId()))
-				{
 					currentEncounter.castToNylocas().removeNylocasCrab(npc);
-				}
 				break;
 			case VERZIK_VITUR:
 				if (Verzik.isNylocasNpc(npc.getId()))
-				{
 					currentEncounter.castToVerzik().removeNylocasCrab(npc);
-				}
 				break;
 		}
 	}
@@ -527,20 +535,33 @@ public class TheatreOfBloodPlugin extends Plugin
 	}
 
 	@Subscribe
-	protected void onAnimationChanged(AnimationChanged animationChanged)
+	protected void onAnimationChanged(AnimationChanged event)
 	{
 		if (validateRegionAndCurrentEncounter())
 		{
-			if (!(animationChanged.getActor() instanceof NPC))
+			if (!(event.getActor() instanceof NPC))
 			{
 				return;
 			}
 
-			final NPC npc = (NPC) animationChanged.getActor();
+			final NPC npc = (NPC) event.getActor();
 			if (currentEncounter.getEncounter() == TheatreOfBloodEncounters.VERZIK_VITUR &&
 					TheatreOfBloodEncounter.isNpcTheatreOfBloodEncounter(npc.getId()))
 			{
 				currentEncounter.castToVerzik().checkAnimationPhaseChange(npc.getAnimation(), client.getGameCycle());
+
+				// TODO: Temporary debug code
+				if (NpcID.VERZIK_VITUR_8369 == npc.getId() ||
+						NpcID.VERZIK_VITUR_8370 == npc.getId() ||
+						NpcID.VERZIK_VITUR_8371 == npc.getId() ||
+						NpcID.VERZIK_VITUR_8372 == npc.getId() ||
+						NpcID.VERZIK_VITUR_8373 == npc.getId() ||
+						NpcID.VERZIK_VITUR_8374 == npc.getId() ||
+						NpcID.VERZIK_VITUR_8375 == npc.getId())
+				{
+					if (npc.getAnimation() != -1)
+						log.debug("{} | {} | Verzik anim: {}", client.getGameCycle(), client.getTickCount(), npc.getAnimation());
+				}
 			}
 		}
 	}
