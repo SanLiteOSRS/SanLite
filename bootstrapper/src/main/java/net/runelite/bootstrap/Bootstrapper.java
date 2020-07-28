@@ -3,6 +3,7 @@ package net.runelite.bootstrap;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -23,25 +24,39 @@ public class Bootstrapper
 			System.out.println("WARNING: Build commit argument is null");
 		}
 
-		System.out.println("Generating bootstrap file");
-		System.out.println("Build commit: " + buildCommit);
-		generateBootstrap(false, buildCommit);
+		// Create output directory
+		if (!new File("./bootstrapper/target/bootstrap-output").mkdir())
+		{
+			System.err.println("Could not create output directory");
+			System.exit(1);
+		}
 
-		System.out.println("Generating staging bootstrap file");
-		generateBootstrap(true, buildCommit);
+		// Generate bootstrap files for all types
+		for (BootstrapType bootstrapType : BootstrapType.values())
+		{
+			generateBootstrap(bootstrapType, buildCommit);
+		}
 	}
 
-	private static void generateBootstrap(boolean isStaging, String buildCommit)
+	private static void generateBootstrap(BootstrapType type, String buildCommit)
 	{
+		System.out.println("Generating " + type.getName() + " bootstrap file | commit: " + buildCommit);
 		Gson gson = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();
-		String fileName = isStaging ? "./bootstrapper/target/bootstrap-staging.json" : "./bootstrapper/target/bootstrap.json";
 
-		try (FileWriter fileWriter = new FileWriter(fileName))
+		File bootstrapDir = new File("./bootstrapper/target/bootstrap-output/" + type.getOutputDir());
+		if (!bootstrapDir.mkdir())
 		{
-			gson.toJson(new Bootstrap(isStaging, buildCommit), fileWriter);
+			System.err.println("Could not create output directory: " + type.getOutputDir() + " for bootstrap file: " + type.getName());
+			System.exit(1);
+		}
+
+		try (FileWriter fileWriter = new FileWriter(bootstrapDir.getPath() + "/bootstrap.json"))
+		{
+			gson.toJson(new Bootstrap(type.getRepositoryUrl(), buildCommit), fileWriter);
 		}
 		catch (IOException e)
 		{
+			System.err.println("Unable to generate " + type.getName() + " bootstrap file");
 			e.printStackTrace();
 		}
 	}
