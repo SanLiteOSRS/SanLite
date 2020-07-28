@@ -150,7 +150,7 @@ public class AreaOfEffectIndicatorsPlugin extends Plugin
 			// Chambers of Xeric
 			case ProjectileID.TEKTON_METEOR_AOE:
 				// This projectile is re-used in the Inferno, where it is not helpful to display, so block it
-				if (config.highlightTektonMeteors() && !isInRegion(INFERNO_REGION))
+				if (config.highlightTektonMeteors() && isNotInRegion(INFERNO_REGION))
 					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 3, targetPoint, config.getTektonMeteorsColor()));
 				break;
 			case ProjectileID.ICE_DEMON_RANGED_AOE:
@@ -328,7 +328,7 @@ public class AreaOfEffectIndicatorsPlugin extends Plugin
 		}
 	}
 
-	private boolean isInRegion(int regionId)
+	private boolean isNotInRegion(int regionId)
 	{
 		final Player player = client.getLocalPlayer();
 		if (player == null)
