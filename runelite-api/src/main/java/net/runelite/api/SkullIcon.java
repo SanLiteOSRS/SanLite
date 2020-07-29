@@ -114,4 +114,9 @@ public enum SkullIcon
 	 * Deadman mode sprite carrying five keys
 	 */
 	DEAD_MAN_FIVE,
+
+	/**
+	 * High risk world skull icon
+	 */
+	SKULL_HIGH_RISK_WORLD,
 }
