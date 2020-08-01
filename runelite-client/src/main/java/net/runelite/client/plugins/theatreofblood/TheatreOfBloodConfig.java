@@ -96,7 +96,7 @@ public interface TheatreOfBloodConfig extends Config
 			keyName = "tileMarkersLineSize",
 			name = "Tile markers line size",
 			description = "The size of the outside line for tile markers",
-			position = 1
+			position = 0
 	)
 	default StrokeSize getTileMarkersLineSize()
 	{
