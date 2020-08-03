@@ -6,10 +6,10 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum BootstrapType
 {
-	LIVE("Live", "live", "https://raw.githubusercontent.com/sanliteosrs/maven-repo/master/live/"),
-	LIVE_BACKUP("Live Backup", "live-backup", ""),
-	STAGING("Staging", "staging", "https://raw.githubusercontent.com/sanliteosrs/maven-repo/master/staging/"),
-	STAGING_BACKUP("Staging Backup", "staging-backup", "");
+	LIVE("Live", "live", new BootstrapperProperties().getBootstrapLiveRepo()),
+	LIVE_FALLBACK("Live Fallback", "live-fallback", new BootstrapperProperties().getBootstrapLiveFallbackRepo()),
+	STAGING("Staging", "staging", new BootstrapperProperties().getBootstrapStagingRepo()),
+	STAGING_FALLBACK("Staging Fallback", "staging-fallback", new BootstrapperProperties().getBootstrapStagingFallbackRepo());
 
 	@Getter
 	private final String name;

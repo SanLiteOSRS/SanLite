@@ -6,7 +6,7 @@ import lombok.Data;
 class Artifact
 {
 	private String name;
-	private String path;
 	private String hash;
+	private String path;
 	private int size;
 }

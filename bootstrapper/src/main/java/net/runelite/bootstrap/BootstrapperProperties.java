@@ -16,9 +16,9 @@ public class BootstrapperProperties
 	private static final String SANLITE_VERSION = "sanlite.version";
 	private static final String RS_VERSION = "rs.version";
 	private static final String BOOTSTRAP_LIVE_REPO = "sanlite.bootstrap.live.repo";
-	private static final String BOOTSTRAP_LIVE_BACKUP_REPO = "sanlite.bootstrap.live.repo.backup";
+	private static final String BOOTSTRAP_LIVE_FALLBACK_REPO = "sanlite.bootstrap.live.repo.fallback";
 	private static final String BOOTSTRAP_STAGING_REPO = "sanlite.bootstrap.staging.repo";
-	private static final String BOOTSTRAP_STAGING_BACKUP_REPO = "sanlite.bootstrap.staging.repo.backup";
+	private static final String BOOTSTRAP_STAGING_FALLBACK_REPO = "sanlite.bootstrap.staging.repo.fallback";
 
 	private final Properties properties = new Properties();
 
@@ -55,9 +55,9 @@ public class BootstrapperProperties
 		return properties.getProperty(BOOTSTRAP_LIVE_REPO);
 	}
 
-	String getBootstrapLiveBackupRepo()
+	String getBootstrapLiveFallbackRepo()
 	{
-		return properties.getProperty(BOOTSTRAP_LIVE_BACKUP_REPO);
+		return properties.getProperty(BOOTSTRAP_LIVE_FALLBACK_REPO);
 	}
 
 	String getBootstrapStagingRepo()
@@ -65,8 +65,8 @@ public class BootstrapperProperties
 		return properties.getProperty(BOOTSTRAP_STAGING_REPO);
 	}
 
-	String getBootstrapStagingBackupRepo()
+	String getBootstrapStagingFallbackRepo()
 	{
-		return properties.getProperty(BOOTSTRAP_STAGING_BACKUP_REPO);
+		return properties.getProperty(BOOTSTRAP_STAGING_FALLBACK_REPO);
 	}
 }

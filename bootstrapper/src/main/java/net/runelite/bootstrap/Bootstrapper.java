@@ -25,10 +25,14 @@ public class Bootstrapper
 		}
 
 		// Create output directory
-		if (!new File("./bootstrapper/target/bootstrap-output").mkdir())
+		File outputDir = new File("./bootstrapper/target/bootstrap-output");
+		if (!outputDir.exists())
 		{
-			System.err.println("Could not create output directory");
-			System.exit(1);
+			if (!outputDir.mkdir())
+			{
+				System.err.println("Could not create output directory");
+				System.exit(1);
+			}
 		}
 
 		// Generate bootstrap files for all types
@@ -44,17 +48,20 @@ public class Bootstrapper
 		Gson gson = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();
 
 		File bootstrapDir = new File("./bootstrapper/target/bootstrap-output/" + type.getOutputDir());
-		if (!bootstrapDir.mkdir())
+		if (!bootstrapDir.exists())
 		{
-			System.err.println("Could not create output directory: " + type.getOutputDir() + " for bootstrap file: " + type.getName());
-			System.exit(1);
+			if (!bootstrapDir.mkdir())
+			{
+				System.err.println("Could not create output directory: " + type.getOutputDir() + " for bootstrap file: " + type.getName());
+				System.exit(1);
+			}
 		}
 
 		try (FileWriter fileWriter = new FileWriter(bootstrapDir.getPath() + "/bootstrap.json"))
 		{
-			gson.toJson(new Bootstrap(type.getRepositoryUrl(), buildCommit), fileWriter);
+			gson.toJson(new Bootstrap(type.getRepositoryUrl(), buildCommit, type), fileWriter);
 		}
-		catch (IOException e)
+		catch (IOException | IllegalArgumentException e)
 		{
 			System.err.println("Unable to generate " + type.getName() + " bootstrap file");
 			e.printStackTrace();
