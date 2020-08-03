@@ -59,7 +59,7 @@ public class Bootstrapper
 
 		try (FileWriter fileWriter = new FileWriter(bootstrapDir.getPath() + "/bootstrap.json"))
 		{
-			gson.toJson(new Bootstrap(type.getRepositoryUrl(), buildCommit, type), fileWriter);
+			gson.toJson(new Bootstrap(type.getRepositoryUrl(), buildCommit), fileWriter);
 		}
 		catch (IOException | IllegalArgumentException e)
 		{
