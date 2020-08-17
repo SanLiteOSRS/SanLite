@@ -478,9 +478,57 @@ public interface PlayerIndicatorsConfig extends Config
 		return false;
 	}
 
-	@Units(Units.TICKS)
 	@ConfigItem(
 			position = 33,
+			keyName = "notifyInPvpSafezone",
+			name = "Notify even when you are in a PvP safezone",
+			description = "Receive player spawn notifications even when you are in a PvP safezone such as a bank",
+			section = playerSpawnNotificationsSection
+	)
+	default boolean notifyInPvpSafezone()
+	{
+		return false;
+	}
+
+	@ConfigItem(
+			position = 34,
+			keyName = "notifyOnlyAttackablePlayers",
+			name = "Notify only on players in your combat range",
+			description = "Only receive player spawn notifications for players in your combat range",
+			section = playerSpawnNotificationsSection
+	)
+	default boolean notifyOnlyAttackablePlayers()
+	{
+		return false;
+	}
+
+	@ConfigItem(
+			position = 35,
+			keyName = "notifyFriendsSpawning",
+			name = "Notify when a friend spawns",
+			description = "Receive player spawn notifcations for friends spawning",
+			section = playerSpawnNotificationsSection
+	)
+	default boolean notifyFriendsSpawning()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+			position = 36,
+			keyName = "notifyFriendsChatMembersSpawning",
+			name = "Notify when a friends chat member spawns",
+			description = "Receive player spawn notifcations for friends chat members spawning",
+			section = playerSpawnNotificationsSection
+	)
+	default boolean notifyFriendsChatMembersSpawning()
+	{
+		return false;
+	}
+
+	@Units(Units.TICKS)
+	@ConfigItem(
+			position = 37,
 			keyName = "delayBetweenPlayerSpawnedNotifications",
 			name = "Notification cooldown",
 			description = "Configures the minimum game ticks between player spawned notifications (600ms per tick)",
@@ -492,7 +540,7 @@ public interface PlayerIndicatorsConfig extends Config
 	}
 
 	@ConfigItem(
-			position = 34,
+			position = 38,
 			keyName = "ignoredPlayerNames",
 			name = "Ignored players",
 			description = "Configures players that will be ignored by player spawn notifications. Format: (name), (name)",
@@ -504,7 +552,7 @@ public interface PlayerIndicatorsConfig extends Config
 	}
 
 	@ConfigItem(
-			position = 35,
+			position = 39,
 			keyName = "clanMenuIcons",
 			name = "Show friends chat ranks",
 			description = "Add friends chat rank to right click menu and next to player names",

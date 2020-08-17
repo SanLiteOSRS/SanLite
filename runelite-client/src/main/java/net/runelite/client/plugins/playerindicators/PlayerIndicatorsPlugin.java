@@ -27,9 +27,11 @@
 package net.runelite.client.plugins.playerindicators;
 
 import com.google.inject.Provides;
+import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.*;
 import net.runelite.api.events.MenuEntryAdded;
 import net.runelite.api.events.PlayerSpawned;
+import net.runelite.api.widgets.WidgetInfo;
 import net.runelite.client.Notifier;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
@@ -45,6 +47,7 @@ import net.runelite.client.util.Text;
 import javax.inject.Inject;
 import java.awt.*;
 import java.util.List;
+import java.util.Objects;
 
 import static net.runelite.api.FriendsChatRank.UNRANKED;
 import static net.runelite.api.MenuAction.*;
@@ -54,6 +57,8 @@ import static net.runelite.api.MenuAction.*;
 	description = "Highlight players on-screen and/or on the minimap",
 	tags = {"highlight", "minimap", "overlay", "players", "friend", "finder", "offline", "pvp", "name", "notifications", "sanlite"}
 )
+
+@Slf4j
 public class PlayerIndicatorsPlugin extends Plugin
 {
 	@Inject
@@ -238,19 +243,46 @@ public class PlayerIndicatorsPlugin extends Plugin
 			return;
 
 		PlayerIndicatorType playerIndicatorType = playerIndicatorsService.getPlayerIndicatorType(player);
-		if (playerIndicatorType == null || !playerIndicatorType.equals(PlayerIndicatorType.NON_CLAN_MEMBER))
+		if (playerIndicatorType == null || playerIndicatorType.equals(PlayerIndicatorType.FRIENDS_CHAT_MEMBERS) && !config.notifyFriendsChatMembersSpawning()
+				|| playerIndicatorType.equals(PlayerIndicatorType.FRIEND) && !config.notifyFriendsSpawning())
 			return;
 
 		// Only send notifications in PvP zones
 		if (client.getVar(Varbits.PVP_SPEC_ORB) != 1 && client.getVar(Varbits.IN_WILDERNESS) != 1 &&
-				client.getWorldType().stream().noneMatch(x -> x == WorldType.DEADMAN))
+				client.getWorldType().stream().noneMatch(x -> x == WorldType.DEADMAN) && !config.notifyInPvpSafezone())
 			return;
+
+		// Only send notifications if player is attackable
+		if (config.notifyOnlyAttackablePlayers())
+		{
+			int ownCombatLevel = Objects.requireNonNull(client.getLocalPlayer()).getCombatLevel();
+			int wildernessLevel;
+			int lowestAttackable = ownCombatLevel;
+			int highestAttackable = ownCombatLevel;
+
+			if (WorldType.isPvpWorld(client.getWorldType()))
+			{
+				lowestAttackable -= 15;
+				highestAttackable += 15;
+			}
+
+			if (client.getVar(Varbits.IN_WILDERNESS) == 1)
+			{
+				wildernessLevel = Integer.parseInt(Objects.requireNonNull(client.getWidget(WidgetInfo.PVP_WILDERNESS_LEVEL)).getText().split(" ")[1].split("<")[0]);
+				lowestAttackable -= wildernessLevel;
+				highestAttackable += wildernessLevel;
+			}
+
+			if (player.getCombatLevel() < lowestAttackable || player.getCombatLevel() > highestAttackable)
+			{
+				return;
+			}
+
+		}
 
 		// Do not trigger if the region is a safe death PvP zone (e.g. Duel Arena)
 		if (SafeDeathPvpRegions.inSafeDeathPvpArea(client.getMapRegions()))
-		{
 			return;
-		}
 
 		// Check if enough time has expired since the last notification
 		if (client.getTickCount() < lastPlayerSpawnNotificationGameTick + config.delayBetweenPlayerSpawnedNotifications())
