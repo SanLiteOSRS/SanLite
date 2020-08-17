@@ -31,6 +31,7 @@ import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.*;
 import net.runelite.api.events.MenuEntryAdded;
 import net.runelite.api.events.PlayerSpawned;
+import net.runelite.api.widgets.Widget;
 import net.runelite.api.widgets.WidgetInfo;
 import net.runelite.client.Notifier;
 import net.runelite.client.config.ConfigManager;
@@ -57,8 +58,6 @@ import static net.runelite.api.MenuAction.*;
 	description = "Highlight players on-screen and/or on the minimap",
 	tags = {"highlight", "minimap", "overlay", "players", "friend", "finder", "offline", "pvp", "name", "notifications", "sanlite"}
 )
-
-@Slf4j
 public class PlayerIndicatorsPlugin extends Plugin
 {
 	@Inject
@@ -253,31 +252,9 @@ public class PlayerIndicatorsPlugin extends Plugin
 			return;
 
 		// Only send notifications if player is attackable
-		if (config.notifyOnlyAttackablePlayers())
+		if (config.notifyOnlyAttackablePlayers() && !isPlayerAttackable(player))
 		{
-			int ownCombatLevel = Objects.requireNonNull(client.getLocalPlayer()).getCombatLevel();
-			int wildernessLevel;
-			int lowestAttackable = ownCombatLevel;
-			int highestAttackable = ownCombatLevel;
-
-			if (WorldType.isPvpWorld(client.getWorldType()))
-			{
-				lowestAttackable -= 15;
-				highestAttackable += 15;
-			}
-
-			if (client.getVar(Varbits.IN_WILDERNESS) == 1)
-			{
-				wildernessLevel = Integer.parseInt(Objects.requireNonNull(client.getWidget(WidgetInfo.PVP_WILDERNESS_LEVEL)).getText().split(" ")[1].split("<")[0]);
-				lowestAttackable -= wildernessLevel;
-				highestAttackable += wildernessLevel;
-			}
-
-			if (player.getCombatLevel() < lowestAttackable || player.getCombatLevel() > highestAttackable)
-			{
-				return;
-			}
-
+			return;
 		}
 
 		// Do not trigger if the region is a safe death PvP zone (e.g. Duel Arena)
@@ -293,5 +270,34 @@ public class PlayerIndicatorsPlugin extends Plugin
 
 		notifier.notify("[" + player.getName() + "] has spawned!");
 		lastPlayerSpawnNotificationGameTick = client.getTickCount();
+	}
+
+	private boolean isPlayerAttackable(Player player)
+	{
+		if (client.getLocalPlayer() == null)
+			return false;
+
+		int ownCombatLevel = client.getLocalPlayer().getCombatLevel();
+		int lowestAttackable = ownCombatLevel;
+		int highestAttackable = ownCombatLevel;
+
+		if (WorldType.isPvpWorld(client.getWorldType()))
+		{
+			lowestAttackable -= 15;
+			highestAttackable += 15;
+		}
+
+		if (client.getVar(Varbits.IN_WILDERNESS) == 1)
+		{
+			Widget levelRangeWidget = client.getWidget(WidgetInfo.PVP_WILDERNESS_LEVEL);
+			if (levelRangeWidget == null)
+				return false;
+
+			int wildLevel = Integer.parseInt(levelRangeWidget.getText().split(" ")[1].split("<")[0]);
+			lowestAttackable -= wildLevel;
+			highestAttackable += wildLevel;
+		}
+
+		return player.getCombatLevel() >= lowestAttackable && player.getCombatLevel() <= highestAttackable;
 	}
 }

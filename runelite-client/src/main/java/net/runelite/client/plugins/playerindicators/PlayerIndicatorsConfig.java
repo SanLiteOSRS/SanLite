@@ -511,7 +511,7 @@ public interface PlayerIndicatorsConfig extends Config
 	)
 	default boolean notifyFriendsSpawning()
 	{
-		return true;
+		return false;
 	}
 
 	@ConfigItem(
