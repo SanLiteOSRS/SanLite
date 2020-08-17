@@ -243,8 +243,9 @@ public class PlayerIndicatorsPlugin extends Plugin
 			return;
 
 		PlayerIndicatorType playerIndicatorType = playerIndicatorsService.getPlayerIndicatorType(player);
-		if (playerIndicatorType == null || playerIndicatorType.equals(PlayerIndicatorType.FRIENDS_CHAT_MEMBERS) && !config.notifyFriendsChatMembersSpawning()
-				|| playerIndicatorType.equals(PlayerIndicatorType.FRIEND) && !config.notifyFriendsSpawning())
+		if (playerIndicatorType == null ||
+		    playerIndicatorType.equals(PlayerIndicatorType.FRIENDS_CHAT_MEMBERS) && !config.notifyFriendsChatMembersSpawning() ||
+		    playerIndicatorType.equals(PlayerIndicatorType.FRIEND) && !config.notifyFriendsSpawning())
 			return;
 
 		// Only send notifications in PvP zones
