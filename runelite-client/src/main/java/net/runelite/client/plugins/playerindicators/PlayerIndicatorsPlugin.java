@@ -27,7 +27,6 @@
 package net.runelite.client.plugins.playerindicators;
 
 import com.google.inject.Provides;
-import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.*;
 import net.runelite.api.events.MenuEntryAdded;
 import net.runelite.api.events.PlayerSpawned;
@@ -48,7 +47,6 @@ import net.runelite.client.util.Text;
 import javax.inject.Inject;
 import java.awt.*;
 import java.util.List;
-import java.util.Objects;
 
 import static net.runelite.api.FriendsChatRank.UNRANKED;
 import static net.runelite.api.MenuAction.*;
@@ -272,7 +270,6 @@ public class PlayerIndicatorsPlugin extends Plugin
 		notifier.notify("[" + player.getName() + "] has spawned!");
 		lastPlayerSpawnNotificationGameTick = client.getTickCount();
 	}
-<<<<<<< HEAD
 
 	private boolean isPlayerAttackable(Player player)
 	{
@@ -303,6 +300,3 @@ public class PlayerIndicatorsPlugin extends Plugin
 		return player.getCombatLevel() >= lowestAttackable && player.getCombatLevel() <= highestAttackable;
 	}
 }
-=======
-}
->>>>>>> playerspawn-added-features
