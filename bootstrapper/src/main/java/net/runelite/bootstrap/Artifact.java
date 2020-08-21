@@ -1,9 +1,12 @@
 package net.runelite.bootstrap;
 
+import lombok.Data;
+
+@Data
 class Artifact
 {
-	String hash;
-	String name;
-	String path;
-	String size;
+	private String name;
+	private String hash;
+	private String path;
+	private int size;
 }

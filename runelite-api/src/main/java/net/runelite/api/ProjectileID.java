@@ -197,6 +197,7 @@ public class ProjectileID
 	public static final int CORRUPTED_HUNLLEF_DISABLE_PRAYERS_ATTACK = 1714;
 
 	// Zalcano
+	public static final int ZALCANO_PROJECTILE_FIREBALL = 1728; // for upstream parity
 	public static final int ZALCANO_ROCK_PROJECTILE_AOE = 1728;
 	public static final int ZALCANO_SPAWN_GOLEM_AOE = 1729;
 

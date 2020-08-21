@@ -54,6 +54,7 @@ class DevToolsPanel extends PluginPanel
 	private final WidgetInspector widgetInspector;
 	private final VarInspector varInspector;
 	private final ScriptInspector scriptInspector;
+	private final InventoryInspector inventoryInspector;
 	private final InfoBoxManager infoBoxManager;
 	private final SoundManager soundManager;
 	private final ScheduledExecutorService scheduledExecutorService;
@@ -65,6 +66,7 @@ class DevToolsPanel extends PluginPanel
 		WidgetInspector widgetInspector,
 		VarInspector varInspector,
 		ScriptInspector scriptInspector,
+		InventoryInspector inventoryInspector,
 		Notifier notifier,
 		InfoBoxManager infoBoxManager,
 		SoundManager soundManager,
@@ -75,6 +77,7 @@ class DevToolsPanel extends PluginPanel
 		this.plugin = plugin;
 		this.widgetInspector = widgetInspector;
 		this.varInspector = varInspector;
+		this.inventoryInspector = inventoryInspector;
 		this.scriptInspector = scriptInspector;
 		this.notifier = notifier;
 		this.infoBoxManager = infoBoxManager;
@@ -185,6 +188,19 @@ class DevToolsPanel extends PluginPanel
 		final JButton clearInfoboxBtn = new JButton("Clear Infobox");
 		clearInfoboxBtn.addActionListener(e -> infoBoxManager.removeIf(i -> true));
 		container.add(clearInfoboxBtn);
+
+		container.add(plugin.getInventoryInspector());
+		plugin.getInventoryInspector().addActionListener((ev) ->
+		{
+			if (plugin.getInventoryInspector().isActive())
+			{
+				inventoryInspector.close();
+			}
+			else
+			{
+				inventoryInspector.open();
+			}
+		});
 
 		final JButton customSoundBtn = new JButton("Custom Sound");
 		Clip customSoundClip = SoundUtil.getResourceStreamFromClass(getClass(), "custom_sound.wav");
