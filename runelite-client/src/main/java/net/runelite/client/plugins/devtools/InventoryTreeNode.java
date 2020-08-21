@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, TheStonedTurtle <https://github.com/TheStonedTurtle>
+ * Copyright (c) 2020, TheStonedTurtle <https://github.com/TheStonedTurtle>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,22 +22,30 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.http.api.loottracker;
+package net.runelite.client.plugins.devtools;
 
-import java.time.Instant;
-import java.util.Collection;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import javax.annotation.Nullable;
+import javax.swing.tree.DefaultMutableTreeNode;
+import lombok.Getter;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-public class LootRecord
+@Getter
+class InventoryTreeNode extends DefaultMutableTreeNode
 {
-	private String eventId;
-	private LootRecordType type;
-	private Object metadata;
-	private Collection<GameItem> drops;
-	private Instant time;
+	final int id;
+	@Nullable
+	final String name;
+
+	InventoryTreeNode(final int id, @Nullable final String name)
+	{
+		super();
+
+		this.id = id;
+		this.name = name;
+	}
+
+	@Override
+	public String toString()
+	{
+		return id + (name == null ? "" : " - " + name);
+	}
 }

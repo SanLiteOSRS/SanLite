@@ -124,6 +124,7 @@ public class GraphicID
 	public static final int ALCHEMICAL_HYDRA_FIRE_ATTACK = 1668;
 
 	// Zalcano
+	public static final int GRAPHICS_OBJECT_ROCKFALL = 1727; // for upstream parity
 	public static final int ZALCANO_FALLING_ROCK = 1727;
 	public static final int ZALCANO_GOLEM_SPAWN_EXPLOSION = 1730;
 
