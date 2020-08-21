@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, TheStonedTurtle <https://github.com/TheStonedTurtle>
+ * Copyright (c) 2020, TheStonedTurtle <https://github.com/TheStonedTurtle>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,22 +22,18 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.http.api.loottracker;
+package net.runelite.client.plugins.devtools;
 
-import java.time.Instant;
-import java.util.Collection;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import net.runelite.api.Item;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class LootRecord
+class InventoryItem
 {
-	private String eventId;
-	private LootRecordType type;
-	private Object metadata;
-	private Collection<GameItem> drops;
-	private Instant time;
+	private final int slot;
+	private Item item;
+	private final String name;
+	private final boolean stackable;
 }
