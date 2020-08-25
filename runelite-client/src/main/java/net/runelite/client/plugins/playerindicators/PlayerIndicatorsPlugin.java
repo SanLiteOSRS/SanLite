@@ -257,7 +257,7 @@ public class PlayerIndicatorsPlugin extends Plugin
 		}
 
 		// Do not trigger if the region is a safe death PvP zone (e.g. Duel Arena)
-		if (SafeDeathPvpRegions.inSafeDeathPvpArea(client.getMapRegions()))
+		if (SafeDeathPvpRegions.inSafeDeathPvpArea(client) && !config.disableSafeDeathPvpAreaBlacklist())
 			return;
 
 		// Check if enough time has expired since the last notification
