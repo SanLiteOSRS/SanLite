@@ -1,24 +1,18 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ft")
+@ObfuscatedName("fv")
 @Implements("UserComparator9")
 public class UserComparator9 extends AbstractUserComparator {
-	@ObfuscatedName("e")
-	@ObfuscatedSignature(
-		signature = "Lkn;"
+	@ObfuscatedName("rn")
+	@ObfuscatedGetter(
+		intValue = 1726851723
 	)
-	@Export("NetCache_reference")
-	public static Buffer NetCache_reference;
-	@ObfuscatedName("bw")
-	@ObfuscatedSignature(
-		signature = "Lgz;"
-	)
-	@Export("clientLanguage")
-	static Language clientLanguage;
-	@ObfuscatedName("m")
+	static int field2013;
+	@ObfuscatedName("z")
 	@Export("reversed")
 	final boolean reversed;
 
@@ -26,10 +20,10 @@ public class UserComparator9 extends AbstractUserComparator {
 		this.reversed = var1;
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(Lkx;Lkx;I)I",
-		garbageValue = "239506152"
+		signature = "(Lko;Lko;B)I",
+		garbageValue = "6"
 	)
 	@Export("compareBuddy")
 	int compareBuddy(Buddy var1, Buddy var2) {
@@ -44,57 +38,34 @@ public class UserComparator9 extends AbstractUserComparator {
 		return this.compareBuddy((Buddy)var1, (Buddy)var2);
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(I)[Lgx;",
-		garbageValue = "-1951189301"
+		signature = "(Lic;Lic;ZLkr;I)V",
+		garbageValue = "-766510730"
 	)
-	static LoginPacket[] method3512() {
-		return new LoginPacket[]{LoginPacket.field2346, LoginPacket.field2347, LoginPacket.field2345, LoginPacket.field2350, LoginPacket.field2352, LoginPacket.field2348};
+	public static void method3487(AbstractArchive var0, AbstractArchive var1, boolean var2, Font var3) {
+		class231.ItemDefinition_archive = var0;
+		ItemComposition.ItemDefinition_modelArchive = var1;
+		ItemComposition.ItemDefinition_inMembersWorld = var2;
+		class227.ItemDefinition_fileCount = class231.ItemDefinition_archive.getGroupFileCount(10);
+		ScriptEvent.ItemDefinition_fontPlain11 = var3;
 	}
 
 	@ObfuscatedName("o")
-	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "17173130"
-	)
-	public static void method3509() {
-		if (MouseHandler.MouseHandler_instance != null) {
-			synchronized(MouseHandler.MouseHandler_instance) {
-				MouseHandler.MouseHandler_instance = null;
-			}
-		}
-
+	@Export("Entity_unpackID")
+	public static int Entity_unpackID(long var0) {
+		return (int)(var0 >>> 17 & 4294967295L);
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(Lic;IIIZB)V",
-		garbageValue = "18"
+		signature = "(Ljava/lang/String;I)V",
+		garbageValue = "-773772836"
 	)
-	public static void method3513(AbstractArchive var0, int var1, int var2, int var3, boolean var4) {
-		class206.field2439 = 1;
-		Huffman.musicTrackArchive = var0;
-		class206.musicTrackGroupId = var1;
-		MilliClock.musicTrackFileId = var2;
-		class206.musicTrackVolume = var3;
-		class336.musicTrackBoolean = var4;
-		class206.field2442 = 10000;
-	}
-
-	@ObfuscatedName("fx")
-	@ObfuscatedSignature(
-		signature = "(IB)V",
-		garbageValue = "41"
-	)
-	@Export("playSong")
-	static void playSong(int var0) {
-		if (var0 == -1 && !Client.field743) {
-			class89.method2161();
-		} else if (var0 != -1 && var0 != Client.currentTrackGroupId && Client.musicVolume != 0 && !Client.field743) {
-			MenuAction.playMusicTrack(2, UserComparator7.archive6, var0, 0, Client.musicVolume, false);
-		}
-
-		Client.currentTrackGroupId = var0;
+	static final void method3492(String var0) {
+		PacketBufferNode var1 = Client.getPacketBufferNode(ClientPacket.field2315, Client.packetWriter.isaacCipher);
+		var1.packetBuffer.writeByte(Decimator.stringCp1252NullTerminatedByteSize(var0));
+		var1.packetBuffer.writeStringCp1252NullTerminated(var0);
+		Client.packetWriter.addNode(var1);
 	}
 }

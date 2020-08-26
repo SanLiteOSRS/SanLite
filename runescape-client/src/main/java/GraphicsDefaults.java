@@ -4,90 +4,90 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("lq")
+@ObfuscatedName("lb")
 @Implements("GraphicsDefaults")
 public class GraphicsDefaults {
-	@ObfuscatedName("m")
+	@ObfuscatedName("z")
 	@ObfuscatedGetter(
-		intValue = -1290598403
+		intValue = -1162804389
 	)
 	@Export("compass")
 	public int compass;
-	@ObfuscatedName("o")
+	@ObfuscatedName("k")
 	@ObfuscatedGetter(
-		intValue = 569826969
+		intValue = -1318347759
 	)
-	public int field3825;
-	@ObfuscatedName("q")
+	public int field3831;
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = -2129341785
+		intValue = 2062877841
 	)
 	@Export("mapScenes")
 	public int mapScenes;
-	@ObfuscatedName("j")
+	@ObfuscatedName("t")
 	@ObfuscatedGetter(
-		intValue = -971970549
+		intValue = -2100530677
 	)
 	@Export("headIconsPk")
 	public int headIconsPk;
-	@ObfuscatedName("p")
+	@ObfuscatedName("i")
 	@ObfuscatedGetter(
-		intValue = 495160215
+		intValue = -1982500985
 	)
-	public int field3828;
-	@ObfuscatedName("g")
+	public int field3839;
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = 600923109
+		intValue = 1352009329
 	)
-	public int field3829;
-	@ObfuscatedName("n")
+	public int field3835;
+	@ObfuscatedName("x")
 	@ObfuscatedGetter(
-		intValue = -1832791717
+		intValue = 893846923
 	)
-	public int field3830;
-	@ObfuscatedName("u")
-	@ObfuscatedGetter(
-		intValue = 1676542437
-	)
-	public int field3831;
-	@ObfuscatedName("a")
-	@ObfuscatedGetter(
-		intValue = 25471689
-	)
-	public int field3834;
-	@ObfuscatedName("z")
-	@ObfuscatedGetter(
-		intValue = -1227004577
-	)
-	public int field3824;
+	public int field3838;
 	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		intValue = -575308385
+		intValue = -27380687
 	)
-	public int field3832;
+	public int field3837;
+	@ObfuscatedName("g")
+	@ObfuscatedGetter(
+		intValue = 255609423
+	)
+	public int field3836;
+	@ObfuscatedName("m")
+	@ObfuscatedGetter(
+		intValue = -1251414459
+	)
+	public int field3834;
+	@ObfuscatedName("n")
+	@ObfuscatedGetter(
+		intValue = 733929835
+	)
+	public int field3840;
 
 	public GraphicsDefaults() {
 		this.compass = -1;
-		this.field3825 = -1;
+		this.field3831 = -1;
 		this.mapScenes = -1;
 		this.headIconsPk = -1;
-		this.field3828 = -1;
-		this.field3829 = -1;
-		this.field3830 = -1;
-		this.field3831 = -1;
+		this.field3839 = -1;
+		this.field3835 = -1;
+		this.field3838 = -1;
+		this.field3837 = -1;
+		this.field3836 = -1;
 		this.field3834 = -1;
-		this.field3824 = -1;
-		this.field3832 = -1;
+		this.field3840 = -1;
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(Lic;B)V",
-		garbageValue = "0"
+		signature = "(Lic;I)V",
+		garbageValue = "-2057643179"
 	)
 	@Export("decode")
 	public void decode(AbstractArchive var1) {
-		byte[] var2 = var1.takeFileFlat(DefaultsGroup.field3822.group);
+		byte[] var2 = var1.takeFileFlat(DefaultsGroup.field3828.group);
 		Buffer var3 = new Buffer(var2);
 
 		while (true) {
@@ -101,17 +101,17 @@ public class GraphicsDefaults {
 				var3.readMedium();
 				break;
 			case 2:
-				this.compass = var3.method5843();
-				this.field3825 = var3.method5843();
-				this.mapScenes = var3.method5843();
-				this.headIconsPk = var3.method5843();
-				this.field3828 = var3.method5843();
-				this.field3829 = var3.method5843();
-				this.field3830 = var3.method5843();
-				this.field3831 = var3.method5843();
-				this.field3834 = var3.method5843();
-				this.field3824 = var3.method5843();
-				this.field3832 = var3.method5843();
+				this.compass = var3.method5634();
+				this.field3831 = var3.method5634();
+				this.mapScenes = var3.method5634();
+				this.headIconsPk = var3.method5634();
+				this.field3839 = var3.method5634();
+				this.field3835 = var3.method5634();
+				this.field3838 = var3.method5634();
+				this.field3837 = var3.method5634();
+				this.field3836 = var3.method5634();
+				this.field3834 = var3.method5634();
+				this.field3840 = var3.method5634();
 			}
 		}
 	}

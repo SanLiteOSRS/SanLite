@@ -1,133 +1,270 @@
+import java.io.File;
+import java.io.IOException;
+import java.io.RandomAccessFile;
 import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ci")
+@ObfuscatedName("cc")
 public class class90 {
-	@ObfuscatedName("bb")
-	@ObfuscatedSignature(
-		signature = "[Llz;"
-	)
-	@Export("worldSelectBackSprites")
-	static SpritePixels[] worldSelectBackSprites;
-	@ObfuscatedName("en")
-	@ObfuscatedGetter(
-		intValue = -664685957
-	)
-	@Export("port1")
-	static int port1;
-	@ObfuscatedName("gl")
-	@Export("regionLandArchives")
-	static byte[][] regionLandArchives;
-
-	@ObfuscatedName("m")
-	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "1343662154"
-	)
-	public static void method2164() {
-		class105.reflectionChecks = new IterableNodeDeque();
-	}
-
-	@ObfuscatedName("o")
-	@ObfuscatedSignature(
-		signature = "(Llz;IIII)V",
-		garbageValue = "-1824687226"
-	)
-	static void method2166(SpritePixels var0, int var1, int var2, int var3) {
-		DemotingHashTable var4 = WorldMapRegion.WorldMapRegion_cachedSprites;
-		long var6 = (long)(var3 << 16 | var1 << 8 | var2);
-		var4.put(var0, var6, var0.pixels.length * 4);
-	}
-
-	@ObfuscatedName("p")
-	@ObfuscatedSignature(
-		signature = "(Ljava/lang/CharSequence;II[BIB)I",
-		garbageValue = "-25"
-	)
-	@Export("encodeStringCp1252")
-	public static int encodeStringCp1252(CharSequence var0, int var1, int var2, byte[] var3, int var4) {
-		int var5 = var2 - var1;
-
-		for (int var6 = 0; var6 < var5; ++var6) {
-			char var7 = var0.charAt(var6 + var1);
-			if (var7 > 0 && var7 < 128 || var7 >= 160 && var7 <= 255) {
-				var3[var6 + var4] = (byte)var7;
-			} else if (var7 == 8364) {
-				var3[var6 + var4] = -128;
-			} else if (var7 == 8218) {
-				var3[var6 + var4] = -126;
-			} else if (var7 == 402) {
-				var3[var6 + var4] = -125;
-			} else if (var7 == 8222) {
-				var3[var6 + var4] = -124;
-			} else if (var7 == 8230) {
-				var3[var6 + var4] = -123;
-			} else if (var7 == 8224) {
-				var3[var6 + var4] = -122;
-			} else if (var7 == 8225) {
-				var3[var6 + var4] = -121;
-			} else if (var7 == 710) {
-				var3[var6 + var4] = -120;
-			} else if (var7 == 8240) {
-				var3[var6 + var4] = -119;
-			} else if (var7 == 352) {
-				var3[var6 + var4] = -118;
-			} else if (var7 == 8249) {
-				var3[var6 + var4] = -117;
-			} else if (var7 == 338) {
-				var3[var6 + var4] = -116;
-			} else if (var7 == 381) {
-				var3[var6 + var4] = -114;
-			} else if (var7 == 8216) {
-				var3[var6 + var4] = -111;
-			} else if (var7 == 8217) {
-				var3[var6 + var4] = -110;
-			} else if (var7 == 8220) {
-				var3[var6 + var4] = -109;
-			} else if (var7 == 8221) {
-				var3[var6 + var4] = -108;
-			} else if (var7 == 8226) {
-				var3[var6 + var4] = -107;
-			} else if (var7 == 8211) {
-				var3[var6 + var4] = -106;
-			} else if (var7 == 8212) {
-				var3[var6 + var4] = -105;
-			} else if (var7 == 732) {
-				var3[var6 + var4] = -104;
-			} else if (var7 == 8482) {
-				var3[var6 + var4] = -103;
-			} else if (var7 == 353) {
-				var3[var6 + var4] = -102;
-			} else if (var7 == 8250) {
-				var3[var6 + var4] = -101;
-			} else if (var7 == 339) {
-				var3[var6 + var4] = -100;
-			} else if (var7 == 382) {
-				var3[var6 + var4] = -98;
-			} else if (var7 == 376) {
-				var3[var6 + var4] = -97;
-			} else {
-				var3[var6 + var4] = 63;
-			}
-		}
-
-		return var5;
-	}
+	@ObfuscatedName("gh")
+	@Export("regions")
+	static int[] regions;
 
 	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "([BI)Lko;",
-		garbageValue = "166705545"
+		signature = "(Ljava/lang/String;Ljava/lang/String;IIB)V",
+		garbageValue = "4"
 	)
-	static Font method2168(byte[] var0) {
-		if (var0 == null) {
-			return null;
-		} else {
-			Font var1 = new Font(var0, class335.SpriteBuffer_xOffsets, NPC.SpriteBuffer_yOffsets, class335.SpriteBuffer_spriteWidths, class335.SpriteBuffer_spriteHeights, class335.SpriteBuffer_spritePalette, ItemComposition.SpriteBuffer_pixels);
-			GrandExchangeEvent.method158();
-			return var1;
+	public static void method2138(String var0, String var1, int var2, int var3) throws IOException {
+		GZipDecompressor.idxCount = var3;
+		SoundSystem.cacheGamebuild = var2;
+
+		try {
+			WorldMapRegion.field277 = System.getProperty("os.name");
+		} catch (Exception var33) {
+			WorldMapRegion.field277 = "Unknown";
 		}
+
+		JagexCache.field2094 = WorldMapRegion.field277.toLowerCase();
+
+		try {
+			UserComparator2.userHomeDirectory = System.getProperty("user.home");
+			if (UserComparator2.userHomeDirectory != null) {
+				UserComparator2.userHomeDirectory = UserComparator2.userHomeDirectory + "/";
+			}
+		} catch (Exception var32) {
+		}
+
+		try {
+			if (JagexCache.field2094.startsWith("win")) {
+				if (UserComparator2.userHomeDirectory == null) {
+					UserComparator2.userHomeDirectory = System.getenv("USERPROFILE");
+				}
+			} else if (UserComparator2.userHomeDirectory == null) {
+				UserComparator2.userHomeDirectory = System.getenv("HOME");
+			}
+
+			if (UserComparator2.userHomeDirectory != null) {
+				UserComparator2.userHomeDirectory = UserComparator2.userHomeDirectory + "/";
+			}
+		} catch (Exception var31) {
+		}
+
+		if (UserComparator2.userHomeDirectory == null) {
+			UserComparator2.userHomeDirectory = "~/";
+		}
+
+		UserComparator4.field2005 = new String[]{"c:/rscache/", "/rscache/", "c:/windows/", "c:/winnt/", "c:/", UserComparator2.userHomeDirectory, "/tmp/", ""};
+		class69.field570 = new String[]{".jagex_cache_" + SoundSystem.cacheGamebuild, ".file_store_" + SoundSystem.cacheGamebuild};
+		int var18 = 0;
+
+		label272:
+		while (var18 < 4) {
+			String var6 = var18 == 0 ? "" : "" + var18;
+			JagexCache.JagexCache_locationFile = new File(UserComparator2.userHomeDirectory, "jagex_cl_" + var0 + "_" + var1 + var6 + ".dat");
+			String var7 = null;
+			String var8 = null;
+			boolean var9 = false;
+			Buffer var11;
+			int var12;
+			int var14;
+			File var38;
+			if (JagexCache.JagexCache_locationFile.exists()) {
+				try {
+					AccessFile var10 = new AccessFile(JagexCache.JagexCache_locationFile, "rw", 10000L);
+
+					for (var11 = new Buffer((int)var10.length()); var11.offset < var11.array.length; var11.offset += var12) {
+						var12 = var10.read(var11.array, var11.offset, var11.array.length - var11.offset);
+						if (var12 == -1) {
+							throw new IOException();
+						}
+					}
+
+					var11.offset = 0;
+					var12 = var11.readUnsignedByte();
+					if (var12 < 1 || var12 > 3) {
+						throw new IOException("" + var12);
+					}
+
+					int var13 = 0;
+					if (var12 > 1) {
+						var13 = var11.readUnsignedByte();
+					}
+
+					if (var12 <= 2) {
+						var7 = var11.readStringCp1252NullCircumfixed();
+						if (var13 == 1) {
+							var8 = var11.readStringCp1252NullCircumfixed();
+						}
+					} else {
+						var7 = var11.readCESU8();
+						if (var13 == 1) {
+							var8 = var11.readCESU8();
+						}
+					}
+
+					var10.close();
+				} catch (IOException var35) {
+					var35.printStackTrace();
+				}
+
+				if (var7 != null) {
+					var38 = new File(var7);
+					if (!var38.exists()) {
+						var7 = null;
+					}
+				}
+
+				if (var7 != null) {
+					var38 = new File(var7, "test.dat");
+
+					boolean var40;
+					try {
+						RandomAccessFile var19 = new RandomAccessFile(var38, "rw");
+						var14 = var19.read();
+						var19.seek(0L);
+						var19.write(var14);
+						var19.seek(0L);
+						var19.close();
+						var38.delete();
+						var40 = true;
+					} catch (Exception var30) {
+						var40 = false;
+					}
+
+					if (!var40) {
+						var7 = null;
+					}
+				}
+			}
+
+			if (var7 == null && var18 == 0) {
+				label246:
+				for (int var20 = 0; var20 < class69.field570.length; ++var20) {
+					for (int var21 = 0; var21 < UserComparator4.field2005.length; ++var21) {
+						File var22 = new File(UserComparator4.field2005[var21] + class69.field570[var20] + File.separatorChar + var0 + File.separatorChar);
+						if (var22.exists()) {
+							File var23 = new File(var22, "test.dat");
+
+							boolean var42;
+							try {
+								RandomAccessFile var15 = new RandomAccessFile(var23, "rw");
+								int var16 = var15.read();
+								var15.seek(0L);
+								var15.write(var16);
+								var15.seek(0L);
+								var15.close();
+								var23.delete();
+								var42 = true;
+							} catch (Exception var29) {
+								var42 = false;
+							}
+
+							if (var42) {
+								var7 = var22.toString();
+								var9 = true;
+								break label246;
+							}
+						}
+					}
+				}
+			}
+
+			if (var7 == null) {
+				var7 = UserComparator2.userHomeDirectory + File.separatorChar + "jagexcache" + var6 + File.separatorChar + var0 + File.separatorChar + var1 + File.separatorChar;
+				var9 = true;
+			}
+
+			File var37;
+			if (var8 != null) {
+				var37 = new File(var8);
+				var38 = new File(var7);
+
+				try {
+					File[] var47 = var37.listFiles();
+					File[] var44 = var47;
+
+					for (var14 = 0; var14 < var44.length; ++var14) {
+						File var43 = var44[var14];
+						File var24 = new File(var38, var43.getName());
+						boolean var17 = var43.renameTo(var24);
+						if (!var17) {
+							throw new IOException();
+						}
+					}
+				} catch (Exception var34) {
+					var34.printStackTrace();
+				}
+
+				var9 = true;
+			}
+
+			if (var9) {
+				var37 = new File(var7);
+				var11 = null;
+
+				try {
+					AccessFile var48 = new AccessFile(JagexCache.JagexCache_locationFile, "rw", 10000L);
+					Buffer var45 = new Buffer(500);
+					var45.writeByte(3);
+					var45.writeByte(var11 != null ? 1 : 0);
+					var45.writeCESU8(var37.getPath());
+					if (var11 != null) {
+						var45.writeCESU8("");
+					}
+
+					var48.write(var45.array, 0, var45.offset);
+					var48.close();
+				} catch (IOException var28) {
+					var28.printStackTrace();
+				}
+			}
+
+			File var5 = new File(var7);
+			JagexCache.cacheDir = var5;
+			if (!JagexCache.cacheDir.exists()) {
+				JagexCache.cacheDir.mkdirs();
+			}
+
+			File[] var36 = JagexCache.cacheDir.listFiles();
+			if (var36 != null) {
+				File[] var39 = var36;
+
+				for (int var25 = 0; var25 < var39.length; ++var25) {
+					File var26 = var39[var25];
+
+					boolean var46;
+					try {
+						RandomAccessFile var41 = new RandomAccessFile(var26, "rw");
+						var12 = var41.read();
+						var41.seek(0L);
+						var41.write(var12);
+						var41.seek(0L);
+						var41.close();
+						var46 = true;
+					} catch (Exception var27) {
+						var46 = false;
+					}
+
+					if (!var46) {
+						++var18;
+						continue label272;
+					}
+				}
+			}
+			break;
+		}
+
+		WorldMapDecoration.method406(JagexCache.cacheDir);
+		GraphicsObject.method2091();
+		JagexCache.JagexCache_dat2File = new BufferedFile(new AccessFile(AbstractWorldMapIcon.getFile("main_file_cache.dat2"), "rw", 1048576000L), 5200, 0);
+		JagexCache.JagexCache_idx255File = new BufferedFile(new AccessFile(AbstractWorldMapIcon.getFile("main_file_cache.idx255"), "rw", 1048576L), 6000, 0);
+		JagexCache.JagexCache_idxFiles = new BufferedFile[GZipDecompressor.idxCount];
+
+		for (var18 = 0; var18 < GZipDecompressor.idxCount; ++var18) {
+			JagexCache.JagexCache_idxFiles[var18] = new BufferedFile(new AccessFile(AbstractWorldMapIcon.getFile("main_file_cache.idx" + var18), "rw", 1048576L), 6000, 0);
+		}
+
 	}
 }

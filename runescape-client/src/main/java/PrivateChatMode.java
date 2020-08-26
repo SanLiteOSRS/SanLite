@@ -3,37 +3,58 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ls")
+@ObfuscatedName("ld")
 @Implements("PrivateChatMode")
 public class PrivateChatMode {
-	@ObfuscatedName("m")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "Lls;"
+		signature = "Lld;"
 	)
-	static final PrivateChatMode field3819;
-	@ObfuscatedName("o")
+	static final PrivateChatMode field3822;
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "Lls;"
+		signature = "Lld;"
 	)
-	public static final PrivateChatMode field3818;
-	@ObfuscatedName("q")
+	public static final PrivateChatMode field3821;
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		signature = "Lls;"
+		signature = "Lld;"
 	)
-	static final PrivateChatMode field3820;
-	@ObfuscatedName("j")
+	static final PrivateChatMode field3823;
+	@ObfuscatedName("t")
 	@ObfuscatedGetter(
-		intValue = 530188217
+		intValue = 2012095045
 	)
-	public final int field3817;
+	public final int field3824;
 
 	static {
-		field3819 = new PrivateChatMode(0);
-		field3818 = new PrivateChatMode(1);
-		field3820 = new PrivateChatMode(2);
+		field3822 = new PrivateChatMode(0);
+		field3821 = new PrivateChatMode(1);
+		field3823 = new PrivateChatMode(2);
 	}
 
 	PrivateChatMode(int var1) {
-		this.field3817 = var1;
+		this.field3824 = var1;
+	}
+
+	@ObfuscatedName("gf")
+	@ObfuscatedSignature(
+		signature = "(Lbf;I)Z",
+		garbageValue = "200454944"
+	)
+	static boolean method6022(Player var0) {
+		if (Client.drawPlayerNames == 0) {
+			return false;
+		} else if (WorldMapLabelSize.localPlayer == var0) {
+			return TileItem.method2208();
+		} else {
+			boolean var1 = LoginPacket.method3707() || Client.method1792() && var0.isFriend();
+			if (!var1) {
+				boolean var2 = (Client.drawPlayerNames & 2) != 0;
+				var1 = var2 && var0.isClanMember();
+			}
+
+			return var1;
+		}
 	}
 }

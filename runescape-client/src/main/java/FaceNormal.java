@@ -4,24 +4,35 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ed")
+@ObfuscatedName("et")
 @Implements("FaceNormal")
 public class FaceNormal {
 	@ObfuscatedName("m")
 	@ObfuscatedGetter(
-		intValue = -552913965
+		intValue = 1856660121
+	)
+	public static int field1922;
+	@ObfuscatedName("ha")
+	@ObfuscatedGetter(
+		intValue = 1637295417
+	)
+	@Export("cameraY")
+	static int cameraY;
+	@ObfuscatedName("k")
+	@ObfuscatedGetter(
+		intValue = -364011515
 	)
 	@Export("x")
 	int x;
-	@ObfuscatedName("o")
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = -1122069433
+		intValue = -1271035903
 	)
 	@Export("y")
 	int y;
-	@ObfuscatedName("q")
+	@ObfuscatedName("t")
 	@ObfuscatedGetter(
-		intValue = -256548507
+		intValue = -1616346001
 	)
 	@Export("z")
 	int z;
@@ -29,31 +40,21 @@ public class FaceNormal {
 	FaceNormal() {
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "([Lgt;II)Lgt;",
-		garbageValue = "-707018179"
+		signature = "(ILlz;Liw;B)V",
+		garbageValue = "81"
 	)
-	@Export("findEnumerated")
-	public static Enumerated findEnumerated(Enumerated[] var0, int var1) {
-		Enumerated[] var2 = var0;
-
-		for (int var3 = 0; var3 < var2.length; ++var3) {
-			Enumerated var4 = var2[var3];
-			if (var1 == var4.rsOrdinal()) {
-				return var4;
-			}
+	static void method3388(int var0, ArchiveDisk var1, Archive var2) {
+		ArchiveDiskAction var3 = new ArchiveDiskAction();
+		var3.type = 1;
+		var3.key = (long)var0;
+		var3.archiveDisk = var1;
+		var3.archive = var2;
+		synchronized(ArchiveDiskActionHandler.ArchiveDiskActionHandler_requestQueue) {
+			ArchiveDiskActionHandler.ArchiveDiskActionHandler_requestQueue.addFirst(var3);
 		}
 
-		return null;
-	}
-
-	@ObfuscatedName("q")
-	@ObfuscatedSignature(
-		signature = "(I)Ljava/lang/String;",
-		garbageValue = "223741723"
-	)
-	static String method3392() {
-		return NetSocket.clientPreferences.hideUsername ? WorldMapRegion.method613(Login.Login_username) : Login.Login_username;
+		WorldMapArea.method415();
 	}
 }

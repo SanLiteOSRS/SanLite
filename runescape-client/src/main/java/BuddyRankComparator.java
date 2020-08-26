@@ -1,15 +1,25 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fn")
+@ObfuscatedName("fm")
 @Implements("BuddyRankComparator")
 public class BuddyRankComparator extends AbstractUserComparator {
+	@ObfuscatedName("x")
+	@ObfuscatedGetter(
+		intValue = 841228159
+	)
+	@Export("musicTrackGroupId")
+	public static int musicTrackGroupId;
+	@ObfuscatedName("jo")
+	@ObfuscatedSignature(
+		signature = "Lhq;"
+	)
+	@Export("dragInventoryWidget")
+	static Widget dragInventoryWidget;
 	@ObfuscatedName("z")
-	@Export("Tiles_hue")
-	static int[] Tiles_hue;
-	@ObfuscatedName("m")
 	@Export("reversed")
 	final boolean reversed;
 
@@ -17,10 +27,10 @@ public class BuddyRankComparator extends AbstractUserComparator {
 		this.reversed = var1;
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(Lkx;Lkx;I)I",
-		garbageValue = "1665981134"
+		signature = "(Lko;Lko;I)I",
+		garbageValue = "-895598946"
 	)
 	@Export("compareBuddy")
 	int compareBuddy(Buddy var1, Buddy var2) {
@@ -35,22 +45,53 @@ public class BuddyRankComparator extends AbstractUserComparator {
 		return this.compareBuddy((Buddy)var1, (Buddy)var2);
 	}
 
-	@ObfuscatedName("ka")
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;I)Ljava/lang/String;",
-		garbageValue = "-1830826767"
+		signature = "([BIILec;[Lft;B)V",
+		garbageValue = "52"
 	)
-	static String method3556(String var0) {
-		PlayerType[] var1 = VarbitComposition.PlayerType_values();
+	static final void method3524(byte[] var0, int var1, int var2, Scene var3, CollisionMap[] var4) {
+		Buffer var5 = new Buffer(var0);
+		int var6 = -1;
 
-		for (int var2 = 0; var2 < var1.length; ++var2) {
-			PlayerType var3 = var1[var2];
-			if (var3.modIcon != -1 && var0.startsWith(WorldMapRegion.method611(var3.modIcon))) {
-				var0 = var0.substring(6 + Integer.toString(var3.modIcon).length());
-				break;
+		while (true) {
+			int var7 = var5.method5632();
+			if (var7 == 0) {
+				return;
+			}
+
+			var6 += var7;
+			int var8 = 0;
+
+			while (true) {
+				int var9 = var5.readUShortSmart();
+				if (var9 == 0) {
+					break;
+				}
+
+				var8 += var9 - 1;
+				int var10 = var8 & 63;
+				int var11 = var8 >> 6 & 63;
+				int var12 = var8 >> 12;
+				int var13 = var5.readUnsignedByte();
+				int var14 = var13 >> 2;
+				int var15 = var13 & 3;
+				int var16 = var11 + var1;
+				int var17 = var10 + var2;
+				if (var16 > 0 && var17 > 0 && var16 < 103 && var17 < 103) {
+					int var18 = var12;
+					if ((Tiles.Tiles_renderFlags[1][var16][var17] & 2) == 2) {
+						var18 = var12 - 1;
+					}
+
+					CollisionMap var19 = null;
+					if (var18 >= 0) {
+						var19 = var4[var18];
+					}
+
+					GrandExchangeOfferWorldComparator.method137(var12, var16, var17, var6, var15, var14, var3, var19);
+				}
 			}
 		}
-
-		return var0;
 	}
 }

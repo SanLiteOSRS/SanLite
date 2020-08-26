@@ -4,64 +4,71 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gx")
+@ObfuscatedName("gc")
 @Implements("LoginPacket")
 public class LoginPacket implements class190 {
-	@ObfuscatedName("m")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "Lgx;"
+		signature = "Lgc;"
 	)
-	public static final LoginPacket field2352;
-	@ObfuscatedName("o")
+	public static final LoginPacket field2360;
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "Lgx;"
+		signature = "Lgc;"
 	)
 	static final LoginPacket field2350;
-	@ObfuscatedName("q")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		signature = "Lgx;"
+		signature = "Lgc;"
 	)
-	public static final LoginPacket field2347;
-	@ObfuscatedName("j")
+	public static final LoginPacket field2351;
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		signature = "Lgx;"
+		signature = "Lgc;"
 	)
-	public static final LoginPacket field2348;
-	@ObfuscatedName("p")
+	public static final LoginPacket field2352;
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		signature = "Lgx;"
+		signature = "Lgc;"
 	)
-	public static final LoginPacket field2345;
-	@ObfuscatedName("g")
+	public static final LoginPacket field2353;
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "Lgx;"
+		signature = "Lgc;"
 	)
-	static final LoginPacket field2346;
-	@ObfuscatedName("u")
+	static final LoginPacket field2354;
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		signature = "[Lgx;"
+		signature = "[Lgc;"
 	)
 	@Export("LoginPacket_indexedValues")
 	static final LoginPacket[] LoginPacket_indexedValues;
-	@ObfuscatedName("n")
+	@ObfuscatedName("gq")
+	@ObfuscatedSignature(
+		signature = "Llp;"
+	)
+	@Export("compass")
+	static SpritePixels compass;
+	@ObfuscatedName("x")
 	@ObfuscatedGetter(
-		intValue = -444496991
+		intValue = -176591909
 	)
 	@Export("id")
 	public final int id;
 
 	static {
-		field2352 = new LoginPacket(14, 0);
+		field2360 = new LoginPacket(14, 0);
 		field2350 = new LoginPacket(15, 4);
-		field2347 = new LoginPacket(16, -2);
-		field2348 = new LoginPacket(18, -2);
-		field2345 = new LoginPacket(19, -2);
-		field2346 = new LoginPacket(27, 0);
+		field2351 = new LoginPacket(16, -2);
+		field2352 = new LoginPacket(18, -2);
+		field2353 = new LoginPacket(19, -2);
+		field2354 = new LoginPacket(27, 0);
 		LoginPacket_indexedValues = new LoginPacket[32];
-		LoginPacket[] var0 = UserComparator9.method3512();
+		LoginPacket[] var0 = new LoginPacket[]{field2353, field2352, field2360, field2354, field2351, field2350};
+		LoginPacket[] var1 = var0;
 
-		for (int var1 = 0; var1 < var0.length; ++var1) {
-			LoginPacket_indexedValues[var0[var1].id] = var0[var1];
+		for (int var2 = 0; var2 < var1.length; ++var2) {
+			LoginPacket_indexedValues[var1[var2].id] = var1[var2];
 		}
 
 	}
@@ -74,24 +81,12 @@ public class LoginPacket implements class190 {
 		this.id = var1;
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("gw")
 	@ObfuscatedSignature(
-		signature = "(II)Lik;",
-		garbageValue = "-729077438"
+		signature = "(I)Z",
+		garbageValue = "1633158926"
 	)
-	public static HealthBarDefinition method3745(int var0) {
-		HealthBarDefinition var1 = (HealthBarDefinition)HealthBarDefinition.HealthBarDefinition_cached.get((long)var0);
-		if (var1 != null) {
-			return var1;
-		} else {
-			byte[] var2 = HealthBarDefinition.HealthBarDefinition_archive.takeFile(33, var0);
-			var1 = new HealthBarDefinition();
-			if (var2 != null) {
-				var1.decode(new Buffer(var2));
-			}
-
-			HealthBarDefinition.HealthBarDefinition_cached.put(var1, (long)var0);
-			return var1;
-		}
+	static boolean method3707() {
+		return (Client.drawPlayerNames & 4) != 0;
 	}
 }

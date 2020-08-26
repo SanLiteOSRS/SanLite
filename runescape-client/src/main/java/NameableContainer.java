@@ -7,34 +7,34 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ku")
+@ObfuscatedName("ka")
 @Implements("NameableContainer")
 public abstract class NameableContainer {
-	@ObfuscatedName("j")
+	@ObfuscatedName("t")
 	@ObfuscatedGetter(
-		intValue = -233955523
+		intValue = 2008774827
 	)
 	@Export("capacity")
 	final int capacity;
-	@ObfuscatedName("p")
+	@ObfuscatedName("i")
 	@ObfuscatedGetter(
-		intValue = 2126526035
+		intValue = -1305401637
 	)
 	@Export("size")
 	int size;
-	@ObfuscatedName("g")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "[Ljf;"
+		signature = "[Ljc;"
 	)
 	@Export("array")
 	Nameable[] array;
-	@ObfuscatedName("n")
+	@ObfuscatedName("x")
 	@Export("usernamesMap")
 	HashMap usernamesMap;
-	@ObfuscatedName("u")
+	@ObfuscatedName("w")
 	@Export("previousUsernamesMap")
 	HashMap previousUsernamesMap;
-	@ObfuscatedName("a")
+	@ObfuscatedName("g")
 	@Export("comparator")
 	Comparator comparator;
 
@@ -47,18 +47,18 @@ public abstract class NameableContainer {
 		this.previousUsernamesMap = new HashMap(var1 / 8);
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(I)Ljf;",
-		garbageValue = "551595115"
+		signature = "(B)Ljc;",
+		garbageValue = "35"
 	)
 	@Export("newInstance")
 	abstract Nameable newInstance();
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "(II)[Ljf;",
-		garbageValue = "1959965595"
+		signature = "(IB)[Ljc;",
+		garbageValue = "-19"
 	)
 	@Export("newTypedArray")
 	abstract Nameable[] newTypedArray(int var1);
@@ -66,7 +66,7 @@ public abstract class NameableContainer {
 	@ObfuscatedName("w")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "-830188441"
+		garbageValue = "1831744514"
 	)
 	@Export("clear")
 	public void clear() {
@@ -76,30 +76,30 @@ public abstract class NameableContainer {
 		this.previousUsernamesMap.clear();
 	}
 
-	@ObfuscatedName("y")
+	@ObfuscatedName("g")
 	@ObfuscatedSignature(
 		signature = "(I)I",
-		garbageValue = "-729089769"
+		garbageValue = "-1512383935"
 	)
 	@Export("getSize")
 	public int getSize() {
 		return this.size;
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		signature = "(B)Z",
-		garbageValue = "-38"
+		signature = "(I)Z",
+		garbageValue = "-886251053"
 	)
 	@Export("isFull")
 	public boolean isFull() {
 		return this.size == this.capacity;
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Lkq;I)Z",
-		garbageValue = "-1632091525"
+		signature = "(Lku;I)Z",
+		garbageValue = "-311304829"
 	)
 	@Export("contains")
 	public boolean contains(Username var1) {
@@ -110,10 +110,10 @@ public abstract class NameableContainer {
 		}
 	}
 
-	@ObfuscatedName("k")
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(Lkq;I)Ljf;",
-		garbageValue = "-1715419579"
+		signature = "(Lku;I)Ljc;",
+		garbageValue = "1710477064"
 	)
 	@Export("getByUsername")
 	public Nameable getByUsername(Username var1) {
@@ -121,30 +121,30 @@ public abstract class NameableContainer {
 		return var2 != null ? var2 : this.getByPreviousUsername(var1);
 	}
 
-	@ObfuscatedName("r")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(Lkq;I)Ljf;",
-		garbageValue = "181197805"
+		signature = "(Lku;I)Ljc;",
+		garbageValue = "-1895174831"
 	)
 	@Export("getByCurrentUsername")
 	Nameable getByCurrentUsername(Username var1) {
 		return !var1.hasCleanName() ? null : (Nameable)this.usernamesMap.get(var1);
 	}
 
-	@ObfuscatedName("d")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		signature = "(Lkq;I)Ljf;",
-		garbageValue = "-1953560186"
+		signature = "(Lku;I)Ljc;",
+		garbageValue = "835389393"
 	)
 	@Export("getByPreviousUsername")
 	Nameable getByPreviousUsername(Username var1) {
 		return !var1.hasCleanName() ? null : (Nameable)this.previousUsernamesMap.get(var1);
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		signature = "(Lkq;I)Z",
-		garbageValue = "-1728392725"
+		signature = "(Lku;I)Z",
+		garbageValue = "759347580"
 	)
 	@Export("removeByUsername")
 	public final boolean removeByUsername(Username var1) {
@@ -157,10 +157,10 @@ public abstract class NameableContainer {
 		}
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(Ljf;I)V",
-		garbageValue = "1431327027"
+		signature = "(Ljc;I)V",
+		garbageValue = "-2147483648"
 	)
 	@Export("remove")
 	final void remove(Nameable var1) {
@@ -171,20 +171,20 @@ public abstract class NameableContainer {
 		}
 	}
 
-	@ObfuscatedName("t")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
-		signature = "(Lkq;I)Ljf;",
-		garbageValue = "1944275129"
+		signature = "(Lku;I)Ljc;",
+		garbageValue = "-213135493"
 	)
 	@Export("addLastNoPreviousUsername")
 	Nameable addLastNoPreviousUsername(Username var1) {
 		return this.addLast(var1, (Username)null);
 	}
 
-	@ObfuscatedName("x")
+	@ObfuscatedName("r")
 	@ObfuscatedSignature(
-		signature = "(Lkq;Lkq;B)Ljf;",
-		garbageValue = "-18"
+		signature = "(Lku;Lku;I)Ljc;",
+		garbageValue = "-230668555"
 	)
 	@Export("addLast")
 	Nameable addLast(Username var1, Username var2) {
@@ -199,10 +199,10 @@ public abstract class NameableContainer {
 		}
 	}
 
-	@ObfuscatedName("ah")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "(II)Ljf;",
-		garbageValue = "421321691"
+		signature = "(II)Ljc;",
+		garbageValue = "1213282055"
 	)
 	@Export("get")
 	public final Nameable get(int var1) {
@@ -213,10 +213,10 @@ public abstract class NameableContainer {
 		}
 	}
 
-	@ObfuscatedName("ai")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "-1382907285"
+		garbageValue = "-2116233502"
 	)
 	@Export("sort")
 	public final void sort() {
@@ -228,10 +228,10 @@ public abstract class NameableContainer {
 
 	}
 
-	@ObfuscatedName("ao")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		signature = "(Ljf;Lkq;Lkq;B)V",
-		garbageValue = "30"
+		signature = "(Ljc;Lku;Lku;B)V",
+		garbageValue = "5"
 	)
 	@Export("changeName")
 	final void changeName(Nameable var1, Username var2, Username var3) {
@@ -240,10 +240,10 @@ public abstract class NameableContainer {
 		this.mapPut(var1);
 	}
 
-	@ObfuscatedName("ae")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		signature = "(Ljf;I)I",
-		garbageValue = "-473551805"
+		signature = "(Ljc;I)I",
+		garbageValue = "-1151090294"
 	)
 	@Export("indexOf")
 	final int indexOf(Nameable var1) {
@@ -256,10 +256,10 @@ public abstract class NameableContainer {
 		return -1;
 	}
 
-	@ObfuscatedName("ax")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		signature = "(Ljf;S)V",
-		garbageValue = "28740"
+		signature = "(Ljc;I)V",
+		garbageValue = "1797104499"
 	)
 	@Export("mapRemove")
 	final void mapRemove(Nameable var1) {
@@ -273,20 +273,20 @@ public abstract class NameableContainer {
 		}
 	}
 
-	@ObfuscatedName("ag")
+	@ObfuscatedName("ab")
 	@ObfuscatedSignature(
-		signature = "(Ljf;B)V",
-		garbageValue = "-110"
+		signature = "(Ljc;I)V",
+		garbageValue = "-909101676"
 	)
 	@Export("arrayAddLast")
 	final void arrayAddLast(Nameable var1) {
 		this.array[++this.size - 1] = var1;
 	}
 
-	@ObfuscatedName("ab")
+	@ObfuscatedName("ag")
 	@ObfuscatedSignature(
-		signature = "(Ljf;I)V",
-		garbageValue = "-810709212"
+		signature = "(Ljc;B)V",
+		garbageValue = "44"
 	)
 	@Export("mapPut")
 	final void mapPut(Nameable var1) {
@@ -300,10 +300,10 @@ public abstract class NameableContainer {
 
 	}
 
-	@ObfuscatedName("am")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		signature = "(II)V",
-		garbageValue = "-1444172767"
+		signature = "(IB)V",
+		garbageValue = "7"
 	)
 	@Export("arrayRemove")
 	final void arrayRemove(int var1) {
@@ -314,20 +314,20 @@ public abstract class NameableContainer {
 
 	}
 
-	@ObfuscatedName("ak")
+	@ObfuscatedName("ae")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "594179920"
+		garbageValue = "-50074451"
 	)
 	@Export("removeComparator")
 	public final void removeComparator() {
 		this.comparator = null;
 	}
 
-	@ObfuscatedName("ad")
+	@ObfuscatedName("ap")
 	@ObfuscatedSignature(
-		signature = "(Ljava/util/Comparator;B)V",
-		garbageValue = "-90"
+		signature = "(Ljava/util/Comparator;I)V",
+		garbageValue = "-2021425176"
 	)
 	@Export("addComparator")
 	public final void addComparator(Comparator var1) {
@@ -339,70 +339,12 @@ public abstract class NameableContainer {
 
 	}
 
-	@ObfuscatedName("hj")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-1614220910"
+		signature = "(CI)C",
+		garbageValue = "-641844714"
 	)
-	static final void method5333() {
-		PacketBuffer var0 = Client.packetWriter.packetBuffer;
-		var0.importIndex();
-		int var1 = var0.readBits(8);
-		int var2;
-		if (var1 < Client.npcCount) {
-			for (var2 = var1; var2 < Client.npcCount; ++var2) {
-				Client.field907[++Client.field687 - 1] = Client.npcIndices[var2];
-			}
-		}
-
-		if (var1 > Client.npcCount) {
-			throw new RuntimeException("");
-		} else {
-			Client.npcCount = 0;
-
-			for (var2 = 0; var2 < var1; ++var2) {
-				int var3 = Client.npcIndices[var2];
-				NPC var4 = Client.npcs[var3];
-				int var5 = var0.readBits(1);
-				if (var5 == 0) {
-					Client.npcIndices[++Client.npcCount - 1] = var3;
-					var4.npcCycle = Client.cycle;
-				} else {
-					int var6 = var0.readBits(2);
-					if (var6 == 0) {
-						Client.npcIndices[++Client.npcCount - 1] = var3;
-						var4.npcCycle = Client.cycle;
-						Client.field719[++Client.field718 - 1] = var3;
-					} else {
-						int var7;
-						int var8;
-						if (var6 == 1) {
-							Client.npcIndices[++Client.npcCount - 1] = var3;
-							var4.npcCycle = Client.cycle;
-							var7 = var0.readBits(3);
-							var4.method2150(var7, (byte)1);
-							var8 = var0.readBits(1);
-							if (var8 == 1) {
-								Client.field719[++Client.field718 - 1] = var3;
-							}
-						} else if (var6 == 2) {
-							Client.npcIndices[++Client.npcCount - 1] = var3;
-							var4.npcCycle = Client.cycle;
-							var7 = var0.readBits(3);
-							var4.method2150(var7, (byte)2);
-							var8 = var0.readBits(3);
-							var4.method2150(var8, (byte)2);
-							int var9 = var0.readBits(1);
-							if (var9 == 1) {
-								Client.field719[++Client.field718 - 1] = var3;
-							}
-						} else if (var6 == 3) {
-							Client.field907[++Client.field687 - 1] = var3;
-						}
-					}
-				}
-			}
-
-		}
+	static char method5199(char var0) {
+		return var0 != 181 && var0 != 402 ? Character.toTitleCase(var0) : var0;
 	}
 }

@@ -4,31 +4,34 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ii")
+@ObfuscatedName("il")
 @Implements("ParamDefinition")
 public class ParamDefinition extends DualNode {
-	@ObfuscatedName("o")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "Lec;"
+		signature = "Lic;"
+	)
+	@Export("ParamDefinition_archive")
+	public static AbstractArchive ParamDefinition_archive;
+	@ObfuscatedName("k")
+	@ObfuscatedSignature(
+		signature = "Lel;"
 	)
 	@Export("ParamDefinition_cached")
-	public static EvictingDualNodeHashTable ParamDefinition_cached;
-	@ObfuscatedName("n")
-	@Export("ByteArrayPool_alternativeSizes")
-	static int[] ByteArrayPool_alternativeSizes;
-	@ObfuscatedName("q")
+	static EvictingDualNodeHashTable ParamDefinition_cached;
+	@ObfuscatedName("s")
 	@Export("type")
 	char type;
-	@ObfuscatedName("j")
+	@ObfuscatedName("t")
 	@ObfuscatedGetter(
-		intValue = 153668641
+		intValue = 2056477959
 	)
 	@Export("defaultInt")
 	public int defaultInt;
-	@ObfuscatedName("p")
+	@ObfuscatedName("i")
 	@Export("defaultStr")
 	public String defaultStr;
-	@ObfuscatedName("g")
+	@ObfuscatedName("o")
 	@Export("autoDisable")
 	boolean autoDisable;
 
@@ -40,19 +43,19 @@ public class ParamDefinition extends DualNode {
 		this.autoDisable = true;
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "-1718151512"
+		garbageValue = "964888854"
 	)
 	@Export("postDecode")
 	void postDecode() {
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		signature = "(Lkn;I)V",
-		garbageValue = "-115197089"
+		signature = "(Lkf;B)V",
+		garbageValue = "2"
 	)
 	@Export("decode")
 	void decode(Buffer var1) {
@@ -66,10 +69,10 @@ public class ParamDefinition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		signature = "(Lkn;II)V",
-		garbageValue = "-1727060018"
+		signature = "(Lkf;II)V",
+		garbageValue = "-659243660"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
@@ -101,10 +104,10 @@ public class ParamDefinition extends DualNode {
 
 	}
 
-	@ObfuscatedName("g")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
 		signature = "(I)Z",
-		garbageValue = "624673738"
+		garbageValue = "937250031"
 	)
 	@Export("isString")
 	public boolean isString() {

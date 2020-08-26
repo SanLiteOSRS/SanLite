@@ -1,81 +1,152 @@
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InvalidClassException;
+import java.io.ObjectInputStream;
+import java.io.OptionalDataException;
+import java.io.StreamCorruptedException;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.rs.Reflection;
 
-@ObfuscatedName("go")
+@ObfuscatedName("gz")
 public class class195 {
-	@ObfuscatedName("ba")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "Lmo;"
+		signature = "(II)Lik;",
+		garbageValue = "-26050751"
 	)
-	@Export("loginType")
-	static LoginType loginType;
-
-	@ObfuscatedName("q")
-	@ObfuscatedSignature(
-		signature = "([BI)[B",
-		garbageValue = "-92628097"
-	)
-	static byte[] method3748(byte[] var0) {
-		int var1 = var0.length;
-		byte[] var2 = new byte[var1];
-		System.arraycopy(var0, 0, var2, 0, var1);
-		return var2;
-	}
-
-	@ObfuscatedName("q")
-	@ObfuscatedSignature(
-		signature = "(IIILjg;IB)V",
-		garbageValue = "-24"
-	)
-	static void method3747(int var0, int var1, int var2, ObjectComposition var3, int var4) {
-		ObjectSound var5 = new ObjectSound();
-		var5.plane = var0;
-		var5.x = var1 * 16384;
-		var5.y = var2 * 128;
-		int var6 = var3.sizeX;
-		int var7 = var3.sizeY;
-		if (var4 == 1 || var4 == 3) {
-			var6 = var3.sizeY;
-			var7 = var3.sizeX;
-		}
-
-		var5.field1103 = (var6 + var1) * 128;
-		var5.field1104 = (var7 + var2) * 128;
-		var5.soundEffectId = var3.ambientSoundId;
-		var5.field1105 = var3.int4 * 128;
-		var5.field1108 = var3.int5;
-		var5.field1115 = var3.int6;
-		var5.soundEffectIds = var3.soundEffectIds;
-		if (var3.transforms != null) {
-			var5.obj = var3;
-			var5.set();
-		}
-
-		ObjectSound.objectSounds.addFirst(var5);
-		if (var5.soundEffectIds != null) {
-			var5.field1111 = var5.field1108 + (int)(Math.random() * (double)(var5.field1115 - var5.field1108));
-		}
-
-	}
-
-	@ObfuscatedName("j")
-	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-1529350789"
-	)
-	public static void method3749() {
-		while (true) {
-			ArchiveDiskAction var0;
-			synchronized(ArchiveDiskActionHandler.ArchiveDiskActionHandler_requestQueue) {
-				var0 = (ArchiveDiskAction)ArchiveDiskActionHandler.ArchiveDiskActionHandler_responseQueue.removeLast();
+	@Export("VarpDefinition_get")
+	public static VarpDefinition VarpDefinition_get(int var0) {
+		VarpDefinition var1 = (VarpDefinition)VarpDefinition.VarpDefinition_cached.get((long)var0);
+		if (var1 != null) {
+			return var1;
+		} else {
+			byte[] var2 = VarpDefinition.VarpDefinition_archive.takeFile(16, var0);
+			var1 = new VarpDefinition();
+			if (var2 != null) {
+				var1.decode(new Buffer(var2));
 			}
 
-			if (var0 == null) {
-				return;
+			VarpDefinition.VarpDefinition_cached.put(var1, (long)var0);
+			return var1;
+		}
+	}
+
+	@ObfuscatedName("k")
+	@ObfuscatedSignature(
+		signature = "(Lky;I)V",
+		garbageValue = "1634836666"
+	)
+	@Export("performReflectionCheck")
+	public static void performReflectionCheck(PacketBuffer var0) {
+		ReflectionCheck var1 = (ReflectionCheck)class105.reflectionChecks.last();
+		if (var1 != null) {
+			int var2 = var0.offset;
+			var0.writeInt(var1.id);
+
+			for (int var3 = 0; var3 < var1.size; ++var3) {
+				if (var1.creationErrors[var3] != 0) {
+					var0.writeByte(var1.creationErrors[var3]);
+				} else {
+					try {
+						int var4 = var1.operations[var3];
+						Field var5;
+						int var6;
+						if (var4 == 0) {
+							var5 = var1.fields[var3];
+							var6 = Reflection.getInt(var5, (Object)null);
+							var0.writeByte(0);
+							var0.writeInt(var6);
+						} else if (var4 == 1) {
+							var5 = var1.fields[var3];
+							Reflection.setInt(var5, (Object)null, var1.intReplaceValues[var3]);
+							var0.writeByte(0);
+						} else if (var4 == 2) {
+							var5 = var1.fields[var3];
+							var6 = var5.getModifiers();
+							var0.writeByte(0);
+							var0.writeInt(var6);
+						}
+
+						Method var25;
+						if (var4 != 3) {
+							if (var4 == 4) {
+								var25 = var1.methods[var3];
+								var6 = var25.getModifiers();
+								var0.writeByte(0);
+								var0.writeInt(var6);
+							}
+						} else {
+							var25 = var1.methods[var3];
+							byte[][] var10 = var1.arguments[var3];
+							Object[] var7 = new Object[var10.length];
+
+							for (int var8 = 0; var8 < var10.length; ++var8) {
+								ObjectInputStream var9 = new ObjectInputStream(new ByteArrayInputStream(var10[var8]));
+								var7[var8] = var9.readObject();
+							}
+
+							Object var11 = Reflection.invoke(var25, (Object)null, var7);
+							if (var11 == null) {
+								var0.writeByte(0);
+							} else if (var11 instanceof Number) {
+								var0.writeByte(1);
+								var0.writeLong(((Number)var11).longValue());
+							} else if (var11 instanceof String) {
+								var0.writeByte(2);
+								var0.writeStringCp1252NullTerminated((String)var11);
+							} else {
+								var0.writeByte(4);
+							}
+						}
+					} catch (ClassNotFoundException var13) {
+						var0.writeByte(-10);
+					} catch (InvalidClassException var14) {
+						var0.writeByte(-11);
+					} catch (StreamCorruptedException var15) {
+						var0.writeByte(-12);
+					} catch (OptionalDataException var16) {
+						var0.writeByte(-13);
+					} catch (IllegalAccessException var17) {
+						var0.writeByte(-14);
+					} catch (IllegalArgumentException var18) {
+						var0.writeByte(-15);
+					} catch (InvocationTargetException var19) {
+						var0.writeByte(-16);
+					} catch (SecurityException var20) {
+						var0.writeByte(-17);
+					} catch (IOException var21) {
+						var0.writeByte(-18);
+					} catch (NullPointerException var22) {
+						var0.writeByte(-19);
+					} catch (Exception var23) {
+						var0.writeByte(-20);
+					} catch (Throwable var24) {
+						var0.writeByte(-21);
+					}
+				}
 			}
 
-			var0.archive.load(var0.archiveDisk, (int)var0.key, var0.data, false);
+			var0.writeCrc(var2);
+			var1.remove();
 		}
+	}
+
+	@ObfuscatedName("s")
+	@ObfuscatedSignature(
+		signature = "(B)V",
+		garbageValue = "-64"
+	)
+	public static void method3714() {
+		if (KeyHandler.KeyHandler_instance != null) {
+			synchronized(KeyHandler.KeyHandler_instance) {
+				KeyHandler.KeyHandler_instance = null;
+			}
+		}
+
 	}
 }
