@@ -1,189 +1,164 @@
+import java.awt.FontMetrics;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("bs")
+@ObfuscatedName("bv")
 @Implements("ApproximateRouteStrategy")
 public class ApproximateRouteStrategy extends RouteStrategy {
-	@ObfuscatedName("w")
-	@ObfuscatedGetter(
-		intValue = 955958433
+	@ObfuscatedName("qm")
+	@ObfuscatedSignature(
+		signature = "Llp;"
 	)
-	static int field630;
-	@ObfuscatedName("lp")
-	@ObfuscatedGetter(
-		intValue = -2033733379
+	@Export("sceneMinimapSprite")
+	static SpritePixels sceneMinimapSprite;
+	@ObfuscatedName("an")
+	@Export("loginScreenFontMetrics")
+	static FontMetrics loginScreenFontMetrics;
+	@ObfuscatedName("dp")
+	@ObfuscatedSignature(
+		signature = "Liw;"
 	)
-	@Export("menuHeight")
-	static int menuHeight;
+	@Export("archive12")
+	static Archive archive12;
 
 	ApproximateRouteStrategy() {
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(IIILfz;I)Z",
-		garbageValue = "-1966963917"
+		signature = "(IIILft;I)Z",
+		garbageValue = "-1274441547"
 	)
 	@Export("hasArrived")
 	protected boolean hasArrived(int var1, int var2, int var3, CollisionMap var4) {
 		return var2 == super.approxDestinationX && var3 == super.approxDestinationY;
 	}
 
-	@ObfuscatedName("ha")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(Lby;IIBI)V",
-		garbageValue = "-549376931"
+		signature = "(B)[Lix;",
+		garbageValue = "64"
 	)
-	static final void method1284(Player var0, int var1, int var2, byte var3) {
-		int var4 = var0.pathX[0];
-		int var5 = var0.pathY[0];
-		int var6 = var0.transformedSize();
-		if (var4 >= var6 && var4 < 104 - var6 && var5 >= var6 && var5 < 104 - var6) {
-			if (var1 >= var6 && var1 < 104 - var6 && var2 >= var6 && var2 < 104 - var6) {
-				int var7 = Login.method2235(var4, var5, var0.transformedSize(), class52.method877(var1, var2), Client.collisionMaps[var0.plane], true, Client.field947, Client.field948);
-				if (var7 >= 1) {
-					for (int var8 = 0; var8 < var7 - 1; ++var8) {
-						var0.method1302(Client.field947[var8], Client.field948[var8], var3);
+	@Export("PlayerType_values")
+	public static PlayerType[] PlayerType_values() {
+		return new PlayerType[]{PlayerType.PlayerType_jagexModerator, PlayerType.PlayerType_playerModerator, PlayerType.PlayerType_ultimateIronman, PlayerType.PlayerType_hardcoreIronman, PlayerType.PlayerType_ironman, PlayerType.PlayerType_normal, PlayerType.field3131};
+	}
+
+	@ObfuscatedName("t")
+	@ObfuscatedSignature(
+		signature = "(ILcy;ZI)I",
+		garbageValue = "-1823919909"
+	)
+	static int method1274(int var0, Script var1, boolean var2) {
+		int var3;
+		int var4;
+		if (var0 == ScriptOpcodes.CC_CREATE) {
+			Interpreter.Interpreter_intStackSize -= 3;
+			var3 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
+			var4 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
+			int var5 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 2];
+			if (var4 == 0) {
+				throw new RuntimeException();
+			} else {
+				Widget var6 = TileItem.getWidget(var3);
+				if (var6.children == null) {
+					var6.children = new Widget[var5 + 1];
+				}
+
+				if (var6.children.length <= var5) {
+					Widget[] var7 = new Widget[var5 + 1];
+
+					for (int var8 = 0; var8 < var6.children.length; ++var8) {
+						var7[var8] = var6.children[var8];
 					}
 
+					var6.children = var7;
+				}
+
+				if (var5 > 0 && var6.children[var5 - 1] == null) {
+					throw new RuntimeException("" + (var5 - 1));
+				} else {
+					Widget var12 = new Widget();
+					var12.type = var4;
+					var12.parentId = var12.id = var6.id;
+					var12.childIndex = var5;
+					var12.isIf3 = true;
+					var6.children[var5] = var12;
+					if (var2) {
+						Canvas.field438 = var12;
+					} else {
+						class3.field12 = var12;
+					}
+
+					class52.invalidateWidget(var6);
+					return 1;
 				}
 			}
-		}
-	}
-
-	@ObfuscatedName("hc")
-	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;Ljava/lang/String;IIIIZB)V",
-		garbageValue = "-63"
-	)
-	@Export("insertMenuItem")
-	static final void insertMenuItem(String var0, String var1, int var2, int var3, int var4, int var5, boolean var6) {
-		if (!Client.isMenuOpen) {
-			if (Client.menuOptionsCount < 500) {
-				Client.menuActions[Client.menuOptionsCount] = var0;
-				Client.menuTargets[Client.menuOptionsCount] = var1;
-				Client.menuOpcodes[Client.menuOptionsCount] = var2;
-				Client.menuIdentifiers[Client.menuOptionsCount] = var3;
-				Client.menuArguments1[Client.menuOptionsCount] = var4;
-				Client.menuArguments2[Client.menuOptionsCount] = var5;
-				Client.menuShiftClick[Client.menuOptionsCount] = var6;
-				++Client.menuOptionsCount;
-			}
-
-		}
-	}
-
-	@ObfuscatedName("id")
-	@ObfuscatedSignature(
-		signature = "(Ljz;IIII)V",
-		garbageValue = "1974138271"
-	)
-	@Export("addNpcToMenu")
-	static final void addNpcToMenu(NPCComposition var0, int var1, int var2, int var3) {
-		if (Client.menuOptionsCount < 400) {
-			if (var0.transforms != null) {
-				var0 = var0.transform();
-			}
-
-			if (var0 != null) {
-				if (var0.isInteractable) {
-					if (!var0.isFollower || Client.followerIndex == var1) {
-						String var4 = var0.name;
-						if (var0.combatLevel != 0) {
-							var4 = var4 + Canvas.method924(var0.combatLevel, class60.localPlayer.combatLevel) + " " + " (" + "level-" + var0.combatLevel + ")";
-						}
-
-						if (var0.isFollower && Client.followerOpsLowPriority) {
-							ScriptEvent.insertMenuItemNoShift("Examine", ItemContainer.colorStartTag(16776960) + var4, 1003, var1, var2, var3);
-						}
-
-						if (Client.isItemSelected == 1) {
-							ScriptEvent.insertMenuItemNoShift("Use", Client.selectedItemName + " " + "->" + " " + ItemContainer.colorStartTag(16776960) + var4, 7, var1, var2, var3);
-						} else if (Client.isSpellSelected) {
-							if ((WorldMapSprite.selectedSpellFlags & 2) == 2) {
-								ScriptEvent.insertMenuItemNoShift(Client.selectedSpellActionName, Client.selectedSpellName + " " + "->" + " " + ItemContainer.colorStartTag(16776960) + var4, 8, var1, var2, var3);
-							}
+		} else {
+			Widget var9;
+			if (var0 == ScriptOpcodes.CC_DELETE) {
+				var9 = var2 ? Canvas.field438 : class3.field12;
+				Widget var10 = TileItem.getWidget(var9.id);
+				var10.children[var9.childIndex] = null;
+				class52.invalidateWidget(var10);
+				return 1;
+			} else if (var0 == ScriptOpcodes.CC_DELETEALL) {
+				var9 = TileItem.getWidget(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);
+				var9.children = null;
+				class52.invalidateWidget(var9);
+				return 1;
+			} else if (var0 != ScriptOpcodes.CC_FIND) {
+				if (var0 == ScriptOpcodes.IF_FIND) {
+					var9 = TileItem.getWidget(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);
+					if (var9 != null) {
+						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = 1;
+						if (var2) {
+							Canvas.field438 = var9;
 						} else {
-							int var5 = var0.isFollower && Client.followerOpsLowPriority ? 2000 : 0;
-							String[] var6 = var0.actions;
-							int var7;
-							int var8;
-							if (var6 != null) {
-								for (var7 = 4; var7 >= 0; --var7) {
-									if (var6[var7] != null && !var6[var7].equalsIgnoreCase("Attack")) {
-										var8 = 0;
-										if (var7 == 0) {
-											var8 = var5 + 9;
-										}
-
-										if (var7 == 1) {
-											var8 = var5 + 10;
-										}
-
-										if (var7 == 2) {
-											var8 = var5 + 11;
-										}
-
-										if (var7 == 3) {
-											var8 = var5 + 12;
-										}
-
-										if (var7 == 4) {
-											var8 = var5 + 13;
-										}
-
-										ScriptEvent.insertMenuItemNoShift(var6[var7], ItemContainer.colorStartTag(16776960) + var4, var8, var1, var2, var3);
-									}
-								}
-							}
-
-							if (var6 != null) {
-								for (var7 = 4; var7 >= 0; --var7) {
-									if (var6[var7] != null && var6[var7].equalsIgnoreCase("Attack")) {
-										short var9 = 0;
-										if (AttackOption.AttackOption_hidden != Client.npcAttackOption) {
-											if (Client.npcAttackOption == AttackOption.AttackOption_alwaysRightClick || Client.npcAttackOption == AttackOption.AttackOption_dependsOnCombatLevels && var0.combatLevel > class60.localPlayer.combatLevel) {
-												var9 = 2000;
-											}
-
-											var8 = 0;
-											if (var7 == 0) {
-												var8 = var9 + 9;
-											}
-
-											if (var7 == 1) {
-												var8 = var9 + 10;
-											}
-
-											if (var7 == 2) {
-												var8 = var9 + 11;
-											}
-
-											if (var7 == 3) {
-												var8 = var9 + 12;
-											}
-
-											if (var7 == 4) {
-												var8 = var9 + 13;
-											}
-
-											ScriptEvent.insertMenuItemNoShift(var6[var7], ItemContainer.colorStartTag(16776960) + var4, var8, var1, var2, var3);
-										}
-									}
-								}
-							}
-
-							if (!var0.isFollower || !Client.followerOpsLowPriority) {
-								ScriptEvent.insertMenuItemNoShift("Examine", ItemContainer.colorStartTag(16776960) + var4, 1003, var1, var2, var3);
-							}
+							class3.field12 = var9;
 						}
-
+					} else {
+						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = 0;
 					}
+
+					return 1;
+				} else {
+					return 2;
 				}
+			} else {
+				Interpreter.Interpreter_intStackSize -= 2;
+				var3 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
+				var4 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
+				Widget var11 = SecureRandomCallable.getWidgetChild(var3, var4);
+				if (var11 != null && var4 != -1) {
+					Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = 1;
+					if (var2) {
+						Canvas.field438 = var11;
+					} else {
+						class3.field12 = var11;
+					}
+				} else {
+					Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = 0;
+				}
+
+				return 1;
 			}
+		}
+	}
+
+	@ObfuscatedName("ia")
+	@ObfuscatedSignature(
+		signature = "(II)Ljava/lang/String;",
+		garbageValue = "1053633300"
+	)
+	static String method1273(int var0) {
+		if (var0 < 0) {
+			return "";
+		} else {
+			return Client.menuTargets[var0].length() > 0 ? Client.menuActions[var0] + " " + Client.menuTargets[var0] : Client.menuActions[var0];
 		}
 	}
 }

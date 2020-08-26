@@ -1,19 +1,18 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("eg")
+@ObfuscatedName("ef")
 @Implements("Frames")
 public class Frames extends DualNode {
-	@ObfuscatedName("lc")
-	@ObfuscatedGetter(
-		intValue = -2096850733
+	@ObfuscatedName("f")
+	@ObfuscatedSignature(
+		signature = "Lak;"
 	)
-	@Export("menuY")
-	static int menuY;
-	@ObfuscatedName("m")
+	@Export("worldMapEvent")
+	static WorldMapEvent worldMapEvent;
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
 		signature = "[Les;"
 	)
@@ -21,10 +20,9 @@ public class Frames extends DualNode {
 	Animation[] frames;
 
 	@ObfuscatedSignature(
-		signature = "(Lic;Lic;IZ)V",
-		garbageValue = "0"
+		signature = "(Lic;Lic;IZ)V"
 	)
-	public Frames(AbstractArchive var1, AbstractArchive var2, int var3, boolean var4) {
+	Frames(AbstractArchive var1, AbstractArchive var2, int var3, boolean var4) {
 		NodeDeque var5 = new NodeDeque();
 		int var6 = var1.getGroupFileCount(var3);
 		this.frames = new Animation[var6];
@@ -43,7 +41,13 @@ public class Frames extends DualNode {
 			}
 
 			if (var10 == null) {
-				byte[] var13 = var2.getFile(var11, 0);
+				byte[] var13;
+				if (var4) {
+					var13 = var2.getFile(0, var11);
+				} else {
+					var13 = var2.getFile(var11, 0);
+				}
+
 				var10 = new Skeleton(var11, var13);
 				var5.addFirst(var10);
 			}
@@ -53,207 +57,108 @@ public class Frames extends DualNode {
 
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "(IB)Z",
-		garbageValue = "-107"
+		signature = "(II)Z",
+		garbageValue = "-615268512"
 	)
 	@Export("hasAlphaTransform")
 	public boolean hasAlphaTransform(int var1) {
 		return this.frames[var1].hasAlphaTransform;
 	}
 
-	@ObfuscatedName("m")
-	public static String method3398(long var0) {
-		if (var0 > 0L && var0 < 6582952005840035281L) {
-			if (var0 % 37L == 0L) {
-				return null;
+	@ObfuscatedName("z")
+	public static final int method3395(double var0, double var2, double var4) {
+		double var6 = var4;
+		double var8 = var4;
+		double var10 = var4;
+		if (0.0D != var2) {
+			double var12;
+			if (var4 < 0.5D) {
+				var12 = (var2 + 1.0D) * var4;
 			} else {
-				int var2 = 0;
-
-				for (long var3 = var0; var3 != 0L; var3 /= 37L) {
-					++var2;
-				}
-
-				StringBuilder var5 = new StringBuilder(var2);
-
-				while (0L != var0) {
-					long var6 = var0;
-					var0 /= 37L;
-					var5.append(class298.base37Table[(int)(var6 - var0 * 37L)]);
-				}
-
-				return var5.reverse().toString();
-			}
-		} else {
-			return null;
-		}
-	}
-
-	@ObfuscatedName("o")
-	@ObfuscatedSignature(
-		signature = "(CLgz;I)C",
-		garbageValue = "-959977971"
-	)
-	@Export("standardizeChar")
-	static char standardizeChar(char var0, Language var1) {
-		if (var0 >= 192 && var0 <= 255) {
-			if (var0 >= 192 && var0 <= 198) {
-				return 'A';
+				var12 = var4 + var2 - var2 * var4;
 			}
 
-			if (var0 == 199) {
-				return 'C';
+			double var14 = var4 * 2.0D - var12;
+			double var16 = 0.3333333333333333D + var0;
+			if (var16 > 1.0D) {
+				--var16;
 			}
 
-			if (var0 >= 200 && var0 <= 203) {
-				return 'E';
+			double var20 = var0 - 0.3333333333333333D;
+			if (var20 < 0.0D) {
+				++var20;
 			}
 
-			if (var0 >= 204 && var0 <= 207) {
-				return 'I';
-			}
-
-			if (var0 == 209 && var1 != Language.Language_ES) {
-				return 'N';
-			}
-
-			if (var0 >= 210 && var0 <= 214) {
-				return 'O';
-			}
-
-			if (var0 >= 217 && var0 <= 220) {
-				return 'U';
-			}
-
-			if (var0 == 221) {
-				return 'Y';
-			}
-
-			if (var0 == 223) {
-				return 's';
-			}
-
-			if (var0 >= 224 && var0 <= 230) {
-				return 'a';
-			}
-
-			if (var0 == 231) {
-				return 'c';
-			}
-
-			if (var0 >= 232 && var0 <= 235) {
-				return 'e';
-			}
-
-			if (var0 >= 236 && var0 <= 239) {
-				return 'i';
-			}
-
-			if (var0 == 241 && var1 != Language.Language_ES) {
-				return 'n';
-			}
-
-			if (var0 >= 242 && var0 <= 246) {
-				return 'o';
-			}
-
-			if (var0 >= 249 && var0 <= 252) {
-				return 'u';
-			}
-
-			if (var0 == 253 || var0 == 255) {
-				return 'y';
-			}
-		}
-
-		if (var0 == 338) {
-			return 'O';
-		} else if (var0 == 339) {
-			return 'o';
-		} else if (var0 == 376) {
-			return 'Y';
-		} else {
-			return var0;
-		}
-	}
-
-	@ObfuscatedName("p")
-	@ObfuscatedSignature(
-		signature = "(Lic;Lic;III)Lko;",
-		garbageValue = "-2070991083"
-	)
-	public static Font method3394(AbstractArchive var0, AbstractArchive var1, int var2, int var3) {
-		byte[] var5 = var0.takeFile(var2, var3);
-		boolean var4;
-		if (var5 == null) {
-			var4 = false;
-		} else {
-			class3.SpriteBuffer_decode(var5);
-			var4 = true;
-		}
-
-		return !var4 ? null : class90.method2168(var1.takeFile(var2, var3));
-	}
-
-	@ObfuscatedName("gw")
-	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "150036680"
-	)
-	static final void method3396() {
-		for (PendingSpawn var0 = (PendingSpawn)Client.pendingSpawns.last(); var0 != null; var0 = (PendingSpawn)Client.pendingSpawns.previous()) {
-			if (var0.hitpoints > 0) {
-				--var0.hitpoints;
-			}
-
-			if (var0.hitpoints == 0) {
-				if (var0.objectId >= 0) {
-					int var2 = var0.objectId;
-					int var3 = var0.field957;
-					ObjectComposition var4 = Canvas.getObjectDefinition(var2);
-					if (var3 == 11) {
-						var3 = 10;
-					}
-
-					if (var3 >= 5 && var3 <= 8) {
-						var3 = 4;
-					}
-
-					boolean var1 = var4.method4786(var3);
-					if (!var1) {
-						continue;
-					}
-				}
-
-				class1.addPendingSpawnToScene(var0.plane, var0.type, var0.x, var0.y, var0.objectId, var0.field956, var0.field957);
-				var0.remove();
+			if (var16 * 6.0D < 1.0D) {
+				var6 = var14 + 6.0D * (var12 - var14) * var16;
+			} else if (var16 * 2.0D < 1.0D) {
+				var6 = var12;
+			} else if (var16 * 3.0D < 2.0D) {
+				var6 = 6.0D * (var12 - var14) * (0.6666666666666666D - var16) + var14;
 			} else {
-				if (var0.delay > 0) {
-					--var0.delay;
-				}
+				var6 = var14;
+			}
 
-				if (var0.delay == 0 && var0.x >= 1 && var0.y >= 1 && var0.x <= 102 && var0.y <= 102 && (var0.id < 0 || class7.method97(var0.id, var0.field962))) {
-					class1.addPendingSpawnToScene(var0.plane, var0.type, var0.x, var0.y, var0.id, var0.orientation, var0.field962);
-					var0.delay = -1;
-					if (var0.id == var0.objectId && var0.objectId == -1) {
-						var0.remove();
-					} else if (var0.objectId == var0.id && var0.field956 == var0.orientation && var0.field957 == var0.field962) {
-						var0.remove();
-					}
-				}
+			if (var0 * 6.0D < 1.0D) {
+				var8 = var14 + 6.0D * (var12 - var14) * var0;
+			} else if (2.0D * var0 < 1.0D) {
+				var8 = var12;
+			} else if (3.0D * var0 < 2.0D) {
+				var8 = (0.6666666666666666D - var0) * (var12 - var14) * 6.0D + var14;
+			} else {
+				var8 = var14;
+			}
+
+			if (6.0D * var20 < 1.0D) {
+				var10 = var14 + (var12 - var14) * 6.0D * var20;
+			} else if (2.0D * var20 < 1.0D) {
+				var10 = var12;
+			} else if (3.0D * var20 < 2.0D) {
+				var10 = 6.0D * (0.6666666666666666D - var20) * (var12 - var14) + var14;
+			} else {
+				var10 = var14;
 			}
 		}
 
+		int var22 = (int)(var6 * 256.0D);
+		int var13 = (int)(256.0D * var8);
+		int var23 = (int)(var10 * 256.0D);
+		int var15 = var23 + (var13 << 8) + (var22 << 16);
+		return var15;
 	}
 
-	@ObfuscatedName("ku")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-179061034"
+		signature = "(II)I",
+		garbageValue = "-500804162"
 	)
-	static final void method3399() {
-		Client.field943 = Client.cycleCntr;
-		class4.ClanChat_inClanChat = true;
+	public static int method3394(int var0) {
+		return UserComparator9.Entity_unpackID(ViewportMouse.ViewportMouse_entityTags[var0]);
+	}
+
+	@ObfuscatedName("js")
+	@ObfuscatedSignature(
+		signature = "(Ljava/lang/String;I)V",
+		garbageValue = "2077943773"
+	)
+	@Export("clanKickUser")
+	static final void clanKickUser(String var0) {
+		if (Renderable.clanChat != null) {
+			PacketBufferNode var1 = Client.getPacketBufferNode(ClientPacket.field2257, Client.packetWriter.isaacCipher);
+			var1.packetBuffer.writeByte(Decimator.stringCp1252NullTerminatedByteSize(var0));
+			var1.packetBuffer.writeStringCp1252NullTerminated(var0);
+			Client.packetWriter.addNode(var1);
+		}
+	}
+
+	@ObfuscatedName("kz")
+	@ObfuscatedSignature(
+		signature = "(II)V",
+		garbageValue = "127790133"
+	)
+	static void method3393(int var0) {
+		Client.oculusOrbState = var0;
 	}
 }

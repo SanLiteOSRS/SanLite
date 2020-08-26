@@ -4,72 +4,72 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ep")
+@ObfuscatedName("ex")
 @Implements("WallDecoration")
 public final class WallDecoration {
-	@ObfuscatedName("m")
+	@ObfuscatedName("z")
 	@ObfuscatedGetter(
-		intValue = 1099689565
-	)
-	@Export("tileHeight")
-	int tileHeight;
-	@ObfuscatedName("o")
-	@ObfuscatedGetter(
-		intValue = 1128423733
-	)
-	@Export("x")
-	int x;
-	@ObfuscatedName("q")
-	@ObfuscatedGetter(
-		intValue = -242275183
-	)
-	@Export("y")
-	int y;
-	@ObfuscatedName("j")
-	@ObfuscatedGetter(
-		intValue = 255410517
+		intValue = 1170791361
 	)
 	@Export("orientation")
 	int orientation;
-	@ObfuscatedName("p")
+	@ObfuscatedName("k")
 	@ObfuscatedGetter(
-		intValue = -1472318581
+		intValue = 85116123
+	)
+	@Export("tileHeight")
+	int tileHeight;
+	@ObfuscatedName("s")
+	@ObfuscatedGetter(
+		intValue = 841011539
+	)
+	@Export("x")
+	int x;
+	@ObfuscatedName("t")
+	@ObfuscatedGetter(
+		intValue = 321574291
+	)
+	@Export("y")
+	int y;
+	@ObfuscatedName("i")
+	@ObfuscatedGetter(
+		intValue = -429102155
 	)
 	@Export("orientation2")
 	int orientation2;
-	@ObfuscatedName("g")
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = 96520519
+		intValue = -978448895
 	)
 	@Export("xOffset")
 	int xOffset;
-	@ObfuscatedName("n")
+	@ObfuscatedName("x")
 	@ObfuscatedGetter(
-		intValue = -752151105
+		intValue = 2017479075
 	)
 	@Export("yOffset")
 	int yOffset;
-	@ObfuscatedName("u")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		signature = "Lel;"
+		signature = "Lez;"
 	)
 	@Export("entity1")
 	public Renderable entity1;
-	@ObfuscatedName("a")
+	@ObfuscatedName("g")
 	@ObfuscatedSignature(
-		signature = "Lel;"
+		signature = "Lez;"
 	)
 	@Export("entity2")
 	public Renderable entity2;
-	@ObfuscatedName("z")
+	@ObfuscatedName("m")
 	@ObfuscatedGetter(
-		longValue = 7567781693564802897L
+		longValue = -8703832368131294063L
 	)
 	@Export("tag")
 	public long tag;
-	@ObfuscatedName("w")
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = 1087358253
+		intValue = -2069520015
 	)
 	@Export("flags")
 	int flags;
@@ -79,99 +79,22 @@ public final class WallDecoration {
 		this.flags = 0;
 	}
 
-	@ObfuscatedName("fu")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;I)V",
-		garbageValue = "764201281"
+		signature = "(I)V",
+		garbageValue = "-807916273"
 	)
-	@Export("doCheat")
-	static final void doCheat(String var0) {
-		if (var0.equalsIgnoreCase("toggleroof")) {
-			NetSocket.clientPreferences.roofsHidden = !NetSocket.clientPreferences.roofsHidden;
-			SpriteMask.savePreferences();
-			if (NetSocket.clientPreferences.roofsHidden) {
-				ObjectSound.addGameMessage(99, "", "Roofs are now all hidden");
-			} else {
-				ObjectSound.addGameMessage(99, "", "Roofs will only be removed selectively");
-			}
+	public static void method3409() {
+		synchronized(MouseHandler.MouseHandler_instance) {
+			MouseHandler.MouseHandler_currentButton = MouseHandler.MouseHandler_currentButtonVolatile;
+			MouseHandler.MouseHandler_x = MouseHandler.MouseHandler_xVolatile;
+			MouseHandler.MouseHandler_y = MouseHandler.MouseHandler_yVolatile;
+			MouseHandler.MouseHandler_millis = MouseHandler.MouseHandler_lastMovedVolatile;
+			MouseHandler.MouseHandler_lastButton = MouseHandler.MouseHandler_lastButtonVolatile;
+			MouseHandler.MouseHandler_lastPressedX = MouseHandler.MouseHandler_lastPressedXVolatile;
+			MouseHandler.MouseHandler_lastPressedY = MouseHandler.MouseHandler_lastPressedYVolatile;
+			MouseHandler.MouseHandler_lastPressedTimeMillis = MouseHandler.MouseHandler_lastPressedTimeMillisVolatile;
+			MouseHandler.MouseHandler_lastButtonVolatile = 0;
 		}
-
-		if (var0.equalsIgnoreCase("displayfps")) {
-			Client.displayFps = !Client.displayFps;
-		}
-
-		if (var0.equalsIgnoreCase("renderself")) {
-			Client.renderSelf = !Client.renderSelf;
-		}
-
-		if (var0.equalsIgnoreCase("mouseovertext")) {
-			Client.showMouseOverText = !Client.showMouseOverText;
-		}
-
-		if (Client.staffModLevel >= 2) {
-			if (var0.equalsIgnoreCase("errortest")) {
-				throw new RuntimeException();
-			}
-
-			if (var0.equalsIgnoreCase("showcoord")) {
-				class228.worldMap.showCoord = !class228.worldMap.showCoord;
-			}
-
-			if (var0.equalsIgnoreCase("fpson")) {
-				Client.displayFps = true;
-			}
-
-			if (var0.equalsIgnoreCase("fpsoff")) {
-				Client.displayFps = false;
-			}
-
-			if (var0.equalsIgnoreCase("gc")) {
-				System.gc();
-			}
-
-			if (var0.equalsIgnoreCase("clientdrop")) {
-				CollisionMap.method3707();
-			}
-		}
-
-		PacketBufferNode var1 = UserComparator4.getPacketBufferNode(ClientPacket.field2268, Client.packetWriter.isaacCipher);
-		var1.packetBuffer.writeByte(var0.length() + 1);
-		var1.packetBuffer.writeStringCp1252NullTerminated(var0);
-		Client.packetWriter.addNode(var1);
-	}
-
-	@ObfuscatedName("ir")
-	@ObfuscatedSignature(
-		signature = "(Lhd;Ljo;IIZI)V",
-		garbageValue = "-771039466"
-	)
-	@Export("addWidgetItemMenuItem")
-	static final void addWidgetItemMenuItem(Widget var0, ItemComposition var1, int var2, int var3, boolean var4) {
-		String[] var5 = var1.inventoryActions;
-		byte var6 = -1;
-		String var7 = null;
-		if (var5 != null && var5[var3] != null) {
-			if (var3 == 0) {
-				var6 = 33;
-			} else if (var3 == 1) {
-				var6 = 34;
-			} else if (var3 == 2) {
-				var6 = 35;
-			} else if (var3 == 3) {
-				var6 = 36;
-			} else {
-				var6 = 37;
-			}
-
-			var7 = var5[var3];
-		} else if (var3 == 4) {
-			var6 = 37;
-			var7 = "Drop";
-		}
-
-		if (var6 != -1 && var7 != null) {
-			ApproximateRouteStrategy.insertMenuItem(var7, ItemContainer.colorStartTag(16748608) + var1.name, var6, var1.id, var2, var0.id, var4);
-		}
-
 	}
 }

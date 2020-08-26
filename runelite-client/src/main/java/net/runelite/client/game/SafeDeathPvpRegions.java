@@ -1,7 +1,9 @@
 package net.runelite.client.game;
 
 import com.google.common.collect.ImmutableList;
-import org.apache.commons.lang3.ArrayUtils;
+import net.runelite.api.Client;
+import net.runelite.api.Player;
+import net.runelite.api.coords.WorldPoint;
 
 import java.util.Collection;
 
@@ -94,11 +96,14 @@ public class SafeDeathPvpRegions
 			13641, 13642
 	);
 
-	public static boolean inSafeDeathPvpArea(int[] mapRegions)
+	public static boolean inSafeDeathPvpArea(Client client)
 	{
-		for (int region : SafeDeathPvpRegions.ALL)
+		Player localPlayer = client.getLocalPlayer();
+		if (localPlayer == null) return false;
+
+		for (int regionId : SafeDeathPvpRegions.ALL)
 		{
-			if (ArrayUtils.contains(mapRegions, region))
+			if (regionId == WorldPoint.fromLocalInstance(client, localPlayer.getLocalLocation()).getRegionID())
 			{
 				return true;
 			}

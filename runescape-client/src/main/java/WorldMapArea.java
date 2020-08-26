@@ -5,71 +5,75 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("ad")
+@ObfuscatedName("ar")
 @Implements("WorldMapArea")
 public class WorldMapArea {
-	@ObfuscatedName("aa")
-	@Export("hasFocus")
-	protected static boolean hasFocus;
-	@ObfuscatedName("m")
+	@ObfuscatedName("sk")
+	@ObfuscatedSignature(
+		signature = "Lmr;"
+	)
+	@Export("platformInfo")
+	static PlatformInfo platformInfo;
+	@ObfuscatedName("z")
 	@ObfuscatedGetter(
-		intValue = -102714047
+		intValue = -2004467599
 	)
 	@Export("id")
 	int id;
-	@ObfuscatedName("o")
+	@ObfuscatedName("k")
 	@Export("internalName")
 	String internalName;
-	@ObfuscatedName("q")
+	@ObfuscatedName("s")
 	@Export("externalName")
 	String externalName;
-	@ObfuscatedName("j")
+	@ObfuscatedName("t")
 	@ObfuscatedGetter(
-		intValue = 2008440325
+		intValue = 173771503
 	)
 	@Export("backGroundColor")
 	int backGroundColor;
-	@ObfuscatedName("p")
+	@ObfuscatedName("i")
 	@ObfuscatedGetter(
-		intValue = -776340421
+		intValue = -1585723591
 	)
 	@Export("zoom")
 	int zoom;
-	@ObfuscatedName("g")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
 		signature = "Lhg;"
 	)
 	@Export("origin")
 	Coord origin;
-	@ObfuscatedName("n")
+	@ObfuscatedName("x")
 	@ObfuscatedGetter(
-		intValue = -1184938719
+		intValue = -2050801149
 	)
 	@Export("regionLowX")
 	int regionLowX;
-	@ObfuscatedName("u")
+	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		intValue = 1321973801
+		intValue = 1803706305
 	)
 	@Export("regionHighX")
 	int regionHighX;
-	@ObfuscatedName("a")
+	@ObfuscatedName("g")
 	@ObfuscatedGetter(
-		intValue = 1250553257
+		intValue = 2137946489
 	)
 	@Export("regionLowY")
 	int regionLowY;
-	@ObfuscatedName("z")
+	@ObfuscatedName("m")
 	@ObfuscatedGetter(
-		intValue = 464294365
+		intValue = 1133866307
 	)
 	@Export("regionHighY")
 	int regionHighY;
-	@ObfuscatedName("w")
+	@ObfuscatedName("n")
 	@Export("isMain")
 	boolean isMain;
-	@ObfuscatedName("y")
+	@ObfuscatedName("d")
 	@Export("sections")
 	LinkedList sections;
 
@@ -85,10 +89,10 @@ public class WorldMapArea {
 		this.isMain = false;
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(Lkn;II)V",
-		garbageValue = "1711579729"
+		signature = "(Lkf;IB)V",
+		garbageValue = "24"
 	)
 	@Export("read")
 	public void read(Buffer var1, int var2) {
@@ -110,42 +114,41 @@ public class WorldMapArea {
 		this.setBounds();
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "(Lkn;B)Law;",
-		garbageValue = "-69"
+		signature = "(Lkf;B)Lay;",
+		garbageValue = "-55"
 	)
 	@Export("readWorldMapSection")
 	WorldMapSection readWorldMapSection(Buffer var1) {
 		int var2 = var1.readUnsignedByte();
-		WorldMapSectionType[] var3 = new WorldMapSectionType[]{WorldMapSectionType.WORLDMAPSECTIONTYPE2, WorldMapSectionType.WORLDMAPSECTIONTYPE0, WorldMapSectionType.WORLDMAPSECTIONTYPE1, WorldMapSectionType.WORLDMAPSECTIONTYPE3};
-		WorldMapSectionType var4 = (WorldMapSectionType)FaceNormal.findEnumerated(var3, var2);
-		Object var5 = null;
-		switch(var4.type) {
+		WorldMapSectionType var3 = (WorldMapSectionType)TextureProvider.findEnumerated(WorldMapSectionType.method327(), var2);
+		Object var4 = null;
+		switch(var3.type) {
 		case 0:
-			var5 = new WorldMapSection1();
+			var4 = new class51();
 			break;
 		case 1:
-			var5 = new WorldMapSection3();
+			var4 = new WorldMapSection1();
 			break;
 		case 2:
-			var5 = new WorldMapSection0();
+			var4 = new WorldMapSection2();
 			break;
 		case 3:
-			var5 = new WorldMapSection2();
+			var4 = new WorldMapSection0();
 			break;
 		default:
 			throw new IllegalStateException("");
 		}
 
-		((WorldMapSection)var5).read(var1);
-		return (WorldMapSection)var5;
+		((WorldMapSection)var4).read(var1);
+		return (WorldMapSection)var4;
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		signature = "(IIII)Z",
-		garbageValue = "303739781"
+		signature = "(IIIB)Z",
+		garbageValue = "31"
 	)
 	@Export("containsCoord")
 	public boolean containsCoord(int var1, int var2, int var3) {
@@ -163,10 +166,10 @@ public class WorldMapArea {
 		return true;
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
 		signature = "(IIB)Z",
-		garbageValue = "111"
+		garbageValue = "118"
 	)
 	@Export("containsPosition")
 	public boolean containsPosition(int var1, int var2) {
@@ -194,10 +197,10 @@ public class WorldMapArea {
 		}
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
 		signature = "(IIII)[I",
-		garbageValue = "1838178690"
+		garbageValue = "-1676257391"
 	)
 	@Export("position")
 	public int[] position(int var1, int var2, int var3) {
@@ -215,10 +218,10 @@ public class WorldMapArea {
 		return var5.getBorderTileLengths(var1, var2, var3);
 	}
 
-	@ObfuscatedName("g")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
 		signature = "(III)Lhg;",
-		garbageValue = "-1660127351"
+		garbageValue = "788821782"
 	)
 	@Export("coord")
 	public Coord coord(int var1, int var2) {
@@ -236,10 +239,10 @@ public class WorldMapArea {
 		return var4.coord(var1, var2);
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "61"
+		signature = "(I)V",
+		garbageValue = "-1087000802"
 	)
 	@Export("setBounds")
 	void setBounds() {
@@ -252,57 +255,57 @@ public class WorldMapArea {
 
 	}
 
-	@ObfuscatedName("u")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
 		signature = "(I)I",
-		garbageValue = "-659291236"
+		garbageValue = "809929326"
 	)
 	@Export("getId")
 	public int getId() {
 		return this.id;
 	}
 
-	@ObfuscatedName("a")
+	@ObfuscatedName("g")
 	@ObfuscatedSignature(
 		signature = "(I)Z",
-		garbageValue = "-2131690602"
+		garbageValue = "-1492211356"
 	)
 	@Export("getIsMain")
 	public boolean getIsMain() {
 		return this.isMain;
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
 		signature = "(I)Ljava/lang/String;",
-		garbageValue = "-1380863043"
+		garbageValue = "-401502532"
 	)
 	@Export("getInternalName")
 	public String getInternalName() {
 		return this.internalName;
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(I)Ljava/lang/String;",
-		garbageValue = "657919972"
+		signature = "(S)Ljava/lang/String;",
+		garbageValue = "-32528"
 	)
 	@Export("getExternalName")
 	public String getExternalName() {
 		return this.externalName;
 	}
 
-	@ObfuscatedName("y")
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(B)I",
-		garbageValue = "49"
+		signature = "(I)I",
+		garbageValue = "194013380"
 	)
 	@Export("getBackGroundColor")
 	int getBackGroundColor() {
 		return this.backGroundColor;
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
 		signature = "(B)I",
 		garbageValue = "24"
@@ -312,96 +315,237 @@ public class WorldMapArea {
 		return this.zoom;
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "-1324174996"
+		signature = "(B)I",
+		garbageValue = "63"
 	)
 	@Export("getRegionLowX")
 	public int getRegionLowX() {
 		return this.regionLowX;
 	}
 
-	@ObfuscatedName("k")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		signature = "(B)I",
-		garbageValue = "103"
+		signature = "(I)I",
+		garbageValue = "-691462213"
 	)
 	@Export("getRegionHighX")
 	public int getRegionHighX() {
 		return this.regionHighX;
 	}
 
-	@ObfuscatedName("r")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
 		signature = "(I)I",
-		garbageValue = "-1253585407"
+		garbageValue = "-515564038"
 	)
 	@Export("getRegionLowY")
 	public int getRegionLowY() {
 		return this.regionLowY;
 	}
 
-	@ObfuscatedName("d")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
 		signature = "(I)I",
-		garbageValue = "1154975420"
+		garbageValue = "330383709"
 	)
 	@Export("getRegionHighY")
 	public int getRegionHighY() {
 		return this.regionHighY;
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("r")
 	@ObfuscatedSignature(
 		signature = "(I)I",
-		garbageValue = "-1645493175"
+		garbageValue = "1099952817"
 	)
 	@Export("getOriginX")
 	public int getOriginX() {
 		return this.origin.x;
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "680709831"
+		signature = "(B)I",
+		garbageValue = "8"
 	)
 	@Export("getOriginPlane")
 	public int getOriginPlane() {
 		return this.origin.plane;
 	}
 
-	@ObfuscatedName("t")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
 		signature = "(I)I",
-		garbageValue = "-734959342"
+		garbageValue = "2050944019"
 	)
 	@Export("getOriginY")
 	public int getOriginY() {
 		return this.origin.y;
 	}
 
-	@ObfuscatedName("x")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		signature = "(I)Lhg;",
-		garbageValue = "-1903361332"
+		signature = "(B)Lhg;",
+		garbageValue = "0"
 	)
 	@Export("getOrigin")
 	public Coord getOrigin() {
 		return new Coord(this.origin);
 	}
 
-	@ObfuscatedName("hf")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		signature = "(III)V",
-		garbageValue = "1010580353"
+		signature = "(I)V",
+		garbageValue = "-3643334"
 	)
-	@Export("resumePauseWidget")
-	static void resumePauseWidget(int var0, int var1) {
-		PacketBufferNode var2 = UserComparator4.getPacketBufferNode(ClientPacket.field2288, Client.packetWriter.isaacCipher);
-		var2.packetBuffer.writeInt(var0);
-		var2.packetBuffer.method5898(var1);
-		Client.packetWriter.addNode(var2);
+	static void method415() {
+		synchronized(ArchiveDiskActionHandler.ArchiveDiskActionHandler_lock) {
+			if (ArchiveDiskActionHandler.field3179 == 0) {
+				Huffman.ArchiveDiskActionHandler_thread = new Thread(new ArchiveDiskActionHandler());
+				Huffman.ArchiveDiskActionHandler_thread.setDaemon(true);
+				Huffman.ArchiveDiskActionHandler_thread.start();
+				Huffman.ArchiveDiskActionHandler_thread.setPriority(5);
+			}
+
+			ArchiveDiskActionHandler.field3179 = 600;
+		}
+	}
+
+	@ObfuscatedName("ab")
+	@ObfuscatedSignature(
+		signature = "(ILcy;ZI)I",
+		garbageValue = "-2119318811"
+	)
+	static int method485(int var0, Script var1, boolean var2) {
+		if (var0 == ScriptOpcodes.CLIENTCLOCK) {
+			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = Client.cycle;
+			return 1;
+		} else {
+			int var3;
+			int var4;
+			if (var0 == ScriptOpcodes.INV_GETOBJ) {
+				Interpreter.Interpreter_intStackSize -= 2;
+				var3 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
+				var4 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
+				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = VarbitComposition.method4596(var3, var4);
+				return 1;
+			} else if (var0 == ScriptOpcodes.INV_GETNUM) {
+				Interpreter.Interpreter_intStackSize -= 2;
+				var3 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
+				var4 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
+				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = UserComparator10.ItemContainer_getCount(var3, var4);
+				return 1;
+			} else if (var0 == ScriptOpcodes.INV_TOTAL) {
+				Interpreter.Interpreter_intStackSize -= 2;
+				var3 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
+				var4 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
+				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = NetSocket.method3628(var3, var4);
+				return 1;
+			} else if (var0 == ScriptOpcodes.INV_SIZE) {
+				var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
+				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = MusicPatchPcmStream.getInvDefinition(var3).size;
+				return 1;
+			} else if (var0 == ScriptOpcodes.STAT) {
+				var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
+				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = Client.currentLevels[var3];
+				return 1;
+			} else if (var0 == ScriptOpcodes.STAT_BASE) {
+				var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
+				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = Client.levels[var3];
+				return 1;
+			} else if (var0 == ScriptOpcodes.STAT_XP) {
+				var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
+				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = Client.experience[var3];
+				return 1;
+			} else {
+				int var5;
+				if (var0 == ScriptOpcodes.COORD) {
+					var3 = Huffman.Client_plane;
+					var4 = WorldMapManager.baseX * 64 + (WorldMapLabelSize.localPlayer.x >> 7);
+					var5 = WorldMapLabel.baseY * 64 + (WorldMapLabelSize.localPlayer.y >> 7);
+					Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = (var4 << 14) + var5 + (var3 << 28);
+					return 1;
+				} else if (var0 == ScriptOpcodes.COORDX) {
+					var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
+					Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3 >> 14 & 16383;
+					return 1;
+				} else if (var0 == ScriptOpcodes.COORDZ) {
+					var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
+					Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3 >> 28;
+					return 1;
+				} else if (var0 == ScriptOpcodes.COORDY) {
+					var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
+					Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3 & 16383;
+					return 1;
+				} else if (var0 == ScriptOpcodes.MAP_MEMBERS) {
+					Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = Client.isMembersWorld ? 1 : 0;
+					return 1;
+				} else if (var0 == ScriptOpcodes.INVOTHER_GETOBJ) {
+					Interpreter.Interpreter_intStackSize -= 2;
+					var3 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize] + 32768;
+					var4 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
+					Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = VarbitComposition.method4596(var3, var4);
+					return 1;
+				} else if (var0 == ScriptOpcodes.INVOTHER_GETNUM) {
+					Interpreter.Interpreter_intStackSize -= 2;
+					var3 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize] + 32768;
+					var4 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
+					Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = UserComparator10.ItemContainer_getCount(var3, var4);
+					return 1;
+				} else if (var0 == ScriptOpcodes.INVOTHER_TOTAL) {
+					Interpreter.Interpreter_intStackSize -= 2;
+					var3 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize] + 32768;
+					var4 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
+					Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = NetSocket.method3628(var3, var4);
+					return 1;
+				} else if (var0 == ScriptOpcodes.STAFFMODLEVEL) {
+					if (Client.staffModLevel >= 2) {
+						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = Client.staffModLevel;
+					} else {
+						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = 0;
+					}
+
+					return 1;
+				} else if (var0 == ScriptOpcodes.REBOOTTIMER) {
+					Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = Client.rebootTimer;
+					return 1;
+				} else if (var0 == ScriptOpcodes.MAP_WORLD) {
+					Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = Client.worldId;
+					return 1;
+				} else if (var0 == ScriptOpcodes.RUNENERGY_VISIBLE) {
+					Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = Client.runEnergy;
+					return 1;
+				} else if (var0 == ScriptOpcodes.RUNWEIGHT_VISIBLE) {
+					Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = Client.weight;
+					return 1;
+				} else if (var0 == ScriptOpcodes.PLAYERMOD) {
+					if (Client.playerMod) {
+						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = 1;
+					} else {
+						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = 0;
+					}
+
+					return 1;
+				} else if (var0 == ScriptOpcodes.WORLDFLAGS) {
+					Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = Client.worldProperties;
+					return 1;
+				} else if (var0 == ScriptOpcodes.MOVECOORD) {
+					Interpreter.Interpreter_intStackSize -= 4;
+					var3 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
+					var4 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
+					var5 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 2];
+					int var6 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 3];
+					var3 += var4 << 14;
+					var3 += var5 << 28;
+					var3 += var6;
+					Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3;
+					return 1;
+				} else {
+					return 2;
+				}
+			}
+		}
 	}
 }

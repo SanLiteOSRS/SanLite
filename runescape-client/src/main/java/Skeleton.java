@@ -4,30 +4,34 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("er")
+@ObfuscatedName("eh")
 @Implements("Skeleton")
 public class Skeleton extends Node {
-	@ObfuscatedName("aq")
-	@ObfuscatedGetter(
-		intValue = -47286483
+	@ObfuscatedName("sw")
+	@ObfuscatedSignature(
+		signature = "Llz;"
 	)
-	static int field1826;
-	@ObfuscatedName("m")
+	@Export("masterDisk")
+	static ArchiveDisk masterDisk;
+	@ObfuscatedName("gf")
+	@Export("regionLandArchiveIds")
+	static int[] regionLandArchiveIds;
+	@ObfuscatedName("z")
 	@ObfuscatedGetter(
-		intValue = -747457743
+		intValue = -891561701
 	)
 	@Export("id")
 	int id;
-	@ObfuscatedName("o")
+	@ObfuscatedName("k")
 	@ObfuscatedGetter(
-		intValue = 386205487
+		intValue = 178139825
 	)
 	@Export("count")
 	int count;
-	@ObfuscatedName("q")
+	@ObfuscatedName("s")
 	@Export("transformTypes")
 	int[] transformTypes;
-	@ObfuscatedName("j")
+	@ObfuscatedName("t")
 	@Export("labels")
 	int[][] labels;
 
@@ -55,60 +59,27 @@ public class Skeleton extends Node {
 
 	}
 
-	@ObfuscatedName("iz")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(ZB)V",
-		garbageValue = "38"
+		signature = "(IB)Ljx;",
+		garbageValue = "29"
 	)
-	@Export("setTapToDrop")
-	static void setTapToDrop(boolean var0) {
-		Client.tapToDrop = var0;
-	}
-
-	@ObfuscatedName("jo")
-	@ObfuscatedSignature(
-		signature = "([Lhd;IB)V",
-		garbageValue = "34"
-	)
-	@Export("runComponentCloseListeners")
-	static final void runComponentCloseListeners(Widget[] var0, int var1) {
-		for (int var2 = 0; var2 < var0.length; ++var2) {
-			Widget var3 = var0[var2];
-			if (var3 != null) {
-				if (var3.type == 0) {
-					if (var3.children != null) {
-						runComponentCloseListeners(var3.children, var1);
-					}
-
-					InterfaceParent var4 = (InterfaceParent)Client.interfaceParents.get((long)var3.id);
-					if (var4 != null) {
-						Language.runIntfCloseListeners(var4.group, var1);
-					}
-				}
-
-				ScriptEvent var5;
-				if (var1 == 0 && var3.onDialogAbort != null) {
-					var5 = new ScriptEvent();
-					var5.widget = var3;
-					var5.args = var3.onDialogAbort;
-					InterfaceParent.runScriptEvent(var5);
-				}
-
-				if (var1 == 1 && var3.onSubChange != null) {
-					if (var3.childIndex >= 0) {
-						Widget var6 = WorldMapSprite.getWidget(var3.id);
-						if (var6 == null || var6.children == null || var3.childIndex >= var6.children.length || var3 != var6.children[var3.childIndex]) {
-							continue;
-						}
-					}
-
-					var5 = new ScriptEvent();
-					var5.widget = var3;
-					var5.args = var3.onSubChange;
-					InterfaceParent.runScriptEvent(var5);
-				}
+	@Export("getNpcDefinition")
+	public static NPCComposition getNpcDefinition(int var0) {
+		NPCComposition var1 = (NPCComposition)NPCComposition.NpcDefinition_cached.get((long)var0);
+		if (var1 != null) {
+			return var1;
+		} else {
+			byte[] var2 = NPCComposition.NpcDefinition_archive.takeFile(9, var0);
+			var1 = new NPCComposition();
+			var1.id = var0;
+			if (var2 != null) {
+				var1.decode(new Buffer(var2));
 			}
-		}
 
+			var1.postDecode();
+			NPCComposition.NpcDefinition_cached.put(var1, (long)var0);
+			return var1;
+		}
 	}
 }

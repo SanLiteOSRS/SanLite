@@ -3,21 +3,12 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cv")
+@ObfuscatedName("cw")
 @Implements("NPC")
 public final class NPC extends Actor {
-	@ObfuscatedName("o")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "Lic;"
-	)
-	@Export("SpotAnimationDefinition_modelArchive")
-	static AbstractArchive SpotAnimationDefinition_modelArchive;
-	@ObfuscatedName("p")
-	@Export("SpriteBuffer_yOffsets")
-	static int[] SpriteBuffer_yOffsets;
-	@ObfuscatedName("m")
-	@ObfuscatedSignature(
-		signature = "Ljz;"
+		signature = "Ljx;"
 	)
 	@Export("definition")
 	NPCComposition definition;
@@ -25,12 +16,12 @@ public final class NPC extends Actor {
 	NPC() {
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
 		signature = "(IBI)V",
-		garbageValue = "-676669615"
+		garbageValue = "307957287"
 	)
-	final void method2150(int var1, byte var2) {
+	final void method2115(int var1, byte var2) {
 		int var3 = super.pathX[0];
 		int var4 = super.pathY[0];
 		if (var1 == 0) {
@@ -69,7 +60,7 @@ public final class NPC extends Actor {
 			--var4;
 		}
 
-		if (super.sequence != -1 && NetSocket.SequenceDefinition_get(super.sequence).field3560 == 1) {
+		if (super.sequence != -1 && WorldMapRegion.SequenceDefinition_get(super.sequence).field3541 == 1) {
 			super.sequence = -1;
 		}
 
@@ -88,13 +79,13 @@ public final class NPC extends Actor {
 		super.pathTraversed[0] = var2;
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
 		signature = "(IIZI)V",
-		garbageValue = "-1996954385"
+		garbageValue = "-1230759297"
 	)
-	final void method2142(int var1, int var2, boolean var3) {
-		if (super.sequence != -1 && NetSocket.SequenceDefinition_get(super.sequence).field3560 == 1) {
+	final void method2121(int var1, int var2, boolean var3) {
+		if (super.sequence != -1 && WorldMapRegion.SequenceDefinition_get(super.sequence).field3541 == 1) {
 			super.sequence = -1;
 		}
 
@@ -120,26 +111,26 @@ public final class NPC extends Actor {
 		}
 
 		super.pathLength = 0;
-		super.field1023 = 0;
-		super.field1022 = 0;
+		super.field973 = 0;
+		super.field1032 = 0;
 		super.pathX[0] = var1;
 		super.pathY[0] = var2;
-		super.x = super.field967 * -1977020416 + super.pathX[0] * 128;
-		super.y = super.pathY[0] * 128 + super.field967 * -1977020416;
+		super.x = super.field1014 * 64 + super.pathX[0] * 128;
+		super.y = super.field1014 * 64 + super.pathY[0] * 128;
 	}
 
-	@ObfuscatedName("a")
+	@ObfuscatedName("g")
 	@ObfuscatedSignature(
-		signature = "(I)Lef;",
-		garbageValue = "1832696685"
+		signature = "(I)Ler;",
+		garbageValue = "-2026237468"
 	)
 	@Export("getModel")
 	protected final Model getModel() {
 		if (this.definition == null) {
 			return null;
 		} else {
-			SequenceDefinition var1 = super.sequence != -1 && super.sequenceDelay == 0 ? NetSocket.SequenceDefinition_get(super.sequence) : null;
-			SequenceDefinition var2 = super.movementSequence != -1 && (super.readySequence != super.movementSequence || var1 == null) ? NetSocket.SequenceDefinition_get(super.movementSequence) : null;
+			SequenceDefinition var1 = super.sequence != -1 && super.sequenceDelay == 0 ? WorldMapRegion.SequenceDefinition_get(super.sequence) : null;
+			SequenceDefinition var2 = super.movementSequence != -1 && (super.movementSequence != super.readySequence || var1 == null) ? WorldMapRegion.SequenceDefinition_get(super.movementSequence) : null;
 			Model var3 = this.definition.getModel(var1, super.sequenceFrame, var2, super.movementFrame);
 			if (var3 == null) {
 				return null;
@@ -147,9 +138,9 @@ public final class NPC extends Actor {
 				var3.calculateBoundsCylinder();
 				super.defaultHeight = var3.height;
 				if (super.spotAnimation != -1 && super.spotAnimationFrame != -1) {
-					Model var4 = class4.SpotAnimationDefinition_get(super.spotAnimation).getModel(super.spotAnimationFrame);
+					Model var4 = Tiles.SpotAnimationDefinition_get(super.spotAnimation).getModel(super.spotAnimationFrame);
 					if (var4 != null) {
-						var4.offsetBy(0, -super.field1005, 0);
+						var4.offsetBy(0, -super.field1003, 0);
 						Model[] var5 = new Model[]{var3, var4};
 						var3 = new Model(var5, 2);
 					}
@@ -164,46 +155,13 @@ public final class NPC extends Actor {
 		}
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(B)Z",
-		garbageValue = "1"
+		signature = "(I)Z",
+		garbageValue = "68470795"
 	)
 	@Export("isVisible")
 	final boolean isVisible() {
 		return this.definition != null;
-	}
-
-	@ObfuscatedName("o")
-	@ObfuscatedSignature(
-		signature = "(Lkn;I)Ljava/lang/String;",
-		garbageValue = "1758966720"
-	)
-	public static String method2157(Buffer var0) {
-		return UserComparator5.method3534(var0, 32767);
-	}
-
-	@ObfuscatedName("g")
-	@ObfuscatedSignature(
-		signature = "(S)V",
-		garbageValue = "-25347"
-	)
-	static void method2156() {
-		Players.Players_count = 0;
-
-		for (int var0 = 0; var0 < 2048; ++var0) {
-			Players.field1279[var0] = null;
-			Players.field1278[var0] = 1;
-		}
-
-	}
-
-	@ObfuscatedName("ai")
-	@ObfuscatedSignature(
-		signature = "(Ldh;I)V",
-		garbageValue = "2097901447"
-	)
-	public static final void method2144(PlayerProvider var0) {
-		HealthBarUpdate.pcmPlayerProvider = var0;
 	}
 }

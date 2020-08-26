@@ -1,35 +1,39 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("do")
+@ObfuscatedName("ds")
 @Implements("SoundCache")
 public class SoundCache {
-	@ObfuscatedName("u")
-	@Export("ItemDefinition_inMembersWorld")
-	static boolean ItemDefinition_inMembersWorld;
-	@ObfuscatedName("m")
+	@ObfuscatedName("rp")
+	@ObfuscatedGetter(
+		intValue = 250298368
+	)
+	static int field1472;
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
 		signature = "Lic;"
 	)
 	@Export("soundEffectIndex")
 	AbstractArchive soundEffectIndex;
-	@ObfuscatedName("o")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
 		signature = "Lic;"
 	)
 	@Export("musicSampleIndex")
 	AbstractArchive musicSampleIndex;
-	@ObfuscatedName("q")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		signature = "Lle;"
+		signature = "Llc;"
 	)
 	@Export("musicSamples")
 	NodeHashTable musicSamples;
-	@ObfuscatedName("j")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		signature = "Lle;"
+		signature = "Llc;"
 	)
 	@Export("rawSounds")
 	NodeHashTable rawSounds;
@@ -44,10 +48,10 @@ public class SoundCache {
 		this.musicSampleIndex = var2;
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(II[II)Ldp;",
-		garbageValue = "-1808254786"
+		signature = "(II[II)Lde;",
+		garbageValue = "-484042119"
 	)
 	@Export("getSoundEffect0")
 	RawSound getSoundEffect0(int var1, int var2, int[] var3) {
@@ -75,10 +79,10 @@ public class SoundCache {
 		}
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "(II[II)Ldp;",
-		garbageValue = "1029980223"
+		signature = "(II[IS)Lde;",
+		garbageValue = "-29447"
 	)
 	@Export("getMusicSample0")
 	RawSound getMusicSample0(int var1, int var2, int[] var3) {
@@ -112,10 +116,10 @@ public class SoundCache {
 		}
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		signature = "(I[IB)Ldp;",
-		garbageValue = "-87"
+		signature = "(I[IB)Lde;",
+		garbageValue = "-94"
 	)
 	@Export("getSoundEffect")
 	public RawSound getSoundEffect(int var1, int[] var2) {
@@ -128,10 +132,10 @@ public class SoundCache {
 		}
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		signature = "(I[II)Ldp;",
-		garbageValue = "2095732620"
+		signature = "(I[II)Lde;",
+		garbageValue = "-1455606991"
 	)
 	@Export("getMusicSample")
 	public RawSound getMusicSample(int var1, int[] var2) {
@@ -144,68 +148,42 @@ public class SoundCache {
 		}
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("aq")
 	@ObfuscatedSignature(
-		signature = "(IB)V",
-		garbageValue = "104"
+		signature = "(ILcy;ZB)I",
+		garbageValue = "115"
 	)
-	@Export("clearItemContainer")
-	static void clearItemContainer(int var0) {
-		ItemContainer var1 = (ItemContainer)ItemContainer.itemContainers.get((long)var0);
-		if (var1 != null) {
-			for (int var2 = 0; var2 < var1.ids.length; ++var2) {
-				var1.ids[var2] = -1;
-				var1.quantities[var2] = 0;
+	static int method2607(int var0, Script var1, boolean var2) {
+		int var3;
+		if (var0 == ScriptOpcodes.CAM_FORCEANGLE) {
+			Interpreter.Interpreter_intStackSize -= 2;
+			var3 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
+			int var4 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
+			if (!Client.isCameraLocked) {
+				Client.camAngleX = var3;
+				Client.camAngleY = var4;
 			}
 
-		}
-	}
-
-	@ObfuscatedName("hu")
-	@ObfuscatedSignature(
-		signature = "(ILjava/lang/String;I)V",
-		garbageValue = "-717528882"
-	)
-	static void method2647(int var0, String var1) {
-		int var2 = Players.Players_count;
-		int[] var3 = Players.Players_indices;
-		boolean var4 = false;
-		Username var5 = new Username(var1, class195.loginType);
-
-		for (int var6 = 0; var6 < var2; ++var6) {
-			Player var7 = Client.players[var3[var6]];
-			if (var7 != null && var7 != class60.localPlayer && var7.username != null && var7.username.equals(var5)) {
-				PacketBufferNode var8;
-				if (var0 == 1) {
-					var8 = UserComparator4.getPacketBufferNode(ClientPacket.field2271, Client.packetWriter.isaacCipher);
-					var8.packetBuffer.writeByte(0);
-					var8.packetBuffer.writeShort(var3[var6]);
-					Client.packetWriter.addNode(var8);
-				} else if (var0 == 4) {
-					var8 = UserComparator4.getPacketBufferNode(ClientPacket.field2261, Client.packetWriter.isaacCipher);
-					var8.packetBuffer.writeShort(var3[var6]);
-					var8.packetBuffer.method5744(0);
-					Client.packetWriter.addNode(var8);
-				} else if (var0 == 6) {
-					var8 = UserComparator4.getPacketBufferNode(ClientPacket.field2301, Client.packetWriter.isaacCipher);
-					var8.packetBuffer.method5752(var3[var6]);
-					var8.packetBuffer.method5744(0);
-					Client.packetWriter.addNode(var8);
-				} else if (var0 == 7) {
-					var8 = UserComparator4.getPacketBufferNode(ClientPacket.field2337, Client.packetWriter.isaacCipher);
-					var8.packetBuffer.writeIntME(0);
-					var8.packetBuffer.method5753(var3[var6]);
-					Client.packetWriter.addNode(var8);
-				}
-
-				var4 = true;
-				break;
+			return 1;
+		} else if (var0 == ScriptOpcodes.CAM_GETANGLE_XA) {
+			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = Client.camAngleX;
+			return 1;
+		} else if (var0 == ScriptOpcodes.CAM_GETANGLE_YA) {
+			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = Client.camAngleY;
+			return 1;
+		} else if (var0 == ScriptOpcodes.CAM_SETFOLLOWHEIGHT) {
+			var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
+			if (var3 < 0) {
+				var3 = 0;
 			}
-		}
 
-		if (!var4) {
-			ObjectSound.addGameMessage(4, "", "Unable to find " + var1);
+			Client.camFollowHeight = var3;
+			return 1;
+		} else if (var0 == ScriptOpcodes.CAM_GETFOLLOWHEIGHT) {
+			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = Client.camFollowHeight;
+			return 1;
+		} else {
+			return 2;
 		}
-
 	}
 }
