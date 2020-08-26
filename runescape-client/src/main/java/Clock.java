@@ -122,7 +122,7 @@ public abstract class Clock {
 						Client.field704 = false;
 					} else if (var3 == 0) {
 						class206.midiPcmStream.clear();
-						class206.field2437 = 1;
+						class206.musicPlayerStatus = 1;
 						class204.musicTrackArchive = null;
 						Client.field704 = false;
 					} else {

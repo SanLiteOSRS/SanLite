@@ -83,7 +83,7 @@ public class GrandExchangeEvents {
 		garbageValue = "355141932"
 	)
 	public static void method150(int var0) {
-		if (class206.field2437 != 0) {
+		if (class206.musicPlayerStatus != 0) {
 			Tiles.musicTrackVolume = var0;
 		} else {
 			class206.midiPcmStream.setPcmStreamVolume(var0);

@@ -63,7 +63,7 @@ public class HealthBarUpdate extends Node {
 		garbageValue = "-1655201695"
 	)
 	public static boolean method1815() {
-		return class206.field2437 != 0 ? true : class206.midiPcmStream.isReady();
+		return class206.musicPlayerStatus != 0 ? true : class206.midiPcmStream.isReady();
 	}
 
 	@ObfuscatedName("ej")

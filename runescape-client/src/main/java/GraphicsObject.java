@@ -173,10 +173,10 @@ public final class GraphicsObject extends Renderable {
 	)
 	public static void method2095() {
 		try {
-			if (class206.field2437 == 1) {
+			if (class206.musicPlayerStatus == 1) {
 				int var0 = class206.midiPcmStream.method3806();
 				if (var0 > 0 && class206.midiPcmStream.isReady()) {
-					var0 -= FaceNormal.field1922;
+					var0 -= FaceNormal.pcmSampleLength;
 					if (var0 < 0) {
 						var0 = 0;
 					}
@@ -188,9 +188,9 @@ public final class GraphicsObject extends Renderable {
 				class206.midiPcmStream.clear();
 				class206.midiPcmStream.removeAll();
 				if (class204.musicTrackArchive != null) {
-					class206.field2437 = 2;
+					class206.musicPlayerStatus = 2;
 				} else {
-					class206.field2437 = 0;
+					class206.musicPlayerStatus = 0;
 				}
 
 				class206.musicTrack = null;
@@ -199,7 +199,7 @@ public final class GraphicsObject extends Renderable {
 		} catch (Exception var2) {
 			var2.printStackTrace();
 			class206.midiPcmStream.clear();
-			class206.field2437 = 0;
+			class206.musicPlayerStatus = 0;
 			class206.musicTrack = null;
 			class39.soundCache = null;
 			class204.musicTrackArchive = null;

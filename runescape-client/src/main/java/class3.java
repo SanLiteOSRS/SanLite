@@ -165,7 +165,7 @@ public class class3 implements Enumerated {
 					Script.method2322(var1, var2, var3, 255, false);
 				} else {
 					class206.midiPcmStream.clear();
-					class206.field2437 = 1;
+					class206.musicPlayerStatus = 1;
 					class204.musicTrackArchive = null;
 				}
 			}

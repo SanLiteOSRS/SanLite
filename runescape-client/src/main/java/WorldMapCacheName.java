@@ -67,18 +67,18 @@ public class WorldMapCacheName {
 	static void playSong(int var0) {
 		if (var0 == -1 && !Client.field704) {
 			class206.midiPcmStream.clear();
-			class206.field2437 = 1;
+			class206.musicPlayerStatus = 1;
 			class204.musicTrackArchive = null;
 		} else if (var0 != -1 && var0 != Client.currentTrackGroupId && Client.musicVolume != 0 && !Client.field704) {
 			Archive var1 = CollisionMap.archive6;
 			int var2 = Client.musicVolume;
-			class206.field2437 = 1;
+			class206.musicPlayerStatus = 1;
 			class204.musicTrackArchive = var1;
 			BuddyRankComparator.musicTrackGroupId = var0;
 			class206.musicTrackFileId = 0;
 			Tiles.musicTrackVolume = var2;
 			class206.musicTrackBoolean = false;
-			FaceNormal.field1922 = 2;
+			FaceNormal.pcmSampleLength = 2;
 		}
 
 		Client.currentTrackGroupId = var0;

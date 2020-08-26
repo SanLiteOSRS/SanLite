@@ -148,13 +148,13 @@ public class Script extends DualNode {
 		garbageValue = "1897584620"
 	)
 	public static void method2322(AbstractArchive var0, int var1, int var2, int var3, boolean var4) {
-		class206.field2437 = 1;
+		class206.musicPlayerStatus = 1;
 		class204.musicTrackArchive = var0;
 		BuddyRankComparator.musicTrackGroupId = var1;
 		class206.musicTrackFileId = var2;
 		Tiles.musicTrackVolume = var3;
 		class206.musicTrackBoolean = var4;
-		FaceNormal.field1922 = 10000;
+		FaceNormal.pcmSampleLength = 10000;
 	}
 
 	@ObfuscatedName("x")
@@ -164,7 +164,7 @@ public class Script extends DualNode {
 	)
 	public static boolean method2326() {
 		try {
-			if (class206.field2437 == 2) {
+			if (class206.musicPlayerStatus == 2) {
 				if (class206.musicTrack == null) {
 					class206.musicTrack = MusicTrack.readTrack(class204.musicTrackArchive, BuddyRankComparator.musicTrackGroupId, class206.musicTrackFileId);
 					if (class206.musicTrack == null) {
@@ -180,7 +180,7 @@ public class Script extends DualNode {
 					class206.midiPcmStream.clearAll();
 					class206.midiPcmStream.setPcmStreamVolume(Tiles.musicTrackVolume);
 					class206.midiPcmStream.setMusicTrack(class206.musicTrack, class206.musicTrackBoolean);
-					class206.field2437 = 0;
+					class206.musicPlayerStatus = 0;
 					class206.musicTrack = null;
 					class39.soundCache = null;
 					class204.musicTrackArchive = null;
@@ -190,7 +190,7 @@ public class Script extends DualNode {
 		} catch (Exception var1) {
 			var1.printStackTrace();
 			class206.midiPcmStream.clear();
-			class206.field2437 = 0;
+			class206.musicPlayerStatus = 0;
 			class206.musicTrack = null;
 			class39.soundCache = null;
 			class204.musicTrackArchive = null;

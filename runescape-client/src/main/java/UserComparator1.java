@@ -89,13 +89,13 @@ public class UserComparator1 implements Comparator {
 				Archive var11 = CollisionMap.archive6;
 				var8 = var11.getGroupId("scape main");
 				int var9 = var11.getFileId(var8, "");
-				class206.field2437 = 1;
+				class206.musicPlayerStatus = 1;
 				class204.musicTrackArchive = var11;
 				BuddyRankComparator.musicTrackGroupId = var8;
 				class206.musicTrackFileId = var9;
 				Tiles.musicTrackVolume = 255;
 				class206.musicTrackBoolean = false;
-				FaceNormal.field1922 = 2;
+				FaceNormal.pcmSampleLength = 2;
 			} else {
 				class58.method915(2);
 			}

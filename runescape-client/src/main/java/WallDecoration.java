@@ -21,7 +21,7 @@ public final class WallDecoration {
 	int tileHeight;
 	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = 842006528
+		intValue = 841011539
 	)
 	@Export("x")
 	int x;

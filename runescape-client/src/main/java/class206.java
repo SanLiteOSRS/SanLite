@@ -27,7 +27,8 @@ public class class206 {
 	@ObfuscatedGetter(
 		intValue = -1660292459
 	)
-	public static int field2437;
+	@Export("musicPlayerStatus")
+	public static int musicPlayerStatus;
 	@ObfuscatedName("w")
 	@ObfuscatedGetter(
 		intValue = 1418179019
@@ -45,6 +46,6 @@ public class class206 {
 	static MusicTrack musicTrack;
 
 	static {
-		field2437 = 0;
+		musicPlayerStatus = 0;
 	}
 }

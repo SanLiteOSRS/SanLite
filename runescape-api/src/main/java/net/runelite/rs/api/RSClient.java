@@ -1108,9 +1108,6 @@ public interface RSClient extends RSGameEngine, Client
 	@Import("viewportWalking")
 	void setViewportWalking(boolean viewportWalking);
 
-	@Import("playMusicTrack")
-	void playMusicTrack(int var0, RSAbstractArchive var1, int var2, int var3, int var4, boolean var5);
-
 	@Import("midiPcmStream")
 	RSMidiPcmStream getMidiPcmStream();
 
@@ -1192,4 +1189,22 @@ public interface RSClient extends RSGameEngine, Client
 
 	@Import("rightTitleSprite")
 	void setRightTitleSprite(SpritePixels background);
+
+	@Import("musicPlayerStatus")
+	void setMusicPlayerStatus(int status);
+
+	@Import("musicTrackArchive")
+	void setMusicTrackArchive(RSAbstractArchive abstractArchive);
+
+	@Import("musicTrackGroupId")
+	void setMusicTrackGroupId(int groupId);
+
+	@Import("musicTrackFileId")
+	void setMusicTrackFileId(int fileId);
+
+	@Import("musicTrackBoolean")
+	void setMusicTrackBoolean(boolean musicTrackBoolean);
+
+	@Import("pcmSampleLength")
+	void setPcmSampleLength(int pcmSampleLength);
 }

@@ -71,13 +71,13 @@ public class class58 {
 		garbageValue = "101066912"
 	)
 	public static void method915(int var0) {
-		class206.field2437 = 1;
+		class206.musicPlayerStatus = 1;
 		class204.musicTrackArchive = null;
 		BuddyRankComparator.musicTrackGroupId = -1;
 		class206.musicTrackFileId = -1;
 		Tiles.musicTrackVolume = 0;
 		class206.musicTrackBoolean = false;
-		FaceNormal.field1922 = var0;
+		FaceNormal.pcmSampleLength = var0;
 	}
 
 	@ObfuscatedName("t")

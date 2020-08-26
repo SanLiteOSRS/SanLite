@@ -1466,12 +1466,25 @@ public abstract class RSClientMixin implements RSClient
 	}
 
 	@Inject
+	public void playMusicTrack(RSAbstractArchive abstractArchive, int groupId, int trackId, int volume,
+			boolean musicTrackBoolean, int pcmSampleLength)
+	{
+		client.setMusicPlayerStatus(1);
+		client.setMusicTrackArchive(abstractArchive);
+		client.setMusicTrackGroupId(groupId);
+		client.setMusicTrackFileId(trackId);
+		client.setMusicTrackVolume(volume);
+		client.setMusicTrackBoolean(musicTrackBoolean);
+		client.setPcmSampleLength(pcmSampleLength);
+	}
+
+	@Inject
 	@Override
 	public void setMusicVolume(int volume)
 	{
 		if (volume > 0 && client.getMusicVolume() <= 0 && client.getCurrentTrackGroupId() != -1)
 		{
-			client.playMusicTrack(1000, client.getMusicTracks(), client.getCurrentTrackGroupId(), 0, volume, false);
+			playMusicTrack(client.getMusicTracks(), client.getCurrentTrackGroupId(), 0, volume, false, 1000);
 		}
 
 		client.setClientMusicVolume(volume);
@@ -1481,7 +1494,6 @@ public abstract class RSClientMixin implements RSClient
 			client.getMidiPcmStream().setPcmStreamVolume(volume);
 		}
 	}
-
 
 	@Copy("changeGameOptions")
 	public static void rs$changeGameOptions(int var0)

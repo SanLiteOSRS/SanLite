@@ -11,7 +11,8 @@ public class FaceNormal {
 	@ObfuscatedGetter(
 		intValue = 1856660121
 	)
-	public static int field1922;
+	@Export("pcmSampleLength")
+	public static int pcmSampleLength;
 	@ObfuscatedName("ha")
 	@ObfuscatedGetter(
 		intValue = 1637295417
