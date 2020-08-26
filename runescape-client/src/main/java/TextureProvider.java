@@ -3,48 +3,49 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("du")
+@ObfuscatedName("dt")
 @Implements("TextureProvider")
 public class TextureProvider implements TextureLoader {
-	@ObfuscatedName("y")
-	@Export("Tiles_lightness")
-	static int[] Tiles_lightness;
-	@ObfuscatedName("m")
+	@ObfuscatedName("ri")
+	@ObfuscatedGetter(
+		intValue = 661667840
+	)
+	static int field1561;
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
 		signature = "[Leo;"
 	)
 	@Export("textures")
 	Texture[] textures;
-	@ObfuscatedName("o")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "Ljp;"
+		signature = "Lji;"
 	)
 	@Export("deque")
 	NodeDeque deque;
-	@ObfuscatedName("q")
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = 1950202761
+		intValue = 1194513141
 	)
 	@Export("capacity")
 	int capacity;
-	@ObfuscatedName("j")
+	@ObfuscatedName("t")
 	@ObfuscatedGetter(
-		intValue = 742782017
+		intValue = 1829748835
 	)
 	@Export("remaining")
 	int remaining;
-	@ObfuscatedName("p")
+	@ObfuscatedName("i")
 	@Export("brightness")
 	double brightness;
-	@ObfuscatedName("g")
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = -1900729685
+		intValue = -436241833
 	)
 	@Export("textureSize")
 	int textureSize;
-	@ObfuscatedName("n")
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
 		signature = "Lic;"
 	)
@@ -75,10 +76,10 @@ public class TextureProvider implements TextureLoader {
 
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
 		signature = "(I)I",
-		garbageValue = "-1846975444"
+		garbageValue = "861798052"
 	)
 	@Export("getLoadedPercentage")
 	public int getLoadedPercentage() {
@@ -94,7 +95,7 @@ public class TextureProvider implements TextureLoader {
 
 				for (int var7 = 0; var7 < var6.length; ++var7) {
 					int var8 = var6[var7];
-					if (this.archive.method4359(var8)) {
+					if (this.archive.method4251(var8)) {
 						++var2;
 					}
 				}
@@ -108,17 +109,17 @@ public class TextureProvider implements TextureLoader {
 		}
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("k")
 	@Export("setBrightness")
 	public void setBrightness(double var1) {
 		this.brightness = var1;
 		this.clear();
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
 		signature = "(II)[I",
-		garbageValue = "1948753683"
+		garbageValue = "-1265290789"
 	)
 	@Export("getTexturePixels")
 	public int[] getTexturePixels(int var1) {
@@ -148,39 +149,39 @@ public class TextureProvider implements TextureLoader {
 		return null;
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
 		signature = "(II)I",
-		garbageValue = "1038437362"
+		garbageValue = "260599249"
 	)
 	@Export("getAverageTextureRGB")
 	public int getAverageTextureRGB(int var1) {
 		return this.textures[var1] != null ? this.textures[var1].averageRGB : 0;
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		signature = "(IB)Z",
-		garbageValue = "54"
+		signature = "(II)Z",
+		garbageValue = "168595235"
 	)
-	public boolean vmethod3404(int var1) {
-		return this.textures[var1].field1650;
+	public boolean vmethod3396(int var1) {
+		return this.textures[var1].field1647;
 	}
 
-	@ObfuscatedName("g")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "(IB)Z",
-		garbageValue = "18"
+		signature = "(IS)Z",
+		garbageValue = "14506"
 	)
 	@Export("isLowDetail")
 	public boolean isLowDetail(int var1) {
 		return this.textureSize == 64;
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-426854674"
+		signature = "(B)V",
+		garbageValue = "8"
 	)
 	@Export("clear")
 	public void clear() {
@@ -194,10 +195,10 @@ public class TextureProvider implements TextureLoader {
 		this.remaining = this.capacity;
 	}
 
-	@ObfuscatedName("u")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
 		signature = "(II)V",
-		garbageValue = "245586965"
+		garbageValue = "-736148510"
 	)
 	@Export("animate")
 	public void animate(int var1) {
@@ -211,247 +212,49 @@ public class TextureProvider implements TextureLoader {
 
 	}
 
-	@ObfuscatedName("ak")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(ILcs;ZI)I",
-		garbageValue = "1729691421"
+		signature = "(II)Z",
+		garbageValue = "194887508"
 	)
-	static int method2888(int var0, Script var1, boolean var2) {
-		int var3;
-		if (var0 == ScriptOpcodes.OC_NAME) {
-			var3 = Interpreter.Interpreter_intStack[--UrlRequester.Interpreter_intStackSize];
-			Interpreter.Interpreter_stringStack[++WorldMapEvent.Interpreter_stringStackSize - 1] = KitDefinition.ItemDefinition_get(var3).name;
-			return 1;
-		} else {
-			int var4;
-			ItemComposition var5;
-			if (var0 == ScriptOpcodes.OC_OP) {
-				UrlRequester.Interpreter_intStackSize -= 2;
-				var3 = Interpreter.Interpreter_intStack[UrlRequester.Interpreter_intStackSize];
-				var4 = Interpreter.Interpreter_intStack[UrlRequester.Interpreter_intStackSize + 1];
-				var5 = KitDefinition.ItemDefinition_get(var3);
-				if (var4 >= 1 && var4 <= 5 && var5.groundActions[var4 - 1] != null) {
-					Interpreter.Interpreter_stringStack[++WorldMapEvent.Interpreter_stringStackSize - 1] = var5.groundActions[var4 - 1];
-				} else {
-					Interpreter.Interpreter_stringStack[++WorldMapEvent.Interpreter_stringStackSize - 1] = "";
-				}
-
-				return 1;
-			} else if (var0 == ScriptOpcodes.OC_IOP) {
-				UrlRequester.Interpreter_intStackSize -= 2;
-				var3 = Interpreter.Interpreter_intStack[UrlRequester.Interpreter_intStackSize];
-				var4 = Interpreter.Interpreter_intStack[UrlRequester.Interpreter_intStackSize + 1];
-				var5 = KitDefinition.ItemDefinition_get(var3);
-				if (var4 >= 1 && var4 <= 5 && var5.inventoryActions[var4 - 1] != null) {
-					Interpreter.Interpreter_stringStack[++WorldMapEvent.Interpreter_stringStackSize - 1] = var5.inventoryActions[var4 - 1];
-				} else {
-					Interpreter.Interpreter_stringStack[++WorldMapEvent.Interpreter_stringStackSize - 1] = "";
-				}
-
-				return 1;
-			} else if (var0 == ScriptOpcodes.OC_COST) {
-				var3 = Interpreter.Interpreter_intStack[--UrlRequester.Interpreter_intStackSize];
-				Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = KitDefinition.ItemDefinition_get(var3).price;
-				return 1;
-			} else if (var0 == ScriptOpcodes.OC_STACKABLE) {
-				var3 = Interpreter.Interpreter_intStack[--UrlRequester.Interpreter_intStackSize];
-				Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = KitDefinition.ItemDefinition_get(var3).isStackable == 1 ? 1 : 0;
-				return 1;
-			} else {
-				ItemComposition var6;
-				if (var0 == ScriptOpcodes.OC_CERT) {
-					var3 = Interpreter.Interpreter_intStack[--UrlRequester.Interpreter_intStackSize];
-					var6 = KitDefinition.ItemDefinition_get(var3);
-					if (var6.noteTemplate == -1 && var6.note >= 0) {
-						Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = var6.note;
-					} else {
-						Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = var3;
-					}
-
-					return 1;
-				} else if (var0 == ScriptOpcodes.OC_UNCERT) {
-					var3 = Interpreter.Interpreter_intStack[--UrlRequester.Interpreter_intStackSize];
-					var6 = KitDefinition.ItemDefinition_get(var3);
-					if (var6.noteTemplate >= 0 && var6.note >= 0) {
-						Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = var6.note;
-					} else {
-						Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = var3;
-					}
-
-					return 1;
-				} else if (var0 == ScriptOpcodes.OC_MEMBERS) {
-					var3 = Interpreter.Interpreter_intStack[--UrlRequester.Interpreter_intStackSize];
-					Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = KitDefinition.ItemDefinition_get(var3).isMembersOnly ? 1 : 0;
-					return 1;
-				} else if (var0 == ScriptOpcodes.OC_PLACEHOLDER) {
-					var3 = Interpreter.Interpreter_intStack[--UrlRequester.Interpreter_intStackSize];
-					var6 = KitDefinition.ItemDefinition_get(var3);
-					if (var6.placeholderTemplate == -1 && var6.placeholder >= 0) {
-						Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = var6.placeholder;
-					} else {
-						Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = var3;
-					}
-
-					return 1;
-				} else if (var0 == ScriptOpcodes.OC_UNPLACEHOLDER) {
-					var3 = Interpreter.Interpreter_intStack[--UrlRequester.Interpreter_intStackSize];
-					var6 = KitDefinition.ItemDefinition_get(var3);
-					if (var6.placeholderTemplate >= 0 && var6.placeholder >= 0) {
-						Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = var6.placeholder;
-					} else {
-						Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = var3;
-					}
-
-					return 1;
-				} else if (var0 == ScriptOpcodes.OC_FIND) {
-					String var7 = Interpreter.Interpreter_stringStack[--WorldMapEvent.Interpreter_stringStackSize];
-					var4 = Interpreter.Interpreter_intStack[--UrlRequester.Interpreter_intStackSize];
-					SpriteMask.findItemDefinitions(var7, var4 == 1);
-					Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = ItemLayer.foundItemIdCount;
-					return 1;
-				} else if (var0 != ScriptOpcodes.OC_FINDNEXT) {
-					if (var0 == ScriptOpcodes.OC_FINDRESET) {
-						ArchiveLoader.foundItemIndex = 0;
-						return 1;
-					} else {
-						return 2;
-					}
-				} else {
-					if (WorldMapScaleHandler.foundItemIds != null && ArchiveLoader.foundItemIndex < ItemLayer.foundItemIdCount) {
-						Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = WorldMapScaleHandler.foundItemIds[++ArchiveLoader.foundItemIndex - 1] & '\uffff';
-					} else {
-						Interpreter.Interpreter_intStack[++UrlRequester.Interpreter_intStackSize - 1] = -1;
-					}
-
-					return 1;
-				}
-			}
-		}
+	public static boolean method2876(int var0) {
+		return var0 >= WorldMapDecorationType.field2760.id && var0 <= WorldMapDecorationType.field2757.id || var0 == WorldMapDecorationType.field2761.id;
 	}
 
-	@ObfuscatedName("bc")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;I)I",
-		garbageValue = "1974416966"
+		signature = "([Lgq;II)Lgq;",
+		garbageValue = "1374231902"
 	)
-	public static int method2873(String var0) {
-		return var0.length() + 2;
+	@Export("findEnumerated")
+	public static Enumerated findEnumerated(Enumerated[] var0, int var1) {
+		Enumerated[] var2 = var0;
+
+		for (int var3 = 0; var3 < var2.length; ++var3) {
+			Enumerated var4 = var2[var3];
+			if (var1 == var4.rsOrdinal()) {
+				return var4;
+			}
+		}
+
+		return null;
 	}
 
-	@ObfuscatedName("gz")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "(IIZB)V",
-		garbageValue = "-64"
+		signature = "(IB)Lij;",
+		garbageValue = "38"
 	)
-	static final void method2900(int var0, int var1, boolean var2) {
-		if (!var2 || var0 != WorldMapCacheName.field328 || class22.field104 != var1) {
-			WorldMapCacheName.field328 = var0;
-			class22.field104 = var1;
-			ClientPreferences.updateGameState(25);
-			ArchiveDiskActionHandler.drawLoadingMessage("Loading - please wait.", true);
-			int var3 = class182.baseX * 64;
-			int var4 = SecureRandomFuture.baseY * 64;
-			class182.baseX = (var0 - 6) * 8;
-			SecureRandomFuture.baseY = (var1 - 6) * 8;
-			int var5 = class182.baseX * 64 - var3;
-			int var6 = SecureRandomFuture.baseY * 64 - var4;
-			var3 = class182.baseX * 64;
-			var4 = SecureRandomFuture.baseY * 64;
+	public static GameBuild method2863(int var0) {
+		GameBuild[] var1 = IgnoreList.method5182();
 
-			int var7;
-			int var9;
-			int[] var10000;
-			for (var7 = 0; var7 < 32768; ++var7) {
-				NPC var8 = Client.npcs[var7];
-				if (var8 != null) {
-					for (var9 = 0; var9 < 10; ++var9) {
-						var10000 = var8.pathX;
-						var10000[var9] -= var5;
-						var10000 = var8.pathY;
-						var10000[var9] -= var6;
-					}
-
-					var8.x -= var5 * 128;
-					var8.y -= var6 * 128;
-				}
+		for (int var2 = 0; var2 < var1.length; ++var2) {
+			GameBuild var3 = var1[var2];
+			if (var0 == var3.buildId) {
+				return var3;
 			}
-
-			for (var7 = 0; var7 < 2048; ++var7) {
-				Player var21 = Client.players[var7];
-				if (var21 != null) {
-					for (var9 = 0; var9 < 10; ++var9) {
-						var10000 = var21.pathX;
-						var10000[var9] -= var5;
-						var10000 = var21.pathY;
-						var10000[var9] -= var6;
-					}
-
-					var21.x -= var5 * 128;
-					var21.y -= var6 * 128;
-				}
-			}
-
-			byte var20 = 0;
-			byte var18 = 104;
-			byte var22 = 1;
-			if (var5 < 0) {
-				var20 = 103;
-				var18 = -1;
-				var22 = -1;
-			}
-
-			byte var10 = 0;
-			byte var11 = 104;
-			byte var12 = 1;
-			if (var6 < 0) {
-				var10 = 103;
-				var11 = -1;
-				var12 = -1;
-			}
-
-			int var14;
-			for (int var13 = var20; var18 != var13; var13 += var22) {
-				for (var14 = var10; var11 != var14; var14 += var12) {
-					int var15 = var13 + var5;
-					int var16 = var6 + var14;
-
-					for (int var17 = 0; var17 < 4; ++var17) {
-						if (var15 >= 0 && var16 >= 0 && var15 < 104 && var16 < 104) {
-							Client.groundItems[var17][var13][var14] = Client.groundItems[var17][var15][var16];
-						} else {
-							Client.groundItems[var17][var13][var14] = null;
-						}
-					}
-				}
-			}
-
-			for (PendingSpawn var19 = (PendingSpawn)Client.pendingSpawns.last(); var19 != null; var19 = (PendingSpawn)Client.pendingSpawns.previous()) {
-				var19.x -= var5;
-				var19.y -= var6;
-				if (var19.x < 0 || var19.y < 0 || var19.x >= 104 || var19.y >= 104) {
-					var19.remove();
-				}
-			}
-
-			if (Client.destinationX != 0) {
-				Client.destinationX -= var5;
-				Client.destinationY -= var6;
-			}
-
-			Client.soundEffectCount = 0;
-			Client.isCameraLocked = false;
-			MouseHandler.cameraX -= var5 << 7;
-			ObjectSound.cameraZ -= var6 << 7;
-			class225.oculusOrbFocalPointX -= var5 << 7;
-			HealthBarDefinition.oculusOrbFocalPointY -= var6 << 7;
-			Client.field937 = -1;
-			Client.graphicsObjects.clear();
-			Client.projectiles.clear();
-
-			for (var14 = 0; var14 < 4; ++var14) {
-				Client.collisionMaps[var14].clear();
-			}
-
 		}
+
+		return null;
 	}
 }

@@ -1,15 +1,14 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
-import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hf")
+@ObfuscatedName("hd")
 @Implements("Skills")
 public class Skills {
-	@ObfuscatedName("o")
+	@ObfuscatedName("k")
 	@Export("Skills_enabled")
 	public static final boolean[] Skills_enabled;
-	@ObfuscatedName("q")
+	@ObfuscatedName("s")
 	@Export("Skills_experienceTable")
 	public static int[] Skills_experienceTable;
 
@@ -25,23 +24,5 @@ public class Skills {
 			Skills_experienceTable[var1] = var0 / 4;
 		}
 
-	}
-
-	@ObfuscatedName("o")
-	@ObfuscatedSignature(
-		signature = "(B)[Lib;",
-		garbageValue = "0"
-	)
-	public static StudioGame[] method4272() {
-		return new StudioGame[]{StudioGame.stellardawn, StudioGame.game5, StudioGame.game3, StudioGame.runescape, StudioGame.game4, StudioGame.oldscape};
-	}
-
-	@ObfuscatedName("q")
-	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "-891910442"
-	)
-	public static int method4271() {
-		return ++MouseHandler.MouseHandler_idleCycles - 1;
 	}
 }

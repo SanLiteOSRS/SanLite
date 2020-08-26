@@ -4,25 +4,30 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hh")
+@ObfuscatedName("hz")
 @Implements("SpriteMask")
 public class SpriteMask extends DualNode {
-	@ObfuscatedName("m")
+	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		intValue = 293169349
+		intValue = -1396616335
+	)
+	static int field2552;
+	@ObfuscatedName("z")
+	@ObfuscatedGetter(
+		intValue = 2052975947
 	)
 	@Export("width")
 	public final int width;
-	@ObfuscatedName("o")
+	@ObfuscatedName("k")
 	@ObfuscatedGetter(
-		intValue = -1667471455
+		intValue = -583477063
 	)
 	@Export("height")
 	public final int height;
-	@ObfuscatedName("q")
+	@ObfuscatedName("s")
 	@Export("xWidths")
 	public final int[] xWidths;
-	@ObfuscatedName("j")
+	@ObfuscatedName("t")
 	@Export("xStarts")
 	public final int[] xStarts;
 
@@ -33,10 +38,10 @@ public class SpriteMask extends DualNode {
 		this.xStarts = var4;
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
 		signature = "(III)Z",
-		garbageValue = "-679501708"
+		garbageValue = "1864355280"
 	)
 	@Export("contains")
 	public boolean contains(int var1, int var2) {
@@ -50,83 +55,16 @@ public class SpriteMask extends DualNode {
 		return false;
 	}
 
-	@ObfuscatedName("m")
-	public static final void method4111(long var0) {
-		try {
-			Thread.sleep(var0);
-		} catch (InterruptedException var3) {
-		}
-
-	}
-
-	@ObfuscatedName("q")
+	@ObfuscatedName("ku")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "39704682"
+		signature = "(Lhq;I)Ljava/lang/String;",
+		garbageValue = "1504596976"
 	)
-	@Export("savePreferences")
-	static void savePreferences() {
-		AccessFile var0 = null;
-
-		try {
-			var0 = GameEngine.getPreferencesFile("", GrandExchangeOfferWorldComparator.field54.name, true);
-			Buffer var1 = NetSocket.clientPreferences.toBuffer();
-			var0.write(var1.array, 0, var1.offset);
-		} catch (Exception var3) {
+	static String method4059(Widget var0) {
+		if (GrandExchangeOfferTotalQuantityComparator.method176(WorldMapIcon_0.getWidgetClickMask(var0)) == 0) {
+			return null;
+		} else {
+			return var0.spellActionName != null && var0.spellActionName.trim().length() != 0 ? var0.spellActionName : null;
 		}
-
-		try {
-			if (var0 != null) {
-				var0.closeSync(true);
-			}
-		} catch (Exception var2) {
-		}
-
-	}
-
-	@ObfuscatedName("km")
-	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;ZI)V",
-		garbageValue = "2008753616"
-	)
-	@Export("findItemDefinitions")
-	static void findItemDefinitions(String var0, boolean var1) {
-		var0 = var0.toLowerCase();
-		short[] var2 = new short[16];
-		int var3 = 0;
-
-		for (int var4 = 0; var4 < HitSplatDefinition.ItemDefinition_fileCount; ++var4) {
-			ItemComposition var5 = KitDefinition.ItemDefinition_get(var4);
-			if ((!var1 || var5.isTradable) && var5.noteTemplate == -1 && var5.name.toLowerCase().indexOf(var0) != -1) {
-				if (var3 >= 250) {
-					ItemLayer.foundItemIdCount = -1;
-					WorldMapScaleHandler.foundItemIds = null;
-					return;
-				}
-
-				if (var3 >= var2.length) {
-					short[] var6 = new short[var2.length * 2];
-
-					for (int var7 = 0; var7 < var3; ++var7) {
-						var6[var7] = var2[var7];
-					}
-
-					var2 = var6;
-				}
-
-				var2[var3++] = (short)var4;
-			}
-		}
-
-		WorldMapScaleHandler.foundItemIds = var2;
-		ArchiveLoader.foundItemIndex = 0;
-		ItemLayer.foundItemIdCount = var3;
-		String[] var8 = new String[ItemLayer.foundItemIdCount];
-
-		for (int var9 = 0; var9 < ItemLayer.foundItemIdCount; ++var9) {
-			var8[var9] = KitDefinition.ItemDefinition_get(var2[var9]).name;
-		}
-
-		WorldMapDecoration.method400(var8, WorldMapScaleHandler.foundItemIds);
 	}
 }

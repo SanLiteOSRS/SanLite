@@ -1,50 +1,56 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jw")
+@ObfuscatedName("js")
 @Implements("IgnoreList")
 public class IgnoreList extends NameableContainer {
-	@ObfuscatedName("q")
+	@ObfuscatedName("rj")
+	@ObfuscatedGetter(
+		intValue = -1974595173
+	)
+	static int field3620;
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		signature = "Lmo;"
+		signature = "Lmu;"
 	)
 	@Export("loginType")
 	final LoginType loginType;
 
 	@ObfuscatedSignature(
-		signature = "(Lmo;)V"
+		signature = "(Lmu;)V"
 	)
 	public IgnoreList(LoginType var1) {
 		super(400);
 		this.loginType = var1;
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(I)Ljf;",
-		garbageValue = "551595115"
+		signature = "(B)Ljc;",
+		garbageValue = "35"
 	)
 	@Export("newInstance")
 	Nameable newInstance() {
 		return new Ignored();
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "(II)[Ljf;",
-		garbageValue = "1959965595"
+		signature = "(IB)[Ljc;",
+		garbageValue = "-19"
 	)
 	@Export("newTypedArray")
 	Nameable[] newTypedArray(int var1) {
 		return new Ignored[var1];
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		signature = "(Lkn;IB)V",
-		garbageValue = "77"
+		signature = "(Lkf;IB)V",
+		garbageValue = "-55"
 	)
 	@Export("read")
 	public void read(Buffer var1, int var2) {
@@ -59,7 +65,7 @@ public class IgnoreList extends NameableContainer {
 					Ignored var7 = (Ignored)this.getByCurrentUsername(var5);
 					if (var4) {
 						Ignored var8 = (Ignored)this.getByCurrentUsername(var6);
-						if (var8 != null && var7 != var8) {
+						if (var8 != null && var8 != var7) {
 							if (var7 != null) {
 								this.remove(var8);
 							} else {
@@ -86,5 +92,14 @@ public class IgnoreList extends NameableContainer {
 
 			return;
 		}
+	}
+
+	@ObfuscatedName("z")
+	@ObfuscatedSignature(
+		signature = "(I)[Lij;",
+		garbageValue = "1485577751"
+	)
+	static GameBuild[] method5182() {
+		return new GameBuild[]{GameBuild.LIVE, GameBuild.WIP, GameBuild.RC, GameBuild.BUILDLIVE};
 	}
 }
