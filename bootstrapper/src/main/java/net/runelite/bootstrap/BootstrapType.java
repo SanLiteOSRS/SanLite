@@ -7,9 +7,9 @@ import lombok.Getter;
 public enum BootstrapType
 {
 	LIVE("Live", "live", new BootstrapperProperties().getBootstrapLiveRepo()),
-	LIVE_FALLBACK("Live Fallback", "live-fallback", new BootstrapperProperties().getBootstrapLiveFallbackRepo()),
+	LIVE_FALLBACK("Live fallback", "live-fallback", new BootstrapperProperties().getBootstrapLiveFallbackRepo()),
 	STAGING("Staging", "staging", new BootstrapperProperties().getBootstrapStagingRepo()),
-	STAGING_FALLBACK("Staging Fallback", "staging-fallback", new BootstrapperProperties().getBootstrapStagingFallbackRepo());
+	STAGING_FALLBACK("Staging fallback", "staging-fallback", new BootstrapperProperties().getBootstrapStagingFallbackRepo());
 
 	@Getter
 	private final String name;
