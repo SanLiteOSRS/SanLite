@@ -49,11 +49,11 @@ class Vorkath
 	{
 		UNKNOWN,
 		ACID,
-		ZOMBIFIED_SPAWN;
+		ZOMBIFIED_SPAWN
 	}
 
 	@Getter
-	private NPC npc;
+	private final NPC npc;
 
 	@Getter
 	@Setter
@@ -61,7 +61,7 @@ class Vorkath
 
 	@Getter
 	@Setter
-	private Vorkath.SpecialAttackStyle nextSpecialAttackStyle;
+	private SpecialAttackStyle nextSpecialAttackStyle;
 
 	@Getter
 	@Setter

@@ -3,127 +3,122 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("js")
+@ObfuscatedName("jd")
 @Implements("HitSplatDefinition")
 public class HitSplatDefinition extends DualNode {
-	@ObfuscatedName("m")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
 		signature = "Lic;"
 	)
 	@Export("HitSplatDefinition_archive")
 	public static AbstractArchive HitSplatDefinition_archive;
-	@ObfuscatedName("o")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
 		signature = "Lic;"
 	)
-	public static AbstractArchive field3356;
-	@ObfuscatedName("q")
+	public static AbstractArchive field3364;
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
 		signature = "Lic;"
 	)
 	@Export("HitSplatDefinition_fontsArchive")
 	public static AbstractArchive HitSplatDefinition_fontsArchive;
-	@ObfuscatedName("j")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		signature = "Lec;"
+		signature = "Lel;"
 	)
 	@Export("HitSplatDefinition_cached")
 	public static EvictingDualNodeHashTable HitSplatDefinition_cached;
-	@ObfuscatedName("p")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		signature = "Lec;"
+		signature = "Lel;"
 	)
 	@Export("HitSplatDefinition_cachedSprites")
 	public static EvictingDualNodeHashTable HitSplatDefinition_cachedSprites;
-	@ObfuscatedName("g")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "Lec;"
+		signature = "Lel;"
 	)
 	@Export("HitSplatDefinition_cachedFonts")
 	public static EvictingDualNodeHashTable HitSplatDefinition_cachedFonts;
-	@ObfuscatedName("a")
+	@ObfuscatedName("d")
 	@ObfuscatedGetter(
-		intValue = 554677393
-	)
-	@Export("ItemDefinition_fileCount")
-	public static int ItemDefinition_fileCount;
-	@ObfuscatedName("y")
-	@ObfuscatedGetter(
-		intValue = 1528040183
+		intValue = 840460821
 	)
 	@Export("fontId")
 	int fontId;
-	@ObfuscatedName("c")
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = 1665504671
+		intValue = -910808373
 	)
 	@Export("textColor")
 	public int textColor;
-	@ObfuscatedName("h")
+	@ObfuscatedName("a")
 	@ObfuscatedGetter(
-		intValue = -1892048919
+		intValue = -1699415327
 	)
-	public int field3364;
-	@ObfuscatedName("k")
+	public int field3356;
+	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = 1862744257
+		intValue = -359975217
 	)
-	int field3365;
-	@ObfuscatedName("r")
+	int field3357;
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = 173475991
+		intValue = -1100166573
 	)
-	int field3366;
-	@ObfuscatedName("s")
-	@ObfuscatedGetter(
-		intValue = 1837345819
-	)
-	int field3378;
-	@ObfuscatedName("v")
-	@ObfuscatedGetter(
-		intValue = 275308627
-	)
-	int field3368;
-	@ObfuscatedName("d")
-	@ObfuscatedGetter(
-		intValue = 1590717975
-	)
-	public int field3369;
-	@ObfuscatedName("e")
-	@ObfuscatedGetter(
-		intValue = -1198049763
-	)
-	public int field3370;
-	@ObfuscatedName("l")
-	@ObfuscatedGetter(
-		intValue = -796375423
-	)
-	public int field3363;
-	@ObfuscatedName("t")
-	String field3372;
-	@ObfuscatedName("x")
-	@ObfuscatedGetter(
-		intValue = -1600290491
-	)
-	public int field3373;
-	@ObfuscatedName("b")
-	@ObfuscatedGetter(
-		intValue = -1529892703
-	)
-	public int field3374;
-	@ObfuscatedName("i")
-	@Export("transforms")
-	public int[] transforms;
+	int field3351;
 	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = 34744135
+		intValue = 620979093
+	)
+	int field3359;
+	@ObfuscatedName("y")
+	@ObfuscatedGetter(
+		intValue = -1746417223
+	)
+	int field3360;
+	@ObfuscatedName("v")
+	@ObfuscatedGetter(
+		intValue = 1873666251
+	)
+	public int field3368;
+	@ObfuscatedName("j")
+	@ObfuscatedGetter(
+		intValue = 1145971425
+	)
+	public int field3362;
+	@ObfuscatedName("r")
+	@ObfuscatedGetter(
+		intValue = 1152481113
+	)
+	public int field3355;
+	@ObfuscatedName("u")
+	String field3361;
+	@ObfuscatedName("p")
+	@ObfuscatedGetter(
+		intValue = -444433025
+	)
+	public int field3365;
+	@ObfuscatedName("b")
+	@ObfuscatedGetter(
+		intValue = 1573149035
+	)
+	public int field3366;
+	@ObfuscatedName("l")
+	@Export("transforms")
+	public int[] transforms;
+	@ObfuscatedName("e")
+	@ObfuscatedGetter(
+		intValue = -1795835533
 	)
 	@Export("transformVarbit")
 	int transformVarbit;
-	@ObfuscatedName("ah")
+	@ObfuscatedName("ab")
 	@ObfuscatedGetter(
-		intValue = -84298271
+		intValue = 1163513145
 	)
 	@Export("transformVarp")
 	int transformVarp;
@@ -134,31 +129,31 @@ public class HitSplatDefinition extends DualNode {
 		HitSplatDefinition_cachedFonts = new EvictingDualNodeHashTable(20);
 	}
 
-	public HitSplatDefinition() {
+	HitSplatDefinition() {
 		this.fontId = -1;
 		this.textColor = 16777215;
-		this.field3364 = 70;
+		this.field3356 = 70;
+		this.field3357 = -1;
+		this.field3351 = -1;
+		this.field3359 = -1;
+		this.field3360 = -1;
+		this.field3368 = 0;
+		this.field3362 = 0;
+		this.field3355 = -1;
+		this.field3361 = "";
 		this.field3365 = -1;
-		this.field3366 = -1;
-		this.field3378 = -1;
-		this.field3368 = -1;
-		this.field3369 = 0;
-		this.field3370 = 0;
-		this.field3363 = -1;
-		this.field3372 = "";
-		this.field3373 = -1;
-		this.field3374 = 0;
+		this.field3366 = 0;
 		this.transformVarbit = -1;
 		this.transformVarp = -1;
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "(Lkn;B)V",
-		garbageValue = "-108"
+		signature = "(Lkf;I)V",
+		garbageValue = "183277091"
 	)
 	@Export("decode")
-	public void decode(Buffer var1) {
+	void decode(Buffer var1) {
 		while (true) {
 			int var2 = var1.readUnsignedByte();
 			if (var2 == 0) {
@@ -169,41 +164,41 @@ public class HitSplatDefinition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		signature = "(Lkn;II)V",
-		garbageValue = "-2104480969"
+		signature = "(Lkf;II)V",
+		garbageValue = "-2105056828"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
 		if (var2 == 1) {
-			this.fontId = var1.method5843();
+			this.fontId = var1.method5634();
 		} else if (var2 == 2) {
 			this.textColor = var1.readMedium();
 		} else if (var2 == 3) {
-			this.field3365 = var1.method5843();
+			this.field3357 = var1.method5634();
 		} else if (var2 == 4) {
-			this.field3378 = var1.method5843();
+			this.field3359 = var1.method5634();
 		} else if (var2 == 5) {
-			this.field3366 = var1.method5843();
+			this.field3351 = var1.method5634();
 		} else if (var2 == 6) {
-			this.field3368 = var1.method5843();
+			this.field3360 = var1.method5634();
 		} else if (var2 == 7) {
-			this.field3369 = var1.readShort();
+			this.field3368 = var1.readShort();
 		} else if (var2 == 8) {
-			this.field3372 = var1.readStringCp1252NullCircumfixed();
+			this.field3361 = var1.readStringCp1252NullCircumfixed();
 		} else if (var2 == 9) {
-			this.field3364 = var1.readUnsignedShort();
+			this.field3356 = var1.readUnsignedShort();
 		} else if (var2 == 10) {
-			this.field3370 = var1.readShort();
+			this.field3362 = var1.readShort();
 		} else if (var2 == 11) {
-			this.field3363 = 0;
+			this.field3355 = 0;
 		} else if (var2 == 12) {
-			this.field3373 = var1.readUnsignedByte();
+			this.field3365 = var1.readUnsignedByte();
 		} else if (var2 == 13) {
-			this.field3374 = var1.readShort();
+			this.field3366 = var1.readShort();
 		} else if (var2 == 14) {
-			this.field3363 = var1.readUnsignedShort();
+			this.field3355 = var1.readUnsignedShort();
 		} else if (var2 == 17 || var2 == 18) {
 			this.transformVarbit = var1.readUnsignedShort();
 			if (this.transformVarbit == 65535) {
@@ -238,16 +233,16 @@ public class HitSplatDefinition extends DualNode {
 
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		signature = "(S)Ljs;",
-		garbageValue = "24687"
+		signature = "(B)Ljd;",
+		garbageValue = "-79"
 	)
 	@Export("transform")
 	public final HitSplatDefinition transform() {
 		int var1 = -1;
 		if (this.transformVarbit != -1) {
-			var1 = Widget.getVarbit(this.transformVarbit);
+			var1 = WorldMapSection1.getVarbit(this.transformVarbit);
 		} else if (this.transformVarp != -1) {
 			var1 = Varps.Varps_main[this.transformVarp];
 		}
@@ -259,36 +254,17 @@ public class HitSplatDefinition extends DualNode {
 			var2 = this.transforms[this.transforms.length - 1];
 		}
 
-		if (var2 != -1) {
-			HitSplatDefinition var4 = (HitSplatDefinition)HitSplatDefinition_cached.get((long)var2);
-			HitSplatDefinition var3;
-			if (var4 != null) {
-				var3 = var4;
-			} else {
-				byte[] var5 = HitSplatDefinition_archive.takeFile(32, var2);
-				var4 = new HitSplatDefinition();
-				if (var5 != null) {
-					var4.decode(new Buffer(var5));
-				}
-
-				HitSplatDefinition_cached.put(var4, (long)var2);
-				var3 = var4;
-			}
-
-			return var3;
-		} else {
-			return null;
-		}
+		return var2 != -1 ? MusicPatchNode.method3929(var2) : null;
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
 		signature = "(II)Ljava/lang/String;",
-		garbageValue = "2134005517"
+		garbageValue = "-265851490"
 	)
 	@Export("getString")
 	public String getString(int var1) {
-		String var2 = this.field3372;
+		String var2 = this.field3361;
 
 		while (true) {
 			int var3 = var2.indexOf("%1");
@@ -296,26 +272,72 @@ public class HitSplatDefinition extends DualNode {
 				return var2;
 			}
 
-			var2 = var2.substring(0, var3) + class298.intToString(var1, false) + var2.substring(var3 + 2);
+			var2 = var2.substring(0, var3) + ModeWhere.intToString(var1, false) + var2.substring(var3 + 2);
 		}
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "(B)Llz;",
-		garbageValue = "85"
+		signature = "(I)Llp;",
+		garbageValue = "-339938865"
 	)
-	public SpritePixels method4755() {
-		if (this.field3365 < 0) {
+	public SpritePixels method4668() {
+		if (this.field3357 < 0) {
 			return null;
 		} else {
-			SpritePixels var1 = (SpritePixels)HitSplatDefinition_cachedSprites.get((long)this.field3365);
+			SpritePixels var1 = (SpritePixels)HitSplatDefinition_cachedSprites.get((long)this.field3357);
 			if (var1 != null) {
 				return var1;
 			} else {
-				var1 = GameEngine.SpriteBuffer_getSprite(field3356, this.field3365, 0);
+				var1 = AbstractUserComparator.SpriteBuffer_getSprite(field3364, this.field3357, 0);
 				if (var1 != null) {
-					HitSplatDefinition_cachedSprites.put(var1, (long)this.field3365);
+					HitSplatDefinition_cachedSprites.put(var1, (long)this.field3357);
+				}
+
+				return var1;
+			}
+		}
+	}
+
+	@ObfuscatedName("x")
+	@ObfuscatedSignature(
+		signature = "(I)Llp;",
+		garbageValue = "68117664"
+	)
+	public SpritePixels method4681() {
+		if (this.field3351 < 0) {
+			return null;
+		} else {
+			SpritePixels var1 = (SpritePixels)HitSplatDefinition_cachedSprites.get((long)this.field3351);
+			if (var1 != null) {
+				return var1;
+			} else {
+				var1 = AbstractUserComparator.SpriteBuffer_getSprite(field3364, this.field3351, 0);
+				if (var1 != null) {
+					HitSplatDefinition_cachedSprites.put(var1, (long)this.field3351);
+				}
+
+				return var1;
+			}
+		}
+	}
+
+	@ObfuscatedName("w")
+	@ObfuscatedSignature(
+		signature = "(I)Llp;",
+		garbageValue = "962785869"
+	)
+	public SpritePixels method4670() {
+		if (this.field3359 < 0) {
+			return null;
+		} else {
+			SpritePixels var1 = (SpritePixels)HitSplatDefinition_cachedSprites.get((long)this.field3359);
+			if (var1 != null) {
+				return var1;
+			} else {
+				var1 = AbstractUserComparator.SpriteBuffer_getSprite(field3364, this.field3359, 0);
+				if (var1 != null) {
+					HitSplatDefinition_cachedSprites.put(var1, (long)this.field3359);
 				}
 
 				return var1;
@@ -325,20 +347,20 @@ public class HitSplatDefinition extends DualNode {
 
 	@ObfuscatedName("g")
 	@ObfuscatedSignature(
-		signature = "(I)Llz;",
-		garbageValue = "-2111693825"
+		signature = "(B)Llp;",
+		garbageValue = "-16"
 	)
-	public SpritePixels method4756() {
-		if (this.field3366 < 0) {
+	public SpritePixels method4678() {
+		if (this.field3360 < 0) {
 			return null;
 		} else {
-			SpritePixels var1 = (SpritePixels)HitSplatDefinition_cachedSprites.get((long)this.field3366);
+			SpritePixels var1 = (SpritePixels)HitSplatDefinition_cachedSprites.get((long)this.field3360);
 			if (var1 != null) {
 				return var1;
 			} else {
-				var1 = GameEngine.SpriteBuffer_getSprite(field3356, this.field3366, 0);
+				var1 = AbstractUserComparator.SpriteBuffer_getSprite(field3364, this.field3360, 0);
 				if (var1 != null) {
-					HitSplatDefinition_cachedSprites.put(var1, (long)this.field3366);
+					HitSplatDefinition_cachedSprites.put(var1, (long)this.field3360);
 				}
 
 				return var1;
@@ -346,56 +368,10 @@ public class HitSplatDefinition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		signature = "(B)Llz;",
-		garbageValue = "1"
-	)
-	public SpritePixels method4752() {
-		if (this.field3378 < 0) {
-			return null;
-		} else {
-			SpritePixels var1 = (SpritePixels)HitSplatDefinition_cachedSprites.get((long)this.field3378);
-			if (var1 != null) {
-				return var1;
-			} else {
-				var1 = GameEngine.SpriteBuffer_getSprite(field3356, this.field3378, 0);
-				if (var1 != null) {
-					HitSplatDefinition_cachedSprites.put(var1, (long)this.field3378);
-				}
-
-				return var1;
-			}
-		}
-	}
-
-	@ObfuscatedName("u")
-	@ObfuscatedSignature(
-		signature = "(I)Llz;",
-		garbageValue = "148088504"
-	)
-	public SpritePixels method4763() {
-		if (this.field3368 < 0) {
-			return null;
-		} else {
-			SpritePixels var1 = (SpritePixels)HitSplatDefinition_cachedSprites.get((long)this.field3368);
-			if (var1 != null) {
-				return var1;
-			} else {
-				var1 = GameEngine.SpriteBuffer_getSprite(field3356, this.field3368, 0);
-				if (var1 != null) {
-					HitSplatDefinition_cachedSprites.put(var1, (long)this.field3368);
-				}
-
-				return var1;
-			}
-		}
-	}
-
-	@ObfuscatedName("a")
-	@ObfuscatedSignature(
-		signature = "(B)Lko;",
-		garbageValue = "-13"
+		signature = "(I)Lkr;",
+		garbageValue = "-456462046"
 	)
 	@Export("getFont")
 	public Font getFont() {
@@ -406,7 +382,7 @@ public class HitSplatDefinition extends DualNode {
 			if (var1 != null) {
 				return var1;
 			} else {
-				var1 = Frames.method3394(field3356, HitSplatDefinition_fontsArchive, this.fontId, 0);
+				var1 = RouteStrategy.method3688(field3364, HitSplatDefinition_fontsArchive, this.fontId, 0);
 				if (var1 != null) {
 					HitSplatDefinition_cachedFonts.put(var1, (long)this.fontId);
 				}
@@ -416,49 +392,35 @@ public class HitSplatDefinition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
-		signature = "(Lkb;B)V",
-		garbageValue = "121"
+		signature = "(ILcy;ZB)I",
+		garbageValue = "20"
 	)
-	@Export("updatePlayer")
-	static final void updatePlayer(PacketBuffer var0) {
-		var0.importIndex();
-		int var1 = Client.localPlayerIndex;
-		Player var2 = class60.localPlayer = Client.players[var1] = new Player();
-		var2.index = var1;
-		int var3 = var0.readBits(30);
-		byte var4 = (byte)(var3 >> 28);
-		int var5 = var3 >> 14 & 16383;
-		int var6 = var3 & 16383;
-		var2.pathX[0] = var5 - class182.baseX * 64;
-		var2.x = (var2.pathX[0] << 7) + (var2.transformedSize() << 6);
-		var2.pathY[0] = var6 - SecureRandomFuture.baseY * 64;
-		var2.y = (var2.pathY[0] << 7) + (var2.transformedSize() << 6);
-		ItemLayer.Client_plane = var2.plane = var4;
-		if (Players.field1279[var1] != null) {
-			var2.read(Players.field1279[var1]);
+	static int method4698(int var0, Script var1, boolean var2) {
+		Widget var3;
+		if (var0 >= 2000) {
+			var0 -= 1000;
+			var3 = TileItem.getWidget(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);
+		} else {
+			var3 = var2 ? Canvas.field438 : class3.field12;
 		}
 
-		Players.Players_count = 0;
-		Players.Players_indices[++Players.Players_count - 1] = var1;
-		Players.field1282[var1] = 0;
-		Players.Players_emptyIdxCount = 0;
-
-		for (int var7 = 1; var7 < 2048; ++var7) {
-			if (var1 != var7) {
-				int var8 = var0.readBits(18);
-				int var9 = var8 >> 16;
-				int var10 = var8 >> 8 & 597;
-				int var11 = var8 & 597;
-				Players.Players_regions[var7] = (var10 << 14) + var11 + (var9 << 28);
-				Players.Players_orientations[var7] = 0;
-				Players.Players_targetIndices[var7] = -1;
-				Players.Players_emptyIndices[++Players.Players_emptyIdxCount - 1] = var7;
-				Players.field1282[var7] = 0;
+		if (var0 == ScriptOpcodes.CC_CALLONRESIZE) {
+			if (Interpreter.field1135 >= 10) {
+				throw new RuntimeException();
+			} else if (var3.onResize == null) {
+				return 0;
+			} else {
+				ScriptEvent var4 = new ScriptEvent();
+				var4.widget = var3;
+				var4.args = var3.onResize;
+				var4.field593 = Interpreter.field1135 + 1;
+				Client.scriptEvents.addFirst(var4);
+				return 1;
 			}
+		} else {
+			return 2;
 		}
-
-		var0.exportIndex();
 	}
 }

@@ -135,6 +135,8 @@ public abstract class RSPlayerMixin implements RSPlayer
 				return SKULL_BOUNTY_HUNTER_TIER_NINE;
 			case 16:
 				return SKULL_BOUNTY_HUNTER_TIER_TEN;
+			case 17:
+				return SKULL_HIGH_RISK_WORLD;
 			default:
 				return null;
 		}

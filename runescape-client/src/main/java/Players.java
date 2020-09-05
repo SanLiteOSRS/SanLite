@@ -4,64 +4,70 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cd")
+@ObfuscatedName("ck")
 @Implements("Players")
 public class Players {
-	@ObfuscatedName("q")
-	static byte[] field1282;
-	@ObfuscatedName("j")
-	static byte[] field1278;
-	@ObfuscatedName("p")
+	@ObfuscatedName("qh")
 	@ObfuscatedSignature(
-		signature = "[Lkn;"
+		signature = "Ldh;"
 	)
-	static Buffer[] field1279;
-	@ObfuscatedName("g")
+	@Export("pcmStreamMixer")
+	static PcmStreamMixer pcmStreamMixer;
+	@ObfuscatedName("s")
+	static byte[] field1285;
+	@ObfuscatedName("t")
+	static byte[] field1284;
+	@ObfuscatedName("i")
+	@ObfuscatedSignature(
+		signature = "[Lkf;"
+	)
+	static Buffer[] field1277;
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = -1356497417
+		intValue = 1580537391
 	)
 	@Export("Players_count")
 	static int Players_count;
-	@ObfuscatedName("n")
+	@ObfuscatedName("x")
 	@Export("Players_indices")
 	static int[] Players_indices;
-	@ObfuscatedName("u")
+	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		intValue = -533970605
+		intValue = 1079575751
 	)
 	@Export("Players_emptyIdxCount")
 	static int Players_emptyIdxCount;
-	@ObfuscatedName("a")
+	@ObfuscatedName("g")
 	@Export("Players_emptyIndices")
 	static int[] Players_emptyIndices;
-	@ObfuscatedName("z")
+	@ObfuscatedName("m")
 	@Export("Players_regions")
 	static int[] Players_regions;
-	@ObfuscatedName("w")
+	@ObfuscatedName("n")
 	@Export("Players_orientations")
 	static int[] Players_orientations;
-	@ObfuscatedName("y")
+	@ObfuscatedName("d")
 	@Export("Players_targetIndices")
 	static int[] Players_targetIndices;
-	@ObfuscatedName("c")
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = -144867877
+		intValue = 1779975483
 	)
 	@Export("Players_pendingUpdateCount")
 	static int Players_pendingUpdateCount;
-	@ObfuscatedName("h")
+	@ObfuscatedName("a")
 	@Export("Players_pendingUpdateIndices")
 	static int[] Players_pendingUpdateIndices;
-	@ObfuscatedName("k")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		signature = "Lkn;"
+		signature = "Lkf;"
 	)
-	static Buffer field1289;
+	static Buffer field1287;
 
 	static {
-		field1282 = new byte[2048];
-		field1278 = new byte[2048];
-		field1279 = new Buffer[2048];
+		field1285 = new byte[2048];
+		field1284 = new byte[2048];
+		field1277 = new Buffer[2048];
 		Players_count = 0;
 		Players_indices = new int[2048];
 		Players_emptyIdxCount = 0;
@@ -71,41 +77,6 @@ public class Players {
 		Players_targetIndices = new int[2048];
 		Players_pendingUpdateCount = 0;
 		Players_pendingUpdateIndices = new int[2048];
-		field1289 = new Buffer(new byte[5000]);
-	}
-
-	@ObfuscatedName("o")
-	@ObfuscatedSignature(
-		signature = "(IIII)I",
-		garbageValue = "-1312297159"
-	)
-	static int method2285(int var0, int var1, int var2) {
-		if (var2 > 179) {
-			var1 /= 2;
-		}
-
-		if (var2 > 192) {
-			var1 /= 2;
-		}
-
-		if (var2 > 217) {
-			var1 /= 2;
-		}
-
-		if (var2 > 243) {
-			var1 /= 2;
-		}
-
-		int var3 = (var1 / 32 << 7) + (var0 / 4 << 10) + var2 / 2;
-		return var3;
-	}
-
-	@ObfuscatedName("q")
-	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "910052167"
-	)
-	public static void method2274() {
-		WorldMapRegion.WorldMapRegion_cachedSprites.demote(5);
+		field1287 = new Buffer(new byte[5000]);
 	}
 }

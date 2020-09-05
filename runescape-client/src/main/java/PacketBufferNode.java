@@ -4,42 +4,42 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gj")
+@ObfuscatedName("gb")
 @Implements("PacketBufferNode")
 public class PacketBufferNode extends Node {
-	@ObfuscatedName("p")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		signature = "[Lgj;"
+		signature = "[Lgb;"
 	)
 	@Export("PacketBufferNode_packetBufferNodes")
 	static PacketBufferNode[] PacketBufferNode_packetBufferNodes;
-	@ObfuscatedName("g")
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = -477845615
+		intValue = 110077839
 	)
 	@Export("PacketBufferNode_packetBufferNodeCount")
 	static int PacketBufferNode_packetBufferNodeCount;
-	@ObfuscatedName("m")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "Lgn;"
+		signature = "Lgf;"
 	)
 	@Export("clientPacket")
 	ClientPacket clientPacket;
-	@ObfuscatedName("o")
+	@ObfuscatedName("k")
 	@ObfuscatedGetter(
-		intValue = 1266543353
+		intValue = -1747169149
 	)
 	@Export("clientPacketLength")
 	int clientPacketLength;
-	@ObfuscatedName("q")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		signature = "Lkb;"
+		signature = "Lky;"
 	)
 	@Export("packetBuffer")
 	public PacketBuffer packetBuffer;
-	@ObfuscatedName("j")
+	@ObfuscatedName("t")
 	@ObfuscatedGetter(
-		intValue = -1411425987
+		intValue = 1051886947
 	)
 	@Export("index")
 	public int index;
@@ -52,10 +52,10 @@ public class PacketBufferNode extends Node {
 	PacketBufferNode() {
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "-42"
+		signature = "(I)V",
+		garbageValue = "-1940555210"
 	)
 	@Export("release")
 	public void release() {
@@ -64,20 +64,33 @@ public class PacketBufferNode extends Node {
 		}
 	}
 
-	@ObfuscatedName("a")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(III)I",
-		garbageValue = "1965042826"
+		signature = "(I)V",
+		garbageValue = "416660759"
 	)
-	static final int method3750(int var0, int var1) {
-		int var2 = VarbitComposition.method4696(45365 + var0, var1 + 91923, 4) - 128 + (VarbitComposition.method4696(var0 + 10294, 37821 + var1, 2) - 128 >> 1) + (VarbitComposition.method4696(var0, var1, 1) - 128 >> 2);
-		var2 = (int)(0.3D * (double)var2) + 35;
-		if (var2 < 10) {
-			var2 = 10;
-		} else if (var2 > 60) {
-			var2 = 60;
+	static void method3726() {
+		Login.worldSelectOpen = false;
+		UserComparator2.leftTitleSprite.drawAt(Login.xPadding, 0);
+		Login.rightTitleSprite.drawAt(Login.xPadding + 382, 0);
+		AbstractByteArrayCopier.logoSprite.drawAt(Login.xPadding + 382 - AbstractByteArrayCopier.logoSprite.subWidth / 2, 18);
+	}
+
+	@ObfuscatedName("aa")
+	@ObfuscatedSignature(
+		signature = "(Ldc;B)V",
+		garbageValue = "1"
+	)
+	@Export("PcmStream_disable")
+	static final void PcmStream_disable(PcmStream var0) {
+		var0.active = false;
+		if (var0.sound != null) {
+			var0.sound.position = 0;
 		}
 
-		return var2;
+		for (PcmStream var1 = var0.firstSubStream(); var1 != null; var1 = var0.nextSubStream()) {
+			PcmStream_disable(var1);
+		}
+
 	}
 }

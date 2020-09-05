@@ -32,9 +32,16 @@ import java.awt.*;
 public interface AlchemicalHydraConfig extends Config
 {
 	@ConfigSection(
+			name = "Sounds",
+			description = "Options for sounds used throughout the plugin",
+			position = 15
+	)
+	String soundsSection = "sounds";
+
+	@ConfigSection(
 			name = "Colors",
 			description = "Options for colors used throughout the plugin",
-			position = 11
+			position = 16
 	)
 	String colorsSection = "colors";
 
@@ -50,10 +57,21 @@ public interface AlchemicalHydraConfig extends Config
 	}
 
 	@ConfigItem(
+			keyName = "attackStyleOverlayLocation",
+			name = "Attack style location",
+			description = "Location of the Alchemical Hydra's attack style overlay",
+			position = 2
+	)
+	default AttackStyleOverlayLocation getAttackStyleOverlayLocation()
+	{
+		return AttackStyleOverlayLocation.ABOVE_HEAD;
+	}
+
+	@ConfigItem(
 			keyName = "displayAttackTimer",
 			name = "Display attack timer",
 			description = "Displays a timer which shows the ticks until the Alchemical Hydra's next attack",
-			position = 2
+			position = 3
 	)
 	default boolean displayAttackTimer()
 	{
@@ -66,7 +84,7 @@ public interface AlchemicalHydraConfig extends Config
 			name = "Attack timer text color",
 			description = "Color of attack timer text",
 			section = colorsSection,
-			position = 3
+			position = 4
 	)
 	default Color getAttackTimerTextColor()
 	{
@@ -77,7 +95,7 @@ public interface AlchemicalHydraConfig extends Config
 			keyName = "highlightSpecialAttackTiles",
 			name = "Highlight special attack tiles",
 			description = "Highlight the tiles for the Alchemical Hydra's poison, lightning and fire attacks",
-			position = 4
+			position = 5
 	)
 	default boolean highlightSpecialAttackTiles()
 	{
@@ -90,7 +108,7 @@ public interface AlchemicalHydraConfig extends Config
 			name = "Poison attack marker",
 			description = "Color of Alchemical Hydra's poison special attack marker",
 			section = colorsSection,
-			position = 4
+			position = 6
 	)
 	default Color getPoisonAttackColor()
 	{
@@ -103,7 +121,7 @@ public interface AlchemicalHydraConfig extends Config
 			name = "Lightning marker",
 			description = "Color of Alchemical Hydra's lightning special attack marker",
 			section = colorsSection,
-			position = 5
+			position = 7
 	)
 	default Color getLightningAttackColor()
 	{
@@ -116,7 +134,7 @@ public interface AlchemicalHydraConfig extends Config
 			name = "Fire marker",
 			description = "Color of Alchemical Hydra's fire special attack marker",
 			section = colorsSection,
-			position = 6
+			position = 8
 	)
 	default Color getFireAttackColor()
 	{
@@ -129,7 +147,7 @@ public interface AlchemicalHydraConfig extends Config
 			name = "Not on fountain marker",
 			description = "Color of chemical fountain marker while the Alchemical Hydra is not on it",
 			section = colorsSection,
-			position = 7
+			position = 9
 	)
 	default Color getNotOnChemicalPoolColor()
 	{
@@ -142,7 +160,7 @@ public interface AlchemicalHydraConfig extends Config
 			name = "On fountain marker",
 			description = "Color of chemical fountain marker while the Alchemical Hydra is on it",
 			section = colorsSection,
-			position = 8
+			position = 10
 	)
 	default Color getOnChemicalPoolColor()
 	{
@@ -153,7 +171,7 @@ public interface AlchemicalHydraConfig extends Config
 			keyName = "highlightChemicalVentStatus",
 			name = "Highlight chemical vent status",
 			description = "Highlight the chemical vent area for the current phase and if the boss is in the area",
-			position = 5
+			position = 11
 	)
 	default boolean highlightChemicalVentStatus()
 	{
@@ -164,7 +182,7 @@ public interface AlchemicalHydraConfig extends Config
 			keyName = "displayChemicalVentsTimer",
 			name = "Display chemical vents timer",
 			description = "Displays a timer to show the time till the next chemical vent activation",
-			position = 9
+			position = 12
 	)
 	default boolean displayChemicalVentsTimer()
 	{
@@ -175,7 +193,7 @@ public interface AlchemicalHydraConfig extends Config
 			keyName = "tileMarkersLineSize",
 			name = "Tile markers line size",
 			description = "The size of the outside line for tile markers",
-			position = 10
+			position = 13
 	)
 	default StrokeSize getTileMarkersLineSize()
 	{
@@ -183,10 +201,46 @@ public interface AlchemicalHydraConfig extends Config
 	}
 
 	@ConfigItem(
+			keyName = "playSoundOnAttackStyleSwitch",
+			name = "Play attack style switch sound",
+			description = "Plays a sound for the respective attack style when the Alchemical Hydra switches attack style",
+			section = soundsSection,
+			position = 14
+	)
+	default boolean playSoundOnAttackStyleSwitch()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+			keyName = "disableSwitchSoundsInJadPhase",
+			name = "Disable switch sounds in Jad phase",
+			description = "Disable regular attack style switch sounds during the Alchemical Hydra's Jad phase",
+			section = soundsSection,
+			position = 15
+	)
+	default boolean disableSwitchSoundsInJadPhase()
+	{
+		return false;
+	}
+
+	@ConfigItem(
+			keyName = "playSpecialAttackSoundWarning",
+			name = "Play special attack sound warning",
+			description = "Plays a sound warning when the next attack is a special attack",
+			section = soundsSection,
+			position = 16
+	)
+	default boolean playSpecialAttackSoundWarning()
+	{
+		return true;
+	}
+
+	@ConfigItem(
 			keyName = "showDebugOverlay",
 			name = "Display debug overlay",
 			description = "Displays plugin debug overlay. This displays variables that the plugin uses to function",
-			position = 11
+			position = 17
 	)
 	default boolean showDebugOverlay()
 	{

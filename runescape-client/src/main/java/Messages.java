@@ -6,35 +6,39 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cx")
+@ObfuscatedName("cz")
 @Implements("Messages")
 public class Messages {
-	@ObfuscatedName("m")
+	@ObfuscatedName("sb")
+	@Export("foundItemIds")
+	static short[] foundItemIds;
+	@ObfuscatedName("z")
 	@Export("Messages_channels")
 	static final Map Messages_channels;
-	@ObfuscatedName("o")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "Llf;"
+		signature = "Llq;"
 	)
 	@Export("Messages_hashTable")
 	static final IterableNodeHashTable Messages_hashTable;
-	@ObfuscatedName("q")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		signature = "Ljq;"
+		signature = "Ljh;"
 	)
 	@Export("Messages_queue")
 	static final IterableDualNodeQueue Messages_queue;
-	@ObfuscatedName("j")
+	@ObfuscatedName("t")
 	@ObfuscatedGetter(
-		intValue = 205405157
+		intValue = 785090077
 	)
 	@Export("Messages_count")
 	static int Messages_count;
-	@ObfuscatedName("g")
-	@Export("PcmPlayer_stereo")
-	protected static boolean PcmPlayer_stereo;
-	@ObfuscatedName("z")
-	public static short[][] field1308;
+	@ObfuscatedName("n")
+	@ObfuscatedSignature(
+		signature = "Lic;"
+	)
+	@Export("Widget_spritesArchive")
+	public static AbstractArchive Widget_spritesArchive;
 
 	static {
 		Messages_channels = new HashMap();
@@ -43,15 +47,23 @@ public class Messages {
 		Messages_count = 0;
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "(III)I",
-		garbageValue = "-1486803630"
+		signature = "(B)V",
+		garbageValue = "-80"
 	)
-	static final int method2350(int var0, int var1) {
-		int var2 = ClientPreferences.method1914(var0 - 1, var1 - 1) + ClientPreferences.method1914(1 + var0, var1 - 1) + ClientPreferences.method1914(var0 - 1, 1 + var1) + ClientPreferences.method1914(var0 + 1, 1 + var1);
-		int var3 = ClientPreferences.method1914(var0 - 1, var1) + ClientPreferences.method1914(1 + var0, var1) + ClientPreferences.method1914(var0, var1 - 1) + ClientPreferences.method1914(var0, var1 + 1);
-		int var4 = ClientPreferences.method1914(var0, var1);
-		return var2 / 16 + var3 / 8 + var4 / 4;
+	static void method2288() {
+		Tiles.field528 = null;
+		Tiles.field521 = null;
+		class297.field3668 = null;
+		class171.field2049 = null;
+		class204.field2421 = null;
+		class22.field122 = null;
+		class39.field282 = null;
+		Tiles.Tiles_hue = null;
+		Tiles.Tiles_saturation = null;
+		WorldMapRectangle.Tiles_lightness = null;
+		WorldMapScaleHandler.Tiles_hueMultiplier = null;
+		class60.field453 = null;
 	}
 }

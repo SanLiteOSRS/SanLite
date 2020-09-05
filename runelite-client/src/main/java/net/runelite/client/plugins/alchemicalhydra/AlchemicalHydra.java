@@ -66,8 +66,10 @@ class AlchemicalHydra
 		JAD
 	}
 
+	private final AlchemicalHydraPlugin plugin;
+
 	@Getter
-	private NPC npc;
+	private final NPC npc;
 
 	@Getter
 	@Setter
@@ -75,15 +77,15 @@ class AlchemicalHydra
 
 	@Getter
 	@Setter
-	private AlchemicalHydra.AttackStyle currentAttackStyle;
+	private AttackStyle currentAttackStyle;
 
 	@Getter
 	@Setter
-	private AlchemicalHydra.AttackStyle lastAttackStyle;
+	private AttackStyle lastAttackStyle;
 
 	@Getter
 	@Setter
-	private AlchemicalHydra.AttackStyle currentSpecialAttackStyle;
+	private AttackStyle currentSpecialAttackStyle;
 
 	@Getter
 	@Setter
@@ -113,8 +115,9 @@ class AlchemicalHydra
 	@Setter
 	private int lastAnimationId;
 
-	AlchemicalHydra(NPC npc)
+	AlchemicalHydra(AlchemicalHydraPlugin plugin, NPC npc)
 	{
+		this.plugin = plugin;
 		this.npc = npc;
 		this.lastAttackTick = -100;
 		this.nextAttackTick = -100;
@@ -158,8 +161,7 @@ class AlchemicalHydra
 		return animationId == AnimationID.ALCHEMICAL_HYDRA_GREEN_PHASE_POISON_ATTACK ||
 				animationId == AnimationID.ALCHEMICAL_HYDRA_BLUE_PHASE_LIGHTNING_ATTACK ||
 				animationId == AnimationID.ALCHEMICAL_HYDRA_RED_PHASE_FIRE_ATTACK ||
-				animationId == AnimationID.ALCHEMICAL_HYDRA_JAD_PHASE_POISON_ATTACK ||
-				animationId == AnimationID.ALCHEMICAL_HYDRA_JAD_PHASE_POISON_ATTACK_2;
+				animationId == AnimationID.ALCHEMICAL_HYDRA_JAD_PHASE_RANGED_OR_POISON_ATTACK;
 	}
 
 	boolean isRegularAttackAnimation(int animationId)
@@ -171,7 +173,7 @@ class AlchemicalHydra
 				animationId == AnimationID.ALCHEMICAL_HYDRA_RED_PHASE_MAGIC_ATTACK ||
 				animationId == AnimationID.ALCHEMICAL_HYDRA_RED_PHASE_RANGED_ATTACK ||
 				animationId == AnimationID.ALCHEMICAL_HYDRA_JAD_PHASE_MAGIC_ATTACK ||
-				animationId == AnimationID.ALCHEMICAL_HYDRA_JAD_PHASE_RANGED_ATTACK;
+				animationId == AnimationID.ALCHEMICAL_HYDRA_JAD_PHASE_RANGED_OR_POISON_ATTACK;
 	}
 
 	boolean isPhaseSwitchAnimation(int animationId)
@@ -181,16 +183,9 @@ class AlchemicalHydra
 				animationId == AnimationID.ALCHEMICAL_HYDRA_SWITCH_TO_JAD_PHASE;
 	}
 
-
-	boolean isPoisonSplatSpecialAttackBeforeLanding(int graphicsObjectId)
-	{
-		return graphicsObjectId == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_ON_LANDING;
-	}
-
 	boolean isPoisonSplatSpecialAttack(int graphicsObjectId)
 	{
-		return graphicsObjectId == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_ON_LANDING ||
-				graphicsObjectId == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_1 ||
+		return graphicsObjectId == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_1 ||
 				graphicsObjectId == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_2 ||
 				graphicsObjectId == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_3 ||
 				graphicsObjectId == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_4 ||
@@ -200,21 +195,24 @@ class AlchemicalHydra
 				graphicsObjectId == GraphicID.ALCHEMICAL_HYDRA_POISON_SPLAT_8;
 	}
 
-	boolean isLightningSpecialAttack(int graphicsObjectId)
+	boolean isSpecialAttackStyle(AttackStyle attackStyle)
 	{
-		return graphicsObjectId == GraphicID.ALCHEMICAL_HYDRA_FLOATING_LIGHTNING_ORB ||
-				graphicsObjectId == GraphicID.ALCHEMICAL_HYDRA_LIGHTNING_ATTACK;
-	}
-
-	boolean isFireSpecialAttack(int graphicsObjectId)
-	{
-		return graphicsObjectId == GraphicID.ALCHEMICAL_HYDRA_FIRE_ATTACK;
+		switch (attackStyle)
+		{
+			case POISON:
+			case LIGHTNING:
+			case FIRE:
+				return true;
+			default:
+				return false;
+		}
 	}
 
 	void switchCurrentAttackStyle(AttackStyle newAttackStyle, int attackUntilSwitch)
 	{
 		currentAttackStyle = newAttackStyle;
 		this.attacksUntilSwitch = attackUntilSwitch;
+		plugin.playAttackStyleSwitchSound(newAttackStyle);
 	}
 
 	Phase getNextPhase(Phase currentPhase)
@@ -251,9 +249,8 @@ class AlchemicalHydra
 				break;
 			case JAD:
 				// Determine which attack style the Jad phase will start with
-				currentAttackStyle = determineInitialJadPhaseAttackStyle(lastAttackStyle);
+				switchCurrentAttackStyle(determineInitialJadPhaseAttackStyle(lastAttackStyle), ATTACKS_PER_SWITCH);
 				currentPhase = Phase.JAD;
-				attacksUntilSwitch = ATTACKS_PER_SWITCH;
 				attacksUntilSpecialAttack = ATTACKS_PER_SPECIAL_ATTACK;
 				nextAttackTick = tickCount + SWITCH_TO_JAD_ATTACK_DELAY;
 				break;
@@ -321,8 +318,7 @@ class AlchemicalHydra
 		{
 			case AnimationID.ALCHEMICAL_HYDRA_GREEN_PHASE_POISON_ATTACK:
 			case AnimationID.ALCHEMICAL_HYDRA_BLUE_PHASE_LIGHTNING_ATTACK:
-			case AnimationID.ALCHEMICAL_HYDRA_JAD_PHASE_POISON_ATTACK:
-			case AnimationID.ALCHEMICAL_HYDRA_JAD_PHASE_POISON_ATTACK_2:
+			case AnimationID.ALCHEMICAL_HYDRA_JAD_PHASE_RANGED_OR_POISON_ATTACK:
 				// Jad phase has a faster attack rate
 				resetSpecialAttack(
 						currentPhase.equals(Phase.JAD) ? ATTACKS_PER_SPECIAL_ATTACK * 3 : ATTACKS_PER_SPECIAL_ATTACK,
@@ -377,7 +373,7 @@ class AlchemicalHydra
 		if (currentAttackStyle == null)
 		{
 			currentAttackStyle = attackStyle;
-
+			plugin.playAttackStyleSwitchSound(attackStyle);
 		}
 		// Correct attacks until switch value when de-sync might occur (eg. plugin enabled during kill)
 		else if (currentAttackStyle != attackStyle)
@@ -425,6 +421,8 @@ class AlchemicalHydra
 					}
 					break;
 			}
+
+			plugin.playAttackStyleSwitchSound(currentSpecialAttackStyle);
 		}
 	}
 
@@ -473,7 +471,7 @@ class AlchemicalHydra
 			case AnimationID.ALCHEMICAL_HYDRA_GREEN_PHASE_RANGED_ATTACK:
 			case AnimationID.ALCHEMICAL_HYDRA_BLUE_PHASE_RANGED_ATTACK:
 			case AnimationID.ALCHEMICAL_HYDRA_RED_PHASE_RANGED_ATTACK:
-			case AnimationID.ALCHEMICAL_HYDRA_JAD_PHASE_RANGED_ATTACK:
+			case AnimationID.ALCHEMICAL_HYDRA_JAD_PHASE_RANGED_OR_POISON_ATTACK:
 				return AttackStyle.RANGED;
 			case AnimationID.ALCHEMICAL_HYDRA_GREEN_PHASE_MAGIC_ATTACK:
 			case AnimationID.ALCHEMICAL_HYDRA_BLUE_PHASE_MAGIC_ATTACK:

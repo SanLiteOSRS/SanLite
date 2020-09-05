@@ -95,6 +95,6 @@ public interface AntiDragConfig extends Config
 	)
 	default AllKeyCodeKeybind ignoreKeybind()
 	{
-		return new AllKeyCodeKeybind(KeyEvent.VK_UNDEFINED, 0);
+		return new AllKeyCodeKeybind(KeyEvent.VK_CAPS_LOCK, 0);
 	}
 }

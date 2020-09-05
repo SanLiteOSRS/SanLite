@@ -256,6 +256,19 @@ public interface RuneLiteConfig extends Config
 		return false;
 	}
 
+	@Alpha
+	@ConfigItem(
+		keyName = "notificationFlashColor",
+		name = "Notification Flash Color",
+		description = "Sets the color of the notification flashes.",
+		position = 26,
+		section = notificationSettings
+	)
+	default Color notificationFlashColor()
+	{
+		return new Color(255, 0, 0, 70);
+	}
+
 	@ConfigItem(
 		keyName = "fontType",
 		name = "Dynamic Overlay Font",
@@ -387,5 +400,19 @@ public interface RuneLiteConfig extends Config
 	default Keybind panelToggleKey()
 	{
 		return new Keybind(KeyEvent.VK_F12, InputEvent.CTRL_DOWN_MASK);
+	}
+
+	@Range(
+		max = 200
+	)
+	@ConfigItem(
+		keyName = "soundVolume",
+		name = "Sound Volume",
+		description = "The playback volume of non-game sounds from plugins",
+		position = 47
+	)
+	default int soundVolume()
+	{
+		return 50;
 	}
 }

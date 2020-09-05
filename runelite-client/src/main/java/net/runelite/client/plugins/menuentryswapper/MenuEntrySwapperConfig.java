@@ -563,6 +563,17 @@ public interface MenuEntrySwapperConfig extends Config
 	}
 
 	@ConfigItem(
+		keyName = "swapCollectMiscellania",
+		name = "Miscellania",
+		description = "Swap Talk-to with Collect for Advisor Ghrim",
+		section = npcSection
+	)
+	default boolean swapCollectMiscellania()
+	{
+		return false;
+	}
+
+	@ConfigItem(
 		keyName = "swapPickpocket",
 		name = "Pickpocket",
 		description = "Swap Talk-to with Pickpocket",
@@ -603,6 +614,17 @@ public interface MenuEntrySwapperConfig extends Config
 		section = itemSection
 	)
 	default boolean swapCastBloom()
+	{
+		return false;
+	}
+
+	@ConfigItem(
+			keyName = "swapGuzzleRockCake",
+			name = "Swap guzzle rock cake",
+			description = "Swap Eat to Guzzle for the dwarven rock cake",
+			section = itemSection
+	)
+	default boolean swapGuzzleRockCake()
 	{
 		return false;
 	}

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, Cameron <https://github.com/noremac201>
+ * Copyright (c) 2019, winterdaze
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,24 +22,53 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.client.plugins.experiencedrop;
+package net.runelite.client.plugins.timers;
 
-import java.awt.Color;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import net.runelite.client.ui.overlay.infobox.InfoBox;
+import java.awt.image.BufferedImage;
+import java.awt.Color;
+import java.time.Duration;
+import java.time.Instant;
+import org.apache.commons.lang3.time.DurationFormatUtils;
 
-@AllArgsConstructor
-enum DefaultColors
+@Getter
+class ElapsedTimer extends InfoBox
 {
-	WHITE(new Color(0xFF, 0xFF, 0xFF)),
-	LILAC(new Color(0xC8, 0xC8, 0xFF)),
-	CYAN(new Color(0x00, 0xFF, 0xFF)),
-	JADE(new Color(0xC8, 0xFF, 0xC8)),
-	LIME(new Color(0x64, 0xFF, 0x64)),
-	YELLOW(new Color(0xFF, 0xFF, 0x40)),
-	ORANGE(new Color(0xFF, 0x98, 0x1F)),
-	PINK(new Color(0xFF, 0xC8, 0xC8));
+	private final Instant startTime;
+	private final Instant lastTime;
 
-	@Getter
-	private final Color color;
+	// Creates a timer that counts up if lastTime is null, or a paused timer if lastTime is defined
+	ElapsedTimer(BufferedImage image, TimersPlugin plugin, Instant startTime, Instant lastTime)
+	{
+		super(image, plugin);
+		this.startTime = startTime;
+		this.lastTime = lastTime;
+	}
+
+	@Override
+	public String getText()
+	{
+		if (startTime == null)
+		{
+			return null;
+		}
+
+		Duration time = Duration.between(startTime, lastTime == null ? Instant.now() : lastTime);
+		final String formatString = time.toHours() > 0 ? "HH:mm" : "mm:ss";
+		return DurationFormatUtils.formatDuration(time.toMillis(), formatString, true);
+	}
+
+	@Override
+	public Color getTextColor()
+	{
+		return Color.WHITE;
+	}
+
+	@Override
+	public String getTooltip()
+	{
+		Duration time = Duration.between(startTime, lastTime == null ? Instant.now() : lastTime);
+		return "Elapsed time: " +  DurationFormatUtils.formatDuration(time.toMillis(), "HH:mm:ss", true);
+	}
 }

@@ -37,15 +37,23 @@ import java.util.concurrent.ScheduledExecutorService;
 import javax.inject.Inject;
 import net.runelite.api.ChatMessageType;
 import net.runelite.api.Client;
+import net.runelite.api.InventoryID;
+import net.runelite.api.Item;
 import net.runelite.api.ItemComposition;
+import net.runelite.api.ItemContainer;
 import net.runelite.api.ItemID;
 import net.runelite.api.IterableHashTable;
 import net.runelite.api.MessageNode;
 import net.runelite.api.Player;
+import net.runelite.api.Skill;
+import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.coords.WorldPoint;
 import net.runelite.api.events.ChatMessage;
+import net.runelite.api.events.WidgetLoaded;
+import net.runelite.api.widgets.WidgetID;
 import net.runelite.client.account.SessionManager;
 import net.runelite.client.chat.ChatMessageManager;
+import net.runelite.client.chat.QueuedMessage;
 import net.runelite.client.game.ItemManager;
 import net.runelite.client.game.ItemStack;
 import net.runelite.client.game.SpriteManager;
@@ -57,9 +65,14 @@ import static org.junit.Assert.assertNull;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentCaptor;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyCollection;
 import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.isNull;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
@@ -161,6 +174,8 @@ public class LootTrackerPluginTest
 	@Test
 	public void testHerbiboarHerbSack()
 	{
+		when(client.getBoostedSkillLevel(Skill.HERBLORE)).thenReturn(42);
+
 		for (Map.Entry<Integer, String> herb : HERB_IDS_TO_NAMES.entrySet())
 		{
 			final int id = herb.getKey();
@@ -189,17 +204,89 @@ public class LootTrackerPluginTest
 			when(client.getMessages()).thenReturn(messageTable);
 
 			LootTrackerPlugin lootTrackerPluginSpy = spy(this.lootTrackerPlugin);
-			doNothing().when(lootTrackerPluginSpy).addLoot(any(), anyInt(), any(), any(Collection.class));
+			doNothing().when(lootTrackerPluginSpy).addLoot(any(), anyInt(), any(), any(), any(Collection.class));
 
 			ChatMessage chatMessage = new ChatMessage(null, ChatMessageType.GAMEMESSAGE, "", LootTrackerPlugin.HERBIBOAR_LOOTED_MESSAGE, "", 0);
 			lootTrackerPluginSpy.onChatMessage(chatMessage);
 
-			verify(lootTrackerPluginSpy).addLoot("Herbiboar", -1, LootRecordType.EVENT, Arrays.asList(
+			verify(lootTrackerPluginSpy).addLoot("Herbiboar", -1, LootRecordType.EVENT, 42, Arrays.asList(
 				new ItemStack(id, 1, null),
 				new ItemStack(id, 1, null)
 			));
 			// Check the event type is null, which means the plugin isn't waiting on an inventory change event
 			assertNull(lootTrackerPlugin.eventType);
 		}
+	}
+
+	@Test
+	public void testCoXRaidsLootValue()
+	{
+		when(lootTrackerConfig.showRaidsLootValue()).thenReturn(true);
+		when(lootTrackerConfig.priceType()).thenReturn(LootTrackerPriceType.GRAND_EXCHANGE);
+
+		LootTrackerPlugin spyPlugin = Mockito.spy(lootTrackerPlugin);
+		// Make sure we don't execute addLoot, so we don't have to mock LootTrackerPanel and everything else also
+		doNothing().when(spyPlugin).addLoot(anyString(), anyInt(), any(LootRecordType.class), isNull(), anyCollection());
+
+		ItemContainer itemContainer = mock(ItemContainer.class);
+		when(itemContainer.getItems()).thenReturn(new Item[]{
+			new Item(ItemID.TWISTED_BOW, 1),
+			new Item(ItemID.PURE_ESSENCE, 42)
+		});
+		when(client.getItemContainer(InventoryID.CHAMBERS_OF_XERIC_CHEST)).thenReturn(itemContainer);
+
+		when(itemManager.getItemPrice(ItemID.TWISTED_BOW)).thenReturn(1_100_000_000);
+		when(itemManager.getItemPrice(ItemID.PURE_ESSENCE)).thenReturn(6);
+
+		WidgetLoaded widgetLoaded = new WidgetLoaded();
+		widgetLoaded.setGroupId(WidgetID.CHAMBERS_OF_XERIC_REWARD_GROUP_ID);
+		spyPlugin.onWidgetLoaded(widgetLoaded);
+
+		ArgumentCaptor<QueuedMessage> captor = ArgumentCaptor.forClass(QueuedMessage.class);
+		verify(chatMessageManager).queue(captor.capture());
+
+		QueuedMessage queuedMessage = captor.getValue();
+		assertEquals("<colNORMAL>Your loot is worth around <colHIGHLIGHT>1,100,000,252<colNORMAL> coins.", queuedMessage.getRuneLiteFormattedMessage());
+	}
+
+	@Test
+	public void testToBRaidsLootValue()
+	{
+		when(lootTrackerConfig.priceType()).thenReturn(LootTrackerPriceType.HIGH_ALCHEMY);
+		when(lootTrackerConfig.showRaidsLootValue()).thenReturn(true);
+
+		LootTrackerPlugin spyPlugin = Mockito.spy(lootTrackerPlugin);
+		// Make sure we don't execute addLoot, so we don't have to mock LootTrackerPanel and everything else also
+		doNothing().when(spyPlugin).addLoot(anyString(), anyInt(), any(LootRecordType.class), isNull(), anyCollection());
+
+		ItemContainer itemContainer = mock(ItemContainer.class);
+		when(itemContainer.getItems()).thenReturn(new Item[]{
+			new Item(ItemID.SCYTHE_OF_VITUR, 1),
+			new Item(ItemID.MAHOGANY_SEED, 10)
+		});
+		when(client.getItemContainer(InventoryID.THEATRE_OF_BLOOD_CHEST)).thenReturn(itemContainer);
+
+		ItemComposition compScythe = mock(ItemComposition.class);
+		when(itemManager.getItemComposition(ItemID.SCYTHE_OF_VITUR)).thenReturn(compScythe);
+		when(compScythe.getHaPrice()).thenReturn(60_000_000);
+
+		ItemComposition compSeed = mock(ItemComposition.class);
+		when(itemManager.getItemComposition(ItemID.MAHOGANY_SEED)).thenReturn(compSeed);
+		when(compSeed.getHaPrice()).thenReturn(2_102);
+
+		when(client.getBaseX()).thenReturn(3232);
+		when(client.getBaseY()).thenReturn(4320);
+		LocalPoint localPoint = new LocalPoint(0, 0);
+		when(client.getLocalPlayer().getLocalLocation()).thenReturn(localPoint);
+
+		WidgetLoaded widgetLoaded = new WidgetLoaded();
+		widgetLoaded.setGroupId(WidgetID.THEATRE_OF_BLOOD_GROUP_ID);
+		spyPlugin.onWidgetLoaded(widgetLoaded);
+
+		ArgumentCaptor<QueuedMessage> captor = ArgumentCaptor.forClass(QueuedMessage.class);
+		verify(chatMessageManager).queue(captor.capture());
+
+		QueuedMessage queuedMessage = captor.getValue();
+		assertEquals("<colNORMAL>Your loot is worth around <colHIGHLIGHT>60,021,020<colNORMAL> coins.", queuedMessage.getRuneLiteFormattedMessage());
 	}
 }

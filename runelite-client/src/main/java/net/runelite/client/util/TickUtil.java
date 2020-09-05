@@ -24,6 +24,9 @@
  */
 package net.runelite.client.util;
 
+/**
+ * Utility class for working with ticks.
+ */
 public class TickUtil
 {
 	public static String convertTimerFormat(int clientTicksRemaining, TimerFormat formatTo)

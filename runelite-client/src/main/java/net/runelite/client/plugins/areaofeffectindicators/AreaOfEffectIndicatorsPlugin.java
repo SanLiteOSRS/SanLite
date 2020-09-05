@@ -26,10 +26,9 @@ package net.runelite.client.plugins.areaofeffectindicators;
 
 import com.google.inject.Provides;
 import lombok.Getter;
-import net.runelite.api.GameState;
-import net.runelite.api.Projectile;
-import net.runelite.api.ProjectileID;
+import net.runelite.api.*;
 import net.runelite.api.coords.LocalPoint;
+import net.runelite.api.coords.WorldPoint;
 import net.runelite.api.events.GameStateChanged;
 import net.runelite.api.events.ProjectileMoved;
 import net.runelite.client.config.ConfigManager;
@@ -50,6 +49,11 @@ import java.util.concurrent.CopyOnWriteArrayList;
 )
 public class AreaOfEffectIndicatorsPlugin extends Plugin
 {
+
+	private final static int INFERNO_REGION = 9043;
+
+	@Inject
+	private Client client;
 
 	@Inject
 	private AreaOfEffectIndicatorsConfig config;
@@ -145,7 +149,8 @@ public class AreaOfEffectIndicatorsPlugin extends Plugin
 
 			// Chambers of Xeric
 			case ProjectileID.TEKTON_METEOR_AOE:
-				if (config.highlightTektonMeteors())
+				// This projectile is re-used in the Inferno, where it is not helpful to display, so block it
+				if (config.highlightTektonMeteors() && isNotInRegion(INFERNO_REGION))
 					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 3, targetPoint, config.getTektonMeteorsColor()));
 				break;
 			case ProjectileID.ICE_DEMON_RANGED_AOE:
@@ -323,5 +328,14 @@ public class AreaOfEffectIndicatorsPlugin extends Plugin
 		}
 	}
 
+	private boolean isNotInRegion(int regionId)
+	{
+		final Player player = client.getLocalPlayer();
+		if (player == null)
+		{
+			return false;
+		}
 
+		return WorldPoint.fromLocalInstance(client, player.getLocalLocation()).getRegionID() != regionId;
+	}
 }

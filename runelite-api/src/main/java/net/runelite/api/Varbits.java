@@ -328,9 +328,19 @@ public enum Varbits
 	 * Theatre of Blood 1=In Party, 2=Inside/Spectator, 3=Dead Spectating
 	 */
 	THEATRE_OF_BLOOD(6440),
+
+	/**
+	 * Value for the current encounter state ranging from 0 to 3,
+	 * Maiden | start 0 -> 1 | end 1 -> 0
+	 * Bloat | start 0 -> 1 | end 1 -> 0
+	 * Nylocas | start 0 -> 1 | end 1 -> 0
+	 * Sotetseg | start 0 -> 1 | maze active 1 -> 2 | maze inactive 2 -> 1 | end 1 -> 0
+	 * Xarpus | start 0 -> 2 | healing phase end 2 -> 1 | end 1 -> 0
+	 * Verzik | start 0 -> 3 | pillar phase end 3 -> 1 | end 1 -> 0
+	 */
 	TOB_ENCOUNTER_STATE(6447), // Range from 0-3, values depend on encounter
-	TOB_ENCOUNTER_HEALTH_BAR(6448), // Value is current health percentage (eg. 839 is 83,9%)
-	TOB_ENCOUNTER_HEALTH_BAR_MAX_VALUE(6449), // Value is set from 1000 to 0 at the end of encounter
+	TOB_ENCOUNTER_HEALTH_BAR_CURRENT_VALUE(6448), // Value is current health percentage (eg. 839 is 83,9%)
+	TOB_ENCOUNTER_HEALTH_BAR_MAX_VALUE(6449), // Max value health percentage (eg. 1000 for 100% and 0 for 0%)
 
 	/**
 	 * Theatre of Blood orb varbits each number stands for the player's health on a scale of 1-27,
@@ -799,7 +809,17 @@ public enum Varbits
 	CLAN_WARS_ARENA_COUNTDOWN_TIMER(4286),
 	CLAN_WARS_ARENA_UNKNOWN_2(4287),
 	CLAN_WARS_ARENA_UNKNOWN_3(4288),
-	CLAN_WARS_ARENA_UNKNOWN_4(4289);
+	CLAN_WARS_ARENA_UNKNOWN_4(4289),
+
+	/**
+	 * The amount of minutes since the start of the day (UTC). Updates every minute.
+	 */
+	GAME_TIME_MINUTES_COUNT(8354),
+
+	/**
+	 * Whether the player is in the buffer zone between the Wilderness and Ferox's Enclave.
+	 */
+	FEROX_ENCLAVE_BUFFER_ZONE(10530);
 
 	/**
 	 * The raw varbit ID.

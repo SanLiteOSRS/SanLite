@@ -28,7 +28,7 @@
 
 	<groupId>net.runelite</groupId>
 	<artifactId>runelite-parent</artifactId>
-	<version>1.6.21.1</version>
+	<version>1.6.25</version>
 	<packaging>pom</packaging>
 
 	<name>RuneLite</name>
@@ -45,8 +45,8 @@
 		<checkstyle.skip>true</checkstyle.skip>
 		<glslang.path></glslang.path>
 
-		<rs.version>190</rs.version>
-		<sanlite.version>1.15.4</sanlite.version>
+		<rs.version>191</rs.version>
+		<sanlite.version>1.17.1</sanlite.version>
 	</properties>
 
 	<licenses>
@@ -62,7 +62,7 @@
 		<url>https://github.com/runelite/runelite</url>
 		<connection>scm:git:git://github.com/runelite/runelite</connection>
 		<developerConnection>scm:git:git@github.com:runelite/runelite</developerConnection>
-		<tag>runelite-parent-1.6.21.1</tag>
+		<tag>runelite-parent-1.6.25</tag>
 	</scm>
 
 	<developers>

@@ -105,19 +105,20 @@ public class SlayerPluginTest
 	private static final String TASK_COMPLETE_NO_POINTS = "<col=ef1020>You've completed 3 tasks; return to a Slayer master.</col>";
 	private static final String TASK_POINTS = "You've completed 9 tasks and received 0 points, giving you a total of 18,000; return to a Slayer master.";
 	private static final String TASK_LARGE_STREAK = "You've completed 2,465 tasks and received 15 points, giving you a total of 17,566,000; return to a Slayer master.";
+	private static final String TASK_COMPETE_TURAEL = "You've completed 104 tasks. You'll be eligible to earn reward points if you complete tasks from a more advanced Slayer Master.";
 
 	private static final String TASK_COMPLETE = "You need something new to hunt.";
 	private static final String TASK_CANCELED = "Your task has been cancelled.";
 
 	private static final String SUPERIOR_MESSAGE = "A superior foe has appeared...";
 
-	private static final String BRACLET_SLAUGHTER = "Your bracelet of slaughter prevents your slayer count decreasing. It has 9 charges left.";
+	private static final String BRACLET_SLAUGHTER = "Your bracelet of slaughter prevents your slayer count from decreasing. It has 9 charges left.";
 	private static final String BRACLET_EXPEDITIOUS = "Your expeditious bracelet helps you progress your slayer task faster. It has 9 charges left.";
 
-	private static final String BRACLET_SLAUGHTER_V2 = "Your bracelet of slaughter prevents your slayer count decreasing. It has 1 charge left.";
+	private static final String BRACLET_SLAUGHTER_V2 = "Your bracelet of slaughter prevents your slayer count from decreasing. It has 1 charge left.";
 	private static final String BRACLET_EXPEDITIOUS_V2 = "Your expeditious bracelet helps you progress your slayer faster. It has 1 charge left.";
 
-	private static final String BRACLET_SLAUGHTER_V3 = "Your bracelet of slaughter prevents your slayer count decreasing. It then crumbles to dust.";
+	private static final String BRACLET_SLAUGHTER_V3 = "Your bracelet of slaughter prevents your slayer count from decreasing. It then crumbles to dust.";
 	private static final String BRACLET_EXPEDITIOUS_V3 = "Your expeditious bracelet helps you progress your slayer faster. It then crumbles to dust.";
 
 	private static final String CHAT_BRACELET_SLAUGHTER_CHARGE = "Your bracelet of slaughter has 12 charges left.";
@@ -486,6 +487,17 @@ public class SlayerPluginTest
 	}
 
 	@Test
+	public void testTaskCompleteTurael()
+	{
+		ChatMessage chatMessageEvent = new ChatMessage(null, GAMEMESSAGE, "Perterter", TASK_COMPETE_TURAEL, null, 0);
+		slayerPlugin.onChatMessage(chatMessageEvent);
+
+		verify(slayerConfig).streak(104);
+		assertEquals("", slayerPlugin.getTaskName());
+		assertEquals(0, slayerPlugin.getAmount());
+	}
+
+	@Test
 	public void testComplete()
 	{
 		slayerPlugin.setTaskName("cows");
@@ -533,10 +545,10 @@ public class SlayerPluginTest
 		when(client.getLocalPlayer()).thenReturn(player);
 
 		StatChanged statChanged = new StatChanged(
-				Skill.SLAYER,
-				100,
-				2,
-				2
+			Skill.SLAYER,
+			100,
+			2,
+			2
 		);
 		slayerPlugin.onStatChanged(statChanged);
 
@@ -544,10 +556,10 @@ public class SlayerPluginTest
 		slayerPlugin.setAmount(143);
 
 		statChanged = new StatChanged(
-				Skill.SLAYER,
-				110,
-				2,
-				2
+			Skill.SLAYER,
+			110,
+			2,
+			2
 		);
 		slayerPlugin.onStatChanged(statChanged);
 
@@ -562,10 +574,10 @@ public class SlayerPluginTest
 		when(client.getLocalPlayer()).thenReturn(player);
 
 		StatChanged statChanged = new StatChanged(
-				Skill.SLAYER,
-				100,
-				2,
-				2
+			Skill.SLAYER,
+			100,
+			2,
+			2
 		);
 		slayerPlugin.onStatChanged(statChanged);
 
@@ -575,10 +587,10 @@ public class SlayerPluginTest
 		assert Task.getTask("Monster") == null;
 
 		statChanged = new StatChanged(
-				Skill.SLAYER,
-				110,
-				2,
-				2
+			Skill.SLAYER,
+			110,
+			2,
+			2
 		);
 		slayerPlugin.onStatChanged(statChanged);
 
@@ -593,10 +605,10 @@ public class SlayerPluginTest
 		when(client.getLocalPlayer()).thenReturn(player);
 
 		StatChanged statChanged = new StatChanged(
-				Skill.SLAYER,
-				100,
-				2,
-				2
+			Skill.SLAYER,
+			100,
+			2,
+			2
 		);
 		slayerPlugin.onStatChanged(statChanged);
 
@@ -605,10 +617,10 @@ public class SlayerPluginTest
 
 		// One bat kill
 		statChanged = new StatChanged(
-				Skill.SLAYER,
-				110,
-				2,
-				2
+			Skill.SLAYER,
+			110,
+			2,
+			2
 		);
 		slayerPlugin.onStatChanged(statChanged);
 
@@ -616,10 +628,10 @@ public class SlayerPluginTest
 
 		// One Jad kill
 		statChanged = new StatChanged(
-				Skill.SLAYER,
-				25360,
-				-1,
-				-1
+			Skill.SLAYER,
+			25360,
+			-1,
+			-1
 		);
 		slayerPlugin.onStatChanged(statChanged);
 
@@ -634,10 +646,10 @@ public class SlayerPluginTest
 		when(client.getLocalPlayer()).thenReturn(player);
 
 		StatChanged statChanged = new StatChanged(
-				Skill.SLAYER,
-				110,
-				2,
-				2
+			Skill.SLAYER,
+			110,
+			2,
+			2
 		);
 		slayerPlugin.onStatChanged(statChanged);
 
@@ -646,10 +658,10 @@ public class SlayerPluginTest
 
 		// One bat kill
 		statChanged = new StatChanged(
-				Skill.SLAYER,
-				125,
-				2,
-				2
+			Skill.SLAYER,
+			125,
+			2,
+			2
 		);
 		slayerPlugin.onStatChanged(statChanged);
 
@@ -657,10 +669,10 @@ public class SlayerPluginTest
 
 		// One Zuk kill
 		statChanged = new StatChanged(
-				Skill.SLAYER,
-				102_015,
-				-1,
-				-1
+			Skill.SLAYER,
+			102_015,
+			-1,
+			-1
 		);
 		slayerPlugin.onStatChanged(statChanged);
 
@@ -782,6 +794,17 @@ public class SlayerPluginTest
 	}
 
 	@Test
+	public void updateInitialAmount()
+	{
+		Widget npcDialog = mock(Widget.class);
+		when(npcDialog.getText()).thenReturn(TASK_EXISTING);
+		when(client.getWidget(WidgetInfo.DIALOG_NPC_TEXT)).thenReturn(npcDialog);
+		slayerPlugin.onGameTick(new GameTick());
+
+		assertEquals(222, slayerPlugin.getInitialAmount());
+	}
+
+	@Test
 	public void testTaskLookup() throws IOException
 	{
 		net.runelite.http.api.chat.Task task = new net.runelite.http.api.chat.Task();
@@ -836,18 +859,18 @@ public class SlayerPluginTest
 		slayerPlugin.setAmount(35);
 
 		StatChanged statChanged = new StatChanged(
-				Skill.SLAYER,
-				0,
-				1,
-				1
+			Skill.SLAYER,
+			0,
+			1,
+			1
 		);
 		slayerPlugin.onStatChanged(statChanged);
 
 		statChanged = new StatChanged(
-				Skill.SLAYER,
-				27,
-				1,
-				1
+			Skill.SLAYER,
+			27,
+			1,
+			1
 		);
 		slayerPlugin.onStatChanged(statChanged);
 
@@ -879,10 +902,10 @@ public class SlayerPluginTest
 
 		// Setup xp cache
 		StatChanged statChanged = new StatChanged(
-				Skill.SLAYER,
-				0,
-				1,
-				1
+			Skill.SLAYER,
+			0,
+			1,
+			1
 		);
 		slayerPlugin.onStatChanged(statChanged);
 
@@ -922,10 +945,10 @@ public class SlayerPluginTest
 		slayerPlugin.onGameTick(new GameTick());
 
 		statChanged = new StatChanged(
-				Skill.SLAYER,
-				105,
-				2,
-				2
+			Skill.SLAYER,
+			105,
+			2,
+			2
 		);
 		slayerPlugin.onStatChanged(statChanged);
 

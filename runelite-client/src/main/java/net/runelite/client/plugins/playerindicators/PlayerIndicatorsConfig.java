@@ -478,9 +478,70 @@ public interface PlayerIndicatorsConfig extends Config
 		return false;
 	}
 
-	@Units(Units.TICKS)
 	@ConfigItem(
 			position = 33,
+			keyName = "notifyInPvpSafezone",
+			name = "Notify in a PvP safezone",
+			description = "Receive player spawn notifications even when you are in a PvP safezone such as a bank",
+			section = playerSpawnNotificationsSection
+	)
+	default boolean notifyInPvpSafezone()
+	{
+		return false;
+	}
+
+	@ConfigItem(
+			position = 34,
+			keyName = "notifyOnlyAttackablePlayers",
+			name = "Notify only in your combat range",
+			description = "Only receive player spawn notifications for players in your combat range",
+			section = playerSpawnNotificationsSection
+	)
+	default boolean notifyOnlyAttackablePlayers()
+	{
+		return false;
+	}
+
+	@ConfigItem(
+			position = 35,
+			keyName = "notifyFriendsSpawning",
+			name = "Notify on friend spawns",
+			description = "Receive player spawn notifications for friends spawning",
+			section = playerSpawnNotificationsSection
+	)
+	default boolean notifyFriendsSpawning()
+	{
+		return false;
+	}
+
+	@ConfigItem(
+			position = 36,
+			keyName = "notifyFriendsChatMembersSpawning",
+			name = "Notify on friends chat member spawn",
+			description = "Receive player spawn notifications for friends chat members spawning",
+			section = playerSpawnNotificationsSection
+	)
+	default boolean notifyFriendsChatMembersSpawning()
+	{
+		return false;
+	}
+
+	@ConfigItem(
+			position = 37,
+			keyName = "disableSafeDeathPvpAreaBlacklist",
+			name = "Disable safe death PvP area blacklist",
+			description = "Disables the blacklist which blocks player spawn notifications in safe<br>" +
+					"death PvP areas such as Castle Wars or the Clan Wars white portal",
+			section = playerSpawnNotificationsSection
+	)
+	default boolean disableSafeDeathPvpAreaBlacklist()
+	{
+		return false;
+	}
+
+	@Units(Units.TICKS)
+	@ConfigItem(
+			position = 38,
 			keyName = "delayBetweenPlayerSpawnedNotifications",
 			name = "Notification cooldown",
 			description = "Configures the minimum game ticks between player spawned notifications (600ms per tick)",
@@ -492,7 +553,7 @@ public interface PlayerIndicatorsConfig extends Config
 	}
 
 	@ConfigItem(
-			position = 34,
+			position = 39,
 			keyName = "ignoredPlayerNames",
 			name = "Ignored players",
 			description = "Configures players that will be ignored by player spawn notifications. Format: (name), (name)",
@@ -504,7 +565,7 @@ public interface PlayerIndicatorsConfig extends Config
 	}
 
 	@ConfigItem(
-			position = 35,
+			position = 40,
 			keyName = "clanMenuIcons",
 			name = "Show friends chat ranks",
 			description = "Add friends chat rank to right click menu and next to player names",

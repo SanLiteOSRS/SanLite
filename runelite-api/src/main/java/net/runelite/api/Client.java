@@ -498,6 +498,7 @@ public interface Client extends GameEngine
 	 * @param widget the widget info
 	 * @return the widget
 	 */
+	@Nullable
 	Widget getWidget(WidgetInfo widget);
 
 	/**
@@ -510,6 +511,7 @@ public interface Client extends GameEngine
 	 * @param childId the child widget ID
 	 * @return the widget corresponding to the group and child pair
 	 */
+	@Nullable
 	Widget getWidget(int groupId, int childId);
 
 	/**

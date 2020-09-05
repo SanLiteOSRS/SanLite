@@ -7,55 +7,43 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("ae")
 @Implements("WorldMapSectionType")
 public enum WorldMapSectionType implements Enumerated {
-	@ObfuscatedName("m")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
 		signature = "Lae;"
 	)
 	@Export("WORLDMAPSECTIONTYPE0")
-	WORLDMAPSECTIONTYPE0(3, (byte)0),
-	@ObfuscatedName("o")
+	WORLDMAPSECTIONTYPE0(2, (byte)0),
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
 		signature = "Lae;"
 	)
 	@Export("WORLDMAPSECTIONTYPE1")
-	WORLDMAPSECTIONTYPE1(0, (byte)1),
-	@ObfuscatedName("q")
+	WORLDMAPSECTIONTYPE1(1, (byte)1),
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
 		signature = "Lae;"
 	)
 	@Export("WORLDMAPSECTIONTYPE2")
-	WORLDMAPSECTIONTYPE2(2, (byte)2),
-	@ObfuscatedName("j")
+	WORLDMAPSECTIONTYPE2(3, (byte)2),
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
 		signature = "Lae;"
 	)
 	@Export("WORLDMAPSECTIONTYPE3")
-	WORLDMAPSECTIONTYPE3(1, (byte)3);
+	WORLDMAPSECTIONTYPE3(0, (byte)3);
 
-	@ObfuscatedName("au")
-	@Export("client")
-	@ObfuscatedSignature(
-		signature = "Lclient;"
-	)
-	static Client client;
-	@ObfuscatedName("ew")
+	@ObfuscatedName("g")
 	@ObfuscatedGetter(
-		intValue = 2013764495
+		intValue = 872496481
 	)
-	static int field174;
-	@ObfuscatedName("iz")
+	static int field178;
+	@ObfuscatedName("i")
 	@ObfuscatedGetter(
-		intValue = -870801305
-	)
-	@Export("selectedItemId")
-	static int selectedItemId;
-	@ObfuscatedName("p")
-	@ObfuscatedGetter(
-		intValue = -159728419
+		intValue = 750880259
 	)
 	@Export("type")
 	final int type;
-	@ObfuscatedName("g")
+	@ObfuscatedName("o")
 	@Export("id")
 	final byte id;
 
@@ -64,46 +52,22 @@ public enum WorldMapSectionType implements Enumerated {
 		this.id = var4;
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
 		signature = "(I)I",
-		garbageValue = "-995092303"
+		garbageValue = "385513888"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
 		return this.id;
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;ZZI)V",
-		garbageValue = "267980652"
+		signature = "(I)[Lae;",
+		garbageValue = "278613741"
 	)
-	@Export("openURL")
-	public static void openURL(String var0, boolean var1, boolean var2) {
-		UrlRequest.method3426(var0, var1, "openjs", var2);
-	}
-
-	@ObfuscatedName("j")
-	@ObfuscatedSignature(
-		signature = "(ILic;Ljava/lang/String;Ljava/lang/String;IZI)V",
-		garbageValue = "-2120164920"
-	)
-	public static void method306(int var0, AbstractArchive var1, String var2, String var3, int var4, boolean var5) {
-		int var6 = var1.getGroupId(var2);
-		int var7 = var1.getFileId(var6, var3);
-		MenuAction.playMusicTrack(var0, var1, var6, var7, var4, var5);
-	}
-
-	@ObfuscatedName("p")
-	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-230874976"
-	)
-	public static void method312() {
-		if (NetCache.NetCache_socket != null) {
-			NetCache.NetCache_socket.close();
-		}
-
+	static WorldMapSectionType[] method327() {
+		return new WorldMapSectionType[]{WORLDMAPSECTIONTYPE1, WORLDMAPSECTIONTYPE2, WORLDMAPSECTIONTYPE0, WORLDMAPSECTIONTYPE3};
 	}
 }

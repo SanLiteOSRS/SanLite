@@ -259,20 +259,20 @@ public class GauntletPlugin extends Plugin
 			{
 				switch (recentProjectileId)
 				{
-					case ProjectileID.GAUNTLET_BOSS_MAGIC:
-					case ProjectileID.CORRUPTED_GAUNTLET_BOSS_MAGIC:
+					case ProjectileID.CRYSTALLINE_HUNLLEF_MAGIC_ATTACK:
+					case ProjectileID.CORRUPTED_HUNLLEF_MAGIC_ATTACK:
 						log.debug("onAttack magic: " + gauntletBoss.getRemainingProjectileCount());
 						gauntletBoss.setRemainingProjectileCount(gauntletBoss.getRemainingProjectileCount() - 1);
 						onGauntletBossAttack(GauntletBoss.AttackStyle.MAGIC);
 						break;
-					case ProjectileID.GAUNTLET_BOSS_MAGIC_DISABLE_PRAYERS:
-					case ProjectileID.CORRUPTED_GAUNTLET_BOSS_MAGIC_DISABLE_PRAYERS:
+					case ProjectileID.CRYSTALLINE_HUNLLEF_DISABLE_PRAYERS_ATTACK:
+					case ProjectileID.CORRUPTED_HUNLLEF_DISABLE_PRAYERS_ATTACK:
 						log.debug("onAttack magic disable prayers: " + gauntletBoss.getRemainingProjectileCount());
 						gauntletBoss.setRemainingProjectileCount(gauntletBoss.getRemainingProjectileCount() - 1);
 						onGauntletBossAttack(GauntletBoss.AttackStyle.MAGIC);
 						break;
-					case ProjectileID.GAUNTLET_BOSS_RANGED:
-					case ProjectileID.CORRUPTED_GAUNTLET_BOSS_RANGED:
+					case ProjectileID.CRYSTALLINE_HUNLLEF_RANGED_ATTACK:
+					case ProjectileID.CORRUPTED_HUNLLEF_RANGED_ATTACK:
 						log.debug("onAttack ranged: " + gauntletBoss.getRemainingProjectileCount());
 						gauntletBoss.setRemainingProjectileCount(gauntletBoss.getRemainingProjectileCount() - 1);
 						onGauntletBossAttack(GauntletBoss.AttackStyle.RANGED);
@@ -292,7 +292,7 @@ public class GauntletPlugin extends Plugin
 			if (animationId != gauntletBoss.getLastTickAnimation())
 			{
 				int ticksSinceLastAttack = client.getTickCount() - gauntletBoss.getLastAttackTick();
-				if (animationId == AnimationID.GAUNTLET_BOSS_CRYSTAL_ATTACK && ticksSinceLastAttack >= 4)
+				if (animationId == AnimationID.HUNLLEF_SUMMON_CRYSTAL_NPC && ticksSinceLastAttack >= 4)
 				{
 					log.debug("onAttack crystal");
 					gauntletBoss.setAttacksUntilSwitch(gauntletBoss.getAttacksUntilSwitch() - 1);

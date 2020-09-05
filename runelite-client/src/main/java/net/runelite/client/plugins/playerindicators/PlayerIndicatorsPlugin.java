@@ -30,6 +30,8 @@ import com.google.inject.Provides;
 import net.runelite.api.*;
 import net.runelite.api.events.MenuEntryAdded;
 import net.runelite.api.events.PlayerSpawned;
+import net.runelite.api.widgets.Widget;
+import net.runelite.api.widgets.WidgetInfo;
 import net.runelite.client.Notifier;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
@@ -238,19 +240,25 @@ public class PlayerIndicatorsPlugin extends Plugin
 			return;
 
 		PlayerIndicatorType playerIndicatorType = playerIndicatorsService.getPlayerIndicatorType(player);
-		if (playerIndicatorType == null || !playerIndicatorType.equals(PlayerIndicatorType.NON_CLAN_MEMBER))
+		if (playerIndicatorType == null ||
+			playerIndicatorType.equals(PlayerIndicatorType.FRIENDS_CHAT_MEMBERS) && !config.notifyFriendsChatMembersSpawning() ||
+			playerIndicatorType.equals(PlayerIndicatorType.FRIEND) && !config.notifyFriendsSpawning())
 			return;
 
 		// Only send notifications in PvP zones
 		if (client.getVar(Varbits.PVP_SPEC_ORB) != 1 && client.getVar(Varbits.IN_WILDERNESS) != 1 &&
-				client.getWorldType().stream().noneMatch(x -> x == WorldType.DEADMAN))
+				client.getWorldType().stream().noneMatch(x -> x == WorldType.DEADMAN) && !config.notifyInPvpSafezone())
 			return;
 
-		// Do not trigger if the region is a safe death PvP zone (e.g. Duel Arena)
-		if (SafeDeathPvpRegions.inSafeDeathPvpArea(client.getMapRegions()))
+		// Only send notifications if player is attackable
+		if (config.notifyOnlyAttackablePlayers() && !isPlayerAttackable(player))
 		{
 			return;
 		}
+
+		// Do not trigger if the region is a safe death PvP zone (e.g. Duel Arena)
+		if (SafeDeathPvpRegions.inSafeDeathPvpArea(client) && !config.disableSafeDeathPvpAreaBlacklist())
+			return;
 
 		// Check if enough time has expired since the last notification
 		if (client.getTickCount() < lastPlayerSpawnNotificationGameTick + config.delayBetweenPlayerSpawnedNotifications())
@@ -261,5 +269,34 @@ public class PlayerIndicatorsPlugin extends Plugin
 
 		notifier.notify("[" + player.getName() + "] has spawned!");
 		lastPlayerSpawnNotificationGameTick = client.getTickCount();
+	}
+
+	private boolean isPlayerAttackable(Player player)
+	{
+		if (client.getLocalPlayer() == null)
+			return false;
+
+		int ownCombatLevel = client.getLocalPlayer().getCombatLevel();
+		int lowestAttackable = ownCombatLevel;
+		int highestAttackable = ownCombatLevel;
+
+		if (WorldType.isPvpWorld(client.getWorldType()))
+		{
+			lowestAttackable -= 15;
+			highestAttackable += 15;
+		}
+
+		if (client.getVar(Varbits.IN_WILDERNESS) == 1)
+		{
+			Widget levelRangeWidget = client.getWidget(WidgetInfo.PVP_WILDERNESS_LEVEL);
+			if (levelRangeWidget == null)
+				return false;
+
+			int wildLevel = Integer.parseInt(levelRangeWidget.getText().split(" ")[1].split("<")[0]);
+			lowestAttackable -= wildLevel;
+			highestAttackable += wildLevel;
+		}
+
+		return player.getCombatLevel() >= lowestAttackable && player.getCombatLevel() <= highestAttackable;
 	}
 }

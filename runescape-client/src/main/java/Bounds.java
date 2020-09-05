@@ -4,30 +4,33 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("lv")
+@ObfuscatedName("lr")
 @Implements("Bounds")
 public class Bounds {
-	@ObfuscatedName("m")
+	@ObfuscatedName("w")
+	@Export("Widget_loadedInterfaces")
+	public static boolean[] Widget_loadedInterfaces;
+	@ObfuscatedName("z")
 	@ObfuscatedGetter(
-		intValue = -961758993
+		intValue = -942038373
 	)
 	@Export("lowX")
 	public int lowX;
-	@ObfuscatedName("o")
+	@ObfuscatedName("k")
 	@ObfuscatedGetter(
-		intValue = 1458350895
+		intValue = -38208119
 	)
 	@Export("lowY")
 	public int lowY;
-	@ObfuscatedName("q")
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = 875525085
+		intValue = -468327151
 	)
 	@Export("highX")
 	public int highX;
-	@ObfuscatedName("j")
+	@ObfuscatedName("t")
 	@ObfuscatedGetter(
-		intValue = -1188404153
+		intValue = 85471293
 	)
 	@Export("highY")
 	public int highY;
@@ -41,10 +44,10 @@ public class Bounds {
 		this(0, 0, var1, var2);
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
 		signature = "(III)V",
-		garbageValue = "-2102954293"
+		garbageValue = "1517519205"
 	)
 	@Export("setLow")
 	public void setLow(int var1, int var2) {
@@ -52,10 +55,10 @@ public class Bounds {
 		this.lowY = var2;
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "(IIB)V",
-		garbageValue = "-40"
+		signature = "(III)V",
+		garbageValue = "1357233631"
 	)
 	@Export("setHigh")
 	public void setHigh(int var1, int var2) {
@@ -63,22 +66,22 @@ public class Bounds {
 		this.highY = var2;
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		signature = "(Llv;Llv;I)V",
-		garbageValue = "1555379366"
+		signature = "(Llr;Llr;S)V",
+		garbageValue = "172"
 	)
-	public void method6202(Bounds var1, Bounds var2) {
-		this.method6199(var1, var2);
-		this.method6194(var1, var2);
+	public void method6089(Bounds var1, Bounds var2) {
+		this.method6090(var1, var2);
+		this.method6087(var1, var2);
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		signature = "(Llv;Llv;B)V",
-		garbageValue = "58"
+		signature = "(Llr;Llr;I)V",
+		garbageValue = "-805505027"
 	)
-	void method6199(Bounds var1, Bounds var2) {
+	void method6090(Bounds var1, Bounds var2) {
 		var2.lowX = this.lowX;
 		var2.highX = this.highX;
 		if (this.lowX < var1.lowX) {
@@ -86,8 +89,8 @@ public class Bounds {
 			var2.lowX = var1.lowX;
 		}
 
-		if (var2.method6193() > var1.method6193()) {
-			var2.highX -= var2.method6193() - var1.method6193();
+		if (var2.method6091() > var1.method6091()) {
+			var2.highX -= var2.method6091() - var1.method6091();
 		}
 
 		if (var2.highX < 0) {
@@ -96,12 +99,12 @@ public class Bounds {
 
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		signature = "(Llv;Llv;I)V",
-		garbageValue = "-810970943"
+		signature = "(Llr;Llr;I)V",
+		garbageValue = "1845749630"
 	)
-	void method6194(Bounds var1, Bounds var2) {
+	void method6087(Bounds var1, Bounds var2) {
 		var2.lowY = this.lowY;
 		var2.highY = this.highY;
 		if (this.lowY < var1.lowY) {
@@ -109,8 +112,8 @@ public class Bounds {
 			var2.lowY = var1.lowY;
 		}
 
-		if (var2.method6196() > var1.method6196()) {
-			var2.highY -= var2.method6196() - var1.method6196();
+		if (var2.method6092() > var1.method6092()) {
+			var2.highY -= var2.method6092() - var1.method6092();
 		}
 
 		if (var2.highY < 0) {
@@ -119,22 +122,22 @@ public class Bounds {
 
 	}
 
-	@ObfuscatedName("g")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
 		signature = "(I)I",
-		garbageValue = "515582700"
+		garbageValue = "-1918003577"
 	)
-	int method6193() {
-		return this.lowX + this.highX;
+	int method6091() {
+		return this.highX + this.lowX;
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "-500619811"
+		signature = "(B)I",
+		garbageValue = "97"
 	)
-	int method6196() {
-		return this.lowY + this.highY;
+	int method6092() {
+		return this.highY + this.lowY;
 	}
 
 	public String toString() {

@@ -30,6 +30,7 @@ import java.awt.TrayIcon;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import javax.inject.Inject;
+import javax.sound.sampled.Clip;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import net.runelite.api.Client;
@@ -41,6 +42,8 @@ import net.runelite.client.ui.overlay.OverlayMenuEntry;
 import net.runelite.client.ui.overlay.infobox.Counter;
 import net.runelite.client.ui.overlay.infobox.InfoBoxManager;
 import net.runelite.client.util.ImageUtil;
+import net.runelite.client.game.SoundManager;
+import net.runelite.client.util.SoundUtil;
 
 class DevToolsPanel extends PluginPanel
 {
@@ -51,7 +54,9 @@ class DevToolsPanel extends PluginPanel
 	private final WidgetInspector widgetInspector;
 	private final VarInspector varInspector;
 	private final ScriptInspector scriptInspector;
+	private final InventoryInspector inventoryInspector;
 	private final InfoBoxManager infoBoxManager;
+	private final SoundManager soundManager;
 	private final ScheduledExecutorService scheduledExecutorService;
 
 	@Inject
@@ -61,8 +66,10 @@ class DevToolsPanel extends PluginPanel
 		WidgetInspector widgetInspector,
 		VarInspector varInspector,
 		ScriptInspector scriptInspector,
+		InventoryInspector inventoryInspector,
 		Notifier notifier,
 		InfoBoxManager infoBoxManager,
+		SoundManager soundManager,
 		ScheduledExecutorService scheduledExecutorService)
 	{
 		super();
@@ -70,9 +77,11 @@ class DevToolsPanel extends PluginPanel
 		this.plugin = plugin;
 		this.widgetInspector = widgetInspector;
 		this.varInspector = varInspector;
+		this.inventoryInspector = inventoryInspector;
 		this.scriptInspector = scriptInspector;
 		this.notifier = notifier;
 		this.infoBoxManager = infoBoxManager;
+		this.soundManager = soundManager;
 		this.scheduledExecutorService = scheduledExecutorService;
 
 		setBackground(ColorScheme.DARK_GRAY_COLOR);
@@ -179,6 +188,24 @@ class DevToolsPanel extends PluginPanel
 		final JButton clearInfoboxBtn = new JButton("Clear Infobox");
 		clearInfoboxBtn.addActionListener(e -> infoBoxManager.removeIf(i -> true));
 		container.add(clearInfoboxBtn);
+
+		container.add(plugin.getInventoryInspector());
+		plugin.getInventoryInspector().addActionListener((ev) ->
+		{
+			if (plugin.getInventoryInspector().isActive())
+			{
+				inventoryInspector.close();
+			}
+			else
+			{
+				inventoryInspector.open();
+			}
+		});
+
+		final JButton customSoundBtn = new JButton("Custom Sound");
+		Clip customSoundClip = SoundUtil.getResourceStreamFromClass(getClass(), "custom_sound.wav");
+		customSoundBtn.addActionListener(e -> scheduledExecutorService.submit(() -> soundManager.playCustomSound(customSoundClip)));
+		container.add(customSoundBtn);
 
 		return container;
 	}
