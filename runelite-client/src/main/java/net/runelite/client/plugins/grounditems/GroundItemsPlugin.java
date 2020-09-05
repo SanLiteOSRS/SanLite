@@ -105,6 +105,9 @@ public class GroundItemsPlugin extends Plugin
 		private final Color color;
 	}
 
+	// The game won't send anything higher than this value to the plugin -
+	// so we replace any item quantity higher with "Lots" instead.
+	static final int MAX_QUANTITY = 65535;
 	// ItemID for coins
 	private static final int COINS = ItemID.COINS_995;
 	// Ground item menu options
@@ -194,7 +197,7 @@ public class GroundItemsPlugin extends Plugin
 	}
 
 	@Override
-	protected void shutDown() throws Exception
+	protected void shutDown()
 	{
 		overlayManager.remove(overlay);
 		mouseManager.unregisterMouseListener(inputListener);
@@ -615,10 +618,7 @@ public class GroundItemsPlugin extends Plugin
 	private void notifyHighlightedItem(GroundItem item)
 	{
 		final boolean shouldNotifyHighlighted = config.notifyHighlightedDrops() &&
-			config.highlightedColor().equals(getHighlighted(
-				new NamedQuantity(item),
-				item.getGePrice(),
-				item.getHaPrice()));
+			TRUE.equals(highlightedItems.getUnchecked(new NamedQuantity(item)));
 
 		final boolean shouldNotifyTier = config.notifyTier() != HighlightTier.OFF &&
 			getValueByMode(item.getGePrice(), item.getHaPrice()) > config.notifyTier().getValueFromTier(config) &&
@@ -649,7 +649,7 @@ public class GroundItemsPlugin extends Plugin
 
 		if (item.getQuantity() > 1)
 		{
-			if (item.getQuantity() > (int) Character.MAX_VALUE)
+			if (item.getQuantity() >= MAX_QUANTITY)
 			{
 				notificationStringBuilder.append(" (Lots!)");
 			}

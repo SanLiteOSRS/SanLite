@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, AeonLucid <https://github.com/AeonLucid>
+ * Copyright (c) 2020, Hydrox6 <ikada@protonmail.ch>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,54 +22,22 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.http.api.osbuddy;
+package net.runelite.client.plugins.timetracking;
 
-import com.google.gson.JsonParseException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
 import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import net.runelite.http.api.RuneLiteAPI;
-import okhttp3.HttpUrl;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 
-@Slf4j
 @AllArgsConstructor
-public class OSBGrandExchangeClient
+public enum TimeFormatMode
 {
-	private final OkHttpClient client;
+	RELATIVE("Relative"),
+	ABSOLUTE_12H("12 Hour"),
+	ABSOLUTE_24H("24 Hour");
 
-	public OSBGrandExchangeResult lookupItem(int itemId) throws IOException
+	private final String name;
+
+	@Override
+	public String toString()
 	{
-		final HttpUrl url = RuneLiteAPI.getApiBase().newBuilder()
-			.addPathSegment("osb")
-			.addPathSegment("ge")
-			.addQueryParameter("itemId", Integer.toString(itemId))
-			.build();
-
-		log.debug("Built URI: {}", url);
-
-		final Request request = new Request.Builder()
-			.url(url)
-			.build();
-
-		try (final Response response = client.newCall(request).execute())
-		{
-			if (!response.isSuccessful())
-			{
-				throw new IOException("Error looking up item id: " + response);
-			}
-
-			final InputStream in = response.body().byteStream();
-			return RuneLiteAPI.GSON.fromJson(new InputStreamReader(in, StandardCharsets.UTF_8), OSBGrandExchangeResult.class);
-		}
-		catch (JsonParseException ex)
-		{
-			throw new IOException(ex);
-		}
+		return name;
 	}
 }

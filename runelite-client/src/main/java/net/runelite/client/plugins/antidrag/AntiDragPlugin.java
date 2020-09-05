@@ -182,7 +182,8 @@ public class AntiDragPlugin extends Plugin implements KeyListener
 	@Subscribe
 	public void onWidgetLoaded(WidgetLoaded widgetLoaded)
 	{
-		if (widgetLoaded.getGroupId() == WidgetID.BANK_GROUP_ID && (!config.onKeybindOnly() || enableKeybindHeld) && !disableKeybindHeld)
+		if ((widgetLoaded.getGroupId() == WidgetID.BANK_GROUP_ID || widgetLoaded.getGroupId() == WidgetID.DEPOSIT_BOX_GROUP_ID) &&
+				(!config.onKeybindOnly() || enableKeybindHeld) && !disableKeybindHeld)
 		{
 			setBankDragDelay(config.dragDelay());
 		}
@@ -192,6 +193,7 @@ public class AntiDragPlugin extends Plugin implements KeyListener
 	{
 		final Widget bankItemContainer = client.getWidget(WidgetInfo.BANK_ITEM_CONTAINER);
 		final Widget bankInventoryItemsContainer = client.getWidget(WidgetInfo.BANK_INVENTORY_ITEMS_CONTAINER);
+		final Widget bankDepositContainer = client.getWidget(WidgetInfo.DEPOSIT_BOX_INVENTORY_ITEMS_CONTAINER);
 		if (bankItemContainer != null)
 		{
 			Widget[] items = bankItemContainer.getDynamicChildren();
@@ -203,6 +205,14 @@ public class AntiDragPlugin extends Plugin implements KeyListener
 		if (bankInventoryItemsContainer != null)
 		{
 			Widget[] items = bankInventoryItemsContainer.getDynamicChildren();
+			for (Widget item : items)
+			{
+				item.setDragDeadTime(delay);
+			}
+		}
+		if (bankDepositContainer != null)
+		{
+			Widget[] items = bankDepositContainer.getDynamicChildren();
 			for (Widget item : items)
 			{
 				item.setDragDeadTime(delay);
