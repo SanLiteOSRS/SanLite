@@ -35,7 +35,7 @@ public interface CorpConfig extends Config
 		keyName = "leftClickCore",
 		name = "Left click walk on core",
 		description = "Prioritizes Walk here over Attack on the Dark energy core",
-		position = 1,
+		position = 0,
 		warning = "This is a use at own risk option, do you still want toggle this option?"
 	)
 	default boolean leftClickCore()
@@ -47,9 +47,20 @@ public interface CorpConfig extends Config
 		keyName = "showDamage",
 		name = "Show damage overlay",
 		description = "Show total damage overlay",
-		position = 2
+		position = 1
 	)
 	default boolean showDamage()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+		keyName = "markDarkCore",
+		name = "Mark dark core",
+		description = "Marks the dark energy core.",
+		position = 2
+	)
+	default boolean markDarkCore()
 	{
 		return true;
 	}
