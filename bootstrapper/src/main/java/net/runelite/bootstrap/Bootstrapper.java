@@ -6,6 +6,9 @@ import com.google.gson.GsonBuilder;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
@@ -66,6 +69,8 @@ public class Bootstrapper
 			}
 		}
 
+		copyDynamicArtifacts(bootstrapDir);
+
 		try (FileWriter fileWriter = new FileWriter(bootstrapDir.getPath() + "/bootstrap.json"))
 		{
 			gson.toJson(new Bootstrap(type.getRepositoryUrl(), buildCommit, CHECKSUMS), fileWriter);
@@ -74,6 +79,25 @@ public class Bootstrapper
 		{
 			System.err.println("Unable to generate " + type.getName() + " bootstrap file");
 			e.printStackTrace();
+		}
+	}
+
+	private static void copyDynamicArtifacts(File outputDir)
+	{
+		for (DynamicArtifact artifact : DynamicArtifact.values())
+		{
+			try
+			{
+				System.out.println("Copying " + artifact.getFile() + " to " + outputDir);
+				Files.copy(Paths.get(artifact.getFile().getCanonicalPath()),
+						Paths.get(new File(outputDir + "/" + artifact.getFileName()).getCanonicalPath()),
+						StandardCopyOption.REPLACE_EXISTING);
+			}
+			catch (IOException e)
+			{
+				System.err.println("Unable to copy artifact for " + artifact.getName());
+				e.printStackTrace();
+			}
 		}
 	}
 

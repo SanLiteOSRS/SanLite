@@ -6,6 +6,7 @@ import java.util.Map;
 class Bootstrap
 {
 	private static String CLIENT_REPO_URL;
+	private static int STATIC_ARTIFACTS_SIZE = 31;
 	private static Map<DynamicArtifact, String> CHECKSUMS;
 
 	private Artifact[] artifacts;
@@ -75,9 +76,9 @@ class Bootstrap
 
 	private void createArtifacts()
 	{
-		artifacts = new Artifact[36];
+		artifacts = new Artifact[STATIC_ARTIFACTS_SIZE + DynamicArtifact.values().length];
 
-		// Static artifacts
+		// Create static artifacts
 		artifacts[0] = new Artifact();
 		artifacts[0].setHash("18c4a0095d5c1da6b817592e767bb23d29dd2f560ad74df75ff3961dbde25b79");
 		artifacts[0].setName("slf4j-api-1.7.25.jar");
@@ -264,40 +265,20 @@ class Bootstrap
 		artifacts[30].setPath("https://repo.runelite.net/net/runelite/discord/1.2/discord-1.2.jar");
 		artifacts[30].setSize(617313);
 
-		// Dynamic artifacts
-		artifacts[31] = new Artifact();
-		artifacts[31].setName("client-" + new BootstrapperProperties().getRuneLiteVersion() + ".jar");
-		artifacts[31].setHash(CHECKSUMS.get(DynamicArtifact.RUNELITE_CLIENT));
-		artifacts[31].setPath(CLIENT_REPO_URL + artifacts[31].getName());
-		artifacts[31].setSize(getFileSize("../runelite-client/target/" + artifacts[31].getName()));
-
-		artifacts[32] = new Artifact();
-		artifacts[32].setName("runelite-api-" + new BootstrapperProperties().getRuneLiteVersion() + ".jar");
-		artifacts[32].setHash(CHECKSUMS.get(DynamicArtifact.RUNELITE_API));
-		artifacts[32].setPath(CLIENT_REPO_URL + artifacts[32].getName());
-		artifacts[32].setSize(getFileSize("../runelite-api/target/" + artifacts[32].getName()));
-
-		artifacts[33] = new Artifact();
-		artifacts[33].setName("runescape-api-" + new BootstrapperProperties().getRuneLiteVersion() + ".jar");
-		artifacts[33].setHash(CHECKSUMS.get(DynamicArtifact.RUNESCAPE_API));
-		artifacts[33].setPath(CLIENT_REPO_URL + artifacts[33].getName());
-		artifacts[33].setSize(getFileSize("../runescape-api/target/" + artifacts[33].getName()));
-
-		artifacts[34] = new Artifact();
-		artifacts[34].setName("http-api-" + new BootstrapperProperties().getRuneLiteVersion() + ".jar");
-		artifacts[34].setHash(CHECKSUMS.get(DynamicArtifact.HTTP_API));
-		artifacts[34].setPath(CLIENT_REPO_URL + artifacts[34].getName());
-		artifacts[34].setSize(getFileSize("../http-api/target/" + artifacts[34].getName()));
-
-		artifacts[35] = new Artifact();
-		artifacts[35].setName("injected-client-" + new BootstrapperProperties().getRuneLiteVersion() + ".jar");
-		artifacts[35].setHash(CHECKSUMS.get(DynamicArtifact.INJECTED_CLIENT));
-		artifacts[35].setPath(CLIENT_REPO_URL + artifacts[35].getName());
-		artifacts[35].setSize(getFileSize("../injected-client/target/" + artifacts[35].getName()));
+		// Create dynamic artifacts
+		for (DynamicArtifact artifact : DynamicArtifact.values())
+		{
+			int idx = STATIC_ARTIFACTS_SIZE + artifact.ordinal();
+			artifacts[idx] = new Artifact();
+			artifacts[idx].setName(artifact.getFileName());
+			artifacts[idx].setHash(CHECKSUMS.get(artifact));
+			artifacts[idx].setPath(CLIENT_REPO_URL + artifacts[idx].getName());
+			artifacts[idx].setSize(getFileSize(artifact.getFile()));
+		}
 	}
 
-	private int getFileSize(String fileLocation)
+	private int getFileSize(File file)
 	{
-		return (int) new File(fileLocation).length();
+		return (int) file.length();
 	}
 }
