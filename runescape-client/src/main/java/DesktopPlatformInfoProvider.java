@@ -4,38 +4,38 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("mf")
+@ObfuscatedName("mx")
 @Implements("DesktopPlatformInfoProvider")
 public class DesktopPlatformInfoProvider implements PlatformInfoProvider {
-	@ObfuscatedName("t")
+	@ObfuscatedName("m")
 	@ObfuscatedGetter(
-		intValue = 1098787301
+		intValue = 1591606451
 	)
-	int field3933;
-	@ObfuscatedName("i")
-	@ObfuscatedGetter(
-		intValue = 125115333
-	)
-	int field3936;
-	@ObfuscatedName("o")
-	@ObfuscatedGetter(
-		intValue = 1328442545
-	)
-	int field3930;
-
+	int field3938;
 	@ObfuscatedName("z")
+	@ObfuscatedGetter(
+		intValue = -1274184543
+	)
+	int field3941;
+	@ObfuscatedName("q")
+	@ObfuscatedGetter(
+		intValue = -1204832127
+	)
+	int field3944;
+
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "(I)Lmr;",
-		garbageValue = "-1896317364"
+		signature = "(I)Lme;",
+		garbageValue = "1154202585"
 	)
 	@Export("get")
 	public PlatformInfo get() {
 		byte var1;
-		if (JagexCache.field2094.startsWith("win")) {
+		if (MouseRecorder.field617.startsWith("win")) {
 			var1 = 1;
-		} else if (JagexCache.field2094.startsWith("mac")) {
+		} else if (MouseRecorder.field617.startsWith("mac")) {
 			var1 = 2;
-		} else if (JagexCache.field2094.startsWith("linux")) {
+		} else if (MouseRecorder.field617.startsWith("linux")) {
 			var1 = 3;
 		} else {
 			var1 = 4;
@@ -133,10 +133,10 @@ public class DesktopPlatformInfoProvider implements PlatformInfoProvider {
 			var8 = 4;
 		}
 
-		this.method6396(var5);
+		this.method6425(var5);
 		int var10 = (int)(Runtime.getRuntime().maxMemory() / 1048576L) + 1;
 		int var11;
-		if (this.field3933 > 3) {
+		if (this.field3938 > 3) {
 			var11 = Runtime.getRuntime().availableProcessors();
 		} else {
 			var11 = 0;
@@ -150,53 +150,53 @@ public class DesktopPlatformInfoProvider implements PlatformInfoProvider {
 		String var17 = "";
 		String var18 = "";
 		int[] var23 = new int[3];
-		return new PlatformInfo(var1, var24, var7, var8, this.field3933, this.field3936, this.field3930, false, var10, var11, var12, 0, var13, var14, var15, var16, 0, 0, 0, 0, var17, var18, var23, 0, "");
+		return new PlatformInfo(var1, var24, var7, var8, this.field3938, this.field3941, this.field3944, false, var10, var11, var12, 0, var13, var14, var15, var16, 0, 0, 0, 0, var17, var18, var23, 0, "");
 	}
 
-	@ObfuscatedName("k")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;I)V",
-		garbageValue = "395335674"
+		signature = "(Ljava/lang/String;B)V",
+		garbageValue = "1"
 	)
-	void method6396(String var1) {
+	void method6425(String var1) {
 		if (var1.startsWith("1.")) {
-			this.method6399(var1);
+			this.method6426(var1);
 		} else {
-			this.method6400(var1);
+			this.method6427(var1);
 		}
 
 	}
 
-	@ObfuscatedName("s")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
 		signature = "(Ljava/lang/String;I)V",
-		garbageValue = "1051455651"
+		garbageValue = "291167261"
 	)
-	void method6399(String var1) {
+	void method6426(String var1) {
 		String[] var2 = var1.split("\\.");
 
 		try {
-			this.field3933 = Integer.parseInt(var2[1]);
+			this.field3938 = Integer.parseInt(var2[1]);
 			var2 = var2[2].split("_");
-			this.field3936 = Integer.parseInt(var2[0]);
-			this.field3930 = Integer.parseInt(var2[1]);
+			this.field3941 = Integer.parseInt(var2[0]);
+			this.field3944 = Integer.parseInt(var2[1]);
 		} catch (Exception var4) {
 		}
 
 	}
 
-	@ObfuscatedName("t")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
 		signature = "(Ljava/lang/String;I)V",
-		garbageValue = "-2119124304"
+		garbageValue = "-1635640262"
 	)
-	void method6400(String var1) {
+	void method6427(String var1) {
 		String[] var2 = var1.split("\\.");
 
 		try {
-			this.field3933 = Integer.parseInt(var2[0]);
-			this.field3936 = Integer.parseInt(var2[1]);
-			this.field3930 = Integer.parseInt(var2[2]);
+			this.field3938 = Integer.parseInt(var2[0]);
+			this.field3941 = Integer.parseInt(var2[1]);
+			this.field3944 = Integer.parseInt(var2[2]);
 		} catch (Exception var4) {
 		}
 

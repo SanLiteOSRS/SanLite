@@ -4,72 +4,66 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cb")
+@ObfuscatedName("ck")
 @Implements("DynamicObject")
 public class DynamicObject extends Renderable {
-	@ObfuscatedName("fo")
-	@ObfuscatedSignature(
-		signature = "Lkr;"
-	)
-	@Export("fontPlain11")
-	static Font fontPlain11;
-	@ObfuscatedName("z")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = -992554479
+		intValue = -550843083
 	)
 	@Export("id")
 	int id;
-	@ObfuscatedName("k")
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = -224037215
+		intValue = 174390429
 	)
 	@Export("type")
 	int type;
-	@ObfuscatedName("s")
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = -1337748479
+		intValue = 89407283
 	)
 	@Export("orientation")
 	int orientation;
-	@ObfuscatedName("t")
+	@ObfuscatedName("m")
 	@ObfuscatedGetter(
-		intValue = 719138669
+		intValue = -1374963731
 	)
 	@Export("plane")
 	int plane;
-	@ObfuscatedName("i")
+	@ObfuscatedName("z")
 	@ObfuscatedGetter(
-		intValue = 1011089507
+		intValue = -2010464009
 	)
 	@Export("x")
 	int x;
-	@ObfuscatedName("o")
+	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = -1704315949
+		intValue = 647351421
 	)
 	@Export("y")
 	int y;
-	@ObfuscatedName("x")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "Ljm;"
+		signature = "Ljg;"
 	)
 	@Export("sequenceDefinition")
 	SequenceDefinition sequenceDefinition;
-	@ObfuscatedName("w")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = -791329731
+		intValue = 2125087057
 	)
 	@Export("frame")
 	int frame;
-	@ObfuscatedName("g")
+	@ObfuscatedName("u")
 	@ObfuscatedGetter(
-		intValue = -1556832647
+		intValue = 561855979
 	)
 	@Export("cycleStart")
 	int cycleStart;
 
 	@ObfuscatedSignature(
-		signature = "(IIIIIIIZLez;)V"
+		signature = "(IIIIIIIZLej;)V"
 	)
 	DynamicObject(int var1, int var2, int var3, int var4, int var5, int var6, int var7, boolean var8, Renderable var9) {
 		this.id = var1;
@@ -79,12 +73,12 @@ public class DynamicObject extends Renderable {
 		this.x = var5;
 		this.y = var6;
 		if (var7 != -1) {
-			this.sequenceDefinition = WorldMapRegion.SequenceDefinition_get(var7);
+			this.sequenceDefinition = class105.SequenceDefinition_get(var7);
 			this.frame = 0;
 			this.cycleStart = Client.cycle - 1;
-			if (this.sequenceDefinition.field3535 == 0 && var9 != null && var9 instanceof DynamicObject) {
+			if (this.sequenceDefinition.field3551 == 0 && var9 != null && var9 instanceof DynamicObject) {
 				DynamicObject var10 = (DynamicObject)var9;
-				if (this.sequenceDefinition == var10.sequenceDefinition) {
+				if (var10.sequenceDefinition == this.sequenceDefinition) {
 					this.frame = var10.frame;
 					this.cycleStart = var10.cycleStart;
 					return;
@@ -99,10 +93,10 @@ public class DynamicObject extends Renderable {
 
 	}
 
-	@ObfuscatedName("g")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "(I)Ler;",
-		garbageValue = "-2026237468"
+		signature = "(I)Leh;",
+		garbageValue = "-2070677844"
 	)
 	@Export("getModel")
 	protected final Model getModel() {
@@ -112,11 +106,11 @@ public class DynamicObject extends Renderable {
 				var1 = 100;
 			}
 
-			label54: {
+			label55: {
 				do {
 					do {
 						if (var1 <= this.sequenceDefinition.frameLengths[this.frame]) {
-							break label54;
+							break label55;
 						}
 
 						var1 -= this.sequenceDefinition.frameLengths[this.frame];
@@ -132,7 +126,7 @@ public class DynamicObject extends Renderable {
 			this.cycleStart = Client.cycle - var1;
 		}
 
-		ObjectComposition var12 = MidiPcmStream.getObjectDefinition(this.id);
+		ObjectComposition var12 = ScriptEvent.getObjectDefinition(this.id);
 		if (var12.transforms != null) {
 			var12 = var12.transform();
 		}
@@ -162,85 +156,43 @@ public class DynamicObject extends Renderable {
 		}
 	}
 
-	@ObfuscatedName("i")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(Lkf;IIIIIIB)V",
-		garbageValue = "24"
+		signature = "(IIII)I",
+		garbageValue = "1129350300"
 	)
-	@Export("loadTerrain")
-	static final void loadTerrain(Buffer var0, int var1, int var2, int var3, int var4, int var5, int var6) {
-		int var7;
-		if (var2 >= 0 && var2 < 104 && var3 >= 0 && var3 < 104) {
-			Tiles.Tiles_renderFlags[var1][var2][var3] = 0;
-
-			while (true) {
-				var7 = var0.readUnsignedByte();
-				if (var7 == 0) {
-					if (var1 == 0) {
-						int[] var8 = Tiles.Tiles_heights[0][var2];
-						int var11 = var2 + var4 + 932731;
-						int var12 = var3 + var5 + 556238;
-						int var13 = class60.method947(45365 + var11, 91923 + var12, 4) - 128 + (class60.method947(var11 + 10294, 37821 + var12, 2) - 128 >> 1) + (class60.method947(var11, var12, 1) - 128 >> 2);
-						var13 = (int)((double)var13 * 0.3D) + 35;
-						if (var13 < 10) {
-							var13 = 10;
-						} else if (var13 > 60) {
-							var13 = 60;
-						}
-
-						var8[var3] = -var13 * 8;
-					} else {
-						Tiles.Tiles_heights[var1][var2][var3] = Tiles.Tiles_heights[var1 - 1][var2][var3] - 240;
-					}
-					break;
-				}
-
-				if (var7 == 1) {
-					int var14 = var0.readUnsignedByte();
-					if (var14 == 1) {
-						var14 = 0;
-					}
-
-					if (var1 == 0) {
-						Tiles.Tiles_heights[0][var2][var3] = -var14 * 8;
-					} else {
-						Tiles.Tiles_heights[var1][var2][var3] = Tiles.Tiles_heights[var1 - 1][var2][var3] - var14 * 8;
-					}
-					break;
-				}
-
-				if (var7 <= 49) {
-					Tiles.field521[var1][var2][var3] = var0.readByte();
-					class297.field3668[var1][var2][var3] = (byte)((var7 - 2) / 4);
-					class171.field2049[var1][var2][var3] = (byte)(var7 - 2 + var6 & 3);
-				} else if (var7 <= 81) {
-					Tiles.Tiles_renderFlags[var1][var2][var3] = (byte)(var7 - 49);
-				} else {
-					Tiles.field528[var1][var2][var3] = (byte)(var7 - 81);
-				}
-			}
-		} else {
-			while (true) {
-				var7 = var0.readUnsignedByte();
-				if (var7 == 0) {
-					break;
-				}
-
-				if (var7 == 1) {
-					var0.readUnsignedByte();
-					break;
-				}
-
-				if (var7 <= 49) {
-					var0.readUnsignedByte();
-				}
-			}
-		}
-
+	static final int method2357(int var0, int var1, int var2) {
+		int var3 = var0 / var2;
+		int var4 = var0 & var2 - 1;
+		int var5 = var1 / var2;
+		int var6 = var1 & var2 - 1;
+		int var7 = WorldMapID.method665(var3, var5);
+		int var8 = WorldMapID.method665(var3 + 1, var5);
+		int var9 = WorldMapID.method665(var3, var5 + 1);
+		int var10 = WorldMapID.method665(var3 + 1, var5 + 1);
+		int var11 = PendingSpawn.method1841(var7, var8, var4, var2);
+		int var12 = PendingSpawn.method1841(var9, var10, var4, var2);
+		return PendingSpawn.method1841(var11, var12, var6, var2);
 	}
 
-	@ObfuscatedName("m")
-	static final void method2331(long var0) {
-		ViewportMouse.ViewportMouse_entityTags[++ViewportMouse.ViewportMouse_entityCount - 1] = var0;
+	@ObfuscatedName("ip")
+	@ObfuscatedSignature(
+		signature = "(IB)Z",
+		garbageValue = "-41"
+	)
+	static boolean method2362(int var0) {
+		return var0 == 57 || var0 == 58 || var0 == 1007 || var0 == 25 || var0 == 30;
+	}
+
+	@ObfuscatedName("jo")
+	@ObfuscatedSignature(
+		signature = "(IIIIIIII)V",
+		garbageValue = "-2144644905"
+	)
+	@Export("updateRootInterface")
+	static final void updateRootInterface(int var0, int var1, int var2, int var3, int var4, int var5, int var6) {
+		if (ScriptFrame.loadInterface(var0)) {
+			class69.updateInterface(Widget.Widget_interfaceComponents[var0], -1, var1, var2, var3, var4, var5, var6);
+		}
 	}
 }
