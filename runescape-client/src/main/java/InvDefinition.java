@@ -4,24 +4,30 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("iq")
+@ObfuscatedName("it")
 @Implements("InvDefinition")
 public class InvDefinition extends DualNode {
-	@ObfuscatedName("z")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "Lic;"
+		signature = "Liw;"
 	)
 	@Export("InvDefinition_archive")
 	static AbstractArchive InvDefinition_archive;
-	@ObfuscatedName("k")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		signature = "Lel;"
+		signature = "Lev;"
 	)
 	@Export("InvDefinition_cached")
 	static EvictingDualNodeHashTable InvDefinition_cached;
-	@ObfuscatedName("s")
+	@ObfuscatedName("me")
 	@ObfuscatedGetter(
-		intValue = 1545647129
+		intValue = 1335589657
+	)
+	@Export("selectedItemSlot")
+	static int selectedItemSlot;
+	@ObfuscatedName("l")
+	@ObfuscatedGetter(
+		intValue = -2004662257
 	)
 	@Export("size")
 	public int size;
@@ -34,10 +40,10 @@ public class InvDefinition extends DualNode {
 		this.size = 0;
 	}
 
-	@ObfuscatedName("s")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		signature = "(Lkf;I)V",
-		garbageValue = "-1963217868"
+		signature = "(Lkb;I)V",
+		garbageValue = "1021098633"
 	)
 	@Export("decode")
 	void decode(Buffer var1) {
@@ -51,10 +57,10 @@ public class InvDefinition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("t")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		signature = "(Lkf;II)V",
-		garbageValue = "-1931159207"
+		signature = "(Lkb;IS)V",
+		garbageValue = "-6183"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
@@ -64,27 +70,33 @@ public class InvDefinition extends DualNode {
 
 	}
 
-	@ObfuscatedName("g")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "(I)Lls;",
-		garbageValue = "-1532284396"
+		signature = "(Lkb;Lll;I)Lll;",
+		garbageValue = "-1253554841"
 	)
-	public static IndexedSprite method4448() {
-		IndexedSprite var0 = new IndexedSprite();
-		var0.width = class335.SpriteBuffer_spriteWidth;
-		var0.height = class335.SpriteBuffer_spriteHeight;
-		var0.xOffset = Username.SpriteBuffer_xOffsets[0];
-		var0.yOffset = class335.SpriteBuffer_yOffsets[0];
-		var0.subWidth = class335.SpriteBuffer_spriteWidths[0];
-		var0.subHeight = class335.SpriteBuffer_spriteHeights[0];
-		var0.palette = TaskHandler.SpriteBuffer_spritePalette;
-		var0.pixels = class92.SpriteBuffer_pixels[0];
-		Username.SpriteBuffer_xOffsets = null;
-		class335.SpriteBuffer_yOffsets = null;
-		class335.SpriteBuffer_spriteWidths = null;
-		class335.SpriteBuffer_spriteHeights = null;
-		TaskHandler.SpriteBuffer_spritePalette = null;
-		class92.SpriteBuffer_pixels = null;
-		return var0;
+	@Export("readStringIntParameters")
+	static final IterableNodeHashTable readStringIntParameters(Buffer var0, IterableNodeHashTable var1) {
+		int var2 = var0.readUnsignedByte();
+		int var3;
+		if (var1 == null) {
+			var3 = WorldMapData_0.method266(var2);
+			var1 = new IterableNodeHashTable(var3);
+		}
+
+		for (var3 = 0; var3 < var2; ++var3) {
+			boolean var4 = var0.readUnsignedByte() == 1;
+			int var5 = var0.readMedium();
+			Object var6;
+			if (var4) {
+				var6 = new ObjectNode(var0.readStringCp1252NullTerminated());
+			} else {
+				var6 = new IntegerNode(var0.readInt());
+			}
+
+			var1.put((Node)var6, (long)var5);
+		}
+
+		return var1;
 	}
 }

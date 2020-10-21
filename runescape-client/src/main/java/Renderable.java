@@ -4,18 +4,24 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ez")
+@ObfuscatedName("ej")
 @Implements("Renderable")
 public abstract class Renderable extends DualNode {
-	@ObfuscatedName("pe")
+	@ObfuscatedName("hj")
 	@ObfuscatedSignature(
-		signature = "Lkx;"
+		signature = "[Llc;"
 	)
-	@Export("clanChat")
-	static FriendsChatManager clanChat;
-	@ObfuscatedName("cf")
+	@Export("mapDotSprites")
+	static SpritePixels[] mapDotSprites;
+	@ObfuscatedName("iz")
 	@ObfuscatedGetter(
-		intValue = -282434447
+		intValue = 685420897
+	)
+	@Export("selectedItemId")
+	static int selectedItemId;
+	@ObfuscatedName("cu")
+	@ObfuscatedGetter(
+		intValue = 1647777713
 	)
 	@Export("height")
 	public int height;
@@ -24,17 +30,17 @@ public abstract class Renderable extends DualNode {
 		this.height = 1000;
 	}
 
-	@ObfuscatedName("g")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "(I)Ler;",
-		garbageValue = "-2026237468"
+		signature = "(I)Leh;",
+		garbageValue = "-2070677844"
 	)
 	@Export("getModel")
 	protected Model getModel() {
 		return null;
 	}
 
-	@ObfuscatedName("cb")
+	@ObfuscatedName("cg")
 	@Export("draw")
 	void draw(int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, long var9) {
 		Model var11 = this.getModel();
@@ -45,14 +51,13 @@ public abstract class Renderable extends DualNode {
 
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "(Lic;Lic;B)V",
-		garbageValue = "28"
+		signature = "(Lbd;I)V",
+		garbageValue = "-1146861517"
 	)
-	public static void method3381(AbstractArchive var0, AbstractArchive var1) {
-		KitDefinition.KitDefinition_archive = var0;
-		KitDefinition.KitDefinition_modelsArchive = var1;
-		KitDefinition.KitDefinition_fileCount = KitDefinition.KitDefinition_archive.getGroupFileCount(3);
+	@Export("runScriptEvent")
+	public static void runScriptEvent(ScriptEvent var0) {
+		class58.runScript(var0, 500000);
 	}
 }

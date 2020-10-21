@@ -4,30 +4,51 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hg")
+@ObfuscatedName("hw")
 @Implements("Coord")
 public class Coord {
 	@ObfuscatedName("k")
+	@Export("ByteArrayPool_alternativeSizes")
+	static int[] ByteArrayPool_alternativeSizes;
+	@ObfuscatedName("ej")
 	@ObfuscatedGetter(
-		intValue = -877871317
+		intValue = -579877889
+	)
+	@Export("port1")
+	static int port1;
+	@ObfuscatedName("em")
+	@ObfuscatedGetter(
+		intValue = 604273715
+	)
+	@Export("port2")
+	static int port2;
+	@ObfuscatedName("lv")
+	@ObfuscatedGetter(
+		intValue = 1585489899
+	)
+	@Export("menuX")
+	static int menuX;
+	@ObfuscatedName("f")
+	@ObfuscatedGetter(
+		intValue = 252017765
 	)
 	@Export("plane")
 	public int plane;
-	@ObfuscatedName("s")
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = 1594066417
+		intValue = -865171177
 	)
 	@Export("x")
 	public int x;
-	@ObfuscatedName("t")
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = -1889586591
+		intValue = 1194018723
 	)
 	@Export("y")
 	public int y;
 
 	@ObfuscatedSignature(
-		signature = "(Lhg;)V"
+		signature = "(Lhw;)V"
 	)
 	public Coord(Coord var1) {
 		this.plane = var1.plane;
@@ -52,20 +73,20 @@ public class Coord {
 
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "(B)I",
-		garbageValue = "-78"
+		signature = "(I)I",
+		garbageValue = "-330056145"
 	)
 	@Export("packed")
 	public int packed() {
 		return this.plane << 28 | this.x << 14 | this.y;
 	}
 
-	@ObfuscatedName("k")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		signature = "(Lhg;I)Z",
-		garbageValue = "24386397"
+		signature = "(Lhw;I)Z",
+		garbageValue = "824045461"
 	)
 	@Export("equalsCoord")
 	boolean equalsCoord(Coord var1) {
@@ -78,10 +99,10 @@ public class Coord {
 		}
 	}
 
-	@ObfuscatedName("s")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
 		signature = "(Ljava/lang/String;B)Ljava/lang/String;",
-		garbageValue = "0"
+		garbageValue = "-40"
 	)
 	@Export("toString")
 	String toString(String var1) {
@@ -104,81 +125,87 @@ public class Coord {
 		return this.toString(",");
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("gm")
 	@ObfuscatedSignature(
-		signature = "(IIB)I",
-		garbageValue = "-34"
+		signature = "(IIIIZI)V",
+		garbageValue = "1944404"
 	)
-	static final int method4083(int var0, int var1) {
-		if (var0 == -2) {
-			return 12345678;
-		} else if (var0 == -1) {
-			if (var1 < 2) {
-				var1 = 2;
-			} else if (var1 > 126) {
-				var1 = 126;
-			}
-
-			return var1;
-		} else {
-			var1 = (var0 & 127) * var1 / 128;
-			if (var1 < 2) {
-				var1 = 2;
-			} else if (var1 > 126) {
-				var1 = 126;
-			}
-
-			return (var0 & 65408) + var1;
-		}
-	}
-
-	@ObfuscatedName("fy")
-	@ObfuscatedSignature(
-		signature = "(Lcg;B)V",
-		garbageValue = "115"
-	)
-	static final void method4084(Actor var0) {
-		int var1 = Math.max(1, var0.field1026 - Client.cycle);
-		int var2 = var0.field997 * 128 + var0.field1014 * 64;
-		int var3 = var0.field1016 * 128 + var0.field1014 * 64;
-		var0.x += (var2 - var0.x) / var1;
-		var0.y += (var3 - var0.y) / var1;
-		var0.field1032 = 0;
-		var0.orientation = var0.field1027;
-	}
-
-	@ObfuscatedName("gz")
-	@ObfuscatedSignature(
-		signature = "(Lcg;IB)V",
-		garbageValue = "-77"
-	)
-	static final void method4086(Actor var0, int var1) {
-		class89.worldToScreen(var0.x, var0.y, var1);
-	}
-
-	@ObfuscatedName("jz")
-	@ObfuscatedSignature(
-		signature = "(IIIILlp;Lhz;I)V",
-		garbageValue = "-334370993"
-	)
-	@Export("worldToMinimap")
-	static final void worldToMinimap(int var0, int var1, int var2, int var3, SpritePixels var4, SpriteMask var5) {
-		int var6 = var3 * var3 + var2 * var2;
-		if (var6 > 4225 && var6 < 90000) {
-			int var7 = Client.camAngleY & 2047;
-			int var8 = Rasterizer3D.Rasterizer3D_sine[var7];
-			int var9 = Rasterizer3D.Rasterizer3D_cosine[var7];
-			int var10 = var9 * var2 + var3 * var8 >> 16;
-			int var11 = var3 * var9 - var8 * var2 >> 16;
-			double var12 = Math.atan2((double)var10, (double)var11);
-			int var14 = var5.width / 2 - 25;
-			int var15 = (int)(Math.sin(var12) * (double)var14);
-			int var16 = (int)(Math.cos(var12) * (double)var14);
-			byte var17 = 20;
-			FontName.redHintArrowSprite.method6264(var15 + (var0 + var5.width / 2 - var17 / 2), var5.height / 2 + var1 - var17 / 2 - var16 - 10, var17, var17, 15, 15, var12, 256);
-		} else {
-			HealthBar.drawSpriteOnMinimap(var0, var1, var2, var3, var4, var5);
+	@Export("setViewportShape")
+	static final void setViewportShape(int var0, int var1, int var2, int var3, boolean var4) {
+		if (var2 < 1) {
+			var2 = 1;
 		}
 
+		if (var3 < 1) {
+			var3 = 1;
+		}
+
+		int var5 = var3 - 334;
+		int var6;
+		if (var5 < 0) {
+			var6 = Client.field873;
+		} else if (var5 >= 100) {
+			var6 = Client.field932;
+		} else {
+			var6 = (Client.field932 - Client.field873) * var5 / 100 + Client.field873;
+		}
+
+		int var7 = var3 * var6 * 512 / (var2 * 334);
+		int var8;
+		int var9;
+		short var14;
+		if (var7 < Client.field937) {
+			var14 = Client.field937;
+			var6 = var14 * var2 * 334 / (var3 * 512);
+			if (var6 > Client.field753) {
+				var6 = Client.field753;
+				var8 = var3 * var6 * 512 / (var14 * 334);
+				var9 = (var2 - var8) / 2;
+				if (var4) {
+					Rasterizer2D.Rasterizer2D_resetClip();
+					Rasterizer2D.Rasterizer2D_fillRectangle(var0, var1, var9, var3, -16777216);
+					Rasterizer2D.Rasterizer2D_fillRectangle(var0 + var2 - var9, var1, var9, var3, -16777216);
+				}
+
+				var0 += var9;
+				var2 -= var9 * 2;
+			}
+		} else if (var7 > Client.field935) {
+			var14 = Client.field935;
+			var6 = var14 * var2 * 334 / (var3 * 512);
+			if (var6 < Client.field865) {
+				var6 = Client.field865;
+				var8 = var14 * var2 * 334 / (var6 * 512);
+				var9 = (var3 - var8) / 2;
+				if (var4) {
+					Rasterizer2D.Rasterizer2D_resetClip();
+					Rasterizer2D.Rasterizer2D_fillRectangle(var0, var1, var2, var9, -16777216);
+					Rasterizer2D.Rasterizer2D_fillRectangle(var0, var3 + var1 - var9, var2, var9, -16777216);
+				}
+
+				var1 += var9;
+				var3 -= var9 * 2;
+			}
+		}
+
+		Client.viewportZoom = var3 * var6 / 334;
+		if (var2 != Client.viewportWidth || var3 != Client.viewportHeight) {
+			int[] var13 = new int[9];
+
+			for (var9 = 0; var9 < var13.length; ++var9) {
+				int var10 = var9 * 32 + 15 + 128;
+				int var11 = MilliClock.method3587(var10);
+				int var12 = Rasterizer3D.Rasterizer3D_sine[var10];
+				var11 = HorizontalAlignment.method4876(var11, var3);
+				var13[var9] = var11 * var12 >> 16;
+			}
+
+			Scene.Scene_buildVisiblityMap(var13, 500, 800, var2 * 334 / var3, 334);
+		}
+
+		Client.viewportOffsetX = var0;
+		Client.viewportOffsetY = var1;
+		Client.viewportWidth = var2;
+		Client.viewportHeight = var3;
 	}
 }

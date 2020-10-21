@@ -4,69 +4,53 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cf")
+@ObfuscatedName("cu")
 @Implements("MenuAction")
 public class MenuAction {
-	@ObfuscatedName("j")
+	@ObfuscatedName("dz")
 	@ObfuscatedSignature(
-		signature = "Lkf;"
+		signature = "Lid;"
 	)
-	@Export("NetCache_reference")
-	static Buffer NetCache_reference;
-	@ObfuscatedName("z")
+	@Export("archive0")
+	static Archive archive0;
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = -1817310685
-	)
-	@Export("opcode")
-	int opcode;
-	@ObfuscatedName("k")
-	@ObfuscatedGetter(
-		intValue = -670222051
+		intValue = 856343337
 	)
 	@Export("param0")
 	int param0;
-	@ObfuscatedName("s")
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = 1502625343
+		intValue = -1008037325
 	)
 	@Export("param1")
 	int param1;
-	@ObfuscatedName("t")
-	@Export("action")
-	String action;
-	@ObfuscatedName("i")
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = 691220539
+		intValue = 967999089
+	)
+	@Export("opcode")
+	int opcode;
+	@ObfuscatedName("m")
+	@ObfuscatedGetter(
+		intValue = 1415709673
 	)
 	@Export("identifier")
 	int identifier;
+	@ObfuscatedName("z")
+	@Export("action")
+	String action;
 
 	MenuAction() {
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		signature = "(IIIB)J",
-		garbageValue = "0"
+		signature = "(B)V",
+		garbageValue = "3"
 	)
-	static long method2139(int var0, int var1, int var2) {
-		return (long)(var2 << 16 | var0 << 8 | var1);
-	}
-
-	@ObfuscatedName("z")
-	@ObfuscatedSignature(
-		signature = "([BZB)Ljava/lang/Object;",
-		garbageValue = "117"
-	)
-	public static Object method2140(byte[] var0, boolean var1) {
-		if (var0 == null) {
-			return null;
-		} else if (var0.length > 136) {
-			DirectByteArrayCopier var2 = new DirectByteArrayCopier();
-			var2.set(var0);
-			return var2;
-		} else {
-			return var0;
-		}
+	static void method2171() {
+		Login.loginIndex = 24;
+		GrandExchangeOfferNameComparator.setLoginResponseString("The game servers are currently being updated.", "Please wait a few minutes and try again.", "");
 	}
 }

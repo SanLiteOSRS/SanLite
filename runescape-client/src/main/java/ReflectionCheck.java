@@ -9,81 +9,63 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("dv")
 @Implements("ReflectionCheck")
 public class ReflectionCheck extends Node {
-	@ObfuscatedName("aw")
+	@ObfuscatedName("rk")
 	@ObfuscatedGetter(
-		intValue = 1592667411
+		intValue = -556270823
 	)
 	static int field1364;
-	@ObfuscatedName("go")
+	@ObfuscatedName("fn")
 	@ObfuscatedSignature(
-		signature = "[Lls;"
+		signature = "Lkq;"
 	)
-	@Export("mapSceneSprites")
-	static IndexedSprite[] mapSceneSprites;
-	@ObfuscatedName("z")
+	@Export("fontBold12")
+	static Font fontBold12;
+	@ObfuscatedName("f")
+	@Export("intReplaceValues")
+	int[] intReplaceValues;
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = -1209180911
+		intValue = -296860669
 	)
 	@Export("id")
 	int id;
-	@ObfuscatedName("k")
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = -2142089503
+		intValue = 989914791
 	)
 	@Export("size")
 	int size;
-	@ObfuscatedName("s")
-	@Export("operations")
-	int[] operations;
-	@ObfuscatedName("t")
-	@Export("creationErrors")
-	int[] creationErrors;
-	@ObfuscatedName("i")
-	@Export("fields")
-	Field[] fields;
-	@ObfuscatedName("o")
-	@Export("intReplaceValues")
-	int[] intReplaceValues;
-	@ObfuscatedName("x")
-	@Export("methods")
-	Method[] methods;
-	@ObfuscatedName("w")
+	@ObfuscatedName("m")
 	@Export("arguments")
 	byte[][][] arguments;
+	@ObfuscatedName("z")
+	@Export("operations")
+	int[] operations;
+	@ObfuscatedName("q")
+	@Export("creationErrors")
+	int[] creationErrors;
+	@ObfuscatedName("k")
+	@Export("fields")
+	Field[] fields;
+	@ObfuscatedName("c")
+	@Export("methods")
+	Method[] methods;
 
 	ReflectionCheck() {
 	}
 
-	@ObfuscatedName("jn")
+	@ObfuscatedName("ed")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "947123708"
+		signature = "(IZZZS)Lid;",
+		garbageValue = "255"
 	)
-	static final void method2380() {
-		Client.field871 = Client.cycleCntr;
-		class8.ClanChat_inClanChat = true;
-	}
-
-	@ObfuscatedName("kp")
-	@ObfuscatedSignature(
-		signature = "(Lhq;I)Lhq;",
-		garbageValue = "-697509377"
-	)
-	static Widget method2381(Widget var0) {
-		int var2 = WorldMapIcon_0.getWidgetClickMask(var0);
-		int var1 = var2 >> 17 & 7;
-		int var3 = var1;
-		if (var1 == 0) {
-			return null;
-		} else {
-			for (int var4 = 0; var4 < var3; ++var4) {
-				var0 = TileItem.getWidget(var0.parentId);
-				if (var0 == null) {
-					return null;
-				}
-			}
-
-			return var0;
+	@Export("newArchive")
+	static Archive newArchive(int var0, boolean var1, boolean var2, boolean var3) {
+		ArchiveDisk var4 = null;
+		if (JagexCache.JagexCache_dat2File != null) {
+			var4 = new ArchiveDisk(var0, JagexCache.JagexCache_dat2File, JagexCache.JagexCache_idxFiles[var0], 1000000);
 		}
+
+		return new Archive(var4, GrandExchangeOfferWorldComparator.masterDisk, var0, var1, var2, var3);
 	}
 }

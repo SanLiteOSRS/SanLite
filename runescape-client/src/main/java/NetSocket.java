@@ -9,72 +9,72 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fh")
+@ObfuscatedName("fa")
 @Implements("NetSocket")
 public final class NetSocket extends AbstractSocket implements Runnable {
-	@ObfuscatedName("er")
+	@ObfuscatedName("rx")
 	@ObfuscatedSignature(
-		signature = "Llb;"
+		signature = "Ldw;"
 	)
-	@Export("spriteIds")
-	static GraphicsDefaults spriteIds;
-	@ObfuscatedName("z")
+	@Export("decimator")
+	static Decimator decimator;
+	@ObfuscatedName("f")
 	@Export("inputStream")
 	InputStream inputStream;
-	@ObfuscatedName("k")
+	@ObfuscatedName("b")
 	@Export("outputStream")
 	OutputStream outputStream;
-	@ObfuscatedName("s")
+	@ObfuscatedName("l")
 	@Export("socket")
 	Socket socket;
-	@ObfuscatedName("t")
+	@ObfuscatedName("m")
 	@Export("isClosed")
 	boolean isClosed;
-	@ObfuscatedName("i")
-	@ObfuscatedSignature(
-		signature = "Lfo;"
-	)
-	@Export("taskHandler")
-	TaskHandler taskHandler;
-	@ObfuscatedName("o")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
 		signature = "Lfl;"
 	)
+	@Export("taskHandler")
+	TaskHandler taskHandler;
+	@ObfuscatedName("q")
+	@ObfuscatedSignature(
+		signature = "Lfu;"
+	)
 	@Export("task")
 	Task task;
-	@ObfuscatedName("x")
+	@ObfuscatedName("k")
 	@Export("outBuffer")
 	byte[] outBuffer;
-	@ObfuscatedName("w")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = -43739121
+		intValue = -67963133
 	)
 	@Export("outLength")
 	int outLength;
-	@ObfuscatedName("g")
+	@ObfuscatedName("u")
 	@ObfuscatedGetter(
-		intValue = -1877498573
+		intValue = -599652531
 	)
 	@Export("outOffset")
 	int outOffset;
-	@ObfuscatedName("m")
+	@ObfuscatedName("t")
 	@Export("exceptionWriting")
 	boolean exceptionWriting;
-	@ObfuscatedName("n")
+	@ObfuscatedName("e")
 	@ObfuscatedGetter(
-		intValue = -1318092279
+		intValue = 1080404053
 	)
 	@Export("bufferLength")
 	final int bufferLength;
-	@ObfuscatedName("d")
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = 202627819
+		intValue = -273885437
 	)
 	@Export("maxPacketLength")
 	final int maxPacketLength;
 
 	@ObfuscatedSignature(
-		signature = "(Ljava/net/Socket;Lfo;I)V"
+		signature = "(Ljava/net/Socket;Lfl;I)V"
 	)
 	public NetSocket(Socket var1, TaskHandler var2, int var3) throws IOException {
 		this.isClosed = false;
@@ -93,10 +93,10 @@ public final class NetSocket extends AbstractSocket implements Runnable {
 		this.outputStream = this.socket.getOutputStream();
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "-147773206"
+		garbageValue = "1983450651"
 	)
 	@Export("close")
 	public void close() {
@@ -108,7 +108,7 @@ public final class NetSocket extends AbstractSocket implements Runnable {
 
 			if (this.task != null) {
 				while (this.task.status == 0) {
-					class227.method4180(1L);
+					WorldMapSection3.method894(1L);
 				}
 
 				if (this.task.status == 1) {
@@ -123,30 +123,30 @@ public final class NetSocket extends AbstractSocket implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("k")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
 		signature = "(B)I",
-		garbageValue = "-99"
+		garbageValue = "1"
 	)
 	@Export("readUnsignedByte")
 	public int readUnsignedByte() throws IOException {
 		return this.isClosed ? 0 : this.inputStream.read();
 	}
 
-	@ObfuscatedName("s")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		signature = "(B)I",
-		garbageValue = "12"
+		signature = "(I)I",
+		garbageValue = "933186835"
 	)
 	@Export("available")
 	public int available() throws IOException {
 		return this.isClosed ? 0 : this.inputStream.available();
 	}
 
-	@ObfuscatedName("t")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		signature = "(IB)Z",
-		garbageValue = "-78"
+		signature = "(II)Z",
+		garbageValue = "-916126565"
 	)
 	@Export("isAvailable")
 	public boolean isAvailable(int var1) throws IOException {
@@ -157,10 +157,10 @@ public final class NetSocket extends AbstractSocket implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("i")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
 		signature = "([BIII)I",
-		garbageValue = "-1533815985"
+		garbageValue = "1049423117"
 	)
 	@Export("read")
 	public int read(byte[] var1, int var2, int var3) throws IOException {
@@ -182,10 +182,10 @@ public final class NetSocket extends AbstractSocket implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		signature = "([BIII)V",
-		garbageValue = "-588582807"
+		signature = "([BIIB)V",
+		garbageValue = "79"
 	)
 	@Export("write0")
 	void write0(byte[] var1, int var2, int var3) throws IOException {
@@ -202,7 +202,7 @@ public final class NetSocket extends AbstractSocket implements Runnable {
 					for (int var5 = 0; var5 < var3; ++var5) {
 						this.outBuffer[this.outOffset] = var1[var5 + var2];
 						this.outOffset = (this.outOffset + 1) % this.bufferLength;
-						if ((this.maxPacketLength + this.outLength) % this.bufferLength == this.outOffset) {
+						if ((this.outLength + this.maxPacketLength) % this.bufferLength == this.outOffset) {
 							throw new IOException();
 						}
 					}
@@ -217,18 +217,14 @@ public final class NetSocket extends AbstractSocket implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("x")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "([BIIB)V",
-		garbageValue = "52"
+		signature = "([BIII)V",
+		garbageValue = "1456512196"
 	)
 	@Export("write")
 	public void write(byte[] var1, int var2, int var3) throws IOException {
 		this.write0(var1, var2, var3);
-	}
-
-	protected void finalize() {
-		this.close();
 	}
 
 	public void run() {
@@ -298,99 +294,12 @@ public final class NetSocket extends AbstractSocket implements Runnable {
 				break;
 			}
 		} catch (Exception var12) {
-			Decimator.RunException_sendStackTrace((String)null, var12);
+			PacketWriter.RunException_sendStackTrace((String)null, var12);
 		}
 
 	}
 
-	@ObfuscatedName("k")
-	@ObfuscatedSignature(
-		signature = "(II)Ljj;",
-		garbageValue = "2080665133"
-	)
-	@Export("StructDefinition_getStructDefinition")
-	public static StructDefinition StructDefinition_getStructDefinition(int var0) {
-		StructDefinition var1 = (StructDefinition)StructDefinition.StructDefinition_cached.get((long)var0);
-		if (var1 != null) {
-			return var1;
-		} else {
-			byte[] var2 = StructDefinition.StructDefinition_archive.takeFile(34, var0);
-			var1 = new StructDefinition();
-			if (var2 != null) {
-				var1.decode(new Buffer(var2));
-			}
-
-			var1.postDecode();
-			StructDefinition.StructDefinition_cached.put(var1, (long)var0);
-			return var1;
-		}
-	}
-
-	@ObfuscatedName("s")
-	@ObfuscatedSignature(
-		signature = "(III)I",
-		garbageValue = "2086304619"
-	)
-	static int method3628(int var0, int var1) {
-		ItemContainer var2 = (ItemContainer)ItemContainer.itemContainers.get((long)var0);
-		if (var2 == null) {
-			return 0;
-		} else if (var1 == -1) {
-			return 0;
-		} else {
-			int var3 = 0;
-
-			for (int var4 = 0; var4 < var2.quantities.length; ++var4) {
-				if (var2.ids[var4] == var1) {
-					var3 += var2.quantities[var4];
-				}
-			}
-
-			return var3;
-		}
-	}
-
-	@ObfuscatedName("t")
-	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "1873415823"
-	)
-	public static void method3626() {
-		VarbitComposition.VarbitDefinition_cached.clear();
-	}
-
-	@ObfuscatedName("g")
-	@ObfuscatedSignature(
-		signature = "(Lhq;I[B[BI)V",
-		garbageValue = "-421721574"
-	)
-	@Export("Widget_setKey")
-	static final void Widget_setKey(Widget var0, int var1, byte[] var2, byte[] var3) {
-		if (var0.field2626 == null) {
-			if (var2 == null) {
-				return;
-			}
-
-			var0.field2626 = new byte[11][];
-			var0.field2719 = new byte[11][];
-			var0.field2682 = new int[11];
-			var0.field2683 = new int[11];
-		}
-
-		var0.field2626[var1] = var2;
-		if (var2 != null) {
-			var0.field2676 = true;
-		} else {
-			var0.field2676 = false;
-
-			for (int var4 = 0; var4 < var0.field2626.length; ++var4) {
-				if (var0.field2626[var4] != null) {
-					var0.field2676 = true;
-					break;
-				}
-			}
-		}
-
-		var0.field2719[var1] = var3;
+	protected void finalize() {
+		this.close();
 	}
 }
