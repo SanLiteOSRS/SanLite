@@ -1,3 +1,4 @@
+import java.util.LinkedHashMap;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
@@ -7,55 +8,52 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("bk")
 @Implements("Message")
 public class Message extends DualNode {
-	@ObfuscatedName("sx")
-	@ObfuscatedSignature(
-		signature = "Lmx;"
-	)
-	@Export("worldMap")
-	static WorldMap worldMap;
-	@ObfuscatedName("z")
+	@ObfuscatedName("st")
+	@Export("foundItemIds")
+	static short[] foundItemIds;
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = 771571173
+		intValue = 655345323
 	)
 	@Export("count")
 	int count;
-	@ObfuscatedName("k")
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = -804370839
+		intValue = -570932661
 	)
 	@Export("cycle")
 	int cycle;
-	@ObfuscatedName("s")
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = 310309169
+		intValue = -186645555
 	)
 	@Export("type")
 	int type;
-	@ObfuscatedName("t")
+	@ObfuscatedName("m")
 	@Export("sender")
 	String sender;
-	@ObfuscatedName("i")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "Lku;"
+		signature = "Lkm;"
 	)
 	@Export("senderUsername")
 	Username senderUsername;
-	@ObfuscatedName("o")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		signature = "Lkm;"
+		signature = "Lkz;"
 	)
 	@Export("isFromFriend0")
 	TriBool isFromFriend0;
-	@ObfuscatedName("x")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "Lkm;"
+		signature = "Lkz;"
 	)
 	@Export("isFromIgnored0")
 	TriBool isFromIgnored0;
-	@ObfuscatedName("w")
+	@ObfuscatedName("c")
 	@Export("prefix")
 	String prefix;
-	@ObfuscatedName("g")
+	@ObfuscatedName("u")
 	@Export("text")
 	String text;
 
@@ -65,15 +63,14 @@ public class Message extends DualNode {
 		this.set(var1, var2, var3, var4);
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;B)V",
-		garbageValue = "28"
+		signature = "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V",
+		garbageValue = "-136019615"
 	)
 	@Export("set")
 	void set(int var1, String var2, String var3, String var4) {
-		int var5 = ++Messages.Messages_count - 1;
-		this.count = var5;
+		this.count = Buddy.method5322();
 		this.cycle = Client.cycle;
 		this.type = var1;
 		this.sender = var2;
@@ -84,20 +81,20 @@ public class Message extends DualNode {
 		this.clearIsFromIgnored();
 	}
 
-	@ObfuscatedName("k")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "-57"
+		signature = "(I)V",
+		garbageValue = "406070188"
 	)
 	@Export("clearIsFromFriend")
 	void clearIsFromFriend() {
 		this.isFromFriend0 = TriBool.TriBool_unknown;
 	}
 
-	@ObfuscatedName("s")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		signature = "(B)Z",
-		garbageValue = "-115"
+		signature = "(I)Z",
+		garbageValue = "722132951"
 	)
 	@Export("isFromFriend")
 	final boolean isFromFriend() {
@@ -108,30 +105,30 @@ public class Message extends DualNode {
 		return this.isFromFriend0 == TriBool.TriBool_true;
 	}
 
-	@ObfuscatedName("t")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "-47255168"
+		garbageValue = "1917257545"
 	)
 	@Export("fillIsFromFriend")
 	void fillIsFromFriend() {
-		this.isFromFriend0 = class60.friendSystem.friendsList.contains(this.senderUsername) ? TriBool.TriBool_true : TriBool.TriBool_false;
+		this.isFromFriend0 = WorldMapLabelSize.friendSystem.friendsList.contains(this.senderUsername) ? TriBool.TriBool_true : TriBool.TriBool_false;
 	}
 
-	@ObfuscatedName("i")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "1621996049"
+		garbageValue = "341204953"
 	)
 	@Export("clearIsFromIgnored")
 	void clearIsFromIgnored() {
 		this.isFromIgnored0 = TriBool.TriBool_unknown;
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
 		signature = "(B)Z",
-		garbageValue = "77"
+		garbageValue = "-53"
 	)
 	@Export("isFromIgnored")
 	final boolean isFromIgnored() {
@@ -142,28 +139,71 @@ public class Message extends DualNode {
 		return this.isFromIgnored0 == TriBool.TriBool_true;
 	}
 
-	@ObfuscatedName("x")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-556586926"
+		signature = "(B)V",
+		garbageValue = "-73"
 	)
 	@Export("fillIsFromIgnored")
 	void fillIsFromIgnored() {
-		this.isFromIgnored0 = class60.friendSystem.ignoreList.contains(this.senderUsername) ? TriBool.TriBool_true : TriBool.TriBool_false;
+		this.isFromIgnored0 = WorldMapLabelSize.friendSystem.ignoreList.contains(this.senderUsername) ? TriBool.TriBool_true : TriBool.TriBool_false;
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "-1023738000"
+		garbageValue = "-799394234"
 	)
 	@Export("fillSenderUsername")
 	final void fillSenderUsername() {
 		if (this.sender != null) {
-			this.senderUsername = new Username(SecureRandomCallable.method1202(this.sender), WorldMapAreaData.loginType);
+			this.senderUsername = new Username(GrandExchangeOfferUnitPriceComparator.method218(this.sender), UserComparator4.loginType);
 		} else {
 			this.senderUsername = null;
 		}
 
+	}
+
+	@ObfuscatedName("t")
+	static final void method1315(long var0) {
+		ViewportMouse.ViewportMouse_entityTags[++ViewportMouse.ViewportMouse_entityCount - 1] = var0;
+	}
+
+	@ObfuscatedName("fs")
+	@ObfuscatedSignature(
+		signature = "(ZB)V",
+		garbageValue = "91"
+	)
+	static final void method1314(boolean var0) {
+		if (var0) {
+			Client.field717 = Login.field1227 ? class169.field2029 : class169.field2034;
+		} else {
+			LinkedHashMap var1 = GrandExchangeOfferAgeComparator.clientPreferences.parameters;
+			String var3 = Login.Login_username;
+			int var4 = var3.length();
+			int var5 = 0;
+
+			for (int var6 = 0; var6 < var4; ++var6) {
+				var5 = (var5 << 5) - var5 + var3.charAt(var6);
+			}
+
+			Client.field717 = var1.containsKey(var5) ? class169.field2033 : class169.field2028;
+		}
+
+	}
+
+	@ObfuscatedName("ke")
+	@ObfuscatedSignature(
+		signature = "(Ljava/lang/String;I)V",
+		garbageValue = "1336792033"
+	)
+	@Export("Clan_joinChat")
+	static final void Clan_joinChat(String var0) {
+		if (!var0.equals("")) {
+			PacketBufferNode var1 = class4.getPacketBufferNode(ClientPacket.field2329, Client.packetWriter.isaacCipher);
+			var1.packetBuffer.writeByte(SpriteMask.stringCp1252NullTerminatedByteSize(var0));
+			var1.packetBuffer.writeStringCp1252NullTerminated(var0);
+			Client.packetWriter.addNode(var1);
+		}
 	}
 }

@@ -4,27 +4,27 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("kl")
+@ObfuscatedName("kn")
 @Implements("Fonts")
 public class Fonts {
-	@ObfuscatedName("z")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "Lic;"
+		signature = "Liw;"
 	)
 	@Export("spritesArchive")
 	AbstractArchive spritesArchive;
-	@ObfuscatedName("k")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		signature = "Lic;"
+		signature = "Liw;"
 	)
 	@Export("fontsArchive")
 	AbstractArchive fontsArchive;
-	@ObfuscatedName("s")
+	@ObfuscatedName("l")
 	@Export("map")
 	HashMap map;
 
 	@ObfuscatedSignature(
-		signature = "(Lic;Lic;)V"
+		signature = "(Liw;Liw;)V"
 	)
 	public Fonts(AbstractArchive var1, AbstractArchive var2) {
 		this.spritesArchive = var1;
@@ -32,10 +32,10 @@ public class Fonts {
 		this.map = new HashMap();
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "([Lkz;I)Ljava/util/HashMap;",
-		garbageValue = "376087905"
+		signature = "([Lko;I)Ljava/util/HashMap;",
+		garbageValue = "1654438568"
 	)
 	@Export("createMap")
 	public HashMap createMap(FontName[] var1) {
@@ -47,7 +47,7 @@ public class Fonts {
 			if (this.map.containsKey(var5)) {
 				var2.put(var5, this.map.get(var5));
 			} else {
-				Font var6 = BufferedSink.method5983(this.spritesArchive, this.fontsArchive, var5.name, "");
+				Font var6 = SceneTilePaint.method3210(this.spritesArchive, this.fontsArchive, var5.name, "");
 				if (var6 != null) {
 					this.map.put(var5, var6);
 					var2.put(var5, var6);
@@ -56,5 +56,16 @@ public class Fonts {
 		}
 
 		return var2;
+	}
+
+	@ObfuscatedName("iq")
+	@ObfuscatedSignature(
+		signature = "(IIIZI)V",
+		garbageValue = "-1606902213"
+	)
+	static final void method5463(int var0, int var1, int var2, boolean var3) {
+		if (ScriptFrame.loadInterface(var0)) {
+			SecureRandomFuture.resizeInterface(Widget.Widget_interfaceComponents[var0], -1, var1, var2, var3);
+		}
 	}
 }

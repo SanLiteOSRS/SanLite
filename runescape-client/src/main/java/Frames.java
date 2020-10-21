@@ -3,24 +3,18 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ef")
+@ObfuscatedName("ex")
 @Implements("Frames")
 public class Frames extends DualNode {
 	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "Lak;"
-	)
-	@Export("worldMapEvent")
-	static WorldMapEvent worldMapEvent;
-	@ObfuscatedName("z")
-	@ObfuscatedSignature(
-		signature = "[Les;"
+		signature = "[Ler;"
 	)
 	@Export("frames")
 	Animation[] frames;
 
 	@ObfuscatedSignature(
-		signature = "(Lic;Lic;IZ)V"
+		signature = "(Liw;Liw;IZ)V"
 	)
 	Frames(AbstractArchive var1, AbstractArchive var2, int var3, boolean var4) {
 		NodeDeque var5 = new NodeDeque();
@@ -57,108 +51,83 @@ public class Frames extends DualNode {
 
 	}
 
-	@ObfuscatedName("k")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		signature = "(II)Z",
-		garbageValue = "-615268512"
+		signature = "(IB)Z",
+		garbageValue = "-35"
 	)
 	@Export("hasAlphaTransform")
 	public boolean hasAlphaTransform(int var1) {
 		return this.frames[var1].hasAlphaTransform;
 	}
 
-	@ObfuscatedName("z")
-	public static final int method3395(double var0, double var2, double var4) {
-		double var6 = var4;
-		double var8 = var4;
-		double var10 = var4;
-		if (0.0D != var2) {
-			double var12;
-			if (var4 < 0.5D) {
-				var12 = (var2 + 1.0D) * var4;
-			} else {
-				var12 = var4 + var2 - var2 * var4;
-			}
+	@ObfuscatedName("ja")
+	@ObfuscatedSignature(
+		signature = "([Lht;II)V",
+		garbageValue = "-1768141764"
+	)
+	@Export("drawModelComponents")
+	static final void drawModelComponents(Widget[] var0, int var1) {
+		for (int var2 = 0; var2 < var0.length; ++var2) {
+			Widget var3 = var0[var2];
+			if (var3 != null && var3.parentId == var1 && (!var3.isIf3 || !VertexNormal.isComponentHidden(var3))) {
+				int var5;
+				if (var3.type == 0) {
+					if (!var3.isIf3 && VertexNormal.isComponentHidden(var3) && var3 != GrandExchangeEvent.mousedOverWidgetIf1) {
+						continue;
+					}
 
-			double var14 = var4 * 2.0D - var12;
-			double var16 = 0.3333333333333333D + var0;
-			if (var16 > 1.0D) {
-				--var16;
-			}
+					drawModelComponents(var0, var3.id);
+					if (var3.children != null) {
+						drawModelComponents(var3.children, var3.id);
+					}
 
-			double var20 = var0 - 0.3333333333333333D;
-			if (var20 < 0.0D) {
-				++var20;
-			}
+					InterfaceParent var4 = (InterfaceParent)Client.interfaceParents.get((long)var3.id);
+					if (var4 != null) {
+						var5 = var4.group;
+						if (ScriptFrame.loadInterface(var5)) {
+							drawModelComponents(Widget.Widget_interfaceComponents[var5], -1);
+						}
+					}
+				}
 
-			if (var16 * 6.0D < 1.0D) {
-				var6 = var14 + 6.0D * (var12 - var14) * var16;
-			} else if (var16 * 2.0D < 1.0D) {
-				var6 = var12;
-			} else if (var16 * 3.0D < 2.0D) {
-				var6 = 6.0D * (var12 - var14) * (0.6666666666666666D - var16) + var14;
-			} else {
-				var6 = var14;
-			}
+				if (var3.type == 6) {
+					if (var3.sequenceId != -1 || var3.sequenceId2 != -1) {
+						boolean var7 = BufferedNetSocket.runCs1(var3);
+						if (var7) {
+							var5 = var3.sequenceId2;
+						} else {
+							var5 = var3.sequenceId;
+						}
 
-			if (var0 * 6.0D < 1.0D) {
-				var8 = var14 + 6.0D * (var12 - var14) * var0;
-			} else if (2.0D * var0 < 1.0D) {
-				var8 = var12;
-			} else if (3.0D * var0 < 2.0D) {
-				var8 = (0.6666666666666666D - var0) * (var12 - var14) * 6.0D + var14;
-			} else {
-				var8 = var14;
-			}
+						if (var5 != -1) {
+							SequenceDefinition var6 = class105.SequenceDefinition_get(var5);
 
-			if (6.0D * var20 < 1.0D) {
-				var10 = var14 + (var12 - var14) * 6.0D * var20;
-			} else if (2.0D * var20 < 1.0D) {
-				var10 = var12;
-			} else if (3.0D * var20 < 2.0D) {
-				var10 = 6.0D * (0.6666666666666666D - var20) * (var12 - var14) + var14;
-			} else {
-				var10 = var14;
+							for (var3.modelFrameCycle += Client.field743; var3.modelFrameCycle > var6.frameLengths[var3.modelFrame]; GrandExchangeOfferOwnWorldComparator.invalidateWidget(var3)) {
+								var3.modelFrameCycle -= var6.frameLengths[var3.modelFrame];
+								++var3.modelFrame;
+								if (var3.modelFrame >= var6.frameIds.length) {
+									var3.modelFrame -= var6.frameCount;
+									if (var3.modelFrame < 0 || var3.modelFrame >= var6.frameIds.length) {
+										var3.modelFrame = 0;
+									}
+								}
+							}
+						}
+					}
+
+					if (var3.field2734 != 0 && !var3.isIf3) {
+						int var8 = var3.field2734 >> 16;
+						var5 = var3.field2734 << 16 >> 16;
+						var8 *= Client.field743;
+						var5 *= Client.field743;
+						var3.modelAngleX = var8 + var3.modelAngleX & 2047;
+						var3.modelAngleY = var5 + var3.modelAngleY & 2047;
+						GrandExchangeOfferOwnWorldComparator.invalidateWidget(var3);
+					}
+				}
 			}
 		}
 
-		int var22 = (int)(var6 * 256.0D);
-		int var13 = (int)(256.0D * var8);
-		int var23 = (int)(var10 * 256.0D);
-		int var15 = var23 + (var13 << 8) + (var22 << 16);
-		return var15;
-	}
-
-	@ObfuscatedName("i")
-	@ObfuscatedSignature(
-		signature = "(II)I",
-		garbageValue = "-500804162"
-	)
-	public static int method3394(int var0) {
-		return UserComparator9.Entity_unpackID(ViewportMouse.ViewportMouse_entityTags[var0]);
-	}
-
-	@ObfuscatedName("js")
-	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;I)V",
-		garbageValue = "2077943773"
-	)
-	@Export("clanKickUser")
-	static final void clanKickUser(String var0) {
-		if (Renderable.clanChat != null) {
-			PacketBufferNode var1 = Client.getPacketBufferNode(ClientPacket.field2257, Client.packetWriter.isaacCipher);
-			var1.packetBuffer.writeByte(Decimator.stringCp1252NullTerminatedByteSize(var0));
-			var1.packetBuffer.writeStringCp1252NullTerminated(var0);
-			Client.packetWriter.addNode(var1);
-		}
-	}
-
-	@ObfuscatedName("kz")
-	@ObfuscatedSignature(
-		signature = "(II)V",
-		garbageValue = "127790133"
-	)
-	static void method3393(int var0) {
-		Client.oculusOrbState = var0;
 	}
 }

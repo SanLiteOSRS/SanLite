@@ -1,70 +1,67 @@
-import java.io.File;
-import java.io.IOException;
-import java.io.RandomAccessFile;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cm")
+@ObfuscatedName("cy")
 @Implements("GraphicsObject")
 public final class GraphicsObject extends Renderable {
-	@ObfuscatedName("z")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = -1326465881
-	)
-	@Export("height")
-	int height;
-	@ObfuscatedName("k")
-	@ObfuscatedGetter(
-		intValue = -1027327973
+		intValue = 494289481
 	)
 	@Export("id")
 	int id;
-	@ObfuscatedName("s")
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = -1536729399
+		intValue = -770993721
 	)
 	@Export("cycleStart")
 	int cycleStart;
-	@ObfuscatedName("t")
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = -1152665819
+		intValue = 2046486035
 	)
 	@Export("plane")
 	int plane;
-	@ObfuscatedName("i")
+	@ObfuscatedName("m")
 	@ObfuscatedGetter(
-		intValue = 1500063053
+		intValue = 467633941
 	)
 	@Export("x")
 	int x;
-	@ObfuscatedName("o")
+	@ObfuscatedName("z")
 	@ObfuscatedGetter(
-		intValue = -1460229241
+		intValue = 1569589891
+	)
+	@Export("height")
+	int height;
+	@ObfuscatedName("q")
+	@ObfuscatedGetter(
+		intValue = 1673763885
 	)
 	@Export("y")
 	int y;
-	@ObfuscatedName("x")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "Ljm;"
+		signature = "Ljg;"
 	)
 	@Export("sequenceDefinition")
 	SequenceDefinition sequenceDefinition;
-	@ObfuscatedName("w")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = 1933421917
+		intValue = -300375293
 	)
 	@Export("frame")
 	int frame;
-	@ObfuscatedName("g")
+	@ObfuscatedName("u")
 	@ObfuscatedGetter(
-		intValue = 1610487487
+		intValue = 687860479
 	)
 	@Export("frameCycle")
 	int frameCycle;
-	@ObfuscatedName("m")
+	@ObfuscatedName("t")
 	@Export("isFinished")
 	boolean isFinished;
 
@@ -78,20 +75,20 @@ public final class GraphicsObject extends Renderable {
 		this.y = var4;
 		this.height = var5;
 		this.cycleStart = var7 + var6;
-		int var8 = Tiles.SpotAnimationDefinition_get(this.id).sequence;
+		int var8 = HealthBarUpdate.SpotAnimationDefinition_get(this.id).sequence;
 		if (var8 != -1) {
 			this.isFinished = false;
-			this.sequenceDefinition = WorldMapRegion.SequenceDefinition_get(var8);
+			this.sequenceDefinition = class105.SequenceDefinition_get(var8);
 		} else {
 			this.isFinished = true;
 		}
 
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
 		signature = "(II)V",
-		garbageValue = "-1653124671"
+		garbageValue = "-825901935"
 	)
 	@Export("advance")
 	final void advance(int var1) {
@@ -110,14 +107,14 @@ public final class GraphicsObject extends Renderable {
 		}
 	}
 
-	@ObfuscatedName("g")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "(I)Ler;",
-		garbageValue = "-2026237468"
+		signature = "(I)Leh;",
+		garbageValue = "-2070677844"
 	)
 	@Export("getModel")
 	protected final Model getModel() {
-		SpotAnimationDefinition var1 = Tiles.SpotAnimationDefinition_get(this.id);
+		SpotAnimationDefinition var1 = HealthBarUpdate.SpotAnimationDefinition_get(this.id);
 		Model var2;
 		if (!this.isFinished) {
 			var2 = var1.getModel(this.frame);
@@ -128,82 +125,22 @@ public final class GraphicsObject extends Renderable {
 		return var2 == null ? null : var2;
 	}
 
-	@ObfuscatedName("s")
+	@ObfuscatedName("eb")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "104"
+		signature = "(I)I",
+		garbageValue = "1882927898"
 	)
-	static void method2091() {
-		try {
-			File var0 = new File(UserComparator2.userHomeDirectory, "random.dat");
-			int var2;
-			if (var0.exists()) {
-				JagexCache.JagexCache_randomDat = new BufferedFile(new AccessFile(var0, "rw", 25L), 24, 0);
-			} else {
-				label38:
-				for (int var1 = 0; var1 < class69.field570.length; ++var1) {
-					for (var2 = 0; var2 < UserComparator4.field2005.length; ++var2) {
-						File var3 = new File(UserComparator4.field2005[var2] + class69.field570[var1] + File.separatorChar + "random.dat");
-						if (var3.exists()) {
-							JagexCache.JagexCache_randomDat = new BufferedFile(new AccessFile(var3, "rw", 25L), 24, 0);
-							break label38;
-						}
-					}
-				}
+	static int method2122() {
+		if (Client.archiveLoaders != null && Client.archiveLoadersDone < Client.archiveLoaders.size()) {
+			int var0 = 0;
+
+			for (int var1 = 0; var1 <= Client.archiveLoadersDone; ++var1) {
+				var0 += ((ArchiveLoader)Client.archiveLoaders.get(var1)).loadedCount;
 			}
 
-			if (JagexCache.JagexCache_randomDat == null) {
-				RandomAccessFile var4 = new RandomAccessFile(var0, "rw");
-				var2 = var4.read();
-				var4.seek(0L);
-				var4.write(var2);
-				var4.seek(0L);
-				var4.close();
-				JagexCache.JagexCache_randomDat = new BufferedFile(new AccessFile(var0, "rw", 25L), 24, 0);
-			}
-		} catch (IOException var5) {
+			return var0 * 10000 / Client.field953;
+		} else {
+			return 10000;
 		}
-
-	}
-
-	@ObfuscatedName("o")
-	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-1643627841"
-	)
-	public static void method2095() {
-		try {
-			if (class206.musicPlayerStatus == 1) {
-				int var0 = class206.midiPcmStream.method3806();
-				if (var0 > 0 && class206.midiPcmStream.isReady()) {
-					var0 -= FaceNormal.pcmSampleLength;
-					if (var0 < 0) {
-						var0 = 0;
-					}
-
-					class206.midiPcmStream.setPcmStreamVolume(var0);
-					return;
-				}
-
-				class206.midiPcmStream.clear();
-				class206.midiPcmStream.removeAll();
-				if (class204.musicTrackArchive != null) {
-					class206.musicPlayerStatus = 2;
-				} else {
-					class206.musicPlayerStatus = 0;
-				}
-
-				class206.musicTrack = null;
-				class39.soundCache = null;
-			}
-		} catch (Exception var2) {
-			var2.printStackTrace();
-			class206.midiPcmStream.clear();
-			class206.musicPlayerStatus = 0;
-			class206.musicTrack = null;
-			class39.soundCache = null;
-			class204.musicTrackArchive = null;
-		}
-
 	}
 }

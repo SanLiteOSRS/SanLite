@@ -4,36 +4,35 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bd")
+@ObfuscatedName("bq")
 @Implements("ArchiveLoader")
 public class ArchiveLoader {
-	@ObfuscatedName("hx")
-	@ObfuscatedSignature(
-		signature = "[Llp;"
+	@ObfuscatedName("f")
+	@ObfuscatedGetter(
+		longValue = 3333293732747841481L
 	)
-	@Export("crossSprites")
-	static SpritePixels[] crossSprites;
-	@ObfuscatedName("k")
+	static long field565;
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		signature = "Liw;"
+		signature = "Lid;"
 	)
 	@Export("archive")
 	final Archive archive;
-	@ObfuscatedName("s")
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = -412619053
+		intValue = -30883449
 	)
 	@Export("groupCount")
 	final int groupCount;
-	@ObfuscatedName("t")
+	@ObfuscatedName("m")
 	@ObfuscatedGetter(
-		intValue = 486257523
+		intValue = 1222733201
 	)
 	@Export("loadedCount")
 	int loadedCount;
 
 	@ObfuscatedSignature(
-		signature = "(Liw;Ljava/lang/String;)V"
+		signature = "(Lid;Ljava/lang/String;)V"
 	)
 	ArchiveLoader(Archive var1, String var2) {
 		this.loadedCount = 0;
@@ -41,17 +40,17 @@ public class ArchiveLoader {
 		this.groupCount = var1.getGroupCount();
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
 		signature = "(I)Z",
-		garbageValue = "-1957084823"
+		garbageValue = "1049083276"
 	)
 	@Export("isLoaded")
 	boolean isLoaded() {
 		this.loadedCount = 0;
 
 		for (int var1 = 0; var1 < this.groupCount; ++var1) {
-			if (!this.archive.method4350(var1) || this.archive.method4349(var1)) {
+			if (!this.archive.method4416(var1) || this.archive.method4411(var1)) {
 				++this.loadedCount;
 			}
 		}
@@ -59,44 +58,76 @@ public class ArchiveLoader {
 		return this.loadedCount >= this.groupCount;
 	}
 
-	@ObfuscatedName("fp")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "2074712023"
+		signature = "(III)Lco;",
+		garbageValue = "-2052034218"
 	)
-	static final void method1208() {
-		if (Client.logoutTimer > 0) {
-			ViewportMouse.logOut();
+	static Script method1240(int var0, int var1) {
+		Script var2 = (Script)Script.Script_cached.get((long)(var0 << 16));
+		if (var2 != null) {
+			return var2;
 		} else {
-			Client.timer.method5098();
-			CollisionMap.updateGameState(40);
-			MouseHandler.field508 = Client.packetWriter.getSocket();
-			Client.packetWriter.removeSocket();
+			String var3 = String.valueOf(var0);
+			int var4 = ViewportMouse.archive12.getGroupId(var3);
+			if (var4 == -1) {
+				return null;
+			} else {
+				byte[] var5 = ViewportMouse.archive12.takeFileFlat(var4);
+				if (var5 != null) {
+					if (var5.length <= 1) {
+						return null;
+					}
+
+					var2 = ClientPacket.newScript(var5);
+					if (var2 != null) {
+						Script.Script_cached.put(var2, (long)(var0 << 16));
+						return var2;
+					}
+				}
+
+				return null;
+			}
 		}
 	}
 
-	@ObfuscatedName("gp")
+	@ObfuscatedName("gq")
 	@ObfuscatedSignature(
-		signature = "(IIII)I",
-		garbageValue = "-513803575"
+		signature = "(Lbi;ZI)V",
+		garbageValue = "-788560949"
 	)
-	@Export("getTileHeight")
-	static final int getTileHeight(int var0, int var1, int var2) {
-		int var3 = var0 >> 7;
-		int var4 = var1 >> 7;
-		if (var3 >= 0 && var4 >= 0 && var3 <= 103 && var4 <= 103) {
-			int var5 = var2;
-			if (var2 < 3 && (Tiles.Tiles_renderFlags[1][var3][var4] & 2) == 2) {
-				var5 = var2 + 1;
+	@Export("addPlayerToScene")
+	static void addPlayerToScene(Player var0, boolean var1) {
+		if (var0 != null && var0.isVisible() && !var0.isHidden) {
+			var0.isUnanimated = false;
+			if ((Client.isLowDetail && Players.Players_count > 50 || Players.Players_count > 200) && var1 && var0.readySequence == var0.movementSequence) {
+				var0.isUnanimated = true;
 			}
 
-			int var6 = var0 & 127;
-			int var7 = var1 & 127;
-			int var8 = (128 - var6) * Tiles.Tiles_heights[var5][var3][var4] + Tiles.Tiles_heights[var5][var3 + 1][var4] * var6 >> 7;
-			int var9 = Tiles.Tiles_heights[var5][var3][var4 + 1] * (128 - var6) + Tiles.Tiles_heights[var5][var3 + 1][var4 + 1] * var6 >> 7;
-			return var8 * (128 - var7) + var9 * var7 >> 7;
-		} else {
-			return 0;
+			int var2 = var0.x >> 7;
+			int var3 = var0.y >> 7;
+			if (var2 >= 0 && var2 < 104 && var3 >= 0 && var3 < 104) {
+				long var4 = GrandExchangeOfferOwnWorldComparator.calculateTag(0, 0, 0, false, var0.index);
+				if (var0.model0 != null && Client.cycle >= var0.animationCycleStart && Client.cycle < var0.animationCycleEnd) {
+					var0.isUnanimated = false;
+					var0.tileHeight = GrandExchangeOfferWorldComparator.getTileHeight(var0.x, var0.y, GrandExchangeOfferUnitPriceComparator.Client_plane);
+					var0.playerCycle = Client.cycle;
+					ModeWhere.scene.addNullableObject(GrandExchangeOfferUnitPriceComparator.Client_plane, var0.x, var0.y, var0.tileHeight, 60, var0, var0.rotation, var4, var0.field646, var0.field669, var0.field660, var0.field661);
+				} else {
+					if ((var0.x & 127) == 64 && (var0.y & 127) == 64) {
+						if (Client.tileLastDrawnActor[var2][var3] == Client.viewportDrawCount) {
+							return;
+						}
+
+						Client.tileLastDrawnActor[var2][var3] = Client.viewportDrawCount;
+					}
+
+					var0.tileHeight = GrandExchangeOfferWorldComparator.getTileHeight(var0.x, var0.y, GrandExchangeOfferUnitPriceComparator.Client_plane);
+					var0.playerCycle = Client.cycle;
+					ModeWhere.scene.drawEntity(GrandExchangeOfferUnitPriceComparator.Client_plane, var0.x, var0.y, var0.tileHeight, 60, var0, var0.rotation, var4, var0.isWalking);
+				}
+			}
 		}
+
 	}
 }

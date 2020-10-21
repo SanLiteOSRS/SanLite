@@ -7,40 +7,37 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fo")
+@ObfuscatedName("fl")
 @Implements("TaskHandler")
 public class TaskHandler implements Runnable {
-	@ObfuscatedName("z")
+	@ObfuscatedName("f")
 	@Export("javaVendor")
 	public static String javaVendor;
-	@ObfuscatedName("k")
+	@ObfuscatedName("b")
 	@Export("javaVersion")
 	public static String javaVersion;
-	@ObfuscatedName("w")
-	@Export("SpriteBuffer_spritePalette")
-	static int[] SpriteBuffer_spritePalette;
-	@ObfuscatedName("lp")
+	@ObfuscatedName("hl")
 	@ObfuscatedSignature(
-		signature = "Lcf;"
+		signature = "[Llc;"
 	)
-	@Export("tempMenuAction")
-	static MenuAction tempMenuAction;
-	@ObfuscatedName("s")
+	@Export("headIconPrayerSprites")
+	static SpritePixels[] headIconPrayerSprites;
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		signature = "Lfl;"
+		signature = "Lfu;"
 	)
 	@Export("current")
 	Task current;
-	@ObfuscatedName("t")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		signature = "Lfl;"
+		signature = "Lfu;"
 	)
 	@Export("task")
 	Task task;
-	@ObfuscatedName("i")
+	@ObfuscatedName("z")
 	@Export("thread")
 	Thread thread;
-	@ObfuscatedName("o")
+	@ObfuscatedName("q")
 	@Export("isClosed")
 	boolean isClosed;
 
@@ -64,10 +61,10 @@ public class TaskHandler implements Runnable {
 		this.thread.start();
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-1905813436"
+		signature = "(B)V",
+		garbageValue = "14"
 	)
 	@Export("close")
 	public final void close() {
@@ -83,10 +80,10 @@ public class TaskHandler implements Runnable {
 
 	}
 
-	@ObfuscatedName("k")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		signature = "(IIILjava/lang/Object;B)Lfl;",
-		garbageValue = "1"
+		signature = "(IIILjava/lang/Object;B)Lfu;",
+		garbageValue = "44"
 	)
 	@Export("newTask")
 	final Task newTask(int var1, int var2, int var3, Object var4) {
@@ -107,20 +104,20 @@ public class TaskHandler implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("s")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;II)Lfl;",
-		garbageValue = "-1230716173"
+		signature = "(Ljava/lang/String;II)Lfu;",
+		garbageValue = "1542542692"
 	)
 	@Export("newSocketTask")
 	public final Task newSocketTask(String var1, int var2) {
 		return this.newTask(1, var2, 0, var1);
 	}
 
-	@ObfuscatedName("t")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/Runnable;II)Lfl;",
-		garbageValue = "1199992408"
+		signature = "(Ljava/lang/Runnable;IS)Lfu;",
+		garbageValue = "3910"
 	)
 	@Export("newThreadTask")
 	public final Task newThreadTask(Runnable var1, int var2) {
@@ -175,40 +172,12 @@ public class TaskHandler implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		signature = "(II)Liy;",
-		garbageValue = "960281764"
+		signature = "(ZZI)Lle;",
+		garbageValue = "1626700828"
 	)
-	public static VarbitComposition method3567(int var0) {
-		VarbitComposition var1 = (VarbitComposition)VarbitComposition.VarbitDefinition_cached.get((long)var0);
-		if (var1 != null) {
-			return var1;
-		} else {
-			byte[] var2 = VarbitComposition.VarbitDefinition_archive.takeFile(14, var0);
-			var1 = new VarbitComposition();
-			if (var2 != null) {
-				var1.decode(new Buffer(var2));
-			}
-
-			VarbitComposition.VarbitDefinition_cached.put(var1, (long)var0);
-			return var1;
-		}
-	}
-
-	@ObfuscatedName("z")
-	@ObfuscatedSignature(
-		signature = "(IIII)I",
-		garbageValue = "-1918850707"
-	)
-	public static int method3568(int var0, int var1, int var2) {
-		var2 &= 3;
-		if (var2 == 0) {
-			return var0;
-		} else if (var2 == 1) {
-			return var1;
-		} else {
-			return var2 == 2 ? 7 - var0 : 7 - var1;
-		}
+	static IndexedSprite method3609(boolean var0, boolean var1) {
+		return var0 ? (var1 ? DevicePcmPlayerProvider.field439 : Login.options_buttons_2Sprite) : (var1 ? class69.field583 : Login.options_buttons_0Sprite);
 	}
 }
