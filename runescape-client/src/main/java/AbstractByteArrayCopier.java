@@ -6,94 +6,69 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("hh")
 @Implements("AbstractByteArrayCopier")
 public abstract class AbstractByteArrayCopier {
-	@ObfuscatedName("dn")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		signature = "Lid;"
+		signature = "[Lct;"
 	)
-	@Export("archive11")
-	static Archive archive11;
-	@ObfuscatedName("en")
+	@Export("World_worlds")
+	static World[] World_worlds;
+	@ObfuscatedName("g")
 	@ObfuscatedSignature(
-		signature = "Lid;"
+		signature = "Lls;"
 	)
-	@Export("archive14")
-	static Archive archive14;
+	@Export("logoSprite")
+	static IndexedSprite logoSprite;
 
 	AbstractByteArrayCopier() {
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		signature = "(B)[B",
-		garbageValue = "-47"
+		signature = "(I)[B",
+		garbageValue = "-1021172953"
 	)
 	@Export("get")
 	abstract byte[] get();
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		signature = "([BB)V",
-		garbageValue = "0"
+		signature = "([BI)V",
+		garbageValue = "-1366071744"
 	)
 	@Export("set")
 	abstract void set(byte[] var1);
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("ig")
 	@ObfuscatedSignature(
-		signature = "([BZI)Ljava/lang/Object;",
-		garbageValue = "1848040279"
+		signature = "(Ljava/lang/String;Lhq;I)Ljava/lang/String;",
+		garbageValue = "506679014"
 	)
-	public static Object method4069(byte[] var0, boolean var1) {
-		if (var0 == null) {
-			return null;
-		} else if (var0.length > 136) {
-			DirectByteArrayCopier var2 = new DirectByteArrayCopier();
-			var2.set(var0);
-			return var2;
-		} else {
-			return var0;
-		}
-	}
+	static String method4028(String var0, Widget var1) {
+		if (var0.indexOf("%") != -1) {
+			for (int var2 = 1; var2 <= 5; ++var2) {
+				while (true) {
+					int var3 = var0.indexOf("%" + var2);
+					if (var3 == -1) {
+						break;
+					}
 
-	@ObfuscatedName("n")
-	@ObfuscatedSignature(
-		signature = "(Lcf;B)V",
-		garbageValue = "2"
-	)
-	@Export("changeWorld")
-	static void changeWorld(World var0) {
-		if (var0.isMembersOnly() != Client.isMembersWorld) {
-			Client.isMembersWorld = var0.isMembersOnly();
-			boolean var1 = var0.isMembersOnly();
-			if (var1 != SoundCache.ItemDefinition_inMembersWorld) {
-				class200.method3803();
-				SoundCache.ItemDefinition_inMembersWorld = var1;
+					var0 = var0.substring(0, var3) + ArchiveDiskActionHandler.method4338(GrandExchangeOfferNameComparator.method230(var1, var2 - 1)) + var0.substring(var3 + 2);
+				}
 			}
 		}
 
-		if (var0.properties != Client.worldProperties) {
-			AbstractArchive.method4386(GrandExchangeOffer.archive8, var0.properties);
-		}
-
-		UserComparator6.worldHost = var0.host;
-		Client.worldId = var0.id;
-		Client.worldProperties = var0.properties;
-		Coord.port1 = Client.gameBuild == 0 ? 43594 : var0.id + 40000;
-		Coord.port2 = Client.gameBuild == 0 ? 443 : var0.id + 50000;
-		class41.port3 = Coord.port1;
+		return var0;
 	}
 
-	@ObfuscatedName("jp")
+	@ObfuscatedName("kk")
 	@ObfuscatedSignature(
-		signature = "(II)V",
-		garbageValue = "407362763"
+		signature = "(I)V",
+		garbageValue = "-1068531314"
 	)
-	static void method4087(int var0) {
-		GrandExchangeOffer.tempMenuAction = new MenuAction();
-		GrandExchangeOffer.tempMenuAction.param0 = Client.menuArguments1[var0];
-		GrandExchangeOffer.tempMenuAction.param1 = Client.menuArguments2[var0];
-		GrandExchangeOffer.tempMenuAction.opcode = Client.menuOpcodes[var0];
-		GrandExchangeOffer.tempMenuAction.identifier = Client.menuIdentifiers[var0];
-		GrandExchangeOffer.tempMenuAction.action = Client.menuActions[var0];
+	@Export("Clan_leaveChat")
+	static final void Clan_leaveChat() {
+		PacketBufferNode var0 = Client.getPacketBufferNode(ClientPacket.field2324, Client.packetWriter.isaacCipher);
+		var0.packetBuffer.writeByte(0);
+		Client.packetWriter.addNode(var0);
 	}
 }

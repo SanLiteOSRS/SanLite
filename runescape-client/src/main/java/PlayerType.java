@@ -3,75 +3,73 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("in")
+@ObfuscatedName("ix")
 @Implements("PlayerType")
 public enum PlayerType implements Enumerated {
-	@ObfuscatedName("f")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "Lin;"
+		signature = "Lix;"
 	)
 	@Export("PlayerType_normal")
 	PlayerType_normal(0, -1, true, false, true),
-	@ObfuscatedName("b")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "Lin;"
+		signature = "Lix;"
 	)
 	@Export("PlayerType_playerModerator")
 	PlayerType_playerModerator(1, 0, true, true, true),
-	@ObfuscatedName("l")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		signature = "Lin;"
+		signature = "Lix;"
 	)
 	@Export("PlayerType_jagexModerator")
 	PlayerType_jagexModerator(2, 1, true, true, false),
-	@ObfuscatedName("m")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		signature = "Lin;"
+		signature = "Lix;"
 	)
 	@Export("PlayerType_ironman")
 	PlayerType_ironman(3, 2, false, false, true),
-	@ObfuscatedName("z")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		signature = "Lin;"
+		signature = "Lix;"
 	)
 	@Export("PlayerType_ultimateIronman")
 	PlayerType_ultimateIronman(4, 3, false, false, true),
-	@ObfuscatedName("q")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "Lin;"
+		signature = "Lix;"
 	)
 	@Export("PlayerType_hardcoreIronman")
 	PlayerType_hardcoreIronman(5, 10, false, false, true),
-	@ObfuscatedName("k")
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		signature = "Lin;"
+		signature = "Lix;"
 	)
-	field3125(6, 22, false, false, true);
+	field3131(6, 22, false, false, true);
 
-	@ObfuscatedName("kz")
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "Lbi;"
+		signature = "Lls;"
 	)
-	@Export("localPlayer")
-	static Player localPlayer;
-	@ObfuscatedName("c")
+	static IndexedSprite field3134;
+	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		intValue = -933718651
+		intValue = 1823451795
 	)
 	@Export("id")
 	final int id;
-	@ObfuscatedName("u")
+	@ObfuscatedName("g")
 	@ObfuscatedGetter(
-		intValue = 1124234319
+		intValue = 1522972387
 	)
 	@Export("modIcon")
 	public final int modIcon;
-	@ObfuscatedName("t")
+	@ObfuscatedName("m")
 	@Export("isPrivileged")
 	public final boolean isPrivileged;
-	@ObfuscatedName("e")
+	@ObfuscatedName("n")
 	@Export("isUser")
 	public final boolean isUser;
 
@@ -82,45 +80,13 @@ public enum PlayerType implements Enumerated {
 		this.isUser = var7;
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		signature = "(B)I",
-		garbageValue = "23"
+		signature = "(I)I",
+		garbageValue = "385513888"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
 		return this.id;
-	}
-
-	@ObfuscatedName("y")
-	@ObfuscatedSignature(
-		signature = "(ILco;ZI)I",
-		garbageValue = "-2138223094"
-	)
-	static int method4274(int var0, Script var1, boolean var2) {
-		Widget var3;
-		if (var0 >= 2000) {
-			var0 -= 1000;
-			var3 = UserComparator4.getWidget(Interpreter.Interpreter_intStack[--MilliClock.Interpreter_intStackSize]);
-		} else {
-			var3 = var2 ? MouseRecorder.field621 : Interpreter.field1122;
-		}
-
-		if (var0 == ScriptOpcodes.CC_CALLONRESIZE) {
-			if (Interpreter.field1119 >= 10) {
-				throw new RuntimeException();
-			} else if (var3.onResize == null) {
-				return 0;
-			} else {
-				ScriptEvent var4 = new ScriptEvent();
-				var4.widget = var3;
-				var4.args = var3.onResize;
-				var4.field600 = Interpreter.field1119 + 1;
-				Client.scriptEvents.addFirst(var4);
-				return 1;
-			}
-		} else {
-			return 2;
-		}
 	}
 }

@@ -2,19 +2,25 @@ import java.io.File;
 import java.util.Hashtable;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fn")
+@ObfuscatedName("fw")
 @Implements("FileSystem")
 public class FileSystem {
-	@ObfuscatedName("f")
+	@ObfuscatedName("rt")
+	@ObfuscatedGetter(
+		intValue = -929980525
+	)
+	static int field2099;
+	@ObfuscatedName("z")
 	@Export("FileSystem_hasPermissions")
 	static boolean FileSystem_hasPermissions;
-	@ObfuscatedName("b")
+	@ObfuscatedName("k")
 	@Export("FileSystem_cacheDir")
 	static File FileSystem_cacheDir;
-	@ObfuscatedName("l")
+	@ObfuscatedName("s")
 	@Export("FileSystem_cacheFiles")
 	static Hashtable FileSystem_cacheFiles;
 
@@ -23,70 +29,119 @@ public class FileSystem {
 		FileSystem_cacheFiles = new Hashtable(16);
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		signature = "(Liw;Liw;I)V",
-		garbageValue = "1765921646"
+		signature = "(Lky;IB)Z",
+		garbageValue = "1"
 	)
-	public static void method3630(AbstractArchive var0, AbstractArchive var1) {
-		KitDefinition.KitDefinition_archive = var0;
-		KitDefinition.KitDefinition_modelsArchive = var1;
-		KitDefinition.KitDefinition_fileCount = KitDefinition.KitDefinition_archive.getGroupFileCount(3);
-	}
+	@Export("updateExternalPlayer")
+	static boolean updateExternalPlayer(PacketBuffer var0, int var1) {
+		int var2 = var0.readBits(2);
+		int var3;
+		int var4;
+		int var7;
+		int var8;
+		int var9;
+		int var10;
+		if (var2 == 0) {
+			if (var0.readBits(1) != 0) {
+				updateExternalPlayer(var0, var1);
+			}
 
-	@ObfuscatedName("u")
-	@ObfuscatedSignature(
-		signature = "(I)Lcf;",
-		garbageValue = "1501989228"
-	)
-	@Export("getNextWorldListWorld")
-	static World getNextWorldListWorld() {
-		return World.World_listCount < World.World_count ? DefaultsGroup.World_worlds[++World.World_listCount - 1] : null;
-	}
+			var3 = var0.readBits(13);
+			var4 = var0.readBits(13);
+			boolean var12 = var0.readBits(1) == 1;
+			if (var12) {
+				Players.Players_pendingUpdateIndices[++Players.Players_pendingUpdateCount - 1] = var1;
+			}
 
-	@ObfuscatedName("ic")
-	@ObfuscatedSignature(
-		signature = "(B)I",
-		garbageValue = "77"
-	)
-	static final int method3638() {
-		return Client.menuOptionsCount - 1;
-	}
+			if (Client.players[var1] != null) {
+				throw new RuntimeException();
+			} else {
+				Player var6 = Client.players[var1] = new Player();
+				var6.index = var1;
+				if (Players.field1277[var1] != null) {
+					var6.read(Players.field1277[var1]);
+				}
 
-	@ObfuscatedName("ig")
-	@ObfuscatedSignature(
-		signature = "(Lht;IIS)V",
-		garbageValue = "10290"
-	)
-	@Export("alignWidgetPosition")
-	static void alignWidgetPosition(Widget var0, int var1, int var2) {
-		if (var0.xAlignment == 0) {
-			var0.x = var0.rawX;
-		} else if (var0.xAlignment == 1) {
-			var0.x = var0.rawX + (var1 - var0.width) / 2;
-		} else if (var0.xAlignment == 2) {
-			var0.x = var1 - var0.width - var0.rawX;
-		} else if (var0.xAlignment == 3) {
-			var0.x = var0.rawX * var1 >> 14;
-		} else if (var0.xAlignment == 4) {
-			var0.x = (var0.rawX * var1 >> 14) + (var1 - var0.width) / 2;
+				var6.orientation = Players.Players_orientations[var1];
+				var6.targetIndex = Players.Players_targetIndices[var1];
+				var7 = Players.Players_regions[var1];
+				var8 = var7 >> 28;
+				var9 = var7 >> 14 & 255;
+				var10 = var7 & 255;
+				var6.pathTraversed[0] = Players.field1284[var1];
+				var6.plane = (byte)var8;
+				var6.resetPath((var9 << 13) + var3 - WorldMapManager.baseX * 64, (var10 << 13) + var4 - WorldMapLabel.baseY * 64);
+				var6.field660 = false;
+				return true;
+			}
+		} else if (var2 == 1) {
+			var3 = var0.readBits(2);
+			var4 = Players.Players_regions[var1];
+			Players.Players_regions[var1] = (var4 & 268435455) + (((var4 >> 28) + var3 & 3) << 28);
+			return false;
 		} else {
-			var0.x = var1 - var0.width - (var0.rawX * var1 >> 14);
-		}
+			int var5;
+			int var11;
+			if (var2 == 2) {
+				var3 = var0.readBits(5);
+				var4 = var3 >> 3;
+				var5 = var3 & 7;
+				var11 = Players.Players_regions[var1];
+				var7 = (var11 >> 28) + var4 & 3;
+				var8 = var11 >> 14 & 255;
+				var9 = var11 & 255;
+				if (var5 == 0) {
+					--var8;
+					--var9;
+				}
 
-		if (var0.yAlignment == 0) {
-			var0.y = var0.rawY;
-		} else if (var0.yAlignment == 1) {
-			var0.y = (var2 - var0.height) / 2 + var0.rawY;
-		} else if (var0.yAlignment == 2) {
-			var0.y = var2 - var0.height - var0.rawY;
-		} else if (var0.yAlignment == 3) {
-			var0.y = var2 * var0.rawY >> 14;
-		} else if (var0.yAlignment == 4) {
-			var0.y = (var2 - var0.height) / 2 + (var2 * var0.rawY >> 14);
-		} else {
-			var0.y = var2 - var0.height - (var2 * var0.rawY >> 14);
-		}
+				if (var5 == 1) {
+					--var9;
+				}
 
+				if (var5 == 2) {
+					++var8;
+					--var9;
+				}
+
+				if (var5 == 3) {
+					--var8;
+				}
+
+				if (var5 == 4) {
+					++var8;
+				}
+
+				if (var5 == 5) {
+					--var8;
+					++var9;
+				}
+
+				if (var5 == 6) {
+					++var9;
+				}
+
+				if (var5 == 7) {
+					++var8;
+					++var9;
+				}
+
+				Players.Players_regions[var1] = (var8 << 14) + var9 + (var7 << 28);
+				return false;
+			} else {
+				var3 = var0.readBits(18);
+				var4 = var3 >> 16;
+				var5 = var3 >> 8 & 255;
+				var11 = var3 & 255;
+				var7 = Players.Players_regions[var1];
+				var8 = (var7 >> 28) + var4 & 3;
+				var9 = var5 + (var7 >> 14) & 255;
+				var10 = var11 + var7 & 255;
+				Players.Players_regions[var1] = (var9 << 14) + var10 + (var8 << 28);
+				return false;
+			}
+		}
 	}
 }

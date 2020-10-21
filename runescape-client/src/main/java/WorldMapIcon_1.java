@@ -1,51 +1,60 @@
+import java.applet.Applet;
+import java.net.URL;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.rs.ScriptOpcodes;
+import netscape.javascript.JSObject;
 
-@ObfuscatedName("ay")
+@ObfuscatedName("ap")
 @Implements("WorldMapIcon_1")
 public class WorldMapIcon_1 extends AbstractWorldMapIcon {
-	@ObfuscatedName("f")
+	@ObfuscatedName("ew")
 	@ObfuscatedGetter(
-		intValue = -1272071383
+		intValue = 1433563031
+	)
+	static int field212;
+	@ObfuscatedName("z")
+	@ObfuscatedGetter(
+		intValue = -18311555
 	)
 	@Export("objectDefId")
 	final int objectDefId;
-	@ObfuscatedName("b")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "Lax;"
+		signature = "Lal;"
 	)
 	@Export("region")
 	final WorldMapRegion region;
-	@ObfuscatedName("l")
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = -1816725297
+		intValue = -2141926567
 	)
 	@Export("element")
 	int element;
-	@ObfuscatedName("m")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		signature = "Lai;"
+		signature = "Laq;"
 	)
 	@Export("label")
 	WorldMapLabel label;
-	@ObfuscatedName("z")
+	@ObfuscatedName("i")
 	@ObfuscatedGetter(
-		intValue = -29406003
+		intValue = 578089951
 	)
 	@Export("subWidth")
 	int subWidth;
-	@ObfuscatedName("q")
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = -1922717703
+		intValue = -258563275
 	)
 	@Export("subHeight")
 	int subHeight;
 
 	@ObfuscatedSignature(
-		signature = "(Lhw;Lhw;ILax;)V"
+		signature = "(Lhg;Lhg;ILal;)V"
 	)
 	WorldMapIcon_1(Coord var1, Coord var2, int var3, WorldMapRegion var4) {
 		super(var1, var2);
@@ -54,56 +63,56 @@ public class WorldMapIcon_1 extends AbstractWorldMapIcon {
 		this.init();
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(B)I",
-		garbageValue = "24"
+		signature = "(I)I",
+		garbageValue = "-1613828162"
 	)
 	@Export("getElement")
 	public int getElement() {
 		return this.element;
 	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "(I)Lai;",
-		garbageValue = "-669051823"
+		signature = "(I)Laq;",
+		garbageValue = "499378708"
 	)
 	@Export("getLabel")
 	WorldMapLabel getLabel() {
 		return this.label;
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
 		signature = "(I)I",
-		garbageValue = "1627026836"
+		garbageValue = "182515130"
 	)
 	@Export("getSubWidth")
 	int getSubWidth() {
 		return this.subWidth;
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
 		signature = "(I)I",
-		garbageValue = "190840278"
+		garbageValue = "-2001682063"
 	)
 	@Export("getSubHeight")
 	int getSubHeight() {
 		return this.subHeight;
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "1939133514"
+		garbageValue = "1388314285"
 	)
 	@Export("init")
 	void init() {
-		this.element = ScriptEvent.getObjectDefinition(this.objectDefId).transform().mapIconId;
-		this.label = this.region.createMapLabel(class194.WorldMapElement_get(this.element));
-		WorldMapElement var1 = class194.WorldMapElement_get(this.getElement());
+		this.element = MidiPcmStream.getObjectDefinition(this.objectDefId).transform().mapIconId;
+		this.label = this.region.createMapLabel(WorldMapSection0.WorldMapElement_get(this.element));
+		WorldMapElement var1 = WorldMapSection0.WorldMapElement_get(this.getElement());
 		SpritePixels var2 = var1.getSpriteBool(false);
 		if (var2 != null) {
 			this.subWidth = var2.subWidth;
@@ -115,160 +124,144 @@ public class WorldMapIcon_1 extends AbstractWorldMapIcon {
 
 	}
 
+	@ObfuscatedName("s")
+	@ObfuscatedSignature(
+		signature = "(I)V",
+		garbageValue = "1482054985"
+	)
+	static void method377() {
+		WorldMapRegion.WorldMapRegion_cachedSprites.clear();
+	}
+
+	@ObfuscatedName("s")
+	@ObfuscatedSignature(
+		signature = "(II)I",
+		garbageValue = "-40638792"
+	)
+	public static int method381(int var0) {
+		return TileItem.method2209(ViewportMouse.ViewportMouse_entityTags[var0]);
+	}
+
+	@ObfuscatedName("i")
+	@ObfuscatedSignature(
+		signature = "(Ljava/lang/String;ILjava/lang/String;B)Z",
+		garbageValue = "126"
+	)
+	static boolean method380(String var0, int var1, String var2) {
+		if (var1 == 0) {
+			try {
+				if (!class60.field451.startsWith("win")) {
+					throw new Exception();
+				} else if (!var0.startsWith("http://") && !var0.startsWith("https://")) {
+					throw new Exception();
+				} else {
+					String var11 = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789?&=,.%+-_#:/*";
+
+					for (int var4 = 0; var4 < var0.length(); ++var4) {
+						if (var11.indexOf(var0.charAt(var4)) == -1) {
+							throw new Exception();
+						}
+					}
+
+					Runtime.getRuntime().exec("cmd /c start \"j\" \"" + var0 + "\"");
+					return true;
+				}
+			} catch (Throwable var5) {
+				return false;
+			}
+		} else if (var1 == 1) {
+			try {
+				Object var10 = class56.method899(class60.applet, var2, new Object[]{(new URL(class60.applet.getCodeBase(), var0)).toString()});
+				return var10 != null;
+			} catch (Throwable var6) {
+				return false;
+			}
+		} else if (var1 == 2) {
+			try {
+				class60.applet.getAppletContext().showDocument(new URL(class60.applet.getCodeBase(), var0), "_blank");
+				return true;
+			} catch (Exception var7) {
+				return false;
+			}
+		} else if (var1 == 3) {
+			try {
+				Applet var3 = class60.applet;
+				JSObject.getWindow(var3).call("loggedout", (Object[])null);
+			} catch (Throwable var9) {
+			}
+
+			try {
+				class60.applet.getAppletContext().showDocument(new URL(class60.applet.getCodeBase(), var0), "_top");
+				return true;
+			} catch (Exception var8) {
+				return false;
+			}
+		} else {
+			throw new IllegalArgumentException();
+		}
+	}
+
 	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		signature = "(Lcf;Lcf;IZIZI)I",
-		garbageValue = "586968313"
+		signature = "(ILcy;ZI)I",
+		garbageValue = "-1976803623"
 	)
-	static int method395(World var0, World var1, int var2, boolean var3, int var4, boolean var5) {
-		int var6 = WorldMapSprite.compareWorlds(var0, var1, var2, var3);
-		if (var6 != 0) {
-			return var3 ? -var6 : var6;
-		} else if (var4 == -1) {
-			return 0;
+	static int method378(int var0, Script var1, boolean var2) {
+		Widget var3 = var2 ? Canvas.field438 : class3.field12;
+		if (var0 == ScriptOpcodes.CC_GETINVOBJECT) {
+			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.itemId;
+			return 1;
+		} else if (var0 == ScriptOpcodes.CC_GETINVCOUNT) {
+			if (var3.itemId != -1) {
+				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.itemQuantity;
+			} else {
+				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = 0;
+			}
+
+			return 1;
+		} else if (var0 == ScriptOpcodes.CC_GETID) {
+			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.childIndex;
+			return 1;
 		} else {
-			int var7 = WorldMapSprite.compareWorlds(var0, var1, var4, var5);
-			return var5 ? -var7 : var7;
+			return 2;
 		}
 	}
 
-	@ObfuscatedName("t")
+	@ObfuscatedName("go")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-218709876"
+		signature = "(Lbs;I)V",
+		garbageValue = "777785142"
 	)
-	public static void method398() {
-		PlayerComposition.PlayerAppearance_cachedModels.clear();
-	}
-
-	@ObfuscatedName("t")
-	@ObfuscatedSignature(
-		signature = "(Lht;IIII)V",
-		garbageValue = "-630082836"
-	)
-	@Export("Widget_setKeyRate")
-	static final void Widget_setKeyRate(Widget var0, int var1, int var2, int var3) {
-		if (var0.field2670 == null) {
-			throw new RuntimeException();
-		} else {
-			var0.field2670[var1] = var2;
-			var0.field2671[var1] = var3;
-		}
-	}
-
-	@ObfuscatedName("fg")
-	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "1198701264"
-	)
-	static final void method392() {
-		int var0 = WorldMapSection2.field225 * 16384 + 64;
-		int var1 = WorldMapLabelSize.field152 * 128 + 64;
-		int var2 = GrandExchangeOfferWorldComparator.getTileHeight(var0, var1, GrandExchangeOfferUnitPriceComparator.Client_plane) - SpriteMask.field2542;
-		if (ItemContainer.cameraX < var0) {
-			ItemContainer.cameraX = (var0 - ItemContainer.cameraX) * ReflectionCheck.field1364 / 1000 + ItemContainer.cameraX + Player.field674;
-			if (ItemContainer.cameraX > var0) {
-				ItemContainer.cameraX = var0;
-			}
+	static final void method375(PendingSpawn var0) {
+		long var1 = 0L;
+		int var3 = -1;
+		int var4 = 0;
+		int var5 = 0;
+		if (var0.type == 0) {
+			var1 = ScriptEvent.scene.getBoundaryObjectTag(var0.plane, var0.x, var0.y);
 		}
 
-		if (ItemContainer.cameraX > var0) {
-			ItemContainer.cameraX -= ReflectionCheck.field1364 * (ItemContainer.cameraX - var0) / 1000 + Player.field674;
-			if (ItemContainer.cameraX < var0) {
-				ItemContainer.cameraX = var0;
-			}
+		if (var0.type == 1) {
+			var1 = ScriptEvent.scene.getWallDecorationTag(var0.plane, var0.x, var0.y);
 		}
 
-		if (ChatChannel.cameraY < var2) {
-			ChatChannel.cameraY = (var2 - ChatChannel.cameraY) * ReflectionCheck.field1364 / 1000 + ChatChannel.cameraY + Player.field674;
-			if (ChatChannel.cameraY > var2) {
-				ChatChannel.cameraY = var2;
-			}
+		if (var0.type == 2) {
+			var1 = ScriptEvent.scene.getGameObjectTag(var0.plane, var0.x, var0.y);
 		}
 
-		if (ChatChannel.cameraY > var2) {
-			ChatChannel.cameraY -= ReflectionCheck.field1364 * (ChatChannel.cameraY - var2) / 1000 + Player.field674;
-			if (ChatChannel.cameraY < var2) {
-				ChatChannel.cameraY = var2;
-			}
+		if (var0.type == 3) {
+			var1 = ScriptEvent.scene.getFloorDecorationTag(var0.plane, var0.x, var0.y);
 		}
 
-		if (WorldMapManager.cameraZ < var1) {
-			WorldMapManager.cameraZ = (var1 - WorldMapManager.cameraZ) * ReflectionCheck.field1364 / 1000 + WorldMapManager.cameraZ + Player.field674;
-			if (WorldMapManager.cameraZ > var1) {
-				WorldMapManager.cameraZ = var1;
-			}
+		if (0L != var1) {
+			int var6 = ScriptEvent.scene.getObjectFlags(var0.plane, var0.x, var0.y, var1);
+			var3 = UserComparator9.Entity_unpackID(var1);
+			var4 = var6 & 31;
+			var5 = var6 >> 6 & 3;
 		}
 
-		if (WorldMapManager.cameraZ > var1) {
-			WorldMapManager.cameraZ -= ReflectionCheck.field1364 * (WorldMapManager.cameraZ - var1) / 1000 + Player.field674;
-			if (WorldMapManager.cameraZ < var1) {
-				WorldMapManager.cameraZ = var1;
-			}
-		}
-
-		var0 = MilliClock.field2048 * 16384 + 64;
-		var1 = PcmPlayer.field1449 * 16384 + 64;
-		var2 = GrandExchangeOfferWorldComparator.getTileHeight(var0, var1, GrandExchangeOfferUnitPriceComparator.Client_plane) - AbstractRasterProvider.field3890;
-		int var3 = var0 - ItemContainer.cameraX;
-		int var4 = var2 - ChatChannel.cameraY;
-		int var5 = var1 - WorldMapManager.cameraZ;
-		int var6 = (int)Math.sqrt((double)(var5 * var5 + var3 * var3));
-		int var7 = (int)(Math.atan2((double)var4, (double)var6) * 325.949D) & 2047;
-		int var8 = (int)(Math.atan2((double)var3, (double)var5) * -325.949D) & 2047;
-		if (var7 < 128) {
-			var7 = 128;
-		}
-
-		if (var7 > 383) {
-			var7 = 383;
-		}
-
-		if (World.cameraPitch < var7) {
-			World.cameraPitch = (var7 - World.cameraPitch) * class60.field452 / 1000 + World.cameraPitch + WorldMapCacheName.field326;
-			if (World.cameraPitch > var7) {
-				World.cameraPitch = var7;
-			}
-		}
-
-		if (World.cameraPitch > var7) {
-			World.cameraPitch -= class60.field452 * (World.cameraPitch - var7) / 1000 + WorldMapCacheName.field326;
-			if (World.cameraPitch < var7) {
-				World.cameraPitch = var7;
-			}
-		}
-
-		int var9 = var8 - ViewportMouse.cameraYaw;
-		if (var9 > 1024) {
-			var9 -= 2048;
-		}
-
-		if (var9 < -1024) {
-			var9 += 2048;
-		}
-
-		if (var9 > 0) {
-			ViewportMouse.cameraYaw = var9 * class60.field452 / 1000 + ViewportMouse.cameraYaw + WorldMapCacheName.field326;
-			ViewportMouse.cameraYaw &= 2047;
-		}
-
-		if (var9 < 0) {
-			ViewportMouse.cameraYaw -= -var9 * class60.field452 / 1000 + WorldMapCacheName.field326;
-			ViewportMouse.cameraYaw &= 2047;
-		}
-
-		int var10 = var8 - ViewportMouse.cameraYaw;
-		if (var10 > 1024) {
-			var10 -= 2048;
-		}
-
-		if (var10 < -1024) {
-			var10 += 2048;
-		}
-
-		if (var10 < 0 && var9 > 0 || var10 > 0 && var9 < 0) {
-			ViewportMouse.cameraYaw = var8;
-		}
-
+		var0.objectId = var3;
+		var0.field961 = var4;
+		var0.field960 = var5;
 	}
 }

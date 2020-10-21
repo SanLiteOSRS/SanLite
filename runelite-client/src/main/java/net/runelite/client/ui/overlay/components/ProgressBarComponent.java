@@ -114,7 +114,7 @@ public class ProgressBarComponent implements LayoutableRenderableEntity
 
 		// Draw bar
 		graphics.setColor(backgroundColor);
-		graphics.fillRect(barX + progressFill, barY, width - progressFill, height);
+		graphics.fillRect(barX, barY, width, height);
 		graphics.setColor(foregroundColor);
 		graphics.fillRect(barX, barY, progressFill, height);
 

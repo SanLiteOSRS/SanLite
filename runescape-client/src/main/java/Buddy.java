@@ -4,24 +4,24 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("kl")
+@ObfuscatedName("ko")
 @Implements("Buddy")
 public class Buddy extends Nameable {
-	@ObfuscatedName("z")
+	@ObfuscatedName("i")
 	@ObfuscatedGetter(
-		intValue = 11106869
+		intValue = 1220284933
 	)
 	@Export("world")
 	public int world;
-	@ObfuscatedName("q")
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = -152395721
+		intValue = -224698591
 	)
 	@Export("int2")
 	public int int2;
-	@ObfuscatedName("k")
+	@ObfuscatedName("x")
 	@ObfuscatedGetter(
-		intValue = -2046861125
+		intValue = -263202513
 	)
 	@Export("rank")
 	public int rank;
@@ -30,10 +30,10 @@ public class Buddy extends Nameable {
 		this.world = -1;
 	}
 
-	@ObfuscatedName("as")
+	@ObfuscatedName("bz")
 	@ObfuscatedSignature(
 		signature = "(III)V",
-		garbageValue = "-2040582240"
+		garbageValue = "-580421822"
 	)
 	@Export("set")
 	void set(int var1, int var2) {
@@ -41,41 +41,38 @@ public class Buddy extends Nameable {
 		this.int2 = var2;
 	}
 
-	@ObfuscatedName("aj")
+	@ObfuscatedName("bj")
 	@ObfuscatedSignature(
 		signature = "(I)I",
-		garbageValue = "-1227798999"
+		garbageValue = "-907221261"
 	)
 	@Export("getWorld")
 	public int getWorld() {
 		return this.world;
 	}
 
-	@ObfuscatedName("ae")
+	@ObfuscatedName("bh")
 	@ObfuscatedSignature(
-		signature = "(I)Z",
-		garbageValue = "-17715809"
+		signature = "(S)Z",
+		garbageValue = "4837"
 	)
 	@Export("hasWorld")
 	public boolean hasWorld() {
 		return this.world > 0;
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("jp")
 	@ObfuscatedSignature(
-		signature = "(S)I",
-		garbageValue = "3913"
+		signature = "(II)Z",
+		garbageValue = "1739727093"
 	)
-	static int method5322() {
-		return ++Messages.Messages_count - 1;
-	}
+	static boolean method5277(int var0) {
+		for (int var1 = 0; var1 < Client.field898; ++var1) {
+			if (Client.field900[var1] == var0) {
+				return true;
+			}
+		}
 
-	@ObfuscatedName("b")
-	@ObfuscatedSignature(
-		signature = "(IIIB)Llc;",
-		garbageValue = "-95"
-	)
-	static SpritePixels method5321(int var0, int var1, int var2) {
-		return (SpritePixels)WorldMapRegion.WorldMapRegion_cachedSprites.get(class8.method117(var0, var1, var2));
+		return false;
 	}
 }

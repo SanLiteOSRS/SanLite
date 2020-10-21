@@ -4,42 +4,45 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bh")
+@ObfuscatedName("bo")
 @Implements("MouseRecorder")
 public class MouseRecorder implements Runnable {
-	@ObfuscatedName("c")
-	public static short[][] field628;
-	@ObfuscatedName("x")
-	@ObfuscatedSignature(
-		signature = "Lht;"
+	@ObfuscatedName("rc")
+	@ObfuscatedGetter(
+		intValue = 829134311
 	)
-	static Widget field621;
-	@ObfuscatedName("v")
-	public static String field617;
-	@ObfuscatedName("fz")
+	static int field609;
+	@ObfuscatedName("eu")
 	@ObfuscatedSignature(
-		signature = "Llv;"
+		signature = "Liw;"
 	)
-	static AbstractSocket field615;
-	@ObfuscatedName("f")
+	@Export("archive18")
+	static Archive archive18;
+	@ObfuscatedName("fc")
+	@ObfuscatedSignature(
+		signature = "Lfl;"
+	)
+	@Export("socketTask")
+	static Task socketTask;
+	@ObfuscatedName("z")
 	@Export("isRunning")
 	boolean isRunning;
-	@ObfuscatedName("b")
+	@ObfuscatedName("k")
 	@Export("lock")
 	Object lock;
-	@ObfuscatedName("l")
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = -973723423
+		intValue = -587598223
 	)
 	@Export("index")
 	int index;
-	@ObfuscatedName("m")
+	@ObfuscatedName("t")
 	@Export("xs")
 	int[] xs;
-	@ObfuscatedName("z")
+	@ObfuscatedName("i")
 	@Export("ys")
 	int[] ys;
-	@ObfuscatedName("q")
+	@ObfuscatedName("o")
 	@Export("millis")
 	long[] millis;
 
@@ -53,7 +56,7 @@ public class MouseRecorder implements Runnable {
 	}
 
 	public void run() {
-		for (; this.isRunning; WorldMapSection3.method894(50L)) {
+		for (; this.isRunning; class227.method4180(50L)) {
 			synchronized(this.lock) {
 				if (this.index < 500) {
 					this.xs[this.index] = MouseHandler.MouseHandler_x;
@@ -66,63 +69,48 @@ public class MouseRecorder implements Runnable {
 
 	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("id")
 	@ObfuscatedSignature(
-		signature = "(II)Llb;",
-		garbageValue = "-2124586789"
+		signature = "(Lhq;IIZS)V",
+		garbageValue = "338"
 	)
-	public static PrivateChatMode method1287(int var0) {
-		PrivateChatMode[] var1 = FloorDecoration.method2989();
-
-		for (int var2 = 0; var2 < var1.length; ++var2) {
-			PrivateChatMode var3 = var1[var2];
-			if (var0 == var3.field3825) {
-				return var3;
-			}
+	@Export("alignWidgetSize")
+	static void alignWidgetSize(Widget var0, int var1, int var2, boolean var3) {
+		int var4 = var0.width;
+		int var5 = var0.height;
+		if (var0.widthAlignment == 0) {
+			var0.width = var0.rawWidth;
+		} else if (var0.widthAlignment == 1) {
+			var0.width = var1 - var0.rawWidth;
+		} else if (var0.widthAlignment == 2) {
+			var0.width = var0.rawWidth * var1 >> 14;
 		}
 
-		return null;
-	}
+		if (var0.heightAlignment == 0) {
+			var0.height = var0.rawHeight;
+		} else if (var0.heightAlignment == 1) {
+			var0.height = var2 - var0.rawHeight;
+		} else if (var0.heightAlignment == 2) {
+			var0.height = var2 * var0.rawHeight >> 14;
+		}
 
-	@ObfuscatedName("z")
-	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-1737054142"
-	)
-	public static void method1283() {
-		VarpDefinition.VarpDefinition_cached.clear();
-	}
+		if (var0.widthAlignment == 4) {
+			var0.width = var0.height * var0.field2622 / var0.field2623;
+		}
 
-	@ObfuscatedName("e")
-	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-500540968"
-	)
-	static final void method1286() {
-		Object var10000 = null;
-		String var0 = "You can't add yourself to your own friend list";
-		DevicePcmPlayerProvider.addGameMessage(30, "", var0);
-	}
+		if (var0.heightAlignment == 4) {
+			var0.height = var0.field2623 * var0.width / var0.field2622;
+		}
 
-	@ObfuscatedName("gt")
-	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-1123050484"
-	)
-	static final void method1285() {
-		for (GraphicsObject var0 = (GraphicsObject)Client.graphicsObjects.last(); var0 != null; var0 = (GraphicsObject)Client.graphicsObjects.previous()) {
-			if (var0.plane == GrandExchangeOfferUnitPriceComparator.Client_plane && !var0.isFinished) {
-				if (Client.cycle >= var0.cycleStart) {
-					var0.advance(Client.field743);
-					if (var0.isFinished) {
-						var0.remove();
-					} else {
-						ModeWhere.scene.drawEntity(var0.plane, var0.x, var0.y, var0.height, 60, var0, 0, -1L, false);
-					}
-				}
-			} else {
-				var0.remove();
-			}
+		if (var0.contentType == 1337) {
+			Client.viewportWidget = var0;
+		}
+
+		if (var3 && var0.onResize != null && (var4 != var0.width || var5 != var0.height)) {
+			ScriptEvent var6 = new ScriptEvent();
+			var6.widget = var0;
+			var6.args = var0.onResize;
+			Client.scriptEvents.addFirst(var6);
 		}
 
 	}

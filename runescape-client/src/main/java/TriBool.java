@@ -3,27 +3,33 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("kz")
+@ObfuscatedName("km")
 @Implements("TriBool")
 public class TriBool {
-	@ObfuscatedName("f")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "Lkz;"
+		signature = "Lkm;"
 	)
 	@Export("TriBool_unknown")
 	public static final TriBool TriBool_unknown;
-	@ObfuscatedName("b")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "Lkz;"
+		signature = "Lkm;"
 	)
 	@Export("TriBool_true")
 	public static final TriBool TriBool_true;
-	@ObfuscatedName("l")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		signature = "Lkz;"
+		signature = "Lkm;"
 	)
 	@Export("TriBool_false")
 	public static final TriBool TriBool_false;
+	@ObfuscatedName("lj")
+	@ObfuscatedSignature(
+		signature = "Lhq;"
+	)
+	@Export("mousedOverWidgetIf1")
+	static Widget mousedOverWidgetIf1;
 
 	static {
 		TriBool_unknown = new TriBool();

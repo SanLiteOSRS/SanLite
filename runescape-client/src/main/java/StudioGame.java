@@ -4,52 +4,52 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ik")
+@ObfuscatedName("is")
 @Implements("StudioGame")
 public enum StudioGame implements Enumerated {
-	@ObfuscatedName("f")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "Lik;"
+		signature = "Lis;"
 	)
 	@Export("runescape")
 	runescape("runescape", "RuneScape", 0),
-	@ObfuscatedName("b")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "Lik;"
+		signature = "Lis;"
 	)
 	@Export("stellardawn")
 	stellardawn("stellardawn", "Stellar Dawn", 1),
-	@ObfuscatedName("l")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		signature = "Lik;"
+		signature = "Lis;"
 	)
 	@Export("game3")
 	game3("game3", "Game 3", 2),
-	@ObfuscatedName("m")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		signature = "Lik;"
+		signature = "Lis;"
 	)
 	@Export("game4")
 	game4("game4", "Game 4", 3),
-	@ObfuscatedName("z")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		signature = "Lik;"
+		signature = "Lis;"
 	)
 	@Export("game5")
 	game5("game5", "Game 5", 4),
-	@ObfuscatedName("q")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "Lik;"
+		signature = "Lis;"
 	)
 	@Export("oldscape")
 	oldscape("oldscape", "RuneScape 2007", 5);
 
-	@ObfuscatedName("k")
+	@ObfuscatedName("x")
 	@Export("name")
 	public final String name;
-	@ObfuscatedName("c")
+	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		intValue = 1622621893
+		intValue = -1491225247
 	)
 	@Export("id")
 	final int id;
@@ -59,13 +59,22 @@ public enum StudioGame implements Enumerated {
 		this.id = var5;
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		signature = "(B)I",
-		garbageValue = "23"
+		signature = "(I)I",
+		garbageValue = "385513888"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
 		return this.id;
+	}
+
+	@ObfuscatedName("k")
+	@ObfuscatedSignature(
+		signature = "(III)Z",
+		garbageValue = "1502336414"
+	)
+	public static boolean method4230(int var0, int var1) {
+		return (var0 >> var1 + 1 & 1) != 0;
 	}
 }

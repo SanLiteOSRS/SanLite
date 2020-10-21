@@ -6,15 +6,15 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("jf")
 @Implements("FriendsChatMember")
 public class FriendsChatMember extends Buddy {
-	@ObfuscatedName("f")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "Lkz;"
+		signature = "Lkm;"
 	)
 	@Export("friend")
 	TriBool friend;
-	@ObfuscatedName("b")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "Lkz;"
+		signature = "Lkm;"
 	)
 	@Export("ignored")
 	TriBool ignored;
@@ -24,20 +24,20 @@ public class FriendsChatMember extends Buddy {
 		this.ignored = TriBool.TriBool_unknown;
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "203874469"
+		garbageValue = "-1483080876"
 	)
-	@Export("clearIsIgnored")
-	void clearIsIgnored() {
+	@Export("clearIsFriend")
+	void clearIsFriend() {
 		this.friend = TriBool.TriBool_unknown;
 	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
 		signature = "(I)Z",
-		garbageValue = "-2063904436"
+		garbageValue = "2093407981"
 	)
 	@Export("isFriend")
 	public final boolean isFriend() {
@@ -48,29 +48,30 @@ public class FriendsChatMember extends Buddy {
 		return this.friend == TriBool.TriBool_true;
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "-170481426"
+		garbageValue = "-2130404233"
 	)
 	@Export("fillIsFriend")
 	void fillIsFriend() {
-		this.friend = WorldMapLabelSize.friendSystem.friendsList.contains(super.username) ? TriBool.TriBool_true : TriBool.TriBool_false;
+		this.friend = class60.friendSystem.friendsList.contains(super.username) ? TriBool.TriBool_true : TriBool.TriBool_false;
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "1476758779"
+		garbageValue = "405113093"
 	)
-	void method5161() {
+	@Export("clearIsIgnored")
+	void clearIsIgnored() {
 		this.ignored = TriBool.TriBool_unknown;
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
 		signature = "(I)Z",
-		garbageValue = "-6155848"
+		garbageValue = "-607786293"
 	)
 	@Export("isIgnored")
 	public final boolean isIgnored() {
@@ -81,13 +82,37 @@ public class FriendsChatMember extends Buddy {
 		return this.ignored == TriBool.TriBool_true;
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "224401479"
+		garbageValue = "-483165617"
 	)
 	@Export("fillIsIgnored")
 	void fillIsIgnored() {
-		this.ignored = WorldMapLabelSize.friendSystem.ignoreList.contains(super.username) ? TriBool.TriBool_true : TriBool.TriBool_false;
+		this.ignored = class60.friendSystem.ignoreList.contains(super.username) ? TriBool.TriBool_true : TriBool.TriBool_false;
+	}
+
+	@ObfuscatedName("k")
+	@ObfuscatedSignature(
+		signature = "(CB)Z",
+		garbageValue = "0"
+	)
+	public static boolean method5146(char var0) {
+		if ((var0 <= 0 || var0 >= 128) && (var0 < 160 || var0 > 255)) {
+			if (var0 != 0) {
+				char[] var1 = class297.cp1252AsciiExtension;
+
+				for (int var2 = 0; var2 < var1.length; ++var2) {
+					char var3 = var1[var2];
+					if (var0 == var3) {
+						return true;
+					}
+				}
+			}
+
+			return false;
+		} else {
+			return true;
+		}
 	}
 }

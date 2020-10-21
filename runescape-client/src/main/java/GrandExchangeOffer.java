@@ -3,61 +3,45 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("j")
+@ObfuscatedName("v")
 @Implements("GrandExchangeOffer")
 public class GrandExchangeOffer {
-	@ObfuscatedName("nf")
+	@ObfuscatedName("be")
 	@ObfuscatedGetter(
-		intValue = -2001741545
+		intValue = -235857651
 	)
-	static int field87;
-	@ObfuscatedName("de")
-	@ObfuscatedSignature(
-		signature = "Lid;"
-	)
-	@Export("archive8")
-	static Archive archive8;
-	@ObfuscatedName("gr")
-	@Export("regionLandArchives")
-	static byte[][] regionLandArchives;
-	@ObfuscatedName("lc")
-	@ObfuscatedSignature(
-		signature = "Lcu;"
-	)
-	@Export("tempMenuAction")
-	static MenuAction tempMenuAction;
-	@ObfuscatedName("f")
+	static int field99;
+	@ObfuscatedName("z")
 	@Export("state")
 	byte state;
-	@ObfuscatedName("b")
+	@ObfuscatedName("k")
 	@ObfuscatedGetter(
-		intValue = 1175311391
+		intValue = 1886313297
 	)
 	@Export("id")
 	public int id;
-	@ObfuscatedName("l")
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = 1620049031
+		intValue = -1193190523
 	)
 	@Export("unitPrice")
 	public int unitPrice;
-	@ObfuscatedName("m")
+	@ObfuscatedName("t")
 	@ObfuscatedGetter(
-		intValue = -658451115
+		intValue = 1489525001
 	)
 	@Export("totalQuantity")
 	public int totalQuantity;
-	@ObfuscatedName("z")
+	@ObfuscatedName("i")
 	@ObfuscatedGetter(
-		intValue = 682864265
+		intValue = -683135485
 	)
 	@Export("currentQuantity")
 	public int currentQuantity;
-	@ObfuscatedName("q")
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = 2131508633
+		intValue = 2067595945
 	)
 	@Export("currentPrice")
 	public int currentPrice;
@@ -66,7 +50,7 @@ public class GrandExchangeOffer {
 	}
 
 	@ObfuscatedSignature(
-		signature = "(Lkb;Z)V",
+		signature = "(Lkf;Z)V",
 		garbageValue = "0"
 	)
 	public GrandExchangeOffer(Buffer var1, boolean var2) {
@@ -78,42 +62,42 @@ public class GrandExchangeOffer {
 		this.currentPrice = var1.readInt();
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
 		signature = "(I)I",
-		garbageValue = "-682485902"
+		garbageValue = "562486348"
 	)
 	@Export("status")
 	public int status() {
 		return this.state & 7;
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
 		signature = "(I)I",
-		garbageValue = "-1493721468"
+		garbageValue = "1427821401"
 	)
 	@Export("type")
 	public int type() {
 		return (this.state & 8) == 8 ? 1 : 0;
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
 		signature = "(II)V",
-		garbageValue = "-629489777"
+		garbageValue = "1947498588"
 	)
 	void method189(int var1) {
 		this.state &= -8;
 		this.state = (byte)(this.state | var1 & 7);
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
 		signature = "(II)V",
-		garbageValue = "-130470346"
+		garbageValue = "1892738676"
 	)
-	void method206(int var1) {
+	void method184(int var1) {
 		this.state &= -9;
 		if (var1 == 1) {
 			this.state = (byte)(this.state | 8);
@@ -121,75 +105,153 @@ public class GrandExchangeOffer {
 
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(B)[Lgg;",
-		garbageValue = "-42"
+		signature = "(Ljava/lang/CharSequence;Ljava/lang/CharSequence;Lgn;I)I",
+		garbageValue = "-780286568"
 	)
-	public static class194[] method208() {
-		return new class194[]{class194.field2356, class194.field2349, class194.field2359, class194.field2348, class194.field2352, class194.field2351, class194.field2354, class194.field2353, class194.field2355, class194.field2357};
-	}
+	@Export("compareStrings")
+	public static int compareStrings(CharSequence var0, CharSequence var1, Language var2) {
+		int var3 = var0.length();
+		int var4 = var1.length();
+		int var5 = 0;
+		int var6 = 0;
+		byte var7 = 0;
+		char var8 = 0;
 
-	@ObfuscatedName("n")
-	@ObfuscatedSignature(
-		signature = "(ILco;ZI)I",
-		garbageValue = "-253768081"
-	)
-	static int method198(int var0, Script var1, boolean var2) {
-		Widget var3 = var2 ? MouseRecorder.field621 : Interpreter.field1122;
-		if (var0 == ScriptOpcodes.CC_GETX) {
-			Interpreter.Interpreter_intStack[++MilliClock.Interpreter_intStackSize - 1] = var3.x;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CC_GETY) {
-			Interpreter.Interpreter_intStack[++MilliClock.Interpreter_intStackSize - 1] = var3.y;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CC_GETWIDTH) {
-			Interpreter.Interpreter_intStack[++MilliClock.Interpreter_intStackSize - 1] = var3.width;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CC_GETHEIGHT) {
-			Interpreter.Interpreter_intStack[++MilliClock.Interpreter_intStackSize - 1] = var3.height;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CC_GETHIDE) {
-			Interpreter.Interpreter_intStack[++MilliClock.Interpreter_intStackSize - 1] = var3.isHidden ? 1 : 0;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CC_GETLAYER) {
-			Interpreter.Interpreter_intStack[++MilliClock.Interpreter_intStackSize - 1] = var3.parentId;
-			return 1;
-		} else {
-			return 2;
-		}
-	}
+		while (var5 - var7 < var3 || var6 - var8 < var4) {
+			if (var5 - var7 >= var3) {
+				return -1;
+			}
 
-	@ObfuscatedName("hy")
-	@ObfuscatedSignature(
-		signature = "(IIIIIIIIIB)V",
-		garbageValue = "0"
-	)
-	@Export("updatePendingSpawn")
-	static final void updatePendingSpawn(int var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8) {
-		PendingSpawn var9 = null;
+			if (var6 - var8 >= var4) {
+				return 1;
+			}
 
-		for (PendingSpawn var10 = (PendingSpawn)Client.pendingSpawns.last(); var10 != null; var10 = (PendingSpawn)Client.pendingSpawns.previous()) {
-			if (var0 == var10.plane && var10.x == var1 && var2 == var10.y && var3 == var10.type) {
-				var9 = var10;
-				break;
+			char var9;
+			if (var7 != 0) {
+				var9 = (char)var7;
+				boolean var14 = false;
+			} else {
+				var9 = var0.charAt(var5++);
+			}
+
+			char var10;
+			if (var8 != 0) {
+				var10 = var8;
+				boolean var15 = false;
+			} else {
+				var10 = var1.charAt(var6++);
+			}
+
+			byte var11;
+			if (var9 == 198) {
+				var11 = 69;
+			} else if (var9 == 230) {
+				var11 = 101;
+			} else if (var9 == 223) {
+				var11 = 115;
+			} else if (var9 == 338) {
+				var11 = 69;
+			} else if (var9 == 339) {
+				var11 = 101;
+			} else {
+				var11 = 0;
+			}
+
+			var7 = var11;
+			var8 = LoginScreenAnimation.method1879(var10);
+			var9 = TileItem.standardizeChar(var9, var2);
+			var10 = TileItem.standardizeChar(var10, var2);
+			if (var9 != var10 && Character.toUpperCase(var9) != Character.toUpperCase(var10)) {
+				var9 = Character.toLowerCase(var9);
+				var10 = Character.toLowerCase(var10);
+				if (var10 != var9) {
+					return class58.lowercaseChar(var9, var2) - class58.lowercaseChar(var10, var2);
+				}
 			}
 		}
 
-		if (var9 == null) {
-			var9 = new PendingSpawn();
-			var9.plane = var0;
-			var9.type = var3;
-			var9.x = var1;
-			var9.y = var2;
-			JagexCache.method3619(var9);
-			Client.pendingSpawns.addFirst(var9);
+		int var16 = Math.min(var3, var4);
+
+		char var12;
+		int var17;
+		for (var17 = 0; var17 < var16; ++var17) {
+			if (var2 == Language.Language_FR) {
+				var5 = var3 - 1 - var17;
+				var6 = var4 - 1 - var17;
+			} else {
+				var6 = var17;
+				var5 = var17;
+			}
+
+			char var18 = var0.charAt(var5);
+			var12 = var1.charAt(var6);
+			if (var12 != var18 && Character.toUpperCase(var18) != Character.toUpperCase(var12)) {
+				var18 = Character.toLowerCase(var18);
+				var12 = Character.toLowerCase(var12);
+				if (var18 != var12) {
+					return class58.lowercaseChar(var18, var2) - class58.lowercaseChar(var12, var2);
+				}
+			}
 		}
 
-		var9.id = var4;
-		var9.field962 = var5;
-		var9.orientation = var6;
-		var9.delay = var7;
-		var9.hitpoints = var8;
+		var17 = var3 - var4;
+		if (var17 != 0) {
+			return var17;
+		} else {
+			for (int var19 = 0; var19 < var16; ++var19) {
+				var12 = var0.charAt(var19);
+				char var13 = var1.charAt(var19);
+				if (var13 != var12) {
+					return class58.lowercaseChar(var12, var2) - class58.lowercaseChar(var13, var2);
+				}
+			}
+
+			return 0;
+		}
+	}
+
+	@ObfuscatedName("ew")
+	@ObfuscatedSignature(
+		signature = "(I)Z",
+		garbageValue = "-1774568305"
+	)
+	static boolean method207() {
+		if (Client.archiveLoaders != null && Client.archiveLoadersDone < Client.archiveLoaders.size()) {
+			while (Client.archiveLoadersDone < Client.archiveLoaders.size()) {
+				ArchiveLoader var0 = (ArchiveLoader)Client.archiveLoaders.get(Client.archiveLoadersDone);
+				if (!var0.isLoaded()) {
+					return false;
+				}
+
+				++Client.archiveLoadersDone;
+			}
+
+			return true;
+		} else {
+			return true;
+		}
+	}
+
+	@ObfuscatedName("gx")
+	@ObfuscatedSignature(
+		signature = "(I)V",
+		garbageValue = "695036800"
+	)
+	static void method206() {
+		if (Client.renderSelf) {
+			VarpDefinition.addPlayerToScene(WorldMapLabelSize.localPlayer, false);
+		}
+
+	}
+
+	@ObfuscatedName("hm")
+	@ObfuscatedSignature(
+		signature = "(B)I",
+		garbageValue = "-67"
+	)
+	static final int method209() {
+		return Client.menuOptionsCount - 1;
 	}
 }

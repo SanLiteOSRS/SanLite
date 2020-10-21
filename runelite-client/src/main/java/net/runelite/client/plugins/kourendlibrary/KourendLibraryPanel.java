@@ -53,6 +53,7 @@ class KourendLibraryPanel extends PluginPanel
 	private static final ImageIcon RESET_HOVER_ICON;
 
 	private final KourendLibraryPlugin plugin;
+	private final KourendLibraryConfig config;
 	private final Library library;
 
 	private final HashMap<Book, BookPanel> bookPanels = new HashMap<>();
@@ -65,11 +66,12 @@ class KourendLibraryPanel extends PluginPanel
 	}
 
 	@Inject
-	KourendLibraryPanel(KourendLibraryPlugin plugin, Library library)
+	KourendLibraryPanel(KourendLibraryPlugin plugin, KourendLibraryConfig config, Library library)
 	{
 		super();
 
 		this.plugin = plugin;
+		this.config = config;
 		this.library = library;
 	}
 
@@ -87,7 +89,7 @@ class KourendLibraryPanel extends PluginPanel
 		c.gridy = 0;
 		Stream.of(Book.values())
 			.filter(b -> !b.isDarkManuscript())
-			.filter(b -> b != Book.VARLAMORE_ENVOY || plugin.showVarlamoreEnvoy())
+			.filter(b -> !config.hideVarlamoreEnvoy() || b != Book.VARLAMORE_ENVOY)
 			.sorted(Comparator.comparing(Book::getShortName))
 			.forEach(b ->
 			{

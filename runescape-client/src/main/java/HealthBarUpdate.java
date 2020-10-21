@@ -1,35 +1,38 @@
-import java.net.MalformedURLException;
-import java.net.URL;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ce")
+@ObfuscatedName("ca")
 @Implements("HealthBarUpdate")
 public class HealthBarUpdate extends Node {
-	@ObfuscatedName("f")
+	@ObfuscatedName("rb")
 	@ObfuscatedGetter(
-		intValue = -591382375
+		intValue = 1178172800
+	)
+	static int field1038;
+	@ObfuscatedName("z")
+	@ObfuscatedGetter(
+		intValue = -1931274229
 	)
 	@Export("cycle")
 	int cycle;
-	@ObfuscatedName("b")
+	@ObfuscatedName("k")
 	@ObfuscatedGetter(
-		intValue = 1850182953
+		intValue = 1765683631
 	)
 	@Export("health")
 	int health;
-	@ObfuscatedName("l")
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = -733805573
+		intValue = 1932254665
 	)
 	@Export("health2")
 	int health2;
-	@ObfuscatedName("m")
+	@ObfuscatedName("t")
 	@ObfuscatedGetter(
-		intValue = 2105811825
+		intValue = -488536303
 	)
 	@Export("cycleOffset")
 	int cycleOffset;
@@ -41,10 +44,10 @@ public class HealthBarUpdate extends Node {
 		this.cycleOffset = var4;
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(IIIII)V",
-		garbageValue = "2090689234"
+		signature = "(IIIIB)V",
+		garbageValue = "1"
 	)
 	@Export("set")
 	void set(int var1, int var2, int var3, int var4) {
@@ -54,122 +57,36 @@ public class HealthBarUpdate extends Node {
 		this.cycleOffset = var4;
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;B)Z",
-		garbageValue = "60"
+		signature = "(I)Z",
+		garbageValue = "-1655201695"
 	)
-	static boolean method1870(String var0) {
-		if (var0 == null) {
-			return false;
-		} else {
-			try {
-				new URL(var0);
-				return true;
-			} catch (MalformedURLException var2) {
-				return false;
-			}
-		}
+	public static boolean method1815() {
+		return class206.musicPlayerStatus != 0 ? true : class206.midiPcmStream.isReady();
 	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("ej")
 	@ObfuscatedSignature(
-		signature = "(II)Lie;",
-		garbageValue = "-736266811"
+		signature = "(I)V",
+		garbageValue = "1341706343"
 	)
-	@Export("SpotAnimationDefinition_get")
-	public static SpotAnimationDefinition SpotAnimationDefinition_get(int var0) {
-		SpotAnimationDefinition var1 = (SpotAnimationDefinition)SpotAnimationDefinition.SpotAnimationDefinition_cached.get((long)var0);
-		if (var1 != null) {
-			return var1;
-		} else {
-			byte[] var2 = SpotAnimationDefinition.SpotAnimationDefinition_archive.takeFile(13, var0);
-			var1 = new SpotAnimationDefinition();
-			var1.id = var0;
-			if (var2 != null) {
-				var1.decode(new Buffer(var2));
-			}
-
-			SpotAnimationDefinition.SpotAnimationDefinition_cached.put(var1, (long)var0);
-			return var1;
-		}
+	static final void method1818() {
+		Scene.Scene_isLowDetail = false;
+		Client.isLowDetail = false;
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("hi")
 	@ObfuscatedSignature(
-		signature = "(Lkb;IIIIIII)V",
-		garbageValue = "1972730471"
+		signature = "(IIIII)V",
+		garbageValue = "-487929114"
 	)
-	@Export("loadTerrain")
-	static final void loadTerrain(Buffer var0, int var1, int var2, int var3, int var4, int var5, int var6) {
-		int var7;
-		if (var2 >= 0 && var2 < 104 && var3 >= 0 && var3 < 104) {
-			Tiles.Tiles_renderFlags[var1][var2][var3] = 0;
-
-			while (true) {
-				var7 = var0.readUnsignedByte();
-				if (var7 == 0) {
-					if (var1 == 0) {
-						Tiles.Tiles_heights[0][var2][var3] = -Occluder.method3412(var4 + var2 + 932731, var3 + 556238 + var5) * 8;
-					} else {
-						Tiles.Tiles_heights[var1][var2][var3] = Tiles.Tiles_heights[var1 - 1][var2][var3] - 240;
-					}
-					break;
-				}
-
-				if (var7 == 1) {
-					int var8 = var0.readUnsignedByte();
-					if (var8 == 1) {
-						var8 = 0;
-					}
-
-					if (var1 == 0) {
-						Tiles.Tiles_heights[0][var2][var3] = -var8 * 8;
-					} else {
-						Tiles.Tiles_heights[var1][var2][var3] = Tiles.Tiles_heights[var1 - 1][var2][var3] - var8 * 8;
-					}
-					break;
-				}
-
-				if (var7 <= 49) {
-					NPC.field1161[var1][var2][var3] = var0.readByte();
-					Tiles.field531[var1][var2][var3] = (byte)((var7 - 2) / 4);
-					UserComparator2.field3859[var1][var2][var3] = (byte)(var7 - 2 + var6 & 3);
-				} else if (var7 <= 81) {
-					Tiles.Tiles_renderFlags[var1][var2][var3] = (byte)(var7 - 49);
-				} else {
-					TileItem.field1273[var1][var2][var3] = (byte)(var7 - 81);
-				}
-			}
-		} else {
-			while (true) {
-				var7 = var0.readUnsignedByte();
-				if (var7 == 0) {
-					break;
-				}
-
-				if (var7 == 1) {
-					var0.readUnsignedByte();
-					break;
-				}
-
-				if (var7 <= 49) {
-					var0.readUnsignedByte();
-				}
+	static final void method1817(int var0, int var1, int var2, int var3) {
+		for (int var4 = 0; var4 < Client.rootWidgetCount; ++var4) {
+			if (Client.rootWidgetWidths[var4] + Client.rootWidgetXs[var4] > var0 && Client.rootWidgetXs[var4] < var0 + var2 && Client.rootWidgetHeights[var4] + Client.rootWidgetYs[var4] > var1 && Client.rootWidgetYs[var4] < var3 + var1) {
+				Client.field883[var4] = true;
 			}
 		}
 
-	}
-
-	@ObfuscatedName("y")
-	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;I)V",
-		garbageValue = "1201553018"
-	)
-	static final void method1869(String var0) {
-		PacketBufferNode var1 = class4.getPacketBufferNode(ClientPacket.field2237, Client.packetWriter.isaacCipher);
-		var1.packetBuffer.writeByte(SpriteMask.stringCp1252NullTerminatedByteSize(var0));
-		var1.packetBuffer.writeStringCp1252NullTerminated(var0);
-		Client.packetWriter.addNode(var1);
 	}
 }

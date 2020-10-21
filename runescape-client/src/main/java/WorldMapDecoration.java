@@ -1,3 +1,4 @@
+import java.io.File;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
@@ -5,36 +6,24 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("az")
+@ObfuscatedName("aa")
 @Implements("WorldMapDecoration")
 public class WorldMapDecoration {
-	@ObfuscatedName("se")
-	@ObfuscatedSignature(
-		signature = "Lr;"
-	)
-	@Export("grandExchangeEvents")
-	static GrandExchangeEvents grandExchangeEvents;
-	@ObfuscatedName("t")
-	@ObfuscatedSignature(
-		signature = "Ldz;"
-	)
-	@Export("soundSystem")
-	static SoundSystem soundSystem;
-	@ObfuscatedName("f")
+	@ObfuscatedName("z")
 	@ObfuscatedGetter(
-		intValue = 573803167
+		intValue = -1951458321
 	)
 	@Export("objectDefinitionId")
 	final int objectDefinitionId;
-	@ObfuscatedName("b")
+	@ObfuscatedName("k")
 	@ObfuscatedGetter(
-		intValue = 502095041
+		intValue = 1622720231
 	)
 	@Export("decoration")
 	final int decoration;
-	@ObfuscatedName("l")
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = -81694959
+		intValue = 1680868715
 	)
 	@Export("rotation")
 	final int rotation;
@@ -45,35 +34,52 @@ public class WorldMapDecoration {
 		this.rotation = var3;
 	}
 
-	@ObfuscatedName("x")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(IB)V",
-		garbageValue = "7"
+		signature = "(Ljava/io/File;I)V",
+		garbageValue = "1315266294"
 	)
-	static void method428(int var0) {
-		Login.loginIndex = 12;
-		Login.field1216 = var0;
+	static void method406(File var0) {
+		FileSystem.FileSystem_cacheDir = var0;
+		if (!FileSystem.FileSystem_cacheDir.exists()) {
+			throw new RuntimeException("");
+		} else {
+			FileSystem.FileSystem_hasPermissions = true;
+		}
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		signature = "(ILco;ZI)I",
-		garbageValue = "-1847675306"
+		signature = "(ILcy;ZI)I",
+		garbageValue = "-1984297327"
 	)
-	static int method429(int var0, Script var1, boolean var2) {
-		if (var0 == ScriptOpcodes.SOUND_SYNTH) {
-			MilliClock.Interpreter_intStackSize -= 3;
-			KitDefinition.queueSoundEffect(Interpreter.Interpreter_intStack[MilliClock.Interpreter_intStackSize], Interpreter.Interpreter_intStack[MilliClock.Interpreter_intStackSize + 1], Interpreter.Interpreter_intStack[MilliClock.Interpreter_intStackSize + 2]);
+	static int method405(int var0, Script var1, boolean var2) {
+		Widget var3 = TileItem.getWidget(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);
+		if (var0 == ScriptOpcodes.IF_GETTARGETMASK) {
+			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = GrandExchangeOfferTotalQuantityComparator.method176(WorldMapIcon_0.getWidgetClickMask(var3));
 			return 1;
-		} else if (var0 == ScriptOpcodes.SOUND_SONG) {
-			Messages.playSong(Interpreter.Interpreter_intStack[--MilliClock.Interpreter_intStackSize]);
-			return 1;
-		} else if (var0 == ScriptOpcodes.SOUND_JINGLE) {
-			MilliClock.Interpreter_intStackSize -= 2;
-			Projectile.playSoundJingle(Interpreter.Interpreter_intStack[MilliClock.Interpreter_intStackSize], Interpreter.Interpreter_intStack[MilliClock.Interpreter_intStackSize + 1]);
-			return 1;
+		} else if (var0 != ScriptOpcodes.IF_GETOP) {
+			if (var0 == ScriptOpcodes.IF_GETOPBASE) {
+				if (var3.dataText == null) {
+					Interpreter.Interpreter_stringStack[++Varps.Interpreter_stringStackSize - 1] = "";
+				} else {
+					Interpreter.Interpreter_stringStack[++Varps.Interpreter_stringStackSize - 1] = var3.dataText;
+				}
+
+				return 1;
+			} else {
+				return 2;
+			}
 		} else {
-			return 2;
+			int var4 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
+			--var4;
+			if (var3.actions != null && var4 < var3.actions.length && var3.actions[var4] != null) {
+				Interpreter.Interpreter_stringStack[++Varps.Interpreter_stringStackSize - 1] = var3.actions[var4];
+			} else {
+				Interpreter.Interpreter_stringStack[++Varps.Interpreter_stringStackSize - 1] = "";
+			}
+
+			return 1;
 		}
 	}
 }

@@ -9,72 +9,72 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fa")
+@ObfuscatedName("fh")
 @Implements("NetSocket")
 public final class NetSocket extends AbstractSocket implements Runnable {
-	@ObfuscatedName("rx")
+	@ObfuscatedName("er")
 	@ObfuscatedSignature(
-		signature = "Ldw;"
+		signature = "Llb;"
 	)
-	@Export("decimator")
-	static Decimator decimator;
-	@ObfuscatedName("f")
+	@Export("spriteIds")
+	static GraphicsDefaults spriteIds;
+	@ObfuscatedName("z")
 	@Export("inputStream")
 	InputStream inputStream;
-	@ObfuscatedName("b")
+	@ObfuscatedName("k")
 	@Export("outputStream")
 	OutputStream outputStream;
-	@ObfuscatedName("l")
+	@ObfuscatedName("s")
 	@Export("socket")
 	Socket socket;
-	@ObfuscatedName("m")
+	@ObfuscatedName("t")
 	@Export("isClosed")
 	boolean isClosed;
-	@ObfuscatedName("z")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		signature = "Lfl;"
+		signature = "Lfo;"
 	)
 	@Export("taskHandler")
 	TaskHandler taskHandler;
-	@ObfuscatedName("q")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "Lfu;"
+		signature = "Lfl;"
 	)
 	@Export("task")
 	Task task;
-	@ObfuscatedName("k")
+	@ObfuscatedName("x")
 	@Export("outBuffer")
 	byte[] outBuffer;
-	@ObfuscatedName("c")
+	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		intValue = -67963133
+		intValue = -43739121
 	)
 	@Export("outLength")
 	int outLength;
-	@ObfuscatedName("u")
+	@ObfuscatedName("g")
 	@ObfuscatedGetter(
-		intValue = -599652531
+		intValue = -1877498573
 	)
 	@Export("outOffset")
 	int outOffset;
-	@ObfuscatedName("t")
+	@ObfuscatedName("m")
 	@Export("exceptionWriting")
 	boolean exceptionWriting;
-	@ObfuscatedName("e")
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = 1080404053
+		intValue = -1318092279
 	)
 	@Export("bufferLength")
 	final int bufferLength;
-	@ObfuscatedName("o")
+	@ObfuscatedName("d")
 	@ObfuscatedGetter(
-		intValue = -273885437
+		intValue = 202627819
 	)
 	@Export("maxPacketLength")
 	final int maxPacketLength;
 
 	@ObfuscatedSignature(
-		signature = "(Ljava/net/Socket;Lfl;I)V"
+		signature = "(Ljava/net/Socket;Lfo;I)V"
 	)
 	public NetSocket(Socket var1, TaskHandler var2, int var3) throws IOException {
 		this.isClosed = false;
@@ -93,10 +93,10 @@ public final class NetSocket extends AbstractSocket implements Runnable {
 		this.outputStream = this.socket.getOutputStream();
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "1983450651"
+		garbageValue = "-147773206"
 	)
 	@Export("close")
 	public void close() {
@@ -108,7 +108,7 @@ public final class NetSocket extends AbstractSocket implements Runnable {
 
 			if (this.task != null) {
 				while (this.task.status == 0) {
-					WorldMapSection3.method894(1L);
+					class227.method4180(1L);
 				}
 
 				if (this.task.status == 1) {
@@ -123,30 +123,30 @@ public final class NetSocket extends AbstractSocket implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
 		signature = "(B)I",
-		garbageValue = "1"
+		garbageValue = "-99"
 	)
 	@Export("readUnsignedByte")
 	public int readUnsignedByte() throws IOException {
 		return this.isClosed ? 0 : this.inputStream.read();
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "933186835"
+		signature = "(B)I",
+		garbageValue = "12"
 	)
 	@Export("available")
 	public int available() throws IOException {
 		return this.isClosed ? 0 : this.inputStream.available();
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		signature = "(II)Z",
-		garbageValue = "-916126565"
+		signature = "(IB)Z",
+		garbageValue = "-78"
 	)
 	@Export("isAvailable")
 	public boolean isAvailable(int var1) throws IOException {
@@ -157,10 +157,10 @@ public final class NetSocket extends AbstractSocket implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
 		signature = "([BIII)I",
-		garbageValue = "1049423117"
+		garbageValue = "-1533815985"
 	)
 	@Export("read")
 	public int read(byte[] var1, int var2, int var3) throws IOException {
@@ -182,10 +182,10 @@ public final class NetSocket extends AbstractSocket implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "([BIIB)V",
-		garbageValue = "79"
+		signature = "([BIII)V",
+		garbageValue = "-588582807"
 	)
 	@Export("write0")
 	void write0(byte[] var1, int var2, int var3) throws IOException {
@@ -202,7 +202,7 @@ public final class NetSocket extends AbstractSocket implements Runnable {
 					for (int var5 = 0; var5 < var3; ++var5) {
 						this.outBuffer[this.outOffset] = var1[var5 + var2];
 						this.outOffset = (this.outOffset + 1) % this.bufferLength;
-						if ((this.outLength + this.maxPacketLength) % this.bufferLength == this.outOffset) {
+						if ((this.maxPacketLength + this.outLength) % this.bufferLength == this.outOffset) {
 							throw new IOException();
 						}
 					}
@@ -217,14 +217,18 @@ public final class NetSocket extends AbstractSocket implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("k")
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		signature = "([BIII)V",
-		garbageValue = "1456512196"
+		signature = "([BIIB)V",
+		garbageValue = "52"
 	)
 	@Export("write")
 	public void write(byte[] var1, int var2, int var3) throws IOException {
 		this.write0(var1, var2, var3);
+	}
+
+	protected void finalize() {
+		this.close();
 	}
 
 	public void run() {
@@ -294,12 +298,99 @@ public final class NetSocket extends AbstractSocket implements Runnable {
 				break;
 			}
 		} catch (Exception var12) {
-			PacketWriter.RunException_sendStackTrace((String)null, var12);
+			Decimator.RunException_sendStackTrace((String)null, var12);
 		}
 
 	}
 
-	protected void finalize() {
-		this.close();
+	@ObfuscatedName("k")
+	@ObfuscatedSignature(
+		signature = "(II)Ljj;",
+		garbageValue = "2080665133"
+	)
+	@Export("StructDefinition_getStructDefinition")
+	public static StructDefinition StructDefinition_getStructDefinition(int var0) {
+		StructDefinition var1 = (StructDefinition)StructDefinition.StructDefinition_cached.get((long)var0);
+		if (var1 != null) {
+			return var1;
+		} else {
+			byte[] var2 = StructDefinition.StructDefinition_archive.takeFile(34, var0);
+			var1 = new StructDefinition();
+			if (var2 != null) {
+				var1.decode(new Buffer(var2));
+			}
+
+			var1.postDecode();
+			StructDefinition.StructDefinition_cached.put(var1, (long)var0);
+			return var1;
+		}
+	}
+
+	@ObfuscatedName("s")
+	@ObfuscatedSignature(
+		signature = "(III)I",
+		garbageValue = "2086304619"
+	)
+	static int method3628(int var0, int var1) {
+		ItemContainer var2 = (ItemContainer)ItemContainer.itemContainers.get((long)var0);
+		if (var2 == null) {
+			return 0;
+		} else if (var1 == -1) {
+			return 0;
+		} else {
+			int var3 = 0;
+
+			for (int var4 = 0; var4 < var2.quantities.length; ++var4) {
+				if (var2.ids[var4] == var1) {
+					var3 += var2.quantities[var4];
+				}
+			}
+
+			return var3;
+		}
+	}
+
+	@ObfuscatedName("t")
+	@ObfuscatedSignature(
+		signature = "(I)V",
+		garbageValue = "1873415823"
+	)
+	public static void method3626() {
+		VarbitComposition.VarbitDefinition_cached.clear();
+	}
+
+	@ObfuscatedName("g")
+	@ObfuscatedSignature(
+		signature = "(Lhq;I[B[BI)V",
+		garbageValue = "-421721574"
+	)
+	@Export("Widget_setKey")
+	static final void Widget_setKey(Widget var0, int var1, byte[] var2, byte[] var3) {
+		if (var0.field2626 == null) {
+			if (var2 == null) {
+				return;
+			}
+
+			var0.field2626 = new byte[11][];
+			var0.field2719 = new byte[11][];
+			var0.field2682 = new int[11];
+			var0.field2683 = new int[11];
+		}
+
+		var0.field2626[var1] = var2;
+		if (var2 != null) {
+			var0.field2676 = true;
+		} else {
+			var0.field2676 = false;
+
+			for (int var4 = 0; var4 < var0.field2626.length; ++var4) {
+				if (var0.field2626[var4] != null) {
+					var0.field2676 = true;
+					break;
+				}
+			}
+		}
+
+		var0.field2719[var1] = var3;
 	}
 }

@@ -1,31 +1,37 @@
-import java.awt.Desktop;
-import java.awt.Desktop.Action;
-import java.net.URI;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ei")
+@ObfuscatedName("eh")
 @Implements("Skeleton")
 public class Skeleton extends Node {
-	@ObfuscatedName("f")
+	@ObfuscatedName("sw")
+	@ObfuscatedSignature(
+		signature = "Llz;"
+	)
+	@Export("masterDisk")
+	static ArchiveDisk masterDisk;
+	@ObfuscatedName("gf")
+	@Export("regionLandArchiveIds")
+	static int[] regionLandArchiveIds;
+	@ObfuscatedName("z")
 	@ObfuscatedGetter(
-		intValue = -1443412059
+		intValue = -891561701
 	)
 	@Export("id")
 	int id;
-	@ObfuscatedName("b")
+	@ObfuscatedName("k")
 	@ObfuscatedGetter(
-		intValue = 815931901
+		intValue = 178139825
 	)
 	@Export("count")
 	int count;
-	@ObfuscatedName("l")
+	@ObfuscatedName("s")
 	@Export("transformTypes")
 	int[] transformTypes;
-	@ObfuscatedName("m")
+	@ObfuscatedName("t")
 	@Export("labels")
 	int[][] labels;
 
@@ -53,78 +59,27 @@ public class Skeleton extends Node {
 
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;ZZI)V",
-		garbageValue = "-1635350138"
+		signature = "(IB)Ljx;",
+		garbageValue = "29"
 	)
-	@Export("openURL")
-	public static void openURL(String var0, boolean var1, boolean var2) {
-		if (var1) {
-			if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Action.BROWSE)) {
-				try {
-					Desktop.getDesktop().browse(new URI(var0));
-					return;
-				} catch (Exception var4) {
-				}
+	@Export("getNpcDefinition")
+	public static NPCComposition getNpcDefinition(int var0) {
+		NPCComposition var1 = (NPCComposition)NPCComposition.NpcDefinition_cached.get((long)var0);
+		if (var1 != null) {
+			return var1;
+		} else {
+			byte[] var2 = NPCComposition.NpcDefinition_archive.takeFile(9, var0);
+			var1 = new NPCComposition();
+			var1.id = var0;
+			if (var2 != null) {
+				var1.decode(new Buffer(var2));
 			}
 
-			if (class60.field453.startsWith("win")) {
-				MouseHandler.method1176(var0, 0);
-			} else if (class60.field453.startsWith("mac")) {
-				WorldMapManager.method735(var0, 1, "openjs");
-			} else {
-				MouseHandler.method1176(var0, 2);
-			}
-		} else {
-			MouseHandler.method1176(var0, 3);
+			var1.postDecode();
+			NPCComposition.NpcDefinition_cached.put(var1, (long)var0);
+			return var1;
 		}
-
-	}
-
-	@ObfuscatedName("b")
-	@ObfuscatedSignature(
-		signature = "(Liw;IIS)Lle;",
-		garbageValue = "8416"
-	)
-	static IndexedSprite method3215(AbstractArchive var0, int var1, int var2) {
-		byte[] var4 = var0.takeFile(var1, var2);
-		boolean var3;
-		if (var4 == null) {
-			var3 = false;
-		} else {
-			class217.SpriteBuffer_decode(var4);
-			var3 = true;
-		}
-
-		if (!var3) {
-			return null;
-		} else {
-			IndexedSprite var5 = new IndexedSprite();
-			var5.width = class336.SpriteBuffer_spriteWidth;
-			var5.height = class336.SpriteBuffer_spriteHeight;
-			var5.xOffset = class336.SpriteBuffer_xOffsets[0];
-			var5.yOffset = class225.SpriteBuffer_yOffsets[0];
-			var5.subWidth = class336.SpriteBuffer_spriteWidths[0];
-			var5.subHeight = class336.SpriteBuffer_spriteHeights[0];
-			var5.palette = WorldMapID.SpriteBuffer_spritePalette;
-			var5.pixels = class13.SpriteBuffer_pixels[0];
-			class336.SpriteBuffer_xOffsets = null;
-			class225.SpriteBuffer_yOffsets = null;
-			class336.SpriteBuffer_spriteWidths = null;
-			class336.SpriteBuffer_spriteHeights = null;
-			WorldMapID.SpriteBuffer_spritePalette = null;
-			class13.SpriteBuffer_pixels = null;
-			return var5;
-		}
-	}
-
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		signature = "(CI)Z",
-		garbageValue = "11601118"
-	)
-	static boolean method3212(char var0) {
-		return "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!\"£$%^&*()-_=+[{]};:'@#~,<.>/?\\| ".indexOf(var0) != -1;
 	}
 }

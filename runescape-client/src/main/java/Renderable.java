@@ -4,24 +4,18 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ej")
+@ObfuscatedName("ez")
 @Implements("Renderable")
 public abstract class Renderable extends DualNode {
-	@ObfuscatedName("hj")
+	@ObfuscatedName("pe")
 	@ObfuscatedSignature(
-		signature = "[Llc;"
+		signature = "Lkx;"
 	)
-	@Export("mapDotSprites")
-	static SpritePixels[] mapDotSprites;
-	@ObfuscatedName("iz")
+	@Export("clanChat")
+	static FriendsChatManager clanChat;
+	@ObfuscatedName("cf")
 	@ObfuscatedGetter(
-		intValue = 685420897
-	)
-	@Export("selectedItemId")
-	static int selectedItemId;
-	@ObfuscatedName("cu")
-	@ObfuscatedGetter(
-		intValue = 1647777713
+		intValue = -282434447
 	)
 	@Export("height")
 	public int height;
@@ -30,17 +24,17 @@ public abstract class Renderable extends DualNode {
 		this.height = 1000;
 	}
 
-	@ObfuscatedName("u")
+	@ObfuscatedName("g")
 	@ObfuscatedSignature(
-		signature = "(I)Leh;",
-		garbageValue = "-2070677844"
+		signature = "(I)Ler;",
+		garbageValue = "-2026237468"
 	)
 	@Export("getModel")
 	protected Model getModel() {
 		return null;
 	}
 
-	@ObfuscatedName("cg")
+	@ObfuscatedName("cb")
 	@Export("draw")
 	void draw(int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, long var9) {
 		Model var11 = this.getModel();
@@ -51,13 +45,14 @@ public abstract class Renderable extends DualNode {
 
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(Lbd;I)V",
-		garbageValue = "-1146861517"
+		signature = "(Lic;Lic;B)V",
+		garbageValue = "28"
 	)
-	@Export("runScriptEvent")
-	public static void runScriptEvent(ScriptEvent var0) {
-		class58.runScript(var0, 500000);
+	public static void method3381(AbstractArchive var0, AbstractArchive var1) {
+		KitDefinition.KitDefinition_archive = var0;
+		KitDefinition.KitDefinition_modelsArchive = var1;
+		KitDefinition.KitDefinition_fileCount = KitDefinition.KitDefinition_archive.getGroupFileCount(3);
 	}
 }

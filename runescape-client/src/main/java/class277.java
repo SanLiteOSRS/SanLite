@@ -1,37 +1,27 @@
-import java.io.File;
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ji")
+@ObfuscatedName("jr")
 public class class277 {
-	@ObfuscatedName("m")
-	@Export("JagexCache_locationFile")
-	static File JagexCache_locationFile;
-
-	@ObfuscatedName("fq")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(II)V",
-		garbageValue = "-1799040781"
+		signature = "([I[II)V",
+		garbageValue = "-592561993"
 	)
-	@Export("setWindowedMode")
-	static void setWindowedMode(int var0) {
-		Client.field879 = 0L;
-		if (var0 >= 2) {
-			Client.isResizable = true;
+	public static void method5089(int[] var0, int[] var1) {
+		if (var0 != null && var1 != null) {
+			ByteArrayPool.ByteArrayPool_alternativeSizes = var0;
+			ByteArrayPool.ByteArrayPool_altSizeArrayCounts = new int[var0.length];
+			ByteArrayPool.ByteArrayPool_arrays = new byte[var0.length][][];
+
+			for (int var2 = 0; var2 < ByteArrayPool.ByteArrayPool_alternativeSizes.length; ++var2) {
+				ByteArrayPool.ByteArrayPool_arrays[var2] = new byte[var1[var2]][];
+			}
+
 		} else {
-			Client.isResizable = false;
+			ByteArrayPool.ByteArrayPool_alternativeSizes = null;
+			ByteArrayPool.ByteArrayPool_altSizeArrayCounts = null;
+			ByteArrayPool.ByteArrayPool_arrays = null;
 		}
-
-		if (UrlRequester.getWindowedMode() == 1) {
-			ByteArrayPool.client.setMaxCanvasSize(765, 503);
-		} else {
-			ByteArrayPool.client.setMaxCanvasSize(7680, 2160);
-		}
-
-		if (Client.gameState >= 25) {
-			Actor.method1855();
-		}
-
 	}
 }

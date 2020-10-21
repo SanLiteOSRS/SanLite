@@ -7,19 +7,13 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ct")
+@ObfuscatedName("cs")
 @Implements("SecureRandomFuture")
 public class SecureRandomFuture {
-	@ObfuscatedName("u")
-	@ObfuscatedSignature(
-		signature = "Lle;"
-	)
-	@Export("logoSprite")
-	static IndexedSprite logoSprite;
-	@ObfuscatedName("f")
+	@ObfuscatedName("z")
 	@Export("executor")
 	ExecutorService executor;
-	@ObfuscatedName("b")
+	@ObfuscatedName("k")
 	@Export("future")
 	Future future;
 
@@ -28,10 +22,10 @@ public class SecureRandomFuture {
 		this.future = this.executor.submit(new SecureRandomCallable());
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "22"
+		signature = "(I)V",
+		garbageValue = "-1936171902"
 	)
 	@Export("shutdown")
 	void shutdown() {
@@ -39,75 +33,80 @@ public class SecureRandomFuture {
 		this.executor = null;
 	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
 		signature = "(B)Z",
-		garbageValue = "19"
+		garbageValue = "11"
 	)
 	@Export("isDone")
 	boolean isDone() {
 		return this.future.isDone();
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		signature = "(I)Ljava/security/SecureRandom;",
-		garbageValue = "-2492664"
+		signature = "(S)Ljava/security/SecureRandom;",
+		garbageValue = "2000"
 	)
 	@Export("get")
 	SecureRandom get() {
 		try {
 			return (SecureRandom)this.future.get();
 		} catch (Exception var2) {
-			return ServerPacket.method3740();
+			return BoundaryObject.method3387();
 		}
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		signature = "(III)I",
-		garbageValue = "-623024875"
+		signature = "(II)V",
+		garbageValue = "-531384694"
 	)
-	static final int method2252(int var0, int var1) {
-		int var2 = var1 * 57 + var0;
-		var2 ^= var2 << 13;
-		int var3 = var2 * (var2 * var2 * 15731 + 789221) + 1376312589 & Integer.MAX_VALUE;
-		return var3 >> 19 & 255;
-	}
+	public static void method2225(int var0) {
+		if (var0 != -1) {
+			if (Bounds.Widget_loadedInterfaces[var0]) {
+				Widget.Widget_archive.clearFilesGroup(var0);
+				if (Widget.Widget_interfaceComponents[var0] != null) {
+					boolean var1 = true;
 
-	@ObfuscatedName("ir")
-	@ObfuscatedSignature(
-		signature = "([Lht;IIIZI)V",
-		garbageValue = "1783989616"
-	)
-	@Export("resizeInterface")
-	static void resizeInterface(Widget[] var0, int var1, int var2, int var3, boolean var4) {
-		for (int var5 = 0; var5 < var0.length; ++var5) {
-			Widget var6 = var0[var5];
-			if (var6 != null && var6.parentId == var1) {
-				WorldMapIcon_0.alignWidgetSize(var6, var2, var3, var4);
-				FileSystem.alignWidgetPosition(var6, var2, var3);
-				if (var6.scrollX > var6.scrollWidth - var6.width) {
-					var6.scrollX = var6.scrollWidth - var6.width;
-				}
+					for (int var2 = 0; var2 < Widget.Widget_interfaceComponents[var0].length; ++var2) {
+						if (Widget.Widget_interfaceComponents[var0][var2] != null) {
+							if (Widget.Widget_interfaceComponents[var0][var2].type != 2) {
+								Widget.Widget_interfaceComponents[var0][var2] = null;
+							} else {
+								var1 = false;
+							}
+						}
+					}
 
-				if (var6.scrollX < 0) {
-					var6.scrollX = 0;
-				}
+					if (var1) {
+						Widget.Widget_interfaceComponents[var0] = null;
+					}
 
-				if (var6.scrollY > var6.scrollHeight - var6.height) {
-					var6.scrollY = var6.scrollHeight - var6.height;
-				}
-
-				if (var6.scrollY < 0) {
-					var6.scrollY = 0;
-				}
-
-				if (var6.type == 0) {
-					UserComparator9.revalidateWidgetScroll(var0, var6, var4);
+					Bounds.Widget_loadedInterfaces[var0] = false;
 				}
 			}
 		}
+	}
 
+	@ObfuscatedName("i")
+	@ObfuscatedSignature(
+		signature = "(II)I",
+		garbageValue = "116037374"
+	)
+	@Export("Messages_getHistorySize")
+	static int Messages_getHistorySize(int var0) {
+		ChatChannel var1 = (ChatChannel)Messages.Messages_channels.get(var0);
+		return var1 == null ? 0 : var1.size();
+	}
+
+	@ObfuscatedName("jt")
+	@ObfuscatedSignature(
+		signature = "(III)V",
+		garbageValue = "-1418698978"
+	)
+	static void method2211(int var0, int var1) {
+		class2.method39(TaskHandler.tempMenuAction, var0, var1);
+		TaskHandler.tempMenuAction = null;
 	}
 }

@@ -6,10 +6,7 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("fg")
 @Implements("UserComparator6")
 public class UserComparator6 extends AbstractUserComparator {
-	@ObfuscatedName("ec")
-	@Export("worldHost")
-	static String worldHost;
-	@ObfuscatedName("f")
+	@ObfuscatedName("z")
 	@Export("reversed")
 	final boolean reversed;
 
@@ -17,10 +14,10 @@ public class UserComparator6 extends AbstractUserComparator {
 		this.reversed = var1;
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(Lkl;Lkl;I)I",
-		garbageValue = "313468169"
+		signature = "(Lko;Lko;I)I",
+		garbageValue = "1525327475"
 	)
 	@Export("compareBuddy")
 	int compareBuddy(Buddy var1, Buddy var2) {
@@ -35,40 +32,42 @@ public class UserComparator6 extends AbstractUserComparator {
 		return this.compareBuddy((Buddy)var1, (Buddy)var2);
 	}
 
-	@ObfuscatedName("fr")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(Ljg;IIIB)V",
-		garbageValue = "100"
+		signature = "([Ljava/lang/CharSequence;IIB)Ljava/lang/String;",
+		garbageValue = "38"
 	)
-	@Export("addSequenceSoundEffect")
-	static void addSequenceSoundEffect(SequenceDefinition var0, int var1, int var2, int var3) {
-		if (Client.soundEffectCount < 50 && Client.areaSoundEffectVolume != 0) {
-			if (var0.soundEffects != null && var1 < var0.soundEffects.length) {
-				int var4 = var0.soundEffects[var1];
-				if (var4 != 0) {
-					int var5 = var4 >> 8;
-					int var6 = var4 >> 4 & 7;
-					int var7 = var4 & 15;
-					Client.soundEffectIds[Client.soundEffectCount] = var5;
-					Client.queuedSoundEffectLoops[Client.soundEffectCount] = var6;
-					Client.queuedSoundEffectDelays[Client.soundEffectCount] = 0;
-					Client.soundEffects[Client.soundEffectCount] = null;
-					int var8 = (var2 - 64) / 128;
-					int var9 = (var3 - 64) / 128;
-					Client.soundLocations[Client.soundEffectCount] = var7 + (var9 << 8) + (var8 << 16);
-					++Client.soundEffectCount;
+	public static String method3535(CharSequence[] var0, int var1, int var2) {
+		if (var2 == 0) {
+			return "";
+		} else if (var2 == 1) {
+			CharSequence var3 = var0[var1];
+			return var3 == null ? "null" : var3.toString();
+		} else {
+			int var8 = var2 + var1;
+			int var4 = 0;
+
+			for (int var5 = var1; var5 < var8; ++var5) {
+				CharSequence var6 = var0[var5];
+				if (var6 == null) {
+					var4 += 4;
+				} else {
+					var4 += var6.length();
 				}
 			}
-		}
-	}
 
-	@ObfuscatedName("kk")
-	@ObfuscatedSignature(
-		signature = "(Lkb;II)V",
-		garbageValue = "-131099529"
-	)
-	static void method3565(Buffer var0, int var1) {
-		class22.method246(var0.array, var1);
-		UserComparator9.method3513(var0, var1);
+			StringBuilder var9 = new StringBuilder(var4);
+
+			for (int var10 = var1; var10 < var8; ++var10) {
+				CharSequence var7 = var0[var10];
+				if (var7 == null) {
+					var9.append("null");
+				} else {
+					var9.append(var7);
+				}
+			}
+
+			return var9.toString();
+		}
 	}
 }

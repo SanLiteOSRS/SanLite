@@ -1,60 +1,59 @@
-import java.awt.Component;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("du")
+@ObfuscatedName("dt")
 @Implements("TextureProvider")
 public class TextureProvider implements TextureLoader {
-	@ObfuscatedName("bt")
+	@ObfuscatedName("ri")
 	@ObfuscatedGetter(
-		intValue = 1514159297
+		intValue = 661667840
 	)
 	static int field1561;
-	@ObfuscatedName("f")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "[Lez;"
+		signature = "[Leo;"
 	)
 	@Export("textures")
 	Texture[] textures;
-	@ObfuscatedName("b")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "Lja;"
+		signature = "Lji;"
 	)
 	@Export("deque")
 	NodeDeque deque;
-	@ObfuscatedName("l")
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = -1277948479
+		intValue = 1194513141
 	)
 	@Export("capacity")
 	int capacity;
-	@ObfuscatedName("m")
+	@ObfuscatedName("t")
 	@ObfuscatedGetter(
-		intValue = 1933585105
+		intValue = 1829748835
 	)
 	@Export("remaining")
 	int remaining;
-	@ObfuscatedName("z")
+	@ObfuscatedName("i")
 	@Export("brightness")
 	double brightness;
-	@ObfuscatedName("q")
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = -1967077047
+		intValue = -436241833
 	)
 	@Export("textureSize")
 	int textureSize;
-	@ObfuscatedName("k")
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		signature = "Liw;"
+		signature = "Lic;"
 	)
 	@Export("archive")
 	AbstractArchive archive;
 
 	@ObfuscatedSignature(
-		signature = "(Liw;Liw;IDI)V"
+		signature = "(Lic;Lic;IDI)V"
 	)
 	public TextureProvider(AbstractArchive var1, AbstractArchive var2, int var3, double var4, int var6) {
 		this.deque = new NodeDeque();
@@ -77,10 +76,10 @@ public class TextureProvider implements TextureLoader {
 
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
 		signature = "(I)I",
-		garbageValue = "185901230"
+		garbageValue = "861798052"
 	)
 	@Export("getLoadedPercentage")
 	public int getLoadedPercentage() {
@@ -96,7 +95,7 @@ public class TextureProvider implements TextureLoader {
 
 				for (int var7 = 0; var7 < var6.length; ++var7) {
 					int var8 = var6[var7];
-					if (this.archive.method4301(var8)) {
+					if (this.archive.method4251(var8)) {
 						++var2;
 					}
 				}
@@ -110,17 +109,17 @@ public class TextureProvider implements TextureLoader {
 		}
 	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("k")
 	@Export("setBrightness")
 	public void setBrightness(double var1) {
 		this.brightness = var1;
 		this.clear();
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
 		signature = "(II)[I",
-		garbageValue = "1646805002"
+		garbageValue = "-1265290789"
 	)
 	@Export("getTexturePixels")
 	public int[] getTexturePixels(int var1) {
@@ -150,39 +149,39 @@ public class TextureProvider implements TextureLoader {
 		return null;
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
 		signature = "(II)I",
-		garbageValue = "-914943322"
+		garbageValue = "260599249"
 	)
 	@Export("getAverageTextureRGB")
 	public int getAverageTextureRGB(int var1) {
 		return this.textures[var1] != null ? this.textures[var1].averageRGB : 0;
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
 		signature = "(II)Z",
-		garbageValue = "-335824430"
+		garbageValue = "168595235"
 	)
-	public boolean vmethod3401(int var1) {
-		return this.textures[var1].field1655;
+	public boolean vmethod3396(int var1) {
+		return this.textures[var1].field1647;
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "(II)Z",
-		garbageValue = "533356584"
+		signature = "(IS)Z",
+		garbageValue = "14506"
 	)
 	@Export("isLowDetail")
 	public boolean isLowDetail(int var1) {
 		return this.textureSize == 64;
 	}
 
-	@ObfuscatedName("k")
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
 		signature = "(B)V",
-		garbageValue = "-60"
+		garbageValue = "8"
 	)
 	@Export("clear")
 	public void clear() {
@@ -196,10 +195,10 @@ public class TextureProvider implements TextureLoader {
 		this.remaining = this.capacity;
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
 		signature = "(II)V",
-		garbageValue = "-2135201206"
+		garbageValue = "-736148510"
 	)
 	@Export("animate")
 	public void animate(int var1) {
@@ -213,36 +212,49 @@ public class TextureProvider implements TextureLoader {
 
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(Ljava/awt/Component;I)V",
-		garbageValue = "-524621860"
+		signature = "(II)Z",
+		garbageValue = "194887508"
 	)
-	static void method2899(Component var0) {
-		var0.addMouseListener(MouseHandler.MouseHandler_instance);
-		var0.addMouseMotionListener(MouseHandler.MouseHandler_instance);
-		var0.addFocusListener(MouseHandler.MouseHandler_instance);
+	public static boolean method2876(int var0) {
+		return var0 >= WorldMapDecorationType.field2760.id && var0 <= WorldMapDecorationType.field2757.id || var0 == WorldMapDecorationType.field2761.id;
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(IIIIIIB)I",
-		garbageValue = "-103"
+		signature = "([Lgq;II)Lgq;",
+		garbageValue = "1374231902"
 	)
-	public static int method2906(int var0, int var1, int var2, int var3, int var4, int var5) {
-		if ((var5 & 1) == 1) {
-			int var6 = var3;
-			var3 = var4;
-			var4 = var6;
+	@Export("findEnumerated")
+	public static Enumerated findEnumerated(Enumerated[] var0, int var1) {
+		Enumerated[] var2 = var0;
+
+		for (int var3 = 0; var3 < var2.length; ++var3) {
+			Enumerated var4 = var2[var3];
+			if (var1 == var4.rsOrdinal()) {
+				return var4;
+			}
 		}
 
-		var2 &= 3;
-		if (var2 == 0) {
-			return var0;
-		} else if (var2 == 1) {
-			return var1;
-		} else {
-			return var2 == 2 ? 7 - var0 - (var3 - 1) : 7 - var1 - (var4 - 1);
+		return null;
+	}
+
+	@ObfuscatedName("k")
+	@ObfuscatedSignature(
+		signature = "(IB)Lij;",
+		garbageValue = "38"
+	)
+	public static GameBuild method2863(int var0) {
+		GameBuild[] var1 = IgnoreList.method5182();
+
+		for (int var2 = 0; var2 < var1.length; ++var2) {
+			GameBuild var3 = var1[var2];
+			if (var0 == var3.buildId) {
+				return var3;
+			}
 		}
+
+		return null;
 	}
 }

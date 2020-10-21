@@ -4,96 +4,90 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("lo")
+@ObfuscatedName("lb")
 @Implements("GraphicsDefaults")
 public class GraphicsDefaults {
-	@ObfuscatedName("p")
+	@ObfuscatedName("z")
 	@ObfuscatedGetter(
-		intValue = 1450250857
-	)
-	@Export("graphicsTickTimeIdx")
-	static int graphicsTickTimeIdx;
-	@ObfuscatedName("f")
-	@ObfuscatedGetter(
-		intValue = -1995988465
+		intValue = -1162804389
 	)
 	@Export("compass")
 	public int compass;
-	@ObfuscatedName("b")
+	@ObfuscatedName("k")
 	@ObfuscatedGetter(
-		intValue = -395005955
+		intValue = -1318347759
 	)
-	public int field3835;
-	@ObfuscatedName("l")
+	public int field3831;
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = -1288371471
+		intValue = 2062877841
 	)
 	@Export("mapScenes")
 	public int mapScenes;
-	@ObfuscatedName("m")
+	@ObfuscatedName("t")
 	@ObfuscatedGetter(
-		intValue = -768564219
+		intValue = -2100530677
 	)
 	@Export("headIconsPk")
 	public int headIconsPk;
-	@ObfuscatedName("z")
+	@ObfuscatedName("i")
 	@ObfuscatedGetter(
-		intValue = -1062060293
-	)
-	public int field3836;
-	@ObfuscatedName("q")
-	@ObfuscatedGetter(
-		intValue = -1307072609
+		intValue = -1982500985
 	)
 	public int field3839;
-	@ObfuscatedName("k")
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = 534054869
+		intValue = 1352009329
 	)
-	public int field3841;
-	@ObfuscatedName("c")
+	public int field3835;
+	@ObfuscatedName("x")
 	@ObfuscatedGetter(
-		intValue = 2066068829
+		intValue = 893846923
+	)
+	public int field3838;
+	@ObfuscatedName("w")
+	@ObfuscatedGetter(
+		intValue = -27380687
 	)
 	public int field3837;
-	@ObfuscatedName("u")
+	@ObfuscatedName("g")
 	@ObfuscatedGetter(
-		intValue = 835992905
+		intValue = 255609423
+	)
+	public int field3836;
+	@ObfuscatedName("m")
+	@ObfuscatedGetter(
+		intValue = -1251414459
 	)
 	public int field3834;
-	@ObfuscatedName("t")
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = 1361350511
+		intValue = 733929835
 	)
-	public int field3842;
-	@ObfuscatedName("e")
-	@ObfuscatedGetter(
-		intValue = 643339115
-	)
-	public int field3844;
+	public int field3840;
 
 	public GraphicsDefaults() {
 		this.compass = -1;
-		this.field3835 = -1;
+		this.field3831 = -1;
 		this.mapScenes = -1;
 		this.headIconsPk = -1;
-		this.field3836 = -1;
 		this.field3839 = -1;
-		this.field3841 = -1;
+		this.field3835 = -1;
+		this.field3838 = -1;
 		this.field3837 = -1;
+		this.field3836 = -1;
 		this.field3834 = -1;
-		this.field3842 = -1;
-		this.field3844 = -1;
+		this.field3840 = -1;
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(Liw;I)V",
-		garbageValue = "-1821799353"
+		signature = "(Lic;I)V",
+		garbageValue = "-2057643179"
 	)
 	@Export("decode")
 	public void decode(AbstractArchive var1) {
-		byte[] var2 = var1.takeFileFlat(DefaultsGroup.field3833.group);
+		byte[] var2 = var1.takeFileFlat(DefaultsGroup.field3828.group);
 		Buffer var3 = new Buffer(var2);
 
 		while (true) {
@@ -107,17 +101,17 @@ public class GraphicsDefaults {
 				var3.readMedium();
 				break;
 			case 2:
-				this.compass = var3.method5851();
-				this.field3835 = var3.method5851();
-				this.mapScenes = var3.method5851();
-				this.headIconsPk = var3.method5851();
-				this.field3836 = var3.method5851();
-				this.field3839 = var3.method5851();
-				this.field3841 = var3.method5851();
-				this.field3837 = var3.method5851();
-				this.field3834 = var3.method5851();
-				this.field3842 = var3.method5851();
-				this.field3844 = var3.method5851();
+				this.compass = var3.method5634();
+				this.field3831 = var3.method5634();
+				this.mapScenes = var3.method5634();
+				this.headIconsPk = var3.method5634();
+				this.field3839 = var3.method5634();
+				this.field3835 = var3.method5634();
+				this.field3838 = var3.method5634();
+				this.field3837 = var3.method5634();
+				this.field3836 = var3.method5634();
+				this.field3834 = var3.method5634();
+				this.field3840 = var3.method5634();
 			}
 		}
 	}

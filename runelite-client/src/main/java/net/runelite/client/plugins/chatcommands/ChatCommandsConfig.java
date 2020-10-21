@@ -157,17 +157,6 @@ public interface ChatCommandsConfig extends Config
 
 	@ConfigItem(
 		position = 11,
-		keyName = "lp",
-		name = "LP Command",
-		description = "Configures whether the League Points command is enabled<br> !lp"
-	)
-	default boolean lp()
-	{
-		return true;
-	}
-
-	@ConfigItem(
-		position = 12,
 		keyName = "clearSingleWord",
 		name = "Clear Single Word",
 		description = "Enable hot key to clear single word at a time"
@@ -178,7 +167,7 @@ public interface ChatCommandsConfig extends Config
 	}
 
 	@ConfigItem(
-		position = 13,
+		position = 12,
 		keyName = "clearEntireChatBox",
 		name = "Clear Chat Box",
 		description = "Enable hotkey to clear entire chat box"

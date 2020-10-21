@@ -4,130 +4,134 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("fz")
+@ObfuscatedName("ff")
 public enum class169 implements Enumerated {
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		signature = "Lfz;"
-	)
-	field2033(2, 0),
-	@ObfuscatedName("b")
-	@ObfuscatedSignature(
-		signature = "Lfz;"
-	)
-	field2029(0, 1),
-	@ObfuscatedName("l")
-	@ObfuscatedSignature(
-		signature = "Lfz;"
-	)
-	field2028(1, 2),
-	@ObfuscatedName("m")
-	@ObfuscatedSignature(
-		signature = "Lfz;"
-	)
-	field2034(3, 3);
-
-	@ObfuscatedName("ad")
-	@ObfuscatedGetter(
-		intValue = -1161977131
-	)
-	static int field2035;
 	@ObfuscatedName("z")
-	@ObfuscatedGetter(
-		intValue = 1105831857
+	@ObfuscatedSignature(
+		signature = "Lff;"
 	)
-	public final int field2032;
-	@ObfuscatedName("q")
+	field2045(3, 0),
+	@ObfuscatedName("k")
+	@ObfuscatedSignature(
+		signature = "Lff;"
+	)
+	field2046(1, 1),
+	@ObfuscatedName("s")
+	@ObfuscatedSignature(
+		signature = "Lff;"
+	)
+	field2043(2, 2),
+	@ObfuscatedName("t")
+	@ObfuscatedSignature(
+		signature = "Lff;"
+	)
+	field2044(0, 3);
+
+	@ObfuscatedName("i")
 	@ObfuscatedGetter(
-		intValue = -1075265281
+		intValue = -1066802481
+	)
+	public final int field2042;
+	@ObfuscatedName("o")
+	@ObfuscatedGetter(
+		intValue = 1306076667
 	)
 	@Export("id")
 	final int id;
 
 	class169(int var3, int var4) {
-		this.field2032 = var3;
+		this.field2042 = var3;
 		this.id = var4;
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		signature = "(B)I",
-		garbageValue = "23"
+		signature = "(I)I",
+		garbageValue = "385513888"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
 		return this.id;
 	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("ag")
 	@ObfuscatedSignature(
-		signature = "(III)V",
-		garbageValue = "19136995"
+		signature = "(ILcy;ZI)I",
+		garbageValue = "-306559930"
 	)
-	public static void method3571(int var0, int var1) {
-		VarbitComposition var3 = (VarbitComposition)VarbitComposition.VarbitDefinition_cached.get((long)var0);
-		VarbitComposition var2;
-		if (var3 != null) {
-			var2 = var3;
-		} else {
-			byte[] var8 = VarbitComposition.VarbitDefinition_archive.takeFile(14, var0);
-			var3 = new VarbitComposition();
-			if (var8 != null) {
-				var3.decode(new Buffer(var8));
-			}
-
-			VarbitComposition.VarbitDefinition_cached.put(var3, (long)var0);
-			var2 = var3;
-		}
-
-		int var4 = var2.baseVar;
-		int var5 = var2.startBit;
-		int var6 = var2.endBit;
-		int var7 = Varps.Varps_masks[var6 - var5];
-		if (var1 < 0 || var1 > var7) {
-			var1 = 0;
-		}
-
-		var7 <<= var5;
-		Varps.Varps_main[var4] = Varps.Varps_main[var4] & ~var7 | var1 << var5 & var7;
-	}
-
-	@ObfuscatedName("ak")
-	@ObfuscatedSignature(
-		signature = "(ILco;ZB)I",
-		garbageValue = "-118"
-	)
-	static int method3572(int var0, Script var1, boolean var2) {
+	static int method3542(int var0, Script var1, boolean var2) {
 		int var3;
-		if (var0 == ScriptOpcodes.CAM_FORCEANGLE) {
-			MilliClock.Interpreter_intStackSize -= 2;
-			var3 = Interpreter.Interpreter_intStack[MilliClock.Interpreter_intStackSize];
-			int var4 = Interpreter.Interpreter_intStack[MilliClock.Interpreter_intStackSize + 1];
-			if (!Client.isCameraLocked) {
-				Client.camAngleX = var3;
-				Client.camAngleY = var4;
+		int var4;
+		int var6;
+		if (var0 == ScriptOpcodes.ENUM_STRING) {
+			Interpreter.Interpreter_intStackSize -= 2;
+			var3 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
+			var4 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
+			EnumComposition var5 = GrandExchangeOfferNameComparator.getEnum(var3);
+			if (var5.outputType != 's') {
+			}
+
+			for (var6 = 0; var6 < var5.outputCount; ++var6) {
+				if (var4 == var5.keys[var6]) {
+					Interpreter.Interpreter_stringStack[++Varps.Interpreter_stringStackSize - 1] = var5.strVals[var6];
+					var5 = null;
+					break;
+				}
+			}
+
+			if (var5 != null) {
+				Interpreter.Interpreter_stringStack[++Varps.Interpreter_stringStackSize - 1] = var5.defaultStr;
 			}
 
 			return 1;
-		} else if (var0 == ScriptOpcodes.CAM_GETANGLE_XA) {
-			Interpreter.Interpreter_intStack[++MilliClock.Interpreter_intStackSize - 1] = Client.camAngleX;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CAM_GETANGLE_YA) {
-			Interpreter.Interpreter_intStack[++MilliClock.Interpreter_intStackSize - 1] = Client.camAngleY;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CAM_SETFOLLOWHEIGHT) {
-			var3 = Interpreter.Interpreter_intStack[--MilliClock.Interpreter_intStackSize];
-			if (var3 < 0) {
-				var3 = 0;
+		} else if (var0 != ScriptOpcodes.ENUM) {
+			if (var0 == ScriptOpcodes.ENUM_GETOUTPUTCOUNT) {
+				var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
+				EnumComposition var10 = GrandExchangeOfferNameComparator.getEnum(var3);
+				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var10.size();
+				return 1;
+			} else {
+				return 2;
 			}
-
-			Client.camFollowHeight = var3;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CAM_GETFOLLOWHEIGHT) {
-			Interpreter.Interpreter_intStack[++MilliClock.Interpreter_intStackSize - 1] = Client.camFollowHeight;
-			return 1;
 		} else {
-			return 2;
+			Interpreter.Interpreter_intStackSize -= 4;
+			var3 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
+			var4 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
+			int var9 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 2];
+			var6 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 3];
+			EnumComposition var7 = GrandExchangeOfferNameComparator.getEnum(var9);
+			if (var3 == var7.inputType && var4 == var7.outputType) {
+				for (int var8 = 0; var8 < var7.outputCount; ++var8) {
+					if (var6 == var7.keys[var8]) {
+						if (var4 == 115) {
+							Interpreter.Interpreter_stringStack[++Varps.Interpreter_stringStackSize - 1] = var7.strVals[var8];
+						} else {
+							Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var7.intVals[var8];
+						}
+
+						var7 = null;
+						break;
+					}
+				}
+
+				if (var7 != null) {
+					if (var4 == 115) {
+						Interpreter.Interpreter_stringStack[++Varps.Interpreter_stringStackSize - 1] = var7.defaultStr;
+					} else {
+						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var7.defaultInt;
+					}
+				}
+
+				return 1;
+			} else {
+				if (var4 == 115) {
+					Interpreter.Interpreter_stringStack[++Varps.Interpreter_stringStackSize - 1] = "null";
+				} else {
+					Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = 0;
+				}
+
+				return 1;
+			}
 		}
 	}
 }

@@ -377,9 +377,8 @@ public class XpTrackerPlugin extends Plugin
 		final Actor interacting = client.getLocalPlayer().getInteracting();
 		if (interacting instanceof NPC && COMBAT.contains(skill))
 		{
-			final int xpModifier = worldSetToType(client.getWorldType()).getXpModifier();
 			final NPC npc = (NPC) interacting;
-			xpState.updateNpcExperience(skill, npc, npcManager.getHealth(npc.getId()), xpModifier);
+			xpState.updateNpcExperience(skill, npc, npcManager.getHealth(npc.getId()));
 		}
 
 		final XpUpdateResult updateResult = xpState.updateSkill(skill, currentXp, startGoalXp, endGoalXp);

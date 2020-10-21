@@ -4,57 +4,70 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("lv")
+@ObfuscatedName("ln")
 @Implements("AbstractSocket")
 public abstract class AbstractSocket {
 	protected AbstractSocket() {
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "1983450651"
+		garbageValue = "-147773206"
 	)
 	@Export("close")
 	public abstract void close();
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
 		signature = "(B)I",
-		garbageValue = "1"
+		garbageValue = "-99"
 	)
 	@Export("readUnsignedByte")
 	public abstract int readUnsignedByte() throws IOException;
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "933186835"
+		signature = "(B)I",
+		garbageValue = "12"
 	)
 	@Export("available")
 	public abstract int available() throws IOException;
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		signature = "(II)Z",
-		garbageValue = "-916126565"
+		signature = "(IB)Z",
+		garbageValue = "-78"
 	)
 	@Export("isAvailable")
 	public abstract boolean isAvailable(int var1) throws IOException;
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
 		signature = "([BIII)I",
-		garbageValue = "1049423117"
+		garbageValue = "-1533815985"
 	)
 	@Export("read")
 	public abstract int read(byte[] var1, int var2, int var3) throws IOException;
 
-	@ObfuscatedName("k")
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		signature = "([BIII)V",
-		garbageValue = "1456512196"
+		signature = "([BIIB)V",
+		garbageValue = "52"
 	)
 	@Export("write")
 	public abstract void write(byte[] var1, int var2, int var3) throws IOException;
+
+	@ObfuscatedName("hs")
+	@ObfuscatedSignature(
+		signature = "(III)V",
+		garbageValue = "1292618906"
+	)
+	@Export("resumePauseWidget")
+	static void resumePauseWidget(int var0, int var1) {
+		PacketBufferNode var2 = Client.getPacketBufferNode(ClientPacket.field2276, Client.packetWriter.isaacCipher);
+		var2.packetBuffer.method5654(var1);
+		var2.packetBuffer.method5663(var0);
+		Client.packetWriter.addNode(var2);
+	}
 }

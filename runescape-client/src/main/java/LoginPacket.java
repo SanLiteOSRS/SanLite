@@ -4,64 +4,71 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gd")
+@ObfuscatedName("gc")
 @Implements("LoginPacket")
 public class LoginPacket implements class190 {
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		signature = "Lgd;"
-	)
-	public static final LoginPacket field2340;
-	@ObfuscatedName("b")
-	@ObfuscatedSignature(
-		signature = "Lgd;"
-	)
-	static final LoginPacket field2338;
-	@ObfuscatedName("l")
-	@ObfuscatedSignature(
-		signature = "Lgd;"
-	)
-	public static final LoginPacket field2339;
-	@ObfuscatedName("m")
-	@ObfuscatedSignature(
-		signature = "Lgd;"
-	)
-	public static final LoginPacket field2341;
 	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "Lgd;"
+		signature = "Lgc;"
 	)
-	public static final LoginPacket field2342;
-	@ObfuscatedName("q")
+	public static final LoginPacket field2360;
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "Lgd;"
+		signature = "Lgc;"
 	)
-	static final LoginPacket field2346;
-	@ObfuscatedName("c")
+	static final LoginPacket field2350;
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		signature = "[Lgd;"
+		signature = "Lgc;"
+	)
+	public static final LoginPacket field2351;
+	@ObfuscatedName("t")
+	@ObfuscatedSignature(
+		signature = "Lgc;"
+	)
+	public static final LoginPacket field2352;
+	@ObfuscatedName("i")
+	@ObfuscatedSignature(
+		signature = "Lgc;"
+	)
+	public static final LoginPacket field2353;
+	@ObfuscatedName("o")
+	@ObfuscatedSignature(
+		signature = "Lgc;"
+	)
+	static final LoginPacket field2354;
+	@ObfuscatedName("w")
+	@ObfuscatedSignature(
+		signature = "[Lgc;"
 	)
 	@Export("LoginPacket_indexedValues")
 	static final LoginPacket[] LoginPacket_indexedValues;
-	@ObfuscatedName("k")
+	@ObfuscatedName("gq")
+	@ObfuscatedSignature(
+		signature = "Llp;"
+	)
+	@Export("compass")
+	static SpritePixels compass;
+	@ObfuscatedName("x")
 	@ObfuscatedGetter(
-		intValue = 1924738563
+		intValue = -176591909
 	)
 	@Export("id")
 	public final int id;
 
 	static {
-		field2340 = new LoginPacket(14, 0);
-		field2338 = new LoginPacket(15, 4);
-		field2339 = new LoginPacket(16, -2);
-		field2341 = new LoginPacket(18, -2);
-		field2342 = new LoginPacket(19, -2);
-		field2346 = new LoginPacket(27, 0);
+		field2360 = new LoginPacket(14, 0);
+		field2350 = new LoginPacket(15, 4);
+		field2351 = new LoginPacket(16, -2);
+		field2352 = new LoginPacket(18, -2);
+		field2353 = new LoginPacket(19, -2);
+		field2354 = new LoginPacket(27, 0);
 		LoginPacket_indexedValues = new LoginPacket[32];
-		LoginPacket[] var0 = WorldMapDecorationType.method4257();
+		LoginPacket[] var0 = new LoginPacket[]{field2353, field2352, field2360, field2354, field2351, field2350};
+		LoginPacket[] var1 = var0;
 
-		for (int var1 = 0; var1 < var0.length; ++var1) {
-			LoginPacket_indexedValues[var0[var1].id] = var0[var1];
+		for (int var2 = 0; var2 < var1.length; ++var2) {
+			LoginPacket_indexedValues[var1[var2].id] = var1[var2];
 		}
 
 	}
@@ -74,41 +81,12 @@ public class LoginPacket implements class190 {
 		this.id = var1;
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("gw")
 	@ObfuscatedSignature(
-		signature = "(IS)Z",
-		garbageValue = "24475"
+		signature = "(I)Z",
+		garbageValue = "1633158926"
 	)
-	public static boolean method3751(int var0) {
-		return var0 >= WorldMapDecorationType.field2750.id && var0 <= WorldMapDecorationType.field2754.id || var0 == WorldMapDecorationType.field2751.id;
-	}
-
-	@ObfuscatedName("t")
-	@ObfuscatedSignature(
-		signature = "(II)Lex;",
-		garbageValue = "1232258990"
-	)
-	@Export("getFrames")
-	static Frames getFrames(int var0) {
-		Frames var1 = (Frames)SequenceDefinition.SequenceDefinition_cachedFrames.get((long)var0);
-		if (var1 != null) {
-			return var1;
-		} else {
-			var1 = class60.method984(SequenceDefinition.SequenceDefinition_animationsArchive, DefaultsGroup.SequenceDefinition_skeletonsArchive, var0, false);
-			if (var1 != null) {
-				SequenceDefinition.SequenceDefinition_cachedFrames.put(var1, (long)var0);
-			}
-
-			return var1;
-		}
-	}
-
-	@ObfuscatedName("n")
-	@ObfuscatedSignature(
-		signature = "(Ljava/lang/CharSequence;I)Ljava/lang/String;",
-		garbageValue = "1962792028"
-	)
-	public static String method3747(CharSequence var0) {
-		return class198.method3786('*', var0.length());
+	static boolean method3707() {
+		return (Client.drawPlayerNames & 4) != 0;
 	}
 }

@@ -1,53 +1,41 @@
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gj")
+@ObfuscatedName("gl")
 public class class200 {
-	@ObfuscatedName("f")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "Lgj;"
+		signature = "Lgl;"
 	)
-	static final class200 field2391;
-	@ObfuscatedName("b")
+	static final class200 field2402;
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "Lgj;"
+		signature = "Lgl;"
 	)
-	static final class200 field2390;
-	@ObfuscatedName("l")
+	static final class200 field2399;
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		signature = "Lgj;"
+		signature = "Lgl;"
 	)
-	static final class200 field2392;
+	static final class200 field2401;
+	@ObfuscatedName("bw")
+	static String field2403;
 
 	static {
-		field2391 = new class200();
-		field2390 = new class200();
-		field2392 = new class200();
+		field2402 = new class200();
+		field2399 = new class200();
+		field2401 = new class200();
 	}
 
 	class200() {
 	}
 
-	@ObfuscatedName("d")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "96"
+		signature = "(I)Z",
+		garbageValue = "-1315253613"
 	)
-	public static void method3803() {
-		ItemComposition.ItemDefinition_cached.clear();
-		ItemComposition.ItemDefinition_cachedModels.clear();
-		ItemComposition.ItemDefinition_cachedSprites.clear();
-	}
-
-	@ObfuscatedName("gp")
-	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "1508888429"
-	)
-	static void method3804() {
-		if (PlayerType.localPlayer.x >> 7 == Client.destinationX && PlayerType.localPlayer.y >> 7 == Client.destinationY) {
-			Client.destinationX = 0;
-		}
-
+	static final boolean method3760() {
+		return ViewportMouse.ViewportMouse_isInViewport;
 	}
 }

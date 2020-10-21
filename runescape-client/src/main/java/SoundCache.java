@@ -1,41 +1,45 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.rs.ScriptOpcodes;
 
 @ObfuscatedName("ds")
 @Implements("SoundCache")
 public class SoundCache {
-	@ObfuscatedName("c")
-	@Export("ItemDefinition_inMembersWorld")
-	public static boolean ItemDefinition_inMembersWorld;
-	@ObfuscatedName("f")
+	@ObfuscatedName("rp")
+	@ObfuscatedGetter(
+		intValue = 250298368
+	)
+	static int field1472;
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "Liw;"
+		signature = "Lic;"
 	)
 	@Export("soundEffectIndex")
 	AbstractArchive soundEffectIndex;
-	@ObfuscatedName("b")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "Liw;"
+		signature = "Lic;"
 	)
 	@Export("musicSampleIndex")
 	AbstractArchive musicSampleIndex;
-	@ObfuscatedName("l")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		signature = "Llp;"
+		signature = "Llc;"
 	)
 	@Export("musicSamples")
 	NodeHashTable musicSamples;
-	@ObfuscatedName("m")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		signature = "Llp;"
+		signature = "Llc;"
 	)
 	@Export("rawSounds")
 	NodeHashTable rawSounds;
 
 	@ObfuscatedSignature(
-		signature = "(Liw;Liw;)V"
+		signature = "(Lic;Lic;)V"
 	)
 	public SoundCache(AbstractArchive var1, AbstractArchive var2) {
 		this.musicSamples = new NodeHashTable(256);
@@ -44,10 +48,10 @@ public class SoundCache {
 		this.musicSampleIndex = var2;
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(II[II)Ldo;",
-		garbageValue = "16776960"
+		signature = "(II[II)Lde;",
+		garbageValue = "-484042119"
 	)
 	@Export("getSoundEffect0")
 	RawSound getSoundEffect0(int var1, int var2, int[] var3) {
@@ -75,10 +79,10 @@ public class SoundCache {
 		}
 	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "(II[II)Ldo;",
-		garbageValue = "-716229534"
+		signature = "(II[IS)Lde;",
+		garbageValue = "-29447"
 	)
 	@Export("getMusicSample0")
 	RawSound getMusicSample0(int var1, int var2, int[] var3) {
@@ -112,10 +116,10 @@ public class SoundCache {
 		}
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		signature = "(I[II)Ldo;",
-		garbageValue = "-541178737"
+		signature = "(I[IB)Lde;",
+		garbageValue = "-94"
 	)
 	@Export("getSoundEffect")
 	public RawSound getSoundEffect(int var1, int[] var2) {
@@ -128,10 +132,10 @@ public class SoundCache {
 		}
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		signature = "(I[II)Ldo;",
-		garbageValue = "-1523377894"
+		signature = "(I[II)Lde;",
+		garbageValue = "-1455606991"
 	)
 	@Export("getMusicSample")
 	public RawSound getMusicSample(int var1, int[] var2) {
@@ -144,73 +148,42 @@ public class SoundCache {
 		}
 	}
 
-	@ObfuscatedName("gi")
+	@ObfuscatedName("aq")
 	@ObfuscatedSignature(
-		signature = "(IB)V",
-		garbageValue = "50"
+		signature = "(ILcy;ZB)I",
+		garbageValue = "115"
 	)
-	static final void method2646(int var0) {
-		int[] var1 = InterfaceParent.sceneMinimapSprite.pixels;
-		int var2 = var1.length;
-
+	static int method2607(int var0, Script var1, boolean var2) {
 		int var3;
-		for (var3 = 0; var3 < var2; ++var3) {
-			var1[var3] = 0;
-		}
-
-		int var4;
-		int var5;
-		for (var3 = 1; var3 < 103; ++var3) {
-			var4 = (103 - var3) * 2048 + 24628;
-
-			for (var5 = 1; var5 < 103; ++var5) {
-				if ((Tiles.Tiles_renderFlags[var0][var5][var3] & 24) == 0) {
-					ModeWhere.scene.drawTileMinimap(var1, var4, 512, var0, var5, var3);
-				}
-
-				if (var0 < 3 && (Tiles.Tiles_renderFlags[var0 + 1][var5][var3] & 8) != 0) {
-					ModeWhere.scene.drawTileMinimap(var1, var4, 512, var0 + 1, var5, var3);
-				}
-
-				var4 += 4;
+		if (var0 == ScriptOpcodes.CAM_FORCEANGLE) {
+			Interpreter.Interpreter_intStackSize -= 2;
+			var3 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
+			int var4 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
+			if (!Client.isCameraLocked) {
+				Client.camAngleX = var3;
+				Client.camAngleY = var4;
 			}
-		}
 
-		var3 = (238 + (int)(Math.random() * 20.0D) - 10 << 16) + (238 + (int)(Math.random() * 20.0D) - 10 << 8) + (238 + (int)(Math.random() * 20.0D) - 10);
-		var4 = 238 + (int)(Math.random() * 20.0D) - 10 << 16;
-		InterfaceParent.sceneMinimapSprite.setRaster();
-
-		int var6;
-		for (var5 = 1; var5 < 103; ++var5) {
-			for (var6 = 1; var6 < 103; ++var6) {
-				if ((Tiles.Tiles_renderFlags[var0][var6][var5] & 24) == 0) {
-					Canvas.drawObject(var0, var6, var5, var3, var4);
-				}
-
-				if (var0 < 3 && (Tiles.Tiles_renderFlags[var0 + 1][var6][var5] & 8) != 0) {
-					Canvas.drawObject(var0 + 1, var6, var5, var3, var4);
-				}
+			return 1;
+		} else if (var0 == ScriptOpcodes.CAM_GETANGLE_XA) {
+			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = Client.camAngleX;
+			return 1;
+		} else if (var0 == ScriptOpcodes.CAM_GETANGLE_YA) {
+			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = Client.camAngleY;
+			return 1;
+		} else if (var0 == ScriptOpcodes.CAM_SETFOLLOWHEIGHT) {
+			var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
+			if (var3 < 0) {
+				var3 = 0;
 			}
+
+			Client.camFollowHeight = var3;
+			return 1;
+		} else if (var0 == ScriptOpcodes.CAM_GETFOLLOWHEIGHT) {
+			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = Client.camFollowHeight;
+			return 1;
+		} else {
+			return 2;
 		}
-
-		Client.mapIconCount = 0;
-
-		for (var5 = 0; var5 < 104; ++var5) {
-			for (var6 = 0; var6 < 104; ++var6) {
-				long var7 = ModeWhere.scene.getFloorDecorationTag(GrandExchangeOfferUnitPriceComparator.Client_plane, var5, var6);
-				if (var7 != 0L) {
-					int var9 = ObjectSound.Entity_unpackID(var7);
-					int var10 = ScriptEvent.getObjectDefinition(var9).mapIconId;
-					if (var10 >= 0 && class194.WorldMapElement_get(var10).field3248) {
-						Client.mapIcons[Client.mapIconCount] = class194.WorldMapElement_get(var10).getSpriteBool(false);
-						Client.field723[Client.mapIconCount] = var5;
-						Client.field909[Client.mapIconCount] = var6;
-						++Client.mapIconCount;
-					}
-				}
-			}
-		}
-
-		class22.rasterProvider.apply();
 	}
 }

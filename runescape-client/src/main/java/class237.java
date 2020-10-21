@@ -1,6 +1,6 @@
 import net.runelite.mapping.ObfuscatedName;
 
-@ObfuscatedName("im")
+@ObfuscatedName("if")
 public class class237 {
 	static {
 		Math.sqrt(8192.0D);

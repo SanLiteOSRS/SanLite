@@ -1,18 +1,34 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hi")
+@ObfuscatedName("ht")
 @Implements("Huffman")
 public class Huffman {
-	@ObfuscatedName("f")
+	@ObfuscatedName("o")
+	@Export("ArchiveDiskActionHandler_thread")
+	static Thread ArchiveDiskActionHandler_thread;
+	@ObfuscatedName("du")
+	@ObfuscatedSignature(
+		signature = "Liw;"
+	)
+	@Export("archive8")
+	static Archive archive8;
+	@ObfuscatedName("kk")
+	@ObfuscatedGetter(
+		intValue = 360288727
+	)
+	@Export("Client_plane")
+	static int Client_plane;
+	@ObfuscatedName("z")
 	@Export("masks")
 	int[] masks;
-	@ObfuscatedName("b")
+	@ObfuscatedName("k")
 	@Export("bits")
 	byte[] bits;
-	@ObfuscatedName("l")
+	@ObfuscatedName("s")
 	@Export("keys")
 	int[] keys;
 
@@ -99,10 +115,10 @@ public class Huffman {
 
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
 		signature = "([BII[BII)I",
-		garbageValue = "-1847376111"
+		garbageValue = "-141428387"
 	)
 	@Export("compress")
 	int compress(byte[] var1, int var2, int var3, byte[] var4, int var5) {
@@ -120,7 +136,7 @@ public class Huffman {
 			int var11 = var7 >> 3;
 			int var12 = var7 & 7;
 			var6 &= -var12 >> 31;
-			int var13 = (var10 + var12 - 1 >> 3) + var11;
+			int var13 = (var12 + var10 - 1 >> 3) + var11;
 			var12 += 24;
 			var4[var11] = (byte)(var6 |= var9 >>> var12);
 			if (var11 < var13) {
@@ -150,10 +166,10 @@ public class Huffman {
 		return (var7 + 7 >> 3) - var5;
 	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
 		signature = "([BI[BIII)I",
-		garbageValue = "-1101500142"
+		garbageValue = "-238004531"
 	)
 	@Export("decompress")
 	int decompress(byte[] var1, int var2, byte[] var3, int var4, int var5) {
@@ -294,13 +310,76 @@ public class Huffman {
 		}
 	}
 
-	@ObfuscatedName("iy")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "(ZI)V",
-		garbageValue = "-1189529622"
+		signature = "(III)V",
+		garbageValue = "-1277930744"
 	)
-	@Export("setTapToDrop")
-	static void setTapToDrop(boolean var0) {
-		Client.tapToDrop = var0;
+	public static void method4047(int var0, int var1) {
+		VarbitComposition var2 = TaskHandler.method3567(var0);
+		int var3 = var2.baseVar;
+		int var4 = var2.startBit;
+		int var5 = var2.endBit;
+		int var6 = Varps.Varps_masks[var5 - var4];
+		if (var1 < 0 || var1 > var6) {
+			var1 = 0;
+		}
+
+		var6 <<= var4;
+		Varps.Varps_main[var3] = Varps.Varps_main[var3] & ~var6 | var1 << var4 & var6;
+	}
+
+	@ObfuscatedName("k")
+	@ObfuscatedSignature(
+		signature = "(IIIB)I",
+		garbageValue = "81"
+	)
+	public static int method4041(int var0, int var1, int var2) {
+		var2 &= 3;
+		if (var2 == 0) {
+			return var1;
+		} else if (var2 == 1) {
+			return 7 - var0;
+		} else {
+			return var2 == 2 ? 7 - var1 : var0;
+		}
+	}
+
+	@ObfuscatedName("d")
+	@ObfuscatedSignature(
+		signature = "(Ljava/lang/String;B)Ljava/lang/String;",
+		garbageValue = "2"
+	)
+	public static String method4049(String var0) {
+		int var1 = var0.length();
+		char[] var2 = new char[var1];
+		byte var3 = 2;
+
+		for (int var4 = 0; var4 < var1; ++var4) {
+			char var5 = var0.charAt(var4);
+			if (var3 == 0) {
+				var5 = Character.toLowerCase(var5);
+			} else if (var3 == 2 || Character.isUpperCase(var5)) {
+				var5 = NameableContainer.method5199(var5);
+			}
+
+			if (Character.isLetter(var5)) {
+				var3 = 0;
+			} else if (var5 != '.' && var5 != '?' && var5 != '!') {
+				if (Character.isSpaceChar(var5)) {
+					if (var3 != 2) {
+						var3 = 1;
+					}
+				} else {
+					var3 = 1;
+				}
+			} else {
+				var3 = 2;
+			}
+
+			var2[var4] = var5;
+		}
+
+		return new String(var2);
 	}
 }

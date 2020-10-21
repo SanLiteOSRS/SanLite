@@ -6,10 +6,10 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("dd")
 @Implements("PlayerProvider")
 public interface PlayerProvider {
-	@ObfuscatedName("f")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(I)Ldh;",
-		garbageValue = "1306134642"
+		signature = "(I)Ldr;",
+		garbageValue = "-1032997343"
 	)
 	@Export("player")
 	PcmPlayer player();

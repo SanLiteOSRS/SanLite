@@ -6,40 +6,40 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ld")
+@ObfuscatedName("lf")
 @Implements("BufferedSink")
 public class BufferedSink implements Runnable {
-	@ObfuscatedName("f")
+	@ObfuscatedName("z")
 	@Export("thread")
 	Thread thread;
-	@ObfuscatedName("b")
+	@ObfuscatedName("k")
 	@Export("outputStream")
 	OutputStream outputStream;
-	@ObfuscatedName("l")
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = -422941959
+		intValue = 744968193
 	)
 	@Export("capacity")
 	int capacity;
-	@ObfuscatedName("m")
+	@ObfuscatedName("t")
 	@Export("buffer")
 	byte[] buffer;
-	@ObfuscatedName("z")
+	@ObfuscatedName("i")
 	@ObfuscatedGetter(
-		intValue = 1493204291
+		intValue = -683527295
 	)
 	@Export("position")
 	int position;
-	@ObfuscatedName("q")
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = -1377573981
+		intValue = 870280175
 	)
 	@Export("limit")
 	int limit;
-	@ObfuscatedName("k")
+	@ObfuscatedName("x")
 	@Export("exception")
 	IOException exception;
-	@ObfuscatedName("c")
+	@ObfuscatedName("w")
 	@Export("closed")
 	boolean closed;
 
@@ -54,10 +54,10 @@ public class BufferedSink implements Runnable {
 		this.thread.start();
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
 		signature = "(B)Z",
-		garbageValue = "2"
+		garbageValue = "8"
 	)
 	@Export("isClosed")
 	boolean isClosed() {
@@ -79,10 +79,10 @@ public class BufferedSink implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "([BIIB)V",
-		garbageValue = "-33"
+		signature = "([BIII)V",
+		garbageValue = "803679823"
 	)
 	@Export("write")
 	void write(byte[] var1, int var2, int var3) throws IOException {
@@ -119,10 +119,10 @@ public class BufferedSink implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-2058215649"
+		signature = "(S)V",
+		garbageValue = "256"
 	)
 	@Export("close")
 	void close() {
@@ -196,5 +196,16 @@ public class BufferedSink implements Runnable {
 			}
 		} while(!this.isClosed());
 
+	}
+
+	@ObfuscatedName("x")
+	@ObfuscatedSignature(
+		signature = "(Lic;Lic;Ljava/lang/String;Ljava/lang/String;I)Lkr;",
+		garbageValue = "326512340"
+	)
+	public static Font method5983(AbstractArchive var0, AbstractArchive var1, String var2, String var3) {
+		int var4 = var0.getGroupId(var2);
+		int var5 = var0.getFileId(var4, var3);
+		return RouteStrategy.method3688(var0, var1, var4, var5);
 	}
 }

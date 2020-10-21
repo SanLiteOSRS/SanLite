@@ -3,18 +3,18 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jh")
+@ObfuscatedName("jc")
 @Implements("Nameable")
 public class Nameable implements Comparable {
-	@ObfuscatedName("l")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		signature = "Lkm;"
+		signature = "Lku;"
 	)
 	@Export("username")
 	Username username;
-	@ObfuscatedName("m")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		signature = "Lkm;"
+		signature = "Lku;"
 	)
 	@Export("previousUsername")
 	Username previousUsername;
@@ -22,40 +22,40 @@ public class Nameable implements Comparable {
 	Nameable() {
 	}
 
-	@ObfuscatedName("ab")
+	@ObfuscatedName("ae")
 	@ObfuscatedSignature(
-		signature = "(I)Lkm;",
-		garbageValue = "-335278145"
+		signature = "(I)Lku;",
+		garbageValue = "-53975348"
 	)
 	@Export("getUsername")
 	public Username getUsername() {
 		return this.username;
 	}
 
-	@ObfuscatedName("ac")
+	@ObfuscatedName("ap")
 	@ObfuscatedSignature(
 		signature = "(I)Ljava/lang/String;",
-		garbageValue = "-1574764800"
+		garbageValue = "-2094298107"
 	)
 	@Export("getName")
 	public String getName() {
 		return this.username == null ? "" : this.username.getName();
 	}
 
-	@ObfuscatedName("ao")
+	@ObfuscatedName("au")
 	@ObfuscatedSignature(
 		signature = "(I)Ljava/lang/String;",
-		garbageValue = "198172856"
+		garbageValue = "2114724515"
 	)
 	@Export("getPreviousName")
 	public String getPreviousName() {
 		return this.previousUsername == null ? "" : this.previousUsername.getName();
 	}
 
-	@ObfuscatedName("af")
+	@ObfuscatedName("aa")
 	@ObfuscatedSignature(
-		signature = "(Lkm;Lkm;I)V",
-		garbageValue = "208802745"
+		signature = "(Lku;Lku;I)V",
+		garbageValue = "-1201574407"
 	)
 	@Export("set")
 	void set(Username var1, Username var2) {
@@ -67,10 +67,10 @@ public class Nameable implements Comparable {
 		}
 	}
 
-	@ObfuscatedName("av")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		signature = "(Ljh;B)I",
-		garbageValue = "69"
+		signature = "(Ljc;I)I",
+		garbageValue = "-243007320"
 	)
 	@Export("compareTo_user")
 	public int compareTo_user(Nameable var1) {
@@ -81,19 +81,26 @@ public class Nameable implements Comparable {
 		return this.compareTo_user((Nameable)var1);
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("hu")
 	@ObfuscatedSignature(
-		signature = "(S)J",
-		garbageValue = "17738"
+		signature = "(IIIII)V",
+		garbageValue = "793231569"
 	)
-	@Export("currentTimeMillis")
-	public static final synchronized long currentTimeMillis() {
-		long var0 = System.currentTimeMillis();
-		if (var0 < ArchiveLoader.field565) {
-			class307.field3731 += ArchiveLoader.field565 - var0;
+	@Export("selectSpell")
+	static void selectSpell(int var0, int var1, int var2, int var3) {
+		Widget var4 = SecureRandomCallable.getWidgetChild(var0, var1);
+		if (var4 != null && var4.onTargetEnter != null) {
+			ScriptEvent var5 = new ScriptEvent();
+			var5.widget = var4;
+			var5.args = var4.onTargetEnter;
+			Script.runScriptEvent(var5);
 		}
 
-		ArchiveLoader.field565 = var0;
-		return class307.field3731 + var0;
+		Client.field834 = var3;
+		Client.isSpellSelected = true;
+		class232.selectedSpellWidget = var0;
+		Client.selectedSpellChildIndex = var1;
+		UserComparator8.selectedSpellFlags = var2;
+		class52.invalidateWidget(var4);
 	}
 }

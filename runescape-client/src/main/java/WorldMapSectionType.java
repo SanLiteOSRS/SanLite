@@ -4,41 +4,46 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("af")
+@ObfuscatedName("ae")
 @Implements("WorldMapSectionType")
 public enum WorldMapSectionType implements Enumerated {
-	@ObfuscatedName("f")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "Laf;"
+		signature = "Lae;"
 	)
 	@Export("WORLDMAPSECTIONTYPE0")
 	WORLDMAPSECTIONTYPE0(2, (byte)0),
-	@ObfuscatedName("b")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "Laf;"
+		signature = "Lae;"
 	)
 	@Export("WORLDMAPSECTIONTYPE1")
-	WORLDMAPSECTIONTYPE1(3, (byte)1),
-	@ObfuscatedName("l")
+	WORLDMAPSECTIONTYPE1(1, (byte)1),
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		signature = "Laf;"
+		signature = "Lae;"
 	)
 	@Export("WORLDMAPSECTIONTYPE2")
-	WORLDMAPSECTIONTYPE2(1, (byte)2),
-	@ObfuscatedName("m")
+	WORLDMAPSECTIONTYPE2(3, (byte)2),
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		signature = "Laf;"
+		signature = "Lae;"
 	)
 	@Export("WORLDMAPSECTIONTYPE3")
 	WORLDMAPSECTIONTYPE3(0, (byte)3);
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("g")
 	@ObfuscatedGetter(
-		intValue = 1960357597
+		intValue = 872496481
+	)
+	static int field178;
+	@ObfuscatedName("i")
+	@ObfuscatedGetter(
+		intValue = 750880259
 	)
 	@Export("type")
 	final int type;
-	@ObfuscatedName("q")
+	@ObfuscatedName("o")
 	@Export("id")
 	final byte id;
 
@@ -47,75 +52,22 @@ public enum WorldMapSectionType implements Enumerated {
 		this.id = var4;
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		signature = "(B)I",
-		garbageValue = "23"
+		signature = "(I)I",
+		garbageValue = "385513888"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
 		return this.id;
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "([BI)V",
-		garbageValue = "1810910487"
+		signature = "(I)[Lae;",
+		garbageValue = "278613741"
 	)
-	@Export("ByteArrayPool_release")
-	public static synchronized void ByteArrayPool_release(byte[] var0) {
-		if (var0.length == 100 && ByteArrayPool.ByteArrayPool_smallCount < 1000) {
-			ByteArrayPool.ByteArrayPool_small[++ByteArrayPool.ByteArrayPool_smallCount - 1] = var0;
-		} else if (var0.length == 5000 && ByteArrayPool.ByteArrayPool_mediumCount < 250) {
-			ByteArrayPool.ByteArrayPool_medium[++ByteArrayPool.ByteArrayPool_mediumCount - 1] = var0;
-		} else if (var0.length == 30000 && ByteArrayPool.ByteArrayPool_largeCount < 50) {
-			ByteArrayPool.ByteArrayPool_large[++ByteArrayPool.ByteArrayPool_largeCount - 1] = var0;
-		} else {
-			if (ByteArrayPool.ByteArrayPool_arrays != null) {
-				for (int var1 = 0; var1 < Coord.ByteArrayPool_alternativeSizes.length; ++var1) {
-					if (var0.length == Coord.ByteArrayPool_alternativeSizes[var1] && FloorDecoration.ByteArrayPool_altSizeArrayCounts[var1] < ByteArrayPool.ByteArrayPool_arrays[var1].length) {
-						ByteArrayPool.ByteArrayPool_arrays[var1][FloorDecoration.ByteArrayPool_altSizeArrayCounts[var1]++] = var0;
-						return;
-					}
-				}
-			}
-
-		}
-	}
-
-	@ObfuscatedName("hr")
-	@ObfuscatedSignature(
-		signature = "(IB)Z",
-		garbageValue = "1"
-	)
-	static final boolean method336(int var0) {
-		if (var0 < 0) {
-			return false;
-		} else {
-			int var1 = Client.menuOpcodes[var0];
-			if (var1 >= 2000) {
-				var1 -= 2000;
-			}
-
-			return var1 == 1007;
-		}
-	}
-
-	@ObfuscatedName("jl")
-	@ObfuscatedSignature(
-		signature = "(Lht;IIIB)V",
-		garbageValue = "-90"
-	)
-	@Export("drawCompass")
-	static final void drawCompass(Widget var0, int var1, int var2, int var3) {
-		SpriteMask var4 = var0.getSpriteMask(false);
-		if (var4 != null) {
-			if (Client.minimapState < 3) {
-				UserComparator5.compass.drawRotatedMaskedCenteredAround(var1, var2, var4.width, var4.height, 25, 25, Client.camAngleY, 256, var4.xStarts, var4.xWidths);
-			} else {
-				Rasterizer2D.Rasterizer2D_fillMaskedRectangle(var1, var2, 0, var4.xStarts, var4.xWidths);
-			}
-
-		}
+	static WorldMapSectionType[] method327() {
+		return new WorldMapSectionType[]{WORLDMAPSECTIONTYPE1, WORLDMAPSECTIONTYPE2, WORLDMAPSECTIONTYPE0, WORLDMAPSECTIONTYPE3};
 	}
 }

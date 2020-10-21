@@ -3,36 +3,35 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("ju")
+@ObfuscatedName("il")
 @Implements("ParamDefinition")
 public class ParamDefinition extends DualNode {
-	@ObfuscatedName("f")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "Liw;"
+		signature = "Lic;"
 	)
 	@Export("ParamDefinition_archive")
 	public static AbstractArchive ParamDefinition_archive;
-	@ObfuscatedName("b")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "Lev;"
+		signature = "Lel;"
 	)
 	@Export("ParamDefinition_cached")
-	public static EvictingDualNodeHashTable ParamDefinition_cached;
-	@ObfuscatedName("l")
+	static EvictingDualNodeHashTable ParamDefinition_cached;
+	@ObfuscatedName("s")
 	@Export("type")
 	char type;
-	@ObfuscatedName("m")
+	@ObfuscatedName("t")
 	@ObfuscatedGetter(
-		intValue = 432424679
+		intValue = 2056477959
 	)
 	@Export("defaultInt")
 	public int defaultInt;
-	@ObfuscatedName("z")
+	@ObfuscatedName("i")
 	@Export("defaultStr")
 	public String defaultStr;
-	@ObfuscatedName("q")
+	@ObfuscatedName("o")
 	@Export("autoDisable")
 	boolean autoDisable;
 
@@ -44,19 +43,19 @@ public class ParamDefinition extends DualNode {
 		this.autoDisable = true;
 	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "1987481332"
+		garbageValue = "964888854"
 	)
 	@Export("postDecode")
 	void postDecode() {
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		signature = "(Lkb;I)V",
-		garbageValue = "-425218539"
+		signature = "(Lkf;B)V",
+		garbageValue = "2"
 	)
 	@Export("decode")
 	void decode(Buffer var1) {
@@ -70,10 +69,10 @@ public class ParamDefinition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		signature = "(Lkb;II)V",
-		garbageValue = "1961390575"
+		signature = "(Lkf;II)V",
+		garbageValue = "-659243660"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
@@ -85,7 +84,7 @@ public class ParamDefinition extends DualNode {
 			}
 
 			if (var5 >= 128 && var5 < 160) {
-				char var6 = class298.cp1252AsciiExtension[var5 - 128];
+				char var6 = class297.cp1252AsciiExtension[var5 - 128];
 				if (var6 == 0) {
 					var6 = '?';
 				}
@@ -105,81 +104,13 @@ public class ParamDefinition extends DualNode {
 
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		signature = "(B)Z",
-		garbageValue = "-12"
+		signature = "(I)Z",
+		garbageValue = "937250031"
 	)
 	@Export("isString")
 	public boolean isString() {
 		return this.type == 's';
-	}
-
-	@ObfuscatedName("q")
-	@ObfuscatedSignature(
-		signature = "(Liw;Ljava/lang/String;Ljava/lang/String;I)[Llc;",
-		garbageValue = "-1513719503"
-	)
-	public static SpritePixels[] method4677(AbstractArchive var0, String var1, String var2) {
-		int var3 = var0.getGroupId(var1);
-		int var4 = var0.getFileId(var3, var2);
-		return HorizontalAlignment.method4882(var0, var3, var4);
-	}
-
-	@ObfuscatedName("x")
-	@ObfuscatedSignature(
-		signature = "(ILco;ZB)I",
-		garbageValue = "6"
-	)
-	static int method4671(int var0, Script var1, boolean var2) {
-		Widget var3 = var2 ? MouseRecorder.field621 : Interpreter.field1122;
-		if (var0 == ScriptOpcodes.CC_GETSCROLLX) {
-			Interpreter.Interpreter_intStack[++MilliClock.Interpreter_intStackSize - 1] = var3.scrollX;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CC_GETSCROLLY) {
-			Interpreter.Interpreter_intStack[++MilliClock.Interpreter_intStackSize - 1] = var3.scrollY;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CC_GETTEXT) {
-			Interpreter.Interpreter_stringStack[++UrlRequester.Interpreter_stringStackSize - 1] = var3.text;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CC_GETSCROLLWIDTH) {
-			Interpreter.Interpreter_intStack[++MilliClock.Interpreter_intStackSize - 1] = var3.scrollWidth;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CC_GETSCROLLHEIGHT) {
-			Interpreter.Interpreter_intStack[++MilliClock.Interpreter_intStackSize - 1] = var3.scrollHeight;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CC_GETMODELZOOM) {
-			Interpreter.Interpreter_intStack[++MilliClock.Interpreter_intStackSize - 1] = var3.modelZoom;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CC_GETMODELANGLE_X) {
-			Interpreter.Interpreter_intStack[++MilliClock.Interpreter_intStackSize - 1] = var3.modelAngleX;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CC_GETMODELANGLE_Z) {
-			Interpreter.Interpreter_intStack[++MilliClock.Interpreter_intStackSize - 1] = var3.modelAngleZ;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CC_GETMODELANGLE_Y) {
-			Interpreter.Interpreter_intStack[++MilliClock.Interpreter_intStackSize - 1] = var3.modelAngleY;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CC_GETTRANSTOP) {
-			Interpreter.Interpreter_intStack[++MilliClock.Interpreter_intStackSize - 1] = var3.transparencyTop;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CC_GETTRANSBOT) {
-			Interpreter.Interpreter_intStack[++MilliClock.Interpreter_intStackSize - 1] = var3.transparencyBot;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CC_GETCOLOUR) {
-			Interpreter.Interpreter_intStack[++MilliClock.Interpreter_intStackSize - 1] = var3.color;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CC_GETFILLCOLOUR) {
-			Interpreter.Interpreter_intStack[++MilliClock.Interpreter_intStackSize - 1] = var3.color2;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CC_GETFILLMODE) {
-			Interpreter.Interpreter_intStack[++MilliClock.Interpreter_intStackSize - 1] = var3.fillMode.rsOrdinal();
-			return 1;
-		} else if (var0 == ScriptOpcodes.CC_GETMODELTRANSPARENT) {
-			Interpreter.Interpreter_intStack[++MilliClock.Interpreter_intStackSize - 1] = var3.modelTransparency ? 1 : 0;
-			return 1;
-		} else {
-			return 2;
-		}
 	}
 }

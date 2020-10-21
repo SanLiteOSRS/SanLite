@@ -7,64 +7,56 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("ci")
 @Implements("Interpreter")
 public class Interpreter {
-	@ObfuscatedName("l")
+	@ObfuscatedName("s")
 	@Export("Interpreter_intLocals")
 	static int[] Interpreter_intLocals;
-	@ObfuscatedName("m")
-	@Export("Interpreter_stringLocals")
-	static String[] Interpreter_stringLocals;
-	@ObfuscatedName("z")
+	@ObfuscatedName("i")
 	@Export("Interpreter_arrayLengths")
 	static int[] Interpreter_arrayLengths;
-	@ObfuscatedName("q")
+	@ObfuscatedName("o")
 	@Export("Interpreter_arrays")
 	static int[][] Interpreter_arrays;
-	@ObfuscatedName("k")
+	@ObfuscatedName("x")
 	@Export("Interpreter_intStack")
 	static int[] Interpreter_intStack;
-	@ObfuscatedName("u")
+	@ObfuscatedName("w")
+	@ObfuscatedGetter(
+		intValue = -1375275397
+	)
+	@Export("Interpreter_intStackSize")
+	static int Interpreter_intStackSize;
+	@ObfuscatedName("g")
 	@Export("Interpreter_stringStack")
 	static String[] Interpreter_stringStack;
-	@ObfuscatedName("e")
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = 1142529175
+		intValue = -800989913
 	)
 	@Export("Interpreter_frameDepth")
 	static int Interpreter_frameDepth;
-	@ObfuscatedName("o")
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "[Lbm;"
+		signature = "[Lba;"
 	)
 	@Export("Interpreter_frames")
 	static ScriptFrame[] Interpreter_frames;
-	@ObfuscatedName("n")
-	@ObfuscatedSignature(
-		signature = "Lht;"
-	)
-	static Widget field1122;
-	@ObfuscatedName("p")
+	@ObfuscatedName("q")
 	@Export("Interpreter_calendar")
 	static java.util.Calendar Interpreter_calendar;
-	@ObfuscatedName("r")
+	@ObfuscatedName("c")
 	@Export("Interpreter_MONTHS")
 	static final String[] Interpreter_MONTHS;
-	@ObfuscatedName("s")
-	static boolean field1130;
+	@ObfuscatedName("y")
+	static boolean field1131;
+	@ObfuscatedName("v")
+	static boolean field1132;
 	@ObfuscatedName("j")
-	static boolean field1128;
-	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		intValue = -356581693
+		intValue = -387233075
 	)
-	static int field1119;
-	@ObfuscatedName("g")
-	static final double field1129;
-	@ObfuscatedName("ih")
-	@ObfuscatedGetter(
-		intValue = -44620435
-	)
-	@Export("oculusOrbFocalPointY")
-	static int oculusOrbFocalPointY;
+	static int field1135;
+	@ObfuscatedName("b")
+	static final double field1120;
 
 	static {
 		Interpreter_arrayLengths = new int[5];
@@ -75,84 +67,9 @@ public class Interpreter {
 		Interpreter_frames = new ScriptFrame[50];
 		Interpreter_calendar = java.util.Calendar.getInstance();
 		Interpreter_MONTHS = new String[]{"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
-		field1130 = false;
-		field1128 = false;
-		field1119 = 0;
-		field1129 = Math.log(2.0D);
-	}
-
-	@ObfuscatedName("z")
-	@ObfuscatedSignature(
-		signature = "(Ljava/lang/CharSequence;II[BII)I",
-		garbageValue = "-1431393393"
-	)
-	@Export("encodeStringCp1252")
-	public static int encodeStringCp1252(CharSequence var0, int var1, int var2, byte[] var3, int var4) {
-		int var5 = var2 - var1;
-
-		for (int var6 = 0; var6 < var5; ++var6) {
-			char var7 = var0.charAt(var6 + var1);
-			if (var7 > 0 && var7 < 128 || var7 >= 160 && var7 <= 255) {
-				var3[var6 + var4] = (byte)var7;
-			} else if (var7 == 8364) {
-				var3[var6 + var4] = -128;
-			} else if (var7 == 8218) {
-				var3[var6 + var4] = -126;
-			} else if (var7 == 402) {
-				var3[var6 + var4] = -125;
-			} else if (var7 == 8222) {
-				var3[var6 + var4] = -124;
-			} else if (var7 == 8230) {
-				var3[var6 + var4] = -123;
-			} else if (var7 == 8224) {
-				var3[var6 + var4] = -122;
-			} else if (var7 == 8225) {
-				var3[var6 + var4] = -121;
-			} else if (var7 == 710) {
-				var3[var6 + var4] = -120;
-			} else if (var7 == 8240) {
-				var3[var6 + var4] = -119;
-			} else if (var7 == 352) {
-				var3[var6 + var4] = -118;
-			} else if (var7 == 8249) {
-				var3[var6 + var4] = -117;
-			} else if (var7 == 338) {
-				var3[var6 + var4] = -116;
-			} else if (var7 == 381) {
-				var3[var6 + var4] = -114;
-			} else if (var7 == 8216) {
-				var3[var6 + var4] = -111;
-			} else if (var7 == 8217) {
-				var3[var6 + var4] = -110;
-			} else if (var7 == 8220) {
-				var3[var6 + var4] = -109;
-			} else if (var7 == 8221) {
-				var3[var6 + var4] = -108;
-			} else if (var7 == 8226) {
-				var3[var6 + var4] = -107;
-			} else if (var7 == 8211) {
-				var3[var6 + var4] = -106;
-			} else if (var7 == 8212) {
-				var3[var6 + var4] = -105;
-			} else if (var7 == 732) {
-				var3[var6 + var4] = -104;
-			} else if (var7 == 8482) {
-				var3[var6 + var4] = -103;
-			} else if (var7 == 353) {
-				var3[var6 + var4] = -102;
-			} else if (var7 == 8250) {
-				var3[var6 + var4] = -101;
-			} else if (var7 == 339) {
-				var3[var6 + var4] = -100;
-			} else if (var7 == 382) {
-				var3[var6 + var4] = -98;
-			} else if (var7 == 376) {
-				var3[var6 + var4] = -97;
-			} else {
-				var3[var6 + var4] = 63;
-			}
-		}
-
-		return var5;
+		field1131 = false;
+		field1132 = false;
+		field1135 = 0;
+		field1120 = Math.log(2.0D);
 	}
 }
