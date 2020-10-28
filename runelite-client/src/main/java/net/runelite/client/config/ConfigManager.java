@@ -663,6 +663,7 @@ public class ConfigManager
 		return str;
 	}
 
+	@Nullable
 	static String objectToString(Object object)
 	{
 		if (object instanceof Color)
@@ -706,7 +707,7 @@ public class ConfigManager
 		{
 			return Long.toString(((Duration) object).toMillis());
 		}
-		return object.toString();
+		return object == null ? null : object.toString();
 	}
 
 	@Subscribe(priority = 100)
