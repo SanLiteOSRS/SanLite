@@ -267,6 +267,13 @@ public interface Actor extends Renderable
 	void setOverheadText(String overheadText);
 
 	/**
+	 * Returns true if this NPC has died
+	 *
+	 * @return is npc dead
+	 */
+	boolean isDead();
+
+	/**
 	 * Gets the action frame game tick.
 	 *
 	 * @return action frame game tick
