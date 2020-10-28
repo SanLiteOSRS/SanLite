@@ -10,7 +10,7 @@ import net.runelite.mapping.ObfuscatedSignature;
 public class WorldMapSection2 implements WorldMapSection {
 	@ObfuscatedName("rv")
 	@ObfuscatedGetter(
-		intValue = -820577920
+		intValue = 1167994355
 	)
 	static int field225;
 	@ObfuscatedName("as")
