@@ -24,13 +24,13 @@ public final class FloorDecoration {
 	int tileHeight;
 	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = -1947205632
+		intValue = -191694913
 	)
 	@Export("x")
 	int x;
 	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = 2018508800
+		intValue = 489421685
 	)
 	@Export("y")
 	int y;
