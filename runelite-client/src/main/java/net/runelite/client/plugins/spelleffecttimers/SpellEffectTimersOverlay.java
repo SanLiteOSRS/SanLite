@@ -67,42 +67,41 @@ public class SpellEffectTimersOverlay extends Overlay
 	@Override
 	public Dimension render(Graphics2D graphics)
 	{
-		if (!config.showFreezeTimersOverlay() && !config.showTeleblockTimersOverlay() && !config.showVengTimersOverlay() && !config.showVengActiveOverlay())
+		if (!config.showFreezeTimersOverlay() && !config.showTeleblockTimersOverlay() && !config.showVengTimersOverlay() && !config.showVengActiveOverlay() && !config.showSotdSpecActiveOverlay())
 		{
 			return null;
 		}
 
 		for (SpellEffectInfo spellEffectInfo : plugin.getSpellEffects())
 		{
-			if (config.showFreezeTimersOverlay())
+			if (config.showFreezeTimersOverlay() &&
+					(spellEffectInfo.getSpellEffect().getSpellType().equals(SpellEffectType.FREEZE) ||
+					spellEffectInfo.getSpellEffect().getSpellType().equals(SpellEffectType.FREEZE_IMMUNITY)))
 			{
-				if (spellEffectInfo.getSpellEffect().getSpellType().equals(SpellEffectType.FREEZE) ||
-						spellEffectInfo.getSpellEffect().getSpellType().equals(SpellEffectType.FREEZE_IMMUNITY))
-				{
-					drawSpellEffectOverlay(graphics, spellEffectInfo);
-				}
+				drawSpellEffectOverlay(graphics, spellEffectInfo);
 			}
-			if (config.showTeleblockTimersOverlay())
+
+			if (config.showTeleblockTimersOverlay() &&
+					(spellEffectInfo.getSpellEffect().getSpellType().equals(SpellEffectType.TELEBLOCK) ||
+					spellEffectInfo.getSpellEffect().getSpellType().equals(SpellEffectType.TELEBLOCK_IMMUNITY)))
 			{
-				if (spellEffectInfo.getSpellEffect().getSpellType().equals(SpellEffectType.TELEBLOCK) ||
-						spellEffectInfo.getSpellEffect().getSpellType().equals(SpellEffectType.TELEBLOCK_IMMUNITY))
-				{
-					drawSpellEffectOverlay(graphics, spellEffectInfo);
-				}
+				drawSpellEffectOverlay(graphics, spellEffectInfo);
 			}
-			if (config.showVengTimersOverlay())
+
+			if (config.showVengTimersOverlay() && spellEffectInfo.getSpellEffect().equals(SpellEffect.VENGEANCE))
 			{
-				if (spellEffectInfo.getSpellEffect().equals(SpellEffect.VENGEANCE))
-				{
-					drawSpellEffectOverlay(graphics, spellEffectInfo);
-				}
+				drawSpellEffectOverlay(graphics, spellEffectInfo);
 			}
-			if (config.showVengActiveOverlay())
+
+			if (config.showVengActiveOverlay() && spellEffectInfo.getSpellEffect().equals(SpellEffect.VENGEANCE_ACTIVE))
 			{
-				if (spellEffectInfo.getSpellEffect().equals(SpellEffect.VENGEANCE_ACTIVE))
-				{
-					drawSpellEffectOverlay(graphics, spellEffectInfo);
-				}
+				drawSpellEffectOverlay(graphics, spellEffectInfo);
+			}
+
+			if (config.showSotdSpecActiveOverlay() &&
+					spellEffectInfo.getSpellEffect().getSpellType().equals((SpellEffectType.STAFF_OF_THE_DEAD_SPECIAL)))
+			{
+				drawSpellEffectOverlay(graphics, spellEffectInfo);
 			}
 		}
 		return null;
