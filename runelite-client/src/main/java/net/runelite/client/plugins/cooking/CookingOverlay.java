@@ -54,17 +54,15 @@ class CookingOverlay extends OverlayPanel
 
 	private final Client client;
 	private final CookingPlugin plugin;
-	private final CookingConfig config;
 	private final XpTrackerService xpTrackerService;
 
 	@Inject
-	private CookingOverlay(Client client, CookingPlugin plugin, CookingConfig config, XpTrackerService xpTrackerService)
+	private CookingOverlay(Client client, CookingPlugin plugin, XpTrackerService xpTrackerService)
 	{
 		super(plugin);
 		setPosition(OverlayPosition.TOP_LEFT);
 		this.client = client;
 		this.plugin = plugin;
-		this.config = config;
 		this.xpTrackerService = xpTrackerService;
 		getMenuEntries().add(new OverlayMenuEntry(RUNELITE_OVERLAY_CONFIG, OPTION_CONFIGURE, "Cooking overlay"));
 		getMenuEntries().add(new OverlayMenuEntry(RUNELITE_OVERLAY, COOKING_RESET, "Cooking overlay"));
@@ -82,27 +80,27 @@ class CookingOverlay extends OverlayPanel
 		if (isCooking() || Duration.between(session.getLastCookingAction(), Instant.now()).getSeconds() < COOK_TIMEOUT)
 		{
 			panelComponent.getChildren().add(TitleComponent.builder()
-				.text("Cooking")
-				.color(Color.GREEN)
-				.build());
+					.text("Cooking")
+					.color(Color.GREEN)
+					.build());
 		}
 		else
 		{
 			panelComponent.getChildren().add(TitleComponent.builder()
-				.text("NOT cooking")
-				.color(Color.RED)
-				.build());
+					.text("NOT cooking")
+					.color(Color.RED)
+					.build());
 		}
 
 		panelComponent.getChildren().add(LineComponent.builder()
-			.left("Cooked:")
-			.right(session.getCookAmount() + (session.getCookAmount() >= 1 ? " (" + xpTrackerService.getActionsHr(Skill.COOKING) + "/hr)" : ""))
-			.build());
+				.left("Cooked:")
+				.right(session.getCookAmount() + (session.getCookAmount() >= 1 ? " (" + xpTrackerService.getActionsHr(Skill.COOKING) + "/hr)" : ""))
+				.build());
 
 		panelComponent.getChildren().add(LineComponent.builder()
-			.left("Burnt:")
-			.right(session.getBurnAmount() + (session.getBurnAmount() >= 1 ? " (" + FORMAT.format(session.getBurntPercentage()) + "%)" : ""))
-			.build());
+				.left("Burnt:")
+				.right(session.getBurnAmount() + (session.getBurnAmount() >= 1 ? " (" + FORMAT.format(session.getBurntPercentage()) + "%)" : ""))
+				.build());
 
 		return super.render(graphics);
 	}

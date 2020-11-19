@@ -182,7 +182,9 @@ public class AntiDragPlugin extends Plugin implements KeyListener
 	@Subscribe
 	public void onWidgetLoaded(WidgetLoaded widgetLoaded)
 	{
-		if ((widgetLoaded.getGroupId() == WidgetID.BANK_GROUP_ID || widgetLoaded.getGroupId() == WidgetID.DEPOSIT_BOX_GROUP_ID) &&
+		if ((widgetLoaded.getGroupId() == WidgetID.BANK_GROUP_ID ||
+				widgetLoaded.getGroupId() == WidgetID.BANK_INVENTORY_GROUP_ID ||
+				widgetLoaded.getGroupId() == WidgetID.DEPOSIT_BOX_GROUP_ID) &&
 				(!config.onKeybindOnly() || enableKeybindHeld) && !disableKeybindHeld)
 		{
 			setBankDragDelay(config.dragDelay());
