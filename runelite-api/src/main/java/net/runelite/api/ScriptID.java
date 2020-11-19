@@ -159,12 +159,6 @@ public final class ScriptID
 	public static final int CAMERA_DO_ZOOM = 42;
 
 	/**
-	 * Rebuilds the Spellbook
-	 */
-	@ScriptArguments(integer = 10, string = 2)
-	public static final int MAGIC_SPELLBOOK_REDRAW = 2611;
-
-	/**
 	 * Does nothing
 	 *
 	 * This is used to eat events when you want a menu action attached to it
@@ -197,7 +191,7 @@ public final class ScriptID
 	 * </ul>
 	 */
 	@ScriptArguments(string = 1)
-	public static final int FRIENDS_CHAT_SEND_KICK = 215;
+	public static final int FRIENDS_CHAT_SEND_KICK = 3764;
 
 	/**
 	 * Builds the widget that holds all of the players inside a friends chat
@@ -222,12 +216,6 @@ public final class ScriptID
 	 */
 	@ScriptArguments(integer = 3)
 	public static final int QUESTLIST_PROGRESS_LIST_SHOW = 1354;
-
-	/**
-	 * Procedure called when the toplevel interface is resized
-	 */
-	@ScriptArguments(integer = 2)
-	public static final int TOPLEVEL_RESIZE = 909;
 
 	/**
 	 * Called when the friends list is updated

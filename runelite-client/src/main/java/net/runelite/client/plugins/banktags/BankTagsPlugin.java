@@ -72,13 +72,11 @@ import net.runelite.client.game.ItemManager;
 import net.runelite.client.game.ItemVariationMapping;
 import net.runelite.client.game.SpriteManager;
 import net.runelite.client.game.chatbox.ChatboxPanelManager;
-import net.runelite.client.input.KeyManager;
 import net.runelite.client.input.MouseManager;
 import net.runelite.client.input.MouseWheelListener;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDependency;
 import net.runelite.client.plugins.PluginDescriptor;
-import net.runelite.client.plugins.banktags.tabs.BankSearch;
 import net.runelite.client.plugins.banktags.tabs.TabInterface;
 import static net.runelite.client.plugins.banktags.tabs.TabInterface.FILTERED_CHARS;
 import net.runelite.client.plugins.banktags.tabs.TabSprites;
@@ -137,12 +135,6 @@ public class BankTagsPlugin extends Plugin implements MouseWheelListener
 
 	@Inject
 	private TabInterface tabInterface;
-
-	@Inject
-	private BankSearch bankSearch;
-
-	@Inject
-	private KeyManager keyManager;
 
 	@Inject
 	private SpriteManager spriteManager;
@@ -233,7 +225,7 @@ public class BankTagsPlugin extends Plugin implements MouseWheelListener
 			return;
 		}
 
-		String replaced = value.replaceAll("[<>/]", "");
+		String replaced = value.replaceAll("[<>:/]", "");
 		if (!value.equals(replaced))
 		{
 			replaced = Text.toCSV(Text.fromCSV(replaced));
@@ -555,16 +547,18 @@ public class BankTagsPlugin extends Plugin implements MouseWheelListener
 			}
 		}
 
-		int itemContainerHeight = client.getWidget(WidgetInfo.BANK_ITEM_CONTAINER).getHeight();
+		final Widget bankItemContainer = client.getWidget(WidgetInfo.BANK_ITEM_CONTAINER);
+		int itemContainerHeight = bankItemContainer.getHeight();
 		// add a second row of height here to allow users to scroll down when the last row is partially visible
 		int adjustedScrollHeight = (items / ITEMS_PER_ROW) * ITEM_VERTICAL_SPACING + ITEM_VERTICAL_SPACING;
 		itemContainer.setScrollHeight(Math.max(adjustedScrollHeight, itemContainerHeight));
 
+		final int itemContainerScroll = bankItemContainer.getScrollY();
 		clientThread.invokeLater(() ->
 			client.runScript(ScriptID.UPDATE_SCROLLBAR,
 				WidgetInfo.BANK_SCROLLBAR.getId(),
 				WidgetInfo.BANK_ITEM_CONTAINER.getId(),
-				0));
+				itemContainerScroll));
 
 	}
 

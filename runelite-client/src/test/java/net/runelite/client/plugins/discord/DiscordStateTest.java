@@ -27,6 +27,7 @@ package net.runelite.client.plugins.discord;
 import com.google.inject.Guice;
 import com.google.inject.testing.fieldbinder.Bind;
 import com.google.inject.testing.fieldbinder.BoundFieldModule;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.UUID;
 import javax.inject.Inject;
@@ -34,6 +35,7 @@ import net.runelite.api.Client;
 import net.runelite.client.discord.DiscordPresence;
 import net.runelite.client.discord.DiscordService;
 import net.runelite.client.ws.PartyService;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import org.junit.Before;
 import org.junit.Test;
@@ -72,14 +74,14 @@ public class DiscordStateTest
 	public void before()
 	{
 		Guice.createInjector(BoundFieldModule.of(this)).injectMembers(this);
-		when(partyService.getLocalPartyId()).thenReturn(UUID.nameUUIDFromBytes("test".getBytes()));
+		when(partyService.getLocalPartyId()).thenReturn(UUID.nameUUIDFromBytes("test".getBytes(StandardCharsets.UTF_8)));
 	}
 
 	@Test
-	public void testStatusTimeout()
+	public void testStatusReset()
 	{
-		when(discordConfig.actionTimeout()).thenReturn(0);
-		when(discordConfig.hideElapsedTime()).thenReturn(false);
+		when(discordConfig.actionTimeout()).thenReturn(-1);
+		when(discordConfig.elapsedTimeType()).thenReturn(DiscordConfig.ElapsedTimeType.ACTIVITY);
 
 		discordState.triggerEvent(DiscordGameEventType.IN_MENU);
 		verify(discordService).updatePresence(any(DiscordPresence.class));
@@ -89,5 +91,40 @@ public class DiscordStateTest
 		verify(discordService, times(2)).updatePresence(captor.capture());
 		List<DiscordPresence> captured = captor.getAllValues();
 		assertNull(captured.get(captured.size() - 1).getEndTimestamp());
+	}
+
+	@Test
+	public void testStatusTimeout()
+	{
+		when(discordConfig.actionTimeout()).thenReturn(-1);
+		when(discordConfig.elapsedTimeType()).thenReturn(DiscordConfig.ElapsedTimeType.ACTIVITY);
+
+		discordState.triggerEvent(DiscordGameEventType.TRAINING_AGILITY);
+		verify(discordService).updatePresence(any(DiscordPresence.class));
+
+		discordState.checkForTimeout();
+		verify(discordService, times(1)).clearPresence();
+	}
+
+	@Test
+	public void testAreaChange()
+	{
+		when(discordConfig.elapsedTimeType()).thenReturn(DiscordConfig.ElapsedTimeType.TOTAL);
+
+		// Start with state of IN_GAME
+		ArgumentCaptor<DiscordPresence> captor = ArgumentCaptor.forClass(DiscordPresence.class);
+		discordState.triggerEvent(DiscordGameEventType.IN_GAME);
+		verify(discordService, times(1)).updatePresence(captor.capture());
+		assertEquals(DiscordGameEventType.IN_GAME.getState(), captor.getValue().getState());
+
+		// IN_GAME -> CITY
+		discordState.triggerEvent(DiscordGameEventType.CITY_VARROCK);
+		verify(discordService, times(2)).updatePresence(captor.capture());
+		assertEquals(DiscordGameEventType.CITY_VARROCK.getState(), captor.getValue().getState());
+
+		// CITY -> IN_GAME
+		discordState.triggerEvent(DiscordGameEventType.IN_GAME);
+		verify(discordService, times(3)).updatePresence(captor.capture());
+		assertEquals(DiscordGameEventType.IN_GAME.getState(), captor.getValue().getState());
 	}
 }

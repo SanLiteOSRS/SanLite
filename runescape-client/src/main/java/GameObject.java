@@ -4,89 +4,95 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ed")
+@ObfuscatedName("el")
 @Implements("GameObject")
 public final class GameObject {
-	@ObfuscatedName("z")
+	@ObfuscatedName("ba")
 	@ObfuscatedSignature(
-		signature = "Lez;"
+		signature = "[Lle;"
 	)
-	@Export("entity")
-	public Renderable entity;
-	@ObfuscatedName("k")
+	@Export("worldSelectStars")
+	static IndexedSprite[] worldSelectStars;
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = -1221048069
+		intValue = -1412668883
 	)
 	@Export("plane")
 	int plane;
-	@ObfuscatedName("s")
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = -530812325
+		intValue = -1556347637
 	)
 	@Export("height")
 	int height;
-	@ObfuscatedName("t")
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = 1973574069
+		intValue = 954361615
 	)
 	@Export("centerX")
 	int centerX;
-	@ObfuscatedName("i")
+	@ObfuscatedName("m")
 	@ObfuscatedGetter(
-		intValue = 589322861
-	)
-	@Export("centerY")
-	int centerY;
-	@ObfuscatedName("o")
-	@ObfuscatedGetter(
-		intValue = 2067900831
+		intValue = -1596359689
 	)
 	@Export("orientation")
 	int orientation;
-	@ObfuscatedName("x")
+	@ObfuscatedName("z")
+	@ObfuscatedSignature(
+		signature = "Lej;"
+	)
+	@Export("entity")
+	public Renderable entity;
+	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = -37489551
+		intValue = 1994666041
+	)
+	@Export("centerY")
+	int centerY;
+	@ObfuscatedName("k")
+	@ObfuscatedGetter(
+		intValue = 207668277
 	)
 	@Export("startX")
 	int startX;
-	@ObfuscatedName("w")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = 694891885
+		intValue = -1940452637
 	)
 	@Export("endX")
 	int endX;
-	@ObfuscatedName("g")
+	@ObfuscatedName("u")
 	@ObfuscatedGetter(
-		intValue = 977899527
+		intValue = 1266358135
 	)
 	@Export("startY")
 	int startY;
-	@ObfuscatedName("m")
+	@ObfuscatedName("t")
 	@ObfuscatedGetter(
-		intValue = 523071703
+		intValue = 1643778515
 	)
 	@Export("endY")
 	int endY;
-	@ObfuscatedName("n")
+	@ObfuscatedName("e")
 	@ObfuscatedGetter(
-		intValue = 1389208075
+		intValue = 609082727
 	)
-	int field1974;
-	@ObfuscatedName("d")
+	int field1962;
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = 2140125731
+		intValue = -404331619
 	)
 	@Export("lastDrawn")
 	int lastDrawn;
-	@ObfuscatedName("h")
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		longValue = 6418610507484255719L
+		longValue = -2637081015005136759L
 	)
 	@Export("tag")
 	public long tag;
-	@ObfuscatedName("a")
+	@ObfuscatedName("x")
 	@ObfuscatedGetter(
-		intValue = -1693237637
+		intValue = -735597717
 	)
 	@Export("flags")
 	int flags;
@@ -96,38 +102,93 @@ public final class GameObject {
 		this.flags = 0;
 	}
 
-	@ObfuscatedName("x")
-	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "723631912"
-	)
-	public static void method3411() {
-		if (NetCache.NetCache_socket != null) {
-			NetCache.NetCache_socket.close();
-		}
-
-	}
-
 	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-1910859364"
+		signature = "(II)Z",
+		garbageValue = "1929394434"
 	)
-	public static void method3412() {
-		ItemComposition.ItemDefinition_cached.clear();
-		ItemComposition.ItemDefinition_cachedModels.clear();
-		ItemComposition.ItemDefinition_cachedSprites.clear();
+	public static boolean method3416(int var0) {
+		return var0 >= WorldMapDecorationType.field2766.id && var0 <= WorldMapDecorationType.field2767.id;
 	}
 
-	@ObfuscatedName("il")
+	@ObfuscatedName("fu")
 	@ObfuscatedSignature(
-		signature = "(IIIIIIIB)V",
-		garbageValue = "-58"
+		signature = "(Lcs;I)V",
+		garbageValue = "-755652962"
 	)
-	@Export("updateRootInterface")
-	static final void updateRootInterface(int var0, int var1, int var2, int var3, int var4, int var5, int var6) {
-		if (WorldMapSprite.loadInterface(var0)) {
-			WorldMapSection1.updateInterface(Widget.Widget_interfaceComponents[var0], -1, var1, var2, var3, var4, var5, var6);
+	static final void method3415(Actor var0) {
+		if (var0.field1028 != 0) {
+			if (var0.targetIndex != -1) {
+				Object var1 = null;
+				if (var0.targetIndex < 32768) {
+					var1 = Client.npcs[var0.targetIndex];
+				} else if (var0.targetIndex >= 32768) {
+					var1 = Client.players[var0.targetIndex - 32768];
+				}
+
+				if (var1 != null) {
+					int var2 = var0.x - ((Actor)var1).x;
+					int var3 = var0.y - ((Actor)var1).y;
+					if (var2 != 0 || var3 != 0) {
+						var0.orientation = (int)(Math.atan2((double)var2, (double)var3) * 325.949D) & 2047;
+					}
+				} else if (var0.false0) {
+					var0.targetIndex = -1;
+					var0.false0 = false;
+				}
+			}
+
+			if (var0.field1003 != -1 && (var0.pathLength == 0 || var0.field978 > 0)) {
+				var0.orientation = var0.field1003;
+				var0.field1003 = -1;
+			}
+
+			int var4 = var0.orientation - var0.rotation & 2047;
+			if (var4 == 0 && var0.false0) {
+				var0.targetIndex = -1;
+				var0.false0 = false;
+			}
+
+			if (var4 != 0) {
+				++var0.field1027;
+				boolean var6;
+				if (var4 > 1024) {
+					var0.rotation -= var0.field1028;
+					var6 = true;
+					if (var4 < var0.field1028 || var4 > 2048 - var0.field1028) {
+						var0.rotation = var0.orientation;
+						var6 = false;
+					}
+
+					if (var0.readySequence == var0.movementSequence && (var0.field1027 > 25 || var6)) {
+						if (var0.turnLeftSequence != -1) {
+							var0.movementSequence = var0.turnLeftSequence;
+						} else {
+							var0.movementSequence = var0.walkSequence;
+						}
+					}
+				} else {
+					var0.rotation += var0.field1028;
+					var6 = true;
+					if (var4 < var0.field1028 || var4 > 2048 - var0.field1028) {
+						var0.rotation = var0.orientation;
+						var6 = false;
+					}
+
+					if (var0.readySequence == var0.movementSequence && (var0.field1027 > 25 || var6)) {
+						if (var0.turnRightSequence != -1) {
+							var0.movementSequence = var0.turnRightSequence;
+						} else {
+							var0.movementSequence = var0.walkSequence;
+						}
+					}
+				}
+
+				var0.rotation &= 2047;
+			} else {
+				var0.field1027 = 0;
+			}
+
 		}
 	}
 }

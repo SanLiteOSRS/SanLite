@@ -134,6 +134,28 @@ public interface MenuEntrySwapperConfig extends Config
 	}
 
 	@ConfigItem(
+		keyName = "swapHerbs",
+		name = "Clean",
+		description = "Swap Clean with Use on Herbs",
+		section = itemSection
+	)
+	default boolean swapHerbs()
+	{
+		return false;
+	}
+
+	@ConfigItem(
+			keyName = "swapPrayerBook",
+			name = "Recite-Prayer",
+			description = "Swap Read with Recite-prayer on the Prayer Book from The Great Brain Robbery quest",
+			section = itemSection
+	)
+	default boolean swapPrayerBook()
+	{
+		return false;
+	}
+
+	@ConfigItem(
 		keyName = "swapContract",
 		name = "Contract",
 		description = "Swap Talk-to with Contract on Guildmaster Jane",

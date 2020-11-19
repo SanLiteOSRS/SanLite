@@ -4,129 +4,129 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cp")
+@ObfuscatedName("cm")
 @Implements("Projectile")
 public final class Projectile extends Renderable {
-	@ObfuscatedName("z")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = -1675813545
+		intValue = 127950911
 	)
 	@Export("id")
 	int id;
-	@ObfuscatedName("k")
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = -1633530883
+		intValue = 1863046985
 	)
 	@Export("plane")
 	int plane;
-	@ObfuscatedName("s")
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = -1241662831
+		intValue = -1665161409
 	)
 	@Export("sourceX")
 	int sourceX;
-	@ObfuscatedName("t")
+	@ObfuscatedName("m")
 	@ObfuscatedGetter(
-		intValue = 674628417
+		intValue = -893343909
 	)
 	@Export("sourceY")
 	int sourceY;
-	@ObfuscatedName("i")
+	@ObfuscatedName("z")
 	@ObfuscatedGetter(
-		intValue = -1517344079
+		intValue = -263031347
 	)
 	@Export("sourceZ")
 	int sourceZ;
-	@ObfuscatedName("o")
+	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = -1565729659
+		intValue = -2028575857
 	)
 	@Export("endHeight")
 	int endHeight;
-	@ObfuscatedName("x")
+	@ObfuscatedName("k")
 	@ObfuscatedGetter(
-		intValue = 287551571
+		intValue = 982684035
 	)
 	@Export("cycleStart")
 	int cycleStart;
-	@ObfuscatedName("w")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = -23705649
+		intValue = 628428817
 	)
 	@Export("cycleEnd")
 	int cycleEnd;
-	@ObfuscatedName("g")
+	@ObfuscatedName("u")
 	@ObfuscatedGetter(
-		intValue = -1941838325
+		intValue = 941880901
 	)
 	@Export("slope")
 	int slope;
-	@ObfuscatedName("m")
+	@ObfuscatedName("t")
 	@ObfuscatedGetter(
-		intValue = -1921562263
+		intValue = 1476235573
 	)
 	@Export("startHeight")
 	int startHeight;
-	@ObfuscatedName("n")
+	@ObfuscatedName("e")
 	@ObfuscatedGetter(
-		intValue = 1380116723
+		intValue = -1149707689
 	)
 	@Export("targetIndex")
 	int targetIndex;
-	@ObfuscatedName("d")
+	@ObfuscatedName("o")
 	@Export("isMoving")
 	boolean isMoving;
-	@ObfuscatedName("h")
+	@ObfuscatedName("n")
 	@Export("x")
 	double x;
-	@ObfuscatedName("a")
+	@ObfuscatedName("x")
 	@Export("y")
 	double y;
-	@ObfuscatedName("q")
+	@ObfuscatedName("p")
 	@Export("z")
 	double z;
-	@ObfuscatedName("c")
+	@ObfuscatedName("r")
 	@Export("speedX")
 	double speedX;
-	@ObfuscatedName("f")
+	@ObfuscatedName("y")
 	@Export("speedY")
 	double speedY;
-	@ObfuscatedName("y")
+	@ObfuscatedName("s")
 	@Export("speed")
 	double speed;
-	@ObfuscatedName("v")
+	@ObfuscatedName("j")
 	@Export("speedZ")
 	double speedZ;
-	@ObfuscatedName("j")
+	@ObfuscatedName("w")
 	@Export("accelerationZ")
 	double accelerationZ;
-	@ObfuscatedName("r")
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = -2137407611
+		intValue = 424232085
 	)
 	@Export("yaw")
 	int yaw;
-	@ObfuscatedName("u")
+	@ObfuscatedName("d")
 	@ObfuscatedGetter(
-		intValue = -2024563433
+		intValue = -833335819
 	)
 	@Export("pitch")
 	int pitch;
-	@ObfuscatedName("p")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		signature = "Ljm;"
+		signature = "Ljg;"
 	)
 	@Export("sequenceDefinition")
 	SequenceDefinition sequenceDefinition;
-	@ObfuscatedName("b")
+	@ObfuscatedName("g")
 	@ObfuscatedGetter(
-		intValue = 1681921945
+		intValue = 795159959
 	)
 	@Export("frame")
 	int frame;
-	@ObfuscatedName("l")
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = 1329964451
+		intValue = 529023201
 	)
 	@Export("frameCycle")
 	int frameCycle;
@@ -147,19 +147,19 @@ public final class Projectile extends Renderable {
 		this.targetIndex = var10;
 		this.endHeight = var11;
 		this.isMoving = false;
-		int var12 = Tiles.SpotAnimationDefinition_get(this.id).sequence;
+		int var12 = HealthBarUpdate.SpotAnimationDefinition_get(this.id).sequence;
 		if (var12 != -1) {
-			this.sequenceDefinition = WorldMapRegion.SequenceDefinition_get(var12);
+			this.sequenceDefinition = class105.SequenceDefinition_get(var12);
 		} else {
 			this.sequenceDefinition = null;
 		}
 
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "(IIIIB)V",
-		garbageValue = "81"
+		signature = "(IIIII)V",
+		garbageValue = "-968797731"
 	)
 	@Export("setDestination")
 	final void setDestination(int var1, int var2, int var3, int var4) {
@@ -167,9 +167,9 @@ public final class Projectile extends Renderable {
 		if (!this.isMoving) {
 			var5 = (double)(var1 - this.sourceX);
 			double var7 = (double)(var2 - this.sourceY);
-			double var9 = Math.sqrt(var7 * var7 + var5 * var5);
-			this.x = (double)this.startHeight * var5 / var9 + (double)this.sourceX;
-			this.y = (double)this.sourceY + var7 * (double)this.startHeight / var9;
+			double var9 = Math.sqrt(var5 * var5 + var7 * var7);
+			this.x = (double)this.sourceX + (double)this.startHeight * var5 / var9;
+			this.y = (double)this.sourceY + (double)this.startHeight * var7 / var9;
 			this.z = (double)this.sourceZ;
 		}
 
@@ -181,20 +181,20 @@ public final class Projectile extends Renderable {
 			this.speedZ = -this.speed * Math.tan((double)this.slope * 0.02454369D);
 		}
 
-		this.accelerationZ = 2.0D * ((double)var3 - this.z - this.speedZ * var5) / (var5 * var5);
+		this.accelerationZ = ((double)var3 - this.z - var5 * this.speedZ) * 2.0D / (var5 * var5);
 	}
 
-	@ObfuscatedName("k")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		signature = "(IB)V",
-		garbageValue = "-28"
+		signature = "(II)V",
+		garbageValue = "-1771638026"
 	)
 	@Export("advance")
 	final void advance(int var1) {
 		this.isMoving = true;
-		this.x += this.speedX * (double)var1;
-		this.y += this.speedY * (double)var1;
-		this.z += (double)var1 * (double)var1 * 0.5D * this.accelerationZ + this.speedZ * (double)var1;
+		this.x += (double)var1 * this.speedX;
+		this.y += (double)var1 * this.speedY;
+		this.z += this.speedZ * (double)var1 + 0.5D * this.accelerationZ * (double)var1 * (double)var1;
 		this.speedZ += this.accelerationZ * (double)var1;
 		this.yaw = (int)(Math.atan2(this.speedX, this.speedY) * 325.949D) + 1024 & 2047;
 		this.pitch = (int)(Math.atan2(this.speedZ, this.speed) * 325.949D) & 2047;
@@ -220,14 +220,14 @@ public final class Projectile extends Renderable {
 		}
 	}
 
-	@ObfuscatedName("g")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "(I)Ler;",
-		garbageValue = "-2026237468"
+		signature = "(I)Leh;",
+		garbageValue = "-2070677844"
 	)
 	@Export("getModel")
 	protected final Model getModel() {
-		SpotAnimationDefinition var1 = Tiles.SpotAnimationDefinition_get(this.id);
+		SpotAnimationDefinition var1 = HealthBarUpdate.SpotAnimationDefinition_get(this.id);
 		Model var2 = var1.getModel(this.frame);
 		if (var2 == null) {
 			return null;
@@ -237,70 +237,194 @@ public final class Projectile extends Renderable {
 		}
 	}
 
-	@ObfuscatedName("jb")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "([Lhq;II)V",
-		garbageValue = "-823007916"
+		signature = "([Ljava/lang/String;[SIII)V",
+		garbageValue = "-809557598"
 	)
-	@Export("drawModelComponents")
-	static final void drawModelComponents(Widget[] var0, int var1) {
-		for (int var2 = 0; var2 < var0.length; ++var2) {
-			Widget var3 = var0[var2];
-			if (var3 != null && var3.parentId == var1 && (!var3.isIf3 || !GrandExchangeOfferUnitPriceComparator.isComponentHidden(var3))) {
-				if (var3.type == 0) {
-					if (!var3.isIf3 && GrandExchangeOfferUnitPriceComparator.isComponentHidden(var3) && var3 != TriBool.mousedOverWidgetIf1) {
-						continue;
-					}
+	@Export("sortItemsByName")
+	public static void sortItemsByName(String[] var0, short[] var1, int var2, int var3) {
+		if (var2 < var3) {
+			int var4 = (var3 + var2) / 2;
+			int var5 = var2;
+			String var6 = var0[var4];
+			var0[var4] = var0[var3];
+			var0[var3] = var6;
+			short var7 = var1[var4];
+			var1[var4] = var1[var3];
+			var1[var3] = var7;
 
-					drawModelComponents(var0, var3.id);
-					if (var3.children != null) {
-						drawModelComponents(var3.children, var3.id);
-					}
-
-					InterfaceParent var4 = (InterfaceParent)Client.interfaceParents.get((long)var3.id);
-					if (var4 != null) {
-						class58.method913(var4.group);
-					}
+			for (int var8 = var2; var8 < var3; ++var8) {
+				if (var6 == null || var0[var8] != null && var0[var8].compareTo(var6) < (var8 & 1)) {
+					String var9 = var0[var8];
+					var0[var8] = var0[var5];
+					var0[var5] = var9;
+					short var10 = var1[var8];
+					var1[var8] = var1[var5];
+					var1[var5++] = var10;
 				}
+			}
 
-				if (var3.type == 6) {
-					int var5;
-					if (var3.sequenceId != -1 || var3.sequenceId2 != -1) {
-						boolean var7 = MusicPatch.runCs1(var3);
-						if (var7) {
-							var5 = var3.sequenceId2;
-						} else {
-							var5 = var3.sequenceId;
-						}
+			var0[var3] = var0[var5];
+			var0[var5] = var6;
+			var1[var3] = var1[var5];
+			var1[var5] = var7;
+			sortItemsByName(var0, var1, var2, var5 - 1);
+			sortItemsByName(var0, var1, var5 + 1, var3);
+		}
 
-						if (var5 != -1) {
-							SequenceDefinition var6 = WorldMapRegion.SequenceDefinition_get(var5);
+	}
 
-							for (var3.modelFrameCycle += Client.field737; var3.modelFrameCycle > var6.frameLengths[var3.modelFrame]; class52.invalidateWidget(var3)) {
-								var3.modelFrameCycle -= var6.frameLengths[var3.modelFrame];
-								++var3.modelFrame;
-								if (var3.modelFrame >= var6.frameIds.length) {
-									var3.modelFrame -= var6.frameCount;
-									if (var3.modelFrame < 0 || var3.modelFrame >= var6.frameIds.length) {
-										var3.modelFrame = 0;
-									}
-								}
-							}
-						}
+	@ObfuscatedName("q")
+	@ObfuscatedSignature(
+		signature = "(I)V",
+		garbageValue = "1613642703"
+	)
+	public static void method2228() {
+		SpotAnimationDefinition.SpotAnimationDefinition_cached.clear();
+		SpotAnimationDefinition.SpotAnimationDefinition_cachedModels.clear();
+	}
+
+	@ObfuscatedName("ff")
+	@ObfuscatedSignature(
+		signature = "(IIB)V",
+		garbageValue = "-73"
+	)
+	@Export("playSoundJingle")
+	static void playSoundJingle(int var0, int var1) {
+		if (Client.musicVolume != 0 && var0 != -1) {
+			Canvas.method952(AbstractByteArrayCopier.archive11, var0, 0, Client.musicVolume, false);
+			Client.field916 = true;
+		}
+
+	}
+
+	@ObfuscatedName("ge")
+	@ObfuscatedSignature(
+		signature = "(I)V",
+		garbageValue = "-206735455"
+	)
+	static void method2226() {
+		if (Client.combatTargetPlayerIndex >= 0 && Client.players[Client.combatTargetPlayerIndex] != null) {
+			ArchiveLoader.addPlayerToScene(Client.players[Client.combatTargetPlayerIndex], false);
+		}
+
+	}
+
+	@ObfuscatedName("ga")
+	@ObfuscatedSignature(
+		signature = "(IIZI)V",
+		garbageValue = "506267788"
+	)
+	static final void method2223(int var0, int var1, boolean var2) {
+		if (!var2 || var0 != GrandExchangeEvent.field78 || AbstractWorldMapData.field198 != var1) {
+			GrandExchangeEvent.field78 = var0;
+			AbstractWorldMapData.field198 = var1;
+			BuddyRankComparator.updateGameState(25);
+			AbstractWorldMapData.drawLoadingMessage("Loading - please wait.", true);
+			int var3 = FloorDecoration.baseX * 64;
+			int var4 = WorldMapData_0.baseY * 64;
+			FloorDecoration.baseX = (var0 - 6) * 8;
+			WorldMapData_0.baseY = (var1 - 6) * 8;
+			int var5 = FloorDecoration.baseX * 64 - var3;
+			int var6 = WorldMapData_0.baseY * 64 - var4;
+			var3 = FloorDecoration.baseX * 64;
+			var4 = WorldMapData_0.baseY * 64;
+
+			int var7;
+			int var9;
+			int[] var10000;
+			for (var7 = 0; var7 < 32768; ++var7) {
+				NPC var8 = Client.npcs[var7];
+				if (var8 != null) {
+					for (var9 = 0; var9 < 10; ++var9) {
+						var10000 = var8.pathX;
+						var10000[var9] -= var5;
+						var10000 = var8.pathY;
+						var10000[var9] -= var6;
 					}
 
-					if (var3.field2633 != 0 && !var3.isIf3) {
-						int var8 = var3.field2633 >> 16;
-						var5 = var3.field2633 << 16 >> 16;
-						var8 *= Client.field737;
-						var5 *= Client.field737;
-						var3.modelAngleX = var8 + var3.modelAngleX & 2047;
-						var3.modelAngleY = var5 + var3.modelAngleY & 2047;
-						class52.invalidateWidget(var3);
+					var8.x -= var5 * 128;
+					var8.y -= var6 * 128;
+				}
+			}
+
+			for (var7 = 0; var7 < 2048; ++var7) {
+				Player var21 = Client.players[var7];
+				if (var21 != null) {
+					for (var9 = 0; var9 < 10; ++var9) {
+						var10000 = var21.pathX;
+						var10000[var9] -= var5;
+						var10000 = var21.pathY;
+						var10000[var9] -= var6;
+					}
+
+					var21.x -= var5 * 128;
+					var21.y -= var6 * 128;
+				}
+			}
+
+			byte var20 = 0;
+			byte var18 = 104;
+			byte var22 = 1;
+			if (var5 < 0) {
+				var20 = 103;
+				var18 = -1;
+				var22 = -1;
+			}
+
+			byte var10 = 0;
+			byte var11 = 104;
+			byte var12 = 1;
+			if (var6 < 0) {
+				var10 = 103;
+				var11 = -1;
+				var12 = -1;
+			}
+
+			int var14;
+			for (int var13 = var20; var13 != var18; var13 += var22) {
+				for (var14 = var10; var14 != var11; var14 += var12) {
+					int var15 = var13 + var5;
+					int var16 = var14 + var6;
+
+					for (int var17 = 0; var17 < 4; ++var17) {
+						if (var15 >= 0 && var16 >= 0 && var15 < 104 && var16 < 104) {
+							Client.groundItems[var17][var13][var14] = Client.groundItems[var17][var15][var16];
+						} else {
+							Client.groundItems[var17][var13][var14] = null;
+						}
 					}
 				}
 			}
-		}
 
+			for (PendingSpawn var19 = (PendingSpawn)Client.pendingSpawns.last(); var19 != null; var19 = (PendingSpawn)Client.pendingSpawns.previous()) {
+				var19.x -= var5;
+				var19.y -= var6;
+				if (var19.x < 0 || var19.y < 0 || var19.x >= 104 || var19.y >= 104) {
+					var19.remove();
+				}
+			}
+
+			if (Client.destinationX != 0) {
+				Client.destinationX -= var5;
+				Client.destinationY -= var6;
+			}
+
+			Client.soundEffectCount = 0;
+			Client.isCameraLocked = false;
+			ItemContainer.cameraX -= var5 << 7;
+			WorldMapManager.cameraZ -= var6 << 7;
+			TileItem.oculusOrbFocalPointX -= var5 << 7;
+			Interpreter.oculusOrbFocalPointY -= var6 << 7;
+			Client.field906 = -1;
+			Client.graphicsObjects.clear();
+			Client.projectiles.clear();
+
+			for (var14 = 0; var14 < 4; ++var14) {
+				Client.collisionMaps[var14].clear();
+			}
+
+		}
 	}
 }

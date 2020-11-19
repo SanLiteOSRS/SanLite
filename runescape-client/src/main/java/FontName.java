@@ -4,64 +4,63 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("kz")
+@ObfuscatedName("ko")
 @Implements("FontName")
 public class FontName {
-	@ObfuscatedName("z")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "Lkz;"
+		signature = "Lko;"
 	)
 	@Export("FontName_plain11")
 	public static final FontName FontName_plain11;
-	@ObfuscatedName("k")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		signature = "Lkz;"
+		signature = "Lko;"
 	)
 	@Export("FontName_plain12")
 	public static final FontName FontName_plain12;
-	@ObfuscatedName("s")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		signature = "Lkz;"
+		signature = "Lko;"
 	)
 	@Export("FontName_bold12")
 	public static final FontName FontName_bold12;
-	@ObfuscatedName("t")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		signature = "Lkz;"
+		signature = "Lko;"
 	)
 	@Export("FontName_verdana11")
 	public static final FontName FontName_verdana11;
-	@ObfuscatedName("i")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "Lkz;"
+		signature = "Lko;"
 	)
 	@Export("FontName_verdana13")
 	public static final FontName FontName_verdana13;
-	@ObfuscatedName("o")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		signature = "Lkz;"
+		signature = "Lko;"
 	)
 	@Export("FontName_verdana15")
 	public static final FontName FontName_verdana15;
-	@ObfuscatedName("v")
+	@ObfuscatedName("u")
 	@ObfuscatedGetter(
-		intValue = 334630663
+		intValue = 218864089
 	)
-	@Export("clientTickTimeIdx")
-	static int clientTickTimeIdx;
-	@ObfuscatedName("eo")
+	public static int field3694;
+	@ObfuscatedName("bo")
 	@ObfuscatedSignature(
-		signature = "Liw;"
+		signature = "Lgb;"
 	)
-	@Export("archive20")
-	static Archive archive20;
-	@ObfuscatedName("gg")
+	@Export("clientLanguage")
+	static Language clientLanguage;
+	@ObfuscatedName("ew")
 	@ObfuscatedSignature(
-		signature = "Llp;"
+		signature = "Llo;"
 	)
-	@Export("redHintArrowSprite")
-	static SpritePixels redHintArrowSprite;
-	@ObfuscatedName("x")
+	@Export("spriteIds")
+	static GraphicsDefaults spriteIds;
+	@ObfuscatedName("k")
 	@Export("name")
 	String name;
 
@@ -78,56 +77,104 @@ public class FontName {
 		this.name = var1;
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "(I)[Lkz;",
-		garbageValue = "1417653903"
+		signature = "(B)[Lko;",
+		garbageValue = "-98"
 	)
-	public static FontName[] method5439() {
-		return new FontName[]{FontName_verdana13, FontName_verdana15, FontName_verdana11, FontName_plain12, FontName_plain11, FontName_bold12};
+	public static FontName[] method5456() {
+		return new FontName[]{FontName_bold12, FontName_plain11, FontName_verdana11, FontName_verdana13, FontName_plain12, FontName_verdana15};
 	}
 
-	@ObfuscatedName("t")
-	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;II)Z",
-		garbageValue = "-1097380872"
-	)
-	static boolean method5444(String var0, int var1) {
-		return WorldMapIcon_1.method380(var0, var1, "openjs");
-	}
-
-	@ObfuscatedName("a")
-	@ObfuscatedSignature(
-		signature = "(Ljava/lang/CharSequence;I)Ljava/lang/String;",
-		garbageValue = "1161805725"
-	)
-	public static String method5445(CharSequence var0) {
-		return ScriptEvent.method1236('*', var0.length());
-	}
-
-	@ObfuscatedName("fo")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
 		signature = "(II)V",
-		garbageValue = "1773491987"
+		garbageValue = "-1218729276"
 	)
-	@Export("setWindowedMode")
-	static void setWindowedMode(int var0) {
-		Client.field890 = 0L;
-		if (var0 >= 2) {
-			Client.isResizable = true;
+	public static void method5459(int var0) {
+		if (class206.musicPlayerStatus != 0) {
+			class206.musicTrackVolume = var0;
 		} else {
-			Client.isResizable = false;
+			class13.midiPcmStream.setPcmStreamVolume(var0);
 		}
 
-		if (class39.getWindowedMode() == 1) {
-			class2.client.setMaxCanvasSize(765, 503);
-		} else {
-			class2.client.setMaxCanvasSize(7680, 2160);
+	}
+
+	@ObfuscatedName("ai")
+	@ObfuscatedSignature(
+		signature = "(II)I",
+		garbageValue = "13921338"
+	)
+	static int method5455(int var0) {
+		return (int)Math.pow(2.0D, (double)((float)var0 / 256.0F + 7.0F));
+	}
+
+	@ObfuscatedName("hc")
+	@ObfuscatedSignature(
+		signature = "(ILjava/lang/String;B)V",
+		garbageValue = "18"
+	)
+	static void method5458(int var0, String var1) {
+		int var2 = Players.Players_count;
+		int[] var3 = Players.Players_indices;
+		boolean var4 = false;
+		Username var5 = new Username(var1, UserComparator4.loginType);
+
+		for (int var6 = 0; var6 < var2; ++var6) {
+			Player var7 = Client.players[var3[var6]];
+			if (var7 != null && var7 != PlayerType.localPlayer && var7.username != null && var7.username.equals(var5)) {
+				PacketBufferNode var8;
+				if (var0 == 1) {
+					var8 = class4.getPacketBufferNode(ClientPacket.field2239, Client.packetWriter.isaacCipher);
+					var8.packetBuffer.writeByte(0);
+					var8.packetBuffer.method5673(var3[var6]);
+					Client.packetWriter.addNode(var8);
+				} else if (var0 == 4) {
+					var8 = class4.getPacketBufferNode(ClientPacket.field2281, Client.packetWriter.isaacCipher);
+					var8.packetBuffer.writeShort(var3[var6]);
+					var8.packetBuffer.writeByte(0);
+					Client.packetWriter.addNode(var8);
+				} else if (var0 == 6) {
+					var8 = class4.getPacketBufferNode(ClientPacket.field2323, Client.packetWriter.isaacCipher);
+					var8.packetBuffer.writeShort(var3[var6]);
+					var8.packetBuffer.method5663(0);
+					Client.packetWriter.addNode(var8);
+				} else if (var0 == 7) {
+					var8 = class4.getPacketBufferNode(ClientPacket.field2324, Client.packetWriter.isaacCipher);
+					var8.packetBuffer.method5674(var3[var6]);
+					var8.packetBuffer.method5663(0);
+					Client.packetWriter.addNode(var8);
+				}
+
+				var4 = true;
+				break;
+			}
 		}
 
-		if (Client.gameState >= 25) {
-			GrandExchangeEvent.method160();
+		if (!var4) {
+			DevicePcmPlayerProvider.addGameMessage(4, "", "Unable to find " + var1);
 		}
 
+	}
+
+	@ObfuscatedName("js")
+	@ObfuscatedSignature(
+		signature = "(IB)V",
+		garbageValue = "67"
+	)
+	@Export("Widget_resetModelFrames")
+	static final void Widget_resetModelFrames(int var0) {
+		if (ScriptFrame.loadInterface(var0)) {
+			Widget[] var1 = Widget.Widget_interfaceComponents[var0];
+
+			for (int var2 = 0; var2 < var1.length; ++var2) {
+				Widget var3 = var1[var2];
+				if (var3 != null) {
+					var3.modelFrame = 0;
+					var3.modelFrameCycle = 0;
+				}
+			}
+
+		}
 	}
 }

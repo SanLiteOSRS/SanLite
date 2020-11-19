@@ -114,15 +114,14 @@ public class TimersPlugin extends Plugin
 	private static final String PRAYER_ENHANCE_EXPIRED = "<col=ff0000>Your prayer enhance effect has worn off.</col>";
 	private static final String ENDURANCE_EFFECT_MESSAGE = "Your Ring of endurance doubles the duration of your stamina potion's effect.";
 
-	private static final Pattern DEADMAN_HALF_TELEBLOCK_PATTERN = Pattern.compile("A Tele Block spell has been cast on you by (.+)\\. It will expire in 1 minute, 15 seconds\\.</col>");
-	private static final Pattern FULL_TELEBLOCK_PATTERN = Pattern.compile("A Tele Block spell has been cast on you by (.+)\\. It will expire in 5 minutes\\.</col>");
-	private static final Pattern HALF_TELEBLOCK_PATTERN = Pattern.compile("A Tele Block spell has been cast on you by (.+)\\. It will expire in 2 minutes, 30 seconds\\.</col>");
+	private static final Pattern TELEBLOCK_PATTERN = Pattern.compile("A Tele Block spell has been cast on you(?: by .+)?\\. It will expire in (?<mins>\\d+) minutes?(?:, (?<secs>\\d+) seconds?)?\\.");
 	private static final Pattern DIVINE_POTION_PATTERN = Pattern.compile("You drink some of your divine (.+) potion\\.");
 	private static final int VENOM_VALUE_CUTOFF = -40; // Antivenom < -40 <= Antipoison < 0
 	private static final int POISON_TICK_LENGTH = 30;
 
-	private static final int FIGHT_CAVES_REGION_ID = 9551;
-	private static final int INFERNO_REGION_ID = 9043;
+	static final int FIGHT_CAVES_REGION_ID = 9551;
+	static final int INFERNO_REGION_ID = 9043;
+	private static final int NMZ_MAP_REGION_ID = 9033;
 	private static final Pattern TZHAAR_WAVE_MESSAGE = Pattern.compile("Wave: (\\d+)");
 	private static final String TZHAAR_DEFEATED_MESSAGE = "You have been defeated!";
 	private static final Pattern TZHAAR_COMPLETE_MESSAGE = Pattern.compile("Your (TzTok-Jad|TzKal-Zuk) kill count is:");
@@ -237,7 +236,7 @@ public class TimersPlugin extends Plugin
 				&& inWilderness == 0)
 			{
 				log.debug("Left wilderness in non-PVP world, clearing Teleblock timer.");
-				removeTbTimers();
+				removeGameTimer(TELEBLOCK);
 			}
 
 			lastWildernessVarb = inWilderness;
@@ -364,7 +363,7 @@ public class TimersPlugin extends Plugin
 
 		if (!config.showTeleblock())
 		{
-			removeTbTimers();
+			removeGameTimer(TELEBLOCK);
 		}
 
 		if (!config.showFreezes())
@@ -520,7 +519,8 @@ public class TimersPlugin extends Plugin
 
 		if (config.showCannon() && (event.getMessage().equals(CANNON_FURNACE_MESSAGE) || event.getMessage().contains(CANNON_REPAIR_MESSAGE)))
 		{
-			createGameTimer(CANNON);
+			TimerTimer cannonTimer = createGameTimer(CANNON);
+			cannonTimer.setTooltip(cannonTimer.getTooltip() + " - World " + client.getWorld());
 		}
 
 		if (config.showCannon() && event.getMessage().equals(CANNON_PICKUP_MESSAGE))
@@ -540,28 +540,18 @@ public class TimersPlugin extends Plugin
 
 		if (config.showTeleblock())
 		{
-			if (FULL_TELEBLOCK_PATTERN.matcher(event.getMessage()).find())
+			Matcher m = TELEBLOCK_PATTERN.matcher(event.getMessage());
+			if (m.find())
 			{
-				createGameTimer(FULLTB);
-			}
-			else if (HALF_TELEBLOCK_PATTERN.matcher(event.getMessage()).find())
-			{
-				if (client.getWorldType().contains(WorldType.DEADMAN))
-				{
-					createGameTimer(DMM_FULLTB);
-				}
-				else
-				{
-					createGameTimer(HALFTB);
-				}
-			}
-			else if (DEADMAN_HALF_TELEBLOCK_PATTERN.matcher(event.getMessage()).find())
-			{
-				createGameTimer(DMM_HALFTB);
+				String minss = m.group("mins");
+				String secss = m.group("secs");
+				int mins = Integer.parseInt(minss);
+				int secs = secss != null ? Integer.parseInt(secss) : 0;
+				createGameTimer(TELEBLOCK, Duration.ofSeconds(mins * 60 + secs));
 			}
 			else if (event.getMessage().contains(KILLED_TELEBLOCK_OPPONENT_TEXT))
 			{
-				removeTbTimers();
+				removeGameTimer(TELEBLOCK);
 			}
 		}
 
@@ -691,7 +681,16 @@ public class TimersPlugin extends Plugin
 				int wave = Integer.parseInt(matcher.group(1));
 				if (wave == 1)
 				{
-					config.tzhaarStartTime(now);
+					if (isInInferno())
+					{
+						// The first wave message of the inferno comes six seconds after the ingame timer starts counting
+						config.tzhaarStartTime(now.minus(Duration.ofSeconds(6)));
+					}
+					else
+					{
+						config.tzhaarStartTime(now);
+					}
+
 					createTzhaarTimer();
 				}
 			}
@@ -718,6 +717,11 @@ public class TimersPlugin extends Plugin
 	private boolean isInInferno()
 	{
 		return client.getMapRegions() != null && ArrayUtils.contains(client.getMapRegions(), INFERNO_REGION_ID);
+	}
+
+	private boolean isInNightmareZone()
+	{
+		return client.getLocalPlayer() != null && client.getLocalPlayer().getWorldLocation().getPlane() > 0 && ArrayUtils.contains(client.getMapRegions(), NMZ_MAP_REGION_ID);
 	}
 
 	private void createTzhaarTimer()
@@ -775,7 +779,7 @@ public class TimersPlugin extends Plugin
 		if (widget != null && !widget.isSelfHidden())
 		{
 			log.debug("Entered safe zone in PVP world, clearing Teleblock timer.");
-			removeTbTimers();
+			removeGameTimer(TELEBLOCK);
 		}
 	}
 
@@ -785,6 +789,11 @@ public class TimersPlugin extends Plugin
 		switch (gameStateChanged.getGameState())
 		{
 			case LOADING:
+				if (!isInNightmareZone())
+				{
+					removeGameTimer(OVERLOAD);
+				}
+
 				if (tzhaarTimer != null && !isInFightCaves() && !isInInferno())
 				{
 					removeTzhaarTimer();
@@ -802,7 +811,7 @@ public class TimersPlugin extends Plugin
 				}
 
 				removeTzhaarTimer(); // will be readded by the wave message
-				removeTbTimers();
+				removeGameTimer(TELEBLOCK);
 				break;
 			case LOGGED_IN:
 				loggedInRace = true;
@@ -823,7 +832,7 @@ public class TimersPlugin extends Plugin
 			switch (npcId)
 			{
 				// Show the countdown when the Sire enters the stunned state.
-				case NpcID.ABYSSAL_SIRE_5887:
+				case NpcID.ABYSSAL_SIRE_5888:
 					createGameTimer(ABYSSAL_SIRE_STUN);
 					break;
 
@@ -831,7 +840,7 @@ public class TimersPlugin extends Plugin
 				// This is necessary because the Sire leaves the stunned
 				// state early once all all four respiratory systems are killed.
 				case NpcID.ABYSSAL_SIRE:
-				case NpcID.ABYSSAL_SIRE_5888:
+				case NpcID.ABYSSAL_SIRE_5887:
 				case NpcID.ABYSSAL_SIRE_5889:
 				case NpcID.ABYSSAL_SIRE_5890:
 				case NpcID.ABYSSAL_SIRE_5891:
@@ -847,9 +856,10 @@ public class TimersPlugin extends Plugin
 		}
 
 		if (config.showHomeMinigameTeleports()
-			&& client.getLocalPlayer().getAnimation() == AnimationID.IDLE
-			&& (lastAnimation == AnimationID.BOOK_HOME_TELEPORT_5
-			|| lastAnimation == AnimationID.COW_HOME_TELEPORT_6))
+				&& client.getLocalPlayer().getAnimation() == AnimationID.IDLE
+				&& (lastAnimation == AnimationID.BOOK_HOME_TELEPORT_5
+				|| lastAnimation == AnimationID.COW_HOME_TELEPORT_6
+				|| lastAnimation == AnimationID.LEAGUE_HOME_TELEPORT_6))
 		{
 			if (lastTeleportClicked == TeleportWidget.HOME_TELEPORT)
 			{
@@ -1063,13 +1073,5 @@ public class TimersPlugin extends Plugin
 	private void removeGameIndicator(GameIndicator indicator)
 	{
 		infoBoxManager.removeIf(t -> t instanceof IndicatorIndicator && ((IndicatorIndicator) t).getIndicator() == indicator);
-	}
-
-	private void removeTbTimers()
-	{
-		removeGameTimer(FULLTB);
-		removeGameTimer(HALFTB);
-		removeGameTimer(DMM_FULLTB);
-		removeGameTimer(DMM_HALFTB);
 	}
 }

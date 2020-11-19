@@ -4,30 +4,30 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gk")
+@ObfuscatedName("gm")
 @Implements("RouteStrategy")
 public abstract class RouteStrategy {
-	@ObfuscatedName("z")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = 1047579843
+		intValue = 963104289
 	)
 	@Export("approxDestinationX")
 	public int approxDestinationX;
-	@ObfuscatedName("k")
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = -1846311175
+		intValue = 1923677397
 	)
 	@Export("approxDestinationY")
 	public int approxDestinationY;
-	@ObfuscatedName("s")
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = -1025962081
+		intValue = 1292742065
 	)
 	@Export("approxDestinationSizeX")
 	public int approxDestinationSizeX;
-	@ObfuscatedName("t")
+	@ObfuscatedName("m")
 	@ObfuscatedGetter(
-		intValue = -881860999
+		intValue = -1447501741
 	)
 	@Export("approxDestinationSizeY")
 	public int approxDestinationSizeY;
@@ -35,65 +35,11 @@ public abstract class RouteStrategy {
 	protected RouteStrategy() {
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "(IIILft;I)Z",
-		garbageValue = "-1274441547"
+		signature = "(IIILfh;I)Z",
+		garbageValue = "-1510519179"
 	)
 	@Export("hasArrived")
 	protected abstract boolean hasArrived(int var1, int var2, int var3, CollisionMap var4);
-
-	@ObfuscatedName("i")
-	@ObfuscatedSignature(
-		signature = "(Lic;Lic;III)Lkr;",
-		garbageValue = "87805054"
-	)
-	public static Font method3688(AbstractArchive var0, AbstractArchive var1, int var2, int var3) {
-		byte[] var5 = var0.takeFile(var2, var3);
-		boolean var4;
-		if (var5 == null) {
-			var4 = false;
-		} else {
-			Occluder.SpriteBuffer_decode(var5);
-			var4 = true;
-		}
-
-		if (!var4) {
-			return null;
-		} else {
-			byte[] var6 = var1.takeFile(var2, var3);
-			Font var8;
-			if (var6 == null) {
-				var8 = null;
-			} else {
-				Font var7 = new Font(var6, Username.SpriteBuffer_xOffsets, class335.SpriteBuffer_yOffsets, class335.SpriteBuffer_spriteWidths, class335.SpriteBuffer_spriteHeights, TaskHandler.SpriteBuffer_spritePalette, class92.SpriteBuffer_pixels);
-				Username.SpriteBuffer_xOffsets = null;
-				class335.SpriteBuffer_yOffsets = null;
-				class335.SpriteBuffer_spriteWidths = null;
-				class335.SpriteBuffer_spriteHeights = null;
-				TaskHandler.SpriteBuffer_spritePalette = null;
-				class92.SpriteBuffer_pixels = null;
-				var8 = var7;
-			}
-
-			return var8;
-		}
-	}
-
-	@ObfuscatedName("fv")
-	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "1480468521"
-	)
-	@Export("playPcmPlayers")
-	static final void playPcmPlayers() {
-		if (IntHashTable.pcmPlayer1 != null) {
-			IntHashTable.pcmPlayer1.run();
-		}
-
-		if (WorldMapManager.pcmPlayer0 != null) {
-			WorldMapManager.pcmPlayer0.run();
-		}
-
-	}
 }

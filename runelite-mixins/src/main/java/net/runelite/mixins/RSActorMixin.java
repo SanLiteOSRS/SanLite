@@ -54,6 +54,9 @@ public abstract class RSActorMixin implements RSActor
 	private static RSClient client;
 
 	@Inject
+	private boolean dead;
+
+	@Inject
 	@Override
 	public Actor getInteracting()
 	{
@@ -237,11 +240,7 @@ public abstract class RSActorMixin implements RSActor
 		if (healthRatio == 0)
 		{
 			final ActorDeath event = new ActorDeath(this);
-			if (this instanceof RSNPC)
-			{
-				((RSNPC) this).setDead(true);
-			}
-
+			this.setDead(true);
 			client.getCallbacks().post(event);
 		}
 	}
@@ -267,5 +266,18 @@ public abstract class RSActorMixin implements RSActor
 		event.setActor(this);
 		event.setHitsplat(hitsplat);
 		client.getCallbacks().post(event);
+	}
+
+	@Inject
+	@Override
+	public boolean isDead()
+	{
+		return dead;
+	}
+
+	@Inject
+	public void setDead(boolean dead)
+	{
+		this.dead = dead;
 	}
 }

@@ -1,18 +1,18 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fv")
+@ObfuscatedName("fo")
 @Implements("UserComparator9")
 public class UserComparator9 extends AbstractUserComparator {
-	@ObfuscatedName("rn")
-	@ObfuscatedGetter(
-		intValue = 1726851723
+	@ObfuscatedName("k")
+	@ObfuscatedSignature(
+		signature = "Liw;"
 	)
-	static int field2013;
-	@ObfuscatedName("z")
+	@Export("ItemDefinition_modelArchive")
+	public static AbstractArchive ItemDefinition_modelArchive;
+	@ObfuscatedName("f")
 	@Export("reversed")
 	final boolean reversed;
 
@@ -20,10 +20,10 @@ public class UserComparator9 extends AbstractUserComparator {
 		this.reversed = var1;
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "(Lko;Lko;B)I",
-		garbageValue = "6"
+		signature = "(Lkl;Lkl;I)I",
+		garbageValue = "-1791270735"
 	)
 	@Export("compareBuddy")
 	int compareBuddy(Buddy var1, Buddy var2) {
@@ -38,34 +38,43 @@ public class UserComparator9 extends AbstractUserComparator {
 		return this.compareBuddy((Buddy)var1, (Buddy)var2);
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		signature = "(Lic;Lic;ZLkr;I)V",
-		garbageValue = "-766510730"
+		signature = "(Lkb;IB)V",
+		garbageValue = "39"
 	)
-	public static void method3487(AbstractArchive var0, AbstractArchive var1, boolean var2, Font var3) {
-		class231.ItemDefinition_archive = var0;
-		ItemComposition.ItemDefinition_modelArchive = var1;
-		ItemComposition.ItemDefinition_inMembersWorld = var2;
-		class227.ItemDefinition_fileCount = class231.ItemDefinition_archive.getGroupFileCount(10);
-		ScriptEvent.ItemDefinition_fontPlain11 = var3;
+	public static void method3513(Buffer var0, int var1) {
+		if (JagexCache.JagexCache_randomDat != null) {
+			try {
+				JagexCache.JagexCache_randomDat.seek(0L);
+				JagexCache.JagexCache_randomDat.write(var0.array, var1, 24);
+			} catch (Exception var3) {
+			}
+		}
+
 	}
 
-	@ObfuscatedName("o")
-	@Export("Entity_unpackID")
-	public static int Entity_unpackID(long var0) {
-		return (int)(var0 >>> 17 & 4294967295L);
-	}
-
-	@ObfuscatedName("d")
+	@ObfuscatedName("ib")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;I)V",
-		garbageValue = "-773772836"
+		signature = "([Lht;Lht;ZI)V",
+		garbageValue = "137772189"
 	)
-	static final void method3492(String var0) {
-		PacketBufferNode var1 = Client.getPacketBufferNode(ClientPacket.field2315, Client.packetWriter.isaacCipher);
-		var1.packetBuffer.writeByte(Decimator.stringCp1252NullTerminatedByteSize(var0));
-		var1.packetBuffer.writeStringCp1252NullTerminated(var0);
-		Client.packetWriter.addNode(var1);
+	@Export("revalidateWidgetScroll")
+	static void revalidateWidgetScroll(Widget[] var0, Widget var1, boolean var2) {
+		int var3 = var1.scrollWidth != 0 ? var1.scrollWidth : var1.width;
+		int var4 = var1.scrollHeight != 0 ? var1.scrollHeight : var1.height;
+		SecureRandomFuture.resizeInterface(var0, var1.id, var3, var4, var2);
+		if (var1.children != null) {
+			SecureRandomFuture.resizeInterface(var1.children, var1.id, var3, var4, var2);
+		}
+
+		InterfaceParent var5 = (InterfaceParent)Client.interfaceParents.get((long)var1.id);
+		if (var5 != null) {
+			Fonts.method5463(var5.group, var3, var4, var2);
+		}
+
+		if (var1.contentType == 1337) {
+		}
+
 	}
 }

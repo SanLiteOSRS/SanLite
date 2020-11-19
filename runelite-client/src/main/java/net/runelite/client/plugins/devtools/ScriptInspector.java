@@ -92,8 +92,8 @@ public class ScriptInspector extends JFrame
 	private int lastTick;
 	private Set<Integer> blacklist;
 	private Set<Integer> highlights;
-	private JList jList;
-	private DefaultListModel listModel;
+	private final JList jList;
+	private final DefaultListModel listModel;
 	private ListState state = ListState.BLACKLIST;
 
 	private enum ListState
@@ -403,7 +403,7 @@ public class ScriptInspector extends JFrame
 			tracker.add(tree);
 
 			// Cull very old stuff
-			for (; tracker.getComponentCount() > MAX_LOG_ENTRIES; )
+			while (tracker.getComponentCount() > MAX_LOG_ENTRIES)
 			{
 				tracker.remove(0);
 			}

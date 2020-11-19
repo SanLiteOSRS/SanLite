@@ -168,7 +168,7 @@ public class FarmingTabPanel extends TabContentPanel
 						}
 						else
 						{
-							panel.getEstimate().setText("Done " + getFormattedEstimate(prediction.getDoneEstimate() - unixNow, config.estimateRelative()));
+							panel.getEstimate().setText("Done " + getFormattedEstimate(prediction.getDoneEstimate() - unixNow, config.timeFormatMode()));
 						}
 						break;
 					case DISEASED:
@@ -176,6 +176,12 @@ public class FarmingTabPanel extends TabContentPanel
 						break;
 					case DEAD:
 						panel.getEstimate().setText("Dead");
+						break;
+					case EMPTY:
+						panel.getEstimate().setText("Empty");
+						break;
+					case FILLING:
+						panel.getEstimate().setText("Filling");
 						break;
 				}
 

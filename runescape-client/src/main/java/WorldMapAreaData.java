@@ -1,44 +1,39 @@
-import java.awt.Component;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import netscape.javascript.JSObject;
 
 @ObfuscatedName("aj")
 @Implements("WorldMapAreaData")
 public class WorldMapAreaData extends WorldMapArea {
-	@ObfuscatedName("bi")
+	@ObfuscatedName("fl")
 	@ObfuscatedSignature(
-		signature = "Lmu;"
+		signature = "Lkn;"
 	)
-	@Export("loginType")
-	static LoginType loginType;
-	@ObfuscatedName("ey")
-	@ObfuscatedGetter(
-		intValue = -243088695
-	)
-	static int field352;
-	@ObfuscatedName("h")
+	@Export("WorldMapElement_fonts")
+	static Fonts WorldMapElement_fonts;
+	@ObfuscatedName("n")
 	@Export("worldMapData0Set")
 	HashSet worldMapData0Set;
-	@ObfuscatedName("a")
+	@ObfuscatedName("x")
 	@Export("worldMapData1Set")
 	HashSet worldMapData1Set;
-	@ObfuscatedName("q")
+	@ObfuscatedName("p")
 	@Export("iconList")
 	List iconList;
 
 	WorldMapAreaData() {
 	}
 
-	@ObfuscatedName("ce")
+	@ObfuscatedName("cp")
 	@ObfuscatedSignature(
-		signature = "(Lkf;Lkf;IZB)V",
-		garbageValue = "1"
+		signature = "(Lkb;Lkb;IZI)V",
+		garbageValue = "-1456851235"
 	)
 	@Export("init")
 	void init(Buffer var1, Buffer var2, int var3, boolean var4) {
@@ -77,10 +72,10 @@ public class WorldMapAreaData extends WorldMapArea {
 		this.initIconsList(var2, var4);
 	}
 
-	@ObfuscatedName("cr")
+	@ObfuscatedName("cc")
 	@ObfuscatedSignature(
-		signature = "(Lkf;ZS)V",
-		garbageValue = "8691"
+		signature = "(Lkb;ZI)V",
+		garbageValue = "1993639768"
 	)
 	@Export("initIconsList")
 	void initIconsList(Buffer var1, boolean var2) {
@@ -88,7 +83,7 @@ public class WorldMapAreaData extends WorldMapArea {
 		int var3 = var1.readUnsignedShort();
 
 		for (int var4 = 0; var4 < var3; ++var4) {
-			int var5 = var1.method5634();
+			int var5 = var1.method5851();
 			Coord var6 = new Coord(var1.readInt());
 			boolean var7 = var1.readUnsignedByte() == 1;
 			if (var2 || !var7) {
@@ -98,297 +93,86 @@ public class WorldMapAreaData extends WorldMapArea {
 
 	}
 
-	@ObfuscatedName("k")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "(Ljava/awt/Component;I)V",
-		garbageValue = "-681398425"
+		signature = "(Liw;I)V",
+		garbageValue = "1786307313"
 	)
-	static void method751(Component var0) {
-		var0.removeMouseListener(MouseHandler.MouseHandler_instance);
-		var0.removeMouseMotionListener(MouseHandler.MouseHandler_instance);
-		var0.removeFocusListener(MouseHandler.MouseHandler_instance);
-		MouseHandler.MouseHandler_currentButtonVolatile = 0;
+	public static void method791(AbstractArchive var0) {
+		StructDefinition.StructDefinition_archive = var0;
 	}
 
-	@ObfuscatedName("k")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		signature = "(II)Ljava/lang/String;",
-		garbageValue = "638484007"
+		signature = "(Liw;II)Z",
+		garbageValue = "1365673620"
 	)
-	@Export("colorStartTag")
-	static String colorStartTag(int var0) {
-		return "<col=" + Integer.toHexString(var0) + ">";
-	}
-
-	@ObfuscatedName("fr")
-	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-1355090288"
-	)
-	static final void method752() {
-		int var0;
-		int var1;
-		int var2;
-		int var3;
-		int var4;
-		int var5;
-		if (Client.oculusOrbState == 0) {
-			var0 = WorldMapLabelSize.localPlayer.x;
-			var1 = WorldMapLabelSize.localPlayer.y;
-			if (GrandExchangeOfferWorldComparator.oculusOrbFocalPointX - var0 < -500 || GrandExchangeOfferWorldComparator.oculusOrbFocalPointX - var0 > 500 || MouseHandler.oculusOrbFocalPointY - var1 < -500 || MouseHandler.oculusOrbFocalPointY - var1 > 500) {
-				GrandExchangeOfferWorldComparator.oculusOrbFocalPointX = var0;
-				MouseHandler.oculusOrbFocalPointY = var1;
-			}
-
-			if (var0 != GrandExchangeOfferWorldComparator.oculusOrbFocalPointX) {
-				GrandExchangeOfferWorldComparator.oculusOrbFocalPointX += (var0 - GrandExchangeOfferWorldComparator.oculusOrbFocalPointX) / 16;
-			}
-
-			if (var1 != MouseHandler.oculusOrbFocalPointY) {
-				MouseHandler.oculusOrbFocalPointY += (var1 - MouseHandler.oculusOrbFocalPointY) / 16;
-			}
-
-			var2 = GrandExchangeOfferWorldComparator.oculusOrbFocalPointX >> 7;
-			var3 = MouseHandler.oculusOrbFocalPointY >> 7;
-			var4 = ArchiveLoader.getTileHeight(GrandExchangeOfferWorldComparator.oculusOrbFocalPointX, MouseHandler.oculusOrbFocalPointY, Huffman.Client_plane);
-			var5 = 0;
-			int var6;
-			if (var2 > 3 && var3 > 3 && var2 < 100 && var3 < 100) {
-				for (var6 = var2 - 4; var6 <= var2 + 4; ++var6) {
-					for (int var7 = var3 - 4; var7 <= var3 + 4; ++var7) {
-						int var8 = Huffman.Client_plane;
-						if (var8 < 3 && (Tiles.Tiles_renderFlags[1][var6][var7] & 2) == 2) {
-							++var8;
-						}
-
-						int var9 = var4 - Tiles.Tiles_heights[var8][var6][var7];
-						if (var9 > var5) {
-							var5 = var9;
-						}
-					}
-				}
-			}
-
-			var6 = var5 * 192;
-			if (var6 > 98048) {
-				var6 = 98048;
-			}
-
-			if (var6 < 32768) {
-				var6 = 32768;
-			}
-
-			if (var6 > Client.field762) {
-				Client.field762 += (var6 - Client.field762) / 24;
-			} else if (var6 < Client.field762) {
-				Client.field762 += (var6 - Client.field762) / 80;
-			}
-
-			class7.field40 = ArchiveLoader.getTileHeight(WorldMapLabelSize.localPlayer.x, WorldMapLabelSize.localPlayer.y, Huffman.Client_plane) - Client.camFollowHeight;
-		} else if (Client.oculusOrbState == 1) {
-			if (Client.field759 && WorldMapLabelSize.localPlayer != null) {
-				var0 = WorldMapLabelSize.localPlayer.pathX[0];
-				var1 = WorldMapLabelSize.localPlayer.pathY[0];
-				if (var0 >= 0 && var1 >= 0 && var0 < 104 && var1 < 104) {
-					GrandExchangeOfferWorldComparator.oculusOrbFocalPointX = WorldMapLabelSize.localPlayer.x;
-					var2 = ArchiveLoader.getTileHeight(WorldMapLabelSize.localPlayer.x, WorldMapLabelSize.localPlayer.y, Huffman.Client_plane) - Client.camFollowHeight;
-					if (var2 < class7.field40) {
-						class7.field40 = var2;
-					}
-
-					MouseHandler.oculusOrbFocalPointY = WorldMapLabelSize.localPlayer.y;
-					Client.field759 = false;
-				}
-			}
-
-			short var10 = -1;
-			if (KeyHandler.KeyHandler_pressedKeys[33]) {
-				var10 = 0;
-			} else if (KeyHandler.KeyHandler_pressedKeys[49]) {
-				var10 = 1024;
-			}
-
-			if (KeyHandler.KeyHandler_pressedKeys[48]) {
-				if (var10 == 0) {
-					var10 = 1792;
-				} else if (var10 == 1024) {
-					var10 = 1280;
-				} else {
-					var10 = 1536;
-				}
-			} else if (KeyHandler.KeyHandler_pressedKeys[50]) {
-				if (var10 == 0) {
-					var10 = 256;
-				} else if (var10 == 1024) {
-					var10 = 768;
-				} else {
-					var10 = 512;
-				}
-			}
-
-			byte var11 = 0;
-			if (KeyHandler.KeyHandler_pressedKeys[35]) {
-				var11 = -1;
-			} else if (KeyHandler.KeyHandler_pressedKeys[51]) {
-				var11 = 1;
-			}
-
-			var2 = 0;
-			if (var10 >= 0 || var11 != 0) {
-				var2 = KeyHandler.KeyHandler_pressedKeys[81] ? Client.oculusOrbSlowedSpeed : Client.oculusOrbNormalSpeed;
-				var2 *= 16;
-				Client.field796 = var10;
-				Client.field755 = var11;
-			}
-
-			if (Client.field753 < var2) {
-				Client.field753 += var2 / 8;
-				if (Client.field753 > var2) {
-					Client.field753 = var2;
-				}
-			} else if (Client.field753 > var2) {
-				Client.field753 = Client.field753 * 9 / 10;
-			}
-
-			if (Client.field753 > 0) {
-				var3 = Client.field753 / 16;
-				if (Client.field796 >= 0) {
-					var0 = Client.field796 - ServerPacket.cameraYaw & 2047;
-					var4 = Rasterizer3D.Rasterizer3D_sine[var0];
-					var5 = Rasterizer3D.Rasterizer3D_cosine[var0];
-					GrandExchangeOfferWorldComparator.oculusOrbFocalPointX += var3 * var4 / 65536;
-					MouseHandler.oculusOrbFocalPointY += var5 * var3 / 65536;
-				}
-
-				if (Client.field755 != 0) {
-					class7.field40 += var3 * Client.field755;
-					if (class7.field40 > 0) {
-						class7.field40 = 0;
-					}
-				}
-			} else {
-				Client.field796 = -1;
-				Client.field755 = -1;
-			}
-
-			if (KeyHandler.KeyHandler_pressedKeys[13]) {
-				Client.packetWriter.addNode(Client.getPacketBufferNode(ClientPacket.field2290, Client.packetWriter.isaacCipher));
-				Client.oculusOrbState = 0;
-			}
-		}
-
-		if (MouseHandler.MouseHandler_currentButton == 4 && ScriptEvent.mouseCam) {
-			var0 = MouseHandler.MouseHandler_y - Client.mouseCamClickedY;
-			Client.camAngleDX = var0 * 2;
-			Client.mouseCamClickedY = var0 != -1 && var0 != 1 ? (Client.mouseCamClickedY + MouseHandler.MouseHandler_y) / 2 : MouseHandler.MouseHandler_y;
-			var1 = Client.mouseCamClickedX - MouseHandler.MouseHandler_x;
-			Client.camAngleDY = var1 * 2;
-			Client.mouseCamClickedX = var1 != -1 && var1 != 1 ? (Client.mouseCamClickedX + MouseHandler.MouseHandler_x) / 2 : MouseHandler.MouseHandler_x;
+	static boolean method787(AbstractArchive var0, int var1) {
+		byte[] var2 = var0.takeFileFlat(var1);
+		if (var2 == null) {
+			return false;
 		} else {
-			if (KeyHandler.KeyHandler_pressedKeys[96]) {
-				Client.camAngleDY += (-24 - Client.camAngleDY) / 2;
-			} else if (KeyHandler.KeyHandler_pressedKeys[97]) {
-				Client.camAngleDY += (24 - Client.camAngleDY) / 2;
+			class217.SpriteBuffer_decode(var2);
+			return true;
+		}
+	}
+
+	@ObfuscatedName("gg")
+	@ObfuscatedSignature(
+		signature = "(I)Z",
+		garbageValue = "-651553364"
+	)
+	static boolean method786() {
+		return (Client.drawPlayerNames & 8) != 0;
+	}
+
+	@ObfuscatedName("je")
+	@ObfuscatedSignature(
+		signature = "(III)V",
+		garbageValue = "-1738497554"
+	)
+	@Export("runIntfCloseListeners")
+	static final void runIntfCloseListeners(int var0, int var1) {
+		if (ScriptFrame.loadInterface(var0)) {
+			class25.runComponentCloseListeners(Widget.Widget_interfaceComponents[var0], var1);
+		}
+	}
+
+	@ObfuscatedName("km")
+	@ObfuscatedSignature(
+		signature = "(Ljava/lang/String;B)V",
+		garbageValue = "-85"
+	)
+	static void method790(String var0) {
+		WorldMapRegion.field281 = var0;
+
+		try {
+			String var1 = ByteArrayPool.client.getParameter(Integer.toString(18));
+			String var2 = ByteArrayPool.client.getParameter(Integer.toString(13));
+			String var3 = var1 + "settings=" + var0 + "; version=1; path=/; domain=" + var2;
+			String var5;
+			if (var0.length() == 0) {
+				var3 = var3 + "; Expires=Thu, 01-Jan-1970 00:00:00 GMT; Max-Age=0";
 			} else {
-				Client.camAngleDY /= 2;
+				String var4 = var3 + "; Expires=";
+				long var6 = Nameable.currentTimeMillis() + 94608000000L;
+				Calendar.Calendar_calendar.setTime(new Date(var6));
+				int var8 = Calendar.Calendar_calendar.get(7);
+				int var9 = Calendar.Calendar_calendar.get(5);
+				int var10 = Calendar.Calendar_calendar.get(2);
+				int var11 = Calendar.Calendar_calendar.get(1);
+				int var12 = Calendar.Calendar_calendar.get(11);
+				int var13 = Calendar.Calendar_calendar.get(12);
+				int var14 = Calendar.Calendar_calendar.get(13);
+				var5 = Calendar.DAYS_OF_THE_WEEK[var8 - 1] + ", " + var9 / 10 + var9 % 10 + "-" + Calendar.MONTH_NAMES_ENGLISH_GERMAN[0][var10] + "-" + var11 + " " + var12 / 10 + var12 % 10 + ":" + var13 / 10 + var13 % 10 + ":" + var14 / 10 + var14 % 10 + " GMT";
+				var3 = var4 + var5 + "; Max-Age=" + 94608000L;
 			}
 
-			if (KeyHandler.KeyHandler_pressedKeys[98]) {
-				Client.camAngleDX += (12 - Client.camAngleDX) / 2;
-			} else if (KeyHandler.KeyHandler_pressedKeys[99]) {
-				Client.camAngleDX += (-12 - Client.camAngleDX) / 2;
-			} else {
-				Client.camAngleDX /= 2;
-			}
-
-			Client.mouseCamClickedY = MouseHandler.MouseHandler_y;
-			Client.mouseCamClickedX = MouseHandler.MouseHandler_x;
+			Client var16 = ByteArrayPool.client;
+			var5 = "document.cookie=\"" + var3 + "\"";
+			JSObject.getWindow(var16).eval(var5);
+		} catch (Throwable var15) {
 		}
 
-		Client.camAngleY = Client.camAngleDY / 2 + Client.camAngleY & 2047;
-		Client.camAngleX += Client.camAngleDX / 2;
-		if (Client.camAngleX < 128) {
-			Client.camAngleX = 128;
-		}
-
-		if (Client.camAngleX > 383) {
-			Client.camAngleX = 383;
-		}
-
-	}
-
-	@ObfuscatedName("hn")
-	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-1654311283"
-	)
-	@Export("addCancelMenuEntry")
-	static void addCancelMenuEntry() {
-		class279.method5091();
-		Client.menuActions[0] = "Cancel";
-		Client.menuTargets[0] = "";
-		Client.menuOpcodes[0] = 1006;
-		Client.menuShiftClick[0] = false;
-		Client.menuOptionsCount = 1;
-	}
-
-	@ObfuscatedName("jg")
-	@ObfuscatedSignature(
-		signature = "([Lhq;II)V",
-		garbageValue = "1802029198"
-	)
-	@Export("runComponentCloseListeners")
-	static final void runComponentCloseListeners(Widget[] var0, int var1) {
-		for (int var2 = 0; var2 < var0.length; ++var2) {
-			Widget var3 = var0[var2];
-			if (var3 != null) {
-				if (var3.type == 0) {
-					if (var3.children != null) {
-						runComponentCloseListeners(var3.children, var1);
-					}
-
-					InterfaceParent var4 = (InterfaceParent)Client.interfaceParents.get((long)var3.id);
-					if (var4 != null) {
-						ClientPacket.runIntfCloseListeners(var4.group, var1);
-					}
-				}
-
-				ScriptEvent var5;
-				if (var1 == 0 && var3.onDialogAbort != null) {
-					var5 = new ScriptEvent();
-					var5.widget = var3;
-					var5.args = var3.onDialogAbort;
-					Script.runScriptEvent(var5);
-				}
-
-				if (var1 == 1 && var3.onSubChange != null) {
-					if (var3.childIndex >= 0) {
-						Widget var6 = TileItem.getWidget(var3.id);
-						if (var6 == null || var6.children == null || var3.childIndex >= var6.children.length || var3 != var6.children[var3.childIndex]) {
-							continue;
-						}
-					}
-
-					var5 = new ScriptEvent();
-					var5.widget = var3;
-					var5.args = var3.onSubChange;
-					Script.runScriptEvent(var5);
-				}
-			}
-		}
-
-	}
-
-	@ObfuscatedName("kw")
-	@ObfuscatedSignature(
-		signature = "(Lhq;II)Ljava/lang/String;",
-		garbageValue = "-1179780727"
-	)
-	static String method756(Widget var0, int var1) {
-		if (!StudioGame.method4230(WorldMapIcon_0.getWidgetClickMask(var0), var1) && var0.onOp == null) {
-			return null;
-		} else {
-			return var0.actions != null && var0.actions.length > var1 && var0.actions[var1] != null && var0.actions[var1].trim().length() != 0 ? var0.actions[var1] : null;
-		}
 	}
 }

@@ -33,15 +33,13 @@ import net.runelite.client.ui.overlay.infobox.Counter;
 
 class SpecialCounter extends Counter
 {
-	private final SpecialCounterPlugin plugin;
-	private SpecialWeapon weapon;
+	private final SpecialWeapon weapon;
 	@Getter(AccessLevel.PACKAGE)
 	private final Map<String, Integer> partySpecs = new HashMap<>();
 
 	SpecialCounter(BufferedImage image, SpecialCounterPlugin plugin, int hitValue, SpecialWeapon weapon)
 	{
 		super(image, plugin, hitValue);
-		this.plugin = plugin;
 		this.weapon = weapon;
 	}
 
@@ -67,8 +65,8 @@ class SpecialCounter extends Counter
 		for (Map.Entry<String, Integer> entry : partySpecs.entrySet())
 		{
 			stringBuilder.append("</br>")
-				.append(entry.getKey() == null ? "You" : entry.getKey()).append(": ")
-				.append(buildTooltip(entry.getValue()));
+					.append(entry.getKey() == null ? "You" : entry.getKey()).append(": ")
+					.append(buildTooltip(entry.getValue()));
 		}
 
 		return stringBuilder.toString();

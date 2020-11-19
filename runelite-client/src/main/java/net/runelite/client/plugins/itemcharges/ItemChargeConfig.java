@@ -450,4 +450,22 @@ public interface ItemChargeConfig extends Config
 	{
 		return false;
 	}
+
+	@ConfigItem(
+			keyName = "chronicle",
+			name = "",
+			description = "",
+			hidden = true
+	)
+	default int chronicle()
+	{
+		return -1;
+	}
+
+	@ConfigItem(
+			keyName = "chronicle",
+			name = "",
+			description = ""
+	)
+	void chronicle(int chronicle);
 }

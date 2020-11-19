@@ -65,7 +65,6 @@ import static net.runelite.api.widgets.WidgetID.LEVEL_UP_GROUP_ID;
 import static net.runelite.api.widgets.WidgetID.QUEST_COMPLETED_GROUP_ID;
 import static net.runelite.api.widgets.WidgetID.THEATRE_OF_BLOOD_REWARD_GROUP_ID;
 import net.runelite.api.widgets.WidgetInfo;
-import net.runelite.client.Notifier;
 import static net.runelite.client.RuneLite.SCREENSHOT_DIR;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
@@ -133,9 +132,6 @@ public class ScreenshotPlugin extends Plugin
 
 	@Inject
 	private ScreenshotOverlay screenshotOverlay;
-
-	@Inject
-	private Notifier notifier;
 
 	@Inject
 	private Client client;
@@ -242,13 +238,19 @@ public class ScreenshotPlugin extends Plugin
 			String text = client.getWidget(WidgetInfo.DIALOG_SPRITE_TEXT).getText();
 			if (Text.removeTags(text).contains("High level gamble"))
 			{
-				fileName = parseBAHighGambleWidget(text);
-				screenshotSubDir = "BA High Gambles";
+				if (config.screenshotHighGamble())
+				{
+					fileName = parseBAHighGambleWidget(text);
+					screenshotSubDir = "BA High Gambles";
+				}
 			}
 			else
 			{
-				fileName = parseLevelUpWidget(WidgetInfo.DIALOG_SPRITE_TEXT);
-				screenshotSubDir = "Levels";
+				if (config.screenshotLevels())
+				{
+					fileName = parseLevelUpWidget(WidgetInfo.DIALOG_SPRITE_TEXT);
+					screenshotSubDir = "Levels";
+				}
 			}
 		}
 		else if (client.getWidget(WidgetInfo.QUEST_COMPLETED_NAME_TEXT) != null)

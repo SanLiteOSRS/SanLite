@@ -1,39 +1,47 @@
+import java.util.Iterator;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("cr")
+@ObfuscatedName("cc")
 @Implements("FriendSystem")
 public class FriendSystem {
-	@ObfuscatedName("t")
+	@ObfuscatedName("os")
 	@ObfuscatedSignature(
-		signature = "Lmu;"
+		signature = "Lcz;"
+	)
+	@Export("varcs")
+	static Varcs varcs;
+	@ObfuscatedName("m")
+	@ObfuscatedSignature(
+		signature = "Lmc;"
 	)
 	@Export("loginType")
 	final LoginType loginType;
-	@ObfuscatedName("i")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "Lkw;"
+		signature = "Lkd;"
 	)
 	@Export("friendsList")
 	public final FriendsList friendsList;
-	@ObfuscatedName("o")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		signature = "Ljs;"
+		signature = "Lke;"
 	)
 	@Export("ignoreList")
 	public final IgnoreList ignoreList;
-	@ObfuscatedName("x")
+	@ObfuscatedName("k")
 	@ObfuscatedGetter(
-		intValue = 1061950327
+		intValue = 1331025573
 	)
 	@Export("loadingProgress")
 	int loadingProgress;
 
 	@ObfuscatedSignature(
-		signature = "(Lmu;)V"
+		signature = "(Lmc;)V"
 	)
 	FriendSystem(LoginType var1) {
 		this.loadingProgress = 0;
@@ -42,28 +50,28 @@ public class FriendSystem {
 		this.ignoreList = new IgnoreList(var1);
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
 		signature = "(I)Z",
-		garbageValue = "-1895979589"
+		garbageValue = "366163976"
 	)
-	boolean method1972() {
+	boolean method1958() {
 		return this.loadingProgress == 2;
 	}
 
-	@ObfuscatedName("k")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "1001513486"
+		garbageValue = "1495060497"
 	)
-	final void method1919() {
+	final void method1957() {
 		this.loadingProgress = 1;
 	}
 
-	@ObfuscatedName("s")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		signature = "(Lkf;IS)V",
-		garbageValue = "-279"
+		signature = "(Lkb;II)V",
+		garbageValue = "-320273584"
 	)
 	@Export("readUpdate")
 	final void readUpdate(Buffer var1, int var2) {
@@ -75,28 +83,34 @@ public class FriendSystem {
 			var4.clearIsFriend();
 		}
 
-		class89.method2127();
-		if (Renderable.clanChat != null) {
-			Renderable.clanChat.clearFriends();
+		Iterator var5 = Messages.Messages_hashTable.iterator();
+
+		while (var5.hasNext()) {
+			Message var6 = (Message)var5.next();
+			var6.clearIsFromFriend();
+		}
+
+		if (DevicePcmPlayerProvider.clanChat != null) {
+			DevicePcmPlayerProvider.clanChat.clearFriends();
 		}
 
 	}
 
-	@ObfuscatedName("t")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "1616251932"
+		garbageValue = "-1762300851"
 	)
 	@Export("processFriendUpdates")
 	final void processFriendUpdates() {
 		for (FriendLoginUpdate var1 = (FriendLoginUpdate)this.friendsList.friendLoginUpdates.last(); var1 != null; var1 = (FriendLoginUpdate)this.friendsList.friendLoginUpdates.previous()) {
-			if ((long)var1.field3664 < PacketWriter.currentTimeMillis() / 1000L - 5L) {
+			if ((long)var1.field3670 < Nameable.currentTimeMillis() / 1000L - 5L) {
 				if (var1.world > 0) {
-					WorldMapRectangle.addGameMessage(5, "", var1.username + " has logged in.");
+					DevicePcmPlayerProvider.addGameMessage(5, "", var1.username + " has logged in.");
 				}
 
 				if (var1.world == 0) {
-					WorldMapRectangle.addGameMessage(5, "", var1.username + " has logged out.");
+					DevicePcmPlayerProvider.addGameMessage(5, "", var1.username + " has logged out.");
 				}
 
 				var1.remove();
@@ -105,10 +119,10 @@ public class FriendSystem {
 
 	}
 
-	@ObfuscatedName("i")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "16776960"
+		garbageValue = "-710169059"
 	)
 	@Export("clear")
 	final void clear() {
@@ -117,26 +131,26 @@ public class FriendSystem {
 		this.ignoreList.clear();
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		signature = "(Lku;ZB)Z",
-		garbageValue = "6"
+		signature = "(Lkm;ZI)Z",
+		garbageValue = "-1897160718"
 	)
 	@Export("isFriended")
 	final boolean isFriended(Username var1, boolean var2) {
 		if (var1 == null) {
 			return false;
-		} else if (var1.equals(WorldMapLabelSize.localPlayer.username)) {
+		} else if (var1.equals(PlayerType.localPlayer.username)) {
 			return true;
 		} else {
 			return this.friendsList.isFriended(var1, var2);
 		}
 	}
 
-	@ObfuscatedName("x")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "(Lku;B)Z",
-		garbageValue = "-12"
+		signature = "(Lkm;I)Z",
+		garbageValue = "1651377109"
 	)
 	@Export("isIgnored")
 	final boolean isIgnored(Username var1) {
@@ -147,10 +161,10 @@ public class FriendSystem {
 		}
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
 		signature = "(Ljava/lang/String;I)V",
-		garbageValue = "597249959"
+		garbageValue = "625813578"
 	)
 	@Export("addFriend")
 	final void addFriend(String var1) {
@@ -160,89 +174,75 @@ public class FriendSystem {
 				if (this.friendsListIsFull()) {
 					Object var10000 = null;
 					String var3 = "Your friend list is full. Max of 200 for free users, and 400 for members";
-					WorldMapRectangle.addGameMessage(30, "", var3);
-				} else if (WorldMapLabelSize.localPlayer.username.equals(var2)) {
-					WorldMapSection1.method649();
+					DevicePcmPlayerProvider.addGameMessage(30, "", var3);
+				} else if (PlayerType.localPlayer.username.equals(var2)) {
+					MouseRecorder.method1286();
 				} else if (this.isFriended(var2, false)) {
-					ModelData0.method3377(var1);
+					class60.method983(var1);
 				} else if (this.isIgnored(var2)) {
-					WorldMapRegion.method609(var1);
+					GrandExchangeOfferAgeComparator.method241(var1);
 				} else {
-					UserComparator9.method3492(var1);
+					Canvas.method949(var1);
 				}
 			}
 		}
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(S)Z",
-		garbageValue = "-12193"
+		signature = "(I)Z",
+		garbageValue = "1768016322"
 	)
 	@Export("friendsListIsFull")
 	final boolean friendsListIsFull() {
-		return this.friendsList.isFull() || this.friendsList.getSize() >= 200 && Client.field888 != 1;
+		return this.friendsList.isFull() || this.friendsList.getSize() >= 200 && Client.field799 != 1;
 	}
 
-	@ObfuscatedName("a")
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
 		signature = "(Ljava/lang/String;I)V",
-		garbageValue = "-1984933223"
+		garbageValue = "-109423207"
 	)
 	@Export("addIgnore")
 	final void addIgnore(String var1) {
 		if (var1 != null) {
 			Username var2 = new Username(var1, this.loginType);
 			if (var2.hasCleanName()) {
-				StringBuilder var10000;
-				String var4;
+				Object var10000;
+				String var3;
 				if (this.canAddIgnore()) {
 					var10000 = null;
-					var4 = "Your ignore list is full. Max of 100 for free users, and 400 for members";
-					WorldMapRectangle.addGameMessage(30, "", var4);
-				} else if (WorldMapLabelSize.localPlayer.username.equals(var2)) {
+					var3 = "Your ignore list is full. Max of 100 for free users, and 400 for members";
+					DevicePcmPlayerProvider.addGameMessage(30, "", var3);
+				} else if (PlayerType.localPlayer.username.equals(var2)) {
 					var10000 = null;
-					var4 = "You can't add yourself to your own ignore list";
-					WorldMapRectangle.addGameMessage(30, "", var4);
+					var3 = "You can't add yourself to your own ignore list";
+					DevicePcmPlayerProvider.addGameMessage(30, "", var3);
+				} else if (this.isIgnored(var2)) {
+					class217.method4098(var1);
+				} else if (this.isFriended(var2, false)) {
+					WorldMapArea.method506(var1);
 				} else {
-					Object var10001;
-					if (this.isIgnored(var2)) {
-						var10000 = (new StringBuilder()).append(var1);
-						var10001 = null;
-						var4 = var10000.append(" is already on your ignore list").toString();
-						WorldMapRectangle.addGameMessage(30, "", var4);
-					} else if (this.isFriended(var2, false)) {
-						var10000 = new StringBuilder();
-						var10001 = null;
-						var10000 = var10000.append("Please remove ").append(var1);
-						var10001 = null;
-						var4 = var10000.append(" from your friend list first").toString();
-						WorldMapRectangle.addGameMessage(30, "", var4);
-					} else {
-						PacketBufferNode var3 = Client.getPacketBufferNode(ClientPacket.field2288, Client.packetWriter.isaacCipher);
-						var3.packetBuffer.writeByte(Decimator.stringCp1252NullTerminatedByteSize(var1));
-						var3.packetBuffer.writeStringCp1252NullTerminated(var1);
-						Client.packetWriter.addNode(var3);
-					}
+					HealthBarUpdate.method1869(var1);
 				}
 			}
 		}
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
 		signature = "(B)Z",
-		garbageValue = "61"
+		garbageValue = "-34"
 	)
 	@Export("canAddIgnore")
 	final boolean canAddIgnore() {
-		return this.ignoreList.isFull() || this.ignoreList.getSize() >= 100 && Client.field888 != 1;
+		return this.ignoreList.isFull() || this.ignoreList.getSize() >= 100 && Client.field799 != 1;
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
 		signature = "(Ljava/lang/String;I)V",
-		garbageValue = "-1937520523"
+		garbageValue = "-1777583860"
 	)
 	@Export("removeFriend")
 	final void removeFriend(String var1) {
@@ -250,9 +250,9 @@ public class FriendSystem {
 			Username var2 = new Username(var1, this.loginType);
 			if (var2.hasCleanName()) {
 				if (this.friendsList.removeByUsername(var2)) {
-					Client.field870 = Client.cycleCntr;
-					PacketBufferNode var3 = Client.getPacketBufferNode(ClientPacket.field2319, Client.packetWriter.isaacCipher);
-					var3.packetBuffer.writeByte(Decimator.stringCp1252NullTerminatedByteSize(var1));
+					Client.field874 = Client.cycleCntr;
+					PacketBufferNode var3 = class4.getPacketBufferNode(ClientPacket.field2327, Client.packetWriter.isaacCipher);
+					var3.packetBuffer.writeByte(SpriteMask.stringCp1252NullTerminatedByteSize(var1));
 					var3.packetBuffer.writeStringCp1252NullTerminated(var1);
 					Client.packetWriter.addNode(var3);
 				}
@@ -262,19 +262,25 @@ public class FriendSystem {
 					var4.clearIsFriend();
 				}
 
-				class89.method2127();
-				if (Renderable.clanChat != null) {
-					Renderable.clanChat.clearFriends();
+				Iterator var6 = Messages.Messages_hashTable.iterator();
+
+				while (var6.hasNext()) {
+					Message var7 = (Message)var6.next();
+					var7.clearIsFromFriend();
+				}
+
+				if (DevicePcmPlayerProvider.clanChat != null) {
+					DevicePcmPlayerProvider.clanChat.clearFriends();
 				}
 
 			}
 		}
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;I)V",
-		garbageValue = "1683783285"
+		signature = "(Ljava/lang/String;B)V",
+		garbageValue = "66"
 	)
 	@Export("removeIgnore")
 	final void removeIgnore(String var1) {
@@ -282,22 +288,22 @@ public class FriendSystem {
 			Username var2 = new Username(var1, this.loginType);
 			if (var2.hasCleanName()) {
 				if (this.ignoreList.removeByUsername(var2)) {
-					Client.field870 = Client.cycleCntr;
-					PacketBufferNode var3 = Client.getPacketBufferNode(ClientPacket.field2322, Client.packetWriter.isaacCipher);
-					var3.packetBuffer.writeByte(Decimator.stringCp1252NullTerminatedByteSize(var1));
+					Client.field874 = Client.cycleCntr;
+					PacketBufferNode var3 = class4.getPacketBufferNode(ClientPacket.field2240, Client.packetWriter.isaacCipher);
+					var3.packetBuffer.writeByte(SpriteMask.stringCp1252NullTerminatedByteSize(var1));
 					var3.packetBuffer.writeStringCp1252NullTerminated(var1);
 					Client.packetWriter.addNode(var3);
 				}
 
-				KitDefinition.FriendSystem_invalidateIgnoreds();
+				class52.FriendSystem_invalidateIgnoreds();
 			}
 		}
 	}
 
-	@ObfuscatedName("u")
+	@ObfuscatedName("g")
 	@ObfuscatedSignature(
-		signature = "(Lku;I)Z",
-		garbageValue = "-1919732460"
+		signature = "(Lkm;I)Z",
+		garbageValue = "-1712856211"
 	)
 	@Export("isFriendAndHasWorld")
 	final boolean isFriendAndHasWorld(Username var1) {
@@ -305,239 +311,226 @@ public class FriendSystem {
 		return var2 != null && var2.hasWorld();
 	}
 
-	@ObfuscatedName("k")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		signature = "(II)Lie;",
-		garbageValue = "-2171031"
+		signature = "(III)V",
+		garbageValue = "-145581337"
 	)
-	@Export("KitDefinition_get")
-	public static KitDefinition KitDefinition_get(int var0) {
-		KitDefinition var1 = (KitDefinition)KitDefinition.KitDefinition_cached.get((long)var0);
-		if (var1 != null) {
-			return var1;
-		} else {
-			byte[] var2 = KitDefinition.KitDefinition_archive.takeFile(3, var0);
-			var1 = new KitDefinition();
-			if (var2 != null) {
-				var1.decode(new Buffer(var2));
+	@Export("changeWorldSelectSorting")
+	static void changeWorldSelectSorting(int var0, int var1) {
+		int[] var2 = new int[4];
+		int[] var3 = new int[4];
+		var2[0] = var0;
+		var3[0] = var1;
+		int var4 = 1;
+
+		for (int var5 = 0; var5 < 4; ++var5) {
+			if (World.World_sortOption1[var5] != var0) {
+				var2[var4] = World.World_sortOption1[var5];
+				var3[var4] = World.World_sortOption2[var5];
+				++var4;
+			}
+		}
+
+		World.World_sortOption1 = var2;
+		World.World_sortOption2 = var3;
+		ModeWhere.sortWorlds(DefaultsGroup.World_worlds, 0, DefaultsGroup.World_worlds.length - 1, World.World_sortOption1, World.World_sortOption2);
+	}
+
+	@ObfuscatedName("l")
+	@ObfuscatedSignature(
+		signature = "(B)V",
+		garbageValue = "1"
+	)
+	public static void method2017() {
+		synchronized(KeyHandler.KeyHandler_instance) {
+			++KeyHandler.KeyHandler_idleCycles;
+			KeyHandler.field415 = KeyHandler.field428;
+			KeyHandler.field427 = 0;
+			int var1;
+			if (KeyHandler.field423 < 0) {
+				for (var1 = 0; var1 < 112; ++var1) {
+					KeyHandler.KeyHandler_pressedKeys[var1] = false;
+				}
+
+				KeyHandler.field423 = KeyHandler.field422;
+			} else {
+				while (KeyHandler.field422 != KeyHandler.field423) {
+					var1 = KeyHandler.field435[KeyHandler.field422];
+					KeyHandler.field422 = KeyHandler.field422 + 1 & 127;
+					if (var1 < 0) {
+						KeyHandler.KeyHandler_pressedKeys[~var1] = false;
+					} else {
+						if (!KeyHandler.KeyHandler_pressedKeys[var1] && KeyHandler.field427 < KeyHandler.field430.length - 1) {
+							KeyHandler.field430[++KeyHandler.field427 - 1] = var1;
+						}
+
+						KeyHandler.KeyHandler_pressedKeys[var1] = true;
+					}
+				}
 			}
 
-			KitDefinition.KitDefinition_cached.put(var1, (long)var0);
-			return var1;
+			if (KeyHandler.field427 > 0) {
+				KeyHandler.KeyHandler_idleCycles = 0;
+			}
+
+			KeyHandler.field428 = KeyHandler.field413;
 		}
 	}
 
-	@ObfuscatedName("t")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(IIILgk;Lft;B)Z",
-		garbageValue = "6"
+		signature = "(ILco;ZB)I",
+		garbageValue = "104"
 	)
-	static final boolean method1976(int var0, int var1, int var2, RouteStrategy var3, CollisionMap var4) {
-		int var5 = var0;
-		int var6 = var1;
-		byte var7 = 64;
-		byte var8 = 64;
-		int var9 = var0 - var7;
-		int var10 = var1 - var8;
-		class182.directions[var7][var8] = 99;
-		class182.distances[var7][var8] = 0;
-		byte var11 = 0;
-		int var12 = 0;
-		class182.bufferX[var11] = var0;
-		int var20 = var11 + 1;
-		class182.bufferY[var11] = var1;
-		int[][] var13 = var4.flags;
+	static int method2018(int var0, Script var1, boolean var2) {
+		boolean var3 = true;
+		Widget var4;
+		if (var0 >= 2000) {
+			var0 -= 1000;
+			var4 = UserComparator4.getWidget(Interpreter.Interpreter_intStack[--MilliClock.Interpreter_intStackSize]);
+			var3 = false;
+		} else {
+			var4 = var2 ? MouseRecorder.field621 : Interpreter.field1122;
+		}
 
-		while (true) {
-			label313:
-			while (true) {
-				int var14;
-				int var15;
-				int var16;
-				int var17;
-				int var18;
-				int var19;
-				do {
-					do {
-						do {
-							label290:
-							do {
-								if (var20 == var12) {
-									class182.field2135 = var5;
-									class182.field2136 = var6;
-									return false;
-								}
+		int var11;
+		if (var0 == ScriptOpcodes.CC_SETOP) {
+			var11 = Interpreter.Interpreter_intStack[--MilliClock.Interpreter_intStackSize] - 1;
+			if (var11 >= 0 && var11 <= 9) {
+				var4.setAction(var11, Interpreter.Interpreter_stringStack[--UrlRequester.Interpreter_stringStackSize]);
+				return 1;
+			} else {
+				--UrlRequester.Interpreter_stringStackSize;
+				return 1;
+			}
+		} else {
+			int var6;
+			if (var0 == ScriptOpcodes.CC_SETDRAGGABLE) {
+				MilliClock.Interpreter_intStackSize -= 2;
+				var11 = Interpreter.Interpreter_intStack[MilliClock.Interpreter_intStackSize];
+				var6 = Interpreter.Interpreter_intStack[MilliClock.Interpreter_intStackSize + 1];
+				var4.parent = ItemContainer.getWidgetChild(var11, var6);
+				return 1;
+			} else if (var0 == ScriptOpcodes.CC_SETDRAGGABLEBEHAVIOR) {
+				var4.isScrollBar = Interpreter.Interpreter_intStack[--MilliClock.Interpreter_intStackSize] == 1;
+				return 1;
+			} else if (var0 == ScriptOpcodes.CC_SETDRAGDEADZONE) {
+				var4.dragZoneSize = Interpreter.Interpreter_intStack[--MilliClock.Interpreter_intStackSize];
+				return 1;
+			} else if (var0 == ScriptOpcodes.CC_SETDRAGDEADTIME) {
+				var4.dragThreshold = Interpreter.Interpreter_intStack[--MilliClock.Interpreter_intStackSize];
+				return 1;
+			} else if (var0 == ScriptOpcodes.CC_SETOPBASE) {
+				var4.dataText = Interpreter.Interpreter_stringStack[--UrlRequester.Interpreter_stringStackSize];
+				return 1;
+			} else if (var0 == ScriptOpcodes.CC_SETTARGETVERB) {
+				var4.spellActionName = Interpreter.Interpreter_stringStack[--UrlRequester.Interpreter_stringStackSize];
+				return 1;
+			} else if (var0 == ScriptOpcodes.CC_CLEAROPS) {
+				var4.actions = null;
+				return 1;
+			} else if (var0 == 1308) {
+				var4.field2735 = Interpreter.Interpreter_intStack[--MilliClock.Interpreter_intStackSize] == 1;
+				return 1;
+			} else if (var0 == 1309) {
+				--MilliClock.Interpreter_intStackSize;
+				return 1;
+			} else {
+				int var7;
+				byte[] var9;
+				if (var0 != ScriptOpcodes.CC_SETOPKEY) {
+					byte var5;
+					if (var0 == ScriptOpcodes.CC_SETOPTKEY) {
+						MilliClock.Interpreter_intStackSize -= 2;
+						var5 = 10;
+						var9 = new byte[]{(byte)Interpreter.Interpreter_intStack[MilliClock.Interpreter_intStackSize]};
+						byte[] var10 = new byte[]{(byte)Interpreter.Interpreter_intStack[MilliClock.Interpreter_intStackSize + 1]};
+						ChatChannel.Widget_setKey(var4, var5, var9, var10);
+						return 1;
+					} else if (var0 == ScriptOpcodes.CC_SETOPKEYRATE) {
+						MilliClock.Interpreter_intStackSize -= 3;
+						var11 = Interpreter.Interpreter_intStack[MilliClock.Interpreter_intStackSize] - 1;
+						var6 = Interpreter.Interpreter_intStack[MilliClock.Interpreter_intStackSize + 1];
+						var7 = Interpreter.Interpreter_intStack[MilliClock.Interpreter_intStackSize + 2];
+						if (var11 >= 0 && var11 <= 9) {
+							WorldMapIcon_1.Widget_setKeyRate(var4, var11, var6, var7);
+							return 1;
+						} else {
+							throw new RuntimeException();
+						}
+					} else if (var0 == ScriptOpcodes.CC_SETOPTKEYRATE) {
+						var5 = 10;
+						var6 = Interpreter.Interpreter_intStack[--MilliClock.Interpreter_intStackSize];
+						var7 = Interpreter.Interpreter_intStack[--MilliClock.Interpreter_intStackSize];
+						WorldMapIcon_1.Widget_setKeyRate(var4, var5, var6, var7);
+						return 1;
+					} else if (var0 == ScriptOpcodes.CC_SETOPKEYIGNOREHELD) {
+						--MilliClock.Interpreter_intStackSize;
+						var11 = Interpreter.Interpreter_intStack[MilliClock.Interpreter_intStackSize] - 1;
+						if (var11 >= 0 && var11 <= 9) {
+							MusicPatchNode2.Widget_setKeyIgnoreHeld(var4, var11);
+							return 1;
+						} else {
+							throw new RuntimeException();
+						}
+					} else if (var0 == ScriptOpcodes.CC_SETOPTKEYIGNOREHELD) {
+						var5 = 10;
+						MusicPatchNode2.Widget_setKeyIgnoreHeld(var4, var5);
+						return 1;
+					} else {
+						return 2;
+					}
+				} else {
+					byte[] var8 = null;
+					var9 = null;
+					if (var3) {
+						MilliClock.Interpreter_intStackSize -= 10;
 
-								var5 = class182.bufferX[var12];
-								var6 = class182.bufferY[var12];
-								var12 = var12 + 1 & 4095;
-								var18 = var5 - var9;
-								var19 = var6 - var10;
-								var14 = var5 - var4.xInset;
-								var15 = var6 - var4.yInset;
-								if (var3.hasArrived(var2, var5, var6, var4)) {
-									class182.field2135 = var5;
-									class182.field2136 = var6;
-									return true;
-								}
+						for (var7 = 0; var7 < 10 && Interpreter.Interpreter_intStack[var7 + MilliClock.Interpreter_intStackSize] >= 0; var7 += 2) {
+						}
 
-								var16 = class182.distances[var18][var19] + 1;
-								if (var18 > 0 && class182.directions[var18 - 1][var19] == 0 && (var13[var14 - 1][var15] & 19136782) == 0 && (var13[var14 - 1][var15 + var2 - 1] & 19136824) == 0) {
-									var17 = 1;
+						if (var7 > 0) {
+							var8 = new byte[var7 / 2];
+							var9 = new byte[var7 / 2];
 
-									while (true) {
-										if (var17 >= var2 - 1) {
-											class182.bufferX[var20] = var5 - 1;
-											class182.bufferY[var20] = var6;
-											var20 = var20 + 1 & 4095;
-											class182.directions[var18 - 1][var19] = 2;
-											class182.distances[var18 - 1][var19] = var16;
-											break;
-										}
+							for (var7 -= 2; var7 >= 0; var7 -= 2) {
+								var8[var7 / 2] = (byte)Interpreter.Interpreter_intStack[var7 + MilliClock.Interpreter_intStackSize];
+								var9[var7 / 2] = (byte)Interpreter.Interpreter_intStack[var7 + MilliClock.Interpreter_intStackSize + 1];
+							}
+						}
+					} else {
+						MilliClock.Interpreter_intStackSize -= 2;
+						var8 = new byte[]{(byte)Interpreter.Interpreter_intStack[MilliClock.Interpreter_intStackSize]};
+						var9 = new byte[]{(byte)Interpreter.Interpreter_intStack[MilliClock.Interpreter_intStackSize + 1]};
+					}
 
-										if ((var13[var14 - 1][var17 + var15] & 19136830) != 0) {
-											break;
-										}
-
-										++var17;
-									}
-								}
-
-								if (var18 < 128 - var2 && class182.directions[var18 + 1][var19] == 0 && (var13[var14 + var2][var15] & 19136899) == 0 && (var13[var14 + var2][var15 + var2 - 1] & 19136992) == 0) {
-									var17 = 1;
-
-									while (true) {
-										if (var17 >= var2 - 1) {
-											class182.bufferX[var20] = var5 + 1;
-											class182.bufferY[var20] = var6;
-											var20 = var20 + 1 & 4095;
-											class182.directions[var18 + 1][var19] = 8;
-											class182.distances[var18 + 1][var19] = var16;
-											break;
-										}
-
-										if ((var13[var14 + var2][var17 + var15] & 19136995) != 0) {
-											break;
-										}
-
-										++var17;
-									}
-								}
-
-								if (var19 > 0 && class182.directions[var18][var19 - 1] == 0 && (var13[var14][var15 - 1] & 19136782) == 0 && (var13[var14 + var2 - 1][var15 - 1] & 19136899) == 0) {
-									var17 = 1;
-
-									while (true) {
-										if (var17 >= var2 - 1) {
-											class182.bufferX[var20] = var5;
-											class182.bufferY[var20] = var6 - 1;
-											var20 = var20 + 1 & 4095;
-											class182.directions[var18][var19 - 1] = 1;
-											class182.distances[var18][var19 - 1] = var16;
-											break;
-										}
-
-										if ((var13[var17 + var14][var15 - 1] & 19136911) != 0) {
-											break;
-										}
-
-										++var17;
-									}
-								}
-
-								if (var19 < 128 - var2 && class182.directions[var18][var19 + 1] == 0 && (var13[var14][var15 + var2] & 19136824) == 0 && (var13[var14 + var2 - 1][var15 + var2] & 19136992) == 0) {
-									var17 = 1;
-
-									while (true) {
-										if (var17 >= var2 - 1) {
-											class182.bufferX[var20] = var5;
-											class182.bufferY[var20] = var6 + 1;
-											var20 = var20 + 1 & 4095;
-											class182.directions[var18][var19 + 1] = 4;
-											class182.distances[var18][var19 + 1] = var16;
-											break;
-										}
-
-										if ((var13[var14 + var17][var15 + var2] & 19137016) != 0) {
-											break;
-										}
-
-										++var17;
-									}
-								}
-
-								if (var18 > 0 && var19 > 0 && class182.directions[var18 - 1][var19 - 1] == 0 && (var13[var14 - 1][var15 - 1] & 19136782) == 0) {
-									var17 = 1;
-
-									while (true) {
-										if (var17 >= var2) {
-											class182.bufferX[var20] = var5 - 1;
-											class182.bufferY[var20] = var6 - 1;
-											var20 = var20 + 1 & 4095;
-											class182.directions[var18 - 1][var19 - 1] = 3;
-											class182.distances[var18 - 1][var19 - 1] = var16;
-											break;
-										}
-
-										if ((var13[var14 - 1][var17 + (var15 - 1)] & 19136830) != 0 || (var13[var17 + (var14 - 1)][var15 - 1] & 19136911) != 0) {
-											break;
-										}
-
-										++var17;
-									}
-								}
-
-								if (var18 < 128 - var2 && var19 > 0 && class182.directions[var18 + 1][var19 - 1] == 0 && (var13[var14 + var2][var15 - 1] & 19136899) == 0) {
-									var17 = 1;
-
-									while (true) {
-										if (var17 >= var2) {
-											class182.bufferX[var20] = var5 + 1;
-											class182.bufferY[var20] = var6 - 1;
-											var20 = var20 + 1 & 4095;
-											class182.directions[var18 + 1][var19 - 1] = 9;
-											class182.distances[var18 + 1][var19 - 1] = var16;
-											break;
-										}
-
-										if ((var13[var14 + var2][var17 + (var15 - 1)] & 19136995) != 0 || (var13[var14 + var17][var15 - 1] & 19136911) != 0) {
-											break;
-										}
-
-										++var17;
-									}
-								}
-
-								if (var18 > 0 && var19 < 128 - var2 && class182.directions[var18 - 1][var19 + 1] == 0 && (var13[var14 - 1][var15 + var2] & 19136824) == 0) {
-									for (var17 = 1; var17 < var2; ++var17) {
-										if ((var13[var14 - 1][var15 + var17] & 19136830) != 0 || (var13[var17 + (var14 - 1)][var15 + var2] & 19137016) != 0) {
-											continue label290;
-										}
-									}
-
-									class182.bufferX[var20] = var5 - 1;
-									class182.bufferY[var20] = var6 + 1;
-									var20 = var20 + 1 & 4095;
-									class182.directions[var18 - 1][var19 + 1] = 6;
-									class182.distances[var18 - 1][var19 + 1] = var16;
-								}
-							} while(var18 >= 128 - var2);
-						} while(var19 >= 128 - var2);
-					} while(class182.directions[var18 + 1][var19 + 1] != 0);
-				} while((var13[var14 + var2][var15 + var2] & 19136992) != 0);
-
-				for (var17 = 1; var17 < var2; ++var17) {
-					if ((var13[var17 + var14][var15 + var2] & 19137016) != 0 || (var13[var14 + var2][var17 + var15] & 19136995) != 0) {
-						continue label313;
+					var7 = Interpreter.Interpreter_intStack[--MilliClock.Interpreter_intStackSize] - 1;
+					if (var7 >= 0 && var7 <= 9) {
+						ChatChannel.Widget_setKey(var4, var7, var8, var9);
+						return 1;
+					} else {
+						throw new RuntimeException();
 					}
 				}
-
-				class182.bufferX[var20] = var5 + 1;
-				class182.bufferY[var20] = var6 + 1;
-				var20 = var20 + 1 & 4095;
-				class182.directions[var18 + 1][var19 + 1] = 12;
-				class182.distances[var18 + 1][var19 + 1] = var16;
 			}
 		}
+	}
+
+	@ObfuscatedName("fi")
+	@ObfuscatedSignature(
+		signature = "(I)V",
+		garbageValue = "-1364904686"
+	)
+	@Export("playPcmPlayers")
+	static final void playPcmPlayers() {
+		if (class23.pcmPlayer1 != null) {
+			class23.pcmPlayer1.run();
+		}
+
+		if (class195.pcmPlayer0 != null) {
+			class195.pcmPlayer0.run();
+		}
+
 	}
 }

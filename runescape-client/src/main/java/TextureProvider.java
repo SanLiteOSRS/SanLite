@@ -1,59 +1,60 @@
+import java.awt.Component;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("dt")
+@ObfuscatedName("du")
 @Implements("TextureProvider")
 public class TextureProvider implements TextureLoader {
-	@ObfuscatedName("ri")
+	@ObfuscatedName("bt")
 	@ObfuscatedGetter(
-		intValue = 661667840
+		intValue = 1514159297
 	)
 	static int field1561;
-	@ObfuscatedName("z")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "[Leo;"
+		signature = "[Lez;"
 	)
 	@Export("textures")
 	Texture[] textures;
-	@ObfuscatedName("k")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		signature = "Lji;"
+		signature = "Lja;"
 	)
 	@Export("deque")
 	NodeDeque deque;
-	@ObfuscatedName("s")
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = 1194513141
+		intValue = -1277948479
 	)
 	@Export("capacity")
 	int capacity;
-	@ObfuscatedName("t")
+	@ObfuscatedName("m")
 	@ObfuscatedGetter(
-		intValue = 1829748835
+		intValue = 1933585105
 	)
 	@Export("remaining")
 	int remaining;
-	@ObfuscatedName("i")
+	@ObfuscatedName("z")
 	@Export("brightness")
 	double brightness;
-	@ObfuscatedName("o")
+	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = -436241833
+		intValue = -1967077047
 	)
 	@Export("textureSize")
 	int textureSize;
-	@ObfuscatedName("x")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "Lic;"
+		signature = "Liw;"
 	)
 	@Export("archive")
 	AbstractArchive archive;
 
 	@ObfuscatedSignature(
-		signature = "(Lic;Lic;IDI)V"
+		signature = "(Liw;Liw;IDI)V"
 	)
 	public TextureProvider(AbstractArchive var1, AbstractArchive var2, int var3, double var4, int var6) {
 		this.deque = new NodeDeque();
@@ -76,10 +77,10 @@ public class TextureProvider implements TextureLoader {
 
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
 		signature = "(I)I",
-		garbageValue = "861798052"
+		garbageValue = "185901230"
 	)
 	@Export("getLoadedPercentage")
 	public int getLoadedPercentage() {
@@ -95,7 +96,7 @@ public class TextureProvider implements TextureLoader {
 
 				for (int var7 = 0; var7 < var6.length; ++var7) {
 					int var8 = var6[var7];
-					if (this.archive.method4251(var8)) {
+					if (this.archive.method4301(var8)) {
 						++var2;
 					}
 				}
@@ -109,17 +110,17 @@ public class TextureProvider implements TextureLoader {
 		}
 	}
 
-	@ObfuscatedName("k")
+	@ObfuscatedName("b")
 	@Export("setBrightness")
 	public void setBrightness(double var1) {
 		this.brightness = var1;
 		this.clear();
 	}
 
-	@ObfuscatedName("s")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
 		signature = "(II)[I",
-		garbageValue = "-1265290789"
+		garbageValue = "1646805002"
 	)
 	@Export("getTexturePixels")
 	public int[] getTexturePixels(int var1) {
@@ -149,39 +150,39 @@ public class TextureProvider implements TextureLoader {
 		return null;
 	}
 
-	@ObfuscatedName("t")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
 		signature = "(II)I",
-		garbageValue = "260599249"
+		garbageValue = "-914943322"
 	)
 	@Export("getAverageTextureRGB")
 	public int getAverageTextureRGB(int var1) {
 		return this.textures[var1] != null ? this.textures[var1].averageRGB : 0;
 	}
 
-	@ObfuscatedName("i")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
 		signature = "(II)Z",
-		garbageValue = "168595235"
+		garbageValue = "-335824430"
 	)
-	public boolean vmethod3396(int var1) {
-		return this.textures[var1].field1647;
+	public boolean vmethod3401(int var1) {
+		return this.textures[var1].field1655;
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		signature = "(IS)Z",
-		garbageValue = "14506"
+		signature = "(II)Z",
+		garbageValue = "533356584"
 	)
 	@Export("isLowDetail")
 	public boolean isLowDetail(int var1) {
 		return this.textureSize == 64;
 	}
 
-	@ObfuscatedName("x")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
 		signature = "(B)V",
-		garbageValue = "8"
+		garbageValue = "-60"
 	)
 	@Export("clear")
 	public void clear() {
@@ -195,10 +196,10 @@ public class TextureProvider implements TextureLoader {
 		this.remaining = this.capacity;
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
 		signature = "(II)V",
-		garbageValue = "-736148510"
+		garbageValue = "-2135201206"
 	)
 	@Export("animate")
 	public void animate(int var1) {
@@ -212,49 +213,36 @@ public class TextureProvider implements TextureLoader {
 
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "(II)Z",
-		garbageValue = "194887508"
+		signature = "(Ljava/awt/Component;I)V",
+		garbageValue = "-524621860"
 	)
-	public static boolean method2876(int var0) {
-		return var0 >= WorldMapDecorationType.field2760.id && var0 <= WorldMapDecorationType.field2757.id || var0 == WorldMapDecorationType.field2761.id;
+	static void method2899(Component var0) {
+		var0.addMouseListener(MouseHandler.MouseHandler_instance);
+		var0.addMouseMotionListener(MouseHandler.MouseHandler_instance);
+		var0.addFocusListener(MouseHandler.MouseHandler_instance);
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		signature = "([Lgq;II)Lgq;",
-		garbageValue = "1374231902"
+		signature = "(IIIIIIB)I",
+		garbageValue = "-103"
 	)
-	@Export("findEnumerated")
-	public static Enumerated findEnumerated(Enumerated[] var0, int var1) {
-		Enumerated[] var2 = var0;
-
-		for (int var3 = 0; var3 < var2.length; ++var3) {
-			Enumerated var4 = var2[var3];
-			if (var1 == var4.rsOrdinal()) {
-				return var4;
-			}
+	public static int method2906(int var0, int var1, int var2, int var3, int var4, int var5) {
+		if ((var5 & 1) == 1) {
+			int var6 = var3;
+			var3 = var4;
+			var4 = var6;
 		}
 
-		return null;
-	}
-
-	@ObfuscatedName("k")
-	@ObfuscatedSignature(
-		signature = "(IB)Lij;",
-		garbageValue = "38"
-	)
-	public static GameBuild method2863(int var0) {
-		GameBuild[] var1 = IgnoreList.method5182();
-
-		for (int var2 = 0; var2 < var1.length; ++var2) {
-			GameBuild var3 = var1[var2];
-			if (var0 == var3.buildId) {
-				return var3;
-			}
+		var2 &= 3;
+		if (var2 == 0) {
+			return var0;
+		} else if (var2 == 1) {
+			return var1;
+		} else {
+			return var2 == 2 ? 7 - var0 - (var3 - 1) : 7 - var1 - (var4 - 1);
 		}
-
-		return null;
 	}
 }

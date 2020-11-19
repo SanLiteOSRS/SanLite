@@ -5,26 +5,20 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("j")
+@ObfuscatedName("w")
 @Implements("GrandExchangeOfferUnitPriceComparator")
 final class GrandExchangeOfferUnitPriceComparator implements Comparator {
-	@ObfuscatedName("di")
-	@ObfuscatedSignature(
-		signature = "Liw;"
-	)
-	@Export("archive4")
-	static Archive archive4;
-	@ObfuscatedName("mr")
+	@ObfuscatedName("kt")
 	@ObfuscatedGetter(
-		intValue = 401783773
+		intValue = 2060435919
 	)
-	@Export("selectedItemSlot")
-	static int selectedItemSlot;
+	@Export("Client_plane")
+	static int Client_plane;
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "(Lf;Lf;I)I",
-		garbageValue = "1888921269"
+		signature = "(Ly;Ly;S)I",
+		garbageValue = "-21475"
 	)
 	@Export("compare_bridged")
 	int compare_bridged(GrandExchangeEvent var1, GrandExchangeEvent var2) {
@@ -39,31 +33,57 @@ final class GrandExchangeOfferUnitPriceComparator implements Comparator {
 		return super.equals(var1);
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "(Lmu;B)I",
-		garbageValue = "1"
+		signature = "([BILjava/lang/CharSequence;I)I",
+		garbageValue = "2085161041"
 	)
-	public static final int method211(LoginType var0) {
-		if (var0 == null) {
-			return 12;
-		} else {
-			switch(var0.field4063) {
-			case 7:
-				return 20;
-			default:
-				return 12;
+	public static int method219(byte[] var0, int var1, CharSequence var2) {
+		int var3 = var2.length();
+		int var4 = var1;
+
+		for (int var5 = 0; var5 < var3; ++var5) {
+			char var6 = var2.charAt(var5);
+			if (var6 <= 127) {
+				var0[var4++] = (byte)var6;
+			} else if (var6 <= 2047) {
+				var0[var4++] = (byte)(192 | var6 >> 6);
+				var0[var4++] = (byte)(128 | var6 & '?');
+			} else {
+				var0[var4++] = (byte)(224 | var6 >> '\f');
+				var0[var4++] = (byte)(128 | var6 >> 6 & 63);
+				var0[var4++] = (byte)(128 | var6 & '?');
 			}
 		}
+
+		return var4 - var1;
 	}
 
-	@ObfuscatedName("km")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "(Lhq;I)Z",
-		garbageValue = "798311981"
+		signature = "(Liw;B)V",
+		garbageValue = "1"
 	)
-	@Export("isComponentHidden")
-	static boolean isComponentHidden(Widget var0) {
-		return var0.isHidden;
+	public static void method211(AbstractArchive var0) {
+		InvDefinition.InvDefinition_archive = var0;
+	}
+
+	@ObfuscatedName("kc")
+	@ObfuscatedSignature(
+		signature = "(Ljava/lang/String;B)Ljava/lang/String;",
+		garbageValue = "-56"
+	)
+	static String method218(String var0) {
+		PlayerType[] var1 = WorldMapLabelSize.PlayerType_values();
+
+		for (int var2 = 0; var2 < var1.length; ++var2) {
+			PlayerType var3 = var1[var2];
+			if (var3.modIcon != -1 && var0.startsWith(PrivateChatMode.method6034(var3.modIcon))) {
+				var0 = var0.substring(6 + Integer.toString(var3.modIcon).length());
+				break;
+			}
+		}
+
+		return var0;
 	}
 }

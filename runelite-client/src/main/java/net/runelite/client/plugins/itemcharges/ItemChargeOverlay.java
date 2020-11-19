@@ -115,6 +115,15 @@ class ItemChargeOverlay extends WidgetItemOverlay
 
 			charges = config.amuletOfBounty();
 		}
+		else if (itemId == ItemID.CHRONICLE)
+		{
+			if (!config.showTeleportCharges())
+			{
+				return;
+			}
+
+			charges = config.chronicle();
+		}
 		else
 		{
 			ItemWithCharge chargeItem = ItemWithCharge.findItem(itemId);
