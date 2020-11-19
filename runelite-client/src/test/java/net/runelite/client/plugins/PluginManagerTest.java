@@ -123,7 +123,8 @@ public class PluginManagerTest
 	@Test
 	public void testLoadPlugins() throws Exception
 	{
-		PluginManager pluginManager = new PluginManager(false, false, null, null, null, null);		pluginManager.setOutdated(true);
+		PluginManager pluginManager = new PluginManager(false, false, null, null, null, null);
+		pluginManager.setOutdated(true);
 		pluginManager.loadCorePlugins();
 		Collection<Plugin> plugins = pluginManager.getPlugins();
 		long expected = pluginClasses.stream()
