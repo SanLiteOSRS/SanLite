@@ -28,7 +28,6 @@ import com.google.inject.Provides;
 import javax.inject.Inject;
 import lombok.AccessLevel;
 import lombok.Getter;
-import net.runelite.api.Client;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.EventBus;
 import net.runelite.client.plugins.Plugin;
@@ -40,15 +39,12 @@ import net.runelite.client.plugins.mta.telekinetic.TelekineticRoom;
 import net.runelite.client.ui.overlay.OverlayManager;
 
 @PluginDescriptor(
-	name = "Mage Training Arena",
-	description = "Show helpful information for the Mage Training Arena minigame",
-	tags = {"mta", "magic", "minigame", "overlay"}
+		name = "Mage Training Arena",
+		description = "Show helpful information for the Mage Training Arena minigame",
+		tags = {"mta", "magic", "minigame", "overlay"}
 )
 public class MTAPlugin extends Plugin
 {
-	@Inject
-	private Client client;
-
 	@Inject
 	private OverlayManager overlayManager;
 

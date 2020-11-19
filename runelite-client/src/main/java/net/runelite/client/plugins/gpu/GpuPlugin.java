@@ -252,6 +252,8 @@ public class GpuPlugin extends Plugin implements DrawCallbacks
 	private int modelOrientation;
 
 	// Uniforms
+	private int uniColorBlindMode;
+	private int uniUiColorBlindMode;
 	private int uniUseFog;
 	private int uniFogColor;
 	private int uniFogDepth;
@@ -422,7 +424,7 @@ public class GpuPlugin extends Plugin implements DrawCallbacks
 
 					if (uniformBufferId != -1)
 					{
-						GLUtil.glDeleteBuffer(gl, uniformBufferId);
+						glDeleteBuffer(gl, uniformBufferId);
 						uniformBufferId = -1;
 					}
 
@@ -517,11 +519,13 @@ public class GpuPlugin extends Plugin implements DrawCallbacks
 		uniFogColor = gl.glGetUniformLocation(glProgram, "fogColor");
 		uniFogDepth = gl.glGetUniformLocation(glProgram, "fogDepth");
 		uniDrawDistance = gl.glGetUniformLocation(glProgram, "drawDistance");
+		uniColorBlindMode = gl.glGetUniformLocation(glProgram, "colorBlindMode");
 
 		uniTex = gl.glGetUniformLocation(glUiProgram, "tex");
 		uniTexSamplingMode = gl.glGetUniformLocation(glUiProgram, "samplingMode");
 		uniTexTargetDimensions = gl.glGetUniformLocation(glUiProgram, "targetDimensions");
 		uniTexSourceDimensions = gl.glGetUniformLocation(glUiProgram, "sourceDimensions");
+		uniUiColorBlindMode = gl.glGetUniformLocation(glUiProgram, "colorBlindMode");
 		uniTextures = gl.glGetUniformLocation(glProgram, "textures");
 		uniTextureOffsets = gl.glGetUniformLocation(glProgram, "textureOffsets");
 
@@ -777,9 +781,9 @@ public class GpuPlugin extends Plugin implements DrawCallbacks
 		}
 		else if (paint.getBufferLen() > 0)
 		{
-			x = tileX * Perspective.LOCAL_TILE_SIZE;
-			y = 0;
-			z = tileY * Perspective.LOCAL_TILE_SIZE;
+			final int localX = tileX * Perspective.LOCAL_TILE_SIZE;
+			final int localY = 0;
+			final int localZ = tileY * Perspective.LOCAL_TILE_SIZE;
 
 			GpuIntBuffer b = modelBufferUnordered;
 			++unorderedModels;
@@ -791,7 +795,7 @@ public class GpuPlugin extends Plugin implements DrawCallbacks
 			buffer.put(2);
 			buffer.put(targetBufferOffset);
 			buffer.put(FLAG_SCENE_BUFFER);
-			buffer.put(x).put(y).put(z);
+			buffer.put(localX).put(localY).put(localZ);
 
 			targetBufferOffset += 2 * 3;
 		}
@@ -811,9 +815,9 @@ public class GpuPlugin extends Plugin implements DrawCallbacks
 		}
 		else if (model.getBufferLen() > 0)
 		{
-			x = tileX * Perspective.LOCAL_TILE_SIZE;
-			y = 0;
-			z = tileY * Perspective.LOCAL_TILE_SIZE;
+			final int localX = tileX * Perspective.LOCAL_TILE_SIZE;
+			final int localY = 0;
+			final int localZ = tileY * Perspective.LOCAL_TILE_SIZE;
 
 			GpuIntBuffer b = modelBufferUnordered;
 			++unorderedModels;
@@ -825,7 +829,7 @@ public class GpuPlugin extends Plugin implements DrawCallbacks
 			buffer.put(model.getBufferLen() / 3);
 			buffer.put(targetBufferOffset);
 			buffer.put(FLAG_SCENE_BUFFER);
-			buffer.put(x).put(y).put(z);
+			buffer.put(localX).put(localY).put(localZ);
 
 			targetBufferOffset += model.getBufferLen();
 		}
@@ -1102,6 +1106,7 @@ public class GpuPlugin extends Plugin implements DrawCallbacks
 			// Brightness happens to also be stored in the texture provider, so we use that
 			gl.glUniform1f(uniBrightness, (float) textureProvider.getBrightness());
 			gl.glUniform1f(uniSmoothBanding, config.smoothBanding() ? 0f : 1f);
+			gl.glUniform1i(uniColorBlindMode, config.colorBlindMode().ordinal());
 
 			// Calculate projection matrix
 			Matrix4 projectionMatrix = new Matrix4();
@@ -1229,6 +1234,7 @@ public class GpuPlugin extends Plugin implements DrawCallbacks
 		gl.glUniform1i(uniTex, 0);
 		gl.glUniform1i(uniTexSamplingMode, uiScalingMode.getMode());
 		gl.glUniform2i(uniTexSourceDimensions, canvasWidth, canvasHeight);
+		gl.glUniform1i(uniUiColorBlindMode, config.colorBlindMode().ordinal());
 
 		if (client.isStretchedEnabled())
 		{

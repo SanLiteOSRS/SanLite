@@ -686,8 +686,8 @@ public class Scene {
 	}
 
 	@ObfuscatedName("d")
-	@Export("removeGameObject")
-	public void removeGameObject(int var1, int var2, int var3) {
+	@Export("removeGameObjectForTile")
+	public void removeGameObjectForTile(int var1, int var2, int var3) {
 		Tile var4 = this.tiles[var1][var2][var3];
 		if (var4 != null) {
 			for (int var5 = 0; var5 < var4.gameObjectsCount; ++var5) {
