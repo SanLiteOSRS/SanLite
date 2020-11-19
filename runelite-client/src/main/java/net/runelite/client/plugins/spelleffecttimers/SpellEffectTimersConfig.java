@@ -104,9 +104,8 @@ public interface SpellEffectTimersConfig extends Config
 	@ConfigItem(
 			position = 4,
 			keyName = "showSotdSpecActiveOverlay",
-			name = "Show SOTD spec active",
-			description = "Configures if a duration timer is shown when a player has the effects of the Staff of the" +
-					" Dead special attack"
+			name = "Show SOTD timers",
+			description = "Show a duration timer when a player has the effects of the Staff of the Dead special attack"
 	)
 	default boolean showSotdSpecActiveOverlay()
 	{

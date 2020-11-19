@@ -185,12 +185,9 @@ public class SpellEffectTimersPlugin extends Plugin
 			return;
 		}
 
-		if (config.showVengTimersOverlay())
+		if (config.showVengTimersOverlay() && actor.getAnimation() == AnimationID.ENERGY_TRANSFER_VENGEANCE_OTHER)
 		{
-			if (event.getActor().getAnimation() == 4411)
-			{
-				spellEffects.add(new SpellEffectInfo(actor, SpellEffect.VENGEANCE, client.getGameCycle(), false));
-			}
+			spellEffects.add(new SpellEffectInfo(actor, SpellEffect.VENGEANCE, client.getGameCycle(), false));
 		}
 
 		removeTeleblockOnTeleport(actor);
@@ -429,11 +426,11 @@ public class SpellEffectTimersPlugin extends Plugin
 
 	private void checkSotdSpellEffect(GraphicChanged graphicChanged, Actor actor, SpellEffect spellEffect)
 	{
+		// Remove previous timer if special attack is used again
 		spellEffects.removeIf(x -> x.getSpellEffect().getSpellType().equals((SpellEffectType.STAFF_OF_THE_DEAD_SPECIAL))
 				&& x.getActor().equals(graphicChanged.getActor()));
 
 		spellEffects.add(new SpellEffectInfo(actor, spellEffect, client.getGameCycle(), false));
-
 	}
 
 	/**
@@ -442,20 +439,21 @@ public class SpellEffectTimersPlugin extends Plugin
 	 */
 	private void checkIfAnyFrozenActorsMoved()
 	{
-		for (Map.Entry<Actor, WorldPoint> frozenActor : frozenActors.entrySet()) {
+		for (Map.Entry<Actor, WorldPoint> frozenActor : frozenActors.entrySet())
+		{
 			Actor actor = frozenActor.getKey();
 			WorldPoint oldLocation = frozenActor.getValue();
 
-			//Checks if actor moved 1 square
+			// Checks if actor moved 1 square
 			if (actor.getWorldLocation().getX() == (oldLocation.getX() - 1)
 					|| actor.getWorldLocation().getX() == (oldLocation.getX() + 1)
 					|| actor.getWorldLocation().getY() == (oldLocation.getY() - 1)
 					|| actor.getWorldLocation().getY() == (oldLocation.getY() + 1))
 			{
-				//Set stored freeze location to new location after the spear, so that multiple spear specs wont cause issues
+				// Set stored freeze location to new location after the spear, so that multiple spear specs wont cause issues
 				frozenActor.setValue(actor.getWorldLocation());
 			}
-			//Will run if actor has moved and the movement isnt 1 square
+			// Will run if actor has moved and the movement is not 1 square
 			else if (!actor.getWorldLocation().equals(oldLocation))
 			{
 				new ArrayList<>(spellEffects).stream()
@@ -468,34 +466,6 @@ public class SpellEffectTimersPlugin extends Plugin
 						});
 			}
 		}
-		/**
-		//Update location if only 1 square moved
-		new HashMap<>(frozenActors).entrySet().stream()
-				.filter(x -> x.getKey().getWorldLocation().getX() == (x.getValue().getX() - 1)
-						|| x.getKey().getWorldLocation().getX() == (x.getValue().getX() + 1)
-						|| x.getKey().getWorldLocation().getY() == (x.getValue().getY() - 1)
-						|| x.getKey().getWorldLocation().getY() == (x.getValue().getY() + 1))
-				.forEach((entry) ->
-				{
-					entry.setValue(entry.getKey().getWorldLocation());
-				});
-
-		//Remove if location still different
-		new HashMap<>(frozenActors).entrySet().stream()
-				.filter(x -> !x.getKey().getWorldLocation().equals(x.getValue()))
-				.forEach((entry) ->
-				{
-					new ArrayList<>(spellEffects).stream()
-							.filter(x -> x.getActor().equals(entry.getKey()) &&
-									x.getSpellEffect().getSpellType().equals(SpellEffectType.FREEZE))
-							.forEach((spellEffect) ->
-							{
-								frozenActors.remove(entry.getKey());
-								spellEffects.remove(spellEffect);
-							});
-
-				});
-		 **/
 	}
 
 	private void checkExpiredSpellEffects()
