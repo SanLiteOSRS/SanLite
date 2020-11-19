@@ -28,7 +28,6 @@ import java.util.HashMap;
 import javax.inject.Inject;
 import lombok.AccessLevel;
 import lombok.Getter;
-import net.runelite.api.Client;
 import net.runelite.api.GameState;
 import net.runelite.api.InventoryID;
 import net.runelite.api.ItemContainer;
@@ -49,9 +48,9 @@ import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.ui.overlay.OverlayManager;
 
 @PluginDescriptor(
-	name = "Rogues' Den",
-	description = "Mark tiles and clickboxes to help traverse the maze",
-	tags = {"agility", "maze", "minigame", "overlay", "thieving"}
+		name = "Rogues' Den",
+		description = "Mark tiles and clickboxes to help traverse the maze",
+		tags = {"agility", "maze", "minigame", "overlay", "thieving"}
 )
 public class RoguesDenPlugin extends Plugin
 {
@@ -63,9 +62,6 @@ public class RoguesDenPlugin extends Plugin
 
 	@Getter(AccessLevel.PACKAGE)
 	private boolean hasGem;
-
-	@Inject
-	private Client client;
 
 	@Inject
 	private OverlayManager overlayManager;

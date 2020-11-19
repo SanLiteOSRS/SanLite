@@ -185,7 +185,7 @@ public class WorldMapIcon_0 extends AbstractWorldMapIcon {
 				}
 
 				if (var1 == 2) {
-					ModeWhere.scene.removeGameObject(var0, var2, var3);
+					ModeWhere.scene.removeGameObjectForTile(var0, var2, var3);
 					var13 = ScriptEvent.getObjectDefinition(var39);
 					if (var2 + var13.sizeX > 103 || var3 + var13.sizeX > 103 || var2 + var13.sizeY > 103 || var3 + var13.sizeY > 103) {
 						return;
