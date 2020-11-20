@@ -610,6 +610,10 @@ public interface RSClient extends RSGameEngine, Client
 	@Import("rasterProvider")
 	@Override
 	RSAbstractRasterProvider getBufferProvider();
+	
+	@Import("MouseHandler_idleCycles")
+	@Override
+	void setMouseIdleTicks(int cycles);
 
 	@Import("MouseHandler_idleCycles")
 	@Override
@@ -618,6 +622,10 @@ public interface RSClient extends RSGameEngine, Client
 	@Import("MouseHandler_lastPressedTimeMillis")
 	@Override
 	long getMouseLastPressedMillis();
+	
+	@Import("KeyHandler_idleCycles")
+	@Override
+	void setKeyboardIdleTicks(int cycles);
 
 	@Import("KeyHandler_idleCycles")
 	@Override
