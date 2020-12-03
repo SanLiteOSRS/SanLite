@@ -84,16 +84,6 @@ public final class ScriptID
 	public static final int MESSAGE_LAYER_CLOSE = 299;
 
 	/**
-	 * Sets the background for sound option bars
-	 * <ul>
-	 * <li> int  Value of the slider (0-4) </li>
-	 * <li> int (WidgetID) * 5, segments of the slider </li>
-	 * </ul>
-	 */
-	@ScriptArguments(integer = 6)
-	public static final int OPTIONS_ALLSOUNDS = 358;
-
-	/**
 	 * Readies the chatbox panel for things like the chatbox input
 	 * Inverse of MESSAGE_LAYER_CLOSE
 	 * <ul>
@@ -299,4 +289,18 @@ public final class ScriptID
 
 	@ScriptArguments()
 	public static final int BANKMAIN_SEARCHING = 514;
+
+	/**
+	 * Toggles the bank search
+	 *
+	 * <ul>
+	 * <li>int 1 (must be 1 or script immediately returns)</li>
+	 * </ul>
+	 *
+	 * Also takes 17 widget IDs corresponding to various bank widgets.
+	 * These can be retrieved from the onInvTransmitListener of BANK_ITEM_CONTAINER. Note that this array also
+	 * contains the script ID for the bank layout script in the first index
+	 */
+	@ScriptArguments(integer = 18)
+	public static final int BANKMAIN_SEARCH_TOGGLE = 281;
 }

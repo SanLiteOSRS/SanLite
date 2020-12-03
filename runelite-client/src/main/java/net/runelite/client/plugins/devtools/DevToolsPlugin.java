@@ -43,6 +43,7 @@ import net.runelite.api.MenuEntry;
 import net.runelite.api.NPC;
 import net.runelite.api.Player;
 import net.runelite.api.Skill;
+import net.runelite.api.VarbitComposition;
 import net.runelite.api.coords.WorldPoint;
 import net.runelite.api.events.CommandExecuted;
 import net.runelite.api.events.MenuEntryAdded;
@@ -257,7 +258,8 @@ public class DevToolsPlugin extends Plugin
 			case "getvarp":
 			{
 				int varp = Integer.parseInt(args[0]);
-				int value = client.getVarpValue(client.getVarps(), varp);
+				int[] varps = client.getVarps();
+				int value = varps[varp];
 				client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "VarPlayer " + varp + ": " + value, null);
 				break;
 			}
@@ -265,7 +267,10 @@ public class DevToolsPlugin extends Plugin
 			{
 				int varp = Integer.parseInt(args[0]);
 				int value = Integer.parseInt(args[1]);
-				client.setVarpValue(client.getVarps(), varp, value);
+				int[] varps = client.getVarps();
+				varps[varp] = value;
+				// TODO: Implement
+//				client.queueChangedVarp(varp);
 				client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "Set VarPlayer " + varp + " to " + value, null);
 				VarbitChanged varbitChanged = new VarbitChanged();
 				varbitChanged.setIndex(varp);
@@ -284,6 +289,9 @@ public class DevToolsPlugin extends Plugin
 				int varbit = Integer.parseInt(args[0]);
 				int value = Integer.parseInt(args[1]);
 				client.setVarbitValue(client.getVarps(), varbit, value);
+				VarbitComposition varbitComposition = client.getVarbit(varbit);
+				// TODO: Implement
+//				client.queueChangedVarp(varbitComposition.getIndex());
 				client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "Set varbit " + varbit + " to " + value, null);
 				eventBus.post(new VarbitChanged()); // fake event
 				break;

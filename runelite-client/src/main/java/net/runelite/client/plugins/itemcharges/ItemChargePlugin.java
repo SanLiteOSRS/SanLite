@@ -91,23 +91,23 @@ public class ItemChargePlugin extends Plugin
 		"Your amulet of chemistry has (\\d) charges? left\\."
 	);
 	private static final Pattern AMULET_OF_CHEMISTRY_USED_PATTERN = Pattern.compile(
-			"Your amulet of chemistry helps you create a \\d-dose potion\\. It has (\\d|one) charges? left\\."
+		"Your amulet of chemistry helps you create a \\d-dose potion\\. It has (\\d|one) charges? left\\."
 	);
 	private static final Pattern AMULET_OF_CHEMISTRY_BREAK_PATTERN = Pattern.compile(
-			"Your amulet of chemistry helps you create a \\d-dose potion\\. It then crumbles to dust\\."
+		"Your amulet of chemistry helps you create a \\d-dose potion\\. It then crumbles to dust\\."
 	);
 	private static final Pattern AMULET_OF_BOUNTY_CHECK_PATTERN = Pattern.compile(
-			"Your amulet of bounty saves some seeds for you\\. It has (\\d) charges? left\\."
+		"Your amulet of bounty has (\\d+) charges? left\\."
 	);
 	private static final Pattern AMULET_OF_BOUNTY_USED_PATTERN = Pattern.compile(
-			"Your amulet of bounty saves some seeds for you\\. It has (\\d) charges? left\\."
+		"Your amulet of bounty saves some seeds for you\\. It has (\\d) charges? left\\."
 	);
 	private static final String AMULET_OF_BOUNTY_BREAK_TEXT = "Your amulet of bounty saves some seeds for you. It then crumbles to dust.";
 	private static final Pattern CHRONICLE_ADD_PATTERN = Pattern.compile(
-			"You add (?:\\d+|a single) charges? to your book\\. It now has (\\d+|one) charges?\\."
+		"You add (?:\\d+|a single) charges? to your book\\. It now has (\\d+|one) charges?\\."
 	);
 	private static final Pattern CHRONICLE_USE_AND_CHECK_PATTERN = Pattern.compile(
-			"Your book has (\\d+) charges left\\."
+		"Your book has (\\d+) charges left\\."
 	);
 	private static final String CHRONICLE_FULL_TEXT = "Your book is fully charged! It has 1,000 charges already.";
 	private static final String CHRONICLE_ONE_CHARGE_TEXT = "You have one charge left in your book.";

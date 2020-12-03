@@ -829,6 +829,14 @@ public interface Client extends GameEngine
 	 */
 	void setVarbitValue(int[] varps, int varbit, int value);
 
+	// TODO: Implement
+//	/**
+//	 * Mark the given varp as changed, causing var listeners to be
+//	 * triggered next tick
+//	 * @param varp
+//	 */
+//	void queueChangedVarp(int varp);
+
 	/**
 	 * Gets the widget flags table.
 	 *

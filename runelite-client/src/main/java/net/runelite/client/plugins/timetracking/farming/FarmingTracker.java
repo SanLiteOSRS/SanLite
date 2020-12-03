@@ -83,11 +83,19 @@ public class FarmingTracker
 		boolean changed = false;
 
 		{
-			String group = TimeTrackingConfig.CONFIG_GROUP + "." + client.getUsername();
 			String autoweed = Integer.toString(client.getVar(Varbits.AUTOWEED));
-			if (!autoweed.equals(configManager.getConfiguration(group, TimeTrackingConfig.AUTOWEED)))
+			if (!autoweed.equals(configManager.getRSProfileConfiguration(TimeTrackingConfig.CONFIG_GROUP, TimeTrackingConfig.AUTOWEED)))
 			{
-				configManager.setConfiguration(group, TimeTrackingConfig.AUTOWEED, autoweed);
+				configManager.setRSProfileConfiguration(TimeTrackingConfig.CONFIG_GROUP, TimeTrackingConfig.AUTOWEED, autoweed);
+				changed = true;
+			}
+		}
+
+		{
+			boolean botanist = client.getVar(Varbits.LEAGUE_RELIC_5) == 1;
+			if (!Boolean.valueOf(botanist).equals(configManager.getRSProfileConfiguration(TimeTrackingConfig.CONFIG_GROUP, TimeTrackingConfig.BOTANIST, Boolean.class)))
+			{
+				configManager.setRSProfileConfiguration(TimeTrackingConfig.CONFIG_GROUP, TimeTrackingConfig.BOTANIST, botanist);
 				changed = true;
 			}
 		}
@@ -100,16 +108,15 @@ public class FarmingTracker
 			}
 
 			// Write config with new varbits
-			// timetracking.<login-username>.<regionID>.<VarbitID>=<varbitValue>:<unix time>
-			String group = TimeTrackingConfig.CONFIG_GROUP + "." + client.getUsername() + "." + region.getRegionID();
+			// timetracking.<rsprofile>.<regionID>.<VarbitID>=<varbitValue>:<unix time>
 			long unixNow = Instant.now().getEpochSecond();
 			for (FarmingPatch patch : region.getPatches())
 			{
 				// Write the config value if it doesn't match what is current, or it is more than 5 minutes old
 				Varbits varbit = patch.getVarbit();
-				String key = Integer.toString(varbit.getId());
+				String key = region.getRegionID() + "." + varbit.getId();
 				String strVarbit = Integer.toString(client.getVar(varbit));
-				String storedValue = configManager.getConfiguration(group, key);
+				String storedValue = configManager.getRSProfileConfiguration(TimeTrackingConfig.CONFIG_GROUP, key);
 
 				if (storedValue != null)
 				{
@@ -133,7 +140,7 @@ public class FarmingTracker
 				}
 
 				String value = strVarbit + ":" + unixNow;
-				configManager.setConfiguration(group, key, value);
+				configManager.setRSProfileConfiguration(TimeTrackingConfig.CONFIG_GROUP, key, value);
 				changed = true;
 			}
 		}
@@ -151,16 +158,14 @@ public class FarmingTracker
 	{
 		long unixNow = Instant.now().getEpochSecond();
 
-		boolean autoweed;
-		{
-			String group = TimeTrackingConfig.CONFIG_GROUP + "." + client.getUsername();
-			autoweed = Integer.toString(Autoweed.ON.ordinal())
-				.equals(configManager.getConfiguration(group, TimeTrackingConfig.AUTOWEED));
-		}
+		boolean autoweed = Integer.toString(Autoweed.ON.ordinal())
+			.equals(configManager.getRSProfileConfiguration(TimeTrackingConfig.CONFIG_GROUP, TimeTrackingConfig.AUTOWEED));
 
-		String group = TimeTrackingConfig.CONFIG_GROUP + "." + client.getUsername() + "." + patch.getRegion().getRegionID();
-		String key = Integer.toString(patch.getVarbit().getId());
-		String storedValue = configManager.getConfiguration(group, key);
+		boolean botanist = Boolean.TRUE
+			.equals(configManager.getRSProfileConfiguration(TimeTrackingConfig.CONFIG_GROUP, TimeTrackingConfig.BOTANIST, Boolean.class));
+
+		String key = patch.getRegion().getRegionID() + "." + patch.getVarbit().getId();
+		String storedValue = configManager.getRSProfileConfiguration(TimeTrackingConfig.CONFIG_GROUP, key);
 
 		if (storedValue == null)
 		{
@@ -199,6 +204,7 @@ public class FarmingTracker
 		int stage = state.getStage();
 		int stages = state.getStages();
 		int tickrate = state.getTickRate() * 60;
+		int farmingTickLength = 5 * 60;
 
 		if (autoweed && state.getProduce() == Produce.WEEDS)
 		{
@@ -207,14 +213,20 @@ public class FarmingTracker
 			tickrate = 0;
 		}
 
+		if (botanist)
+		{
+			tickrate /= 5;
+			farmingTickLength /= 5;
+		}
+
 		long doneEstimate = 0;
 		if (tickrate > 0)
 		{
-			long tickNow = (unixNow + (5 * 60)) / tickrate;
-			long tickTime = (unixTime + (5 * 60)) / tickrate;
+			long tickNow = (unixNow + farmingTickLength) / tickrate;
+			long tickTime = (unixTime + farmingTickLength) / tickrate;
 			int delta = (int) (tickNow - tickTime);
 
-			doneEstimate = ((stages - 1 - stage) + tickTime) * tickrate + (5 * 60);
+			doneEstimate = ((stages - 1 - stage) + tickTime) * tickrate + farmingTickLength;
 
 			stage += delta;
 			if (stage >= stages)
