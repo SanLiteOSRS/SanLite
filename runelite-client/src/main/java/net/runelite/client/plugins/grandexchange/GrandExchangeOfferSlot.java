@@ -211,8 +211,8 @@ public class GrandExchangeOfferSlot extends JPanel
 			itemIcon.setIcon(new ImageIcon(itemImage));
 
 			boolean buying = newOffer.getState() == BOUGHT
-					|| newOffer.getState() == BUYING
-					|| newOffer.getState() == CANCELLED_BUY;
+				|| newOffer.getState() == BUYING
+				|| newOffer.getState() == CANCELLED_BUY;
 
 			String offerState = (buying ? "Bought " : "Sold ")
 				+ QuantityFormatter.quantityToRSDecimalStack(newOffer.getQuantitySold()) + " / "
