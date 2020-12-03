@@ -1,6 +1,7 @@
 /*
  * Copyright (c) 2017, Devin French <https://github.com/devinfrench>
  * Copyright (c) 2019, Aleios <https://github.com/aleios>
+ * Copyright (c) 2020, Unmoon <https://github.com/unmoon>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -452,10 +453,10 @@ public interface ItemChargeConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "chronicle",
-			name = "",
-			description = "",
-			hidden = true
+		keyName = "chronicle",
+		name = "",
+		description = "",
+		hidden = true
 	)
 	default int chronicle()
 	{
@@ -463,9 +464,9 @@ public interface ItemChargeConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "chronicle",
-			name = "",
-			description = ""
+		keyName = "chronicle",
+		name = "",
+		description = ""
 	)
 	void chronicle(int chronicle);
 }

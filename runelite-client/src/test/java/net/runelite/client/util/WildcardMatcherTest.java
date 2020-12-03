@@ -40,6 +40,5 @@ public class WildcardMatcherTest
 		assertTrue(matches("rune*", "Runeite Ore"));
 		assertTrue(matches("Abyssal whip", "Abyssal whip"));
 		assertTrue(matches("string $ with special character", "string $ with special character"));
-
 	}
 }

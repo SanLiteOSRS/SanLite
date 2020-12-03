@@ -145,10 +145,10 @@ public interface MenuEntrySwapperConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "swapPrayerBook",
-			name = "Recite-Prayer",
-			description = "Swap Read with Recite-prayer on the Prayer Book from The Great Brain Robbery quest",
-			section = itemSection
+		keyName = "swapPrayerBook",
+		name = "Recite-Prayer",
+		description = "Swap Read with Recite-prayer on the Prayer Book from The Great Brain Robbery quest",
+		section = itemSection
 	)
 	default boolean swapPrayerBook()
 	{
@@ -591,6 +591,17 @@ public interface MenuEntrySwapperConfig extends Config
 		section = npcSection
 	)
 	default boolean swapCollectMiscellania()
+	{
+		return false;
+	}
+
+	@ConfigItem(
+		keyName = "swapDepositItems",
+		name = "Deposit Items",
+		description = "Swap Talk-to with Deposit-items",
+		section = npcSection
+	)
+	default boolean swapDepositItems()
 	{
 		return false;
 	}

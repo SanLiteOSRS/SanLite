@@ -65,7 +65,6 @@ public class KeyRemappingListenerTest
 	{
 		Guice.createInjector(BoundFieldModule.of(this)).injectMembers(this);
 		when(keyRemappingConfig.control()).thenReturn(new ModifierlessKeybind(KeyEvent.VK_UNDEFINED, InputEvent.CTRL_DOWN_MASK));
-
 	}
 
 	@Test
