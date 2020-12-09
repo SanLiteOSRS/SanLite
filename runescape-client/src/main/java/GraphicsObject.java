@@ -4,64 +4,66 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cy")
+@ObfuscatedName("ce")
 @Implements("GraphicsObject")
 public final class GraphicsObject extends Renderable {
-	@ObfuscatedName("f")
+	@ObfuscatedName("a")
+	public static String[] field1117;
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = 494289481
+		intValue = 1733253917
 	)
 	@Export("id")
 	int id;
-	@ObfuscatedName("b")
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = -770993721
+		intValue = -561629891
 	)
 	@Export("cycleStart")
 	int cycleStart;
-	@ObfuscatedName("l")
+	@ObfuscatedName("x")
 	@ObfuscatedGetter(
-		intValue = 2046486035
-	)
-	@Export("plane")
-	int plane;
-	@ObfuscatedName("m")
-	@ObfuscatedGetter(
-		intValue = 467633941
-	)
-	@Export("x")
-	int x;
-	@ObfuscatedName("z")
-	@ObfuscatedGetter(
-		intValue = 1569589891
-	)
-	@Export("height")
-	int height;
-	@ObfuscatedName("q")
-	@ObfuscatedGetter(
-		intValue = 1673763885
+		intValue = 843078799
 	)
 	@Export("y")
 	int y;
-	@ObfuscatedName("k")
+	@ObfuscatedName("w")
+	@ObfuscatedGetter(
+		intValue = -391213595
+	)
+	@Export("plane")
+	int plane;
+	@ObfuscatedName("t")
+	@ObfuscatedGetter(
+		intValue = 1438235689
+	)
+	@Export("x")
+	int x;
+	@ObfuscatedName("j")
+	@ObfuscatedGetter(
+		intValue = 697288519
+	)
+	@Export("height")
+	int height;
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "Ljg;"
+		signature = "Ljy;"
 	)
 	@Export("sequenceDefinition")
 	SequenceDefinition sequenceDefinition;
-	@ObfuscatedName("c")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = -300375293
+		intValue = -737281837
 	)
 	@Export("frame")
 	int frame;
-	@ObfuscatedName("u")
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = 687860479
+		intValue = -2023288775
 	)
 	@Export("frameCycle")
 	int frameCycle;
-	@ObfuscatedName("t")
+	@ObfuscatedName("z")
 	@Export("isFinished")
 	boolean isFinished;
 
@@ -75,20 +77,20 @@ public final class GraphicsObject extends Renderable {
 		this.y = var4;
 		this.height = var5;
 		this.cycleStart = var7 + var6;
-		int var8 = HealthBarUpdate.SpotAnimationDefinition_get(this.id).sequence;
+		int var8 = TileItem.SpotAnimationDefinition_get(this.id).sequence;
 		if (var8 != -1) {
 			this.isFinished = false;
-			this.sequenceDefinition = class105.SequenceDefinition_get(var8);
+			this.sequenceDefinition = ParamDefinition.SequenceDefinition_get(var8);
 		} else {
 			this.isFinished = true;
 		}
 
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
 		signature = "(II)V",
-		garbageValue = "-825901935"
+		garbageValue = "1007700617"
 	)
 	@Export("advance")
 	final void advance(int var1) {
@@ -107,14 +109,14 @@ public final class GraphicsObject extends Renderable {
 		}
 	}
 
-	@ObfuscatedName("u")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
 		signature = "(I)Leh;",
-		garbageValue = "-2070677844"
+		garbageValue = "-1814248977"
 	)
 	@Export("getModel")
 	protected final Model getModel() {
-		SpotAnimationDefinition var1 = HealthBarUpdate.SpotAnimationDefinition_get(this.id);
+		SpotAnimationDefinition var1 = TileItem.SpotAnimationDefinition_get(this.id);
 		Model var2;
 		if (!this.isFinished) {
 			var2 = var1.getModel(this.frame);
@@ -125,22 +127,44 @@ public final class GraphicsObject extends Renderable {
 		return var2 == null ? null : var2;
 	}
 
-	@ObfuscatedName("eb")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "1882927898"
+		signature = "(B)V",
+		garbageValue = "14"
 	)
-	static int method2122() {
-		if (Client.archiveLoaders != null && Client.archiveLoadersDone < Client.archiveLoaders.size()) {
-			int var0 = 0;
+	public static void method2090() {
+		synchronized(KeyHandler.KeyHandler_instance) {
+			++KeyHandler.KeyHandler_idleCycles;
+			KeyHandler.field415 = KeyHandler.field417;
+			KeyHandler.field414 = 0;
+			int var1;
+			if (KeyHandler.field410 < 0) {
+				for (var1 = 0; var1 < 112; ++var1) {
+					KeyHandler.KeyHandler_pressedKeys[var1] = false;
+				}
 
-			for (int var1 = 0; var1 <= Client.archiveLoadersDone; ++var1) {
-				var0 += ((ArchiveLoader)Client.archiveLoaders.get(var1)).loadedCount;
+				KeyHandler.field410 = KeyHandler.field401;
+			} else {
+				while (KeyHandler.field401 != KeyHandler.field410) {
+					var1 = KeyHandler.field408[KeyHandler.field401];
+					KeyHandler.field401 = KeyHandler.field401 + 1 & 127;
+					if (var1 < 0) {
+						KeyHandler.KeyHandler_pressedKeys[~var1] = false;
+					} else {
+						if (!KeyHandler.KeyHandler_pressedKeys[var1] && KeyHandler.field414 < KeyHandler.field413.length - 1) {
+							KeyHandler.field413[++KeyHandler.field414 - 1] = var1;
+						}
+
+						KeyHandler.KeyHandler_pressedKeys[var1] = true;
+					}
+				}
 			}
 
-			return var0 * 10000 / Client.field953;
-		} else {
-			return 10000;
+			if (KeyHandler.field414 > 0) {
+				KeyHandler.KeyHandler_idleCycles = 0;
+			}
+
+			KeyHandler.field417 = KeyHandler.field419;
 		}
 	}
 }

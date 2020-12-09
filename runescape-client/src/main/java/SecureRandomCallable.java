@@ -1,164 +1,257 @@
-import java.io.File;
-import java.io.IOException;
+import java.security.SecureRandom;
 import java.util.concurrent.Callable;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("by")
+@ObfuscatedName("bw")
 @Implements("SecureRandomCallable")
 public class SecureRandomCallable implements Callable {
-	@ObfuscatedName("t")
-	@ObfuscatedGetter(
-		intValue = 2147326651
-	)
-	static int field553;
-	@ObfuscatedName("cn")
-	@ObfuscatedGetter(
-		intValue = 417708035
-	)
-	public static int field555;
+	@ObfuscatedName("bh")
+	@Export("otp")
+	static String otp;
 
 	SecureRandomCallable() {
 	}
 
 	public Object call() {
-		return ServerPacket.method3740();
+		SecureRandom var2 = new SecureRandom();
+		var2.nextInt();
+		return var2;
 	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(Ljava/io/File;Ljava/io/File;I)V",
-		garbageValue = "-2079268292"
+		signature = "(II)Ljq;",
+		garbageValue = "97561494"
 	)
-	static void method1237(File var0, File var1) {
-		try {
-			AccessFile var2 = new AccessFile(class277.JagexCache_locationFile, "rw", 10000L);
-			Buffer var3 = new Buffer(500);
-			var3.writeByte(3);
-			var3.writeByte(var1 != null ? 1 : 0);
-			var3.writeCESU8(var0.getPath());
-			if (var1 != null) {
-				var3.writeCESU8("");
+	@Export("ItemDefinition_get")
+	public static ItemComposition ItemDefinition_get(int var0) {
+		ItemComposition var1 = (ItemComposition)ItemComposition.ItemDefinition_cached.get((long)var0);
+		if (var1 != null) {
+			return var1;
+		} else {
+			byte[] var2 = NPC.ItemDefinition_archive.takeFile(10, var0);
+			var1 = new ItemComposition();
+			var1.id = var0;
+			if (var2 != null) {
+				var1.decode(new Buffer(var2));
 			}
 
-			var2.write(var3.array, 0, var3.offset);
-			var2.close();
-		} catch (IOException var4) {
-			var4.printStackTrace();
+			var1.post();
+			if (var1.noteTemplate != -1) {
+				var1.genCert(ItemDefinition_get(var1.noteTemplate), ItemDefinition_get(var1.note));
+			}
+
+			if (var1.notedId != -1) {
+				var1.genBought(ItemDefinition_get(var1.notedId), ItemDefinition_get(var1.unnotedId));
+			}
+
+			if (var1.placeholderTemplate != -1) {
+				var1.genPlaceholder(ItemDefinition_get(var1.placeholderTemplate), ItemDefinition_get(var1.placeholder));
+			}
+
+			if (!ItemComposition.ItemDefinition_inMembersWorld && var1.isMembersOnly) {
+				var1.name = "Members object";
+				var1.isTradable = false;
+				var1.groundActions = null;
+				var1.inventoryActions = null;
+				var1.shiftClickIndex = -1;
+				var1.team = 0;
+				if (var1.params != null) {
+					boolean var3 = false;
+
+					for (Node var4 = var1.params.first(); var4 != null; var4 = var1.params.next()) {
+						ParamDefinition var5 = ChatChannel.getParamDefinition((int)var4.key);
+						if (var5.autoDisable) {
+							var4.remove();
+						} else {
+							var3 = true;
+						}
+					}
+
+					if (!var3) {
+						var1.params = null;
+					}
+				}
+			}
+
+			ItemComposition.ItemDefinition_cached.put(var1, (long)var0);
+			return var1;
 		}
-
 	}
 
-	@ObfuscatedName("m")
-	@ObfuscatedSignature(
-		signature = "(Ljava/lang/CharSequence;IZI)I",
-		garbageValue = "-1129917502"
-	)
-	@Export("parseIntCustomRadix")
-	public static int parseIntCustomRadix(CharSequence var0, int var1, boolean var2) {
-		if (var1 >= 2 && var1 <= 36) {
-			boolean var3 = false;
-			boolean var4 = false;
-			int var5 = 0;
-			int var6 = var0.length();
-
-			for (int var7 = 0; var7 < var6; ++var7) {
-				char var8 = var0.charAt(var7);
-				if (var7 == 0) {
-					if (var8 == '-') {
-						var3 = true;
-						continue;
-					}
-
-					if (var8 == '+') {
-						continue;
-					}
-				}
-
-				int var10;
-				if (var8 >= '0' && var8 <= '9') {
-					var10 = var8 - '0';
-				} else if (var8 >= 'A' && var8 <= 'Z') {
-					var10 = var8 - '7';
-				} else {
-					if (var8 < 'a' || var8 > 'z') {
-						throw new NumberFormatException();
-					}
-
-					var10 = var8 - 'W';
-				}
-
-				if (var10 >= var1) {
-					throw new NumberFormatException();
-				}
-
-				if (var3) {
-					var10 = -var10;
-				}
-
-				int var9 = var5 * var1 + var10;
-				if (var9 / var1 != var5) {
-					throw new NumberFormatException();
-				}
-
-				var5 = var9;
-				var4 = true;
-			}
-
-			if (!var4) {
-				throw new NumberFormatException();
+	@ObfuscatedName("v")
+	public static String method1218(long var0) {
+		if (var0 > 0L && var0 < 6582952005840035281L) {
+			if (0L == var0 % 37L) {
+				return null;
 			} else {
-				return var5;
+				int var2 = 0;
+
+				for (long var3 = var0; var3 != 0L; var3 /= 37L) {
+					++var2;
+				}
+
+				StringBuilder var5 = new StringBuilder(var2);
+
+				while (0L != var0) {
+					long var6 = var0;
+					var0 /= 37L;
+					var5.append(class299.base37Table[(int)(var6 - 37L * var0)]);
+				}
+
+				return var5.reverse().toString();
 			}
 		} else {
-			throw new IllegalArgumentException("" + var1);
+			return null;
 		}
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(III)I",
-		garbageValue = "1149121"
+		signature = "(II)Z",
+		garbageValue = "1753340272"
 	)
-	public static int method1238(int var0, int var1) {
-		int var2 = var0 >>> 31;
-		return (var0 + var2) / var1 - var2;
+	public static boolean method1216(int var0) {
+		return (var0 >> 20 & 1) != 0;
 	}
 
-	@ObfuscatedName("ix")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		signature = "(Lht;Ljk;IIZI)V",
-		garbageValue = "-59300685"
+		signature = "(ILib;IIIZI)V",
+		garbageValue = "141166757"
 	)
-	@Export("addWidgetItemMenuItem")
-	static final void addWidgetItemMenuItem(Widget var0, ItemComposition var1, int var2, int var3, boolean var4) {
-		String[] var5 = var1.inventoryActions;
-		byte var6 = -1;
-		String var7 = null;
-		if (var5 != null && var5[var3] != null) {
-			if (var3 == 0) {
-				var6 = 33;
-			} else if (var3 == 1) {
-				var6 = 34;
-			} else if (var3 == 2) {
-				var6 = 35;
-			} else if (var3 == 3) {
-				var6 = 36;
+	@Export("playMusicTrack")
+	public static void playMusicTrack(int var0, AbstractArchive var1, int var2, int var3, int var4, boolean var5) {
+		class206.field2421 = 1;
+		Varps.musicTrackArchive = var1;
+		HealthBarUpdate.musicTrackGroupId = var2;
+		class206.musicTrackFileId = var3;
+		GrandExchangeEvent.musicTrackVolume = var4;
+		class231.musicTrackBoolean = var5;
+		WorldMapSection1.pcmSampleLength = var0;
+	}
+
+	@ObfuscatedName("t")
+	@ObfuscatedSignature(
+		signature = "(IB)V",
+		garbageValue = "5"
+	)
+	public static void method1220(int var0) {
+		class206.field2421 = 1;
+		Varps.musicTrackArchive = null;
+		HealthBarUpdate.musicTrackGroupId = -1;
+		class206.musicTrackFileId = -1;
+		GrandExchangeEvent.musicTrackVolume = 0;
+		class231.musicTrackBoolean = false;
+		WorldMapSection1.pcmSampleLength = var0;
+	}
+
+	@ObfuscatedName("c")
+	@ObfuscatedSignature(
+		signature = "(Lcj;I)V",
+		garbageValue = "997445897"
+	)
+	@Export("changeWorld")
+	static void changeWorld(World var0) {
+		if (var0.isMembersOnly() != Client.isMembersWorld) {
+			Client.isMembersWorld = var0.isMembersOnly();
+			SecureRandomFuture.method2205(var0.isMembersOnly());
+		}
+
+		if (var0.properties != Client.worldProperties) {
+			Archive var1 = Messages.archive8;
+			int var2 = var0.properties;
+			if ((var2 & 536870912) != 0) {
+				class224.logoSprite = class51.SpriteBuffer_getIndexedSpriteByName(var1, "logo_deadman_mode", "");
+			} else if ((var2 & 1073741824) != 0) {
+				class224.logoSprite = class51.SpriteBuffer_getIndexedSpriteByName(var1, "logo_seasonal_mode", "");
 			} else {
-				var6 = 37;
+				class224.logoSprite = class51.SpriteBuffer_getIndexedSpriteByName(var1, "logo", "");
+			}
+		}
+
+		WorldMapSprite.worldHost = var0.host;
+		Client.worldId = var0.id;
+		Client.worldProperties = var0.properties;
+		class278.port1 = Client.gameBuild == 0 ? 43594 : var0.id + 40000;
+		Players.port2 = Client.gameBuild == 0 ? 443 : var0.id + 50000;
+		ArchiveDiskAction.port3 = class278.port1;
+	}
+
+	@ObfuscatedName("gt")
+	@ObfuscatedSignature(
+		signature = "(Ljava/lang/String;B)V",
+		garbageValue = "90"
+	)
+	@Export("doCheat")
+	static final void doCheat(String var0) {
+		if (var0.equalsIgnoreCase("toggleroof")) {
+			Timer.clientPreferences.roofsHidden = !Timer.clientPreferences.roofsHidden;
+			GrandExchangeOffer.savePreferences();
+			if (Timer.clientPreferences.roofsHidden) {
+				class234.addGameMessage(99, "", "Roofs are now all hidden");
+			} else {
+				class234.addGameMessage(99, "", "Roofs will only be removed selectively");
+			}
+		}
+
+		if (var0.equalsIgnoreCase("displayfps")) {
+			Client.displayFps = !Client.displayFps;
+		}
+
+		if (var0.equalsIgnoreCase("renderself")) {
+			Client.renderSelf = !Client.renderSelf;
+		}
+
+		if (var0.equalsIgnoreCase("mouseovertext")) {
+			Client.showMouseOverText = !Client.showMouseOverText;
+		}
+
+		if (Client.staffModLevel >= 2) {
+			if (var0.equalsIgnoreCase("errortest")) {
+				throw new RuntimeException();
 			}
 
-			var7 = var5[var3];
-		} else if (var3 == 4) {
-			var6 = 37;
-			var7 = "Drop";
+			if (var0.equalsIgnoreCase("showcoord")) {
+				WorldMapRectangle.worldMap.showCoord = !WorldMapRectangle.worldMap.showCoord;
+			}
+
+			if (var0.equalsIgnoreCase("fpson")) {
+				Client.displayFps = true;
+			}
+
+			if (var0.equalsIgnoreCase("fpsoff")) {
+				Client.displayFps = false;
+			}
+
+			if (var0.equalsIgnoreCase("gc")) {
+				System.gc();
+			}
+
+			if (var0.equalsIgnoreCase("clientdrop")) {
+				LoginScreenAnimation.method1903();
+			}
 		}
 
-		if (var6 != -1 && var7 != null) {
-			KeyHandler.insertMenuItem(var7, Client.colorStartTag(16748608) + var1.name, var6, var1.id, var2, var0.id, var4);
+		PacketBufferNode var1 = ItemContainer.getPacketBufferNode(ClientPacket.field2243, Client.packetWriter.isaacCipher);
+		var1.packetBuffer.writeByte(var0.length() + 1);
+		var1.packetBuffer.writeStringCp1252NullTerminated(var0);
+		Client.packetWriter.addNode(var1);
+	}
+
+	@ObfuscatedName("lt")
+	@ObfuscatedSignature(
+		signature = "(I)V",
+		garbageValue = "-1703246278"
+	)
+	@Export("FriendSystem_invalidateFriends")
+	static final void FriendSystem_invalidateFriends() {
+		for (int var0 = 0; var0 < Players.Players_count; ++var0) {
+			Player var1 = Client.players[Players.Players_indices[var0]];
+			var1.clearIsInClanChat();
 		}
 
 	}

@@ -1,50 +1,57 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ke")
+@ObfuscatedName("kf")
 @Implements("IgnoreList")
 public class IgnoreList extends NameableContainer {
-	@ObfuscatedName("l")
+	@ObfuscatedName("o")
+	@ObfuscatedGetter(
+		intValue = -1712737799
+	)
+	@Export("canvasWidth")
+	public static int canvasWidth;
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		signature = "Lmc;"
+		signature = "Lmu;"
 	)
 	@Export("loginType")
 	final LoginType loginType;
 
 	@ObfuscatedSignature(
-		signature = "(Lmc;)V"
+		signature = "(Lmu;)V"
 	)
 	public IgnoreList(LoginType var1) {
 		super(400);
 		this.loginType = var1;
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(I)Ljh;",
-		garbageValue = "-1664145399"
+		signature = "(B)Lju;",
+		garbageValue = "-99"
 	)
 	@Export("newInstance")
 	Nameable newInstance() {
 		return new Ignored();
 	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(IB)[Ljh;",
-		garbageValue = "-35"
+		signature = "(II)[Lju;",
+		garbageValue = "-1524839332"
 	)
 	@Export("newTypedArray")
 	Nameable[] newTypedArray(int var1) {
 		return new Ignored[var1];
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		signature = "(Lkb;IB)V",
-		garbageValue = "0"
+		signature = "(Lkj;II)V",
+		garbageValue = "1401176897"
 	)
 	@Export("read")
 	public void read(Buffer var1, int var2) {
@@ -86,5 +93,41 @@ public class IgnoreList extends NameableContainer {
 
 			return;
 		}
+	}
+
+	@ObfuscatedName("v")
+	@ObfuscatedSignature(
+		signature = "(IS)I",
+		garbageValue = "-18749"
+	)
+	@Export("iLog")
+	public static int iLog(int var0) {
+		int var1 = 0;
+		if (var0 < 0 || var0 >= 65536) {
+			var0 >>>= 16;
+			var1 += 16;
+		}
+
+		if (var0 >= 256) {
+			var0 >>>= 8;
+			var1 += 8;
+		}
+
+		if (var0 >= 16) {
+			var0 >>>= 4;
+			var1 += 4;
+		}
+
+		if (var0 >= 4) {
+			var0 >>>= 2;
+			var1 += 2;
+		}
+
+		if (var0 >= 1) {
+			var0 >>>= 1;
+			++var1;
+		}
+
+		return var0 + var1;
 	}
 }

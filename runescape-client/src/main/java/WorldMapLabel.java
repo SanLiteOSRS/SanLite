@@ -4,33 +4,50 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ai")
+@ObfuscatedName("ah")
 @Implements("WorldMapLabel")
 public class WorldMapLabel {
-	@ObfuscatedName("f")
+	@ObfuscatedName("r")
+	@ObfuscatedSignature(
+		signature = "Lkj;"
+	)
+	@Export("NetCache_reference")
+	public static Buffer NetCache_reference;
+	@ObfuscatedName("ey")
+	@ObfuscatedGetter(
+		intValue = 1487211049
+	)
+	static int field258;
+	@ObfuscatedName("fa")
+	@ObfuscatedSignature(
+		signature = "Lkv;"
+	)
+	@Export("WorldMapElement_fonts")
+	static Fonts WorldMapElement_fonts;
+	@ObfuscatedName("h")
 	@Export("text")
 	String text;
-	@ObfuscatedName("b")
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = -1900229559
+		intValue = 1156578913
 	)
 	@Export("width")
 	int width;
-	@ObfuscatedName("l")
+	@ObfuscatedName("x")
 	@ObfuscatedGetter(
-		intValue = 424685221
+		intValue = 2007608325
 	)
 	@Export("height")
 	int height;
-	@ObfuscatedName("m")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		signature = "Lab;"
+		signature = "Lan;"
 	)
 	@Export("size")
 	WorldMapLabelSize size;
 
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;IILab;)V"
+		signature = "(Ljava/lang/String;IILan;)V"
 	)
 	WorldMapLabel(String var1, int var2, int var3, WorldMapLabelSize var4) {
 		this.text = var1;
@@ -39,23 +56,13 @@ public class WorldMapLabel {
 		this.size = var4;
 	}
 
-	@ObfuscatedName("ay")
+	@ObfuscatedName("li")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-1774401095"
+		signature = "(B)V",
+		garbageValue = "-13"
 	)
-	protected static final void method519() {
-		UserComparator3.clock.mark();
-
-		int var0;
-		for (var0 = 0; var0 < 32; ++var0) {
-			GameEngine.graphicsTickTimes[var0] = 0L;
-		}
-
-		for (var0 = 0; var0 < 32; ++var0) {
-			GameEngine.clientTickTimes[var0] = 0L;
-		}
-
-		GameEngine.gameCyclesToDo = 0;
+	static final void method469() {
+		Client.field842 = Client.cycleCntr;
+		WorldMapIcon_1.ClanChat_inClanChat = true;
 	}
 }

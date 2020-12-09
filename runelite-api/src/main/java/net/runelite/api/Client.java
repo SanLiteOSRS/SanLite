@@ -1036,36 +1036,42 @@ public interface Client extends GameEngine
 
 	/**
 	 * Gets the music volume
+	 *
 	 * @return volume 0-255 inclusive
 	 */
 	int getMusicVolume();
 
 	/**
 	 * Sets the music volume
+	 *
 	 * @param volume 0-255 inclusive
 	 */
 	void setMusicVolume(int volume);
 
 	/**
 	 * Gets the sound effect volume
+	 *
 	 * @return volume 0-127 inclusive
 	 */
 	int getSoundEffectVolume();
 
 	/**
 	 * Sets the sound effect volume
+	 *
 	 * @param volume 0-127 inclusive
 	 */
 	void setSoundEffectVolume(int volume);
 
 	/**
 	 * Gets the area sound effect volume
+	 *
 	 * @return volume 0-127 inclusive
 	 */
 	int getAreaSoundEffectVolume();
 
 	/**
 	 * Sets the area sound effect volume
+	 *
 	 * @param volume 0-127 inclusive
 	 */
 	void setAreaSoundEffectVolume(int volume);

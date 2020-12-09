@@ -7,37 +7,37 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fl")
+@ObfuscatedName("fa")
 @Implements("TaskHandler")
 public class TaskHandler implements Runnable {
-	@ObfuscatedName("f")
+	@ObfuscatedName("h")
 	@Export("javaVendor")
 	public static String javaVendor;
-	@ObfuscatedName("b")
+	@ObfuscatedName("v")
 	@Export("javaVersion")
 	public static String javaVersion;
-	@ObfuscatedName("hl")
+	@ObfuscatedName("df")
 	@ObfuscatedSignature(
-		signature = "[Llc;"
+		signature = "Llr;"
 	)
-	@Export("headIconPrayerSprites")
-	static SpritePixels[] headIconPrayerSprites;
-	@ObfuscatedName("l")
+	@Export("js5Socket")
+	static AbstractSocket js5Socket;
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		signature = "Lfu;"
+		signature = "Lfd;"
 	)
 	@Export("current")
 	Task current;
-	@ObfuscatedName("m")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		signature = "Lfu;"
+		signature = "Lfd;"
 	)
 	@Export("task")
 	Task task;
-	@ObfuscatedName("z")
+	@ObfuscatedName("t")
 	@Export("thread")
 	Thread thread;
-	@ObfuscatedName("q")
+	@ObfuscatedName("j")
 	@Export("isClosed")
 	boolean isClosed;
 
@@ -61,10 +61,10 @@ public class TaskHandler implements Runnable {
 		this.thread.start();
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "14"
+		signature = "(I)V",
+		garbageValue = "60003222"
 	)
 	@Export("close")
 	public final void close() {
@@ -80,10 +80,10 @@ public class TaskHandler implements Runnable {
 
 	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(IIILjava/lang/Object;B)Lfu;",
-		garbageValue = "44"
+		signature = "(IIILjava/lang/Object;I)Lfd;",
+		garbageValue = "-108529883"
 	)
 	@Export("newTask")
 	final Task newTask(int var1, int var2, int var3, Object var4) {
@@ -104,20 +104,20 @@ public class TaskHandler implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;II)Lfu;",
-		garbageValue = "1542542692"
+		signature = "(Ljava/lang/String;IB)Lfd;",
+		garbageValue = "0"
 	)
 	@Export("newSocketTask")
 	public final Task newSocketTask(String var1, int var2) {
 		return this.newTask(1, var2, 0, var1);
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/Runnable;IS)Lfu;",
-		garbageValue = "3910"
+		signature = "(Ljava/lang/Runnable;II)Lfd;",
+		garbageValue = "-1137156097"
 	)
 	@Export("newThreadTask")
 	public final Task newThreadTask(Runnable var1, int var2) {
@@ -172,12 +172,16 @@ public class TaskHandler implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		signature = "(ZZI)Lle;",
-		garbageValue = "1626700828"
+		signature = "(IZIZI)V",
+		garbageValue = "766328157"
 	)
-	static IndexedSprite method3609(boolean var0, boolean var1) {
-		return var0 ? (var1 ? DevicePcmPlayerProvider.field439 : Login.options_buttons_2Sprite) : (var1 ? class69.field583 : Login.options_buttons_0Sprite);
+	@Export("sortWorldList")
+	static void sortWorldList(int var0, boolean var1, int var2, boolean var3) {
+		if (World.World_worlds != null) {
+			class25.doWorldSorting(0, World.World_worlds.length - 1, var0, var1, var2, var3);
+		}
+
 	}
 }

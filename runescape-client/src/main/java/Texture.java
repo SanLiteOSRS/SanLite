@@ -3,46 +3,46 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ez")
+@ObfuscatedName("eg")
 @Implements("Texture")
 public class Texture extends Node {
-	@ObfuscatedName("p")
+	@ObfuscatedName("i")
 	@Export("Texture_animatedPixels")
 	static int[] Texture_animatedPixels;
-	@ObfuscatedName("z")
+	@ObfuscatedName("t")
 	@Export("averageRGB")
 	int averageRGB;
-	@ObfuscatedName("q")
-	boolean field1655;
-	@ObfuscatedName("k")
+	@ObfuscatedName("j")
+	boolean field1640;
+	@ObfuscatedName("n")
 	@Export("fileIds")
 	int[] fileIds;
-	@ObfuscatedName("c")
-	int[] field1652;
+	@ObfuscatedName("p")
+	int[] field1642;
+	@ObfuscatedName("l")
+	int[] field1648;
+	@ObfuscatedName("z")
+	int[] field1637;
 	@ObfuscatedName("u")
-	int[] field1653;
-	@ObfuscatedName("t")
-	int[] field1658;
-	@ObfuscatedName("e")
 	@Export("animationDirection")
 	int animationDirection;
-	@ObfuscatedName("o")
+	@ObfuscatedName("e")
 	@Export("animationSpeed")
 	int animationSpeed;
-	@ObfuscatedName("n")
+	@ObfuscatedName("m")
 	@Export("pixels")
 	int[] pixels;
-	@ObfuscatedName("x")
+	@ObfuscatedName("c")
 	@Export("isLoaded")
 	boolean isLoaded;
 
 	@ObfuscatedSignature(
-		signature = "(Lkb;)V"
+		signature = "(Lkj;)V"
 	)
 	Texture(Buffer var1) {
 		this.isLoaded = false;
 		this.averageRGB = var1.readUnsignedShort();
-		this.field1655 = var1.readUnsignedByte() == 1;
+		this.field1640 = var1.readUnsignedByte() == 1;
 		int var2 = var1.readUnsignedByte();
 		if (var2 >= 1 && var2 <= 4) {
 			this.fileIds = new int[var2];
@@ -53,25 +53,25 @@ public class Texture extends Node {
 			}
 
 			if (var2 > 1) {
-				this.field1652 = new int[var2 - 1];
+				this.field1642 = new int[var2 - 1];
 
 				for (var3 = 0; var3 < var2 - 1; ++var3) {
-					this.field1652[var3] = var1.readUnsignedByte();
+					this.field1642[var3] = var1.readUnsignedByte();
 				}
 			}
 
 			if (var2 > 1) {
-				this.field1653 = new int[var2 - 1];
+				this.field1648 = new int[var2 - 1];
 
 				for (var3 = 0; var3 < var2 - 1; ++var3) {
-					this.field1653[var3] = var1.readUnsignedByte();
+					this.field1648[var3] = var1.readUnsignedByte();
 				}
 			}
 
-			this.field1658 = new int[var2];
+			this.field1637 = new int[var2];
 
 			for (var3 = 0; var3 < var2; ++var3) {
-				this.field1658[var3] = var1.readInt();
+				this.field1637[var3] = var1.readInt();
 			}
 
 			this.animationDirection = var1.readUnsignedByte();
@@ -82,9 +82,9 @@ public class Texture extends Node {
 		}
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(DILiw;)Z"
+		signature = "(DILib;)Z"
 	)
 	@Export("load")
 	boolean load(double var1, int var3, AbstractArchive var4) {
@@ -99,11 +99,11 @@ public class Texture extends Node {
 		this.pixels = new int[var5];
 
 		for (int var6 = 0; var6 < this.fileIds.length; ++var6) {
-			IndexedSprite var7 = class298.method5411(var4, this.fileIds[var6]);
+			IndexedSprite var7 = FloorOverlayDefinition.method4789(var4, this.fileIds[var6]);
 			var7.normalize();
 			byte[] var8 = var7.pixels;
 			int[] var9 = var7.palette;
-			int var10 = this.field1658[var6];
+			int var10 = this.field1637[var6];
 			if ((var10 & -16777216) == 16777216) {
 			}
 
@@ -134,7 +134,7 @@ public class Texture extends Node {
 			if (var6 == 0) {
 				var11 = 0;
 			} else {
-				var11 = this.field1652[var6 - 1];
+				var11 = this.field1642[var6 - 1];
 			}
 
 			if (var11 == 0) {
@@ -178,13 +178,13 @@ public class Texture extends Node {
 		return true;
 	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("v")
 	@Export("reset")
 	void reset() {
 		this.pixels = null;
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("x")
 	@Export("animate")
 	void animate(int var1) {
 		if (this.pixels != null) {

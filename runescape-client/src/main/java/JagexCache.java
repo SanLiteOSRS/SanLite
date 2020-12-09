@@ -5,41 +5,42 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fp")
+@ObfuscatedName("fu")
 @Implements("JagexCache")
 public class JagexCache {
-	@ObfuscatedName("l")
-	@ObfuscatedGetter(
-		longValue = 8604224012951228081L
-	)
-	public static long field2081;
-	@ObfuscatedName("z")
+	@ObfuscatedName("w")
+	@Export("JagexCache_locationFile")
+	static File JagexCache_locationFile;
+	@ObfuscatedName("t")
 	@Export("cacheDir")
-	static File cacheDir;
-	@ObfuscatedName("o")
+	public static File cacheDir;
+	@ObfuscatedName("p")
+	@Export("ByteArrayPool_altSizeArrayCounts")
+	public static int[] ByteArrayPool_altSizeArrayCounts;
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
 		signature = "Lmz;"
 	)
 	@Export("JagexCache_randomDat")
-	static BufferedFile JagexCache_randomDat;
-	@ObfuscatedName("n")
+	public static BufferedFile JagexCache_randomDat;
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
 		signature = "Lmz;"
 	)
 	@Export("JagexCache_dat2File")
 	public static BufferedFile JagexCache_dat2File;
-	@ObfuscatedName("x")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
 		signature = "Lmz;"
 	)
 	@Export("JagexCache_idx255File")
 	public static BufferedFile JagexCache_idx255File;
-	@ObfuscatedName("p")
-	@ObfuscatedSignature(
-		signature = "[Lmz;"
+	@ObfuscatedName("f")
+	@ObfuscatedGetter(
+		intValue = -622132541
 	)
-	@Export("JagexCache_idxFiles")
-	public static BufferedFile[] JagexCache_idxFiles;
+	@Export("cacheGamebuild")
+	public static int cacheGamebuild;
 
 	static {
 		JagexCache_randomDat = null;
@@ -47,86 +48,29 @@ public class JagexCache {
 		JagexCache_idx255File = null;
 	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
-		signature = "(II)I",
-		garbageValue = "2128303847"
+		signature = "(Ljava/lang/CharSequence;B)I",
+		garbageValue = "-6"
 	)
-	public static int method3625(int var0) {
-		return var0 >> 11 & 63;
+	@Export("hashString")
+	public static int hashString(CharSequence var0) {
+		int var1 = var0.length();
+		int var2 = 0;
+
+		for (int var3 = 0; var3 < var1; ++var3) {
+			var2 = (var2 << 5) - var2 + Varps.charToByteCp1252(var0.charAt(var3));
+		}
+
+		return var2;
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
-		signature = "(IB)I",
-		garbageValue = "-50"
+		signature = "(B)Z",
+		garbageValue = "3"
 	)
-	@Export("iLog")
-	public static int iLog(int var0) {
-		int var1 = 0;
-		if (var0 < 0 || var0 >= 65536) {
-			var0 >>>= 16;
-			var1 += 16;
-		}
-
-		if (var0 >= 256) {
-			var0 >>>= 8;
-			var1 += 8;
-		}
-
-		if (var0 >= 16) {
-			var0 >>>= 4;
-			var1 += 4;
-		}
-
-		if (var0 >= 4) {
-			var0 >>>= 2;
-			var1 += 2;
-		}
-
-		if (var0 >= 1) {
-			var0 >>>= 1;
-			++var1;
-		}
-
-		return var0 + var1;
-	}
-
-	@ObfuscatedName("hk")
-	@ObfuscatedSignature(
-		signature = "(Lbz;B)V",
-		garbageValue = "101"
-	)
-	static final void method3619(PendingSpawn var0) {
-		long var1 = 0L;
-		int var3 = -1;
-		int var4 = 0;
-		int var5 = 0;
-		if (var0.type == 0) {
-			var1 = ModeWhere.scene.getBoundaryObjectTag(var0.plane, var0.x, var0.y);
-		}
-
-		if (var0.type == 1) {
-			var1 = ModeWhere.scene.getWallDecorationTag(var0.plane, var0.x, var0.y);
-		}
-
-		if (var0.type == 2) {
-			var1 = ModeWhere.scene.getGameObjectTag(var0.plane, var0.x, var0.y);
-		}
-
-		if (var0.type == 3) {
-			var1 = ModeWhere.scene.getFloorDecorationTag(var0.plane, var0.x, var0.y);
-		}
-
-		if (var1 != 0L) {
-			int var6 = ModeWhere.scene.getObjectFlags(var0.plane, var0.x, var0.y, var1);
-			var3 = ObjectSound.Entity_unpackID(var1);
-			var4 = var6 & 31;
-			var5 = var6 >> 6 & 3;
-		}
-
-		var0.objectId = var3;
-		var0.field959 = var4;
-		var0.field963 = var5;
+	public static boolean method3566() {
+		return class206.field2421 != 0 ? true : class206.midiPcmStream.isReady();
 	}
 }

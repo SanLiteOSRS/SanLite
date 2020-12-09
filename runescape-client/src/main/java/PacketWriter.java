@@ -1,91 +1,105 @@
-import java.io.DataInputStream;
 import java.io.IOException;
-import java.net.URL;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("dg")
+@ObfuscatedName("dh")
 @Implements("PacketWriter")
 public class PacketWriter {
 	@ObfuscatedName("f")
+	@ObfuscatedGetter(
+		intValue = -1231198347
+	)
+	@Export("graphicsTickTimeIdx")
+	static int graphicsTickTimeIdx;
+	@ObfuscatedName("ge")
+	@ObfuscatedGetter(
+		intValue = -840603711
+	)
+	static int field1331;
+	@ObfuscatedName("id")
+	@ObfuscatedGetter(
+		intValue = 512771779
+	)
+	static int field1341;
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "Llv;"
+		signature = "Llr;"
 	)
 	@Export("socket")
 	AbstractSocket socket;
-	@ObfuscatedName("b")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "Ljs;"
+		signature = "Ljn;"
 	)
 	@Export("packetBufferNodes")
 	IterableNodeDeque packetBufferNodes;
-	@ObfuscatedName("l")
+	@ObfuscatedName("x")
 	@ObfuscatedGetter(
-		intValue = 921396255
+		intValue = -818108241
 	)
 	@Export("bufferSize")
 	int bufferSize;
-	@ObfuscatedName("m")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		signature = "Lkb;"
+		signature = "Lkj;"
 	)
 	@Export("buffer")
 	Buffer buffer;
-	@ObfuscatedName("z")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		signature = "Lmh;"
+		signature = "Lmd;"
 	)
 	@Export("isaacCipher")
 	public IsaacCipher isaacCipher;
-	@ObfuscatedName("q")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
-		signature = "Lks;"
+		signature = "Lky;"
 	)
 	@Export("packetBuffer")
 	PacketBuffer packetBuffer;
-	@ObfuscatedName("k")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "Lgw;"
+		signature = "Lgt;"
 	)
 	@Export("serverPacket")
 	ServerPacket serverPacket;
-	@ObfuscatedName("c")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = 67173535
+		intValue = 2012352771
 	)
 	@Export("serverPacketLength")
 	int serverPacketLength;
-	@ObfuscatedName("u")
-	boolean field1340;
-	@ObfuscatedName("t")
+	@ObfuscatedName("l")
+	boolean field1332;
+	@ObfuscatedName("z")
 	@ObfuscatedGetter(
-		intValue = -330616605
+		intValue = -1974762033
 	)
-	int field1337;
-	@ObfuscatedName("e")
+	int field1333;
+	@ObfuscatedName("u")
 	@ObfuscatedGetter(
-		intValue = -708203583
+		intValue = 1113999339
 	)
 	@Export("pendingWrites")
 	int pendingWrites;
-	@ObfuscatedName("o")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		signature = "Lgw;"
+		signature = "Lgt;"
 	)
-	ServerPacket field1348;
-	@ObfuscatedName("n")
+	ServerPacket field1335;
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		signature = "Lgw;"
+		signature = "Lgt;"
 	)
-	ServerPacket field1339;
-	@ObfuscatedName("x")
+	ServerPacket field1336;
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "Lgw;"
+		signature = "Lgt;"
 	)
-	ServerPacket field1350;
+	ServerPacket field1337;
 
 	PacketWriter() {
 		this.packetBufferNodes = new IterableNodeDeque();
@@ -94,15 +108,15 @@ public class PacketWriter {
 		this.packetBuffer = new PacketBuffer(40000);
 		this.serverPacket = null;
 		this.serverPacketLength = 0;
-		this.field1340 = true;
-		this.field1337 = 0;
+		this.field1332 = true;
+		this.field1333 = 0;
 		this.pendingWrites = 0;
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "702095612"
+		signature = "(S)V",
+		garbageValue = "-15320"
 	)
 	@Export("clearBuffer")
 	final void clearBuffer() {
@@ -110,10 +124,10 @@ public class PacketWriter {
 		this.bufferSize = 0;
 	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "73"
+		signature = "(I)V",
+		garbageValue = "-1507185593"
 	)
 	@Export("flush")
 	final void flush() throws IOException {
@@ -138,10 +152,10 @@ public class PacketWriter {
 
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		signature = "(Lgk;B)V",
-		garbageValue = "29"
+		signature = "(Lgv;I)V",
+		garbageValue = "1911016563"
 	)
 	@Export("addNode")
 	public final void addNode(PacketBufferNode var1) {
@@ -151,20 +165,20 @@ public class PacketWriter {
 		this.bufferSize += var1.index;
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		signature = "(Llv;I)V",
-		garbageValue = "-640227269"
+		signature = "(Llr;I)V",
+		garbageValue = "-412452109"
 	)
 	@Export("setSocket")
 	void setSocket(AbstractSocket var1) {
 		this.socket = var1;
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "-1950086546"
+		garbageValue = "1483874445"
 	)
 	@Export("close")
 	void close() {
@@ -175,203 +189,23 @@ public class PacketWriter {
 
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "-1804593474"
+		garbageValue = "210420137"
 	)
 	@Export("removeSocket")
 	void removeSocket() {
 		this.socket = null;
 	}
 
-	@ObfuscatedName("k")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(S)Llv;",
-		garbageValue = "310"
+		signature = "(I)Llr;",
+		garbageValue = "659174081"
 	)
 	@Export("getSocket")
 	AbstractSocket getSocket() {
 		return this.socket;
-	}
-
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;Ljava/lang/Throwable;B)V",
-		garbageValue = "60"
-	)
-	@Export("RunException_sendStackTrace")
-	public static void RunException_sendStackTrace(String var0, Throwable var1) {
-		if (var1 != null) {
-			var1.printStackTrace();
-		} else {
-			try {
-				String var2 = "";
-				if (var1 != null) {
-					var2 = Occluder.method3413(var1);
-				}
-
-				if (var0 != null) {
-					if (var1 != null) {
-						var2 = var2 + " | ";
-					}
-
-					var2 = var2 + var0;
-				}
-
-				System.out.println("Error: " + var2);
-				var2 = var2.replace(':', '.');
-				var2 = var2.replace('@', '_');
-				var2 = var2.replace('&', '_');
-				var2 = var2.replace('#', '_');
-				if (RunException.RunException_applet == null) {
-					return;
-				}
-
-				URL var3 = new URL(RunException.RunException_applet.getCodeBase(), "clienterror.ws?c=" + RunException.RunException_revision + "&u=" + class217.localPlayerName + "&v1=" + TaskHandler.javaVendor + "&v2=" + TaskHandler.javaVersion + "&ct=" + NetFileRequest.clientType + "&e=" + var2);
-				DataInputStream var4 = new DataInputStream(var3.openStream());
-				var4.read();
-				var4.close();
-			} catch (Exception var5) {
-			}
-
-		}
-	}
-
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		signature = "(I)[Llu;",
-		garbageValue = "987618759"
-	)
-	@Export("FillMode_values")
-	public static class333[] FillMode_values() {
-		return new class333[]{class333.SOLID, class333.field3894, class333.field3895};
-	}
-
-	@ObfuscatedName("go")
-	@ObfuscatedSignature(
-		signature = "(ZLks;I)V",
-		garbageValue = "-232306457"
-	)
-	@Export("loadRegions")
-	static final void loadRegions(boolean var0, PacketBuffer var1) {
-		Client.isInInstance = var0;
-		int var2;
-		int var3;
-		int var5;
-		int var6;
-		int var7;
-		int var8;
-		if (!Client.isInInstance) {
-			var2 = var1.method5797();
-			var3 = var1.method5797();
-			int var4 = var1.readUnsignedShort();
-			WorldMapEvent.xteaKeys = new int[var4][4];
-
-			for (var5 = 0; var5 < var4; ++var5) {
-				for (var6 = 0; var6 < 4; ++var6) {
-					WorldMapEvent.xteaKeys[var5][var6] = var1.readInt();
-				}
-			}
-
-			class52.regions = new int[var4];
-			class22.regionMapArchiveIds = new int[var4];
-			WallDecoration.regionLandArchiveIds = new int[var4];
-			GrandExchangeOffer.regionLandArchives = new byte[var4][];
-			GameEngine.regionMapArchives = new byte[var4][];
-			boolean var16 = false;
-			if ((var2 / 8 == 48 || var2 / 8 == 49) && var3 / 8 == 48) {
-				var16 = true;
-			}
-
-			if (var2 / 8 == 48 && var3 / 8 == 148) {
-				var16 = true;
-			}
-
-			var4 = 0;
-
-			for (var6 = (var2 - 6) / 8; var6 <= (var2 + 6) / 8; ++var6) {
-				for (var7 = (var3 - 6) / 8; var7 <= (var3 + 6) / 8; ++var7) {
-					var8 = var7 + (var6 << 8);
-					if (!var16 || var7 != 49 && var7 != 149 && var7 != 147 && var6 != 50 && (var6 != 49 || var7 != 47)) {
-						class52.regions[var4] = var8;
-						class22.regionMapArchiveIds[var4] = Varcs.archive5.getGroupId("m" + var6 + "_" + var7);
-						WallDecoration.regionLandArchiveIds[var4] = Varcs.archive5.getGroupId("l" + var6 + "_" + var7);
-						++var4;
-					}
-				}
-			}
-
-			Projectile.method2223(var2, var3, true);
-		} else {
-			var2 = var1.method5659();
-			var3 = var1.method5659();
-			boolean var15 = var1.method5668() == 1;
-			var5 = var1.readUnsignedShort();
-			var1.importIndex();
-
-			int var9;
-			for (var6 = 0; var6 < 4; ++var6) {
-				for (var7 = 0; var7 < 13; ++var7) {
-					for (var8 = 0; var8 < 13; ++var8) {
-						var9 = var1.readBits(1);
-						if (var9 == 1) {
-							Client.instanceChunkTemplates[var6][var7][var8] = var1.readBits(26);
-						} else {
-							Client.instanceChunkTemplates[var6][var7][var8] = -1;
-						}
-					}
-				}
-			}
-
-			var1.exportIndex();
-			WorldMapEvent.xteaKeys = new int[var5][4];
-
-			for (var6 = 0; var6 < var5; ++var6) {
-				for (var7 = 0; var7 < 4; ++var7) {
-					WorldMapEvent.xteaKeys[var6][var7] = var1.readInt();
-				}
-			}
-
-			class52.regions = new int[var5];
-			class22.regionMapArchiveIds = new int[var5];
-			WallDecoration.regionLandArchiveIds = new int[var5];
-			GrandExchangeOffer.regionLandArchives = new byte[var5][];
-			GameEngine.regionMapArchives = new byte[var5][];
-			var5 = 0;
-
-			for (var6 = 0; var6 < 4; ++var6) {
-				for (var7 = 0; var7 < 13; ++var7) {
-					for (var8 = 0; var8 < 13; ++var8) {
-						var9 = Client.instanceChunkTemplates[var6][var7][var8];
-						if (var9 != -1) {
-							int var10 = var9 >> 14 & 1023;
-							int var11 = var9 >> 3 & 2047;
-							int var12 = (var10 / 8 << 8) + var11 / 8;
-
-							int var13;
-							for (var13 = 0; var13 < var5; ++var13) {
-								if (class52.regions[var13] == var12) {
-									var12 = -1;
-									break;
-								}
-							}
-
-							if (var12 != -1) {
-								class52.regions[var5] = var12;
-								var13 = var12 >> 8 & 255;
-								int var14 = var12 & 255;
-								class22.regionMapArchiveIds[var5] = Varcs.archive5.getGroupId("m" + var13 + "_" + var14);
-								WallDecoration.regionLandArchiveIds[var5] = Varcs.archive5.getGroupId("l" + var13 + "_" + var14);
-								++var5;
-							}
-						}
-					}
-				}
-			}
-
-			Projectile.method2223(var3, var2, !var15);
-		}
-
 	}
 }
