@@ -17,13 +17,13 @@ public abstract class AbstractWorldMapData {
 	static PcmPlayer pcmPlayer0;
 	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = 825398208
+		intValue = 1285877760
 	)
 	@Export("regionXLow")
 	int regionXLow;
 	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = -1414098944
+		intValue = 447666752
 	)
 	@Export("regionYLow")
 	int regionYLow;

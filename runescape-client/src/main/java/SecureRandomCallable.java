@@ -125,7 +125,7 @@ public class SecureRandomCallable implements Callable {
 	)
 	@Export("playMusicTrack")
 	public static void playMusicTrack(int var0, AbstractArchive var1, int var2, int var3, int var4, boolean var5) {
-		class206.field2421 = 1;
+		class206.musicPlayerStatus = 1;
 		Varps.musicTrackArchive = var1;
 		HealthBarUpdate.musicTrackGroupId = var2;
 		class206.musicTrackFileId = var3;
@@ -140,7 +140,7 @@ public class SecureRandomCallable implements Callable {
 		garbageValue = "5"
 	)
 	public static void method1220(int var0) {
-		class206.field2421 = 1;
+		class206.musicPlayerStatus = 1;
 		Varps.musicTrackArchive = null;
 		HealthBarUpdate.musicTrackGroupId = -1;
 		class206.musicTrackFileId = -1;

@@ -71,6 +71,6 @@ public class JagexCache {
 		garbageValue = "3"
 	)
 	public static boolean method3566() {
-		return class206.field2421 != 0 ? true : class206.midiPcmStream.isReady();
+		return class206.musicPlayerStatus != 0 ? true : class206.midiPcmStream.isReady();
 	}
 }

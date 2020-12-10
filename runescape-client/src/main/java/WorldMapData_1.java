@@ -416,7 +416,7 @@ public class WorldMapData_1 extends AbstractWorldMapData {
 				}
 
 				if (var1 == 2) {
-					ArchiveLoader.scene.removeGameObject(var0, var2, var3);
+					ArchiveLoader.scene.removeGameObjectForTile(var0, var2, var3);
 					var13 = WorldMapDecoration.getObjectDefinition(var14);
 					if (var2 + var13.sizeX > 103 || var3 + var13.sizeX > 103 || var2 + var13.sizeY > 103 || var3 + var13.sizeY > 103) {
 						return;

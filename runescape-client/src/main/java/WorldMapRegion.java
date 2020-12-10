@@ -976,7 +976,7 @@ public class WorldMapRegion {
 	)
 	public static void method588() {
 		class206.midiPcmStream.clear();
-		class206.field2421 = 1;
+		class206.musicPlayerStatus = 1;
 		Varps.musicTrackArchive = null;
 	}
 

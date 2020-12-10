@@ -76,7 +76,7 @@ public class Interpreter {
 		garbageValue = "781493841"
 	)
 	public static void method2082(AbstractArchive var0, int var1, int var2, int var3, boolean var4) {
-		class206.field2421 = 1;
+		class206.musicPlayerStatus = 1;
 		Varps.musicTrackArchive = var0;
 		HealthBarUpdate.musicTrackGroupId = var1;
 		class206.musicTrackFileId = var2;

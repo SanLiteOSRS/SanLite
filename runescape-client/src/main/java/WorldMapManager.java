@@ -89,7 +89,7 @@ public final class WorldMapManager {
 	int tileX;
 	@ObfuscatedName("m")
 	@ObfuscatedGetter(
-		intValue = 1763069632
+		intValue = 631527739
 	)
 	@Export("tileY")
 	int tileY;

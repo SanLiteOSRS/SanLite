@@ -95,7 +95,7 @@ public class WorldMapEvent {
 			} else if (var0 == 0) {
 				WorldMapRegion.method588();
 				Client.field883 = false;
-			} else if (class206.field2421 != 0) {
+			} else if (class206.musicPlayerStatus != 0) {
 				GrandExchangeEvent.musicTrackVolume = var0;
 			} else {
 				class206.midiPcmStream.setPcmStreamVolume(var0);

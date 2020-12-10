@@ -290,7 +290,7 @@ public class UrlRequester implements Runnable {
 	)
 	public static void method3381() {
 		try {
-			if (class206.field2421 == 1) {
+			if (class206.musicPlayerStatus == 1) {
 				int var0 = class206.midiPcmStream.method3816();
 				if (var0 > 0 && class206.midiPcmStream.isReady()) {
 					var0 -= WorldMapSection1.pcmSampleLength;
@@ -305,9 +305,9 @@ public class UrlRequester implements Runnable {
 				class206.midiPcmStream.clear();
 				class206.midiPcmStream.removeAll();
 				if (Varps.musicTrackArchive != null) {
-					class206.field2421 = 2;
+					class206.musicPlayerStatus = 2;
 				} else {
-					class206.field2421 = 0;
+					class206.musicPlayerStatus = 0;
 				}
 
 				FileSystem.musicTrack = null;
@@ -316,7 +316,7 @@ public class UrlRequester implements Runnable {
 		} catch (Exception var2) {
 			var2.printStackTrace();
 			class206.midiPcmStream.clear();
-			class206.field2421 = 0;
+			class206.musicPlayerStatus = 0;
 			FileSystem.musicTrack = null;
 			class206.soundCache = null;
 			Varps.musicTrackArchive = null;

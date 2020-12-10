@@ -33,7 +33,8 @@ public class class206 {
 	@ObfuscatedGetter(
 		intValue = 1386216651
 	)
-	public static int field2421;
+	@Export("musicPlayerStatus")
+	public static int musicPlayerStatus;
 	@ObfuscatedName("p")
 	@ObfuscatedGetter(
 		intValue = -1877060861
@@ -54,6 +55,6 @@ public class class206 {
 	public static Buffer NetCache_responseArchiveBuffer;
 
 	static {
-		field2421 = 0;
+		musicPlayerStatus = 0;
 	}
 }

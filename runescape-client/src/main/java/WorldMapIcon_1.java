@@ -164,7 +164,7 @@ public class WorldMapIcon_1 extends AbstractWorldMapIcon {
 	)
 	public static boolean method355() {
 		try {
-			if (class206.field2421 == 2) {
+			if (class206.musicPlayerStatus == 2) {
 				if (FileSystem.musicTrack == null) {
 					FileSystem.musicTrack = MusicTrack.readTrack(Varps.musicTrackArchive, HealthBarUpdate.musicTrackGroupId, class206.musicTrackFileId);
 					if (FileSystem.musicTrack == null) {
@@ -180,7 +180,7 @@ public class WorldMapIcon_1 extends AbstractWorldMapIcon {
 					class206.midiPcmStream.clearAll();
 					class206.midiPcmStream.setPcmStreamVolume(GrandExchangeEvent.musicTrackVolume);
 					class206.midiPcmStream.setMusicTrack(FileSystem.musicTrack, class231.musicTrackBoolean);
-					class206.field2421 = 0;
+					class206.musicPlayerStatus = 0;
 					FileSystem.musicTrack = null;
 					class206.soundCache = null;
 					Varps.musicTrackArchive = null;
@@ -190,7 +190,7 @@ public class WorldMapIcon_1 extends AbstractWorldMapIcon {
 		} catch (Exception var1) {
 			var1.printStackTrace();
 			class206.midiPcmStream.clear();
-			class206.field2421 = 0;
+			class206.musicPlayerStatus = 0;
 			FileSystem.musicTrack = null;
 			class206.soundCache = null;
 			Varps.musicTrackArchive = null;
