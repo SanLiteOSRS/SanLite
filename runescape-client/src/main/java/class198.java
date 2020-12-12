@@ -1,20 +1,26 @@
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gu")
+@ObfuscatedName("ga")
 public class class198 {
-	@ObfuscatedName("o")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(CII)Ljava/lang/String;",
-		garbageValue = "-2114436646"
+		signature = "(II)Lje;",
+		garbageValue = "1390109728"
 	)
-	static String method3786(char var0, int var1) {
-		char[] var2 = new char[var1];
+	public static HitSplatDefinition method3697(int var0) {
+		HitSplatDefinition var1 = (HitSplatDefinition)HitSplatDefinition.HitSplatDefinition_cached.get((long)var0);
+		if (var1 != null) {
+			return var1;
+		} else {
+			byte[] var2 = HitSplatDefinition.HitSplatDefinition_archive.takeFile(32, var0);
+			var1 = new HitSplatDefinition();
+			if (var2 != null) {
+				var1.decode(new Buffer(var2));
+			}
 
-		for (int var3 = 0; var3 < var1; ++var3) {
-			var2[var3] = var0;
+			HitSplatDefinition.HitSplatDefinition_cached.put(var1, (long)var0);
+			return var1;
 		}
-
-		return new String(var2);
 	}
 }

@@ -6,36 +6,42 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("ds")
 @Implements("SoundCache")
 public class SoundCache {
-	@ObfuscatedName("c")
-	@Export("ItemDefinition_inMembersWorld")
-	public static boolean ItemDefinition_inMembersWorld;
-	@ObfuscatedName("f")
+	@ObfuscatedName("n")
+	@Export("ByteArrayPool_alternativeSizes")
+	public static int[] ByteArrayPool_alternativeSizes;
+	@ObfuscatedName("cq")
 	@ObfuscatedSignature(
-		signature = "Liw;"
+		signature = "Lbv;"
+	)
+	@Export("mouseRecorder")
+	static MouseRecorder mouseRecorder;
+	@ObfuscatedName("h")
+	@ObfuscatedSignature(
+		signature = "Lib;"
 	)
 	@Export("soundEffectIndex")
 	AbstractArchive soundEffectIndex;
-	@ObfuscatedName("b")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "Liw;"
+		signature = "Lib;"
 	)
 	@Export("musicSampleIndex")
 	AbstractArchive musicSampleIndex;
-	@ObfuscatedName("l")
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		signature = "Llp;"
+		signature = "Lls;"
 	)
 	@Export("musicSamples")
 	NodeHashTable musicSamples;
-	@ObfuscatedName("m")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		signature = "Llp;"
+		signature = "Lls;"
 	)
 	@Export("rawSounds")
 	NodeHashTable rawSounds;
 
 	@ObfuscatedSignature(
-		signature = "(Liw;Liw;)V"
+		signature = "(Lib;Lib;)V"
 	)
 	public SoundCache(AbstractArchive var1, AbstractArchive var2) {
 		this.musicSamples = new NodeHashTable(256);
@@ -44,10 +50,10 @@ public class SoundCache {
 		this.musicSampleIndex = var2;
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(II[II)Ldo;",
-		garbageValue = "16776960"
+		signature = "(II[II)Ldf;",
+		garbageValue = "-2076179570"
 	)
 	@Export("getSoundEffect0")
 	RawSound getSoundEffect0(int var1, int var2, int[] var3) {
@@ -75,10 +81,10 @@ public class SoundCache {
 		}
 	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(II[II)Ldo;",
-		garbageValue = "-716229534"
+		signature = "(II[II)Ldf;",
+		garbageValue = "1195097760"
 	)
 	@Export("getMusicSample0")
 	RawSound getMusicSample0(int var1, int var2, int[] var3) {
@@ -112,10 +118,10 @@ public class SoundCache {
 		}
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		signature = "(I[II)Ldo;",
-		garbageValue = "-541178737"
+		signature = "(I[II)Ldf;",
+		garbageValue = "122861408"
 	)
 	@Export("getSoundEffect")
 	public RawSound getSoundEffect(int var1, int[] var2) {
@@ -128,10 +134,10 @@ public class SoundCache {
 		}
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		signature = "(I[II)Ldo;",
-		garbageValue = "-1523377894"
+		signature = "(I[II)Ldf;",
+		garbageValue = "-2010455709"
 	)
 	@Export("getMusicSample")
 	public RawSound getMusicSample(int var1, int[] var2) {
@@ -142,75 +148,5 @@ public class SoundCache {
 		} else {
 			throw new RuntimeException();
 		}
-	}
-
-	@ObfuscatedName("gi")
-	@ObfuscatedSignature(
-		signature = "(IB)V",
-		garbageValue = "50"
-	)
-	static final void method2646(int var0) {
-		int[] var1 = InterfaceParent.sceneMinimapSprite.pixels;
-		int var2 = var1.length;
-
-		int var3;
-		for (var3 = 0; var3 < var2; ++var3) {
-			var1[var3] = 0;
-		}
-
-		int var4;
-		int var5;
-		for (var3 = 1; var3 < 103; ++var3) {
-			var4 = (103 - var3) * 2048 + 24628;
-
-			for (var5 = 1; var5 < 103; ++var5) {
-				if ((Tiles.Tiles_renderFlags[var0][var5][var3] & 24) == 0) {
-					ModeWhere.scene.drawTileMinimap(var1, var4, 512, var0, var5, var3);
-				}
-
-				if (var0 < 3 && (Tiles.Tiles_renderFlags[var0 + 1][var5][var3] & 8) != 0) {
-					ModeWhere.scene.drawTileMinimap(var1, var4, 512, var0 + 1, var5, var3);
-				}
-
-				var4 += 4;
-			}
-		}
-
-		var3 = (238 + (int)(Math.random() * 20.0D) - 10 << 16) + (238 + (int)(Math.random() * 20.0D) - 10 << 8) + (238 + (int)(Math.random() * 20.0D) - 10);
-		var4 = 238 + (int)(Math.random() * 20.0D) - 10 << 16;
-		InterfaceParent.sceneMinimapSprite.setRaster();
-
-		int var6;
-		for (var5 = 1; var5 < 103; ++var5) {
-			for (var6 = 1; var6 < 103; ++var6) {
-				if ((Tiles.Tiles_renderFlags[var0][var6][var5] & 24) == 0) {
-					Canvas.drawObject(var0, var6, var5, var3, var4);
-				}
-
-				if (var0 < 3 && (Tiles.Tiles_renderFlags[var0 + 1][var6][var5] & 8) != 0) {
-					Canvas.drawObject(var0 + 1, var6, var5, var3, var4);
-				}
-			}
-		}
-
-		Client.mapIconCount = 0;
-
-		for (var5 = 0; var5 < 104; ++var5) {
-			for (var6 = 0; var6 < 104; ++var6) {
-				long var7 = ModeWhere.scene.getFloorDecorationTag(GrandExchangeOfferUnitPriceComparator.Client_plane, var5, var6);
-				if (var7 != 0L) {
-					int var9 = ObjectSound.Entity_unpackID(var7);
-					int var10 = ScriptEvent.getObjectDefinition(var9).mapIconId;
-					if (var10 >= 0 && class194.WorldMapElement_get(var10).field3248) {
-						Client.mapIcons[Client.mapIconCount] = class194.WorldMapElement_get(var10).getSpriteBool(false);
-						Client.field723[Client.mapIconCount] = var5;
-						Client.field909[Client.mapIconCount] = var6;
-						++Client.mapIconCount;
-					}
-				}
-			}
-		}
-
-		class22.rasterProvider.apply();
 	}
 }

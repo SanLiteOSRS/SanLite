@@ -4,85 +4,65 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("iz")
+@ObfuscatedName("ia")
 @Implements("NetFileRequest")
 public class NetFileRequest extends DualNode {
-	@ObfuscatedName("m")
-	@ObfuscatedGetter(
-		intValue = 1462127955
-	)
-	@Export("clientType")
-	public static int clientType;
-	@ObfuscatedName("f")
+	@ObfuscatedName("eu")
 	@ObfuscatedSignature(
-		signature = "Lid;"
+		signature = "Lil;"
+	)
+	@Export("archive20")
+	static Archive archive20;
+	@ObfuscatedName("gc")
+	@ObfuscatedGetter(
+		intValue = 2065438809
+	)
+	@Export("baseX")
+	static int baseX;
+	@ObfuscatedName("h")
+	@ObfuscatedSignature(
+		signature = "Lil;"
 	)
 	@Export("archive")
-	Archive archive;
-	@ObfuscatedName("b")
+	public Archive archive;
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = -350124813
+		intValue = -257937565
 	)
 	@Export("crc")
-	int crc;
-	@ObfuscatedName("l")
+	public int crc;
+	@ObfuscatedName("x")
 	@Export("padding")
-	byte padding;
+	public byte padding;
 
 	NetFileRequest() {
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("kw")
 	@ObfuscatedSignature(
-		signature = "(II)[B",
-		garbageValue = "1806020760"
+		signature = "(IIII)Lbt;",
+		garbageValue = "102160869"
 	)
-	@Export("ByteArrayPool_getArray")
-	public static synchronized byte[] ByteArrayPool_getArray(int var0) {
-		return ByteArrayPool.ByteArrayPool_getArrayBool(var0, false);
-	}
-
-	@ObfuscatedName("m")
-	@ObfuscatedSignature(
-		signature = "(IIII)V",
-		garbageValue = "1930792528"
-	)
-	static final void method4293(int var0, int var1, int var2) {
-		int var3;
-		for (var3 = 0; var3 < 8; ++var3) {
-			for (int var4 = 0; var4 < 8; ++var4) {
-				Tiles.Tiles_heights[var0][var3 + var1][var4 + var2] = 0;
-			}
+	static final InterfaceParent method4189(int var0, int var1, int var2) {
+		InterfaceParent var3 = new InterfaceParent();
+		var3.group = var1;
+		var3.type = var2;
+		Client.interfaceParents.put(var3, (long)var0);
+		class304.Widget_resetModelFrames(var1);
+		Widget var4 = CollisionMap.getWidget(var0);
+		CollisionMap.invalidateWidget(var4);
+		if (Client.meslayerContinueWidget != null) {
+			CollisionMap.invalidateWidget(Client.meslayerContinueWidget);
+			Client.meslayerContinueWidget = null;
 		}
 
-		if (var1 > 0) {
-			for (var3 = 1; var3 < 8; ++var3) {
-				Tiles.Tiles_heights[var0][var1][var3 + var2] = Tiles.Tiles_heights[var0][var1 - 1][var3 + var2];
-			}
+		WorldMapData_1.method767();
+		PendingSpawn.revalidateWidgetScroll(class9.Widget_interfaceComponents[var0 >> 16], var4, false);
+		VarpDefinition.runWidgetOnLoadListener(var1);
+		if (Client.rootInterface != -1) {
+			WorldMapRectangle.runIntfCloseListeners(Client.rootInterface, 1);
 		}
 
-		if (var2 > 0) {
-			for (var3 = 1; var3 < 8; ++var3) {
-				Tiles.Tiles_heights[var0][var3 + var1][var2] = Tiles.Tiles_heights[var0][var3 + var1][var2 - 1];
-			}
-		}
-
-		if (var1 > 0 && Tiles.Tiles_heights[var0][var1 - 1][var2] != 0) {
-			Tiles.Tiles_heights[var0][var1][var2] = Tiles.Tiles_heights[var0][var1 - 1][var2];
-		} else if (var2 > 0 && Tiles.Tiles_heights[var0][var1][var2 - 1] != 0) {
-			Tiles.Tiles_heights[var0][var1][var2] = Tiles.Tiles_heights[var0][var1][var2 - 1];
-		} else if (var1 > 0 && var2 > 0 && Tiles.Tiles_heights[var0][var1 - 1][var2 - 1] != 0) {
-			Tiles.Tiles_heights[var0][var1][var2] = Tiles.Tiles_heights[var0][var1 - 1][var2 - 1];
-		}
-
-	}
-
-	@ObfuscatedName("q")
-	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-1725199015"
-	)
-	public static void method4292() {
-		FloorOverlayDefinition.FloorOverlayDefinition_cached.clear();
+		return var3;
 	}
 }

@@ -4,41 +4,47 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("af")
+@ObfuscatedName("ag")
 @Implements("WorldMapSectionType")
 public enum WorldMapSectionType implements Enumerated {
-	@ObfuscatedName("f")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "Laf;"
+		signature = "Lag;"
 	)
 	@Export("WORLDMAPSECTIONTYPE0")
-	WORLDMAPSECTIONTYPE0(2, (byte)0),
-	@ObfuscatedName("b")
+	WORLDMAPSECTIONTYPE0(1, (byte)0),
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "Laf;"
+		signature = "Lag;"
 	)
 	@Export("WORLDMAPSECTIONTYPE1")
-	WORLDMAPSECTIONTYPE1(3, (byte)1),
-	@ObfuscatedName("l")
+	WORLDMAPSECTIONTYPE1(0, (byte)1),
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		signature = "Laf;"
+		signature = "Lag;"
 	)
 	@Export("WORLDMAPSECTIONTYPE2")
-	WORLDMAPSECTIONTYPE2(1, (byte)2),
-	@ObfuscatedName("m")
+	WORLDMAPSECTIONTYPE2(3, (byte)2),
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		signature = "Laf;"
+		signature = "Lag;"
 	)
 	@Export("WORLDMAPSECTIONTYPE3")
-	WORLDMAPSECTIONTYPE3(0, (byte)3);
+	WORLDMAPSECTIONTYPE3(2, (byte)3);
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("bn")
+	@ObfuscatedSignature(
+		signature = "[Llo;"
+	)
+	@Export("worldSelectArrows")
+	static IndexedSprite[] worldSelectArrows;
+	@ObfuscatedName("t")
 	@ObfuscatedGetter(
-		intValue = 1960357597
+		intValue = -297259605
 	)
 	@Export("type")
 	final int type;
-	@ObfuscatedName("q")
+	@ObfuscatedName("j")
 	@Export("id")
 	final byte id;
 
@@ -47,75 +53,33 @@ public enum WorldMapSectionType implements Enumerated {
 		this.id = var4;
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		signature = "(B)I",
-		garbageValue = "23"
+		signature = "(I)I",
+		garbageValue = "-275768542"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
 		return this.id;
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "([BI)V",
-		garbageValue = "1810910487"
+		signature = "(B)[Lag;",
+		garbageValue = "116"
 	)
-	@Export("ByteArrayPool_release")
-	public static synchronized void ByteArrayPool_release(byte[] var0) {
-		if (var0.length == 100 && ByteArrayPool.ByteArrayPool_smallCount < 1000) {
-			ByteArrayPool.ByteArrayPool_small[++ByteArrayPool.ByteArrayPool_smallCount - 1] = var0;
-		} else if (var0.length == 5000 && ByteArrayPool.ByteArrayPool_mediumCount < 250) {
-			ByteArrayPool.ByteArrayPool_medium[++ByteArrayPool.ByteArrayPool_mediumCount - 1] = var0;
-		} else if (var0.length == 30000 && ByteArrayPool.ByteArrayPool_largeCount < 50) {
-			ByteArrayPool.ByteArrayPool_large[++ByteArrayPool.ByteArrayPool_largeCount - 1] = var0;
-		} else {
-			if (ByteArrayPool.ByteArrayPool_arrays != null) {
-				for (int var1 = 0; var1 < Coord.ByteArrayPool_alternativeSizes.length; ++var1) {
-					if (var0.length == Coord.ByteArrayPool_alternativeSizes[var1] && FloorDecoration.ByteArrayPool_altSizeArrayCounts[var1] < ByteArrayPool.ByteArrayPool_arrays[var1].length) {
-						ByteArrayPool.ByteArrayPool_arrays[var1][FloorDecoration.ByteArrayPool_altSizeArrayCounts[var1]++] = var0;
-						return;
-					}
-				}
-			}
-
-		}
+	static WorldMapSectionType[] method295() {
+		return new WorldMapSectionType[]{WORLDMAPSECTIONTYPE3, WORLDMAPSECTIONTYPE1, WORLDMAPSECTIONTYPE0, WORLDMAPSECTIONTYPE2};
 	}
 
-	@ObfuscatedName("hr")
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		signature = "(IB)Z",
-		garbageValue = "1"
+		signature = "(ILib;Ljava/lang/String;Ljava/lang/String;IZI)V",
+		garbageValue = "-519940907"
 	)
-	static final boolean method336(int var0) {
-		if (var0 < 0) {
-			return false;
-		} else {
-			int var1 = Client.menuOpcodes[var0];
-			if (var1 >= 2000) {
-				var1 -= 2000;
-			}
-
-			return var1 == 1007;
-		}
-	}
-
-	@ObfuscatedName("jl")
-	@ObfuscatedSignature(
-		signature = "(Lht;IIIB)V",
-		garbageValue = "-90"
-	)
-	@Export("drawCompass")
-	static final void drawCompass(Widget var0, int var1, int var2, int var3) {
-		SpriteMask var4 = var0.getSpriteMask(false);
-		if (var4 != null) {
-			if (Client.minimapState < 3) {
-				UserComparator5.compass.drawRotatedMaskedCenteredAround(var1, var2, var4.width, var4.height, 25, 25, Client.camAngleY, 256, var4.xStarts, var4.xWidths);
-			} else {
-				Rasterizer2D.Rasterizer2D_fillMaskedRectangle(var1, var2, 0, var4.xStarts, var4.xWidths);
-			}
-
-		}
+	public static void method300(int var0, AbstractArchive var1, String var2, String var3, int var4, boolean var5) {
+		int var6 = var1.getGroupId(var2);
+		int var7 = var1.getFileId(var6, var3);
+		SecureRandomCallable.playMusicTrack(var0, var1, var6, var7, var4, var5);
 	}
 }

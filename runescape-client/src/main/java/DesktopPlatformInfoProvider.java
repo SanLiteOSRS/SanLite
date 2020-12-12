@@ -4,38 +4,38 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("mx")
+@ObfuscatedName("mc")
 @Implements("DesktopPlatformInfoProvider")
 public class DesktopPlatformInfoProvider implements PlatformInfoProvider {
-	@ObfuscatedName("m")
+	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		intValue = 1591606451
-	)
-	int field3938;
-	@ObfuscatedName("z")
-	@ObfuscatedGetter(
-		intValue = -1274184543
+		intValue = -935966695
 	)
 	int field3941;
-	@ObfuscatedName("q")
+	@ObfuscatedName("t")
 	@ObfuscatedGetter(
-		intValue = -1204832127
+		intValue = 1689133229
 	)
-	int field3944;
+	int field3942;
+	@ObfuscatedName("j")
+	@ObfuscatedGetter(
+		intValue = -685403723
+	)
+	int field3943;
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(I)Lme;",
-		garbageValue = "1154202585"
+		signature = "(I)Lmf;",
+		garbageValue = "-1820791637"
 	)
 	@Export("get")
 	public PlatformInfo get() {
 		byte var1;
-		if (MouseRecorder.field617.startsWith("win")) {
+		if (ObjectSound.field1077.startsWith("win")) {
 			var1 = 1;
-		} else if (MouseRecorder.field617.startsWith("mac")) {
+		} else if (ObjectSound.field1077.startsWith("mac")) {
 			var1 = 2;
-		} else if (MouseRecorder.field617.startsWith("linux")) {
+		} else if (ObjectSound.field1077.startsWith("linux")) {
 			var1 = 3;
 		} else {
 			var1 = 4;
@@ -133,10 +133,10 @@ public class DesktopPlatformInfoProvider implements PlatformInfoProvider {
 			var8 = 4;
 		}
 
-		this.method6425(var5);
+		this.method6322(var5);
 		int var10 = (int)(Runtime.getRuntime().maxMemory() / 1048576L) + 1;
 		int var11;
-		if (this.field3938 > 3) {
+		if (this.field3941 > 3) {
 			var11 = Runtime.getRuntime().availableProcessors();
 		} else {
 			var11 = 0;
@@ -150,53 +150,53 @@ public class DesktopPlatformInfoProvider implements PlatformInfoProvider {
 		String var17 = "";
 		String var18 = "";
 		int[] var23 = new int[3];
-		return new PlatformInfo(var1, var24, var7, var8, this.field3938, this.field3941, this.field3944, false, var10, var11, var12, 0, var13, var14, var15, var16, 0, 0, 0, 0, var17, var18, var23, 0, "");
+		return new PlatformInfo(var1, var24, var7, var8, this.field3941, this.field3942, this.field3943, false, var10, var11, var12, 0, var13, var14, var15, var16, 0, 0, 0, 0, var17, var18, var23, 0, "");
 	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
 		signature = "(Ljava/lang/String;B)V",
-		garbageValue = "1"
+		garbageValue = "-54"
 	)
-	void method6425(String var1) {
+	void method6322(String var1) {
 		if (var1.startsWith("1.")) {
-			this.method6426(var1);
+			this.method6321(var1);
 		} else {
-			this.method6427(var1);
+			this.method6331(var1);
 		}
 
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
 		signature = "(Ljava/lang/String;I)V",
-		garbageValue = "291167261"
+		garbageValue = "-1601938226"
 	)
-	void method6426(String var1) {
+	void method6321(String var1) {
 		String[] var2 = var1.split("\\.");
 
 		try {
-			this.field3938 = Integer.parseInt(var2[1]);
+			this.field3941 = Integer.parseInt(var2[1]);
 			var2 = var2[2].split("_");
-			this.field3941 = Integer.parseInt(var2[0]);
-			this.field3944 = Integer.parseInt(var2[1]);
+			this.field3942 = Integer.parseInt(var2[0]);
+			this.field3943 = Integer.parseInt(var2[1]);
 		} catch (Exception var4) {
 		}
 
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;I)V",
-		garbageValue = "-1635640262"
+		signature = "(Ljava/lang/String;S)V",
+		garbageValue = "-13668"
 	)
-	void method6427(String var1) {
+	void method6331(String var1) {
 		String[] var2 = var1.split("\\.");
 
 		try {
-			this.field3938 = Integer.parseInt(var2[0]);
-			this.field3941 = Integer.parseInt(var2[1]);
-			this.field3944 = Integer.parseInt(var2[2]);
+			this.field3941 = Integer.parseInt(var2[0]);
+			this.field3942 = Integer.parseInt(var2[1]);
+			this.field3943 = Integer.parseInt(var2[2]);
 		} catch (Exception var4) {
 		}
 

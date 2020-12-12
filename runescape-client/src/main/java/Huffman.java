@@ -3,16 +3,16 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hi")
+@ObfuscatedName("hu")
 @Implements("Huffman")
 public class Huffman {
-	@ObfuscatedName("f")
+	@ObfuscatedName("h")
 	@Export("masks")
 	int[] masks;
-	@ObfuscatedName("b")
+	@ObfuscatedName("v")
 	@Export("bits")
 	byte[] bits;
-	@ObfuscatedName("l")
+	@ObfuscatedName("x")
 	@Export("keys")
 	int[] keys;
 
@@ -99,10 +99,10 @@ public class Huffman {
 
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
 		signature = "([BII[BII)I",
-		garbageValue = "-1847376111"
+		garbageValue = "2127333577"
 	)
 	@Export("compress")
 	int compress(byte[] var1, int var2, int var3, byte[] var4, int var5) {
@@ -150,10 +150,10 @@ public class Huffman {
 		return (var7 + 7 >> 3) - var5;
 	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
 		signature = "([BI[BIII)I",
-		garbageValue = "-1101500142"
+		garbageValue = "-556309350"
 	)
 	@Export("decompress")
 	int decompress(byte[] var1, int var2, byte[] var3, int var4, int var5) {
@@ -294,13 +294,69 @@ public class Huffman {
 		}
 	}
 
-	@ObfuscatedName("iy")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
-		signature = "(ZI)V",
-		garbageValue = "-1189529622"
+		signature = "(Lkj;IIIIIII)V",
+		garbageValue = "109073521"
 	)
-	@Export("setTapToDrop")
-	static void setTapToDrop(boolean var0) {
-		Client.tapToDrop = var0;
+	@Export("loadTerrain")
+	static final void loadTerrain(Buffer var0, int var1, int var2, int var3, int var4, int var5, int var6) {
+		int var7;
+		if (var2 >= 0 && var2 < 104 && var3 >= 0 && var3 < 104) {
+			Tiles.Tiles_renderFlags[var1][var2][var3] = 0;
+
+			while (true) {
+				var7 = var0.readUnsignedByte();
+				if (var7 == 0) {
+					if (var1 == 0) {
+						Tiles.Tiles_heights[0][var2][var3] = -PcmPlayer.method2544(932731 + var2 + var4, var3 + 556238 + var5) * 8;
+					} else {
+						Tiles.Tiles_heights[var1][var2][var3] = Tiles.Tiles_heights[var1 - 1][var2][var3] - 240;
+					}
+					break;
+				}
+
+				if (var7 == 1) {
+					int var8 = var0.readUnsignedByte();
+					if (var8 == 1) {
+						var8 = 0;
+					}
+
+					if (var1 == 0) {
+						Tiles.Tiles_heights[0][var2][var3] = -var8 * 8;
+					} else {
+						Tiles.Tiles_heights[var1][var2][var3] = Tiles.Tiles_heights[var1 - 1][var2][var3] - var8 * 8;
+					}
+					break;
+				}
+
+				if (var7 <= 49) {
+					Tiles.field508[var1][var2][var3] = var0.readByte();
+					class9.field40[var1][var2][var3] = (byte)((var7 - 2) / 4);
+					Username.field3663[var1][var2][var3] = (byte)(var7 - 2 + var6 & 3);
+				} else if (var7 <= 81) {
+					Tiles.Tiles_renderFlags[var1][var2][var3] = (byte)(var7 - 49);
+				} else {
+					Tiles.field514[var1][var2][var3] = (byte)(var7 - 81);
+				}
+			}
+		} else {
+			while (true) {
+				var7 = var0.readUnsignedByte();
+				if (var7 == 0) {
+					break;
+				}
+
+				if (var7 == 1) {
+					var0.readUnsignedByte();
+					break;
+				}
+
+				if (var7 <= 49) {
+					var0.readUnsignedByte();
+				}
+			}
+		}
+
 	}
 }

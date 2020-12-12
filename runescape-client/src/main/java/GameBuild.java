@@ -7,51 +7,39 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("io")
 @Implements("GameBuild")
 public class GameBuild {
-	@ObfuscatedName("f")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
 		signature = "Lio;"
 	)
 	@Export("LIVE")
-	public static final GameBuild LIVE;
-	@ObfuscatedName("b")
+	static final GameBuild LIVE;
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
 		signature = "Lio;"
 	)
 	@Export("BUILDLIVE")
-	public static final GameBuild BUILDLIVE;
-	@ObfuscatedName("l")
+	static final GameBuild BUILDLIVE;
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
 		signature = "Lio;"
 	)
 	@Export("RC")
-	public static final GameBuild RC;
-	@ObfuscatedName("m")
+	static final GameBuild RC;
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
 		signature = "Lio;"
 	)
 	@Export("WIP")
-	public static final GameBuild WIP;
+	static final GameBuild WIP;
 	@ObfuscatedName("t")
-	@ObfuscatedSignature(
-		signature = "Liw;"
-	)
-	@Export("Widget_modelsArchive")
-	static AbstractArchive Widget_modelsArchive;
-	@ObfuscatedName("jc")
-	@ObfuscatedSignature(
-		signature = "Lht;"
-	)
-	@Export("dragInventoryWidget")
-	static Widget dragInventoryWidget;
-	@ObfuscatedName("z")
 	@Export("name")
 	public final String name;
-	@ObfuscatedName("q")
+	@ObfuscatedName("j")
 	@ObfuscatedGetter(
-		intValue = 1749368073
+		intValue = 1867624169
 	)
 	@Export("buildId")
-	public final int buildId;
+	final int buildId;
 
 	static {
 		LIVE = new GameBuild("LIVE", 0);

@@ -4,146 +4,123 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fc")
+@ObfuscatedName("fg")
 @Implements("MilliClock")
 public class MilliClock extends Clock {
-	@ObfuscatedName("rn")
-	@ObfuscatedGetter(
-		intValue = 1717833856
+	@ObfuscatedName("sy")
+	@ObfuscatedSignature(
+		signature = "Lcm;"
 	)
-	static int field2048;
-	@ObfuscatedName("c")
+	@Export("friendSystem")
+	public static FriendSystem friendSystem;
+	@ObfuscatedName("h")
+	long[] field2030;
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = 1735365545
+		intValue = -367823923
 	)
-	@Export("Interpreter_intStackSize")
-	static int Interpreter_intStackSize;
-	@ObfuscatedName("f")
-	long[] field2042;
-	@ObfuscatedName("b")
+	int field2031;
+	@ObfuscatedName("x")
 	@ObfuscatedGetter(
-		intValue = 1230464275
+		intValue = -830034537
 	)
-	int field2040;
-	@ObfuscatedName("l")
+	int field2032;
+	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		intValue = -1780413157
+		longValue = 4655820028414698343L
 	)
-	int field2041;
-	@ObfuscatedName("m")
+	long field2038;
+	@ObfuscatedName("t")
 	@ObfuscatedGetter(
-		longValue = 7922425031260846731L
+		intValue = 744937881
 	)
-	long field2043;
-	@ObfuscatedName("z")
+	int field2034;
+	@ObfuscatedName("j")
 	@ObfuscatedGetter(
-		intValue = -1604091025
+		intValue = 802438317
 	)
-	int field2047;
-	@ObfuscatedName("q")
-	@ObfuscatedGetter(
-		intValue = 738623211
-	)
-	int field2044;
+	int field2035;
 
-	MilliClock() {
-		this.field2042 = new long[10];
-		this.field2040 = 256;
-		this.field2041 = 1;
-		this.field2047 = 0;
-		this.field2043 = Nameable.currentTimeMillis();
+	public MilliClock() {
+		this.field2030 = new long[10];
+		this.field2031 = 256;
+		this.field2032 = 1;
+		this.field2034 = 0;
+		this.field2038 = class298.currentTimeMillis();
 
 		for (int var1 = 0; var1 < 10; ++var1) {
-			this.field2042[var1] = this.field2043;
+			this.field2030[var1] = this.field2038;
 		}
 
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "345512591"
+		garbageValue = "2095078818"
 	)
 	@Export("mark")
 	public void mark() {
 		for (int var1 = 0; var1 < 10; ++var1) {
-			this.field2042[var1] = 0L;
+			this.field2030[var1] = 0L;
 		}
 
 	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
 		signature = "(III)I",
-		garbageValue = "-837141414"
+		garbageValue = "-680717242"
 	)
 	@Export("wait")
 	public int wait(int var1, int var2) {
-		int var3 = this.field2040;
-		int var4 = this.field2041;
-		this.field2040 = 300;
-		this.field2041 = 1;
-		this.field2043 = Nameable.currentTimeMillis();
-		if (this.field2042[this.field2044] == 0L) {
-			this.field2040 = var3;
-			this.field2041 = var4;
-		} else if (this.field2043 > this.field2042[this.field2044]) {
-			this.field2040 = (int)((long)(var1 * 2560) / (this.field2043 - this.field2042[this.field2044]));
+		int var3 = this.field2031;
+		int var4 = this.field2032;
+		this.field2031 = 300;
+		this.field2032 = 1;
+		this.field2038 = class298.currentTimeMillis();
+		if (0L == this.field2030[this.field2035]) {
+			this.field2031 = var3;
+			this.field2032 = var4;
+		} else if (this.field2038 > this.field2030[this.field2035]) {
+			this.field2031 = (int)((long)(var1 * 2560) / (this.field2038 - this.field2030[this.field2035]));
 		}
 
-		if (this.field2040 < 25) {
-			this.field2040 = 25;
+		if (this.field2031 < 25) {
+			this.field2031 = 25;
 		}
 
-		if (this.field2040 > 256) {
-			this.field2040 = 256;
-			this.field2041 = (int)((long)var1 - (this.field2043 - this.field2042[this.field2044]) / 10L);
+		if (this.field2031 > 256) {
+			this.field2031 = 256;
+			this.field2032 = (int)((long)var1 - (this.field2038 - this.field2030[this.field2035]) / 10L);
 		}
 
-		if (this.field2041 > var1) {
-			this.field2041 = var1;
+		if (this.field2032 > var1) {
+			this.field2032 = var1;
 		}
 
-		this.field2042[this.field2044] = this.field2043;
-		this.field2044 = (this.field2044 + 1) % 10;
+		this.field2030[this.field2035] = this.field2038;
+		this.field2035 = (this.field2035 + 1) % 10;
 		int var5;
-		if (this.field2041 > 1) {
+		if (this.field2032 > 1) {
 			for (var5 = 0; var5 < 10; ++var5) {
-				if (this.field2042[var5] != 0L) {
-					this.field2042[var5] += (long)this.field2041;
+				if (this.field2030[var5] != 0L) {
+					this.field2030[var5] += (long)this.field2032;
 				}
 			}
 		}
 
-		if (this.field2041 < var2) {
-			this.field2041 = var2;
+		if (this.field2032 < var2) {
+			this.field2032 = var2;
 		}
 
-		WorldMapSection3.method894((long)this.field2041);
+		class236.method4165((long)this.field2032);
 
-		for (var5 = 0; this.field2047 < 256; this.field2047 += this.field2040) {
+		for (var5 = 0; this.field2034 < 256; this.field2034 += this.field2031) {
 			++var5;
 		}
 
-		this.field2047 &= 255;
+		this.field2034 &= 255;
 		return var5;
-	}
-
-	@ObfuscatedName("ex")
-	@ObfuscatedSignature(
-		signature = "(IS)I",
-		garbageValue = "152"
-	)
-	static int method3587(int var0) {
-		return var0 * 3 + 600;
-	}
-
-	@ObfuscatedName("kw")
-	@ObfuscatedSignature(
-		signature = "(B)Z",
-		garbageValue = "-26"
-	)
-	public static boolean method3590() {
-		return Client.staffModLevel >= 2;
 	}
 }

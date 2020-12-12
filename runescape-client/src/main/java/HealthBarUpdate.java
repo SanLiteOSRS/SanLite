@@ -1,35 +1,39 @@
-import java.net.MalformedURLException;
-import java.net.URL;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ce")
+@ObfuscatedName("ci")
 @Implements("HealthBarUpdate")
 public class HealthBarUpdate extends Node {
-	@ObfuscatedName("f")
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = -591382375
+		intValue = 942035737
+	)
+	@Export("musicTrackGroupId")
+	static int musicTrackGroupId;
+	@ObfuscatedName("h")
+	@ObfuscatedGetter(
+		intValue = -1928856017
 	)
 	@Export("cycle")
 	int cycle;
-	@ObfuscatedName("b")
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = 1850182953
+		intValue = 187911795
 	)
 	@Export("health")
 	int health;
-	@ObfuscatedName("l")
+	@ObfuscatedName("x")
 	@ObfuscatedGetter(
-		intValue = -733805573
+		intValue = -1933333849
 	)
 	@Export("health2")
 	int health2;
-	@ObfuscatedName("m")
+	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		intValue = 2105811825
+		intValue = -280255585
 	)
 	@Export("cycleOffset")
 	int cycleOffset;
@@ -41,10 +45,10 @@ public class HealthBarUpdate extends Node {
 		this.cycleOffset = var4;
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
 		signature = "(IIIII)V",
-		garbageValue = "2090689234"
+		garbageValue = "2048204816"
 	)
 	@Export("set")
 	void set(int var1, int var2, int var3, int var4) {
@@ -54,122 +58,77 @@ public class HealthBarUpdate extends Node {
 		this.cycleOffset = var4;
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;B)Z",
-		garbageValue = "60"
+		signature = "(IB)Lie;",
+		garbageValue = "-68"
 	)
-	static boolean method1870(String var0) {
-		if (var0 == null) {
-			return false;
-		} else {
-			try {
-				new URL(var0);
-				return true;
-			} catch (MalformedURLException var2) {
-				return false;
-			}
-		}
-	}
-
-	@ObfuscatedName("b")
-	@ObfuscatedSignature(
-		signature = "(II)Lie;",
-		garbageValue = "-736266811"
-	)
-	@Export("SpotAnimationDefinition_get")
-	public static SpotAnimationDefinition SpotAnimationDefinition_get(int var0) {
-		SpotAnimationDefinition var1 = (SpotAnimationDefinition)SpotAnimationDefinition.SpotAnimationDefinition_cached.get((long)var0);
+	public static HealthBarDefinition method1826(int var0) {
+		HealthBarDefinition var1 = (HealthBarDefinition)HealthBarDefinition.HealthBarDefinition_cached.get((long)var0);
 		if (var1 != null) {
 			return var1;
 		} else {
-			byte[] var2 = SpotAnimationDefinition.SpotAnimationDefinition_archive.takeFile(13, var0);
-			var1 = new SpotAnimationDefinition();
-			var1.id = var0;
+			byte[] var2 = class225.HealthBarDefinition_archive.takeFile(33, var0);
+			var1 = new HealthBarDefinition();
 			if (var2 != null) {
 				var1.decode(new Buffer(var2));
 			}
 
-			SpotAnimationDefinition.SpotAnimationDefinition_cached.put(var1, (long)var0);
+			HealthBarDefinition.HealthBarDefinition_cached.put(var1, (long)var0);
 			return var1;
 		}
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("aa")
 	@ObfuscatedSignature(
-		signature = "(Lkb;IIIIIII)V",
-		garbageValue = "1972730471"
+		signature = "(II)I",
+		garbageValue = "307117656"
 	)
-	@Export("loadTerrain")
-	static final void loadTerrain(Buffer var0, int var1, int var2, int var3, int var4, int var5, int var6) {
-		int var7;
-		if (var2 >= 0 && var2 < 104 && var3 >= 0 && var3 < 104) {
-			Tiles.Tiles_renderFlags[var1][var2][var3] = 0;
-
-			while (true) {
-				var7 = var0.readUnsignedByte();
-				if (var7 == 0) {
-					if (var1 == 0) {
-						Tiles.Tiles_heights[0][var2][var3] = -Occluder.method3412(var4 + var2 + 932731, var3 + 556238 + var5) * 8;
-					} else {
-						Tiles.Tiles_heights[var1][var2][var3] = Tiles.Tiles_heights[var1 - 1][var2][var3] - 240;
-					}
-					break;
-				}
-
-				if (var7 == 1) {
-					int var8 = var0.readUnsignedByte();
-					if (var8 == 1) {
-						var8 = 0;
-					}
-
-					if (var1 == 0) {
-						Tiles.Tiles_heights[0][var2][var3] = -var8 * 8;
-					} else {
-						Tiles.Tiles_heights[var1][var2][var3] = Tiles.Tiles_heights[var1 - 1][var2][var3] - var8 * 8;
-					}
-					break;
-				}
-
-				if (var7 <= 49) {
-					NPC.field1161[var1][var2][var3] = var0.readByte();
-					Tiles.field531[var1][var2][var3] = (byte)((var7 - 2) / 4);
-					UserComparator2.field3859[var1][var2][var3] = (byte)(var7 - 2 + var6 & 3);
-				} else if (var7 <= 81) {
-					Tiles.Tiles_renderFlags[var1][var2][var3] = (byte)(var7 - 49);
-				} else {
-					TileItem.field1273[var1][var2][var3] = (byte)(var7 - 81);
-				}
-			}
-		} else {
-			while (true) {
-				var7 = var0.readUnsignedByte();
-				if (var7 == 0) {
-					break;
-				}
-
-				if (var7 == 1) {
-					var0.readUnsignedByte();
-					break;
-				}
-
-				if (var7 <= 49) {
-					var0.readUnsignedByte();
-				}
-			}
-		}
-
+	static int method1823(int var0) {
+		return (int)Math.pow(2.0D, (double)((float)var0 / 256.0F + 7.0F));
 	}
 
-	@ObfuscatedName("y")
+	@ObfuscatedName("kc")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;I)V",
-		garbageValue = "1201553018"
+		signature = "(Lhe;I)Z",
+		garbageValue = "-1439133446"
 	)
-	static final void method1869(String var0) {
-		PacketBufferNode var1 = class4.getPacketBufferNode(ClientPacket.field2237, Client.packetWriter.isaacCipher);
-		var1.packetBuffer.writeByte(SpriteMask.stringCp1252NullTerminatedByteSize(var0));
-		var1.packetBuffer.writeStringCp1252NullTerminated(var0);
-		Client.packetWriter.addNode(var1);
+	static final boolean method1825(Widget var0) {
+		int var1 = var0.contentType;
+		if (var1 == 205) {
+			Client.logoutTimer = 250;
+			return true;
+		} else {
+			int var2;
+			int var3;
+			if (var1 >= 300 && var1 <= 313) {
+				var2 = (var1 - 300) / 2;
+				var3 = var1 & 1;
+				Client.playerAppearance.changeAppearance(var2, var3 == 1);
+			}
+
+			if (var1 >= 314 && var1 <= 323) {
+				var2 = (var1 - 314) / 2;
+				var3 = var1 & 1;
+				Client.playerAppearance.method4043(var2, var3 == 1);
+			}
+
+			if (var1 == 324) {
+				Client.playerAppearance.changeSex(false);
+			}
+
+			if (var1 == 325) {
+				Client.playerAppearance.changeSex(true);
+			}
+
+			if (var1 == 326) {
+				PacketBufferNode var4 = ItemContainer.getPacketBufferNode(ClientPacket.field2239, Client.packetWriter.isaacCipher);
+				Client.playerAppearance.write(var4.packetBuffer);
+				Client.packetWriter.addNode(var4);
+				return true;
+			} else {
+				return false;
+			}
+		}
 	}
 }

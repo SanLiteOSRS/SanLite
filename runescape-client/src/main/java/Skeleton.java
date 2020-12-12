@@ -1,31 +1,34 @@
-import java.awt.Desktop;
-import java.awt.Desktop.Action;
-import java.net.URI;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ei")
+@ObfuscatedName("ej")
 @Implements("Skeleton")
 public class Skeleton extends Node {
-	@ObfuscatedName("f")
+	@ObfuscatedName("he")
 	@ObfuscatedGetter(
-		intValue = -1443412059
+		intValue = -502356211
+	)
+	@Export("cameraPitch")
+	static int cameraPitch;
+	@ObfuscatedName("h")
+	@ObfuscatedGetter(
+		intValue = 1773427771
 	)
 	@Export("id")
 	int id;
-	@ObfuscatedName("b")
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = 815931901
+		intValue = -1481451601
 	)
 	@Export("count")
 	int count;
-	@ObfuscatedName("l")
+	@ObfuscatedName("x")
 	@Export("transformTypes")
 	int[] transformTypes;
-	@ObfuscatedName("m")
+	@ObfuscatedName("w")
 	@Export("labels")
 	int[][] labels;
 
@@ -55,76 +58,110 @@ public class Skeleton extends Node {
 
 	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;ZZI)V",
-		garbageValue = "-1635350138"
+		signature = "(Ljava/lang/String;B)V",
+		garbageValue = "-5"
 	)
-	@Export("openURL")
-	public static void openURL(String var0, boolean var1, boolean var2) {
-		if (var1) {
-			if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Action.BROWSE)) {
-				try {
-					Desktop.getDesktop().browse(new URI(var0));
-					return;
-				} catch (Exception var4) {
+	static final void method3155(String var0) {
+		PacketBufferNode var1 = ItemContainer.getPacketBufferNode(ClientPacket.field2319, Client.packetWriter.isaacCipher);
+		var1.packetBuffer.writeByte(FloorDecoration.stringCp1252NullTerminatedByteSize(var0));
+		var1.packetBuffer.writeStringCp1252NullTerminated(var0);
+		Client.packetWriter.addNode(var1);
+	}
+
+	@ObfuscatedName("ha")
+	@ObfuscatedSignature(
+		signature = "(ZI)V",
+		garbageValue = "-1484457450"
+	)
+	@Export("addNpcsToScene")
+	static final void addNpcsToScene(boolean var0) {
+		for (int var1 = 0; var1 < Client.npcCount; ++var1) {
+			NPC var2 = Client.npcs[Client.npcIndices[var1]];
+			if (var2 != null && var2.isVisible() && var2.definition.isVisible == var0 && var2.definition.transformIsVisible()) {
+				int var3 = var2.x >> 7;
+				int var4 = var2.y >> 7;
+				if (var3 >= 0 && var3 < 104 && var4 >= 0 && var4 < 104) {
+					if (var2.field941 * 68797504 == 1 && (var2.x & 127) == 64 && (var2.y & 127) == 64) {
+						if (Client.tileLastDrawnActor[var3][var4] == Client.viewportDrawCount) {
+							continue;
+						}
+
+						Client.tileLastDrawnActor[var3][var4] = Client.viewportDrawCount;
+					}
+
+					long var5 = NPC.calculateTag(0, 0, 1, !var2.definition.isInteractable, Client.npcIndices[var1]);
+					var2.playerCycle = Client.cycle;
+					ArchiveLoader.scene.drawEntity(GameObject.Client_plane, var2.x, var2.y, SecureRandomFuture.getTileHeight(var2.field941 * 108072960 - 64 + var2.x, var2.field941 * 108072960 - 64 + var2.y, GameObject.Client_plane), var2.field941 * 108072960 - 64 + 60, var2, var2.rotation, var5, var2.isWalking);
 				}
 			}
+		}
 
-			if (class60.field453.startsWith("win")) {
-				MouseHandler.method1176(var0, 0);
-			} else if (class60.field453.startsWith("mac")) {
-				WorldMapManager.method735(var0, 1, "openjs");
-			} else {
-				MouseHandler.method1176(var0, 2);
+	}
+
+	@ObfuscatedName("ke")
+	@ObfuscatedSignature(
+		signature = "([Lhe;II)V",
+		garbageValue = "-1212206355"
+	)
+	@Export("drawModelComponents")
+	static final void drawModelComponents(Widget[] var0, int var1) {
+		for (int var2 = 0; var2 < var0.length; ++var2) {
+			Widget var3 = var0[var2];
+			if (var3 != null && var3.parentId == var1 && (!var3.isIf3 || !DevicePcmPlayerProvider.isComponentHidden(var3))) {
+				if (var3.type == 0) {
+					if (!var3.isIf3 && DevicePcmPlayerProvider.isComponentHidden(var3) && var3 != EnumComposition.mousedOverWidgetIf1) {
+						continue;
+					}
+
+					drawModelComponents(var0, var3.id);
+					if (var3.children != null) {
+						drawModelComponents(var3.children, var3.id);
+					}
+
+					InterfaceParent var4 = (InterfaceParent)Client.interfaceParents.get((long)var3.id);
+					if (var4 != null) {
+						NPCComposition.method4759(var4.group);
+					}
+				}
+
+				if (var3.type == 6) {
+					int var5;
+					if (var3.sequenceId != -1 || var3.sequenceId2 != -1) {
+						boolean var7 = class8.runCs1(var3);
+						if (var7) {
+							var5 = var3.sequenceId2;
+						} else {
+							var5 = var3.sequenceId;
+						}
+
+						if (var5 != -1) {
+							SequenceDefinition var6 = ParamDefinition.SequenceDefinition_get(var5);
+
+							for (var3.modelFrameCycle += Client.field850; var3.modelFrameCycle > var6.frameLengths[var3.modelFrame]; CollisionMap.invalidateWidget(var3)) {
+								var3.modelFrameCycle -= var6.frameLengths[var3.modelFrame];
+								++var3.modelFrame;
+								if (var3.modelFrame >= var6.frameIds.length) {
+									var3.modelFrame -= var6.frameCount;
+									if (var3.modelFrame < 0 || var3.modelFrame >= var6.frameIds.length) {
+										var3.modelFrame = 0;
+									}
+								}
+							}
+						}
+					}
+
+					if (var3.field2642 != 0 && !var3.isIf3) {
+						int var8 = var3.field2642 >> 16;
+						var5 = var3.field2642 << 16 >> 16;
+						var8 *= Client.field850;
+						var5 *= Client.field850;
+						var3.modelAngleX = var8 + var3.modelAngleX & 2047;
+						var3.modelAngleY = var5 + var3.modelAngleY & 2047;
+						CollisionMap.invalidateWidget(var3);
+					}
+				}
 			}
-		} else {
-			MouseHandler.method1176(var0, 3);
 		}
 
-	}
-
-	@ObfuscatedName("b")
-	@ObfuscatedSignature(
-		signature = "(Liw;IIS)Lle;",
-		garbageValue = "8416"
-	)
-	static IndexedSprite method3215(AbstractArchive var0, int var1, int var2) {
-		byte[] var4 = var0.takeFile(var1, var2);
-		boolean var3;
-		if (var4 == null) {
-			var3 = false;
-		} else {
-			class217.SpriteBuffer_decode(var4);
-			var3 = true;
-		}
-
-		if (!var3) {
-			return null;
-		} else {
-			IndexedSprite var5 = new IndexedSprite();
-			var5.width = class336.SpriteBuffer_spriteWidth;
-			var5.height = class336.SpriteBuffer_spriteHeight;
-			var5.xOffset = class336.SpriteBuffer_xOffsets[0];
-			var5.yOffset = class225.SpriteBuffer_yOffsets[0];
-			var5.subWidth = class336.SpriteBuffer_spriteWidths[0];
-			var5.subHeight = class336.SpriteBuffer_spriteHeights[0];
-			var5.palette = WorldMapID.SpriteBuffer_spritePalette;
-			var5.pixels = class13.SpriteBuffer_pixels[0];
-			class336.SpriteBuffer_xOffsets = null;
-			class225.SpriteBuffer_yOffsets = null;
-			class336.SpriteBuffer_spriteWidths = null;
-			class336.SpriteBuffer_spriteHeights = null;
-			WorldMapID.SpriteBuffer_spritePalette = null;
-			class13.SpriteBuffer_pixels = null;
-			return var5;
-		}
-	}
-
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		signature = "(CI)Z",
-		garbageValue = "11601118"
-	)
-	static boolean method3212(char var0) {
-		return "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!\"£$%^&*()-_=+[{]};:'@#~,<.>/?\\| ".indexOf(var0) != -1;
 	}
 }

@@ -2,18 +2,21 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fe")
+@ObfuscatedName("fy")
 public class class171 implements class170 {
-	@ObfuscatedName("hd")
+	@ObfuscatedName("js")
 	@ObfuscatedSignature(
-		signature = "(III)V",
-		garbageValue = "-1877711272"
+		signature = "Lhe;"
 	)
-	@Export("resumePauseWidget")
-	static void resumePauseWidget(int var0, int var1) {
-		PacketBufferNode var2 = class4.getPacketBufferNode(ClientPacket.field2253, Client.packetWriter.isaacCipher);
-		var2.packetBuffer.method5674(var1);
-		var2.packetBuffer.method5684(var0);
-		Client.packetWriter.addNode(var2);
+	@Export("dragInventoryWidget")
+	static Widget dragInventoryWidget;
+
+	@ObfuscatedName("h")
+	@ObfuscatedSignature(
+		signature = "(III)Z",
+		garbageValue = "-1627436603"
+	)
+	static boolean method3535(int var0, int var1) {
+		return var0 != 4 || var1 < 8;
 	}
 }

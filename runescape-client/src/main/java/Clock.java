@@ -3,68 +3,54 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ft")
+@ObfuscatedName("fl")
 @Implements("Clock")
 public abstract class Clock {
 	Clock() {
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "345512591"
+		garbageValue = "2095078818"
 	)
 	@Export("mark")
 	public abstract void mark();
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
 		signature = "(III)I",
-		garbageValue = "-837141414"
+		garbageValue = "-680717242"
 	)
 	@Export("wait")
 	public abstract int wait(int var1, int var2);
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		signature = "(II)Ljn;",
-		garbageValue = "-1793250808"
+		signature = "([BIIB)Ljava/lang/String;",
+		garbageValue = "74"
 	)
-	@Export("getNpcDefinition")
-	public static NPCComposition getNpcDefinition(int var0) {
-		NPCComposition var1 = (NPCComposition)NPCComposition.NpcDefinition_cached.get((long)var0);
-		if (var1 != null) {
-			return var1;
-		} else {
-			byte[] var2 = NPCComposition.NpcDefinition_archive.takeFile(9, var0);
-			var1 = new NPCComposition();
-			var1.id = var0;
-			if (var2 != null) {
-				var1.decode(new Buffer(var2));
-			}
+	@Export("decodeStringCp1252")
+	public static String decodeStringCp1252(byte[] var0, int var1, int var2) {
+		char[] var3 = new char[var2];
+		int var4 = 0;
 
-			var1.postDecode();
-			NPCComposition.NpcDefinition_cached.put(var1, (long)var0);
-			return var1;
-		}
-	}
+		for (int var5 = 0; var5 < var2; ++var5) {
+			int var6 = var0[var5 + var1] & 255;
+			if (var6 != 0) {
+				if (var6 >= 128 && var6 < 160) {
+					char var7 = class298.cp1252AsciiExtension[var6 - 128];
+					if (var7 == 0) {
+						var7 = '?';
+					}
 
-	@ObfuscatedName("m")
-	@ObfuscatedSignature(
-		signature = "(B)Z",
-		garbageValue = "34"
-	)
-	@Export("isKeyDown")
-	public static final boolean isKeyDown() {
-		synchronized(KeyHandler.KeyHandler_instance) {
-			if (KeyHandler.field428 == KeyHandler.field415) {
-				return false;
-			} else {
-				SecureRandomCallable.field555 = KeyHandler.field425[KeyHandler.field415];
-				WorldMapManager.field335 = KeyHandler.field424[KeyHandler.field415];
-				KeyHandler.field415 = KeyHandler.field415 + 1 & 127;
-				return true;
+					var6 = var7;
+				}
+
+				var3[var4++] = (char)var6;
 			}
 		}
+
+		return new String(var3, 0, var4);
 	}
 }

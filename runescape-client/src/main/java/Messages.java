@@ -1,3 +1,4 @@
+import java.awt.Component;
 import java.util.HashMap;
 import java.util.Map;
 import net.runelite.mapping.Export;
@@ -5,31 +6,38 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("ch")
+@ObfuscatedName("cv")
 @Implements("Messages")
 public class Messages {
-	@ObfuscatedName("f")
+	@ObfuscatedName("h")
 	@Export("Messages_channels")
 	static final Map Messages_channels;
-	@ObfuscatedName("b")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "Lll;"
+		signature = "Lla;"
 	)
 	@Export("Messages_hashTable")
 	static final IterableNodeHashTable Messages_hashTable;
-	@ObfuscatedName("l")
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		signature = "Ljt;"
+		signature = "Ljf;"
 	)
 	@Export("Messages_queue")
 	static final IterableDualNodeQueue Messages_queue;
-	@ObfuscatedName("m")
+	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		intValue = -2074438197
+		intValue = -1894587741
 	)
 	@Export("Messages_count")
 	static int Messages_count;
+	@ObfuscatedName("di")
+	@ObfuscatedSignature(
+		signature = "Lil;"
+	)
+	@Export("archive8")
+	static Archive archive8;
 
 	static {
 		Messages_channels = new HashMap();
@@ -38,159 +46,54 @@ public class Messages {
 		Messages_count = 0;
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(Liw;I)V",
-		garbageValue = "-2063920931"
+		signature = "(Ljava/awt/Component;I)V",
+		garbageValue = "-826057575"
 	)
-	public static void method2328(AbstractArchive var0) {
-		EnumComposition.EnumDefinition_archive = var0;
+	static void method2275(Component var0) {
+		var0.setFocusTraversalKeysEnabled(false);
+		var0.addKeyListener(KeyHandler.KeyHandler_instance);
+		var0.addFocusListener(KeyHandler.KeyHandler_instance);
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		signature = "(Liw;B)V",
-		garbageValue = "6"
+		signature = "(ILcs;ZI)I",
+		garbageValue = "-729014462"
 	)
-	public static void method2339(AbstractArchive var0) {
-		VarcInt.VarcInt_archive = var0;
-	}
-
-	@ObfuscatedName("fy")
-	@ObfuscatedSignature(
-		signature = "(IB)V",
-		garbageValue = "56"
-	)
-	@Export("playSong")
-	static void playSong(int var0) {
-		if (var0 == -1 && !Client.field916) {
-			UserComparator3.method3546();
-		} else if (var0 != -1 && var0 != Client.currentTrackGroupId && Client.musicVolume != 0 && !Client.field916) {
-			Archive var1 = ApproximateRouteStrategy.archive6;
-			int var2 = Client.musicVolume;
-			class206.musicPlayerStatus = 1;
-			class23.musicTrackArchive = var1;
-			TileItem.musicTrackGroupId = var0;
-			class206.musicTrackFileId = 0;
-			class206.musicTrackVolume = var2;
-			class195.musicTrackBoolean = false;
-			MusicPatch.pcmSampleLength = 2;
+	static int method2283(int var0, Script var1, boolean var2) {
+		Widget var3 = var2 ? PlayerComposition.field2561 : VarcInt.field3264;
+		if (var0 == ScriptOpcodes.CC_GETX) {
+			Interpreter.Interpreter_intStack[++VarcInt.Interpreter_intStackSize - 1] = var3.x;
+			return 1;
+		} else if (var0 == ScriptOpcodes.CC_GETY) {
+			Interpreter.Interpreter_intStack[++VarcInt.Interpreter_intStackSize - 1] = var3.y;
+			return 1;
+		} else if (var0 == ScriptOpcodes.CC_GETWIDTH) {
+			Interpreter.Interpreter_intStack[++VarcInt.Interpreter_intStackSize - 1] = var3.width;
+			return 1;
+		} else if (var0 == ScriptOpcodes.CC_GETHEIGHT) {
+			Interpreter.Interpreter_intStack[++VarcInt.Interpreter_intStackSize - 1] = var3.height;
+			return 1;
+		} else if (var0 == ScriptOpcodes.CC_GETHIDE) {
+			Interpreter.Interpreter_intStack[++VarcInt.Interpreter_intStackSize - 1] = var3.isHidden ? 1 : 0;
+			return 1;
+		} else if (var0 == ScriptOpcodes.CC_GETLAYER) {
+			Interpreter.Interpreter_intStack[++VarcInt.Interpreter_intStackSize - 1] = var3.parentId;
+			return 1;
+		} else {
+			return 2;
 		}
-
-		Client.currentTrackGroupId = var0;
 	}
 
-	@ObfuscatedName("hg")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		signature = "(IIIILjava/lang/String;I)V",
-		garbageValue = "1388890654"
+		signature = "(I)V",
+		garbageValue = "804061602"
 	)
-	@Export("widgetDefaultMenuAction")
-	static void widgetDefaultMenuAction(int var0, int var1, int var2, int var3, String var4) {
-		Widget var5 = ItemContainer.getWidgetChild(var1, var2);
-		if (var5 != null) {
-			if (var5.onOp != null) {
-				ScriptEvent var6 = new ScriptEvent();
-				var6.widget = var5;
-				var6.opIndex = var0;
-				var6.targetName = var4;
-				var6.args = var5.onOp;
-				Renderable.runScriptEvent(var6);
-			}
-
-			boolean var11 = true;
-			if (var5.contentType > 0) {
-				var11 = Varcs.method2313(var5);
-			}
-
-			if (var11) {
-				int var8 = WorldMapData_0.getWidgetClickMask(var5);
-				int var9 = var0 - 1;
-				boolean var7 = (var8 >> var9 + 1 & 1) != 0;
-				if (var7) {
-					PacketBufferNode var10;
-					if (var0 == 1) {
-						var10 = class4.getPacketBufferNode(ClientPacket.field2298, Client.packetWriter.isaacCipher);
-						var10.packetBuffer.writeInt(var1);
-						var10.packetBuffer.writeShort(var2);
-						var10.packetBuffer.writeShort(var3);
-						Client.packetWriter.addNode(var10);
-					}
-
-					if (var0 == 2) {
-						var10 = class4.getPacketBufferNode(ClientPacket.field2274, Client.packetWriter.isaacCipher);
-						var10.packetBuffer.writeInt(var1);
-						var10.packetBuffer.writeShort(var2);
-						var10.packetBuffer.writeShort(var3);
-						Client.packetWriter.addNode(var10);
-					}
-
-					if (var0 == 3) {
-						var10 = class4.getPacketBufferNode(ClientPacket.field2277, Client.packetWriter.isaacCipher);
-						var10.packetBuffer.writeInt(var1);
-						var10.packetBuffer.writeShort(var2);
-						var10.packetBuffer.writeShort(var3);
-						Client.packetWriter.addNode(var10);
-					}
-
-					if (var0 == 4) {
-						var10 = class4.getPacketBufferNode(ClientPacket.field2300, Client.packetWriter.isaacCipher);
-						var10.packetBuffer.writeInt(var1);
-						var10.packetBuffer.writeShort(var2);
-						var10.packetBuffer.writeShort(var3);
-						Client.packetWriter.addNode(var10);
-					}
-
-					if (var0 == 5) {
-						var10 = class4.getPacketBufferNode(ClientPacket.field2251, Client.packetWriter.isaacCipher);
-						var10.packetBuffer.writeInt(var1);
-						var10.packetBuffer.writeShort(var2);
-						var10.packetBuffer.writeShort(var3);
-						Client.packetWriter.addNode(var10);
-					}
-
-					if (var0 == 6) {
-						var10 = class4.getPacketBufferNode(ClientPacket.field2252, Client.packetWriter.isaacCipher);
-						var10.packetBuffer.writeInt(var1);
-						var10.packetBuffer.writeShort(var2);
-						var10.packetBuffer.writeShort(var3);
-						Client.packetWriter.addNode(var10);
-					}
-
-					if (var0 == 7) {
-						var10 = class4.getPacketBufferNode(ClientPacket.field2242, Client.packetWriter.isaacCipher);
-						var10.packetBuffer.writeInt(var1);
-						var10.packetBuffer.writeShort(var2);
-						var10.packetBuffer.writeShort(var3);
-						Client.packetWriter.addNode(var10);
-					}
-
-					if (var0 == 8) {
-						var10 = class4.getPacketBufferNode(ClientPacket.field2285, Client.packetWriter.isaacCipher);
-						var10.packetBuffer.writeInt(var1);
-						var10.packetBuffer.writeShort(var2);
-						var10.packetBuffer.writeShort(var3);
-						Client.packetWriter.addNode(var10);
-					}
-
-					if (var0 == 9) {
-						var10 = class4.getPacketBufferNode(ClientPacket.field2248, Client.packetWriter.isaacCipher);
-						var10.packetBuffer.writeInt(var1);
-						var10.packetBuffer.writeShort(var2);
-						var10.packetBuffer.writeShort(var3);
-						Client.packetWriter.addNode(var10);
-					}
-
-					if (var0 == 10) {
-						var10 = class4.getPacketBufferNode(ClientPacket.field2256, Client.packetWriter.isaacCipher);
-						var10.packetBuffer.writeInt(var1);
-						var10.packetBuffer.writeShort(var2);
-						var10.packetBuffer.writeShort(var3);
-						Client.packetWriter.addNode(var10);
-					}
-
-				}
-			}
-		}
+	static void method2285() {
+		Login.loginIndex = 24;
+		GameEngine.setLoginResponseString("The game servers are currently being updated.", "Please wait a few minutes and try again.", "");
 	}
 }

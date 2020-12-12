@@ -4,51 +4,30 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hw")
+@ObfuscatedName("hs")
 @Implements("Coord")
 public class Coord {
-	@ObfuscatedName("k")
-	@Export("ByteArrayPool_alternativeSizes")
-	static int[] ByteArrayPool_alternativeSizes;
-	@ObfuscatedName("ej")
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = -579877889
-	)
-	@Export("port1")
-	static int port1;
-	@ObfuscatedName("em")
-	@ObfuscatedGetter(
-		intValue = 604273715
-	)
-	@Export("port2")
-	static int port2;
-	@ObfuscatedName("lv")
-	@ObfuscatedGetter(
-		intValue = 1585489899
-	)
-	@Export("menuX")
-	static int menuX;
-	@ObfuscatedName("f")
-	@ObfuscatedGetter(
-		intValue = 252017765
+		intValue = -578473323
 	)
 	@Export("plane")
 	public int plane;
-	@ObfuscatedName("b")
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = -865171177
+		intValue = -1743960415
 	)
 	@Export("x")
 	public int x;
-	@ObfuscatedName("l")
+	@ObfuscatedName("x")
 	@ObfuscatedGetter(
-		intValue = 1194018723
+		intValue = -1369689255
 	)
 	@Export("y")
 	public int y;
 
 	@ObfuscatedSignature(
-		signature = "(Lhw;)V"
+		signature = "(Lhs;)V"
 	)
 	public Coord(Coord var1) {
 		this.plane = var1.plane;
@@ -73,20 +52,20 @@ public class Coord {
 
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "-330056145"
+		signature = "(B)I",
+		garbageValue = "-27"
 	)
 	@Export("packed")
 	public int packed() {
 		return this.plane << 28 | this.x << 14 | this.y;
 	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(Lhw;I)Z",
-		garbageValue = "824045461"
+		signature = "(Lhs;I)Z",
+		garbageValue = "902297370"
 	)
 	@Export("equalsCoord")
 	boolean equalsCoord(Coord var1) {
@@ -99,10 +78,10 @@ public class Coord {
 		}
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;B)Ljava/lang/String;",
-		garbageValue = "-40"
+		signature = "(Ljava/lang/String;I)Ljava/lang/String;",
+		garbageValue = "-1856185425"
 	)
 	@Export("toString")
 	String toString(String var1) {
@@ -125,87 +104,32 @@ public class Coord {
 		return this.toString(",");
 	}
 
-	@ObfuscatedName("gm")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(IIIIZI)V",
-		garbageValue = "1944404"
+		signature = "(II)I",
+		garbageValue = "-676384531"
 	)
-	@Export("setViewportShape")
-	static final void setViewportShape(int var0, int var1, int var2, int var3, boolean var4) {
-		if (var2 < 1) {
-			var2 = 1;
-		}
-
-		if (var3 < 1) {
-			var3 = 1;
-		}
-
-		int var5 = var3 - 334;
-		int var6;
-		if (var5 < 0) {
-			var6 = Client.field873;
-		} else if (var5 >= 100) {
-			var6 = Client.field932;
+	@Export("getVarbit")
+	public static int getVarbit(int var0) {
+		VarbitComposition var2 = (VarbitComposition)VarbitComposition.VarbitDefinition_cached.get((long)var0);
+		VarbitComposition var1;
+		if (var2 != null) {
+			var1 = var2;
 		} else {
-			var6 = (Client.field932 - Client.field873) * var5 / 100 + Client.field873;
-		}
-
-		int var7 = var3 * var6 * 512 / (var2 * 334);
-		int var8;
-		int var9;
-		short var14;
-		if (var7 < Client.field937) {
-			var14 = Client.field937;
-			var6 = var14 * var2 * 334 / (var3 * 512);
-			if (var6 > Client.field753) {
-				var6 = Client.field753;
-				var8 = var3 * var6 * 512 / (var14 * 334);
-				var9 = (var2 - var8) / 2;
-				if (var4) {
-					Rasterizer2D.Rasterizer2D_resetClip();
-					Rasterizer2D.Rasterizer2D_fillRectangle(var0, var1, var9, var3, -16777216);
-					Rasterizer2D.Rasterizer2D_fillRectangle(var0 + var2 - var9, var1, var9, var3, -16777216);
-				}
-
-				var0 += var9;
-				var2 -= var9 * 2;
-			}
-		} else if (var7 > Client.field935) {
-			var14 = Client.field935;
-			var6 = var14 * var2 * 334 / (var3 * 512);
-			if (var6 < Client.field865) {
-				var6 = Client.field865;
-				var8 = var14 * var2 * 334 / (var6 * 512);
-				var9 = (var3 - var8) / 2;
-				if (var4) {
-					Rasterizer2D.Rasterizer2D_resetClip();
-					Rasterizer2D.Rasterizer2D_fillRectangle(var0, var1, var2, var9, -16777216);
-					Rasterizer2D.Rasterizer2D_fillRectangle(var0, var3 + var1 - var9, var2, var9, -16777216);
-				}
-
-				var1 += var9;
-				var3 -= var9 * 2;
-			}
-		}
-
-		Client.viewportZoom = var3 * var6 / 334;
-		if (var2 != Client.viewportWidth || var3 != Client.viewportHeight) {
-			int[] var13 = new int[9];
-
-			for (var9 = 0; var9 < var13.length; ++var9) {
-				int var10 = var9 * 32 + 15 + 128;
-				int var11 = MilliClock.method3587(var10);
-				int var12 = Rasterizer3D.Rasterizer3D_sine[var10];
-				var11 = HorizontalAlignment.method4876(var11, var3);
-				var13[var9] = var11 * var12 >> 16;
+			byte[] var7 = VarbitComposition.VarbitDefinition_archive.takeFile(14, var0);
+			var2 = new VarbitComposition();
+			if (var7 != null) {
+				var2.decode(new Buffer(var7));
 			}
 
-			Scene.Scene_buildVisiblityMap(var13, 500, 800, var2 * 334 / var3, 334);
+			VarbitComposition.VarbitDefinition_cached.put(var2, (long)var0);
+			var1 = var2;
 		}
 
-		Client.viewportOffsetX = var0;
-		Client.viewportOffsetY = var1;
-		Client.viewportWidth = var2;
-		Client.viewportHeight = var3;
+		int var3 = var1.baseVar;
+		int var4 = var1.startBit;
+		int var5 = var1.endBit;
+		int var6 = Varps.Varps_masks[var5 - var4];
+		return Varps.Varps_main[var3] >> var4 & var6;
 	}
 }

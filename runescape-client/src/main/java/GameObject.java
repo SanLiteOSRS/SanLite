@@ -7,92 +7,92 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("el")
 @Implements("GameObject")
 public final class GameObject {
-	@ObfuscatedName("ba")
-	@ObfuscatedSignature(
-		signature = "[Lle;"
-	)
-	@Export("worldSelectStars")
-	static IndexedSprite[] worldSelectStars;
-	@ObfuscatedName("f")
+	@ObfuscatedName("ks")
 	@ObfuscatedGetter(
-		intValue = -1412668883
+		intValue = 688960621
+	)
+	@Export("Client_plane")
+	static int Client_plane;
+	@ObfuscatedName("h")
+	@ObfuscatedGetter(
+		intValue = -77952931
 	)
 	@Export("plane")
 	int plane;
-	@ObfuscatedName("b")
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = -1556347637
+		intValue = -1125235357
 	)
 	@Export("height")
 	int height;
-	@ObfuscatedName("l")
+	@ObfuscatedName("x")
 	@ObfuscatedGetter(
-		intValue = 954361615
-	)
-	@Export("centerX")
-	int centerX;
-	@ObfuscatedName("m")
-	@ObfuscatedGetter(
-		intValue = -1596359689
-	)
-	@Export("orientation")
-	int orientation;
-	@ObfuscatedName("z")
-	@ObfuscatedSignature(
-		signature = "Lej;"
-	)
-	@Export("entity")
-	public Renderable entity;
-	@ObfuscatedName("q")
-	@ObfuscatedGetter(
-		intValue = 1994666041
+		intValue = 1533148227
 	)
 	@Export("centerY")
 	int centerY;
-	@ObfuscatedName("k")
+	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		intValue = 207668277
+		intValue = 584505067
+	)
+	@Export("centerX")
+	int centerX;
+	@ObfuscatedName("t")
+	@ObfuscatedSignature(
+		signature = "Ler;"
+	)
+	@Export("entity")
+	public Renderable entity;
+	@ObfuscatedName("j")
+	@ObfuscatedGetter(
+		intValue = 1255599163
+	)
+	@Export("orientation")
+	int orientation;
+	@ObfuscatedName("n")
+	@ObfuscatedGetter(
+		intValue = 1704615809
 	)
 	@Export("startX")
 	int startX;
-	@ObfuscatedName("c")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = -1940452637
+		intValue = 285662481
 	)
 	@Export("endX")
 	int endX;
-	@ObfuscatedName("u")
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = 1266358135
+		intValue = -1961759739
 	)
 	@Export("startY")
 	int startY;
-	@ObfuscatedName("t")
+	@ObfuscatedName("z")
 	@ObfuscatedGetter(
-		intValue = 1643778515
+		intValue = -1646674611
 	)
 	@Export("endY")
 	int endY;
+	@ObfuscatedName("u")
+	@ObfuscatedGetter(
+		intValue = -1353315181
+	)
+	int field1953;
 	@ObfuscatedName("e")
 	@ObfuscatedGetter(
-		intValue = 609082727
-	)
-	int field1962;
-	@ObfuscatedName("o")
-	@ObfuscatedGetter(
-		intValue = -404331619
+		intValue = -2024617529
 	)
 	@Export("lastDrawn")
 	int lastDrawn;
-	@ObfuscatedName("n")
+	@ObfuscatedName("m")
 	@ObfuscatedGetter(
-		longValue = -2637081015005136759L
+		longValue = 5601843375615020219L
 	)
 	@Export("tag")
 	public long tag;
-	@ObfuscatedName("x")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = -735597717
+		intValue = 16020691
 	)
 	@Export("flags")
 	int flags;
@@ -100,95 +100,5 @@ public final class GameObject {
 	GameObject() {
 		this.tag = 0L;
 		this.flags = 0;
-	}
-
-	@ObfuscatedName("b")
-	@ObfuscatedSignature(
-		signature = "(II)Z",
-		garbageValue = "1929394434"
-	)
-	public static boolean method3416(int var0) {
-		return var0 >= WorldMapDecorationType.field2766.id && var0 <= WorldMapDecorationType.field2767.id;
-	}
-
-	@ObfuscatedName("fu")
-	@ObfuscatedSignature(
-		signature = "(Lcs;I)V",
-		garbageValue = "-755652962"
-	)
-	static final void method3415(Actor var0) {
-		if (var0.field1028 != 0) {
-			if (var0.targetIndex != -1) {
-				Object var1 = null;
-				if (var0.targetIndex < 32768) {
-					var1 = Client.npcs[var0.targetIndex];
-				} else if (var0.targetIndex >= 32768) {
-					var1 = Client.players[var0.targetIndex - 32768];
-				}
-
-				if (var1 != null) {
-					int var2 = var0.x - ((Actor)var1).x;
-					int var3 = var0.y - ((Actor)var1).y;
-					if (var2 != 0 || var3 != 0) {
-						var0.orientation = (int)(Math.atan2((double)var2, (double)var3) * 325.949D) & 2047;
-					}
-				} else if (var0.false0) {
-					var0.targetIndex = -1;
-					var0.false0 = false;
-				}
-			}
-
-			if (var0.field1003 != -1 && (var0.pathLength == 0 || var0.field978 > 0)) {
-				var0.orientation = var0.field1003;
-				var0.field1003 = -1;
-			}
-
-			int var4 = var0.orientation - var0.rotation & 2047;
-			if (var4 == 0 && var0.false0) {
-				var0.targetIndex = -1;
-				var0.false0 = false;
-			}
-
-			if (var4 != 0) {
-				++var0.field1027;
-				boolean var6;
-				if (var4 > 1024) {
-					var0.rotation -= var0.field1028;
-					var6 = true;
-					if (var4 < var0.field1028 || var4 > 2048 - var0.field1028) {
-						var0.rotation = var0.orientation;
-						var6 = false;
-					}
-
-					if (var0.readySequence == var0.movementSequence && (var0.field1027 > 25 || var6)) {
-						if (var0.turnLeftSequence != -1) {
-							var0.movementSequence = var0.turnLeftSequence;
-						} else {
-							var0.movementSequence = var0.walkSequence;
-						}
-					}
-				} else {
-					var0.rotation += var0.field1028;
-					var6 = true;
-					if (var4 < var0.field1028 || var4 > 2048 - var0.field1028) {
-						var0.rotation = var0.orientation;
-						var6 = false;
-					}
-
-					if (var0.readySequence == var0.movementSequence && (var0.field1027 > 25 || var6)) {
-						if (var0.turnRightSequence != -1) {
-							var0.movementSequence = var0.turnRightSequence;
-						} else {
-							var0.movementSequence = var0.walkSequence;
-						}
-					}
-				}
-
-				var0.rotation &= 2047;
-			} else {
-				var0.field1027 = 0;
-			}
-
-		}
 	}
 }

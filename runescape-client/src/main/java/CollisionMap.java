@@ -4,34 +4,39 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fh")
+@ObfuscatedName("fo")
 @Implements("CollisionMap")
 public class CollisionMap {
-	@ObfuscatedName("ah")
+	@ObfuscatedName("ll")
+	@ObfuscatedSignature(
+		signature = "Lhe;"
+	)
+	static Widget field2092;
+	@ObfuscatedName("ac")
 	@ObfuscatedGetter(
-		intValue = 1469076521
+		intValue = -791234187
 	)
 	@Export("xInset")
-	int xInset;
-	@ObfuscatedName("az")
-	@ObfuscatedGetter(
-		intValue = -1784403855
-	)
-	@Export("yInset")
-	int yInset;
+	public int xInset;
 	@ObfuscatedName("ak")
 	@ObfuscatedGetter(
-		intValue = 803284803
+		intValue = -32855099
+	)
+	@Export("yInset")
+	public int yInset;
+	@ObfuscatedName("av")
+	@ObfuscatedGetter(
+		intValue = -1313868737
 	)
 	@Export("xSize")
 	int xSize;
-	@ObfuscatedName("au")
+	@ObfuscatedName("aq")
 	@ObfuscatedGetter(
-		intValue = 726006289
+		intValue = -1461710845
 	)
 	@Export("ySize")
 	int ySize;
-	@ObfuscatedName("ai")
+	@ObfuscatedName("ah")
 	@Export("flags")
 	public int[][] flags;
 
@@ -44,10 +49,10 @@ public class CollisionMap {
 		this.clear();
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "1102469876"
+		garbageValue = "245593528"
 	)
 	@Export("clear")
 	public void clear() {
@@ -63,12 +68,12 @@ public class CollisionMap {
 
 	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(IIIIZI)V",
-		garbageValue = "1208614237"
+		signature = "(IIIIZB)V",
+		garbageValue = "-12"
 	)
-	public void method3683(int var1, int var2, int var3, int var4, boolean var5) {
+	public void method3611(int var1, int var2, int var3, int var4, boolean var5) {
 		var1 -= this.xInset;
 		var2 -= this.yInset;
 		if (var3 == 0) {
@@ -215,10 +220,10 @@ public class CollisionMap {
 
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
 		signature = "(IIIIZB)V",
-		garbageValue = "1"
+		garbageValue = "-10"
 	)
 	@Export("addGameObject")
 	public void addGameObject(int var1, int var2, int var3, int var4, boolean var5) {
@@ -242,10 +247,10 @@ public class CollisionMap {
 
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
 		signature = "(III)V",
-		garbageValue = "-497900388"
+		garbageValue = "-2097917762"
 	)
 	@Export("setBlockedByFloor")
 	public void setBlockedByFloor(int var1, int var2) {
@@ -255,10 +260,10 @@ public class CollisionMap {
 		var10000[var2] |= 2097152;
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
 		signature = "(III)V",
-		garbageValue = "-2077478185"
+		garbageValue = "-1697769054"
 	)
 	@Export("setBlockedByFloorDec")
 	public void setBlockedByFloorDec(int var1, int var2) {
@@ -268,10 +273,10 @@ public class CollisionMap {
 		var10000[var2] |= 262144;
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
-		signature = "(IIII)V",
-		garbageValue = "-1102921575"
+		signature = "(IIIB)V",
+		garbageValue = "4"
 	)
 	@Export("setFlag")
 	void setFlag(int var1, int var2, int var3) {
@@ -279,12 +284,12 @@ public class CollisionMap {
 		var10000[var2] |= var3;
 	}
 
-	@ObfuscatedName("k")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
 		signature = "(IIIIZI)V",
-		garbageValue = "1625102421"
+		garbageValue = "1790847002"
 	)
-	public void method3688(int var1, int var2, int var3, int var4, boolean var5) {
+	public void method3616(int var1, int var2, int var3, int var4, boolean var5) {
 		var1 -= this.xInset;
 		var2 -= this.yInset;
 		if (var3 == 0) {
@@ -431,10 +436,10 @@ public class CollisionMap {
 
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		signature = "(IIIIIZI)V",
-		garbageValue = "825527844"
+		signature = "(IIIIIZB)V",
+		garbageValue = "4"
 	)
 	@Export("setFlagOffNonSquare")
 	public void setFlagOffNonSquare(int var1, int var2, int var3, int var4, int var5, boolean var6) {
@@ -464,10 +469,10 @@ public class CollisionMap {
 
 	}
 
-	@ObfuscatedName("u")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
 		signature = "(IIII)V",
-		garbageValue = "-1464049351"
+		garbageValue = "180780669"
 	)
 	@Export("setFlagOff")
 	void setFlagOff(int var1, int var2, int var3) {
@@ -475,41 +480,47 @@ public class CollisionMap {
 		var10000[var2] &= ~var3;
 	}
 
-	@ObfuscatedName("t")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(IIS)V",
-		garbageValue = "-5902"
+		signature = "(IIB)V",
+		garbageValue = "22"
 	)
-	public void method3691(int var1, int var2) {
+	public void method3619(int var1, int var2) {
 		var1 -= this.xInset;
 		var2 -= this.yInset;
 		int[] var10000 = this.flags[var1];
 		var10000[var2] &= -262145;
 	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/Object;ZI)[B",
-		garbageValue = "299117016"
+		signature = "(II)Lhe;",
+		garbageValue = "185154733"
 	)
-	public static byte[] method3712(Object var0, boolean var1) {
-		if (var0 == null) {
-			return null;
-		} else if (var0 instanceof byte[]) {
-			byte[] var6 = (byte[])((byte[])var0);
-			if (var1) {
-				int var4 = var6.length;
-				byte[] var5 = new byte[var4];
-				System.arraycopy(var6, 0, var5, 0, var4);
-				return var5;
-			} else {
-				return var6;
+	@Export("getWidget")
+	public static Widget getWidget(int var0) {
+		int var1 = var0 >> 16;
+		int var2 = var0 & 65535;
+		if (class9.Widget_interfaceComponents[var1] == null || class9.Widget_interfaceComponents[var1][var2] == null) {
+			boolean var3 = class41.loadInterface(var1);
+			if (!var3) {
+				return null;
 			}
-		} else if (var0 instanceof AbstractByteArrayCopier) {
-			AbstractByteArrayCopier var2 = (AbstractByteArrayCopier)var0;
-			return var2.get();
-		} else {
-			throw new IllegalArgumentException();
 		}
+
+		return class9.Widget_interfaceComponents[var1][var2];
+	}
+
+	@ObfuscatedName("kn")
+	@ObfuscatedSignature(
+		signature = "(Lhe;I)V",
+		garbageValue = "-595086327"
+	)
+	@Export("invalidateWidget")
+	static void invalidateWidget(Widget var0) {
+		if (var0.cycle == Client.field852) {
+			Client.field901[var0.rootIndex] = true;
+		}
+
 	}
 }

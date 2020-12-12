@@ -2,45 +2,51 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cw")
+@ObfuscatedName("ch")
 public class class90 {
-	@ObfuscatedName("w")
+	@ObfuscatedName("bm")
 	@ObfuscatedSignature(
-		signature = "Lkb;"
+		signature = "[Llo;"
 	)
-	@Export("NetCache_reference")
-	static Buffer NetCache_reference;
+	@Export("worldSelectFlagSprites")
+	static IndexedSprite[] worldSelectFlagSprites;
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "-246202754"
+		signature = "([Ljava/lang/CharSequence;III)Ljava/lang/String;",
+		garbageValue = "-540842250"
 	)
-	static int method2168() {
-		return 12;
-	}
-
-	@ObfuscatedName("u")
-	@ObfuscatedSignature(
-		signature = "(II)I",
-		garbageValue = "-214239745"
-	)
-	@Export("Messages_getLastChatID")
-	static int Messages_getLastChatID(int var0) {
-		Message var1 = (Message)Messages.Messages_hashTable.get((long)var0);
-		if (var1 == null) {
-			return -1;
+	public static String method2125(CharSequence[] var0, int var1, int var2) {
+		if (var2 == 0) {
+			return "";
+		} else if (var2 == 1) {
+			CharSequence var3 = var0[var1];
+			return var3 == null ? "null" : var3.toString();
 		} else {
-			return var1.nextDual == Messages.Messages_queue.sentinel ? -1 : ((Message)var1.nextDual).count;
-		}
-	}
+			int var8 = var2 + var1;
+			int var4 = 0;
 
-	@ObfuscatedName("bg")
-	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;I)I",
-		garbageValue = "1147462173"
-	)
-	public static int method2169(String var0) {
-		return var0.length() + 2;
+			for (int var5 = var1; var5 < var8; ++var5) {
+				CharSequence var6 = var0[var5];
+				if (var6 == null) {
+					var4 += 4;
+				} else {
+					var4 += var6.length();
+				}
+			}
+
+			StringBuilder var9 = new StringBuilder(var4);
+
+			for (int var10 = var1; var10 < var8; ++var10) {
+				CharSequence var7 = var0[var10];
+				if (var7 == null) {
+					var9.append("null");
+				} else {
+					var9.append(var7);
+				}
+			}
+
+			return var9.toString();
+		}
 	}
 }
