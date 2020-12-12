@@ -26,7 +26,6 @@ package net.runelite.mixins;
 
 import java.awt.Shape;
 import net.runelite.api.AnimationID;
-import net.runelite.api.DecorativeObject;
 import net.runelite.api.NPCComposition;
 import net.runelite.api.Perspective;
 import net.runelite.api.coords.LocalPoint;
