@@ -3,16 +3,10 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fk")
+@ObfuscatedName("fv")
 @Implements("UserComparator3")
 public class UserComparator3 extends AbstractUserComparator {
-	@ObfuscatedName("e")
-	@ObfuscatedSignature(
-		signature = "Lft;"
-	)
-	@Export("clock")
-	static Clock clock;
-	@ObfuscatedName("f")
+	@ObfuscatedName("h")
 	@Export("reversed")
 	final boolean reversed;
 
@@ -20,10 +14,10 @@ public class UserComparator3 extends AbstractUserComparator {
 		this.reversed = var1;
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(Lkl;Lkl;I)I",
-		garbageValue = "-214138656"
+		signature = "(Lkz;Lkz;B)I",
+		garbageValue = "96"
 	)
 	@Export("compareBuddy")
 	int compareBuddy(Buddy var1, Buddy var2) {
@@ -38,137 +32,139 @@ public class UserComparator3 extends AbstractUserComparator {
 		return this.compareBuddy((Buddy)var1, (Buddy)var2);
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-2009862837"
+		signature = "(Lky;B)V",
+		garbageValue = "10"
 	)
-	public static void method3546() {
-		class13.midiPcmStream.clear();
-		class206.musicPlayerStatus = 1;
-		class23.musicTrackArchive = null;
-	}
+	static final void method3515(PacketBuffer var0) {
+		int var1 = 0;
+		var0.importIndex();
 
-	@ObfuscatedName("ar")
-	@ObfuscatedSignature(
-		signature = "([BI)[B",
-		garbageValue = "-1190316664"
-	)
-	@Export("decompressBytes")
-	static final byte[] decompressBytes(byte[] var0) {
-		Buffer var1 = new Buffer(var0);
-		int var2 = var1.readUnsignedByte();
-		int var3 = var1.readInt();
-		if (var3 < 0 || AbstractArchive.field3173 != 0 && var3 > AbstractArchive.field3173) {
-			throw new RuntimeException();
-		} else if (var2 == 0) {
-			byte[] var4 = new byte[var3];
-			var1.readBytes(var4, 0, var3);
-			return var4;
-		} else {
-			int var6 = var1.readInt();
-			if (var6 >= 0 && (AbstractArchive.field3173 == 0 || var6 <= AbstractArchive.field3173)) {
-				byte[] var5 = new byte[var6];
-				if (var2 == 1) {
-					BZip2Decompressor.BZip2Decompressor_decompress(var5, var6, var0, var3, 9);
+		byte[] var10000;
+		int var2;
+		int var3;
+		int var4;
+		for (var2 = 0; var2 < Players.Players_count; ++var2) {
+			var3 = Players.Players_indices[var2];
+			if ((Players.field1252[var3] & 1) == 0) {
+				if (var1 > 0) {
+					--var1;
+					var10000 = Players.field1252;
+					var10000[var3] = (byte)(var10000[var3] | 2);
 				} else {
-					AbstractArchive.gzipDecompressor.decompress(var1, var5);
+					var4 = var0.readBits(1);
+					if (var4 == 0) {
+						var1 = Skills.method4146(var0);
+						var10000 = Players.field1252;
+						var10000[var3] = (byte)(var10000[var3] | 2);
+					} else {
+						class349.readPlayerUpdate(var0, var3);
+					}
 				}
-
-				return var5;
-			} else {
-				throw new RuntimeException();
 			}
 		}
-	}
 
-	@ObfuscatedName("in")
-	@ObfuscatedSignature(
-		signature = "(Lbi;IIII)V",
-		garbageValue = "-2001365984"
-	)
-	@Export("addPlayerToMenu")
-	static final void addPlayerToMenu(Player var0, int var1, int var2, int var3) {
-		if (PlayerType.localPlayer != var0) {
-			if (Client.menuOptionsCount < 400) {
-				String var4;
-				int var7;
-				if (var0.skillLevel == 0) {
-					String var5 = var0.actions[0] + var0.username + var0.actions[1];
-					var7 = var0.combatLevel;
-					int var8 = PlayerType.localPlayer.combatLevel;
-					int var9 = var8 - var7;
-					String var6;
-					if (var9 < -9) {
-						var6 = Client.colorStartTag(16711680);
-					} else if (var9 < -6) {
-						var6 = Client.colorStartTag(16723968);
-					} else if (var9 < -3) {
-						var6 = Client.colorStartTag(16740352);
-					} else if (var9 < 0) {
-						var6 = Client.colorStartTag(16756736);
-					} else if (var9 > 9) {
-						var6 = Client.colorStartTag(65280);
-					} else if (var9 > 6) {
-						var6 = Client.colorStartTag(4259584);
-					} else if (var9 > 3) {
-						var6 = Client.colorStartTag(8453888);
-					} else if (var9 > 0) {
-						var6 = Client.colorStartTag(12648192);
+		var0.exportIndex();
+		if (var1 != 0) {
+			throw new RuntimeException();
+		} else {
+			var0.importIndex();
+
+			for (var2 = 0; var2 < Players.Players_count; ++var2) {
+				var3 = Players.Players_indices[var2];
+				if ((Players.field1252[var3] & 1) != 0) {
+					if (var1 > 0) {
+						--var1;
+						var10000 = Players.field1252;
+						var10000[var3] = (byte)(var10000[var3] | 2);
 					} else {
-						var6 = Client.colorStartTag(16776960);
+						var4 = var0.readBits(1);
+						if (var4 == 0) {
+							var1 = Skills.method4146(var0);
+							var10000 = Players.field1252;
+							var10000[var3] = (byte)(var10000[var3] | 2);
+						} else {
+							class349.readPlayerUpdate(var0, var3);
+						}
 					}
-
-					var4 = var5 + var6 + " " + " (" + "level-" + var0.combatLevel + ")" + var0.actions[2];
-				} else {
-					var4 = var0.actions[0] + var0.username + var0.actions[1] + " " + " (" + "skill-" + var0.skillLevel + ")" + var0.actions[2];
 				}
+			}
 
-				int var10;
-				if (Client.isItemSelected == 1) {
-					ModelData0.insertMenuItemNoShift("Use", Client.selectedItemName + " " + "->" + " " + Client.colorStartTag(16777215) + var4, 14, var1, var2, var3);
-				} else if (Client.isSpellSelected) {
-					if ((class105.selectedSpellFlags & 8) == 8) {
-						ModelData0.insertMenuItemNoShift(Client.selectedSpellActionName, Client.selectedSpellName + " " + "->" + " " + Client.colorStartTag(16777215) + var4, 15, var1, var2, var3);
-					}
-				} else {
-					for (var10 = 7; var10 >= 0; --var10) {
-						if (Client.playerMenuActions[var10] != null) {
-							short var11 = 0;
-							if (Client.playerMenuActions[var10].equalsIgnoreCase("Attack")) {
-								if (Client.playerAttackOption == AttackOption.AttackOption_hidden) {
-									continue;
-								}
+			var0.exportIndex();
+			if (var1 != 0) {
+				throw new RuntimeException();
+			} else {
+				var0.importIndex();
 
-								if (Client.playerAttackOption == AttackOption.AttackOption_alwaysRightClick || AttackOption.AttackOption_dependsOnCombatLevels == Client.playerAttackOption && var0.combatLevel > PlayerType.localPlayer.combatLevel) {
-									var11 = 2000;
-								}
-
-								if (PlayerType.localPlayer.team != 0 && var0.team != 0) {
-									if (var0.team == PlayerType.localPlayer.team) {
-										var11 = 2000;
-									} else {
-										var11 = 0;
-									}
-								}
-							} else if (Client.playerOptionsPriorities[var10]) {
-								var11 = 2000;
+				for (var2 = 0; var2 < Players.Players_emptyIdxCount; ++var2) {
+					var3 = Players.Players_emptyIndices[var2];
+					if ((Players.field1252[var3] & 1) != 0) {
+						if (var1 > 0) {
+							--var1;
+							var10000 = Players.field1252;
+							var10000[var3] = (byte)(var10000[var3] | 2);
+						} else {
+							var4 = var0.readBits(1);
+							if (var4 == 0) {
+								var1 = Skills.method4146(var0);
+								var10000 = Players.field1252;
+								var10000[var3] = (byte)(var10000[var3] | 2);
+							} else if (WorldMapSection0.updateExternalPlayer(var0, var3)) {
+								var10000 = Players.field1252;
+								var10000[var3] = (byte)(var10000[var3] | 2);
 							}
-
-							boolean var12 = false;
-							var7 = Client.playerMenuOpcodes[var10] + var11;
-							ModelData0.insertMenuItemNoShift(Client.playerMenuActions[var10], Client.colorStartTag(16777215) + var4, var7, var1, var2, var3);
 						}
 					}
 				}
 
-				for (var10 = 0; var10 < Client.menuOptionsCount; ++var10) {
-					if (Client.menuOpcodes[var10] == 23) {
-						Client.menuTargets[var10] = Client.colorStartTag(16777215) + var4;
-						break;
+				var0.exportIndex();
+				if (var1 != 0) {
+					throw new RuntimeException();
+				} else {
+					var0.importIndex();
+
+					for (var2 = 0; var2 < Players.Players_emptyIdxCount; ++var2) {
+						var3 = Players.Players_emptyIndices[var2];
+						if ((Players.field1252[var3] & 1) == 0) {
+							if (var1 > 0) {
+								--var1;
+								var10000 = Players.field1252;
+								var10000[var3] = (byte)(var10000[var3] | 2);
+							} else {
+								var4 = var0.readBits(1);
+								if (var4 == 0) {
+									var1 = Skills.method4146(var0);
+									var10000 = Players.field1252;
+									var10000[var3] = (byte)(var10000[var3] | 2);
+								} else if (WorldMapSection0.updateExternalPlayer(var0, var3)) {
+									var10000 = Players.field1252;
+									var10000[var3] = (byte)(var10000[var3] | 2);
+								}
+							}
+						}
+					}
+
+					var0.exportIndex();
+					if (var1 != 0) {
+						throw new RuntimeException();
+					} else {
+						Players.Players_count = 0;
+						Players.Players_emptyIdxCount = 0;
+
+						for (var2 = 1; var2 < 2048; ++var2) {
+							var10000 = Players.field1252;
+							var10000[var2] = (byte)(var10000[var2] >> 1);
+							Player var5 = Client.players[var2];
+							if (var5 != null) {
+								Players.Players_indices[++Players.Players_count - 1] = var2;
+							} else {
+								Players.Players_emptyIndices[++Players.Players_emptyIdxCount - 1] = var2;
+							}
+						}
+
 					}
 				}
-
 			}
 		}
 	}

@@ -4,144 +4,150 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jr")
+@ObfuscatedName("jc")
 @Implements("Timer")
 public class Timer {
-	@ObfuscatedName("f")
-	@ObfuscatedGetter(
-		longValue = 8550403030095862389L
+	@ObfuscatedName("su")
+	@ObfuscatedSignature(
+		signature = "Lcd;"
 	)
-	long field3604;
-	@ObfuscatedName("b")
+	@Export("clientPreferences")
+	static ClientPreferences clientPreferences;
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		longValue = 7994702175123860963L
+		longValue = 3770281443563997935L
 	)
-	long field3607;
-	@ObfuscatedName("l")
-	public boolean field3606;
-	@ObfuscatedName("m")
+	long field3620;
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		longValue = 4133381384365556773L
+		longValue = -2250207918034291381L
 	)
-	long field3608;
-	@ObfuscatedName("z")
+	long field3616;
+	@ObfuscatedName("x")
+	public boolean field3614;
+	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		longValue = 3557480670410738873L
+		longValue = -2802156095156479445L
 	)
-	long field3605;
-	@ObfuscatedName("q")
-	@ObfuscatedGetter(
-		longValue = 6361595278255869411L
-	)
-	long field3609;
-	@ObfuscatedName("k")
-	@ObfuscatedGetter(
-		intValue = -134378941
-	)
-	int field3610;
-	@ObfuscatedName("c")
-	@ObfuscatedGetter(
-		intValue = -337124169
-	)
-	int field3611;
-	@ObfuscatedName("u")
-	@ObfuscatedGetter(
-		intValue = 2101828205
-	)
-	int field3612;
+	long field3615;
 	@ObfuscatedName("t")
 	@ObfuscatedGetter(
-		intValue = 1450803179
+		longValue = -1144199365391722153L
 	)
-	int field3613;
+	long field3622;
+	@ObfuscatedName("j")
+	@ObfuscatedGetter(
+		longValue = -6579691889222792449L
+	)
+	long field3613;
+	@ObfuscatedName("n")
+	@ObfuscatedGetter(
+		intValue = 121997523
+	)
+	int field3618;
+	@ObfuscatedName("p")
+	@ObfuscatedGetter(
+		intValue = -1353523553
+	)
+	int field3619;
+	@ObfuscatedName("l")
+	@ObfuscatedGetter(
+		intValue = 1070107525
+	)
+	int field3612;
+	@ObfuscatedName("z")
+	@ObfuscatedGetter(
+		intValue = -1445210843
+	)
+	int field3621;
 
 	public Timer() {
-		this.field3604 = -1L;
-		this.field3607 = -1L;
-		this.field3606 = false;
-		this.field3608 = 0L;
-		this.field3605 = 0L;
-		this.field3609 = 0L;
-		this.field3610 = 0;
-		this.field3611 = 0;
+		this.field3620 = -1L;
+		this.field3616 = -1L;
+		this.field3614 = false;
+		this.field3615 = 0L;
+		this.field3622 = 0L;
+		this.field3613 = 0L;
+		this.field3618 = 0;
+		this.field3619 = 0;
 		this.field3612 = 0;
-		this.field3613 = 0;
+		this.field3621 = 0;
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
 		signature = "(B)V",
-		garbageValue = "-12"
+		garbageValue = "-16"
 	)
-	public void method5135() {
-		this.field3604 = Nameable.currentTimeMillis();
+	public void method5010() {
+		this.field3620 = class298.currentTimeMillis();
 	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "568889217"
+		garbageValue = "1990101755"
 	)
-	public void method5147() {
-		if (this.field3604 != -1L) {
-			this.field3605 = Nameable.currentTimeMillis() - this.field3604;
-			this.field3604 = -1L;
+	public void method5018() {
+		if (-1L != this.field3620) {
+			this.field3622 = class298.currentTimeMillis() - this.field3620;
+			this.field3620 = -1L;
 		}
 
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		signature = "(II)V",
-		garbageValue = "-391105625"
+		signature = "(IB)V",
+		garbageValue = "11"
 	)
-	public void method5153(int var1) {
-		this.field3607 = Nameable.currentTimeMillis();
-		this.field3610 = var1;
+	public void method5033(int var1) {
+		this.field3616 = class298.currentTimeMillis();
+		this.field3618 = var1;
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		signature = "(S)V",
-		garbageValue = "255"
+		signature = "(I)V",
+		garbageValue = "820461529"
 	)
-	public void method5137() {
-		if (this.field3607 != -1L) {
-			this.field3608 = Nameable.currentTimeMillis() - this.field3607;
-			this.field3607 = -1L;
+	public void method5013() {
+		if (this.field3616 != -1L) {
+			this.field3615 = class298.currentTimeMillis() - this.field3616;
+			this.field3616 = -1L;
 		}
 
 		++this.field3612;
-		this.field3606 = true;
+		this.field3614 = true;
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
 		signature = "(B)V",
-		garbageValue = "20"
+		garbageValue = "0"
 	)
-	public void method5142() {
-		this.field3606 = false;
-		this.field3611 = 0;
+	public void method5014() {
+		this.field3614 = false;
+		this.field3619 = 0;
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "-1427350248"
+		garbageValue = "-105042609"
 	)
-	public void method5139() {
-		this.method5137();
+	public void method5015() {
+		this.method5013();
 	}
 
-	@ObfuscatedName("k")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Lkb;I)V",
-		garbageValue = "-942267659"
+		signature = "(Lkj;I)V",
+		garbageValue = "1266632335"
 	)
 	@Export("write")
 	public void write(Buffer var1) {
-		long var2 = this.field3605;
+		long var2 = this.field3622;
 		var2 /= 10L;
 		if (var2 < 0L) {
 			var2 = 0L;
@@ -150,7 +156,7 @@ public class Timer {
 		}
 
 		var1.writeShort((int)var2);
-		long var4 = this.field3608;
+		long var4 = this.field3615;
 		var4 /= 10L;
 		if (var4 < 0L) {
 			var4 = 0L;
@@ -159,7 +165,7 @@ public class Timer {
 		}
 
 		var1.writeShort((int)var4);
-		long var6 = this.field3609;
+		long var6 = this.field3613;
 		var6 /= 10L;
 		if (var6 < 0L) {
 			var6 = 0L;
@@ -168,9 +174,9 @@ public class Timer {
 		}
 
 		var1.writeShort((int)var6);
-		var1.writeShort(this.field3610);
-		var1.writeShort(this.field3611);
+		var1.writeShort(this.field3618);
+		var1.writeShort(this.field3619);
 		var1.writeShort(this.field3612);
-		var1.writeShort(this.field3613);
+		var1.writeShort(this.field3621);
 	}
 }

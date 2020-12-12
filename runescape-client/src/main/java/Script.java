@@ -3,53 +3,59 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.ScriptOpcodes;
+import net.runelite.rs.Reflection;
 
-@ObfuscatedName("co")
+@ObfuscatedName("cs")
 @Implements("Script")
 public class Script extends DualNode {
-	@ObfuscatedName("f")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "Lev;"
+		signature = "Lez;"
 	)
 	@Export("Script_cached")
 	static EvictingDualNodeHashTable Script_cached;
-	@ObfuscatedName("b")
+	@ObfuscatedName("y")
+	@ObfuscatedSignature(
+		signature = "Laz;"
+	)
+	@Export("worldMapEvent")
+	static WorldMapEvent worldMapEvent;
+	@ObfuscatedName("v")
 	@Export("opcodes")
 	int[] opcodes;
-	@ObfuscatedName("l")
+	@ObfuscatedName("x")
 	@Export("intOperands")
 	int[] intOperands;
-	@ObfuscatedName("m")
+	@ObfuscatedName("w")
 	@Export("stringOperands")
 	String[] stringOperands;
-	@ObfuscatedName("z")
+	@ObfuscatedName("t")
 	@ObfuscatedGetter(
-		intValue = -289623255
+		intValue = 1311924603
 	)
 	@Export("localIntCount")
 	int localIntCount;
-	@ObfuscatedName("q")
+	@ObfuscatedName("j")
 	@ObfuscatedGetter(
-		intValue = -1416487067
+		intValue = 1513216297
 	)
 	@Export("localStringCount")
 	int localStringCount;
-	@ObfuscatedName("k")
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = -1408552327
+		intValue = 1973345543
 	)
 	@Export("intArgumentCount")
 	int intArgumentCount;
-	@ObfuscatedName("c")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = 1198237171
+		intValue = 1310900639
 	)
 	@Export("stringArgumentCount")
 	int stringArgumentCount;
-	@ObfuscatedName("u")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		signature = "[Lll;"
+		signature = "[Lla;"
 	)
 	@Export("switches")
 	IterableNodeHashTable[] switches;
@@ -61,122 +67,187 @@ public class Script extends DualNode {
 	Script() {
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		signature = "(II)[Lll;",
-		garbageValue = "20409592"
+		signature = "(II)[Lla;",
+		garbageValue = "557069999"
 	)
 	@Export("newIterableNodeHashTable")
 	IterableNodeHashTable[] newIterableNodeHashTable(int var1) {
 		return new IterableNodeHashTable[var1];
 	}
 
-	@ObfuscatedName("f")
-	static double method2356(double var0, double var2, double var4) {
-		double var8 = (var0 - var2) / var4;
-		double var6 = Math.exp(var8 * -var8 / 2.0D) / Math.sqrt(6.283185307179586D);
-		return var6 / var4;
+	@ObfuscatedName("w")
+	@ObfuscatedSignature(
+		signature = "(Ljava/lang/String;I)Ljava/lang/Class;",
+		garbageValue = "877971309"
+	)
+	@Export("loadClassFromDescriptor")
+	static Class loadClassFromDescriptor(String var0) throws ClassNotFoundException {
+		if (var0.equals("B")) {
+			return Byte.TYPE;
+		} else if (var0.equals("I")) {
+			return Integer.TYPE;
+		} else if (var0.equals("S")) {
+			return Short.TYPE;
+		} else if (var0.equals("J")) {
+			return Long.TYPE;
+		} else if (var0.equals("Z")) {
+			return Boolean.TYPE;
+		} else if (var0.equals("F")) {
+			return Float.TYPE;
+		} else if (var0.equals("D")) {
+			return Double.TYPE;
+		} else if (var0.equals("C")) {
+			return Character.TYPE;
+		} else {
+			return var0.equals("void") ? Void.TYPE : Reflection.findClass(var0);
+		}
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("kl")
 	@ObfuscatedSignature(
-		signature = "(ILco;ZI)I",
-		garbageValue = "1422774584"
+		signature = "(II)V",
+		garbageValue = "-1901639369"
 	)
-	static int method2355(int var0, Script var1, boolean var2) {
-		int var3;
-		int var4;
-		if (var0 == ScriptOpcodes.CC_CREATE) {
-			MilliClock.Interpreter_intStackSize -= 3;
-			var3 = Interpreter.Interpreter_intStack[MilliClock.Interpreter_intStackSize];
-			var4 = Interpreter.Interpreter_intStack[MilliClock.Interpreter_intStackSize + 1];
-			int var5 = Interpreter.Interpreter_intStack[MilliClock.Interpreter_intStackSize + 2];
-			if (var4 == 0) {
-				throw new RuntimeException();
-			} else {
-				Widget var6 = UserComparator4.getWidget(var3);
-				if (var6.children == null) {
-					var6.children = new Widget[var5 + 1];
+	@Export("changeGameOptions")
+	static final void changeGameOptions(int var0) {
+		class195.method3681();
+
+		for (ObjectSound var1 = (ObjectSound)ObjectSound.objectSounds.last(); var1 != null; var1 = (ObjectSound)ObjectSound.objectSounds.previous()) {
+			if (var1.obj != null) {
+				var1.set();
+			}
+		}
+
+		int var4 = class219.VarpDefinition_get(var0).type;
+		if (var4 != 0) {
+			int var2 = Varps.Varps_main[var0];
+			if (var4 == 1) {
+				if (var2 == 1) {
+					WorldMapSection1.method626(0.9D);
 				}
 
-				if (var6.children.length <= var5) {
-					Widget[] var7 = new Widget[var5 + 1];
-
-					for (int var8 = 0; var8 < var6.children.length; ++var8) {
-						var7[var8] = var6.children[var8];
-					}
-
-					var6.children = var7;
+				if (var2 == 2) {
+					WorldMapSection1.method626(0.8D);
 				}
 
-				if (var5 > 0 && var6.children[var5 - 1] == null) {
-					throw new RuntimeException("" + (var5 - 1));
-				} else {
-					Widget var12 = new Widget();
-					var12.type = var4;
-					var12.parentId = var12.id = var6.id;
-					var12.childIndex = var5;
-					var12.isIf3 = true;
-					var6.children[var5] = var12;
-					if (var2) {
-						MouseRecorder.field621 = var12;
-					} else {
-						Interpreter.field1122 = var12;
-					}
+				if (var2 == 3) {
+					WorldMapSection1.method626(0.7D);
+				}
 
-					GrandExchangeOfferOwnWorldComparator.invalidateWidget(var6);
-					return 1;
+				if (var2 == 4) {
+					WorldMapSection1.method626(0.6D);
 				}
 			}
-		} else {
-			Widget var9;
-			if (var0 == ScriptOpcodes.CC_DELETE) {
-				var9 = var2 ? MouseRecorder.field621 : Interpreter.field1122;
-				Widget var10 = UserComparator4.getWidget(var9.id);
-				var10.children[var9.childIndex] = null;
-				GrandExchangeOfferOwnWorldComparator.invalidateWidget(var10);
-				return 1;
-			} else if (var0 == ScriptOpcodes.CC_DELETEALL) {
-				var9 = UserComparator4.getWidget(Interpreter.Interpreter_intStack[--MilliClock.Interpreter_intStackSize]);
-				var9.children = null;
-				GrandExchangeOfferOwnWorldComparator.invalidateWidget(var9);
-				return 1;
-			} else if (var0 != ScriptOpcodes.CC_FIND) {
-				if (var0 == ScriptOpcodes.IF_FIND) {
-					var9 = UserComparator4.getWidget(Interpreter.Interpreter_intStack[--MilliClock.Interpreter_intStackSize]);
-					if (var9 != null) {
-						Interpreter.Interpreter_intStack[++MilliClock.Interpreter_intStackSize - 1] = 1;
-						if (var2) {
-							MouseRecorder.field621 = var9;
-						} else {
-							Interpreter.field1122 = var9;
-						}
-					} else {
-						Interpreter.Interpreter_intStack[++MilliClock.Interpreter_intStackSize - 1] = 0;
-					}
 
-					return 1;
-				} else {
-					return 2;
-				}
-			} else {
-				MilliClock.Interpreter_intStackSize -= 2;
-				var3 = Interpreter.Interpreter_intStack[MilliClock.Interpreter_intStackSize];
-				var4 = Interpreter.Interpreter_intStack[MilliClock.Interpreter_intStackSize + 1];
-				Widget var11 = ItemContainer.getWidgetChild(var3, var4);
-				if (var11 != null && var4 != -1) {
-					Interpreter.Interpreter_intStack[++MilliClock.Interpreter_intStackSize - 1] = 1;
-					if (var2) {
-						MouseRecorder.field621 = var11;
-					} else {
-						Interpreter.field1122 = var11;
-					}
-				} else {
-					Interpreter.Interpreter_intStack[++MilliClock.Interpreter_intStackSize - 1] = 0;
+			if (var4 == 3) {
+				if (var2 == 0) {
+					WorldMapEvent.method810(255);
 				}
 
-				return 1;
+				if (var2 == 1) {
+					WorldMapEvent.method810(192);
+				}
+
+				if (var2 == 2) {
+					WorldMapEvent.method810(128);
+				}
+
+				if (var2 == 3) {
+					WorldMapEvent.method810(64);
+				}
+
+				if (var2 == 4) {
+					WorldMapEvent.method810(0);
+				}
 			}
+
+			if (var4 == 4) {
+				if (var2 == 0) {
+					WorldMapCacheName.method662(127);
+				}
+
+				if (var2 == 1) {
+					WorldMapCacheName.method662(96);
+				}
+
+				if (var2 == 2) {
+					WorldMapCacheName.method662(64);
+				}
+
+				if (var2 == 3) {
+					WorldMapCacheName.method662(32);
+				}
+
+				if (var2 == 4) {
+					WorldMapCacheName.method662(0);
+				}
+			}
+
+			if (var4 == 5) {
+				Client.leftClickOpensMenu = var2;
+			}
+
+			if (var4 == 6) {
+				Client.chatEffects = var2;
+			}
+
+			if (var4 == 9) {
+				Client.field865 = var2;
+			}
+
+			if (var4 == 10) {
+				if (var2 == 0) {
+					class194.method3676(127);
+				}
+
+				if (var2 == 1) {
+					class194.method3676(96);
+				}
+
+				if (var2 == 2) {
+					class194.method3676(64);
+				}
+
+				if (var2 == 3) {
+					class194.method3676(32);
+				}
+
+				if (var2 == 4) {
+					class194.method3676(0);
+				}
+			}
+
+			if (var4 == 17) {
+				Client.followerIndex = var2 & 65535;
+			}
+
+			AttackOption[] var3;
+			if (var4 == 18) {
+				var3 = new AttackOption[]{AttackOption.AttackOption_hidden, AttackOption.AttackOption_dependsOnCombatLevels, AttackOption.AttackOption_alwaysRightClick, AttackOption.AttackOption_leftClickWhereAvailable};
+				Client.playerAttackOption = (AttackOption)UrlRequester.findEnumerated(var3, var2);
+				if (Client.playerAttackOption == null) {
+					Client.playerAttackOption = AttackOption.AttackOption_dependsOnCombatLevels;
+				}
+			}
+
+			if (var4 == 19) {
+				if (var2 == -1) {
+					Client.combatTargetPlayerIndex = -1;
+				} else {
+					Client.combatTargetPlayerIndex = var2 & 2047;
+				}
+			}
+
+			if (var4 == 22) {
+				var3 = new AttackOption[]{AttackOption.AttackOption_hidden, AttackOption.AttackOption_dependsOnCombatLevels, AttackOption.AttackOption_alwaysRightClick, AttackOption.AttackOption_leftClickWhereAvailable};
+				Client.npcAttackOption = (AttackOption)UrlRequester.findEnumerated(var3, var2);
+				if (Client.npcAttackOption == null) {
+					Client.npcAttackOption = AttackOption.AttackOption_dependsOnCombatLevels;
+				}
+			}
+
 		}
 	}
 }

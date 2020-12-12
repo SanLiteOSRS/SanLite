@@ -1,195 +1,305 @@
+import java.util.Date;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("m")
+@ObfuscatedName("w")
 public class class3 implements Enumerated {
-	@ObfuscatedName("f")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "Lm;"
+		signature = "Lw;"
 	)
-	static final class3 field11;
-	@ObfuscatedName("b")
+	public static final class3 field12;
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "Lm;"
+		signature = "Lw;"
 	)
-	static final class3 field9;
-	@ObfuscatedName("l")
+	public static final class3 field13;
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		signature = "Lm;"
+		signature = "Lw;"
 	)
-	static final class3 field10;
-	@ObfuscatedName("m")
+	public static final class3 field8;
+	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		intValue = 914942415
+		intValue = -393546789
 	)
-	final int field14;
-	@ObfuscatedName("z")
+	final int field9;
+	@ObfuscatedName("t")
 	@ObfuscatedGetter(
-		intValue = -1840148541
+		intValue = 1940834259
 	)
-	public final int field12;
-	@ObfuscatedName("q")
-	public final Class field13;
-	@ObfuscatedName("k")
+	public final int field10;
+	@ObfuscatedName("j")
+	public final Class field6;
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "Lf;"
+		signature = "Lh;"
 	)
-	final class0 field16;
+	final class0 field14;
 
 	static {
-		field11 = new class3(0, 0, Integer.class, new class1());
-		field9 = new class3(1, 1, Long.class, new class2());
-		field10 = new class3(2, 2, String.class, new class4());
+		field12 = new class3(0, 0, Integer.class, new class1());
+		field13 = new class3(1, 1, Long.class, new class2());
+		field8 = new class3(2, 2, String.class, new class4());
 	}
 
 	@ObfuscatedSignature(
-		signature = "(IILjava/lang/Class;Lf;)V"
+		signature = "(IILjava/lang/Class;Lh;)V"
 	)
 	class3(int var1, int var2, Class var3, class0 var4) {
-		this.field14 = var1;
-		this.field12 = var2;
-		this.field13 = var3;
-		this.field16 = var4;
+		this.field9 = var1;
+		this.field10 = var2;
+		this.field6 = var3;
+		this.field14 = var4;
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		signature = "(B)I",
-		garbageValue = "23"
+		signature = "(I)I",
+		garbageValue = "-275768542"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
-		return this.field12;
+		return this.field10;
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		signature = "(Lkb;I)Ljava/lang/Object;",
-		garbageValue = "-1763369505"
+		signature = "(Lkj;I)Ljava/lang/Object;",
+		garbageValue = "1456492535"
 	)
-	public Object method47(Buffer var1) {
-		return this.field16.vmethod72(var1);
+	public Object method28(Buffer var1) {
+		return this.field14.vmethod48(var1);
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(B)[Lm;",
-		garbageValue = "-100"
+		signature = "(I)V",
+		garbageValue = "72391209"
 	)
-	public static class3[] method43() {
-		return new class3[]{field10, field11, field9};
-	}
-
-	@ObfuscatedName("b")
-	@ObfuscatedSignature(
-		signature = "(Ljava/lang/Object;Lkb;I)V",
-		garbageValue = "1153774479"
-	)
-	public static void method57(Object var0, Buffer var1) {
-		class0 var2 = method45(var0.getClass());
-		var2.vmethod69(var0, var1);
-	}
-
-	@ObfuscatedName("l")
-	@ObfuscatedSignature(
-		signature = "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V",
-		garbageValue = "-2079467882"
-	)
-	@Export("addChatMessage")
-	static void addChatMessage(int var0, String var1, String var2, String var3) {
-		ChatChannel var4 = (ChatChannel)Messages.Messages_channels.get(var0);
-		if (var4 == null) {
-			var4 = new ChatChannel();
-			Messages.Messages_channels.put(var0, var4);
+	public static void method43() {
+		if (MouseHandler.MouseHandler_instance != null) {
+			synchronized(MouseHandler.MouseHandler_instance) {
+				MouseHandler.MouseHandler_instance = null;
+			}
 		}
 
-		Message var5 = var4.addMessage(var0, var1, var2, var3);
-		Messages.Messages_hashTable.put(var5, (long)var5.count);
-		Messages.Messages_queue.add(var5);
-		Client.chatCycle = Client.cycleCntr;
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/Class;I)Lf;",
-		garbageValue = "-1368179689"
+		signature = "(Ljava/lang/Object;Lkj;I)V",
+		garbageValue = "-1494098506"
 	)
-	static class0 method45(Class var0) {
-		class3[] var2 = method43();
-		int var3 = 0;
+	public static void method25(Object var0, Buffer var1) {
+		class0 var2 = method37(var0.getClass());
+		var2.vmethod49(var0, var1);
+	}
+
+	@ObfuscatedName("h")
+	public static String method40(long var0) {
+		Calendar.Calendar_calendar.setTime(new Date(var0));
+		int var2 = Calendar.Calendar_calendar.get(7);
+		int var3 = Calendar.Calendar_calendar.get(5);
+		int var4 = Calendar.Calendar_calendar.get(2);
+		int var5 = Calendar.Calendar_calendar.get(1);
+		int var6 = Calendar.Calendar_calendar.get(11);
+		int var7 = Calendar.Calendar_calendar.get(12);
+		int var8 = Calendar.Calendar_calendar.get(13);
+		return Calendar.DAYS_OF_THE_WEEK[var2 - 1] + ", " + var3 / 10 + var3 % 10 + "-" + Calendar.MONTH_NAMES_ENGLISH_GERMAN[0][var4] + "-" + var5 + " " + var6 / 10 + var6 % 10 + ":" + var7 / 10 + var7 % 10 + ":" + var8 / 10 + var8 % 10 + " GMT";
+	}
+
+	@ObfuscatedName("v")
+	@ObfuscatedSignature(
+		signature = "(Ljava/lang/Class;I)Lh;",
+		garbageValue = "1667520167"
+	)
+	static class0 method37(Class var0) {
+		class3[] var2 = new class3[]{field13, field12, field8};
+		class3[] var3 = var2;
+		int var4 = 0;
 
 		class3 var1;
 		while (true) {
-			if (var3 >= var2.length) {
+			if (var4 >= var3.length) {
 				var1 = null;
 				break;
 			}
 
-			class3 var4 = var2[var3];
-			if (var4.field13 == var0) {
-				var1 = var4;
+			class3 var5 = var3[var4];
+			if (var5.field6 == var0) {
+				var1 = var5;
 				break;
 			}
 
-			++var3;
+			++var4;
 		}
 
 		if (var1 == null) {
 			throw new IllegalArgumentException();
 		} else {
-			return var1.field16;
+			return var1.field14;
 		}
 	}
 
 	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(II)V",
-		garbageValue = "-268310381"
+		signature = "(III)V",
+		garbageValue = "-1239840122"
 	)
-	@Export("clearItemContainer")
-	static void clearItemContainer(int var0) {
-		ItemContainer var1 = (ItemContainer)ItemContainer.itemContainers.get((long)var0);
-		if (var1 != null) {
-			for (int var2 = 0; var2 < var1.ids.length; ++var2) {
-				var1.ids[var2] = -1;
-				var1.quantities[var2] = 0;
+	public static final void method41(int var0, int var1) {
+		ViewportMouse.ViewportMouse_x = var0;
+		ViewportMouse.ViewportMouse_y = var1;
+		ViewportMouse.ViewportMouse_isInViewport = true;
+		ViewportMouse.ViewportMouse_entityCount = 0;
+		ViewportMouse.ViewportMouse_false0 = false;
+	}
+
+	@ObfuscatedName("hv")
+	@ObfuscatedSignature(
+		signature = "(Lbq;B)Z",
+		garbageValue = "0"
+	)
+	static boolean method42(Player var0) {
+		if (Client.drawPlayerNames == 0) {
+			return false;
+		} else if (PlayerComposition.localPlayer != var0) {
+			boolean var1 = (Client.drawPlayerNames & 4) != 0;
+			boolean var2 = var1;
+			if (!var1) {
+				boolean var3 = (Client.drawPlayerNames & 1) != 0;
+				var2 = var3 && var0.isFriend();
 			}
 
+			return var2 || RouteStrategy.method3649() && var0.isClanMember();
+		} else {
+			return MouseHandler.method1150();
 		}
 	}
 
-	@ObfuscatedName("t")
+	@ObfuscatedName("is")
 	@ObfuscatedSignature(
-		signature = "(CI)Z",
-		garbageValue = "1886603944"
+		signature = "(IIIILjava/lang/String;I)V",
+		garbageValue = "2076133641"
 	)
-	@Export("isAlphaNumeric")
-	public static boolean isAlphaNumeric(char var0) {
-		return var0 >= '0' && var0 <= '9' || var0 >= 'A' && var0 <= 'Z' || var0 >= 'a' && var0 <= 'z';
+	@Export("widgetDefaultMenuAction")
+	static void widgetDefaultMenuAction(int var0, int var1, int var2, int var3, String var4) {
+		Widget var5 = class92.getWidgetChild(var1, var2);
+		if (var5 != null) {
+			if (var5.onOp != null) {
+				ScriptEvent var6 = new ScriptEvent();
+				var6.widget = var5;
+				var6.opIndex = var0;
+				var6.targetName = var4;
+				var6.args = var5.onOp;
+				class22.runScriptEvent(var6);
+			}
+
+			boolean var11 = true;
+			if (var5.contentType > 0) {
+				var11 = HealthBarUpdate.method1825(var5);
+			}
+
+			if (var11) {
+				int var8 = FaceNormal.getWidgetClickMask(var5);
+				int var9 = var0 - 1;
+				boolean var7 = (var8 >> var9 + 1 & 1) != 0;
+				if (var7) {
+					PacketBufferNode var10;
+					if (var0 == 1) {
+						var10 = ItemContainer.getPacketBufferNode(ClientPacket.field2240, Client.packetWriter.isaacCipher);
+						var10.packetBuffer.writeInt(var1);
+						var10.packetBuffer.writeShort(var2);
+						var10.packetBuffer.writeShort(var3);
+						Client.packetWriter.addNode(var10);
+					}
+
+					if (var0 == 2) {
+						var10 = ItemContainer.getPacketBufferNode(ClientPacket.field2286, Client.packetWriter.isaacCipher);
+						var10.packetBuffer.writeInt(var1);
+						var10.packetBuffer.writeShort(var2);
+						var10.packetBuffer.writeShort(var3);
+						Client.packetWriter.addNode(var10);
+					}
+
+					if (var0 == 3) {
+						var10 = ItemContainer.getPacketBufferNode(ClientPacket.field2249, Client.packetWriter.isaacCipher);
+						var10.packetBuffer.writeInt(var1);
+						var10.packetBuffer.writeShort(var2);
+						var10.packetBuffer.writeShort(var3);
+						Client.packetWriter.addNode(var10);
+					}
+
+					if (var0 == 4) {
+						var10 = ItemContainer.getPacketBufferNode(ClientPacket.field2320, Client.packetWriter.isaacCipher);
+						var10.packetBuffer.writeInt(var1);
+						var10.packetBuffer.writeShort(var2);
+						var10.packetBuffer.writeShort(var3);
+						Client.packetWriter.addNode(var10);
+					}
+
+					if (var0 == 5) {
+						var10 = ItemContainer.getPacketBufferNode(ClientPacket.field2247, Client.packetWriter.isaacCipher);
+						var10.packetBuffer.writeInt(var1);
+						var10.packetBuffer.writeShort(var2);
+						var10.packetBuffer.writeShort(var3);
+						Client.packetWriter.addNode(var10);
+					}
+
+					if (var0 == 6) {
+						var10 = ItemContainer.getPacketBufferNode(ClientPacket.field2289, Client.packetWriter.isaacCipher);
+						var10.packetBuffer.writeInt(var1);
+						var10.packetBuffer.writeShort(var2);
+						var10.packetBuffer.writeShort(var3);
+						Client.packetWriter.addNode(var10);
+					}
+
+					if (var0 == 7) {
+						var10 = ItemContainer.getPacketBufferNode(ClientPacket.field2316, Client.packetWriter.isaacCipher);
+						var10.packetBuffer.writeInt(var1);
+						var10.packetBuffer.writeShort(var2);
+						var10.packetBuffer.writeShort(var3);
+						Client.packetWriter.addNode(var10);
+					}
+
+					if (var0 == 8) {
+						var10 = ItemContainer.getPacketBufferNode(ClientPacket.field2252, Client.packetWriter.isaacCipher);
+						var10.packetBuffer.writeInt(var1);
+						var10.packetBuffer.writeShort(var2);
+						var10.packetBuffer.writeShort(var3);
+						Client.packetWriter.addNode(var10);
+					}
+
+					if (var0 == 9) {
+						var10 = ItemContainer.getPacketBufferNode(ClientPacket.field2307, Client.packetWriter.isaacCipher);
+						var10.packetBuffer.writeInt(var1);
+						var10.packetBuffer.writeShort(var2);
+						var10.packetBuffer.writeShort(var3);
+						Client.packetWriter.addNode(var10);
+					}
+
+					if (var0 == 10) {
+						var10 = ItemContainer.getPacketBufferNode(ClientPacket.field2231, Client.packetWriter.isaacCipher);
+						var10.packetBuffer.writeInt(var1);
+						var10.packetBuffer.writeShort(var2);
+						var10.packetBuffer.writeShort(var3);
+						Client.packetWriter.addNode(var10);
+					}
+
+				}
+			}
+		}
 	}
 
-	@ObfuscatedName("ha")
+	@ObfuscatedName("jc")
 	@ObfuscatedSignature(
-		signature = "(IIIII)V",
-		garbageValue = "2004525575"
+		signature = "(I)Z",
+		garbageValue = "-1332893941"
 	)
-	@Export("selectSpell")
-	static void selectSpell(int var0, int var1, int var2, int var3) {
-		Widget var4 = ItemContainer.getWidgetChild(var0, var1);
-		if (var4 != null && var4.onTargetEnter != null) {
-			ScriptEvent var5 = new ScriptEvent();
-			var5.widget = var4;
-			var5.args = var4.onTargetEnter;
-			Renderable.runScriptEvent(var5);
-		}
-
-		Client.field838 = var3;
-		Client.isSpellSelected = true;
-		class307.selectedSpellWidget = var0;
-		Client.selectedSpellChildIndex = var1;
-		class105.selectedSpellFlags = var2;
-		GrandExchangeOfferOwnWorldComparator.invalidateWidget(var4);
+	@Export("getTapToDrop")
+	static boolean getTapToDrop() {
+		return Client.tapToDrop;
 	}
 }

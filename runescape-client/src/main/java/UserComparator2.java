@@ -4,12 +4,10 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("la")
+@ObfuscatedName("lv")
 @Implements("UserComparator2")
 public class UserComparator2 implements Comparator {
-	@ObfuscatedName("k")
-	static byte[][][] field3859;
-	@ObfuscatedName("f")
+	@ObfuscatedName("h")
 	@Export("reversed")
 	final boolean reversed;
 
@@ -17,10 +15,10 @@ public class UserComparator2 implements Comparator {
 		this.reversed = var1;
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(Ljh;Ljh;I)I",
-		garbageValue = "-74930835"
+		signature = "(Lju;Lju;B)I",
+		garbageValue = "26"
 	)
 	@Export("compare_bridged")
 	int compare_bridged(Nameable var1, Nameable var2) {
@@ -35,17 +33,12 @@ public class UserComparator2 implements Comparator {
 		return super.equals(var1);
 	}
 
-	@ObfuscatedName("kt")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		signature = "(II)V",
-		garbageValue = "788090268"
+		signature = "(I)V",
+		garbageValue = "-2053247999"
 	)
-	static void method6067(int var0) {
-		for (IntegerNode var1 = (IntegerNode)Client.widgetClickMasks.first(); var1 != null; var1 = (IntegerNode)Client.widgetClickMasks.next()) {
-			if ((long)var0 == (var1.key >> 48 & 65535L)) {
-				var1.remove();
-			}
-		}
-
+	public static void method5959() {
+		KitDefinition.KitDefinition_cached.clear();
 	}
 }

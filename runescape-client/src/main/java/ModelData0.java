@@ -1,91 +1,95 @@
+import java.io.File;
+import java.io.RandomAccessFile;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ec")
+@ObfuscatedName("et")
 @Implements("ModelData0")
 public class ModelData0 {
-	@ObfuscatedName("sv")
-	@ObfuscatedSignature(
-		signature = "Liq;"
+	@ObfuscatedName("k")
+	@ObfuscatedGetter(
+		intValue = 1312474223
 	)
-	public static class248 field1895;
-	@ObfuscatedName("ez")
-	@ObfuscatedSignature(
-		signature = "Lid;"
-	)
-	@Export("archive18")
-	static Archive archive18;
+	@Export("canvasHeight")
+	public static int canvasHeight;
 
 	ModelData0() {
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(I)Lcf;",
-		garbageValue = "1326128676"
+		signature = "(Ljava/lang/String;I)Ljava/io/File;",
+		garbageValue = "1637999764"
 	)
-	@Export("worldListStart")
-	static World worldListStart() {
-		World.World_listCount = 0;
-		return FileSystem.getNextWorldListWorld();
-	}
+	@Export("getFile")
+	public static File getFile(String var0) {
+		if (!FileSystem.FileSystem_hasPermissions) {
+			throw new RuntimeException("");
+		} else {
+			File var1 = (File)FileSystem.FileSystem_cacheFiles.get(var0);
+			if (var1 != null) {
+				return var1;
+			} else {
+				File var2 = new File(FileSystem.FileSystem_cacheDir, var0);
+				RandomAccessFile var3 = null;
 
-	@ObfuscatedName("he")
-	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;Ljava/lang/String;IIIIB)V",
-		garbageValue = "-117"
-	)
-	@Export("insertMenuItemNoShift")
-	public static final void insertMenuItemNoShift(String var0, String var1, int var2, int var3, int var4, int var5) {
-		KeyHandler.insertMenuItem(var0, var1, var2, var3, var4, var5, false);
-	}
-
-	@ObfuscatedName("jt")
-	@ObfuscatedSignature(
-		signature = "(IIII)Lbs;",
-		garbageValue = "1523932767"
-	)
-	static final InterfaceParent method3381(int var0, int var1, int var2) {
-		InterfaceParent var3 = new InterfaceParent();
-		var3.group = var1;
-		var3.type = var2;
-		Client.interfaceParents.put(var3, (long)var0);
-		FontName.Widget_resetModelFrames(var1);
-		Widget var4 = UserComparator4.getWidget(var0);
-		GrandExchangeOfferOwnWorldComparator.invalidateWidget(var4);
-		if (Client.meslayerContinueWidget != null) {
-			GrandExchangeOfferOwnWorldComparator.invalidateWidget(Client.meslayerContinueWidget);
-			Client.meslayerContinueWidget = null;
-		}
-
-		for (int var5 = 0; var5 < Client.menuOptionsCount; ++var5) {
-			if (DynamicObject.method2362(Client.menuOpcodes[var5])) {
-				if (var5 < Client.menuOptionsCount - 1) {
-					for (int var6 = var5; var6 < Client.menuOptionsCount - 1; ++var6) {
-						Client.menuActions[var6] = Client.menuActions[var6 + 1];
-						Client.menuTargets[var6] = Client.menuTargets[var6 + 1];
-						Client.menuOpcodes[var6] = Client.menuOpcodes[var6 + 1];
-						Client.menuIdentifiers[var6] = Client.menuIdentifiers[var6 + 1];
-						Client.menuArguments1[var6] = Client.menuArguments1[var6 + 1];
-						Client.menuArguments2[var6] = Client.menuArguments2[var6 + 1];
-						Client.menuShiftClick[var6] = Client.menuShiftClick[var6 + 1];
+				try {
+					File var4 = new File(var2.getParent());
+					if (!var4.exists()) {
+						throw new RuntimeException("");
+					} else {
+						var3 = new RandomAccessFile(var2, "rw");
+						int var5 = var3.read();
+						var3.seek(0L);
+						var3.write(var5);
+						var3.seek(0L);
+						var3.close();
+						FileSystem.FileSystem_cacheFiles.put(var0, var2);
+						return var2;
 					}
-				}
+				} catch (Exception var8) {
+					try {
+						if (var3 != null) {
+							var3.close();
+							var3 = null;
+						}
+					} catch (Exception var7) {
+					}
 
-				--var5;
-				--Client.menuOptionsCount;
+					throw new RuntimeException();
+				}
 			}
 		}
+	}
 
-		ItemLayer.method2908();
-		UserComparator9.revalidateWidgetScroll(Widget.Widget_interfaceComponents[var0 >> 16], var4, false);
-		ScriptFrame.runWidgetOnLoadListener(var1);
-		if (Client.rootInterface != -1) {
-			WorldMapAreaData.runIntfCloseListeners(Client.rootInterface, 1);
-		}
+	@ObfuscatedName("h")
+	@ObfuscatedSignature(
+		signature = "(Lib;Lib;I)V",
+		garbageValue = "402911181"
+	)
+	public static void method3331(AbstractArchive var0, AbstractArchive var1) {
+		SpotAnimationDefinition.SpotAnimationDefinition_archive = var0;
+		SpotAnimationDefinition.SpotAnimationDefinition_modelArchive = var1;
+	}
 
-		return var3;
+	@ObfuscatedName("h")
+	@ObfuscatedSignature(
+		signature = "(Lib;I)V",
+		garbageValue = "2029131503"
+	)
+	public static void method3330(AbstractArchive var0) {
+		VarcInt.VarcInt_archive = var0;
+	}
+
+	@ObfuscatedName("jf")
+	@ObfuscatedSignature(
+		signature = "(II)Ljava/lang/String;",
+		garbageValue = "237482387"
+	)
+	static final String method3329(int var0) {
+		return var0 < 999999999 ? Integer.toString(var0) : "*";
 	}
 }

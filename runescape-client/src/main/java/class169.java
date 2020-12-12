@@ -2,132 +2,130 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("fz")
+@ObfuscatedName("fq")
 public enum class169 implements Enumerated {
-	@ObfuscatedName("f")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "Lfz;"
+		signature = "Lfq;"
 	)
-	field2033(2, 0),
-	@ObfuscatedName("b")
+	field2025(0, 0),
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "Lfz;"
+		signature = "Lfq;"
 	)
-	field2029(0, 1),
-	@ObfuscatedName("l")
+	field2019(3, 1),
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		signature = "Lfz;"
+		signature = "Lfq;"
 	)
-	field2028(1, 2),
-	@ObfuscatedName("m")
+	field2021(1, 2),
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		signature = "Lfz;"
+		signature = "Lfq;"
 	)
-	field2034(3, 3);
+	field2020(2, 3);
 
-	@ObfuscatedName("ad")
-	@ObfuscatedGetter(
-		intValue = -1161977131
+	@ObfuscatedName("ec")
+	@ObfuscatedSignature(
+		signature = "Lil;"
 	)
-	static int field2035;
-	@ObfuscatedName("z")
+	@Export("archive17")
+	static Archive archive17;
+	@ObfuscatedName("t")
 	@ObfuscatedGetter(
-		intValue = 1105831857
+		intValue = -53306941
 	)
-	public final int field2032;
-	@ObfuscatedName("q")
+	public final int field2022;
+	@ObfuscatedName("j")
 	@ObfuscatedGetter(
-		intValue = -1075265281
+		intValue = -2018130907
 	)
 	@Export("id")
 	final int id;
 
 	class169(int var3, int var4) {
-		this.field2032 = var3;
+		this.field2022 = var3;
 		this.id = var4;
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		signature = "(B)I",
-		garbageValue = "23"
+		signature = "(I)I",
+		garbageValue = "-275768542"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
 		return this.id;
 	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(III)V",
-		garbageValue = "19136995"
+		signature = "(Lib;Lib;Ljava/lang/String;Ljava/lang/String;B)Lku;",
+		garbageValue = "35"
 	)
-	public static void method3571(int var0, int var1) {
-		VarbitComposition var3 = (VarbitComposition)VarbitComposition.VarbitDefinition_cached.get((long)var0);
-		VarbitComposition var2;
-		if (var3 != null) {
-			var2 = var3;
-		} else {
-			byte[] var8 = VarbitComposition.VarbitDefinition_archive.takeFile(14, var0);
-			var3 = new VarbitComposition();
-			if (var8 != null) {
-				var3.decode(new Buffer(var8));
-			}
-
-			VarbitComposition.VarbitDefinition_cached.put(var3, (long)var0);
-			var2 = var3;
-		}
-
-		int var4 = var2.baseVar;
-		int var5 = var2.startBit;
-		int var6 = var2.endBit;
-		int var7 = Varps.Varps_masks[var6 - var5];
-		if (var1 < 0 || var1 > var7) {
-			var1 = 0;
-		}
-
-		var7 <<= var5;
-		Varps.Varps_main[var4] = Varps.Varps_main[var4] & ~var7 | var1 << var5 & var7;
+	public static Font method3534(AbstractArchive var0, AbstractArchive var1, String var2, String var3) {
+		int var4 = var0.getGroupId(var2);
+		int var5 = var0.getFileId(var4, var3);
+		return PrivateChatMode.method5934(var0, var1, var4, var5);
 	}
 
-	@ObfuscatedName("ak")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(ILco;ZB)I",
-		garbageValue = "-118"
+		signature = "([BIILeo;[Lfo;I)V",
+		garbageValue = "-1437204785"
 	)
-	static int method3572(int var0, Script var1, boolean var2) {
-		int var3;
-		if (var0 == ScriptOpcodes.CAM_FORCEANGLE) {
-			MilliClock.Interpreter_intStackSize -= 2;
-			var3 = Interpreter.Interpreter_intStack[MilliClock.Interpreter_intStackSize];
-			int var4 = Interpreter.Interpreter_intStack[MilliClock.Interpreter_intStackSize + 1];
-			if (!Client.isCameraLocked) {
-				Client.camAngleX = var3;
-				Client.camAngleY = var4;
+	static final void method3533(byte[] var0, int var1, int var2, Scene var3, CollisionMap[] var4) {
+		Buffer var5 = new Buffer(var0);
+		int var6 = -1;
+
+		while (true) {
+			int var7 = var5.method5557();
+			if (var7 == 0) {
+				return;
 			}
 
-			return 1;
-		} else if (var0 == ScriptOpcodes.CAM_GETANGLE_XA) {
-			Interpreter.Interpreter_intStack[++MilliClock.Interpreter_intStackSize - 1] = Client.camAngleX;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CAM_GETANGLE_YA) {
-			Interpreter.Interpreter_intStack[++MilliClock.Interpreter_intStackSize - 1] = Client.camAngleY;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CAM_SETFOLLOWHEIGHT) {
-			var3 = Interpreter.Interpreter_intStack[--MilliClock.Interpreter_intStackSize];
-			if (var3 < 0) {
-				var3 = 0;
-			}
+			var6 += var7;
+			int var8 = 0;
 
-			Client.camFollowHeight = var3;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CAM_GETFOLLOWHEIGHT) {
-			Interpreter.Interpreter_intStack[++MilliClock.Interpreter_intStackSize - 1] = Client.camFollowHeight;
-			return 1;
-		} else {
-			return 2;
+			while (true) {
+				int var9 = var5.readUShortSmart();
+				if (var9 == 0) {
+					break;
+				}
+
+				var8 += var9 - 1;
+				int var10 = var8 & 63;
+				int var11 = var8 >> 6 & 63;
+				int var12 = var8 >> 12;
+				int var13 = var5.readUnsignedByte();
+				int var14 = var13 >> 2;
+				int var15 = var13 & 3;
+				int var16 = var11 + var1;
+				int var17 = var10 + var2;
+				if (var16 > 0 && var17 > 0 && var16 < 103 && var17 < 103) {
+					int var18 = var12;
+					if ((Tiles.Tiles_renderFlags[1][var16][var17] & 2) == 2) {
+						var18 = var12 - 1;
+					}
+
+					CollisionMap var19 = null;
+					if (var18 >= 0) {
+						var19 = var4[var18];
+					}
+
+					class7.method90(var12, var16, var17, var6, var15, var14, var3, var19);
+				}
+			}
 		}
+	}
+
+	@ObfuscatedName("jz")
+	@ObfuscatedSignature(
+		signature = "(I)Z",
+		garbageValue = "725246299"
+	)
+	static boolean method3529() {
+		return Client.tapToDrop || KeyHandler.KeyHandler_pressedKeys[81];
 	}
 }

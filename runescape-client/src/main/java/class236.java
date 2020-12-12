@@ -2,53 +2,60 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ip")
+@ObfuscatedName("ii")
 public final class class236 {
-	@ObfuscatedName("dt")
-	@ObfuscatedSignature(
-		signature = "Lid;"
-	)
-	@Export("archive7")
-	static Archive archive7;
+	@ObfuscatedName("h")
+	public static final void method4165(long var0) {
+		if (var0 > 0L) {
+			if (0L == var0 % 10L) {
+				long var2 = var0 - 1L;
 
-	@ObfuscatedName("l")
-	@ObfuscatedSignature(
-		signature = "(Lid;II)V",
-		garbageValue = "-237601579"
-	)
-	static void method4263(Archive var0, int var1) {
-		if (class90.NetCache_reference != null) {
-			class90.NetCache_reference.offset = var1 * 8 + 5;
-			int var2 = class90.NetCache_reference.readInt();
-			int var3 = class90.NetCache_reference.readInt();
-			var0.loadIndex(var2, var3);
-		} else {
-			VarcInt.requestNetFile((Archive)null, 255, 255, 0, (byte)0, true);
-			NetCache.NetCache_archives[var1] = var0;
+				try {
+					Thread.sleep(var2);
+				} catch (InterruptedException var8) {
+				}
+
+				try {
+					Thread.sleep(1L);
+				} catch (InterruptedException var7) {
+				}
+			} else {
+				try {
+					Thread.sleep(var0);
+				} catch (InterruptedException var6) {
+				}
+			}
+
 		}
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "1381808682"
+		signature = "(I)Lgv;",
+		garbageValue = "1686839438"
 	)
-	public static int method4264() {
-		return KeyHandler.KeyHandler_idleCycles;
+	public static PacketBufferNode method4163() {
+		PacketBufferNode var0;
+		if (PacketBufferNode.PacketBufferNode_packetBufferNodeCount == 0) {
+			var0 = new PacketBufferNode();
+		} else {
+			var0 = PacketBufferNode.PacketBufferNode_packetBufferNodes[--PacketBufferNode.PacketBufferNode_packetBufferNodeCount];
+		}
+
+		var0.clientPacket = null;
+		var0.clientPacketLength = 0;
+		var0.packetBuffer = new PacketBuffer(5000);
+		return var0;
 	}
 
-	@ObfuscatedName("fx")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Lcs;B)V",
-		garbageValue = "-118"
+		signature = "(I)Lcj;",
+		garbageValue = "-2109446409"
 	)
-	static final void method4265(Actor var0) {
-		int var1 = Math.max(1, var0.field1009 - Client.cycle);
-		int var2 = var0.field1017 * 128 + var0.field1011 * 64;
-		int var3 = var0.field1019 * 128 + var0.field1011 * 64;
-		var0.x += (var2 - var0.x) / var1;
-		var0.y += (var3 - var0.y) / var1;
-		var0.field978 = 0;
-		var0.orientation = var0.field1023;
+	@Export("worldListStart")
+	static World worldListStart() {
+		World.World_listCount = 0;
+		return GrandExchangeEvents.getNextWorldListWorld();
 	}
 }

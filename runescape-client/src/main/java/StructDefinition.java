@@ -3,24 +3,24 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jo")
+@ObfuscatedName("jb")
 @Implements("StructDefinition")
 public class StructDefinition extends DualNode {
-	@ObfuscatedName("f")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "Liw;"
+		signature = "Lib;"
 	)
 	@Export("StructDefinition_archive")
 	static AbstractArchive StructDefinition_archive;
-	@ObfuscatedName("b")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "Lev;"
+		signature = "Lez;"
 	)
 	@Export("StructDefinition_cached")
-	static EvictingDualNodeHashTable StructDefinition_cached;
-	@ObfuscatedName("l")
+	public static EvictingDualNodeHashTable StructDefinition_cached;
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		signature = "Lll;"
+		signature = "Lla;"
 	)
 	@Export("params")
 	IterableNodeHashTable params;
@@ -32,19 +32,19 @@ public class StructDefinition extends DualNode {
 	StructDefinition() {
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "-1231164770"
+		garbageValue = "-839418144"
 	)
 	@Export("postDecode")
 	void postDecode() {
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		signature = "(Lkb;I)V",
-		garbageValue = "-1053369133"
+		signature = "(Lkj;I)V",
+		garbageValue = "-2120336035"
 	)
 	@Export("decode")
 	void decode(Buffer var1) {
@@ -58,23 +58,23 @@ public class StructDefinition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		signature = "(Lkb;II)V",
-		garbageValue = "-941858292"
+		signature = "(Lkj;II)V",
+		garbageValue = "-2108853566"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
 		if (var2 == 249) {
-			this.params = InvDefinition.readStringIntParameters(var1, this.params);
+			this.params = NetSocket.readStringIntParameters(var1, this.params);
 		}
 
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
 		signature = "(III)I",
-		garbageValue = "408521937"
+		garbageValue = "-1178143086"
 	)
 	@Export("getIntParam")
 	public int getIntParam(int var1, int var2) {
@@ -94,31 +94,35 @@ public class StructDefinition extends DualNode {
 		return var3;
 	}
 
-	@ObfuscatedName("k")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(ILjava/lang/String;S)Ljava/lang/String;",
-		garbageValue = "7540"
+		signature = "(ILjava/lang/String;I)Ljava/lang/String;",
+		garbageValue = "116269360"
 	)
 	@Export("getStringParam")
 	public String getStringParam(int var1, String var2) {
-		return WorldMapSection0.method307(this.params, var1, var2);
+		IterableNodeHashTable var4 = this.params;
+		String var3;
+		if (var4 == null) {
+			var3 = var2;
+		} else {
+			ObjectNode var5 = (ObjectNode)var4.get((long)var1);
+			if (var5 == null) {
+				var3 = var2;
+			} else {
+				var3 = (String)var5.obj;
+			}
+		}
+
+		return var3;
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(IB)I",
-		garbageValue = "22"
+		signature = "(Lib;I)V",
+		garbageValue = "-890013246"
 	)
-	public static int method4708(int var0) {
-		return ObjectSound.Entity_unpackID(ViewportMouse.ViewportMouse_entityTags[var0]);
-	}
-
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "1317179334"
-	)
-	public static void method4699() {
-		StructDefinition_cached.clear();
+	public static void method4545(AbstractArchive var0) {
+		EnumComposition.EnumDefinition_archive = var0;
 	}
 }

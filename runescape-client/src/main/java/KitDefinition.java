@@ -4,63 +4,58 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ii")
+@ObfuscatedName("if")
 @Implements("KitDefinition")
 public class KitDefinition extends DualNode {
-	@ObfuscatedName("f")
+	@ObfuscatedName("oz")
 	@ObfuscatedSignature(
-		signature = "Liw;"
+		signature = "Lfi;"
+	)
+	@Export("mouseWheel")
+	static MouseWheel mouseWheel;
+	@ObfuscatedName("h")
+	@ObfuscatedSignature(
+		signature = "Lib;"
 	)
 	@Export("KitDefinition_archive")
-	static AbstractArchive KitDefinition_archive;
-	@ObfuscatedName("b")
-	@ObfuscatedSignature(
-		signature = "Liw;"
-	)
-	@Export("KitDefinition_modelsArchive")
-	static AbstractArchive KitDefinition_modelsArchive;
-	@ObfuscatedName("l")
+	public static AbstractArchive KitDefinition_archive;
+	@ObfuscatedName("x")
 	@ObfuscatedGetter(
-		intValue = -609176759
+		intValue = 1665100339
 	)
 	@Export("KitDefinition_fileCount")
 	public static int KitDefinition_fileCount;
-	@ObfuscatedName("m")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		signature = "Lev;"
+		signature = "Lez;"
 	)
 	@Export("KitDefinition_cached")
-	public static EvictingDualNodeHashTable KitDefinition_cached;
-	@ObfuscatedName("ed")
+	static EvictingDualNodeHashTable KitDefinition_cached;
+	@ObfuscatedName("t")
 	@ObfuscatedGetter(
-		intValue = 1533008419
-	)
-	static int field3297;
-	@ObfuscatedName("z")
-	@ObfuscatedGetter(
-		intValue = 1729249671
+		intValue = 240118187
 	)
 	@Export("bodypartID")
 	public int bodypartID;
-	@ObfuscatedName("q")
+	@ObfuscatedName("j")
 	@Export("models2")
 	int[] models2;
-	@ObfuscatedName("k")
+	@ObfuscatedName("n")
 	@Export("recolorFrom")
 	short[] recolorFrom;
-	@ObfuscatedName("c")
+	@ObfuscatedName("p")
 	@Export("recolorTo")
 	short[] recolorTo;
-	@ObfuscatedName("u")
+	@ObfuscatedName("l")
 	@Export("retextureFrom")
 	short[] retextureFrom;
-	@ObfuscatedName("t")
+	@ObfuscatedName("z")
 	@Export("retextureTo")
 	short[] retextureTo;
-	@ObfuscatedName("e")
+	@ObfuscatedName("u")
 	@Export("models")
 	int[] models;
-	@ObfuscatedName("o")
+	@ObfuscatedName("e")
 	@Export("nonSelectable")
 	public boolean nonSelectable;
 
@@ -74,10 +69,10 @@ public class KitDefinition extends DualNode {
 		this.nonSelectable = false;
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(Lkb;I)V",
-		garbageValue = "-902223111"
+		signature = "(Lkj;S)V",
+		garbageValue = "24464"
 	)
 	@Export("decode")
 	void decode(Buffer var1) {
@@ -91,10 +86,10 @@ public class KitDefinition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		signature = "(Lkb;IB)V",
-		garbageValue = "101"
+		signature = "(Lkj;IB)V",
+		garbageValue = "-62"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
@@ -137,10 +132,10 @@ public class KitDefinition extends DualNode {
 
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
 		signature = "(I)Z",
-		garbageValue = "1495290745"
+		garbageValue = "-1129169926"
 	)
 	@Export("ready")
 	public boolean ready() {
@@ -150,7 +145,7 @@ public class KitDefinition extends DualNode {
 			boolean var1 = true;
 
 			for (int var2 = 0; var2 < this.models2.length; ++var2) {
-				if (!KitDefinition_modelsArchive.tryLoadFile(this.models2[var2], 0)) {
+				if (!class227.KitDefinition_modelsArchive.tryLoadFile(this.models2[var2], 0)) {
 					var1 = false;
 				}
 			}
@@ -159,10 +154,10 @@ public class KitDefinition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		signature = "(B)Len;",
-		garbageValue = "-99"
+		signature = "(I)Les;",
+		garbageValue = "-1617446869"
 	)
 	@Export("getModelData")
 	public ModelData getModelData() {
@@ -172,7 +167,7 @@ public class KitDefinition extends DualNode {
 			ModelData[] var1 = new ModelData[this.models2.length];
 
 			for (int var2 = 0; var2 < this.models2.length; ++var2) {
-				var1[var2] = ModelData.ModelData_get(KitDefinition_modelsArchive, this.models2[var2], 0);
+				var1[var2] = ModelData.ModelData_get(class227.KitDefinition_modelsArchive, this.models2[var2], 0);
 			}
 
 			ModelData var4;
@@ -199,16 +194,16 @@ public class KitDefinition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("k")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
 		signature = "(I)Z",
-		garbageValue = "-1549480832"
+		garbageValue = "-734430766"
 	)
-	public boolean method4620() {
+	public boolean method4488() {
 		boolean var1 = true;
 
 		for (int var2 = 0; var2 < 5; ++var2) {
-			if (this.models[var2] != -1 && !KitDefinition_modelsArchive.tryLoadFile(this.models[var2], 0)) {
+			if (this.models[var2] != -1 && !class227.KitDefinition_modelsArchive.tryLoadFile(this.models[var2], 0)) {
 				var1 = false;
 			}
 		}
@@ -216,10 +211,10 @@ public class KitDefinition extends DualNode {
 		return var1;
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(I)Len;",
-		garbageValue = "1284292663"
+		signature = "(I)Les;",
+		garbageValue = "148590883"
 	)
 	@Export("getKitDefinitionModels")
 	public ModelData getKitDefinitionModels() {
@@ -228,7 +223,7 @@ public class KitDefinition extends DualNode {
 
 		for (int var3 = 0; var3 < 5; ++var3) {
 			if (this.models[var3] != -1) {
-				var1[var2++] = ModelData.ModelData_get(KitDefinition_modelsArchive, this.models[var3], 0);
+				var1[var2++] = ModelData.ModelData_get(class227.KitDefinition_modelsArchive, this.models[var3], 0);
 			}
 		}
 
@@ -249,73 +244,36 @@ public class KitDefinition extends DualNode {
 		return var5;
 	}
 
-	@ObfuscatedName("fo")
-	@ObfuscatedSignature(
-		signature = "(IIII)V",
-		garbageValue = "2143746786"
-	)
-	@Export("queueSoundEffect")
-	static void queueSoundEffect(int var0, int var1, int var2) {
-		if (Client.soundEffectVolume != 0 && var1 != 0 && Client.soundEffectCount < 50) {
-			Client.soundEffectIds[Client.soundEffectCount] = var0;
-			Client.queuedSoundEffectLoops[Client.soundEffectCount] = var1;
-			Client.queuedSoundEffectDelays[Client.soundEffectCount] = var2;
-			Client.soundEffects[Client.soundEffectCount] = null;
-			Client.soundLocations[Client.soundEffectCount] = 0;
-			++Client.soundEffectCount;
-		}
-
-	}
-
-	@ObfuscatedName("hx")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
 		signature = "(III)V",
-		garbageValue = "1433287432"
+		garbageValue = "-1929348115"
 	)
-	static void method4634(int var0, int var1) {
-		int var2 = ReflectionCheck.fontBold12.stringWidth("Choose Option");
-
-		int var3;
-		for (var3 = 0; var3 < Client.menuOptionsCount; ++var3) {
-			Font var4 = ReflectionCheck.fontBold12;
-			String var5;
-			if (var3 < 0) {
-				var5 = "";
-			} else if (Client.menuTargets[var3].length() > 0) {
-				var5 = Client.menuActions[var3] + " " + Client.menuTargets[var3];
-			} else {
-				var5 = Client.menuActions[var3];
+	public static void method4491(int var0, int var1) {
+		VarbitComposition var3 = (VarbitComposition)VarbitComposition.VarbitDefinition_cached.get((long)var0);
+		VarbitComposition var2;
+		if (var3 != null) {
+			var2 = var3;
+		} else {
+			byte[] var8 = VarbitComposition.VarbitDefinition_archive.takeFile(14, var0);
+			var3 = new VarbitComposition();
+			if (var8 != null) {
+				var3.decode(new Buffer(var8));
 			}
 
-			int var6 = var4.stringWidth(var5);
-			if (var6 > var2) {
-				var2 = var6;
-			}
+			VarbitComposition.VarbitDefinition_cached.put(var3, (long)var0);
+			var2 = var3;
 		}
 
-		var2 += 8;
-		var3 = Client.menuOptionsCount * 15 + 22;
-		int var7 = var0 - var2 / 2;
-		if (var7 + var2 > ItemContainer.canvasWidth) {
-			var7 = ItemContainer.canvasWidth - var2;
+		int var4 = var2.baseVar;
+		int var5 = var2.startBit;
+		int var6 = var2.endBit;
+		int var7 = Varps.Varps_masks[var6 - var5];
+		if (var1 < 0 || var1 > var7) {
+			var1 = 0;
 		}
 
-		if (var7 < 0) {
-			var7 = 0;
-		}
-
-		int var8 = var1;
-		if (var1 + var3 > HealthBar.canvasHeight) {
-			var8 = HealthBar.canvasHeight - var3;
-		}
-
-		if (var8 < 0) {
-			var8 = 0;
-		}
-
-		Coord.menuX = var7;
-		WorldMapArea.menuY = var8;
-		KeyHandler.menuWidth = var2;
-		ServerPacket.menuHeight = Client.menuOptionsCount * 15 + 22;
+		var7 <<= var5;
+		Varps.Varps_main[var4] = Varps.Varps_main[var4] & ~var7 | var1 << var5 & var7;
 	}
 }

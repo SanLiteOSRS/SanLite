@@ -29,7 +29,7 @@ import net.runelite.api.AnimationID;
 import net.runelite.api.NPCComposition;
 import net.runelite.api.Perspective;
 import net.runelite.api.coords.LocalPoint;
-import net.runelite.api.events.NpcCompositionChanged;
+import net.runelite.api.events.NpcChanged;
 import net.runelite.api.events.NpcDespawned;
 import net.runelite.api.mixins.Copy;
 import net.runelite.api.mixins.FieldHook;
@@ -50,6 +50,9 @@ public abstract class RSNPCMixin implements RSNPC
 
 	@Inject
 	private int npcIndex;
+
+	@Inject
+	private NPCComposition previousNpcComposition;
 
 	@Inject
 	@Override
@@ -105,13 +108,16 @@ public abstract class RSNPCMixin implements RSNPC
 	@Inject
 	public void onCompositionChanged(RSNPCComposition composition)
 	{
+		NPCComposition previous = previousNpcComposition;
+		previousNpcComposition = composition;
+
 		if (composition == null)
 		{
 			client.getCallbacks().post(new NpcDespawned(this));
 		}
 		else if (this.getId() != -1)
 		{
-			client.getCallbacks().post(new NpcCompositionChanged(this));
+			client.getCallbacks().post(new NpcChanged(this, previous));
 		}
 	}
 
@@ -122,7 +128,7 @@ public abstract class RSNPCMixin implements RSNPC
 	public RSModel rl$getModel()
 	{
 		if (!client.isInterpolateNpcAnimations()
-			|| getAnimation() == AnimationID.HELLHOUND_DEFENCE)
+				|| getAnimation() == AnimationID.HELLHOUND_DEFENCE)
 		{
 			return rs$getModel();
 		}
@@ -171,8 +177,8 @@ public abstract class RSNPCMixin implements RSNPC
 
 		int size = getComposition().getSize();
 		LocalPoint tileHeightPoint = new LocalPoint(
-			size * Perspective.LOCAL_HALF_TILE_SIZE - Perspective.LOCAL_HALF_TILE_SIZE + getX(),
-			size * Perspective.LOCAL_HALF_TILE_SIZE - Perspective.LOCAL_HALF_TILE_SIZE + getY());
+				size * Perspective.LOCAL_HALF_TILE_SIZE - Perspective.LOCAL_HALF_TILE_SIZE + getX(),
+				size * Perspective.LOCAL_HALF_TILE_SIZE - Perspective.LOCAL_HALF_TILE_SIZE + getY());
 
 		int tileHeight = Perspective.getTileHeight(client, tileHeightPoint, client.getPlane());
 		return model.getConvexHull(getX(), getY(), getOrientation(), tileHeight);

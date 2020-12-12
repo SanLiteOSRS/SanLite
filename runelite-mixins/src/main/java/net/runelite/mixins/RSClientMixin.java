@@ -1478,23 +1478,6 @@ public abstract class RSClientMixin implements RSClient
 		client.setPcmSampleLength(pcmSampleLength);
 	}
 
-	@Inject
-	@Override
-	public void setMusicVolume(int volume)
-	{
-		if (volume > 0 && client.getMusicVolume() <= 0 && client.getCurrentTrackGroupId() != -1)
-		{
-			playMusicTrack(client.getMusicTracks(), client.getCurrentTrackGroupId(), 0, volume, false, 1000);
-		}
-
-		client.setClientMusicVolume(volume);
-		client.setMusicTrackVolume(volume);
-		if (client.getMidiPcmStream() != null)
-		{
-			client.getMidiPcmStream().setPcmStreamVolume(volume);
-		}
-	}
-
 	@Copy("changeGameOptions")
 	public static void rs$changeGameOptions(int var0)
 	{

@@ -1,120 +1,100 @@
-import java.security.SecureRandom;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gr")
+@ObfuscatedName("gk")
 public class class195 {
-	@ObfuscatedName("qx")
+	@ObfuscatedName("p")
+	@Export("Widget_loadedInterfaces")
+	public static boolean[] Widget_loadedInterfaces;
+	@ObfuscatedName("em")
 	@ObfuscatedSignature(
-		signature = "Ldh;"
+		signature = "Lil;"
 	)
-	@Export("pcmPlayer0")
-	static PcmPlayer pcmPlayer0;
-	@ObfuscatedName("e")
-	@Export("musicTrackBoolean")
-	public static boolean musicTrackBoolean;
-	@ObfuscatedName("eg")
-	@Export("secureRandom")
-	static SecureRandom secureRandom;
+	@Export("archive19")
+	static Archive archive19;
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "([Lga;II)Lga;",
-		garbageValue = "2137068077"
+		signature = "(I)V",
+		garbageValue = "1214913884"
 	)
-	@Export("findEnumerated")
-	public static Enumerated findEnumerated(Enumerated[] var0, int var1) {
-		Enumerated[] var2 = var0;
+	static void method3680() {
+		class248.field3219 = new int[2000];
+		int var0 = 0;
+		int var1 = 240;
 
-		for (int var3 = 0; var3 < var2.length; ++var3) {
-			Enumerated var4 = var2[var3];
-			if (var1 == var4.rsOrdinal()) {
-				return var4;
+		int var3;
+		for (byte var2 = 12; var0 < 16; var1 -= var2) {
+			var3 = class2.method23((double)((float)var1 / 360.0F), 0.9998999834060669D, (double)(0.425F * (float)var0 / 16.0F + 0.075F));
+			class248.field3219[var0] = var3;
+			++var0;
+		}
+
+		var1 = 48;
+
+		for (int var5 = var1 / 6; var0 < class248.field3219.length; var1 -= var5) {
+			var3 = var0 * 2;
+
+			for (int var4 = class2.method23((double)((float)var1 / 360.0F), 0.9998999834060669D, 0.5D); var0 < var3 && var0 < class248.field3219.length; ++var0) {
+				class248.field3219[var0] = var4;
 			}
 		}
 
-		return null;
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		signature = "(IB)Z",
-		garbageValue = "64"
+		signature = "(II)Lbg;",
+		garbageValue = "36521879"
 	)
-	public static boolean method3756(int var0) {
-		return (var0 & 1) != 0;
+	@Export("Messages_getMessage")
+	static Message Messages_getMessage(int var0) {
+		return (Message)Messages.Messages_hashTable.get((long)var0);
 	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/CharSequence;I)Z",
-		garbageValue = "461882503"
+		signature = "(IB)Ljava/lang/String;",
+		garbageValue = "1"
 	)
-	@Export("isNumber")
-	public static boolean isNumber(CharSequence var0) {
-		boolean var2 = false;
-		boolean var3 = false;
-		int var4 = 0;
-		int var5 = var0.length();
-		int var6 = 0;
+	static final String method3678(int var0) {
+		if (var0 < 100000) {
+			return "<col=ffff00>" + var0 + "</col>";
+		} else {
+			return var0 < 10000000 ? "<col=ffffff>" + var0 / 1000 + "K" + "</col>" : "<col=00ff80>" + var0 / 1000000 + "M" + "</col>";
+		}
+	}
 
-		boolean var1;
-		while (true) {
-			if (var6 >= var5) {
-				var1 = var3;
-				break;
-			}
+	@ObfuscatedName("ko")
+	@ObfuscatedSignature(
+		signature = "(I)V",
+		garbageValue = "-4544721"
+	)
+	static void method3681() {
+		for (InterfaceParent var0 = (InterfaceParent)Client.interfaceParents.first(); var0 != null; var0 = (InterfaceParent)Client.interfaceParents.next()) {
+			int var1 = var0.group;
+			if (class41.loadInterface(var1)) {
+				boolean var2 = true;
+				Widget[] var3 = class9.Widget_interfaceComponents[var1];
 
-			label83: {
-				char var7 = var0.charAt(var6);
-				if (var6 == 0) {
-					if (var7 == '-') {
-						var2 = true;
-						break label83;
-					}
-
-					if (var7 == '+') {
-						break label83;
-					}
-				}
-
-				int var9;
-				if (var7 >= '0' && var7 <= '9') {
-					var9 = var7 - '0';
-				} else if (var7 >= 'A' && var7 <= 'Z') {
-					var9 = var7 - '7';
-				} else {
-					if (var7 < 'a' || var7 > 'z') {
-						var1 = false;
+				int var4;
+				for (var4 = 0; var4 < var3.length; ++var4) {
+					if (var3[var4] != null) {
+						var2 = var3[var4].isIf3;
 						break;
 					}
-
-					var9 = var7 - 'W';
 				}
 
-				if (var9 >= 10) {
-					var1 = false;
-					break;
+				if (!var2) {
+					var4 = (int)var0.key;
+					Widget var5 = CollisionMap.getWidget(var4);
+					if (var5 != null) {
+						CollisionMap.invalidateWidget(var5);
+					}
 				}
-
-				if (var2) {
-					var9 = -var9;
-				}
-
-				int var8 = var4 * 10 + var9;
-				if (var4 != var8 / 10) {
-					var1 = false;
-					break;
-				}
-
-				var4 = var8;
-				var3 = true;
 			}
-
-			++var6;
 		}
 
-		return var1;
 	}
 }

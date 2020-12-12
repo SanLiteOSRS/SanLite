@@ -1,51 +1,64 @@
-import java.util.Iterator;
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("is")
+@ObfuscatedName("iq")
 public class class234 {
-	@ObfuscatedName("b")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(IS)Lia;",
-		garbageValue = "-3621"
+		signature = "(B)[Lin;",
+		garbageValue = "34"
 	)
-	public static FloorUnderlayDefinition method4260(int var0) {
-		FloorUnderlayDefinition var1 = (FloorUnderlayDefinition)FloorUnderlayDefinition.FloorUnderlayDefinition_cached.get((long)var0);
-		if (var1 != null) {
-			return var1;
-		} else {
-			byte[] var2 = FloorUnderlayDefinition.FloorUnderlayDefinition_archive.takeFile(1, var0);
-			var1 = new FloorUnderlayDefinition();
-			if (var2 != null) {
-				var1.decode(new Buffer(var2), var0);
-			}
+	@Export("PlayerType_values")
+	public static PlayerType[] PlayerType_values() {
+		return new PlayerType[]{PlayerType.field3124, PlayerType.PlayerType_ultimateIronman, PlayerType.PlayerType_ironman, PlayerType.PlayerType_jagexModerator, PlayerType.PlayerType_playerModerator, PlayerType.PlayerType_hardcoreIronman, PlayerType.PlayerType_normal};
+	}
 
-			var1.postDecode();
-			FloorUnderlayDefinition.FloorUnderlayDefinition_cached.put(var1, (long)var0);
-			return var1;
+	@ObfuscatedName("v")
+	@ObfuscatedSignature(
+		signature = "(ILjava/lang/String;Ljava/lang/String;B)V",
+		garbageValue = "-30"
+	)
+	@Export("addGameMessage")
+	static void addGameMessage(int var0, String var1, String var2) {
+		UserComparator10.addChatMessage(var0, var1, var2, (String)null);
+	}
+
+	@ObfuscatedName("y")
+	@ObfuscatedSignature(
+		signature = "(III)Z",
+		garbageValue = "1847408099"
+	)
+	static final boolean method4159(int var0, int var1) {
+		ObjectComposition var2 = WorldMapDecoration.getObjectDefinition(var0);
+		if (var1 == 11) {
+			var1 = 10;
 		}
+
+		if (var1 >= 5 && var1 <= 8) {
+			var1 = 4;
+		}
+
+		return var2.method4614(var1);
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("jq")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "4"
+		signature = "(Ljava/lang/String;Lhe;I)Ljava/lang/String;",
+		garbageValue = "-1574592106"
 	)
-	public static void method4261() {
-		VarbitComposition.VarbitDefinition_cached.clear();
-	}
+	static String method4160(String var0, Widget var1) {
+		if (var0.indexOf("%") != -1) {
+			for (int var2 = 1; var2 <= 5; ++var2) {
+				while (true) {
+					int var3 = var0.indexOf("%" + var2);
+					if (var3 == -1) {
+						break;
+					}
 
-	@ObfuscatedName("e")
-	@ObfuscatedSignature(
-		signature = "(I)Ljava/lang/String;",
-		garbageValue = "969326800"
-	)
-	static String method4262() {
-		String var0 = "";
-
-		Message var2;
-		for (Iterator var1 = Messages.Messages_hashTable.iterator(); var1.hasNext(); var0 = var0 + var2.sender + ':' + var2.text + '\n') {
-			var2 = (Message)var1.next();
+					var0 = var0.substring(0, var3) + ModelData0.method3329(HealthBarDefinition.method4512(var1, var2 - 1)) + var0.substring(var3 + 2);
+				}
+			}
 		}
 
 		return var0;

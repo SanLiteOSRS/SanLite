@@ -1,70 +1,70 @@
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InvalidClassException;
-import java.io.ObjectInputStream;
-import java.io.OptionalDataException;
-import java.io.StreamCorruptedException;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.Reflection;
+import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("dr")
+@ObfuscatedName("dz")
 @Implements("ItemLayer")
 public final class ItemLayer {
-	@ObfuscatedName("o")
-	@Export("Tiles_lightness")
-	static int[] Tiles_lightness;
-	@ObfuscatedName("f")
+	@ObfuscatedName("qq")
+	@ObfuscatedSignature(
+		signature = "Ldn;"
+	)
+	@Export("decimator")
+	static Decimator decimator;
+	@ObfuscatedName("s")
+	@Export("userHomeDirectory")
+	public static String userHomeDirectory;
+	@ObfuscatedName("k")
+	@Export("BZip2Decompressor_block")
+	static int[] BZip2Decompressor_block;
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = 1480957507
+		intValue = 1833908179
 	)
 	@Export("tileHeight")
 	int tileHeight;
-	@ObfuscatedName("b")
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = 2145467321
+		intValue = -1901902743
 	)
 	@Export("x")
 	int x;
-	@ObfuscatedName("l")
+	@ObfuscatedName("x")
 	@ObfuscatedGetter(
-		intValue = 1424662537
+		intValue = 1891717785
 	)
 	@Export("y")
 	int y;
-	@ObfuscatedName("m")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		signature = "Lej;"
-	)
-	@Export("second")
-	Renderable second;
-	@ObfuscatedName("z")
-	@ObfuscatedSignature(
-		signature = "Lej;"
+		signature = "Ler;"
 	)
 	@Export("first")
 	Renderable first;
-	@ObfuscatedName("q")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		signature = "Lej;"
+		signature = "Ler;"
+	)
+	@Export("second")
+	Renderable second;
+	@ObfuscatedName("j")
+	@ObfuscatedSignature(
+		signature = "Ler;"
 	)
 	@Export("third")
 	Renderable third;
-	@ObfuscatedName("k")
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		longValue = 4099834780630391479L
+		longValue = 7869520931752751385L
 	)
 	@Export("tag")
 	long tag;
-	@ObfuscatedName("c")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = -350155061
+		intValue = -423863603
 	)
 	@Export("height")
 	int height;
@@ -72,125 +72,84 @@ public final class ItemLayer {
 	ItemLayer() {
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("ag")
 	@ObfuscatedSignature(
-		signature = "(Liw;Liw;Liw;Lgv;I)Z",
-		garbageValue = "-1153797307"
+		signature = "(ILcs;ZI)I",
+		garbageValue = "716540213"
 	)
-	public static boolean method2909(AbstractArchive var0, AbstractArchive var1, AbstractArchive var2, MidiPcmStream var3) {
-		class206.musicPatchesArchive = var0;
-		class206.musicSamplesArchive = var1;
-		class206.soundEffectsArchive = var2;
-		class13.midiPcmStream = var3;
-		return true;
-	}
+	static int method2850(int var0, Script var1, boolean var2) {
+		int var3;
+		int var4;
+		int var6;
+		if (var0 == ScriptOpcodes.ENUM_STRING) {
+			VarcInt.Interpreter_intStackSize -= 2;
+			var3 = Interpreter.Interpreter_intStack[VarcInt.Interpreter_intStackSize];
+			var4 = Interpreter.Interpreter_intStack[VarcInt.Interpreter_intStackSize + 1];
+			EnumComposition var5 = MusicPatchNode.getEnum(var3);
+			if (var5.outputType != 's') {
+			}
 
-	@ObfuscatedName("b")
-	@ObfuscatedSignature(
-		signature = "(Lks;I)V",
-		garbageValue = "-669198743"
-	)
-	@Export("performReflectionCheck")
-	public static void performReflectionCheck(PacketBuffer var0) {
-		ReflectionCheck var1 = (ReflectionCheck)class105.reflectionChecks.last();
-		if (var1 != null) {
-			int var2 = var0.offset;
-			var0.writeInt(var1.id);
-
-			for (int var3 = 0; var3 < var1.size; ++var3) {
-				if (var1.creationErrors[var3] != 0) {
-					var0.writeByte(var1.creationErrors[var3]);
-				} else {
-					try {
-						int var4 = var1.operations[var3];
-						Field var5;
-						int var6;
-						if (var4 == 0) {
-							var5 = var1.fields[var3];
-							var6 = Reflection.getInt(var5, (Object)null);
-							var0.writeByte(0);
-							var0.writeInt(var6);
-						} else if (var4 == 1) {
-							var5 = var1.fields[var3];
-							Reflection.setInt(var5, (Object)null, var1.intReplaceValues[var3]);
-							var0.writeByte(0);
-						} else if (var4 == 2) {
-							var5 = var1.fields[var3];
-							var6 = var5.getModifiers();
-							var0.writeByte(0);
-							var0.writeInt(var6);
-						}
-
-						Method var25;
-						if (var4 != 3) {
-							if (var4 == 4) {
-								var25 = var1.methods[var3];
-								var6 = var25.getModifiers();
-								var0.writeByte(0);
-								var0.writeInt(var6);
-							}
-						} else {
-							var25 = var1.methods[var3];
-							byte[][] var10 = var1.arguments[var3];
-							Object[] var7 = new Object[var10.length];
-
-							for (int var8 = 0; var8 < var10.length; ++var8) {
-								ObjectInputStream var9 = new ObjectInputStream(new ByteArrayInputStream(var10[var8]));
-								var7[var8] = var9.readObject();
-							}
-
-							Object var11 = Reflection.invoke(var25, (Object)null, var7);
-							if (var11 == null) {
-								var0.writeByte(0);
-							} else if (var11 instanceof Number) {
-								var0.writeByte(1);
-								var0.writeLong(((Number)var11).longValue());
-							} else if (var11 instanceof String) {
-								var0.writeByte(2);
-								var0.writeStringCp1252NullTerminated((String)var11);
-							} else {
-								var0.writeByte(4);
-							}
-						}
-					} catch (ClassNotFoundException var13) {
-						var0.writeByte(-10);
-					} catch (InvalidClassException var14) {
-						var0.writeByte(-11);
-					} catch (StreamCorruptedException var15) {
-						var0.writeByte(-12);
-					} catch (OptionalDataException var16) {
-						var0.writeByte(-13);
-					} catch (IllegalAccessException var17) {
-						var0.writeByte(-14);
-					} catch (IllegalArgumentException var18) {
-						var0.writeByte(-15);
-					} catch (InvocationTargetException var19) {
-						var0.writeByte(-16);
-					} catch (SecurityException var20) {
-						var0.writeByte(-17);
-					} catch (IOException var21) {
-						var0.writeByte(-18);
-					} catch (NullPointerException var22) {
-						var0.writeByte(-19);
-					} catch (Exception var23) {
-						var0.writeByte(-20);
-					} catch (Throwable var24) {
-						var0.writeByte(-21);
-					}
+			for (var6 = 0; var6 < var5.outputCount; ++var6) {
+				if (var4 == var5.keys[var6]) {
+					Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var5.strVals[var6];
+					var5 = null;
+					break;
 				}
 			}
 
-			var0.writeCrc(var2);
-			var1.remove();
-		}
-	}
+			if (var5 != null) {
+				Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var5.defaultStr;
+			}
 
-	@ObfuscatedName("hu")
-	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-47736046"
-	)
-	static void method2908() {
-		KitDefinition.method4634(KeyHandler.menuWidth / 2 + Coord.menuX, WorldMapArea.menuY);
+			return 1;
+		} else if (var0 != ScriptOpcodes.ENUM) {
+			if (var0 == ScriptOpcodes.ENUM_GETOUTPUTCOUNT) {
+				var3 = Interpreter.Interpreter_intStack[--VarcInt.Interpreter_intStackSize];
+				EnumComposition var10 = MusicPatchNode.getEnum(var3);
+				Interpreter.Interpreter_intStack[++VarcInt.Interpreter_intStackSize - 1] = var10.size();
+				return 1;
+			} else {
+				return 2;
+			}
+		} else {
+			VarcInt.Interpreter_intStackSize -= 4;
+			var3 = Interpreter.Interpreter_intStack[VarcInt.Interpreter_intStackSize];
+			var4 = Interpreter.Interpreter_intStack[VarcInt.Interpreter_intStackSize + 1];
+			int var9 = Interpreter.Interpreter_intStack[VarcInt.Interpreter_intStackSize + 2];
+			var6 = Interpreter.Interpreter_intStack[VarcInt.Interpreter_intStackSize + 3];
+			EnumComposition var7 = MusicPatchNode.getEnum(var9);
+			if (var3 == var7.inputType && var4 == var7.outputType) {
+				for (int var8 = 0; var8 < var7.outputCount; ++var8) {
+					if (var6 == var7.keys[var8]) {
+						if (var4 == 115) {
+							Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var7.strVals[var8];
+						} else {
+							Interpreter.Interpreter_intStack[++VarcInt.Interpreter_intStackSize - 1] = var7.intVals[var8];
+						}
+
+						var7 = null;
+						break;
+					}
+				}
+
+				if (var7 != null) {
+					if (var4 == 115) {
+						Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var7.defaultStr;
+					} else {
+						Interpreter.Interpreter_intStack[++VarcInt.Interpreter_intStackSize - 1] = var7.defaultInt;
+					}
+				}
+
+				return 1;
+			} else {
+				if (var4 == 115) {
+					Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = "null";
+				} else {
+					Interpreter.Interpreter_intStack[++VarcInt.Interpreter_intStackSize - 1] = 0;
+				}
+
+				return 1;
+			}
+		}
 	}
 }

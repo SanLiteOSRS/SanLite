@@ -1,144 +1,98 @@
 import java.util.concurrent.Callable;
 import net.runelite.mapping.Export;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("u")
+@ObfuscatedName("l")
 public class class8 implements Callable {
-	@ObfuscatedName("ow")
-	@ObfuscatedSignature(
-		signature = "Lfq;"
+	@ObfuscatedName("l")
+	@ObfuscatedGetter(
+		intValue = 1988326555
 	)
-	@Export("mouseWheel")
-	static MouseWheel mouseWheel;
-	@ObfuscatedName("at")
-	@Export("hasFocus")
-	protected static boolean hasFocus;
-	@ObfuscatedName("dr")
+	@Export("gameCyclesToDo")
+	protected static int gameCyclesToDo;
+	@ObfuscatedName("bk")
 	@ObfuscatedSignature(
-		signature = "Lid;"
+		signature = "Llo;"
 	)
-	@Export("archive13")
-	static Archive archive13;
-	@ObfuscatedName("f")
+	@Export("worldSelectRightSprite")
+	static IndexedSprite worldSelectRightSprite;
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "Lkb;"
+		signature = "Lkj;"
 	)
 	final Buffer field35;
-	@ObfuscatedName("b")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "Ln;"
+		signature = "Lm;"
 	)
-	final class12 field31;
+	final class12 field32;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		signature = "Lt;"
+		signature = "Lz;"
 	)
 	final class9 this$0;
 
 	@ObfuscatedSignature(
-		signature = "(Lt;Lkb;Ln;)V"
+		signature = "(Lz;Lkj;Lm;)V"
 	)
 	class8(class9 var1, Buffer var2, class12 var3) {
 		this.this$0 = var1;
 		this.field35 = var2;
-		this.field31 = var3;
+		this.field32 = var3;
 	}
 
 	public Object call() {
-		return this.field31.vmethod145(this.field35);
+		return this.field32.vmethod123(this.field35);
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(I)[Lih;",
-		garbageValue = "1246224952"
+		signature = "(III)I",
+		garbageValue = "-497960753"
 	)
-	static class238[] method116() {
-		return new class238[]{class238.field3116, class238.field3113};
-	}
-
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		signature = "(IIII)J",
-		garbageValue = "1560484309"
-	)
-	static long method117(int var0, int var1, int var2) {
-		return (long)(var2 << 16 | var0 << 8 | var1);
-	}
-
-	@ObfuscatedName("m")
-	@ObfuscatedSignature(
-		signature = "(Ljava/lang/CharSequence;I)[B",
-		garbageValue = "-2023789845"
-	)
-	public static byte[] method113(CharSequence var0) {
-		int var1 = var0.length();
-		byte[] var2 = new byte[var1];
-
-		for (int var3 = 0; var3 < var1; ++var3) {
-			char var4 = var0.charAt(var3);
-			if (var4 > 0 && var4 < 128 || var4 >= 160 && var4 <= 255) {
-				var2[var3] = (byte)var4;
-			} else if (var4 == 8364) {
-				var2[var3] = -128;
-			} else if (var4 == 8218) {
-				var2[var3] = -126;
-			} else if (var4 == 402) {
-				var2[var3] = -125;
-			} else if (var4 == 8222) {
-				var2[var3] = -124;
-			} else if (var4 == 8230) {
-				var2[var3] = -123;
-			} else if (var4 == 8224) {
-				var2[var3] = -122;
-			} else if (var4 == 8225) {
-				var2[var3] = -121;
-			} else if (var4 == 710) {
-				var2[var3] = -120;
-			} else if (var4 == 8240) {
-				var2[var3] = -119;
-			} else if (var4 == 352) {
-				var2[var3] = -118;
-			} else if (var4 == 8249) {
-				var2[var3] = -117;
-			} else if (var4 == 338) {
-				var2[var3] = -116;
-			} else if (var4 == 381) {
-				var2[var3] = -114;
-			} else if (var4 == 8216) {
-				var2[var3] = -111;
-			} else if (var4 == 8217) {
-				var2[var3] = -110;
-			} else if (var4 == 8220) {
-				var2[var3] = -109;
-			} else if (var4 == 8221) {
-				var2[var3] = -108;
-			} else if (var4 == 8226) {
-				var2[var3] = -107;
-			} else if (var4 == 8211) {
-				var2[var3] = -106;
-			} else if (var4 == 8212) {
-				var2[var3] = -105;
-			} else if (var4 == 732) {
-				var2[var3] = -104;
-			} else if (var4 == 8482) {
-				var2[var3] = -103;
-			} else if (var4 == 353) {
-				var2[var3] = -102;
-			} else if (var4 == 8250) {
-				var2[var3] = -101;
-			} else if (var4 == 339) {
-				var2[var3] = -100;
-			} else if (var4 == 382) {
-				var2[var3] = -98;
-			} else if (var4 == 376) {
-				var2[var3] = -97;
-			} else {
-				var2[var3] = 63;
-			}
+	@Export("ItemContainer_getCount")
+	static int ItemContainer_getCount(int var0, int var1) {
+		ItemContainer var2 = (ItemContainer)ItemContainer.itemContainers.get((long)var0);
+		if (var2 == null) {
+			return 0;
+		} else {
+			return var1 >= 0 && var1 < var2.quantities.length ? var2.quantities[var1] : 0;
 		}
+	}
 
-		return var2;
+	@ObfuscatedName("jh")
+	@ObfuscatedSignature(
+		signature = "(Lhe;I)Z",
+		garbageValue = "-2010469963"
+	)
+	@Export("runCs1")
+	static final boolean runCs1(Widget var0) {
+		if (var0.cs1Comparisons == null) {
+			return false;
+		} else {
+			for (int var1 = 0; var1 < var0.cs1Comparisons.length; ++var1) {
+				int var2 = HealthBarDefinition.method4512(var0, var1);
+				int var3 = var0.cs1ComparisonValues[var1];
+				if (var0.cs1Comparisons[var1] == 2) {
+					if (var2 >= var3) {
+						return false;
+					}
+				} else if (var0.cs1Comparisons[var1] == 3) {
+					if (var2 <= var3) {
+						return false;
+					}
+				} else if (var0.cs1Comparisons[var1] == 4) {
+					if (var2 == var3) {
+						return false;
+					}
+				} else if (var3 != var2) {
+					return false;
+				}
+			}
+
+			return true;
+		}
 	}
 }

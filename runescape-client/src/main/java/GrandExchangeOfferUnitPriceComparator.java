@@ -1,24 +1,42 @@
 import java.util.Comparator;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("w")
+@ObfuscatedName("r")
 @Implements("GrandExchangeOfferUnitPriceComparator")
 final class GrandExchangeOfferUnitPriceComparator implements Comparator {
-	@ObfuscatedName("kt")
-	@ObfuscatedGetter(
-		intValue = 2060435919
-	)
-	@Export("Client_plane")
-	static int Client_plane;
-
-	@ObfuscatedName("f")
+	@ObfuscatedName("bx")
 	@ObfuscatedSignature(
-		signature = "(Ly;Ly;S)I",
-		garbageValue = "-21475"
+		signature = "Lmu;"
+	)
+	@Export("loginType")
+	static LoginType loginType;
+	@ObfuscatedName("do")
+	@ObfuscatedSignature(
+		signature = "Lil;"
+	)
+	@Export("archive9")
+	static Archive archive9;
+	@ObfuscatedName("dz")
+	@ObfuscatedSignature(
+		signature = "Lil;"
+	)
+	@Export("archive13")
+	static Archive archive13;
+	@ObfuscatedName("ha")
+	@ObfuscatedSignature(
+		signature = "[Llm;"
+	)
+	@Export("mapMarkerSprites")
+	static SpritePixels[] mapMarkerSprites;
+
+	@ObfuscatedName("h")
+	@ObfuscatedSignature(
+		signature = "(La;La;I)I",
+		garbageValue = "1020581698"
 	)
 	@Export("compare_bridged")
 	int compare_bridged(GrandExchangeEvent var1, GrandExchangeEvent var2) {
@@ -33,57 +51,78 @@ final class GrandExchangeOfferUnitPriceComparator implements Comparator {
 		return super.equals(var1);
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "([BILjava/lang/CharSequence;I)I",
-		garbageValue = "2085161041"
+		signature = "(Lhe;II)V",
+		garbageValue = "1825626795"
 	)
-	public static int method219(byte[] var0, int var1, CharSequence var2) {
-		int var3 = var2.length();
-		int var4 = var1;
-
-		for (int var5 = 0; var5 < var3; ++var5) {
-			char var6 = var2.charAt(var5);
-			if (var6 <= 127) {
-				var0[var4++] = (byte)var6;
-			} else if (var6 <= 2047) {
-				var0[var4++] = (byte)(192 | var6 >> 6);
-				var0[var4++] = (byte)(128 | var6 & '?');
-			} else {
-				var0[var4++] = (byte)(224 | var6 >> '\f');
-				var0[var4++] = (byte)(128 | var6 >> 6 & 63);
-				var0[var4++] = (byte)(128 | var6 & '?');
+	@Export("Widget_setKeyIgnoreHeld")
+	static final void Widget_setKeyIgnoreHeld(Widget var0, int var1) {
+		if (var0.field2649 == null) {
+			throw new RuntimeException();
+		} else {
+			if (var0.field2684 == null) {
+				var0.field2684 = new int[var0.field2649.length];
 			}
-		}
 
-		return var4 - var1;
+			var0.field2684[var1] = Integer.MAX_VALUE;
+		}
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(Liw;B)V",
-		garbageValue = "1"
+		signature = "(ILcs;ZI)I",
+		garbageValue = "-613147121"
 	)
-	public static void method211(AbstractArchive var0) {
-		InvDefinition.InvDefinition_archive = var0;
-	}
-
-	@ObfuscatedName("kc")
-	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;B)Ljava/lang/String;",
-		garbageValue = "-56"
-	)
-	static String method218(String var0) {
-		PlayerType[] var1 = WorldMapLabelSize.PlayerType_values();
-
-		for (int var2 = 0; var2 < var1.length; ++var2) {
-			PlayerType var3 = var1[var2];
-			if (var3.modIcon != -1 && var0.startsWith(PrivateChatMode.method6034(var3.modIcon))) {
-				var0 = var0.substring(6 + Integer.toString(var3.modIcon).length());
-				break;
-			}
+	static int method200(int var0, Script var1, boolean var2) {
+		Widget var3 = var2 ? PlayerComposition.field2561 : VarcInt.field3264;
+		if (var0 == ScriptOpcodes.CC_GETSCROLLX) {
+			Interpreter.Interpreter_intStack[++VarcInt.Interpreter_intStackSize - 1] = var3.scrollX;
+			return 1;
+		} else if (var0 == ScriptOpcodes.CC_GETSCROLLY) {
+			Interpreter.Interpreter_intStack[++VarcInt.Interpreter_intStackSize - 1] = var3.scrollY;
+			return 1;
+		} else if (var0 == ScriptOpcodes.CC_GETTEXT) {
+			Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var3.text;
+			return 1;
+		} else if (var0 == ScriptOpcodes.CC_GETSCROLLWIDTH) {
+			Interpreter.Interpreter_intStack[++VarcInt.Interpreter_intStackSize - 1] = var3.scrollWidth;
+			return 1;
+		} else if (var0 == ScriptOpcodes.CC_GETSCROLLHEIGHT) {
+			Interpreter.Interpreter_intStack[++VarcInt.Interpreter_intStackSize - 1] = var3.scrollHeight;
+			return 1;
+		} else if (var0 == ScriptOpcodes.CC_GETMODELZOOM) {
+			Interpreter.Interpreter_intStack[++VarcInt.Interpreter_intStackSize - 1] = var3.modelZoom;
+			return 1;
+		} else if (var0 == ScriptOpcodes.CC_GETMODELANGLE_X) {
+			Interpreter.Interpreter_intStack[++VarcInt.Interpreter_intStackSize - 1] = var3.modelAngleX;
+			return 1;
+		} else if (var0 == ScriptOpcodes.CC_GETMODELANGLE_Z) {
+			Interpreter.Interpreter_intStack[++VarcInt.Interpreter_intStackSize - 1] = var3.modelAngleZ;
+			return 1;
+		} else if (var0 == ScriptOpcodes.CC_GETMODELANGLE_Y) {
+			Interpreter.Interpreter_intStack[++VarcInt.Interpreter_intStackSize - 1] = var3.modelAngleY;
+			return 1;
+		} else if (var0 == ScriptOpcodes.CC_GETTRANSTOP) {
+			Interpreter.Interpreter_intStack[++VarcInt.Interpreter_intStackSize - 1] = var3.transparencyTop;
+			return 1;
+		} else if (var0 == ScriptOpcodes.CC_GETTRANSBOT) {
+			Interpreter.Interpreter_intStack[++VarcInt.Interpreter_intStackSize - 1] = var3.transparencyBot;
+			return 1;
+		} else if (var0 == ScriptOpcodes.CC_GETCOLOUR) {
+			Interpreter.Interpreter_intStack[++VarcInt.Interpreter_intStackSize - 1] = var3.color;
+			return 1;
+		} else if (var0 == ScriptOpcodes.CC_GETFILLCOLOUR) {
+			Interpreter.Interpreter_intStack[++VarcInt.Interpreter_intStackSize - 1] = var3.color2;
+			return 1;
+		} else if (var0 == ScriptOpcodes.CC_GETFILLMODE) {
+			Interpreter.Interpreter_intStack[++VarcInt.Interpreter_intStackSize - 1] = var3.fillMode.rsOrdinal();
+			return 1;
+		} else if (var0 == ScriptOpcodes.CC_GETMODELTRANSPARENT) {
+			Interpreter.Interpreter_intStack[++VarcInt.Interpreter_intStackSize - 1] = var3.modelTransparency ? 1 : 0;
+			return 1;
+		} else {
+			return 2;
 		}
-
-		return var0;
 	}
 }
