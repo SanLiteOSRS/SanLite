@@ -615,13 +615,25 @@ public interface RSClient extends RSGameEngine, Client
 	@Override
 	int getMouseIdleTicks();
 
+	@Import("MouseHandler_idleCycles")
+	@Override
+	void setMouseIdleTicks(int cycles);
+
 	@Import("MouseHandler_lastPressedTimeMillis")
 	@Override
 	long getMouseLastPressedMillis();
 
+	@Import("MouseHandler_lastPressedTimeMillis")
+	@Override
+	void setMouseLastPressedMillis(long cycles);
+
 	@Import("KeyHandler_idleCycles")
 	@Override
 	int getKeyboardIdleTicks();
+
+	@Import("KeyHandler_idleCycles")
+	@Override
+	void setKeyboardIdleTicks(int cycles);
 
 	@Import("KeyHandler_pressedKeys")
 	@Override
