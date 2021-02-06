@@ -1823,6 +1823,13 @@ public interface Client extends GameEngine
 	void scaleSprite(int[] canvas, int[] pixels, int color, int pixelX, int pixelY, int canvasIdx, int canvasOffset,
 						int newWidth, int newHeight, int pixelWidth, int pixelHeight, int oldWidth);
 
+
+	void setMouseIdleTicks(int cycles);
+
+	void setKeyboardIdleTicks(int cycles);
+
+	void setMouseLastPressedMillis(long cycles);
+
 	/**
 	 * Sets the result count for GE search
 	 */
