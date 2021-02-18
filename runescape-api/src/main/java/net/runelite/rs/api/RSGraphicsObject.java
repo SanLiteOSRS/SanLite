@@ -28,5 +28,6 @@ public interface RSGraphicsObject extends GraphicsObject, RSRenderable
 	int getHeight();
 
 	@Import("isFinished")
+	@Override
 	boolean finished();
 }

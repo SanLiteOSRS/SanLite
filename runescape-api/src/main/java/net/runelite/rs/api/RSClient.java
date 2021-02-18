@@ -138,6 +138,7 @@ public interface RSClient extends RSGameEngine, Client
 	void setChangedSkillsCount(int i);
 
 	@Import("gameState")
+	@Override
 	int getRSGameState();
 
 	@Import("updateGameState")
@@ -233,6 +234,9 @@ public interface RSClient extends RSGameEngine, Client
 
 	@Import("combatTargetPlayerIndex")
 	int getLocalInteractingIndex();
+
+	@Import("combatTargetPlayerIndex")
+	void setLocalInteractingIndex(int idx);
 
 	@Import("groundItems")
 	RSNodeDeque[][][] getGroundItemDeque();
@@ -334,10 +338,10 @@ public interface RSClient extends RSGameEngine, Client
 	void addRSChatMessage(int type, String name, String message, String sender);
 
 	@Import("getObjectDefinition")
-	RSObjectComposition getRSObjectDefinition(int objectId);
+	RSObjectComposition getRSObjectComposition(int objectId);
 
 	@Import("getNpcDefinition")
-	RSNPCComposition getRSNpcDefinition(int npcId);
+	RSNPCComposition getRSNpcComposition(int npcId);
 
 	@Import("viewportZoom")
 	@Override
@@ -458,6 +462,7 @@ public interface RSClient extends RSGameEngine, Client
 	void setIndexedSpritePalette(int[] indexedSpritePalette);
 
 	@Import("archive2")
+	@Override
 	RSArchive getIndexConfig();
 
 	@Import("archive6")
@@ -692,6 +697,9 @@ public interface RSClient extends RSGameEngine, Client
 
 	@Construct
 	RSVarbitComposition createVarbitComposition();
+
+	@Import("getVarbit")
+	int rs$getVarbit(int varbitId);
 
 	@Import("VarbitDefinition_cached")
 	RSEvictingDualNodeHashTable getVarbitCache();
@@ -1022,6 +1030,9 @@ public interface RSClient extends RSGameEngine, Client
 	@Import("fontBold12")
 	RSFont getFontBold12();
 
+	@Import("Rasterizer2D_drawHorizontalLine")
+	void rasterizerDrawHorizontalLine(int x, int y, int w, int rgb);
+
 	@Import("Rasterizer2D_drawHorizontalLineAlpha")
 	void rasterizerDrawHorizontalLineAlpha(int x, int y, int w, int rgb, int a);
 
@@ -1097,7 +1108,6 @@ public interface RSClient extends RSGameEngine, Client
 	@Import("viewportWalking")
 	void setViewportWalking(boolean viewportWalking);
 
-	@Import("playMusicTrack")
 	void playMusicTrack(int var0, RSAbstractArchive var1, int var2, int var3, int var4, boolean var5);
 
 	@Import("midiPcmStream")
@@ -1126,7 +1136,15 @@ public interface RSClient extends RSGameEngine, Client
 
 	@Import("selectedItemSlot")
 	@Override
+	int getSelectedItemSlot();
+
+	@Import("selectedItemSlot")
+	@Override
 	void setSelectedItemSlot(int index);
+
+	@Import("selectedItemWidget")
+	@Override
+	int getSelectedItemWidget();
 
 	@Import("selectedItemWidget")
 	@Override
@@ -1136,13 +1154,13 @@ public interface RSClient extends RSGameEngine, Client
 	@Override
 	int getSelectedSpellWidget();
 
-	@Import("selectedSpellWidget")
-	@Override
-	void setSelectedSpellWidget(int widgetID);
-
 	@Import("selectedSpellChildIndex")
 	@Override
 	int getSelectedSpellChildIndex();
+
+	@Import("selectedSpellWidget")
+	@Override
+	void setSelectedSpellWidget(int widgetID);
 
 	@Import("selectedSpellChildIndex")
 	@Override

@@ -142,4 +142,37 @@ public interface RSActor extends RSRenderable, Actor
 
 	@Import("hitSplatCycles")
 	int[] getHitsplatCycles();
+
+	@Import("turnLeftSequence")
+	@Override
+	int getTurnLeftAnimation();
+
+	@Import("turnRightSequence")
+	@Override
+	int getTurnRightAnimation();
+
+	@Import("walkSequence")
+	@Override
+	int getWalkAnimation();
+
+	@Import("walkBackSequence")
+	@Override
+	int getWalkBackAnimation();
+
+	@Import("walkLeftSequence")
+	@Override
+	int getWalkLeftAnimation();
+
+	@Import("walkRightSequence")
+	@Override
+	int getWalkRightAnimation();
+
+	@Import("runSequence")
+	@Override
+	int getRunAnimation();
+
+	void setDead(boolean dead);
+
+	@Import("pathLength")
+	int getPathLength();
 }

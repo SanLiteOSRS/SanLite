@@ -8,7 +8,7 @@ public interface RSNodeDeque
 	RSNode getCurrent();
 
 	@Import("sentinel")
-	RSNode getHead();
+	RSNode getSentinel();
 
 	@Import("last")
 	RSNode last();
