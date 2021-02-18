@@ -56,4 +56,6 @@ public interface GameEngine
 	DrawCallbacks getDrawCallbacks();
 
 	void resizeCanvas();
+
+	void setReplaceCanvasNextFrame(boolean replace);
 }

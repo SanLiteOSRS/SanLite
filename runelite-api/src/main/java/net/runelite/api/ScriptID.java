@@ -83,6 +83,7 @@ public final class ScriptID
 	@ScriptArguments(integer = 2)
 	public static final int MESSAGE_LAYER_CLOSE = 299;
 
+
 	/**
 	 * Readies the chatbox panel for things like the chatbox input
 	 * Inverse of MESSAGE_LAYER_CLOSE
@@ -147,6 +148,12 @@ public final class ScriptID
 	 */
 	@ScriptArguments(integer = 2)
 	public static final int CAMERA_DO_ZOOM = 42;
+
+	/**
+	 * Rebuilds the Spellbook
+	 */
+	@ScriptArguments(integer = 10, string = 2)
+	public static final int MAGIC_SPELLBOOK_REDRAW = 2611;
 
 	/**
 	 * Does nothing

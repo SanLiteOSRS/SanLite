@@ -42,6 +42,7 @@ public interface Player extends Actor
 	 *
 	 * @return the composition
 	 */
+	@Nullable
 	PlayerComposition getPlayerComposition();
 
 	/**
@@ -78,6 +79,7 @@ public interface Player extends Actor
 	 *
 	 * @return the overhead icon
 	 */
+	@Nullable
 	HeadIcon getOverheadIcon();
 
 	/**
@@ -101,4 +103,6 @@ public interface Player extends Actor
 	 * @return true if the player is skulled, false otherwise
 	 */
 	boolean isSkulled();
+
+	String[] getActions();
 }

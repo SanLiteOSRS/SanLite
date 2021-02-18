@@ -155,6 +155,8 @@ public enum MenuAction
 	WIDGET_TYPE_5(29),
 	/**
 	 * Interaction with widget (type 6).
+	 *
+	 * This is the continue button on message boxes
 	 */
 	WIDGET_TYPE_6(30),
 	/**
@@ -234,6 +236,11 @@ public enum MenuAction
 	 * Casting a spell / op target on a widget
 	 */
 	SPELL_CAST_ON_WIDGET(58),
+
+	/**
+	 * Sub 1000 so it doesn't get sorted down in the list
+	 */
+	PRIO_RUNELITE(666),
 
 	/**
 	 * Menu action triggered by examining an object.

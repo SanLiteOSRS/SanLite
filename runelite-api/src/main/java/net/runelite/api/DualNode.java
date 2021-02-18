@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, Adam <Adam@sigterm.info>
+ * Copyright (c) 2020, Noodleeater <noodleeater4@gmail.com>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -24,8 +24,7 @@
  */
 package net.runelite.api;
 
-public interface IterableHashTable<T extends Node> extends Iterable<T>
+public interface DualNode extends Node
 {
-	T get(long hash);
-	void put(T node, long hash);
+	void unlinkDual();
 }

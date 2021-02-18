@@ -107,6 +107,10 @@ public enum Varbits
 	PRAYER_RIGOUR(5464),
 	PRAYER_AUGURY(5465),
 
+	RIGOUR_UNLOCKED(5451),
+	AUGURY_UNLOCKED(5452),
+	PRESERVE_UNLOCKED(5453),
+
 	/**
 	 * Diary Entries
 	 */
@@ -431,6 +435,19 @@ public enum Varbits
 	 * The Hand in the Sand quest status
 	 */
 	QUEST_THE_HAND_IN_THE_SAND(1527),
+
+	/**
+	 * 0 = Sir Bedivere
+	 * 1 = Sir Pelleas
+	 * 2 = Sir Tristram
+	 * 3 = Sir Palomedes
+	 * 4 = Sir Lucan
+	 * 5 = Sir Gawain
+	 * 6 = Sir Kay
+	 * 7 = Sir Lancelot
+	 * 8 = Completed (Chivalry and Piety are unlocked)
+	 */
+	CAMELOT_TRAINING_ROOM_STATUS(3909),
 
 	/**
 	 * Daily Tasks (Collection availability)

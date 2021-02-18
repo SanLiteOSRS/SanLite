@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, Adam <Adam@sigterm.info>
+ * Copyright (c) 2020, Noodleeater <noodleeater4@gmail.com>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -24,8 +24,36 @@
  */
 package net.runelite.api;
 
-public interface IterableHashTable<T extends Node> extends Iterable<T>
+/**
+ * Represents a frame of animation data. Each animation frame will have its own animation animation data.
+ */
+public interface Animation
 {
-	T get(long hash);
-	void put(T node, long hash);
+	Skeleton getSkeleton();
+
+	/**
+	 * the number of transformations the animation frame has.
+	 */
+	int getTransformCount();
+
+	/**
+	 * this variable name is incorrect. it is an array of bone ids. not transform types.
+	 * this array has a one to one relationship with the arrays of translator values in the animation frame(TranslatorX getTranslatorY TranslatorZ).
+	 * it is the array of bone ids which point each translator value to the bone it should be transforming.
+	 */
+	int[] getTransformTypes();
+
+	/**
+	 * these are x, y, and z values, which tell the transform function how much to transform the each bone.
+	 */
+	int[] getTranslatorX();
+
+	int[] getTranslatorY();
+
+	int[] getTranslatorZ();
+
+	/**
+	 * whether this Animation frame has any alpha/transparency animation.
+	 */
+	boolean isShowing();
 }

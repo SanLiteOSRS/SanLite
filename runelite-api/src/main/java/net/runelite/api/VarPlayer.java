@@ -55,6 +55,11 @@ public enum VarPlayer
 	SPECIAL_ATTACK_ENABLED(301),
 
 	/**
+	 * This has a value of 0 if you have auto retaliate enabled and a value of 1 if you do not
+	 */
+	AUTO_RETALIATE(172),
+
+	/**
 	 * The ID of the party. This Var is only set in the raid bank area and the raid lobby
 	 *
 	 * This gets set to -1 when the raid starts. This is first set when the first player of the friends chat forms a party

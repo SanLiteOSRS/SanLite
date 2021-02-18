@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, Adam <Adam@sigterm.info>
+ * Copyright (c) 2020, Noodleeater <noodleeater4@gmail.com>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -24,8 +24,25 @@
  */
 package net.runelite.api;
 
-public interface IterableHashTable<T extends Node> extends Iterable<T>
+/**
+ * Represents an archive of data, which is ordered into "groups" of "files".
+ */
+public interface AbstractArchive extends IndexDataBase
 {
-	T get(long hash);
-	void put(T node, long hash);
+	/**
+	 * the methods bellow are usefull for reading byte data from the cache
+	 */
+	int getGroupCount();
+
+	byte[] getConfigData(int archiveId, int fileId);
+
+	int[] getFileIds(int groupId);
+
+	int[][] getFileIds();
+
+	byte[] getFile(int groupId, int fileId);
+
+	int getGroupFileCount(int groupId);
+
+	int[] getFileCounts();
 }

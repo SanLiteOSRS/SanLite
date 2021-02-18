@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, Adam <Adam@sigterm.info>
+ * Copyright (c) 2021, ThatGamerBlue <thatgamerblue@gmail.com>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,10 +22,19 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.api;
 
-public interface IterableHashTable<T extends Node> extends Iterable<T>
+package net.runelite.api.events;
+
+import lombok.Data;
+import net.runelite.api.HeadIcon;
+import net.runelite.api.Player;
+
+@Data
+public class OverheadPrayerChanged
 {
-	T get(long hash);
-	void put(T node, long hash);
+	private final Player player;
+
+	private final HeadIcon oldHeadIcon;
+
+	private final HeadIcon newHeadIcon;
 }

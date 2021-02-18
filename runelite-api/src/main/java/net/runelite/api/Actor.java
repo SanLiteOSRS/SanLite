@@ -68,13 +68,7 @@ public interface Actor extends Renderable
 	 * (getRSInteracting returns the npc/player index, useful for menus)
 	 */
 	Actor getInteracting();
-
-	/**
-	 * Gets the npc/player index, useful for menus
-	 *
-	 * @return npc/player index
-	 */
-	int getInteractingIndex();
+	int getRSInteracting();
 
 	/**
 	 * Gets the health of the actor in {@link #getHealthScale()} units.
@@ -213,11 +207,11 @@ public interface Actor extends Renderable
 	 * Gets the point at which a sprite should be drawn, relative to the
 	 * current location with the given z-axis offset.
 	 *
-	 * @param sprite the sprite to draw
+	 * @param spritePixels the sprite to draw
 	 * @param zOffset the z-axis offset
 	 * @return the sprite drawing location
 	 */
-	Point getCanvasSpriteLocation(SpritePixels sprite, int zOffset);
+	Point getCanvasSpriteLocation(SpritePixels spritePixels, int zOffset);
 
 	/**
 	 * Gets a point on the canvas of where this actors mini-map indicator
@@ -286,4 +280,26 @@ public interface Actor extends Renderable
 	 * @return action frame game cycle
 	 */
 	int getActionFrameCycle();
+
+	/*
+	 This collection of methods gets extended debug information about the actor
+
+	 Used by dev tools
+	 */
+
+	int getTurnLeftAnimation();
+
+	int getTurnRightAnimation();
+
+	int getWalkAnimation();
+
+	int getWalkBackAnimation();
+
+	int getWalkLeftAnimation();
+
+	int getWalkRightAnimation();
+
+	int getRunAnimation();
+
+	boolean isMoving();
 }
