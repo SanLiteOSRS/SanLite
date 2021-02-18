@@ -643,6 +643,32 @@ public enum Varbits
 	LEAGUE_RELIC_6(11696),
 
 	/**
+	 * Muted volume restore values
+	 */
+	MUTED_MUSIC_VOLUME(9666),
+	MUTED_SOUND_EFFECT_VOLUME(9674),
+	MUTED_AREA_EFFECT_VOLUME(9675),
+
+	/**
+	 * Parasite infection status during nightmare of ashihama bossfight
+	 *
+	 * 0 = not infected
+	 * 1 = infected
+	 *
+	 */
+	PARASITE(10151),
+
+	/**
+	 * Whether the Special Attack orb is disabled due to being in a PvP area
+	 *
+	 * 0 = Enabled (player is not in PvP)
+	 * 1 = Disabled (player in in PvP)
+	 *
+	 * @see <a href="https://oldschool.runescape.wiki/w/Minimap#Special_attack_orb">The OSRS Wiki's Minimap page</a>
+	 */
+	PVP_SPEC_ORB(8121),
+
+	/**
 	 * Temple Trekking
 	 */
 	TREK_POINTS(1955),
@@ -792,16 +818,6 @@ public enum Varbits
 	GAUNTLET_ENTERED(9178),
 
 	WITHDRAW_X_AMOUNT(3960),
-
-	/**
-	 * Whether the Special Attack orb is disabled due to being in a PvP area
-	 *
-	 * 0 = Enabled (player is not in PvP)
-	 * 1 = Disabled (player in in PvP)
-	 *
-	 * @see <a href="https://oldschool.runescape.wiki/w/Minimap#Special_attack_orb">The OSRS Wiki's Minimap page</a>
-	 */
-	PVP_SPEC_ORB(8121),
 
 	CLAN_WARS_ARENA_UNKNOWN_1(4285),
 	/**

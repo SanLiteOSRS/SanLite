@@ -45,34 +45,32 @@ public class MenuOptionClicked
 	 * The action parameter used in the click.
 	 */
 	private int actionParam;
-
 	/**
 	 * The option text added to the menu.
 	 */
 	private String menuOption;
-
 	/**
 	 * The target of the action.
 	 */
 	private String menuTarget;
-
 	/**
 	 * The action performed.
 	 */
 	private MenuAction menuAction;
-
 	/**
 	 * The ID of the object, actor, or item that the interaction targets.
 	 */
 	private int id;
-
 	/**
 	 * The ID of the widget where the menu was clicked.
 	 *
 	 * @see net.runelite.api.widgets.WidgetID
 	 */
 	private int widgetId;
-
+	/**
+	 * The selected item index at the time of the option click.
+	 */
+	private int selectedItemIndex;
 	/**
 	 * Whether or not the event has been consumed by a subscriber.
 	 */

@@ -981,7 +981,34 @@ public interface Widget
 	 */
 	void setOnReleaseListener(Object ...args);
 
-	boolean isWidgetItemDragged(int index);
+	/**
+	 * Sets a script to be ran when a drag operation is finished on this widget
+	 *
+	 * @param args A ScriptID, then the args for the script
+	 */
+	void setOnDragCompleteListener(Object ...args);
 
-	Point getWidgetItemDragOffsets();
+	/**
+	 * Sets a script to be ran when this widget moves due to a drag
+	 *
+	 * @param args A ScriptID, then the args for the script
+	 */
+	void setOnDragListener(Object ...args);
+
+	/**
+	 * Container this can be dragged in
+	 */
+	Widget getDragParent();
+
+	/**
+	 * Container this can be dragged in
+	 */
+	void setDragParent(Widget dragParent);
+
+	/**
+	 * Sets a script to be ran when a varplayer changes
+	 *
+	 * @param args A ScriptID, then the args for the script
+	 */
+	void setOnVarTransmitListener(Object ...args);
 }

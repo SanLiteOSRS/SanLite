@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, Adam <Adam@sigterm.info>
+ * Copyright (c) 2020 Abex
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -24,41 +24,26 @@
  */
 package net.runelite.api.events;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Value;
 
 /**
- * An event when a new entry is added to a right-click menu.
+ * Posted when an interface is about to be closed
  */
-@Data
-@AllArgsConstructor
-public class MenuEntryAdded
+@Value
+public class WidgetClosed
 {
 	/**
-	 * The option text added to the menu. (ie. "Walk here", "Use")
+	 * The ID of the interface that is closed
 	 */
-	private final String option;
+	private final int groupId;
+
 	/**
-	 * The target of the action. (ie. Item or Actor name)
-	 * <p>
-	 * If the option does not apply to any target, this field
-	 * will be set to empty string.
+	 * @see net.runelite.api.widgets.WidgetModalMode
 	 */
-	private final String target;
+	private final int modalMode;
+
 	/**
-	 * The action type that will be triggered.
+	 * If the interface will be unloaded or if it will be immediately reloaded
 	 */
-	private final int type;
-	/**
-	 * An identifier value for the target of the action
-	 */
-	private final int identifier;
-	/**
-	 * An additional parameter for the action.
-	 */
-	private final int actionParam0;
-	/**
-	 * A second additional parameter for the action.
-	 */
-	private final int actionParam1;
+	private final boolean unload;
 }

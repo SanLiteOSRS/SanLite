@@ -267,9 +267,9 @@ public interface Actor extends Renderable
 	void setOverheadText(String overheadText);
 
 	/**
-	 * Returns true if this NPC has died
+	 * Returns true if this actor has died
 	 *
-	 * @return is npc dead
+	 * @return
 	 */
 	boolean isDead();
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, Adam <Adam@sigterm.info>
+ * Copyright (c) 2020 Abex
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,43 +22,16 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.api.events;
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
+package net.runelite.api;
 
 /**
- * An event when a new entry is added to a right-click menu.
+ * @see ParamID#SETTING_ID
  */
-@Data
-@AllArgsConstructor
-public class MenuEntryAdded
+public class SettingID
 {
-	/**
-	 * The option text added to the menu. (ie. "Walk here", "Use")
-	 */
-	private final String option;
-	/**
-	 * The target of the action. (ie. Item or Actor name)
-	 * <p>
-	 * If the option does not apply to any target, this field
-	 * will be set to empty string.
-	 */
-	private final String target;
-	/**
-	 * The action type that will be triggered.
-	 */
-	private final int type;
-	/**
-	 * An identifier value for the target of the action
-	 */
-	private final int identifier;
-	/**
-	 * An additional parameter for the action.
-	 */
-	private final int actionParam0;
-	/**
-	 * A second additional parameter for the action.
-	 */
-	private final int actionParam1;
+	public static final int CAMERA_ZOOM = 14;
+
+	public static final int MUSIC_VOLUME = 30;
+	public static final int EFFECT_VOLUME = 31;
+	public static final int AREA_VOLUME = 32;
 }

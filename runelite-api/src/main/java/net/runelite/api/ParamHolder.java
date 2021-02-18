@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, Adam <Adam@sigterm.info>
+ * Copyright (c) 2020 Abex
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,43 +22,36 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.api.events;
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
+package net.runelite.api;
 
 /**
- * An event when a new entry is added to a right-click menu.
+ * A composition that can hold `param` keys. This lets Jagex attach arbitrary constant
+ * data to certain items, objects, npcs, or structs for use in cs2
+ *
+ * @see ParamID
  */
-@Data
-@AllArgsConstructor
-public class MenuEntryAdded
+public interface ParamHolder
 {
+	IterableHashTable<Node> getParams();
+	void setParams(IterableHashTable<Node> params);
+
 	/**
-	 * The option text added to the menu. (ie. "Walk here", "Use")
+	 * Gets the value of a given {@link ParamID}, or its default if it is unset
 	 */
-	private final String option;
+	int getIntValue(int paramID);
+
 	/**
-	 * The target of the action. (ie. Item or Actor name)
-	 * <p>
-	 * If the option does not apply to any target, this field
-	 * will be set to empty string.
+	 * Sets the value of a given {@link ParamID}
 	 */
-	private final String target;
+	void setValue(int paramID, int value);
+
 	/**
-	 * The action type that will be triggered.
+	 * Gets the value of a given {@link ParamID}, or its default if it is unset
 	 */
-	private final int type;
+	String getStringValue(int paramID);
+
 	/**
-	 * An identifier value for the target of the action
+	 * Sets the value of a given {@link ParamID}
 	 */
-	private final int identifier;
-	/**
-	 * An additional parameter for the action.
-	 */
-	private final int actionParam0;
-	/**
-	 * A second additional parameter for the action.
-	 */
-	private final int actionParam1;
+	void setValue(int paramID, String value);
 }

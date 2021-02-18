@@ -24,7 +24,7 @@
  */
 package net.runelite.api;
 
-import java.awt.*;
+import java.awt.Shape;
 
 /**
  * Represents an object on the ground of a tile.
