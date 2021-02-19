@@ -607,8 +607,8 @@ public class Rasterizer2D extends DualNode {
 	@ObfuscatedName("dz")
 	@Export("Rasterizer2D_drawRectangle")
 	public static void Rasterizer2D_drawRectangle(int var0, int var1, int var2, int var3, int var4) {
-		method6097(var0, var1, var2, var4);
-		method6097(var0, var3 + var1 - 1, var2, var4);
+		Rasterizer2D_drawHorizontalLine(var0, var1, var2, var4);
+		Rasterizer2D_drawHorizontalLine(var0, var3 + var1 - 1, var2, var4);
 		Rasterizer2D_drawVerticalLine(var0, var1, var3, var4);
 		Rasterizer2D_drawVerticalLine(var0 + var2 - 1, var1, var3, var4);
 	}
@@ -626,7 +626,8 @@ public class Rasterizer2D extends DualNode {
 	}
 
 	@ObfuscatedName("eq")
-	public static void method6097(int var0, int var1, int var2, int var3) {
+	@Export("Rasterizer2D_drawHorizontalLine")
+	public static void Rasterizer2D_drawHorizontalLine(int var0, int var1, int var2, int var3) {
 		if (var1 >= Rasterizer2D_yClipStart && var1 < Rasterizer2D_yClipEnd) {
 			if (var0 < Rasterizer2D_xClipStart) {
 				var2 -= Rasterizer2D_xClipStart - var0;
@@ -736,9 +737,9 @@ public class Rasterizer2D extends DualNode {
 		var3 -= var1;
 		if (var3 == 0) {
 			if (var2 >= 0) {
-				method6097(var0, var1, var2 + 1, var4);
+				Rasterizer2D_drawHorizontalLine(var0, var1, var2 + 1, var4);
 			} else {
-				method6097(var0 + var2, var1, -var2 + 1, var4);
+				Rasterizer2D_drawHorizontalLine(var0 + var2, var1, -var2 + 1, var4);
 			}
 
 		} else if (var2 == 0) {

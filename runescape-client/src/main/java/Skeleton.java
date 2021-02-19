@@ -135,7 +135,7 @@ public class Skeleton extends Node {
 						}
 
 						if (var5 != -1) {
-							SequenceDefinition var6 = ParamDefinition.SequenceDefinition_get(var5);
+							SequenceDefinition var6 = ParamComposition.SequenceDefinition_get(var5);
 
 							for (var3.modelFrameCycle += Client.field850; var3.modelFrameCycle > var6.frameLengths[var3.modelFrame]; CollisionMap.invalidateWidget(var3)) {
 								var3.modelFrameCycle -= var6.frameLengths[var3.modelFrame];

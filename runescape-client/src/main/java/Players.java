@@ -608,11 +608,11 @@ public class Players {
 								ScriptEvent var28;
 								int var35;
 								int var36;
-								if (var9.onVarTransmit != null && Client.field835 > var9.field2645) {
-									if (var9.varTransmitTriggers != null && Client.field835 - var9.field2645 <= 32) {
+								if (var9.onVarTransmit != null && Client.changedVarpCount > var9.field2645) {
+									if (var9.varTransmitTriggers != null && Client.changedVarpCount - var9.field2645 <= 32) {
 										label890:
-										for (var35 = var9.field2645; var35 < Client.field835; ++var35) {
-											var23 = Client.field834[var35 & 31];
+										for (var35 = var9.field2645; var35 < Client.changedVarpCount; ++var35) {
+											var23 = Client.changedVarps[var35 & 31];
 
 											for (var36 = 0; var36 < var9.varTransmitTriggers.length; ++var36) {
 												if (var23 == var9.varTransmitTriggers[var36]) {
@@ -631,7 +631,7 @@ public class Players {
 										Client.scriptEvents.addFirst(var27);
 									}
 
-									var9.field2645 = Client.field835;
+									var9.field2645 = Client.changedVarpCount;
 								}
 
 								if (var9.onInvTransmit != null && Client.field837 > var9.field2721) {

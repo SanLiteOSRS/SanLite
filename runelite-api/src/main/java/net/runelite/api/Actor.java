@@ -68,7 +68,7 @@ public interface Actor extends Renderable
 	 * (getRSInteracting returns the npc/player index, useful for menus)
 	 */
 	Actor getInteracting();
-	int getRSInteracting();
+	int getInteractingIndex();
 
 	/**
 	 * Gets the health of the actor in {@link #getHealthScale()} units.

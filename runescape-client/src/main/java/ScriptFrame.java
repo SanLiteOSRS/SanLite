@@ -50,7 +50,7 @@ public class ScriptFrame {
 			var4 = CollisionMap.getWidget(Interpreter.Interpreter_intStack[--VarcInt.Interpreter_intStackSize]);
 			var3 = false;
 		} else {
-			var4 = var2 ? PlayerComposition.field2561 : VarcInt.field3264;
+			var4 = var2 ? PlayerComposition.scriptDotWidget : VarcInt.scriptActiveWidget;
 		}
 
 		int var11;

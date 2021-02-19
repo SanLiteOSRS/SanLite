@@ -81,7 +81,7 @@ public enum StudioGame implements Enumerated {
 		garbageValue = "1020902177"
 	)
 	public static void method4185() {
-		ParamDefinition.ParamDefinition_cached.clear();
+		ParamComposition.ParamDefinition_cached.clear();
 	}
 
 	@ObfuscatedName("ak")

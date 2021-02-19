@@ -166,7 +166,7 @@ public final class Tiles {
 	@Export("performPlayerAnimation")
 	static void performPlayerAnimation(Player var0, int var1, int var2) {
 		if (var0.sequence == var1 && var1 != -1) {
-			int var3 = ParamDefinition.SequenceDefinition_get(var1).field3548;
+			int var3 = ParamComposition.SequenceDefinition_get(var1).field3548;
 			if (var3 == 1) {
 				var0.sequenceFrame = 0;
 				var0.sequenceFrameCycle = 0;
@@ -177,7 +177,7 @@ public final class Tiles {
 			if (var3 == 2) {
 				var0.field974 = 0;
 			}
-		} else if (var1 == -1 || var0.sequence == -1 || ParamDefinition.SequenceDefinition_get(var1).field3557 >= ParamDefinition.SequenceDefinition_get(var0.sequence).field3557) {
+		} else if (var1 == -1 || var0.sequence == -1 || ParamComposition.SequenceDefinition_get(var1).field3557 >= ParamComposition.SequenceDefinition_get(var0.sequence).field3557) {
 			var0.sequence = var1;
 			var0.sequenceFrame = 0;
 			var0.sequenceFrameCycle = 0;

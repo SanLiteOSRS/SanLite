@@ -36,7 +36,8 @@ public class PlayerComposition {
 	@ObfuscatedSignature(
 		signature = "Lhe;"
 	)
-	static Widget field2561;
+	@Export("scriptDotWidget")
+	static Widget scriptDotWidget;
 	@ObfuscatedName("kn")
 	@ObfuscatedSignature(
 		signature = "Lbq;"

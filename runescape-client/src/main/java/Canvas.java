@@ -274,7 +274,7 @@ public final class Canvas extends java.awt.Canvas {
 						ObjectComposition.ObjectDefinition_modelsArchive = var14;
 						ObjectComposition.ObjectDefinition_isLowDetail = var5;
 						World.method1849(DynamicObject.archive2, BuddyRankComparator.archive7);
-						ParamDefinition.method4526(DynamicObject.archive2);
+						ParamComposition.method4526(DynamicObject.archive2);
 						Actor.method1821(DynamicObject.archive2, BuddyRankComparator.archive7, Client.isMembersWorld, class297.fontPlain11);
 						PcmPlayer.method2538(DynamicObject.archive2, SceneTilePaint.archive0, WorldMapSprite.archive1);
 						ModelData0.method3331(DynamicObject.archive2, BuddyRankComparator.archive7);
@@ -294,7 +294,7 @@ public final class Canvas extends java.awt.Canvas {
 						class195.Widget_loadedInterfaces = new boolean[class58.Widget_archive.getGroupCount()];
 						Archive var11 = DynamicObject.archive2;
 						InvDefinition.InvDefinition_archive = var11;
-						StructDefinition.method4545(DynamicObject.archive2);
+						StructComposition.method4545(DynamicObject.archive2);
 						ModelData0.method3330(DynamicObject.archive2);
 						class13.method129(DynamicObject.archive2);
 						Varcs.varcs = new Varcs();

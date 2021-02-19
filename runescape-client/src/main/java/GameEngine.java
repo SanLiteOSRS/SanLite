@@ -165,7 +165,8 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 	@Export("canvas")
 	java.awt.Canvas canvas;
 	@ObfuscatedName("ac")
-	volatile boolean field470;
+	@Export("fullRedraw")
+	volatile boolean fullRedraw;
 	@ObfuscatedName("aq")
 	@Export("resizeCanvasNextFrame")
 	boolean resizeCanvasNextFrame;
@@ -210,7 +211,7 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 		this.hasErrored = false;
 		this.canvasX = 0;
 		this.canvasY = 0;
-		this.field470 = true;
+		this.fullRedraw = true;
 		this.resizeCanvasNextFrame = false;
 		this.isCanvasInvalid = false;
 		this.field472 = 0L;
@@ -351,7 +352,7 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 				this.canvas.setLocation(this.canvasX, this.canvasY);
 			}
 
-			this.field470 = true;
+			this.fullRedraw = true;
 			this.resizeGame();
 		}
 	}
@@ -516,7 +517,7 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 
 		this.canvas.addFocusListener(this);
 		this.canvas.requestFocus();
-		this.field470 = true;
+		this.fullRedraw = true;
 		if (WorldMapIcon_0.rasterProvider != null && IgnoreList.canvasWidth == WorldMapIcon_0.rasterProvider.width && ModelData0.canvasHeight == WorldMapIcon_0.rasterProvider.height) {
 			((RasterProvider)WorldMapIcon_0.rasterProvider).setComponent(this.canvas);
 			WorldMapIcon_0.rasterProvider.drawFull(0, 0);
@@ -600,7 +601,7 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 
 		if (++field471 - 1 > 50) {
 			field471 -= 50;
-			this.field470 = true;
+			this.fullRedraw = true;
 			this.canvas.setSize(IgnoreList.canvasWidth, ModelData0.canvasHeight);
 			this.canvas.setVisible(true);
 			if (var1 == this.frame) {
@@ -616,12 +617,12 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 		}
 
 		this.method984();
-		this.draw(this.field470);
-		if (this.field470) {
+		this.draw(this.fullRedraw);
+		if (this.fullRedraw) {
 			this.clearBackground();
 		}
 
-		this.field470 = false;
+		this.fullRedraw = false;
 	}
 
 	@ObfuscatedName("ag")
@@ -851,7 +852,7 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 
 	public final synchronized void paint(Graphics var1) {
 		if (this == gameShell && !isKilled) {
-			this.field470 = true;
+			this.fullRedraw = true;
 			if (class298.currentTimeMillis() - this.field472 > 1000L) {
 				Rectangle var2 = var1.getClipBounds();
 				if (var2 == null || var2.width >= IgnoreList.canvasWidth && var2.height >= ModelData0.canvasHeight) {
@@ -872,7 +873,7 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 
 	public final void focusGained(FocusEvent var1) {
 		volatileFocus = true;
-		this.field470 = true;
+		this.fullRedraw = true;
 	}
 
 	public final void focusLost(FocusEvent var1) {

@@ -64,7 +64,7 @@ public class UserComparator9 extends AbstractUserComparator {
 			var0 -= 1000;
 			var3 = CollisionMap.getWidget(Interpreter.Interpreter_intStack[--VarcInt.Interpreter_intStackSize]);
 		} else {
-			var3 = var2 ? PlayerComposition.field2561 : VarcInt.field3264;
+			var3 = var2 ? PlayerComposition.scriptDotWidget : VarcInt.scriptActiveWidget;
 		}
 
 		CollisionMap.invalidateWidget(var3);

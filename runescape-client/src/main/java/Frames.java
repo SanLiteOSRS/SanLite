@@ -96,7 +96,7 @@ public class Frames extends DualNode {
 		if (var0 != ScriptOpcodes.CC_CALLONRESIZE && var0 != ScriptOpcodes.IF_CALLONRESIZE) {
 			int var4;
 			if (var0 == 1928) {
-				var3 = var2 ? PlayerComposition.field2561 : VarcInt.field3264;
+				var3 = var2 ? PlayerComposition.scriptDotWidget : VarcInt.scriptActiveWidget;
 				var4 = Interpreter.Interpreter_intStack[--VarcInt.Interpreter_intStackSize];
 				if (var4 >= 1 && var4 <= 10) {
 					class3.widgetDefaultMenuAction(var4, var3.id, var3.childIndex, var3.itemId, "");
@@ -124,7 +124,7 @@ public class Frames extends DualNode {
 			if (var0 >= 2000) {
 				var3 = CollisionMap.getWidget(Interpreter.Interpreter_intStack[--VarcInt.Interpreter_intStackSize]);
 			} else {
-				var3 = var2 ? PlayerComposition.field2561 : VarcInt.field3264;
+				var3 = var2 ? PlayerComposition.scriptDotWidget : VarcInt.scriptActiveWidget;
 			}
 
 			if (var3.onResize == null) {

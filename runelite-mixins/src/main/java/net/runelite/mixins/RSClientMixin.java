@@ -1733,13 +1733,6 @@ public abstract class RSClientMixin implements RSClient
 
 	@Inject
 	@Override
-	public boolean isKeyPressed(int keycode)
-	{
-		return client.getPressedKeys()[keycode];
-	}
-
-	@Inject
-	@Override
 	public void setOutdatedScript(String outdatedScript)
 	{
 		if (!outdatedScripts.contains(outdatedScript))

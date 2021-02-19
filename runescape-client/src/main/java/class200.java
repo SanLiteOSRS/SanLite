@@ -56,7 +56,7 @@ public class class200 {
 			var3 = Interpreter.Interpreter_intStack[--VarcInt.Interpreter_intStackSize];
 			var4 = CollisionMap.getWidget(var3);
 		} else {
-			var4 = var2 ? PlayerComposition.field2561 : VarcInt.field3264;
+			var4 = var2 ? PlayerComposition.scriptDotWidget : VarcInt.scriptActiveWidget;
 		}
 
 		if (var0 == ScriptOpcodes.CC_SETPOSITION) {

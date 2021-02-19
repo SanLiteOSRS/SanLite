@@ -878,7 +878,7 @@ public final class WorldMapManager {
 			}
 
 			if (var4 == 1 || var4 == 2 && var9.isStackable == 1) {
-				ItemComposition.ItemDefinition_fontPlain11.draw(class195.method3678(var1), 0, 9, 16776960, 1);
+				ItemComposition.ItemDefinition_fontPlain11.draw(class195.inventoryQuantityFormat(var1), 0, 9, 16776960, 1);
 			}
 
 			if (!var5) {

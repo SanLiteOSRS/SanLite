@@ -63,7 +63,7 @@ public class SecureRandomCallable implements Callable {
 					boolean var3 = false;
 
 					for (Node var4 = var1.params.first(); var4 != null; var4 = var1.params.next()) {
-						ParamDefinition var5 = ChatChannel.getParamDefinition((int)var4.key);
+						ParamComposition var5 = ChatChannel.getParamDefinition((int)var4.key);
 						if (var5.autoDisable) {
 							var4.remove();
 						} else {

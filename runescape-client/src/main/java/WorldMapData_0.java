@@ -461,7 +461,7 @@ public class WorldMapData_0 extends AbstractWorldMapData {
 
 					var7 = var1.readUnsignedByte();
 					if (var16 == var15.sequence && var16 != -1) {
-						var8 = ParamDefinition.SequenceDefinition_get(var16).field3548;
+						var8 = ParamComposition.SequenceDefinition_get(var16).field3548;
 						if (var8 == 1) {
 							var15.sequenceFrame = 0;
 							var15.sequenceFrameCycle = 0;
@@ -472,7 +472,7 @@ public class WorldMapData_0 extends AbstractWorldMapData {
 						if (var8 == 2) {
 							var15.field974 = 0;
 						}
-					} else if (var16 == -1 || var15.sequence == -1 || ParamDefinition.SequenceDefinition_get(var16).field3557 >= ParamDefinition.SequenceDefinition_get(var15.sequence).field3557) {
+					} else if (var16 == -1 || var15.sequence == -1 || ParamComposition.SequenceDefinition_get(var16).field3557 >= ParamComposition.SequenceDefinition_get(var15.sequence).field3557) {
 						var15.sequence = var16;
 						var15.sequenceFrame = 0;
 						var15.sequenceFrameCycle = 0;

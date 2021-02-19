@@ -13,7 +13,7 @@ public final class class13 {
 		garbageValue = "2"
 	)
 	public static void method129(AbstractArchive var0) {
-		ParamDefinition.ParamDefinition_archive = var0;
+		ParamComposition.ParamDefinition_archive = var0;
 	}
 
 	@ObfuscatedName("x")

@@ -175,7 +175,8 @@ public final class Client extends GameEngine implements Usernamed {
 	@ObfuscatedGetter(
 		intValue = 1311691811
 	)
-	static int field835;
+	@Export("changedVarpCount")
+	static int changedVarpCount;
 	@ObfuscatedName("tc")
 	static int[] field920;
 	@ObfuscatedName("tr")
@@ -388,7 +389,8 @@ public final class Client extends GameEngine implements Usernamed {
 	@Export("viewportHeight")
 	static int viewportHeight;
 	@ObfuscatedName("nq")
-	static int[] field834;
+	@Export("changedVarps")
+	static int[] changedVarps;
 	@ObfuscatedName("rh")
 	@ObfuscatedGetter(
 		intValue = -1202571805
@@ -1466,8 +1468,8 @@ public final class Client extends GameEngine implements Usernamed {
 		field862 = -1;
 		isDraggingWidget = false;
 		cycleCntr = 1;
-		field834 = new int[32];
-		field835 = 0;
+		changedVarps = new int[32];
+		changedVarpCount = 0;
 		changedItemContainers = new int[32];
 		field837 = 0;
 		changedSkills = new int[32];
@@ -4412,7 +4414,7 @@ public final class Client extends GameEngine implements Usernamed {
 					}
 
 					class195.method3681();
-					field835 += 32;
+					changedVarpCount += 32;
 					var1.serverPacket = null;
 					return true;
 				}
@@ -4978,7 +4980,7 @@ public final class Client extends GameEngine implements Usernamed {
 					}
 
 					Script.changeGameOptions(var5);
-					field834[++field835 - 1 & 31] = var5;
+					changedVarps[++changedVarpCount - 1 & 31] = var5;
 					var1.serverPacket = null;
 					return true;
 				}
@@ -5003,7 +5005,7 @@ public final class Client extends GameEngine implements Usernamed {
 						if (Varps.Varps_main[var16] != Varps.Varps_temp[var16]) {
 							Varps.Varps_main[var16] = Varps.Varps_temp[var16];
 							Script.changeGameOptions(var16);
-							field834[++field835 - 1 & 31] = var16;
+							changedVarps[++changedVarpCount - 1 & 31] = var16;
 						}
 					}
 
@@ -5092,9 +5094,9 @@ public final class Client extends GameEngine implements Usernamed {
 						field707 = (field707 + 1) % 100;
 						String var34 = AbstractFont.escapeBrackets(ServerPacket.method3663(AttackOption.method2135(var3)));
 						if (var60.modIcon != -1) {
-							UserComparator10.addChatMessage(9, class25.method248(var60.modIcon) + var38, var34, ParamDefinition.base37DecodeLong(var22));
+							UserComparator10.addChatMessage(9, class25.method248(var60.modIcon) + var38, var34, ParamComposition.base37DecodeLong(var22));
 						} else {
-							UserComparator10.addChatMessage(9, var38, var34, ParamDefinition.base37DecodeLong(var22));
+							UserComparator10.addChatMessage(9, var38, var34, ParamComposition.base37DecodeLong(var22));
 						}
 					}
 
@@ -5202,7 +5204,7 @@ public final class Client extends GameEngine implements Usernamed {
 					}
 
 					Script.changeGameOptions(var5);
-					field834[++field835 - 1 & 31] = var5;
+					changedVarps[++changedVarpCount - 1 & 31] = var5;
 					var1.serverPacket = null;
 					return true;
 				}

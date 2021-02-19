@@ -119,7 +119,7 @@ public class WorldMapID {
 						VarcInt.Interpreter_intStackSize -= 2;
 						var15 = Interpreter.Interpreter_intStack[VarcInt.Interpreter_intStackSize];
 						var10 = Interpreter.Interpreter_intStack[VarcInt.Interpreter_intStackSize + 1];
-						Widget var11 = var2 ? PlayerComposition.field2561 : VarcInt.field3264;
+						Widget var11 = var2 ? PlayerComposition.scriptDotWidget : VarcInt.scriptActiveWidget;
 						class13.clickWidget(var11, var15, var10);
 						return 1;
 					} else if (var0 == ScriptOpcodes.MOUSECAM) {
@@ -256,7 +256,7 @@ public class WorldMapID {
 						return 1;
 					} else if (var0 == 3140) {
 						Client.field810 = 3;
-						Client.field811 = var2 ? PlayerComposition.field2561.id : VarcInt.field3264.id;
+						Client.field811 = var2 ? PlayerComposition.scriptDotWidget.id : VarcInt.scriptActiveWidget.id;
 						return 1;
 					} else {
 						boolean var16;
@@ -528,7 +528,7 @@ public class WorldMapID {
 		if (var0.field984 >= Client.cycle) {
 			WorldMapManager.method672(var0);
 		} else if (var0.field973 >= Client.cycle) {
-			if (var0.field973 == Client.cycle || var0.sequence == -1 || var0.sequenceDelay != 0 || var0.sequenceFrameCycle + 1 > ParamDefinition.SequenceDefinition_get(var0.sequence).frameLengths[var0.sequenceFrame]) {
+			if (var0.field973 == Client.cycle || var0.sequence == -1 || var0.sequenceDelay != 0 || var0.sequenceFrameCycle + 1 > ParamComposition.SequenceDefinition_get(var0.sequence).frameLengths[var0.sequenceFrame]) {
 				var8 = var0.field973 - var0.field984;
 				var3 = Client.cycle - var0.field984;
 				var4 = var0.field981 * 128 + var0.field941 * 108072960;

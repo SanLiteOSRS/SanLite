@@ -92,7 +92,7 @@ public class DynamicObject extends Renderable {
 		this.x = var5;
 		this.y = var6;
 		if (var7 != -1) {
-			this.sequenceDefinition = ParamDefinition.SequenceDefinition_get(var7);
+			this.sequenceDefinition = ParamComposition.SequenceDefinition_get(var7);
 			this.frame = 0;
 			this.cycleStart = Client.cycle - 1;
 			if (this.sequenceDefinition.field3548 == 0 && var9 != null && var9 instanceof DynamicObject) {

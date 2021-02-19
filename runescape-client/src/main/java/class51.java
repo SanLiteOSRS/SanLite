@@ -213,7 +213,7 @@ public class class51 implements WorldMapSection {
 			var0.field963 = 0;
 		} else {
 			if (var0.sequence != -1 && var0.sequenceDelay == 0) {
-				SequenceDefinition var1 = ParamDefinition.SequenceDefinition_get(var0.sequence);
+				SequenceDefinition var1 = ParamComposition.SequenceDefinition_get(var0.sequence);
 				if (var0.field996 > 0 && var1.field3560 == 0) {
 					++var0.field963;
 					return;

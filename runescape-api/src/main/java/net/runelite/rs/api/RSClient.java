@@ -1259,4 +1259,8 @@ public interface RSClient extends RSGameEngine, Client
 	RSIterableNodeHashTable newIterableNodeHashTable(int size);
 
 	RSVarbitComposition getVarbitComposition(int id);
+
+	@Override
+	@Import("followerIndex")
+	int getFollowerIndex();
 }

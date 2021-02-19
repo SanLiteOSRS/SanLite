@@ -73,7 +73,7 @@ public final class SceneTilePaint {
 		var0.isWalking = false;
 		SequenceDefinition var1;
 		if (var0.movementSequence != -1) {
-			var1 = ParamDefinition.SequenceDefinition_get(var0.movementSequence);
+			var1 = ParamComposition.SequenceDefinition_get(var0.movementSequence);
 			if (var1 != null && var1.frameIds != null) {
 				++var0.movementFrameCycle;
 				if (var0.movementFrame < var1.frameIds.length && var0.movementFrameCycle > var1.frameLengths[var0.movementFrame]) {
@@ -99,7 +99,7 @@ public final class SceneTilePaint {
 
 			int var3 = TileItem.SpotAnimationDefinition_get(var0.spotAnimation).sequence;
 			if (var3 != -1) {
-				SequenceDefinition var2 = ParamDefinition.SequenceDefinition_get(var3);
+				SequenceDefinition var2 = ParamComposition.SequenceDefinition_get(var3);
 				if (var2 != null && var2.frameIds != null) {
 					++var0.spotAnimationFrameCycle;
 					if (var0.spotAnimationFrame < var2.frameIds.length && var0.spotAnimationFrameCycle > var2.frameLengths[var0.spotAnimationFrame]) {
@@ -120,7 +120,7 @@ public final class SceneTilePaint {
 		}
 
 		if (var0.sequence != -1 && var0.sequenceDelay <= 1) {
-			var1 = ParamDefinition.SequenceDefinition_get(var0.sequence);
+			var1 = ParamComposition.SequenceDefinition_get(var0.sequence);
 			if (var1.field3560 == 1 && var0.field996 > 0 && var0.field984 <= Client.cycle && var0.field973 < Client.cycle) {
 				var0.sequenceDelay = 1;
 				return;
@@ -128,7 +128,7 @@ public final class SceneTilePaint {
 		}
 
 		if (var0.sequence != -1 && var0.sequenceDelay == 0) {
-			var1 = ParamDefinition.SequenceDefinition_get(var0.sequence);
+			var1 = ParamComposition.SequenceDefinition_get(var0.sequence);
 			if (var1 != null && var1.frameIds != null) {
 				++var0.sequenceFrameCycle;
 				if (var0.sequenceFrame < var1.frameIds.length && var0.sequenceFrameCycle > var1.frameLengths[var0.sequenceFrame]) {

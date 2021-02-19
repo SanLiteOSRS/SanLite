@@ -58,7 +58,8 @@ public class class195 {
 		signature = "(IB)Ljava/lang/String;",
 		garbageValue = "1"
 	)
-	static final String method3678(int var0) {
+	@Export("inventoryQuantityFormat")
+	static final String inventoryQuantityFormat(int var0) {
 		if (var0 < 100000) {
 			return "<col=ffff00>" + var0 + "</col>";
 		} else {

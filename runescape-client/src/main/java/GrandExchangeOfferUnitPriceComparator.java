@@ -75,7 +75,7 @@ final class GrandExchangeOfferUnitPriceComparator implements Comparator {
 		garbageValue = "-613147121"
 	)
 	static int method200(int var0, Script var1, boolean var2) {
-		Widget var3 = var2 ? PlayerComposition.field2561 : VarcInt.field3264;
+		Widget var3 = var2 ? PlayerComposition.scriptDotWidget : VarcInt.scriptActiveWidget;
 		if (var0 == ScriptOpcodes.CC_GETSCROLLX) {
 			Interpreter.Interpreter_intStack[++VarcInt.Interpreter_intStackSize - 1] = var3.scrollX;
 			return 1;

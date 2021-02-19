@@ -149,7 +149,7 @@ public final class Projectile extends Renderable {
 		this.isMoving = false;
 		int var12 = TileItem.SpotAnimationDefinition_get(this.id).sequence;
 		if (var12 != -1) {
-			this.sequenceDefinition = ParamDefinition.SequenceDefinition_get(var12);
+			this.sequenceDefinition = ParamComposition.SequenceDefinition_get(var12);
 		} else {
 			this.sequenceDefinition = null;
 		}
