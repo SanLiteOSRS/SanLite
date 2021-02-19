@@ -1,3 +1,5 @@
 package net.runelite.rs.api;
 
-public interface RSWorldMapSection3 {}
+public interface RSWorldMapSection3
+{
+}

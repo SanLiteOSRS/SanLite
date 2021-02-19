@@ -118,6 +118,9 @@ public abstract class RSClientMixin implements RSClient
 	private static boolean allWidgetsAreOpTargetable = false;
 
 	@Inject
+	public static int viewportColor;
+
+	@Inject
 	private List<String> outdatedScripts = new ArrayList<>();
 
 	@Inject
@@ -1708,7 +1711,7 @@ public abstract class RSClientMixin implements RSClient
 	public ObjectComposition getObjectDefinition(int objectId)
 	{
 		assert this.isClientThread() : "getObjectDefinition must be called on client thread";
-		return getRSObjectDefinition(objectId);
+		return getRSObjectComposition(objectId);
 	}
 
 	@Inject
@@ -1725,7 +1728,7 @@ public abstract class RSClientMixin implements RSClient
 	public NPCComposition getNpcDefinition(int id)
 	{
 		assert this.isClientThread() : "getNpcDefinition must be called on client thread";
-		return getRSNpcDefinition(id);
+		return getRSNpcComposition(id);
 	}
 
 	@Inject

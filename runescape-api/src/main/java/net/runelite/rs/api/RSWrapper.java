@@ -1,3 +1,5 @@
 package net.runelite.rs.api;
 
-public interface RSWrapper {}
+public interface RSWrapper
+{
+}

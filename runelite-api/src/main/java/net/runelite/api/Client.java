@@ -136,11 +136,27 @@ public interface Client extends GameEngine
 	GameState getGameState();
 
 	/**
+	 * Gets the current game state as an int
+	 *
+	 * @return the game state
+	 */
+	int getRSGameState();
+
+	/**
 	 * Sets the current game state
 	 *
 	 * @param gameState
 	 */
 	void setGameState(GameState gameState);
+
+	/**
+	 * Sets the current game state
+	 * This takes an int instead of a {@link GameState} so it can
+	 * can handle states that aren't in the enum yet
+	 *
+	 * @param gameState
+	 */
+	void setGameState(int gameState);
 
 	/**
 	 * Causes the client to shutdown. It is faster than
@@ -515,6 +531,16 @@ public interface Client extends GameEngine
 	Widget getWidget(int groupId, int childId);
 
 	/**
+	 * Gets a widget by it's packed ID.
+	 *
+	 * <p>
+	 * Note: Use {@link #getWidget(WidgetInfo)} or {@link #getWidget(int, int)} for
+	 * a more readable version of this method.
+	 */
+	@Nullable
+	Widget getWidget(int packedID);
+
+	/**
 	 * Gets an array containing the x-axis canvas positions
 	 * of all widgets.
 	 *
@@ -829,13 +855,12 @@ public interface Client extends GameEngine
 	 */
 	void setVarbitValue(int[] varps, int varbit, int value);
 
-	// TODO: Implement
-//	/**
-//	 * Mark the given varp as changed, causing var listeners to be
-//	 * triggered next tick
-//	 * @param varp
-//	 */
-//	void queueChangedVarp(int varp);
+	/**
+	 * Mark the given varp as changed, causing var listeners to be
+	 * triggered next tick
+	 * @param varp
+	 */
+	void queueChangedVarp(int varp);
 
 	/**
 	 * Gets the widget flags table.
@@ -944,6 +969,18 @@ public interface Client extends GameEngine
 	NPCComposition getNpcDefinition(int npcId);
 
 	/**
+	 * Gets the {@link StructComposition} for a given struct ID
+	 *
+	 * @see StructID
+	 */
+	StructComposition getStructComposition(int structID);
+
+	/**
+	 * Gets the client's cache of in memory struct compositions
+	 */
+	NodeCache getStructCompositionCache();
+
+	/**
 	 * Gets an array of all world areas
 	 *
 	 * @return the world areas
@@ -1033,6 +1070,18 @@ public interface Client extends GameEngine
 	 * @return all graphics objects
 	 */
 	List<GraphicsObject> getGraphicsObjects();
+
+	/**
+	 * Gets the music volume
+	 * @return volume 0-255 inclusive
+	 */
+	int getMusicVolume();
+
+	/**
+	 * Sets the music volume
+	 * @param volume 0-255 inclusive
+	 */
+	void setMusicVolume(int volume);
 
 	/**
 	 * Play a sound effect at the player's current location. This is how UI,
@@ -1332,6 +1381,14 @@ public interface Client extends GameEngine
 	void runScript(Object... args);
 
 	/**
+	 * Creates a blank ScriptEvent for executing a ClientScript2 script
+	 *
+	 * @param args the script id, then any additional arguments to execute the script with
+	 * @see ScriptID
+	 */
+	ScriptEvent createScriptEvent(Object ...args);
+
+	/**
 	 * Checks whether or not there is any active hint arrow.
 	 *
 	 * @return true if there is a hint arrow, false otherwise
@@ -1555,6 +1612,13 @@ public interface Client extends GameEngine
 	void setProjectilesHidden(boolean state);
 
 	/**
+	 * Sets whether dead NPCs are hidden.
+	 *
+	 * @param state new NPC hidden state
+	 */
+	void setDeadNPCsHidden(boolean state);
+
+	/**
 	 * Gets an array of tile collision data.
 	 * <p>
 	 * The index into the array is the plane/z-axis coordinate.
@@ -1594,6 +1658,13 @@ public interface Client extends GameEngine
 	 * @param spritePixels the new sprite
 	 */
 	void setCompass(SpritePixels spritePixels);
+
+	/**
+	 * Sets whether inventory quantity is verbose.
+	 *
+	 * @param state verbose state
+	 */
+	void setItemQuantitiesVerbose(boolean state);
 
 	/**
 	 * Returns widget sprite cache, to be used with {@link Client#getSpriteOverrides()}
@@ -1792,9 +1863,13 @@ public interface Client extends GameEngine
 
 	void setSelectedItemID(int id);
 
+	int getSelectedItemWidget();
+
 	void setSelectedItemWidget(int widgetID);
 
 	void setSelectedItemSlot(int idx);
+
+	int getSelectedItemSlot();
 
 	int getSelectedSpellWidget();
 
@@ -1866,4 +1941,10 @@ public interface Client extends GameEngine
 	boolean isKeyPressed(int keycode);
 
 	boolean shouldRenderLoginScreenFire();
+
+	int getFollowerIndex();
+
+	List<String> getOutdatedScripts();
+
+	void setOutdatedScript(String outdatedScript);
 }

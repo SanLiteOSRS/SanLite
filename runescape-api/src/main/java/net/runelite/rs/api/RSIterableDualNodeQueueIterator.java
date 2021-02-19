@@ -1,3 +1,5 @@
 package net.runelite.rs.api;
 
-public interface RSIterableDualNodeQueueIterator {}
+public interface RSIterableDualNodeQueueIterator
+{
+}

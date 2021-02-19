@@ -1217,4 +1217,46 @@ public interface RSClient extends RSGameEngine, Client
 
 	@Import("pcmSampleLength")
 	void setPcmSampleLength(int pcmSampleLength);
+
+	@Import("changedVarps")
+	int[] getChangedVarps();
+
+	@Import("changedVarpCount")
+	int getChangedVarpCount();
+
+	@Import("changedVarpCount")
+	void setChangedVarpCount(int changedVarpCount);
+
+	@Import("scriptActiveWidget")
+	RSWidget getScriptActiveWidget();
+
+	@Import("scriptDotWidget")
+	RSWidget getScriptDotWidget();
+
+	RSScriptEvent createRSScriptEvent(Object... args);
+
+	void runScriptEvent(RSScriptEvent event);
+
+	@Import("Script_cached")
+	RSEvictingDualNodeHashTable getScriptCache();
+
+	@Import("StructDefinition_cached")
+	RSEvictingDualNodeHashTable getRSStructCompositionCache();
+
+	@Import("StructDefinition_getStructDefinition")
+	RSStructComposition getRSStructComposition(int id);
+
+	@Import("getParamDefinition")
+	RSParamComposition getRSParamComposition(int id);
+
+	@Construct
+	RSIntegerNode newIntegerNode(int contents);
+
+	@Construct
+	RSObjectNode newObjectNode(Object contents);
+
+	@Construct
+	RSIterableNodeHashTable newIterableNodeHashTable(int size);
+
+	RSVarbitComposition getVarbitComposition(int id);
 }

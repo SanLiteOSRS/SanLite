@@ -1,3 +1,5 @@
 package net.runelite.rs.api;
 
-public interface RSDevicePcmPlayerProvider {}
+public interface RSDevicePcmPlayerProvider
+{
+}

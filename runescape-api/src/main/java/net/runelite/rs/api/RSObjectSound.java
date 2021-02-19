@@ -1,3 +1,5 @@
 package net.runelite.rs.api;
 
-public interface RSObjectSound {}
+public interface RSObjectSound
+{
+}

@@ -24,7 +24,6 @@
  */
 package net.runelite.mixins;
 
-import net.runelite.api.Client;
 import net.runelite.api.events.ScriptCallbackEvent;
 import net.runelite.api.events.ScriptPostFired;
 import net.runelite.api.events.ScriptPreFired;
@@ -47,7 +46,7 @@ import static net.runelite.api.Opcodes.*;
 public abstract class ScriptVMMixin implements RSClient
 {
 	@Shadow("client")
-	private static Client client;
+	private static RSClient client;
 
 	@Inject
 	private static RSScript currentScript;

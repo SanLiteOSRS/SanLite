@@ -1,3 +1,5 @@
 package net.runelite.rs.api;
 
-public interface RSModelData0 {}
+public interface RSModelData0
+{
+}

@@ -1,3 +1,5 @@
 package net.runelite.rs.api;
 
-public interface RSRasterizer2D {}
+public interface RSRasterizer2D
+{
+}
