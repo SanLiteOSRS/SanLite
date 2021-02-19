@@ -47,9 +47,9 @@ import java.util.Set;
 import static net.runelite.api.MenuAction.MENU_ACTION_DEPRIORITIZE_OFFSET;
 
 @PluginDescriptor(
-		name = "Corporeal Beast",
-		description = "Show damage statistics and highlight dark energy cores",
-		tags = {"bosses", "combat", "pve", "overlay", "sanlite"}
+	name = "Corporeal Beast",
+	description = "Show damage statistics and highlight dark energy cores",
+	tags = {"bosses", "combat", "pve", "overlay", "sanlite"}
 )
 @Slf4j
 public class CorpPlugin extends Plugin

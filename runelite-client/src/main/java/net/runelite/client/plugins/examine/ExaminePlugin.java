@@ -313,7 +313,7 @@ public class ExaminePlugin extends Plugin
 				return new int[]{widgetItem.getItemQuantity(), widgetItem.getItemId()};
 			}
 		}
-		else if (WidgetInfo.SHOP_ITEMS_CONTAINER.getGroupId() == widgetGroup)
+		else if (WidgetID.SHOP_GROUP_ID == widgetGroup)
 		{
 			Widget widgetItem = widget.getChild(actionParam);
 			if (widgetItem != null)

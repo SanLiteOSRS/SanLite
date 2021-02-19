@@ -45,7 +45,6 @@ import net.runelite.api.DecorativeObject;
 import net.runelite.api.GameObject;
 import net.runelite.api.GraphicsObject;
 import net.runelite.api.TileItem;
-import net.runelite.api.GroundObject;
 import net.runelite.api.ItemLayer;
 import net.runelite.api.NPC;
 import net.runelite.api.NPCComposition;
@@ -56,7 +55,6 @@ import net.runelite.api.Point;
 import net.runelite.api.Projectile;
 import net.runelite.api.Scene;
 import net.runelite.api.Tile;
-import net.runelite.api.WallObject;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.widgets.Widget;
 import net.runelite.api.widgets.WidgetInfo;
@@ -155,7 +153,6 @@ class DevToolsOverlay extends Overlay
 
 		String text = local.getName() + " (A: " + local.getAnimation() + ") (P: " + local.getPoseAnimation() + ") (G: " + local.getGraphic() + ") (GF:" + local.getSpotAnimFrame() + ")";
 		OverlayUtil.renderActorOverlay(graphics, local, text, CYAN);
-		renderPlayerWireframe(graphics, local, CYAN);
 	}
 
 	private void renderNpcs(Graphics2D graphics)
@@ -216,7 +213,7 @@ class DevToolsOverlay extends Overlay
 
 				if (plugin.getGroundObjects().isActive())
 				{
-					renderGroundObject(graphics, tile, player);
+					renderTileObject(graphics, tile.getGroundObject(), player, PURPLE);
 				}
 
 				if (plugin.getGameObjects().isActive())
@@ -226,7 +223,7 @@ class DevToolsOverlay extends Overlay
 
 				if (plugin.getWalls().isActive())
 				{
-					renderWallObject(graphics, tile, player);
+					renderTileObject(graphics, tile.getWallObject(), player, GRAY);
 				}
 
 				if (plugin.getDecorations().isActive())
@@ -311,45 +308,21 @@ class DevToolsOverlay extends Overlay
 		{
 			for (GameObject gameObject : gameObjects)
 			{
-				if (gameObject != null)
+				if (gameObject != null && gameObject.getSceneMinLocation().equals(tile.getSceneLocation()))
 				{
-					if (player.getLocalLocation().distanceTo(gameObject.getLocalLocation()) <= MAX_DISTANCE)
-					{
-						OverlayUtil.renderTileOverlay(graphics, gameObject, "ID: " + gameObject.getId(), GREEN);
-					}
-
-					// Draw a polygon around the convex hull
-					// of the model vertices
-					Shape p = gameObject.getConvexHull();
-					if (p != null)
-					{
-						graphics.draw(p);
-					}
+					renderTileObject(graphics, gameObject, player, GREEN);
 				}
 			}
 		}
 	}
 
-	private void renderGroundObject(Graphics2D graphics, Tile tile, Player player)
+	private void renderTileObject(Graphics2D graphics, TileObject tileObject, Player player, Color color)
 	{
-		GroundObject groundObject = tile.getGroundObject();
-		if (groundObject != null)
+		if (tileObject != null)
 		{
-			if (player.getLocalLocation().distanceTo(groundObject.getLocalLocation()) <= MAX_DISTANCE)
+			if (player.getLocalLocation().distanceTo(tileObject.getLocalLocation()) <= MAX_DISTANCE)
 			{
-				OverlayUtil.renderTileOverlay(graphics, groundObject, "ID: " + groundObject.getId(), PURPLE);
-			}
-		}
-	}
-
-	private void renderWallObject(Graphics2D graphics, Tile tile, Player player)
-	{
-		WallObject wallObject = tile.getWallObject();
-		if (wallObject != null)
-		{
-			if (player.getLocalLocation().distanceTo(wallObject.getLocalLocation()) <= MAX_DISTANCE)
-			{
-				OverlayUtil.renderTileOverlay(graphics, wallObject, "ID: " + wallObject.getId(), GRAY);
+				OverlayUtil.renderTileOverlay(graphics, tileObject, "ID: " + tileObject.getId(), color);
 			}
 		}
 	}
@@ -480,22 +453,4 @@ class DevToolsOverlay extends Overlay
 			}
 		}
 	}
-
-	private void renderPlayerWireframe(Graphics2D graphics, Player player, Color color)
-	{
-		Polygon[] polys = player.getPolygons();
-
-		if (polys == null)
-		{
-			return;
-		}
-
-		graphics.setColor(color);
-
-		for (Polygon p : polys)
-		{
-			graphics.drawPolygon(p);
-		}
-	}
-
 }

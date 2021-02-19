@@ -57,9 +57,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 @PluginDescriptor(
-		name = "Barrows Brothers",
-		description = "Show helpful information for the Barrows minigame",
-		tags = {"combat", "minigame", "minimap", "bosses", "pve", "pvm", "sanlite"}
+	name = "Barrows Brothers",
+	description = "Show helpful information for the Barrows minigame",
+	tags = {"combat", "minigame", "minimap", "bosses", "pve", "pvm", "sanlite"}
 )
 public class BarrowsPlugin extends Plugin
 {

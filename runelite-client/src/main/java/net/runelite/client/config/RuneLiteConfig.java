@@ -32,6 +32,7 @@ import net.runelite.api.Constants;
 import net.runelite.client.Notifier;
 import net.runelite.client.ui.ContainableFrame;
 import net.runelite.client.ui.overlay.components.ComponentConstants;
+import net.runelite.client.util.OSType;
 
 @ConfigGroup(RuneLiteConfig.GROUP_NAME)
 public interface RuneLiteConfig extends Config
@@ -129,7 +130,7 @@ public interface RuneLiteConfig extends Config
 	)
 	default boolean enableCustomChrome()
 	{
-		return true;
+		return OSType.getOSType() == OSType.Windows;
 	}
 
 	@Range(
@@ -150,7 +151,7 @@ public interface RuneLiteConfig extends Config
 
 	@ConfigItem(
 		keyName = "gameAlwaysOnTop",
-		name = "Enable client always on top",
+		name = "Always on top",
 		description = "The game will always be on the top of the screen",
 		position = 17,
 		section = windowSettings

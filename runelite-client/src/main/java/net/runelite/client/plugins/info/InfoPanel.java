@@ -37,6 +37,7 @@ import java.awt.event.MouseEvent;
 import java.io.File;
 import java.util.concurrent.ScheduledExecutorService;
 import javax.annotation.Nullable;
+import javax.inject.Named;
 import javax.inject.Singleton;
 import javax.swing.Box;
 import javax.swing.ImageIcon;
@@ -96,16 +97,44 @@ public class InfoPanel extends PluginPanel
 	@Inject
 	private ConfigManager configManager;
 
+	@Inject
+	@Named("runelite.title")
+	private String clientTitle;
+
+	@Inject
+	@Named("runelite.version")
+	private String runeliteVersion;
+
+	@Inject
+	@Named("sanlite.version")
+	private String sanliteVersion;
+
+	@Inject
+	@Named("runelite.github.link")
+	private String githubLink;
+
+	@Inject
+	@Named("runelite.discord.invite")
+	private String discordInvite;
+
+	@Inject
+	@Named("runelite.patreon.link")
+	private String patreonLink;
+
+	@Inject
+	@Named("runelite.wiki.link")
+	private String wikiLink;
+
 	static
 	{
-		ARROW_RIGHT_ICON = new ImageIcon(ImageUtil.getResourceStreamFromClass(InfoPanel.class, "/util/arrow_right.png"));
-		GITHUB_ICON = new ImageIcon(ImageUtil.getResourceStreamFromClass(InfoPanel.class, "github_icon.png"));
-		FOLDER_ICON = new ImageIcon(ImageUtil.getResourceStreamFromClass(InfoPanel.class, "folder_icon.png"));
-		LOGS_ICON = new ImageIcon(ImageUtil.getResourceStreamFromClass(InfoPanel.class, "logs_icon.png"));
-		SCREENSHOT_ICON = new ImageIcon(ImageUtil.getResourceStreamFromClass(InfoPanel.class, "screenshot_icon.png"));
-		DISCORD_ICON = new ImageIcon(ImageUtil.getResourceStreamFromClass(InfoPanel.class, "discord_icon.png"));
-		WIKI_ICON = new ImageIcon(ImageUtil.getResourceStreamFromClass(InfoPanel.class, "wiki_icon.png"));
-		IMPORT_ICON = new ImageIcon(ImageUtil.getResourceStreamFromClass(InfoPanel.class, "import_icon.png"));
+		ARROW_RIGHT_ICON = new ImageIcon(ImageUtil.loadImageResource(InfoPanel.class, "/util/arrow_right.png"));
+		GITHUB_ICON = new ImageIcon(ImageUtil.loadImageResource(InfoPanel.class, "github_icon.png"));
+		FOLDER_ICON = new ImageIcon(ImageUtil.loadImageResource(InfoPanel.class, "folder_icon.png"));
+		LOGS_ICON = new ImageIcon(ImageUtil.loadImageResource(InfoPanel.class, "logs_icon.png"));
+		SCREENSHOT_ICON = new ImageIcon(ImageUtil.loadImageResource(InfoPanel.class, "screenshot_icon.png"));
+		DISCORD_ICON = new ImageIcon(ImageUtil.loadImageResource(InfoPanel.class, "discord_icon.png"));
+		WIKI_ICON = new ImageIcon(ImageUtil.loadImageResource(InfoPanel.class, "wiki_icon.png"));
+		IMPORT_ICON = new ImageIcon(ImageUtil.loadImageResource(InfoPanel.class, "import_icon.png"));
 	}
 
 	void init()
@@ -121,12 +150,11 @@ public class InfoPanel extends PluginPanel
 
 		final Font smallFont = FontManager.getRunescapeSmallFont();
 
-		String clientTitle = RuneLiteProperties.getTitle();
-		JLabel version = new JLabel(htmlLabel("RuneLite version: ", RuneLiteProperties.getVersion()));
+		JLabel version = new JLabel(htmlLabel("RuneLite version: ", runeliteVersion));
 		version.setFont(smallFont);
 
-		JLabel sanliteVersion = new JLabel(htmlLabel(clientTitle + " version: ", RuneLiteProperties.getSanLiteVersion()));
-		sanliteVersion.setFont(smallFont);
+		JLabel sanliteVersionLabel = new JLabel(htmlLabel(clientTitle + " version: ", sanliteVersion));
+		sanliteVersionLabel.setFont(smallFont);
 
 		JLabel revision = new JLabel();
 		revision.setFont(smallFont);
@@ -160,7 +188,7 @@ public class InfoPanel extends PluginPanel
 			}
 		});
 
-		versionPanel.add(sanliteVersion);
+		versionPanel.add(sanliteVersionLabel);
 		versionPanel.add(version);
 		versionPanel.add(revision);
 		versionPanel.add(launcher);
@@ -185,9 +213,9 @@ public class InfoPanel extends PluginPanel
 			}
 		});
 
-		actionsContainer.add(buildLinkPanel(GITHUB_ICON, "Report an issue or", "make a suggestion", RuneLiteProperties.getGithubLink()));
-		actionsContainer.add(buildLinkPanel(DISCORD_ICON, "Talk to us on our", "Discord server", RuneLiteProperties.getDiscordInvite()));
-		actionsContainer.add(buildLinkPanel(WIKI_ICON, "Information about", clientTitle + " and plugins", RuneLiteProperties.getWikiLink()));
+		actionsContainer.add(buildLinkPanel(GITHUB_ICON, "Report an issue or", "make a suggestion", githubLink));
+		actionsContainer.add(buildLinkPanel(DISCORD_ICON, "Talk to us on our", "Discord server", discordInvite));
+		actionsContainer.add(buildLinkPanel(WIKI_ICON, "Information about", clientTitle + " and plugins", wikiLink));
 		actionsContainer.add(buildLinkPanel(FOLDER_ICON, "Open " + clientTitle + " directory", "to view your settings file", RUNELITE_DIR));
 		actionsContainer.add(buildLinkPanel(LOGS_ICON, "Open the logs directory", "to assist with bug reports", LOGS_DIR));
 		actionsContainer.add(buildLinkPanel(SCREENSHOT_ICON, "Open screenshot directory", "to view your images", SCREENSHOT_DIR));

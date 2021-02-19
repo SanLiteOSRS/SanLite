@@ -200,7 +200,7 @@ public class DevToolsPlugin extends Plugin
 
 		final DevToolsPanel panel = injector.getInstance(DevToolsPanel.class);
 
-		final BufferedImage icon = ImageUtil.getResourceStreamFromClass(getClass(), "devtools_icon.png");
+		final BufferedImage icon = ImageUtil.loadImageResource(getClass(), "devtools_icon.png");
 
 		navButton = NavigationButton.builder()
 			.tooltip("Developer Tools")
@@ -269,8 +269,7 @@ public class DevToolsPlugin extends Plugin
 				int value = Integer.parseInt(args[1]);
 				int[] varps = client.getVarps();
 				varps[varp] = value;
-				// TODO: Implement
-//				client.queueChangedVarp(varp);
+				client.queueChangedVarp(varp);
 				client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "Set VarPlayer " + varp + " to " + value, null);
 				VarbitChanged varbitChanged = new VarbitChanged();
 				varbitChanged.setIndex(varp);
@@ -290,8 +289,7 @@ public class DevToolsPlugin extends Plugin
 				int value = Integer.parseInt(args[1]);
 				client.setVarbitValue(client.getVarps(), varbit, value);
 				VarbitComposition varbitComposition = client.getVarbit(varbit);
-				// TODO: Implement
-//				client.queueChangedVarp(varbitComposition.getIndex());
+				client.queueChangedVarp(varbitComposition.getIndex());
 				client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "Set varbit " + varbit + " to " + value, null);
 				eventBus.post(new VarbitChanged()); // fake event
 				break;
