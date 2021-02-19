@@ -25,17 +25,20 @@
 package net.runelite.injector.raw;
 
 import net.runelite.asm.ClassFile;
+import net.runelite.asm.Field;
 import net.runelite.asm.Method;
 import net.runelite.asm.attributes.code.Instruction;
 import net.runelite.asm.attributes.code.Instructions;
 import net.runelite.asm.attributes.code.Label;
 import net.runelite.asm.attributes.code.instruction.types.JumpingInstruction;
 import net.runelite.asm.attributes.code.instruction.types.PushConstantInstruction;
+import net.runelite.asm.attributes.code.instructions.GetField;
 import net.runelite.asm.attributes.code.instructions.GetStatic;
 import net.runelite.asm.attributes.code.instructions.IMul;
 import net.runelite.asm.attributes.code.instructions.InvokeStatic;
 import net.runelite.asm.signature.Signature;
 import net.runelite.injector.Inject;
+import net.runelite.injector.InjectUtil;
 import net.runelite.injector.InjectionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,7 +48,7 @@ import java.util.ListIterator;
 import java.util.Set;
 
 import static net.runelite.injector.InjectHookMethod.HOOKS;
-import static net.runelite.injector.InjectUtil.findStaticMethod;
+import static net.runelite.injector.InjectUtil.findObField;
 
 public class DrawAfterWidgets
 {
@@ -109,7 +112,9 @@ public class DrawAfterWidgets
 
 		boolean injected = false;
 
-		Method noClip = findStaticMethod(inject, "Rasterizer2D_resetClip"); // !!!!!
+		Field client = InjectUtil.findDeobField(inject, "client");
+		Field callbacks = findObField(inject, "callbacks");
+		Method noClip = InjectUtil.findMethod(inject, "Rasterizer2D_resetClip", "Rasterizer2D"); // !!!!!
 
 		if (noClip == null)
 		{
@@ -229,8 +234,8 @@ public class DrawAfterWidgets
 						so let's make it easier by just checking that they are there.
 					 */
 					if (insns.stream().filter(i2 -> i2 instanceof PushConstantInstruction).count() != 2
-							|| insns.stream().filter(i2 -> i2 instanceof IMul).count() != 1
-							|| insns.stream().filter(i2 -> i2 instanceof GetStatic).count() != 1)
+						|| insns.stream().filter(i2 -> i2 instanceof IMul).count() != 1
+						|| insns.stream().filter(i2 -> i2 instanceof GetStatic).count() != 1)
 					{
 						continue;
 					}
@@ -250,8 +255,9 @@ public class DrawAfterWidgets
 					);
 
 					instructions.addInstruction(instructions.getInstructions().indexOf(l) + 1, invoke);
-
-					logger.debug("injectDrawAfterWidgets injected a call after " + l);
+					instructions.addInstruction(instructions.getInstructions().indexOf(l) + 1, new GetField(instructions, callbacks.getPoolField()));
+					instructions.addInstruction(instructions.getInstructions().indexOf(l) + 1, new GetStatic(instructions, client.getPoolField()));
+					logger.debug("[DEBUG] injectDrawAfterWidgets injected a call after " + l);
 
 					injected = true;
 				}

@@ -43,7 +43,6 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.Objects;
 import java.util.function.Consumer;
-import javax.inject.Named;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -56,7 +55,6 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 import javax.swing.text.DocumentFilter;
 
-import com.google.inject.Inject;
 import lombok.Getter;
 import lombok.Setter;
 import net.runelite.client.RuneLiteProperties;

@@ -24,7 +24,6 @@
  */
 package net.runelite.client.callback;
 
-import com.google.inject.Injector;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;

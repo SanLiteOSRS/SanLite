@@ -344,36 +344,10 @@ public abstract class RSClientMixin implements RSClient
 	}
 
 	@Inject
-	public MessageNode addChatMessage(ChatMessageType type, String name, String message, String sender, boolean postEvent)
-	{
-		assert this.isClientThread() : "addChatMessage must be called on client thread";
-		copy$addChatMessage(type.getType(), name, message, sender);
-
-		Logger logger = client.getLogger();
-		if (logger.isDebugEnabled())
-		{
-			logger.debug("Chat message type {}: {}", type.name(), message);
-		}
-
-		// Get the message node which was added
-		@SuppressWarnings("unchecked") Map<Integer, RSChatChannel> chatLineMap = client.getChatLineMap();
-		RSChatChannel chatLineBuffer = chatLineMap.get(type.getType());
-		MessageNode messageNode = chatLineBuffer.getLines()[0];
-
-		if (postEvent)
-		{
-			final ChatMessage chatMessage = new ChatMessage(messageNode, type, name, message, sender, messageNode.getTimestamp());
-			client.getCallbacks().post(chatMessage);
-		}
-
-		return messageNode;
-	}
-
-	@Inject
 	@Override
-	public MessageNode addChatMessage(ChatMessageType type, String name, String message, String sender)
+	public void addChatMessage(ChatMessageType type, String name, String message, String sender)
 	{
-		return addChatMessage(type, name, message, sender, true);
+		addChatMessage(type.getType(), name, message, sender);
 	}
 
 	@Inject
@@ -1278,9 +1252,9 @@ public abstract class RSClientMixin implements RSClient
 		client.getCallbacks().updateNpcs();
 	}
 
-	@Copy("addChatMessage")
-	@Replace("addChatMessage")
-	public static void copy$addChatMessage(int type, String name, String message, String sender)
+	@Inject
+	@MethodHook(value = "addChatMessage", end = true)
+	public static void onAddChatMessage(int type, String name, String message, String sender)
 	{
 		Logger logger = client.getLogger();
 		if (logger.isDebugEnabled())
@@ -1330,11 +1304,7 @@ public abstract class RSClientMixin implements RSClient
 			widget.setRenderX(renderX);
 			widget.setRenderY(renderY);
 
-			if (widget.getContentType() == WidgetType.VIEWPORT)
-			{
-				viewportColor = 0;
-			}
-			else if (widget.getType() == WidgetType.RECTANGLE)
+			if (widget.getType() == WidgetType.RECTANGLE)
 			{
 				if (renderX == client.getViewportXOffset() && renderY == client.getViewportYOffset()
 					&& widget.getWidth() == client.getViewportWidth() && widget.getHeight() == client.getViewportHeight()
@@ -1346,7 +1316,7 @@ public abstract class RSClientMixin implements RSClient
 					int vpc = viewportColor;
 					int c1 = (alpha * (tc & 0xff00ff) >> 8 & 0xFF00FF) + (alpha * (tc & 0x00FF00) >> 8 & 0x00FF00);
 					int c2 = (inverseAlpha * (vpc & 0xff00ff) >> 8 & 0xFF00FF) + (inverseAlpha * (vpc & 0x00FF00) >> 8 & 0x00FF00);
-					int outAlpha = alpha + ((vpc >>> 24) * (255 - alpha) * 0x8081 >>> 23);
+					int outAlpha = inverseAlpha + ((vpc >>> 24) * (255 - alpha) * 0x8081 >>> 23);
 					viewportColor = outAlpha << 24 | c1 + c2;
 					widget.setHidden(true);
 					hiddenWidgets.add(widget);

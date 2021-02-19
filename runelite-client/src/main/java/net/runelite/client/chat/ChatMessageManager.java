@@ -39,11 +39,8 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicReference;
 import javax.inject.Inject;
 import javax.inject.Singleton;
-import net.runelite.api.ChatMessageType;
-import net.runelite.api.Client;
-import net.runelite.api.MessageNode;
-import net.runelite.api.Player;
-import net.runelite.api.Varbits;
+
+import net.runelite.api.*;
 import net.runelite.api.events.ChatMessage;
 import net.runelite.api.events.ResizeableChanged;
 import net.runelite.api.events.ScriptCallbackEvent;
@@ -572,22 +569,27 @@ public class ChatMessageManager
 			return;
 		}
 
-		final String formattedMessage = formatRuneLiteMessage(message.getRuneLiteFormattedMessage(), message.getType());
-
 		// this updates chat cycle
-		final MessageNode line = client.addChatMessage(
-			message.getType(),
-			MoreObjects.firstNonNull(message.getName(), ""),
-			MoreObjects.firstNonNull(formattedMessage, message.getValue()),
-			message.getSender());
+		client.addChatMessage(
+				message.getType(),
+				MoreObjects.firstNonNull(message.getName(), ""),
+				MoreObjects.firstNonNull(message.getValue(), message.getRuneLiteFormattedMessage()),
+				message.getSender());
+
+		// Get last message from line buffer (the one we just added)
+		final ChatLineBuffer chatLineBuffer = client.getChatLineMap().get(message.getType().getType());
+		final MessageNode[] lines = chatLineBuffer.getLines();
+		final MessageNode line = lines[0];
 
 		// Update the message with RuneLite additions
 		line.setRuneLiteFormatMessage(message.getRuneLiteFormattedMessage());
-		
+
 		if (message.getTimestamp() != 0)
 		{
 			line.setTimestamp(message.getTimestamp());
 		}
+
+		update(line);
 	}
 
 	/**
