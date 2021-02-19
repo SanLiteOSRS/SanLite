@@ -38,6 +38,7 @@ import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.Set;
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -66,7 +67,6 @@ import net.runelite.api.widgets.WidgetInfo;
 import static net.runelite.api.widgets.WidgetInfo.TO_CHILD;
 import static net.runelite.api.widgets.WidgetInfo.TO_GROUP;
 
-import net.runelite.client.RuneLiteProperties;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.EventBus;
 import net.runelite.client.eventbus.Subscribe;
@@ -101,6 +101,10 @@ public class ScriptInspector extends JFrame
 		BLACKLIST,
 		HIGHLIGHT
 	}
+
+	@com.google.inject.Inject
+	@Named("runelite.title")
+	private String clientTitle;
 
 	@Data
 	private class ScriptTreeNode extends DefaultMutableTreeNode
@@ -147,7 +151,7 @@ public class ScriptInspector extends JFrame
 		this.client = client;
 		this.configManager = configManager;
 
-		setTitle(RuneLiteProperties.getTitle() + " Script Inspector");
+		setTitle(clientTitle + " Script Inspector");
 		setIconImage(ClientUI.ICON);
 
 		setLayout(new BorderLayout());

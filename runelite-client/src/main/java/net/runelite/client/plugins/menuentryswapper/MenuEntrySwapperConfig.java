@@ -145,6 +145,17 @@ public interface MenuEntrySwapperConfig extends Config
 	}
 
 	@ConfigItem(
+		keyName = "swapBattlestaves",
+		name = "Battlestaff",
+		description = "Swap Wield with Use on Battlestaves without orbs",
+		section = itemSection
+	)
+	default boolean swapBattlestaves()
+	{
+		return false;
+	}
+
+	@ConfigItem(
 		keyName = "swapPrayerBook",
 		name = "Recite-Prayer",
 		description = "Swap Read with Recite-prayer on the Prayer Book from The Great Brain Robbery quest",
@@ -277,6 +288,17 @@ public interface MenuEntrySwapperConfig extends Config
 	}
 
 	@ConfigItem(
+		keyName = "swapBait",
+		name = "Bait",
+		description = "Swap Lure, Small Net with Bait on Fishing spot",
+		section = objectSection
+	)
+	default boolean swapBait()
+	{
+		return false;
+	}
+
+	@ConfigItem(
 		keyName = "swapHelp",
 		name = "Help",
 		description = "Swap Talk-to with Help on Arceuus library customers",
@@ -327,6 +349,17 @@ public interface MenuEntrySwapperConfig extends Config
 		section = objectSection
 	)
 	default boolean swapJewelleryBox()
+	{
+		return false;
+	}
+
+	@ConfigItem(
+		keyName = "swapPortalNexus",
+		name = "Portal Nexus",
+		description =  "Swap Teleport options with Teleport Menu on the Portal Nexus",
+		section = objectSection
+	)
+	default boolean swapPortalNexus()
 	{
 		return false;
 	}
@@ -607,6 +640,17 @@ public interface MenuEntrySwapperConfig extends Config
 	}
 
 	@ConfigItem(
+		keyName = "swapRockCake",
+		name = "Dwarven rock cake",
+		description = "Swap Eat with Guzzle on the Dwarven rock cake",
+		section = itemSection
+	)
+	default boolean swapRockCake()
+	{
+		return false;
+	}
+
+	@ConfigItem(
 		keyName = "swapPickpocket",
 		name = "Pickpocket",
 		description = "Swap Talk-to with Pickpocket",
@@ -647,17 +691,6 @@ public interface MenuEntrySwapperConfig extends Config
 		section = itemSection
 	)
 	default boolean swapCastBloom()
-	{
-		return false;
-	}
-
-	@ConfigItem(
-			keyName = "swapGuzzleRockCake",
-			name = "Swap guzzle rock cake",
-			description = "Swap Eat to Guzzle for the dwarven rock cake",
-			section = itemSection
-	)
-	default boolean swapGuzzleRockCake()
 	{
 		return false;
 	}

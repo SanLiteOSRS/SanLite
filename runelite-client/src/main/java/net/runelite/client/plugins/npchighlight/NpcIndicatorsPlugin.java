@@ -71,9 +71,9 @@ import net.runelite.client.util.Text;
 import net.runelite.client.util.WildcardMatcher;
 
 @PluginDescriptor(
-		name = "NPC Indicators",
-		description = "Highlight NPCs on-screen and/or on the minimap",
-		tags = {"highlight", "minimap", "npcs", "overlay", "respawn", "tags"}
+	name = "NPC Indicators",
+	description = "Highlight NPCs on-screen and/or on the minimap",
+	tags = {"highlight", "minimap", "npcs", "overlay", "respawn", "tags"}
 )
 @Slf4j
 public class NpcIndicatorsPlugin extends Plugin
@@ -88,8 +88,8 @@ public class NpcIndicatorsPlugin extends Plugin
 	private static final String UNTAG_ALL = "Un-tag-All";
 
 	private static final Set<MenuAction> NPC_MENU_ACTIONS = ImmutableSet.of(MenuAction.NPC_FIRST_OPTION, MenuAction.NPC_SECOND_OPTION,
-			MenuAction.NPC_THIRD_OPTION, MenuAction.NPC_FOURTH_OPTION, MenuAction.NPC_FIFTH_OPTION, MenuAction.SPELL_CAST_ON_NPC,
-			MenuAction.ITEM_USE_ON_NPC);
+		MenuAction.NPC_THIRD_OPTION, MenuAction.NPC_FOURTH_OPTION, MenuAction.NPC_FIFTH_OPTION, MenuAction.SPELL_CAST_ON_NPC,
+		MenuAction.ITEM_USE_ON_NPC);
 
 	@Inject
 	private Client client;
@@ -211,7 +211,7 @@ public class NpcIndicatorsPlugin extends Plugin
 	public void onGameStateChanged(GameStateChanged event)
 	{
 		if (event.getGameState() == GameState.LOGIN_SCREEN ||
-				event.getGameState() == GameState.HOPPING)
+			event.getGameState() == GameState.HOPPING)
 		{
 			highlightedNpcs.clear();
 			deadNpcsToDisplay.clear();
@@ -282,8 +282,8 @@ public class NpcIndicatorsPlugin extends Plugin
 
 			final String npcName = npc.getName();
 			boolean matchesList = highlights.stream()
-					.filter(highlight -> !highlight.equalsIgnoreCase(npcName))
-					.anyMatch(highlight -> WildcardMatcher.matches(highlight, npcName));
+				.filter(highlight -> !highlight.equalsIgnoreCase(npcName))
+				.anyMatch(highlight -> WildcardMatcher.matches(highlight, npcName));
 
 			MenuEntry[] menuEntries = client.getMenuEntries();
 
@@ -320,8 +320,8 @@ public class NpcIndicatorsPlugin extends Plugin
 	public void onMenuOptionClicked(MenuOptionClicked click)
 	{
 		if (click.getMenuAction() != MenuAction.RUNELITE ||
-				!(click.getMenuOption().equals(TAG) || click.getMenuOption().equals(UNTAG) ||
-						click.getMenuOption().equals(TAG_ALL) || click.getMenuOption().equals(UNTAG_ALL)))
+			!(click.getMenuOption().equals(TAG) || click.getMenuOption().equals(UNTAG) ||
+				click.getMenuOption().equals(TAG_ALL) || click.getMenuOption().equals(UNTAG_ALL)))
 		{
 			return;
 		}
@@ -520,7 +520,7 @@ public class NpcIndicatorsPlugin extends Plugin
 		highlightedNpcs.clear();
 
 		if (client.getGameState() != GameState.LOGGED_IN &&
-				client.getGameState() != GameState.LOADING)
+			client.getGameState() != GameState.LOADING)
 		{
 			// NPCs are still in the client after logging out,
 			// but we don't want to highlight those.
@@ -611,7 +611,7 @@ public class NpcIndicatorsPlugin extends Plugin
 				if (!teleportGraphicsObjectSpawnedThisTick.isEmpty())
 				{
 					if (teleportGraphicsObjectSpawnedThisTick.contains(npc.getWorldLocation()) ||
-							teleportGraphicsObjectSpawnedThisTick.contains(getWorldLocationBehind(npc)))
+						teleportGraphicsObjectSpawnedThisTick.contains(getWorldLocationBehind(npc)))
 					{
 						// NPC teleported here, so we don't want to update the respawn timer
 						continue;
@@ -644,7 +644,7 @@ public class NpcIndicatorsPlugin extends Plugin
 					final WorldPoint possibleOtherNpcLocation = getWorldLocationBehind(npc);
 
 					mn.getPossibleRespawnLocations().removeIf(x ->
-							x.distanceTo(npcLocation) != 0 && x.distanceTo(possibleOtherNpcLocation) != 0);
+						x.distanceTo(npcLocation) != 0 && x.distanceTo(possibleOtherNpcLocation) != 0);
 
 					if (mn.getPossibleRespawnLocations().isEmpty())
 					{

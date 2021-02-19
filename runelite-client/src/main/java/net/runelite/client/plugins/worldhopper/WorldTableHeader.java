@@ -50,11 +50,11 @@ class WorldTableHeader extends JPanel
 	private static final ImageIcon HIGHLIGHT_ARROW_UP;
 
 	private static final Color ARROW_COLOR = ColorScheme.LIGHT_GRAY_COLOR;
-	private static final Color HIGHLIGHT_COLOR = ColorScheme.BRAND_BLUE;
+	private static final Color HIGHLIGHT_COLOR = ColorScheme.BRAND_ORANGE;
 
 	static
 	{
-		final BufferedImage arrowDown = ImageUtil.getResourceStreamFromClass(WorldHopperPlugin.class, "arrow_down.png");
+		final BufferedImage arrowDown = ImageUtil.loadImageResource(WorldHopperPlugin.class, "arrow_down.png");
 		final BufferedImage arrowUp = ImageUtil.rotateImage(arrowDown, Math.PI);
 		final BufferedImage arrowUpFaded = ImageUtil.luminanceOffset(arrowUp, -80);
 		ARROW_UP = new ImageIcon(arrowUpFaded);

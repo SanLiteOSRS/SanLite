@@ -51,7 +51,7 @@ public interface ItemChargeConfig extends Config
 
 	@ConfigItem(
 		keyName = "veryLowWarningColor",
-		name = "Very Low Warning Color",
+		name = "Very Low Warning",
 		description = "The color of the overlay when charges are very low",
 		position = 1
 	)
@@ -62,7 +62,7 @@ public interface ItemChargeConfig extends Config
 
 	@ConfigItem(
 		keyName = "lowWarningColor",
-		name = "Low Warning Color",
+		name = "Low Warning",
 		description = "The color of the overlay when charges are low",
 		position = 2
 	)

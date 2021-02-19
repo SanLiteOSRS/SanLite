@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2019, Jos <Malevolentdev@gmail.com>
+ * Copyright (c) 2020, Dylan <dylanhe@umich.edu>
+ * Copyright (c) 2020, Jacob <jgozon@umich.edu>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,63 +23,67 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.client.plugins.statusbars;
+package net.runelite.client.plugins.specialcounter;
 
 import net.runelite.client.config.Config;
 import net.runelite.client.config.ConfigGroup;
 import net.runelite.client.config.ConfigItem;
-import net.runelite.client.plugins.statusbars.config.BarMode;
 
-@ConfigGroup("statusbars")
-public interface StatusBarsConfig extends Config
+@ConfigGroup("specialcounter")
+public interface SpecialCounterConfig extends Config
 {
 	@ConfigItem(
-		keyName = "enableCounter",
-		name = "Show counters",
-		description = "Shows current value of the status on the bar"
+		position = 0,
+		keyName = "thresholdNotification",
+		name = "Threshold Notifications",
+		description = "Sends a notification when your special attack counter exceeds the threshold"
 	)
-	default boolean enableCounter()
+	default boolean thresholdNotification()
 	{
 		return false;
 	}
 
 	@ConfigItem(
-		keyName = "enableSkillIcon",
-		name = "Show icons",
-		description = "Adds skill icons at the top of the bars."
+		position = 1,
+		keyName = "dragonWarhammerThreshold",
+		name = "Dragon Warhammer",
+		description = "Threshold for Dragon Warhammer (0 to disable)"
 	)
-	default boolean enableSkillIcon()
+	default int dragonWarhammerThreshold()
 	{
-		return true;
+		return 0;
 	}
 
 	@ConfigItem(
-		keyName = "enableRestorationBars",
-		name = "Show restores",
-		description = "Visually shows how much will be restored to your status bar."
+		position = 2,
+		keyName = "arclightThreshold",
+		name = "Arclight",
+		description = "Threshold for Arclight (0 to disable)"
 	)
-	default boolean enableRestorationBars()
+	default int arclightThreshold()
 	{
-		return true;
+		return 0;
 	}
 
 	@ConfigItem(
-		keyName = "leftBarMode",
-		name = "Left Bar",
-		description = "Configures the left status bar"
+		position = 3,
+		keyName = "darklightThreshold",
+		name = "Darklight",
+		description = "Threshold for Darklight (0 to disable)"
 	)
-	default BarMode leftBarMode()
+	default int darklightThreshold()
 	{
-		return BarMode.HITPOINTS;
+		return 0;
 	}
 
 	@ConfigItem(
-		keyName = "rightBarMode",
-		name = "Right Bar",
-		description = "Configures the right status bar"
+		position = 4,
+		keyName = "bandosGodswordThreshold",
+		name = "Bandos Godsword",
+		description = "Threshold for Bandos Godsword (0 to disable)"
 	)
-	default BarMode rightBarMode()
+	default int bandosGodswordThreshold()
 	{
-		return BarMode.PRAYER;
+		return 0;
 	}
 }

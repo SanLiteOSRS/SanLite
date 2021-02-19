@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019, Jos <Malevolentdev@gmail.com>
+ * Copyright (c) 2020, cgati <https://github.com/cgati>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,14 +22,51 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.client.plugins.statusbars.Config;
+package net.runelite.client.plugins.tearsofguthix;
 
-public enum BarMode
+import java.awt.Color;
+import net.runelite.client.config.Alpha;
+import net.runelite.client.config.Config;
+import net.runelite.client.config.ConfigGroup;
+import net.runelite.client.config.ConfigItem;
+import net.runelite.client.util.ColorUtil;
+
+@ConfigGroup("tearsofguthix")
+public interface TearsOfGuthixConfig extends Config
 {
-	DISABLED,
-	HITPOINTS,
-	PRAYER,
-	RUN_ENERGY,
-	SPECIAL_ATTACK,
-	;
+	@ConfigItem(
+		keyName = "showGreenTearsTimer",
+		name = "Enable Green Tears Timer",
+		description = "Configures whether to display a timer for green tears or not",
+		position = 1
+	)
+	default boolean showGreenTearsTimer()
+	{
+		return true;
+	}
+
+	@Alpha
+	@ConfigItem(
+		keyName = "blueTearsColor",
+		name = "Blue Tears Color",
+		description = "Color of Blue Tears timer",
+		position = 2
+	)
+	default Color getBlueTearsColor()
+	{
+		return ColorUtil.colorWithAlpha(Color.CYAN, 100);
+	}
+
+	@Alpha
+	@ConfigItem(
+		keyName = "greenTearsColor",
+		name = "Green Tears Color",
+		description = "Color of Green Tears timer",
+		position = 3
+	)
+	default Color getGreenTearsColor()
+	{
+		return ColorUtil.colorWithAlpha(Color.GREEN, 100);
+	}
+
 }

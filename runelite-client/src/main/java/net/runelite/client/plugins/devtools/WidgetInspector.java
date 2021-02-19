@@ -41,6 +41,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
 import java.util.stream.Stream;
+import javax.inject.Named;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
@@ -119,6 +120,10 @@ class WidgetInspector extends JFrame
 	private boolean pickerSelected = false;
 
 	@Inject
+	@Named("runelite.title")
+	private String clientTitle;
+
+	@Inject
 	private WidgetInspector(
 		Client client,
 		ClientThread clientThread,
@@ -138,7 +143,7 @@ class WidgetInspector extends JFrame
 
 		eventBus.register(this);
 
-		setTitle(RuneLiteProperties.getTitle() + " Widget Inspector");
+		setTitle(clientTitle + " Widget Inspector");
 		setIconImage(ClientUI.ICON);
 
 		// Reset highlight on close

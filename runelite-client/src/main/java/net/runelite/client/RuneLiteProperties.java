@@ -34,6 +34,7 @@ import okhttp3.HttpUrl;
 
 public class RuneLiteProperties
 {
+	private static final String RUNELITE_TITLE = "runelite.title";
 	private static final String RUNELITE_VERSION = "runelite.version";
 	private static final String SANLITE_VERSION = "sanlite.version";
 	private static final String DISCORD_INVITE = "runelite.discord.invite";
@@ -60,6 +61,11 @@ public class RuneLiteProperties
 		{
 			throw new RuntimeException(ex);
 		}
+	}
+
+	public static String getTitle()
+	{
+		return properties.getProperty(RUNELITE_TITLE);
 	}
 
 	public static String getVersion()

@@ -126,7 +126,19 @@ public interface Client extends GameEngine
 	 * @param message the message contents
 	 * @param sender the sender/channel name
 	 */
-	void addChatMessage(ChatMessageType type, String name, String message, String sender);
+	MessageNode addChatMessage(ChatMessageType type, String name, String message, String sender);
+
+	/**
+	 * Adds a new chat message to the chatbox.
+	 *
+	 * @param type the type of message
+	 * @param name the name of the player that sent the message
+	 * @param message the message contents
+	 * @param sender the sender/channel name
+	 * @param postEvent whether to post the chat message event
+	 * @return the message node for the message
+	 */
+	MessageNode addChatMessage(ChatMessageType type, String name, String message, String sender, boolean postEvent);
 
 	/**
 	 * Gets the current game state.
@@ -831,7 +843,7 @@ public interface Client extends GameEngine
 	 * @param varps passed varps
 	 * @param varpId the VarpPlayer id
 	 * @return the value
-	 * @see VarPlayer#id
+	 * @see VarPlayer#getId()
 	 */
 	int getVarpValue(int[] varps, int varpId);
 
@@ -841,7 +853,7 @@ public interface Client extends GameEngine
 	 * @param varps passed varps
 	 * @param varpId the VarpPlayer id
 	 * @param value the value
-	 * @see VarPlayer#id
+	 * @see VarPlayer#getId()
 	 */
 	void setVarpValue(int[] varps, int varpId, int value);
 
@@ -1209,6 +1221,13 @@ public interface Client extends GameEngine
 	String[] getStringStack();
 
 	/**
+	 * Gets the cs2 vm's active widget
+	 *
+	 * This is used for all {@code cc_*} operations with a {@code 0} operand
+	 */
+	Widget getScriptActiveWidget();
+
+	/**
 	 * Checks whether a player is on the friends list.
 	 *
 	 * @param name the name of the player
@@ -1536,15 +1555,15 @@ public interface Client extends GameEngine
 	 *
 	 * @param state the new player hidden state
 	 */
-	void setPlayersHidden(boolean state);
+	void setOthersHidden(boolean state);
 
 	/**
-	 * Sets whether 2D sprites (ie. overhead prayers, PK skull) related to
-	 * the other players are hidden.
+	 * Sets whether 2D sprites related to the other players are hidden.
+	 * (ie. overhead prayers, PK skull)
 	 *
 	 * @param state the new player 2D hidden state
 	 */
-	void setPlayersHidden2D(boolean state);
+	void setOthersHidden2D(boolean state);
 
 	/**
 	 * Sets whether or not friends are hidden.
@@ -1559,6 +1578,13 @@ public interface Client extends GameEngine
 	 * @param state the new friends chat member hidden state
 	 */
 	void setFriendsChatMembersHidden(boolean state);
+
+	/**
+	 * Sets whether or not ignored players are hidden.
+	 *
+	 * @param state the new ignored player hidden state
+	 */
+	void setIgnoresHidden(boolean state);
 
 	/**
 	 * Sets whether the local player is hidden.

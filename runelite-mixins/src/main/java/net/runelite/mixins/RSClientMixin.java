@@ -344,10 +344,36 @@ public abstract class RSClientMixin implements RSClient
 	}
 
 	@Inject
-	@Override
-	public void addChatMessage(ChatMessageType type, String name, String message, String sender)
+	public MessageNode addChatMessage(ChatMessageType type, String name, String message, String sender, boolean postEvent)
 	{
-		addChatMessage(type.getType(), name, message, sender);
+		assert this.isClientThread() : "addChatMessage must be called on client thread";
+		copy$addChatMessage(type.getType(), name, message, sender);
+
+		Logger logger = client.getLogger();
+		if (logger.isDebugEnabled())
+		{
+			logger.debug("Chat message type {}: {}", type.name(), message);
+		}
+
+		// Get the message node which was added
+		@SuppressWarnings("unchecked") Map<Integer, RSChatChannel> chatLineMap = client.getChatLineMap();
+		RSChatChannel chatLineBuffer = chatLineMap.get(type.getType());
+		MessageNode messageNode = chatLineBuffer.getLines()[0];
+
+		if (postEvent)
+		{
+			final ChatMessage chatMessage = new ChatMessage(messageNode, type, name, message, sender, messageNode.getTimestamp());
+			client.getCallbacks().post(chatMessage);
+		}
+
+		return messageNode;
+	}
+
+	@Inject
+	@Override
+	public MessageNode addChatMessage(ChatMessageType type, String name, String message, String sender)
+	{
+		return addChatMessage(type, name, message, sender, true);
 	}
 
 	@Inject
@@ -1252,9 +1278,9 @@ public abstract class RSClientMixin implements RSClient
 		client.getCallbacks().updateNpcs();
 	}
 
-	@Inject
-	@MethodHook(value = "addChatMessage", end = true)
-	public static void onAddChatMessage(int type, String name, String message, String sender)
+	@Copy("addChatMessage")
+	@Replace("addChatMessage")
+	public static void copy$addChatMessage(int type, String name, String message, String sender)
 	{
 		Logger logger = client.getLogger();
 		if (logger.isDebugEnabled())
