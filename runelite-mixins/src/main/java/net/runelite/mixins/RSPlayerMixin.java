@@ -39,6 +39,7 @@ import static net.runelite.api.HeadIcon.SMITE;
 import static net.runelite.api.SkullIcon.*;
 
 import net.runelite.api.coords.LocalPoint;
+import net.runelite.api.events.OverheadPrayerChanged;
 import net.runelite.api.mixins.*;
 import net.runelite.rs.api.*;
 
@@ -50,6 +51,9 @@ public abstract class RSPlayerMixin implements RSPlayer
 
 	@Inject
 	private boolean friended;
+
+	@Inject
+	private int oldHeadIcon = -2;
 
 	@Inject
 	@Override

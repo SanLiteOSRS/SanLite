@@ -118,6 +118,15 @@ public abstract class RSClientMixin implements RSClient
 	private static boolean allWidgetsAreOpTargetable = false;
 
 	@Inject
+	private List<String> outdatedScripts = new ArrayList<>();
+
+	@Inject
+	private static ArrayList<WidgetItem> widgetItems = new ArrayList<>();
+
+	@Inject
+	private static ArrayList<Widget> hiddenWidgets = new ArrayList<>();
+
+	@Inject
 	@Override
 	public void setAllWidgetsAreOpTargetable(boolean yes)
 	{
@@ -346,6 +355,7 @@ public abstract class RSClientMixin implements RSClient
 	}
 
 	@Inject
+	@Override
 	public void setGameState(int state)
 	{
 		assert this.isClientThread() : "setGameState must be called on client thread";
@@ -396,6 +406,13 @@ public abstract class RSClientMixin implements RSClient
 		int childId = widget.getChildId();
 
 		return getWidget(groupId, childId);
+	}
+
+	@Inject
+	@Override
+	public Widget getWidget(int id)
+	{
+		return getWidget(WidgetInfo.TO_GROUP(id), WidgetInfo.TO_CHILD(id));
 	}
 
 	@Inject
@@ -629,7 +646,7 @@ public abstract class RSClientMixin implements RSClient
 	{
 		List<Projectile> projectiles = new ArrayList<Projectile>();
 		RSNodeDeque projectileDeque = this.getProjectilesDeque();
-		Node head = projectileDeque.getHead();
+		Node head = projectileDeque.getSentinel();
 
 		for (Node node = head.getNext(); node != head; node = node.getNext())
 		{
@@ -645,7 +662,7 @@ public abstract class RSClientMixin implements RSClient
 	{
 		List<GraphicsObject> graphicsObjects = new ArrayList<GraphicsObject>();
 		RSNodeDeque graphicsObjectDeque = this.getGraphicsObjectDeque();
-		Node head = graphicsObjectDeque.getHead();
+		Node head = graphicsObjectDeque.getSentinel();
 
 		for (Node node = head.getNext(); node != head; node = node.getNext())
 		{
@@ -989,6 +1006,32 @@ public abstract class RSClientMixin implements RSClient
 		client.getCallbacks().post(new CanvasSizeChanged());
 	}
 
+	@FieldHook("hintArrowPlayerIndex")
+	@Inject
+	public static void hintPlayerChanged(int ignored)
+	{
+		// Setting the localInteractingIndex (aka player target index, it only applies to players)
+		// causes that player to get priority over others when rendering/menus are added
+		if (client.getVar(VarPlayer.ATTACKING_PLAYER) == -1)
+		{
+			client.setLocalInteractingIndex(client.getHintArrowPlayerTargetIdx() & 2047);
+		}
+	}
+
+	@FieldHook("combatTargetPlayerIndex")
+	@Inject
+	public static void combatPlayerTargetChanged(int ignored)
+	{
+		if (client.getLocalInteractingIndex() == -1)
+		{
+			final Player p = client.getHintArrowPlayer();
+			if (p != null)
+			{
+				client.setLocalInteractingIndex(p.getPlayerId() & 2047);
+			}
+		}
+	}
+
 	@Inject
 	@Override
 	public boolean hasHintArrow()
@@ -1039,7 +1082,7 @@ public abstract class RSClientMixin implements RSClient
 	public void setHintArrow(Player player)
 	{
 		client.setHintArrowTargetType(HintArrowType.PLAYER.getValue());
-		client.setHintArrowPlayerTargetIdx(((RSPlayer) player).getPlayerId());
+		client.setHintArrowPlayerTargetIdx(player.getPlayerId());
 	}
 
 	@Inject
@@ -1146,6 +1189,8 @@ public abstract class RSClientMixin implements RSClient
 	@Inject
 	public void invokeMenuAction(int actionParam, int widgetId, int menuAction, int id, String menuOption, String menuTarget, int canvasX, int canvasY)
 	{
+		assert isClientThread();
+
 		client.sendMenuAction(actionParam, widgetId, menuAction, id, menuOption, menuTarget, canvasX, canvasY);
 	}
 
@@ -1233,7 +1278,7 @@ public abstract class RSClientMixin implements RSClient
 
 	@MethodHook("drawInterface")
 	@Inject
-	public static void renderWidgetLayer(Widget[] widgets, int parentId, int minX, int minY, int maxX, int maxY, int x, int y, int var8)
+	public static void preRenderWidgetLayer(Widget[] widgets, int parentId, int minX, int minY, int maxX, int maxY, int x, int y, int var8)
 	{
 		Callbacks callbacks = client.getCallbacks();
 		HashTable<WidgetNode> componentTable = client.getComponentTable();
@@ -1256,21 +1301,27 @@ public abstract class RSClientMixin implements RSClient
 			widget.setRenderX(renderX);
 			widget.setRenderY(renderY);
 
-			final int widgetType = widget.getType();
-			if (widgetType == WidgetType.GRAPHIC && widget.getItemId() != -1)
+			if (widget.getContentType() == WidgetType.VIEWPORT)
 			{
-				if (renderX >= minX && renderX <= maxX && renderY >= minY && renderY <= maxY)
-				{
-					WidgetItem widgetItem = new WidgetItem(widget.getItemId(), widget.getItemQuantity(), -1, widget.getBounds(), widget, null);
-					callbacks.drawItem(widget.getItemId(), widgetItem);
-				}
+				viewportColor = 0;
 			}
-			else if (widgetType == WidgetType.INVENTORY)
+			else if (widget.getType() == WidgetType.RECTANGLE)
 			{
-				Collection<WidgetItem> widgetItems = widget.getWidgetItems();
-				for (WidgetItem widgetItem : widgetItems)
+				if (renderX == client.getViewportXOffset() && renderY == client.getViewportYOffset()
+					&& widget.getWidth() == client.getViewportWidth() && widget.getHeight() == client.getViewportHeight()
+					&& widget.getOpacity() > 0 && widget.isFilled() && client.isGpu())
 				{
-					callbacks.drawItem(widgetItem.getId(), widgetItem);
+					int tc = widget.getTextColor();
+					int alpha = widget.getOpacity() & 0xFF;
+					int inverseAlpha = 256 - alpha;
+					int vpc = viewportColor;
+					int c1 = (alpha * (tc & 0xff00ff) >> 8 & 0xFF00FF) + (alpha * (tc & 0x00FF00) >> 8 & 0x00FF00);
+					int c2 = (inverseAlpha * (vpc & 0xff00ff) >> 8 & 0xFF00FF) + (inverseAlpha * (vpc & 0x00FF00) >> 8 & 0x00FF00);
+					int outAlpha = alpha + ((vpc >>> 24) * (255 - alpha) * 0x8081 >>> 23);
+					viewportColor = outAlpha << 24 | c1 + c2;
+					widget.setHidden(true);
+					hiddenWidgets.add(widget);
+					continue;
 				}
 			}
 
@@ -1291,6 +1342,96 @@ public abstract class RSClientMixin implements RSClient
 			}
 		}
 	}
+
+	@Inject
+	@MethodHook(value = "drawInterface", end = true)
+	public static void postRenderWidgetLayer(Widget[] widgets, int parentId, int minX, int minY, int maxX, int maxY, int x, int y, int var8)
+	{
+		Callbacks callbacks = client.getCallbacks();
+		int oldSize = widgetItems.size();
+
+		for (Widget rlWidget : widgets)
+		{
+			RSWidget widget = (RSWidget) rlWidget;
+			if (widget == null || widget.getRSParentId() != parentId || widget.isSelfHidden())
+			{
+				continue;
+			}
+
+			int type = widget.getType();
+			if (type == WidgetType.GRAPHIC && widget.getItemId() != -1)
+			{
+				final int renderX = x + widget.getRelativeX();
+				final int renderY = y + widget.getRelativeY();
+				if (renderX >= minX && renderX <= maxX && renderY >= minY && renderY <= maxY)
+				{
+					WidgetItem widgetItem = new WidgetItem(widget.getItemId(), widget.getItemQuantity(), -1, widget.getBounds(), widget, null);
+					widgetItems.add(widgetItem);
+				}
+			}
+			else if (type == WidgetType.INVENTORY)
+			{
+				widgetItems.addAll(widget.getWidgetItems());
+			}
+		}
+
+		List<WidgetItem> subList = Collections.emptyList();
+		if (oldSize < widgetItems.size())
+		{
+			if (oldSize > 0)
+			{
+				subList = widgetItems.subList(oldSize, widgetItems.size());
+			}
+			else
+			{
+				subList = widgetItems;
+			}
+		}
+
+		if (parentId == 0xabcdabcd)
+		{
+			widgetItems.clear();
+		}
+		else if (parentId != -1)
+		{
+			Widget widget = client.getWidget(parentId);
+			Widget[] children = widget.getChildren();
+			if (children == null || children == widgets)
+			{
+				callbacks.drawLayer(widget, subList);
+			}
+		}
+		else
+		{
+			int group = -1;
+			for (Widget widget : widgets)
+			{
+				if (widget != null)
+				{
+					group = WidgetInfo.TO_GROUP(widget.getId());
+					break;
+				}
+			}
+
+			if (group == -1)
+			{
+				return;
+			}
+
+			callbacks.drawInterface(group, widgetItems);
+			widgetItems.clear();
+			for (int i = hiddenWidgets.size() - 1; i >= 0; i--)
+			{
+				Widget widget = hiddenWidgets.get(i);
+				if (WidgetInfo.TO_GROUP(widget.getId()) == group)
+				{
+					widget.setHidden(false);
+					hiddenWidgets.remove(i);
+				}
+			}
+		}
+	}
+
 
 	@Inject
 	@Override
@@ -1592,5 +1733,123 @@ public abstract class RSClientMixin implements RSClient
 	public boolean isKeyPressed(int keycode)
 	{
 		return client.getPressedKeys()[keycode];
+	}
+
+	@Inject
+	@Override
+	public void setOutdatedScript(String outdatedScript)
+	{
+		if (!outdatedScripts.contains(outdatedScript))
+		{
+			outdatedScripts.add(outdatedScript);
+		}
+	}
+
+	@Inject
+	@Override
+	public List<String> getOutdatedScripts()
+	{
+		return this.outdatedScripts;
+	}
+
+	@Inject
+	@MethodHook(value = "changeWorld", end = true)
+	public static void postChangeWorld(RSWorld world)
+	{
+		client.getCallbacks().post(new WorldChanged());
+	}
+
+	@Inject
+	@Override
+	public void queueChangedVarp(int varp)
+	{
+		assert client.isClientThread() : "queueChangedVarp must be called on client thread";
+
+		int[] changedVarps = client.getChangedVarps();
+		int changedVarpCount = client.getChangedVarpCount();
+		changedVarps[changedVarpCount & 31] = varp;
+		client.setChangedVarpCount(changedVarpCount + 1);
+	}
+
+	@Inject
+	@Override
+	public ScriptEvent createScriptEvent(Object... args)
+	{
+		return createRSScriptEvent(args);
+	}
+
+	@Inject
+	@Override
+	public RSScriptEvent createRSScriptEvent(Object... args)
+	{
+		RSScriptEvent event = createScriptEvent();
+		event.setArguments(args);
+		return event;
+	}
+
+	@Inject
+	@Override
+	public NodeCache getStructCompositionCache()
+	{
+		assert client.isClientThread() : "getStructCompositionCache must be called on client thread";
+
+		return getRSStructCompositionCache();
+	}
+
+	@Inject
+	@Override
+	public StructComposition getStructComposition(int structID)
+	{
+		assert client.isClientThread() : "getStructComposition must be called on client thread";
+
+		return getRSStructComposition(structID);
+	}
+
+	@Copy("StructDefinition_getStructDefinition")
+	@Replace("StructDefinition_getStructDefinition")
+	static RSStructComposition copy$getStructComposition(int id)
+	{
+		RSStructComposition comp = copy$getStructComposition(id);
+
+		if (comp.getId() == -1)
+		{
+			comp.setId(id);
+			PostStructComposition event = new PostStructComposition();
+			event.setStructComposition(comp);
+			client.getCallbacks().post(event);
+		}
+
+		return comp;
+	}
+
+	@Inject
+	@Override
+	public int getMusicVolume()
+	{
+		return client.getPreferences().getMusicVolume();
+	}
+
+	@Inject
+	@Override
+	public void setMusicVolume(int volume)
+	{
+		if (volume > 0 && client.getPreferences().getMusicVolume() <= 0 && client.getCurrentTrackGroupId() != -1)
+		{
+			client.playMusicTrack(1000, client.getMusicTracks(), client.getCurrentTrackGroupId(), 0, volume, false);
+		}
+
+		client.getPreferences().setMusicVolume(volume);
+		client.setMusicTrackVolume(volume);
+		if (client.getMidiPcmStream() != null)
+		{
+			client.getMidiPcmStream().setPcmStreamVolume(volume);
+		}
+	}
+
+	@Inject
+	@MethodHook("closeInterface")
+	public static void preCloseInterface(RSInterfaceParent iface, boolean willUnload)
+	{
+		client.getCallbacks().post(new WidgetClosed(iface.getId(), iface.getModalMode(), willUnload));
 	}
 }

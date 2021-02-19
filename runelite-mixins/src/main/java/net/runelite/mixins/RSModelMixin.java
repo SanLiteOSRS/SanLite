@@ -152,12 +152,12 @@ public abstract class RSModelMixin implements RSModel
 			if (frameId != -1)
 			{
 				RSAnimation frame = frames.getFrames()[frameId];
-				RSSkeleton skin = frame.getSkin();
+				RSSkeleton skeleton = frame.getSkeleton();
 				RSAnimation nextFrame = null;
 				if (nextFrames != null)
 				{
 					nextFrame = nextFrames.getFrames()[nextFrameId];
-					if (nextFrame.getSkin() != skin)
+					if (nextFrame.getSkeleton() != skeleton)
 					{
 						nextFrame = null;
 					}
@@ -167,7 +167,7 @@ public abstract class RSModelMixin implements RSModel
 				client.setAnimOffsetY(0);
 				client.setAnimOffsetZ(0);
 
-				interpolateFrames(skin, frame, nextFrame, interval, intervalCount);
+				interpolateFrames(skeleton, frame, nextFrame, interval, intervalCount);
 				resetBounds();
 			}
 		}
@@ -183,7 +183,7 @@ public abstract class RSModelMixin implements RSModel
 			{
 				int type = frame.getTransformTypes()[i];
 				this.animate(skin.getTypes()[type], skin.getList()[type], frame.getTranslatorX()[i],
-						frame.getTranslatorY()[i], frame.getTranslatorZ()[i]);
+					frame.getTranslatorY()[i], frame.getTranslatorZ()[i]);
 			}
 		}
 		else
@@ -194,13 +194,13 @@ public abstract class RSModelMixin implements RSModel
 			{
 				boolean frameValid = false;
 				if (transformIndex < frame.getTransformCount()
-						&& frame.getTransformTypes()[transformIndex] == i)
+					&& frame.getTransformTypes()[transformIndex] == i)
 				{
 					frameValid = true;
 				}
 				boolean nextFrameValid = false;
 				if (nextTransformIndex < nextFrame.getTransformCount()
-						&& nextFrame.getTransformTypes()[nextTransformIndex] == i)
+					&& nextFrame.getTransformTypes()[nextTransformIndex] == i)
 				{
 					nextFrameValid = true;
 				}
