@@ -21,7 +21,7 @@ public final class FloorDecoration {
 	int x;
 	@ObfuscatedName("d")
 	@ObfuscatedGetter(
-		intValue = -523239424
+		intValue = 319839389
 	)
 	@Export("y")
 	int y;
@@ -29,8 +29,8 @@ public final class FloorDecoration {
 	@ObfuscatedSignature(
 		signature = "Lem;"
 	)
-	@Export("entity")
-	public Renderable entity;
+	@Export("renderable")
+	public Renderable renderable;
 	@ObfuscatedName("y")
 	@ObfuscatedGetter(
 		longValue = 5699265069963851797L

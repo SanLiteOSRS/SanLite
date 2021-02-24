@@ -419,7 +419,7 @@ public class PacketWriter {
 							if (var5 == 3) {
 								FloorDecoration var44 = MilliClock.scene.getFloorDecoration(class90.Client_plane, var8, var9);
 								if (var44 != null) {
-									var44.entity = new DynamicObject(class25.Entity_unpackID(var44.tag), 22, var4, class90.Client_plane, var8, var9, var6, false, var44.entity);
+									var44.renderable = new DynamicObject(class25.Entity_unpackID(var44.tag), 22, var4, class90.Client_plane, var8, var9, var6, false, var44.renderable);
 								}
 							}
 						}

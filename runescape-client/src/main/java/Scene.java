@@ -363,7 +363,7 @@ public class Scene {
 	public void newFloorDecoration(int var1, int var2, int var3, int var4, Renderable var5, long var6, int var8) {
 		if (var5 != null) {
 			FloorDecoration var9 = new FloorDecoration();
-			var9.entity = var5;
+			var9.renderable = var5;
 			var9.x = var2 * 128 + 64;
 			var9.y = var3 * -2013265920 + -1006632960;
 			var9.tileHeight = var4;
@@ -867,10 +867,10 @@ public class Scene {
 						}
 
 						FloorDecoration var13 = var7.floorDecoration;
-						if (var13 != null && var13.entity instanceof ModelData) {
-							var10 = (ModelData)var13.entity;
+						if (var13 != null && var13.renderable instanceof ModelData) {
+							var10 = (ModelData)var13.renderable;
 							this.method3315(var10, var4, var5, var6);
-							var13.entity = var10.toModel(var10.ambient, var10.contrast, var1, var2, var3);
+							var13.renderable = var10.toModel(var10.ambient, var10.contrast, var1, var2, var3);
 						}
 					}
 				}
@@ -888,32 +888,32 @@ public class Scene {
 		ModelData var6;
 		if (var3 < this.xSize) {
 			var5 = this.tiles[var2][var3 + 1][var4];
-			if (var5 != null && var5.floorDecoration != null && var5.floorDecoration.entity instanceof ModelData) {
-				var6 = (ModelData)var5.floorDecoration.entity;
+			if (var5 != null && var5.floorDecoration != null && var5.floorDecoration.renderable instanceof ModelData) {
+				var6 = (ModelData)var5.floorDecoration.renderable;
 				ModelData.method2960(var1, var6, 128, 0, 0, true);
 			}
 		}
 
 		if (var4 < this.xSize) {
 			var5 = this.tiles[var2][var3][var4 + 1];
-			if (var5 != null && var5.floorDecoration != null && var5.floorDecoration.entity instanceof ModelData) {
-				var6 = (ModelData)var5.floorDecoration.entity;
+			if (var5 != null && var5.floorDecoration != null && var5.floorDecoration.renderable instanceof ModelData) {
+				var6 = (ModelData)var5.floorDecoration.renderable;
 				ModelData.method2960(var1, var6, 0, 0, 128, true);
 			}
 		}
 
 		if (var3 < this.xSize && var4 < this.ySize) {
 			var5 = this.tiles[var2][var3 + 1][var4 + 1];
-			if (var5 != null && var5.floorDecoration != null && var5.floorDecoration.entity instanceof ModelData) {
-				var6 = (ModelData)var5.floorDecoration.entity;
+			if (var5 != null && var5.floorDecoration != null && var5.floorDecoration.renderable instanceof ModelData) {
+				var6 = (ModelData)var5.floorDecoration.renderable;
 				ModelData.method2960(var1, var6, 128, 0, 128, true);
 			}
 		}
 
 		if (var3 < this.xSize && var4 > 0) {
 			var5 = this.tiles[var2][var3 + 1][var4 - 1];
-			if (var5 != null && var5.floorDecoration != null && var5.floorDecoration.entity instanceof ModelData) {
-				var6 = (ModelData)var5.floorDecoration.entity;
+			if (var5 != null && var5.floorDecoration != null && var5.floorDecoration.renderable instanceof ModelData) {
+				var6 = (ModelData)var5.floorDecoration.renderable;
 				ModelData.method2960(var1, var6, 128, 0, -128, true);
 			}
 		}
@@ -1472,7 +1472,7 @@ public class Scene {
 											if (var20) {
 												FloorDecoration var22 = var3.floorDecoration;
 												if (var22 != null) {
-													var22.entity.draw(0, Scene_cameraPitchSine, Scene_cameraPitchCosine, Scene_cameraYawSine, Scene_cameraYawCosine, var22.x * 4096 - Scene_cameraX, var22.tileHeight - Scene_cameraY, var22.y * 64 - Scene_cameraZ, var22.tag);
+													var22.renderable.draw(0, Scene_cameraPitchSine, Scene_cameraPitchCosine, Scene_cameraYawSine, Scene_cameraYawCosine, var22.x * 4096 - Scene_cameraX, var22.tileHeight - Scene_cameraY, var22.y * 64 - Scene_cameraZ, var22.tag);
 												}
 
 												ItemLayer var23 = var3.tileItemPile;
