@@ -1,95 +1,65 @@
-import java.io.File;
-import java.io.RandomAccessFile;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("et")
+@ObfuscatedName("ey")
 @Implements("ModelData0")
 public class ModelData0 {
-	@ObfuscatedName("k")
+	@ObfuscatedName("ib")
 	@ObfuscatedGetter(
-		intValue = 1312474223
+		intValue = -1948740643
 	)
-	@Export("canvasHeight")
-	public static int canvasHeight;
+	static int field1882;
 
 	ModelData0() {
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;I)Ljava/io/File;",
-		garbageValue = "1637999764"
+		signature = "(Lkd;II)V",
+		garbageValue = "-1780574680"
 	)
-	@Export("getFile")
-	public static File getFile(String var0) {
-		if (!FileSystem.FileSystem_hasPermissions) {
-			throw new RuntimeException("");
-		} else {
-			File var1 = (File)FileSystem.FileSystem_cacheFiles.get(var0);
-			if (var1 != null) {
-				return var1;
-			} else {
-				File var2 = new File(FileSystem.FileSystem_cacheDir, var0);
-				RandomAccessFile var3 = null;
-
-				try {
-					File var4 = new File(var2.getParent());
-					if (!var4.exists()) {
-						throw new RuntimeException("");
-					} else {
-						var3 = new RandomAccessFile(var2, "rw");
-						int var5 = var3.read();
-						var3.seek(0L);
-						var3.write(var5);
-						var3.seek(0L);
-						var3.close();
-						FileSystem.FileSystem_cacheFiles.put(var0, var2);
-						return var2;
-					}
-				} catch (Exception var8) {
-					try {
-						if (var3 != null) {
-							var3.close();
-							var3 = null;
-						}
-					} catch (Exception var7) {
-					}
-
-					throw new RuntimeException();
-				}
-			}
+	@Export("updatePlayers")
+	static final void updatePlayers(PacketBuffer var0, int var1) {
+		int var2 = var0.offset;
+		Players.Players_pendingUpdateCount = 0;
+		WorldMapDecoration.method404(var0);
+		MusicPatch.method4095(var0);
+		if (var0.offset - var2 != var1) {
+			throw new RuntimeException(var0.offset - var2 + " " + var1);
 		}
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(Lib;Lib;I)V",
-		garbageValue = "402911181"
+		signature = "([BIIII[Lfe;I)V",
+		garbageValue = "255234267"
 	)
-	public static void method3331(AbstractArchive var0, AbstractArchive var1) {
-		SpotAnimationDefinition.SpotAnimationDefinition_archive = var0;
-		SpotAnimationDefinition.SpotAnimationDefinition_modelArchive = var1;
-	}
+	static final void method3411(byte[] var0, int var1, int var2, int var3, int var4, CollisionMap[] var5) {
+		int var7;
+		int var8;
+		for (int var6 = 0; var6 < 4; ++var6) {
+			for (var7 = 0; var7 < 64; ++var7) {
+				for (var8 = 0; var8 < 64; ++var8) {
+					if (var7 + var1 > 0 && var7 + var1 < 103 && var8 + var2 > 0 && var8 + var2 < 103) {
+						int[] var10000 = var5[var6].flags[var7 + var1];
+						var10000[var8 + var2] &= -16777217;
+					}
+				}
+			}
+		}
 
-	@ObfuscatedName("h")
-	@ObfuscatedSignature(
-		signature = "(Lib;I)V",
-		garbageValue = "2029131503"
-	)
-	public static void method3330(AbstractArchive var0) {
-		VarcInt.VarcInt_archive = var0;
-	}
+		Buffer var10 = new Buffer(var0);
 
-	@ObfuscatedName("jf")
-	@ObfuscatedSignature(
-		signature = "(II)Ljava/lang/String;",
-		garbageValue = "237482387"
-	)
-	static final String method3329(int var0) {
-		return var0 < 999999999 ? Integer.toString(var0) : "*";
+		for (var7 = 0; var7 < 4; ++var7) {
+			for (var8 = 0; var8 < 64; ++var8) {
+				for (int var9 = 0; var9 < 64; ++var9) {
+					KeyHandler.loadTerrain(var10, var7, var8 + var1, var9 + var2, var3, var4, 0);
+				}
+			}
+		}
+
 	}
 }

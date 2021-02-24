@@ -4,89 +4,99 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cz")
+@ObfuscatedName("ck")
 @Implements("ObjectSound")
 public final class ObjectSound extends Node {
-	@ObfuscatedName("h")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "Ljp;"
+		signature = "Lji;"
 	)
 	@Export("objectSounds")
 	static NodeDeque objectSounds;
-	@ObfuscatedName("q")
-	public static String field1077;
+	@ObfuscatedName("hb")
+	@ObfuscatedSignature(
+		signature = "[Lly;"
+	)
+	@Export("scrollBarSprites")
+	static IndexedSprite[] scrollBarSprites;
+	@ObfuscatedName("hv")
+	@ObfuscatedGetter(
+		intValue = -1964902031
+	)
+	@Export("cameraZ")
+	static int cameraZ;
 	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = -1758157691
+		intValue = -2133589173
 	)
 	@Export("plane")
 	int plane;
-	@ObfuscatedName("x")
+	@ObfuscatedName("d")
 	@ObfuscatedGetter(
-		intValue = -632230272
-	)
-	@Export("y")
-	int y;
-	@ObfuscatedName("w")
-	@ObfuscatedGetter(
-		intValue = 1115826247
+		intValue = 1381683584
 	)
 	@Export("x")
 	int x;
-	@ObfuscatedName("t")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = -2006873984
+		intValue = -505956992
 	)
-	int field1073;
-	@ObfuscatedName("j")
+	@Export("y")
+	int y;
+	@ObfuscatedName("y")
 	@ObfuscatedGetter(
-		intValue = 744417563
+		intValue = 1427133393
 	)
-	int field1078;
-	@ObfuscatedName("n")
+	int field1090;
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = 417885395
+		intValue = 1158956672
 	)
-	int field1086;
-	@ObfuscatedName("p")
+	int field1094;
+	@ObfuscatedName("z")
 	@ObfuscatedGetter(
-		intValue = 736414323
+		intValue = -1800180133
+	)
+	int field1092;
+	@ObfuscatedName("e")
+	@ObfuscatedGetter(
+		intValue = -334742389
 	)
 	@Export("soundEffectId")
 	int soundEffectId;
-	@ObfuscatedName("l")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		signature = "Ldj;"
+		signature = "Ldt;"
 	)
 	@Export("stream1")
 	RawPcmStream stream1;
-	@ObfuscatedName("z")
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = 959647129
+		intValue = -718153563
 	)
-	int field1085;
-	@ObfuscatedName("u")
+	int field1095;
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = 409516173
+		intValue = -1722103043
 	)
-	int field1083;
-	@ObfuscatedName("e")
+	int field1096;
+	@ObfuscatedName("b")
 	@Export("soundEffectIds")
 	int[] soundEffectIds;
-	@ObfuscatedName("m")
+	@ObfuscatedName("a")
 	@ObfuscatedGetter(
-		intValue = -1988798929
+		intValue = -603753603
 	)
-	int field1081;
-	@ObfuscatedName("c")
+	int field1097;
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		signature = "Ldj;"
+		signature = "Ldt;"
 	)
 	@Export("stream2")
 	RawPcmStream stream2;
-	@ObfuscatedName("i")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "Ljm;"
+		signature = "Ljg;"
 	)
 	@Export("obj")
 	ObjectComposition obj;
@@ -98,10 +108,10 @@ public final class ObjectSound extends Node {
 	ObjectSound() {
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "401252200"
+		signature = "(B)V",
+		garbageValue = "82"
 	)
 	@Export("set")
 	void set() {
@@ -109,31 +119,67 @@ public final class ObjectSound extends Node {
 		ObjectComposition var2 = this.obj.transform();
 		if (var2 != null) {
 			this.soundEffectId = var2.ambientSoundId;
-			this.field1086 = var2.int4 * 128;
-			this.field1085 = var2.int5;
-			this.field1083 = var2.int6;
+			this.field1092 = var2.int4 * 128;
+			this.field1095 = var2.int5;
+			this.field1096 = var2.int6;
 			this.soundEffectIds = var2.soundEffectIds;
 		} else {
 			this.soundEffectId = -1;
-			this.field1086 = 0;
-			this.field1085 = 0;
-			this.field1083 = 0;
+			this.field1092 = 0;
+			this.field1095 = 0;
+			this.field1096 = 0;
 			this.soundEffectIds = null;
 		}
 
 		if (var1 != this.soundEffectId && this.stream1 != null) {
-			WorldMapManager.pcmStreamMixer.removeSubStream(this.stream1);
+			VarbitComposition.pcmStreamMixer.removeSubStream(this.stream1);
 			this.stream1 = null;
 		}
 
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "725701035"
+		signature = "(II)J",
+		garbageValue = "-293129030"
 	)
-	static final int method1993() {
-		return ViewportMouse.ViewportMouse_x;
+	public static long method2044(int var0) {
+		return ViewportMouse.ViewportMouse_entityTags[var0];
+	}
+
+	@ObfuscatedName("is")
+	@ObfuscatedSignature(
+		signature = "([Lhz;IIIZI)V",
+		garbageValue = "2024248022"
+	)
+	@Export("resizeInterface")
+	static void resizeInterface(Widget[] var0, int var1, int var2, int var3, boolean var4) {
+		for (int var5 = 0; var5 < var0.length; ++var5) {
+			Widget var6 = var0[var5];
+			if (var6 != null && var6.parentId == var1) {
+				WorldMapManager.alignWidgetSize(var6, var2, var3, var4);
+				ClientPreferences.alignWidgetPosition(var6, var2, var3);
+				if (var6.scrollX > var6.scrollWidth - var6.width) {
+					var6.scrollX = var6.scrollWidth - var6.width;
+				}
+
+				if (var6.scrollX < 0) {
+					var6.scrollX = 0;
+				}
+
+				if (var6.scrollY > var6.scrollHeight - var6.height) {
+					var6.scrollY = var6.scrollHeight - var6.height;
+				}
+
+				if (var6.scrollY < 0) {
+					var6.scrollY = 0;
+				}
+
+				if (var6.type == 0) {
+					class182.revalidateWidgetScroll(var0, var6, var4);
+				}
+			}
+		}
+
 	}
 }

@@ -4,60 +4,66 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ev")
+@ObfuscatedName("ee")
 @Implements("BoundaryObject")
 public final class BoundaryObject {
-	@ObfuscatedName("h")
+	@ObfuscatedName("jn")
+	@ObfuscatedSignature(
+		signature = "Lda;"
+	)
+	@Export("textureProvider")
+	static TextureProvider textureProvider;
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = 787394595
+		intValue = -1837784551
 	)
 	@Export("tileHeight")
 	int tileHeight;
 	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = 1840852053
+		intValue = 324986435
 	)
 	@Export("x")
 	int x;
-	@ObfuscatedName("x")
+	@ObfuscatedName("d")
 	@ObfuscatedGetter(
-		intValue = -1985466901
+		intValue = 392241551
 	)
 	@Export("y")
 	int y;
-	@ObfuscatedName("w")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = -760967019
+		intValue = -1347087127
 	)
 	@Export("orientationA")
 	int orientationA;
-	@ObfuscatedName("t")
+	@ObfuscatedName("y")
 	@ObfuscatedGetter(
-		intValue = -1039727293
+		intValue = 1198661661
 	)
 	@Export("orientationB")
 	int orientationB;
-	@ObfuscatedName("j")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "Ler;"
+		signature = "Lem;"
 	)
 	@Export("entity1")
 	public Renderable entity1;
-	@ObfuscatedName("n")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "Ler;"
+		signature = "Lem;"
 	)
 	@Export("entity2")
 	public Renderable entity2;
-	@ObfuscatedName("p")
+	@ObfuscatedName("e")
 	@ObfuscatedGetter(
-		longValue = 6107262315709824135L
+		longValue = -5322685038188485543L
 	)
 	@Export("tag")
 	public long tag;
-	@ObfuscatedName("l")
+	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = 582235775
+		intValue = 898643669
 	)
 	@Export("flags")
 	int flags;
@@ -67,60 +73,55 @@ public final class BoundaryObject {
 		this.flags = 0;
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/CharSequence;I)Ljava/lang/String;",
-		garbageValue = "-2018740830"
+		signature = "(Lig;IIB)[Lly;",
+		garbageValue = "0"
 	)
-	public static String method3343(CharSequence var0) {
-		int var1 = var0.length();
-		StringBuilder var2 = new StringBuilder(var1);
-
-		for (int var3 = 0; var3 < var1; ++var3) {
-			char var4 = var0.charAt(var3);
-			if ((var4 < 'a' || var4 > 'z') && (var4 < 'A' || var4 > 'Z') && (var4 < '0' || var4 > '9') && var4 != '.' && var4 != '-' && var4 != '*' && var4 != '_') {
-				if (var4 == ' ') {
-					var2.append('+');
-				} else {
-					byte var5 = Varps.charToByteCp1252(var4);
-					var2.append('%');
-					int var6 = var5 >> 4 & 15;
-					if (var6 >= 10) {
-						var2.append((char)(var6 + 55));
-					} else {
-						var2.append((char)(var6 + 48));
-					}
-
-					var6 = var5 & 15;
-					if (var6 >= 10) {
-						var2.append((char)(var6 + 55));
-					} else {
-						var2.append((char)(var6 + 48));
-					}
-				}
-			} else {
-				var2.append(var4);
-			}
+	public static IndexedSprite[] method3420(AbstractArchive var0, int var1, int var2) {
+		byte[] var4 = var0.takeFile(var1, var2);
+		boolean var3;
+		if (var4 == null) {
+			var3 = false;
+		} else {
+			GrandExchangeOfferNameComparator.SpriteBuffer_decode(var4);
+			var3 = true;
 		}
 
-		return var2.toString();
+		if (!var3) {
+			return null;
+		} else {
+			IndexedSprite[] var5 = new IndexedSprite[class336.SpriteBuffer_spriteCount];
+
+			for (int var6 = 0; var6 < class336.SpriteBuffer_spriteCount; ++var6) {
+				IndexedSprite var7 = var5[var6] = new IndexedSprite();
+				var7.width = class336.SpriteBuffer_spriteWidth;
+				var7.height = class336.SpriteBuffer_spriteHeight;
+				var7.xOffset = class105.SpriteBuffer_xOffsets[var6];
+				var7.yOffset = class336.SpriteBuffer_yOffsets[var6];
+				var7.subWidth = class336.SpriteBuffer_spriteWidths[var6];
+				var7.subHeight = class225.SpriteBuffer_spriteHeights[var6];
+				var7.palette = HorizontalAlignment.SpriteBuffer_spritePalette;
+				var7.pixels = class2.SpriteBuffer_pixels[var6];
+			}
+
+			class105.SpriteBuffer_xOffsets = null;
+			class336.SpriteBuffer_yOffsets = null;
+			class336.SpriteBuffer_spriteWidths = null;
+			class225.SpriteBuffer_spriteHeights = null;
+			HorizontalAlignment.SpriteBuffer_spritePalette = null;
+			class2.SpriteBuffer_pixels = null;
+			return var5;
+		}
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("gj")
 	@ObfuscatedSignature(
-		signature = "(IB)Z",
-		garbageValue = "-57"
+		signature = "(B)I",
+		garbageValue = "33"
 	)
-	public static boolean method3342(int var0) {
-		return var0 == WorldMapDecorationType.field2766.id;
-	}
-
-	@ObfuscatedName("t")
-	@ObfuscatedSignature(
-		signature = "(IB)Z",
-		garbageValue = "14"
-	)
-	public static boolean method3341(int var0) {
-		return (var0 >> 29 & 1) != 0;
+	@Export("getWindowedMode")
+	static int getWindowedMode() {
+		return Client.isResizable ? 2 : 1;
 	}
 }

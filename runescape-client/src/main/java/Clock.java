@@ -1,18 +1,25 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fl")
+@ObfuscatedName("fm")
 @Implements("Clock")
 public abstract class Clock {
+	@ObfuscatedName("rd")
+	@ObfuscatedGetter(
+		intValue = -1841661257
+	)
+	static int field2079;
+
 	Clock() {
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "2095078818"
+		signature = "(B)V",
+		garbageValue = "46"
 	)
 	@Export("mark")
 	public abstract void mark();
@@ -20,37 +27,21 @@ public abstract class Clock {
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
 		signature = "(III)I",
-		garbageValue = "-680717242"
+		garbageValue = "1861957348"
 	)
 	@Export("wait")
 	public abstract int wait(int var1, int var2);
 
-	@ObfuscatedName("t")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "([BIIB)Ljava/lang/String;",
-		garbageValue = "74"
+		signature = "(Lkx;Ljava/lang/String;B)I",
+		garbageValue = "-59"
 	)
-	@Export("decodeStringCp1252")
-	public static String decodeStringCp1252(byte[] var0, int var1, int var2) {
-		char[] var3 = new char[var2];
-		int var4 = 0;
-
-		for (int var5 = 0; var5 < var2; ++var5) {
-			int var6 = var0[var5 + var1] & 255;
-			if (var6 != 0) {
-				if (var6 >= 128 && var6 < 160) {
-					char var7 = class298.cp1252AsciiExtension[var6 - 128];
-					if (var7 == 0) {
-						var7 = '?';
-					}
-
-					var6 = var7;
-				}
-
-				var3[var4++] = (char)var6;
-			}
-		}
-
-		return new String(var3, 0, var4);
+	public static int method3721(Buffer var0, String var1) {
+		int var2 = var0.offset;
+		byte[] var3 = class3.method40(var1);
+		var0.writeSmartByteShort(var3.length);
+		var0.offset += class219.huffman.compress(var3, 0, var3.length, var0.array, var0.offset);
+		return var0.offset - var2;
 	}
 }

@@ -4,36 +4,41 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ci")
+@ObfuscatedName("cd")
 @Implements("HealthBarUpdate")
 public class HealthBarUpdate extends Node {
+	@ObfuscatedName("se")
+	@ObfuscatedSignature(
+		signature = "Lio;"
+	)
+	public static class248 field1016;
+	@ObfuscatedName("id")
+	@ObfuscatedGetter(
+		intValue = -871307957
+	)
+	@Export("oculusOrbFocalPointX")
+	static int oculusOrbFocalPointX;
 	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = 942035737
-	)
-	@Export("musicTrackGroupId")
-	static int musicTrackGroupId;
-	@ObfuscatedName("h")
-	@ObfuscatedGetter(
-		intValue = -1928856017
+		intValue = -1783692297
 	)
 	@Export("cycle")
 	int cycle;
 	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = 187911795
+		intValue = -2047753623
 	)
 	@Export("health")
 	int health;
-	@ObfuscatedName("x")
+	@ObfuscatedName("d")
 	@ObfuscatedGetter(
-		intValue = -1933333849
+		intValue = -1943828551
 	)
 	@Export("health2")
 	int health2;
-	@ObfuscatedName("w")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = -280255585
+		intValue = -1709538301
 	)
 	@Export("cycleOffset")
 	int cycleOffset;
@@ -45,10 +50,10 @@ public class HealthBarUpdate extends Node {
 		this.cycleOffset = var4;
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(IIIII)V",
-		garbageValue = "2048204816"
+		signature = "(IIIIB)V",
+		garbageValue = "72"
 	)
 	@Export("set")
 	void set(int var1, int var2, int var3, int var4) {
@@ -58,77 +63,49 @@ public class HealthBarUpdate extends Node {
 		this.cycleOffset = var4;
 	}
 
+	@ObfuscatedName("n")
+	@ObfuscatedSignature(
+		signature = "([Ljava/lang/String;[SB)V",
+		garbageValue = "1"
+	)
+	public static void method1873(String[] var0, short[] var1) {
+		AbstractSocket.sortItemsByName(var0, var1, 0, var0.length - 1);
+	}
+
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(IB)Lie;",
-		garbageValue = "-68"
+		signature = "(IB)Lij;",
+		garbageValue = "-64"
 	)
-	public static HealthBarDefinition method1826(int var0) {
-		HealthBarDefinition var1 = (HealthBarDefinition)HealthBarDefinition.HealthBarDefinition_cached.get((long)var0);
+	@Export("getInvDefinition")
+	public static InvDefinition getInvDefinition(int var0) {
+		InvDefinition var1 = (InvDefinition)InvDefinition.InvDefinition_cached.get((long)var0);
 		if (var1 != null) {
 			return var1;
 		} else {
-			byte[] var2 = class225.HealthBarDefinition_archive.takeFile(33, var0);
-			var1 = new HealthBarDefinition();
+			byte[] var2 = InvDefinition.InvDefinition_archive.takeFile(5, var0);
+			var1 = new InvDefinition();
 			if (var2 != null) {
 				var1.decode(new Buffer(var2));
 			}
 
-			HealthBarDefinition.HealthBarDefinition_cached.put(var1, (long)var0);
+			InvDefinition.InvDefinition_cached.put(var1, (long)var0);
 			return var1;
 		}
 	}
 
-	@ObfuscatedName("aa")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
 		signature = "(II)I",
-		garbageValue = "307117656"
+		garbageValue = "-698681386"
 	)
-	static int method1823(int var0) {
-		return (int)Math.pow(2.0D, (double)((float)var0 / 256.0F + 7.0F));
-	}
-
-	@ObfuscatedName("kc")
-	@ObfuscatedSignature(
-		signature = "(Lhe;I)Z",
-		garbageValue = "-1439133446"
-	)
-	static final boolean method1825(Widget var0) {
-		int var1 = var0.contentType;
-		if (var1 == 205) {
-			Client.logoutTimer = 250;
-			return true;
+	@Export("Messages_getLastChatID")
+	static int Messages_getLastChatID(int var0) {
+		Message var1 = (Message)Messages.Messages_hashTable.get((long)var0);
+		if (var1 == null) {
+			return -1;
 		} else {
-			int var2;
-			int var3;
-			if (var1 >= 300 && var1 <= 313) {
-				var2 = (var1 - 300) / 2;
-				var3 = var1 & 1;
-				Client.playerAppearance.changeAppearance(var2, var3 == 1);
-			}
-
-			if (var1 >= 314 && var1 <= 323) {
-				var2 = (var1 - 314) / 2;
-				var3 = var1 & 1;
-				Client.playerAppearance.method4043(var2, var3 == 1);
-			}
-
-			if (var1 == 324) {
-				Client.playerAppearance.changeSex(false);
-			}
-
-			if (var1 == 325) {
-				Client.playerAppearance.changeSex(true);
-			}
-
-			if (var1 == 326) {
-				PacketBufferNode var4 = ItemContainer.getPacketBufferNode(ClientPacket.field2239, Client.packetWriter.isaacCipher);
-				Client.playerAppearance.write(var4.packetBuffer);
-				Client.packetWriter.addNode(var4);
-				return true;
-			} else {
-				return false;
-			}
+			return var1.nextDual == Messages.Messages_queue.sentinel ? -1 : ((Message)var1.nextDual).count;
 		}
 	}
 }

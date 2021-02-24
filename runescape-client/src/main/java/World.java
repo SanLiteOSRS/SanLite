@@ -1,75 +1,86 @@
+import java.util.Iterator;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cj")
+@ObfuscatedName("cq")
 @Implements("World")
 public class World {
-	@ObfuscatedName("t")
+	@ObfuscatedName("qf")
 	@ObfuscatedSignature(
-		signature = "[Lcj;"
+		signature = "Ldq;"
+	)
+	@Export("decimator")
+	static Decimator decimator;
+	@ObfuscatedName("y")
+	@ObfuscatedSignature(
+		signature = "[Lcq;"
 	)
 	@Export("World_worlds")
 	static World[] World_worlds;
-	@ObfuscatedName("j")
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = -1189755659
+		intValue = 1883151611
 	)
 	@Export("World_count")
 	static int World_count;
-	@ObfuscatedName("n")
+	@ObfuscatedName("z")
 	@ObfuscatedGetter(
-		intValue = -8988331
+		intValue = 1211509963
 	)
 	@Export("World_listCount")
 	static int World_listCount;
-	@ObfuscatedName("p")
+	@ObfuscatedName("e")
 	@Export("World_sortOption2")
 	static int[] World_sortOption2;
-	@ObfuscatedName("l")
+	@ObfuscatedName("q")
 	@Export("World_sortOption1")
 	static int[] World_sortOption1;
-	@ObfuscatedName("z")
+	@ObfuscatedName("bl")
 	@ObfuscatedSignature(
-		signature = "Lei;"
+		signature = "Lly;"
 	)
-	@Export("World_request")
-	static UrlRequest World_request;
-	@ObfuscatedName("u")
+	static IndexedSprite field1039;
+	@ObfuscatedName("ds")
 	@ObfuscatedGetter(
-		intValue = 1102432463
+		longValue = 4616072820016449217L
+	)
+	static long field1036;
+	@ObfuscatedName("s")
+	@ObfuscatedGetter(
+		intValue = 1941942941
 	)
 	@Export("id")
 	int id;
-	@ObfuscatedName("e")
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = 920976113
+		intValue = 2050399625
 	)
 	@Export("properties")
 	int properties;
-	@ObfuscatedName("m")
+	@ObfuscatedName("a")
 	@ObfuscatedGetter(
-		intValue = -1580207855
+		intValue = -602749729
 	)
 	@Export("population")
 	int population;
-	@ObfuscatedName("c")
+	@ObfuscatedName("w")
 	@Export("host")
 	String host;
-	@ObfuscatedName("i")
+	@ObfuscatedName("k")
 	@Export("activity")
 	String activity;
-	@ObfuscatedName("f")
+	@ObfuscatedName("i")
 	@ObfuscatedGetter(
-		intValue = -1662346653
+		intValue = -175273101
 	)
 	@Export("location")
 	int location;
-	@ObfuscatedName("a")
+	@ObfuscatedName("x")
 	@ObfuscatedGetter(
-		intValue = -1162479517
+		intValue = 865975071
 	)
 	@Export("index")
 	int index;
@@ -86,56 +97,56 @@ public class World {
 
 	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		signature = "(B)Z",
-		garbageValue = "1"
+		signature = "(I)Z",
+		garbageValue = "1593793917"
 	)
 	@Export("isMembersOnly")
 	boolean isMembersOnly() {
 		return (1 & this.properties) != 0;
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
 		signature = "(I)Z",
-		garbageValue = "-2039082864"
+		garbageValue = "-1662495711"
 	)
-	boolean method1829() {
+	boolean method1878() {
 		return (2 & this.properties) != 0;
 	}
 
-	@ObfuscatedName("u")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
 		signature = "(I)Z",
-		garbageValue = "-1586384705"
+		garbageValue = "-1886649606"
 	)
 	@Export("isPvp")
 	boolean isPvp() {
 		return (4 & this.properties) != 0;
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
 		signature = "(I)Z",
-		garbageValue = "-1688533510"
+		garbageValue = "-1928708058"
 	)
-	boolean method1831() {
+	boolean method1880() {
 		return (8 & this.properties) != 0;
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
 		signature = "(B)Z",
-		garbageValue = "-65"
+		garbageValue = "28"
 	)
 	@Export("isDeadman")
 	boolean isDeadman() {
 		return (536870912 & this.properties) != 0;
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
 		signature = "(I)Z",
-		garbageValue = "495435944"
+		garbageValue = "1939241099"
 	)
 	@Export("isBeta")
 	boolean isBeta() {
@@ -145,135 +156,161 @@ public class World {
 	@ObfuscatedName("i")
 	@ObfuscatedSignature(
 		signature = "(B)Z",
-		garbageValue = "48"
+		garbageValue = "4"
 	)
-	boolean method1845() {
+	boolean method1883() {
 		return (1073741824 & this.properties) != 0;
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(II)I",
-		garbageValue = "719435212"
+		signature = "(I)V",
+		garbageValue = "-1636550910"
 	)
-	public static int method1870(int var0) {
-		--var0;
-		var0 |= var0 >>> 1;
-		var0 |= var0 >>> 2;
-		var0 |= var0 >>> 4;
-		var0 |= var0 >>> 8;
-		var0 |= var0 >>> 16;
-		return var0 + 1;
+	public static void method1924() {
+		VarpDefinition.VarpDefinition_cached.clear();
 	}
 
 	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(Lib;Lib;I)V",
-		garbageValue = "-186964533"
+		signature = "(Lkd;IS)Z",
+		garbageValue = "-20652"
 	)
-	public static void method1849(AbstractArchive var0, AbstractArchive var1) {
-		NPCComposition.NpcDefinition_archive = var0;
-		NPCComposition.NpcDefinition_modelArchive = var1;
-	}
-
-	@ObfuscatedName("x")
-	@ObfuscatedSignature(
-		signature = "(IIIIIII)I",
-		garbageValue = "689239187"
-	)
-	public static int method1871(int var0, int var1, int var2, int var3, int var4, int var5) {
-		if ((var5 & 1) == 1) {
-			int var6 = var3;
-			var3 = var4;
-			var4 = var6;
-		}
-
-		var2 &= 3;
+	@Export("updateExternalPlayer")
+	static boolean updateExternalPlayer(PacketBuffer var0, int var1) {
+		int var2 = var0.readBits(2);
+		int var3;
+		int var4;
+		int var7;
+		int var8;
+		int var9;
+		int var10;
 		if (var2 == 0) {
-			return var1;
-		} else if (var2 == 1) {
-			return 7 - var0 - (var3 - 1);
-		} else {
-			return var2 == 2 ? 7 - var1 - (var4 - 1) : var0;
-		}
-	}
-
-	@ObfuscatedName("w")
-	@ObfuscatedSignature(
-		signature = "(Ljava/lang/CharSequence;IZI)I",
-		garbageValue = "1735277376"
-	)
-	@Export("parseIntCustomRadix")
-	public static int parseIntCustomRadix(CharSequence var0, int var1, boolean var2) {
-		if (var1 >= 2 && var1 <= 36) {
-			boolean var3 = false;
-			boolean var4 = false;
-			int var5 = 0;
-			int var6 = var0.length();
-
-			for (int var7 = 0; var7 < var6; ++var7) {
-				char var8 = var0.charAt(var7);
-				if (var7 == 0) {
-					if (var8 == '-') {
-						var3 = true;
-						continue;
-					}
-
-					if (var8 == '+') {
-						continue;
-					}
-				}
-
-				int var10;
-				if (var8 >= '0' && var8 <= '9') {
-					var10 = var8 - '0';
-				} else if (var8 >= 'A' && var8 <= 'Z') {
-					var10 = var8 - '7';
-				} else {
-					if (var8 < 'a' || var8 > 'z') {
-						throw new NumberFormatException();
-					}
-
-					var10 = var8 - 'W';
-				}
-
-				if (var10 >= var1) {
-					throw new NumberFormatException();
-				}
-
-				if (var3) {
-					var10 = -var10;
-				}
-
-				int var9 = var5 * var1 + var10;
-				if (var9 / var1 != var5) {
-					throw new NumberFormatException();
-				}
-
-				var5 = var9;
-				var4 = true;
+			if (var0.readBits(1) != 0) {
+				updateExternalPlayer(var0, var1);
 			}
 
-			if (!var4) {
-				throw new NumberFormatException();
+			var3 = var0.readBits(13);
+			var4 = var0.readBits(13);
+			boolean var12 = var0.readBits(1) == 1;
+			if (var12) {
+				Players.Players_pendingUpdateIndices[++Players.Players_pendingUpdateCount - 1] = var1;
+			}
+
+			if (Client.players[var1] != null) {
+				throw new RuntimeException();
 			} else {
-				return var5;
+				Player var6 = Client.players[var1] = new Player();
+				var6.index = var1;
+				if (Players.field1269[var1] != null) {
+					var6.read(Players.field1269[var1]);
+				}
+
+				var6.orientation = Players.Players_orientations[var1];
+				var6.targetIndex = Players.Players_targetIndices[var1];
+				var7 = Players.Players_regions[var1];
+				var8 = var7 >> 28;
+				var9 = var7 >> 14 & 255;
+				var10 = var7 & 255;
+				var6.pathTraversed[0] = Players.field1274[var1];
+				var6.plane = (byte)var8;
+				var6.resetPath((var9 << 13) + var3 - GrandExchangeOfferNameComparator.baseX * 64, (var10 << 13) + var4 - NetCache.baseY * 64);
+				var6.field652 = false;
+				return true;
 			}
+		} else if (var2 == 1) {
+			var3 = var0.readBits(2);
+			var4 = Players.Players_regions[var1];
+			Players.Players_regions[var1] = (var4 & 268435455) + (((var4 >> 28) + var3 & 3) << 28);
+			return false;
 		} else {
-			throw new IllegalArgumentException("" + var1);
+			int var5;
+			int var11;
+			if (var2 == 2) {
+				var3 = var0.readBits(5);
+				var4 = var3 >> 3;
+				var5 = var3 & 7;
+				var11 = Players.Players_regions[var1];
+				var7 = (var11 >> 28) + var4 & 3;
+				var8 = var11 >> 14 & 255;
+				var9 = var11 & 255;
+				if (var5 == 0) {
+					--var8;
+					--var9;
+				}
+
+				if (var5 == 1) {
+					--var9;
+				}
+
+				if (var5 == 2) {
+					++var8;
+					--var9;
+				}
+
+				if (var5 == 3) {
+					--var8;
+				}
+
+				if (var5 == 4) {
+					++var8;
+				}
+
+				if (var5 == 5) {
+					--var8;
+					++var9;
+				}
+
+				if (var5 == 6) {
+					++var9;
+				}
+
+				if (var5 == 7) {
+					++var8;
+					++var9;
+				}
+
+				Players.Players_regions[var1] = (var8 << 14) + var9 + (var7 << 28);
+				return false;
+			} else {
+				var3 = var0.readBits(18);
+				var4 = var3 >> 16;
+				var5 = var3 >> 8 & 255;
+				var11 = var3 & 255;
+				var7 = Players.Players_regions[var1];
+				var8 = (var7 >> 28) + var4 & 3;
+				var9 = var5 + (var7 >> 14) & 255;
+				var10 = var11 + var7 & 255;
+				Players.Players_regions[var1] = (var9 << 14) + var10 + (var8 << 28);
+				return false;
+			}
 		}
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(II)I",
-		garbageValue = "614025062"
+		signature = "(S)V",
+		garbageValue = "14756"
 	)
-	public static int method1874(int var0) {
-		if (var0 > 0) {
-			return 1;
-		} else {
-			return var0 < 0 ? -1 : 0;
+	static void method1923() {
+		Iterator var0 = Messages.Messages_hashTable.iterator();
+
+		while (var0.hasNext()) {
+			Message var1 = (Message)var0.next();
+			var1.clearIsFromIgnored();
 		}
+
+	}
+
+	@ObfuscatedName("gb")
+	@ObfuscatedSignature(
+		signature = "(I)V",
+		garbageValue = "37330821"
+	)
+	static void method1925() {
+		if (UserComparator9.localPlayer.x >> 7 == Client.destinationX && UserComparator9.localPlayer.y >> 7 == Client.destinationY) {
+			Client.destinationX = 0;
+		}
+
 	}
 }

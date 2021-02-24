@@ -7,57 +7,46 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("jx")
 @Implements("EnumComposition")
 public class EnumComposition extends DualNode {
-	@ObfuscatedName("rk")
-	@ObfuscatedGetter(
-		intValue = -718709376
-	)
-	static int field3340;
-	@ObfuscatedName("h")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "Lib;"
+		signature = "Lig;"
 	)
 	@Export("EnumDefinition_archive")
-	static AbstractArchive EnumDefinition_archive;
+	public static AbstractArchive EnumDefinition_archive;
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "Lez;"
+		signature = "Lex;"
 	)
 	@Export("EnumDefinition_cached")
 	static EvictingDualNodeHashTable EnumDefinition_cached;
-	@ObfuscatedName("lh")
-	@ObfuscatedSignature(
-		signature = "Lhe;"
-	)
-	@Export("mousedOverWidgetIf1")
-	static Widget mousedOverWidgetIf1;
-	@ObfuscatedName("x")
+	@ObfuscatedName("d")
 	@Export("inputType")
 	public char inputType;
-	@ObfuscatedName("w")
+	@ObfuscatedName("c")
 	@Export("outputType")
 	public char outputType;
-	@ObfuscatedName("t")
+	@ObfuscatedName("y")
 	@Export("defaultStr")
 	public String defaultStr;
-	@ObfuscatedName("j")
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = 1632225121
+		intValue = 977907101
 	)
 	@Export("defaultInt")
 	public int defaultInt;
-	@ObfuscatedName("n")
+	@ObfuscatedName("z")
 	@ObfuscatedGetter(
-		intValue = -1333539623
+		intValue = 1947625869
 	)
 	@Export("outputCount")
 	public int outputCount;
-	@ObfuscatedName("p")
+	@ObfuscatedName("e")
 	@Export("keys")
 	public int[] keys;
-	@ObfuscatedName("l")
+	@ObfuscatedName("q")
 	@Export("intVals")
 	public int[] intVals;
-	@ObfuscatedName("z")
+	@ObfuscatedName("l")
 	@Export("strVals")
 	public String[] strVals;
 
@@ -70,10 +59,10 @@ public class EnumComposition extends DualNode {
 		this.outputCount = 0;
 	}
 
-	@ObfuscatedName("x")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(Lkj;B)V",
-		garbageValue = "1"
+		signature = "(Lkx;I)V",
+		garbageValue = "1374661087"
 	)
 	@Export("decode")
 	void decode(Buffer var1) {
@@ -87,10 +76,10 @@ public class EnumComposition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(Lkj;II)V",
-		garbageValue = "-1344091650"
+		signature = "(Lkx;IB)V",
+		garbageValue = "112"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
@@ -127,13 +116,33 @@ public class EnumComposition extends DualNode {
 
 	}
 
-	@ObfuscatedName("t")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
 		signature = "(I)I",
-		garbageValue = "-1619007901"
+		garbageValue = "-2129947174"
 	)
 	@Export("size")
 	public int size() {
 		return this.outputCount;
+	}
+
+	@ObfuscatedName("d")
+	@ObfuscatedSignature(
+		signature = "(CLgp;B)I",
+		garbageValue = "40"
+	)
+	@Export("lowercaseChar")
+	static int lowercaseChar(char var0, Language var1) {
+		int var2 = var0 << 4;
+		if (Character.isUpperCase(var0) || Character.isTitleCase(var0)) {
+			var0 = Character.toLowerCase(var0);
+			var2 = (var0 << 4) + 1;
+		}
+
+		if (var0 == 241 && var1 == Language.Language_ES) {
+			var2 = 1762;
+		}
+
+		return var2;
 	}
 }

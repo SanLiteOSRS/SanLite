@@ -6,7 +6,7 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("fv")
 @Implements("UserComparator3")
 public class UserComparator3 extends AbstractUserComparator {
-	@ObfuscatedName("h")
+	@ObfuscatedName("n")
 	@Export("reversed")
 	final boolean reversed;
 
@@ -14,10 +14,10 @@ public class UserComparator3 extends AbstractUserComparator {
 		this.reversed = var1;
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Lkz;Lkz;B)I",
-		garbageValue = "96"
+		signature = "(Lky;Lky;I)I",
+		garbageValue = "917883171"
 	)
 	@Export("compareBuddy")
 	int compareBuddy(Buddy var1, Buddy var2) {
@@ -30,142 +30,5 @@ public class UserComparator3 extends AbstractUserComparator {
 
 	public int compare(Object var1, Object var2) {
 		return this.compareBuddy((Buddy)var1, (Buddy)var2);
-	}
-
-	@ObfuscatedName("x")
-	@ObfuscatedSignature(
-		signature = "(Lky;B)V",
-		garbageValue = "10"
-	)
-	static final void method3515(PacketBuffer var0) {
-		int var1 = 0;
-		var0.importIndex();
-
-		byte[] var10000;
-		int var2;
-		int var3;
-		int var4;
-		for (var2 = 0; var2 < Players.Players_count; ++var2) {
-			var3 = Players.Players_indices[var2];
-			if ((Players.field1252[var3] & 1) == 0) {
-				if (var1 > 0) {
-					--var1;
-					var10000 = Players.field1252;
-					var10000[var3] = (byte)(var10000[var3] | 2);
-				} else {
-					var4 = var0.readBits(1);
-					if (var4 == 0) {
-						var1 = Skills.method4146(var0);
-						var10000 = Players.field1252;
-						var10000[var3] = (byte)(var10000[var3] | 2);
-					} else {
-						class349.readPlayerUpdate(var0, var3);
-					}
-				}
-			}
-		}
-
-		var0.exportIndex();
-		if (var1 != 0) {
-			throw new RuntimeException();
-		} else {
-			var0.importIndex();
-
-			for (var2 = 0; var2 < Players.Players_count; ++var2) {
-				var3 = Players.Players_indices[var2];
-				if ((Players.field1252[var3] & 1) != 0) {
-					if (var1 > 0) {
-						--var1;
-						var10000 = Players.field1252;
-						var10000[var3] = (byte)(var10000[var3] | 2);
-					} else {
-						var4 = var0.readBits(1);
-						if (var4 == 0) {
-							var1 = Skills.method4146(var0);
-							var10000 = Players.field1252;
-							var10000[var3] = (byte)(var10000[var3] | 2);
-						} else {
-							class349.readPlayerUpdate(var0, var3);
-						}
-					}
-				}
-			}
-
-			var0.exportIndex();
-			if (var1 != 0) {
-				throw new RuntimeException();
-			} else {
-				var0.importIndex();
-
-				for (var2 = 0; var2 < Players.Players_emptyIdxCount; ++var2) {
-					var3 = Players.Players_emptyIndices[var2];
-					if ((Players.field1252[var3] & 1) != 0) {
-						if (var1 > 0) {
-							--var1;
-							var10000 = Players.field1252;
-							var10000[var3] = (byte)(var10000[var3] | 2);
-						} else {
-							var4 = var0.readBits(1);
-							if (var4 == 0) {
-								var1 = Skills.method4146(var0);
-								var10000 = Players.field1252;
-								var10000[var3] = (byte)(var10000[var3] | 2);
-							} else if (WorldMapSection0.updateExternalPlayer(var0, var3)) {
-								var10000 = Players.field1252;
-								var10000[var3] = (byte)(var10000[var3] | 2);
-							}
-						}
-					}
-				}
-
-				var0.exportIndex();
-				if (var1 != 0) {
-					throw new RuntimeException();
-				} else {
-					var0.importIndex();
-
-					for (var2 = 0; var2 < Players.Players_emptyIdxCount; ++var2) {
-						var3 = Players.Players_emptyIndices[var2];
-						if ((Players.field1252[var3] & 1) == 0) {
-							if (var1 > 0) {
-								--var1;
-								var10000 = Players.field1252;
-								var10000[var3] = (byte)(var10000[var3] | 2);
-							} else {
-								var4 = var0.readBits(1);
-								if (var4 == 0) {
-									var1 = Skills.method4146(var0);
-									var10000 = Players.field1252;
-									var10000[var3] = (byte)(var10000[var3] | 2);
-								} else if (WorldMapSection0.updateExternalPlayer(var0, var3)) {
-									var10000 = Players.field1252;
-									var10000[var3] = (byte)(var10000[var3] | 2);
-								}
-							}
-						}
-					}
-
-					var0.exportIndex();
-					if (var1 != 0) {
-						throw new RuntimeException();
-					} else {
-						Players.Players_count = 0;
-						Players.Players_emptyIdxCount = 0;
-
-						for (var2 = 1; var2 < 2048; ++var2) {
-							var10000 = Players.field1252;
-							var10000[var2] = (byte)(var10000[var2] >> 1);
-							Player var5 = Client.players[var2];
-							if (var5 != null) {
-								Players.Players_indices[++Players.Players_count - 1] = var2;
-							} else {
-								Players.Players_emptyIndices[++Players.Players_emptyIdxCount - 1] = var2;
-							}
-						}
-
-					}
-				}
-			}
-		}
 	}
 }

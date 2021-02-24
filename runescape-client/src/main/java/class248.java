@@ -4,111 +4,114 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("iz")
+@ObfuscatedName("io")
 public class class248 {
-	@ObfuscatedName("l")
-	static int[] field3219;
-	@ObfuscatedName("gn")
-	@ObfuscatedGetter(
-		intValue = -259199833
-	)
-	static int field3222;
-	@ObfuscatedName("h")
+	@ObfuscatedName("n")
 	@Export("spriteMap")
 	final HashMap spriteMap;
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "Llc;"
+		signature = "Lli;"
 	)
 	@Export("bounds")
 	Bounds bounds;
-	@ObfuscatedName("x")
-	int[] field3218;
-	@ObfuscatedName("w")
-	int[] field3216;
-	@ObfuscatedName("t")
+	@ObfuscatedName("d")
+	int[] field3224;
+	@ObfuscatedName("c")
+	int[] field3228;
+	@ObfuscatedName("y")
 	@ObfuscatedGetter(
-		intValue = -1743285891
+		intValue = -1846736513
 	)
-	int field3220;
+	int field3226;
 
 	public class248() {
 		this.spriteMap = new HashMap();
 		this.bounds = new Bounds(0, 0);
-		this.field3218 = new int[2048];
-		this.field3216 = new int[2048];
-		this.field3220 = 0;
-		class195.method3680();
+		this.field3224 = new int[2048];
+		this.field3228 = new int[2048];
+		this.field3226 = 0;
+		Strings.method4324();
 	}
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
 		signature = "(II)V",
-		garbageValue = "105508707"
+		garbageValue = "-381922948"
 	)
-	void method4342(int var1) {
+	void method4507(int var1) {
 		int var2 = var1 * 2 + 1;
-		double[] var3 = ArchiveDiskActionHandler.method4294(0.0D, (double)((float)var1 / 3.0F), var1);
-		double var4 = var3[var1] * var3[var1];
-		int[] var6 = new int[var2 * var2];
-		boolean var7 = false;
+		double var4 = (double)((float)var1 / 3.0F);
+		int var6 = var1 * 2 + 1;
+		double[] var7 = new double[var6];
+		int var8 = -var1;
 
-		for (int var8 = 0; var8 < var2; ++var8) {
-			for (int var9 = 0; var9 < var2; ++var9) {
-				int var10 = var6[var9 + var2 * var8] = (int)(256.0D * (var3[var9] * var3[var8] / var4));
-				if (!var7 && var10 > 0) {
-					var7 = true;
+		for (int var9 = 0; var8 <= var1; ++var9) {
+			var7[var9] = HealthBarDefinition.method4658((double)var8, 0.0D, var4);
+			++var8;
+		}
+
+		double[] var14 = var7;
+		double var15 = var7[var1] * var7[var1];
+		int[] var17 = new int[var2 * var2];
+		boolean var10 = false;
+
+		for (int var11 = 0; var11 < var2; ++var11) {
+			for (int var12 = 0; var12 < var2; ++var12) {
+				int var13 = var17[var12 + var2 * var11] = (int)(var14[var11] * var14[var12] / var15 * 256.0D);
+				if (!var10 && var13 > 0) {
+					var10 = true;
 				}
 			}
 		}
 
-		SpritePixels var11 = new SpritePixels(var6, var2, var2);
-		this.spriteMap.put(var1, var11);
+		SpritePixels var18 = new SpritePixels(var17, var2, var2);
+		this.spriteMap.put(var1, var18);
 	}
 
-	@ObfuscatedName("x")
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
 		signature = "(II)Llm;",
-		garbageValue = "-2015707218"
+		garbageValue = "1559199090"
 	)
-	SpritePixels method4343(int var1) {
+	SpritePixels method4527(int var1) {
 		if (!this.spriteMap.containsKey(var1)) {
-			this.method4342(var1);
+			this.method4507(var1);
 		}
 
 		return (SpritePixels)this.spriteMap.get(var1);
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
 		signature = "(III)V",
-		garbageValue = "2038204538"
+		garbageValue = "-1110209387"
 	)
-	public final void method4344(int var1, int var2) {
-		if (this.field3220 < this.field3218.length) {
-			this.field3218[this.field3220] = var1;
-			this.field3216[this.field3220] = var2;
-			++this.field3220;
+	public final void method4509(int var1, int var2) {
+		if (this.field3226 < this.field3224.length) {
+			this.field3224[this.field3226] = var1;
+			this.field3228[this.field3226] = var2;
+			++this.field3226;
 		}
 	}
 
-	@ObfuscatedName("t")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "542816734"
+		garbageValue = "-1700428858"
 	)
-	public final void method4345() {
-		this.field3220 = 0;
+	public final void method4510() {
+		this.field3226 = 0;
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(IILlm;FB)V",
-		garbageValue = "-62"
+		signature = "(IILlm;FI)V",
+		garbageValue = "2039360324"
 	)
-	public final void method4346(int var1, int var2, SpritePixels var3, float var4) {
-		int var5 = (int)(var4 * 18.0F);
-		SpritePixels var6 = this.method4343(var5);
+	public final void method4511(int var1, int var2, SpritePixels var3, float var4) {
+		int var5 = (int)(18.0F * var4);
+		SpritePixels var6 = this.method4527(var5);
 		int var7 = var5 * 2 + 1;
 		Bounds var8 = new Bounds(0, 0, var3.subWidth, var3.subHeight);
 		Bounds var9 = new Bounds(0, 0);
@@ -118,14 +121,14 @@ public class class248 {
 		int var10;
 		int var11;
 		int var12;
-		for (var10 = 0; var10 < this.field3220; ++var10) {
-			var11 = this.field3218[var10];
-			var12 = this.field3216[var10];
-			int var13 = (int)((float)(var11 - var1) * var4) - var5;
-			int var14 = (int)((float)var3.subHeight - (float)(var12 - var2) * var4) - var5;
+		for (var10 = 0; var10 < this.field3226; ++var10) {
+			var11 = this.field3224[var10];
+			var12 = this.field3228[var10];
+			int var13 = (int)(var4 * (float)(var11 - var1)) - var5;
+			int var14 = (int)((float)var3.subHeight - var4 * (float)(var12 - var2)) - var5;
 			this.bounds.setLow(var13, var14);
-			this.bounds.method6014(var8, var9);
-			this.method4347(var6, var3, var9);
+			this.bounds.method6182(var8, var9);
+			this.method4506(var6, var3, var9);
 		}
 
 		System.nanoTime();
@@ -139,11 +142,11 @@ public class class248 {
 				if (var11 <= 0) {
 					var3.pixels[var10] = -16777216;
 				} else {
-					if (var11 > field3219.length) {
-						var11 = field3219.length;
+					if (var11 > Coord.field2560.length) {
+						var11 = Coord.field2560.length;
 					}
 
-					var12 = field3219[var11 - 1];
+					var12 = Coord.field2560[var11 - 1];
 					var3.pixels[var10] = -16777216 | var12;
 				}
 			}
@@ -152,12 +155,12 @@ public class class248 {
 		System.nanoTime();
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(Llm;Llm;Llc;B)V",
-		garbageValue = "36"
+		signature = "(Llm;Llm;Lli;I)V",
+		garbageValue = "-524888104"
 	)
-	void method4347(SpritePixels var1, SpritePixels var2, Bounds var3) {
+	void method4506(SpritePixels var1, SpritePixels var2, Bounds var3) {
 		if (var3.highX != 0 && var3.highY != 0) {
 			int var4 = 0;
 			int var5 = 0;
@@ -170,7 +173,7 @@ public class class248 {
 			}
 
 			int var6 = var4 + var5 * var1.subWidth;
-			int var7 = var2.subWidth * var3.lowY + var3.lowX;
+			int var7 = var3.lowX + var2.subWidth * var3.lowY;
 
 			for (int var8 = 0; var8 < var3.highY; ++var8) {
 				for (int var9 = 0; var9 < var3.highX; ++var9) {
@@ -181,6 +184,23 @@ public class class248 {
 
 				var6 += var1.subWidth - var3.highX;
 				var7 += var2.subWidth - var3.highX;
+			}
+
+		}
+	}
+
+	@ObfuscatedName("y")
+	@ObfuscatedSignature(
+		signature = "(B)V",
+		garbageValue = "15"
+	)
+	static void method4514() {
+		if (Login.Login_username == null || Login.Login_username.length() <= 0) {
+			if (WorldMapSectionType.clientPreferences.rememberedUsername != null) {
+				Login.Login_username = WorldMapSectionType.clientPreferences.rememberedUsername;
+				Client.Login_isUsernameRemembered = true;
+			} else {
+				Client.Login_isUsernameRemembered = false;
 			}
 
 		}

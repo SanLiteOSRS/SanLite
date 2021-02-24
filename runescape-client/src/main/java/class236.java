@@ -1,61 +1,35 @@
 import net.runelite.mapping.Export;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ii")
+@ObfuscatedName("id")
 public final class class236 {
-	@ObfuscatedName("h")
-	public static final void method4165(long var0) {
-		if (var0 > 0L) {
-			if (0L == var0 % 10L) {
-				long var2 = var0 - 1L;
-
-				try {
-					Thread.sleep(var2);
-				} catch (InterruptedException var8) {
-				}
-
-				try {
-					Thread.sleep(1L);
-				} catch (InterruptedException var7) {
-				}
-			} else {
-				try {
-					Thread.sleep(var0);
-				} catch (InterruptedException var6) {
-				}
-			}
-
-		}
-	}
-
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		signature = "(I)Lgv;",
-		garbageValue = "1686839438"
+	@ObfuscatedName("fv")
+	@ObfuscatedGetter(
+		longValue = -1285822729066684367L
 	)
-	public static PacketBufferNode method4163() {
-		PacketBufferNode var0;
-		if (PacketBufferNode.PacketBufferNode_packetBufferNodeCount == 0) {
-			var0 = new PacketBufferNode();
-		} else {
-			var0 = PacketBufferNode.PacketBufferNode_packetBufferNodes[--PacketBufferNode.PacketBufferNode_packetBufferNodeCount];
-		}
-
-		var0.clientPacket = null;
-		var0.clientPacketLength = 0;
-		var0.packetBuffer = new PacketBuffer(5000);
-		return var0;
-	}
+	static long field3108;
+	@ObfuscatedName("gy")
+	@ObfuscatedSignature(
+		signature = "Llm;"
+	)
+	@Export("redHintArrowSprite")
+	static SpritePixels redHintArrowSprite;
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(I)Lcj;",
-		garbageValue = "-2109446409"
+		signature = "(IIII)I",
+		garbageValue = "1107662204"
 	)
-	@Export("worldListStart")
-	static World worldListStart() {
-		World.World_listCount = 0;
-		return GrandExchangeEvents.getNextWorldListWorld();
+	public static int method4332(int var0, int var1, int var2) {
+		var2 &= 3;
+		if (var2 == 0) {
+			return var0;
+		} else if (var2 == 1) {
+			return var1;
+		} else {
+			return var2 == 2 ? 7 - var0 : 7 - var1;
+		}
 	}
 }

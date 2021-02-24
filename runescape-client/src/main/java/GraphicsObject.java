@@ -1,69 +1,75 @@
+import java.io.File;
+import java.io.RandomAccessFile;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ce")
+@ObfuscatedName("cj")
 @Implements("GraphicsObject")
 public final class GraphicsObject extends Renderable {
-	@ObfuscatedName("a")
-	public static String[] field1117;
-	@ObfuscatedName("h")
+	@ObfuscatedName("t")
 	@ObfuscatedGetter(
-		intValue = 1733253917
+		intValue = 910565899
+	)
+	@Export("loginBoxCenter")
+	static int loginBoxCenter;
+	@ObfuscatedName("n")
+	@ObfuscatedGetter(
+		intValue = -1864450081
 	)
 	@Export("id")
 	int id;
 	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = -561629891
+		intValue = 505711675
 	)
 	@Export("cycleStart")
 	int cycleStart;
-	@ObfuscatedName("x")
+	@ObfuscatedName("d")
 	@ObfuscatedGetter(
-		intValue = 843078799
-	)
-	@Export("y")
-	int y;
-	@ObfuscatedName("w")
-	@ObfuscatedGetter(
-		intValue = -391213595
+		intValue = -1431922107
 	)
 	@Export("plane")
 	int plane;
-	@ObfuscatedName("t")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = 1438235689
+		intValue = -1205773017
 	)
 	@Export("x")
 	int x;
-	@ObfuscatedName("j")
-	@ObfuscatedGetter(
-		intValue = 697288519
-	)
-	@Export("height")
-	int height;
-	@ObfuscatedName("n")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "Ljy;"
+		signature = "Ljs;"
 	)
 	@Export("sequenceDefinition")
 	SequenceDefinition sequenceDefinition;
-	@ObfuscatedName("p")
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = -737281837
+		intValue = -2064393717
+	)
+	@Export("y")
+	int y;
+	@ObfuscatedName("z")
+	@ObfuscatedGetter(
+		intValue = -1686573995
+	)
+	@Export("height")
+	int height;
+	@ObfuscatedName("e")
+	@ObfuscatedGetter(
+		intValue = -1959033933
 	)
 	@Export("frame")
 	int frame;
-	@ObfuscatedName("l")
+	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = -2023288775
+		intValue = 230901949
 	)
 	@Export("frameCycle")
 	int frameCycle;
-	@ObfuscatedName("z")
+	@ObfuscatedName("l")
 	@Export("isFinished")
 	boolean isFinished;
 
@@ -77,20 +83,20 @@ public final class GraphicsObject extends Renderable {
 		this.y = var4;
 		this.height = var5;
 		this.cycleStart = var7 + var6;
-		int var8 = TileItem.SpotAnimationDefinition_get(this.id).sequence;
+		int var8 = AbstractUserComparator.SpotAnimationDefinition_get(this.id).sequence;
 		if (var8 != -1) {
 			this.isFinished = false;
-			this.sequenceDefinition = ParamDefinition.SequenceDefinition_get(var8);
+			this.sequenceDefinition = InterfaceParent.SequenceDefinition_get(var8);
 		} else {
 			this.isFinished = true;
 		}
 
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
 		signature = "(II)V",
-		garbageValue = "1007700617"
+		garbageValue = "-83388372"
 	)
 	@Export("advance")
 	final void advance(int var1) {
@@ -109,14 +115,14 @@ public final class GraphicsObject extends Renderable {
 		}
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		signature = "(I)Leh;",
-		garbageValue = "-1814248977"
+		signature = "(B)Lef;",
+		garbageValue = "127"
 	)
 	@Export("getModel")
 	protected final Model getModel() {
-		SpotAnimationDefinition var1 = TileItem.SpotAnimationDefinition_get(this.id);
+		SpotAnimationDefinition var1 = AbstractUserComparator.SpotAnimationDefinition_get(this.id);
 		Model var2;
 		if (!this.isFinished) {
 			var2 = var1.getModel(this.frame);
@@ -127,44 +133,72 @@ public final class GraphicsObject extends Renderable {
 		return var2 == null ? null : var2;
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "14"
+		signature = "(II)Z",
+		garbageValue = "-531258942"
 	)
-	public static void method2090() {
-		synchronized(KeyHandler.KeyHandler_instance) {
-			++KeyHandler.KeyHandler_idleCycles;
-			KeyHandler.field415 = KeyHandler.field417;
-			KeyHandler.field414 = 0;
-			int var1;
-			if (KeyHandler.field410 < 0) {
-				for (var1 = 0; var1 < 112; ++var1) {
-					KeyHandler.KeyHandler_pressedKeys[var1] = false;
-				}
+	public static boolean method2153(int var0) {
+		return var0 >= WorldMapDecorationType.field2765.id && var0 <= WorldMapDecorationType.field2750.id || var0 == WorldMapDecorationType.field2760.id;
+	}
 
-				KeyHandler.field410 = KeyHandler.field401;
+	@ObfuscatedName("v")
+	@ObfuscatedSignature(
+		signature = "(Ljava/lang/String;B)Ljava/io/File;",
+		garbageValue = "0"
+	)
+	@Export("getFile")
+	static File getFile(String var0) {
+		if (!FileSystem.FileSystem_hasPermissions) {
+			throw new RuntimeException("");
+		} else {
+			File var1 = (File)FileSystem.FileSystem_cacheFiles.get(var0);
+			if (var1 != null) {
+				return var1;
 			} else {
-				while (KeyHandler.field401 != KeyHandler.field410) {
-					var1 = KeyHandler.field408[KeyHandler.field401];
-					KeyHandler.field401 = KeyHandler.field401 + 1 & 127;
-					if (var1 < 0) {
-						KeyHandler.KeyHandler_pressedKeys[~var1] = false;
-					} else {
-						if (!KeyHandler.KeyHandler_pressedKeys[var1] && KeyHandler.field414 < KeyHandler.field413.length - 1) {
-							KeyHandler.field413[++KeyHandler.field414 - 1] = var1;
-						}
+				File var2 = new File(FileSystem.FileSystem_cacheDir, var0);
+				RandomAccessFile var3 = null;
 
-						KeyHandler.KeyHandler_pressedKeys[var1] = true;
+				try {
+					File var4 = new File(var2.getParent());
+					if (!var4.exists()) {
+						throw new RuntimeException("");
+					} else {
+						var3 = new RandomAccessFile(var2, "rw");
+						int var5 = var3.read();
+						var3.seek(0L);
+						var3.write(var5);
+						var3.seek(0L);
+						var3.close();
+						FileSystem.FileSystem_cacheFiles.put(var0, var2);
+						return var2;
 					}
+				} catch (Exception var8) {
+					try {
+						if (var3 != null) {
+							var3.close();
+							var3 = null;
+						}
+					} catch (Exception var7) {
+					}
+
+					throw new RuntimeException();
 				}
 			}
-
-			if (KeyHandler.field414 > 0) {
-				KeyHandler.KeyHandler_idleCycles = 0;
-			}
-
-			KeyHandler.field417 = KeyHandler.field419;
 		}
+	}
+
+	@ObfuscatedName("ai")
+	@ObfuscatedSignature(
+		signature = "(ILhd;ZI)V",
+		garbageValue = "956374800"
+	)
+	static void method2154(int var0, Coord var1, boolean var2) {
+		WorldMapArea var3 = WorldMapSection0.getWorldMap().getMapArea(var0);
+		int var4 = UserComparator9.localPlayer.plane;
+		int var5 = GrandExchangeOfferNameComparator.baseX * 64 + (UserComparator9.localPlayer.x >> 7);
+		int var6 = NetCache.baseY * 64 + (UserComparator9.localPlayer.y >> 7);
+		Coord var7 = new Coord(var4, var5, var6);
+		WorldMapSection0.getWorldMap().method6536(var3, var7, var1, var2);
 	}
 }

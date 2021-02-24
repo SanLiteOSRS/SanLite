@@ -3,25 +3,25 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hk")
+@ObfuscatedName("hs")
 @Implements("AbstractByteArrayCopier")
 public abstract class AbstractByteArrayCopier {
 	AbstractByteArrayCopier() {
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
 		signature = "(I)[B",
-		garbageValue = "-938287989"
+		garbageValue = "1361682252"
 	)
 	@Export("get")
 	abstract byte[] get();
 
-	@ObfuscatedName("x")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
 		signature = "([BI)V",
-		garbageValue = "-277286562"
+		garbageValue = "262833794"
 	)
 	@Export("set")
-	public abstract void set(byte[] var1);
+	abstract void set(byte[] var1);
 }

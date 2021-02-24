@@ -4,24 +4,24 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("co")
+@ObfuscatedName("ct")
 @Implements("ChatChannel")
 public class ChatChannel {
-	@ObfuscatedName("mf")
-	@ObfuscatedGetter(
-		intValue = 29773269
+	@ObfuscatedName("hr")
+	@ObfuscatedSignature(
+		signature = "[Llm;"
 	)
-	@Export("selectedItemSlot")
-	static int selectedItemSlot;
+	@Export("mapDotSprites")
+	static SpritePixels[] mapDotSprites;
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "[Lbg;"
+		signature = "[Lbd;"
 	)
 	@Export("messages")
 	Message[] messages;
-	@ObfuscatedName("x")
+	@ObfuscatedName("d")
 	@ObfuscatedGetter(
-		intValue = -259879771
+		intValue = 1722504417
 	)
 	@Export("count")
 	int count;
@@ -30,10 +30,10 @@ public class ChatChannel {
 		this.messages = new Message[100];
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;I)Lbg;",
-		garbageValue = "2065978922"
+		signature = "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;I)Lbd;",
+		garbageValue = "1561043824"
 	)
 	@Export("addMessage")
 	Message addMessage(int var1, String var2, String var3, String var4) {
@@ -63,187 +63,106 @@ public class ChatChannel {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(II)Lbg;",
-		garbageValue = "-52136333"
+		signature = "(II)Lbd;",
+		garbageValue = "-55839716"
 	)
 	@Export("getMessage")
 	Message getMessage(int var1) {
 		return var1 >= 0 && var1 < this.count ? this.messages[var1] : null;
 	}
 
-	@ObfuscatedName("x")
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
 		signature = "(I)I",
-		garbageValue = "-845683507"
+		garbageValue = "-2110362731"
 	)
 	@Export("size")
 	int size() {
 		return this.count;
 	}
 
-	@ObfuscatedName("h")
-	@ObfuscatedSignature(
-		signature = "(II)Lcs;",
-		garbageValue = "1674386327"
-	)
-	@Export("getScript")
-	static Script getScript(int var0) {
-		Script var1 = (Script)Script.Script_cached.get((long)var0);
-		if (var1 != null) {
-			return var1;
-		} else {
-			byte[] var2 = PacketBufferNode.archive12.takeFile(var0, 0);
-			if (var2 == null) {
-				return null;
-			} else {
-				var1 = Actor.newScript(var2);
-				Script.Script_cached.put(var1, (long)var0);
-				return var1;
-			}
-		}
-	}
-
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(II)Ljl;",
-		garbageValue = "1207819240"
+		signature = "(Ljava/lang/Object;ZI)[B",
+		garbageValue = "488468248"
 	)
-	@Export("getParamDefinition")
-	public static ParamDefinition getParamDefinition(int var0) {
-		ParamDefinition var1 = (ParamDefinition)ParamDefinition.ParamDefinition_cached.get((long)var0);
-		if (var1 != null) {
-			return var1;
+	public static byte[] method2405(Object var0, boolean var1) {
+		if (var0 == null) {
+			return null;
+		} else if (var0 instanceof byte[]) {
+			byte[] var3 = (byte[])((byte[])var0);
+			return var1 ? UrlRequester.method3460(var3) : var3;
+		} else if (var0 instanceof AbstractByteArrayCopier) {
+			AbstractByteArrayCopier var2 = (AbstractByteArrayCopier)var0;
+			return var2.get();
 		} else {
-			byte[] var2 = ParamDefinition.ParamDefinition_archive.takeFile(11, var0);
-			var1 = new ParamDefinition();
-			if (var2 != null) {
-				var1.decode(new Buffer(var2));
-			}
-
-			var1.postDecode();
-			ParamDefinition.ParamDefinition_cached.put(var1, (long)var0);
-			return var1;
+			throw new IllegalArgumentException();
 		}
 	}
 
-	@ObfuscatedName("x")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "([Lcj;II[I[II)V",
-		garbageValue = "-740794716"
+		signature = "(Lig;Ljava/lang/String;Ljava/lang/String;I)Lly;",
+		garbageValue = "591050656"
 	)
-	@Export("sortWorlds")
-	static void sortWorlds(World[] var0, int var1, int var2, int[] var3, int[] var4) {
-		if (var1 < var2) {
-			int var5 = var1 - 1;
-			int var6 = var2 + 1;
-			int var7 = (var2 + var1) / 2;
-			World var8 = var0[var7];
-			var0[var7] = var0[var1];
-			var0[var1] = var8;
-
-			while (var5 < var6) {
-				boolean var9 = true;
-
-				int var10;
-				int var11;
-				int var12;
-				do {
-					--var6;
-
-					for (var10 = 0; var10 < 4; ++var10) {
-						if (var3[var10] == 2) {
-							var11 = var0[var6].index;
-							var12 = var8.index;
-						} else if (var3[var10] == 1) {
-							var11 = var0[var6].population;
-							var12 = var8.population;
-							if (var11 == -1 && var4[var10] == 1) {
-								var11 = 2001;
-							}
-
-							if (var12 == -1 && var4[var10] == 1) {
-								var12 = 2001;
-							}
-						} else if (var3[var10] == 3) {
-							var11 = var0[var6].isMembersOnly() ? 1 : 0;
-							var12 = var8.isMembersOnly() ? 1 : 0;
-						} else {
-							var11 = var0[var6].id;
-							var12 = var8.id;
-						}
-
-						if (var11 != var12) {
-							if ((var4[var10] != 1 || var11 <= var12) && (var4[var10] != 0 || var11 >= var12)) {
-								var9 = false;
-							}
-							break;
-						}
-
-						if (var10 == 3) {
-							var9 = false;
-						}
-					}
-				} while(var9);
-
-				var9 = true;
-
-				do {
-					++var5;
-
-					for (var10 = 0; var10 < 4; ++var10) {
-						if (var3[var10] == 2) {
-							var11 = var0[var5].index;
-							var12 = var8.index;
-						} else if (var3[var10] == 1) {
-							var11 = var0[var5].population;
-							var12 = var8.population;
-							if (var11 == -1 && var4[var10] == 1) {
-								var11 = 2001;
-							}
-
-							if (var12 == -1 && var4[var10] == 1) {
-								var12 = 2001;
-							}
-						} else if (var3[var10] == 3) {
-							var11 = var0[var5].isMembersOnly() ? 1 : 0;
-							var12 = var8.isMembersOnly() ? 1 : 0;
-						} else {
-							var11 = var0[var5].id;
-							var12 = var8.id;
-						}
-
-						if (var11 != var12) {
-							if ((var4[var10] != 1 || var11 >= var12) && (var4[var10] != 0 || var11 <= var12)) {
-								var9 = false;
-							}
-							break;
-						}
-
-						if (var10 == 3) {
-							var9 = false;
-						}
-					}
-				} while(var9);
-
-				if (var5 < var6) {
-					World var13 = var0[var5];
-					var0[var5] = var0[var6];
-					var0[var6] = var13;
-				}
-			}
-
-			sortWorlds(var0, var1, var6, var3, var4);
-			sortWorlds(var0, var6 + 1, var2, var3, var4);
+	@Export("SpriteBuffer_getIndexedSpriteByName")
+	public static IndexedSprite SpriteBuffer_getIndexedSpriteByName(AbstractArchive var0, String var1, String var2) {
+		int var3 = var0.getGroupId(var1);
+		int var4 = var0.getFileId(var3, var2);
+		byte[] var7 = var0.takeFile(var3, var4);
+		boolean var6;
+		if (var7 == null) {
+			var6 = false;
+		} else {
+			GrandExchangeOfferNameComparator.SpriteBuffer_decode(var7);
+			var6 = true;
 		}
 
+		IndexedSprite var5;
+		if (!var6) {
+			var5 = null;
+		} else {
+			var5 = ApproximateRouteStrategy.method1304();
+		}
+
+		return var5;
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "(IB)V",
-		garbageValue = "57"
+		signature = "(Lcq;I)V",
+		garbageValue = "291320616"
 	)
-	public static void method2317(int var0) {
-		MouseHandler.MouseHandler_idleCycles = var0;
+	@Export("changeWorld")
+	static void changeWorld(World var0) {
+		if (var0.isMembersOnly() != Client.isMembersWorld) {
+			Client.isMembersWorld = var0.isMembersOnly();
+			boolean var1 = var0.isMembersOnly();
+			if (var1 != Bounds.ItemDefinition_inMembersWorld) {
+				ItemComposition.ItemDefinition_cached.clear();
+				ItemComposition.ItemDefinition_cachedModels.clear();
+				ItemComposition.ItemDefinition_cachedSprites.clear();
+				Bounds.ItemDefinition_inMembersWorld = var1;
+			}
+		}
+
+		if (var0.properties != Client.worldProperties) {
+			Archive var3 = ModeWhere.archive8;
+			int var2 = var0.properties;
+			if ((var2 & 536870912) != 0) {
+				Login.logoSprite = SpriteBuffer_getIndexedSpriteByName(var3, "logo_deadman_mode", "");
+			} else if ((var2 & 1073741824) != 0) {
+				Login.logoSprite = SpriteBuffer_getIndexedSpriteByName(var3, "logo_seasonal_mode", "");
+			} else {
+				Login.logoSprite = SpriteBuffer_getIndexedSpriteByName(var3, "logo", "");
+			}
+		}
+
+		MusicPatchNode.worldHost = var0.host;
+		Client.worldId = var0.id;
+		Client.worldProperties = var0.properties;
+		MouseRecorder.port1 = Client.gameBuild == 0 ? 43594 : var0.id + 40000;
+		class171.port2 = Client.gameBuild == 0 ? 443 : var0.id + 50000;
+		DynamicObject.port3 = MouseRecorder.port1;
 	}
 }

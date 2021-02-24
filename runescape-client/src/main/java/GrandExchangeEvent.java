@@ -1,49 +1,44 @@
-import java.net.URL;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("a")
+@ObfuscatedName("x")
 @Implements("GrandExchangeEvent")
 public class GrandExchangeEvent {
-	@ObfuscatedName("l")
+	@ObfuscatedName("gw")
 	@ObfuscatedGetter(
-		intValue = 34061047
+		intValue = 646144783
 	)
-	@Export("musicTrackVolume")
-	public static int musicTrackVolume;
-	@ObfuscatedName("ag")
-	@Export("fontHelvetica13")
-	static java.awt.Font fontHelvetica13;
-	@ObfuscatedName("h")
+	static int field82;
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = 1823148411
+		intValue = -327146803
 	)
 	@Export("world")
 	public final int world;
 	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		longValue = -1010127793754141401L
+		longValue = 986642853943479863L
 	)
 	@Export("age")
 	public final long age;
-	@ObfuscatedName("x")
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "Ly;"
+		signature = "Lg;"
 	)
 	@Export("grandExchangeOffer")
 	public final GrandExchangeOffer grandExchangeOffer;
-	@ObfuscatedName("w")
+	@ObfuscatedName("c")
 	@Export("offerName")
 	String offerName;
-	@ObfuscatedName("t")
+	@ObfuscatedName("y")
 	@Export("previousOfferName")
 	String previousOfferName;
 
 	@ObfuscatedSignature(
-		signature = "(Lkj;BI)V"
+		signature = "(Lkx;BI)V"
 	)
 	GrandExchangeEvent(Buffer var1, byte var2, int var3) {
 		this.offerName = var1.readStringCp1252NullTerminated();
@@ -53,8 +48,8 @@ public class GrandExchangeEvent {
 		int var4 = var1.readInt();
 		int var5 = var1.readInt();
 		this.grandExchangeOffer = new GrandExchangeOffer();
-		this.grandExchangeOffer.method171(2);
-		this.grandExchangeOffer.method176(var2);
+		this.grandExchangeOffer.method166(2);
+		this.grandExchangeOffer.method168(var2);
 		this.grandExchangeOffer.unitPrice = var4;
 		this.grandExchangeOffer.totalQuantity = var5;
 		this.grandExchangeOffer.currentQuantity = 0;
@@ -62,10 +57,10 @@ public class GrandExchangeEvent {
 		this.grandExchangeOffer.id = var3;
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(I)Ljava/lang/String;",
-		garbageValue = "-819048279"
+		signature = "(B)Ljava/lang/String;",
+		garbageValue = "73"
 	)
 	@Export("getOfferName")
 	public String getOfferName() {
@@ -75,70 +70,46 @@ public class GrandExchangeEvent {
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
 		signature = "(B)Ljava/lang/String;",
-		garbageValue = "5"
+		garbageValue = "59"
 	)
 	@Export("getPreviousOfferName")
 	public String getPreviousOfferName() {
 		return this.previousOfferName;
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("fm")
 	@ObfuscatedSignature(
-		signature = "(I)Z",
-		garbageValue = "2125539222"
+		signature = "(Lcv;I)V",
+		garbageValue = "878562406"
 	)
-	@Export("loadWorlds")
-	static boolean loadWorlds() {
-		try {
-			if (World.World_request == null) {
-				World.World_request = GrandExchangeOfferAgeComparator.urlRequester.request(new URL(GrandExchangeOfferTotalQuantityComparator.field75));
-			} else if (World.World_request.isDone()) {
-				byte[] var0 = World.World_request.getResponse();
-				Buffer var1 = new Buffer(var0);
-				var1.readInt();
-				World.World_count = var1.readUnsignedShort();
-				World.World_worlds = new World[World.World_count];
-
-				World var3;
-				for (int var2 = 0; var2 < World.World_count; var3.index = var2++) {
-					var3 = World.World_worlds[var2] = new World();
-					var3.id = var1.readUnsignedShort();
-					var3.properties = var1.readInt();
-					var3.host = var1.readStringCp1252NullTerminated();
-					var3.activity = var1.readStringCp1252NullTerminated();
-					var3.location = var1.readUnsignedByte();
-					var3.population = var1.readShort();
-				}
-
-				ChatChannel.sortWorlds(World.World_worlds, 0, World.World_worlds.length - 1, World.World_sortOption1, World.World_sortOption2);
-				World.World_request = null;
-				return true;
-			}
-		} catch (Exception var4) {
-			var4.printStackTrace();
-			World.World_request = null;
-		}
-
-		return false;
+	static final void method147(Actor var0) {
+		int var1 = Math.max(1, var0.field999 - Client.cycle);
+		int var2 = var0.field992 * 128 + var0.field1007 * 64;
+		int var3 = var0.field952 * 128 + var0.field1007 * 64;
+		var0.x += (var2 - var0.x) / var1;
+		var0.y += (var3 - var0.y) / var1;
+		var0.field989 = 0;
+		var0.orientation = var0.field1001;
 	}
 
-	@ObfuscatedName("ae")
+	@ObfuscatedName("jm")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "31"
+		signature = "(II)V",
+		garbageValue = "1637672427"
 	)
-	protected static final void method153() {
-		class225.clock.mark();
+	@Export("Widget_resetModelFrames")
+	static final void Widget_resetModelFrames(int var0) {
+		if (WorldMapCacheName.loadInterface(var0)) {
+			Widget[] var1 = DefaultsGroup.Widget_interfaceComponents[var0];
 
-		int var0;
-		for (var0 = 0; var0 < 32; ++var0) {
-			GameEngine.graphicsTickTimes[var0] = 0L;
+			for (int var2 = 0; var2 < var1.length; ++var2) {
+				Widget var3 = var1[var2];
+				if (var3 != null) {
+					var3.modelFrame = 0;
+					var3.modelFrameCycle = 0;
+				}
+			}
+
 		}
-
-		for (var0 = 0; var0 < 32; ++var0) {
-			GameEngine.clientTickTimes[var0] = 0L;
-		}
-
-		class8.gameCyclesToDo = 0;
 	}
 }

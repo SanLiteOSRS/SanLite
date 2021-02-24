@@ -3,50 +3,49 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.ScriptOpcodes;
 
 @ObfuscatedName("iw")
 @Implements("FloorUnderlayDefinition")
 public class FloorUnderlayDefinition extends DualNode {
-	@ObfuscatedName("h")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "Lib;"
+		signature = "Lig;"
 	)
 	@Export("FloorUnderlayDefinition_archive")
 	public static AbstractArchive FloorUnderlayDefinition_archive;
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "Lez;"
+		signature = "Lex;"
 	)
 	@Export("FloorUnderlayDefinition_cached")
-	static EvictingDualNodeHashTable FloorUnderlayDefinition_cached;
-	@ObfuscatedName("x")
+	public static EvictingDualNodeHashTable FloorUnderlayDefinition_cached;
+	@ObfuscatedName("d")
 	@ObfuscatedGetter(
-		intValue = -1640099513
+		intValue = -130851115
 	)
 	@Export("rgb")
 	int rgb;
-	@ObfuscatedName("w")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = 772769107
+		intValue = 873128511
 	)
 	@Export("hue")
 	public int hue;
-	@ObfuscatedName("t")
+	@ObfuscatedName("y")
 	@ObfuscatedGetter(
-		intValue = 1277008429
+		intValue = 1930192423
 	)
 	@Export("saturation")
 	public int saturation;
-	@ObfuscatedName("j")
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = 1129854273
+		intValue = 1785513219
 	)
 	@Export("lightness")
 	public int lightness;
-	@ObfuscatedName("n")
+	@ObfuscatedName("z")
 	@ObfuscatedGetter(
-		intValue = 2072275111
+		intValue = -114271383
 	)
 	@Export("hueMultiplier")
 	public int hueMultiplier;
@@ -62,17 +61,17 @@ public class FloorUnderlayDefinition extends DualNode {
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "1848989672"
+		garbageValue = "-1258878623"
 	)
 	@Export("postDecode")
 	void postDecode() {
 		this.setHsl(this.rgb);
 	}
 
-	@ObfuscatedName("x")
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(Lkj;II)V",
-		garbageValue = "731438667"
+		signature = "(Lkx;II)V",
+		garbageValue = "166104294"
 	)
 	@Export("decode")
 	void decode(Buffer var1, int var2) {
@@ -86,10 +85,10 @@ public class FloorUnderlayDefinition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(Lkj;IIB)V",
-		garbageValue = "5"
+		signature = "(Lkx;III)V",
+		garbageValue = "1874969287"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2, int var3) {
@@ -99,10 +98,10 @@ public class FloorUnderlayDefinition extends DualNode {
 
 	}
 
-	@ObfuscatedName("t")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
 		signature = "(II)V",
-		garbageValue = "1248052268"
+		garbageValue = "-1796735191"
 	)
 	@Export("setHsl")
 	void setHsl(int var1) {
@@ -129,10 +128,10 @@ public class FloorUnderlayDefinition extends DualNode {
 
 		double var12 = 0.0D;
 		double var14 = 0.0D;
-		double var16 = (var8 + var10) / 2.0D;
+		double var16 = (var10 + var8) / 2.0D;
 		if (var8 != var10) {
 			if (var16 < 0.5D) {
-				var14 = (var10 - var8) / (var8 + var10);
+				var14 = (var10 - var8) / (var10 + var8);
 			}
 
 			if (var16 >= 0.5D) {
@@ -142,15 +141,15 @@ public class FloorUnderlayDefinition extends DualNode {
 			if (var2 == var10) {
 				var12 = (var4 - var6) / (var10 - var8);
 			} else if (var10 == var4) {
-				var12 = 2.0D + (var6 - var2) / (var10 - var8);
-			} else if (var6 == var10) {
-				var12 = 4.0D + (var2 - var4) / (var10 - var8);
+				var12 = (var6 - var2) / (var10 - var8) + 2.0D;
+			} else if (var10 == var6) {
+				var12 = (var2 - var4) / (var10 - var8) + 4.0D;
 			}
 		}
 
 		var12 /= 6.0D;
 		this.saturation = (int)(var14 * 256.0D);
-		this.lightness = (int)(256.0D * var16);
+		this.lightness = (int)(var16 * 256.0D);
 		if (this.saturation < 0) {
 			this.saturation = 0;
 		} else if (this.saturation > 255) {
@@ -164,54 +163,38 @@ public class FloorUnderlayDefinition extends DualNode {
 		}
 
 		if (var16 > 0.5D) {
-			this.hueMultiplier = (int)(var14 * (1.0D - var16) * 512.0D);
+			this.hueMultiplier = (int)(512.0D * (1.0D - var16) * var14);
 		} else {
-			this.hueMultiplier = (int)(var16 * var14 * 512.0D);
+			this.hueMultiplier = (int)(var14 * var16 * 512.0D);
 		}
 
 		if (this.hueMultiplier < 1) {
 			this.hueMultiplier = 1;
 		}
 
-		this.hue = (int)((double)this.hueMultiplier * var12);
+		this.hue = (int)(var12 * (double)this.hueMultiplier);
 	}
 
-	@ObfuscatedName("ah")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(ILcs;ZI)I",
-		garbageValue = "-170727251"
+		signature = "(IB)Ljp;",
+		garbageValue = "-122"
 	)
-	static int method4460(int var0, Script var1, boolean var2) {
-		int var3;
-		if (var0 == ScriptOpcodes.CAM_FORCEANGLE) {
-			VarcInt.Interpreter_intStackSize -= 2;
-			var3 = Interpreter.Interpreter_intStack[VarcInt.Interpreter_intStackSize];
-			int var4 = Interpreter.Interpreter_intStack[VarcInt.Interpreter_intStackSize + 1];
-			if (!Client.isCameraLocked) {
-				Client.camAngleX = var3;
-				Client.camAngleY = var4;
-			}
-
-			return 1;
-		} else if (var0 == ScriptOpcodes.CAM_GETANGLE_XA) {
-			Interpreter.Interpreter_intStack[++VarcInt.Interpreter_intStackSize - 1] = Client.camAngleX;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CAM_GETANGLE_YA) {
-			Interpreter.Interpreter_intStack[++VarcInt.Interpreter_intStackSize - 1] = Client.camAngleY;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CAM_SETFOLLOWHEIGHT) {
-			var3 = Interpreter.Interpreter_intStack[--VarcInt.Interpreter_intStackSize];
-			if (var3 < 0) {
-				var3 = 0;
-			}
-
-			Client.camFollowHeight = var3;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CAM_GETFOLLOWHEIGHT) {
-			Interpreter.Interpreter_intStack[++VarcInt.Interpreter_intStackSize - 1] = Client.camFollowHeight;
-			return 1;
+	@Export("StructDefinition_getStructDefinition")
+	public static StructDefinition StructDefinition_getStructDefinition(int var0) {
+		StructDefinition var1 = (StructDefinition)StructDefinition.StructDefinition_cached.get((long)var0);
+		if (var1 != null) {
+			return var1;
 		} else {
-			return 2;
+			byte[] var2 = StructDefinition.StructDefinition_archive.takeFile(34, var0);
+			var1 = new StructDefinition();
+			if (var2 != null) {
+				var1.decode(new Buffer(var2));
+			}
+
+			var1.postDecode();
+			StructDefinition.StructDefinition_cached.put(var1, (long)var0);
+			return var1;
 		}
 	}
 }
