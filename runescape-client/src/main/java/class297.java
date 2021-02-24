@@ -2,12 +2,12 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("kp")
+@ObfuscatedName("kw")
 public class class297 {
-	@ObfuscatedName("fu")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "Lku;"
+		signature = "Lls;"
 	)
-	@Export("fontPlain11")
-	static Font fontPlain11;
+	@Export("NetCache_socket")
+	public static AbstractSocket NetCache_socket;
 }

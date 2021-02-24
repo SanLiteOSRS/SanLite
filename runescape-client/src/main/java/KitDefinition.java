@@ -4,58 +4,58 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("if")
+@ObfuscatedName("it")
 @Implements("KitDefinition")
 public class KitDefinition extends DualNode {
-	@ObfuscatedName("oz")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "Lfi;"
-	)
-	@Export("mouseWheel")
-	static MouseWheel mouseWheel;
-	@ObfuscatedName("h")
-	@ObfuscatedSignature(
-		signature = "Lib;"
+		signature = "Lig;"
 	)
 	@Export("KitDefinition_archive")
-	public static AbstractArchive KitDefinition_archive;
-	@ObfuscatedName("x")
+	static AbstractArchive KitDefinition_archive;
+	@ObfuscatedName("v")
+	@ObfuscatedSignature(
+		signature = "Lig;"
+	)
+	@Export("KitDefinition_modelsArchive")
+	static AbstractArchive KitDefinition_modelsArchive;
+	@ObfuscatedName("d")
 	@ObfuscatedGetter(
-		intValue = 1665100339
+		intValue = -1172594075
 	)
 	@Export("KitDefinition_fileCount")
 	public static int KitDefinition_fileCount;
-	@ObfuscatedName("w")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "Lez;"
+		signature = "Lex;"
 	)
 	@Export("KitDefinition_cached")
-	static EvictingDualNodeHashTable KitDefinition_cached;
-	@ObfuscatedName("t")
+	public static EvictingDualNodeHashTable KitDefinition_cached;
+	@ObfuscatedName("y")
 	@ObfuscatedGetter(
-		intValue = 240118187
+		intValue = -765113367
 	)
 	@Export("bodypartID")
 	public int bodypartID;
-	@ObfuscatedName("j")
+	@ObfuscatedName("h")
 	@Export("models2")
 	int[] models2;
-	@ObfuscatedName("n")
+	@ObfuscatedName("z")
 	@Export("recolorFrom")
 	short[] recolorFrom;
-	@ObfuscatedName("p")
+	@ObfuscatedName("e")
 	@Export("recolorTo")
 	short[] recolorTo;
-	@ObfuscatedName("l")
+	@ObfuscatedName("q")
 	@Export("retextureFrom")
 	short[] retextureFrom;
-	@ObfuscatedName("z")
+	@ObfuscatedName("l")
 	@Export("retextureTo")
 	short[] retextureTo;
-	@ObfuscatedName("u")
+	@ObfuscatedName("s")
 	@Export("models")
 	int[] models;
-	@ObfuscatedName("e")
+	@ObfuscatedName("b")
 	@Export("nonSelectable")
 	public boolean nonSelectable;
 
@@ -69,10 +69,10 @@ public class KitDefinition extends DualNode {
 		this.nonSelectable = false;
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(Lkj;S)V",
-		garbageValue = "24464"
+		signature = "(Lkx;I)V",
+		garbageValue = "-1001378689"
 	)
 	@Export("decode")
 	void decode(Buffer var1) {
@@ -86,10 +86,10 @@ public class KitDefinition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("x")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(Lkj;IB)V",
-		garbageValue = "-62"
+		signature = "(Lkx;II)V",
+		garbageValue = "1463228330"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
@@ -132,10 +132,10 @@ public class KitDefinition extends DualNode {
 
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(I)Z",
-		garbageValue = "-1129169926"
+		signature = "(B)Z",
+		garbageValue = "-48"
 	)
 	@Export("ready")
 	public boolean ready() {
@@ -145,7 +145,7 @@ public class KitDefinition extends DualNode {
 			boolean var1 = true;
 
 			for (int var2 = 0; var2 < this.models2.length; ++var2) {
-				if (!class227.KitDefinition_modelsArchive.tryLoadFile(this.models2[var2], 0)) {
+				if (!KitDefinition_modelsArchive.tryLoadFile(this.models2[var2], 0)) {
 					var1 = false;
 				}
 			}
@@ -154,10 +154,10 @@ public class KitDefinition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("t")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(I)Les;",
-		garbageValue = "-1617446869"
+		signature = "(B)Lek;",
+		garbageValue = "-41"
 	)
 	@Export("getModelData")
 	public ModelData getModelData() {
@@ -167,7 +167,7 @@ public class KitDefinition extends DualNode {
 			ModelData[] var1 = new ModelData[this.models2.length];
 
 			for (int var2 = 0; var2 < this.models2.length; ++var2) {
-				var1[var2] = ModelData.ModelData_get(class227.KitDefinition_modelsArchive, this.models2[var2], 0);
+				var1[var2] = ModelData.ModelData_get(KitDefinition_modelsArchive, this.models2[var2], 0);
 			}
 
 			ModelData var4;
@@ -194,16 +194,16 @@ public class KitDefinition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(I)Z",
-		garbageValue = "-734430766"
+		signature = "(B)Z",
+		garbageValue = "-121"
 	)
-	public boolean method4488() {
+	public boolean method4640() {
 		boolean var1 = true;
 
 		for (int var2 = 0; var2 < 5; ++var2) {
-			if (this.models[var2] != -1 && !class227.KitDefinition_modelsArchive.tryLoadFile(this.models[var2], 0)) {
+			if (this.models[var2] != -1 && !KitDefinition_modelsArchive.tryLoadFile(this.models[var2], 0)) {
 				var1 = false;
 			}
 		}
@@ -211,10 +211,10 @@ public class KitDefinition extends DualNode {
 		return var1;
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		signature = "(I)Les;",
-		garbageValue = "148590883"
+		signature = "(I)Lek;",
+		garbageValue = "2061268949"
 	)
 	@Export("getKitDefinitionModels")
 	public ModelData getKitDefinitionModels() {
@@ -223,7 +223,7 @@ public class KitDefinition extends DualNode {
 
 		for (int var3 = 0; var3 < 5; ++var3) {
 			if (this.models[var3] != -1) {
-				var1[var2++] = ModelData.ModelData_get(class227.KitDefinition_modelsArchive, this.models[var3], 0);
+				var1[var2++] = ModelData.ModelData_get(KitDefinition_modelsArchive, this.models[var3], 0);
 			}
 		}
 
@@ -242,38 +242,5 @@ public class KitDefinition extends DualNode {
 		}
 
 		return var5;
-	}
-
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		signature = "(III)V",
-		garbageValue = "-1929348115"
-	)
-	public static void method4491(int var0, int var1) {
-		VarbitComposition var3 = (VarbitComposition)VarbitComposition.VarbitDefinition_cached.get((long)var0);
-		VarbitComposition var2;
-		if (var3 != null) {
-			var2 = var3;
-		} else {
-			byte[] var8 = VarbitComposition.VarbitDefinition_archive.takeFile(14, var0);
-			var3 = new VarbitComposition();
-			if (var8 != null) {
-				var3.decode(new Buffer(var8));
-			}
-
-			VarbitComposition.VarbitDefinition_cached.put(var3, (long)var0);
-			var2 = var3;
-		}
-
-		int var4 = var2.baseVar;
-		int var5 = var2.startBit;
-		int var6 = var2.endBit;
-		int var7 = Varps.Varps_masks[var6 - var5];
-		if (var1 < 0 || var1 > var7) {
-			var1 = 0;
-		}
-
-		var7 <<= var5;
-		Varps.Varps_main[var4] = Varps.Varps_main[var4] & ~var7 | var1 << var5 & var7;
 	}
 }

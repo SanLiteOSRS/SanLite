@@ -3,10 +3,10 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ff")
+@ObfuscatedName("fn")
 @Implements("UserComparator10")
 public class UserComparator10 extends AbstractUserComparator {
-	@ObfuscatedName("h")
+	@ObfuscatedName("n")
 	@Export("reversed")
 	final boolean reversed;
 
@@ -14,10 +14,10 @@ public class UserComparator10 extends AbstractUserComparator {
 		this.reversed = var1;
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Lkz;Lkz;I)I",
-		garbageValue = "620956476"
+		signature = "(Lky;Lky;I)I",
+		garbageValue = "899318279"
 	)
 	@Export("compareBuddy")
 	int compareBuddy(Buddy var1, Buddy var2) {
@@ -32,138 +32,24 @@ public class UserComparator10 extends AbstractUserComparator {
 		return this.compareBuddy((Buddy)var1, (Buddy)var2);
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(II)Liy;",
-		garbageValue = "-1778501776"
+		signature = "(II)Ljava/lang/String;",
+		garbageValue = "77103650"
 	)
-	@Export("WorldMapElement_get")
-	public static WorldMapElement WorldMapElement_get(int var0) {
-		return var0 >= 0 && var0 < WorldMapElement.WorldMapElement_cached.length && WorldMapElement.WorldMapElement_cached[var0] != null ? WorldMapElement.WorldMapElement_cached[var0] : new WorldMapElement(var0);
+	static String method3580(int var0) {
+		return "<img=" + var0 + ">";
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("g")
 	@ObfuscatedSignature(
-		signature = "(Lky;IB)V",
-		garbageValue = "46"
+		signature = "(I)V",
+		garbageValue = "-1892343700"
 	)
-	@Export("updatePlayers")
-	static final void updatePlayers(PacketBuffer var0, int var1) {
-		int var2 = var0.offset;
-		Players.Players_pendingUpdateCount = 0;
-		UserComparator3.method3515(var0);
-
-		for (int var3 = 0; var3 < Players.Players_pendingUpdateCount; ++var3) {
-			int var4 = Players.Players_pendingUpdateIndices[var3];
-			Player var5 = Client.players[var4];
-			int var6 = var0.readUnsignedByte();
-			if ((var6 & 64) != 0) {
-				var6 += var0.readUnsignedByte() << 8;
-			}
-
-			WorldMapManager.method709(var0, var4, var5, var6);
-		}
-
-		if (var0.offset - var2 != var1) {
-			throw new RuntimeException(var0.offset - var2 + " " + var1);
-		}
-	}
-
-	@ObfuscatedName("x")
-	@ObfuscatedSignature(
-		signature = "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V",
-		garbageValue = "-506643476"
-	)
-	@Export("addChatMessage")
-	static void addChatMessage(int var0, String var1, String var2, String var3) {
-		ChatChannel var4 = (ChatChannel)Messages.Messages_channels.get(var0);
-		if (var4 == null) {
-			var4 = new ChatChannel();
-			Messages.Messages_channels.put(var0, var4);
-		}
-
-		Message var5 = var4.addMessage(var0, var1, var2, var3);
-		Messages.Messages_hashTable.put(var5, (long)var5.count);
-		Messages.Messages_queue.add(var5);
-		Client.chatCycle = Client.cycleCntr;
-	}
-
-	@ObfuscatedName("w")
-	@ObfuscatedSignature(
-		signature = "(CI)C",
-		garbageValue = "1725294085"
-	)
-	static char method3492(char var0) {
-		switch(var0) {
-		case ' ':
-		case '-':
-		case '_':
-		case ' ':
-			return '_';
-		case '#':
-		case '[':
-		case ']':
-			return var0;
-		case 'À':
-		case 'Á':
-		case 'Â':
-		case 'Ã':
-		case 'Ä':
-		case 'à':
-		case 'á':
-		case 'â':
-		case 'ã':
-		case 'ä':
-			return 'a';
-		case 'Ç':
-		case 'ç':
-			return 'c';
-		case 'È':
-		case 'É':
-		case 'Ê':
-		case 'Ë':
-		case 'è':
-		case 'é':
-		case 'ê':
-		case 'ë':
-			return 'e';
-		case 'Í':
-		case 'Î':
-		case 'Ï':
-		case 'í':
-		case 'î':
-		case 'ï':
-			return 'i';
-		case 'Ñ':
-		case 'ñ':
-			return 'n';
-		case 'Ò':
-		case 'Ó':
-		case 'Ô':
-		case 'Õ':
-		case 'Ö':
-		case 'ò':
-		case 'ó':
-		case 'ô':
-		case 'õ':
-		case 'ö':
-			return 'o';
-		case 'Ù':
-		case 'Ú':
-		case 'Û':
-		case 'Ü':
-		case 'ù':
-		case 'ú':
-		case 'û':
-		case 'ü':
-			return 'u';
-		case 'ß':
-			return 'b';
-		case 'ÿ':
-		case 'Ÿ':
-			return 'y';
-		default:
-			return Character.toLowerCase(var0);
-		}
+	static void method3573() {
+		Login.worldSelectOpen = false;
+		Login.leftTitleSprite.drawAt(Login.xPadding, 0);
+		Login.rightTitleSprite.drawAt(Login.xPadding + 382, 0);
+		Login.logoSprite.drawAt(Login.xPadding + 382 - Login.logoSprite.subWidth / 2, 18);
 	}
 }

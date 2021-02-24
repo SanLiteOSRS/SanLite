@@ -1,25 +1,21 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cf")
+@ObfuscatedName("ca")
 @Implements("NPC")
 public final class NPC extends Actor {
-	@ObfuscatedName("j")
-	@ObfuscatedSignature(
-		signature = "Lib;"
+	@ObfuscatedName("si")
+	@ObfuscatedGetter(
+		intValue = -1643634883
 	)
-	@Export("ItemDefinition_archive")
-	static AbstractArchive ItemDefinition_archive;
-	@ObfuscatedName("jp")
+	@Export("foundItemIdCount")
+	static int foundItemIdCount;
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "Lhe;"
-	)
-	static Widget field1131;
-	@ObfuscatedName("h")
-	@ObfuscatedSignature(
-		signature = "Ljd;"
+		signature = "Ljy;"
 	)
 	@Export("definition")
 	NPCComposition definition;
@@ -27,12 +23,12 @@ public final class NPC extends Actor {
 	NPC() {
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(IBI)V",
-		garbageValue = "1912112100"
+		signature = "(IBB)V",
+		garbageValue = "1"
 	)
-	final void method2102(int var1, byte var2) {
+	final void method2178(int var1, byte var2) {
 		int var3 = super.pathX[0];
 		int var4 = super.pathY[0];
 		if (var1 == 0) {
@@ -71,7 +67,7 @@ public final class NPC extends Actor {
 			--var4;
 		}
 
-		if (super.sequence != -1 && ParamDefinition.SequenceDefinition_get(super.sequence).field3555 == 1) {
+		if (super.sequence != -1 && InterfaceParent.SequenceDefinition_get(super.sequence).field3565 == 1) {
 			super.sequence = -1;
 		}
 
@@ -93,10 +89,10 @@ public final class NPC extends Actor {
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
 		signature = "(IIZI)V",
-		garbageValue = "-169739231"
+		garbageValue = "502000680"
 	)
-	final void method2106(int var1, int var2, boolean var3) {
-		if (super.sequence != -1 && ParamDefinition.SequenceDefinition_get(super.sequence).field3555 == 1) {
+	final void method2181(int var1, int var2, boolean var3) {
+		if (super.sequence != -1 && InterfaceParent.SequenceDefinition_get(super.sequence).field3565 == 1) {
 			super.sequence = -1;
 		}
 
@@ -122,26 +118,26 @@ public final class NPC extends Actor {
 		}
 
 		super.pathLength = 0;
-		super.field996 = 0;
-		super.field963 = 0;
+		super.field1012 = 0;
+		super.field989 = 0;
 		super.pathX[0] = var1;
 		super.pathY[0] = var2;
-		super.x = super.field941 * 108072960 + super.pathX[0] * 128;
-		super.y = super.pathY[0] * 128 + super.field941 * 108072960;
+		super.x = super.field1007 * 64 + super.pathX[0] * 128;
+		super.y = super.field1007 * 64 + super.pathY[0] * 128;
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		signature = "(I)Leh;",
-		garbageValue = "-1814248977"
+		signature = "(B)Lef;",
+		garbageValue = "127"
 	)
 	@Export("getModel")
 	protected final Model getModel() {
 		if (this.definition == null) {
 			return null;
 		} else {
-			SequenceDefinition var1 = super.sequence != -1 && super.sequenceDelay == 0 ? ParamDefinition.SequenceDefinition_get(super.sequence) : null;
-			SequenceDefinition var2 = super.movementSequence != -1 && (super.readySequence != super.movementSequence || var1 == null) ? ParamDefinition.SequenceDefinition_get(super.movementSequence) : null;
+			SequenceDefinition var1 = super.sequence != -1 && super.sequenceDelay == 0 ? InterfaceParent.SequenceDefinition_get(super.sequence) : null;
+			SequenceDefinition var2 = super.movementSequence != -1 && (super.readySequence != super.movementSequence || var1 == null) ? InterfaceParent.SequenceDefinition_get(super.movementSequence) : null;
 			Model var3 = this.definition.getModel(var1, super.sequenceFrame, var2, super.movementFrame);
 			if (var3 == null) {
 				return null;
@@ -149,9 +145,9 @@ public final class NPC extends Actor {
 				var3.calculateBoundsCylinder();
 				super.defaultHeight = var3.height;
 				if (super.spotAnimation != -1 && super.spotAnimationFrame != -1) {
-					Model var4 = TileItem.SpotAnimationDefinition_get(super.spotAnimation).getModel(super.spotAnimationFrame);
+					Model var4 = AbstractUserComparator.SpotAnimationDefinition_get(super.spotAnimation).getModel(super.spotAnimationFrame);
 					if (var4 != null) {
-						var4.offsetBy(0, -super.field979, 0);
+						var4.offsetBy(0, -super.field994, 0);
 						Model[] var5 = new Model[]{var3, var4};
 						var3 = new Model(var5, 2);
 					}
@@ -166,28 +162,45 @@ public final class NPC extends Actor {
 		}
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
 		signature = "(I)Z",
-		garbageValue = "1661589479"
+		garbageValue = "-251916247"
 	)
 	@Export("isVisible")
 	final boolean isVisible() {
 		return this.definition != null;
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(IIIZIB)J",
-		garbageValue = "-40"
+		signature = "(II)Lbd;",
+		garbageValue = "874682655"
 	)
-	@Export("calculateTag")
-	public static long calculateTag(int var0, int var1, int var2, boolean var3, int var4) {
-		long var5 = (long)((var0 & 127) << 0 | (var1 & 127) << 7 | (var2 & 3) << 14) | ((long)var4 & 4294967295L) << 17;
-		if (var3) {
-			var5 |= 65536L;
+	@Export("Messages_getMessage")
+	static Message Messages_getMessage(int var0) {
+		return (Message)Messages.Messages_hashTable.get((long)var0);
+	}
+
+	@ObfuscatedName("h")
+	@ObfuscatedSignature(
+		signature = "(IB)I",
+		garbageValue = "-55"
+	)
+	public static int method2179(int var0) {
+		return GrandExchangeOfferNameComparator.method201(ViewportMouse.ViewportMouse_entityTags[var0]);
+	}
+
+	@ObfuscatedName("fx")
+	@ObfuscatedSignature(
+		signature = "(IIB)V",
+		garbageValue = "51"
+	)
+	static void method2180(int var0, int var1) {
+		if (WorldMapSectionType.clientPreferences.musicVolume != 0 && var0 != -1) {
+			ReflectionCheck.method2450(WorldMapManager.archive11, var0, 0, WorldMapSectionType.clientPreferences.musicVolume, false);
+			Client.field899 = true;
 		}
 
-		return var5;
 	}
 }

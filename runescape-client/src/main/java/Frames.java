@@ -2,20 +2,30 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("ep")
+@ObfuscatedName("el")
 @Implements("Frames")
 public class Frames extends DualNode {
-	@ObfuscatedName("h")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "[Leu;"
+		signature = "Lig;"
+	)
+	static AbstractArchive field1904;
+	@ObfuscatedName("he")
+	@ObfuscatedSignature(
+		signature = "[Llm;"
+	)
+	@Export("crossSprites")
+	static SpritePixels[] crossSprites;
+	@ObfuscatedName("n")
+	@ObfuscatedSignature(
+		signature = "[Leg;"
 	)
 	@Export("frames")
 	Animation[] frames;
 
 	@ObfuscatedSignature(
-		signature = "(Lib;Lib;IZ)V"
+		signature = "(Lig;Lig;IZ)V"
 	)
 	Frames(AbstractArchive var1, AbstractArchive var2, int var3, boolean var4) {
 		NodeDeque var5 = new NodeDeque();
@@ -55,102 +65,21 @@ public class Frames extends DualNode {
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
 		signature = "(II)Z",
-		garbageValue = "-1239705769"
+		garbageValue = "-196452763"
 	)
 	@Export("hasAlphaTransform")
 	public boolean hasAlphaTransform(int var1) {
 		return this.frames[var1].hasAlphaTransform;
 	}
 
-	@ObfuscatedName("x")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(IIB)I",
-		garbageValue = "-67"
+		signature = "(Lig;Lig;ZI)V",
+		garbageValue = "-1252177889"
 	)
-	static int method3356(int var0, int var1) {
-		ItemContainer var2 = (ItemContainer)ItemContainer.itemContainers.get((long)var0);
-		if (var2 == null) {
-			return 0;
-		} else if (var1 == -1) {
-			return 0;
-		} else {
-			int var3 = 0;
-
-			for (int var4 = 0; var4 < var2.quantities.length; ++var4) {
-				if (var2.ids[var4] == var1) {
-					var3 += var2.quantities[var4];
-				}
-			}
-
-			return var3;
-		}
-	}
-
-	@ObfuscatedName("y")
-	@ObfuscatedSignature(
-		signature = "(ILcs;ZI)I",
-		garbageValue = "2053155417"
-	)
-	static int method3354(int var0, Script var1, boolean var2) {
-		Widget var3;
-		if (var0 != ScriptOpcodes.CC_CALLONRESIZE && var0 != ScriptOpcodes.IF_CALLONRESIZE) {
-			int var4;
-			if (var0 == 1928) {
-				var3 = var2 ? PlayerComposition.field2561 : VarcInt.field3264;
-				var4 = Interpreter.Interpreter_intStack[--VarcInt.Interpreter_intStackSize];
-				if (var4 >= 1 && var4 <= 10) {
-					class3.widgetDefaultMenuAction(var4, var3.id, var3.childIndex, var3.itemId, "");
-					return 1;
-				} else {
-					throw new RuntimeException();
-				}
-			} else if (var0 == 2928) {
-				VarcInt.Interpreter_intStackSize -= 3;
-				int var7 = Interpreter.Interpreter_intStack[VarcInt.Interpreter_intStackSize];
-				var4 = Interpreter.Interpreter_intStack[VarcInt.Interpreter_intStackSize + 1];
-				int var5 = Interpreter.Interpreter_intStack[VarcInt.Interpreter_intStackSize + 2];
-				if (var5 >= 1 && var5 <= 10) {
-					class3.widgetDefaultMenuAction(var5, var7, var4, CollisionMap.getWidget(var7).itemId, "");
-					return 1;
-				} else {
-					throw new RuntimeException();
-				}
-			} else {
-				return 2;
-			}
-		} else if (Interpreter.field1097 >= 10) {
-			throw new RuntimeException();
-		} else {
-			if (var0 >= 2000) {
-				var3 = CollisionMap.getWidget(Interpreter.Interpreter_intStack[--VarcInt.Interpreter_intStackSize]);
-			} else {
-				var3 = var2 ? PlayerComposition.field2561 : VarcInt.field3264;
-			}
-
-			if (var3.onResize == null) {
-				return 0;
-			} else {
-				ScriptEvent var6 = new ScriptEvent();
-				var6.widget = var3;
-				var6.args = var3.onResize;
-				var6.field569 = Interpreter.field1097 + 1;
-				Client.scriptEvents.addFirst(var6);
-				return 1;
-			}
-		}
-	}
-
-	@ObfuscatedName("id")
-	@ObfuscatedSignature(
-		signature = "(IIIIB)V",
-		garbageValue = "-41"
-	)
-	static final void method3352(int var0, int var1, int var2, int var3) {
-		for (int var4 = 0; var4 < Client.rootWidgetCount; ++var4) {
-			if (Client.rootWidgetXs[var4] + Client.rootWidgetWidths[var4] > var0 && Client.rootWidgetXs[var4] < var0 + var2 && Client.rootWidgetYs[var4] + Client.rootWidgetHeights[var4] > var1 && Client.rootWidgetYs[var4] < var3 + var1) {
-				Client.field901[var4] = true;
-			}
-		}
-
+	public static void method3429(AbstractArchive var0, AbstractArchive var1, boolean var2) {
+		ObjectComposition.ObjectDefinition_archive = var0;
+		ObjectComposition.ObjectDefinition_modelsArchive = var1;
+		ObjectComposition.ObjectDefinition_isLowDetail = var2;
 	}
 }

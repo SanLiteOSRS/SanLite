@@ -2,15 +2,23 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("fj")
+@ObfuscatedName("fs")
 @Implements("UserComparator9")
 public class UserComparator9 extends AbstractUserComparator {
-	@ObfuscatedName("du")
-	@Export("mouseCam")
-	static boolean mouseCam;
-	@ObfuscatedName("h")
+	@ObfuscatedName("l")
+	@ObfuscatedSignature(
+		signature = "Lei;"
+	)
+	@Export("World_request")
+	static UrlRequest World_request;
+	@ObfuscatedName("ka")
+	@ObfuscatedSignature(
+		signature = "Lbk;"
+	)
+	@Export("localPlayer")
+	static Player localPlayer;
+	@ObfuscatedName("n")
 	@Export("reversed")
 	final boolean reversed;
 
@@ -18,10 +26,10 @@ public class UserComparator9 extends AbstractUserComparator {
 		this.reversed = var1;
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Lkz;Lkz;B)I",
-		garbageValue = "-18"
+		signature = "(Lky;Lky;B)I",
+		garbageValue = "53"
 	)
 	@Export("compareBuddy")
 	int compareBuddy(Buddy var1, Buddy var2) {
@@ -36,94 +44,13 @@ public class UserComparator9 extends AbstractUserComparator {
 		return this.compareBuddy((Buddy)var1, (Buddy)var2);
 	}
 
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		signature = "(Ljava/lang/Throwable;Ljava/lang/String;)Lmg;"
-	)
-	@Export("newRunException")
-	public static RunException newRunException(Throwable var0, String var1) {
-		RunException var2;
-		if (var0 instanceof RunException) {
-			var2 = (RunException)var0;
-			var2.message = var2.message + ' ' + var1;
-		} else {
-			var2 = new RunException(var0, var1);
-		}
-
-		return var2;
-	}
-
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(ILcs;ZI)I",
-		garbageValue = "-1672462382"
+		signature = "(Lig;Lig;I)V",
+		garbageValue = "-1134565802"
 	)
-	static int method3478(int var0, Script var1, boolean var2) {
-		Widget var3;
-		if (var0 >= 2000) {
-			var0 -= 1000;
-			var3 = CollisionMap.getWidget(Interpreter.Interpreter_intStack[--VarcInt.Interpreter_intStackSize]);
-		} else {
-			var3 = var2 ? PlayerComposition.field2561 : VarcInt.field3264;
-		}
-
-		CollisionMap.invalidateWidget(var3);
-		if (var0 != ScriptOpcodes.CC_SETOBJECT && var0 != ScriptOpcodes.CC_SETOBJECT_NONUM && var0 != ScriptOpcodes.CC_SETOBJECT_ALWAYS_NUM) {
-			if (var0 == ScriptOpcodes.CC_SETNPCHEAD) {
-				var3.modelType = 2;
-				var3.modelId = Interpreter.Interpreter_intStack[--VarcInt.Interpreter_intStackSize];
-				return 1;
-			} else if (var0 == ScriptOpcodes.CC_SETPLAYERHEAD_SELF) {
-				var3.modelType = 3;
-				var3.modelId = PlayerComposition.localPlayer.appearance.getChatHeadId();
-				return 1;
-			} else {
-				return 2;
-			}
-		} else {
-			VarcInt.Interpreter_intStackSize -= 2;
-			int var4 = Interpreter.Interpreter_intStack[VarcInt.Interpreter_intStackSize];
-			int var5 = Interpreter.Interpreter_intStack[VarcInt.Interpreter_intStackSize + 1];
-			var3.itemId = var4;
-			var3.itemQuantity = var5;
-			ItemComposition var6 = SecureRandomCallable.ItemDefinition_get(var4);
-			var3.modelAngleX = var6.xan2d;
-			var3.modelAngleY = var6.yan2d;
-			var3.modelAngleZ = var6.zan2d;
-			var3.modelOffsetX = var6.offsetX2d;
-			var3.modelOffsetY = var6.offsetY2d;
-			var3.modelZoom = var6.zoom2d;
-			if (var0 == ScriptOpcodes.CC_SETOBJECT_NONUM) {
-				var3.itemQuantityMode = 0;
-			} else if (var0 == ScriptOpcodes.CC_SETOBJECT_ALWAYS_NUM | 1 == var6.isStackable) {
-				var3.itemQuantityMode = 1;
-			} else {
-				var3.itemQuantityMode = 2;
-			}
-
-			if (var3.field2641 > 0) {
-				var3.modelZoom = var3.modelZoom * 32 / var3.field2641;
-			} else if (var3.rawWidth > 0) {
-				var3.modelZoom = var3.modelZoom * 32 / var3.rawWidth;
-			}
-
-			return 1;
-		}
-	}
-
-	@ObfuscatedName("gb")
-	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-889276398"
-	)
-	static final void method3477() {
-		for (int var0 = 0; var0 < Client.npcCount; ++var0) {
-			int var1 = Client.npcIndices[var0];
-			NPC var2 = Client.npcs[var1];
-			if (var2 != null) {
-				WorldMapID.updateActorSequence(var2, var2.definition.size);
-			}
-		}
-
+	public static void method3562(AbstractArchive var0, AbstractArchive var1) {
+		HealthBarDefinition.HealthBarDefinition_archive = var0;
+		HealthBarDefinition.HitSplatDefinition_spritesArchive = var1;
 	}
 }

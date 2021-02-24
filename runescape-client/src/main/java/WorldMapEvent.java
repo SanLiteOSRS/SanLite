@@ -4,42 +4,41 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("az")
+@ObfuscatedName("av")
 @Implements("WorldMapEvent")
 public class WorldMapEvent {
-	@ObfuscatedName("t")
+	@ObfuscatedName("rk")
+	@ObfuscatedGetter(
+		intValue = -687726109
+	)
+	static int field380;
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "Llo;"
+		signature = "[Lme;"
 	)
-	@Export("titleboxSprite")
-	static IndexedSprite titleboxSprite;
-	@ObfuscatedName("iz")
+	@Export("JagexCache_idxFiles")
+	public static BufferedFile[] JagexCache_idxFiles;
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = 972918301
-	)
-	@Export("selectedItemId")
-	static int selectedItemId;
-	@ObfuscatedName("h")
-	@ObfuscatedGetter(
-		intValue = 1211419281
+		intValue = 477038655
 	)
 	@Export("mapElement")
 	public int mapElement;
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "Lhs;"
+		signature = "Lhd;"
 	)
 	@Export("coord1")
 	public Coord coord1;
-	@ObfuscatedName("x")
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "Lhs;"
+		signature = "Lhd;"
 	)
 	@Export("coord2")
 	public Coord coord2;
 
 	@ObfuscatedSignature(
-		signature = "(ILhs;Lhs;)V"
+		signature = "(ILhd;Lhd;)V"
 	)
 	public WorldMapEvent(int var1, Coord var2, Coord var3) {
 		this.mapElement = var1;
@@ -47,80 +46,47 @@ public class WorldMapEvent {
 		this.coord2 = var3;
 	}
 
-	@ObfuscatedName("x")
-	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "1"
-	)
-	public static void method809() {
-		while (true) {
-			ArchiveDiskAction var0;
-			synchronized(ArchiveDiskActionHandler.ArchiveDiskActionHandler_requestQueue) {
-				var0 = (ArchiveDiskAction)ArchiveDiskActionHandler.ArchiveDiskActionHandler_responseQueue.removeLast();
-			}
-
-			if (var0 == null) {
-				return;
-			}
-
-			var0.archive.load(var0.archiveDisk, (int)var0.key, var0.data, false);
-		}
-	}
-
-	@ObfuscatedName("x")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "787195295"
+		garbageValue = "-852874949"
 	)
-	public static void method807() {
-		if (KeyHandler.KeyHandler_instance != null) {
-			synchronized(KeyHandler.KeyHandler_instance) {
-				KeyHandler.KeyHandler_instance = null;
-			}
-		}
-
+	public static void method851() {
+		SpotAnimationDefinition.SpotAnimationDefinition_cached.clear();
+		SpotAnimationDefinition.SpotAnimationDefinition_cachedModels.clear();
 	}
 
-	@ObfuscatedName("kq")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "(II)V",
-		garbageValue = "1393718801"
+		signature = "(B)V",
+		garbageValue = "32"
 	)
-	static final void method810(int var0) {
-		var0 = Math.min(Math.max(var0, 0), 255);
-		if (var0 != Timer.clientPreferences.musicVolume) {
-			if (Timer.clientPreferences.musicVolume == 0 && Client.currentTrackGroupId != -1) {
-				Interpreter.method2082(class217.archive6, Client.currentTrackGroupId, 0, var0, false);
-				Client.field883 = false;
-			} else if (var0 == 0) {
-				WorldMapRegion.method588();
-				Client.field883 = false;
-			} else if (class206.musicPlayerStatus != 0) {
-				GrandExchangeEvent.musicTrackVolume = var0;
-			} else {
-				class206.midiPcmStream.setPcmStreamVolume(var0);
-			}
-
-			Timer.clientPreferences.musicVolume = var0;
-			GrandExchangeOffer.savePreferences();
-		}
-
+	public static void method850() {
+		Widget.Widget_cachedSprites.clear();
+		Widget.Widget_cachedModels.clear();
+		Widget.Widget_cachedFonts.clear();
+		Widget.Widget_cachedSpriteMasks.clear();
 	}
 
-	@ObfuscatedName("lv")
+	@ObfuscatedName("iv")
 	@ObfuscatedSignature(
-		signature = "(Lkj;IB)V",
-		garbageValue = "-67"
+		signature = "(Ljava/lang/String;Ljava/lang/String;IIIIZB)V",
+		garbageValue = "-21"
 	)
-	static void method808(Buffer var0, int var1) {
-		AbstractSocket.method5846(var0.array, var1);
-		if (JagexCache.JagexCache_randomDat != null) {
-			try {
-				JagexCache.JagexCache_randomDat.seek(0L);
-				JagexCache.JagexCache_randomDat.write(var0.array, var1, 24);
-			} catch (Exception var3) {
+	@Export("insertMenuItem")
+	static final void insertMenuItem(String var0, String var1, int var2, int var3, int var4, int var5, boolean var6) {
+		if (!Client.isMenuOpen) {
+			if (Client.menuOptionsCount < 500) {
+				Client.menuActions[Client.menuOptionsCount] = var0;
+				Client.menuTargets[Client.menuOptionsCount] = var1;
+				Client.menuOpcodes[Client.menuOptionsCount] = var2;
+				Client.menuIdentifiers[Client.menuOptionsCount] = var3;
+				Client.menuArguments1[Client.menuOptionsCount] = var4;
+				Client.menuArguments2[Client.menuOptionsCount] = var5;
+				Client.menuShiftClick[Client.menuOptionsCount] = var6;
+				++Client.menuOptionsCount;
 			}
-		}
 
+		}
 	}
 }

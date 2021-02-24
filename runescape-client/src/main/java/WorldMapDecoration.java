@@ -1,28 +1,37 @@
-import java.util.LinkedHashMap;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ak")
+@ObfuscatedName("ax")
 @Implements("WorldMapDecoration")
 public class WorldMapDecoration {
-	@ObfuscatedName("h")
+	@ObfuscatedName("w")
+	@ObfuscatedSignature(
+		signature = "Lly;"
+	)
+	static IndexedSprite field237;
+	@ObfuscatedName("au")
 	@ObfuscatedGetter(
-		intValue = 1756359553
+		intValue = 948104613
+	)
+	static int field235;
+	@ObfuscatedName("n")
+	@ObfuscatedGetter(
+		intValue = -406250939
 	)
 	@Export("objectDefinitionId")
 	final int objectDefinitionId;
 	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = 1376256815
+		intValue = -1381482747
 	)
 	@Export("decoration")
 	final int decoration;
-	@ObfuscatedName("x")
+	@ObfuscatedName("d")
 	@ObfuscatedGetter(
-		intValue = 112778991
+		intValue = -102940373
 	)
 	@Export("rotation")
 	final int rotation;
@@ -33,146 +42,248 @@ public class WorldMapDecoration {
 		this.rotation = var3;
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(II)Ljm;",
-		garbageValue = "-671846279"
+		signature = "(Ljava/lang/CharSequence;I)Z",
+		garbageValue = "792255319"
 	)
-	@Export("getObjectDefinition")
-	public static ObjectComposition getObjectDefinition(int var0) {
-		ObjectComposition var1 = (ObjectComposition)ObjectComposition.ObjectDefinition_cached.get((long)var0);
-		if (var1 != null) {
-			return var1;
-		} else {
-			byte[] var2 = ObjectComposition.ObjectDefinition_archive.takeFile(6, var0);
-			var1 = new ObjectComposition();
-			var1.id = var0;
-			if (var2 != null) {
-				var1.decode(new Buffer(var2));
+	@Export("isNumber")
+	public static boolean isNumber(CharSequence var0) {
+		boolean var2 = false;
+		boolean var3 = false;
+		int var4 = 0;
+		int var5 = var0.length();
+		int var6 = 0;
+
+		boolean var1;
+		while (true) {
+			if (var6 >= var5) {
+				var1 = var3;
+				break;
 			}
 
-			var1.postDecode();
-			if (var1.isSolid) {
-				var1.interactType = 0;
-				var1.boolean1 = false;
+			label82: {
+				char var7 = var0.charAt(var6);
+				if (var6 == 0) {
+					if (var7 == '-') {
+						var2 = true;
+						break label82;
+					}
+
+					if (var7 == '+') {
+						break label82;
+					}
+				}
+
+				int var9;
+				if (var7 >= '0' && var7 <= '9') {
+					var9 = var7 - '0';
+				} else if (var7 >= 'A' && var7 <= 'Z') {
+					var9 = var7 - '7';
+				} else {
+					if (var7 < 'a' || var7 > 'z') {
+						var1 = false;
+						break;
+					}
+
+					var9 = var7 - 'W';
+				}
+
+				if (var9 >= 10) {
+					var1 = false;
+					break;
+				}
+
+				if (var2) {
+					var9 = -var9;
+				}
+
+				int var8 = var9 + var4 * 10;
+				if (var4 != var8 / 10) {
+					var1 = false;
+					break;
+				}
+
+				var4 = var8;
+				var3 = true;
 			}
 
-			ObjectComposition.ObjectDefinition_cached.put(var1, (long)var0);
-			return var1;
+			++var6;
 		}
+
+		return var1;
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "([BIIIIIII[Lfo;B)V",
-		garbageValue = "-44"
+		signature = "(Lkd;B)V",
+		garbageValue = "13"
 	)
-	static final void method381(byte[] var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7, CollisionMap[] var8) {
-		int var10;
-		for (int var9 = 0; var9 < 8; ++var9) {
-			for (var10 = 0; var10 < 8; ++var10) {
-				if (var9 + var2 > 0 && var9 + var2 < 103 && var3 + var10 > 0 && var3 + var10 < 103) {
-					int[] var10000 = var8[var1].flags[var9 + var2];
-					var10000[var10 + var3] &= -16777217;
+	static final void method404(PacketBuffer var0) {
+		int var1 = 0;
+		var0.importIndex();
+
+		byte[] var10000;
+		int var2;
+		int var3;
+		int var4;
+		for (var2 = 0; var2 < Players.Players_count; ++var2) {
+			var3 = Players.Players_indices[var2];
+			if ((Players.field1275[var3] & 1) == 0) {
+				if (var1 > 0) {
+					--var1;
+					var10000 = Players.field1275;
+					var10000[var3] = (byte)(var10000[var3] | 2);
+				} else {
+					var4 = var0.readBits(1);
+					if (var4 == 0) {
+						var1 = class198.method3851(var0);
+						var10000 = Players.field1275;
+						var10000[var3] = (byte)(var10000[var3] | 2);
+					} else {
+						PendingSpawn.readPlayerUpdate(var0, var3);
+					}
 				}
 			}
 		}
 
-		Buffer var21 = new Buffer(var0);
+		var0.exportIndex();
+		if (var1 != 0) {
+			throw new RuntimeException();
+		} else {
+			var0.importIndex();
 
-		for (var10 = 0; var10 < 4; ++var10) {
-			for (int var11 = 0; var11 < 64; ++var11) {
-				for (int var12 = 0; var12 < 64; ++var12) {
-					if (var10 == var4 && var11 >= var5 && var11 < var5 + 8 && var12 >= var6 && var12 < var6 + 8) {
-						int var15 = var2 + class51.method815(var11 & 7, var12 & 7, var7);
-						int var18 = var11 & 7;
-						int var19 = var12 & 7;
-						int var20 = var7 & 3;
-						int var17;
-						if (var20 == 0) {
-							var17 = var19;
-						} else if (var20 == 1) {
-							var17 = 7 - var18;
-						} else if (var20 == 2) {
-							var17 = 7 - var19;
+			for (var2 = 0; var2 < Players.Players_count; ++var2) {
+				var3 = Players.Players_indices[var2];
+				if ((Players.field1275[var3] & 1) != 0) {
+					if (var1 > 0) {
+						--var1;
+						var10000 = Players.field1275;
+						var10000[var3] = (byte)(var10000[var3] | 2);
+					} else {
+						var4 = var0.readBits(1);
+						if (var4 == 0) {
+							var1 = class198.method3851(var0);
+							var10000 = Players.field1275;
+							var10000[var3] = (byte)(var10000[var3] | 2);
 						} else {
-							var17 = var18;
+							PendingSpawn.readPlayerUpdate(var0, var3);
+						}
+					}
+				}
+			}
+
+			var0.exportIndex();
+			if (var1 != 0) {
+				throw new RuntimeException();
+			} else {
+				var0.importIndex();
+
+				for (var2 = 0; var2 < Players.Players_emptyIdxCount; ++var2) {
+					var3 = Players.Players_emptyIndices[var2];
+					if ((Players.field1275[var3] & 1) != 0) {
+						if (var1 > 0) {
+							--var1;
+							var10000 = Players.field1275;
+							var10000[var3] = (byte)(var10000[var3] | 2);
+						} else {
+							var4 = var0.readBits(1);
+							if (var4 == 0) {
+								var1 = class198.method3851(var0);
+								var10000 = Players.field1275;
+								var10000[var3] = (byte)(var10000[var3] | 2);
+							} else if (World.updateExternalPlayer(var0, var3)) {
+								var10000 = Players.field1275;
+								var10000[var3] = (byte)(var10000[var3] | 2);
+							}
+						}
+					}
+				}
+
+				var0.exportIndex();
+				if (var1 != 0) {
+					throw new RuntimeException();
+				} else {
+					var0.importIndex();
+
+					for (var2 = 0; var2 < Players.Players_emptyIdxCount; ++var2) {
+						var3 = Players.Players_emptyIndices[var2];
+						if ((Players.field1275[var3] & 1) == 0) {
+							if (var1 > 0) {
+								--var1;
+								var10000 = Players.field1275;
+								var10000[var3] = (byte)(var10000[var3] | 2);
+							} else {
+								var4 = var0.readBits(1);
+								if (var4 == 0) {
+									var1 = class198.method3851(var0);
+									var10000 = Players.field1275;
+									var10000[var3] = (byte)(var10000[var3] | 2);
+								} else if (World.updateExternalPlayer(var0, var3)) {
+									var10000 = Players.field1275;
+									var10000[var3] = (byte)(var10000[var3] | 2);
+								}
+							}
+						}
+					}
+
+					var0.exportIndex();
+					if (var1 != 0) {
+						throw new RuntimeException();
+					} else {
+						Players.Players_count = 0;
+						Players.Players_emptyIdxCount = 0;
+
+						for (var2 = 1; var2 < 2048; ++var2) {
+							var10000 = Players.field1275;
+							var10000[var2] = (byte)(var10000[var2] >> 1);
+							Player var5 = Client.players[var2];
+							if (var5 != null) {
+								Players.Players_indices[++Players.Players_count - 1] = var2;
+							} else {
+								Players.Players_emptyIndices[++Players.Players_emptyIdxCount - 1] = var2;
+							}
 						}
 
-						Huffman.loadTerrain(var21, var1, var15, var3 + var17, 0, 0, var7);
-					} else {
-						Huffman.loadTerrain(var21, 0, -1, -1, 0, 0, 0);
 					}
 				}
 			}
 		}
-
 	}
 
-	@ObfuscatedName("fl")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		signature = "(ZI)V",
-		garbageValue = "1662959699"
+		signature = "(II)V",
+		garbageValue = "-1927290139"
 	)
-	static final void method380(boolean var0) {
-		if (var0) {
-			Client.field872 = Login.field1200 ? class169.field2019 : class169.field2020;
+	static void method406(int var0) {
+		Login.loginIndex = 12;
+		Login.field1206 = var0;
+	}
+
+	@ObfuscatedName("ka")
+	@ObfuscatedSignature(
+		signature = "(IIIILlm;Lht;I)V",
+		garbageValue = "-1757506186"
+	)
+	@Export("worldToMinimap")
+	static final void worldToMinimap(int var0, int var1, int var2, int var3, SpritePixels var4, SpriteMask var5) {
+		int var6 = var3 * var3 + var2 * var2;
+		if (var6 > 4225 && var6 < 90000) {
+			int var7 = Client.camAngleY & 2047;
+			int var8 = Rasterizer3D.Rasterizer3D_sine[var7];
+			int var9 = Rasterizer3D.Rasterizer3D_cosine[var7];
+			int var10 = var9 * var2 + var3 * var8 >> 16;
+			int var11 = var3 * var9 - var8 * var2 >> 16;
+			double var12 = Math.atan2((double)var10, (double)var11);
+			int var14 = var5.width / 2 - 25;
+			int var15 = (int)(Math.sin(var12) * (double)var14);
+			int var16 = (int)(Math.cos(var12) * (double)var14);
+			byte var17 = 20;
+			class236.redHintArrowSprite.method6393(var15 + (var0 + var5.width / 2 - var17 / 2), var5.height / 2 + var1 - var17 / 2 - var16 - 10, var17, var17, 15, 15, var12, 256);
 		} else {
-			LinkedHashMap var1 = Timer.clientPreferences.parameters;
-			String var3 = Login.Login_username;
-			int var4 = var3.length();
-			int var5 = 0;
-
-			for (int var6 = 0; var6 < var4; ++var6) {
-				var5 = (var5 << 5) - var5 + var3.charAt(var6);
-			}
-
-			Client.field872 = var1.containsKey(var5) ? class169.field2025 : class169.field2021;
+			AbstractArchive.drawSpriteOnMinimap(var0, var1, var2, var3, var4, var5);
 		}
 
-	}
-
-	@ObfuscatedName("hp")
-	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-708398742"
-	)
-	static final void method382() {
-		for (PendingSpawn var0 = (PendingSpawn)Client.pendingSpawns.last(); var0 != null; var0 = (PendingSpawn)Client.pendingSpawns.previous()) {
-			if (var0.hitpoints > 0) {
-				--var0.hitpoints;
-			}
-
-			if (var0.hitpoints == 0) {
-				if (var0.objectId < 0 || class234.method4159(var0.objectId, var0.field935)) {
-					WorldMapData_1.addPendingSpawnToScene(var0.plane, var0.type, var0.x, var0.y, var0.objectId, var0.field929, var0.field935);
-					var0.remove();
-				}
-			} else {
-				if (var0.delay > 0) {
-					--var0.delay;
-				}
-
-				if (var0.delay == 0 && var0.x >= 1 && var0.y >= 1 && var0.x <= 102 && var0.y <= 102 && (var0.id < 0 || class234.method4159(var0.id, var0.field933))) {
-					WorldMapData_1.addPendingSpawnToScene(var0.plane, var0.type, var0.x, var0.y, var0.id, var0.orientation, var0.field933);
-					var0.delay = -1;
-					if (var0.id == var0.objectId && var0.objectId == -1) {
-						var0.remove();
-					} else if (var0.id == var0.objectId && var0.field929 == var0.orientation && var0.field935 == var0.field933) {
-						var0.remove();
-					}
-				}
-			}
-		}
-
-	}
-
-	@ObfuscatedName("ij")
-	@ObfuscatedSignature(
-		signature = "(Lcq;IIB)V",
-		garbageValue = "-43"
-	)
-	static final void method379(MenuAction var0, int var1, int var2) {
-		RouteStrategy.menuAction(var0.param0, var0.param1, var0.opcode, var0.identifier, var0.action, var0.action, var1, var2);
 	}
 }

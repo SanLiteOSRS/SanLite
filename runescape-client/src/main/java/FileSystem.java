@@ -1,67 +1,50 @@
 import java.io.File;
-import java.io.IOException;
 import java.util.Hashtable;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fc")
+@ObfuscatedName("fj")
 @Implements("FileSystem")
 public class FileSystem {
-	@ObfuscatedName("h")
+	@ObfuscatedName("n")
 	@Export("FileSystem_hasPermissions")
-	public static boolean FileSystem_hasPermissions;
+	static boolean FileSystem_hasPermissions;
 	@ObfuscatedName("v")
 	@Export("FileSystem_cacheDir")
-	public static File FileSystem_cacheDir;
-	@ObfuscatedName("x")
+	static File FileSystem_cacheDir;
+	@ObfuscatedName("d")
 	@Export("FileSystem_cacheFiles")
 	static Hashtable FileSystem_cacheFiles;
-	@ObfuscatedName("e")
+	@ObfuscatedName("az")
 	@ObfuscatedSignature(
-		signature = "Lhg;"
+		signature = "Llc;"
 	)
-	@Export("musicTrack")
-	static MusicTrack musicTrack;
-	@ObfuscatedName("gt")
-	@Export("regions")
-	static int[] regions;
+	@Export("rasterProvider")
+	public static AbstractRasterProvider rasterProvider;
 
 	static {
 		FileSystem_hasPermissions = false;
 		FileSystem_cacheFiles = new Hashtable(16);
 	}
 
-	@ObfuscatedName("la")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(Lkj;I)V",
-		garbageValue = "-1885661901"
+		signature = "(IS)Ljava/lang/String;",
+		garbageValue = "4003"
 	)
-	static void method3573(Buffer var0) {
-		if (Client.randomDatData != null) {
-			var0.writeBytes(Client.randomDatData, 0, Client.randomDatData.length);
-		} else {
-			byte[] var2 = new byte[24];
+	@Export("colorStartTag")
+	static String colorStartTag(int var0) {
+		return "<col=" + Integer.toHexString(var0) + ">";
+	}
 
-			try {
-				JagexCache.JagexCache_randomDat.seek(0L);
-				JagexCache.JagexCache_randomDat.readFully(var2);
-
-				int var3;
-				for (var3 = 0; var3 < 24 && var2[var3] == 0; ++var3) {
-				}
-
-				if (var3 >= 24) {
-					throw new IOException();
-				}
-			} catch (Exception var6) {
-				for (int var4 = 0; var4 < 24; ++var4) {
-					var2[var4] = -1;
-				}
-			}
-
-			var0.writeBytes(var2, 0, var2.length);
-		}
+	@ObfuscatedName("az")
+	@ObfuscatedSignature(
+		signature = "(IB)I",
+		garbageValue = "14"
+	)
+	static int method3709(int var0) {
+		return (int)((Math.log((double)var0) / Interpreter.field1124 - 7.0D) * 256.0D);
 	}
 }

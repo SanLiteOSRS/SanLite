@@ -4,54 +4,42 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gv")
+@ObfuscatedName("gk")
 @Implements("PacketBufferNode")
 public class PacketBufferNode extends Node {
-	@ObfuscatedName("so")
-	@ObfuscatedGetter(
-		intValue = -1389539327
-	)
-	@Export("foundItemIdCount")
-	static int foundItemIdCount;
-	@ObfuscatedName("t")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "[Lgv;"
+		signature = "[Lgk;"
 	)
 	@Export("PacketBufferNode_packetBufferNodes")
-	static PacketBufferNode[] PacketBufferNode_packetBufferNodes;
-	@ObfuscatedName("j")
+	public static PacketBufferNode[] PacketBufferNode_packetBufferNodes;
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = 388445817
+		intValue = -547850915
 	)
 	@Export("PacketBufferNode_packetBufferNodeCount")
-	static int PacketBufferNode_packetBufferNodeCount;
-	@ObfuscatedName("dk")
+	public static int PacketBufferNode_packetBufferNodeCount;
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "Lil;"
-	)
-	@Export("archive12")
-	static Archive archive12;
-	@ObfuscatedName("h")
-	@ObfuscatedSignature(
-		signature = "Lgb;"
+		signature = "Lgd;"
 	)
 	@Export("clientPacket")
-	ClientPacket clientPacket;
+	public ClientPacket clientPacket;
 	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = -1047967593
+		intValue = 60073813
 	)
 	@Export("clientPacketLength")
-	int clientPacketLength;
-	@ObfuscatedName("x")
+	public int clientPacketLength;
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "Lky;"
+		signature = "Lkd;"
 	)
 	@Export("packetBuffer")
 	public PacketBuffer packetBuffer;
-	@ObfuscatedName("w")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = -3253035
+		intValue = -646251635
 	)
 	@Export("index")
 	public int index;
@@ -61,23 +49,15 @@ public class PacketBufferNode extends Node {
 		PacketBufferNode_packetBufferNodeCount = 0;
 	}
 
-	PacketBufferNode() {
-	}
-
-	@ObfuscatedName("x")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "-111"
+		signature = "(I)V",
+		garbageValue = "-2134338868"
 	)
 	@Export("release")
 	public void release() {
 		if (PacketBufferNode_packetBufferNodeCount < PacketBufferNode_packetBufferNodes.length) {
 			PacketBufferNode_packetBufferNodes[++PacketBufferNode_packetBufferNodeCount - 1] = this;
 		}
-	}
-
-	@ObfuscatedName("h")
-	static boolean method3682(long var0) {
-		return Widget.method4077(var0) == 2;
 	}
 }

@@ -4,37 +4,37 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ij")
+@ObfuscatedName("if")
 @Implements("ArchiveDiskActionHandler")
 public class ArchiveDiskActionHandler implements Runnable {
-	@ObfuscatedName("h")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "Ljp;"
+		signature = "Lji;"
 	)
 	@Export("ArchiveDiskActionHandler_requestQueue")
-	static NodeDeque ArchiveDiskActionHandler_requestQueue;
+	public static NodeDeque ArchiveDiskActionHandler_requestQueue;
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "Ljp;"
+		signature = "Lji;"
 	)
 	@Export("ArchiveDiskActionHandler_responseQueue")
-	static NodeDeque ArchiveDiskActionHandler_responseQueue;
-	@ObfuscatedName("x")
+	public static NodeDeque ArchiveDiskActionHandler_responseQueue;
+	@ObfuscatedName("d")
 	@ObfuscatedGetter(
-		intValue = -39259267
+		intValue = -1788680015
 	)
-	public static int field3178;
-	@ObfuscatedName("w")
+	public static int field3187;
+	@ObfuscatedName("c")
 	@Export("ArchiveDiskActionHandler_lock")
 	public static Object ArchiveDiskActionHandler_lock;
-	@ObfuscatedName("u")
-	@Export("Tiles_saturation")
-	static int[] Tiles_saturation;
+	@ObfuscatedName("y")
+	@Export("ArchiveDiskActionHandler_thread")
+	static Thread ArchiveDiskActionHandler_thread;
 
 	static {
 		ArchiveDiskActionHandler_requestQueue = new NodeDeque();
 		ArchiveDiskActionHandler_responseQueue = new NodeDeque();
-		field3178 = 0;
+		field3187 = 0;
 		ArchiveDiskActionHandler_lock = new Object();
 	}
 
@@ -63,48 +63,29 @@ public class ArchiveDiskActionHandler implements Runnable {
 					}
 
 					synchronized(ArchiveDiskActionHandler_lock) {
-						if (field3178 <= 1) {
-							field3178 = 0;
+						if (field3187 <= 1) {
+							field3187 = 0;
 							ArchiveDiskActionHandler_lock.notifyAll();
 							return;
 						}
 
-						field3178 = 600;
+						field3187 = 600;
 					}
 				} else {
-					class236.method4165(100L);
+					ApproximateRouteStrategy.method1311(100L);
 					synchronized(ArchiveDiskActionHandler_lock) {
-						if (field3178 <= 1) {
-							field3178 = 0;
+						if (field3187 <= 1) {
+							field3187 = 0;
 							ArchiveDiskActionHandler_lock.notifyAll();
 							return;
 						}
 
-						--field3178;
+						--field3187;
 					}
 				}
 			}
 		} catch (Exception var13) {
-			PlayerComposition.RunException_sendStackTrace((String)null, var13);
+			SequenceDefinition.RunException_sendStackTrace((String)null, var13);
 		}
-	}
-
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		signature = "(DDII)[D",
-		garbageValue = "961736597"
-	)
-	public static double[] method4294(double var0, double var2, int var4) {
-		int var5 = var4 * 2 + 1;
-		double[] var6 = new double[var5];
-		int var7 = -var4;
-
-		for (int var8 = 0; var7 <= var4; ++var8) {
-			double var11 = FriendSystem.method1972(((double)var7 - var0) / var2) / var2;
-			var6[var8] = var11;
-			++var7;
-		}
-
-		return var6;
 	}
 }

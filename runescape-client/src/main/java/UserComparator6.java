@@ -1,20 +1,17 @@
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fx")
+@ObfuscatedName("fk")
 @Implements("UserComparator6")
 public class UserComparator6 extends AbstractUserComparator {
-	@ObfuscatedName("gr")
-	@ObfuscatedGetter(
-		intValue = -1692601205
+	@ObfuscatedName("fw")
+	@ObfuscatedSignature(
+		signature = "Lls;"
 	)
-	static int field2013;
-	@ObfuscatedName("h")
+	static AbstractSocket field2008;
+	@ObfuscatedName("n")
 	@Export("reversed")
 	final boolean reversed;
 
@@ -22,10 +19,10 @@ public class UserComparator6 extends AbstractUserComparator {
 		this.reversed = var1;
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Lkz;Lkz;I)I",
-		garbageValue = "1927447948"
+		signature = "(Lky;Lky;I)I",
+		garbageValue = "-441882539"
 	)
 	@Export("compareBuddy")
 	int compareBuddy(Buddy var1, Buddy var2) {
@@ -38,52 +35,5 @@ public class UserComparator6 extends AbstractUserComparator {
 
 	public int compare(Object var1, Object var2) {
 		return this.compareBuddy((Buddy)var1, (Buddy)var2);
-	}
-
-	@ObfuscatedName("ag")
-	@ObfuscatedSignature(
-		signature = "(Lfa;IIB)Ldp;",
-		garbageValue = "7"
-	)
-	public static final PcmPlayer method3526(TaskHandler var0, int var1, int var2) {
-		if (PcmPlayer.field1443 == 0) {
-			throw new IllegalStateException();
-		} else if (var1 >= 0 && var1 < 2) {
-			if (var2 < 256) {
-				var2 = 256;
-			}
-
-			try {
-				PcmPlayer var3 = Varps.pcmPlayerProvider.player();
-				var3.samples = new int[256 * (PcmPlayer.PcmPlayer_stereo ? 2 : 1)];
-				var3.field1431 = var2;
-				var3.init();
-				var3.capacity = (var2 & -1024) + 1024;
-				if (var3.capacity > 16384) {
-					var3.capacity = 16384;
-				}
-
-				var3.open(var3.capacity);
-				if (PcmPlayer.field1424 > 0 && PcmPlayer.soundSystem == null) {
-					PcmPlayer.soundSystem = new SoundSystem();
-					InterfaceParent.soundSystemExecutor = Executors.newScheduledThreadPool(1);
-					InterfaceParent.soundSystemExecutor.scheduleAtFixedRate(PcmPlayer.soundSystem, 0L, 10L, TimeUnit.MILLISECONDS);
-				}
-
-				if (PcmPlayer.soundSystem != null) {
-					if (PcmPlayer.soundSystem.players[var1] != null) {
-						throw new IllegalArgumentException();
-					}
-
-					PcmPlayer.soundSystem.players[var1] = var3;
-				}
-
-				return var3;
-			} catch (Throwable var4) {
-				return new PcmPlayer();
-			}
-		} else {
-			throw new IllegalArgumentException();
-		}
 	}
 }

@@ -4,41 +4,35 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("it")
+@ObfuscatedName("ie")
 @Implements("VerticalAlignment")
 public enum VerticalAlignment implements Enumerated {
-	@ObfuscatedName("h")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "Lit;"
+		signature = "Lie;"
 	)
-	field3229(1, 0),
+	field3236(0, 0),
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "Lit;"
+		signature = "Lie;"
 	)
 	@Export("VerticalAlignment_centered")
 	VerticalAlignment_centered(2, 1),
-	@ObfuscatedName("x")
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "Lit;"
+		signature = "Lie;"
 	)
-	field3225(0, 2);
+	field3234(1, 2);
 
-	@ObfuscatedName("bi")
-	@ObfuscatedSignature(
-		signature = "Llo;"
-	)
-	@Export("worldSelectLeftSprite")
-	static IndexedSprite worldSelectLeftSprite;
-	@ObfuscatedName("w")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = -525110533
+		intValue = -876494083
 	)
 	@Export("value")
 	public final int value;
-	@ObfuscatedName("t")
+	@ObfuscatedName("y")
 	@ObfuscatedGetter(
-		intValue = 1435294299
+		intValue = 405688727
 	)
 	@Export("id")
 	final int id;
@@ -48,10 +42,10 @@ public enum VerticalAlignment implements Enumerated {
 		this.id = var4;
 	}
 
-	@ObfuscatedName("x")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "-275768542"
+		signature = "(B)I",
+		garbageValue = "63"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {

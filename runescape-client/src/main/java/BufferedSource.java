@@ -7,37 +7,37 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("lg")
+@ObfuscatedName("ll")
 @Implements("BufferedSource")
 public class BufferedSource implements Runnable {
-	@ObfuscatedName("h")
+	@ObfuscatedName("n")
 	@Export("thread")
 	Thread thread;
 	@ObfuscatedName("v")
 	@Export("inputStream")
 	InputStream inputStream;
-	@ObfuscatedName("x")
+	@ObfuscatedName("d")
 	@ObfuscatedGetter(
-		intValue = -95991525
+		intValue = 1953404091
 	)
 	@Export("capacity")
 	int capacity;
-	@ObfuscatedName("w")
+	@ObfuscatedName("c")
 	@Export("buffer")
 	byte[] buffer;
-	@ObfuscatedName("t")
+	@ObfuscatedName("y")
 	@ObfuscatedGetter(
-		intValue = -1946581003
+		intValue = -2146586711
 	)
 	@Export("position")
 	int position;
-	@ObfuscatedName("j")
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = 30764979
+		intValue = 2116402287
 	)
 	@Export("limit")
 	int limit;
-	@ObfuscatedName("n")
+	@ObfuscatedName("z")
 	@Export("exception")
 	IOException exception;
 
@@ -52,10 +52,10 @@ public class BufferedSource implements Runnable {
 		this.thread.start();
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
 		signature = "(II)Z",
-		garbageValue = "-2116238538"
+		garbageValue = "-1444651631"
 	)
 	@Export("isAvailable")
 	boolean isAvailable(int var1) throws IOException {
@@ -88,8 +88,8 @@ public class BufferedSource implements Runnable {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "405355900"
+		signature = "(S)I",
+		garbageValue = "5789"
 	)
 	@Export("available")
 	int available() throws IOException {
@@ -110,15 +110,15 @@ public class BufferedSource implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("x")
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
 		signature = "(I)I",
-		garbageValue = "1222346600"
+		garbageValue = "-1306188380"
 	)
 	@Export("readUnsignedByte")
 	int readUnsignedByte() throws IOException {
 		synchronized(this) {
-			if (this.position == this.limit) {
+			if (this.limit == this.position) {
 				if (this.exception != null) {
 					throw new IOException(this.exception.toString());
 				} else {
@@ -133,10 +133,10 @@ public class BufferedSource implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "([BIIB)I",
-		garbageValue = "30"
+		signature = "([BIII)I",
+		garbageValue = "255172200"
 	)
 	@Export("read")
 	int read(byte[] var1, int var2, int var3) throws IOException {
@@ -174,10 +174,10 @@ public class BufferedSource implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("t")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(S)V",
-		garbageValue = "180"
+		signature = "(I)V",
+		garbageValue = "-489650908"
 	)
 	@Export("close")
 	void close() {
@@ -242,5 +242,83 @@ public class BufferedSource implements Runnable {
 				this.limit = (var7 + this.limit) % this.capacity;
 			}
 		}
+	}
+
+	@ObfuscatedName("d")
+	@ObfuscatedSignature(
+		signature = "(Lig;III)Llm;",
+		garbageValue = "34379622"
+	)
+	@Export("SpriteBuffer_getSprite")
+	public static SpritePixels SpriteBuffer_getSprite(AbstractArchive var0, int var1, int var2) {
+		byte[] var4 = var0.takeFile(var1, var2);
+		boolean var3;
+		if (var4 == null) {
+			var3 = false;
+		} else {
+			GrandExchangeOfferNameComparator.SpriteBuffer_decode(var4);
+			var3 = true;
+		}
+
+		if (!var3) {
+			return null;
+		} else {
+			SpritePixels var5 = new SpritePixels();
+			var5.width = class336.SpriteBuffer_spriteWidth;
+			var5.height = class336.SpriteBuffer_spriteHeight;
+			var5.xOffset = class105.SpriteBuffer_xOffsets[0];
+			var5.yOffset = class336.SpriteBuffer_yOffsets[0];
+			var5.subWidth = class336.SpriteBuffer_spriteWidths[0];
+			var5.subHeight = class225.SpriteBuffer_spriteHeights[0];
+			int var6 = var5.subHeight * var5.subWidth;
+			byte[] var7 = class2.SpriteBuffer_pixels[0];
+			var5.pixels = new int[var6];
+
+			for (int var8 = 0; var8 < var6; ++var8) {
+				var5.pixels[var8] = HorizontalAlignment.SpriteBuffer_spritePalette[var7[var8] & 255];
+			}
+
+			class105.SpriteBuffer_xOffsets = null;
+			class336.SpriteBuffer_yOffsets = null;
+			class336.SpriteBuffer_spriteWidths = null;
+			class225.SpriteBuffer_spriteHeights = null;
+			HorizontalAlignment.SpriteBuffer_spritePalette = null;
+			class2.SpriteBuffer_pixels = null;
+			return var5;
+		}
+	}
+
+	@ObfuscatedName("e")
+	@ObfuscatedSignature(
+		signature = "(B)[Llm;",
+		garbageValue = "49"
+	)
+	static SpritePixels[] method6103() {
+		SpritePixels[] var0 = new SpritePixels[class336.SpriteBuffer_spriteCount];
+
+		for (int var1 = 0; var1 < class336.SpriteBuffer_spriteCount; ++var1) {
+			SpritePixels var2 = var0[var1] = new SpritePixels();
+			var2.width = class336.SpriteBuffer_spriteWidth;
+			var2.height = class336.SpriteBuffer_spriteHeight;
+			var2.xOffset = class105.SpriteBuffer_xOffsets[var1];
+			var2.yOffset = class336.SpriteBuffer_yOffsets[var1];
+			var2.subWidth = class336.SpriteBuffer_spriteWidths[var1];
+			var2.subHeight = class225.SpriteBuffer_spriteHeights[var1];
+			int var3 = var2.subHeight * var2.subWidth;
+			byte[] var4 = class2.SpriteBuffer_pixels[var1];
+			var2.pixels = new int[var3];
+
+			for (int var5 = 0; var5 < var3; ++var5) {
+				var2.pixels[var5] = HorizontalAlignment.SpriteBuffer_spritePalette[var4[var5] & 255];
+			}
+		}
+
+		class105.SpriteBuffer_xOffsets = null;
+		class336.SpriteBuffer_yOffsets = null;
+		class336.SpriteBuffer_spriteWidths = null;
+		class225.SpriteBuffer_spriteHeights = null;
+		HorizontalAlignment.SpriteBuffer_spritePalette = null;
+		class2.SpriteBuffer_pixels = null;
+		return var0;
 	}
 }

@@ -1,42 +1,58 @@
+import java.lang.management.GarbageCollectorMXBean;
+import java.lang.management.ManagementFactory;
+import java.util.Iterator;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("y")
+@ObfuscatedName("g")
 @Implements("GrandExchangeOffer")
 public class GrandExchangeOffer {
-	@ObfuscatedName("h")
+	@ObfuscatedName("op")
+	@ObfuscatedSignature(
+		signature = "Lcg;"
+	)
+	@Export("varcs")
+	static Varcs varcs;
+	@ObfuscatedName("le")
+	@ObfuscatedSignature(
+		signature = "Lhz;"
+	)
+	static Widget field100;
+	@ObfuscatedName("n")
 	@Export("state")
 	byte state;
 	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = -618339927
+		intValue = 1764119781
 	)
 	@Export("id")
 	public int id;
-	@ObfuscatedName("x")
+	@ObfuscatedName("d")
 	@ObfuscatedGetter(
-		intValue = -1523390759
+		intValue = -1987297797
 	)
 	@Export("unitPrice")
 	public int unitPrice;
-	@ObfuscatedName("w")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = 1138679983
+		intValue = 795872735
 	)
 	@Export("totalQuantity")
 	public int totalQuantity;
-	@ObfuscatedName("t")
+	@ObfuscatedName("y")
 	@ObfuscatedGetter(
-		intValue = -1993349835
+		intValue = 252650677
 	)
 	@Export("currentQuantity")
 	public int currentQuantity;
-	@ObfuscatedName("j")
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = 484564731
+		intValue = 710426357
 	)
 	@Export("currentPrice")
 	public int currentPrice;
@@ -45,7 +61,7 @@ public class GrandExchangeOffer {
 	}
 
 	@ObfuscatedSignature(
-		signature = "(Lkj;Z)V",
+		signature = "(Lkx;Z)V",
 		garbageValue = "0"
 	)
 	public GrandExchangeOffer(Buffer var1, boolean var2) {
@@ -57,42 +73,42 @@ public class GrandExchangeOffer {
 		this.currentPrice = var1.readInt();
 	}
 
-	@ObfuscatedName("x")
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "-9146614"
+		signature = "(B)I",
+		garbageValue = "-15"
 	)
 	@Export("status")
 	public int status() {
 		return this.state & 7;
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
 		signature = "(I)I",
-		garbageValue = "1433662389"
+		garbageValue = "-522457380"
 	)
 	@Export("type")
 	public int type() {
 		return (this.state & 8) == 8 ? 1 : 0;
 	}
 
-	@ObfuscatedName("t")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
 		signature = "(II)V",
-		garbageValue = "1068160748"
+		garbageValue = "575158813"
 	)
-	void method171(int var1) {
+	void method166(int var1) {
 		this.state &= -8;
 		this.state = (byte)(this.state | var1 & 7);
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
 		signature = "(II)V",
-		garbageValue = "1708580418"
+		garbageValue = "656048251"
 	)
-	void method176(int var1) {
+	void method168(int var1) {
 		this.state &= -9;
 		if (var1 == 1) {
 			this.state = (byte)(this.state | 8);
@@ -100,197 +116,147 @@ public class GrandExchangeOffer {
 
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
-		signature = "(IIB)I",
-		garbageValue = "32"
+		signature = "(Lfu;III)Ldh;",
+		garbageValue = "779350721"
 	)
-	static int method186(int var0, int var1) {
-		FloorOverlayDefinition var2 = RouteStrategy.method3648(var0);
-		if (var2 == null) {
-			return var1;
-		} else if (var2.secondaryRgb >= 0) {
-			return var2.secondaryRgb | -16777216;
-		} else {
-			int var4;
-			int var5;
-			if (var2.texture >= 0) {
-				var4 = Rasterizer3D.Rasterizer3D_textureLoader.getAverageTextureRGB(var2.texture);
-				byte var11 = 96;
-				int var3;
-				if (var4 == -2) {
-					var3 = 12345678;
-				} else if (var4 == -1) {
-					if (var11 < 0) {
-						var11 = 0;
-					} else if (var11 > 127) {
-						var11 = 127;
-					}
-
-					var5 = 127 - var11;
-					var3 = var5;
-				} else {
-					var5 = var11 * (var4 & 127) / 128;
-					if (var5 < 2) {
-						var5 = 2;
-					} else if (var5 > 126) {
-						var5 = 126;
-					}
-
-					var3 = var5 + (var4 & 65408);
-				}
-
-				return Rasterizer3D.Rasterizer3D_colorPalette[var3] | -16777216;
-			} else if (var2.primaryRgb == 16711935) {
-				return var1;
-			} else {
-				var4 = var2.hue;
-				var5 = var2.saturation;
-				int var6 = var2.lightness;
-				if (var6 > 179) {
-					var5 /= 2;
-				}
-
-				if (var6 > 192) {
-					var5 /= 2;
-				}
-
-				if (var6 > 217) {
-					var5 /= 2;
-				}
-
-				if (var6 > 243) {
-					var5 /= 2;
-				}
-
-				int var7 = (var5 / 32 << 7) + var6 / 2 + (var4 / 4 << 10);
-				byte var9 = 96;
-				int var8;
-				if (var7 == -2) {
-					var8 = 12345678;
-				} else {
-					int var12;
-					if (var7 == -1) {
-						if (var9 < 0) {
-							var9 = 0;
-						} else if (var9 > 127) {
-							var9 = 127;
-						}
-
-						var12 = 127 - var9;
-						var8 = var12;
-					} else {
-						var12 = var9 * (var7 & 127) / 128;
-						if (var12 < 2) {
-							var12 = 2;
-						} else if (var12 > 126) {
-							var12 = 126;
-						}
-
-						var8 = var12 + (var7 & 65408);
-					}
-				}
-
-				return Rasterizer3D.Rasterizer3D_colorPalette[var8] | -16777216;
+	public static final PcmPlayer method167(TaskHandler var0, int var1, int var2) {
+		if (StructDefinition.field3338 * 22050 == 0) {
+			throw new IllegalStateException();
+		} else if (var1 >= 0 && var1 < 2) {
+			if (var2 < 256) {
+				var2 = 256;
 			}
-		}
-	}
 
-	@ObfuscatedName("h")
-	@ObfuscatedSignature(
-		signature = "(Ljava/lang/Object;ZI)[B",
-		garbageValue = "-2034592352"
-	)
-	public static byte[] method188(Object var0, boolean var1) {
-		if (var0 == null) {
-			return null;
-		} else if (var0 instanceof byte[]) {
-			byte[] var6 = (byte[])((byte[])var0);
-			if (var1) {
-				int var4 = var6.length;
-				byte[] var5 = new byte[var4];
-				System.arraycopy(var6, 0, var5, 0, var4);
-				return var5;
-			} else {
-				return var6;
+			try {
+				PcmPlayer var3 = class2.pcmPlayerProvider.player();
+				var3.samples = new int[256 * (PcmPlayer.PcmPlayer_stereo ? 2 : 1)];
+				var3.field1427 = var2;
+				var3.init();
+				var3.capacity = (var2 & -1024) + 1024;
+				if (var3.capacity > 16384) {
+					var3.capacity = 16384;
+				}
+
+				var3.open(var3.capacity);
+				if (PcmPlayer.field1419 > 0 && PcmPlayer.soundSystem == null) {
+					PcmPlayer.soundSystem = new SoundSystem();
+					PcmPlayer.soundSystemExecutor = Executors.newScheduledThreadPool(1);
+					PcmPlayer.soundSystemExecutor.scheduleAtFixedRate(PcmPlayer.soundSystem, 0L, 10L, TimeUnit.MILLISECONDS);
+				}
+
+				if (PcmPlayer.soundSystem != null) {
+					if (PcmPlayer.soundSystem.players[var1] != null) {
+						throw new IllegalArgumentException();
+					}
+
+					PcmPlayer.soundSystem.players[var1] = var3;
+				}
+
+				return var3;
+			} catch (Throwable var4) {
+				return new PcmPlayer();
 			}
-		} else if (var0 instanceof AbstractByteArrayCopier) {
-			AbstractByteArrayCopier var2 = (AbstractByteArrayCopier)var0;
-			return var2.get();
 		} else {
 			throw new IllegalArgumentException();
 		}
 	}
 
-	@ObfuscatedName("x")
+	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "296728880"
+		signature = "(B)I",
+		garbageValue = "1"
 	)
-	@Export("savePreferences")
-	static void savePreferences() {
-		AccessFile var0 = null;
+	@Export("getGcDuration")
+	protected static int getGcDuration() {
+		int var0 = 0;
+		if (WorldMapID.garbageCollector == null || !WorldMapID.garbageCollector.isValid()) {
+			try {
+				Iterator var1 = ManagementFactory.getGarbageCollectorMXBeans().iterator();
 
-		try {
-			var0 = WorldMapRegion.getPreferencesFile("", AttackOption.field1174.name, true);
-			Buffer var1 = Timer.clientPreferences.toBuffer();
-			var0.write(var1.array, 0, var1.offset);
-		} catch (Exception var3) {
-		}
-
-		try {
-			if (var0 != null) {
-				var0.closeSync(true);
+				while (var1.hasNext()) {
+					GarbageCollectorMXBean var2 = (GarbageCollectorMXBean)var1.next();
+					if (var2.isValid()) {
+						WorldMapID.garbageCollector = var2;
+						GameEngine.garbageCollectorLastCheckTimeMs = -1L;
+						GameEngine.garbageCollectorLastCollectionTime = -1L;
+					}
+				}
+			} catch (Throwable var11) {
 			}
-		} catch (Exception var2) {
 		}
 
-	}
-
-	@ObfuscatedName("m")
-	@ObfuscatedSignature(
-		signature = "(IIB)I",
-		garbageValue = "66"
-	)
-	static final int method190(int var0, int var1) {
-		int var2 = var1 * 57 + var0;
-		var2 ^= var2 << 13;
-		int var3 = (var2 * var2 * 15731 + 789221) * var2 + 1376312589 & Integer.MAX_VALUE;
-		return var3 >> 19 & 255;
-	}
-
-	@ObfuscatedName("hx")
-	@ObfuscatedSignature(
-		signature = "(IIII)V",
-		garbageValue = "-18578608"
-	)
-	@Export("worldToScreen")
-	static final void worldToScreen(int var0, int var1, int var2) {
-		if (var0 >= 128 && var1 >= 128 && var0 <= 13056 && var1 <= 13056) {
-			int var3 = SecureRandomFuture.getTileHeight(var0, var1, GameObject.Client_plane) - var2;
-			var0 -= Player.cameraX;
-			var3 -= KeyHandler.cameraY;
-			var1 -= class69.cameraZ;
-			int var4 = Rasterizer3D.Rasterizer3D_sine[Skeleton.cameraPitch];
-			int var5 = Rasterizer3D.Rasterizer3D_cosine[Skeleton.cameraPitch];
-			int var6 = Rasterizer3D.Rasterizer3D_sine[AbstractArchive.cameraYaw];
-			int var7 = Rasterizer3D.Rasterizer3D_cosine[AbstractArchive.cameraYaw];
-			int var8 = var6 * var1 + var0 * var7 >> 16;
-			var1 = var7 * var1 - var0 * var6 >> 16;
-			var0 = var8;
-			var8 = var5 * var3 - var4 * var1 >> 16;
-			var1 = var3 * var4 + var5 * var1 >> 16;
-			if (var1 >= 50) {
-				Client.viewportTempX = var0 * Client.viewportZoom / var1 + Client.viewportWidth / 2;
-				Client.viewportTempY = Client.viewportHeight / 2 + var8 * Client.viewportZoom / var1;
-			} else {
-				Client.viewportTempX = -1;
-				Client.viewportTempY = -1;
+		if (WorldMapID.garbageCollector != null) {
+			long var9 = Tiles.currentTimeMillis();
+			long var3 = WorldMapID.garbageCollector.getCollectionTime();
+			if (GameEngine.garbageCollectorLastCollectionTime != -1L) {
+				long var5 = var3 - GameEngine.garbageCollectorLastCollectionTime;
+				long var7 = var9 - GameEngine.garbageCollectorLastCheckTimeMs;
+				if (0L != var7) {
+					var0 = (int)(100L * var5 / var7);
+				}
 			}
 
-		} else {
-			Client.viewportTempX = -1;
-			Client.viewportTempY = -1;
+			GameEngine.garbageCollectorLastCollectionTime = var3;
+			GameEngine.garbageCollectorLastCheckTimeMs = var9;
 		}
+
+		return var0;
+	}
+
+	@ObfuscatedName("ih")
+	@ObfuscatedSignature(
+		signature = "(IB)Ljava/lang/String;",
+		garbageValue = "-64"
+	)
+	static final String method187(int var0) {
+		return var0 < 999999999 ? Integer.toString(var0) : "*";
+	}
+
+	@ObfuscatedName("ku")
+	@ObfuscatedSignature(
+		signature = "(Lbs;ZS)V",
+		garbageValue = "-4659"
+	)
+	@Export("closeInterface")
+	static final void closeInterface(InterfaceParent var0, boolean var1) {
+		int var2 = var0.group;
+		int var3 = (int)var0.key;
+		var0.remove();
+		if (var1 && var2 != -1 && Widget.Widget_loadedInterfaces[var2]) {
+			FontName.Widget_archive.clearFilesGroup(var2);
+			if (DefaultsGroup.Widget_interfaceComponents[var2] != null) {
+				boolean var6 = true;
+
+				for (int var5 = 0; var5 < DefaultsGroup.Widget_interfaceComponents[var2].length; ++var5) {
+					if (DefaultsGroup.Widget_interfaceComponents[var2][var5] != null) {
+						if (DefaultsGroup.Widget_interfaceComponents[var2][var5].type != 2) {
+							DefaultsGroup.Widget_interfaceComponents[var2][var5] = null;
+						} else {
+							var6 = false;
+						}
+					}
+				}
+
+				if (var6) {
+					DefaultsGroup.Widget_interfaceComponents[var2] = null;
+				}
+
+				Widget.Widget_loadedInterfaces[var2] = false;
+			}
+		}
+
+		ModeWhere.method3871(var2);
+		Widget var4 = class237.getWidget(var3);
+		if (var4 != null) {
+			IsaacCipher.invalidateWidget(var4);
+		}
+
+		AbstractWorldMapData.method352();
+		if (Client.rootInterface != -1) {
+			class228.runIntfCloseListeners(Client.rootInterface, 1);
+		}
+
 	}
 }
