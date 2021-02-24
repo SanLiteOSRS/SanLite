@@ -4,56 +4,84 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cc")
+@ObfuscatedName("cn")
 @Implements("Interpreter")
 public class Interpreter {
-	@ObfuscatedName("n")
+	@ObfuscatedName("y")
+	@Export("Interpreter_intLocals")
+	static int[] Interpreter_intLocals;
+	@ObfuscatedName("z")
 	@Export("Interpreter_arrayLengths")
 	static int[] Interpreter_arrayLengths;
-	@ObfuscatedName("p")
+	@ObfuscatedName("e")
 	@Export("Interpreter_arrays")
 	static int[][] Interpreter_arrays;
-	@ObfuscatedName("l")
+	@ObfuscatedName("q")
 	@Export("Interpreter_intStack")
 	static int[] Interpreter_intStack;
-	@ObfuscatedName("u")
+	@ObfuscatedName("l")
+	@ObfuscatedGetter(
+		intValue = 1775407691
+	)
+	@Export("Interpreter_intStackSize")
+	static int Interpreter_intStackSize;
+	@ObfuscatedName("s")
 	@Export("Interpreter_stringStack")
 	static String[] Interpreter_stringStack;
-	@ObfuscatedName("e")
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = 1712020733
+		intValue = -1832147507
 	)
 	@Export("Interpreter_stringStackSize")
 	static int Interpreter_stringStackSize;
-	@ObfuscatedName("m")
+	@ObfuscatedName("a")
 	@ObfuscatedGetter(
-		intValue = 1415753819
+		intValue = 1349197587
 	)
 	@Export("Interpreter_frameDepth")
 	static int Interpreter_frameDepth;
-	@ObfuscatedName("c")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		signature = "[Lbk;"
+		signature = "[Lbz;"
 	)
 	@Export("Interpreter_frames")
 	static ScriptFrame[] Interpreter_frames;
-	@ObfuscatedName("a")
+	@ObfuscatedName("k")
+	@ObfuscatedSignature(
+		signature = "Lhz;"
+	)
+	static Widget field1117;
+	@ObfuscatedName("x")
 	@Export("Interpreter_calendar")
 	static java.util.Calendar Interpreter_calendar;
-	@ObfuscatedName("b")
+	@ObfuscatedName("f")
 	@Export("Interpreter_MONTHS")
 	static final String[] Interpreter_MONTHS;
-	@ObfuscatedName("r")
-	static boolean field1104;
-	@ObfuscatedName("q")
-	static boolean field1103;
 	@ObfuscatedName("g")
-	@ObfuscatedGetter(
-		intValue = -1923352627
+	@ObfuscatedSignature(
+		signature = "Lav;"
 	)
-	static int field1097;
-	@ObfuscatedName("d")
-	static final double field1093;
+	@Export("worldMapEvent")
+	static WorldMapEvent worldMapEvent;
+	@ObfuscatedName("u")
+	static boolean field1120;
+	@ObfuscatedName("t")
+	static boolean field1122;
+	@ObfuscatedName("p")
+	@ObfuscatedGetter(
+		intValue = 365610695
+	)
+	static int field1123;
+	@ObfuscatedName("j")
+	static final double field1124;
+	@ObfuscatedName("ea")
+	@ObfuscatedGetter(
+		intValue = 847561081
+	)
+	static int field1116;
+	@ObfuscatedName("gk")
+	@Export("regionMapArchives")
+	static byte[][] regionMapArchives;
 
 	static {
 		Interpreter_arrayLengths = new int[5];
@@ -64,69 +92,36 @@ public class Interpreter {
 		Interpreter_frames = new ScriptFrame[50];
 		Interpreter_calendar = java.util.Calendar.getInstance();
 		Interpreter_MONTHS = new String[]{"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
-		field1104 = false;
-		field1103 = false;
-		field1097 = 0;
-		field1093 = Math.log(2.0D);
+		field1120 = false;
+		field1122 = false;
+		field1123 = 0;
+		field1124 = Math.log(2.0D);
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		signature = "(Lib;IIIZI)V",
-		garbageValue = "781493841"
+		signature = "(IIII)I",
+		garbageValue = "-1493110038"
 	)
-	public static void method2082(AbstractArchive var0, int var1, int var2, int var3, boolean var4) {
-		class206.musicPlayerStatus = 1;
-		Varps.musicTrackArchive = var0;
-		HealthBarUpdate.musicTrackGroupId = var1;
-		class206.musicTrackFileId = var2;
-		GrandExchangeEvent.musicTrackVolume = var3;
-		class231.musicTrackBoolean = var4;
-		WorldMapSection1.pcmSampleLength = 10000;
-	}
-
-	@ObfuscatedName("l")
-	@ObfuscatedSignature(
-		signature = "(CI)Z",
-		garbageValue = "636889033"
-	)
-	static boolean method1995(char var0) {
-		return "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!\"£$%^&*()-_=+[{]};:'@#~,<.>/?\\| ".indexOf(var0) != -1;
-	}
-
-	@ObfuscatedName("jn")
-	@ObfuscatedSignature(
-		signature = "([Lhe;IIIZI)V",
-		garbageValue = "-182742727"
-	)
-	@Export("resizeInterface")
-	static void resizeInterface(Widget[] var0, int var1, int var2, int var3, boolean var4) {
-		for (int var5 = 0; var5 < var0.length; ++var5) {
-			Widget var6 = var0[var5];
-			if (var6 != null && var6.parentId == var1) {
-				TileItem.alignWidgetSize(var6, var2, var3, var4);
-				class7.alignWidgetPosition(var6, var2, var3);
-				if (var6.scrollX > var6.scrollWidth - var6.width) {
-					var6.scrollX = var6.scrollWidth - var6.width;
-				}
-
-				if (var6.scrollX < 0) {
-					var6.scrollX = 0;
-				}
-
-				if (var6.scrollY > var6.scrollHeight - var6.height) {
-					var6.scrollY = var6.scrollHeight - var6.height;
-				}
-
-				if (var6.scrollY < 0) {
-					var6.scrollY = 0;
-				}
-
-				if (var6.type == 0) {
-					PendingSpawn.revalidateWidgetScroll(var0, var6, var4);
-				}
-			}
+	@Export("hslToRgb")
+	static final int hslToRgb(int var0, int var1, int var2) {
+		if (var2 > 179) {
+			var1 /= 2;
 		}
 
+		if (var2 > 192) {
+			var1 /= 2;
+		}
+
+		if (var2 > 217) {
+			var1 /= 2;
+		}
+
+		if (var2 > 243) {
+			var1 /= 2;
+		}
+
+		int var3 = (var1 / 32 << 7) + (var0 / 4 << 10) + var2 / 2;
+		return var3;
 	}
 }

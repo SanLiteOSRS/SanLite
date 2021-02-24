@@ -4,30 +4,32 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hs")
+@ObfuscatedName("hd")
 @Implements("Coord")
 public class Coord {
-	@ObfuscatedName("h")
+	@ObfuscatedName("q")
+	static int[] field2560;
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = -578473323
+		intValue = 1010419141
 	)
 	@Export("plane")
 	public int plane;
 	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = -1743960415
+		intValue = 1636543291
 	)
 	@Export("x")
 	public int x;
-	@ObfuscatedName("x")
+	@ObfuscatedName("d")
 	@ObfuscatedGetter(
-		intValue = -1369689255
+		intValue = -1486415971
 	)
 	@Export("y")
 	public int y;
 
 	@ObfuscatedSignature(
-		signature = "(Lhs;)V"
+		signature = "(Lhd;)V"
 	)
 	public Coord(Coord var1) {
 		this.plane = var1.plane;
@@ -52,10 +54,10 @@ public class Coord {
 
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(B)I",
-		garbageValue = "-27"
+		signature = "(I)I",
+		garbageValue = "71745539"
 	)
 	@Export("packed")
 	public int packed() {
@@ -64,8 +66,8 @@ public class Coord {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(Lhs;I)Z",
-		garbageValue = "902297370"
+		signature = "(Lhd;S)Z",
+		garbageValue = "144"
 	)
 	@Export("equalsCoord")
 	boolean equalsCoord(Coord var1) {
@@ -78,10 +80,10 @@ public class Coord {
 		}
 	}
 
-	@ObfuscatedName("x")
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;I)Ljava/lang/String;",
-		garbageValue = "-1856185425"
+		signature = "(Ljava/lang/String;B)Ljava/lang/String;",
+		garbageValue = "31"
 	)
 	@Export("toString")
 	String toString(String var1) {
@@ -104,32 +106,39 @@ public class Coord {
 		return this.toString(",");
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
 		signature = "(II)I",
-		garbageValue = "-676384531"
+		garbageValue = "1310695522"
 	)
-	@Export("getVarbit")
-	public static int getVarbit(int var0) {
-		VarbitComposition var2 = (VarbitComposition)VarbitComposition.VarbitDefinition_cached.get((long)var0);
-		VarbitComposition var1;
-		if (var2 != null) {
-			var1 = var2;
-		} else {
-			byte[] var7 = VarbitComposition.VarbitDefinition_archive.takeFile(14, var0);
-			var2 = new VarbitComposition();
-			if (var7 != null) {
-				var2.decode(new Buffer(var7));
-			}
-
-			VarbitComposition.VarbitDefinition_cached.put(var2, (long)var0);
-			var1 = var2;
+	@Export("iLog")
+	public static int iLog(int var0) {
+		int var1 = 0;
+		if (var0 < 0 || var0 >= 65536) {
+			var0 >>>= 16;
+			var1 += 16;
 		}
 
-		int var3 = var1.baseVar;
-		int var4 = var1.startBit;
-		int var5 = var1.endBit;
-		int var6 = Varps.Varps_masks[var5 - var4];
-		return Varps.Varps_main[var3] >> var4 & var6;
+		if (var0 >= 256) {
+			var0 >>>= 8;
+			var1 += 8;
+		}
+
+		if (var0 >= 16) {
+			var0 >>>= 4;
+			var1 += 4;
+		}
+
+		if (var0 >= 4) {
+			var0 >>>= 2;
+			var1 += 2;
+		}
+
+		if (var0 >= 1) {
+			var0 >>>= 1;
+			++var1;
+		}
+
+		return var0 + var1;
 	}
 }

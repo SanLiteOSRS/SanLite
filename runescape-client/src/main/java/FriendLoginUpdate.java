@@ -4,55 +4,30 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ke")
+@ObfuscatedName("kj")
 @Implements("FriendLoginUpdate")
 public class FriendLoginUpdate extends Link {
-	@ObfuscatedName("qv")
-	@ObfuscatedSignature(
-		signature = "Ldp;"
-	)
-	@Export("pcmPlayer1")
-	static PcmPlayer pcmPlayer1;
-	@ObfuscatedName("x")
+	@ObfuscatedName("d")
 	@ObfuscatedGetter(
-		intValue = 1005138925
+		intValue = 272461805
 	)
-	public int field3680;
-	@ObfuscatedName("w")
+	public int field3676;
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "Lki;"
+		signature = "Lkk;"
 	)
 	@Export("username")
 	public Username username;
-	@ObfuscatedName("t")
+	@ObfuscatedName("y")
 	@Export("world")
 	public short world;
 
 	@ObfuscatedSignature(
-		signature = "(Lki;I)V"
+		signature = "(Lkk;I)V"
 	)
 	FriendLoginUpdate(Username var1, int var2) {
-		this.field3680 = (int)(class298.currentTimeMillis() / 1000L);
+		this.field3676 = (int)(Tiles.currentTimeMillis() / 1000L);
 		this.username = var1;
 		this.world = (short)var2;
-	}
-
-	@ObfuscatedName("h")
-	@ObfuscatedSignature(
-		signature = "(IB)Z",
-		garbageValue = "-1"
-	)
-	public static boolean method5290(int var0) {
-		return var0 >= WorldMapDecorationType.field2761.id && var0 <= WorldMapDecorationType.field2747.id || var0 == WorldMapDecorationType.field2748.id;
-	}
-
-	@ObfuscatedName("l")
-	@ObfuscatedSignature(
-		signature = "(CI)Z",
-		garbageValue = "-1404693123"
-	)
-	@Export("isAlphaNumeric")
-	public static boolean isAlphaNumeric(char var0) {
-		return var0 >= '0' && var0 <= '9' || var0 >= 'A' && var0 <= 'Z' || var0 >= 'a' && var0 <= 'z';
 	}
 }

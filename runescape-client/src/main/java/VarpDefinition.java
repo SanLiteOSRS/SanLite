@@ -4,24 +4,24 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("is")
+@ObfuscatedName("il")
 @Implements("VarpDefinition")
 public class VarpDefinition extends DualNode {
-	@ObfuscatedName("v")
-	@ObfuscatedGetter(
-		intValue = 447928959
-	)
-	@Export("VarpDefinition_fileCount")
-	public static int VarpDefinition_fileCount;
-	@ObfuscatedName("x")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "Lez;"
+		signature = "Lig;"
+	)
+	@Export("VarpDefinition_archive")
+	public static AbstractArchive VarpDefinition_archive;
+	@ObfuscatedName("d")
+	@ObfuscatedSignature(
+		signature = "Lex;"
 	)
 	@Export("VarpDefinition_cached")
 	static EvictingDualNodeHashTable VarpDefinition_cached;
-	@ObfuscatedName("w")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = -1862551275
+		intValue = -921079377
 	)
 	@Export("type")
 	public int type;
@@ -36,8 +36,8 @@ public class VarpDefinition extends DualNode {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(Lkj;I)V",
-		garbageValue = "-1194573420"
+		signature = "(Lkx;I)V",
+		garbageValue = "-1864493120"
 	)
 	@Export("decode")
 	void decode(Buffer var1) {
@@ -51,10 +51,10 @@ public class VarpDefinition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("x")
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(Lkj;II)V",
-		garbageValue = "263828873"
+		signature = "(Lkx;IB)V",
+		garbageValue = "54"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
@@ -64,28 +64,25 @@ public class VarpDefinition extends DualNode {
 
 	}
 
-	@ObfuscatedName("ad")
+	@ObfuscatedName("ez")
 	@ObfuscatedSignature(
-		signature = "(II)V",
-		garbageValue = "789122507"
+		signature = "(I)Z",
+		garbageValue = "498467917"
 	)
-	@Export("runWidgetOnLoadListener")
-	static void runWidgetOnLoadListener(int var0) {
-		if (var0 != -1) {
-			if (class41.loadInterface(var0)) {
-				Widget[] var1 = class9.Widget_interfaceComponents[var0];
-
-				for (int var2 = 0; var2 < var1.length; ++var2) {
-					Widget var3 = var1[var2];
-					if (var3.onLoad != null) {
-						ScriptEvent var4 = new ScriptEvent();
-						var4.widget = var3;
-						var4.args = var3.onLoad;
-						AttackOption.runScript(var4, 5000000);
-					}
+	static boolean method4552() {
+		if (Client.archiveLoaders != null && Client.archiveLoadersDone < Client.archiveLoaders.size()) {
+			while (Client.archiveLoadersDone < Client.archiveLoaders.size()) {
+				ArchiveLoader var0 = (ArchiveLoader)Client.archiveLoaders.get(Client.archiveLoadersDone);
+				if (!var0.isLoaded()) {
+					return false;
 				}
 
+				++Client.archiveLoadersDone;
 			}
+
+			return true;
+		} else {
+			return true;
 		}
 	}
 }

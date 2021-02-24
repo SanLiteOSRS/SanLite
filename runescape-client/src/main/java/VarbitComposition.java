@@ -4,39 +4,42 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("iv")
+@ObfuscatedName("ih")
 @Implements("VarbitComposition")
 public class VarbitComposition extends DualNode {
-	@ObfuscatedName("h")
+	@ObfuscatedName("qo")
 	@ObfuscatedSignature(
-		signature = "Lib;"
+		signature = "Ldi;"
+	)
+	@Export("pcmStreamMixer")
+	static PcmStreamMixer pcmStreamMixer;
+	@ObfuscatedName("n")
+	@ObfuscatedSignature(
+		signature = "Lig;"
 	)
 	@Export("VarbitDefinition_archive")
 	public static AbstractArchive VarbitDefinition_archive;
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "Lez;"
+		signature = "Lex;"
 	)
 	@Export("VarbitDefinition_cached")
 	public static EvictingDualNodeHashTable VarbitDefinition_cached;
-	@ObfuscatedName("z")
-	@Export("Tiles_hue")
-	static int[] Tiles_hue;
-	@ObfuscatedName("x")
+	@ObfuscatedName("d")
 	@ObfuscatedGetter(
-		intValue = -1845026741
+		intValue = 1019712225
 	)
 	@Export("baseVar")
 	public int baseVar;
-	@ObfuscatedName("w")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = -974081687
+		intValue = 832067477
 	)
 	@Export("startBit")
 	public int startBit;
-	@ObfuscatedName("t")
+	@ObfuscatedName("y")
 	@ObfuscatedGetter(
-		intValue = -1357944677
+		intValue = 1230578517
 	)
 	@Export("endBit")
 	public int endBit;
@@ -45,13 +48,16 @@ public class VarbitComposition extends DualNode {
 		VarbitDefinition_cached = new EvictingDualNodeHashTable(64);
 	}
 
+	VarbitComposition() {
+	}
+
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(Lkj;I)V",
-		garbageValue = "1196473375"
+		signature = "(Lkx;B)V",
+		garbageValue = "1"
 	)
 	@Export("decode")
-	public void decode(Buffer var1) {
+	void decode(Buffer var1) {
 		while (true) {
 			int var2 = var1.readUnsignedByte();
 			if (var2 == 0) {
@@ -62,10 +68,10 @@ public class VarbitComposition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("x")
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(Lkj;II)V",
-		garbageValue = "-1699368159"
+		signature = "(Lkx;II)V",
+		garbageValue = "-1952270730"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
@@ -77,60 +83,18 @@ public class VarbitComposition extends DualNode {
 
 	}
 
-	@ObfuscatedName("x")
+	@ObfuscatedName("kw")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/CharSequence;Lmu;B)Ljava/lang/String;",
-		garbageValue = "3"
+		signature = "(Ljava/lang/String;I)V",
+		garbageValue = "-1439525339"
 	)
-	public static String method4525(CharSequence var0, LoginType var1) {
-		if (var0 == null) {
-			return null;
-		} else {
-			int var2 = 0;
-
-			int var3;
-			boolean var4;
-			char var5;
-			for (var3 = var0.length(); var2 < var3; ++var2) {
-				var5 = var0.charAt(var2);
-				var4 = var5 == 160 || var5 == ' ' || var5 == '_' || var5 == '-';
-				if (!var4) {
-					break;
-				}
-			}
-
-			while (var3 > var2) {
-				var5 = var0.charAt(var3 - 1);
-				var4 = var5 == 160 || var5 == ' ' || var5 == '_' || var5 == '-';
-				if (!var4) {
-					break;
-				}
-
-				--var3;
-			}
-
-			int var10 = var3 - var2;
-			if (var10 >= 1 && var10 <= ArchiveLoader.method1232(var1)) {
-				StringBuilder var9 = new StringBuilder(var10);
-
-				for (int var6 = var2; var6 < var3; ++var6) {
-					char var7 = var0.charAt(var6);
-					if (ObjectComposition.method4657(var7)) {
-						char var8 = UserComparator10.method3492(var7);
-						if (var8 != 0) {
-							var9.append(var8);
-						}
-					}
-				}
-
-				if (var9.length() == 0) {
-					return null;
-				} else {
-					return var9.toString();
-				}
-			} else {
-				return null;
-			}
+	@Export("Clan_joinChat")
+	static final void Clan_joinChat(String var0) {
+		if (!var0.equals("")) {
+			PacketBufferNode var1 = WorldMapSprite.getPacketBufferNode(ClientPacket.field2270, Client.packetWriter.isaacCipher);
+			var1.packetBuffer.writeByte(WorldMapLabelSize.stringCp1252NullTerminatedByteSize(var0));
+			var1.packetBuffer.writeStringCp1252NullTerminated(var0);
+			Client.packetWriter.addNode(var1);
 		}
 	}
 }

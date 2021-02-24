@@ -7,16 +7,13 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("ei")
 @Implements("UrlRequest")
 public class UrlRequest {
-	@ObfuscatedName("st")
-	@Export("foundItemIds")
-	static short[] foundItemIds;
-	@ObfuscatedName("h")
+	@ObfuscatedName("n")
 	@Export("url")
 	final URL url;
 	@ObfuscatedName("v")
 	@Export("isDone0")
 	volatile boolean isDone0;
-	@ObfuscatedName("x")
+	@ObfuscatedName("d")
 	@Export("response0")
 	volatile byte[] response0;
 
@@ -24,10 +21,10 @@ public class UrlRequest {
 		this.url = var1;
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(B)Z",
-		garbageValue = "109"
+		signature = "(I)Z",
+		garbageValue = "-1827433673"
 	)
 	@Export("isDone")
 	public boolean isDone() {
@@ -36,11 +33,20 @@ public class UrlRequest {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(I)[B",
-		garbageValue = "-884175242"
+		signature = "(B)[B",
+		garbageValue = "124"
 	)
 	@Export("getResponse")
 	public byte[] getResponse() {
 		return this.response0;
+	}
+
+	@ObfuscatedName("d")
+	@ObfuscatedSignature(
+		signature = "(ZZI)Lly;",
+		garbageValue = "-2105187304"
+	)
+	static IndexedSprite method3476(boolean var0, boolean var1) {
+		return var0 ? (var1 ? WorldMapDecoration.field237 : Login.options_buttons_2Sprite) : (var1 ? UrlRequester.field1956 : class69.options_buttons_0Sprite);
 	}
 }

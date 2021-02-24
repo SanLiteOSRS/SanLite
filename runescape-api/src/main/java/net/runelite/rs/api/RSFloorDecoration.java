@@ -15,7 +15,7 @@ public interface RSFloorDecoration extends GroundObject
 	@Import("y")
 	int getY();
 
-	@Import("entity")
+	@Import("renderable")
 	@Override
 	RSRenderable getRenderable();
 

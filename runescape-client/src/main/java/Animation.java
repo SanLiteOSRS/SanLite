@@ -3,51 +3,51 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("eu")
+@ObfuscatedName("eg")
 @Implements("Animation")
 public class Animation {
-	@ObfuscatedName("h")
-	static int[] field1657;
+	@ObfuscatedName("n")
+	static int[] field1655;
 	@ObfuscatedName("v")
+	static int[] field1650;
+	@ObfuscatedName("d")
 	static int[] field1651;
-	@ObfuscatedName("x")
+	@ObfuscatedName("c")
 	static int[] field1652;
-	@ObfuscatedName("w")
-	static int[] field1659;
-	@ObfuscatedName("t")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "Lej;"
+		signature = "Lev;"
 	)
 	@Export("skeleton")
 	Skeleton skeleton;
-	@ObfuscatedName("j")
+	@ObfuscatedName("h")
 	@Export("transformCount")
 	int transformCount;
-	@ObfuscatedName("n")
+	@ObfuscatedName("z")
 	@Export("transformSkeletonLabels")
 	int[] transformSkeletonLabels;
-	@ObfuscatedName("p")
+	@ObfuscatedName("e")
 	@Export("transformXs")
 	int[] transformXs;
-	@ObfuscatedName("l")
+	@ObfuscatedName("q")
 	@Export("transformYs")
 	int[] transformYs;
-	@ObfuscatedName("z")
+	@ObfuscatedName("l")
 	@Export("transformZs")
 	int[] transformZs;
-	@ObfuscatedName("u")
+	@ObfuscatedName("s")
 	@Export("hasAlphaTransform")
 	boolean hasAlphaTransform;
 
 	static {
-		field1657 = new int[500];
+		field1655 = new int[500];
+		field1650 = new int[500];
 		field1651 = new int[500];
 		field1652 = new int[500];
-		field1659 = new int[500];
 	}
 
 	@ObfuscatedSignature(
-		signature = "([BLej;)V"
+		signature = "([BLev;)V"
 	)
 	Animation(byte[] var1, Skeleton var2) {
 		this.skeleton = null;
@@ -69,38 +69,38 @@ public class Animation {
 				if (this.skeleton.transformTypes[var8] != 0) {
 					for (int var10 = var8 - 1; var10 > var6; --var10) {
 						if (this.skeleton.transformTypes[var10] == 0) {
-							field1657[var7] = var10;
+							field1655[var7] = var10;
+							field1650[var7] = 0;
 							field1651[var7] = 0;
 							field1652[var7] = 0;
-							field1659[var7] = 0;
 							++var7;
 							break;
 						}
 					}
 				}
 
-				field1657[var7] = var8;
+				field1655[var7] = var8;
 				short var11 = 0;
 				if (this.skeleton.transformTypes[var8] == 3) {
 					var11 = 128;
 				}
 
 				if ((var9 & 1) != 0) {
+					field1650[var7] = var4.readShortSmart();
+				} else {
+					field1650[var7] = var11;
+				}
+
+				if ((var9 & 2) != 0) {
 					field1651[var7] = var4.readShortSmart();
 				} else {
 					field1651[var7] = var11;
 				}
 
-				if ((var9 & 2) != 0) {
+				if ((var9 & 4) != 0) {
 					field1652[var7] = var4.readShortSmart();
 				} else {
 					field1652[var7] = var11;
-				}
-
-				if ((var9 & 4) != 0) {
-					field1659[var7] = var4.readShortSmart();
-				} else {
-					field1659[var7] = var11;
 				}
 
 				var6 = var8;
@@ -121,10 +121,10 @@ public class Animation {
 			this.transformZs = new int[var7];
 
 			for (var8 = 0; var8 < var7; ++var8) {
-				this.transformSkeletonLabels[var8] = field1657[var8];
-				this.transformXs[var8] = field1651[var8];
-				this.transformYs[var8] = field1652[var8];
-				this.transformZs[var8] = field1659[var8];
+				this.transformSkeletonLabels[var8] = field1655[var8];
+				this.transformXs[var8] = field1650[var8];
+				this.transformYs[var8] = field1651[var8];
+				this.transformZs[var8] = field1652[var8];
 			}
 
 		}

@@ -1,106 +1,98 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("lw")
+@ObfuscatedName("ld")
 @Implements("PrivateChatMode")
 public class PrivateChatMode {
-	@ObfuscatedName("h")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "Llw;"
+		signature = "Lld;"
 	)
-	static final PrivateChatMode field3833;
+	static final PrivateChatMode field3829;
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "Llw;"
+		signature = "Lld;"
 	)
-	public static final PrivateChatMode field3832;
-	@ObfuscatedName("x")
+	public static final PrivateChatMode field3830;
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "Llw;"
+		signature = "Lld;"
 	)
-	static final PrivateChatMode field3834;
-	@ObfuscatedName("w")
+	static final PrivateChatMode field3831;
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = -976230065
+		intValue = -441716017
 	)
-	public final int field3835;
+	public final int field3832;
 
 	static {
-		field3833 = new PrivateChatMode(0);
-		field3832 = new PrivateChatMode(1);
-		field3834 = new PrivateChatMode(2);
+		field3829 = new PrivateChatMode(0);
+		field3830 = new PrivateChatMode(1);
+		field3831 = new PrivateChatMode(2);
 	}
 
 	PrivateChatMode(int var1) {
-		this.field3835 = var1;
+		this.field3832 = var1;
 	}
 
-	@ObfuscatedName("x")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(Lib;Lib;III)Lku;",
-		garbageValue = "1224864347"
+		signature = "(II)I",
+		garbageValue = "1722143108"
 	)
-	public static Font method5934(AbstractArchive var0, AbstractArchive var1, int var2, int var3) {
-		return !class304.method5363(var0, var2, var3) ? null : class308.method5482(var1.takeFile(var2, var3));
+	public static int method6104(int var0) {
+		var0 = (var0 & 1431655765) + (var0 >>> 1 & 1431655765);
+		var0 = (var0 >>> 2 & 858993459) + (var0 & 858993459);
+		var0 = var0 + (var0 >>> 4) & 252645135;
+		var0 += var0 >>> 8;
+		var0 += var0 >>> 16;
+		return var0 & 255;
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("ix")
 	@ObfuscatedSignature(
-		signature = "(B)Llo;",
-		garbageValue = "64"
+		signature = "(Lhz;IIIIIII)V",
+		garbageValue = "-1992669827"
 	)
-	static IndexedSprite method5937() {
-		IndexedSprite var0 = new IndexedSprite();
-		var0.width = DirectByteArrayCopier.SpriteBuffer_spriteWidth;
-		var0.height = class336.SpriteBuffer_spriteHeight;
-		var0.xOffset = class336.SpriteBuffer_xOffsets[0];
-		var0.yOffset = class336.SpriteBuffer_yOffsets[0];
-		var0.subWidth = class336.SpriteBuffer_spriteWidths[0];
-		var0.subHeight = class336.SpriteBuffer_spriteHeights[0];
-		var0.palette = class336.SpriteBuffer_spritePalette;
-		var0.pixels = GrandExchangeEvents.SpriteBuffer_pixels[0];
-		class336.SpriteBuffer_xOffsets = null;
-		class336.SpriteBuffer_yOffsets = null;
-		class336.SpriteBuffer_spriteWidths = null;
-		class336.SpriteBuffer_spriteHeights = null;
-		class336.SpriteBuffer_spritePalette = null;
-		GrandExchangeEvents.SpriteBuffer_pixels = null;
-		return var0;
-	}
-
-	@ObfuscatedName("ac")
-	@ObfuscatedSignature(
-		signature = "([BB)[B",
-		garbageValue = "1"
-	)
-	@Export("decompressBytes")
-	static final byte[] decompressBytes(byte[] var0) {
-		Buffer var1 = new Buffer(var0);
-		int var2 = var1.readUnsignedByte();
-		int var3 = var1.readInt();
-		if (var3 < 0 || AbstractArchive.field3171 != 0 && var3 > AbstractArchive.field3171) {
-			throw new RuntimeException();
-		} else if (var2 == 0) {
-			byte[] var4 = new byte[var3];
-			var1.readBytes(var4, 0, var3);
-			return var4;
+	static final void method6107(Widget var0, int var1, int var2, int var3, int var4, int var5, int var6) {
+		if (Client.field731) {
+			Client.alternativeScrollbarWidth = 32;
 		} else {
-			int var6 = var1.readInt();
-			if (var6 < 0 || AbstractArchive.field3171 != 0 && var6 > AbstractArchive.field3171) {
-				throw new RuntimeException();
-			} else {
-				byte[] var5 = new byte[var6];
-				if (var2 == 1) {
-					BZip2Decompressor.BZip2Decompressor_decompress(var5, var6, var0, var3, 9);
-				} else {
-					AbstractArchive.gzipDecompressor.decompress(var1, var5);
+			Client.alternativeScrollbarWidth = 0;
+		}
+
+		Client.field731 = false;
+		int var7;
+		if (MouseHandler.MouseHandler_currentButton == 1 || !class8.mouseCam && MouseHandler.MouseHandler_currentButton == 4) {
+			if (var5 >= var1 && var5 < var1 + 16 && var6 >= var2 && var6 < var2 + 16) {
+				var0.scrollY -= 4;
+				IsaacCipher.invalidateWidget(var0);
+			} else if (var5 >= var1 && var5 < var1 + 16 && var6 >= var3 + var2 - 16 && var6 < var3 + var2) {
+				var0.scrollY += 4;
+				IsaacCipher.invalidateWidget(var0);
+			} else if (var5 >= var1 - Client.alternativeScrollbarWidth && var5 < Client.alternativeScrollbarWidth + var1 + 16 && var6 >= var2 + 16 && var6 < var3 + var2 - 16) {
+				var7 = var3 * (var3 - 32) / var4;
+				if (var7 < 8) {
+					var7 = 8;
 				}
 
-				return var5;
+				int var8 = var6 - var2 - 16 - var7 / 2;
+				int var9 = var3 - 32 - var7;
+				var0.scrollY = var8 * (var4 - var3) / var9;
+				IsaacCipher.invalidateWidget(var0);
+				Client.field731 = true;
 			}
 		}
+
+		if (Client.mouseWheelRotation != 0) {
+			var7 = var0.width;
+			if (var5 >= var1 - var7 && var6 >= var2 && var5 < var1 + 16 && var6 <= var3 + var2) {
+				var0.scrollY += Client.mouseWheelRotation * 45;
+				IsaacCipher.invalidateWidget(var0);
+			}
+		}
+
 	}
 }

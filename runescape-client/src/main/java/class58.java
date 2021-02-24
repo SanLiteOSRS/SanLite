@@ -1,243 +1,248 @@
-import java.io.File;
-import java.io.IOException;
-import java.io.RandomAccessFile;
 import javax.imageio.ImageIO;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("bf")
+@ObfuscatedName("bx")
 public class class58 {
-	@ObfuscatedName("sx")
-	@ObfuscatedSignature(
-		signature = "Lmf;"
-	)
-	@Export("platformInfo")
-	static PlatformInfo platformInfo;
-	@ObfuscatedName("l")
-	@ObfuscatedSignature(
-		signature = "Lib;"
-	)
-	@Export("Widget_archive")
-	public static AbstractArchive Widget_archive;
-	@ObfuscatedName("ex")
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = 1420275067
+		intValue = -1266469825
 	)
-	static int field433;
+	@Export("VarpDefinition_fileCount")
+	public static int VarpDefinition_fileCount;
 
 	static {
 		ImageIO.setUseCache(false);
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;Ljava/lang/String;II)Ljava/io/File;",
-		garbageValue = "-276534150"
+		signature = "(I)V",
+		garbageValue = "-1558646174"
 	)
-	public static File method917(String var0, String var1, int var2) {
-		String var3 = var2 == 0 ? "" : "" + var2;
-		JagexCache.JagexCache_locationFile = new File(ItemLayer.userHomeDirectory, "jagex_cl_" + var0 + "_" + var1 + var3 + ".dat");
-		String var4 = null;
-		String var5 = null;
-		boolean var6 = false;
-		Buffer var8;
-		int var11;
-		File var27;
-		if (JagexCache.JagexCache_locationFile.exists()) {
-			try {
-				AccessFile var7 = new AccessFile(JagexCache.JagexCache_locationFile, "rw", 10000L);
-
-				int var9;
-				for (var8 = new Buffer((int)var7.length()); var8.offset < var8.array.length; var8.offset += var9) {
-					var9 = var7.read(var8.array, var8.offset, var8.array.length - var8.offset);
-					if (var9 == -1) {
-						throw new IOException();
-					}
-				}
-
-				var8.offset = 0;
-				var9 = var8.readUnsignedByte();
-				if (var9 < 1 || var9 > 3) {
-					throw new IOException("" + var9);
-				}
-
-				int var10 = 0;
-				if (var9 > 1) {
-					var10 = var8.readUnsignedByte();
-				}
-
-				if (var9 <= 2) {
-					var4 = var8.readStringCp1252NullCircumfixed();
-					if (var10 == 1) {
-						var5 = var8.readStringCp1252NullCircumfixed();
-					}
-				} else {
-					var4 = var8.readCESU8();
-					if (var10 == 1) {
-						var5 = var8.readCESU8();
-					}
-				}
-
-				var7.close();
-			} catch (IOException var25) {
-				var25.printStackTrace();
-			}
-
-			if (var4 != null) {
-				var27 = new File(var4);
-				if (!var27.exists()) {
-					var4 = null;
-				}
-			}
-
-			if (var4 != null) {
-				var27 = new File(var4, "test.dat");
-
-				boolean var28;
-				try {
-					RandomAccessFile var15 = new RandomAccessFile(var27, "rw");
-					var11 = var15.read();
-					var15.seek(0L);
-					var15.write(var11);
-					var15.seek(0L);
-					var15.close();
-					var27.delete();
-					var28 = true;
-				} catch (Exception var23) {
-					var28 = false;
-				}
-
-				if (!var28) {
-					var4 = null;
-				}
-			}
-		}
-
-		if (var4 == null && var2 == 0) {
-			label159:
-			for (int var16 = 0; var16 < DynamicObject.field1318.length; ++var16) {
-				for (int var17 = 0; var17 < GraphicsObject.field1117.length; ++var17) {
-					File var18 = new File(GraphicsObject.field1117[var17] + DynamicObject.field1318[var16] + File.separatorChar + var0 + File.separatorChar);
-					if (var18.exists()) {
-						File var19 = new File(var18, "test.dat");
-
-						boolean var29;
-						try {
-							RandomAccessFile var12 = new RandomAccessFile(var19, "rw");
-							int var13 = var12.read();
-							var12.seek(0L);
-							var12.write(var13);
-							var12.seek(0L);
-							var12.close();
-							var19.delete();
-							var29 = true;
-						} catch (Exception var22) {
-							var29 = false;
-						}
-
-						if (var29) {
-							var4 = var18.toString();
-							var6 = true;
-							break label159;
-						}
-					}
-				}
-			}
-		}
-
-		if (var4 == null) {
-			var4 = ItemLayer.userHomeDirectory + File.separatorChar + "jagexcache" + var3 + File.separatorChar + var0 + File.separatorChar + var1 + File.separatorChar;
-			var6 = true;
-		}
-
-		File var26;
-		if (var5 != null) {
-			var26 = new File(var5);
-			var27 = new File(var4);
-
-			try {
-				File[] var33 = var26.listFiles();
-				File[] var31 = var33;
-
-				for (var11 = 0; var11 < var31.length; ++var11) {
-					File var30 = var31[var11];
-					File var20 = new File(var27, var30.getName());
-					boolean var14 = var30.renameTo(var20);
-					if (!var14) {
-						throw new IOException();
-					}
-				}
-			} catch (Exception var24) {
-				var24.printStackTrace();
-			}
-
-			var6 = true;
-		}
-
-		if (var6) {
-			var26 = new File(var4);
-			var8 = null;
-
-			try {
-				AccessFile var34 = new AccessFile(JagexCache.JagexCache_locationFile, "rw", 10000L);
-				Buffer var32 = new Buffer(500);
-				var32.writeByte(3);
-				var32.writeByte(var8 != null ? 1 : 0);
-				var32.writeCESU8(var26.getPath());
-				if (var8 != null) {
-					var32.writeCESU8("");
-				}
-
-				var34.write(var32.array, 0, var32.offset);
-				var34.close();
-			} catch (IOException var21) {
-				var21.printStackTrace();
-			}
-		}
-
-		return new File(var4);
+	static void method939() {
+		Tiles.Tiles_minPlane = 99;
+		Tiles.field517 = new byte[4][104][104];
+		class200.field2399 = new byte[4][104][104];
+		Tiles.field530 = new byte[4][104][104];
+		class1.field1 = new byte[4][104][104];
+		class2.field12 = new int[4][105][105];
+		TaskHandler.field2045 = new byte[4][105][105];
+		WorldMapSprite.field257 = new int[105][105];
+		GrandExchangeOfferAgeComparator.Tiles_hue = new int[104];
+		Tiles.Tiles_saturation = new int[104];
+		WorldMapLabel.Tiles_lightness = new int[104];
+		TaskHandler.Tiles_hueMultiplier = new int[104];
+		WorldMapID.field292 = new int[104];
 	}
 
-	@ObfuscatedName("aq")
+	@ObfuscatedName("ff")
 	@ObfuscatedSignature(
-		signature = "(ILcs;ZI)I",
-		garbageValue = "-591482656"
+		signature = "(IIII)V",
+		garbageValue = "-1370072473"
 	)
-	static int method916(int var0, Script var1, boolean var2) {
-		if (var0 == ScriptOpcodes.GETWINDOWMODE) {
-			Interpreter.Interpreter_intStack[++VarcInt.Interpreter_intStackSize - 1] = SoundSystem.getWindowedMode();
-			return 1;
-		} else {
-			int var3;
-			if (var0 == ScriptOpcodes.SETWINDOWMODE) {
-				var3 = Interpreter.Interpreter_intStack[--VarcInt.Interpreter_intStackSize];
-				if (var3 == 1 || var3 == 2) {
-					class13.setWindowedMode(var3);
-				}
+	@Export("queueSoundEffect")
+	static void queueSoundEffect(int var0, int var1, int var2) {
+		if (WorldMapSectionType.clientPreferences.soundEffectsVolume != 0 && var1 != 0 && Client.soundEffectCount < 50) {
+			Client.soundEffectIds[Client.soundEffectCount] = var0;
+			Client.queuedSoundEffectLoops[Client.soundEffectCount] = var1;
+			Client.queuedSoundEffectDelays[Client.soundEffectCount] = var2;
+			Client.soundEffects[Client.soundEffectCount] = null;
+			Client.soundLocations[Client.soundEffectCount] = 0;
+			++Client.soundEffectCount;
+		}
 
-				return 1;
-			} else if (var0 == ScriptOpcodes.GETDEFAULTWINDOWMODE) {
-				Interpreter.Interpreter_intStack[++VarcInt.Interpreter_intStackSize - 1] = Timer.clientPreferences.windowMode;
-				return 1;
-			} else if (var0 != ScriptOpcodes.SETDEFAULTWINDOWMODE) {
-				if (var0 == 5310) {
-					--VarcInt.Interpreter_intStackSize;
-					return 1;
-				} else {
-					return 2;
-				}
-			} else {
-				var3 = Interpreter.Interpreter_intStack[--VarcInt.Interpreter_intStackSize];
-				if (var3 == 1 || var3 == 2) {
-					Timer.clientPreferences.windowMode = var3;
-					GrandExchangeOffer.savePreferences();
-				}
+	}
 
-				return 1;
+	@ObfuscatedName("jz")
+	@ObfuscatedSignature(
+		signature = "(Lhz;III)V",
+		garbageValue = "797800521"
+	)
+	static final void method940(Widget var0, int var1, int var2) {
+		if (var0.buttonType == 1) {
+			WorldMapManager.insertMenuItemNoShift(var0.buttonText, "", 24, 0, 0, var0.id);
+		}
+
+		String var3;
+		if (var0.buttonType == 2 && !Client.isSpellSelected) {
+			var3 = Player.method1364(var0);
+			if (var3 != null) {
+				WorldMapManager.insertMenuItemNoShift(var3, FileSystem.colorStartTag(65280) + var0.spellName, 25, 0, -1, var0.id);
 			}
 		}
+
+		if (var0.buttonType == 3) {
+			WorldMapManager.insertMenuItemNoShift("Close", "", 26, 0, 0, var0.id);
+		}
+
+		if (var0.buttonType == 4) {
+			WorldMapManager.insertMenuItemNoShift(var0.buttonText, "", 28, 0, 0, var0.id);
+		}
+
+		if (var0.buttonType == 5) {
+			WorldMapManager.insertMenuItemNoShift(var0.buttonText, "", 29, 0, 0, var0.id);
+		}
+
+		if (var0.buttonType == 6 && Client.meslayerContinueWidget == null) {
+			WorldMapManager.insertMenuItemNoShift(var0.buttonText, "", 30, 0, -1, var0.id);
+		}
+
+		int var4;
+		int var5;
+		int var15;
+		if (var0.type == 2) {
+			var15 = 0;
+
+			for (var4 = 0; var4 < var0.height; ++var4) {
+				for (var5 = 0; var5 < var0.width; ++var5) {
+					int var6 = (var0.paddingX + 32) * var5;
+					int var7 = (var0.paddingY + 32) * var4;
+					if (var15 < 20) {
+						var6 += var0.inventoryXOffsets[var15];
+						var7 += var0.inventoryYOffsets[var15];
+					}
+
+					if (var1 >= var6 && var2 >= var7 && var1 < var6 + 32 && var2 < var7 + 32) {
+						Client.dragItemSlotDestination = var15;
+						HorizontalAlignment.field3489 = var0;
+						if (var0.itemIds[var15] > 0) {
+							ItemComposition var8 = class281.ItemDefinition_get(var0.itemIds[var15] - 1);
+							if (Client.isItemSelected == 1 && Login.method2244(class60.getWidgetClickMask(var0))) {
+								if (var0.id != ClientPacket.selectedItemWidget || var15 != class195.selectedItemSlot) {
+									WorldMapManager.insertMenuItemNoShift("Use", Client.selectedItemName + " " + "->" + " " + FileSystem.colorStartTag(16748608) + var8.name, 31, var8.id, var15, var0.id);
+								}
+							} else if (Client.isSpellSelected && Login.method2244(class60.getWidgetClickMask(var0))) {
+								if ((GrandExchangeOfferNameComparator.selectedSpellFlags & 16) == 16) {
+									WorldMapManager.insertMenuItemNoShift(Client.selectedSpellActionName, Client.selectedSpellName + " " + "->" + " " + FileSystem.colorStartTag(16748608) + var8.name, 32, var8.id, var15, var0.id);
+								}
+							} else {
+								String[] var9 = var8.inventoryActions;
+								int var10 = -1;
+								if (Client.shiftClickDrop && ModeWhere.method3875()) {
+									var10 = var8.getShiftClickIndex();
+								}
+
+								if (Login.method2244(class60.getWidgetClickMask(var0))) {
+									for (int var11 = 4; var11 >= 3; --var11) {
+										if (var10 != var11) {
+											class204.addWidgetItemMenuItem(var0, var8, var15, var11, false);
+										}
+									}
+								}
+
+								int var12 = class60.getWidgetClickMask(var0);
+								boolean var20 = (var12 >> 31 & 1) != 0;
+								if (var20) {
+									WorldMapManager.insertMenuItemNoShift("Use", FileSystem.colorStartTag(16748608) + var8.name, 38, var8.id, var15, var0.id);
+								}
+
+								Object var10000 = null;
+								int var13;
+								if (Login.method2244(class60.getWidgetClickMask(var0))) {
+									for (var13 = 2; var13 >= 0; --var13) {
+										if (var10 != var13) {
+											class204.addWidgetItemMenuItem(var0, var8, var15, var13, false);
+										}
+									}
+
+									if (var10 >= 0) {
+										class204.addWidgetItemMenuItem(var0, var8, var15, var10, true);
+									}
+								}
+
+								var9 = var0.itemActions;
+								if (var9 != null) {
+									for (var13 = 4; var13 >= 0; --var13) {
+										if (var9[var13] != null) {
+											byte var14 = 0;
+											if (var13 == 0) {
+												var14 = 39;
+											}
+
+											if (var13 == 1) {
+												var14 = 40;
+											}
+
+											if (var13 == 2) {
+												var14 = 41;
+											}
+
+											if (var13 == 3) {
+												var14 = 42;
+											}
+
+											if (var13 == 4) {
+												var14 = 43;
+											}
+
+											WorldMapManager.insertMenuItemNoShift(var9[var13], FileSystem.colorStartTag(16748608) + var8.name, var14, var8.id, var15, var0.id);
+										}
+									}
+								}
+
+								WorldMapManager.insertMenuItemNoShift("Examine", FileSystem.colorStartTag(16748608) + var8.name, 1005, var8.id, var15, var0.id);
+							}
+						}
+					}
+
+					++var15;
+				}
+			}
+		}
+
+		if (var0.isIf3) {
+			if (Client.isSpellSelected) {
+				var4 = class60.getWidgetClickMask(var0);
+				boolean var21 = (var4 >> 21 & 1) != 0;
+				if (var21 && (GrandExchangeOfferNameComparator.selectedSpellFlags & 32) == 32) {
+					WorldMapManager.insertMenuItemNoShift(Client.selectedSpellActionName, Client.selectedSpellName + " " + "->" + " " + var0.dataText, 58, 0, var0.childIndex, var0.id);
+				}
+			} else {
+				for (var15 = 9; var15 >= 5; --var15) {
+					String var16;
+					if (!MidiPcmStream.method3972(class60.getWidgetClickMask(var0), var15) && var0.onOp == null) {
+						var16 = null;
+					} else if (var0.actions != null && var0.actions.length > var15 && var0.actions[var15] != null && var0.actions[var15].trim().length() != 0) {
+						var16 = var0.actions[var15];
+					} else {
+						var16 = null;
+					}
+
+					if (var16 != null) {
+						WorldMapManager.insertMenuItemNoShift(var16, var0.dataText, 1007, var15 + 1, var0.childIndex, var0.id);
+					}
+				}
+
+				var3 = Player.method1364(var0);
+				if (var3 != null) {
+					WorldMapManager.insertMenuItemNoShift(var3, var0.dataText, 25, 0, var0.childIndex, var0.id);
+				}
+
+				for (var4 = 4; var4 >= 0; --var4) {
+					String var17;
+					if (!MidiPcmStream.method3972(class60.getWidgetClickMask(var0), var4) && var0.onOp == null) {
+						var17 = null;
+					} else if (var0.actions != null && var0.actions.length > var4 && var0.actions[var4] != null && var0.actions[var4].trim().length() != 0) {
+						var17 = var0.actions[var4];
+					} else {
+						var17 = null;
+					}
+
+					if (var17 != null) {
+						WorldMapEvent.insertMenuItem(var17, var0.dataText, 57, var4 + 1, var0.childIndex, var0.id, var0.field2713);
+					}
+				}
+
+				var5 = class60.getWidgetClickMask(var0);
+				boolean var19 = (var5 & 1) != 0;
+				if (var19) {
+					WorldMapManager.insertMenuItemNoShift("Continue", "", 30, 0, var0.childIndex, var0.id);
+				}
+			}
+		}
+
 	}
 }

@@ -1,4 +1,3 @@
-import java.awt.Component;
 import java.util.HashMap;
 import java.util.Map;
 import net.runelite.mapping.Export;
@@ -6,38 +5,31 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("cv")
+@ObfuscatedName("ch")
 @Implements("Messages")
 public class Messages {
-	@ObfuscatedName("h")
+	@ObfuscatedName("n")
 	@Export("Messages_channels")
 	static final Map Messages_channels;
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "Lla;"
+		signature = "Llg;"
 	)
 	@Export("Messages_hashTable")
 	static final IterableNodeHashTable Messages_hashTable;
-	@ObfuscatedName("x")
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
 		signature = "Ljf;"
 	)
 	@Export("Messages_queue")
 	static final IterableDualNodeQueue Messages_queue;
-	@ObfuscatedName("w")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = -1894587741
+		intValue = -2111099267
 	)
 	@Export("Messages_count")
 	static int Messages_count;
-	@ObfuscatedName("di")
-	@ObfuscatedSignature(
-		signature = "Lil;"
-	)
-	@Export("archive8")
-	static Archive archive8;
 
 	static {
 		Messages_channels = new HashMap();
@@ -46,54 +38,47 @@ public class Messages {
 		Messages_count = 0;
 	}
 
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		signature = "(Ljava/awt/Component;I)V",
-		garbageValue = "-826057575"
-	)
-	static void method2275(Component var0) {
-		var0.setFocusTraversalKeysEnabled(false);
-		var0.addKeyListener(KeyHandler.KeyHandler_instance);
-		var0.addFocusListener(KeyHandler.KeyHandler_instance);
-	}
+	@ObfuscatedName("n")
+	@Export("base37DecodeLong")
+	public static String base37DecodeLong(long var0) {
+		if (var0 > 0L && var0 < 6582952005840035281L) {
+			if (var0 % 37L == 0L) {
+				return null;
+			} else {
+				int var2 = 0;
 
-	@ObfuscatedName("m")
-	@ObfuscatedSignature(
-		signature = "(ILcs;ZI)I",
-		garbageValue = "-729014462"
-	)
-	static int method2283(int var0, Script var1, boolean var2) {
-		Widget var3 = var2 ? PlayerComposition.field2561 : VarcInt.field3264;
-		if (var0 == ScriptOpcodes.CC_GETX) {
-			Interpreter.Interpreter_intStack[++VarcInt.Interpreter_intStackSize - 1] = var3.x;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CC_GETY) {
-			Interpreter.Interpreter_intStack[++VarcInt.Interpreter_intStackSize - 1] = var3.y;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CC_GETWIDTH) {
-			Interpreter.Interpreter_intStack[++VarcInt.Interpreter_intStackSize - 1] = var3.width;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CC_GETHEIGHT) {
-			Interpreter.Interpreter_intStack[++VarcInt.Interpreter_intStackSize - 1] = var3.height;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CC_GETHIDE) {
-			Interpreter.Interpreter_intStack[++VarcInt.Interpreter_intStackSize - 1] = var3.isHidden ? 1 : 0;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CC_GETLAYER) {
-			Interpreter.Interpreter_intStack[++VarcInt.Interpreter_intStackSize - 1] = var3.parentId;
-			return 1;
+				for (long var3 = var0; var3 != 0L; var3 /= 37L) {
+					++var2;
+				}
+
+				StringBuilder var5;
+				char var8;
+				for (var5 = new StringBuilder(var2); 0L != var0; var5.append(var8)) {
+					long var6 = var0;
+					var0 /= 37L;
+					var8 = class299.base37Table[(int)(var6 - 37L * var0)];
+					if (var8 == '_') {
+						int var9 = var5.length() - 1;
+						var5.setCharAt(var9, Character.toUpperCase(var5.charAt(var9)));
+						var8 = 160;
+					}
+				}
+
+				var5.reverse();
+				var5.setCharAt(0, Character.toUpperCase(var5.charAt(0)));
+				return var5.toString();
+			}
 		} else {
-			return 2;
+			return null;
 		}
 	}
 
-	@ObfuscatedName("i")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "804061602"
+		garbageValue = "618047929"
 	)
-	static void method2285() {
-		Login.loginIndex = 24;
-		GameEngine.setLoginResponseString("The game servers are currently being updated.", "Please wait a few minutes and try again.", "");
+	static void method2372() {
+		WorldMapRegion.WorldMapRegion_cachedSprites.clear();
 	}
 }

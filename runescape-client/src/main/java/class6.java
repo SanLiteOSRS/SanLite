@@ -4,41 +4,41 @@ import java.security.NoSuchAlgorithmException;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("n")
+@ObfuscatedName("z")
 public class class6 implements class11 {
-	@ObfuscatedName("h")
-	final MessageDigest field20;
+	@ObfuscatedName("n")
+	final MessageDigest field34;
 
 	@ObfuscatedSignature(
-		signature = "(Lu;)V"
+		signature = "(Ls;)V"
 	)
 	class6(class10 var1) {
-		this.field20 = this.method68();
+		this.field34 = this.method70();
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("n")
 	boolean method64(int var1, String var2, long var3) {
-		byte[] var5 = this.method67(var2, var3);
+		byte[] var5 = this.method68(var2, var3);
 		return method65(var5) >= var1;
 	}
 
-	@ObfuscatedName("w")
-	byte[] method67(String var1, long var2) {
+	@ObfuscatedName("c")
+	byte[] method68(String var1, long var2) {
 		StringBuilder var4 = new StringBuilder();
 		var4.append(var1).append(Long.toHexString(var2));
-		this.field20.reset();
+		this.field34.reset();
 
 		try {
-			this.field20.update(var4.toString().getBytes("UTF-8"));
+			this.field34.update(var4.toString().getBytes("UTF-8"));
 		} catch (UnsupportedEncodingException var6) {
 			var6.printStackTrace();
 		}
 
-		return this.field20.digest();
+		return this.field34.digest();
 	}
 
-	@ObfuscatedName("t")
-	MessageDigest method68() {
+	@ObfuscatedName("y")
+	MessageDigest method70() {
 		try {
 			return MessageDigest.getInstance("SHA-256");
 		} catch (NoSuchAlgorithmException var2) {
@@ -54,7 +54,7 @@ public class class6 implements class11 {
 
 		for (int var3 = 0; var3 < var2.length; ++var3) {
 			byte var4 = var2[var3];
-			int var5 = method74(var4);
+			int var5 = method66(var4);
 			var1 += var5;
 			if (var5 != 8) {
 				break;
@@ -64,8 +64,8 @@ public class class6 implements class11 {
 		return var1;
 	}
 
-	@ObfuscatedName("x")
-	static int method74(byte var0) {
+	@ObfuscatedName("d")
+	static int method66(byte var0) {
 		int var1 = 0;
 		if (var0 == 0) {
 			var1 = 8;
