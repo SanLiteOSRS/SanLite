@@ -81,6 +81,14 @@ public interface PlayerIndicatorsConfig extends Config
 	)
 	String playerSpawnNotificationsSection = "playerSpawnNotificationsSection";
 
+	@ConfigSection(
+			name = "Custom lists",
+			description = "Extra highlight options for custom rsns",
+			closedByDefault = true,
+			position = 99
+	)
+	String customListsSection = "customListsSection";
+
 	@ConfigItem(
 			position = 0,
 			keyName = "drawOwnName",
@@ -574,5 +582,65 @@ public interface PlayerIndicatorsConfig extends Config
 	default boolean showFriendsChatRanks()
 	{
 		return true;
+	}
+
+	@ConfigItem(
+			position = 41,
+			keyName = "highlightCustomLists",
+			name = "Highlight custom lists",
+			description = "Configures whether or not custom listed players will be highlighted",
+			section = ownPlayerSection
+	)
+	default boolean highlightCustomLists()
+	{
+		return false;
+	}
+
+	@ConfigItem(
+			position = 1,
+			keyName = "ownPlayerColor",
+			name = "Own player color",
+			description = "Color of your own player",
+			section = ownPlayerSection
+	)
+	default Color getOwnPlayerColor()
+	{
+		return new Color(0, 184, 212);
+	}
+
+	@ConfigItem(
+			position = 2,
+			keyName = "drawOwnPlayerTiles",
+			name = "Draw tiles under own player",
+			description = "Configures whether or not tiles under own player should be drawn",
+			section = ownPlayerSection
+	)
+	default boolean drawOwnPlayerTiles()
+	{
+		return false;
+	}
+
+	@ConfigItem(
+			position = 3,
+			keyName = "ownPlayerNamePosition",
+			name = "Name position",
+			description = "Configures the position of drawn own player name, or if they should be disabled",
+			section = ownPlayerSection
+	)
+	default PlayerNameLocation getOwnPlayerNamePosition()
+	{
+		return PlayerNameLocation.ABOVE_HEAD;
+	}
+
+	@ConfigItem(
+			position = 4,
+			keyName = "drawOwnPlayerMinimapName",
+			name = "Draw own player name on minimap",
+			description = "Configures whether or not minimap names for own player with rendered names should be drawn",
+			section = ownPlayerSection
+	)
+	default boolean drawOwnPlayerMinimapName()
+	{
+		return false;
 	}
 }
