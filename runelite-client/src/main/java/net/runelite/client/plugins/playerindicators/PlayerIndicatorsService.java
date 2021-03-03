@@ -28,9 +28,11 @@ package net.runelite.client.plugins.playerindicators;
 
 import net.runelite.api.Client;
 import net.runelite.api.Player;
+import net.runelite.client.util.Text;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
+import java.util.List;
 import java.util.function.BiConsumer;
 
 @Singleton
@@ -49,7 +51,9 @@ class PlayerIndicatorsService
 	void forEachPlayer(final BiConsumer<Player, PlayerIndicatorType> consumer)
 	{
 		if (!config.highlightOwnPlayer() && !config.highlightFriendsChatMembers() && !config.highlightFriends() &&
-				!config.highlightOfflineFriends() && !config.highlightOthers() && !config.highlightTeamMembers())
+				!config.highlightOfflineFriends() && !config.highlightOthers() && !config.highlightTeamMembers() &&
+				!config.highlightCustomListOne() && !config.highlightCustomListTwo() && !config.highlightCustomListThree() &&
+				!config.highlightCustomListFour() && !config.highlightCustomListFive())
 		{
 			return;
 		}
@@ -104,6 +108,61 @@ class PlayerIndicatorsService
 
 				consumer.accept(player, PlayerIndicatorType.FRIEND);
 				continue;
+			}
+
+			// List one players
+			if (config.highlightCustomListOne())
+			{
+				List<String> listOneRsns = Text.fromCSV(config.getListOneNames().toLowerCase());
+				if (listOneRsns.contains(player.getName().toLowerCase()))
+				{
+					consumer.accept(player, PlayerIndicatorType.CUSTOM_LIST_1);
+					continue;
+				}
+			}
+
+			// List two players
+			if (config.highlightCustomListTwo())
+			{
+				List<String> listTwoRsns = Text.fromCSV(config.getListTwoNames().toLowerCase());
+				if (listTwoRsns.contains(player.getName().toLowerCase()))
+				{
+					consumer.accept(player, PlayerIndicatorType.CUSTOM_LIST_2);
+					continue;
+				}
+			}
+
+			// List three players
+			if (config.highlightCustomListThree())
+			{
+				List<String> listThreeRsns = Text.fromCSV(config.getListThreeNames().toLowerCase());
+				if (listThreeRsns.contains(player.getName().toLowerCase()))
+				{
+					consumer.accept(player, PlayerIndicatorType.CUSTOM_LIST_3);
+					continue;
+				}
+			}
+
+			// List four players
+			if (config.highlightCustomListFour())
+			{
+				List<String> listFourRsns = Text.fromCSV(config.getListFourNames().toLowerCase());
+				if (listFourRsns.contains(player.getName().toLowerCase()))
+				{
+					consumer.accept(player, PlayerIndicatorType.CUSTOM_LIST_4);
+					continue;
+				}
+			}
+
+			// List five players
+			if (config.highlightCustomListFive())
+			{
+				List<String> listFiveRsns = Text.fromCSV(config.getListFiveNames().toLowerCase());
+				if (listFiveRsns.contains(player.getName().toLowerCase()))
+				{
+					consumer.accept(player, PlayerIndicatorType.CUSTOM_LIST_5);
+					continue;
+				}
 			}
 
 			// Clan members
@@ -166,6 +225,56 @@ class PlayerIndicatorsService
 			return PlayerIndicatorType.FRIEND;
 		}
 
+		// Custom list one
+		if (config.highlightCustomListOne() && config.colorListOnePlayerMenu())
+		{
+			List<String> listOneRsns = Text.fromCSV(config.getListOneNames().toLowerCase());
+			if (listOneRsns.contains(player.getName().toLowerCase()))
+			{
+				return PlayerIndicatorType.CUSTOM_LIST_1;
+			}
+		}
+
+		// Custom list two
+		if (config.highlightCustomListTwo() && config.colorListTwoPlayerMenu())
+		{
+			List<String> listTwoRsns = Text.fromCSV(config.getListTwoNames().toLowerCase());
+			if (listTwoRsns.contains(player.getName().toLowerCase()))
+			{
+				return PlayerIndicatorType.CUSTOM_LIST_2;
+			}
+		}
+
+		// Custom list three
+		if (config.highlightCustomListThree() && config.colorListThreePlayerMenu())
+		{
+			List<String> listThreeRsns = Text.fromCSV(config.getListThreeNames().toLowerCase());
+			if (listThreeRsns.contains(player.getName().toLowerCase()))
+			{
+				return PlayerIndicatorType.CUSTOM_LIST_3;
+			}
+		}
+
+		// Custom list four
+		if (config.highlightCustomListFour() && config.colorListFourPlayerMenu())
+		{
+			List<String> listFourRsns = Text.fromCSV(config.getListFourNames().toLowerCase());
+			if (listFourRsns.contains(player.getName().toLowerCase()))
+			{
+				return PlayerIndicatorType.CUSTOM_LIST_4;
+			}
+		}
+
+		// Custom list five
+		if (config.highlightCustomListFive() && config.colorListFivePlayerMenu())
+		{
+			List<String> listFiveRsns = Text.fromCSV(config.getListFiveNames().toLowerCase());
+			if (listFiveRsns.contains(player.getName().toLowerCase()))
+			{
+				return PlayerIndicatorType.CUSTOM_LIST_5;
+			}
+		}
+
 		// Clan members
 		if (config.highlightFriendsChatMembers() && config.colorFriendsChatMemberPlayerMenu() && isFriendsChatMember)
 		{
@@ -206,6 +315,41 @@ class PlayerIndicatorsService
 			}
 
 			return PlayerIndicatorType.FRIEND;
+		}
+
+		// Custom list one
+		List<String> listOneRsns = Text.fromCSV(config.getListOneNames().toLowerCase());
+		if (listOneRsns.contains(player.getName().toLowerCase()))
+		{
+			return PlayerIndicatorType.CUSTOM_LIST_1;
+		}
+
+		// Custom list two
+		List<String> listTwoRsns = Text.fromCSV(config.getListOneNames().toLowerCase());
+		if (listTwoRsns.contains(player.getName().toLowerCase()))
+		{
+			return PlayerIndicatorType.CUSTOM_LIST_2;
+		}
+
+		// Custom list three
+		List<String> listThreeRsns = Text.fromCSV(config.getListOneNames().toLowerCase());
+		if (listThreeRsns.contains(player.getName().toLowerCase()))
+		{
+			return PlayerIndicatorType.CUSTOM_LIST_3;
+		}
+
+		// Custom list four
+		List<String> listFourRsns = Text.fromCSV(config.getListOneNames().toLowerCase());
+		if (listFourRsns.contains(player.getName().toLowerCase()))
+		{
+			return PlayerIndicatorType.CUSTOM_LIST_4;
+		}
+
+		// Custom list five
+		List<String> listFiveRsns = Text.fromCSV(config.getListOneNames().toLowerCase());
+		if (listFiveRsns.contains(player.getName().toLowerCase()))
+		{
+			return PlayerIndicatorType.CUSTOM_LIST_5;
 		}
 
 		// Appear offline friends

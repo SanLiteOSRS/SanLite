@@ -83,6 +83,21 @@ public class PlayerIndicatorsOverlay extends Overlay
 			case FRIEND:
 				renderPlayerName(graphics, player, type, config.getFriendPlayerNamePosition(), config.getFriendColor());
 				break;
+			case CUSTOM_LIST_1:
+				renderPlayerName(graphics, player, type, config.getListOneNamePosition(), config.getListOneColor());
+				break;
+			case CUSTOM_LIST_2:
+				renderPlayerName(graphics, player, type, config.getListTwoNamePosition(), config.getListTwoColor());
+				break;
+			case CUSTOM_LIST_3:
+				renderPlayerName(graphics, player, type, config.getListThreeNamePosition(), config.getListThreeColor());
+				break;
+			case CUSTOM_LIST_4:
+				renderPlayerName(graphics, player, type, config.getListFourNamePosition(), config.getListFourColor());
+				break;
+			case CUSTOM_LIST_5:
+				renderPlayerName(graphics, player, type, config.getListFiveNamePosition(), config.getListFiveColor());
+				break;
 			case FRIENDS_CHAT_MEMBERS:
 				renderPlayerName(graphics, player, type, config.getFriendsChatMemberPlayerNamePosition(), config.getFriendsChatMemberColor());
 				break;

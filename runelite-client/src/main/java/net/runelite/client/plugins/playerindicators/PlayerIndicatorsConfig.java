@@ -82,12 +82,44 @@ public interface PlayerIndicatorsConfig extends Config
 	String playerSpawnNotificationsSection = "playerSpawnNotificationsSection";
 
 	@ConfigSection(
-			name = "Custom lists",
+			name = "Custom list 1",
 			description = "Extra highlight options for custom rsns",
 			closedByDefault = true,
 			position = 99
 	)
-	String customListsSection = "customListsSection";
+	String customListOneSection = "customListOneSection";
+
+	@ConfigSection(
+			name = "Custom list 2",
+			description = "Extra highlight options for custom rsns",
+			closedByDefault = true,
+			position = 99
+	)
+	String customListTwoSection = "customListTwoSection";
+
+	@ConfigSection(
+			name = "Custom list 3",
+			description = "Extra highlight options for custom rsns",
+			closedByDefault = true,
+			position = 99
+	)
+	String customListThreeSection = "customListThreeSection";
+
+	@ConfigSection(
+			name = "Custom list 4",
+			description = "Extra highlight options for custom rsns",
+			closedByDefault = true,
+			position = 99
+	)
+	String customListFourSection = "customListFourSection";
+
+	@ConfigSection(
+			name = "Custom list 5",
+			description = "Extra highlight options for custom rsns",
+			closedByDefault = true,
+			position = 99
+	)
+	String customListFiveSection = "customListFiveSection";
 
 	@ConfigItem(
 			position = 0,
@@ -586,61 +618,421 @@ public interface PlayerIndicatorsConfig extends Config
 
 	@ConfigItem(
 			position = 41,
-			keyName = "highlightCustomLists",
-			name = "Highlight custom lists",
-			description = "Configures whether or not custom listed players will be highlighted",
-			section = ownPlayerSection
+			keyName = "highlightCustomListOne",
+			name = "Highlight custom list 1",
+			description = "Configures whether or not players on custom list 1 will be highlighted",
+			section = customListOneSection
 	)
-	default boolean highlightCustomLists()
+	default boolean highlightCustomListOne()
 	{
 		return false;
 	}
 
 	@ConfigItem(
-			position = 1,
-			keyName = "ownPlayerColor",
-			name = "Own player color",
-			description = "Color of your own player",
-			section = ownPlayerSection
+			position = 42,
+			keyName = "customListOneColor",
+			name = "Custom List 1 color",
+			description = "Color of players on list 1",
+			section = customListOneSection
 	)
-	default Color getOwnPlayerColor()
+	default Color getListOneColor()
 	{
-		return new Color(0, 184, 212);
+		return new Color(255, 184, 0);
 	}
 
 	@ConfigItem(
-			position = 2,
-			keyName = "drawOwnPlayerTiles",
-			name = "Draw tiles under own player",
-			description = "Configures whether or not tiles under own player should be drawn",
-			section = ownPlayerSection
+			position = 43,
+			keyName = "customListOneNames",
+			name = "List 1 names",
+			description = "Configures the names for players to be highlighted as part of list 1",
+			section = customListOneSection
 	)
-	default boolean drawOwnPlayerTiles()
+	default String getListOneNames()
+	{
+		return "";
+	}
+
+	@ConfigItem(
+			position = 44,
+			keyName = "customListOneTiles",
+			name = "Draw tiles under custom list 1 players",
+			description = "Configures whether or not tiles under custom list 1 players should be drawn",
+			section = customListOneSection
+	)
+	default boolean drawListOneTiles()
 	{
 		return false;
 	}
 
 	@ConfigItem(
-			position = 3,
-			keyName = "ownPlayerNamePosition",
+			position = 45,
+			keyName = "customListOneNamePosition",
 			name = "Name position",
-			description = "Configures the position of drawn own player name, or if they should be disabled",
-			section = ownPlayerSection
+			description = "Configures the position of drawn custom list 1 player names, or if they should be disabled",
+			section = customListOneSection
 	)
-	default PlayerNameLocation getOwnPlayerNamePosition()
+	default PlayerNameLocation getListOneNamePosition()
 	{
 		return PlayerNameLocation.ABOVE_HEAD;
 	}
 
 	@ConfigItem(
-			position = 4,
-			keyName = "drawOwnPlayerMinimapName",
-			name = "Draw own player name on minimap",
-			description = "Configures whether or not minimap names for own player with rendered names should be drawn",
-			section = ownPlayerSection
+			position = 46,
+			keyName = "customListOneMinimapName",
+			name = "Draw list 1 player names on minimap",
+			description = "Configures whether or not minimap names for list 2 players with rendered names should be drawn",
+			section = customListOneSection
 	)
-	default boolean drawOwnPlayerMinimapName()
+	default boolean drawListOneMinimapName()
 	{
 		return false;
+	}
+
+	@ConfigItem(
+			position = 47,
+			keyName = "colorListOnePlayerMenu",
+			name = "Colorize player menu for list 1 players",
+			description = "Color right click menu for list 1 players",
+			section = customListOneSection
+	)
+	default boolean colorListOnePlayerMenu()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+			position = 48,
+			keyName = "highlightCustomListTwo",
+			name = "Highlight custom list 2",
+			description = "Configures whether or not players on custom list 2 will be highlighted",
+			section = customListTwoSection
+	)
+	default boolean highlightCustomListTwo()
+	{
+		return false;
+	}
+
+	@ConfigItem(
+			position = 49,
+			keyName = "customListTwoColor",
+			name = "Custom List 2 color",
+			description = "Color of players on list 2",
+			section = customListTwoSection
+	)
+	default Color getListTwoColor()
+	{
+		return new Color(144, 125, 144);
+	}
+
+	@ConfigItem(
+			position = 50,
+			keyName = "customListTwoNames",
+			name = "List 2 names",
+			description = "Configures the names for players to be highlighted as part of list 2",
+			section = customListTwoSection
+	)
+	default String getListTwoNames()
+	{
+		return "";
+	}
+
+	@ConfigItem(
+			position = 51,
+			keyName = "customListTwoTiles",
+			name = "Draw tiles under custom list 2 players",
+			description = "Configures whether or not tiles under custom list 2 players should be drawn",
+			section = customListTwoSection
+	)
+	default boolean drawListTwoTiles()
+	{
+		return false;
+	}
+
+	@ConfigItem(
+			position = 52,
+			keyName = "customListTwoNamePosition",
+			name = "Name position",
+			description = "Configures the position of drawn custom list 2 player names, or if they should be disabled",
+			section = customListTwoSection
+	)
+	default PlayerNameLocation getListTwoNamePosition()
+	{
+		return PlayerNameLocation.ABOVE_HEAD;
+	}
+
+	@ConfigItem(
+			position = 53,
+			keyName = "customListTwoMinimapName",
+			name = "Draw list 2 player names on minimap",
+			description = "Configures whether or not minimap names for list 2 players with rendered names should be drawn",
+			section = customListTwoSection
+	)
+	default boolean drawListTwoMinimapName()
+	{
+		return false;
+	}
+
+	@ConfigItem(
+			position = 54,
+			keyName = "colorListTwoPlayerMenu",
+			name = "Colorize player menu for list 2 players",
+			description = "Color right click menu for list 2 players",
+			section = customListTwoSection
+	)
+	default boolean colorListTwoPlayerMenu()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+			position = 55,
+			keyName = "highlightCustomListThree",
+			name = "Highlight custom list 3",
+			description = "Configures whether or not players on custom list 3 will be highlighted",
+			section = customListThreeSection
+	)
+	default boolean highlightCustomListThree()
+	{
+		return false;
+	}
+
+	@ConfigItem(
+			position = 56,
+			keyName = "customListThreeColor",
+			name = "Custom List 3 color",
+			description = "Color of players on list 3",
+			section = customListThreeSection
+	)
+	default Color getListThreeColor()
+	{
+		return new Color(255, 184, 255);
+	}
+
+	@ConfigItem(
+			position = 57,
+			keyName = "customListThreeNames",
+			name = "List 3 names",
+			description = "Configures the names for players to be highlighted as part of list 3",
+			section = customListThreeSection
+	)
+	default String getListThreeNames()
+	{
+		return "";
+	}
+
+	@ConfigItem(
+			position = 58,
+			keyName = "customListThreeTiles",
+			name = "Draw tiles under custom list 3 players",
+			description = "Configures whether or not tiles under custom list 3 players should be drawn",
+			section = customListThreeSection
+	)
+	default boolean drawListThreeTiles()
+	{
+		return false;
+	}
+
+	@ConfigItem(
+			position = 59,
+			keyName = "customListThreeNamePosition",
+			name = "Name position",
+			description = "Configures the position of drawn custom list 3 player names, or if they should be disabled",
+			section = customListThreeSection
+	)
+	default PlayerNameLocation getListThreeNamePosition()
+	{
+		return PlayerNameLocation.ABOVE_HEAD;
+	}
+
+	@ConfigItem(
+			position = 60,
+			keyName = "customListThreeMinimapName",
+			name = "Draw list 3 player names on minimap",
+			description = "Configures whether or not minimap names for list 3 players with rendered names should be drawn",
+			section = customListThreeSection
+	)
+	default boolean drawListThreeMinimapName()
+	{
+		return false;
+	}
+
+	@ConfigItem(
+			position = 61,
+			keyName = "colorListThreePlayerMenu",
+			name = "Colorize player menu for list 3 players",
+			description = "Color right click menu for list 3 players",
+			section = customListThreeSection
+	)
+	default boolean colorListThreePlayerMenu()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+			position = 62,
+			keyName = "highlightCustomListFour",
+			name = "Highlight custom list 4",
+			description = "Configures whether or not players on custom list 4 will be highlighted",
+			section = customListFourSection
+	)
+	default boolean highlightCustomListFour()
+	{
+		return false;
+	}
+
+	@ConfigItem(
+			position = 63,
+			keyName = "customListFourColor",
+			name = "Custom List 4 color",
+			description = "Color of players on list 4",
+			section = customListFourSection
+	)
+	default Color getListFourColor()
+	{
+		return new Color(111, 50, 22);
+	}
+
+	@ConfigItem(
+			position = 64,
+			keyName = "customListFourNames",
+			name = "List 4 names",
+			description = "Configures the names for players to be highlighted as part of list 4",
+			section = customListFourSection
+	)
+	default String getListFourNames()
+	{
+		return "";
+	}
+
+	@ConfigItem(
+			position = 65,
+			keyName = "customListFourTiles",
+			name = "Draw tiles under custom list 4 players",
+			description = "Configures whether or not tiles under custom list 4 players should be drawn",
+			section = customListFourSection
+	)
+	default boolean drawListFourTiles()
+	{
+		return false;
+	}
+
+	@ConfigItem(
+			position = 66,
+			keyName = "customListFourNamePosition",
+			name = "Name position",
+			description = "Configures the position of drawn custom list 4 player names, or if they should be disabled",
+			section = customListFourSection
+	)
+	default PlayerNameLocation getListFourNamePosition()
+	{
+		return PlayerNameLocation.ABOVE_HEAD;
+	}
+
+	@ConfigItem(
+			position = 67,
+			keyName = "customListFourMinimapName",
+			name = "Draw list 4 player names on minimap",
+			description = "Configures whether or not minimap names for list 4 players with rendered names should be drawn",
+			section = customListFourSection
+	)
+	default boolean drawListFourMinimapName()
+	{
+		return false;
+	}
+
+	@ConfigItem(
+			position = 68,
+			keyName = "colorListFourPlayerMenu",
+			name = "Colorize player menu for list 4 players",
+			description = "Color right click menu for list 4 players",
+			section = customListFourSection
+	)
+	default boolean colorListFourPlayerMenu()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+			position = 69,
+			keyName = "highlightCustomListFive",
+			name = "Highlight custom list 5",
+			description = "Configures whether or not players on custom list 5 will be highlighted",
+			section = customListFiveSection
+	)
+	default boolean highlightCustomListFive()
+	{
+		return false;
+	}
+
+	@ConfigItem(
+			position = 70,
+			keyName = "customListFiveColor",
+			name = "Custom List 5 color",
+			description = "Color of players on list 5",
+			section = customListFiveSection
+	)
+	default Color getListFiveColor()
+	{
+		return new Color(120, 200, 150);
+	}
+
+	@ConfigItem(
+			position = 71,
+			keyName = "customListFiveNames",
+			name = "List 5 names",
+			description = "Configures the names for players to be highlighted as part of list 5",
+			section = customListFiveSection
+	)
+	default String getListFiveNames()
+	{
+		return "";
+	}
+
+	@ConfigItem(
+			position = 72,
+			keyName = "customListFiveTiles",
+			name = "Draw tiles under custom list 5 players",
+			description = "Configures whether or not tiles under custom list 5 players should be drawn",
+			section = customListFiveSection
+	)
+	default boolean drawListFiveTiles()
+	{
+		return false;
+	}
+
+	@ConfigItem(
+			position = 73,
+			keyName = "customListFiveNamePosition",
+			name = "Name position",
+			description = "Configures the position of drawn custom list 5 player names, or if they should be disabled",
+			section = customListFiveSection
+	)
+	default PlayerNameLocation getListFiveNamePosition()
+	{
+		return PlayerNameLocation.ABOVE_HEAD;
+	}
+
+	@ConfigItem(
+			position = 74,
+			keyName = "customListFiveMinimapName",
+			name = "Draw list 5 player names on minimap",
+			description = "Configures whether or not minimap names for list 5 players with rendered names should be drawn",
+			section = customListFiveSection
+	)
+	default boolean drawListFiveMinimapName()
+	{
+		return false;
+	}
+
+	@ConfigItem(
+			position = 75,
+			keyName = "colorListFivePlayerMenu",
+			name = "Colorize player menu for list 5 players",
+			description = "Color right click menu for list 5 players",
+			section = customListFiveSection
+	)
+	default boolean colorListFivePlayerMenu()
+	{
+		return true;
 	}
 }
