@@ -32,7 +32,6 @@ import net.runelite.client.util.Text;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
-import java.util.List;
 import java.util.function.BiConsumer;
 
 @Singleton
@@ -82,6 +81,7 @@ class PlayerIndicatorsService
 				continue;
 			}
 
+			final String playerName = player.getName();
 			final boolean isFriendsChatMember = player.isFriendsChatMember();
 
 			// Friends
@@ -111,58 +111,38 @@ class PlayerIndicatorsService
 			}
 
 			// List one players
-			if (config.highlightCustomListOne())
+			if (config.highlightCustomListOne() && isNameInCsvList(playerName, config.getListOneNames().toLowerCase()))
 			{
-				List<String> listOneRsns = Text.fromCSV(config.getListOneNames().toLowerCase());
-				if (listOneRsns.contains(player.getName().toLowerCase()))
-				{
-					consumer.accept(player, PlayerIndicatorType.CUSTOM_LIST_1);
-					continue;
-				}
+				consumer.accept(player, PlayerIndicatorType.CUSTOM_LIST_1);
+				continue;
 			}
 
 			// List two players
-			if (config.highlightCustomListTwo())
+			if (config.highlightCustomListTwo() && isNameInCsvList(playerName, config.getListTwoNames().toLowerCase()))
 			{
-				List<String> listTwoRsns = Text.fromCSV(config.getListTwoNames().toLowerCase());
-				if (listTwoRsns.contains(player.getName().toLowerCase()))
-				{
-					consumer.accept(player, PlayerIndicatorType.CUSTOM_LIST_2);
-					continue;
-				}
+				consumer.accept(player, PlayerIndicatorType.CUSTOM_LIST_2);
+				continue;
 			}
 
 			// List three players
-			if (config.highlightCustomListThree())
+			if (config.highlightCustomListThree() && isNameInCsvList(playerName, config.getListThreeNames().toLowerCase()))
 			{
-				List<String> listThreeRsns = Text.fromCSV(config.getListThreeNames().toLowerCase());
-				if (listThreeRsns.contains(player.getName().toLowerCase()))
-				{
-					consumer.accept(player, PlayerIndicatorType.CUSTOM_LIST_3);
-					continue;
-				}
+				consumer.accept(player, PlayerIndicatorType.CUSTOM_LIST_3);
+				continue;
 			}
 
 			// List four players
-			if (config.highlightCustomListFour())
+			if (config.highlightCustomListFour() && isNameInCsvList(playerName, config.getListFourNames().toLowerCase()))
 			{
-				List<String> listFourRsns = Text.fromCSV(config.getListFourNames().toLowerCase());
-				if (listFourRsns.contains(player.getName().toLowerCase()))
-				{
-					consumer.accept(player, PlayerIndicatorType.CUSTOM_LIST_4);
-					continue;
-				}
+				consumer.accept(player, PlayerIndicatorType.CUSTOM_LIST_4);
+				continue;
 			}
 
 			// List five players
-			if (config.highlightCustomListFive())
+			if (config.highlightCustomListFive() && isNameInCsvList(playerName, config.getListFiveNames().toLowerCase()))
 			{
-				List<String> listFiveRsns = Text.fromCSV(config.getListFiveNames().toLowerCase());
-				if (listFiveRsns.contains(player.getName().toLowerCase()))
-				{
-					consumer.accept(player, PlayerIndicatorType.CUSTOM_LIST_5);
-					continue;
-				}
+				consumer.accept(player, PlayerIndicatorType.CUSTOM_LIST_5);
+				continue;
 			}
 
 			// Clan members
@@ -196,11 +176,12 @@ class PlayerIndicatorsService
 		}
 
 		final Player localPlayer = client.getLocalPlayer();
-		if (localPlayer == null || player == null || player.getName() == null || localPlayer == player)
+		if (localPlayer == null || localPlayer == player)
 		{
 			return null;
 		}
 
+		final String playerName = player.getName();
 		final boolean isFriendsChatMember = player.isFriendsChatMember();
 
 		// Friends
@@ -215,7 +196,7 @@ class PlayerIndicatorsService
 		}
 
 		// Appear offline friends
-		if (config.highlightOfflineFriends() && config.colorFriendPlayerMenu() && client.isFriended(player.getName(), false))
+		if (config.highlightOfflineFriends() && config.colorFriendPlayerMenu() && client.isFriended(playerName, false))
 		{
 			if (config.disableFriendHighlightIfFriendsChatMember() && isFriendsChatMember)
 			{
@@ -226,53 +207,38 @@ class PlayerIndicatorsService
 		}
 
 		// Custom list one
-		if (config.highlightCustomListOne() && config.colorListOnePlayerMenu())
+		if (config.highlightCustomListOne() && config.colorListOnePlayerMenu() &&
+				isNameInCsvList(playerName, config.getListOneNames().toLowerCase()))
 		{
-			List<String> listOneRsns = Text.fromCSV(config.getListOneNames().toLowerCase());
-			if (listOneRsns.contains(player.getName().toLowerCase()))
-			{
-				return PlayerIndicatorType.CUSTOM_LIST_1;
-			}
+			return PlayerIndicatorType.CUSTOM_LIST_1;
 		}
 
 		// Custom list two
-		if (config.highlightCustomListTwo() && config.colorListTwoPlayerMenu())
+		if (config.highlightCustomListTwo() && config.colorListTwoPlayerMenu() &&
+				isNameInCsvList(playerName, config.getListTwoNames().toLowerCase()))
 		{
-			List<String> listTwoRsns = Text.fromCSV(config.getListTwoNames().toLowerCase());
-			if (listTwoRsns.contains(player.getName().toLowerCase()))
-			{
-				return PlayerIndicatorType.CUSTOM_LIST_2;
-			}
+			return PlayerIndicatorType.CUSTOM_LIST_2;
 		}
 
 		// Custom list three
-		if (config.highlightCustomListThree() && config.colorListThreePlayerMenu())
+		if (config.highlightCustomListThree() && config.colorListThreePlayerMenu() &&
+				isNameInCsvList(playerName, config.getListThreeNames().toLowerCase()))
 		{
-			List<String> listThreeRsns = Text.fromCSV(config.getListThreeNames().toLowerCase());
-			if (listThreeRsns.contains(player.getName().toLowerCase()))
-			{
-				return PlayerIndicatorType.CUSTOM_LIST_3;
-			}
+			return PlayerIndicatorType.CUSTOM_LIST_3;
 		}
 
 		// Custom list four
-		if (config.highlightCustomListFour() && config.colorListFourPlayerMenu())
+		if (config.highlightCustomListFour() && config.colorListFourPlayerMenu() &&
+				isNameInCsvList(playerName, config.getListFourNames().toLowerCase()))
 		{
-			List<String> listFourRsns = Text.fromCSV(config.getListFourNames().toLowerCase());
-			if (listFourRsns.contains(player.getName().toLowerCase()))
-			{
-				return PlayerIndicatorType.CUSTOM_LIST_4;
-			}
+			return PlayerIndicatorType.CUSTOM_LIST_4;
 		}
 
 		// Custom list five
-		if (config.highlightCustomListFive() && config.colorListFivePlayerMenu())
+		if (config.highlightCustomListFive() && config.colorListFivePlayerMenu() &&
+				isNameInCsvList(playerName, config.getListFiveNames().toLowerCase()))
 		{
-			List<String> listFiveRsns = Text.fromCSV(config.getListFiveNames().toLowerCase());
-			if (listFiveRsns.contains(player.getName().toLowerCase()))
-			{
-				return PlayerIndicatorType.CUSTOM_LIST_5;
-			}
+			return PlayerIndicatorType.CUSTOM_LIST_5;
 		}
 
 		// Clan members
@@ -293,7 +259,7 @@ class PlayerIndicatorsService
 		{
 			return PlayerIndicatorType.NON_CLAN_MEMBER;
 		}
-		return PlayerIndicatorType.OTHER_PLAYER;
+		return PlayerIndicatorType.UNKNOWN_PLAYER;
 	}
 
 	PlayerIndicatorType getPlayerIndicatorType(Player player)
@@ -304,6 +270,7 @@ class PlayerIndicatorsService
 			return null;
 		}
 
+		final String playerName = player.getName();
 		final boolean isFriendsChatMember = player.isFriendsChatMember();
 
 		// Friends
@@ -318,36 +285,31 @@ class PlayerIndicatorsService
 		}
 
 		// Custom list one
-		List<String> listOneRsns = Text.fromCSV(config.getListOneNames().toLowerCase());
-		if (listOneRsns.contains(player.getName().toLowerCase()))
+		if (isNameInCsvList(playerName, config.getListOneNames().toLowerCase()))
 		{
 			return PlayerIndicatorType.CUSTOM_LIST_1;
 		}
 
 		// Custom list two
-		List<String> listTwoRsns = Text.fromCSV(config.getListOneNames().toLowerCase());
-		if (listTwoRsns.contains(player.getName().toLowerCase()))
+		if (isNameInCsvList(playerName, config.getListTwoNames().toLowerCase()))
 		{
 			return PlayerIndicatorType.CUSTOM_LIST_2;
 		}
 
 		// Custom list three
-		List<String> listThreeRsns = Text.fromCSV(config.getListOneNames().toLowerCase());
-		if (listThreeRsns.contains(player.getName().toLowerCase()))
+		if (isNameInCsvList(playerName, config.getListThreeNames().toLowerCase()))
 		{
 			return PlayerIndicatorType.CUSTOM_LIST_3;
 		}
 
 		// Custom list four
-		List<String> listFourRsns = Text.fromCSV(config.getListOneNames().toLowerCase());
-		if (listFourRsns.contains(player.getName().toLowerCase()))
+		if (isNameInCsvList(playerName, config.getListFourNames().toLowerCase()))
 		{
 			return PlayerIndicatorType.CUSTOM_LIST_4;
 		}
 
 		// Custom list five
-		List<String> listFiveRsns = Text.fromCSV(config.getListOneNames().toLowerCase());
-		if (listFiveRsns.contains(player.getName().toLowerCase()))
+		if (isNameInCsvList(playerName, config.getListFiveNames().toLowerCase()))
 		{
 			return PlayerIndicatorType.CUSTOM_LIST_5;
 		}
@@ -375,5 +337,10 @@ class PlayerIndicatorsService
 			return PlayerIndicatorType.TEAM_CAPE_MEMBER;
 		}
 		return PlayerIndicatorType.NON_CLAN_MEMBER;
+	}
+
+	private boolean isNameInCsvList(String playerName, String csvNamesList)
+	{
+		return Text.fromCSV(csvNamesList).contains(Text.standardize(playerName));
 	}
 }

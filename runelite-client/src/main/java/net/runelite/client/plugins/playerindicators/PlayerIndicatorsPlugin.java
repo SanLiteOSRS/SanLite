@@ -43,6 +43,7 @@ import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.ui.overlay.OverlayManager;
 import net.runelite.client.util.ColorUtil;
 import net.runelite.client.util.Text;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.inject.Inject;
 import java.awt.*;
@@ -162,13 +163,13 @@ public class PlayerIndicatorsPlugin extends Plugin
 				player = players[identifier];
 			}
 
-			if (player == null)
+			if (player == null || StringUtils.isEmpty(player.getName()))
 			{
 				return;
 			}
 
 			PlayerIndicatorType playerIndicatorType = playerIndicatorsService.getMenuEntryPlayerIndicatorType(player);
-			if (playerIndicatorType == null || playerIndicatorType == PlayerIndicatorType.OTHER_PLAYER)
+			if (playerIndicatorType == null || playerIndicatorType == PlayerIndicatorType.UNKNOWN_PLAYER)
 				return;
 
 			switch (playerIndicatorType)
