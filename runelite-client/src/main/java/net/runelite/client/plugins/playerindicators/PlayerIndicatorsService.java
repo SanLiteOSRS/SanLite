@@ -28,6 +28,7 @@ package net.runelite.client.plugins.playerindicators;
 
 import net.runelite.api.Client;
 import net.runelite.api.Player;
+import net.runelite.client.util.Text;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -49,7 +50,9 @@ class PlayerIndicatorsService
 	void forEachPlayer(final BiConsumer<Player, PlayerIndicatorType> consumer)
 	{
 		if (!config.highlightOwnPlayer() && !config.highlightFriendsChatMembers() && !config.highlightFriends() &&
-				!config.highlightOfflineFriends() && !config.highlightOthers() && !config.highlightTeamMembers())
+				!config.highlightOfflineFriends() && !config.highlightOthers() && !config.highlightTeamMembers() &&
+				!config.highlightCustomListOne() && !config.highlightCustomListTwo() && !config.highlightCustomListThree() &&
+				!config.highlightCustomListFour() && !config.highlightCustomListFive())
 		{
 			return;
 		}
@@ -78,6 +81,7 @@ class PlayerIndicatorsService
 				continue;
 			}
 
+			final String playerName = player.getName();
 			final boolean isFriendsChatMember = player.isFriendsChatMember();
 
 			// Friends
@@ -103,6 +107,41 @@ class PlayerIndicatorsService
 				}
 
 				consumer.accept(player, PlayerIndicatorType.FRIEND);
+				continue;
+			}
+
+			// List one players
+			if (config.highlightCustomListOne() && isNameInCsvList(playerName, config.getListOneNames().toLowerCase()))
+			{
+				consumer.accept(player, PlayerIndicatorType.CUSTOM_LIST_1);
+				continue;
+			}
+
+			// List two players
+			if (config.highlightCustomListTwo() && isNameInCsvList(playerName, config.getListTwoNames().toLowerCase()))
+			{
+				consumer.accept(player, PlayerIndicatorType.CUSTOM_LIST_2);
+				continue;
+			}
+
+			// List three players
+			if (config.highlightCustomListThree() && isNameInCsvList(playerName, config.getListThreeNames().toLowerCase()))
+			{
+				consumer.accept(player, PlayerIndicatorType.CUSTOM_LIST_3);
+				continue;
+			}
+
+			// List four players
+			if (config.highlightCustomListFour() && isNameInCsvList(playerName, config.getListFourNames().toLowerCase()))
+			{
+				consumer.accept(player, PlayerIndicatorType.CUSTOM_LIST_4);
+				continue;
+			}
+
+			// List five players
+			if (config.highlightCustomListFive() && isNameInCsvList(playerName, config.getListFiveNames().toLowerCase()))
+			{
+				consumer.accept(player, PlayerIndicatorType.CUSTOM_LIST_5);
 				continue;
 			}
 
@@ -137,11 +176,12 @@ class PlayerIndicatorsService
 		}
 
 		final Player localPlayer = client.getLocalPlayer();
-		if (localPlayer == null || player == null || player.getName() == null || localPlayer == player)
+		if (localPlayer == null || localPlayer == player)
 		{
 			return null;
 		}
 
+		final String playerName = player.getName();
 		final boolean isFriendsChatMember = player.isFriendsChatMember();
 
 		// Friends
@@ -156,7 +196,7 @@ class PlayerIndicatorsService
 		}
 
 		// Appear offline friends
-		if (config.highlightOfflineFriends() && config.colorFriendPlayerMenu() && client.isFriended(player.getName(), false))
+		if (config.highlightOfflineFriends() && config.colorFriendPlayerMenu() && client.isFriended(playerName, false))
 		{
 			if (config.disableFriendHighlightIfFriendsChatMember() && isFriendsChatMember)
 			{
@@ -164,6 +204,41 @@ class PlayerIndicatorsService
 			}
 
 			return PlayerIndicatorType.FRIEND;
+		}
+
+		// Custom list one
+		if (config.highlightCustomListOne() && config.colorListOnePlayerMenu() &&
+				isNameInCsvList(playerName, config.getListOneNames().toLowerCase()))
+		{
+			return PlayerIndicatorType.CUSTOM_LIST_1;
+		}
+
+		// Custom list two
+		if (config.highlightCustomListTwo() && config.colorListTwoPlayerMenu() &&
+				isNameInCsvList(playerName, config.getListTwoNames().toLowerCase()))
+		{
+			return PlayerIndicatorType.CUSTOM_LIST_2;
+		}
+
+		// Custom list three
+		if (config.highlightCustomListThree() && config.colorListThreePlayerMenu() &&
+				isNameInCsvList(playerName, config.getListThreeNames().toLowerCase()))
+		{
+			return PlayerIndicatorType.CUSTOM_LIST_3;
+		}
+
+		// Custom list four
+		if (config.highlightCustomListFour() && config.colorListFourPlayerMenu() &&
+				isNameInCsvList(playerName, config.getListFourNames().toLowerCase()))
+		{
+			return PlayerIndicatorType.CUSTOM_LIST_4;
+		}
+
+		// Custom list five
+		if (config.highlightCustomListFive() && config.colorListFivePlayerMenu() &&
+				isNameInCsvList(playerName, config.getListFiveNames().toLowerCase()))
+		{
+			return PlayerIndicatorType.CUSTOM_LIST_5;
 		}
 
 		// Clan members
@@ -184,7 +259,7 @@ class PlayerIndicatorsService
 		{
 			return PlayerIndicatorType.NON_CLAN_MEMBER;
 		}
-		return PlayerIndicatorType.OTHER_PLAYER;
+		return PlayerIndicatorType.UNKNOWN_PLAYER;
 	}
 
 	PlayerIndicatorType getPlayerIndicatorType(Player player)
@@ -195,6 +270,7 @@ class PlayerIndicatorsService
 			return null;
 		}
 
+		final String playerName = player.getName();
 		final boolean isFriendsChatMember = player.isFriendsChatMember();
 
 		// Friends
@@ -206,6 +282,36 @@ class PlayerIndicatorsService
 			}
 
 			return PlayerIndicatorType.FRIEND;
+		}
+
+		// Custom list one
+		if (isNameInCsvList(playerName, config.getListOneNames().toLowerCase()))
+		{
+			return PlayerIndicatorType.CUSTOM_LIST_1;
+		}
+
+		// Custom list two
+		if (isNameInCsvList(playerName, config.getListTwoNames().toLowerCase()))
+		{
+			return PlayerIndicatorType.CUSTOM_LIST_2;
+		}
+
+		// Custom list three
+		if (isNameInCsvList(playerName, config.getListThreeNames().toLowerCase()))
+		{
+			return PlayerIndicatorType.CUSTOM_LIST_3;
+		}
+
+		// Custom list four
+		if (isNameInCsvList(playerName, config.getListFourNames().toLowerCase()))
+		{
+			return PlayerIndicatorType.CUSTOM_LIST_4;
+		}
+
+		// Custom list five
+		if (isNameInCsvList(playerName, config.getListFiveNames().toLowerCase()))
+		{
+			return PlayerIndicatorType.CUSTOM_LIST_5;
 		}
 
 		// Appear offline friends
@@ -231,5 +337,10 @@ class PlayerIndicatorsService
 			return PlayerIndicatorType.TEAM_CAPE_MEMBER;
 		}
 		return PlayerIndicatorType.NON_CLAN_MEMBER;
+	}
+
+	private boolean isNameInCsvList(String playerName, String csvNamesList)
+	{
+		return Text.fromCSV(csvNamesList).contains(Text.standardize(playerName));
 	}
 }
