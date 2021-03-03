@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019, Siraz <https://github.com/Sirazzz>
+ * Copyright (c) 2021 Abex
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,19 +22,30 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.client.plugins.playerindicators;
+package net.runelite.http.api.gson;
 
-public enum PlayerIndicatorType
+import java.awt.Color;
+import net.runelite.http.api.RuneLiteAPI;
+import org.junit.Assert;
+import org.junit.Test;
+
+public class ColorTypeAdapterTest
 {
-	FRIEND,
-	FRIENDS_CHAT_MEMBERS,
-	NON_CLAN_MEMBER,
-	TEAM_CAPE_MEMBER,
-	OWN_PLAYER,
-	CUSTOM_LIST_1,
-	CUSTOM_LIST_2,
-	CUSTOM_LIST_3,
-	CUSTOM_LIST_4,
-	CUSTOM_LIST_5,
-	UNKNOWN_PLAYER
+	@Test
+	public void test()
+	{
+		test("null", null);
+		test("{\"value\":-13347208,\"falpha\":0.0}", new Color(0x12345678, false));
+		test("{\"value\":305419896,\"falpha\":0.0}", new Color(0x12345678, true));
+		test("{\"value\":-1.4221317E7,\"falpha\":0.0}", new Color(0xFF26FFFB, true));
+	}
+
+	private void test(String json, Color object)
+	{
+		Color parsed = RuneLiteAPI.GSON.fromJson(json, Color.class);
+		Assert.assertEquals(object, parsed);
+		String serialized = RuneLiteAPI.GSON.toJson(object);
+		Color roundTripped = RuneLiteAPI.GSON.fromJson(serialized, Color.class);
+		Assert.assertEquals(object, roundTripped);
+	}
 }
