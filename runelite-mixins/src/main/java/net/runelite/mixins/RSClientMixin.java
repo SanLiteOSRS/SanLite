@@ -110,6 +110,9 @@ public abstract class RSClientMixin implements RSClient
 	static int skyboxColor;
 
 	@Inject
+	private boolean isMirrored = false;
+
+	@Inject
 	private final Cache<Integer, RSEnumComposition> enumCache = CacheBuilder.newBuilder()
 			.maximumSize(64)
 			.build();
@@ -1560,6 +1563,20 @@ public abstract class RSClientMixin implements RSClient
 	public void stopNow()
 	{
 		setStopTimeMs(1L);
+	}
+
+	@Inject
+	@Override
+	public boolean isMirrored()
+	{
+		return isMirrored;
+	}
+
+	@Inject
+	@Override
+	public void setMirrored(boolean isMirrored)
+	{
+		this.isMirrored = isMirrored;
 	}
 
 	@Inject

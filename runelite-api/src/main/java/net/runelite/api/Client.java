@@ -1846,6 +1846,16 @@ public interface Client extends GameEngine
 	void setGeSearchResultIndex(int index);
 
 	/**
+	 * Gets the status of client mirror
+	 */
+	boolean isMirrored();
+
+	/**
+	 * Sets the status of client mirror
+	 */
+	void setMirrored(boolean isMirrored);
+
+	/**
 	 * Sets the image to be used for the login screen, provided as SpritePixels
 	 * If the image is larger than half the width of fixed mode,
 	 * it won't get mirrored to the other side of the screen
