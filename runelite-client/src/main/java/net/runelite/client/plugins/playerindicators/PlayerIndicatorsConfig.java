@@ -85,7 +85,7 @@ public interface PlayerIndicatorsConfig extends Config
 			name = "Custom list 1",
 			description = "Extra highlight options for custom rsns",
 			closedByDefault = true,
-			position = 99
+			position = 100
 	)
 	String customListOneSection = "customListOneSection";
 
@@ -93,7 +93,7 @@ public interface PlayerIndicatorsConfig extends Config
 			name = "Custom list 2",
 			description = "Extra highlight options for custom rsns",
 			closedByDefault = true,
-			position = 99
+			position = 101
 	)
 	String customListTwoSection = "customListTwoSection";
 
@@ -101,7 +101,7 @@ public interface PlayerIndicatorsConfig extends Config
 			name = "Custom list 3",
 			description = "Extra highlight options for custom rsns",
 			closedByDefault = true,
-			position = 99
+			position = 102
 	)
 	String customListThreeSection = "customListThreeSection";
 
@@ -109,7 +109,7 @@ public interface PlayerIndicatorsConfig extends Config
 			name = "Custom list 4",
 			description = "Extra highlight options for custom rsns",
 			closedByDefault = true,
-			position = 99
+			position = 103
 	)
 	String customListFourSection = "customListFourSection";
 
@@ -117,7 +117,7 @@ public interface PlayerIndicatorsConfig extends Config
 			name = "Custom list 5",
 			description = "Extra highlight options for custom rsns",
 			closedByDefault = true,
-			position = 99
+			position = 104
 	)
 	String customListFiveSection = "customListFiveSection";
 
@@ -619,7 +619,7 @@ public interface PlayerIndicatorsConfig extends Config
 	@ConfigItem(
 			position = 41,
 			keyName = "highlightCustomListOne",
-			name = "Highlight custom list 1",
+			name = "Enabled",
 			description = "Configures whether or not players on custom list 1 will be highlighted",
 			section = customListOneSection
 	)
@@ -631,7 +631,7 @@ public interface PlayerIndicatorsConfig extends Config
 	@ConfigItem(
 			position = 42,
 			keyName = "customListOneColor",
-			name = "Custom List 1 color",
+			name = "Highlight color",
 			description = "Color of players on list 1",
 			section = customListOneSection
 	)
@@ -655,7 +655,7 @@ public interface PlayerIndicatorsConfig extends Config
 	@ConfigItem(
 			position = 44,
 			keyName = "customListOneTiles",
-			name = "Draw tiles under custom list 1 players",
+			name = "Draw tiles under players",
 			description = "Configures whether or not tiles under custom list 1 players should be drawn",
 			section = customListOneSection
 	)
@@ -679,7 +679,7 @@ public interface PlayerIndicatorsConfig extends Config
 	@ConfigItem(
 			position = 46,
 			keyName = "customListOneMinimapName",
-			name = "Draw list 1 player names on minimap",
+			name = "Draw names on minimap",
 			description = "Configures whether or not minimap names for list 2 players with rendered names should be drawn",
 			section = customListOneSection
 	)
@@ -691,7 +691,7 @@ public interface PlayerIndicatorsConfig extends Config
 	@ConfigItem(
 			position = 47,
 			keyName = "colorListOnePlayerMenu",
-			name = "Colorize player menu for list 1 players",
+			name = "Colorize player names in menu",
 			description = "Color right click menu for list 1 players",
 			section = customListOneSection
 	)
@@ -703,7 +703,7 @@ public interface PlayerIndicatorsConfig extends Config
 	@ConfigItem(
 			position = 48,
 			keyName = "highlightCustomListTwo",
-			name = "Highlight custom list 2",
+			name = "Enabled",
 			description = "Configures whether or not players on custom list 2 will be highlighted",
 			section = customListTwoSection
 	)
@@ -715,7 +715,7 @@ public interface PlayerIndicatorsConfig extends Config
 	@ConfigItem(
 			position = 49,
 			keyName = "customListTwoColor",
-			name = "Custom List 2 color",
+			name = "Highlight color",
 			description = "Color of players on list 2",
 			section = customListTwoSection
 	)
@@ -739,7 +739,7 @@ public interface PlayerIndicatorsConfig extends Config
 	@ConfigItem(
 			position = 51,
 			keyName = "customListTwoTiles",
-			name = "Draw tiles under custom list 2 players",
+			name = "Draw tiles under players",
 			description = "Configures whether or not tiles under custom list 2 players should be drawn",
 			section = customListTwoSection
 	)
@@ -763,7 +763,7 @@ public interface PlayerIndicatorsConfig extends Config
 	@ConfigItem(
 			position = 53,
 			keyName = "customListTwoMinimapName",
-			name = "Draw list 2 player names on minimap",
+			name = "Draw names on minimap",
 			description = "Configures whether or not minimap names for list 2 players with rendered names should be drawn",
 			section = customListTwoSection
 	)
@@ -775,7 +775,7 @@ public interface PlayerIndicatorsConfig extends Config
 	@ConfigItem(
 			position = 54,
 			keyName = "colorListTwoPlayerMenu",
-			name = "Colorize player menu for list 2 players",
+			name = "Colorize player names in menu",
 			description = "Color right click menu for list 2 players",
 			section = customListTwoSection
 	)
@@ -787,7 +787,7 @@ public interface PlayerIndicatorsConfig extends Config
 	@ConfigItem(
 			position = 55,
 			keyName = "highlightCustomListThree",
-			name = "Highlight custom list 3",
+			name = "Enabled",
 			description = "Configures whether or not players on custom list 3 will be highlighted",
 			section = customListThreeSection
 	)
@@ -799,7 +799,7 @@ public interface PlayerIndicatorsConfig extends Config
 	@ConfigItem(
 			position = 56,
 			keyName = "customListThreeColor",
-			name = "Custom List 3 color",
+			name = "Highlight color",
 			description = "Color of players on list 3",
 			section = customListThreeSection
 	)
@@ -823,7 +823,7 @@ public interface PlayerIndicatorsConfig extends Config
 	@ConfigItem(
 			position = 58,
 			keyName = "customListThreeTiles",
-			name = "Draw tiles under custom list 3 players",
+			name = "Draw tiles under players",
 			description = "Configures whether or not tiles under custom list 3 players should be drawn",
 			section = customListThreeSection
 	)
@@ -847,7 +847,7 @@ public interface PlayerIndicatorsConfig extends Config
 	@ConfigItem(
 			position = 60,
 			keyName = "customListThreeMinimapName",
-			name = "Draw list 3 player names on minimap",
+			name = "Draw player names on minimap",
 			description = "Configures whether or not minimap names for list 3 players with rendered names should be drawn",
 			section = customListThreeSection
 	)
@@ -859,7 +859,7 @@ public interface PlayerIndicatorsConfig extends Config
 	@ConfigItem(
 			position = 61,
 			keyName = "colorListThreePlayerMenu",
-			name = "Colorize player menu for list 3 players",
+			name = "Colorize player names in menu",
 			description = "Color right click menu for list 3 players",
 			section = customListThreeSection
 	)
@@ -871,7 +871,7 @@ public interface PlayerIndicatorsConfig extends Config
 	@ConfigItem(
 			position = 62,
 			keyName = "highlightCustomListFour",
-			name = "Highlight custom list 4",
+			name = "Enabled",
 			description = "Configures whether or not players on custom list 4 will be highlighted",
 			section = customListFourSection
 	)
@@ -883,7 +883,7 @@ public interface PlayerIndicatorsConfig extends Config
 	@ConfigItem(
 			position = 63,
 			keyName = "customListFourColor",
-			name = "Custom List 4 color",
+			name = "Highlight color",
 			description = "Color of players on list 4",
 			section = customListFourSection
 	)
@@ -907,7 +907,7 @@ public interface PlayerIndicatorsConfig extends Config
 	@ConfigItem(
 			position = 65,
 			keyName = "customListFourTiles",
-			name = "Draw tiles under custom list 4 players",
+			name = "Draw tiles under players",
 			description = "Configures whether or not tiles under custom list 4 players should be drawn",
 			section = customListFourSection
 	)
@@ -931,7 +931,7 @@ public interface PlayerIndicatorsConfig extends Config
 	@ConfigItem(
 			position = 67,
 			keyName = "customListFourMinimapName",
-			name = "Draw list 4 player names on minimap",
+			name = "Draw player names on minimap",
 			description = "Configures whether or not minimap names for list 4 players with rendered names should be drawn",
 			section = customListFourSection
 	)
@@ -943,7 +943,7 @@ public interface PlayerIndicatorsConfig extends Config
 	@ConfigItem(
 			position = 68,
 			keyName = "colorListFourPlayerMenu",
-			name = "Colorize player menu for list 4 players",
+			name = "Colorize player names in menu",
 			description = "Color right click menu for list 4 players",
 			section = customListFourSection
 	)
@@ -955,7 +955,7 @@ public interface PlayerIndicatorsConfig extends Config
 	@ConfigItem(
 			position = 69,
 			keyName = "highlightCustomListFive",
-			name = "Highlight custom list 5",
+			name = "Enabled",
 			description = "Configures whether or not players on custom list 5 will be highlighted",
 			section = customListFiveSection
 	)
@@ -967,7 +967,7 @@ public interface PlayerIndicatorsConfig extends Config
 	@ConfigItem(
 			position = 70,
 			keyName = "customListFiveColor",
-			name = "Custom List 5 color",
+			name = "Highlight color",
 			description = "Color of players on list 5",
 			section = customListFiveSection
 	)
@@ -991,7 +991,7 @@ public interface PlayerIndicatorsConfig extends Config
 	@ConfigItem(
 			position = 72,
 			keyName = "customListFiveTiles",
-			name = "Draw tiles under custom list 5 players",
+			name = "Draw tiles under players",
 			description = "Configures whether or not tiles under custom list 5 players should be drawn",
 			section = customListFiveSection
 	)
@@ -1015,7 +1015,7 @@ public interface PlayerIndicatorsConfig extends Config
 	@ConfigItem(
 			position = 74,
 			keyName = "customListFiveMinimapName",
-			name = "Draw list 5 player names on minimap",
+			name = "Draw player names on minimap",
 			description = "Configures whether or not minimap names for list 5 players with rendered names should be drawn",
 			section = customListFiveSection
 	)
@@ -1027,7 +1027,7 @@ public interface PlayerIndicatorsConfig extends Config
 	@ConfigItem(
 			position = 75,
 			keyName = "colorListFivePlayerMenu",
-			name = "Colorize player menu for list 5 players",
+			name = "Colorize player names in menu",
 			description = "Color right click menu for list 5 players",
 			section = customListFiveSection
 	)
