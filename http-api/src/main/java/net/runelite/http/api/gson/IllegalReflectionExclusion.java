@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019, Siraz <https://github.com/Sirazzz>
+ * Copyright (c) 2020 Abex
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,19 +22,50 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.client.plugins.playerindicators;
+package net.runelite.http.api.gson;
 
-public enum PlayerIndicatorType
+import com.google.gson.ExclusionStrategy;
+import com.google.gson.FieldAttributes;
+import java.lang.reflect.Modifier;
+import java.util.HashSet;
+import java.util.Set;
+
+public class IllegalReflectionExclusion implements ExclusionStrategy
 {
-	FRIEND,
-	FRIENDS_CHAT_MEMBERS,
-	NON_CLAN_MEMBER,
-	TEAM_CAPE_MEMBER,
-	OWN_PLAYER,
-	CUSTOM_LIST_1,
-	CUSTOM_LIST_2,
-	CUSTOM_LIST_3,
-	CUSTOM_LIST_4,
-	CUSTOM_LIST_5,
-	UNKNOWN_PLAYER
+	private static final Set<ClassLoader> PRIVATE_CLASSLOADERS = new HashSet<>();
+
+	static
+	{
+		for (ClassLoader cl = ClassLoader.getSystemClassLoader(); cl != null; )
+		{
+			cl = cl.getParent();
+			PRIVATE_CLASSLOADERS.add(cl);
+		}
+	}
+
+	@Override
+	public boolean shouldSkipField(FieldAttributes f)
+	{
+		if (!PRIVATE_CLASSLOADERS.contains(f.getDeclaringClass().getClassLoader()))
+		{
+			return false;
+		}
+
+		assert !Modifier.isPrivate(f.getDeclaringClass().getModifiers()) : "gsoning private class " + f.getDeclaringClass().getName();
+		try
+		{
+			f.getDeclaringClass().getField(f.getName());
+		}
+		catch (NoSuchFieldException e)
+		{
+			throw new AssertionError("gsoning private field " + f.getDeclaringClass() + "." + f.getName());
+		}
+		return false;
+	}
+
+	@Override
+	public boolean shouldSkipClass(Class<?> clazz)
+	{
+		return false;
+	}
 }

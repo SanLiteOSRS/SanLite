@@ -54,7 +54,9 @@ public class PlayerIndicatorsTileOverlay extends Overlay
 	public Dimension render(Graphics2D graphics)
 	{
 		if (!config.drawOwnPlayerTiles() && !config.drawFriendTiles() && !config.drawFriendsChatMemberTiles() &&
-				!config.drawTeamMemberTiles() && !config.drawOthersTiles())
+				!config.drawTeamMemberTiles() && !config.drawOthersTiles() && !config.drawListOneTiles() &&
+				!config.drawListTwoTiles() && !config.drawListThreeTiles() && !config.drawListFourTiles() &&
+				!config.drawListFiveTiles())
 		{
 			return null;
 		}
@@ -68,6 +70,21 @@ public class PlayerIndicatorsTileOverlay extends Overlay
 					break;
 				case FRIEND:
 					renderTileOverlay(graphics, player, config.getFriendColor(), config.drawFriendTiles());
+					break;
+				case CUSTOM_LIST_1:
+					renderTileOverlay(graphics, player, config.getListOneColor(), config.drawListOneTiles());
+					break;
+				case CUSTOM_LIST_2:
+					renderTileOverlay(graphics, player, config.getListTwoColor(), config.drawListTwoTiles());
+					break;
+				case CUSTOM_LIST_3:
+					renderTileOverlay(graphics, player, config.getListThreeColor(), config.drawListThreeTiles());
+					break;
+				case CUSTOM_LIST_4:
+					renderTileOverlay(graphics, player, config.getListFourColor(), config.drawListFourTiles());
+					break;
+				case CUSTOM_LIST_5:
+					renderTileOverlay(graphics, player, config.getListFiveColor(), config.drawListFiveTiles());
 					break;
 				case FRIENDS_CHAT_MEMBERS:
 					renderTileOverlay(graphics, player, config.getFriendsChatMemberColor(), config.drawFriendsChatMemberTiles());

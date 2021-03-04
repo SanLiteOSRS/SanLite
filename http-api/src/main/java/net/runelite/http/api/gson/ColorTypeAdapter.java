@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019, Siraz <https://github.com/Sirazzz>
+ * Copyright (c) 2020 Abex
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,19 +22,59 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.client.plugins.playerindicators;
+package net.runelite.http.api.gson;
 
-public enum PlayerIndicatorType
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonToken;
+import com.google.gson.stream.JsonWriter;
+import java.awt.Color;
+import java.io.IOException;
+
+public class ColorTypeAdapter extends TypeAdapter<Color>
 {
-	FRIEND,
-	FRIENDS_CHAT_MEMBERS,
-	NON_CLAN_MEMBER,
-	TEAM_CAPE_MEMBER,
-	OWN_PLAYER,
-	CUSTOM_LIST_1,
-	CUSTOM_LIST_2,
-	CUSTOM_LIST_3,
-	CUSTOM_LIST_4,
-	CUSTOM_LIST_5,
-	UNKNOWN_PLAYER
+	@Override
+	public void write(JsonWriter out, Color value) throws IOException
+	{
+		if (value == null)
+		{
+			out.nullValue();
+			return;
+		}
+
+		int rgba = value.getRGB();
+		out.beginObject()
+			.name("value")
+			.value(rgba)
+			.endObject();
+	}
+
+	@Override
+	public Color read(JsonReader in) throws IOException
+	{
+		switch (in.peek())
+		{
+			case NULL:
+				in.nextNull();
+				return null;
+			case BEGIN_OBJECT:
+				in.beginObject();
+				double value = 0;
+				while (in.peek() != JsonToken.END_OBJECT)
+				{
+					switch (in.nextName())
+					{
+						case "value":
+							value = in.nextDouble();
+							break;
+						default:
+							in.skipValue();
+							break;
+					}
+				}
+				in.endObject();
+				return new Color((int) value, true);
+		}
+		return null; // throws
+	}
 }

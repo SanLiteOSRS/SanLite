@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019, Siraz <https://github.com/Sirazzz>
+ * Copyright (c) 2020 Abex
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,19 +22,61 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.client.plugins.playerindicators;
+package net.runelite.http.api.gson;
 
-public enum PlayerIndicatorType
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonToken;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+import java.time.Instant;
+
+// Just add water!
+public class InstantTypeAdapter extends TypeAdapter<Instant>
 {
-	FRIEND,
-	FRIENDS_CHAT_MEMBERS,
-	NON_CLAN_MEMBER,
-	TEAM_CAPE_MEMBER,
-	OWN_PLAYER,
-	CUSTOM_LIST_1,
-	CUSTOM_LIST_2,
-	CUSTOM_LIST_3,
-	CUSTOM_LIST_4,
-	CUSTOM_LIST_5,
-	UNKNOWN_PLAYER
+	@Override
+	public void write(JsonWriter out, Instant value) throws IOException
+	{
+		if (value == null)
+		{
+			out.nullValue();
+			return;
+		}
+
+		out.beginObject()
+			.name("seconds")
+			.value(value.getEpochSecond())
+			.name("nanos")
+			.value(value.getNano())
+			.endObject();
+	}
+
+	@Override
+	public Instant read(JsonReader in) throws IOException
+	{
+		if (in.peek() == JsonToken.NULL)
+		{
+			in.nextNull();
+			return null;
+		}
+
+		long seconds = 0;
+		int nanos = 0;
+		in.beginObject();
+		while (in.peek() != JsonToken.END_OBJECT)
+		{
+			switch (in.nextName())
+			{
+				case "nanos":
+					nanos = in.nextInt();
+					break;
+				case "seconds":
+					seconds = in.nextLong();
+					break;
+			}
+		}
+		in.endObject();
+
+		return Instant.ofEpochSecond(seconds, nanos);
+	}
 }
