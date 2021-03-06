@@ -49,7 +49,8 @@ public class ControlFlowGraph
 		this.head = new Block();
 		for (Instruction i : code.getInstructions())
 			if (i instanceof Label)
-				blocks.computeIfAbsent((Label) i, lbl -> {
+				blocks.computeIfAbsent((Label) i, lbl ->
+				{
 					Block b = new Block();
 					allBlocks.add(b);
 					return b;
