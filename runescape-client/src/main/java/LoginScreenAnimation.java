@@ -91,8 +91,8 @@ public class LoginScreenAnimation {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(S)V",
-		garbageValue = "-16274"
+		garbageValue = "-16274",
+		signature = "(S)V"
 	)
 	@Export("initColors")
 	void initColors() {
@@ -162,8 +162,8 @@ public class LoginScreenAnimation {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "143600222"
+		garbageValue = "143600222",
+		signature = "(I)V"
 	)
 	void method1926() {
 		this.field1048 = null;
@@ -180,8 +180,8 @@ public class LoginScreenAnimation {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(IIB)V",
-		garbageValue = "67"
+		garbageValue = "67",
+		signature = "(IIB)V"
 	)
 	@Export("draw")
 	void draw(int var1, int var2) {
@@ -208,8 +208,8 @@ public class LoginScreenAnimation {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(II)V",
-		garbageValue = "1510812052"
+		garbageValue = "1510812052",
+		signature = "(II)V"
 	)
 	final void method1930(int var1) {
 		this.field1050 += var1 * 128;
@@ -342,8 +342,8 @@ public class LoginScreenAnimation {
 
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(IIII)I",
-		garbageValue = "696665844"
+		garbageValue = "696665844",
+		signature = "(IIII)I"
 	)
 	final int method1931(int var1, int var2, int var3) {
 		int var4 = 256 - var3;
@@ -352,8 +352,8 @@ public class LoginScreenAnimation {
 
 	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(II)V",
-		garbageValue = "-557955143"
+		garbageValue = "-557955143",
+		signature = "(II)V"
 	)
 	final void method1959(int var1) {
 		int var2 = this.field1047.length;
@@ -372,8 +372,8 @@ public class LoginScreenAnimation {
 
 	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(I[II)V",
-		garbageValue = "-1988316375"
+		garbageValue = "-1988316375",
+		signature = "(I[II)V"
 	)
 	final void method1933(int var1, int[] var2) {
 		int var3 = this.field1047.length;
@@ -392,8 +392,8 @@ public class LoginScreenAnimation {
 
 	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		signature = "(IB)V",
-		garbageValue = "25"
+		garbageValue = "25",
+		signature = "(IB)V"
 	)
 	final void method1934(int var1) {
 		int var2 = 0;
@@ -436,8 +436,8 @@ public class LoginScreenAnimation {
 
 	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		signature = "(Lly;B)V",
-		garbageValue = "1"
+		garbageValue = "1",
+		signature = "(Lly;B)V"
 	)
 	final void method1928(IndexedSprite var1) {
 		int var2;
@@ -485,8 +485,8 @@ public class LoginScreenAnimation {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(CI)C",
-		garbageValue = "742705358"
+		garbageValue = "742705358",
+		signature = "(CI)C"
 	)
 	static char method1927(char var0) {
 		return var0 != 181 && var0 != 402 ? Character.toTitleCase(var0) : var0;
@@ -494,8 +494,8 @@ public class LoginScreenAnimation {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/CharSequence;IZI)I",
-		garbageValue = "-1637981491"
+		garbageValue = "-1637981491",
+		signature = "(Ljava/lang/CharSequence;IZI)I"
 	)
 	@Export("parseIntCustomRadix")
 	public static int parseIntCustomRadix(CharSequence var0, int var1, boolean var2) {

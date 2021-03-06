@@ -32,8 +32,8 @@ public class class200 {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(II)I",
-		garbageValue = "1474141491"
+		garbageValue = "1474141491",
+		signature = "(II)I"
 	)
 	public static int method3865(int var0) {
 		return ReflectionCheck.method2451(ViewportMouse.ViewportMouse_entityTags[var0]);

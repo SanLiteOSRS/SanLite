@@ -56,8 +56,8 @@ public class BufferedSink implements Runnable {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(I)Z",
-		garbageValue = "1300767817"
+		garbageValue = "1300767817",
+		signature = "(I)Z"
 	)
 	@Export("isClosed")
 	boolean isClosed() {
@@ -81,8 +81,8 @@ public class BufferedSink implements Runnable {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "([BIIB)V",
-		garbageValue = "52"
+		garbageValue = "52",
+		signature = "([BIIB)V"
 	)
 	@Export("write")
 	void write(byte[] var1, int var2, int var3) throws IOException {
@@ -121,8 +121,8 @@ public class BufferedSink implements Runnable {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "1796941473"
+		garbageValue = "1796941473",
+		signature = "(I)V"
 	)
 	@Export("close")
 	void close() {

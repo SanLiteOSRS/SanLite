@@ -141,8 +141,8 @@ public class WorldMapElement extends DualNode {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(Lkx;B)V",
-		garbageValue = "-21"
+		garbageValue = "-21",
+		signature = "(Lkx;B)V"
 	)
 	@Export("decode")
 	public void decode(Buffer var1) {
@@ -158,8 +158,8 @@ public class WorldMapElement extends DualNode {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(Lkx;II)V",
-		garbageValue = "835039554"
+		garbageValue = "835039554",
+		signature = "(Lkx;II)V"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
@@ -247,8 +247,8 @@ public class WorldMapElement extends DualNode {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "1040699133"
+		garbageValue = "1040699133",
+		signature = "(I)V"
 	)
 	public void method4576() {
 		if (this.field3258 != null) {
@@ -271,8 +271,8 @@ public class WorldMapElement extends DualNode {
 
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(ZI)Llm;",
-		garbageValue = "1411469246"
+		garbageValue = "1411469246",
+		signature = "(ZI)Llm;"
 	)
 	@Export("getSpriteBool")
 	public SpritePixels getSpriteBool(boolean var1) {
@@ -282,8 +282,8 @@ public class WorldMapElement extends DualNode {
 
 	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(IB)Llm;",
-		garbageValue = "3"
+		garbageValue = "3",
+		signature = "(IB)Llm;"
 	)
 	@Export("getSprite")
 	SpritePixels getSprite(int var1) {
@@ -306,8 +306,8 @@ public class WorldMapElement extends DualNode {
 
 	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "1309901264"
+		garbageValue = "1309901264",
+		signature = "(I)I"
 	)
 	@Export("getObjectId")
 	public int getObjectId() {
@@ -316,8 +316,8 @@ public class WorldMapElement extends DualNode {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(IILgz;Lfe;B)Z",
-		garbageValue = "75"
+		garbageValue = "75",
+		signature = "(IILgz;Lfe;B)Z"
 	)
 	public static final boolean method4591(int var0, int var1, RouteStrategy var2, CollisionMap var3) {
 		int var4 = var0;
@@ -423,8 +423,8 @@ public class WorldMapElement extends DualNode {
 
 	@ObfuscatedName("hg")
 	@ObfuscatedSignature(
-		signature = "(Lbo;B)V",
-		garbageValue = "1"
+		garbageValue = "1",
+		signature = "(Lbo;B)V"
 	)
 	static final void method4592(PendingSpawn var0) {
 		long var1 = 0L;

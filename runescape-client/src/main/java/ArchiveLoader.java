@@ -55,8 +55,8 @@ public class ArchiveLoader {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(I)Z",
-		garbageValue = "979008130"
+		garbageValue = "979008130",
+		signature = "(I)Z"
 	)
 	@Export("isLoaded")
 	boolean isLoaded() {
@@ -73,8 +73,8 @@ public class ArchiveLoader {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(III)Lhz;",
-		garbageValue = "-326621995"
+		garbageValue = "-326621995",
+		signature = "(III)Lhz;"
 	)
 	@Export("getWidgetChild")
 	public static Widget getWidgetChild(int var0, int var1) {
@@ -88,8 +88,8 @@ public class ArchiveLoader {
 
 	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		signature = "(III)I",
-		garbageValue = "2065603382"
+		garbageValue = "2065603382",
+		signature = "(III)I"
 	)
 	static final int method1237(int var0, int var1) {
 		int var2 = class60.method972(var0 + 45365, 91923 + var1, 4) - 128 + (class60.method972(10294 + var0, var1 + 37821, 2) - 128 >> 1) + (class60.method972(var0, var1, 1) - 128 >> 2);

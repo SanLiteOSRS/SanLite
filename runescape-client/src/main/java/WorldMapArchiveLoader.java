@@ -37,8 +37,8 @@ public class WorldMapArchiveLoader {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;I)V",
-		garbageValue = "1607253331"
+		garbageValue = "1607253331",
+		signature = "(Ljava/lang/String;I)V"
 	)
 	@Export("reset")
 	void reset(String var1) {
@@ -54,8 +54,8 @@ public class WorldMapArchiveLoader {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "-460265936"
+		garbageValue = "-460265936",
+		signature = "(I)I"
 	)
 	@Export("load")
 	int load() {
@@ -89,8 +89,8 @@ public class WorldMapArchiveLoader {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(I)Z",
-		garbageValue = "868597570"
+		garbageValue = "868597570",
+		signature = "(I)Z"
 	)
 	@Export("isLoaded")
 	boolean isLoaded() {
@@ -99,8 +99,8 @@ public class WorldMapArchiveLoader {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "-754192338"
+		garbageValue = "-754192338",
+		signature = "(I)I"
 	)
 	@Export("getPercentLoaded")
 	int getPercentLoaded() {

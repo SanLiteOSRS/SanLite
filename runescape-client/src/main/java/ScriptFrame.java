@@ -39,8 +39,8 @@ public class ScriptFrame {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(IB)Ljz;",
-		garbageValue = "0"
+		garbageValue = "0",
+		signature = "(IB)Ljz;"
 	)
 	public static HitSplatDefinition method1222(int var0) {
 		HitSplatDefinition var1 = (HitSplatDefinition)HitSplatDefinition.HitSplatDefinition_cached.get((long)var0);
@@ -60,8 +60,8 @@ public class ScriptFrame {
 
 	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		signature = "(ILcl;ZI)I",
-		garbageValue = "461265882"
+		garbageValue = "461265882",
+		signature = "(ILcl;ZI)I"
 	)
 	static int method1221(int var0, Script var1, boolean var2) {
 		if (var0 == ScriptOpcodes.GETWINDOWMODE) {

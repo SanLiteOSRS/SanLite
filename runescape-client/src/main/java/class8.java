@@ -57,8 +57,8 @@ public class class8 implements Callable {
 
 	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-1606674389"
+		garbageValue = "-1606674389",
+		signature = "(I)V"
 	)
 	static void method88() {
 		if (Client.Login_isUsernameRemembered && Login.Login_username != null && Login.Login_username.length() > 0) {
@@ -71,8 +71,8 @@ public class class8 implements Callable {
 
 	@ObfuscatedName("fc")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "1683075564"
+		garbageValue = "1683075564",
+		signature = "(I)V"
 	)
 	static final void method90() {
 		if (Client.logoutTimer > 0) {

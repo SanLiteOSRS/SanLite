@@ -23,8 +23,8 @@ public class class224 {
 
 	@ObfuscatedName("hr")
 	@ObfuscatedSignature(
-		signature = "(II)V",
-		garbageValue = "2091444199"
+		garbageValue = "2091444199",
+		signature = "(II)V"
 	)
 	static final void method4232(int var0) {
 		int[] var1 = GrandExchangeOfferAgeComparator.sceneMinimapSprite.pixels;

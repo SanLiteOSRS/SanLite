@@ -121,8 +121,8 @@ public final class Occluder {
 
 	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		signature = "(I)Lcq;",
-		garbageValue = "37280546"
+		garbageValue = "37280546",
+		signature = "(I)Lcq;"
 	)
 	@Export("worldListStart")
 	static World worldListStart() {
@@ -132,8 +132,8 @@ public final class Occluder {
 
 	@ObfuscatedName("ae")
 	@ObfuscatedSignature(
-		signature = "(ILcl;ZI)I",
-		garbageValue = "809632906"
+		garbageValue = "809632906",
+		signature = "(ILcl;ZI)I"
 	)
 	static int method3447(int var0, Script var1, boolean var2) {
 		if (var0 == ScriptOpcodes.FRIEND_COUNT) {

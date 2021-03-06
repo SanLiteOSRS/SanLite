@@ -31,8 +31,8 @@ public class SecureRandomFuture {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "767065272"
+		garbageValue = "767065272",
+		signature = "(I)V"
 	)
 	@Export("shutdown")
 	void shutdown() {
@@ -42,8 +42,8 @@ public class SecureRandomFuture {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(S)Z",
-		garbageValue = "10550"
+		garbageValue = "10550",
+		signature = "(S)Z"
 	)
 	@Export("isDone")
 	boolean isDone() {
@@ -52,8 +52,8 @@ public class SecureRandomFuture {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(B)Ljava/security/SecureRandom;",
-		garbageValue = "0"
+		garbageValue = "0",
+		signature = "(B)Ljava/security/SecureRandom;"
 	)
 	@Export("get")
 	SecureRandom get() {

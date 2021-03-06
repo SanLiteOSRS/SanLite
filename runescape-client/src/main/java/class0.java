@@ -5,15 +5,15 @@ import net.runelite.mapping.ObfuscatedSignature;
 public interface class0 {
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/Object;Lkx;B)V",
-		garbageValue = "-41"
+		garbageValue = "-41",
+		signature = "(Ljava/lang/Object;Lkx;B)V"
 	)
 	void vmethod48(Object var1, Buffer var2);
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(Lkx;I)Ljava/lang/Object;",
-		garbageValue = "1678106953"
+		garbageValue = "1678106953",
+		signature = "(Lkx;I)Ljava/lang/Object;"
 	)
 	Object vmethod45(Buffer var1);
 }

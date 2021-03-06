@@ -59,8 +59,8 @@ public class VertexNormal {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "([BI)Ljava/lang/String;",
-		garbageValue = "1971758922"
+		garbageValue = "1971758922",
+		signature = "([BI)Ljava/lang/String;"
 	)
 	public static String method3163(byte[] var0) {
 		int var2 = var0.length;
@@ -89,8 +89,8 @@ public class VertexNormal {
 
 	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "([BIII)Ljava/lang/String;",
-		garbageValue = "-1881073597"
+		garbageValue = "-1881073597",
+		signature = "([BIII)Ljava/lang/String;"
 	)
 	@Export("decodeStringCp1252")
 	public static String decodeStringCp1252(byte[] var0, int var1, int var2) {

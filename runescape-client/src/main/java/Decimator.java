@@ -9,7 +9,7 @@ import net.runelite.mapping.ObfuscatedSignature;
 public class Decimator {
 	@ObfuscatedName("rl")
 	@ObfuscatedGetter(
-		intValue = -1809661952
+		intValue = 1495811456
 	)
 	static int field1475;
 	@ObfuscatedName("eu")
@@ -84,8 +84,8 @@ public class Decimator {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "([BI)[B",
-		garbageValue = "-153024312"
+		garbageValue = "-153024312",
+		signature = "([BI)[B"
 	)
 	@Export("resample")
 	byte[] resample(byte[] var1) {
@@ -130,8 +130,8 @@ public class Decimator {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(IB)I",
-		garbageValue = "-128"
+		garbageValue = "-128",
+		signature = "(IB)I"
 	)
 	@Export("scaleRate")
 	int scaleRate(int var1) {
@@ -144,8 +144,8 @@ public class Decimator {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(IB)I",
-		garbageValue = "0"
+		garbageValue = "0",
+		signature = "(IB)I"
 	)
 	@Export("scalePosition")
 	int scalePosition(int var1) {
@@ -158,8 +158,8 @@ public class Decimator {
 
 	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-1972966178"
+		garbageValue = "-1972966178",
+		signature = "(I)V"
 	)
 	static void method2704() {
 		if (WorldMapData_0.loadWorlds()) {
@@ -172,8 +172,8 @@ public class Decimator {
 
 	@ObfuscatedName("gn")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "909165860"
+		garbageValue = "909165860",
+		signature = "(I)V"
 	)
 	static final void method2708() {
 		for (Projectile var0 = (Projectile)Client.projectiles.last(); var0 != null; var0 = (Projectile)Client.projectiles.previous()) {

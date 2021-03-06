@@ -32,8 +32,8 @@ public class VarcInt extends DualNode {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(Lkx;B)V",
-		garbageValue = "-111"
+		garbageValue = "-111",
+		signature = "(Lkx;B)V"
 	)
 	public void method4594(Buffer var1) {
 		while (true) {
@@ -48,8 +48,8 @@ public class VarcInt extends DualNode {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(Lkx;II)V",
-		garbageValue = "-1938056419"
+		garbageValue = "-1938056419",
+		signature = "(Lkx;II)V"
 	)
 	void method4595(Buffer var1, int var2) {
 		if (var2 == 2) {

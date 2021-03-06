@@ -17,8 +17,8 @@ public class UserComparator4 implements Comparator {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Lky;Lky;B)I",
-		garbageValue = "4"
+		garbageValue = "4",
+		signature = "(Lky;Lky;B)I"
 	)
 	@Export("compare_bridged")
 	int compare_bridged(Buddy var1, Buddy var2) {

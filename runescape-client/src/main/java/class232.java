@@ -23,8 +23,8 @@ public class class232 {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(III)I",
-		garbageValue = "1954194850"
+		garbageValue = "1954194850",
+		signature = "(III)I"
 	)
 	static int method4322(int var0, int var1) {
 		ItemContainer var2 = (ItemContainer)ItemContainer.itemContainers.get((long)var0);
@@ -47,8 +47,8 @@ public class class232 {
 
 	@ObfuscatedName("fb")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "2044662786"
+		garbageValue = "2044662786",
+		signature = "(I)V"
 	)
 	static void method4323() {
 		Client.packetWriter.clearBuffer();

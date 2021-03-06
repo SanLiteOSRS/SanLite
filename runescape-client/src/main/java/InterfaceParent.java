@@ -46,8 +46,8 @@ public class InterfaceParent extends Node {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "([Lgh;II)Lgh;",
-		garbageValue = "1668419242"
+		garbageValue = "1668419242",
+		signature = "([Lgh;II)Lgh;"
 	)
 	@Export("findEnumerated")
 	public static Enumerated findEnumerated(Enumerated[] var0, int var1) {
@@ -65,8 +65,8 @@ public class InterfaceParent extends Node {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(IB)Ljs;",
-		garbageValue = "82"
+		garbageValue = "82",
+		signature = "(IB)Ljs;"
 	)
 	@Export("SequenceDefinition_get")
 	public static SequenceDefinition SequenceDefinition_get(int var0) {

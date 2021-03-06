@@ -44,8 +44,8 @@ public class FriendSystem {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(I)Z",
-		garbageValue = "1945346484"
+		garbageValue = "1945346484",
+		signature = "(I)Z"
 	)
 	boolean method1974() {
 		return this.loadingProgress == 2;
@@ -53,8 +53,8 @@ public class FriendSystem {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-2084368484"
+		garbageValue = "-2084368484",
+		signature = "(I)V"
 	)
 	final void method1975() {
 		this.loadingProgress = 1;
@@ -62,8 +62,8 @@ public class FriendSystem {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(Lkx;II)V",
-		garbageValue = "-1050410631"
+		garbageValue = "-1050410631",
+		signature = "(Lkx;II)V"
 	)
 	@Export("readUpdate")
 	final void readUpdate(Buffer var1, int var2) {
@@ -74,8 +74,8 @@ public class FriendSystem {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-1241092725"
+		garbageValue = "-1241092725",
+		signature = "(I)V"
 	)
 	@Export("processFriendUpdates")
 	final void processFriendUpdates() {
@@ -97,8 +97,8 @@ public class FriendSystem {
 
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "7"
+		garbageValue = "7",
+		signature = "(B)V"
 	)
 	@Export("clear")
 	final void clear() {
@@ -109,8 +109,8 @@ public class FriendSystem {
 
 	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(Lkk;ZB)Z",
-		garbageValue = "44"
+		garbageValue = "44",
+		signature = "(Lkk;ZB)Z"
 	)
 	@Export("isFriended")
 	final boolean isFriended(Username var1, boolean var2) {
@@ -125,8 +125,8 @@ public class FriendSystem {
 
 	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(Lkk;I)Z",
-		garbageValue = "-645506648"
+		garbageValue = "-645506648",
+		signature = "(Lkk;I)Z"
 	)
 	@Export("isIgnored")
 	final boolean isIgnored(Username var1) {
@@ -139,8 +139,8 @@ public class FriendSystem {
 
 	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;B)V",
-		garbageValue = "54"
+		garbageValue = "54",
+		signature = "(Ljava/lang/String;B)V"
 	)
 	@Export("addFriend")
 	final void addFriend(String var1) {
@@ -167,8 +167,8 @@ public class FriendSystem {
 
 	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		signature = "(I)Z",
-		garbageValue = "23277245"
+		garbageValue = "23277245",
+		signature = "(I)Z"
 	)
 	@Export("friendsListIsFull")
 	final boolean friendsListIsFull() {
@@ -177,8 +177,8 @@ public class FriendSystem {
 
 	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;I)V",
-		garbageValue = "-821036710"
+		garbageValue = "-821036710",
+		signature = "(Ljava/lang/String;I)V"
 	)
 	@Export("addIgnore")
 	final void addIgnore(String var1) {
@@ -205,8 +205,8 @@ public class FriendSystem {
 
 	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "(I)Z",
-		garbageValue = "-319380471"
+		garbageValue = "-319380471",
+		signature = "(I)Z"
 	)
 	@Export("canAddIgnore")
 	final boolean canAddIgnore() {
@@ -215,8 +215,8 @@ public class FriendSystem {
 
 	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;B)V",
-		garbageValue = "14"
+		garbageValue = "14",
+		signature = "(Ljava/lang/String;B)V"
 	)
 	@Export("removeFriend")
 	final void removeFriend(String var1) {
@@ -238,8 +238,8 @@ public class FriendSystem {
 
 	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;I)V",
-		garbageValue = "-1962434605"
+		garbageValue = "-1962434605",
+		signature = "(Ljava/lang/String;I)V"
 	)
 	@Export("removeIgnore")
 	final void removeIgnore(String var1) {
@@ -261,8 +261,8 @@ public class FriendSystem {
 
 	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "(Lkk;I)Z",
-		garbageValue = "-914482688"
+		garbageValue = "-914482688",
+		signature = "(Lkk;I)Z"
 	)
 	@Export("isFriendAndHasWorld")
 	final boolean isFriendAndHasWorld(Username var1) {
@@ -272,8 +272,8 @@ public class FriendSystem {
 
 	@ObfuscatedName("ji")
 	@ObfuscatedSignature(
-		signature = "(Lhz;IIB)V",
-		garbageValue = "1"
+		garbageValue = "1",
+		signature = "(Lhz;IIB)V"
 	)
 	@Export("clickWidget")
 	static final void clickWidget(Widget var0, int var1, int var2) {

@@ -309,8 +309,8 @@ public class ObjectComposition extends DualNode {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "-80"
+		garbageValue = "-80",
+		signature = "(B)V"
 	)
 	@Export("postDecode")
 	void postDecode() {
@@ -335,8 +335,8 @@ public class ObjectComposition extends DualNode {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(Lkx;B)V",
-		garbageValue = "0"
+		garbageValue = "0",
+		signature = "(Lkx;B)V"
 	)
 	@Export("decode")
 	void decode(Buffer var1) {
@@ -352,8 +352,8 @@ public class ObjectComposition extends DualNode {
 
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(Lkx;II)V",
-		garbageValue = "504124934"
+		garbageValue = "504124934",
+		signature = "(Lkx;II)V"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
@@ -528,8 +528,8 @@ public class ObjectComposition extends DualNode {
 
 	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(II)Z",
-		garbageValue = "2131864128"
+		garbageValue = "2131864128",
+		signature = "(II)Z"
 	)
 	public final boolean method4806(int var1) {
 		if (this.models != null) {
@@ -557,8 +557,8 @@ public class ObjectComposition extends DualNode {
 
 	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(B)Z",
-		garbageValue = "2"
+		garbageValue = "2",
+		signature = "(B)Z"
 	)
 	@Export("needsModelFiles")
 	public final boolean needsModelFiles() {
@@ -577,8 +577,8 @@ public class ObjectComposition extends DualNode {
 
 	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		signature = "(II[[IIIII)Lem;",
-		garbageValue = "2086147511"
+		garbageValue = "2086147511",
+		signature = "(II[[IIIII)Lem;"
 	)
 	@Export("getEntity")
 	public final Renderable getEntity(int var1, int var2, int[][] var3, int var4, int var5, int var6) {
@@ -625,8 +625,8 @@ public class ObjectComposition extends DualNode {
 
 	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		signature = "(II[[IIIII)Lef;",
-		garbageValue = "-1813150019"
+		garbageValue = "-1813150019",
+		signature = "(II[[IIIII)Lef;"
 	)
 	@Export("getModel")
 	public final Model getModel(int var1, int var2, int[][] var3, int var4, int var5, int var6) {
@@ -657,8 +657,8 @@ public class ObjectComposition extends DualNode {
 
 	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		signature = "(II[[IIIILjs;II)Lef;",
-		garbageValue = "1938080829"
+		garbageValue = "1938080829",
+		signature = "(II[[IIIILjs;II)Lef;"
 	)
 	@Export("getModelDynamic")
 	public final Model getModelDynamic(int var1, int var2, int[][] var3, int var4, int var5, int var6, SequenceDefinition var7, int var8) {
@@ -699,8 +699,8 @@ public class ObjectComposition extends DualNode {
 
 	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		signature = "(III)Lek;",
-		garbageValue = "-1880429080"
+		garbageValue = "-1880429080",
+		signature = "(III)Lek;"
 	)
 	@Export("getModelData")
 	final ModelData getModelData(int var1, int var2) {
@@ -840,8 +840,8 @@ public class ObjectComposition extends DualNode {
 
 	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		signature = "(I)Ljg;",
-		garbageValue = "-1578474044"
+		garbageValue = "-1578474044",
+		signature = "(I)Ljg;"
 	)
 	@Export("transform")
 	public final ObjectComposition transform() {
@@ -864,8 +864,8 @@ public class ObjectComposition extends DualNode {
 
 	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		signature = "(III)I",
-		garbageValue = "495952846"
+		garbageValue = "495952846",
+		signature = "(III)I"
 	)
 	@Export("getIntParam")
 	public int getIntParam(int var1, int var2) {
@@ -887,8 +887,8 @@ public class ObjectComposition extends DualNode {
 
 	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		signature = "(ILjava/lang/String;I)Ljava/lang/String;",
-		garbageValue = "244944647"
+		garbageValue = "244944647",
+		signature = "(ILjava/lang/String;I)Ljava/lang/String;"
 	)
 	@Export("getStringParam")
 	public String getStringParam(int var1, String var2) {
@@ -897,8 +897,8 @@ public class ObjectComposition extends DualNode {
 
 	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "(I)Z",
-		garbageValue = "1187773047"
+		garbageValue = "1187773047",
+		signature = "(I)Z"
 	)
 	@Export("hasSound")
 	public boolean hasSound() {
@@ -920,8 +920,8 @@ public class ObjectComposition extends DualNode {
 
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/CharSequence;II[BII)I",
-		garbageValue = "-314683087"
+		garbageValue = "-314683087",
+		signature = "(Ljava/lang/CharSequence;II[BII)I"
 	)
 	@Export("encodeStringCp1252")
 	public static int encodeStringCp1252(CharSequence var0, int var1, int var2, byte[] var3, int var4) {

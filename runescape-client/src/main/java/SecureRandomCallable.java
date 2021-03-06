@@ -29,8 +29,8 @@ public class SecureRandomCallable implements Callable {
 
 	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "(III)I",
-		garbageValue = "-1343548281"
+		garbageValue = "-1343548281",
+		signature = "(III)I"
 	)
 	static final int method1226(int var0, int var1) {
 		if (var0 == -2) {
@@ -57,8 +57,8 @@ public class SecureRandomCallable implements Callable {
 
 	@ObfuscatedName("fq")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "-33"
+		garbageValue = "-33",
+		signature = "(B)V"
 	)
 	@Export("logOut")
 	static final void logOut() {
@@ -136,8 +136,8 @@ public class SecureRandomCallable implements Callable {
 
 	@ObfuscatedName("fl")
 	@ObfuscatedSignature(
-		signature = "(Lhz;III)V",
-		garbageValue = "860211947"
+		garbageValue = "860211947",
+		signature = "(Lhz;III)V"
 	)
 	@Export("checkIfMinimapClicked")
 	static final void checkIfMinimapClicked(Widget var0, int var1, int var2) {
@@ -186,8 +186,8 @@ public class SecureRandomCallable implements Callable {
 
 	@ObfuscatedName("ge")
 	@ObfuscatedSignature(
-		signature = "(III)I",
-		garbageValue = "-358852627"
+		garbageValue = "-358852627",
+		signature = "(III)I"
 	)
 	static int method1233(int var0, int var1) {
 		int var2 = var1 - 334;

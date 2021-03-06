@@ -30,8 +30,8 @@ public class ItemContainer extends Node {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(CLgp;S)C",
-		garbageValue = "-10976"
+		garbageValue = "-10976",
+		signature = "(CLgp;S)C"
 	)
 	@Export("standardizeChar")
 	static char standardizeChar(char var0, Language var1) {
@@ -118,8 +118,8 @@ public class ItemContainer extends Node {
 
 	@ObfuscatedName("eu")
 	@ObfuscatedSignature(
-		signature = "(II)V",
-		garbageValue = "752478045"
+		garbageValue = "752478045",
+		signature = "(II)V"
 	)
 	@Export("updateGameState")
 	static void updateGameState(int var0) {

@@ -137,8 +137,8 @@ public enum WorldMapDecorationType implements Enumerated {
 	public final int id;
 
 	@ObfuscatedSignature(
-		signature = "(II)V",
-		garbageValue = "0"
+		garbageValue = "0",
+		signature = "(II)V"
 	)
 	WorldMapDecorationType(int var3, int var4) {
 		this.id = var3;
@@ -146,8 +146,8 @@ public enum WorldMapDecorationType implements Enumerated {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(B)I",
-		garbageValue = "63"
+		garbageValue = "63",
+		signature = "(B)I"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
@@ -156,8 +156,8 @@ public enum WorldMapDecorationType implements Enumerated {
 
 	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		signature = "([BB)[B",
-		garbageValue = "98"
+		garbageValue = "98",
+		signature = "([BB)[B"
 	)
 	@Export("decompressBytes")
 	static final byte[] decompressBytes(byte[] var0) {
@@ -167,15 +167,15 @@ public enum WorldMapDecorationType implements Enumerated {
 		if (var3 < 0 || AbstractArchive.field3171 != 0 && var3 > AbstractArchive.field3171) {
 			throw new RuntimeException();
 		} else if (var2 == 0) {
-			byte[] var4 = new byte[var3];
-			var1.readBytes(var4, 0, var3);
-			return var4;
+			byte[] var6 = new byte[var3];
+			var1.readBytes(var6, 0, var3);
+			return var6;
 		} else {
-			int var6 = var1.readInt();
-			if (var6 >= 0 && (AbstractArchive.field3171 == 0 || var6 <= AbstractArchive.field3171)) {
-				byte[] var5 = new byte[var6];
+			int var4 = var1.readInt();
+			if (var4 >= 0 && (AbstractArchive.field3171 == 0 || var4 <= AbstractArchive.field3171)) {
+				byte[] var5 = new byte[var4];
 				if (var2 == 1) {
-					BZip2Decompressor.BZip2Decompressor_decompress(var5, var6, var0, var3, 9);
+					BZip2Decompressor.BZip2Decompressor_decompress(var5, var4, var0, var3, 9);
 				} else {
 					AbstractArchive.gzipDecompressor.decompress(var1, var5);
 				}

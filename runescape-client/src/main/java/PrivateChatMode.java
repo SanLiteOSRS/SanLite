@@ -39,8 +39,8 @@ public class PrivateChatMode {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(II)I",
-		garbageValue = "1722143108"
+		garbageValue = "1722143108",
+		signature = "(II)I"
 	)
 	public static int method6104(int var0) {
 		var0 = (var0 & 1431655765) + (var0 >>> 1 & 1431655765);
@@ -53,8 +53,8 @@ public class PrivateChatMode {
 
 	@ObfuscatedName("ix")
 	@ObfuscatedSignature(
-		signature = "(Lhz;IIIIIII)V",
-		garbageValue = "-1992669827"
+		garbageValue = "-1992669827",
+		signature = "(Lhz;IIIIIII)V"
 	)
 	static final void method6107(Widget var0, int var1, int var2, int var3, int var4, int var5, int var6) {
 		if (Client.field731) {

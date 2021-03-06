@@ -28,8 +28,8 @@ public class Strings {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "([I[II)V",
-		garbageValue = "-894693523"
+		garbageValue = "-894693523",
+		signature = "([I[II)V"
 	)
 	public static void method4329(int[] var0, int[] var1) {
 		if (var0 != null && var1 != null) {
@@ -50,8 +50,8 @@ public class Strings {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "9"
+		garbageValue = "9",
+		signature = "(B)V"
 	)
 	static void method4324() {
 		Coord.field2560 = new int[2000];
@@ -79,8 +79,8 @@ public class Strings {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "([BIII)Ljava/lang/String;",
-		garbageValue = "-983754831"
+		garbageValue = "-983754831",
+		signature = "([BIII)Ljava/lang/String;"
 	)
 	public static String method4327(byte[] var0, int var1, int var2) {
 		char[] var3 = new char[var2];
@@ -137,8 +137,8 @@ public class Strings {
 
 	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		signature = "(CI)Z",
-		garbageValue = "-570785562"
+		garbageValue = "-570785562",
+		signature = "(CI)Z"
 	)
 	@Export("isDigit")
 	public static boolean isDigit(char var0) {
@@ -147,8 +147,8 @@ public class Strings {
 
 	@ObfuscatedName("am")
 	@ObfuscatedSignature(
-		signature = "(ILcl;ZI)I",
-		garbageValue = "580078079"
+		garbageValue = "580078079",
+		signature = "(ILcl;ZI)I"
 	)
 	static int method4326(int var0, Script var1, boolean var2) {
 		if (var0 == ScriptOpcodes.CLIENTCLOCK) {
@@ -283,8 +283,8 @@ public class Strings {
 
 	@ObfuscatedName("kz")
 	@ObfuscatedSignature(
-		signature = "(Lhz;B)Lhz;",
-		garbageValue = "-45"
+		garbageValue = "-45",
+		signature = "(Lhz;B)Lhz;"
 	)
 	static Widget method4325(Widget var0) {
 		int var2 = class60.getWidgetClickMask(var0);

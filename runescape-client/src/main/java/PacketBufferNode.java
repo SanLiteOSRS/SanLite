@@ -51,8 +51,8 @@ public class PacketBufferNode extends Node {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-2134338868"
+		garbageValue = "-2134338868",
+		signature = "(I)V"
 	)
 	@Export("release")
 	public void release() {

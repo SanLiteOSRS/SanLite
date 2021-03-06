@@ -73,8 +73,8 @@ public class TextureProvider implements TextureLoader {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "-2013656553"
+		garbageValue = "-2013656553",
+		signature = "(I)I"
 	)
 	@Export("getLoadedPercentage")
 	public int getLoadedPercentage() {
@@ -113,8 +113,8 @@ public class TextureProvider implements TextureLoader {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(II)[I",
-		garbageValue = "1068759988"
+		garbageValue = "1068759988",
+		signature = "(II)[I"
 	)
 	@Export("getTexturePixels")
 	public int[] getTexturePixels(int var1) {
@@ -146,8 +146,8 @@ public class TextureProvider implements TextureLoader {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(IB)I",
-		garbageValue = "1"
+		garbageValue = "1",
+		signature = "(IB)I"
 	)
 	@Export("getAverageTextureRGB")
 	public int getAverageTextureRGB(int var1) {
@@ -156,8 +156,8 @@ public class TextureProvider implements TextureLoader {
 
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(II)Z",
-		garbageValue = "-1400851651"
+		garbageValue = "-1400851651",
+		signature = "(II)Z"
 	)
 	public boolean vmethod3432(int var1) {
 		return this.textures[var1].field1639;
@@ -165,8 +165,8 @@ public class TextureProvider implements TextureLoader {
 
 	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(II)Z",
-		garbageValue = "1467632569"
+		garbageValue = "1467632569",
+		signature = "(II)Z"
 	)
 	@Export("isLowDetail")
 	public boolean isLowDetail(int var1) {
@@ -175,8 +175,8 @@ public class TextureProvider implements TextureLoader {
 
 	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "1656047073"
+		garbageValue = "1656047073",
+		signature = "(I)V"
 	)
 	@Export("clear")
 	public void clear() {
@@ -192,8 +192,8 @@ public class TextureProvider implements TextureLoader {
 
 	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		signature = "(IB)V",
-		garbageValue = "-39"
+		garbageValue = "-39",
+		signature = "(IB)V"
 	)
 	@Export("animate")
 	public void animate(int var1) {
@@ -209,8 +209,8 @@ public class TextureProvider implements TextureLoader {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Lkx;Llg;I)Llg;",
-		garbageValue = "-2095404981"
+		garbageValue = "-2095404981",
+		signature = "(Lkx;Llg;I)Llg;"
 	)
 	@Export("readStringIntParameters")
 	static final IterableNodeHashTable readStringIntParameters(Buffer var0, IterableNodeHashTable var1) {
@@ -239,8 +239,8 @@ public class TextureProvider implements TextureLoader {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Lig;Lig;Lig;I)V",
-		garbageValue = "-729858984"
+		garbageValue = "-729858984",
+		signature = "(Lig;Lig;Lig;I)V"
 	)
 	public static void method2935(AbstractArchive var0, AbstractArchive var1, AbstractArchive var2) {
 		SequenceDefinition.SequenceDefinition_archive = var0;
@@ -250,8 +250,8 @@ public class TextureProvider implements TextureLoader {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(IIIS)I",
-		garbageValue = "-4181"
+		garbageValue = "-4181",
+		signature = "(IIIS)I"
 	)
 	public static int method2914(int var0, int var1, int var2) {
 		var2 &= 3;
@@ -266,8 +266,8 @@ public class TextureProvider implements TextureLoader {
 
 	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		signature = "(IIIZIB)J",
-		garbageValue = "-32"
+		garbageValue = "-32",
+		signature = "(IIIZIB)J"
 	)
 	@Export("calculateTag")
 	public static long calculateTag(int var0, int var1, int var2, boolean var3, int var4) {

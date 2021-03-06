@@ -40,8 +40,8 @@ public class MenuAction {
 
 	@ObfuscatedName("gu")
 	@ObfuscatedSignature(
-		signature = "(IIIIZI)V",
-		garbageValue = "-1250415572"
+		garbageValue = "-1250415572",
+		signature = "(IIIIZI)V"
 	)
 	@Export("setViewportShape")
 	static final void setViewportShape(int var0, int var1, int var2, int var3, boolean var4) {

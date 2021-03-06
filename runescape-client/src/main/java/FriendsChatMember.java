@@ -26,8 +26,8 @@ public class FriendsChatMember extends Buddy {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "1122963499"
+		garbageValue = "1122963499",
+		signature = "(I)V"
 	)
 	@Export("clearIsFriend")
 	void clearIsFriend() {
@@ -36,8 +36,8 @@ public class FriendsChatMember extends Buddy {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(I)Z",
-		garbageValue = "-1693898868"
+		garbageValue = "-1693898868",
+		signature = "(I)Z"
 	)
 	@Export("isFriend")
 	public final boolean isFriend() {
@@ -50,8 +50,8 @@ public class FriendsChatMember extends Buddy {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-932162684"
+		garbageValue = "-932162684",
+		signature = "(I)V"
 	)
 	@Export("fillIsFriend")
 	void fillIsFriend() {
@@ -60,8 +60,8 @@ public class FriendsChatMember extends Buddy {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "1113333247"
+		garbageValue = "1113333247",
+		signature = "(I)V"
 	)
 	@Export("clearIsIgnored")
 	void clearIsIgnored() {
@@ -70,8 +70,8 @@ public class FriendsChatMember extends Buddy {
 
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(I)Z",
-		garbageValue = "-1838909924"
+		garbageValue = "-1838909924",
+		signature = "(I)Z"
 	)
 	@Export("isIgnored")
 	public final boolean isIgnored() {
@@ -84,8 +84,8 @@ public class FriendsChatMember extends Buddy {
 
 	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-1629114941"
+		garbageValue = "-1629114941",
+		signature = "(I)V"
 	)
 	@Export("fillIsIgnored")
 	void fillIsIgnored() {

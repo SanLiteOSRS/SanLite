@@ -134,8 +134,8 @@ public class MidiPcmStream extends PcmStream {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(II)V",
-		garbageValue = "699438448"
+		garbageValue = "699438448",
+		signature = "(II)V"
 	)
 	@Export("setPcmStreamVolume")
 	public synchronized void setPcmStreamVolume(int var1) {
@@ -144,8 +144,8 @@ public class MidiPcmStream extends PcmStream {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "1131484888"
+		garbageValue = "1131484888",
+		signature = "(I)I"
 	)
 	int method3912() {
 		return this.field2442;
@@ -153,8 +153,8 @@ public class MidiPcmStream extends PcmStream {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(Lhr;Lig;Ldy;IB)Z",
-		garbageValue = "80"
+		garbageValue = "80",
+		signature = "(Lhr;Lig;Ldy;IB)Z"
 	)
 	@Export("loadMusicTrack")
 	public synchronized boolean loadMusicTrack(MusicTrack var1, AbstractArchive var2, SoundCache var3, int var4) {
@@ -200,8 +200,8 @@ public class MidiPcmStream extends PcmStream {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-1484223383"
+		garbageValue = "-1484223383",
+		signature = "(I)V"
 	)
 	@Export("clearAll")
 	public synchronized void clearAll() {
@@ -213,8 +213,8 @@ public class MidiPcmStream extends PcmStream {
 
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(S)V",
-		garbageValue = "-24768"
+		garbageValue = "-24768",
+		signature = "(S)V"
 	)
 	@Export("removeAll")
 	synchronized void removeAll() {
@@ -274,8 +274,8 @@ public class MidiPcmStream extends PcmStream {
 
 	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		signature = "(Lhr;ZI)V",
-		garbageValue = "99605347"
+		garbageValue = "99605347",
+		signature = "(Lhr;ZI)V"
 	)
 	@Export("setMusicTrack")
 	public synchronized void setMusicTrack(MusicTrack var1, boolean var2) {
@@ -322,8 +322,8 @@ public class MidiPcmStream extends PcmStream {
 
 	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "-121"
+		garbageValue = "-121",
+		signature = "(B)V"
 	)
 	@Export("clear")
 	public synchronized void clear() {
@@ -333,8 +333,8 @@ public class MidiPcmStream extends PcmStream {
 
 	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		signature = "(I)Z",
-		garbageValue = "-1309898808"
+		garbageValue = "-1309898808",
+		signature = "(I)Z"
 	)
 	@Export("isReady")
 	synchronized boolean isReady() {
@@ -343,8 +343,8 @@ public class MidiPcmStream extends PcmStream {
 
 	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		signature = "(III)V",
-		garbageValue = "1101705080"
+		garbageValue = "1101705080",
+		signature = "(III)V"
 	)
 	public synchronized void method3919(int var1, int var2) {
 		this.method3920(var1, var2);
@@ -352,8 +352,8 @@ public class MidiPcmStream extends PcmStream {
 
 	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "(III)V",
-		garbageValue = "1341078259"
+		garbageValue = "1341078259",
+		signature = "(III)V"
 	)
 	void method3920(int var1, int var2) {
 		this.field2445[var1] = var2;
@@ -363,8 +363,8 @@ public class MidiPcmStream extends PcmStream {
 
 	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		signature = "(III)V",
-		garbageValue = "-982058038"
+		garbageValue = "-982058038",
+		signature = "(III)V"
 	)
 	void method3921(int var1, int var2) {
 		if (var2 != this.field2448[var1]) {
@@ -379,8 +379,8 @@ public class MidiPcmStream extends PcmStream {
 
 	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		signature = "(IIII)V",
-		garbageValue = "441303152"
+		garbageValue = "441303152",
+		signature = "(IIII)V"
 	)
 	void method3922(int var1, int var2, int var3) {
 		this.method3924(var1, var2, 64);
@@ -389,9 +389,9 @@ public class MidiPcmStream extends PcmStream {
 				if (var4.field2471 == var1 && var4.field2486 < 0) {
 					this.field2450[var1][var4.field2475] = null;
 					this.field2450[var1][var2] = var4;
-					int var5 = (var4.field2472 * var4.field2480 >> 12) + var4.field2478;
+					int var8 = (var4.field2472 * var4.field2480 >> 12) + var4.field2478;
 					var4.field2478 += var2 - var4.field2475 << 8;
-					var4.field2472 = var5 - var4.field2478;
+					var4.field2472 = var8 - var4.field2478;
 					var4.field2480 = 4096;
 					var4.field2475 = var2;
 					return;
@@ -401,12 +401,12 @@ public class MidiPcmStream extends PcmStream {
 
 		MusicPatch var9 = (MusicPatch)this.musicPatches.get((long)this.field2448[var1]);
 		if (var9 != null) {
-			RawSound var8 = var9.rawSounds[var2];
-			if (var8 != null) {
+			RawSound var5 = var9.rawSounds[var2];
+			if (var5 != null) {
 				MusicPatchNode var6 = new MusicPatchNode();
 				var6.field2471 = var1;
 				var6.patch = var9;
-				var6.rawSound = var8;
+				var6.rawSound = var5;
 				var6.field2473 = var9.field2511[var2];
 				var6.field2474 = var9.field2512[var2];
 				var6.field2475 = var2;
@@ -419,9 +419,9 @@ public class MidiPcmStream extends PcmStream {
 				var6.field2486 = -1;
 				var6.field2482 = 0;
 				if (this.field2460[var1] == 0) {
-					var6.stream = RawPcmStream.method2845(var8, this.method4009(var6), this.method3997(var6), this.method3938(var6));
+					var6.stream = RawPcmStream.method2845(var5, this.method4009(var6), this.method3997(var6), this.method3938(var6));
 				} else {
-					var6.stream = RawPcmStream.method2845(var8, this.method4009(var6), 0, this.method3938(var6));
+					var6.stream = RawPcmStream.method2845(var5, this.method4009(var6), 0, this.method3938(var6));
 					this.method3923(var6, var9.field2513[var2] < 0);
 				}
 
@@ -447,8 +447,8 @@ public class MidiPcmStream extends PcmStream {
 
 	@ObfuscatedName("g")
 	@ObfuscatedSignature(
-		signature = "(Lhq;ZI)V",
-		garbageValue = "-2147173721"
+		garbageValue = "-2147173721",
+		signature = "(Lhq;ZI)V"
 	)
 	void method3923(MusicPatchNode var1, boolean var2) {
 		int var3 = var1.rawSound.samples.length;
@@ -470,8 +470,8 @@ public class MidiPcmStream extends PcmStream {
 
 	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "(IIII)V",
-		garbageValue = "589612464"
+		garbageValue = "589612464",
+		signature = "(IIII)V"
 	)
 	void method3924(int var1, int var2, int var3) {
 		MusicPatchNode var4 = this.field2450[var1][var2];
@@ -493,24 +493,24 @@ public class MidiPcmStream extends PcmStream {
 
 	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		signature = "(IIIB)V",
-		garbageValue = "-112"
+		garbageValue = "-112",
+		signature = "(IIIB)V"
 	)
 	void method3925(int var1, int var2, int var3) {
 	}
 
 	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		signature = "(III)V",
-		garbageValue = "419517306"
+		garbageValue = "419517306",
+		signature = "(III)V"
 	)
 	void method3926(int var1, int var2) {
 	}
 
 	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "(IIB)V",
-		garbageValue = "10"
+		garbageValue = "10",
+		signature = "(IIB)V"
 	)
 	void method3995(int var1, int var2) {
 		this.field2441[var1] = var2;
@@ -518,8 +518,8 @@ public class MidiPcmStream extends PcmStream {
 
 	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
-		signature = "(IB)V",
-		garbageValue = "127"
+		garbageValue = "127",
+		signature = "(IB)V"
 	)
 	void method3928(int var1) {
 		for (MusicPatchNode var2 = (MusicPatchNode)this.patchStream.queue.last(); var2 != null; var2 = (MusicPatchNode)this.patchStream.queue.previous()) {
@@ -545,8 +545,8 @@ public class MidiPcmStream extends PcmStream {
 
 	@ObfuscatedName("am")
 	@ObfuscatedSignature(
-		signature = "(IS)V",
-		garbageValue = "-8109"
+		garbageValue = "-8109",
+		signature = "(IS)V"
 	)
 	void method3929(int var1) {
 		if (var1 >= 0) {
@@ -573,8 +573,8 @@ public class MidiPcmStream extends PcmStream {
 
 	@ObfuscatedName("ag")
 	@ObfuscatedSignature(
-		signature = "(IB)V",
-		garbageValue = "1"
+		garbageValue = "1",
+		signature = "(IB)V"
 	)
 	void method4017(int var1) {
 		for (MusicPatchNode var2 = (MusicPatchNode)this.patchStream.queue.last(); var2 != null; var2 = (MusicPatchNode)this.patchStream.queue.previous()) {
@@ -588,8 +588,8 @@ public class MidiPcmStream extends PcmStream {
 
 	@ObfuscatedName("ae")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-359198859"
+		garbageValue = "-359198859",
+		signature = "(I)V"
 	)
 	void method3931() {
 		this.method3928(-1);
@@ -608,8 +608,8 @@ public class MidiPcmStream extends PcmStream {
 
 	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		signature = "(II)V",
-		garbageValue = "2021609414"
+		garbageValue = "2021609414",
+		signature = "(II)V"
 	)
 	void method3932(int var1) {
 		if ((this.field2458[var1] & 2) != 0) {
@@ -624,8 +624,8 @@ public class MidiPcmStream extends PcmStream {
 
 	@ObfuscatedName("aq")
 	@ObfuscatedSignature(
-		signature = "(II)V",
-		garbageValue = "-781688600"
+		garbageValue = "-781688600",
+		signature = "(II)V"
 	)
 	void method3971(int var1) {
 		if ((this.field2458[var1] & 4) != 0) {
@@ -640,8 +640,8 @@ public class MidiPcmStream extends PcmStream {
 
 	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		signature = "(IB)V",
-		garbageValue = "30"
+		garbageValue = "30",
+		signature = "(IB)V"
 	)
 	void method3934(int var1) {
 		int var2 = var1 & 240;
@@ -834,8 +834,8 @@ public class MidiPcmStream extends PcmStream {
 
 	@ObfuscatedName("ak")
 	@ObfuscatedSignature(
-		signature = "(III)V",
-		garbageValue = "-1284126948"
+		garbageValue = "-1284126948",
+		signature = "(III)V"
 	)
 	void method3935(int var1, int var2) {
 		this.field2457[var1] = var2;
@@ -844,8 +844,8 @@ public class MidiPcmStream extends PcmStream {
 
 	@ObfuscatedName("ax")
 	@ObfuscatedSignature(
-		signature = "(Lhq;B)I",
-		garbageValue = "-12"
+		garbageValue = "-12",
+		signature = "(Lhq;B)I"
 	)
 	int method4009(MusicPatchNode var1) {
 		int var2 = (var1.field2472 * var1.field2480 >> 12) + var1.field2478;
@@ -870,8 +870,8 @@ public class MidiPcmStream extends PcmStream {
 
 	@ObfuscatedName("an")
 	@ObfuscatedSignature(
-		signature = "(Lhq;B)I",
-		garbageValue = "75"
+		garbageValue = "75",
+		signature = "(Lhq;B)I"
 	)
 	int method3997(MusicPatchNode var1) {
 		MusicPatchNode2 var2 = var1.field2473;
@@ -880,7 +880,7 @@ public class MidiPcmStream extends PcmStream {
 		var3 = var3 * var1.field2476 + 16384 >> 15;
 		var3 = var3 * this.field2442 + 128 >> 8;
 		if (var2.field2424 > 0) {
-			var3 = (int)((double)var3 * Math.pow(0.5D, (double)var2.field2424 * (double)var1.field2481 * 1.953125E-5D) + 0.5D);
+			var3 = (int)((double)var3 * Math.pow(0.5D, (double)var2.field2424 * (double)(var1.field2481 * 128) * 1.953125E-5D) + 0.5D);
 		}
 
 		int var4;
@@ -901,11 +901,11 @@ public class MidiPcmStream extends PcmStream {
 
 		if (var1.field2486 > 0 && var2.field2423 != null) {
 			var4 = var1.field2486;
-			var5 = var2.field2423[var1.field2482 * 2 + 1];
-			if (var1.field2482 * 2 < var2.field2423.length - 2) {
-				var6 = (var2.field2423[var1.field2482 * 2] & 255) << 8;
-				var7 = (var2.field2423[var1.field2482 * 2 + 2] & 255) << 8;
-				var5 += (var4 - var6) * (var2.field2423[var1.field2482 * 2 + 3] - var5) / (var7 - var6);
+			var5 = var2.field2423[var1.field2482 * 4 + 1];
+			if (var1.field2482 * 4 < var2.field2423.length - 2) {
+				var6 = (var2.field2423[var1.field2482 * 4] & 255) << 8;
+				var7 = (var2.field2423[var1.field2482 * 4 + 2] & 255) << 8;
+				var5 += (var2.field2423[var1.field2482 * 4 + 3] - var5) * (var4 - var6) / (var7 - var6);
 			}
 
 			var3 = var3 * var5 + 32 >> 6;
@@ -916,8 +916,8 @@ public class MidiPcmStream extends PcmStream {
 
 	@ObfuscatedName("ai")
 	@ObfuscatedSignature(
-		signature = "(Lhq;I)I",
-		garbageValue = "-118932210"
+		garbageValue = "-118932210",
+		signature = "(Lhq;I)I"
 	)
 	int method3938(MusicPatchNode var1) {
 		int var2 = this.field2447[var1.field2471];
@@ -926,8 +926,8 @@ public class MidiPcmStream extends PcmStream {
 
 	@ObfuscatedName("ab")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "-36"
+		garbageValue = "-36",
+		signature = "(B)V"
 	)
 	void method3944() {
 		int var1 = this.track;
@@ -972,8 +972,8 @@ public class MidiPcmStream extends PcmStream {
 
 	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		signature = "(Lhq;I)Z",
-		garbageValue = "-1408710575"
+		garbageValue = "-1408710575",
+		signature = "(Lhq;I)Z"
 	)
 	boolean method3927(MusicPatchNode var1) {
 		if (var1.stream == null) {
@@ -992,8 +992,8 @@ public class MidiPcmStream extends PcmStream {
 
 	@ObfuscatedName("af")
 	@ObfuscatedSignature(
-		signature = "(Lhq;[IIIB)Z",
-		garbageValue = "8"
+		garbageValue = "8",
+		signature = "(Lhq;[IIIB)Z"
 	)
 	boolean method3953(MusicPatchNode var1, int[] var2, int var3, int var4) {
 		var1.field2484 = StructDefinition.field3338 * 22050 / 100;
@@ -1016,9 +1016,9 @@ public class MidiPcmStream extends PcmStream {
 			double var8 = (double)((var1.field2475 - 60 << 8) + (var1.field2472 * var1.field2480 >> 12)) * 5.086263020833333E-6D;
 			if (var6.field2424 > 0) {
 				if (var6.field2431 > 0) {
-					var1.field2481 = var1.field2481 * 298074112 + (int)(128.0D * Math.pow(2.0D, (double)var6.field2431 * var8) + 0.5D) * 298074112;
+					var1.field2481 = var1.field2481 * 298074112 + (int)(128.0D * Math.pow(2.0D, (double)var6.field2431 * var8) + 0.5D) * 337873024;
 				} else {
-					var1.field2481 = var1.field2481 * 298074112 + -501219328;
+					var1.field2481 = var1.field2481 * 298074112 + 298074112;
 				}
 			}
 
@@ -1045,11 +1045,11 @@ public class MidiPcmStream extends PcmStream {
 					var1.field2486 += 128;
 				}
 
-				while (var1.field2482 * 2 < var6.field2423.length - 2 && var1.field2486 > (var6.field2423[var1.field2482 * 2 + 2] & 255) << 8) {
-					var1.field2482 = var1.field2482 * 4 + 4;
+				while (var1.field2482 * 4 < var6.field2423.length - 2 && var1.field2486 > (var6.field2423[var1.field2482 * 4 + 2] & 255) << 8) {
+					var1.field2482 = var1.field2482 * 4 + 2;
 				}
 
-				if (var1.field2482 * 2 == var6.field2423.length - 2) {
+				if (var1.field2482 * 4 == var6.field2423.length - 2) {
 					var7 = true;
 				}
 			}
@@ -1092,8 +1092,8 @@ public class MidiPcmStream extends PcmStream {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(IIB)Z",
-		garbageValue = "76"
+		garbageValue = "76",
+		signature = "(IIB)Z"
 	)
 	public static boolean method3972(int var0, int var1) {
 		return (var0 >> var1 + 1 & 1) != 0;
@@ -1101,8 +1101,8 @@ public class MidiPcmStream extends PcmStream {
 
 	@ObfuscatedName("as")
 	@ObfuscatedSignature(
-		signature = "(Ljg;I)Z",
-		garbageValue = "543287365"
+		garbageValue = "543287365",
+		signature = "(Ljg;I)Z"
 	)
 	static boolean method4031(ObjectComposition var0) {
 		if (var0.transforms != null) {

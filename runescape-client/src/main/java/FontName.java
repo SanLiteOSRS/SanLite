@@ -72,8 +72,8 @@ public class FontName {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(II)I",
-		garbageValue = "-1321910935"
+		garbageValue = "-1321910935",
+		signature = "(II)I"
 	)
 	@Export("getVarbit")
 	public static int getVarbit(int var0) {

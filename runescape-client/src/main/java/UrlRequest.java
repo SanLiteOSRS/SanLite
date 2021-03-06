@@ -23,8 +23,8 @@ public class UrlRequest {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(I)Z",
-		garbageValue = "-1827433673"
+		garbageValue = "-1827433673",
+		signature = "(I)Z"
 	)
 	@Export("isDone")
 	public boolean isDone() {
@@ -33,8 +33,8 @@ public class UrlRequest {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(B)[B",
-		garbageValue = "124"
+		garbageValue = "124",
+		signature = "(B)[B"
 	)
 	@Export("getResponse")
 	public byte[] getResponse() {
@@ -43,8 +43,8 @@ public class UrlRequest {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(ZZI)Lly;",
-		garbageValue = "-2105187304"
+		garbageValue = "-2105187304",
+		signature = "(ZZI)Lly;"
 	)
 	static IndexedSprite method3476(boolean var0, boolean var1) {
 		return var0 ? (var1 ? WorldMapDecoration.field237 : Login.options_buttons_2Sprite) : (var1 ? UrlRequester.field1956 : class69.options_buttons_0Sprite);

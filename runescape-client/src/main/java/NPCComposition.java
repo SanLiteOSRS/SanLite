@@ -227,8 +227,8 @@ public class NPCComposition extends DualNode {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-1161139559"
+		garbageValue = "-1161139559",
+		signature = "(I)V"
 	)
 	@Export("postDecode")
 	void postDecode() {
@@ -236,8 +236,8 @@ public class NPCComposition extends DualNode {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(Lkx;B)V",
-		garbageValue = "0"
+		garbageValue = "0",
+		signature = "(Lkx;B)V"
 	)
 	@Export("decode")
 	void decode(Buffer var1) {
@@ -253,8 +253,8 @@ public class NPCComposition extends DualNode {
 
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(Lkx;IB)V",
-		garbageValue = "43"
+		garbageValue = "43",
+		signature = "(Lkx;IB)V"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
@@ -378,8 +378,8 @@ public class NPCComposition extends DualNode {
 
 	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(Ljs;ILjs;II)Lef;",
-		garbageValue = "-2134889702"
+		garbageValue = "-2134889702",
+		signature = "(Ljs;ILjs;II)Lef;"
 	)
 	@Export("getModel")
 	public final Model getModel(SequenceDefinition var1, int var2, SequenceDefinition var3, int var4) {
@@ -408,107 +408,107 @@ public class NPCComposition extends DualNode {
 					var8[var9] = ModelData.ModelData_get(NpcDefinition_modelArchive, this.models[var9], 0);
 				}
 
-				ModelData var11;
+				ModelData var10;
 				if (var8.length == 1) {
-					var11 = var8[0];
+					var10 = var8[0];
 				} else {
-					var11 = new ModelData(var8, var8.length);
+					var10 = new ModelData(var8, var8.length);
 				}
 
 				if (this.recolorFrom != null) {
 					for (var9 = 0; var9 < this.recolorFrom.length; ++var9) {
-						var11.recolor(this.recolorFrom[var9], this.recolorTo[var9]);
+						var10.recolor(this.recolorFrom[var9], this.recolorTo[var9]);
 					}
 				}
 
 				if (this.retextureFrom != null) {
 					for (var9 = 0; var9 < this.retextureFrom.length; ++var9) {
-						var11.retexture(this.retextureFrom[var9], this.retextureTo[var9]);
+						var10.retexture(this.retextureFrom[var9], this.retextureTo[var9]);
 					}
 				}
 
-				var5 = var11.toModel(this.ambient + 64, this.contrast * 5 + 850, -30, -50, -30);
+				var5 = var10.toModel(this.ambient + 64, this.contrast * 5 + 850, -30, -50, -30);
 				NpcDefinition_cachedModels.put(var5, (long)this.id);
 			}
 
-			Model var10;
+			Model var11;
 			if (var1 != null && var3 != null) {
-				var10 = var1.applyTransformations(var5, var2, var3, var4);
+				var11 = var1.applyTransformations(var5, var2, var3, var4);
 			} else if (var1 != null) {
-				var10 = var1.transformActorModel(var5, var2);
+				var11 = var1.transformActorModel(var5, var2);
 			} else if (var3 != null) {
-				var10 = var3.transformActorModel(var5, var4);
+				var11 = var3.transformActorModel(var5, var4);
 			} else {
-				var10 = var5.toSharedSequenceModel(true);
+				var11 = var5.toSharedSequenceModel(true);
 			}
 
 			if (this.widthScale != 128 || this.heightScale != 128) {
-				var10.scale(this.widthScale, this.heightScale, this.widthScale);
+				var11.scale(this.widthScale, this.heightScale, this.widthScale);
 			}
 
-			return var10;
+			return var11;
 		}
 	}
 
 	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(B)Lek;",
-		garbageValue = "-5"
+		garbageValue = "-5",
+		signature = "(B)Lek;"
 	)
 	@Export("getModelData")
 	public final ModelData getModelData() {
 		if (this.transforms != null) {
-			NPCComposition var1 = this.transform();
-			return var1 == null ? null : var1.getModelData();
+			NPCComposition var7 = this.transform();
+			return var7 == null ? null : var7.getModelData();
 		} else if (this.field3505 == null) {
 			return null;
 		} else {
-			boolean var5 = false;
+			boolean var1 = false;
 
 			for (int var2 = 0; var2 < this.field3505.length; ++var2) {
 				if (!NpcDefinition_modelArchive.tryLoadFile(this.field3505[var2], 0)) {
-					var5 = true;
+					var1 = true;
 				}
 			}
 
-			if (var5) {
+			if (var1) {
 				return null;
 			} else {
-				ModelData[] var6 = new ModelData[this.field3505.length];
+				ModelData[] var5 = new ModelData[this.field3505.length];
 
 				for (int var3 = 0; var3 < this.field3505.length; ++var3) {
-					var6[var3] = ModelData.ModelData_get(NpcDefinition_modelArchive, this.field3505[var3], 0);
+					var5[var3] = ModelData.ModelData_get(NpcDefinition_modelArchive, this.field3505[var3], 0);
 				}
 
-				ModelData var7;
-				if (var6.length == 1) {
-					var7 = var6[0];
+				ModelData var6;
+				if (var5.length == 1) {
+					var6 = var5[0];
 				} else {
-					var7 = new ModelData(var6, var6.length);
+					var6 = new ModelData(var5, var5.length);
 				}
 
 				int var4;
 				if (this.recolorFrom != null) {
 					for (var4 = 0; var4 < this.recolorFrom.length; ++var4) {
-						var7.recolor(this.recolorFrom[var4], this.recolorTo[var4]);
+						var6.recolor(this.recolorFrom[var4], this.recolorTo[var4]);
 					}
 				}
 
 				if (this.retextureFrom != null) {
 					for (var4 = 0; var4 < this.retextureFrom.length; ++var4) {
-						var7.retexture(this.retextureFrom[var4], this.retextureTo[var4]);
+						var6.retexture(this.retextureFrom[var4], this.retextureTo[var4]);
 					}
 				}
 
-				return var7;
+				return var6;
 			}
 		}
 	}
 
 	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		signature = "(I)Ljy;",
-		garbageValue = "1357950663"
+		garbageValue = "1357950663",
+		signature = "(I)Ljy;"
 	)
 	@Export("transform")
 	public final NPCComposition transform() {
@@ -531,8 +531,8 @@ public class NPCComposition extends DualNode {
 
 	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		signature = "(B)Z",
-		garbageValue = "122"
+		garbageValue = "122",
+		signature = "(B)Z"
 	)
 	@Export("transformIsVisible")
 	public boolean transformIsVisible() {
@@ -556,8 +556,8 @@ public class NPCComposition extends DualNode {
 
 	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		signature = "(IIB)I",
-		garbageValue = "93"
+		garbageValue = "93",
+		signature = "(IIB)I"
 	)
 	@Export("getIntParam")
 	public int getIntParam(int var1, int var2) {
@@ -579,8 +579,8 @@ public class NPCComposition extends DualNode {
 
 	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		signature = "(ILjava/lang/String;B)Ljava/lang/String;",
-		garbageValue = "2"
+		garbageValue = "2",
+		signature = "(ILjava/lang/String;B)Ljava/lang/String;"
 	)
 	@Export("getStringParam")
 	public String getStringParam(int var1, String var2) {

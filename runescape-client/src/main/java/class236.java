@@ -19,8 +19,8 @@ public final class class236 {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(IIII)I",
-		garbageValue = "1107662204"
+		garbageValue = "1107662204",
+		signature = "(IIII)I"
 	)
 	public static int method4332(int var0, int var1, int var2) {
 		var2 &= 3;

@@ -118,8 +118,8 @@ public class SequenceDefinition extends DualNode {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(Lkx;I)V",
-		garbageValue = "-1298412871"
+		garbageValue = "-1298412871",
+		signature = "(Lkx;I)V"
 	)
 	@Export("decode")
 	void decode(Buffer var1) {
@@ -135,8 +135,8 @@ public class SequenceDefinition extends DualNode {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(Lkx;II)V",
-		garbageValue = "-1464269067"
+		garbageValue = "-1464269067",
+		signature = "(Lkx;II)V"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
@@ -210,8 +210,8 @@ public class SequenceDefinition extends DualNode {
 
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "-49"
+		garbageValue = "-49",
+		signature = "(B)V"
 	)
 	@Export("postDecode")
 	void postDecode() {
@@ -235,8 +235,8 @@ public class SequenceDefinition extends DualNode {
 
 	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(Lef;II)Lef;",
-		garbageValue = "2114263360"
+		garbageValue = "2114263360",
+		signature = "(Lef;II)Lef;"
 	)
 	@Export("transformActorModel")
 	public Model transformActorModel(Model var1, int var2) {
@@ -254,8 +254,8 @@ public class SequenceDefinition extends DualNode {
 
 	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(Lef;IIS)Lef;",
-		garbageValue = "-75"
+		garbageValue = "-75",
+		signature = "(Lef;IIS)Lef;"
 	)
 	@Export("transformObjectModel")
 	Model transformObjectModel(Model var1, int var2, int var3) {
@@ -290,8 +290,8 @@ public class SequenceDefinition extends DualNode {
 
 	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		signature = "(Lef;IB)Lef;",
-		garbageValue = "26"
+		garbageValue = "26",
+		signature = "(Lef;IB)Lef;"
 	)
 	@Export("transformSpotAnimationModel")
 	Model transformSpotAnimationModel(Model var1, int var2) {
@@ -309,8 +309,8 @@ public class SequenceDefinition extends DualNode {
 
 	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		signature = "(Lef;ILjs;II)Lef;",
-		garbageValue = "-1897802113"
+		garbageValue = "-1897802113",
+		signature = "(Lef;ILjs;II)Lef;"
 	)
 	@Export("applyTransformations")
 	public Model applyTransformations(Model var1, int var2, SequenceDefinition var3, int var4) {
@@ -338,8 +338,8 @@ public class SequenceDefinition extends DualNode {
 
 	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		signature = "(Lef;II)Lef;",
-		garbageValue = "620650049"
+		garbageValue = "620650049",
+		signature = "(Lef;II)Lef;"
 	)
 	@Export("transformWidgetModel")
 	public Model transformWidgetModel(Model var1, int var2) {
@@ -373,8 +373,8 @@ public class SequenceDefinition extends DualNode {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;Ljava/lang/Throwable;B)V",
-		garbageValue = "-109"
+		garbageValue = "-109",
+		signature = "(Ljava/lang/String;Ljava/lang/Throwable;B)V"
 	)
 	@Export("RunException_sendStackTrace")
 	public static void RunException_sendStackTrace(String var0, Throwable var1) {

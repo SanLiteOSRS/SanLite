@@ -23,8 +23,8 @@ public class IgnoreList extends NameableContainer {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(I)Ljn;",
-		garbageValue = "-315842787"
+		garbageValue = "-315842787",
+		signature = "(I)Ljn;"
 	)
 	@Export("newInstance")
 	Nameable newInstance() {
@@ -33,8 +33,8 @@ public class IgnoreList extends NameableContainer {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(II)[Ljn;",
-		garbageValue = "1723641195"
+		garbageValue = "1723641195",
+		signature = "(II)[Ljn;"
 	)
 	@Export("newTypedArray")
 	Nameable[] newTypedArray(int var1) {
@@ -43,8 +43,8 @@ public class IgnoreList extends NameableContainer {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(Lkx;II)V",
-		garbageValue = "-631264277"
+		garbageValue = "-631264277",
+		signature = "(Lkx;II)V"
 	)
 	@Export("read")
 	public void read(Buffer var1, int var2) {

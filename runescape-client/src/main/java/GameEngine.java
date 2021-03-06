@@ -220,8 +220,8 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(III)V",
-		garbageValue = "-420237579"
+		garbageValue = "-420237579",
+		signature = "(III)V"
 	)
 	@Export("setMaxCanvasSize")
 	protected final void setMaxCanvasSize(int var1, int var2) {
@@ -235,8 +235,8 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/Object;I)V",
-		garbageValue = "2080596148"
+		garbageValue = "2080596148",
+		signature = "(Ljava/lang/Object;I)V"
 	)
 	@Export("post")
 	final void post(Object var1) {
@@ -254,8 +254,8 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 
 	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(I)Lfo;",
-		garbageValue = "-1572437052"
+		garbageValue = "-1572437052",
+		signature = "(I)Lfo;"
 	)
 	@Export("mouseWheel")
 	protected MouseWheel mouseWheel() {
@@ -269,8 +269,8 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 
 	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "84"
+		garbageValue = "84",
+		signature = "(B)V"
 	)
 	@Export("setUpClipboard")
 	protected void setUpClipboard() {
@@ -279,8 +279,8 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 
 	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;I)V",
-		garbageValue = "-775361579"
+		garbageValue = "-775361579",
+		signature = "(Ljava/lang/String;I)V"
 	)
 	@Export("clipboardSetString")
 	protected void clipboardSetString(String var1) {
@@ -289,8 +289,8 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 
 	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-367283277"
+		garbageValue = "-367283277",
+		signature = "(I)V"
 	)
 	@Export("setUpKeyboard")
 	protected final void setUpKeyboard() {
@@ -330,8 +330,8 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 
 	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "1149446926"
+		garbageValue = "1149446926",
+		signature = "(I)V"
 	)
 	@Export("setUpMouse")
 	protected final void setUpMouse() {
@@ -340,8 +340,8 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 
 	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "1907084559"
+		garbageValue = "1907084559",
+		signature = "(I)V"
 	)
 	@Export("resizeCanvas")
 	final void resizeCanvas() {
@@ -378,16 +378,16 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 
 	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-226650241"
+		garbageValue = "-226650241",
+		signature = "(I)V"
 	)
 	@Export("resizeGame")
 	protected abstract void resizeGame();
 
 	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-998749826"
+		garbageValue = "-998749826",
+		signature = "(I)V"
 	)
 	@Export("clearBackground")
 	void clearBackground() {
@@ -431,8 +431,8 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 
 	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "-14"
+		garbageValue = "-14",
+		signature = "(B)V"
 	)
 	@Export("replaceCanvas")
 	final void replaceCanvas() {
@@ -461,8 +461,8 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 
 	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		signature = "(IIII)V",
-		garbageValue = "-2060658023"
+		garbageValue = "-2060658023",
+		signature = "(IIII)V"
 	)
 	@Export("startThread")
 	protected final void startThread(int var1, int var2, int var3) {
@@ -497,8 +497,8 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 
 	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		signature = "(S)V",
-		garbageValue = "128"
+		garbageValue = "128",
+		signature = "(S)V"
 	)
 	@Export("addCanvas")
 	final synchronized void addCanvas() {
@@ -547,8 +547,8 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 
 	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "(I)Z",
-		garbageValue = "-1882599672"
+		garbageValue = "-1882599672",
+		signature = "(I)Z"
 	)
 	@Export("checkHost")
 	protected final boolean checkHost() {
@@ -579,8 +579,8 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 
 	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "1"
+		garbageValue = "1",
+		signature = "(B)V"
 	)
 	@Export("clientTick")
 	void clientTick() {
@@ -600,8 +600,8 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 
 	@ObfuscatedName("am")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "548741005"
+		garbageValue = "548741005",
+		signature = "(I)V"
 	)
 	@Export("graphicsTick")
 	void graphicsTick() {
@@ -643,8 +643,8 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 
 	@ObfuscatedName("ag")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "1"
+		garbageValue = "1",
+		signature = "(B)V"
 	)
 	final void method1103() {
 		Bounds var1 = this.getFrameContentBounds();
@@ -657,8 +657,8 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 
 	@ObfuscatedName("ae")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-17755841"
+		garbageValue = "-17755841",
+		signature = "(I)V"
 	)
 	final void method1007() {
 		this.resizeCanvasNextFrame = true;
@@ -666,8 +666,8 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 
 	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "1467969246"
+		garbageValue = "1467969246",
+		signature = "(I)V"
 	)
 	@Export("kill")
 	final synchronized void kill() {
@@ -704,40 +704,40 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 
 	@ObfuscatedName("aq")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-337269105"
+		garbageValue = "-337269105",
+		signature = "(I)V"
 	)
 	@Export("setUp")
 	protected abstract void setUp();
 
 	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "-123"
+		garbageValue = "-123",
+		signature = "(B)V"
 	)
 	@Export("doCycle")
 	protected abstract void doCycle();
 
 	@ObfuscatedName("ak")
 	@ObfuscatedSignature(
-		signature = "(ZI)V",
-		garbageValue = "-1888023388"
+		garbageValue = "-1888023388",
+		signature = "(ZI)V"
 	)
 	@Export("draw")
 	protected abstract void draw(boolean var1);
 
 	@ObfuscatedName("ax")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "1925350941"
+		garbageValue = "1925350941",
+		signature = "(I)V"
 	)
 	@Export("kill0")
 	protected abstract void kill0();
 
 	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		signature = "(ILjava/lang/String;ZS)V",
-		garbageValue = "239"
+		garbageValue = "239",
+		signature = "(ILjava/lang/String;ZS)V"
 	)
 	@Export("drawInitial")
 	protected final void drawInitial(int var1, String var2, boolean var3) {
@@ -792,8 +792,8 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 
 	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "1187634060"
+		garbageValue = "1187634060",
+		signature = "(I)V"
 	)
 	protected final void method1078() {
 		field480 = null;
@@ -803,8 +803,8 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 
 	@ObfuscatedName("aa")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;B)V",
-		garbageValue = "120"
+		garbageValue = "120",
+		signature = "(Ljava/lang/String;B)V"
 	)
 	@Export("error")
 	protected void error(String var1) {
@@ -822,8 +822,8 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 
 	@ObfuscatedName("as")
 	@ObfuscatedSignature(
-		signature = "(I)Ljava/awt/Container;",
-		garbageValue = "-838247309"
+		garbageValue = "-838247309",
+		signature = "(I)Ljava/awt/Container;"
 	)
 	@Export("container")
 	Container container() {
@@ -832,8 +832,8 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 
 	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		signature = "(I)Lli;",
-		garbageValue = "-1070651105"
+		garbageValue = "-1070651105",
+		signature = "(I)Lli;"
 	)
 	@Export("getFrameContentBounds")
 	Bounds getFrameContentBounds() {
@@ -851,8 +851,8 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 
 	@ObfuscatedName("az")
 	@ObfuscatedSignature(
-		signature = "(I)Z",
-		garbageValue = "-697132291"
+		garbageValue = "-697132291",
+		signature = "(I)Z"
 	)
 	@Export("hasFrame")
 	protected final boolean hasFrame() {
@@ -861,8 +861,8 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 
 	@ObfuscatedName("ap")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "103"
+		garbageValue = "103",
+		signature = "(B)V"
 	)
 	protected abstract void vmethod1423();
 
@@ -996,8 +996,8 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(I)[Lje;",
-		garbageValue = "1729948471"
+		garbageValue = "1729948471",
+		signature = "(I)[Lje;"
 	)
 	static HorizontalAlignment[] method1137() {
 		return new HorizontalAlignment[]{HorizontalAlignment.field3494, HorizontalAlignment.field3490, HorizontalAlignment.HorizontalAlignment_centered};
@@ -1005,8 +1005,8 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 
 	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		signature = "(IIIIIILeq;Lfe;I)V",
-		garbageValue = "1508002032"
+		garbageValue = "1508002032",
+		signature = "(IIIIIILeq;Lfe;I)V"
 	)
 	static final void method1134(int var0, int var1, int var2, int var3, int var4, int var5, Scene var6, CollisionMap var7) {
 		if (!Client.isLowDetail || (Tiles.Tiles_renderFlags[0][var1][var2] & 2) != 0 || (Tiles.Tiles_renderFlags[var0][var1][var2] & 16) == 0) {
@@ -1061,7 +1061,7 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 				ObjectSound var22 = new ObjectSound();
 				var22.plane = var0;
 				var22.x = var1 * 16384;
-				var22.y = var2 * 16384;
+				var22.y = var2 * 128;
 				var23 = var8.sizeX;
 				var24 = var8.sizeY;
 				if (var4 == 1 || var4 == 3) {
@@ -1069,7 +1069,7 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 					var24 = var8.sizeX;
 				}
 
-				var22.field1090 = (var23 + var1) * 128;
+				var22.field1090 = (var23 + var1) * 16384;
 				var22.field1094 = (var24 + var2) * 16384;
 				var22.soundEffectId = var8.ambientSoundId;
 				var22.field1092 = var8.int4 * 128;
@@ -1207,17 +1207,17 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 					int var28;
 					if (var5 == 2) {
 						var28 = var4 + 1 & 3;
-						Object var29;
-						Object var30;
+						Object var31;
+						Object var32;
 						if (var8.animationId == -1 && var8.transforms == null) {
-							var29 = var8.getEntity(2, var4 + 4, var15, var17, var16, var18);
-							var30 = var8.getEntity(2, var28, var15, var17, var16, var18);
+							var31 = var8.getEntity(2, var4 + 4, var15, var17, var16, var18);
+							var32 = var8.getEntity(2, var28, var15, var17, var16, var18);
 						} else {
-							var29 = new DynamicObject(var3, 2, var4 + 4, var0, var1, var2, var8.animationId, var8.field3429, (Renderable)null);
-							var30 = new DynamicObject(var3, 2, var28, var0, var1, var2, var8.animationId, var8.field3429, (Renderable)null);
+							var31 = new DynamicObject(var3, 2, var4 + 4, var0, var1, var2, var8.animationId, var8.field3429, (Renderable)null);
+							var32 = new DynamicObject(var3, 2, var28, var0, var1, var2, var8.animationId, var8.field3429, (Renderable)null);
 						}
 
-						var6.newBoundaryObject(var0, var1, var2, var16, (Renderable)var29, (Renderable)var30, Tiles.field521[var4], Tiles.field521[var28], var19, var21);
+						var6.newBoundaryObject(var0, var1, var2, var16, (Renderable)var31, (Renderable)var32, Tiles.field521[var4], Tiles.field521[var28], var19, var21);
 						if (var8.modelClipped) {
 							if (var4 == 0) {
 								var10000 = class2.field12[var0][var1];
@@ -1299,36 +1299,36 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 
 						var6.newWallDecoration(var0, var1, var2, var16, (Renderable)var34, (Renderable)null, Tiles.field521[var4], 0, 0, 0, var19, var21);
 					} else {
-						long var31;
-						Object var33;
+						Object var25;
+						long var29;
 						if (var5 == 5) {
 							var28 = 16;
-							var31 = var6.getBoundaryObjectTag(var0, var1, var2);
-							if (0L != var31) {
-								var28 = WorldMapAreaData.getObjectDefinition(class25.Entity_unpackID(var31)).int2;
+							var29 = var6.getBoundaryObjectTag(var0, var1, var2);
+							if (0L != var29) {
+								var28 = WorldMapAreaData.getObjectDefinition(class25.Entity_unpackID(var29)).int2;
 							}
 
 							if (var8.animationId == -1 && var8.transforms == null) {
-								var33 = var8.getEntity(4, var4, var15, var17, var16, var18);
+								var25 = var8.getEntity(4, var4, var15, var17, var16, var18);
 							} else {
-								var33 = new DynamicObject(var3, 4, var4, var0, var1, var2, var8.animationId, var8.field3429, (Renderable)null);
+								var25 = new DynamicObject(var3, 4, var4, var0, var1, var2, var8.animationId, var8.field3429, (Renderable)null);
 							}
 
-							var6.newWallDecoration(var0, var1, var2, var16, (Renderable)var33, (Renderable)null, Tiles.field521[var4], 0, var28 * Tiles.field523[var4], var28 * Tiles.field527[var4], var19, var21);
+							var6.newWallDecoration(var0, var1, var2, var16, (Renderable)var25, (Renderable)null, Tiles.field521[var4], 0, var28 * Tiles.field523[var4], var28 * Tiles.field527[var4], var19, var21);
 						} else if (var5 == 6) {
 							var28 = 8;
-							var31 = var6.getBoundaryObjectTag(var0, var1, var2);
-							if (0L != var31) {
-								var28 = WorldMapAreaData.getObjectDefinition(class25.Entity_unpackID(var31)).int2 / 2;
+							var29 = var6.getBoundaryObjectTag(var0, var1, var2);
+							if (0L != var29) {
+								var28 = WorldMapAreaData.getObjectDefinition(class25.Entity_unpackID(var29)).int2 / 2;
 							}
 
 							if (var8.animationId == -1 && var8.transforms == null) {
-								var33 = var8.getEntity(4, var4 + 4, var15, var17, var16, var18);
+								var25 = var8.getEntity(4, var4 + 4, var15, var17, var16, var18);
 							} else {
-								var33 = new DynamicObject(var3, 4, var4 + 4, var0, var1, var2, var8.animationId, var8.field3429, (Renderable)null);
+								var25 = new DynamicObject(var3, 4, var4 + 4, var0, var1, var2, var8.animationId, var8.field3429, (Renderable)null);
 							}
 
-							var6.newWallDecoration(var0, var1, var2, var16, (Renderable)var33, (Renderable)null, 256, var4, var28 * Tiles.field525[var4], var28 * Tiles.field526[var4], var19, var21);
+							var6.newWallDecoration(var0, var1, var2, var16, (Renderable)var25, (Renderable)null, 256, var4, var28 * Tiles.field525[var4], var28 * Tiles.field526[var4], var19, var21);
 						} else if (var5 == 7) {
 							var23 = var4 + 2 & 3;
 							if (var8.animationId == -1 && var8.transforms == null) {
@@ -1340,22 +1340,22 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 							var6.newWallDecoration(var0, var1, var2, var16, (Renderable)var34, (Renderable)null, 256, var23, 0, 0, var19, var21);
 						} else if (var5 == 8) {
 							var28 = 8;
-							var31 = var6.getBoundaryObjectTag(var0, var1, var2);
-							if (0L != var31) {
-								var28 = WorldMapAreaData.getObjectDefinition(class25.Entity_unpackID(var31)).int2 / 2;
+							var29 = var6.getBoundaryObjectTag(var0, var1, var2);
+							if (0L != var29) {
+								var28 = WorldMapAreaData.getObjectDefinition(class25.Entity_unpackID(var29)).int2 / 2;
 							}
 
 							int var27 = var4 + 2 & 3;
 							Object var26;
 							if (var8.animationId == -1 && var8.transforms == null) {
-								var33 = var8.getEntity(4, var4 + 4, var15, var17, var16, var18);
+								var25 = var8.getEntity(4, var4 + 4, var15, var17, var16, var18);
 								var26 = var8.getEntity(4, var27 + 4, var15, var17, var16, var18);
 							} else {
-								var33 = new DynamicObject(var3, 4, var4 + 4, var0, var1, var2, var8.animationId, var8.field3429, (Renderable)null);
+								var25 = new DynamicObject(var3, 4, var4 + 4, var0, var1, var2, var8.animationId, var8.field3429, (Renderable)null);
 								var26 = new DynamicObject(var3, 4, var27 + 4, var0, var1, var2, var8.animationId, var8.field3429, (Renderable)null);
 							}
 
-							var6.newWallDecoration(var0, var1, var2, var16, (Renderable)var33, (Renderable)var26, 256, var4, var28 * Tiles.field525[var4], var28 * Tiles.field526[var4], var19, var21);
+							var6.newWallDecoration(var0, var1, var2, var16, (Renderable)var25, (Renderable)var26, 256, var4, var28 * Tiles.field525[var4], var28 * Tiles.field526[var4], var19, var21);
 						}
 					}
 				}
@@ -1376,9 +1376,9 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 					}
 
 					for (var24 = 0; var24 <= var9; ++var24) {
-						for (int var25 = 0; var25 <= var10; ++var25) {
-							if (var23 > TaskHandler.field2045[var0][var24 + var1][var25 + var2]) {
-								TaskHandler.field2045[var0][var24 + var1][var25 + var2] = (byte)var23;
+						for (int var33 = 0; var33 <= var10; ++var33) {
+							if (var23 > TaskHandler.field2045[var0][var24 + var1][var33 + var2]) {
+								TaskHandler.field2045[var0][var24 + var1][var33 + var2] = (byte)var23;
 							}
 						}
 					}
@@ -1394,17 +1394,17 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 
 	@ObfuscatedName("fa")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-325844225"
+		garbageValue = "-325844225",
+		signature = "(I)V"
 	)
 	@Export("load")
 	static void load() {
-		int var0;
+		int var14;
 		if (Client.titleLoadingStage == 0) {
 			MilliClock.scene = new Scene(4, 104, 104, Tiles.Tiles_heights);
 
-			for (var0 = 0; var0 < 4; ++var0) {
-				Client.collisionMaps[var0] = new CollisionMap(104, 104);
+			for (var14 = 0; var14 < 4; ++var14) {
+				Client.collisionMaps[var14] = new CollisionMap(104, 104);
 			}
 
 			GrandExchangeOfferAgeComparator.sceneMinimapSprite = new SpritePixels(512, 512);
@@ -1440,30 +1440,30 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 			Login.Login_loadingPercent = 20;
 			Client.titleLoadingStage = 40;
 		} else if (Client.titleLoadingStage == 40) {
-			byte var22 = 0;
-			var0 = var22 + class52.archive0.percentage() * 4 / 100;
-			var0 += SpriteMask.archive1.percentage() * 4 / 100;
-			var0 += WorldMapIcon_0.archive2.percentage() * 2 / 100;
-			var0 += PlayerComposition.archive3.percentage() * 2 / 100;
-			var0 += WorldMapCacheName.archive4.percentage() * 6 / 100;
-			var0 += class8.archive5.percentage() * 4 / 100;
-			var0 += UrlRequester.archive6.percentage() * 2 / 100;
-			var0 += WorldMapData_0.archive7.percentage() * 56 / 100;
-			var0 += ModeWhere.archive8.percentage() * 2 / 100;
-			var0 += ViewportMouse.archive9.percentage() * 2 / 100;
-			var0 += LoginScreenAnimation.archive10.percentage() * 2 / 100;
-			var0 += WorldMapManager.archive11.percentage() * 2 / 100;
-			var0 += WorldMapSection0.archive12.percentage() * 2 / 100;
-			var0 += CollisionMap.archive13.percentage() * 2 / 100;
-			var0 += Tiles.archive14.percentage() * 2 / 100;
-			var0 += SpriteMask.archive15.percentage() * 2 / 100;
-			var0 += ArchiveLoader.archive19.percentage() / 100;
-			var0 += class25.archive18.percentage() / 100;
-			var0 += Login.archive20.percentage() / 100;
-			var0 += ItemComposition.archive17.method4461() && ItemComposition.archive17.isFullyLoaded() ? 1 : 0;
-			if (var0 != 100) {
-				if (var0 != 0) {
-					Login.Login_loadingText = "Checking for updates - " + var0 + "%";
+			byte var25 = 0;
+			var14 = var25 + class52.archive0.percentage() * 4 / 100;
+			var14 += SpriteMask.archive1.percentage() * 4 / 100;
+			var14 += WorldMapIcon_0.archive2.percentage() * 2 / 100;
+			var14 += PlayerComposition.archive3.percentage() * 2 / 100;
+			var14 += WorldMapCacheName.archive4.percentage() * 6 / 100;
+			var14 += class8.archive5.percentage() * 4 / 100;
+			var14 += UrlRequester.archive6.percentage() * 2 / 100;
+			var14 += WorldMapData_0.archive7.percentage() * 56 / 100;
+			var14 += ModeWhere.archive8.percentage() * 2 / 100;
+			var14 += ViewportMouse.archive9.percentage() * 2 / 100;
+			var14 += LoginScreenAnimation.archive10.percentage() * 2 / 100;
+			var14 += WorldMapManager.archive11.percentage() * 2 / 100;
+			var14 += WorldMapSection0.archive12.percentage() * 2 / 100;
+			var14 += CollisionMap.archive13.percentage() * 2 / 100;
+			var14 += Tiles.archive14.percentage() * 2 / 100;
+			var14 += SpriteMask.archive15.percentage() * 2 / 100;
+			var14 += ArchiveLoader.archive19.percentage() / 100;
+			var14 += class25.archive18.percentage() / 100;
+			var14 += Login.archive20.percentage() / 100;
+			var14 += ItemComposition.archive17.method4461() && ItemComposition.archive17.isFullyLoaded() ? 1 : 0;
+			if (var14 != 100) {
+				if (var14 != 0) {
+					Login.Login_loadingText = "Checking for updates - " + var14 + "%";
 				}
 
 				Login.Login_loadingPercent = 30;
@@ -1488,15 +1488,15 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 				Client.titleLoadingStage = 45;
 			}
 		} else if (Client.titleLoadingStage == 45) {
-			boolean var21 = !Client.isLowDetail;
+			boolean var24 = !Client.isLowDetail;
 			StructDefinition.field3338 = 486202500;
-			PcmPlayer.PcmPlayer_stereo = var21;
+			PcmPlayer.PcmPlayer_stereo = var24;
 			PcmPlayer.field1419 = 2;
-			MidiPcmStream var19 = new MidiPcmStream();
-			var19.method3919(9, 128);
+			MidiPcmStream var22 = new MidiPcmStream();
+			var22.method3919(9, 128);
 			class197.pcmPlayer0 = GrandExchangeOffer.method167(taskHandler, 0, 22050);
-			class197.pcmPlayer0.setStream(var19);
-			class69.method1256(SpriteMask.archive15, Tiles.archive14, WorldMapCacheName.archive4, var19);
+			class197.pcmPlayer0.setStream(var22);
+			class69.method1256(SpriteMask.archive15, Tiles.archive14, WorldMapCacheName.archive4, var22);
 			WorldMapDecorationType.pcmPlayer1 = GrandExchangeOffer.method167(taskHandler, 1, 2048);
 			VarbitComposition.pcmStreamMixer = new PcmStreamMixer();
 			WorldMapDecorationType.pcmPlayer1.setStream(VarbitComposition.pcmStreamMixer);
@@ -1506,15 +1506,15 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 			Client.titleLoadingStage = 50;
 			class350.WorldMapElement_fonts = new Fonts(ModeWhere.archive8, CollisionMap.archive13);
 		} else {
-			int var15;
+			int var1;
 			if (Client.titleLoadingStage == 50) {
-				FontName[] var24 = new FontName[]{FontName.FontName_plain11, FontName.FontName_verdana13, FontName.FontName_verdana11, FontName.FontName_bold12, FontName.FontName_verdana15, FontName.FontName_plain12};
-				var15 = var24.length;
-				Fonts var20 = class350.WorldMapElement_fonts;
-				FontName[] var3 = new FontName[]{FontName.FontName_plain11, FontName.FontName_verdana13, FontName.FontName_verdana11, FontName.FontName_bold12, FontName.FontName_verdana15, FontName.FontName_plain12};
-				Client.fontsMap = var20.createMap(var3);
-				if (Client.fontsMap.size() < var15) {
-					Login.Login_loadingText = "Loading fonts - " + Client.fontsMap.size() * 100 / var15 + "%";
+				FontName[] var20 = new FontName[]{FontName.FontName_plain11, FontName.FontName_verdana13, FontName.FontName_verdana11, FontName.FontName_bold12, FontName.FontName_verdana15, FontName.FontName_plain12};
+				var1 = var20.length;
+				Fonts var23 = class350.WorldMapElement_fonts;
+				FontName[] var18 = new FontName[]{FontName.FontName_plain11, FontName.FontName_verdana13, FontName.FontName_verdana11, FontName.FontName_bold12, FontName.FontName_verdana15, FontName.FontName_plain12};
+				Client.fontsMap = var23.createMap(var18);
+				if (Client.fontsMap.size() < var1) {
+					Login.Login_loadingText = "Loading fonts - " + Client.fontsMap.size() * 100 / var1 + "%";
 					Login.Login_loadingPercent = 40;
 				} else {
 					SecureRandomCallable.fontPlain11 = (Font)Client.fontsMap.get(FontName.FontName_plain11);
@@ -1526,70 +1526,70 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 					Client.titleLoadingStage = 60;
 				}
 			} else {
-				Archive var1;
-				Archive var2;
+				int var3;
 				int var4;
-				int var16;
+				Archive var15;
+				Archive var16;
 				if (Client.titleLoadingStage == 60) {
-					var1 = LoginScreenAnimation.archive10;
-					var2 = ModeWhere.archive8;
-					var16 = 0;
-					if (var1.tryLoadFileByNames("title.jpg", "")) {
-						++var16;
+					var15 = LoginScreenAnimation.archive10;
+					var16 = ModeWhere.archive8;
+					var3 = 0;
+					if (var15.tryLoadFileByNames("title.jpg", "")) {
+						++var3;
 					}
 
-					if (var2.tryLoadFileByNames("logo", "")) {
-						++var16;
+					if (var16.tryLoadFileByNames("logo", "")) {
+						++var3;
 					}
 
-					if (var2.tryLoadFileByNames("logo_deadman_mode", "")) {
-						++var16;
+					if (var16.tryLoadFileByNames("logo_deadman_mode", "")) {
+						++var3;
 					}
 
-					if (var2.tryLoadFileByNames("logo_seasonal_mode", "")) {
-						++var16;
+					if (var16.tryLoadFileByNames("logo_seasonal_mode", "")) {
+						++var3;
 					}
 
-					if (var2.tryLoadFileByNames("titlebox", "")) {
-						++var16;
+					if (var16.tryLoadFileByNames("titlebox", "")) {
+						++var3;
 					}
 
-					if (var2.tryLoadFileByNames("titlebutton", "")) {
-						++var16;
+					if (var16.tryLoadFileByNames("titlebutton", "")) {
+						++var3;
 					}
 
-					if (var2.tryLoadFileByNames("runes", "")) {
-						++var16;
+					if (var16.tryLoadFileByNames("runes", "")) {
+						++var3;
 					}
 
-					if (var2.tryLoadFileByNames("title_mute", "")) {
-						++var16;
+					if (var16.tryLoadFileByNames("title_mute", "")) {
+						++var3;
 					}
 
-					if (var2.tryLoadFileByNames("options_radio_buttons,0", "")) {
-						++var16;
+					if (var16.tryLoadFileByNames("options_radio_buttons,0", "")) {
+						++var3;
 					}
 
-					if (var2.tryLoadFileByNames("options_radio_buttons,2", "")) {
-						++var16;
+					if (var16.tryLoadFileByNames("options_radio_buttons,2", "")) {
+						++var3;
 					}
 
-					if (var2.tryLoadFileByNames("options_radio_buttons,4", "")) {
-						++var16;
+					if (var16.tryLoadFileByNames("options_radio_buttons,4", "")) {
+						++var3;
 					}
 
-					if (var2.tryLoadFileByNames("options_radio_buttons,6", "")) {
-						++var16;
+					if (var16.tryLoadFileByNames("options_radio_buttons,6", "")) {
+						++var3;
 					}
 
-					var2.tryLoadFileByNames("sl_back", "");
-					var2.tryLoadFileByNames("sl_flags", "");
-					var2.tryLoadFileByNames("sl_arrows", "");
-					var2.tryLoadFileByNames("sl_stars", "");
-					var2.tryLoadFileByNames("sl_button", "");
+					var16.tryLoadFileByNames("sl_back", "");
+					var16.tryLoadFileByNames("sl_flags", "");
+					var16.tryLoadFileByNames("sl_arrows", "");
+					var16.tryLoadFileByNames("sl_stars", "");
+					var16.tryLoadFileByNames("sl_button", "");
 					var4 = WorldMapIcon_0.method286();
-					if (var16 < var4) {
-						Login.Login_loadingText = "Loading title screen - " + var16 * 100 / var4 + "%";
+					if (var3 < var4) {
+						Login.Login_loadingText = "Loading title screen - " + var3 * 100 / var4 + "%";
 						Login.Login_loadingPercent = 50;
 					} else {
 						Login.Login_loadingText = "Loaded title screen";
@@ -1603,19 +1603,19 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 						Login.Login_loadingPercent = 60;
 					} else {
 						class228.method4310(WorldMapIcon_0.archive2);
-						Archive var23 = WorldMapIcon_0.archive2;
-						FloorUnderlayDefinition.FloorUnderlayDefinition_archive = var23;
+						Archive var19 = WorldMapIcon_0.archive2;
+						FloorUnderlayDefinition.FloorUnderlayDefinition_archive = var19;
 						class235.method4331(WorldMapIcon_0.archive2, WorldMapData_0.archive7);
 						Frames.method3429(WorldMapIcon_0.archive2, WorldMapData_0.archive7, Client.isLowDetail);
 						class3.method41(WorldMapIcon_0.archive2, WorldMapData_0.archive7);
 						DirectByteArrayCopier.method4147(WorldMapIcon_0.archive2);
-						var1 = WorldMapIcon_0.archive2;
-						var2 = WorldMapData_0.archive7;
-						boolean var25 = Client.isMembersWorld;
+						var15 = WorldMapIcon_0.archive2;
+						var16 = WorldMapData_0.archive7;
+						boolean var21 = Client.isMembersWorld;
 						Font var17 = SecureRandomCallable.fontPlain11;
-						class299.ItemDefinition_archive = var1;
-						class8.ItemDefinition_modelArchive = var2;
-						Bounds.ItemDefinition_inMembersWorld = var25;
+						class299.ItemDefinition_archive = var15;
+						class8.ItemDefinition_modelArchive = var16;
+						Bounds.ItemDefinition_inMembersWorld = var21;
 						class52.ItemDefinition_fileCount = class299.ItemDefinition_archive.getGroupFileCount(10);
 						ItemComposition.ItemDefinition_fontPlain11 = var17;
 						TextureProvider.method2935(WorldMapIcon_0.archive2, class52.archive0, SpriteMask.archive1);
@@ -1659,84 +1659,84 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 						Client.titleLoadingStage = 80;
 					}
 				} else if (Client.titleLoadingStage == 80) {
-					var0 = 0;
+					var14 = 0;
 					if (LoginScreenAnimation.compass == null) {
 						LoginScreenAnimation.compass = BufferedSource.SpriteBuffer_getSprite(ModeWhere.archive8, class60.spriteIds.compass, 0);
 					} else {
-						++var0;
+						++var14;
 					}
 
 					if (class236.redHintArrowSprite == null) {
 						class236.redHintArrowSprite = BufferedSource.SpriteBuffer_getSprite(ModeWhere.archive8, class60.spriteIds.field3847, 0);
 					} else {
-						++var0;
+						++var14;
 					}
 
 					if (WorldMapSection1.mapSceneSprites == null) {
 						WorldMapSection1.mapSceneSprites = BoundaryObject.method3420(ModeWhere.archive8, class60.spriteIds.mapScenes, 0);
 					} else {
-						++var0;
+						++var14;
 					}
 
 					if (Client.headIconPkSprites == null) {
 						Client.headIconPkSprites = WorldMapLabelSize.method268(ModeWhere.archive8, class60.spriteIds.headIconsPk, 0);
 					} else {
-						++var0;
+						++var14;
 					}
 
 					if (class169.headIconPrayerSprites == null) {
 						class169.headIconPrayerSprites = WorldMapLabelSize.method268(ModeWhere.archive8, class60.spriteIds.field3838, 0);
 					} else {
-						++var0;
+						++var14;
 					}
 
 					if (class13.headIconHintSprites == null) {
 						class13.headIconHintSprites = WorldMapLabelSize.method268(ModeWhere.archive8, class60.spriteIds.field3843, 0);
 					} else {
-						++var0;
+						++var14;
 					}
 
 					if (GrandExchangeOfferWorldComparator.mapMarkerSprites == null) {
 						GrandExchangeOfferWorldComparator.mapMarkerSprites = WorldMapLabelSize.method268(ModeWhere.archive8, class60.spriteIds.field3839, 0);
 					} else {
-						++var0;
+						++var14;
 					}
 
 					if (Frames.crossSprites == null) {
 						Frames.crossSprites = WorldMapLabelSize.method268(ModeWhere.archive8, class60.spriteIds.field3845, 0);
 					} else {
-						++var0;
+						++var14;
 					}
 
 					if (ChatChannel.mapDotSprites == null) {
 						ChatChannel.mapDotSprites = WorldMapLabelSize.method268(ModeWhere.archive8, class60.spriteIds.field3846, 0);
 					} else {
-						++var0;
+						++var14;
 					}
 
 					if (ObjectSound.scrollBarSprites == null) {
 						ObjectSound.scrollBarSprites = BoundaryObject.method3420(ModeWhere.archive8, class60.spriteIds.field3840, 0);
 					} else {
-						++var0;
+						++var14;
 					}
 
 					if (Actor.modIconSprites == null) {
 						Actor.modIconSprites = BoundaryObject.method3420(ModeWhere.archive8, class60.spriteIds.field3848, 0);
 					} else {
-						++var0;
+						++var14;
 					}
 
-					if (var0 < 11) {
-						Login.Login_loadingText = "Loading sprites - " + var0 * 100 / 12 + "%";
+					if (var14 < 11) {
+						Login.Login_loadingText = "Loading sprites - " + var14 * 100 / 12 + "%";
 						Login.Login_loadingPercent = 70;
 					} else {
 						AbstractFont.AbstractFont_modIconSprites = Actor.modIconSprites;
 						class236.redHintArrowSprite.normalize();
-						var15 = (int)(Math.random() * 21.0D) - 10;
-						int var18 = (int)(Math.random() * 21.0D) - 10;
-						var16 = (int)(Math.random() * 21.0D) - 10;
+						var1 = (int)(Math.random() * 21.0D) - 10;
+						int var2 = (int)(Math.random() * 21.0D) - 10;
+						var3 = (int)(Math.random() * 21.0D) - 10;
 						var4 = (int)(Math.random() * 41.0D) - 20;
-						WorldMapSection1.mapSceneSprites[0].shiftColors(var15 + var4, var4 + var18, var4 + var16);
+						WorldMapSection1.mapSceneSprites[0].shiftColors(var1 + var4, var4 + var2, var4 + var3);
 						Login.Login_loadingText = "Loaded sprites";
 						Login.Login_loadingPercent = 70;
 						Client.titleLoadingStage = 90;
@@ -1752,9 +1752,9 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 						Client.titleLoadingStage = 100;
 					}
 				} else if (Client.titleLoadingStage == 100) {
-					var0 = BoundaryObject.textureProvider.getLoadedPercentage();
-					if (var0 < 100) {
-						Login.Login_loadingText = "Loading textures - " + var0 + "%";
+					var14 = BoundaryObject.textureProvider.getLoadedPercentage();
+					if (var14 < 100) {
+						Login.Login_loadingText = "Loading textures - " + var14 + "%";
 						Login.Login_loadingPercent = 90;
 					} else {
 						Login.Login_loadingText = "Loaded textures";
@@ -1772,8 +1772,8 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 						Login.Login_loadingText = "Loading wordpack - " + 0 + "%";
 						Login.Login_loadingPercent = 94;
 					} else {
-						Huffman var14 = new Huffman(LoginScreenAnimation.archive10.takeFileByNames("huffman", ""));
-						class219.huffman = var14;
+						Huffman var0 = new Huffman(LoginScreenAnimation.archive10.takeFileByNames("huffman", ""));
+						class219.huffman = var0;
 						Login.Login_loadingText = "Loaded wordpack";
 						Login.Login_loadingPercent = 94;
 						Client.titleLoadingStage = 130;
@@ -1815,8 +1815,8 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 
 	@ObfuscatedName("gs")
 	@ObfuscatedSignature(
-		signature = "(ZI)V",
-		garbageValue = "1110901691"
+		garbageValue = "1110901691",
+		signature = "(ZI)V"
 	)
 	@Export("addNpcsToScene")
 	static final void addNpcsToScene(boolean var0) {

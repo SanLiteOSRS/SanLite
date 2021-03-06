@@ -22,8 +22,8 @@ public class Friend extends Buddy {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Lko;I)I",
-		garbageValue = "-1403484495"
+		garbageValue = "-1403484495",
+		signature = "(Lko;I)I"
 	)
 	@Export("compareToFriend")
 	int compareToFriend(Friend var1) {
@@ -50,8 +50,8 @@ public class Friend extends Buddy {
 
 	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		signature = "(Ljn;I)I",
-		garbageValue = "642739557"
+		garbageValue = "642739557",
+		signature = "(Ljn;I)I"
 	)
 	@Export("compareTo_user")
 	public int compareTo_user(Nameable var1) {

@@ -61,8 +61,8 @@ public class EnumComposition extends DualNode {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(Lkx;I)V",
-		garbageValue = "1374661087"
+		garbageValue = "1374661087",
+		signature = "(Lkx;I)V"
 	)
 	@Export("decode")
 	void decode(Buffer var1) {
@@ -78,8 +78,8 @@ public class EnumComposition extends DualNode {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(Lkx;IB)V",
-		garbageValue = "112"
+		garbageValue = "112",
+		signature = "(Lkx;IB)V"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
@@ -118,8 +118,8 @@ public class EnumComposition extends DualNode {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "-2129947174"
+		garbageValue = "-2129947174",
+		signature = "(I)I"
 	)
 	@Export("size")
 	public int size() {
@@ -128,8 +128,8 @@ public class EnumComposition extends DualNode {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(CLgp;B)I",
-		garbageValue = "40"
+		garbageValue = "40",
+		signature = "(CLgp;B)I"
 	)
 	@Export("lowercaseChar")
 	static int lowercaseChar(char var0, Language var1) {

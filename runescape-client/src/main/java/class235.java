@@ -5,8 +5,8 @@ import net.runelite.mapping.ObfuscatedSignature;
 public class class235 {
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Lig;Lig;I)V",
-		garbageValue = "-1015609755"
+		garbageValue = "-1015609755",
+		signature = "(Lig;Lig;I)V"
 	)
 	public static void method4331(AbstractArchive var0, AbstractArchive var1) {
 		KitDefinition.KitDefinition_archive = var0;

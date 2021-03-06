@@ -53,8 +53,8 @@ public class class9 {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(I)Z",
-		garbageValue = "-807097054"
+		garbageValue = "-807097054",
+		signature = "(I)Z"
 	)
 	public boolean method108() {
 		return this.field53.isDone();
@@ -62,8 +62,8 @@ public class class9 {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-1213783874"
+		garbageValue = "-1213783874",
+		signature = "(I)V"
 	)
 	public void method93() {
 		this.field56.shutdown();
@@ -72,8 +72,8 @@ public class class9 {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(I)Lkx;",
-		garbageValue = "808914251"
+		garbageValue = "808914251",
+		signature = "(I)Lkx;"
 	)
 	public Buffer method94() {
 		try {
@@ -85,8 +85,8 @@ public class class9 {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "2058592191"
+		garbageValue = "2058592191",
+		signature = "(I)V"
 	)
 	void method92() {
 		this.field53 = this.field56.submit(new class8(this, this.field58, this.field55));
@@ -94,8 +94,8 @@ public class class9 {
 
 	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		signature = "(Lbt;I)V",
-		garbageValue = "-1405869501"
+		garbageValue = "-1405869501",
+		signature = "(Lbt;I)V"
 	)
 	@Export("doCycleTitle")
 	static void doCycleTitle(GameEngine var0) {
@@ -708,8 +708,8 @@ public class class9 {
 
 	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		signature = "(ILcl;ZI)I",
-		garbageValue = "-1465568490"
+		garbageValue = "-1465568490",
+		signature = "(ILcl;ZI)I"
 	)
 	static int method98(int var0, Script var1, boolean var2) {
 		Widget var3 = var2 ? class277.field3584 : Interpreter.field1117;
@@ -765,8 +765,8 @@ public class class9 {
 
 	@ObfuscatedName("ie")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;Lhz;I)Ljava/lang/String;",
-		garbageValue = "16711935"
+		garbageValue = "16711935",
+		signature = "(Ljava/lang/String;Lhz;I)Ljava/lang/String;"
 	)
 	static String method95(String var0, Widget var1) {
 		if (var0.indexOf("%") != -1) {

@@ -55,8 +55,8 @@ public class GameBuild {
 
 	@ObfuscatedName("gf")
 	@ObfuscatedSignature(
-		signature = "(II)V",
-		garbageValue = "1767980909"
+		garbageValue = "1767980909",
+		signature = "(II)V"
 	)
 	@Export("setWindowedMode")
 	static void setWindowedMode(int var0) {
@@ -85,8 +85,8 @@ public class GameBuild {
 
 	@ObfuscatedName("gp")
 	@ObfuscatedSignature(
-		signature = "(B)Z",
-		garbageValue = "44"
+		garbageValue = "44",
+		signature = "(B)Z"
 	)
 	static boolean method4350() {
 		return (Client.drawPlayerNames & 4) != 0;
@@ -94,8 +94,8 @@ public class GameBuild {
 
 	@ObfuscatedName("ig")
 	@ObfuscatedSignature(
-		signature = "(Ljy;IIII)V",
-		garbageValue = "2014518085"
+		garbageValue = "2014518085",
+		signature = "(Ljy;IIII)V"
 	)
 	@Export("addNpcToMenu")
 	static final void addNpcToMenu(NPCComposition var0, int var1, int var2, int var3) {

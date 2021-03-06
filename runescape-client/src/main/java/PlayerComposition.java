@@ -64,8 +64,8 @@ public class PlayerComposition {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "([I[IZII)V",
-		garbageValue = "201187402"
+		garbageValue = "201187402",
+		signature = "([I[IZII)V"
 	)
 	@Export("update")
 	public void update(int[] var1, int[] var2, boolean var3, int var4) {
@@ -92,8 +92,8 @@ public class PlayerComposition {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(IZB)V",
-		garbageValue = "2"
+		garbageValue = "2",
+		signature = "(IZB)V"
 	)
 	@Export("changeAppearance")
 	public void changeAppearance(int var1, boolean var2) {
@@ -127,8 +127,8 @@ public class PlayerComposition {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(IZI)V",
-		garbageValue = "1851941979"
+		garbageValue = "1851941979",
+		signature = "(IZI)V"
 	)
 	public void method4206(int var1, boolean var2) {
 		int var3 = this.bodyColors[var1];
@@ -167,8 +167,8 @@ public class PlayerComposition {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(ZB)V",
-		garbageValue = "50"
+		garbageValue = "50",
+		signature = "(ZB)V"
 	)
 	@Export("changeSex")
 	public void changeSex(boolean var1) {
@@ -179,8 +179,8 @@ public class PlayerComposition {
 
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(Lkx;I)V",
-		garbageValue = "1010099742"
+		garbageValue = "1010099742",
+		signature = "(Lkx;I)V"
 	)
 	@Export("write")
 	public void write(Buffer var1) {
@@ -204,8 +204,8 @@ public class PlayerComposition {
 
 	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "90"
+		garbageValue = "90",
+		signature = "(B)V"
 	)
 	@Export("setHash")
 	void setHash() {
@@ -249,8 +249,8 @@ public class PlayerComposition {
 
 	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(Ljs;ILjs;IB)Lef;",
-		garbageValue = "-34"
+		garbageValue = "-34",
+		signature = "(Ljs;ILjs;IB)Lef;"
 	)
 	@Export("getModel")
 	public Model getModel(SequenceDefinition var1, int var2, SequenceDefinition var3, int var4) {
@@ -262,8 +262,8 @@ public class PlayerComposition {
 			if (var1 != null && (var1.shield >= 0 || var1.weapon >= 0)) {
 				var7 = new int[12];
 
-				for (int var15 = 0; var15 < 12; ++var15) {
-					var7[var15] = this.equipment[var15];
+				for (int var8 = 0; var8 < 12; ++var8) {
+					var7[var8] = this.equipment[var8];
 				}
 
 				if (var1.shield >= 0) {
@@ -277,8 +277,8 @@ public class PlayerComposition {
 				}
 			}
 
-			Model var8 = (Model)PlayerAppearance_cachedModels.get(var5);
-			if (var8 == null) {
+			Model var15 = (Model)PlayerAppearance_cachedModels.get(var5);
+			if (var15 == null) {
 				boolean var9 = false;
 
 				int var11;
@@ -295,15 +295,15 @@ public class PlayerComposition {
 
 				if (var9) {
 					if (-1L != this.field2567) {
-						var8 = (Model)PlayerAppearance_cachedModels.get(this.field2567);
+						var15 = (Model)PlayerAppearance_cachedModels.get(this.field2567);
 					}
 
-					if (var8 == null) {
+					if (var15 == null) {
 						return null;
 					}
 				}
 
-				if (var8 == null) {
+				if (var15 == null) {
 					ModelData[] var16 = new ModelData[12];
 					var11 = 0;
 
@@ -338,22 +338,22 @@ public class PlayerComposition {
 						}
 					}
 
-					var8 = var17.toModel(64, 850, -30, -50, -30);
-					PlayerAppearance_cachedModels.put(var8, var5);
+					var15 = var17.toModel(64, 850, -30, -50, -30);
+					PlayerAppearance_cachedModels.put(var15, var5);
 					this.field2567 = var5;
 				}
 			}
 
 			if (var1 == null && var3 == null) {
-				return var8;
+				return var15;
 			} else {
 				Model var18;
 				if (var1 != null && var3 != null) {
-					var18 = var1.applyTransformations(var8, var2, var3, var4);
+					var18 = var1.applyTransformations(var15, var2, var3, var4);
 				} else if (var1 != null) {
-					var18 = var1.transformActorModel(var8, var2);
+					var18 = var1.transformActorModel(var15, var2);
 				} else {
-					var18 = var3.transformActorModel(var8, var4);
+					var18 = var3.transformActorModel(var15, var4);
 				}
 
 				return var18;
@@ -363,8 +363,8 @@ public class PlayerComposition {
 
 	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		signature = "(I)Lek;",
-		garbageValue = "1513420182"
+		garbageValue = "1513420182",
+		signature = "(I)Lek;"
 	)
 	@Export("getModelData")
 	ModelData getModelData() {
@@ -429,8 +429,8 @@ public class PlayerComposition {
 
 	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "1390124562"
+		garbageValue = "1390124562",
+		signature = "(I)I"
 	)
 	@Export("getChatHeadId")
 	public int getChatHeadId() {

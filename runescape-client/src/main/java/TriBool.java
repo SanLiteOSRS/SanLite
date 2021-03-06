@@ -39,8 +39,8 @@ public class TriBool {
 
 	@ObfuscatedName("kx")
 	@ObfuscatedSignature(
-		signature = "(B)Z",
-		garbageValue = "-107"
+		garbageValue = "-107",
+		signature = "(B)Z"
 	)
 	public static boolean method5372() {
 		return Client.staffModLevel >= 2;

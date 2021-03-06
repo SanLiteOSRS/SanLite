@@ -103,8 +103,8 @@ public class WorldMapSection0 implements WorldMapSection {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Lar;B)V",
-		garbageValue = "112"
+		garbageValue = "112",
+		signature = "(Lar;B)V"
 	)
 	@Export("expandBounds")
 	public void expandBounds(WorldMapArea var1) {
@@ -128,8 +128,8 @@ public class WorldMapSection0 implements WorldMapSection {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(IIIB)Z",
-		garbageValue = "-90"
+		garbageValue = "-90",
+		signature = "(IIIB)Z"
 	)
 	@Export("containsCoord")
 	public boolean containsCoord(int var1, int var2, int var3) {
@@ -142,8 +142,8 @@ public class WorldMapSection0 implements WorldMapSection {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(IIB)Z",
-		garbageValue = "-5"
+		garbageValue = "-5",
+		signature = "(IIB)Z"
 	)
 	@Export("containsPosition")
 	public boolean containsPosition(int var1, int var2) {
@@ -152,8 +152,8 @@ public class WorldMapSection0 implements WorldMapSection {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(IIIB)[I",
-		garbageValue = "-76"
+		garbageValue = "-76",
+		signature = "(IIIB)[I"
 	)
 	@Export("getBorderTileLengths")
 	public int[] getBorderTileLengths(int var1, int var2, int var3) {
@@ -167,8 +167,8 @@ public class WorldMapSection0 implements WorldMapSection {
 
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(III)Lhd;",
-		garbageValue = "-1841969392"
+		garbageValue = "-1841969392",
+		signature = "(III)Lhd;"
 	)
 	@Export("coord")
 	public Coord coord(int var1, int var2) {
@@ -183,8 +183,8 @@ public class WorldMapSection0 implements WorldMapSection {
 
 	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(Lkx;I)V",
-		garbageValue = "-489268143"
+		garbageValue = "-489268143",
+		signature = "(Lkx;I)V"
 	)
 	@Export("read")
 	public void read(Buffer var1) {
@@ -207,8 +207,8 @@ public class WorldMapSection0 implements WorldMapSection {
 
 	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-1652627756"
+		garbageValue = "-1652627756",
+		signature = "(I)V"
 	)
 	@Export("postRead")
 	void postRead() {
@@ -216,62 +216,62 @@ public class WorldMapSection0 implements WorldMapSection {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "([Ljava/lang/CharSequence;III)Ljava/lang/String;",
-		garbageValue = "705199058"
+		garbageValue = "705199058",
+		signature = "([Ljava/lang/CharSequence;III)Ljava/lang/String;"
 	)
 	public static String method311(CharSequence[] var0, int var1, int var2) {
 		if (var2 == 0) {
 			return "";
 		} else if (var2 == 1) {
-			CharSequence var3 = var0[var1];
-			return var3 == null ? "null" : var3.toString();
+			CharSequence var10 = var0[var1];
+			return var10 == null ? "null" : var10.toString();
 		} else {
-			int var8 = var2 + var1;
+			int var3 = var2 + var1;
 			int var4 = 0;
 
-			for (int var5 = var1; var5 < var8; ++var5) {
-				CharSequence var6 = var0[var5];
-				if (var6 == null) {
+			for (int var5 = var1; var5 < var3; ++var5) {
+				CharSequence var9 = var0[var5];
+				if (var9 == null) {
 					var4 += 4;
 				} else {
-					var4 += var6.length();
+					var4 += var9.length();
 				}
 			}
 
-			StringBuilder var9 = new StringBuilder(var4);
+			StringBuilder var8 = new StringBuilder(var4);
 
-			for (int var10 = var1; var10 < var8; ++var10) {
-				CharSequence var7 = var0[var10];
+			for (int var6 = var1; var6 < var3; ++var6) {
+				CharSequence var7 = var0[var6];
 				if (var7 == null) {
-					var9.append("null");
+					var8.append("null");
 				} else {
-					var9.append(var7);
+					var8.append(var7);
 				}
 			}
 
-			return var9.toString();
+			return var8.toString();
 		}
 	}
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(IIIIS)V",
-		garbageValue = "16686"
+		garbageValue = "16686",
+		signature = "(IIIIS)V"
 	)
 	static void method308(int var0, int var1, int var2, int var3) {
 		for (ObjectSound var4 = (ObjectSound)ObjectSound.objectSounds.last(); var4 != null; var4 = (ObjectSound)ObjectSound.objectSounds.previous()) {
 			if (var4.soundEffectId != -1 || var4.soundEffectIds != null) {
 				int var5 = 0;
-				if (var1 > var4.field1090 * 16384) {
-					var5 += var1 - var4.field1090 * 16384;
+				if (var1 > var4.field1090 * 128) {
+					var5 += var1 - var4.field1090 * 128;
 				} else if (var1 < var4.x * 128) {
 					var5 += var4.x * 128 - var1;
 				}
 
 				if (var2 > var4.field1094 * 128) {
 					var5 += var2 - var4.field1094 * 128;
-				} else if (var2 < var4.y * 128) {
-					var5 += var4.y * 128 - var2;
+				} else if (var2 < var4.y * 16384) {
+					var5 += var4.y * 16384 - var2;
 				}
 
 				if (var5 - 64 <= var4.field1092 && WorldMapSectionType.clientPreferences.areaSoundEffectsVolume != 0 && var0 == var4.plane) {
@@ -333,8 +333,8 @@ public class WorldMapSection0 implements WorldMapSection {
 
 	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "([BIIIIIIILeq;[Lfe;I)V",
-		garbageValue = "2043009976"
+		garbageValue = "2043009976",
+		signature = "([BIIIIIIILeq;[Lfe;I)V"
 	)
 	static final void method310(byte[] var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7, Scene var8, CollisionMap[] var9) {
 		Buffer var10 = new Buffer(var0);
@@ -409,8 +409,8 @@ public class WorldMapSection0 implements WorldMapSection {
 
 	@ObfuscatedName("ew")
 	@ObfuscatedSignature(
-		signature = "(I)Lmf;",
-		garbageValue = "355278253"
+		garbageValue = "355278253",
+		signature = "(I)Lmf;"
 	)
 	@Export("getWorldMap")
 	static WorldMap getWorldMap() {
@@ -419,8 +419,8 @@ public class WorldMapSection0 implements WorldMapSection {
 
 	@ObfuscatedName("fp")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;B)V",
-		garbageValue = "-116"
+		garbageValue = "-116",
+		signature = "(Ljava/lang/String;B)V"
 	)
 	@Export("doCheat")
 	static final void doCheat(String var0) {

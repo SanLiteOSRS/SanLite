@@ -71,8 +71,8 @@ public class KitDefinition extends DualNode {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(Lkx;I)V",
-		garbageValue = "-1001378689"
+		garbageValue = "-1001378689",
+		signature = "(Lkx;I)V"
 	)
 	@Export("decode")
 	void decode(Buffer var1) {
@@ -88,8 +88,8 @@ public class KitDefinition extends DualNode {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(Lkx;II)V",
-		garbageValue = "1463228330"
+		garbageValue = "1463228330",
+		signature = "(Lkx;II)V"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
@@ -134,8 +134,8 @@ public class KitDefinition extends DualNode {
 
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(B)Z",
-		garbageValue = "-48"
+		garbageValue = "-48",
+		signature = "(B)Z"
 	)
 	@Export("ready")
 	public boolean ready() {
@@ -156,8 +156,8 @@ public class KitDefinition extends DualNode {
 
 	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(B)Lek;",
-		garbageValue = "-41"
+		garbageValue = "-41",
+		signature = "(B)Lek;"
 	)
 	@Export("getModelData")
 	public ModelData getModelData() {
@@ -196,8 +196,8 @@ public class KitDefinition extends DualNode {
 
 	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(B)Z",
-		garbageValue = "-121"
+		garbageValue = "-121",
+		signature = "(B)Z"
 	)
 	public boolean method4640() {
 		boolean var1 = true;
@@ -213,8 +213,8 @@ public class KitDefinition extends DualNode {
 
 	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		signature = "(I)Lek;",
-		garbageValue = "2061268949"
+		garbageValue = "2061268949",
+		signature = "(I)Lek;"
 	)
 	@Export("getKitDefinitionModels")
 	public ModelData getKitDefinitionModels() {

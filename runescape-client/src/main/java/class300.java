@@ -90,8 +90,8 @@ public class class300 {
 
 	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;B)V",
-		garbageValue = "-43"
+		garbageValue = "-43",
+		signature = "(Ljava/lang/String;B)V"
 	)
 	static final void method5473(String var0) {
 		AbstractWorldMapData.addGameMessage(30, "", var0);

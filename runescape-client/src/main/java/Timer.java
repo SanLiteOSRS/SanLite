@@ -72,8 +72,8 @@ public class Timer {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "1"
+		garbageValue = "1",
+		signature = "(B)V"
 	)
 	public void method5212() {
 		this.field3620 = Tiles.currentTimeMillis();
@@ -81,8 +81,8 @@ public class Timer {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-86650625"
+		garbageValue = "-86650625",
+		signature = "(I)V"
 	)
 	public void method5206() {
 		if (-1L != this.field3620) {
@@ -94,8 +94,8 @@ public class Timer {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(II)V",
-		garbageValue = "-330894833"
+		garbageValue = "-330894833",
+		signature = "(II)V"
 	)
 	public void method5211(int var1) {
 		this.field3611 = Tiles.currentTimeMillis();
@@ -104,8 +104,8 @@ public class Timer {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "40"
+		garbageValue = "40",
+		signature = "(B)V"
 	)
 	public void method5198() {
 		if (this.field3611 != -1L) {
@@ -119,8 +119,8 @@ public class Timer {
 
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "1966837629"
+		garbageValue = "1966837629",
+		signature = "(I)V"
 	)
 	public void method5199() {
 		this.field3616 = false;
@@ -129,8 +129,8 @@ public class Timer {
 
 	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "435711064"
+		garbageValue = "435711064",
+		signature = "(I)V"
 	)
 	public void method5200() {
 		this.method5198();
@@ -138,8 +138,8 @@ public class Timer {
 
 	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(Lkx;S)V",
-		garbageValue = "-14322"
+		garbageValue = "-14322",
+		signature = "(Lkx;S)V"
 	)
 	@Export("write")
 	public void write(Buffer var1) {

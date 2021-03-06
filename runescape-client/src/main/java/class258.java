@@ -5,8 +5,8 @@ import net.runelite.mapping.ObfuscatedSignature;
 public class class258 {
 	@ObfuscatedName("gg")
 	@ObfuscatedSignature(
-		signature = "(IIIIIIII)V",
-		garbageValue = "1214767068"
+		garbageValue = "1214767068",
+		signature = "(IIIIIIII)V"
 	)
 	static final void method4685(int var0, int var1, int var2, int var3, int var4, int var5, int var6) {
 		var5 = SecureRandomCallable.method1233(var5, var6);

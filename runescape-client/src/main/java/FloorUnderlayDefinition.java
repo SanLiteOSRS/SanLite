@@ -60,8 +60,8 @@ public class FloorUnderlayDefinition extends DualNode {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-1258878623"
+		garbageValue = "-1258878623",
+		signature = "(I)V"
 	)
 	@Export("postDecode")
 	void postDecode() {
@@ -70,8 +70,8 @@ public class FloorUnderlayDefinition extends DualNode {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(Lkx;II)V",
-		garbageValue = "166104294"
+		garbageValue = "166104294",
+		signature = "(Lkx;II)V"
 	)
 	@Export("decode")
 	void decode(Buffer var1, int var2) {
@@ -87,8 +87,8 @@ public class FloorUnderlayDefinition extends DualNode {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(Lkx;III)V",
-		garbageValue = "1874969287"
+		garbageValue = "1874969287",
+		signature = "(Lkx;III)V"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2, int var3) {
@@ -100,8 +100,8 @@ public class FloorUnderlayDefinition extends DualNode {
 
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(II)V",
-		garbageValue = "-1796735191"
+		garbageValue = "-1796735191",
+		signature = "(II)V"
 	)
 	@Export("setHsl")
 	void setHsl(int var1) {
@@ -177,8 +177,8 @@ public class FloorUnderlayDefinition extends DualNode {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(IB)Ljp;",
-		garbageValue = "-122"
+		garbageValue = "-122",
+		signature = "(IB)Ljp;"
 	)
 	@Export("StructDefinition_getStructDefinition")
 	public static StructDefinition StructDefinition_getStructDefinition(int var0) {

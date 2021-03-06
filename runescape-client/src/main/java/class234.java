@@ -6,8 +6,8 @@ import net.runelite.mapping.ObfuscatedSignature;
 public class class234 {
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Lkd;I)V",
-		garbageValue = "-756253803"
+		garbageValue = "-756253803",
+		signature = "(Lkd;I)V"
 	)
 	@Export("updatePlayer")
 	static final void updatePlayer(PacketBuffer var0) {

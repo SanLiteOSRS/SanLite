@@ -767,12 +767,12 @@ public class Model extends Renderable {
 			Model_transformTempZ = 0;
 
 			for (var8 = 0; var8 < var6; ++var8) {
-				int var9 = var2[var8];
-				if (var9 < this.vertexLabels.length) {
-					int[] var10 = this.vertexLabels[var9];
+				int var18 = var2[var8];
+				if (var18 < this.vertexLabels.length) {
+					int[] var19 = this.vertexLabels[var18];
 
-					for (var11 = 0; var11 < var10.length; ++var11) {
-						var12 = var10[var11];
+					for (var11 = 0; var11 < var19.length; ++var11) {
+						var12 = var19[var11];
 						Model_transformTempX += this.verticesX[var12];
 						Model_transformTempY += this.verticesY[var12];
 						Model_transformTempZ += this.verticesZ[var12];
@@ -792,17 +792,17 @@ public class Model extends Renderable {
 			}
 
 		} else {
+			int[] var9;
+			int var10;
 			int[] var10000;
-			int[] var18;
-			int var19;
 			if (var1 == 1) {
 				for (var7 = 0; var7 < var6; ++var7) {
 					var8 = var2[var7];
 					if (var8 < this.vertexLabels.length) {
-						var18 = this.vertexLabels[var8];
+						var9 = this.vertexLabels[var8];
 
-						for (var19 = 0; var19 < var18.length; ++var19) {
-							var11 = var18[var19];
+						for (var10 = 0; var10 < var9.length; ++var10) {
+							var11 = var9[var10];
 							var10000 = this.verticesX;
 							var10000[var11] += var3;
 							var10000 = this.verticesY;
@@ -817,10 +817,10 @@ public class Model extends Renderable {
 				for (var7 = 0; var7 < var6; ++var7) {
 					var8 = var2[var7];
 					if (var8 < this.vertexLabels.length) {
-						var18 = this.vertexLabels[var8];
+						var9 = this.vertexLabels[var8];
 
-						for (var19 = 0; var19 < var18.length; ++var19) {
-							var11 = var18[var19];
+						for (var10 = 0; var10 < var9.length; ++var10) {
+							var11 = var9[var10];
 							var10000 = this.verticesX;
 							var10000[var11] -= Model_transformTempX;
 							var10000 = this.verticesY;
@@ -871,10 +871,10 @@ public class Model extends Renderable {
 				for (var7 = 0; var7 < var6; ++var7) {
 					var8 = var2[var7];
 					if (var8 < this.vertexLabels.length) {
-						var18 = this.vertexLabels[var8];
+						var9 = this.vertexLabels[var8];
 
-						for (var19 = 0; var19 < var18.length; ++var19) {
-							var11 = var18[var19];
+						for (var10 = 0; var10 < var9.length; ++var10) {
+							var11 = var9[var10];
 							var10000 = this.verticesX;
 							var10000[var11] -= Model_transformTempX;
 							var10000 = this.verticesY;
@@ -899,10 +899,10 @@ public class Model extends Renderable {
 					for (var7 = 0; var7 < var6; ++var7) {
 						var8 = var2[var7];
 						if (var8 < this.faceLabelsAlpha.length) {
-							var18 = this.faceLabelsAlpha[var8];
+							var9 = this.faceLabelsAlpha[var8];
 
-							for (var19 = 0; var19 < var18.length; ++var19) {
-								var11 = var18[var19];
+							for (var10 = 0; var10 < var9.length; ++var10) {
+								var11 = var9[var10];
 								var12 = (this.faceAlphas[var11] & 255) + var3 * 8;
 								if (var12 < 0) {
 									var12 = 0;
@@ -1142,10 +1142,10 @@ public class Model extends Renderable {
 			int var10;
 			int var11;
 			int var12;
-			int var13;
 			int var15;
 			int var16;
 			int var18;
+			int var28;
 			for (var7 = 0; var7 < this.indicesCount; ++var7) {
 				if (this.faceColors3[var7] != -2) {
 					var8 = this.indices1[var7];
@@ -1153,48 +1153,48 @@ public class Model extends Renderable {
 					var10 = this.indices3[var7];
 					var11 = modelViewportXs[var8];
 					var12 = modelViewportXs[var9];
-					var13 = modelViewportXs[var10];
-					int var14;
-					if (!var1 || var11 != -5000 && var12 != -5000 && var13 != -5000) {
-						if (var2 && UserComparator7.method3592(modelViewportYs[var8], modelViewportYs[var9], modelViewportYs[var10], var11, var12, var13, var6)) {
-							GrandExchangeOfferWorldComparator.method129(var4);
-							var2 = false;
-						}
-
-						if ((var11 - var12) * (modelViewportYs[var10] - modelViewportYs[var9]) - (var13 - var12) * (modelViewportYs[var8] - modelViewportYs[var9]) > 0) {
-							field1685[var7] = false;
-							if (var11 >= 0 && var12 >= 0 && var13 >= 0 && var11 <= Rasterizer3D.Rasterizer3D_clipWidth && var12 <= Rasterizer3D.Rasterizer3D_clipWidth && var13 <= Rasterizer3D.Rasterizer3D_clipWidth) {
-								field1722[var7] = false;
-							} else {
-								field1722[var7] = true;
-							}
-
-							var14 = (field1726[var8] + field1726[var9] + field1726[var10]) / 3 + this.radius;
-							field1732[var14][field1731[var14]++] = var7;
-						}
-					} else {
-						var14 = field1727[var8];
+					var28 = modelViewportXs[var10];
+					int var29;
+					if (var1 && (var11 == -5000 || var12 == -5000 || var28 == -5000)) {
+						var29 = field1727[var8];
 						var15 = field1727[var9];
 						var16 = field1727[var10];
-						int var17 = field1728[var8];
+						int var30 = field1728[var8];
 						var18 = field1728[var9];
 						int var19 = field1728[var10];
 						int var20 = field1742[var8];
 						int var21 = field1742[var9];
 						int var22 = field1742[var10];
-						var14 -= var15;
+						var29 -= var15;
 						var16 -= var15;
-						var17 -= var18;
+						var30 -= var18;
 						var19 -= var18;
 						var20 -= var21;
 						var22 -= var21;
-						int var23 = var17 * var22 - var20 * var19;
-						int var24 = var20 * var16 - var14 * var22;
-						int var25 = var14 * var19 - var17 * var16;
+						int var23 = var30 * var22 - var20 * var19;
+						int var24 = var20 * var16 - var29 * var22;
+						int var25 = var29 * var19 - var30 * var16;
 						if (var15 * var23 + var18 * var24 + var21 * var25 > 0) {
 							field1685[var7] = true;
 							int var26 = (field1726[var8] + field1726[var9] + field1726[var10]) / 3 + this.radius;
 							field1732[var26][field1731[var26]++] = var7;
+						}
+					} else {
+						if (var2 && UserComparator7.method3592(modelViewportYs[var8], modelViewportYs[var9], modelViewportYs[var10], var11, var12, var28, var6)) {
+							GrandExchangeOfferWorldComparator.method129(var4);
+							var2 = false;
+						}
+
+						if ((var11 - var12) * (modelViewportYs[var10] - modelViewportYs[var9]) - (var28 - var12) * (modelViewportYs[var8] - modelViewportYs[var9]) > 0) {
+							field1685[var7] = false;
+							if (var11 >= 0 && var12 >= 0 && var28 >= 0 && var11 <= Rasterizer3D.Rasterizer3D_clipWidth && var12 <= Rasterizer3D.Rasterizer3D_clipWidth && var28 <= Rasterizer3D.Rasterizer3D_clipWidth) {
+								field1722[var7] = false;
+							} else {
+								field1722[var7] = true;
+							}
+
+							var29 = (field1726[var8] + field1726[var9] + field1726[var10]) / 3 + this.radius;
+							field1732[var29][field1731[var29]++] = var7;
 						}
 					}
 				}
@@ -1227,15 +1227,15 @@ public class Model extends Renderable {
 						for (var10 = 0; var10 < var8; ++var10) {
 							var11 = var27[var10];
 							byte var31 = this.faceRenderPriorities[var11];
-							var13 = field1707[var31]++;
-							field1734[var31][var13] = var11;
+							var28 = field1707[var31]++;
+							field1734[var31][var28] = var11;
 							if (var31 < 10) {
 								int[] var10000 = field1730;
 								var10000[var31] += var7;
 							} else if (var31 == 10) {
-								field1735[var13] = var7;
+								field1735[var28] = var7;
 							} else {
-								field1736[var13] = var7;
+								field1736[var28] = var7;
 							}
 						}
 					}
@@ -1258,89 +1258,89 @@ public class Model extends Renderable {
 
 				var11 = 0;
 				var12 = field1707[10];
-				int[] var28 = field1734[10];
-				int[] var29 = field1735;
+				int[] var13 = field1734[10];
+				int[] var14 = field1735;
 				if (var11 == var12) {
 					var11 = 0;
 					var12 = field1707[11];
-					var28 = field1734[11];
-					var29 = field1736;
+					var13 = field1734[11];
+					var14 = field1736;
 				}
 
 				if (var11 < var12) {
-					var10 = var29[var11];
+					var10 = var14[var11];
 				} else {
 					var10 = -1000;
 				}
 
 				for (var15 = 0; var15 < 10; ++var15) {
 					while (var15 == 0 && var10 > var7) {
-						this.drawFace(var28[var11++]);
-						if (var11 == var12 && var28 != field1734[11]) {
+						this.drawFace(var13[var11++]);
+						if (var11 == var12 && var13 != field1734[11]) {
 							var11 = 0;
 							var12 = field1707[11];
-							var28 = field1734[11];
-							var29 = field1736;
+							var13 = field1734[11];
+							var14 = field1736;
 						}
 
 						if (var11 < var12) {
-							var10 = var29[var11];
+							var10 = var14[var11];
 						} else {
 							var10 = -1000;
 						}
 					}
 
 					while (var15 == 3 && var10 > var8) {
-						this.drawFace(var28[var11++]);
-						if (var11 == var12 && var28 != field1734[11]) {
+						this.drawFace(var13[var11++]);
+						if (var11 == var12 && var13 != field1734[11]) {
 							var11 = 0;
 							var12 = field1707[11];
-							var28 = field1734[11];
-							var29 = field1736;
+							var13 = field1734[11];
+							var14 = field1736;
 						}
 
 						if (var11 < var12) {
-							var10 = var29[var11];
+							var10 = var14[var11];
 						} else {
 							var10 = -1000;
 						}
 					}
 
 					while (var15 == 5 && var10 > var9) {
-						this.drawFace(var28[var11++]);
-						if (var11 == var12 && var28 != field1734[11]) {
+						this.drawFace(var13[var11++]);
+						if (var11 == var12 && var13 != field1734[11]) {
 							var11 = 0;
 							var12 = field1707[11];
-							var28 = field1734[11];
-							var29 = field1736;
+							var13 = field1734[11];
+							var14 = field1736;
 						}
 
 						if (var11 < var12) {
-							var10 = var29[var11];
+							var10 = var14[var11];
 						} else {
 							var10 = -1000;
 						}
 					}
 
 					var16 = field1707[var15];
-					int[] var30 = field1734[var15];
+					int[] var17 = field1734[var15];
 
 					for (var18 = 0; var18 < var16; ++var18) {
-						this.drawFace(var30[var18]);
+						this.drawFace(var17[var18]);
 					}
 				}
 
 				while (var10 != -1000) {
-					this.drawFace(var28[var11++]);
-					if (var11 == var12 && var28 != field1734[11]) {
+					this.drawFace(var13[var11++]);
+					if (var11 == var12 && var13 != field1734[11]) {
 						var11 = 0;
-						var28 = field1734[11];
+						var13 = field1734[11];
 						var12 = field1707[11];
-						var29 = field1736;
+						var14 = field1736;
 					}
 
 					if (var11 < var12) {
-						var10 = var29[var11];
+						var10 = var14[var11];
 					} else {
 						var10 = -1000;
 					}

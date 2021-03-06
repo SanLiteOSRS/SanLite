@@ -32,8 +32,8 @@ public class Buddy extends Nameable {
 
 	@ObfuscatedName("av")
 	@ObfuscatedSignature(
-		signature = "(III)V",
-		garbageValue = "741820969"
+		garbageValue = "741820969",
+		signature = "(III)V"
 	)
 	@Export("set")
 	void set(int var1, int var2) {
@@ -43,8 +43,8 @@ public class Buddy extends Nameable {
 
 	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		signature = "(B)I",
-		garbageValue = "-50"
+		garbageValue = "-50",
+		signature = "(B)I"
 	)
 	@Export("getWorld")
 	public int getWorld() {
@@ -53,8 +53,8 @@ public class Buddy extends Nameable {
 
 	@ObfuscatedName("bj")
 	@ObfuscatedSignature(
-		signature = "(I)Z",
-		garbageValue = "292513341"
+		garbageValue = "292513341",
+		signature = "(I)Z"
 	)
 	@Export("hasWorld")
 	public boolean hasWorld() {

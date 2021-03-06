@@ -55,8 +55,8 @@ public class WorldMapCacheName {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(II)Z",
-		garbageValue = "1996576804"
+		garbageValue = "1996576804",
+		signature = "(II)Z"
 	)
 	@Export("loadInterface")
 	public static boolean loadInterface(int var0) {
@@ -97,8 +97,8 @@ public class WorldMapCacheName {
 
 	@ObfuscatedName("lk")
 	@ObfuscatedSignature(
-		signature = "(S)V",
-		garbageValue = "-11688"
+		garbageValue = "-11688",
+		signature = "(S)V"
 	)
 	static void method715() {
 		if (Client.oculusOrbState == 1) {

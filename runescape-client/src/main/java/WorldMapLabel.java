@@ -44,8 +44,8 @@ public class WorldMapLabel {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(IIIII)V",
-		garbageValue = "-293834504"
+		garbageValue = "-293834504",
+		signature = "(IIIII)V"
 	)
 	@Export("itemContainerSetItem")
 	static void itemContainerSetItem(int var0, int var1, int var2, int var3) {
@@ -80,8 +80,8 @@ public class WorldMapLabel {
 
 	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "1"
+		garbageValue = "1",
+		signature = "(B)V"
 	)
 	static void method499() {
 		if (Login.clearLoginScreen) {
@@ -114,8 +114,8 @@ public class WorldMapLabel {
 
 	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(II)V",
-		garbageValue = "2132008086"
+		garbageValue = "2132008086",
+		signature = "(II)V"
 	)
 	static void method501(int var0) {
 		ItemContainer var1 = (ItemContainer)ItemContainer.itemContainers.get((long)var0);
@@ -126,24 +126,24 @@ public class WorldMapLabel {
 
 	@ObfuscatedName("fk")
 	@ObfuscatedSignature(
-		signature = "(S)V",
-		garbageValue = "25470"
+		garbageValue = "25470",
+		signature = "(S)V"
 	)
 	static final void method502() {
 		for (int var0 = 0; var0 < Client.soundEffectCount; ++var0) {
 			int var10002 = Client.queuedSoundEffectDelays[var0]--;
 			if (Client.queuedSoundEffectDelays[var0] >= -10) {
-				SoundEffect var9 = Client.soundEffects[var0];
-				if (var9 == null) {
+				SoundEffect var1 = Client.soundEffects[var0];
+				if (var1 == null) {
 					Object var10000 = null;
-					var9 = SoundEffect.readSoundEffect(WorldMapCacheName.archive4, Client.soundEffectIds[var0], 0);
-					if (var9 == null) {
+					var1 = SoundEffect.readSoundEffect(WorldMapCacheName.archive4, Client.soundEffectIds[var0], 0);
+					if (var1 == null) {
 						continue;
 					}
 
 					int[] var12 = Client.queuedSoundEffectDelays;
-					var12[var0] += var9.calculateDelay();
-					Client.soundEffects[var0] = var9;
+					var12[var0] += var1.calculateDelay();
+					Client.soundEffects[var0] = var1;
 				}
 
 				if (Client.queuedSoundEffectDelays[var0] < 0) {
@@ -178,10 +178,10 @@ public class WorldMapLabel {
 					}
 
 					if (var2 > 0) {
-						RawSound var10 = var9.toRawSound().resample(World.decimator);
-						RawPcmStream var11 = RawPcmStream.createRawPcmStream(var10, 100, var2);
-						var11.setNumLoops(Client.queuedSoundEffectLoops[var0] - 1);
-						VarbitComposition.pcmStreamMixer.addSubStream(var11);
+						RawSound var9 = var1.toRawSound().resample(World.decimator);
+						RawPcmStream var10 = RawPcmStream.createRawPcmStream(var9, 100, var2);
+						var10.setNumLoops(Client.queuedSoundEffectLoops[var0] - 1);
+						VarbitComposition.pcmStreamMixer.addSubStream(var10);
 					}
 
 					Client.queuedSoundEffectDelays[var0] = -100;
@@ -189,12 +189,12 @@ public class WorldMapLabel {
 			} else {
 				--Client.soundEffectCount;
 
-				for (int var1 = var0; var1 < Client.soundEffectCount; ++var1) {
-					Client.soundEffectIds[var1] = Client.soundEffectIds[var1 + 1];
-					Client.soundEffects[var1] = Client.soundEffects[var1 + 1];
-					Client.queuedSoundEffectLoops[var1] = Client.queuedSoundEffectLoops[var1 + 1];
-					Client.queuedSoundEffectDelays[var1] = Client.queuedSoundEffectDelays[var1 + 1];
-					Client.soundLocations[var1] = Client.soundLocations[var1 + 1];
+				for (int var11 = var0; var11 < Client.soundEffectCount; ++var11) {
+					Client.soundEffectIds[var11] = Client.soundEffectIds[var11 + 1];
+					Client.soundEffects[var11] = Client.soundEffects[var11 + 1];
+					Client.queuedSoundEffectLoops[var11] = Client.queuedSoundEffectLoops[var11 + 1];
+					Client.queuedSoundEffectDelays[var11] = Client.queuedSoundEffectDelays[var11 + 1];
+					Client.soundLocations[var11] = Client.soundLocations[var11 + 1];
 				}
 
 				--var0;
@@ -213,8 +213,8 @@ public class WorldMapLabel {
 
 	@ObfuscatedName("ik")
 	@ObfuscatedSignature(
-		signature = "(IB)Ljava/lang/String;",
-		garbageValue = "42"
+		garbageValue = "42",
+		signature = "(IB)Ljava/lang/String;"
 	)
 	static String method504(int var0) {
 		if (var0 < 0) {
@@ -226,8 +226,8 @@ public class WorldMapLabel {
 
 	@ObfuscatedName("js")
 	@ObfuscatedSignature(
-		signature = "(II)Z",
-		garbageValue = "1224588099"
+		garbageValue = "1224588099",
+		signature = "(II)Z"
 	)
 	static boolean method503(int var0) {
 		for (int var1 = 0; var1 < Client.field885; ++var1) {

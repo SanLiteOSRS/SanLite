@@ -39,13 +39,13 @@ public final class ObjectSound extends Node {
 	int x;
 	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = -505956992
+		intValue = 63156075
 	)
 	@Export("y")
 	int y;
 	@ObfuscatedName("y")
 	@ObfuscatedGetter(
-		intValue = 1427133393
+		intValue = -2010519424
 	)
 	int field1090;
 	@ObfuscatedName("h")
@@ -110,8 +110,8 @@ public final class ObjectSound extends Node {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "82"
+		garbageValue = "82",
+		signature = "(B)V"
 	)
 	@Export("set")
 	void set() {
@@ -140,8 +140,8 @@ public final class ObjectSound extends Node {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(II)J",
-		garbageValue = "-293129030"
+		garbageValue = "-293129030",
+		signature = "(II)J"
 	)
 	public static long method2044(int var0) {
 		return ViewportMouse.ViewportMouse_entityTags[var0];
@@ -149,8 +149,8 @@ public final class ObjectSound extends Node {
 
 	@ObfuscatedName("is")
 	@ObfuscatedSignature(
-		signature = "([Lhz;IIIZI)V",
-		garbageValue = "2024248022"
+		garbageValue = "2024248022",
+		signature = "([Lhz;IIIZI)V"
 	)
 	@Export("resizeInterface")
 	static void resizeInterface(Widget[] var0, int var1, int var2, int var3, boolean var4) {

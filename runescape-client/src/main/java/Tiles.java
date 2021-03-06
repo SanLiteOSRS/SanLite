@@ -72,8 +72,8 @@ public final class Tiles {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(I)J",
-		garbageValue = "-1552906826"
+		garbageValue = "-1552906826",
+		signature = "(I)J"
 	)
 	@Export("currentTimeMillis")
 	public static final synchronized long currentTimeMillis() {
@@ -88,8 +88,8 @@ public final class Tiles {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(II)Lih;",
-		garbageValue = "-2101793788"
+		garbageValue = "-2101793788",
+		signature = "(II)Lih;"
 	)
 	public static VarbitComposition method1219(int var0) {
 		VarbitComposition var1 = (VarbitComposition)VarbitComposition.VarbitDefinition_cached.get((long)var0);
@@ -109,8 +109,8 @@ public final class Tiles {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(ILlu;Liy;B)V",
-		garbageValue = "1"
+		garbageValue = "1",
+		signature = "(ILlu;Liy;B)V"
 	)
 	static void method1218(int var0, ArchiveDisk var1, Archive var2) {
 		ArchiveDiskAction var3 = new ArchiveDiskAction();
@@ -136,8 +136,8 @@ public final class Tiles {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(I)[Lgv;",
-		garbageValue = "-2100535609"
+		garbageValue = "-2100535609",
+		signature = "(I)[Lgv;"
 	)
 	static LoginPacket[] method1217() {
 		return new LoginPacket[]{LoginPacket.field2340, LoginPacket.field2339, LoginPacket.field2342, LoginPacket.field2338, LoginPacket.field2336, LoginPacket.field2337};
@@ -145,8 +145,8 @@ public final class Tiles {
 
 	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;I)V",
-		garbageValue = "-1993341504"
+		garbageValue = "-1993341504",
+		signature = "(Ljava/lang/String;I)V"
 	)
 	static final void method1209(String var0) {
 		class300.method5473("Please remove " + var0 + " from your friend list first");
@@ -154,23 +154,23 @@ public final class Tiles {
 
 	@ObfuscatedName("ax")
 	@ObfuscatedSignature(
-		signature = "(ILcl;ZI)I",
-		garbageValue = "1872094164"
+		garbageValue = "1872094164",
+		signature = "(ILcl;ZI)I"
 	)
 	static int method1215(int var0, Script var1, boolean var2) {
-		int var3;
+		int var6;
 		if (var0 == ScriptOpcodes.OC_NAME) {
-			var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-			Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = class281.ItemDefinition_get(var3).name;
+			var6 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
+			Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = class281.ItemDefinition_get(var6).name;
 			return 1;
 		} else {
 			int var4;
 			ItemComposition var5;
 			if (var0 == ScriptOpcodes.OC_OP) {
 				Interpreter.Interpreter_intStackSize -= 2;
-				var3 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
+				var6 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
 				var4 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
-				var5 = class281.ItemDefinition_get(var3);
+				var5 = class281.ItemDefinition_get(var6);
 				if (var4 >= 1 && var4 <= 5 && var5.groundActions[var4 - 1] != null) {
 					Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var5.groundActions[var4 - 1];
 				} else {
@@ -180,9 +180,9 @@ public final class Tiles {
 				return 1;
 			} else if (var0 == ScriptOpcodes.OC_IOP) {
 				Interpreter.Interpreter_intStackSize -= 2;
-				var3 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
+				var6 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
 				var4 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
-				var5 = class281.ItemDefinition_get(var3);
+				var5 = class281.ItemDefinition_get(var6);
 				if (var4 >= 1 && var4 <= 5 && var5.inventoryActions[var4 - 1] != null) {
 					Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var5.inventoryActions[var4 - 1];
 				} else {
@@ -191,63 +191,63 @@ public final class Tiles {
 
 				return 1;
 			} else if (var0 == ScriptOpcodes.OC_COST) {
-				var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = class281.ItemDefinition_get(var3).price;
+				var6 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
+				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = class281.ItemDefinition_get(var6).price;
 				return 1;
 			} else if (var0 == ScriptOpcodes.OC_STACKABLE) {
-				var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = class281.ItemDefinition_get(var3).isStackable == 1 ? 1 : 0;
+				var6 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
+				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = class281.ItemDefinition_get(var6).isStackable == 1 ? 1 : 0;
 				return 1;
 			} else {
-				ItemComposition var6;
+				ItemComposition var7;
 				if (var0 == ScriptOpcodes.OC_CERT) {
-					var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-					var6 = class281.ItemDefinition_get(var3);
-					if (var6.noteTemplate == -1 && var6.note >= 0) {
-						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var6.note;
+					var6 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
+					var7 = class281.ItemDefinition_get(var6);
+					if (var7.noteTemplate == -1 && var7.note >= 0) {
+						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var7.note;
 					} else {
-						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3;
+						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var6;
 					}
 
 					return 1;
 				} else if (var0 == ScriptOpcodes.OC_UNCERT) {
-					var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-					var6 = class281.ItemDefinition_get(var3);
-					if (var6.noteTemplate >= 0 && var6.note >= 0) {
-						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var6.note;
+					var6 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
+					var7 = class281.ItemDefinition_get(var6);
+					if (var7.noteTemplate >= 0 && var7.note >= 0) {
+						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var7.note;
 					} else {
-						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3;
+						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var6;
 					}
 
 					return 1;
 				} else if (var0 == ScriptOpcodes.OC_MEMBERS) {
-					var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-					Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = class281.ItemDefinition_get(var3).isMembersOnly ? 1 : 0;
+					var6 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
+					Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = class281.ItemDefinition_get(var6).isMembersOnly ? 1 : 0;
 					return 1;
 				} else if (var0 == ScriptOpcodes.OC_PLACEHOLDER) {
-					var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-					var6 = class281.ItemDefinition_get(var3);
-					if (var6.placeholderTemplate == -1 && var6.placeholder >= 0) {
-						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var6.placeholder;
+					var6 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
+					var7 = class281.ItemDefinition_get(var6);
+					if (var7.placeholderTemplate == -1 && var7.placeholder >= 0) {
+						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var7.placeholder;
 					} else {
-						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3;
+						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var6;
 					}
 
 					return 1;
 				} else if (var0 == ScriptOpcodes.OC_UNPLACEHOLDER) {
-					var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-					var6 = class281.ItemDefinition_get(var3);
-					if (var6.placeholderTemplate >= 0 && var6.placeholder >= 0) {
-						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var6.placeholder;
+					var6 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
+					var7 = class281.ItemDefinition_get(var6);
+					if (var7.placeholderTemplate >= 0 && var7.placeholder >= 0) {
+						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var7.placeholder;
 					} else {
-						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3;
+						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var6;
 					}
 
 					return 1;
 				} else if (var0 == ScriptOpcodes.OC_FIND) {
-					String var7 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];
+					String var3 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];
 					var4 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-					PendingSpawn.findItemDefinitions(var7, var4 == 1);
+					PendingSpawn.findItemDefinitions(var3, var4 == 1);
 					Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = NPC.foundItemIdCount;
 					return 1;
 				} else if (var0 != ScriptOpcodes.OC_FINDNEXT) {
@@ -272,8 +272,8 @@ public final class Tiles {
 
 	@ObfuscatedName("jg")
 	@ObfuscatedSignature(
-		signature = "(ZI)V",
-		garbageValue = "739507935"
+		garbageValue = "739507935",
+		signature = "(ZI)V"
 	)
 	@Export("setTapToDrop")
 	static void setTapToDrop(boolean var0) {

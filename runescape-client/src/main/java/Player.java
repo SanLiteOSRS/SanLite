@@ -180,8 +180,8 @@ public final class Player extends Actor {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Lkx;I)V",
-		garbageValue = "937296924"
+		garbageValue = "937296924",
+		signature = "(Lkx;I)V"
 	)
 	@Export("read")
 	final void read(Buffer var1) {
@@ -286,8 +286,8 @@ public final class Player extends Actor {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(I)Z",
-		garbageValue = "644215303"
+		garbageValue = "644215303",
+		signature = "(I)Z"
 	)
 	@Export("isFriend")
 	boolean isFriend() {
@@ -300,8 +300,8 @@ public final class Player extends Actor {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "511487286"
+		garbageValue = "511487286",
+		signature = "(I)V"
 	)
 	@Export("clearIsFriend")
 	void clearIsFriend() {
@@ -310,8 +310,8 @@ public final class Player extends Actor {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "667815611"
+		garbageValue = "667815611",
+		signature = "(I)V"
 	)
 	@Export("checkIsFriend")
 	void checkIsFriend() {
@@ -320,8 +320,8 @@ public final class Player extends Actor {
 
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(I)Z",
-		garbageValue = "34388997"
+		garbageValue = "34388997",
+		signature = "(I)Z"
 	)
 	@Export("isClanMember")
 	boolean isClanMember() {
@@ -334,8 +334,8 @@ public final class Player extends Actor {
 
 	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "-54"
+		garbageValue = "-54",
+		signature = "(B)V"
 	)
 	@Export("clearIsInClanChat")
 	void clearIsInClanChat() {
@@ -344,8 +344,8 @@ public final class Player extends Actor {
 
 	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "3"
+		garbageValue = "3",
+		signature = "(B)V"
 	)
 	@Export("updateIsInClanChat")
 	void updateIsInClanChat() {
@@ -354,8 +354,8 @@ public final class Player extends Actor {
 
 	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "1075941627"
+		garbageValue = "1075941627",
+		signature = "(I)I"
 	)
 	@Export("transformedSize")
 	int transformedSize() {
@@ -364,8 +364,8 @@ public final class Player extends Actor {
 
 	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		signature = "(B)Lef;",
-		garbageValue = "127"
+		garbageValue = "127",
+		signature = "(B)Lef;"
 	)
 	@Export("getModel")
 	protected final Model getModel() {
@@ -435,8 +435,8 @@ public final class Player extends Actor {
 
 	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		signature = "(IIBI)V",
-		garbageValue = "1833516243"
+		garbageValue = "1833516243",
+		signature = "(IIBI)V"
 	)
 	final void method1327(int var1, int var2, byte var3) {
 		if (super.sequence != -1 && InterfaceParent.SequenceDefinition_get(super.sequence).field3565 == 1) {
@@ -495,7 +495,7 @@ public final class Player extends Actor {
 									class182.bufferX[var22] = var5;
 									var39 = var22 + 1;
 									class182.bufferY[var22] = var6;
-									int[][] var33 = var11.flags;
+									int[][] var24 = var11.flags;
 
 									boolean var35;
 									label536:
@@ -529,7 +529,7 @@ public final class Player extends Actor {
 															}
 
 															var27 = class182.distances[var36][var37] + 1;
-															if (var36 > 0 && class182.directions[var36 - 1][var37] == 0 && (var33[var25 - 1][var26] & 19136782) == 0 && (var33[var25 - 1][var9 + var26 - 1] & 19136824) == 0) {
+															if (var36 > 0 && class182.directions[var36 - 1][var37] == 0 && (var24[var25 - 1][var26] & 19136782) == 0 && (var24[var25 - 1][var9 + var26 - 1] & 19136824) == 0) {
 																var28 = 1;
 
 																while (true) {
@@ -542,7 +542,7 @@ public final class Player extends Actor {
 																		break;
 																	}
 
-																	if ((var33[var25 - 1][var28 + var26] & 19136830) != 0) {
+																	if ((var24[var25 - 1][var28 + var26] & 19136830) != 0) {
 																		break;
 																	}
 
@@ -550,7 +550,7 @@ public final class Player extends Actor {
 																}
 															}
 
-															if (var36 < 128 - var9 && class182.directions[var36 + 1][var37] == 0 && (var33[var9 + var25][var26] & 19136899) == 0 && (var33[var25 + var9][var26 + var9 - 1] & 19136992) == 0) {
+															if (var36 < 128 - var9 && class182.directions[var36 + 1][var37] == 0 && (var24[var9 + var25][var26] & 19136899) == 0 && (var24[var25 + var9][var26 + var9 - 1] & 19136992) == 0) {
 																var28 = 1;
 
 																while (true) {
@@ -563,7 +563,7 @@ public final class Player extends Actor {
 																		break;
 																	}
 
-																	if ((var33[var25 + var9][var28 + var26] & 19136995) != 0) {
+																	if ((var24[var25 + var9][var28 + var26] & 19136995) != 0) {
 																		break;
 																	}
 
@@ -571,7 +571,7 @@ public final class Player extends Actor {
 																}
 															}
 
-															if (var37 > 0 && class182.directions[var36][var37 - 1] == 0 && (var33[var25][var26 - 1] & 19136782) == 0 && (var33[var25 + var9 - 1][var26 - 1] & 19136899) == 0) {
+															if (var37 > 0 && class182.directions[var36][var37 - 1] == 0 && (var24[var25][var26 - 1] & 19136782) == 0 && (var24[var25 + var9 - 1][var26 - 1] & 19136899) == 0) {
 																var28 = 1;
 
 																while (true) {
@@ -584,7 +584,7 @@ public final class Player extends Actor {
 																		break;
 																	}
 
-																	if ((var33[var28 + var25][var26 - 1] & 19136911) != 0) {
+																	if ((var24[var28 + var25][var26 - 1] & 19136911) != 0) {
 																		break;
 																	}
 
@@ -592,7 +592,7 @@ public final class Player extends Actor {
 																}
 															}
 
-															if (var37 < 128 - var9 && class182.directions[var36][var37 + 1] == 0 && (var33[var25][var26 + var9] & 19136824) == 0 && (var33[var25 + var9 - 1][var9 + var26] & 19136992) == 0) {
+															if (var37 < 128 - var9 && class182.directions[var36][var37 + 1] == 0 && (var24[var25][var26 + var9] & 19136824) == 0 && (var24[var25 + var9 - 1][var9 + var26] & 19136992) == 0) {
 																var28 = 1;
 
 																while (true) {
@@ -605,7 +605,7 @@ public final class Player extends Actor {
 																		break;
 																	}
 
-																	if ((var33[var28 + var25][var26 + var9] & 19137016) != 0) {
+																	if ((var24[var28 + var25][var26 + var9] & 19137016) != 0) {
 																		break;
 																	}
 
@@ -613,7 +613,7 @@ public final class Player extends Actor {
 																}
 															}
 
-															if (var36 > 0 && var37 > 0 && class182.directions[var36 - 1][var37 - 1] == 0 && (var33[var25 - 1][var26 - 1] & 19136782) == 0) {
+															if (var36 > 0 && var37 > 0 && class182.directions[var36 - 1][var37 - 1] == 0 && (var24[var25 - 1][var26 - 1] & 19136782) == 0) {
 																var28 = 1;
 
 																while (true) {
@@ -626,7 +626,7 @@ public final class Player extends Actor {
 																		break;
 																	}
 
-																	if ((var33[var25 - 1][var28 + (var26 - 1)] & 19136830) != 0 || (var33[var28 + (var25 - 1)][var26 - 1] & 19136911) != 0) {
+																	if ((var24[var25 - 1][var28 + (var26 - 1)] & 19136830) != 0 || (var24[var28 + (var25 - 1)][var26 - 1] & 19136911) != 0) {
 																		break;
 																	}
 
@@ -634,7 +634,7 @@ public final class Player extends Actor {
 																}
 															}
 
-															if (var36 < 128 - var9 && var37 > 0 && class182.directions[var36 + 1][var37 - 1] == 0 && (var33[var25 + var9][var26 - 1] & 19136899) == 0) {
+															if (var36 < 128 - var9 && var37 > 0 && class182.directions[var36 + 1][var37 - 1] == 0 && (var24[var25 + var9][var26 - 1] & 19136899) == 0) {
 																var28 = 1;
 
 																while (true) {
@@ -647,7 +647,7 @@ public final class Player extends Actor {
 																		break;
 																	}
 
-																	if ((var33[var9 + var25][var28 + (var26 - 1)] & 19136995) != 0 || (var33[var25 + var28][var26 - 1] & 19136911) != 0) {
+																	if ((var24[var9 + var25][var28 + (var26 - 1)] & 19136995) != 0 || (var24[var25 + var28][var26 - 1] & 19136911) != 0) {
 																		break;
 																	}
 
@@ -655,9 +655,9 @@ public final class Player extends Actor {
 																}
 															}
 
-															if (var36 > 0 && var37 < 128 - var9 && class182.directions[var36 - 1][var37 + 1] == 0 && (var33[var25 - 1][var26 + var9] & 19136824) == 0) {
+															if (var36 > 0 && var37 < 128 - var9 && class182.directions[var36 - 1][var37 + 1] == 0 && (var24[var25 - 1][var26 + var9] & 19136824) == 0) {
 																for (var28 = 1; var28 < var9; ++var28) {
-																	if ((var33[var25 - 1][var26 + var28] & 19136830) != 0 || (var33[var28 + (var25 - 1)][var9 + var26] & 19137016) != 0) {
+																	if ((var24[var25 - 1][var26 + var28] & 19136830) != 0 || (var24[var28 + (var25 - 1)][var9 + var26] & 19137016) != 0) {
 																		continue label511;
 																	}
 																}
@@ -671,10 +671,10 @@ public final class Player extends Actor {
 														} while(var36 >= 128 - var9);
 													} while(var37 >= 128 - var9);
 												} while(class182.directions[var36 + 1][var37 + 1] != 0);
-											} while((var33[var25 + var9][var9 + var26] & 19136992) != 0);
+											} while((var24[var25 + var9][var9 + var26] & 19136992) != 0);
 
 											for (var28 = 1; var28 < var9; ++var28) {
-												if ((var33[var25 + var28][var26 + var9] & 19137016) != 0 || (var33[var9 + var25][var26 + var28] & 19136995) != 0) {
+												if ((var24[var25 + var28][var26 + var9] & 19137016) != 0 || (var24[var9 + var25][var26 + var28] & 19136995) != 0) {
 													continue label534;
 												}
 											}
@@ -702,7 +702,7 @@ public final class Player extends Actor {
 										byte var38 = 10;
 										var39 = var10.approxDestinationX;
 										var23 = var10.approxDestinationY;
-										int var24 = var10.approxDestinationSizeX;
+										int var33 = var10.approxDestinationSizeX;
 										var25 = var10.approxDestinationSizeY;
 
 										for (var26 = var39 - var38; var26 <= var39 + var38; ++var26) {
@@ -713,8 +713,8 @@ public final class Player extends Actor {
 													int var30 = 0;
 													if (var26 < var39) {
 														var30 = var39 - var26;
-													} else if (var26 > var24 + var39 - 1) {
-														var30 = var26 - (var39 + var24 - 1);
+													} else if (var26 > var33 + var39 - 1) {
+														var30 = var26 - (var39 + var33 - 1);
 													}
 
 													int var31 = 0;
@@ -822,8 +822,8 @@ public final class Player extends Actor {
 
 	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		signature = "(IIB)V",
-		garbageValue = "-101"
+		garbageValue = "-101",
+		signature = "(IIB)V"
 	)
 	@Export("resetPath")
 	void resetPath(int var1, int var2) {
@@ -839,8 +839,8 @@ public final class Player extends Actor {
 
 	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		signature = "(IIBI)V",
-		garbageValue = "-498567231"
+		garbageValue = "-498567231",
+		signature = "(IIBI)V"
 	)
 	final void method1329(int var1, int var2, byte var3) {
 		if (super.pathLength < 9) {
@@ -860,8 +860,8 @@ public final class Player extends Actor {
 
 	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		signature = "(I)Z",
-		garbageValue = "-251916247"
+		garbageValue = "-251916247",
+		signature = "(I)Z"
 	)
 	@Export("isVisible")
 	final boolean isVisible() {
@@ -870,8 +870,8 @@ public final class Player extends Actor {
 
 	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		signature = "(B)Lcq;",
-		garbageValue = "1"
+		garbageValue = "1",
+		signature = "(B)Lcq;"
 	)
 	@Export("getNextWorldListWorld")
 	static World getNextWorldListWorld() {
@@ -880,8 +880,8 @@ public final class Player extends Actor {
 
 	@ObfuscatedName("ai")
 	@ObfuscatedSignature(
-		signature = "([BIIB)I",
-		garbageValue = "4"
+		garbageValue = "4",
+		signature = "([BIIB)I"
 	)
 	public static int method1317(byte[] var0, int var1, int var2) {
 		int var3 = -1;
@@ -896,8 +896,8 @@ public final class Player extends Actor {
 
 	@ObfuscatedName("hn")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-1132112001"
+		garbageValue = "-1132112001",
+		signature = "(I)V"
 	)
 	@Export("addCancelMenuEntry")
 	static void addCancelMenuEntry() {
@@ -912,8 +912,8 @@ public final class Player extends Actor {
 
 	@ObfuscatedName("ki")
 	@ObfuscatedSignature(
-		signature = "(Lhz;B)Ljava/lang/String;",
-		garbageValue = "101"
+		garbageValue = "101",
+		signature = "(Lhz;B)Ljava/lang/String;"
 	)
 	static String method1364(Widget var0) {
 		if (MusicPatch.method4094(class60.getWidgetClickMask(var0)) == 0) {

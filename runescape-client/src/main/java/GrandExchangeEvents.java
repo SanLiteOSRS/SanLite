@@ -35,8 +35,8 @@ public class GrandExchangeEvents {
 	}
 
 	@ObfuscatedSignature(
-		signature = "(Lkx;Z)V",
-		garbageValue = "1"
+		garbageValue = "1",
+		signature = "(Lkx;Z)V"
 	)
 	public GrandExchangeEvents(Buffer var1, boolean var2) {
 		int var3 = var1.readUnsignedShort();
@@ -59,8 +59,8 @@ public class GrandExchangeEvents {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Ljava/util/Comparator;ZS)V",
-		garbageValue = "19437"
+		garbageValue = "19437",
+		signature = "(Ljava/util/Comparator;ZS)V"
 	)
 	@Export("sort")
 	public void sort(Comparator var1, boolean var2) {

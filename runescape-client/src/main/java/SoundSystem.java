@@ -52,8 +52,8 @@ public class SoundSystem implements Runnable {
 
 	@ObfuscatedName("an")
 	@ObfuscatedSignature(
-		signature = "(II)V",
-		garbageValue = "-422098598"
+		garbageValue = "-422098598",
+		signature = "(II)V"
 	)
 	@Export("runWidgetOnLoadListener")
 	static void runWidgetOnLoadListener(int var0) {

@@ -196,8 +196,8 @@ public final class KeyHandler implements KeyListener, FocusListener {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Ljava/applet/Applet;Ljava/lang/String;I)V",
-		garbageValue = "1009251772"
+		garbageValue = "1009251772",
+		signature = "(Ljava/applet/Applet;Ljava/lang/String;I)V"
 	)
 	public static void method912(Applet var0, String var1) {
 		class60.applet = var0;
@@ -209,8 +209,8 @@ public final class KeyHandler implements KeyListener, FocusListener {
 
 	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(Lkx;IIIIIII)V",
-		garbageValue = "-1349171106"
+		garbageValue = "-1349171106",
+		signature = "(Lkx;IIIIIII)V"
 	)
 	@Export("loadTerrain")
 	static final void loadTerrain(Buffer var0, int var1, int var2, int var3, int var4, int var5, int var6) {
@@ -275,8 +275,8 @@ public final class KeyHandler implements KeyListener, FocusListener {
 
 	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-2146586711"
+		garbageValue = "-2146586711",
+		signature = "(I)V"
 	)
 	public static void method913() {
 		HitSplatDefinition.HitSplatDefinition_cached.clear();
@@ -286,8 +286,8 @@ public final class KeyHandler implements KeyListener, FocusListener {
 
 	@ObfuscatedName("kt")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "534090329"
+		garbageValue = "534090329",
+		signature = "(I)V"
 	)
 	static final void method911() {
 		Client.field858 = Client.cycleCntr;

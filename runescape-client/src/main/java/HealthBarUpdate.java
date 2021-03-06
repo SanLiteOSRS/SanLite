@@ -52,8 +52,8 @@ public class HealthBarUpdate extends Node {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(IIIIB)V",
-		garbageValue = "72"
+		garbageValue = "72",
+		signature = "(IIIIB)V"
 	)
 	@Export("set")
 	void set(int var1, int var2, int var3, int var4) {
@@ -65,8 +65,8 @@ public class HealthBarUpdate extends Node {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "([Ljava/lang/String;[SB)V",
-		garbageValue = "1"
+		garbageValue = "1",
+		signature = "([Ljava/lang/String;[SB)V"
 	)
 	public static void method1873(String[] var0, short[] var1) {
 		AbstractSocket.sortItemsByName(var0, var1, 0, var0.length - 1);
@@ -74,8 +74,8 @@ public class HealthBarUpdate extends Node {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(IB)Lij;",
-		garbageValue = "-64"
+		garbageValue = "-64",
+		signature = "(IB)Lij;"
 	)
 	@Export("getInvDefinition")
 	public static InvDefinition getInvDefinition(int var0) {
@@ -96,8 +96,8 @@ public class HealthBarUpdate extends Node {
 
 	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		signature = "(II)I",
-		garbageValue = "-698681386"
+		garbageValue = "-698681386",
+		signature = "(II)I"
 	)
 	@Export("Messages_getLastChatID")
 	static int Messages_getLastChatID(int var0) {

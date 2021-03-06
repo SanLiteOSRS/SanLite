@@ -17,8 +17,8 @@ public class class89 {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(III)Lbd;",
-		garbageValue = "-1373661566"
+		garbageValue = "-1373661566",
+		signature = "(III)Lbd;"
 	)
 	@Export("Messages_getByChannelAndID")
 	static Message Messages_getByChannelAndID(int var0, int var1) {

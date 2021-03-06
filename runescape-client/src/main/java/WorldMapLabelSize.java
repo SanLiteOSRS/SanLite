@@ -61,8 +61,8 @@ public class WorldMapLabelSize {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(FB)Z",
-		garbageValue = "-67"
+		garbageValue = "-67",
+		signature = "(FB)Z"
 	)
 	boolean method255(float var1) {
 		return var1 >= (float)this.field154;
@@ -70,8 +70,8 @@ public class WorldMapLabelSize {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(I)[Lay;",
-		garbageValue = "-2106429153"
+		garbageValue = "-2106429153",
+		signature = "(I)[Lay;"
 	)
 	static WorldMapLabelSize[] method269() {
 		return new WorldMapLabelSize[]{WorldMapLabelSize_large, WorldMapLabelSize_medium, WorldMapLabelSize_small};
@@ -79,8 +79,8 @@ public class WorldMapLabelSize {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(Lig;III)[Llm;",
-		garbageValue = "-173751595"
+		garbageValue = "-173751595",
+		signature = "(Lig;III)[Llm;"
 	)
 	public static SpritePixels[] method268(AbstractArchive var0, int var1, int var2) {
 		byte[] var4 = var0.takeFile(var1, var2);
@@ -97,8 +97,8 @@ public class WorldMapLabelSize {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(IB)Lay;",
-		garbageValue = "31"
+		garbageValue = "31",
+		signature = "(IB)Lay;"
 	)
 	static WorldMapLabelSize method266(int var0) {
 		WorldMapLabelSize[] var1 = method269();
@@ -115,8 +115,8 @@ public class WorldMapLabelSize {
 
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(IIIZIZI)V",
-		garbageValue = "-1679154092"
+		garbageValue = "-1679154092",
+		signature = "(IIIZIZI)V"
 	)
 	@Export("doWorldSorting")
 	static void doWorldSorting(int var0, int var1, int var2, boolean var3, int var4, boolean var5) {
@@ -145,8 +145,8 @@ public class WorldMapLabelSize {
 
 	@ObfuscatedName("bp")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;I)I",
-		garbageValue = "1534549931"
+		garbageValue = "1534549931",
+		signature = "(Ljava/lang/String;I)I"
 	)
 	@Export("stringCp1252NullTerminatedByteSize")
 	public static int stringCp1252NullTerminatedByteSize(String var0) {
@@ -155,8 +155,8 @@ public class WorldMapLabelSize {
 
 	@ObfuscatedName("in")
 	@ObfuscatedSignature(
-		signature = "(IIIIII)V",
-		garbageValue = "1283328511"
+		garbageValue = "1283328511",
+		signature = "(IIIIII)V"
 	)
 	@Export("drawScrollBar")
 	static final void drawScrollBar(int var0, int var1, int var2, int var3, int var4) {
@@ -170,20 +170,20 @@ public class WorldMapLabelSize {
 
 		int var6 = (var3 - 32 - var5) * var2 / (var4 - var3);
 		Rasterizer2D.Rasterizer2D_fillRectangle(var0, var6 + var1 + 16, 16, var5, Client.field777);
-		Rasterizer2D.Rasterizer2D_drawVerticalLine(var0, var6 + var1 + 16, var5, Client.field730);
-		Rasterizer2D.Rasterizer2D_drawVerticalLine(var0 + 1, var6 + var1 + 16, var5, Client.field730);
-		Rasterizer2D.Rasterizer2D_drawHorizontalLine(var0, var6 + var1 + 16, 16, Client.field730);
-		Rasterizer2D.Rasterizer2D_drawHorizontalLine(var0, var6 + var1 + 17, 16, Client.field730);
-		Rasterizer2D.Rasterizer2D_drawVerticalLine(var0 + 15, var6 + var1 + 16, var5, Client.field729);
-		Rasterizer2D.Rasterizer2D_drawVerticalLine(var0 + 14, var6 + var1 + 17, var5 - 1, Client.field729);
-		Rasterizer2D.Rasterizer2D_drawHorizontalLine(var0, var6 + var5 + var1 + 15, 16, Client.field729);
-		Rasterizer2D.Rasterizer2D_drawHorizontalLine(var0 + 1, var6 + var5 + var1 + 14, 15, Client.field729);
+		Rasterizer2D.method6232(var0, var6 + var1 + 16, var5, Client.field730);
+		Rasterizer2D.method6232(var0 + 1, var6 + var1 + 16, var5, Client.field730);
+		Rasterizer2D.method6223(var0, var6 + var1 + 16, 16, Client.field730);
+		Rasterizer2D.method6223(var0, var6 + var1 + 17, 16, Client.field730);
+		Rasterizer2D.method6232(var0 + 15, var6 + var1 + 16, var5, Client.field729);
+		Rasterizer2D.method6232(var0 + 14, var6 + var1 + 17, var5 - 1, Client.field729);
+		Rasterizer2D.method6223(var0, var6 + var5 + var1 + 15, 16, Client.field729);
+		Rasterizer2D.method6223(var0 + 1, var6 + var5 + var1 + 14, 15, Client.field729);
 	}
 
 	@ObfuscatedName("ke")
 	@ObfuscatedSignature(
-		signature = "(Lhz;I)Z",
-		garbageValue = "-490308531"
+		garbageValue = "-490308531",
+		signature = "(Lhz;I)Z"
 	)
 	static final boolean method254(Widget var0) {
 		int var1 = var0.contentType;

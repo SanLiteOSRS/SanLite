@@ -16,8 +16,8 @@ public class UserComparator10 extends AbstractUserComparator {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Lky;Lky;I)I",
-		garbageValue = "899318279"
+		garbageValue = "899318279",
+		signature = "(Lky;Lky;I)I"
 	)
 	@Export("compareBuddy")
 	int compareBuddy(Buddy var1, Buddy var2) {
@@ -34,8 +34,8 @@ public class UserComparator10 extends AbstractUserComparator {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(II)Ljava/lang/String;",
-		garbageValue = "77103650"
+		garbageValue = "77103650",
+		signature = "(II)Ljava/lang/String;"
 	)
 	static String method3580(int var0) {
 		return "<img=" + var0 + ">";
@@ -43,8 +43,8 @@ public class UserComparator10 extends AbstractUserComparator {
 
 	@ObfuscatedName("g")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-1892343700"
+		garbageValue = "-1892343700",
+		signature = "(I)V"
 	)
 	static void method3573() {
 		Login.worldSelectOpen = false;

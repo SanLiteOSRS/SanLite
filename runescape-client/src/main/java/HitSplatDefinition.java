@@ -143,8 +143,8 @@ public class HitSplatDefinition extends DualNode {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(Lkx;I)V",
-		garbageValue = "-1255296319"
+		garbageValue = "-1255296319",
+		signature = "(Lkx;I)V"
 	)
 	@Export("decode")
 	void decode(Buffer var1) {
@@ -160,8 +160,8 @@ public class HitSplatDefinition extends DualNode {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(Lkx;IB)V",
-		garbageValue = "12"
+		garbageValue = "12",
+		signature = "(Lkx;IB)V"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
@@ -229,8 +229,8 @@ public class HitSplatDefinition extends DualNode {
 
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(I)Ljz;",
-		garbageValue = "-718809763"
+		garbageValue = "-718809763",
+		signature = "(I)Ljz;"
 	)
 	@Export("transform")
 	public final HitSplatDefinition transform() {
@@ -253,8 +253,8 @@ public class HitSplatDefinition extends DualNode {
 
 	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(II)Ljava/lang/String;",
-		garbageValue = "1367111183"
+		garbageValue = "1367111183",
+		signature = "(II)Ljava/lang/String;"
 	)
 	@Export("getString")
 	public String getString(int var1) {
@@ -272,8 +272,8 @@ public class HitSplatDefinition extends DualNode {
 
 	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(I)Llm;",
-		garbageValue = "-1595522971"
+		garbageValue = "-1595522971",
+		signature = "(I)Llm;"
 	)
 	public SpritePixels method4764() {
 		if (this.field3365 < 0) {
@@ -295,8 +295,8 @@ public class HitSplatDefinition extends DualNode {
 
 	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		signature = "(B)Llm;",
-		garbageValue = "49"
+		garbageValue = "49",
+		signature = "(B)Llm;"
 	)
 	public SpritePixels method4770() {
 		if (this.field3366 < 0) {
@@ -318,8 +318,8 @@ public class HitSplatDefinition extends DualNode {
 
 	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		signature = "(I)Llm;",
-		garbageValue = "1511725830"
+		garbageValue = "1511725830",
+		signature = "(I)Llm;"
 	)
 	public SpritePixels method4769() {
 		if (this.field3367 < 0) {
@@ -341,8 +341,8 @@ public class HitSplatDefinition extends DualNode {
 
 	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		signature = "(I)Llm;",
-		garbageValue = "-2138481070"
+		garbageValue = "-2138481070",
+		signature = "(I)Llm;"
 	)
 	public SpritePixels method4766() {
 		if (this.field3372 < 0) {
@@ -364,8 +364,8 @@ public class HitSplatDefinition extends DualNode {
 
 	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		signature = "(I)Lkl;",
-		garbageValue = "1442657906"
+		garbageValue = "1442657906",
+		signature = "(I)Lkl;"
 	)
 	@Export("getFont")
 	public Font getFont() {
@@ -421,8 +421,8 @@ public class HitSplatDefinition extends DualNode {
 
 	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/CharSequence;I)Ljava/lang/String;",
-		garbageValue = "1153896983"
+		garbageValue = "1153896983",
+		signature = "(Ljava/lang/CharSequence;I)Ljava/lang/String;"
 	)
 	public static String method4768(CharSequence var0) {
 		return ReflectionCheck.method2449('*', var0.length());
@@ -430,8 +430,8 @@ public class HitSplatDefinition extends DualNode {
 
 	@ObfuscatedName("ht")
 	@ObfuscatedSignature(
-		signature = "(III)V",
-		garbageValue = "-483129503"
+		garbageValue = "-483129503",
+		signature = "(III)V"
 	)
 	@Export("updateItemPile")
 	static final void updateItemPile(int var0, int var1) {
@@ -445,13 +445,13 @@ public class HitSplatDefinition extends DualNode {
 			TileItem var6;
 			for (var6 = (TileItem)var2.last(); var6 != null; var6 = (TileItem)var2.previous()) {
 				ItemComposition var7 = class281.ItemDefinition_get(var6.id);
-				long var8 = (long)var7.price;
+				long var11 = (long)var7.price;
 				if (var7.isStackable == 1) {
-					var8 *= (long)(var6.quantity + 1);
+					var11 *= (long)(var6.quantity + 1);
 				}
 
-				if (var8 > var3) {
-					var3 = var8;
+				if (var11 > var3) {
+					var3 = var11;
 					var5 = var6;
 				}
 			}
@@ -460,23 +460,23 @@ public class HitSplatDefinition extends DualNode {
 				MilliClock.scene.removeGroundItemPile(class90.Client_plane, var0, var1);
 			} else {
 				var2.addLast(var5);
-				TileItem var12 = null;
-				TileItem var11 = null;
+				TileItem var13 = null;
+				TileItem var8 = null;
 
 				for (var6 = (TileItem)var2.last(); var6 != null; var6 = (TileItem)var2.previous()) {
 					if (var5.id != var6.id) {
-						if (var12 == null) {
-							var12 = var6;
+						if (var13 == null) {
+							var13 = var6;
 						}
 
-						if (var6.id != var12.id && var11 == null) {
-							var11 = var6;
+						if (var6.id != var13.id && var8 == null) {
+							var8 = var6;
 						}
 					}
 				}
 
 				long var9 = TextureProvider.calculateTag(var0, var1, 3, false, 0);
-				MilliClock.scene.newGroundItemPile(class90.Client_plane, var0, var1, WorldMapRegion.getTileHeight(var0 * 128 + 64, var1 * 128 + 64, class90.Client_plane), var5, var9, var12, var11);
+				MilliClock.scene.newGroundItemPile(class90.Client_plane, var0, var1, WorldMapRegion.getTileHeight(var0 * 128 + 64, var1 * 128 + 64, class90.Client_plane), var5, var9, var13, var8);
 			}
 		}
 	}

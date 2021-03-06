@@ -50,8 +50,8 @@ public enum AttackOption implements Enumerated {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(B)I",
-		garbageValue = "63"
+		garbageValue = "63",
+		signature = "(B)I"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
@@ -60,8 +60,8 @@ public enum AttackOption implements Enumerated {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(IIII)J",
-		garbageValue = "-265115329"
+		garbageValue = "-265115329",
+		signature = "(IIII)J"
 	)
 	static long method2203(int var0, int var1, int var2) {
 		return (long)(var2 << 16 | var0 << 8 | var1);
@@ -69,8 +69,8 @@ public enum AttackOption implements Enumerated {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(III)V",
-		garbageValue = "2128325059"
+		garbageValue = "2128325059",
+		signature = "(III)V"
 	)
 	static void method2202(int var0, int var1) {
 		long var2 = (long)((var0 << 16) + var1);

@@ -162,8 +162,8 @@ public final class Projectile extends Renderable {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(IIIIB)V",
-		garbageValue = "101"
+		garbageValue = "101",
+		signature = "(IIIIB)V"
 	)
 	@Export("setDestination")
 	final void setDestination(int var1, int var2, int var3, int var4) {
@@ -190,8 +190,8 @@ public final class Projectile extends Renderable {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(IB)V",
-		garbageValue = "114"
+		garbageValue = "114",
+		signature = "(IB)V"
 	)
 	@Export("advance")
 	final void advance(int var1) {
@@ -226,8 +226,8 @@ public final class Projectile extends Renderable {
 
 	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		signature = "(B)Lef;",
-		garbageValue = "127"
+		garbageValue = "127",
+		signature = "(B)Lef;"
 	)
 	@Export("getModel")
 	protected final Model getModel() {
@@ -243,8 +243,8 @@ public final class Projectile extends Renderable {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;Ljava/lang/String;IIB)V",
-		garbageValue = "23"
+		garbageValue = "23",
+		signature = "(Ljava/lang/String;Ljava/lang/String;IIB)V"
 	)
 	public static void method2255(String var0, String var1, int var2, int var3) throws IOException {
 		JagexCache.idxCount = var3;
@@ -452,8 +452,8 @@ public final class Projectile extends Renderable {
 
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(B)[B",
-		garbageValue = "-22"
+		garbageValue = "-22",
+		signature = "(B)[B"
 	)
 	public static byte[] method2260() {
 		byte[] var0 = new byte[24];
@@ -480,8 +480,8 @@ public final class Projectile extends Renderable {
 
 	@ObfuscatedName("hv")
 	@ObfuscatedSignature(
-		signature = "(IIIIB)V",
-		garbageValue = "-87"
+		garbageValue = "-87",
+		signature = "(IIIIB)V"
 	)
 	static final void method2262(int var0, int var1, int var2, int var3) {
 		for (int var4 = 0; var4 < Client.rootWidgetCount; ++var4) {
@@ -494,8 +494,8 @@ public final class Projectile extends Renderable {
 
 	@ObfuscatedName("ip")
 	@ObfuscatedSignature(
-		signature = "(IIIIB)V",
-		garbageValue = "2"
+		garbageValue = "2",
+		signature = "(IIIIB)V"
 	)
 	@Export("addSceneMenuOptions")
 	static final void addSceneMenuOptions(int var0, int var1, int var2, int var3) {
@@ -508,14 +508,14 @@ public final class Projectile extends Renderable {
 
 		int var8;
 		for (var8 = 0; var8 < AbstractWorldMapData.method342(); ++var8) {
-			long var9 = ObjectSound.method2044(var8);
-			if (var9 != var6) {
-				var6 = var9;
+			long var22 = ObjectSound.method2044(var8);
+			if (var22 != var6) {
+				var6 = var22;
 				int var11 = class200.method3865(var8);
 				int var12 = NPC.method2179(var8);
 				int var13 = FontName.method5502(ViewportMouse.ViewportMouse_entityTags[var8]);
 				int var15 = AbstractWorldMapIcon.method710(var8);
-				if (var13 == 2 && MilliClock.scene.getObjectFlags(class90.Client_plane, var11, var12, var9) >= 0) {
+				if (var13 == 2 && MilliClock.scene.getObjectFlags(class90.Client_plane, var11, var12, var22) >= 0) {
 					ObjectComposition var16 = WorldMapAreaData.getObjectDefinition(var15);
 					if (var16.transforms != null) {
 						var16 = var16.transform();
@@ -532,32 +532,32 @@ public final class Projectile extends Renderable {
 							WorldMapManager.insertMenuItemNoShift(Client.selectedSpellActionName, Client.selectedSpellName + " " + "->" + " " + FileSystem.colorStartTag(65535) + var16.name, 2, var15, var11, var12);
 						}
 					} else {
-						String[] var23 = var16.actions;
-						if (var23 != null) {
-							for (int var24 = 4; var24 >= 0; --var24) {
-								if (var23[var24] != null) {
+						String[] var17 = var16.actions;
+						if (var17 != null) {
+							for (int var18 = 4; var18 >= 0; --var18) {
+								if (var17[var18] != null) {
 									short var19 = 0;
-									if (var24 == 0) {
+									if (var18 == 0) {
 										var19 = 3;
 									}
 
-									if (var24 == 1) {
+									if (var18 == 1) {
 										var19 = 4;
 									}
 
-									if (var24 == 2) {
+									if (var18 == 2) {
 										var19 = 5;
 									}
 
-									if (var24 == 3) {
+									if (var18 == 3) {
 										var19 = 6;
 									}
 
-									if (var24 == 4) {
+									if (var18 == 4) {
 										var19 = 1001;
 									}
 
-									WorldMapManager.insertMenuItemNoShift(var23[var24], FileSystem.colorStartTag(65535) + var16.name, var19, var15, var11, var12);
+									WorldMapManager.insertMenuItemNoShift(var17[var18], FileSystem.colorStartTag(65535) + var16.name, var19, var15, var11, var12);
 								}
 							}
 						}
@@ -566,115 +566,115 @@ public final class Projectile extends Renderable {
 					}
 				}
 
-				int var17;
-				NPC var18;
 				Player var20;
-				int[] var30;
+				int var24;
+				NPC var25;
 				int var32;
+				int[] var33;
 				if (var13 == 1) {
-					NPC var27 = Client.npcs[var15];
-					if (var27 == null) {
-						continue;
-					}
-
-					if (var27.definition.size == 1 && (var27.x & 127) == 64 && (var27.y & 127) == 64) {
-						for (var17 = 0; var17 < Client.npcCount; ++var17) {
-							var18 = Client.npcs[Client.npcIndices[var17]];
-							if (var18 != null && var18 != var27 && var18.definition.size == 1 && var18.x == var27.x && var18.y == var27.y) {
-								GameBuild.addNpcToMenu(var18.definition, Client.npcIndices[var17], var11, var12);
-							}
-						}
-
-						var17 = Players.Players_count;
-						var30 = Players.Players_indices;
-
-						for (var32 = 0; var32 < var17; ++var32) {
-							var20 = Client.players[var30[var32]];
-							if (var20 != null && var20.x == var27.x && var20.y == var27.y) {
-								GrandExchangeOfferUnitPriceComparator.addPlayerToMenu(var20, var30[var32], var11, var12);
-							}
-						}
-					}
-
-					GameBuild.addNpcToMenu(var27.definition, var15, var11, var12);
-				}
-
-				if (var13 == 0) {
-					Player var28 = Client.players[var15];
+					NPC var28 = Client.npcs[var15];
 					if (var28 == null) {
 						continue;
 					}
 
-					if ((var28.x & 127) == 64 && (var28.y & 127) == 64) {
-						for (var17 = 0; var17 < Client.npcCount; ++var17) {
-							var18 = Client.npcs[Client.npcIndices[var17]];
-							if (var18 != null && var18.definition.size == 1 && var28.x == var18.x && var28.y == var18.y) {
-								GameBuild.addNpcToMenu(var18.definition, Client.npcIndices[var17], var11, var12);
+					if (var28.definition.size == 1 && (var28.x & 127) == 64 && (var28.y & 127) == 64) {
+						for (var24 = 0; var24 < Client.npcCount; ++var24) {
+							var25 = Client.npcs[Client.npcIndices[var24]];
+							if (var25 != null && var25 != var28 && var25.definition.size == 1 && var25.x == var28.x && var25.y == var28.y) {
+								GameBuild.addNpcToMenu(var25.definition, Client.npcIndices[var24], var11, var12);
 							}
 						}
 
-						var17 = Players.Players_count;
-						var30 = Players.Players_indices;
+						var24 = Players.Players_count;
+						var33 = Players.Players_indices;
 
-						for (var32 = 0; var32 < var17; ++var32) {
-							var20 = Client.players[var30[var32]];
-							if (var20 != null && var28 != var20 && var20.x == var28.x && var20.y == var28.y) {
-								GrandExchangeOfferUnitPriceComparator.addPlayerToMenu(var20, var30[var32], var11, var12);
+						for (var32 = 0; var32 < var24; ++var32) {
+							var20 = Client.players[var33[var32]];
+							if (var20 != null && var20.x == var28.x && var20.y == var28.y) {
+								GrandExchangeOfferUnitPriceComparator.addPlayerToMenu(var20, var33[var32], var11, var12);
+							}
+						}
+					}
+
+					GameBuild.addNpcToMenu(var28.definition, var15, var11, var12);
+				}
+
+				if (var13 == 0) {
+					Player var29 = Client.players[var15];
+					if (var29 == null) {
+						continue;
+					}
+
+					if ((var29.x & 127) == 64 && (var29.y & 127) == 64) {
+						for (var24 = 0; var24 < Client.npcCount; ++var24) {
+							var25 = Client.npcs[Client.npcIndices[var24]];
+							if (var25 != null && var25.definition.size == 1 && var29.x == var25.x && var29.y == var25.y) {
+								GameBuild.addNpcToMenu(var25.definition, Client.npcIndices[var24], var11, var12);
+							}
+						}
+
+						var24 = Players.Players_count;
+						var33 = Players.Players_indices;
+
+						for (var32 = 0; var32 < var24; ++var32) {
+							var20 = Client.players[var33[var32]];
+							if (var20 != null && var29 != var20 && var20.x == var29.x && var20.y == var29.y) {
+								GrandExchangeOfferUnitPriceComparator.addPlayerToMenu(var20, var33[var32], var11, var12);
 							}
 						}
 					}
 
 					if (var15 != Client.combatTargetPlayerIndex) {
-						GrandExchangeOfferUnitPriceComparator.addPlayerToMenu(var28, var15, var11, var12);
+						GrandExchangeOfferUnitPriceComparator.addPlayerToMenu(var29, var15, var11, var12);
 					} else {
-						var4 = var9;
+						var4 = var22;
 					}
 				}
 
 				if (var13 == 3) {
-					NodeDeque var29 = Client.groundItems[class90.Client_plane][var11][var12];
-					if (var29 != null) {
-						for (TileItem var33 = (TileItem)var29.first(); var33 != null; var33 = (TileItem)var29.next()) {
-							ItemComposition var31 = class281.ItemDefinition_get(var33.id);
+					NodeDeque var31 = Client.groundItems[class90.Client_plane][var11][var12];
+					if (var31 != null) {
+						for (TileItem var30 = (TileItem)var31.first(); var30 != null; var30 = (TileItem)var31.next()) {
+							ItemComposition var34 = class281.ItemDefinition_get(var30.id);
 							if (Client.isItemSelected == 1) {
-								WorldMapManager.insertMenuItemNoShift("Use", Client.selectedItemName + " " + "->" + " " + FileSystem.colorStartTag(16748608) + var31.name, 16, var33.id, var11, var12);
+								WorldMapManager.insertMenuItemNoShift("Use", Client.selectedItemName + " " + "->" + " " + FileSystem.colorStartTag(16748608) + var34.name, 16, var30.id, var11, var12);
 							} else if (Client.isSpellSelected) {
 								if ((GrandExchangeOfferNameComparator.selectedSpellFlags & 1) == 1) {
-									WorldMapManager.insertMenuItemNoShift(Client.selectedSpellActionName, Client.selectedSpellName + " " + "->" + " " + FileSystem.colorStartTag(16748608) + var31.name, 17, var33.id, var11, var12);
+									WorldMapManager.insertMenuItemNoShift(Client.selectedSpellActionName, Client.selectedSpellName + " " + "->" + " " + FileSystem.colorStartTag(16748608) + var34.name, 17, var30.id, var11, var12);
 								}
 							} else {
-								String[] var25 = var31.groundActions;
+								String[] var26 = var34.groundActions;
 
-								for (int var26 = 4; var26 >= 0; --var26) {
-									if (var25 != null && var25[var26] != null) {
+								for (int var27 = 4; var27 >= 0; --var27) {
+									if (var26 != null && var26[var27] != null) {
 										byte var21 = 0;
-										if (var26 == 0) {
+										if (var27 == 0) {
 											var21 = 18;
 										}
 
-										if (var26 == 1) {
+										if (var27 == 1) {
 											var21 = 19;
 										}
 
-										if (var26 == 2) {
+										if (var27 == 2) {
 											var21 = 20;
 										}
 
-										if (var26 == 3) {
+										if (var27 == 3) {
 											var21 = 21;
 										}
 
-										if (var26 == 4) {
+										if (var27 == 4) {
 											var21 = 22;
 										}
 
-										WorldMapManager.insertMenuItemNoShift(var25[var26], FileSystem.colorStartTag(16748608) + var31.name, var21, var33.id, var11, var12);
-									} else if (var26 == 2) {
-										WorldMapManager.insertMenuItemNoShift("Take", FileSystem.colorStartTag(16748608) + var31.name, 20, var33.id, var11, var12);
+										WorldMapManager.insertMenuItemNoShift(var26[var27], FileSystem.colorStartTag(16748608) + var34.name, var21, var30.id, var11, var12);
+									} else if (var27 == 2) {
+										WorldMapManager.insertMenuItemNoShift("Take", FileSystem.colorStartTag(16748608) + var34.name, 20, var30.id, var11, var12);
 									}
 								}
 
-								WorldMapManager.insertMenuItemNoShift("Examine", FileSystem.colorStartTag(16748608) + var31.name, 1004, var33.id, var11, var12);
+								WorldMapManager.insertMenuItemNoShift("Examine", FileSystem.colorStartTag(16748608) + var34.name, 1004, var30.id, var11, var12);
 							}
 						}
 					}
@@ -684,9 +684,9 @@ public final class Projectile extends Renderable {
 
 		if (var4 != -1L) {
 			var8 = ReflectionCheck.method2451(var4);
-			int var22 = GrandExchangeOfferNameComparator.method201(var4);
+			int var9 = GrandExchangeOfferNameComparator.method201(var4);
 			Player var10 = Client.players[Client.combatTargetPlayerIndex];
-			GrandExchangeOfferUnitPriceComparator.addPlayerToMenu(var10, Client.combatTargetPlayerIndex, var8, var22);
+			GrandExchangeOfferUnitPriceComparator.addPlayerToMenu(var10, Client.combatTargetPlayerIndex, var8, var9);
 		}
 
 	}

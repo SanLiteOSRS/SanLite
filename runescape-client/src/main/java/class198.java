@@ -5,8 +5,8 @@ import net.runelite.mapping.ObfuscatedSignature;
 public class class198 {
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(Lkd;I)I",
-		garbageValue = "832734688"
+		garbageValue = "832734688",
+		signature = "(Lkd;I)I"
 	)
 	static int method3851(PacketBuffer var0) {
 		int var1 = var0.readBits(2);

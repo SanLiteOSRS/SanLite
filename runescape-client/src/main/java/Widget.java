@@ -788,8 +788,8 @@ public class Widget extends Node {
 
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(Lkx;B)V",
-		garbageValue = "14"
+		garbageValue = "14",
+		signature = "(Lkx;B)V"
 	)
 	@Export("decodeLegacy")
 	void decodeLegacy(Buffer var1) {
@@ -887,8 +887,8 @@ public class Widget extends Node {
 
 			int var8;
 			for (var8 = 0; var8 < 20; ++var8) {
-				int var9 = var1.readUnsignedByte();
-				if (var9 == 1) {
+				int var11 = var1.readUnsignedByte();
+				if (var11 == 1) {
 					this.inventoryXOffsets[var8] = var1.readShort();
 					this.inventoryYOffsets[var8] = var1.readShort();
 					this.inventorySprites[var8] = var1.readInt();
@@ -900,9 +900,9 @@ public class Widget extends Node {
 			this.itemActions = new String[5];
 
 			for (var8 = 0; var8 < 5; ++var8) {
-				String var11 = var1.readStringCp1252NullTerminated();
-				if (var11.length() > 0) {
-					this.itemActions[var8] = var11;
+				String var9 = var1.readStringCp1252NullTerminated();
+				if (var9.length() > 0) {
+					this.itemActions[var8] = var9;
 					this.clickMask |= 1 << var8 + 23;
 				}
 			}
@@ -1045,8 +1045,8 @@ public class Widget extends Node {
 
 	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(Lkx;I)V",
-		garbageValue = "-327034944"
+		garbageValue = "-327034944",
+		signature = "(Lkx;I)V"
 	)
 	@Export("decode")
 	void decode(Buffer var1) {
@@ -1187,8 +1187,8 @@ public class Widget extends Node {
 
 	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(Lkx;B)[Ljava/lang/Object;",
-		garbageValue = "-123"
+		garbageValue = "-123",
+		signature = "(Lkx;B)[Ljava/lang/Object;"
 	)
 	@Export("readListener")
 	Object[] readListener(Buffer var1) {
@@ -1214,8 +1214,8 @@ public class Widget extends Node {
 
 	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		signature = "(Lkx;I)[I",
-		garbageValue = "-892606734"
+		garbageValue = "-892606734",
+		signature = "(Lkx;I)[I"
 	)
 	@Export("readListenerTriggers")
 	int[] readListenerTriggers(Buffer var1) {
@@ -1235,8 +1235,8 @@ public class Widget extends Node {
 
 	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		signature = "(IIB)V",
-		garbageValue = "42"
+		garbageValue = "42",
+		signature = "(IIB)V"
 	)
 	@Export("swapItems")
 	public void swapItems(int var1, int var2) {
@@ -1250,8 +1250,8 @@ public class Widget extends Node {
 
 	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		signature = "(ZI)Llm;",
-		garbageValue = "1522680461"
+		garbageValue = "1522680461",
+		signature = "(ZI)Llm;"
 	)
 	@Export("getSprite")
 	public SpritePixels getSprite(boolean var1) {
@@ -1309,8 +1309,8 @@ public class Widget extends Node {
 
 	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		signature = "(I)Lkl;",
-		garbageValue = "1746762389"
+		garbageValue = "1746762389",
+		signature = "(I)Lkl;"
 	)
 	@Export("getFont")
 	public Font getFont() {
@@ -1369,8 +1369,8 @@ public class Widget extends Node {
 
 	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		signature = "(IB)Llm;",
-		garbageValue = "-33"
+		garbageValue = "-33",
+		signature = "(IB)Llm;"
 	)
 	@Export("getInventorySprite")
 	public SpritePixels getInventorySprite(int var1) {
@@ -1401,8 +1401,8 @@ public class Widget extends Node {
 
 	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		signature = "(Ljs;IZLhu;B)Lef;",
-		garbageValue = "-25"
+		garbageValue = "-25",
+		signature = "(Ljs;IZLhu;B)Lef;"
 	)
 	@Export("getModel")
 	public Model getModel(SequenceDefinition var1, int var2, boolean var3, PlayerComposition var4) {
@@ -1483,8 +1483,8 @@ public class Widget extends Node {
 
 	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		signature = "(ZI)Lht;",
-		garbageValue = "202613287"
+		garbageValue = "202613287",
+		signature = "(ZI)Lht;"
 	)
 	@Export("getSpriteMask")
 	public SpriteMask getSpriteMask(boolean var1) {
@@ -1542,8 +1542,8 @@ public class Widget extends Node {
 
 	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		signature = "(ILjava/lang/String;B)V",
-		garbageValue = "-44"
+		garbageValue = "-44",
+		signature = "(ILjava/lang/String;B)V"
 	)
 	@Export("setAction")
 	public void setAction(int var1, String var2) {
@@ -1563,8 +1563,8 @@ public class Widget extends Node {
 
 	@ObfuscatedName("as")
 	@ObfuscatedSignature(
-		signature = "(ILcl;ZI)I",
-		garbageValue = "-2098441807"
+		garbageValue = "-2098441807",
+		signature = "(ILcl;ZI)I"
 	)
 	static int method4292(int var0, Script var1, boolean var2) {
 		if (var0 == ScriptOpcodes.LOGOUT) {

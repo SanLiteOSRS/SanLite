@@ -75,11 +75,11 @@ public class VorbisFloor {
 				}
 
 				var5 = 1 << var5;
-				int[] var6 = new int[var5];
-				this.subclassBooks[var4] = var6;
+				int[] var9 = new int[var5];
+				this.subclassBooks[var4] = var9;
 
 				for (var7 = 0; var7 < var5; ++var7) {
-					var6[var7] = VorbisSample.readBits(8) - 1;
+					var9[var7] = VorbisSample.readBits(8) - 1;
 				}
 			}
 
@@ -87,9 +87,9 @@ public class VorbisFloor {
 			var4 = VorbisSample.readBits(4);
 			var5 = 2;
 
-			int var9;
-			for (var9 = 0; var9 < var2; ++var9) {
-				var5 += this.classDimensions[this.partitionClassList[var9]];
+			int var6;
+			for (var6 = 0; var6 < var2; ++var6) {
+				var5 += this.classDimensions[this.partitionClassList[var6]];
 			}
 
 			this.field1407 = new int[var5];
@@ -97,8 +97,8 @@ public class VorbisFloor {
 			this.field1407[1] = 1 << var4;
 			var5 = 2;
 
-			for (var9 = 0; var9 < var2; ++var9) {
-				var7 = this.partitionClassList[var9];
+			for (var6 = 0; var6 < var2; ++var6) {
+				var7 = this.partitionClassList[var6];
 
 				for (int var8 = 0; var8 < this.classDimensions[var7]; ++var8) {
 					this.field1407[var5++] = VorbisSample.readBits(var4);

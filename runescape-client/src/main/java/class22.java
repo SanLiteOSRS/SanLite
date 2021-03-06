@@ -6,8 +6,8 @@ import net.runelite.mapping.ObfuscatedSignature;
 public class class22 {
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Lig;I)V",
-		garbageValue = "-782235051"
+		garbageValue = "-782235051",
+		signature = "(Lig;I)V"
 	)
 	public static void method227(AbstractArchive var0) {
 		VarcInt.VarcInt_archive = var0;
@@ -15,8 +15,8 @@ public class class22 {
 
 	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(Lcq;Lcq;IZIZI)I",
-		garbageValue = "-385760353"
+		garbageValue = "-385760353",
+		signature = "(Lcq;Lcq;IZIZI)I"
 	)
 	static int method226(World var0, World var1, int var2, boolean var3, int var4, boolean var5) {
 		int var6 = class41.compareWorlds(var0, var1, var2, var3);
@@ -32,8 +32,8 @@ public class class22 {
 
 	@ObfuscatedName("jy")
 	@ObfuscatedSignature(
-		signature = "(IIIIIIII)V",
-		garbageValue = "-500865093"
+		garbageValue = "-500865093",
+		signature = "(IIIIIIII)V"
 	)
 	@Export("updateRootInterface")
 	static final void updateRootInterface(int var0, int var1, int var2, int var3, int var4, int var5, int var6) {

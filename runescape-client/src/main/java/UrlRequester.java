@@ -43,8 +43,8 @@ public class UrlRequester implements Runnable {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Ljava/net/URL;I)Lei;",
-		garbageValue = "1847135895"
+		garbageValue = "1847135895",
+		signature = "(Ljava/net/URL;I)Lei;"
 	)
 	@Export("request")
 	public UrlRequest request(URL var1) {
@@ -58,8 +58,8 @@ public class UrlRequester implements Runnable {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-158100516"
+		garbageValue = "-158100516",
+		signature = "(I)V"
 	)
 	@Export("close")
 	public void close() {
@@ -130,8 +130,8 @@ public class UrlRequester implements Runnable {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "([BI)[B",
-		garbageValue = "833500111"
+		garbageValue = "833500111",
+		signature = "([BI)[B"
 	)
 	static byte[] method3460(byte[] var0) {
 		int var1 = var0.length;
@@ -142,8 +142,8 @@ public class UrlRequester implements Runnable {
 
 	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;I)Ljava/lang/String;",
-		garbageValue = "-630790234"
+		garbageValue = "-630790234",
+		signature = "(Ljava/lang/String;I)Ljava/lang/String;"
 	)
 	public static String method3467(String var0) {
 		int var1 = var0.length();

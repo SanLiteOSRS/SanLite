@@ -17,8 +17,8 @@ public class BuddyRankComparator extends AbstractUserComparator {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Lky;Lky;B)I",
-		garbageValue = "-42"
+		garbageValue = "-42",
+		signature = "(Lky;Lky;B)I"
 	)
 	@Export("compareBuddy")
 	int compareBuddy(Buddy var1, Buddy var2) {
@@ -35,29 +35,29 @@ public class BuddyRankComparator extends AbstractUserComparator {
 
 	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		signature = "(ILcl;ZB)I",
-		garbageValue = "1"
+		garbageValue = "1",
+		signature = "(ILcl;ZB)I"
 	)
 	static int method3622(int var0, Script var1, boolean var2) {
-		Widget var3;
+		Widget var6;
 		if (var0 != ScriptOpcodes.CC_CALLONRESIZE && var0 != ScriptOpcodes.IF_CALLONRESIZE) {
 			int var4;
 			if (var0 == 1928) {
-				var3 = var2 ? class277.field3584 : Interpreter.field1117;
+				var6 = var2 ? class277.field3584 : Interpreter.field1117;
 				var4 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
 				if (var4 >= 1 && var4 <= 10) {
-					ApproximateRouteStrategy.widgetDefaultMenuAction(var4, var3.id, var3.childIndex, var3.itemId, "");
+					ApproximateRouteStrategy.widgetDefaultMenuAction(var4, var6.id, var6.childIndex, var6.itemId, "");
 					return 1;
 				} else {
 					throw new RuntimeException();
 				}
 			} else if (var0 == 2928) {
 				Interpreter.Interpreter_intStackSize -= 3;
-				int var7 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
+				int var3 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
 				var4 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
 				int var5 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 2];
 				if (var5 >= 1 && var5 <= 10) {
-					ApproximateRouteStrategy.widgetDefaultMenuAction(var5, var7, var4, class237.getWidget(var7).itemId, "");
+					ApproximateRouteStrategy.widgetDefaultMenuAction(var5, var3, var4, class237.getWidget(var3).itemId, "");
 					return 1;
 				} else {
 					throw new RuntimeException();
@@ -69,19 +69,19 @@ public class BuddyRankComparator extends AbstractUserComparator {
 			throw new RuntimeException();
 		} else {
 			if (var0 >= 2000) {
-				var3 = class237.getWidget(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);
+				var6 = class237.getWidget(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);
 			} else {
-				var3 = var2 ? class277.field3584 : Interpreter.field1117;
+				var6 = var2 ? class277.field3584 : Interpreter.field1117;
 			}
 
-			if (var3.onResize == null) {
+			if (var6.onResize == null) {
 				return 0;
 			} else {
-				ScriptEvent var6 = new ScriptEvent();
-				var6.widget = var3;
-				var6.args = var3.onResize;
-				var6.field593 = Interpreter.field1123 + 1;
-				Client.scriptEvents.addFirst(var6);
+				ScriptEvent var7 = new ScriptEvent();
+				var7.widget = var6;
+				var7.args = var6.onResize;
+				var7.field593 = Interpreter.field1123 + 1;
+				Client.scriptEvents.addFirst(var7);
 				return 1;
 			}
 		}
@@ -89,8 +89,8 @@ public class BuddyRankComparator extends AbstractUserComparator {
 
 	@ObfuscatedName("g")
 	@ObfuscatedSignature(
-		signature = "(ILcl;ZI)I",
-		garbageValue = "-866624945"
+		garbageValue = "-866624945",
+		signature = "(ILcl;ZI)I"
 	)
 	static int method3621(int var0, Script var1, boolean var2) {
 		Widget var3 = class237.getWidget(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);

@@ -44,8 +44,8 @@ public class WorldMapDecoration {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/CharSequence;I)Z",
-		garbageValue = "792255319"
+		garbageValue = "792255319",
+		signature = "(Ljava/lang/CharSequence;I)Z"
 	)
 	@Export("isNumber")
 	public static boolean isNumber(CharSequence var0) {
@@ -62,16 +62,16 @@ public class WorldMapDecoration {
 				break;
 			}
 
-			label82: {
+			label83: {
 				char var7 = var0.charAt(var6);
 				if (var6 == 0) {
 					if (var7 == '-') {
 						var2 = true;
-						break label82;
+						break label83;
 					}
 
 					if (var7 == '+') {
-						break label82;
+						break label83;
 					}
 				}
 
@@ -116,8 +116,8 @@ public class WorldMapDecoration {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(Lkd;B)V",
-		garbageValue = "13"
+		garbageValue = "13",
+		signature = "(Lkd;B)V"
 	)
 	static final void method404(PacketBuffer var0) {
 		int var1 = 0;
@@ -125,23 +125,23 @@ public class WorldMapDecoration {
 
 		byte[] var10000;
 		int var2;
-		int var3;
 		int var4;
+		int var5;
 		for (var2 = 0; var2 < Players.Players_count; ++var2) {
-			var3 = Players.Players_indices[var2];
-			if ((Players.field1275[var3] & 1) == 0) {
+			var5 = Players.Players_indices[var2];
+			if ((Players.field1275[var5] & 1) == 0) {
 				if (var1 > 0) {
 					--var1;
 					var10000 = Players.field1275;
-					var10000[var3] = (byte)(var10000[var3] | 2);
+					var10000[var5] = (byte)(var10000[var5] | 2);
 				} else {
 					var4 = var0.readBits(1);
 					if (var4 == 0) {
 						var1 = class198.method3851(var0);
 						var10000 = Players.field1275;
-						var10000[var3] = (byte)(var10000[var3] | 2);
+						var10000[var5] = (byte)(var10000[var5] | 2);
 					} else {
-						PendingSpawn.readPlayerUpdate(var0, var3);
+						PendingSpawn.readPlayerUpdate(var0, var5);
 					}
 				}
 			}
@@ -154,20 +154,20 @@ public class WorldMapDecoration {
 			var0.importIndex();
 
 			for (var2 = 0; var2 < Players.Players_count; ++var2) {
-				var3 = Players.Players_indices[var2];
-				if ((Players.field1275[var3] & 1) != 0) {
+				var5 = Players.Players_indices[var2];
+				if ((Players.field1275[var5] & 1) != 0) {
 					if (var1 > 0) {
 						--var1;
 						var10000 = Players.field1275;
-						var10000[var3] = (byte)(var10000[var3] | 2);
+						var10000[var5] = (byte)(var10000[var5] | 2);
 					} else {
 						var4 = var0.readBits(1);
 						if (var4 == 0) {
 							var1 = class198.method3851(var0);
 							var10000 = Players.field1275;
-							var10000[var3] = (byte)(var10000[var3] | 2);
+							var10000[var5] = (byte)(var10000[var5] | 2);
 						} else {
-							PendingSpawn.readPlayerUpdate(var0, var3);
+							PendingSpawn.readPlayerUpdate(var0, var5);
 						}
 					}
 				}
@@ -180,21 +180,21 @@ public class WorldMapDecoration {
 				var0.importIndex();
 
 				for (var2 = 0; var2 < Players.Players_emptyIdxCount; ++var2) {
-					var3 = Players.Players_emptyIndices[var2];
-					if ((Players.field1275[var3] & 1) != 0) {
+					var5 = Players.Players_emptyIndices[var2];
+					if ((Players.field1275[var5] & 1) != 0) {
 						if (var1 > 0) {
 							--var1;
 							var10000 = Players.field1275;
-							var10000[var3] = (byte)(var10000[var3] | 2);
+							var10000[var5] = (byte)(var10000[var5] | 2);
 						} else {
 							var4 = var0.readBits(1);
 							if (var4 == 0) {
 								var1 = class198.method3851(var0);
 								var10000 = Players.field1275;
-								var10000[var3] = (byte)(var10000[var3] | 2);
-							} else if (World.updateExternalPlayer(var0, var3)) {
+								var10000[var5] = (byte)(var10000[var5] | 2);
+							} else if (World.updateExternalPlayer(var0, var5)) {
 								var10000 = Players.field1275;
-								var10000[var3] = (byte)(var10000[var3] | 2);
+								var10000[var5] = (byte)(var10000[var5] | 2);
 							}
 						}
 					}
@@ -207,21 +207,21 @@ public class WorldMapDecoration {
 					var0.importIndex();
 
 					for (var2 = 0; var2 < Players.Players_emptyIdxCount; ++var2) {
-						var3 = Players.Players_emptyIndices[var2];
-						if ((Players.field1275[var3] & 1) == 0) {
+						var5 = Players.Players_emptyIndices[var2];
+						if ((Players.field1275[var5] & 1) == 0) {
 							if (var1 > 0) {
 								--var1;
 								var10000 = Players.field1275;
-								var10000[var3] = (byte)(var10000[var3] | 2);
+								var10000[var5] = (byte)(var10000[var5] | 2);
 							} else {
 								var4 = var0.readBits(1);
 								if (var4 == 0) {
 									var1 = class198.method3851(var0);
 									var10000 = Players.field1275;
-									var10000[var3] = (byte)(var10000[var3] | 2);
-								} else if (World.updateExternalPlayer(var0, var3)) {
+									var10000[var5] = (byte)(var10000[var5] | 2);
+								} else if (World.updateExternalPlayer(var0, var5)) {
 									var10000 = Players.field1275;
-									var10000[var3] = (byte)(var10000[var3] | 2);
+									var10000[var5] = (byte)(var10000[var5] | 2);
 								}
 							}
 						}
@@ -237,8 +237,8 @@ public class WorldMapDecoration {
 						for (var2 = 1; var2 < 2048; ++var2) {
 							var10000 = Players.field1275;
 							var10000[var2] = (byte)(var10000[var2] >> 1);
-							Player var5 = Client.players[var2];
-							if (var5 != null) {
+							Player var3 = Client.players[var2];
+							if (var3 != null) {
 								Players.Players_indices[++Players.Players_count - 1] = var2;
 							} else {
 								Players.Players_emptyIndices[++Players.Players_emptyIdxCount - 1] = var2;
@@ -253,8 +253,8 @@ public class WorldMapDecoration {
 
 	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		signature = "(II)V",
-		garbageValue = "-1927290139"
+		garbageValue = "-1927290139",
+		signature = "(II)V"
 	)
 	static void method406(int var0) {
 		Login.loginIndex = 12;
@@ -263,8 +263,8 @@ public class WorldMapDecoration {
 
 	@ObfuscatedName("ka")
 	@ObfuscatedSignature(
-		signature = "(IIIILlm;Lht;I)V",
-		garbageValue = "-1757506186"
+		garbageValue = "-1757506186",
+		signature = "(IIIILlm;Lht;I)V"
 	)
 	@Export("worldToMinimap")
 	static final void worldToMinimap(int var0, int var1, int var2, int var3, SpritePixels var4, SpriteMask var5) {

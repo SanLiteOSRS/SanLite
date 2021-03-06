@@ -31,8 +31,8 @@ public class Varps {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(IZIZI)V",
-		garbageValue = "1823742662"
+		garbageValue = "1823742662",
+		signature = "(IZIZI)V"
 	)
 	@Export("sortWorldList")
 	static void sortWorldList(int var0, boolean var1, int var2, boolean var3) {

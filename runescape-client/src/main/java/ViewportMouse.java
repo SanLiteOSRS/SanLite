@@ -67,8 +67,8 @@ public class ViewportMouse {
 
 	@ObfuscatedName("fi")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "598296470"
+		garbageValue = "598296470",
+		signature = "(I)I"
 	)
 	static int method3161() {
 		if (Client.archiveLoaders != null && Client.archiveLoadersDone < Client.archiveLoaders.size()) {
@@ -86,8 +86,8 @@ public class ViewportMouse {
 
 	@ObfuscatedName("fh")
 	@ObfuscatedSignature(
-		signature = "(IZZZI)Liy;",
-		garbageValue = "1822401208"
+		garbageValue = "1822401208",
+		signature = "(IZZZI)Liy;"
 	)
 	@Export("newArchive")
 	static Archive newArchive(int var0, boolean var1, boolean var2, boolean var3) {
@@ -101,8 +101,8 @@ public class ViewportMouse {
 
 	@ObfuscatedName("iy")
 	@ObfuscatedSignature(
-		signature = "(IIIIIIIII)V",
-		garbageValue = "-1069741089"
+		garbageValue = "-1069741089",
+		signature = "(IIIIIIIII)V"
 	)
 	@Export("drawWidgets")
 	static final void drawWidgets(int var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7) {

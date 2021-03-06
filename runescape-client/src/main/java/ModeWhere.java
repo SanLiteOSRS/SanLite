@@ -121,8 +121,8 @@ public enum ModeWhere implements Enumerated {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(B)I",
-		garbageValue = "63"
+		garbageValue = "63",
+		signature = "(B)I"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
@@ -131,8 +131,8 @@ public enum ModeWhere implements Enumerated {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(S)[Lgw;",
-		garbageValue = "128"
+		garbageValue = "128",
+		signature = "(S)[Lgw;"
 	)
 	static ModeWhere[] method3870() {
 		return new ModeWhere[]{field2402, field2405, field2407, field2415, field2420, field2410, field2414, field2412, field2413, field2404, field2408, field2403, field2411};
@@ -140,8 +140,8 @@ public enum ModeWhere implements Enumerated {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(II)Z",
-		garbageValue = "420566665"
+		garbageValue = "420566665",
+		signature = "(II)Z"
 	)
 	public static boolean method3867(int var0) {
 		return (var0 >> 29 & 1) != 0;
@@ -149,8 +149,8 @@ public enum ModeWhere implements Enumerated {
 
 	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "(B)I",
-		garbageValue = "1"
+		garbageValue = "1",
+		signature = "(B)I"
 	)
 	static final int method3877() {
 		return ViewportMouse.ViewportMouse_y;
@@ -158,8 +158,8 @@ public enum ModeWhere implements Enumerated {
 
 	@ObfuscatedName("je")
 	@ObfuscatedSignature(
-		signature = "(B)Z",
-		garbageValue = "20"
+		garbageValue = "20",
+		signature = "(B)Z"
 	)
 	static boolean method3875() {
 		return Client.tapToDrop || KeyHandler.KeyHandler_pressedKeys[81];
@@ -167,8 +167,8 @@ public enum ModeWhere implements Enumerated {
 
 	@ObfuscatedName("jh")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "50"
+		garbageValue = "50",
+		signature = "(B)V"
 	)
 	static final void method3878() {
 		PacketBufferNode var0 = WorldMapSprite.getPacketBufferNode(ClientPacket.field2283, Client.packetWriter.isaacCipher);
@@ -189,8 +189,8 @@ public enum ModeWhere implements Enumerated {
 
 	@ObfuscatedName("kf")
 	@ObfuscatedSignature(
-		signature = "(II)V",
-		garbageValue = "1954380312"
+		garbageValue = "1954380312",
+		signature = "(II)V"
 	)
 	static void method3871(int var0) {
 		for (IntegerNode var1 = (IntegerNode)Client.widgetClickMasks.first(); var1 != null; var1 = (IntegerNode)Client.widgetClickMasks.next()) {

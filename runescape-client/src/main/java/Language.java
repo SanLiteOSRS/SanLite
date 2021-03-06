@@ -108,8 +108,8 @@ public class Language implements Enumerated {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(B)Ljava/lang/String;",
-		garbageValue = "-40"
+		garbageValue = "-40",
+		signature = "(B)Ljava/lang/String;"
 	)
 	@Export("getLanguage")
 	String getLanguage() {
@@ -118,8 +118,8 @@ public class Language implements Enumerated {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(B)I",
-		garbageValue = "63"
+		garbageValue = "63",
+		signature = "(B)I"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
@@ -132,8 +132,8 @@ public class Language implements Enumerated {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(IB)Lgp;",
-		garbageValue = "-86"
+		garbageValue = "-86",
+		signature = "(IB)Lgp;"
 	)
 	public static Language method3854(int var0) {
 		return var0 >= 0 && var0 < Language_valuesOrdered.length ? Language_valuesOrdered[var0] : null;

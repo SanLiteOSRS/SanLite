@@ -90,8 +90,8 @@ public class FloorOverlayDefinition extends DualNode {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "1"
+		garbageValue = "1",
+		signature = "(B)V"
 	)
 	@Export("postDecode")
 	void postDecode() {
@@ -107,8 +107,8 @@ public class FloorOverlayDefinition extends DualNode {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(Lkx;II)V",
-		garbageValue = "581864251"
+		garbageValue = "581864251",
+		signature = "(Lkx;II)V"
 	)
 	@Export("decode")
 	void decode(Buffer var1, int var2) {
@@ -124,8 +124,8 @@ public class FloorOverlayDefinition extends DualNode {
 
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(Lkx;IIB)V",
-		garbageValue = "1"
+		garbageValue = "1",
+		signature = "(Lkx;IIB)V"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2, int var3) {
@@ -144,8 +144,8 @@ public class FloorOverlayDefinition extends DualNode {
 
 	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(IB)V",
-		garbageValue = "115"
+		garbageValue = "115",
+		signature = "(IB)V"
 	)
 	@Export("setHsl")
 	void setHsl(int var1) {

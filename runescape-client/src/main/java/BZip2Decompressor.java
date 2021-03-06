@@ -54,18 +54,18 @@ public final class BZip2Decompressor {
 		int var10 = var0.outputLength;
 		int var12 = var0.field3769 + 1;
 
-		label61:
+		label70:
 		while (true) {
 			if (var3 > 0) {
 				while (true) {
 					if (var10 == 0) {
-						break label61;
+						break label70;
 					}
 
 					if (var3 == 1) {
 						if (var10 == 0) {
 							var3 = 1;
-							break label61;
+							break label70;
 						}
 
 						var8[var9] = var2;
@@ -91,7 +91,7 @@ public final class BZip2Decompressor {
 					var5 = var1;
 					if (var10 == 0) {
 						var3 = 1;
-						break label61;
+						break label70;
 					}
 
 					var8[var9] = var2;
@@ -130,12 +130,12 @@ public final class BZip2Decompressor {
 								}
 							}
 						}
-						continue label61;
+						continue label70;
 					}
 
 					if (var10 == 0) {
 						var3 = 1;
-						break label61;
+						break label70;
 					}
 
 					var8[var9] = var2;

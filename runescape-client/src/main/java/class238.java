@@ -46,8 +46,8 @@ public class class238 {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/Throwable;I)Ljava/lang/String;",
-		garbageValue = "-1656057287"
+		garbageValue = "-1656057287",
+		signature = "(Ljava/lang/Throwable;I)Ljava/lang/String;"
 	)
 	static String method4334(Throwable var0) throws IOException {
 		String var1;

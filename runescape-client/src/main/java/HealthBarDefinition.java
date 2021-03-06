@@ -109,8 +109,8 @@ public class HealthBarDefinition extends DualNode {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(Lkx;B)V",
-		garbageValue = "0"
+		garbageValue = "0",
+		signature = "(Lkx;B)V"
 	)
 	@Export("decode")
 	public void decode(Buffer var1) {
@@ -126,8 +126,8 @@ public class HealthBarDefinition extends DualNode {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(Lkx;II)V",
-		garbageValue = "-782651668"
+		garbageValue = "-782651668",
+		signature = "(Lkx;II)V"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
@@ -159,8 +159,8 @@ public class HealthBarDefinition extends DualNode {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(I)Llm;",
-		garbageValue = "1655597886"
+		garbageValue = "1655597886",
+		signature = "(I)Llm;"
 	)
 	@Export("getFrontSprite")
 	public SpritePixels getFrontSprite() {
@@ -183,8 +183,8 @@ public class HealthBarDefinition extends DualNode {
 
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(I)Llm;",
-		garbageValue = "-211707789"
+		garbageValue = "-211707789",
+		signature = "(I)Llm;"
 	)
 	@Export("getBackSprite")
 	public SpritePixels getBackSprite() {
@@ -214,8 +214,8 @@ public class HealthBarDefinition extends DualNode {
 
 	@ObfuscatedName("hy")
 	@ObfuscatedSignature(
-		signature = "(II)Z",
-		garbageValue = "-1201121058"
+		garbageValue = "-1201121058",
+		signature = "(II)Z"
 	)
 	static final boolean method4677(int var0) {
 		if (var0 < 0) {

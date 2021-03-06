@@ -102,8 +102,8 @@ public class Huffman {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "([BII[BIB)I",
-		garbageValue = "-79"
+		garbageValue = "-79",
+		signature = "([BII[BIB)I"
 	)
 	@Export("compress")
 	int compress(byte[] var1, int var2, int var3, byte[] var4, int var5) {
@@ -153,8 +153,8 @@ public class Huffman {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "([BI[BIII)I",
-		garbageValue = "1393765026"
+		garbageValue = "1393765026",
+		signature = "([BI[BIII)I"
 	)
 	@Export("decompress")
 	int decompress(byte[] var1, int var2, byte[] var3, int var4, int var5) {
@@ -297,8 +297,8 @@ public class Huffman {
 
 	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		signature = "(ILcl;ZB)I",
-		garbageValue = "124"
+		garbageValue = "124",
+		signature = "(ILcl;ZB)I"
 	)
 	static int method4157(int var0, Script var1, boolean var2) {
 		Widget var3 = var2 ? class277.field3584 : Interpreter.field1117;

@@ -655,8 +655,8 @@ public class ClientPacket implements class190 {
 
 	@ObfuscatedName("kl")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;B)V",
-		garbageValue = "83"
+		garbageValue = "83",
+		signature = "(Ljava/lang/String;B)V"
 	)
 	static void method3811(String var0) {
 		AccessFile.field4100 = var0;

@@ -23,8 +23,8 @@ final class GrandExchangeOfferTotalQuantityComparator implements Comparator {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Lx;Lx;B)I",
-		garbageValue = "2"
+		garbageValue = "2",
+		signature = "(Lx;Lx;B)I"
 	)
 	@Export("compare_bridged")
 	int compare_bridged(GrandExchangeEvent var1, GrandExchangeEvent var2) {
@@ -41,8 +41,8 @@ final class GrandExchangeOfferTotalQuantityComparator implements Comparator {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(IIIB)Lcl;",
-		garbageValue = "-37"
+		garbageValue = "-37",
+		signature = "(IIIB)Lcl;"
 	)
 	@Export("getWorldMapScript")
 	static Script getWorldMapScript(int var0, int var1, int var2) {
@@ -59,8 +59,8 @@ final class GrandExchangeOfferTotalQuantityComparator implements Comparator {
 
 	@ObfuscatedName("g")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;II)V",
-		garbageValue = "1998828049"
+		garbageValue = "1998828049",
+		signature = "(Ljava/lang/String;II)V"
 	)
 	static final void method163(String var0, int var1) {
 		PacketBufferNode var2 = WorldMapSprite.getPacketBufferNode(ClientPacket.field2252, Client.packetWriter.isaacCipher);
@@ -72,8 +72,8 @@ final class GrandExchangeOfferTotalQuantityComparator implements Comparator {
 
 	@ObfuscatedName("hl")
 	@ObfuscatedSignature(
-		signature = "(III)V",
-		garbageValue = "1940935635"
+		garbageValue = "1940935635",
+		signature = "(III)V"
 	)
 	static void method162(int var0, int var1) {
 		int var2 = ScriptEvent.fontBold12.stringWidth("Choose Option");

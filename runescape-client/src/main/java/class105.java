@@ -22,8 +22,8 @@ public class class105 {
 
 	@ObfuscatedName("hq")
 	@ObfuscatedSignature(
-		signature = "(ZLkd;I)V",
-		garbageValue = "1935543269"
+		garbageValue = "1935543269",
+		signature = "(ZLkd;I)V"
 	)
 	@Export("loadRegions")
 	static final void loadRegions(boolean var0, PacketBuffer var1) {
@@ -149,8 +149,8 @@ public class class105 {
 
 	@ObfuscatedName("kk")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "1205267134"
+		garbageValue = "1205267134",
+		signature = "(I)V"
 	)
 	@Export("FriendSystem_invalidateFriends")
 	static final void FriendSystem_invalidateFriends() {

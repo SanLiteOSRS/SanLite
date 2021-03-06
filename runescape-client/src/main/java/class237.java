@@ -10,8 +10,8 @@ public class class237 {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(II)Lhz;",
-		garbageValue = "361522526"
+		garbageValue = "361522526",
+		signature = "(II)Lhz;"
 	)
 	@Export("getWidget")
 	public static Widget getWidget(int var0) {

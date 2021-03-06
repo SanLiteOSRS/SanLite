@@ -95,8 +95,8 @@ public final class GraphicsObject extends Renderable {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(II)V",
-		garbageValue = "-83388372"
+		garbageValue = "-83388372",
+		signature = "(II)V"
 	)
 	@Export("advance")
 	final void advance(int var1) {
@@ -117,8 +117,8 @@ public final class GraphicsObject extends Renderable {
 
 	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		signature = "(B)Lef;",
-		garbageValue = "127"
+		garbageValue = "127",
+		signature = "(B)Lef;"
 	)
 	@Export("getModel")
 	protected final Model getModel() {
@@ -135,8 +135,8 @@ public final class GraphicsObject extends Renderable {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(II)Z",
-		garbageValue = "-531258942"
+		garbageValue = "-531258942",
+		signature = "(II)Z"
 	)
 	public static boolean method2153(int var0) {
 		return var0 >= WorldMapDecorationType.field2765.id && var0 <= WorldMapDecorationType.field2750.id || var0 == WorldMapDecorationType.field2760.id;
@@ -144,8 +144,8 @@ public final class GraphicsObject extends Renderable {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;B)Ljava/io/File;",
-		garbageValue = "0"
+		garbageValue = "0",
+		signature = "(Ljava/lang/String;B)Ljava/io/File;"
 	)
 	@Export("getFile")
 	static File getFile(String var0) {
@@ -190,8 +190,8 @@ public final class GraphicsObject extends Renderable {
 
 	@ObfuscatedName("ai")
 	@ObfuscatedSignature(
-		signature = "(ILhd;ZI)V",
-		garbageValue = "956374800"
+		garbageValue = "956374800",
+		signature = "(ILhd;ZI)V"
 	)
 	static void method2154(int var0, Coord var1, boolean var2) {
 		WorldMapArea var3 = WorldMapSection0.getWorldMap().getMapArea(var0);

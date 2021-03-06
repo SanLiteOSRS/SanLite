@@ -64,8 +64,8 @@ public class Frames extends DualNode {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(II)Z",
-		garbageValue = "-196452763"
+		garbageValue = "-196452763",
+		signature = "(II)Z"
 	)
 	@Export("hasAlphaTransform")
 	public boolean hasAlphaTransform(int var1) {
@@ -74,8 +74,8 @@ public class Frames extends DualNode {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Lig;Lig;ZI)V",
-		garbageValue = "-1252177889"
+		garbageValue = "-1252177889",
+		signature = "(Lig;Lig;ZI)V"
 	)
 	public static void method3429(AbstractArchive var0, AbstractArchive var1, boolean var2) {
 		ObjectComposition.ObjectDefinition_archive = var0;

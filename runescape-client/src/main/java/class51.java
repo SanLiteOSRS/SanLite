@@ -61,8 +61,8 @@ public class class51 implements WorldMapSection {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Lar;B)V",
-		garbageValue = "112"
+		garbageValue = "112",
+		signature = "(Lar;B)V"
 	)
 	@Export("expandBounds")
 	public void expandBounds(WorldMapArea var1) {
@@ -86,8 +86,8 @@ public class class51 implements WorldMapSection {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(IIIB)Z",
-		garbageValue = "-90"
+		garbageValue = "-90",
+		signature = "(IIIB)Z"
 	)
 	@Export("containsCoord")
 	public boolean containsCoord(int var1, int var2, int var3) {
@@ -100,8 +100,8 @@ public class class51 implements WorldMapSection {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(IIB)Z",
-		garbageValue = "-5"
+		garbageValue = "-5",
+		signature = "(IIB)Z"
 	)
 	@Export("containsPosition")
 	public boolean containsPosition(int var1, int var2) {
@@ -110,8 +110,8 @@ public class class51 implements WorldMapSection {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(IIIB)[I",
-		garbageValue = "-76"
+		garbageValue = "-76",
+		signature = "(IIIB)[I"
 	)
 	@Export("getBorderTileLengths")
 	public int[] getBorderTileLengths(int var1, int var2, int var3) {
@@ -125,8 +125,8 @@ public class class51 implements WorldMapSection {
 
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(III)Lhd;",
-		garbageValue = "-1841969392"
+		garbageValue = "-1841969392",
+		signature = "(III)Lhd;"
 	)
 	@Export("coord")
 	public Coord coord(int var1, int var2) {
@@ -141,8 +141,8 @@ public class class51 implements WorldMapSection {
 
 	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(Lkx;I)V",
-		garbageValue = "-489268143"
+		garbageValue = "-489268143",
+		signature = "(Lkx;I)V"
 	)
 	@Export("read")
 	public void read(Buffer var1) {
@@ -161,16 +161,16 @@ public class class51 implements WorldMapSection {
 
 	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "-1"
+		garbageValue = "-1",
+		signature = "(B)V"
 	)
 	void method858() {
 	}
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(I)[Lib;",
-		garbageValue = "410836037"
+		garbageValue = "410836037",
+		signature = "(I)[Lib;"
 	)
 	static class238[] method872() {
 		return new class238[]{class238.field3123, class238.field3121};
@@ -178,8 +178,8 @@ public class class51 implements WorldMapSection {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(II)Liw;",
-		garbageValue = "196588481"
+		garbageValue = "196588481",
+		signature = "(II)Liw;"
 	)
 	public static FloorUnderlayDefinition method876(int var0) {
 		FloorUnderlayDefinition var1 = (FloorUnderlayDefinition)FloorUnderlayDefinition.FloorUnderlayDefinition_cached.get((long)var0);
@@ -200,8 +200,8 @@ public class class51 implements WorldMapSection {
 
 	@ObfuscatedName("ko")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "1"
+		garbageValue = "1",
+		signature = "(B)V"
 	)
 	@Export("FriendSystem_invalidateIgnoreds")
 	static final void FriendSystem_invalidateIgnoreds() {

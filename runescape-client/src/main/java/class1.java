@@ -23,8 +23,8 @@ final class class1 implements class0 {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/Object;Lkx;B)V",
-		garbageValue = "-41"
+		garbageValue = "-41",
+		signature = "(Ljava/lang/Object;Lkx;B)V"
 	)
 	public void vmethod48(Object var1, Buffer var2) {
 		this.method6((Integer)var1, var2);
@@ -32,8 +32,8 @@ final class class1 implements class0 {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(Lkx;I)Ljava/lang/Object;",
-		garbageValue = "1678106953"
+		garbageValue = "1678106953",
+		signature = "(Lkx;I)Ljava/lang/Object;"
 	)
 	public Object vmethod45(Buffer var1) {
 		return var1.readInt();
@@ -41,8 +41,8 @@ final class class1 implements class0 {
 
 	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/Integer;Lkx;B)V",
-		garbageValue = "127"
+		garbageValue = "127",
+		signature = "(Ljava/lang/Integer;Lkx;B)V"
 	)
 	void method6(Integer var1, Buffer var2) {
 		var2.writeInt(var1);
@@ -50,8 +50,8 @@ final class class1 implements class0 {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(I)[Liu;",
-		garbageValue = "1202436859"
+		garbageValue = "1202436859",
+		signature = "(I)[Liu;"
 	)
 	public static GameBuild[] method16() {
 		return new GameBuild[]{GameBuild.BUILDLIVE, GameBuild.LIVE, GameBuild.RC, GameBuild.WIP};
@@ -59,8 +59,8 @@ final class class1 implements class0 {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(IIB)V",
-		garbageValue = "-116"
+		garbageValue = "-116",
+		signature = "(IIB)V"
 	)
 	@Export("changeWorldSelectSorting")
 	static void changeWorldSelectSorting(int var0, int var1) {

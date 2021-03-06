@@ -6,8 +6,8 @@ import net.runelite.mapping.ObfuscatedSignature;
 public class class41 {
 	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(Lcq;Lcq;IZI)I",
-		garbageValue = "-1892807226"
+		garbageValue = "-1892807226",
+		signature = "(Lcq;Lcq;IZI)I"
 	)
 	@Export("compareWorlds")
 	static int compareWorlds(World var0, World var1, int var2, boolean var3) {
@@ -54,8 +54,8 @@ public class class41 {
 
 	@ObfuscatedName("hw")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-20058245"
+		garbageValue = "-20058245",
+		signature = "(I)V"
 	)
 	static void method650() {
 		GrandExchangeOfferTotalQuantityComparator.method162(CollisionMap.menuWidth / 2 + ApproximateRouteStrategy.menuX, AbstractUserComparator.menuY);
@@ -63,8 +63,8 @@ public class class41 {
 
 	@ObfuscatedName("ii")
 	@ObfuscatedSignature(
-		signature = "([Lhz;IIIIIIIII)V",
-		garbageValue = "-1513061199"
+		garbageValue = "-1513061199",
+		signature = "([Lhz;IIIIIIIII)V"
 	)
 	@Export("drawInterface")
 	static final void drawInterface(Widget[] var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8) {
@@ -137,22 +137,22 @@ public class class41 {
 
 					int var17;
 					int var18;
+					int var19;
 					int var20;
 					int var21;
 					int var22;
-					int var30;
 					if (var10.type == 2) {
 						var15 = var2;
 						var16 = var3;
 						var17 = var4;
 						var18 = var5;
 					} else if (var10.type == 9) {
-						var30 = var12;
+						var19 = var12;
 						var20 = var13;
 						var21 = var12 + var10.width;
 						var22 = var13 + var10.height;
 						if (var21 < var12) {
-							var30 = var21;
+							var19 = var21;
 							var21 = var12;
 						}
 
@@ -163,16 +163,16 @@ public class class41 {
 
 						++var21;
 						++var22;
-						var15 = var30 > var2 ? var30 : var2;
+						var15 = var19 > var2 ? var19 : var2;
 						var16 = var20 > var3 ? var20 : var3;
 						var17 = var21 < var4 ? var21 : var4;
 						var18 = var22 < var5 ? var22 : var5;
 					} else {
-						var30 = var12 + var10.width;
+						var19 = var12 + var10.width;
 						var20 = var13 + var10.height;
 						var15 = var12 > var2 ? var12 : var2;
 						var16 = var13 > var3 ? var13 : var3;
-						var17 = var30 < var4 ? var30 : var4;
+						var17 = var19 < var4 ? var19 : var4;
 						var18 = var20 < var5 ? var20 : var5;
 					}
 
@@ -183,8 +183,8 @@ public class class41 {
 									var13 += 15;
 									Login.fontPlain12.drawRightAligned("Fps:" + GameEngine.fps, var12 + var10.width, var13, 16776960, -1);
 									var13 += 15;
-									Runtime var38 = Runtime.getRuntime();
-									var20 = (int)((var38.totalMemory() - var38.freeMemory()) / 1024L);
+									Runtime var42 = Runtime.getRuntime();
+									var20 = (int)((var42.totalMemory() - var42.freeMemory()) / 1024L);
 									var21 = 16776960;
 									if (var20 > 327680 && !Client.isLowDetail) {
 										var21 = 16711680;
@@ -250,9 +250,9 @@ public class class41 {
 								drawInterface(var10.children, var10.id, var15, var16, var17, var18, var12 - var10.scrollX, var13 - var10.scrollY, var11);
 							}
 
-							InterfaceParent var19 = (InterfaceParent)Client.interfaceParents.get((long)var10.id);
-							if (var19 != null) {
-								ViewportMouse.drawWidgets(var19.group, var15, var16, var17, var18, var12, var13, var11);
+							InterfaceParent var30 = (InterfaceParent)Client.interfaceParents.get((long)var10.id);
+							if (var30 != null) {
+								ViewportMouse.drawWidgets(var30.group, var15, var16, var17, var18, var12, var13, var11);
 							}
 
 							Rasterizer2D.Rasterizer2D_setClip(var2, var3, var4, var5);
@@ -270,20 +270,20 @@ public class class41 {
 								int var25;
 								int var26;
 								if (var10.type == 2) {
-									var30 = 0;
+									var19 = 0;
 
 									for (var20 = 0; var20 < var10.rawHeight; ++var20) {
 										for (var21 = 0; var21 < var10.rawWidth; ++var21) {
 											var22 = var21 * (var10.paddingX + 32) + var12;
 											var23 = var20 * (var10.paddingY + 32) + var13;
-											if (var30 < 20) {
-												var22 += var10.inventoryXOffsets[var30];
-												var23 += var10.inventoryYOffsets[var30];
+											if (var19 < 20) {
+												var22 += var10.inventoryXOffsets[var19];
+												var23 += var10.inventoryYOffsets[var19];
 											}
 
-											if (var10.itemIds[var30] <= 0) {
-												if (var10.inventorySprites != null && var30 < 20) {
-													SpritePixels var46 = var10.getInventorySprite(var30);
+											if (var10.itemIds[var19] <= 0) {
+												if (var10.inventorySprites != null && var19 < 20) {
+													SpritePixels var46 = var10.getInventorySprite(var19);
 													if (var46 != null) {
 														var46.drawTransBgAt(var22, var23);
 													} else if (Widget.field2591) {
@@ -291,19 +291,19 @@ public class class41 {
 													}
 												}
 											} else {
-												boolean var39 = false;
-												boolean var40 = false;
-												var26 = var10.itemIds[var30] - 1;
-												if (var22 + 32 > var2 && var22 < var4 && var23 + 32 > var3 && var23 < var5 || var10 == JagexCache.dragInventoryWidget && var30 == Client.dragItemSlotSource) {
+												boolean var37 = false;
+												boolean var38 = false;
+												var26 = var10.itemIds[var19] - 1;
+												if (var22 + 32 > var2 && var22 < var4 && var23 + 32 > var3 && var23 < var5 || var10 == JagexCache.dragInventoryWidget && var19 == Client.dragItemSlotSource) {
 													SpritePixels var35;
-													if (Client.isItemSelected == 1 && var30 == class195.selectedItemSlot && var10.id == ClientPacket.selectedItemWidget) {
-														var35 = TaskHandler.getItemSprite(var26, var10.itemQuantities[var30], 2, 0, 2, false);
+													if (Client.isItemSelected == 1 && var19 == class195.selectedItemSlot && var10.id == ClientPacket.selectedItemWidget) {
+														var35 = TaskHandler.getItemSprite(var26, var10.itemQuantities[var19], 2, 0, 2, false);
 													} else {
-														var35 = TaskHandler.getItemSprite(var26, var10.itemQuantities[var30], 1, 3153952, 2, false);
+														var35 = TaskHandler.getItemSprite(var26, var10.itemQuantities[var19], 1, 3153952, 2, false);
 													}
 
 													if (var35 != null) {
-														if (var10 == JagexCache.dragInventoryWidget && var30 == Client.dragItemSlotSource) {
+														if (var10 == JagexCache.dragInventoryWidget && var19 == Client.dragItemSlotSource) {
 															var24 = MouseHandler.MouseHandler_x - Client.draggedWidgetX;
 															var25 = MouseHandler.MouseHandler_y - Client.draggedWidgetY;
 															if (var24 < 5 && var24 > -5) {
@@ -353,7 +353,7 @@ public class class41 {
 																	IsaacCipher.invalidateWidget(var28);
 																}
 															}
-														} else if (var10 == WorldMapSprite.field260 && var30 == Client.field931) {
+														} else if (var10 == WorldMapSprite.field260 && var19 == Client.field931) {
 															var35.drawTransAt(var22, var23, 128);
 														} else {
 															var35.drawTransBgAt(var22, var23);
@@ -364,19 +364,19 @@ public class class41 {
 												}
 											}
 
-											++var30;
+											++var19;
 										}
 									}
 								} else if (var10.type == 3) {
 									if (GrandExchangeOfferWorldComparator.runCs1(var10)) {
-										var30 = var10.color2;
+										var19 = var10.color2;
 										if (var10 == Canvas.mousedOverWidgetIf1 && var10.mouseOverColor2 != 0) {
-											var30 = var10.mouseOverColor2;
+											var19 = var10.mouseOverColor2;
 										}
 									} else {
-										var30 = var10.color;
+										var19 = var10.color;
 										if (var10 == Canvas.mousedOverWidgetIf1 && var10.mouseOverColor != 0) {
-											var30 = var10.mouseOverColor;
+											var19 = var10.mouseOverColor;
 										}
 									}
 
@@ -390,26 +390,26 @@ public class class41 {
 											break;
 										default:
 											if (var14 == 0) {
-												Rasterizer2D.Rasterizer2D_fillRectangle(var12, var13, var10.width, var10.height, var30);
+												Rasterizer2D.Rasterizer2D_fillRectangle(var12, var13, var10.width, var10.height, var19);
 											} else {
-												Rasterizer2D.Rasterizer2D_fillRectangleAlpha(var12, var13, var10.width, var10.height, var30, 256 - (var14 & 255));
+												Rasterizer2D.Rasterizer2D_fillRectangleAlpha(var12, var13, var10.width, var10.height, var19, 256 - (var14 & 255));
 											}
 										}
 									} else if (var14 == 0) {
-										Rasterizer2D.Rasterizer2D_drawRectangle(var12, var13, var10.width, var10.height, var30);
+										Rasterizer2D.Rasterizer2D_drawRectangle(var12, var13, var10.width, var10.height, var19);
 									} else {
-										Rasterizer2D.Rasterizer2D_drawRectangleAlpha(var12, var13, var10.width, var10.height, var30, 256 - (var14 & 255));
+										Rasterizer2D.Rasterizer2D_drawRectangleAlpha(var12, var13, var10.width, var10.height, var19, 256 - (var14 & 255));
 									}
 								} else {
-									Font var36;
+									Font var39;
 									if (var10.type == 4) {
-										var36 = var10.getFont();
-										if (var36 == null) {
+										var39 = var10.getFont();
+										if (var39 == null) {
 											if (Widget.field2591) {
 												IsaacCipher.invalidateWidget(var10);
 											}
 										} else {
-											String var43 = var10.text;
+											String var44 = var10.text;
 											if (GrandExchangeOfferWorldComparator.runCs1(var10)) {
 												var20 = var10.color2;
 												if (var10 == Canvas.mousedOverWidgetIf1 && var10.mouseOverColor2 != 0) {
@@ -417,7 +417,7 @@ public class class41 {
 												}
 
 												if (var10.text2.length() > 0) {
-													var43 = var10.text2;
+													var44 = var10.text2;
 												}
 											} else {
 												var20 = var10.color;
@@ -428,60 +428,60 @@ public class class41 {
 
 											if (var10.isIf3 && var10.itemId != -1) {
 												ItemComposition var45 = class281.ItemDefinition_get(var10.itemId);
-												var43 = var45.name;
-												if (var43 == null) {
-													var43 = "null";
+												var44 = var45.name;
+												if (var44 == null) {
+													var44 = "null";
 												}
 
 												if ((var45.isStackable == 1 || var10.itemQuantity != 1) && var10.itemQuantity != -1) {
-													var43 = FileSystem.colorStartTag(16748608) + var43 + "</col>" + " " + 'x' + WorldMapRectangle.formatItemStacks(var10.itemQuantity);
+													var44 = FileSystem.colorStartTag(16748608) + var44 + "</col>" + " " + 'x' + WorldMapRectangle.formatItemStacks(var10.itemQuantity);
 												}
 											}
 
 											if (var10 == Client.meslayerContinueWidget) {
-												var43 = "Please wait...";
+												var44 = "Please wait...";
 												var20 = var10.color;
 											}
 
 											if (!var10.isIf3) {
-												var43 = class9.method95(var43, var10);
+												var44 = class9.method95(var44, var10);
 											}
 
-											var36.drawLines(var43, var12, var13, var10.width, var10.height, var20, var10.textShadowed ? 0 : -1, var10.textXAlignment, var10.textYAlignment, var10.textLineHeight);
+											var39.drawLines(var44, var12, var13, var10.width, var10.height, var20, var10.textShadowed ? 0 : -1, var10.textXAlignment, var10.textYAlignment, var10.textLineHeight);
 										}
 									} else if (var10.type == 5) {
-										SpritePixels var37;
+										SpritePixels var40;
 										if (!var10.isIf3) {
-											var37 = var10.getSprite(GrandExchangeOfferWorldComparator.runCs1(var10));
-											if (var37 != null) {
-												var37.drawTransBgAt(var12, var13);
+											var40 = var10.getSprite(GrandExchangeOfferWorldComparator.runCs1(var10));
+											if (var40 != null) {
+												var40.drawTransBgAt(var12, var13);
 											} else if (Widget.field2591) {
 												IsaacCipher.invalidateWidget(var10);
 											}
 										} else {
 											if (var10.itemId != -1) {
-												var37 = TaskHandler.getItemSprite(var10.itemId, var10.itemQuantity, var10.outline, var10.spriteShadow, var10.itemQuantityMode, false);
+												var40 = TaskHandler.getItemSprite(var10.itemId, var10.itemQuantity, var10.outline, var10.spriteShadow, var10.itemQuantityMode, false);
 											} else {
-												var37 = var10.getSprite(false);
+												var40 = var10.getSprite(false);
 											}
 
-											if (var37 == null) {
+											if (var40 == null) {
 												if (Widget.field2591) {
 													IsaacCipher.invalidateWidget(var10);
 												}
 											} else {
-												var20 = var37.width;
-												var21 = var37.height;
+												var20 = var40.width;
+												var21 = var40.height;
 												if (!var10.spriteTiling) {
 													var22 = var10.width * 4096 / var20;
 													if (var10.spriteAngle != 0) {
-														var37.method6425(var10.width / 2 + var12, var10.height / 2 + var13, var10.spriteAngle, var22);
+														var40.method6425(var10.width / 2 + var12, var10.height / 2 + var13, var10.spriteAngle, var22);
 													} else if (var14 != 0) {
-														var37.drawTransScaledAt(var12, var13, var10.width, var10.height, 256 - (var14 & 255));
+														var40.drawTransScaledAt(var12, var13, var10.width, var10.height, 256 - (var14 & 255));
 													} else if (var20 == var10.width && var21 == var10.height) {
-														var37.drawTransBgAt(var12, var13);
+														var40.drawTransBgAt(var12, var13);
 													} else {
-														var37.drawScaledAt(var12, var13, var10.width, var10.height);
+														var40.drawScaledAt(var12, var13, var10.width, var10.height);
 													}
 												} else {
 													Rasterizer2D.Rasterizer2D_expandClip(var12, var13, var12 + var10.width, var13 + var10.height);
@@ -491,11 +491,11 @@ public class class41 {
 													for (var24 = 0; var24 < var22; ++var24) {
 														for (var25 = 0; var25 < var23; ++var25) {
 															if (var10.spriteAngle != 0) {
-																var37.method6425(var20 / 2 + var12 + var20 * var24, var21 / 2 + var13 + var21 * var25, var10.spriteAngle, 4096);
+																var40.method6425(var20 / 2 + var12 + var20 * var24, var21 / 2 + var13 + var21 * var25, var10.spriteAngle, 4096);
 															} else if (var14 != 0) {
-																var37.drawTransAt(var12 + var24 * var20, var13 + var25 * var21, 256 - (var14 & 255));
+																var40.drawTransAt(var12 + var24 * var20, var13 + var25 * var21, 256 - (var14 & 255));
 															} else {
-																var37.drawTransBgAt(var12 + var24 * var20, var13 + var21 * var25);
+																var40.drawTransBgAt(var12 + var24 * var20, var13 + var21 * var25);
 															}
 														}
 													}
@@ -507,8 +507,8 @@ public class class41 {
 									} else {
 										ItemComposition var33;
 										if (var10.type == 6) {
-											boolean var44 = GrandExchangeOfferWorldComparator.runCs1(var10);
-											if (var44) {
+											boolean var36 = GrandExchangeOfferWorldComparator.runCs1(var10);
+											if (var36) {
 												var20 = var10.sequenceId2;
 											} else {
 												var20 = var10.sequenceId;
@@ -535,13 +535,13 @@ public class class41 {
 													var41 = UserComparator9.localPlayer.getModel();
 												}
 											} else if (var20 == -1) {
-												var41 = var10.getModel((SequenceDefinition)null, -1, var44, UserComparator9.localPlayer.appearance);
+												var41 = var10.getModel((SequenceDefinition)null, -1, var36, UserComparator9.localPlayer.appearance);
 												if (var41 == null && Widget.field2591) {
 													IsaacCipher.invalidateWidget(var10);
 												}
 											} else {
 												SequenceDefinition var47 = InterfaceParent.SequenceDefinition_get(var20);
-												var41 = var10.getModel(var47, var10.modelFrame, var44, UserComparator9.localPlayer.appearance);
+												var41 = var10.getModel(var47, var10.modelFrame, var36, UserComparator9.localPlayer.appearance);
 												if (var41 == null && Widget.field2591) {
 													IsaacCipher.invalidateWidget(var10);
 												}
@@ -566,8 +566,8 @@ public class class41 {
 											Rasterizer3D.Rasterizer3D_method3();
 										} else {
 											if (var10.type == 7) {
-												var36 = var10.getFont();
-												if (var36 == null) {
+												var39 = var10.getFont();
+												if (var39 == null) {
 													if (Widget.field2591) {
 														IsaacCipher.invalidateWidget(var10);
 													}
@@ -590,11 +590,11 @@ public class class41 {
 															var25 = var22 * (var10.paddingX + 115) + var12;
 															var26 = var21 * (var10.paddingY + 12) + var13;
 															if (var10.textXAlignment == 0) {
-																var36.draw(var34, var25, var26, var10.color, var10.textShadowed ? 0 : -1);
+																var39.draw(var34, var25, var26, var10.color, var10.textShadowed ? 0 : -1);
 															} else if (var10.textXAlignment == 1) {
-																var36.drawCentered(var34, var10.width / 2 + var25, var26, var10.color, var10.textShadowed ? 0 : -1);
+																var39.drawCentered(var34, var10.width / 2 + var25, var26, var10.color, var10.textShadowed ? 0 : -1);
 															} else {
-																var36.drawRightAligned(var34, var25 + var10.width - 1, var26, var10.color, var10.textShadowed ? 0 : -1);
+																var39.drawRightAligned(var34, var25 + var10.width - 1, var26, var10.color, var10.textShadowed ? 0 : -1);
 															}
 														}
 
@@ -604,80 +604,80 @@ public class class41 {
 											}
 
 											if (var10.type == 8 && var10 == GrandExchangeOffer.field100 && Client.field815 == Client.field925) {
-												var30 = 0;
+												var19 = 0;
 												var20 = 0;
 												Font var31 = Login.fontPlain12;
 												String var32 = var10.text;
 
-												String var42;
+												String var43;
 												for (var32 = class9.method95(var32, var10); var32.length() > 0; var20 = var20 + var31.ascent + 1) {
 													var24 = var32.indexOf("<br>");
 													if (var24 != -1) {
-														var42 = var32.substring(0, var24);
+														var43 = var32.substring(0, var24);
 														var32 = var32.substring(var24 + 4);
 													} else {
-														var42 = var32;
+														var43 = var32;
 														var32 = "";
 													}
 
-													var25 = var31.stringWidth(var42);
-													if (var25 > var30) {
-														var30 = var25;
+													var25 = var31.stringWidth(var43);
+													if (var25 > var19) {
+														var19 = var25;
 													}
 												}
 
-												var30 += 6;
+												var19 += 6;
 												var20 += 7;
-												var24 = var12 + var10.width - 5 - var30;
+												var24 = var12 + var10.width - 5 - var19;
 												var25 = var13 + var10.height + 5;
 												if (var24 < var12 + 5) {
 													var24 = var12 + 5;
 												}
 
-												if (var24 + var30 > var4) {
-													var24 = var4 - var30;
+												if (var24 + var19 > var4) {
+													var24 = var4 - var19;
 												}
 
 												if (var20 + var25 > var5) {
 													var25 = var5 - var20;
 												}
 
-												Rasterizer2D.Rasterizer2D_fillRectangle(var24, var25, var30, var20, 16777120);
-												Rasterizer2D.Rasterizer2D_drawRectangle(var24, var25, var30, var20, 0);
+												Rasterizer2D.Rasterizer2D_fillRectangle(var24, var25, var19, var20, 16777120);
+												Rasterizer2D.Rasterizer2D_drawRectangle(var24, var25, var19, var20, 0);
 												var32 = var10.text;
 												var26 = var25 + var31.ascent + 2;
 
 												for (var32 = class9.method95(var32, var10); var32.length() > 0; var26 = var26 + var31.ascent + 1) {
 													int var27 = var32.indexOf("<br>");
 													if (var27 != -1) {
-														var42 = var32.substring(0, var27);
+														var43 = var32.substring(0, var27);
 														var32 = var32.substring(var27 + 4);
 													} else {
-														var42 = var32;
+														var43 = var32;
 														var32 = "";
 													}
 
-													var31.draw(var42, var24 + 3, var26, 0, -1);
+													var31.draw(var43, var24 + 3, var26, 0, -1);
 												}
 											}
 
 											if (var10.type == 9) {
 												if (var10.field2627) {
-													var30 = var12;
+													var19 = var12;
 													var20 = var13 + var10.height;
 													var21 = var12 + var10.width;
 													var22 = var13;
 												} else {
-													var30 = var12;
+													var19 = var12;
 													var20 = var13;
 													var21 = var12 + var10.width;
 													var22 = var13 + var10.height;
 												}
 
 												if (var10.lineWid == 1) {
-													Rasterizer2D.Rasterizer2D_drawLine(var30, var20, var21, var22, var10.color);
+													Rasterizer2D.Rasterizer2D_drawLine(var19, var20, var21, var22, var10.color);
 												} else {
-													GrandExchangeOfferNameComparator.method199(var30, var20, var21, var22, var10.color, var10.lineWid);
+													GrandExchangeOfferNameComparator.method199(var19, var20, var21, var22, var10.color, var10.lineWid);
 												}
 											}
 										}

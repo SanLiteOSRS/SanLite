@@ -61,8 +61,8 @@ public class GrandExchangeOffer {
 	}
 
 	@ObfuscatedSignature(
-		signature = "(Lkx;Z)V",
-		garbageValue = "0"
+		garbageValue = "0",
+		signature = "(Lkx;Z)V"
 	)
 	public GrandExchangeOffer(Buffer var1, boolean var2) {
 		this.state = var1.readByte();
@@ -75,8 +75,8 @@ public class GrandExchangeOffer {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(B)I",
-		garbageValue = "-15"
+		garbageValue = "-15",
+		signature = "(B)I"
 	)
 	@Export("status")
 	public int status() {
@@ -85,8 +85,8 @@ public class GrandExchangeOffer {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "-522457380"
+		garbageValue = "-522457380",
+		signature = "(I)I"
 	)
 	@Export("type")
 	public int type() {
@@ -95,8 +95,8 @@ public class GrandExchangeOffer {
 
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(II)V",
-		garbageValue = "575158813"
+		garbageValue = "575158813",
+		signature = "(II)V"
 	)
 	void method166(int var1) {
 		this.state &= -8;
@@ -105,8 +105,8 @@ public class GrandExchangeOffer {
 
 	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(II)V",
-		garbageValue = "656048251"
+		garbageValue = "656048251",
+		signature = "(II)V"
 	)
 	void method168(int var1) {
 		this.state &= -9;
@@ -118,8 +118,8 @@ public class GrandExchangeOffer {
 
 	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
-		signature = "(Lfu;III)Ldh;",
-		garbageValue = "779350721"
+		garbageValue = "779350721",
+		signature = "(Lfu;III)Ldh;"
 	)
 	public static final PcmPlayer method167(TaskHandler var0, int var1, int var2) {
 		if (StructDefinition.field3338 * 22050 == 0) {
@@ -165,8 +165,8 @@ public class GrandExchangeOffer {
 
 	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		signature = "(B)I",
-		garbageValue = "1"
+		garbageValue = "1",
+		signature = "(B)I"
 	)
 	@Export("getGcDuration")
 	protected static int getGcDuration() {
@@ -207,8 +207,8 @@ public class GrandExchangeOffer {
 
 	@ObfuscatedName("ih")
 	@ObfuscatedSignature(
-		signature = "(IB)Ljava/lang/String;",
-		garbageValue = "-64"
+		garbageValue = "-64",
+		signature = "(IB)Ljava/lang/String;"
 	)
 	static final String method187(int var0) {
 		return var0 < 999999999 ? Integer.toString(var0) : "*";
@@ -216,8 +216,8 @@ public class GrandExchangeOffer {
 
 	@ObfuscatedName("ku")
 	@ObfuscatedSignature(
-		signature = "(Lbs;ZS)V",
-		garbageValue = "-4659"
+		garbageValue = "-4659",
+		signature = "(Lbs;ZS)V"
 	)
 	@Export("closeInterface")
 	static final void closeInterface(InterfaceParent var0, boolean var1) {
@@ -227,19 +227,19 @@ public class GrandExchangeOffer {
 		if (var1 && var2 != -1 && Widget.Widget_loadedInterfaces[var2]) {
 			FontName.Widget_archive.clearFilesGroup(var2);
 			if (DefaultsGroup.Widget_interfaceComponents[var2] != null) {
-				boolean var6 = true;
+				boolean var4 = true;
 
 				for (int var5 = 0; var5 < DefaultsGroup.Widget_interfaceComponents[var2].length; ++var5) {
 					if (DefaultsGroup.Widget_interfaceComponents[var2][var5] != null) {
 						if (DefaultsGroup.Widget_interfaceComponents[var2][var5].type != 2) {
 							DefaultsGroup.Widget_interfaceComponents[var2][var5] = null;
 						} else {
-							var6 = false;
+							var4 = false;
 						}
 					}
 				}
 
-				if (var6) {
+				if (var4) {
 					DefaultsGroup.Widget_interfaceComponents[var2] = null;
 				}
 
@@ -248,9 +248,9 @@ public class GrandExchangeOffer {
 		}
 
 		ModeWhere.method3871(var2);
-		Widget var4 = class237.getWidget(var3);
-		if (var4 != null) {
-			IsaacCipher.invalidateWidget(var4);
+		Widget var6 = class237.getWidget(var3);
+		if (var6 != null) {
+			IsaacCipher.invalidateWidget(var6);
 		}
 
 		AbstractWorldMapData.method352();

@@ -82,8 +82,8 @@ public class ScriptEvent extends Node {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "([Ljava/lang/Object;I)V",
-		garbageValue = "807576822"
+		garbageValue = "807576822",
+		signature = "([Ljava/lang/Object;I)V"
 	)
 	@Export("setArgs")
 	public void setArgs(Object[] var1) {
@@ -92,8 +92,8 @@ public class ScriptEvent extends Node {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(IB)V",
-		garbageValue = "-67"
+		garbageValue = "-67",
+		signature = "(IB)V"
 	)
 	@Export("setType")
 	public void setType(int var1) {
@@ -102,8 +102,8 @@ public class ScriptEvent extends Node {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "1"
+		garbageValue = "1",
+		signature = "(B)V"
 	)
 	public static void method1271() {
 		class105.reflectionChecks = new IterableNodeDeque();
@@ -111,8 +111,8 @@ public class ScriptEvent extends Node {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-1068960678"
+		garbageValue = "-1068960678",
+		signature = "(I)V"
 	)
 	public static void method1272() {
 		VertexNormal.midiPcmStream.clear();

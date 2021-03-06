@@ -134,8 +134,8 @@ public class PlatformInfo extends Node {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Lkx;I)V",
-		garbageValue = "-1387696137"
+		garbageValue = "-1387696137",
+		signature = "(Lkx;I)V"
 	)
 	@Export("write")
 	public void write(Buffer var1) {
@@ -173,8 +173,8 @@ public class PlatformInfo extends Node {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(B)I",
-		garbageValue = "-90"
+		garbageValue = "-90",
+		signature = "(B)I"
 	)
 	@Export("size")
 	public int size() {
@@ -197,8 +197,8 @@ public class PlatformInfo extends Node {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;B)V",
-		garbageValue = "-1"
+		garbageValue = "-1",
+		signature = "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;B)V"
 	)
 	@Export("addChatMessage")
 	static void addChatMessage(int var0, String var1, String var2, String var3) {

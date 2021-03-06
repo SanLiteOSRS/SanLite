@@ -5,8 +5,8 @@ import net.runelite.mapping.ObfuscatedSignature;
 public class class304 {
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(ILcl;ZI)I",
-		garbageValue = "-1784292523"
+		garbageValue = "-1784292523",
+		signature = "(ILcl;ZI)I"
 	)
 	static int method5507(int var0, Script var1, boolean var2) {
 		if (var0 < 1000) {

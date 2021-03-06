@@ -32,8 +32,8 @@ public class ChatChannel {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;I)Lbd;",
-		garbageValue = "1561043824"
+		garbageValue = "1561043824",
+		signature = "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;I)Lbd;"
 	)
 	@Export("addMessage")
 	Message addMessage(int var1, String var2, String var3, String var4) {
@@ -63,8 +63,8 @@ public class ChatChannel {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(II)Lbd;",
-		garbageValue = "-55839716"
+		garbageValue = "-55839716",
+		signature = "(II)Lbd;"
 	)
 	@Export("getMessage")
 	Message getMessage(int var1) {
@@ -73,8 +73,8 @@ public class ChatChannel {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "-2110362731"
+		garbageValue = "-2110362731",
+		signature = "(I)I"
 	)
 	@Export("size")
 	int size() {
@@ -83,8 +83,8 @@ public class ChatChannel {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/Object;ZI)[B",
-		garbageValue = "488468248"
+		garbageValue = "488468248",
+		signature = "(Ljava/lang/Object;ZI)[B"
 	)
 	public static byte[] method2405(Object var0, boolean var1) {
 		if (var0 == null) {
@@ -102,8 +102,8 @@ public class ChatChannel {
 
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(Lig;Ljava/lang/String;Ljava/lang/String;I)Lly;",
-		garbageValue = "591050656"
+		garbageValue = "591050656",
+		signature = "(Lig;Ljava/lang/String;Ljava/lang/String;I)Lly;"
 	)
 	@Export("SpriteBuffer_getIndexedSpriteByName")
 	public static IndexedSprite SpriteBuffer_getIndexedSpriteByName(AbstractArchive var0, String var1, String var2) {
@@ -130,8 +130,8 @@ public class ChatChannel {
 
 	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "(Lcq;I)V",
-		garbageValue = "291320616"
+		garbageValue = "291320616",
+		signature = "(Lcq;I)V"
 	)
 	@Export("changeWorld")
 	static void changeWorld(World var0) {

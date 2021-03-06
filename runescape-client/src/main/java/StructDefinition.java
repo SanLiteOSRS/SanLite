@@ -40,8 +40,8 @@ public class StructDefinition extends DualNode {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "-61"
+		garbageValue = "-61",
+		signature = "(B)V"
 	)
 	@Export("postDecode")
 	void postDecode() {
@@ -49,8 +49,8 @@ public class StructDefinition extends DualNode {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(Lkx;I)V",
-		garbageValue = "-1222397412"
+		garbageValue = "-1222397412",
+		signature = "(Lkx;I)V"
 	)
 	@Export("decode")
 	void decode(Buffer var1) {
@@ -66,8 +66,8 @@ public class StructDefinition extends DualNode {
 
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(Lkx;II)V",
-		garbageValue = "1068696099"
+		garbageValue = "1068696099",
+		signature = "(Lkx;II)V"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
@@ -79,8 +79,8 @@ public class StructDefinition extends DualNode {
 
 	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(III)I",
-		garbageValue = "1838065399"
+		garbageValue = "1838065399",
+		signature = "(III)I"
 	)
 	@Export("getIntParam")
 	public int getIntParam(int var1, int var2) {
@@ -102,8 +102,8 @@ public class StructDefinition extends DualNode {
 
 	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(ILjava/lang/String;S)Ljava/lang/String;",
-		garbageValue = "-15071"
+		garbageValue = "-15071",
+		signature = "(ILjava/lang/String;S)Ljava/lang/String;"
 	)
 	@Export("getStringParam")
 	public String getStringParam(int var1, String var2) {
@@ -112,8 +112,8 @@ public class StructDefinition extends DualNode {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Lig;Lig;Lig;B)V",
-		garbageValue = "76"
+		garbageValue = "76",
+		signature = "(Lig;Lig;Lig;B)V"
 	)
 	public static void method4734(AbstractArchive var0, AbstractArchive var1, AbstractArchive var2) {
 		HitSplatDefinition.HitSplatDefinition_archive = var0;

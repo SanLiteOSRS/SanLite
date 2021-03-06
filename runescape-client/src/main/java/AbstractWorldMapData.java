@@ -98,16 +98,16 @@ public abstract class AbstractWorldMapData {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(Lkx;B)V",
-		garbageValue = "36"
+		garbageValue = "36",
+		signature = "(Lkx;B)V"
 	)
 	@Export("readGeography")
 	abstract void readGeography(Buffer var1);
 
 	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		signature = "(I)Z",
-		garbageValue = "16711935"
+		garbageValue = "16711935",
+		signature = "(I)Z"
 	)
 	@Export("isFullyLoaded")
 	boolean isFullyLoaded() {
@@ -116,8 +116,8 @@ public abstract class AbstractWorldMapData {
 
 	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		signature = "(Lig;B)V",
-		garbageValue = "116"
+		garbageValue = "116",
+		signature = "(Lig;B)V"
 	)
 	@Export("loadGeography")
 	void loadGeography(AbstractArchive var1) {
@@ -134,8 +134,8 @@ public abstract class AbstractWorldMapData {
 
 	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "-59"
+		garbageValue = "-59",
+		signature = "(B)V"
 	)
 	@Export("reset")
 	void reset() {
@@ -150,8 +150,8 @@ public abstract class AbstractWorldMapData {
 
 	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		signature = "(IILkx;I)V",
-		garbageValue = "-1493570847"
+		garbageValue = "-1493570847",
+		signature = "(IILkx;I)V"
 	)
 	@Export("readTile")
 	void readTile(int var1, int var2, Buffer var3) {
@@ -168,8 +168,8 @@ public abstract class AbstractWorldMapData {
 
 	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		signature = "(IILkx;IB)V",
-		garbageValue = "20"
+		garbageValue = "20",
+		signature = "(IILkx;IB)V"
 	)
 	void method327(int var1, int var2, Buffer var3, int var4) {
 		boolean var5 = (var4 & 2) != 0;
@@ -182,8 +182,8 @@ public abstract class AbstractWorldMapData {
 
 	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		signature = "(IILkx;II)V",
-		garbageValue = "78729378"
+		garbageValue = "78729378",
+		signature = "(IILkx;II)V"
 	)
 	void method328(int var1, int var2, Buffer var3, int var4) {
 		int var5 = ((var4 & 24) >> 3) + 1;
@@ -197,9 +197,9 @@ public abstract class AbstractWorldMapData {
 			var8 = var3.readUnsignedByte();
 
 			for (var9 = 0; var9 < var8; ++var9) {
-				int var10 = var3.readUnsignedByte();
-				if (var10 != 0) {
-					this.floorOverlayIds[var9][var1][var2] = (short)var10;
+				int var14 = var3.readUnsignedByte();
+				if (var14 != 0) {
+					this.floorOverlayIds[var9][var1][var2] = (short)var14;
 					var11 = var3.readUnsignedByte();
 					this.field193[var9][var1][var2] = (byte)(var11 >> 2);
 					this.field204[var9][var1][var2] = (byte)(var11 & 3);
@@ -211,12 +211,12 @@ public abstract class AbstractWorldMapData {
 			for (var8 = 0; var8 < var5; ++var8) {
 				var9 = var3.readUnsignedByte();
 				if (var9 != 0) {
-					WorldMapDecoration[] var14 = this.decorations[var8][var1][var2] = new WorldMapDecoration[var9];
+					WorldMapDecoration[] var10 = this.decorations[var8][var1][var2] = new WorldMapDecoration[var9];
 
 					for (var11 = 0; var11 < var9; ++var11) {
 						int var12 = var3.method5833();
 						int var13 = var3.readUnsignedByte();
-						var14[var11] = new WorldMapDecoration(var12, var13 >> 2, var13 & 3);
+						var10[var11] = new WorldMapDecoration(var12, var13 >> 2, var13 & 3);
 					}
 				}
 			}
@@ -226,8 +226,8 @@ public abstract class AbstractWorldMapData {
 
 	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "-75109979"
+		garbageValue = "-75109979",
+		signature = "(I)I"
 	)
 	@Export("getRegionX")
 	int getRegionX() {
@@ -236,8 +236,8 @@ public abstract class AbstractWorldMapData {
 
 	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "-2014407853"
+		garbageValue = "-2014407853",
+		signature = "(I)I"
 	)
 	@Export("getRegionY")
 	int getRegionY() {
@@ -246,8 +246,8 @@ public abstract class AbstractWorldMapData {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(ILjava/lang/String;Ljava/lang/String;I)V",
-		garbageValue = "1967773856"
+		garbageValue = "1967773856",
+		signature = "(ILjava/lang/String;Ljava/lang/String;I)V"
 	)
 	@Export("addGameMessage")
 	static void addGameMessage(int var0, String var1, String var2) {
@@ -256,8 +256,8 @@ public abstract class AbstractWorldMapData {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "1751033687"
+		garbageValue = "1751033687",
+		signature = "(I)I"
 	)
 	public static int method342() {
 		return ViewportMouse.ViewportMouse_entityCount;
@@ -265,8 +265,8 @@ public abstract class AbstractWorldMapData {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(Lkd;I)V",
-		garbageValue = "352611015"
+		garbageValue = "352611015",
+		signature = "(Lkd;I)V"
 	)
 	@Export("performReflectionCheck")
 	public static void performReflectionCheck(PacketBuffer var0) {
@@ -365,8 +365,8 @@ public abstract class AbstractWorldMapData {
 
 	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		signature = "(ILcl;ZI)I",
-		garbageValue = "1250443961"
+		garbageValue = "1250443961",
+		signature = "(ILcl;ZI)I"
 	)
 	static int method350(int var0, Script var1, boolean var2) {
 		boolean var3 = true;
@@ -423,15 +423,15 @@ public abstract class AbstractWorldMapData {
 				return 1;
 			} else {
 				int var7;
-				byte[] var9;
+				byte[] var8;
 				if (var0 != ScriptOpcodes.CC_SETOPKEY) {
 					byte var5;
 					if (var0 == ScriptOpcodes.CC_SETOPTKEY) {
 						Interpreter.Interpreter_intStackSize -= 2;
 						var5 = 10;
-						var9 = new byte[]{(byte)Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize]};
-						byte[] var10 = new byte[]{(byte)Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1]};
-						TaskHandler.Widget_setKey(var4, var5, var9, var10);
+						var8 = new byte[]{(byte)Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize]};
+						byte[] var9 = new byte[]{(byte)Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1]};
+						TaskHandler.Widget_setKey(var4, var5, var8, var9);
 						return 1;
 					} else if (var0 == ScriptOpcodes.CC_SETOPKEYRATE) {
 						Interpreter.Interpreter_intStackSize -= 3;
@@ -467,8 +467,8 @@ public abstract class AbstractWorldMapData {
 						return 2;
 					}
 				} else {
-					byte[] var8 = null;
-					var9 = null;
+					byte[] var10 = null;
+					var8 = null;
 					if (var3) {
 						Interpreter.Interpreter_intStackSize -= 10;
 
@@ -476,23 +476,23 @@ public abstract class AbstractWorldMapData {
 						}
 
 						if (var7 > 0) {
+							var10 = new byte[var7 / 2];
 							var8 = new byte[var7 / 2];
-							var9 = new byte[var7 / 2];
 
 							for (var7 -= 2; var7 >= 0; var7 -= 2) {
-								var8[var7 / 2] = (byte)Interpreter.Interpreter_intStack[var7 + Interpreter.Interpreter_intStackSize];
-								var9[var7 / 2] = (byte)Interpreter.Interpreter_intStack[var7 + Interpreter.Interpreter_intStackSize + 1];
+								var10[var7 / 2] = (byte)Interpreter.Interpreter_intStack[var7 + Interpreter.Interpreter_intStackSize];
+								var8[var7 / 2] = (byte)Interpreter.Interpreter_intStack[var7 + Interpreter.Interpreter_intStackSize + 1];
 							}
 						}
 					} else {
 						Interpreter.Interpreter_intStackSize -= 2;
-						var8 = new byte[]{(byte)Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize]};
-						var9 = new byte[]{(byte)Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1]};
+						var10 = new byte[]{(byte)Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize]};
+						var8 = new byte[]{(byte)Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1]};
 					}
 
 					var7 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize] - 1;
 					if (var7 >= 0 && var7 <= 9) {
-						TaskHandler.Widget_setKey(var4, var7, var8, var9);
+						TaskHandler.Widget_setKey(var4, var7, var10, var8);
 						return 1;
 					} else {
 						throw new RuntimeException();
@@ -504,8 +504,8 @@ public abstract class AbstractWorldMapData {
 
 	@ObfuscatedName("iu")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-1407692443"
+		garbageValue = "-1407692443",
+		signature = "(I)V"
 	)
 	static void method352() {
 		for (int var0 = 0; var0 < Client.menuOptionsCount; ++var0) {

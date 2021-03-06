@@ -37,8 +37,8 @@ public class FriendsList extends NameableContainer {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(I)Ljn;",
-		garbageValue = "-315842787"
+		garbageValue = "-315842787",
+		signature = "(I)Ljn;"
 	)
 	@Export("newInstance")
 	Nameable newInstance() {
@@ -47,8 +47,8 @@ public class FriendsList extends NameableContainer {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(II)[Ljn;",
-		garbageValue = "1723641195"
+		garbageValue = "1723641195",
+		signature = "(II)[Ljn;"
 	)
 	@Export("newTypedArray")
 	Nameable[] newTypedArray(int var1) {
@@ -57,8 +57,8 @@ public class FriendsList extends NameableContainer {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(Lkk;ZI)Z",
-		garbageValue = "-117027707"
+		garbageValue = "-117027707",
+		signature = "(Lkk;ZI)Z"
 	)
 	@Export("isFriended")
 	public boolean isFriended(Username var1, boolean var2) {
@@ -72,8 +72,8 @@ public class FriendsList extends NameableContainer {
 
 	@ObfuscatedName("bk")
 	@ObfuscatedSignature(
-		signature = "(Lkx;II)V",
-		garbageValue = "277533413"
+		garbageValue = "277533413",
+		signature = "(Lkx;II)V"
 	)
 	@Export("read")
 	public void read(Buffer var1, int var2) {
@@ -161,8 +161,8 @@ public class FriendsList extends NameableContainer {
 
 	@ObfuscatedName("ls")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "-22"
+		garbageValue = "-22",
+		signature = "(B)V"
 	)
 	static void method5386() {
 		if (HealthBarUpdate.field1016 != null) {

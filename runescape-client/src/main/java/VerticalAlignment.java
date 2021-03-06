@@ -44,8 +44,8 @@ public enum VerticalAlignment implements Enumerated {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(B)I",
-		garbageValue = "63"
+		garbageValue = "63",
+		signature = "(B)I"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {

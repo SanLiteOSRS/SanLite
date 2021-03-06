@@ -18,8 +18,8 @@ public final class class307 {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(I)[Llp;",
-		garbageValue = "1168600989"
+		garbageValue = "1168600989",
+		signature = "(I)[Llp;"
 	)
 	@Export("FillMode_values")
 	public static class333[] FillMode_values() {

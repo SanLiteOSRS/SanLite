@@ -18,8 +18,8 @@ public class ModelData0 {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(Lkd;II)V",
-		garbageValue = "-1780574680"
+		garbageValue = "-1780574680",
+		signature = "(Lkd;II)V"
 	)
 	@Export("updatePlayers")
 	static final void updatePlayers(PacketBuffer var0, int var1) {
@@ -34,8 +34,8 @@ public class ModelData0 {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "([BIIII[Lfe;I)V",
-		garbageValue = "255234267"
+		garbageValue = "255234267",
+		signature = "([BIIII[Lfe;I)V"
 	)
 	static final void method3411(byte[] var0, int var1, int var2, int var3, int var4, CollisionMap[] var5) {
 		int var7;

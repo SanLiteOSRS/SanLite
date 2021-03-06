@@ -27,8 +27,8 @@ public class DevicePcmPlayerProvider implements class108 {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(S)Ldh;",
-		garbageValue = "-25384"
+		garbageValue = "-25384",
+		signature = "(S)Ldh;"
 	)
 	@Export("player")
 	public PcmPlayer player() {
@@ -37,8 +37,8 @@ public class DevicePcmPlayerProvider implements class108 {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(IIIIIII)I",
-		garbageValue = "-313683225"
+		garbageValue = "-313683225",
+		signature = "(IIIIIII)I"
 	)
 	public static int method921(int var0, int var1, int var2, int var3, int var4, int var5) {
 		if ((var5 & 1) == 1) {
@@ -59,8 +59,8 @@ public class DevicePcmPlayerProvider implements class108 {
 
 	@ObfuscatedName("gk")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-3337607"
+		garbageValue = "-3337607",
+		signature = "(I)V"
 	)
 	static final void method920() {
 		for (GraphicsObject var0 = (GraphicsObject)Client.graphicsObjects.last(); var0 != null; var0 = (GraphicsObject)Client.graphicsObjects.previous()) {
@@ -82,8 +82,8 @@ public class DevicePcmPlayerProvider implements class108 {
 
 	@ObfuscatedName("kq")
 	@ObfuscatedSignature(
-		signature = "(Lhz;B)Z",
-		garbageValue = "103"
+		garbageValue = "103",
+		signature = "(Lhz;B)Z"
 	)
 	@Export("isComponentHidden")
 	static boolean isComponentHidden(Widget var0) {

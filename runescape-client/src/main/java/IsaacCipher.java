@@ -51,8 +51,8 @@ public final class IsaacCipher {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(B)I",
-		garbageValue = "105"
+		garbageValue = "105",
+		signature = "(B)I"
 	)
 	@Export("nextInt")
 	public final int nextInt() {
@@ -66,8 +66,8 @@ public final class IsaacCipher {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "600034731"
+		garbageValue = "600034731",
+		signature = "(I)I"
 	)
 	public final int method6474() {
 		if (this.valuesRemaining == 0) {
@@ -80,8 +80,8 @@ public final class IsaacCipher {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "2032903481"
+		garbageValue = "2032903481",
+		signature = "(I)V"
 	)
 	@Export("generateMoreResults")
 	final void generateMoreResults() {
@@ -111,8 +111,8 @@ public final class IsaacCipher {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-852734098"
+		garbageValue = "-852734098",
+		signature = "(I)V"
 	)
 	final void method6466() {
 		int var9 = -1640531527;
@@ -244,8 +244,8 @@ public final class IsaacCipher {
 
 	@ObfuscatedName("ja")
 	@ObfuscatedSignature(
-		signature = "(Lhz;S)V",
-		garbageValue = "180"
+		garbageValue = "180",
+		signature = "(Lhz;S)V"
 	)
 	@Export("invalidateWidget")
 	static void invalidateWidget(Widget var0) {

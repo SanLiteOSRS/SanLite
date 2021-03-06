@@ -25,8 +25,8 @@ public class DesktopPlatformInfoProvider implements PlatformInfoProvider {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(I)Lmn;",
-		garbageValue = "583399336"
+		garbageValue = "583399336",
+		signature = "(I)Lmn;"
 	)
 	@Export("get")
 	public PlatformInfo get() {
@@ -155,8 +155,8 @@ public class DesktopPlatformInfoProvider implements PlatformInfoProvider {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;I)V",
-		garbageValue = "1728874118"
+		garbageValue = "1728874118",
+		signature = "(Ljava/lang/String;I)V"
 	)
 	void method6480(String var1) {
 		if (var1.startsWith("1.")) {
@@ -169,8 +169,8 @@ public class DesktopPlatformInfoProvider implements PlatformInfoProvider {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;I)V",
-		garbageValue = "-1393050521"
+		garbageValue = "-1393050521",
+		signature = "(Ljava/lang/String;I)V"
 	)
 	void method6487(String var1) {
 		String[] var2 = var1.split("\\.");
@@ -187,8 +187,8 @@ public class DesktopPlatformInfoProvider implements PlatformInfoProvider {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;I)V",
-		garbageValue = "-1077684800"
+		garbageValue = "-1077684800",
+		signature = "(Ljava/lang/String;I)V"
 	)
 	void method6481(String var1) {
 		String[] var2 = var1.split("\\.");
@@ -204,8 +204,8 @@ public class DesktopPlatformInfoProvider implements PlatformInfoProvider {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(S)[Lim;",
-		garbageValue = "-29867"
+		garbageValue = "-29867",
+		signature = "(S)[Lim;"
 	)
 	public static StudioGame[] method6478() {
 		return new StudioGame[]{StudioGame.stellardawn, StudioGame.game5, StudioGame.oldscape, StudioGame.game4, StudioGame.runescape, StudioGame.game3};

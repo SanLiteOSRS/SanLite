@@ -36,8 +36,8 @@ public class VarpDefinition extends DualNode {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(Lkx;I)V",
-		garbageValue = "-1864493120"
+		garbageValue = "-1864493120",
+		signature = "(Lkx;I)V"
 	)
 	@Export("decode")
 	void decode(Buffer var1) {
@@ -53,8 +53,8 @@ public class VarpDefinition extends DualNode {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(Lkx;IB)V",
-		garbageValue = "54"
+		garbageValue = "54",
+		signature = "(Lkx;IB)V"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
@@ -66,8 +66,8 @@ public class VarpDefinition extends DualNode {
 
 	@ObfuscatedName("ez")
 	@ObfuscatedSignature(
-		signature = "(I)Z",
-		garbageValue = "498467917"
+		garbageValue = "498467917",
+		signature = "(I)Z"
 	)
 	static boolean method4552() {
 		if (Client.archiveLoaders != null && Client.archiveLoadersDone < Client.archiveLoaders.size()) {

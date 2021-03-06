@@ -62,8 +62,8 @@ public class Script extends DualNode {
 
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(II)[Llg;",
-		garbageValue = "-1286467611"
+		garbageValue = "-1286467611",
+		signature = "(II)[Llg;"
 	)
 	@Export("newIterableNodeHashTable")
 	IterableNodeHashTable[] newIterableNodeHashTable(int var1) {

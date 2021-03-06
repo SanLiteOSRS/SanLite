@@ -63,8 +63,8 @@ public class WorldMapIcon_0 extends AbstractWorldMapIcon {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(B)I",
-		garbageValue = "7"
+		garbageValue = "7",
+		signature = "(B)I"
 	)
 	@Export("getElement")
 	public int getElement() {
@@ -73,8 +73,8 @@ public class WorldMapIcon_0 extends AbstractWorldMapIcon {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(S)Laa;",
-		garbageValue = "31041"
+		garbageValue = "31041",
+		signature = "(S)Laa;"
 	)
 	@Export("getLabel")
 	WorldMapLabel getLabel() {
@@ -83,8 +83,8 @@ public class WorldMapIcon_0 extends AbstractWorldMapIcon {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "-413607837"
+		garbageValue = "-413607837",
+		signature = "(I)I"
 	)
 	@Export("getSubWidth")
 	int getSubWidth() {
@@ -93,8 +93,8 @@ public class WorldMapIcon_0 extends AbstractWorldMapIcon {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "-1875187157"
+		garbageValue = "-1875187157",
+		signature = "(I)I"
 	)
 	@Export("getSubHeight")
 	int getSubHeight() {
@@ -103,8 +103,8 @@ public class WorldMapIcon_0 extends AbstractWorldMapIcon {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "-344987914"
+		garbageValue = "-344987914",
+		signature = "(I)I"
 	)
 	static int method286() {
 		return 12;
@@ -112,8 +112,8 @@ public class WorldMapIcon_0 extends AbstractWorldMapIcon {
 
 	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		signature = "(Lhz;II)V",
-		garbageValue = "18479210"
+		garbageValue = "18479210",
+		signature = "(Lhz;II)V"
 	)
 	@Export("Widget_setKeyIgnoreHeld")
 	static final void Widget_setKeyIgnoreHeld(Widget var0, int var1) {
@@ -130,8 +130,8 @@ public class WorldMapIcon_0 extends AbstractWorldMapIcon {
 
 	@ObfuscatedName("aa")
 	@ObfuscatedSignature(
-		signature = "(ILcl;ZI)I",
-		garbageValue = "1727285517"
+		garbageValue = "1727285517",
+		signature = "(ILcl;ZI)I"
 	)
 	static int method285(int var0, Script var1, boolean var2) {
 		int var3;

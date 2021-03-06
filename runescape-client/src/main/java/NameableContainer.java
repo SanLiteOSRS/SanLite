@@ -49,24 +49,24 @@ public abstract class NameableContainer {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(I)Ljn;",
-		garbageValue = "-315842787"
+		garbageValue = "-315842787",
+		signature = "(I)Ljn;"
 	)
 	@Export("newInstance")
 	abstract Nameable newInstance();
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(II)[Ljn;",
-		garbageValue = "1723641195"
+		garbageValue = "1723641195",
+		signature = "(II)[Ljn;"
 	)
 	@Export("newTypedArray")
 	abstract Nameable[] newTypedArray(int var1);
 
 	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		signature = "(S)V",
-		garbageValue = "-16027"
+		garbageValue = "-16027",
+		signature = "(S)V"
 	)
 	@Export("clear")
 	public void clear() {
@@ -78,8 +78,8 @@ public abstract class NameableContainer {
 
 	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		signature = "(S)I",
-		garbageValue = "687"
+		garbageValue = "687",
+		signature = "(S)I"
 	)
 	@Export("getSize")
 	public int getSize() {
@@ -88,8 +88,8 @@ public abstract class NameableContainer {
 
 	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		signature = "(B)Z",
-		garbageValue = "0"
+		garbageValue = "0",
+		signature = "(B)Z"
 	)
 	@Export("isFull")
 	public boolean isFull() {
@@ -98,8 +98,8 @@ public abstract class NameableContainer {
 
 	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		signature = "(Lkk;I)Z",
-		garbageValue = "-1403863390"
+		garbageValue = "-1403863390",
+		signature = "(Lkk;I)Z"
 	)
 	@Export("contains")
 	public boolean contains(Username var1) {
@@ -112,8 +112,8 @@ public abstract class NameableContainer {
 
 	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		signature = "(Lkk;I)Ljn;",
-		garbageValue = "2091513607"
+		garbageValue = "2091513607",
+		signature = "(Lkk;I)Ljn;"
 	)
 	@Export("getByUsername")
 	public Nameable getByUsername(Username var1) {
@@ -123,8 +123,8 @@ public abstract class NameableContainer {
 
 	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		signature = "(Lkk;I)Ljn;",
-		garbageValue = "1389255330"
+		garbageValue = "1389255330",
+		signature = "(Lkk;I)Ljn;"
 	)
 	@Export("getByCurrentUsername")
 	Nameable getByCurrentUsername(Username var1) {
@@ -133,8 +133,8 @@ public abstract class NameableContainer {
 
 	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "(Lkk;B)Ljn;",
-		garbageValue = "106"
+		garbageValue = "106",
+		signature = "(Lkk;B)Ljn;"
 	)
 	@Export("getByPreviousUsername")
 	Nameable getByPreviousUsername(Username var1) {
@@ -143,8 +143,8 @@ public abstract class NameableContainer {
 
 	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		signature = "(Lkk;I)Z",
-		garbageValue = "925545602"
+		garbageValue = "925545602",
+		signature = "(Lkk;I)Z"
 	)
 	@Export("removeByUsername")
 	public final boolean removeByUsername(Username var1) {
@@ -159,8 +159,8 @@ public abstract class NameableContainer {
 
 	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		signature = "(Ljn;I)V",
-		garbageValue = "1008503929"
+		garbageValue = "1008503929",
+		signature = "(Ljn;I)V"
 	)
 	@Export("remove")
 	final void remove(Nameable var1) {
@@ -173,8 +173,8 @@ public abstract class NameableContainer {
 
 	@ObfuscatedName("g")
 	@ObfuscatedSignature(
-		signature = "(Lkk;I)Ljn;",
-		garbageValue = "1681859445"
+		garbageValue = "1681859445",
+		signature = "(Lkk;I)Ljn;"
 	)
 	@Export("addLastNoPreviousUsername")
 	Nameable addLastNoPreviousUsername(Username var1) {
@@ -183,8 +183,8 @@ public abstract class NameableContainer {
 
 	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "(Lkk;Lkk;I)Ljn;",
-		garbageValue = "1304686486"
+		garbageValue = "1304686486",
+		signature = "(Lkk;Lkk;I)Ljn;"
 	)
 	@Export("addLast")
 	Nameable addLast(Username var1, Username var2) {
@@ -201,8 +201,8 @@ public abstract class NameableContainer {
 
 	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		signature = "(IB)Ljn;",
-		garbageValue = "12"
+		garbageValue = "12",
+		signature = "(IB)Ljn;"
 	)
 	@Export("get")
 	public final Nameable get(int var1) {
@@ -215,8 +215,8 @@ public abstract class NameableContainer {
 
 	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-1849487850"
+		garbageValue = "-1849487850",
+		signature = "(I)V"
 	)
 	@Export("sort")
 	public final void sort() {
@@ -230,8 +230,8 @@ public abstract class NameableContainer {
 
 	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "(Ljn;Lkk;Lkk;I)V",
-		garbageValue = "1325828813"
+		garbageValue = "1325828813",
+		signature = "(Ljn;Lkk;Lkk;I)V"
 	)
 	@Export("changeName")
 	final void changeName(Nameable var1, Username var2, Username var3) {
@@ -242,8 +242,8 @@ public abstract class NameableContainer {
 
 	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
-		signature = "(Ljn;B)I",
-		garbageValue = "113"
+		garbageValue = "113",
+		signature = "(Ljn;B)I"
 	)
 	@Export("indexOf")
 	final int indexOf(Nameable var1) {
@@ -258,8 +258,8 @@ public abstract class NameableContainer {
 
 	@ObfuscatedName("am")
 	@ObfuscatedSignature(
-		signature = "(Ljn;I)V",
-		garbageValue = "-1644008169"
+		garbageValue = "-1644008169",
+		signature = "(Ljn;I)V"
 	)
 	@Export("mapRemove")
 	final void mapRemove(Nameable var1) {
@@ -275,8 +275,8 @@ public abstract class NameableContainer {
 
 	@ObfuscatedName("ag")
 	@ObfuscatedSignature(
-		signature = "(Ljn;B)V",
-		garbageValue = "-53"
+		garbageValue = "-53",
+		signature = "(Ljn;B)V"
 	)
 	@Export("arrayAddLast")
 	final void arrayAddLast(Nameable var1) {
@@ -285,8 +285,8 @@ public abstract class NameableContainer {
 
 	@ObfuscatedName("ae")
 	@ObfuscatedSignature(
-		signature = "(Ljn;I)V",
-		garbageValue = "-669871077"
+		garbageValue = "-669871077",
+		signature = "(Ljn;I)V"
 	)
 	@Export("mapPut")
 	final void mapPut(Nameable var1) {
@@ -302,8 +302,8 @@ public abstract class NameableContainer {
 
 	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		signature = "(IB)V",
-		garbageValue = "53"
+		garbageValue = "53",
+		signature = "(IB)V"
 	)
 	@Export("arrayRemove")
 	final void arrayRemove(int var1) {
@@ -316,8 +316,8 @@ public abstract class NameableContainer {
 
 	@ObfuscatedName("aq")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-1607977980"
+		garbageValue = "-1607977980",
+		signature = "(I)V"
 	)
 	@Export("removeComparator")
 	public final void removeComparator() {
@@ -326,8 +326,8 @@ public abstract class NameableContainer {
 
 	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		signature = "(Ljava/util/Comparator;B)V",
-		garbageValue = "-22"
+		garbageValue = "-22",
+		signature = "(Ljava/util/Comparator;B)V"
 	)
 	@Export("addComparator")
 	public final void addComparator(Comparator var1) {

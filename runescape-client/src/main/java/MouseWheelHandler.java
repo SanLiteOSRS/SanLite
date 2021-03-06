@@ -23,8 +23,8 @@ public final class MouseWheelHandler implements MouseWheel, MouseWheelListener {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Ljava/awt/Component;I)V",
-		garbageValue = "-1000758187"
+		garbageValue = "-1000758187",
+		signature = "(Ljava/awt/Component;I)V"
 	)
 	@Export("addTo")
 	void addTo(Component var1) {
@@ -33,8 +33,8 @@ public final class MouseWheelHandler implements MouseWheel, MouseWheelListener {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(Ljava/awt/Component;I)V",
-		garbageValue = "-1520122283"
+		garbageValue = "-1520122283",
+		signature = "(Ljava/awt/Component;I)V"
 	)
 	@Export("removeFrom")
 	void removeFrom(Component var1) {
@@ -43,8 +43,8 @@ public final class MouseWheelHandler implements MouseWheel, MouseWheelListener {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(S)I",
-		garbageValue = "-7695"
+		garbageValue = "-7695",
+		signature = "(S)I"
 	)
 	@Export("useRotation")
 	public synchronized int useRotation() {

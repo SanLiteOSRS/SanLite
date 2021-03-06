@@ -75,8 +75,8 @@ public final class BoundaryObject {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Lig;IIB)[Lly;",
-		garbageValue = "0"
+		garbageValue = "0",
+		signature = "(Lig;IIB)[Lly;"
 	)
 	public static IndexedSprite[] method3420(AbstractArchive var0, int var1, int var2) {
 		byte[] var4 = var0.takeFile(var1, var2);
@@ -117,8 +117,8 @@ public final class BoundaryObject {
 
 	@ObfuscatedName("gj")
 	@ObfuscatedSignature(
-		signature = "(B)I",
-		garbageValue = "33"
+		garbageValue = "33",
+		signature = "(B)I"
 	)
 	@Export("getWindowedMode")
 	static int getWindowedMode() {

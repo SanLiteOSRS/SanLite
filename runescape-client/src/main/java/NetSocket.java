@@ -95,8 +95,8 @@ public final class NetSocket extends AbstractSocket implements Runnable {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "136255387"
+		garbageValue = "136255387",
+		signature = "(I)V"
 	)
 	@Export("close")
 	public void close() {
@@ -125,8 +125,8 @@ public final class NetSocket extends AbstractSocket implements Runnable {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(B)I",
-		garbageValue = "-29"
+		garbageValue = "-29",
+		signature = "(B)I"
 	)
 	@Export("readUnsignedByte")
 	public int readUnsignedByte() throws IOException {
@@ -135,8 +135,8 @@ public final class NetSocket extends AbstractSocket implements Runnable {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(B)I",
-		garbageValue = "1"
+		garbageValue = "1",
+		signature = "(B)I"
 	)
 	@Export("available")
 	public int available() throws IOException {
@@ -145,8 +145,8 @@ public final class NetSocket extends AbstractSocket implements Runnable {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(II)Z",
-		garbageValue = "1621767276"
+		garbageValue = "1621767276",
+		signature = "(II)Z"
 	)
 	@Export("isAvailable")
 	public boolean isAvailable(int var1) throws IOException {
@@ -159,8 +159,8 @@ public final class NetSocket extends AbstractSocket implements Runnable {
 
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "([BIIB)I",
-		garbageValue = "-127"
+		garbageValue = "-127",
+		signature = "([BIIB)I"
 	)
 	@Export("read")
 	public int read(byte[] var1, int var2, int var3) throws IOException {
@@ -184,8 +184,8 @@ public final class NetSocket extends AbstractSocket implements Runnable {
 
 	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "([BIII)V",
-		garbageValue = "-2045267371"
+		garbageValue = "-2045267371",
+		signature = "([BIII)V"
 	)
 	@Export("write0")
 	void write0(byte[] var1, int var2, int var3) throws IOException {
@@ -219,8 +219,8 @@ public final class NetSocket extends AbstractSocket implements Runnable {
 
 	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "([BIII)V",
-		garbageValue = "1032488862"
+		garbageValue = "1032488862",
+		signature = "([BIII)V"
 	)
 	@Export("write")
 	public void write(byte[] var1, int var2, int var3) throws IOException {
@@ -305,8 +305,8 @@ public final class NetSocket extends AbstractSocket implements Runnable {
 
 	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		signature = "(S)V",
-		garbageValue = "-3619"
+		garbageValue = "-3619",
+		signature = "(S)V"
 	)
 	static final void method3748() {
 		class300.method5473("You can't add yourself to your own ignore list");

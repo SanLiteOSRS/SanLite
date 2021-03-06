@@ -27,8 +27,8 @@ final class GrandExchangeOfferUnitPriceComparator implements Comparator {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Lx;Lx;B)I",
-		garbageValue = "57"
+		garbageValue = "57",
+		signature = "(Lx;Lx;B)I"
 	)
 	@Export("compare_bridged")
 	int compare_bridged(GrandExchangeEvent var1, GrandExchangeEvent var2) {
@@ -45,8 +45,8 @@ final class GrandExchangeOfferUnitPriceComparator implements Comparator {
 
 	@ObfuscatedName("if")
 	@ObfuscatedSignature(
-		signature = "(Lbk;IIII)V",
-		garbageValue = "1420045659"
+		garbageValue = "1420045659",
+		signature = "(Lbk;IIII)V"
 	)
 	@Export("addPlayerToMenu")
 	static final void addPlayerToMenu(Player var0, int var1, int var2, int var3) {

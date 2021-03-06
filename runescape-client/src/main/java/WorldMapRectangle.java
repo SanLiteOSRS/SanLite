@@ -55,8 +55,8 @@ public final class WorldMapRectangle {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "([BI)Llm;",
-		garbageValue = "-1825283733"
+		garbageValue = "-1825283733",
+		signature = "([BI)Llm;"
 	)
 	@Export("convertJpgToSprite")
 	public static final SpritePixels convertJpgToSprite(byte[] var0) {
@@ -79,8 +79,8 @@ public final class WorldMapRectangle {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;ZZI)V",
-		garbageValue = "1269350728"
+		garbageValue = "1269350728",
+		signature = "(Ljava/lang/String;ZZI)V"
 	)
 	@Export("openURL")
 	public static void openURL(String var0, boolean var1, boolean var2) {
@@ -108,8 +108,8 @@ public final class WorldMapRectangle {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;Ljava/lang/String;ZI)Lmc;",
-		garbageValue = "59696754"
+		garbageValue = "59696754",
+		signature = "(Ljava/lang/String;Ljava/lang/String;ZI)Lmc;"
 	)
 	@Export("getPreferencesFile")
 	public static AccessFile getPreferencesFile(String var0, String var1, boolean var2) {
@@ -149,8 +149,8 @@ public final class WorldMapRectangle {
 
 	@ObfuscatedName("fo")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-1194982929"
+		garbageValue = "-1194982929",
+		signature = "(I)V"
 	)
 	static final void method354() {
 		int var0 = Players.Players_count;
@@ -167,8 +167,8 @@ public final class WorldMapRectangle {
 
 	@ObfuscatedName("ij")
 	@ObfuscatedSignature(
-		signature = "(II)Ljava/lang/String;",
-		garbageValue = "-1726408780"
+		garbageValue = "-1726408780",
+		signature = "(II)Ljava/lang/String;"
 	)
 	@Export("formatItemStacks")
 	static final String formatItemStacks(int var0) {

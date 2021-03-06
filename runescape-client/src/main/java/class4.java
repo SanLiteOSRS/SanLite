@@ -6,8 +6,8 @@ import net.runelite.rs.ScriptOpcodes;
 final class class4 implements class0 {
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/Object;Lkx;B)V",
-		garbageValue = "-41"
+		garbageValue = "-41",
+		signature = "(Ljava/lang/Object;Lkx;B)V"
 	)
 	public void vmethod48(Object var1, Buffer var2) {
 		this.method54((String)var1, var2);
@@ -15,8 +15,8 @@ final class class4 implements class0 {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(Lkx;I)Ljava/lang/Object;",
-		garbageValue = "1678106953"
+		garbageValue = "1678106953",
+		signature = "(Lkx;I)Ljava/lang/Object;"
 	)
 	public Object vmethod45(Buffer var1) {
 		return var1.readStringCp1252NullTerminated();
@@ -24,8 +24,8 @@ final class class4 implements class0 {
 
 	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;Lkx;I)V",
-		garbageValue = "-768475899"
+		garbageValue = "-768475899",
+		signature = "(Ljava/lang/String;Lkx;I)V"
 	)
 	void method54(String var1, Buffer var2) {
 		var2.writeStringCp1252NullTerminated(var1);
@@ -33,8 +33,8 @@ final class class4 implements class0 {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(IIIIB)V",
-		garbageValue = "-21"
+		garbageValue = "-21",
+		signature = "(IIIIB)V"
 	)
 	static final void method55(int var0, int var1, int var2, int var3) {
 		for (int var4 = var1; var4 <= var3 + var1; ++var4) {
@@ -64,8 +64,8 @@ final class class4 implements class0 {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(III)Lcl;",
-		garbageValue = "836178308"
+		garbageValue = "836178308",
+		signature = "(III)Lcl;"
 	)
 	static Script method46(int var0, int var1) {
 		Script var2 = (Script)Script.Script_cached.get((long)(var0 << 16));
@@ -97,8 +97,8 @@ final class class4 implements class0 {
 
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(I)Z",
-		garbageValue = "-989634997"
+		garbageValue = "-989634997",
+		signature = "(I)Z"
 	)
 	public static boolean method56() {
 		return class206.musicPlayerStatus != 0 ? true : VertexNormal.midiPcmStream.isReady();
@@ -106,8 +106,8 @@ final class class4 implements class0 {
 
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(ILcl;ZI)I",
-		garbageValue = "856520106"
+		garbageValue = "856520106",
+		signature = "(ILcl;ZI)I"
 	)
 	static int method53(int var0, Script var1, boolean var2) {
 		int var3 = -1;

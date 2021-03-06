@@ -36,8 +36,8 @@ public class class248 {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(II)V",
-		garbageValue = "-381922948"
+		garbageValue = "-381922948",
+		signature = "(II)V"
 	)
 	void method4507(int var1) {
 		int var2 = var1 * 2 + 1;
@@ -71,8 +71,8 @@ public class class248 {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(II)Llm;",
-		garbageValue = "1559199090"
+		garbageValue = "1559199090",
+		signature = "(II)Llm;"
 	)
 	SpritePixels method4527(int var1) {
 		if (!this.spriteMap.containsKey(var1)) {
@@ -84,8 +84,8 @@ public class class248 {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(III)V",
-		garbageValue = "-1110209387"
+		garbageValue = "-1110209387",
+		signature = "(III)V"
 	)
 	public final void method4509(int var1, int var2) {
 		if (this.field3226 < this.field3224.length) {
@@ -97,8 +97,8 @@ public class class248 {
 
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-1700428858"
+		garbageValue = "-1700428858",
+		signature = "(I)V"
 	)
 	public final void method4510() {
 		this.field3226 = 0;
@@ -106,8 +106,8 @@ public class class248 {
 
 	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(IILlm;FI)V",
-		garbageValue = "2039360324"
+		garbageValue = "2039360324",
+		signature = "(IILlm;FI)V"
 	)
 	public final void method4511(int var1, int var2, SpritePixels var3, float var4) {
 		int var5 = (int)(18.0F * var4);
@@ -157,8 +157,8 @@ public class class248 {
 
 	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(Llm;Llm;Lli;I)V",
-		garbageValue = "-524888104"
+		garbageValue = "-524888104",
+		signature = "(Llm;Llm;Lli;I)V"
 	)
 	void method4506(SpritePixels var1, SpritePixels var2, Bounds var3) {
 		if (var3.highX != 0 && var3.highY != 0) {
@@ -191,8 +191,8 @@ public class class248 {
 
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "15"
+		garbageValue = "15",
+		signature = "(B)V"
 	)
 	static void method4514() {
 		if (Login.Login_username == null || Login.Login_username.length() <= 0) {

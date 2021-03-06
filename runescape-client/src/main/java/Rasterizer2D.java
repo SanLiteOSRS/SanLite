@@ -525,8 +525,8 @@ public class Rasterizer2D extends DualNode {
 
 	@ObfuscatedName("de")
 	@ObfuscatedSignature(
-		signature = "(IIIIII[BIZ)V",
-		garbageValue = "1"
+		garbageValue = "1",
+		signature = "(IIIIII[BIZ)V"
 	)
 	@Export("Rasterizer2D_drawGradientPixels")
 	public static void Rasterizer2D_drawGradientPixels(int var0, int var1, int var2, int var3, int var4, int var5, byte[] var6, int var7) {
@@ -607,10 +607,10 @@ public class Rasterizer2D extends DualNode {
 	@ObfuscatedName("dw")
 	@Export("Rasterizer2D_drawRectangle")
 	public static void Rasterizer2D_drawRectangle(int var0, int var1, int var2, int var3, int var4) {
-		Rasterizer2D_drawHorizontalLine(var0, var1, var2, var4);
-		Rasterizer2D_drawHorizontalLine(var0, var3 + var1 - 1, var2, var4);
-		Rasterizer2D_drawVerticalLine(var0, var1, var3, var4);
-		Rasterizer2D_drawVerticalLine(var0 + var2 - 1, var1, var3, var4);
+		method6223(var0, var1, var2, var4);
+		method6223(var0, var3 + var1 - 1, var2, var4);
+		method6232(var0, var1, var3, var4);
+		method6232(var0 + var2 - 1, var1, var3, var4);
 	}
 
 	@ObfuscatedName("dz")
@@ -626,8 +626,7 @@ public class Rasterizer2D extends DualNode {
 	}
 
 	@ObfuscatedName("dg")
-	@Export("Rasterizer2D_drawHorizontalLine")
-	public static void Rasterizer2D_drawHorizontalLine(int var0, int var1, int var2, int var3) {
+	public static void method6223(int var0, int var1, int var2, int var3) {
 		if (var1 >= Rasterizer2D_yClipStart && var1 < Rasterizer2D_yClipEnd) {
 			if (var0 < Rasterizer2D_xClipStart) {
 				var2 -= Rasterizer2D_xClipStart - var0;
@@ -678,8 +677,7 @@ public class Rasterizer2D extends DualNode {
 	}
 
 	@ObfuscatedName("da")
-	@Export("Rasterizer2D_drawVerticalLine")
-	public static void Rasterizer2D_drawVerticalLine(int var0, int var1, int var2, int var3) {
+	public static void method6232(int var0, int var1, int var2, int var3) {
 		if (var0 >= Rasterizer2D_xClipStart && var0 < Rasterizer2D_xClipEnd) {
 			if (var1 < Rasterizer2D_yClipStart) {
 				var2 -= Rasterizer2D_yClipStart - var1;
@@ -737,16 +735,16 @@ public class Rasterizer2D extends DualNode {
 		var3 -= var1;
 		if (var3 == 0) {
 			if (var2 >= 0) {
-				Rasterizer2D_drawHorizontalLine(var0, var1, var2 + 1, var4);
+				method6223(var0, var1, var2 + 1, var4);
 			} else {
-				Rasterizer2D_drawHorizontalLine(var0 + var2, var1, -var2 + 1, var4);
+				method6223(var0 + var2, var1, -var2 + 1, var4);
 			}
 
 		} else if (var2 == 0) {
 			if (var3 >= 0) {
-				Rasterizer2D_drawVerticalLine(var0, var1, var3 + 1, var4);
+				method6232(var0, var1, var3 + 1, var4);
 			} else {
-				Rasterizer2D_drawVerticalLine(var0, var3 + var1, -var3 + 1, var4);
+				method6232(var0, var3 + var1, -var3 + 1, var4);
 			}
 
 		} else {

@@ -40,8 +40,8 @@ public class WorldMapData_1 extends AbstractWorldMapData {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Lkx;I)V",
-		garbageValue = "-1959285533"
+		garbageValue = "-1959285533",
+		signature = "(Lkx;I)V"
 	)
 	@Export("init")
 	void init(Buffer var1) {
@@ -66,8 +66,8 @@ public class WorldMapData_1 extends AbstractWorldMapData {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(Lkx;B)V",
-		garbageValue = "36"
+		garbageValue = "36",
+		signature = "(Lkx;B)V"
 	)
 	@Export("readGeography")
 	void readGeography(Buffer var1) {
@@ -100,8 +100,8 @@ public class WorldMapData_1 extends AbstractWorldMapData {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "-1716602813"
+		garbageValue = "-1716602813",
+		signature = "(I)I"
 	)
 	@Export("getChunkXLow")
 	int getChunkXLow() {
@@ -110,8 +110,8 @@ public class WorldMapData_1 extends AbstractWorldMapData {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(B)I",
-		garbageValue = "-26"
+		garbageValue = "-26",
+		signature = "(B)I"
 	)
 	@Export("getChunkYLow")
 	int getChunkYLow() {
@@ -120,8 +120,8 @@ public class WorldMapData_1 extends AbstractWorldMapData {
 
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "-477911557"
+		garbageValue = "-477911557",
+		signature = "(I)I"
 	)
 	@Export("getChunkX")
 	int getChunkX() {
@@ -130,8 +130,8 @@ public class WorldMapData_1 extends AbstractWorldMapData {
 
 	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "384332395"
+		garbageValue = "384332395",
+		signature = "(I)I"
 	)
 	@Export("getChunkY")
 	int getChunkY() {
@@ -157,8 +157,8 @@ public class WorldMapData_1 extends AbstractWorldMapData {
 
 	@ObfuscatedName("jv")
 	@ObfuscatedSignature(
-		signature = "([Lhz;IS)V",
-		garbageValue = "11595"
+		garbageValue = "11595",
+		signature = "([Lhz;IS)V"
 	)
 	@Export("runComponentCloseListeners")
 	static final void runComponentCloseListeners(Widget[] var0, int var1) {
@@ -204,8 +204,8 @@ public class WorldMapData_1 extends AbstractWorldMapData {
 
 	@ObfuscatedName("jr")
 	@ObfuscatedSignature(
-		signature = "(IB)V",
-		garbageValue = "1"
+		garbageValue = "1",
+		signature = "(IB)V"
 	)
 	static final void method810(int var0) {
 		var0 = Math.min(Math.max(var0, 0), 127);

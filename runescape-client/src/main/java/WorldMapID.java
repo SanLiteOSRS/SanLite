@@ -55,8 +55,8 @@ public class WorldMapID {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(III)I",
-		garbageValue = "893410164"
+		garbageValue = "893410164",
+		signature = "(III)I"
 	)
 	@Export("ItemContainer_getCount")
 	static int ItemContainer_getCount(int var0, int var1) {
@@ -70,8 +70,8 @@ public class WorldMapID {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(I)Ljava/lang/String;",
-		garbageValue = "-283946785"
+		garbageValue = "-283946785",
+		signature = "(I)Ljava/lang/String;"
 	)
 	static String method645() {
 		return WorldMapSectionType.clientPreferences.hideUsername ? HitSplatDefinition.method4768(Login.Login_username) : Login.Login_username;
@@ -79,8 +79,8 @@ public class WorldMapID {
 
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(II)V",
-		garbageValue = "-1525294724"
+		garbageValue = "-1525294724",
+		signature = "(II)V"
 	)
 	@Export("clearItemContainer")
 	static void clearItemContainer(int var0) {
@@ -96,8 +96,8 @@ public class WorldMapID {
 
 	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(Lig;Ljava/lang/String;Ljava/lang/String;S)[Llm;",
-		garbageValue = "26517"
+		garbageValue = "26517",
+		signature = "(Lig;Ljava/lang/String;Ljava/lang/String;S)[Llm;"
 	)
 	public static SpritePixels[] method648(AbstractArchive var0, String var1, String var2) {
 		int var3 = var0.getGroupId(var1);
@@ -107,8 +107,8 @@ public class WorldMapID {
 
 	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		signature = "(Lbt;I)V",
-		garbageValue = "1647051153"
+		garbageValue = "1647051153",
+		signature = "(Lbt;I)V"
 	)
 	static void method646(GameEngine var0) {
 		while (Varcs.isKeyDown()) {

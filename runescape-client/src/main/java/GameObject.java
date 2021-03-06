@@ -98,8 +98,8 @@ public final class GameObject {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(IB)I",
-		garbageValue = "-3"
+		garbageValue = "-3",
+		signature = "(IB)I"
 	)
 	public static int method3452(int var0) {
 		--var0;
@@ -113,8 +113,8 @@ public final class GameObject {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "([BI)Lcl;",
-		garbageValue = "-1796289150"
+		garbageValue = "-1796289150",
+		signature = "([BI)Lcl;"
 	)
 	@Export("newScript")
 	static Script newScript(byte[] var0) {
@@ -170,8 +170,8 @@ public final class GameObject {
 
 	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		signature = "(III)I",
-		garbageValue = "1120887468"
+		garbageValue = "1120887468",
+		signature = "(III)I"
 	)
 	static final int method3451(int var0, int var1) {
 		if (var0 == -1) {
@@ -190,8 +190,8 @@ public final class GameObject {
 
 	@ObfuscatedName("fr")
 	@ObfuscatedSignature(
-		signature = "(Lcv;I)V",
-		garbageValue = "871352937"
+		garbageValue = "871352937",
+		signature = "(Lcv;I)V"
 	)
 	static final void method3453(Actor var0) {
 		if (var0.field1006 != 0) {

@@ -56,8 +56,8 @@ public final class ArchiveDisk {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(II)[B",
-		garbageValue = "-776815620"
+		garbageValue = "-776815620",
+		signature = "(II)[B"
 	)
 	@Export("read")
 	public byte[] read(int var1) {
@@ -150,8 +150,8 @@ public final class ArchiveDisk {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(I[BIB)Z",
-		garbageValue = "119"
+		garbageValue = "119",
+		signature = "(I[BIB)Z"
 	)
 	@Export("write")
 	public boolean write(int var1, byte[] var2, int var3) {
@@ -171,8 +171,8 @@ public final class ArchiveDisk {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(I[BIZI)Z",
-		garbageValue = "-559665246"
+		garbageValue = "-559665246",
+		signature = "(I[BIZI)Z"
 	)
 	@Export("write0")
 	boolean write0(int var1, byte[] var2, int var3, boolean var4) {
@@ -336,8 +336,8 @@ public final class ArchiveDisk {
 
 	@ObfuscatedName("iq")
 	@ObfuscatedSignature(
-		signature = "(IIIII)V",
-		garbageValue = "1245945625"
+		garbageValue = "1245945625",
+		signature = "(IIIII)V"
 	)
 	@Export("selectSpell")
 	static void selectSpell(int var0, int var1, int var2, int var3) {

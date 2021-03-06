@@ -14,8 +14,8 @@ public class class171 implements class170 {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Lig;Lig;IZI)Lel;",
-		garbageValue = "-2064266261"
+		garbageValue = "-2064266261",
+		signature = "(Lig;Lig;IZI)Lel;"
 	)
 	public static Frames method3642(AbstractArchive var0, AbstractArchive var1, int var2, boolean var3) {
 		boolean var4 = true;
@@ -53,29 +53,29 @@ public class class171 implements class170 {
 
 	@ObfuscatedName("fj")
 	@ObfuscatedSignature(
-		signature = "(Lcv;II)V",
-		garbageValue = "478475301"
+		garbageValue = "478475301",
+		signature = "(Lcv;II)V"
 	)
 	@Export("updateActorSequence")
 	static final void updateActorSequence(Actor var0, int var1) {
 		if (var0.field999 >= Client.cycle) {
 			GrandExchangeEvent.method147(var0);
 		} else {
-			int var2;
 			int var3;
 			int var4;
 			int var5;
 			int var7;
+			int var11;
 			if (var0.field1000 >= Client.cycle) {
 				if (var0.field1000 == Client.cycle || var0.sequence == -1 || var0.sequenceDelay != 0 || var0.sequenceFrameCycle + 1 > InterfaceParent.SequenceDefinition_get(var0.sequence).frameLengths[var0.sequenceFrame]) {
-					var2 = var0.field1000 - var0.field999;
+					var11 = var0.field1000 - var0.field999;
 					var3 = Client.cycle - var0.field999;
 					var4 = var0.field992 * 128 + var0.field1007 * 64;
 					var5 = var0.field952 * 128 + var0.field1007 * 64;
 					int var6 = var0.field996 * 128 + var0.field1007 * 64;
 					var7 = var0.field998 * 128 + var0.field1007 * 64;
-					var0.x = (var3 * var6 + var4 * (var2 - var3)) / var2;
-					var0.y = (var3 * var7 + var5 * (var2 - var3)) / var2;
+					var0.x = (var3 * var6 + var4 * (var11 - var3)) / var11;
+					var0.y = (var3 * var7 + var5 * (var11 - var3)) / var11;
 				}
 
 				var0.field989 = 0;
@@ -86,25 +86,25 @@ public class class171 implements class170 {
 				if (var0.pathLength == 0) {
 					var0.field989 = 0;
 				} else {
-					label304: {
+					label280: {
 						if (var0.sequence != -1 && var0.sequenceDelay == 0) {
-							SequenceDefinition var11 = InterfaceParent.SequenceDefinition_get(var0.sequence);
-							if (var0.field1012 > 0 && var11.field3564 == 0) {
+							SequenceDefinition var2 = InterfaceParent.SequenceDefinition_get(var0.sequence);
+							if (var0.field1012 > 0 && var2.field3564 == 0) {
 								++var0.field989;
-								break label304;
+								break label280;
 							}
 
-							if (var0.field1012 <= 0 && var11.field3565 == 0) {
+							if (var0.field1012 <= 0 && var2.field3565 == 0) {
 								++var0.field989;
-								break label304;
+								break label280;
 							}
 						}
 
-						var2 = var0.x;
+						var11 = var0.x;
 						var3 = var0.y;
 						var4 = var0.pathX[var0.pathLength - 1] * 128 + var0.field1007 * 64;
 						var5 = var0.pathY[var0.pathLength - 1] * 128 + var0.field1007 * 64;
-						if (var2 < var4) {
+						if (var11 < var4) {
 							if (var3 < var5) {
 								var0.orientation = 1280;
 							} else if (var3 > var5) {
@@ -112,7 +112,7 @@ public class class171 implements class170 {
 							} else {
 								var0.orientation = 1536;
 							}
-						} else if (var2 > var4) {
+						} else if (var11 > var4) {
 							if (var3 < var5) {
 								var0.orientation = 768;
 							} else if (var3 > var5) {
@@ -127,7 +127,7 @@ public class class171 implements class170 {
 						}
 
 						byte var12 = var0.pathTraversed[var0.pathLength - 1];
-						if (var4 - var2 <= 256 && var4 - var2 >= -256 && var5 - var3 <= 256 && var5 - var3 >= -256) {
+						if (var4 - var11 <= 256 && var4 - var11 >= -256 && var5 - var3 <= 256 && var5 - var3 >= -256) {
 							var7 = var0.orientation - var0.rotation & 2047;
 							if (var7 > 1024) {
 								var7 -= 2048;
@@ -193,13 +193,13 @@ public class class171 implements class170 {
 								var0.movementSequence = var0.runSequence;
 							}
 
-							if (var4 != var2 || var5 != var3) {
-								if (var2 < var4) {
+							if (var4 != var11 || var5 != var3) {
+								if (var11 < var4) {
 									var0.x += var9;
 									if (var0.x > var4) {
 										var0.x = var4;
 									}
-								} else if (var2 > var4) {
+								} else if (var11 > var4) {
 									var0.x -= var9;
 									if (var0.x < var4) {
 										var0.x = var4;
@@ -264,8 +264,8 @@ public class class171 implements class170 {
 
 	@ObfuscatedName("gi")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "-654550315"
+		garbageValue = "-654550315",
+		signature = "(I)I"
 	)
 	static final int method3639() {
 		if (WorldMapSectionType.clientPreferences.roofsHidden) {
@@ -278,8 +278,8 @@ public class class171 implements class170 {
 
 	@ObfuscatedName("jq")
 	@ObfuscatedSignature(
-		signature = "(IB)V",
-		garbageValue = "0"
+		garbageValue = "0",
+		signature = "(IB)V"
 	)
 	static final void method3641(int var0) {
 		var0 = Math.min(Math.max(var0, 0), 127);

@@ -31,8 +31,8 @@ public class class60 {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "-125"
+		garbageValue = "-125",
+		signature = "(B)V"
 	)
 	public static void method967() {
 		synchronized(MouseHandler.MouseHandler_instance) {
@@ -50,8 +50,8 @@ public class class60 {
 
 	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		signature = "(IIII)I",
-		garbageValue = "-291804616"
+		garbageValue = "-291804616",
+		signature = "(IIII)I"
 	)
 	static final int method972(int var0, int var1, int var2) {
 		int var3 = var0 / var2;
@@ -73,8 +73,8 @@ public class class60 {
 
 	@ObfuscatedName("kr")
 	@ObfuscatedSignature(
-		signature = "(Lhz;B)I",
-		garbageValue = "81"
+		garbageValue = "81",
+		signature = "(Lhz;B)I"
 	)
 	@Export("getWidgetClickMask")
 	static int getWidgetClickMask(Widget var0) {

@@ -13,8 +13,8 @@ public final class class13 {
 
 	@ObfuscatedName("ga")
 	@ObfuscatedSignature(
-		signature = "(IIIII)V",
-		garbageValue = "1434868681"
+		garbageValue = "1434868681",
+		signature = "(IIIII)V"
 	)
 	@Export("drawEntities")
 	static final void drawEntities(int var0, int var1, int var2, int var3) {
@@ -145,24 +145,24 @@ public final class class13 {
 
 		int var18;
 		for (var18 = 0; var18 < var16 + Client.npcCount; ++var18) {
-			Object var19;
+			Object var30;
 			if (var18 < var16) {
-				var19 = Client.players[var17[var18]];
+				var30 = Client.players[var17[var18]];
 				if (var17[var18] == Client.combatTargetPlayerIndex) {
 					var13 = true;
 					var14 = var18;
 					continue;
 				}
 
-				if (var19 == UserComparator9.localPlayer) {
+				if (var30 == UserComparator9.localPlayer) {
 					var15 = var18;
 					continue;
 				}
 			} else {
-				var19 = Client.npcs[Client.npcIndices[var18 - var16]];
+				var30 = Client.npcs[Client.npcIndices[var18 - var16]];
 			}
 
-			UserComparator5.drawActor2d((Actor)var19, var18, var0, var1, var2, var3);
+			UserComparator5.drawActor2d((Actor)var30, var18, var0, var1, var2, var3);
 		}
 
 		if (Client.renderSelf && var15 != -1) {
@@ -174,7 +174,7 @@ public final class class13 {
 		}
 
 		for (var18 = 0; var18 < Client.overheadTextCount; ++var18) {
-			int var29 = Client.overheadTextXs[var18];
+			int var19 = Client.overheadTextXs[var18];
 			int var20 = Client.overheadTextYs[var18];
 			int var21 = Client.overheadTextXOffsets[var18];
 			int var22 = Client.overheadTextAscents[var18];
@@ -183,9 +183,9 @@ public final class class13 {
 			while (var23) {
 				var23 = false;
 
-				for (int var24 = 0; var24 < var18; ++var24) {
-					if (var20 + 2 > Client.overheadTextYs[var24] - Client.overheadTextAscents[var24] && var20 - var22 < Client.overheadTextYs[var24] + 2 && var29 - var21 < Client.overheadTextXs[var24] + Client.overheadTextXOffsets[var24] && var21 + var29 > Client.overheadTextXs[var24] - Client.overheadTextXOffsets[var24] && Client.overheadTextYs[var24] - Client.overheadTextAscents[var24] < var20) {
-						var20 = Client.overheadTextYs[var24] - Client.overheadTextAscents[var24];
+				for (int var29 = 0; var29 < var18; ++var29) {
+					if (var20 + 2 > Client.overheadTextYs[var29] - Client.overheadTextAscents[var29] && var20 - var22 < Client.overheadTextYs[var29] + 2 && var19 - var21 < Client.overheadTextXs[var29] + Client.overheadTextXOffsets[var29] && var21 + var19 > Client.overheadTextXs[var29] - Client.overheadTextXOffsets[var29] && Client.overheadTextYs[var29] - Client.overheadTextAscents[var29] < var20) {
+						var20 = Client.overheadTextYs[var29] - Client.overheadTextAscents[var29];
 						var23 = true;
 					}
 				}
@@ -193,7 +193,7 @@ public final class class13 {
 
 			Client.viewportTempX = Client.overheadTextXs[var18];
 			Client.viewportTempY = Client.overheadTextYs[var18] = var20;
-			String var30 = Client.overheadText[var18];
+			String var24 = Client.overheadText[var18];
 			if (Client.chatEffects == 0) {
 				int var25 = 16776960;
 				if (Client.overheadTextColors[var18] < 6) {
@@ -247,25 +247,25 @@ public final class class13 {
 				}
 
 				if (Client.overheadTextEffects[var18] == 0) {
-					ScriptEvent.fontBold12.drawCentered(var30, var0 + Client.viewportTempX, Client.viewportTempY + var1, var25, 0);
+					ScriptEvent.fontBold12.drawCentered(var24, var0 + Client.viewportTempX, Client.viewportTempY + var1, var25, 0);
 				}
 
 				if (Client.overheadTextEffects[var18] == 1) {
-					ScriptEvent.fontBold12.drawCenteredWave(var30, var0 + Client.viewportTempX, Client.viewportTempY + var1, var25, 0, Client.viewportDrawCount);
+					ScriptEvent.fontBold12.drawCenteredWave(var24, var0 + Client.viewportTempX, Client.viewportTempY + var1, var25, 0, Client.viewportDrawCount);
 				}
 
 				if (Client.overheadTextEffects[var18] == 2) {
-					ScriptEvent.fontBold12.drawCenteredWave2(var30, var0 + Client.viewportTempX, Client.viewportTempY + var1, var25, 0, Client.viewportDrawCount);
+					ScriptEvent.fontBold12.drawCenteredWave2(var24, var0 + Client.viewportTempX, Client.viewportTempY + var1, var25, 0, Client.viewportDrawCount);
 				}
 
 				if (Client.overheadTextEffects[var18] == 3) {
-					ScriptEvent.fontBold12.drawCenteredShake(var30, var0 + Client.viewportTempX, Client.viewportTempY + var1, var25, 0, Client.viewportDrawCount, 150 - Client.overheadTextCyclesRemaining[var18]);
+					ScriptEvent.fontBold12.drawCenteredShake(var24, var0 + Client.viewportTempX, Client.viewportTempY + var1, var25, 0, Client.viewportDrawCount, 150 - Client.overheadTextCyclesRemaining[var18]);
 				}
 
 				if (Client.overheadTextEffects[var18] == 4) {
-					var26 = (150 - Client.overheadTextCyclesRemaining[var18]) * (ScriptEvent.fontBold12.stringWidth(var30) + 100) / 150;
+					var26 = (150 - Client.overheadTextCyclesRemaining[var18]) * (ScriptEvent.fontBold12.stringWidth(var24) + 100) / 150;
 					Rasterizer2D.Rasterizer2D_expandClip(var0 + Client.viewportTempX - 50, var1, var0 + Client.viewportTempX + 50, var3 + var1);
-					ScriptEvent.fontBold12.draw(var30, var0 + Client.viewportTempX + 50 - var26, Client.viewportTempY + var1, var25, 0);
+					ScriptEvent.fontBold12.draw(var24, var0 + Client.viewportTempX + 50 - var26, Client.viewportTempY + var1, var25, 0);
 					Rasterizer2D.Rasterizer2D_setClip(var0, var1, var0 + var2, var3 + var1);
 				}
 
@@ -279,16 +279,16 @@ public final class class13 {
 					}
 
 					Rasterizer2D.Rasterizer2D_expandClip(var0, Client.viewportTempY + var1 - ScriptEvent.fontBold12.ascent - 1, var0 + var2, Client.viewportTempY + var1 + 5);
-					ScriptEvent.fontBold12.drawCentered(var30, var0 + Client.viewportTempX, var27 + Client.viewportTempY + var1, var25, 0);
+					ScriptEvent.fontBold12.drawCentered(var24, var0 + Client.viewportTempX, var27 + Client.viewportTempY + var1, var25, 0);
 					Rasterizer2D.Rasterizer2D_setClip(var0, var1, var0 + var2, var3 + var1);
 				}
 			} else {
-				ScriptEvent.fontBold12.drawCentered(var30, var0 + Client.viewportTempX, Client.viewportTempY + var1, 16776960, 0);
+				ScriptEvent.fontBold12.drawCentered(var24, var0 + Client.viewportTempX, Client.viewportTempY + var1, 16776960, 0);
 			}
 		}
 
 		if (Client.hintArrowType == 2) {
-			ParamDefinition.worldToScreen(Client.hintArrowSubX * 64 + (Client.hintArrowX - GrandExchangeOfferNameComparator.baseX * 64 << 7), Client.hintArrowSubY * 64 + (Client.hintArrowY - NetCache.baseY * 64 << 7), Client.field933 * 4);
+			ParamDefinition.worldToScreen(Client.hintArrowSubX * 64 + (Client.hintArrowX - GrandExchangeOfferNameComparator.baseX * 64 << 7), (Client.hintArrowY - NetCache.baseY * 64 << 7) + Client.hintArrowSubY * 4096, Client.field933 * 2);
 			if (Client.viewportTempX > -1 && Client.cycle % 20 < 10) {
 				headIconHintSprites[0].drawTransBgAt(var0 + Client.viewportTempX - 12, Client.viewportTempY + var1 - 28);
 			}
@@ -318,8 +318,8 @@ public final class class13 {
 
 	@ObfuscatedName("lx")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "1775407691"
+		garbageValue = "1775407691",
+		signature = "(I)V"
 	)
 	static void method122() {
 		if (Client.field747 && UserComparator9.localPlayer != null) {

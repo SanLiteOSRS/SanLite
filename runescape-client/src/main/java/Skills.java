@@ -34,8 +34,8 @@ public class Skills {
 
 	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		signature = "(Lkd;ILbk;IB)V",
-		garbageValue = "4"
+		garbageValue = "4",
+		signature = "(Lkd;ILbk;IB)V"
 	)
 	static final void method4320(PacketBuffer var0, int var1, Player var2, int var3) {
 		byte var4 = -1;
@@ -144,7 +144,7 @@ public class Skills {
 		int var13;
 		if ((var3 & 128) != 0) {
 			var5 = var0.readUnsignedByte();
-			int var14;
+			int var15;
 			int var17;
 			int var19;
 			if (var5 > 0) {
@@ -164,8 +164,8 @@ public class Skills {
 						var17 = -1;
 					}
 
-					var14 = var0.readUShortSmart();
-					var2.addHitSplat(var17, var9, var8, var19, Client.cycle, var14);
+					var15 = var0.readUShortSmart();
+					var2.addHitSplat(var17, var9, var8, var19, Client.cycle, var15);
 				}
 			}
 
@@ -176,9 +176,9 @@ public class Skills {
 					var9 = var0.readUShortSmart();
 					if (var9 != 32767) {
 						var19 = var0.readUShortSmart();
-						var14 = var0.method5717();
-						var12 = var9 > 0 ? var0.method5776() : var14;
-						var2.addHealthBar(var8, Client.cycle, var9, var19, var14, var12);
+						var15 = var0.method5717();
+						var12 = var9 > 0 ? var0.method5776() : var15;
+						var2.addHealthBar(var8, Client.cycle, var9, var19, var15, var12);
 					} else {
 						var2.removeHealthBar(var8);
 					}
@@ -226,10 +226,10 @@ public class Skills {
 		if ((var3 & 2) != 0) {
 			var5 = var0.method5776();
 			byte[] var16 = new byte[var5];
-			Buffer var15 = new Buffer(var16);
+			Buffer var14 = new Buffer(var16);
 			var0.method5740(var16, 0, var5);
-			Players.field1269[var1] = var15;
-			var2.read(var15);
+			Players.field1269[var1] = var14;
+			var2.read(var14);
 		}
 
 		if (var2.field652) {

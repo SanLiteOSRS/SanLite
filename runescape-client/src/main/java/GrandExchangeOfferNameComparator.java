@@ -29,8 +29,8 @@ final class GrandExchangeOfferNameComparator implements Comparator {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Lx;Lx;I)I",
-		garbageValue = "1549101660"
+		garbageValue = "1549101660",
+		signature = "(Lx;Lx;I)I"
 	)
 	@Export("compare_bridged")
 	int compare_bridged(GrandExchangeEvent var1, GrandExchangeEvent var2) {
@@ -47,8 +47,8 @@ final class GrandExchangeOfferNameComparator implements Comparator {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(Llm;IIII)V",
-		garbageValue = "-1717498700"
+		garbageValue = "-1717498700",
+		signature = "(Llm;IIII)V"
 	)
 	static void method211(SpritePixels var0, int var1, int var2, int var3) {
 		WorldMapRegion.WorldMapRegion_cachedSprites.put(var0, AttackOption.method2203(var1, var2, var3), var0.pixels.length * 4);
@@ -61,8 +61,8 @@ final class GrandExchangeOfferNameComparator implements Comparator {
 
 	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		signature = "(Lig;II)Z",
-		garbageValue = "754600726"
+		garbageValue = "754600726",
+		signature = "(Lig;II)Z"
 	)
 	public static boolean method212(AbstractArchive var0, int var1) {
 		byte[] var2 = var0.takeFileFlat(var1);
@@ -76,8 +76,8 @@ final class GrandExchangeOfferNameComparator implements Comparator {
 
 	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		signature = "([BI)V",
-		garbageValue = "2140539566"
+		garbageValue = "2140539566",
+		signature = "([BI)V"
 	)
 	@Export("SpriteBuffer_decode")
 	public static void SpriteBuffer_decode(byte[] var0) {
@@ -148,8 +148,8 @@ final class GrandExchangeOfferNameComparator implements Comparator {
 
 	@ObfuscatedName("io")
 	@ObfuscatedSignature(
-		signature = "(IIIIIII)V",
-		garbageValue = "1502126569"
+		garbageValue = "1502126569",
+		signature = "(IIIIIII)V"
 	)
 	static final void method199(int var0, int var1, int var2, int var3, int var4, int var5) {
 		int var6 = var2 - var0;
@@ -193,8 +193,8 @@ final class GrandExchangeOfferNameComparator implements Comparator {
 
 	@ObfuscatedName("kn")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;ZI)Ljava/lang/String;",
-		garbageValue = "408357083"
+		garbageValue = "408357083",
+		signature = "(Ljava/lang/String;ZI)Ljava/lang/String;"
 	)
 	static String method209(String var0, boolean var1) {
 		String var2 = var1 ? "https://" : "http://";

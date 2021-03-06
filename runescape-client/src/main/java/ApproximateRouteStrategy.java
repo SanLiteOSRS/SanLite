@@ -26,8 +26,8 @@ public class ApproximateRouteStrategy extends RouteStrategy {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(IIILfe;I)Z",
-		garbageValue = "1148121553"
+		garbageValue = "1148121553",
+		signature = "(IIILfe;I)Z"
 	)
 	@Export("hasArrived")
 	public boolean hasArrived(int var1, int var2, int var3, CollisionMap var4) {
@@ -61,8 +61,8 @@ public class ApproximateRouteStrategy extends RouteStrategy {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(I)[Lci;",
-		garbageValue = "-915685508"
+		garbageValue = "-915685508",
+		signature = "(I)[Lci;"
 	)
 	static AttackOption[] method1310() {
 		return new AttackOption[]{AttackOption.AttackOption_hidden, AttackOption.AttackOption_alwaysRightClick, AttackOption.AttackOption_leftClickWhereAvailable, AttackOption.AttackOption_dependsOnCombatLevels};
@@ -70,8 +70,8 @@ public class ApproximateRouteStrategy extends RouteStrategy {
 
 	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(I)Lly;",
-		garbageValue = "-1904582422"
+		garbageValue = "-1904582422",
+		signature = "(I)Lly;"
 	)
 	public static IndexedSprite method1304() {
 		IndexedSprite var0 = new IndexedSprite();
@@ -94,8 +94,8 @@ public class ApproximateRouteStrategy extends RouteStrategy {
 
 	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
-		signature = "(ILcl;ZB)I",
-		garbageValue = "-109"
+		garbageValue = "-109",
+		signature = "(ILcl;ZB)I"
 	)
 	static int method1313(int var0, Script var1, boolean var2) {
 		if (var0 == ScriptOpcodes.SOUND_SYNTH) {
@@ -140,8 +140,8 @@ public class ApproximateRouteStrategy extends RouteStrategy {
 
 	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		signature = "(ILcl;ZB)I",
-		garbageValue = "-107"
+		garbageValue = "-107",
+		signature = "(ILcl;ZB)I"
 	)
 	static int method1315(int var0, Script var1, boolean var2) {
 		if (var0 == ScriptOpcodes.VIEWPORT_SETFOV) {
@@ -235,8 +235,8 @@ public class ApproximateRouteStrategy extends RouteStrategy {
 
 	@ObfuscatedName("bq")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;I)I",
-		garbageValue = "1969316699"
+		garbageValue = "1969316699",
+		signature = "(Ljava/lang/String;I)I"
 	)
 	public static int method1314(String var0) {
 		return var0.length() + 2;
@@ -244,8 +244,8 @@ public class ApproximateRouteStrategy extends RouteStrategy {
 
 	@ObfuscatedName("iz")
 	@ObfuscatedSignature(
-		signature = "(IIIILjava/lang/String;B)V",
-		garbageValue = "45"
+		garbageValue = "45",
+		signature = "(IIIILjava/lang/String;B)V"
 	)
 	@Export("widgetDefaultMenuAction")
 	static void widgetDefaultMenuAction(int var0, int var1, int var2, int var3, String var4) {
@@ -355,8 +355,8 @@ public class ApproximateRouteStrategy extends RouteStrategy {
 
 	@ObfuscatedName("jt")
 	@ObfuscatedSignature(
-		signature = "([Lhz;II)V",
-		garbageValue = "-1753877400"
+		garbageValue = "-1753877400",
+		signature = "([Lhz;II)V"
 	)
 	@Export("drawModelComponents")
 	static final void drawModelComponents(Widget[] var0, int var1) {

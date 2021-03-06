@@ -108,8 +108,8 @@ public class SpotAnimationDefinition extends DualNode {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(Lkx;B)V",
-		garbageValue = "123"
+		garbageValue = "123",
+		signature = "(Lkx;B)V"
 	)
 	@Export("decode")
 	void decode(Buffer var1) {
@@ -125,8 +125,8 @@ public class SpotAnimationDefinition extends DualNode {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(Lkx;II)V",
-		garbageValue = "74583909"
+		garbageValue = "74583909",
+		signature = "(Lkx;II)V"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
@@ -172,8 +172,8 @@ public class SpotAnimationDefinition extends DualNode {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(IB)Lef;",
-		garbageValue = "1"
+		garbageValue = "1",
+		signature = "(IB)Lef;"
 	)
 	@Export("getModel")
 	public final Model getModel(int var1) {

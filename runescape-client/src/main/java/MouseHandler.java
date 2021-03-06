@@ -153,8 +153,8 @@ public class MouseHandler implements MouseListener, MouseMotionListener, FocusLi
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(Ljava/awt/event/MouseEvent;I)I",
-		garbageValue = "-287252269"
+		garbageValue = "-287252269",
+		signature = "(Ljava/awt/event/MouseEvent;I)I"
 	)
 	@Export("getButton")
 	final int getButton(MouseEvent var1) {
@@ -243,8 +243,8 @@ public class MouseHandler implements MouseListener, MouseMotionListener, FocusLi
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Lig;Lig;Lig;Lig;I)V",
-		garbageValue = "1350296670"
+		garbageValue = "1350296670",
+		signature = "(Lig;Lig;Lig;Lig;I)V"
 	)
 	public static void method1151(AbstractArchive var0, AbstractArchive var1, AbstractArchive var2, AbstractArchive var3) {
 		FontName.Widget_archive = var0;
@@ -257,8 +257,8 @@ public class MouseHandler implements MouseListener, MouseMotionListener, FocusLi
 
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(III)I",
-		garbageValue = "1766193005"
+		garbageValue = "1766193005",
+		signature = "(III)I"
 	)
 	public static int method1176(int var0, int var1) {
 		int var2 = var0 >>> 31;
@@ -267,27 +267,27 @@ public class MouseHandler implements MouseListener, MouseMotionListener, FocusLi
 
 	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		signature = "(ILcl;ZB)I",
-		garbageValue = "-67"
+		garbageValue = "-67",
+		signature = "(ILcl;ZB)I"
 	)
 	static int method1174(int var0, Script var1, boolean var2) {
-		Widget var3;
+		Widget var5;
 		if (var0 == ScriptOpcodes.IF_GETINVOBJECT) {
-			var3 = class237.getWidget(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);
-			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.itemId;
+			var5 = class237.getWidget(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);
+			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var5.itemId;
 			return 1;
 		} else if (var0 == ScriptOpcodes.IF_GETINVCOUNT) {
-			var3 = class237.getWidget(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);
-			if (var3.itemId != -1) {
-				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.itemQuantity;
+			var5 = class237.getWidget(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);
+			if (var5.itemId != -1) {
+				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var5.itemQuantity;
 			} else {
 				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = 0;
 			}
 
 			return 1;
 		} else if (var0 == ScriptOpcodes.IF_HASSUB) {
-			int var5 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-			InterfaceParent var4 = (InterfaceParent)Client.interfaceParents.get((long)var5);
+			int var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
+			InterfaceParent var4 = (InterfaceParent)Client.interfaceParents.get((long)var3);
 			if (var4 != null) {
 				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = 1;
 			} else {

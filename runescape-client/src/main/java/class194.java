@@ -68,16 +68,16 @@ public class class194 {
 	}
 
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "3"
+		garbageValue = "3",
+		signature = "(I)V"
 	)
 	class194(int var1) {
 	}
 
 	@ObfuscatedName("jc")
 	@ObfuscatedSignature(
-		signature = "(II)V",
-		garbageValue = "-921891961"
+		garbageValue = "-921891961",
+		signature = "(II)V"
 	)
 	static final void method3820(int var0) {
 		var0 = Math.min(Math.max(var0, 0), 255);

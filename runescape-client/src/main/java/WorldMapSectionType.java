@@ -61,8 +61,8 @@ public enum WorldMapSectionType implements Enumerated {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(B)I",
-		garbageValue = "63"
+		garbageValue = "63",
+		signature = "(B)I"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
@@ -71,8 +71,8 @@ public enum WorldMapSectionType implements Enumerated {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(Liy;IIIBZI)V",
-		garbageValue = "-1369121256"
+		garbageValue = "-1369121256",
+		signature = "(Liy;IIIBZI)V"
 	)
 	@Export("requestNetFile")
 	static void requestNetFile(Archive var0, int var1, int var2, int var3, byte var4, boolean var5) {
@@ -118,8 +118,8 @@ public enum WorldMapSectionType implements Enumerated {
 
 	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		signature = "(III)I",
-		garbageValue = "-103793569"
+		garbageValue = "-103793569",
+		signature = "(III)I"
 	)
 	static final int method320(int var0, int var1) {
 		int var2 = var1 * 57 + var0;
@@ -130,8 +130,8 @@ public enum WorldMapSectionType implements Enumerated {
 
 	@ObfuscatedName("go")
 	@ObfuscatedSignature(
-		signature = "(IIIII)V",
-		garbageValue = "-177467978"
+		garbageValue = "-177467978",
+		signature = "(IIIII)V"
 	)
 	static final void method318(int var0, int var1, int var2, int var3) {
 		Client.field778 = 0;
@@ -153,8 +153,8 @@ public enum WorldMapSectionType implements Enumerated {
 
 	@ObfuscatedName("hp")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "417722917"
+		garbageValue = "417722917",
+		signature = "(I)V"
 	)
 	static final void method319() {
 		for (PendingSpawn var0 = (PendingSpawn)Client.pendingSpawns.last(); var0 != null; var0 = (PendingSpawn)Client.pendingSpawns.previous()) {

@@ -12,56 +12,56 @@ public abstract class AbstractSocket {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "136255387"
+		garbageValue = "136255387",
+		signature = "(I)V"
 	)
 	@Export("close")
 	public abstract void close();
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(B)I",
-		garbageValue = "-29"
+		garbageValue = "-29",
+		signature = "(B)I"
 	)
 	@Export("readUnsignedByte")
 	public abstract int readUnsignedByte() throws IOException;
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(B)I",
-		garbageValue = "1"
+		garbageValue = "1",
+		signature = "(B)I"
 	)
 	@Export("available")
 	public abstract int available() throws IOException;
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(II)Z",
-		garbageValue = "1621767276"
+		garbageValue = "1621767276",
+		signature = "(II)Z"
 	)
 	@Export("isAvailable")
 	public abstract boolean isAvailable(int var1) throws IOException;
 
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "([BIIB)I",
-		garbageValue = "-127"
+		garbageValue = "-127",
+		signature = "([BIIB)I"
 	)
 	@Export("read")
 	public abstract int read(byte[] var1, int var2, int var3) throws IOException;
 
 	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "([BIII)V",
-		garbageValue = "1032488862"
+		garbageValue = "1032488862",
+		signature = "([BIII)V"
 	)
 	@Export("write")
 	public abstract void write(byte[] var1, int var2, int var3) throws IOException;
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "([Ljava/lang/String;[SIII)V",
-		garbageValue = "-632113899"
+		garbageValue = "-632113899",
+		signature = "([Ljava/lang/String;[SIII)V"
 	)
 	@Export("sortItemsByName")
 	static void sortItemsByName(String[] var0, short[] var1, int var2, int var3) {
@@ -98,8 +98,8 @@ public abstract class AbstractSocket {
 
 	@ObfuscatedName("fd")
 	@ObfuscatedSignature(
-		signature = "(IB)V",
-		garbageValue = "0"
+		garbageValue = "0",
+		signature = "(IB)V"
 	)
 	@Export("playSong")
 	static void playSong(int var0) {

@@ -142,8 +142,8 @@ public final class Tile extends Node {
 
 	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "1"
+		garbageValue = "1",
+		signature = "(B)V"
 	)
 	public static void method3032() {
 		HealthBarDefinition.HealthBarDefinition_cached.clear();

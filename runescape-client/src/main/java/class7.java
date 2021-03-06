@@ -46,8 +46,8 @@ public enum class7 implements Enumerated {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(B)I",
-		garbageValue = "63"
+		garbageValue = "63",
+		signature = "(B)I"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
@@ -56,8 +56,8 @@ public enum class7 implements Enumerated {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(I)[Lgs;",
-		garbageValue = "2004297055"
+		garbageValue = "2004297055",
+		signature = "(I)[Lgs;"
 	)
 	public static class194[] method85() {
 		return new class194[]{class194.field2348, class194.field2354, class194.field2347, class194.field2356, class194.field2350, class194.field2351, class194.field2352, class194.field2353, class194.field2346, class194.field2355};
@@ -65,8 +65,8 @@ public enum class7 implements Enumerated {
 
 	@ObfuscatedName("hi")
 	@ObfuscatedSignature(
-		signature = "(ILjava/lang/String;B)V",
-		garbageValue = "-63"
+		garbageValue = "-63",
+		signature = "(ILjava/lang/String;B)V"
 	)
 	static void method83(int var0, String var1) {
 		int var2 = Players.Players_count;

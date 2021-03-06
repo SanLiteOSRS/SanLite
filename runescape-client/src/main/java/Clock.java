@@ -18,24 +18,24 @@ public abstract class Clock {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "46"
+		garbageValue = "46",
+		signature = "(B)V"
 	)
 	@Export("mark")
 	public abstract void mark();
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(III)I",
-		garbageValue = "1861957348"
+		garbageValue = "1861957348",
+		signature = "(III)I"
 	)
 	@Export("wait")
 	public abstract int wait(int var1, int var2);
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Lkx;Ljava/lang/String;B)I",
-		garbageValue = "-59"
+		garbageValue = "-59",
+		signature = "(Lkx;Ljava/lang/String;B)I"
 	)
 	public static int method3721(Buffer var0, String var1) {
 		int var2 = var0.offset;

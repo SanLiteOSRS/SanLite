@@ -136,16 +136,16 @@ public class ClientPreferences {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(ZI)V",
-		garbageValue = "-83879013"
+		garbageValue = "-83879013",
+		signature = "(ZI)V"
 	)
 	void method1963(boolean var1) {
 	}
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(I)Lkx;",
-		garbageValue = "241772586"
+		garbageValue = "241772586",
+		signature = "(I)Lkx;"
 	)
 	@Export("toBuffer")
 	Buffer toBuffer() {
@@ -174,8 +174,8 @@ public class ClientPreferences {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;II)Z",
-		garbageValue = "433818884"
+		garbageValue = "433818884",
+		signature = "(Ljava/lang/String;II)Z"
 	)
 	static boolean method1972(String var0, int var1) {
 		return class204.method3888(var0, var1, "openjs");
@@ -183,8 +183,8 @@ public class ClientPreferences {
 
 	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		signature = "(II)Lel;",
-		garbageValue = "1792916984"
+		garbageValue = "1792916984",
+		signature = "(II)Lel;"
 	)
 	@Export("getFrames")
 	static Frames getFrames(int var0) {
@@ -203,8 +203,8 @@ public class ClientPreferences {
 
 	@ObfuscatedName("it")
 	@ObfuscatedSignature(
-		signature = "(Lhz;III)V",
-		garbageValue = "1981013350"
+		garbageValue = "1981013350",
+		signature = "(Lhz;III)V"
 	)
 	@Export("alignWidgetPosition")
 	static void alignWidgetPosition(Widget var0, int var1, int var2) {

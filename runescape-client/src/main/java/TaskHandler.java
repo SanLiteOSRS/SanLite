@@ -68,8 +68,8 @@ public class TaskHandler implements Runnable {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "1153020803"
+		garbageValue = "1153020803",
+		signature = "(I)V"
 	)
 	@Export("close")
 	public final void close() {
@@ -87,8 +87,8 @@ public class TaskHandler implements Runnable {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(IIILjava/lang/Object;I)Lfl;",
-		garbageValue = "1365505014"
+		garbageValue = "1365505014",
+		signature = "(IIILjava/lang/Object;I)Lfl;"
 	)
 	@Export("newTask")
 	final Task newTask(int var1, int var2, int var3, Object var4) {
@@ -111,8 +111,8 @@ public class TaskHandler implements Runnable {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;II)Lfl;",
-		garbageValue = "-1223563808"
+		garbageValue = "-1223563808",
+		signature = "(Ljava/lang/String;II)Lfl;"
 	)
 	@Export("newSocketTask")
 	public final Task newSocketTask(String var1, int var2) {
@@ -121,8 +121,8 @@ public class TaskHandler implements Runnable {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/Runnable;II)Lfl;",
-		garbageValue = "-1832147507"
+		garbageValue = "-1832147507",
+		signature = "(Ljava/lang/Runnable;II)Lfl;"
 	)
 	@Export("newThreadTask")
 	public final Task newThreadTask(Runnable var1, int var2) {
@@ -179,8 +179,8 @@ public class TaskHandler implements Runnable {
 
 	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		signature = "(Lhz;I[B[BI)V",
-		garbageValue = "-944892435"
+		garbageValue = "-944892435",
+		signature = "(Lhz;I[B[BI)V"
 	)
 	@Export("Widget_setKey")
 	static final void Widget_setKey(Widget var0, int var1, byte[] var2, byte[] var3) {
@@ -214,8 +214,8 @@ public class TaskHandler implements Runnable {
 
 	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		signature = "(IIIIIZI)Llm;",
-		garbageValue = "1451657661"
+		garbageValue = "1451657661",
+		signature = "(IIIIIZI)Llm;"
 	)
 	@Export("getItemSprite")
 	public static final SpritePixels getItemSprite(int var0, int var1, int var2, int var3, int var4, boolean var5) {
@@ -336,8 +336,8 @@ public class TaskHandler implements Runnable {
 
 	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		signature = "(III)Z",
-		garbageValue = "-1388427542"
+		garbageValue = "-1388427542",
+		signature = "(III)Z"
 	)
 	static final boolean method3673(int var0, int var1) {
 		ObjectComposition var2 = WorldMapAreaData.getObjectDefinition(var0);

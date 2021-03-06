@@ -31,8 +31,8 @@ public class FaceNormal {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(CI)Z",
-		garbageValue = "-1093535932"
+		garbageValue = "-1093535932",
+		signature = "(CI)Z"
 	)
 	public static boolean method3421(char var0) {
 		if ((var0 <= 0 || var0 >= 128) && (var0 < 160 || var0 > 255)) {

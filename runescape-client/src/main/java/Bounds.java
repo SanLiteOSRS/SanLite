@@ -49,8 +49,8 @@ public class Bounds {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(IIB)V",
-		garbageValue = "-91"
+		garbageValue = "-91",
+		signature = "(IIB)V"
 	)
 	@Export("setLow")
 	public void setLow(int var1, int var2) {
@@ -60,8 +60,8 @@ public class Bounds {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(IIB)V",
-		garbageValue = "82"
+		garbageValue = "82",
+		signature = "(IIB)V"
 	)
 	@Export("setHigh")
 	public void setHigh(int var1, int var2) {
@@ -71,8 +71,8 @@ public class Bounds {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(Lli;Lli;B)V",
-		garbageValue = "16"
+		garbageValue = "16",
+		signature = "(Lli;Lli;B)V"
 	)
 	public void method6182(Bounds var1, Bounds var2) {
 		this.method6193(var1, var2);
@@ -81,8 +81,8 @@ public class Bounds {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(Lli;Lli;I)V",
-		garbageValue = "102469843"
+		garbageValue = "102469843",
+		signature = "(Lli;Lli;I)V"
 	)
 	void method6193(Bounds var1, Bounds var2) {
 		var2.lowX = this.lowX;
@@ -104,8 +104,8 @@ public class Bounds {
 
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(Lli;Lli;I)V",
-		garbageValue = "1821841742"
+		garbageValue = "1821841742",
+		signature = "(Lli;Lli;I)V"
 	)
 	void method6179(Bounds var1, Bounds var2) {
 		var2.lowY = this.lowY;
@@ -127,8 +127,8 @@ public class Bounds {
 
 	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "16777215"
+		garbageValue = "16777215",
+		signature = "(I)I"
 	)
 	int method6185() {
 		return this.highX + this.lowX;
@@ -136,8 +136,8 @@ public class Bounds {
 
 	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(B)I",
-		garbageValue = "57"
+		garbageValue = "57",
+		signature = "(B)I"
 	)
 	int method6186() {
 		return this.highY + this.lowY;

@@ -60,8 +60,8 @@ public final class AccessFile {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "([BIII)V",
-		garbageValue = "1425903826"
+		garbageValue = "1425903826",
+		signature = "([BIII)V"
 	)
 	@Export("write")
 	public final void write(byte[] var1, int var2, int var3) throws IOException {
@@ -77,8 +77,8 @@ public final class AccessFile {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "-64"
+		garbageValue = "-64",
+		signature = "(B)V"
 	)
 	@Export("close")
 	public final void close() throws IOException {
@@ -87,8 +87,8 @@ public final class AccessFile {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(ZB)V",
-		garbageValue = "-49"
+		garbageValue = "-49",
+		signature = "(ZB)V"
 	)
 	@Export("closeSync")
 	public final void closeSync(boolean var1) throws IOException {
@@ -108,8 +108,8 @@ public final class AccessFile {
 
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(B)J",
-		garbageValue = "29"
+		garbageValue = "29",
+		signature = "(B)J"
 	)
 	@Export("length")
 	public final long length() throws IOException {
@@ -118,8 +118,8 @@ public final class AccessFile {
 
 	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "([BIII)I",
-		garbageValue = "425130802"
+		garbageValue = "425130802",
+		signature = "([BIII)I"
 	)
 	@Export("read")
 	public final int read(byte[] var1, int var2, int var3) throws IOException {

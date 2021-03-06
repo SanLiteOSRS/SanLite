@@ -336,8 +336,8 @@ public class ItemComposition extends DualNode {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "988700298"
+		garbageValue = "988700298",
+		signature = "(I)V"
 	)
 	@Export("post")
 	void post() {
@@ -345,8 +345,8 @@ public class ItemComposition extends DualNode {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(Lkx;I)V",
-		garbageValue = "-2119006987"
+		garbageValue = "-2119006987",
+		signature = "(Lkx;I)V"
 	)
 	@Export("decode")
 	void decode(Buffer var1) {
@@ -362,8 +362,8 @@ public class ItemComposition extends DualNode {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(Lkx;IB)V",
-		garbageValue = "42"
+		garbageValue = "42",
+		signature = "(Lkx;IB)V"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
@@ -490,8 +490,8 @@ public class ItemComposition extends DualNode {
 
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(Ljj;Ljj;I)V",
-		garbageValue = "1798328013"
+		garbageValue = "1798328013",
+		signature = "(Ljj;Ljj;I)V"
 	)
 	@Export("genCert")
 	void genCert(ItemComposition var1, ItemComposition var2) {
@@ -514,8 +514,8 @@ public class ItemComposition extends DualNode {
 
 	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(Ljj;Ljj;I)V",
-		garbageValue = "962521022"
+		garbageValue = "962521022",
+		signature = "(Ljj;Ljj;I)V"
 	)
 	@Export("genBought")
 	void genBought(ItemComposition var1, ItemComposition var2) {
@@ -558,8 +558,8 @@ public class ItemComposition extends DualNode {
 
 	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(Ljj;Ljj;I)V",
-		garbageValue = "-1559307147"
+		garbageValue = "-1559307147",
+		signature = "(Ljj;Ljj;I)V"
 	)
 	@Export("genPlaceholder")
 	void genPlaceholder(ItemComposition var1, ItemComposition var2) {
@@ -583,8 +583,8 @@ public class ItemComposition extends DualNode {
 
 	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		signature = "(II)Lek;",
-		garbageValue = "-1144241920"
+		garbageValue = "-1144241920",
+		signature = "(II)Lek;"
 	)
 	@Export("getModelData")
 	public final ModelData getModelData(int var1) {
@@ -629,8 +629,8 @@ public class ItemComposition extends DualNode {
 
 	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		signature = "(II)Lef;",
-		garbageValue = "-2139436436"
+		garbageValue = "-2139436436",
+		signature = "(II)Lef;"
 	)
 	@Export("getModel")
 	public final Model getModel(int var1) {
@@ -683,8 +683,8 @@ public class ItemComposition extends DualNode {
 
 	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		signature = "(II)Ljj;",
-		garbageValue = "-309156519"
+		garbageValue = "-309156519",
+		signature = "(II)Ljj;"
 	)
 	@Export("getCountObj")
 	public ItemComposition getCountObj(int var1) {
@@ -707,8 +707,8 @@ public class ItemComposition extends DualNode {
 
 	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		signature = "(ZI)Z",
-		garbageValue = "-240048838"
+		garbageValue = "-240048838",
+		signature = "(ZI)Z"
 	)
 	@Export("hasNoValidModel")
 	public final boolean hasNoValidModel(boolean var1) {
@@ -743,8 +743,8 @@ public class ItemComposition extends DualNode {
 
 	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		signature = "(ZI)Lek;",
-		garbageValue = "-324147139"
+		garbageValue = "-324147139",
+		signature = "(ZI)Lek;"
 	)
 	public final ModelData method4866(boolean var1) {
 		int var2 = this.maleModel;
@@ -799,8 +799,8 @@ public class ItemComposition extends DualNode {
 
 	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "(ZI)Z",
-		garbageValue = "-1270984011"
+		garbageValue = "-1270984011",
+		signature = "(ZI)Z"
 	)
 	public final boolean method4879(boolean var1) {
 		int var2 = this.maleHeadModel;
@@ -828,8 +828,8 @@ public class ItemComposition extends DualNode {
 
 	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		signature = "(ZB)Lek;",
-		garbageValue = "51"
+		garbageValue = "51",
+		signature = "(ZB)Lek;"
 	)
 	public final ModelData method4880(boolean var1) {
 		int var2 = this.maleHeadModel;
@@ -868,8 +868,8 @@ public class ItemComposition extends DualNode {
 
 	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		signature = "(IIB)I",
-		garbageValue = "-45"
+		garbageValue = "-45",
+		signature = "(IIB)I"
 	)
 	@Export("getIntParam")
 	public int getIntParam(int var1, int var2) {
@@ -891,8 +891,8 @@ public class ItemComposition extends DualNode {
 
 	@ObfuscatedName("g")
 	@ObfuscatedSignature(
-		signature = "(ILjava/lang/String;I)Ljava/lang/String;",
-		garbageValue = "1156032782"
+		garbageValue = "1156032782",
+		signature = "(ILjava/lang/String;I)Ljava/lang/String;"
 	)
 	@Export("getStringParam")
 	public String getStringParam(int var1, String var2) {
@@ -901,8 +901,8 @@ public class ItemComposition extends DualNode {
 
 	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "(B)I",
-		garbageValue = "47"
+		garbageValue = "47",
+		signature = "(B)I"
 	)
 	@Export("getShiftClickIndex")
 	public int getShiftClickIndex() {

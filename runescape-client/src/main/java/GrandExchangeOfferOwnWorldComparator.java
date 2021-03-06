@@ -22,8 +22,8 @@ public class GrandExchangeOfferOwnWorldComparator implements Comparator {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Lx;Lx;I)I",
-		garbageValue = "2015971420"
+		garbageValue = "2015971420",
+		signature = "(Lx;Lx;I)I"
 	)
 	@Export("compare_bridged")
 	int compare_bridged(GrandExchangeEvent var1, GrandExchangeEvent var2) {
@@ -54,8 +54,8 @@ public class GrandExchangeOfferOwnWorldComparator implements Comparator {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(IIB)I",
-		garbageValue = "1"
+		garbageValue = "1",
+		signature = "(IIB)I"
 	)
 	static int method1375(int var0, int var1) {
 		ItemContainer var2 = (ItemContainer)ItemContainer.itemContainers.get((long)var0);
@@ -68,8 +68,8 @@ public class GrandExchangeOfferOwnWorldComparator implements Comparator {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(I)Z",
-		garbageValue = "2139827308"
+		garbageValue = "2139827308",
+		signature = "(I)Z"
 	)
 	public static boolean method1366() {
 		ReflectionCheck var0 = (ReflectionCheck)class105.reflectionChecks.last();
@@ -78,8 +78,8 @@ public class GrandExchangeOfferOwnWorldComparator implements Comparator {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(ILig;IIIZI)V",
-		garbageValue = "1340227558"
+		garbageValue = "1340227558",
+		signature = "(ILig;IIIZI)V"
 	)
 	@Export("playMusicTrack")
 	public static void playMusicTrack(int var0, AbstractArchive var1, int var2, int var3, int var4, boolean var5) {
@@ -94,8 +94,8 @@ public class GrandExchangeOfferOwnWorldComparator implements Comparator {
 
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(IZI)Ljava/lang/String;",
-		garbageValue = "147453853"
+		garbageValue = "147453853",
+		signature = "(IZI)Ljava/lang/String;"
 	)
 	@Export("intToString")
 	public static String intToString(int var0, boolean var1) {
@@ -136,8 +136,8 @@ public class GrandExchangeOfferOwnWorldComparator implements Comparator {
 
 	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		signature = "(ZI)V",
-		garbageValue = "-1311209187"
+		garbageValue = "-1311209187",
+		signature = "(ZI)V"
 	)
 	@Export("Login_promptCredentials")
 	static void Login_promptCredentials(boolean var0) {
@@ -155,8 +155,8 @@ public class GrandExchangeOfferOwnWorldComparator implements Comparator {
 
 	@ObfuscatedName("ab")
 	@ObfuscatedSignature(
-		signature = "([BII)I",
-		garbageValue = "-1467177624"
+		garbageValue = "-1467177624",
+		signature = "([BII)I"
 	)
 	public static int method1380(byte[] var0, int var1) {
 		return Player.method1317(var0, 0, var1);
@@ -164,8 +164,8 @@ public class GrandExchangeOfferOwnWorldComparator implements Comparator {
 
 	@ObfuscatedName("kh")
 	@ObfuscatedSignature(
-		signature = "(Lkx;I)V",
-		garbageValue = "-1869683138"
+		garbageValue = "-1869683138",
+		signature = "(Lkx;I)V"
 	)
 	static void method1378(Buffer var0) {
 		if (Client.randomDatData != null) {

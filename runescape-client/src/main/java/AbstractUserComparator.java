@@ -23,8 +23,8 @@ public abstract class AbstractUserComparator implements Comparator {
 
 	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		signature = "(Ljava/util/Comparator;I)V",
-		garbageValue = "1135766594"
+		garbageValue = "1135766594",
+		signature = "(Ljava/util/Comparator;I)V"
 	)
 	@Export("addComparator")
 	final void addComparator(Comparator var1) {
@@ -38,8 +38,8 @@ public abstract class AbstractUserComparator implements Comparator {
 
 	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		signature = "(Ljn;Ljn;B)I",
-		garbageValue = "0"
+		garbageValue = "0",
+		signature = "(Ljn;Ljn;B)I"
 	)
 	@Export("compareUser")
 	protected final int compareUser(Nameable var1, Nameable var2) {
@@ -52,8 +52,8 @@ public abstract class AbstractUserComparator implements Comparator {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(II)Lis;",
-		garbageValue = "1543064609"
+		garbageValue = "1543064609",
+		signature = "(II)Lis;"
 	)
 	@Export("SpotAnimationDefinition_get")
 	public static SpotAnimationDefinition SpotAnimationDefinition_get(int var0) {

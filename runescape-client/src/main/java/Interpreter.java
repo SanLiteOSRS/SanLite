@@ -100,8 +100,8 @@ public class Interpreter {
 
 	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		signature = "(IIII)I",
-		garbageValue = "-1493110038"
+		garbageValue = "-1493110038",
+		signature = "(IIII)I"
 	)
 	@Export("hslToRgb")
 	static final int hslToRgb(int var0, int var1, int var2) {

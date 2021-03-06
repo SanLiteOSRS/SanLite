@@ -99,8 +99,8 @@ public class PacketWriter {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-126347974"
+		garbageValue = "-126347974",
+		signature = "(I)V"
 	)
 	@Export("clearBuffer")
 	final void clearBuffer() {
@@ -110,8 +110,8 @@ public class PacketWriter {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "523459495"
+		garbageValue = "523459495",
+		signature = "(I)V"
 	)
 	@Export("flush")
 	final void flush() throws IOException {
@@ -138,8 +138,8 @@ public class PacketWriter {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(Lgk;I)V",
-		garbageValue = "-315377283"
+		garbageValue = "-315377283",
+		signature = "(Lgk;I)V"
 	)
 	@Export("addNode")
 	public final void addNode(PacketBufferNode var1) {
@@ -151,8 +151,8 @@ public class PacketWriter {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(Lls;I)V",
-		garbageValue = "-1829169841"
+		garbageValue = "-1829169841",
+		signature = "(Lls;I)V"
 	)
 	@Export("setSocket")
 	void setSocket(AbstractSocket var1) {
@@ -161,8 +161,8 @@ public class PacketWriter {
 
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-1622261099"
+		garbageValue = "-1622261099",
+		signature = "(I)V"
 	)
 	@Export("close")
 	void close() {
@@ -175,8 +175,8 @@ public class PacketWriter {
 
 	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-1730600275"
+		garbageValue = "-1730600275",
+		signature = "(I)V"
 	)
 	@Export("removeSocket")
 	void removeSocket() {
@@ -185,8 +185,8 @@ public class PacketWriter {
 
 	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(I)Lls;",
-		garbageValue = "-1714919219"
+		garbageValue = "-1714919219",
+		signature = "(I)Lls;"
 	)
 	@Export("getSocket")
 	AbstractSocket getSocket() {
@@ -195,8 +195,8 @@ public class PacketWriter {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Lby;I)V",
-		garbageValue = "1366873098"
+		garbageValue = "1366873098",
+		signature = "(Lby;I)V"
 	)
 	@Export("runScriptEvent")
 	public static void runScriptEvent(ScriptEvent var0) {
@@ -205,8 +205,8 @@ public class PacketWriter {
 
 	@ObfuscatedName("hf")
 	@ObfuscatedSignature(
-		signature = "(Lgs;I)V",
-		garbageValue = "-718074338"
+		garbageValue = "-718074338",
+		signature = "(Lgs;I)V"
 	)
 	static final void method2429(class194 var0) {
 		PacketBuffer var1 = Client.packetWriter.packetBuffer;
@@ -241,28 +241,28 @@ public class PacketWriter {
 			if (var6 >= 0 && var7 >= 0 && var6 < 104 && var7 < 104) {
 				var6 = var6 * 128 + 64;
 				var7 = var7 * 128 + 64;
-				GraphicsObject var41 = new GraphicsObject(var2, class90.Client_plane, var6, var7, WorldMapRegion.getTileHeight(var6, var7, class90.Client_plane) - var3, var4, Client.cycle);
-				Client.graphicsObjects.addFirst(var41);
+				GraphicsObject var44 = new GraphicsObject(var2, class90.Client_plane, var6, var7, WorldMapRegion.getTileHeight(var6, var7, class90.Client_plane) - var3, var4, Client.cycle);
+				Client.graphicsObjects.addFirst(var44);
 			}
 
 		} else {
-			TileItem var33;
+			TileItem var35;
 			if (class194.field2348 == var0) {
 				var2 = var1.method5717();
 				var3 = (var2 >> 4 & 7) + GrandExchangeEvent.field82;
 				var4 = (var2 & 7) + GrandExchangeOfferUnitPriceComparator.field103;
 				var5 = var1.readUnsignedShort();
 				if (var3 >= 0 && var4 >= 0 && var3 < 104 && var4 < 104) {
-					NodeDeque var32 = Client.groundItems[class90.Client_plane][var3][var4];
-					if (var32 != null) {
-						for (var33 = (TileItem)var32.last(); var33 != null; var33 = (TileItem)var32.previous()) {
-							if ((var5 & 32767) == var33.id) {
-								var33.remove();
+					NodeDeque var36 = Client.groundItems[class90.Client_plane][var3][var4];
+					if (var36 != null) {
+						for (var35 = (TileItem)var36.last(); var35 != null; var35 = (TileItem)var36.previous()) {
+							if ((var5 & 32767) == var35.id) {
+								var35.remove();
 								break;
 							}
 						}
 
-						if (var32.last() == null) {
+						if (var36.last() == null) {
 							Client.groundItems[class90.Client_plane][var3][var4] = null;
 						}
 
@@ -301,14 +301,14 @@ public class PacketWriter {
 					var5 = (var4 >> 4 & 7) + GrandExchangeEvent.field82;
 					var6 = (var4 & 7) + GrandExchangeOfferUnitPriceComparator.field103;
 					if (var5 >= 0 && var6 >= 0 && var5 < 104 && var6 < 104) {
-						var33 = new TileItem();
-						var33.id = var2;
-						var33.quantity = var3;
+						var35 = new TileItem();
+						var35.id = var2;
+						var35.quantity = var3;
 						if (Client.groundItems[class90.Client_plane][var5][var6] == null) {
 							Client.groundItems[class90.Client_plane][var5][var6] = new NodeDeque();
 						}
 
-						Client.groundItems[class90.Client_plane][var5][var6].addFirst(var33);
+						Client.groundItems[class90.Client_plane][var5][var6].addFirst(var35);
 						HitSplatDefinition.updateItemPile(var5, var6);
 					}
 
@@ -337,9 +337,9 @@ public class PacketWriter {
 							var14 = var14 * 128 + 64;
 							var6 = var6 * 128 + 64;
 							var9 = var9 * 128 + 64;
-							Projectile var15 = new Projectile(var5, class90.Client_plane, var40, var14, WorldMapRegion.getTileHeight(var40, var14, class90.Client_plane) - var3, var7 + Client.cycle, var11 + Client.cycle, var10, var2, var4, var8);
-							var15.setDestination(var6, var9, WorldMapRegion.getTileHeight(var6, var9, class90.Client_plane) - var8, var7 + Client.cycle);
-							Client.projectiles.addFirst(var15);
+							Projectile var34 = new Projectile(var5, class90.Client_plane, var40, var14, WorldMapRegion.getTileHeight(var40, var14, class90.Client_plane) - var3, var7 + Client.cycle, var11 + Client.cycle, var10, var2, var4, var8);
+							var34.setDestination(var6, var9, WorldMapRegion.getTileHeight(var6, var9, class90.Client_plane) - var8, var7 + Client.cycle);
+							Client.projectiles.addFirst(var34);
 						}
 
 					} else if (class194.field2351 == var0) {
@@ -350,11 +350,11 @@ public class PacketWriter {
 						var6 = var1.method5727();
 						var7 = var1.method5727();
 						if (var3 >= 0 && var4 >= 0 && var3 < 104 && var4 < 104) {
-							NodeDeque var31 = Client.groundItems[class90.Client_plane][var3][var4];
-							if (var31 != null) {
-								for (TileItem var34 = (TileItem)var31.last(); var34 != null; var34 = (TileItem)var31.previous()) {
-									if ((var7 & 32767) == var34.id && var5 == var34.quantity) {
-										var34.quantity = var6;
+							NodeDeque var32 = Client.groundItems[class90.Client_plane][var3][var4];
+							if (var32 != null) {
+								for (TileItem var33 = (TileItem)var32.last(); var33 != null; var33 = (TileItem)var32.previous()) {
+									if ((var7 & 32767) == var33.id && var5 == var33.quantity) {
+										var33.quantity = var6;
 										break;
 									}
 								}
@@ -374,52 +374,52 @@ public class PacketWriter {
 						var9 = (var7 & 7) + GrandExchangeOfferUnitPriceComparator.field103;
 						if (var8 >= 0 && var9 >= 0 && var8 < 103 && var9 < 103) {
 							if (var5 == 0) {
-								BoundaryObject var35 = MilliClock.scene.method3351(class90.Client_plane, var8, var9);
-								if (var35 != null) {
-									var11 = class25.Entity_unpackID(var35.tag);
+								BoundaryObject var31 = MilliClock.scene.method3351(class90.Client_plane, var8, var9);
+								if (var31 != null) {
+									var11 = class25.Entity_unpackID(var31.tag);
 									if (var3 == 2) {
-										var35.entity1 = new DynamicObject(var11, 2, var4 + 4, class90.Client_plane, var8, var9, var6, false, var35.entity1);
-										var35.entity2 = new DynamicObject(var11, 2, var4 + 1 & 3, class90.Client_plane, var8, var9, var6, false, var35.entity2);
+										var31.entity1 = new DynamicObject(var11, 2, var4 + 4, class90.Client_plane, var8, var9, var6, false, var31.entity1);
+										var31.entity2 = new DynamicObject(var11, 2, var4 + 1 & 3, class90.Client_plane, var8, var9, var6, false, var31.entity2);
 									} else {
-										var35.entity1 = new DynamicObject(var11, var3, var4, class90.Client_plane, var8, var9, var6, false, var35.entity1);
+										var31.entity1 = new DynamicObject(var11, var3, var4, class90.Client_plane, var8, var9, var6, false, var31.entity1);
 									}
 								}
 							}
 
 							if (var5 == 1) {
-								WallDecoration var42 = MilliClock.scene.method3264(class90.Client_plane, var8, var9);
-								if (var42 != null) {
-									var11 = class25.Entity_unpackID(var42.tag);
+								WallDecoration var41 = MilliClock.scene.method3264(class90.Client_plane, var8, var9);
+								if (var41 != null) {
+									var11 = class25.Entity_unpackID(var41.tag);
 									if (var3 != 4 && var3 != 5) {
 										if (var3 == 6) {
-											var42.entity1 = new DynamicObject(var11, 4, var4 + 4, class90.Client_plane, var8, var9, var6, false, var42.entity1);
+											var41.entity1 = new DynamicObject(var11, 4, var4 + 4, class90.Client_plane, var8, var9, var6, false, var41.entity1);
 										} else if (var3 == 7) {
-											var42.entity1 = new DynamicObject(var11, 4, (var4 + 2 & 3) + 4, class90.Client_plane, var8, var9, var6, false, var42.entity1);
+											var41.entity1 = new DynamicObject(var11, 4, (var4 + 2 & 3) + 4, class90.Client_plane, var8, var9, var6, false, var41.entity1);
 										} else if (var3 == 8) {
-											var42.entity1 = new DynamicObject(var11, 4, var4 + 4, class90.Client_plane, var8, var9, var6, false, var42.entity1);
-											var42.entity2 = new DynamicObject(var11, 4, (var4 + 2 & 3) + 4, class90.Client_plane, var8, var9, var6, false, var42.entity2);
+											var41.entity1 = new DynamicObject(var11, 4, var4 + 4, class90.Client_plane, var8, var9, var6, false, var41.entity1);
+											var41.entity2 = new DynamicObject(var11, 4, (var4 + 2 & 3) + 4, class90.Client_plane, var8, var9, var6, false, var41.entity2);
 										}
 									} else {
-										var42.entity1 = new DynamicObject(var11, 4, var4, class90.Client_plane, var8, var9, var6, false, var42.entity1);
+										var41.entity1 = new DynamicObject(var11, 4, var4, class90.Client_plane, var8, var9, var6, false, var41.entity1);
 									}
 								}
 							}
 
 							if (var5 == 2) {
-								GameObject var43 = MilliClock.scene.method3385(class90.Client_plane, var8, var9);
+								GameObject var42 = MilliClock.scene.method3385(class90.Client_plane, var8, var9);
 								if (var3 == 11) {
 									var3 = 10;
 								}
 
-								if (var43 != null) {
-									var43.entity = new DynamicObject(class25.Entity_unpackID(var43.tag), var3, var4, class90.Client_plane, var8, var9, var6, false, var43.entity);
+								if (var42 != null) {
+									var42.entity = new DynamicObject(class25.Entity_unpackID(var42.tag), var3, var4, class90.Client_plane, var8, var9, var6, false, var42.entity);
 								}
 							}
 
 							if (var5 == 3) {
-								FloorDecoration var44 = MilliClock.scene.getFloorDecoration(class90.Client_plane, var8, var9);
-								if (var44 != null) {
-									var44.renderable = new DynamicObject(class25.Entity_unpackID(var44.tag), 22, var4, class90.Client_plane, var8, var9, var6, false, var44.renderable);
+								FloorDecoration var43 = MilliClock.scene.getFloorDecoration(class90.Client_plane, var8, var9);
+								if (var43 != null) {
+									var43.renderable = new DynamicObject(class25.Entity_unpackID(var43.tag), 22, var4, class90.Client_plane, var8, var9, var6, false, var43.renderable);
 								}
 							}
 						}
@@ -451,7 +451,7 @@ public class PacketWriter {
 							var12 = var1.readUnsignedShort();
 							byte var13 = var1.method5722();
 							var14 = var1.method5727();
-							byte var36 = var1.method5721();
+							byte var15 = var1.method5721();
 							byte var16 = var1.readByte();
 							Player var17;
 							if (var14 == Client.localPlayerIndex) {
@@ -490,9 +490,9 @@ public class PacketWriter {
 									var17.field639 = var11 * 128 + var20 * 64;
 									var17.tileHeight2 = var26;
 									byte var30;
-									if (var36 > var13) {
-										var30 = var36;
-										var36 = var13;
+									if (var15 > var13) {
+										var30 = var15;
+										var15 = var13;
 										var13 = var30;
 									}
 
@@ -502,7 +502,7 @@ public class PacketWriter {
 										var37 = var30;
 									}
 
-									var17.field641 = var10 + var36;
+									var17.field641 = var10 + var15;
 									var17.field640 = var10 + var13;
 									var17.field642 = var11 + var16;
 									var17.field644 = var11 + var37;
@@ -518,8 +518,8 @@ public class PacketWriter {
 
 	@ObfuscatedName("kj")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;I)V",
-		garbageValue = "216002934"
+		garbageValue = "216002934",
+		signature = "(Ljava/lang/String;I)V"
 	)
 	@Export("clanKickUser")
 	static final void clanKickUser(String var0) {

@@ -29,8 +29,8 @@ public class WorldMapAreaData extends WorldMapArea {
 
 	@ObfuscatedName("cn")
 	@ObfuscatedSignature(
-		signature = "(Lkx;Lkx;IZI)V",
-		garbageValue = "1841942277"
+		garbageValue = "1841942277",
+		signature = "(Lkx;Lkx;IZI)V"
 	)
 	@Export("init")
 	void init(Buffer var1, Buffer var2, int var3, boolean var4) {
@@ -71,8 +71,8 @@ public class WorldMapAreaData extends WorldMapArea {
 
 	@ObfuscatedName("cj")
 	@ObfuscatedSignature(
-		signature = "(Lkx;ZI)V",
-		garbageValue = "-1098628565"
+		garbageValue = "-1098628565",
+		signature = "(Lkx;ZI)V"
 	)
 	@Export("initIconsList")
 	void initIconsList(Buffer var1, boolean var2) {
@@ -92,8 +92,8 @@ public class WorldMapAreaData extends WorldMapArea {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(II)Ljg;",
-		garbageValue = "1068014822"
+		garbageValue = "1068014822",
+		signature = "(II)Ljg;"
 	)
 	@Export("getObjectDefinition")
 	public static ObjectComposition getObjectDefinition(int var0) {
@@ -121,8 +121,8 @@ public class WorldMapAreaData extends WorldMapArea {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "-91"
+		garbageValue = "-91",
+		signature = "(B)V"
 	)
 	public static void method782() {
 		if (class297.NetCache_socket != null) {
@@ -133,8 +133,8 @@ public class WorldMapAreaData extends WorldMapArea {
 
 	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "1"
+		garbageValue = "1",
+		signature = "(B)V"
 	)
 	static final void method781() {
 		class300.method5473("Your ignore list is full. Max of 100 for free users, and 400 for members");

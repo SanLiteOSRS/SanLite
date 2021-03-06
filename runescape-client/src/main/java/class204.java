@@ -21,8 +21,8 @@ public class class204 {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(II)Lil;",
-		garbageValue = "236947839"
+		garbageValue = "236947839",
+		signature = "(II)Lil;"
 	)
 	@Export("VarpDefinition_get")
 	public static VarpDefinition VarpDefinition_get(int var0) {
@@ -43,8 +43,8 @@ public class class204 {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;ILjava/lang/String;B)Z",
-		garbageValue = "10"
+		garbageValue = "10",
+		signature = "(Ljava/lang/String;ILjava/lang/String;B)Z"
 	)
 	static boolean method3888(String var0, int var1, String var2) {
 		if (var1 == 0) {
@@ -102,8 +102,8 @@ public class class204 {
 
 	@ObfuscatedName("jx")
 	@ObfuscatedSignature(
-		signature = "(Lhz;Ljj;IIZI)V",
-		garbageValue = "-151071260"
+		garbageValue = "-151071260",
+		signature = "(Lhz;Ljj;IIZI)V"
 	)
 	@Export("addWidgetItemMenuItem")
 	static final void addWidgetItemMenuItem(Widget var0, ItemComposition var1, int var2, int var3, boolean var4) {
@@ -137,8 +137,8 @@ public class class204 {
 
 	@ObfuscatedName("ky")
 	@ObfuscatedSignature(
-		signature = "(Lhz;IIII)V",
-		garbageValue = "-1768391401"
+		garbageValue = "-1768391401",
+		signature = "(Lhz;IIII)V"
 	)
 	@Export("drawMinimap")
 	static final void drawMinimap(Widget var0, int var1, int var2, int var3) {
@@ -153,61 +153,61 @@ public class class204 {
 				GrandExchangeOfferAgeComparator.sceneMinimapSprite.drawRotatedMaskedCenteredAround(var1, var2, var4.width, var4.height, var6, var7, var5, 256, var4.xStarts, var4.xWidths);
 
 				int var8;
-				int var9;
 				int var10;
+				int var17;
 				for (var8 = 0; var8 < Client.mapIconCount; ++var8) {
-					var9 = Client.field891[var8] * 4 + 2 - UserComparator9.localPlayer.x / 32;
+					var17 = Client.field891[var8] * 4 + 2 - UserComparator9.localPlayer.x / 32;
 					var10 = Client.field892[var8] * 4 + 2 - UserComparator9.localPlayer.y / 32;
-					AbstractArchive.drawSpriteOnMinimap(var1, var2, var9, var10, Client.mapIcons[var8], var4);
+					AbstractArchive.drawSpriteOnMinimap(var1, var2, var17, var10, Client.mapIcons[var8], var4);
 				}
 
 				int var11;
 				int var12;
 				for (var8 = 0; var8 < 104; ++var8) {
-					for (var9 = 0; var9 < 104; ++var9) {
-						NodeDeque var15 = Client.groundItems[class90.Client_plane][var8][var9];
+					for (var17 = 0; var17 < 104; ++var17) {
+						NodeDeque var15 = Client.groundItems[class90.Client_plane][var8][var17];
 						if (var15 != null) {
 							var11 = var8 * 4 + 2 - UserComparator9.localPlayer.x / 32;
-							var12 = var9 * 4 + 2 - UserComparator9.localPlayer.y / 32;
+							var12 = var17 * 4 + 2 - UserComparator9.localPlayer.y / 32;
 							AbstractArchive.drawSpriteOnMinimap(var1, var2, var11, var12, ChatChannel.mapDotSprites[0], var4);
 						}
 					}
 				}
 
 				for (var8 = 0; var8 < Client.npcCount; ++var8) {
-					NPC var16 = Client.npcs[Client.npcIndices[var8]];
-					if (var16 != null && var16.isVisible()) {
-						NPCComposition var18 = var16.definition;
-						if (var18 != null && var18.transforms != null) {
-							var18 = var18.transform();
+					NPC var9 = Client.npcs[Client.npcIndices[var8]];
+					if (var9 != null && var9.isVisible()) {
+						NPCComposition var19 = var9.definition;
+						if (var19 != null && var19.transforms != null) {
+							var19 = var19.transform();
 						}
 
-						if (var18 != null && var18.drawMapDot && var18.isInteractable) {
-							var11 = var16.x / 32 - UserComparator9.localPlayer.x / 32;
-							var12 = var16.y / 32 - UserComparator9.localPlayer.y / 32;
+						if (var19 != null && var19.drawMapDot && var19.isInteractable) {
+							var11 = var9.x / 32 - UserComparator9.localPlayer.x / 32;
+							var12 = var9.y / 32 - UserComparator9.localPlayer.y / 32;
 							AbstractArchive.drawSpriteOnMinimap(var1, var2, var11, var12, ChatChannel.mapDotSprites[1], var4);
 						}
 					}
 				}
 
 				var8 = Players.Players_count;
-				int[] var19 = Players.Players_indices;
+				int[] var18 = Players.Players_indices;
 
 				for (var10 = 0; var10 < var8; ++var10) {
-					Player var17 = Client.players[var19[var10]];
-					if (var17 != null && var17.isVisible() && !var17.isHidden && var17 != UserComparator9.localPlayer) {
-						var12 = var17.x / 32 - UserComparator9.localPlayer.x / 32;
-						int var13 = var17.y / 32 - UserComparator9.localPlayer.y / 32;
+					Player var16 = Client.players[var18[var10]];
+					if (var16 != null && var16.isVisible() && !var16.isHidden && var16 != UserComparator9.localPlayer) {
+						var12 = var16.x / 32 - UserComparator9.localPlayer.x / 32;
+						int var13 = var16.y / 32 - UserComparator9.localPlayer.y / 32;
 						boolean var14 = false;
-						if (UserComparator9.localPlayer.team != 0 && var17.team != 0 && var17.team == UserComparator9.localPlayer.team) {
+						if (UserComparator9.localPlayer.team != 0 && var16.team != 0 && var16.team == UserComparator9.localPlayer.team) {
 							var14 = true;
 						}
 
-						if (var17.isFriend()) {
+						if (var16.isFriend()) {
 							AbstractArchive.drawSpriteOnMinimap(var1, var2, var12, var13, ChatChannel.mapDotSprites[3], var4);
 						} else if (var14) {
 							AbstractArchive.drawSpriteOnMinimap(var1, var2, var12, var13, ChatChannel.mapDotSprites[4], var4);
-						} else if (var17.isClanMember()) {
+						} else if (var16.isClanMember()) {
 							AbstractArchive.drawSpriteOnMinimap(var1, var2, var12, var13, ChatChannel.mapDotSprites[5], var4);
 						} else {
 							AbstractArchive.drawSpriteOnMinimap(var1, var2, var12, var13, ChatChannel.mapDotSprites[2], var4);

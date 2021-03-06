@@ -47,8 +47,8 @@ public class ReflectionCheck extends Node {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;B)Z",
-		garbageValue = "-84"
+		garbageValue = "-84",
+		signature = "(Ljava/lang/String;B)Z"
 	)
 	static boolean method2452(String var0) {
 		if (var0 == null) {
@@ -65,8 +65,8 @@ public class ReflectionCheck extends Node {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(Lig;IIIZB)V",
-		garbageValue = "-111"
+		garbageValue = "-111",
+		signature = "(Lig;IIIZB)V"
 	)
 	public static void method2450(AbstractArchive var0, int var1, int var2, int var3, boolean var4) {
 		class206.musicPlayerStatus = 1;
@@ -85,8 +85,8 @@ public class ReflectionCheck extends Node {
 
 	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		signature = "(CII)Ljava/lang/String;",
-		garbageValue = "71351387"
+		garbageValue = "71351387",
+		signature = "(CII)Ljava/lang/String;"
 	)
 	static String method2449(char var0, int var1) {
 		char[] var2 = new char[var1];
@@ -100,8 +100,8 @@ public class ReflectionCheck extends Node {
 
 	@ObfuscatedName("ax")
 	@ObfuscatedSignature(
-		signature = "(Ldw;I)V",
-		garbageValue = "-1934858738"
+		garbageValue = "-1934858738",
+		signature = "(Ldw;I)V"
 	)
 	@Export("PcmStream_disable")
 	static final void PcmStream_disable(PcmStream var0) {

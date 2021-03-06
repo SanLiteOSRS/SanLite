@@ -25,8 +25,8 @@ public final class NPC extends Actor {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(IBB)V",
-		garbageValue = "1"
+		garbageValue = "1",
+		signature = "(IBB)V"
 	)
 	final void method2178(int var1, byte var2) {
 		int var3 = super.pathX[0];
@@ -88,8 +88,8 @@ public final class NPC extends Actor {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(IIZI)V",
-		garbageValue = "502000680"
+		garbageValue = "502000680",
+		signature = "(IIZI)V"
 	)
 	final void method2181(int var1, int var2, boolean var3) {
 		if (super.sequence != -1 && InterfaceParent.SequenceDefinition_get(super.sequence).field3565 == 1) {
@@ -128,8 +128,8 @@ public final class NPC extends Actor {
 
 	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		signature = "(B)Lef;",
-		garbageValue = "127"
+		garbageValue = "127",
+		signature = "(B)Lef;"
 	)
 	@Export("getModel")
 	protected final Model getModel() {
@@ -164,8 +164,8 @@ public final class NPC extends Actor {
 
 	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		signature = "(I)Z",
-		garbageValue = "-251916247"
+		garbageValue = "-251916247",
+		signature = "(I)Z"
 	)
 	@Export("isVisible")
 	final boolean isVisible() {
@@ -174,8 +174,8 @@ public final class NPC extends Actor {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(II)Lbd;",
-		garbageValue = "874682655"
+		garbageValue = "874682655",
+		signature = "(II)Lbd;"
 	)
 	@Export("Messages_getMessage")
 	static Message Messages_getMessage(int var0) {
@@ -184,8 +184,8 @@ public final class NPC extends Actor {
 
 	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(IB)I",
-		garbageValue = "-55"
+		garbageValue = "-55",
+		signature = "(IB)I"
 	)
 	public static int method2179(int var0) {
 		return GrandExchangeOfferNameComparator.method201(ViewportMouse.ViewportMouse_entityTags[var0]);
@@ -193,8 +193,8 @@ public final class NPC extends Actor {
 
 	@ObfuscatedName("fx")
 	@ObfuscatedSignature(
-		signature = "(IIB)V",
-		garbageValue = "51"
+		garbageValue = "51",
+		signature = "(IIB)V"
 	)
 	static void method2180(int var0, int var1) {
 		if (WorldMapSectionType.clientPreferences.musicVolume != 0 && var0 != -1) {

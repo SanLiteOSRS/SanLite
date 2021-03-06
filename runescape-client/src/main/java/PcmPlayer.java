@@ -123,8 +123,8 @@ public class PcmPlayer {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "0"
+		garbageValue = "0",
+		signature = "(B)V"
 	)
 	@Export("init")
 	protected void init() throws Exception {
@@ -132,8 +132,8 @@ public class PcmPlayer {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(II)V",
-		garbageValue = "-1929759603"
+		garbageValue = "-1929759603",
+		signature = "(II)V"
 	)
 	@Export("open")
 	protected void open(int var1) throws Exception {
@@ -141,8 +141,8 @@ public class PcmPlayer {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(S)I",
-		garbageValue = "6543"
+		garbageValue = "6543",
+		signature = "(S)I"
 	)
 	@Export("position")
 	protected int position() throws Exception {
@@ -156,8 +156,8 @@ public class PcmPlayer {
 
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "64"
+		garbageValue = "64",
+		signature = "(B)V"
 	)
 	@Export("close")
 	protected void close() {
@@ -165,8 +165,8 @@ public class PcmPlayer {
 
 	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-674709942"
+		garbageValue = "-674709942",
+		signature = "(I)V"
 	)
 	@Export("discard")
 	protected void discard() throws Exception {
@@ -174,8 +174,8 @@ public class PcmPlayer {
 
 	@ObfuscatedName("am")
 	@ObfuscatedSignature(
-		signature = "(Ldw;I)V",
-		garbageValue = "-1612898797"
+		garbageValue = "-1612898797",
+		signature = "(Ldw;I)V"
 	)
 	@Export("setStream")
 	public final synchronized void setStream(PcmStream var1) {
@@ -184,8 +184,8 @@ public class PcmPlayer {
 
 	@ObfuscatedName("ag")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-310510465"
+		garbageValue = "-310510465",
+		signature = "(I)V"
 	)
 	@Export("run")
 	public final synchronized void run() {
@@ -277,8 +277,8 @@ public class PcmPlayer {
 
 	@ObfuscatedName("ae")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "1"
+		garbageValue = "1",
+		signature = "(B)V"
 	)
 	public final void method2612() {
 		this.field1433 = true;
@@ -286,8 +286,8 @@ public class PcmPlayer {
 
 	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "-44"
+		garbageValue = "-44",
+		signature = "(B)V"
 	)
 	@Export("tryDiscard")
 	public final synchronized void tryDiscard() {
@@ -304,8 +304,8 @@ public class PcmPlayer {
 
 	@ObfuscatedName("aq")
 	@ObfuscatedSignature(
-		signature = "(S)V",
-		garbageValue = "10262"
+		garbageValue = "10262",
+		signature = "(S)V"
 	)
 	@Export("shutdown")
 	public final synchronized void shutdown() {
@@ -335,8 +335,8 @@ public class PcmPlayer {
 
 	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		signature = "(II)V",
-		garbageValue = "-108727695"
+		garbageValue = "-108727695",
+		signature = "(II)V"
 	)
 	@Export("skip")
 	final void skip(int var1) {
@@ -370,7 +370,7 @@ public class PcmPlayer {
 
 			int var6;
 			PcmStream var10;
-			label104:
+			label109:
 			for (var6 = 7; var5 != 0; --var6) {
 				int var7;
 				int var8;
@@ -388,11 +388,11 @@ public class PcmPlayer {
 						var10 = null;
 						PcmStream var11 = this.field1437[var7];
 
-						label98:
+						label103:
 						while (true) {
 							while (true) {
 								if (var11 == null) {
-									break label98;
+									break label103;
 								}
 
 								AbstractSound var12 = var11.sound;
@@ -409,7 +409,7 @@ public class PcmPlayer {
 									}
 
 									if (var4 >= this.field1424) {
-										break label104;
+										break label109;
 									}
 
 									PcmStream var14 = var11.firstSubStream();
@@ -467,8 +467,8 @@ public class PcmPlayer {
 
 	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		signature = "(Ldw;IB)V",
-		garbageValue = "-16"
+		garbageValue = "-16",
+		signature = "(Ldw;IB)V"
 	)
 	final void method2658(PcmStream var1, int var2) {
 		int var3 = var2 >> 5;
@@ -485,8 +485,8 @@ public class PcmPlayer {
 
 	@ObfuscatedName("ho")
 	@ObfuscatedSignature(
-		signature = "(IIZI)V",
-		garbageValue = "-392680019"
+		garbageValue = "-392680019",
+		signature = "(IIZI)V"
 	)
 	static final void method2661(int var0, int var1, boolean var2) {
 		if (!var2 || var0 != class3.field24 || class39.field284 != var1) {
@@ -507,42 +507,42 @@ public class PcmPlayer {
 			int var9;
 			int[] var10000;
 			for (var7 = 0; var7 < 32768; ++var7) {
-				NPC var8 = Client.npcs[var7];
-				if (var8 != null) {
+				NPC var19 = Client.npcs[var7];
+				if (var19 != null) {
 					for (var9 = 0; var9 < 10; ++var9) {
-						var10000 = var8.pathX;
+						var10000 = var19.pathX;
 						var10000[var9] -= var5;
-						var10000 = var8.pathY;
+						var10000 = var19.pathY;
 						var10000[var9] -= var6;
 					}
 
-					var8.x -= var5 * 128;
-					var8.y -= var6 * 128;
+					var19.x -= var5 * 128;
+					var19.y -= var6 * 128;
 				}
 			}
 
 			for (var7 = 0; var7 < 2048; ++var7) {
-				Player var21 = Client.players[var7];
-				if (var21 != null) {
+				Player var22 = Client.players[var7];
+				if (var22 != null) {
 					for (var9 = 0; var9 < 10; ++var9) {
-						var10000 = var21.pathX;
+						var10000 = var22.pathX;
 						var10000[var9] -= var5;
-						var10000 = var21.pathY;
+						var10000 = var22.pathY;
 						var10000[var9] -= var6;
 					}
 
-					var21.x -= var5 * 128;
-					var21.y -= var6 * 128;
+					var22.x -= var5 * 128;
+					var22.y -= var6 * 128;
 				}
 			}
 
 			byte var20 = 0;
-			byte var18 = 104;
-			byte var22 = 1;
+			byte var8 = 104;
+			byte var21 = 1;
 			if (var5 < 0) {
 				var20 = 103;
-				var18 = -1;
-				var22 = -1;
+				var8 = -1;
+				var21 = -1;
 			}
 
 			byte var10 = 0;
@@ -555,7 +555,7 @@ public class PcmPlayer {
 			}
 
 			int var14;
-			for (int var13 = var20; var13 != var18; var13 += var22) {
+			for (int var13 = var20; var13 != var8; var13 += var21) {
 				for (var14 = var10; var11 != var14; var14 += var12) {
 					int var15 = var5 + var13;
 					int var16 = var6 + var14;
@@ -570,11 +570,11 @@ public class PcmPlayer {
 				}
 			}
 
-			for (PendingSpawn var19 = (PendingSpawn)Client.pendingSpawns.last(); var19 != null; var19 = (PendingSpawn)Client.pendingSpawns.previous()) {
-				var19.x -= var5;
-				var19.y -= var6;
-				if (var19.x < 0 || var19.y < 0 || var19.x >= 104 || var19.y >= 104) {
-					var19.remove();
+			for (PendingSpawn var18 = (PendingSpawn)Client.pendingSpawns.last(); var18 != null; var18 = (PendingSpawn)Client.pendingSpawns.previous()) {
+				var18.x -= var5;
+				var18.y -= var6;
+				if (var18.x < 0 || var18.y < 0 || var18.x >= 104 || var18.y >= 104) {
+					var18.remove();
 				}
 			}
 

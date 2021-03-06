@@ -61,8 +61,8 @@ public class WorldMapIcon_1 extends AbstractWorldMapIcon {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(B)I",
-		garbageValue = "7"
+		garbageValue = "7",
+		signature = "(B)I"
 	)
 	@Export("getElement")
 	public int getElement() {
@@ -71,8 +71,8 @@ public class WorldMapIcon_1 extends AbstractWorldMapIcon {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(S)Laa;",
-		garbageValue = "31041"
+		garbageValue = "31041",
+		signature = "(S)Laa;"
 	)
 	@Export("getLabel")
 	WorldMapLabel getLabel() {
@@ -81,8 +81,8 @@ public class WorldMapIcon_1 extends AbstractWorldMapIcon {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "-413607837"
+		garbageValue = "-413607837",
+		signature = "(I)I"
 	)
 	@Export("getSubWidth")
 	int getSubWidth() {
@@ -91,8 +91,8 @@ public class WorldMapIcon_1 extends AbstractWorldMapIcon {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "-1875187157"
+		garbageValue = "-1875187157",
+		signature = "(I)I"
 	)
 	@Export("getSubHeight")
 	int getSubHeight() {
@@ -101,8 +101,8 @@ public class WorldMapIcon_1 extends AbstractWorldMapIcon {
 
 	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-551497433"
+		garbageValue = "-551497433",
+		signature = "(I)V"
 	)
 	@Export("init")
 	void init() {
@@ -122,8 +122,8 @@ public class WorldMapIcon_1 extends AbstractWorldMapIcon {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(I)[Le;",
-		garbageValue = "-2092634459"
+		garbageValue = "-2092634459",
+		signature = "(I)[Le;"
 	)
 	public static class7[] method376() {
 		return new class7[]{class7.field41};
@@ -131,8 +131,8 @@ public class WorldMapIcon_1 extends AbstractWorldMapIcon {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(III)V",
-		garbageValue = "1961749617"
+		garbageValue = "1961749617",
+		signature = "(III)V"
 	)
 	public static void method377(int var0, int var1) {
 		VarbitComposition var2 = Tiles.method1219(var0);
@@ -150,8 +150,8 @@ public class WorldMapIcon_1 extends AbstractWorldMapIcon {
 
 	@ObfuscatedName("gq")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;ZI)V",
-		garbageValue = "1521238081"
+		garbageValue = "1521238081",
+		signature = "(Ljava/lang/String;ZI)V"
 	)
 	@Export("drawLoadingMessage")
 	static final void drawLoadingMessage(String var0, boolean var1) {
@@ -185,8 +185,8 @@ public class WorldMapIcon_1 extends AbstractWorldMapIcon {
 
 	@ObfuscatedName("he")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-1982809553"
+		garbageValue = "-1982809553",
+		signature = "(I)V"
 	)
 	static final void method375() {
 		HealthBar.method2166(false);
@@ -218,9 +218,7 @@ public class WorldMapIcon_1 extends AbstractWorldMapIcon {
 			Client.field718 = 0;
 			var0 = true;
 
-			int var3;
 			int var4;
-			Buffer var8;
 			int var9;
 			int var10;
 			int var11;
@@ -230,23 +228,25 @@ public class WorldMapIcon_1 extends AbstractWorldMapIcon {
 			int var16;
 			int var17;
 			int var18;
+			int var48;
+			Buffer var51;
 			for (var1 = 0; var1 < class2.regionLandArchives.length; ++var1) {
 				byte[] var2 = Interpreter.regionMapArchives[var1];
 				if (var2 != null) {
-					var3 = (class238.regions[var1] >> 8) * 64 - GrandExchangeOfferNameComparator.baseX * 64;
+					var48 = (class238.regions[var1] >> 8) * 64 - GrandExchangeOfferNameComparator.baseX * 64;
 					var4 = (class238.regions[var1] & 255) * 64 - NetCache.baseY * 64;
 					if (Client.isInInstance) {
-						var3 = 10;
+						var48 = 10;
 						var4 = 10;
 					}
 
 					boolean var7 = true;
-					var8 = new Buffer(var2);
+					var51 = new Buffer(var2);
 					var9 = -1;
 
-					label1300:
+					label1246:
 					while (true) {
-						var10 = var8.method5704();
+						var10 = var51.method5704();
 						if (var10 == 0) {
 							var0 &= var7;
 							break;
@@ -258,21 +258,21 @@ public class WorldMapIcon_1 extends AbstractWorldMapIcon {
 
 						while (true) {
 							while (!var12) {
-								var13 = var8.readUShortSmart();
+								var13 = var51.readUShortSmart();
 								if (var13 == 0) {
-									continue label1300;
+									continue label1246;
 								}
 
 								var11 += var13 - 1;
 								var14 = var11 & 63;
 								var15 = var11 >> 6 & 63;
-								var16 = var8.readUnsignedByte() >> 2;
-								var17 = var3 + var15;
+								var16 = var51.readUnsignedByte() >> 2;
+								var17 = var48 + var15;
 								var18 = var4 + var14;
 								if (var17 > 0 && var18 > 0 && var17 < 103 && var18 < 103) {
-									ObjectComposition var19 = WorldMapAreaData.getObjectDefinition(var9);
-									if (var16 != 22 || !Client.isLowDetail || var19.int1 != 0 || var19.interactType == 1 || var19.boolean2) {
-										if (!var19.needsModelFiles()) {
+									ObjectComposition var53 = WorldMapAreaData.getObjectDefinition(var9);
+									if (var16 != 22 || !Client.isLowDetail || var53.int1 != 0 || var53.interactType == 1 || var53.boolean2) {
+										if (!var53.needsModelFiles()) {
 											++Client.field718;
 											var7 = false;
 										}
@@ -282,12 +282,12 @@ public class WorldMapIcon_1 extends AbstractWorldMapIcon {
 								}
 							}
 
-							var13 = var8.readUShortSmart();
+							var13 = var51.readUShortSmart();
 							if (var13 == 0) {
 								break;
 							}
 
-							var8.readUnsignedByte();
+							var51.readUnsignedByte();
 						}
 					}
 				}
@@ -310,8 +310,8 @@ public class WorldMapIcon_1 extends AbstractWorldMapIcon {
 				int var44;
 				for (var1 = 0; var1 < 4; ++var1) {
 					for (var44 = 0; var44 < 104; ++var44) {
-						for (var3 = 0; var3 < 104; ++var3) {
-							Tiles.Tiles_renderFlags[var1][var44][var3] = 0;
+						for (var48 = 0; var48 < 104; ++var48) {
+							Tiles.Tiles_renderFlags[var1][var44][var48] = 0;
 						}
 					}
 				}
@@ -335,47 +335,47 @@ public class WorldMapIcon_1 extends AbstractWorldMapIcon {
 				ObjectSound.objectSounds.clear();
 				HealthBar.method2166(true);
 				int var5;
+				int var19;
 				int var20;
 				int var21;
-				int var50;
-				int var58;
+				int var59;
 				if (!Client.isInInstance) {
 					byte[] var45;
 					for (var44 = 0; var44 < var1; ++var44) {
-						var3 = (class238.regions[var44] >> 8) * 64 - GrandExchangeOfferNameComparator.baseX * 64;
+						var48 = (class238.regions[var44] >> 8) * 64 - GrandExchangeOfferNameComparator.baseX * 64;
 						var4 = (class238.regions[var44] & 255) * 64 - NetCache.baseY * 64;
 						var45 = class2.regionLandArchives[var44];
 						if (var45 != null) {
 							UserComparator5.playPcmPlayers();
-							ModelData0.method3411(var45, var3, var4, class3.field24 * 8 - 48, class39.field284 * 8 - 48, Client.collisionMaps);
+							ModelData0.method3411(var45, var48, var4, class3.field24 * 8 - 48, class39.field284 * 8 - 48, Client.collisionMaps);
 						}
 					}
 
 					for (var44 = 0; var44 < var1; ++var44) {
-						var3 = (class238.regions[var44] >> 8) * 64 - GrandExchangeOfferNameComparator.baseX * 64;
+						var48 = (class238.regions[var44] >> 8) * 64 - GrandExchangeOfferNameComparator.baseX * 64;
 						var4 = (class238.regions[var44] & 255) * 64 - NetCache.baseY * 64;
 						var45 = class2.regionLandArchives[var44];
 						if (var45 == null && class39.field284 < 800) {
 							UserComparator5.playPcmPlayers();
-							class4.method55(var3, var4, 64, 64);
+							class4.method55(var48, var4, 64, 64);
 						}
 					}
 
 					HealthBar.method2166(true);
 
 					for (var44 = 0; var44 < var1; ++var44) {
-						byte[] var47 = Interpreter.regionMapArchives[var44];
-						if (var47 != null) {
+						byte[] var3 = Interpreter.regionMapArchives[var44];
+						if (var3 != null) {
 							var4 = (class238.regions[var44] >> 8) * 64 - GrandExchangeOfferNameComparator.baseX * 64;
 							var5 = (class238.regions[var44] & 255) * 64 - NetCache.baseY * 64;
 							UserComparator5.playPcmPlayers();
-							Scene var48 = MilliClock.scene;
-							CollisionMap[] var49 = Client.collisionMaps;
-							var8 = new Buffer(var47);
+							Scene var49 = MilliClock.scene;
+							CollisionMap[] var50 = Client.collisionMaps;
+							var51 = new Buffer(var3);
 							var9 = -1;
 
 							while (true) {
-								var10 = var8.method5704();
+								var10 = var51.method5704();
 								if (var10 == 0) {
 									break;
 								}
@@ -384,32 +384,32 @@ public class WorldMapIcon_1 extends AbstractWorldMapIcon {
 								var11 = 0;
 
 								while (true) {
-									var58 = var8.readUShortSmart();
-									if (var58 == 0) {
+									var59 = var51.readUShortSmart();
+									if (var59 == 0) {
 										break;
 									}
 
-									var11 += var58 - 1;
+									var11 += var59 - 1;
 									var13 = var11 & 63;
 									var14 = var11 >> 6 & 63;
 									var15 = var11 >> 12;
-									var16 = var8.readUnsignedByte();
+									var16 = var51.readUnsignedByte();
 									var17 = var16 >> 2;
 									var18 = var16 & 3;
-									var50 = var4 + var14;
+									var19 = var4 + var14;
 									var20 = var13 + var5;
-									if (var50 > 0 && var20 > 0 && var50 < 103 && var20 < 103) {
+									if (var19 > 0 && var20 > 0 && var19 < 103 && var20 < 103) {
 										var21 = var15;
-										if ((Tiles.Tiles_renderFlags[1][var50][var20] & 2) == 2) {
+										if ((Tiles.Tiles_renderFlags[1][var19][var20] & 2) == 2) {
 											var21 = var15 - 1;
 										}
 
-										CollisionMap var22 = null;
+										CollisionMap var52 = null;
 										if (var21 >= 0) {
-											var22 = var49[var21];
+											var52 = var50[var21];
 										}
 
-										GameEngine.method1134(var15, var50, var20, var9, var18, var17, var48, var22);
+										GameEngine.method1134(var15, var19, var20, var9, var18, var17, var49, var52);
 									}
 								}
 							}
@@ -418,61 +418,61 @@ public class WorldMapIcon_1 extends AbstractWorldMapIcon {
 				}
 
 				int var6;
-				int var46;
-				int var57;
+				int var8;
+				int var58;
 				if (Client.isInInstance) {
 					for (var44 = 0; var44 < 4; ++var44) {
 						UserComparator5.playPcmPlayers();
 
-						for (var3 = 0; var3 < 13; ++var3) {
+						for (var48 = 0; var48 < 13; ++var48) {
 							for (var4 = 0; var4 < 13; ++var4) {
-								boolean var56 = false;
-								var6 = Client.instanceChunkTemplates[var44][var3][var4];
+								boolean var57 = false;
+								var6 = Client.instanceChunkTemplates[var44][var48][var4];
 								if (var6 != -1) {
-									var57 = var6 >> 24 & 3;
-									var46 = var6 >> 1 & 3;
+									var58 = var6 >> 24 & 3;
+									var8 = var6 >> 1 & 3;
 									var9 = var6 >> 14 & 1023;
 									var10 = var6 >> 3 & 2047;
 									var11 = (var9 / 8 << 8) + var10 / 8;
 
-									for (var58 = 0; var58 < class238.regions.length; ++var58) {
-										if (class238.regions[var58] == var11 && class2.regionLandArchives[var58] != null) {
-											WorldMapManager.method749(class2.regionLandArchives[var58], var44, var3 * 8, var4 * 8, var57, (var9 & 7) * 8, (var10 & 7) * 8, var46, Client.collisionMaps);
-											var56 = true;
+									for (var59 = 0; var59 < class238.regions.length; ++var59) {
+										if (class238.regions[var59] == var11 && class2.regionLandArchives[var59] != null) {
+											WorldMapManager.method749(class2.regionLandArchives[var59], var44, var48 * 8, var4 * 8, var58, (var9 & 7) * 8, (var10 & 7) * 8, var8, Client.collisionMaps);
+											var57 = true;
 											break;
 										}
 									}
 								}
 
-								if (!var56) {
-									var57 = var44;
-									var46 = var3 * 8;
+								if (!var57) {
+									var58 = var44;
+									var8 = var48 * 8;
 									var9 = var4 * 8;
 
 									for (var10 = 0; var10 < 8; ++var10) {
 										for (var11 = 0; var11 < 8; ++var11) {
-											Tiles.Tiles_heights[var57][var10 + var46][var11 + var9] = 0;
+											Tiles.Tiles_heights[var58][var10 + var8][var11 + var9] = 0;
 										}
 									}
 
-									if (var46 > 0) {
+									if (var8 > 0) {
 										for (var10 = 1; var10 < 8; ++var10) {
-											Tiles.Tiles_heights[var57][var46][var10 + var9] = Tiles.Tiles_heights[var57][var46 - 1][var10 + var9];
+											Tiles.Tiles_heights[var58][var8][var10 + var9] = Tiles.Tiles_heights[var58][var8 - 1][var10 + var9];
 										}
 									}
 
 									if (var9 > 0) {
 										for (var10 = 1; var10 < 8; ++var10) {
-											Tiles.Tiles_heights[var57][var10 + var46][var9] = Tiles.Tiles_heights[var57][var10 + var46][var9 - 1];
+											Tiles.Tiles_heights[var58][var10 + var8][var9] = Tiles.Tiles_heights[var58][var10 + var8][var9 - 1];
 										}
 									}
 
-									if (var46 > 0 && Tiles.Tiles_heights[var57][var46 - 1][var9] != 0) {
-										Tiles.Tiles_heights[var57][var46][var9] = Tiles.Tiles_heights[var57][var46 - 1][var9];
-									} else if (var9 > 0 && Tiles.Tiles_heights[var57][var46][var9 - 1] != 0) {
-										Tiles.Tiles_heights[var57][var46][var9] = Tiles.Tiles_heights[var57][var46][var9 - 1];
-									} else if (var46 > 0 && var9 > 0 && Tiles.Tiles_heights[var57][var46 - 1][var9 - 1] != 0) {
-										Tiles.Tiles_heights[var57][var46][var9] = Tiles.Tiles_heights[var57][var46 - 1][var9 - 1];
+									if (var8 > 0 && Tiles.Tiles_heights[var58][var8 - 1][var9] != 0) {
+										Tiles.Tiles_heights[var58][var8][var9] = Tiles.Tiles_heights[var58][var8 - 1][var9];
+									} else if (var9 > 0 && Tiles.Tiles_heights[var58][var8][var9 - 1] != 0) {
+										Tiles.Tiles_heights[var58][var8][var9] = Tiles.Tiles_heights[var58][var8][var9 - 1];
+									} else if (var8 > 0 && var9 > 0 && Tiles.Tiles_heights[var58][var8 - 1][var9 - 1] != 0) {
+										Tiles.Tiles_heights[var58][var8][var9] = Tiles.Tiles_heights[var58][var8 - 1][var9 - 1];
 									}
 								}
 							}
@@ -480,10 +480,10 @@ public class WorldMapIcon_1 extends AbstractWorldMapIcon {
 					}
 
 					for (var44 = 0; var44 < 13; ++var44) {
-						for (var3 = 0; var3 < 13; ++var3) {
-							var4 = Client.instanceChunkTemplates[0][var44][var3];
+						for (var48 = 0; var48 < 13; ++var48) {
+							var4 = Client.instanceChunkTemplates[0][var44][var48];
 							if (var4 == -1) {
-								class4.method55(var44 * 8, var3 * 8, 8, 8);
+								class4.method55(var44 * 8, var48 * 8, 8, 8);
 							}
 						}
 					}
@@ -493,19 +493,19 @@ public class WorldMapIcon_1 extends AbstractWorldMapIcon {
 					for (var44 = 0; var44 < 4; ++var44) {
 						UserComparator5.playPcmPlayers();
 
-						for (var3 = 0; var3 < 13; ++var3) {
+						for (var48 = 0; var48 < 13; ++var48) {
 							for (var4 = 0; var4 < 13; ++var4) {
-								var5 = Client.instanceChunkTemplates[var44][var3][var4];
+								var5 = Client.instanceChunkTemplates[var44][var48][var4];
 								if (var5 != -1) {
 									var6 = var5 >> 24 & 3;
-									var57 = var5 >> 1 & 3;
-									var46 = var5 >> 14 & 1023;
+									var58 = var5 >> 1 & 3;
+									var8 = var5 >> 14 & 1023;
 									var9 = var5 >> 3 & 2047;
-									var10 = (var46 / 8 << 8) + var9 / 8;
+									var10 = (var8 / 8 << 8) + var9 / 8;
 
 									for (var11 = 0; var11 < class238.regions.length; ++var11) {
 										if (class238.regions[var11] == var10 && Interpreter.regionMapArchives[var11] != null) {
-											WorldMapSection0.method310(Interpreter.regionMapArchives[var11], var44, var3 * 8, var4 * 8, var6, (var46 & 7) * 8, (var9 & 7) * 8, var57, MilliClock.scene, Client.collisionMaps);
+											WorldMapSection0.method310(Interpreter.regionMapArchives[var11], var44, var48 * 8, var4 * 8, var6, (var8 & 7) * 8, (var9 & 7) * 8, var58, MilliClock.scene, Client.collisionMaps);
 											break;
 										}
 									}
@@ -518,19 +518,19 @@ public class WorldMapIcon_1 extends AbstractWorldMapIcon {
 				HealthBar.method2166(true);
 				UserComparator5.playPcmPlayers();
 				Scene var55 = MilliClock.scene;
-				CollisionMap[] var65 = Client.collisionMaps;
+				CollisionMap[] var56 = Client.collisionMaps;
 
 				for (var4 = 0; var4 < 4; ++var4) {
 					for (var5 = 0; var5 < 104; ++var5) {
 						for (var6 = 0; var6 < 104; ++var6) {
 							if ((Tiles.Tiles_renderFlags[var4][var5][var6] & 1) == 1) {
-								var57 = var4;
+								var58 = var4;
 								if ((Tiles.Tiles_renderFlags[1][var5][var6] & 2) == 2) {
-									var57 = var4 - 1;
+									var58 = var4 - 1;
 								}
 
-								if (var57 >= 0) {
-									var65[var57].setBlockedByFloor(var5, var6);
+								if (var58 >= 0) {
+									var56[var58].setBlockedByFloor(var5, var6);
 								}
 							}
 						}
@@ -557,22 +557,22 @@ public class WorldMapIcon_1 extends AbstractWorldMapIcon {
 
 				int[] var10000;
 				for (var4 = 0; var4 < 4; ++var4) {
-					byte[][] var62 = TaskHandler.field2045[var4];
+					byte[][] var63 = TaskHandler.field2045[var4];
 					var11 = (int)Math.sqrt(5100.0D);
-					var58 = var11 * 768 >> 8;
+					var59 = var11 * 768 >> 8;
 
-					int var51;
+					int var22;
 					for (var13 = 1; var13 < 103; ++var13) {
 						for (var14 = 1; var14 < 103; ++var14) {
 							var15 = Tiles.Tiles_heights[var4][var14 + 1][var13] - Tiles.Tiles_heights[var4][var14 - 1][var13];
 							var16 = Tiles.Tiles_heights[var4][var14][var13 + 1] - Tiles.Tiles_heights[var4][var14][var13 - 1];
 							var17 = (int)Math.sqrt((double)(var16 * var16 + var15 * var15 + 65536));
 							var18 = (var15 << 8) / var17;
-							var50 = 65536 / var17;
+							var19 = 65536 / var17;
 							var20 = (var16 << 8) / var17;
-							var21 = (var18 * -50 + var20 * -50 + var50 * -10) / var58 + 96;
-							var51 = (var62[var14 - 1][var13] >> 2) + (var62[var14][var13 - 1] >> 2) + (var62[var14 + 1][var13] >> 3) + (var62[var14][var13 + 1] >> 3) + (var62[var14][var13] >> 1);
-							WorldMapSprite.field257[var14][var13] = var21 - var51;
+							var21 = (var18 * -50 + var20 * -50 + var19 * -10) / var59 + 96;
+							var22 = (var63[var14 - 1][var13] >> 2) + (var63[var14][var13 - 1] >> 2) + (var63[var14 + 1][var13] >> 3) + (var63[var14][var13 + 1] >> 3) + (var63[var14][var13] >> 1);
+							WorldMapSprite.field257[var14][var13] = var21 - var22;
 						}
 					}
 
@@ -591,15 +591,15 @@ public class WorldMapIcon_1 extends AbstractWorldMapIcon {
 							if (var15 >= 0 && var15 < 104) {
 								var16 = Tiles.field517[var4][var15][var14] & 255;
 								if (var16 > 0) {
-									FloorUnderlayDefinition var52 = class51.method876(var16 - 1);
+									FloorUnderlayDefinition var46 = class51.method876(var16 - 1);
 									var10000 = GrandExchangeOfferAgeComparator.Tiles_hue;
-									var10000[var14] += var52.hue;
+									var10000[var14] += var46.hue;
 									var10000 = Tiles.Tiles_saturation;
-									var10000[var14] += var52.saturation;
+									var10000[var14] += var46.saturation;
 									var10000 = WorldMapLabel.Tiles_lightness;
-									var10000[var14] += var52.lightness;
+									var10000[var14] += var46.lightness;
 									var10000 = TaskHandler.Tiles_hueMultiplier;
-									var10000[var14] += var52.hueMultiplier;
+									var10000[var14] += var46.hueMultiplier;
 									var10002 = WorldMapID.field292[var14]++;
 								}
 							}
@@ -608,15 +608,15 @@ public class WorldMapIcon_1 extends AbstractWorldMapIcon {
 							if (var16 >= 0 && var16 < 104) {
 								var17 = Tiles.field517[var4][var16][var14] & 255;
 								if (var17 > 0) {
-									FloorUnderlayDefinition var53 = class51.method876(var17 - 1);
+									FloorUnderlayDefinition var47 = class51.method876(var17 - 1);
 									var10000 = GrandExchangeOfferAgeComparator.Tiles_hue;
-									var10000[var14] -= var53.hue;
+									var10000[var14] -= var47.hue;
 									var10000 = Tiles.Tiles_saturation;
-									var10000[var14] -= var53.saturation;
+									var10000[var14] -= var47.saturation;
 									var10000 = WorldMapLabel.Tiles_lightness;
-									var10000[var14] -= var53.lightness;
+									var10000[var14] -= var47.lightness;
 									var10000 = TaskHandler.Tiles_hueMultiplier;
-									var10000[var14] -= var53.hueMultiplier;
+									var10000[var14] -= var47.hueMultiplier;
 									var10002 = WorldMapID.field292[var14]--;
 								}
 							}
@@ -629,8 +629,8 @@ public class WorldMapIcon_1 extends AbstractWorldMapIcon {
 							var17 = 0;
 							var18 = 0;
 
-							for (var50 = -5; var50 < 109; ++var50) {
-								var20 = var50 + 5;
+							for (var19 = -5; var19 < 109; ++var19) {
+								var20 = var19 + 5;
 								if (var20 >= 0 && var20 < 104) {
 									var14 += GrandExchangeOfferAgeComparator.Tiles_hue[var20];
 									var15 += Tiles.Tiles_saturation[var20];
@@ -639,7 +639,7 @@ public class WorldMapIcon_1 extends AbstractWorldMapIcon {
 									var18 += WorldMapID.field292[var20];
 								}
 
-								var21 = var50 - 5;
+								var21 = var19 - 5;
 								if (var21 >= 0 && var21 < 104) {
 									var14 -= GrandExchangeOfferAgeComparator.Tiles_hue[var21];
 									var15 -= Tiles.Tiles_saturation[var21];
@@ -648,27 +648,27 @@ public class WorldMapIcon_1 extends AbstractWorldMapIcon {
 									var18 -= WorldMapID.field292[var21];
 								}
 
-								if (var50 >= 1 && var50 < 103 && (!Client.isLowDetail || (Tiles.Tiles_renderFlags[0][var13][var50] & 2) != 0 || (Tiles.Tiles_renderFlags[var4][var13][var50] & 16) == 0)) {
+								if (var19 >= 1 && var19 < 103 && (!Client.isLowDetail || (Tiles.Tiles_renderFlags[0][var13][var19] & 2) != 0 || (Tiles.Tiles_renderFlags[var4][var13][var19] & 16) == 0)) {
 									if (var4 < Tiles.Tiles_minPlane) {
 										Tiles.Tiles_minPlane = var4;
 									}
 
-									var51 = Tiles.field517[var4][var13][var50] & 255;
-									int var23 = class200.field2399[var4][var13][var50] & 255;
-									if (var51 > 0 || var23 > 0) {
-										int var24 = Tiles.Tiles_heights[var4][var13][var50];
-										int var25 = Tiles.Tiles_heights[var4][var13 + 1][var50];
-										int var26 = Tiles.Tiles_heights[var4][var13 + 1][var50 + 1];
-										int var27 = Tiles.Tiles_heights[var4][var13][var50 + 1];
-										int var28 = WorldMapSprite.field257[var13][var50];
-										int var29 = WorldMapSprite.field257[var13 + 1][var50];
-										int var30 = WorldMapSprite.field257[var13 + 1][var50 + 1];
-										int var31 = WorldMapSprite.field257[var13][var50 + 1];
+									var22 = Tiles.field517[var4][var13][var19] & 255;
+									int var23 = class200.field2399[var4][var13][var19] & 255;
+									if (var22 > 0 || var23 > 0) {
+										int var24 = Tiles.Tiles_heights[var4][var13][var19];
+										int var25 = Tiles.Tiles_heights[var4][var13 + 1][var19];
+										int var26 = Tiles.Tiles_heights[var4][var13 + 1][var19 + 1];
+										int var27 = Tiles.Tiles_heights[var4][var13][var19 + 1];
+										int var28 = WorldMapSprite.field257[var13][var19];
+										int var29 = WorldMapSprite.field257[var13 + 1][var19];
+										int var30 = WorldMapSprite.field257[var13 + 1][var19 + 1];
+										int var31 = WorldMapSprite.field257[var13][var19 + 1];
 										int var32 = -1;
 										int var33 = -1;
 										int var34;
 										int var35;
-										if (var51 > 0) {
+										if (var22 > 0) {
 											var34 = var14 * 256 / var17;
 											var35 = var15 / var18;
 											int var36 = var16 / var18;
@@ -685,18 +685,18 @@ public class WorldMapIcon_1 extends AbstractWorldMapIcon {
 										}
 
 										if (var4 > 0) {
-											boolean var60 = true;
-											if (var51 == 0 && Tiles.field530[var4][var13][var50] != 0) {
-												var60 = false;
+											boolean var61 = true;
+											if (var22 == 0 && Tiles.field530[var4][var13][var19] != 0) {
+												var61 = false;
 											}
 
 											if (var23 > 0 && !WallDecoration.method3449(var23 - 1).hideUnderlay) {
-												var60 = false;
+												var61 = false;
 											}
 
-											if (var60 && var24 == var25 && var24 == var26 && var27 == var24) {
+											if (var61 && var24 == var25 && var24 == var26 && var27 == var24) {
 												var10000 = class2.field12[var4][var13];
-												var10000[var50] |= 2340;
+												var10000[var19] |= 2340;
 											}
 										}
 
@@ -706,10 +706,10 @@ public class WorldMapIcon_1 extends AbstractWorldMapIcon {
 										}
 
 										if (var23 == 0) {
-											var55.addTile(var4, var13, var50, 0, 0, -1, var24, var25, var26, var27, GameObject.method3451(var32, var28), GameObject.method3451(var32, var29), GameObject.method3451(var32, var30), GameObject.method3451(var32, var31), 0, 0, 0, 0, var34, 0);
+											var55.addTile(var4, var13, var19, 0, 0, -1, var24, var25, var26, var27, GameObject.method3451(var32, var28), GameObject.method3451(var32, var29), GameObject.method3451(var32, var30), GameObject.method3451(var32, var31), 0, 0, 0, 0, var34, 0);
 										} else {
-											var35 = Tiles.field530[var4][var13][var50] + 1;
-											byte var61 = class1.field1[var4][var13][var50];
+											var35 = Tiles.field530[var4][var13][var19] + 1;
+											byte var62 = class1.field1[var4][var13][var19];
 											FloorOverlayDefinition var37 = WallDecoration.method3449(var23 - 1);
 											int var38 = var37.texture;
 											int var39;
@@ -754,7 +754,7 @@ public class WorldMapIcon_1 extends AbstractWorldMapIcon {
 												var41 = Rasterizer3D.Rasterizer3D_colorPalette[SecureRandomCallable.method1226(var40, 96)];
 											}
 
-											var55.addTile(var4, var13, var50, var35, var61, var38, var24, var25, var26, var27, GameObject.method3451(var32, var28), GameObject.method3451(var32, var29), GameObject.method3451(var32, var30), GameObject.method3451(var32, var31), SecureRandomCallable.method1226(var39, var28), SecureRandomCallable.method1226(var39, var29), SecureRandomCallable.method1226(var39, var30), SecureRandomCallable.method1226(var39, var31), var34, var41);
+											var55.addTile(var4, var13, var19, var35, var62, var38, var24, var25, var26, var27, GameObject.method3451(var32, var28), GameObject.method3451(var32, var29), GameObject.method3451(var32, var30), GameObject.method3451(var32, var31), SecureRandomCallable.method1226(var39, var28), SecureRandomCallable.method1226(var39, var29), SecureRandomCallable.method1226(var39, var30), SecureRandomCallable.method1226(var39, var31), var34, var41);
 										}
 									}
 								}
@@ -789,158 +789,158 @@ public class WorldMapIcon_1 extends AbstractWorldMapIcon {
 				var5 = 2;
 				var6 = 4;
 
-				for (var57 = 0; var57 < 4; ++var57) {
-					if (var57 > 0) {
+				for (var58 = 0; var58 < 4; ++var58) {
+					if (var58 > 0) {
 						var4 <<= 3;
 						var5 <<= 3;
 						var6 <<= 3;
 					}
 
-					for (var46 = 0; var46 <= var57; ++var46) {
+					for (var8 = 0; var8 <= var58; ++var8) {
 						for (var9 = 0; var9 <= 104; ++var9) {
 							for (var10 = 0; var10 <= 104; ++var10) {
-								short var59;
-								if ((class2.field12[var46][var10][var9] & var4) != 0) {
+								short var60;
+								if ((class2.field12[var8][var10][var9] & var4) != 0) {
 									var11 = var9;
-									var58 = var9;
-									var13 = var46;
+									var59 = var9;
+									var13 = var8;
 
-									for (var14 = var46; var11 > 0 && (class2.field12[var46][var10][var11 - 1] & var4) != 0; --var11) {
+									for (var14 = var8; var11 > 0 && (class2.field12[var8][var10][var11 - 1] & var4) != 0; --var11) {
 									}
 
-									while (var58 < 104 && (class2.field12[var46][var10][var58 + 1] & var4) != 0) {
-										++var58;
+									while (var59 < 104 && (class2.field12[var8][var10][var59 + 1] & var4) != 0) {
+										++var59;
 									}
 
-									label866:
+									label812:
 									while (var13 > 0) {
-										for (var15 = var11; var15 <= var58; ++var15) {
+										for (var15 = var11; var15 <= var59; ++var15) {
 											if ((class2.field12[var13 - 1][var10][var15] & var4) == 0) {
-												break label866;
+												break label812;
 											}
 										}
 
 										--var13;
 									}
 
-									label855:
-									while (var14 < var57) {
-										for (var15 = var11; var15 <= var58; ++var15) {
+									label801:
+									while (var14 < var58) {
+										for (var15 = var11; var15 <= var59; ++var15) {
 											if ((class2.field12[var14 + 1][var10][var15] & var4) == 0) {
-												break label855;
+												break label801;
 											}
 										}
 
 										++var14;
 									}
 
-									var15 = (var14 + 1 - var13) * (var58 - var11 + 1);
+									var15 = (var14 + 1 - var13) * (var59 - var11 + 1);
 									if (var15 >= 8) {
-										var59 = 240;
-										var17 = Tiles.Tiles_heights[var14][var10][var11] - var59;
+										var60 = 240;
+										var17 = Tiles.Tiles_heights[var14][var10][var11] - var60;
 										var18 = Tiles.Tiles_heights[var13][var10][var11];
-										Scene.Scene_addOccluder(var57, 1, var10 * 128, var10 * 128, var11 * 128, var58 * 128 + 128, var17, var18);
+										Scene.Scene_addOccluder(var58, 1, var10 * 128, var10 * 128, var11 * 128, var59 * 128 + 128, var17, var18);
 
-										for (var50 = var13; var50 <= var14; ++var50) {
-											for (var20 = var11; var20 <= var58; ++var20) {
-												var10000 = class2.field12[var50][var10];
+										for (var19 = var13; var19 <= var14; ++var19) {
+											for (var20 = var11; var20 <= var59; ++var20) {
+												var10000 = class2.field12[var19][var10];
 												var10000[var20] &= ~var4;
 											}
 										}
 									}
 								}
 
-								if ((class2.field12[var46][var10][var9] & var5) != 0) {
+								if ((class2.field12[var8][var10][var9] & var5) != 0) {
 									var11 = var10;
-									var58 = var10;
-									var13 = var46;
+									var59 = var10;
+									var13 = var8;
 
-									for (var14 = var46; var11 > 0 && (class2.field12[var46][var11 - 1][var9] & var5) != 0; --var11) {
+									for (var14 = var8; var11 > 0 && (class2.field12[var8][var11 - 1][var9] & var5) != 0; --var11) {
 									}
 
-									while (var58 < 104 && (class2.field12[var46][var58 + 1][var9] & var5) != 0) {
-										++var58;
+									while (var59 < 104 && (class2.field12[var8][var59 + 1][var9] & var5) != 0) {
+										++var59;
 									}
 
-									label919:
+									label865:
 									while (var13 > 0) {
-										for (var15 = var11; var15 <= var58; ++var15) {
+										for (var15 = var11; var15 <= var59; ++var15) {
 											if ((class2.field12[var13 - 1][var15][var9] & var5) == 0) {
-												break label919;
+												break label865;
 											}
 										}
 
 										--var13;
 									}
 
-									label908:
-									while (var14 < var57) {
-										for (var15 = var11; var15 <= var58; ++var15) {
+									label854:
+									while (var14 < var58) {
+										for (var15 = var11; var15 <= var59; ++var15) {
 											if ((class2.field12[var14 + 1][var15][var9] & var5) == 0) {
-												break label908;
+												break label854;
 											}
 										}
 
 										++var14;
 									}
 
-									var15 = (var58 - var11 + 1) * (var14 + 1 - var13);
+									var15 = (var59 - var11 + 1) * (var14 + 1 - var13);
 									if (var15 >= 8) {
-										var59 = 240;
-										var17 = Tiles.Tiles_heights[var14][var11][var9] - var59;
+										var60 = 240;
+										var17 = Tiles.Tiles_heights[var14][var11][var9] - var60;
 										var18 = Tiles.Tiles_heights[var13][var11][var9];
-										Scene.Scene_addOccluder(var57, 2, var11 * 128, var58 * 128 + 128, var9 * 128, var9 * 128, var17, var18);
+										Scene.Scene_addOccluder(var58, 2, var11 * 128, var59 * 128 + 128, var9 * 128, var9 * 128, var17, var18);
 
-										for (var50 = var13; var50 <= var14; ++var50) {
-											for (var20 = var11; var20 <= var58; ++var20) {
-												var10000 = class2.field12[var50][var20];
+										for (var19 = var13; var19 <= var14; ++var19) {
+											for (var20 = var11; var20 <= var59; ++var20) {
+												var10000 = class2.field12[var19][var20];
 												var10000[var9] &= ~var5;
 											}
 										}
 									}
 								}
 
-								if ((class2.field12[var46][var10][var9] & var6) != 0) {
+								if ((class2.field12[var8][var10][var9] & var6) != 0) {
 									var11 = var10;
-									var58 = var10;
+									var59 = var10;
 									var13 = var9;
 
-									for (var14 = var9; var13 > 0 && (class2.field12[var46][var10][var13 - 1] & var6) != 0; --var13) {
+									for (var14 = var9; var13 > 0 && (class2.field12[var8][var10][var13 - 1] & var6) != 0; --var13) {
 									}
 
-									while (var14 < 104 && (class2.field12[var46][var10][var14 + 1] & var6) != 0) {
+									while (var14 < 104 && (class2.field12[var8][var10][var14 + 1] & var6) != 0) {
 										++var14;
 									}
 
-									label972:
+									label918:
 									while (var11 > 0) {
 										for (var15 = var13; var15 <= var14; ++var15) {
-											if ((class2.field12[var46][var11 - 1][var15] & var6) == 0) {
-												break label972;
+											if ((class2.field12[var8][var11 - 1][var15] & var6) == 0) {
+												break label918;
 											}
 										}
 
 										--var11;
 									}
 
-									label961:
-									while (var58 < 104) {
+									label907:
+									while (var59 < 104) {
 										for (var15 = var13; var15 <= var14; ++var15) {
-											if ((class2.field12[var46][var58 + 1][var15] & var6) == 0) {
-												break label961;
+											if ((class2.field12[var8][var59 + 1][var15] & var6) == 0) {
+												break label907;
 											}
 										}
 
-										++var58;
+										++var59;
 									}
 
-									if ((var14 - var13 + 1) * (var58 - var11 + 1) >= 4) {
-										var15 = Tiles.Tiles_heights[var46][var11][var13];
-										Scene.Scene_addOccluder(var57, 4, var11 * 128, var58 * 128 + 128, var13 * 128, var14 * 128 + 128, var15, var15);
+									if ((var14 - var13 + 1) * (var59 - var11 + 1) >= 4) {
+										var15 = Tiles.Tiles_heights[var8][var11][var13];
+										Scene.Scene_addOccluder(var58, 4, var11 * 128, var59 * 128 + 128, var13 * 128, var14 * 128 + 128, var15, var15);
 
-										for (var16 = var11; var16 <= var58; ++var16) {
+										for (var16 = var11; var16 <= var59; ++var16) {
 											for (var17 = var13; var17 <= var14; ++var17) {
-												var10000 = class2.field12[var46][var16];
+												var10000 = class2.field12[var8][var16];
 												var10000[var17] &= ~var6;
 											}
 										}
@@ -975,32 +975,32 @@ public class WorldMapIcon_1 extends AbstractWorldMapIcon {
 
 				UserComparator5.playPcmPlayers();
 
-				for (PendingSpawn var63 = (PendingSpawn)Client.pendingSpawns.last(); var63 != null; var63 = (PendingSpawn)Client.pendingSpawns.previous()) {
-					if (var63.hitpoints == -1) {
-						var63.delay = 0;
-						WorldMapElement.method4592(var63);
+				for (PendingSpawn var64 = (PendingSpawn)Client.pendingSpawns.last(); var64 != null; var64 = (PendingSpawn)Client.pendingSpawns.previous()) {
+					if (var64.hitpoints == -1) {
+						var64.delay = 0;
+						WorldMapElement.method4592(var64);
 					} else {
-						var63.remove();
+						var64.remove();
 					}
 				}
 
 				ObjectComposition.ObjectDefinition_cachedModelData.clear();
-				PacketBufferNode var64;
+				PacketBufferNode var65;
 				if (class1.client.hasFrame()) {
-					var64 = WorldMapSprite.getPacketBufferNode(ClientPacket.field2295, Client.packetWriter.isaacCipher);
-					var64.packetBuffer.writeInt(1057001181);
-					Client.packetWriter.addNode(var64);
+					var65 = WorldMapSprite.getPacketBufferNode(ClientPacket.field2295, Client.packetWriter.isaacCipher);
+					var65.packetBuffer.writeInt(1057001181);
+					Client.packetWriter.addNode(var65);
 				}
 
 				if (!Client.isInInstance) {
 					var5 = (class3.field24 - 6) / 8;
 					var6 = (class3.field24 + 6) / 8;
-					var57 = (class39.field284 - 6) / 8;
-					var46 = (class39.field284 + 6) / 8;
+					var58 = (class39.field284 - 6) / 8;
+					var8 = (class39.field284 + 6) / 8;
 
 					for (var9 = var5 - 1; var9 <= var6 + 1; ++var9) {
-						for (var10 = var57 - 1; var10 <= var46 + 1; ++var10) {
-							if (var9 < var5 || var9 > var6 || var10 < var57 || var10 > var46) {
+						for (var10 = var58 - 1; var10 <= var8 + 1; ++var10) {
+							if (var9 < var5 || var9 > var6 || var10 < var58 || var10 > var8) {
 								class8.archive5.loadRegionFromName("m" + var9 + "_" + var10);
 								class8.archive5.loadRegionFromName("l" + var9 + "_" + var10);
 							}
@@ -1011,8 +1011,8 @@ public class WorldMapIcon_1 extends AbstractWorldMapIcon {
 				ItemContainer.updateGameState(30);
 				UserComparator5.playPcmPlayers();
 				class23.method232();
-				var64 = WorldMapSprite.getPacketBufferNode(ClientPacket.field2277, Client.packetWriter.isaacCipher);
-				Client.packetWriter.addNode(var64);
+				var65 = WorldMapSprite.getPacketBufferNode(ClientPacket.field2277, Client.packetWriter.isaacCipher);
+				Client.packetWriter.addNode(var65);
 				WorldMapSprite.clock.mark();
 
 				for (var6 = 0; var6 < 32; ++var6) {

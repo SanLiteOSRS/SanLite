@@ -36,8 +36,8 @@ public class InvDefinition extends DualNode {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(Lkx;B)V",
-		garbageValue = "-26"
+		garbageValue = "-26",
+		signature = "(Lkx;B)V"
 	)
 	@Export("decode")
 	void decode(Buffer var1) {
@@ -53,8 +53,8 @@ public class InvDefinition extends DualNode {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(Lkx;II)V",
-		garbageValue = "-667990593"
+		garbageValue = "-667990593",
+		signature = "(Lkx;II)V"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
@@ -66,8 +66,8 @@ public class InvDefinition extends DualNode {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(IB)Lic;",
-		garbageValue = "63"
+		garbageValue = "63",
+		signature = "(IB)Lic;"
 	)
 	@Export("WorldMapElement_get")
 	public static WorldMapElement WorldMapElement_get(int var0) {
@@ -76,8 +76,8 @@ public class InvDefinition extends DualNode {
 
 	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V",
-		garbageValue = "1853243794"
+		garbageValue = "1853243794",
+		signature = "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V"
 	)
 	@Export("setLoginResponseString")
 	static void setLoginResponseString(String var0, String var1, String var2) {

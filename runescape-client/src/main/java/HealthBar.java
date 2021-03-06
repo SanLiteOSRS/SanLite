@@ -32,8 +32,8 @@ public class HealthBar extends Node {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(IIIII)V",
-		garbageValue = "954576471"
+		garbageValue = "954576471",
+		signature = "(IIIII)V"
 	)
 	@Export("put")
 	void put(int var1, int var2, int var3, int var4) {
@@ -68,8 +68,8 @@ public class HealthBar extends Node {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(II)Lcd;",
-		garbageValue = "-1228863072"
+		garbageValue = "-1228863072",
+		signature = "(II)Lcd;"
 	)
 	@Export("get")
 	HealthBarUpdate get(int var1) {
@@ -93,8 +93,8 @@ public class HealthBar extends Node {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(B)Z",
-		garbageValue = "-64"
+		garbageValue = "-64",
+		signature = "(B)Z"
 	)
 	@Export("isEmpty")
 	boolean isEmpty() {
@@ -103,8 +103,8 @@ public class HealthBar extends Node {
 
 	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		signature = "(CI)Z",
-		garbageValue = "-391564902"
+		garbageValue = "-391564902",
+		signature = "(CI)Z"
 	)
 	@Export("isCharPrintable")
 	public static boolean isCharPrintable(char var0) {
@@ -119,8 +119,8 @@ public class HealthBar extends Node {
 
 	@ObfuscatedName("ha")
 	@ObfuscatedSignature(
-		signature = "(ZS)V",
-		garbageValue = "2000"
+		garbageValue = "2000",
+		signature = "(ZS)V"
 	)
 	static final void method2166(boolean var0) {
 		UserComparator5.playPcmPlayers();
@@ -143,8 +143,8 @@ public class HealthBar extends Node {
 
 	@ObfuscatedName("jp")
 	@ObfuscatedSignature(
-		signature = "(Lhz;II)I",
-		garbageValue = "110664163"
+		garbageValue = "110664163",
+		signature = "(Lhz;II)I"
 	)
 	static final int method2168(Widget var0, int var1) {
 		if (var0.cs1Instructions != null && var1 < var0.cs1Instructions.length) {

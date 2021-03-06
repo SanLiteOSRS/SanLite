@@ -43,8 +43,8 @@ public class class182 {
 
 	@ObfuscatedName("hj")
 	@ObfuscatedSignature(
-		signature = "(ZLkd;B)V",
-		garbageValue = "-1"
+		garbageValue = "-1",
+		signature = "(ZLkd;B)V"
 	)
 	@Export("updateNpcs")
 	static final void updateNpcs(boolean var0, PacketBuffer var1) {
@@ -73,33 +73,33 @@ public class class182 {
 			int var11;
 			for (var4 = 0; var4 < var3; ++var4) {
 				var5 = Client.npcIndices[var4];
-				NPC var6 = Client.npcs[var5];
+				NPC var16 = Client.npcs[var5];
 				var7 = var2.readBits(1);
 				if (var7 == 0) {
 					Client.npcIndices[++Client.npcCount - 1] = var5;
-					var6.npcCycle = Client.cycle;
+					var16.npcCycle = Client.cycle;
 				} else {
 					var8 = var2.readBits(2);
 					if (var8 == 0) {
 						Client.npcIndices[++Client.npcCount - 1] = var5;
-						var6.npcCycle = Client.cycle;
+						var16.npcCycle = Client.cycle;
 						Client.field697[++Client.field725 - 1] = var5;
 					} else if (var8 == 1) {
 						Client.npcIndices[++Client.npcCount - 1] = var5;
-						var6.npcCycle = Client.cycle;
+						var16.npcCycle = Client.cycle;
 						var9 = var2.readBits(3);
-						var6.method2178(var9, (byte)1);
+						var16.method2178(var9, (byte)1);
 						var10 = var2.readBits(1);
 						if (var10 == 1) {
 							Client.field697[++Client.field725 - 1] = var5;
 						}
 					} else if (var8 == 2) {
 						Client.npcIndices[++Client.npcCount - 1] = var5;
-						var6.npcCycle = Client.cycle;
+						var16.npcCycle = Client.cycle;
 						var9 = var2.readBits(3);
-						var6.method2178(var9, (byte)2);
+						var16.method2178(var9, (byte)2);
 						var10 = var2.readBits(3);
-						var6.method2178(var10, (byte)2);
+						var16.method2178(var10, (byte)2);
 						var11 = var2.readBits(1);
 						if (var11 == 1) {
 							Client.field697[++Client.field725 - 1] = var5;
@@ -133,12 +133,12 @@ public class class182 {
 					var15.field998 += var15.pathY[0];
 				}
 
-				int var16;
+				int var6;
 				if ((var5 & 1) != 0) {
 					var15.spotAnimation = var1.method5727();
-					var16 = var1.readInt();
-					var15.field994 = var16 >> 16;
-					var15.field993 = (var16 & 65535) + Client.cycle;
+					var6 = var1.readInt();
+					var15.field994 = var6 >> 16;
+					var15.field993 = (var6 & 65535) + Client.cycle;
 					var15.spotAnimationFrame = 0;
 					var15.spotAnimationFrameCycle = 0;
 					if (var15.field993 > Client.cycle) {
@@ -164,14 +164,14 @@ public class class182 {
 				}
 
 				if ((var5 & 4) != 0) {
-					var16 = var1.method5727();
-					if (var16 == 65535) {
-						var16 = -1;
+					var6 = var1.method5727();
+					if (var6 == 65535) {
+						var6 = -1;
 					}
 
 					var7 = var1.method5717();
-					if (var16 == var15.sequence && var16 != -1) {
-						var8 = InterfaceParent.SequenceDefinition_get(var16).field3548;
+					if (var6 == var15.sequence && var6 != -1) {
+						var8 = InterfaceParent.SequenceDefinition_get(var6).field3548;
 						if (var8 == 1) {
 							var15.sequenceFrame = 0;
 							var15.sequenceFrameCycle = 0;
@@ -182,8 +182,8 @@ public class class182 {
 						if (var8 == 2) {
 							var15.field973 = 0;
 						}
-					} else if (var16 == -1 || var15.sequence == -1 || InterfaceParent.SequenceDefinition_get(var16).field3560 >= InterfaceParent.SequenceDefinition_get(var15.sequence).field3560) {
-						var15.sequence = var16;
+					} else if (var6 == -1 || var15.sequence == -1 || InterfaceParent.SequenceDefinition_get(var6).field3560 >= InterfaceParent.SequenceDefinition_get(var15.sequence).field3560) {
+						var15.sequence = var6;
 						var15.sequenceFrame = 0;
 						var15.sequenceFrameCycle = 0;
 						var15.sequenceDelay = var7;
@@ -193,10 +193,10 @@ public class class182 {
 				}
 
 				if ((var5 & 128) != 0) {
-					var16 = var1.readUnsignedByte();
+					var6 = var1.readUnsignedByte();
 					int var12;
-					if (var16 > 0) {
-						for (var7 = 0; var7 < var16; ++var7) {
+					if (var6 > 0) {
+						for (var7 = 0; var7 < var6; ++var7) {
 							var9 = -1;
 							var10 = -1;
 							var11 = -1;
@@ -235,9 +235,9 @@ public class class182 {
 				}
 
 				if ((var5 & 32) != 0) {
-					var16 = var1.method5727();
+					var6 = var1.method5727();
 					var7 = var1.readUnsignedShort();
-					var8 = var15.x - (var16 - GrandExchangeOfferNameComparator.baseX * 64 - GrandExchangeOfferNameComparator.baseX * 64) * 64;
+					var8 = var15.x - (var6 - GrandExchangeOfferNameComparator.baseX * 64 - GrandExchangeOfferNameComparator.baseX * 64) * 64;
 					var9 = var15.y - (var7 - NetCache.baseY * 64 - NetCache.baseY * 64) * 64;
 					if (var8 != 0 || var9 != 0) {
 						var15.field981 = (int)(Math.atan2((double)var8, (double)var9) * 325.949D) & 2047;
@@ -280,8 +280,8 @@ public class class182 {
 
 	@ObfuscatedName("ia")
 	@ObfuscatedSignature(
-		signature = "([Lhz;Lhz;ZI)V",
-		garbageValue = "-379515741"
+		garbageValue = "-379515741",
+		signature = "([Lhz;Lhz;ZI)V"
 	)
 	@Export("revalidateWidgetScroll")
 	static void revalidateWidgetScroll(Widget[] var0, Widget var1, boolean var2) {

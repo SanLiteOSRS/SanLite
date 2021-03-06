@@ -20,8 +20,8 @@ public class class92 {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "([BZB)Ljava/lang/Object;",
-		garbageValue = "8"
+		garbageValue = "8",
+		signature = "([BZB)Ljava/lang/Object;"
 	)
 	public static Object method2195(byte[] var0, boolean var1) {
 		if (var0 == null) {

@@ -546,8 +546,8 @@ public class ServerPacket {
 
 	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		signature = "(IB)I",
-		garbageValue = "6"
+		garbageValue = "6",
+		signature = "(IB)I"
 	)
 	public static int method3810(int var0) {
 		if (var0 > 0) {
@@ -559,8 +559,8 @@ public class ServerPacket {
 
 	@ObfuscatedName("kc")
 	@ObfuscatedSignature(
-		signature = "(Lkx;IB)V",
-		garbageValue = "-58"
+		garbageValue = "-58",
+		signature = "(Lkx;IB)V"
 	)
 	static void method3809(Buffer var0, int var1) {
 		byte[] var2 = var0.array;

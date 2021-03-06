@@ -43,8 +43,8 @@ public class SoundCache {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(II[II)Ldm;",
-		garbageValue = "-166733310"
+		garbageValue = "-166733310",
+		signature = "(II[II)Ldm;"
 	)
 	@Export("getSoundEffect0")
 	RawSound getSoundEffect0(int var1, int var2, int[] var3) {
@@ -74,8 +74,8 @@ public class SoundCache {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(II[IS)Ldm;",
-		garbageValue = "-10083"
+		garbageValue = "-10083",
+		signature = "(II[IS)Ldm;"
 	)
 	@Export("getMusicSample0")
 	RawSound getMusicSample0(int var1, int var2, int[] var3) {
@@ -111,8 +111,8 @@ public class SoundCache {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(I[IB)Ldm;",
-		garbageValue = "15"
+		garbageValue = "15",
+		signature = "(I[IB)Ldm;"
 	)
 	@Export("getSoundEffect")
 	public RawSound getSoundEffect(int var1, int[] var2) {
@@ -127,8 +127,8 @@ public class SoundCache {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(I[II)Ldm;",
-		garbageValue = "-1589130009"
+		garbageValue = "-1589130009",
+		signature = "(I[II)Ldm;"
 	)
 	@Export("getMusicSample")
 	public RawSound getMusicSample(int var1, int[] var2) {
@@ -143,8 +143,8 @@ public class SoundCache {
 
 	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		signature = "(II)Ljava/lang/String;",
-		garbageValue = "1989438161"
+		garbageValue = "1989438161",
+		signature = "(II)Ljava/lang/String;"
 	)
 	static final String method2682(int var0) {
 		if (var0 < 100000) {
@@ -156,8 +156,8 @@ public class SoundCache {
 
 	@ObfuscatedName("gh")
 	@ObfuscatedSignature(
-		signature = "(Lcv;II)V",
-		garbageValue = "-701578069"
+		garbageValue = "-701578069",
+		signature = "(Lcv;II)V"
 	)
 	static final void method2689(Actor var0, int var1) {
 		ParamDefinition.worldToScreen(var0.x, var0.y, var1);

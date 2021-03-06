@@ -76,8 +76,8 @@ public class Players {
 
 	@ObfuscatedName("fe")
 	@ObfuscatedSignature(
-		signature = "(Lcv;I)V",
-		garbageValue = "-202535471"
+		garbageValue = "-202535471",
+		signature = "(Lcv;I)V"
 	)
 	static final void method2286(Actor var0) {
 		var0.isWalking = false;

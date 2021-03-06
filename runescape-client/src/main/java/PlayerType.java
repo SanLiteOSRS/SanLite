@@ -87,8 +87,8 @@ public enum PlayerType implements Enumerated {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(B)I",
-		garbageValue = "63"
+		garbageValue = "63",
+		signature = "(B)I"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
@@ -97,8 +97,8 @@ public enum PlayerType implements Enumerated {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Ljava/awt/Component;I)V",
-		garbageValue = "2124061265"
+		garbageValue = "2124061265",
+		signature = "(Ljava/awt/Component;I)V"
 	)
 	static void method4345(Component var0) {
 		var0.removeKeyListener(KeyHandler.KeyHandler_instance);
@@ -108,8 +108,8 @@ public enum PlayerType implements Enumerated {
 
 	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "(ILcl;ZI)I",
-		garbageValue = "373518150"
+		garbageValue = "373518150",
+		signature = "(ILcl;ZI)I"
 	)
 	static int method4346(int var0, Script var1, boolean var2) {
 		Widget var3 = class237.getWidget(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);

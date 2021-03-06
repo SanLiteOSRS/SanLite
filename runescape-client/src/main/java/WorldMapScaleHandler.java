@@ -29,8 +29,8 @@ public class WorldMapScaleHandler {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(IIIIIIIII)V",
-		garbageValue = "-313253056"
+		garbageValue = "-313253056",
+		signature = "(IIIIIIIII)V"
 	)
 	void method813(int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8) {
 		if (var7 != 0 && this.pixelsPerTile != 0 && this.tileTemplates != null) {
@@ -42,8 +42,8 @@ public class WorldMapScaleHandler {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(III)I",
-		garbageValue = "655322250"
+		garbageValue = "655322250",
+		signature = "(III)I"
 	)
 	int method826(int var1, int var2) {
 		if (var2 == 9) {
@@ -63,8 +63,8 @@ public class WorldMapScaleHandler {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(II)I",
-		garbageValue = "244529953"
+		garbageValue = "244529953",
+		signature = "(II)I"
 	)
 	int method815(int var1) {
 		if (var1 != 9 && var1 != 10) {
@@ -76,8 +76,8 @@ public class WorldMapScaleHandler {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-2066624516"
+		garbageValue = "-2066624516",
+		signature = "(I)V"
 	)
 	@Export("init")
 	void init() {
@@ -96,8 +96,8 @@ public class WorldMapScaleHandler {
 
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-134858358"
+		garbageValue = "-134858358",
+		signature = "(I)V"
 	)
 	@Export("init0")
 	void init0() {
@@ -163,8 +163,8 @@ public class WorldMapScaleHandler {
 
 	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-2097945159"
+		garbageValue = "-2097945159",
+		signature = "(I)V"
 	)
 	@Export("init1")
 	void init1() {
@@ -234,8 +234,8 @@ public class WorldMapScaleHandler {
 
 	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "123"
+		garbageValue = "123",
+		signature = "(B)V"
 	)
 	@Export("init2")
 	void init2() {
@@ -301,8 +301,8 @@ public class WorldMapScaleHandler {
 
 	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "60"
+		garbageValue = "60",
+		signature = "(B)V"
 	)
 	@Export("init3")
 	void init3() {
@@ -368,8 +368,8 @@ public class WorldMapScaleHandler {
 
 	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "1887345157"
+		garbageValue = "1887345157",
+		signature = "(I)V"
 	)
 	@Export("init4")
 	void init4() {
@@ -435,8 +435,8 @@ public class WorldMapScaleHandler {
 
 	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-1859326664"
+		garbageValue = "-1859326664",
+		signature = "(I)V"
 	)
 	@Export("init5")
 	void init5() {
@@ -504,8 +504,8 @@ public class WorldMapScaleHandler {
 
 	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "99"
+		garbageValue = "99",
+		signature = "(B)V"
 	)
 	@Export("init6")
 	void init6() {
@@ -573,8 +573,8 @@ public class WorldMapScaleHandler {
 
 	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-1454081837"
+		garbageValue = "-1454081837",
+		signature = "(I)V"
 	)
 	@Export("init7")
 	void init7() {
@@ -642,8 +642,8 @@ public class WorldMapScaleHandler {
 
 	@ObfuscatedName("gv")
 	@ObfuscatedSignature(
-		signature = "(Lbk;ZI)V",
-		garbageValue = "458493805"
+		garbageValue = "458493805",
+		signature = "(Lbk;ZI)V"
 	)
 	@Export("addPlayerToScene")
 	static void addPlayerToScene(Player var0, boolean var1) {

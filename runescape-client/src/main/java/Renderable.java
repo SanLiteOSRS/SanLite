@@ -20,8 +20,8 @@ public abstract class Renderable extends DualNode {
 
 	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		signature = "(B)Lef;",
-		garbageValue = "127"
+		garbageValue = "127",
+		signature = "(B)Lef;"
 	)
 	@Export("getModel")
 	protected Model getModel() {
@@ -41,8 +41,8 @@ public abstract class Renderable extends DualNode {
 
 	@ObfuscatedName("fz")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "1"
+		garbageValue = "1",
+		signature = "(B)V"
 	)
 	static final void method3417() {
 		if (Client.field889 != class90.Client_plane) {

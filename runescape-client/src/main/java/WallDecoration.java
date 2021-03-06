@@ -87,8 +87,8 @@ public final class WallDecoration {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/CharSequence;I)Ljava/lang/String;",
-		garbageValue = "699816166"
+		garbageValue = "699816166",
+		signature = "(Ljava/lang/CharSequence;I)Ljava/lang/String;"
 	)
 	public static String method3450(CharSequence var0) {
 		int var1 = var0.length();
@@ -126,8 +126,8 @@ public final class WallDecoration {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(II)Ljo;",
-		garbageValue = "1862361389"
+		garbageValue = "1862361389",
+		signature = "(II)Ljo;"
 	)
 	public static FloorOverlayDefinition method3449(int var0) {
 		FloorOverlayDefinition var1 = (FloorOverlayDefinition)FloorOverlayDefinition.FloorOverlayDefinition_cached.get((long)var0);

@@ -86,8 +86,8 @@ public class BufferedFile {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "2"
+		garbageValue = "2",
+		signature = "(B)V"
 	)
 	@Export("close")
 	public void close() throws IOException {
@@ -107,8 +107,8 @@ public class BufferedFile {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(I)J",
-		garbageValue = "657819457"
+		garbageValue = "657819457",
+		signature = "(I)J"
 	)
 	@Export("length")
 	public long length() {
@@ -117,8 +117,8 @@ public class BufferedFile {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "([BS)V",
-		garbageValue = "29514"
+		garbageValue = "29514",
+		signature = "([BS)V"
 	)
 	@Export("readFully")
 	public void readFully(byte[] var1) throws IOException {
@@ -127,8 +127,8 @@ public class BufferedFile {
 
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "([BIII)V",
-		garbageValue = "1136295656"
+		garbageValue = "1136295656",
+		signature = "([BIII)V"
 	)
 	@Export("read")
 	public void read(byte[] var1, int var2, int var3) throws IOException {
@@ -233,8 +233,8 @@ public class BufferedFile {
 
 	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-711377457"
+		garbageValue = "-711377457",
+		signature = "(I)V"
 	)
 	@Export("load")
 	void load() throws IOException {
@@ -263,8 +263,8 @@ public class BufferedFile {
 
 	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "([BIII)V",
-		garbageValue = "2039046126"
+		garbageValue = "2039046126",
+		signature = "([BIII)V"
 	)
 	@Export("write")
 	public void write(byte[] var1, int var2, int var3) throws IOException {
@@ -341,8 +341,8 @@ public class BufferedFile {
 
 	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "-31"
+		garbageValue = "-31",
+		signature = "(B)V"
 	)
 	@Export("flush")
 	void flush() throws IOException {

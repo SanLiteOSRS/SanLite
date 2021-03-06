@@ -22,7 +22,7 @@ public class Username implements Comparable {
 		if (var1 == null) {
 			var4 = null;
 		} else {
-			label114: {
+			label124: {
 				int var5 = 0;
 
 				int var6;
@@ -59,20 +59,20 @@ public class Username implements Comparable {
 							} else if (class225.isAlphaNumeric(var10)) {
 								var11 = true;
 							} else {
-								char[] var16 = class349.field4080;
+								char[] var12 = class349.field4080;
 								int var13 = 0;
 
-								label81:
+								label91:
 								while (true) {
 									char var14;
-									if (var13 >= var16.length) {
-										var16 = class349.field4078;
+									if (var13 >= var12.length) {
+										var12 = class349.field4078;
 
-										for (var13 = 0; var13 < var16.length; ++var13) {
-											var14 = var16[var13];
+										for (var13 = 0; var13 < var12.length; ++var13) {
+											var14 = var12[var13];
 											if (var14 == var10) {
 												var11 = true;
-												break label81;
+												break label91;
 											}
 										}
 
@@ -80,7 +80,7 @@ public class Username implements Comparable {
 										break;
 									}
 
-									var14 = var16[var13];
+									var14 = var12[var13];
 									if (var10 == var14) {
 										var11 = true;
 										break;
@@ -91,18 +91,18 @@ public class Username implements Comparable {
 							}
 
 							if (var11) {
-								char var12;
+								char var16;
 								switch(var10) {
 								case ' ':
 								case '-':
 								case '_':
 								case ' ':
-									var12 = '_';
+									var16 = '_';
 									break;
 								case '#':
 								case '[':
 								case ']':
-									var12 = var10;
+									var16 = var10;
 									break;
 								case 'À':
 								case 'Á':
@@ -114,11 +114,11 @@ public class Username implements Comparable {
 								case 'â':
 								case 'ã':
 								case 'ä':
-									var12 = 'a';
+									var16 = 'a';
 									break;
 								case 'Ç':
 								case 'ç':
-									var12 = 'c';
+									var16 = 'c';
 									break;
 								case 'È':
 								case 'É':
@@ -128,7 +128,7 @@ public class Username implements Comparable {
 								case 'é':
 								case 'ê':
 								case 'ë':
-									var12 = 'e';
+									var16 = 'e';
 									break;
 								case 'Í':
 								case 'Î':
@@ -136,11 +136,11 @@ public class Username implements Comparable {
 								case 'í':
 								case 'î':
 								case 'ï':
-									var12 = 'i';
+									var16 = 'i';
 									break;
 								case 'Ñ':
 								case 'ñ':
-									var12 = 'n';
+									var16 = 'n';
 									break;
 								case 'Ò':
 								case 'Ó':
@@ -152,7 +152,7 @@ public class Username implements Comparable {
 								case 'ô':
 								case 'õ':
 								case 'ö':
-									var12 = 'o';
+									var16 = 'o';
 									break;
 								case 'Ù':
 								case 'Ú':
@@ -162,21 +162,21 @@ public class Username implements Comparable {
 								case 'ú':
 								case 'û':
 								case 'ü':
-									var12 = 'u';
+									var16 = 'u';
 									break;
 								case 'ß':
-									var12 = 'b';
+									var16 = 'b';
 									break;
 								case 'ÿ':
 								case 'Ÿ':
-									var12 = 'y';
+									var16 = 'y';
 									break;
 								default:
-									var12 = Character.toLowerCase(var10);
+									var16 = Character.toLowerCase(var10);
 								}
 
-								if (var12 != 0) {
-									var15.append(var12);
+								if (var16 != 0) {
+									var15.append(var16);
 								}
 							}
 						}
@@ -186,7 +186,7 @@ public class Username implements Comparable {
 						} else {
 							var4 = var15.toString();
 						}
-						break label114;
+						break label124;
 					}
 				}
 
@@ -199,8 +199,8 @@ public class Username implements Comparable {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(I)Ljava/lang/String;",
-		garbageValue = "-1565783636"
+		garbageValue = "-1565783636",
+		signature = "(I)Ljava/lang/String;"
 	)
 	@Export("getName")
 	public String getName() {
@@ -209,8 +209,8 @@ public class Username implements Comparable {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(I)Z",
-		garbageValue = "2035894536"
+		garbageValue = "2035894536",
+		signature = "(I)Z"
 	)
 	@Export("hasCleanName")
 	public boolean hasCleanName() {
@@ -219,8 +219,8 @@ public class Username implements Comparable {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(Lkk;B)I",
-		garbageValue = "120"
+		garbageValue = "120",
+		signature = "(Lkk;B)I"
 	)
 	@Export("compareToTyped")
 	public int compareToTyped(Username var1) {
@@ -260,8 +260,8 @@ public class Username implements Comparable {
 
 	@ObfuscatedName("hb")
 	@ObfuscatedSignature(
-		signature = "(IIIIII)V",
-		garbageValue = "296142419"
+		garbageValue = "296142419",
+		signature = "(IIIIII)V"
 	)
 	@Export("drawObject")
 	static final void drawObject(int var0, int var1, int var2, int var3, int var4) {
@@ -364,11 +364,11 @@ public class Username implements Comparable {
 			ObjectComposition var24 = WorldMapAreaData.getObjectDefinition(var10);
 			int var19;
 			if (var24.mapSceneId != -1) {
-				IndexedSprite var18 = WorldMapSection1.mapSceneSprites[var24.mapSceneId];
-				if (var18 != null) {
-					var13 = (var24.sizeX * 4 - var18.subWidth) / 2;
-					var19 = (var24.sizeY * 4 - var18.subHeight) / 2;
-					var18.drawAt(var1 * 4 + var13 + 48, (104 - var2 - var24.sizeY) * 4 + var19 + 48);
+				IndexedSprite var20 = WorldMapSection1.mapSceneSprites[var24.mapSceneId];
+				if (var20 != null) {
+					var13 = (var24.sizeX * 4 - var20.subWidth) / 2;
+					var19 = (var24.sizeY * 4 - var20.subHeight) / 2;
+					var20.drawAt(var1 * 4 + var13 + 48, (104 - var2 - var24.sizeY) * 4 + var19 + 48);
 				}
 			} else if (var9 == 9) {
 				var12 = 15658734;
@@ -376,18 +376,18 @@ public class Username implements Comparable {
 					var12 = 15597568;
 				}
 
-				int[] var23 = GrandExchangeOfferAgeComparator.sceneMinimapSprite.pixels;
+				int[] var18 = GrandExchangeOfferAgeComparator.sceneMinimapSprite.pixels;
 				var19 = var1 * 4 + (103 - var2) * 2048 + 24624;
 				if (var8 != 0 && var8 != 2) {
-					var23[var19] = var12;
-					var23[var19 + 1 + 512] = var12;
-					var23[var19 + 1024 + 2] = var12;
-					var23[var19 + 1536 + 3] = var12;
+					var18[var19] = var12;
+					var18[var19 + 1 + 512] = var12;
+					var18[var19 + 1024 + 2] = var12;
+					var18[var19 + 1536 + 3] = var12;
 				} else {
-					var23[var19 + 1536] = var12;
-					var23[var19 + 1 + 1024] = var12;
-					var23[var19 + 512 + 2] = var12;
-					var23[var19 + 3] = var12;
+					var18[var19 + 1536] = var12;
+					var18[var19 + 1 + 1024] = var12;
+					var18[var19 + 512 + 2] = var12;
+					var18[var19 + 3] = var12;
 				}
 			}
 		}
@@ -395,13 +395,13 @@ public class Username implements Comparable {
 		var5 = MilliClock.scene.getFloorDecorationTag(var0, var1, var2);
 		if (0L != var5) {
 			var7 = class25.Entity_unpackID(var5);
-			ObjectComposition var20 = WorldMapAreaData.getObjectDefinition(var7);
-			if (var20.mapSceneId != -1) {
-				IndexedSprite var21 = WorldMapSection1.mapSceneSprites[var20.mapSceneId];
-				if (var21 != null) {
-					var10 = (var20.sizeX * 4 - var21.subWidth) / 2;
-					int var22 = (var20.sizeY * 4 - var21.subHeight) / 2;
-					var21.drawAt(var10 + var1 * 4 + 48, (104 - var2 - var20.sizeY) * 4 + var22 + 48);
+			ObjectComposition var21 = WorldMapAreaData.getObjectDefinition(var7);
+			if (var21.mapSceneId != -1) {
+				IndexedSprite var22 = WorldMapSection1.mapSceneSprites[var21.mapSceneId];
+				if (var22 != null) {
+					var10 = (var21.sizeX * 4 - var22.subWidth) / 2;
+					int var23 = (var21.sizeY * 4 - var22.subHeight) / 2;
+					var22.drawAt(var10 + var1 * 4 + 48, (104 - var2 - var21.sizeY) * 4 + var23 + 48);
 				}
 			}
 		}

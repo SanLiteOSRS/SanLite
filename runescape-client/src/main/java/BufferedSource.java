@@ -54,8 +54,8 @@ public class BufferedSource implements Runnable {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(II)Z",
-		garbageValue = "-1444651631"
+		garbageValue = "-1444651631",
+		signature = "(II)Z"
 	)
 	@Export("isAvailable")
 	boolean isAvailable(int var1) throws IOException {
@@ -88,8 +88,8 @@ public class BufferedSource implements Runnable {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(S)I",
-		garbageValue = "5789"
+		garbageValue = "5789",
+		signature = "(S)I"
 	)
 	@Export("available")
 	int available() throws IOException {
@@ -112,8 +112,8 @@ public class BufferedSource implements Runnable {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "-1306188380"
+		garbageValue = "-1306188380",
+		signature = "(I)I"
 	)
 	@Export("readUnsignedByte")
 	int readUnsignedByte() throws IOException {
@@ -135,8 +135,8 @@ public class BufferedSource implements Runnable {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "([BIII)I",
-		garbageValue = "255172200"
+		garbageValue = "255172200",
+		signature = "([BIII)I"
 	)
 	@Export("read")
 	int read(byte[] var1, int var2, int var3) throws IOException {
@@ -176,8 +176,8 @@ public class BufferedSource implements Runnable {
 
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-489650908"
+		garbageValue = "-489650908",
+		signature = "(I)V"
 	)
 	@Export("close")
 	void close() {
@@ -246,8 +246,8 @@ public class BufferedSource implements Runnable {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(Lig;III)Llm;",
-		garbageValue = "34379622"
+		garbageValue = "34379622",
+		signature = "(Lig;III)Llm;"
 	)
 	@Export("SpriteBuffer_getSprite")
 	public static SpritePixels SpriteBuffer_getSprite(AbstractArchive var0, int var1, int var2) {
@@ -290,8 +290,8 @@ public class BufferedSource implements Runnable {
 
 	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		signature = "(B)[Llm;",
-		garbageValue = "49"
+		garbageValue = "49",
+		signature = "(B)[Llm;"
 	)
 	static SpritePixels[] method6103() {
 		SpritePixels[] var0 = new SpritePixels[class336.SpriteBuffer_spriteCount];

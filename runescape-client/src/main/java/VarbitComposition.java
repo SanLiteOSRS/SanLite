@@ -53,8 +53,8 @@ public class VarbitComposition extends DualNode {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(Lkx;B)V",
-		garbageValue = "1"
+		garbageValue = "1",
+		signature = "(Lkx;B)V"
 	)
 	@Export("decode")
 	void decode(Buffer var1) {
@@ -70,8 +70,8 @@ public class VarbitComposition extends DualNode {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(Lkx;II)V",
-		garbageValue = "-1952270730"
+		garbageValue = "-1952270730",
+		signature = "(Lkx;II)V"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
@@ -85,8 +85,8 @@ public class VarbitComposition extends DualNode {
 
 	@ObfuscatedName("kw")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;I)V",
-		garbageValue = "-1439525339"
+		garbageValue = "-1439525339",
+		signature = "(Ljava/lang/String;I)V"
 	)
 	@Export("Clan_joinChat")
 	static final void Clan_joinChat(String var0) {

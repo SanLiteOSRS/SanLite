@@ -19,8 +19,8 @@ public class class58 {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-1558646174"
+		garbageValue = "-1558646174",
+		signature = "(I)V"
 	)
 	static void method939() {
 		Tiles.Tiles_minPlane = 99;
@@ -40,8 +40,8 @@ public class class58 {
 
 	@ObfuscatedName("ff")
 	@ObfuscatedSignature(
-		signature = "(IIII)V",
-		garbageValue = "-1370072473"
+		garbageValue = "-1370072473",
+		signature = "(IIII)V"
 	)
 	@Export("queueSoundEffect")
 	static void queueSoundEffect(int var0, int var1, int var2) {
@@ -58,8 +58,8 @@ public class class58 {
 
 	@ObfuscatedName("jz")
 	@ObfuscatedSignature(
-		signature = "(Lhz;III)V",
-		garbageValue = "797800521"
+		garbageValue = "797800521",
+		signature = "(Lhz;III)V"
 	)
 	static final void method940(Widget var0, int var1, int var2) {
 		if (var0.buttonType == 1) {
@@ -98,14 +98,14 @@ public class class58 {
 
 			for (var4 = 0; var4 < var0.height; ++var4) {
 				for (var5 = 0; var5 < var0.width; ++var5) {
-					int var6 = (var0.paddingX + 32) * var5;
+					int var18 = (var0.paddingX + 32) * var5;
 					int var7 = (var0.paddingY + 32) * var4;
 					if (var15 < 20) {
-						var6 += var0.inventoryXOffsets[var15];
+						var18 += var0.inventoryXOffsets[var15];
 						var7 += var0.inventoryYOffsets[var15];
 					}
 
-					if (var1 >= var6 && var2 >= var7 && var1 < var6 + 32 && var2 < var7 + 32) {
+					if (var1 >= var18 && var2 >= var7 && var1 < var18 + 32 && var2 < var7 + 32) {
 						Client.dragItemSlotDestination = var15;
 						HorizontalAlignment.field3489 = var0;
 						if (var0.itemIds[var15] > 0) {
@@ -202,17 +202,17 @@ public class class58 {
 				}
 			} else {
 				for (var15 = 9; var15 >= 5; --var15) {
-					String var16;
+					String var17;
 					if (!MidiPcmStream.method3972(class60.getWidgetClickMask(var0), var15) && var0.onOp == null) {
-						var16 = null;
+						var17 = null;
 					} else if (var0.actions != null && var0.actions.length > var15 && var0.actions[var15] != null && var0.actions[var15].trim().length() != 0) {
-						var16 = var0.actions[var15];
+						var17 = var0.actions[var15];
 					} else {
-						var16 = null;
+						var17 = null;
 					}
 
-					if (var16 != null) {
-						WorldMapManager.insertMenuItemNoShift(var16, var0.dataText, 1007, var15 + 1, var0.childIndex, var0.id);
+					if (var17 != null) {
+						WorldMapManager.insertMenuItemNoShift(var17, var0.dataText, 1007, var15 + 1, var0.childIndex, var0.id);
 					}
 				}
 
@@ -222,17 +222,17 @@ public class class58 {
 				}
 
 				for (var4 = 4; var4 >= 0; --var4) {
-					String var17;
+					String var16;
 					if (!MidiPcmStream.method3972(class60.getWidgetClickMask(var0), var4) && var0.onOp == null) {
-						var17 = null;
+						var16 = null;
 					} else if (var0.actions != null && var0.actions.length > var4 && var0.actions[var4] != null && var0.actions[var4].trim().length() != 0) {
-						var17 = var0.actions[var4];
+						var16 = var0.actions[var4];
 					} else {
-						var17 = null;
+						var16 = null;
 					}
 
-					if (var17 != null) {
-						WorldMapEvent.insertMenuItem(var17, var0.dataText, 57, var4 + 1, var0.childIndex, var0.id, var0.field2713);
+					if (var16 != null) {
+						WorldMapEvent.insertMenuItem(var16, var0.dataText, 57, var4 + 1, var0.childIndex, var0.id, var0.field2713);
 					}
 				}
 

@@ -187,7 +187,7 @@ public class RawPcmStream extends PcmStream {
 			} else {
 				if (this.numLoops > 0) {
 					if (this.field1493) {
-						label135: {
+						label127: {
 							if (this.field1484 < 0) {
 								var9 = this.method2737(var1, var2, var5, var3, var4.samples[this.start]);
 								if (this.field1496 >= var5) {
@@ -197,7 +197,7 @@ public class RawPcmStream extends PcmStream {
 								this.field1496 = var5 + var5 - 1 - this.field1496;
 								this.field1484 = -this.field1484;
 								if (--this.numLoops == 0) {
-									break label135;
+									break label127;
 								}
 							}
 
@@ -512,8 +512,8 @@ public class RawPcmStream extends PcmStream {
 
 	@ObfuscatedName("g")
 	@ObfuscatedSignature(
-		signature = "(Z)V",
-		garbageValue = "1"
+		garbageValue = "1",
+		signature = "(Z)V"
 	)
 	public synchronized void method2722() {
 		this.field1484 = (this.field1484 ^ this.field1484 >> 31) + (this.field1484 >>> 31);

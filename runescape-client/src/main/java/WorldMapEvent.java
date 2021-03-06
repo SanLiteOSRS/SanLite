@@ -48,8 +48,8 @@ public class WorldMapEvent {
 
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-852874949"
+		garbageValue = "-852874949",
+		signature = "(I)V"
 	)
 	public static void method851() {
 		SpotAnimationDefinition.SpotAnimationDefinition_cached.clear();
@@ -58,8 +58,8 @@ public class WorldMapEvent {
 
 	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "32"
+		garbageValue = "32",
+		signature = "(B)V"
 	)
 	public static void method850() {
 		Widget.Widget_cachedSprites.clear();
@@ -70,8 +70,8 @@ public class WorldMapEvent {
 
 	@ObfuscatedName("iv")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;Ljava/lang/String;IIIIZB)V",
-		garbageValue = "-21"
+		garbageValue = "-21",
+		signature = "(Ljava/lang/String;Ljava/lang/String;IIIIZB)V"
 	)
 	@Export("insertMenuItem")
 	static final void insertMenuItem(String var0, String var1, int var2, int var3, int var4, int var5, boolean var6) {

@@ -45,8 +45,8 @@ public class ParamDefinition extends DualNode {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-1000046844"
+		garbageValue = "-1000046844",
+		signature = "(I)V"
 	)
 	@Export("postDecode")
 	void postDecode() {
@@ -54,8 +54,8 @@ public class ParamDefinition extends DualNode {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(Lkx;I)V",
-		garbageValue = "1362546091"
+		garbageValue = "1362546091",
+		signature = "(Lkx;I)V"
 	)
 	@Export("decode")
 	void decode(Buffer var1) {
@@ -71,8 +71,8 @@ public class ParamDefinition extends DualNode {
 
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(Lkx;II)V",
-		garbageValue = "1500921565"
+		garbageValue = "1500921565",
+		signature = "(Lkx;II)V"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
@@ -106,8 +106,8 @@ public class ParamDefinition extends DualNode {
 
 	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(S)Z",
-		garbageValue = "31310"
+		garbageValue = "31310",
+		signature = "(S)Z"
 	)
 	@Export("isString")
 	public boolean isString() {
@@ -116,8 +116,8 @@ public class ParamDefinition extends DualNode {
 
 	@ObfuscatedName("gc")
 	@ObfuscatedSignature(
-		signature = "(IIII)V",
-		garbageValue = "-1478943473"
+		garbageValue = "-1478943473",
+		signature = "(IIII)V"
 	)
 	@Export("worldToScreen")
 	static final void worldToScreen(int var0, int var1, int var2) {

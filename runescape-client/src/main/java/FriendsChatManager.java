@@ -54,8 +54,8 @@ public class FriendsChatManager extends NameableContainer {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(I)Ljn;",
-		garbageValue = "-315842787"
+		garbageValue = "-315842787",
+		signature = "(I)Ljn;"
 	)
 	@Export("newInstance")
 	Nameable newInstance() {
@@ -64,8 +64,8 @@ public class FriendsChatManager extends NameableContainer {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(II)[Ljn;",
-		garbageValue = "1723641195"
+		garbageValue = "1723641195",
+		signature = "(II)[Ljn;"
 	)
 	@Export("newTypedArray")
 	Nameable[] newTypedArray(int var1) {
@@ -74,8 +74,8 @@ public class FriendsChatManager extends NameableContainer {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;I)V",
-		garbageValue = "-1893983659"
+		garbageValue = "-1893983659",
+		signature = "(Ljava/lang/String;I)V"
 	)
 	@Export("readName")
 	final void readName(String var1) {
@@ -112,8 +112,8 @@ public class FriendsChatManager extends NameableContainer {
 
 	@ObfuscatedName("bk")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;B)V",
-		garbageValue = "1"
+		garbageValue = "1",
+		signature = "(Ljava/lang/String;B)V"
 	)
 	@Export("setOwner")
 	final void setOwner(String var1) {
@@ -150,8 +150,8 @@ public class FriendsChatManager extends NameableContainer {
 
 	@ObfuscatedName("bu")
 	@ObfuscatedSignature(
-		signature = "(Lkx;B)V",
-		garbageValue = "-9"
+		garbageValue = "-9",
+		signature = "(Lkx;B)V"
 	)
 	@Export("readUpdate")
 	public final void readUpdate(Buffer var1) {
@@ -166,19 +166,19 @@ public class FriendsChatManager extends NameableContainer {
 			} else {
 				var7 = 0;
 
-				for (long var13 = var2; var13 != 0L; var13 /= 37L) {
+				for (long var8 = var2; var8 != 0L; var8 /= 37L) {
 					++var7;
 				}
 
-				StringBuilder var15 = new StringBuilder(var7);
+				StringBuilder var10 = new StringBuilder(var7);
 
 				while (0L != var5) {
 					long var11 = var5;
 					var5 /= 37L;
-					var15.append(class299.base37Table[(int)(var11 - var5 * 37L)]);
+					var10.append(class299.base37Table[(int)(var11 - var5 * 37L)]);
 				}
 
-				var4 = var15.reverse().toString();
+				var4 = var10.reverse().toString();
 			}
 		} else {
 			var4 = null;
@@ -190,10 +190,10 @@ public class FriendsChatManager extends NameableContainer {
 		if (var7 != 255) {
 			this.clear();
 
-			for (int var8 = 0; var8 < var7; ++var8) {
+			for (int var13 = 0; var13 < var7; ++var13) {
 				FriendsChatMember var9 = (FriendsChatMember)this.addLastNoPreviousUsername(new Username(var1.readStringCp1252NullTerminated(), this.loginType));
-				int var10 = var1.readUnsignedShort();
-				var9.set(var10, ++this.field3671 - 1);
+				int var14 = var1.readUnsignedShort();
+				var9.set(var14, ++this.field3671 - 1);
 				var9.rank = var1.readByte();
 				var1.readStringCp1252NullTerminated();
 				this.isLocalPlayer(var9);
@@ -204,8 +204,8 @@ public class FriendsChatManager extends NameableContainer {
 
 	@ObfuscatedName("bo")
 	@ObfuscatedSignature(
-		signature = "(Lkx;I)V",
-		garbageValue = "-941337557"
+		garbageValue = "-941337557",
+		signature = "(Lkx;I)V"
 	)
 	public final void method5428(Buffer var1) {
 		Username var2 = new Username(var1.readStringCp1252NullTerminated(), this.loginType);
@@ -246,8 +246,8 @@ public class FriendsChatManager extends NameableContainer {
 
 	@ObfuscatedName("cv")
 	@ObfuscatedSignature(
-		signature = "(S)V",
-		garbageValue = "17506"
+		garbageValue = "17506",
+		signature = "(S)V"
 	)
 	@Export("clearFriends")
 	public final void clearFriends() {
@@ -259,8 +259,8 @@ public class FriendsChatManager extends NameableContainer {
 
 	@ObfuscatedName("cd")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-1186051536"
+		garbageValue = "-1186051536",
+		signature = "(I)V"
 	)
 	@Export("invalidateIgnoreds")
 	public final void invalidateIgnoreds() {
@@ -272,8 +272,8 @@ public class FriendsChatManager extends NameableContainer {
 
 	@ObfuscatedName("cq")
 	@ObfuscatedSignature(
-		signature = "(Ljb;I)V",
-		garbageValue = "1217977801"
+		garbageValue = "1217977801",
+		signature = "(Ljb;I)V"
 	)
 	@Export("isLocalPlayer")
 	final void isLocalPlayer(FriendsChatMember var1) {

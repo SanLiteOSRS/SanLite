@@ -309,8 +309,8 @@ public class ModelData extends Renderable {
 	}
 
 	@ObfuscatedSignature(
-		signature = "(Lek;ZZZZ)V",
-		garbageValue = "1"
+		garbageValue = "1",
+		signature = "(Lek;ZZZZ)V"
 	)
 	public ModelData(ModelData var1, boolean var2, boolean var3, boolean var4, boolean var5) {
 		this.verticesCount = 0;

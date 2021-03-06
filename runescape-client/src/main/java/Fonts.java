@@ -34,8 +34,8 @@ public class Fonts {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "([Lkq;I)Ljava/util/HashMap;",
-		garbageValue = "-988913234"
+		garbageValue = "-988913234",
+		signature = "([Lkq;I)Ljava/util/HashMap;"
 	)
 	@Export("createMap")
 	public HashMap createMap(FontName[] var1) {

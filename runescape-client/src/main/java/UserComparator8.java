@@ -16,8 +16,8 @@ public class UserComparator8 extends AbstractUserComparator {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Lky;Lky;I)I",
-		garbageValue = "-1412914674"
+		garbageValue = "-1412914674",
+		signature = "(Lky;Lky;I)I"
 	)
 	@Export("compareBuddy")
 	int compareBuddy(Buddy var1, Buddy var2) {

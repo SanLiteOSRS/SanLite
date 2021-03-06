@@ -62,8 +62,8 @@ public class class3 implements Enumerated {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(B)I",
-		garbageValue = "63"
+		garbageValue = "63",
+		signature = "(B)I"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
@@ -72,8 +72,8 @@ public class class3 implements Enumerated {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(Lkx;S)Ljava/lang/Object;",
-		garbageValue = "8209"
+		garbageValue = "8209",
+		signature = "(Lkx;S)Ljava/lang/Object;"
 	)
 	public Object method32(Buffer var1) {
 		return this.field20.vmethod45(var1);
@@ -81,8 +81,8 @@ public class class3 implements Enumerated {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/Object;Lkx;I)V",
-		garbageValue = "1884916613"
+		garbageValue = "1884916613",
+		signature = "(Ljava/lang/Object;Lkx;I)V"
 	)
 	public static void method30(Object var0, Buffer var1) {
 		Class var3 = var0.getClass();
@@ -116,8 +116,8 @@ public class class3 implements Enumerated {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Ljava/io/File;B)V",
-		garbageValue = "1"
+		garbageValue = "1",
+		signature = "(Ljava/io/File;B)V"
 	)
 	static void method36(File var0) {
 		FileSystem.FileSystem_cacheDir = var0;
@@ -130,8 +130,8 @@ public class class3 implements Enumerated {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Lig;Lig;I)V",
-		garbageValue = "614126080"
+		garbageValue = "614126080",
+		signature = "(Lig;Lig;I)V"
 	)
 	public static void method41(AbstractArchive var0, AbstractArchive var1) {
 		NPCComposition.NpcDefinition_archive = var0;
@@ -140,8 +140,8 @@ public class class3 implements Enumerated {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/CharSequence;B)[B",
-		garbageValue = "-110"
+		garbageValue = "-110",
+		signature = "(Ljava/lang/CharSequence;B)[B"
 	)
 	public static byte[] method40(CharSequence var0) {
 		int var1 = var0.length();

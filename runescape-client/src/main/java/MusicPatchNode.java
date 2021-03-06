@@ -69,7 +69,7 @@ public class MusicPatchNode extends Node {
 	int field2480;
 	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = 715997184
+		intValue = -1470801280
 	)
 	int field2481;
 	@ObfuscatedName("a")
@@ -89,7 +89,7 @@ public class MusicPatchNode extends Node {
 	int field2486;
 	@ObfuscatedName("i")
 	@ObfuscatedGetter(
-		intValue = -898261362
+		intValue = -449130681
 	)
 	int field2482;
 	@ObfuscatedName("x")
@@ -124,8 +124,8 @@ public class MusicPatchNode extends Node {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "71"
+		garbageValue = "71",
+		signature = "(B)V"
 	)
 	void method4032() {
 		this.patch = null;

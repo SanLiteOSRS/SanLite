@@ -19,8 +19,8 @@ public class Ignored extends Nameable {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Lke;I)I",
-		garbageValue = "1892855432"
+		garbageValue = "1892855432",
+		signature = "(Lke;I)I"
 	)
 	@Export("compareTo_ignored")
 	int compareTo_ignored(Ignored var1) {
@@ -29,8 +29,8 @@ public class Ignored extends Nameable {
 
 	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		signature = "(Ljn;I)I",
-		garbageValue = "642739557"
+		garbageValue = "642739557",
+		signature = "(Ljn;I)I"
 	)
 	@Export("compareTo_user")
 	public int compareTo_user(Nameable var1) {

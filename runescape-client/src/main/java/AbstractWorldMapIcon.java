@@ -43,40 +43,40 @@ public abstract class AbstractWorldMapIcon {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(B)I",
-		garbageValue = "7"
+		garbageValue = "7",
+		signature = "(B)I"
 	)
 	@Export("getElement")
 	public abstract int getElement();
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(S)Laa;",
-		garbageValue = "31041"
+		garbageValue = "31041",
+		signature = "(S)Laa;"
 	)
 	@Export("getLabel")
 	abstract WorldMapLabel getLabel();
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "-413607837"
+		garbageValue = "-413607837",
+		signature = "(I)I"
 	)
 	@Export("getSubWidth")
 	abstract int getSubWidth();
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "-1875187157"
+		garbageValue = "-1875187157",
+		signature = "(I)I"
 	)
 	@Export("getSubHeight")
 	abstract int getSubHeight();
 
 	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		signature = "(IIB)Z",
-		garbageValue = "8"
+		garbageValue = "8",
+		signature = "(IIB)Z"
 	)
 	@Export("fitsScreen")
 	boolean fitsScreen(int var1, int var2) {
@@ -89,8 +89,8 @@ public abstract class AbstractWorldMapIcon {
 
 	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		signature = "(B)Z",
-		garbageValue = "0"
+		garbageValue = "0",
+		signature = "(B)Z"
 	)
 	@Export("hasValidElement")
 	boolean hasValidElement() {
@@ -99,8 +99,8 @@ public abstract class AbstractWorldMapIcon {
 
 	@ObfuscatedName("g")
 	@ObfuscatedSignature(
-		signature = "(IIB)Z",
-		garbageValue = "-24"
+		garbageValue = "-24",
+		signature = "(IIB)Z"
 	)
 	@Export("elementFitsScreen")
 	boolean elementFitsScreen(int var1, int var2) {
@@ -130,15 +130,17 @@ public abstract class AbstractWorldMapIcon {
 
 			switch(var3.verticalAlignment.value) {
 			case 0:
-				if (var2 <= this.screenY - var5 || var2 > this.screenY) {
-					return false;
+				if (var2 > this.screenY - var5 && var2 <= this.screenY) {
+					break;
 				}
-				break;
+
+				return false;
 			case 1:
-				if (var2 < this.screenY || var2 >= var5 + this.screenY) {
-					return false;
+				if (var2 >= this.screenY && var2 < var5 + this.screenY) {
+					break;
 				}
-				break;
+
+				return false;
 			case 2:
 				if (var2 < this.screenY - var5 / 2 || var2 > var5 / 2 + this.screenY) {
 					return false;
@@ -151,8 +153,8 @@ public abstract class AbstractWorldMapIcon {
 
 	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "(III)Z",
-		garbageValue = "1453906321"
+		garbageValue = "1453906321",
+		signature = "(III)Z"
 	)
 	@Export("labelFitsScreen")
 	boolean labelFitsScreen(int var1, int var2) {
@@ -168,8 +170,8 @@ public abstract class AbstractWorldMapIcon {
 
 	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		signature = "(II)I",
-		garbageValue = "2147435814"
+		garbageValue = "2147435814",
+		signature = "(II)I"
 	)
 	public static int method710(int var0) {
 		return class25.Entity_unpackID(ViewportMouse.ViewportMouse_entityTags[var0]);
@@ -177,8 +179,8 @@ public abstract class AbstractWorldMapIcon {
 
 	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		signature = "(ILcl;ZI)I",
-		garbageValue = "1537886729"
+		garbageValue = "1537886729",
+		signature = "(ILcl;ZI)I"
 	)
 	static int method713(int var0, Script var1, boolean var2) {
 		Widget var3 = var2 ? class277.field3584 : Interpreter.field1117;
@@ -207,8 +209,8 @@ public abstract class AbstractWorldMapIcon {
 
 	@ObfuscatedName("gr")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "-83873281"
+		garbageValue = "-83873281",
+		signature = "(I)I"
 	)
 	static final int method712() {
 		if (WorldMapSectionType.clientPreferences.roofsHidden) {
@@ -216,7 +218,7 @@ public abstract class AbstractWorldMapIcon {
 		} else {
 			int var0 = 3;
 			if (KeyHandler.cameraPitch < 310) {
-				label169: {
+				label167: {
 					int var1;
 					int var2;
 					if (Client.oculusOrbState == 1) {
@@ -257,7 +259,7 @@ public abstract class AbstractWorldMapIcon {
 
 								while (true) {
 									if (var1 == var3) {
-										break label169;
+										break label167;
 									}
 
 									if (var3 < var1) {
@@ -315,7 +317,7 @@ public abstract class AbstractWorldMapIcon {
 										}
 									}
 								}
-								break label169;
+								break label167;
 							}
 						}
 
@@ -340,8 +342,8 @@ public abstract class AbstractWorldMapIcon {
 
 	@ObfuscatedName("hk")
 	@ObfuscatedSignature(
-		signature = "(IIIILjava/lang/String;Ljava/lang/String;IIB)V",
-		garbageValue = "58"
+		garbageValue = "58",
+		signature = "(IIIILjava/lang/String;Ljava/lang/String;IIB)V"
 	)
 	@Export("menuAction")
 	static final void menuAction(int var0, int var1, int var2, int var3, String var4, String var5, int var6, int var7) {
@@ -989,7 +991,7 @@ public abstract class AbstractWorldMapIcon {
 										Client.packetWriter.addNode(var9);
 									}
 								} else {
-									label833: {
+									label637: {
 										if (var2 != 57) {
 											if (var2 == 58) {
 												var16 = ArchiveLoader.getWidgetChild(var1, var0);
@@ -1003,7 +1005,7 @@ public abstract class AbstractWorldMapIcon {
 													var9.packetBuffer.method5855(Client.selectedSpellChildIndex);
 													Client.packetWriter.addNode(var9);
 												}
-												break label833;
+												break label637;
 											}
 
 											if (var2 == 1001) {
@@ -1019,7 +1021,7 @@ public abstract class AbstractWorldMapIcon {
 												var8.packetBuffer.method5778(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
 												var8.packetBuffer.method5725(NetCache.baseY * 64 + var1);
 												Client.packetWriter.addNode(var8);
-												break label833;
+												break label637;
 											}
 
 											if (var2 == 1002) {
@@ -1030,7 +1032,7 @@ public abstract class AbstractWorldMapIcon {
 												var8 = WorldMapSprite.getPacketBufferNode(ClientPacket.field2269, Client.packetWriter.isaacCipher);
 												var8.packetBuffer.method5690(var3);
 												Client.packetWriter.addNode(var8);
-												break label833;
+												break label637;
 											}
 
 											if (var2 == 1003) {
@@ -1051,7 +1053,7 @@ public abstract class AbstractWorldMapIcon {
 														Client.packetWriter.addNode(var11);
 													}
 												}
-												break label833;
+												break label637;
 											}
 
 											if (var2 == 1004) {
@@ -1062,7 +1064,7 @@ public abstract class AbstractWorldMapIcon {
 												var8 = WorldMapSprite.getPacketBufferNode(ClientPacket.field2333, Client.packetWriter.isaacCipher);
 												var8.packetBuffer.method5725(var3);
 												Client.packetWriter.addNode(var8);
-												break label833;
+												break label637;
 											}
 
 											if (var2 == 1005) {
@@ -1078,14 +1080,14 @@ public abstract class AbstractWorldMapIcon {
 												Client.field770 = 0;
 												WorldMapSprite.field260 = class237.getWidget(var1);
 												Client.field931 = var0;
-												break label833;
+												break label637;
 											}
 
 											if (var2 != 1007) {
-												if (var2 == 1008 || var2 == 1011 || var2 == 1010 || var2 == 1009 || var2 == 1012) {
+												if (var2 == 1009 || var2 == 1010 || var2 == 1008 || var2 == 1012 || var2 == 1011) {
 													SoundSystem.worldMap.worldMapMenuAction(var2, var3, new Coord(var0), new Coord(var1));
 												}
-												break label833;
+												break label637;
 											}
 										}
 
@@ -1119,8 +1121,8 @@ public abstract class AbstractWorldMapIcon {
 
 	@ObfuscatedName("im")
 	@ObfuscatedSignature(
-		signature = "(IB)Z",
-		garbageValue = "24"
+		garbageValue = "24",
+		signature = "(IB)Z"
 	)
 	static boolean method685(int var0) {
 		return var0 == 57 || var0 == 58 || var0 == 1007 || var0 == 25 || var0 == 30;
@@ -1128,8 +1130,8 @@ public abstract class AbstractWorldMapIcon {
 
 	@ObfuscatedName("jb")
 	@ObfuscatedSignature(
-		signature = "(IB)V",
-		garbageValue = "90"
+		garbageValue = "90",
+		signature = "(IB)V"
 	)
 	@Export("changeGameOptions")
 	static final void changeGameOptions(int var0) {

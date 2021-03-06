@@ -51,8 +51,8 @@ public enum class169 implements Enumerated {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(B)I",
-		garbageValue = "63"
+		garbageValue = "63",
+		signature = "(B)I"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
@@ -61,8 +61,8 @@ public enum class169 implements Enumerated {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(I)[Lie;",
-		garbageValue = "-825659067"
+		garbageValue = "-825659067",
+		signature = "(I)[Lie;"
 	)
 	static VerticalAlignment[] method3631() {
 		return new VerticalAlignment[]{VerticalAlignment.field3236, VerticalAlignment.field3234, VerticalAlignment.VerticalAlignment_centered};
@@ -70,8 +70,8 @@ public enum class169 implements Enumerated {
 
 	@ObfuscatedName("fw")
 	@ObfuscatedSignature(
-		signature = "(Ljs;IIII)V",
-		garbageValue = "1515768650"
+		garbageValue = "1515768650",
+		signature = "(Ljs;IIII)V"
 	)
 	static void method3637(SequenceDefinition var0, int var1, int var2, int var3) {
 		if (Client.soundEffectCount < 50 && WorldMapSectionType.clientPreferences.areaSoundEffectsVolume != 0) {
@@ -96,8 +96,8 @@ public enum class169 implements Enumerated {
 
 	@ObfuscatedName("jo")
 	@ObfuscatedSignature(
-		signature = "([Lhz;IIIIIIII)V",
-		garbageValue = "-1265489045"
+		garbageValue = "-1265489045",
+		signature = "([Lhz;IIIIIIII)V"
 	)
 	@Export("updateInterface")
 	static final void updateInterface(Widget[] var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7) {
@@ -246,7 +246,7 @@ public enum class169 implements Enumerated {
 						if (var32) {
 							for (int var20 = 0; var20 < var9.field2668.length; ++var20) {
 								var21 = false;
-								boolean var22 = false;
+								boolean var27 = false;
 								if (!var21 && var9.field2668[var20] != null) {
 									for (var23 = 0; var23 < var9.field2668[var20].length; ++var23) {
 										boolean var24 = false;
@@ -260,16 +260,16 @@ public enum class169 implements Enumerated {
 												break;
 											}
 
-											byte var25 = var9.field2669[var20][var23];
-											if (var25 == 0 || ((var25 & 8) == 0 || !KeyHandler.KeyHandler_pressedKeys[86] && !KeyHandler.KeyHandler_pressedKeys[82] && !KeyHandler.KeyHandler_pressedKeys[81]) && ((var25 & 2) == 0 || KeyHandler.KeyHandler_pressedKeys[86]) && ((var25 & 1) == 0 || KeyHandler.KeyHandler_pressedKeys[82]) && ((var25 & 4) == 0 || KeyHandler.KeyHandler_pressedKeys[81])) {
-												var22 = true;
+											byte var31 = var9.field2669[var20][var23];
+											if (var31 == 0 || ((var31 & 8) == 0 || !KeyHandler.KeyHandler_pressedKeys[86] && !KeyHandler.KeyHandler_pressedKeys[82] && !KeyHandler.KeyHandler_pressedKeys[81]) && ((var31 & 2) == 0 || KeyHandler.KeyHandler_pressedKeys[86]) && ((var31 & 1) == 0 || KeyHandler.KeyHandler_pressedKeys[82]) && ((var31 & 4) == 0 || KeyHandler.KeyHandler_pressedKeys[81])) {
+												var27 = true;
 												break;
 											}
 										}
 									}
 								}
 
-								if (var22) {
+								if (var27) {
 									if (var20 < 10) {
 										ApproximateRouteStrategy.widgetDefaultMenuAction(var20 + 1, var9.id, var9.childIndex, var9.itemId, "");
 									} else if (var20 == 10) {
@@ -345,14 +345,14 @@ public enum class169 implements Enumerated {
 							}
 
 							if (var9.hasListener) {
-								ScriptEvent var27;
+								ScriptEvent var22;
 								if (var33 && Client.mouseWheelRotation != 0 && var9.onScroll != null) {
-									var27 = new ScriptEvent();
-									var27.isMouseInputEvent = true;
-									var27.widget = var9;
-									var27.mouseY = Client.mouseWheelRotation;
-									var27.args = var9.onScroll;
-									Client.scriptEvents.addFirst(var27);
+									var22 = new ScriptEvent();
+									var22.isMouseInputEvent = true;
+									var22.widget = var9;
+									var22.mouseY = Client.mouseWheelRotation;
+									var22.args = var9.onScroll;
+									Client.scriptEvents.addFirst(var22);
 								}
 
 								if (Client.clickedWidget != null || JagexCache.dragInventoryWidget != null || Client.isMenuOpen) {
@@ -364,116 +364,116 @@ public enum class169 implements Enumerated {
 								if (!var9.isClicked && var21) {
 									var9.isClicked = true;
 									if (var9.onClick != null) {
-										var27 = new ScriptEvent();
-										var27.isMouseInputEvent = true;
-										var27.widget = var9;
-										var27.mouseX = MouseHandler.MouseHandler_lastPressedX - var10;
-										var27.mouseY = MouseHandler.MouseHandler_lastPressedY - var11;
-										var27.args = var9.onClick;
-										Client.scriptEvents.addFirst(var27);
+										var22 = new ScriptEvent();
+										var22.isMouseInputEvent = true;
+										var22.widget = var9;
+										var22.mouseX = MouseHandler.MouseHandler_lastPressedX - var10;
+										var22.mouseY = MouseHandler.MouseHandler_lastPressedY - var11;
+										var22.args = var9.onClick;
+										Client.scriptEvents.addFirst(var22);
 									}
 								}
 
 								if (var9.isClicked && var34 && var9.onClickRepeat != null) {
-									var27 = new ScriptEvent();
-									var27.isMouseInputEvent = true;
-									var27.widget = var9;
-									var27.mouseX = MouseHandler.MouseHandler_x - var10;
-									var27.mouseY = MouseHandler.MouseHandler_y - var11;
-									var27.args = var9.onClickRepeat;
-									Client.scriptEvents.addFirst(var27);
+									var22 = new ScriptEvent();
+									var22.isMouseInputEvent = true;
+									var22.widget = var9;
+									var22.mouseX = MouseHandler.MouseHandler_x - var10;
+									var22.mouseY = MouseHandler.MouseHandler_y - var11;
+									var22.args = var9.onClickRepeat;
+									Client.scriptEvents.addFirst(var22);
 								}
 
 								if (var9.isClicked && !var34) {
 									var9.isClicked = false;
 									if (var9.onRelease != null) {
-										var27 = new ScriptEvent();
-										var27.isMouseInputEvent = true;
-										var27.widget = var9;
-										var27.mouseX = MouseHandler.MouseHandler_x - var10;
-										var27.mouseY = MouseHandler.MouseHandler_y - var11;
-										var27.args = var9.onRelease;
-										Client.field865.addFirst(var27);
+										var22 = new ScriptEvent();
+										var22.isMouseInputEvent = true;
+										var22.widget = var9;
+										var22.mouseX = MouseHandler.MouseHandler_x - var10;
+										var22.mouseY = MouseHandler.MouseHandler_y - var11;
+										var22.args = var9.onRelease;
+										Client.field865.addFirst(var22);
 									}
 								}
 
 								if (var34 && var9.onHold != null) {
-									var27 = new ScriptEvent();
-									var27.isMouseInputEvent = true;
-									var27.widget = var9;
-									var27.mouseX = MouseHandler.MouseHandler_x - var10;
-									var27.mouseY = MouseHandler.MouseHandler_y - var11;
-									var27.args = var9.onHold;
-									Client.scriptEvents.addFirst(var27);
+									var22 = new ScriptEvent();
+									var22.isMouseInputEvent = true;
+									var22.widget = var9;
+									var22.mouseX = MouseHandler.MouseHandler_x - var10;
+									var22.mouseY = MouseHandler.MouseHandler_y - var11;
+									var22.args = var9.onHold;
+									Client.scriptEvents.addFirst(var22);
 								}
 
 								if (!var9.containsMouse && var33) {
 									var9.containsMouse = true;
 									if (var9.onMouseOver != null) {
-										var27 = new ScriptEvent();
-										var27.isMouseInputEvent = true;
-										var27.widget = var9;
-										var27.mouseX = MouseHandler.MouseHandler_x - var10;
-										var27.mouseY = MouseHandler.MouseHandler_y - var11;
-										var27.args = var9.onMouseOver;
-										Client.scriptEvents.addFirst(var27);
+										var22 = new ScriptEvent();
+										var22.isMouseInputEvent = true;
+										var22.widget = var9;
+										var22.mouseX = MouseHandler.MouseHandler_x - var10;
+										var22.mouseY = MouseHandler.MouseHandler_y - var11;
+										var22.args = var9.onMouseOver;
+										Client.scriptEvents.addFirst(var22);
 									}
 								}
 
 								if (var9.containsMouse && var33 && var9.onMouseRepeat != null) {
-									var27 = new ScriptEvent();
-									var27.isMouseInputEvent = true;
-									var27.widget = var9;
-									var27.mouseX = MouseHandler.MouseHandler_x - var10;
-									var27.mouseY = MouseHandler.MouseHandler_y - var11;
-									var27.args = var9.onMouseRepeat;
-									Client.scriptEvents.addFirst(var27);
+									var22 = new ScriptEvent();
+									var22.isMouseInputEvent = true;
+									var22.widget = var9;
+									var22.mouseX = MouseHandler.MouseHandler_x - var10;
+									var22.mouseY = MouseHandler.MouseHandler_y - var11;
+									var22.args = var9.onMouseRepeat;
+									Client.scriptEvents.addFirst(var22);
 								}
 
 								if (var9.containsMouse && !var33) {
 									var9.containsMouse = false;
 									if (var9.onMouseLeave != null) {
-										var27 = new ScriptEvent();
-										var27.isMouseInputEvent = true;
-										var27.widget = var9;
-										var27.mouseX = MouseHandler.MouseHandler_x - var10;
-										var27.mouseY = MouseHandler.MouseHandler_y - var11;
-										var27.args = var9.onMouseLeave;
-										Client.field865.addFirst(var27);
+										var22 = new ScriptEvent();
+										var22.isMouseInputEvent = true;
+										var22.widget = var9;
+										var22.mouseX = MouseHandler.MouseHandler_x - var10;
+										var22.mouseY = MouseHandler.MouseHandler_y - var11;
+										var22.args = var9.onMouseLeave;
+										Client.field865.addFirst(var22);
 									}
 								}
 
 								if (var9.onTimer != null) {
-									var27 = new ScriptEvent();
-									var27.widget = var9;
-									var27.args = var9.onTimer;
-									Client.field660.addFirst(var27);
+									var22 = new ScriptEvent();
+									var22.widget = var9;
+									var22.args = var9.onTimer;
+									Client.field660.addFirst(var22);
 								}
 
-								ScriptEvent var30;
+								ScriptEvent var25;
 								int var35;
 								int var36;
 								if (var9.onVarTransmit != null && Client.field767 > var9.field2727) {
 									if (var9.varTransmitTriggers != null && Client.field767 - var9.field2727 <= 32) {
-										label867:
-										for (var35 = var9.field2727; var35 < Client.field767; ++var35) {
-											var23 = Client.field855[var35 & 31];
+										label763:
+										for (var36 = var9.field2727; var36 < Client.field767; ++var36) {
+											var23 = Client.field855[var36 & 31];
 
-											for (var36 = 0; var36 < var9.varTransmitTriggers.length; ++var36) {
-												if (var23 == var9.varTransmitTriggers[var36]) {
-													var30 = new ScriptEvent();
-													var30.widget = var9;
-													var30.args = var9.onVarTransmit;
-													Client.scriptEvents.addFirst(var30);
-													break label867;
+											for (var35 = 0; var35 < var9.varTransmitTriggers.length; ++var35) {
+												if (var23 == var9.varTransmitTriggers[var35]) {
+													var25 = new ScriptEvent();
+													var25.widget = var9;
+													var25.args = var9.onVarTransmit;
+													Client.scriptEvents.addFirst(var25);
+													break label763;
 												}
 											}
 										}
 									} else {
-										var27 = new ScriptEvent();
-										var27.widget = var9;
-										var27.args = var9.onVarTransmit;
-										Client.scriptEvents.addFirst(var27);
+										var22 = new ScriptEvent();
+										var22.widget = var9;
+										var22.args = var9.onVarTransmit;
+										Client.scriptEvents.addFirst(var22);
 									}
 
 									var9.field2727 = Client.field767;
@@ -481,25 +481,25 @@ public enum class169 implements Enumerated {
 
 								if (var9.onInvTransmit != null && Client.field870 > var9.field2728) {
 									if (var9.invTransmitTriggers != null && Client.field870 - var9.field2728 <= 32) {
-										label843:
-										for (var35 = var9.field2728; var35 < Client.field870; ++var35) {
-											var23 = Client.changedItemContainers[var35 & 31];
+										label739:
+										for (var36 = var9.field2728; var36 < Client.field870; ++var36) {
+											var23 = Client.changedItemContainers[var36 & 31];
 
-											for (var36 = 0; var36 < var9.invTransmitTriggers.length; ++var36) {
-												if (var23 == var9.invTransmitTriggers[var36]) {
-													var30 = new ScriptEvent();
-													var30.widget = var9;
-													var30.args = var9.onInvTransmit;
-													Client.scriptEvents.addFirst(var30);
-													break label843;
+											for (var35 = 0; var35 < var9.invTransmitTriggers.length; ++var35) {
+												if (var23 == var9.invTransmitTriggers[var35]) {
+													var25 = new ScriptEvent();
+													var25.widget = var9;
+													var25.args = var9.onInvTransmit;
+													Client.scriptEvents.addFirst(var25);
+													break label739;
 												}
 											}
 										}
 									} else {
-										var27 = new ScriptEvent();
-										var27.widget = var9;
-										var27.args = var9.onInvTransmit;
-										Client.scriptEvents.addFirst(var27);
+										var22 = new ScriptEvent();
+										var22.widget = var9;
+										var22.args = var9.onInvTransmit;
+										Client.scriptEvents.addFirst(var22);
 									}
 
 									var9.field2728 = Client.field870;
@@ -507,81 +507,81 @@ public enum class169 implements Enumerated {
 
 								if (var9.onStatTransmit != null && Client.changedSkillsCount > var9.field2729) {
 									if (var9.statTransmitTriggers != null && Client.changedSkillsCount - var9.field2729 <= 32) {
-										label819:
-										for (var35 = var9.field2729; var35 < Client.changedSkillsCount; ++var35) {
-											var23 = Client.changedSkills[var35 & 31];
+										label715:
+										for (var36 = var9.field2729; var36 < Client.changedSkillsCount; ++var36) {
+											var23 = Client.changedSkills[var36 & 31];
 
-											for (var36 = 0; var36 < var9.statTransmitTriggers.length; ++var36) {
-												if (var23 == var9.statTransmitTriggers[var36]) {
-													var30 = new ScriptEvent();
-													var30.widget = var9;
-													var30.args = var9.onStatTransmit;
-													Client.scriptEvents.addFirst(var30);
-													break label819;
+											for (var35 = 0; var35 < var9.statTransmitTriggers.length; ++var35) {
+												if (var23 == var9.statTransmitTriggers[var35]) {
+													var25 = new ScriptEvent();
+													var25.widget = var9;
+													var25.args = var9.onStatTransmit;
+													Client.scriptEvents.addFirst(var25);
+													break label715;
 												}
 											}
 										}
 									} else {
-										var27 = new ScriptEvent();
-										var27.widget = var9;
-										var27.args = var9.onStatTransmit;
-										Client.scriptEvents.addFirst(var27);
+										var22 = new ScriptEvent();
+										var22.widget = var9;
+										var22.args = var9.onStatTransmit;
+										Client.scriptEvents.addFirst(var22);
 									}
 
 									var9.field2729 = Client.changedSkillsCount;
 								}
 
 								if (Client.chatCycle > var9.field2719 && var9.onChatTransmit != null) {
-									var27 = new ScriptEvent();
-									var27.widget = var9;
-									var27.args = var9.onChatTransmit;
-									Client.scriptEvents.addFirst(var27);
+									var22 = new ScriptEvent();
+									var22.widget = var9;
+									var22.args = var9.onChatTransmit;
+									Client.scriptEvents.addFirst(var22);
 								}
 
 								if (Client.field857 > var9.field2719 && var9.onFriendTransmit != null) {
-									var27 = new ScriptEvent();
-									var27.widget = var9;
-									var27.args = var9.onFriendTransmit;
-									Client.scriptEvents.addFirst(var27);
+									var22 = new ScriptEvent();
+									var22.widget = var9;
+									var22.args = var9.onFriendTransmit;
+									Client.scriptEvents.addFirst(var22);
 								}
 
 								if (Client.field858 > var9.field2719 && var9.onClanTransmit != null) {
-									var27 = new ScriptEvent();
-									var27.widget = var9;
-									var27.args = var9.onClanTransmit;
-									Client.scriptEvents.addFirst(var27);
+									var22 = new ScriptEvent();
+									var22.widget = var9;
+									var22.args = var9.onClanTransmit;
+									Client.scriptEvents.addFirst(var22);
 								}
 
 								if (Client.field710 > var9.field2719 && var9.onStockTransmit != null) {
-									var27 = new ScriptEvent();
-									var27.widget = var9;
-									var27.args = var9.onStockTransmit;
-									Client.scriptEvents.addFirst(var27);
+									var22 = new ScriptEvent();
+									var22.widget = var9;
+									var22.args = var9.onStockTransmit;
+									Client.scriptEvents.addFirst(var22);
 								}
 
 								if (Client.field860 > var9.field2719 && var9.field2678 != null) {
-									var27 = new ScriptEvent();
-									var27.widget = var9;
-									var27.args = var9.field2678;
-									Client.scriptEvents.addFirst(var27);
+									var22 = new ScriptEvent();
+									var22.widget = var9;
+									var22.args = var9.field2678;
+									Client.scriptEvents.addFirst(var22);
 								}
 
 								if (Client.field861 > var9.field2719 && var9.onMiscTransmit != null) {
-									var27 = new ScriptEvent();
-									var27.widget = var9;
-									var27.args = var9.onMiscTransmit;
-									Client.scriptEvents.addFirst(var27);
+									var22 = new ScriptEvent();
+									var22.widget = var9;
+									var22.args = var9.onMiscTransmit;
+									Client.scriptEvents.addFirst(var22);
 								}
 
 								var9.field2719 = Client.cycleCntr;
 								if (var9.onKey != null) {
-									for (var35 = 0; var35 < Client.field885; ++var35) {
-										ScriptEvent var31 = new ScriptEvent();
-										var31.widget = var9;
-										var31.keyTyped = Client.field738[var35];
-										var31.keyPressed = Client.field886[var35];
-										var31.args = var9.onKey;
-										Client.scriptEvents.addFirst(var31);
+									for (var36 = 0; var36 < Client.field885; ++var36) {
+										ScriptEvent var30 = new ScriptEvent();
+										var30.widget = var9;
+										var30.keyTyped = Client.field738[var36];
+										var30.keyPressed = Client.field886[var36];
+										var30.args = var9.onKey;
+										Client.scriptEvents.addFirst(var30);
 									}
 								}
 							}

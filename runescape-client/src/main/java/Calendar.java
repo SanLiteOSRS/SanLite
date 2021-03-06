@@ -26,8 +26,8 @@ public class Calendar {
 
 	@ObfuscatedName("lh")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;I)Ljava/lang/String;",
-		garbageValue = "-1734349622"
+		garbageValue = "-1734349622",
+		signature = "(Ljava/lang/String;I)Ljava/lang/String;"
 	)
 	static String method4153(String var0) {
 		PlayerType[] var1 = class69.PlayerType_values();

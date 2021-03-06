@@ -6,8 +6,8 @@ import net.runelite.mapping.ObfuscatedSignature;
 public class class281 {
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(II)Ljj;",
-		garbageValue = "-723955175"
+		garbageValue = "-723955175",
+		signature = "(II)Ljj;"
 	)
 	@Export("ItemDefinition_get")
 	public static ItemComposition ItemDefinition_get(int var0) {
@@ -67,8 +67,8 @@ public class class281 {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(CI)Z",
-		garbageValue = "-610394630"
+		garbageValue = "-610394630",
+		signature = "(CI)Z"
 	)
 	public static final boolean method5194(char var0) {
 		return var0 == 160 || var0 == ' ' || var0 == '_' || var0 == '-';

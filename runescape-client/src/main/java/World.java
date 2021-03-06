@@ -97,8 +97,8 @@ public class World {
 
 	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		signature = "(I)Z",
-		garbageValue = "1593793917"
+		garbageValue = "1593793917",
+		signature = "(I)Z"
 	)
 	@Export("isMembersOnly")
 	boolean isMembersOnly() {
@@ -107,8 +107,8 @@ public class World {
 
 	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		signature = "(I)Z",
-		garbageValue = "-1662495711"
+		garbageValue = "-1662495711",
+		signature = "(I)Z"
 	)
 	boolean method1878() {
 		return (2 & this.properties) != 0;
@@ -116,8 +116,8 @@ public class World {
 
 	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		signature = "(I)Z",
-		garbageValue = "-1886649606"
+		garbageValue = "-1886649606",
+		signature = "(I)Z"
 	)
 	@Export("isPvp")
 	boolean isPvp() {
@@ -126,8 +126,8 @@ public class World {
 
 	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		signature = "(I)Z",
-		garbageValue = "-1928708058"
+		garbageValue = "-1928708058",
+		signature = "(I)Z"
 	)
 	boolean method1880() {
 		return (8 & this.properties) != 0;
@@ -135,8 +135,8 @@ public class World {
 
 	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		signature = "(B)Z",
-		garbageValue = "28"
+		garbageValue = "28",
+		signature = "(B)Z"
 	)
 	@Export("isDeadman")
 	boolean isDeadman() {
@@ -145,8 +145,8 @@ public class World {
 
 	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "(I)Z",
-		garbageValue = "1939241099"
+		garbageValue = "1939241099",
+		signature = "(I)Z"
 	)
 	@Export("isBeta")
 	boolean isBeta() {
@@ -155,8 +155,8 @@ public class World {
 
 	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		signature = "(B)Z",
-		garbageValue = "4"
+		garbageValue = "4",
+		signature = "(B)Z"
 	)
 	boolean method1883() {
 		return (1073741824 & this.properties) != 0;
@@ -164,8 +164,8 @@ public class World {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-1636550910"
+		garbageValue = "-1636550910",
+		signature = "(I)V"
 	)
 	public static void method1924() {
 		VarpDefinition.VarpDefinition_cached.clear();
@@ -173,8 +173,8 @@ public class World {
 
 	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(Lkd;IS)Z",
-		garbageValue = "-20652"
+		garbageValue = "-20652",
+		signature = "(Lkd;IS)Z"
 	)
 	@Export("updateExternalPlayer")
 	static boolean updateExternalPlayer(PacketBuffer var0, int var1) {
@@ -200,22 +200,22 @@ public class World {
 			if (Client.players[var1] != null) {
 				throw new RuntimeException();
 			} else {
-				Player var6 = Client.players[var1] = new Player();
-				var6.index = var1;
+				Player var11 = Client.players[var1] = new Player();
+				var11.index = var1;
 				if (Players.field1269[var1] != null) {
-					var6.read(Players.field1269[var1]);
+					var11.read(Players.field1269[var1]);
 				}
 
-				var6.orientation = Players.Players_orientations[var1];
-				var6.targetIndex = Players.Players_targetIndices[var1];
+				var11.orientation = Players.Players_orientations[var1];
+				var11.targetIndex = Players.Players_targetIndices[var1];
 				var7 = Players.Players_regions[var1];
 				var8 = var7 >> 28;
 				var9 = var7 >> 14 & 255;
 				var10 = var7 & 255;
-				var6.pathTraversed[0] = Players.field1274[var1];
-				var6.plane = (byte)var8;
-				var6.resetPath((var9 << 13) + var3 - GrandExchangeOfferNameComparator.baseX * 64, (var10 << 13) + var4 - NetCache.baseY * 64);
-				var6.field652 = false;
+				var11.pathTraversed[0] = Players.field1274[var1];
+				var11.plane = (byte)var8;
+				var11.resetPath((var9 << 13) + var3 - GrandExchangeOfferNameComparator.baseX * 64, (var10 << 13) + var4 - NetCache.baseY * 64);
+				var11.field652 = false;
 				return true;
 			}
 		} else if (var2 == 1) {
@@ -225,15 +225,15 @@ public class World {
 			return false;
 		} else {
 			int var5;
-			int var11;
+			int var6;
 			if (var2 == 2) {
 				var3 = var0.readBits(5);
 				var4 = var3 >> 3;
 				var5 = var3 & 7;
-				var11 = Players.Players_regions[var1];
-				var7 = (var11 >> 28) + var4 & 3;
-				var8 = var11 >> 14 & 255;
-				var9 = var11 & 255;
+				var6 = Players.Players_regions[var1];
+				var7 = (var6 >> 28) + var4 & 3;
+				var8 = var6 >> 14 & 255;
+				var9 = var6 & 255;
 				if (var5 == 0) {
 					--var8;
 					--var9;
@@ -276,11 +276,11 @@ public class World {
 				var3 = var0.readBits(18);
 				var4 = var3 >> 16;
 				var5 = var3 >> 8 & 255;
-				var11 = var3 & 255;
+				var6 = var3 & 255;
 				var7 = Players.Players_regions[var1];
 				var8 = (var7 >> 28) + var4 & 3;
 				var9 = var5 + (var7 >> 14) & 255;
-				var10 = var11 + var7 & 255;
+				var10 = var6 + var7 & 255;
 				Players.Players_regions[var1] = (var9 << 14) + var10 + (var8 << 28);
 				return false;
 			}
@@ -289,8 +289,8 @@ public class World {
 
 	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(S)V",
-		garbageValue = "14756"
+		garbageValue = "14756",
+		signature = "(S)V"
 	)
 	static void method1923() {
 		Iterator var0 = Messages.Messages_hashTable.iterator();
@@ -304,8 +304,8 @@ public class World {
 
 	@ObfuscatedName("gb")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "37330821"
+		garbageValue = "37330821",
+		signature = "(I)V"
 	)
 	static void method1925() {
 		if (UserComparator9.localPlayer.x >> 7 == Client.destinationX && UserComparator9.localPlayer.y >> 7 == Client.destinationY) {

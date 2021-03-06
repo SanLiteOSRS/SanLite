@@ -59,8 +59,8 @@ public class GrandExchangeEvent {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(B)Ljava/lang/String;",
-		garbageValue = "73"
+		garbageValue = "73",
+		signature = "(B)Ljava/lang/String;"
 	)
 	@Export("getOfferName")
 	public String getOfferName() {
@@ -69,8 +69,8 @@ public class GrandExchangeEvent {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(B)Ljava/lang/String;",
-		garbageValue = "59"
+		garbageValue = "59",
+		signature = "(B)Ljava/lang/String;"
 	)
 	@Export("getPreviousOfferName")
 	public String getPreviousOfferName() {
@@ -79,8 +79,8 @@ public class GrandExchangeEvent {
 
 	@ObfuscatedName("fm")
 	@ObfuscatedSignature(
-		signature = "(Lcv;I)V",
-		garbageValue = "878562406"
+		garbageValue = "878562406",
+		signature = "(Lcv;I)V"
 	)
 	static final void method147(Actor var0) {
 		int var1 = Math.max(1, var0.field999 - Client.cycle);
@@ -94,8 +94,8 @@ public class GrandExchangeEvent {
 
 	@ObfuscatedName("jm")
 	@ObfuscatedSignature(
-		signature = "(II)V",
-		garbageValue = "1637672427"
+		garbageValue = "1637672427",
+		signature = "(II)V"
 	)
 	@Export("Widget_resetModelFrames")
 	static final void Widget_resetModelFrames(int var0) {

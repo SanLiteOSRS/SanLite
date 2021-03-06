@@ -88,8 +88,8 @@ public abstract class AbstractArchive {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "([BI)V",
-		garbageValue = "1548060023"
+		garbageValue = "1548060023",
+		signature = "([BI)V"
 	)
 	@Export("decodeIndex")
 	void decodeIndex(byte[] var1) {
@@ -221,8 +221,8 @@ public abstract class AbstractArchive {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(IS)V",
-		garbageValue = "31242"
+		garbageValue = "31242",
+		signature = "(IS)V"
 	)
 	@Export("loadRegionFromGroup")
 	void loadRegionFromGroup(int var1) {
@@ -230,8 +230,8 @@ public abstract class AbstractArchive {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(IIB)[B",
-		garbageValue = "53"
+		garbageValue = "53",
+		signature = "(IIB)[B"
 	)
 	@Export("takeFile")
 	public byte[] takeFile(int var1, int var2) {
@@ -240,8 +240,8 @@ public abstract class AbstractArchive {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(II[II)[B",
-		garbageValue = "-1298768169"
+		garbageValue = "-1298768169",
+		signature = "(II[II)[B"
 	)
 	@Export("takeFileEncrypted")
 	public byte[] takeFileEncrypted(int var1, int var2, int[] var3) {
@@ -270,8 +270,8 @@ public abstract class AbstractArchive {
 
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(III)Z",
-		garbageValue = "-751573419"
+		garbageValue = "-751573419",
+		signature = "(III)Z"
 	)
 	@Export("tryLoadFile")
 	public boolean tryLoadFile(int var1, int var2) {
@@ -291,8 +291,8 @@ public abstract class AbstractArchive {
 
 	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(II)Z",
-		garbageValue = "1147077273"
+		garbageValue = "1147077273",
+		signature = "(II)Z"
 	)
 	public boolean method4366(int var1) {
 		if (this.files.length == 1) {
@@ -306,8 +306,8 @@ public abstract class AbstractArchive {
 
 	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(II)Z",
-		garbageValue = "1620003564"
+		garbageValue = "1620003564",
+		signature = "(II)Z"
 	)
 	@Export("tryLoadGroup")
 	public boolean tryLoadGroup(int var1) {
@@ -321,8 +321,8 @@ public abstract class AbstractArchive {
 
 	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		signature = "(B)Z",
-		garbageValue = "71"
+		garbageValue = "71",
+		signature = "(B)Z"
 	)
 	@Export("isFullyLoaded")
 	public boolean isFullyLoaded() {
@@ -343,8 +343,8 @@ public abstract class AbstractArchive {
 
 	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		signature = "(II)I",
-		garbageValue = "-693356446"
+		garbageValue = "-693356446",
+		signature = "(II)I"
 	)
 	@Export("groupLoadPercent")
 	int groupLoadPercent(int var1) {
@@ -353,8 +353,8 @@ public abstract class AbstractArchive {
 
 	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		signature = "(II)[B",
-		garbageValue = "1180778193"
+		garbageValue = "1180778193",
+		signature = "(II)[B"
 	)
 	@Export("takeFileFlat")
 	public byte[] takeFileFlat(int var1) {
@@ -369,8 +369,8 @@ public abstract class AbstractArchive {
 
 	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		signature = "(III)[B",
-		garbageValue = "1199791629"
+		garbageValue = "1199791629",
+		signature = "(III)[B"
 	)
 	@Export("getFile")
 	public byte[] getFile(int var1, int var2) {
@@ -395,8 +395,8 @@ public abstract class AbstractArchive {
 
 	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		signature = "(II)[B",
-		garbageValue = "-1318442994"
+		garbageValue = "-1318442994",
+		signature = "(II)[B"
 	)
 	@Export("getFileFlat")
 	public byte[] getFileFlat(int var1) {
@@ -411,8 +411,8 @@ public abstract class AbstractArchive {
 
 	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		signature = "(II)V",
-		garbageValue = "-1209383303"
+		garbageValue = "-1209383303",
+		signature = "(II)V"
 	)
 	@Export("loadGroup")
 	void loadGroup(int var1) {
@@ -420,8 +420,8 @@ public abstract class AbstractArchive {
 
 	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		signature = "(II)[I",
-		garbageValue = "-325736688"
+		garbageValue = "-325736688",
+		signature = "(II)[I"
 	)
 	@Export("getGroupFileIds")
 	public int[] getGroupFileIds(int var1) {
@@ -430,8 +430,8 @@ public abstract class AbstractArchive {
 
 	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "(II)I",
-		garbageValue = "2092353569"
+		garbageValue = "2092353569",
+		signature = "(II)I"
 	)
 	@Export("getGroupFileCount")
 	public int getGroupFileCount(int var1) {
@@ -440,8 +440,8 @@ public abstract class AbstractArchive {
 
 	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "-379085562"
+		garbageValue = "-379085562",
+		signature = "(I)I"
 	)
 	@Export("getGroupCount")
 	public int getGroupCount() {
@@ -450,8 +450,8 @@ public abstract class AbstractArchive {
 
 	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-1361507951"
+		garbageValue = "-1361507951",
+		signature = "(I)V"
 	)
 	@Export("clearGroups")
 	public void clearGroups() {
@@ -463,8 +463,8 @@ public abstract class AbstractArchive {
 
 	@ObfuscatedName("g")
 	@ObfuscatedSignature(
-		signature = "(II)V",
-		garbageValue = "1115746573"
+		garbageValue = "1115746573",
+		signature = "(II)V"
 	)
 	@Export("clearFilesGroup")
 	public void clearFilesGroup(int var1) {
@@ -476,8 +476,8 @@ public abstract class AbstractArchive {
 
 	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-1436245650"
+		garbageValue = "-1436245650",
+		signature = "(I)V"
 	)
 	@Export("clearFiles")
 	public void clearFiles() {
@@ -493,8 +493,8 @@ public abstract class AbstractArchive {
 
 	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		signature = "(I[II)Z",
-		garbageValue = "1632026762"
+		garbageValue = "1632026762",
+		signature = "(I[II)Z"
 	)
 	@Export("buildFiles")
 	boolean buildFiles(int var1, int[] var2) {
@@ -591,8 +591,8 @@ public abstract class AbstractArchive {
 
 	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;I)I",
-		garbageValue = "380978131"
+		garbageValue = "380978131",
+		signature = "(Ljava/lang/String;I)I"
 	)
 	@Export("getGroupId")
 	public int getGroupId(String var1) {
@@ -602,8 +602,8 @@ public abstract class AbstractArchive {
 
 	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "(ILjava/lang/String;I)I",
-		garbageValue = "-1592351891"
+		garbageValue = "-1592351891",
+		signature = "(ILjava/lang/String;I)I"
 	)
 	@Export("getFileId")
 	public int getFileId(int var1, String var2) {
@@ -613,8 +613,8 @@ public abstract class AbstractArchive {
 
 	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;Ljava/lang/String;I)Z",
-		garbageValue = "-360297059"
+		garbageValue = "-360297059",
+		signature = "(Ljava/lang/String;Ljava/lang/String;I)Z"
 	)
 	@Export("isValidFileName")
 	public boolean isValidFileName(String var1, String var2) {
@@ -631,8 +631,8 @@ public abstract class AbstractArchive {
 
 	@ObfuscatedName("am")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;Ljava/lang/String;I)[B",
-		garbageValue = "-981973425"
+		garbageValue = "-981973425",
+		signature = "(Ljava/lang/String;Ljava/lang/String;I)[B"
 	)
 	@Export("takeFileByNames")
 	public byte[] takeFileByNames(String var1, String var2) {
@@ -645,8 +645,8 @@ public abstract class AbstractArchive {
 
 	@ObfuscatedName("ag")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;Ljava/lang/String;B)Z",
-		garbageValue = "1"
+		garbageValue = "1",
+		signature = "(Ljava/lang/String;Ljava/lang/String;B)Z"
 	)
 	@Export("tryLoadFileByNames")
 	public boolean tryLoadFileByNames(String var1, String var2) {
@@ -659,8 +659,8 @@ public abstract class AbstractArchive {
 
 	@ObfuscatedName("ae")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;B)Z",
-		garbageValue = "-101"
+		garbageValue = "-101",
+		signature = "(Ljava/lang/String;B)Z"
 	)
 	@Export("tryLoadGroupByName")
 	public boolean tryLoadGroupByName(String var1) {
@@ -671,8 +671,8 @@ public abstract class AbstractArchive {
 
 	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;I)V",
-		garbageValue = "208562973"
+		garbageValue = "208562973",
+		signature = "(Ljava/lang/String;I)V"
 	)
 	@Export("loadRegionFromName")
 	public void loadRegionFromName(String var1) {
@@ -685,8 +685,8 @@ public abstract class AbstractArchive {
 
 	@ObfuscatedName("aq")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;B)I",
-		garbageValue = "40"
+		garbageValue = "40",
+		signature = "(Ljava/lang/String;B)I"
 	)
 	@Export("groupLoadPercentByName")
 	public int groupLoadPercentByName(String var1) {
@@ -697,8 +697,8 @@ public abstract class AbstractArchive {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(II)Z",
-		garbageValue = "1365583869"
+		garbageValue = "1365583869",
+		signature = "(II)Z"
 	)
 	@Export("isWorldMapEvent")
 	public static boolean isWorldMapEvent(int var0) {
@@ -707,8 +707,8 @@ public abstract class AbstractArchive {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(IB)Ljl;",
-		garbageValue = "-4"
+		garbageValue = "-4",
+		signature = "(IB)Ljl;"
 	)
 	@Export("getParamDefinition")
 	public static ParamDefinition getParamDefinition(int var0) {
@@ -730,8 +730,8 @@ public abstract class AbstractArchive {
 
 	@ObfuscatedName("km")
 	@ObfuscatedSignature(
-		signature = "(IIIILlm;Lht;I)V",
-		garbageValue = "-1045650328"
+		garbageValue = "-1045650328",
+		signature = "(IIIILlm;Lht;I)V"
 	)
 	@Export("drawSpriteOnMinimap")
 	static final void drawSpriteOnMinimap(int var0, int var1, int var2, int var3, SpritePixels var4, SpriteMask var5) {

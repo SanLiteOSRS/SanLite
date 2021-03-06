@@ -28,8 +28,8 @@ public class UserComparator9 extends AbstractUserComparator {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Lky;Lky;B)I",
-		garbageValue = "53"
+		garbageValue = "53",
+		signature = "(Lky;Lky;B)I"
 	)
 	@Export("compareBuddy")
 	int compareBuddy(Buddy var1, Buddy var2) {
@@ -46,8 +46,8 @@ public class UserComparator9 extends AbstractUserComparator {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Lig;Lig;I)V",
-		garbageValue = "-1134565802"
+		garbageValue = "-1134565802",
+		signature = "(Lig;Lig;I)V"
 	)
 	public static void method3562(AbstractArchive var0, AbstractArchive var1) {
 		HealthBarDefinition.HealthBarDefinition_archive = var0;

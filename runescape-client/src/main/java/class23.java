@@ -10,8 +10,8 @@ import net.runelite.rs.Reflection;
 public class class23 {
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(Ljava/io/File;ZI)Z",
-		garbageValue = "-1646838359"
+		garbageValue = "-1646838359",
+		signature = "(Ljava/io/File;ZI)Z"
 	)
 	static boolean method235(File var0, boolean var1) {
 		try {
@@ -33,8 +33,8 @@ public class class23 {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-981908924"
+		garbageValue = "-981908924",
+		signature = "(I)V"
 	)
 	static void method232() {
 		Tiles.field517 = null;
@@ -53,8 +53,8 @@ public class class23 {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(II)[B",
-		garbageValue = "-1513413924"
+		garbageValue = "-1513413924",
+		signature = "(II)[B"
 	)
 	@Export("ByteArrayPool_getArray")
 	public static synchronized byte[] ByteArrayPool_getArray(int var0) {
@@ -63,8 +63,8 @@ public class class23 {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-1738423224"
+		garbageValue = "-1738423224",
+		signature = "(I)V"
 	)
 	@Export("savePreferences")
 	static void savePreferences() {
@@ -88,8 +88,8 @@ public class class23 {
 
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;I)Ljava/lang/Class;",
-		garbageValue = "1098573147"
+		garbageValue = "1098573147",
+		signature = "(Ljava/lang/String;I)Ljava/lang/Class;"
 	)
 	@Export("loadClassFromDescriptor")
 	static Class loadClassFromDescriptor(String var0) throws ClassNotFoundException {
@@ -116,8 +116,8 @@ public class class23 {
 
 	@ObfuscatedName("fg")
 	@ObfuscatedSignature(
-		signature = "(ZI)V",
-		garbageValue = "-354639322"
+		garbageValue = "-354639322",
+		signature = "(ZI)V"
 	)
 	static final void method234(boolean var0) {
 		if (var0) {

@@ -23,8 +23,8 @@ final class GrandExchangeOfferAgeComparator implements Comparator {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Lx;Lx;I)I",
-		garbageValue = "1835867422"
+		garbageValue = "1835867422",
+		signature = "(Lx;Lx;I)I"
 	)
 	@Export("compare_bridged")
 	int compare_bridged(GrandExchangeEvent var1, GrandExchangeEvent var2) {
@@ -41,8 +41,8 @@ final class GrandExchangeOfferAgeComparator implements Comparator {
 
 	@ObfuscatedName("hu")
 	@ObfuscatedSignature(
-		signature = "(III)Lgz;",
-		garbageValue = "-1799061438"
+		garbageValue = "-1799061438",
+		signature = "(III)Lgz;"
 	)
 	static RouteStrategy method214(int var0, int var1) {
 		Client.field935.approxDestinationX = var0;

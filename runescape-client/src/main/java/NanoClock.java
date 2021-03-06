@@ -20,8 +20,8 @@ public class NanoClock extends Clock {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "46"
+		garbageValue = "46",
+		signature = "(B)V"
 	)
 	@Export("mark")
 	public void mark() {
@@ -30,8 +30,8 @@ public class NanoClock extends Clock {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(III)I",
-		garbageValue = "1861957348"
+		garbageValue = "1861957348",
+		signature = "(III)I"
 	)
 	@Export("wait")
 	public int wait(int var1, int var2) {

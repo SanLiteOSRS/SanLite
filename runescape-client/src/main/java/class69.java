@@ -13,8 +13,8 @@ public class class69 {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(B)[Liv;",
-		garbageValue = "-52"
+		garbageValue = "-52",
+		signature = "(B)[Liv;"
 	)
 	@Export("PlayerType_values")
 	public static PlayerType[] PlayerType_values() {
@@ -23,8 +23,8 @@ public class class69 {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Lig;Lig;Lig;Lgg;I)Z",
-		garbageValue = "1829730902"
+		garbageValue = "1829730902",
+		signature = "(Lig;Lig;Lig;Lgg;I)Z"
 	)
 	public static boolean method1256(AbstractArchive var0, AbstractArchive var1, AbstractArchive var2, MidiPcmStream var3) {
 		class206.musicPatchesArchive = var0;
@@ -36,8 +36,8 @@ public class class69 {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(Llg;ILjava/lang/String;I)Ljava/lang/String;",
-		garbageValue = "1852545433"
+		garbageValue = "1852545433",
+		signature = "(Llg;ILjava/lang/String;I)Ljava/lang/String;"
 	)
 	static String method1258(IterableNodeHashTable var0, int var1, String var2) {
 		if (var0 == null) {
@@ -50,8 +50,8 @@ public class class69 {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(Lig;Lig;ZII)V",
-		garbageValue = "463524240"
+		garbageValue = "463524240",
+		signature = "(Lig;Lig;ZII)V"
 	)
 	static void method1255(AbstractArchive var0, AbstractArchive var1, boolean var2, int var3) {
 		if (Login.clearLoginScreen) {
@@ -122,8 +122,8 @@ public class class69 {
 
 	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(CI)Z",
-		garbageValue = "-912600065"
+		garbageValue = "-912600065",
+		signature = "(CI)Z"
 	)
 	@Export("isCharAlphabetic")
 	public static boolean isCharAlphabetic(char var0) {
@@ -132,8 +132,8 @@ public class class69 {
 
 	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		signature = "(IIB)I",
-		garbageValue = "57"
+		garbageValue = "57",
+		signature = "(IIB)I"
 	)
 	static final int method1259(int var0, int var1) {
 		int var2 = WorldMapSectionType.method320(var0 - 1, var1 - 1) + WorldMapSectionType.method320(var0 + 1, var1 - 1) + WorldMapSectionType.method320(var0 - 1, 1 + var1) + WorldMapSectionType.method320(var0 + 1, 1 + var1);

@@ -19,9 +19,6 @@ public final class ItemLayer {
 	@Export("tileHeight")
 	int tileHeight;
 	@ObfuscatedName("v")
-	@ObfuscatedGetter(
-		intValue = 879742501
-	)
 	@Export("x")
 	int x;
 	@ObfuscatedName("d")
@@ -66,8 +63,8 @@ public final class ItemLayer {
 
 	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "-81"
+		garbageValue = "-81",
+		signature = "(B)V"
 	)
 	public static void method2938() {
 		WorldMapElement.WorldMapElement_cachedSprites.clear();

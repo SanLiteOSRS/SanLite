@@ -13,8 +13,8 @@ public class class225 {
 
 	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/CharSequence;B)I",
-		garbageValue = "-47"
+		garbageValue = "-47",
+		signature = "(Ljava/lang/CharSequence;B)I"
 	)
 	@Export("hashString")
 	public static int hashString(CharSequence var0) {
@@ -30,8 +30,8 @@ public class class225 {
 
 	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		signature = "(CB)Z",
-		garbageValue = "16"
+		garbageValue = "16",
+		signature = "(CB)Z"
 	)
 	@Export("isAlphaNumeric")
 	public static boolean isAlphaNumeric(char var0) {

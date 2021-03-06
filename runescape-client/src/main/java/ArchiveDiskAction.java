@@ -34,8 +34,8 @@ public class ArchiveDiskAction extends Node {
 
 	@ObfuscatedName("gx")
 	@ObfuscatedSignature(
-		signature = "(B)Z",
-		garbageValue = "126"
+		garbageValue = "126",
+		signature = "(B)Z"
 	)
 	static boolean method4359() {
 		return (Client.drawPlayerNames & 8) != 0;

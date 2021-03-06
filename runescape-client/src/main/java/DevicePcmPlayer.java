@@ -33,8 +33,8 @@ public class DevicePcmPlayer extends PcmPlayer {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "0"
+		garbageValue = "0",
+		signature = "(B)V"
 	)
 	@Export("init")
 	protected void init() {
@@ -44,8 +44,8 @@ public class DevicePcmPlayer extends PcmPlayer {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(II)V",
-		garbageValue = "-1929759603"
+		garbageValue = "-1929759603",
+		signature = "(II)V"
 	)
 	@Export("open")
 	protected void open(int var1) throws LineUnavailableException {
@@ -67,8 +67,8 @@ public class DevicePcmPlayer extends PcmPlayer {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(S)I",
-		garbageValue = "6543"
+		garbageValue = "6543",
+		signature = "(S)I"
 	)
 	@Export("position")
 	protected int position() {
@@ -98,8 +98,8 @@ public class DevicePcmPlayer extends PcmPlayer {
 
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "64"
+		garbageValue = "64",
+		signature = "(B)V"
 	)
 	@Export("close")
 	protected void close() {
@@ -112,8 +112,8 @@ public class DevicePcmPlayer extends PcmPlayer {
 
 	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-674709942"
+		garbageValue = "-674709942",
+		signature = "(I)V"
 	)
 	@Export("discard")
 	protected void discard() {

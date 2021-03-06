@@ -38,8 +38,8 @@ public final class Canvas extends java.awt.Canvas {
 
 	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		signature = "(II)I",
-		garbageValue = "-866196004"
+		garbageValue = "-866196004",
+		signature = "(II)I"
 	)
 	static int method935(int var0) {
 		return (int)Math.pow(2.0D, (double)(7.0F + (float)var0 / 256.0F));
@@ -47,8 +47,8 @@ public final class Canvas extends java.awt.Canvas {
 
 	@ObfuscatedName("hc")
 	@ObfuscatedSignature(
-		signature = "(IIIIIIIIII)V",
-		garbageValue = "-614885261"
+		garbageValue = "-614885261",
+		signature = "(IIIIIIIIII)V"
 	)
 	@Export("updatePendingSpawn")
 	static final void updatePendingSpawn(int var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8) {
@@ -80,8 +80,8 @@ public final class Canvas extends java.awt.Canvas {
 
 	@ObfuscatedName("kb")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-54323362"
+		garbageValue = "-54323362",
+		signature = "(I)V"
 	)
 	@Export("Clan_leaveChat")
 	static final void Clan_leaveChat() {

@@ -82,8 +82,8 @@ public class GraphicsDefaults {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Lig;I)V",
-		garbageValue = "-1311104999"
+		garbageValue = "-1311104999",
+		signature = "(Lig;I)V"
 	)
 	@Export("decode")
 	public void decode(AbstractArchive var1) {

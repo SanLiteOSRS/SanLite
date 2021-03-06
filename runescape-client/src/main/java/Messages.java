@@ -75,8 +75,8 @@ public class Messages {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "618047929"
+		garbageValue = "618047929",
+		signature = "(I)V"
 	)
 	static void method2372() {
 		WorldMapRegion.WorldMapRegion_cachedSprites.clear();

@@ -38,16 +38,16 @@ public abstract class RouteStrategy {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(IIILfe;I)Z",
-		garbageValue = "1148121553"
+		garbageValue = "1148121553",
+		signature = "(IIILfe;I)Z"
 	)
 	@Export("hasArrived")
 	public abstract boolean hasArrived(int var1, int var2, int var3, CollisionMap var4);
 
 	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "-69"
+		garbageValue = "-69",
+		signature = "(B)V"
 	)
 	static void method3795() {
 		Iterator var0 = Messages.Messages_hashTable.iterator();
@@ -61,8 +61,8 @@ public abstract class RouteStrategy {
 
 	@ObfuscatedName("gd")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-1059430259"
+		garbageValue = "-1059430259",
+		signature = "(I)V"
 	)
 	static void method3794() {
 		if (Client.combatTargetPlayerIndex >= 0 && Client.players[Client.combatTargetPlayerIndex] != null) {

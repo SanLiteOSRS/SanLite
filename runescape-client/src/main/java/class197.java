@@ -29,8 +29,8 @@ public class class197 {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Lig;B)V",
-		garbageValue = "52"
+		garbageValue = "52",
+		signature = "(Lig;B)V"
 	)
 	public static void method3828(AbstractArchive var0) {
 		ParamDefinition.ParamDefinition_archive = var0;
@@ -38,8 +38,8 @@ public class class197 {
 
 	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(ILcl;ZI)I",
-		garbageValue = "1647502"
+		garbageValue = "1647502",
+		signature = "(ILcl;ZI)I"
 	)
 	static int method3844(int var0, Script var1, boolean var2) {
 		Widget var3;

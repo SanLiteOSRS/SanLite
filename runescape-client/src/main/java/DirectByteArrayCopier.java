@@ -22,8 +22,8 @@ public class DirectByteArrayCopier extends AbstractByteArrayCopier {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(I)[B",
-		garbageValue = "1361682252"
+		garbageValue = "1361682252",
+		signature = "(I)[B"
 	)
 	@Export("get")
 	byte[] get() {
@@ -35,8 +35,8 @@ public class DirectByteArrayCopier extends AbstractByteArrayCopier {
 
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "([BI)V",
-		garbageValue = "262833794"
+		garbageValue = "262833794",
+		signature = "([BI)V"
 	)
 	@Export("set")
 	void set(byte[] var1) {
@@ -47,8 +47,8 @@ public class DirectByteArrayCopier extends AbstractByteArrayCopier {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Lig;I)V",
-		garbageValue = "292233920"
+		garbageValue = "292233920",
+		signature = "(Lig;I)V"
 	)
 	public static void method4147(AbstractArchive var0) {
 		StructDefinition.StructDefinition_archive = var0;

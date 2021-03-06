@@ -14,8 +14,8 @@ public class class217 {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Lig;B)V",
-		garbageValue = "0"
+		garbageValue = "0",
+		signature = "(Lig;B)V"
 	)
 	public static void method4154(AbstractArchive var0) {
 		InvDefinition.InvDefinition_archive = var0;
@@ -23,8 +23,8 @@ public class class217 {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/CharSequence;I)I",
-		garbageValue = "-2092030193"
+		garbageValue = "-2092030193",
+		signature = "(Ljava/lang/CharSequence;I)I"
 	)
 	@Export("parseInt")
 	public static int parseInt(CharSequence var0) {
@@ -33,8 +33,8 @@ public class class217 {
 
 	@ObfuscatedName("ex")
 	@ObfuscatedSignature(
-		signature = "(Liy;Ljava/lang/String;I)V",
-		garbageValue = "2062536839"
+		garbageValue = "2062536839",
+		signature = "(Liy;Ljava/lang/String;I)V"
 	)
 	static void method4155(Archive var0, String var1) {
 		ArchiveLoader var2 = new ArchiveLoader(var0, var1);

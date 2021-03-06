@@ -27,8 +27,8 @@ final class class2 implements class0 {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/Object;Lkx;B)V",
-		garbageValue = "-41"
+		garbageValue = "-41",
+		signature = "(Ljava/lang/Object;Lkx;B)V"
 	)
 	public void vmethod48(Object var1, Buffer var2) {
 		this.method20((Long)var1, var2);
@@ -36,8 +36,8 @@ final class class2 implements class0 {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(Lkx;I)Ljava/lang/Object;",
-		garbageValue = "1678106953"
+		garbageValue = "1678106953",
+		signature = "(Lkx;I)Ljava/lang/Object;"
 	)
 	public Object vmethod45(Buffer var1) {
 		return var1.readLong();
@@ -45,8 +45,8 @@ final class class2 implements class0 {
 
 	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/Long;Lkx;I)V",
-		garbageValue = "444192974"
+		garbageValue = "444192974",
+		signature = "(Ljava/lang/Long;Lkx;I)V"
 	)
 	void method20(Long var1, Buffer var2) {
 		var2.writeLong(var1);
@@ -54,8 +54,8 @@ final class class2 implements class0 {
 
 	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		signature = "(ILcl;ZS)I",
-		garbageValue = "-27165"
+		garbageValue = "-27165",
+		signature = "(ILcl;ZS)I"
 	)
 	static int method25(int var0, Script var1, boolean var2) {
 		if (var0 != 3700 && var0 != 3701) {
@@ -74,8 +74,8 @@ final class class2 implements class0 {
 
 	@ObfuscatedName("gl")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "1857096968"
+		garbageValue = "1857096968",
+		signature = "(I)V"
 	)
 	static void method27() {
 		if (SoundSystem.worldMap != null) {

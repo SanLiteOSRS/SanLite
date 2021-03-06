@@ -67,8 +67,8 @@ public class Message extends DualNode {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V",
-		garbageValue = "-313070172"
+		garbageValue = "-313070172",
+		signature = "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V"
 	)
 	@Export("set")
 	void set(int var1, String var2, String var3, String var4) {
@@ -86,8 +86,8 @@ public class Message extends DualNode {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "-22"
+		garbageValue = "-22",
+		signature = "(B)V"
 	)
 	@Export("clearIsFromFriend")
 	void clearIsFromFriend() {
@@ -96,8 +96,8 @@ public class Message extends DualNode {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(I)Z",
-		garbageValue = "-624975397"
+		garbageValue = "-624975397",
+		signature = "(I)Z"
 	)
 	@Export("isFromFriend")
 	final boolean isFromFriend() {
@@ -110,8 +110,8 @@ public class Message extends DualNode {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-547685075"
+		garbageValue = "-547685075",
+		signature = "(I)V"
 	)
 	@Export("fillIsFromFriend")
 	void fillIsFromFriend() {
@@ -120,8 +120,8 @@ public class Message extends DualNode {
 
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "6"
+		garbageValue = "6",
+		signature = "(B)V"
 	)
 	@Export("clearIsFromIgnored")
 	void clearIsFromIgnored() {
@@ -130,8 +130,8 @@ public class Message extends DualNode {
 
 	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(I)Z",
-		garbageValue = "170822627"
+		garbageValue = "170822627",
+		signature = "(I)Z"
 	)
 	@Export("isFromIgnored")
 	final boolean isFromIgnored() {
@@ -144,8 +144,8 @@ public class Message extends DualNode {
 
 	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "-33"
+		garbageValue = "-33",
+		signature = "(B)V"
 	)
 	@Export("fillIsFromIgnored")
 	void fillIsFromIgnored() {
@@ -154,8 +154,8 @@ public class Message extends DualNode {
 
 	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-1712388135"
+		garbageValue = "-1712388135",
+		signature = "(I)V"
 	)
 	@Export("fillSenderUsername")
 	final void fillSenderUsername() {
@@ -169,8 +169,8 @@ public class Message extends DualNode {
 
 	@ObfuscatedName("kg")
 	@ObfuscatedSignature(
-		signature = "(Lhz;IIIB)V",
-		garbageValue = "1"
+		garbageValue = "1",
+		signature = "(Lhz;IIIB)V"
 	)
 	@Export("drawCompass")
 	static final void drawCompass(Widget var0, int var1, int var2, int var3) {

@@ -15,8 +15,8 @@ public class class90 {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(IB)Ljy;",
-		garbageValue = "52"
+		garbageValue = "52",
+		signature = "(IB)Ljy;"
 	)
 	@Export("getNpcDefinition")
 	public static NPCComposition getNpcDefinition(int var0) {
@@ -39,8 +39,8 @@ public class class90 {
 
 	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(ILcl;ZI)I",
-		garbageValue = "630017"
+		garbageValue = "630017",
+		signature = "(ILcl;ZI)I"
 	)
 	static int method2193(int var0, Script var1, boolean var2) {
 		int var4 = -1;
@@ -228,8 +228,8 @@ public class class90 {
 
 	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-2128979355"
+		garbageValue = "-2128979355",
+		signature = "(I)V"
 	)
 	static void method2191() {
 		Players.Players_count = 0;

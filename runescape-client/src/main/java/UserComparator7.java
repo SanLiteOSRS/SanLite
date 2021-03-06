@@ -22,8 +22,8 @@ public class UserComparator7 extends AbstractUserComparator {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Lky;Lky;B)I",
-		garbageValue = "0"
+		garbageValue = "0",
+		signature = "(Lky;Lky;B)I"
 	)
 	@Export("compareBuddy")
 	int compareBuddy(Buddy var1, Buddy var2) {
@@ -40,8 +40,8 @@ public class UserComparator7 extends AbstractUserComparator {
 
 	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		signature = "(IIIIIIIB)Z",
-		garbageValue = "126"
+		garbageValue = "126",
+		signature = "(IIIIIIIB)Z"
 	)
 	static final boolean method3592(int var0, int var1, int var2, int var3, int var4, int var5, int var6) {
 		int var7 = ViewportMouse.ViewportMouse_y + var6;
@@ -65,8 +65,8 @@ public class UserComparator7 extends AbstractUserComparator {
 
 	@ObfuscatedName("gz")
 	@ObfuscatedSignature(
-		signature = "(Lbk;IIB)V",
-		garbageValue = "-26"
+		garbageValue = "-26",
+		signature = "(Lbk;IIB)V"
 	)
 	@Export("performPlayerAnimation")
 	static void performPlayerAnimation(Player var0, int var1, int var2) {

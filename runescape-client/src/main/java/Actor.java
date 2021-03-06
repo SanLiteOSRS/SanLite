@@ -373,8 +373,8 @@ public abstract class Actor extends Renderable {
 
 	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		signature = "(I)Z",
-		garbageValue = "-251916247"
+		garbageValue = "-251916247",
+		signature = "(I)Z"
 	)
 	@Export("isVisible")
 	boolean isVisible() {
@@ -383,8 +383,8 @@ public abstract class Actor extends Renderable {
 
 	@ObfuscatedName("ad")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-1387787360"
+		garbageValue = "-1387787360",
+		signature = "(I)V"
 	)
 	final void method1848() {
 		this.pathLength = 0;
@@ -393,8 +393,8 @@ public abstract class Actor extends Renderable {
 
 	@ObfuscatedName("af")
 	@ObfuscatedSignature(
-		signature = "(IIIIIIB)V",
-		garbageValue = "104"
+		garbageValue = "104",
+		signature = "(IIIIIIB)V"
 	)
 	@Export("addHitSplat")
 	final void addHitSplat(int var1, int var2, int var3, int var4, int var5, int var6) {
@@ -474,8 +474,8 @@ public abstract class Actor extends Renderable {
 
 	@ObfuscatedName("av")
 	@ObfuscatedSignature(
-		signature = "(IIIIIIB)V",
-		garbageValue = "0"
+		garbageValue = "0",
+		signature = "(IIIIIIB)V"
 	)
 	@Export("addHealthBar")
 	final void addHealthBar(int var1, int var2, int var3, int var4, int var5, int var6) {
@@ -536,8 +536,8 @@ public abstract class Actor extends Renderable {
 
 	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		signature = "(IB)V",
-		garbageValue = "24"
+		garbageValue = "24",
+		signature = "(IB)V"
 	)
 	@Export("removeHealthBar")
 	final void removeHealthBar(int var1) {
@@ -569,8 +569,8 @@ public abstract class Actor extends Renderable {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(ZI)V",
-		garbageValue = "424984717"
+		garbageValue = "424984717",
+		signature = "(ZI)V"
 	)
 	public static void method1867(boolean var0) {
 		if (class297.NetCache_socket != null) {
@@ -594,26 +594,26 @@ public abstract class Actor extends Renderable {
 
 	@ObfuscatedName("fu")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-1068788857"
+		garbageValue = "-1068788857",
+		signature = "(I)V"
 	)
 	static final void method1868() {
 		int[] var0 = Players.Players_indices;
 
 		int var1;
 		for (var1 = 0; var1 < Players.Players_count; ++var1) {
-			Player var2 = Client.players[var0[var1]];
-			if (var2 != null && var2.overheadTextCyclesRemaining > 0) {
-				--var2.overheadTextCyclesRemaining;
-				if (var2.overheadTextCyclesRemaining == 0) {
-					var2.overheadText = null;
+			Player var4 = Client.players[var0[var1]];
+			if (var4 != null && var4.overheadTextCyclesRemaining > 0) {
+				--var4.overheadTextCyclesRemaining;
+				if (var4.overheadTextCyclesRemaining == 0) {
+					var4.overheadText = null;
 				}
 			}
 		}
 
 		for (var1 = 0; var1 < Client.npcCount; ++var1) {
-			int var4 = Client.npcIndices[var1];
-			NPC var3 = Client.npcs[var4];
+			int var2 = Client.npcIndices[var1];
+			NPC var3 = Client.npcs[var2];
 			if (var3 != null && var3.overheadTextCyclesRemaining > 0) {
 				--var3.overheadTextCyclesRemaining;
 				if (var3.overheadTextCyclesRemaining == 0) {

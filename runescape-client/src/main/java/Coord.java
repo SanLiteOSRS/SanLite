@@ -56,8 +56,8 @@ public class Coord {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "71745539"
+		garbageValue = "71745539",
+		signature = "(I)I"
 	)
 	@Export("packed")
 	public int packed() {
@@ -66,8 +66,8 @@ public class Coord {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(Lhd;S)Z",
-		garbageValue = "144"
+		garbageValue = "144",
+		signature = "(Lhd;S)Z"
 	)
 	@Export("equalsCoord")
 	boolean equalsCoord(Coord var1) {
@@ -82,8 +82,8 @@ public class Coord {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;B)Ljava/lang/String;",
-		garbageValue = "31"
+		garbageValue = "31",
+		signature = "(Ljava/lang/String;B)Ljava/lang/String;"
 	)
 	@Export("toString")
 	String toString(String var1) {
@@ -108,8 +108,8 @@ public class Coord {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(II)I",
-		garbageValue = "1310695522"
+		garbageValue = "1310695522",
+		signature = "(II)I"
 	)
 	@Export("iLog")
 	public static int iLog(int var0) {

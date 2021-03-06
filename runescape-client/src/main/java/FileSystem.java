@@ -31,8 +31,8 @@ public class FileSystem {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(IS)Ljava/lang/String;",
-		garbageValue = "4003"
+		garbageValue = "4003",
+		signature = "(IS)Ljava/lang/String;"
 	)
 	@Export("colorStartTag")
 	static String colorStartTag(int var0) {
@@ -41,8 +41,8 @@ public class FileSystem {
 
 	@ObfuscatedName("az")
 	@ObfuscatedSignature(
-		signature = "(IB)I",
-		garbageValue = "14"
+		garbageValue = "14",
+		signature = "(IB)I"
 	)
 	static int method3709(int var0) {
 		return (int)((Math.log((double)var0) / Interpreter.field1124 - 7.0D) * 256.0D);

@@ -67,8 +67,8 @@ public class LoginPacket implements class190 {
 	}
 
 	@ObfuscatedSignature(
-		signature = "(II)V",
-		garbageValue = "0"
+		garbageValue = "0",
+		signature = "(II)V"
 	)
 	LoginPacket(int var1, int var2) {
 		this.id = var1;
@@ -76,8 +76,8 @@ public class LoginPacket implements class190 {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(CI)B",
-		garbageValue = "1633316338"
+		garbageValue = "1633316338",
+		signature = "(CI)B"
 	)
 	@Export("charToByteCp1252")
 	public static byte charToByteCp1252(char var0) {
@@ -147,8 +147,8 @@ public class LoginPacket implements class190 {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(IIII)Llm;",
-		garbageValue = "-560730174"
+		garbageValue = "-560730174",
+		signature = "(IIII)Llm;"
 	)
 	static SpritePixels method3816(int var0, int var1, int var2) {
 		return (SpritePixels)WorldMapRegion.WorldMapRegion_cachedSprites.get(AttackOption.method2203(var0, var1, var2));
@@ -156,8 +156,8 @@ public class LoginPacket implements class190 {
 
 	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "818544201"
+		garbageValue = "818544201",
+		signature = "(I)V"
 	)
 	public static void method3815() {
 		try {
@@ -197,8 +197,8 @@ public class LoginPacket implements class190 {
 
 	@ObfuscatedName("ju")
 	@ObfuscatedSignature(
-		signature = "(IIB)V",
-		garbageValue = "-73"
+		garbageValue = "-73",
+		signature = "(IIB)V"
 	)
 	static void method3812(int var0, int var1) {
 		MenuAction var2 = class195.tempMenuAction;

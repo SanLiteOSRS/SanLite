@@ -326,8 +326,8 @@ public class WorldMap {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Lig;Lig;Lig;Lkl;Ljava/util/HashMap;[Lly;B)V",
-		garbageValue = "32"
+		garbageValue = "32",
+		signature = "(Lig;Lig;Lig;Lkl;Ljava/util/HashMap;[Lly;B)V"
 	)
 	@Export("init")
 	public void init(AbstractArchive var1, AbstractArchive var2, AbstractArchive var3, Font var4, HashMap var5, IndexedSprite[] var6) {
@@ -361,8 +361,8 @@ public class WorldMap {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "85863738"
+		garbageValue = "85863738",
+		signature = "(I)V"
 	)
 	public void method6584() {
 		WorldMapSection1.method671();
@@ -370,8 +370,8 @@ public class WorldMap {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(IIZIIIII)V",
-		garbageValue = "230943505"
+		garbageValue = "230943505",
+		signature = "(IIZIIIII)V"
 	)
 	@Export("onCycle")
 	public void onCycle(int var1, int var2, boolean var3, int var4, int var5, int var6, int var7) {
@@ -421,13 +421,15 @@ public class WorldMap {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(IIZZI)V",
-		garbageValue = "-1689705014"
+		garbageValue = "-1689705014",
+		signature = "(IIZZI)V"
 	)
 	public void method6525(int var1, int var2, boolean var3, boolean var4) {
 		long var5 = Tiles.currentTimeMillis();
 		this.method6539(var1, var2, var4, var5);
-		if (!this.hasTarget() && (var4 || var3)) {
+		if (this.hasTarget() || !var4 && !var3) {
+			this.method6527();
+		} else {
 			if (var4) {
 				this.field4022 = var1;
 				this.field4023 = var2;
@@ -440,8 +442,6 @@ public class WorldMap {
 				int var8 = var2 - this.field4023;
 				this.setWorldMapPosition(this.field3983 - (int)((float)var7 / this.zoomTarget), (int)((float)var8 / this.zoomTarget) + this.field4024, false);
 			}
-		} else {
-			this.method6527();
 		}
 
 		if (var4) {
@@ -497,8 +497,8 @@ public class WorldMap {
 
 	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "-1"
+		garbageValue = "-1",
+		signature = "(B)V"
 	)
 	@Export("smoothZoom")
 	void smoothZoom() {
@@ -518,8 +518,8 @@ public class WorldMap {
 
 	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "2023842573"
+		garbageValue = "2023842573",
+		signature = "(I)V"
 	)
 	@Export("scrollToTarget")
 	void scrollToTarget() {
@@ -545,8 +545,8 @@ public class WorldMap {
 
 	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		signature = "(IIZI)V",
-		garbageValue = "1942318889"
+		garbageValue = "1942318889",
+		signature = "(IIZI)V"
 	)
 	@Export("setWorldMapPosition")
 	final void setWorldMapPosition(int var1, int var2, boolean var3) {
@@ -561,8 +561,8 @@ public class WorldMap {
 
 	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-759849186"
+		garbageValue = "-759849186",
+		signature = "(I)V"
 	)
 	final void method6527() {
 		this.field4023 = -1;
@@ -573,8 +573,8 @@ public class WorldMap {
 
 	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		signature = "(I)Z",
-		garbageValue = "-172308230"
+		garbageValue = "-172308230",
+		signature = "(I)Z"
 	)
 	@Export("hasTarget")
 	boolean hasTarget() {
@@ -583,8 +583,8 @@ public class WorldMap {
 
 	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		signature = "(IIII)Lar;",
-		garbageValue = "1643132565"
+		garbageValue = "1643132565",
+		signature = "(IIII)Lar;"
 	)
 	@Export("mapAreaAtCoord")
 	public WorldMapArea mapAreaAtCoord(int var1, int var2, int var3) {
@@ -604,8 +604,8 @@ public class WorldMap {
 
 	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		signature = "(IIIZI)V",
-		garbageValue = "76619956"
+		garbageValue = "76619956",
+		signature = "(IIIZI)V"
 	)
 	public void method6530(int var1, int var2, int var3, boolean var4) {
 		WorldMapArea var5 = this.mapAreaAtCoord(var1, var2, var3);
@@ -632,8 +632,8 @@ public class WorldMap {
 
 	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		signature = "(II)V",
-		garbageValue = "1925451385"
+		garbageValue = "1925451385",
+		signature = "(II)V"
 	)
 	@Export("setCurrentMapAreaId")
 	public void setCurrentMapAreaId(int var1) {
@@ -646,8 +646,8 @@ public class WorldMap {
 
 	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "-730626276"
+		garbageValue = "-730626276",
+		signature = "(I)I"
 	)
 	@Export("currentMapAreaId")
 	public int currentMapAreaId() {
@@ -656,8 +656,8 @@ public class WorldMap {
 
 	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "(B)Lar;",
-		garbageValue = "-84"
+		garbageValue = "-84",
+		signature = "(B)Lar;"
 	)
 	@Export("getCurrentMapArea")
 	public WorldMapArea getCurrentMapArea() {
@@ -666,8 +666,8 @@ public class WorldMap {
 
 	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		signature = "(Lar;I)V",
-		garbageValue = "-248631189"
+		garbageValue = "-248631189",
+		signature = "(Lar;I)V"
 	)
 	@Export("setCurrentMapArea")
 	void setCurrentMapArea(WorldMapArea var1) {
@@ -679,8 +679,8 @@ public class WorldMap {
 
 	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		signature = "(Lar;I)V",
-		garbageValue = "1768917402"
+		garbageValue = "1768917402",
+		signature = "(Lar;I)V"
 	)
 	@Export("initializeWorldMapManager")
 	void initializeWorldMapManager(WorldMapArea var1) {
@@ -691,8 +691,8 @@ public class WorldMap {
 
 	@ObfuscatedName("g")
 	@ObfuscatedSignature(
-		signature = "(Lar;Lhd;Lhd;ZI)V",
-		garbageValue = "-1378443139"
+		garbageValue = "-1378443139",
+		signature = "(Lar;Lhd;Lhd;ZI)V"
 	)
 	public void method6536(WorldMapArea var1, Coord var2, Coord var3, boolean var4) {
 		if (var1 != null) {
@@ -711,8 +711,8 @@ public class WorldMap {
 
 	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "(IIIS)V",
-		garbageValue = "-10194"
+		garbageValue = "-10194",
+		signature = "(IIIS)V"
 	)
 	@Export("jump")
 	void jump(int var1, int var2, int var3) {
@@ -735,8 +735,8 @@ public class WorldMap {
 
 	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		signature = "(IIIIII)V",
-		garbageValue = "943833316"
+		garbageValue = "943833316",
+		signature = "(IIIIII)V"
 	)
 	@Export("draw")
 	public void draw(int var1, int var2, int var3, int var4, int var5) {
@@ -795,8 +795,8 @@ public class WorldMap {
 
 	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		signature = "(IIIIIIB)Z",
-		garbageValue = "32"
+		garbageValue = "32",
+		signature = "(IIIIIIB)Z"
 	)
 	boolean method6633(int var1, int var2, int var3, int var4, int var5, int var6) {
 		if (this.sprite == null) {
@@ -818,8 +818,8 @@ public class WorldMap {
 
 	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "(IIIIIII)V",
-		garbageValue = "-1237692088"
+		garbageValue = "-1237692088",
+		signature = "(IIIIIII)V"
 	)
 	void method6699(int var1, int var2, int var3, int var4, int var5, int var6) {
 		if (HealthBarUpdate.field1016 != null) {
@@ -861,8 +861,8 @@ public class WorldMap {
 
 	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
-		signature = "(IIIII)V",
-		garbageValue = "-1634362123"
+		garbageValue = "-1634362123",
+		signature = "(IIIII)V"
 	)
 	@Export("drawOverview")
 	public void drawOverview(int var1, int var2, int var3, int var4) {
@@ -880,8 +880,8 @@ public class WorldMap {
 
 	@ObfuscatedName("am")
 	@ObfuscatedSignature(
-		signature = "(II)V",
-		garbageValue = "1829622274"
+		garbageValue = "1829622274",
+		signature = "(II)V"
 	)
 	@Export("setZoomPercentage")
 	public void setZoomPercentage(int var1) {
@@ -890,8 +890,8 @@ public class WorldMap {
 
 	@ObfuscatedName("ag")
 	@ObfuscatedSignature(
-		signature = "(IIIIIB)V",
-		garbageValue = "-22"
+		garbageValue = "-22",
+		signature = "(IIIIIB)V"
 	)
 	@Export("drawLoading")
 	void drawLoading(int var1, int var2, int var3, int var4, int var5) {
@@ -906,8 +906,8 @@ public class WorldMap {
 
 	@ObfuscatedName("ae")
 	@ObfuscatedSignature(
-		signature = "(II)F",
-		garbageValue = "2058338790"
+		garbageValue = "2058338790",
+		signature = "(II)F"
 	)
 	@Export("getZoomFromPercentage")
 	float getZoomFromPercentage(int var1) {
@@ -926,8 +926,8 @@ public class WorldMap {
 
 	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "755044862"
+		garbageValue = "755044862",
+		signature = "(I)I"
 	)
 	@Export("getZoomLevel")
 	public int getZoomLevel() {
@@ -946,8 +946,8 @@ public class WorldMap {
 
 	@ObfuscatedName("aq")
 	@ObfuscatedSignature(
-		signature = "(S)V",
-		garbageValue = "7039"
+		garbageValue = "7039",
+		signature = "(S)V"
 	)
 	@Export("loadCache")
 	public void loadCache() {
@@ -956,8 +956,8 @@ public class WorldMap {
 
 	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		signature = "(I)Z",
-		garbageValue = "-1977951354"
+		garbageValue = "-1977951354",
+		signature = "(I)Z"
 	)
 	@Export("isCacheLoaded")
 	public boolean isCacheLoaded() {
@@ -966,8 +966,8 @@ public class WorldMap {
 
 	@ObfuscatedName("ak")
 	@ObfuscatedSignature(
-		signature = "(II)Lar;",
-		garbageValue = "24879988"
+		garbageValue = "24879988",
+		signature = "(II)Lar;"
 	)
 	@Export("getMapArea")
 	public WorldMapArea getMapArea(int var1) {
@@ -987,8 +987,8 @@ public class WorldMap {
 
 	@ObfuscatedName("ax")
 	@ObfuscatedSignature(
-		signature = "(III)V",
-		garbageValue = "1763337265"
+		garbageValue = "1763337265",
+		signature = "(III)V"
 	)
 	@Export("setWorldMapPositionTarget")
 	public void setWorldMapPositionTarget(int var1, int var2) {
@@ -1000,8 +1000,8 @@ public class WorldMap {
 
 	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		signature = "(III)V",
-		garbageValue = "1279892888"
+		garbageValue = "1279892888",
+		signature = "(III)V"
 	)
 	@Export("setWorldMapPositionTargetInstant")
 	public void setWorldMapPositionTargetInstant(int var1, int var2) {
@@ -1014,8 +1014,8 @@ public class WorldMap {
 
 	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		signature = "(IIII)V",
-		garbageValue = "1845440607"
+		garbageValue = "1845440607",
+		signature = "(IIII)V"
 	)
 	@Export("jumpToSourceCoord")
 	public void jumpToSourceCoord(int var1, int var2, int var3) {
@@ -1030,8 +1030,8 @@ public class WorldMap {
 
 	@ObfuscatedName("aa")
 	@ObfuscatedSignature(
-		signature = "(IIII)V",
-		garbageValue = "739439346"
+		garbageValue = "739439346",
+		signature = "(IIII)V"
 	)
 	@Export("jumpToSourceCoordInstant")
 	public void jumpToSourceCoordInstant(int var1, int var2, int var3) {
@@ -1046,8 +1046,8 @@ public class WorldMap {
 
 	@ObfuscatedName("as")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "-1657700908"
+		garbageValue = "-1657700908",
+		signature = "(I)I"
 	)
 	@Export("getDisplayX")
 	public int getDisplayX() {
@@ -1056,8 +1056,8 @@ public class WorldMap {
 
 	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "-162188906"
+		garbageValue = "-162188906",
+		signature = "(I)I"
 	)
 	@Export("getDisplayY")
 	public int getDisplayY() {
@@ -1066,8 +1066,8 @@ public class WorldMap {
 
 	@ObfuscatedName("az")
 	@ObfuscatedSignature(
-		signature = "(I)Lhd;",
-		garbageValue = "39771742"
+		garbageValue = "39771742",
+		signature = "(I)Lhd;"
 	)
 	@Export("getDisplayCoord")
 	public Coord getDisplayCoord() {
@@ -1076,8 +1076,8 @@ public class WorldMap {
 
 	@ObfuscatedName("ah")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "1570043056"
+		garbageValue = "1570043056",
+		signature = "(I)I"
 	)
 	@Export("getDisplayWith")
 	public int getDisplayWith() {
@@ -1086,8 +1086,8 @@ public class WorldMap {
 
 	@ObfuscatedName("ap")
 	@ObfuscatedSignature(
-		signature = "(B)I",
-		garbageValue = "0"
+		garbageValue = "0",
+		signature = "(B)I"
 	)
 	@Export("getDisplayHeight")
 	public int getDisplayHeight() {
@@ -1096,8 +1096,8 @@ public class WorldMap {
 
 	@ObfuscatedName("aj")
 	@ObfuscatedSignature(
-		signature = "(II)V",
-		garbageValue = "1795336966"
+		garbageValue = "1795336966",
+		signature = "(II)V"
 	)
 	@Export("setMaxFlashCount")
 	public void setMaxFlashCount(int var1) {
@@ -1109,8 +1109,8 @@ public class WorldMap {
 
 	@ObfuscatedName("an")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "-62"
+		garbageValue = "-62",
+		signature = "(B)V"
 	)
 	@Export("resetMaxFlashCount")
 	public void resetMaxFlashCount() {
@@ -1119,8 +1119,8 @@ public class WorldMap {
 
 	@ObfuscatedName("ai")
 	@ObfuscatedSignature(
-		signature = "(II)V",
-		garbageValue = "91922323"
+		garbageValue = "91922323",
+		signature = "(II)V"
 	)
 	@Export("setCyclesPerFlash")
 	public void setCyclesPerFlash(int var1) {
@@ -1132,8 +1132,8 @@ public class WorldMap {
 
 	@ObfuscatedName("ab")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "24643102"
+		garbageValue = "24643102",
+		signature = "(I)V"
 	)
 	@Export("resetCyclesPerFlash")
 	public void resetCyclesPerFlash() {
@@ -1142,8 +1142,8 @@ public class WorldMap {
 
 	@ObfuscatedName("au")
 	@ObfuscatedSignature(
-		signature = "(ZI)V",
-		garbageValue = "-1604690679"
+		garbageValue = "-1604690679",
+		signature = "(ZI)V"
 	)
 	@Export("setPerpetualFlash")
 	public void setPerpetualFlash(boolean var1) {
@@ -1152,8 +1152,8 @@ public class WorldMap {
 
 	@ObfuscatedName("ad")
 	@ObfuscatedSignature(
-		signature = "(IB)V",
-		garbageValue = "-18"
+		garbageValue = "-18",
+		signature = "(IB)V"
 	)
 	@Export("flashElement")
 	public void flashElement(int var1) {
@@ -1165,8 +1165,8 @@ public class WorldMap {
 
 	@ObfuscatedName("af")
 	@ObfuscatedSignature(
-		signature = "(II)V",
-		garbageValue = "176453590"
+		garbageValue = "176453590",
+		signature = "(II)V"
 	)
 	@Export("flashCategory")
 	public void flashCategory(int var1) {
@@ -1184,8 +1184,8 @@ public class WorldMap {
 
 	@ObfuscatedName("av")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "119"
+		garbageValue = "119",
+		signature = "(B)V"
 	)
 	@Export("stopCurrentFlashes")
 	public void stopCurrentFlashes() {
@@ -1194,8 +1194,8 @@ public class WorldMap {
 
 	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		signature = "(ZI)V",
-		garbageValue = "651351210"
+		garbageValue = "651351210",
+		signature = "(ZI)V"
 	)
 	@Export("setElementsDisabled")
 	public void setElementsDisabled(boolean var1) {
@@ -1204,8 +1204,8 @@ public class WorldMap {
 
 	@ObfuscatedName("bj")
 	@ObfuscatedSignature(
-		signature = "(IZI)V",
-		garbageValue = "-1491746515"
+		garbageValue = "-1491746515",
+		signature = "(IZI)V"
 	)
 	@Export("disableElement")
 	public void disableElement(int var1, boolean var2) {
@@ -1220,8 +1220,8 @@ public class WorldMap {
 
 	@ObfuscatedName("bn")
 	@ObfuscatedSignature(
-		signature = "(IZI)V",
-		garbageValue = "375985188"
+		garbageValue = "375985188",
+		signature = "(IZI)V"
 	)
 	@Export("setCategoryDisabled")
 	public void setCategoryDisabled(int var1, boolean var2) {
@@ -1247,8 +1247,8 @@ public class WorldMap {
 
 	@ObfuscatedName("bi")
 	@ObfuscatedSignature(
-		signature = "(B)Z",
-		garbageValue = "1"
+		garbageValue = "1",
+		signature = "(B)Z"
 	)
 	@Export("getElementsDisabled")
 	public boolean getElementsDisabled() {
@@ -1257,8 +1257,8 @@ public class WorldMap {
 
 	@ObfuscatedName("bp")
 	@ObfuscatedSignature(
-		signature = "(II)Z",
-		garbageValue = "799594991"
+		garbageValue = "799594991",
+		signature = "(II)Z"
 	)
 	@Export("isElementDisabled")
 	public boolean isElementDisabled(int var1) {
@@ -1267,8 +1267,8 @@ public class WorldMap {
 
 	@ObfuscatedName("br")
 	@ObfuscatedSignature(
-		signature = "(II)Z",
-		garbageValue = "1690733813"
+		garbageValue = "1690733813",
+		signature = "(II)Z"
 	)
 	@Export("isCategoryDisabled")
 	public boolean isCategoryDisabled(int var1) {
@@ -1277,8 +1277,8 @@ public class WorldMap {
 
 	@ObfuscatedName("bq")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "793022783"
+		garbageValue = "793022783",
+		signature = "(I)V"
 	)
 	void method6571() {
 		this.field4032.clear();
@@ -1288,8 +1288,8 @@ public class WorldMap {
 
 	@ObfuscatedName("bx")
 	@ObfuscatedSignature(
-		signature = "(IIIIIII)V",
-		garbageValue = "-2078368565"
+		garbageValue = "-2078368565",
+		signature = "(IIIIIII)V"
 	)
 	@Export("addElementMenuOptions")
 	public void addElementMenuOptions(int var1, int var2, int var3, int var4, int var5, int var6) {
@@ -1324,8 +1324,8 @@ public class WorldMap {
 
 	@ObfuscatedName("bc")
 	@ObfuscatedSignature(
-		signature = "(ILhd;I)Lhd;",
-		garbageValue = "242977526"
+		garbageValue = "242977526",
+		signature = "(ILhd;I)Lhd;"
 	)
 	public Coord method6643(int var1, Coord var2) {
 		if (!this.cacheLoader.isLoaded()) {
@@ -1370,8 +1370,8 @@ public class WorldMap {
 
 	@ObfuscatedName("bw")
 	@ObfuscatedSignature(
-		signature = "(IILhd;Lhd;I)V",
-		garbageValue = "-1238486806"
+		garbageValue = "-1238486806",
+		signature = "(IILhd;Lhd;I)V"
 	)
 	@Export("worldMapMenuAction")
 	public void worldMapMenuAction(int var1, int var2, Coord var3, Coord var4) {
@@ -1400,8 +1400,8 @@ public class WorldMap {
 
 	@ObfuscatedName("bv")
 	@ObfuscatedSignature(
-		signature = "(B)Laj;",
-		garbageValue = "-77"
+		garbageValue = "-77",
+		signature = "(B)Laj;"
 	)
 	@Export("iconStart")
 	public AbstractWorldMapIcon iconStart() {
@@ -1426,8 +1426,8 @@ public class WorldMap {
 
 	@ObfuscatedName("bt")
 	@ObfuscatedSignature(
-		signature = "(B)Laj;",
-		garbageValue = "-25"
+		garbageValue = "-25",
+		signature = "(B)Laj;"
 	)
 	@Export("iconNext")
 	public AbstractWorldMapIcon iconNext() {

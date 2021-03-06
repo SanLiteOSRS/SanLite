@@ -35,8 +35,8 @@ public final class WorldMapSprite {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(III)I",
-		garbageValue = "-36950090"
+		garbageValue = "-36950090",
+		signature = "(III)I"
 	)
 	@Export("getTileColor")
 	final int getTileColor(int var1, int var2) {
@@ -45,8 +45,8 @@ public final class WorldMapSprite {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Lgd;Lmw;S)Lgk;",
-		garbageValue = "22306"
+		garbageValue = "22306",
+		signature = "(Lgd;Lmw;S)Lgk;"
 	)
 	@Export("getPacketBufferNode")
 	public static PacketBufferNode getPacketBufferNode(ClientPacket var0, IsaacCipher var1) {
@@ -79,8 +79,8 @@ public final class WorldMapSprite {
 
 	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		signature = "(Lef;IIII)Z",
-		garbageValue = "1577408669"
+		garbageValue = "1577408669",
+		signature = "(Lef;IIII)Z"
 	)
 	static final boolean method498(Model var0, int var1, int var2, int var3) {
 		boolean var4 = ViewportMouse.ViewportMouse_isInViewport;
@@ -156,8 +156,8 @@ public final class WorldMapSprite {
 
 	@ObfuscatedName("kv")
 	@ObfuscatedSignature(
-		signature = "(II)V",
-		garbageValue = "1984621095"
+		garbageValue = "1984621095",
+		signature = "(II)V"
 	)
 	static void method496(int var0) {
 		Client.oculusOrbState = var0;

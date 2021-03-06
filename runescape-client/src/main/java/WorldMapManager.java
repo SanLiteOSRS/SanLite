@@ -21,7 +21,7 @@ import net.runelite.rs.ScriptOpcodes;
 public final class WorldMapManager {
 	@ObfuscatedName("qw")
 	@ObfuscatedGetter(
-		intValue = 1585594368
+		intValue = -188939136
 	)
 	static int field345;
 	@ObfuscatedName("bw")
@@ -137,8 +137,8 @@ public final class WorldMapManager {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Lig;Ljava/lang/String;ZI)V",
-		garbageValue = "1075163259"
+		garbageValue = "1075163259",
+		signature = "(Lig;Ljava/lang/String;ZI)V"
 	)
 	@Export("load")
 	public void load(AbstractArchive var1, String var2, boolean var3) {
@@ -210,8 +210,8 @@ public final class WorldMapManager {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-192155866"
+		garbageValue = "-192155866",
+		signature = "(I)V"
 	)
 	@Export("clearIcons")
 	public final void clearIcons() {
@@ -220,8 +220,8 @@ public final class WorldMapManager {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(IIIIIIIII)V",
-		garbageValue = "-1854160239"
+		garbageValue = "-1854160239",
+		signature = "(IIIIIIIII)V"
 	)
 	@Export("drawTiles")
 	public final void drawTiles(int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8) {
@@ -267,8 +267,8 @@ public final class WorldMapManager {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(IIIIIIIILjava/util/HashSet;Ljava/util/HashSet;IIZI)V",
-		garbageValue = "-2105446269"
+		garbageValue = "-2105446269",
+		signature = "(IIIIIIIILjava/util/HashSet;Ljava/util/HashSet;IIZI)V"
 	)
 	@Export("drawElements")
 	public final void drawElements(int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, HashSet var9, HashSet var10, int var11, int var12, boolean var13) {
@@ -302,8 +302,8 @@ public final class WorldMapManager {
 
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(IIIILjava/util/HashSet;III)V",
-		garbageValue = "1410026121"
+		garbageValue = "1410026121",
+		signature = "(IIIILjava/util/HashSet;III)V"
 	)
 	@Export("drawOverview")
 	public void drawOverview(int var1, int var2, int var3, int var4, HashSet var5, int var6, int var7) {
@@ -342,8 +342,8 @@ public final class WorldMapManager {
 
 	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(IIIIIIIIIII)Ljava/util/List;",
-		garbageValue = "-1800022691"
+		garbageValue = "-1800022691",
+		signature = "(IIIIIIIIIII)Ljava/util/List;"
 	)
 	public List method722(int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, int var9, int var10) {
 		LinkedList var11 = new LinkedList();
@@ -371,8 +371,8 @@ public final class WorldMapManager {
 
 	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(IIIII)Laq;",
-		garbageValue = "-2121459740"
+		garbageValue = "-2121459740",
+		signature = "(IIIII)Laq;"
 	)
 	@Export("createWorldMapRectangle")
 	WorldMapRectangle createWorldMapRectangle(int var1, int var2, int var3, int var4) {
@@ -414,8 +414,8 @@ public final class WorldMapManager {
 
 	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		signature = "(B)Z",
-		garbageValue = "14"
+		garbageValue = "14",
+		signature = "(B)Z"
 	)
 	@Export("isLoaded")
 	public boolean isLoaded() {
@@ -424,8 +424,8 @@ public final class WorldMapManager {
 
 	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		signature = "(B)Ljava/util/HashMap;",
-		garbageValue = "108"
+		garbageValue = "108",
+		signature = "(B)Ljava/util/HashMap;"
 	)
 	@Export("buildIcons")
 	public HashMap buildIcons() {
@@ -435,8 +435,8 @@ public final class WorldMapManager {
 
 	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "118"
+		garbageValue = "118",
+		signature = "(B)V"
 	)
 	@Export("buildIcons0")
 	void buildIcons0() {
@@ -472,8 +472,8 @@ public final class WorldMapManager {
 
 	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		signature = "(IIB)F",
-		garbageValue = "11"
+		garbageValue = "11",
+		signature = "(IIB)F"
 	)
 	@Export("getPixelsPerTile")
 	float getPixelsPerTile(int var1, int var2) {
@@ -490,8 +490,8 @@ public final class WorldMapManager {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(II)Ljx;",
-		garbageValue = "-2146982596"
+		garbageValue = "-2146982596",
+		signature = "(II)Ljx;"
 	)
 	@Export("getEnum")
 	public static EnumComposition getEnum(int var0) {
@@ -512,8 +512,8 @@ public final class WorldMapManager {
 
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "([BIIIIIII[Lfe;B)V",
-		garbageValue = "0"
+		garbageValue = "0",
+		signature = "([BIIIIIII[Lfe;B)V"
 	)
 	static final void method749(byte[] var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7, CollisionMap[] var8) {
 		int var10;
@@ -544,8 +544,8 @@ public final class WorldMapManager {
 
 	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "-74"
+		garbageValue = "-74",
+		signature = "(B)V"
 	)
 	static void method738() {
 		Login.Login_username = Login.Login_username.trim();
@@ -726,39 +726,39 @@ public final class WorldMapManager {
 
 	@ObfuscatedName("ag")
 	@ObfuscatedSignature(
-		signature = "(ILcl;ZB)I",
-		garbageValue = "1"
+		garbageValue = "1",
+		signature = "(ILcl;ZB)I"
 	)
 	static int method746(int var0, Script var1, boolean var2) {
 		int var3;
-		int var4;
 		int var6;
+		int var9;
 		if (var0 == ScriptOpcodes.ENUM_STRING) {
 			Interpreter.Interpreter_intStackSize -= 2;
 			var3 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
-			var4 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
-			EnumComposition var5 = getEnum(var3);
-			if (var5.outputType != 's') {
+			var9 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
+			EnumComposition var10 = getEnum(var3);
+			if (var10.outputType != 's') {
 			}
 
-			for (var6 = 0; var6 < var5.outputCount; ++var6) {
-				if (var4 == var5.keys[var6]) {
-					Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var5.strVals[var6];
-					var5 = null;
+			for (var6 = 0; var6 < var10.outputCount; ++var6) {
+				if (var9 == var10.keys[var6]) {
+					Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var10.strVals[var6];
+					var10 = null;
 					break;
 				}
 			}
 
-			if (var5 != null) {
-				Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var5.defaultStr;
+			if (var10 != null) {
+				Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var10.defaultStr;
 			}
 
 			return 1;
 		} else if (var0 != ScriptOpcodes.ENUM) {
 			if (var0 == ScriptOpcodes.ENUM_GETOUTPUTCOUNT) {
 				var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-				EnumComposition var10 = getEnum(var3);
-				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var10.size();
+				EnumComposition var4 = getEnum(var3);
+				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var4.size();
 				return 1;
 			} else {
 				return 2;
@@ -766,14 +766,14 @@ public final class WorldMapManager {
 		} else {
 			Interpreter.Interpreter_intStackSize -= 4;
 			var3 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
-			var4 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
-			int var9 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 2];
+			var9 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
+			int var5 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 2];
 			var6 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 3];
-			EnumComposition var7 = getEnum(var9);
-			if (var3 == var7.inputType && var4 == var7.outputType) {
+			EnumComposition var7 = getEnum(var5);
+			if (var3 == var7.inputType && var9 == var7.outputType) {
 				for (int var8 = 0; var8 < var7.outputCount; ++var8) {
 					if (var6 == var7.keys[var8]) {
-						if (var4 == 115) {
+						if (var9 == 115) {
 							Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var7.strVals[var8];
 						} else {
 							Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var7.intVals[var8];
@@ -785,7 +785,7 @@ public final class WorldMapManager {
 				}
 
 				if (var7 != null) {
-					if (var4 == 115) {
+					if (var9 == 115) {
 						Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var7.defaultStr;
 					} else {
 						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var7.defaultInt;
@@ -794,7 +794,7 @@ public final class WorldMapManager {
 
 				return 1;
 			} else {
-				if (var4 == 115) {
+				if (var9 == 115) {
 					Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = "null";
 				} else {
 					Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = 0;
@@ -807,8 +807,8 @@ public final class WorldMapManager {
 
 	@ObfuscatedName("ib")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;Ljava/lang/String;IIIIB)V",
-		garbageValue = "4"
+		garbageValue = "4",
+		signature = "(Ljava/lang/String;Ljava/lang/String;IIIIB)V"
 	)
 	@Export("insertMenuItemNoShift")
 	public static final void insertMenuItemNoShift(String var0, String var1, int var2, int var3, int var4, int var5) {
@@ -817,8 +817,8 @@ public final class WorldMapManager {
 
 	@ObfuscatedName("iw")
 	@ObfuscatedSignature(
-		signature = "(Lhz;IIZB)V",
-		garbageValue = "1"
+		garbageValue = "1",
+		signature = "(Lhz;IIZB)V"
 	)
 	@Export("alignWidgetSize")
 	static void alignWidgetSize(Widget var0, int var1, int var2, boolean var3) {

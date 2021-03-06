@@ -189,8 +189,8 @@ public class Login {
 
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(II)Z",
-		garbageValue = "2056829974"
+		garbageValue = "2056829974",
+		signature = "(II)Z"
 	)
 	public static boolean method2244(int var0) {
 		return (var0 >> 30 & 1) != 0;
@@ -198,8 +198,8 @@ public class Login {
 
 	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		signature = "(ILcl;ZB)I",
-		garbageValue = "23"
+		garbageValue = "23",
+		signature = "(ILcl;ZB)I"
 	)
 	static int method2223(int var0, Script var1, boolean var2) {
 		Widget var3 = class237.getWidget(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);

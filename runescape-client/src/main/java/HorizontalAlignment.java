@@ -54,8 +54,8 @@ public enum HorizontalAlignment implements Enumerated {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(B)I",
-		garbageValue = "63"
+		garbageValue = "63",
+		signature = "(B)I"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
@@ -64,29 +64,29 @@ public enum HorizontalAlignment implements Enumerated {
 
 	@ObfuscatedName("ak")
 	@ObfuscatedSignature(
-		signature = "(ILcl;ZI)I",
-		garbageValue = "-2086152614"
+		garbageValue = "-2086152614",
+		signature = "(ILcl;ZI)I"
 	)
 	static int method4924(int var0, Script var1, boolean var2) {
 		String var3;
-		int var4;
+		int var9;
 		if (var0 == ScriptOpcodes.APPEND_NUM) {
 			var3 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];
-			var4 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-			Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var3 + var4;
+			var9 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
+			Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var3 + var9;
 			return 1;
 		} else {
-			String var9;
+			String var4;
 			if (var0 == ScriptOpcodes.APPEND) {
 				Interpreter.Interpreter_stringStackSize -= 2;
 				var3 = Interpreter.Interpreter_stringStack[Interpreter.Interpreter_stringStackSize];
-				var9 = Interpreter.Interpreter_stringStack[Interpreter.Interpreter_stringStackSize + 1];
-				Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var3 + var9;
+				var4 = Interpreter.Interpreter_stringStack[Interpreter.Interpreter_stringStackSize + 1];
+				Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var3 + var4;
 				return 1;
 			} else if (var0 == ScriptOpcodes.APPEND_SIGNNUM) {
 				var3 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];
-				var4 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-				Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var3 + GrandExchangeOfferOwnWorldComparator.intToString(var4, true);
+				var9 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
+				Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var3 + GrandExchangeOfferOwnWorldComparator.intToString(var9, true);
 				return 1;
 			} else if (var0 == ScriptOpcodes.LOWERCASE) {
 				var3 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];
@@ -97,12 +97,12 @@ public enum HorizontalAlignment implements Enumerated {
 				int var10;
 				if (var0 == ScriptOpcodes.FROMDATE) {
 					var10 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-					long var11 = ((long)var10 + 11745L) * 86400000L;
-					Interpreter.Interpreter_calendar.setTime(new Date(var11));
+					long var13 = ((long)var10 + 11745L) * 86400000L;
+					Interpreter.Interpreter_calendar.setTime(new Date(var13));
 					var6 = Interpreter.Interpreter_calendar.get(5);
-					int var16 = Interpreter.Interpreter_calendar.get(2);
+					int var17 = Interpreter.Interpreter_calendar.get(2);
 					int var8 = Interpreter.Interpreter_calendar.get(1);
-					Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var6 + "-" + Interpreter.Interpreter_MONTHS[var16] + "-" + var8;
+					Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var6 + "-" + Interpreter.Interpreter_MONTHS[var17] + "-" + var8;
 					return 1;
 				} else if (var0 != ScriptOpcodes.TEXT_GENDER) {
 					if (var0 == ScriptOpcodes.TOSTRING) {
@@ -115,34 +115,34 @@ public enum HorizontalAlignment implements Enumerated {
 						return 1;
 					} else {
 						int var5;
-						byte[] var13;
-						Font var14;
+						byte[] var11;
+						Font var12;
 						if (var0 == ScriptOpcodes.PARAHEIGHT) {
 							var3 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];
 							Interpreter.Interpreter_intStackSize -= 2;
-							var4 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
+							var9 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
 							var5 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
-							var13 = CollisionMap.archive13.takeFile(var5, 0);
-							var14 = new Font(var13);
-							Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var14.lineCount(var3, var4);
+							var11 = CollisionMap.archive13.takeFile(var5, 0);
+							var12 = new Font(var11);
+							Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var12.lineCount(var3, var9);
 							return 1;
 						} else if (var0 == ScriptOpcodes.PARAWIDTH) {
 							var3 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];
 							Interpreter.Interpreter_intStackSize -= 2;
-							var4 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
+							var9 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
 							var5 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
-							var13 = CollisionMap.archive13.takeFile(var5, 0);
-							var14 = new Font(var13);
-							Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var14.lineWidth(var3, var4);
+							var11 = CollisionMap.archive13.takeFile(var5, 0);
+							var12 = new Font(var11);
+							Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var12.lineWidth(var3, var9);
 							return 1;
 						} else if (var0 == ScriptOpcodes.TEXT_SWITCH) {
 							Interpreter.Interpreter_stringStackSize -= 2;
 							var3 = Interpreter.Interpreter_stringStack[Interpreter.Interpreter_stringStackSize];
-							var9 = Interpreter.Interpreter_stringStack[Interpreter.Interpreter_stringStackSize + 1];
+							var4 = Interpreter.Interpreter_stringStack[Interpreter.Interpreter_stringStackSize + 1];
 							if (Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize] == 1) {
 								Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var3;
 							} else {
-								Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var9;
+								Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var4;
 							}
 
 							return 1;
@@ -152,8 +152,8 @@ public enum HorizontalAlignment implements Enumerated {
 							return 1;
 						} else if (var0 == ScriptOpcodes.APPEND_CHAR) {
 							var3 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];
-							var4 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-							Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var3 + (char)var4;
+							var9 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
+							Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var3 + (char)var9;
 							return 1;
 						} else if (var0 == ScriptOpcodes.CHAR_ISPRINTABLE) {
 							var10 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
@@ -183,39 +183,39 @@ public enum HorizontalAlignment implements Enumerated {
 						} else if (var0 == ScriptOpcodes.SUBSTRING) {
 							var3 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];
 							Interpreter.Interpreter_intStackSize -= 2;
-							var4 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
+							var9 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
 							var5 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
-							Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var3.substring(var4, var5);
+							Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var3.substring(var9, var5);
 							return 1;
 						} else if (var0 == ScriptOpcodes.REMOVETAGS) {
 							var3 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];
-							StringBuilder var17 = new StringBuilder(var3.length());
-							boolean var15 = false;
+							StringBuilder var15 = new StringBuilder(var3.length());
+							boolean var16 = false;
 
 							for (var6 = 0; var6 < var3.length(); ++var6) {
 								char var7 = var3.charAt(var6);
 								if (var7 == '<') {
-									var15 = true;
+									var16 = true;
 								} else if (var7 == '>') {
-									var15 = false;
-								} else if (!var15) {
-									var17.append(var7);
+									var16 = false;
+								} else if (!var16) {
+									var15.append(var7);
 								}
 							}
 
-							Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var17.toString();
+							Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var15.toString();
 							return 1;
 						} else if (var0 == ScriptOpcodes.STRING_INDEXOF_CHAR) {
 							var3 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];
-							var4 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-							Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.indexOf(var4);
+							var9 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
+							Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.indexOf(var9);
 							return 1;
 						} else if (var0 == ScriptOpcodes.STRING_INDEXOF_STRING) {
 							Interpreter.Interpreter_stringStackSize -= 2;
 							var3 = Interpreter.Interpreter_stringStack[Interpreter.Interpreter_stringStackSize];
-							var9 = Interpreter.Interpreter_stringStack[Interpreter.Interpreter_stringStackSize + 1];
+							var4 = Interpreter.Interpreter_stringStack[Interpreter.Interpreter_stringStackSize + 1];
 							var5 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-							Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.indexOf(var9, var5);
+							Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.indexOf(var4, var5);
 							return 1;
 						} else if (var0 == ScriptOpcodes.UPPERCASE) {
 							var3 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];
@@ -228,9 +228,9 @@ public enum HorizontalAlignment implements Enumerated {
 				} else {
 					Interpreter.Interpreter_stringStackSize -= 2;
 					var3 = Interpreter.Interpreter_stringStack[Interpreter.Interpreter_stringStackSize];
-					var9 = Interpreter.Interpreter_stringStack[Interpreter.Interpreter_stringStackSize + 1];
+					var4 = Interpreter.Interpreter_stringStack[Interpreter.Interpreter_stringStackSize + 1];
 					if (UserComparator9.localPlayer.appearance != null && UserComparator9.localPlayer.appearance.isFemale) {
-						Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var9;
+						Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var4;
 					} else {
 						Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var3;
 					}

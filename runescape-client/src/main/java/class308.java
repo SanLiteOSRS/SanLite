@@ -9,8 +9,8 @@ import net.runelite.rs.Reflection;
 public class class308 {
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(Lkx;II)V",
-		garbageValue = "-1051867244"
+		garbageValue = "-1051867244",
+		signature = "(Lkx;II)V"
 	)
 	@Export("readReflectionCheck")
 	public static void readReflectionCheck(Buffer var0, int var1) {

@@ -91,8 +91,8 @@ public class WorldMapArea {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Lkx;II)V",
-		garbageValue = "-285424184"
+		garbageValue = "-285424184",
+		signature = "(Lkx;II)V"
 	)
 	@Export("read")
 	public void read(Buffer var1, int var2) {
@@ -116,8 +116,8 @@ public class WorldMapArea {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(Lkx;I)Lab;",
-		garbageValue = "369407724"
+		garbageValue = "369407724",
+		signature = "(Lkx;I)Lab;"
 	)
 	@Export("readWorldMapSection")
 	WorldMapSection readWorldMapSection(Buffer var1) {
@@ -148,8 +148,8 @@ public class WorldMapArea {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(IIII)Z",
-		garbageValue = "1455116535"
+		garbageValue = "1455116535",
+		signature = "(IIII)Z"
 	)
 	@Export("containsCoord")
 	public boolean containsCoord(int var1, int var2, int var3) {
@@ -169,8 +169,8 @@ public class WorldMapArea {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(III)Z",
-		garbageValue = "-1715040975"
+		garbageValue = "-1715040975",
+		signature = "(III)Z"
 	)
 	@Export("containsPosition")
 	public boolean containsPosition(int var1, int var2) {
@@ -200,8 +200,8 @@ public class WorldMapArea {
 
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(IIII)[I",
-		garbageValue = "332088974"
+		garbageValue = "332088974",
+		signature = "(IIII)[I"
 	)
 	@Export("position")
 	public int[] position(int var1, int var2, int var3) {
@@ -221,8 +221,8 @@ public class WorldMapArea {
 
 	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(III)Lhd;",
-		garbageValue = "1033497447"
+		garbageValue = "1033497447",
+		signature = "(III)Lhd;"
 	)
 	@Export("coord")
 	public Coord coord(int var1, int var2) {
@@ -242,8 +242,8 @@ public class WorldMapArea {
 
 	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-2087726603"
+		garbageValue = "-2087726603",
+		signature = "(I)V"
 	)
 	@Export("setBounds")
 	void setBounds() {
@@ -258,8 +258,8 @@ public class WorldMapArea {
 
 	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "872580750"
+		garbageValue = "872580750",
+		signature = "(I)I"
 	)
 	@Export("getId")
 	public int getId() {
@@ -268,8 +268,8 @@ public class WorldMapArea {
 
 	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		signature = "(B)Z",
-		garbageValue = "-7"
+		garbageValue = "-7",
+		signature = "(B)Z"
 	)
 	@Export("getIsMain")
 	public boolean getIsMain() {
@@ -278,8 +278,8 @@ public class WorldMapArea {
 
 	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		signature = "(I)Ljava/lang/String;",
-		garbageValue = "1550692471"
+		garbageValue = "1550692471",
+		signature = "(I)Ljava/lang/String;"
 	)
 	@Export("getInternalName")
 	public String getInternalName() {
@@ -288,8 +288,8 @@ public class WorldMapArea {
 
 	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		signature = "(I)Ljava/lang/String;",
-		garbageValue = "2036253540"
+		garbageValue = "2036253540",
+		signature = "(I)Ljava/lang/String;"
 	)
 	@Export("getExternalName")
 	public String getExternalName() {
@@ -298,8 +298,8 @@ public class WorldMapArea {
 
 	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		signature = "(B)I",
-		garbageValue = "1"
+		garbageValue = "1",
+		signature = "(B)I"
 	)
 	@Export("getBackGroundColor")
 	int getBackGroundColor() {
@@ -308,8 +308,8 @@ public class WorldMapArea {
 
 	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "2014656389"
+		garbageValue = "2014656389",
+		signature = "(I)I"
 	)
 	@Export("getZoom")
 	public int getZoom() {
@@ -318,8 +318,8 @@ public class WorldMapArea {
 
 	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		signature = "(S)I",
-		garbageValue = "128"
+		garbageValue = "128",
+		signature = "(S)I"
 	)
 	@Export("getRegionLowX")
 	public int getRegionLowX() {
@@ -328,8 +328,8 @@ public class WorldMapArea {
 
 	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "(B)I",
-		garbageValue = "20"
+		garbageValue = "20",
+		signature = "(B)I"
 	)
 	@Export("getRegionHighX")
 	public int getRegionHighX() {
@@ -338,8 +338,8 @@ public class WorldMapArea {
 
 	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "-2024807463"
+		garbageValue = "-2024807463",
+		signature = "(I)I"
 	)
 	@Export("getRegionLowY")
 	public int getRegionLowY() {
@@ -348,8 +348,8 @@ public class WorldMapArea {
 
 	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "1949221943"
+		garbageValue = "1949221943",
+		signature = "(I)I"
 	)
 	@Export("getRegionHighY")
 	public int getRegionHighY() {
@@ -358,8 +358,8 @@ public class WorldMapArea {
 
 	@ObfuscatedName("g")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "759917118"
+		garbageValue = "759917118",
+		signature = "(I)I"
 	)
 	@Export("getOriginX")
 	public int getOriginX() {
@@ -368,8 +368,8 @@ public class WorldMapArea {
 
 	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "(B)I",
-		garbageValue = "-13"
+		garbageValue = "-13",
+		signature = "(B)I"
 	)
 	@Export("getOriginPlane")
 	public int getOriginPlane() {
@@ -378,8 +378,8 @@ public class WorldMapArea {
 
 	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		signature = "(B)I",
-		garbageValue = "-51"
+		garbageValue = "-51",
+		signature = "(B)I"
 	)
 	@Export("getOriginY")
 	public int getOriginY() {
@@ -388,8 +388,8 @@ public class WorldMapArea {
 
 	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		signature = "(I)Lhd;",
-		garbageValue = "-1797620911"
+		garbageValue = "-1797620911",
+		signature = "(I)Lhd;"
 	)
 	@Export("getOrigin")
 	public Coord getOrigin() {
@@ -398,8 +398,8 @@ public class WorldMapArea {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Ljava/awt/Component;I)V",
-		garbageValue = "141354959"
+		garbageValue = "141354959",
+		signature = "(Ljava/awt/Component;I)V"
 	)
 	static void method489(Component var0) {
 		var0.addMouseListener(MouseHandler.MouseHandler_instance);
@@ -409,8 +409,8 @@ public class WorldMapArea {
 
 	@ObfuscatedName("jj")
 	@ObfuscatedSignature(
-		signature = "(I)Z",
-		garbageValue = "-1792034229"
+		garbageValue = "-1792034229",
+		signature = "(I)Z"
 	)
 	@Export("getTapToDrop")
 	static boolean getTapToDrop() {

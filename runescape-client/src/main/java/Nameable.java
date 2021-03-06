@@ -24,8 +24,8 @@ public class Nameable implements Comparable {
 
 	@ObfuscatedName("ag")
 	@ObfuscatedSignature(
-		signature = "(B)Lkk;",
-		garbageValue = "-24"
+		garbageValue = "-24",
+		signature = "(B)Lkk;"
 	)
 	@Export("getUsername")
 	public Username getUsername() {
@@ -34,8 +34,8 @@ public class Nameable implements Comparable {
 
 	@ObfuscatedName("ae")
 	@ObfuscatedSignature(
-		signature = "(I)Ljava/lang/String;",
-		garbageValue = "-2090571369"
+		garbageValue = "-2090571369",
+		signature = "(I)Ljava/lang/String;"
 	)
 	@Export("getName")
 	public String getName() {
@@ -44,8 +44,8 @@ public class Nameable implements Comparable {
 
 	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		signature = "(B)Ljava/lang/String;",
-		garbageValue = "-71"
+		garbageValue = "-71",
+		signature = "(B)Ljava/lang/String;"
 	)
 	@Export("getPreviousName")
 	public String getPreviousName() {
@@ -54,8 +54,8 @@ public class Nameable implements Comparable {
 
 	@ObfuscatedName("aq")
 	@ObfuscatedSignature(
-		signature = "(Lkk;Lkk;B)V",
-		garbageValue = "0"
+		garbageValue = "0",
+		signature = "(Lkk;Lkk;B)V"
 	)
 	@Export("set")
 	void set(Username var1, Username var2) {
@@ -69,8 +69,8 @@ public class Nameable implements Comparable {
 
 	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		signature = "(Ljn;I)I",
-		garbageValue = "642739557"
+		garbageValue = "642739557",
+		signature = "(Ljn;I)I"
 	)
 	@Export("compareTo_user")
 	public int compareTo_user(Nameable var1) {
@@ -83,8 +83,8 @@ public class Nameable implements Comparable {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/CharSequence;Ljava/lang/CharSequence;Lgp;I)I",
-		garbageValue = "-1977368915"
+		garbageValue = "-1977368915",
+		signature = "(Ljava/lang/CharSequence;Ljava/lang/CharSequence;Lgp;I)I"
 	)
 	@Export("compareStrings")
 	public static int compareStrings(CharSequence var0, CharSequence var1, Language var2) {

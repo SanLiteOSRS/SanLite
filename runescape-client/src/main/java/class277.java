@@ -11,8 +11,8 @@ public class class277 {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "([BILjava/lang/CharSequence;I)I",
-		garbageValue = "1470841417"
+		garbageValue = "1470841417",
+		signature = "([BILjava/lang/CharSequence;I)I"
 	)
 	public static int method5192(byte[] var0, int var1, CharSequence var2) {
 		int var3 = var2.length();

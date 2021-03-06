@@ -17,8 +17,8 @@ final class GrandExchangeOfferWorldComparator implements Comparator {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Lx;Lx;I)I",
-		garbageValue = "1040047906"
+		garbageValue = "1040047906",
+		signature = "(Lx;Lx;I)I"
 	)
 	@Export("compare_bridged")
 	int compare_bridged(GrandExchangeEvent var1, GrandExchangeEvent var2) {
@@ -35,8 +35,8 @@ final class GrandExchangeOfferWorldComparator implements Comparator {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(Lby;IB)V",
-		garbageValue = "-24"
+		garbageValue = "-24",
+		signature = "(Lby;IB)V"
 	)
 	@Export("runScript")
 	static void runScript(ScriptEvent var0, int var1) {
@@ -352,8 +352,8 @@ final class GrandExchangeOfferWorldComparator implements Comparator {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "([BI)V",
-		garbageValue = "1834161075"
+		garbageValue = "1834161075",
+		signature = "([BI)V"
 	)
 	@Export("ByteArrayPool_release")
 	public static synchronized void ByteArrayPool_release(byte[] var0) {
@@ -378,8 +378,8 @@ final class GrandExchangeOfferWorldComparator implements Comparator {
 
 	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		signature = "(III)V",
-		garbageValue = "-508854974"
+		garbageValue = "-508854974",
+		signature = "(III)V"
 	)
 	public static final void method137(int var0, int var1) {
 		ViewportMouse.ViewportMouse_x = var0;
@@ -396,8 +396,8 @@ final class GrandExchangeOfferWorldComparator implements Comparator {
 
 	@ObfuscatedName("jl")
 	@ObfuscatedSignature(
-		signature = "(Lhz;I)Z",
-		garbageValue = "441552279"
+		garbageValue = "441552279",
+		signature = "(Lhz;I)Z"
 	)
 	@Export("runCs1")
 	static final boolean runCs1(Widget var0) {

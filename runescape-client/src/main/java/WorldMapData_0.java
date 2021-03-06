@@ -19,8 +19,8 @@ public class WorldMapData_0 extends AbstractWorldMapData {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Lkx;I)V",
-		garbageValue = "2072507243"
+		garbageValue = "2072507243",
+		signature = "(Lkx;I)V"
 	)
 	@Export("init")
 	void init(Buffer var1) {
@@ -41,8 +41,8 @@ public class WorldMapData_0 extends AbstractWorldMapData {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(Lkx;B)V",
-		garbageValue = "36"
+		garbageValue = "36",
+		signature = "(Lkx;B)V"
 	)
 	@Export("readGeography")
 	void readGeography(Buffer var1) {
@@ -86,8 +86,8 @@ public class WorldMapData_0 extends AbstractWorldMapData {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(I)Z",
-		garbageValue = "-825511368"
+		garbageValue = "-825511368",
+		signature = "(I)Z"
 	)
 	@Export("loadWorlds")
 	static boolean loadWorlds() {
@@ -126,8 +126,8 @@ public class WorldMapData_0 extends AbstractWorldMapData {
 
 	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		signature = "(IIII)I",
-		garbageValue = "-9455782"
+		garbageValue = "-9455782",
+		signature = "(IIII)I"
 	)
 	static int method250(int var0, int var1, int var2) {
 		if ((Tiles.Tiles_renderFlags[var0][var1][var2] & 8) != 0) {
@@ -139,8 +139,8 @@ public class WorldMapData_0 extends AbstractWorldMapData {
 
 	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "116"
+		garbageValue = "116",
+		signature = "(B)V"
 	)
 	public static void method239() {
 		ItemComposition.ItemDefinition_cachedSprites.clear();

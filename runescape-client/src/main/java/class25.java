@@ -7,7 +7,7 @@ import net.runelite.mapping.ObfuscatedSignature;
 public class class25 {
 	@ObfuscatedName("rh")
 	@ObfuscatedGetter(
-		intValue = 1113392768
+		intValue = 780353536
 	)
 	static int field138;
 	@ObfuscatedName("l")
@@ -36,8 +36,8 @@ public class class25 {
 
 	@ObfuscatedName("id")
 	@ObfuscatedSignature(
-		signature = "(IIB)V",
-		garbageValue = "-52"
+		garbageValue = "-52",
+		signature = "(IIB)V"
 	)
 	@Export("resumePauseWidget")
 	static void resumePauseWidget(int var0, int var1) {

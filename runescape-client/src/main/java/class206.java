@@ -51,8 +51,8 @@ public class class206 {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "([Lcq;II[I[IB)V",
-		garbageValue = "-51"
+		garbageValue = "-51",
+		signature = "([Lcq;II[I[IB)V"
 	)
 	@Export("sortWorlds")
 	static void sortWorlds(World[] var0, int var1, int var2, int[] var3, int[] var4) {

@@ -38,8 +38,8 @@ public final class RasterProvider extends AbstractRasterProvider {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Ljava/awt/Component;I)V",
-		garbageValue = "-1004976621"
+		garbageValue = "-1004976621",
+		signature = "(Ljava/awt/Component;I)V"
 	)
 	@Export("setComponent")
 	final void setComponent(Component var1) {
@@ -48,8 +48,8 @@ public final class RasterProvider extends AbstractRasterProvider {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(III)V",
-		garbageValue = "2060006654"
+		garbageValue = "2060006654",
+		signature = "(III)V"
 	)
 	@Export("drawFull")
 	public final void drawFull(int var1, int var2) {
@@ -58,8 +58,8 @@ public final class RasterProvider extends AbstractRasterProvider {
 
 	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(IIIII)V",
-		garbageValue = "-1656973228"
+		garbageValue = "-1656973228",
+		signature = "(IIIII)V"
 	)
 	@Export("draw")
 	public final void draw(int var1, int var2, int var3, int var4) {
@@ -68,8 +68,8 @@ public final class RasterProvider extends AbstractRasterProvider {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(Ljava/awt/Graphics;III)V",
-		garbageValue = "-2070122870"
+		garbageValue = "-2070122870",
+		signature = "(Ljava/awt/Graphics;III)V"
 	)
 	@Export("drawFull0")
 	final void drawFull0(Graphics var1, int var2, int var3) {
@@ -83,8 +83,8 @@ public final class RasterProvider extends AbstractRasterProvider {
 
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(Ljava/awt/Graphics;IIIII)V",
-		garbageValue = "-973132"
+		garbageValue = "-973132",
+		signature = "(Ljava/awt/Graphics;IIIII)V"
 	)
 	@Export("draw0")
 	final void draw0(Graphics var1, int var2, int var3, int var4, int var5) {

@@ -50,8 +50,8 @@ public class class39 {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(III)I",
-		garbageValue = "1057060168"
+		garbageValue = "1057060168",
+		signature = "(III)I"
 	)
 	public static int method644(int var0, int var1) {
 		int var2;
@@ -72,8 +72,8 @@ public class class39 {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(B)Ljava/security/SecureRandom;",
-		garbageValue = "12"
+		garbageValue = "12",
+		signature = "(B)Ljava/security/SecureRandom;"
 	)
 	static SecureRandom method643() {
 		SecureRandom var0 = new SecureRandom();
