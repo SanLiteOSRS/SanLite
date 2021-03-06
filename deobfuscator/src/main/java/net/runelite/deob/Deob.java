@@ -65,7 +65,7 @@ public class Deob
 	public static final int OBFUSCATED_NAME_MAX_LEN = 3;
 	private static final boolean CHECK_EXEC = false;
 
-	public static void main(String[] args) throws IOException
+	public static void main(String[] args)
 	{
 		if (args == null || args.length < 2)
 		{
@@ -77,7 +77,7 @@ public class Deob
 
 		Stopwatch stopwatch = Stopwatch.createStarted();
 
-		ClassGroup group = JarUtil.loadJar(new File(args[0]));
+		ClassGroup group = JarUtil.load(new File(args[0]));
 
 		// remove except RuntimeException
 		run(group, new RuntimeExceptions());
@@ -136,7 +136,7 @@ public class Deob
 		new ReflectionTransformer().transform(group);
 		//new MaxMemoryTransformer().transform(group);
 
-		JarUtil.saveJar(group, new File(args[1]));
+		JarUtil.save(group, new File(args[1]));
 
 		stopwatch.stop();
 		logger.info("Done in {}", stopwatch);

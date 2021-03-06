@@ -1,5 +1,11 @@
 /*
- * Copyright (c) 2018, Lotto <https://github.com/devLotto>
+ * Copyright (c) 2019, Lucas <https://github.com/Lucwousin>
+ * All rights reserved.
+ *
+ * This code is licensed under GPL3, see the complete license in
+ * the LICENSE file in the root directory of this submodule.
+ *
+ * Copyright (c) 2016-2017, Adam <Adam@sigterm.info>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,48 +28,41 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.injector.raw;
+package net.runelite.injector.injectors.raw;
 
+import lombok.extern.slf4j.Slf4j;
+import net.runelite.injector.InjectException;
+import net.runelite.injector.InjectUtil;
+import net.runelite.injector.injection.InjectData;
+import static net.runelite.injector.injection.InjectData.CALLBACKS;
+import net.runelite.injector.injectors.AbstractInjector;
+import java.util.HashSet;
+import java.util.ListIterator;
+import java.util.Set;
 import net.runelite.asm.ClassFile;
+import net.runelite.asm.Field;
 import net.runelite.asm.Method;
 import net.runelite.asm.attributes.code.Instruction;
 import net.runelite.asm.attributes.code.Instructions;
 import net.runelite.asm.attributes.code.Label;
 import net.runelite.asm.attributes.code.instruction.types.JumpingInstruction;
 import net.runelite.asm.attributes.code.instruction.types.PushConstantInstruction;
+import net.runelite.asm.attributes.code.instructions.GetField;
 import net.runelite.asm.attributes.code.instructions.GetStatic;
 import net.runelite.asm.attributes.code.instructions.IMul;
+import net.runelite.asm.attributes.code.instructions.InvokeInterface;
 import net.runelite.asm.attributes.code.instructions.InvokeStatic;
 import net.runelite.asm.signature.Signature;
-import net.runelite.injector.Inject;
-import net.runelite.injector.InjectionException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import java.util.HashSet;
-import java.util.ListIterator;
-import java.util.Set;
-
-import static net.runelite.injector.InjectHookMethod.HOOKS;
-import static net.runelite.injector.InjectUtil.findStaticMethod;
-
-public class DrawAfterWidgets
+@Slf4j
+public class DrawAfterWidgets extends AbstractInjector
 {
-	private static final Logger logger = LoggerFactory.getLogger(DrawAfterWidgets.class);
-
-	private final Inject inject;
-
-	public DrawAfterWidgets(Inject inject)
+	public DrawAfterWidgets(InjectData inject)
 	{
-		this.inject = inject;
+		super(inject);
 	}
 
-	public void inject() throws InjectionException
-	{
-		injectDrawAfterWidgets();
-	}
-
-	private void injectDrawAfterWidgets() throws InjectionException
+	public void inject()
 	{
 		/*
 			This call has to be injected using raw injection because the
@@ -98,10 +97,10 @@ public class DrawAfterWidgets
 		      UserComparator6.__fg_jh = null;
 		      if(rootInterface != -1) {
 		         rootWidgetCount = 0;
-		         Interpreter.method1977(rootInterface, 0, 0, SoundCache.canvasWidth, Huffman.canvasHeight, 0, 0, -1);
+		         Interpreter.drawWidgets(rootInterface, 0, 0, SoundCache.canvasWidth, Huffman.canvasHeight, 0, 0, -1);
 		      }
 
-				< --  here apparently
+				<--  here apparently
 
 		      Rasterizer2D.Rasterizer2D_resetClip();
 			______________________________________________________
@@ -109,16 +108,18 @@ public class DrawAfterWidgets
 
 		boolean injected = false;
 
-		Method noClip = findStaticMethod(inject, "Rasterizer2D_resetClip"); // !!!!!
+		Field client = getVanillaStaticFieldFromDeob("client");
+		Field callbacks = getObfuscatedField("callbacks");
+		Method noClip = InjectUtil.findMethod(inject, "Rasterizer2D_resetClip", "Rasterizer2D", null); // !!!!!
 
 		if (noClip == null)
 		{
-			throw new InjectionException("Mapped method \"Rasterizer2D_resetClip\" could not be found.");
+			throw new InjectException("Mapped method \"Rasterizer2D_resetClip\" could not be found.");
 		}
 
 		net.runelite.asm.pool.Method poolNoClip = noClip.getPoolMethod();
 
-		for (ClassFile c : inject.getVanilla().getClasses())
+		for (ClassFile c : inject.getVanilla())
 		{
 			for (Method m : c.getMethods())
 			{
@@ -132,7 +133,7 @@ public class DrawAfterWidgets
 				Set<Label> labels = new HashSet<>();
 
 				// Let's find "invokestatic <some class>.noClip()" and its label
-				ListIterator<Instruction> labelIterator = instructions.getInstructions().listIterator();
+				ListIterator<Instruction> labelIterator = instructions.listIterator();
 				while (labelIterator.hasNext())
 				{
 					Instruction i = labelIterator.next();
@@ -168,13 +169,13 @@ public class DrawAfterWidgets
 				{
 					// If we get here, we're either in the wrong method
 					// or Jagex has removed the "if (535573958 * kl != -1)"
-					logger.debug("Could not find the label for jumping to the " + noClip + " call in " + m);
+					log.debug("Could not find the label for jumping to the " + noClip + " call in " + m);
 					continue;
 				}
 
 				Set<Label> labelsToInjectAfter = new HashSet<>();
 
-				ListIterator<Instruction> jumpIterator = instructions.getInstructions().listIterator();
+				ListIterator<Instruction> jumpIterator = instructions.listIterator();
 				while (jumpIterator.hasNext())
 				{
 					Instruction i = jumpIterator.next();
@@ -229,8 +230,8 @@ public class DrawAfterWidgets
 						so let's make it easier by just checking that they are there.
 					 */
 					if (insns.stream().filter(i2 -> i2 instanceof PushConstantInstruction).count() != 2
-							|| insns.stream().filter(i2 -> i2 instanceof IMul).count() != 1
-							|| insns.stream().filter(i2 -> i2 instanceof GetStatic).count() != 1)
+						|| insns.stream().filter(i2 -> i2 instanceof IMul).count() != 1
+						|| insns.stream().filter(i2 -> i2 instanceof GetStatic).count() != 1)
 					{
 						continue;
 					}
@@ -241,17 +242,18 @@ public class DrawAfterWidgets
 
 				for (Label l : labelsToInjectAfter)
 				{
-					InvokeStatic invoke = new InvokeStatic(instructions,
-							new net.runelite.asm.pool.Method(
-									new net.runelite.asm.pool.Class(HOOKS),
-									"drawAfterWidgets",
-									new Signature("()V")
-							)
+					InvokeInterface invoke = new InvokeInterface(instructions,
+						new net.runelite.asm.pool.Method(
+							new net.runelite.asm.pool.Class(CALLBACKS),
+							"drawAfterWidgets",
+							new Signature("()V")
+						)
 					);
 
 					instructions.addInstruction(instructions.getInstructions().indexOf(l) + 1, invoke);
-
-					logger.debug("injectDrawAfterWidgets injected a call after " + l);
+					instructions.addInstruction(instructions.getInstructions().indexOf(l) + 1, new GetField(instructions, callbacks.getPoolField()));
+					instructions.addInstruction(instructions.getInstructions().indexOf(l) + 1, new GetStatic(instructions, client.getPoolField()));
+					log.debug("[DEBUG] injectDrawAfterWidgets injected a call after " + l);
 
 					injected = true;
 				}
@@ -260,7 +262,43 @@ public class DrawAfterWidgets
 
 		if (!injected)
 		{
-			throw new InjectionException("injectDrawAfterWidgets failed to inject!");
+			throw new InjectException("injectDrawAfterWidgets failed to inject!");
 		}
+	}
+
+	public Field getVanillaStaticFieldFromDeob(String s)
+	{
+		for (ClassFile c : inject.getDeobfuscated())
+		{
+			for (Field f : c.getFields())
+			{
+				if (f.isStatic())
+				{
+					if (f.getName().equals(s))
+					{
+						return inject.toVanilla(f);
+					}
+				}
+			}
+		}
+		return null;
+	}
+
+	public Field getObfuscatedField(String s)
+	{
+		for (ClassFile c : inject.getVanilla())
+		{
+			for (Field f : c.getFields())
+			{
+				if (!f.isStatic())
+				{
+					if (f.getName().equals(s))
+					{
+						return f;
+					}
+				}
+			}
+		}
+		return null;
 	}
 }

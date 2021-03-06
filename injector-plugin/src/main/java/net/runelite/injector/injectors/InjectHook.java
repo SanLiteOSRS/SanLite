@@ -1,5 +1,10 @@
 /*
- * Copyright (c) 2017, Adam <Adam@sigterm.info>
+ * Copyright (c) 2019, Lucas <https://github.com/Lucwousin>
+ * All rights reserved.
+ *
+ * This code is licensed under GPL3, see the complete license in
+ * the LICENSE file in the root directory of this submodule.
+ *  * Copyright (c) 2017, Adam <Adam@sigterm.info>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,9 +27,22 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.injector;
+package net.runelite.injector.injectors;
 
 import com.google.common.collect.Lists;
+import net.runelite.injector.InjectException;
+import net.runelite.injector.InjectUtil;
+import net.runelite.injector.injection.InjectData;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import javax.inject.Provider;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import net.runelite.asm.Annotation;
+import net.runelite.asm.ClassFile;
 import net.runelite.asm.Field;
 import net.runelite.asm.Method;
 import net.runelite.asm.Type;
@@ -34,39 +52,93 @@ import net.runelite.asm.attributes.code.InstructionType;
 import net.runelite.asm.attributes.code.Instructions;
 import net.runelite.asm.attributes.code.instruction.types.DupInstruction;
 import net.runelite.asm.attributes.code.instruction.types.SetFieldInstruction;
-import net.runelite.asm.attributes.code.instructions.*;
+import net.runelite.asm.attributes.code.instructions.ArrayStore;
+import net.runelite.asm.attributes.code.instructions.CheckCast;
+import net.runelite.asm.attributes.code.instructions.Dup;
+import net.runelite.asm.attributes.code.instructions.IMul;
+import net.runelite.asm.attributes.code.instructions.LDC;
+import net.runelite.asm.attributes.code.instructions.LMul;
+import net.runelite.asm.attributes.code.instructions.PutField;
+import net.runelite.asm.attributes.code.instructions.Swap;
 import net.runelite.asm.execution.Execution;
 import net.runelite.asm.execution.InstructionContext;
 import net.runelite.asm.execution.StackContext;
+import net.runelite.asm.pool.Class;
 import net.runelite.asm.signature.Signature;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import net.runelite.deob.DeobAnnotations;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-
-class InjectHook
+@Slf4j
+public class InjectHook extends AbstractInjector
 {
-	private static final Logger logger = LoggerFactory.getLogger(InjectHook.class);
-	private static final String HOOK_METHOD_SIGNATURE = "(I)V";
 	private static final String CLINIT = "<clinit>";
-	private final Inject inject;
+	private static final Type FIELDHOOK = new Type("Lnet/runelite/api/mixins/FieldHook;");
+
 	private final Map<Field, HookInfo> hooked = new HashMap<>();
+	private final Map<Provider<ClassFile>, List<ClassFile>> mixinTargets;
+
 	private int injectedHooks;
 
-	InjectHook(Inject inject)
+	InjectHook(final InjectData inject, final Map<Provider<ClassFile>, List<ClassFile>> mixinTargets)
 	{
-		this.inject = inject;
+		super(inject);
+		this.mixinTargets = mixinTargets;
 	}
 
-	void hook(Field field, HookInfo hookInfo)
+	@Override
+	public void inject()
 	{
-		hooked.put(field, hookInfo);
+		for (Map.Entry<Provider<ClassFile>, List<ClassFile>> entry : mixinTargets.entrySet())
+		{
+			injectMethods(entry.getKey(), entry.getValue());
+		}
+
+		injectHooks();
+
+		log.info("[INFO] Injected {} field hooks.", injectedHooks);
 	}
 
-	void run()
+	private void injectMethods(Provider<ClassFile> mixinProvider, List<ClassFile> targetClasses)
+	{
+		final ClassFile mixinClass = mixinProvider.get();
+
+		for (ClassFile targetClass : targetClasses)
+		{
+			for (Method mixinMethod : mixinClass.getMethods())
+			{
+				final Annotation fieldHook = mixinMethod.findAnnotation(FIELDHOOK);
+				if (fieldHook == null)
+				{
+					continue;
+				}
+
+				final String hookName = fieldHook.getValueString();
+				final boolean before = isBefore(fieldHook);
+
+				final ClassFile deobTarget = inject.toDeob(targetClass.getName());
+				final Field deobField;
+
+				if (mixinMethod.isStatic())
+				{
+					deobField = InjectUtil.findStaticField(deobTarget.getGroup(), hookName);
+				}
+				else
+				{
+					deobField = InjectUtil.findFieldDeep(deobTarget, hookName);
+				}
+
+				assert mixinMethod.isStatic() == deobField.isStatic() : "Mixin method isn't static but deob has a static method named the same as the hook, and I was too lazy to do something about this bug";
+
+				final Number getter = DeobAnnotations.getObfuscatedGetter(deobField);
+				final Field obField = inject.toVanilla(deobField);
+
+				final HookInfo info = new HookInfo(targetClass.getPoolClass(), mixinMethod, before, getter);
+
+				hooked.put(obField, info);
+			}
+		}
+	}
+
+	private void injectHooks()
 	{
 		Execution e = new Execution(inject.getVanilla());
 		e.populateInitialMethods();
@@ -74,7 +146,8 @@ class InjectHook
 		Set<Instruction> done = new HashSet<>();
 		Set<Instruction> doneIh = new HashSet<>();
 
-		e.addExecutionVisitor((InstructionContext ic) ->
+		e.addExecutionVisitor((
+			InstructionContext ic) ->
 		{
 			Instruction i = ic.getInstruction();
 			Instructions ins = i.getInstructions();
@@ -110,10 +183,7 @@ class InjectHook
 				return;
 			}
 
-			String hookName = hookInfo.fieldName;
-			assert hookName != null;
-
-			logger.trace("Found injection location for hook {} at instruction {}", hookName, sfi);
+			log.trace("Found injection location for hook {} at instruction {}", hookInfo.method.getName(), sfi);
 			++injectedHooks;
 
 			StackContext value = ic.getPops().get(0);
@@ -134,12 +204,12 @@ class InjectHook
 					injectCallbackBefore(ins, idx, hookInfo, null, objectStackContext, value);
 				}
 				else
+				// idx + 1 to insert after the set
 				{
-					// idx + 1 to insert after the set
 					injectCallback(ins, idx + 1, hookInfo, null, objectStackContext);
 				}
 			}
-			catch (InjectionException ex)
+			catch (InjectException ex)
 			{
 				throw new RuntimeException(ex);
 			}
@@ -186,8 +256,6 @@ class InjectHook
 				return;
 			}
 
-			String hookName = hookInfo.fieldName;
-
 			StackContext value = ic.getPops().get(0);
 			StackContext index = ic.getPops().get(1);
 
@@ -201,7 +269,7 @@ class InjectHook
 			}
 
 			// inject hook after 'i'
-			logger.info("Found array injection location for hook {} at instruction {}", hookName, i);
+			log.debug("[DEBUG] Found array injection location for hook {} at instruction {}", hookInfo.method.getName(), i);
 			++injectedHooks;
 
 			int idx = ins.getInstructions().indexOf(i);
@@ -218,7 +286,7 @@ class InjectHook
 					injectCallback(ins, idx + 1, hookInfo, index, objectStackContext);
 				}
 			}
-			catch (InjectionException ex)
+			catch (InjectException ex)
 			{
 				throw new RuntimeException(ex);
 			}
@@ -227,7 +295,7 @@ class InjectHook
 		e.run();
 	}
 
-	private void injectCallbackBefore(Instructions ins, int idx, HookInfo hookInfo, StackContext index, StackContext object, StackContext value) throws InjectionException
+	private void injectCallbackBefore(Instructions ins, int idx, HookInfo hookInfo, StackContext index, StackContext object, StackContext value)
 	{
 		Signature signature = hookInfo.method.getDescriptor();
 		Type methodArgumentType = signature.getTypeOfArg(0);
@@ -236,70 +304,42 @@ class InjectHook
 		{
 			if (object == null)
 			{
-				throw new InjectionException("null object");
+				throw new InjectException("null object");
 			}
 
 			ins.getInstructions().add(idx++, new Dup(ins)); // dup value
 			idx = recursivelyPush(ins, idx, object);
 			ins.getInstructions().add(idx++, new Swap(ins));
-			if (hookInfo.getter != null)
-			{
-				assert hookInfo.getter instanceof Integer || hookInfo.getter instanceof Long;
 
-				if (hookInfo.getter instanceof Integer)
-				{
-					ins.getInstructions().add(idx++, new LDC(ins, (int) hookInfo.getter));
-					ins.getInstructions().add(idx++, new IMul(ins));
-				}
-				else
-				{
-					ins.getInstructions().add(idx++, new LDC(ins, (long) hookInfo.getter));
-					ins.getInstructions().add(idx++, new LMul(ins));
-				}
-			}
-			if (!value.type.equals(methodArgumentType))
+			if (hookInfo.getter instanceof Integer)
 			{
-				CheckCast checkCast = new CheckCast(ins);
-				checkCast.setType(methodArgumentType);
-				ins.getInstructions().add(idx++, checkCast);
+				ins.getInstructions().add(idx++, new LDC(ins, hookInfo.getter));
+				ins.getInstructions().add(idx++, new IMul(ins));
 			}
-			if (index != null)
+			else if (hookInfo.getter instanceof Long)
 			{
-				idx = recursivelyPush(ins, idx, index);
+				ins.getInstructions().add(idx++, new LDC(ins, hookInfo.getter));
+				ins.getInstructions().add(idx++, new LMul(ins));
 			}
-
-			InvokeVirtual invoke = new InvokeVirtual(ins,
-					new net.runelite.asm.pool.Method(
-							new net.runelite.asm.pool.Class(hookInfo.clazz),
-							hookInfo.method.getName(),
-							signature
-					)
-			);
-			ins.getInstructions().add(idx++, invoke);
 		}
 		else
 		{
 			ins.getInstructions().add(idx++, new Dup(ins)); // dup value
-			if (!value.type.equals(methodArgumentType))
-			{
-				CheckCast checkCast = new CheckCast(ins);
-				checkCast.setType(methodArgumentType);
-				ins.getInstructions().add(idx++, checkCast);
-			}
-			if (index != null)
-			{
-				idx = recursivelyPush(ins, idx, index);
-			}
-
-			InvokeStatic invoke = new InvokeStatic(ins,
-					new net.runelite.asm.pool.Method(
-							new net.runelite.asm.pool.Class(hookInfo.clazz),
-							hookInfo.method.getName(),
-							signature
-					)
-			);
-			ins.getInstructions().add(idx++, invoke);
 		}
+
+		if (!value.type.equals(methodArgumentType))
+		{
+			CheckCast checkCast = new CheckCast(ins);
+			checkCast.setType(methodArgumentType);
+			ins.getInstructions().add(idx++, checkCast);
+		}
+		if (index != null)
+		{
+			idx = recursivelyPush(ins, idx, index);
+		}
+
+		Instruction invoke = hookInfo.getInvoke(ins);
+		ins.getInstructions().add(idx, invoke);
 	}
 
 	private int recursivelyPush(Instructions ins, int idx, StackContext sctx)
@@ -321,68 +361,56 @@ class InjectHook
 		return idx;
 	}
 
-	private void injectCallback(Instructions ins, int idx, HookInfo hookInfo, StackContext index, StackContext objectPusher) throws InjectionException
+	private void injectCallback(Instructions ins, int idx, HookInfo hookInfo, StackContext index, StackContext objectPusher)
 	{
 		if (!hookInfo.method.isStatic())
 		{
 			if (objectPusher == null)
 			{
-				throw new InjectionException("Null object pusher");
+				throw new InjectException("Null object pusher");
 			}
 
 			idx = recursivelyPush(ins, idx, objectPusher);
-			if (index != null)
-			{
-				idx = recursivelyPush(ins, idx, index);
-			}
-			else
-			{
-				ins.getInstructions().add(idx++, new LDC(ins, -1));
-			}
+		}
 
-			InvokeVirtual invoke = new InvokeVirtual(ins,
-					new net.runelite.asm.pool.Method(
-							new net.runelite.asm.pool.Class(hookInfo.clazz),
-							hookInfo.method.getName(),
-							new Signature(HOOK_METHOD_SIGNATURE)
-					)
-			);
-			ins.getInstructions().add(idx++, invoke);
-
+		if (index != null)
+		{
+			idx = recursivelyPush(ins, idx, index);
 		}
 		else
 		{
-			if (index != null)
-			{
-				idx = recursivelyPush(ins, idx, index);
-			}
-			else
-			{
-				ins.getInstructions().add(idx++, new LDC(ins, -1));
-			}
+			ins.getInstructions().add(idx++, new LDC(ins, -1));
+		}
 
-			InvokeStatic invoke = new InvokeStatic(ins,
-					new net.runelite.asm.pool.Method(
-							new net.runelite.asm.pool.Class(hookInfo.clazz),
-							hookInfo.method.getName(),
-							new Signature(HOOK_METHOD_SIGNATURE)
-					)
+		Instruction invoke = hookInfo.getInvoke(ins);
+		ins.getInstructions().add(idx, invoke);
+	}
+
+	@AllArgsConstructor
+	static class HookInfo
+	{
+		final Class targetClass;
+		final Method method;
+		final boolean before;
+		final Number getter;
+
+		Instruction getInvoke(Instructions instructions)
+		{
+			return InjectUtil.createInvokeFor(
+				instructions,
+				new net.runelite.asm.pool.Method(
+					targetClass,
+					method.getName(),
+					method.getDescriptor()
+				),
+				method.isStatic()
 			);
-			ins.getInstructions().add(idx++, invoke);
 		}
 	}
 
-	int getInjectedHooks()
+	private static boolean isBefore(Annotation a)
 	{
-		return injectedHooks;
-	}
-
-	static class HookInfo
-	{
-		String fieldName;
-		String clazz;
-		Method method;
-		boolean before;
-		Number getter;
+		Object val = a.get("before");
+		return val instanceof Boolean && (Boolean) val;
 	}
 }

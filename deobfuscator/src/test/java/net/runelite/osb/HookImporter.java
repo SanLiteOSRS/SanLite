@@ -74,13 +74,13 @@ public class HookImporter
 		}.getType();
 		hooks = gson.fromJson(new InputStreamReader(is), type);
 
-		group = JarUtil.loadJar(IN);
+		group = JarUtil.load(IN);
 	}
 
 	@After
 	public void after() throws IOException
 	{
-		JarUtil.saveJar(group, OUT);
+		JarUtil.save(group, OUT);
 	}
 
 	@Test

@@ -42,6 +42,7 @@ import net.runelite.asm.attributes.code.instructions.GetStatic;
 import net.runelite.asm.attributes.code.instructions.InvokeVirtual;
 import net.runelite.asm.attributes.code.instructions.LDC;
 import net.runelite.asm.signature.Signature;
+import net.runelite.injector.injectors.MixinInjector;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 import static org.junit.Assert.assertEquals;

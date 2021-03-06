@@ -120,7 +120,7 @@ public class CheckExports
 
 	@Test
 	@Ignore
-	public void checkMappings() throws IOException
+	public void checkMappings()
 	{
 		InjectionModscript mod = Injection.load(MappingImporter.class.getResourceAsStream(MappingImporter.RL_INJECTION));
 

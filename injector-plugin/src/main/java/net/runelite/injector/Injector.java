@@ -1,85 +1,137 @@
 /*
- * Copyright (c) 2016-2017, Adam <Adam@sigterm.info>
+ * Copyright (c) 2019, Lucas <https://github.com/Lucwousin>
  * All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
- *
- * 1. Redistributions of source code must retain the above copyright notice, this
- *    list of conditions and the following disclaimer.
- * 2. Redistributions in binary form must reproduce the above copyright notice,
- *    this list of conditions and the following disclaimer in the documentation
- *    and/or other materials provided with the distribution.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
- * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
- * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
- * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
- * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
- * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
- * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
- * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
- * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * This code is licensed under GPL3, see the complete license in
+ * the LICENSE file in the root directory of this submodule.
  */
 package net.runelite.injector;
 
-import com.google.common.io.Files;
-import net.runelite.asm.ClassFile;
-import net.runelite.asm.ClassGroup;
-import net.runelite.deob.util.JarUtil;
+import lombok.extern.slf4j.Slf4j;
+import net.runelite.injector.injection.InjectData;
+import net.runelite.injector.injection.InjectTaskHandler;
+import net.runelite.injector.injectors.*;
+import net.runelite.injector.injectors.raw.ClearColorBuffer;
+import net.runelite.injector.injectors.raw.DrawMenu;
+import net.runelite.injector.injectors.raw.Occluder;
+import net.runelite.injector.injectors.raw.RasterizerAlpha;
+import net.runelite.injector.injectors.raw.RenderDraw;
+import net.runelite.injector.injectors.raw.ScriptVM;
+import net.runelite.injector.rsapi.RSApi;
+import net.runelite.injector.transformers.InjectTransformer;
+import net.runelite.injector.transformers.SourceChanger;
 
 import java.io.File;
-import java.io.IOException;
+import java.util.Objects;
 
-public class Injector
+import static net.runelite.deob.util.JarUtil.load;
+import static net.runelite.deob.util.JarUtil.save;
+
+@Slf4j
+public class Injector extends InjectData implements InjectTaskHandler
 {
-	private final ClassGroup deobfuscated, vanilla;
+	static Injector injector = new Injector();
+	static File injectedClient =
+			new File("../runelite-client/src/main/resources/net/runelite/client/injected-client.sanlite");
 
-	public Injector(ClassGroup deobfuscated, ClassGroup vanilla)
+	public static void main(String[] args)
 	{
-		this.deobfuscated = deobfuscated;
-		this.vanilla = vanilla;
+		injector.vanilla = load(new File(args[0]));
+		injector.deobfuscated = load(
+				new File("../runescape-client/build/libs/runescape-client-" + args[1] + ".jar"));
+		injector.rsApi = new RSApi(Objects.requireNonNull(
+				new File("../runescape-api/build/classes/java/main/net/runelite/rs/api/")
+						.listFiles()));
+		injector.mixins = load(
+				new File("../runelite-mixins/build/libs/runelite-mixins-" + args[1] + ".jar"));
+		injector.initToVanilla();
+		injector.injectVanilla();
+		save(injector.getVanilla(), injectedClient);
 	}
 
-	public static void main(String[] args) throws IOException, InjectionException
+	public void injectVanilla()
 	{
-		if (args.length < 3)
+		log.debug("[DEBUG] Starting injection");
+
+//		transform(new Java8Ifier(this));
+
+		inject(new CreateAnnotations(this));
+
+		inject(new InterfaceInjector(this));
+
+		inject(new RasterizerAlpha(this));
+
+		inject(new MixinInjector(this));
+
+		// This is where field hooks runs
+
+		// This is where method hooks runs
+
+		inject(new InjectConstruct(this));
+
+		inject(new RSApiInjector(this));
+
+		//inject(new DrawAfterWidgets(this));
+
+		inject(new ScriptVM(this));
+
+		// All GPU raw injectors should probably be combined, especially RenderDraw and Occluder
+		inject(new ClearColorBuffer(this));
+
+		inject(new RenderDraw(this));
+
+		inject(new Occluder(this));
+
+		inject(new DrawMenu(this));
+
+		validate(new InjectorValidator(this));
+
+		transform(new SourceChanger(this));
+	}
+
+	private void inject(net.runelite.injector.injectors.Injector injector)
+	{
+		final String name = injector.getName();
+
+		log.info("[INFO] Starting {}", name);
+
+		injector.start();
+
+		injector.inject();
+
+		// TODO: Maven mojo log
+		// log.lifecycle("{} {}", name, injector.getCompletionMsg());
+
+		if (injector instanceof Validator)
 		{
-			System.exit(-1);
+			validate((Validator) injector);
 		}
-
-		ClassGroup deobfuscated = JarUtil.loadJar(new File(args[0]));
-		ClassGroup vanilla = JarUtil.loadJar(new File(args[1]));
-
-		Injector u = new Injector(
-				deobfuscated,
-				vanilla
-		);
-		u.inject();
-
-		InjectorValidator iv = new InjectorValidator(vanilla);
-		iv.validate();
-
-		u.save(new File(args[2]));
 	}
 
-	public void inject() throws InjectionException
+	private void validate(Validator validator)
 	{
-		Inject instance = new Inject(deobfuscated, vanilla);
-		instance.run();
-	}
+		final String name = validator.getName();
 
-	private void save(File out) throws IOException
-	{
-		out.mkdirs();
-		for (ClassFile cf : vanilla.getClasses())
+		if (!validator.validate())
 		{
-			File f = new File(out, cf.getClassName() + ".class");
-			byte[] data = JarUtil.writeClass(vanilla, cf);
-			Files.write(data, f);
+			throw new InjectException(name + " failed validation");
 		}
 	}
 
+	private void transform(InjectTransformer transformer)
+	{
+		final String name = transformer.getName();
 
+		log.info("[INFO] Starting {}", name);
+
+		transformer.transform();
+
+		// TODO: Maven mojo log
+		// log.lifecycle("{} {}", name, transformer.getCompletionMsg());
+	}
+
+	public void runChildInjector(net.runelite.injector.injectors.Injector injector)
+	{
+		inject(injector);
+	}
 }

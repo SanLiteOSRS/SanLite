@@ -57,65 +57,65 @@ public class InjectMojo extends AbstractMojo
 	@Override
 	public void execute() throws MojoExecutionException, MojoFailureException
 	{
-		ClientVersion ver = new ClientVersion(new File(vanillaPath));
-		int version;
-		try
-		{
-			version = ver.getVersion();
-		}
-		catch (IOException ex)
-		{
-			throw new MojoExecutionException("Unable to read vanilla client version", ex);
-		}
-
-		log.info("Vanilla client version " + version);
-
-		ClassGroup rs;
-		ClassGroup vanilla;
-
-		try
-		{
-			rs = JarUtil.loadJar(new File(rsClientPath));
-			vanilla = JarUtil.loadJar(new File(vanillaPath));
-		}
-		catch (IOException ex)
-		{
-			throw new MojoExecutionException("Unable to load dependency jars", ex);
-		}
-
-		Injector injector = new Injector(rs, vanilla);
-		try
-		{
-			injector.inject();
-		}
-		catch (InjectionException ex)
-		{
-			throw new MojoExecutionException("Error injecting client", ex);
-		}
-
-		InjectorValidator iv = new InjectorValidator(vanilla);
-		iv.validate();
-
-		if (iv.getError() > 0)
-		{
-			throw new MojoExecutionException("Error building injected jar");
-		}
-
-		if (iv.getMissing() > 0)
-		{
-			throw new MojoExecutionException("Unable to inject all methods");
-		}
-
-		try
-		{
-			writeClasses(vanilla, outputDirectory);
-		}
-		catch (IOException ex)
-		{
-			throw new MojoExecutionException("Unable to write classes", ex);
-		}
-
-		log.info("Injector wrote " + vanilla.getClasses().size() + " classes, " + iv.getOkay() + " injected methods");
+//		ClientVersion ver = new ClientVersion(new File(vanillaPath));
+//		int version;
+//		try
+//		{
+//			version = ver.getVersion();
+//		}
+//		catch (IOException ex)
+//		{
+//			throw new MojoExecutionException("Unable to read vanilla client version", ex);
+//		}
+//
+//		log.info("Vanilla client version " + version);
+//
+//		ClassGroup rs;
+//		ClassGroup vanilla;
+//
+//		try
+//		{
+//			rs = JarUtil.loadJar(new File(rsClientPath));
+//			vanilla = JarUtil.loadJar(new File(vanillaPath));
+//		}
+//		catch (IOException ex)
+//		{
+//			throw new MojoExecutionException("Unable to load dependency jars", ex);
+//		}
+//
+//		Injector injector = new Injector(rs, vanilla);
+//		try
+//		{
+//			injector.inject();
+//		}
+//		catch (InjectionException ex)
+//		{
+//			throw new MojoExecutionException("Error injecting client", ex);
+//		}
+//
+//		InjectorValidator iv = new InjectorValidator(vanilla);
+//		iv.validate();
+//
+//		if (iv.getError() > 0)
+//		{
+//			throw new MojoExecutionException("Error building injected jar");
+//		}
+//
+//		if (iv.getMissing() > 0)
+//		{
+//			throw new MojoExecutionException("Unable to inject all methods");
+//		}
+//
+//		try
+//		{
+//			writeClasses(vanilla, outputDirectory);
+//		}
+//		catch (IOException ex)
+//		{
+//			throw new MojoExecutionException("Unable to write classes", ex);
+//		}
+//
+//		log.info("Injector wrote " + vanilla.getClasses().size() + " classes, " + iv.getOkay() + " injected methods");
 	}
 
 	private void writeClasses(ClassGroup group, File outputDirectory) throws IOException

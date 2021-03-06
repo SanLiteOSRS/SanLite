@@ -28,6 +28,8 @@ import net.runelite.asm.ClassFile;
 import net.runelite.asm.Method;
 import net.runelite.asm.signature.Signature;
 import static org.junit.Assert.assertNotNull;
+
+import net.runelite.injector.injectors.InjectConstruct;
 import org.junit.Test;
 import org.mockito.Matchers;
 import static org.mockito.Mockito.mock;

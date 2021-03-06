@@ -1,193 +1,82 @@
 /*
- * Copyright (c) 2017, Adam <Adam@sigterm.info>
+ * Copyright (c) 2019, Lucas <https://github.com/Lucwousin>
  * All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
- *
- * 1. Redistributions of source code must retain the above copyright notice, this
- *    list of conditions and the following disclaimer.
- * 2. Redistributions in binary form must reproduce the above copyright notice,
- *    this list of conditions and the following disclaimer in the documentation
- *    and/or other materials provided with the distribution.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
- * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
- * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
- * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
- * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
- * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
- * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
- * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
- * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * This code is licensed under GPL3, see the complete license in
+ * the LICENSE file in the root directory of this submodule.
  */
 package net.runelite.injector;
 
+import net.runelite.injector.injection.InjectData;
+import net.runelite.injector.rsapi.RSApi;
+import net.runelite.injector.rsapi.RSApiClass;
+import net.runelite.injector.rsapi.RSApiMethod;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import net.runelite.asm.ClassFile;
-import net.runelite.asm.ClassGroup;
-import net.runelite.asm.signature.Signature;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import net.runelite.asm.pool.Class;
+import static net.runelite.injector.rsapi.RSApi.API_BASE;
 
-import java.lang.reflect.Method;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
-
-/**
- * Verifies the injected jar is valid
- *
- * @author Adam
- */
-class InjectorValidator
+@RequiredArgsConstructor
+@Slf4j
+public class InjectorValidator implements Validator
 {
-	private static final Logger logger = LoggerFactory.getLogger(InjectorValidator.class);
+	private static final String OK = "OK", ERROR = "ERROR", NOT_FOUND = "NOT_FOUND";
+	private final InjectData inject;
 
-	private static final String API_PACKAGE_BASE = "net/runelite/rs/api/";
+	private int missing = 0, okay = 0, notFound = 0;
 
-	private final ClassGroup group;
-
-	private int error, missing, okay;
-
-	InjectorValidator(ClassGroup group)
+	public boolean validate()
 	{
-		this.group = group;
-	}
-
-	void validate()
-	{
-		for (ClassFile cf : group.getClasses())
+		final RSApi rsApi = inject.getRsApi();
+		for (ClassFile cf : inject.getVanilla())
 		{
-			validate(cf);
+			for (Class intf : cf.getInterfaces())
+			{
+				if (!intf.getName().startsWith(API_BASE))
+				{
+					continue;
+				}
+
+				RSApiClass apiC = rsApi.findClass(intf.getName());
+				if (apiC == null)
+				{
+					log.error("{} is rs-api type implemented by {} but does not exist in rs-api", intf, cf.getPoolClass());
+					++notFound;
+					continue;
+				}
+
+				check(cf, apiC);
+			}
 		}
 
-		logger.info("{} overridden methods, {} missing", okay, missing);
+		String status = notFound > 0 ? NOT_FOUND : missing > 0 ? ERROR : OK;
+		log.info("[INFO] RSApiValidator completed. Status [{}] {} overridden methods, {} missing", status, okay, missing);
+
+		// valid, ref to static final field
+		return status == OK;
 	}
 
-	private void validate(ClassFile cf)
+	private void check(ClassFile clazz, RSApiClass apiClass)
 	{
-		// find methods of the interface not implemented in the class
-		for (net.runelite.asm.pool.Class clazz : cf.getInterfaces().getInterfaces())
+		for (RSApiMethod apiMethod : apiClass)
 		{
-			if (!clazz.getName().startsWith(API_PACKAGE_BASE))
-			{
-				continue;
-			}
-
-			Class<?> c;
-			try
-			{
-				c = Class.forName(clazz.getName().replace('/', '.'));
-			}
-			catch (ClassNotFoundException ex)
-			{
-				logger.warn(null, ex);
-				continue;
-			}
-
-			if (cf.isAbstract())
+			if (apiMethod.isSynthetic() || apiMethod.isDefault())
 			{
 				// Abstract classes don't have to implement anything
 				continue;
 			}
 
-			for (Method method : c.getMethods())
+			if (clazz.findMethodDeep(apiMethod.getName(), apiMethod.getSignature()) == null)
 			{
-				if (method.isSynthetic() || method.isDefault())
-				{
-					continue;
-				}
-
-				// could check method signature here too but it is
-				// annoying to deal with both runelite api and java
-				// reflection api
-				if (cf.findMethodDeep(method.getName()) == null)
-				{
-					logger.warn("Class {} implements interface {} but not does implement method {}",
-							cf.getName(), c.getSimpleName(), method);
-					++missing;
-				}
-				else
-				{
-					++okay;
-				}
+				log.error("[WARN] Class {} implements interface {} but doesn't implement {}",
+					clazz.getPoolClass(), apiClass.getClazz(), apiMethod.getMethod());
+				++missing;
 			}
-		}
-
-		Set<NameAndSignature> signatures = new HashSet<>();
-
-		for (net.runelite.asm.Method method : cf.getMethods())
-		{
-			NameAndSignature nas = new NameAndSignature(method.getName(), method.getDescriptor());
-
-			if (signatures.contains(nas))
+			else
 			{
-				logger.error("Class {} has duplicate method with same name and signature {} {}",
-						cf.getName(), method.getName(), method.getDescriptor());
-				++error;
+				++okay;
 			}
-
-			signatures.add(nas);
-		}
-	}
-
-	int getError()
-	{
-		return error;
-	}
-
-	int getMissing()
-	{
-		return missing;
-	}
-
-	int getOkay()
-	{
-		return okay;
-	}
-
-	static final class NameAndSignature
-	{
-		String name;
-		Signature signature;
-
-		NameAndSignature(String name, Signature signature)
-		{
-			this.name = name;
-			this.signature = signature;
-		}
-
-		@Override
-		public int hashCode()
-		{
-			int hash = 3;
-			hash = 67 * hash + Objects.hashCode(this.name);
-			hash = 67 * hash + Objects.hashCode(this.signature);
-			return hash;
-		}
-
-		@Override
-		public boolean equals(Object obj)
-		{
-			if (this == obj)
-			{
-				return true;
-			}
-			if (obj == null)
-			{
-				return false;
-			}
-			if (getClass() != obj.getClass())
-			{
-				return false;
-			}
-			final NameAndSignature other = (NameAndSignature) obj;
-			if (!Objects.equals(this.name, other.name))
-			{
-				return false;
-			}
-			return Objects.equals(this.signature, other.signature);
 		}
 	}
 }

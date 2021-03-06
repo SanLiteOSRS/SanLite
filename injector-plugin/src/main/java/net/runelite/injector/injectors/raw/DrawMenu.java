@@ -2,28 +2,18 @@
  * Copyright (c) 2019, Lucas <https://github.com/Lucwousin>
  * All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
- *
- * 1. Redistributions of source code must retain the above copyright notice, this
- *    list of conditions and the following disclaimer.
- * 2. Redistributions in binary form must reproduce the above copyright notice,
- *    this list of conditions and the following disclaimer in the documentation
- *    and/or other materials provided with the distribution.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
- * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
- * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
- * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
- * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
- * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
- * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
- * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
- * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * This code is licensed under GPL3, see the complete license in
+ * the LICENSE file in the root directory of this submodule.
  */
-package net.runelite.injector.raw;
+package net.runelite.injector.injectors.raw;
 
+import lombok.extern.slf4j.Slf4j;
+import net.runelite.injector.InjectException;
+import net.runelite.injector.InjectUtil;
+import net.runelite.injector.injection.InjectData;
+import net.runelite.injector.injectors.AbstractInjector;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 import net.runelite.asm.Method;
 import net.runelite.asm.attributes.code.Instruction;
 import net.runelite.asm.attributes.code.Instructions;
@@ -38,31 +28,23 @@ import net.runelite.asm.execution.MethodContext;
 import net.runelite.asm.pool.Class;
 import net.runelite.asm.pool.Field;
 import net.runelite.asm.signature.Signature;
-import net.runelite.injector.Inject;
-import net.runelite.injector.InjectUtil;
-import net.runelite.injector.InjectionException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import static net.runelite.injector.injection.InjectData.HOOKS;
 
-import java.util.List;
-import java.util.concurrent.atomic.AtomicReference;
-
-public class DrawMenu
+@Slf4j
+public class DrawMenu extends AbstractInjector
 {
-	private final Logger log = LoggerFactory.getLogger(DrawMenu.class);
-	private final Inject inject;
-	private static final net.runelite.asm.pool.Method DRAW_MENU = new net.runelite.asm.pool.Method(
-			new Class("net.runelite.client.callback.Hooks"),
-			"drawMenu",
-			new Signature("()Z")
+	private static final net.runelite.asm.pool.Method DRAWMENU = new net.runelite.asm.pool.Method(
+		new Class(HOOKS),
+		"drawMenu",
+		new Signature("()Z")
 	);
 
-	public DrawMenu(Inject inject)
+	public DrawMenu(InjectData inject)
 	{
-		this.inject = inject;
+		super(inject);
 	}
 
-	public void inject() throws InjectionException
+	public void inject()
 	{
 		/*
 		 * The drawMenu method can be inlined, so we need this raw injector to find where to inject.
@@ -86,9 +68,9 @@ public class DrawMenu
 		 * --------
 		 */
 
-		final Method drawLoggedIn = InjectUtil.findMethod(inject, "drawLoggedIn", "Client");
-		final Field gameDrawMode = InjectUtil.findDeobField(inject, "gameDrawingMode", "Client").getPoolField();
-		final Field isMenuOpen = InjectUtil.findDeobField(inject, "isMenuOpen", "Client").getPoolField();
+		final Method drawLoggedIn = InjectUtil.findMethod(inject, "drawLoggedIn", "Client", null, true, false);
+		final Field gameDrawMode = InjectUtil.findField(inject, "gameDrawingMode", "Client").getPoolField();
+		final Field isMenuOpen = InjectUtil.findField(inject, "isMenuOpen", "Client").getPoolField();
 
 		final Execution execution = new Execution(inject.getVanilla());
 		execution.noInvoke = true;
@@ -107,7 +89,9 @@ public class DrawMenu
 		{
 			Instruction instruction = ic.getInstruction();
 			if (!(instruction instanceof GetStatic))
+			{
 				continue;
+			}
 
 			if (((GetStatic) instruction).getField().equals(isMenuOpen))
 			{
@@ -120,30 +104,38 @@ public class DrawMenu
 				// If the popper is a IfNe the label it's pointing to is the drawMenu one and topLeft is directly after it
 				// else it's the other way around, obviously
 				if (isMenuOpenPopI instanceof IfNe)
+				{
 					injectInvokeAfter = ((IfNe) isMenuOpenPopI).getTo();
+				}
 				else
+				{
 					injectInvokeAfter = isMenuOpenPopI;
+				}
 			}
 			else if (((GetStatic) instruction).getField().equals(gameDrawMode))
 			{
 				List<Instruction> instrL = instruction.getInstructions().getInstructions();
 				for (int i = instrL.indexOf(instruction); !(instruction instanceof Label); i--)
+				{
 					instruction = instrL.get(i);
+				}
 
 				labelToJumpTo = (Label) instruction;
 			}
 
 			if (injectInvokeAfter != null && labelToJumpTo != null)
+			{
 				break;
+			}
 		}
 
 		if (injectInvokeAfter == null || labelToJumpTo == null)
-			throw new InjectionException("Could not find the right location for DrawMenu to inject");
+			throw new InjectException("Could not find the right location for DrawMenu to inject");
 
 		final Instructions instructions = mc.getMethod().getCode().getInstructions();
 		int idx = instructions.getInstructions().indexOf(injectInvokeAfter);
 
-		instructions.addInstruction(++idx, new InvokeStatic(instructions, DRAW_MENU));
+		instructions.addInstruction(++idx, new InvokeStatic(instructions, DRAWMENU));
 		instructions.addInstruction(++idx, new IfNe(instructions, labelToJumpTo));
 
 		log.info("DrawMenu injected a method call at index {} in method {}. Comparison jumping to {}", idx, drawLoggedIn, labelToJumpTo);

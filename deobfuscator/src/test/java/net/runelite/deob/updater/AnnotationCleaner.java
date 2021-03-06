@@ -30,7 +30,7 @@ public class AnnotationCleaner
 	{
 		final List<String> missing = new ArrayList<>();
 		File client = new File(properties.getRsClient());
-		ClassGroup group = JarUtil.loadJar(client);
+		ClassGroup group = JarUtil.load(client);
 
 		for (ClassFile c : group.getClasses())
 		{
@@ -112,10 +112,10 @@ public class AnnotationCleaner
 	{
 		File client = new File(properties.getRsClient());
 
-		ClassGroup group = JarUtil.loadJar(client);
+		ClassGroup group = JarUtil.load(client);
 
 		new AnnotationAdder(group).run();
 
-		JarUtil.saveJar(group, new File("./fixed-rs-client.jar"));
+		JarUtil.save(group, new File("./fixed-rs-client.jar"));
 	}
 }

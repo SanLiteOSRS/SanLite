@@ -1,4 +1,10 @@
 /*
+ * Copyright (c) 2019, Lucas <https://github.com/Lucwousin>
+ * All rights reserved.
+ *
+ * This code is licensed under GPL3, see the complete license in
+ * the LICENSE file in the root directory of this submodule.
+ *
  * Copyright (c) 2018 Abex
  * All rights reserved.
  *
@@ -22,8 +28,18 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.injector.raw;
+package net.runelite.injector.injectors.raw;
 
+import lombok.extern.slf4j.Slf4j;
+import net.runelite.injector.InjectException;
+import net.runelite.injector.InjectUtil;
+import net.runelite.injector.injection.InjectData;
+import net.runelite.injector.injectors.AbstractInjector;
+import java.util.HashSet;
+import java.util.ListIterator;
+import java.util.Set;
+import java.util.concurrent.atomic.AtomicReference;
+import net.runelite.asm.ClassFile;
 import net.runelite.asm.ClassGroup;
 import net.runelite.asm.Field;
 import net.runelite.asm.Method;
@@ -31,41 +47,33 @@ import net.runelite.asm.Type;
 import net.runelite.asm.attributes.code.Instruction;
 import net.runelite.asm.attributes.code.Instructions;
 import net.runelite.asm.attributes.code.Label;
-import net.runelite.asm.attributes.code.instructions.*;
+import net.runelite.asm.attributes.code.instructions.ALoad;
+import net.runelite.asm.attributes.code.instructions.AStore;
+import net.runelite.asm.attributes.code.instructions.Dup;
+import net.runelite.asm.attributes.code.instructions.GetField;
+import net.runelite.asm.attributes.code.instructions.IALoad;
+import net.runelite.asm.attributes.code.instructions.IInc;
+import net.runelite.asm.attributes.code.instructions.ILoad;
+import net.runelite.asm.attributes.code.instructions.IMul;
+import net.runelite.asm.attributes.code.instructions.IStore;
+import net.runelite.asm.attributes.code.instructions.IfNe;
+import net.runelite.asm.attributes.code.instructions.InvokeStatic;
+import net.runelite.asm.attributes.code.instructions.PutField;
+import net.runelite.asm.attributes.code.instructions.PutStatic;
 import net.runelite.asm.execution.Execution;
 import net.runelite.asm.execution.InstructionContext;
 import net.runelite.asm.execution.MethodContext;
 import net.runelite.asm.execution.StackContext;
-import net.runelite.deob.DeobAnnotations;
-import net.runelite.injector.Inject;
-import net.runelite.injector.InjectionException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import java.util.HashSet;
-import java.util.ListIterator;
-import java.util.Set;
-import java.util.concurrent.atomic.AtomicReference;
-
-import static net.runelite.injector.InjectUtil.*;
-
-public class ScriptVM
+@Slf4j
+public class ScriptVM extends AbstractInjector
 {
-	private static final Logger log = LoggerFactory.getLogger(ScriptVM.class);
-
-	private final Inject inject;
-
-	public ScriptVM(Inject inject)
+	public ScriptVM(InjectData inject)
 	{
-		this.inject = inject;
+		super(inject);
 	}
 
-	public void inject() throws InjectionException
-	{
-		injectScriptVMHooks();
-	}
-
-	private void injectScriptVMHooks() throws InjectionException
+	public void inject()
 	{
 		final ClassGroup vanilla = inject.getVanilla();
 
@@ -96,16 +104,20 @@ public class ScriptVM
 			if_icmpge L52
 
 		 */
-		final String scriptObName = DeobAnnotations.getObfuscatedName(inject.getDeobfuscated().findClass("Script").getAnnotations());
+		final ClassFile deobScript = inject.getDeobfuscated().findClass("Script");
 
-		final Field scriptInstructions = findDeobField(inject, "opcodes");
-		final Field scriptStatePC = findDeobField(inject, "pc");
+		final String scriptObName = InjectUtil.getObfuscatedName(deobScript);
 
-		// Next 4 should be injected by mixins
-		final Method runScript = findStaticMethod(vanilla, "copy$runScript");
-		final Method vmExecuteOpcode = findStaticMethod(vanilla, "vmExecuteOpcode");
-		final Method setCurrentScript = findStaticMethod(vanilla, "setCurrentScript");
-		final Field currentScriptPCField = findObField(inject, "currentScriptPC");
+		final Field scriptInstructions = InjectUtil.findField(inject, "opcodes", "Script");
+		final Field scriptStatePC = InjectUtil.findField(inject, "pc", "ScriptFrame");
+
+		final ClassFile vanillaClient = vanilla.findClass("client");
+
+		// Next 4 should be injected by mixins, so don't need fail fast
+		final Method runScript = vanillaClient.findStaticMethod("copy$runScript");
+		final Method vmExecuteOpcode = vanillaClient.findStaticMethod("vmExecuteOpcode");
+		final Method setCurrentScript = vanillaClient.findStaticMethod("setCurrentScript");
+		final Field currentScriptPCField = vanillaClient.findField("currentScriptPC");
 
 		Execution e = new Execution(inject.getVanilla());
 		e.addMethod(runScript);
@@ -165,11 +177,11 @@ public class ScriptVM
 					assert mulctx.getInstruction() instanceof IMul;
 
 					pcLocalVar = mulctx.getPops().stream()
-							.map(StackContext::getPushed)
-							.filter(i -> i.getInstruction() instanceof ILoad)
-							.map(i -> ((ILoad) i.getInstruction()).getVariableIndex())
-							.findFirst()
-							.orElse(null);
+						.map(StackContext::getPushed)
+						.filter(i -> i.getInstruction() instanceof ILoad)
+						.map(i -> ((ILoad) i.getInstruction()).getVariableIndex())
+						.findFirst()
+						.orElse(null);
 				}
 			}
 		}
@@ -178,7 +190,7 @@ public class ScriptVM
 		// This has to run after the first loop because it relies on instructionArrayLocalVar being set
 		if (instructionArrayLocalVar == null)
 		{
-			throw new InjectionException("Unable to find local instruction array");
+			throw new InjectException("Unable to find local instruction array");
 		}
 		for (InstructionContext instrCtx : methodContext.getInstructionContexts())
 		{
@@ -198,10 +210,10 @@ public class ScriptVM
 					{
 						//Find the istore
 						IStore istore = (IStore) instrCtx.getPushes().get(0).getPopped().stream()
-								.map(InstructionContext::getInstruction)
-								.filter(i -> i instanceof IStore)
-								.findFirst()
-								.orElse(null);
+							.map(InstructionContext::getInstruction)
+							.filter(i -> i instanceof IStore)
+							.findFirst()
+							.orElse(null);
 						if (istore != null)
 						{
 							currentOpcodeStore = istore;
@@ -215,10 +227,10 @@ public class ScriptVM
 		// Add PutStatics to all Script AStores
 		{
 			int outerSciptIdx = scriptStores.stream()
-					.mapToInt(AStore::getVariableIndex)
-					.reduce(Math::min)
-					.orElseThrow(() -> new InjectionException("Unable to find any Script AStores in runScript"));
-			log.debug("Found script index {}", outerSciptIdx);
+				.mapToInt(AStore::getVariableIndex)
+				.reduce(Math::min)
+				.orElseThrow(() -> new InjectException("Unable to find any Script AStores in runScript"));
+			log.debug("[DEBUG] Found script index {}", outerSciptIdx);
 
 			ListIterator<Instruction> instrIter = instrs.getInstructions().listIterator();
 			while (instrIter.hasNext())
@@ -243,9 +255,9 @@ public class ScriptVM
 		{
 			if (pcLocalVar == null)
 			{
-				throw new InjectionException("Unable to find ILoad for invokedFromPc IStore");
+				throw new InjectException("Unable to find ILoad for invokedFromPc IStore");
 			}
-			log.debug("Found pc index {}", pcLocalVar);
+			log.debug("[DEBUG] Found pc index {}", pcLocalVar);
 
 			ListIterator<Instruction> instrIter = instrs.getInstructions().listIterator();
 			while (instrIter.hasNext())
@@ -277,10 +289,10 @@ public class ScriptVM
 		}
 
 		// Inject call to vmExecuteOpcode
-		log.debug("Found instruction array index {}", instructionArrayLocalVar);
+		log.debug("[DEBUG] Found instruction array index {}", instructionArrayLocalVar);
 		if (currentOpcodeStore == null)
 		{
-			throw new InjectionException("Unable to find IStore for current opcode");
+			throw new InjectException("Unable to find IStore for current opcode");
 		}
 
 		int istorepc = instrs.getInstructions().indexOf(currentOpcodeStore);

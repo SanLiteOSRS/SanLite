@@ -35,6 +35,8 @@ import net.runelite.asm.attributes.code.Instructions;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+
+import net.runelite.injector.injectors.rsapi.InjectSetter;
 import org.junit.Test;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyInt;
