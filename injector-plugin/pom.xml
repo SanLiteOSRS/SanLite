@@ -44,11 +44,28 @@
 			<artifactId>deobfuscator</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+        <dependency>
+            <groupId>net.runelite.rs</groupId>
+            <artifactId>runescape-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>net.runelite.rs</groupId>
+            <artifactId>rs-client</artifactId>
+            <version>${project.version}</version>
+        </dependency>
 		<dependency>
 			<groupId>net.runelite</groupId>
 			<artifactId>mixins</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.4</version>
+            <scope>provided</scope>
+        </dependency>
 
 		<dependency>
 			<groupId>org.apache.maven</groupId>
@@ -60,11 +77,6 @@
 			<artifactId>maven-plugin-annotations</artifactId>
 			<version>3.4</version>
 		</dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <scope>provided</scope>
-        </dependency>
 
 		<dependency>
 			<groupId>net.runelite</groupId>

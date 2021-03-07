@@ -25,35 +25,21 @@ import java.io.File;
 import java.util.Objects;
 
 import static net.runelite.deob.util.JarUtil.load;
-import static net.runelite.deob.util.JarUtil.save;
 
 @Slf4j
 public class Injector extends InjectData implements InjectTaskHandler
 {
-	static Injector injector = new Injector();
-	static File injectedClient =
-			new File("../runelite-client/src/main/resources/net/runelite/client/injected-client.sanlite");
-
-	public static void main(String[] args)
+	public Injector(String vanillaPath, String rsClientPath, String rsApiPath, String mixinsPath)
 	{
-		injector.vanilla = load(new File(args[0]));
-		injector.deobfuscated = load(
-				new File("../runescape-client/build/libs/runescape-client-" + args[1] + ".jar"));
-		injector.rsApi = new RSApi(Objects.requireNonNull(
-				new File("../runescape-api/build/classes/java/main/net/runelite/rs/api/")
-						.listFiles()));
-		injector.mixins = load(
-				new File("../runelite-mixins/build/libs/runelite-mixins-" + args[1] + ".jar"));
-		injector.initToVanilla();
-		injector.injectVanilla();
-		save(injector.getVanilla(), injectedClient);
+		this.vanilla = load(new File(vanillaPath));
+		this.deobfuscated = load(new File(rsClientPath));
+		this.rsApi = new RSApi(Objects.requireNonNull(new File(rsApiPath).listFiles()));
+		this.mixins = load(new File(mixinsPath));
 	}
 
 	public void injectVanilla()
 	{
 		log.debug("[DEBUG] Starting injection");
-
-//		transform(new Java8Ifier(this));
 
 		inject(new CreateAnnotations(this));
 

@@ -40,6 +40,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import static net.runelite.deob.util.JarUtil.save;
+
 @Mojo(
 		name = "runelite-injector",
 		defaultPhase = LifecyclePhase.GENERATE_RESOURCES
@@ -47,107 +49,50 @@ import java.io.IOException;
 public class InjectMojo extends AbstractMojo
 {
 	private final Log log = getLog();
+
 	@Parameter(defaultValue = "${project.build.outputDirectory}")
 	private File outputDirectory;
+
 	@Parameter(defaultValue = "./runescape-client/target/rs-client-${project.version}.jar", readonly = true, required = true)
 	private String rsClientPath;
+
 	@Parameter(defaultValue = "${net.runelite.rs:vanilla:jar}", readonly = true, required = true)
 	private String vanillaPath;
+
+	@Parameter(defaultValue = "./runescape-api/target/runescape-api-${project.version}.jar", readonly = true, required = true)
+	private String rsApiPath;
+
+	@Parameter(defaultValue = "./runelite-mixins/target/mixins-${project.version}.jar", readonly = true, required = true)
+	private String mixinsPath;
 
 	@Override
 	public void execute() throws MojoExecutionException, MojoFailureException
 	{
-//		ClientVersion ver = new ClientVersion(new File(vanillaPath));
-//		int version;
-//		try
-//		{
-//			version = ver.getVersion();
-//		}
-//		catch (IOException ex)
-//		{
-//			throw new MojoExecutionException("Unable to read vanilla client version", ex);
-//		}
-//
-//		log.info("Vanilla client version " + version);
-//
-//		ClassGroup rs;
-//		ClassGroup vanilla;
-//
-//		try
-//		{
-//			rs = JarUtil.loadJar(new File(rsClientPath));
-//			vanilla = JarUtil.loadJar(new File(vanillaPath));
-//		}
-//		catch (IOException ex)
-//		{
-//			throw new MojoExecutionException("Unable to load dependency jars", ex);
-//		}
-//
-//		Injector injector = new Injector(rs, vanilla);
-//		try
-//		{
-//			injector.inject();
-//		}
-//		catch (InjectionException ex)
-//		{
-//			throw new MojoExecutionException("Error injecting client", ex);
-//		}
-//
-//		InjectorValidator iv = new InjectorValidator(vanilla);
-//		iv.validate();
-//
-//		if (iv.getError() > 0)
-//		{
-//			throw new MojoExecutionException("Error building injected jar");
-//		}
-//
-//		if (iv.getMissing() > 0)
-//		{
-//			throw new MojoExecutionException("Unable to inject all methods");
-//		}
-//
-//		try
-//		{
-//			writeClasses(vanilla, outputDirectory);
-//		}
-//		catch (IOException ex)
-//		{
-//			throw new MojoExecutionException("Unable to write classes", ex);
-//		}
-//
-//		log.info("Injector wrote " + vanilla.getClasses().size() + " classes, " + iv.getOkay() + " injected methods");
-	}
-
-	private void writeClasses(ClassGroup group, File outputDirectory) throws IOException
-	{
-		for (ClassFile cf : group.getClasses())
+		ClientVersion ver = new ClientVersion(new File(vanillaPath));
+		int version;
+		try
 		{
-			File classFile = getClassFile(outputDirectory, cf);
-			byte[] classData = JarUtil.writeClass(group, cf);
-
-			try (FileOutputStream fileOutputStream = new FileOutputStream(classFile, false))
-			{
-				fileOutputStream.write(classData);
-			}
+			version = ver.getVersion();
 		}
-	}
-
-	private File getClassFile(File base, ClassFile classFile)
-	{
-		File file = base;
-
-		String[] parts = classFile.getName().split("/");
-		for (int i = 0; i < parts.length - 1; ++i)
+		catch (IOException ex)
 		{
-			String part = parts[i];
-
-			file = new File(file, part);
+			throw new MojoExecutionException("Unable to read vanilla client version", ex);
 		}
 
-		file.mkdirs();
-		file = new File(file, parts[parts.length - 1] + ".class");
+		log.info("Vanilla client version " + version);
 
-		return file;
+		Injector injector = new Injector(vanillaPath, rsClientPath, rsApiPath, mixinsPath);
+		try
+		{
+			injector.initToVanilla();
+			injector.injectVanilla();
+		}
+		catch (InjectException ex)
+		{
+			throw new MojoExecutionException("Error injecting client", ex);
+		}
+
+		save(injector.getVanilla(), outputDirectory);
+		log.info("Finished injection!");
 	}
-
 }

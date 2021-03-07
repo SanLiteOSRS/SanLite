@@ -32,11 +32,11 @@ public class RSApiMethod extends MethodVisitor implements Annotated, Named
 	private final Map<Type, Annotation> annotations = new HashMap<>();
 	private boolean injected;
 
-	RSApiMethod(Method method, int accesFlags)
+	RSApiMethod(Method method, int accessFlags)
 	{
 		super(Opcodes.ASM5);
 		this.method = method;
-		this.accessFlags = accesFlags;
+		this.accessFlags = accessFlags;
 	}
 
 	public Class getClazz()
