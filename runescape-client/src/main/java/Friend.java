@@ -3,21 +3,27 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("kx")
+@ObfuscatedName("ko")
 @Implements("Friend")
 public class Friend extends Buddy {
-	@ObfuscatedName("h")
-	boolean field3666;
+	@ObfuscatedName("ce")
+	@ObfuscatedSignature(
+		signature = "Lbb;"
+	)
+	@Export("mouseRecorder")
+	static MouseRecorder mouseRecorder;
+	@ObfuscatedName("n")
+	boolean field3663;
 	@ObfuscatedName("v")
-	boolean field3667;
+	boolean field3661;
 
 	Friend() {
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Lkx;I)I",
-		garbageValue = "-1658027604"
+		signature = "(Lko;I)I",
+		garbageValue = "-1403484495"
 	)
 	@Export("compareToFriend")
 	int compareToFriend(Friend var1) {
@@ -29,23 +35,23 @@ public class Friend extends Buddy {
 			return -1;
 		} else if (var1.world != 0 && super.world == 0) {
 			return 1;
-		} else if (this.field3666 && !var1.field3666) {
+		} else if (this.field3663 && !var1.field3663) {
 			return -1;
-		} else if (!this.field3666 && var1.field3666) {
+		} else if (!this.field3663 && var1.field3663) {
 			return 1;
-		} else if (this.field3667 && !var1.field3667) {
+		} else if (this.field3661 && !var1.field3661) {
 			return -1;
-		} else if (!this.field3667 && var1.field3667) {
+		} else if (!this.field3661 && var1.field3661) {
 			return 1;
 		} else {
 			return super.world != 0 ? super.int2 - var1.int2 : var1.int2 - super.int2;
 		}
 	}
 
-	@ObfuscatedName("au")
+	@ObfuscatedName("at")
 	@ObfuscatedSignature(
-		signature = "(Lju;I)I",
-		garbageValue = "-1545516578"
+		signature = "(Ljn;I)I",
+		garbageValue = "642739557"
 	)
 	@Export("compareTo_user")
 	public int compareTo_user(Nameable var1) {

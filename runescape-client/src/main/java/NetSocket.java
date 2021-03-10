@@ -9,66 +9,72 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fw")
+@ObfuscatedName("fr")
 @Implements("NetSocket")
 public final class NetSocket extends AbstractSocket implements Runnable {
-	@ObfuscatedName("h")
+	@ObfuscatedName("fy")
+	@ObfuscatedSignature(
+		signature = "Lfl;"
+	)
+	@Export("socketTask")
+	static Task socketTask;
+	@ObfuscatedName("n")
 	@Export("inputStream")
 	InputStream inputStream;
 	@ObfuscatedName("v")
 	@Export("outputStream")
 	OutputStream outputStream;
-	@ObfuscatedName("x")
+	@ObfuscatedName("d")
 	@Export("socket")
 	Socket socket;
-	@ObfuscatedName("w")
+	@ObfuscatedName("c")
 	@Export("isClosed")
 	boolean isClosed;
-	@ObfuscatedName("t")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "Lfa;"
+		signature = "Lfu;"
 	)
 	@Export("taskHandler")
 	TaskHandler taskHandler;
-	@ObfuscatedName("j")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "Lfd;"
+		signature = "Lfl;"
 	)
 	@Export("task")
 	Task task;
-	@ObfuscatedName("n")
+	@ObfuscatedName("z")
 	@Export("outBuffer")
 	byte[] outBuffer;
-	@ObfuscatedName("p")
+	@ObfuscatedName("e")
 	@ObfuscatedGetter(
-		intValue = -1457420997
+		intValue = -80175503
 	)
 	@Export("outLength")
 	int outLength;
-	@ObfuscatedName("l")
+	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = 976468503
+		intValue = -502445773
 	)
 	@Export("outOffset")
 	int outOffset;
-	@ObfuscatedName("z")
+	@ObfuscatedName("l")
 	@Export("exceptionWriting")
 	boolean exceptionWriting;
-	@ObfuscatedName("u")
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = 464417007
+		intValue = 1447892009
 	)
 	@Export("bufferLength")
 	final int bufferLength;
-	@ObfuscatedName("e")
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = -1893306917
+		intValue = -1889811971
 	)
 	@Export("maxPacketLength")
 	final int maxPacketLength;
 
 	@ObfuscatedSignature(
-		signature = "(Ljava/net/Socket;Lfa;I)V"
+		signature = "(Ljava/net/Socket;Lfu;I)V"
 	)
 	public NetSocket(Socket var1, TaskHandler var2, int var3) throws IOException {
 		this.isClosed = false;
@@ -87,10 +93,10 @@ public final class NetSocket extends AbstractSocket implements Runnable {
 		this.outputStream = this.socket.getOutputStream();
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "-10"
+		signature = "(I)V",
+		garbageValue = "136255387"
 	)
 	@Export("close")
 	public void close() {
@@ -102,7 +108,7 @@ public final class NetSocket extends AbstractSocket implements Runnable {
 
 			if (this.task != null) {
 				while (this.task.status == 0) {
-					class236.method4165(1L);
+					ApproximateRouteStrategy.method1311(1L);
 				}
 
 				if (this.task.status == 1) {
@@ -120,27 +126,27 @@ public final class NetSocket extends AbstractSocket implements Runnable {
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
 		signature = "(B)I",
-		garbageValue = "0"
+		garbageValue = "-29"
 	)
 	@Export("readUnsignedByte")
 	public int readUnsignedByte() throws IOException {
 		return this.isClosed ? 0 : this.inputStream.read();
 	}
 
-	@ObfuscatedName("x")
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "1974658106"
+		signature = "(B)I",
+		garbageValue = "1"
 	)
 	@Export("available")
 	public int available() throws IOException {
 		return this.isClosed ? 0 : this.inputStream.available();
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(IB)Z",
-		garbageValue = "-7"
+		signature = "(II)Z",
+		garbageValue = "1621767276"
 	)
 	@Export("isAvailable")
 	public boolean isAvailable(int var1) throws IOException {
@@ -151,10 +157,10 @@ public final class NetSocket extends AbstractSocket implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("t")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
 		signature = "([BIIB)I",
-		garbageValue = "98"
+		garbageValue = "-127"
 	)
 	@Export("read")
 	public int read(byte[] var1, int var2, int var3) throws IOException {
@@ -176,10 +182,10 @@ public final class NetSocket extends AbstractSocket implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
 		signature = "([BIII)V",
-		garbageValue = "2119529681"
+		garbageValue = "-2045267371"
 	)
 	@Export("write0")
 	void write0(byte[] var1, int var2, int var3) throws IOException {
@@ -211,14 +217,18 @@ public final class NetSocket extends AbstractSocket implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
 		signature = "([BIII)V",
-		garbageValue = "-2028715299"
+		garbageValue = "1032488862"
 	)
 	@Export("write")
 	public void write(byte[] var1, int var2, int var3) throws IOException {
 		this.write0(var1, var2, var3);
+	}
+
+	protected void finalize() {
+		this.close();
 	}
 
 	public void run() {
@@ -228,7 +238,7 @@ public final class NetSocket extends AbstractSocket implements Runnable {
 					int var1;
 					int var2;
 					synchronized(this) {
-						if (this.outLength == this.outOffset) {
+						if (this.outOffset == this.outLength) {
 							if (this.isClosed) {
 								break label84;
 							}
@@ -260,7 +270,7 @@ public final class NetSocket extends AbstractSocket implements Runnable {
 					this.outLength = (var1 + this.outLength) % this.bufferLength;
 
 					try {
-						if (this.outOffset == this.outLength) {
+						if (this.outLength == this.outOffset) {
 							this.outputStream.flush();
 						}
 					} catch (IOException var8) {
@@ -288,144 +298,17 @@ public final class NetSocket extends AbstractSocket implements Runnable {
 				break;
 			}
 		} catch (Exception var12) {
-			PlayerComposition.RunException_sendStackTrace((String)null, var12);
+			SequenceDefinition.RunException_sendStackTrace((String)null, var12);
 		}
 
 	}
 
-	protected void finalize() {
-		this.close();
-	}
-
-	@ObfuscatedName("h")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		signature = "(Lkj;Lla;I)Lla;",
-		garbageValue = "-1038873122"
+		signature = "(S)V",
+		garbageValue = "-3619"
 	)
-	@Export("readStringIntParameters")
-	static final IterableNodeHashTable readStringIntParameters(Buffer var0, IterableNodeHashTable var1) {
-		int var2 = var0.readUnsignedByte();
-		int var3;
-		if (var1 == null) {
-			var3 = World.method1870(var2);
-			var1 = new IterableNodeHashTable(var3);
-		}
-
-		for (var3 = 0; var3 < var2; ++var3) {
-			boolean var4 = var0.readUnsignedByte() == 1;
-			int var5 = var0.readMedium();
-			Object var6;
-			if (var4) {
-				var6 = new ObjectNode(var0.readStringCp1252NullTerminated());
-			} else {
-				var6 = new IntegerNode(var0.readInt());
-			}
-
-			var1.put((Node)var6, (long)var5);
-		}
-
-		return var1;
-	}
-
-	@ObfuscatedName("h")
-	@ObfuscatedSignature(
-		signature = "(B)[Llj;",
-		garbageValue = "8"
-	)
-	@Export("FillMode_values")
-	public static class333[] FillMode_values() {
-		return new class333[]{class333.field3897, class333.field3898, class333.SOLID};
-	}
-
-	@ObfuscatedName("gh")
-	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "327738104"
-	)
-	static final void method3608() {
-		if (GameObject.Client_plane != Client.field874) {
-			Client.field874 = GameObject.Client_plane;
-			int var0 = GameObject.Client_plane;
-			int[] var1 = class25.sceneMinimapSprite.pixels;
-			int var2 = var1.length;
-
-			int var3;
-			for (var3 = 0; var3 < var2; ++var3) {
-				var1[var3] = 0;
-			}
-
-			int var4;
-			int var5;
-			for (var3 = 1; var3 < 103; ++var3) {
-				var4 = (103 - var3) * 2048 + 24628;
-
-				for (var5 = 1; var5 < 103; ++var5) {
-					if ((Tiles.Tiles_renderFlags[var0][var5][var3] & 24) == 0) {
-						ArchiveLoader.scene.drawTileMinimap(var1, var4, 512, var0, var5, var3);
-					}
-
-					if (var0 < 3 && (Tiles.Tiles_renderFlags[var0 + 1][var5][var3] & 8) != 0) {
-						ArchiveLoader.scene.drawTileMinimap(var1, var4, 512, var0 + 1, var5, var3);
-					}
-
-					var4 += 4;
-				}
-			}
-
-			var3 = (238 + (int)(Math.random() * 20.0D) - 10 << 16) + (238 + (int)(Math.random() * 20.0D) - 10 << 8) + (238 + (int)(Math.random() * 20.0D) - 10);
-			var4 = 238 + (int)(Math.random() * 20.0D) - 10 << 16;
-			class25.sceneMinimapSprite.setRaster();
-
-			int var6;
-			for (var5 = 1; var5 < 103; ++var5) {
-				for (var6 = 1; var6 < 103; ++var6) {
-					if ((Tiles.Tiles_renderFlags[var0][var6][var5] & 24) == 0) {
-						class1.drawObject(var0, var6, var5, var3, var4);
-					}
-
-					if (var0 < 3 && (Tiles.Tiles_renderFlags[var0 + 1][var6][var5] & 8) != 0) {
-						class1.drawObject(var0 + 1, var6, var5, var3, var4);
-					}
-				}
-			}
-
-			Client.mapIconCount = 0;
-
-			for (var5 = 0; var5 < 104; ++var5) {
-				for (var6 = 0; var6 < 104; ++var6) {
-					long var7 = ArchiveLoader.scene.getFloorDecorationTag(GameObject.Client_plane, var5, var6);
-					if (0L != var7) {
-						int var9 = Occluder.Entity_unpackID(var7);
-						int var10 = WorldMapDecoration.getObjectDefinition(var9).mapIconId;
-						if (var10 >= 0 && UserComparator10.WorldMapElement_get(var10).field3263) {
-							Client.mapIcons[Client.mapIconCount] = UserComparator10.WorldMapElement_get(var10).getSpriteBool(false);
-							Client.field717[Client.mapIconCount] = var5;
-							Client.field877[Client.mapIconCount] = var6;
-							++Client.mapIconCount;
-						}
-					}
-				}
-			}
-
-			WorldMapIcon_0.rasterProvider.apply();
-		}
-
-	}
-
-	@ObfuscatedName("hc")
-	@ObfuscatedSignature(
-		signature = "(IIB)I",
-		garbageValue = "-60"
-	)
-	static int method3587(int var0, int var1) {
-		int var2 = var1 - 334;
-		if (var2 < 0) {
-			var2 = 0;
-		} else if (var2 > 100) {
-			var2 = 100;
-		}
-
-		int var3 = (Client.zoomWidth - Client.zoomHeight) * var2 / 100 + Client.zoomHeight;
-		return var0 * var3 / 256;
+	static final void method3748() {
+		class300.method5473("You can't add yourself to your own ignore list");
 	}
 }

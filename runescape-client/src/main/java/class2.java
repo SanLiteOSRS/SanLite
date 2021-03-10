@@ -1,94 +1,87 @@
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("x")
+@ObfuscatedName("d")
 final class class2 implements class0 {
-	@ObfuscatedName("h")
+	@ObfuscatedName("q")
+	@Export("SpriteBuffer_pixels")
+	public static byte[][] SpriteBuffer_pixels;
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/Object;Lkj;I)V",
-		garbageValue = "781194334"
+		signature = "Ldk;"
 	)
-	public void vmethod49(Object var1, Buffer var2) {
-		this.method21((Long)var1, var2);
+	@Export("pcmPlayerProvider")
+	public static class108 pcmPlayerProvider;
+	@ObfuscatedName("k")
+	static int[][][] field12;
+	@ObfuscatedName("bz")
+	@ObfuscatedSignature(
+		signature = "Lly;"
+	)
+	@Export("worldSelectRightSprite")
+	static IndexedSprite worldSelectRightSprite;
+	@ObfuscatedName("gn")
+	@Export("regionLandArchives")
+	static byte[][] regionLandArchives;
+
+	@ObfuscatedName("n")
+	@ObfuscatedSignature(
+		signature = "(Ljava/lang/Object;Lkx;B)V",
+		garbageValue = "-41"
+	)
+	public void vmethod48(Object var1, Buffer var2) {
+		this.method20((Long)var1, var2);
 	}
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(Lkj;B)Ljava/lang/Object;",
-		garbageValue = "12"
+		signature = "(Lkx;I)Ljava/lang/Object;",
+		garbageValue = "1678106953"
 	)
-	public Object vmethod48(Buffer var1) {
+	public Object vmethod45(Buffer var1) {
 		return var1.readLong();
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/Long;Lkj;I)V",
-		garbageValue = "-110177189"
+		signature = "(Ljava/lang/Long;Lkx;I)V",
+		garbageValue = "444192974"
 	)
-	void method21(Long var1, Buffer var2) {
+	void method20(Long var1, Buffer var2) {
 		var2.writeLong(var1);
 	}
 
-	@ObfuscatedName("h")
-	public static final int method23(double var0, double var2, double var4) {
-		double var6 = var4;
-		double var8 = var4;
-		double var10 = var4;
-		if (0.0D != var2) {
-			double var12;
-			if (var4 < 0.5D) {
-				var12 = var4 * (1.0D + var2);
+	@ObfuscatedName("ac")
+	@ObfuscatedSignature(
+		signature = "(ILcl;ZS)I",
+		garbageValue = "-27165"
+	)
+	static int method25(int var0, Script var1, boolean var2) {
+		if (var0 != 3700 && var0 != 3701) {
+			if (var0 == 3702) {
+				++Interpreter.Interpreter_intStackSize;
+				return 1;
 			} else {
-				var12 = var4 + var2 - var2 * var4;
+				return 2;
 			}
+		} else {
+			--Interpreter.Interpreter_intStackSize;
+			--Interpreter.Interpreter_stringStackSize;
+			return 1;
+		}
+	}
 
-			double var14 = var4 * 2.0D - var12;
-			double var16 = 0.3333333333333333D + var0;
-			if (var16 > 1.0D) {
-				--var16;
-			}
-
-			double var20 = var0 - 0.3333333333333333D;
-			if (var20 < 0.0D) {
-				++var20;
-			}
-
-			if (var16 * 6.0D < 1.0D) {
-				var6 = (var12 - var14) * 6.0D * var16 + var14;
-			} else if (2.0D * var16 < 1.0D) {
-				var6 = var12;
-			} else if (var16 * 3.0D < 2.0D) {
-				var6 = var14 + 6.0D * (var12 - var14) * (0.6666666666666666D - var16);
-			} else {
-				var6 = var14;
-			}
-
-			if (6.0D * var0 < 1.0D) {
-				var8 = 6.0D * (var12 - var14) * var0 + var14;
-			} else if (var0 * 2.0D < 1.0D) {
-				var8 = var12;
-			} else if (var0 * 3.0D < 2.0D) {
-				var8 = (var12 - var14) * (0.6666666666666666D - var0) * 6.0D + var14;
-			} else {
-				var8 = var14;
-			}
-
-			if (6.0D * var20 < 1.0D) {
-				var10 = var20 * (var12 - var14) * 6.0D + var14;
-			} else if (2.0D * var20 < 1.0D) {
-				var10 = var12;
-			} else if (3.0D * var20 < 2.0D) {
-				var10 = 6.0D * (0.6666666666666666D - var20) * (var12 - var14) + var14;
-			} else {
-				var10 = var14;
-			}
+	@ObfuscatedName("gl")
+	@ObfuscatedSignature(
+		signature = "(I)V",
+		garbageValue = "1857096968"
+	)
+	static void method27() {
+		if (SoundSystem.worldMap != null) {
+			SoundSystem.worldMap.method6530(class90.Client_plane, GrandExchangeOfferNameComparator.baseX * 64 + (UserComparator9.localPlayer.x >> 7), NetCache.baseY * 64 + (UserComparator9.localPlayer.y >> 7), false);
+			SoundSystem.worldMap.loadCache();
 		}
 
-		int var22 = (int)(256.0D * var6);
-		int var13 = (int)(256.0D * var8);
-		int var23 = (int)(var10 * 256.0D);
-		int var15 = var23 + (var13 << 8) + (var22 << 16);
-		return var15;
 	}
 }

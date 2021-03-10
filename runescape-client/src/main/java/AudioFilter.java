@@ -3,28 +3,28 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("da")
+@ObfuscatedName("de")
 @Implements("AudioFilter")
 public class AudioFilter {
-	@ObfuscatedName("j")
+	@ObfuscatedName("h")
 	static float[][] field1499;
-	@ObfuscatedName("n")
+	@ObfuscatedName("z")
 	@Export("coefficients")
 	static int[][] coefficients;
-	@ObfuscatedName("p")
-	static float field1501;
-	@ObfuscatedName("l")
+	@ObfuscatedName("e")
+	static float field1505;
+	@ObfuscatedName("q")
 	@Export("forwardMultiplier")
 	static int forwardMultiplier;
-	@ObfuscatedName("h")
+	@ObfuscatedName("n")
 	@Export("pairs")
 	int[] pairs;
-	@ObfuscatedName("x")
-	int[][][] field1495;
-	@ObfuscatedName("w")
-	int[][][] field1497;
-	@ObfuscatedName("t")
-	int[] field1498;
+	@ObfuscatedName("d")
+	int[][][] field1500;
+	@ObfuscatedName("c")
+	int[][][] field1501;
+	@ObfuscatedName("y")
+	int[] field1503;
 
 	static {
 		field1499 = new float[2][8];
@@ -33,48 +33,48 @@ public class AudioFilter {
 
 	AudioFilter() {
 		this.pairs = new int[2];
-		this.field1495 = new int[2][2][4];
-		this.field1497 = new int[2][2][4];
-		this.field1498 = new int[2];
+		this.field1500 = new int[2][2][4];
+		this.field1501 = new int[2][2][4];
+		this.field1503 = new int[2];
 	}
 
-	@ObfuscatedName("h")
-	float method2768(int var1, int var2, float var3) {
-		float var4 = (float)this.field1497[var1][0][var2] + var3 * (float)(this.field1497[var1][1][var2] - this.field1497[var1][0][var2]);
+	@ObfuscatedName("n")
+	float method2850(int var1, int var2, float var3) {
+		float var4 = (float)this.field1501[var1][0][var2] + var3 * (float)(this.field1501[var1][1][var2] - this.field1501[var1][0][var2]);
 		var4 *= 0.0015258789F;
 		return 1.0F - (float)Math.pow(10.0D, (double)(-var4 / 20.0F));
 	}
 
-	@ObfuscatedName("x")
-	float method2770(int var1, int var2, float var3) {
-		float var4 = (float)this.field1495[var1][0][var2] + var3 * (float)(this.field1495[var1][1][var2] - this.field1495[var1][0][var2]);
+	@ObfuscatedName("d")
+	float method2852(int var1, int var2, float var3) {
+		float var4 = (float)this.field1500[var1][0][var2] + var3 * (float)(this.field1500[var1][1][var2] - this.field1500[var1][0][var2]);
 		var4 *= 1.2207031E-4F;
 		return normalize(var4);
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("c")
 	@Export("compute")
 	int compute(int var1, float var2) {
 		float var3;
 		if (var1 == 0) {
-			var3 = (float)this.field1498[0] + (float)(this.field1498[1] - this.field1498[0]) * var2;
+			var3 = (float)this.field1503[0] + (float)(this.field1503[1] - this.field1503[0]) * var2;
 			var3 *= 0.0030517578F;
-			field1501 = (float)Math.pow(0.1D, (double)(var3 / 20.0F));
-			forwardMultiplier = (int)(field1501 * 65536.0F);
+			field1505 = (float)Math.pow(0.1D, (double)(var3 / 20.0F));
+			forwardMultiplier = (int)(field1505 * 65536.0F);
 		}
 
 		if (this.pairs[var1] == 0) {
 			return 0;
 		} else {
-			var3 = this.method2768(var1, 0, var2);
-			field1499[var1][0] = -2.0F * var3 * (float)Math.cos((double)this.method2770(var1, 0, var2));
+			var3 = this.method2850(var1, 0, var2);
+			field1499[var1][0] = -2.0F * var3 * (float)Math.cos((double)this.method2852(var1, 0, var2));
 			field1499[var1][1] = var3 * var3;
 
 			float[] var10000;
 			int var4;
 			for (var4 = 1; var4 < this.pairs[var1]; ++var4) {
-				var3 = this.method2768(var1, var4, var2);
-				float var5 = -2.0F * var3 * (float)Math.cos((double)this.method2770(var1, var4, var2));
+				var3 = this.method2850(var1, var4, var2);
+				float var5 = -2.0F * var3 * (float)Math.cos((double)this.method2852(var1, var4, var2));
 				float var6 = var3 * var3;
 				field1499[var1][var4 * 2 + 1] = field1499[var1][var4 * 2 - 1] * var6;
 				field1499[var1][var4 * 2] = field1499[var1][var4 * 2 - 1] * var5 + field1499[var1][var4 * 2 - 2] * var6;
@@ -93,7 +93,7 @@ public class AudioFilter {
 			if (var1 == 0) {
 				for (var4 = 0; var4 < this.pairs[0] * 2; ++var4) {
 					var10000 = field1499[0];
-					var10000[var4] *= field1501;
+					var10000[var4] *= field1505;
 				}
 			}
 
@@ -105,46 +105,46 @@ public class AudioFilter {
 		}
 	}
 
-	@ObfuscatedName("t")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "(Lkj;Ldr;)V"
+		signature = "(Lkx;Lds;)V"
 	)
-	final void method2772(Buffer var1, SoundEnvelope var2) {
+	final void method2854(Buffer var1, SoundEnvelope var2) {
 		int var3 = var1.readUnsignedByte();
 		this.pairs[0] = var3 >> 4;
 		this.pairs[1] = var3 & 15;
 		if (var3 != 0) {
-			this.field1498[0] = var1.readUnsignedShort();
-			this.field1498[1] = var1.readUnsignedShort();
+			this.field1503[0] = var1.readUnsignedShort();
+			this.field1503[1] = var1.readUnsignedShort();
 			int var4 = var1.readUnsignedByte();
 
 			int var5;
 			int var6;
 			for (var5 = 0; var5 < 2; ++var5) {
 				for (var6 = 0; var6 < this.pairs[var5]; ++var6) {
-					this.field1495[var5][0][var6] = var1.readUnsignedShort();
-					this.field1497[var5][0][var6] = var1.readUnsignedShort();
+					this.field1500[var5][0][var6] = var1.readUnsignedShort();
+					this.field1501[var5][0][var6] = var1.readUnsignedShort();
 				}
 			}
 
 			for (var5 = 0; var5 < 2; ++var5) {
 				for (var6 = 0; var6 < this.pairs[var5]; ++var6) {
 					if ((var4 & 1 << var5 * 4 << var6) != 0) {
-						this.field1495[var5][1][var6] = var1.readUnsignedShort();
-						this.field1497[var5][1][var6] = var1.readUnsignedShort();
+						this.field1500[var5][1][var6] = var1.readUnsignedShort();
+						this.field1501[var5][1][var6] = var1.readUnsignedShort();
 					} else {
-						this.field1495[var5][1][var6] = this.field1495[var5][0][var6];
-						this.field1497[var5][1][var6] = this.field1497[var5][0][var6];
+						this.field1500[var5][1][var6] = this.field1500[var5][0][var6];
+						this.field1501[var5][1][var6] = this.field1501[var5][0][var6];
 					}
 				}
 			}
 
-			if (var4 != 0 || this.field1498[1] != this.field1498[0]) {
+			if (var4 != 0 || this.field1503[1] != this.field1503[0]) {
 				var2.decodeSegments(var1);
 			}
 		} else {
-			int[] var7 = this.field1498;
-			this.field1498[1] = 0;
+			int[] var7 = this.field1503;
+			this.field1503[1] = 0;
 			var7[0] = 0;
 		}
 

@@ -3,62 +3,62 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("lz")
+@ObfuscatedName("ln")
 public enum class323 implements Enumerated {
-	@ObfuscatedName("h")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "Llz;"
+		signature = "Lln;"
 	)
-	field3857(2, 0),
+	field3852(1, 0),
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "Llz;"
+		signature = "Lln;"
 	)
-	field3853(0, 2),
-	@ObfuscatedName("x")
+	field3851(0, 2),
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		signature = "Llz;"
+		signature = "Lln;"
 	)
-	field3856(4, 5),
-	@ObfuscatedName("w")
+	field3849(2, 5),
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "Llz;"
+		signature = "Lln;"
 	)
-	field3854(1, 6),
-	@ObfuscatedName("t")
+	field3856(3, 6),
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		signature = "Llz;"
+		signature = "Lln;"
 	)
-	field3855(3, 7),
-	@ObfuscatedName("j")
+	field3853(4, 7),
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "Llz;"
+		signature = "Lln;"
 	)
-	field3852(5, 8);
+	field3854(5, 8);
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("z")
 	@ObfuscatedGetter(
-		intValue = -1735491841
+		intValue = 397636239
 	)
-	final int field3851;
-	@ObfuscatedName("p")
+	final int field3855;
+	@ObfuscatedName("e")
 	@ObfuscatedGetter(
-		intValue = -966711557
+		intValue = 961427767
 	)
-	final int field3858;
+	final int field3850;
 
 	class323(int var3, int var4) {
-		this.field3851 = var3;
-		this.field3858 = var4;
+		this.field3855 = var3;
+		this.field3850 = var4;
 	}
 
-	@ObfuscatedName("x")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "-275768542"
+		signature = "(B)I",
+		garbageValue = "63"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
-		return this.field3858;
+		return this.field3850;
 	}
 }

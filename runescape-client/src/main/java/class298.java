@@ -2,9 +2,9 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("kq")
+@ObfuscatedName("kb")
 public class class298 {
-	@ObfuscatedName("h")
+	@ObfuscatedName("n")
 	@Export("cp1252AsciiExtension")
 	public static final char[] cp1252AsciiExtension;
 
@@ -12,19 +12,20 @@ public class class298 {
 		cp1252AsciiExtension = new char[]{'€', '\u0000', '‚', 'ƒ', '„', '…', '†', '‡', 'ˆ', '‰', 'Š', '‹', 'Œ', '\u0000', 'Ž', '\u0000', '\u0000', '‘', '’', '“', '”', '•', '–', '—', '˜', '™', 'š', '›', 'œ', '\u0000', 'ž', 'Ÿ'};
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(I)J",
-		garbageValue = "255749540"
+		signature = "(Ljava/lang/Throwable;Ljava/lang/String;)Lmr;"
 	)
-	@Export("currentTimeMillis")
-	public static final synchronized long currentTimeMillis() {
-		long var0 = System.currentTimeMillis();
-		if (var0 < class307.field3744) {
-			class307.field3743 += class307.field3744 - var0;
+	@Export("newRunException")
+	public static RunException newRunException(Throwable var0, String var1) {
+		RunException var2;
+		if (var0 instanceof RunException) {
+			var2 = (RunException)var0;
+			var2.message = var2.message + ' ' + var1;
+		} else {
+			var2 = new RunException(var0, var1);
 		}
 
-		class307.field3744 = var0;
-		return var0 + class307.field3743;
+		return var2;
 	}
 }

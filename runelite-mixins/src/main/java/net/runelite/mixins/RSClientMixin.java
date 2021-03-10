@@ -1283,12 +1283,11 @@ public abstract class RSClientMixin implements RSClient
 	@Inject
 	public static void preRenderWidgetLayer(Widget[] widgets, int parentId, int minX, int minY, int maxX, int maxY, int x, int y, int var8)
 	{
-		Callbacks callbacks = client.getCallbacks();
-		HashTable<WidgetNode> componentTable = client.getComponentTable();
+		@SuppressWarnings("unchecked") HashTable<WidgetNode> componentTable = client.getComponentTable();
 
-		for (Widget rlWidget : widgets)
+		for (int i = 0; i < widgets.length; i++)
 		{
-			RSWidget widget = (RSWidget) rlWidget;
+			RSWidget widget = (RSWidget) widgets[i];
 			if (widget == null || widget.getRSParentId() != parentId || widget.isSelfHidden())
 			{
 				continue;
@@ -1304,38 +1303,36 @@ public abstract class RSClientMixin implements RSClient
 			widget.setRenderX(renderX);
 			widget.setRenderY(renderY);
 
-			if (widget.getType() == WidgetType.RECTANGLE)
-			{
-				if (renderX == client.getViewportXOffset() && renderY == client.getViewportYOffset()
+			if (widget.getType() == WidgetType.RECTANGLE && renderX == client.getViewportXOffset() && renderY == client.getViewportYOffset()
 					&& widget.getWidth() == client.getViewportWidth() && widget.getHeight() == client.getViewportHeight()
-					&& widget.getOpacity() > 0 && widget.isFilled() && client.isGpu())
-				{
-					int tc = widget.getTextColor();
-					int alpha = widget.getOpacity() & 0xFF;
-					int inverseAlpha = 256 - alpha;
-					int vpc = viewportColor;
-					int c1 = (alpha * (tc & 0xff00ff) >> 8 & 0xFF00FF) + (alpha * (tc & 0x00FF00) >> 8 & 0x00FF00);
-					int c2 = (inverseAlpha * (vpc & 0xff00ff) >> 8 & 0xFF00FF) + (inverseAlpha * (vpc & 0x00FF00) >> 8 & 0x00FF00);
-					int outAlpha = inverseAlpha + ((vpc >>> 24) * (255 - alpha) * 0x8081 >>> 23);
-					viewportColor = outAlpha << 24 | c1 + c2;
-					widget.setHidden(true);
-					hiddenWidgets.add(widget);
-					continue;
-				}
-			}
-
-			WidgetNode childNode = componentTable.get(widget.getId());
-			if (childNode != null)
+					&& widget.getOpacity() > 0 && widget.isFilled() && widget.getFillMode().getOrdinal() == 0 && client.isGpu())
 			{
-				int widgetId = widget.getId();
-				int groupId = childNode.getId();
-				RSWidget[] children = client.getWidgets()[groupId];
-
-				for (RSWidget child : children)
+				int tc = widget.getTextColor();
+				int alpha = widget.getOpacity() & 0xFF;
+				int inverseAlpha = 256 - alpha;
+				int vpc = viewportColor;
+				int c1 = (inverseAlpha * (tc & 0xFF00FF) >> 8 & 0xFF00FF) + (inverseAlpha * (tc & 0x00FF00) >> 8 & 0x00FF00);
+				int c2 = (alpha * (vpc & 0xFF00FF) >> 8 & 0xFF00FF) + (alpha * (vpc & 0x00FF00) >> 8 & 0x00FF00);
+				int outAlpha = inverseAlpha + ((vpc >>> 24) * (255 - inverseAlpha) * 0x8081 >>> 23);
+				viewportColor = outAlpha << 24 | c1 + c2;
+				widget.setHidden(true);
+				hiddenWidgets.add(widget);
+			}
+			else
+			{
+				WidgetNode childNode = componentTable.get(widget.getId());
+				if (childNode != null)
 				{
-					if (child.getRSParentId() == -1)
+					int widgetId = widget.getId();
+					int groupId = childNode.getId();
+					RSWidget[] children = client.getWidgets()[groupId];
+
+					for (RSWidget child : children)
 					{
-						child.setRenderParentId(widgetId);
+						if (child.getRSParentId() == -1)
+						{
+							child.setRenderParentId(widgetId);
+						}
 					}
 				}
 			}
@@ -1746,7 +1743,7 @@ public abstract class RSClientMixin implements RSClient
 
 	@Inject
 	@MethodHook(value = "changeWorld", end = true)
-	public static void postChangeWorld(RSWorld world)
+	public static void postChangeWorld(World world)
 	{
 		client.getCallbacks().post(new WorldChanged());
 	}

@@ -4,208 +4,82 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("v")
 final class class1 implements class0 {
-	@ObfuscatedName("h")
+	@ObfuscatedName("v")
+	@Export("localPlayerName")
+	public static String localPlayerName;
+	@ObfuscatedName("z")
+	static byte[][][] field1;
+	@ObfuscatedName("av")
+	@Export("client")
 	@ObfuscatedSignature(
-		signature = "Lib;"
+		signature = "Lclient;"
 	)
-	@Export("VarpDefinition_archive")
-	public static AbstractArchive VarpDefinition_archive;
-	@ObfuscatedName("u")
-	@ObfuscatedSignature(
-		signature = "Lib;"
-	)
-	@Export("Widget_spritesArchive")
-	public static AbstractArchive Widget_spritesArchive;
-	@ObfuscatedName("i")
-	@ObfuscatedSignature(
-		signature = "Lca;"
-	)
-	@Export("loginScreenRunesAnimation")
-	static LoginScreenAnimation loginScreenRunesAnimation;
+	static Client client;
+	@ObfuscatedName("bj")
+	@Export("otp")
+	static String otp;
+	@ObfuscatedName("ex")
+	static int[] field5;
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/Object;Lkj;I)V",
-		garbageValue = "781194334"
+		signature = "(Ljava/lang/Object;Lkx;B)V",
+		garbageValue = "-41"
 	)
-	public void vmethod49(Object var1, Buffer var2) {
+	public void vmethod48(Object var1, Buffer var2) {
 		this.method6((Integer)var1, var2);
 	}
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(Lkj;B)Ljava/lang/Object;",
-		garbageValue = "12"
+		signature = "(Lkx;I)Ljava/lang/Object;",
+		garbageValue = "1678106953"
 	)
-	public Object vmethod48(Buffer var1) {
+	public Object vmethod45(Buffer var1) {
 		return var1.readInt();
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/Integer;Lkj;I)V",
-		garbageValue = "-1179776664"
+		signature = "(Ljava/lang/Integer;Lkx;B)V",
+		garbageValue = "127"
 	)
 	void method6(Integer var1, Buffer var2) {
 		var2.writeInt(var1);
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(B)[Lio;",
-		garbageValue = "0"
+		signature = "(I)[Liu;",
+		garbageValue = "1202436859"
 	)
-	static GameBuild[] method11() {
-		return new GameBuild[]{GameBuild.BUILDLIVE, GameBuild.LIVE, GameBuild.WIP, GameBuild.RC};
+	public static GameBuild[] method16() {
+		return new GameBuild[]{GameBuild.BUILDLIVE, GameBuild.LIVE, GameBuild.RC, GameBuild.WIP};
 	}
 
-	@ObfuscatedName("hl")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "(IIIIIB)V",
-		garbageValue = "3"
+		signature = "(IIB)V",
+		garbageValue = "-116"
 	)
-	@Export("drawObject")
-	static final void drawObject(int var0, int var1, int var2, int var3, int var4) {
-		long var5 = ArchiveLoader.scene.getBoundaryObjectTag(var0, var1, var2);
-		int var7;
-		int var8;
-		int var9;
-		int var10;
-		int var12;
-		int var13;
-		if (0L != var5) {
-			var7 = ArchiveLoader.scene.getObjectFlags(var0, var1, var2, var5);
-			var8 = var7 >> 6 & 3;
-			var9 = var7 & 31;
-			var10 = var3;
-			if (FriendSystem.method1943(var5)) {
-				var10 = var4;
-			}
+	@Export("changeWorldSelectSorting")
+	static void changeWorldSelectSorting(int var0, int var1) {
+		int[] var2 = new int[4];
+		int[] var3 = new int[4];
+		var2[0] = var0;
+		var3[0] = var1;
+		int var4 = 1;
 
-			int[] var11 = class25.sceneMinimapSprite.pixels;
-			var12 = var1 * 4 + (103 - var2) * 2048 + 24624;
-			var13 = Occluder.Entity_unpackID(var5);
-			ObjectComposition var14 = WorldMapDecoration.getObjectDefinition(var13);
-			if (var14.mapSceneId != -1) {
-				IndexedSprite var15 = WorldMapRegion.mapSceneSprites[var14.mapSceneId];
-				if (var15 != null) {
-					int var16 = (var14.sizeX * 4 - var15.subWidth) / 2;
-					int var17 = (var14.sizeY * 4 - var15.subHeight) / 2;
-					var15.drawAt(var1 * 4 + var16 + 48, (104 - var2 - var14.sizeY) * 4 + var17 + 48);
-				}
-			} else {
-				if (var9 == 0 || var9 == 2) {
-					if (var8 == 0) {
-						var11[var12] = var10;
-						var11[var12 + 512] = var10;
-						var11[var12 + 1024] = var10;
-						var11[var12 + 1536] = var10;
-					} else if (var8 == 1) {
-						var11[var12] = var10;
-						var11[var12 + 1] = var10;
-						var11[var12 + 2] = var10;
-						var11[var12 + 3] = var10;
-					} else if (var8 == 2) {
-						var11[var12 + 3] = var10;
-						var11[var12 + 512 + 3] = var10;
-						var11[var12 + 1024 + 3] = var10;
-						var11[var12 + 1536 + 3] = var10;
-					} else if (var8 == 3) {
-						var11[var12 + 1536] = var10;
-						var11[var12 + 1536 + 1] = var10;
-						var11[var12 + 1536 + 2] = var10;
-						var11[var12 + 1536 + 3] = var10;
-					}
-				}
-
-				if (var9 == 3) {
-					if (var8 == 0) {
-						var11[var12] = var10;
-					} else if (var8 == 1) {
-						var11[var12 + 3] = var10;
-					} else if (var8 == 2) {
-						var11[var12 + 1536 + 3] = var10;
-					} else if (var8 == 3) {
-						var11[var12 + 1536] = var10;
-					}
-				}
-
-				if (var9 == 2) {
-					if (var8 == 3) {
-						var11[var12] = var10;
-						var11[var12 + 512] = var10;
-						var11[var12 + 1024] = var10;
-						var11[var12 + 1536] = var10;
-					} else if (var8 == 0) {
-						var11[var12] = var10;
-						var11[var12 + 1] = var10;
-						var11[var12 + 2] = var10;
-						var11[var12 + 3] = var10;
-					} else if (var8 == 1) {
-						var11[var12 + 3] = var10;
-						var11[var12 + 512 + 3] = var10;
-						var11[var12 + 1024 + 3] = var10;
-						var11[var12 + 1536 + 3] = var10;
-					} else if (var8 == 2) {
-						var11[var12 + 1536] = var10;
-						var11[var12 + 1536 + 1] = var10;
-						var11[var12 + 1536 + 2] = var10;
-						var11[var12 + 1536 + 3] = var10;
-					}
-				}
+		for (int var5 = 0; var5 < 4; ++var5) {
+			if (World.World_sortOption1[var5] != var0) {
+				var2[var4] = World.World_sortOption1[var5];
+				var3[var4] = World.World_sortOption2[var5];
+				++var4;
 			}
 		}
 
-		var5 = ArchiveLoader.scene.getGameObjectTag(var0, var1, var2);
-		if (0L != var5) {
-			var7 = ArchiveLoader.scene.getObjectFlags(var0, var1, var2, var5);
-			var8 = var7 >> 6 & 3;
-			var9 = var7 & 31;
-			var10 = Occluder.Entity_unpackID(var5);
-			ObjectComposition var24 = WorldMapDecoration.getObjectDefinition(var10);
-			int var19;
-			if (var24.mapSceneId != -1) {
-				IndexedSprite var18 = WorldMapRegion.mapSceneSprites[var24.mapSceneId];
-				if (var18 != null) {
-					var13 = (var24.sizeX * 4 - var18.subWidth) / 2;
-					var19 = (var24.sizeY * 4 - var18.subHeight) / 2;
-					var18.drawAt(var1 * 4 + var13 + 48, (104 - var2 - var24.sizeY) * 4 + var19 + 48);
-				}
-			} else if (var9 == 9) {
-				var12 = 15658734;
-				if (FriendSystem.method1943(var5)) {
-					var12 = 15597568;
-				}
-
-				int[] var23 = class25.sceneMinimapSprite.pixels;
-				var19 = var1 * 4 + (103 - var2) * 2048 + 24624;
-				if (var8 != 0 && var8 != 2) {
-					var23[var19] = var12;
-					var23[var19 + 1 + 512] = var12;
-					var23[var19 + 1024 + 2] = var12;
-					var23[var19 + 1536 + 3] = var12;
-				} else {
-					var23[var19 + 1536] = var12;
-					var23[var19 + 1 + 1024] = var12;
-					var23[var19 + 512 + 2] = var12;
-					var23[var19 + 3] = var12;
-				}
-			}
-		}
-
-		var5 = ArchiveLoader.scene.getFloorDecorationTag(var0, var1, var2);
-		if (0L != var5) {
-			var7 = Occluder.Entity_unpackID(var5);
-			ObjectComposition var20 = WorldMapDecoration.getObjectDefinition(var7);
-			if (var20.mapSceneId != -1) {
-				IndexedSprite var21 = WorldMapRegion.mapSceneSprites[var20.mapSceneId];
-				if (var21 != null) {
-					var10 = (var20.sizeX * 4 - var21.subWidth) / 2;
-					int var22 = (var20.sizeY * 4 - var21.subHeight) / 2;
-					var21.drawAt(var1 * 4 + var10 + 48, var22 + (104 - var2 - var20.sizeY) * 4 + 48);
-				}
-			}
-		}
-
+		World.World_sortOption1 = var2;
+		World.World_sortOption2 = var3;
+		class206.sortWorlds(World.World_worlds, 0, World.World_worlds.length - 1, World.World_sortOption1, World.World_sortOption2);
 	}
 }
