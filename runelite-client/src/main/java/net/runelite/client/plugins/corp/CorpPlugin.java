@@ -191,12 +191,6 @@ public class CorpPlugin extends Plugin
 			return;
 		}
 
-		int myDamage = client.getVar(Varbits.CORP_DAMAGE);
-		// sometimes hitsplats are applied after the damage counter has been reset
-		if (myDamage > 0)
-		{
-			yourDamage = myDamage;
-		}
 		totalDamage += hitsplatApplied.getHitsplat().getAmount();
 	}
 
@@ -212,6 +206,20 @@ public class CorpPlugin extends Plugin
 		}
 
 		players.add(source);
+	}
+
+	@Subscribe
+	public void onVarbitChanged(VarbitChanged varbitChanged)
+	{
+		if (corp != null)
+		{
+			int myDamage = client.getVar(Varbits.CORP_DAMAGE);
+			// avoid resetting our counter when the client's is reset
+			if (myDamage > 0)
+			{
+				yourDamage = myDamage;
+			}
+		}
 	}
 
 	@Subscribe

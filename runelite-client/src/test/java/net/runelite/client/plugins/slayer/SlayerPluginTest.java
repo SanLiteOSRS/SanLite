@@ -53,6 +53,7 @@ import net.runelite.api.widgets.WidgetInfo;
 import net.runelite.client.Notifier;
 import net.runelite.client.chat.ChatCommandManager;
 import net.runelite.client.chat.ChatMessageManager;
+import net.runelite.client.config.ConfigManager;
 import net.runelite.client.game.ItemManager;
 import net.runelite.client.ui.overlay.OverlayManager;
 import net.runelite.client.ui.overlay.infobox.InfoBoxManager;
@@ -64,6 +65,7 @@ import org.junit.runner.RunWith;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import org.mockito.Mock;
+import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
@@ -101,11 +103,14 @@ public class SlayerPluginTest
 
 	private static final String REWARD_POINTS = "Reward points: 17,566";
 
-	private static final String TASK_ONE = "You've completed one task; return to a Slayer master.";
-	private static final String TASK_COMPLETE_NO_POINTS = "<col=ef1020>You've completed 3 tasks; return to a Slayer master.</col>";
-	private static final String TASK_POINTS = "You've completed 9 tasks and received 0 points, giving you a total of 18,000; return to a Slayer master.";
-	private static final String TASK_LARGE_STREAK = "You've completed 2,465 tasks and received 15 points, giving you a total of 17,566,000; return to a Slayer master.";
-	private static final String TASK_COMPETE_TURAEL = "You've completed 104 tasks. You'll be eligible to earn reward points if you complete tasks from a more advanced Slayer Master.";
+	private static final String TASK_ONE = "<col=ef1020>You've completed </col>1 task<col=ef1020> and will need</col> 4 more <col=ef1020>before you start receiving Slayer points; return to a Slayer master.</col>";
+	private static final String TASK_COMPLETE_NO_POINTS = "<col=ef1020>You've completed </col>3 tasks<col=ef1020> and will need </col>2 more<col=ef1020> before you start receiving Slayer points; return to a Slayer master.";
+	private static final String TASK_POINTS = "<col=ef1020>You've completed </col>9 tasks <col=ef1020>and received </col>10 points<col=ef1020>, giving you a total of </col>18,000<col=ef1020>; return to a Slayer master.";
+	private static final String TASK_LARGE_STREAK = "<col=ef1020>You've completed </col>2,465 tasks <col=ef1020>and received </col>15 points<col=ef1020>, giving you a total of </col>131,071<col=ef1020>; return to a Slayer master.";
+	private static final String TASK_COMPETE_TURAEL = "<col=ef1020>You've completed </col>104 tasks <col=ef1020>. You'll be eligible to earn reward points if you complete tasks from a more advanced Slayer Master.";
+	private static final String TASK_MAX_STREAK = "<col=ef1020>You've completed at least </col>16,000 tasks <col=ef1020>and received </col>15 points<col=ef1020>, giving you a total of </col>131,071<col=ef1020>; return to a Slayer master.";
+	private static final String TASK_MAX_POINTS = "<col=ef1020>You've completed </col>9 tasks <col=ef1020>and reached the maximum amount of Slayer points </col>(131,071)<col=ef1020>; return to a Slayer master.";
+	private static final String TASK_WILDERNESS = "<col=ef1020>You've completed </col>9 Wilderness tasks <col=ef1020>and received </col>10 points<col=ef1020>, giving you a total of </col>18,000<col=ef1020>; return to a Slayer master.";
 
 	private static final String TASK_COMPLETE = "You need something new to hunt.";
 	private static final String TASK_CANCELED = "Your task has been cancelled.";
@@ -133,6 +138,10 @@ public class SlayerPluginTest
 	@Mock
 	@Bind
 	Client client;
+
+	@Mock
+	@Bind
+	ConfigManager configManager;
 
 	@Mock
 	@Bind
@@ -280,7 +289,7 @@ public class SlayerPluginTest
 
 		assertEquals("Vet'ion", slayerPlugin.getTaskName());
 		assertEquals(3, slayerPlugin.getAmount());
-		verify(slayerConfig).points(914);
+		verify(configManager).setRSProfileConfiguration(SlayerConfig.GROUP_NAME, SlayerConfig.POINTS_KEY, 914);
 	}
 
 	@Test
@@ -293,7 +302,7 @@ public class SlayerPluginTest
 
 		assertEquals("Chaos Elemental", slayerPlugin.getTaskName());
 		assertEquals(3, slayerPlugin.getAmount());
-		verify(slayerConfig).points(914);
+		verify(configManager).setRSProfileConfiguration(SlayerConfig.GROUP_NAME, SlayerConfig.POINTS_KEY, 914);
 	}
 
 	@Test
@@ -306,7 +315,7 @@ public class SlayerPluginTest
 
 		assertEquals("Alchemical Hydra", slayerPlugin.getTaskName());
 		assertEquals(35, slayerPlugin.getAmount());
-		verify(slayerConfig).points(724);
+		verify(configManager).setRSProfileConfiguration(SlayerConfig.GROUP_NAME, SlayerConfig.POINTS_KEY, 724);
 	}
 
 	@Test
@@ -437,7 +446,7 @@ public class SlayerPluginTest
 		when(client.getWidget(WidgetInfo.SLAYER_REWARDS_TOPBAR)).thenReturn(rewardBar);
 		slayerPlugin.onGameTick(new GameTick());
 
-		verify(slayerConfig).points(17566);
+		verify(configManager).setRSProfileConfiguration(SlayerConfig.GROUP_NAME, SlayerConfig.POINTS_KEY, 17566);
 	}
 
 	@Test
@@ -446,7 +455,7 @@ public class SlayerPluginTest
 		ChatMessage chatMessageEvent = new ChatMessage(null, GAMEMESSAGE, "Perterter", TASK_ONE, null, 0);
 		slayerPlugin.onChatMessage(chatMessageEvent);
 
-		verify(slayerConfig).streak(1);
+		verify(configManager).setRSProfileConfiguration(SlayerConfig.GROUP_NAME, SlayerConfig.STREAK_KEY, 1);
 		assertEquals("", slayerPlugin.getTaskName());
 		assertEquals(0, slayerPlugin.getAmount());
 	}
@@ -457,7 +466,7 @@ public class SlayerPluginTest
 		ChatMessage chatMessageEvent = new ChatMessage(null, GAMEMESSAGE, "Perterter", TASK_COMPLETE_NO_POINTS, null, 0);
 		slayerPlugin.onChatMessage(chatMessageEvent);
 
-		verify(slayerConfig).streak(3);
+		verify(configManager).setRSProfileConfiguration(SlayerConfig.GROUP_NAME, SlayerConfig.STREAK_KEY, 3);
 		assertEquals("", slayerPlugin.getTaskName());
 		assertEquals(0, slayerPlugin.getAmount());
 	}
@@ -468,10 +477,10 @@ public class SlayerPluginTest
 		ChatMessage chatMessageEvent = new ChatMessage(null, GAMEMESSAGE, "Perterter", TASK_POINTS, null, 0);
 		slayerPlugin.onChatMessage(chatMessageEvent);
 
-		verify(slayerConfig).streak(9);
+		verify(configManager).setRSProfileConfiguration(SlayerConfig.GROUP_NAME, SlayerConfig.STREAK_KEY, 9);
 		assertEquals("", slayerPlugin.getTaskName());
 		assertEquals(0, slayerPlugin.getAmount());
-		verify(slayerConfig).points(18_000);
+		verify(configManager).setRSProfileConfiguration(SlayerConfig.GROUP_NAME, SlayerConfig.POINTS_KEY, 18_000);
 	}
 
 	@Test
@@ -480,10 +489,10 @@ public class SlayerPluginTest
 		ChatMessage chatMessageEvent = new ChatMessage(null, GAMEMESSAGE, "Perterter", TASK_LARGE_STREAK, null, 0);
 		slayerPlugin.onChatMessage(chatMessageEvent);
 
-		verify(slayerConfig).streak(2465);
+		verify(configManager).setRSProfileConfiguration(SlayerConfig.GROUP_NAME, SlayerConfig.STREAK_KEY, 2465);
 		assertEquals("", slayerPlugin.getTaskName());
 		assertEquals(0, slayerPlugin.getAmount());
-		verify(slayerConfig).points(17_566_000);
+		verify(configManager).setRSProfileConfiguration(SlayerConfig.GROUP_NAME, SlayerConfig.POINTS_KEY, 131_071);
 	}
 
 	@Test
@@ -492,7 +501,43 @@ public class SlayerPluginTest
 		ChatMessage chatMessageEvent = new ChatMessage(null, GAMEMESSAGE, "Perterter", TASK_COMPETE_TURAEL, null, 0);
 		slayerPlugin.onChatMessage(chatMessageEvent);
 
-		verify(slayerConfig).streak(104);
+		verify(configManager).setRSProfileConfiguration(SlayerConfig.GROUP_NAME, SlayerConfig.STREAK_KEY, 104);
+		assertEquals("", slayerPlugin.getTaskName());
+		assertEquals(0, slayerPlugin.getAmount());
+	}
+
+	@Test
+	public void testTaskMaxStreak()
+	{
+		ChatMessage chatMessageEvent = new ChatMessage(null, GAMEMESSAGE, "", TASK_MAX_STREAK, null, 0);
+		slayerPlugin.onChatMessage(chatMessageEvent);
+
+		verify(configManager).setRSProfileConfiguration(SlayerConfig.GROUP_NAME, SlayerConfig.STREAK_KEY, 16000);
+		verify(configManager).setRSProfileConfiguration(SlayerConfig.GROUP_NAME, SlayerConfig.POINTS_KEY, 131_071);
+		assertEquals("", slayerPlugin.getTaskName());
+		assertEquals(0, slayerPlugin.getAmount());
+	}
+
+	@Test
+	public void testTaskMaxPoints()
+	{
+		ChatMessage chatMessageEvent = new ChatMessage(null, GAMEMESSAGE, "", TASK_MAX_POINTS, null, 0);
+		slayerPlugin.onChatMessage(chatMessageEvent);
+
+		verify(configManager).setRSProfileConfiguration(SlayerConfig.GROUP_NAME, SlayerConfig.STREAK_KEY, 9);
+		verify(configManager).setRSProfileConfiguration(SlayerConfig.GROUP_NAME, SlayerConfig.POINTS_KEY, 131_071);
+		assertEquals("", slayerPlugin.getTaskName());
+		assertEquals(0, slayerPlugin.getAmount());
+	}
+
+	@Test
+	public void testTaskWilderness()
+	{
+		ChatMessage chatMessageEvent = new ChatMessage(null, GAMEMESSAGE, "", TASK_WILDERNESS, null, 0);
+		slayerPlugin.onChatMessage(chatMessageEvent);
+
+		verify(configManager).setRSProfileConfiguration(SlayerConfig.GROUP_NAME, SlayerConfig.STREAK_KEY, 9);
+		verify(configManager).setRSProfileConfiguration(SlayerConfig.GROUP_NAME, SlayerConfig.POINTS_KEY, 18_000);
 		assertEquals("", slayerPlugin.getTaskName());
 		assertEquals(0, slayerPlugin.getAmount());
 	}
@@ -508,6 +553,8 @@ public class SlayerPluginTest
 
 		assertEquals("", slayerPlugin.getTaskName());
 		assertEquals(0, slayerPlugin.getAmount());
+
+		verify(configManager).unsetRSProfileConfiguration(SlayerConfig.GROUP_NAME, SlayerConfig.TASK_LOC_KEY);
 	}
 
 	@Test
@@ -880,7 +927,10 @@ public class SlayerPluginTest
 	@Test
 	public void infoboxNotAddedOnLogin()
 	{
-		when(slayerConfig.taskName()).thenReturn(Task.BLOODVELD.getName());
+		when(slayerPlugin.getStringProfileConfig(SlayerConfig.TASK_NAME_KEY)).thenReturn(Task.BLOODVELD.getName());
+		when(slayerPlugin.getIntProfileConfig(SlayerConfig.AMOUNT_KEY)).thenReturn(50);
+		// Lenient required as this is not called assuming correct plugin logic
+		lenient().when(slayerConfig.showInfobox()).thenReturn(true);
 
 		GameStateChanged loggingIn = new GameStateChanged();
 		loggingIn.setGameState(GameState.LOGGING_IN);

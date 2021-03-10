@@ -122,13 +122,14 @@
 		<module>deobfuscator</module>
 		<module>runelite-api</module>
 		<module>runelite-client</module>
-        <module>runelite-mixins</module>
-        <module>runelite-script-assembler-plugin</module>
+		<module>runelite-jshell</module>
+		<module>runelite-mixins</module>
 		<module>runescape-api</module>
 		<module>runescape-client</module>
         <module>injector-plugin</module>
         <module>injected-client</module>
-        <module>http-api</module>
+		<module>runelite-script-assembler-plugin</module>
+		<module>http-api</module>
 		<module>http-service</module>
 	</modules>
 
@@ -151,33 +152,26 @@
 				<version>2.8.5</version>
 			</dependency>
 			<dependency>
+				<groupId>com.google.code.findbugs</groupId>
+				<artifactId>jsr305</artifactId>
+				<version>3.0.2</version>
+			</dependency>
+			<dependency>
 				<groupId>ch.qos.logback</groupId>
 				<artifactId>logback-parent</artifactId>
 				<version>1.2.3</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
+			<dependency>
+				<groupId>com.google.inject</groupId>
+				<artifactId>guice-bom</artifactId>
+				<version>4.1.0</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
-
-	<profiles>
-		<profile>
-			<id>java9</id>
-			<activation>
-				<jdk>[1.9,)</jdk>
-			</activation>
-			<build>
-				<plugins>
-					<plugin>
-						<artifactId>maven-compiler-plugin</artifactId>
-						<configuration>
-							<release>${java.release}</release>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
 
 	<build>
 		<plugins>

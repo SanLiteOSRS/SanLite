@@ -89,7 +89,7 @@ public class CameraPlugin extends Plugin implements KeyListener, MouseListener
 	 * Whether or not the current menu has any non-ignored menu entries
 	 */
 	private boolean menuHasEntries;
-
+	
 	@Inject
 	private Client client;
 

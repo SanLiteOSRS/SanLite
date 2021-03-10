@@ -651,6 +651,17 @@ public interface MenuEntrySwapperConfig extends Config
 	}
 
 	@ConfigItem(
+		keyName = "swapRowboatDive",
+		name = "Fossil Island Rowboat Dive",
+		description = "Swap Travel with Dive on the rowboat found on the small island north-east of Fossil Island",
+		section = objectSection
+	)
+	default boolean swapRowboatDive()
+	{
+		return false;
+	}
+
+	@ConfigItem(
 		keyName = "swapPickpocket",
 		name = "Pickpocket",
 		description = "Swap Talk-to with Pickpocket",

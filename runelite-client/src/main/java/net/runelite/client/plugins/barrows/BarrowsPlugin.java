@@ -90,7 +90,6 @@ public class BarrowsPlugin extends Plugin
 	private final Set<GameObject> ladders = new HashSet<>();
 
 	private LoopTimer barrowsPrayerDrainTimer;
-	private boolean wasInCrypt = false;
 
 	@Getter
 	private Widget puzzleAnswer;
@@ -143,7 +142,6 @@ public class BarrowsPlugin extends Plugin
 		walls.clear();
 		ladders.clear();
 		puzzleAnswer = null;
-		wasInCrypt = false;
 		stopPrayerDrainTimer();
 
 		// Restore widgets
@@ -234,7 +232,6 @@ public class BarrowsPlugin extends Plugin
 	{
 		if (event.getGameState() == GameState.LOADING)
 		{
-			wasInCrypt = isInCrypt();
 			// on region changes the tiles get set to null
 			walls.clear();
 			ladders.clear();
@@ -243,11 +240,11 @@ public class BarrowsPlugin extends Plugin
 		else if (event.getGameState() == GameState.LOGGED_IN)
 		{
 			boolean isInCrypt = isInCrypt();
-			if (wasInCrypt && !isInCrypt)
+			if (!isInCrypt && barrowsPrayerDrainTimer != null)
 			{
 				stopPrayerDrainTimer();
 			}
-			else if (!wasInCrypt && isInCrypt)
+			else if (isInCrypt && barrowsPrayerDrainTimer == null)
 			{
 				startPrayerDrainTimer();
 			}
@@ -299,10 +296,20 @@ public class BarrowsPlugin extends Plugin
 		}
 	}
 
+	@Subscribe
+	public void onWidgetClosed(WidgetClosed widgetClosed)
+	{
+		if (widgetClosed.getGroupId() == WidgetID.BARROWS_PUZZLE_GROUP_ID)
+		{
+			puzzleAnswer = null;
+		}
+	}
+
 	private void startPrayerDrainTimer()
 	{
 		if (config.showPrayerDrainTimer())
 		{
+			assert barrowsPrayerDrainTimer == null;
 			final LoopTimer loopTimer = new LoopTimer(
 				PRAYER_DRAIN_INTERVAL_MS,
 				ChronoUnit.MILLIS,

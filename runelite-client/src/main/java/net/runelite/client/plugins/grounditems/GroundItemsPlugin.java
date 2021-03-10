@@ -661,7 +661,7 @@ public class GroundItemsPlugin extends Plugin
 					.append(")");
 			}
 		}
-
+		
 		notifier.notify(notificationStringBuilder.toString());
 	}
 

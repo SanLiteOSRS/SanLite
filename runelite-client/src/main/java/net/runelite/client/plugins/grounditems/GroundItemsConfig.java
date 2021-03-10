@@ -131,7 +131,7 @@ public interface GroundItemsConfig extends Config
 	{
 		return false;
 	}
-
+	
 	@ConfigItem(
 		keyName = "highlightTiles",
 		name = "Highlight Tiles",

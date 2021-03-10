@@ -95,6 +95,28 @@ public interface ItemIdentificationConfig extends Config
 	}
 
 	@ConfigItem(
+		keyName = "showLogs",
+		name = "Logs",
+		description = "Show identification on Logs",
+		section = identificationSection
+	)
+	default boolean showLogs()
+	{
+		return false;
+	}
+
+	@ConfigItem(
+		keyName = "showPlanks",
+		name = "Planks",
+		description = "Show identification on Planks",
+		section = identificationSection
+	)
+	default boolean showPlanks()
+	{
+		return false;
+	}
+
+	@ConfigItem(
 		keyName = "showSaplings",
 		name = "Saplings",
 		description = "Show identification on Saplings and Seedlings",
@@ -106,12 +128,34 @@ public interface ItemIdentificationConfig extends Config
 	}
 
 	@ConfigItem(
+		keyName = "showComposts",
+		name = "Composts",
+		description = "Show identification on Composts",
+		section = identificationSection
+	)
+	default boolean showComposts()
+	{
+		return false;
+	}
+
+	@ConfigItem(
 		keyName = "showOres",
 		name = "Ores",
 		description = "Show identification on Ores",
 		section = identificationSection
 	)
 	default boolean showOres()
+	{
+		return false;
+	}
+
+	@ConfigItem(
+		keyName = "showBars",
+		name = "Bars",
+		description = "Show identification on Bars",
+		section = identificationSection
+	)
+	default boolean showBars()
 	{
 		return false;
 	}
