@@ -1602,19 +1602,6 @@ public abstract class RSClientMixin implements RSClient
 		getHealthBarSpriteCache().reset();
 	}
 
-	@Inject
-	public void playMusicTrack(RSAbstractArchive abstractArchive, int groupId, int trackId, int volume,
-			boolean musicTrackBoolean, int pcmSampleLength)
-	{
-		client.setMusicPlayerStatus(1);
-		client.setMusicTrackArchive(abstractArchive);
-		client.setMusicTrackGroupId(groupId);
-		client.setMusicTrackFileId(trackId);
-		client.setMusicTrackVolume(volume);
-		client.setMusicTrackBoolean(musicTrackBoolean);
-		client.setPcmSampleLength(pcmSampleLength);
-	}
-
 	@Copy("changeGameOptions")
 	public static void rs$changeGameOptions(int var0)
 	{
@@ -1837,7 +1824,7 @@ public abstract class RSClientMixin implements RSClient
 
 	@Inject
 	@MethodHook("closeInterface")
-	public static void preCloseInterface(RSInterfaceParent iface, boolean willUnload)
+	public static void preCloseInterface(WidgetNode iface, boolean willUnload)
 	{
 		client.getCallbacks().post(new WidgetClosed(iface.getId(), iface.getModalMode(), willUnload));
 	}
