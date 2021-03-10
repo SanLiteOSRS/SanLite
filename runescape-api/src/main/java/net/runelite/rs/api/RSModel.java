@@ -158,10 +158,6 @@ public interface RSModel extends RSRenderable, Model
 	@Override
 	boolean isClickable();
 
-	@Import("drawFace")
-	@Override
-	void drawFace(int face);
-
 	void interpolateFrames(RSFrames frames, int frameId, RSFrames nextFrames, int nextFrameId, int interval, int intervalCount);
 
 	/**

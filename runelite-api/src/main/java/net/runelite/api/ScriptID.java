@@ -83,7 +83,6 @@ public final class ScriptID
 	@ScriptArguments(integer = 2)
 	public static final int MESSAGE_LAYER_CLOSE = 299;
 
-
 	/**
 	 * Readies the chatbox panel for things like the chatbox input
 	 * Inverse of MESSAGE_LAYER_CLOSE
@@ -325,7 +324,7 @@ public final class ScriptID
 	 * <li>int (WidgetID) drag parent</li>
 	 * </ul>
 	 */
-	@ScriptArguments(integer = 7)
+	@ScriptArguments(integer = 8, string = 1)
 	public static final int SETTINGS_SLIDER_CHOOSE_ONOP = 3885;
 
 	/**

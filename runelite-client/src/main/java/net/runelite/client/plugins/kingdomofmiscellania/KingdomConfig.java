@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016-2017, Adam <Adam@sigterm.info>
+ * Copyright (c) 2020, Brandt Hill <https://github.com/BrandtHill>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,68 +22,56 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.api;
+package net.runelite.client.plugins.kingdomofmiscellania;
 
-/**
- * Represents the model of an object.
- */
-public interface Model extends Renderable
+import net.runelite.client.config.Config;
+import net.runelite.client.config.ConfigGroup;
+import net.runelite.client.config.ConfigItem;
+import net.runelite.client.config.Range;
+
+@ConfigGroup(KingdomConfig.CONFIG_GROUP_NAME)
+public interface KingdomConfig extends Config
 {
-	int getVerticesCount();
+	String CONFIG_GROUP_NAME = "kingdomofmiscellania";
+	int MAX_COFFER = 7_500_000;
+	int MAX_APPROVAL_PERCENT = 100;
 
-	int[] getVerticesX();
+	@ConfigItem(
+		position = 1,
+		keyName = "sendNotifications",
+		name = "Send Notifications",
+		description = "Send chat notifications upon login showing current estimated coffer and approval"
+	)
+	default boolean shouldSendNotifications()
+	{
+		return false;
+	}
 
-	int[] getVerticesY();
+	@Range(
+		max = MAX_COFFER
+	)
+	@ConfigItem(
+		position = 2,
+		keyName = "cofferThreshold",
+		name = "Coffer Threshold",
+		description = "Send notifications if coffer is below this value"
+	)
+	default int getCofferThreshold()
+	{
+		return MAX_COFFER;
+	}
 
-	int[] getVerticesZ();
-
-	int getTrianglesCount();
-
-	int[] getTrianglesX();
-
-	int[] getTrianglesY();
-
-	int[] getTrianglesZ();
-
-	int[] getFaceColors1();
-
-	int[] getFaceColors2();
-
-	int[] getFaceColors3();
-
-	byte[] getTriangleTransparencies();
-
-	int getSceneId();
-	void setSceneId(int sceneId);
-
-	int getBufferOffset();
-	void setBufferOffset(int bufferOffset);
-
-	int getUvBufferOffset();
-	void setUvBufferOffset(int bufferOffset);
-
-	int getModelHeight();
-
-	void calculateBoundsCylinder();
-
-	byte[] getFaceRenderPriorities();
-
-	int getRadius();
-
-	short[] getFaceTextures();
-
-	float[][] getFaceTextureUCoordinates();
-	float[][] getFaceTextureVCoordinates();
-
-	void calculateExtreme(int orientation);
-
-	int getCenterX();
-	int getCenterY();
-	int getCenterZ();
-	int getExtremeX();
-	int getExtremeY();
-	int getExtremeZ();
-
-	int getXYZMag();
-	boolean isClickable();
+	@Range(
+		max = MAX_APPROVAL_PERCENT
+	)
+	@ConfigItem(
+		position = 3,
+		keyName = "approvalThreshold",
+		name = "Approval Threshold",
+		description = "Send notifications if approval percentage is below this value"
+	)
+	default int getApprovalThreshold()
+	{
+		return MAX_APPROVAL_PERCENT;
+	}
 }

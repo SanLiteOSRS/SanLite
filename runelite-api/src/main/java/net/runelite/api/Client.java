@@ -280,13 +280,13 @@ public interface Client extends GameEngine
 
 	/**
 	 * Gets the canvas height
-	 * @return canvas height
+	 * @return
 	 */
 	int getCanvasHeight();
 
 	/**
 	 * Gets the canvas width
-	 * @return canvas width
+	 * @return
 	 */
 	int getCanvasWidth();
 
@@ -461,7 +461,7 @@ public interface Client extends GameEngine
 	int getMouseCurrentButton();
 
 	/**
-	 * Gets the currently selected tile (ie. last right clicked tile).
+	 * Gets the currently selected tile. (ie. last right clicked tile)
 	 *
 	 * @return the selected tile
 	 */
@@ -809,8 +809,8 @@ public interface Client extends GameEngine
 	/**
 	 * Gets the varbit composition for a given varbit id
 	 *
-	 * @param id varbit id
-	 * @return varbit composition
+	 * @param id
+	 * @return
 	 */
 	@Nullable
 	VarbitComposition getVarbit(int id);
@@ -903,7 +903,7 @@ public interface Client extends GameEngine
 	/**
 	 * Get the total experience of the player
 	 *
-	 * @return total experience
+	 * @return
 	 */
 	long getOverallExperience();
 
@@ -1216,6 +1216,13 @@ public interface Client extends GameEngine
 	Widget getScriptActiveWidget();
 
 	/**
+	 * Gets the cs2 vm's "dot" widget
+	 *
+	 * This is used for all {@code .cc_*} operations with a {@code 1} operand
+	 */
+	Widget getScriptDotWidget();
+
+	/**
 	 * Checks whether a player is on the friends list.
 	 *
 	 * @param name the name of the player
@@ -1235,14 +1242,14 @@ public interface Client extends GameEngine
 	/**
 	 * Retrieve the nameable container containing friends
 	 *
-	 * @return friend container
+	 * @return
 	 */
 	NameableContainer<Friend> getFriendContainer();
 
 	/**
 	 * Retrieve the nameable container containing ignores
 	 *
-	 * @return ignore container
+	 * @return
 	 */
 	NameableContainer<Ignore> getIgnoreContainer();
 
@@ -1381,6 +1388,8 @@ public interface Client extends GameEngine
 	 * Executes a client script from the cache
 	 *
 	 * This method must be ran on the client thread and is not reentrant
+	 *
+	 * This method is shorthand for {@code client.createScriptEvent(args).run()}
 	 *
 	 * @param args the script id, then any additional arguments to execute the script with
 	 * @see ScriptID
@@ -1582,8 +1591,8 @@ public interface Client extends GameEngine
 	void setLocalPlayerHidden(boolean state);
 
 	/**
-	 * Sets whether 2D sprites (ie. overhead prayers, PK skull) related to
-	 * the local player are hidden.
+	 * Sets whether 2D sprites related to the local player are hidden.
+	 * (ie. overhead prayers, PK skull)
 	 *
 	 * @param state new local player 2D hidden state
 	 */
@@ -1597,8 +1606,8 @@ public interface Client extends GameEngine
 	void setNPCsHidden(boolean state);
 
 	/**
-	 * Sets whether 2D sprites (ie. overhead prayers) related to
-	 * the NPCs are hidden.
+	 * Sets whether 2D sprites related to the NPCs are hidden.
+	 * (ie. overhead prayers)
 	 *
 	 * @param state new NPC 2D hidden state
 	 */
@@ -1791,13 +1800,13 @@ public interface Client extends GameEngine
 	/**
 	 * Get the if1 widget whose item is being dragged
 	 *
-	 * @return widget
+	 * @return
 	 */
 	Widget getIf1DraggedWidget();
 
 	/**
 	 * Get the item index of the item being dragged on an if1 widget
-	 * @return item index
+	 * @return
 	 */
 	int getIf1DraggedItemIndex();
 

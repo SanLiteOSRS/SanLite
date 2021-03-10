@@ -420,15 +420,13 @@ public enum Varbits
 	 */
 	MULTICOMBAT_AREA(4605),
 
-	/**
-	 * In the Wilderness
-	 */
 	IN_THE_WILDERNESS(5963),
 
 	/**
-	 * Kingdom Management
+	 * Kingdom of Miscellania Management
+	 * Kingdom Approval is represented as a 7-bit unsigned integer; 127 corresponds to 100% approval
 	 */
-	KINGDOM_FAVOR(72),
+	KINGDOM_APPROVAL(72),
 	KINGDOM_COFFER(74),
 
 	/**

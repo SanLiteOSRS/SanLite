@@ -238,11 +238,6 @@ public enum MenuAction
 	SPELL_CAST_ON_WIDGET(58),
 
 	/**
-	 * Sub 1000 so it doesn't get sorted down in the list
-	 */
-	PRIO_RUNELITE(666),
-
-	/**
 	 * Menu action triggered by examining an object.
 	 */
 	EXAMINE_OBJECT(1002),

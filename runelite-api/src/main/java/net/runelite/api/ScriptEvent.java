@@ -40,10 +40,8 @@ public interface ScriptEvent
 	String NAME = "event_opbase";
 
 	/**
-	 * Gets the widget of the event.
-	 *
-	 * @return the widget
-	 * @see net.runelite.api.widgets.Widget
+	 * Gets the widget the {@link #WIDGET_ID} and {@link #WIDGET_INDEX} args
+	 * are substituted with
 	 */
 	Widget getSource();
 

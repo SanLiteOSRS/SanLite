@@ -25,14 +25,12 @@
 package net.runelite.api;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 /**
  * A menu entry in a right-click menu.
  */
 @Data
-@NoArgsConstructor
-public class MenuEntry implements Cloneable
+public class MenuEntry
 {
 	/**
 	 * The option text added to the menu. (ie. "Walk here", "Use")
@@ -51,17 +49,16 @@ public class MenuEntry implements Cloneable
 	private int identifier;
 	/**
 	 * The action the entry will trigger.
-	 * {@link MenuAction}
 	 */
-	private int opcode;
+	private int type;
 	/**
 	 * An additional parameter for the action.
 	 */
-	private int actionParam;
+	private int param0;
 	/**
 	 * A second additional parameter for the action.
 	 */
-	private int actionParam1;
+	private int param1;
 	/**
 	 * If this field is true and you have single mouse button on and this entry is
 	 * the top entry the right click menu will not be opened when you left click
@@ -69,86 +66,4 @@ public class MenuEntry implements Cloneable
 	 * This is used  for shift click
 	 */
 	private boolean forceLeftClick;
-
-	public MenuEntry(String option, String target, int type, int opcode, int actionParam, int actionParam1, boolean forceLeftClick)
-	{
-		this.option = option;
-		this.target = target;
-		this.identifier = type;
-		this.opcode = opcode;
-		this.actionParam = actionParam;
-		this.actionParam1 = actionParam1;
-		this.forceLeftClick = forceLeftClick;
-	}
-
-	@Override
-	public MenuEntry clone()
-	{
-		try
-		{
-			return (MenuEntry) super.clone();
-		}
-		catch (CloneNotSupportedException ex)
-		{
-			throw new RuntimeException(ex);
-		}
-	}
-
-	public void setActionParam0(int i)
-	{
-		this.actionParam = i;
-	}
-
-	public int getActionParam0()
-	{
-		return this.actionParam;
-	}
-
-	public int getParam0()
-	{
-		return this.actionParam;
-	}
-
-	public void setParam0(int i)
-	{
-		this.actionParam = i;
-	}
-
-	public void setParam1(int i)
-	{
-		this.actionParam1 = i;
-	}
-
-	public int getParam1()
-	{
-		return this.actionParam1;
-	}
-
-	public void setType(int i)
-	{
-		this.opcode = i;
-	}
-
-	public int getType()
-	{
-		return this.opcode;
-	}
-
-	public void setId(int i)
-	{
-		this.identifier = i;
-	}
-
-	public int getId()
-	{
-		return this.identifier;
-	}
-
-	/**
-	 * Get opcode, but as it's enum counterpart
-	 */
-	public MenuAction getMenuAction()
-	{
-		return MenuAction.of(getOpcode());
-	}
 }

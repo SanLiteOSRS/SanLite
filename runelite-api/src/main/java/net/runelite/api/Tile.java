@@ -120,7 +120,7 @@ public interface Tile
 	/**
 	 * Get the plane this tile is rendered on, which is where the tile heights are from.
 	 *
-	 * @return render level
+	 * @return
 	 */
 	int getRenderLevel();
 
@@ -142,7 +142,7 @@ public interface Tile
 	/**
 	 * Return the tile under this one, if this tile is a bridge
 	 *
-	 * @return tile under bridge
+	 * @return
 	 */
 	Tile getBridge();
 }

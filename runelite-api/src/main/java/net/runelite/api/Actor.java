@@ -68,6 +68,7 @@ public interface Actor extends Renderable
 	 * (getRSInteracting returns the npc/player index, useful for menus)
 	 */
 	Actor getInteracting();
+
 	int getInteractingIndex();
 
 	/**
@@ -105,10 +106,6 @@ public interface Actor extends Renderable
 	 */
 	LocalPoint getLocalLocation();
 
-	void setIdlePoseAnimation(int animation);
-
-	void setPoseAnimation(int animation);
-
 	/**
 	 * Gets the orientation of the actor.
 	 *
@@ -116,8 +113,6 @@ public interface Actor extends Renderable
 	 * @see net.runelite.api.coords.Angle
 	 */
 	int getOrientation();
-
-	int getCurrentOrientation();
 
 	/**
 	 * Gets the current animation the actor is performing.
@@ -128,21 +123,81 @@ public interface Actor extends Renderable
 	int getAnimation();
 
 	/**
-	 * Gets the secondary animation the actor is performing.
+	 * Gets the secondary animation the actor is performing. Usually an idle animation, or one of the walking ones.
 	 *
 	 * @return the animation ID
 	 * @see AnimationID
 	 */
 	int getPoseAnimation();
 
+	void setPoseAnimation(int animation);
+
 	/**
-	 * If this is equal to the pose animation, the pose animation is ignored when
-	 * you are doing another action.
+	 * The idle pose animation. If the actor is not walking or otherwise animating, this will be used
+	 * for their pose animation.
 	 *
 	 * @return the animation ID
 	 * @see AnimationID
 	 */
 	int getIdlePoseAnimation();
+
+	void setIdlePoseAnimation(int animation);
+
+	/**
+	 * Animation used for rotating left if the actor is also not walking
+	 *
+	 * @return the animation ID
+	 * @see AnimationID
+	 */
+	int getIdleRotateLeft();
+
+	/**
+	 * Animation used for rotating right if the actor is also not walking
+	 *
+	 * @return the animation ID
+	 * @see AnimationID
+	 */
+	int getIdleRotateRight();
+
+	/**
+	 * Animation used for walking
+	 *
+	 * @return the animation ID
+	 * @see AnimationID
+	 */
+	int getWalkAnimation();
+
+	/**
+	 * Animation used for rotating left while walking
+	 *
+	 * @return the animation ID
+	 * @see AnimationID
+	 */
+	int getWalkRotateLeft();
+
+	/**
+	 * Animation used for rotating right while walking
+	 *
+	 * @return the animation ID
+	 * @see AnimationID
+	 */
+	int getWalkRotateRight();
+
+	/**
+	 * Animation used for an about-face while walking
+	 *
+	 * @return the animation ID
+	 * @see AnimationID
+	 */
+	int getWalkRotate180();
+
+	/**
+	 * Animation used for running
+	 *
+	 * @return the animation ID
+	 * @see AnimationID
+	 */
+	int getRunAnimation();
 
 	/**
 	 * Sets an animation for the actor to perform.
@@ -207,11 +262,11 @@ public interface Actor extends Renderable
 	 * Gets the point at which a sprite should be drawn, relative to the
 	 * current location with the given z-axis offset.
 	 *
-	 * @param spritePixels the sprite to draw
+	 * @param sprite the sprite to draw
 	 * @param zOffset the z-axis offset
 	 * @return the sprite drawing location
 	 */
-	Point getCanvasSpriteLocation(SpritePixels spritePixels, int zOffset);
+	Point getCanvasSpriteLocation(SpritePixels sprite, int zOffset);
 
 	/**
 	 * Gets a point on the canvas of where this actors mini-map indicator
@@ -280,26 +335,6 @@ public interface Actor extends Renderable
 	 * @return action frame game cycle
 	 */
 	int getActionFrameCycle();
-
-	/*
-	 This collection of methods gets extended debug information about the actor
-
-	 Used by dev tools
-	 */
-
-	int getTurnLeftAnimation();
-
-	int getTurnRightAnimation();
-
-	int getWalkAnimation();
-
-	int getWalkBackAnimation();
-
-	int getWalkLeftAnimation();
-
-	int getWalkRightAnimation();
-
-	int getRunAnimation();
 
 	boolean isMoving();
 }
