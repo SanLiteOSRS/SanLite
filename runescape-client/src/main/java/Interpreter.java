@@ -50,7 +50,8 @@ public class Interpreter {
 	@ObfuscatedSignature(
 		signature = "Lhz;"
 	)
-	static Widget field1117;
+	@Export("scriptActiveWidget")
+	static Widget scriptActiveWidget;
 	@ObfuscatedName("x")
 	@Export("Interpreter_calendar")
 	static java.util.Calendar Interpreter_calendar;

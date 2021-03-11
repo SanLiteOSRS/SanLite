@@ -31,8 +31,6 @@ import net.runelite.rs.api.RSClient;
 import net.runelite.rs.api.RSItemContainer;
 import net.runelite.rs.api.RSNodeHashTable;
 
-import javax.annotation.Nonnull;
-
 @Mixin(RSItemContainer.class)
 public abstract class RSItemContainerMixin implements RSItemContainer
 {
@@ -42,7 +40,6 @@ public abstract class RSItemContainerMixin implements RSItemContainer
 	@Shadow("changedItemContainers")
 	private static int[] changedItemContainers;
 
-	@Nonnull
 	@Inject
 	@Override
 	public Item[] getItems()

@@ -24,11 +24,13 @@
  */
 package net.runelite.client;
 
+import com.google.gson.Gson;
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.google.inject.name.Names;
 import java.applet.Applet;
 import java.io.File;
+import java.util.Properties;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.function.Supplier;
@@ -50,6 +52,7 @@ import net.runelite.client.plugins.PluginManager;
 import net.runelite.client.task.Scheduler;
 import net.runelite.client.util.DeferredEventBus;
 import net.runelite.client.util.ExecutorServiceExceptionLogger;
+import net.runelite.http.api.RuneLiteAPI;
 import net.runelite.http.api.chat.ChatClient;
 import okhttp3.OkHttpClient;
 import org.slf4j.Logger;
@@ -67,6 +70,12 @@ public class RuneLiteModule extends AbstractModule
 	@Override
 	protected void configure()
 	{
+		Properties properties = RuneLiteProperties.getProperties();
+		for (String key : properties.stringPropertyNames())
+		{
+			String value = properties.getProperty(key);
+			bindConstant().annotatedWith(Names.named(key)).to(value);
+		}
 		bindConstant().annotatedWith(Names.named("developerMode")).to(true);
 		bindConstant().annotatedWith(Names.named("safeMode")).to(safeMode);
 		bind(File.class).annotatedWith(Names.named("sessionfile")).toInstance(sessionfile);
@@ -79,6 +88,8 @@ public class RuneLiteModule extends AbstractModule
 		bind(Scheduler.class);
 		bind(PluginManager.class);
 		bind(SessionManager.class);
+
+		bind(Gson.class).toInstance(RuneLiteAPI.GSON);
 
 		bind(Callbacks.class).to(Hooks.class);
 

@@ -1,3 +1,4 @@
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -7,7 +8,8 @@ public class class277 {
 	@ObfuscatedSignature(
 		signature = "Lhz;"
 	)
-	static Widget field3584;
+	@Export("scriptDotWidget")
+	static Widget scriptDotWidget;
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(

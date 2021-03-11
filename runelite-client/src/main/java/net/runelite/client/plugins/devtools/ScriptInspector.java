@@ -31,18 +31,16 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.Set;
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -65,19 +63,16 @@ import net.runelite.api.widgets.Widget;
 import net.runelite.api.widgets.WidgetInfo;
 import static net.runelite.api.widgets.WidgetInfo.TO_CHILD;
 import static net.runelite.api.widgets.WidgetInfo.TO_GROUP;
-
-import net.runelite.client.RuneLiteProperties;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.EventBus;
 import net.runelite.client.eventbus.Subscribe;
-import net.runelite.client.ui.ClientUI;
 import net.runelite.client.ui.ColorScheme;
 import net.runelite.client.ui.DynamicGridLayout;
 import net.runelite.client.ui.FontManager;
 import net.runelite.client.util.Text;
 
 @Slf4j
-public class ScriptInspector extends JFrame
+public class ScriptInspector extends DevToolsFrame
 {
 	// These scripts are the only ones that fire every client tick regardless of location.
 	private final static String DEFAULT_BLACKLIST = "3174,1004";
@@ -101,6 +96,10 @@ public class ScriptInspector extends JFrame
 		BLACKLIST,
 		HIGHLIGHT
 	}
+
+	@com.google.inject.Inject
+	@Named("runelite.title")
+	private String clientTitle;
 
 	@Data
 	private class ScriptTreeNode extends DefaultMutableTreeNode
@@ -141,27 +140,15 @@ public class ScriptInspector extends JFrame
 	}
 
 	@Inject
-	ScriptInspector(Client client, EventBus eventBus, DevToolsPlugin plugin, ConfigManager configManager)
+	ScriptInspector(Client client, EventBus eventBus, ConfigManager configManager)
 	{
 		this.eventBus = eventBus;
 		this.client = client;
 		this.configManager = configManager;
 
-		setTitle(RuneLiteProperties.getTitle() + " Script Inspector");
-		setIconImage(ClientUI.ICON);
+		setTitle(clientTitle + " Script Inspector");
 
 		setLayout(new BorderLayout());
-
-		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		addWindowListener(new WindowAdapter()
-		{
-			@Override
-			public void windowClosing(WindowEvent e)
-			{
-				close();
-				plugin.getScriptInspector().setActive(false);
-			}
-		});
 
 		tracker.setLayout(new DynamicGridLayout(0, 1, 0, 3));
 
@@ -346,14 +333,14 @@ public class ScriptInspector extends JFrame
 		}
 	}
 
+	@Override
 	public void open()
 	{
 		eventBus.register(this);
-		setVisible(true);
-		toFront();
-		repaint();
+		super.open();
 	}
 
+	@Override
 	public void close()
 	{
 		configManager.setConfiguration("devtools", "highlights",
@@ -362,7 +349,7 @@ public class ScriptInspector extends JFrame
 			Text.toCSV(Lists.transform(new ArrayList<>(blacklist), String::valueOf)));
 		currentNode = null;
 		eventBus.unregister(this);
-		setVisible(false);
+		super.close();
 	}
 
 	private void addScriptLog(ScriptTreeNode treeNode)

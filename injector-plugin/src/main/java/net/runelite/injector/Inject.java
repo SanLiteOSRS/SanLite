@@ -297,7 +297,6 @@ public class Inject
 				getters.getInjectedGetters(),
 				setters.getInjectedSetters(), invokes.getInjectedInvokers());
 
-		new DrawAfterWidgets(this).inject();
 		new ScriptVM(this).inject();
 		new ClearColorBuffer(this).inject();
 		new RenderDraw(this).inject();

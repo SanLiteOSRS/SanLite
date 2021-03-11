@@ -48,7 +48,7 @@ public class MusicPatchPcmStream extends PcmStream {
 	)
 	void method4102(MusicPatchNode var1, int[] var2, int var3, int var4, int var5) {
 		if ((this.superStream.field2458[var1.field2471] & 4) != 0 && var1.field2486 < 0) {
-			int var6 = this.superStream.field2468[var1.field2471] / (StructDefinition.field3338 * 22050);
+			int var6 = this.superStream.field2468[var1.field2471] / (StructComposition.field3338 * 22050);
 
 			while (true) {
 				int var7 = (var6 + 1048575 - var1.field2479) / var6;
@@ -61,7 +61,7 @@ public class MusicPatchPcmStream extends PcmStream {
 				var3 += var7;
 				var4 -= var7;
 				var1.field2479 += var6 * var7 - 1048576;
-				int var8 = StructDefinition.field3338 * 22050 / 100;
+				int var8 = StructComposition.field3338 * 22050 / 100;
 				int var9 = 262144 / var6;
 				if (var9 < var8) {
 					var8 = var9;
@@ -98,7 +98,7 @@ public class MusicPatchPcmStream extends PcmStream {
 	)
 	void method4103(MusicPatchNode var1, int var2) {
 		if ((this.superStream.field2458[var1.field2471] & 4) != 0 && var1.field2486 < 0) {
-			int var3 = this.superStream.field2468[var1.field2471] / (StructDefinition.field3338 * 22050);
+			int var3 = this.superStream.field2468[var1.field2471] / (StructComposition.field3338 * 22050);
 			int var4 = (var3 + 1048575 - var1.field2479) / var3;
 			var1.field2479 = var3 * var2 + var1.field2479 & 1048575;
 			if (var4 <= var2) {
@@ -383,7 +383,7 @@ public class MusicPatchPcmStream extends PcmStream {
 						Interpreter.Interpreter_intStackSize -= 2;
 						var15 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
 						var10 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
-						Widget var11 = var2 ? class277.field3584 : Interpreter.field1117;
+						Widget var11 = var2 ? class277.scriptDotWidget : Interpreter.scriptActiveWidget;
 						FriendSystem.clickWidget(var11, var15, var10);
 						return 1;
 					} else if (var0 == ScriptOpcodes.MOUSECAM) {
@@ -520,7 +520,7 @@ public class MusicPatchPcmStream extends PcmStream {
 						return 1;
 					} else if (var0 == 3140) {
 						Client.field705 = 3;
-						Client.field699 = var2 ? class277.field3584.id : Interpreter.field1117.id;
+						Client.field699 = var2 ? class277.scriptDotWidget.id : Interpreter.scriptActiveWidget.id;
 						return 1;
 					} else {
 						boolean var16;

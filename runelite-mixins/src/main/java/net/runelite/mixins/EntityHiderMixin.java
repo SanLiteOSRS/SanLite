@@ -41,11 +41,11 @@ public abstract class EntityHiderMixin implements RSScene
 	@Shadow("isHidingEntities")
 	private static boolean isHidingEntities;
 
-	@Shadow("hidePlayers")
-	private static boolean hidePlayers;
+	@Shadow("hideOthers")
+	private static boolean hideOthers;
 
-	@Shadow("hidePlayers2D")
-	private static boolean hidePlayers2D;
+	@Shadow("hideOthers2D")
+	private static boolean hideOthers2D;
 
 	@Shadow("hideFriends")
 	private static boolean hideFriends;
@@ -58,6 +58,9 @@ public abstract class EntityHiderMixin implements RSScene
 
 	@Shadow("hideLocalPlayer2D")
 	private static boolean hideLocalPlayer2D;
+
+	@Shadow("hideIgnores")
+	private static boolean hideIgnores;
 
 	@Shadow("hideNPCs")
 	private static boolean hideNPCs;
@@ -73,6 +76,9 @@ public abstract class EntityHiderMixin implements RSScene
 
 	@Shadow("hideProjectiles")
 	private static boolean hideProjectiles;
+
+	@Shadow("hideDeadNPCs")
+	private static boolean hideDeadNPCs;
 
 	@Copy("newGameObject")
 	abstract boolean addEntityMarker(int var1, int var2, int var3, int var4, int var5, int x, int y, int var8, RSRenderable entity, int var10, boolean var11, long var12, int var13);
@@ -121,49 +127,57 @@ public abstract class EntityHiderMixin implements RSScene
 
 		if (entity instanceof RSPlayer)
 		{
-			boolean local = drawingUI ? hideLocalPlayer2D : hideLocalPlayer;
-			boolean other = drawingUI ? hidePlayers2D : hidePlayers;
-			boolean isLocalPlayer = entity == client.getLocalPlayer();
-
-			if (isLocalPlayer ? local : other)
+			RSPlayer player = (RSPlayer) entity;
+			RSPlayer local = client.getLocalPlayer();
+			if (player.getName() == null)
 			{
-				RSPlayer player = (RSPlayer) entity;
-
-				if (!hideAttackers)
-				{
-					if (player.getInteracting() == client.getLocalPlayer())
-					{
-						return true;
-					}
-				}
-
-				if (player.getName() == null)
-				{
-					// player.isFriend() and player.isClanMember() npe when the player has a null name
-					return false;
-				}
-
-				return (!hideFriends && player.isFriend()) || (!isLocalPlayer && !hideFriendsChatMembers && player.isFriendsChatMember());
+				return true;
 			}
+
+			if (player == local)
+			{
+				return drawingUI ? !hideLocalPlayer2D : !hideLocalPlayer;
+			}
+
+			if (hideAttackers && player.getInteracting() == local)
+			{
+				return false;
+			}
+
+			if (player.isFriend())
+			{
+				return !hideFriends;
+			}
+
+			if (player.isFriendsChatMember())
+			{
+				return !hideFriendsChatMembers;
+			}
+
+			if (client.getFriendManager().isIgnored(player.getRsName()))
+			{
+				return !hideIgnores;
+			}
+
+			return drawingUI ? !hideOthers2D : !hideOthers;
 		}
 		else if (entity instanceof RSNPC)
 		{
 			RSNPC npc = (RSNPC) entity;
 
-			if (!hideAttackers)
+			if (npc.isDead() && hideDeadNPCs)
 			{
-				if (npc.getInteracting() == client.getLocalPlayer())
-				{
-					return true;
-				}
+				return false;
 			}
 
-			if (hidePets)
+			if (npc.getComposition().isFollower() && npc.getIndex() != client.getFollowerIndex() && hidePets)
 			{
-				if (npc.getComposition().isFollower())
-				{
-					return false;
-				}
+				return false;
+			}
+
+			if (npc.getInteracting() == client.getLocalPlayer() && hideAttackers)
+			{
+				return false;
 			}
 
 			return drawingUI ? !hideNPCs2D : !hideNPCs;

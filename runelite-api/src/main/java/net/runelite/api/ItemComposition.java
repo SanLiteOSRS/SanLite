@@ -29,7 +29,7 @@ import javax.annotation.Nullable;
 /**
  * Represents the template of a specific item type.
  */
-public interface ItemComposition
+public interface ItemComposition extends ParamHolder
 {
 	/**
 	 * Gets the items name.
@@ -135,6 +135,8 @@ public interface ItemComposition
 	 */
 	String[] getInventoryActions();
 
+	String[] getGroundActions();
+
 	/**
 	 * Gets the menu action index of the shift-click action.
 	 *
@@ -154,6 +156,13 @@ public interface ItemComposition
 	 * default value.
 	 */
 	void resetShiftClickActionIndex();
+
+	/**
+	 * With this you can make certain (ground) items look like different ones.
+	 *
+	 * @param id The itemID of the item with desired model
+	 */
+	void setModelOverride(int id);
 
 	/**
 	 * Gets the model ID of the inventory item.

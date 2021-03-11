@@ -49,25 +49,22 @@ import static net.runelite.api.ItemID.INFERNAL_CAPE;
 import net.runelite.api.NPC;
 import net.runelite.api.NpcID;
 import net.runelite.api.Player;
+import net.runelite.api.Skill;
 import net.runelite.api.VarPlayer;
 import net.runelite.api.Varbits;
-import net.runelite.api.WorldType;
 import net.runelite.api.coords.WorldPoint;
 import net.runelite.api.events.ActorDeath;
 import net.runelite.api.events.AnimationChanged;
+import net.runelite.api.events.StatChanged;
 import net.runelite.api.events.ChatMessage;
 import net.runelite.api.events.GameStateChanged;
 import net.runelite.api.events.GameTick;
 import net.runelite.api.events.GraphicChanged;
 import net.runelite.api.events.ItemContainerChanged;
 import net.runelite.api.events.MenuOptionClicked;
-import net.runelite.api.events.NpcChanged;
 import net.runelite.api.events.NpcDespawned;
 import net.runelite.api.events.VarbitChanged;
-import net.runelite.api.events.WidgetHiddenChanged;
 import net.runelite.api.widgets.Widget;
-import net.runelite.api.widgets.WidgetID;
-import net.runelite.api.widgets.WidgetInfo;
 import static net.runelite.api.widgets.WidgetInfo.PVP_WORLD_SAFE_ZONE;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
@@ -89,11 +86,13 @@ import org.apache.commons.lang3.ArrayUtils;
 @Slf4j
 public class TimersPlugin extends Plugin
 {
+	private static final String ABYSSAL_SIRE_STUN_MESSAGE = "The Sire has been disorientated temporarily.";
 	private static final String ANTIFIRE_DRINK_MESSAGE = "You drink some of your antifire potion.";
 	private static final String ANTIFIRE_EXPIRED_MESSAGE = "<col=7f007f>Your antifire potion has expired.</col>";
 	private static final String CANNON_FURNACE_MESSAGE = "You add the furnace.";
 	private static final String CANNON_PICKUP_MESSAGE = "You pick up the cannon. It's really heavy.";
 	private static final String CANNON_REPAIR_MESSAGE = "You repair your cannon, restoring it to working order.";
+	private static final String CANNON_DESTROYED_MESSAGE = "Your cannon has been destroyed!";
 	private static final String CHARGE_EXPIRED_MESSAGE = "<col=ef1020>Your magical charge fades away.</col>";
 	private static final String CHARGE_MESSAGE = "<col=ef1020>You feel charged with magic power.</col>";
 	private static final String EXTENDED_ANTIFIRE_DRINK_MESSAGE = "You drink some of your extended antifire potion.";
@@ -135,17 +134,18 @@ public class TimersPlugin extends Plugin
 	private boolean wasWearingEndurance;
 
 	private int lastRaidVarb;
-	private int lastWildernessVarb;
 	private int lastVengCooldownVarb;
 	private int lastIsVengeancedVarb;
 	private int lastPoisonVarp;
+	private int lastPvpVarb;
 	private int nextPoisonTick;
 	private WorldPoint lastPoint;
 	private TeleportWidget lastTeleportClicked;
 	private int lastAnimation;
-	private boolean loggedInRace;
 	private boolean widgetHiddenChangedOnPvpWorld;
 	private ElapsedTimer tzhaarTimer;
+	private int imbuedHeartClickTick = -1;
+	private int lastBoostedMagicLevel = -1;
 
 	@Inject
 	private ItemManager itemManager;
@@ -169,6 +169,15 @@ public class TimersPlugin extends Plugin
 	}
 
 	@Override
+	public void startUp()
+	{
+		if (client.getGameState() == GameState.LOGGED_IN)
+		{
+			lastBoostedMagicLevel = client.getBoostedSkillLevel(Skill.MAGIC);
+		}
+	}
+
+	@Override
 	protected void shutDown() throws Exception
 	{
 		infoBoxManager.removeIf(t -> t instanceof TimerTimer);
@@ -176,12 +185,13 @@ public class TimersPlugin extends Plugin
 		lastPoint = null;
 		lastTeleportClicked = null;
 		lastAnimation = -1;
-		loggedInRace = false;
 		widgetHiddenChangedOnPvpWorld = false;
 		lastPoisonVarp = 0;
 		nextPoisonTick = 0;
 		removeTzhaarTimer();
 		staminaTimer = null;
+		imbuedHeartClickTick = -1;
+		lastBoostedMagicLevel = -1;
 	}
 
 	@Subscribe
@@ -191,6 +201,7 @@ public class TimersPlugin extends Plugin
 		int vengCooldownVarb = client.getVar(Varbits.VENGEANCE_COOLDOWN);
 		int isVengeancedVarb = client.getVar(Varbits.VENGEANCE_ACTIVE);
 		int poisonVarp = client.getVar(VarPlayer.POISON);
+		int pvpVarb = client.getVar(Varbits.PVP_SPEC_ORB);
 
 		if (lastRaidVarb != raidVarb)
 		{
@@ -227,22 +238,6 @@ public class TimersPlugin extends Plugin
 			lastIsVengeancedVarb = isVengeancedVarb;
 		}
 
-		int inWilderness = client.getVar(Varbits.IN_WILDERNESS);
-
-		if (lastWildernessVarb != inWilderness
-			&& client.getGameState() == GameState.LOGGED_IN
-			&& !loggedInRace)
-		{
-			if (!WorldType.isPvpWorld(client.getWorldType())
-				&& inWilderness == 0)
-			{
-				log.debug("Left wilderness in non-PVP world, clearing Teleblock timer.");
-				removeGameTimer(TELEBLOCK);
-			}
-
-			lastWildernessVarb = inWilderness;
-		}
-
 		if (lastPoisonVarp != poisonVarp && config.showAntiPoison())
 		{
 			final int tickCount = client.getTickCount();
@@ -272,16 +267,16 @@ public class TimersPlugin extends Plugin
 
 			lastPoisonVarp = poisonVarp;
 		}
-	}
 
-	@Subscribe
-	public void onWidgetHiddenChanged(WidgetHiddenChanged event)
-	{
-		Widget widget = event.getWidget();
-		if (WorldType.isPvpWorld(client.getWorldType())
-			&& WidgetInfo.TO_GROUP(widget.getId()) == WidgetID.PVP_GROUP_ID)
+		if (lastPvpVarb != pvpVarb)
 		{
-			widgetHiddenChangedOnPvpWorld = true;
+			if (pvpVarb == 0)
+			{
+				log.debug("Left a PVP zone, clearing teleblock timer");
+				removeGameTimer(TELEBLOCK);
+			}
+
+			lastPvpVarb = pvpVarb;
 		}
 	}
 
@@ -456,6 +451,12 @@ public class TimersPlugin extends Plugin
 			return;
 		}
 
+		if (event.getMenuOption().contains("Invigorate")
+			&& event.getId() == ItemID.IMBUED_HEART)
+		{
+			imbuedHeartClickTick = client.getTickCount();
+		}
+
 		TeleportWidget teleportWidget = TeleportWidget.of(event.getWidgetId());
 		if (teleportWidget != null)
 		{
@@ -470,6 +471,11 @@ public class TimersPlugin extends Plugin
 		if (event.getType() != ChatMessageType.SPAM && event.getType() != ChatMessageType.GAMEMESSAGE)
 		{
 			return;
+		}
+
+		if (message.equals(ABYSSAL_SIRE_STUN_MESSAGE) && config.showAbyssalSireStun())
+		{
+			createGameTimer(ABYSSAL_SIRE_STUN);
 		}
 
 		if (message.equals(ENDURANCE_EFFECT_MESSAGE))
@@ -534,7 +540,7 @@ public class TimersPlugin extends Plugin
 			cannonTimer.setTooltip(cannonTimer.getTooltip() + " - World " + client.getWorld());
 		}
 
-		if (config.showCannon() && message.equals(CANNON_PICKUP_MESSAGE))
+		if (config.showCannon() && (message.equals(CANNON_PICKUP_MESSAGE) || message.equals(CANNON_DESTROYED_MESSAGE)))
 		{
 			removeGameTimer(CANNON);
 		}
@@ -763,8 +769,6 @@ public class TimersPlugin extends Plugin
 	@Subscribe
 	public void onGameTick(GameTick event)
 	{
-		loggedInRace = false;
-
 		Player player = client.getLocalPlayer();
 		WorldPoint currentWorldPoint = player.getWorldLocation();
 
@@ -814,8 +818,10 @@ public class TimersPlugin extends Plugin
 					config.tzhaarLastTime(null);
 				}
 				break;
-			case HOPPING:
 			case LOGIN_SCREEN:
+				lastBoostedMagicLevel = -1;
+				// fall through
+			case HOPPING:
 				// pause tzhaar timer if logged out without pausing
 				if (config.tzhaarStartTime() != null && config.tzhaarLastTime() == null)
 				{
@@ -826,34 +832,9 @@ public class TimersPlugin extends Plugin
 				removeTzhaarTimer(); // will be readded by the wave message
 				removeGameTimer(TELEBLOCK);
 				break;
-			case LOGGED_IN:
-				loggedInRace = true;
-				break;
 		}
 	}
 
-	@Subscribe
-	public void onNpcChanged(NpcChanged npcChanged)
-	{
-		int id = npcChanged.getNpc().getId();
-		int oldId = npcChanged.getOld().getId();
-
-		if (id == NpcID.ABYSSAL_SIRE_5888)
-		{
-			// stunned npc type
-			log.debug("Sire is stunned");
-			if (config.showAbyssalSireStun())
-			{
-				createGameTimer(ABYSSAL_SIRE_STUN);
-			}
-		}
-		else if (oldId == NpcID.ABYSSAL_SIRE_5888)
-		{
-			// change from stunned sire to anything else
-			log.debug("Sire is unstunned");
-			removeGameTimer(ABYSSAL_SIRE_STUN);
-		}
-	}
 
 	@Subscribe
 	public void onAnimationChanged(AnimationChanged event)
@@ -897,11 +878,6 @@ public class TimersPlugin extends Plugin
 		if (actor != client.getLocalPlayer())
 		{
 			return;
-		}
-
-		if (config.showImbuedHeart() && actor.getGraphic() == IMBUEDHEART.getGraphicId())
-		{
-			createGameTimer(IMBUEDHEART);
 		}
 
 		if (config.showFreezes())
@@ -1019,6 +995,37 @@ public class TimersPlugin extends Plugin
 		{
 			infoBoxManager.removeIf(t -> t instanceof TimerTimer && ((TimerTimer) t).getTimer().isRemovedOnDeath());
 		}
+	}
+
+	@Subscribe
+	public void onStatChanged(StatChanged statChanged)
+	{
+		if (statChanged.getSkill() != Skill.MAGIC)
+		{
+			return;
+		}
+
+		final int boostedMagicLevel = statChanged.getBoostedLevel();
+
+		if (imbuedHeartClickTick < 0
+			|| client.getTickCount() > imbuedHeartClickTick + 3 // allow for 2 ticks of lag
+			|| !config.showImbuedHeart())
+		{
+			lastBoostedMagicLevel = boostedMagicLevel;
+			return;
+		}
+
+		final int boostAmount = boostedMagicLevel - statChanged.getLevel();
+		final int boostChange = boostedMagicLevel - lastBoostedMagicLevel;
+		final int heartBoost = 1 + (statChanged.getLevel() / 10);
+
+		if ((boostAmount == heartBoost || (lastBoostedMagicLevel != -1 && boostChange == heartBoost))
+			&& boostChange > 0)
+		{
+			createGameTimer(IMBUEDHEART);
+		}
+
+		lastBoostedMagicLevel = boostedMagicLevel;
 	}
 
 	private void createStaminaTimer()

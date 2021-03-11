@@ -266,7 +266,7 @@ public class PcmPlayer {
 
 				while (var1 > this.timeMs + 5000L) {
 					this.skip(256);
-					this.timeMs += (long)(256000 / (StructDefinition.field3338 * 22050));
+					this.timeMs += (long)(256000 / (StructComposition.field3338 * 22050));
 				}
 			} catch (Exception var6) {
 				this.timeMs = var1;
@@ -362,7 +362,7 @@ public class PcmPlayer {
 		class311.clearIntArray(var1, 0, var3);
 		this.field1417 -= var2;
 		if (this.stream != null && this.field1417 <= 0) {
-			this.field1417 += StructDefinition.field3338 * 22050 >> 4;
+			this.field1417 += StructComposition.field3338 * 22050 >> 4;
 			ReflectionCheck.PcmStream_disable(this.stream);
 			this.method2658(this.stream, this.stream.vmethod2880());
 			int var4 = 0;

@@ -57,4 +57,7 @@ public interface RSGameEngine extends GameEngine
 
 	@Import("maxCanvasHeight")
 	void setMaxCanvasHeight(int height);
+
+	@Import("fullRedraw")
+	void setFullRedraw(boolean fullRedraw);
 }

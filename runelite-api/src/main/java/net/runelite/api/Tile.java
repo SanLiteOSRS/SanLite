@@ -62,6 +62,13 @@ public interface Tile
 	GroundObject getGroundObject();
 
 	/**
+	 * Sets the object on the ground layer of the tile.
+	 *
+	 * @param groundObject the ground object
+	 */
+	void setGroundObject(GroundObject groundObject);
+
+	/**
 	 * Gets the wall of the tile.
 	 *
 	 * @return the wall object
@@ -113,7 +120,7 @@ public interface Tile
 	/**
 	 * Get the plane this tile is rendered on, which is where the tile heights are from.
 	 *
-	 * @return render level
+	 * @return
 	 */
 	int getRenderLevel();
 
@@ -135,7 +142,7 @@ public interface Tile
 	/**
 	 * Return the tile under this one, if this tile is a bridge
 	 *
-	 * @return tile under bridge
+	 * @return
 	 */
 	Tile getBridge();
 }

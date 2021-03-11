@@ -25,6 +25,11 @@
 package net.runelite.client.plugins.cluescrolls.clues;
 
 import com.google.common.collect.ImmutableSet;
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -34,25 +39,21 @@ import net.runelite.api.ItemID;
 import net.runelite.api.NPC;
 import net.runelite.api.Point;
 import net.runelite.api.TileObject;
+import static net.runelite.client.plugins.cluescrolls.ClueScrollOverlay.TITLED_CONTENT_COLOR;
 import net.runelite.client.plugins.cluescrolls.ClueScrollPlugin;
 import static net.runelite.client.plugins.cluescrolls.ClueScrollWorldOverlay.CLICKBOX_BORDER_COLOR;
 import static net.runelite.client.plugins.cluescrolls.ClueScrollWorldOverlay.CLICKBOX_FILL_COLOR;
 import static net.runelite.client.plugins.cluescrolls.ClueScrollWorldOverlay.CLICKBOX_HOVER_BORDER_COLOR;
+import static net.runelite.client.plugins.cluescrolls.ClueScrollWorldOverlay.IMAGE_Z_OFFSET;
 import net.runelite.client.plugins.cluescrolls.clues.item.AnyRequirementCollection;
-import static net.runelite.client.plugins.cluescrolls.clues.item.ItemRequirements.*;
 import net.runelite.client.plugins.cluescrolls.clues.item.ItemRequirement;
+import static net.runelite.client.plugins.cluescrolls.clues.item.ItemRequirements.*;
 import net.runelite.client.plugins.cluescrolls.clues.item.SingleItemRequirement;
+import net.runelite.client.ui.FontManager;
 import net.runelite.client.ui.overlay.OverlayUtil;
 import net.runelite.client.ui.overlay.components.LineComponent;
 import net.runelite.client.ui.overlay.components.PanelComponent;
 import net.runelite.client.ui.overlay.components.TitleComponent;
-import java.awt.Color;
-import java.awt.Graphics2D;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import static net.runelite.client.plugins.cluescrolls.ClueScrollOverlay.TITLED_CONTENT_COLOR;
-import static net.runelite.client.plugins.cluescrolls.ClueScrollWorldOverlay.IMAGE_Z_OFFSET;
 
 @Getter
 public class SkillChallengeClue extends ClueScroll implements NpcClueScroll, NamedObjectClueScroll
@@ -79,8 +80,11 @@ public class SkillChallengeClue extends ClueScroll implements NpcClueScroll, Nam
 		item(ItemID.DRAGON_PICKAXE),
 		item(ItemID.DRAGON_PICKAXE_12797),
 		item(ItemID.DRAGON_PICKAXE_OR),
+		item(ItemID.DRAGON_PICKAXE_OR_25376),
 		item(ItemID.INFERNAL_PICKAXE),
+		item(ItemID.INFERNAL_PICKAXE_OR),
 		item(ItemID.INFERNAL_PICKAXE_UNCHARGED),
+		item(ItemID.INFERNAL_PICKAXE_UNCHARGED_25369),
 		item(ItemID.GILDED_PICKAXE),
 		item(ItemID._3RD_AGE_PICKAXE),
 		item(ItemID.CRYSTAL_PICKAXE)
@@ -95,8 +99,11 @@ public class SkillChallengeClue extends ClueScroll implements NpcClueScroll, Nam
 		item(ItemID.ADAMANT_AXE),
 		item(ItemID.RUNE_AXE),
 		item(ItemID.DRAGON_AXE),
+		item(ItemID.DRAGON_AXE_OR),
 		item(ItemID.INFERNAL_AXE),
+		item(ItemID.INFERNAL_AXE_OR),
 		item(ItemID.INFERNAL_AXE_UNCHARGED),
+		item(ItemID.INFERNAL_AXE_UNCHARGED_25371),
 		item(ItemID.GILDED_AXE),
 		item(ItemID._3RD_AGE_AXE),
 		item(ItemID.CRYSTAL_AXE)
@@ -106,8 +113,11 @@ public class SkillChallengeClue extends ClueScroll implements NpcClueScroll, Nam
 		item(ItemID.HARPOON),
 		item(ItemID.BARBTAIL_HARPOON),
 		item(ItemID.DRAGON_HARPOON),
+		item(ItemID.DRAGON_HARPOON_OR),
 		item(ItemID.INFERNAL_HARPOON),
+		item(ItemID.INFERNAL_HARPOON_OR),
 		item(ItemID.INFERNAL_HARPOON_UNCHARGED),
+		item(ItemID.INFERNAL_HARPOON_UNCHARGED_25367),
 		item(ItemID.CRYSTAL_HARPOON)
 	);
 
@@ -136,7 +146,7 @@ public class SkillChallengeClue extends ClueScroll implements NpcClueScroll, Nam
 		new SkillChallengeClue("Steal from a chest in Ardougne Castle."),
 		new SkillChallengeClue("Craft a green dragonhide body.", xOfItem(ItemID.GREEN_DRAGON_LEATHER, 3), item(ItemID.NEEDLE), item(ItemID.THREAD)),
 		new SkillChallengeClue("String a yew longbow.", item(ItemID.YEW_LONGBOW_U), item(ItemID.BOW_STRING)),
-		new SkillChallengeClue("Kill a Dust Devil.", "slay a dust devil.", true, any("Facemask or Slayer Helmet", item(ItemID.FACEMASK), item(ItemID.SLAYER_HELMET), item(ItemID. SLAYER_HELMET_I), item(ItemID. BLACK_SLAYER_HELMET), item(ItemID. BLACK_SLAYER_HELMET_I), item(ItemID. PURPLE_SLAYER_HELMET), item(ItemID. PURPLE_SLAYER_HELMET_I), item(ItemID. RED_SLAYER_HELMET), item(ItemID. RED_SLAYER_HELMET_I), item(ItemID.GREEN_SLAYER_HELMET), item(ItemID. GREEN_SLAYER_HELMET_I), item(ItemID. TURQUOISE_SLAYER_HELMET), item(ItemID. TURQUOISE_SLAYER_HELMET_I), item(ItemID. HYDRA_SLAYER_HELMET), item(ItemID. HYDRA_SLAYER_HELMET_I))),
+		new SkillChallengeClue("Kill a Dust Devil.", "slay a dust devil.", true, any("Facemask or Slayer Helmet", item(ItemID.FACEMASK), item(ItemID.SLAYER_HELMET), item(ItemID. SLAYER_HELMET_I), item(ItemID. BLACK_SLAYER_HELMET), item(ItemID. BLACK_SLAYER_HELMET_I), item(ItemID. PURPLE_SLAYER_HELMET), item(ItemID. PURPLE_SLAYER_HELMET_I), item(ItemID. RED_SLAYER_HELMET), item(ItemID. RED_SLAYER_HELMET_I), item(ItemID.GREEN_SLAYER_HELMET), item(ItemID. GREEN_SLAYER_HELMET_I), item(ItemID. TURQUOISE_SLAYER_HELMET), item(ItemID. TURQUOISE_SLAYER_HELMET_I), item(ItemID. HYDRA_SLAYER_HELMET), item(ItemID. HYDRA_SLAYER_HELMET_I), item(ItemID.TWISTED_SLAYER_HELMET), item(ItemID.TWISTED_SLAYER_HELMET_I), item(ItemID.SLAYER_HELMET_I_25177), item(ItemID.BLACK_SLAYER_HELMET_I_25179), item(ItemID.GREEN_SLAYER_HELMET_I_25181), item(ItemID.RED_SLAYER_HELMET_I_25183), item(ItemID.PURPLE_SLAYER_HELMET_I_25185), item(ItemID.TURQUOISE_SLAYER_HELMET_I_25187), item(ItemID.HYDRA_SLAYER_HELMET_I_25189), item(ItemID.TWISTED_SLAYER_HELMET_I_25191))),
 		new SkillChallengeClue("Catch a black warlock.", item(ItemID.BUTTERFLY_JAR), any("Butterfly Net", item(ItemID.BUTTERFLY_NET), item(ItemID.MAGIC_BUTTERFLY_NET))),
 		new SkillChallengeClue("Catch a red chinchompa.", item(ItemID.BOX_TRAP)),
 		new SkillChallengeClue("Mine a mithril ore.", ANY_PICKAXE),
@@ -149,7 +159,7 @@ public class SkillChallengeClue extends ClueScroll implements NpcClueScroll, Nam
 		new SkillChallengeClue("Craft multiple cosmic runes from a single essence.", item(ItemID.PURE_ESSENCE)),
 		new SkillChallengeClue("Plant a watermelon seed.", item(ItemID.RAKE), item(ItemID.SEED_DIBBER), xOfItem(ItemID.WATERMELON_SEED, 3)),
 		new SkillChallengeClue("Activate the Chivalry prayer."),
-		new SkillChallengeClue("Hand in a Tier 2 or higher set of Shayzien supply armour", "take the lovakengj armourers a boxed set of shayzien supply armour at tier 2 or above.", any("Shayzien Supply Set (Tier 2 or higher)", item(ItemID.SHAYZIEN_SUPPLY_SET_2), item(ItemID.SHAYZIEN_SUPPLY_SET_3), item(ItemID.SHAYZIEN_SUPPLY_SET_4), item(ItemID.SHAYZIEN_SUPPLY_SET_5))),
+		new SkillChallengeClue("Hand in a Tier 2 or higher set of Shayzien supply armour. (Requires 11 lovakite bars)", "take the lovakengj armourers a boxed set of shayzien supply armour at tier 2 or above.", any("Shayzien Supply Set (Tier 2 or higher)", item(ItemID.SHAYZIEN_SUPPLY_SET_2), item(ItemID.SHAYZIEN_SUPPLY_SET_3), item(ItemID.SHAYZIEN_SUPPLY_SET_4), item(ItemID.SHAYZIEN_SUPPLY_SET_5))),
 		// Master Sherlock Tasks
 		new SkillChallengeClue("Equip an abyssal whip in front of the abyssal demons of the Slayer Tower.", true, any("Abyssal Whip", item(ItemID.ABYSSAL_WHIP), item(ItemID.FROZEN_ABYSSAL_WHIP), item(ItemID.VOLCANIC_ABYSSAL_WHIP))),
 		new SkillChallengeClue("Smith a runite med helm.", item(ItemID.HAMMER), item(ItemID.RUNITE_BAR)),
@@ -162,12 +172,12 @@ public class SkillChallengeClue extends ClueScroll implements NpcClueScroll, Nam
 		new SkillChallengeClue("Burn a redwood log.", item(ItemID.REDWOOD_LOGS), item(ItemID.TINDERBOX)),
 		new SkillChallengeClue("Complete a lap of Rellekka's Rooftop Agility Course", "complete a lap of the rellekka rooftop agility course whilst sporting the finest amount of grace.", true,
 			all("A full Graceful set",
-				any("", item(ItemID.GRACEFUL_HOOD), item(ItemID.GRACEFUL_HOOD_11851), item(ItemID.GRACEFUL_HOOD_13579), item(ItemID.GRACEFUL_HOOD_13580), item(ItemID.GRACEFUL_HOOD_13591), item(ItemID.GRACEFUL_HOOD_13592), item(ItemID.GRACEFUL_HOOD_13603), item(ItemID.GRACEFUL_HOOD_13604), item(ItemID.GRACEFUL_HOOD_13615), item(ItemID.GRACEFUL_HOOD_13616), item(ItemID.GRACEFUL_HOOD_13627), item(ItemID.GRACEFUL_HOOD_13628), item(ItemID.GRACEFUL_HOOD_13667), item(ItemID.GRACEFUL_HOOD_13668), item(ItemID.GRACEFUL_HOOD_21061), item(ItemID.GRACEFUL_HOOD_21063), item(ItemID.GRACEFUL_HOOD_24743), item(ItemID.GRACEFUL_HOOD_24745)),
-				any("", item(ItemID.GRACEFUL_CAPE), item(ItemID.GRACEFUL_CAPE_11853), item(ItemID.GRACEFUL_CAPE_13581), item(ItemID.GRACEFUL_CAPE_13582), item(ItemID.GRACEFUL_CAPE_13593), item(ItemID.GRACEFUL_CAPE_13594), item(ItemID.GRACEFUL_CAPE_13605), item(ItemID.GRACEFUL_CAPE_13606), item(ItemID.GRACEFUL_CAPE_13617), item(ItemID.GRACEFUL_CAPE_13618), item(ItemID.GRACEFUL_CAPE_13629), item(ItemID.GRACEFUL_CAPE_13630), item(ItemID.GRACEFUL_CAPE_13669), item(ItemID.GRACEFUL_CAPE_13670), item(ItemID.GRACEFUL_CAPE_21064), item(ItemID.GRACEFUL_CAPE_21066), item(ItemID.GRACEFUL_CAPE_24746), item(ItemID.GRACEFUL_CAPE_24748), item(ItemID.AGILITY_CAPE), item(ItemID.AGILITY_CAPE_13340), item(ItemID.AGILITY_CAPET), item(ItemID.AGILITY_CAPET_13341), item(ItemID.MAX_CAPE), item(ItemID.MAX_CAPE_13342)),
-				any("", item(ItemID.GRACEFUL_TOP), item(ItemID.GRACEFUL_TOP_11855), item(ItemID.GRACEFUL_TOP_13583), item(ItemID.GRACEFUL_TOP_13584), item(ItemID.GRACEFUL_TOP_13595), item(ItemID.GRACEFUL_TOP_13596), item(ItemID.GRACEFUL_TOP_13607), item(ItemID.GRACEFUL_TOP_13608), item(ItemID.GRACEFUL_TOP_13619), item(ItemID.GRACEFUL_TOP_13620), item(ItemID.GRACEFUL_TOP_13631), item(ItemID.GRACEFUL_TOP_13632), item(ItemID.GRACEFUL_TOP_13671), item(ItemID.GRACEFUL_TOP_13672), item(ItemID.GRACEFUL_TOP_21067), item(ItemID.GRACEFUL_TOP_21069), item(ItemID.GRACEFUL_TOP_24749), item(ItemID.GRACEFUL_TOP_24751)),
-				any("", item(ItemID.GRACEFUL_LEGS), item(ItemID.GRACEFUL_LEGS_11857), item(ItemID.GRACEFUL_LEGS_13585), item(ItemID.GRACEFUL_LEGS_13586), item(ItemID.GRACEFUL_LEGS_13597), item(ItemID.GRACEFUL_LEGS_13598), item(ItemID.GRACEFUL_LEGS_13609), item(ItemID.GRACEFUL_LEGS_13610), item(ItemID.GRACEFUL_LEGS_13621), item(ItemID.GRACEFUL_LEGS_13622), item(ItemID.GRACEFUL_LEGS_13633), item(ItemID.GRACEFUL_LEGS_13634), item(ItemID.GRACEFUL_LEGS_13673), item(ItemID.GRACEFUL_LEGS_13674), item(ItemID.GRACEFUL_LEGS_21070), item(ItemID.GRACEFUL_LEGS_21072), item(ItemID.GRACEFUL_LEGS_24752), item(ItemID.GRACEFUL_LEGS_24754)),
-				any("", item(ItemID.GRACEFUL_GLOVES), item(ItemID.GRACEFUL_GLOVES_11859), item(ItemID.GRACEFUL_GLOVES_13587), item(ItemID.GRACEFUL_GLOVES_13588), item(ItemID.GRACEFUL_GLOVES_13599), item(ItemID.GRACEFUL_GLOVES_13600), item(ItemID.GRACEFUL_GLOVES_13611), item(ItemID.GRACEFUL_GLOVES_13612), item(ItemID.GRACEFUL_GLOVES_13623), item(ItemID.GRACEFUL_GLOVES_13624), item(ItemID.GRACEFUL_GLOVES_13635), item(ItemID.GRACEFUL_GLOVES_13636), item(ItemID.GRACEFUL_GLOVES_13675), item(ItemID.GRACEFUL_GLOVES_13676), item(ItemID.GRACEFUL_GLOVES_21073), item(ItemID.GRACEFUL_GLOVES_21075), item(ItemID.GRACEFUL_GLOVES_24755), item(ItemID.GRACEFUL_GLOVES_24757)),
-				any("", item(ItemID.GRACEFUL_BOOTS), item(ItemID.GRACEFUL_BOOTS_11861), item(ItemID.GRACEFUL_BOOTS_13589), item(ItemID.GRACEFUL_BOOTS_13590), item(ItemID.GRACEFUL_BOOTS_13601), item(ItemID.GRACEFUL_BOOTS_13602), item(ItemID.GRACEFUL_BOOTS_13613), item(ItemID.GRACEFUL_BOOTS_13614), item(ItemID.GRACEFUL_BOOTS_13625), item(ItemID.GRACEFUL_BOOTS_13626), item(ItemID.GRACEFUL_BOOTS_13637), item(ItemID.GRACEFUL_BOOTS_13638), item(ItemID.GRACEFUL_BOOTS_13677), item(ItemID.GRACEFUL_BOOTS_13678), item(ItemID.GRACEFUL_BOOTS_21076), item(ItemID.GRACEFUL_BOOTS_21078), item(ItemID.GRACEFUL_BOOTS_24758), item(ItemID.GRACEFUL_BOOTS_24760)))),
+				any("", item(ItemID.GRACEFUL_HOOD), item(ItemID.GRACEFUL_HOOD_11851), item(ItemID.GRACEFUL_HOOD_13579), item(ItemID.GRACEFUL_HOOD_13580), item(ItemID.GRACEFUL_HOOD_13591), item(ItemID.GRACEFUL_HOOD_13592), item(ItemID.GRACEFUL_HOOD_13603), item(ItemID.GRACEFUL_HOOD_13604), item(ItemID.GRACEFUL_HOOD_13615), item(ItemID.GRACEFUL_HOOD_13616), item(ItemID.GRACEFUL_HOOD_13627), item(ItemID.GRACEFUL_HOOD_13628), item(ItemID.GRACEFUL_HOOD_13667), item(ItemID.GRACEFUL_HOOD_13668), item(ItemID.GRACEFUL_HOOD_21061), item(ItemID.GRACEFUL_HOOD_21063), item(ItemID.GRACEFUL_HOOD_24743), item(ItemID.GRACEFUL_HOOD_24745), item(ItemID.GRACEFUL_HOOD_25069), item(ItemID.GRACEFUL_HOOD_25071)),
+				any("", item(ItemID.GRACEFUL_CAPE), item(ItemID.GRACEFUL_CAPE_11853), item(ItemID.GRACEFUL_CAPE_13581), item(ItemID.GRACEFUL_CAPE_13582), item(ItemID.GRACEFUL_CAPE_13593), item(ItemID.GRACEFUL_CAPE_13594), item(ItemID.GRACEFUL_CAPE_13605), item(ItemID.GRACEFUL_CAPE_13606), item(ItemID.GRACEFUL_CAPE_13617), item(ItemID.GRACEFUL_CAPE_13618), item(ItemID.GRACEFUL_CAPE_13629), item(ItemID.GRACEFUL_CAPE_13630), item(ItemID.GRACEFUL_CAPE_13669), item(ItemID.GRACEFUL_CAPE_13670), item(ItemID.GRACEFUL_CAPE_21064), item(ItemID.GRACEFUL_CAPE_21066), item(ItemID.GRACEFUL_CAPE_24746), item(ItemID.GRACEFUL_CAPE_24748), item(ItemID.GRACEFUL_CAPE_25072), item(ItemID.GRACEFUL_CAPE_25074), item(ItemID.AGILITY_CAPE), item(ItemID.AGILITY_CAPE_13340), item(ItemID.AGILITY_CAPET), item(ItemID.AGILITY_CAPET_13341), item(ItemID.MAX_CAPE), item(ItemID.MAX_CAPE_13342)),
+				any("", item(ItemID.GRACEFUL_TOP), item(ItemID.GRACEFUL_TOP_11855), item(ItemID.GRACEFUL_TOP_13583), item(ItemID.GRACEFUL_TOP_13584), item(ItemID.GRACEFUL_TOP_13595), item(ItemID.GRACEFUL_TOP_13596), item(ItemID.GRACEFUL_TOP_13607), item(ItemID.GRACEFUL_TOP_13608), item(ItemID.GRACEFUL_TOP_13619), item(ItemID.GRACEFUL_TOP_13620), item(ItemID.GRACEFUL_TOP_13631), item(ItemID.GRACEFUL_TOP_13632), item(ItemID.GRACEFUL_TOP_13671), item(ItemID.GRACEFUL_TOP_13672), item(ItemID.GRACEFUL_TOP_21067), item(ItemID.GRACEFUL_TOP_21069), item(ItemID.GRACEFUL_TOP_24749), item(ItemID.GRACEFUL_TOP_24751), item(ItemID.GRACEFUL_TOP_25075), item(ItemID.GRACEFUL_TOP_25077)),
+				any("", item(ItemID.GRACEFUL_LEGS), item(ItemID.GRACEFUL_LEGS_11857), item(ItemID.GRACEFUL_LEGS_13585), item(ItemID.GRACEFUL_LEGS_13586), item(ItemID.GRACEFUL_LEGS_13597), item(ItemID.GRACEFUL_LEGS_13598), item(ItemID.GRACEFUL_LEGS_13609), item(ItemID.GRACEFUL_LEGS_13610), item(ItemID.GRACEFUL_LEGS_13621), item(ItemID.GRACEFUL_LEGS_13622), item(ItemID.GRACEFUL_LEGS_13633), item(ItemID.GRACEFUL_LEGS_13634), item(ItemID.GRACEFUL_LEGS_13673), item(ItemID.GRACEFUL_LEGS_13674), item(ItemID.GRACEFUL_LEGS_21070), item(ItemID.GRACEFUL_LEGS_21072), item(ItemID.GRACEFUL_LEGS_24752), item(ItemID.GRACEFUL_LEGS_24754), item(ItemID.GRACEFUL_LEGS_25078), item(ItemID.GRACEFUL_LEGS_25080)),
+				any("", item(ItemID.GRACEFUL_GLOVES), item(ItemID.GRACEFUL_GLOVES_11859), item(ItemID.GRACEFUL_GLOVES_13587), item(ItemID.GRACEFUL_GLOVES_13588), item(ItemID.GRACEFUL_GLOVES_13599), item(ItemID.GRACEFUL_GLOVES_13600), item(ItemID.GRACEFUL_GLOVES_13611), item(ItemID.GRACEFUL_GLOVES_13612), item(ItemID.GRACEFUL_GLOVES_13623), item(ItemID.GRACEFUL_GLOVES_13624), item(ItemID.GRACEFUL_GLOVES_13635), item(ItemID.GRACEFUL_GLOVES_13636), item(ItemID.GRACEFUL_GLOVES_13675), item(ItemID.GRACEFUL_GLOVES_13676), item(ItemID.GRACEFUL_GLOVES_21073), item(ItemID.GRACEFUL_GLOVES_21075), item(ItemID.GRACEFUL_GLOVES_24755), item(ItemID.GRACEFUL_GLOVES_24757), item(ItemID.GRACEFUL_GLOVES_25081), item(ItemID.GRACEFUL_GLOVES_25083)),
+				any("", item(ItemID.GRACEFUL_BOOTS), item(ItemID.GRACEFUL_BOOTS_11861), item(ItemID.GRACEFUL_BOOTS_13589), item(ItemID.GRACEFUL_BOOTS_13590), item(ItemID.GRACEFUL_BOOTS_13601), item(ItemID.GRACEFUL_BOOTS_13602), item(ItemID.GRACEFUL_BOOTS_13613), item(ItemID.GRACEFUL_BOOTS_13614), item(ItemID.GRACEFUL_BOOTS_13625), item(ItemID.GRACEFUL_BOOTS_13626), item(ItemID.GRACEFUL_BOOTS_13637), item(ItemID.GRACEFUL_BOOTS_13638), item(ItemID.GRACEFUL_BOOTS_13677), item(ItemID.GRACEFUL_BOOTS_13678), item(ItemID.GRACEFUL_BOOTS_21076), item(ItemID.GRACEFUL_BOOTS_21078), item(ItemID.GRACEFUL_BOOTS_24758), item(ItemID.GRACEFUL_BOOTS_24760), item(ItemID.GRACEFUL_BOOTS_25084), item(ItemID.GRACEFUL_BOOTS_25086)))),
 		new SkillChallengeClue("Mix an anti-venom potion.", item(ItemID.ANTIDOTE4_5952), xOfItem(ItemID.ZULRAHS_SCALES, 20)),
 		new SkillChallengeClue("Mine a piece of Runite ore", "mine a piece of runite ore whilst sporting the finest mining gear.", true, ANY_PICKAXE, all("Prospector kit", item(ItemID.PROSPECTOR_HELMET), any("", item(ItemID.PROSPECTOR_JACKET), item(ItemID.VARROCK_ARMOUR_4)), item(ItemID.PROSPECTOR_LEGS), item(ItemID.PROSPECTOR_BOOTS))),
 		new SkillChallengeClue("Steal a gem from the Ardougne market."),
@@ -370,6 +380,7 @@ public class SkillChallengeClue extends ClueScroll implements NpcClueScroll, Nam
 				.left(requirement.getCollectiveName(plugin.getClient()))
 				.leftColor(TITLED_CONTENT_COLOR)
 				.right(combinedFulfilled ? "\u2713" : "\u2717")
+				.rightFont(FontManager.getDefaultFont())
 				.rightColor(equipmentFulfilled || (combinedFulfilled && !requireEquipped) ? Color.GREEN : (combinedFulfilled ? Color.ORANGE : Color.RED))
 				.build());
 		}

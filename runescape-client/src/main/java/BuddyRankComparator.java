@@ -43,7 +43,7 @@ public class BuddyRankComparator extends AbstractUserComparator {
 		if (var0 != ScriptOpcodes.CC_CALLONRESIZE && var0 != ScriptOpcodes.IF_CALLONRESIZE) {
 			int var4;
 			if (var0 == 1928) {
-				var3 = var2 ? class277.field3584 : Interpreter.field1117;
+				var3 = var2 ? class277.scriptDotWidget : Interpreter.scriptActiveWidget;
 				var4 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
 				if (var4 >= 1 && var4 <= 10) {
 					ApproximateRouteStrategy.widgetDefaultMenuAction(var4, var3.id, var3.childIndex, var3.itemId, "");
@@ -71,7 +71,7 @@ public class BuddyRankComparator extends AbstractUserComparator {
 			if (var0 >= 2000) {
 				var3 = class237.getWidget(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);
 			} else {
-				var3 = var2 ? class277.field3584 : Interpreter.field1117;
+				var3 = var2 ? class277.scriptDotWidget : Interpreter.scriptActiveWidget;
 			}
 
 			if (var3.onResize == null) {

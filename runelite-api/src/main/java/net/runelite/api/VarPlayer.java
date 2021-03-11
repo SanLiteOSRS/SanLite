@@ -39,8 +39,6 @@ import lombok.Getter;
 @Getter
 public enum VarPlayer
 {
-	POUCH_STATUS(261),
-	DUEL_PENDING(286),
 	ATTACK_STYLE(43),
 	QUEST_POINTS(101),
 	IS_POISONED(102),
@@ -55,6 +53,11 @@ public enum VarPlayer
 
 	SPECIAL_ATTACK_PERCENT(300),
 	SPECIAL_ATTACK_ENABLED(301),
+
+	/**
+	 * This has a value of 0 if you have auto retaliate enabled and a value of 1 if you do not
+	 */
+	AUTO_RETALIATE(172),
 
 	/**
 	 * The ID of the party. This Var is only set in the raid bank area and the raid lobby
@@ -198,6 +201,11 @@ public enum VarPlayer
 	MOUSE_BUTTONS(170),
 
 	/**
+	 * {@link NpcID} for the HP HUD
+	 */
+	HP_HUD_NPC_ID(1683),
+
+	/**
 	 * f2p Quest varbits, these don't hold the completion value.
 	 */
 	QUEST_BLACK_KNIGHTS_FORTRESS(130),
@@ -289,5 +297,5 @@ public enum VarPlayer
 	QUEST_ALFRED_GRIMHANDS_BARCRAWL_STATE_76(76),
 	QUEST_THE_MAGE_ARENA(267);
 
-	public final int id;
+	private final int id;
 }

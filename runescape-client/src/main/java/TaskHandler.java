@@ -319,7 +319,7 @@ public class TaskHandler implements Runnable {
 			}
 
 			if (var4 == 1 || var4 == 2 && var9.isStackable == 1) {
-				ItemComposition.ItemDefinition_fontPlain11.draw(SoundCache.method2682(var1), 0, 9, 16776960, 1);
+				ItemComposition.ItemDefinition_fontPlain11.draw(SoundCache.inventoryQuantityFormat(var1), 0, 9, 16776960, 1);
 			}
 
 			if (!var5) {

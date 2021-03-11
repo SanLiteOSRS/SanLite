@@ -32,6 +32,7 @@ import net.runelite.api.Constants;
 import net.runelite.client.Notifier;
 import net.runelite.client.ui.ContainableFrame;
 import net.runelite.client.ui.overlay.components.ComponentConstants;
+import net.runelite.client.util.OSType;
 
 @ConfigGroup(RuneLiteConfig.GROUP_NAME)
 public interface RuneLiteConfig extends Config
@@ -129,7 +130,7 @@ public interface RuneLiteConfig extends Config
 	)
 	default boolean enableCustomChrome()
 	{
-		return true;
+		return OSType.getOSType() == OSType.Windows;
 	}
 
 	@Range(
@@ -150,7 +151,7 @@ public interface RuneLiteConfig extends Config
 
 	@ConfigItem(
 		keyName = "gameAlwaysOnTop",
-		name = "Enable client always on top",
+		name = "Always on top",
 		description = "The game will always be on the top of the screen",
 		position = 17,
 		section = windowSettings
@@ -367,6 +368,7 @@ public interface RuneLiteConfig extends Config
 		return false;
 	}
 
+	@Alpha
 	@ConfigItem(
 		keyName = "overlayBackgroundColor",
 		name = "Overlay Color",
@@ -374,21 +376,9 @@ public interface RuneLiteConfig extends Config
 		position = 44,
 		section = overlaySettings
 	)
-	@Alpha
 	default Color overlayBackgroundColor()
 	{
 		return ComponentConstants.STANDARD_BACKGROUND_COLOR;
-	}
-
-	@ConfigItem(
-		keyName = "blockExtraMouseButtons",
-		name = "Block Extra Mouse Buttons",
-		description = "Blocks extra mouse buttons (4 and above)",
-		position = 44
-	)
-	default boolean blockExtraMouseButtons()
-	{
-		return true;
 	}
 
 	@ConfigItem(
@@ -415,6 +405,28 @@ public interface RuneLiteConfig extends Config
 		return new Keybind(KeyEvent.VK_F12, InputEvent.CTRL_DOWN_MASK);
 	}
 
+	@ConfigItem(
+		keyName = "blockExtraMouseButtons",
+		name = "Block extra mouse buttons",
+		description = "Blocks extra mouse buttons (4 and above)",
+		position = 50
+	)
+	default boolean blockExtraMouseButtons()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+		keyName = "useWikiItemPrices",
+		name = "Use actively traded price",
+		description = "Use actively traded prices, sourced from the RuneScape wiki, for item prices",
+		position = 51
+	)
+	default boolean useWikiItemPrices()
+	{
+		return true;
+	}
+
 	@Range(
 		max = 200
 	)
@@ -422,7 +434,7 @@ public interface RuneLiteConfig extends Config
 		keyName = "soundVolume",
 		name = "Sound Volume",
 		description = "The playback volume of non-game sounds from plugins",
-		position = 47
+		position = 52
 	)
 	default int soundVolume()
 	{

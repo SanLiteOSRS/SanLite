@@ -51,6 +51,6 @@ public class DirectByteArrayCopier extends AbstractByteArrayCopier {
 		garbageValue = "292233920"
 	)
 	public static void method4147(AbstractArchive var0) {
-		StructDefinition.StructDefinition_archive = var0;
+		StructComposition.StructDefinition_archive = var0;
 	}
 }

@@ -27,7 +27,6 @@ package net.runelite.client.config;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Strings;
 import com.google.common.collect.ComparisonChain;
-import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.hash.Hasher;
 import com.google.common.hash.Hashing;
@@ -79,6 +78,7 @@ import javax.annotation.Nullable;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
+import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Client;
 import net.runelite.api.Player;
@@ -128,8 +128,9 @@ public class ConfigManager
 	private final Client client;
 
 	private final ConfigInvocationHandler handler = new ConfigInvocationHandler(this);
-	private final Properties properties = new Properties();
 	private final Map<String, String> pendingChanges = new HashMap<>();
+
+	private Properties properties = new Properties();
 
 	// null => we need to make a new profile
 	@Nullable
@@ -150,6 +151,11 @@ public class ConfigManager
 		this.propertiesFile = getPropertiesFile();
 
 		scheduledExecutorService.scheduleWithFixedDelay(this::sendConfig, 30, 30, TimeUnit.SECONDS);
+	}
+
+	public String getRSProfileKey()
+	{
+		return rsProfileKey;
 	}
 
 	public final void switchSession(AccountSession session)
@@ -220,35 +226,14 @@ public class ConfigManager
 			return;
 		}
 
-		handler.invalidate();
-		properties.clear();
-
+		Properties newProperties = new Properties();
 		for (ConfigEntry entry : configuration.getConfig())
 		{
-			log.debug("Loading configuration value from client {}: {}", entry.getKey(), entry.getValue());
-
-			String[] split = splitKey(entry.getKey());
-			if (split == null)
-			{
-				continue;
-			}
-
-			final String groupName = split[KEY_SPLITTER_GROUP];
-			final String profile = split[KEY_SPLITTER_PROFILE];
-			final String key = split[KEY_SPLITTER_KEY];
-			final String value = entry.getValue();
-			final String oldValue = (String) properties.setProperty(entry.getKey(), value);
-
-			ConfigChanged configChanged = new ConfigChanged();
-			configChanged.setGroup(groupName);
-			configChanged.setProfile(profile);
-			configChanged.setKey(key);
-			configChanged.setOldValue(oldValue);
-			configChanged.setNewValue(value);
-			eventBus.post(configChanged);
+			newProperties.setProperty(entry.getKey(), entry.getValue());
 		}
 
-		migrateConfig();
+		log.debug("Loading in config from server");
+		swapProperties(newProperties, false);
 
 		try
 		{
@@ -262,7 +247,64 @@ public class ConfigManager
 		}
 	}
 
-	private synchronized void syncPropertiesFromFile(File propertiesFile)
+	private void swapProperties(Properties newProperties, boolean saveToServer)
+	{
+		Set<Object> allKeys = new HashSet<>(newProperties.keySet());
+
+		Properties oldProperties;
+		synchronized (this)
+		{
+			handler.invalidate();
+			oldProperties = properties;
+			this.properties = newProperties;
+		}
+
+		updateRSProfile();
+
+		allKeys.addAll(oldProperties.keySet());
+
+		for (Object wholeKey : allKeys)
+		{
+			String[] split = splitKey((String) wholeKey);
+			if (split == null)
+			{
+				continue;
+			}
+
+			String groupName = split[KEY_SPLITTER_GROUP];
+			String profile = split[KEY_SPLITTER_PROFILE];
+			String key = split[KEY_SPLITTER_KEY];
+			String oldValue = (String) oldProperties.get(wholeKey);
+			String newValue = (String) newProperties.get(wholeKey);
+
+			if (Objects.equals(oldValue, newValue))
+			{
+				continue;
+			}
+
+			log.debug("Loading configuration value {}: {}", wholeKey, newValue);
+
+			ConfigChanged configChanged = new ConfigChanged();
+			configChanged.setGroup(groupName);
+			configChanged.setProfile(profile);
+			configChanged.setKey(key);
+			configChanged.setOldValue(oldValue);
+			configChanged.setNewValue(newValue);
+			eventBus.post(configChanged);
+
+			if (saveToServer)
+			{
+				synchronized (pendingChanges)
+				{
+					pendingChanges.put((String) wholeKey, newValue);
+				}
+			}
+		}
+
+		migrateConfig();
+	}
+
+	private void syncPropertiesFromFile(File propertiesFile)
 	{
 		final Properties properties = new Properties();
 		try (FileInputStream in = new FileInputStream(propertiesFile))
@@ -271,44 +313,12 @@ public class ConfigManager
 		}
 		catch (Exception e)
 		{
-			log.debug("Malformed properties, skipping update");
+			log.warn("Malformed properties, skipping update");
 			return;
 		}
 
-		final Map<String, String> copy = (Map) ImmutableMap.copyOf(this.properties);
-		copy.forEach((wholeKey, value) ->
-		{
-			if (!properties.containsKey(wholeKey))
-			{
-				String[] split = splitKey(wholeKey);
-				if (split == null)
-				{
-					return;
-				}
-
-				String groupName = split[KEY_SPLITTER_GROUP];
-				String profile = split[KEY_SPLITTER_PROFILE];
-				String key = split[KEY_SPLITTER_KEY];
-				unsetConfiguration(groupName, profile, key);
-			}
-		});
-
-		properties.forEach((wholeKey, objValue) ->
-		{
-			String[] split = splitKey((String) wholeKey);
-			if (split == null)
-			{
-				return;
-			}
-
-			String groupName = split[KEY_SPLITTER_GROUP];
-			String profile = split[KEY_SPLITTER_PROFILE];
-			String key = split[KEY_SPLITTER_KEY];
-			String value = String.valueOf(objValue);
-			setConfiguration(groupName, profile, key, value);
-		});
-
-		migrateConfig();
+		log.debug("Loading in config from disk for upload");
+		swapProperties(properties, true);
 	}
 
 	public Future<Void> importLocal()
@@ -338,12 +348,10 @@ public class ConfigManager
 
 	private synchronized void loadFromFile()
 	{
-		handler.invalidate();
-		properties.clear();
-
+		Properties newProperties = new Properties();
 		try (FileInputStream in = new FileInputStream(propertiesFile))
 		{
-			properties.load(new InputStreamReader(in, StandardCharsets.UTF_8));
+			newProperties.load(new InputStreamReader(in, StandardCharsets.UTF_8));
 		}
 		catch (FileNotFoundException ex)
 		{
@@ -354,38 +362,8 @@ public class ConfigManager
 			log.warn("Unable to load settings", ex);
 		}
 
-		try
-		{
-			Map<String, String> copy = (Map) ImmutableMap.copyOf(properties);
-			copy.forEach((wholeKey, value) ->
-			{
-				String[] split = splitKey(wholeKey);
-				if (split == null)
-				{
-					log.debug("Properties key malformed!: {}", wholeKey);
-					properties.remove(wholeKey);
-					return;
-				}
-
-				String groupName = split[KEY_SPLITTER_GROUP];
-				String profile = split[KEY_SPLITTER_PROFILE];
-				String key = split[KEY_SPLITTER_KEY];
-
-				ConfigChanged configChanged = new ConfigChanged();
-				configChanged.setGroup(groupName);
-				configChanged.setProfile(profile);
-				configChanged.setKey(key);
-				configChanged.setOldValue(null);
-				configChanged.setNewValue(value);
-				eventBus.post(configChanged);
-			});
-		}
-		catch (Exception ex)
-		{
-			log.warn("Error posting config events", ex);
-		}
-
-		migrateConfig();
+		log.debug("Loading in config from disk");
+		swapProperties(newProperties, false);
 	}
 
 	private void saveToFile(final File propertiesFile) throws IOException
@@ -394,7 +372,7 @@ public class ConfigManager
 
 		parent.mkdirs();
 
-		File tempFile = new File(parent, RuneLite.DEFAULT_CONFIG_FILE.getName() + ".tmp");
+		File tempFile = File.createTempFile("sanlite", null, parent);
 
 		try (FileOutputStream out = new FileOutputStream(tempFile))
 		{
@@ -505,11 +483,20 @@ public class ConfigManager
 		setConfiguration(groupName, null, key, value);
 	}
 
-	public void setConfiguration(String groupName, String profile, String key, String value)
+	public void setConfiguration(String groupName, String profile, String key, @NonNull String value)
 	{
+		if (Strings.isNullOrEmpty(groupName) || Strings.isNullOrEmpty(key))
+		{
+			throw new IllegalArgumentException();
+		}
+
 		assert !key.startsWith(RSPROFILE_GROUP + ".");
 		String wholeKey = getWholeKey(groupName, profile, key);
-		String oldValue = (String) properties.setProperty(wholeKey, value);
+		String oldValue;
+		synchronized (this)
+		{
+			oldValue = (String) properties.setProperty(wholeKey, value);
+		}
 
 		if (Objects.equals(oldValue, value))
 		{
@@ -589,7 +576,11 @@ public class ConfigManager
 	{
 		assert !key.startsWith(RSPROFILE_GROUP + ".");
 		String wholeKey = getWholeKey(groupName, profile, key);
-		String oldValue = (String) properties.remove(wholeKey);
+		String oldValue;
+		synchronized (this)
+		{
+			oldValue = (String) properties.remove(wholeKey);
+		}
 
 		if (oldValue == null)
 		{
@@ -606,6 +597,7 @@ public class ConfigManager
 
 		ConfigChanged configChanged = new ConfigChanged();
 		configChanged.setGroup(groupName);
+		configChanged.setProfile(profile);
 		configChanged.setKey(key);
 		configChanged.setOldValue(oldValue);
 
@@ -758,7 +750,7 @@ public class ConfigManager
 		{
 			return Boolean.parseBoolean(str);
 		}
-		if (type == int.class)
+		if (type == int.class || type == Integer.class)
 		{
 			return Integer.parseInt(str);
 		}
@@ -971,6 +963,7 @@ public class ConfigManager
 			salt = new byte[15];
 			new SecureRandom()
 				.nextBytes(salt);
+			log.info("creating new salt as there is no existing one {}", Base64.getUrlEncoder().encodeToString(salt));
 			setConfiguration(RSPROFILE_GROUP, RSPROFILE_LOGIN_SALT, salt);
 		}
 
@@ -1007,7 +1000,7 @@ public class ConfigManager
 			String keyStr = RSPROFILE_GROUP + "." + Base64.getUrlEncoder().encodeToString(key);
 			if (!keys.contains(keyStr))
 			{
-				log.info("creating new profile {} for user {}", key, username);
+				log.info("creating new profile {} for user {} ({}) salt {}", keyStr, username, type, Base64.getUrlEncoder().encodeToString(salt));
 
 				setConfiguration(RSPROFILE_GROUP, keyStr, RSPROFILE_LOGIN_HASH, loginHash);
 				setConfiguration(RSPROFILE_GROUP, keyStr, RSPROFILE_TYPE, type);
@@ -1065,6 +1058,7 @@ public class ConfigManager
 
 	/**
 	 * Split a config key into (group, profile, key)
+	 *
 	 * @param key in form group.(rsprofile.profile.)?key
 	 * @return an array of {group, profile, key}
 	 */

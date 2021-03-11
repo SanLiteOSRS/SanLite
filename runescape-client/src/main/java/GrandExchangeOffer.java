@@ -122,7 +122,7 @@ public class GrandExchangeOffer {
 		garbageValue = "779350721"
 	)
 	public static final PcmPlayer method167(TaskHandler var0, int var1, int var2) {
-		if (StructDefinition.field3338 * 22050 == 0) {
+		if (StructComposition.field3338 * 22050 == 0) {
 			throw new IllegalStateException();
 		} else if (var1 >= 0 && var1 < 2) {
 			if (var2 < 256) {

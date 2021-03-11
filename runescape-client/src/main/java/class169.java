@@ -453,11 +453,11 @@ public enum class169 implements Enumerated {
 								ScriptEvent var30;
 								int var35;
 								int var36;
-								if (var9.onVarTransmit != null && Client.field767 > var9.field2727) {
-									if (var9.varTransmitTriggers != null && Client.field767 - var9.field2727 <= 32) {
+								if (var9.onVarTransmit != null && Client.changedVarpCount > var9.field2727) {
+									if (var9.varTransmitTriggers != null && Client.changedVarpCount - var9.field2727 <= 32) {
 										label867:
-										for (var35 = var9.field2727; var35 < Client.field767; ++var35) {
-											var23 = Client.field855[var35 & 31];
+										for (var35 = var9.field2727; var35 < Client.changedVarpCount; ++var35) {
+											var23 = Client.changedVarps[var35 & 31];
 
 											for (var36 = 0; var36 < var9.varTransmitTriggers.length; ++var36) {
 												if (var23 == var9.varTransmitTriggers[var36]) {
@@ -476,7 +476,7 @@ public enum class169 implements Enumerated {
 										Client.scriptEvents.addFirst(var27);
 									}
 
-									var9.field2727 = Client.field767;
+									var9.field2727 = Client.changedVarpCount;
 								}
 
 								if (var9.onInvTransmit != null && Client.field870 > var9.field2728) {

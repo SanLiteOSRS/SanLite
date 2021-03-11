@@ -136,11 +136,27 @@ public interface Client extends GameEngine
 	GameState getGameState();
 
 	/**
+	 * Gets the current game state as an int
+	 *
+	 * @return the game state
+	 */
+	int getRSGameState();
+
+	/**
 	 * Sets the current game state
 	 *
 	 * @param gameState
 	 */
 	void setGameState(GameState gameState);
+
+	/**
+	 * Sets the current game state
+	 * This takes an int instead of a {@link GameState} so it can
+	 * can handle states that aren't in the enum yet
+	 *
+	 * @param gameState
+	 */
+	void setGameState(int gameState);
 
 	/**
 	 * Causes the client to shutdown. It is faster than
@@ -264,13 +280,13 @@ public interface Client extends GameEngine
 
 	/**
 	 * Gets the canvas height
-	 * @return canvas height
+	 * @return
 	 */
 	int getCanvasHeight();
 
 	/**
 	 * Gets the canvas width
-	 * @return canvas width
+	 * @return
 	 */
 	int getCanvasWidth();
 
@@ -445,7 +461,7 @@ public interface Client extends GameEngine
 	int getMouseCurrentButton();
 
 	/**
-	 * Gets the currently selected tile (ie. last right clicked tile).
+	 * Gets the currently selected tile. (ie. last right clicked tile)
 	 *
 	 * @return the selected tile
 	 */
@@ -513,6 +529,16 @@ public interface Client extends GameEngine
 	 */
 	@Nullable
 	Widget getWidget(int groupId, int childId);
+
+	/**
+	 * Gets a widget by it's packed ID.
+	 *
+	 * <p>
+	 * Note: Use {@link #getWidget(WidgetInfo)} or {@link #getWidget(int, int)} for
+	 * a more readable version of this method.
+	 */
+	@Nullable
+	Widget getWidget(int packedID);
 
 	/**
 	 * Gets an array containing the x-axis canvas positions
@@ -783,8 +809,8 @@ public interface Client extends GameEngine
 	/**
 	 * Gets the varbit composition for a given varbit id
 	 *
-	 * @param id varbit id
-	 * @return varbit composition
+	 * @param id
+	 * @return
 	 */
 	@Nullable
 	VarbitComposition getVarbit(int id);
@@ -805,7 +831,7 @@ public interface Client extends GameEngine
 	 * @param varps passed varps
 	 * @param varpId the VarpPlayer id
 	 * @return the value
-	 * @see VarPlayer#id
+	 * @see VarPlayer#getId()
 	 */
 	int getVarpValue(int[] varps, int varpId);
 
@@ -815,7 +841,7 @@ public interface Client extends GameEngine
 	 * @param varps passed varps
 	 * @param varpId the VarpPlayer id
 	 * @param value the value
-	 * @see VarPlayer#id
+	 * @see VarPlayer#getId()
 	 */
 	void setVarpValue(int[] varps, int varpId, int value);
 
@@ -829,13 +855,12 @@ public interface Client extends GameEngine
 	 */
 	void setVarbitValue(int[] varps, int varbit, int value);
 
-	// TODO: Implement
-//	/**
-//	 * Mark the given varp as changed, causing var listeners to be
-//	 * triggered next tick
-//	 * @param varp
-//	 */
-//	void queueChangedVarp(int varp);
+	/**
+	 * Mark the given varp as changed, causing var listeners to be
+	 * triggered next tick
+	 * @param varp
+	 */
+	void queueChangedVarp(int varp);
 
 	/**
 	 * Gets the widget flags table.
@@ -878,7 +903,7 @@ public interface Client extends GameEngine
 	/**
 	 * Get the total experience of the player
 	 *
-	 * @return total experience
+	 * @return
 	 */
 	long getOverallExperience();
 
@@ -942,6 +967,18 @@ public interface Client extends GameEngine
 	 * @see NpcID
 	 */
 	NPCComposition getNpcDefinition(int npcId);
+
+	/**
+	 * Gets the {@link StructComposition} for a given struct ID
+	 *
+	 * @see StructID
+	 */
+	StructComposition getStructComposition(int structID);
+
+	/**
+	 * Gets the client's cache of in memory struct compositions
+	 */
+	NodeCache getStructCompositionCache();
 
 	/**
 	 * Gets an array of all world areas
@@ -1033,6 +1070,18 @@ public interface Client extends GameEngine
 	 * @return all graphics objects
 	 */
 	List<GraphicsObject> getGraphicsObjects();
+
+	/**
+	 * Gets the music volume
+	 * @return volume 0-255 inclusive
+	 */
+	int getMusicVolume();
+
+	/**
+	 * Sets the music volume
+	 * @param volume 0-255 inclusive
+	 */
+	void setMusicVolume(int volume);
 
 	/**
 	 * Play a sound effect at the player's current location. This is how UI,
@@ -1160,6 +1209,20 @@ public interface Client extends GameEngine
 	String[] getStringStack();
 
 	/**
+	 * Gets the cs2 vm's active widget
+	 *
+	 * This is used for all {@code cc_*} operations with a {@code 0} operand
+	 */
+	Widget getScriptActiveWidget();
+
+	/**
+	 * Gets the cs2 vm's "dot" widget
+	 *
+	 * This is used for all {@code .cc_*} operations with a {@code 1} operand
+	 */
+	Widget getScriptDotWidget();
+
+	/**
 	 * Checks whether a player is on the friends list.
 	 *
 	 * @param name the name of the player
@@ -1179,14 +1242,14 @@ public interface Client extends GameEngine
 	/**
 	 * Retrieve the nameable container containing friends
 	 *
-	 * @return friend container
+	 * @return
 	 */
 	NameableContainer<Friend> getFriendContainer();
 
 	/**
 	 * Retrieve the nameable container containing ignores
 	 *
-	 * @return ignore container
+	 * @return
 	 */
 	NameableContainer<Ignore> getIgnoreContainer();
 
@@ -1326,10 +1389,20 @@ public interface Client extends GameEngine
 	 *
 	 * This method must be ran on the client thread and is not reentrant
 	 *
+	 * This method is shorthand for {@code client.createScriptEvent(args).run()}
+	 *
 	 * @param args the script id, then any additional arguments to execute the script with
 	 * @see ScriptID
 	 */
 	void runScript(Object... args);
+
+	/**
+	 * Creates a blank ScriptEvent for executing a ClientScript2 script
+	 *
+	 * @param args the script id, then any additional arguments to execute the script with
+	 * @see ScriptID
+	 */
+	ScriptEvent createScriptEvent(Object ...args);
 
 	/**
 	 * Checks whether or not there is any active hint arrow.
@@ -1479,15 +1552,15 @@ public interface Client extends GameEngine
 	 *
 	 * @param state the new player hidden state
 	 */
-	void setPlayersHidden(boolean state);
+	void setOthersHidden(boolean state);
 
 	/**
-	 * Sets whether 2D sprites (ie. overhead prayers, PK skull) related to
-	 * the other players are hidden.
+	 * Sets whether 2D sprites related to the other players are hidden.
+	 * (ie. overhead prayers, PK skull)
 	 *
 	 * @param state the new player 2D hidden state
 	 */
-	void setPlayersHidden2D(boolean state);
+	void setOthersHidden2D(boolean state);
 
 	/**
 	 * Sets whether or not friends are hidden.
@@ -1504,6 +1577,13 @@ public interface Client extends GameEngine
 	void setFriendsChatMembersHidden(boolean state);
 
 	/**
+	 * Sets whether or not ignored players are hidden.
+	 *
+	 * @param state the new ignored player hidden state
+	 */
+	void setIgnoresHidden(boolean state);
+
+	/**
 	 * Sets whether the local player is hidden.
 	 *
 	 * @param state new local player hidden state
@@ -1511,8 +1591,8 @@ public interface Client extends GameEngine
 	void setLocalPlayerHidden(boolean state);
 
 	/**
-	 * Sets whether 2D sprites (ie. overhead prayers, PK skull) related to
-	 * the local player are hidden.
+	 * Sets whether 2D sprites related to the local player are hidden.
+	 * (ie. overhead prayers, PK skull)
 	 *
 	 * @param state new local player 2D hidden state
 	 */
@@ -1526,8 +1606,8 @@ public interface Client extends GameEngine
 	void setNPCsHidden(boolean state);
 
 	/**
-	 * Sets whether 2D sprites (ie. overhead prayers) related to
-	 * the NPCs are hidden.
+	 * Sets whether 2D sprites related to the NPCs are hidden.
+	 * (ie. overhead prayers)
 	 *
 	 * @param state new NPC 2D hidden state
 	 */
@@ -1553,6 +1633,13 @@ public interface Client extends GameEngine
 	 * @param state new projectile hidden state
 	 */
 	void setProjectilesHidden(boolean state);
+
+	/**
+	 * Sets whether dead NPCs are hidden.
+	 *
+	 * @param state new NPC hidden state
+	 */
+	void setDeadNPCsHidden(boolean state);
 
 	/**
 	 * Gets an array of tile collision data.
@@ -1594,6 +1681,13 @@ public interface Client extends GameEngine
 	 * @param spritePixels the new sprite
 	 */
 	void setCompass(SpritePixels spritePixels);
+
+	/**
+	 * Sets whether inventory quantity is verbose.
+	 *
+	 * @param state verbose state
+	 */
+	void setItemQuantitiesVerbose(boolean state);
 
 	/**
 	 * Returns widget sprite cache, to be used with {@link Client#getSpriteOverrides()}
@@ -1706,13 +1800,13 @@ public interface Client extends GameEngine
 	/**
 	 * Get the if1 widget whose item is being dragged
 	 *
-	 * @return widget
+	 * @return
 	 */
 	Widget getIf1DraggedWidget();
 
 	/**
 	 * Get the item index of the item being dragged on an if1 widget
-	 * @return item index
+	 * @return
 	 */
 	int getIf1DraggedItemIndex();
 
@@ -1792,9 +1886,13 @@ public interface Client extends GameEngine
 
 	void setSelectedItemID(int id);
 
+	int getSelectedItemWidget();
+
 	void setSelectedItemWidget(int widgetID);
 
 	void setSelectedItemSlot(int idx);
+
+	int getSelectedItemSlot();
 
 	int getSelectedSpellWidget();
 
@@ -1866,4 +1964,10 @@ public interface Client extends GameEngine
 	boolean isKeyPressed(int keycode);
 
 	boolean shouldRenderLoginScreenFire();
+
+	int getFollowerIndex();
+
+	List<String> getOutdatedScripts();
+
+	void setOutdatedScript(String outdatedScript);
 }

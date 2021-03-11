@@ -289,10 +289,10 @@ public interface KeyRemappingConfig extends Config
 	}
 
 	@ConfigItem(
-			position = 21,
-			keyName = "control",
-			name = "Control",
-			description = "The key which will replace {Control}."
+		position = 21,
+		keyName = "control",
+		name = "Control",
+		description = "The key which will replace {Control}."
 	)
 	default ModifierlessKeybind control()
 	{
