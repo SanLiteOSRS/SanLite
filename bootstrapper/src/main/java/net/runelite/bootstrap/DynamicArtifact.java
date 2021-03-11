@@ -11,6 +11,7 @@ public enum DynamicArtifact
 	RUNELITE_CLIENT("runelite-client", "client"),
 	RUNELITE_API("runelite-api", "runelite-api"),
 	RUNESCAPE_API("runescape-api", "runescape-api"),
+	RUNELITE_JSHELL("runelite-jshell", "jshell"),
 	HTTP_API("http-api", "http-api"),
 	INJECTED_CLIENT("injected-client", "injected-client");
 
