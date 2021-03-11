@@ -43,6 +43,7 @@ import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.ui.overlay.OverlayManager;
 import net.runelite.client.util.ColorUtil;
 import net.runelite.client.util.Text;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.inject.Inject;
 import java.awt.*;
@@ -129,7 +130,8 @@ public class PlayerIndicatorsPlugin extends Plugin
 	public void onMenuEntryAdded(MenuEntryAdded menuEntryAdded)
 	{
 		if (!config.colorFriendPlayerMenu() && !config.colorFriendsChatMemberPlayerMenu() && !config.colorTeamMemberPlayerMenu() &&
-				!config.colorOthersPlayerMenu())
+				!config.colorOthersPlayerMenu() && !config.colorListOnePlayerMenu() && !config.colorListTwoPlayerMenu() &&
+				!config.colorListThreePlayerMenu() && !config.colorListFourPlayerMenu() && !config.colorListFivePlayerMenu())
 		{
 			return;
 		}
@@ -161,19 +163,34 @@ public class PlayerIndicatorsPlugin extends Plugin
 				player = players[identifier];
 			}
 
-			if (player == null)
+			if (player == null || StringUtils.isEmpty(player.getName()))
 			{
 				return;
 			}
 
 			PlayerIndicatorType playerIndicatorType = playerIndicatorsService.getMenuEntryPlayerIndicatorType(player);
-			if (playerIndicatorType == null || playerIndicatorType == PlayerIndicatorType.OTHER_PLAYER)
+			if (playerIndicatorType == null || playerIndicatorType == PlayerIndicatorType.UNKNOWN_PLAYER)
 				return;
 
 			switch (playerIndicatorType)
 			{
 				case FRIEND:
 					colorMenuEntry(player, playerIndicatorType, config.getFriendColor(), config.colorFriendPlayerMenu());
+					break;
+				case CUSTOM_LIST_1:
+					colorMenuEntry(player, playerIndicatorType, config.getListOneColor(), config.colorListOnePlayerMenu());
+					break;
+				case CUSTOM_LIST_2:
+					colorMenuEntry(player, playerIndicatorType, config.getListTwoColor(), config.colorListTwoPlayerMenu());
+					break;
+				case CUSTOM_LIST_3:
+					colorMenuEntry(player, playerIndicatorType, config.getListThreeColor(), config.colorListThreePlayerMenu());
+					break;
+				case CUSTOM_LIST_4:
+					colorMenuEntry(player, playerIndicatorType, config.getListFourColor(), config.colorListFourPlayerMenu());
+					break;
+				case CUSTOM_LIST_5:
+					colorMenuEntry(player, playerIndicatorType, config.getListFiveColor(), config.colorListFivePlayerMenu());
 					break;
 				case FRIENDS_CHAT_MEMBERS:
 					colorMenuEntry(player, playerIndicatorType, config.getFriendsChatMemberColor(), config.colorFriendsChatMemberPlayerMenu());

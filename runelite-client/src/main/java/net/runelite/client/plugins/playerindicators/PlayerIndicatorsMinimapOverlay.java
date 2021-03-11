@@ -55,7 +55,9 @@ public class PlayerIndicatorsMinimapOverlay extends Overlay
 	public Dimension render(Graphics2D graphics)
 	{
 		if (!config.drawOwnPlayerMinimapName() && !config.drawFriendMinimapNames() && !config.drawFriendsChatMemberMinimapNames() &&
-				!config.drawTeamMinimapNames() && !config.drawOthersMinimapNames())
+				!config.drawTeamMinimapNames() && !config.drawOthersMinimapNames() && !config.drawListOneMinimapName() &&
+				!config.drawListTwoMinimapName() && !config.drawListThreeMinimapName() && !config.drawListFourMinimapName() &&
+				!config.drawListFiveMinimapName())
 		{
 			return null;
 		}
@@ -73,6 +75,21 @@ public class PlayerIndicatorsMinimapOverlay extends Overlay
 				break;
 			case FRIEND:
 				renderMinimapOverlay(graphics, player, config.getFriendColor(), config.drawFriendMinimapNames());
+				break;
+			case CUSTOM_LIST_1:
+				renderMinimapOverlay(graphics, player, config.getListOneColor(), config.drawListOneMinimapName());
+				break;
+			case CUSTOM_LIST_2:
+				renderMinimapOverlay(graphics, player, config.getListTwoColor(), config.drawListTwoMinimapName());
+				break;
+			case CUSTOM_LIST_3:
+				renderMinimapOverlay(graphics, player, config.getListThreeColor(), config.drawListThreeMinimapName());
+				break;
+			case CUSTOM_LIST_4:
+				renderMinimapOverlay(graphics, player, config.getListFourColor(), config.drawListFourMinimapName());
+				break;
+			case CUSTOM_LIST_5:
+				renderMinimapOverlay(graphics, player, config.getListFiveColor(), config.drawListFiveMinimapName());
 				break;
 			case FRIENDS_CHAT_MEMBERS:
 				renderMinimapOverlay(graphics, player, config.getFriendsChatMemberColor(), config.drawFriendsChatMemberMinimapNames());
