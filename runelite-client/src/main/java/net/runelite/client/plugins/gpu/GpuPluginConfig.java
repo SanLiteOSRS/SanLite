@@ -28,9 +28,9 @@ import net.runelite.client.config.Config;
 import net.runelite.client.config.ConfigGroup;
 import net.runelite.client.config.ConfigItem;
 import net.runelite.client.config.Range;
+import static net.runelite.client.plugins.gpu.GpuPlugin.MAX_DISTANCE;
 import static net.runelite.client.plugins.gpu.GpuPlugin.MAX_FOG_DEPTH;
 import net.runelite.client.plugins.gpu.config.AntiAliasingMode;
-import static net.runelite.client.plugins.gpu.GpuPlugin.MAX_DISTANCE;
 import net.runelite.client.plugins.gpu.config.ColorBlindMode;
 import net.runelite.client.plugins.gpu.config.UIScalingMode;
 
@@ -126,13 +126,24 @@ public interface GpuPluginConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "colorBlindMode",
-			name = "Colorblindness Correction",
-			description = "Adjusts colors to account for colorblindness",
-			position = 8
+		keyName = "colorBlindMode",
+		name = "Colorblindness Correction",
+		description = "Adjusts colors to account for colorblindness",
+		position = 8
 	)
 	default ColorBlindMode colorBlindMode()
 	{
 		return ColorBlindMode.NONE;
+	}
+
+	@ConfigItem(
+		keyName = "brightTextures",
+		name = "Bright Textures",
+		description = "Use old texture lighting method which results in brighter game textures",
+		position = 9
+	)
+	default boolean brightTextures()
+	{
+		return false;
 	}
 }

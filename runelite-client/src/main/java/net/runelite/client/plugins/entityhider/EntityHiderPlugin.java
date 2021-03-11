@@ -28,11 +28,9 @@ package net.runelite.client.plugins.entityhider;
 import com.google.inject.Provides;
 import javax.inject.Inject;
 import net.runelite.api.Client;
-import net.runelite.api.GameState;
-import net.runelite.client.events.ConfigChanged;
-import net.runelite.api.events.GameStateChanged;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
+import net.runelite.client.events.ConfigChanged;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 
@@ -65,15 +63,9 @@ public class EntityHiderPlugin extends Plugin
 	@Subscribe
 	public void onConfigChanged(ConfigChanged e)
 	{
-		updateConfig();
-	}
-
-	@Subscribe
-	public void onGameStateChanged(GameStateChanged event)
-	{
-		if (event.getGameState() == GameState.LOGGED_IN)
+		if (e.getGroup().equals(EntityHiderConfig.GROUP))
 		{
-			client.setIsHidingEntities(true);
+			updateConfig();
 		}
 	}
 
@@ -81,11 +73,12 @@ public class EntityHiderPlugin extends Plugin
 	{
 		client.setIsHidingEntities(true);
 
-		client.setPlayersHidden(config.hidePlayers());
-		client.setPlayersHidden2D(config.hidePlayers2D());
+		client.setOthersHidden(config.hideOthers());
+		client.setOthersHidden2D(config.hideOthers2D());
 
 		client.setFriendsHidden(config.hideFriends());
 		client.setFriendsChatMembersHidden(config.hideFriendsChatMembers());
+		client.setIgnoresHidden(config.hideIgnores());
 
 		client.setLocalPlayerHidden(config.hideLocalPlayer());
 		client.setLocalPlayerHidden2D(config.hideLocalPlayer2D());
@@ -105,11 +98,12 @@ public class EntityHiderPlugin extends Plugin
 	{
 		client.setIsHidingEntities(false);
 
-		client.setPlayersHidden(false);
-		client.setPlayersHidden2D(false);
+		client.setOthersHidden(false);
+		client.setOthersHidden2D(false);
 
 		client.setFriendsHidden(false);
 		client.setFriendsChatMembersHidden(false);
+		client.setIgnoresHidden(false);
 
 		client.setLocalPlayerHidden(false);
 		client.setLocalPlayerHidden2D(false);

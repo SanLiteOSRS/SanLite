@@ -26,9 +26,9 @@ package net.runelite.api.hooks;
 
 import net.runelite.api.Model;
 import net.runelite.api.Renderable;
-import net.runelite.api.Texture;
 import net.runelite.api.SceneTileModel;
 import net.runelite.api.SceneTilePaint;
+import net.runelite.api.Texture;
 
 public interface DrawCallbacks
 {
@@ -43,11 +43,30 @@ public interface DrawCallbacks
 						SceneTileModel model, int tileZ, int tileX, int tileY,
 						int zoom, int centerX, int centerY);
 
-	void draw();
+	/**
+	 * Called when a frame should be drawn.
+	 *
+	 * @param overlayColor Color of full-viewport overlays, if any
+	 */
+	void draw(int overlayColor);
 
 	boolean drawFace(Model model, int face);
 
+	/**
+	 * Called before the scene is drawn
+	 * @param cameraX
+	 * @param cameraY
+	 * @param cameraZ
+	 * @param cameraPitch
+	 * @param cameraYaw
+	 * @param plane
+	 */
 	void drawScene(int cameraX, int cameraY, int cameraZ, int cameraPitch, int cameraYaw, int plane);
+
+	/**
+	 * Called after the scene has been drawn
+	 */
+	void postDrawScene();
 
 	void animate(Texture texture, int diff);
 }

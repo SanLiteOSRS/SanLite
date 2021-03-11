@@ -107,6 +107,10 @@ public enum Varbits
 	PRAYER_RIGOUR(5464),
 	PRAYER_AUGURY(5465),
 
+	RIGOUR_UNLOCKED(5451),
+	AUGURY_UNLOCKED(5452),
+	PRESERVE_UNLOCKED(5453),
+
 	/**
 	 * Diary Entries
 	 */
@@ -416,21 +420,32 @@ public enum Varbits
 	 */
 	MULTICOMBAT_AREA(4605),
 
-	/**
-	 * In the Wilderness
-	 */
 	IN_THE_WILDERNESS(5963),
 
 	/**
-	 * Kingdom Management
+	 * Kingdom of Miscellania Management
+	 * Kingdom Approval is represented as a 7-bit unsigned integer; 127 corresponds to 100% approval
 	 */
-	KINGDOM_FAVOR(72),
+	KINGDOM_APPROVAL(72),
 	KINGDOM_COFFER(74),
 
 	/**
 	 * The Hand in the Sand quest status
 	 */
 	QUEST_THE_HAND_IN_THE_SAND(1527),
+
+	/**
+	 * 0 = Sir Bedivere
+	 * 1 = Sir Pelleas
+	 * 2 = Sir Tristram
+	 * 3 = Sir Palomedes
+	 * 4 = Sir Lucan
+	 * 5 = Sir Gawain
+	 * 6 = Sir Kay
+	 * 7 = Sir Lancelot
+	 * 8 = Completed (Chivalry and Piety are unlocked)
+	 */
+	CAMELOT_TRAINING_ROOM_STATUS(3909),
 
 	/**
 	 * Daily Tasks (Collection availability)
@@ -643,6 +658,32 @@ public enum Varbits
 	LEAGUE_RELIC_6(11696),
 
 	/**
+	 * Muted volume restore values
+	 */
+	MUTED_MUSIC_VOLUME(9666),
+	MUTED_SOUND_EFFECT_VOLUME(9674),
+	MUTED_AREA_EFFECT_VOLUME(9675),
+
+	/**
+	 * Parasite infection status during nightmare of ashihama bossfight
+	 *
+	 * 0 = not infected
+	 * 1 = infected
+	 *
+	 */
+	PARASITE(10151),
+
+	/**
+	 * Whether the Special Attack orb is disabled due to being in a PvP area
+	 *
+	 * 0 = Enabled (player is not in PvP)
+	 * 1 = Disabled (player in in PvP)
+	 *
+	 * @see <a href="https://oldschool.runescape.wiki/w/Minimap#Special_attack_orb">The OSRS Wiki's Minimap page</a>
+	 */
+	PVP_SPEC_ORB(8121),
+
+	/**
 	 * Temple Trekking
 	 */
 	TREK_POINTS(1955),
@@ -792,16 +833,6 @@ public enum Varbits
 	GAUNTLET_ENTERED(9178),
 
 	WITHDRAW_X_AMOUNT(3960),
-
-	/**
-	 * Whether the Special Attack orb is disabled due to being in a PvP area
-	 *
-	 * 0 = Enabled (player is not in PvP)
-	 * 1 = Disabled (player in in PvP)
-	 *
-	 * @see <a href="https://oldschool.runescape.wiki/w/Minimap#Special_attack_orb">The OSRS Wiki's Minimap page</a>
-	 */
-	PVP_SPEC_ORB(8121),
 
 	CLAN_WARS_ARENA_UNKNOWN_1(4285),
 	/**

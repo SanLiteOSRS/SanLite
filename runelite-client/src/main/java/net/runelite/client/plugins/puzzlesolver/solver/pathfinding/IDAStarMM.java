@@ -42,7 +42,6 @@ public class IDAStarMM extends IDAStar
 	private final List<List<Integer>> validRowNumbers = new ArrayList<>();
 	private final List<List<Integer>> validColumnNumbers = new ArrayList<>();
 
-
 	public IDAStarMM(Heuristic heuristic)
 	{
 		super(heuristic);

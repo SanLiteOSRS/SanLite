@@ -22,7 +22,7 @@ public final class class307 {
 		garbageValue = "1168600989"
 	)
 	@Export("FillMode_values")
-	public static class333[] FillMode_values() {
-		return new class333[]{class333.field3897, class333.SOLID, class333.field3896};
+	public static FillMode[] FillMode_values() {
+		return new FillMode[]{FillMode.field3897, FillMode.SOLID, FillMode.field3896};
 	}
 }

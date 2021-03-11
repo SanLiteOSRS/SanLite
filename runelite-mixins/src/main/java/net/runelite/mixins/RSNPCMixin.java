@@ -52,9 +52,6 @@ public abstract class RSNPCMixin implements RSNPC
 	private int npcIndex;
 
 	@Inject
-	private NPCComposition previousNpcComposition;
-
-	@Inject
 	@Override
 	public int getId()
 	{
@@ -108,16 +105,24 @@ public abstract class RSNPCMixin implements RSNPC
 	@Inject
 	public void onCompositionChanged(RSNPCComposition composition)
 	{
-		NPCComposition previous = previousNpcComposition;
-		previousNpcComposition = composition;
-
 		if (composition == null)
 		{
 			client.getCallbacks().post(new NpcDespawned(this));
 		}
 		else if (this.getId() != -1)
 		{
-			client.getCallbacks().post(new NpcChanged(this, previous));
+			RSNPCComposition oldComposition = getComposition();
+			if (oldComposition == null)
+			{
+				return;
+			}
+
+			if (composition.getId() == oldComposition.getId())
+			{
+				return;
+			}
+
+			client.getCallbacks().postDeferred(new NpcChanged(this, oldComposition));
 		}
 	}
 

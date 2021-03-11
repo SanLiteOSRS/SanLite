@@ -146,7 +146,8 @@ public class SoundCache {
 		signature = "(II)Ljava/lang/String;",
 		garbageValue = "1989438161"
 	)
-	static final String method2682(int var0) {
+	@Export("inventoryQuantityFormat")
+	static final String inventoryQuantityFormat(int var0) {
 		if (var0 < 100000) {
 			return "<col=ffff00>" + var0 + "</col>";
 		} else {
@@ -160,6 +161,6 @@ public class SoundCache {
 		garbageValue = "-701578069"
 	)
 	static final void method2689(Actor var0, int var1) {
-		ParamDefinition.worldToScreen(var0.x, var0.y, var1);
+		ParamComposition.worldToScreen(var0.x, var0.y, var1);
 	}
 }

@@ -69,11 +69,6 @@ public interface Actor extends Renderable
 	 */
 	Actor getInteracting();
 
-	/**
-	 * Gets the npc/player index, useful for menus
-	 *
-	 * @return npc/player index
-	 */
 	int getInteractingIndex();
 
 	/**
@@ -111,10 +106,6 @@ public interface Actor extends Renderable
 	 */
 	LocalPoint getLocalLocation();
 
-	void setIdlePoseAnimation(int animation);
-
-	void setPoseAnimation(int animation);
-
 	/**
 	 * Gets the orientation of the actor.
 	 *
@@ -122,8 +113,6 @@ public interface Actor extends Renderable
 	 * @see net.runelite.api.coords.Angle
 	 */
 	int getOrientation();
-
-	int getCurrentOrientation();
 
 	/**
 	 * Gets the current animation the actor is performing.
@@ -134,21 +123,81 @@ public interface Actor extends Renderable
 	int getAnimation();
 
 	/**
-	 * Gets the secondary animation the actor is performing.
+	 * Gets the secondary animation the actor is performing. Usually an idle animation, or one of the walking ones.
 	 *
 	 * @return the animation ID
 	 * @see AnimationID
 	 */
 	int getPoseAnimation();
 
+	void setPoseAnimation(int animation);
+
 	/**
-	 * If this is equal to the pose animation, the pose animation is ignored when
-	 * you are doing another action.
+	 * The idle pose animation. If the actor is not walking or otherwise animating, this will be used
+	 * for their pose animation.
 	 *
 	 * @return the animation ID
 	 * @see AnimationID
 	 */
 	int getIdlePoseAnimation();
+
+	void setIdlePoseAnimation(int animation);
+
+	/**
+	 * Animation used for rotating left if the actor is also not walking
+	 *
+	 * @return the animation ID
+	 * @see AnimationID
+	 */
+	int getIdleRotateLeft();
+
+	/**
+	 * Animation used for rotating right if the actor is also not walking
+	 *
+	 * @return the animation ID
+	 * @see AnimationID
+	 */
+	int getIdleRotateRight();
+
+	/**
+	 * Animation used for walking
+	 *
+	 * @return the animation ID
+	 * @see AnimationID
+	 */
+	int getWalkAnimation();
+
+	/**
+	 * Animation used for rotating left while walking
+	 *
+	 * @return the animation ID
+	 * @see AnimationID
+	 */
+	int getWalkRotateLeft();
+
+	/**
+	 * Animation used for rotating right while walking
+	 *
+	 * @return the animation ID
+	 * @see AnimationID
+	 */
+	int getWalkRotateRight();
+
+	/**
+	 * Animation used for an about-face while walking
+	 *
+	 * @return the animation ID
+	 * @see AnimationID
+	 */
+	int getWalkRotate180();
+
+	/**
+	 * Animation used for running
+	 *
+	 * @return the animation ID
+	 * @see AnimationID
+	 */
+	int getRunAnimation();
 
 	/**
 	 * Sets an animation for the actor to perform.
@@ -267,9 +316,9 @@ public interface Actor extends Renderable
 	void setOverheadText(String overheadText);
 
 	/**
-	 * Returns true if this NPC has died
+	 * Returns true if this actor has died
 	 *
-	 * @return is npc dead
+	 * @return
 	 */
 	boolean isDead();
 
@@ -286,4 +335,6 @@ public interface Actor extends Renderable
 	 * @return action frame game cycle
 	 */
 	int getActionFrameCycle();
+
+	boolean isMoving();
 }

@@ -313,7 +313,7 @@ public final class PendingSpawn extends Node {
 		garbageValue = "54"
 	)
 	static int method1845(int var0, Script var1, boolean var2) {
-		Widget var3 = var2 ? class277.field3584 : Interpreter.field1117;
+		Widget var3 = var2 ? class277.scriptDotWidget : Interpreter.scriptActiveWidget;
 		if (var0 == ScriptOpcodes.CC_GETINVOBJECT) {
 			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.itemId;
 			return 1;

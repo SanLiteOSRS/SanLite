@@ -27,7 +27,7 @@ package net.runelite.client.plugins.statusbars;
 import net.runelite.client.config.Config;
 import net.runelite.client.config.ConfigGroup;
 import net.runelite.client.config.ConfigItem;
-import net.runelite.client.plugins.statusbars.Config.BarMode;
+import net.runelite.client.plugins.statusbars.config.BarMode;
 
 @ConfigGroup("statusbars")
 public interface StatusBarsConfig extends Config
@@ -64,7 +64,7 @@ public interface StatusBarsConfig extends Config
 
 	@ConfigItem(
 		keyName = "leftBarMode",
-		name = "Left Status Bar",
+		name = "Left Bar",
 		description = "Configures the left status bar"
 	)
 	default BarMode leftBarMode()
@@ -74,7 +74,7 @@ public interface StatusBarsConfig extends Config
 
 	@ConfigItem(
 		keyName = "rightBarMode",
-		name = "Right Status Bar",
+		name = "Right Bar",
 		description = "Configures the right status bar"
 	)
 	default BarMode rightBarMode()

@@ -157,7 +157,8 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 	@Export("canvas")
 	java.awt.Canvas canvas;
 	@ObfuscatedName("ak")
-	volatile boolean field468;
+	@Export("fullRedraw")
+	volatile boolean fullRedraw;
 	@ObfuscatedName("al")
 	@Export("resizeCanvasNextFrame")
 	boolean resizeCanvasNextFrame;
@@ -202,7 +203,7 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 		this.hasErrored = false;
 		this.canvasX = 0;
 		this.canvasY = 0;
-		this.field468 = true;
+		this.fullRedraw = true;
 		this.resizeCanvasNextFrame = false;
 		this.isCanvasInvalid = false;
 		this.field484 = 0L;
@@ -371,7 +372,7 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 				this.canvas.setLocation(this.canvasX, this.canvasY);
 			}
 
-			this.field468 = true;
+			this.fullRedraw = true;
 			this.resizeGame();
 		}
 	}
@@ -533,7 +534,7 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 
 		this.canvas.addFocusListener(this);
 		this.canvas.requestFocus();
-		this.field468 = true;
+		this.fullRedraw = true;
 		if (FileSystem.rasterProvider != null && GrandExchangeOfferTotalQuantityComparator.canvasWidth == FileSystem.rasterProvider.width && class25.canvasHeight == FileSystem.rasterProvider.height) {
 			((RasterProvider)FileSystem.rasterProvider).setComponent(this.canvas);
 			FileSystem.rasterProvider.drawFull(0, 0);
@@ -617,7 +618,7 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 
 		if (++field481 - 1 > 50) {
 			field481 -= 50;
-			this.field468 = true;
+			this.fullRedraw = true;
 			this.canvas.setSize(GrandExchangeOfferTotalQuantityComparator.canvasWidth, class25.canvasHeight);
 			this.canvas.setVisible(true);
 			if (var1 == this.frame) {
@@ -633,12 +634,12 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 		}
 
 		this.method1103();
-		this.draw(this.field468);
-		if (this.field468) {
+		this.draw(this.fullRedraw);
+		if (this.fullRedraw) {
 			this.clearBackground();
 		}
 
-		this.field468 = false;
+		this.fullRedraw = false;
 	}
 
 	@ObfuscatedName("ag")
@@ -876,7 +877,7 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 
 	public final synchronized void paint(Graphics var1) {
 		if (this == gameShell && !isKilled) {
-			this.field468 = true;
+			this.fullRedraw = true;
 			if (Tiles.currentTimeMillis() - this.field484 > 1000L) {
 				Rectangle var2 = var1.getClipBounds();
 				if (var2 == null || var2.width >= GrandExchangeOfferTotalQuantityComparator.canvasWidth && var2.height >= class25.canvasHeight) {
@@ -984,7 +985,7 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 
 	public final void focusGained(FocusEvent var1) {
 		volatileFocus = true;
-		this.field468 = true;
+		this.fullRedraw = true;
 	}
 
 	public final void windowActivated(WindowEvent var1) {
@@ -1489,7 +1490,7 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 			}
 		} else if (Client.titleLoadingStage == 45) {
 			boolean var21 = !Client.isLowDetail;
-			StructDefinition.field3338 = 486202500;
+			StructComposition.field3338 = 486202500;
 			PcmPlayer.PcmPlayer_stereo = var21;
 			PcmPlayer.field1419 = 2;
 			MidiPcmStream var19 = new MidiPcmStream();
@@ -1500,7 +1501,7 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 			WorldMapDecorationType.pcmPlayer1 = GrandExchangeOffer.method167(taskHandler, 1, 2048);
 			VarbitComposition.pcmStreamMixer = new PcmStreamMixer();
 			WorldMapDecorationType.pcmPlayer1.setStream(VarbitComposition.pcmStreamMixer);
-			World.decimator = new Decimator(22050, StructDefinition.field3338 * 22050);
+			World.decimator = new Decimator(22050, StructComposition.field3338 * 22050);
 			Login.Login_loadingText = "Prepared sound engine";
 			Login.Login_loadingPercent = 35;
 			Client.titleLoadingStage = 50;
@@ -1635,7 +1636,7 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 						class22.method227(WorldMapIcon_0.archive2);
 						class197.method3828(WorldMapIcon_0.archive2);
 						GrandExchangeOffer.varcs = new Varcs();
-						StructDefinition.method4734(WorldMapIcon_0.archive2, ModeWhere.archive8, CollisionMap.archive13);
+						StructComposition.method4734(WorldMapIcon_0.archive2, ModeWhere.archive8, CollisionMap.archive13);
 						UserComparator9.method3562(WorldMapIcon_0.archive2, ModeWhere.archive8);
 						Archive var10 = WorldMapIcon_0.archive2;
 						Archive var11 = ModeWhere.archive8;

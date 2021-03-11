@@ -58,8 +58,6 @@ public interface ItemLayer extends TileObject
 	Renderable getTop();
 
 	Model getModelBottom();
-
 	Model getModelMiddle();
-
 	Model getModelTop();
 }

@@ -15,6 +15,9 @@ public interface RSScriptEvent extends ScriptEvent
 	@Import("widget")
 	Widget getSource();
 
+	@Import("widget")
+	RSScriptEvent setSource(Widget widget);
+
 	@Import("opIndex")
 	int getOp();
 

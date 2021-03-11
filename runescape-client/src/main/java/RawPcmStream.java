@@ -850,7 +850,7 @@ public class RawPcmStream extends PcmStream {
 	)
 	@Export("createRawPcmStream")
 	public static RawPcmStream createRawPcmStream(RawSound var0, int var1, int var2) {
-		return var0.samples != null && var0.samples.length != 0 ? new RawPcmStream(var0, (int)((long)var0.sampleRate * 256L * (long)var1 / (long)(StructDefinition.field3338 * 2205000)), var2 << 6) : null;
+		return var0.samples != null && var0.samples.length != 0 ? new RawPcmStream(var0, (int)((long)var0.sampleRate * 256L * (long)var1 / (long)(StructComposition.field3338 * 2205000)), var2 << 6) : null;
 	}
 
 	@ObfuscatedName("c")

@@ -120,7 +120,7 @@ public class FriendsChatPlugin extends Plugin
 	private ChatboxPanelManager chatboxPanelManager;
 
 	private List<String> chats = new ArrayList<>();
-	private final  List<Player> members = new ArrayList<>();
+	private final List<Player> members = new ArrayList<>();
 	private MembersIndicator membersIndicator;
 	/**
 	 * queue of temporary messages added to the client

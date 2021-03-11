@@ -61,22 +61,29 @@ public interface RSItemComposition extends ItemComposition
 	@Override
 	String[] getInventoryActions();
 
+	@Import("groundActions")
+	@Override
+	String[] getGroundActions();
+
 	@Import("getShiftClickIndex")
 	@Override
 	int getShiftClickActionIndex();
 
-	@Import("model")
-	@Override
+	@Import("getModel")
+	RSModel getModel(int quantity);
+
+	@Import("unnotedId")
 	int getInventoryModel();
 
 	@Import("recolorTo")
-	@Override
 	short[] getColorToReplaceWith();
 
 	@Import("retextureTo")
-	@Override
 	short[] getTextureToReplaceWith();
 
-	@Import("getModel")
-	RSModel getModel(int quantity);
+	@Import("params")
+	RSIterableNodeHashTable getParams();
+
+	@Import("params")
+	void setParams(RSIterableNodeHashTable params);
 }

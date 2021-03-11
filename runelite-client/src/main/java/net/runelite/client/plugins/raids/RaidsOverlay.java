@@ -96,9 +96,9 @@ class RaidsOverlay extends OverlayPanel
 		}
 
 		panelComponent.getChildren().add(TitleComponent.builder()
-				.text(layout)
-				.color(color)
-				.build());
+			.text(layout)
+			.color(color)
+			.build());
 
 		if (config.fcDisplay())
 		{
@@ -128,11 +128,11 @@ class RaidsOverlay extends OverlayPanel
 
 			panelComponent.setPreferredSize(new Dimension(Math.max(ComponentConstants.STANDARD_WIDTH, metrics.stringWidth(worldString) + metrics.stringWidth(owner) + 14), 0));
 			panelComponent.getChildren().add(LineComponent.builder()
-					.left(worldString)
-					.right(owner)
-					.leftColor(Color.ORANGE)
-					.rightColor(color)
-					.build());
+				.left(worldString)
+				.right(owner)
+				.leftColor(Color.ORANGE)
+				.rightColor(color)
+				.build());
 		}
 
 		for (Room layoutRoom : plugin.getRaid().getLayout().getRooms())
@@ -163,10 +163,10 @@ class RaidsOverlay extends OverlayPanel
 					String name = room == RaidRoom.UNKNOWN_COMBAT ? "Unknown" : room.getName();
 
 					panelComponent.getChildren().add(LineComponent.builder()
-							.left(room.getType().getName())
-							.right(name)
-							.rightColor(color)
-							.build());
+						.left(room.getType().getName())
+						.right(name)
+						.rightColor(color)
+						.build());
 
 					break;
 
@@ -183,10 +183,10 @@ class RaidsOverlay extends OverlayPanel
 					name = room == RaidRoom.UNKNOWN_PUZZLE ? "Unknown" : room.getName();
 
 					panelComponent.getChildren().add(LineComponent.builder()
-							.left(room.getType().getName())
-							.right(name)
-							.rightColor(color)
-							.build());
+						.left(room.getType().getName())
+						.right(name)
+						.rightColor(color)
+						.build());
 					break;
 			}
 		}
@@ -197,8 +197,8 @@ class RaidsOverlay extends OverlayPanel
 	private boolean shouldShowOverlay()
 	{
 		if (plugin.getRaid() == null
-				|| plugin.getRaid().getLayout() == null
-				|| !config.scoutOverlay())
+			|| plugin.getRaid().getLayout() == null
+			|| !config.scoutOverlay())
 		{
 			return false;
 		}
