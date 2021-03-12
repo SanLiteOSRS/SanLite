@@ -33,7 +33,7 @@ public class class197 {
 		garbageValue = "52"
 	)
 	public static void method3828(AbstractArchive var0) {
-		ParamDefinition.ParamDefinition_archive = var0;
+		ParamComposition.ParamDefinition_archive = var0;
 	}
 
 	@ObfuscatedName("z")
@@ -47,7 +47,7 @@ public class class197 {
 			var0 -= 1000;
 			var3 = class237.getWidget(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);
 		} else {
-			var3 = var2 ? class277.field3584 : Interpreter.field1117;
+			var3 = var2 ? class277.scriptDotWidget : Interpreter.scriptActiveWidget;
 		}
 
 		IsaacCipher.invalidateWidget(var3);

@@ -62,9 +62,9 @@ public class class228 {
 					var12.isIf3 = true;
 					var6.children[var5] = var12;
 					if (var2) {
-						class277.field3584 = var12;
+						class277.scriptDotWidget = var12;
 					} else {
-						Interpreter.field1117 = var12;
+						Interpreter.scriptActiveWidget = var12;
 					}
 
 					IsaacCipher.invalidateWidget(var6);
@@ -74,7 +74,7 @@ public class class228 {
 		} else {
 			Widget var9;
 			if (var0 == ScriptOpcodes.CC_DELETE) {
-				var9 = var2 ? class277.field3584 : Interpreter.field1117;
+				var9 = var2 ? class277.scriptDotWidget : Interpreter.scriptActiveWidget;
 				Widget var10 = class237.getWidget(var9.id);
 				var10.children[var9.childIndex] = null;
 				IsaacCipher.invalidateWidget(var10);
@@ -90,9 +90,9 @@ public class class228 {
 					if (var9 != null) {
 						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = 1;
 						if (var2) {
-							class277.field3584 = var9;
+							class277.scriptDotWidget = var9;
 						} else {
-							Interpreter.field1117 = var9;
+							Interpreter.scriptActiveWidget = var9;
 						}
 					} else {
 						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = 0;
@@ -110,9 +110,9 @@ public class class228 {
 				if (var11 != null && var4 != -1) {
 					Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = 1;
 					if (var2) {
-						class277.field3584 = var11;
+						class277.scriptDotWidget = var11;
 					} else {
-						Interpreter.field1117 = var11;
+						Interpreter.scriptActiveWidget = var11;
 					}
 				} else {
 					Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = 0;

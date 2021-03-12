@@ -63,15 +63,7 @@ public interface RSActor extends RSRenderable, Actor
 
 	@Import("sequenceFrame")
 	@Override
-	int getActionFrame();
-
-	@Import("sequenceFrame")
-	@Override
 	void setActionFrame(int frame);
-
-	@Import("sequenceFrameCycle")
-	@Override
-	int getActionFrameCycle();
 
 	// Spot animation (aka graphic)
 	@Import("spotAnimation")
@@ -127,10 +119,6 @@ public interface RSActor extends RSRenderable, Actor
 	@Override
 	int getOrientation();
 
-	@Import("rotation")
-	@Override
-	int getCurrentOrientation();
-
 	@Import("healthBars")
 	RSIterableNodeDeque getHealthBars();
 
@@ -142,4 +130,45 @@ public interface RSActor extends RSRenderable, Actor
 
 	@Import("hitSplatCycles")
 	int[] getHitsplatCycles();
+
+	@Import("turnLeftSequence")
+	@Override
+	int getIdleRotateLeft();
+
+	@Import("turnRightSequence")
+	@Override
+	int getIdleRotateRight();
+
+	@Import("walkSequence")
+	@Override
+	int getWalkAnimation();
+
+	@Import("walkLeftSequence")
+	@Override
+	int getWalkRotateLeft();
+
+	@Import("walkRightSequence")
+	@Override
+	int getWalkRotateRight();
+
+	@Import("walkBackSequence")
+	@Override
+	int getWalkRotate180();
+
+	@Import("runSequence")
+	@Override
+	int getRunAnimation();
+
+	void setDead(boolean dead);
+
+	@Import("pathLength")
+	int getPathLength();
+
+	@Import("sequenceFrame")
+	@Override
+	int getActionFrame();
+
+	@Import("sequenceFrameCycle")
+	@Override
+	int getActionFrameCycle();
 }

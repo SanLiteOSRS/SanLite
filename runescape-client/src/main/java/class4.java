@@ -117,7 +117,7 @@ final class class4 implements class0 {
 			var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
 			var4 = class237.getWidget(var3);
 		} else {
-			var4 = var2 ? class277.field3584 : Interpreter.field1117;
+			var4 = var2 ? class277.scriptDotWidget : Interpreter.scriptActiveWidget;
 		}
 
 		if (var0 == ScriptOpcodes.CC_SETPOSITION) {

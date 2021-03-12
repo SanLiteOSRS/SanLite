@@ -2,6 +2,7 @@ package net.runelite.mixins;
 
 import net.runelite.api.VarClientInt;
 import net.runelite.api.VarClientStr;
+import net.runelite.api.VarbitComposition;
 import net.runelite.api.Varbits;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
@@ -55,30 +56,21 @@ public abstract class VarbitMixin implements RSClient
 
 	@Inject
 	@Override
-	public RSVarbitComposition getVarbit(int id)
+	public RSVarbitComposition getVarbitComposition(int id)
 	{
-		assert isClientThread();
+		assert client.isClientThread() : "getVarbitDefinition must be called on client thread";
 
-		RSVarbitComposition varbit;
-		varbit = varbitCache.getIfPresent(id);
-		if (varbit != null)
+		RSVarbitComposition varbit = varbitCache.getIfPresent(id);
+
+		if (varbit == null)
 		{
-			return varbit;
-		}
-		varbit = (RSVarbitComposition) getVarbitCache().get(id);
-		if (varbit != null && !(varbit.getIndex() == 0 && varbit.getMostSignificantBit() == 0 && varbit.getLeastSignificantBit() == 0))
-		{
-			return varbit;
+			client.getLogger().trace("Cache miss for varbit {}", id);
+			client.rs$getVarbit(id); // preload varbit
+			varbit = (RSVarbitComposition) getVarbitCache().get(id);
+			varbitCache.put(id, varbit);
 		}
 
-		byte[] fileData = getIndexConfig().getConfigData(VARBITS_GROUP, id);
-		if (fileData == null)
-		{
-			return null;
-		}
-		varbit = createVarbitComposition();
-		varbit.decode(createBuffer(fileData));
-		return varbit;
+		return varbit.getIndex() == 0 && varbit.getLeastSignificantBit() == 0 && varbit.getMostSignificantBit() == 0 ? null : varbit;
 	}
 
 	@Inject
@@ -87,7 +79,7 @@ public abstract class VarbitMixin implements RSClient
 	{
 		assert client.isClientThread();
 
-		RSVarbitComposition varbitComposition = getVarbit(varbitId);
+		RSVarbitComposition varbitComposition = getVarbitComposition(varbitId);
 		if (varbitComposition == null)
 		{
 			throw new IndexOutOfBoundsException(String.format("Varbit %d does not exist!", varbitId));
@@ -104,7 +96,7 @@ public abstract class VarbitMixin implements RSClient
 	@Override
 	public void setVarbitValue(int[] varps, int varbitId, int value)
 	{
-		RSVarbitComposition varbitComposition = getVarbit(varbitId);
+		RSVarbitComposition varbitComposition = getVarbitComposition(varbitId);
 		if (varbitComposition == null)
 		{
 			throw new IndexOutOfBoundsException(String.format("Varbit %d does not exist!", varbitId));
@@ -169,5 +161,12 @@ public abstract class VarbitMixin implements RSClient
 	public Map<Integer, Object> getVarcMap()
 	{
 		return getVarcs().getVarcMap();
+	}
+
+	@Inject
+	@Override
+	public VarbitComposition getVarbit(int id)
+	{
+		return getVarbitComposition(id);
 	}
 }

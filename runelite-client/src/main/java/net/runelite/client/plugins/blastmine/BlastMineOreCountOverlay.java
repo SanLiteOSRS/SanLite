@@ -69,7 +69,7 @@ class BlastMineOreCountOverlay extends OverlayPanel
 		{
 			return null;
 		}
-
+		
 		if (config.showOreOverlay())
 		{
 			blastMineWidget.setHidden(true);

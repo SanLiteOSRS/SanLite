@@ -82,8 +82,8 @@ public class SecureRandomCallable implements Callable {
 		World.method1924();
 		KeyHandler.method913();
 		Tile.method3032();
-		StructDefinition.StructDefinition_cached.clear();
-		ParamDefinition.ParamDefinition_cached.clear();
+		StructComposition.StructDefinition_cached.clear();
+		ParamComposition.ParamDefinition_cached.clear();
 		ItemLayer.method2938();
 		PlayerComposition.PlayerAppearance_cachedModels.clear();
 		WorldMapEvent.method850();

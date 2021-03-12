@@ -30,6 +30,5 @@ import net.runelite.api.Player;
 @Value
 public class PlayerChanged
 {
-	// TODO: Implement
 	private final Player player;
 }

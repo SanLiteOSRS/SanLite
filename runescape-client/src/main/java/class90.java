@@ -50,7 +50,7 @@ public class class90 {
 			var4 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
 			var3 = class237.getWidget(var4);
 		} else {
-			var3 = var2 ? class277.field3584 : Interpreter.field1117;
+			var3 = var2 ? class277.scriptDotWidget : Interpreter.scriptActiveWidget;
 		}
 
 		if (var0 == ScriptOpcodes.CC_SETSCROLLPOS) {
@@ -202,7 +202,7 @@ public class class90 {
 				return 1;
 			} else if (var0 == ScriptOpcodes.CC_SETFILLMODE) {
 				var8 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-				class333 var6 = (class333)InterfaceParent.findEnumerated(class307.FillMode_values(), var8);
+				FillMode var6 = (FillMode)InterfaceParent.findEnumerated(class307.FillMode_values(), var8);
 				if (var6 != null) {
 					var3.fillMode = var6;
 					IsaacCipher.invalidateWidget(var3);

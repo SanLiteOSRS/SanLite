@@ -194,7 +194,7 @@ public class WorldMapSection1 implements WorldMapSection {
 			var0 -= 1000;
 			var3 = class237.getWidget(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);
 		} else {
-			var3 = var2 ? class277.field3584 : Interpreter.field1117;
+			var3 = var2 ? class277.scriptDotWidget : Interpreter.scriptActiveWidget;
 		}
 
 		String var4 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];

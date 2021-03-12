@@ -301,7 +301,7 @@ public class Huffman {
 		garbageValue = "124"
 	)
 	static int method4157(int var0, Script var1, boolean var2) {
-		Widget var3 = var2 ? class277.field3584 : Interpreter.field1117;
+		Widget var3 = var2 ? class277.scriptDotWidget : Interpreter.scriptActiveWidget;
 		if (var0 == ScriptOpcodes.CC_GETTARGETMASK) {
 			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = MusicPatch.method4094(class60.getWidgetClickMask(var3));
 			return 1;

@@ -161,12 +161,14 @@ public final class Client extends GameEngine implements Usernamed {
 	@Export("isCameraLocked")
 	static boolean isCameraLocked;
 	@ObfuscatedName("nh")
-	static int[] field855;
+	@Export("changedVarps")
+	static int[] changedVarps;
 	@ObfuscatedName("np")
 	@ObfuscatedGetter(
 		intValue = -982241293
 	)
-	static int field767;
+	@Export("changedVarpCount")
+	static int changedVarpCount;
 	@ObfuscatedName("nq")
 	@Export("isDraggingWidget")
 	static boolean isDraggingWidget;
@@ -1448,8 +1450,8 @@ public final class Client extends GameEngine implements Usernamed {
 		field847 = -1;
 		isDraggingWidget = false;
 		cycleCntr = 1;
-		field855 = new int[32];
-		field767 = 0;
+		changedVarps = new int[32];
+		changedVarpCount = 0;
 		changedItemContainers = new int[32];
 		field870 = 0;
 		changedSkills = new int[32];
@@ -4141,7 +4143,7 @@ public final class Client extends GameEngine implements Usernamed {
 					}
 
 					AbstractWorldMapIcon.changeGameOptions(var5);
-					field855[++field767 - 1 & 31] = var5;
+					changedVarps[++changedVarpCount - 1 & 31] = var5;
 					var1.serverPacket = null;
 					return true;
 				}
@@ -4418,7 +4420,7 @@ public final class Client extends GameEngine implements Usernamed {
 					}
 
 					class219.method4171();
-					field767 += 32;
+					changedVarpCount += 32;
 					var1.serverPacket = null;
 					return true;
 				}
@@ -4580,7 +4582,7 @@ public final class Client extends GameEngine implements Usernamed {
 						if (Varps.Varps_main[var16] != Varps.Varps_temp[var16]) {
 							Varps.Varps_main[var16] = Varps.Varps_temp[var16];
 							AbstractWorldMapIcon.changeGameOptions(var16);
-							field855[++field767 - 1 & 31] = var16;
+							changedVarps[++changedVarpCount - 1 & 31] = var16;
 						}
 					}
 
@@ -5047,7 +5049,7 @@ public final class Client extends GameEngine implements Usernamed {
 					}
 
 					AbstractWorldMapIcon.changeGameOptions(var5);
-					field855[++field767 - 1 & 31] = var5;
+					changedVarps[++changedVarpCount - 1 & 31] = var5;
 					var1.serverPacket = null;
 					return true;
 				}
@@ -5873,7 +5875,7 @@ public final class Client extends GameEngine implements Usernamed {
 						return 1;
 					} else {
 						int var8;
-						ParamDefinition var9;
+						ParamComposition var9;
 						if (var0 == ScriptOpcodes.NC_PARAM) {
 							Interpreter.Interpreter_intStackSize -= 2;
 							var7 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];

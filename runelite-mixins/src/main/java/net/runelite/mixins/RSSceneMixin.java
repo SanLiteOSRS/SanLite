@@ -288,13 +288,19 @@ public abstract class RSSceneMixin implements RSScene
 								client.setViewportWalking(false);
 							}
 							client.getCallbacks().drawScene();
+
+							if (client.getDrawCallbacks() != null)
+							{
+								client.getDrawCallbacks().postDrawScene();
+							}
+
 							return;
 						}
 					}
 				}
 			}
 		}
-
+		outer:
 		for (int z = minLevel; z < maxY; ++z)
 		{
 			RSTile[][] planeTiles = tiles[z];
@@ -353,13 +359,8 @@ public abstract class RSSceneMixin implements RSScene
 
 						if (client.getTileUpdateCount() == 0)
 						{
-							client.setCheckClick(false);
-							if (!checkClick)
-							{
-								client.setViewportWalking(false);
-							}
-							client.getCallbacks().drawScene();
-							return;
+							// exit the loop early and go straight to "if (!isGpu && (client..."
+							break outer;
 						}
 					}
 				}
@@ -374,6 +375,10 @@ public abstract class RSSceneMixin implements RSScene
 			client.setViewportWalking(false);
 		}
 		client.getCallbacks().drawScene();
+		if (client.getDrawCallbacks() != null)
+		{
+			client.getDrawCallbacks().postDrawScene();
+		}
 	}
 
 	@Copy("newWallDecoration")

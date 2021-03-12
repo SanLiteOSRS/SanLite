@@ -70,9 +70,9 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 
 @PluginDescriptor(
-	name = "Chat History",
-	description = "Retain your chat history when logging in/out or world hopping",
-	tags = {"chat", "history", "retain", "cycle", "pm"}
+		name = "Chat History",
+		description = "Retain your chat history when logging in/out or world hopping",
+		tags = {"chat", "history", "retain", "cycle", "pm"}
 )
 public class ChatHistoryPlugin extends Plugin implements KeyListener
 {
@@ -172,13 +172,13 @@ public class ChatHistoryPlugin extends Plugin implements KeyListener
 			case FRIENDSCHAT:
 			case CONSOLE:
 				final QueuedMessage queuedMessage = QueuedMessage.builder()
-					.type(chatMessageType)
-					.name(chatMessage.getName())
-					.sender(chatMessage.getSender())
-					.value(nbsp(chatMessage.getMessage()))
-					.runeLiteFormattedMessage(nbsp(chatMessage.getMessageNode().getRuneLiteFormatMessage()))
-					.timestamp(chatMessage.getTimestamp())
-					.build();
+						.type(chatMessageType)
+						.name(chatMessage.getName())
+						.sender(chatMessage.getSender())
+						.value(nbsp(chatMessage.getMessage()))
+						.runeLiteFormattedMessage(nbsp(chatMessage.getMessageNode().getRuneLiteFormatMessage()))
+						.timestamp(chatMessage.getTimestamp())
+						.build();
 
 				if (!messageQueue.contains(queuedMessage))
 				{

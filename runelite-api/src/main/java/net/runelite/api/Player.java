@@ -101,4 +101,6 @@ public interface Player extends Actor
 	 * @return true if the player is skulled, false otherwise
 	 */
 	boolean isSkulled();
+
+	String[] getActions();
 }

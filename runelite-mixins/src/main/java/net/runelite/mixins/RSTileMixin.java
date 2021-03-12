@@ -445,12 +445,19 @@ public abstract class RSTileMixin implements RSTile
 		RSNodeDeque oldQueue = lastGroundItems[z][x][y];
 		RSNodeDeque newQueue = groundItemDeque[z][x][y];
 
+		if (client.getGameState() != GameState.LOGGED_IN)
+		{
+			lastGroundItems[z][x][y] = newQueue;
+			client.setLastItemDespawn(null);
+			return;
+		}
+
 		if (oldQueue != newQueue)
 		{
 			if (oldQueue != null)
 			{
 				// despawn everything in old ..
-				RSNode head = oldQueue.getHead();
+				RSNode head = oldQueue.getSentinel();
 				for (RSNode cur = head.getNext(); cur != head; cur = cur.getNext())
 				{
 					RSTileItem item = (RSTileItem) cur;
@@ -491,7 +498,7 @@ public abstract class RSTileMixin implements RSTile
 		}
 
 		// The new item gets added to either the head, or the tail, depending on its price
-		RSNode head = itemDeque.getHead();
+		RSNode head = itemDeque.getSentinel();
 		RSNode current = null;
 		RSNode previous = head.getPrevious();
 		boolean forward = false;

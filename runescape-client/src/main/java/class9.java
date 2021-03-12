@@ -712,7 +712,7 @@ public class class9 {
 		garbageValue = "-1465568490"
 	)
 	static int method98(int var0, Script var1, boolean var2) {
-		Widget var3 = var2 ? class277.field3584 : Interpreter.field1117;
+		Widget var3 = var2 ? class277.scriptDotWidget : Interpreter.scriptActiveWidget;
 		if (var0 == ScriptOpcodes.CC_GETSCROLLX) {
 			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.scrollX;
 			return 1;

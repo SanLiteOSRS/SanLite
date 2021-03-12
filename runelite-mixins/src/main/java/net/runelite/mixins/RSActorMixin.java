@@ -234,6 +234,20 @@ public abstract class RSActorMixin implements RSActor
 	}
 
 	@Inject
+	@Override
+	public boolean isDead()
+	{
+		return dead;
+	}
+
+	@Inject
+	@Override
+	public void setDead(boolean dead)
+	{
+		this.dead = dead;
+	}
+
+	@Inject
 	@MethodHook("addHealthBar")
 	public void setCombatInfo(int combatInfoId, int gameCycle, int var3, int var4, int healthRatio, int health)
 	{
@@ -270,14 +284,8 @@ public abstract class RSActorMixin implements RSActor
 
 	@Inject
 	@Override
-	public boolean isDead()
+	public boolean isMoving()
 	{
-		return dead;
-	}
-
-	@Inject
-	public void setDead(boolean dead)
-	{
-		this.dead = dead;
+		return getPathLength() > 0;
 	}
 }

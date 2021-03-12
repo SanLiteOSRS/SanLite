@@ -33,6 +33,7 @@ import lombok.Getter;
 import net.runelite.client.config.AllKeyCodeKeybind;
 import net.runelite.client.config.Keybind;
 import net.runelite.client.config.ModifierlessKeybind;
+import net.runelite.client.ui.FontManager;
 
 public class HotkeyButton extends JButton
 {
@@ -41,6 +42,7 @@ public class HotkeyButton extends JButton
 
 	public HotkeyButton(Keybind value, boolean modifierless, boolean allKeyCode)
 	{
+		setFont(FontManager.getDefaultFont().deriveFont(12.f));
 		setValue(value);
 		addMouseListener(new MouseAdapter()
 		{

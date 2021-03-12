@@ -37,23 +37,12 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
 import java.awt.image.BufferedImage;
 import java.awt.image.VolatileImage;
+import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.BufferProvider;
-import net.runelite.api.Client;
-import net.runelite.api.MainBufferProvider;
-import net.runelite.api.NullItemID;
-import net.runelite.api.RenderOverview;
-import net.runelite.api.Renderable;
-import net.runelite.api.Skill;
-import net.runelite.api.WorldMapManager;
-import net.runelite.api.events.BeforeMenuRender;
-import net.runelite.api.events.BeforeRender;
-import net.runelite.api.events.FakeXpDrop;
-import net.runelite.api.events.GameStateChanged;
-import net.runelite.api.events.GameTick;
-import net.runelite.api.events.ScriptCallbackEvent;
+import net.runelite.api.*;
+import net.runelite.api.events.*;
 import net.runelite.api.hooks.Callbacks;
 import net.runelite.api.hooks.DrawCallbacks;
 import net.runelite.api.widgets.Widget;
@@ -71,7 +60,6 @@ import net.runelite.client.task.Scheduler;
 import net.runelite.client.ui.ClientUI;
 import net.runelite.client.ui.DrawManager;
 import net.runelite.client.ui.overlay.OverlayLayer;
-import net.runelite.client.ui.overlay.OverlayManager;
 import net.runelite.client.ui.overlay.OverlayRenderer;
 import net.runelite.client.ui.overlay.infobox.InfoBoxManager;
 import net.runelite.client.util.DeferredEventBus;
@@ -89,14 +77,17 @@ public class Hooks implements Callbacks
 {
 	private static final long CHECK = RSTimeUnit.GAME_TICKS.getDuration().toNanos(); // ns - how often to run checks
 
-	private static final Injector injector = RuneLite.getInjector();
-	private static final Client client = injector.getInstance(Client.class);
-	private static final OverlayRenderer renderer = injector.getInstance(OverlayRenderer.class);
-	private static final OverlayManager overlayManager = injector.getInstance(OverlayManager.class);
-
 	private static final GameTick GAME_TICK = new GameTick();
 	private static final BeforeRender BEFORE_RENDER = new BeforeRender();
+
+	private static final Injector injector = RuneLite.getInjector();
+	private static final Client client = injector.getInstance(Client.class);
+
 	private static final DrawFinished drawFinishedEvent = new DrawFinished();
+	private static final BeforeRender BEFORE_RENDER = new BeforeRender();
+	private static final GameTick GAME_TICK = new GameTick();
+	@Inject
+	private OverlayRenderer renderer;
 
 	private int mouseX = 0;
 	private int mouseY = 0;
@@ -342,7 +333,7 @@ public class Hooks implements Callbacks
 
 		try
 		{
-			renderer.render(graphics2d, OverlayLayer.ALWAYS_ON_TOP);
+			renderer.renderOverlayLayer(graphics2d, OverlayLayer.ALWAYS_ON_TOP);
 		}
 		catch (Exception ex)
 		{
@@ -453,7 +444,7 @@ public class Hooks implements Callbacks
 
 		try
 		{
-			renderer.render(graphics2d, OverlayLayer.ABOVE_SCENE);
+			renderer.renderOverlayLayer(graphics2d, OverlayLayer.ABOVE_SCENE);
 		}
 		catch (Exception ex)
 		{
@@ -469,32 +460,12 @@ public class Hooks implements Callbacks
 
 		try
 		{
-			renderer.render(graphics2d, OverlayLayer.UNDER_WIDGETS);
+			renderer.renderOverlayLayer(graphics2d, OverlayLayer.UNDER_WIDGETS);
 		}
 		catch (Exception ex)
 		{
 			log.warn("Error during overlay rendering", ex);
 		}
-	}
-
-	public static void drawAfterWidgets()
-	{
-		MainBufferProvider bufferProvider = (MainBufferProvider) client.getBufferProvider();
-		Graphics2D graphics2d = getGraphics(bufferProvider);
-
-		try
-		{
-			renderer.render(graphics2d, OverlayLayer.ABOVE_MAP);
-			renderer.render(graphics2d, OverlayLayer.ABOVE_WIDGETS);
-		}
-		catch (Exception ex)
-		{
-			log.warn("Error during overlay rendering", ex);
-		}
-
-		// WidgetItemOverlays render at ABOVE_WIDGETS, reset widget item
-		// list for next frame.
-		overlayManager.getItemWidgets().clear();
 	}
 
 	@Subscribe
@@ -533,6 +504,60 @@ public class Hooks implements Callbacks
 		deferredEventBus.replay();
 	}
 
+	@Override
+	public void drawInterface(int interfaceId, List<WidgetItem> widgetItems)
+	{
+		MainBufferProvider bufferProvider = (MainBufferProvider) client.getBufferProvider();
+		Graphics2D graphics2d = getGraphics(bufferProvider);
+
+		try
+		{
+			renderer.renderAfterInterface(graphics2d, interfaceId, widgetItems);
+		}
+		catch (Exception ex)
+		{
+			log.warn("Error during overlay rendering", ex);
+		}
+	}
+
+	@Override
+	public void drawLayer(Widget layer, List<WidgetItem> widgetItems)
+	{
+		MainBufferProvider bufferProvider = (MainBufferProvider) client.getBufferProvider();
+		Graphics2D graphics2d = getGraphics(bufferProvider);
+
+		try
+		{
+			renderer.renderAfterLayer(graphics2d, layer, widgetItems);
+		}
+		catch (Exception ex)
+		{
+			log.warn("Error during overlay rendering", ex);
+		}
+	}
+
+	@Subscribe
+	public void onScriptCallbackEvent(ScriptCallbackEvent scriptCallbackEvent)
+	{
+		if (!scriptCallbackEvent.getEventName().equals("fakeXpDrop"))
+		{
+			return;
+		}
+
+		final int[] intStack = client.getIntStack();
+		final int intStackSize = client.getIntStackSize();
+
+		final int statId = intStack[intStackSize - 2];
+		final int xp = intStack[intStackSize - 1];
+
+		Skill skill = Skill.values()[statId];
+		FakeXpDrop fakeXpDrop = new FakeXpDrop(
+			skill,
+			xp
+		);
+		eventBus.post(fakeXpDrop);
+	}
+
 	public static void renderDraw(Renderable renderable, int orientation, int pitchSin, int pitchCos, int yawSin, int yawCos, int x, int y, int z, long hash)
 	{
 		DrawCallbacks drawCallbacks = client.getDrawCallbacks();
@@ -565,42 +590,10 @@ public class Hooks implements Callbacks
 		}
 	}
 
-	@Override
-	public void drawItem(int itemId, WidgetItem widgetItem)
-	{
-		// Empty bank item
-		if (widgetItem.getId() != NullItemID.NULL_6512)
-		{
-			overlayManager.getItemWidgets().add(widgetItem);
-		}
-	}
-
 	public static boolean drawMenu()
 	{
 		BeforeMenuRender event = new BeforeMenuRender();
 		client.getCallbacks().post(event);
 		return event.isConsumed();
-	}
-
-	@Subscribe
-	public void onScriptCallbackEvent(ScriptCallbackEvent scriptCallbackEvent)
-	{
-		if (!scriptCallbackEvent.getEventName().equals("fakeXpDrop"))
-		{
-			return;
-		}
-
-		final int[] intStack = client.getIntStack();
-		final int intStackSize = client.getIntStackSize();
-
-		final int statId = intStack[intStackSize - 2];
-		final int xp = intStack[intStackSize - 1];
-
-		Skill skill = Skill.values()[statId];
-		FakeXpDrop fakeXpDrop = new FakeXpDrop(
-			skill,
-			xp
-		);
-		eventBus.post(fakeXpDrop);
 	}
 }

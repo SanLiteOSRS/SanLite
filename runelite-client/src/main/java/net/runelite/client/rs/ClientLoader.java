@@ -51,7 +51,6 @@ public class ClientLoader implements Supplier<Applet>
 	private static final int NUM_ATTEMPTS = 6;
 	public static boolean USE_LOCAL_INJECTED = false;
 
-	private final OkHttpClient okHttpClient;
 	private final ClientConfigLoader clientConfigLoader;
 	private ClientUpdateCheckMode updateCheckMode;
 	private final WorldSupplier worldSupplier;
@@ -62,7 +61,6 @@ public class ClientLoader implements Supplier<Applet>
 
 	public ClientLoader(OkHttpClient okHttpClient, ClientUpdateCheckMode updateCheckMode)
 	{
-		this.okHttpClient = okHttpClient;
 		this.clientConfigLoader = new ClientConfigLoader(okHttpClient);
 		this.updateCheckMode = updateCheckMode;
 		this.worldSupplier = new WorldSupplier(okHttpClient);

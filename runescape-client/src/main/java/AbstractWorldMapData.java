@@ -376,7 +376,7 @@ public abstract class AbstractWorldMapData {
 			var4 = class237.getWidget(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);
 			var3 = false;
 		} else {
-			var4 = var2 ? class277.field3584 : Interpreter.field1117;
+			var4 = var2 ? class277.scriptDotWidget : Interpreter.scriptActiveWidget;
 		}
 
 		int var11;

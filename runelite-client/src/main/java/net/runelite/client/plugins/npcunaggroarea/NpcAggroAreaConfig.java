@@ -25,8 +25,10 @@
 package net.runelite.client.plugins.npcunaggroarea;
 
 import java.awt.Color;
-
-import net.runelite.client.config.*;
+import net.runelite.client.config.Alpha;
+import net.runelite.client.config.Config;
+import net.runelite.client.config.ConfigGroup;
+import net.runelite.client.config.ConfigItem;
 
 @ConfigGroup("npcUnaggroArea")
 public interface NpcAggroAreaConfig extends Config
@@ -36,13 +38,6 @@ public interface NpcAggroAreaConfig extends Config
 	String CONFIG_CENTER2 = "center2";
 	String CONFIG_LOCATION = "location";
 	String CONFIG_DURATION = "duration";
-
-	@ConfigSection(
-			name = "NPC Names",
-			description = "List of NPC names",
-			position = 99
-	)
-	String npcNamesSection = "npcNames";
 
 	@ConfigItem(
 		keyName = "npcUnaggroAlwaysActive",
@@ -59,8 +54,7 @@ public interface NpcAggroAreaConfig extends Config
 		keyName = "npcUnaggroNames",
 		name = "NPC names",
 		description = "Enter names of NPCs where you wish to use this plugin",
-		position = 2,
-		section = npcNamesSection
+		position = 2
 	)
 	default String npcNamePatterns()
 	{
@@ -89,25 +83,25 @@ public interface NpcAggroAreaConfig extends Config
 		return false;
 	}
 
+	@Alpha
 	@ConfigItem(
 		keyName = "npcAggroAreaColor",
 		name = "Aggressive colour",
 		description = "Choose colour to use for marking NPC unaggressive area when NPCs are aggressive",
 		position = 5
 	)
-	@Alpha
 	default Color aggroAreaColor()
 	{
 		return new Color(0x64FFFF00, true);
 	}
 
+	@Alpha
 	@ConfigItem(
 		keyName = "npcUnaggroAreaColor",
 		name = "Unaggressive colour",
 		description = "Choose colour to use for marking NPC unaggressive area after NPCs have lost aggression",
 		position = 6
 	)
-	@Alpha
 	default Color unaggroAreaColor()
 	{
 		return new Color(0xFFFF00);

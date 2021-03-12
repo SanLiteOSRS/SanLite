@@ -52,6 +52,9 @@ public abstract class RSPlayerMixin implements RSPlayer
 	private boolean friended;
 
 	@Inject
+	private int oldHeadIcon = -2;
+
+	@Inject
 	@Override
 	public String getName()
 	{

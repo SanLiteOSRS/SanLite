@@ -10,3 +10,7 @@ project.properties
 .classpath
 .vscode
 .factorypath
+.gradle
+gradle
+gradlew
+gradlew.bat

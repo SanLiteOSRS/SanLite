@@ -181,7 +181,7 @@ public abstract class AbstractWorldMapIcon {
 		garbageValue = "1537886729"
 	)
 	static int method713(int var0, Script var1, boolean var2) {
-		Widget var3 = var2 ? class277.field3584 : Interpreter.field1117;
+		Widget var3 = var2 ? class277.scriptDotWidget : Interpreter.scriptActiveWidget;
 		if (var0 == ScriptOpcodes.CC_GETX) {
 			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3.x;
 			return 1;

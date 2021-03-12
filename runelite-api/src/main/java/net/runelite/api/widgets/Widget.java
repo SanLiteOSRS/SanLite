@@ -26,6 +26,7 @@ package net.runelite.api.widgets;
 
 import java.awt.Rectangle;
 import java.util.Collection;
+import javax.annotation.Nullable;
 import net.runelite.api.FontTypeFace;
 import net.runelite.api.Point;
 import net.runelite.api.SpritePixels;
@@ -117,6 +118,7 @@ public interface Widget
 	/**
 	 * Gets the dynamic children of this widget in a sparse array
 	 */
+	@Nullable
 	Widget[] getChildren();
 
 	/**
@@ -981,7 +983,36 @@ public interface Widget
 	 */
 	void setOnReleaseListener(Object ...args);
 
-	boolean isWidgetItemDragged(int index);
+	/**
+	 * Sets a script to be ran when a drag operation is finished on this widget
+	 *
+	 * @param args A ScriptID, then the args for the script
+	 */
+	void setOnDragCompleteListener(Object ...args);
 
-	Point getWidgetItemDragOffsets();
+	/**
+	 * Sets a script to be ran when this widget moves due to a drag
+	 *
+	 * @param args A ScriptID, then the args for the script
+	 */
+	void setOnDragListener(Object ...args);
+
+	/**
+	 * Container this can be dragged in
+	 */
+	Widget getDragParent();
+
+	/**
+	 * Container this can be dragged in
+	 */
+	void setDragParent(Widget dragParent);
+
+	/**
+	 * Sets a script to be ran when a varplayer changes
+	 *
+	 * @param args A ScriptID, then the args for the script
+	 */
+	void setOnVarTransmitListener(Object ...args);
+
+	boolean isWidgetItemDragged(int index);
 }

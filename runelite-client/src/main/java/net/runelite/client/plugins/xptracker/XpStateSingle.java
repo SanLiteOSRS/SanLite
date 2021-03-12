@@ -195,7 +195,6 @@ class XpStateSingle
 		}
 	}
 
-
 	int getXpHr()
 	{
 		return toHourly(xpGained);

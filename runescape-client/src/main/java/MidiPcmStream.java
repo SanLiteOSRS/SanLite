@@ -251,7 +251,7 @@ public class MidiPcmStream extends PcmStream {
 	@Export("fill")
 	protected synchronized void fill(int[] var1, int var2, int var3) {
 		if (this.midiFile.isReady()) {
-			int var4 = this.midiFile.division * this.field2443 * -727379968 / (StructDefinition.field3338 * 22050);
+			int var4 = this.midiFile.division * this.field2443 * -727379968 / (StructComposition.field3338 * 22050);
 
 			do {
 				long var5 = this.field2466 + (long)var3 * (long)var4;
@@ -300,7 +300,7 @@ public class MidiPcmStream extends PcmStream {
 	@Export("skip")
 	protected synchronized void skip(int var1) {
 		if (this.midiFile.isReady()) {
-			int var2 = this.midiFile.division * this.field2443 * -727379968 / (StructDefinition.field3338 * 22050);
+			int var2 = this.midiFile.division * this.field2443 * -727379968 / (StructComposition.field3338 * 22050);
 
 			do {
 				long var3 = this.field2466 + (long)var2 * (long)var1;
@@ -525,7 +525,7 @@ public class MidiPcmStream extends PcmStream {
 		for (MusicPatchNode var2 = (MusicPatchNode)this.patchStream.queue.last(); var2 != null; var2 = (MusicPatchNode)this.patchStream.queue.previous()) {
 			if (var1 < 0 || var2.field2471 == var1) {
 				if (var2.stream != null) {
-					var2.stream.method2803(StructDefinition.field3338 * 22050 / 100);
+					var2.stream.method2803(StructComposition.field3338 * 22050 / 100);
 					if (var2.stream.method2730()) {
 						this.patchStream.mixer.addSubStream(var2.stream);
 					}
@@ -864,7 +864,7 @@ public class MidiPcmStream extends PcmStream {
 			var2 += (int)((double)var4 * var6);
 		}
 
-		var4 = (int)((double)(var1.rawSound.sampleRate * 256) * Math.pow(2.0D, (double)var2 * 3.255208333333333E-4D) / (double)(StructDefinition.field3338 * 22050) + 0.5D);
+		var4 = (int)((double)(var1.rawSound.sampleRate * 256) * Math.pow(2.0D, (double)var2 * 3.255208333333333E-4D) / (double)(StructComposition.field3338 * 22050) + 0.5D);
 		return var4 < 1 ? 1 : var4;
 	}
 
@@ -996,7 +996,7 @@ public class MidiPcmStream extends PcmStream {
 		garbageValue = "8"
 	)
 	boolean method3953(MusicPatchNode var1, int[] var2, int var3, int var4) {
-		var1.field2484 = StructDefinition.field3338 * 22050 / 100;
+		var1.field2484 = StructComposition.field3338 * 22050 / 100;
 		if (var1.field2486 < 0 || var1.stream != null && !var1.stream.method2786()) {
 			int var5 = var1.field2480;
 			if (var5 > 0) {

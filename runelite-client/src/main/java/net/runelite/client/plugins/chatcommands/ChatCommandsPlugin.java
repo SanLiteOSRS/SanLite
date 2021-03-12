@@ -27,10 +27,12 @@ package net.runelite.client.plugins.chatcommands;
 
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.MoreObjects;
+import com.google.common.collect.ImmutableMap;
 import com.google.inject.Provides;
 import java.io.IOException;
 import java.util.EnumSet;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -63,6 +65,7 @@ import net.runelite.client.chat.ChatCommandManager;
 import net.runelite.client.chat.ChatMessageBuilder;
 import net.runelite.client.chat.ChatMessageManager;
 import net.runelite.client.config.ConfigManager;
+import net.runelite.client.config.RuneLiteConfig;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.events.ChatInput;
 import net.runelite.client.game.ItemManager;
@@ -91,16 +94,13 @@ import org.apache.commons.text.WordUtils;
 @Slf4j
 public class ChatCommandsPlugin extends Plugin
 {
-	private static final Pattern KILLCOUNT_PATTERN = Pattern.compile("Your (.+) (?:kill|harvest|lap|completion) count is: <col=ff0000>(\\d+)</col>");
-	private static final Pattern RAIDS_PATTERN = Pattern.compile("Your completed (.+) count is: <col=ff0000>(\\d+)</col>");
+	private static final Pattern KILLCOUNT_PATTERN = Pattern.compile("Your (?:completion count for |subdued |completed )?(.+?) (?:(?:kill|harvest|lap|completion) )?(?:count )?is: <col=ff0000>(\\d+)</col>");
 	private static final String COX_TEAM_SIZES = "(?:\\d+(?:\\+|-\\d+)? players|Solo)";
 	private static final Pattern RAIDS_PB_PATTERN = Pattern.compile("<col=ef20ff>Congratulations - your raid is complete!</col><br>Team size: <col=ff0000>" + COX_TEAM_SIZES + "</col> Duration:</col> <col=ff0000>(?<pb>[0-9:]+)</col> \\(new personal best\\)</col>");
 	private static final Pattern RAIDS_DURATION_PATTERN = Pattern.compile("<col=ef20ff>Congratulations - your raid is complete!</col><br>Team size: <col=ff0000>" + COX_TEAM_SIZES + "</col> Duration:</col> <col=ff0000>[0-9:]+</col> Personal best: </col><col=ff0000>(?<pb>[0-9:]+)</col>");
 	private static final Pattern TOB_WAVE_PB_PATTERN = Pattern.compile("^.*Theatre of Blood wave completion time: <col=ff0000>(?<pb>[0-9:]+)</col> \\(Personal best!\\)");
 	private static final Pattern TOB_WAVE_DURATION_PATTERN = Pattern.compile("^.*Theatre of Blood wave completion time: <col=ff0000>[0-9:]+</col><br></col>Personal best: (?<pb>[0-9:]+)");
-	private static final Pattern WINTERTODT_PATTERN = Pattern.compile("Your subdued Wintertodt count is: <col=ff0000>(\\d+)</col>");
-	private static final Pattern BARROWS_PATTERN = Pattern.compile("Your Barrows chest count is: <col=ff0000>(\\d+)</col>");
-	private static final Pattern KILL_DURATION_PATTERN = Pattern.compile("(?i)^(?:Fight |Lap |Challenge |Corrupted challenge )?duration: <col=ff0000>[0-9:]+</col>\\. Personal best: (?<pb>[0-9:]+)");
+	private static final Pattern KILL_DURATION_PATTERN = Pattern.compile("(?i)^(?:Fight |Lap |Challenge |Corrupted challenge )?duration: <col=ff0000>[0-9:]+</col>\\. Personal best: (?:<col=ff0000>)?(?<pb>[0-9:]+)");
 	private static final Pattern NEW_PB_PATTERN = Pattern.compile("(?i)^(?:Fight |Lap |Challenge |Corrupted challenge )?duration: <col=ff0000>(?<pb>[0-9:]+)</col> \\(new personal best\\)");
 	private static final Pattern DUEL_ARENA_WINS_PATTERN = Pattern.compile("You (were defeated|won)! You have(?: now)? won (\\d+) duels?");
 	private static final Pattern DUEL_ARENA_LOSSES_PATTERN = Pattern.compile("You have(?: now)? lost (\\d+) duels?");
@@ -127,9 +127,14 @@ public class ChatCommandsPlugin extends Plugin
 	private static final String GC_COMMAND_STRING = "!gc";
 	private static final String DUEL_ARENA_COMMAND = "!duels";
 	private static final String LEAGUE_POINTS_COMMAND = "!lp";
+	private static final String SOUL_WARS_ZEAL_COMMAND = "!sw";
 
 	@VisibleForTesting
 	static final int ADV_LOG_EXPLOITS_TEXT_INDEX = 1;
+
+	private static final Map<String, String> KILLCOUNT_RENAMES = ImmutableMap.of(
+		"Barrows chest", "Barrows Chests"
+	);
 
 	private boolean bossLogLoaded;
 	private boolean advLogLoaded;
@@ -137,6 +142,7 @@ public class ChatCommandsPlugin extends Plugin
 	private String pohOwner;
 	private HiscoreEndpoint hiscoreEndpoint; // hiscore endpoint for current player
 	private String lastBossKill;
+	private int lastBossTime = -1;
 	private int lastPb = -1;
 
 	@Inject
@@ -172,6 +178,9 @@ public class ChatCommandsPlugin extends Plugin
 	@Inject
 	private ChatClient chatClient;
 
+	@Inject
+	private RuneLiteConfig runeLiteConfig;
+
 	@Override
 	public void startUp()
 	{
@@ -191,12 +200,14 @@ public class ChatCommandsPlugin extends Plugin
 		chatCommandManager.registerCommandAsync(PB_COMMAND, this::personalBestLookup, this::personalBestSubmit);
 		chatCommandManager.registerCommandAsync(GC_COMMAND_STRING, this::gambleCountLookup, this::gambleCountSubmit);
 		chatCommandManager.registerCommandAsync(DUEL_ARENA_COMMAND, this::duelArenaLookup, this::duelArenaSubmit);
+		chatCommandManager.registerCommandAsync(SOUL_WARS_ZEAL_COMMAND, this::soulWarsZealLookup);
 	}
 
 	@Override
 	public void shutDown()
 	{
 		lastBossKill = null;
+		lastBossTime = -1;
 
 		keyManager.unregisterKeyListener(chatKeyboardListener);
 
@@ -214,6 +225,7 @@ public class ChatCommandsPlugin extends Plugin
 		chatCommandManager.unregisterCommand(PB_COMMAND);
 		chatCommandManager.unregisterCommand(GC_COMMAND_STRING);
 		chatCommandManager.unregisterCommand(DUEL_ARENA_COMMAND);
+		chatCommandManager.unregisterCommand(SOUL_WARS_ZEAL_COMMAND);
 	}
 
 	@Provides
@@ -268,6 +280,8 @@ public class ChatCommandsPlugin extends Plugin
 			String boss = matcher.group(1);
 			int kc = Integer.parseInt(matcher.group(2));
 
+			boss = KILLCOUNT_RENAMES.getOrDefault(boss, boss);
+
 			setKc(boss, kc);
 			// We either already have the pb, or need to remember the boss for the upcoming pb
 			if (lastPb > -1)
@@ -279,37 +293,8 @@ public class ChatCommandsPlugin extends Plugin
 			else
 			{
 				lastBossKill = boss;
+				lastBossTime = client.getTickCount();
 			}
-			return;
-		}
-
-		matcher = WINTERTODT_PATTERN.matcher(message);
-		if (matcher.find())
-		{
-			int kc = Integer.parseInt(matcher.group(1));
-
-			setKc("Wintertodt", kc);
-		}
-
-		matcher = RAIDS_PATTERN.matcher(message);
-		if (matcher.find())
-		{
-			String boss = matcher.group(1);
-			int kc = Integer.parseInt(matcher.group(2));
-
-			setKc(boss, kc);
-			if (lastPb > -1)
-			{
-				// lastPb contains the last raid duration and not the personal best, because the raid
-				// complete message does not include the pb. We have to check if it is a new pb:
-				int currentPb = getPb(boss);
-				if (currentPb <= 0 || lastPb < currentPb)
-				{
-					setPb(boss, lastPb);
-				}
-				lastPb = -1;
-			}
-			lastBossKill = boss;
 			return;
 		}
 
@@ -348,14 +333,6 @@ public class ChatCommandsPlugin extends Plugin
 			int losses = Integer.parseInt(matcher.group(1));
 
 			setKc("Duel Arena Losses", losses);
-		}
-
-		matcher = BARROWS_PATTERN.matcher(message);
-		if (matcher.find())
-		{
-			int kc = Integer.parseInt(matcher.group(1));
-
-			setKc("Barrows Chests", kc);
 		}
 
 		matcher = KILL_DURATION_PATTERN.matcher(message);
@@ -428,7 +405,11 @@ public class ChatCommandsPlugin extends Plugin
 			setKc("Hallowed Sepulchre", kc);
 		}
 
-		lastBossKill = null;
+		if (lastBossKill != null && lastBossTime != client.getTickCount())
+		{
+			lastBossKill = null;
+			lastBossTime = -1;
+		}
 	}
 
 	private static int timeStringToSeconds(String timeString)
@@ -476,10 +457,14 @@ public class ChatCommandsPlugin extends Plugin
 			advLogLoaded = false;
 
 			Widget adventureLog = client.getWidget(WidgetInfo.ADVENTURE_LOG);
-			Matcher advLogExploitsText = ADVENTURE_LOG_TITLE_PATTERN.matcher(adventureLog.getChild(ADV_LOG_EXPLOITS_TEXT_INDEX).getText());
-			if (advLogExploitsText.find())
+
+			if (adventureLog != null)
 			{
-				pohOwner = advLogExploitsText.group(1);
+				Matcher advLogExploitsText = ADVENTURE_LOG_TITLE_PATTERN.matcher(adventureLog.getChild(ADV_LOG_EXPLOITS_TEXT_INDEX).getText());
+				if (advLogExploitsText.find())
+				{
+					pohOwner = advLogExploitsText.group(1);
+				}
 			}
 		}
 
@@ -661,7 +646,7 @@ public class ChatCommandsPlugin extends Plugin
 			.append(ChatColorType.NORMAL)
 			.append(" kill count: ")
 			.append(ChatColorType.HIGHLIGHT)
-			.append(Integer.toString(kc))
+			.append(String.format("%,d", kc))
 			.build();
 
 		log.debug("Setting response {}", response);
@@ -743,15 +728,15 @@ public class ChatCommandsPlugin extends Plugin
 			.append(ChatColorType.NORMAL)
 			.append("Duel Arena wins: ")
 			.append(ChatColorType.HIGHLIGHT)
-			.append(Integer.toString(wins))
+			.append(String.format("%,d", wins))
 			.append(ChatColorType.NORMAL)
 			.append("   losses: ")
 			.append(ChatColorType.HIGHLIGHT)
-			.append(Integer.toString(losses))
+			.append(String.format("%,d", losses))
 			.append(ChatColorType.NORMAL)
 			.append("   streak: ")
 			.append(ChatColorType.HIGHLIGHT)
-			.append(Integer.toString((winningStreak != 0 ? winningStreak : -losingStreak)))
+			.append(String.format("%,d", winningStreak != 0 ? winningStreak : -losingStreak))
 			.build();
 
 		log.debug("Setting response {}", response);
@@ -952,7 +937,7 @@ public class ChatCommandsPlugin extends Plugin
 			.append(ChatColorType.NORMAL)
 			.append("Barbarian Assault High-level gambles: ")
 			.append(ChatColorType.HIGHLIGHT)
-			.append(Integer.toString(gc))
+			.append(String.format("%,d", gc))
 			.build();
 
 		log.debug("Setting response {}", response);
@@ -1015,7 +1000,7 @@ public class ChatCommandsPlugin extends Plugin
 			ItemPrice item = retrieveFromList(results, search);
 
 			int itemId = item.getId();
-			int itemPrice = item.getPrice();
+			int itemPrice = runeLiteConfig.useWikiItemPrices() && item.getWikiPrice() > 0 ? item.getWikiPrice() : item.getPrice();
 
 			final ChatMessageBuilder builder = new ChatMessageBuilder()
 				.append(ChatColorType.NORMAL)
@@ -1257,6 +1242,16 @@ public class ChatCommandsPlugin extends Plugin
 		minigameLookup(chatMessage, HiscoreSkill.LAST_MAN_STANDING);
 	}
 
+	private void soulWarsZealLookup(ChatMessage chatMessage, String message)
+	{
+		if (!config.sw())
+		{
+			return;
+		}
+
+		minigameLookup(chatMessage, HiscoreSkill.SOUL_WARS_ZEAL);
+	}
+
 	private void minigameLookup(ChatMessage chatMessage, HiscoreSkill minigame)
 	{
 		try
@@ -1290,6 +1285,9 @@ public class ChatCommandsPlugin extends Plugin
 					break;
 				case LEAGUE_POINTS:
 					hiscoreSkill = result.getLeaguePoints();
+					break;
+				case SOUL_WARS_ZEAL:
+					hiscoreSkill = result.getSoulWarsZeal();
 					break;
 				default:
 					log.warn("error looking up {} score: not implemented", minigame.getName().toLowerCase());
@@ -1402,7 +1400,7 @@ public class ChatCommandsPlugin extends Plugin
 				.append(ChatColorType.NORMAL)
 				.append("Clue scroll (" + level + ")").append(": ")
 				.append(ChatColorType.HIGHLIGHT)
-				.append(Integer.toString(quantity));
+				.append(String.format("%,d", quantity));
 
 			if (rank != -1)
 			{
@@ -1836,6 +1834,20 @@ public class ChatCommandsPlugin extends Plugin
 			case "wildy":
 			case "wildy agility":
 				return "Wilderness Agility";
+
+			// Jad challenge
+			case "jad 1":
+				return "TzHaar-Ket-Rak's First Challenge";
+			case "jad 2":
+				return "TzHaar-Ket-Rak's Second Challenge";
+			case "jad 3":
+				return "TzHaar-Ket-Rak's Third Challenge";
+			case "jad 4":
+				return "TzHaar-Ket-Rak's Fourth Challenge";
+			case "jad 5":
+				return "TzHaar-Ket-Rak's Fifth Challenge";
+			case "jad 6":
+				return "TzHaar-Ket-Rak's Sixth Challenge";
 
 			default:
 				return WordUtils.capitalize(boss);

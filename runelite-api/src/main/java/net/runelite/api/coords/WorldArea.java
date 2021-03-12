@@ -436,7 +436,7 @@ public class WorldArea
 			if (height == 1)
 			{
 				return (collisionDataFlags[checkX - dx][checkY] & yFlags) == 0 ||
-					!extraCondition.test(WorldPoint.fromScene(client, startX, checkY, client.getPlane()));
+						!extraCondition.test(WorldPoint.fromScene(client, startX, checkY, client.getPlane()));
 			}
 		}
 
