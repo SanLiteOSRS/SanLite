@@ -84,8 +84,6 @@ public class Hooks implements Callbacks
 	private static final Client client = injector.getInstance(Client.class);
 
 	private static final DrawFinished drawFinishedEvent = new DrawFinished();
-	private static final BeforeRender BEFORE_RENDER = new BeforeRender();
-	private static final GameTick GAME_TICK = new GameTick();
 	@Inject
 	private OverlayRenderer renderer;
 
@@ -405,7 +403,7 @@ public class Hooks implements Callbacks
 
 		try
 		{
-			renderer.render((Graphics2D)finalImage.getGraphics(), OverlayLayer.AFTER_MIRROR);
+			renderer.renderOverlayLayer((Graphics2D)finalImage.getGraphics(), OverlayLayer.AFTER_MIRROR);
 		}
 		catch (Exception ex)
 		{
