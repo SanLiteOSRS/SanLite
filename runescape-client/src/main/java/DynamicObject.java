@@ -4,77 +4,66 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cw")
+@ObfuscatedName("cn")
 @Implements("DynamicObject")
 public class DynamicObject extends Renderable {
-	@ObfuscatedName("a")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = 1608906951
-	)
-	static int field1311;
-	@ObfuscatedName("er")
-	@ObfuscatedGetter(
-		intValue = 1685580933
-	)
-	@Export("port3")
-	static int port3;
-	@ObfuscatedName("n")
-	@ObfuscatedGetter(
-		intValue = -1583763067
+		intValue = -57600529
 	)
 	@Export("id")
 	int id;
-	@ObfuscatedName("v")
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = 1077688157
+		intValue = 1163612607
 	)
 	@Export("type")
 	int type;
-	@ObfuscatedName("d")
+	@ObfuscatedName("u")
 	@ObfuscatedGetter(
-		intValue = -1461018485
+		intValue = 1554674349
 	)
 	@Export("orientation")
 	int orientation;
-	@ObfuscatedName("c")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = 242558127
+		intValue = -1797083453
 	)
 	@Export("plane")
 	int plane;
-	@ObfuscatedName("y")
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = -345704253
+		intValue = 544096397
 	)
 	@Export("x")
 	int x;
-	@ObfuscatedName("h")
+	@ObfuscatedName("e")
 	@ObfuscatedGetter(
-		intValue = -2021063101
+		intValue = -252563019
 	)
 	@Export("y")
 	int y;
-	@ObfuscatedName("z")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "Ljs;"
+		signature = "Lkw;"
 	)
 	@Export("sequenceDefinition")
 	SequenceDefinition sequenceDefinition;
-	@ObfuscatedName("e")
+	@ObfuscatedName("g")
 	@ObfuscatedGetter(
-		intValue = -765264835
+		intValue = -2049566951
 	)
 	@Export("frame")
 	int frame;
-	@ObfuscatedName("q")
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = 1029669135
+		intValue = -642790573
 	)
 	@Export("cycleStart")
 	int cycleStart;
 
 	@ObfuscatedSignature(
-		signature = "(IIIIIIIZLem;)V"
+		signature = "(IIIIIIIZLfm;)V"
 	)
 	DynamicObject(int var1, int var2, int var3, int var4, int var5, int var6, int var7, boolean var8, Renderable var9) {
 		this.id = var1;
@@ -84,12 +73,12 @@ public class DynamicObject extends Renderable {
 		this.x = var5;
 		this.y = var6;
 		if (var7 != -1) {
-			this.sequenceDefinition = InterfaceParent.SequenceDefinition_get(var7);
+			this.sequenceDefinition = class225.SequenceDefinition_get(var7);
 			this.frame = 0;
 			this.cycleStart = Client.cycle - 1;
-			if (this.sequenceDefinition.field3548 == 0 && var9 != null && var9 instanceof DynamicObject) {
+			if (this.sequenceDefinition.field3707 == 0 && var9 != null && var9 instanceof DynamicObject) {
 				DynamicObject var10 = (DynamicObject)var9;
-				if (var10.sequenceDefinition == this.sequenceDefinition) {
+				if (this.sequenceDefinition == var10.sequenceDefinition) {
 					this.frame = var10.frame;
 					this.cycleStart = var10.cycleStart;
 					return;
@@ -104,10 +93,10 @@ public class DynamicObject extends Renderable {
 
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "(B)Lef;",
-		garbageValue = "127"
+		signature = "(I)Lgv;",
+		garbageValue = "1835906978"
 	)
 	@Export("getModel")
 	protected final Model getModel() {
@@ -117,11 +106,11 @@ public class DynamicObject extends Renderable {
 				var1 = 100;
 			}
 
-			label55: {
+			label54: {
 				do {
 					do {
 						if (var1 <= this.sequenceDefinition.frameLengths[this.frame]) {
-							break label55;
+							break label54;
 						}
 
 						var1 -= this.sequenceDefinition.frameLengths[this.frame];
@@ -137,7 +126,7 @@ public class DynamicObject extends Renderable {
 			this.cycleStart = Client.cycle - var1;
 		}
 
-		ObjectComposition var12 = WorldMapAreaData.getObjectDefinition(this.id);
+		ObjectComposition var12 = class19.getObjectDefinition(this.id);
 		if (var12.transforms != null) {
 			var12 = var12.transform();
 		}

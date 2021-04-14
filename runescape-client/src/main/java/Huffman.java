@@ -2,18 +2,23 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("hp")
+@ObfuscatedName("hx")
 @Implements("Huffman")
 public class Huffman {
-	@ObfuscatedName("n")
+	@ObfuscatedName("qz")
+	@ObfuscatedSignature(
+		signature = "Lak;"
+	)
+	@Export("pcmStreamMixer")
+	static PcmStreamMixer pcmStreamMixer;
+	@ObfuscatedName("f")
 	@Export("masks")
 	int[] masks;
-	@ObfuscatedName("v")
+	@ObfuscatedName("o")
 	@Export("bits")
 	byte[] bits;
-	@ObfuscatedName("d")
+	@ObfuscatedName("u")
 	@Export("keys")
 	int[] keys;
 
@@ -100,10 +105,10 @@ public class Huffman {
 
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "([BII[BIB)I",
-		garbageValue = "-79"
+		signature = "([BII[BII)I",
+		garbageValue = "310251163"
 	)
 	@Export("compress")
 	int compress(byte[] var1, int var2, int var3, byte[] var4, int var5) {
@@ -121,7 +126,7 @@ public class Huffman {
 			int var11 = var7 >> 3;
 			int var12 = var7 & 7;
 			var6 &= -var12 >> 31;
-			int var13 = (var12 + var10 - 1 >> 3) + var11;
+			int var13 = (var10 + var12 - 1 >> 3) + var11;
 			var12 += 24;
 			var4[var11] = (byte)(var6 |= var9 >>> var12);
 			if (var11 < var13) {
@@ -151,10 +156,10 @@ public class Huffman {
 		return (var7 + 7 >> 3) - var5;
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "([BI[BIII)I",
-		garbageValue = "1393765026"
+		signature = "([BI[BIIB)I",
+		garbageValue = "74"
 	)
 	@Export("decompress")
 	int decompress(byte[] var1, int var2, byte[] var3, int var4, int var5) {
@@ -295,38 +300,12 @@ public class Huffman {
 		}
 	}
 
-	@ObfuscatedName("i")
+	@ObfuscatedName("hw")
 	@ObfuscatedSignature(
-		signature = "(ILcl;ZB)I",
-		garbageValue = "124"
+		signature = "(I)Z",
+		garbageValue = "-1260509455"
 	)
-	static int method4157(int var0, Script var1, boolean var2) {
-		Widget var3 = var2 ? class277.field3584 : Interpreter.field1117;
-		if (var0 == ScriptOpcodes.CC_GETTARGETMASK) {
-			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = MusicPatch.method4094(class60.getWidgetClickMask(var3));
-			return 1;
-		} else if (var0 != ScriptOpcodes.CC_GETOP) {
-			if (var0 == ScriptOpcodes.CC_GETOPBASE) {
-				if (var3.dataText == null) {
-					Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = "";
-				} else {
-					Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var3.dataText;
-				}
-
-				return 1;
-			} else {
-				return 2;
-			}
-		} else {
-			int var4 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-			--var4;
-			if (var3.actions != null && var4 < var3.actions.length && var3.actions[var4] != null) {
-				Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var3.actions[var4];
-			} else {
-				Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = "";
-			}
-
-			return 1;
-		}
+	static final boolean method4311() {
+		return Client.isMenuOpen;
 	}
 }

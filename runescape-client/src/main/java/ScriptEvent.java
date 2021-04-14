@@ -4,74 +4,68 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("by")
+@ObfuscatedName("cj")
 @Implements("ScriptEvent")
 public class ScriptEvent extends Node {
-	@ObfuscatedName("fj")
-	@ObfuscatedSignature(
-		signature = "Lkl;"
-	)
-	@Export("fontBold12")
-	static Font fontBold12;
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@Export("args")
 	Object[] args;
-	@ObfuscatedName("v")
+	@ObfuscatedName("o")
 	@Export("isMouseInputEvent")
 	boolean isMouseInputEvent;
-	@ObfuscatedName("d")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "Lhz;"
+		signature = "Lhu;"
 	)
 	@Export("widget")
 	Widget widget;
-	@ObfuscatedName("c")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = 1697635159
+		intValue = 1784296503
 	)
 	@Export("mouseX")
 	int mouseX;
-	@ObfuscatedName("y")
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = 734230281
+		intValue = -1719559371
 	)
 	@Export("mouseY")
 	int mouseY;
-	@ObfuscatedName("h")
+	@ObfuscatedName("e")
 	@ObfuscatedGetter(
-		intValue = 944694965
+		intValue = 770661921
 	)
 	@Export("opIndex")
 	int opIndex;
-	@ObfuscatedName("z")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "Lhz;"
+		signature = "Lhu;"
 	)
 	@Export("dragTarget")
 	Widget dragTarget;
-	@ObfuscatedName("e")
+	@ObfuscatedName("g")
 	@ObfuscatedGetter(
-		intValue = -905189557
+		intValue = 2016047147
 	)
 	@Export("keyTyped")
 	int keyTyped;
-	@ObfuscatedName("q")
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = 220260505
+		intValue = 1513404237
 	)
 	@Export("keyPressed")
 	int keyPressed;
-	@ObfuscatedName("l")
+	@ObfuscatedName("n")
 	@Export("targetName")
 	String targetName;
-	@ObfuscatedName("s")
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = -1071641047
+		intValue = -1732094063
 	)
-	int field593;
-	@ObfuscatedName("b")
+	int field1154;
+	@ObfuscatedName("m")
 	@ObfuscatedGetter(
-		intValue = 1196618585
+		intValue = 360823723
 	)
 	@Export("type")
 	int type;
@@ -80,43 +74,36 @@ public class ScriptEvent extends Node {
 		this.type = 76;
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "([Ljava/lang/Object;I)V",
-		garbageValue = "807576822"
+		signature = "([Ljava/lang/Object;B)V",
+		garbageValue = "18"
 	)
 	@Export("setArgs")
 	public void setArgs(Object[] var1) {
 		this.args = var1;
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "(IB)V",
-		garbageValue = "-67"
+		signature = "(II)V",
+		garbageValue = "1577560500"
 	)
 	@Export("setType")
 	public void setType(int var1) {
 		this.type = var1;
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "1"
+		signature = "(Lir;Lir;ZLkq;B)V",
+		garbageValue = "15"
 	)
-	public static void method1271() {
-		class105.reflectionChecks = new IterableNodeDeque();
-	}
-
-	@ObfuscatedName("d")
-	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-1068960678"
-	)
-	public static void method1272() {
-		VertexNormal.midiPcmStream.clear();
-		class206.musicPlayerStatus = 1;
-		class206.musicTrackArchive = null;
+	public static void method2101(AbstractArchive var0, AbstractArchive var1, boolean var2, Font var3) {
+		Widget.ItemDefinition_archive = var0;
+		ItemComposition.ItemDefinition_modelArchive = var1;
+		class21.ItemDefinition_inMembersWorld = var2;
+		UserComparator8.ItemDefinition_fileCount = Widget.ItemDefinition_archive.getGroupFileCount(10);
+		DevicePcmPlayerProvider.ItemDefinition_fontPlain11 = var3;
 	}
 }

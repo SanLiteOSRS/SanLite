@@ -4,58 +4,52 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("it")
+@ObfuscatedName("jq")
 @Implements("KitDefinition")
 public class KitDefinition extends DualNode {
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "Lig;"
+		signature = "Lir;"
 	)
 	@Export("KitDefinition_archive")
-	static AbstractArchive KitDefinition_archive;
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		signature = "Lig;"
-	)
-	@Export("KitDefinition_modelsArchive")
-	static AbstractArchive KitDefinition_modelsArchive;
-	@ObfuscatedName("d")
+	public static AbstractArchive KitDefinition_archive;
+	@ObfuscatedName("u")
 	@ObfuscatedGetter(
-		intValue = -1172594075
+		intValue = -827532557
 	)
 	@Export("KitDefinition_fileCount")
 	public static int KitDefinition_fileCount;
-	@ObfuscatedName("c")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		signature = "Lex;"
+		signature = "Lgf;"
 	)
 	@Export("KitDefinition_cached")
 	public static EvictingDualNodeHashTable KitDefinition_cached;
-	@ObfuscatedName("y")
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = -765113367
+		intValue = -2145544887
 	)
 	@Export("bodypartID")
 	public int bodypartID;
-	@ObfuscatedName("h")
+	@ObfuscatedName("e")
 	@Export("models2")
 	int[] models2;
-	@ObfuscatedName("z")
+	@ObfuscatedName("k")
 	@Export("recolorFrom")
 	short[] recolorFrom;
-	@ObfuscatedName("e")
+	@ObfuscatedName("g")
 	@Export("recolorTo")
 	short[] recolorTo;
-	@ObfuscatedName("q")
+	@ObfuscatedName("h")
 	@Export("retextureFrom")
 	short[] retextureFrom;
-	@ObfuscatedName("l")
+	@ObfuscatedName("n")
 	@Export("retextureTo")
 	short[] retextureTo;
-	@ObfuscatedName("s")
+	@ObfuscatedName("l")
 	@Export("models")
 	int[] models;
-	@ObfuscatedName("b")
+	@ObfuscatedName("m")
 	@Export("nonSelectable")
 	public boolean nonSelectable;
 
@@ -69,10 +63,10 @@ public class KitDefinition extends DualNode {
 		this.nonSelectable = false;
 	}
 
-	@ObfuscatedName("d")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "(Lkx;I)V",
-		garbageValue = "-1001378689"
+		signature = "(Lnu;I)V",
+		garbageValue = "-1899530791"
 	)
 	@Export("decode")
 	void decode(Buffer var1) {
@@ -86,10 +80,10 @@ public class KitDefinition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "(Lkx;II)V",
-		garbageValue = "1463228330"
+		signature = "(Lnu;IB)V",
+		garbageValue = "0"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
@@ -132,10 +126,10 @@ public class KitDefinition extends DualNode {
 
 	}
 
-	@ObfuscatedName("y")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		signature = "(B)Z",
-		garbageValue = "-48"
+		signature = "(S)Z",
+		garbageValue = "28242"
 	)
 	@Export("ready")
 	public boolean ready() {
@@ -145,7 +139,7 @@ public class KitDefinition extends DualNode {
 			boolean var1 = true;
 
 			for (int var2 = 0; var2 < this.models2.length; ++var2) {
-				if (!KitDefinition_modelsArchive.tryLoadFile(this.models2[var2], 0)) {
+				if (!class266.KitDefinition_modelsArchive.tryLoadFile(this.models2[var2], 0)) {
 					var1 = false;
 				}
 			}
@@ -154,10 +148,10 @@ public class KitDefinition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		signature = "(B)Lek;",
-		garbageValue = "-41"
+		signature = "(B)Lfs;",
+		garbageValue = "63"
 	)
 	@Export("getModelData")
 	public ModelData getModelData() {
@@ -167,7 +161,7 @@ public class KitDefinition extends DualNode {
 			ModelData[] var1 = new ModelData[this.models2.length];
 
 			for (int var2 = 0; var2 < this.models2.length; ++var2) {
-				var1[var2] = ModelData.ModelData_get(KitDefinition_modelsArchive, this.models2[var2], 0);
+				var1[var2] = ModelData.ModelData_get(class266.KitDefinition_modelsArchive, this.models2[var2], 0);
 			}
 
 			ModelData var4;
@@ -194,16 +188,16 @@ public class KitDefinition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		signature = "(B)Z",
-		garbageValue = "-121"
+		signature = "(I)Z",
+		garbageValue = "1694348620"
 	)
-	public boolean method4640() {
+	public boolean method4950() {
 		boolean var1 = true;
 
 		for (int var2 = 0; var2 < 5; ++var2) {
-			if (this.models[var2] != -1 && !KitDefinition_modelsArchive.tryLoadFile(this.models[var2], 0)) {
+			if (this.models[var2] != -1 && !class266.KitDefinition_modelsArchive.tryLoadFile(this.models[var2], 0)) {
 				var1 = false;
 			}
 		}
@@ -211,10 +205,10 @@ public class KitDefinition extends DualNode {
 		return var1;
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "(I)Lek;",
-		garbageValue = "2061268949"
+		signature = "(I)Lfs;",
+		garbageValue = "-2136913772"
 	)
 	@Export("getKitDefinitionModels")
 	public ModelData getKitDefinitionModels() {
@@ -223,7 +217,7 @@ public class KitDefinition extends DualNode {
 
 		for (int var3 = 0; var3 < 5; ++var3) {
 			if (this.models[var3] != -1) {
-				var1[var2++] = ModelData.ModelData_get(KitDefinition_modelsArchive, this.models[var3], 0);
+				var1[var2++] = ModelData.ModelData_get(class266.KitDefinition_modelsArchive, this.models[var3], 0);
 			}
 		}
 

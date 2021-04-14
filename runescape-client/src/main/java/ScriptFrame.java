@@ -3,33 +3,37 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("bz")
+@ObfuscatedName("bg")
 @Implements("ScriptFrame")
 public class ScriptFrame {
-	@ObfuscatedName("fl")
+	@ObfuscatedName("e")
+	@Export("Interpreter_intLocals")
+	static int[] Interpreter_intLocals;
+	@ObfuscatedName("h")
+	@Export("ByteArrayPool_arrays")
+	static byte[][][] ByteArrayPool_arrays;
+	@ObfuscatedName("jw")
 	@ObfuscatedSignature(
-		signature = "Led;"
+		signature = "Lhu;"
 	)
-	@Export("urlRequester")
-	static UrlRequester urlRequester;
-	@ObfuscatedName("n")
+	static Widget field579;
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "Lcl;"
+		signature = "Lcc;"
 	)
 	@Export("script")
 	Script script;
-	@ObfuscatedName("v")
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = -1121255489
+		intValue = 264975789
 	)
 	@Export("pc")
 	int pc;
-	@ObfuscatedName("d")
+	@ObfuscatedName("u")
 	@Export("intLocals")
 	int[] intLocals;
-	@ObfuscatedName("c")
+	@ObfuscatedName("p")
 	@Export("stringLocals")
 	String[] stringLocals;
 
@@ -37,64 +41,34 @@ public class ScriptFrame {
 		this.pc = -1;
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "(IB)Ljz;",
-		garbageValue = "0"
+		signature = "([BI)[B",
+		garbageValue = "-13856825"
 	)
-	public static HitSplatDefinition method1222(int var0) {
-		HitSplatDefinition var1 = (HitSplatDefinition)HitSplatDefinition.HitSplatDefinition_cached.get((long)var0);
-		if (var1 != null) {
-			return var1;
-		} else {
-			byte[] var2 = HitSplatDefinition.HitSplatDefinition_archive.takeFile(32, var0);
-			var1 = new HitSplatDefinition();
-			if (var2 != null) {
-				var1.decode(new Buffer(var2));
-			}
-
-			HitSplatDefinition.HitSplatDefinition_cached.put(var1, (long)var0);
-			return var1;
-		}
+	public static byte[] method1175(byte[] var0) {
+		int var1 = var0.length;
+		byte[] var2 = new byte[var1];
+		System.arraycopy(var0, 0, var2, 0, var1);
+		return var2;
 	}
 
-	@ObfuscatedName("al")
+	@ObfuscatedName("g")
 	@ObfuscatedSignature(
-		signature = "(ILcl;ZI)I",
-		garbageValue = "461265882"
+		signature = "(B)Lbu;",
+		garbageValue = "86"
 	)
-	static int method1221(int var0, Script var1, boolean var2) {
-		if (var0 == ScriptOpcodes.GETWINDOWMODE) {
-			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = BoundaryObject.getWindowedMode();
-			return 1;
-		} else {
-			int var3;
-			if (var0 == ScriptOpcodes.SETWINDOWMODE) {
-				var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-				if (var3 == 1 || var3 == 2) {
-					GameBuild.setWindowedMode(var3);
-				}
+	@Export("getNextWorldListWorld")
+	static World getNextWorldListWorld() {
+		return World.World_listCount < World.World_count ? class9.World_worlds[++World.World_listCount - 1] : null;
+	}
 
-				return 1;
-			} else if (var0 == ScriptOpcodes.GETDEFAULTWINDOWMODE) {
-				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = WorldMapSectionType.clientPreferences.windowMode;
-				return 1;
-			} else if (var0 != ScriptOpcodes.SETDEFAULTWINDOWMODE) {
-				if (var0 == 5310) {
-					--Interpreter.Interpreter_intStackSize;
-					return 1;
-				} else {
-					return 2;
-				}
-			} else {
-				var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-				if (var3 == 1 || var3 == 2) {
-					WorldMapSectionType.clientPreferences.windowMode = var3;
-					class23.savePreferences();
-				}
-
-				return 1;
-			}
-		}
+	@ObfuscatedName("gq")
+	@ObfuscatedSignature(
+		signature = "(Lcd;II)V",
+		garbageValue = "-395421228"
+	)
+	static final void method1173(Actor var0, int var1) {
+		class14.worldToScreen(var0.x, var0.y, var1);
 	}
 }

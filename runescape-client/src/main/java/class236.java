@@ -1,35 +1,37 @@
-import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("id")
-public final class class236 {
-	@ObfuscatedName("fv")
-	@ObfuscatedGetter(
-		longValue = -1285822729066684367L
-	)
-	static long field3108;
-	@ObfuscatedName("gy")
+@ObfuscatedName("ii")
+public class class236 {
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		signature = "Llm;"
+		signature = "(Lir;Lir;III)Lkq;",
+		garbageValue = "-34187782"
 	)
-	@Export("redHintArrowSprite")
-	static SpritePixels redHintArrowSprite;
-
-	@ObfuscatedName("n")
-	@ObfuscatedSignature(
-		signature = "(IIII)I",
-		garbageValue = "1107662204"
-	)
-	public static int method4332(int var0, int var1, int var2) {
-		var2 &= 3;
-		if (var2 == 0) {
-			return var0;
-		} else if (var2 == 1) {
-			return var1;
+	public static Font method4378(AbstractArchive var0, AbstractArchive var1, int var2, int var3) {
+		byte[] var5 = var0.takeFile(var2, var3);
+		boolean var4;
+		if (var5 == null) {
+			var4 = false;
 		} else {
-			return var2 == 2 ? 7 - var0 : 7 - var1;
+			class244.SpriteBuffer_decode(var5);
+			var4 = true;
+		}
+
+		if (!var4) {
+			return null;
+		} else {
+			byte[] var6 = var1.takeFile(var2, var3);
+			Font var8;
+			if (var6 == null) {
+				var8 = null;
+			} else {
+				Font var7 = new Font(var6, class0.SpriteBuffer_xOffsets, Interpreter.SpriteBuffer_yOffsets, class395.SpriteBuffer_spriteWidths, class157.SpriteBuffer_spriteHeights, Varps.SpriteBuffer_spritePalette, class223.SpriteBuffer_pixels);
+				WorldMapDecorationType.method4370();
+				var8 = var7;
+			}
+
+			return var8;
 		}
 	}
 }

@@ -4,84 +4,79 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cn")
+@ObfuscatedName("cw")
 @Implements("Interpreter")
 public class Interpreter {
-	@ObfuscatedName("y")
-	@Export("Interpreter_intLocals")
-	static int[] Interpreter_intLocals;
-	@ObfuscatedName("z")
+	@ObfuscatedName("b")
+	@Export("SpriteBuffer_yOffsets")
+	static int[] SpriteBuffer_yOffsets;
+	@ObfuscatedName("e")
+	@ObfuscatedSignature(
+		signature = "Low;"
+	)
+	@Export("titlebuttonSprite")
+	static IndexedSprite titlebuttonSprite;
+	@ObfuscatedName("k")
+	@Export("Interpreter_stringLocals")
+	static String[] Interpreter_stringLocals;
+	@ObfuscatedName("g")
 	@Export("Interpreter_arrayLengths")
 	static int[] Interpreter_arrayLengths;
-	@ObfuscatedName("e")
+	@ObfuscatedName("h")
 	@Export("Interpreter_arrays")
 	static int[][] Interpreter_arrays;
-	@ObfuscatedName("q")
+	@ObfuscatedName("n")
 	@Export("Interpreter_intStack")
 	static int[] Interpreter_intStack;
-	@ObfuscatedName("l")
-	@ObfuscatedGetter(
-		intValue = 1775407691
-	)
-	@Export("Interpreter_intStackSize")
-	static int Interpreter_intStackSize;
-	@ObfuscatedName("s")
+	@ObfuscatedName("m")
 	@Export("Interpreter_stringStack")
 	static String[] Interpreter_stringStack;
-	@ObfuscatedName("b")
+	@ObfuscatedName("d")
 	@ObfuscatedGetter(
-		intValue = -1832147507
+		intValue = -196314347
 	)
 	@Export("Interpreter_stringStackSize")
 	static int Interpreter_stringStackSize;
-	@ObfuscatedName("a")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = 1349197587
+		intValue = -309937971
 	)
 	@Export("Interpreter_frameDepth")
 	static int Interpreter_frameDepth;
-	@ObfuscatedName("w")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
-		signature = "[Lbz;"
+		signature = "[Lbg;"
 	)
 	@Export("Interpreter_frames")
 	static ScriptFrame[] Interpreter_frames;
-	@ObfuscatedName("k")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		signature = "Lhz;"
+		signature = "Lp;"
 	)
-	static Widget field1117;
-	@ObfuscatedName("x")
+	static class3 field941;
+	@ObfuscatedName("z")
 	@Export("Interpreter_calendar")
 	static java.util.Calendar Interpreter_calendar;
-	@ObfuscatedName("f")
+	@ObfuscatedName("i")
 	@Export("Interpreter_MONTHS")
 	static final String[] Interpreter_MONTHS;
-	@ObfuscatedName("g")
+	@ObfuscatedName("w")
+	static boolean field944;
+	@ObfuscatedName("s")
+	static boolean field946;
+	@ObfuscatedName("y")
+	@ObfuscatedGetter(
+		intValue = -1409766351
+	)
+	static int field950;
+	@ObfuscatedName("ag")
+	static final double field934;
+	@ObfuscatedName("by")
 	@ObfuscatedSignature(
-		signature = "Lav;"
+		signature = "Low;"
 	)
-	@Export("worldMapEvent")
-	static WorldMapEvent worldMapEvent;
-	@ObfuscatedName("u")
-	static boolean field1120;
-	@ObfuscatedName("t")
-	static boolean field1122;
-	@ObfuscatedName("p")
-	@ObfuscatedGetter(
-		intValue = 365610695
-	)
-	static int field1123;
-	@ObfuscatedName("j")
-	static final double field1124;
-	@ObfuscatedName("ea")
-	@ObfuscatedGetter(
-		intValue = 847561081
-	)
-	static int field1116;
-	@ObfuscatedName("gk")
-	@Export("regionMapArchives")
-	static byte[][] regionMapArchives;
+	@Export("worldSelectRightSprite")
+	static IndexedSprite worldSelectRightSprite;
 
 	static {
 		Interpreter_arrayLengths = new int[5];
@@ -92,36 +87,9 @@ public class Interpreter {
 		Interpreter_frames = new ScriptFrame[50];
 		Interpreter_calendar = java.util.Calendar.getInstance();
 		Interpreter_MONTHS = new String[]{"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
-		field1120 = false;
-		field1122 = false;
-		field1123 = 0;
-		field1124 = Math.log(2.0D);
-	}
-
-	@ObfuscatedName("i")
-	@ObfuscatedSignature(
-		signature = "(IIII)I",
-		garbageValue = "-1493110038"
-	)
-	@Export("hslToRgb")
-	static final int hslToRgb(int var0, int var1, int var2) {
-		if (var2 > 179) {
-			var1 /= 2;
-		}
-
-		if (var2 > 192) {
-			var1 /= 2;
-		}
-
-		if (var2 > 217) {
-			var1 /= 2;
-		}
-
-		if (var2 > 243) {
-			var1 /= 2;
-		}
-
-		int var3 = (var1 / 32 << 7) + (var0 / 4 << 10) + var2 / 2;
-		return var3;
+		field944 = false;
+		field946 = false;
+		field950 = 0;
+		field934 = Math.log(2.0D);
 	}
 }

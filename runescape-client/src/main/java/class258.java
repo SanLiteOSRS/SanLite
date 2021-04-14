@@ -1,54 +1,82 @@
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("in")
+@ObfuscatedName("io")
 public class class258 {
-	@ObfuscatedName("gg")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "(IIIIIIII)V",
-		garbageValue = "1214767068"
+		signature = "(IIIII)V",
+		garbageValue = "862328928"
 	)
-	static final void method4685(int var0, int var1, int var2, int var3, int var4, int var5, int var6) {
-		var5 = SecureRandomCallable.method1233(var5, var6);
-		int var7 = 2048 - var3 & 2047;
-		int var8 = 2048 - var4 & 2047;
-		int var9 = 0;
-		int var10 = 0;
-		int var11 = var5;
-		int var12;
-		int var13;
-		int var14;
-		if (var7 != 0) {
-			var12 = Rasterizer3D.Rasterizer3D_sine[var7];
-			var13 = Rasterizer3D.Rasterizer3D_cosine[var7];
-			var14 = var13 * var10 - var5 * var12 >> 16;
-			var11 = var13 * var5 + var12 * var10 >> 16;
-			var10 = var14;
-		}
+	static void method4608(int var0, int var1, int var2, int var3) {
+		for (ObjectSound var4 = (ObjectSound)ObjectSound.objectSounds.last(); var4 != null; var4 = (ObjectSound)ObjectSound.objectSounds.previous()) {
+			if (var4.soundEffectId != -1 || var4.soundEffectIds != null) {
+				int var5 = 0;
+				if (var1 > var4.field916 * 128) {
+					var5 += var1 - var4.field916 * 128;
+				} else if (var1 < var4.x * 128) {
+					var5 += var4.x * 128 - var1;
+				}
 
-		if (var8 != 0) {
-			var12 = Rasterizer3D.Rasterizer3D_sine[var8];
-			var13 = Rasterizer3D.Rasterizer3D_cosine[var8];
-			var14 = var13 * var9 + var11 * var12 >> 16;
-			var11 = var13 * var11 - var12 * var9 >> 16;
-			var9 = var14;
-		}
+				if (var2 > var4.field917 * 16384) {
+					var5 += var2 - var4.field917 * 16384;
+				} else if (var2 < var4.y * 128) {
+					var5 += var4.y * 128 - var2;
+				}
 
-		SecureRandomFuture.cameraX = var0 - var9;
-		ArchiveLoader.cameraY = var1 - var10;
-		ObjectSound.cameraZ = var2 - var11;
-		KeyHandler.cameraPitch = var3;
-		class39.cameraYaw = var4;
-		if (Client.oculusOrbState == 1 && Client.staffModLevel >= 2 && Client.cycle % 50 == 0 && (HealthBarUpdate.oculusOrbFocalPointX >> 7 != UserComparator9.localPlayer.x >> 7 || ApproximateRouteStrategy.oculusOrbFocalPointY >> 7 != UserComparator9.localPlayer.y >> 7)) {
-			var12 = UserComparator9.localPlayer.plane;
-			var13 = GrandExchangeOfferNameComparator.baseX * 64 + (HealthBarUpdate.oculusOrbFocalPointX >> 7);
-			var14 = NetCache.baseY * 64 + (ApproximateRouteStrategy.oculusOrbFocalPointY >> 7);
-			PacketBufferNode var15 = WorldMapSprite.getPacketBufferNode(ClientPacket.field2230, Client.packetWriter.isaacCipher);
-			var15.packetBuffer.method5855(var14);
-			var15.packetBuffer.writeIntME(var12);
-			var15.packetBuffer.method5736(Client.field746);
-			var15.packetBuffer.method5690(var13);
-			Client.packetWriter.addNode(var15);
+				if (var5 - 64 <= var4.field918 && Login.clientPreferences.areaSoundEffectsVolume != 0 && var0 == var4.plane) {
+					var5 -= 64;
+					if (var5 < 0) {
+						var5 = 0;
+					}
+
+					int var6 = (var4.field918 - var5) * Login.clientPreferences.areaSoundEffectsVolume / var4.field918;
+					if (var4.stream1 == null) {
+						if (var4.soundEffectId >= 0) {
+							SoundEffect var7 = SoundEffect.readSoundEffect(ItemContainer.archive4, var4.soundEffectId, 0);
+							if (var7 != null) {
+								RawSound var8 = var7.toRawSound().resample(class34.decimator);
+								RawPcmStream var9 = RawPcmStream.createRawPcmStream(var8, 100, var6);
+								var9.setNumLoops(-1);
+								Huffman.pcmStreamMixer.addSubStream(var9);
+								var4.stream1 = var9;
+							}
+						}
+					} else {
+						var4.stream1.method901(var6);
+					}
+
+					if (var4.stream2 == null) {
+						if (var4.soundEffectIds != null && (var4.field924 -= var3) <= 0) {
+							int var11 = (int)(Math.random() * (double)var4.soundEffectIds.length);
+							SoundEffect var12 = SoundEffect.readSoundEffect(ItemContainer.archive4, var4.soundEffectIds[var11], 0);
+							if (var12 != null) {
+								RawSound var13 = var12.toRawSound().resample(class34.decimator);
+								RawPcmStream var10 = RawPcmStream.createRawPcmStream(var13, 100, var6);
+								var10.setNumLoops(0);
+								Huffman.pcmStreamMixer.addSubStream(var10);
+								var4.stream2 = var10;
+								var4.field924 = var4.field921 + (int)(Math.random() * (double)(var4.field922 - var4.field921));
+							}
+						}
+					} else {
+						var4.stream2.method901(var6);
+						if (!var4.stream2.hasNext()) {
+							var4.stream2 = null;
+						}
+					}
+				} else {
+					if (var4.stream1 != null) {
+						Huffman.pcmStreamMixer.removeSubStream(var4.stream1);
+						var4.stream1 = null;
+					}
+
+					if (var4.stream2 != null) {
+						Huffman.pcmStreamMixer.removeSubStream(var4.stream2);
+						var4.stream2 = null;
+					}
+				}
+			}
 		}
 
 	}

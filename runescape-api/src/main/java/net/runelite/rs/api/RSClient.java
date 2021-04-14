@@ -793,7 +793,7 @@ public interface RSClient extends RSGameEngine, Client
 	RSScriptEvent createScriptEvent();
 
 	@Import("runScript")
-	void runScript(RSScriptEvent ev, int ex);
+	void runScript(RSScriptEvent ev, int ex, int var2);
 
 	@Import("hintArrowType")
 	void setHintArrowTargetType(int value);

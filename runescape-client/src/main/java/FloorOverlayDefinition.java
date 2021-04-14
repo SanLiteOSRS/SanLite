@@ -4,75 +4,75 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jo")
+@ObfuscatedName("ke")
 @Implements("FloorOverlayDefinition")
 public class FloorOverlayDefinition extends DualNode {
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "Lig;"
+		signature = "Lir;"
 	)
 	@Export("FloorOverlayDefinition_archive")
-	static AbstractArchive FloorOverlayDefinition_archive;
-	@ObfuscatedName("v")
+	public static AbstractArchive FloorOverlayDefinition_archive;
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "Lex;"
+		signature = "Lgf;"
 	)
 	@Export("FloorOverlayDefinition_cached")
 	static EvictingDualNodeHashTable FloorOverlayDefinition_cached;
-	@ObfuscatedName("d")
+	@ObfuscatedName("u")
 	@ObfuscatedGetter(
-		intValue = 229154339
+		intValue = 980969933
 	)
 	@Export("primaryRgb")
 	public int primaryRgb;
-	@ObfuscatedName("c")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = 537117493
+		intValue = -2093072057
 	)
 	@Export("texture")
 	public int texture;
-	@ObfuscatedName("y")
+	@ObfuscatedName("b")
 	@Export("hideUnderlay")
 	public boolean hideUnderlay;
-	@ObfuscatedName("h")
+	@ObfuscatedName("e")
 	@ObfuscatedGetter(
-		intValue = -151922243
+		intValue = 1989870403
 	)
 	@Export("secondaryRgb")
 	public int secondaryRgb;
-	@ObfuscatedName("z")
+	@ObfuscatedName("k")
 	@ObfuscatedGetter(
-		intValue = 1474561599
+		intValue = 537487059
 	)
 	@Export("hue")
 	public int hue;
-	@ObfuscatedName("e")
+	@ObfuscatedName("g")
 	@ObfuscatedGetter(
-		intValue = 580468697
+		intValue = -1328712215
 	)
 	@Export("saturation")
 	public int saturation;
-	@ObfuscatedName("q")
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = 1227736915
+		intValue = -969196131
 	)
 	@Export("lightness")
 	public int lightness;
-	@ObfuscatedName("l")
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = -214097909
+		intValue = 803362363
 	)
 	@Export("secondaryHue")
 	public int secondaryHue;
-	@ObfuscatedName("s")
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = -996907009
+		intValue = 2116212795
 	)
 	@Export("secondarySaturation")
 	public int secondarySaturation;
-	@ObfuscatedName("b")
+	@ObfuscatedName("m")
 	@ObfuscatedGetter(
-		intValue = -2132940635
+		intValue = 61795661
 	)
 	@Export("secondaryLightness")
 	public int secondaryLightness;
@@ -88,10 +88,10 @@ public class FloorOverlayDefinition extends DualNode {
 		this.secondaryRgb = -1;
 	}
 
-	@ObfuscatedName("d")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
 		signature = "(B)V",
-		garbageValue = "1"
+		garbageValue = "-113"
 	)
 	@Export("postDecode")
 	void postDecode() {
@@ -105,10 +105,10 @@ public class FloorOverlayDefinition extends DualNode {
 		this.setHsl(this.primaryRgb);
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "(Lkx;II)V",
-		garbageValue = "581864251"
+		signature = "(Lnu;IB)V",
+		garbageValue = "6"
 	)
 	@Export("decode")
 	void decode(Buffer var1, int var2) {
@@ -122,10 +122,10 @@ public class FloorOverlayDefinition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("y")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		signature = "(Lkx;IIB)V",
-		garbageValue = "1"
+		signature = "(Lnu;III)V",
+		garbageValue = "-1985782893"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2, int var3) {
@@ -142,10 +142,10 @@ public class FloorOverlayDefinition extends DualNode {
 
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		signature = "(IB)V",
-		garbageValue = "115"
+		signature = "(II)V",
+		garbageValue = "-524815797"
 	)
 	@Export("setHsl")
 	void setHsl(int var1) {
@@ -194,7 +194,7 @@ public class FloorOverlayDefinition extends DualNode {
 		var12 /= 6.0D;
 		this.hue = (int)(256.0D * var12);
 		this.saturation = (int)(256.0D * var14);
-		this.lightness = (int)(256.0D * var16);
+		this.lightness = (int)(var16 * 256.0D);
 		if (this.saturation < 0) {
 			this.saturation = 0;
 		} else if (this.saturation > 255) {

@@ -4,38 +4,38 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("mi")
+@ObfuscatedName("mn")
 @Implements("DesktopPlatformInfoProvider")
 public class DesktopPlatformInfoProvider implements PlatformInfoProvider {
-	@ObfuscatedName("c")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = -1161776031
+		intValue = -587651233
 	)
-	int field3937;
-	@ObfuscatedName("y")
+	int field3943;
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = 1334910237
+		intValue = -639501997
 	)
-	int field3941;
-	@ObfuscatedName("h")
+	int field3944;
+	@ObfuscatedName("e")
 	@ObfuscatedGetter(
-		intValue = -1711664603
+		intValue = 1652165209
 	)
-	int field3939;
+	int field3948;
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "(I)Lmn;",
-		garbageValue = "583399336"
+		signature = "(I)Lmo;",
+		garbageValue = "-740064176"
 	)
 	@Export("get")
 	public PlatformInfo get() {
 		byte var1;
-		if (GZipDecompressor.field4046.startsWith("win")) {
+		if (Decimator.field510.startsWith("win")) {
 			var1 = 1;
-		} else if (GZipDecompressor.field4046.startsWith("mac")) {
+		} else if (Decimator.field510.startsWith("mac")) {
 			var1 = 2;
-		} else if (GZipDecompressor.field4046.startsWith("linux")) {
+		} else if (Decimator.field510.startsWith("linux")) {
 			var1 = 3;
 		} else {
 			var1 = 4;
@@ -133,10 +133,10 @@ public class DesktopPlatformInfoProvider implements PlatformInfoProvider {
 			var8 = 4;
 		}
 
-		this.method6480(var5);
+		this.method6033(var5);
 		int var10 = (int)(Runtime.getRuntime().maxMemory() / 1048576L) + 1;
 		int var11;
-		if (this.field3937 > 3) {
+		if (this.field3943 > 3) {
 			var11 = Runtime.getRuntime().availableProcessors();
 		} else {
 			var11 = 0;
@@ -150,64 +150,55 @@ public class DesktopPlatformInfoProvider implements PlatformInfoProvider {
 		String var17 = "";
 		String var18 = "";
 		int[] var23 = new int[3];
-		return new PlatformInfo(var1, var24, var7, var8, this.field3937, this.field3941, this.field3939, false, var10, var11, var12, 0, var13, var14, var15, var16, 0, 0, 0, 0, var17, var18, var23, 0, "");
+		return new PlatformInfo(var1, var24, var7, var8, this.field3943, this.field3944, this.field3948, false, var10, var11, var12, 0, var13, var14, var15, var16, 0, 0, 0, 0, var17, var18, var23, 0, "");
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
 		signature = "(Ljava/lang/String;I)V",
-		garbageValue = "1728874118"
+		garbageValue = "123534059"
 	)
-	void method6480(String var1) {
+	void method6033(String var1) {
 		if (var1.startsWith("1.")) {
-			this.method6487(var1);
+			this.method6034(var1);
 		} else {
-			this.method6481(var1);
+			this.method6035(var1);
 		}
 
 	}
 
-	@ObfuscatedName("d")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
 		signature = "(Ljava/lang/String;I)V",
-		garbageValue = "-1393050521"
+		garbageValue = "566753126"
 	)
-	void method6487(String var1) {
+	void method6034(String var1) {
 		String[] var2 = var1.split("\\.");
 
 		try {
-			this.field3937 = Integer.parseInt(var2[1]);
+			this.field3943 = Integer.parseInt(var2[1]);
 			var2 = var2[2].split("_");
-			this.field3941 = Integer.parseInt(var2[0]);
-			this.field3939 = Integer.parseInt(var2[1]);
+			this.field3944 = Integer.parseInt(var2[0]);
+			this.field3948 = Integer.parseInt(var2[1]);
 		} catch (Exception var4) {
 		}
 
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;I)V",
-		garbageValue = "-1077684800"
+		signature = "(Ljava/lang/String;B)V",
+		garbageValue = "106"
 	)
-	void method6481(String var1) {
+	void method6035(String var1) {
 		String[] var2 = var1.split("\\.");
 
 		try {
-			this.field3937 = Integer.parseInt(var2[0]);
-			this.field3941 = Integer.parseInt(var2[1]);
-			this.field3939 = Integer.parseInt(var2[2]);
+			this.field3943 = Integer.parseInt(var2[0]);
+			this.field3944 = Integer.parseInt(var2[1]);
+			this.field3948 = Integer.parseInt(var2[2]);
 		} catch (Exception var4) {
 		}
 
-	}
-
-	@ObfuscatedName("n")
-	@ObfuscatedSignature(
-		signature = "(S)[Lim;",
-		garbageValue = "-29867"
-	)
-	public static StudioGame[] method6478() {
-		return new StudioGame[]{StudioGame.stellardawn, StudioGame.game5, StudioGame.oldscape, StudioGame.game4, StudioGame.runescape, StudioGame.game3};
 	}
 }

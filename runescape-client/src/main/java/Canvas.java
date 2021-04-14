@@ -1,26 +1,27 @@
 import java.awt.Component;
 import java.awt.Graphics;
+import java.security.SecureRandom;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bq")
+@ObfuscatedName("ai")
 @Implements("Canvas")
 public final class Canvas extends java.awt.Canvas {
-	@ObfuscatedName("ao")
-	@ObfuscatedGetter(
-		intValue = 2077405845
-	)
-	static int field439;
-	@ObfuscatedName("lz")
+	@ObfuscatedName("pj")
 	@ObfuscatedSignature(
-		signature = "Lhz;"
+		signature = "Lln;"
 	)
-	@Export("mousedOverWidgetIf1")
-	static Widget mousedOverWidgetIf1;
-	@ObfuscatedName("n")
+	@Export("privateChatMode")
+	static PrivateChatMode privateChatMode;
+	@ObfuscatedName("a")
+	@Export("userHomeDirectory")
+	static String userHomeDirectory;
+	@ObfuscatedName("eo")
+	@Export("secureRandom")
+	static SecureRandom secureRandom;
+	@ObfuscatedName("f")
 	@Export("component")
 	Component component;
 
@@ -36,57 +37,75 @@ public final class Canvas extends java.awt.Canvas {
 		this.component.paint(var1);
 	}
 
-	@ObfuscatedName("aw")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		signature = "(II)I",
-		garbageValue = "-866196004"
+		signature = "(Lig;IIIBZI)V",
+		garbageValue = "-501107063"
 	)
-	static int method935(int var0) {
-		return (int)Math.pow(2.0D, (double)(7.0F + (float)var0 / 256.0F));
-	}
+	@Export("requestNetFile")
+	static void requestNetFile(Archive var0, int var1, int var2, int var3, byte var4, boolean var5) {
+		long var6 = (long)((var1 << 16) + var2);
+		NetFileRequest var8 = (NetFileRequest)NetCache.NetCache_pendingPriorityWrites.get(var6);
+		if (var8 == null) {
+			var8 = (NetFileRequest)NetCache.NetCache_pendingPriorityResponses.get(var6);
+			if (var8 == null) {
+				var8 = (NetFileRequest)NetCache.NetCache_pendingWrites.get(var6);
+				if (var8 != null) {
+					if (var5) {
+						var8.removeDual();
+						NetCache.NetCache_pendingPriorityWrites.put(var8, var6);
+						--NetCache.NetCache_pendingWritesCount;
+						++NetCache.NetCache_pendingPriorityWritesCount;
+					}
 
-	@ObfuscatedName("hc")
-	@ObfuscatedSignature(
-		signature = "(IIIIIIIIII)V",
-		garbageValue = "-614885261"
-	)
-	@Export("updatePendingSpawn")
-	static final void updatePendingSpawn(int var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8) {
-		PendingSpawn var9 = null;
+				} else {
+					if (!var5) {
+						var8 = (NetFileRequest)NetCache.NetCache_pendingResponses.get(var6);
+						if (var8 != null) {
+							return;
+						}
+					}
 
-		for (PendingSpawn var10 = (PendingSpawn)Client.pendingSpawns.last(); var10 != null; var10 = (PendingSpawn)Client.pendingSpawns.previous()) {
-			if (var0 == var10.plane && var10.x == var1 && var2 == var10.y && var3 == var10.type) {
-				var9 = var10;
-				break;
+					var8 = new NetFileRequest();
+					var8.archive = var0;
+					var8.crc = var3;
+					var8.padding = var4;
+					if (var5) {
+						NetCache.NetCache_pendingPriorityWrites.put(var8, var6);
+						++NetCache.NetCache_pendingPriorityWritesCount;
+					} else {
+						NetCache.NetCache_pendingWritesQueue.addFirst(var8);
+						NetCache.NetCache_pendingWrites.put(var8, var6);
+						++NetCache.NetCache_pendingWritesCount;
+					}
+
+				}
 			}
 		}
-
-		if (var9 == null) {
-			var9 = new PendingSpawn();
-			var9.plane = var0;
-			var9.type = var3;
-			var9.x = var1;
-			var9.y = var2;
-			WorldMapElement.method4592(var9);
-			Client.pendingSpawns.addFirst(var9);
-		}
-
-		var9.id = var4;
-		var9.field948 = var5;
-		var9.orientation = var6;
-		var9.delay = var7;
-		var9.hitpoints = var8;
 	}
 
-	@ObfuscatedName("kb")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "-54323362"
+		garbageValue = "-1588134058"
 	)
-	@Export("Clan_leaveChat")
-	static final void Clan_leaveChat() {
-		PacketBufferNode var0 = WorldMapSprite.getPacketBufferNode(ClientPacket.field2270, Client.packetWriter.isaacCipher);
-		var0.packetBuffer.writeByte(0);
-		Client.packetWriter.addNode(var0);
+	static void method481() {
+		if (Client.Login_isUsernameRemembered && Login.Login_username != null && Login.Login_username.length() > 0) {
+			Login.currentLoginField = 1;
+		} else {
+			Login.currentLoginField = 0;
+		}
+
+	}
+
+	@ObfuscatedName("jy")
+	@ObfuscatedSignature(
+		signature = "(IB)V",
+		garbageValue = "113"
+	)
+	static final void method478(int var0) {
+		var0 = Math.min(Math.max(var0, 0), 127);
+		Login.clientPreferences.soundEffectsVolume = var0;
+		Message.savePreferences();
 	}
 }

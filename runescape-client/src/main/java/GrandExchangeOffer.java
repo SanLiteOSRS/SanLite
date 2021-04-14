@@ -1,58 +1,42 @@
-import java.lang.management.GarbageCollectorMXBean;
-import java.lang.management.ManagementFactory;
-import java.util.Iterator;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("g")
+@ObfuscatedName("jn")
 @Implements("GrandExchangeOffer")
 public class GrandExchangeOffer {
-	@ObfuscatedName("op")
-	@ObfuscatedSignature(
-		signature = "Lcg;"
-	)
-	@Export("varcs")
-	static Varcs varcs;
-	@ObfuscatedName("le")
-	@ObfuscatedSignature(
-		signature = "Lhz;"
-	)
-	static Widget field100;
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@Export("state")
 	byte state;
-	@ObfuscatedName("v")
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = 1764119781
+		intValue = -891448629
 	)
 	@Export("id")
 	public int id;
-	@ObfuscatedName("d")
+	@ObfuscatedName("u")
 	@ObfuscatedGetter(
-		intValue = -1987297797
+		intValue = 100433651
 	)
 	@Export("unitPrice")
 	public int unitPrice;
-	@ObfuscatedName("c")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = 795872735
+		intValue = 1452615551
 	)
 	@Export("totalQuantity")
 	public int totalQuantity;
-	@ObfuscatedName("y")
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = 252650677
+		intValue = -1995124161
 	)
 	@Export("currentQuantity")
 	public int currentQuantity;
-	@ObfuscatedName("h")
+	@ObfuscatedName("e")
 	@ObfuscatedGetter(
-		intValue = 710426357
+		intValue = -1624140641
 	)
 	@Export("currentPrice")
 	public int currentPrice;
@@ -61,7 +45,7 @@ public class GrandExchangeOffer {
 	}
 
 	@ObfuscatedSignature(
-		signature = "(Lkx;Z)V",
+		signature = "(Lnu;Z)V",
 		garbageValue = "0"
 	)
 	public GrandExchangeOffer(Buffer var1, boolean var2) {
@@ -73,42 +57,42 @@ public class GrandExchangeOffer {
 		this.currentPrice = var1.readInt();
 	}
 
-	@ObfuscatedName("d")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
 		signature = "(B)I",
-		garbageValue = "-15"
+		garbageValue = "-122"
 	)
 	@Export("status")
 	public int status() {
 		return this.state & 7;
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "-522457380"
+		signature = "(B)I",
+		garbageValue = "-20"
 	)
 	@Export("type")
 	public int type() {
 		return (this.state & 8) == 8 ? 1 : 0;
 	}
 
-	@ObfuscatedName("y")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		signature = "(II)V",
-		garbageValue = "575158813"
+		signature = "(IB)V",
+		garbageValue = "31"
 	)
-	void method166(int var1) {
+	void method4631(int var1) {
 		this.state &= -8;
 		this.state = (byte)(this.state | var1 & 7);
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
 		signature = "(II)V",
-		garbageValue = "656048251"
+		garbageValue = "-1176196261"
 	)
-	void method168(int var1) {
+	void method4632(int var1) {
 		this.state &= -9;
 		if (var1 == 1) {
 			this.state = (byte)(this.state | 8);
@@ -116,146 +100,39 @@ public class GrandExchangeOffer {
 
 	}
 
-	@ObfuscatedName("ay")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "(Lfu;III)Ldh;",
-		garbageValue = "779350721"
-	)
-	public static final PcmPlayer method167(TaskHandler var0, int var1, int var2) {
-		if (StructDefinition.field3338 * 22050 == 0) {
-			throw new IllegalStateException();
-		} else if (var1 >= 0 && var1 < 2) {
-			if (var2 < 256) {
-				var2 = 256;
-			}
-
-			try {
-				PcmPlayer var3 = class2.pcmPlayerProvider.player();
-				var3.samples = new int[256 * (PcmPlayer.PcmPlayer_stereo ? 2 : 1)];
-				var3.field1427 = var2;
-				var3.init();
-				var3.capacity = (var2 & -1024) + 1024;
-				if (var3.capacity > 16384) {
-					var3.capacity = 16384;
-				}
-
-				var3.open(var3.capacity);
-				if (PcmPlayer.field1419 > 0 && PcmPlayer.soundSystem == null) {
-					PcmPlayer.soundSystem = new SoundSystem();
-					PcmPlayer.soundSystemExecutor = Executors.newScheduledThreadPool(1);
-					PcmPlayer.soundSystemExecutor.scheduleAtFixedRate(PcmPlayer.soundSystem, 0L, 10L, TimeUnit.MILLISECONDS);
-				}
-
-				if (PcmPlayer.soundSystem != null) {
-					if (PcmPlayer.soundSystem.players[var1] != null) {
-						throw new IllegalArgumentException();
-					}
-
-					PcmPlayer.soundSystem.players[var1] = var3;
-				}
-
-				return var3;
-			} catch (Throwable var4) {
-				return new PcmPlayer();
-			}
-		} else {
-			throw new IllegalArgumentException();
-		}
-	}
-
-	@ObfuscatedName("ah")
-	@ObfuscatedSignature(
-		signature = "(B)I",
+		signature = "([Ljava/lang/String;[IIIB)V",
 		garbageValue = "1"
 	)
-	@Export("getGcDuration")
-	protected static int getGcDuration() {
-		int var0 = 0;
-		if (WorldMapID.garbageCollector == null || !WorldMapID.garbageCollector.isValid()) {
-			try {
-				Iterator var1 = ManagementFactory.getGarbageCollectorMXBeans().iterator();
+	public static void method4633(String[] var0, int[] var1, int var2, int var3) {
+		if (var2 < var3) {
+			int var4 = (var3 + var2) / 2;
+			int var5 = var2;
+			String var6 = var0[var4];
+			var0[var4] = var0[var3];
+			var0[var3] = var6;
+			int var7 = var1[var4];
+			var1[var4] = var1[var3];
+			var1[var3] = var7;
 
-				while (var1.hasNext()) {
-					GarbageCollectorMXBean var2 = (GarbageCollectorMXBean)var1.next();
-					if (var2.isValid()) {
-						WorldMapID.garbageCollector = var2;
-						GameEngine.garbageCollectorLastCheckTimeMs = -1L;
-						GameEngine.garbageCollectorLastCollectionTime = -1L;
-					}
-				}
-			} catch (Throwable var11) {
-			}
-		}
-
-		if (WorldMapID.garbageCollector != null) {
-			long var9 = Tiles.currentTimeMillis();
-			long var3 = WorldMapID.garbageCollector.getCollectionTime();
-			if (GameEngine.garbageCollectorLastCollectionTime != -1L) {
-				long var5 = var3 - GameEngine.garbageCollectorLastCollectionTime;
-				long var7 = var9 - GameEngine.garbageCollectorLastCheckTimeMs;
-				if (0L != var7) {
-					var0 = (int)(100L * var5 / var7);
+			for (int var8 = var2; var8 < var3; ++var8) {
+				if (var6 == null || var0[var8] != null && var0[var8].compareTo(var6) < (var8 & 1)) {
+					String var9 = var0[var8];
+					var0[var8] = var0[var5];
+					var0[var5] = var9;
+					int var10 = var1[var8];
+					var1[var8] = var1[var5];
+					var1[var5++] = var10;
 				}
 			}
 
-			GameEngine.garbageCollectorLastCollectionTime = var3;
-			GameEngine.garbageCollectorLastCheckTimeMs = var9;
-		}
-
-		return var0;
-	}
-
-	@ObfuscatedName("ih")
-	@ObfuscatedSignature(
-		signature = "(IB)Ljava/lang/String;",
-		garbageValue = "-64"
-	)
-	static final String method187(int var0) {
-		return var0 < 999999999 ? Integer.toString(var0) : "*";
-	}
-
-	@ObfuscatedName("ku")
-	@ObfuscatedSignature(
-		signature = "(Lbs;ZS)V",
-		garbageValue = "-4659"
-	)
-	@Export("closeInterface")
-	static final void closeInterface(InterfaceParent var0, boolean var1) {
-		int var2 = var0.group;
-		int var3 = (int)var0.key;
-		var0.remove();
-		if (var1 && var2 != -1 && Widget.Widget_loadedInterfaces[var2]) {
-			FontName.Widget_archive.clearFilesGroup(var2);
-			if (DefaultsGroup.Widget_interfaceComponents[var2] != null) {
-				boolean var6 = true;
-
-				for (int var5 = 0; var5 < DefaultsGroup.Widget_interfaceComponents[var2].length; ++var5) {
-					if (DefaultsGroup.Widget_interfaceComponents[var2][var5] != null) {
-						if (DefaultsGroup.Widget_interfaceComponents[var2][var5].type != 2) {
-							DefaultsGroup.Widget_interfaceComponents[var2][var5] = null;
-						} else {
-							var6 = false;
-						}
-					}
-				}
-
-				if (var6) {
-					DefaultsGroup.Widget_interfaceComponents[var2] = null;
-				}
-
-				Widget.Widget_loadedInterfaces[var2] = false;
-			}
-		}
-
-		ModeWhere.method3871(var2);
-		Widget var4 = class237.getWidget(var3);
-		if (var4 != null) {
-			IsaacCipher.invalidateWidget(var4);
-		}
-
-		AbstractWorldMapData.method352();
-		if (Client.rootInterface != -1) {
-			class228.runIntfCloseListeners(Client.rootInterface, 1);
+			var0[var3] = var0[var5];
+			var0[var5] = var6;
+			var1[var3] = var1[var5];
+			var1[var5] = var7;
+			method4633(var0, var1, var2, var5 - 1);
+			method4633(var0, var1, var5 + 1, var3);
 		}
 
 	}

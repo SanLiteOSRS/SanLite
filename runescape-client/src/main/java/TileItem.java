@@ -4,18 +4,30 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cc")
+@ObfuscatedName("dg")
 @Implements("TileItem")
 public final class TileItem extends Renderable {
-	@ObfuscatedName("n")
+	@ObfuscatedName("b")
+	@ObfuscatedSignature(
+		signature = "Low;"
+	)
+	@Export("titleboxSprite")
+	static IndexedSprite titleboxSprite;
+	@ObfuscatedName("l")
+	@ObfuscatedSignature(
+		signature = "Low;"
+	)
+	@Export("options_buttons_0Sprite")
+	static IndexedSprite options_buttons_0Sprite;
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = -315361579
+		intValue = -52258563
 	)
 	@Export("id")
 	int id;
-	@ObfuscatedName("v")
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = -555496093
+		intValue = -438803775
 	)
 	@Export("quantity")
 	int quantity;
@@ -23,18 +35,22 @@ public final class TileItem extends Renderable {
 	TileItem() {
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "(B)Lef;",
-		garbageValue = "127"
+		signature = "(I)Lgv;",
+		garbageValue = "1835906978"
 	)
 	@Export("getModel")
 	protected final Model getModel() {
-		return class281.ItemDefinition_get(this.id).getModel(this.quantity);
+		return class23.ItemDefinition_get(this.id).getModel(this.quantity);
 	}
 
-	@ObfuscatedName("v")
-	public static boolean method2265(long var0) {
-		return 0L != var0 && !class225.method4239(var0);
+	@ObfuscatedName("as")
+	@ObfuscatedSignature(
+		signature = "(II)I",
+		garbageValue = "936749737"
+	)
+	static int method2266(int var0) {
+		return (int)Math.pow(2.0D, (double)((float)var0 / 256.0F + 7.0F));
 	}
 }

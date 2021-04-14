@@ -4,41 +4,30 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("av")
+@ObfuscatedName("fp")
 @Implements("WorldMapEvent")
 public class WorldMapEvent {
-	@ObfuscatedName("rk")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = -687726109
-	)
-	static int field380;
-	@ObfuscatedName("k")
-	@ObfuscatedSignature(
-		signature = "[Lme;"
-	)
-	@Export("JagexCache_idxFiles")
-	public static BufferedFile[] JagexCache_idxFiles;
-	@ObfuscatedName("n")
-	@ObfuscatedGetter(
-		intValue = 477038655
+		intValue = 2124516847
 	)
 	@Export("mapElement")
 	public int mapElement;
-	@ObfuscatedName("v")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "Lhd;"
+		signature = "Lhk;"
 	)
 	@Export("coord1")
 	public Coord coord1;
-	@ObfuscatedName("d")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "Lhd;"
+		signature = "Lhk;"
 	)
 	@Export("coord2")
 	public Coord coord2;
 
 	@ObfuscatedSignature(
-		signature = "(ILhd;Lhd;)V"
+		signature = "(ILhk;Lhk;)V"
 	)
 	public WorldMapEvent(int var1, Coord var2, Coord var3) {
 		this.mapElement = var1;
@@ -46,47 +35,12 @@ public class WorldMapEvent {
 		this.coord2 = var3;
 	}
 
-	@ObfuscatedName("y")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-852874949"
+		signature = "(II)Z",
+		garbageValue = "1623045574"
 	)
-	public static void method851() {
-		SpotAnimationDefinition.SpotAnimationDefinition_cached.clear();
-		SpotAnimationDefinition.SpotAnimationDefinition_cachedModels.clear();
-	}
-
-	@ObfuscatedName("k")
-	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "32"
-	)
-	public static void method850() {
-		Widget.Widget_cachedSprites.clear();
-		Widget.Widget_cachedModels.clear();
-		Widget.Widget_cachedFonts.clear();
-		Widget.Widget_cachedSpriteMasks.clear();
-	}
-
-	@ObfuscatedName("iv")
-	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;Ljava/lang/String;IIIIZB)V",
-		garbageValue = "-21"
-	)
-	@Export("insertMenuItem")
-	static final void insertMenuItem(String var0, String var1, int var2, int var3, int var4, int var5, boolean var6) {
-		if (!Client.isMenuOpen) {
-			if (Client.menuOptionsCount < 500) {
-				Client.menuActions[Client.menuOptionsCount] = var0;
-				Client.menuTargets[Client.menuOptionsCount] = var1;
-				Client.menuOpcodes[Client.menuOptionsCount] = var2;
-				Client.menuIdentifiers[Client.menuOptionsCount] = var3;
-				Client.menuArguments1[Client.menuOptionsCount] = var4;
-				Client.menuArguments2[Client.menuOptionsCount] = var5;
-				Client.menuShiftClick[Client.menuOptionsCount] = var6;
-				++Client.menuOptionsCount;
-			}
-
-		}
+	public static boolean method3267(int var0) {
+		return (var0 & 1) != 0;
 	}
 }

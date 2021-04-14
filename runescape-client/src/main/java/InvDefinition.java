@@ -1,27 +1,28 @@
+import java.io.File;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ij")
+@ObfuscatedName("js")
 @Implements("InvDefinition")
 public class InvDefinition extends DualNode {
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "Lig;"
+		signature = "Lir;"
 	)
 	@Export("InvDefinition_archive")
-	static AbstractArchive InvDefinition_archive;
-	@ObfuscatedName("v")
+	public static AbstractArchive InvDefinition_archive;
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "Lex;"
+		signature = "Lgf;"
 	)
 	@Export("InvDefinition_cached")
 	static EvictingDualNodeHashTable InvDefinition_cached;
-	@ObfuscatedName("d")
+	@ObfuscatedName("u")
 	@ObfuscatedGetter(
-		intValue = 2039181525
+		intValue = 651568811
 	)
 	@Export("size")
 	public int size;
@@ -34,10 +35,10 @@ public class InvDefinition extends DualNode {
 		this.size = 0;
 	}
 
-	@ObfuscatedName("d")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "(Lkx;B)V",
-		garbageValue = "-26"
+		signature = "(Lnu;B)V",
+		garbageValue = "86"
 	)
 	@Export("decode")
 	void decode(Buffer var1) {
@@ -51,10 +52,10 @@ public class InvDefinition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "(Lkx;II)V",
-		garbageValue = "-667990593"
+		signature = "(Lnu;IB)V",
+		garbageValue = "46"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
@@ -64,25 +65,17 @@ public class InvDefinition extends DualNode {
 
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "(IB)Lic;",
-		garbageValue = "63"
+		signature = "(Ljava/io/File;I)V",
+		garbageValue = "1853362286"
 	)
-	@Export("WorldMapElement_get")
-	public static WorldMapElement WorldMapElement_get(int var0) {
-		return var0 >= 0 && var0 < WorldMapElement.WorldMapElement_cached.length && WorldMapElement.WorldMapElement_cached[var0] != null ? WorldMapElement.WorldMapElement_cached[var0] : new WorldMapElement(var0);
-	}
-
-	@ObfuscatedName("a")
-	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V",
-		garbageValue = "1853243794"
-	)
-	@Export("setLoginResponseString")
-	static void setLoginResponseString(String var0, String var1, String var2) {
-		Login.Login_response1 = var0;
-		Login.Login_response2 = var1;
-		Login.Login_response3 = var2;
+	static void method4890(File var0) {
+		FileSystem.FileSystem_cacheDir = var0;
+		if (!FileSystem.FileSystem_cacheDir.exists()) {
+			throw new RuntimeException("");
+		} else {
+			FileSystem.FileSystem_hasPermissions = true;
+		}
 	}
 }

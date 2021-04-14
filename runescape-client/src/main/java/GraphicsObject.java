@@ -1,75 +1,73 @@
-import java.io.File;
-import java.io.RandomAccessFile;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cj")
+@ObfuscatedName("cf")
 @Implements("GraphicsObject")
 public final class GraphicsObject extends Renderable {
-	@ObfuscatedName("t")
+	@ObfuscatedName("z")
 	@ObfuscatedGetter(
-		intValue = 910565899
+		intValue = -1860444775
 	)
 	@Export("loginBoxCenter")
 	static int loginBoxCenter;
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = -1864450081
+		intValue = -1442514319
 	)
 	@Export("id")
 	int id;
-	@ObfuscatedName("v")
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = 505711675
+		intValue = -255937363
 	)
 	@Export("cycleStart")
 	int cycleStart;
-	@ObfuscatedName("d")
+	@ObfuscatedName("u")
 	@ObfuscatedGetter(
-		intValue = -1431922107
+		intValue = -1558185979
 	)
 	@Export("plane")
 	int plane;
-	@ObfuscatedName("c")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = -1205773017
+		intValue = -799404683
 	)
 	@Export("x")
 	int x;
-	@ObfuscatedName("y")
-	@ObfuscatedSignature(
-		signature = "Ljs;"
-	)
-	@Export("sequenceDefinition")
-	SequenceDefinition sequenceDefinition;
-	@ObfuscatedName("h")
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = -2064393717
+		intValue = -1197647983
 	)
 	@Export("y")
 	int y;
-	@ObfuscatedName("z")
+	@ObfuscatedName("e")
 	@ObfuscatedGetter(
-		intValue = -1686573995
+		intValue = 921468661
 	)
 	@Export("height")
 	int height;
-	@ObfuscatedName("e")
+	@ObfuscatedName("k")
+	@ObfuscatedSignature(
+		signature = "Lkw;"
+	)
+	@Export("sequenceDefinition")
+	SequenceDefinition sequenceDefinition;
+	@ObfuscatedName("g")
 	@ObfuscatedGetter(
-		intValue = -1959033933
+		intValue = 1763592485
 	)
 	@Export("frame")
 	int frame;
-	@ObfuscatedName("q")
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = 230901949
+		intValue = 1659206025
 	)
 	@Export("frameCycle")
 	int frameCycle;
-	@ObfuscatedName("l")
+	@ObfuscatedName("n")
 	@Export("isFinished")
 	boolean isFinished;
 
@@ -83,20 +81,20 @@ public final class GraphicsObject extends Renderable {
 		this.y = var4;
 		this.height = var5;
 		this.cycleStart = var7 + var6;
-		int var8 = AbstractUserComparator.SpotAnimationDefinition_get(this.id).sequence;
+		int var8 = Varps.SpotAnimationDefinition_get(this.id).sequence;
 		if (var8 != -1) {
 			this.isFinished = false;
-			this.sequenceDefinition = InterfaceParent.SequenceDefinition_get(var8);
+			this.sequenceDefinition = class225.SequenceDefinition_get(var8);
 		} else {
 			this.isFinished = true;
 		}
 
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
 		signature = "(II)V",
-		garbageValue = "-83388372"
+		garbageValue = "1392688450"
 	)
 	@Export("advance")
 	final void advance(int var1) {
@@ -115,14 +113,14 @@ public final class GraphicsObject extends Renderable {
 		}
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "(B)Lef;",
-		garbageValue = "127"
+		signature = "(I)Lgv;",
+		garbageValue = "1835906978"
 	)
 	@Export("getModel")
 	protected final Model getModel() {
-		SpotAnimationDefinition var1 = AbstractUserComparator.SpotAnimationDefinition_get(this.id);
+		SpotAnimationDefinition var1 = Varps.SpotAnimationDefinition_get(this.id);
 		Model var2;
 		if (!this.isFinished) {
 			var2 = var1.getModel(this.frame);
@@ -133,72 +131,49 @@ public final class GraphicsObject extends Renderable {
 		return var2 == null ? null : var2;
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "(II)Z",
-		garbageValue = "-531258942"
+		signature = "(II)Lkc;",
+		garbageValue = "-2021558872"
 	)
-	public static boolean method2153(int var0) {
-		return var0 >= WorldMapDecorationType.field2765.id && var0 <= WorldMapDecorationType.field2750.id || var0 == WorldMapDecorationType.field2760.id;
-	}
-
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;B)Ljava/io/File;",
-		garbageValue = "0"
-	)
-	@Export("getFile")
-	static File getFile(String var0) {
-		if (!FileSystem.FileSystem_hasPermissions) {
-			throw new RuntimeException("");
+	@Export("getNpcDefinition")
+	public static NPCComposition getNpcDefinition(int var0) {
+		NPCComposition var1 = (NPCComposition)NPCComposition.NpcDefinition_cached.get((long)var0);
+		if (var1 != null) {
+			return var1;
 		} else {
-			File var1 = (File)FileSystem.FileSystem_cacheFiles.get(var0);
-			if (var1 != null) {
-				return var1;
-			} else {
-				File var2 = new File(FileSystem.FileSystem_cacheDir, var0);
-				RandomAccessFile var3 = null;
-
-				try {
-					File var4 = new File(var2.getParent());
-					if (!var4.exists()) {
-						throw new RuntimeException("");
-					} else {
-						var3 = new RandomAccessFile(var2, "rw");
-						int var5 = var3.read();
-						var3.seek(0L);
-						var3.write(var5);
-						var3.seek(0L);
-						var3.close();
-						FileSystem.FileSystem_cacheFiles.put(var0, var2);
-						return var2;
-					}
-				} catch (Exception var8) {
-					try {
-						if (var3 != null) {
-							var3.close();
-							var3 = null;
-						}
-					} catch (Exception var7) {
-					}
-
-					throw new RuntimeException();
-				}
+			byte[] var2 = NPCComposition.NpcDefinition_archive.takeFile(9, var0);
+			var1 = new NPCComposition();
+			var1.id = var0;
+			if (var2 != null) {
+				var1.decode(new Buffer(var2));
 			}
+
+			var1.postDecode();
+			NPCComposition.NpcDefinition_cached.put(var1, (long)var0);
+			return var1;
 		}
 	}
 
-	@ObfuscatedName("ai")
+	@ObfuscatedName("kq")
 	@ObfuscatedSignature(
-		signature = "(ILhd;ZI)V",
-		garbageValue = "956374800"
+		signature = "(III)V",
+		garbageValue = "-733559314"
 	)
-	static void method2154(int var0, Coord var1, boolean var2) {
-		WorldMapArea var3 = WorldMapSection0.getWorldMap().getMapArea(var0);
-		int var4 = UserComparator9.localPlayer.plane;
-		int var5 = GrandExchangeOfferNameComparator.baseX * 64 + (UserComparator9.localPlayer.x >> 7);
-		int var6 = NetCache.baseY * 64 + (UserComparator9.localPlayer.y >> 7);
-		Coord var7 = new Coord(var4, var5, var6);
-		WorldMapSection0.getWorldMap().method6536(var3, var7, var1, var2);
+	static final void method1913(int var0, int var1) {
+		class3 var2 = var0 >= 0 ? Client.field820[var0] : IsaacCipher.field4266;
+		if (var2 != null && var1 >= 0 && var1 < var2.method46()) {
+			class9 var3 = (class9)var2.field27.get(var1);
+			if (var3.field66 == -1) {
+				String var4 = var3.field65;
+				PacketWriter var5 = Client.packetWriter;
+				PacketBufferNode var6 = ObjectComposition.getPacketBufferNode(ClientPacket.field2316, var5.isaacCipher);
+				var6.packetBuffer.writeByte(3 + Friend.stringCp1252NullTerminatedByteSize(var4));
+				var6.packetBuffer.writeByte(var0);
+				var6.packetBuffer.writeShort(var1);
+				var6.packetBuffer.writeStringCp1252NullTerminated(var4);
+				var5.addNode(var6);
+			}
+		}
 	}
 }

@@ -4,42 +4,30 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("eh")
+@ObfuscatedName("ge")
 @Implements("VertexNormal")
 public class VertexNormal {
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		signature = "Lgg;"
-	)
-	@Export("midiPcmStream")
-	public static MidiPcmStream midiPcmStream;
-	@ObfuscatedName("e")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = -1584172969
-	)
-	@Export("gameCyclesToDo")
-	protected static int gameCyclesToDo;
-	@ObfuscatedName("n")
-	@ObfuscatedGetter(
-		intValue = 1064061579
+		intValue = 1974778043
 	)
 	@Export("x")
 	int x;
-	@ObfuscatedName("v")
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = -178122101
+		intValue = -537542863
 	)
 	@Export("y")
 	int y;
-	@ObfuscatedName("d")
+	@ObfuscatedName("u")
 	@ObfuscatedGetter(
-		intValue = 1860163805
+		intValue = 987855995
 	)
 	@Export("z")
 	int z;
-	@ObfuscatedName("y")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = -525129943
+		intValue = -1799823947
 	)
 	@Export("magnitude")
 	int magnitude;
@@ -48,7 +36,7 @@ public class VertexNormal {
 	}
 
 	@ObfuscatedSignature(
-		signature = "(Leh;)V"
+		signature = "(Lge;)V"
 	)
 	VertexNormal(VertexNormal var1) {
 		this.x = var1.x;
@@ -57,62 +45,31 @@ public class VertexNormal {
 		this.magnitude = var1.magnitude;
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "([BI)Ljava/lang/String;",
-		garbageValue = "1971758922"
+		signature = "(Lir;Lir;S)V",
+		garbageValue = "6851"
 	)
-	public static String method3163(byte[] var0) {
-		int var2 = var0.length;
-		StringBuilder var3 = new StringBuilder();
-
-		for (int var4 = 0; var4 < var2 + 0; var4 += 3) {
-			int var5 = var0[var4] & 255;
-			var3.append(class300.field3688[var5 >>> 2]);
-			if (var4 < var2 - 1) {
-				int var6 = var0[var4 + 1] & 255;
-				var3.append(class300.field3688[(var5 & 3) << 4 | var6 >>> 4]);
-				if (var4 < var2 - 2) {
-					int var7 = var0[var4 + 2] & 255;
-					var3.append(class300.field3688[(var6 & 15) << 2 | var7 >>> 6]).append(class300.field3688[var7 & 63]);
-				} else {
-					var3.append(class300.field3688[(var6 & 15) << 2]).append("=");
-				}
-			} else {
-				var3.append(class300.field3688[(var5 & 3) << 4]).append("==");
-			}
-		}
-
-		String var1 = var3.toString();
-		return var1;
+	public static void method3782(AbstractArchive var0, AbstractArchive var1) {
+		HealthBarDefinition.HealthBarDefinition_archive = var0;
+		HealthBarDefinition.HitSplatDefinition_spritesArchive = var1;
 	}
 
 	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "([BIII)Ljava/lang/String;",
-		garbageValue = "-1881073597"
+		signature = "(Lir;II)Low;",
+		garbageValue = "577836402"
 	)
-	@Export("decodeStringCp1252")
-	public static String decodeStringCp1252(byte[] var0, int var1, int var2) {
-		char[] var3 = new char[var2];
-		int var4 = 0;
-
-		for (int var5 = 0; var5 < var2; ++var5) {
-			int var6 = var0[var5 + var1] & 255;
-			if (var6 != 0) {
-				if (var6 >= 128 && var6 < 160) {
-					char var7 = class298.cp1252AsciiExtension[var6 - 128];
-					if (var7 == 0) {
-						var7 = '?';
-					}
-
-					var6 = var7;
-				}
-
-				var3[var4++] = (char)var6;
-			}
+	public static IndexedSprite method3783(AbstractArchive var0, int var1) {
+		byte[] var3 = var0.takeFileFlat(var1);
+		boolean var2;
+		if (var3 == null) {
+			var2 = false;
+		} else {
+			class244.SpriteBuffer_decode(var3);
+			var2 = true;
 		}
 
-		return new String(var3, 0, var4);
+		return !var2 ? null : ArchiveLoader.method2076();
 	}
 }

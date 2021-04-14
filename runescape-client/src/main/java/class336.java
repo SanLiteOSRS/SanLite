@@ -1,31 +1,101 @@
-import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
+import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("lz")
+@ObfuscatedName("lq")
 public class class336 {
-	@ObfuscatedName("n")
-	@ObfuscatedGetter(
-		intValue = 1826963065
+	@ObfuscatedName("o")
+	@ObfuscatedSignature(
+		signature = "(Ljava/lang/CharSequence;Lmf;I)Ljava/lang/String;",
+		garbageValue = "744512659"
 	)
-	@Export("SpriteBuffer_spriteCount")
-	static int SpriteBuffer_spriteCount;
-	@ObfuscatedName("v")
-	@ObfuscatedGetter(
-		intValue = 341867827
-	)
-	@Export("SpriteBuffer_spriteWidth")
-	static int SpriteBuffer_spriteWidth;
-	@ObfuscatedName("d")
-	@ObfuscatedGetter(
-		intValue = 1978795799
-	)
-	@Export("SpriteBuffer_spriteHeight")
-	static int SpriteBuffer_spriteHeight;
-	@ObfuscatedName("y")
-	@Export("SpriteBuffer_yOffsets")
-	public static int[] SpriteBuffer_yOffsets;
-	@ObfuscatedName("h")
-	@Export("SpriteBuffer_spriteWidths")
-	public static int[] SpriteBuffer_spriteWidths;
+	public static String method5978(CharSequence var0, LoginType var1) {
+		if (var0 == null) {
+			return null;
+		} else {
+			int var2 = 0;
+
+			int var3;
+			for (var3 = var0.length(); var2 < var3 && ServerPacket.method3902(var0.charAt(var2)); ++var2) {
+			}
+
+			while (var3 > var2 && ServerPacket.method3902(var0.charAt(var3 - 1))) {
+				--var3;
+			}
+
+			int var4 = var3 - var2;
+			if (var4 >= 1) {
+				byte var6;
+				if (var1 == null) {
+					var6 = 12;
+				} else {
+					switch(var1.field4092) {
+					case 1:
+						var6 = 20;
+						break;
+					default:
+						var6 = 12;
+					}
+				}
+
+				if (var4 <= var6) {
+					StringBuilder var12 = new StringBuilder(var4);
+
+					for (int var14 = var2; var14 < var3; ++var14) {
+						char var7 = var0.charAt(var14);
+						boolean var8;
+						if (Character.isISOControl(var7)) {
+							var8 = false;
+						} else if (class238.isAlphaNumeric(var7)) {
+							var8 = true;
+						} else {
+							char[] var9 = class364.field4098;
+							int var10 = 0;
+
+							label81:
+							while (true) {
+								char var11;
+								if (var10 >= var9.length) {
+									var9 = class364.field4096;
+
+									for (var10 = 0; var10 < var9.length; ++var10) {
+										var11 = var9[var10];
+										if (var7 == var11) {
+											var8 = true;
+											break label81;
+										}
+									}
+
+									var8 = false;
+									break;
+								}
+
+								var11 = var9[var10];
+								if (var11 == var7) {
+									var8 = true;
+									break;
+								}
+
+								++var10;
+							}
+						}
+
+						if (var8) {
+							char var13 = class309.method5602(var7);
+							if (var13 != 0) {
+								var12.append(var13);
+							}
+						}
+					}
+
+					if (var12.length() == 0) {
+						return null;
+					}
+
+					return var12.toString();
+				}
+			}
+
+			return null;
+		}
+	}
 }

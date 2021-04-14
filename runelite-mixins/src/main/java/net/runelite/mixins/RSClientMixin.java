@@ -1197,12 +1197,12 @@ public abstract class RSClientMixin implements RSClient
 		callbacks.post(event);
 	}
 
-	@Inject
-	@MethodHook("updateNpcs")
-	public static void updateNpcs(boolean var0, RSPacketBuffer var1)
-	{
-		client.getCallbacks().updateNpcs();
-	}
+//	@Inject
+//	@MethodHook("updateNpcs")
+//	public static void updateNpcs(boolean var0, RSPacketBuffer var1)
+//	{
+//		client.getCallbacks().updateNpcs();
+//	}
 
 	@Inject
 	@MethodHook(value = "addChatMessage", end = true)

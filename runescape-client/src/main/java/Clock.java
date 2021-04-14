@@ -1,47 +1,94 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fm")
+@ObfuscatedName("et")
 @Implements("Clock")
 public abstract class Clock {
-	@ObfuscatedName("rd")
-	@ObfuscatedGetter(
-		intValue = -1841661257
-	)
-	static int field2079;
-
 	Clock() {
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "46"
+		signature = "(S)V",
+		garbageValue = "-629"
 	)
 	@Export("mark")
 	public abstract void mark();
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
 		signature = "(III)I",
-		garbageValue = "1861957348"
+		garbageValue = "1172254968"
 	)
 	@Export("wait")
 	public abstract int wait(int var1, int var2);
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		signature = "(Lkx;Ljava/lang/String;B)I",
-		garbageValue = "-59"
+		signature = "(I)V",
+		garbageValue = "-1662768639"
 	)
-	public static int method3721(Buffer var0, String var1) {
-		int var2 = var0.offset;
-		byte[] var3 = class3.method40(var1);
-		var0.writeSmartByteShort(var3.length);
-		var0.offset += class219.huffman.compress(var3, 0, var3.length, var0.array, var0.offset);
-		return var0.offset - var2;
+	public static void method2600() {
+		HitSplatDefinition.HitSplatDefinition_cached.clear();
+		HitSplatDefinition.HitSplatDefinition_cachedSprites.clear();
+		HitSplatDefinition.HitSplatDefinition_cachedFonts.clear();
+	}
+
+	@ObfuscatedName("z")
+	@ObfuscatedSignature(
+		signature = "(I)V",
+		garbageValue = "765268969"
+	)
+	public static void method2610() {
+		ItemComposition.ItemDefinition_cachedSprites.clear();
+	}
+
+	@ObfuscatedName("jh")
+	@ObfuscatedSignature(
+		signature = "([Lhu;II)V",
+		garbageValue = "974266875"
+	)
+	@Export("runComponentCloseListeners")
+	static final void runComponentCloseListeners(Widget[] var0, int var1) {
+		for (int var2 = 0; var2 < var0.length; ++var2) {
+			Widget var3 = var0[var2];
+			if (var3 != null) {
+				if (var3.type == 0) {
+					if (var3.children != null) {
+						runComponentCloseListeners(var3.children, var1);
+					}
+
+					InterfaceParent var4 = (InterfaceParent)Client.interfaceParents.get((long)var3.id);
+					if (var4 != null) {
+						class379.runIntfCloseListeners(var4.group, var1);
+					}
+				}
+
+				ScriptEvent var5;
+				if (var1 == 0 && var3.onDialogAbort != null) {
+					var5 = new ScriptEvent();
+					var5.widget = var3;
+					var5.args = var3.onDialogAbort;
+					class19.runScriptEvent(var5);
+				}
+
+				if (var1 == 1 && var3.onSubChange != null) {
+					if (var3.childIndex >= 0) {
+						Widget var6 = class139.getWidget(var3.id);
+						if (var6 == null || var6.children == null || var3.childIndex >= var6.children.length || var3 != var6.children[var3.childIndex]) {
+							continue;
+						}
+					}
+
+					var5 = new ScriptEvent();
+					var5.widget = var3;
+					var5.args = var3.onSubChange;
+					class19.runScriptEvent(var5);
+				}
+			}
+		}
+
 	}
 }

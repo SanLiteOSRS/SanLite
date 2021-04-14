@@ -4,41 +4,40 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cd")
+@ObfuscatedName("cl")
 @Implements("HealthBarUpdate")
 public class HealthBarUpdate extends Node {
-	@ObfuscatedName("se")
-	@ObfuscatedSignature(
-		signature = "Lio;"
-	)
-	public static class248 field1016;
-	@ObfuscatedName("id")
+	@ObfuscatedName("sy")
 	@ObfuscatedGetter(
-		intValue = -871307957
+		longValue = 6142810320644924851L
 	)
-	@Export("oculusOrbFocalPointX")
-	static int oculusOrbFocalPointX;
-	@ObfuscatedName("n")
+	static long field1272;
+	@ObfuscatedName("fp")
 	@ObfuscatedGetter(
-		intValue = -1783692297
+		longValue = 4363745212267804777L
+	)
+	static long field1277;
+	@ObfuscatedName("f")
+	@ObfuscatedGetter(
+		intValue = 1723297803
 	)
 	@Export("cycle")
 	int cycle;
-	@ObfuscatedName("v")
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = -2047753623
+		intValue = -802786453
 	)
 	@Export("health")
 	int health;
-	@ObfuscatedName("d")
+	@ObfuscatedName("u")
 	@ObfuscatedGetter(
-		intValue = -1943828551
+		intValue = -1934136823
 	)
 	@Export("health2")
 	int health2;
-	@ObfuscatedName("c")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = -1709538301
+		intValue = 1369623823
 	)
 	@Export("cycleOffset")
 	int cycleOffset;
@@ -50,10 +49,10 @@ public class HealthBarUpdate extends Node {
 		this.cycleOffset = var4;
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "(IIIIB)V",
-		garbageValue = "72"
+		signature = "(IIIII)V",
+		garbageValue = "-2137849778"
 	)
 	@Export("set")
 	void set(int var1, int var2, int var3, int var4) {
@@ -63,49 +62,44 @@ public class HealthBarUpdate extends Node {
 		this.cycleOffset = var4;
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
-		signature = "([Ljava/lang/String;[SB)V",
-		garbageValue = "1"
+		signature = "(Ljava/lang/String;I)V",
+		garbageValue = "1311777255"
 	)
-	public static void method1873(String[] var0, short[] var1) {
-		AbstractSocket.sortItemsByName(var0, var1, 0, var0.length - 1);
+	static final void method2180(String var0) {
+		StringBuilder var10000 = (new StringBuilder()).append(var0);
+		Object var10001 = null;
+		String var1 = var10000.append(" is already on your ignore list").toString();
+		class69.addGameMessage(30, "", var1);
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("fo")
 	@ObfuscatedSignature(
-		signature = "(IB)Lij;",
-		garbageValue = "-64"
+		signature = "(I)V",
+		garbageValue = "-481083146"
 	)
-	@Export("getInvDefinition")
-	public static InvDefinition getInvDefinition(int var0) {
-		InvDefinition var1 = (InvDefinition)InvDefinition.InvDefinition_cached.get((long)var0);
-		if (var1 != null) {
-			return var1;
+	static final void method2181() {
+		if (Client.logoutTimer > 0) {
+			class23.logOut();
 		} else {
-			byte[] var2 = InvDefinition.InvDefinition_archive.takeFile(5, var0);
-			var1 = new InvDefinition();
-			if (var2 != null) {
-				var1.decode(new Buffer(var2));
-			}
-
-			InvDefinition.InvDefinition_cached.put(var1, (long)var0);
-			return var1;
+			Client.timer.method5578();
+			class20.updateGameState(40);
+			Client.field686 = Client.packetWriter.getSocket();
+			Client.packetWriter.removeSocket();
 		}
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("fw")
 	@ObfuscatedSignature(
-		signature = "(II)I",
-		garbageValue = "-698681386"
+		signature = "(IIB)V",
+		garbageValue = "59"
 	)
-	@Export("Messages_getLastChatID")
-	static int Messages_getLastChatID(int var0) {
-		Message var1 = (Message)Messages.Messages_hashTable.get((long)var0);
-		if (var1 == null) {
-			return -1;
-		} else {
-			return var1.nextDual == Messages.Messages_queue.sentinel ? -1 : ((Message)var1.nextDual).count;
+	static void method2175(int var0, int var1) {
+		if (Login.clientPreferences.musicVolume != 0 && var0 != -1) {
+			PacketBufferNode.method3898(class10.archive11, var0, 0, Login.clientPreferences.musicVolume, false);
+			Client.field842 = true;
 		}
+
 	}
 }

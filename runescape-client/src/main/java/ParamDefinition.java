@@ -4,34 +4,34 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jl")
+@ObfuscatedName("kz")
 @Implements("ParamDefinition")
 public class ParamDefinition extends DualNode {
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "Lig;"
+		signature = "Lir;"
 	)
 	@Export("ParamDefinition_archive")
 	static AbstractArchive ParamDefinition_archive;
-	@ObfuscatedName("v")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "Lex;"
+		signature = "Lgf;"
 	)
 	@Export("ParamDefinition_cached")
 	public static EvictingDualNodeHashTable ParamDefinition_cached;
-	@ObfuscatedName("d")
+	@ObfuscatedName("u")
 	@Export("type")
 	char type;
-	@ObfuscatedName("c")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = -551037179
+		intValue = 1078497239
 	)
 	@Export("defaultInt")
 	public int defaultInt;
-	@ObfuscatedName("y")
+	@ObfuscatedName("b")
 	@Export("defaultStr")
 	public String defaultStr;
-	@ObfuscatedName("h")
+	@ObfuscatedName("e")
 	@Export("autoDisable")
 	boolean autoDisable;
 
@@ -43,19 +43,19 @@ public class ParamDefinition extends DualNode {
 		this.autoDisable = true;
 	}
 
-	@ObfuscatedName("d")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "-1000046844"
+		garbageValue = "-1223154324"
 	)
 	@Export("postDecode")
 	void postDecode() {
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		signature = "(Lkx;I)V",
-		garbageValue = "1362546091"
+		signature = "(Lnu;B)V",
+		garbageValue = "-36"
 	)
 	@Export("decode")
 	void decode(Buffer var1) {
@@ -69,10 +69,10 @@ public class ParamDefinition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("y")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		signature = "(Lkx;II)V",
-		garbageValue = "1500921565"
+		signature = "(Lnu;II)V",
+		garbageValue = "1477627389"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
@@ -84,7 +84,7 @@ public class ParamDefinition extends DualNode {
 			}
 
 			if (var5 >= 128 && var5 < 160) {
-				char var6 = class298.cp1252AsciiExtension[var5 - 128];
+				char var6 = class300.cp1252AsciiExtension[var5 - 128];
 				if (var6 == 0) {
 					var6 = '?';
 				}
@@ -104,48 +104,22 @@ public class ParamDefinition extends DualNode {
 
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		signature = "(S)Z",
-		garbageValue = "31310"
+		signature = "(I)Z",
+		garbageValue = "206427050"
 	)
 	@Export("isString")
 	public boolean isString() {
 		return this.type == 's';
 	}
 
-	@ObfuscatedName("gc")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "(IIII)V",
-		garbageValue = "-1478943473"
+		signature = "(I)V",
+		garbageValue = "1027659488"
 	)
-	@Export("worldToScreen")
-	static final void worldToScreen(int var0, int var1, int var2) {
-		if (var0 >= 128 && var1 >= 128 && var0 <= 13056 && var1 <= 13056) {
-			int var3 = WorldMapRegion.getTileHeight(var0, var1, class90.Client_plane) - var2;
-			var0 -= SecureRandomFuture.cameraX;
-			var3 -= ArchiveLoader.cameraY;
-			var1 -= ObjectSound.cameraZ;
-			int var4 = Rasterizer3D.Rasterizer3D_sine[KeyHandler.cameraPitch];
-			int var5 = Rasterizer3D.Rasterizer3D_cosine[KeyHandler.cameraPitch];
-			int var6 = Rasterizer3D.Rasterizer3D_sine[class39.cameraYaw];
-			int var7 = Rasterizer3D.Rasterizer3D_cosine[class39.cameraYaw];
-			int var8 = var6 * var1 + var0 * var7 >> 16;
-			var1 = var7 * var1 - var0 * var6 >> 16;
-			var0 = var8;
-			var8 = var5 * var3 - var4 * var1 >> 16;
-			var1 = var5 * var1 + var3 * var4 >> 16;
-			if (var1 >= 50) {
-				Client.viewportTempX = var0 * Client.viewportZoom / var1 + Client.viewportWidth / 2;
-				Client.viewportTempY = var8 * Client.viewportZoom / var1 + Client.viewportHeight / 2;
-			} else {
-				Client.viewportTempX = -1;
-				Client.viewportTempY = -1;
-			}
-
-		} else {
-			Client.viewportTempX = -1;
-			Client.viewportTempY = -1;
-		}
+	public static void method5096() {
+		StructDefinition.StructDefinition_cached.clear();
 	}
 }

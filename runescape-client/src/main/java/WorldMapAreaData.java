@@ -1,3 +1,4 @@
+import java.net.URL;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -6,31 +7,26 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("au")
+@ObfuscatedName("fr")
 @Implements("WorldMapAreaData")
 public class WorldMapAreaData extends WorldMapArea {
-	@ObfuscatedName("nz")
-	@ObfuscatedSignature(
-		signature = "[Lhz;"
-	)
-	static Widget[] field362;
-	@ObfuscatedName("a")
+	@ObfuscatedName("d")
 	@Export("worldMapData0Set")
 	HashSet worldMapData0Set;
-	@ObfuscatedName("w")
+	@ObfuscatedName("c")
 	@Export("worldMapData1Set")
 	HashSet worldMapData1Set;
-	@ObfuscatedName("k")
+	@ObfuscatedName("j")
 	@Export("iconList")
 	List iconList;
 
 	WorldMapAreaData() {
 	}
 
-	@ObfuscatedName("cn")
+	@ObfuscatedName("bm")
 	@ObfuscatedSignature(
-		signature = "(Lkx;Lkx;IZI)V",
-		garbageValue = "1841942277"
+		signature = "(Lnu;Lnu;IZI)V",
+		garbageValue = "-1186228166"
 	)
 	@Export("init")
 	void init(Buffer var1, Buffer var2, int var3, boolean var4) {
@@ -69,10 +65,10 @@ public class WorldMapAreaData extends WorldMapArea {
 		this.initIconsList(var2, var4);
 	}
 
-	@ObfuscatedName("cj")
+	@ObfuscatedName("bz")
 	@ObfuscatedSignature(
-		signature = "(Lkx;ZI)V",
-		garbageValue = "-1098628565"
+		signature = "(Lnu;ZI)V",
+		garbageValue = "-770265064"
 	)
 	@Export("initIconsList")
 	void initIconsList(Buffer var1, boolean var2) {
@@ -80,7 +76,7 @@ public class WorldMapAreaData extends WorldMapArea {
 		int var3 = var1.readUnsignedShort();
 
 		for (int var4 = 0; var4 < var3; ++var4) {
-			int var5 = var1.method5833();
+			int var5 = var1.method6597();
 			Coord var6 = new Coord(var1.readInt());
 			boolean var7 = var1.readUnsignedByte() == 1;
 			if (var2 || !var7) {
@@ -90,53 +86,99 @@ public class WorldMapAreaData extends WorldMapArea {
 
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "(II)Ljg;",
-		garbageValue = "1068014822"
-	)
-	@Export("getObjectDefinition")
-	public static ObjectComposition getObjectDefinition(int var0) {
-		ObjectComposition var1 = (ObjectComposition)ObjectComposition.ObjectDefinition_cached.get((long)var0);
-		if (var1 != null) {
-			return var1;
-		} else {
-			byte[] var2 = ObjectComposition.ObjectDefinition_archive.takeFile(6, var0);
-			var1 = new ObjectComposition();
-			var1.id = var0;
-			if (var2 != null) {
-				var1.decode(new Buffer(var2));
-			}
-
-			var1.postDecode();
-			if (var1.isSolid) {
-				var1.interactType = 0;
-				var1.boolean1 = false;
-			}
-
-			ObjectComposition.ObjectDefinition_cached.put(var1, (long)var0);
-			return var1;
-		}
-	}
-
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "-91"
-	)
-	public static void method782() {
-		if (class297.NetCache_socket != null) {
-			class297.NetCache_socket.close();
-		}
-
-	}
-
-	@ObfuscatedName("b")
-	@ObfuscatedSignature(
-		signature = "(B)V",
+		signature = "(B)Z",
 		garbageValue = "1"
 	)
-	static final void method781() {
-		class300.method5473("Your ignore list is full. Max of 100 for free users, and 400 for members");
+	@Export("loadWorlds")
+	static boolean loadWorlds() {
+		try {
+			if (World.World_request == null) {
+				World.World_request = class32.urlRequester.request(new URL(class244.field2909));
+			} else if (World.World_request.isDone()) {
+				byte[] var0 = World.World_request.getResponse();
+				Buffer var1 = new Buffer(var0);
+				var1.readInt();
+				World.World_count = var1.readUnsignedShort();
+				class9.World_worlds = new World[World.World_count];
+
+				World var3;
+				for (int var2 = 0; var2 < World.World_count; var3.index = var2++) {
+					var3 = class9.World_worlds[var2] = new World();
+					var3.id = var1.readUnsignedShort();
+					var3.properties = var1.readInt();
+					var3.host = var1.readStringCp1252NullTerminated();
+					var3.activity = var1.readStringCp1252NullTerminated();
+					var3.location = var1.readUnsignedByte();
+					var3.population = var1.readShort();
+				}
+
+				class208.sortWorlds(class9.World_worlds, 0, class9.World_worlds.length - 1, World.World_sortOption1, World.World_sortOption2);
+				World.World_request = null;
+				return true;
+			}
+		} catch (Exception var4) {
+			var4.printStackTrace();
+			World.World_request = null;
+		}
+
+		return false;
+	}
+
+	@ObfuscatedName("u")
+	@ObfuscatedSignature(
+		signature = "(I)V",
+		garbageValue = "-1371665339"
+	)
+	public static void method3212() {
+		VarbitComposition.VarbitDefinition_cached.clear();
+	}
+
+	@ObfuscatedName("kr")
+	@ObfuscatedSignature(
+		signature = "(Ljava/lang/String;ZI)V",
+		garbageValue = "1280452567"
+	)
+	@Export("findItemDefinitions")
+	static void findItemDefinitions(String var0, boolean var1) {
+		var0 = var0.toLowerCase();
+		short[] var2 = new short[16];
+		int var3 = 0;
+
+		for (int var4 = 0; var4 < UserComparator8.ItemDefinition_fileCount; ++var4) {
+			ItemComposition var5 = class23.ItemDefinition_get(var4);
+			if ((!var1 || var5.isTradable) && var5.noteTemplate == -1 && var5.name.toLowerCase().indexOf(var0) != -1) {
+				if (var3 >= 250) {
+					ItemLayer.foundItemIdCount = -1;
+					class19.foundItemIds = null;
+					return;
+				}
+
+				if (var3 >= var2.length) {
+					short[] var6 = new short[var2.length * 2];
+
+					for (int var7 = 0; var7 < var3; ++var7) {
+						var6[var7] = var2[var7];
+					}
+
+					var2 = var6;
+				}
+
+				var2[var3++] = (short)var4;
+			}
+		}
+
+		class19.foundItemIds = var2;
+		class203.foundItemIndex = 0;
+		ItemLayer.foundItemIdCount = var3;
+		String[] var8 = new String[ItemLayer.foundItemIdCount];
+
+		for (int var9 = 0; var9 < ItemLayer.foundItemIdCount; ++var9) {
+			var8[var9] = class23.ItemDefinition_get(var2[var9]).name;
+		}
+
+		short[] var10 = class19.foundItemIds;
+		class283.sortItemsByName(var8, var10, 0, var8.length - 1);
 	}
 }

@@ -5,120 +5,108 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ii")
+@ObfuscatedName("in")
 @Implements("NetCache")
 public class NetCache {
-	@ObfuscatedName("v")
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = 2069303121
+		intValue = -124880601
 	)
 	@Export("NetCache_loadTime")
 	public static int NetCache_loadTime;
-	@ObfuscatedName("d")
+	@ObfuscatedName("u")
 	@ObfuscatedGetter(
-		longValue = 5972391004989116827L
+		longValue = 5332801206251428939L
 	)
-	public static long field3222;
-	@ObfuscatedName("c")
+	public static long field3284;
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		signature = "Llq;"
+		signature = "Lmg;"
 	)
 	@Export("NetCache_pendingPriorityWrites")
 	public static NodeHashTable NetCache_pendingPriorityWrites;
-	@ObfuscatedName("y")
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = 1443113315
+		intValue = 1054215943
 	)
 	@Export("NetCache_pendingPriorityWritesCount")
 	public static int NetCache_pendingPriorityWritesCount;
-	@ObfuscatedName("h")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		signature = "Llq;"
+		signature = "Lmg;"
 	)
 	@Export("NetCache_pendingPriorityResponses")
 	public static NodeHashTable NetCache_pendingPriorityResponses;
-	@ObfuscatedName("z")
+	@ObfuscatedName("k")
 	@ObfuscatedGetter(
-		intValue = 1708401617
+		intValue = -1139184707
 	)
 	@Export("NetCache_pendingPriorityResponsesCount")
 	public static int NetCache_pendingPriorityResponsesCount;
-	@ObfuscatedName("e")
+	@ObfuscatedName("g")
 	@ObfuscatedSignature(
-		signature = "Ljd;"
+		signature = "Ljo;"
 	)
 	@Export("NetCache_pendingWritesQueue")
 	public static DualNodeDeque NetCache_pendingWritesQueue;
-	@ObfuscatedName("q")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "Llq;"
+		signature = "Lmg;"
 	)
 	@Export("NetCache_pendingWrites")
 	public static NodeHashTable NetCache_pendingWrites;
-	@ObfuscatedName("l")
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = -767239881
+		intValue = -80901939
 	)
 	@Export("NetCache_pendingWritesCount")
 	public static int NetCache_pendingWritesCount;
-	@ObfuscatedName("s")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		signature = "Llq;"
+		signature = "Lmg;"
 	)
 	@Export("NetCache_pendingResponses")
 	public static NodeHashTable NetCache_pendingResponses;
-	@ObfuscatedName("b")
+	@ObfuscatedName("m")
 	@ObfuscatedGetter(
-		intValue = -462830745
+		intValue = 1355603673
 	)
 	@Export("NetCache_pendingResponsesCount")
 	public static int NetCache_pendingResponsesCount;
-	@ObfuscatedName("k")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
-		signature = "Lkx;"
+		signature = "Lnu;"
 	)
 	@Export("NetCache_responseHeaderBuffer")
 	public static Buffer NetCache_responseHeaderBuffer;
-	@ObfuscatedName("i")
-	@ObfuscatedSignature(
-		signature = "Lkx;"
-	)
-	@Export("NetCache_responseArchiveBuffer")
-	public static Buffer NetCache_responseArchiveBuffer;
-	@ObfuscatedName("x")
+	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = 1342919903
+		intValue = -1154684579
 	)
-	public static int field3219;
-	@ObfuscatedName("g")
+	public static int field3295;
+	@ObfuscatedName("v")
 	@Export("NetCache_crc")
-	public static CRC32 NetCache_crc;
-	@ObfuscatedName("t")
+	static CRC32 NetCache_crc;
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		signature = "[Liy;"
+		signature = "[Lig;"
 	)
 	@Export("NetCache_archives")
-	public static Archive[] NetCache_archives;
-	@ObfuscatedName("p")
-	public static byte field3213;
-	@ObfuscatedName("m")
+	static Archive[] NetCache_archives;
+	@ObfuscatedName("i")
+	public static byte field3287;
+	@ObfuscatedName("a")
 	@ObfuscatedGetter(
-		intValue = 26880845
+		intValue = -306717703
 	)
 	@Export("NetCache_crcMismatches")
 	public static int NetCache_crcMismatches;
-	@ObfuscatedName("r")
+	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		intValue = 953608549
+		intValue = -1924806693
 	)
 	@Export("NetCache_ioExceptions")
 	public static int NetCache_ioExceptions;
-	@ObfuscatedName("gz")
-	@ObfuscatedGetter(
-		intValue = -128407789
-	)
-	@Export("baseY")
-	static int baseY;
 
 	static {
 		NetCache_loadTime = 0;
@@ -132,10 +120,10 @@ public class NetCache {
 		NetCache_pendingResponses = new NodeHashTable(4096);
 		NetCache_pendingResponsesCount = 0;
 		NetCache_responseHeaderBuffer = new Buffer(8);
-		field3219 = 0;
+		field3295 = 0;
 		NetCache_crc = new CRC32();
 		NetCache_archives = new Archive[256];
-		field3213 = 0;
+		field3287 = 0;
 		NetCache_crcMismatches = 0;
 		NetCache_ioExceptions = 0;
 	}

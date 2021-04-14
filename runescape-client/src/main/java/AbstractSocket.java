@@ -4,111 +4,82 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ls")
+@ObfuscatedName("li")
 @Implements("AbstractSocket")
 public abstract class AbstractSocket {
 	protected AbstractSocket() {
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "136255387"
+		garbageValue = "-1705512918"
 	)
 	@Export("close")
 	public abstract void close();
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
 		signature = "(B)I",
-		garbageValue = "-29"
+		garbageValue = "-75"
 	)
 	@Export("readUnsignedByte")
 	public abstract int readUnsignedByte() throws IOException;
 
-	@ObfuscatedName("d")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
 		signature = "(B)I",
-		garbageValue = "1"
+		garbageValue = "-65"
 	)
 	@Export("available")
 	public abstract int available() throws IOException;
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
 		signature = "(II)Z",
-		garbageValue = "1621767276"
+		garbageValue = "1604537239"
 	)
 	@Export("isAvailable")
 	public abstract boolean isAvailable(int var1) throws IOException;
 
-	@ObfuscatedName("y")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
 		signature = "([BIIB)I",
-		garbageValue = "-127"
+		garbageValue = "121"
 	)
 	@Export("read")
 	public abstract int read(byte[] var1, int var2, int var3) throws IOException;
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
 		signature = "([BIII)V",
-		garbageValue = "1032488862"
+		garbageValue = "199608149"
 	)
 	@Export("write")
 	public abstract void write(byte[] var1, int var2, int var3) throws IOException;
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		signature = "([Ljava/lang/String;[SIII)V",
-		garbageValue = "-632113899"
+		signature = "(II)V",
+		garbageValue = "-1917773732"
 	)
-	@Export("sortItemsByName")
-	static void sortItemsByName(String[] var0, short[] var1, int var2, int var3) {
-		if (var2 < var3) {
-			int var4 = (var3 + var2) / 2;
-			int var5 = var2;
-			String var6 = var0[var4];
-			var0[var4] = var0[var3];
-			var0[var3] = var6;
-			short var7 = var1[var4];
-			var1[var4] = var1[var3];
-			var1[var3] = var7;
+	@Export("runWidgetOnLoadListener")
+	static void runWidgetOnLoadListener(int var0) {
+		if (var0 != -1) {
+			if (class15.loadInterface(var0)) {
+				Widget[] var1 = Widget.Widget_interfaceComponents[var0];
 
-			for (int var8 = var2; var8 < var3; ++var8) {
-				if (var6 == null || var0[var8] != null && var0[var8].compareTo(var6) < (var8 & 1)) {
-					String var9 = var0[var8];
-					var0[var8] = var0[var5];
-					var0[var5] = var9;
-					short var10 = var1[var8];
-					var1[var8] = var1[var5];
-					var1[var5++] = var10;
+				for (int var2 = 0; var2 < var1.length; ++var2) {
+					Widget var3 = var1[var2];
+					if (var3.onLoad != null) {
+						ScriptEvent var4 = new ScriptEvent();
+						var4.widget = var3;
+						var4.args = var3.onLoad;
+						FaceNormal.runScript(var4, 5000000, 0);
+					}
 				}
+
 			}
-
-			var0[var3] = var0[var5];
-			var0[var5] = var6;
-			var1[var3] = var1[var5];
-			var1[var5] = var7;
-			sortItemsByName(var0, var1, var2, var5 - 1);
-			sortItemsByName(var0, var1, var5 + 1, var3);
 		}
-
-	}
-
-	@ObfuscatedName("fd")
-	@ObfuscatedSignature(
-		signature = "(IB)V",
-		garbageValue = "0"
-	)
-	@Export("playSong")
-	static void playSong(int var0) {
-		if (var0 == -1 && !Client.field899) {
-			ScriptEvent.method1272();
-		} else if (var0 != -1 && var0 != Client.currentTrackGroupId && WorldMapSectionType.clientPreferences.musicVolume != 0 && !Client.field899) {
-			GrandExchangeOfferOwnWorldComparator.playMusicTrack(2, UrlRequester.archive6, var0, 0, WorldMapSectionType.clientPreferences.musicVolume, false);
-		}
-
-		Client.currentTrackGroupId = var0;
 	}
 }

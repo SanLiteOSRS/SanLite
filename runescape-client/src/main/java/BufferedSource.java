@@ -7,37 +7,37 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ll")
+@ObfuscatedName("lm")
 @Implements("BufferedSource")
 public class BufferedSource implements Runnable {
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@Export("thread")
 	Thread thread;
-	@ObfuscatedName("v")
+	@ObfuscatedName("o")
 	@Export("inputStream")
 	InputStream inputStream;
-	@ObfuscatedName("d")
+	@ObfuscatedName("u")
 	@ObfuscatedGetter(
-		intValue = 1953404091
+		intValue = -1895389513
 	)
 	@Export("capacity")
 	int capacity;
-	@ObfuscatedName("c")
+	@ObfuscatedName("p")
 	@Export("buffer")
 	byte[] buffer;
-	@ObfuscatedName("y")
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = -2146586711
+		intValue = 552004767
 	)
 	@Export("position")
 	int position;
-	@ObfuscatedName("h")
+	@ObfuscatedName("e")
 	@ObfuscatedGetter(
-		intValue = 2116402287
+		intValue = 1147375927
 	)
 	@Export("limit")
 	int limit;
-	@ObfuscatedName("z")
+	@ObfuscatedName("k")
 	@Export("exception")
 	IOException exception;
 
@@ -52,10 +52,10 @@ public class BufferedSource implements Runnable {
 		this.thread.start();
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "(II)Z",
-		garbageValue = "-1444651631"
+		signature = "(IB)Z",
+		garbageValue = "-36"
 	)
 	@Export("isAvailable")
 	boolean isAvailable(int var1) throws IOException {
@@ -86,10 +86,10 @@ public class BufferedSource implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "(S)I",
-		garbageValue = "5789"
+		signature = "(B)I",
+		garbageValue = "-28"
 	)
 	@Export("available")
 	int available() throws IOException {
@@ -110,15 +110,15 @@ public class BufferedSource implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("d")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
 		signature = "(I)I",
-		garbageValue = "-1306188380"
+		garbageValue = "1857294674"
 	)
 	@Export("readUnsignedByte")
 	int readUnsignedByte() throws IOException {
 		synchronized(this) {
-			if (this.limit == this.position) {
+			if (this.position == this.limit) {
 				if (this.exception != null) {
 					throw new IOException(this.exception.toString());
 				} else {
@@ -133,10 +133,10 @@ public class BufferedSource implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		signature = "([BIII)I",
-		garbageValue = "255172200"
+		signature = "([BIIB)I",
+		garbageValue = "123"
 	)
 	@Export("read")
 	int read(byte[] var1, int var2, int var3) throws IOException {
@@ -174,10 +174,10 @@ public class BufferedSource implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("y")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-489650908"
+		signature = "(B)V",
+		garbageValue = "-28"
 	)
 	@Export("close")
 	void close() {
@@ -244,81 +244,60 @@ public class BufferedSource implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("d")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "(Lig;III)Llm;",
-		garbageValue = "34379622"
+		signature = "([BILjava/lang/CharSequence;I)I",
+		garbageValue = "689227004"
 	)
-	@Export("SpriteBuffer_getSprite")
-	public static SpritePixels SpriteBuffer_getSprite(AbstractArchive var0, int var1, int var2) {
-		byte[] var4 = var0.takeFile(var1, var2);
-		boolean var3;
-		if (var4 == null) {
-			var3 = false;
-		} else {
-			GrandExchangeOfferNameComparator.SpriteBuffer_decode(var4);
-			var3 = true;
-		}
+	public static int method5917(byte[] var0, int var1, CharSequence var2) {
+		int var3 = var2.length();
+		int var4 = var1;
 
-		if (!var3) {
-			return null;
-		} else {
-			SpritePixels var5 = new SpritePixels();
-			var5.width = class336.SpriteBuffer_spriteWidth;
-			var5.height = class336.SpriteBuffer_spriteHeight;
-			var5.xOffset = class105.SpriteBuffer_xOffsets[0];
-			var5.yOffset = class336.SpriteBuffer_yOffsets[0];
-			var5.subWidth = class336.SpriteBuffer_spriteWidths[0];
-			var5.subHeight = class225.SpriteBuffer_spriteHeights[0];
-			int var6 = var5.subHeight * var5.subWidth;
-			byte[] var7 = class2.SpriteBuffer_pixels[0];
-			var5.pixels = new int[var6];
-
-			for (int var8 = 0; var8 < var6; ++var8) {
-				var5.pixels[var8] = HorizontalAlignment.SpriteBuffer_spritePalette[var7[var8] & 255];
+		for (int var5 = 0; var5 < var3; ++var5) {
+			char var6 = var2.charAt(var5);
+			if (var6 <= 127) {
+				var0[var4++] = (byte)var6;
+			} else if (var6 <= 2047) {
+				var0[var4++] = (byte)(192 | var6 >> 6);
+				var0[var4++] = (byte)(128 | var6 & '?');
+			} else {
+				var0[var4++] = (byte)(224 | var6 >> '\f');
+				var0[var4++] = (byte)(128 | var6 >> 6 & 63);
+				var0[var4++] = (byte)(128 | var6 & '?');
 			}
-
-			class105.SpriteBuffer_xOffsets = null;
-			class336.SpriteBuffer_yOffsets = null;
-			class336.SpriteBuffer_spriteWidths = null;
-			class225.SpriteBuffer_spriteHeights = null;
-			HorizontalAlignment.SpriteBuffer_spritePalette = null;
-			class2.SpriteBuffer_pixels = null;
-			return var5;
 		}
+
+		return var4 - var1;
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("hh")
 	@ObfuscatedSignature(
-		signature = "(B)[Llm;",
-		garbageValue = "49"
+		signature = "(I)V",
+		garbageValue = "519434496"
 	)
-	static SpritePixels[] method6103() {
-		SpritePixels[] var0 = new SpritePixels[class336.SpriteBuffer_spriteCount];
+	static final void method5918() {
+		int var0 = class16.menuX;
+		int var1 = FontName.menuY;
+		int var2 = Player.menuWidth;
+		int var3 = class11.menuHeight;
+		int var4 = 6116423;
+		Rasterizer2D.Rasterizer2D_fillRectangle(var0, var1, var2, var3, var4);
+		Rasterizer2D.Rasterizer2D_fillRectangle(var0 + 1, var1 + 1, var2 - 2, 16, 0);
+		Rasterizer2D.Rasterizer2D_drawRectangle(var0 + 1, var1 + 18, var2 - 2, var3 - 19, 0);
+		class368.fontBold12.draw("Choose Option", var0 + 3, var1 + 14, var4, -1);
+		int var5 = MouseHandler.MouseHandler_x;
+		int var6 = MouseHandler.MouseHandler_y;
 
-		for (int var1 = 0; var1 < class336.SpriteBuffer_spriteCount; ++var1) {
-			SpritePixels var2 = var0[var1] = new SpritePixels();
-			var2.width = class336.SpriteBuffer_spriteWidth;
-			var2.height = class336.SpriteBuffer_spriteHeight;
-			var2.xOffset = class105.SpriteBuffer_xOffsets[var1];
-			var2.yOffset = class336.SpriteBuffer_yOffsets[var1];
-			var2.subWidth = class336.SpriteBuffer_spriteWidths[var1];
-			var2.subHeight = class225.SpriteBuffer_spriteHeights[var1];
-			int var3 = var2.subHeight * var2.subWidth;
-			byte[] var4 = class2.SpriteBuffer_pixels[var1];
-			var2.pixels = new int[var3];
-
-			for (int var5 = 0; var5 < var3; ++var5) {
-				var2.pixels[var5] = HorizontalAlignment.SpriteBuffer_spritePalette[var4[var5] & 255];
+		for (int var7 = 0; var7 < Client.menuOptionsCount; ++var7) {
+			int var8 = var1 + (Client.menuOptionsCount - 1 - var7) * 15 + 31;
+			int var9 = 16777215;
+			if (var5 > var0 && var5 < var0 + var2 && var6 > var8 - 13 && var6 < var8 + 3) {
+				var9 = 16776960;
 			}
+
+			class368.fontBold12.draw(class69.method1164(var7), var0 + 3, var8, var9, 0);
 		}
 
-		class105.SpriteBuffer_xOffsets = null;
-		class336.SpriteBuffer_yOffsets = null;
-		class336.SpriteBuffer_spriteWidths = null;
-		class225.SpriteBuffer_spriteHeights = null;
-		HorizontalAlignment.SpriteBuffer_spritePalette = null;
-		class2.SpriteBuffer_pixels = null;
-		return var0;
+		LoginScreenAnimation.method2198(class16.menuX, FontName.menuY, Player.menuWidth, class11.menuHeight);
 	}
 }

@@ -4,24 +4,30 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("il")
+@ObfuscatedName("je")
 @Implements("VarpDefinition")
 public class VarpDefinition extends DualNode {
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "Lig;"
+		signature = "Lir;"
 	)
 	@Export("VarpDefinition_archive")
-	public static AbstractArchive VarpDefinition_archive;
-	@ObfuscatedName("d")
+	static AbstractArchive VarpDefinition_archive;
+	@ObfuscatedName("o")
+	@ObfuscatedGetter(
+		intValue = -1381184627
+	)
+	@Export("VarpDefinition_fileCount")
+	public static int VarpDefinition_fileCount;
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "Lex;"
+		signature = "Lgf;"
 	)
 	@Export("VarpDefinition_cached")
-	static EvictingDualNodeHashTable VarpDefinition_cached;
-	@ObfuscatedName("c")
+	public static EvictingDualNodeHashTable VarpDefinition_cached;
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = -921079377
+		intValue = 1440962611
 	)
 	@Export("type")
 	public int type;
@@ -34,10 +40,10 @@ public class VarpDefinition extends DualNode {
 		this.type = 0;
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "(Lkx;I)V",
-		garbageValue = "-1864493120"
+		signature = "(Lnu;I)V",
+		garbageValue = "923214413"
 	)
 	@Export("decode")
 	void decode(Buffer var1) {
@@ -51,10 +57,10 @@ public class VarpDefinition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("d")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		signature = "(Lkx;IB)V",
-		garbageValue = "54"
+		signature = "(Lnu;II)V",
+		garbageValue = "1336556891"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
@@ -64,25 +70,34 @@ public class VarpDefinition extends DualNode {
 
 	}
 
-	@ObfuscatedName("ez")
+	@ObfuscatedName("aa")
 	@ObfuscatedSignature(
-		signature = "(I)Z",
-		garbageValue = "498467917"
+		signature = "(ILcc;ZB)I",
+		garbageValue = "47"
 	)
-	static boolean method4552() {
-		if (Client.archiveLoaders != null && Client.archiveLoadersDone < Client.archiveLoaders.size()) {
-			while (Client.archiveLoadersDone < Client.archiveLoaders.size()) {
-				ArchiveLoader var0 = (ArchiveLoader)Client.archiveLoaders.get(Client.archiveLoadersDone);
-				if (!var0.isLoaded()) {
-					return false;
-				}
-
-				++Client.archiveLoadersDone;
+	static int method4898(int var0, Script var1, boolean var2) {
+		if (var0 == 7100) {
+			++class16.Interpreter_intStackSize;
+			return 1;
+		} else if (var0 == 7101) {
+			Interpreter.Interpreter_stringStackSize += 2;
+			return 1;
+		} else if (var0 != 7102 && var0 != 7103 && var0 != 7104 && var0 != 7105 && var0 != 7109) {
+			if (var0 == 7106) {
+				++class16.Interpreter_intStackSize;
+				return 1;
+			} else if (var0 == 7107) {
+				++class16.Interpreter_intStackSize;
+				return 1;
+			} else if (var0 == 7108) {
+				Interpreter.Interpreter_intStack[++class16.Interpreter_intStackSize - 1] = Huffman.method4311() ? 1 : 0;
+				return 1;
+			} else {
+				return 2;
 			}
-
-			return true;
 		} else {
-			return true;
+			++class16.Interpreter_intStackSize;
+			return 1;
 		}
 	}
 }

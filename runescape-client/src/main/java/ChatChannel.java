@@ -4,24 +4,25 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ct")
+@ObfuscatedName("ca")
 @Implements("ChatChannel")
 public class ChatChannel {
-	@ObfuscatedName("hr")
+	@ObfuscatedName("g")
+	public static short[][] field1086;
+	@ObfuscatedName("ap")
 	@ObfuscatedSignature(
-		signature = "[Llm;"
+		signature = "Llj;"
 	)
-	@Export("mapDotSprites")
-	static SpritePixels[] mapDotSprites;
-	@ObfuscatedName("v")
+	static Bounds field1084;
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "[Lbd;"
+		signature = "[Lbs;"
 	)
 	@Export("messages")
 	Message[] messages;
-	@ObfuscatedName("d")
+	@ObfuscatedName("u")
 	@ObfuscatedGetter(
-		intValue = 1722504417
+		intValue = 93372497
 	)
 	@Export("count")
 	int count;
@@ -30,10 +31,10 @@ public class ChatChannel {
 		this.messages = new Message[100];
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;I)Lbd;",
-		garbageValue = "1561043824"
+		signature = "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;B)Lbs;",
+		garbageValue = "20"
 	)
 	@Export("addMessage")
 	Message addMessage(int var1, String var2, String var3, String var4) {
@@ -61,108 +62,82 @@ public class ChatChannel {
 		return var5;
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "(II)Lbd;",
-		garbageValue = "-55839716"
+		signature = "(II)Lbs;",
+		garbageValue = "1201057009"
 	)
 	@Export("getMessage")
 	Message getMessage(int var1) {
 		return var1 >= 0 && var1 < this.count ? this.messages[var1] : null;
 	}
 
-	@ObfuscatedName("d")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "-2110362731"
+		signature = "(S)I",
+		garbageValue = "2861"
 	)
 	@Export("size")
 	int size() {
 		return this.count;
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/Object;ZI)[B",
-		garbageValue = "488468248"
+		signature = "(II)I",
+		garbageValue = "1715360982"
 	)
-	public static byte[] method2405(Object var0, boolean var1) {
-		if (var0 == null) {
-			return null;
-		} else if (var0 instanceof byte[]) {
-			byte[] var3 = (byte[])((byte[])var0);
-			return var1 ? UrlRequester.method3460(var3) : var3;
-		} else if (var0 instanceof AbstractByteArrayCopier) {
-			AbstractByteArrayCopier var2 = (AbstractByteArrayCopier)var0;
-			return var2.get();
+	@Export("Messages_getLastChatID")
+	static int Messages_getLastChatID(int var0) {
+		Message var1 = (Message)Messages.Messages_hashTable.get((long)var0);
+		if (var1 == null) {
+			return -1;
 		} else {
-			throw new IllegalArgumentException();
+			return var1.previousDual == Messages.Messages_queue.sentinel ? -1 : ((Message)var1.previousDual).count;
 		}
 	}
 
-	@ObfuscatedName("y")
+	@ObfuscatedName("jg")
 	@ObfuscatedSignature(
-		signature = "(Lig;Ljava/lang/String;Ljava/lang/String;I)Lly;",
-		garbageValue = "591050656"
+		signature = "(Lhu;I)V",
+		garbageValue = "-466644748"
 	)
-	@Export("SpriteBuffer_getIndexedSpriteByName")
-	public static IndexedSprite SpriteBuffer_getIndexedSpriteByName(AbstractArchive var0, String var1, String var2) {
-		int var3 = var0.getGroupId(var1);
-		int var4 = var0.getFileId(var3, var2);
-		byte[] var7 = var0.takeFile(var3, var4);
-		boolean var6;
-		if (var7 == null) {
-			var6 = false;
-		} else {
-			GrandExchangeOfferNameComparator.SpriteBuffer_decode(var7);
-			var6 = true;
-		}
-
-		IndexedSprite var5;
-		if (!var6) {
-			var5 = null;
-		} else {
-			var5 = ApproximateRouteStrategy.method1304();
-		}
-
-		return var5;
-	}
-
-	@ObfuscatedName("k")
-	@ObfuscatedSignature(
-		signature = "(Lcq;I)V",
-		garbageValue = "291320616"
-	)
-	@Export("changeWorld")
-	static void changeWorld(World var0) {
-		if (var0.isMembersOnly() != Client.isMembersWorld) {
-			Client.isMembersWorld = var0.isMembersOnly();
-			boolean var1 = var0.isMembersOnly();
-			if (var1 != Bounds.ItemDefinition_inMembersWorld) {
-				ItemComposition.ItemDefinition_cached.clear();
-				ItemComposition.ItemDefinition_cachedModels.clear();
-				ItemComposition.ItemDefinition_cachedSprites.clear();
-				Bounds.ItemDefinition_inMembersWorld = var1;
+	static final void method2017(Widget var0) {
+		int var1 = var0.contentType;
+		if (var1 == 324) {
+			if (Client.field871 == -1) {
+				Client.field871 = var0.spriteId2;
+				Client.field713 = var0.spriteId;
 			}
-		}
 
-		if (var0.properties != Client.worldProperties) {
-			Archive var3 = ModeWhere.archive8;
-			int var2 = var0.properties;
-			if ((var2 & 536870912) != 0) {
-				Login.logoSprite = SpriteBuffer_getIndexedSpriteByName(var3, "logo_deadman_mode", "");
-			} else if ((var2 & 1073741824) != 0) {
-				Login.logoSprite = SpriteBuffer_getIndexedSpriteByName(var3, "logo_seasonal_mode", "");
+			if (Client.playerAppearance.isFemale) {
+				var0.spriteId2 = Client.field871;
 			} else {
-				Login.logoSprite = SpriteBuffer_getIndexedSpriteByName(var3, "logo", "");
+				var0.spriteId2 = Client.field713;
 			}
-		}
 
-		MusicPatchNode.worldHost = var0.host;
-		Client.worldId = var0.id;
-		Client.worldProperties = var0.properties;
-		MouseRecorder.port1 = Client.gameBuild == 0 ? 43594 : var0.id + 40000;
-		class171.port2 = Client.gameBuild == 0 ? 443 : var0.id + 50000;
-		DynamicObject.port3 = MouseRecorder.port1;
+		} else if (var1 == 325) {
+			if (Client.field871 == -1) {
+				Client.field871 = var0.spriteId2;
+				Client.field713 = var0.spriteId;
+			}
+
+			if (Client.playerAppearance.isFemale) {
+				var0.spriteId2 = Client.field713;
+			} else {
+				var0.spriteId2 = Client.field871;
+			}
+
+		} else if (var1 == 327) {
+			var0.modelAngleX = 150;
+			var0.modelAngleY = (int)(Math.sin((double)Client.cycle / 40.0D) * 256.0D) & 2047;
+			var0.modelType = 5;
+			var0.modelId = 0;
+		} else if (var1 == 328) {
+			var0.modelAngleX = 150;
+			var0.modelAngleY = (int)(Math.sin((double)Client.cycle / 40.0D) * 256.0D) & 2047;
+			var0.modelType = 5;
+			var0.modelId = 1;
+		}
 	}
 }

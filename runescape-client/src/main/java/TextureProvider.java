@@ -4,51 +4,57 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("da")
+@ObfuscatedName("fn")
 @Implements("TextureProvider")
 public class TextureProvider implements TextureLoader {
-	@ObfuscatedName("n")
+	@ObfuscatedName("oz")
 	@ObfuscatedSignature(
-		signature = "[Lep;"
+		signature = "Ldl;"
+	)
+	@Export("varcs")
+	static Varcs varcs;
+	@ObfuscatedName("f")
+	@ObfuscatedSignature(
+		signature = "[Lfc;"
 	)
 	@Export("textures")
 	Texture[] textures;
-	@ObfuscatedName("v")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "Lji;"
+		signature = "Lju;"
 	)
 	@Export("deque")
 	NodeDeque deque;
-	@ObfuscatedName("d")
+	@ObfuscatedName("u")
 	@ObfuscatedGetter(
-		intValue = -1670453341
+		intValue = 1298178757
 	)
 	@Export("capacity")
 	int capacity;
-	@ObfuscatedName("c")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = 1122848717
+		intValue = -453535345
 	)
 	@Export("remaining")
 	int remaining;
-	@ObfuscatedName("y")
+	@ObfuscatedName("b")
 	@Export("brightness")
 	double brightness;
-	@ObfuscatedName("h")
+	@ObfuscatedName("e")
 	@ObfuscatedGetter(
-		intValue = 705511283
+		intValue = 412099007
 	)
 	@Export("textureSize")
 	int textureSize;
-	@ObfuscatedName("z")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "Lig;"
+		signature = "Lir;"
 	)
 	@Export("archive")
 	AbstractArchive archive;
 
 	@ObfuscatedSignature(
-		signature = "(Lig;Lig;IDI)V"
+		signature = "(Lir;Lir;IDI)V"
 	)
 	public TextureProvider(AbstractArchive var1, AbstractArchive var2, int var3, double var4, int var6) {
 		this.deque = new NodeDeque();
@@ -71,10 +77,10 @@ public class TextureProvider implements TextureLoader {
 
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "(I)I",
-		garbageValue = "-2013656553"
+		signature = "(B)I",
+		garbageValue = "-11"
 	)
 	@Export("getLoadedPercentage")
 	public int getLoadedPercentage() {
@@ -90,7 +96,7 @@ public class TextureProvider implements TextureLoader {
 
 				for (int var7 = 0; var7 < var6.length; ++var7) {
 					int var8 = var6[var7];
-					if (this.archive.method4366(var8)) {
+					if (this.archive.method4479(var8)) {
 						++var2;
 					}
 				}
@@ -104,17 +110,17 @@ public class TextureProvider implements TextureLoader {
 		}
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("o")
 	@Export("setBrightness")
 	public void setBrightness(double var1) {
 		this.brightness = var1;
 		this.clear();
 	}
 
-	@ObfuscatedName("d")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
 		signature = "(II)[I",
-		garbageValue = "1068759988"
+		garbageValue = "1311269963"
 	)
 	@Export("getTexturePixels")
 	public int[] getTexturePixels(int var1) {
@@ -144,39 +150,39 @@ public class TextureProvider implements TextureLoader {
 		return null;
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		signature = "(IB)I",
-		garbageValue = "1"
+		signature = "(II)I",
+		garbageValue = "-897876205"
 	)
 	@Export("getAverageTextureRGB")
 	public int getAverageTextureRGB(int var1) {
 		return this.textures[var1] != null ? this.textures[var1].averageRGB : 0;
 	}
 
-	@ObfuscatedName("y")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
 		signature = "(II)Z",
-		garbageValue = "-1400851651"
+		garbageValue = "1352590845"
 	)
-	public boolean vmethod3432(int var1) {
-		return this.textures[var1].field1639;
+	public boolean vmethod3790(int var1) {
+		return this.textures[var1].field1849;
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
 		signature = "(II)Z",
-		garbageValue = "1467632569"
+		garbageValue = "306645378"
 	)
 	@Export("isLowDetail")
 	public boolean isLowDetail(int var1) {
 		return this.textureSize == 64;
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "1656047073"
+		signature = "(B)V",
+		garbageValue = "-74"
 	)
 	@Export("clear")
 	public void clear() {
@@ -190,10 +196,10 @@ public class TextureProvider implements TextureLoader {
 		this.remaining = this.capacity;
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("g")
 	@ObfuscatedSignature(
-		signature = "(IB)V",
-		garbageValue = "-39"
+		signature = "(II)V",
+		garbageValue = "2035230902"
 	)
 	@Export("animate")
 	public void animate(int var1) {
@@ -205,77 +211,5 @@ public class TextureProvider implements TextureLoader {
 			}
 		}
 
-	}
-
-	@ObfuscatedName("n")
-	@ObfuscatedSignature(
-		signature = "(Lkx;Llg;I)Llg;",
-		garbageValue = "-2095404981"
-	)
-	@Export("readStringIntParameters")
-	static final IterableNodeHashTable readStringIntParameters(Buffer var0, IterableNodeHashTable var1) {
-		int var2 = var0.readUnsignedByte();
-		int var3;
-		if (var1 == null) {
-			var3 = GameObject.method3452(var2);
-			var1 = new IterableNodeHashTable(var3);
-		}
-
-		for (var3 = 0; var3 < var2; ++var3) {
-			boolean var4 = var0.readUnsignedByte() == 1;
-			int var5 = var0.readMedium();
-			Object var6;
-			if (var4) {
-				var6 = new ObjectNode(var0.readStringCp1252NullTerminated());
-			} else {
-				var6 = new IntegerNode(var0.readInt());
-			}
-
-			var1.put((Node)var6, (long)var5);
-		}
-
-		return var1;
-	}
-
-	@ObfuscatedName("n")
-	@ObfuscatedSignature(
-		signature = "(Lig;Lig;Lig;I)V",
-		garbageValue = "-729858984"
-	)
-	public static void method2935(AbstractArchive var0, AbstractArchive var1, AbstractArchive var2) {
-		SequenceDefinition.SequenceDefinition_archive = var0;
-		SequenceDefinition.SequenceDefinition_animationsArchive = var1;
-		SequenceDefinition.SequenceDefinition_skeletonsArchive = var2;
-	}
-
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		signature = "(IIIS)I",
-		garbageValue = "-4181"
-	)
-	public static int method2914(int var0, int var1, int var2) {
-		var2 &= 3;
-		if (var2 == 0) {
-			return var1;
-		} else if (var2 == 1) {
-			return 7 - var0;
-		} else {
-			return var2 == 2 ? 7 - var1 : var0;
-		}
-	}
-
-	@ObfuscatedName("b")
-	@ObfuscatedSignature(
-		signature = "(IIIZIB)J",
-		garbageValue = "-32"
-	)
-	@Export("calculateTag")
-	public static long calculateTag(int var0, int var1, int var2, boolean var3, int var4) {
-		long var5 = (long)((var0 & 127) << 0 | (var1 & 127) << 7 | (var2 & 3) << 14) | ((long)var4 & 4294967295L) << 17;
-		if (var3) {
-			var5 |= 65536L;
-		}
-
-		return var5;
 	}
 }

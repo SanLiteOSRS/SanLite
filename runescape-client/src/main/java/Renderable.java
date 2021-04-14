@@ -4,12 +4,12 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("em")
+@ObfuscatedName("fm")
 @Implements("Renderable")
 public abstract class Renderable extends DualNode {
-	@ObfuscatedName("ce")
+	@ObfuscatedName("ck")
 	@ObfuscatedGetter(
-		intValue = -1481288719
+		intValue = 2052938627
 	)
 	@Export("height")
 	public int height;
@@ -18,17 +18,17 @@ public abstract class Renderable extends DualNode {
 		this.height = 1000;
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "(B)Lef;",
-		garbageValue = "127"
+		signature = "(I)Lgv;",
+		garbageValue = "1835906978"
 	)
 	@Export("getModel")
 	protected Model getModel() {
 		return null;
 	}
 
-	@ObfuscatedName("cz")
+	@ObfuscatedName("bu")
 	@Export("draw")
 	void draw(int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, long var9) {
 		Model var11 = this.getModel();
@@ -39,16 +39,45 @@ public abstract class Renderable extends DualNode {
 
 	}
 
-	@ObfuscatedName("fz")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "1"
+		signature = "(I)V",
+		garbageValue = "1811451273"
 	)
-	static final void method3417() {
-		if (Client.field889 != class90.Client_plane) {
-			Client.field889 = class90.Client_plane;
-			class224.method4232(class90.Client_plane);
+	static void method3629() {
+		HealthBar.field1311 = new int[2000];
+		int var0 = 0;
+		int var1 = 240;
+
+		int var3;
+		for (byte var2 = 12; var0 < 16; var1 -= var2) {
+			var3 = UserComparator8.method2427((double)((float)var1 / 360.0F), 0.9998999834060669D, (double)(0.075F + 0.425F * (float)var0 / 16.0F));
+			HealthBar.field1311[var0] = var3;
+			++var0;
 		}
 
+		var1 = 48;
+
+		for (int var5 = var1 / 6; var0 < HealthBar.field1311.length; var1 -= var5) {
+			var3 = var0 * 2;
+
+			for (int var4 = UserComparator8.method2427((double)((float)var1 / 360.0F), 0.9998999834060669D, 0.5D); var0 < var3 && var0 < HealthBar.field1311.length; ++var0) {
+				HealthBar.field1311[var0] = var4;
+			}
+		}
+
+	}
+
+	@ObfuscatedName("ho")
+	@ObfuscatedSignature(
+		signature = "(III)Leb;",
+		garbageValue = "85156791"
+	)
+	static RouteStrategy method3628(int var0, int var1) {
+		Client.field878.approxDestinationX = var0;
+		Client.field878.approxDestinationY = var1;
+		Client.field878.approxDestinationSizeX = 1;
+		Client.field878.approxDestinationSizeY = 1;
+		return Client.field878;
 	}
 }

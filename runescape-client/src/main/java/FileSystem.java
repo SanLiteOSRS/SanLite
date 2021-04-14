@@ -4,47 +4,51 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.rs.Reflection;
 
-@ObfuscatedName("fj")
+@ObfuscatedName("ec")
 @Implements("FileSystem")
 public class FileSystem {
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@Export("FileSystem_hasPermissions")
 	static boolean FileSystem_hasPermissions;
-	@ObfuscatedName("v")
+	@ObfuscatedName("o")
 	@Export("FileSystem_cacheDir")
 	static File FileSystem_cacheDir;
-	@ObfuscatedName("d")
+	@ObfuscatedName("u")
 	@Export("FileSystem_cacheFiles")
 	static Hashtable FileSystem_cacheFiles;
-	@ObfuscatedName("az")
-	@ObfuscatedSignature(
-		signature = "Llc;"
-	)
-	@Export("rasterProvider")
-	public static AbstractRasterProvider rasterProvider;
 
 	static {
 		FileSystem_hasPermissions = false;
 		FileSystem_cacheFiles = new Hashtable(16);
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		signature = "(IS)Ljava/lang/String;",
-		garbageValue = "4003"
+		signature = "(Ljava/lang/String;I)Ljava/lang/Class;",
+		garbageValue = "-773093747"
 	)
-	@Export("colorStartTag")
-	static String colorStartTag(int var0) {
-		return "<col=" + Integer.toHexString(var0) + ">";
-	}
-
-	@ObfuscatedName("az")
-	@ObfuscatedSignature(
-		signature = "(IB)I",
-		garbageValue = "14"
-	)
-	static int method3709(int var0) {
-		return (int)((Math.log((double)var0) / Interpreter.field1124 - 7.0D) * 256.0D);
+	@Export("loadClassFromDescriptor")
+	static Class loadClassFromDescriptor(String var0) throws ClassNotFoundException {
+		if (var0.equals("B")) {
+			return Byte.TYPE;
+		} else if (var0.equals("I")) {
+			return Integer.TYPE;
+		} else if (var0.equals("S")) {
+			return Short.TYPE;
+		} else if (var0.equals("J")) {
+			return Long.TYPE;
+		} else if (var0.equals("Z")) {
+			return Boolean.TYPE;
+		} else if (var0.equals("F")) {
+			return Float.TYPE;
+		} else if (var0.equals("D")) {
+			return Double.TYPE;
+		} else if (var0.equals("C")) {
+			return Character.TYPE;
+		} else {
+			return var0.equals("void") ? Void.TYPE : Reflection.findClass(var0);
+		}
 	}
 }

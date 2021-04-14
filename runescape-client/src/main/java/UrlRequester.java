@@ -10,27 +10,21 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ed")
+@ObfuscatedName("de")
 @Implements("UrlRequester")
 public class UrlRequester implements Runnable {
-	@ObfuscatedName("b")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		signature = "Lly;"
+		signature = "Low;"
 	)
-	static IndexedSprite field1956;
-	@ObfuscatedName("dt")
-	@ObfuscatedSignature(
-		signature = "Liy;"
-	)
-	@Export("archive6")
-	static Archive archive6;
-	@ObfuscatedName("n")
+	static IndexedSprite field1400;
+	@ObfuscatedName("f")
 	@Export("thread")
 	final Thread thread;
-	@ObfuscatedName("v")
+	@ObfuscatedName("o")
 	@Export("isClosed")
 	volatile boolean isClosed;
-	@ObfuscatedName("d")
+	@ObfuscatedName("u")
 	@Export("requests")
 	Queue requests;
 
@@ -41,10 +35,10 @@ public class UrlRequester implements Runnable {
 		this.thread.start();
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "(Ljava/net/URL;I)Lei;",
-		garbageValue = "1847135895"
+		signature = "(Ljava/net/URL;I)Lda;",
+		garbageValue = "-1899831036"
 	)
 	@Export("request")
 	public UrlRequest request(URL var1) {
@@ -56,10 +50,10 @@ public class UrlRequester implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "-158100516"
+		garbageValue = "-1618502581"
 	)
 	@Export("close")
 	public void close() {
@@ -122,59 +116,18 @@ public class UrlRequester implements Runnable {
 
 				}
 			} catch (Exception var17) {
-				SequenceDefinition.RunException_sendStackTrace((String)null, var17);
+				class223.RunException_sendStackTrace((String)null, var17);
 			}
 		}
 
 	}
 
-	@ObfuscatedName("d")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		signature = "([BI)[B",
-		garbageValue = "833500111"
+		signature = "(Ljava/lang/String;I)I",
+		garbageValue = "-694005791"
 	)
-	static byte[] method3460(byte[] var0) {
-		int var1 = var0.length;
-		byte[] var2 = new byte[var1];
-		System.arraycopy(var0, 0, var2, 0, var1);
-		return var2;
-	}
-
-	@ObfuscatedName("l")
-	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;I)Ljava/lang/String;",
-		garbageValue = "-630790234"
-	)
-	public static String method3467(String var0) {
-		int var1 = var0.length();
-		char[] var2 = new char[var1];
-		byte var3 = 2;
-
-		for (int var4 = 0; var4 < var1; ++var4) {
-			char var5 = var0.charAt(var4);
-			if (var3 == 0) {
-				var5 = Character.toLowerCase(var5);
-			} else if (var3 == 2 || Character.isUpperCase(var5)) {
-				var5 = LoginScreenAnimation.method1927(var5);
-			}
-
-			if (Character.isLetter(var5)) {
-				var3 = 0;
-			} else if (var5 != '.' && var5 != '?' && var5 != '!') {
-				if (Character.isSpaceChar(var5)) {
-					if (var3 != 2) {
-						var3 = 1;
-					}
-				} else {
-					var3 = 1;
-				}
-			} else {
-				var3 = 2;
-			}
-
-			var2[var4] = var5;
-		}
-
-		return new String(var2);
+	public static int method2388(String var0) {
+		return var0.length() + 2;
 	}
 }

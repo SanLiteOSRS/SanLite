@@ -4,49 +4,49 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jx")
+@ObfuscatedName("jz")
 @Implements("EnumComposition")
 public class EnumComposition extends DualNode {
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "Lig;"
+		signature = "Lir;"
 	)
 	@Export("EnumDefinition_archive")
 	public static AbstractArchive EnumDefinition_archive;
-	@ObfuscatedName("v")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "Lex;"
+		signature = "Lgf;"
 	)
 	@Export("EnumDefinition_cached")
 	static EvictingDualNodeHashTable EnumDefinition_cached;
-	@ObfuscatedName("d")
+	@ObfuscatedName("u")
 	@Export("inputType")
 	public char inputType;
-	@ObfuscatedName("c")
+	@ObfuscatedName("p")
 	@Export("outputType")
 	public char outputType;
-	@ObfuscatedName("y")
+	@ObfuscatedName("b")
 	@Export("defaultStr")
 	public String defaultStr;
-	@ObfuscatedName("h")
+	@ObfuscatedName("e")
 	@ObfuscatedGetter(
-		intValue = 977907101
+		intValue = 1791938445
 	)
 	@Export("defaultInt")
 	public int defaultInt;
-	@ObfuscatedName("z")
+	@ObfuscatedName("k")
 	@ObfuscatedGetter(
-		intValue = 1947625869
+		intValue = -1639426453
 	)
 	@Export("outputCount")
 	public int outputCount;
-	@ObfuscatedName("e")
+	@ObfuscatedName("g")
 	@Export("keys")
 	public int[] keys;
-	@ObfuscatedName("q")
+	@ObfuscatedName("h")
 	@Export("intVals")
 	public int[] intVals;
-	@ObfuscatedName("l")
+	@ObfuscatedName("n")
 	@Export("strVals")
 	public String[] strVals;
 
@@ -59,10 +59,10 @@ public class EnumComposition extends DualNode {
 		this.outputCount = 0;
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "(Lkx;I)V",
-		garbageValue = "1374661087"
+		signature = "(Lnu;I)V",
+		garbageValue = "1691183927"
 	)
 	@Export("decode")
 	void decode(Buffer var1) {
@@ -76,10 +76,10 @@ public class EnumComposition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("d")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "(Lkx;IB)V",
-		garbageValue = "112"
+		signature = "(Lnu;II)V",
+		garbageValue = "-440567835"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
@@ -116,33 +116,13 @@ public class EnumComposition extends DualNode {
 
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
 		signature = "(I)I",
-		garbageValue = "-2129947174"
+		garbageValue = "765918269"
 	)
 	@Export("size")
 	public int size() {
 		return this.outputCount;
-	}
-
-	@ObfuscatedName("d")
-	@ObfuscatedSignature(
-		signature = "(CLgp;B)I",
-		garbageValue = "40"
-	)
-	@Export("lowercaseChar")
-	static int lowercaseChar(char var0, Language var1) {
-		int var2 = var0 << 4;
-		if (Character.isUpperCase(var0) || Character.isTitleCase(var0)) {
-			var0 = Character.toLowerCase(var0);
-			var2 = (var0 << 4) + 1;
-		}
-
-		if (var0 == 241 && var1 == Language.Language_ES) {
-			var2 = 1762;
-		}
-
-		return var2;
 	}
 }

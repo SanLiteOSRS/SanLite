@@ -1,144 +1,181 @@
 import net.runelite.mapping.Export;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("be")
+@ObfuscatedName("bv")
 public class class69 {
-	@ObfuscatedName("s")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "Lly;"
+		signature = "Ljc;"
 	)
-	@Export("options_buttons_0Sprite")
-	static IndexedSprite options_buttons_0Sprite;
+	@Export("reflectionChecks")
+	public static IterableNodeDeque reflectionChecks;
+	@ObfuscatedName("g")
+	@Export("Widget_loadedInterfaces")
+	public static boolean[] Widget_loadedInterfaces;
+	@ObfuscatedName("hz")
+	@ObfuscatedGetter(
+		intValue = -1660652965
+	)
+	@Export("cameraYaw")
+	static int cameraYaw;
 
-	@ObfuscatedName("n")
-	@ObfuscatedSignature(
-		signature = "(B)[Liv;",
-		garbageValue = "-52"
-	)
-	@Export("PlayerType_values")
-	public static PlayerType[] PlayerType_values() {
-		return new PlayerType[]{PlayerType.PlayerType_playerModerator, PlayerType.PlayerType_jagexModerator, PlayerType.PlayerType_hardcoreIronman, PlayerType.field3132, PlayerType.PlayerType_ultimateIronman, PlayerType.PlayerType_normal, PlayerType.PlayerType_ironman};
+	static {
+		reflectionChecks = new IterableNodeDeque();
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "(Lig;Lig;Lig;Lgg;I)Z",
-		garbageValue = "1829730902"
+		signature = "(ILjava/lang/String;Ljava/lang/String;I)V",
+		garbageValue = "-2099962248"
 	)
-	public static boolean method1256(AbstractArchive var0, AbstractArchive var1, AbstractArchive var2, MidiPcmStream var3) {
-		class206.musicPatchesArchive = var0;
-		class206.musicSamplesArchive = var1;
-		class206.soundEffectsArchive = var2;
-		VertexNormal.midiPcmStream = var3;
-		return true;
+	@Export("addGameMessage")
+	static void addGameMessage(int var0, String var1, String var2) {
+		Projectile.addChatMessage(var0, var1, var2, (String)null);
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "(Llg;ILjava/lang/String;I)Ljava/lang/String;",
-		garbageValue = "1852545433"
+		signature = "(I)V",
+		garbageValue = "-798312209"
 	)
-	static String method1258(IterableNodeHashTable var0, int var1, String var2) {
-		if (var0 == null) {
-			return var2;
-		} else {
-			ObjectNode var3 = (ObjectNode)var0.get((long)var1);
-			return var3 == null ? var2 : (String)var3.obj;
-		}
+	static void method1166() {
+		class9.field69 = null;
+		Tiles.field1092 = null;
+		Tiles.field1091 = null;
+		class362.field4079 = null;
+		MidiPcmStream.field2489 = null;
+		SecureRandomCallable.field1106 = null;
+		WorldMapLabelSize.field1570 = null;
+		Tiles.Tiles_hue = null;
+		Tiles.Tiles_saturation = null;
+		Tiles.Tiles_lightness = null;
+		GrandExchangeOfferOwnWorldComparator.Tiles_hueMultiplier = null;
+		class375.field4136 = null;
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		signature = "(Lig;Lig;ZII)V",
-		garbageValue = "463524240"
+		signature = "(Ljava/lang/CharSequence;I)I",
+		garbageValue = "-75599229"
 	)
-	static void method1255(AbstractArchive var0, AbstractArchive var1, boolean var2, int var3) {
-		if (Login.clearLoginScreen) {
-			if (var3 == 4) {
-				Login.loginIndex = 4;
+	public static int method1168(CharSequence var0) {
+		boolean var2 = false;
+		boolean var3 = false;
+		int var4 = 0;
+		int var5 = var0.length();
+
+		for (int var6 = 0; var6 < var5; ++var6) {
+			char var7 = var0.charAt(var6);
+			if (var6 == 0) {
+				if (var7 == '-') {
+					var2 = true;
+					continue;
+				}
+
+				if (var7 == '+') {
+					continue;
+				}
 			}
 
-		} else {
-			Login.loginIndex = var3;
-			Rasterizer2D.Rasterizer2D_clear();
-			byte[] var4 = var0.takeFileByNames("title.jpg", "");
-			Login.leftTitleSprite = WorldMapRectangle.convertJpgToSprite(var4);
-			Login.rightTitleSprite = Login.leftTitleSprite.mirrorHorizontally();
-			int var5 = Client.worldProperties;
-			if ((var5 & 536870912) != 0) {
-				Login.logoSprite = ChatChannel.SpriteBuffer_getIndexedSpriteByName(var1, "logo_deadman_mode", "");
-			} else if ((var5 & 1073741824) != 0) {
-				Login.logoSprite = ChatChannel.SpriteBuffer_getIndexedSpriteByName(var1, "logo_seasonal_mode", "");
+			int var9;
+			if (var7 >= '0' && var7 <= '9') {
+				var9 = var7 - '0';
+			} else if (var7 >= 'A' && var7 <= 'Z') {
+				var9 = var7 - '7';
 			} else {
-				Login.logoSprite = ChatChannel.SpriteBuffer_getIndexedSpriteByName(var1, "logo", "");
+				if (var7 < 'a' || var7 > 'z') {
+					throw new NumberFormatException();
+				}
+
+				var9 = var7 - 'W';
 			}
 
-			GrandExchangeOfferNameComparator.titleboxSprite = ChatChannel.SpriteBuffer_getIndexedSpriteByName(var1, "titlebox", "");
-			InterfaceParent.titlebuttonSprite = ChatChannel.SpriteBuffer_getIndexedSpriteByName(var1, "titlebutton", "");
-			Login.runesSprite = MilliClock.method3664(var1, "runes", "");
-			Login.title_muteSprite = MilliClock.method3664(var1, "title_mute", "");
-			options_buttons_0Sprite = ChatChannel.SpriteBuffer_getIndexedSpriteByName(var1, "options_radio_buttons,0", "");
-			UrlRequester.field1956 = ChatChannel.SpriteBuffer_getIndexedSpriteByName(var1, "options_radio_buttons,4", "");
-			Login.options_buttons_2Sprite = ChatChannel.SpriteBuffer_getIndexedSpriteByName(var1, "options_radio_buttons,2", "");
-			WorldMapDecoration.field237 = ChatChannel.SpriteBuffer_getIndexedSpriteByName(var1, "options_radio_buttons,6", "");
-			WorldMapDecoration.field235 = options_buttons_0Sprite.subWidth;
-			MouseHandler.field512 = options_buttons_0Sprite.subHeight;
-			class9.loginScreenRunesAnimation = new LoginScreenAnimation(Login.runesSprite);
+			if (var9 >= 10) {
+				throw new NumberFormatException();
+			}
+
 			if (var2) {
-				Login.Login_username = "";
-				Login.Login_password = "";
+				var9 = -var9;
 			}
 
-			Canvas.field439 = 0;
-			class1.otp = "";
-			Login.field1217 = true;
-			Login.worldSelectOpen = false;
-			if (!WorldMapSectionType.clientPreferences.titleMusicDisabled) {
-				Archive var6 = UrlRequester.archive6;
-				int var7 = var6.getGroupId("scape main");
-				int var8 = var6.getFileId(var7, "");
-				GrandExchangeOfferOwnWorldComparator.playMusicTrack(2, var6, var7, var8, 255, false);
-			} else {
-				class206.musicPlayerStatus = 1;
-				class206.musicTrackArchive = null;
-				class206.musicTrackGroupId = -1;
-				SoundSystem.musicTrackFileId = -1;
-				DevicePcmPlayerProvider.musicTrackVolume = 0;
-				class206.musicTrackBoolean = false;
-				class7.pcmSampleLength = 2;
+			int var8 = var9 + var4 * 10;
+			if (var4 != var8 / 10) {
+				throw new NumberFormatException();
 			}
 
-			Actor.method1867(false);
-			Login.clearLoginScreen = true;
-			Login.xPadding = (GrandExchangeOfferTotalQuantityComparator.canvasWidth - 765) / 2;
-			Login.loginBoxX = Login.xPadding + 202;
-			GraphicsObject.loginBoxCenter = Login.loginBoxX + 180;
-			Login.leftTitleSprite.drawAt(Login.xPadding, 0);
-			Login.rightTitleSprite.drawAt(Login.xPadding + 382, 0);
-			Login.logoSprite.drawAt(Login.xPadding + 382 - Login.logoSprite.subWidth / 2, 18);
+			var4 = var8;
+			var3 = true;
+		}
+
+		if (!var3) {
+			throw new NumberFormatException();
+		} else {
+			return var4;
 		}
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "(CI)Z",
-		garbageValue = "-912600065"
+		signature = "(II)Z",
+		garbageValue = "-582278156"
+	)
+	public static boolean method1165(int var0) {
+		return (var0 >> 29 & 1) != 0;
+	}
+
+	@ObfuscatedName("h")
+	@ObfuscatedSignature(
+		signature = "(CB)Z",
+		garbageValue = "-30"
 	)
 	@Export("isCharAlphabetic")
 	public static boolean isCharAlphabetic(char var0) {
 		return var0 >= 'A' && var0 <= 'Z' || var0 >= 'a' && var0 <= 'z';
 	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		signature = "(IIB)I",
-		garbageValue = "57"
+		signature = "(ILcc;ZI)I",
+		garbageValue = "1950994133"
 	)
-	static final int method1259(int var0, int var1) {
-		int var2 = WorldMapSectionType.method320(var0 - 1, var1 - 1) + WorldMapSectionType.method320(var0 + 1, var1 - 1) + WorldMapSectionType.method320(var0 - 1, 1 + var1) + WorldMapSectionType.method320(var0 + 1, 1 + var1);
-		int var3 = WorldMapSectionType.method320(var0 - 1, var1) + WorldMapSectionType.method320(1 + var0, var1) + WorldMapSectionType.method320(var0, var1 - 1) + WorldMapSectionType.method320(var0, var1 + 1);
-		int var4 = WorldMapSectionType.method320(var0, var1);
-		return var2 / 16 + var3 / 8 + var4 / 4;
+	static int method1169(int var0, Script var1, boolean var2) {
+		Widget var3 = class139.getWidget(Interpreter.Interpreter_intStack[--class16.Interpreter_intStackSize]);
+		if (var0 == ScriptOpcodes.IF_GETX) {
+			Interpreter.Interpreter_intStack[++class16.Interpreter_intStackSize - 1] = var3.x;
+			return 1;
+		} else if (var0 == ScriptOpcodes.IF_GETY) {
+			Interpreter.Interpreter_intStack[++class16.Interpreter_intStackSize - 1] = var3.y;
+			return 1;
+		} else if (var0 == ScriptOpcodes.IF_GETWIDTH) {
+			Interpreter.Interpreter_intStack[++class16.Interpreter_intStackSize - 1] = var3.width;
+			return 1;
+		} else if (var0 == ScriptOpcodes.IF_GETHEIGHT) {
+			Interpreter.Interpreter_intStack[++class16.Interpreter_intStackSize - 1] = var3.height;
+			return 1;
+		} else if (var0 == ScriptOpcodes.IF_GETHIDE) {
+			Interpreter.Interpreter_intStack[++class16.Interpreter_intStackSize - 1] = var3.isHidden ? 1 : 0;
+			return 1;
+		} else if (var0 == ScriptOpcodes.IF_GETLAYER) {
+			Interpreter.Interpreter_intStack[++class16.Interpreter_intStackSize - 1] = var3.parentId;
+			return 1;
+		} else {
+			return 2;
+		}
+	}
+
+	@ObfuscatedName("il")
+	@ObfuscatedSignature(
+		signature = "(II)Ljava/lang/String;",
+		garbageValue = "-1186664585"
+	)
+	static String method1164(int var0) {
+		if (var0 < 0) {
+			return "";
+		} else {
+			return Client.menuTargets[var0].length() > 0 ? Client.menuActions[var0] + " " + Client.menuTargets[var0] : Client.menuActions[var0];
+		}
 	}
 }

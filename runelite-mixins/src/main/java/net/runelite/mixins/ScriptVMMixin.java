@@ -141,13 +141,13 @@ public abstract class ScriptVMMixin implements RSClient
 	}
 
 	@Copy("runScript")
-	static void rs$runScript(RSScriptEvent event, int maxExecutionTime)
+	static void rs$runScript(RSScriptEvent event, int maxExecutionTime, int var2)
 	{
 		throw new RuntimeException();
 	}
 
 	@Replace("runScript")
-	static void rl$runScript(RSScriptEvent event, int maxExecutionTime)
+	static void rl$runScript(RSScriptEvent event, int maxExecutionTime, int var2)
 	{
 		Object[] arguments = event.getArguments();
 		if (arguments != null && arguments.length > 0 && arguments[0] instanceof JavaScriptCallback)
@@ -166,7 +166,7 @@ public abstract class ScriptVMMixin implements RSClient
 			try
 			{
 				rootScriptEvent = event;
-				rs$runScript(event, maxExecutionTime);
+				rs$runScript(event, maxExecutionTime, var2);
 			}
 			finally
 			{

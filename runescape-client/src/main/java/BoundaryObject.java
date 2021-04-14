@@ -4,66 +4,60 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ee")
+@ObfuscatedName("gs")
 @Implements("BoundaryObject")
 public final class BoundaryObject {
-	@ObfuscatedName("jn")
-	@ObfuscatedSignature(
-		signature = "Lda;"
-	)
-	@Export("textureProvider")
-	static TextureProvider textureProvider;
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = -1837784551
+		intValue = 1487980993
 	)
 	@Export("tileHeight")
 	int tileHeight;
-	@ObfuscatedName("v")
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = 324986435
+		intValue = -2109183059
 	)
 	@Export("x")
 	int x;
-	@ObfuscatedName("d")
+	@ObfuscatedName("u")
 	@ObfuscatedGetter(
-		intValue = 392241551
+		intValue = -1229979648
 	)
 	@Export("y")
 	int y;
-	@ObfuscatedName("c")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = -1347087127
+		intValue = -1907463847
 	)
 	@Export("orientationA")
 	int orientationA;
-	@ObfuscatedName("y")
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = 1198661661
+		intValue = 334995477
 	)
 	@Export("orientationB")
 	int orientationB;
-	@ObfuscatedName("h")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		signature = "Lem;"
+		signature = "Lfm;"
 	)
 	@Export("entity1")
 	public Renderable entity1;
-	@ObfuscatedName("z")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "Lem;"
+		signature = "Lfm;"
 	)
 	@Export("entity2")
 	public Renderable entity2;
-	@ObfuscatedName("e")
+	@ObfuscatedName("g")
 	@ObfuscatedGetter(
-		longValue = -5322685038188485543L
+		longValue = 4648548109869818167L
 	)
 	@Export("tag")
 	public long tag;
-	@ObfuscatedName("q")
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = 898643669
+		intValue = 512629061
 	)
 	@Export("flags")
 	int flags;
@@ -73,55 +67,35 @@ public final class BoundaryObject {
 		this.flags = 0;
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("fg")
 	@ObfuscatedSignature(
-		signature = "(Lig;IIB)[Lly;",
-		garbageValue = "0"
+		signature = "(B)V",
+		garbageValue = "77"
 	)
-	public static IndexedSprite[] method3420(AbstractArchive var0, int var1, int var2) {
-		byte[] var4 = var0.takeFile(var1, var2);
-		boolean var3;
-		if (var4 == null) {
-			var3 = false;
-		} else {
-			GrandExchangeOfferNameComparator.SpriteBuffer_decode(var4);
-			var3 = true;
+	@Export("playPcmPlayers")
+	static final void playPcmPlayers() {
+		if (class43.pcmPlayer1 != null) {
+			class43.pcmPlayer1.run();
 		}
 
-		if (!var3) {
-			return null;
-		} else {
-			IndexedSprite[] var5 = new IndexedSprite[class336.SpriteBuffer_spriteCount];
-
-			for (int var6 = 0; var6 < class336.SpriteBuffer_spriteCount; ++var6) {
-				IndexedSprite var7 = var5[var6] = new IndexedSprite();
-				var7.width = class336.SpriteBuffer_spriteWidth;
-				var7.height = class336.SpriteBuffer_spriteHeight;
-				var7.xOffset = class105.SpriteBuffer_xOffsets[var6];
-				var7.yOffset = class336.SpriteBuffer_yOffsets[var6];
-				var7.subWidth = class336.SpriteBuffer_spriteWidths[var6];
-				var7.subHeight = class225.SpriteBuffer_spriteHeights[var6];
-				var7.palette = HorizontalAlignment.SpriteBuffer_spritePalette;
-				var7.pixels = class2.SpriteBuffer_pixels[var6];
-			}
-
-			class105.SpriteBuffer_xOffsets = null;
-			class336.SpriteBuffer_yOffsets = null;
-			class336.SpriteBuffer_spriteWidths = null;
-			class225.SpriteBuffer_spriteHeights = null;
-			HorizontalAlignment.SpriteBuffer_spritePalette = null;
-			class2.SpriteBuffer_pixels = null;
-			return var5;
+		if (ApproximateRouteStrategy.pcmPlayer0 != null) {
+			ApproximateRouteStrategy.pcmPlayer0.run();
 		}
+
 	}
 
-	@ObfuscatedName("gj")
+	@ObfuscatedName("jk")
 	@ObfuscatedSignature(
-		signature = "(B)I",
-		garbageValue = "33"
+		signature = "(II)Z",
+		garbageValue = "-230387884"
 	)
-	@Export("getWindowedMode")
-	static int getWindowedMode() {
-		return Client.isResizable ? 2 : 1;
+	static boolean method3787(int var0) {
+		for (int var1 = 0; var1 < Client.field827; ++var1) {
+			if (Client.field792[var1] == var0) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 }

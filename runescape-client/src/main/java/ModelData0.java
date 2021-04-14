@@ -1,65 +1,61 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ey")
+@ObfuscatedName("gk")
 @Implements("ModelData0")
 public class ModelData0 {
-	@ObfuscatedName("ib")
-	@ObfuscatedGetter(
-		intValue = -1948740643
-	)
-	static int field1882;
-
 	ModelData0() {
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "(Lkd;II)V",
-		garbageValue = "-1780574680"
+		signature = "(Lir;III)Loh;",
+		garbageValue = "-2108875586"
 	)
-	@Export("updatePlayers")
-	static final void updatePlayers(PacketBuffer var0, int var1) {
-		int var2 = var0.offset;
-		Players.Players_pendingUpdateCount = 0;
-		WorldMapDecoration.method404(var0);
-		MusicPatch.method4095(var0);
-		if (var0.offset - var2 != var1) {
-			throw new RuntimeException(var0.offset - var2 + " " + var1);
+	@Export("SpriteBuffer_getSprite")
+	public static SpritePixels SpriteBuffer_getSprite(AbstractArchive var0, int var1, int var2) {
+		byte[] var4 = var0.takeFile(var1, var2);
+		boolean var3;
+		if (var4 == null) {
+			var3 = false;
+		} else {
+			class244.SpriteBuffer_decode(var4);
+			var3 = true;
+		}
+
+		if (!var3) {
+			return null;
+		} else {
+			SpritePixels var5 = new SpritePixels();
+			var5.width = class395.SpriteBuffer_spriteWidth;
+			var5.height = class395.SpriteBuffer_spriteHeight;
+			var5.xOffset = class0.SpriteBuffer_xOffsets[0];
+			var5.yOffset = Interpreter.SpriteBuffer_yOffsets[0];
+			var5.subWidth = class395.SpriteBuffer_spriteWidths[0];
+			var5.subHeight = class157.SpriteBuffer_spriteHeights[0];
+			int var6 = var5.subWidth * var5.subHeight;
+			byte[] var7 = class223.SpriteBuffer_pixels[0];
+			var5.pixels = new int[var6];
+
+			for (int var8 = 0; var8 < var6; ++var8) {
+				var5.pixels[var8] = Varps.SpriteBuffer_spritePalette[var7[var8] & 255];
+			}
+
+			WorldMapDecorationType.method4370();
+			return var5;
 		}
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("ig")
 	@ObfuscatedSignature(
-		signature = "([BIIII[Lfe;I)V",
-		garbageValue = "255234267"
+		signature = "(IIIZI)V",
+		garbageValue = "-1135384010"
 	)
-	static final void method3411(byte[] var0, int var1, int var2, int var3, int var4, CollisionMap[] var5) {
-		int var7;
-		int var8;
-		for (int var6 = 0; var6 < 4; ++var6) {
-			for (var7 = 0; var7 < 64; ++var7) {
-				for (var8 = 0; var8 < 64; ++var8) {
-					if (var7 + var1 > 0 && var7 + var1 < 103 && var8 + var2 > 0 && var8 + var2 < 103) {
-						int[] var10000 = var5[var6].flags[var7 + var1];
-						var10000[var8 + var2] &= -16777217;
-					}
-				}
-			}
+	static final void method3784(int var0, int var1, int var2, boolean var3) {
+		if (class15.loadInterface(var0)) {
+			Message.resizeInterface(Widget.Widget_interfaceComponents[var0], -1, var1, var2, var3);
 		}
-
-		Buffer var10 = new Buffer(var0);
-
-		for (var7 = 0; var7 < 4; ++var7) {
-			for (var8 = 0; var8 < 64; ++var8) {
-				for (int var9 = 0; var9 < 64; ++var9) {
-					KeyHandler.loadTerrain(var10, var7, var8 + var1, var9 + var2, var3, var4, 0);
-				}
-			}
-		}
-
 	}
 }

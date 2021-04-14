@@ -1,32 +1,26 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jp")
+@ObfuscatedName("ka")
 @Implements("StructDefinition")
 public class StructDefinition extends DualNode {
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "Lig;"
+		signature = "Lir;"
 	)
 	@Export("StructDefinition_archive")
-	static AbstractArchive StructDefinition_archive;
-	@ObfuscatedName("v")
+	public static AbstractArchive StructDefinition_archive;
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "Lex;"
+		signature = "Lgf;"
 	)
 	@Export("StructDefinition_cached")
-	public static EvictingDualNodeHashTable StructDefinition_cached;
-	@ObfuscatedName("y")
-	@ObfuscatedGetter(
-		intValue = 762629466
-	)
-	public static int field3338;
-	@ObfuscatedName("d")
+	static EvictingDualNodeHashTable StructDefinition_cached;
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "Llg;"
+		signature = "Lme;"
 	)
 	@Export("params")
 	IterableNodeHashTable params;
@@ -38,19 +32,19 @@ public class StructDefinition extends DualNode {
 	StructDefinition() {
 	}
 
-	@ObfuscatedName("d")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "-61"
+		signature = "(I)V",
+		garbageValue = "-51783205"
 	)
 	@Export("postDecode")
 	void postDecode() {
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "(Lkx;I)V",
-		garbageValue = "-1222397412"
+		signature = "(Lnu;I)V",
+		garbageValue = "1597477180"
 	)
 	@Export("decode")
 	void decode(Buffer var1) {
@@ -64,23 +58,23 @@ public class StructDefinition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("y")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		signature = "(Lkx;II)V",
-		garbageValue = "1068696099"
+		signature = "(Lnu;II)V",
+		garbageValue = "414960674"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
 		if (var2 == 249) {
-			this.params = TextureProvider.readStringIntParameters(var1, this.params);
+			this.params = class105.readStringIntParameters(var1, this.params);
 		}
 
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
 		signature = "(III)I",
-		garbageValue = "1838065399"
+		garbageValue = "-981552906"
 	)
 	@Export("getIntParam")
 	public int getIntParam(int var1, int var2) {
@@ -100,24 +94,13 @@ public class StructDefinition extends DualNode {
 		return var3;
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		signature = "(ILjava/lang/String;S)Ljava/lang/String;",
-		garbageValue = "-15071"
+		signature = "(ILjava/lang/String;I)Ljava/lang/String;",
+		garbageValue = "429267652"
 	)
 	@Export("getStringParam")
 	public String getStringParam(int var1, String var2) {
-		return class69.method1258(this.params, var1, var2);
-	}
-
-	@ObfuscatedName("n")
-	@ObfuscatedSignature(
-		signature = "(Lig;Lig;Lig;B)V",
-		garbageValue = "76"
-	)
-	public static void method4734(AbstractArchive var0, AbstractArchive var1, AbstractArchive var2) {
-		HitSplatDefinition.HitSplatDefinition_archive = var0;
-		Frames.field1904 = var1;
-		HitSplatDefinition.HitSplatDefinition_fontsArchive = var2;
+		return MouseHandler.method725(this.params, var1, var2);
 	}
 }

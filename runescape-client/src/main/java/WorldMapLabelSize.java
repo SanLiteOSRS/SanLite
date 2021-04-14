@@ -1,226 +1,156 @@
+import java.awt.Component;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ay")
+@ObfuscatedName("ey")
 @Implements("WorldMapLabelSize")
 public class WorldMapLabelSize {
-	@ObfuscatedName("sx")
+	@ObfuscatedName("rz")
 	@ObfuscatedGetter(
-		intValue = 339414095
+		intValue = -1981266759
 	)
-	@Export("foundItemIndex")
-	static int foundItemIndex;
-	@ObfuscatedName("n")
+	static int field1569;
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "Lay;"
+		signature = "Ley;"
 	)
 	@Export("WorldMapLabelSize_small")
 	public static final WorldMapLabelSize WorldMapLabelSize_small;
-	@ObfuscatedName("v")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "Lay;"
+		signature = "Ley;"
 	)
 	@Export("WorldMapLabelSize_medium")
 	public static final WorldMapLabelSize WorldMapLabelSize_medium;
-	@ObfuscatedName("d")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "Lay;"
+		signature = "Ley;"
 	)
 	@Export("WorldMapLabelSize_large")
 	public static final WorldMapLabelSize WorldMapLabelSize_large;
-	@ObfuscatedName("c")
+	@ObfuscatedName("k")
 	@ObfuscatedGetter(
-		intValue = -2074270997
+		intValue = -2016472085
 	)
-	final int field149;
-	@ObfuscatedName("y")
-	@ObfuscatedGetter(
-		intValue = 603088885
-	)
-	final int field153;
+	static int field1568;
 	@ObfuscatedName("h")
+	static int[][] field1570;
+	@ObfuscatedName("ev")
 	@ObfuscatedGetter(
-		intValue = 518486027
+		intValue = 464910607
 	)
-	final int field154;
+	static int field1572;
+	@ObfuscatedName("p")
+	@ObfuscatedGetter(
+		intValue = -27286113
+	)
+	final int field1564;
+	@ObfuscatedName("b")
+	@ObfuscatedGetter(
+		intValue = 580411911
+	)
+	final int field1567;
+	@ObfuscatedName("e")
+	@ObfuscatedGetter(
+		intValue = 1572047245
+	)
+	final int field1571;
 
 	static {
-		WorldMapLabelSize_small = new WorldMapLabelSize(0, 0, 4);
+		WorldMapLabelSize_small = new WorldMapLabelSize(1, 0, 4);
 		WorldMapLabelSize_medium = new WorldMapLabelSize(2, 1, 2);
-		WorldMapLabelSize_large = new WorldMapLabelSize(1, 2, 0);
+		WorldMapLabelSize_large = new WorldMapLabelSize(0, 2, 0);
 	}
 
 	WorldMapLabelSize(int var1, int var2, int var3) {
-		this.field149 = var1;
-		this.field153 = var2;
-		this.field154 = var3;
+		this.field1564 = var1;
+		this.field1567 = var2;
+		this.field1571 = var3;
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "(FB)Z",
-		garbageValue = "-67"
+		signature = "(FI)Z",
+		garbageValue = "-1990451087"
 	)
-	boolean method255(float var1) {
-		return var1 >= (float)this.field154;
+	boolean method2671(float var1) {
+		return var1 >= (float)this.field1571;
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "(I)[Lay;",
-		garbageValue = "-2106429153"
+		signature = "(Ljava/awt/Component;I)V",
+		garbageValue = "-523449441"
 	)
-	static WorldMapLabelSize[] method269() {
-		return new WorldMapLabelSize[]{WorldMapLabelSize_large, WorldMapLabelSize_medium, WorldMapLabelSize_small};
+	static void method2677(Component var0) {
+		var0.removeMouseListener(MouseHandler.MouseHandler_instance);
+		var0.removeMouseMotionListener(MouseHandler.MouseHandler_instance);
+		var0.removeFocusListener(MouseHandler.MouseHandler_instance);
+		MouseHandler.MouseHandler_currentButtonVolatile = 0;
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "(Lig;III)[Llm;",
-		garbageValue = "-173751595"
+		signature = "(II)Ley;",
+		garbageValue = "796333939"
 	)
-	public static SpritePixels[] method268(AbstractArchive var0, int var1, int var2) {
-		byte[] var4 = var0.takeFile(var1, var2);
-		boolean var3;
-		if (var4 == null) {
-			var3 = false;
-		} else {
-			GrandExchangeOfferNameComparator.SpriteBuffer_decode(var4);
-			var3 = true;
-		}
+	static WorldMapLabelSize method2670(int var0) {
+		WorldMapLabelSize[] var1 = new WorldMapLabelSize[]{WorldMapLabelSize_large, WorldMapLabelSize_small, WorldMapLabelSize_medium};
+		WorldMapLabelSize[] var2 = var1;
 
-		return !var3 ? null : BufferedSource.method6103();
-	}
-
-	@ObfuscatedName("d")
-	@ObfuscatedSignature(
-		signature = "(IB)Lay;",
-		garbageValue = "31"
-	)
-	static WorldMapLabelSize method266(int var0) {
-		WorldMapLabelSize[] var1 = method269();
-
-		for (int var2 = 0; var2 < var1.length; ++var2) {
-			WorldMapLabelSize var3 = var1[var2];
-			if (var0 == var3.field153) {
-				return var3;
+		for (int var3 = 0; var3 < var2.length; ++var3) {
+			WorldMapLabelSize var4 = var2[var3];
+			if (var0 == var4.field1567) {
+				return var4;
 			}
 		}
 
 		return null;
 	}
 
-	@ObfuscatedName("y")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		signature = "(IIIZIZI)V",
-		garbageValue = "-1679154092"
+		signature = "(B)V",
+		garbageValue = "-7"
 	)
-	@Export("doWorldSorting")
-	static void doWorldSorting(int var0, int var1, int var2, boolean var3, int var4, boolean var5) {
-		if (var0 < var1) {
-			int var6 = (var0 + var1) / 2;
-			int var7 = var0;
-			World var8 = World.World_worlds[var6];
-			World.World_worlds[var6] = World.World_worlds[var1];
-			World.World_worlds[var1] = var8;
-
-			for (int var9 = var0; var9 < var1; ++var9) {
-				if (class22.method226(World.World_worlds[var9], var8, var2, var3, var4, var5) <= 0) {
-					World var10 = World.World_worlds[var9];
-					World.World_worlds[var9] = World.World_worlds[var7];
-					World.World_worlds[var7++] = var10;
-				}
-			}
-
-			World.World_worlds[var1] = World.World_worlds[var7];
-			World.World_worlds[var7] = var8;
-			doWorldSorting(var0, var7 - 1, var2, var3, var4, var5);
-			doWorldSorting(var7 + 1, var1, var2, var3, var4, var5);
-		}
-
+	public static void method2676() {
+		HealthBarDefinition.HealthBarDefinition_cached.clear();
+		HealthBarDefinition.HealthBarDefinition_cachedSprites.clear();
 	}
 
-	@ObfuscatedName("bp")
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;I)I",
-		garbageValue = "1534549931"
+		signature = "(I)V",
+		garbageValue = "-888739808"
 	)
-	@Export("stringCp1252NullTerminatedByteSize")
-	public static int stringCp1252NullTerminatedByteSize(String var0) {
-		return var0.length() + 1;
+	public static void method2678() {
+		ItemComposition.ItemDefinition_cached.clear();
+		ItemComposition.ItemDefinition_cachedModels.clear();
+		ItemComposition.ItemDefinition_cachedSprites.clear();
 	}
 
-	@ObfuscatedName("in")
+	@ObfuscatedName("kh")
 	@ObfuscatedSignature(
-		signature = "(IIIIII)V",
-		garbageValue = "1283328511"
+		signature = "(Lnu;IB)V",
+		garbageValue = "-107"
 	)
-	@Export("drawScrollBar")
-	static final void drawScrollBar(int var0, int var1, int var2, int var3, int var4) {
-		ObjectSound.scrollBarSprites[0].drawAt(var0, var1);
-		ObjectSound.scrollBarSprites[1].drawAt(var0, var3 + var1 - 16);
-		Rasterizer2D.Rasterizer2D_fillRectangle(var0, var1 + 16, 16, var3 - 32, Client.field727);
-		int var5 = var3 * (var3 - 32) / var4;
-		if (var5 < 8) {
-			var5 = 8;
+	static void method2679(Buffer var0, int var1) {
+		byte[] var2 = var0.array;
+		if (Client.randomDatData == null) {
+			Client.randomDatData = new byte[24];
 		}
 
-		int var6 = (var3 - 32 - var5) * var2 / (var4 - var3);
-		Rasterizer2D.Rasterizer2D_fillRectangle(var0, var6 + var1 + 16, 16, var5, Client.field777);
-		Rasterizer2D.Rasterizer2D_drawVerticalLine(var0, var6 + var1 + 16, var5, Client.field730);
-		Rasterizer2D.Rasterizer2D_drawVerticalLine(var0 + 1, var6 + var1 + 16, var5, Client.field730);
-		Rasterizer2D.Rasterizer2D_drawHorizontalLine(var0, var6 + var1 + 16, 16, Client.field730);
-		Rasterizer2D.Rasterizer2D_drawHorizontalLine(var0, var6 + var1 + 17, 16, Client.field730);
-		Rasterizer2D.Rasterizer2D_drawVerticalLine(var0 + 15, var6 + var1 + 16, var5, Client.field729);
-		Rasterizer2D.Rasterizer2D_drawVerticalLine(var0 + 14, var6 + var1 + 17, var5 - 1, Client.field729);
-		Rasterizer2D.Rasterizer2D_drawHorizontalLine(var0, var6 + var5 + var1 + 15, 16, Client.field729);
-		Rasterizer2D.Rasterizer2D_drawHorizontalLine(var0 + 1, var6 + var5 + var1 + 14, 15, Client.field729);
-	}
-
-	@ObfuscatedName("ke")
-	@ObfuscatedSignature(
-		signature = "(Lhz;I)Z",
-		garbageValue = "-490308531"
-	)
-	static final boolean method254(Widget var0) {
-		int var1 = var0.contentType;
-		if (var1 == 205) {
-			Client.logoutTimer = 250;
-			return true;
-		} else {
-			int var2;
-			int var3;
-			if (var1 >= 300 && var1 <= 313) {
-				var2 = (var1 - 300) / 2;
-				var3 = var1 & 1;
-				Client.playerAppearance.changeAppearance(var2, var3 == 1);
-			}
-
-			if (var1 >= 314 && var1 <= 323) {
-				var2 = (var1 - 314) / 2;
-				var3 = var1 & 1;
-				Client.playerAppearance.method4206(var2, var3 == 1);
-			}
-
-			if (var1 == 324) {
-				Client.playerAppearance.changeSex(false);
-			}
-
-			if (var1 == 325) {
-				Client.playerAppearance.changeSex(true);
-			}
-
-			if (var1 == 326) {
-				PacketBufferNode var4 = WorldMapSprite.getPacketBufferNode(ClientPacket.field2322, Client.packetWriter.isaacCipher);
-				Client.playerAppearance.write(var4.packetBuffer);
-				Client.packetWriter.addNode(var4);
-				return true;
-			} else {
-				return false;
+		class305.writeRandomDat(var2, var1, Client.randomDatData, 0, 24);
+		if (JagexCache.JagexCache_randomDat != null) {
+			try {
+				JagexCache.JagexCache_randomDat.seek(0L);
+				JagexCache.JagexCache_randomDat.write(var0.array, var1, 24);
+			} catch (Exception var4) {
 			}
 		}
+
 	}
 }

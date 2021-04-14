@@ -4,33 +4,33 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("lj")
+@ObfuscatedName("mq")
 @Implements("IterableNodeHashTableIterator")
 public class IterableNodeHashTableIterator implements Iterator {
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "Llg;"
+		signature = "Lme;"
 	)
 	@Export("hashTable")
 	IterableNodeHashTable hashTable;
-	@ObfuscatedName("v")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "Lga;"
+		signature = "Lmh;"
 	)
 	@Export("head")
 	Node head;
-	@ObfuscatedName("d")
+	@ObfuscatedName("u")
 	@Export("index")
 	int index;
-	@ObfuscatedName("c")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		signature = "Lga;"
+		signature = "Lmh;"
 	)
 	@Export("last")
 	Node last;
 
 	@ObfuscatedSignature(
-		signature = "(Llg;)V"
+		signature = "(Lme;)V"
 	)
 	IterableNodeHashTableIterator(IterableNodeHashTable var1) {
 		this.last = null;
@@ -38,34 +38,12 @@ public class IterableNodeHashTableIterator implements Iterator {
 		this.start();
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("f")
 	@Export("start")
 	void start() {
 		this.head = this.hashTable.buckets[0].previous;
 		this.index = 1;
 		this.last = null;
-	}
-
-	public Object next() {
-		Node var1;
-		if (this.hashTable.buckets[this.index - 1] != this.head) {
-			var1 = this.head;
-			this.head = var1.previous;
-			this.last = var1;
-			return var1;
-		} else {
-			do {
-				if (this.index >= this.hashTable.size) {
-					return null;
-				}
-
-				var1 = this.hashTable.buckets[this.index++].previous;
-			} while(var1 == this.hashTable.buckets[this.index - 1]);
-
-			this.head = var1.previous;
-			this.last = var1;
-			return var1;
-		}
 	}
 
 	public boolean hasNext() {
@@ -91,6 +69,28 @@ public class IterableNodeHashTableIterator implements Iterator {
 		} else {
 			this.last.remove();
 			this.last = null;
+		}
+	}
+
+	public Object next() {
+		Node var1;
+		if (this.hashTable.buckets[this.index - 1] != this.head) {
+			var1 = this.head;
+			this.head = var1.previous;
+			this.last = var1;
+			return var1;
+		} else {
+			do {
+				if (this.index >= this.hashTable.size) {
+					return null;
+				}
+
+				var1 = this.hashTable.buckets[this.index++].previous;
+			} while(var1 == this.hashTable.buckets[this.index - 1]);
+
+			this.head = var1.previous;
+			this.last = var1;
+			return var1;
 		}
 	}
 }

@@ -1,33 +1,20 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("dp")
+@ObfuscatedName("bn")
 @Implements("SoundSystem")
 public class SoundSystem implements Runnable {
-	@ObfuscatedName("sl")
+	@ObfuscatedName("df")
 	@ObfuscatedSignature(
-		signature = "Lmf;"
+		signature = "Lig;"
 	)
-	@Export("worldMap")
-	static WorldMap worldMap;
-	@ObfuscatedName("e")
-	@ObfuscatedGetter(
-		intValue = -2100372523
-	)
-	@Export("musicTrackFileId")
-	public static int musicTrackFileId;
-	@ObfuscatedName("u")
+	@Export("archive8")
+	static Archive archive8;
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "Lkx;"
-	)
-	@Export("NetCache_reference")
-	public static Buffer NetCache_reference;
-	@ObfuscatedName("n")
-	@ObfuscatedSignature(
-		signature = "[Ldh;"
+		signature = "[Lbh;"
 	)
 	@Export("players")
 	volatile PcmPlayer[] players;
@@ -45,33 +32,56 @@ public class SoundSystem implements Runnable {
 				}
 			}
 		} catch (Exception var4) {
-			SequenceDefinition.RunException_sendStackTrace((String)null, var4);
+			class223.RunException_sendStackTrace((String)null, var4);
 		}
 
 	}
 
-	@ObfuscatedName("an")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "(II)V",
-		garbageValue = "-422098598"
+		signature = "(I[BLlp;I)V",
+		garbageValue = "2116323284"
 	)
-	@Export("runWidgetOnLoadListener")
-	static void runWidgetOnLoadListener(int var0) {
-		if (var0 != -1) {
-			if (WorldMapCacheName.loadInterface(var0)) {
-				Widget[] var1 = DefaultsGroup.Widget_interfaceComponents[var0];
+	static void method872(int var0, byte[] var1, ArchiveDisk var2) {
+		ArchiveDiskAction var3 = new ArchiveDiskAction();
+		var3.type = 0;
+		var3.key = (long)var0;
+		var3.data = var1;
+		var3.archiveDisk = var2;
+		synchronized(ArchiveDiskActionHandler.ArchiveDiskActionHandler_requestQueue) {
+			ArchiveDiskActionHandler.ArchiveDiskActionHandler_requestQueue.addFirst(var3);
+		}
 
-				for (int var2 = 0; var2 < var1.length; ++var2) {
-					Widget var3 = var1[var2];
-					if (var3.onLoad != null) {
-						ScriptEvent var4 = new ScriptEvent();
-						var4.widget = var3;
-						var4.args = var3.onLoad;
-						GrandExchangeOfferWorldComparator.runScript(var4, 5000000);
+		ItemLayer.method3271();
+	}
+
+	@ObfuscatedName("gr")
+	@ObfuscatedSignature(
+		signature = "(ZB)V",
+		garbageValue = "-92"
+	)
+	@Export("addNpcsToScene")
+	static final void addNpcsToScene(boolean var0) {
+		for (int var1 = 0; var1 < Client.npcCount; ++var1) {
+			NPC var2 = Client.npcs[Client.npcIndices[var1]];
+			if (var2 != null && var2.isVisible() && var2.definition.isVisible == var0 && var2.definition.transformIsVisible()) {
+				int var3 = var2.x >> 7;
+				int var4 = var2.y >> 7;
+				if (var3 >= 0 && var3 < 104 && var4 >= 0 && var4 < 104) {
+					if (var2.field1258 == 1 && (var2.x & 127) == 64 && (var2.y & 127) == 64) {
+						if (Client.tileLastDrawnActor[var3][var4] == Client.viewportDrawCount) {
+							continue;
+						}
+
+						Client.tileLastDrawnActor[var3][var4] = Client.viewportDrawCount;
 					}
-				}
 
+					long var5 = AttackOption.calculateTag(0, 0, 1, !var2.definition.isInteractable, Client.npcIndices[var1]);
+					var2.playerCycle = Client.cycle;
+					WorldMapArea.scene.drawEntity(class26.Client_plane, var2.x, var2.y, UserComparator7.getTileHeight(var2.field1258 * 64 - 64 + var2.x, var2.field1258 * 64 - 64 + var2.y, class26.Client_plane), var2.field1258 * 64 - 64 + 60, var2, var2.rotation, var5, var2.isWalking);
+				}
 			}
 		}
+
 	}
 }

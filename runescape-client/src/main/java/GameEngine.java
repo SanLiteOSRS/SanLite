@@ -4,7 +4,6 @@ import java.awt.Container;
 import java.awt.EventQueue;
 import java.awt.Frame;
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.Insets;
 import java.awt.LayoutManager;
 import java.awt.Rectangle;
@@ -19,166 +18,178 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.awt.image.ImageObserver;
 import java.net.URL;
+import java.util.Iterator;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("bt")
+@ObfuscatedName("al")
 @Implements("GameEngine")
 public abstract class GameEngine extends Applet implements Runnable, FocusListener, WindowListener {
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "Lfu;"
+		signature = "Ldt;"
 	)
 	@Export("taskHandler")
 	protected static TaskHandler taskHandler;
-	@ObfuscatedName("v")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "Lbt;"
+		signature = "Lal;"
 	)
 	@Export("gameShell")
 	static GameEngine gameShell;
-	@ObfuscatedName("d")
+	@ObfuscatedName("u")
 	@ObfuscatedGetter(
-		intValue = -1172672455
+		intValue = -1685725481
 	)
 	@Export("GameShell_redundantStartThreadCount")
 	static int GameShell_redundantStartThreadCount;
-	@ObfuscatedName("c")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		longValue = -8672480776898647035L
+		longValue = -4853509514782557043L
 	)
 	@Export("stopTimeMs")
 	static long stopTimeMs;
-	@ObfuscatedName("h")
+	@ObfuscatedName("b")
 	@Export("isKilled")
 	static boolean isKilled;
-	@ObfuscatedName("q")
+	@ObfuscatedName("g")
 	@ObfuscatedGetter(
-		intValue = -1471054529
+		intValue = 53446861
 	)
 	@Export("cycleDurationMillis")
 	static int cycleDurationMillis;
-	@ObfuscatedName("l")
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = 1858214361
+		intValue = -1368983969
 	)
 	@Export("fiveOrOne")
 	static int fiveOrOne;
-	@ObfuscatedName("s")
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = -860232961
+		intValue = 651117419
 	)
 	@Export("fps")
 	protected static int fps;
-	@ObfuscatedName("k")
+	@ObfuscatedName("d")
 	@Export("graphicsTickTimes")
 	protected static long[] graphicsTickTimes;
-	@ObfuscatedName("f")
+	@ObfuscatedName("j")
 	@Export("clientTickTimes")
 	protected static long[] clientTickTimes;
-	@ObfuscatedName("ax")
-	static Image field480;
-	@ObfuscatedName("ar")
+	@ObfuscatedName("a")
 	@ObfuscatedGetter(
-		intValue = -855219925
+		intValue = 1639936393
 	)
-	static int field481;
-	@ObfuscatedName("an")
+	@Export("canvasHeight")
+	public static int canvasHeight;
+	@ObfuscatedName("ax")
+	@ObfuscatedGetter(
+		intValue = 531187917
+	)
+	static int field321;
+	@ObfuscatedName("ai")
+	@ObfuscatedSignature(
+		signature = "Loe;"
+	)
+	@Export("rasterProvider")
+	public static AbstractRasterProvider rasterProvider;
+	@ObfuscatedName("ab")
 	@Export("volatileFocus")
 	static volatile boolean volatileFocus;
-	@ObfuscatedName("au")
+	@ObfuscatedName("ar")
 	@ObfuscatedGetter(
-		longValue = 1354253672444800547L
+		longValue = 6808670330875016505L
 	)
 	@Export("garbageCollectorLastCollectionTime")
 	static long garbageCollectorLastCollectionTime;
-	@ObfuscatedName("ad")
+	@ObfuscatedName("ak")
 	@ObfuscatedGetter(
-		longValue = 7149663946399436317L
+		longValue = 5063361816700909807L
 	)
 	@Export("garbageCollectorLastCheckTimeMs")
 	static long garbageCollectorLastCheckTimeMs;
-	@ObfuscatedName("z")
+	@ObfuscatedName("e")
 	@Export("hasErrored")
 	boolean hasErrored;
-	@ObfuscatedName("u")
+	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = -250488397
+		intValue = 523882701
 	)
 	@Export("contentWidth")
 	protected int contentWidth;
 	@ObfuscatedName("t")
 	@ObfuscatedGetter(
-		intValue = -100223911
+		intValue = -504731567
 	)
 	@Export("contentHeight")
 	protected int contentHeight;
-	@ObfuscatedName("p")
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = -99597119
+		intValue = -1685077201
 	)
 	@Export("canvasX")
 	int canvasX;
-	@ObfuscatedName("m")
+	@ObfuscatedName("z")
 	@ObfuscatedGetter(
-		intValue = 2031980453
+		intValue = -327773481
 	)
 	@Export("canvasY")
 	int canvasY;
-	@ObfuscatedName("j")
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = -2105446269
+		intValue = 981917933
 	)
-	int field473;
+	int field332;
+	@ObfuscatedName("ac")
+	@ObfuscatedGetter(
+		intValue = 2017329663
+	)
+	int field320;
 	@ObfuscatedName("ay")
 	@ObfuscatedGetter(
-		intValue = -501888553
-	)
-	int field460;
-	@ObfuscatedName("am")
-	@ObfuscatedGetter(
-		intValue = -1655080689
+		intValue = 9044595
 	)
 	@Export("maxCanvasWidth")
 	int maxCanvasWidth;
-	@ObfuscatedName("ag")
+	@ObfuscatedName("am")
 	@ObfuscatedGetter(
-		intValue = 892249971
+		intValue = 1660420049
 	)
 	@Export("maxCanvasHeight")
 	int maxCanvasHeight;
-	@ObfuscatedName("aq")
+	@ObfuscatedName("at")
 	@Export("frame")
 	Frame frame;
-	@ObfuscatedName("at")
+	@ObfuscatedName("aj")
 	@Export("canvas")
 	java.awt.Canvas canvas;
-	@ObfuscatedName("ak")
-	volatile boolean field468;
-	@ObfuscatedName("al")
+	@ObfuscatedName("aw")
+	volatile boolean field316;
+	@ObfuscatedName("as")
 	@Export("resizeCanvasNextFrame")
 	boolean resizeCanvasNextFrame;
-	@ObfuscatedName("aa")
+	@ObfuscatedName("ad")
 	@Export("isCanvasInvalid")
 	volatile boolean isCanvasInvalid;
-	@ObfuscatedName("as")
+	@ObfuscatedName("af")
 	@ObfuscatedGetter(
-		longValue = -8976229610863512045L
+		longValue = -5289724236337246501L
 	)
-	volatile long field484;
-	@ObfuscatedName("ah")
+	volatile long field303;
+	@ObfuscatedName("av")
 	@ObfuscatedSignature(
-		signature = "Lbn;"
+		signature = "Lad;"
 	)
 	@Export("mouseWheelHandler")
 	MouseWheelHandler mouseWheelHandler;
-	@ObfuscatedName("ap")
+	@ObfuscatedName("az")
 	@Export("clipboard")
 	Clipboard clipboard;
-	@ObfuscatedName("aj")
+	@ObfuscatedName("au")
 	@Export("eventQueue")
 	final EventQueue eventQueue;
 
@@ -192,7 +203,7 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 		fps = 0;
 		graphicsTickTimes = new long[32];
 		clientTickTimes = new long[32];
-		field481 = 500;
+		field321 = 500;
 		volatileFocus = true;
 		garbageCollectorLastCollectionTime = -1L;
 		garbageCollectorLastCheckTimeMs = -1L;
@@ -202,10 +213,10 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 		this.hasErrored = false;
 		this.canvasX = 0;
 		this.canvasY = 0;
-		this.field468 = true;
+		this.field316 = true;
 		this.resizeCanvasNextFrame = false;
 		this.isCanvasInvalid = false;
-		this.field484 = 0L;
+		this.field303 = 0L;
 		EventQueue var1 = null;
 
 		try {
@@ -215,34 +226,34 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 
 		this.eventQueue = var1;
 		DevicePcmPlayerProvider var2 = new DevicePcmPlayerProvider();
-		class2.pcmPlayerProvider = var2;
+		class301.pcmPlayerProvider = var2;
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "(III)V",
-		garbageValue = "-420237579"
+		signature = "(IIB)V",
+		garbageValue = "7"
 	)
 	@Export("setMaxCanvasSize")
 	protected final void setMaxCanvasSize(int var1, int var2) {
 		if (this.maxCanvasWidth != var1 || var2 != this.maxCanvasHeight) {
-			this.method1007();
+			this.method560();
 		}
 
 		this.maxCanvasWidth = var1;
 		this.maxCanvasHeight = var2;
 	}
 
-	@ObfuscatedName("y")
+	@ObfuscatedName("g")
 	@ObfuscatedSignature(
 		signature = "(Ljava/lang/Object;I)V",
-		garbageValue = "2080596148"
+		garbageValue = "2112263032"
 	)
 	@Export("post")
 	final void post(Object var1) {
 		if (this.eventQueue != null) {
 			for (int var2 = 0; var2 < 50 && this.eventQueue.peekEvent() != null; ++var2) {
-				ApproximateRouteStrategy.method1311(1L);
+				GrandExchangeEvent.method4625(1L);
 			}
 
 			if (var1 != null) {
@@ -254,8 +265,8 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 
 	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		signature = "(I)Lfo;",
-		garbageValue = "-1572437052"
+		signature = "(I)Ldw;",
+		garbageValue = "-702892795"
 	)
 	@Export("mouseWheel")
 	protected MouseWheel mouseWheel() {
@@ -267,89 +278,62 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 		return this.mouseWheelHandler;
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "84"
+		signature = "(I)V",
+		garbageValue = "-1964367866"
 	)
 	@Export("setUpClipboard")
 	protected void setUpClipboard() {
 		this.clipboard = this.getToolkit().getSystemClipboard();
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
 		signature = "(Ljava/lang/String;I)V",
-		garbageValue = "-775361579"
+		garbageValue = "1478107780"
 	)
 	@Export("clipboardSetString")
 	protected void clipboardSetString(String var1) {
 		this.clipboard.setContents(new StringSelection(var1), (ClipboardOwner)null);
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "-367283277"
+		garbageValue = "825633698"
 	)
 	@Export("setUpKeyboard")
 	protected final void setUpKeyboard() {
-		if (TaskHandler.javaVendor.toLowerCase().indexOf("microsoft") != -1) {
-			KeyHandler.KeyHandler_keyCodes[186] = 57;
-			KeyHandler.KeyHandler_keyCodes[187] = 27;
-			KeyHandler.KeyHandler_keyCodes[188] = 71;
-			KeyHandler.KeyHandler_keyCodes[189] = 26;
-			KeyHandler.KeyHandler_keyCodes[190] = 72;
-			KeyHandler.KeyHandler_keyCodes[191] = 73;
-			KeyHandler.KeyHandler_keyCodes[192] = 58;
-			KeyHandler.KeyHandler_keyCodes[219] = 42;
-			KeyHandler.KeyHandler_keyCodes[220] = 74;
-			KeyHandler.KeyHandler_keyCodes[221] = 43;
-			KeyHandler.KeyHandler_keyCodes[222] = 59;
-			KeyHandler.KeyHandler_keyCodes[223] = 28;
-		} else {
-			KeyHandler.KeyHandler_keyCodes[44] = 71;
-			KeyHandler.KeyHandler_keyCodes[45] = 26;
-			KeyHandler.KeyHandler_keyCodes[46] = 72;
-			KeyHandler.KeyHandler_keyCodes[47] = 73;
-			KeyHandler.KeyHandler_keyCodes[59] = 57;
-			KeyHandler.KeyHandler_keyCodes[61] = 27;
-			KeyHandler.KeyHandler_keyCodes[91] = 42;
-			KeyHandler.KeyHandler_keyCodes[92] = 74;
-			KeyHandler.KeyHandler_keyCodes[93] = 43;
-			KeyHandler.KeyHandler_keyCodes[192] = 28;
-			KeyHandler.KeyHandler_keyCodes[222] = 58;
-			KeyHandler.KeyHandler_keyCodes[520] = 59;
-		}
-
+		class82.method1924();
 		java.awt.Canvas var1 = this.canvas;
 		var1.setFocusTraversalKeysEnabled(false);
 		var1.addKeyListener(KeyHandler.KeyHandler_instance);
 		var1.addFocusListener(KeyHandler.KeyHandler_instance);
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "1149446926"
+		garbageValue = "-748357036"
 	)
 	@Export("setUpMouse")
 	protected final void setUpMouse() {
-		WorldMapArea.method489(this.canvas);
+		UserComparator4.method2419(this.canvas);
 	}
 
-	@ObfuscatedName("s")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "1907084559"
+		signature = "(B)V",
+		garbageValue = "105"
 	)
 	@Export("resizeCanvas")
 	final void resizeCanvas() {
 		Container var1 = this.container();
 		if (var1 != null) {
 			Bounds var2 = this.getFrameContentBounds();
-			this.contentWidth = Math.max(var2.highX, this.field473);
-			this.contentHeight = Math.max(var2.highY, this.field460);
+			this.contentWidth = Math.max(var2.highX, this.field332);
+			this.contentHeight = Math.max(var2.highY, this.field320);
 			if (this.contentWidth <= 0) {
 				this.contentWidth = 1;
 			}
@@ -358,43 +342,43 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 				this.contentHeight = 1;
 			}
 
-			GrandExchangeOfferTotalQuantityComparator.canvasWidth = Math.min(this.contentWidth, this.maxCanvasWidth);
-			class25.canvasHeight = Math.min(this.contentHeight, this.maxCanvasHeight);
-			this.canvasX = (this.contentWidth - GrandExchangeOfferTotalQuantityComparator.canvasWidth) / 2;
+			InterfaceParent.canvasWidth = Math.min(this.contentWidth, this.maxCanvasWidth);
+			canvasHeight = Math.min(this.contentHeight, this.maxCanvasHeight);
+			this.canvasX = (this.contentWidth - InterfaceParent.canvasWidth) / 2;
 			this.canvasY = 0;
-			this.canvas.setSize(GrandExchangeOfferTotalQuantityComparator.canvasWidth, class25.canvasHeight);
-			FileSystem.rasterProvider = new RasterProvider(GrandExchangeOfferTotalQuantityComparator.canvasWidth, class25.canvasHeight, this.canvas);
+			this.canvas.setSize(InterfaceParent.canvasWidth, canvasHeight);
+			rasterProvider = new RasterProvider(InterfaceParent.canvasWidth, canvasHeight, this.canvas);
 			if (var1 == this.frame) {
 				Insets var3 = this.frame.getInsets();
-				this.canvas.setLocation(var3.left + this.canvasX, this.canvasY + var3.top);
+				this.canvas.setLocation(this.canvasX + var3.left, this.canvasY + var3.top);
 			} else {
 				this.canvas.setLocation(this.canvasX, this.canvasY);
 			}
 
-			this.field468 = true;
+			this.field316 = true;
 			this.resizeGame();
 		}
 	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "-226650241"
+		garbageValue = "-1835470787"
 	)
 	@Export("resizeGame")
 	protected abstract void resizeGame();
 
-	@ObfuscatedName("a")
+	@ObfuscatedName("r")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "-998749826"
+		garbageValue = "35349985"
 	)
 	@Export("clearBackground")
 	void clearBackground() {
 		int var1 = this.canvasX;
 		int var2 = this.canvasY;
-		int var3 = this.contentWidth - GrandExchangeOfferTotalQuantityComparator.canvasWidth - var1;
-		int var4 = this.contentHeight - class25.canvasHeight - var2;
+		int var3 = this.contentWidth - InterfaceParent.canvasWidth - var1;
+		int var4 = this.contentHeight - canvasHeight - var2;
 		if (var1 > 0 || var3 > 0 || var2 > 0 || var4 > 0) {
 			try {
 				Container var5 = this.container();
@@ -429,19 +413,18 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "-14"
+		signature = "(I)V",
+		garbageValue = "2129767231"
 	)
 	@Export("replaceCanvas")
 	final void replaceCanvas() {
-		PlayerType.method4345(this.canvas);
 		java.awt.Canvas var1 = this.canvas;
-		var1.removeMouseListener(MouseHandler.MouseHandler_instance);
-		var1.removeMouseMotionListener(MouseHandler.MouseHandler_instance);
-		var1.removeFocusListener(MouseHandler.MouseHandler_instance);
-		MouseHandler.MouseHandler_currentButtonVolatile = 0;
+		var1.removeKeyListener(KeyHandler.KeyHandler_instance);
+		var1.removeFocusListener(KeyHandler.KeyHandler_instance);
+		KeyHandler.field259 = -1;
+		WorldMapLabelSize.method2677(this.canvas);
 		if (this.mouseWheelHandler != null) {
 			this.mouseWheelHandler.removeFrom(this.canvas);
 		}
@@ -451,18 +434,18 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 		var2.setFocusTraversalKeysEnabled(false);
 		var2.addKeyListener(KeyHandler.KeyHandler_instance);
 		var2.addFocusListener(KeyHandler.KeyHandler_instance);
-		WorldMapArea.method489(this.canvas);
+		UserComparator4.method2419(this.canvas);
 		if (this.mouseWheelHandler != null) {
 			this.mouseWheelHandler.addTo(this.canvas);
 		}
 
-		this.method1007();
+		this.method560();
 	}
 
 	@ObfuscatedName("t")
 	@ObfuscatedSignature(
 		signature = "(IIII)V",
-		garbageValue = "-2060658023"
+		garbageValue = "69063419"
 	)
 	@Export("startThread")
 	protected final void startThread(int var1, int var2, int var3) {
@@ -479,26 +462,26 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 			}
 
 			gameShell = this;
-			GrandExchangeOfferTotalQuantityComparator.canvasWidth = var1;
-			class25.canvasHeight = var2;
+			InterfaceParent.canvasWidth = var1;
+			canvasHeight = var2;
 			RunException.RunException_revision = var3;
-			RunException.RunException_applet = this;
+			SecureRandomCallable.RunException_applet = this;
 			if (taskHandler == null) {
 				taskHandler = new TaskHandler();
 			}
 
 			taskHandler.newThreadTask(this, 1);
 		} catch (Exception var5) {
-			SequenceDefinition.RunException_sendStackTrace((String)null, var5);
+			class223.RunException_sendStackTrace((String)null, var5);
 			this.error("crash");
 		}
 
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		signature = "(S)V",
-		garbageValue = "128"
+		signature = "(I)V",
+		garbageValue = "-431845158"
 	)
 	@Export("addCanvas")
 	final synchronized void addCanvas() {
@@ -508,20 +491,20 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 			var1.remove(this.canvas);
 		}
 
-		GrandExchangeOfferTotalQuantityComparator.canvasWidth = Math.max(var1.getWidth(), this.field473);
-		class25.canvasHeight = Math.max(var1.getHeight(), this.field460);
+		InterfaceParent.canvasWidth = Math.max(var1.getWidth(), this.field332);
+		canvasHeight = Math.max(var1.getHeight(), this.field320);
 		Insets var2;
 		if (this.frame != null) {
 			var2 = this.frame.getInsets();
-			GrandExchangeOfferTotalQuantityComparator.canvasWidth -= var2.right + var2.left;
-			class25.canvasHeight -= var2.top + var2.bottom;
+			InterfaceParent.canvasWidth -= var2.right + var2.left;
+			canvasHeight -= var2.top + var2.bottom;
 		}
 
 		this.canvas = new Canvas(this);
 		var1.setBackground(Color.BLACK);
 		var1.setLayout((LayoutManager)null);
 		var1.add(this.canvas);
-		this.canvas.setSize(GrandExchangeOfferTotalQuantityComparator.canvasWidth, class25.canvasHeight);
+		this.canvas.setSize(InterfaceParent.canvasWidth, canvasHeight);
 		this.canvas.setVisible(true);
 		this.canvas.setBackground(Color.BLACK);
 		if (var1 == this.frame) {
@@ -533,22 +516,22 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 
 		this.canvas.addFocusListener(this);
 		this.canvas.requestFocus();
-		this.field468 = true;
-		if (FileSystem.rasterProvider != null && GrandExchangeOfferTotalQuantityComparator.canvasWidth == FileSystem.rasterProvider.width && class25.canvasHeight == FileSystem.rasterProvider.height) {
-			((RasterProvider)FileSystem.rasterProvider).setComponent(this.canvas);
-			FileSystem.rasterProvider.drawFull(0, 0);
+		this.field316 = true;
+		if (rasterProvider != null && InterfaceParent.canvasWidth == rasterProvider.width && canvasHeight == rasterProvider.height) {
+			((RasterProvider)rasterProvider).setComponent(this.canvas);
+			rasterProvider.drawFull(0, 0);
 		} else {
-			FileSystem.rasterProvider = new RasterProvider(GrandExchangeOfferTotalQuantityComparator.canvasWidth, class25.canvasHeight, this.canvas);
+			rasterProvider = new RasterProvider(InterfaceParent.canvasWidth, canvasHeight, this.canvas);
 		}
 
 		this.isCanvasInvalid = false;
-		this.field484 = Tiles.currentTimeMillis();
+		this.field303 = ObjectSound.currentTimeMillis();
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		signature = "(I)Z",
-		garbageValue = "-1882599672"
+		signature = "(B)Z",
+		garbageValue = "-29"
 	)
 	@Export("checkHost")
 	protected final boolean checkHost() {
@@ -577,52 +560,52 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 		}
 	}
 
-	@ObfuscatedName("ay")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
 		signature = "(B)V",
-		garbageValue = "1"
+		garbageValue = "24"
 	)
 	@Export("clientTick")
 	void clientTick() {
-		long var1 = Tiles.currentTimeMillis();
-		long var3 = clientTickTimes[WallDecoration.clientTickTimeIdx];
-		clientTickTimes[WallDecoration.clientTickTimeIdx] = var1;
-		WallDecoration.clientTickTimeIdx = WallDecoration.clientTickTimeIdx + 1 & 31;
+		long var1 = ObjectSound.currentTimeMillis();
+		long var3 = clientTickTimes[class29.clientTickTimeIdx];
+		clientTickTimes[class29.clientTickTimeIdx] = var1;
+		class29.clientTickTimeIdx = class29.clientTickTimeIdx + 1 & 31;
 		if (0L != var3 && var1 > var3) {
 		}
 
 		synchronized(this) {
-			PcmPlayer.hasFocus = volatileFocus;
+			GrandExchangeOfferAgeComparator.hasFocus = volatileFocus;
 		}
 
 		this.doCycle();
 	}
 
-	@ObfuscatedName("am")
+	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "548741005"
+		signature = "(B)V",
+		garbageValue = "-105"
 	)
 	@Export("graphicsTick")
 	void graphicsTick() {
 		Container var1 = this.container();
-		long var2 = Tiles.currentTimeMillis();
-		long var4 = graphicsTickTimes[class60.graphicsTickTimeIdx];
-		graphicsTickTimes[class60.graphicsTickTimeIdx] = var2;
-		class60.graphicsTickTimeIdx = class60.graphicsTickTimeIdx + 1 & 31;
+		long var2 = ObjectSound.currentTimeMillis();
+		long var4 = graphicsTickTimes[class139.graphicsTickTimeIdx];
+		graphicsTickTimes[class139.graphicsTickTimeIdx] = var2;
+		class139.graphicsTickTimeIdx = class139.graphicsTickTimeIdx + 1 & 31;
 		if (var4 != 0L && var2 > var4) {
 			int var6 = (int)(var2 - var4);
 			fps = ((var6 >> 1) + 32000) / var6;
 		}
 
-		if (++field481 - 1 > 50) {
-			field481 -= 50;
-			this.field468 = true;
-			this.canvas.setSize(GrandExchangeOfferTotalQuantityComparator.canvasWidth, class25.canvasHeight);
+		if (++field321 - 1 > 50) {
+			field321 -= 50;
+			this.field316 = true;
+			this.canvas.setSize(InterfaceParent.canvasWidth, canvasHeight);
 			this.canvas.setVisible(true);
 			if (var1 == this.frame) {
 				Insets var7 = this.frame.getInsets();
-				this.canvas.setLocation(var7.left + this.canvasX, this.canvasY + var7.top);
+				this.canvas.setLocation(this.canvasX + var7.left, var7.top + this.canvasY);
 			} else {
 				this.canvas.setLocation(this.canvasX, this.canvasY);
 			}
@@ -632,42 +615,42 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 			this.replaceCanvas();
 		}
 
-		this.method1103();
-		this.draw(this.field468);
-		if (this.field468) {
+		this.method673();
+		this.draw(this.field316);
+		if (this.field316) {
 			this.clearBackground();
 		}
 
-		this.field468 = false;
+		this.field316 = false;
 	}
 
-	@ObfuscatedName("ag")
+	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "1"
+		signature = "(I)V",
+		garbageValue = "2082996572"
 	)
-	final void method1103() {
+	final void method673() {
 		Bounds var1 = this.getFrameContentBounds();
-		if (this.contentWidth != var1.highX || var1.highY != this.contentHeight || this.resizeCanvasNextFrame) {
+		if (this.contentWidth != var1.highX || this.contentHeight != var1.highY || this.resizeCanvasNextFrame) {
 			this.resizeCanvas();
 			this.resizeCanvasNextFrame = false;
 		}
 
 	}
 
-	@ObfuscatedName("ae")
+	@ObfuscatedName("am")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "-17755841"
+		garbageValue = "-1539118256"
 	)
-	final void method1007() {
+	final void method560() {
 		this.resizeCanvasNextFrame = true;
 	}
 
-	@ObfuscatedName("ac")
+	@ObfuscatedName("ag")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "1467969246"
+		garbageValue = "-1612459374"
 	)
 	@Export("kill")
 	final synchronized void kill() {
@@ -698,14 +681,14 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 				}
 			}
 
-			this.vmethod1423();
+			this.vmethod1219();
 		}
 	}
 
 	@ObfuscatedName("aq")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "-337269105"
+		garbageValue = "-473168642"
 	)
 	@Export("setUp")
 	protected abstract void setUp();
@@ -713,76 +696,76 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 	@ObfuscatedName("at")
 	@ObfuscatedSignature(
 		signature = "(B)V",
-		garbageValue = "-123"
+		garbageValue = "-102"
 	)
 	@Export("doCycle")
 	protected abstract void doCycle();
 
-	@ObfuscatedName("ak")
+	@ObfuscatedName("aj")
 	@ObfuscatedSignature(
 		signature = "(ZI)V",
-		garbageValue = "-1888023388"
+		garbageValue = "-278821415"
 	)
 	@Export("draw")
 	protected abstract void draw(boolean var1);
 
-	@ObfuscatedName("ax")
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "1925350941"
+		signature = "(B)V",
+		garbageValue = "74"
 	)
 	@Export("kill0")
 	protected abstract void kill0();
 
-	@ObfuscatedName("ar")
+	@ObfuscatedName("ap")
 	@ObfuscatedSignature(
-		signature = "(ILjava/lang/String;ZS)V",
-		garbageValue = "239"
+		signature = "(ILjava/lang/String;ZI)V",
+		garbageValue = "1020883079"
 	)
 	@Export("drawInitial")
 	protected final void drawInitial(int var1, String var2, boolean var3) {
 		try {
 			Graphics var4 = this.canvas.getGraphics();
-			if (WorldMapIcon_0.fontHelvetica13 == null) {
-				WorldMapIcon_0.fontHelvetica13 = new java.awt.Font("Helvetica", 1, 13);
-				GrandExchangeOfferAgeComparator.loginScreenFontMetrics = this.canvas.getFontMetrics(WorldMapIcon_0.fontHelvetica13);
+			if (class26.fontHelvetica13 == null) {
+				class26.fontHelvetica13 = new java.awt.Font("Helvetica", 1, 13);
+				GrandExchangeOfferNameComparator.loginScreenFontMetrics = this.canvas.getFontMetrics(class26.fontHelvetica13);
 			}
 
 			if (var3) {
 				var4.setColor(Color.black);
-				var4.fillRect(0, 0, GrandExchangeOfferTotalQuantityComparator.canvasWidth, class25.canvasHeight);
+				var4.fillRect(0, 0, InterfaceParent.canvasWidth, canvasHeight);
 			}
 
 			Color var5 = new Color(140, 17, 17);
 
 			try {
-				if (field480 == null) {
-					field480 = this.canvas.createImage(304, 34);
+				if (GrandExchangeOfferWorldComparator.field3318 == null) {
+					GrandExchangeOfferWorldComparator.field3318 = this.canvas.createImage(304, 34);
 				}
 
-				Graphics var6 = field480.getGraphics();
+				Graphics var6 = GrandExchangeOfferWorldComparator.field3318.getGraphics();
 				var6.setColor(var5);
 				var6.drawRect(0, 0, 303, 33);
 				var6.fillRect(2, 2, var1 * 3, 30);
 				var6.setColor(Color.black);
 				var6.drawRect(1, 1, 301, 31);
 				var6.fillRect(var1 * 3 + 2, 2, 300 - var1 * 3, 30);
-				var6.setFont(WorldMapIcon_0.fontHelvetica13);
+				var6.setFont(class26.fontHelvetica13);
 				var6.setColor(Color.white);
-				var6.drawString(var2, (304 - GrandExchangeOfferAgeComparator.loginScreenFontMetrics.stringWidth(var2)) / 2, 22);
-				var4.drawImage(field480, GrandExchangeOfferTotalQuantityComparator.canvasWidth / 2 - 152, class25.canvasHeight / 2 - 18, (ImageObserver)null);
+				var6.drawString(var2, (304 - GrandExchangeOfferNameComparator.loginScreenFontMetrics.stringWidth(var2)) / 2, 22);
+				var4.drawImage(GrandExchangeOfferWorldComparator.field3318, InterfaceParent.canvasWidth / 2 - 152, canvasHeight / 2 - 18, (ImageObserver)null);
 			} catch (Exception var9) {
-				int var7 = GrandExchangeOfferTotalQuantityComparator.canvasWidth / 2 - 152;
-				int var8 = class25.canvasHeight / 2 - 18;
+				int var7 = InterfaceParent.canvasWidth / 2 - 152;
+				int var8 = canvasHeight / 2 - 18;
 				var4.setColor(var5);
 				var4.drawRect(var7, var8, 303, 33);
 				var4.fillRect(var7 + 2, var8 + 2, var1 * 3, 30);
 				var4.setColor(Color.black);
 				var4.drawRect(var7 + 1, var8 + 1, 301, 31);
-				var4.fillRect(var7 + var1 * 3 + 2, var8 + 2, 300 - var1 * 3, 30);
-				var4.setFont(WorldMapIcon_0.fontHelvetica13);
+				var4.fillRect(var1 * 3 + var7 + 2, var8 + 2, 300 - var1 * 3, 30);
+				var4.setFont(class26.fontHelvetica13);
 				var4.setColor(Color.white);
-				var4.drawString(var2, var7 + (304 - GrandExchangeOfferAgeComparator.loginScreenFontMetrics.stringWidth(var2)) / 2, var8 + 22);
+				var4.drawString(var2, var7 + (304 - GrandExchangeOfferNameComparator.loginScreenFontMetrics.stringWidth(var2)) / 2, var8 + 22);
 			}
 		} catch (Exception var10) {
 			this.canvas.repaint();
@@ -790,21 +773,21 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 
 	}
 
-	@ObfuscatedName("al")
+	@ObfuscatedName("ax")
 	@ObfuscatedSignature(
 		signature = "(I)V",
-		garbageValue = "1187634060"
+		garbageValue = "320452892"
 	)
-	protected final void method1078() {
-		field480 = null;
-		WorldMapIcon_0.fontHelvetica13 = null;
-		GrandExchangeOfferAgeComparator.loginScreenFontMetrics = null;
+	protected final void method594() {
+		GrandExchangeOfferWorldComparator.field3318 = null;
+		class26.fontHelvetica13 = null;
+		GrandExchangeOfferNameComparator.loginScreenFontMetrics = null;
 	}
 
-	@ObfuscatedName("aa")
+	@ObfuscatedName("as")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;B)V",
-		garbageValue = "120"
+		signature = "(Ljava/lang/String;I)V",
+		garbageValue = "2138250050"
 	)
 	@Export("error")
 	protected void error(String var1) {
@@ -820,26 +803,26 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 		}
 	}
 
-	@ObfuscatedName("as")
+	@ObfuscatedName("ad")
 	@ObfuscatedSignature(
 		signature = "(I)Ljava/awt/Container;",
-		garbageValue = "-838247309"
+		garbageValue = "-1157412337"
 	)
 	@Export("container")
 	Container container() {
 		return (Container)(this.frame != null ? this.frame : this);
 	}
 
-	@ObfuscatedName("aw")
+	@ObfuscatedName("af")
 	@ObfuscatedSignature(
-		signature = "(I)Lli;",
-		garbageValue = "-1070651105"
+		signature = "(B)Llj;",
+		garbageValue = "80"
 	)
 	@Export("getFrameContentBounds")
 	Bounds getFrameContentBounds() {
 		Container var1 = this.container();
-		int var2 = Math.max(var1.getWidth(), this.field473);
-		int var3 = Math.max(var1.getHeight(), this.field460);
+		int var2 = Math.max(var1.getWidth(), this.field332);
+		int var3 = Math.max(var1.getHeight(), this.field320);
 		if (this.frame != null) {
 			Insets var4 = this.frame.getInsets();
 			var2 -= var4.right + var4.left;
@@ -849,37 +832,29 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 		return new Bounds(var2, var3);
 	}
 
-	@ObfuscatedName("az")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
 		signature = "(I)Z",
-		garbageValue = "-697132291"
+		garbageValue = "-42126832"
 	)
 	@Export("hasFrame")
 	protected final boolean hasFrame() {
 		return this.frame != null;
 	}
 
-	@ObfuscatedName("ap")
+	@ObfuscatedName("av")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "103"
+		signature = "(I)V",
+		garbageValue = "1242495393"
 	)
-	protected abstract void vmethod1423();
-
-	public final void destroy() {
-		if (this == gameShell && !isKilled) {
-			stopTimeMs = Tiles.currentTimeMillis();
-			ApproximateRouteStrategy.method1311(5000L);
-			this.kill();
-		}
-	}
+	protected abstract void vmethod1219();
 
 	public final synchronized void paint(Graphics var1) {
 		if (this == gameShell && !isKilled) {
-			this.field468 = true;
-			if (Tiles.currentTimeMillis() - this.field484 > 1000L) {
+			this.field316 = true;
+			if (ObjectSound.currentTimeMillis() - this.field303 > 1000L) {
 				Rectangle var2 = var1.getClipBounds();
-				if (var2 == null || var2.width >= GrandExchangeOfferTotalQuantityComparator.canvasWidth && var2.height >= class25.canvasHeight) {
+				if (var2 == null || var2.width >= InterfaceParent.canvasWidth && var2.height >= canvasHeight) {
 					this.isCanvasInvalid = true;
 				}
 			}
@@ -887,7 +862,55 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 		}
 	}
 
+	public final void destroy() {
+		if (this == gameShell && !isKilled) {
+			stopTimeMs = ObjectSound.currentTimeMillis();
+			GrandExchangeEvent.method4625(5000L);
+			this.kill();
+		}
+	}
+
+	public final void start() {
+		if (this == gameShell && !isKilled) {
+			stopTimeMs = 0L;
+		}
+	}
+
+	public final void stop() {
+		if (this == gameShell && !isKilled) {
+			stopTimeMs = ObjectSound.currentTimeMillis() + 4000L;
+		}
+	}
+
+	public final void windowIconified(WindowEvent var1) {
+	}
+
+	public final void update(Graphics var1) {
+		this.paint(var1);
+	}
+
+	public final void windowActivated(WindowEvent var1) {
+	}
+
+	public final void windowClosed(WindowEvent var1) {
+	}
+
+	public final void windowClosing(WindowEvent var1) {
+		this.destroy();
+	}
+
+	public final void windowDeactivated(WindowEvent var1) {
+	}
+
 	public abstract void init();
+
+	public final void windowOpened(WindowEvent var1) {
+	}
+
+	public final void focusGained(FocusEvent var1) {
+		volatileFocus = true;
+		this.field316 = true;
+	}
 
 	public void run() {
 		try {
@@ -902,11 +925,11 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 
 					if (var2.startsWith("1.6.0_")) {
 						int var3;
-						for (var3 = 6; var3 < var2.length() && Strings.isDigit(var2.charAt(var3)); ++var3) {
+						for (var3 = 6; var3 < var2.length() && UserComparator4.isDigit(var2.charAt(var3)); ++var3) {
 						}
 
 						String var4 = var2.substring(6, var3);
-						if (WorldMapDecoration.isNumber(var4) && class217.parseInt(var4) < 10) {
+						if (WorldMapArea.isNumber(var4) && class69.method1168(var4) < 10) {
 							this.error("wrongjava");
 							return;
 						}
@@ -919,927 +942,658 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 			this.setFocusCycleRoot(true);
 			this.addCanvas();
 			this.setUp();
+			Decimator.clock = PacketBuffer.method6523();
 
-			Object var8;
-			try {
-				var8 = new NanoClock();
-			} catch (Throwable var6) {
-				var8 = new MilliClock();
-			}
+			while (0L == stopTimeMs || ObjectSound.currentTimeMillis() < stopTimeMs) {
+				class232.gameCyclesToDo = Decimator.clock.wait(cycleDurationMillis, fiveOrOne);
 
-			WorldMapSprite.clock = (Clock)var8;
-
-			while (stopTimeMs == 0L || Tiles.currentTimeMillis() < stopTimeMs) {
-				VertexNormal.gameCyclesToDo = WorldMapSprite.clock.wait(cycleDurationMillis, fiveOrOne);
-
-				for (int var5 = 0; var5 < VertexNormal.gameCyclesToDo; ++var5) {
+				for (int var5 = 0; var5 < class232.gameCyclesToDo; ++var5) {
 					this.clientTick();
 				}
 
 				this.graphicsTick();
 				this.post(this.canvas);
 			}
-		} catch (Exception var7) {
-			SequenceDefinition.RunException_sendStackTrace((String)null, var7);
+		} catch (Exception var6) {
+			class223.RunException_sendStackTrace((String)null, var6);
 			this.error("crash");
 		}
 
 		this.kill();
 	}
 
-	public final void stop() {
-		if (this == gameShell && !isKilled) {
-			stopTimeMs = Tiles.currentTimeMillis() + 4000L;
-		}
-	}
-
-	public final void windowClosing(WindowEvent var1) {
-		this.destroy();
-	}
-
-	public final void windowDeactivated(WindowEvent var1) {
-	}
-
-	public final void windowIconified(WindowEvent var1) {
-	}
-
-	public final void windowOpened(WindowEvent var1) {
-	}
-
-	public final void windowClosed(WindowEvent var1) {
-	}
-
-	public final void start() {
-		if (this == gameShell && !isKilled) {
-			stopTimeMs = 0L;
-		}
+	public final void focusLost(FocusEvent var1) {
+		volatileFocus = false;
 	}
 
 	public final void windowDeiconified(WindowEvent var1) {
 	}
 
-	public final void focusLost(FocusEvent var1) {
-		volatileFocus = false;
+	@ObfuscatedName("p")
+	@ObfuscatedSignature(
+		signature = "(Ljava/lang/CharSequence;II[BII)I",
+		garbageValue = "1469338847"
+	)
+	@Export("encodeStringCp1252")
+	public static int encodeStringCp1252(CharSequence var0, int var1, int var2, byte[] var3, int var4) {
+		int var5 = var2 - var1;
+
+		for (int var6 = 0; var6 < var5; ++var6) {
+			char var7 = var0.charAt(var6 + var1);
+			if (var7 > 0 && var7 < 128 || var7 >= 160 && var7 <= 255) {
+				var3[var6 + var4] = (byte)var7;
+			} else if (var7 == 8364) {
+				var3[var6 + var4] = -128;
+			} else if (var7 == 8218) {
+				var3[var6 + var4] = -126;
+			} else if (var7 == 402) {
+				var3[var6 + var4] = -125;
+			} else if (var7 == 8222) {
+				var3[var6 + var4] = -124;
+			} else if (var7 == 8230) {
+				var3[var6 + var4] = -123;
+			} else if (var7 == 8224) {
+				var3[var6 + var4] = -122;
+			} else if (var7 == 8225) {
+				var3[var6 + var4] = -121;
+			} else if (var7 == 710) {
+				var3[var6 + var4] = -120;
+			} else if (var7 == 8240) {
+				var3[var6 + var4] = -119;
+			} else if (var7 == 352) {
+				var3[var6 + var4] = -118;
+			} else if (var7 == 8249) {
+				var3[var6 + var4] = -117;
+			} else if (var7 == 338) {
+				var3[var6 + var4] = -116;
+			} else if (var7 == 381) {
+				var3[var6 + var4] = -114;
+			} else if (var7 == 8216) {
+				var3[var6 + var4] = -111;
+			} else if (var7 == 8217) {
+				var3[var6 + var4] = -110;
+			} else if (var7 == 8220) {
+				var3[var6 + var4] = -109;
+			} else if (var7 == 8221) {
+				var3[var6 + var4] = -108;
+			} else if (var7 == 8226) {
+				var3[var6 + var4] = -107;
+			} else if (var7 == 8211) {
+				var3[var6 + var4] = -106;
+			} else if (var7 == 8212) {
+				var3[var6 + var4] = -105;
+			} else if (var7 == 732) {
+				var3[var6 + var4] = -104;
+			} else if (var7 == 8482) {
+				var3[var6 + var4] = -103;
+			} else if (var7 == 353) {
+				var3[var6 + var4] = -102;
+			} else if (var7 == 8250) {
+				var3[var6 + var4] = -101;
+			} else if (var7 == 339) {
+				var3[var6 + var4] = -100;
+			} else if (var7 == 382) {
+				var3[var6 + var4] = -98;
+			} else if (var7 == 376) {
+				var3[var6 + var4] = -97;
+			} else {
+				var3[var6 + var4] = 63;
+			}
+		}
+
+		return var5;
 	}
 
-	public final void focusGained(FocusEvent var1) {
-		volatileFocus = true;
-		this.field468 = true;
-	}
+	@ObfuscatedName("k")
+	@ObfuscatedSignature(
+		signature = "(I)V",
+		garbageValue = "-1318947252"
+	)
+	static void method682() {
+		Iterator var0 = Messages.Messages_hashTable.iterator();
 
-	public final void windowActivated(WindowEvent var1) {
-	}
+		while (var0.hasNext()) {
+			Message var1 = (Message)var0.next();
+			var1.clearIsFromFriend();
+		}
 
-	public final void update(Graphics var1) {
-		this.paint(var1);
 	}
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		signature = "(I)[Lje;",
-		garbageValue = "1729948471"
+		signature = "(Lfu;[Lel;I)V",
+		garbageValue = "1781189638"
 	)
-	static HorizontalAlignment[] method1137() {
-		return new HorizontalAlignment[]{HorizontalAlignment.field3494, HorizontalAlignment.field3490, HorizontalAlignment.HorizontalAlignment_centered};
-	}
-
-	@ObfuscatedName("e")
-	@ObfuscatedSignature(
-		signature = "(IIIIIILeq;Lfe;I)V",
-		garbageValue = "1508002032"
-	)
-	static final void method1134(int var0, int var1, int var2, int var3, int var4, int var5, Scene var6, CollisionMap var7) {
-		if (!Client.isLowDetail || (Tiles.Tiles_renderFlags[0][var1][var2] & 2) != 0 || (Tiles.Tiles_renderFlags[var0][var1][var2] & 16) == 0) {
-			if (var0 < Tiles.Tiles_minPlane) {
-				Tiles.Tiles_minPlane = var0;
-			}
-
-			ObjectComposition var8 = WorldMapAreaData.getObjectDefinition(var3);
-			int var9;
-			int var10;
-			if (var4 != 1 && var4 != 3) {
-				var9 = var8.sizeX;
-				var10 = var8.sizeY;
-			} else {
-				var9 = var8.sizeY;
-				var10 = var8.sizeX;
-			}
-
-			int var11;
-			int var12;
-			if (var9 + var1 <= 104) {
-				var11 = (var9 >> 1) + var1;
-				var12 = (var9 + 1 >> 1) + var1;
-			} else {
-				var11 = var1;
-				var12 = var1 + 1;
-			}
-
-			int var13;
-			int var14;
-			if (var10 + var2 <= 104) {
-				var13 = (var10 >> 1) + var2;
-				var14 = var2 + (var10 + 1 >> 1);
-			} else {
-				var13 = var2;
-				var14 = var2 + 1;
-			}
-
-			int[][] var15 = Tiles.Tiles_heights[var0];
-			int var16 = var15[var12][var14] + var15[var11][var14] + var15[var11][var13] + var15[var12][var13] >> 2;
-			int var17 = (var1 << 7) + (var9 << 6);
-			int var18 = (var2 << 7) + (var10 << 6);
-			long var19 = TextureProvider.calculateTag(var1, var2, 2, var8.int1 == 0, var3);
-			int var21 = var5 + (var4 << 6);
-			if (var8.int3 == 1) {
-				var21 += 256;
-			}
-
-			int var23;
-			int var24;
-			if (var8.hasSound()) {
-				ObjectSound var22 = new ObjectSound();
-				var22.plane = var0;
-				var22.x = var1 * 16384;
-				var22.y = var2 * 16384;
-				var23 = var8.sizeX;
-				var24 = var8.sizeY;
-				if (var4 == 1 || var4 == 3) {
-					var23 = var8.sizeY;
-					var24 = var8.sizeX;
-				}
-
-				var22.field1090 = (var23 + var1) * 128;
-				var22.field1094 = (var24 + var2) * 16384;
-				var22.soundEffectId = var8.ambientSoundId;
-				var22.field1092 = var8.int4 * 128;
-				var22.field1095 = var8.int5;
-				var22.field1096 = var8.int6;
-				var22.soundEffectIds = var8.soundEffectIds;
-				if (var8.transforms != null) {
-					var22.obj = var8;
-					var22.set();
-				}
-
-				ObjectSound.objectSounds.addFirst(var22);
-				if (var22.soundEffectIds != null) {
-					var22.field1097 = var22.field1095 + (int)(Math.random() * (double)(var22.field1096 - var22.field1095));
-				}
-			}
-
-			Object var34;
-			if (var5 == 22) {
-				if (!Client.isLowDetail || var8.int1 != 0 || var8.interactType == 1 || var8.boolean2) {
-					if (var8.animationId == -1 && var8.transforms == null) {
-						var34 = var8.getEntity(22, var4, var15, var17, var16, var18);
-					} else {
-						var34 = new DynamicObject(var3, 22, var4, var0, var1, var2, var8.animationId, var8.field3429, (Renderable)null);
-					}
-
-					var6.newFloorDecoration(var0, var1, var2, var16, (Renderable)var34, var19, var21);
-					if (var8.interactType == 1 && var7 != null) {
-						var7.setBlockedByFloorDec(var1, var2);
-					}
-
-				}
-			} else if (var5 != 10 && var5 != 11) {
-				int[] var10000;
-				if (var5 >= 12) {
-					if (var8.animationId == -1 && var8.transforms == null) {
-						var34 = var8.getEntity(var5, var4, var15, var17, var16, var18);
-					} else {
-						var34 = new DynamicObject(var3, var5, var4, var0, var1, var2, var8.animationId, var8.field3429, (Renderable)null);
-					}
-
-					var6.method3400(var0, var1, var2, var16, 1, 1, (Renderable)var34, 0, var19, var21);
-					if (var5 >= 12 && var5 <= 17 && var5 != 13 && var0 > 0) {
-						var10000 = class2.field12[var0][var1];
-						var10000[var2] |= 2340;
-					}
-
-					if (var8.interactType != 0 && var7 != null) {
-						var7.addGameObject(var1, var2, var9, var10, var8.boolean1);
-					}
-
-				} else if (var5 == 0) {
-					if (var8.animationId == -1 && var8.transforms == null) {
-						var34 = var8.getEntity(0, var4, var15, var17, var16, var18);
-					} else {
-						var34 = new DynamicObject(var3, 0, var4, var0, var1, var2, var8.animationId, var8.field3429, (Renderable)null);
-					}
-
-					var6.newBoundaryObject(var0, var1, var2, var16, (Renderable)var34, (Renderable)null, Tiles.field521[var4], 0, var19, var21);
-					if (var4 == 0) {
-						if (var8.clipped) {
-							TaskHandler.field2045[var0][var1][var2] = 50;
-							TaskHandler.field2045[var0][var1][var2 + 1] = 50;
+	static final void method680(Scene var0, CollisionMap[] var1) {
+		int var2;
+		int var3;
+		int var4;
+		int var5;
+		for (var2 = 0; var2 < 4; ++var2) {
+			for (var3 = 0; var3 < 104; ++var3) {
+				for (var4 = 0; var4 < 104; ++var4) {
+					if ((Tiles.Tiles_renderFlags[var2][var3][var4] & 1) == 1) {
+						var5 = var2;
+						if ((Tiles.Tiles_renderFlags[1][var3][var4] & 2) == 2) {
+							var5 = var2 - 1;
 						}
 
-						if (var8.modelClipped) {
-							var10000 = class2.field12[var0][var1];
-							var10000[var2] |= 585;
-						}
-					} else if (var4 == 1) {
-						if (var8.clipped) {
-							TaskHandler.field2045[var0][var1][var2 + 1] = 50;
-							TaskHandler.field2045[var0][var1 + 1][var2 + 1] = 50;
-						}
-
-						if (var8.modelClipped) {
-							var10000 = class2.field12[var0][var1];
-							var10000[var2 + 1] |= 1170;
-						}
-					} else if (var4 == 2) {
-						if (var8.clipped) {
-							TaskHandler.field2045[var0][var1 + 1][var2] = 50;
-							TaskHandler.field2045[var0][var1 + 1][var2 + 1] = 50;
-						}
-
-						if (var8.modelClipped) {
-							var10000 = class2.field12[var0][var1 + 1];
-							var10000[var2] |= 585;
-						}
-					} else if (var4 == 3) {
-						if (var8.clipped) {
-							TaskHandler.field2045[var0][var1][var2] = 50;
-							TaskHandler.field2045[var0][var1 + 1][var2] = 50;
-						}
-
-						if (var8.modelClipped) {
-							var10000 = class2.field12[var0][var1];
-							var10000[var2] |= 1170;
-						}
-					}
-
-					if (var8.interactType != 0 && var7 != null) {
-						var7.method3749(var1, var2, var5, var4, var8.boolean1);
-					}
-
-					if (var8.int2 != 16) {
-						var6.method3258(var0, var1, var2, var8.int2);
-					}
-
-				} else if (var5 == 1) {
-					if (var8.animationId == -1 && var8.transforms == null) {
-						var34 = var8.getEntity(1, var4, var15, var17, var16, var18);
-					} else {
-						var34 = new DynamicObject(var3, 1, var4, var0, var1, var2, var8.animationId, var8.field3429, (Renderable)null);
-					}
-
-					var6.newBoundaryObject(var0, var1, var2, var16, (Renderable)var34, (Renderable)null, Tiles.field514[var4], 0, var19, var21);
-					if (var8.clipped) {
-						if (var4 == 0) {
-							TaskHandler.field2045[var0][var1][var2 + 1] = 50;
-						} else if (var4 == 1) {
-							TaskHandler.field2045[var0][var1 + 1][var2 + 1] = 50;
-						} else if (var4 == 2) {
-							TaskHandler.field2045[var0][var1 + 1][var2] = 50;
-						} else if (var4 == 3) {
-							TaskHandler.field2045[var0][var1][var2] = 50;
-						}
-					}
-
-					if (var8.interactType != 0 && var7 != null) {
-						var7.method3749(var1, var2, var5, var4, var8.boolean1);
-					}
-
-				} else {
-					int var28;
-					if (var5 == 2) {
-						var28 = var4 + 1 & 3;
-						Object var29;
-						Object var30;
-						if (var8.animationId == -1 && var8.transforms == null) {
-							var29 = var8.getEntity(2, var4 + 4, var15, var17, var16, var18);
-							var30 = var8.getEntity(2, var28, var15, var17, var16, var18);
-						} else {
-							var29 = new DynamicObject(var3, 2, var4 + 4, var0, var1, var2, var8.animationId, var8.field3429, (Renderable)null);
-							var30 = new DynamicObject(var3, 2, var28, var0, var1, var2, var8.animationId, var8.field3429, (Renderable)null);
-						}
-
-						var6.newBoundaryObject(var0, var1, var2, var16, (Renderable)var29, (Renderable)var30, Tiles.field521[var4], Tiles.field521[var28], var19, var21);
-						if (var8.modelClipped) {
-							if (var4 == 0) {
-								var10000 = class2.field12[var0][var1];
-								var10000[var2] |= 585;
-								var10000 = class2.field12[var0][var1];
-								var10000[var2 + 1] |= 1170;
-							} else if (var4 == 1) {
-								var10000 = class2.field12[var0][var1];
-								var10000[1 + var2] |= 1170;
-								var10000 = class2.field12[var0][var1 + 1];
-								var10000[var2] |= 585;
-							} else if (var4 == 2) {
-								var10000 = class2.field12[var0][var1 + 1];
-								var10000[var2] |= 585;
-								var10000 = class2.field12[var0][var1];
-								var10000[var2] |= 1170;
-							} else if (var4 == 3) {
-								var10000 = class2.field12[var0][var1];
-								var10000[var2] |= 1170;
-								var10000 = class2.field12[var0][var1];
-								var10000[var2] |= 585;
-							}
-						}
-
-						if (var8.interactType != 0 && var7 != null) {
-							var7.method3749(var1, var2, var5, var4, var8.boolean1);
-						}
-
-						if (var8.int2 != 16) {
-							var6.method3258(var0, var1, var2, var8.int2);
-						}
-
-					} else if (var5 == 3) {
-						if (var8.animationId == -1 && var8.transforms == null) {
-							var34 = var8.getEntity(3, var4, var15, var17, var16, var18);
-						} else {
-							var34 = new DynamicObject(var3, 3, var4, var0, var1, var2, var8.animationId, var8.field3429, (Renderable)null);
-						}
-
-						var6.newBoundaryObject(var0, var1, var2, var16, (Renderable)var34, (Renderable)null, Tiles.field514[var4], 0, var19, var21);
-						if (var8.clipped) {
-							if (var4 == 0) {
-								TaskHandler.field2045[var0][var1][var2 + 1] = 50;
-							} else if (var4 == 1) {
-								TaskHandler.field2045[var0][var1 + 1][var2 + 1] = 50;
-							} else if (var4 == 2) {
-								TaskHandler.field2045[var0][var1 + 1][var2] = 50;
-							} else if (var4 == 3) {
-								TaskHandler.field2045[var0][var1][var2] = 50;
-							}
-						}
-
-						if (var8.interactType != 0 && var7 != null) {
-							var7.method3749(var1, var2, var5, var4, var8.boolean1);
-						}
-
-					} else if (var5 == 9) {
-						if (var8.animationId == -1 && var8.transforms == null) {
-							var34 = var8.getEntity(var5, var4, var15, var17, var16, var18);
-						} else {
-							var34 = new DynamicObject(var3, var5, var4, var0, var1, var2, var8.animationId, var8.field3429, (Renderable)null);
-						}
-
-						var6.method3400(var0, var1, var2, var16, 1, 1, (Renderable)var34, 0, var19, var21);
-						if (var8.interactType != 0 && var7 != null) {
-							var7.addGameObject(var1, var2, var9, var10, var8.boolean1);
-						}
-
-						if (var8.int2 != 16) {
-							var6.method3258(var0, var1, var2, var8.int2);
-						}
-
-					} else if (var5 == 4) {
-						if (var8.animationId == -1 && var8.transforms == null) {
-							var34 = var8.getEntity(4, var4, var15, var17, var16, var18);
-						} else {
-							var34 = new DynamicObject(var3, 4, var4, var0, var1, var2, var8.animationId, var8.field3429, (Renderable)null);
-						}
-
-						var6.newWallDecoration(var0, var1, var2, var16, (Renderable)var34, (Renderable)null, Tiles.field521[var4], 0, 0, 0, var19, var21);
-					} else {
-						long var31;
-						Object var33;
-						if (var5 == 5) {
-							var28 = 16;
-							var31 = var6.getBoundaryObjectTag(var0, var1, var2);
-							if (0L != var31) {
-								var28 = WorldMapAreaData.getObjectDefinition(class25.Entity_unpackID(var31)).int2;
-							}
-
-							if (var8.animationId == -1 && var8.transforms == null) {
-								var33 = var8.getEntity(4, var4, var15, var17, var16, var18);
-							} else {
-								var33 = new DynamicObject(var3, 4, var4, var0, var1, var2, var8.animationId, var8.field3429, (Renderable)null);
-							}
-
-							var6.newWallDecoration(var0, var1, var2, var16, (Renderable)var33, (Renderable)null, Tiles.field521[var4], 0, var28 * Tiles.field523[var4], var28 * Tiles.field527[var4], var19, var21);
-						} else if (var5 == 6) {
-							var28 = 8;
-							var31 = var6.getBoundaryObjectTag(var0, var1, var2);
-							if (0L != var31) {
-								var28 = WorldMapAreaData.getObjectDefinition(class25.Entity_unpackID(var31)).int2 / 2;
-							}
-
-							if (var8.animationId == -1 && var8.transforms == null) {
-								var33 = var8.getEntity(4, var4 + 4, var15, var17, var16, var18);
-							} else {
-								var33 = new DynamicObject(var3, 4, var4 + 4, var0, var1, var2, var8.animationId, var8.field3429, (Renderable)null);
-							}
-
-							var6.newWallDecoration(var0, var1, var2, var16, (Renderable)var33, (Renderable)null, 256, var4, var28 * Tiles.field525[var4], var28 * Tiles.field526[var4], var19, var21);
-						} else if (var5 == 7) {
-							var23 = var4 + 2 & 3;
-							if (var8.animationId == -1 && var8.transforms == null) {
-								var34 = var8.getEntity(4, var23 + 4, var15, var17, var16, var18);
-							} else {
-								var34 = new DynamicObject(var3, 4, var23 + 4, var0, var1, var2, var8.animationId, var8.field3429, (Renderable)null);
-							}
-
-							var6.newWallDecoration(var0, var1, var2, var16, (Renderable)var34, (Renderable)null, 256, var23, 0, 0, var19, var21);
-						} else if (var5 == 8) {
-							var28 = 8;
-							var31 = var6.getBoundaryObjectTag(var0, var1, var2);
-							if (0L != var31) {
-								var28 = WorldMapAreaData.getObjectDefinition(class25.Entity_unpackID(var31)).int2 / 2;
-							}
-
-							int var27 = var4 + 2 & 3;
-							Object var26;
-							if (var8.animationId == -1 && var8.transforms == null) {
-								var33 = var8.getEntity(4, var4 + 4, var15, var17, var16, var18);
-								var26 = var8.getEntity(4, var27 + 4, var15, var17, var16, var18);
-							} else {
-								var33 = new DynamicObject(var3, 4, var4 + 4, var0, var1, var2, var8.animationId, var8.field3429, (Renderable)null);
-								var26 = new DynamicObject(var3, 4, var27 + 4, var0, var1, var2, var8.animationId, var8.field3429, (Renderable)null);
-							}
-
-							var6.newWallDecoration(var0, var1, var2, var16, (Renderable)var33, (Renderable)var26, 256, var4, var28 * Tiles.field525[var4], var28 * Tiles.field526[var4], var19, var21);
+						if (var5 >= 0) {
+							var1[var5].setBlockedByFloor(var3, var4);
 						}
 					}
 				}
-			} else {
-				if (var8.animationId == -1 && var8.transforms == null) {
-					var34 = var8.getEntity(10, var4, var15, var17, var16, var18);
-				} else {
-					var34 = new DynamicObject(var3, 10, var4, var0, var1, var2, var8.animationId, var8.field3429, (Renderable)null);
-				}
-
-				if (var34 != null && var6.method3400(var0, var1, var2, var16, var9, var10, (Renderable)var34, var5 == 11 ? 256 : 0, var19, var21) && var8.clipped) {
-					var23 = 15;
-					if (var34 instanceof Model) {
-						var23 = ((Model)var34).method3079() / 4;
-						if (var23 > 30) {
-							var23 = 30;
-						}
-					}
-
-					for (var24 = 0; var24 <= var9; ++var24) {
-						for (int var25 = 0; var25 <= var10; ++var25) {
-							if (var23 > TaskHandler.field2045[var0][var24 + var1][var25 + var2]) {
-								TaskHandler.field2045[var0][var24 + var1][var25 + var2] = (byte)var23;
-							}
-						}
-					}
-				}
-
-				if (var8.interactType != 0 && var7 != null) {
-					var7.addGameObject(var1, var2, var9, var10, var8.boolean1);
-				}
-
 			}
 		}
-	}
 
-	@ObfuscatedName("fa")
-	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-325844225"
-	)
-	@Export("load")
-	static void load() {
-		int var0;
-		if (Client.titleLoadingStage == 0) {
-			MilliClock.scene = new Scene(4, 104, 104, Tiles.Tiles_heights);
+		Tiles.field1103 += (int)(Math.random() * 5.0D) - 2;
+		if (Tiles.field1103 < -8) {
+			Tiles.field1103 = -8;
+		}
 
-			for (var0 = 0; var0 < 4; ++var0) {
-				Client.collisionMaps[var0] = new CollisionMap(104, 104);
+		if (Tiles.field1103 > 8) {
+			Tiles.field1103 = 8;
+		}
+
+		Tiles.field1104 += (int)(Math.random() * 5.0D) - 2;
+		if (Tiles.field1104 < -16) {
+			Tiles.field1104 = -16;
+		}
+
+		if (Tiles.field1104 > 16) {
+			Tiles.field1104 = 16;
+		}
+
+		int var9;
+		int var10;
+		int var11;
+		int var12;
+		int var13;
+		int var14;
+		int var15;
+		int var16;
+		int[] var10000;
+		int var17;
+		int var18;
+		for (var2 = 0; var2 < 4; ++var2) {
+			byte[][] var42 = SecureRandomCallable.field1106[var2];
+			var9 = (int)Math.sqrt(5100.0D);
+			var10 = var9 * 768 >> 8;
+
+			int var19;
+			int var20;
+			for (var11 = 1; var11 < 103; ++var11) {
+				for (var12 = 1; var12 < 103; ++var12) {
+					var13 = Tiles.Tiles_heights[var2][var12 + 1][var11] - Tiles.Tiles_heights[var2][var12 - 1][var11];
+					var14 = Tiles.Tiles_heights[var2][var12][var11 + 1] - Tiles.Tiles_heights[var2][var12][var11 - 1];
+					var15 = (int)Math.sqrt((double)(var14 * var14 + var13 * var13 + 65536));
+					var16 = (var13 << 8) / var15;
+					var17 = 65536 / var15;
+					var18 = (var14 << 8) / var15;
+					var19 = (var18 * -50 + var16 * -50 + var17 * -10) / var10 + 96;
+					var20 = (var42[var12][var11 + 1] >> 3) + (var42[var12 - 1][var11] >> 2) + (var42[var12][var11 - 1] >> 2) + (var42[var12 + 1][var11] >> 3) + (var42[var12][var11] >> 1);
+					WorldMapLabelSize.field1570[var12][var11] = var19 - var20;
+				}
 			}
 
-			GrandExchangeOfferAgeComparator.sceneMinimapSprite = new SpritePixels(512, 512);
-			Login.Login_loadingText = "Starting game engine...";
-			Login.Login_loadingPercent = 5;
-			Client.titleLoadingStage = 20;
-		} else if (Client.titleLoadingStage == 20) {
-			Login.Login_loadingText = "Prepared visibility map";
-			Login.Login_loadingPercent = 10;
-			Client.titleLoadingStage = 30;
-		} else if (Client.titleLoadingStage == 30) {
-			class52.archive0 = ViewportMouse.newArchive(0, false, true, true);
-			SpriteMask.archive1 = ViewportMouse.newArchive(1, false, true, true);
-			WorldMapIcon_0.archive2 = ViewportMouse.newArchive(2, true, false, true);
-			PlayerComposition.archive3 = ViewportMouse.newArchive(3, false, true, true);
-			WorldMapCacheName.archive4 = ViewportMouse.newArchive(4, false, true, true);
-			class8.archive5 = ViewportMouse.newArchive(5, true, true, true);
-			UrlRequester.archive6 = ViewportMouse.newArchive(6, true, true, true);
-			WorldMapData_0.archive7 = ViewportMouse.newArchive(7, false, true, true);
-			ModeWhere.archive8 = ViewportMouse.newArchive(8, false, true, true);
-			ViewportMouse.archive9 = ViewportMouse.newArchive(9, false, true, true);
-			LoginScreenAnimation.archive10 = ViewportMouse.newArchive(10, false, true, true);
-			WorldMapManager.archive11 = ViewportMouse.newArchive(11, false, true, true);
-			WorldMapSection0.archive12 = ViewportMouse.newArchive(12, false, true, true);
-			CollisionMap.archive13 = ViewportMouse.newArchive(13, true, false, true);
-			Tiles.archive14 = ViewportMouse.newArchive(14, false, true, true);
-			SpriteMask.archive15 = ViewportMouse.newArchive(15, false, true, true);
-			ItemComposition.archive17 = ViewportMouse.newArchive(17, true, true, true);
-			class25.archive18 = ViewportMouse.newArchive(18, false, true, true);
-			ArchiveLoader.archive19 = ViewportMouse.newArchive(19, false, true, true);
-			Login.archive20 = ViewportMouse.newArchive(20, false, true, true);
-			Login.Login_loadingText = "Connecting to update server";
-			Login.Login_loadingPercent = 20;
-			Client.titleLoadingStage = 40;
-		} else if (Client.titleLoadingStage == 40) {
-			byte var22 = 0;
-			var0 = var22 + class52.archive0.percentage() * 4 / 100;
-			var0 += SpriteMask.archive1.percentage() * 4 / 100;
-			var0 += WorldMapIcon_0.archive2.percentage() * 2 / 100;
-			var0 += PlayerComposition.archive3.percentage() * 2 / 100;
-			var0 += WorldMapCacheName.archive4.percentage() * 6 / 100;
-			var0 += class8.archive5.percentage() * 4 / 100;
-			var0 += UrlRequester.archive6.percentage() * 2 / 100;
-			var0 += WorldMapData_0.archive7.percentage() * 56 / 100;
-			var0 += ModeWhere.archive8.percentage() * 2 / 100;
-			var0 += ViewportMouse.archive9.percentage() * 2 / 100;
-			var0 += LoginScreenAnimation.archive10.percentage() * 2 / 100;
-			var0 += WorldMapManager.archive11.percentage() * 2 / 100;
-			var0 += WorldMapSection0.archive12.percentage() * 2 / 100;
-			var0 += CollisionMap.archive13.percentage() * 2 / 100;
-			var0 += Tiles.archive14.percentage() * 2 / 100;
-			var0 += SpriteMask.archive15.percentage() * 2 / 100;
-			var0 += ArchiveLoader.archive19.percentage() / 100;
-			var0 += class25.archive18.percentage() / 100;
-			var0 += Login.archive20.percentage() / 100;
-			var0 += ItemComposition.archive17.method4461() && ItemComposition.archive17.isFullyLoaded() ? 1 : 0;
-			if (var0 != 100) {
-				if (var0 != 0) {
-					Login.Login_loadingText = "Checking for updates - " + var0 + "%";
+			for (var11 = 0; var11 < 104; ++var11) {
+				Tiles.Tiles_hue[var11] = 0;
+				Tiles.Tiles_saturation[var11] = 0;
+				Tiles.Tiles_lightness[var11] = 0;
+				GrandExchangeOfferOwnWorldComparator.Tiles_hueMultiplier[var11] = 0;
+				class375.field4136[var11] = 0;
+			}
+
+			for (var11 = -5; var11 < 109; ++var11) {
+				for (var12 = 0; var12 < 104; ++var12) {
+					var13 = var11 + 5;
+					int var10002;
+					if (var13 >= 0 && var13 < 104) {
+						var14 = class9.field69[var2][var13][var12] & 255;
+						if (var14 > 0) {
+							var16 = var14 - 1;
+							FloorUnderlayDefinition var43 = (FloorUnderlayDefinition)FloorUnderlayDefinition.FloorUnderlayDefinition_cached.get((long)var16);
+							FloorUnderlayDefinition var44;
+							if (var43 != null) {
+								var44 = var43;
+							} else {
+								byte[] var46 = FloorUnderlayDefinition.FloorUnderlayDefinition_archive.takeFile(1, var16);
+								var43 = new FloorUnderlayDefinition();
+								if (var46 != null) {
+									var43.decode(new Buffer(var46), var16);
+								}
+
+								var43.postDecode();
+								FloorUnderlayDefinition.FloorUnderlayDefinition_cached.put(var43, (long)var16);
+								var44 = var43;
+							}
+
+							var10000 = Tiles.Tiles_hue;
+							var10000[var12] += var44.hue;
+							var10000 = Tiles.Tiles_saturation;
+							var10000[var12] += var44.saturation;
+							var10000 = Tiles.Tiles_lightness;
+							var10000[var12] += var44.lightness;
+							var10000 = GrandExchangeOfferOwnWorldComparator.Tiles_hueMultiplier;
+							var10000[var12] += var44.hueMultiplier;
+							var10002 = class375.field4136[var12]++;
+						}
+					}
+
+					var14 = var11 - 5;
+					if (var14 >= 0 && var14 < 104) {
+						var15 = class9.field69[var2][var14][var12] & 255;
+						if (var15 > 0) {
+							FloorUnderlayDefinition var45 = Tiles.method2035(var15 - 1);
+							var10000 = Tiles.Tiles_hue;
+							var10000[var12] -= var45.hue;
+							var10000 = Tiles.Tiles_saturation;
+							var10000[var12] -= var45.saturation;
+							var10000 = Tiles.Tiles_lightness;
+							var10000[var12] -= var45.lightness;
+							var10000 = GrandExchangeOfferOwnWorldComparator.Tiles_hueMultiplier;
+							var10000[var12] -= var45.hueMultiplier;
+							var10002 = class375.field4136[var12]--;
+						}
+					}
 				}
 
-				Login.Login_loadingPercent = 30;
-			} else {
-				class217.method4155(class52.archive0, "Animations");
-				class217.method4155(SpriteMask.archive1, "Skeletons");
-				class217.method4155(WorldMapCacheName.archive4, "Sound FX");
-				class217.method4155(class8.archive5, "Maps");
-				class217.method4155(UrlRequester.archive6, "Music Tracks");
-				class217.method4155(WorldMapData_0.archive7, "Models");
-				class217.method4155(ModeWhere.archive8, "Sprites");
-				class217.method4155(WorldMapManager.archive11, "Music Jingles");
-				class217.method4155(Tiles.archive14, "Music Samples");
-				class217.method4155(SpriteMask.archive15, "Music Patches");
-				class217.method4155(ArchiveLoader.archive19, "World Map");
-				class217.method4155(class25.archive18, "World Map Geography");
-				class217.method4155(Login.archive20, "World Map Ground");
-				class60.spriteIds = new GraphicsDefaults();
-				class60.spriteIds.decode(ItemComposition.archive17);
-				Login.Login_loadingText = "Loaded update list";
-				Login.Login_loadingPercent = 30;
-				Client.titleLoadingStage = 45;
-			}
-		} else if (Client.titleLoadingStage == 45) {
-			boolean var21 = !Client.isLowDetail;
-			StructDefinition.field3338 = 486202500;
-			PcmPlayer.PcmPlayer_stereo = var21;
-			PcmPlayer.field1419 = 2;
-			MidiPcmStream var19 = new MidiPcmStream();
-			var19.method3919(9, 128);
-			class197.pcmPlayer0 = GrandExchangeOffer.method167(taskHandler, 0, 22050);
-			class197.pcmPlayer0.setStream(var19);
-			class69.method1256(SpriteMask.archive15, Tiles.archive14, WorldMapCacheName.archive4, var19);
-			WorldMapDecorationType.pcmPlayer1 = GrandExchangeOffer.method167(taskHandler, 1, 2048);
-			VarbitComposition.pcmStreamMixer = new PcmStreamMixer();
-			WorldMapDecorationType.pcmPlayer1.setStream(VarbitComposition.pcmStreamMixer);
-			World.decimator = new Decimator(22050, StructDefinition.field3338 * 22050);
-			Login.Login_loadingText = "Prepared sound engine";
-			Login.Login_loadingPercent = 35;
-			Client.titleLoadingStage = 50;
-			class350.WorldMapElement_fonts = new Fonts(ModeWhere.archive8, CollisionMap.archive13);
-		} else {
-			int var15;
-			if (Client.titleLoadingStage == 50) {
-				FontName[] var24 = new FontName[]{FontName.FontName_plain11, FontName.FontName_verdana13, FontName.FontName_verdana11, FontName.FontName_bold12, FontName.FontName_verdana15, FontName.FontName_plain12};
-				var15 = var24.length;
-				Fonts var20 = class350.WorldMapElement_fonts;
-				FontName[] var3 = new FontName[]{FontName.FontName_plain11, FontName.FontName_verdana13, FontName.FontName_verdana11, FontName.FontName_bold12, FontName.FontName_verdana15, FontName.FontName_plain12};
-				Client.fontsMap = var20.createMap(var3);
-				if (Client.fontsMap.size() < var15) {
-					Login.Login_loadingText = "Loading fonts - " + Client.fontsMap.size() * 100 / var15 + "%";
-					Login.Login_loadingPercent = 40;
-				} else {
-					SecureRandomCallable.fontPlain11 = (Font)Client.fontsMap.get(FontName.FontName_plain11);
-					Login.fontPlain12 = (Font)Client.fontsMap.get(FontName.FontName_plain12);
-					ScriptEvent.fontBold12 = (Font)Client.fontsMap.get(FontName.FontName_bold12);
-					GrandExchangeOfferUnitPriceComparator.platformInfo = Client.platformInfoProvider.get();
-					Login.Login_loadingText = "Loaded fonts";
-					Login.Login_loadingPercent = 40;
-					Client.titleLoadingStage = 60;
-				}
-			} else {
-				Archive var1;
-				Archive var2;
-				int var4;
-				int var16;
-				if (Client.titleLoadingStage == 60) {
-					var1 = LoginScreenAnimation.archive10;
-					var2 = ModeWhere.archive8;
+				if (var11 >= 1 && var11 < 103) {
+					var12 = 0;
+					var13 = 0;
+					var14 = 0;
+					var15 = 0;
 					var16 = 0;
-					if (var1.tryLoadFileByNames("title.jpg", "")) {
-						++var16;
-					}
 
-					if (var2.tryLoadFileByNames("logo", "")) {
-						++var16;
-					}
+					for (var17 = -5; var17 < 109; ++var17) {
+						var18 = var17 + 5;
+						if (var18 >= 0 && var18 < 104) {
+							var12 += Tiles.Tiles_hue[var18];
+							var13 += Tiles.Tiles_saturation[var18];
+							var14 += Tiles.Tiles_lightness[var18];
+							var15 += GrandExchangeOfferOwnWorldComparator.Tiles_hueMultiplier[var18];
+							var16 += class375.field4136[var18];
+						}
 
-					if (var2.tryLoadFileByNames("logo_deadman_mode", "")) {
-						++var16;
-					}
+						var19 = var17 - 5;
+						if (var19 >= 0 && var19 < 104) {
+							var12 -= Tiles.Tiles_hue[var19];
+							var13 -= Tiles.Tiles_saturation[var19];
+							var14 -= Tiles.Tiles_lightness[var19];
+							var15 -= GrandExchangeOfferOwnWorldComparator.Tiles_hueMultiplier[var19];
+							var16 -= class375.field4136[var19];
+						}
 
-					if (var2.tryLoadFileByNames("logo_seasonal_mode", "")) {
-						++var16;
-					}
+						if (var17 >= 1 && var17 < 103 && (!Client.isLowDetail || (Tiles.Tiles_renderFlags[0][var11][var17] & 2) != 0 || (Tiles.Tiles_renderFlags[var2][var11][var17] & 16) == 0)) {
+							if (var2 < Tiles.Tiles_minPlane) {
+								Tiles.Tiles_minPlane = var2;
+							}
 
-					if (var2.tryLoadFileByNames("titlebox", "")) {
-						++var16;
-					}
+							var20 = class9.field69[var2][var11][var17] & 255;
+							int var21 = Tiles.field1092[var2][var11][var17] & 255;
+							if (var20 > 0 || var21 > 0) {
+								int var22 = Tiles.Tiles_heights[var2][var11][var17];
+								int var23 = Tiles.Tiles_heights[var2][var11 + 1][var17];
+								int var24 = Tiles.Tiles_heights[var2][var11 + 1][var17 + 1];
+								int var25 = Tiles.Tiles_heights[var2][var11][var17 + 1];
+								int var26 = WorldMapLabelSize.field1570[var11][var17];
+								int var27 = WorldMapLabelSize.field1570[var11 + 1][var17];
+								int var28 = WorldMapLabelSize.field1570[var11 + 1][var17 + 1];
+								int var29 = WorldMapLabelSize.field1570[var11][var17 + 1];
+								int var30 = -1;
+								int var31 = -1;
+								int var32;
+								int var33;
+								if (var20 > 0) {
+									var32 = var12 * 256 / var15;
+									var33 = var13 / var16;
+									int var34 = var14 / var16;
+									var30 = Script.hslToRgb(var32, var33, var34);
+									var32 = var32 + Tiles.field1103 & 255;
+									var34 += Tiles.field1104;
+									if (var34 < 0) {
+										var34 = 0;
+									} else if (var34 > 255) {
+										var34 = 255;
+									}
 
-					if (var2.tryLoadFileByNames("titlebutton", "")) {
-						++var16;
-					}
+									var31 = Script.hslToRgb(var32, var33, var34);
+								}
 
-					if (var2.tryLoadFileByNames("runes", "")) {
-						++var16;
-					}
+								if (var2 > 0) {
+									boolean var49 = true;
+									if (var20 == 0 && Tiles.field1091[var2][var11][var17] != 0) {
+										var49 = false;
+									}
 
-					if (var2.tryLoadFileByNames("title_mute", "")) {
-						++var16;
-					}
+									if (var21 > 0 && !Login.method1968(var21 - 1).hideUnderlay) {
+										var49 = false;
+									}
 
-					if (var2.tryLoadFileByNames("options_radio_buttons,0", "")) {
-						++var16;
-					}
+									if (var49 && var22 == var23 && var22 == var24 && var25 == var22) {
+										var10000 = MidiPcmStream.field2489[var2][var11];
+										var10000[var17] |= 2340;
+									}
+								}
 
-					if (var2.tryLoadFileByNames("options_radio_buttons,2", "")) {
-						++var16;
-					}
+								var32 = 0;
+								if (var31 != -1) {
+									var32 = Rasterizer3D.Rasterizer3D_colorPalette[Message.method1191(var31, 96)];
+								}
 
-					if (var2.tryLoadFileByNames("options_radio_buttons,4", "")) {
-						++var16;
-					}
+								if (var21 == 0) {
+									var0.addTile(var2, var11, var17, 0, 0, -1, var22, var23, var24, var25, Message.method1191(var30, var26), Message.method1191(var30, var27), Message.method1191(var30, var28), Message.method1191(var30, var29), 0, 0, 0, 0, var32, 0);
+								} else {
+									var33 = Tiles.field1091[var2][var11][var17] + 1;
+									byte var50 = class362.field4079[var2][var11][var17];
+									FloorOverlayDefinition var35 = Login.method1968(var21 - 1);
+									int var36 = var35.texture;
+									int var37;
+									int var38;
+									int var39;
+									int var40;
+									if (var36 >= 0) {
+										var38 = Rasterizer3D.Rasterizer3D_textureLoader.getAverageTextureRGB(var36);
+										var37 = -1;
+									} else if (var35.primaryRgb == 16711935) {
+										var37 = -2;
+										var36 = -1;
+										var38 = -2;
+									} else {
+										var37 = Script.hslToRgb(var35.hue, var35.saturation, var35.lightness);
+										var39 = var35.hue + Tiles.field1103 & 255;
+										var40 = var35.lightness + Tiles.field1104;
+										if (var40 < 0) {
+											var40 = 0;
+										} else if (var40 > 255) {
+											var40 = 255;
+										}
 
-					if (var2.tryLoadFileByNames("options_radio_buttons,6", "")) {
-						++var16;
-					}
+										var38 = Script.hslToRgb(var39, var35.saturation, var40);
+									}
 
-					var2.tryLoadFileByNames("sl_back", "");
-					var2.tryLoadFileByNames("sl_flags", "");
-					var2.tryLoadFileByNames("sl_arrows", "");
-					var2.tryLoadFileByNames("sl_stars", "");
-					var2.tryLoadFileByNames("sl_button", "");
-					var4 = WorldMapIcon_0.method286();
-					if (var16 < var4) {
-						Login.Login_loadingText = "Loading title screen - " + var16 * 100 / var4 + "%";
-						Login.Login_loadingPercent = 50;
+									var39 = 0;
+									if (var38 != -2) {
+										var39 = Rasterizer3D.Rasterizer3D_colorPalette[Player.method2148(var38, 96)];
+									}
+
+									if (var35.secondaryRgb != -1) {
+										var40 = var35.secondaryHue + Tiles.field1103 & 255;
+										int var41 = var35.secondaryLightness + Tiles.field1104;
+										if (var41 < 0) {
+											var41 = 0;
+										} else if (var41 > 255) {
+											var41 = 255;
+										}
+
+										var38 = Script.hslToRgb(var40, var35.secondarySaturation, var41);
+										var39 = Rasterizer3D.Rasterizer3D_colorPalette[Player.method2148(var38, 96)];
+									}
+
+									var0.addTile(var2, var11, var17, var33, var50, var36, var22, var23, var24, var25, Message.method1191(var30, var26), Message.method1191(var30, var27), Message.method1191(var30, var28), Message.method1191(var30, var29), Player.method2148(var37, var26), Player.method2148(var37, var27), Player.method2148(var37, var28), Player.method2148(var37, var29), var32, var39);
+								}
+							}
+						}
+					}
+				}
+			}
+
+			for (var11 = 1; var11 < 103; ++var11) {
+				for (var12 = 1; var12 < 103; ++var12) {
+					if ((Tiles.Tiles_renderFlags[var2][var12][var11] & 8) != 0) {
+						var17 = 0;
+					} else if (var2 > 0 && (Tiles.Tiles_renderFlags[1][var12][var11] & 2) != 0) {
+						var17 = var2 - 1;
 					} else {
-						Login.Login_loadingText = "Loaded title screen";
-						Login.Login_loadingPercent = 50;
-						ItemContainer.updateGameState(5);
-						Client.titleLoadingStage = 70;
+						var17 = var2;
 					}
-				} else if (Client.titleLoadingStage == 70) {
-					if (!WorldMapIcon_0.archive2.isFullyLoaded()) {
-						Login.Login_loadingText = "Loading config - " + WorldMapIcon_0.archive2.loadPercent() + "%";
-						Login.Login_loadingPercent = 60;
-					} else {
-						class228.method4310(WorldMapIcon_0.archive2);
-						Archive var23 = WorldMapIcon_0.archive2;
-						FloorUnderlayDefinition.FloorUnderlayDefinition_archive = var23;
-						class235.method4331(WorldMapIcon_0.archive2, WorldMapData_0.archive7);
-						Frames.method3429(WorldMapIcon_0.archive2, WorldMapData_0.archive7, Client.isLowDetail);
-						class3.method41(WorldMapIcon_0.archive2, WorldMapData_0.archive7);
-						DirectByteArrayCopier.method4147(WorldMapIcon_0.archive2);
-						var1 = WorldMapIcon_0.archive2;
-						var2 = WorldMapData_0.archive7;
-						boolean var25 = Client.isMembersWorld;
-						Font var17 = SecureRandomCallable.fontPlain11;
-						class299.ItemDefinition_archive = var1;
-						class8.ItemDefinition_modelArchive = var2;
-						Bounds.ItemDefinition_inMembersWorld = var25;
-						class52.ItemDefinition_fileCount = class299.ItemDefinition_archive.getGroupFileCount(10);
-						ItemComposition.ItemDefinition_fontPlain11 = var17;
-						TextureProvider.method2935(WorldMapIcon_0.archive2, class52.archive0, SpriteMask.archive1);
-						Archive var5 = WorldMapIcon_0.archive2;
-						Archive var6 = WorldMapData_0.archive7;
-						SpotAnimationDefinition.SpotAnimationDefinition_archive = var5;
-						SpotAnimationDefinition.SpotAnimationDefinition_modelArchive = var6;
-						Archive var7 = WorldMapIcon_0.archive2;
-						VarbitComposition.VarbitDefinition_archive = var7;
-						Archive var8 = WorldMapIcon_0.archive2;
-						VarpDefinition.VarpDefinition_archive = var8;
-						class58.VarpDefinition_fileCount = VarpDefinition.VarpDefinition_archive.getGroupFileCount(16);
-						MouseHandler.method1151(PlayerComposition.archive3, WorldMapData_0.archive7, ModeWhere.archive8, CollisionMap.archive13);
-						class217.method4154(WorldMapIcon_0.archive2);
-						Archive var9 = WorldMapIcon_0.archive2;
-						EnumComposition.EnumDefinition_archive = var9;
-						class22.method227(WorldMapIcon_0.archive2);
-						class197.method3828(WorldMapIcon_0.archive2);
-						GrandExchangeOffer.varcs = new Varcs();
-						StructDefinition.method4734(WorldMapIcon_0.archive2, ModeWhere.archive8, CollisionMap.archive13);
-						UserComparator9.method3562(WorldMapIcon_0.archive2, ModeWhere.archive8);
-						Archive var10 = WorldMapIcon_0.archive2;
-						Archive var11 = ModeWhere.archive8;
-						WorldMapElement.WorldMapElement_archive = var11;
-						if (var10.isFullyLoaded()) {
-							WorldMapElement.WorldMapElement_count = var10.getGroupFileCount(35);
-							WorldMapElement.WorldMapElement_cached = new WorldMapElement[WorldMapElement.WorldMapElement_count];
 
-							for (int var12 = 0; var12 < WorldMapElement.WorldMapElement_count; ++var12) {
-								byte[] var13 = var10.takeFile(35, var12);
-								WorldMapElement.WorldMapElement_cached[var12] = new WorldMapElement(var12);
-								if (var13 != null) {
-									WorldMapElement.WorldMapElement_cached[var12].decode(new Buffer(var13));
-									WorldMapElement.WorldMapElement_cached[var12].method4576();
+					var0.setTileMinPlane(var2, var12, var11, var17);
+				}
+			}
+
+			class9.field69[var2] = null;
+			Tiles.field1092[var2] = null;
+			Tiles.field1091[var2] = null;
+			class362.field4079[var2] = null;
+			SecureRandomCallable.field1106[var2] = null;
+		}
+
+		var0.method3466(-50, -10, -50);
+
+		for (var2 = 0; var2 < 104; ++var2) {
+			for (var3 = 0; var3 < 104; ++var3) {
+				if ((Tiles.Tiles_renderFlags[1][var2][var3] & 2) == 2) {
+					var0.setLinkBelow(var2, var3);
+				}
+			}
+		}
+
+		var2 = 1;
+		var3 = 2;
+		var4 = 4;
+
+		for (var5 = 0; var5 < 4; ++var5) {
+			if (var5 > 0) {
+				var2 <<= 3;
+				var3 <<= 3;
+				var4 <<= 3;
+			}
+
+			for (int var6 = 0; var6 <= var5; ++var6) {
+				for (int var7 = 0; var7 <= 104; ++var7) {
+					for (int var8 = 0; var8 <= 104; ++var8) {
+						short var48;
+						if ((MidiPcmStream.field2489[var6][var8][var7] & var2) != 0) {
+							var9 = var7;
+							var10 = var7;
+							var11 = var6;
+
+							for (var12 = var6; var9 > 0 && (MidiPcmStream.field2489[var6][var8][var9 - 1] & var2) != 0; --var9) {
+							}
+
+							while (var10 < 104 && (MidiPcmStream.field2489[var6][var8][var10 + 1] & var2) != 0) {
+								++var10;
+							}
+
+							label519:
+							while (var11 > 0) {
+								for (var13 = var9; var13 <= var10; ++var13) {
+									if ((MidiPcmStream.field2489[var11 - 1][var8][var13] & var2) == 0) {
+										break label519;
+									}
+								}
+
+								--var11;
+							}
+
+							label508:
+							while (var12 < var5) {
+								for (var13 = var9; var13 <= var10; ++var13) {
+									if ((MidiPcmStream.field2489[var12 + 1][var8][var13] & var2) == 0) {
+										break label508;
+									}
+								}
+
+								++var12;
+							}
+
+							var13 = (var12 + 1 - var11) * (var10 - var9 + 1);
+							if (var13 >= 8) {
+								var48 = 240;
+								var15 = Tiles.Tiles_heights[var12][var8][var9] - var48;
+								var16 = Tiles.Tiles_heights[var11][var8][var9];
+								Scene.Scene_addOccluder(var5, 1, var8 * 128, var8 * 128, var9 * 128, var10 * 128 + 128, var15, var16);
+
+								for (var17 = var11; var17 <= var12; ++var17) {
+									for (var18 = var9; var18 <= var10; ++var18) {
+										var10000 = MidiPcmStream.field2489[var17][var8];
+										var10000[var18] &= ~var2;
+									}
 								}
 							}
 						}
 
-						Login.Login_loadingText = "Loaded config";
-						Login.Login_loadingPercent = 60;
-						Client.titleLoadingStage = 80;
-					}
-				} else if (Client.titleLoadingStage == 80) {
-					var0 = 0;
-					if (LoginScreenAnimation.compass == null) {
-						LoginScreenAnimation.compass = BufferedSource.SpriteBuffer_getSprite(ModeWhere.archive8, class60.spriteIds.compass, 0);
-					} else {
-						++var0;
-					}
+						if ((MidiPcmStream.field2489[var6][var8][var7] & var3) != 0) {
+							var9 = var8;
+							var10 = var8;
+							var11 = var6;
 
-					if (class236.redHintArrowSprite == null) {
-						class236.redHintArrowSprite = BufferedSource.SpriteBuffer_getSprite(ModeWhere.archive8, class60.spriteIds.field3847, 0);
-					} else {
-						++var0;
-					}
+							for (var12 = var6; var9 > 0 && (MidiPcmStream.field2489[var6][var9 - 1][var7] & var3) != 0; --var9) {
+							}
 
-					if (WorldMapSection1.mapSceneSprites == null) {
-						WorldMapSection1.mapSceneSprites = BoundaryObject.method3420(ModeWhere.archive8, class60.spriteIds.mapScenes, 0);
-					} else {
-						++var0;
-					}
+							while (var10 < 104 && (MidiPcmStream.field2489[var6][var10 + 1][var7] & var3) != 0) {
+								++var10;
+							}
 
-					if (Client.headIconPkSprites == null) {
-						Client.headIconPkSprites = WorldMapLabelSize.method268(ModeWhere.archive8, class60.spriteIds.headIconsPk, 0);
-					} else {
-						++var0;
-					}
+							label572:
+							while (var11 > 0) {
+								for (var13 = var9; var13 <= var10; ++var13) {
+									if ((MidiPcmStream.field2489[var11 - 1][var13][var7] & var3) == 0) {
+										break label572;
+									}
+								}
 
-					if (class169.headIconPrayerSprites == null) {
-						class169.headIconPrayerSprites = WorldMapLabelSize.method268(ModeWhere.archive8, class60.spriteIds.field3838, 0);
-					} else {
-						++var0;
-					}
+								--var11;
+							}
 
-					if (class13.headIconHintSprites == null) {
-						class13.headIconHintSprites = WorldMapLabelSize.method268(ModeWhere.archive8, class60.spriteIds.field3843, 0);
-					} else {
-						++var0;
-					}
+							label561:
+							while (var12 < var5) {
+								for (var13 = var9; var13 <= var10; ++var13) {
+									if ((MidiPcmStream.field2489[var12 + 1][var13][var7] & var3) == 0) {
+										break label561;
+									}
+								}
 
-					if (GrandExchangeOfferWorldComparator.mapMarkerSprites == null) {
-						GrandExchangeOfferWorldComparator.mapMarkerSprites = WorldMapLabelSize.method268(ModeWhere.archive8, class60.spriteIds.field3839, 0);
-					} else {
-						++var0;
-					}
+								++var12;
+							}
 
-					if (Frames.crossSprites == null) {
-						Frames.crossSprites = WorldMapLabelSize.method268(ModeWhere.archive8, class60.spriteIds.field3845, 0);
-					} else {
-						++var0;
-					}
+							var13 = (var10 - var9 + 1) * (var12 + 1 - var11);
+							if (var13 >= 8) {
+								var48 = 240;
+								var15 = Tiles.Tiles_heights[var12][var9][var7] - var48;
+								var16 = Tiles.Tiles_heights[var11][var9][var7];
+								Scene.Scene_addOccluder(var5, 2, var9 * 128, var10 * 128 + 128, var7 * 128, var7 * 128, var15, var16);
 
-					if (ChatChannel.mapDotSprites == null) {
-						ChatChannel.mapDotSprites = WorldMapLabelSize.method268(ModeWhere.archive8, class60.spriteIds.field3846, 0);
-					} else {
-						++var0;
-					}
-
-					if (ObjectSound.scrollBarSprites == null) {
-						ObjectSound.scrollBarSprites = BoundaryObject.method3420(ModeWhere.archive8, class60.spriteIds.field3840, 0);
-					} else {
-						++var0;
-					}
-
-					if (Actor.modIconSprites == null) {
-						Actor.modIconSprites = BoundaryObject.method3420(ModeWhere.archive8, class60.spriteIds.field3848, 0);
-					} else {
-						++var0;
-					}
-
-					if (var0 < 11) {
-						Login.Login_loadingText = "Loading sprites - " + var0 * 100 / 12 + "%";
-						Login.Login_loadingPercent = 70;
-					} else {
-						AbstractFont.AbstractFont_modIconSprites = Actor.modIconSprites;
-						class236.redHintArrowSprite.normalize();
-						var15 = (int)(Math.random() * 21.0D) - 10;
-						int var18 = (int)(Math.random() * 21.0D) - 10;
-						var16 = (int)(Math.random() * 21.0D) - 10;
-						var4 = (int)(Math.random() * 41.0D) - 20;
-						WorldMapSection1.mapSceneSprites[0].shiftColors(var15 + var4, var4 + var18, var4 + var16);
-						Login.Login_loadingText = "Loaded sprites";
-						Login.Login_loadingPercent = 70;
-						Client.titleLoadingStage = 90;
-					}
-				} else if (Client.titleLoadingStage == 90) {
-					if (!ViewportMouse.archive9.isFullyLoaded()) {
-						Login.Login_loadingText = "Loading textures - " + "0%";
-						Login.Login_loadingPercent = 90;
-					} else {
-						BoundaryObject.textureProvider = new TextureProvider(ViewportMouse.archive9, ModeWhere.archive8, 20, WorldMapSectionType.clientPreferences.field1072, Client.isLowDetail ? 64 : 128);
-						Rasterizer3D.Rasterizer3D_setTextureLoader(BoundaryObject.textureProvider);
-						Rasterizer3D.Rasterizer3D_setBrightness(WorldMapSectionType.clientPreferences.field1072);
-						Client.titleLoadingStage = 100;
-					}
-				} else if (Client.titleLoadingStage == 100) {
-					var0 = BoundaryObject.textureProvider.getLoadedPercentage();
-					if (var0 < 100) {
-						Login.Login_loadingText = "Loading textures - " + var0 + "%";
-						Login.Login_loadingPercent = 90;
-					} else {
-						Login.Login_loadingText = "Loaded textures";
-						Login.Login_loadingPercent = 90;
-						Client.titleLoadingStage = 110;
-					}
-				} else if (Client.titleLoadingStage == 110) {
-					Friend.mouseRecorder = new MouseRecorder();
-					taskHandler.newThreadTask(Friend.mouseRecorder, 10);
-					Login.Login_loadingText = "Loaded input handler";
-					Login.Login_loadingPercent = 92;
-					Client.titleLoadingStage = 120;
-				} else if (Client.titleLoadingStage == 120) {
-					if (!LoginScreenAnimation.archive10.tryLoadFileByNames("huffman", "")) {
-						Login.Login_loadingText = "Loading wordpack - " + 0 + "%";
-						Login.Login_loadingPercent = 94;
-					} else {
-						Huffman var14 = new Huffman(LoginScreenAnimation.archive10.takeFileByNames("huffman", ""));
-						class219.huffman = var14;
-						Login.Login_loadingText = "Loaded wordpack";
-						Login.Login_loadingPercent = 94;
-						Client.titleLoadingStage = 130;
-					}
-				} else if (Client.titleLoadingStage == 130) {
-					if (!PlayerComposition.archive3.isFullyLoaded()) {
-						Login.Login_loadingText = "Loading interfaces - " + PlayerComposition.archive3.loadPercent() * 4 / 5 + "%";
-						Login.Login_loadingPercent = 96;
-					} else if (!WorldMapSection0.archive12.isFullyLoaded()) {
-						Login.Login_loadingText = "Loading interfaces - " + (80 + WorldMapSection0.archive12.loadPercent() / 6) + "%";
-						Login.Login_loadingPercent = 96;
-					} else if (!CollisionMap.archive13.isFullyLoaded()) {
-						Login.Login_loadingText = "Loading interfaces - " + (96 + CollisionMap.archive13.loadPercent() / 50) + "%";
-						Login.Login_loadingPercent = 96;
-					} else {
-						Login.Login_loadingText = "Loaded interfaces";
-						Login.Login_loadingPercent = 98;
-						Client.titleLoadingStage = 140;
-					}
-				} else if (Client.titleLoadingStage == 140) {
-					Login.Login_loadingPercent = 100;
-					if (!ArchiveLoader.archive19.tryLoadGroupByName(WorldMapCacheName.field333.name)) {
-						Login.Login_loadingText = "Loading world map - " + ArchiveLoader.archive19.groupLoadPercentByName(WorldMapCacheName.field333.name) / 10 + "%";
-					} else {
-						if (SoundSystem.worldMap == null) {
-							SoundSystem.worldMap = new WorldMap();
-							SoundSystem.worldMap.init(ArchiveLoader.archive19, class25.archive18, Login.archive20, ScriptEvent.fontBold12, Client.fontsMap, WorldMapSection1.mapSceneSprites);
+								for (var17 = var11; var17 <= var12; ++var17) {
+									for (var18 = var9; var18 <= var10; ++var18) {
+										var10000 = MidiPcmStream.field2489[var17][var18];
+										var10000[var7] &= ~var3;
+									}
+								}
+							}
 						}
 
-						Login.Login_loadingText = "Loaded world map";
-						Client.titleLoadingStage = 150;
+						if ((MidiPcmStream.field2489[var6][var8][var7] & var4) != 0) {
+							var9 = var8;
+							var10 = var8;
+							var11 = var7;
+
+							for (var12 = var7; var11 > 0 && (MidiPcmStream.field2489[var6][var8][var11 - 1] & var4) != 0; --var11) {
+							}
+
+							while (var12 < 104 && (MidiPcmStream.field2489[var6][var8][var12 + 1] & var4) != 0) {
+								++var12;
+							}
+
+							label625:
+							while (var9 > 0) {
+								for (var13 = var11; var13 <= var12; ++var13) {
+									if ((MidiPcmStream.field2489[var6][var9 - 1][var13] & var4) == 0) {
+										break label625;
+									}
+								}
+
+								--var9;
+							}
+
+							label614:
+							while (var10 < 104) {
+								for (var13 = var11; var13 <= var12; ++var13) {
+									if ((MidiPcmStream.field2489[var6][var10 + 1][var13] & var4) == 0) {
+										break label614;
+									}
+								}
+
+								++var10;
+							}
+
+							if ((var10 - var9 + 1) * (var12 - var11 + 1) >= 4) {
+								var13 = Tiles.Tiles_heights[var6][var9][var11];
+								Scene.Scene_addOccluder(var5, 4, var9 * 128, var10 * 128 + 128, var11 * 128, var12 * 128 + 128, var13, var13);
+
+								for (var14 = var9; var14 <= var10; ++var14) {
+									for (var15 = var11; var15 <= var12; ++var15) {
+										var10000 = MidiPcmStream.field2489[var6][var14];
+										var10000[var15] &= ~var4;
+									}
+								}
+							}
+						}
 					}
-				} else if (Client.titleLoadingStage == 150) {
-					ItemContainer.updateGameState(10);
 				}
 			}
 		}
+
 	}
 
-	@ObfuscatedName("gs")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(ZI)V",
-		garbageValue = "1110901691"
+		signature = "(ILcc;ZS)I",
+		garbageValue = "174"
 	)
-	@Export("addNpcsToScene")
-	static final void addNpcsToScene(boolean var0) {
-		for (int var1 = 0; var1 < Client.npcCount; ++var1) {
-			NPC var2 = Client.npcs[Client.npcIndices[var1]];
-			if (var2 != null && var2.isVisible() && var2.definition.isVisible == var0 && var2.definition.transformIsVisible()) {
-				int var3 = var2.x >> 7;
-				int var4 = var2.y >> 7;
-				if (var3 >= 0 && var3 < 104 && var4 >= 0 && var4 < 104) {
-					if (var2.field1007 == 1 && (var2.x & 127) == 64 && (var2.y & 127) == 64) {
-						if (Client.tileLastDrawnActor[var3][var4] == Client.viewportDrawCount) {
-							continue;
-						}
-
-						Client.tileLastDrawnActor[var3][var4] = Client.viewportDrawCount;
-					}
-
-					long var5 = TextureProvider.calculateTag(0, 0, 1, !var2.definition.isInteractable, Client.npcIndices[var1]);
-					var2.playerCycle = Client.cycle;
-					MilliClock.scene.drawEntity(class90.Client_plane, var2.x, var2.y, WorldMapRegion.getTileHeight(var2.field1007 * 64 - 64 + var2.x, var2.field1007 * 64 - 64 + var2.y, class90.Client_plane), var2.field1007 * 64 - 64 + 60, var2, var2.rotation, var5, var2.isWalking);
-				}
-			}
+	static int method547(int var0, Script var1, boolean var2) {
+		Widget var3 = var2 ? FriendSystem.field905 : class4.field35;
+		if (var0 == ScriptOpcodes.CC_GETSCROLLX) {
+			Interpreter.Interpreter_intStack[++class16.Interpreter_intStackSize - 1] = var3.scrollX;
+			return 1;
+		} else if (var0 == ScriptOpcodes.CC_GETSCROLLY) {
+			Interpreter.Interpreter_intStack[++class16.Interpreter_intStackSize - 1] = var3.scrollY;
+			return 1;
+		} else if (var0 == ScriptOpcodes.CC_GETTEXT) {
+			Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var3.text;
+			return 1;
+		} else if (var0 == ScriptOpcodes.CC_GETSCROLLWIDTH) {
+			Interpreter.Interpreter_intStack[++class16.Interpreter_intStackSize - 1] = var3.scrollWidth;
+			return 1;
+		} else if (var0 == ScriptOpcodes.CC_GETSCROLLHEIGHT) {
+			Interpreter.Interpreter_intStack[++class16.Interpreter_intStackSize - 1] = var3.scrollHeight;
+			return 1;
+		} else if (var0 == ScriptOpcodes.CC_GETMODELZOOM) {
+			Interpreter.Interpreter_intStack[++class16.Interpreter_intStackSize - 1] = var3.modelZoom;
+			return 1;
+		} else if (var0 == ScriptOpcodes.CC_GETMODELANGLE_X) {
+			Interpreter.Interpreter_intStack[++class16.Interpreter_intStackSize - 1] = var3.modelAngleX;
+			return 1;
+		} else if (var0 == ScriptOpcodes.CC_GETMODELANGLE_Z) {
+			Interpreter.Interpreter_intStack[++class16.Interpreter_intStackSize - 1] = var3.modelAngleZ;
+			return 1;
+		} else if (var0 == ScriptOpcodes.CC_GETMODELANGLE_Y) {
+			Interpreter.Interpreter_intStack[++class16.Interpreter_intStackSize - 1] = var3.modelAngleY;
+			return 1;
+		} else if (var0 == ScriptOpcodes.CC_GETTRANSTOP) {
+			Interpreter.Interpreter_intStack[++class16.Interpreter_intStackSize - 1] = var3.transparencyTop;
+			return 1;
+		} else if (var0 == ScriptOpcodes.CC_GETTRANSBOT) {
+			Interpreter.Interpreter_intStack[++class16.Interpreter_intStackSize - 1] = var3.transparencyBot;
+			return 1;
+		} else if (var0 == ScriptOpcodes.CC_GETCOLOUR) {
+			Interpreter.Interpreter_intStack[++class16.Interpreter_intStackSize - 1] = var3.color;
+			return 1;
+		} else if (var0 == ScriptOpcodes.CC_GETFILLCOLOUR) {
+			Interpreter.Interpreter_intStack[++class16.Interpreter_intStackSize - 1] = var3.color2;
+			return 1;
+		} else if (var0 == ScriptOpcodes.CC_GETFILLMODE) {
+			Interpreter.Interpreter_intStack[++class16.Interpreter_intStackSize - 1] = var3.fillMode.rsOrdinal();
+			return 1;
+		} else if (var0 == ScriptOpcodes.CC_GETMODELTRANSPARENT) {
+			Interpreter.Interpreter_intStack[++class16.Interpreter_intStackSize - 1] = var3.modelTransparency ? 1 : 0;
+			return 1;
+		} else if (var0 != 1615 && var0 != 1616) {
+			return 2;
+		} else {
+			++class16.Interpreter_intStackSize;
+			return 1;
 		}
-
 	}
 }

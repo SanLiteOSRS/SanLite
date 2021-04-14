@@ -4,38 +4,38 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ja")
+@ObfuscatedName("jx")
 @Implements("IterableNodeDequeDescendingIterator")
 public class IterableNodeDequeDescendingIterator implements Iterator {
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "Ljv;"
+		signature = "Ljc;"
 	)
 	@Export("deque")
 	IterableNodeDeque deque;
-	@ObfuscatedName("v")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "Lga;"
+		signature = "Lmh;"
 	)
-	Node field3578;
-	@ObfuscatedName("d")
+	Node field3383;
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "Lga;"
+		signature = "Lmh;"
 	)
 	@Export("last")
 	Node last;
 
 	@ObfuscatedSignature(
-		signature = "(Ljv;)V"
+		signature = "(Ljc;)V"
 	)
 	IterableNodeDequeDescendingIterator(IterableNodeDeque var1) {
 		this.last = null;
 		this.setDeque(var1);
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "(Ljv;)V"
+		signature = "(Ljc;)V"
 	)
 	@Export("setDeque")
 	void setDeque(IterableNodeDeque var1) {
@@ -43,28 +43,11 @@ public class IterableNodeDequeDescendingIterator implements Iterator {
 		this.start();
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("o")
 	@Export("start")
 	void start() {
-		this.field3578 = this.deque != null ? this.deque.sentinel.previous : null;
+		this.field3383 = this.deque != null ? this.deque.sentinel.previous : null;
 		this.last = null;
-	}
-
-	public Object next() {
-		Node var1 = this.field3578;
-		if (var1 == this.deque.sentinel) {
-			var1 = null;
-			this.field3578 = null;
-		} else {
-			this.field3578 = var1.previous;
-		}
-
-		this.last = var1;
-		return var1;
-	}
-
-	public boolean hasNext() {
-		return this.deque.sentinel != this.field3578;
 	}
 
 	public void remove() {
@@ -74,5 +57,22 @@ public class IterableNodeDequeDescendingIterator implements Iterator {
 			this.last.remove();
 			this.last = null;
 		}
+	}
+
+	public boolean hasNext() {
+		return this.deque.sentinel != this.field3383;
+	}
+
+	public Object next() {
+		Node var1 = this.field3383;
+		if (var1 == this.deque.sentinel) {
+			var1 = null;
+			this.field3383 = null;
+		} else {
+			this.field3383 = var1.previous;
+		}
+
+		this.last = var1;
+		return var1;
 	}
 }

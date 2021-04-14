@@ -1,12 +1,24 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fn")
+@ObfuscatedName("db")
 @Implements("UserComparator10")
 public class UserComparator10 extends AbstractUserComparator {
-	@ObfuscatedName("n")
+	@ObfuscatedName("b")
+	@ObfuscatedGetter(
+		intValue = 1931551411
+	)
+	static int field1439;
+	@ObfuscatedName("mm")
+	@ObfuscatedGetter(
+		intValue = 1081078287
+	)
+	@Export("selectedSpellFlags")
+	static int selectedSpellFlags;
+	@ObfuscatedName("f")
 	@Export("reversed")
 	final boolean reversed;
 
@@ -14,10 +26,10 @@ public class UserComparator10 extends AbstractUserComparator {
 		this.reversed = var1;
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "(Lky;Lky;I)I",
-		garbageValue = "899318279"
+		signature = "(Llg;Llg;I)I",
+		garbageValue = "-1459911395"
 	)
 	@Export("compareBuddy")
 	int compareBuddy(Buddy var1, Buddy var2) {
@@ -32,24 +44,20 @@ public class UserComparator10 extends AbstractUserComparator {
 		return this.compareBuddy((Buddy)var1, (Buddy)var2);
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "(II)Ljava/lang/String;",
-		garbageValue = "77103650"
+		signature = "(Ljava/lang/Throwable;Ljava/lang/String;)Lor;"
 	)
-	static String method3580(int var0) {
-		return "<img=" + var0 + ">";
-	}
+	@Export("newRunException")
+	public static RunException newRunException(Throwable var0, String var1) {
+		RunException var2;
+		if (var0 instanceof RunException) {
+			var2 = (RunException)var0;
+			var2.message = var2.message + ' ' + var1;
+		} else {
+			var2 = new RunException(var0, var1);
+		}
 
-	@ObfuscatedName("g")
-	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "-1892343700"
-	)
-	static void method3573() {
-		Login.worldSelectOpen = false;
-		Login.leftTitleSprite.drawAt(Login.xPadding, 0);
-		Login.rightTitleSprite.drawAt(Login.xPadding + 382, 0);
-		Login.logoSprite.drawAt(Login.xPadding + 382 - Login.logoSprite.subWidth / 2, 18);
+		return var2;
 	}
 }
