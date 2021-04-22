@@ -5,23 +5,20 @@ import net.runelite.mapping.Import;
 
 public interface RSGameObject extends GameObject
 {
-	@Import("entity")
+	@Import("renderable")
 	RSRenderable getRenderable();
 
-	@Import("plane")
-	int getPlane();
-
 	@Import("startX")
-	int getRelativeX();
+	int getStartX();
 
 	@Import("startY")
-	int getRelativeY();
+	int getStartY();
 
 	@Import("endX")
-	int getOffsetX();
+	int getEndX();
 
 	@Import("endY")
-	int getOffsetY();
+	int getEndY();
 
 	@Import("centerX")
 	@Override
@@ -35,7 +32,6 @@ public interface RSGameObject extends GameObject
 	int getHeight();
 
 	@Import("orientation")
-	@Override
 	int getRsOrientation();
 
 	@Import("tag")
@@ -44,4 +40,8 @@ public interface RSGameObject extends GameObject
 
 	@Import("flags")
 	int getFlags();
+
+	int getPlane();
+
+	void setPlane(int plane);
 }

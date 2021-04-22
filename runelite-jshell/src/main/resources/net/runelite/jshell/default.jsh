@@ -1,4 +1,4 @@
-// Welcome to the RuneLite Development Shell
+// Welcome to the SanLite Development Shell
 // Everything executed here runs on the client thread by default.
 // By default client, clientThread, configManager and log are in scope
 // You can subscribe to the Event Bus by using subscribe(Event.class, ev -> handler);

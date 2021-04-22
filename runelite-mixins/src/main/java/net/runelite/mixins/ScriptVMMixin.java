@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2018 Abex
+ * Copyright (c) 2020, ThatGamerBlue <thatgamerblue@gmail.com>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -24,6 +25,9 @@
  */
 package net.runelite.mixins;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import static net.runelite.api.Opcodes.*;
 import net.runelite.api.events.ScriptCallbackEvent;
 import net.runelite.api.events.ScriptPostFired;
 import net.runelite.api.events.ScriptPreFired;
@@ -36,11 +40,6 @@ import net.runelite.api.widgets.JavaScriptCallback;
 import net.runelite.rs.api.RSClient;
 import net.runelite.rs.api.RSScript;
 import net.runelite.rs.api.RSScriptEvent;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import static net.runelite.api.Opcodes.*;
 
 @Mixin(RSClient.class)
 public abstract class ScriptVMMixin implements RSClient
@@ -66,9 +65,9 @@ public abstract class ScriptVMMixin implements RSClient
 		{
 			if (script != null)
 			{
-				final ScriptPreFired scriptPreFired = new ScriptPreFired((int) script.getHash());
-				scriptPreFired.setScriptEvent(rootScriptEvent);
-				client.getCallbacks().post(scriptPreFired);
+				ScriptPreFired event = new ScriptPreFired((int) script.getHash());
+				event.setScriptEvent(rootScriptEvent);
+				client.getCallbacks().post(event);
 			}
 
 			rootScriptEvent = null;
@@ -94,29 +93,28 @@ public abstract class ScriptVMMixin implements RSClient
 				{
 					int intStackSize = client.getIntStackSize();
 
-					String format = client.getStringStack()[--stringStackSize];
-					StringBuffer output = new StringBuffer();
-					Matcher matcher = Pattern.compile("%(.)").matcher(format);
-
-					while (matcher.find())
+					String fmt = client.getStringStack()[--stringStackSize];
+					StringBuffer out = new StringBuffer();
+					Matcher m = Pattern.compile("%(.)").matcher(fmt);
+					while (m.find())
 					{
-						matcher.appendReplacement(output, "");
-						switch (matcher.group(1).charAt(0))
+						m.appendReplacement(out, "");
+						switch (m.group(1).charAt(0))
 						{
-							case 'd':
 							case 'i':
-								output.append(client.getIntStack()[--intStackSize]);
+							case 'd':
+								out.append(client.getIntStack()[--intStackSize]);
 								break;
 							case 's':
-								output.append(client.getStringStack()[--stringStackSize]);
+								out.append(client.getStringStack()[--stringStackSize]);
 								break;
 							default:
-								output.append(matcher.group(0)).append("=unknown");
+								out.append(m.group(0)).append("=unknown");
 						}
 					}
+					m.appendTail(out);
 
-					matcher.appendTail(output);
-					client.getLogger().debug(output.toString());
+					client.getLogger().debug(out.toString());
 
 					client.setStringStackSize(stringStackSize);
 					client.setIntStackSize(intStackSize);
@@ -140,13 +138,8 @@ public abstract class ScriptVMMixin implements RSClient
 	}
 
 	@Copy("runScript")
-	static void rs$runScript(RSScriptEvent event, int maxExecutionTime)
-	{
-		throw new RuntimeException();
-	}
-
 	@Replace("runScript")
-	static void rl$runScript(RSScriptEvent event, int maxExecutionTime)
+	static void copy$runScript(RSScriptEvent event, int maxExecutionTime, int var2)
 	{
 		Object[] arguments = event.getArguments();
 		assert arguments != null && arguments.length > 0;
@@ -166,7 +159,7 @@ public abstract class ScriptVMMixin implements RSClient
 			try
 			{
 				rootScriptEvent = event;
-				rs$runScript(event, maxExecutionTime);
+				copy$runScript(event, maxExecutionTime, var2);
 			}
 			finally
 			{
@@ -188,7 +181,7 @@ public abstract class ScriptVMMixin implements RSClient
 	{
 		assert isClientThread() : "runScriptEvent must be called on client thread";
 		assert currentScript == null : "scripts are not reentrant";
-		runScript(event, 5000000);
+		runScript(event, 5000000, 0);
 		boolean assertionsEnabled = false;
 		assert assertionsEnabled = true;
 
@@ -214,8 +207,8 @@ public abstract class ScriptVMMixin implements RSClient
 				}
 
 				assert script.getIntArgumentCount() == intCount && script.getStringArgumentCount() == stringCount :
-						"Script " + scriptId + " was called with the incorrect number of arguments; takes "
-								+ script.getIntArgumentCount() + "+" + script.getStringArgumentCount() + ", got " + intCount + "+" + stringCount;
+					"Script " + scriptId + " was called with the incorrect number of arguments; takes "
+						+ script.getIntArgumentCount() + "+" + script.getStringArgumentCount() + ", got " + intCount + "+" + stringCount;
 			}
 		}
 	}

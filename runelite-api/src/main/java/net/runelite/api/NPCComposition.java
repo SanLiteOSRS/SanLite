@@ -31,15 +31,11 @@ public interface NPCComposition extends ParamHolder
 {
 	/**
 	 * Gets the name of the NPC.
-	 *
-	 * @return the name
 	 */
 	String getName();
 
 	/**
 	 * Gets the model IDs that compose this NPC.
-	 *
-	 * @return the NPCs model IDs
 	 */
 	int[] getModels();
 
@@ -50,51 +46,29 @@ public interface NPCComposition extends ParamHolder
 	 */
 	String[] getActions();
 
-	/**
-	 * Gets whether the NPC can be clicked.
-	 *
-	 * @return true if the NPC can be clicked, false otherwise
-	 */
 	boolean isClickable();
 
 	/**
-	 * Gets whether the NPC is a follower (pet)
-	 *
-	 * @return true if the NPC is a follower, false otherwise
-	 */
-	boolean isFollower();
-
-	/**
 	 * NPC can be interacting with via menu options
-	 * @return true if the NPC can be interacted with, false otherwise
+	 * @return
 	 */
 	boolean isInteractible();
 
 	/**
 	 * Gets whether the NPC is visible on the mini-map.
-	 *
-	 * @return the mini-map visible state
 	 */
 	boolean isMinimapVisible();
 
-	/**
-	 * Gets whether the NPC is visible.
-	 *
-	 * @return the visible state
-	 */
 	boolean isVisible();
 
 	/**
 	 * Gets the ID of the NPC.
 	 *
-	 * @return the ID of the NPC
 	 * @see NpcID
 	 */
 	int getId();
 
 	/**
-	 * Gets the combat level of the NPC.
-	 *
 	 * @return the combat level, -1 if none
 	 */
 	int getCombatLevel();
@@ -120,8 +94,6 @@ public interface NPCComposition extends ParamHolder
 
 	/**
 	 * Gets the displayed overhead icon of the NPC.
-	 *
-	 * @return the overhead icon
 	 */
 	HeadIcon getOverheadIcon();
 }

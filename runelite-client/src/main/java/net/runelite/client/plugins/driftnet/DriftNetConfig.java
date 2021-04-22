@@ -99,7 +99,7 @@ public interface DriftNetConfig extends Config
 
 	@ConfigItem(
 		keyName = "tagAnnette",
-		name = "Tag Annette on no nets",
+		name = "Tag Annette",
 		description = "Tag Annette when no nets in inventory",
 		position = 6
 	)

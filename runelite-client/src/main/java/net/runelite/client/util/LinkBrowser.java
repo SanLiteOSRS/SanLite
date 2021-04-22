@@ -71,7 +71,7 @@ public class LinkBrowser
 				log.debug("Opened url through xdg-open to {}", url);
 				return;
 			}
-
+			
 			log.warn("LinkBrowser.browse() could not open {}", url);
 			showMessageBox("Unable to open link. Press 'OK' and the link will be copied to your clipboard.", url);
 		}).start();
@@ -102,7 +102,7 @@ public class LinkBrowser
 				log.debug("Opened directory through xdg-open to {}", directory);
 				return;
 			}
-
+			
 			log.warn("LinkBrowser.open() could not open {}", directory);
 			showMessageBox("Unable to open folder. Press 'OK' and the folder directory will be copied to your clipboard.", directory);
 		}).start();
@@ -187,30 +187,6 @@ public class LinkBrowser
 			log.warn("Failed to open Desktop#open {}", directory, ex);
 			return false;
 		}
-	}
-
-	/**
-	 * Tries to open the specified {@code File} with the systems default text editor. If operation fails
-	 * an error message is displayed with the option to copy the absolute file path to clipboard.
-	 *
-	 * @param file the File instance of the log file
-	 * @return did the file open successfully?
-	 */
-	public static boolean openLocalFile(final File file)
-	{
-		if (file == null || !file.exists())
-		{
-			return false;
-		}
-
-		if (attemptDesktopOpen(file.getAbsolutePath()))
-		{
-			log.debug("Opened file through Desktop#edit to {}", file);
-			return true;
-		}
-
-		showMessageBox("Unable to open file. Press 'OK' and the file path will be copied to your clipboard", file.getAbsolutePath());
-		return false;
 	}
 
 	/**

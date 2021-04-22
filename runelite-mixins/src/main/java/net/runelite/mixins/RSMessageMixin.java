@@ -73,7 +73,6 @@ public abstract class RSMessageMixin implements RSMessage
 	}
 
 	@Inject
-	@Override
 	public boolean isFromFriendsChatMember()
 	{
 		RSFriendsChatManager friendsChatManager = client.getFriendsChatManager();

@@ -15,6 +15,7 @@ public class BootstrapperProperties
 	private static final String RUNELITE_VERSION = "runelite.version";
 	private static final String SANLITE_VERSION = "sanlite.version";
 	private static final String RS_VERSION = "rs.version";
+	private static final String GIT_COMMIT = "git.commit";
 	private static final String BOOTSTRAP_LIVE_REPO = "sanlite.bootstrap.live.repo";
 	private static final String BOOTSTRAP_LIVE_OLD_REPO = "sanlite.bootstrap.live.old.repo";
 	private static final String BOOTSTRAP_LIVE_FALLBACK_REPO = "sanlite.bootstrap.live.repo.fallback";
@@ -50,6 +51,11 @@ public class BootstrapperProperties
 	String getRuneScapeVersion()
 	{
 		return properties.getProperty(RS_VERSION);
+	}
+
+	String getGitCommit()
+	{
+		return properties.getProperty(GIT_COMMIT);
 	}
 
 	String getBootstrapLiveRepo()

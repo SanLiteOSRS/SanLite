@@ -4,20 +4,23 @@ import com.google.common.base.Charsets;
 import com.google.common.hash.Hashing;
 import com.google.common.io.ByteStreams;
 import com.google.common.io.CharStreams;
-import net.runelite.api.mixins.*;
-import net.runelite.api.overlay.OverlayIndex;
-import net.runelite.rs.api.RSAbstractArchive;
-import net.runelite.rs.api.RSArchive;
-import net.runelite.rs.api.RSClient;
-import org.apache.commons.io.IOUtils;
-import org.slf4j.Logger;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import net.runelite.api.mixins.Copy;
+import net.runelite.api.mixins.Inject;
+import net.runelite.api.mixins.Mixin;
+import net.runelite.api.mixins.Replace;
+import net.runelite.api.mixins.Shadow;
+import net.runelite.api.overlay.OverlayIndex;
+import net.runelite.rs.api.RSAbstractArchive;
+import net.runelite.rs.api.RSArchive;
+import net.runelite.rs.api.RSClient;
+import org.apache.commons.io.IOUtils;
+import org.slf4j.Logger;
 
 @Mixin(RSAbstractArchive.class)
 public abstract class RSAbstractArchiveMixin implements RSAbstractArchive
@@ -38,13 +41,12 @@ public abstract class RSAbstractArchiveMixin implements RSAbstractArchive
 		return overlayOutdated;
 	}
 
+	@SuppressWarnings("InfiniteRecursion")
 	@Copy("takeFile")
-	abstract byte[] rs$getConfigData(int archiveId, int fileId);
-
 	@Replace("takeFile")
-	public byte[] rl$getConfigData(int groupId, int fileId)
+	public byte[] copy$getConfigData(int groupId, int fileId)
 	{
-		final byte[] rsData = rs$getConfigData(groupId, fileId);
+		final byte[] rsData = copy$getConfigData(groupId, fileId);
 		final int archiveId = ((RSArchive) this).getIndex();
 
 		if (!OverlayIndex.hasOverlay(archiveId, groupId))
@@ -103,7 +105,6 @@ public abstract class RSAbstractArchiveMixin implements RSAbstractArchive
 			if (!overlayHash.equalsIgnoreCase(originalHash))
 			{
 				log.error("Script " + scriptNames.get(overlayHash) + " is invalid, and will not be overlaid. This will break plugin(s)!");
-				client.setOutdatedScript(scriptNames.get(overlayHash));
 				overlayOutdated = true;
 				return rsData;
 			}

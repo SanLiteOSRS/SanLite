@@ -27,19 +27,18 @@ package net.runelite.mixins;
 import java.awt.Polygon;
 import java.awt.Shape;
 import java.util.ArrayList;
-
-import net.runelite.api.*;
-
-import static net.runelite.api.HeadIcon.MAGIC;
-import static net.runelite.api.HeadIcon.MELEE;
-import static net.runelite.api.HeadIcon.RANGED;
-import static net.runelite.api.HeadIcon.REDEMPTION;
-import static net.runelite.api.HeadIcon.RETRIBUTION;
-import static net.runelite.api.HeadIcon.SMITE;
+import net.runelite.api.HeadIcon;
+import net.runelite.api.Model;
+import net.runelite.api.Perspective;
+import net.runelite.api.SkullIcon;
 import static net.runelite.api.SkullIcon.*;
-
 import net.runelite.api.coords.LocalPoint;
-import net.runelite.api.mixins.*;
+import net.runelite.api.mixins.Copy;
+import net.runelite.api.mixins.Inject;
+import net.runelite.api.mixins.MethodHook;
+import net.runelite.api.mixins.Mixin;
+import net.runelite.api.mixins.Replace;
+import net.runelite.api.mixins.Shadow;
 import net.runelite.rs.api.*;
 
 @Mixin(RSPlayer.class)
@@ -50,9 +49,6 @@ public abstract class RSPlayerMixin implements RSPlayer
 
 	@Inject
 	private boolean friended;
-
-	@Inject
-	private int oldHeadIcon = -2;
 
 	@Inject
 	@Override
@@ -79,30 +75,31 @@ public abstract class RSPlayerMixin implements RSPlayer
 	@Override
 	public HeadIcon getOverheadIcon()
 	{
-		switch (getRsOverheadIcon())
-		{
-			case 0:
-				return MELEE;
-			case 1:
-				return RANGED;
-			case 2:
-				return MAGIC;
-			case 3:
-				return RETRIBUTION;
-			case 4:
-				return SMITE;
-			case 5:
-				return REDEMPTION;
-			default:
-				return null;
-		}
+		return getHeadIcon(getRsOverheadIcon());
 	}
 
 	@Inject
 	@Override
 	public SkullIcon getSkullIcon()
 	{
-		switch (getRsSkullIcon())
+		return skullFromInt(getRsSkullIcon());
+	}
+
+	@Inject
+	private HeadIcon getHeadIcon(int overheadIcon)
+	{
+		if (overheadIcon == -1)
+		{
+			return null;
+		}
+
+		return HeadIcon.values()[overheadIcon];
+	}
+
+	@Inject
+	private SkullIcon skullFromInt(int skull)
+	{
+		switch (skull)
 		{
 			case 0:
 				return SKULL;
@@ -146,7 +143,6 @@ public abstract class RSPlayerMixin implements RSPlayer
 	}
 
 	@Inject
-	@Override
 	public void setSkullIcon(int skullIconId)
 	{
 		RSSpritePixels[] skullSprites = client.getHeadIconPkSprites();
@@ -160,7 +156,6 @@ public abstract class RSPlayerMixin implements RSPlayer
 	}
 
 	@Inject
-	@Override
 	public boolean isSkulled()
 	{
 		SkullIcon skullIcon = getSkullIcon();
@@ -228,27 +223,26 @@ public abstract class RSPlayerMixin implements RSPlayer
 		return model.getConvexHull(getX(), getY(), getOrientation(), tileHeight);
 	}
 
+	@SuppressWarnings("InfiniteRecursion")
 	@Copy("getModel")
-	public abstract RSModel rs$getModel();
-
 	@Replace("getModel")
-	public RSModel rl$getModel()
+	public RSModel copy$getModel()
 	{
 		if (!client.isInterpolatePlayerAnimations())
 		{
-			return rs$getModel();
+			return copy$getModel();
 		}
 		int actionFrame = getActionFrame();
 		int poseFrame = getPoseFrame();
-		int spotAnimFrame = getSpotAnimFrame();
+		int spotAnimFrame = getSpotAnimationFrame();
 		try
 		{
 			// combine the frames with the frame cycle so we can access this information in the sequence methods
 			// without having to change method calls
 			setActionFrame(Integer.MIN_VALUE | getActionFrameCycle() << 16 | actionFrame);
 			setPoseFrame(Integer.MIN_VALUE | getPoseFrameCycle() << 16 | poseFrame);
-			setSpotAnimFrame(Integer.MIN_VALUE | getGraphicFrameCycle() << 16 | spotAnimFrame);
-			return rs$getModel();
+			setSpotAnimFrame(Integer.MIN_VALUE | getSpotAnimationFrameCycle() << 16 | spotAnimFrame);
+			return copy$getModel();
 		}
 		finally
 		{

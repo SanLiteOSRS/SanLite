@@ -58,31 +58,7 @@ public enum VarClientInt
 	CAMERA_ZOOM_FIXED_VIEWPORT(73),
 	CAMERA_ZOOM_RESIZABLE_VIEWPORT(74),
 
-	/**
-	 * 0 = deadman/attackable
-	 * 1 = guarded/safe
-	 */
-	DMM_SAFEZONE(78),
-
 	MEMBERSHIP_STATUS(103),
-
-	/**
-	 *  0 = Combat
-	 *  1 = Stats
-	 *  2 = Quest
-	 *  3 = Inventory
-	 *  4 = Equipment
-	 *  5 = Prayer
-	 *  6 = Spellbook
-	 *  7 = Clan
-	 *  8 = Account Management
-	 *  9 = Friends
-	 *  10 = Logout
-	 *  11 = Options
-	 *  12 = Emotes
-	 *  13 = Music
-	 */
-	PLAYER_INVENTORY_OPENED(171),
 
 	INVENTORY_TAB(171),
 

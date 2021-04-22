@@ -39,11 +39,6 @@ public interface ItemComposition extends ParamHolder
 	String getName();
 
 	/**
-	 * Sets the items name.
-	 */
-	void setName(String name);
-
-	/**
 	 * Gets the items ID.
 	 *
 	 * @return the items ID
@@ -135,8 +130,6 @@ public interface ItemComposition extends ParamHolder
 	 */
 	String[] getInventoryActions();
 
-	String[] getGroundActions();
-
 	/**
 	 * Gets the menu action index of the shift-click action.
 	 *
@@ -156,13 +149,6 @@ public interface ItemComposition extends ParamHolder
 	 * default value.
 	 */
 	void resetShiftClickActionIndex();
-
-	/**
-	 * With this you can make certain (ground) items look like different ones.
-	 *
-	 * @param id The itemID of the item with desired model
-	 */
-	void setModelOverride(int id);
 
 	/**
 	 * Gets the model ID of the inventory item.

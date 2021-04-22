@@ -42,6 +42,273 @@ import lombok.Getter;
 @Getter
 public enum Varbits
 {
+	/* Custom varbits */
+	/**
+	 * Grand Exchange
+	 */
+	GRAND_EXCHANGE_PRICE_PER_ITEM(4398),
+	GRAND_EXCHANGE_UNKNOWN_1(4399),
+
+	RIGOUR_UNLOCKED(5451),
+	AUGURY_UNLOCKED(5452),
+	PRESERVE_UNLOCKED(5453),
+
+	/**
+	 * Value for the current encounter state ranging from 0 to 3,
+	 * Maiden | start 0 -> 1 | end 1 -> 0
+	 * Bloat | start 0 -> 1 | end 1 -> 0
+	 * Nylocas | start 0 -> 1 | end 1 -> 0
+	 * Sotetseg | start 0 -> 1 | maze active 1 -> 2 | maze inactive 2 -> 1 | end 1 -> 0
+	 * Xarpus | start 0 -> 2 | healing phase end 2 -> 1 | end 1 -> 0
+	 * Verzik | start 0 -> 3 | pillar phase end 3 -> 1 | end 1 -> 0
+	 */
+	TOB_ENCOUNTER_STATE(6447), // Range from 0-3, values depend on encounter
+	TOB_ENCOUNTER_HEALTH_BAR_CURRENT_VALUE(6448), // Value is current health percentage (eg. 839 is 83,9%)
+	TOB_ENCOUNTER_HEALTH_BAR_MAX_VALUE(6449), // Max value health percentage (eg. 1000 for 100% and 0 for 0%)
+
+	/**
+	 * Theatre of Blood orb varbits each number stands for the player's health on a scale of 1-27,
+	 * 0 hides the orb, 31 turns the orb yellow
+	 */
+	THEATRE_OF_BLOOD_ORB_1(6442),
+	THEATRE_OF_BLOOD_ORB_2(6443),
+	THEATRE_OF_BLOOD_ORB_3(6444),
+	THEATRE_OF_BLOOD_ORB_4(6445),
+	THEATRE_OF_BLOOD_ORB_5(6446),
+
+	/**
+	 * Nightmare Zone
+	 */
+	NMZ_OVERLOAD(3955),
+
+
+	IN_THE_WILDERNESS(5963),
+
+	/**
+	 * 0 = Sir Bedivere
+	 * 1 = Sir Pelleas
+	 * 2 = Sir Tristram
+	 * 3 = Sir Palomedes
+	 * 4 = Sir Lucan
+	 * 5 = Sir Gawain
+	 * 6 = Sir Kay
+	 * 7 = Sir Lancelot
+	 * 8 = Completed (Chivalry and Piety are unlocked)
+	 */
+	CAMELOT_TRAINING_ROOM_STATUS(3909),
+
+	/**
+	 * Varbit used for Slayer reward points
+	 */
+	SLAYER_REWARD_POINTS(4068),
+
+	/**
+	 * 0 = withdraw/deposit 1
+	 * 1 = withdraw/deposit 5
+	 * 2 = withdraw/deposit 10
+	 * 3 = withdraw/deposit X
+	 * 4 = withdraw/deposit all
+	 */
+	BANK_QUANTITY_MODE(6590),
+
+	WORLDHOPPER_FAVORITE_1(4597),
+	WORLDHOPPER_FAVORITE_2(4598),
+
+	/**
+	 * 0 = standard
+	 * 1 = ancients
+	 * 2 = lunars
+	 * 3 = arceuus
+	 **/
+	SPELLBOOK_ID(4070),
+
+	/**
+	 * 0 = no
+	 * 1 = yes
+	 **/
+	SPELLBOOK_HIDDEN(6718),
+
+
+	/**
+	 * Spells being auto-casted
+	 */
+	AUTO_CAST_SPELL(276),
+
+	/**
+	 * Temple Trekking
+	 */
+	TREK_POINTS(1955),
+	TREK_STARTED(1956),
+	TREK_EVENT(1958),
+	TREK_STATUS(6719),
+	BLOAT_ENTERED_ROOM(6447),
+
+	/**
+	 * f2p Quest varbits, these don't hold the completion value.
+	 */
+	QUEST_DEMON_SLAYER(2561),
+	QUEST_GOBLIN_DIPLOMACY(2378),
+	QUEST_MISTHALIN_MYSTERY(3468),
+	QUEST_THE_CORSAIR_CURSE(6071),
+	QUEST_X_MARKS_THE_SPOT(8063),
+
+	/**
+	 * member Quest varbits, these don't hold the completion value.
+	 */
+	QUEST_ANIMAL_MAGNETISM(3185),
+	QUEST_BETWEEN_A_ROCK(299),
+	QUEST_CONTACT(3274),
+	QUEST_ZOGRE_FLESH_EATERS(487),
+	QUEST_DARKNESS_OF_HALLOWVALE(2573),
+	QUEST_DEATH_TO_THE_DORGESHUUN(2258),
+	QUEST_DESERT_TREASURE(358),
+	QUEST_DEVIOUS_MINDS(1465),
+	QUEST_EAGLES_PEAK(2780),
+	QUEST_ELEMENTAL_WORKSHOP_II(2639),
+	QUEST_ENAKHRAS_LAMENT(1560),
+	QUEST_ENLIGHTENED_JOURNEY(2866),
+	QUEST_THE_EYES_OF_GLOUPHRIE(2497),
+	QUEST_FAIRYTALE_I_GROWING_PAINS(1803),
+	QUEST_FAIRYTALE_II_CURE_A_QUEEN(2326),
+	QUEST_THE_FEUD(334), // 14 = able to pickpocket
+	QUEST_FORGETTABLE_TALE(822),
+	QUEST_GARDEN_OF_TRANQUILLITY(961),
+	QUEST_GHOSTS_AHOY(217),
+	QUEST_THE_GIANT_DWARF(571),
+	QUEST_THE_GOLEM(346),
+	QUEST_HORROR_FROM_THE_DEEP(34),
+	QUEST_ICTHLARINS_LITTLE_HELPER(418),
+	QUEST_IN_AID_OF_THE_MYREQUE(1990),
+	QUEST_THE_LOST_TRIBE(532),
+	QUEST_LUNAR_DIPLOMACY(2448),
+	QUEST_MAKING_HISTORY(1383),
+	QUEST_MOUNTAIN_DAUGHTER(260),
+	QUEST_MOURNINGS_END_PART_II(1103),
+	QUEST_MY_ARMS_BIG_ADVENTURE(2790),
+	QUEST_RATCATCHERS(1404),
+	QUEST_RECIPE_FOR_DISASTER(1850),
+	QUEST_RECRUITMENT_DRIVE(657),
+	QUEST_ROYAL_TROUBLE(2140),
+	QUEST_THE_SLUG_MENACE(2610),
+	QUEST_SHADOW_OF_THE_STORM(1372),
+	QUEST_A_SOULS_BANE(2011),
+	QUEST_SPIRITS_OF_THE_ELID(1444),
+	QUEST_SWAN_SONG(2098),
+	QUEST_A_TAIL_OF_TWO_CATS(1028),
+	QUEST_TEARS_OF_GUTHIX(451),
+	QUEST_WANTED(1051),
+	QUEST_COLD_WAR(3293),
+	QUEST_THE_FREMENNIK_ISLES(3311),
+	QUEST_TOWER_OF_LIFE(3337),
+	QUEST_WHAT_LIES_BELOW(3523),
+	QUEST_OLAFS_QUEST(3534),
+	QUEST_ANOTHER_SLICE_OF_HAM(3550),
+	QUEST_DREAM_MENTOR(3618),
+	QUEST_GRIM_TALES(2783),
+	QUEST_KINGS_RANSOM(3888),
+	QUEST_MONKEY_MADNESS_II(5027),
+	QUEST_CLIENT_OF_KOUREND(5619),
+	QUEST_BONE_VOYAGE(5795),
+	QUEST_THE_QUEEN_OF_THIEVES(6037),
+	QUEST_THE_DEPTHS_OF_DESPAIR(6027),
+	QUEST_DRAGON_SLAYER_II(6104),
+	QUEST_TALE_OF_THE_RIGHTEOUS(6358),
+	QUEST_A_TASTE_OF_HOPE(6396),
+	QUEST_MAKING_FRIENDS_WITH_MY_ARM(6528),
+	QUEST_THE_ASCENT_OF_ARCEUUS(7856),
+	QUEST_THE_FORSAKEN_TOWER(7796),
+	QUEST_SONG_OF_THE_ELVES(7796),
+
+	/**
+	 * mini-quest varbits, these don't hold the completion value.
+	 */
+	QUEST_ARCHITECTURAL_ALLIANCE(4982),
+	QUEST_BEAR_YOUR_SOUL(5078),
+	QUEST_CURSE_OF_THE_EMPTY_LORD(821),
+	QUEST_ENCHANTED_KEY(1391),
+	QUEST_THE_GENERALS_SHADOW(3330),
+	QUEST_SKIPPY_AND_THE_MOGRES(1344),
+	QUEST_LAIR_OF_TARN_RAZORLOR(3290),
+	QUEST_FAMILY_PEST(5347),
+	QUEST_THE_MAGE_ARENA_II(6067),
+	QUEST_IN_SEARCH_OF_KNOWLEDGE(6067),
+
+	/**
+	 * Active spellbook (see enumID)
+	 */
+	SPELLBOOK(4070),
+
+	/**
+	 * Spellbook filtering (1 = unfiltered, 0 = filtered)
+	 */
+	FILTER_SPELLBOOK(6718),
+
+	/**
+	 * POH Building mode (1 = yes, 0 = no)
+	 */
+	BUILDING_MODE(2176),
+
+	/**
+	 * 1 if in game, 0 if not
+	 */
+	LMS_IN_GAME(5314),
+
+	/**
+	 * Amount of pvp kills in current game
+	 */
+	LMS_KILLS(5315),
+
+	/**
+	 * The x coordinate of the final safespace (world coord)
+	 */
+	LMS_SAFE_X(5316),
+
+	/**
+	 * Starts at 100, counts down every 10 ticks (6 seconds)
+	 */
+	LMS_POISON_PROGRESS(5317),
+
+	/**
+	 * The y coordinate of the final safespace (world coord)
+	 */
+	LMS_SAFE_Y(5320),
+
+	/**
+	 * 1 is true, 0 is false.
+	 */
+	GAUNTLET_FINAL_ROOM_ENTERED(9177),
+
+	/**
+	 * 1 is true, 0 is false.
+	 */
+	GAUNTLET_ENTERED(9178),
+
+	WITHDRAW_X_AMOUNT(3960),
+
+	CLAN_WARS_ARENA_UNKNOWN_1(4285),
+	/**
+	 * The value of this equals the remaining ticks till the countdown finished.
+	 * Starts at 204 (~2 minutes) in a normal Clan Wars match. Value decreases by 3 every 3 ticks.
+	 */
+	CLAN_WARS_ARENA_COUNTDOWN_TIMER(4286),
+	CLAN_WARS_ARENA_UNKNOWN_2(4287),
+	CLAN_WARS_ARENA_UNKNOWN_3(4288),
+	CLAN_WARS_ARENA_UNKNOWN_4(4289),
+
+	/**
+	 * The amount of minutes since the start of the day (UTC). Updates every minute.
+	 */
+	GAME_TIME_MINUTES_COUNT(8354),
+
+	/**
+	 * Whether the player is in the buffer zone between the Wilderness and Ferox's Enclave.
+	 */
+	FEROX_ENCLAVE_BUFFER_ZONE(10530),
+
+
+
+	/* RuneLite varbits */
+
 	/*
 	 * If chatbox is transparent or not
 	 */
@@ -56,12 +323,6 @@ public enum Varbits
 	 * If scrollbar in resizable mode chat is on the left
 	 */
 	CHAT_SCROLLBAR_ON_LEFT(6374),
-
-	/**
-	 * Grand Exchange
-	 */
-	GRAND_EXCHANGE_PRICE_PER_ITEM(4398),
-	GRAND_EXCHANGE_UNKNOWN_1(4399),
 
 	/**
 	 * Runepouch
@@ -106,10 +367,6 @@ public enum Varbits
 	PRAYER_PRESERVE(5466),
 	PRAYER_RIGOUR(5464),
 	PRAYER_AUGURY(5465),
-
-	RIGOUR_UNLOCKED(5451),
-	AUGURY_UNLOCKED(5452),
-	PRESERVE_UNLOCKED(5453),
 
 	/**
 	 * Diary Entries
@@ -296,7 +553,7 @@ public enum Varbits
 	TITHE_FARM_SACK_AMOUNT(4900),
 	TITHE_FARM_SACK_ICON(5370),
 	TITHE_FARM_POINTS(4893),
-
+	
 	/**
 	 * Blast Mine
 	 */
@@ -334,34 +591,10 @@ public enum Varbits
 	THEATRE_OF_BLOOD(6440),
 
 	/**
-	 * Value for the current encounter state ranging from 0 to 3,
-	 * Maiden | start 0 -> 1 | end 1 -> 0
-	 * Bloat | start 0 -> 1 | end 1 -> 0
-	 * Nylocas | start 0 -> 1 | end 1 -> 0
-	 * Sotetseg | start 0 -> 1 | maze active 1 -> 2 | maze inactive 2 -> 1 | end 1 -> 0
-	 * Xarpus | start 0 -> 2 | healing phase end 2 -> 1 | end 1 -> 0
-	 * Verzik | start 0 -> 3 | pillar phase end 3 -> 1 | end 1 -> 0
-	 */
-	TOB_ENCOUNTER_STATE(6447), // Range from 0-3, values depend on encounter
-	TOB_ENCOUNTER_HEALTH_BAR_CURRENT_VALUE(6448), // Value is current health percentage (eg. 839 is 83,9%)
-	TOB_ENCOUNTER_HEALTH_BAR_MAX_VALUE(6449), // Max value health percentage (eg. 1000 for 100% and 0 for 0%)
-
-	/**
-	 * Theatre of Blood orb varbits each number stands for the player's health on a scale of 1-27,
-	 * 0 hides the orb, 31 turns the orb yellow
-	 */
-	THEATRE_OF_BLOOD_ORB_1(6442),
-	THEATRE_OF_BLOOD_ORB_2(6443),
-	THEATRE_OF_BLOOD_ORB_3(6444),
-	THEATRE_OF_BLOOD_ORB_4(6445),
-	THEATRE_OF_BLOOD_ORB_5(6446),
-
-	/**
 	 * Nightmare Zone
 	 */
 	NMZ_ABSORPTION(3956),
 	NMZ_POINTS(3949),
-	NMZ_OVERLOAD(3955),
 
 	/**
 	 * Blast Furnace
@@ -420,8 +653,6 @@ public enum Varbits
 	 */
 	MULTICOMBAT_AREA(4605),
 
-	IN_THE_WILDERNESS(5963),
-
 	/**
 	 * Kingdom of Miscellania Management
 	 * Kingdom Approval is represented as a 7-bit unsigned integer; 127 corresponds to 100% approval
@@ -433,19 +664,6 @@ public enum Varbits
 	 * The Hand in the Sand quest status
 	 */
 	QUEST_THE_HAND_IN_THE_SAND(1527),
-
-	/**
-	 * 0 = Sir Bedivere
-	 * 1 = Sir Pelleas
-	 * 2 = Sir Tristram
-	 * 3 = Sir Palomedes
-	 * 4 = Sir Lucan
-	 * 5 = Sir Gawain
-	 * 6 = Sir Kay
-	 * 7 = Sir Lancelot
-	 * 8 = Completed (Chivalry and Piety are unlocked)
-	 */
-	CAMELOT_TRAINING_ROOM_STATUS(3909),
 
 	/**
 	 * Daily Tasks (Collection availability)
@@ -518,11 +736,6 @@ public enum Varbits
 	ACCOUNT_TYPE(1777),
 
 	/**
-	 * Varbit used for Slayer reward points
-	 */
-	SLAYER_REWARD_POINTS(4068),
-
-	/**
 	 * The varbit that stores the oxygen percentage for player
 	 */
 	OXYGEN_LEVEL(5811),
@@ -569,17 +782,8 @@ public enum Varbits
 	BANK_REARRANGE_MODE(3959),
 	CURRENT_BANK_TAB(4150),
 
-	/**
-	 * 0 = withdraw/deposit 1
-	 * 1 = withdraw/deposit 5
-	 * 2 = withdraw/deposit 10
-	 * 3 = withdraw/deposit X
-	 * 4 = withdraw/deposit all
-	 */
-	BANK_QUANTITY_MODE(6590),
-
-	WORLDHOPPER_FAVORITE_1(4597),
-	WORLDHOPPER_FAVORITE_2(4598),
+	WORLDHOPPER_FAVROITE_1(4597),
+	WORLDHOPPER_FAVROITE_2(4598),
 
 	/**
 	 * Vengeance is active
@@ -590,20 +794,6 @@ public enum Varbits
 	 * Spell cooldowns
 	 */
 	VENGEANCE_COOLDOWN(2451),
-
-	/**
-	 * 0 = standard
-	 * 1 = ancients
-	 * 2 = lunars
-	 * 3 = arceuus
-	 **/
-	SPELLBOOK_ID(4070),
-
-	/**
-	 * 0 = no
-	 * 1 = yes
-	 **/
-	SPELLBOOK_HIDDEN(6718),
 
 	/**
 	 * Amount of items in each bank tab
@@ -624,13 +814,6 @@ public enum Varbits
 	 * 1 = sell
 	 */
 	GE_OFFER_CREATION_TYPE(4397),
-
-
-	/**
-	 * Spells being auto-casted
-	 */
-	AUTO_CAST_SPELL(276),
-
 
 	/**
 	 * The active tab within the quest interface
@@ -674,6 +857,15 @@ public enum Varbits
 	PARASITE(10151),
 
 	/**
+	 * Whether the vanilla wiki entity lookup is displayed under the minimap
+	 *
+	 * 0 = Enabled
+	 * 1 = Disabled
+	 *
+	 */
+	WIKI_ENTITY_LOOKUP(10113),
+
+	/**
 	 * Whether the Special Attack orb is disabled due to being in a PvP area
 	 *
 	 * 0 = Enabled (player is not in PvP)
@@ -681,178 +873,7 @@ public enum Varbits
 	 *
 	 * @see <a href="https://oldschool.runescape.wiki/w/Minimap#Special_attack_orb">The OSRS Wiki's Minimap page</a>
 	 */
-	PVP_SPEC_ORB(8121),
-
-	/**
-	 * Temple Trekking
-	 */
-	TREK_POINTS(1955),
-	TREK_STARTED(1956),
-	TREK_EVENT(1958),
-	TREK_STATUS(6719),
-	BLOAT_ENTERED_ROOM(6447),
-
-	/**
-	 * f2p Quest varbits, these don't hold the completion value.
-	 */
-	QUEST_DEMON_SLAYER(2561),
-	QUEST_GOBLIN_DIPLOMACY(2378),
-	QUEST_MISTHALIN_MYSTERY(3468),
-	QUEST_THE_CORSAIR_CURSE(6071),
-	QUEST_X_MARKS_THE_SPOT(8063),
-
-	/**
-	 * member Quest varbits, these don't hold the completion value.
-	 */
-	QUEST_ANIMAL_MAGNETISM(3185),
-	QUEST_BETWEEN_A_ROCK(299),
-	QUEST_CONTACT(3274),
-	QUEST_ZOGRE_FLESH_EATERS(487),
-	QUEST_DARKNESS_OF_HALLOWVALE(2573),
-	QUEST_DEATH_TO_THE_DORGESHUUN(2258),
-	QUEST_DESERT_TREASURE(358),
-	QUEST_DEVIOUS_MINDS(1465),
-	QUEST_EAGLES_PEAK(2780),
-	QUEST_ELEMENTAL_WORKSHOP_II(2639),
-	QUEST_ENAKHRAS_LAMENT(1560),
-	QUEST_ENLIGHTENED_JOURNEY(2866),
-	QUEST_THE_EYES_OF_GLOUPHRIE(2497),
-	QUEST_FAIRYTALE_I_GROWING_PAINS(1803),
-	QUEST_FAIRYTALE_II_CURE_A_QUEEN(2326),
-	QUEST_THE_FEUD(334), // 14 = able to pickpocket
-	QUEST_FORGETTABLE_TALE(822),
-	QUEST_GARDEN_OF_TRANQUILLITY(961),
-	QUEST_GHOSTS_AHOY(217),
-	QUEST_THE_GIANT_DWARF(571),
-	QUEST_THE_GOLEM(346),
-	QUEST_HORROR_FROM_THE_DEEP(34),
-	QUEST_ICTHLARINS_LITTLE_HELPER(418),
-	QUEST_IN_AID_OF_THE_MYREQUE(1990),
-	QUEST_THE_LOST_TRIBE(532),
-	QUEST_LUNAR_DIPLOMACY(2448),
-	QUEST_MAKING_HISTORY(1383),
-	QUEST_MOUNTAIN_DAUGHTER(260),
-	QUEST_MOURNINGS_END_PART_II(1103),
-	QUEST_MY_ARMS_BIG_ADVENTURE(2790),
-	QUEST_RATCATCHERS(1404),
-	QUEST_RECIPE_FOR_DISASTER(1850),
-	QUEST_RECRUITMENT_DRIVE(657),
-	QUEST_ROYAL_TROUBLE(2140),
-	QUEST_THE_SLUG_MENACE(2610),
-	QUEST_SHADOW_OF_THE_STORM(1372),
-	QUEST_A_SOULS_BANE(2011),
-	QUEST_SPIRITS_OF_THE_ELID(1444),
-	QUEST_SWAN_SONG(2098),
-	QUEST_A_TAIL_OF_TWO_CATS(1028),
-	QUEST_TEARS_OF_GUTHIX(451),
-	QUEST_WANTED(1051),
-	QUEST_COLD_WAR(3293),
-	QUEST_THE_FREMENNIK_ISLES(3311),
-	QUEST_TOWER_OF_LIFE(3337),
-	QUEST_WHAT_LIES_BELOW(3523),
-	QUEST_OLAFS_QUEST(3534),
-	QUEST_ANOTHER_SLICE_OF_HAM(3550),
-	QUEST_DREAM_MENTOR(3618),
-	QUEST_GRIM_TALES(2783),
-	QUEST_KINGS_RANSOM(3888),
-	QUEST_MONKEY_MADNESS_II(5027),
-	QUEST_CLIENT_OF_KOUREND(5619),
-	QUEST_BONE_VOYAGE(5795),
-	QUEST_THE_QUEEN_OF_THIEVES(6037),
-	QUEST_THE_DEPTHS_OF_DESPAIR(6027),
-	QUEST_DRAGON_SLAYER_II(6104),
-	QUEST_TALE_OF_THE_RIGHTEOUS(6358),
-	QUEST_A_TASTE_OF_HOPE(6396),
-	QUEST_MAKING_FRIENDS_WITH_MY_ARM(6528),
-	QUEST_THE_ASCENT_OF_ARCEUUS(7856),
-	QUEST_THE_FORSAKEN_TOWER(7796),
-	QUEST_SONG_OF_THE_ELVES(7796),
-
-	/**
-	 * mini-quest varbits, these don't hold the completion value.
-	 */
-	QUEST_ARCHITECTURAL_ALLIANCE(4982),
-	QUEST_BEAR_YOUR_SOUL(5078),
-	QUEST_CURSE_OF_THE_EMPTY_LORD(821),
-	QUEST_ENCHANTED_KEY(1391),
-	QUEST_THE_GENERALS_SHADOW(3330),
-	QUEST_SKIPPY_AND_THE_MOGRES(1344),
-	QUEST_LAIR_OF_TARN_RAZORLOR(3290),
-	QUEST_FAMILY_PEST(5347),
-	QUEST_THE_MAGE_ARENA_II(6067),
-	QUEST_IN_SEARCH_OF_KNOWLEDGE(6067),
-
-	/**
-	 * Active spellbook (see enumID)
-	 */
-	SPELLBOOK(4070),
-
-	/**
-	 * Spellbook filtering (1 = unfiltered, 0 = filtered)
-	 */
-	FILTER_SPELLBOOK(6718),
-
-	/**
-	 * POH Building mode (1 = yes, 0 = no)
-	 */
-	BUILDING_MODE(2176),
-
-	/**
-	 * 1 if in game, 0 if not
-	 */
-	LMS_IN_GAME(5314),
-
-	/**
-	 * Amount of pvp kills in current game
-	 */
-	LMS_KILLS(5315),
-
-	/**
-	 * The x coordinate of the final safespace (world coord)
-	 */
-	LMS_SAFE_X(5316),
-
-	/**
-	 * Starts at 100, counts down every 10 ticks (6 seconds)
-	 */
-	LMS_POISON_PROGRESS(5317),
-
-	/**
-	 * The y coordinate of the final safespace (world coord)
-	 */
-	LMS_SAFE_Y(5320),
-
-	/**
-	 * 1 is true, 0 is false.
-	 */
-	GAUNTLET_FINAL_ROOM_ENTERED(9177),
-
-	/**
-	 * 1 is true, 0 is false.
-	 */
-	GAUNTLET_ENTERED(9178),
-
-	WITHDRAW_X_AMOUNT(3960),
-
-	CLAN_WARS_ARENA_UNKNOWN_1(4285),
-	/**
-	 * The value of this equals the remaining ticks till the countdown finished.
-	 * Starts at 204 (~2 minutes) in a normal Clan Wars match. Value decreases by 3 every 3 ticks.
-	 */
-	CLAN_WARS_ARENA_COUNTDOWN_TIMER(4286),
-	CLAN_WARS_ARENA_UNKNOWN_2(4287),
-	CLAN_WARS_ARENA_UNKNOWN_3(4288),
-	CLAN_WARS_ARENA_UNKNOWN_4(4289),
-
-	/**
-	 * The amount of minutes since the start of the day (UTC). Updates every minute.
-	 */
-	GAME_TIME_MINUTES_COUNT(8354),
-
-	/**
-	 * Whether the player is in the buffer zone between the Wilderness and Ferox's Enclave.
-	 */
-	FEROX_ENCLAVE_BUFFER_ZONE(10530);
+	PVP_SPEC_ORB(8121);
 
 	/**
 	 * The raw varbit ID.

@@ -57,10 +57,6 @@ public interface WallObject extends TileObject
 	 */
 	int getConfig();
 
-	Model getModelA();
-
-	Model getModelB();
-
 	/**
 	 * Gets the convex hull of the objects model.
 	 *

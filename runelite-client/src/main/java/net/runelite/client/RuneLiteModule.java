@@ -63,6 +63,7 @@ public class RuneLiteModule extends AbstractModule
 {
 	private final OkHttpClient okHttpClient;
 	private final Supplier<Applet> clientLoader;
+	private final boolean developerMode;
 	private final boolean safeMode;
 	private final File sessionfile;
 	private final File config;
@@ -76,7 +77,7 @@ public class RuneLiteModule extends AbstractModule
 			String value = properties.getProperty(key);
 			bindConstant().annotatedWith(Names.named(key)).to(value);
 		}
-		bindConstant().annotatedWith(Names.named("developerMode")).to(true);
+		bindConstant().annotatedWith(Names.named("developerMode")).to(developerMode);
 		bindConstant().annotatedWith(Names.named("safeMode")).to(safeMode);
 		bind(File.class).annotatedWith(Names.named("sessionfile")).toInstance(sessionfile);
 		bind(File.class).annotatedWith(Names.named("config")).toInstance(config);

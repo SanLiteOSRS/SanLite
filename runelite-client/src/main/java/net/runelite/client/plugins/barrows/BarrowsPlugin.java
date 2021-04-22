@@ -50,6 +50,8 @@ import net.runelite.client.ui.overlay.infobox.InfoBoxManager;
 import net.runelite.client.ui.overlay.infobox.InfoBoxPriority;
 import net.runelite.client.ui.overlay.infobox.LoopTimer;
 import net.runelite.client.util.QuantityFormatter;
+import net.sanlite.client.plugins.barrows.BarrowsOverlay;
+
 
 import javax.inject.Inject;
 import java.time.temporal.ChronoUnit;
@@ -83,10 +85,10 @@ public class BarrowsPlugin extends Plugin
 	private static final long PRAYER_DRAIN_INTERVAL_MS = 18200;
 	private static final int CRYPT_REGION_ID = 14231;
 
-	@Getter(AccessLevel.PACKAGE)
+	@Getter(AccessLevel.PUBLIC)
 	private final Set<WallObject> walls = new HashSet<>();
 
-	@Getter(AccessLevel.PACKAGE)
+	@Getter(AccessLevel.PUBLIC)
 	private final Set<GameObject> ladders = new HashSet<>();
 
 	private LoopTimer barrowsPrayerDrainTimer;

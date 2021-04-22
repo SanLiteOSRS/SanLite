@@ -73,10 +73,10 @@ public class DiscordStateTest
 
 	@Bind
 	@Named("runelite.title")
-	private String runeliteTitle = "SanLite";
+	private String runeliteTitle = "RuneLite";
 
 	@Bind
-	@Named("sanlite.version")
+	@Named("runelite.version")
 	private String runeliteVersion = "version";
 
 	@Before

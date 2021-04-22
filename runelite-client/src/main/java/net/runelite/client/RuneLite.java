@@ -56,33 +56,20 @@ import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Client;
 import net.runelite.client.account.SessionManager;
-import net.runelite.client.callback.Hooks;
-import net.runelite.client.chat.ChatMessageManager;
-import net.runelite.client.chat.CommandManager;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.discord.DiscordService;
 import net.runelite.client.eventbus.EventBus;
 import net.runelite.client.externalplugins.ExternalPluginManager;
-import net.runelite.client.game.FriendChatManager;
-import net.runelite.client.game.ItemManager;
-import net.runelite.client.game.LootManager;
-import net.runelite.client.game.SoundManager;
-import net.runelite.client.game.chatbox.ChatboxPanelManager;
-import net.runelite.client.menus.MenuManager;
 import net.runelite.client.plugins.PluginManager;
 import net.runelite.client.rs.ClientLoader;
 import net.runelite.client.rs.ClientUpdateCheckMode;
 import net.runelite.client.ui.ClientUI;
-import net.runelite.client.ui.DrawManager;
 import net.runelite.client.ui.FatalErrorDialog;
-import net.runelite.client.ui.SplashScreen;
+import net.sanlite.client.ui.SplashScreen;
 import net.runelite.client.ui.overlay.OverlayManager;
-import net.runelite.client.ui.overlay.OverlayRenderer;
 import net.runelite.client.ui.overlay.WidgetOverlay;
-import net.runelite.client.ui.overlay.infobox.InfoBoxManager;
 import net.runelite.client.ui.overlay.tooltip.TooltipOverlay;
 import net.runelite.client.ui.overlay.worldmap.WorldMapOverlay;
-import net.runelite.client.ws.PartyService;
 import net.runelite.http.api.RuneLiteAPI;
 import okhttp3.Cache;
 import okhttp3.OkHttpClient;
@@ -119,9 +106,6 @@ public class RuneLite
 	private ConfigManager configManager;
 
 	@Inject
-	private DrawManager drawManager;
-
-	@Inject
 	private SessionManager sessionManager;
 
 	@Inject
@@ -134,49 +118,13 @@ public class RuneLite
 	private ClientUI clientUI;
 
 	@Inject
-	private Provider<InfoBoxManager> infoBoxManager;
-
-	@Inject
 	private OverlayManager overlayManager;
-
-	@Inject
-	private Provider<PartyService> partyService;
-
-	@Inject
-	private Provider<ItemManager> itemManager;
-
-	@Inject
-	private Provider<OverlayRenderer> overlayRenderer;
-
-	@Inject
-	private Provider<FriendChatManager> friendsChatManager;
-
-	@Inject
-	private Provider<ChatMessageManager> chatMessageManager;
-
-	@Inject
-	private Provider<MenuManager> menuManager;
-
-	@Inject
-	private Provider<CommandManager> commandManager;
 
 	@Inject
 	private Provider<TooltipOverlay> tooltipOverlay;
 
 	@Inject
 	private Provider<WorldMapOverlay> worldMapOverlay;
-
-	@Inject
-	private Provider<LootManager> lootManager;
-
-	@Inject
-	private Provider<ChatboxPanelManager> chatboxPanelManager;
-
-	@Inject
-	private Provider<SoundManager> soundManager;
-
-	@Inject
-	private Provider<Hooks> hooks;
 
 	@Inject
 	@Nullable
@@ -187,9 +135,9 @@ public class RuneLite
 		Locale.setDefault(Locale.ENGLISH);
 
 		final OptionParser parser = new OptionParser();
+		parser.accepts("developer-mode", "Enable developer tools");
 		parser.accepts("debug", "Show extra debugging output");
 		parser.accepts("safe-mode", "Disables external plugins and the GPU plugin");
-		parser.accepts("local-injected", "Use local injected-client");
 		parser.accepts("insecure-skip-tls-verification", "Disables TLS verification");
 
 		final ArgumentAcceptingOptionSpec<File> sessionfile = parser.accepts("sessionfile", "Use a specified session file")
@@ -231,11 +179,6 @@ public class RuneLite
 			logger.setLevel(Level.DEBUG);
 		}
 
-		if (options.has("local-injected"))
-		{
-			ClientLoader.USE_LOCAL_INJECTED = true;
-		}
-
 		Thread.setDefaultUncaughtExceptionHandler((thread, throwable) ->
 		{
 			log.error("Uncaught exception:", throwable);
@@ -269,6 +212,22 @@ public class RuneLite
 				ClassPreloader.preload();
 			}, "Preloader").start();
 
+			final boolean developerMode = options.has("developer-mode") && RuneLiteProperties.getLauncherVersion() == null;
+
+			if (developerMode)
+			{
+				boolean assertions = false;
+				assert assertions = true;
+				if (!assertions)
+				{
+					SwingUtilities.invokeLater(() ->
+						new FatalErrorDialog("Developers should enable assertions; Add `-ea` to your JVM arguments`")
+							.addBuildingGuide()
+							.open());
+					return;
+				}
+			}
+
 			PROFILES_DIR.mkdirs();
 
 			log.info("RuneLite {} (launcher version {}) starting up, args: {}",
@@ -280,6 +239,7 @@ public class RuneLite
 			injector = Guice.createInjector(new RuneLiteModule(
 				okHttpClient,
 				clientLoader,
+				developerMode,
 				options.has("safe-mode"),
 				options.valueOf(sessionfile),
 				options.valueOf(configfile)));
@@ -295,7 +255,7 @@ public class RuneLite
 		{
 			log.error("Failure during startup", e);
 			SwingUtilities.invokeLater(() ->
-				new FatalErrorDialog(RuneLiteProperties.getTitle() + " has encountered an unexpected error during startup.")
+				new FatalErrorDialog("RuneLite has encountered an unexpected error during startup.")
 					.open());
 		}
 		finally
@@ -354,28 +314,11 @@ public class RuneLite
 		eventBus.register(pluginManager);
 		eventBus.register(externalPluginManager);
 		eventBus.register(overlayManager);
-		eventBus.register(drawManager);
 		eventBus.register(configManager);
 		eventBus.register(discordService);
 
 		if (!isOutdated)
 		{
-			// Initialize chat colors
-			chatMessageManager.get().loadColors();
-
-			eventBus.register(infoBoxManager.get());
-			eventBus.register(partyService.get());
-			eventBus.register(overlayRenderer.get());
-			eventBus.register(friendsChatManager.get());
-			eventBus.register(itemManager.get());
-			eventBus.register(menuManager.get());
-			eventBus.register(chatMessageManager.get());
-			eventBus.register(commandManager.get());
-			eventBus.register(lootManager.get());
-			eventBus.register(chatboxPanelManager.get());
-			eventBus.register(soundManager.get());
-			eventBus.register(hooks.get());
-
 			// Add core overlays
 			WidgetOverlay.createOverlays(client).forEach(overlayManager::add);
 			overlayManager.add(worldMapOverlay.get());

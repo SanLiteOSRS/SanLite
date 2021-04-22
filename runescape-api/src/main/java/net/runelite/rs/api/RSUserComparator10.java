@@ -1,5 +1,3 @@
 package net.runelite.rs.api;
 
-public interface RSUserComparator10
-{
-}
+public interface RSUserComparator10 {}

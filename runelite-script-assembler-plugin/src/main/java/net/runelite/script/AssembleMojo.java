@@ -25,6 +25,8 @@
 package net.runelite.script;
 
 import com.google.common.io.Files;
+import com.google.common.io.MoreFiles;
+import com.google.common.io.RecursiveDeleteOption;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -52,7 +54,26 @@ public class AssembleMojo extends AbstractMojo
 	@Parameter(required = true)
 	private File outputDirectory;
 
+	private AssembleMojo(File scriptDirectory, File outputDirectory)
+	{
+		this.scriptDirectory = scriptDirectory;
+		this.outputDirectory = outputDirectory;
+	}
+
 	private final Log log = getLog();
+
+	public static void main(String[] args) throws Exception
+	{
+		if (args.length < 2)
+		{
+			throw new IllegalArgumentException("Usage: inputfile outputfile");
+		}
+
+		File scriptDirectory = new File(args[0]);
+		File outputDirectory = new File(args[1]);
+
+		new AssembleMojo(scriptDirectory, outputDirectory).execute();
+	}
 
 	@Override
 	public void execute() throws MojoExecutionException, MojoFailureException
@@ -66,6 +87,16 @@ public class AssembleMojo extends AbstractMojo
 		int count = 0;
 		File scriptOut = new File(outputDirectory, Integer.toString(IndexType.CLIENTSCRIPT.getNumber()));
 		scriptOut.mkdirs();
+
+		// Clear the target directory to remove stale entries
+		try
+		{
+			MoreFiles.deleteDirectoryContents(scriptOut.toPath(), RecursiveDeleteOption.ALLOW_INSECURE);
+		}
+		catch (IOException e)
+		{
+			throw new MojoExecutionException("Could not clear scriptOut: " + scriptOut, e);
+		}
 
 		for (File scriptFile : scriptDirectory.listFiles((dir, name) -> name.endsWith(".rs2asm")))
 		{

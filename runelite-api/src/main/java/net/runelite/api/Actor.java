@@ -29,6 +29,7 @@ import java.awt.Polygon;
 import java.awt.Shape;
 import java.awt.image.BufferedImage;
 import javax.annotation.Nullable;
+import net.runelite.api.annotations.VisibleForDevtools;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.coords.WorldArea;
 import net.runelite.api.coords.WorldPoint;
@@ -64,12 +65,8 @@ public interface Actor extends Renderable
 	 * </ul>
 	 *
 	 * @return the actor, null if no interaction is occurring
-	 *
-	 * (getRSInteracting returns the npc/player index, useful for menus)
 	 */
 	Actor getInteracting();
-
-	int getInteractingIndex();
 
 	/**
 	 * Gets the health of the actor in {@link #getHealthScale()} units.
@@ -130,6 +127,7 @@ public interface Actor extends Renderable
 	 */
 	int getPoseAnimation();
 
+	@VisibleForDevtools
 	void setPoseAnimation(int animation);
 
 	/**
@@ -141,6 +139,7 @@ public interface Actor extends Renderable
 	 */
 	int getIdlePoseAnimation();
 
+	@VisibleForDevtools
 	void setIdlePoseAnimation(int animation);
 
 	/**
@@ -205,27 +204,60 @@ public interface Actor extends Renderable
 	 * @param animation the animation ID
 	 * @see AnimationID
 	 */
+	@VisibleForDevtools
 	void setAnimation(int animation);
+
+	/**
+	 * Get the frame of the animation the actor is performing
+	 *
+	 * @return the frame
+	 */
+	int getAnimationFrame();
 
 	/**
 	 * Sets the frame of the animation the actor is performing.
 	 *
-	 * @param actionFrame the animation frame
+	 * @param frame the animation frame
+	 * @deprecated use setAnimationFrame
 	 */
-	void setActionFrame(int actionFrame);
+	@Deprecated
+	void setActionFrame(int frame);
 
 	/**
-	 * Gets the graphic that is currently on the player.
+	 * Sets the frame of the animation the actor is performing.
 	 *
-	 * @return the graphic of the actor
+	 * @param frame the animation frame
+	 */
+	void setAnimationFrame(int frame);
+
+	/**
+	 * Get the graphic/spotanim that is currently on the actor.
+	 *
+	 * @return the spotanim of the actor
 	 * @see GraphicID
 	 */
 	int getGraphic();
 
+	/**
+	 * Set the graphic/spotanim that is currently on the actor.
+	 *
+	 * @param graphic The spotanim id
+	 * @see GraphicID
+	 */
 	void setGraphic(int graphic);
 
+	/**
+	 * Get the frame of the currently playing spotanim
+	 *
+	 * @return
+	 */
 	int getSpotAnimFrame();
 
+	/**
+	 * Set the frame of the currently playing spotanim
+	 *
+	 * @param spotAnimFrame
+	 */
 	void setSpotAnimFrame(int spotAnimFrame);
 
 	/**
@@ -321,20 +353,4 @@ public interface Actor extends Renderable
 	 * @return
 	 */
 	boolean isDead();
-
-	/**
-	 * Gets the action frame game tick.
-	 *
-	 * @return action frame game tick
-	 */
-	int getActionFrame();
-
-	/**
-	 * Gets the action frame game cycle.
-	 *
-	 * @return action frame game cycle
-	 */
-	int getActionFrameCycle();
-
-	boolean isMoving();
 }

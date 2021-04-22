@@ -37,6 +37,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.text.Document;
 import lombok.Getter;
 import net.runelite.client.ui.ColorScheme;
+import net.sanlite.client.ui.Colors;
 
 /**
  * This component is a JTextField with a flat design look.
@@ -67,7 +68,7 @@ public class FlatTextField extends JPanel
 		this.textField.setBorder(null);
 		this.textField.setOpaque(false);
 		this.textField.setSelectedTextColor(Color.WHITE);
-		this.textField.setSelectionColor(ColorScheme.BRAND_BLUE_TRANSPARENT);
+		this.textField.setSelectionColor(Colors.BRAND_BLUE_TRANSPARENT);
 
 		add(textField, BorderLayout.CENTER);
 

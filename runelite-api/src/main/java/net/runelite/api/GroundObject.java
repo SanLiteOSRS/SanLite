@@ -33,8 +33,6 @@ public interface GroundObject extends TileObject
 {
 	Renderable getRenderable();
 
-	Model getModel();
-
 	/**
 	 * Gets the convex hull of the objects model.
 	 *

@@ -118,7 +118,7 @@ public class ReflectUtil
 			throw new RuntimeException("unable to install lookup helper", e);
 		}
 	}
-
+	
 	public static class PrivateLookupHelper
 	{
 		static

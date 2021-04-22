@@ -89,7 +89,6 @@ public final class SoundEffectID
 	public final static int PRAYER_ACTIVATE_SMITE = 2686;
 	public final static int PRAYER_ACTIVATE_CHIVALRY = 3826;
 	public final static int PRAYER_ACTIVATE_PIETY = 3825;
-	public final static int PRAYER_ACTIVATE_VROOM = 2690;
 	public final static int PRAYER_DEACTIVE_VWOOP = 2663;
 	public final static int PRAYER_DEPLETE_TWINKLE = 2672;
 
@@ -97,44 +96,4 @@ public final class SoundEffectID
 	public final static int TOWN_CRIER_BELL_DONG = 3817;
 	public final static int TOWN_CRIER_SHOUT_SQUEAK = 3816;
 
-	// Ancient spellbook (also used elsewhere)
-	public final static int CAST_ANCIENT_TELEPORT = 197;
-	public final static int CAST_BLOOD_SPELL = 106;
-	public final static int BLOOD_RUSH_HIT = 105;
-	public final static int BLOOD_BURST_HIT = 110;
-	public final static int BLOOD_BLITZ_HIT = 104;
-	public final static int BLOOD_BARRAGE_HIT = 102;
-	public final static int CAST_ICE_SPELL = 171;
-	public final static int ICE_RUSH_HIT = 173;
-	public final static int ICE_BURST_HIT = 170;
-	public final static int ICE_BLITZ_HIT = 169;
-	public final static int ICE_BARRAGE_HIT = 168;
-	public final static int CAST_SHADOW_SPELL = 178;
-	public final static int SMOKE_RUSH_HIT = 185;
-	public final static int SMOKE_BURST_HIT = 182;
-	public final static int SMOKE_BLITZ_HIT = 181;
-	public final static int SMOKE_BARRAGE_HIT = 180;
-	public final static int CAST_SMOKE_SPELL = 183;
-	public final static int SHADOW_RUSH_HIT = 179;
-	public final static int SHADOW_BURST_HIT = 177;
-	public final static int SHADOW_BLITZ_HIT = 176;
-	public final static int SHADOW_BARRAGE_HIT = 175;
-
-	public final static int BAT_DEATH = 293;
-	public final static int BAT_HIT = 294;
-	public final static int TELEPORT_TABLET_BREAK = 965;
-	public final static int SWITCH_SPELL_BOOK = 1097;
-
-	public final static int NPC_APPEAR_WUP = 1931;
-	public final static int WATER_DROPLET = 2051;
-	public final static int JUNGLE_AMBIENCE = 2089;
-	public final static int MONKEY_SCREECH = 2090;
-	public final static int EQUIP_ITEM_1 = 2244;
-	public final static int EQUIP_METAL_ITEM = 2245;
-	public final static int EQUIP_HEAVY_ITEM = 2246;
-	public final static int EQUIP_ITEM_2 = 2247;
-	public final static int DRINK_POTION = 2401;
-	public final static int CREATE_JUG_OF_WIN = 2489;
-	public final static int EFFECT_EXPIRED = 3424;
-	public final static int IMPLING_WHISTLE = 3722;
 }

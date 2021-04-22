@@ -106,24 +106,14 @@ public interface MessageNode extends Node
 	/**
 	 * Get the timestamp for the message, in seconds from the unix epoch.
 	 *
-	 * @return message timestamp in seconds
+	 * @return
 	 */
 	int getTimestamp();
 
 	/**
 	 * Set the timestamp of the message
 	 *
-	 * @param timestamp message timestamp
+	 * @param timestamp
 	 */
 	void setTimestamp(int timestamp);
-
-	/**
-	 * Returns true if the message is from a friend
-	 */
-	boolean isFromFriend();
-
-	/**
-	 * Returns true if the message is from a clanmate
-	 */
-	boolean isFromFriendsChatMember();
 }

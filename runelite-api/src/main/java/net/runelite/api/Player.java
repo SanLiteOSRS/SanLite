@@ -35,8 +35,6 @@ public interface Player extends Actor
 	@Override
 	int getCombatLevel();
 
-	int getPlayerId();
-
 	/**
 	 * Gets the composition of this player.
 	 *
@@ -82,6 +80,7 @@ public interface Player extends Actor
 
 	/**
 	 * Gets the displayed skull icon of the player.
+	 * Only works on the local player.
 	 *
 	 * @return the skull icon
 	 */
@@ -101,6 +100,4 @@ public interface Player extends Actor
 	 * @return true if the player is skulled, false otherwise
 	 */
 	boolean isSkulled();
-
-	String[] getActions();
 }

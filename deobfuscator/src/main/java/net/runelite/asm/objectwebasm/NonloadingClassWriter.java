@@ -104,6 +104,7 @@ public class NonloadingClassWriter extends ClassWriter
 			if ((prev = c).getSuperName().equals(other))
 				return other;
 
+		// This should pretty much never be hit, right?
 		return super.getCommonSuperClass(prev.getSuperName(), other);
 	}
 }

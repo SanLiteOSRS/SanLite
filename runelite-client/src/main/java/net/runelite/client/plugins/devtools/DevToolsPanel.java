@@ -31,7 +31,6 @@ import java.awt.TrayIcon;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import javax.inject.Inject;
-import javax.sound.sampled.Clip;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import lombok.extern.slf4j.Slf4j;
@@ -46,8 +45,6 @@ import net.runelite.client.ui.overlay.OverlayMenuEntry;
 import net.runelite.client.ui.overlay.infobox.Counter;
 import net.runelite.client.ui.overlay.infobox.InfoBoxManager;
 import net.runelite.client.util.ImageUtil;
-import net.runelite.client.game.SoundManager;
-import net.runelite.client.util.SoundUtil;
 
 @Slf4j
 class DevToolsPanel extends PluginPanel
@@ -62,7 +59,6 @@ class DevToolsPanel extends PluginPanel
 	private final ScriptInspector scriptInspector;
 	private final InventoryInspector inventoryInspector;
 	private final InfoBoxManager infoBoxManager;
-	private final SoundManager soundManager;
 	private final ScheduledExecutorService scheduledExecutorService;
 
 	@Inject
@@ -76,7 +72,6 @@ class DevToolsPanel extends PluginPanel
 		InventoryInspector inventoryInspector,
 		Notifier notifier,
 		InfoBoxManager infoBoxManager,
-		SoundManager soundManager,
 		ScheduledExecutorService scheduledExecutorService)
 	{
 		super();
@@ -89,7 +84,6 @@ class DevToolsPanel extends PluginPanel
 		this.scriptInspector = scriptInspector;
 		this.notifier = notifier;
 		this.infoBoxManager = infoBoxManager;
-		this.soundManager = soundManager;
 		this.scheduledExecutorService = scheduledExecutorService;
 
 		setBackground(ColorScheme.DARK_GRAY_COLOR);
@@ -197,11 +191,6 @@ class DevToolsPanel extends PluginPanel
 		{
 			log.info("Shell couldn't be loaded", e);
 		}
-
-		final JButton customSoundBtn = new JButton("Custom Sound");
-		Clip customSoundClip = SoundUtil.getResourceStreamFromClass(getClass(), "custom_sound.wav");
-		customSoundBtn.addActionListener(e -> scheduledExecutorService.submit(() -> soundManager.playCustomSound(customSoundClip)));
-		container.add(customSoundBtn);
 
 		return container;
 	}

@@ -4,185 +4,78 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ae")
+@ObfuscatedName("ed")
 @Implements("WorldMapSectionType")
 public enum WorldMapSectionType implements Enumerated {
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "Lae;"
+		descriptor = "Led;"
 	)
 	@Export("WORLDMAPSECTIONTYPE0")
-	WORLDMAPSECTIONTYPE0(3, (byte)0),
-	@ObfuscatedName("v")
+	WORLDMAPSECTIONTYPE0(2, (byte)0),
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "Lae;"
+		descriptor = "Led;"
 	)
 	@Export("WORLDMAPSECTIONTYPE1")
-	WORLDMAPSECTIONTYPE1(0, (byte)1),
-	@ObfuscatedName("d")
+	WORLDMAPSECTIONTYPE1(1, (byte)1),
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "Lae;"
+		descriptor = "Led;"
 	)
 	@Export("WORLDMAPSECTIONTYPE2")
-	WORLDMAPSECTIONTYPE2(2, (byte)2),
-	@ObfuscatedName("c")
+	WORLDMAPSECTIONTYPE2(3, (byte)2),
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		signature = "Lae;"
+		descriptor = "Led;"
 	)
 	@Export("WORLDMAPSECTIONTYPE3")
-	WORLDMAPSECTIONTYPE3(1, (byte)3);
+	WORLDMAPSECTIONTYPE3(0, (byte)3);
 
-	@ObfuscatedName("sm")
-	@ObfuscatedSignature(
-		signature = "Lcf;"
-	)
-	@Export("clientPreferences")
-	static ClientPreferences clientPreferences;
-	@ObfuscatedName("sv")
-	@ObfuscatedSignature(
-		signature = "Li;"
-	)
-	@Export("grandExchangeEvents")
-	static GrandExchangeEvents grandExchangeEvents;
-	@ObfuscatedName("y")
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = -695780183
+		intValue = 624022127
 	)
 	@Export("type")
 	final int type;
-	@ObfuscatedName("h")
+	@ObfuscatedName("e")
 	@Export("id")
 	final byte id;
 
 	WorldMapSectionType(int var3, byte var4) {
-		this.type = var3;
-		this.id = var4;
-	}
+		this.type = var3; // L: 17
+		this.id = var4; // L: 18
+	} // L: 19
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "(B)I",
-		garbageValue = "63"
+		descriptor = "(I)I",
+		garbageValue = "-1000839247"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
-		return this.id;
+		return this.id; // L: 22
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		signature = "(Liy;IIIBZI)V",
-		garbageValue = "-1369121256"
+		descriptor = "(IZIZI)V",
+		garbageValue = "-998879160"
 	)
-	@Export("requestNetFile")
-	static void requestNetFile(Archive var0, int var1, int var2, int var3, byte var4, boolean var5) {
-		long var6 = (long)((var1 << 16) + var2);
-		NetFileRequest var8 = (NetFileRequest)NetCache.NetCache_pendingPriorityWrites.get(var6);
-		if (var8 == null) {
-			var8 = (NetFileRequest)NetCache.NetCache_pendingPriorityResponses.get(var6);
-			if (var8 == null) {
-				var8 = (NetFileRequest)NetCache.NetCache_pendingWrites.get(var6);
-				if (var8 != null) {
-					if (var5) {
-						var8.removeDual();
-						NetCache.NetCache_pendingPriorityWrites.put(var8, var6);
-						--NetCache.NetCache_pendingWritesCount;
-						++NetCache.NetCache_pendingPriorityWritesCount;
-					}
-
-				} else {
-					if (!var5) {
-						var8 = (NetFileRequest)NetCache.NetCache_pendingResponses.get(var6);
-						if (var8 != null) {
-							return;
-						}
-					}
-
-					var8 = new NetFileRequest();
-					var8.archive = var0;
-					var8.crc = var3;
-					var8.padding = var4;
-					if (var5) {
-						NetCache.NetCache_pendingPriorityWrites.put(var8, var6);
-						++NetCache.NetCache_pendingPriorityWritesCount;
-					} else {
-						NetCache.NetCache_pendingWritesQueue.addFirst(var8);
-						NetCache.NetCache_pendingWrites.put(var8, var6);
-						++NetCache.NetCache_pendingWritesCount;
-					}
-
-				}
-			}
+	@Export("sortWorldList")
+	static void sortWorldList(int var0, boolean var1, int var2, boolean var3) {
+		if (class9.World_worlds != null) { // L: 171
+			class368.doWorldSorting(0, class9.World_worlds.length - 1, var0, var1, var2, var3); // L: 172
 		}
-	}
 
-	@ObfuscatedName("a")
+	} // L: 174
+
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		signature = "(III)I",
-		garbageValue = "-103793569"
+		descriptor = "(II)Z",
+		garbageValue = "583371585"
 	)
-	static final int method320(int var0, int var1) {
-		int var2 = var1 * 57 + var0;
-		var2 ^= var2 << 13;
-		int var3 = var2 * (var2 * var2 * 15731 + 789221) + 1376312589 & Integer.MAX_VALUE;
-		return var3 >> 19 & 255;
-	}
-
-	@ObfuscatedName("go")
-	@ObfuscatedSignature(
-		signature = "(IIIII)V",
-		garbageValue = "-177467978"
-	)
-	static final void method318(int var0, int var1, int var2, int var3) {
-		Client.field778 = 0;
-		int var4 = GrandExchangeOfferNameComparator.baseX * 64 + (UserComparator9.localPlayer.x >> 7);
-		int var5 = NetCache.baseY * 64 + (UserComparator9.localPlayer.y >> 7);
-		if (var4 >= 3053 && var4 <= 3156 && var5 >= 3056 && var5 <= 3136) {
-			Client.field778 = 1;
-		}
-
-		if (var4 >= 3072 && var4 <= 3118 && var5 >= 9492 && var5 <= 9535) {
-			Client.field778 = 1;
-		}
-
-		if (Client.field778 == 1 && var4 >= 3139 && var4 <= 3199 && var5 >= 3008 && var5 <= 3062) {
-			Client.field778 = 0;
-		}
-
-	}
-
-	@ObfuscatedName("hp")
-	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "417722917"
-	)
-	static final void method319() {
-		for (PendingSpawn var0 = (PendingSpawn)Client.pendingSpawns.last(); var0 != null; var0 = (PendingSpawn)Client.pendingSpawns.previous()) {
-			if (var0.hitpoints > 0) {
-				--var0.hitpoints;
-			}
-
-			if (var0.hitpoints == 0) {
-				if (var0.objectId < 0 || TaskHandler.method3673(var0.objectId, var0.field945)) {
-					SpriteMask.addPendingSpawnToScene(var0.plane, var0.type, var0.x, var0.y, var0.objectId, var0.field944, var0.field945);
-					var0.remove();
-				}
-			} else {
-				if (var0.delay > 0) {
-					--var0.delay;
-				}
-
-				if (var0.delay == 0 && var0.x >= 1 && var0.y >= 1 && var0.x <= 102 && var0.y <= 102 && (var0.id < 0 || TaskHandler.method3673(var0.id, var0.field948))) {
-					SpriteMask.addPendingSpawnToScene(var0.plane, var0.type, var0.x, var0.y, var0.id, var0.orientation, var0.field948);
-					var0.delay = -1;
-					if (var0.objectId == var0.id && var0.objectId == -1) {
-						var0.remove();
-					} else if (var0.id == var0.objectId && var0.field944 == var0.orientation && var0.field948 == var0.field945) {
-						var0.remove();
-					}
-				}
-			}
-		}
-
+	public static boolean method3066(int var0) {
+		return var0 >= WorldMapDecorationType.field2834.id && var0 <= WorldMapDecorationType.field2835.id; // L: 42
 	}
 }

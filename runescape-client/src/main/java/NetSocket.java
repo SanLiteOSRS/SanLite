@@ -9,227 +9,223 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fr")
+@ObfuscatedName("ek")
 @Implements("NetSocket")
 public final class NetSocket extends AbstractSocket implements Runnable {
-	@ObfuscatedName("fy")
-	@ObfuscatedSignature(
-		signature = "Lfl;"
-	)
-	@Export("socketTask")
-	static Task socketTask;
-	@ObfuscatedName("n")
+	@ObfuscatedName("d")
+	static boolean field1498;
+	@ObfuscatedName("f")
 	@Export("inputStream")
 	InputStream inputStream;
-	@ObfuscatedName("v")
-	@Export("outputStream")
-	OutputStream outputStream;
-	@ObfuscatedName("d")
+	@ObfuscatedName("o")
 	@Export("socket")
 	Socket socket;
-	@ObfuscatedName("c")
+	@ObfuscatedName("u")
+	@Export("outputStream")
+	OutputStream outputStream;
+	@ObfuscatedName("p")
 	@Export("isClosed")
 	boolean isClosed;
-	@ObfuscatedName("y")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		signature = "Lfu;"
+		descriptor = "Ldt;"
 	)
 	@Export("taskHandler")
 	TaskHandler taskHandler;
-	@ObfuscatedName("h")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		signature = "Lfl;"
+		descriptor = "Lep;"
 	)
 	@Export("task")
 	Task task;
-	@ObfuscatedName("z")
+	@ObfuscatedName("k")
 	@Export("outBuffer")
 	byte[] outBuffer;
-	@ObfuscatedName("e")
+	@ObfuscatedName("g")
 	@ObfuscatedGetter(
-		intValue = -80175503
+		intValue = 1893029663
 	)
 	@Export("outLength")
 	int outLength;
-	@ObfuscatedName("q")
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = -502445773
+		intValue = -1275635837
 	)
 	@Export("outOffset")
 	int outOffset;
-	@ObfuscatedName("l")
+	@ObfuscatedName("n")
 	@Export("exceptionWriting")
 	boolean exceptionWriting;
-	@ObfuscatedName("s")
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = 1447892009
+		intValue = -1698435769
 	)
 	@Export("bufferLength")
 	final int bufferLength;
-	@ObfuscatedName("b")
+	@ObfuscatedName("m")
 	@ObfuscatedGetter(
-		intValue = -1889811971
+		intValue = 190776071
 	)
 	@Export("maxPacketLength")
 	final int maxPacketLength;
 
 	@ObfuscatedSignature(
-		signature = "(Ljava/net/Socket;Lfu;I)V"
+		descriptor = "(Ljava/net/Socket;Ldt;I)V"
 	)
 	public NetSocket(Socket var1, TaskHandler var2, int var3) throws IOException {
-		this.isClosed = false;
-		this.outLength = 0;
-		this.outOffset = 0;
-		this.exceptionWriting = false;
-		this.taskHandler = var2;
-		this.socket = var1;
-		this.bufferLength = var3;
-		this.maxPacketLength = var3 - 100;
-		this.socket.setSoTimeout(30000);
-		this.socket.setTcpNoDelay(true);
-		this.socket.setReceiveBufferSize(65536);
-		this.socket.setSendBufferSize(65536);
-		this.inputStream = this.socket.getInputStream();
-		this.outputStream = this.socket.getOutputStream();
-	}
+		this.isClosed = false; // L: 16
+		this.outLength = 0; // L: 20
+		this.outOffset = 0; // L: 21
+		this.exceptionWriting = false; // L: 22
+		this.taskHandler = var2; // L: 28
+		this.socket = var1; // L: 29
+		this.bufferLength = var3; // L: 30
+		this.maxPacketLength = var3 - 100; // L: 31
+		this.socket.setSoTimeout(30000); // L: 32
+		this.socket.setTcpNoDelay(true); // L: 33
+		this.socket.setReceiveBufferSize(65536); // L: 34
+		this.socket.setSendBufferSize(65536); // L: 35
+		this.inputStream = this.socket.getInputStream(); // L: 36
+		this.outputStream = this.socket.getOutputStream(); // L: 37
+	} // L: 38
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "136255387"
+		descriptor = "(I)V",
+		garbageValue = "-1705512918"
 	)
 	@Export("close")
 	public void close() {
-		if (!this.isClosed) {
-			synchronized(this) {
-				this.isClosed = true;
-				this.notifyAll();
-			}
+		if (!this.isClosed) { // L: 41
+			synchronized(this) { // L: 42
+				this.isClosed = true; // L: 43
+				this.notifyAll(); // L: 44
+			} // L: 45
 
-			if (this.task != null) {
-				while (this.task.status == 0) {
-					ApproximateRouteStrategy.method1311(1L);
+			if (this.task != null) { // L: 46
+				while (this.task.status == 0) { // L: 47
+					GrandExchangeEvent.sleepExact(1L); // L: 48
 				}
 
-				if (this.task.status == 1) {
+				if (this.task.status == 1) { // L: 50
 					try {
-						((Thread)this.task.result).join();
-					} catch (InterruptedException var3) {
+						((Thread)this.task.result).join(); // L: 52
+					} catch (InterruptedException var3) { // L: 54
 					}
 				}
 			}
 
-			this.task = null;
+			this.task = null; // L: 57
 		}
-	}
+	} // L: 58
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "(B)I",
-		garbageValue = "-29"
+		descriptor = "(B)I",
+		garbageValue = "-75"
 	)
 	@Export("readUnsignedByte")
 	public int readUnsignedByte() throws IOException {
-		return this.isClosed ? 0 : this.inputStream.read();
+		return this.isClosed ? 0 : this.inputStream.read(); // L: 65 66
 	}
 
-	@ObfuscatedName("d")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "(B)I",
-		garbageValue = "1"
+		descriptor = "(B)I",
+		garbageValue = "-65"
 	)
 	@Export("available")
 	public int available() throws IOException {
-		return this.isClosed ? 0 : this.inputStream.available();
+		return this.isClosed ? 0 : this.inputStream.available(); // L: 70 71
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		signature = "(II)Z",
-		garbageValue = "1621767276"
+		descriptor = "(II)Z",
+		garbageValue = "1604537239"
 	)
 	@Export("isAvailable")
 	public boolean isAvailable(int var1) throws IOException {
-		if (this.isClosed) {
+		if (this.isClosed) { // L: 75
 			return false;
 		} else {
-			return this.inputStream.available() >= var1;
+			return this.inputStream.available() >= var1; // L: 76
 		}
 	}
 
-	@ObfuscatedName("y")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		signature = "([BIIB)I",
-		garbageValue = "-127"
+		descriptor = "([BIIB)I",
+		garbageValue = "121"
 	)
 	@Export("read")
 	public int read(byte[] var1, int var2, int var3) throws IOException {
-		if (this.isClosed) {
+		if (this.isClosed) { // L: 80
 			return 0;
 		} else {
 			int var4;
 			int var5;
-			for (var4 = var3; var3 > 0; var3 -= var5) {
-				var5 = this.inputStream.read(var1, var2, var3);
-				if (var5 <= 0) {
+			for (var4 = var3; var3 > 0; var3 -= var5) { // L: 81 82 86
+				var5 = this.inputStream.read(var1, var2, var3); // L: 83
+				if (var5 <= 0) { // L: 84
 					throw new EOFException();
 				}
 
-				var2 += var5;
+				var2 += var5; // L: 85
 			}
 
-			return var4;
+			return var4; // L: 88
 		}
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		signature = "([BIII)V",
-		garbageValue = "-2045267371"
+		descriptor = "([BIII)V",
+		garbageValue = "277239733"
 	)
 	@Export("write0")
 	void write0(byte[] var1, int var2, int var3) throws IOException {
-		if (!this.isClosed) {
-			if (this.exceptionWriting) {
-				this.exceptionWriting = false;
-				throw new IOException();
+		if (!this.isClosed) { // L: 92
+			if (this.exceptionWriting) { // L: 93
+				this.exceptionWriting = false; // L: 94
+				throw new IOException(); // L: 95
 			} else {
-				if (this.outBuffer == null) {
+				if (this.outBuffer == null) { // L: 97
 					this.outBuffer = new byte[this.bufferLength];
 				}
 
-				synchronized(this) {
-					for (int var5 = 0; var5 < var3; ++var5) {
-						this.outBuffer[this.outOffset] = var1[var5 + var2];
-						this.outOffset = (this.outOffset + 1) % this.bufferLength;
-						if ((this.maxPacketLength + this.outLength) % this.bufferLength == this.outOffset) {
-							throw new IOException();
+				synchronized(this) { // L: 98
+					for (int var5 = 0; var5 < var3; ++var5) { // L: 99
+						this.outBuffer[this.outOffset] = var1[var5 + var2]; // L: 100
+						this.outOffset = (this.outOffset + 1) % this.bufferLength; // L: 101
+						if ((this.maxPacketLength + this.outLength) % this.bufferLength == this.outOffset) { // L: 102
+							throw new IOException(); // L: 103
 						}
 					}
 
-					if (this.task == null) {
-						this.task = this.taskHandler.newThreadTask(this, 3);
+					if (this.task == null) { // L: 106
+						this.task = this.taskHandler.newThreadTask(this, 3); // L: 107
 					}
 
-					this.notifyAll();
+					this.notifyAll(); // L: 109
 				}
 			}
 		}
-	}
+	} // L: 111
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "([BIII)V",
-		garbageValue = "1032488862"
+		descriptor = "([BIII)V",
+		garbageValue = "199608149"
 	)
 	@Export("write")
 	public void write(byte[] var1, int var2, int var3) throws IOException {
-		this.write0(var1, var2, var3);
-	}
+		this.write0(var1, var2, var3); // L: 160
+	} // L: 161
 
 	protected void finalize() {
-		this.close();
-	}
+		this.close(); // L: 61
+	} // L: 62
 
 	public void run() {
 		try {
@@ -237,78 +233,82 @@ public final class NetSocket extends AbstractSocket implements Runnable {
 				label84: {
 					int var1;
 					int var2;
-					synchronized(this) {
-						if (this.outOffset == this.outLength) {
-							if (this.isClosed) {
+					synchronized(this) { // L: 118
+						if (this.outLength == this.outOffset) { // L: 119
+							if (this.isClosed) { // L: 120
 								break label84;
 							}
 
 							try {
-								this.wait();
-							} catch (InterruptedException var10) {
+								this.wait(); // L: 122
+							} catch (InterruptedException var10) { // L: 124
 							}
 						}
 
-						var2 = this.outLength;
-						if (this.outOffset >= this.outLength) {
+						var2 = this.outLength; // L: 126
+						if (this.outOffset >= this.outLength) { // L: 127
 							var1 = this.outOffset - this.outLength;
 						} else {
-							var1 = this.bufferLength - this.outLength;
+							var1 = this.bufferLength - this.outLength; // L: 128
 						}
 					}
 
-					if (var1 <= 0) {
+					if (var1 <= 0) { // L: 130
 						continue;
 					}
 
 					try {
-						this.outputStream.write(this.outBuffer, var2, var1);
-					} catch (IOException var9) {
-						this.exceptionWriting = true;
+						this.outputStream.write(this.outBuffer, var2, var1); // L: 132
+					} catch (IOException var9) { // L: 134
+						this.exceptionWriting = true; // L: 135
 					}
 
-					this.outLength = (var1 + this.outLength) % this.bufferLength;
+					this.outLength = (var1 + this.outLength) % this.bufferLength; // L: 137
 
 					try {
-						if (this.outLength == this.outOffset) {
+						if (this.outLength == this.outOffset) { // L: 139
 							this.outputStream.flush();
 						}
-					} catch (IOException var8) {
-						this.exceptionWriting = true;
+					} catch (IOException var8) { // L: 141
+						this.exceptionWriting = true; // L: 142
 					}
 					continue;
 				}
 
 				try {
-					if (this.inputStream != null) {
+					if (this.inputStream != null) { // L: 147
 						this.inputStream.close();
 					}
 
-					if (this.outputStream != null) {
+					if (this.outputStream != null) { // L: 148
 						this.outputStream.close();
 					}
 
-					if (this.socket != null) {
+					if (this.socket != null) { // L: 149
 						this.socket.close();
 					}
-				} catch (IOException var7) {
+				} catch (IOException var7) { // L: 151
 				}
 
-				this.outBuffer = null;
+				this.outBuffer = null; // L: 152
 				break;
 			}
-		} catch (Exception var12) {
-			SequenceDefinition.RunException_sendStackTrace((String)null, var12);
+		} catch (Exception var12) { // L: 154
+			class223.RunException_sendStackTrace((String)null, var12); // L: 155
 		}
 
-	}
+	} // L: 157
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		signature = "(S)V",
-		garbageValue = "-3619"
+		descriptor = "(II)I",
+		garbageValue = "1850245175"
 	)
-	static final void method3748() {
-		class300.method5473("You can't add yourself to your own ignore list");
+	public static int method2587(int var0) {
+		if (var0 > 0) { // L: 206
+			return 1;
+		} else {
+			return var0 < 0 ? -1 : 0; // L: 207 208
+		}
 	}
 }

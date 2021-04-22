@@ -68,9 +68,7 @@ import org.slf4j.LoggerFactory;
 
 @PluginDescriptor(
 	name = "Developer Tools",
-	description = "Adds the developer tools button to side-panel with various tools to assist development of the client",
-	tags = {"panel", "dev", "camera", "debug", "sanlite"},
-	enabledByDefault = false,
+	tags = {"panel"},
 	developerPlugin = true
 )
 @Getter
@@ -207,7 +205,7 @@ public class DevToolsPlugin extends Plugin
 		navButton = NavigationButton.builder()
 			.tooltip("Developer Tools")
 			.icon(icon)
-			.priority(9)
+			.priority(1)
 			.panel(panel)
 			.build();
 
@@ -347,7 +345,7 @@ public class DevToolsPlugin extends Plugin
 				int id = Integer.parseInt(args[0]);
 				Player localPlayer = client.getLocalPlayer();
 				localPlayer.setAnimation(id);
-				localPlayer.setActionFrame(0);
+				localPlayer.setAnimationFrame(0);
 				break;
 			}
 			case "gfx":
@@ -376,16 +374,9 @@ public class DevToolsPlugin extends Plugin
 				break;
 			}
 			case "sound":
-			case "sfx":
 			{
 				int id = Integer.parseInt(args[0]);
 				client.playSoundEffect(id);
-				break;
-			}
-			case "skull":
-			{
-				int id = Integer.parseInt(args[0]);
-				client.getLocalPlayer().setSkullIcon(id);
 				break;
 			}
 			case "msg":

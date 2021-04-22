@@ -8,7 +8,6 @@ import net.runelite.asm.ClassFile;
 import net.runelite.asm.ClassGroup;
 import net.runelite.asm.Field;
 import net.runelite.asm.Method;
-import net.runelite.asm.attributes.Annotations;
 import net.runelite.deob.Deob;
 import net.runelite.deob.DeobAnnotations;
 import net.runelite.deob.DeobTestProperties;
@@ -27,11 +26,12 @@ public class AnnotationCleaner
 	public DeobTestProperties properties = new DeobTestProperties();
 
 	@Test
+	@Ignore
 	public void checkMappings() throws Exception
 	{
 		final List<String> missing = new ArrayList<>();
 		File client = new File(properties.getRsClient());
-		ClassGroup group = JarUtil.loadJar(client);
+		ClassGroup group = JarUtil.load(client);
 
 		for (ClassFile c : group.getClasses())
 		{
@@ -58,14 +58,12 @@ public class AnnotationCleaner
 
 			for (Field f : c.getFields())
 			{
-				Annotations an = f.getAnnotations();
-
 				String fieldName = f.getName();
-				String exportedName = DeobAnnotations.getExportedName(an);
+				String exportedName = DeobAnnotations.getExportedName(f);
 
 				if (exportedName == null)
 				{
-					if (!Deob.isObfuscated(fieldName) && DeobAnnotations.getObfuscatedName(an) != null)
+					if (!Deob.isObfuscated(fieldName) && DeobAnnotations.getObfuscatedName(f) != null)
 					{
 						missing.add("Export: (field)  " + className + '.' + fieldName + " == missing");
 					}
@@ -78,14 +76,12 @@ public class AnnotationCleaner
 
 			for (Method m : c.getMethods())
 			{
-				Annotations an = m.getAnnotations();
-
 				String methodName = m.getName();
-				String exportedName = DeobAnnotations.getExportedName(an);
+				String exportedName = DeobAnnotations.getExportedName(m);
 
 				if (exportedName == null)
 				{
-					if (!Deob.isObfuscated(methodName) && DeobAnnotations.getObfuscatedName(an) != null)
+					if (!Deob.isObfuscated(methodName) && DeobAnnotations.getObfuscatedName(m) != null)
 					{
 						missing.add("Export: (method) " + className + '.' + methodName + " == missing");
 					}
@@ -108,7 +104,7 @@ public class AnnotationCleaner
 			log.error(s);
 		}
 
-		throw new Exception();
+		throw new OhNoException();
 	}
 
 	@Test
@@ -117,10 +113,17 @@ public class AnnotationCleaner
 	{
 		File client = new File(properties.getRsClient());
 
-		ClassGroup group = JarUtil.loadJar(client);
+		ClassGroup group = JarUtil.load(client);
 
 		new AnnotationAdder(group).run();
 
-		JarUtil.saveJar(group, new File("./fixed-rs-client.jar"));
+		JarUtil.save(group, new File("C:/Users/Lucas/Desktop/niec.jar"));
+	}
+
+	private static class OhNoException extends Exception
+	{
+		private OhNoException()
+		{
+		}
 	}
 }

@@ -37,7 +37,6 @@ public interface RSMessage extends MessageNode
 	void setValue(String value);
 
 	@Import("isFromFriend")
-	@Override
 	boolean isFromFriend();
 
 	@Import("senderUsername")

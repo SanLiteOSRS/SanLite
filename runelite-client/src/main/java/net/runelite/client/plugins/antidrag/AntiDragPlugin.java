@@ -27,10 +27,11 @@ package net.runelite.client.plugins.antidrag;
 import com.google.inject.Provides;
 import java.awt.event.KeyEvent;
 import javax.inject.Inject;
-
 import net.runelite.api.Client;
 import net.runelite.api.GameState;
+import net.runelite.api.Varbits;
 import net.runelite.api.events.FocusChanged;
+import net.runelite.api.events.VarbitChanged;
 import net.runelite.api.events.WidgetLoaded;
 import net.runelite.api.widgets.Widget;
 import net.runelite.api.widgets.WidgetID;
@@ -47,7 +48,7 @@ import net.runelite.client.plugins.PluginDescriptor;
 @PluginDescriptor(
 	name = "Anti Drag",
 	description = "Prevent dragging an item for a specified delay",
-	tags = {"antidrag", "delay", "inventory", "items", "keybind", "sanlite"},
+	tags = {"antidrag", "delay", "inventory", "items"},
 	enabledByDefault = false
 )
 public class AntiDragPlugin extends Plugin implements KeyListener
@@ -68,8 +69,9 @@ public class AntiDragPlugin extends Plugin implements KeyListener
 	@Inject
 	private KeyManager keyManager;
 
-	private boolean enableKeybindHeld;
-	private boolean disableKeybindHeld;
+	private boolean inPvp;
+	private boolean shiftHeld;
+	private boolean ctrlHeld;
 
 	@Provides
 	AntiDragConfig getConfig(ConfigManager configManager)
@@ -84,7 +86,8 @@ public class AntiDragPlugin extends Plugin implements KeyListener
 		{
 			clientThread.invokeLater(() ->
 			{
-				if (!config.onKeybindOnly())
+				inPvp = client.getVar(Varbits.PVP_SPEC_ORB) == 1;
+				if (!config.onShiftOnly() && !inPvp)
 				{
 					setDragDelay();
 				}
@@ -101,11 +104,6 @@ public class AntiDragPlugin extends Plugin implements KeyListener
 		keyManager.unregisterKeyListener(this);
 	}
 
-	private boolean isEnableKeybindKeyCode(KeyEvent e)
-	{
-		return e.getKeyCode() == config.keybind1().getKeyCode() || e.getKeyCode() == config.keybind2().getKeyCode();
-	}
-
 	@Override
 	public void keyTyped(KeyEvent e)
 	{
@@ -115,30 +113,30 @@ public class AntiDragPlugin extends Plugin implements KeyListener
 	@Override
 	public void keyPressed(KeyEvent e)
 	{
-		if (e.getKeyCode() == config.ignoreKeybind().getKeyCode() && config.enableIgnoreKeybind() && !config.onKeybindOnly())
+		if (e.getKeyCode() == KeyEvent.VK_CONTROL && config.disableOnCtrl() && !(inPvp || config.onShiftOnly()))
 		{
 			resetDragDelay();
-			disableKeybindHeld = true;
+			ctrlHeld = true;
 		}
-		else if (isEnableKeybindKeyCode(e) && config.onKeybindOnly())
+		else if (e.getKeyCode() == KeyEvent.VK_SHIFT && (inPvp || config.onShiftOnly()))
 		{
 			setDragDelay();
-			enableKeybindHeld = true;
+			shiftHeld = true;
 		}
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e)
 	{
-		if (e.getKeyCode() == config.ignoreKeybind().getKeyCode() && config.enableIgnoreKeybind() && !config.onKeybindOnly())
+		if (e.getKeyCode() == KeyEvent.VK_CONTROL && config.disableOnCtrl() && !(inPvp || config.onShiftOnly()))
 		{
 			setDragDelay();
-			disableKeybindHeld = false;
+			ctrlHeld = false;
 		}
-		else if (isEnableKeybindKeyCode(e) && config.onKeybindOnly())
+		else if (e.getKeyCode() == KeyEvent.VK_SHIFT && (inPvp || config.onShiftOnly()))
 		{
 			resetDragDelay();
-			enableKeybindHeld = false;
+			shiftHeld = false;
 		}
 	}
 
@@ -147,14 +145,14 @@ public class AntiDragPlugin extends Plugin implements KeyListener
 	{
 		if (event.getGroup().equals(CONFIG_GROUP))
 		{
-			if (!config.enableIgnoreKeybind())
+			if (!config.disableOnCtrl())
 			{
-				disableKeybindHeld = false;
+				ctrlHeld = false;
 			}
 
-			if (config.onKeybindOnly())
+			if (config.onShiftOnly() || inPvp)
 			{
-				enableKeybindHeld = false;
+				shiftHeld = false;
 				clientThread.invoke(this::resetDragDelay);
 			}
 			else
@@ -165,15 +163,36 @@ public class AntiDragPlugin extends Plugin implements KeyListener
 	}
 
 	@Subscribe
+	public void onVarbitChanged(VarbitChanged varbitChanged)
+	{
+		boolean currentStatus = client.getVar(Varbits.PVP_SPEC_ORB) == 1;
+
+		if (currentStatus != inPvp)
+		{
+			inPvp = currentStatus;
+
+			if (!inPvp && !config.onShiftOnly())
+			{
+				setDragDelay();
+			}
+			else
+			{
+				resetDragDelay();
+			}
+		}
+
+	}
+
+	@Subscribe
 	public void onFocusChanged(FocusChanged focusChanged)
 	{
 		if (!focusChanged.isFocused())
 		{
-			enableKeybindHeld = false;
-			disableKeybindHeld = false;
+			shiftHeld = false;
+			ctrlHeld = false;
 			clientThread.invoke(this::resetDragDelay);
 		}
-		else if (!config.onKeybindOnly())
+		else if (!inPvp && !config.onShiftOnly())
 		{
 			clientThread.invoke(this::setDragDelay);
 		}
@@ -183,9 +202,8 @@ public class AntiDragPlugin extends Plugin implements KeyListener
 	public void onWidgetLoaded(WidgetLoaded widgetLoaded)
 	{
 		if ((widgetLoaded.getGroupId() == WidgetID.BANK_GROUP_ID ||
-				widgetLoaded.getGroupId() == WidgetID.BANK_INVENTORY_GROUP_ID ||
-				widgetLoaded.getGroupId() == WidgetID.DEPOSIT_BOX_GROUP_ID) &&
-				(!config.onKeybindOnly() || enableKeybindHeld) && !disableKeybindHeld)
+			widgetLoaded.getGroupId() == WidgetID.BANK_INVENTORY_GROUP_ID ||
+			widgetLoaded.getGroupId() == WidgetID.DEPOSIT_BOX_GROUP_ID) && (!config.onShiftOnly() || shiftHeld) && !ctrlHeld)
 		{
 			setBankDragDelay(config.dragDelay());
 		}

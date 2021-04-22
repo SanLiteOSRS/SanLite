@@ -28,20 +28,26 @@ import net.runelite.api.HashTable;
 import net.runelite.api.Node;
 import net.runelite.api.Point;
 import net.runelite.api.WidgetNode;
-import net.runelite.api.events.WidgetHiddenChanged;
-import net.runelite.api.events.WidgetPositioned;
-import net.runelite.api.mixins.*;
+import net.runelite.api.mixins.Copy;
+import net.runelite.api.mixins.Inject;
+import net.runelite.api.mixins.Mixin;
+import net.runelite.api.mixins.Replace;
+import net.runelite.api.mixins.Shadow;
 import net.runelite.api.widgets.Widget;
-import static net.runelite.api.widgets.WidgetInfo.TO_CHILD;
-import static net.runelite.api.widgets.WidgetInfo.TO_GROUP;
 import net.runelite.api.widgets.WidgetItem;
+import net.runelite.rs.api.RSClient;
+import net.runelite.rs.api.RSModel;
+import net.runelite.rs.api.RSNode;
+import net.runelite.rs.api.RSNodeHashTable;
+import net.runelite.rs.api.RSPlayerComposition;
+import net.runelite.rs.api.RSSequenceDefinition;
+import net.runelite.rs.api.RSWidget;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
-
-import net.runelite.rs.api.*;
+import static net.runelite.api.widgets.WidgetInfo.TO_CHILD;
+import static net.runelite.api.widgets.WidgetInfo.TO_GROUP;
 
 @Mixin(RSWidget.class)
 public abstract class RSWidgetMixin implements RSWidget
@@ -133,7 +139,7 @@ public abstract class RSWidgetMixin implements RSWidget
 			// parent id potentially incorrect
 
 			// check the parent in the component table
-			HashTable<WidgetNode> componentTable = client.getComponentTable();
+			@SuppressWarnings("unchecked") HashTable<WidgetNode> componentTable = client.getComponentTable();
 			WidgetNode widgetNode = componentTable.get(parentId);
 			if (widgetNode == null || widgetNode.getId() != TO_GROUP(id))
 			{
@@ -169,6 +175,12 @@ public abstract class RSWidgetMixin implements RSWidget
 		}
 
 		return -1;
+	}
+
+	@Inject
+	public String getButtonText()
+	{
+		return getRSButtonText().replace('\u00A0', ' ');
 	}
 
 	@Inject
@@ -228,7 +240,7 @@ public abstract class RSWidgetMixin implements RSWidget
 
 	@Inject
 	@Override
-	public Collection<WidgetItem> getWidgetItems()
+	public List<WidgetItem> getWidgetItems()
 	{
 		int[] itemIds = getItemIds();
 
@@ -362,7 +374,7 @@ public abstract class RSWidgetMixin implements RSWidget
 	@Override
 	public Widget[] getNestedChildren()
 	{
-		assert client.isClientThread();
+		assert client.isClientThread() : "getNestedChildren must be called on client thread";
 
 		if (getRSParentId() == getId())
 		{
@@ -370,7 +382,7 @@ public abstract class RSWidgetMixin implements RSWidget
 			return new Widget[0];
 		}
 
-		HashTable<WidgetNode> componentTable = client.getComponentTable();
+		@SuppressWarnings("unchecked") HashTable<WidgetNode> componentTable = client.getComponentTable();
 
 		WidgetNode wn = componentTable.get(getId());
 		if (wn == null)
@@ -397,102 +409,6 @@ public abstract class RSWidgetMixin implements RSWidget
 	{
 		Rectangle bounds = getBounds();
 		return bounds != null && bounds.contains(new java.awt.Point(point.getX(), point.getY()));
-	}
-
-	@Inject
-	@Override
-	public void broadcastHidden(boolean hidden)
-	{
-		WidgetHiddenChanged event = new WidgetHiddenChanged();
-		event.setWidget(this);
-		event.setHidden(hidden);
-
-		client.getCallbacks().post(event);
-
-		RSWidget[] children = getChildren();
-
-		if (children != null)
-		{
-			// recursive through children
-			for (RSWidget child : children)
-			{
-				// if the widget is hidden it will not magically unhide from its parent changing
-				if (child == null || child.isSelfHidden())
-				{
-					continue;
-				}
-
-				child.broadcastHidden(hidden);
-			}
-		}
-
-		// make sure we iterate nested children as well
-		// cannot be null
-		Widget[] nestedChildren = getNestedChildren();
-
-		for (Widget nestedChild : nestedChildren)
-		{
-			if (nestedChild == null || nestedChild.isSelfHidden())
-			{
-				continue;
-			}
-
-			((RSWidget) nestedChild).broadcastHidden(hidden);
-		}
-	}
-
-	@FieldHook("isHidden")
-	@Inject
-	public void onHiddenChanged(int idx)
-	{
-		int id = getId();
-
-		if (id == -1)
-		{
-			return;
-		}
-
-		Widget parent = getParent();
-
-		// if the parent is hidden then changes in this widget don't have any visual effect
-		// so ignore them
-		if (parent != null)
-		{
-			if (parent.isHidden())
-			{
-				return;
-			}
-		}
-		else if (TO_GROUP(id) != client.getWidgetRoot())
-		{
-			return;
-		}
-
-		broadcastHidden(isSelfHidden());
-	}
-
-	@FieldHook("y")
-	@Inject
-	public void onPositionChanged(int idx)
-	{
-		int id = getId();
-		if (id == -1)
-		{
-			return;
-		}
-
-		int tick = client.getGameCycle();
-		if (tick == rl$widgetLastPosChanged)
-		{
-			return;
-		}
-
-		rl$widgetLastPosChanged = tick;
-
-		client.getLogger().trace("Posting widget position changed");
-
-		WidgetPositioned widgetPositioned = new WidgetPositioned();
-		client.getCallbacks().postDeferred(widgetPositioned);
 	}
 
 	@Inject
@@ -578,20 +494,18 @@ public abstract class RSWidgetMixin implements RSWidget
 	}
 
 	@Copy("getModel")
-	public abstract RSModel rs$getModel(RSSequenceDefinition sequence, int frame, boolean alternate, RSPlayerComposition playerComposition);
-
 	@Replace("getModel")
-	public RSModel rl$getModel(RSSequenceDefinition sequence, int frame, boolean alternate, RSPlayerComposition playerComposition)
+	@SuppressWarnings("InfiniteRecursion")
+	public RSModel copy$getModel(RSSequenceDefinition sequence, int frame, boolean alternate, RSPlayerComposition playerComposition)
 	{
 		if (frame != -1 && client.isInterpolateWidgetAnimations())
 		{
 			frame = frame | getModelFrameCycle() << 16 | Integer.MIN_VALUE;
 		}
-		return rs$getModel(sequence, frame, alternate, playerComposition);
+		return copy$getModel(sequence, frame, alternate, playerComposition);
 	}
 
 	@Inject
-	@Override
 	public boolean isWidgetItemDragged(int index)
 	{
 		return client.getIf1DraggedWidget() == this && client.getItemPressedDuration() >= 5 &&

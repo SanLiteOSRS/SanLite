@@ -1,7 +1,5 @@
 /*
  * Copyright (c) 2018, Kamiel <https://github.com/Kamielvf>
- * Copyright (c) 2019, Jajack
- * Copyright (c) 2019, Siraz <https://github.com/Sirazzz>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -27,14 +25,16 @@
 
 package net.runelite.client.plugins.playerindicators;
 
-import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.Player;
-import net.runelite.client.ui.overlay.*;
-
+import java.awt.Dimension;
+import java.awt.Graphics2D;
+import java.awt.Polygon;
 import javax.inject.Inject;
-import java.awt.*;
+import net.runelite.client.ui.overlay.Overlay;
+import net.runelite.client.ui.overlay.OverlayLayer;
+import net.runelite.client.ui.overlay.OverlayPosition;
+import net.runelite.client.ui.overlay.OverlayPriority;
+import net.runelite.client.ui.overlay.OverlayUtil;
 
-@Slf4j
 public class PlayerIndicatorsTileOverlay extends Overlay
 {
 	private final PlayerIndicatorsService playerIndicatorsService;
@@ -53,65 +53,21 @@ public class PlayerIndicatorsTileOverlay extends Overlay
 	@Override
 	public Dimension render(Graphics2D graphics)
 	{
-		if (!config.drawOwnPlayerTiles() && !config.drawFriendTiles() && !config.drawFriendsChatMemberTiles() &&
-				!config.drawTeamMemberTiles() && !config.drawOthersTiles() && !config.drawListOneTiles() &&
-				!config.drawListTwoTiles() && !config.drawListThreeTiles() && !config.drawListFourTiles() &&
-				!config.drawListFiveTiles())
+		if (!config.drawTiles())
 		{
 			return null;
 		}
 
-		playerIndicatorsService.forEachPlayer((player, type) ->
-		{
-			switch (type)
-			{
-				case OWN_PLAYER:
-					renderTileOverlay(graphics, player, config.getOwnPlayerColor(), config.drawOwnPlayerTiles());
-					break;
-				case FRIEND:
-					renderTileOverlay(graphics, player, config.getFriendColor(), config.drawFriendTiles());
-					break;
-				case CUSTOM_LIST_1:
-					renderTileOverlay(graphics, player, config.getListOneColor(), config.drawListOneTiles());
-					break;
-				case CUSTOM_LIST_2:
-					renderTileOverlay(graphics, player, config.getListTwoColor(), config.drawListTwoTiles());
-					break;
-				case CUSTOM_LIST_3:
-					renderTileOverlay(graphics, player, config.getListThreeColor(), config.drawListThreeTiles());
-					break;
-				case CUSTOM_LIST_4:
-					renderTileOverlay(graphics, player, config.getListFourColor(), config.drawListFourTiles());
-					break;
-				case CUSTOM_LIST_5:
-					renderTileOverlay(graphics, player, config.getListFiveColor(), config.drawListFiveTiles());
-					break;
-				case FRIENDS_CHAT_MEMBERS:
-					renderTileOverlay(graphics, player, config.getFriendsChatMemberColor(), config.drawFriendsChatMemberTiles());
-					break;
-				case TEAM_CAPE_MEMBER:
-					renderTileOverlay(graphics, player, config.getTeamMemberColor(), config.drawTeamMemberTiles());
-					break;
-				case NON_CLAN_MEMBER:
-					renderTileOverlay(graphics, player, config.getOthersColor(), config.drawOthersTiles());
-					break;
-				default:
-					log.warn("Tried rendering tile overlay for player: {} with unknown type: {}", player.getName(), type);
-			}
-		});
-
-		return null;
-	}
-
-	private void renderTileOverlay(Graphics2D graphics, Player player, Color color, boolean drawTileOverlay)
-	{
-		if (drawTileOverlay)
+		playerIndicatorsService.forEachPlayer((player, color) ->
 		{
 			final Polygon poly = player.getCanvasTilePoly();
+
 			if (poly != null)
 			{
 				OverlayUtil.renderPolygon(graphics, poly, color);
 			}
-		}
+		});
+
+		return null;
 	}
 }

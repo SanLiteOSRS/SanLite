@@ -4,92 +4,60 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ki")
+@ObfuscatedName("mj")
 @Implements("Fonts")
 public class Fonts {
-	@ObfuscatedName("n")
+	@ObfuscatedName("s")
+	@Export("BZip2Decompressor_block")
+	static int[] BZip2Decompressor_block;
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "Lig;"
+		descriptor = "Lir;"
 	)
 	@Export("spritesArchive")
 	AbstractArchive spritesArchive;
-	@ObfuscatedName("v")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "Lig;"
+		descriptor = "Lir;"
 	)
 	@Export("fontsArchive")
 	AbstractArchive fontsArchive;
-	@ObfuscatedName("d")
+	@ObfuscatedName("u")
 	@Export("map")
 	HashMap map;
 
 	@ObfuscatedSignature(
-		signature = "(Lig;Lig;)V"
+		descriptor = "(Lir;Lir;)V"
 	)
 	public Fonts(AbstractArchive var1, AbstractArchive var2) {
-		this.spritesArchive = var1;
-		this.fontsArchive = var2;
-		this.map = new HashMap();
-	}
+		this.spritesArchive = var1; // L: 14
+		this.fontsArchive = var2; // L: 15
+		this.map = new HashMap(); // L: 16
+	} // L: 17
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "([Lkq;I)Ljava/util/HashMap;",
-		garbageValue = "-988913234"
+		descriptor = "([Lmv;I)Ljava/util/HashMap;",
+		garbageValue = "1411083215"
 	)
 	@Export("createMap")
 	public HashMap createMap(FontName[] var1) {
-		HashMap var2 = new HashMap();
-		FontName[] var3 = var1;
+		HashMap var2 = new HashMap(); // L: 20
+		FontName[] var3 = var1; // L: 22
 
-		for (int var4 = 0; var4 < var3.length; ++var4) {
-			FontName var5 = var3[var4];
-			if (this.map.containsKey(var5)) {
-				var2.put(var5, this.map.get(var5));
+		for (int var4 = 0; var4 < var3.length; ++var4) { // L: 23
+			FontName var5 = var3[var4]; // L: 24
+			if (this.map.containsKey(var5)) { // L: 26
+				var2.put(var5, this.map.get(var5)); // L: 27
 			} else {
-				AbstractArchive var7 = this.spritesArchive;
-				AbstractArchive var8 = this.fontsArchive;
-				String var9 = var5.name;
-				int var10 = var7.getGroupId(var9);
-				int var11 = var7.getFileId(var10, "");
-				byte[] var14 = var7.takeFile(var10, var11);
-				boolean var13;
-				if (var14 == null) {
-					var13 = false;
-				} else {
-					GrandExchangeOfferNameComparator.SpriteBuffer_decode(var14);
-					var13 = true;
-				}
-
-				Font var12;
-				if (!var13) {
-					var12 = null;
-				} else {
-					byte[] var15 = var8.takeFile(var10, var11);
-					Font var18;
-					if (var15 == null) {
-						var18 = null;
-					} else {
-						Font var16 = new Font(var15, class105.SpriteBuffer_xOffsets, class336.SpriteBuffer_yOffsets, class336.SpriteBuffer_spriteWidths, class225.SpriteBuffer_spriteHeights, HorizontalAlignment.SpriteBuffer_spritePalette, class2.SpriteBuffer_pixels);
-						class105.SpriteBuffer_xOffsets = null;
-						class336.SpriteBuffer_yOffsets = null;
-						class336.SpriteBuffer_spriteWidths = null;
-						class225.SpriteBuffer_spriteHeights = null;
-						HorizontalAlignment.SpriteBuffer_spritePalette = null;
-						class2.SpriteBuffer_pixels = null;
-						var18 = var16;
-					}
-
-					var12 = var18;
-				}
-
-				if (var12 != null) {
-					this.map.put(var5, var12);
-					var2.put(var5, var12);
+				Font var6 = FriendsChatManager.method5655(this.spritesArchive, this.fontsArchive, var5.name, ""); // L: 30
+				if (var6 != null) { // L: 31
+					this.map.put(var5, var6); // L: 32
+					var2.put(var5, var6); // L: 33
 				}
 			}
 		}
 
-		return var2;
+		return var2; // L: 39
 	}
 }
