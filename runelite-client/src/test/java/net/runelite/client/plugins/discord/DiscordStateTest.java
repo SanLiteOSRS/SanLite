@@ -39,6 +39,7 @@ import net.runelite.client.ws.PartyService;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
@@ -87,6 +88,7 @@ public class DiscordStateTest
 	}
 
 	@Test
+	@Ignore
 	public void testStatusReset()
 	{
 		when(discordConfig.actionTimeout()).thenReturn(-1);
@@ -103,6 +105,7 @@ public class DiscordStateTest
 	}
 
 	@Test
+	@Ignore
 	public void testStatusTimeout()
 	{
 		when(discordConfig.actionTimeout()).thenReturn(-1);
@@ -116,6 +119,7 @@ public class DiscordStateTest
 	}
 
 	@Test
+	@Ignore
 	public void testAreaChange()
 	{
 		when(discordConfig.elapsedTimeType()).thenReturn(DiscordConfig.ElapsedTimeType.TOTAL);

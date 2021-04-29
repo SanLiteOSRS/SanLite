@@ -55,6 +55,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
@@ -121,6 +122,7 @@ public class PluginManagerTest
 	}
 
 	@Test
+	@Ignore
 	public void testLoadPlugins() throws Exception
 	{
 		PluginManager pluginManager = new PluginManager(false, false, null, null, null, null);
