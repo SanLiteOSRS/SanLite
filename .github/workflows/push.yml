@@ -1,9 +1,11 @@
-name: RuneLite - CI (push)
+name: SanLite CI - Push
 
 on:
   push:
     branches:
-      - master
+      - '**'
+    tags-ignore:
+      - '**'
 
 jobs:
   build:
