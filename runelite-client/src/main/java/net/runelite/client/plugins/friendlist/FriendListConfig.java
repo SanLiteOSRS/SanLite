@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, Hydrox6 <ikada@protonmail.ch>
+ * Copyright (c) 2021, Maciej <https://github.com/mlewicki12>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,41 +22,22 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.client.plugins.itemcharges;
+package net.runelite.client.plugins.friendlist;
 
-import java.awt.Color;
-import java.awt.image.BufferedImage;
-import lombok.Getter;
-import lombok.ToString;
-import net.runelite.api.EquipmentInventorySlot;
-import net.runelite.client.ui.overlay.infobox.Counter;
+import net.runelite.client.config.Config;
+import net.runelite.client.config.ConfigGroup;
+import net.runelite.client.config.ConfigItem;
 
-@Getter
-@ToString
-class ItemChargeInfobox extends Counter
+@ConfigGroup("friendlist")
+public interface FriendListConfig extends Config
 {
-	private final ItemChargePlugin plugin;
-	private final int item;
-	private final EquipmentInventorySlot slot;
-
-	ItemChargeInfobox(
-		ItemChargePlugin plugin,
-		BufferedImage image,
-		String name,
-		int charges,
-		int item,
-		EquipmentInventorySlot slot)
+	@ConfigItem(
+		keyName = "showWorldOnLogin",
+		name = "Show world on login",
+		description = "Shows world number on friend login notifications"
+	)
+	default boolean showWorldOnLogin()
 	{
-		super(image, plugin, charges);
-		setTooltip(name);
-		this.plugin = plugin;
-		this.item = item;
-		this.slot = slot;
-	}
-
-	@Override
-	public Color getTextColor()
-	{
-		return getPlugin().getColor(getCount());
+		return false;
 	}
 }

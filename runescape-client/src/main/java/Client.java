@@ -180,7 +180,8 @@ public final class Client extends GameEngine implements Usernamed {
 	@Export("minimapState")
 	static int minimapState;
 	@ObfuscatedName("pt")
-	static long[] field689;
+	@Export("crossWorldMessageIds")
+	static long[] crossWorldMessageIds;
 	@ObfuscatedName("qt")
 	@ObfuscatedGetter(
 		intValue = -163319865
@@ -1533,7 +1534,7 @@ public final class Client extends GameEngine implements Usernamed {
 		publicChatMode = 0; // L: 573
 		tradeChatMode = 0; // L: 575
 		field824 = ""; // L: 576
-		field689 = new long[100]; // L: 578
+		crossWorldMessageIds = new long[100]; // L: 578
 		field760 = 0; // L: 579
 		field827 = 0; // L: 581
 		field828 = new int[128]; // L: 582
@@ -3835,7 +3836,7 @@ public final class Client extends GameEngine implements Usernamed {
 					boolean var12 = false; // L: 5460
 
 					for (var53 = 0; var53 < 100; ++var53) { // L: 5461
-						if (field689[var53] == var10) { // L: 5462
+						if (crossWorldMessageIds[var53] == var10) { // L: 5462
 							var12 = true; // L: 5463
 							break; // L: 5464
 						}
@@ -3846,7 +3847,7 @@ public final class Client extends GameEngine implements Usernamed {
 					}
 
 					if (!var12 && field716 == 0) { // L: 5468
-						field689[field760] = var10; // L: 5469
+						crossWorldMessageIds[field760] = var10; // L: 5469
 						field760 = (field760 + 1) % 100; // L: 5470
 						var22 = AbstractFont.escapeBrackets(GrandExchangeOfferAgeComparator.method4607(class16.method258(var3))); // L: 5471
 						byte var55;
@@ -4378,7 +4379,7 @@ public final class Client extends GameEngine implements Usernamed {
 						var11 = true;
 					} else {
 						for (var53 = 0; var53 < 100; ++var53) { // L: 5866
-							if (field689[var53] == var31) { // L: 5867
+							if (crossWorldMessageIds[var53] == var31) { // L: 5867
 								var11 = true; // L: 5868
 								break; // L: 5869
 							}
@@ -4386,7 +4387,7 @@ public final class Client extends GameEngine implements Usernamed {
 					}
 
 					if (!var11) { // L: 5873
-						field689[field760] = var31; // L: 5874
+						crossWorldMessageIds[field760] = var31; // L: 5874
 						field760 = (field760 + 1) % 100; // L: 5875
 						var22 = class16.method258(var3); // L: 5876
 						int var54 = var56 >= 0 ? 43 : 46; // L: 5877
@@ -4658,7 +4659,7 @@ public final class Client extends GameEngine implements Usernamed {
 								break;
 							}
 
-							if (var39 == field689[var15]) { // L: 6076
+							if (var39 == crossWorldMessageIds[var15]) { // L: 6076
 								var13 = true; // L: 6077
 								break; // L: 6078
 							}
@@ -4668,7 +4669,7 @@ public final class Client extends GameEngine implements Usernamed {
 					}
 
 					if (!var13) { // L: 6085
-						field689[field760] = var39; // L: 6086
+						crossWorldMessageIds[field760] = var39; // L: 6086
 						field760 = (field760 + 1) % 100; // L: 6087
 						var42 = AbstractFont.escapeBrackets(class16.method258(var3)); // L: 6088
 						int var16 = var56 >= 0 ? 41 : 44; // L: 6089
@@ -5016,7 +5017,7 @@ public final class Client extends GameEngine implements Usernamed {
 					boolean var14 = false; // L: 6349
 
 					for (var15 = 0; var15 < 100; ++var15) { // L: 6350
-						if (var29 == field689[var15]) { // L: 6351
+						if (var29 == crossWorldMessageIds[var15]) { // L: 6351
 							var14 = true; // L: 6352
 							break; // L: 6353
 						}
@@ -5027,7 +5028,7 @@ public final class Client extends GameEngine implements Usernamed {
 					}
 
 					if (!var14 && field716 == 0) { // L: 6359
-						field689[field760] = var29; // L: 6360
+						crossWorldMessageIds[field760] = var29; // L: 6360
 						field760 = (field760 + 1) % 100; // L: 6361
 						var42 = AbstractFont.escapeBrackets(GrandExchangeOfferAgeComparator.method4607(class16.method258(var3))); // L: 6362
 						if (var34.modIcon != -1) { // L: 6363

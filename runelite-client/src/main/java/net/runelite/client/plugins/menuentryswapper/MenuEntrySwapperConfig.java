@@ -663,6 +663,17 @@ public interface MenuEntrySwapperConfig extends Config
 	}
 
 	@ConfigItem(
+		keyName = "swapTemporossLeave",
+		name = "Tempoross Leave",
+		description = "Swap Talk-to with Leave after subduing Tempoross",
+		section = npcSection
+	)
+	default boolean swapTemporossLeave()
+	{
+		return false;
+	}
+
+	@ConfigItem(
 		keyName = "swapPickpocket",
 		name = "Pickpocket",
 		description = "Swap Talk-to with Pickpocket",
