@@ -22,7 +22,6 @@ public interface RSNPCComposition extends NPCComposition
 	boolean isClickable();
 
 	@Import("isFollower")
-	@Override
 	boolean isFollower();
 
 	@Import("isInteractable")

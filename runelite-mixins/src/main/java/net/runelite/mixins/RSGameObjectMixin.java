@@ -29,15 +29,15 @@ import net.runelite.api.Perspective;
 import net.runelite.api.Point;
 import net.runelite.api.coords.Angle;
 import net.runelite.api.coords.LocalPoint;
-import net.runelite.api.events.GameObjectEntityChanged;
+import net.runelite.api.events.GameObjectRenderableChanged;
 import net.runelite.api.mixins.FieldHook;
 import net.runelite.api.mixins.Inject;
 import net.runelite.api.mixins.Mixin;
 import net.runelite.api.mixins.Shadow;
 import net.runelite.rs.api.RSClient;
-import net.runelite.rs.api.RSRenderable;
 import net.runelite.rs.api.RSGameObject;
 import net.runelite.rs.api.RSModel;
+import net.runelite.rs.api.RSRenderable;
 
 @Mixin(RSGameObject.class)
 public abstract class RSGameObjectMixin implements RSGameObject
@@ -46,28 +46,37 @@ public abstract class RSGameObjectMixin implements RSGameObject
 	private static RSClient client;
 
 	@Inject
+	private int gameObjectPlane;
+
+	@Inject
+	@Override
+	public int getPlane()
+	{
+		return gameObjectPlane;
+	}
+
+	@Inject
+	@Override
+	public void setPlane(int plane)
+	{
+		this.gameObjectPlane = plane;
+	}
+
+	@Inject
 	@Override
 	public Point getSceneMinLocation()
 	{
-		return new Point(getRelativeX(), getRelativeY());
+		return new Point(getStartX(), getStartY());
 	}
 
 	@Inject
 	@Override
 	public Point getSceneMaxLocation()
 	{
-		return new Point(getOffsetX(), getOffsetY());
-	}
-
-	@FieldHook("entity")
-	@Inject
-	public void GameObjectEntityChanged(int idx)
-	{
-		client.getCallbacks().post(new GameObjectEntityChanged(this));
+		return new Point(getEndX(), getEndY());
 	}
 
 	@Inject
-	@Override
 	public RSModel getModel()
 	{
 		RSRenderable renderable = getRenderable();
@@ -105,6 +114,7 @@ public abstract class RSGameObjectMixin implements RSGameObject
 		}
 
 		int tileHeight = Perspective.getTileHeight(client, new LocalPoint(getX(), getY()), client.getPlane());
+
 		return model.getConvexHull(getX(), getY(), getRsOrientation(), tileHeight);
 	}
 
@@ -115,5 +125,26 @@ public abstract class RSGameObjectMixin implements RSGameObject
 		int orientation = getRsOrientation();
 		int rotation = (getFlags() >> 6) & 3;
 		return new Angle(rotation * 512 + orientation);
+	}
+
+	@Override
+	@Inject
+	public int sizeX()
+	{
+		return getEndX() - getStartX() + 1;
+	}
+
+	@Override
+	@Inject
+	public int sizeY()
+	{
+		return getEndY() - getStartY() + 1;
+	}
+
+	@FieldHook("renderable")
+	@Inject
+	public void GameObjectRenderableChanged(int idx)
+	{
+		client.getCallbacks().post(new GameObjectRenderableChanged(this));
 	}
 }

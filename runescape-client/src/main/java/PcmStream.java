@@ -3,69 +3,69 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("dw")
+@ObfuscatedName("bt")
 @Implements("PcmStream")
 public abstract class PcmStream extends Node {
-	@ObfuscatedName("w")
-	@Export("active")
-	volatile boolean active;
-	@ObfuscatedName("x")
+	@ObfuscatedName("r")
 	@ObfuscatedSignature(
-		signature = "Ldw;"
+		descriptor = "Lbt;"
 	)
 	@Export("after")
 	PcmStream after;
-	@ObfuscatedName("f")
-	int field1511;
-	@ObfuscatedName("g")
+	@ObfuscatedName("q")
+	int field454;
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		signature = "Ldn;"
+		descriptor = "Lbc;"
 	)
 	@Export("sound")
 	AbstractSound sound;
+	@ObfuscatedName("v")
+	@Export("active")
+	volatile boolean active;
 
 	protected PcmStream() {
-		this.active = true;
-	}
+		this.active = true; // L: 11
+	} // L: 13
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		signature = "()Ldw;"
+		descriptor = "()Lbt;"
 	)
 	@Export("firstSubStream")
 	protected abstract PcmStream firstSubStream();
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "()Ldw;"
+		descriptor = "()Lbt;"
 	)
 	@Export("nextSubStream")
 	protected abstract PcmStream nextSubStream();
 
-	@ObfuscatedName("e")
-	protected abstract int vmethod4099();
+	@ObfuscatedName("g")
+	protected abstract int vmethod4124();
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("h")
 	@Export("fill")
 	protected abstract void fill(int[] var1, int var2, int var3);
 
-	@ObfuscatedName("s")
+	@ObfuscatedName("l")
 	@Export("skip")
 	protected abstract void skip(int var1);
 
-	@ObfuscatedName("bi")
-	int vmethod2880() {
-		return 255;
+	@ObfuscatedName("af")
+	int vmethod1039() {
+		return 255; // L: 16
 	}
 
-	@ObfuscatedName("em")
+	@ObfuscatedName("ef")
 	@Export("update")
 	final void update(int[] var1, int var2, int var3) {
-		if (this.active) {
+		if (this.active) { // L: 24
 			this.fill(var1, var2, var3);
 		} else {
-			this.skip(var3);
+			this.skip(var3); // L: 25
 		}
 
-	}
+	} // L: 26
 }

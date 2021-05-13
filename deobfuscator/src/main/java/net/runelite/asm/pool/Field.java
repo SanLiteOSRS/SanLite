@@ -44,7 +44,7 @@ public class Field
 	@Override
 	public String toString()
 	{
-		return "Field{" + "clazz=" + clazz + ", name=" + name + ", type=" + type + '}';
+		return clazz.getName() + '.' + name + " " + type;
 	}
 
 	@Override

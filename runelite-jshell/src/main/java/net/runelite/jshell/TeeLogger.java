@@ -50,7 +50,7 @@ public class TeeLogger implements Logger
 	public String getName()
 	{
 		return "RLShell";
-	}
+	} // TODO: Rename
 
 	@Override
 	public boolean isTraceEnabled()

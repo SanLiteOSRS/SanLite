@@ -31,7 +31,7 @@ import java.util.List;
 import java.util.Map;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-
+import net.runelite.api.annotations.VisibleForDevtools;
 import net.runelite.api.annotations.VisibleForExternalPlugins;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.coords.WorldPoint;
@@ -66,6 +66,8 @@ public interface Client extends GameEngine
 	 * This is most useful for mixins which can't have their own.
 	 */
 	Logger getLogger();
+
+	String getBuildID();
 
 	/**
 	 * Gets a list of all valid players from the player cache.
@@ -125,8 +127,21 @@ public interface Client extends GameEngine
 	 * @param name the name of the player that sent the message
 	 * @param message the message contents
 	 * @param sender the sender/channel name
+	 * @return the message node for the message
 	 */
-	void addChatMessage(ChatMessageType type, String name, String message, String sender);
+	MessageNode addChatMessage(ChatMessageType type, String name, String message, String sender);
+
+	/**
+	 * Adds a new chat message to the chatbox.
+	 *
+	 * @param type the type of message
+	 * @param name the name of the player that sent the message
+	 * @param message the message contents
+	 * @param sender the sender/channel name
+	 * @param postEvent whether to post the chat message event
+	 * @return the message node for the message
+	 */
+	MessageNode addChatMessage(ChatMessageType type, String name, String message, String sender, boolean postEvent);
 
 	/**
 	 * Gets the current game state.
@@ -136,27 +151,11 @@ public interface Client extends GameEngine
 	GameState getGameState();
 
 	/**
-	 * Gets the current game state as an int
-	 *
-	 * @return the game state
-	 */
-	int getRSGameState();
-
-	/**
 	 * Sets the current game state
 	 *
 	 * @param gameState
 	 */
 	void setGameState(GameState gameState);
-
-	/**
-	 * Sets the current game state
-	 * This takes an int instead of a {@link GameState} so it can
-	 * can handle states that aren't in the enum yet
-	 *
-	 * @param gameState
-	 */
-	void setGameState(int gameState);
 
 	/**
 	 * Causes the client to shutdown. It is faster than
@@ -376,13 +375,6 @@ public interface Client extends GameEngine
 	Player getLocalPlayer();
 
 	/**
-	 * Retrieves the local player index
-	 *
-	 * @return local player index
-	 */
-	int getLocalPlayerIndex();
-
-	/**
 	 * Gets the item composition corresponding to an items ID.
 	 *
 	 * @param id the item ID
@@ -557,13 +549,6 @@ public interface Client extends GameEngine
 	int[] getWidgetPositionsY();
 
 	/**
-	 * Creates a new widget element
-	 *
-	 * @return created widget
-	 */
-	Widget createWidget();
-
-	/**
 	 * Gets the current run energy of the logged in player.
 	 *
 	 * @return the run energy
@@ -617,11 +602,6 @@ public interface Client extends GameEngine
 	MenuEntry[] getMenuEntries();
 
 	/**
-	 * @return amount of menu entries the client has (same as client.getMenuEntries().size())
-	 */
-	int getMenuOptionCount();
-
-	/**
 	 * Sets the array of open menu entries.
 	 * <p>
 	 * This method should typically be used in the context of the {@link net.runelite.api.events.MenuOpened}
@@ -630,12 +610,6 @@ public interface Client extends GameEngine
 	 * @param entries new array of open menu entries
 	 */
 	void setMenuEntries(MenuEntry[] entries);
-
-	/**
-	 * Set the amount of menu entries the client has.
-	 * If you decrement this count, it's the same as removing the last one
-	 */
-	void setMenuOptionCount(int count);
 
 	/**
 	 * Checks whether a right-click menu is currently open.
@@ -713,11 +687,13 @@ public interface Client extends GameEngine
 	 *
 	 * @return local player variables
 	 */
+	@VisibleForDevtools
 	int[] getVarps();
 
 	/**
 	 * Gets an array of all client variables.
 	 */
+	@VisibleForDevtools
 	Map<Integer, Object> getVarcMap();
 
 	/**
@@ -812,6 +788,7 @@ public interface Client extends GameEngine
 	 * @param id
 	 * @return
 	 */
+	@VisibleForDevtools
 	@Nullable
 	VarbitComposition getVarbit(int id);
 
@@ -821,29 +798,10 @@ public interface Client extends GameEngine
 	 * @param varps passed varbits
 	 * @param varbitId the variable ID
 	 * @return the value
-	 * @see Varbits
+	 * @see Varbits#id
 	 */
+	@VisibleForDevtools
 	int getVarbitValue(int[] varps, int varbitId);
-
-	/**
-	 * Gets the value of a given VarPlayer.
-	 *
-	 * @param varps passed varps
-	 * @param varpId the VarpPlayer id
-	 * @return the value
-	 * @see VarPlayer#getId()
-	 */
-	int getVarpValue(int[] varps, int varpId);
-
-	/**
-	 * Sets the value of a given VarPlayer.
-	 *
-	 * @param varps passed varps
-	 * @param varpId the VarpPlayer id
-	 * @param value the value
-	 * @see VarPlayer#getId()
-	 */
-	void setVarpValue(int[] varps, int varpId, int value);
 
 	/**
 	 * Sets the value of a given variable.
@@ -851,8 +809,9 @@ public interface Client extends GameEngine
 	 * @param varps passed varbits
 	 * @param varbit the variable
 	 * @param value the value
-	 * @see Varbits
+	 * @see Varbits#id
 	 */
+	@VisibleForDevtools
 	void setVarbitValue(int[] varps, int varbit, int value);
 
 	/**
@@ -939,16 +898,6 @@ public interface Client extends GameEngine
 	 * @return the map
 	 */
 	IterableHashTable<MessageNode> getMessages();
-
-	/**
-	 * Gets the viewport widget.
-	 * <p>
-	 * The viewport is the area of the game above the chatbox
-	 * and to the left of the mini-map.
-	 *
-	 * @return the viewport widget
-	 */
-	Widget getViewportWidget();
 
 	/**
 	 * Gets the object composition corresponding to an objects ID.
@@ -1155,11 +1104,6 @@ public interface Client extends GameEngine
 	 * @see Constants#CLIENT_TICK_LENGTH
 	 */
 	int getKeyboardIdleTicks();
-
-	/**
-	 * Returns an array of booleans relating to keys pressed.
-	 */
-	boolean[] getPressedKeys();
 
 	/**
 	 * Changes how game behaves based on memory mode. Low memory mode skips
@@ -1635,13 +1579,6 @@ public interface Client extends GameEngine
 	void setProjectilesHidden(boolean state);
 
 	/**
-	 * Sets whether dead NPCs are hidden.
-	 *
-	 * @param state new NPC hidden state
-	 */
-	void setDeadNPCsHidden(boolean state);
-
-	/**
 	 * Gets an array of tile collision data.
 	 * <p>
 	 * The index into the array is the plane/z-axis coordinate.
@@ -1651,10 +1588,13 @@ public interface Client extends GameEngine
 	@Nullable
 	CollisionData[] getCollisionMaps();
 
+	@VisibleForDevtools
 	int[] getBoostedSkillLevels();
 
+	@VisibleForDevtools
 	int[] getRealSkillLevels();
 
+	@VisibleForDevtools
 	int[] getSkillExperiences();
 
 	void queueChangedSkill(Skill skill);
@@ -1681,13 +1621,6 @@ public interface Client extends GameEngine
 	 * @param spritePixels the new sprite
 	 */
 	void setCompass(SpritePixels spritePixels);
-
-	/**
-	 * Sets whether inventory quantity is verbose.
-	 *
-	 * @param state verbose state
-	 */
-	void setItemQuantitiesVerbose(boolean state);
 
 	/**
 	 * Returns widget sprite cache, to be used with {@link Client#getSpriteOverrides()}
@@ -1848,28 +1781,7 @@ public interface Client extends GameEngine
 
 	void resetHealthBarCaches();
 
-	boolean getRenderSelf();
-
-	void setRenderSelf(boolean enabled);
-
 	/**
-	 *
-	 * @param param0 This is SceneX for gameObject, index for items, and 0 for npc.
-	 * @param param1 This is SceneY for gameObject, static for items, and 0 for npc.
-	 * @param type Menu entry Action opcode.
-	 * @param id Targets ID
-	 * @param menuEntry Do these actually matter?
-	 * @param targetString Do these actually matter?
-	 * @param canvasX Canvas X Point
-	 * @param canvasY Canvas Y Point
-	 */
-	void invokeMenuAction(int param0, int param1, int type, int id, String menuEntry, String targetString, int canvasX, int canvasY);
-
-	String getSelectedSpellName();
-
-	void setSelectedSpellName(String name);
-
-	/*
 	 * Returns the max item index + 1 from cache
 	 */
 	int getItemCount();
@@ -1878,55 +1790,6 @@ public interface Client extends GameEngine
 	 * Makes all widgets behave as if they are {@link WidgetConfig#WIDGET_USE_TARGET}
 	 */
 	void setAllWidgetsAreOpTargetable(boolean value);
-
-	/**
-	 * Adds a MenuEntry to the current menu.
-	 */
-	void insertMenuItem(String action, String target, int opcode, int identifier, int argument1, int argument2, boolean forceLeftClick);
-
-	void setSelectedItemID(int id);
-
-	int getSelectedItemWidget();
-
-	void setSelectedItemWidget(int widgetID);
-
-	void setSelectedItemSlot(int idx);
-
-	int getSelectedItemSlot();
-
-	int getSelectedSpellWidget();
-
-	void setSelectedSpellWidget(int widgetID);
-
-	int getSelectedSpellChildIndex();
-
-	void setSelectedSpellChildIndex(int index);
-
-	/**
-	 * Scales values from pixels onto canvas
-	 *
-	 * @param canvas       the array we're writing to
-	 * @param pixels       pixels to draw
-	 * @param color        should be 0
-	 * @param pixelX       x index
-	 * @param pixelY       y index
-	 * @param canvasIdx    index in canvas (canvas[canvasIdx])
-	 * @param canvasOffset x offset
-	 * @param newWidth     new width
-	 * @param newHeight    new height
-	 * @param pixelWidth   pretty much horizontal scale
-	 * @param pixelHeight  pretty much vertical scale
-	 * @param oldWidth     old width
-	 */
-	void scaleSprite(int[] canvas, int[] pixels, int color, int pixelX, int pixelY, int canvasIdx, int canvasOffset,
-						int newWidth, int newHeight, int pixelWidth, int pixelHeight, int oldWidth);
-
-
-	void setMouseIdleTicks(int cycles);
-
-	void setKeyboardIdleTicks(int cycles);
-
-	void setMouseLastPressedMillis(long cycles);
 
 	/**
 	 * Sets the result count for GE search
@@ -1963,11 +1826,20 @@ public interface Client extends GameEngine
 	 */
 	boolean isKeyPressed(int keycode);
 
-	boolean shouldRenderLoginScreenFire();
+	boolean shouldRenderLoginScreenFire();;
 
-	int getFollowerIndex();
+	/**
+	 *
+	 * @param param0 This is SceneX for gameObject, index for items, and 0 for npc.
+	 * @param param1 This is SceneY for gameObject, static for items, and 0 for npc.
+	 * @param type Menu entry Action opcode.
+	 * @param id Targets ID
+	 * @param menuEntry Do these actually matter?
+	 * @param targetString Do these actually matter?
+	 * @param canvasX Canvas X Point
+	 * @param canvasY Canvas Y Point
+	 */
+	void invokeMenuAction(int param0, int param1, int type, int id, String menuEntry, String targetString, int canvasX, int canvasY);
 
-	List<String> getOutdatedScripts();
-
-	void setOutdatedScript(String outdatedScript);
+	void setKeyboardIdleTicks(int cycles);
 }

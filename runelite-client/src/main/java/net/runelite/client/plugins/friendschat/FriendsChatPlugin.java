@@ -289,11 +289,17 @@ public class FriendsChatPlugin extends Plugin
 			{
 				chatTitleWidget.setText(TITLE + " (" + friendsChatManager.getCount() + "/100)");
 			}
-			else if (config.recentChats() && chatList.getChildren() == null && !Strings.isNullOrEmpty(owner.getText()))
+			else if (chatList.getChildren() == null && !Strings.isNullOrEmpty(owner.getText()))
 			{
-				chatTitleWidget.setText(RECENT_TITLE);
-
-				loadFriendsChats();
+				if (config.recentChats())
+				{
+					chatTitleWidget.setText(RECENT_TITLE);
+					loadFriendsChats();
+				}
+				else
+				{
+					chatTitleWidget.setText(TITLE);
+				}
 			}
 		}
 
@@ -411,11 +417,7 @@ public class FriendsChatPlugin extends Plugin
 			.append(textColor, member.getName() + activityMessage);
 
 		final String messageString = message.build();
-		client.addChatMessage(ChatMessageType.FRIENDSCHATNOTIFICATION, "", messageString, "");
-
-		final ChatLineBuffer chatLineBuffer = client.getChatLineMap().get(ChatMessageType.FRIENDSCHATNOTIFICATION.getType());
-		final MessageNode[] lines = chatLineBuffer.getLines();
-		final MessageNode line = lines[0];
+		final MessageNode line = client.addChatMessage(ChatMessageType.FRIENDSCHATNOTIFICATION, "", messageString, "");
 
 		MemberJoinMessage joinMessage = new MemberJoinMessage(line, line.getId(), client.getTickCount());
 		joinMessages.addLast(joinMessage);

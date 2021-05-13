@@ -1,0 +1,24 @@
+exclude-labels:
+  - 'skip-changelog'
+  - 'automated-pull-request'
+  - 'upstream'
+categories:
+  - title: '🚀 Features'
+    labels:
+      - 'feature'
+      - 'enhancement'
+      - 'feature-request'
+  - title: '🐛 Bug Fixes'
+    labels:
+      - 'fix'
+      - 'bugfix'
+      - 'bug'
+  - title: '🧰 Maintenance'
+    label: 'chore'
+change-template: '* $TITLE (#$NUMBER) @$AUTHOR'
+template: |
+  Thanks to: $CONTRIBUTORS
+
+  ## Changes
+
+  $CHANGES

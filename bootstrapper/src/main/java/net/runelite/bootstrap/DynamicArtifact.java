@@ -8,12 +8,11 @@ import java.io.File;
 @AllArgsConstructor
 public enum DynamicArtifact
 {
-	RUNELITE_CLIENT("runelite-client", "client"),
+	RUNELITE_CLIENT("runelite-client", "runelite-client"),
 	RUNELITE_API("runelite-api", "runelite-api"),
 	RUNESCAPE_API("runescape-api", "runescape-api"),
-	RUNELITE_JSHELL("runelite-jshell", "jshell"),
-	HTTP_API("http-api", "http-api"),
-	INJECTED_CLIENT("injected-client", "injected-client");
+	RUNELITE_JSHELL("runelite-jshell", "runelite-jshell"),
+	HTTP_API("http-api", "http-api");
 
 	@Getter
 	private final String directory;
@@ -23,11 +22,11 @@ public enum DynamicArtifact
 
 	public File getFile()
 	{
-		return new File("../" + getDirectory() + "/target/" + getFileName());
+		return new File("../" + getDirectory() + "/build/libs/" + getFileName());
 	}
 
 	public String getFileName()
 	{
-		return getName() + "-" + new BootstrapperProperties().getRuneLiteVersion() + ".jar";
+		return getName() + "-" + new BootstrapperProperties().getSanLiteVersion() + ".jar";
 	}
 }

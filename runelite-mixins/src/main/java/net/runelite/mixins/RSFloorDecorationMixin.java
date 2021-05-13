@@ -24,8 +24,7 @@
  */
 package net.runelite.mixins;
 
-import java.awt.*;
-
+import java.awt.Shape;
 import net.runelite.api.Model;
 import net.runelite.api.Perspective;
 import net.runelite.api.coords.LocalPoint;
@@ -61,7 +60,6 @@ public abstract class RSFloorDecorationMixin implements RSFloorDecoration
 	}
 
 	@Inject
-	@Override
 	public RSModel getModel()
 	{
 		RSRenderable entity = getRenderable();

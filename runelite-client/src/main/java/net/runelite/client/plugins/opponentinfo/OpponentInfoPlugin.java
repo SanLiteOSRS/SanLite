@@ -50,6 +50,7 @@ import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.ui.overlay.OverlayManager;
 import net.runelite.http.api.hiscore.HiscoreEndpoint;
+import net.sanlite.client.plugins.opponentinfo.OpponentInfoOverlay;
 
 @PluginDescriptor(
 	name = "Opponent Information",
@@ -75,10 +76,10 @@ public class OpponentInfoPlugin extends Plugin
 	@Inject
 	private PlayerComparisonOverlay playerComparisonOverlay;
 
-	@Getter(AccessLevel.PACKAGE)
+	@Getter(AccessLevel.PUBLIC)
 	private HiscoreEndpoint hiscoreEndpoint = HiscoreEndpoint.NORMAL;
 
-	@Getter(AccessLevel.PACKAGE)
+	@Getter(AccessLevel.PUBLIC)
 	private Actor lastOpponent;
 
 	@Getter(AccessLevel.PACKAGE)

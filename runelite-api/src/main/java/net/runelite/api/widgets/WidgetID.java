@@ -164,6 +164,7 @@ public class WidgetID
 	public static final int DUEL_INVENTORY_GROUP_ID = 421;
 	public static final int DUEL_INVENTORY_OTHER_GROUP_ID = 481;
 	public static final int TRAILBLAZER_AREAS_GROUP_ID = 512;
+	public static final int TEMPOROSS_GROUP_ID = 437;
 
 	static class WorldMap
 	{
@@ -303,7 +304,6 @@ public class WidgetID
 
 	static class Shop
 	{
-		static final int ITEMS_CONTAINER = 2;
 		static final int INVENTORY_ITEM_CONTAINER = 0;
 	}
 
@@ -795,7 +795,6 @@ public class WidgetID
 	{
 		static final int BOUNTY_HUNTER_INFO = 6;
 		static final int KILLDEATH_RATIO = 28;
-		static final int AREA_INDICATOR = 47;
 		static final int SKULL_CONTAINER = 48;
 		static final int SAFE_ZONE = 50;
 		static final int WILDERNESS_LEVEL = 53; // this can also be the Deadman Mode "Protection" text
@@ -944,5 +943,10 @@ public class WidgetID
 	static class TrailblazerAreas
 	{
 		static final int TELEPORT = 59;
+	}
+
+	static class TemporossStatus
+	{
+		static final int STATUS_INDICATOR = 4;
 	}
 }

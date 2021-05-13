@@ -36,11 +36,14 @@ import net.runelite.cache.fs.Index;
 import net.runelite.cache.fs.Storage;
 import net.runelite.cache.fs.Store;
 import static org.junit.Assert.assertArrayEquals;
+
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class InterfaceSaverTest
 {
 	@Test
+	@Ignore
 	public void testSave() throws Exception
 	{
 		File base = StoreLocation.LOCATION;

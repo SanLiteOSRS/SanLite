@@ -42,6 +42,7 @@ import javax.swing.border.EmptyBorder;
 import net.runelite.client.ui.ColorScheme;
 import net.runelite.client.ui.FontManager;
 import net.runelite.client.util.ImageUtil;
+import net.sanlite.client.ui.Colors;
 
 class WorldTableHeader extends JPanel
 {
@@ -50,7 +51,7 @@ class WorldTableHeader extends JPanel
 	private static final ImageIcon HIGHLIGHT_ARROW_UP;
 
 	private static final Color ARROW_COLOR = ColorScheme.LIGHT_GRAY_COLOR;
-	private static final Color HIGHLIGHT_COLOR = ColorScheme.BRAND_BLUE;
+	private static final Color HIGHLIGHT_COLOR = Colors.BRAND_BLUE;
 
 	static
 	{

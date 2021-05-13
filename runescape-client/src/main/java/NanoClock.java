@@ -4,55 +4,55 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fx")
+@ObfuscatedName("dj")
 @Implements("NanoClock")
 public class NanoClock extends Clock {
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		longValue = 7306161736253436303L
+		longValue = 898288013005373267L
 	)
 	@Export("lastTimeNano")
 	long lastTimeNano;
 
-	public NanoClock() {
-		this.lastTimeNano = System.nanoTime();
-	}
+	NanoClock() {
+		this.lastTimeNano = System.nanoTime(); // L: 10
+	} // L: 11
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "(B)V",
-		garbageValue = "46"
+		descriptor = "(S)V",
+		garbageValue = "-629"
 	)
 	@Export("mark")
 	public void mark() {
-		this.lastTimeNano = System.nanoTime();
-	}
+		this.lastTimeNano = System.nanoTime(); // L: 14
+	} // L: 15
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "(III)I",
-		garbageValue = "1861957348"
+		descriptor = "(III)I",
+		garbageValue = "1172254968"
 	)
 	@Export("wait")
 	public int wait(int var1, int var2) {
-		long var3 = (long)var2 * 1000000L;
-		long var5 = this.lastTimeNano - System.nanoTime();
-		if (var5 < var3) {
+		long var3 = (long)var2 * 1000000L; // L: 18
+		long var5 = this.lastTimeNano - System.nanoTime(); // L: 19
+		if (var5 < var3) { // L: 20
 			var5 = var3;
 		}
 
-		ApproximateRouteStrategy.method1311(var5 / 1000000L);
-		long var7 = System.nanoTime();
+		GrandExchangeEvent.sleepExact(var5 / 1000000L); // L: 21
+		long var7 = System.nanoTime(); // L: 22
 
 		int var9;
-		for (var9 = 0; var9 < 10 && (var9 < 1 || this.lastTimeNano < var7); this.lastTimeNano += 1000000L * (long)var1) {
-			++var9;
+		for (var9 = 0; var9 < 10 && (var9 < 1 || this.lastTimeNano < var7); this.lastTimeNano += 1000000L * (long)var1) { // L: 23 24 26
+			++var9; // L: 25
 		}
 
-		if (this.lastTimeNano < var7) {
+		if (this.lastTimeNano < var7) { // L: 28
 			this.lastTimeNano = var7;
 		}
 
-		return var9;
+		return var9; // L: 29
 	}
 }

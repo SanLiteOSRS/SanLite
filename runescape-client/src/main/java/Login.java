@@ -4,230 +4,200 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("cy")
+@ObfuscatedName("cg")
 @Implements("Login")
 public class Login {
-	@ObfuscatedName("v")
-	@Export("clearLoginScreen")
-	static boolean clearLoginScreen;
-	@ObfuscatedName("d")
+	@ObfuscatedName("sg")
+	@ObfuscatedSignature(
+		descriptor = "Lcm;"
+	)
+	@Export("clientPreferences")
+	static ClientPreferences clientPreferences;
+	@ObfuscatedName("u")
 	@ObfuscatedGetter(
-		intValue = -798516213
+		intValue = 1122392293
 	)
 	@Export("xPadding")
 	static int xPadding;
-	@ObfuscatedName("c")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		signature = "[Lly;"
+		descriptor = "[Low;"
 	)
 	@Export("runesSprite")
 	static IndexedSprite[] runesSprite;
-	@ObfuscatedName("z")
-	@ObfuscatedSignature(
-		signature = "Llm;"
-	)
-	@Export("leftTitleSprite")
-	static SpritePixels leftTitleSprite;
-	@ObfuscatedName("e")
-	@ObfuscatedSignature(
-		signature = "Llm;"
-	)
-	@Export("rightTitleSprite")
-	static SpritePixels rightTitleSprite;
-	@ObfuscatedName("q")
-	@ObfuscatedSignature(
-		signature = "Lly;"
-	)
-	@Export("logoSprite")
-	static IndexedSprite logoSprite;
 	@ObfuscatedName("l")
-	@ObfuscatedSignature(
-		signature = "[Lly;"
-	)
-	@Export("title_muteSprite")
-	static IndexedSprite[] title_muteSprite;
-	@ObfuscatedName("a")
-	@ObfuscatedSignature(
-		signature = "Lly;"
-	)
-	@Export("options_buttons_2Sprite")
-	static IndexedSprite options_buttons_2Sprite;
-	@ObfuscatedName("u")
 	@ObfuscatedGetter(
-		intValue = -491759097
+		intValue = -1338288751
+	)
+	static int field1018;
+	@ObfuscatedName("j")
+	@ObfuscatedSignature(
+		descriptor = "Lci;"
+	)
+	@Export("loginScreenRunesAnimation")
+	static LoginScreenAnimation loginScreenRunesAnimation;
+	@ObfuscatedName("x")
+	@ObfuscatedGetter(
+		intValue = -1015989971
 	)
 	@Export("loginBoxX")
 	static int loginBoxX;
-	@ObfuscatedName("p")
+	@ObfuscatedName("i")
 	@ObfuscatedGetter(
-		intValue = -1990930167
+		intValue = 1156735553
 	)
 	@Export("Login_loadingPercent")
 	static int Login_loadingPercent;
-	@ObfuscatedName("m")
+	@ObfuscatedName("a")
 	@Export("Login_loadingText")
 	static String Login_loadingText;
-	@ObfuscatedName("ae")
+	@ObfuscatedName("ag")
 	@ObfuscatedGetter(
-		intValue = -1379115269
+		intValue = 1968264881
 	)
-	static int field1206;
-	@ObfuscatedName("at")
+	static int field993;
+	@ObfuscatedName("aj")
 	@ObfuscatedGetter(
-		intValue = -1813136613
+		intValue = -1162562217
 	)
-	static int field1207;
-	@ObfuscatedName("al")
+	static int field994;
+	@ObfuscatedName("as")
 	@ObfuscatedGetter(
-		intValue = 1401481889
+		intValue = -233331579
 	)
 	@Export("loginIndex")
 	static int loginIndex;
-	@ObfuscatedName("aa")
+	@ObfuscatedName("ad")
 	@Export("Login_response0")
 	static String Login_response0;
-	@ObfuscatedName("as")
+	@ObfuscatedName("af")
 	@Export("Login_response1")
 	static String Login_response1;
-	@ObfuscatedName("aw")
+	@ObfuscatedName("ao")
 	@Export("Login_response2")
 	static String Login_response2;
-	@ObfuscatedName("az")
+	@ObfuscatedName("ai")
 	@Export("Login_response3")
 	static String Login_response3;
-	@ObfuscatedName("ah")
+	@ObfuscatedName("av")
 	@Export("Login_username")
 	static String Login_username;
-	@ObfuscatedName("ap")
+	@ObfuscatedName("az")
 	@Export("Login_password")
 	static String Login_password;
-	@ObfuscatedName("af")
-	static boolean field1222;
-	@ObfuscatedName("av")
-	static boolean field1216;
+	@ObfuscatedName("an")
+	static boolean field1003;
+	@ObfuscatedName("ah")
+	static boolean field1012;
+	@ObfuscatedName("br")
+	static boolean field1005;
 	@ObfuscatedName("bn")
-	static boolean field1217;
-	@ObfuscatedName("bi")
 	@ObfuscatedGetter(
-		intValue = -557955143
+		intValue = -819418163
 	)
 	@Export("currentLoginField")
 	static int currentLoginField;
-	@ObfuscatedName("bx")
+	@ObfuscatedName("bt")
 	@Export("worldSelectOpen")
 	static boolean worldSelectOpen;
-	@ObfuscatedName("bg")
+	@ObfuscatedName("bq")
 	@ObfuscatedGetter(
-		intValue = 933074711
+		intValue = -2104276991
 	)
 	@Export("hoveredWorldIndex")
 	static int hoveredWorldIndex;
-	@ObfuscatedName("bm")
+	@ObfuscatedName("bf")
 	@ObfuscatedGetter(
-		intValue = 1816463307
+		intValue = -1497007259
 	)
 	@Export("worldSelectPage")
 	static int worldSelectPage;
-	@ObfuscatedName("bf")
+	@ObfuscatedName("bc")
 	@ObfuscatedGetter(
-		intValue = 1081007071
+		intValue = -1387381071
 	)
 	@Export("worldSelectPagesCount")
 	static int worldSelectPagesCount;
-	@ObfuscatedName("bs")
+	@ObfuscatedName("bd")
 	@ObfuscatedGetter(
-		longValue = -6454888937678848821L
+		longValue = 5781312275370513963L
 	)
-	static long field1213;
-	@ObfuscatedName("by")
+	static long field991;
+	@ObfuscatedName("bg")
 	@ObfuscatedGetter(
-		longValue = 2692717295757623997L
+		longValue = -4852859935044639761L
 	)
-	static long field1226;
-	@ObfuscatedName("eg")
-	@ObfuscatedSignature(
-		signature = "Liy;"
-	)
-	@Export("archive20")
-	static Archive archive20;
-	@ObfuscatedName("fo")
-	@ObfuscatedSignature(
-		signature = "Lkl;"
-	)
-	@Export("fontPlain12")
-	static Font fontPlain12;
+	static long field1016;
 
 	static {
-		xPadding = 0;
-		loginBoxX = xPadding + 202;
-		Login_loadingPercent = 10;
-		Login_loadingText = "";
-		field1206 = -1;
-		field1207 = 1;
-		loginIndex = 0;
-		Login_response0 = "";
-		Login_response1 = "";
-		Login_response2 = "";
-		Login_response3 = "";
-		Login_username = "";
-		Login_password = "";
-		field1222 = false;
-		field1216 = false;
-		field1217 = true;
-		currentLoginField = 0;
-		worldSelectOpen = false;
-		hoveredWorldIndex = -1;
-		worldSelectPage = 0;
-		worldSelectPagesCount = 0;
-		new DecimalFormat("##0.00");
-		new class171();
-		field1213 = -1L;
-		field1226 = -1L;
+		xPadding = 0; // L: 38
+		loginBoxX = xPadding + 202; // L: 55
+		Login_loadingPercent = 10; // L: 57
+		Login_loadingText = ""; // L: 58
+		field993 = -1; // L: 65
+		field994 = 1; // L: 68
+		loginIndex = 0; // L: 72
+		Login_response0 = ""; // L: 73
+		Login_response1 = ""; // L: 74
+		Login_response2 = ""; // L: 75
+		Login_response3 = ""; // L: 76
+		Login_username = ""; // L: 77
+		Login_password = ""; // L: 78
+		field1003 = false; // L: 85
+		field1012 = false; // L: 86
+		field1005 = true; // L: 89
+		currentLoginField = 0; // L: 90
+		worldSelectOpen = false; // L: 94
+		hoveredWorldIndex = -1; // L: 102
+		worldSelectPage = 0; // L: 103
+		worldSelectPagesCount = 0; // L: 104
+		new DecimalFormat("##0.00"); // L: 107
+		new class124();
+		field991 = -1L; // L: 115
+		field1016 = -1L; // L: 116
 	}
 
-	@ObfuscatedName("y")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "(II)Z",
-		garbageValue = "2056829974"
+		descriptor = "(II)Lke;",
+		garbageValue = "-1050375469"
 	)
-	public static boolean method2244(int var0) {
-		return (var0 >> 30 & 1) != 0;
-	}
-
-	@ObfuscatedName("p")
-	@ObfuscatedSignature(
-		signature = "(ILcl;ZB)I",
-		garbageValue = "23"
-	)
-	static int method2223(int var0, Script var1, boolean var2) {
-		Widget var3 = class237.getWidget(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);
-		if (var0 == ScriptOpcodes.IF_GETTARGETMASK) {
-			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = MusicPatch.method4094(class60.getWidgetClickMask(var3));
-			return 1;
-		} else if (var0 != ScriptOpcodes.IF_GETOP) {
-			if (var0 == ScriptOpcodes.IF_GETOPBASE) {
-				if (var3.dataText == null) {
-					Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = "";
-				} else {
-					Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var3.dataText;
-				}
-
-				return 1;
-			} else {
-				return 2;
-			}
+	public static FloorOverlayDefinition method1968(int var0) {
+		FloorOverlayDefinition var1 = (FloorOverlayDefinition)FloorOverlayDefinition.FloorOverlayDefinition_cached.get((long)var0); // L: 26
+		if (var1 != null) { // L: 27
+			return var1;
 		} else {
-			int var4 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-			--var4;
-			if (var3.actions != null && var4 < var3.actions.length && var3.actions[var4] != null) {
-				Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = var3.actions[var4];
-			} else {
-				Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = "";
+			byte[] var2 = FloorOverlayDefinition.FloorOverlayDefinition_archive.takeFile(4, var0); // L: 28
+			var1 = new FloorOverlayDefinition(); // L: 29
+			if (var2 != null) { // L: 30
+				var1.decode(new Buffer(var2), var0);
 			}
 
-			return 1;
+			var1.postDecode(); // L: 31
+			FloorOverlayDefinition.FloorOverlayDefinition_cached.put(var1, (long)var0); // L: 32
+			return var1; // L: 33
 		}
+	}
+
+	@ObfuscatedName("f")
+	@ObfuscatedSignature(
+		descriptor = "(II)Lne;",
+		garbageValue = "283131350"
+	)
+	public static class373 method1969(int var0) {
+		int var1 = class371.field4124[var0]; // L: 11
+		if (var1 == 1) { // L: 12
+			return class373.field4126; // L: 13
+		} else if (var1 == 2) { // L: 15
+			return class373.field4128; // L: 16
+		} else {
+			return var1 == 3 ? class373.field4134 : null; // L: 18 19 21
+		}
+	}
+
+	@ObfuscatedName("u")
+	public static int method1967(long var0) {
+		return (int)(var0 >>> 0 & 127L); // L: 56
 	}
 }

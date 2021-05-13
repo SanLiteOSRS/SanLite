@@ -39,7 +39,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
 import java.util.stream.Stream;
-import javax.inject.Named;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JPanel;
@@ -115,10 +114,6 @@ class WidgetInspector extends DevToolsFrame
 	private boolean pickerSelected = false;
 
 	@Inject
-	@Named("runelite.title")
-	private String clientTitle;
-
-	@Inject
 	private WidgetInspector(
 		Client client,
 		ClientThread clientThread,
@@ -137,7 +132,7 @@ class WidgetInspector extends DevToolsFrame
 
 		eventBus.register(this);
 
-		setTitle(clientTitle + " Widget Inspector");
+		setTitle("RuneLite Widget Inspector");
 
 		setLayout(new BorderLayout());
 

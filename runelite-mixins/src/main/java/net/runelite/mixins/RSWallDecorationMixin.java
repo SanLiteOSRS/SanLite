@@ -37,48 +37,46 @@ public abstract class RSWallDecorationMixin implements RSWallDecoration
 	}
 
 	@Inject
-	@Override
 	public RSModel getModel1()
 	{
-		RSRenderable entity = getRenderable();
-		if (entity == null)
+		RSRenderable renderable = getRenderable();
+		if (renderable == null)
 		{
 			return null;
 		}
 
 		RSModel model;
 
-		if (entity instanceof Model)
+		if (renderable instanceof Model)
 		{
-			model = (RSModel) entity;
+			model = (RSModel) renderable;
 		}
 		else
 		{
-			model = entity.getModel();
+			model = renderable.getModel();
 		}
 
 		return model;
 	}
 
 	@Inject
-	@Override
 	public RSModel getModel2()
 	{
-		RSRenderable entity = getRenderable2();
-		if (entity == null)
+		RSRenderable renderable = getRenderable2();
+		if (renderable == null)
 		{
 			return null;
 		}
 
 		RSModel model;
 
-		if (entity instanceof Model)
+		if (renderable instanceof Model)
 		{
-			model = (RSModel) entity;
+			model = (RSModel) renderable;
 		}
 		else
 		{
-			model = entity.getModel();
+			model = renderable.getModel();
 		}
 
 		return model;
@@ -89,6 +87,7 @@ public abstract class RSWallDecorationMixin implements RSWallDecoration
 	public Shape getClickbox()
 	{
 		LocalPoint lp = getLocalLocation();
+
 		Shape clickboxA = Perspective.getClickbox(client, getModel1(), 0,
 			new LocalPoint(lp.getX() + getXOffset(), lp.getY() + getYOffset()));
 		Shape clickboxB = Perspective.getClickbox(client, getModel2(), 0, lp);

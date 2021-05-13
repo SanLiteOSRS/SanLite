@@ -25,6 +25,8 @@
 package net.runelite.mixins;
 
 import java.awt.Shape;
+import java.util.ArrayList;
+import java.util.List;
 import net.runelite.api.Model;
 import net.runelite.api.Perspective;
 import net.runelite.api.hooks.DrawCallbacks;
@@ -35,11 +37,9 @@ import net.runelite.api.mixins.Mixin;
 import net.runelite.api.mixins.Replace;
 import net.runelite.api.mixins.Shadow;
 import net.runelite.api.model.Jarvis;
-import net.runelite.rs.api.RSAnimation;
-import net.runelite.rs.api.RSClient;
-import net.runelite.rs.api.RSFrames;
-import net.runelite.rs.api.RSModel;
-import net.runelite.rs.api.RSSkeleton;
+import net.runelite.api.model.Triangle;
+import net.runelite.api.model.Vertex;
+import net.runelite.rs.api.*;
 
 @Mixin(RSModel.class)
 public abstract class RSModelMixin implements RSModel
@@ -104,14 +104,62 @@ public abstract class RSModelMixin implements RSModel
 		setFaceTextureVCoordinates(v);
 	}
 
-	@Copy("contourGround")
-	public abstract Model rs$contourGround(int[][] tileHeights, int packedX, int height, int packedY, boolean copy, int contouredGround);
+	@Inject
+	public List<Vertex> getVertices()
+	{
+		int[] verticesX = getVerticesX();
+		int[] verticesY = getVerticesY();
+		int[] verticesZ = getVerticesZ();
 
+		List<Vertex> vertices = new ArrayList<Vertex>(getVerticesCount());
+
+		for (int i = 0; i < getVerticesCount(); ++i)
+		{
+			Vertex v = new Vertex(
+				verticesX[i],
+				verticesY[i],
+				verticesZ[i]
+			);
+			vertices.add(v);
+		}
+
+		return vertices;
+	}
+
+	@Inject
+	public List<Triangle> getTriangles()
+	{
+		int[] trianglesX = getTrianglesX();
+		int[] trianglesY = getTrianglesY();
+		int[] trianglesZ = getTrianglesZ();
+
+		List<Vertex> vertices = getVertices();
+		List<Triangle> triangles = new ArrayList<>(getTrianglesCount());
+
+		for (int i = 0; i < getTrianglesCount(); ++i)
+		{
+			int triangleX = trianglesX[i];
+			int triangleY = trianglesY[i];
+			int triangleZ = trianglesZ[i];
+
+			Triangle triangle = new Triangle(
+				vertices.get(triangleX),
+				vertices.get(triangleY),
+				vertices.get(triangleZ)
+			);
+			triangles.add(triangle);
+		}
+
+		return triangles;
+	}
+
+	@Copy("contourGround")
 	@Replace("contourGround")
-	public Model rl$contourGround(int[][] tileHeights, int packedX, int height, int packedY, boolean copy, int contouredGround)
+	@SuppressWarnings("InfiniteRecursion")
+	public Model copy$contourGround(int[][] tileHeights, int packedX, int height, int packedY, boolean copy, int contouredGround)
 	{
 		// With contouredGround >= 0 lighted models are countoured, so we need to copy uvs
-		Model model = rs$contourGround(tileHeights, packedX, height, packedY, copy, contouredGround);
+		Model model = copy$contourGround(tileHeights, packedX, height, packedY, copy, contouredGround);
 		if (model != null && model != this)
 		{
 			RSModel rsModel = (RSModel) model;
@@ -122,15 +170,13 @@ public abstract class RSModelMixin implements RSModel
 	}
 
 	@Copy("drawFace")
-	public abstract void rs$drawFace(int face);
-
 	@Replace("drawFace")
-	public void rl$drawFace(int face)
+	public void copy$drawFace(int face)
 	{
 		DrawCallbacks callbacks = client.getDrawCallbacks();
 		if (callbacks == null || !callbacks.drawFace(this, face))
 		{
-			rs$drawFace(face);
+			copy$drawFace(face);
 		}
 	}
 

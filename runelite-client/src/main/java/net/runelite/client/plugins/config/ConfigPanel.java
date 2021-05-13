@@ -74,7 +74,6 @@ import net.runelite.client.config.ConfigManager;
 import net.runelite.client.config.ConfigObject;
 import net.runelite.client.config.ConfigSection;
 import net.runelite.client.config.ConfigSectionDescriptor;
-import net.runelite.client.config.AllKeyCodeKeybind;
 import net.runelite.client.config.Keybind;
 import net.runelite.client.config.ModifierlessKeybind;
 import net.runelite.client.config.Range;
@@ -98,6 +97,8 @@ import net.runelite.client.util.ColorUtil;
 import net.runelite.client.util.ImageUtil;
 import net.runelite.client.util.SwingUtil;
 import net.runelite.client.util.Text;
+import net.sanlite.client.config.AllKeyCodeKeybind;
+import net.sanlite.client.ui.Colors;
 
 @Slf4j
 class ConfigPanel extends PluginPanel
@@ -286,7 +287,7 @@ class ConfigPanel extends PluginPanel
 
 			String name = cs.name();
 			final JLabel sectionName = new JLabel(name);
-			sectionName.setForeground(ColorScheme.BRAND_BLUE);
+			sectionName.setForeground(Colors.BRAND_BLUE);
 			sectionName.setFont(FontManager.getRunescapeBoldFont());
 			sectionName.setToolTipText("<html>" + name + ":<br>" + cs.description() + "</html>");
 			sectionHeader.add(sectionName, BorderLayout.CENTER);

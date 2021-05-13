@@ -32,6 +32,7 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import net.runelite.cache.definitions.AreaDefinition;
 import net.runelite.cache.fs.Store;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
@@ -48,6 +49,7 @@ public class AreaDumper
 	private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
 	@Test
+	@Ignore
 	public void extract() throws IOException
 	{
 		File base = StoreLocation.LOCATION,

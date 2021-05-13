@@ -32,7 +32,7 @@ import net.runelite.asm.ClassFile;
 import net.runelite.asm.Method;
 import net.runelite.asm.Type;
 import net.runelite.asm.attributes.Code;
-import net.runelite.asm.attributes.annotation.Annotation;
+import net.runelite.asm.Annotation;
 import net.runelite.asm.attributes.code.Exceptions;
 import net.runelite.asm.attributes.code.Instruction;
 import net.runelite.asm.attributes.code.InstructionType;
@@ -80,7 +80,7 @@ public class CodeVisitor extends MethodVisitor
 	private final Method method;
 	private Code code;
 
-	CodeVisitor(ClassFile classFile, int access, String name, Signature signature, String[] stringExceptions)
+	CodeVisitor(ClassFile classFile, int access, String name, Signature signature, String[] sexceptions)
 	{
 		super(Opcodes.ASM5);
 
@@ -90,9 +90,9 @@ public class CodeVisitor extends MethodVisitor
 		method.setAccessFlags(access);
 
 		net.runelite.asm.attributes.Exceptions exceptions = method.getExceptions();
-		if (stringExceptions != null)
+		if (sexceptions != null)
 		{
-			for (String e : stringExceptions)
+			for (String e : sexceptions)
 			{
 				exceptions.addException(new net.runelite.asm.pool.Class(e));
 			}
@@ -108,9 +108,9 @@ public class CodeVisitor extends MethodVisitor
 	@Override
 	public AnnotationVisitor visitAnnotation(String desc, boolean visible)
 	{
-		Annotation element = new Annotation(new Type(desc));
-		this.method.getAnnotations().addAnnotation(element);
-		return new AnnotationElementVisitor(element);
+		Annotation annotation = new Annotation(new Type(desc), visible);
+		this.method.addAnnotation(annotation);
+		return annotation;
 	}
 
 	@Override

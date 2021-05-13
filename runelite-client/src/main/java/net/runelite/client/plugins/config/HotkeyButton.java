@@ -30,12 +30,12 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 import lombok.Getter;
-import net.runelite.client.config.AllKeyCodeKeybind;
 import net.runelite.client.config.Keybind;
 import net.runelite.client.config.ModifierlessKeybind;
 import net.runelite.client.ui.FontManager;
+import net.sanlite.client.config.AllKeyCodeKeybind;
 
-public class HotkeyButton extends JButton
+class HotkeyButton extends JButton
 {
 	@Getter
 	private Keybind value;

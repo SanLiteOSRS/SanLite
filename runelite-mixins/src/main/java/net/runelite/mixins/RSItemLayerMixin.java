@@ -35,7 +35,6 @@ public abstract class RSItemLayerMixin implements RSItemLayer
 	}
 
 	@Inject
-	@Override
 	public Model getModelBottom()
 	{
 		Renderable renderable = getBottom();
@@ -55,7 +54,6 @@ public abstract class RSItemLayerMixin implements RSItemLayer
 	}
 
 	@Inject
-	@Override
 	public Model getModelMiddle()
 	{
 		Renderable renderable = getMiddle();
@@ -75,7 +73,6 @@ public abstract class RSItemLayerMixin implements RSItemLayer
 	}
 
 	@Inject
-	@Override
 	public Model getModelTop()
 	{
 		Renderable renderable = getTop();

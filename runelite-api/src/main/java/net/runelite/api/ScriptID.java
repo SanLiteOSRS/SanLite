@@ -149,12 +149,6 @@ public final class ScriptID
 	public static final int CAMERA_DO_ZOOM = 42;
 
 	/**
-	 * Rebuilds the Spellbook
-	 */
-	@ScriptArguments(integer = 10, string = 2)
-	public static final int MAGIC_SPELLBOOK_REDRAW = 2611;
-
-	/**
 	 * Does nothing
 	 *
 	 * This is used to eat events when you want a menu action attached to it

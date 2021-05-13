@@ -321,6 +321,11 @@ public class GpuPlugin extends Plugin implements DrawCallbacks
 				modelBufferSmall = new GpuIntBuffer();
 				modelBuffer = new GpuIntBuffer();
 
+				if (log.isDebugEnabled())
+				{
+					System.setProperty("jogl.debug", "true");
+				}
+
 				GLProfile.initSingleton();
 
 				invokeOnMainThread(() ->
@@ -342,6 +347,11 @@ public class GpuPlugin extends Plugin implements DrawCallbacks
 						glDrawable.setRealized(true);
 
 						glContext = glDrawable.createContext(null);
+						if (log.isDebugEnabled())
+						{
+							// Debug config on context needs to be set before .makeCurrent call
+							glContext.enableGLDebugMessage(true);
+						}
 					}
 					finally
 					{
@@ -362,6 +372,15 @@ public class GpuPlugin extends Plugin implements DrawCallbacks
 
 					this.gl = glContext.getGL().getGL4();
 					gl.setSwapInterval(0);
+
+					if (log.isDebugEnabled())
+					{
+						gl.glEnable(gl.GL_DEBUG_OUTPUT);
+
+						// Suppress warning messages which flood the log on NVIDIA systems.
+						gl.getContext().glDebugMessageControl(gl.GL_DEBUG_SOURCE_API, gl.GL_DEBUG_TYPE_OTHER,
+							gl.GL_DEBUG_SEVERITY_NOTIFICATION, 0, null, 0, false);
+					}
 
 					initVao();
 					try

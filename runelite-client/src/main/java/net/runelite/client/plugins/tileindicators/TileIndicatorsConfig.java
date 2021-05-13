@@ -25,8 +25,10 @@
 package net.runelite.client.plugins.tileindicators;
 
 import java.awt.Color;
-
-import net.runelite.client.config.*;
+import net.runelite.client.config.Alpha;
+import net.runelite.client.config.Config;
+import net.runelite.client.config.ConfigGroup;
+import net.runelite.client.config.ConfigItem;
 
 @ConfigGroup("tileindicators")
 public interface TileIndicatorsConfig extends Config
@@ -98,16 +100,5 @@ public interface TileIndicatorsConfig extends Config
 	default boolean highlightCurrentTile()
 	{
 		return false;
-	}
-
-	@ConfigItem(
-			keyName = "tileMarkersLineSize",
-			name = "Tile markers line size",
-			description = "The size of the outside line for tile markers",
-			position = 1
-	)
-	default StrokeSize getTileMarkersLineSize()
-	{
-		return StrokeSize.NORMAL;
 	}
 }

@@ -52,6 +52,7 @@ import net.runelite.client.ui.ColorScheme;
 import net.runelite.client.ui.PluginPanel;
 import net.runelite.client.util.ImageUtil;
 import net.runelite.client.util.SwingUtil;
+import net.sanlite.client.ui.Colors;
 
 class PluginListItem extends JPanel implements SearchablePlugin
 {
@@ -216,7 +217,7 @@ class PluginListItem extends JPanel implements SearchablePlugin
 	}
 
 	/**
-	 * Adds a mouseover effect to change the text of the passed label to {@link ColorScheme#BRAND_BLUE} color, and
+	 * Adds a mouseover effect to change the text of the passed label to {@link ColorScheme#BRAND_ORANGE} color, and
 	 * adds the passed menu items to a popup menu shown when the label is clicked.
 	 *
 	 * @param label     The label to attach the mouseover and click effects to
@@ -258,7 +259,7 @@ class PluginListItem extends JPanel implements SearchablePlugin
 			public void mouseEntered(MouseEvent mouseEvent)
 			{
 				lastForeground = label.getForeground();
-				label.setForeground(ColorScheme.BRAND_BLUE);
+				label.setForeground(Colors.BRAND_BLUE);
 			}
 
 			@Override

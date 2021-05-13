@@ -155,8 +155,6 @@ public enum MenuAction
 	WIDGET_TYPE_5(29),
 	/**
 	 * Interaction with widget (type 6).
-	 *
-	 * This is the continue button on message boxes
 	 */
 	WIDGET_TYPE_6(30),
 	/**
@@ -188,10 +186,6 @@ public enum MenuAction
 	 * Fifth menu action for an item.
 	 */
 	ITEM_FIFTH_OPTION(37),
-	/**
-	 * Menu action to drop an item (identical to ITEM_FIFTH_OPTION).
-	 */
-	ITEM_DROP(37),
 	/**
 	 * Menu action to use an item.
 	 */
@@ -283,6 +277,7 @@ public enum MenuAction
 	 * Menu action for InfoBox menu entries
 	 */
 	RUNELITE_INFOBOX(1504),
+
 	/**
 	 * Menu action for following other players
 	 */

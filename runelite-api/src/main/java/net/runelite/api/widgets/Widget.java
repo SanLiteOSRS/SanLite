@@ -29,7 +29,6 @@ import java.util.Collection;
 import javax.annotation.Nullable;
 import net.runelite.api.FontTypeFace;
 import net.runelite.api.Point;
-import net.runelite.api.SpritePixels;
 
 /**
  * Represents an on-screen UI element that is drawn on the canvas.
@@ -929,13 +928,6 @@ public interface Widget
 	 */
 	void setTargetVerb(String targetVerb);
 
-	SpritePixels getSprite();
-
-	/**
-	 * Returns true if your mouse pointer is over this widget or any of its children.
-	 */
-	boolean containsMouse();
-
 	/**
 	 * Can widgets under this widgets be clicked in this widgets bounding box
 	 */
@@ -1013,6 +1005,4 @@ public interface Widget
 	 * @param args A ScriptID, then the args for the script
 	 */
 	void setOnVarTransmitListener(Object ...args);
-
-	boolean isWidgetItemDragged(int index);
 }

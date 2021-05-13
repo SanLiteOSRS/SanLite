@@ -24,7 +24,6 @@
  */
 package net.runelite.client.callback;
 
-import com.google.inject.Injector;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -41,15 +40,25 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.*;
-import net.runelite.api.events.*;
+import net.runelite.api.BufferProvider;
+import net.runelite.api.Client;
+import net.runelite.api.MainBufferProvider;
+import net.runelite.api.RenderOverview;
+import net.runelite.api.Renderable;
+import net.runelite.api.Skill;
+import net.runelite.api.WorldMapManager;
+import net.runelite.api.events.BeforeMenuRender;
+import net.runelite.api.events.BeforeRender;
+import net.runelite.api.events.FakeXpDrop;
+import net.runelite.api.events.GameStateChanged;
+import net.runelite.api.events.GameTick;
+import net.runelite.api.events.ScriptCallbackEvent;
 import net.runelite.api.hooks.Callbacks;
 import net.runelite.api.hooks.DrawCallbacks;
 import net.runelite.api.widgets.Widget;
 import static net.runelite.api.widgets.WidgetInfo.WORLD_MAP_VIEW;
 import net.runelite.api.widgets.WidgetItem;
 import net.runelite.client.Notifier;
-import net.runelite.client.RuneLite;
 import net.runelite.client.chat.ChatMessageManager;
 import net.runelite.client.eventbus.EventBus;
 import net.runelite.client.eventbus.Subscribe;
@@ -78,44 +87,19 @@ public class Hooks implements Callbacks
 	private static final GameTick GAME_TICK = new GameTick();
 	private static final BeforeRender BEFORE_RENDER = new BeforeRender();
 
-	private static final Injector injector = RuneLite.getInjector();
-	private static final Client client = injector.getInstance(Client.class);
-
-	@Inject
-	private OverlayRenderer renderer;
-
-	@Inject
-	private EventBus eventBus;
-
-	@Inject
-	private DeferredEventBus deferredEventBus;
-
-	@Inject
-	private Scheduler scheduler;
-
-	@Inject
-	private InfoBoxManager infoBoxManager;
-
-	@Inject
-	private ChatMessageManager chatMessageManager;
-
-	@Inject
-	private MouseManager mouseManager;
-
-	@Inject
-	private KeyManager keyManager;
-
-	@Inject
-	private ClientThread clientThread;
-
-	@Inject
-	private DrawManager drawManager;
-
-	@Inject
-	private Notifier notifier;
-
-	@Inject
-	private ClientUI clientUi;
+	private static Client client;
+	private final OverlayRenderer renderer;
+	private final EventBus eventBus;
+	private final DeferredEventBus deferredEventBus;
+	private final Scheduler scheduler;
+	private final InfoBoxManager infoBoxManager;
+	private final ChatMessageManager chatMessageManager;
+	private final MouseManager mouseManager;
+	private final KeyManager keyManager;
+	private final ClientThread clientThread;
+	private final DrawManager drawManager;
+	private final Notifier notifier;
+	private final ClientUI clientUi;
 
 	private Dimension lastStretchedDimensions;
 	private VolatileImage stretchedImage;
@@ -148,6 +132,39 @@ public class Hooks implements Callbacks
 			lastGraphics = (Graphics2D) mainBufferProvider.getImage().getGraphics();
 		}
 		return lastGraphics;
+	}
+
+	@Inject
+	private Hooks(
+		Client client,
+		OverlayRenderer renderer,
+		EventBus eventBus,
+		DeferredEventBus deferredEventBus,
+		Scheduler scheduler,
+		InfoBoxManager infoBoxManager,
+		ChatMessageManager chatMessageManager,
+		MouseManager mouseManager,
+		KeyManager keyManager,
+		ClientThread clientThread,
+		DrawManager drawManager,
+		Notifier notifier,
+		ClientUI clientUi
+	)
+	{
+		this.client = client;
+		this.renderer = renderer;
+		this.eventBus = eventBus;
+		this.deferredEventBus = deferredEventBus;
+		this.scheduler = scheduler;
+		this.infoBoxManager = infoBoxManager;
+		this.chatMessageManager = chatMessageManager;
+		this.mouseManager = mouseManager;
+		this.keyManager = keyManager;
+		this.clientThread = clientThread;
+		this.drawManager = drawManager;
+		this.notifier = notifier;
+		this.clientUi = clientUi;
+		eventBus.register(this);
 	}
 
 	@Override
@@ -528,19 +545,7 @@ public class Hooks implements Callbacks
 		eventBus.post(fakeXpDrop);
 	}
 
-	public static void renderDraw(Renderable renderable, int orientation, int pitchSin, int pitchCos, int yawSin, int yawCos, int x, int y, int z, long hash)
-	{
-		DrawCallbacks drawCallbacks = client.getDrawCallbacks();
-		if (drawCallbacks != null)
-		{
-			drawCallbacks.draw(renderable, orientation, pitchSin, pitchCos, yawSin, yawCos, x, y, z, hash);
-		}
-		else
-		{
-			renderable.draw(orientation, pitchSin, pitchCos, yawSin, yawCos, x, y, z, hash);
-		}
-	}
-
+	
 	public static void clearColorBuffer(int x, int y, int width, int height, int color)
 	{
 		BufferProvider bp = client.getBufferProvider();
@@ -557,6 +562,19 @@ public class Hooks implements Callbacks
 				pixels[pixelPos++] = 0;
 			}
 			pixelPos += pixelJump;
+		}
+	}
+
+	public static void renderDraw(Renderable renderable, int orientation, int pitchSin, int pitchCos, int yawSin, int yawCos, int x, int y, int z, long hash)
+	{
+		DrawCallbacks drawCallbacks = client.getDrawCallbacks();
+		if (drawCallbacks != null)
+		{
+			drawCallbacks.draw(renderable, orientation, pitchSin, pitchCos, yawSin, yawCos, x, y, z, hash);
+		}
+		else
+		{
+			renderable.draw(orientation, pitchSin, pitchCos, yawSin, yawCos, x, y, z, hash);
 		}
 	}
 

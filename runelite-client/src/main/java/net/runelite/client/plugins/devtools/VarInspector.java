@@ -35,7 +35,6 @@ import java.awt.event.AdjustmentListener;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import javax.inject.Named;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -103,17 +102,13 @@ class VarInspector extends DevToolsFrame
 	private Map<Integer, Object> varcs = null;
 
 	@Inject
-	@Named("runelite.title")
-	private String clientTitle;
-
-	@Inject
 	VarInspector(Client client, ClientThread clientThread, EventBus eventBus)
 	{
 		this.client = client;
 		this.clientThread = clientThread;
 		this.eventBus = eventBus;
 
-		setTitle(clientTitle + " Var Inspector");
+		setTitle("RuneLite Var Inspector");
 
 		setLayout(new BorderLayout());
 

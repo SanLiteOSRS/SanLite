@@ -24,14 +24,13 @@
  */
 package net.runelite.deob.updater;
 
+import java.util.List;
 import net.runelite.asm.ClassFile;
 import net.runelite.asm.ClassGroup;
 import net.runelite.asm.Method;
 import net.runelite.asm.attributes.code.LocalVariable;
 import net.runelite.asm.attributes.code.Parameter;
 import net.runelite.deob.deobfuscators.mapping.ParallelExecutorMapping;
-
-import java.util.List;
 
 public class ParameterRenamer
 {

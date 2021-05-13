@@ -26,7 +26,6 @@ public abstract class RSItemCompositionMixin implements RSItemComposition
 	@Inject
 	private int modelOverride = -1;
 
-	@Override
 	@Inject
 	public void setModelOverride(int id)
 	{
@@ -60,12 +59,10 @@ public abstract class RSItemCompositionMixin implements RSItemComposition
 	}
 
 	@Copy("getShiftClickIndex")
-	abstract int rs$getShiftClickActionIndex();
-
 	@Replace("getShiftClickIndex")
-	public int getShiftClickActionIndex()
+	public int copy$getShiftClickActionIndex()
 	{
-		return shiftClickActionIndex == DEFAULT_CUSTOM_SHIFT_CLICK_INDEX ? rs$getShiftClickActionIndex() : shiftClickActionIndex;
+		return shiftClickActionIndex == DEFAULT_CUSTOM_SHIFT_CLICK_INDEX ? copy$getShiftClickActionIndex() : shiftClickActionIndex;
 	}
 
 	@Inject

@@ -34,7 +34,6 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.File;
 import java.util.concurrent.ScheduledExecutorService;
 import javax.annotation.Nullable;
 import javax.inject.Named;
@@ -60,8 +59,6 @@ import net.runelite.client.ui.PluginPanel;
 import net.runelite.client.util.ImageUtil;
 import net.runelite.client.util.LinkBrowser;
 
-import static net.runelite.client.RuneLite.*;
-
 @Singleton
 public class InfoPanel extends PluginPanel
 {
@@ -69,10 +66,8 @@ public class InfoPanel extends PluginPanel
 
 	private static final ImageIcon ARROW_RIGHT_ICON;
 	private static final ImageIcon GITHUB_ICON;
-	private static final ImageIcon FOLDER_ICON;
-	private static final ImageIcon LOGS_ICON;
-	private static final ImageIcon SCREENSHOT_ICON;
 	private static final ImageIcon DISCORD_ICON;
+	private static final ImageIcon PATREON_ICON;
 	private static final ImageIcon WIKI_ICON;
 	private static final ImageIcon IMPORT_ICON;
 
@@ -98,16 +93,8 @@ public class InfoPanel extends PluginPanel
 	private ConfigManager configManager;
 
 	@Inject
-	@Named("runelite.title")
-	private String clientTitle;
-
-	@Inject
 	@Named("runelite.version")
 	private String runeliteVersion;
-
-	@Inject
-	@Named("sanlite.version")
-	private String sanliteVersion;
 
 	@Inject
 	@Named("runelite.github.link")
@@ -129,10 +116,8 @@ public class InfoPanel extends PluginPanel
 	{
 		ARROW_RIGHT_ICON = new ImageIcon(ImageUtil.loadImageResource(InfoPanel.class, "/util/arrow_right.png"));
 		GITHUB_ICON = new ImageIcon(ImageUtil.loadImageResource(InfoPanel.class, "github_icon.png"));
-		FOLDER_ICON = new ImageIcon(ImageUtil.loadImageResource(InfoPanel.class, "folder_icon.png"));
-		LOGS_ICON = new ImageIcon(ImageUtil.loadImageResource(InfoPanel.class, "logs_icon.png"));
-		SCREENSHOT_ICON = new ImageIcon(ImageUtil.loadImageResource(InfoPanel.class, "screenshot_icon.png"));
 		DISCORD_ICON = new ImageIcon(ImageUtil.loadImageResource(InfoPanel.class, "discord_icon.png"));
+		PATREON_ICON = new ImageIcon(ImageUtil.loadImageResource(InfoPanel.class, "patreon_icon.png"));
 		WIKI_ICON = new ImageIcon(ImageUtil.loadImageResource(InfoPanel.class, "wiki_icon.png"));
 		IMPORT_ICON = new ImageIcon(ImageUtil.loadImageResource(InfoPanel.class, "import_icon.png"));
 	}
@@ -152,9 +137,6 @@ public class InfoPanel extends PluginPanel
 
 		JLabel version = new JLabel(htmlLabel("RuneLite version: ", runeliteVersion));
 		version.setFont(smallFont);
-
-		JLabel sanliteVersionLabel = new JLabel(htmlLabel(clientTitle + " version: ", sanliteVersion));
-		sanliteVersionLabel.setFont(smallFont);
 
 		JLabel revision = new JLabel();
 		revision.setFont(smallFont);
@@ -188,7 +170,6 @@ public class InfoPanel extends PluginPanel
 			}
 		});
 
-		versionPanel.add(sanliteVersionLabel);
 		versionPanel.add(version);
 		versionPanel.add(revision);
 		versionPanel.add(launcher);
@@ -215,10 +196,8 @@ public class InfoPanel extends PluginPanel
 
 		actionsContainer.add(buildLinkPanel(GITHUB_ICON, "Report an issue or", "make a suggestion", githubLink));
 		actionsContainer.add(buildLinkPanel(DISCORD_ICON, "Talk to us on our", "Discord server", discordInvite));
-		actionsContainer.add(buildLinkPanel(WIKI_ICON, "Information about", clientTitle + " and plugins", wikiLink));
-		actionsContainer.add(buildLinkPanel(FOLDER_ICON, "Open " + clientTitle + " directory", "to view your settings file", RUNELITE_DIR));
-		actionsContainer.add(buildLinkPanel(LOGS_ICON, "Open the logs directory", "to assist with bug reports", LOGS_DIR));
-		actionsContainer.add(buildLinkPanel(SCREENSHOT_ICON, "Open screenshot directory", "to view your images", SCREENSHOT_DIR));
+		actionsContainer.add(buildLinkPanel(PATREON_ICON, "Become a patron to", "help support RuneLite", patreonLink));
+		actionsContainer.add(buildLinkPanel(WIKI_ICON, "Information about", "RuneLite and plugins", wikiLink));
 
 		add(versionPanel, BorderLayout.NORTH);
 		add(actionsContainer, BorderLayout.CENTER);
@@ -233,14 +212,6 @@ public class InfoPanel extends PluginPanel
 	private static JPanel buildLinkPanel(ImageIcon icon, String topText, String bottomText, String url)
 	{
 		return buildLinkPanel(icon, topText, bottomText, () -> LinkBrowser.browse(url));
-	}
-
-	/**
-	 * Builds a link panel with a given icon, text and directory to open.
-	 */
-	private JPanel buildLinkPanel(ImageIcon icon, String topText, String bottomText, File dir)
-	{
-		return buildLinkPanel(icon, topText, bottomText, () -> LinkBrowser.openLocalFile(dir));
 	}
 
 	/**

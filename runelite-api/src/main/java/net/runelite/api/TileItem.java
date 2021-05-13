@@ -30,18 +30,11 @@ package net.runelite.api;
 public interface TileItem extends Renderable
 {
 	/**
-	 * Gets the items ID.
-	 *
 	 * @return the ID of the item
 	 * @see ItemID
 	 */
 	int getId();
 
-	/**
-	 * Gets the items quantity.
-	 *
-	 * @return the items quantity
-	 */
 	int getQuantity();
 
 	/**
@@ -49,9 +42,4 @@ public interface TileItem extends Renderable
 	 * @return
 	 */
 	int getSpawnTime();
-
-	/**
-	 * @return the tile this item is on
-	 */
-	Tile getTile();
 }

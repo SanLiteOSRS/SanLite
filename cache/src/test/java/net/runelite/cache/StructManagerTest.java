@@ -33,6 +33,7 @@ import java.nio.charset.Charset;
 import java.util.Map;
 import net.runelite.cache.definitions.StructDefinition;
 import net.runelite.cache.fs.Store;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
@@ -49,6 +50,7 @@ public class StructManagerTest
 	public TemporaryFolder folder = StoreLocation.getTemporaryFolder();
 
 	@Test
+	@Ignore
 	public void test() throws IOException
 	{
 		File dumpDir = folder.newFolder();

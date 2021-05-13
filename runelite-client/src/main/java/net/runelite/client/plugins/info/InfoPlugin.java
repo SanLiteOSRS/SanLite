@@ -31,6 +31,7 @@ import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.ui.NavigationButton;
 import net.runelite.client.ui.ClientToolbar;
 import net.runelite.client.util.ImageUtil;
+import net.sanlite.client.plugins.info.InfoPanel;
 
 @PluginDescriptor(
 	name = "Info Panel",

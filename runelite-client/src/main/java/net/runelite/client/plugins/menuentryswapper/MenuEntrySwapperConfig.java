@@ -201,7 +201,7 @@ public interface MenuEntrySwapperConfig extends Config
 
 	@ConfigItem(
 		keyName = "swapDarkMage",
-		name = "Swap Dark Mage repairs",
+		name = "Repairs",
 		description = "Swap Talk-to with Repairs for Dark Mage",
 		section = npcSection
 	)
@@ -377,7 +377,7 @@ public interface MenuEntrySwapperConfig extends Config
 
 	@ConfigItem(
 		keyName = "swapPick",
-		name = "Swap pick Gourd Tree",
+		name = "Pick",
 		description = "Swap Pick with Pick-lots of the Gourd tree in the Chambers of Xeric",
 		section = objectSection
 	)
@@ -399,7 +399,7 @@ public interface MenuEntrySwapperConfig extends Config
 
 	@ConfigItem(
 		keyName = "swapBoxTrap",
-		name = "Swap reset box trap",
+		name = "Reset",
 		description = "Swap Check with Reset on box trap",
 		section = objectSection
 	)
@@ -510,7 +510,8 @@ public interface MenuEntrySwapperConfig extends Config
 	@ConfigItem(
 		keyName = "swapGEAbort",
 		name = "GE Abort",
-		description = "Swap abort offer on Grand Exchange offers when shift-clicking",
+		description = "Swap abort offer on Grand Exchange offers when shift-clicking"
+		,
 		section = uiSection
 	)
 	default boolean swapGEAbort()

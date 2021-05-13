@@ -42,14 +42,4 @@ public interface DecorativeObject extends TileObject
 
 	Renderable getRenderable();
 	Renderable getRenderable2();
-
-	Model getModel1();
-
-	Model getModel2();
-
-	int getYOffset();
-
-	int getXOffset();
-
-	int getOrientation();
 }

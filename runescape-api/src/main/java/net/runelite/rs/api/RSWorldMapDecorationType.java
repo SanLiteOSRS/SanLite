@@ -1,5 +1,3 @@
 package net.runelite.rs.api;
 
-public interface RSWorldMapDecorationType
-{
-}
+public interface RSWorldMapDecorationType {}

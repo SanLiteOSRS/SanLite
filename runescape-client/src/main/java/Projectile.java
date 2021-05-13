@@ -1,693 +1,272 @@
-import java.io.File;
-import java.io.IOException;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cm")
+@ObfuscatedName("ce")
 @Implements("Projectile")
 public final class Projectile extends Renderable {
-	@ObfuscatedName("bv")
-	static String field1254;
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = -755996103
+		intValue = 1989294347
 	)
 	@Export("id")
 	int id;
-	@ObfuscatedName("v")
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = 1141398545
+		intValue = 830473187
 	)
 	@Export("plane")
 	int plane;
-	@ObfuscatedName("d")
+	@ObfuscatedName("u")
 	@ObfuscatedGetter(
-		intValue = 877328381
+		intValue = 681655727
 	)
 	@Export("sourceX")
 	int sourceX;
-	@ObfuscatedName("c")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = 1822373019
+		intValue = 1797150279
 	)
 	@Export("sourceY")
 	int sourceY;
-	@ObfuscatedName("y")
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = -584501537
+		intValue = 1639037601
 	)
 	@Export("sourceZ")
 	int sourceZ;
-	@ObfuscatedName("h")
+	@ObfuscatedName("e")
 	@ObfuscatedGetter(
-		intValue = -1427536699
+		intValue = -873076039
 	)
 	@Export("endHeight")
 	int endHeight;
-	@ObfuscatedName("z")
+	@ObfuscatedName("k")
 	@ObfuscatedGetter(
-		intValue = 1057628543
+		intValue = 285476427
 	)
 	@Export("cycleStart")
 	int cycleStart;
-	@ObfuscatedName("e")
+	@ObfuscatedName("g")
 	@ObfuscatedGetter(
-		intValue = 1465417479
+		intValue = 1384507767
 	)
 	@Export("cycleEnd")
 	int cycleEnd;
-	@ObfuscatedName("q")
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = -1352197335
+		intValue = 931208305
 	)
 	@Export("slope")
 	int slope;
-	@ObfuscatedName("l")
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = -1830330659
+		intValue = 2012617583
 	)
 	@Export("startHeight")
 	int startHeight;
-	@ObfuscatedName("s")
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = 165397127
+		intValue = -3097229
 	)
 	@Export("targetIndex")
 	int targetIndex;
-	@ObfuscatedName("b")
+	@ObfuscatedName("m")
 	@Export("isMoving")
 	boolean isMoving;
-	@ObfuscatedName("a")
+	@ObfuscatedName("d")
 	@Export("x")
 	double x;
-	@ObfuscatedName("w")
+	@ObfuscatedName("c")
 	@Export("y")
 	double y;
-	@ObfuscatedName("k")
+	@ObfuscatedName("j")
 	@Export("z")
 	double z;
-	@ObfuscatedName("i")
+	@ObfuscatedName("r")
 	@Export("speedX")
 	double speedX;
-	@ObfuscatedName("x")
+	@ObfuscatedName("q")
 	@Export("speedY")
 	double speedY;
-	@ObfuscatedName("f")
+	@ObfuscatedName("t")
 	@Export("speed")
 	double speed;
-	@ObfuscatedName("g")
+	@ObfuscatedName("v")
 	@Export("speedZ")
 	double speedZ;
-	@ObfuscatedName("u")
+	@ObfuscatedName("x")
 	@Export("accelerationZ")
 	double accelerationZ;
-	@ObfuscatedName("t")
+	@ObfuscatedName("z")
 	@ObfuscatedGetter(
-		intValue = -1955217023
+		intValue = 688098207
 	)
 	@Export("yaw")
 	int yaw;
-	@ObfuscatedName("p")
+	@ObfuscatedName("i")
 	@ObfuscatedGetter(
-		intValue = 2095511803
+		intValue = 257882257
 	)
 	@Export("pitch")
 	int pitch;
-	@ObfuscatedName("m")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		signature = "Ljs;"
+		descriptor = "Lkw;"
 	)
 	@Export("sequenceDefinition")
 	SequenceDefinition sequenceDefinition;
-	@ObfuscatedName("r")
+	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		intValue = 900549733
+		intValue = 1593867047
 	)
 	@Export("frame")
 	int frame;
-	@ObfuscatedName("o")
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = 404929191
+		intValue = -1599773741
 	)
 	@Export("frameCycle")
 	int frameCycle;
 
 	Projectile(int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, int var9, int var10, int var11) {
-		this.isMoving = false;
+		this.isMoving = false; // L: 20
 		this.frame = 0;
-		this.frameCycle = 0;
-		this.id = var1;
-		this.plane = var2;
-		this.sourceX = var3;
-		this.sourceY = var4;
-		this.sourceZ = var5;
-		this.cycleStart = var6;
-		this.cycleEnd = var7;
-		this.slope = var8;
-		this.startHeight = var9;
-		this.targetIndex = var10;
-		this.endHeight = var11;
-		this.isMoving = false;
-		int var12 = AbstractUserComparator.SpotAnimationDefinition_get(this.id).sequence;
-		if (var12 != -1) {
-			this.sequenceDefinition = InterfaceParent.SequenceDefinition_get(var12);
+		this.frameCycle = 0; // L: 33
+		this.id = var1; // L: 36
+		this.plane = var2; // L: 37
+		this.sourceX = var3; // L: 38
+		this.sourceY = var4; // L: 39
+		this.sourceZ = var5; // L: 40
+		this.cycleStart = var6; // L: 41
+		this.cycleEnd = var7; // L: 42
+		this.slope = var8; // L: 43
+		this.startHeight = var9; // L: 44
+		this.targetIndex = var10; // L: 45
+		this.endHeight = var11; // L: 46
+		this.isMoving = false; // L: 47
+		int var12 = Varps.SpotAnimationDefinition_get(this.id).sequence; // L: 48
+		if (var12 != -1) { // L: 49
+			this.sequenceDefinition = class225.SequenceDefinition_get(var12);
 		} else {
-			this.sequenceDefinition = null;
+			this.sequenceDefinition = null; // L: 50
 		}
 
-	}
+	} // L: 51
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "(IIIIB)V",
-		garbageValue = "101"
+		descriptor = "(IIIII)V",
+		garbageValue = "549276456"
 	)
 	@Export("setDestination")
 	final void setDestination(int var1, int var2, int var3, int var4) {
 		double var5;
-		if (!this.isMoving) {
-			var5 = (double)(var1 - this.sourceX);
-			double var7 = (double)(var2 - this.sourceY);
-			double var9 = Math.sqrt(var7 * var7 + var5 * var5);
-			this.x = (double)this.startHeight * var5 / var9 + (double)this.sourceX;
-			this.y = (double)this.sourceY + (double)this.startHeight * var7 / var9;
-			this.z = (double)this.sourceZ;
+		if (!this.isMoving) { // L: 54
+			var5 = (double)(var1 - this.sourceX); // L: 55
+			double var7 = (double)(var2 - this.sourceY); // L: 56
+			double var9 = Math.sqrt(var5 * var5 + var7 * var7); // L: 57
+			this.x = var5 * (double)this.startHeight / var9 + (double)this.sourceX; // L: 58
+			this.y = var7 * (double)this.startHeight / var9 + (double)this.sourceY; // L: 59
+			this.z = (double)this.sourceZ; // L: 60
 		}
 
-		var5 = (double)(this.cycleEnd + 1 - var4);
-		this.speedX = ((double)var1 - this.x) / var5;
-		this.speedY = ((double)var2 - this.y) / var5;
-		this.speed = Math.sqrt(this.speedX * this.speedX + this.speedY * this.speedY);
-		if (!this.isMoving) {
-			this.speedZ = -this.speed * Math.tan(0.02454369D * (double)this.slope);
+		var5 = (double)(this.cycleEnd + 1 - var4); // L: 62
+		this.speedX = ((double)var1 - this.x) / var5; // L: 63
+		this.speedY = ((double)var2 - this.y) / var5; // L: 64
+		this.speed = Math.sqrt(this.speedX * this.speedX + this.speedY * this.speedY); // L: 65
+		if (!this.isMoving) { // L: 66
+			this.speedZ = -this.speed * Math.tan((double)this.slope * 0.02454369D);
 		}
 
-		this.accelerationZ = 2.0D * ((double)var3 - this.z - this.speedZ * var5) / (var5 * var5);
+		this.accelerationZ = ((double)var3 - this.z - var5 * this.speedZ) * 2.0D / (var5 * var5); // L: 67
+	} // L: 68
+
+	@ObfuscatedName("o")
+	@ObfuscatedSignature(
+		descriptor = "(I)Lgv;",
+		garbageValue = "1835906978"
+	)
+	@Export("getModel")
+	protected final Model getModel() {
+		SpotAnimationDefinition var1 = Varps.SpotAnimationDefinition_get(this.id); // L: 92
+		Model var2 = var1.getModel(this.frame); // L: 93
+		if (var2 == null) { // L: 94
+			return null;
+		} else {
+			var2.rotateZ(this.pitch); // L: 95
+			return var2; // L: 96
+		}
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "(IB)V",
-		garbageValue = "114"
+		descriptor = "(II)V",
+		garbageValue = "622513403"
 	)
 	@Export("advance")
 	final void advance(int var1) {
-		this.isMoving = true;
-		this.x += (double)var1 * this.speedX;
-		this.y += this.speedY * (double)var1;
-		this.z += (double)var1 * 0.5D * this.accelerationZ * (double)var1 + this.speedZ * (double)var1;
-		this.speedZ += (double)var1 * this.accelerationZ;
-		this.yaw = (int)(Math.atan2(this.speedX, this.speedY) * 325.949D) + 1024 & 2047;
-		this.pitch = (int)(Math.atan2(this.speedZ, this.speed) * 325.949D) & 2047;
-		if (this.sequenceDefinition != null) {
-			this.frameCycle += var1;
+		this.isMoving = true; // L: 71
+		this.x += this.speedX * (double)var1; // L: 72
+		this.y += this.speedY * (double)var1; // L: 73
+		this.z += (double)var1 * this.accelerationZ * 0.5D * (double)var1 + (double)var1 * this.speedZ; // L: 74
+		this.speedZ += (double)var1 * this.accelerationZ; // L: 75
+		this.yaw = (int)(Math.atan2(this.speedX, this.speedY) * 325.949D) + 1024 & 2047; // L: 76
+		this.pitch = (int)(Math.atan2(this.speedZ, this.speed) * 325.949D) & 2047; // L: 77
+		if (this.sequenceDefinition != null) { // L: 78
+			this.frameCycle += var1; // L: 79
 
 			while (true) {
 				do {
 					do {
-						if (this.frameCycle <= this.sequenceDefinition.frameLengths[this.frame]) {
-							return;
+						if (this.frameCycle <= this.sequenceDefinition.frameLengths[this.frame]) { // L: 80
+							return; // L: 89
 						}
 
-						this.frameCycle -= this.sequenceDefinition.frameLengths[this.frame];
-						++this.frame;
-					} while(this.frame < this.sequenceDefinition.frameIds.length);
+						this.frameCycle -= this.sequenceDefinition.frameLengths[this.frame]; // L: 81
+						++this.frame; // L: 82
+					} while(this.frame < this.sequenceDefinition.frameIds.length); // L: 83
 
-					this.frame -= this.sequenceDefinition.frameCount;
-				} while(this.frame >= 0 && this.frame < this.sequenceDefinition.frameIds.length);
+					this.frame -= this.sequenceDefinition.frameCount; // L: 84
+				} while(this.frame >= 0 && this.frame < this.sequenceDefinition.frameIds.length); // L: 85
 
 				this.frame = 0;
 			}
 		}
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "(B)Lef;",
-		garbageValue = "127"
+		descriptor = "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V",
+		garbageValue = "-1389566626"
 	)
-	@Export("getModel")
-	protected final Model getModel() {
-		SpotAnimationDefinition var1 = AbstractUserComparator.SpotAnimationDefinition_get(this.id);
-		Model var2 = var1.getModel(this.frame);
-		if (var2 == null) {
-			return null;
-		} else {
-			var2.rotateZ(this.pitch);
-			return var2;
+	@Export("addChatMessage")
+	static void addChatMessage(int var0, String var1, String var2, String var3) {
+		ChatChannel var4 = (ChatChannel)Messages.Messages_channels.get(var0); // L: 23
+		if (var4 == null) { // L: 24
+			var4 = new ChatChannel(); // L: 25
+			Messages.Messages_channels.put(var0, var4); // L: 26
 		}
-	}
 
-	@ObfuscatedName("n")
+		Message var5 = var4.addMessage(var0, var1, var2, var3); // L: 28
+		Messages.Messages_hashTable.put(var5, (long)var5.count); // L: 29
+		Messages.Messages_queue.add(var5); // L: 30
+		Client.chatCycle = Client.cycleCntr; // L: 31
+	} // L: 32
+
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;Ljava/lang/String;IIB)V",
-		garbageValue = "23"
+		descriptor = "(Ljava/lang/String;I)V",
+		garbageValue = "23539817"
 	)
-	public static void method2255(String var0, String var1, int var2, int var3) throws IOException {
-		JagexCache.idxCount = var3;
-		JagexCache.cacheGamebuild = var2;
-
-		try {
-			JagexCache.field2065 = System.getProperty("os.name");
-		} catch (Exception var28) {
-			JagexCache.field2065 = "Unknown";
-		}
-
-		GZipDecompressor.field4046 = JagexCache.field2065.toLowerCase();
-
-		try {
-			JagexCache.userHomeDirectory = System.getProperty("user.home");
-			if (JagexCache.userHomeDirectory != null) {
-				JagexCache.userHomeDirectory = JagexCache.userHomeDirectory + "/";
-			}
-		} catch (Exception var27) {
-		}
-
-		try {
-			if (GZipDecompressor.field4046.startsWith("win")) {
-				if (JagexCache.userHomeDirectory == null) {
-					JagexCache.userHomeDirectory = System.getenv("USERPROFILE");
-				}
-			} else if (JagexCache.userHomeDirectory == null) {
-				JagexCache.userHomeDirectory = System.getenv("HOME");
-			}
-
-			if (JagexCache.userHomeDirectory != null) {
-				JagexCache.userHomeDirectory = JagexCache.userHomeDirectory + "/";
-			}
-		} catch (Exception var26) {
-		}
-
-		if (JagexCache.userHomeDirectory == null) {
-			JagexCache.userHomeDirectory = "~/";
-		}
-
-		class224.field2576 = new String[]{"c:/rscache/", "/rscache/", "c:/windows/", "c:/winnt/", "c:/", JagexCache.userHomeDirectory, "/tmp/", ""};
-		Timer.field3621 = new String[]{".jagex_cache_" + JagexCache.cacheGamebuild, ".file_store_" + JagexCache.cacheGamebuild};
-		int var18 = 0;
-
-		label250:
-		while (var18 < 4) {
-			String var6 = var18 == 0 ? "" : "" + var18;
-			JagexCache.JagexCache_locationFile = new File(JagexCache.userHomeDirectory, "jagex_cl_" + var0 + "_" + var1 + var6 + ".dat");
-			String var7 = null;
-			String var8 = null;
-			boolean var9 = false;
-			Buffer var11;
-			File var33;
-			if (JagexCache.JagexCache_locationFile.exists()) {
-				try {
-					AccessFile var10 = new AccessFile(JagexCache.JagexCache_locationFile, "rw", 10000L);
-
-					int var12;
-					for (var11 = new Buffer((int)var10.length()); var11.offset < var11.array.length; var11.offset += var12) {
-						var12 = var10.read(var11.array, var11.offset, var11.array.length - var11.offset);
-						if (var12 == -1) {
-							throw new IOException();
-						}
-					}
-
-					var11.offset = 0;
-					var12 = var11.readUnsignedByte();
-					if (var12 < 1 || var12 > 3) {
-						throw new IOException("" + var12);
-					}
-
-					int var13 = 0;
-					if (var12 > 1) {
-						var13 = var11.readUnsignedByte();
-					}
-
-					if (var12 <= 2) {
-						var7 = var11.readStringCp1252NullCircumfixed();
-						if (var13 == 1) {
-							var8 = var11.readStringCp1252NullCircumfixed();
-						}
-					} else {
-						var7 = var11.readCESU8();
-						if (var13 == 1) {
-							var8 = var11.readCESU8();
-						}
-					}
-
-					var10.close();
-				} catch (IOException var30) {
-					var30.printStackTrace();
-				}
-
-				if (var7 != null) {
-					var33 = new File(var7);
-					if (!var33.exists()) {
-						var7 = null;
-					}
-				}
-
-				if (var7 != null) {
-					var33 = new File(var7, "test.dat");
-					if (!class23.method235(var33, true)) {
-						var7 = null;
-					}
-				}
-			}
-
-			if (var7 == null && var18 == 0) {
-				label225:
-				for (int var19 = 0; var19 < Timer.field3621.length; ++var19) {
-					for (int var20 = 0; var20 < class224.field2576.length; ++var20) {
-						File var21 = new File(class224.field2576[var20] + Timer.field3621[var19] + File.separatorChar + var0 + File.separatorChar);
-						if (var21.exists() && class23.method235(new File(var21, "test.dat"), true)) {
-							var7 = var21.toString();
-							var9 = true;
-							break label225;
-						}
-					}
-				}
-			}
-
-			if (var7 == null) {
-				var7 = JagexCache.userHomeDirectory + File.separatorChar + "jagexcache" + var6 + File.separatorChar + var0 + File.separatorChar + var1 + File.separatorChar;
-				var9 = true;
-			}
-
-			File var32;
-			if (var8 != null) {
-				var32 = new File(var8);
-				var33 = new File(var7);
-
-				try {
-					File[] var35 = var32.listFiles();
-					File[] var22 = var35;
-
-					for (int var14 = 0; var14 < var22.length; ++var14) {
-						File var15 = var22[var14];
-						File var16 = new File(var33, var15.getName());
-						boolean var17 = var15.renameTo(var16);
-						if (!var17) {
-							throw new IOException();
-						}
-					}
-				} catch (Exception var29) {
-					var29.printStackTrace();
-				}
-
-				var9 = true;
-			}
-
-			if (var9) {
-				var32 = new File(var7);
-				var11 = null;
-
-				try {
-					AccessFile var36 = new AccessFile(JagexCache.JagexCache_locationFile, "rw", 10000L);
-					Buffer var37 = new Buffer(500);
-					var37.writeByte(3);
-					var37.writeByte(var11 != null ? 1 : 0);
-					var37.writeCESU8(var32.getPath());
-					if (var11 != null) {
-						var37.writeCESU8("");
-					}
-
-					var36.write(var37.array, 0, var37.offset);
-					var36.close();
-				} catch (IOException var25) {
-					var25.printStackTrace();
-				}
-			}
-
-			File var5 = new File(var7);
-			JagexCache.cacheDir = var5;
-			if (!JagexCache.cacheDir.exists()) {
-				JagexCache.cacheDir.mkdirs();
-			}
-
-			File[] var31 = JagexCache.cacheDir.listFiles();
-			if (var31 != null) {
-				File[] var34 = var31;
-
-				for (int var23 = 0; var23 < var34.length; ++var23) {
-					File var24 = var34[var23];
-					if (!class23.method235(var24, false)) {
-						++var18;
-						continue label250;
-					}
-				}
-			}
-			break;
-		}
-
-		class3.method36(JagexCache.cacheDir);
-		Varcs.method2346();
-		JagexCache.JagexCache_dat2File = new BufferedFile(new AccessFile(GraphicsObject.getFile("main_file_cache.dat2"), "rw", 1048576000L), 5200, 0);
-		JagexCache.JagexCache_idx255File = new BufferedFile(new AccessFile(GraphicsObject.getFile("main_file_cache.idx255"), "rw", 1048576L), 6000, 0);
-		WorldMapEvent.JagexCache_idxFiles = new BufferedFile[JagexCache.idxCount];
-
-		for (var18 = 0; var18 < JagexCache.idxCount; ++var18) {
-			WorldMapEvent.JagexCache_idxFiles[var18] = new BufferedFile(new AccessFile(GraphicsObject.getFile("main_file_cache.idx" + var18), "rw", 1048576L), 6000, 0);
-		}
-
-	}
-
-	@ObfuscatedName("y")
-	@ObfuscatedSignature(
-		signature = "(B)[B",
-		garbageValue = "-22"
-	)
-	public static byte[] method2260() {
-		byte[] var0 = new byte[24];
-
-		try {
-			JagexCache.JagexCache_randomDat.seek(0L);
-			JagexCache.JagexCache_randomDat.readFully(var0);
-
-			int var1;
-			for (var1 = 0; var1 < 24 && var0[var1] == 0; ++var1) {
-			}
-
-			if (var1 >= 24) {
-				throw new IOException();
-			}
-		} catch (Exception var4) {
-			for (int var2 = 0; var2 < 24; ++var2) {
-				var0[var2] = -1;
-			}
-		}
-
-		return var0;
-	}
-
-	@ObfuscatedName("hv")
-	@ObfuscatedSignature(
-		signature = "(IIIIB)V",
-		garbageValue = "-87"
-	)
-	static final void method2262(int var0, int var1, int var2, int var3) {
-		for (int var4 = 0; var4 < Client.rootWidgetCount; ++var4) {
-			if (Client.rootWidgetXs[var4] + Client.rootWidgetWidths[var4] > var0 && Client.rootWidgetXs[var4] < var0 + var2 && Client.rootWidgetHeights[var4] + Client.rootWidgetYs[var4] > var1 && Client.rootWidgetYs[var4] < var3 + var1) {
-				Client.field816[var4] = true;
-			}
-		}
-
-	}
-
-	@ObfuscatedName("ip")
-	@ObfuscatedSignature(
-		signature = "(IIIIB)V",
-		garbageValue = "2"
-	)
-	@Export("addSceneMenuOptions")
-	static final void addSceneMenuOptions(int var0, int var1, int var2, int var3) {
-		if (Client.isItemSelected == 0 && !Client.isSpellSelected) {
-			WorldMapManager.insertMenuItemNoShift("Walk here", "", 23, 0, var0 - var2, var1 - var3);
-		}
-
-		long var4 = -1L;
-		long var6 = -1L;
-
-		int var8;
-		for (var8 = 0; var8 < AbstractWorldMapData.method342(); ++var8) {
-			long var9 = ObjectSound.method2044(var8);
-			if (var9 != var6) {
-				var6 = var9;
-				int var11 = class200.method3865(var8);
-				int var12 = NPC.method2179(var8);
-				int var13 = FontName.method5502(ViewportMouse.ViewportMouse_entityTags[var8]);
-				int var15 = AbstractWorldMapIcon.method710(var8);
-				if (var13 == 2 && MilliClock.scene.getObjectFlags(class90.Client_plane, var11, var12, var9) >= 0) {
-					ObjectComposition var16 = WorldMapAreaData.getObjectDefinition(var15);
-					if (var16.transforms != null) {
-						var16 = var16.transform();
-					}
-
-					if (var16 == null) {
-						continue;
-					}
-
-					if (Client.isItemSelected == 1) {
-						WorldMapManager.insertMenuItemNoShift("Use", Client.selectedItemName + " " + "->" + " " + FileSystem.colorStartTag(65535) + var16.name, 1, var15, var11, var12);
-					} else if (Client.isSpellSelected) {
-						if ((GrandExchangeOfferNameComparator.selectedSpellFlags & 4) == 4) {
-							WorldMapManager.insertMenuItemNoShift(Client.selectedSpellActionName, Client.selectedSpellName + " " + "->" + " " + FileSystem.colorStartTag(65535) + var16.name, 2, var15, var11, var12);
-						}
-					} else {
-						String[] var23 = var16.actions;
-						if (var23 != null) {
-							for (int var24 = 4; var24 >= 0; --var24) {
-								if (var23[var24] != null) {
-									short var19 = 0;
-									if (var24 == 0) {
-										var19 = 3;
-									}
-
-									if (var24 == 1) {
-										var19 = 4;
-									}
-
-									if (var24 == 2) {
-										var19 = 5;
-									}
-
-									if (var24 == 3) {
-										var19 = 6;
-									}
-
-									if (var24 == 4) {
-										var19 = 1001;
-									}
-
-									WorldMapManager.insertMenuItemNoShift(var23[var24], FileSystem.colorStartTag(65535) + var16.name, var19, var15, var11, var12);
-								}
-							}
-						}
-
-						WorldMapManager.insertMenuItemNoShift("Examine", FileSystem.colorStartTag(65535) + var16.name, 1002, var16.id, var11, var12);
-					}
-				}
-
-				int var17;
-				NPC var18;
-				Player var20;
-				int[] var30;
-				int var32;
-				if (var13 == 1) {
-					NPC var27 = Client.npcs[var15];
-					if (var27 == null) {
-						continue;
-					}
-
-					if (var27.definition.size == 1 && (var27.x & 127) == 64 && (var27.y & 127) == 64) {
-						for (var17 = 0; var17 < Client.npcCount; ++var17) {
-							var18 = Client.npcs[Client.npcIndices[var17]];
-							if (var18 != null && var18 != var27 && var18.definition.size == 1 && var18.x == var27.x && var18.y == var27.y) {
-								GameBuild.addNpcToMenu(var18.definition, Client.npcIndices[var17], var11, var12);
-							}
-						}
-
-						var17 = Players.Players_count;
-						var30 = Players.Players_indices;
-
-						for (var32 = 0; var32 < var17; ++var32) {
-							var20 = Client.players[var30[var32]];
-							if (var20 != null && var20.x == var27.x && var20.y == var27.y) {
-								GrandExchangeOfferUnitPriceComparator.addPlayerToMenu(var20, var30[var32], var11, var12);
-							}
-						}
-					}
-
-					GameBuild.addNpcToMenu(var27.definition, var15, var11, var12);
-				}
-
-				if (var13 == 0) {
-					Player var28 = Client.players[var15];
-					if (var28 == null) {
-						continue;
-					}
-
-					if ((var28.x & 127) == 64 && (var28.y & 127) == 64) {
-						for (var17 = 0; var17 < Client.npcCount; ++var17) {
-							var18 = Client.npcs[Client.npcIndices[var17]];
-							if (var18 != null && var18.definition.size == 1 && var28.x == var18.x && var28.y == var18.y) {
-								GameBuild.addNpcToMenu(var18.definition, Client.npcIndices[var17], var11, var12);
-							}
-						}
-
-						var17 = Players.Players_count;
-						var30 = Players.Players_indices;
-
-						for (var32 = 0; var32 < var17; ++var32) {
-							var20 = Client.players[var30[var32]];
-							if (var20 != null && var28 != var20 && var20.x == var28.x && var20.y == var28.y) {
-								GrandExchangeOfferUnitPriceComparator.addPlayerToMenu(var20, var30[var32], var11, var12);
-							}
-						}
-					}
-
-					if (var15 != Client.combatTargetPlayerIndex) {
-						GrandExchangeOfferUnitPriceComparator.addPlayerToMenu(var28, var15, var11, var12);
-					} else {
-						var4 = var9;
-					}
-				}
-
-				if (var13 == 3) {
-					NodeDeque var29 = Client.groundItems[class90.Client_plane][var11][var12];
-					if (var29 != null) {
-						for (TileItem var33 = (TileItem)var29.first(); var33 != null; var33 = (TileItem)var29.next()) {
-							ItemComposition var31 = class281.ItemDefinition_get(var33.id);
-							if (Client.isItemSelected == 1) {
-								WorldMapManager.insertMenuItemNoShift("Use", Client.selectedItemName + " " + "->" + " " + FileSystem.colorStartTag(16748608) + var31.name, 16, var33.id, var11, var12);
-							} else if (Client.isSpellSelected) {
-								if ((GrandExchangeOfferNameComparator.selectedSpellFlags & 1) == 1) {
-									WorldMapManager.insertMenuItemNoShift(Client.selectedSpellActionName, Client.selectedSpellName + " " + "->" + " " + FileSystem.colorStartTag(16748608) + var31.name, 17, var33.id, var11, var12);
-								}
-							} else {
-								String[] var25 = var31.groundActions;
-
-								for (int var26 = 4; var26 >= 0; --var26) {
-									if (var25 != null && var25[var26] != null) {
-										byte var21 = 0;
-										if (var26 == 0) {
-											var21 = 18;
-										}
-
-										if (var26 == 1) {
-											var21 = 19;
-										}
-
-										if (var26 == 2) {
-											var21 = 20;
-										}
-
-										if (var26 == 3) {
-											var21 = 21;
-										}
-
-										if (var26 == 4) {
-											var21 = 22;
-										}
-
-										WorldMapManager.insertMenuItemNoShift(var25[var26], FileSystem.colorStartTag(16748608) + var31.name, var21, var33.id, var11, var12);
-									} else if (var26 == 2) {
-										WorldMapManager.insertMenuItemNoShift("Take", FileSystem.colorStartTag(16748608) + var31.name, 20, var33.id, var11, var12);
-									}
-								}
-
-								WorldMapManager.insertMenuItemNoShift("Examine", FileSystem.colorStartTag(16748608) + var31.name, 1004, var33.id, var11, var12);
-							}
-						}
-					}
-				}
-			}
-		}
-
-		if (var4 != -1L) {
-			var8 = ReflectionCheck.method2451(var4);
-			int var22 = GrandExchangeOfferNameComparator.method201(var4);
-			Player var10 = Client.players[Client.combatTargetPlayerIndex];
-			GrandExchangeOfferUnitPriceComparator.addPlayerToMenu(var10, Client.combatTargetPlayerIndex, var8, var22);
-		}
-
-	}
+	static final void method1981(String var0) {
+		StringBuilder var10000 = new StringBuilder();
+		Object var10001 = null; // L: 132
+		var10000 = var10000.append("Please remove ").append(var0);
+		var10001 = null;
+		String var1 = var10000.append(" from your ignore list first").toString();
+		class69.addGameMessage(30, "", var1); // L: 134
+	} // L: 136
 }

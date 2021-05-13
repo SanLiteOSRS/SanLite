@@ -54,6 +54,7 @@ import java.util.Set;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Provider;
@@ -73,7 +74,7 @@ import net.runelite.client.events.SessionOpen;
 import net.runelite.client.task.Schedule;
 import net.runelite.client.task.ScheduledMethod;
 import net.runelite.client.task.Scheduler;
-import net.runelite.client.ui.SplashScreen;
+import net.sanlite.client.ui.SplashScreen;
 import net.runelite.client.util.GameEventManager;
 import net.runelite.client.util.ReflectUtil;
 
@@ -85,6 +86,7 @@ public class PluginManager
 	 * Base package where the core plugins are
 	 */
 	private static final String PLUGIN_PACKAGE = "net.runelite.client.plugins";
+	private static final String CUSTOM_PLUGIN_PACKAGE = "net.sanlite.client.plugins";
 
 	private final boolean developerMode;
 	private final boolean safeMode;
@@ -265,9 +267,11 @@ public class PluginManager
 		SplashScreen.stage(.59, null, "Loading Plugins");
 		ClassPath classPath = ClassPath.from(getClass().getClassLoader());
 
-		List<Class<?>> plugins = classPath.getTopLevelClassesRecursive(PLUGIN_PACKAGE).stream()
-			.map(ClassInfo::load)
-			.collect(Collectors.toList());
+		List<Class<?>> plugins = Stream.concat(
+					classPath.getTopLevelClassesRecursive(PLUGIN_PACKAGE).stream(),
+					classPath.getTopLevelClassesRecursive(CUSTOM_PLUGIN_PACKAGE).stream())
+				.map(ClassInfo::load)
+				.collect(Collectors.toList());
 
 		loadPlugins(plugins, (loaded, total) ->
 			SplashScreen.stage(.60, .70, null, "Loading Plugins", loaded, total, false));
