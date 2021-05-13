@@ -2,7 +2,7 @@ package net.runelite.mixins;
 
 import net.runelite.api.Friend;
 import net.runelite.api.Ignore;
-import net.runelite.api.events.FriendAdded;
+import net.runelite.api.events.AddedFriend;
 import net.runelite.api.events.RemovedFriend;
 import net.runelite.api.mixins.Inject;
 import net.runelite.api.mixins.MethodHook;
@@ -24,7 +24,7 @@ public abstract class RSFriendSystemMixin implements RSFriendSystem
 		Friend friend = this.getFriendContainer().findByName(friendName);
 		if (friend != null)
 		{
-			client.getCallbacks().post(new FriendAdded(friend));
+			client.getCallbacks().post(new AddedFriend(friend));
 		}
 	}
 
@@ -46,7 +46,7 @@ public abstract class RSFriendSystemMixin implements RSFriendSystem
 		Ignore ignore = this.getIgnoreContainer().findByName(ignoreName);
 		if (ignore != null)
 		{
-			client.getCallbacks().post(new FriendAdded(ignore));
+			client.getCallbacks().post(new AddedFriend(ignore));
 		}
 	}
 

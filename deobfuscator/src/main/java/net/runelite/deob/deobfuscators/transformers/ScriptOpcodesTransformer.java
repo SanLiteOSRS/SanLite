@@ -26,7 +26,7 @@ import static org.objectweb.asm.Opcodes.ACC_FINAL;
 import static org.objectweb.asm.Opcodes.ACC_PUBLIC;
 import static org.objectweb.asm.Opcodes.ACC_STATIC;
 
-public class ScriptOpcodesTransformer implements Transformer
+public class ScriptOpcodesTransformer implements Transformer // robots in disguise
 {
 	private static final String SCRIPT_OPCODES = "net/runelite/rs/ScriptOpcodes";
 

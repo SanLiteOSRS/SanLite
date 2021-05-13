@@ -1,8 +1,6 @@
 /*
  * Copyright (c) 2018, Tomas Slusny <slusnucky@gmail.com>
  * Copyright (c) 2019, Jordan Atwood <nightfirecat@protonmail.com>
- * Copyright (c) 2019, Jajack
- * Copyright (c) 2019, Siraz <https://github.com/Sirazzz>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -27,11 +25,15 @@
  */
 package net.runelite.client.plugins.playerindicators;
 
-import lombok.extern.slf4j.Slf4j;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import javax.inject.Inject;
+import javax.inject.Singleton;
 import net.runelite.api.FriendsChatRank;
 import net.runelite.api.Player;
 import net.runelite.api.Point;
-import net.runelite.client.config.PlayerNameLocation;
 import net.runelite.client.game.FriendChatManager;
 import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayPosition;
@@ -39,12 +41,6 @@ import net.runelite.client.ui.overlay.OverlayPriority;
 import net.runelite.client.ui.overlay.OverlayUtil;
 import net.runelite.client.util.Text;
 
-import javax.inject.Inject;
-import javax.inject.Singleton;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-
-@Slf4j
 @Singleton
 public class PlayerIndicatorsOverlay extends Overlay
 {
@@ -53,15 +49,15 @@ public class PlayerIndicatorsOverlay extends Overlay
 
 	private final PlayerIndicatorsService playerIndicatorsService;
 	private final PlayerIndicatorsConfig config;
-	private final FriendChatManager friendsChatManager;
+	private final FriendChatManager friendChatManager;
 
 	@Inject
 	private PlayerIndicatorsOverlay(PlayerIndicatorsConfig config, PlayerIndicatorsService playerIndicatorsService,
-			FriendChatManager friendsChatManager)
+		FriendChatManager friendChatManager)
 	{
 		this.config = config;
 		this.playerIndicatorsService = playerIndicatorsService;
-		this.friendsChatManager = friendsChatManager;
+		this.friendChatManager = friendChatManager;
 		setPosition(OverlayPosition.DYNAMIC);
 		setPriority(OverlayPriority.MED);
 	}
@@ -69,79 +65,35 @@ public class PlayerIndicatorsOverlay extends Overlay
 	@Override
 	public Dimension render(Graphics2D graphics)
 	{
-		playerIndicatorsService.forEachPlayer((player, type) -> checkPlayerTypes(graphics, player, type));
+		playerIndicatorsService.forEachPlayer((player, color) -> renderPlayerOverlay(graphics, player, color));
 		return null;
 	}
 
-	private void checkPlayerTypes(Graphics2D graphics, Player player, PlayerIndicatorType type)
+	private void renderPlayerOverlay(Graphics2D graphics, Player actor, Color color)
 	{
-		switch (type)
-		{
-			case OWN_PLAYER:
-				renderPlayerName(graphics, player, type, config.getOwnPlayerNamePosition(), config.getOwnPlayerColor());
-				break;
-			case FRIEND:
-				renderPlayerName(graphics, player, type, config.getFriendPlayerNamePosition(), config.getFriendColor());
-				break;
-			case CUSTOM_LIST_1:
-				renderPlayerName(graphics, player, type, config.getListOneNamePosition(), config.getListOneColor());
-				break;
-			case CUSTOM_LIST_2:
-				renderPlayerName(graphics, player, type, config.getListTwoNamePosition(), config.getListTwoColor());
-				break;
-			case CUSTOM_LIST_3:
-				renderPlayerName(graphics, player, type, config.getListThreeNamePosition(), config.getListThreeColor());
-				break;
-			case CUSTOM_LIST_4:
-				renderPlayerName(graphics, player, type, config.getListFourNamePosition(), config.getListFourColor());
-				break;
-			case CUSTOM_LIST_5:
-				renderPlayerName(graphics, player, type, config.getListFiveNamePosition(), config.getListFiveColor());
-				break;
-			case FRIENDS_CHAT_MEMBERS:
-				renderPlayerName(graphics, player, type, config.getFriendsChatMemberPlayerNamePosition(), config.getFriendsChatMemberColor());
-				break;
-			case TEAM_CAPE_MEMBER:
-				renderPlayerName(graphics, player, type, config.getTeamPlayerNamePosition(), config.getTeamMemberColor());
-				break;
-			case NON_CLAN_MEMBER:
-				renderPlayerName(graphics, player, type, config.getOthersPlayerNamePosition(), config.getOthersColor());
-				break;
-			default:
-				log.warn("Tried rendering name for player: {} with unknown PlayerIndicatorType: {}", player.getName(), type);
-		}
-	}
-
-	private void renderPlayerName(Graphics2D graphics, Player player, PlayerIndicatorType type, PlayerNameLocation nameLocation, Color color)
-	{
-		if (nameLocation == PlayerNameLocation.DISABLED)
+		final PlayerNameLocation drawPlayerNamesConfig = config.playerNamePosition();
+		if (drawPlayerNamesConfig == PlayerNameLocation.DISABLED)
 		{
 			return;
 		}
 
 		final int zOffset;
-		switch (nameLocation)
+		switch (drawPlayerNamesConfig)
 		{
 			case MODEL_CENTER:
 			case MODEL_RIGHT:
-				zOffset = player.getLogicalHeight() / 2;
+				zOffset = actor.getLogicalHeight() / 2;
 				break;
 			default:
-				zOffset = player.getLogicalHeight() + ACTOR_OVERHEAD_TEXT_MARGIN;
+				zOffset = actor.getLogicalHeight() + ACTOR_OVERHEAD_TEXT_MARGIN;
 		}
 
-		final String playerName = player.getName();
-		if (playerName == null)
-		{
-			return;
-		}
+		final String name = Text.sanitize(actor.getName());
+		Point textLocation = actor.getCanvasTextLocation(graphics, name, zOffset);
 
-		final String name = Text.sanitize(playerName);
-		Point textLocation = player.getCanvasTextLocation(graphics, name, zOffset);
-
-		if (nameLocation == PlayerNameLocation.MODEL_RIGHT)
+		if (drawPlayerNamesConfig == PlayerNameLocation.MODEL_RIGHT)
 		{
-			textLocation = player.getCanvasTextLocation(graphics, "", zOffset);
+			textLocation = actor.getCanvasTextLocation(graphics, "", zOffset);
 
 			if (textLocation == null)
 			{
@@ -156,51 +108,41 @@ public class PlayerIndicatorsOverlay extends Overlay
 			return;
 		}
 
-		if (config.showFriendsChatRanks() && type == PlayerIndicatorType.FRIENDS_CHAT_MEMBERS)
+		if (config.showFriendsChatRanks() && actor.isFriendsChatMember())
 		{
-			Point clanRankTextLocation = getNameTextLocationWithClanRank(graphics, name, textLocation, nameLocation);
-			if (clanRankTextLocation != null)
+			final FriendsChatRank rank = friendChatManager.getRank(name);
+
+			if (rank != FriendsChatRank.UNRANKED)
 			{
-				textLocation = clanRankTextLocation;
+				final BufferedImage rankImage = friendChatManager.getRankImage(rank);
+
+				if (rankImage != null)
+				{
+					final int imageWidth = rankImage.getWidth();
+					final int imageTextMargin;
+					final int imageNegativeMargin;
+
+					if (drawPlayerNamesConfig == PlayerNameLocation.MODEL_RIGHT)
+					{
+						imageTextMargin = imageWidth;
+						imageNegativeMargin = 0;
+					}
+					else
+					{
+						imageTextMargin = imageWidth / 2;
+						imageNegativeMargin = imageWidth / 2;
+					}
+
+					final int textHeight = graphics.getFontMetrics().getHeight() - graphics.getFontMetrics().getMaxDescent();
+					final Point imageLocation = new Point(textLocation.getX() - imageNegativeMargin - 1, textLocation.getY() - textHeight / 2 - rankImage.getHeight() / 2);
+					OverlayUtil.renderImageLocation(graphics, imageLocation, rankImage);
+
+					// move text
+					textLocation = new Point(textLocation.getX() + imageTextMargin, textLocation.getY());
+				}
 			}
 		}
 
 		OverlayUtil.renderTextLocation(graphics, textLocation, name, color);
-	}
-
-	private Point getNameTextLocationWithClanRank(Graphics2D graphics, String name, Point textLocation, PlayerNameLocation nameLocation)
-	{
-		final FriendsChatRank rank = friendsChatManager.getRank(name);
-
-		if (rank != FriendsChatRank.UNRANKED)
-		{
-			final BufferedImage clanChatImage = friendsChatManager.getRankImage(rank);
-
-			if (clanChatImage != null)
-			{
-				final int clanImageWidth = clanChatImage.getWidth();
-				final int clanImageTextMargin;
-				final int clanImageNegativeMargin;
-
-				if (nameLocation == PlayerNameLocation.MODEL_RIGHT)
-				{
-					clanImageTextMargin = clanImageWidth;
-					clanImageNegativeMargin = 0;
-				}
-				else
-				{
-					clanImageTextMargin = clanImageWidth / 2;
-					clanImageNegativeMargin = clanImageWidth / 2;
-				}
-
-				final int textHeight = graphics.getFontMetrics().getHeight() - graphics.getFontMetrics().getMaxDescent();
-				final Point imageLocation = new Point(textLocation.getX() - clanImageNegativeMargin - 1, textLocation.getY() - textHeight / 2 - clanChatImage.getHeight() / 2);
-				OverlayUtil.renderImageLocation(graphics, imageLocation, clanChatImage);
-
-				// move text
-				return new Point(textLocation.getX() + clanImageTextMargin, textLocation.getY());
-			}
-		}
-		return null;
 	}
 }

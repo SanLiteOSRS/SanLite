@@ -1,6 +1,7 @@
 package net.runelite.mixins;
 
 import net.runelite.api.SpritePixels;
+import java.util.Map;
 import net.runelite.api.mixins.Copy;
 import net.runelite.api.mixins.Inject;
 import net.runelite.api.mixins.Mixin;
@@ -9,8 +10,6 @@ import net.runelite.api.mixins.Shadow;
 import net.runelite.rs.api.RSSpritePixels;
 import net.runelite.rs.api.RSWidget;
 
-import java.util.Map;
-
 @Mixin(RSWidget.class)
 public abstract class WidgetSpriteMixin implements RSWidget
 {
@@ -18,13 +17,8 @@ public abstract class WidgetSpriteMixin implements RSWidget
 	private static Map<Integer, SpritePixels> widgetSpriteOverrides;
 
 	@Copy("getSprite")
-	public RSSpritePixels rs$getWidgetSprite(boolean var1)
-	{
-		throw new RuntimeException();
-	}
-
 	@Replace("getSprite")
-	public RSSpritePixels rl$getWidgetSprite(boolean var1)
+	public RSSpritePixels copy$getWidgetSprite(boolean var1)
 	{
 		if (getSpriteId() != -1)
 		{
@@ -36,11 +30,10 @@ public abstract class WidgetSpriteMixin implements RSWidget
 			}
 		}
 
-		return rs$getWidgetSprite(var1);
+		return copy$getWidgetSprite(var1);
 	}
 
 	@Inject
-	@Override
 	public SpritePixels getSprite()
 	{
 		return getSprite(false);

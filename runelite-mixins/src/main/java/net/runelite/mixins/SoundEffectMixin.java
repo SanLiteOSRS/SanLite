@@ -27,8 +27,18 @@ package net.runelite.mixins;
 import net.runelite.api.SoundEffectVolume;
 import net.runelite.api.events.AreaSoundEffectPlayed;
 import net.runelite.api.events.SoundEffectPlayed;
-import net.runelite.api.mixins.*;
-import net.runelite.rs.api.*;
+import net.runelite.api.mixins.Copy;
+import net.runelite.api.mixins.FieldHook;
+import net.runelite.api.mixins.Inject;
+import net.runelite.api.mixins.Mixin;
+import net.runelite.api.mixins.Replace;
+import net.runelite.api.mixins.Shadow;
+import net.runelite.rs.api.RSActor;
+import net.runelite.rs.api.RSClient;
+import net.runelite.rs.api.RSPcmStream;
+import net.runelite.rs.api.RSRawPcmStream;
+import net.runelite.rs.api.RSRawSound;
+import net.runelite.rs.api.RSSoundEffect;
 
 @Mixin(RSClient.class)
 public abstract class SoundEffectMixin implements RSClient
@@ -42,18 +52,15 @@ public abstract class SoundEffectMixin implements RSClient
 	@Inject
 	private static RSActor lastSoundEffectSourceActor;
 
-	@Copy("updateActorSequence")
-	public static void rs$updateActorSequence(RSActor actor, int length)
-	{
-		throw new RuntimeException();
-	}
 
+	@Copy("updateActorSequence")
 	@Replace("updateActorSequence")
-	public static void rl$updateActorSequence(RSActor actor, int length)
+	@SuppressWarnings("InfiniteRecursion")
+	public static void copy$updateActorSequence(RSActor actor, int size)
 	{
 		lastSoundEffectSourceActor = actor;
 
-		rs$updateActorSequence(actor, length);
+		copy$updateActorSequence(actor, size);
 
 		lastSoundEffectSourceActor = null;
 	}

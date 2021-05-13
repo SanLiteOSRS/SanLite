@@ -16,7 +16,7 @@ public interface RSTile extends Tile
 	@Override
 	GameObject[] getGameObjects();
 
-	@Import("tileItemPile")
+	@Import("itemLayer")
 	@Override
 	ItemLayer getItemLayer();
 
@@ -24,6 +24,9 @@ public interface RSTile extends Tile
 	@Override
 	DecorativeObject getDecorativeObject();
 
+	@Import("wallDecoration")
+	void setDecorativeObject(DecorativeObject object);
+	
 	@Import("floorDecoration")
 	@Override
 	GroundObject getGroundObject();
@@ -35,10 +38,16 @@ public interface RSTile extends Tile
 	@Import("boundaryObject")
 	@Override
 	WallObject getWallObject();
+	
+	@Import("boundaryObject")
+	void setWallObject(WallObject object);
 
 	@Import("paint")
 	@Override
 	SceneTilePaint getSceneTilePaint();
+
+	@Import("paint")
+	void setSceneTilePaint(SceneTilePaint paint);
 
 	@Import("model")
 	@Override

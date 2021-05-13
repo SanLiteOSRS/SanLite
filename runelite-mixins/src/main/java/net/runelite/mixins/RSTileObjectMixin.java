@@ -1,18 +1,22 @@
 package net.runelite.mixins;
 
-import java.awt.Graphics2D;
-import java.awt.Polygon;
-
 import net.runelite.api.Perspective;
 import net.runelite.api.Point;
 import net.runelite.api.TileObject;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.coords.WorldPoint;
+import java.awt.Graphics2D;
+import java.awt.Polygon;
 import net.runelite.api.mixins.Inject;
 import net.runelite.api.mixins.Mixin;
 import net.runelite.api.mixins.Mixins;
 import net.runelite.api.mixins.Shadow;
-import net.runelite.rs.api.*;
+import net.runelite.rs.api.RSBoundaryObject;
+import net.runelite.rs.api.RSClient;
+import net.runelite.rs.api.RSFloorDecoration;
+import net.runelite.rs.api.RSGameObject;
+import net.runelite.rs.api.RSItemLayer;
+import net.runelite.rs.api.RSWallDecoration;
 
 @Mixins({
 	@Mixin(RSWallDecoration.class),
@@ -33,12 +37,36 @@ public abstract class RSTileObjectMixin implements TileObject
 		long hash = getHash();
 		return (int) (hash >>> 17 & 4294967295L);
 	}
+	
+	@Inject
+	public String getName()
+	{
+		return client.getObjectDefinition(getId()).getName();
+	}
+
+	@Inject
+	public String[] getActions()
+	{
+		return client.getObjectDefinition(getId()).getActions();
+	}
 
 	@Override
 	@Inject
 	public WorldPoint getWorldLocation()
 	{
-		return WorldPoint.fromLocal(client, getX(), getY(), getPlane());
+		if (this instanceof RSGameObject)
+		{
+			RSGameObject gameObject = (RSGameObject) this;
+			int startX = gameObject.getStartX();
+			int startY = gameObject.getStartY();
+			int diffX = gameObject.getEndX() - startX;
+			int diffY = gameObject.getEndY() - startY;
+			return WorldPoint.fromScene(client, startX + diffX / 2, startY + diffY / 2, getPlane());
+		}
+		else
+		{
+			return WorldPoint.fromLocal(client, getX(), getY(), getPlane());
+		}
 	}
 
 	@Override
@@ -66,7 +94,16 @@ public abstract class RSTileObjectMixin implements TileObject
 	@Inject
 	public Polygon getCanvasTilePoly()
 	{
-		return Perspective.getCanvasTilePoly(client, getLocalLocation());
+		int sizeX = 1;
+		int sizeY = 1;
+
+		if (this instanceof RSGameObject)
+		{
+			sizeX = ((RSGameObject) this).sizeX();
+			sizeY = ((RSGameObject) this).sizeY();
+		}
+
+		return Perspective.getCanvasTileAreaPoly(client, getLocalLocation(), sizeX, sizeY, getPlane(), 0);
 	}
 
 	@Override

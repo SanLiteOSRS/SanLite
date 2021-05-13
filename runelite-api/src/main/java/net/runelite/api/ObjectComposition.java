@@ -38,8 +38,6 @@ public interface ObjectComposition extends ParamHolder
 
 	/**
 	 * Gets the name of the object.
-	 *
-	 * @return the object name
 	 */
 	String getName();
 

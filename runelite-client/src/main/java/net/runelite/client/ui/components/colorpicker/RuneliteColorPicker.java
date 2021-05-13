@@ -54,10 +54,8 @@ import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 import javax.swing.text.DocumentFilter;
-
 import lombok.Getter;
 import lombok.Setter;
-import net.runelite.client.RuneLiteProperties;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.ui.ColorScheme;
 import net.runelite.client.util.ColorUtil;
@@ -98,7 +96,7 @@ public class RuneliteColorPicker extends JDialog
 	RuneliteColorPicker(Window parent, Color previousColor, String title, boolean alphaHidden,
 		final ConfigManager configManager, final ColorPickerManager colorPickerManager)
 	{
-		super(parent, RuneLiteProperties.getTitle() + " Color Picker - " + title, ModalityType.MODELESS);
+		super(parent, "RuneLite Color Picker - " + title, ModalityType.MODELESS);
 
 		this.selectedColor = previousColor;
 		this.alphaHidden = alphaHidden;

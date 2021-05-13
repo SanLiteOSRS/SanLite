@@ -36,7 +36,6 @@ import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.Set;
 import javax.inject.Inject;
-import javax.inject.Named;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -97,10 +96,6 @@ public class ScriptInspector extends DevToolsFrame
 		HIGHLIGHT
 	}
 
-	@com.google.inject.Inject
-	@Named("runelite.title")
-	private String clientTitle;
-
 	@Data
 	private class ScriptTreeNode extends DefaultMutableTreeNode
 	{
@@ -146,7 +141,7 @@ public class ScriptInspector extends DevToolsFrame
 		this.client = client;
 		this.configManager = configManager;
 
-		setTitle(clientTitle + " Script Inspector");
+		setTitle("RuneLite Script Inspector");
 
 		setLayout(new BorderLayout());
 

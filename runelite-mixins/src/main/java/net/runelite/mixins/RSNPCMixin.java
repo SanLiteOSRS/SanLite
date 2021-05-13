@@ -103,7 +103,7 @@ public abstract class RSNPCMixin implements RSNPC
 
 	@FieldHook(value = "definition", before = true)
 	@Inject
-	public void onCompositionChanged(RSNPCComposition composition)
+	public void onDefinitionChanged(RSNPCComposition composition)
 	{
 		if (composition == null)
 		{
@@ -127,27 +127,26 @@ public abstract class RSNPCMixin implements RSNPC
 	}
 
 	@Copy("getModel")
-	public abstract RSModel rs$getModel();
-
 	@Replace("getModel")
-	public RSModel rl$getModel()
+	@SuppressWarnings("InfiniteRecursion")
+	public RSModel copy$getModel()
 	{
 		if (!client.isInterpolateNpcAnimations()
-				|| getAnimation() == AnimationID.HELLHOUND_DEFENCE)
+			|| getAnimation() == AnimationID.HELLHOUND_DEFENCE)
 		{
-			return rs$getModel();
+			return copy$getModel();
 		}
 		int actionFrame = getActionFrame();
 		int poseFrame = getPoseFrame();
-		int spotAnimFrame = getSpotAnimFrame();
+		int spotAnimFrame = getSpotAnimationFrame();
 		try
 		{
 			// combine the frames with the frame cycle so we can access this information in the sequence methods
 			// without having to change method calls
 			setActionFrame(Integer.MIN_VALUE | getActionFrameCycle() << 16 | actionFrame);
 			setPoseFrame(Integer.MIN_VALUE | getPoseFrameCycle() << 16 | poseFrame);
-			setSpotAnimFrame(Integer.MIN_VALUE | getGraphicFrameCycle() << 16 | spotAnimFrame);
-			return rs$getModel();
+			setSpotAnimFrame(Integer.MIN_VALUE | getSpotAnimationFrameCycle() << 16 | spotAnimFrame);
+			return copy$getModel();
 		}
 		finally
 		{

@@ -62,7 +62,7 @@ import net.runelite.client.events.SessionOpen;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginInstantiationException;
 import net.runelite.client.plugins.PluginManager;
-import net.runelite.client.ui.SplashScreen;
+import net.sanlite.client.ui.SplashScreen;
 import net.runelite.client.util.CountingInputStream;
 import net.runelite.client.util.Text;
 import net.runelite.client.util.VerificationException;

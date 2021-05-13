@@ -165,7 +165,6 @@ public abstract class EntityHiderBridgeMixin implements RSClient
 	}
 
 	@Inject
-	@Override
 	public void setDeadNPCsHidden(boolean state)
 	{
 		hideDeadNPCs = state;

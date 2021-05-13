@@ -24,19 +24,14 @@
  */
 package net.runelite.mixins;
 
-import net.runelite.api.DialogOption;
-import net.runelite.api.events.DialogProcessed;
-import net.runelite.api.events.DynamicObjectAnimationChanged;
 import net.runelite.api.mixins.Copy;
 import net.runelite.api.mixins.FieldHook;
 import net.runelite.api.mixins.Inject;
-import net.runelite.api.mixins.MethodHook;
 import net.runelite.api.mixins.Mixin;
 import net.runelite.api.mixins.Replace;
 import net.runelite.api.mixins.Shadow;
 import net.runelite.rs.api.RSClient;
 import net.runelite.rs.api.RSDynamicObject;
-import net.runelite.rs.api.RSRenderable;
 import net.runelite.rs.api.RSModel;
 
 @Mixin(RSDynamicObject.class)
@@ -45,14 +40,10 @@ public abstract class RSDynamicObjectMixin implements RSDynamicObject
 	@Shadow("client")
 	private static RSClient client;
 
-	@Inject
-	public int animationID;
-
+	@SuppressWarnings("InfiniteRecursion")
 	@Copy("getModel")
-	public abstract RSModel rs$getModel();
-
 	@Replace("getModel")
-	public RSModel rl$getModel()
+	public RSModel copy$getModel()
 	{
 		try
 		{
@@ -63,7 +54,7 @@ public abstract class RSDynamicObjectMixin implements RSDynamicObject
 			{
 				setAnimFrame((animFrame ^ Integer.MIN_VALUE) & 0xFFFF);
 			}
-			return rs$getModel();
+			return copy$getModel();
 		}
 		finally
 		{
@@ -87,44 +78,9 @@ public abstract class RSDynamicObjectMixin implements RSDynamicObject
 		}
 	}
 
-	@MethodHook(value = "<init>", end = true)
 	@Inject
-	public void rl$init(int id, int type, int orientation, int plane, int x, int y, int animationID, boolean var8, RSRenderable var9)
+	public int getAnimationID()
 	{
-		this.animationID = animationID;
-
-		if (animationID != -1)
-		{
-			DynamicObjectAnimationChanged dynamicObjectAnimationChanged = new DynamicObjectAnimationChanged();
-			dynamicObjectAnimationChanged.setObject(id);
-			dynamicObjectAnimationChanged.setAnimation(animationID);
-			client.getCallbacks().post(new DynamicObjectAnimationChanged());
-		}
-	}
-
-	@Inject
-	@Override
-	public int getAnimationId()
-	{
-		return animationID;
-	}
-
-	@Inject
-	@MethodHook("resumePauseWidget")
-	public static void onDialogProcessed(int widgetUid, int menuIndex)
-	{
-		DialogOption dialogOption = DialogOption.of(widgetUid, menuIndex);
-		if (dialogOption != null)
-		{
-			client.getCallbacks().post(new DialogProcessed(dialogOption));
-		}
-		else
-		{
-			client.getLogger().debug(
-					"Unknown or unmapped dialog option for widgetUid: {} and menuIndex {}",
-					widgetUid,
-					menuIndex
-			);
-		}
+		return (int) (getSequenceDefinition() == null ? -1 : getSequenceDefinition().getHash());
 	}
 }

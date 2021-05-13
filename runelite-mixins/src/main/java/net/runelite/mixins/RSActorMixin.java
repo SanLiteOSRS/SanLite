@@ -35,8 +35,12 @@ import net.runelite.api.SpritePixels;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.coords.WorldArea;
 import net.runelite.api.coords.WorldPoint;
-import net.runelite.api.events.*;
-
+import net.runelite.api.events.ActorDeath;
+import net.runelite.api.events.AnimationChanged;
+import net.runelite.api.events.HitsplatApplied;
+import net.runelite.api.events.GraphicChanged;
+import net.runelite.api.events.InteractingChanged;
+import net.runelite.api.events.OverheadTextChanged;
 import java.awt.Graphics2D;
 import java.awt.Polygon;
 import java.awt.image.BufferedImage;
@@ -45,7 +49,13 @@ import net.runelite.api.mixins.Inject;
 import net.runelite.api.mixins.MethodHook;
 import net.runelite.api.mixins.Mixin;
 import net.runelite.api.mixins.Shadow;
-import net.runelite.rs.api.*;
+import net.runelite.rs.api.RSActor;
+import net.runelite.rs.api.RSClient;
+import net.runelite.rs.api.RSHealthBar;
+import net.runelite.rs.api.RSHealthBarDefinition;
+import net.runelite.rs.api.RSHealthBarUpdate;
+import net.runelite.rs.api.RSIterableNodeDeque;
+import net.runelite.rs.api.RSNode;
 
 @Mixin(RSActor.class)
 public abstract class RSActorMixin implements RSActor
@@ -283,7 +293,6 @@ public abstract class RSActorMixin implements RSActor
 	}
 
 	@Inject
-	@Override
 	public boolean isMoving()
 	{
 		return getPathLength() > 0;

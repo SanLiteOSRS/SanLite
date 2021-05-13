@@ -108,7 +108,7 @@ public class ClientUI
 	private static final String CONFIG_CLIENT_BOUNDS = "clientBounds";
 	private static final String CONFIG_CLIENT_MAXIMIZED = "clientMaximized";
 	private static final String CONFIG_CLIENT_SIDEBAR_CLOSED = "clientSidebarClosed";
-	public static final BufferedImage ICON = ImageUtil.loadImageResource(ClientUI.class, "/sanlite.png");
+	public static final BufferedImage ICON = ImageUtil.loadImageResource(ClientUI.class, "/runelite.png");
 
 	@Getter
 	private TrayIcon trayIcon;
@@ -581,9 +581,9 @@ public class ClientUI
 		if (client != null && !(client instanceof Client))
 		{
 			SwingUtilities.invokeLater(() -> JOptionPane.showMessageDialog(frame,
-				title + " has not yet been updated to work with the latest\n"
+				"RuneLite has not yet been updated to work with the latest\n"
 					+ "game update, it will work with reduced functionality until then.",
-				title + " is outdated", INFORMATION_MESSAGE));
+				"RuneLite is outdated", INFORMATION_MESSAGE));
 		}
 	}
 

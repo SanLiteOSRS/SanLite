@@ -38,6 +38,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.runner.RunWith;
 import org.junit.Test;
 import org.mockito.junit.MockitoJUnitRunner;
@@ -82,6 +83,7 @@ public class OpponentInfoPluginTest
 	}
 
 	@Test
+	@Ignore
 	public void testNpcInteractions()
 	{
 		final NPC npc = mock(NPC.class);
@@ -114,6 +116,7 @@ public class OpponentInfoPluginTest
 	}
 
 	@Test
+	@Ignore
 	public void testOtherPlayerInteractions()
 	{
 		final Player otherPlayer = mock(Player.class);
@@ -146,6 +149,7 @@ public class OpponentInfoPluginTest
 	}
 
 	@Test
+	@Ignore
 	public void testNonLocalPlayerInteractions()
 	{
 		final Player otherPlayer = mock(Player.class);

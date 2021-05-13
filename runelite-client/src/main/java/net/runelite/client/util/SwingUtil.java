@@ -59,6 +59,7 @@ import lombok.extern.slf4j.Slf4j;
 import net.runelite.client.ui.ColorScheme;
 import net.runelite.client.ui.NavigationButton;
 import net.runelite.client.ui.components.CustomScrollBarUI;
+import net.sanlite.client.ui.Colors;
 import org.pushingpixels.substance.internal.SubstanceSynapse;
 
 /**
@@ -83,11 +84,11 @@ public class SwingUtil
 		UIManager.put("MenuItem.foreground", Color.WHITE);
 		UIManager.put("Panel.background", ColorScheme.DARK_GRAY_COLOR);
 		UIManager.put("ScrollBarUI", CustomScrollBarUI.class.getName());
-		UIManager.put("TextField.selectionBackground", ColorScheme.BRAND_BLUE_TRANSPARENT);
+		UIManager.put("TextField.selectionBackground", Colors.BRAND_BLUE_TRANSPARENT);
 		UIManager.put("TextField.selectionForeground", Color.WHITE);
-		UIManager.put("FormattedTextField.selectionBackground", ColorScheme.BRAND_BLUE_TRANSPARENT);
+		UIManager.put("FormattedTextField.selectionBackground", Colors.BRAND_BLUE_TRANSPARENT);
 		UIManager.put("FormattedTextField.selectionForeground", Color.WHITE);
-		UIManager.put("TextArea.selectionBackground", ColorScheme.BRAND_BLUE_TRANSPARENT);
+		UIManager.put("TextArea.selectionBackground", Colors.BRAND_BLUE_TRANSPARENT);
 		UIManager.put("TextArea.selectionForeground", Color.WHITE);
 
 		// Do not render shadows under popups/tooltips.

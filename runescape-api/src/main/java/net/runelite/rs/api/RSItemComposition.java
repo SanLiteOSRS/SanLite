@@ -10,7 +10,6 @@ public interface RSItemComposition extends ItemComposition
 	String getName();
 
 	@Import("name")
-	@Override
 	void setName(String name);
 
 	@Import("id")
@@ -45,6 +44,9 @@ public interface RSItemComposition extends ItemComposition
 	@Override
 	boolean isTradeable();
 
+	@Import("isTradable")
+	void setTradeable(boolean yes);
+
 	/**
 	 * You probably want {@link #isStackable}
 	 * <p>
@@ -62,7 +64,6 @@ public interface RSItemComposition extends ItemComposition
 	String[] getInventoryActions();
 
 	@Import("groundActions")
-	@Override
 	String[] getGroundActions();
 
 	@Import("getShiftClickIndex")

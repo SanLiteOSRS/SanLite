@@ -26,8 +26,10 @@
 package net.runelite.client.plugins.groundmarkers;
 
 import java.awt.Color;
-
-import net.runelite.client.config.*;
+import net.runelite.client.config.Alpha;
+import net.runelite.client.config.Config;
+import net.runelite.client.config.ConfigGroup;
+import net.runelite.client.config.ConfigItem;
 
 @ConfigGroup(GroundMarkerConfig.GROUND_MARKER_CONFIG_GROUP)
 public interface GroundMarkerConfig extends Config
@@ -85,15 +87,5 @@ public interface GroundMarkerConfig extends Config
 	default boolean showClear()
 	{
 		return false;
-	}
-
-	@ConfigItem(
-		keyName = "tileMarkersLineSize",
-		name = "Tile markers line size",
-		description = "The size of the outside line for tile markers"
-	)
-	default StrokeSize getTileMarkersLineSize()
-	{
-		return StrokeSize.NORMAL;
 	}
 }

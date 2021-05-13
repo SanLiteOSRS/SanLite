@@ -8,7 +8,7 @@ public interface RSSequenceDefinition extends RSNode
 	int[] getFrameIDs();
 
 	@Import("frameLengths")
-	int[] getFrameLenths();
+	int[] getFrameLengths();
 
 	@Import("chatFrameIds")
 	int[] getChatFrameIds();

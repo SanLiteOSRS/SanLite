@@ -36,9 +36,9 @@ public abstract class KeyPressedMixin implements RSClient
 	private static RSClient client;
 
 	@Inject
-	@Override
 	public boolean isKeyPressed(int keycode)
 	{
-		return client.getPressedKeys()[keycode];
+		boolean[] pressedKeys = client.getPressedKeys();
+		return pressedKeys[keycode];
 	}
 }

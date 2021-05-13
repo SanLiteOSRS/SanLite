@@ -6,7 +6,7 @@ import java.util.Map;
 class Bootstrap
 {
 	private static String CLIENT_REPO_URL;
-	private static final int STATIC_ARTIFACTS_SIZE = 34;
+	private static final int STATIC_ARTIFACTS_SIZE = 35;
 	private static Map<DynamicArtifact, String> CHECKSUMS;
 
 	private Artifact[] artifacts;
@@ -266,22 +266,28 @@ class Bootstrap
 		artifacts[30].setSize(617313);
 
 		artifacts[31] = new Artifact();
-		artifacts[31].setHash("126bde4a6be269579a84a67dfc7707fd2916e0eef11b74c4de7cc61a36d2420e");
-		artifacts[31].setName("jocl-1.0.jar");
-		artifacts[31].setPath("https://repo.runelite.net/net/runelite/jocl/jocl/1.0/jocl-1.0.jar");
-		artifacts[31].setSize(67704);
+		artifacts[31].setHash("02f291e5d1243dc143496e3cbbb40a1ced47aa58f2d633d3e38780cd068d5074");
+		artifacts[31].setName("commons-io-2.8.0.jar");
+		artifacts[31].setPath("https://repo.maven.apache.org/maven2/commons-io/commons-io/2.8.0/commons-io-2.8.0.jar");
+		artifacts[31].setSize(285424);
 
 		artifacts[32] = new Artifact();
-		artifacts[32].setHash("2bcb853daff68fe4faed28f871624a428c5db90f9e3ecb4286df8aeca4b93b38");
-		artifacts[32].setName("jocl-1.0-macos-x64.jar");
-		artifacts[32].setPath("https://repo.runelite.net/net/runelite/jocl/jocl/1.0/jocl-1.0-macos-x64.jar");
-		artifacts[32].setSize(59030);
+		artifacts[32].setHash("126bde4a6be269579a84a67dfc7707fd2916e0eef11b74c4de7cc61a36d2420e");
+		artifacts[32].setName("jocl-1.0.jar");
+		artifacts[32].setPath("https://repo.runelite.net/net/runelite/jocl/jocl/1.0/jocl-1.0.jar");
+		artifacts[32].setSize(67704);
 
 		artifacts[33] = new Artifact();
-		artifacts[33].setHash("4fb96241f95970bd329ef03af1e9c94a9114e91a571523bcaf2af66bee2f2bfa");
-		artifacts[33].setName("jocl-1.0-macos-arm64.jar");
-		artifacts[33].setPath("https://repo.runelite.net/net/runelite/jocl/jocl/1.0/jocl-1.0-macos-arm64.jar");
-		artifacts[33].setSize(59579);
+		artifacts[33].setHash("2bcb853daff68fe4faed28f871624a428c5db90f9e3ecb4286df8aeca4b93b38");
+		artifacts[33].setName("jocl-1.0-macos-x64.jar");
+		artifacts[33].setPath("https://repo.runelite.net/net/runelite/jocl/jocl/1.0/jocl-1.0-macos-x64.jar");
+		artifacts[33].setSize(59030);
+
+		artifacts[34] = new Artifact();
+		artifacts[34].setHash("4fb96241f95970bd329ef03af1e9c94a9114e91a571523bcaf2af66bee2f2bfa");
+		artifacts[34].setName("jocl-1.0-macos-arm64.jar");
+		artifacts[34].setPath("https://repo.runelite.net/net/runelite/jocl/jocl/1.0/jocl-1.0-macos-arm64.jar");
+		artifacts[34].setSize(59579);
 
 		// Create dynamic artifacts
 		for (DynamicArtifact artifact : DynamicArtifact.values())

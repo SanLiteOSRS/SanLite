@@ -24,11 +24,11 @@ public interface RSWallDecoration extends DecorativeObject
 	@Import("orientation2")
 	int getOrientation();
 
-	@Import("entity1")
+	@Import("renderable1")
 	@Override
 	RSRenderable getRenderable();
 
-	@Import("entity2")
+	@Import("renderable2")
 	@Override
 	RSRenderable getRenderable2();
 

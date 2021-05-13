@@ -97,6 +97,7 @@ import net.runelite.client.util.ColorUtil;
 import net.runelite.http.api.config.ConfigClient;
 import net.runelite.http.api.config.ConfigEntry;
 import net.runelite.http.api.config.Configuration;
+import net.sanlite.client.config.AllKeyCodeKeybind;
 import okhttp3.OkHttpClient;
 
 @Singleton
@@ -372,7 +373,7 @@ public class ConfigManager
 
 		parent.mkdirs();
 
-		File tempFile = File.createTempFile("sanlite", null, parent);
+		File tempFile = File.createTempFile("runelite", null, parent);
 
 		try (FileOutputStream out = new FileOutputStream(tempFile))
 		{
@@ -753,6 +754,10 @@ public class ConfigManager
 		if (type == int.class || type == Integer.class)
 		{
 			return Integer.parseInt(str);
+		}
+		if (type == double.class || type == Double.class)
+		{
+			return Double.parseDouble(str);
 		}
 		if (type == Color.class)
 		{

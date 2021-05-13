@@ -20,20 +20,14 @@ public class Bootstrapper
 
 	public static void main(String[] args)
 	{
-		if (args.length > 1)
-		{
-			System.out.println("Too many arguments, syntax: buildCommit (optional)");
-			System.exit(1);
-		}
-
-		String buildCommit = args.length == 1 ? args[0] : "";
+		String buildCommit = new BootstrapperProperties().getGitCommit();
 		if (buildCommit.isEmpty())
 		{
-			System.out.println("WARNING: Build commit argument is null");
+			System.out.println("WARNING: Build commit is null");
 		}
 
 		// Create output directory
-		File outputDir = new File("./target/bootstrap-output");
+		File outputDir = new File("./build/bootstrap-output");
 		if (!outputDir.exists())
 		{
 			if (!outputDir.mkdirs())
@@ -59,7 +53,7 @@ public class Bootstrapper
 		System.out.println("Generating " + type.getName() + " bootstrap file");
 		Gson gson = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();
 
-		File bootstrapDir = new File("./target/bootstrap-output/" + type.getOutputDir());
+		File bootstrapDir = new File("./build/bootstrap-output/" + type.getOutputDir());
 		if (!bootstrapDir.exists())
 		{
 			if (!bootstrapDir.mkdirs())
@@ -110,8 +104,8 @@ public class Bootstrapper
 			{
 				checksums.put(dynamicArtifact, FileChecksum.getChecksumFile(
 						"../" + dynamicArtifact.getDirectory() +
-								"/target/" + dynamicArtifact.getName() + "-" +
-								new BootstrapperProperties().getRuneLiteVersion() + ".jar"));
+								"/build/libs/" + dynamicArtifact.getName() + "-" +
+								new BootstrapperProperties().getSanLiteVersion() + ".jar"));
 			}
 			catch (IOException | NoSuchAlgorithmException e)
 			{

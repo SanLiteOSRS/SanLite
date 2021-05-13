@@ -24,12 +24,12 @@
  */
 package net.runelite.rs.api;
 
+import java.util.Map;
+import net.runelite.api.AbstractArchive;
 import net.runelite.api.Client;
 import net.runelite.api.SpritePixels;
 import net.runelite.api.World;
 import net.runelite.api.widgets.Widget;
-
-import java.util.Map;
 import net.runelite.mapping.Construct;
 import net.runelite.mapping.Import;
 
@@ -138,7 +138,6 @@ public interface RSClient extends RSGameEngine, Client
 	void setChangedSkillsCount(int i);
 
 	@Import("gameState")
-	@Override
 	int getRSGameState();
 
 	@Import("updateGameState")
@@ -206,7 +205,6 @@ public interface RSClient extends RSGameEngine, Client
 	RSPlayer getLocalPlayer();
 
 	@Import("localPlayerIndex")
-	@Override
 	int getLocalPlayerIndex();
 
 	@Import("npcCount")
@@ -302,11 +300,9 @@ public interface RSClient extends RSGameEngine, Client
 	boolean isCheckClick();
 
 	@Import("menuOptionsCount")
-	@Override
 	int getMenuOptionCount();
 
 	@Import("menuOptionsCount")
-	@Override
 	void setMenuOptionCount(int menuOptionCount);
 
 	@Import("menuActions")
@@ -410,9 +406,6 @@ public interface RSClient extends RSGameEngine, Client
 	@Import("menuAction")
 	void sendMenuAction(int n2, int n3, int n4, int n5, String string, String string2, int n6, int n7);
 
-	@Import("tempMenuAction")
-	RSMenuAction getTempMenuAction();
-
 	@Import("SpriteBuffer_decode")
 	void decodeSprite(byte[] data);
 
@@ -476,7 +469,7 @@ public interface RSClient extends RSGameEngine, Client
 	@Override
 	RSArchive getIndexScripts();
 
-	@Import("widgetClickMasks")
+	@Import("widgetFlags")
 	@Override
 	RSNodeHashTable getWidgetFlags();
 
@@ -621,27 +614,21 @@ public interface RSClient extends RSGameEngine, Client
 	int getMouseIdleTicks();
 
 	@Import("MouseHandler_idleCycles")
-	@Override
 	void setMouseIdleTicks(int cycles);
 
 	@Import("MouseHandler_lastPressedTimeMillis")
 	@Override
 	long getMouseLastPressedMillis();
 
-	@Import("MouseHandler_lastPressedTimeMillis")
+	@Import("KeyHandler_idleCycles")
 	@Override
-	void setMouseLastPressedMillis(long cycles);
+	void setKeyboardIdleTicks(int cycles);
 
 	@Import("KeyHandler_idleCycles")
 	@Override
 	int getKeyboardIdleTicks();
 
-	@Import("KeyHandler_idleCycles")
-	@Override
-	void setKeyboardIdleTicks(int cycles);
-
 	@Import("KeyHandler_pressedKeys")
-	@Override
 	boolean[] getPressedKeys();
 
 	@Import("isLowDetail")
@@ -692,12 +679,6 @@ public interface RSClient extends RSGameEngine, Client
 	@Construct
 	RSUsername createName(String name, RSLoginType type);
 
-	@Construct
-	RSBuffer createBuffer(byte[] bytes);
-
-	@Construct
-	RSVarbitComposition createVarbitComposition();
-
 	@Import("getVarbit")
 	int rs$getVarbit(int varbitId);
 
@@ -713,7 +694,7 @@ public interface RSClient extends RSGameEngine, Client
 	 * It should be between 128 and (pitchUnlimiter?512:383) JAUs(1).
 	 * The difference between this and cameraPitch is that cameraPitch has a lower limit, imposed by the surrounding
 	 * terrain.
-	 *
+	 * <p>
 	 * (1) JAU - Jagex Angle Unit; 1/1024 of a revolution
 	 */
 	@Import("camAngleX")
@@ -801,7 +782,7 @@ public interface RSClient extends RSGameEngine, Client
 	RSScriptEvent createScriptEvent();
 
 	@Import("runScript")
-	void runScript(RSScriptEvent ev, int ex);
+	void runScript(RSScriptEvent ev, int ex, int var2);
 
 	@Import("hintArrowType")
 	void setHintArrowTargetType(int value);
@@ -1006,9 +987,6 @@ public interface RSClient extends RSGameEngine, Client
 	int getIf1DraggedItemIndex();
 
 	@Import("isSpellSelected")
-	boolean getSpellSelected();
-
-	@Import("isSpellSelected")
 	@Override
 	void setSpellSelected(boolean selected);
 
@@ -1070,22 +1048,25 @@ public interface RSClient extends RSGameEngine, Client
 	RSEvictingDualNodeHashTable getHealthBarSpriteCache();
 
 	@Import("renderSelf")
-	@Override
 	boolean getRenderSelf();
 
 	@Import("renderSelf")
-	@Override
 	void setRenderSelf(boolean enabled);
-
-	@Import("mouseRecorder")
-	RSMouseRecorder getMouseRecorder();
 
 	@Import("selectedSpellName")
 	String getSelectedSpellName();
 
 	@Import("selectedSpellName")
-	@Override
 	void setSelectedSpellName(String name);
+
+	@Import("selectedSpellActionName")
+	String getSelectedSpellActionName();
+
+	@Import("selectedSpellFlags")
+	int getSelectedSpellFlags();
+
+	@Import("isSpellSelected")
+	boolean getSpellSelected();
 
 	@Import("readSoundEffect")
 	RSSoundEffect getTrack(RSAbstractArchive indexData, int id, int var0);
@@ -1105,11 +1086,11 @@ public interface RSClient extends RSGameEngine, Client
 	@Import("musicTrackVolume")
 	void setMusicTrackVolume(int volume);
 
-	@Import("viewportWalking")
-	void setViewportWalking(boolean viewportWalking);
-
 	@Import("playMusicTrack")
 	void playMusicTrack(int var0, RSAbstractArchive var1, int var2, int var3, int var4, boolean var5);
+
+	@Import("viewportWalking")
+	void setViewportWalking(boolean viewportWalking);
 
 	@Import("midiPcmStream")
 	RSMidiPcmStream getMidiPcmStream();
@@ -1124,70 +1105,131 @@ public interface RSClient extends RSGameEngine, Client
 	@Import("ItemDefinition_fileCount")
 	int getItemCount();
 
-	@Import("VarpDefinition_get")
-	RSVarpDefinition getVarpDefinition(int id);
-
 	@Import("insertMenuItem")
-	@Override
 	void insertMenuItem(String action, String target, int opcode, int identifier, int argument1, int argument2, boolean forceLeftClick);
 
 	@Import("selectedItemId")
-	@Override
 	void setSelectedItemID(int id);
 
 	@Import("selectedItemSlot")
-	@Override
 	int getSelectedItemSlot();
 
 	@Import("selectedItemSlot")
-	@Override
 	void setSelectedItemSlot(int index);
 
 	@Import("selectedItemWidget")
-	@Override
 	int getSelectedItemWidget();
 
 	@Import("selectedItemWidget")
-	@Override
 	void setSelectedItemWidget(int widgetID);
 
 	@Import("selectedSpellWidget")
-	@Override
 	int getSelectedSpellWidget();
 
 	@Import("selectedSpellChildIndex")
-	@Override
 	int getSelectedSpellChildIndex();
 
 	@Import("selectedSpellWidget")
-	@Override
 	void setSelectedSpellWidget(int widgetID);
 
 	@Import("selectedSpellChildIndex")
-	@Override
 	void setSelectedSpellChildIndex(int index);
 
 	@Import("Sprite_drawScaled")
-	@Override
 	void scaleSprite(int[] canvas, int[] pixels, int color, int pixelX, int pixelY, int canvasIdx, int canvasOffset, int newWidth, int newHeight, int pixelWidth, int pixelHeight, int oldWidth);
 
+	/**
+	 * This sets the login screen to where it asks for username/pass
+	 */
+	@Import("Login_promptCredentials")
+	void promptCredentials(boolean clearPass);
+
+	@Import("VarpDefinition_get")
+	RSVarpDefinition getVarpDefinition(int id);
+
+	@Construct
+	RSTileItem newTileItem();
+
+	@Construct
+	RSNodeDeque newNodeDeque();
+
+	@Import("updateItemPile")
+	void updateItemPile(int localX, int localY);
+
+	@Import("showMouseCross")
+	void setShowMouseCross(boolean show);
+
 	@Import("draggedWidgetX")
-	int getDraggedWidgetX();
+	int getDraggedWidgetX(); // these should probably have if1 in their names somewhere
 
 	@Import("draggedWidgetY")
 	int getDraggedWidgetY();
 
-	@Import("gameShell")
-	RSGameEngine getGameShell();
+	@Import("changedSkills")
+	int[] getChangedSkillLevels();
 
-	@Import("isKilled")
-	boolean isKilled();
+	@Import("MouseHandler_lastPressedTimeMillis")
+	void setMouseLastPressedMillis(long time);
+
+	@Import("mouseLastLastPressedTimeMillis")
+	long getClientMouseLastPressedMillis();
+
+	@Import("mouseLastLastPressedTimeMillis")
+	void setClientMouseLastPressedMillis(long time);
+
+	@Import("rootWidgetCount")
+	int getRootWidgetCount();
+
+	@Import("widgetClickX")
+	int getWidgetClickX();
+
+	@Import("widgetClickY")
+	int getWidgetClickY();
+
+	@Import("staffModLevel")
+	int getStaffModLevel();
+
+	@Import("tradeChatMode")
+	int getTradeChatMode();
+
+	@Import("publicChatMode")
+	int getPublicChatMode();
+
+	@Import("clientType")
+	int getClientType();
+
+	@Import("onMobile")
+	boolean isOnMobile();
+
+	@Import("hadFocus")
+	boolean hadFocus();
+
+	@Import("mouseCrossColor")
+	int getMouseCrossColor();
+
+	@Import("mouseCrossColor")
+	void setMouseCrossColor(int color);
+
+	@Import("leftClickOpensMenu")
+	int getLeftClickOpensMenu();
+
+	@Import("showMouseOverText")
+	boolean getShowMouseOverText();
+
+	@Import("showMouseOverText")
+	void setShowMouseOverText(boolean showMouseOverText);
+
+	@Import("defaultRotations")
+	int[] getDefaultRotations();
+
+	@Import("showLoadingMessages")
+	boolean getShowLoadingMessages();
+
+	@Import("showLoadingMessages")
+	void setShowLoadingMessages(boolean showLoadingMessages);
 
 	@Import("stopTimeMs")
-	void setStopTimeMs(long stopTimeMs);
-
-	@Import("currentTimeMillis")
-	long getCurrentTimeMillis();
+	void setStopTimeMs(long time);
 
 	@Import("headIconPkSprites")
 	RSSpritePixels[] getHeadIconPkSprites();
@@ -1201,23 +1243,41 @@ public interface RSClient extends RSGameEngine, Client
 	@Import("rightTitleSprite")
 	void setRightTitleSprite(SpritePixels background);
 
+	@Construct
+	RSBuffer newBuffer(byte[] bytes);
+
+	@Construct
+	RSVarbitComposition newVarbitDefinition();
+
+	@Import("followerIndex")
+	int getFollowerIndex();
+
+	@Import("isItemSelected")
+	int isItemSelected();
+
+	@Import("selectedItemName")
+	String getSelectedItemName();
+
+	@Import("meslayerContinueWidget")
+	Widget getMessageContinueWidget();
+
 	@Import("musicPlayerStatus")
-	void setMusicPlayerStatus(int status);
+	void setMusicPlayerStatus(int var0);
 
 	@Import("musicTrackArchive")
-	void setMusicTrackArchive(RSAbstractArchive abstractArchive);
+	void setMusicTrackArchive(RSAbstractArchive var0);
 
 	@Import("musicTrackGroupId")
-	void setMusicTrackGroupId(int groupId);
+	void setMusicTrackGroupId(int var0);
 
 	@Import("musicTrackFileId")
-	void setMusicTrackFileId(int fileId);
+	void setMusicTrackFileId(int var0);
 
 	@Import("musicTrackBoolean")
-	void setMusicTrackBoolean(boolean musicTrackBoolean);
+	void setMusicTrackBoolean(boolean var0);
 
 	@Import("pcmSampleLength")
-	void setPcmSampleLength(int pcmSampleLength);
+	void setPcmSampleLength(int var0);
 
 	@Import("changedVarps")
 	int[] getChangedVarps();
@@ -1250,6 +1310,9 @@ public interface RSClient extends RSGameEngine, Client
 	@Import("getParamDefinition")
 	RSParamComposition getRSParamComposition(int id);
 
+	@Import("SequenceDefinition_get")
+	RSSequenceDefinition getSequenceDefinition(int id);
+
 	@Construct
 	RSIntegerNode newIntegerNode(int contents);
 
@@ -1261,7 +1324,42 @@ public interface RSClient extends RSGameEngine, Client
 
 	RSVarbitComposition getVarbitComposition(int id);
 
-	@Override
-	@Import("followerIndex")
-	int getFollowerIndex();
+	@Import("SequenceDefinition_skeletonsArchive")
+	RSAbstractArchive getSequenceDefinition_skeletonsArchive();
+
+	@Import("SequenceDefinition_archive")
+	RSAbstractArchive getSequenceDefinition_archive();
+
+	@Import("SequenceDefinition_animationsArchive")
+	RSAbstractArchive getSequenceDefinition_animationsArchive();
+
+	@Import("NpcDefinition_archive")
+	AbstractArchive getNpcDefinition_archive();
+
+	@Import("ObjectDefinition_modelsArchive")
+	AbstractArchive getObjectDefinition_modelsArchive();
+
+	@Import("ObjectDefinition_archive")
+	RSAbstractArchive getObjectDefinition_archive();
+
+	@Import("ItemDefinition_archive")
+	RSAbstractArchive getItemDefinition_archive();
+
+	@Import("KitDefinition_archive")
+	AbstractArchive getKitDefinition_archive();
+
+	@Import("KitDefinition_modelsArchive")
+	AbstractArchive getKitDefinition_modelsArchive();
+
+	@Import("SpotAnimationDefinition_archive")
+	AbstractArchive getSpotAnimationDefinition_archive();
+
+	@Import("SpotAnimationDefinition_modelArchive")
+	AbstractArchive getSpotAnimationDefinition_modelArchive();
+
+	@Construct
+	RSBuffer createBuffer(byte[] bytes);
+
+	@Construct
+	RSSceneTilePaint createSceneTilePaint(int swColor, int seColor, int neColor, int nwColor, int texture, int rgb, boolean isFlat);
 }

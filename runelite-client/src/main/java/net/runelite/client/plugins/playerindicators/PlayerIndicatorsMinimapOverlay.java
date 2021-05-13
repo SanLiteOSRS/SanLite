@@ -1,7 +1,5 @@
 /*
  * Copyright (c) 2018, Tomas Slusny <slusnucky@gmail.com>
- * Copyright (c) 2019, Jajack
- * Copyright (c) 2019, Siraz <https://github.com/Sirazzz>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -26,15 +24,18 @@
  */
 package net.runelite.client.plugins.playerindicators;
 
-import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.Player;
-import net.runelite.client.ui.overlay.*;
-
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics2D;
 import javax.inject.Inject;
 import javax.inject.Singleton;
-import java.awt.*;
+import net.runelite.api.Player;
+import net.runelite.client.ui.overlay.Overlay;
+import net.runelite.client.ui.overlay.OverlayLayer;
+import net.runelite.client.ui.overlay.OverlayPosition;
+import net.runelite.client.ui.overlay.OverlayPriority;
+import net.runelite.client.ui.overlay.OverlayUtil;
 
-@Slf4j
 @Singleton
 public class PlayerIndicatorsMinimapOverlay extends Overlay
 {
@@ -54,73 +55,21 @@ public class PlayerIndicatorsMinimapOverlay extends Overlay
 	@Override
 	public Dimension render(Graphics2D graphics)
 	{
-		if (!config.drawOwnPlayerMinimapName() && !config.drawFriendMinimapNames() && !config.drawFriendsChatMemberMinimapNames() &&
-				!config.drawTeamMinimapNames() && !config.drawOthersMinimapNames() && !config.drawListOneMinimapName() &&
-				!config.drawListTwoMinimapName() && !config.drawListThreeMinimapName() && !config.drawListFourMinimapName() &&
-				!config.drawListFiveMinimapName())
-		{
-			return null;
-		}
-
-		playerIndicatorsService.forEachPlayer((player, type) -> renderPlayerOverlay(graphics, player, type));
+		playerIndicatorsService.forEachPlayer((player, color) -> renderPlayerOverlay(graphics, player, color));
 		return null;
 	}
 
-	private void renderPlayerOverlay(Graphics2D graphics, Player player, PlayerIndicatorType type)
+	private void renderPlayerOverlay(Graphics2D graphics, Player actor, Color color)
 	{
-		switch (type)
-		{
-			case OWN_PLAYER:
-				renderMinimapOverlay(graphics, player, config.getOwnPlayerColor(), config.drawOwnPlayerMinimapName());
-				break;
-			case FRIEND:
-				renderMinimapOverlay(graphics, player, config.getFriendColor(), config.drawFriendMinimapNames());
-				break;
-			case CUSTOM_LIST_1:
-				renderMinimapOverlay(graphics, player, config.getListOneColor(), config.drawListOneMinimapName());
-				break;
-			case CUSTOM_LIST_2:
-				renderMinimapOverlay(graphics, player, config.getListTwoColor(), config.drawListTwoMinimapName());
-				break;
-			case CUSTOM_LIST_3:
-				renderMinimapOverlay(graphics, player, config.getListThreeColor(), config.drawListThreeMinimapName());
-				break;
-			case CUSTOM_LIST_4:
-				renderMinimapOverlay(graphics, player, config.getListFourColor(), config.drawListFourMinimapName());
-				break;
-			case CUSTOM_LIST_5:
-				renderMinimapOverlay(graphics, player, config.getListFiveColor(), config.drawListFiveMinimapName());
-				break;
-			case FRIENDS_CHAT_MEMBERS:
-				renderMinimapOverlay(graphics, player, config.getFriendsChatMemberColor(), config.drawFriendsChatMemberMinimapNames());
-				break;
-			case TEAM_CAPE_MEMBER:
-				renderMinimapOverlay(graphics, player, config.getTeamMemberColor(), config.drawTeamMinimapNames());
-				break;
-			case NON_CLAN_MEMBER:
-				renderMinimapOverlay(graphics, player, config.getOthersColor(), config.drawOthersMinimapNames());
-				break;
-			default:
-				log.warn("Tried rendering minimap name for player: {} with unknown PlayerIndicatorType: {}", player.getName(), type);
-		}
-	}
+		final String name = actor.getName().replace('\u00A0', ' ');
 
-	private void renderMinimapOverlay(Graphics2D graphics, Player actor, Color color, boolean drawMinimapName)
-	{
-		final String name = actor.getName();
-		if (name == null)
-		{
-			return;
-		}
-
-		final String cleanedName = name.replace('\u00A0', ' ');
-		if (drawMinimapName)
+		if (config.drawMinimapNames())
 		{
 			final net.runelite.api.Point minimapLocation = actor.getMinimapLocation();
 
 			if (minimapLocation != null)
 			{
-				OverlayUtil.renderTextLocation(graphics, minimapLocation, cleanedName, color);
+				OverlayUtil.renderTextLocation(graphics, minimapLocation, name, color);
 			}
 		}
 	}

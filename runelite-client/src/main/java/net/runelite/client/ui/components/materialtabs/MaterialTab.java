@@ -39,6 +39,7 @@ import javax.swing.border.CompoundBorder;
 import lombok.Getter;
 import lombok.Setter;
 import net.runelite.client.ui.ColorScheme;
+import net.sanlite.client.ui.Colors;
 
 /**
  * This class represents a Material Design inspired tab.
@@ -51,7 +52,7 @@ import net.runelite.client.ui.ColorScheme;
 public class MaterialTab extends JLabel
 {
 	private static final Border SELECTED_BORDER = new CompoundBorder(
-		BorderFactory.createMatteBorder(0, 0, 1, 0, ColorScheme.BRAND_BLUE),
+		BorderFactory.createMatteBorder(0, 0, 1, 0, Colors.BRAND_BLUE),
 		BorderFactory.createEmptyBorder(5, 10, 4, 10));
 
 	private static final Border UNSELECTED_BORDER = BorderFactory

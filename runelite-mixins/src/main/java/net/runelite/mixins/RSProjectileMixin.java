@@ -61,10 +61,9 @@ public abstract class RSProjectileMixin implements RSProjectile
 	}
 
 	@Inject
-	@Override
 	public Actor getInteracting()
 	{
-		int interactingIndex = getRsInteracting();
+		int interactingIndex = getInteractingIndex();
 		if (interactingIndex == 0)
 		{
 			return null;
@@ -80,7 +79,7 @@ public abstract class RSProjectileMixin implements RSProjectile
 		{
 			int idx = -interactingIndex - 1;
 
-			if (idx == client.getLocalInteractingIndex())
+			if (idx == client.getLocalPlayerIndex())
 			{
 				return client.getLocalPlayer();
 			}

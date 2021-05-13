@@ -70,6 +70,7 @@ public class CheckExports
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	private Class<?> findClassWithObfuscatedName(String name)
 	{
 		for (Class c : classes)

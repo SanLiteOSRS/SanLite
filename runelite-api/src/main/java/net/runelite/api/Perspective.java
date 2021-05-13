@@ -36,7 +36,6 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import static net.runelite.api.Constants.TILE_FLAG_BRIDGE;
 import net.runelite.api.coords.LocalPoint;
-import net.runelite.api.coords.WorldPoint;
 import net.runelite.api.geometry.RectangleUnion;
 import net.runelite.api.geometry.Shapes;
 import net.runelite.api.geometry.SimplePolygon;
@@ -417,6 +416,12 @@ public class Perspective
 		final int neX = localLocation.getX() + (sizeX * LOCAL_TILE_SIZE / 2);
 		final int neY = localLocation.getY() + (sizeY * LOCAL_TILE_SIZE / 2);
 
+		final int seX = swX;
+		final int seY = neY;
+
+		final int nwX = neX;
+		final int nwY = swY;
+
 		final byte[][][] tileSettings = client.getTileSettings();
 
 		final int sceneX = localLocation.getSceneX();
@@ -434,14 +439,14 @@ public class Perspective
 		}
 
 		final int swHeight = getHeight(client, swX, swY, tilePlane) - zOffset;
-		final int nwHeight = getHeight(client, neX, swY, tilePlane) - zOffset;
+		final int nwHeight = getHeight(client, nwX, nwY, tilePlane) - zOffset;
 		final int neHeight = getHeight(client, neX, neY, tilePlane) - zOffset;
-		final int seHeight = getHeight(client, swX, neY, tilePlane) - zOffset;
+		final int seHeight = getHeight(client, seX, seY, tilePlane) - zOffset;
 
 		Point p1 = localToCanvas(client, swX, swY, swHeight);
-		Point p2 = localToCanvas(client, neX, swY, nwHeight);
+		Point p2 = localToCanvas(client, nwX, nwY, nwHeight);
 		Point p3 = localToCanvas(client, neX, neY, neHeight);
-		Point p4 = localToCanvas(client, swX, neY, seHeight);
+		Point p4 = localToCanvas(client, seX, seY, seHeight);
 
 		if (p1 == null || p2 == null || p3 == null || p4 == null)
 		{
@@ -801,119 +806,4 @@ public class Perspective
 		return new Point(xOffset, yOffset);
 	}
 
-	/**
-	 * Calculates a polygon line from 2 LocalPoints
-	 *
-	 * @param client the game client
-	 * @param startLocation start location of the polygon
-	 * @param endLocation end location of the polygon
-	 * @return a {@link Polygon}
-	 */
-	private static Polygon linePoly(@Nonnull Client client, @Nonnull LocalPoint startLocation, @Nonnull LocalPoint endLocation)
-	{
-		LocalPoint startPoint = new LocalPoint(
-			startLocation.getX() - (LOCAL_TILE_SIZE / 2),
-			startLocation.getY() + (LOCAL_TILE_SIZE / 2));
-		LocalPoint endPoint = new LocalPoint(
-			endLocation.getX() - (LOCAL_TILE_SIZE / 2),
-			endLocation.getY() + (LOCAL_TILE_SIZE / 2));
-		int plane = client.getPlane();
-		Point p1 = Perspective.localToCanvas(client, startPoint, plane);
-		Point p2 = Perspective.localToCanvas(client, endPoint, plane);
-		if (p1 != null && p2 != null)
-		{
-			Polygon polygon = new Polygon();
-			polygon.addPoint(p1.getX(), p1.getY());
-			polygon.addPoint(p2.getX(), p2.getY());
-			return polygon;
-		}
-		return null;
-	}
-
-	/**
-	 * Calculates a list of polygon lines with 2 Worldpoints
-	 * Start location is the South-West WorldPoint, end location is the North-East WorldPoint
-	 * @param client the game client
-	 * @param startLocation start location of the polygon
-	 * @param endLocation end location of the polygon
-	 * @return a {@link List} of {@link Polygon}
-	 */
-	public static List<Polygon> getLinePolyList(@Nonnull Client client, @Nonnull WorldPoint startLocation, @Nonnull WorldPoint endLocation)
-	{
-		List<Polygon> pList = new ArrayList<>();
-		int sizeX = Math.abs(endLocation.getX() - startLocation.getX()) + 1;
-		int sizeY = Math.abs(endLocation.getY() - startLocation.getY()) + 1;
-		//HANDLE NORTH
-		for (int i = 0; i < sizeX; i++)
-		{
-			WorldPoint startPoint = new WorldPoint(startLocation.getX() + i, startLocation.getY() + sizeY - 1, startLocation.getPlane());
-			WorldPoint endPoint = new WorldPoint(startLocation.getX() + (i + 1), startLocation.getY() + sizeY - 1, startLocation.getPlane());
-			LocalPoint localPointStart = LocalPoint.fromWorld(client, startPoint);
-			LocalPoint localPointEnd = LocalPoint.fromWorld(client, endPoint);
-
-			if (localPointStart != null && localPointEnd != null)
-			{
-				Polygon p = linePoly(client, localPointStart, localPointEnd);
-				if (p != null)
-				{
-					pList.add(p);
-				}
-			}
-		}
-
-		//HANDLE SOUTH
-		for (int i = 0; i < sizeX; i++)
-		{
-			WorldPoint startPoint = new WorldPoint(startLocation.getX() + i, startLocation.getY() - 1, startLocation.getPlane());
-			WorldPoint endPoint = new WorldPoint(startLocation.getX() + (i + 1), startLocation.getY() - 1, startLocation.getPlane());
-			LocalPoint localPointStart = LocalPoint.fromWorld(client, startPoint);
-			LocalPoint localPointEnd = LocalPoint.fromWorld(client, endPoint);
-
-			if (localPointStart != null && localPointEnd != null)
-			{
-				Polygon p = linePoly(client, localPointStart, localPointEnd);
-				if (p != null)
-				{
-					pList.add(p);
-				}
-			}
-		}
-
-		//HANDLE WEST
-		for (int j = 0; j < sizeY; j++)
-		{
-			WorldPoint startPoint = new WorldPoint(startLocation.getX(), startLocation.getY() + (j - 1), startLocation.getPlane());
-			WorldPoint endPoint = new WorldPoint(startLocation.getX(), startLocation.getY() + j, startLocation.getPlane());
-			LocalPoint localPointStart = LocalPoint.fromWorld(client, startPoint);
-			LocalPoint localPointEnd = LocalPoint.fromWorld(client, endPoint);
-
-			if (localPointStart != null && localPointEnd != null)
-			{
-				Polygon p = linePoly(client, localPointStart, localPointEnd);
-				if (p != null)
-				{
-					pList.add(p);
-				}
-			}
-		}
-
-		//HANDLE EAST
-		for (int j = 0; j < sizeY; j++)
-		{
-			WorldPoint startPoint = new WorldPoint(startLocation.getX() + sizeX, startLocation.getY() + (j - 1), startLocation.getPlane());
-			WorldPoint endPoint = new WorldPoint(startLocation.getX() + sizeX, startLocation.getY() + j, startLocation.getPlane());
-			LocalPoint localPointStart = LocalPoint.fromWorld(client, startPoint);
-			LocalPoint localPointEnd = LocalPoint.fromWorld(client, endPoint);
-
-			if (localPointStart != null && localPointEnd != null)
-			{
-				Polygon p = linePoly(client, localPointStart, localPointEnd);
-				if (p != null)
-				{
-					pList.add(p);
-				}
-			}
-		}
-		return pList;
-	}
 }

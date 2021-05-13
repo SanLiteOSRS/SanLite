@@ -5,8 +5,6 @@ import static net.runelite.api.HeadIcon.MAGIC;
 import static net.runelite.api.HeadIcon.MELEE;
 import static net.runelite.api.HeadIcon.RANGED;
 import static net.runelite.api.HeadIcon.RANGE_MAGE;
-import net.runelite.api.events.NpcActionChanged;
-import net.runelite.api.mixins.FieldHook;
 import net.runelite.api.mixins.Inject;
 import net.runelite.api.mixins.Mixin;
 import net.runelite.api.mixins.Shadow;
@@ -36,15 +34,5 @@ public abstract class RSNPCCompositionMixin implements RSNPCComposition
 			default:
 				return null;
 		}
-	}
-
-	@FieldHook("actions")
-	@Inject
-	public void actionsHook(int idx)
-	{
-		NpcActionChanged npcActionChanged = new NpcActionChanged();
-		npcActionChanged.setNpcComposition(this);
-		npcActionChanged.setIdx(idx);
-		client.getCallbacks().post(npcActionChanged);
 	}
 }

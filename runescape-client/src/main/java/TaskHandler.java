@@ -7,348 +7,196 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fu")
+@ObfuscatedName("dt")
 @Implements("TaskHandler")
 public class TaskHandler implements Runnable {
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@Export("javaVendor")
 	public static String javaVendor;
-	@ObfuscatedName("v")
+	@ObfuscatedName("o")
 	@Export("javaVersion")
 	public static String javaVersion;
-	@ObfuscatedName("e")
-	static byte[][][] field2045;
-	@ObfuscatedName("a")
-	@Export("Tiles_hueMultiplier")
-	static int[] Tiles_hueMultiplier;
-	@ObfuscatedName("dl")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "Lfl;"
-	)
-	@Export("js5SocketTask")
-	static Task js5SocketTask;
-	@ObfuscatedName("d")
-	@ObfuscatedSignature(
-		signature = "Lfl;"
+		descriptor = "Lep;"
 	)
 	@Export("current")
 	Task current;
-	@ObfuscatedName("c")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		signature = "Lfl;"
+		descriptor = "Lep;"
 	)
 	@Export("task")
 	Task task;
-	@ObfuscatedName("y")
+	@ObfuscatedName("b")
 	@Export("thread")
 	Thread thread;
-	@ObfuscatedName("h")
+	@ObfuscatedName("e")
 	@Export("isClosed")
 	boolean isClosed;
 
 	public TaskHandler() {
-		this.current = null;
-		this.task = null;
-		this.isClosed = false;
-		javaVendor = "Unknown";
-		javaVersion = "1.6";
+		this.current = null; // L: 11
+		this.task = null; // L: 12
+		this.isClosed = false; // L: 14
+		javaVendor = "Unknown"; // L: 20
+		javaVersion = "1.6"; // L: 21
 
 		try {
-			javaVendor = System.getProperty("java.vendor");
-			javaVersion = System.getProperty("java.version");
-		} catch (Exception var2) {
+			javaVendor = System.getProperty("java.vendor"); // L: 23
+			javaVersion = System.getProperty("java.version"); // L: 24
+		} catch (Exception var2) { // L: 26
 		}
 
-		this.isClosed = false;
-		this.thread = new Thread(this);
-		this.thread.setPriority(10);
-		this.thread.setDaemon(true);
-		this.thread.start();
-	}
+		this.isClosed = false; // L: 27
+		this.thread = new Thread(this); // L: 28
+		this.thread.setPriority(10); // L: 29
+		this.thread.setDaemon(true); // L: 30
+		this.thread.start(); // L: 31
+	} // L: 32
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		signature = "(I)V",
-		garbageValue = "1153020803"
+		descriptor = "(I)V",
+		garbageValue = "732898192"
 	)
 	@Export("close")
 	public final void close() {
-		synchronized(this) {
-			this.isClosed = true;
-			this.notifyAll();
-		}
+		synchronized(this) { // L: 35
+			this.isClosed = true; // L: 36
+			this.notifyAll(); // L: 37
+		} // L: 38
 
 		try {
-			this.thread.join();
-		} catch (InterruptedException var3) {
+			this.thread.join(); // L: 40
+		} catch (InterruptedException var3) { // L: 42
 		}
 
-	}
+	} // L: 43
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		signature = "(IIILjava/lang/Object;I)Lfl;",
-		garbageValue = "1365505014"
+		descriptor = "(IIILjava/lang/Object;I)Lep;",
+		garbageValue = "743067634"
 	)
 	@Export("newTask")
 	final Task newTask(int var1, int var2, int var3, Object var4) {
-		Task var5 = new Task();
-		var5.type = var1;
-		var5.intArgument = var2;
-		var5.objectArgument = var4;
-		synchronized(this) {
-			if (this.task != null) {
-				this.task.next = var5;
-				this.task = var5;
+		Task var5 = new Task(); // L: 90
+		var5.type = var1; // L: 91
+		var5.intArgument = var2; // L: 92
+		var5.objectArgument = var4; // L: 93
+		synchronized(this) { // L: 94
+			if (this.task != null) { // L: 95
+				this.task.next = var5; // L: 96
+				this.task = var5; // L: 97
 			} else {
-				this.task = this.current = var5;
+				this.task = this.current = var5; // L: 100
 			}
 
-			this.notify();
-			return var5;
+			this.notify(); // L: 102
+			return var5; // L: 104
 		}
 	}
 
-	@ObfuscatedName("d")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/String;II)Lfl;",
-		garbageValue = "-1223563808"
+		descriptor = "(Ljava/lang/String;IB)Lep;",
+		garbageValue = "-31"
 	)
 	@Export("newSocketTask")
 	public final Task newSocketTask(String var1, int var2) {
-		return this.newTask(1, var2, 0, var1);
+		return this.newTask(1, var2, 0, var1); // L: 108
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		signature = "(Ljava/lang/Runnable;II)Lfl;",
-		garbageValue = "-1832147507"
+		descriptor = "(Ljava/lang/Runnable;IB)Lep;",
+		garbageValue = "-100"
 	)
 	@Export("newThreadTask")
 	public final Task newThreadTask(Runnable var1, int var2) {
-		return this.newTask(2, var2, 0, var1);
+		return this.newTask(2, var2, 0, var1); // L: 112
 	}
 
 	public final void run() {
 		while (true) {
 			Task var1;
-			synchronized(this) {
+			synchronized(this) { // L: 48
 				while (true) {
-					if (this.isClosed) {
+					if (this.isClosed) { // L: 50
 						return;
 					}
 
-					if (this.current != null) {
-						var1 = this.current;
-						this.current = this.current.next;
-						if (this.current == null) {
+					if (this.current != null) { // L: 51
+						var1 = this.current; // L: 52
+						this.current = this.current.next; // L: 53
+						if (this.current == null) { // L: 54
 							this.task = null;
 						}
 						break;
 					}
 
 					try {
-						this.wait();
-					} catch (InterruptedException var8) {
+						this.wait(); // L: 58
+					} catch (InterruptedException var8) { // L: 60
 					}
 				}
 			}
 
 			try {
-				int var5 = var1.type;
-				if (var5 == 1) {
-					var1.result = new Socket(InetAddress.getByName((String)var1.objectArgument), var1.intArgument);
-				} else if (var5 == 2) {
-					Thread var3 = new Thread((Runnable)var1.objectArgument);
-					var3.setDaemon(true);
-					var3.start();
-					var3.setPriority(var1.intArgument);
-					var1.result = var3;
-				} else if (var5 == 4) {
-					var1.result = new DataInputStream(((URL)var1.objectArgument).openStream());
+				int var5 = var1.type; // L: 64
+				if (var5 == 1) { // L: 65
+					var1.result = new Socket(InetAddress.getByName((String)var1.objectArgument), var1.intArgument); // L: 66
+				} else if (var5 == 2) { // L: 68
+					Thread var3 = new Thread((Runnable)var1.objectArgument); // L: 69
+					var3.setDaemon(true); // L: 70
+					var3.start(); // L: 71
+					var3.setPriority(var1.intArgument); // L: 72
+					var1.result = var3; // L: 73
+				} else if (var5 == 4) { // L: 75
+					var1.result = new DataInputStream(((URL)var1.objectArgument).openStream()); // L: 76
 				}
 
-				var1.status = 1;
-			} catch (ThreadDeath var6) {
-				throw var6;
-			} catch (Throwable var7) {
-				var1.status = 2;
+				var1.status = 1; // L: 78
+			} catch (ThreadDeath var6) { // L: 80
+				throw var6; // L: 81
+			} catch (Throwable var7) { // L: 83
+				var1.status = 2; // L: 84
 			}
 		}
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		signature = "(Lhz;I[B[BI)V",
-		garbageValue = "-944892435"
+		descriptor = "(I)V",
+		garbageValue = "1532861557"
 	)
-	@Export("Widget_setKey")
-	static final void Widget_setKey(Widget var0, int var1, byte[] var2, byte[] var3) {
-		if (var0.field2668 == null) {
-			if (var2 == null) {
-				return;
-			}
+	static void method2524() {
+		Players.Players_count = 0; // L: 616
 
-			var0.field2668 = new byte[11][];
-			var0.field2669 = new byte[11][];
-			var0.field2686 = new int[11];
-			var0.field2599 = new int[11];
+		for (int var0 = 0; var0 < 2048; ++var0) { // L: 617
+			Players.field1352[var0] = null; // L: 618
+			Players.field1351[var0] = 1; // L: 619
 		}
 
-		var0.field2668[var1] = var2;
-		if (var2 != null) {
-			var0.field2667 = true;
-		} else {
-			var0.field2667 = false;
+	} // L: 621
 
-			for (int var4 = 0; var4 < var0.field2668.length; ++var4) {
-				if (var0.field2668[var4] != null) {
-					var0.field2667 = true;
-					break;
-				}
-			}
-		}
-
-		var0.field2669[var1] = var3;
-	}
-
-	@ObfuscatedName("s")
+	@ObfuscatedName("lx")
 	@ObfuscatedSignature(
-		signature = "(IIIIIZI)Llm;",
-		garbageValue = "1451657661"
+		descriptor = "(I)V",
+		garbageValue = "800079546"
 	)
-	@Export("getItemSprite")
-	public static final SpritePixels getItemSprite(int var0, int var1, int var2, int var3, int var4, boolean var5) {
-		if (var1 == -1) {
-			var4 = 0;
-		} else if (var4 == 2 && var1 != 1) {
-			var4 = 1;
-		}
+	static void method2523() {
+		if (class105.field1331 != null) { // L: 11737
+			Client.field623 = Client.cycle; // L: 11738
+			class105.field1331.method4657(); // L: 11739
 
-		long var6 = ((long)var3 << 42) + ((long)var4 << 40) + ((long)var1 << 16) + (long)var0 + ((long)var2 << 38);
-		SpritePixels var8;
-		if (!var5) {
-			var8 = (SpritePixels)ItemComposition.ItemDefinition_cachedSprites.get(var6);
-			if (var8 != null) {
-				return var8;
-			}
-		}
-
-		ItemComposition var9 = class281.ItemDefinition_get(var0);
-		if (var1 > 1 && var9.countobj != null) {
-			int var10 = -1;
-
-			for (int var11 = 0; var11 < 10; ++var11) {
-				if (var1 >= var9.countco[var11] && var9.countco[var11] != 0) {
-					var10 = var9.countobj[var11];
+			for (int var0 = 0; var0 < Client.players.length; ++var0) { // L: 11740
+				if (Client.players[var0] != null) { // L: 11741
+					class105.field1331.method4656((Client.players[var0].x >> 7) + ItemLayer.baseX, (Client.players[var0].y >> 7) + Tile.baseY); // L: 11742
 				}
 			}
-
-			if (var10 != -1) {
-				var9 = class281.ItemDefinition_get(var10);
-			}
 		}
 
-		Model var19 = var9.getModel(1);
-		if (var19 == null) {
-			return null;
-		} else {
-			SpritePixels var20 = null;
-			if (var9.noteTemplate != -1) {
-				var20 = getItemSprite(var9.note, 10, 1, 0, 0, true);
-				if (var20 == null) {
-					return null;
-				}
-			} else if (var9.notedId != -1) {
-				var20 = getItemSprite(var9.unnotedId, var1, var2, var3, 0, false);
-				if (var20 == null) {
-					return null;
-				}
-			} else if (var9.placeholderTemplate != -1) {
-				var20 = getItemSprite(var9.placeholder, var1, 0, 0, 0, false);
-				if (var20 == null) {
-					return null;
-				}
-			}
-
-			int[] var12 = Rasterizer2D.Rasterizer2D_pixels;
-			int var13 = Rasterizer2D.Rasterizer2D_width;
-			int var14 = Rasterizer2D.Rasterizer2D_height;
-			int[] var15 = new int[4];
-			Rasterizer2D.Rasterizer2D_getClipArray(var15);
-			var8 = new SpritePixels(36, 32);
-			Rasterizer2D.Rasterizer2D_replace(var8.pixels, 36, 32);
-			Rasterizer2D.Rasterizer2D_clear();
-			Rasterizer3D.Rasterizer3D_setClipFromRasterizer2D();
-			Rasterizer3D.method3169(16, 16);
-			Rasterizer3D.field1777 = false;
-			if (var9.placeholderTemplate != -1) {
-				var20.drawTransBgAt(0, 0);
-			}
-
-			int var16 = var9.zoom2d;
-			if (var5) {
-				var16 = (int)(1.5D * (double)var16);
-			} else if (var2 == 2) {
-				var16 = (int)(1.04D * (double)var16);
-			}
-
-			int var17 = var16 * Rasterizer3D.Rasterizer3D_sine[var9.xan2d] >> 16;
-			int var18 = var16 * Rasterizer3D.Rasterizer3D_cosine[var9.xan2d] >> 16;
-			var19.calculateBoundsCylinder();
-			var19.method3106(0, var9.yan2d, var9.zan2d, var9.xan2d, var9.offsetX2d, var19.height / 2 + var17 + var9.offsetY2d, var18 + var9.offsetY2d);
-			if (var9.notedId != -1) {
-				var20.drawTransBgAt(0, 0);
-			}
-
-			if (var2 >= 1) {
-				var8.outline(1);
-			}
-
-			if (var2 >= 2) {
-				var8.outline(16777215);
-			}
-
-			if (var3 != 0) {
-				var8.shadow(var3);
-			}
-
-			Rasterizer2D.Rasterizer2D_replace(var8.pixels, 36, 32);
-			if (var9.noteTemplate != -1) {
-				var20.drawTransBgAt(0, 0);
-			}
-
-			if (var4 == 1 || var4 == 2 && var9.isStackable == 1) {
-				ItemComposition.ItemDefinition_fontPlain11.draw(SoundCache.inventoryQuantityFormat(var1), 0, 9, 16776960, 1);
-			}
-
-			if (!var5) {
-				ItemComposition.ItemDefinition_cachedSprites.put(var8, var6);
-			}
-
-			Rasterizer2D.Rasterizer2D_replace(var12, var13, var14);
-			Rasterizer2D.Rasterizer2D_setClipArray(var15);
-			Rasterizer3D.Rasterizer3D_setClipFromRasterizer2D();
-			Rasterizer3D.field1777 = true;
-			return var8;
-		}
-	}
-
-	@ObfuscatedName("x")
-	@ObfuscatedSignature(
-		signature = "(III)Z",
-		garbageValue = "-1388427542"
-	)
-	static final boolean method3673(int var0, int var1) {
-		ObjectComposition var2 = WorldMapAreaData.getObjectDefinition(var0);
-		if (var1 == 11) {
-			var1 = 10;
-		}
-
-		if (var1 >= 5 && var1 <= 8) {
-			var1 = 4;
-		}
-
-		return var2.method4806(var1);
-	}
+	} // L: 11746
 }

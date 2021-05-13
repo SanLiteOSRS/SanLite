@@ -62,12 +62,12 @@ public class UpdateMappingsTest
 	{
 		File client = new File(properties.getRsClient());
 
-		ClassGroup group1 = JarUtil.loadJar(client);
-		ClassGroup group2 = JarUtil.loadJar(new File(JAR));
+		ClassGroup group1 = JarUtil.load(client);
+		ClassGroup group2 = JarUtil.load(new File(JAR));
 
 		map(group1, group2);
 
-		JarUtil.saveJar(group2, new File(OUT));
+		JarUtil.save(group2, new File(OUT));
 	}
 
 	@Test
@@ -76,8 +76,8 @@ public class UpdateMappingsTest
 	{
 		File client = new File(properties.getRsClient());
 
-		ClassGroup group1 = JarUtil.loadJar(client);
-		ClassGroup group2 = JarUtil.loadJar(client);
+		ClassGroup group1 = JarUtil.load(client);
+		ClassGroup group2 = JarUtil.load(client);
 
 		// Remove existing annotations
 		unannotate(group2);
@@ -90,31 +90,31 @@ public class UpdateMappingsTest
 
 	@Test
 	@Ignore
-	public void testScriptOpcodes() throws Exception
+	public void testScriptopcodes() throws Exception
 	{
-		File client = new File("./client.jar");
+		File client = new File("C:\\Users\\Lucas\\IdeaProjects\\runelitexxx\\client.jar");
 
-		ClassGroup group = JarUtil.loadJar(client);
+		ClassGroup group = JarUtil.load(client);
 
 		new ScriptOpcodesTransformer().transform(group);
 
-		JarUtil.saveJar(group, new File("./transformed-client.jar"));
+		JarUtil.save(group, new File("C:/Users/Lucas/Desktop/Apapapapapap.jar"));
 	}
 
 	private void unannotate(ClassGroup group)
 	{
 		for (ClassFile cf : group.getClasses())
 		{
-			cf.getAnnotations().clearAnnotations();
+			cf.getAnnotations().clear();
 
 			for (Field f : cf.getFields())
 			{
-				f.getAnnotations().clearAnnotations();
+				f.getAnnotations().clear();
 			}
 
 			for (Method m : cf.getMethods())
 			{
-				m.getAnnotations().clearAnnotations();
+				m.getAnnotations().clear();
 			}
 		}
 	}
@@ -136,8 +136,8 @@ public class UpdateMappingsTest
 
 				assert otherf != null : "unable to find " + f;
 
-				String name = DeobAnnotations.getExportedName(f.getAnnotations());
-				String otherName = DeobAnnotations.getExportedName(otherf.getAnnotations());
+				String name = DeobAnnotations.getExportedName(f);
+				String otherName = DeobAnnotations.getExportedName(otherf);
 
 				Assert.assertEquals(name + " <-> " + otherName, name, otherName);
 			}
@@ -148,8 +148,8 @@ public class UpdateMappingsTest
 
 				assert otherm != null : "unable to find " + m;
 
-				String name = DeobAnnotations.getExportedName(m.getAnnotations());
-				String otherName = DeobAnnotations.getExportedName(otherm.getAnnotations());
+				String name = DeobAnnotations.getExportedName(m);
+				String otherName = DeobAnnotations.getExportedName(otherm);
 
 				Assert.assertEquals(name + " <-> " + otherName, name, otherName);
 			}
