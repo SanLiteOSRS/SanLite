@@ -178,7 +178,7 @@ public class World {
 						if (var4.soundEffectId >= 0) {
 							SoundEffect var7 = SoundEffect.readSoundEffect(class14.field129, var4.soundEffectId, 0);
 							if (var7 != null) {
-								RawSound var8 = var7.toRawSound().resample(class3.field31);
+								RawSound var8 = var7.toRawSound().resample(class3.decimator);
 								RawPcmStream var9 = RawPcmStream.createRawPcmStream(var8, 100, var6);
 								var9.setNumLoops(-1);
 								FloorOverlayDefinition.pcmStreamMixer.addSubStream(var9);
@@ -194,7 +194,7 @@ public class World {
 							int var11 = (int)(Math.random() * (double)var4.soundEffectIds.length);
 							SoundEffect var12 = SoundEffect.readSoundEffect(class14.field129, var4.soundEffectIds[var11], 0);
 							if (var12 != null) {
-								RawSound var13 = var12.toRawSound().resample(class3.field31);
+								RawSound var13 = var12.toRawSound().resample(class3.decimator);
 								RawPcmStream var10 = RawPcmStream.createRawPcmStream(var13, 100, var6);
 								var10.setNumLoops(0);
 								FloorOverlayDefinition.pcmStreamMixer.addSubStream(var10);

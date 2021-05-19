@@ -185,7 +185,7 @@ public class UrlRequest {
 			class93.pcmPlayer1 = GrandExchangeEvents.method4969(GameEngine.taskHandler, 1, 2048);
 			FloorOverlayDefinition.pcmStreamMixer = new PcmStreamMixer();
 			class93.pcmPlayer1.setStream(FloorOverlayDefinition.pcmStreamMixer);
-			class3.field31 = new Decimator(22050, PcmPlayer.field401);
+			class3.decimator = new Decimator(22050, PcmPlayer.field401);
 			Login.Login_loadingText = "Prepared sound engine";
 			Login.Login_loadingPercent = 35;
 			Client.titleLoadingStage = 50;

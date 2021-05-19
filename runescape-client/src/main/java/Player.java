@@ -424,7 +424,8 @@ public final class Player extends Actor {
 		descriptor = "(I)Z",
 		garbageValue = "1144773320"
 	)
-	boolean method2149() {
+	@Export("isClanMember")
+	boolean isClanMember() {
 		if (this.isInClanChat == TriBool.TriBool_unknown) {
 			this.updateIsInClanChat();
 		}

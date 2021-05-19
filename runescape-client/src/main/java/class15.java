@@ -104,7 +104,7 @@ public class class15 extends class14 {
 					}
 
 					if (var2 > 0) {
-						RawSound var9 = var1.toRawSound().resample(class3.field31);
+						RawSound var9 = var1.toRawSound().resample(class3.decimator);
 						RawPcmStream var10 = RawPcmStream.createRawPcmStream(var9, 100, var2);
 						var10.setNumLoops(Client.queuedSoundEffectLoops[var0] - 1);
 						FloorOverlayDefinition.pcmStreamMixer.addSubStream(var10);

@@ -280,7 +280,7 @@ public abstract class AbstractWorldMapIcon {
 					boolean var11 = (Client.drawPlayerNames & 8) != 0;
 					var9 = var11;
 				} else {
-					var9 = Canvas.method469() || FloorDecoration.method3799() && var10.isFriend() || class14.method223() && var10.method2149();
+					var9 = Canvas.method469() || FloorDecoration.method3799() && var10.isFriend() || class14.method223() && var10.isClanMember();
 				}
 
 				if (var9) {

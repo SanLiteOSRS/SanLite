@@ -63,8 +63,8 @@ public class class69 {
 		garbageValue = "0"
 	)
 	@Export("FillMode_values")
-	public static class393[] FillMode_values() {
-		return new class393[]{class393.field4234, class393.field4235, class393.SOLID};
+	public static FillMode[] FillMode_values() {
+		return new FillMode[]{FillMode.field4234, FillMode.field4235, FillMode.SOLID};
 	}
 
 	@ObfuscatedName("r")

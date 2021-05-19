@@ -519,7 +519,7 @@ public class class243 {
 				return 1;
 			} else if (var0 == ScriptOpcodes.CC_SETFILLMODE) {
 				var8 = Interpreter.Interpreter_intStack[--WorldMapCacheName.Interpreter_intStackSize];
-				class393 var6 = (class393)UserComparator4.findEnumerated(class69.FillMode_values(), var8);
+				FillMode var6 = (FillMode)UserComparator4.findEnumerated(class69.FillMode_values(), var8);
 				if (var6 != null) {
 					var3.fillMode = var6;
 					VerticalAlignment.invalidateWidget(var3);

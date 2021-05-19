@@ -131,7 +131,7 @@ public class PacketBufferNode extends Node {
 							class10.drawSpriteOnMinimap(var1, var2, var12, var13, class341.mapDotSprites[3], var4);
 						} else if (class35.localPlayer.team != 0 && var15.team != 0 && var15.team == class35.localPlayer.team) {
 							class10.drawSpriteOnMinimap(var1, var2, var12, var13, class341.mapDotSprites[4], var4);
-						} else if (var15.method2149()) {
+						} else if (var15.isClanMember()) {
 							class10.drawSpriteOnMinimap(var1, var2, var12, var13, class341.mapDotSprites[5], var4);
 						} else if (var15.method2137()) {
 							class10.drawSpriteOnMinimap(var1, var2, var12, var13, class341.mapDotSprites[6], var4);

@@ -13,7 +13,8 @@ public class class3 extends Node {
 	@ObfuscatedSignature(
 		descriptor = "Lbg;"
 	)
-	static Decimator field31;
+	@Export("decimator")
+	static Decimator decimator;
 	@ObfuscatedName("h")
 	boolean field33;
 	@ObfuscatedName("c")
