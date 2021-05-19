@@ -124,7 +124,7 @@ public abstract class RSWidgetMixin implements RSWidget
 		}
 
 		final int id = getId();
-		if (TO_GROUP(id) == client.getWidgetRoot())
+		if (TO_GROUP(id) == client.getTopLevelInterfaceId())
 		{
 			// this is a root widget
 			return -1;
@@ -220,7 +220,7 @@ public abstract class RSWidgetMixin implements RSWidget
 		// If the parent is hidden, this widget is also hidden.
 		// Widget has no parent and is not the root widget (which is always visible),
 		// so it's not visible.
-		return parent == null ? TO_GROUP(getId()) != client.getWidgetRoot() : parent.isHidden();
+		return parent == null ? TO_GROUP(getId()) != client.getTopLevelInterfaceId() : parent.isHidden();
 	}
 
 	@Inject
