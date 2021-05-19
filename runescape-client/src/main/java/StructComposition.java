@@ -3,104 +3,112 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ka")
+@ObfuscatedName("eb")
 @Implements("StructComposition")
 public class StructComposition extends DualNode {
-	@ObfuscatedName("f")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "Lir;"
+		descriptor = "Ljp;"
 	)
 	@Export("StructDefinition_archive")
-	public static AbstractArchive StructDefinition_archive;
-	@ObfuscatedName("o")
+	static AbstractArchive StructDefinition_archive;
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "Lgf;"
+		descriptor = "Lho;"
 	)
 	@Export("StructDefinition_cached")
-	static EvictingDualNodeHashTable StructDefinition_cached;
-	@ObfuscatedName("u")
+	public static EvictingDualNodeHashTable StructDefinition_cached;
+	@ObfuscatedName("b")
+	static int[][] field1730;
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "Lme;"
+		descriptor = "Lmo;"
 	)
 	@Export("params")
 	IterableNodeHashTable params;
 
 	static {
-		StructDefinition_cached = new EvictingDualNodeHashTable(64); // L: 13
+		StructDefinition_cached = new EvictingDualNodeHashTable(64);
 	}
 
 	StructComposition() {
-	} // L: 16
+	}
 
 	@ObfuscatedName("o")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "-51783205"
+		garbageValue = "-1773759277"
 	)
 	@Export("postDecode")
 	void postDecode() {
-	} // L: 29
+	}
 
-	@ObfuscatedName("u")
+	@ObfuscatedName("g")
 	@ObfuscatedSignature(
-		descriptor = "(Lnu;I)V",
-		garbageValue = "1597477180"
+		descriptor = "(Lnk;S)V",
+		garbageValue = "14298"
 	)
 	@Export("decode")
 	void decode(Buffer var1) {
 		while (true) {
-			int var2 = var1.readUnsignedByte(); // L: 33
-			if (var2 == 0) { // L: 34
-				return; // L: 37
+			int var2 = var1.readUnsignedByte();
+			if (var2 == 0) {
+				return;
 			}
 
-			this.decodeNext(var1, var2); // L: 35
+			this.decodeNext(var1, var2);
 		}
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		descriptor = "(Lnu;II)V",
-		garbageValue = "414960674"
+		descriptor = "(Lnk;II)V",
+		garbageValue = "-570855363"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
 		if (var2 == 249) {
-			this.params = class105.readStringIntParameters(var1, this.params); // L: 40
+			this.params = HealthBar.readStringIntParameters(var1, this.params);
 		}
 
-	} // L: 42
+	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		descriptor = "(III)I",
-		garbageValue = "-981552906"
+		descriptor = "(IIB)I",
+		garbageValue = "89"
 	)
 	@Export("getIntParam")
 	public int getIntParam(int var1, int var2) {
-		IterableNodeHashTable var4 = this.params; // L: 46
-		int var3;
-		if (var4 == null) { // L: 48
-			var3 = var2; // L: 49
-		} else {
-			IntegerNode var5 = (IntegerNode)var4.get((long)var1); // L: 52
-			if (var5 == null) { // L: 53
-				var3 = var2; // L: 54
-			} else {
-				var3 = var5.integer; // L: 57
-			}
-		}
+		return GraphicsObject.method1937(this.params, var1, var2);
+	}
 
-		return var3; // L: 59
+	@ObfuscatedName("t")
+	@ObfuscatedSignature(
+		descriptor = "(ILjava/lang/String;I)Ljava/lang/String;",
+		garbageValue = "-1494986082"
+	)
+	@Export("getStringParam")
+	public String getStringParam(int var1, String var2) {
+		return Varcs.method2326(this.params, var1, var2);
+	}
+
+	@ObfuscatedName("c")
+	@ObfuscatedSignature(
+		descriptor = "(I)Z",
+		garbageValue = "1212560754"
+	)
+	public static boolean method2846() {
+		ReflectionCheck var0 = (ReflectionCheck)class69.reflectionChecks.last();
+		return var0 != null;
 	}
 
 	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		descriptor = "(ILjava/lang/String;I)Ljava/lang/String;",
-		garbageValue = "429267652"
+		descriptor = "(Lbz;I)V",
+		garbageValue = "-1673250002"
 	)
-	@Export("getStringParam")
-	public String getStringParam(int var1, String var2) {
-		return MouseHandler.method725(this.params, var1, var2); // L: 63
+	public static final void method2863(PlayerProvider var0) {
+		Tiles.pcmPlayerProvider = var0;
 	}
 }

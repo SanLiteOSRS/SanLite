@@ -4,88 +4,194 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("kl")
+@ObfuscatedName("eu")
 @Implements("VarbitComposition")
 public class VarbitComposition extends DualNode {
-	@ObfuscatedName("f")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "Lir;"
+		descriptor = "Ljp;"
 	)
 	@Export("VarbitDefinition_archive")
 	public static AbstractArchive VarbitDefinition_archive;
-	@ObfuscatedName("o")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "Lgf;"
+		descriptor = "Lho;"
 	)
 	@Export("VarbitDefinition_cached")
 	public static EvictingDualNodeHashTable VarbitDefinition_cached;
-	@ObfuscatedName("e")
-	static final int[] field3549;
-	@ObfuscatedName("id")
+	@ObfuscatedName("z")
+	static final int[] field1711;
+	@ObfuscatedName("t")
 	@ObfuscatedGetter(
-		intValue = 979490587
+		intValue = 2064389097
 	)
-	static int field3544;
-	@ObfuscatedName("u")
+	static int field1710;
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = 909782819
+		intValue = 632538905
 	)
 	@Export("baseVar")
 	public int baseVar;
-	@ObfuscatedName("p")
+	@ObfuscatedName("g")
 	@ObfuscatedGetter(
-		intValue = -1000839247
+		intValue = 195506189
 	)
 	@Export("startBit")
 	public int startBit;
-	@ObfuscatedName("b")
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = 1799765893
+		intValue = 891667147
 	)
 	@Export("endBit")
 	public int endBit;
 
 	static {
-		VarbitDefinition_cached = new EvictingDualNodeHashTable(64); // L: 11
-		field3549 = new int[32]; // L: 15
-		int var0 = 2; // L: 18
+		VarbitDefinition_cached = new EvictingDualNodeHashTable(64);
+		field1711 = new int[32];
+		int var0 = 2;
 
-		for (int var1 = 0; var1 < 32; ++var1) { // L: 19
-			field3549[var1] = var0 - 1; // L: 20
-			var0 += var0; // L: 21
+		for (int var1 = 0; var1 < 32; ++var1) {
+			field1711[var1] = var0 - 1;
+			var0 += var0;
 		}
 
-	} // L: 23
+	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "(Lnu;I)V",
-		garbageValue = "44894085"
+		descriptor = "(Lnk;I)V",
+		garbageValue = "812293859"
 	)
 	@Export("decode")
 	public void decode(Buffer var1) {
 		while (true) {
-			int var2 = var1.readUnsignedByte(); // L: 27
-			if (var2 == 0) { // L: 28
-				return; // L: 31
+			int var2 = var1.readUnsignedByte();
+			if (var2 == 0) {
+				return;
 			}
 
-			this.decodeNext(var1, var2); // L: 29
+			this.decodeNext(var1, var2);
 		}
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(Lnu;II)V",
-		garbageValue = "-1491405636"
+		descriptor = "(Lnk;IS)V",
+		garbageValue = "21911"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
-		if (var2 == 1) { // L: 34
-			this.baseVar = var1.readUnsignedShort(); // L: 35
-			this.startBit = var1.readUnsignedByte(); // L: 36
-			this.endBit = var1.readUnsignedByte(); // L: 37
+		if (var2 == 1) {
+			this.baseVar = var1.readUnsignedShort();
+			this.startBit = var1.readUnsignedByte();
+			this.endBit = var1.readUnsignedByte();
 		}
 
-	} // L: 40
+	}
+
+	@ObfuscatedName("g")
+	@ObfuscatedSignature(
+		descriptor = "(IS)I",
+		garbageValue = "-15726"
+	)
+	public static int method2813(int var0) {
+		return PacketWriter.method2409(ViewportMouse.ViewportMouse_entityTags[var0]);
+	}
+
+	@ObfuscatedName("gz")
+	@ObfuscatedSignature(
+		descriptor = "(IIIIZS)V",
+		garbageValue = "-20141"
+	)
+	@Export("setViewportShape")
+	static final void setViewportShape(int var0, int var1, int var2, int var3, boolean var4) {
+		if (var2 < 1) {
+			var2 = 1;
+		}
+
+		if (var3 < 1) {
+			var3 = 1;
+		}
+
+		int var5 = var3 - 334;
+		int var6;
+		if (var5 < 0) {
+			var6 = Client.field820;
+		} else if (var5 >= 100) {
+			var6 = Client.field872;
+		} else {
+			var6 = (Client.field872 - Client.field820) * var5 / 100 + Client.field820;
+		}
+
+		int var7 = var3 * var6 * 512 / (var2 * 334);
+		int var8;
+		int var9;
+		short var14;
+		if (var7 < Client.field877) {
+			var14 = Client.field877;
+			var6 = var14 * var2 * 334 / (var3 * 512);
+			if (var6 > Client.field738) {
+				var6 = Client.field738;
+				var8 = var3 * var6 * 512 / (var14 * 334);
+				var9 = (var2 - var8) / 2;
+				if (var4) {
+					Rasterizer2D.Rasterizer2D_resetClip();
+					Rasterizer2D.Rasterizer2D_fillRectangle(var0, var1, var9, var3, -16777216);
+					Rasterizer2D.Rasterizer2D_fillRectangle(var0 + var2 - var9, var1, var9, var3, -16777216);
+				}
+
+				var0 += var9;
+				var2 -= var9 * 2;
+			}
+		} else if (var7 > Client.field878) {
+			var14 = Client.field878;
+			var6 = var14 * var2 * 334 / (var3 * 512);
+			if (var6 < Client.field875) {
+				var6 = Client.field875;
+				var8 = var14 * var2 * 334 / (var6 * 512);
+				var9 = (var3 - var8) / 2;
+				if (var4) {
+					Rasterizer2D.Rasterizer2D_resetClip();
+					Rasterizer2D.Rasterizer2D_fillRectangle(var0, var1, var2, var9, -16777216);
+					Rasterizer2D.Rasterizer2D_fillRectangle(var0, var3 + var1 - var9, var2, var9, -16777216);
+				}
+
+				var1 += var9;
+				var3 -= var9 * 2;
+			}
+		}
+
+		Client.viewportZoom = var3 * var6 / 334;
+		if (var2 != Client.viewportWidth || var3 != Client.viewportHeight) {
+			int[] var13 = new int[9];
+
+			for (var9 = 0; var9 < var13.length; ++var9) {
+				int var10 = var9 * 32 + 15 + 128;
+				int var11 = class21.method281(var10);
+				int var12 = Rasterizer3D.Rasterizer3D_sine[var10];
+				var11 = PlayerComposition.method4640(var11, var3);
+				var13[var9] = var12 * var11 >> 16;
+			}
+
+			Scene.Scene_buildVisiblityMap(var13, 500, 800, var2 * 334 / var3, 334);
+		}
+
+		Client.viewportOffsetX = var0;
+		Client.viewportOffsetY = var1;
+		Client.viewportWidth = var2;
+		Client.viewportHeight = var3;
+	}
+
+	@ObfuscatedName("ls")
+	@ObfuscatedSignature(
+		descriptor = "([BIB)V",
+		garbageValue = "7"
+	)
+	static void method2818(byte[] var0, int var1) {
+		if (Client.randomDatData == null) {
+			Client.randomDatData = new byte[24];
+		}
+
+		class306.writeRandomDat(var0, var1, Client.randomDatData, 0, 24);
+	}
 }

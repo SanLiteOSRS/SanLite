@@ -4,72 +4,115 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bg")
+@ObfuscatedName("bx")
 @Implements("ScriptFrame")
 public class ScriptFrame {
-	@ObfuscatedName("e")
+	@ObfuscatedName("z")
 	@Export("Interpreter_intLocals")
 	static int[] Interpreter_intLocals;
-	@ObfuscatedName("h")
-	@Export("ByteArrayPool_arrays")
-	static byte[][][] ByteArrayPool_arrays;
-	@ObfuscatedName("jw")
+	@ObfuscatedName("ed")
 	@ObfuscatedSignature(
-		descriptor = "Lhu;"
+		descriptor = "Llg;"
 	)
-	@Export("hoveredItemContainer")
-	static Widget hoveredItemContainer;
-	@ObfuscatedName("f")
+	@Export("spriteIds")
+	static GraphicsDefaults spriteIds;
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "Lcc;"
+		descriptor = "Lci;"
 	)
 	@Export("script")
 	Script script;
-	@ObfuscatedName("o")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = 264975789
+		intValue = -1900092655
 	)
 	@Export("pc")
 	int pc;
-	@ObfuscatedName("u")
+	@ObfuscatedName("o")
 	@Export("intLocals")
 	int[] intLocals;
-	@ObfuscatedName("p")
+	@ObfuscatedName("g")
 	@Export("stringLocals")
 	String[] stringLocals;
 
 	ScriptFrame() {
-		this.pc = -1; // L: 5
-	} // L: 9
-
-	@ObfuscatedName("o")
-	@ObfuscatedSignature(
-		descriptor = "([BI)[B",
-		garbageValue = "-13856825"
-	)
-	public static byte[] method1175(byte[] var0) {
-		int var1 = var0.length; // L: 22
-		byte[] var2 = new byte[var1]; // L: 23
-		System.arraycopy(var0, 0, var2, 0, var1); // L: 24
-		return var2; // L: 25
+		this.pc = -1;
 	}
 
-	@ObfuscatedName("g")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		descriptor = "(B)Lbu;",
-		garbageValue = "86"
+		descriptor = "(III)I",
+		garbageValue = "1150658828"
 	)
-	@Export("getNextWorldListWorld")
-	static World getNextWorldListWorld() {
-		return World.World_listCount < World.World_count ? class9.World_worlds[++World.World_listCount - 1] : null; // L: 252 253
+	static final int method1160(int var0, int var1) {
+		int var2 = AbstractByteArrayCopier.method4754(var0 - 1, var1 - 1) + AbstractByteArrayCopier.method4754(var0 + 1, var1 - 1) + AbstractByteArrayCopier.method4754(var0 - 1, 1 + var1) + AbstractByteArrayCopier.method4754(1 + var0, 1 + var1);
+		int var3 = AbstractByteArrayCopier.method4754(var0 - 1, var1) + AbstractByteArrayCopier.method4754(var0 + 1, var1) + AbstractByteArrayCopier.method4754(var0, var1 - 1) + AbstractByteArrayCopier.method4754(var0, 1 + var1);
+		int var4 = AbstractByteArrayCopier.method4754(var0, var1);
+		return var2 / 16 + var3 / 8 + var4 / 4;
 	}
 
-	@ObfuscatedName("gq")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		descriptor = "(Lcd;II)V",
-		garbageValue = "-395421228"
+		descriptor = "(I)V",
+		garbageValue = "-1457317162"
 	)
-	static final void method1173(Actor var0, int var1) {
-		class14.worldToScreen(var0.x, var0.y, var1); // L: 4604
-	} // L: 4605
+	public static void method1162() {
+		HitSplatDefinition.HitSplatDefinition_cached.clear();
+		HitSplatDefinition.HealthBarDefinition_cached.clear();
+		HitSplatDefinition.HealthBarDefinition_cachedSprites.clear();
+	}
+
+	@ObfuscatedName("ic")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "-2049667845"
+	)
+	static final void method1161() {
+		int var0 = AbstractByteArrayCopier.menuX;
+		int var1 = HitSplatDefinition.menuY;
+		int var2 = SoundCache.menuWidth;
+		int var3 = GrandExchangeOfferOwnWorldComparator.menuHeight;
+		int var4 = 6116423;
+		Rasterizer2D.Rasterizer2D_fillRectangle(var0, var1, var2, var3, var4);
+		Rasterizer2D.Rasterizer2D_fillRectangle(var0 + 1, var1 + 1, var2 - 2, 16, 0);
+		Rasterizer2D.Rasterizer2D_drawRectangle(var0 + 1, var1 + 18, var2 - 2, var3 - 19, 0);
+		WorldMapArea.fontBold12.draw("Choose Option", var0 + 3, var1 + 14, var4, -1);
+		int var5 = MouseHandler.MouseHandler_x;
+		int var6 = MouseHandler.MouseHandler_y;
+
+		int var7;
+		int var8;
+		int var9;
+		for (var7 = 0; var7 < Client.menuOptionsCount; ++var7) {
+			var8 = var1 + (Client.menuOptionsCount - 1 - var7) * 15 + 31;
+			var9 = 16777215;
+			if (var5 > var0 && var5 < var2 + var0 && var6 > var8 - 13 && var6 < var8 + 3) {
+				var9 = 16776960;
+			}
+
+			Font var12 = WorldMapArea.fontBold12;
+			String var13;
+			if (var7 < 0) {
+				var13 = "";
+			} else if (Client.menuTargets[var7].length() > 0) {
+				var13 = Client.menuActions[var7] + " " + Client.menuTargets[var7];
+			} else {
+				var13 = Client.menuActions[var7];
+			}
+
+			var12.draw(var13, var0 + 3, var8, var9, 0);
+		}
+
+		var7 = AbstractByteArrayCopier.menuX;
+		var8 = HitSplatDefinition.menuY;
+		var9 = SoundCache.menuWidth;
+		int var10 = GrandExchangeOfferOwnWorldComparator.menuHeight;
+
+		for (int var11 = 0; var11 < Client.rootWidgetCount; ++var11) {
+			if (Client.rootWidgetXs[var11] + Client.rootWidgetWidths[var11] > var7 && Client.rootWidgetXs[var11] < var7 + var9 && Client.rootWidgetHeights[var11] + Client.rootWidgetYs[var11] > var8 && Client.rootWidgetYs[var11] < var8 + var10) {
+				Client.field826[var11] = true;
+			}
+		}
+
+	}
 }

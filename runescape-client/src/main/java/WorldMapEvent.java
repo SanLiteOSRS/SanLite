@@ -4,43 +4,59 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fp")
+@ObfuscatedName("gs")
 @Implements("WorldMapEvent")
 public class WorldMapEvent {
-	@ObfuscatedName("f")
+	@ObfuscatedName("k")
 	@ObfuscatedGetter(
-		intValue = 2124516847
+		intValue = 1769091939
+	)
+	static int field2141;
+	@ObfuscatedName("h")
+	@ObfuscatedGetter(
+		intValue = 2110399815
 	)
 	@Export("mapElement")
 	public int mapElement;
-	@ObfuscatedName("o")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "Lhk;"
+		descriptor = "Lia;"
 	)
 	@Export("coord1")
 	public Coord coord1;
-	@ObfuscatedName("u")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "Lhk;"
+		descriptor = "Lia;"
 	)
 	@Export("coord2")
 	public Coord coord2;
 
 	@ObfuscatedSignature(
-		descriptor = "(ILhk;Lhk;)V"
+		descriptor = "(ILia;Lia;)V"
 	)
 	public WorldMapEvent(int var1, Coord var2, Coord var3) {
-		this.mapElement = var1; // L: 11
-		this.coord1 = var2; // L: 12
-		this.coord2 = var3; // L: 13
-	} // L: 14
+		this.mapElement = var1;
+		this.coord1 = var2;
+		this.coord2 = var3;
+	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("z")
+	public static boolean method3714(long var0) {
+		return (int)(var0 >>> 16 & 1L) == 1;
+	}
+
+	@ObfuscatedName("hp")
 	@ObfuscatedSignature(
-		descriptor = "(II)Z",
-		garbageValue = "1623045574"
+		descriptor = "(B)V",
+		garbageValue = "1"
 	)
-	public static boolean method3267(int var0) {
-		return (var0 & 1) != 0; // L: 9
+	@Export("addCancelMenuEntry")
+	static void addCancelMenuEntry() {
+		Occluder.method4090();
+		Client.menuActions[0] = "Cancel";
+		Client.menuTargets[0] = "";
+		Client.menuOpcodes[0] = 1006;
+		Client.menuShiftClick[0] = false;
+		Client.menuOptionsCount = 1;
 	}
 }

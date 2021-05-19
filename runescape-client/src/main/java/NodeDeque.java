@@ -3,181 +3,181 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ju")
+@ObfuscatedName("ka")
 @Implements("NodeDeque")
 public class NodeDeque {
-	@ObfuscatedName("f")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "Lmh;"
+		descriptor = "Lmd;"
 	)
 	@Export("sentinel")
 	public Node sentinel;
-	@ObfuscatedName("o")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "Lmh;"
+		descriptor = "Lmd;"
 	)
 	@Export("current")
 	Node current;
 
 	public NodeDeque() {
-		this.sentinel = new Node(); // L: 6
-		this.sentinel.previous = this.sentinel; // L: 10
-		this.sentinel.next = this.sentinel; // L: 11
-	} // L: 12
+		this.sentinel = new Node();
+		this.sentinel.previous = this.sentinel;
+		this.sentinel.next = this.sentinel;
+	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("h")
 	@Export("clear")
 	public void clear() {
 		while (true) {
-			Node var1 = this.sentinel.previous; // L: 16
-			if (var1 == this.sentinel) { // L: 17
-				this.current = null; // L: 20
-				return; // L: 21
+			Node var1 = this.sentinel.previous;
+			if (var1 == this.sentinel) {
+				this.current = null;
+				return;
 			}
 
-			var1.remove(); // L: 18
+			var1.remove();
 		}
+	}
+
+	@ObfuscatedName("c")
+	@ObfuscatedSignature(
+		descriptor = "(Lmd;)V"
+	)
+	@Export("addFirst")
+	public void addFirst(Node var1) {
+		if (var1.next != null) {
+			var1.remove();
+		}
+
+		var1.next = this.sentinel.next;
+		var1.previous = this.sentinel;
+		var1.next.previous = var1;
+		var1.previous.next = var1;
 	}
 
 	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "(Lmh;)V"
-	)
-	@Export("addFirst")
-	public void addFirst(Node var1) {
-		if (var1.next != null) { // L: 24
-			var1.remove();
-		}
-
-		var1.next = this.sentinel.next; // L: 25
-		var1.previous = this.sentinel; // L: 26
-		var1.next.previous = var1; // L: 27
-		var1.previous.next = var1; // L: 28
-	} // L: 29
-
-	@ObfuscatedName("u")
-	@ObfuscatedSignature(
-		descriptor = "(Lmh;)V"
+		descriptor = "(Lmd;)V"
 	)
 	@Export("addLast")
 	public void addLast(Node var1) {
-		if (var1.next != null) { // L: 32
+		if (var1.next != null) {
 			var1.remove();
 		}
 
-		var1.next = this.sentinel; // L: 33
-		var1.previous = this.sentinel.previous; // L: 34
-		var1.next.previous = var1; // L: 35
-		var1.previous.next = var1; // L: 36
-	} // L: 37
+		var1.next = this.sentinel;
+		var1.previous = this.sentinel.previous;
+		var1.next.previous = var1;
+		var1.previous.next = var1;
+	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		descriptor = "()Lmh;"
+		descriptor = "()Lmd;"
 	)
 	@Export("removeLast")
 	public Node removeLast() {
-		Node var1 = this.sentinel.previous; // L: 48
+		Node var1 = this.sentinel.previous;
 		if (var1 == this.sentinel) {
-			return null; // L: 49
+			return null;
 		} else {
-			var1.remove(); // L: 50
-			return var1; // L: 51
+			var1.remove();
+			return var1;
 		}
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		descriptor = "()Lmh;"
+		descriptor = "()Lmd;"
 	)
 	@Export("removeFirst")
 	public Node removeFirst() {
-		Node var1 = this.sentinel.next; // L: 55
+		Node var1 = this.sentinel.next;
 		if (var1 == this.sentinel) {
-			return null; // L: 56
+			return null;
 		} else {
-			var1.remove(); // L: 57
-			return var1; // L: 58
+			var1.remove();
+			return var1;
 		}
 	}
 
-	@ObfuscatedName("k")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		descriptor = "()Lmh;"
+		descriptor = "()Lmd;"
 	)
 	@Export("last")
 	public Node last() {
-		Node var1 = this.sentinel.previous; // L: 62
-		if (var1 == this.sentinel) { // L: 63
-			this.current = null; // L: 64
-			return null; // L: 65
+		Node var1 = this.sentinel.previous;
+		if (var1 == this.sentinel) {
+			this.current = null;
+			return null;
 		} else {
-			this.current = var1.previous; // L: 67
-			return var1; // L: 68
+			this.current = var1.previous;
+			return var1;
+		}
+	}
+
+	@ObfuscatedName("v")
+	@ObfuscatedSignature(
+		descriptor = "()Lmd;"
+	)
+	@Export("first")
+	public Node first() {
+		Node var1 = this.sentinel.next;
+		if (var1 == this.sentinel) {
+			this.current = null;
+			return null;
+		} else {
+			this.current = var1.next;
+			return var1;
+		}
+	}
+
+	@ObfuscatedName("b")
+	@ObfuscatedSignature(
+		descriptor = "()Lmd;"
+	)
+	@Export("previous")
+	public Node previous() {
+		Node var1 = this.current;
+		if (var1 == this.sentinel) {
+			this.current = null;
+			return null;
+		} else {
+			this.current = var1.previous;
+			return var1;
+		}
+	}
+
+	@ObfuscatedName("q")
+	@ObfuscatedSignature(
+		descriptor = "()Lmd;"
+	)
+	@Export("next")
+	public Node next() {
+		Node var1 = this.current;
+		if (var1 == this.sentinel) {
+			this.current = null;
+			return null;
+		} else {
+			this.current = var1.next;
+			return var1;
 		}
 	}
 
 	@ObfuscatedName("g")
 	@ObfuscatedSignature(
-		descriptor = "()Lmh;"
-	)
-	@Export("first")
-	public Node first() {
-		Node var1 = this.sentinel.next; // L: 72
-		if (var1 == this.sentinel) { // L: 73
-			this.current = null; // L: 74
-			return null; // L: 75
-		} else {
-			this.current = var1.next; // L: 77
-			return var1; // L: 78
-		}
-	}
-
-	@ObfuscatedName("h")
-	@ObfuscatedSignature(
-		descriptor = "()Lmh;"
-	)
-	@Export("previous")
-	public Node previous() {
-		Node var1 = this.current; // L: 82
-		if (var1 == this.sentinel) { // L: 83
-			this.current = null; // L: 84
-			return null; // L: 85
-		} else {
-			this.current = var1.previous; // L: 87
-			return var1; // L: 88
-		}
-	}
-
-	@ObfuscatedName("n")
-	@ObfuscatedSignature(
-		descriptor = "()Lmh;"
-	)
-	@Export("next")
-	public Node next() {
-		Node var1 = this.current; // L: 92
-		if (var1 == this.sentinel) { // L: 93
-			this.current = null; // L: 94
-			return null; // L: 95
-		} else {
-			this.current = var1.next; // L: 97
-			return var1; // L: 98
-		}
-	}
-
-	@ObfuscatedName("p")
-	@ObfuscatedSignature(
-		descriptor = "(Lmh;Lmh;)V"
+		descriptor = "(Lmd;Lmd;)V"
 	)
 	@Export("NodeDeque_addBefore")
 	public static void NodeDeque_addBefore(Node var0, Node var1) {
-		if (var0.next != null) { // L: 40
+		if (var0.next != null) {
 			var0.remove();
 		}
 
-		var0.next = var1.next; // L: 41
-		var0.previous = var1; // L: 42
-		var0.next.previous = var0; // L: 43
-		var0.previous.next = var0; // L: 44
-	} // L: 45
+		var0.next = var1.next;
+		var0.previous = var1;
+		var0.next.previous = var0;
+		var0.previous.next = var0;
+	}
 }

@@ -1,31 +1,70 @@
 import javax.imageio.ImageIO;
 import net.runelite.mapping.Export;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("au")
+@ObfuscatedName("ad")
 public class class43 {
-	@ObfuscatedName("qh")
-	@ObfuscatedSignature(
-		descriptor = "Lbh;"
+	@ObfuscatedName("dm")
+	@ObfuscatedGetter(
+		longValue = -7524999698275254637L
 	)
-	@Export("pcmPlayer1")
-	static PcmPlayer pcmPlayer1;
+	static long field302;
+	@ObfuscatedName("dg")
+	@ObfuscatedSignature(
+		descriptor = "Lji;"
+	)
+	@Export("archive8")
+	static Archive archive8;
 
 	static {
-		ImageIO.setUseCache(false); // L: 12
-	} // L: 13
+		ImageIO.setUseCache(false);
+	}
 
-	@ObfuscatedName("hb")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "(III)V",
-		garbageValue = "-1704226507"
+		descriptor = "(I)V",
+		garbageValue = "-114856401"
 	)
-	@Export("resumePauseWidget")
-	static void resumePauseWidget(int var0, int var1) {
-		PacketBufferNode var2 = ObjectComposition.getPacketBufferNode(ClientPacket.field2286, Client.packetWriter.isaacCipher); // L: 8855
-		var2.packetBuffer.method6625(var0); // L: 8856
-		var2.packetBuffer.writeIntME(var1); // L: 8857
-		Client.packetWriter.addNode(var2); // L: 8858
-	} // L: 8859
+	static void method486() {
+		synchronized(ArchiveDiskActionHandler.ArchiveDiskActionHandler_lock) {
+			if (ArchiveDiskActionHandler.field3574 == 0) {
+				ArchiveDiskActionHandler.ArchiveDiskActionHandler_thread = new Thread(new ArchiveDiskActionHandler());
+				ArchiveDiskActionHandler.ArchiveDiskActionHandler_thread.setDaemon(true);
+				ArchiveDiskActionHandler.ArchiveDiskActionHandler_thread.start();
+				ArchiveDiskActionHandler.ArchiveDiskActionHandler_thread.setPriority(5);
+			}
+
+			ArchiveDiskActionHandler.field3574 = 600;
+		}
+	}
+
+	@ObfuscatedName("q")
+	@ObfuscatedSignature(
+		descriptor = "(III)I",
+		garbageValue = "1281907235"
+	)
+	static final int method487(int var0, int var1) {
+		if (var0 == -2) {
+			return 12345678;
+		} else if (var0 == -1) {
+			if (var1 < 2) {
+				var1 = 2;
+			} else if (var1 > 126) {
+				var1 = 126;
+			}
+
+			return var1;
+		} else {
+			var1 = (var0 & 127) * var1 / 128;
+			if (var1 < 2) {
+				var1 = 2;
+			} else if (var1 > 126) {
+				var1 = 126;
+			}
+
+			return (var0 & 65408) + var1;
+		}
+	}
 }

@@ -1,112 +1,178 @@
+import java.util.Date;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import netscape.javascript.JSObject;
 
-@ObfuscatedName("e")
+@ObfuscatedName("z")
 public class class5 extends class16 {
-	@ObfuscatedName("re")
-	@ObfuscatedGetter(
-		intValue = 612354285
-	)
-	static int field40;
-	@ObfuscatedName("o")
-	@Export("clearLoginScreen")
-	static boolean clearLoginScreen;
-	@ObfuscatedName("dp")
+	@ObfuscatedName("v")
+	@Export("Widget_loadedInterfaces")
+	static boolean[] Widget_loadedInterfaces;
+	@ObfuscatedName("gz")
 	@ObfuscatedSignature(
-		descriptor = "Lig;"
+		descriptor = "Lgz;"
 	)
-	@Export("archive3")
-	static Archive archive3;
-	@ObfuscatedName("ef")
+	@Export("scene")
+	static Scene scene;
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = 2112256777
+		intValue = 1793437277
 	)
-	@Export("currentPort")
-	static int currentPort;
-	@ObfuscatedName("f")
-	@ObfuscatedGetter(
-		intValue = 1021832225
-	)
-	int field42;
+	int field45;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Lx;"
+		descriptor = "Lm;"
 	)
 	final class19 this$0;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lx;)V"
+		descriptor = "(Lm;)V"
 	)
 	class5(class19 var1) {
 		this.this$0 = var1;
-		this.field42 = -1; // L: 81
-	} // L: 83
-
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "(Lnu;I)V",
-		garbageValue = "-1239860939"
-	)
-	void vmethod356(Buffer var1) {
-		this.field42 = var1.readUnsignedShort(); // L: 86
-		var1.readUnsignedByte(); // L: 87
-		if (var1.readUnsignedByte() != 255) { // L: 88
-			--var1.offset; // L: 89
-			var1.readLong(); // L: 90
-		}
-
-	} // L: 92
-
-	@ObfuscatedName("o")
-	@ObfuscatedSignature(
-		descriptor = "(Lp;I)V",
-		garbageValue = "1583378087"
-	)
-	void vmethod352(class3 var1) {
-		var1.method45(this.field42); // L: 95
-	} // L: 96
-
-	@ObfuscatedName("o")
-	@ObfuscatedSignature(
-		descriptor = "(ILlp;Lig;I)V",
-		garbageValue = "1497398389"
-	)
-	static void method85(int var0, ArchiveDisk var1, Archive var2) {
-		ArchiveDiskAction var3 = new ArchiveDiskAction(); // L: 30
-		var3.type = 1; // L: 31
-		var3.key = (long)var0; // L: 32
-		var3.archiveDisk = var1; // L: 33
-		var3.archive = var2; // L: 34
-		synchronized(ArchiveDiskActionHandler.ArchiveDiskActionHandler_requestQueue) { // L: 35
-			ArchiveDiskActionHandler.ArchiveDiskActionHandler_requestQueue.addFirst(var3); // L: 36
-		} // L: 37
-
-		ItemLayer.method3271(); // L: 38
-	} // L: 39
-
-	@ObfuscatedName("d")
-	@ObfuscatedSignature(
-		descriptor = "(IIB)I",
-		garbageValue = "74"
-	)
-	static final int method83(int var0, int var1) {
-		int var2 = class312.method5606(var0 - 1, var1 - 1) + class312.method5606(1 + var0, var1 - 1) + class312.method5606(var0 - 1, var1 + 1) + class312.method5606(var0 + 1, 1 + var1); // L: 977
-		int var3 = class312.method5606(var0 - 1, var1) + class312.method5606(1 + var0, var1) + class312.method5606(var0, var1 - 1) + class312.method5606(var0, var1 + 1); // L: 978
-		int var4 = class312.method5606(var0, var1); // L: 979
-		return var2 / 16 + var3 / 8 + var4 / 4; // L: 980
+		this.field45 = -1;
 	}
 
-	@ObfuscatedName("jf")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "(IIIIIIIB)V",
-		garbageValue = "52"
+		descriptor = "(Lnk;S)V",
+		garbageValue = "4095"
 	)
-	@Export("updateRootInterface")
-	static final void updateRootInterface(int var0, int var1, int var2, int var3, int var4, int var5, int var6) {
-		if (class15.loadInterface(var0)) { // L: 10400
-			GameObject.updateInterface(Widget.Widget_interfaceComponents[var0], -1, var1, var2, var3, var4, var5, var6); // L: 10401
+	void vmethod326(Buffer var1) {
+		this.field45 = var1.readUnsignedShort();
+		var1.readUnsignedByte();
+		if (var1.readUnsignedByte() != 255) {
+			--var1.offset;
+			var1.readLong();
 		}
-	} // L: 10402
+
+	}
+
+	@ObfuscatedName("c")
+	@ObfuscatedSignature(
+		descriptor = "(Lg;B)V",
+		garbageValue = "-61"
+	)
+	void vmethod314(class3 var1) {
+		var1.method33(this.field45);
+	}
+
+	@ObfuscatedName("o")
+	@ObfuscatedSignature(
+		descriptor = "(CB)C",
+		garbageValue = "19"
+	)
+	public static char method68(char var0) {
+		switch(var0) {
+		case ' ':
+		case '-':
+		case '_':
+		case ' ':
+			return '_';
+		case '#':
+		case '[':
+		case ']':
+			return var0;
+		case 'À':
+		case 'Á':
+		case 'Â':
+		case 'Ã':
+		case 'Ä':
+		case 'à':
+		case 'á':
+		case 'â':
+		case 'ã':
+		case 'ä':
+			return 'a';
+		case 'Ç':
+		case 'ç':
+			return 'c';
+		case 'È':
+		case 'É':
+		case 'Ê':
+		case 'Ë':
+		case 'è':
+		case 'é':
+		case 'ê':
+		case 'ë':
+			return 'e';
+		case 'Í':
+		case 'Î':
+		case 'Ï':
+		case 'í':
+		case 'î':
+		case 'ï':
+			return 'i';
+		case 'Ñ':
+		case 'ñ':
+			return 'n';
+		case 'Ò':
+		case 'Ó':
+		case 'Ô':
+		case 'Õ':
+		case 'Ö':
+		case 'ò':
+		case 'ó':
+		case 'ô':
+		case 'õ':
+		case 'ö':
+			return 'o';
+		case 'Ù':
+		case 'Ú':
+		case 'Û':
+		case 'Ü':
+		case 'ù':
+		case 'ú':
+		case 'û':
+		case 'ü':
+			return 'u';
+		case 'ß':
+			return 'b';
+		case 'ÿ':
+		case 'Ÿ':
+			return 'y';
+		default:
+			return Character.toLowerCase(var0);
+		}
+	}
+
+	@ObfuscatedName("lo")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/String;I)V",
+		garbageValue = "-1466168379"
+	)
+	static void method64(String var0) {
+		class253.field3136 = var0;
+
+		try {
+			String var1 = class303.client.getParameter(Integer.toString(18));
+			String var2 = class303.client.getParameter(Integer.toString(13));
+			String var3 = var1 + "settings=" + var0 + "; version=1; path=/; domain=" + var2;
+			String var5;
+			if (var0.length() == 0) {
+				var3 = var3 + "; Expires=Thu, 01-Jan-1970 00:00:00 GMT; Max-Age=0";
+			} else {
+				String var4 = var3 + "; Expires=";
+				long var6 = Archive.currentTimeMillis() + 94608000000L;
+				Calendar.Calendar_calendar.setTime(new Date(var6));
+				int var8 = Calendar.Calendar_calendar.get(7);
+				int var9 = Calendar.Calendar_calendar.get(5);
+				int var10 = Calendar.Calendar_calendar.get(2);
+				int var11 = Calendar.Calendar_calendar.get(1);
+				int var12 = Calendar.Calendar_calendar.get(11);
+				int var13 = Calendar.Calendar_calendar.get(12);
+				int var14 = Calendar.Calendar_calendar.get(13);
+				var5 = Calendar.DAYS_OF_THE_WEEK[var8 - 1] + ", " + var9 / 10 + var9 % 10 + "-" + Calendar.MONTH_NAMES_ENGLISH_GERMAN[0][var10] + "-" + var11 + " " + var12 / 10 + var12 % 10 + ":" + var13 / 10 + var13 % 10 + ":" + var14 / 10 + var14 % 10 + " GMT";
+				var3 = var4 + var5 + "; Max-Age=" + 94608000L;
+			}
+
+			Client var16 = class303.client;
+			var5 = "document.cookie=\"" + var3 + "\"";
+			JSObject.getWindow(var16).eval(var5);
+		} catch (Throwable var15) {
+		}
+
+	}
 }

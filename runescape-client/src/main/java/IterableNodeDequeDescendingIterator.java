@@ -4,75 +4,75 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jx")
+@ObfuscatedName("ku")
 @Implements("IterableNodeDequeDescendingIterator")
 public class IterableNodeDequeDescendingIterator implements Iterator {
-	@ObfuscatedName("f")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "Ljc;"
+		descriptor = "Lko;"
 	)
 	@Export("deque")
 	IterableNodeDeque deque;
+	@ObfuscatedName("c")
+	@ObfuscatedSignature(
+		descriptor = "Lmd;"
+	)
+	Node field3730;
 	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "Lmh;"
-	)
-	Node field3383;
-	@ObfuscatedName("u")
-	@ObfuscatedSignature(
-		descriptor = "Lmh;"
+		descriptor = "Lmd;"
 	)
 	@Export("last")
 	Node last;
 
 	@ObfuscatedSignature(
-		descriptor = "(Ljc;)V"
+		descriptor = "(Lko;)V"
 	)
 	IterableNodeDequeDescendingIterator(IterableNodeDeque var1) {
-		this.last = null; // L: 9
-		this.setDeque(var1); // L: 12
-	} // L: 13
+		this.last = null;
+		this.setDeque(var1);
+	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "(Ljc;)V"
+		descriptor = "(Lko;)V"
 	)
 	@Export("setDeque")
 	void setDeque(IterableNodeDeque var1) {
-		this.deque = var1; // L: 16
-		this.start(); // L: 17
-	} // L: 18
+		this.deque = var1;
+		this.start();
+	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("c")
 	@Export("start")
 	void start() {
-		this.field3383 = this.deque != null ? this.deque.sentinel.previous : null; // L: 21
-		this.last = null; // L: 22
-	} // L: 23
-
-	public void remove() {
-		if (this.last == null) { // L: 41
-			throw new IllegalStateException();
-		} else {
-			this.last.remove(); // L: 42
-			this.last = null; // L: 43
-		}
-	} // L: 44
-
-	public boolean hasNext() {
-		return this.deque.sentinel != this.field3383; // L: 37
+		this.field3730 = this.deque != null ? this.deque.sentinel.previous : null;
+		this.last = null;
 	}
 
 	public Object next() {
-		Node var1 = this.field3383; // L: 26
-		if (var1 == this.deque.sentinel) { // L: 27
-			var1 = null; // L: 28
-			this.field3383 = null; // L: 29
+		Node var1 = this.field3730;
+		if (var1 == this.deque.sentinel) {
+			var1 = null;
+			this.field3730 = null;
 		} else {
-			this.field3383 = var1.previous; // L: 31
+			this.field3730 = var1.previous;
 		}
 
-		this.last = var1; // L: 32
-		return var1; // L: 33
+		this.last = var1;
+		return var1;
+	}
+
+	public boolean hasNext() {
+		return this.deque.sentinel != this.field3730;
+	}
+
+	public void remove() {
+		if (this.last == null) {
+			throw new IllegalStateException();
+		} else {
+			this.last.remove();
+			this.last = null;
+		}
 	}
 }

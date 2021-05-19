@@ -510,7 +510,7 @@ public abstract class RSClientMixin implements RSClient
 	@Override
 	public Widget[] getWidgetRoots()
 	{
-		int topGroup = getWidgetRoot();
+		int topGroup = getTopLevelInterfaceId();
 		if (topGroup == -1)
 		{
 			return new Widget[]{};
@@ -1331,7 +1331,7 @@ public abstract class RSClientMixin implements RSClient
 
 	@Inject
 	@MethodHook("updateNpcs")
-	public static void updateNpcs(boolean var0, RSPacketBuffer var1, boolean var2)
+	public static void updateNpcs(boolean var0, RSPacketBuffer var1)
 	{
 		client.getCallbacks().updateNpcs();
 	}
