@@ -1,156 +1,190 @@
-import java.awt.Component;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ey")
+@ObfuscatedName("fi")
 @Implements("WorldMapLabelSize")
 public class WorldMapLabelSize {
-	@ObfuscatedName("rz")
-	@ObfuscatedGetter(
-		intValue = -1981266759
-	)
-	static int field1569;
-	@ObfuscatedName("f")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "Ley;"
+		descriptor = "Lfi;"
 	)
 	@Export("WorldMapLabelSize_small")
 	public static final WorldMapLabelSize WorldMapLabelSize_small;
-	@ObfuscatedName("o")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "Ley;"
+		descriptor = "Lfi;"
 	)
 	@Export("WorldMapLabelSize_medium")
 	public static final WorldMapLabelSize WorldMapLabelSize_medium;
-	@ObfuscatedName("u")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "Ley;"
+		descriptor = "Lfi;"
 	)
 	@Export("WorldMapLabelSize_large")
 	public static final WorldMapLabelSize WorldMapLabelSize_large;
-	@ObfuscatedName("k")
+	@ObfuscatedName("g")
 	@ObfuscatedGetter(
-		intValue = -2016472085
+		intValue = -695470779
 	)
-	static int field1568;
-	@ObfuscatedName("h")
-	static int[][] field1570;
-	@ObfuscatedName("ev")
+	final int field1942;
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = 464910607
+		intValue = 1100584119
 	)
-	static int field1572;
-	@ObfuscatedName("p")
+	final int field1936;
+	@ObfuscatedName("z")
 	@ObfuscatedGetter(
-		intValue = -27286113
+		intValue = 1415767673
 	)
-	final int field1564;
-	@ObfuscatedName("b")
-	@ObfuscatedGetter(
-		intValue = 580411911
-	)
-	final int field1567;
-	@ObfuscatedName("e")
-	@ObfuscatedGetter(
-		intValue = 1572047245
-	)
-	final int field1571;
+	final int field1939;
 
 	static {
-		WorldMapLabelSize_small = new WorldMapLabelSize(1, 0, 4); // L: 7
-		WorldMapLabelSize_medium = new WorldMapLabelSize(2, 1, 2); // L: 8
-		WorldMapLabelSize_large = new WorldMapLabelSize(0, 2, 0); // L: 9
+		WorldMapLabelSize_small = new WorldMapLabelSize(1, 0, 4);
+		WorldMapLabelSize_medium = new WorldMapLabelSize(2, 1, 2);
+		WorldMapLabelSize_large = new WorldMapLabelSize(0, 2, 0);
 	}
 
 	WorldMapLabelSize(int var1, int var2, int var3) {
-		this.field1564 = var1; // L: 15
-		this.field1567 = var2; // L: 16
-		this.field1571 = var3; // L: 17
-	} // L: 18
+		this.field1942 = var1;
+		this.field1936 = var2;
+		this.field1939 = var3;
+	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
 		descriptor = "(FI)Z",
-		garbageValue = "-1990451087"
+		garbageValue = "1579568903"
 	)
-	boolean method2671(float var1) {
-		return var1 >= (float)this.field1571; // L: 21
+	boolean method3154(float var1) {
+		return var1 >= (float)this.field1939;
+	}
+
+	@ObfuscatedName("h")
+	@ObfuscatedSignature(
+		descriptor = "(B)[Lfi;",
+		garbageValue = "24"
+	)
+	static WorldMapLabelSize[] method3155() {
+		return new WorldMapLabelSize[]{WorldMapLabelSize_large, WorldMapLabelSize_small, WorldMapLabelSize_medium};
 	}
 
 	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/awt/Component;I)V",
-		garbageValue = "-523449441"
+		descriptor = "(IB)Lfi;",
+		garbageValue = "-4"
 	)
-	static void method2677(Component var0) {
-		var0.removeMouseListener(MouseHandler.MouseHandler_instance); // L: 43
-		var0.removeMouseMotionListener(MouseHandler.MouseHandler_instance); // L: 44
-		var0.removeFocusListener(MouseHandler.MouseHandler_instance); // L: 45
-		MouseHandler.MouseHandler_currentButtonVolatile = 0; // L: 46
-	} // L: 47
+	static WorldMapLabelSize method3162(int var0) {
+		WorldMapLabelSize[] var1 = method3155();
+
+		for (int var2 = 0; var2 < var1.length; ++var2) {
+			WorldMapLabelSize var3 = var1[var2];
+			if (var0 == var3.field1936) {
+				return var3;
+			}
+		}
+
+		return null;
+	}
 
 	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "(II)Ley;",
-		garbageValue = "796333939"
+		descriptor = "(ILci;ZB)I",
+		garbageValue = "-36"
 	)
-	static WorldMapLabelSize method2670(int var0) {
-		WorldMapLabelSize[] var1 = new WorldMapLabelSize[]{WorldMapLabelSize_large, WorldMapLabelSize_small, WorldMapLabelSize_medium}; // L: 28
-		WorldMapLabelSize[] var2 = var1; // L: 30
-
-		for (int var3 = 0; var3 < var2.length; ++var3) { // L: 31
-			WorldMapLabelSize var4 = var2[var3]; // L: 32
-			if (var0 == var4.field1567) { // L: 34
-				return var4; // L: 35
-			}
+	static int method3158(int var0, Script var1, boolean var2) {
+		if (var0 < 1000) {
+			return GameEngine.method588(var0, var1, var2);
+		} else if (var0 < 1100) {
+			return DevicePcmPlayerProvider.method454(var0, var1, var2);
+		} else if (var0 < 1200) {
+			return class243.method4612(var0, var1, var2);
+		} else if (var0 < 1300) {
+			return Interpreter.method1921(var0, var1, var2);
+		} else if (var0 < 1400) {
+			return ScriptEvent.method2120(var0, var1, var2);
+		} else if (var0 < 1500) {
+			return DynamicObject.method2027(var0, var1, var2);
+		} else if (var0 < 1600) {
+			return class232.method4357(var0, var1, var2);
+		} else if (var0 < 1700) {
+			return FloorOverlayDefinition.method3049(var0, var1, var2);
+		} else if (var0 < 1800) {
+			return class214.method4239(var0, var1, var2);
+		} else if (var0 < 1900) {
+			return NetSocket.method2570(var0, var1, var2);
+		} else if (var0 < 2000) {
+			return class80.method1942(var0, var1, var2);
+		} else if (var0 < 2100) {
+			return DevicePcmPlayerProvider.method454(var0, var1, var2);
+		} else if (var0 < 2200) {
+			return class243.method4612(var0, var1, var2);
+		} else if (var0 < 2300) {
+			return Interpreter.method1921(var0, var1, var2);
+		} else if (var0 < 2400) {
+			return ScriptEvent.method2120(var0, var1, var2);
+		} else if (var0 < 2500) {
+			return DynamicObject.method2027(var0, var1, var2);
+		} else if (var0 < 2600) {
+			return class14.method216(var0, var1, var2);
+		} else if (var0 < 2700) {
+			return class80.method1939(var0, var1, var2);
+		} else if (var0 < 2800) {
+			return class214.method4241(var0, var1, var2);
+		} else if (var0 < 2900) {
+			return WorldMapAreaData.method3668(var0, var1, var2);
+		} else if (var0 < 3000) {
+			return class80.method1942(var0, var1, var2);
+		} else if (var0 < 3200) {
+			return InvDefinition.method2616(var0, var1, var2);
+		} else if (var0 < 3300) {
+			return World.method1713(var0, var1, var2);
+		} else if (var0 < 3400) {
+			return HealthBar.method2250(var0, var1, var2);
+		} else if (var0 < 3500) {
+			return CollisionMap.method3127(var0, var1, var2);
+		} else if (var0 < 3700) {
+			return class303.method5379(var0, var1, var2);
+		} else if (var0 < 3800) {
+			return class22.method290(var0, var1, var2);
+		} else if (var0 < 3900) {
+			return class286.method5056(var0, var1, var2);
+		} else if (var0 < 4000) {
+			return NPCComposition.method2744(var0, var1, var2);
+		} else if (var0 < 4100) {
+			return Player.method2179(var0, var1, var2);
+		} else if (var0 < 4200) {
+			return class142.method2715(var0, var1, var2);
+		} else if (var0 < 4300) {
+			return FriendSystem.method1795(var0, var1, var2);
+		} else if (var0 < 5100) {
+			return SecureRandomFuture.method2000(var0, var1, var2);
+		} else if (var0 < 5400) {
+			return class258.method4787(var0, var1, var2);
+		} else if (var0 < 5600) {
+			return WorldMapLabel.method3583(var0, var1, var2);
+		} else if (var0 < 5700) {
+			return class1.method16(var0, var1, var2);
+		} else if (var0 < 6300) {
+			return WorldMapDecorationType.method4784(var0, var1, var2);
+		} else if (var0 < 6600) {
+			return MouseRecorder.method2125(var0, var1, var2);
+		} else if (var0 < 6700) {
+			return class305.method5411(var0, var1, var2);
+		} else if (var0 < 6800) {
+			return class14.method215(var0, var1, var2);
+		} else if (var0 < 6900) {
+			return Decimator.method1111(var0, var1, var2);
+		} else if (var0 < 7000) {
+			return class249.method4732(var0, var1, var2);
+		} else if (var0 < 7100) {
+			return Renderable.method4078(var0, var1, var2);
+		} else if (var0 < 7200) {
+			return CollisionMap.method3110(var0, var1, var2);
+		} else {
+			return var0 < 7300 ? class1.method15(var0, var1, var2) : 2;
 		}
-
-		return null; // L: 40
 	}
-
-	@ObfuscatedName("e")
-	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "-7"
-	)
-	public static void method2676() {
-		HealthBarDefinition.HealthBarDefinition_cached.clear(); // L: 82
-		HealthBarDefinition.HealthBarDefinition_cachedSprites.clear(); // L: 83
-	} // L: 84
-
-	@ObfuscatedName("x")
-	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-888739808"
-	)
-	public static void method2678() {
-		ItemComposition.ItemDefinition_cached.clear(); // L: 572
-		ItemComposition.ItemDefinition_cachedModels.clear(); // L: 573
-		ItemComposition.ItemDefinition_cachedSprites.clear(); // L: 574
-	} // L: 575
-
-	@ObfuscatedName("kh")
-	@ObfuscatedSignature(
-		descriptor = "(Lnu;IB)V",
-		garbageValue = "-107"
-	)
-	static void method2679(Buffer var0, int var1) {
-		byte[] var2 = var0.array; // L: 11665
-		if (Client.randomDatData == null) { // L: 11667
-			Client.randomDatData = new byte[24];
-		}
-
-		class305.writeRandomDat(var2, var1, Client.randomDatData, 0, 24); // L: 11668
-		if (JagexCache.JagexCache_randomDat != null) { // L: 11671
-			try {
-				JagexCache.JagexCache_randomDat.seek(0L); // L: 11673
-				JagexCache.JagexCache_randomDat.write(var0.array, var1, 24); // L: 11674
-			} catch (Exception var4) { // L: 11676
-			}
-		}
-
-	} // L: 11679
 }

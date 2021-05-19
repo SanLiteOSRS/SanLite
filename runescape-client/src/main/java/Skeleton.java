@@ -4,118 +4,103 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fa")
+@ObfuscatedName("gn")
 @Implements("Skeleton")
 public class Skeleton extends Node {
-	@ObfuscatedName("ro")
+	@ObfuscatedName("ha")
 	@ObfuscatedGetter(
-		intValue = 49328929
+		intValue = 576812215
 	)
-	static int field1927;
-	@ObfuscatedName("d")
-	@ObfuscatedSignature(
-		descriptor = "Low;"
-	)
-	@Export("options_buttons_2Sprite")
-	static IndexedSprite options_buttons_2Sprite;
-	@ObfuscatedName("f")
+	@Export("cameraY")
+	static int cameraY;
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = -1569878469
+		intValue = -1229428145
 	)
 	@Export("id")
 	int id;
-	@ObfuscatedName("o")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = 1560016173
+		intValue = 1150264437
 	)
 	@Export("count")
 	int count;
-	@ObfuscatedName("u")
+	@ObfuscatedName("o")
 	@Export("transformTypes")
 	int[] transformTypes;
-	@ObfuscatedName("p")
+	@ObfuscatedName("g")
 	@Export("labels")
 	int[][] labels;
 
 	Skeleton(int var1, byte[] var2) {
-		this.id = var1; // L: 13
-		Buffer var3 = new Buffer(var2); // L: 14
-		this.count = var3.readUnsignedByte(); // L: 15
-		this.transformTypes = new int[this.count]; // L: 16
-		this.labels = new int[this.count][]; // L: 17
+		this.id = var1;
+		Buffer var3 = new Buffer(var2);
+		this.count = var3.readUnsignedByte();
+		this.transformTypes = new int[this.count];
+		this.labels = new int[this.count][];
 
 		int var4;
-		for (var4 = 0; var4 < this.count; ++var4) { // L: 18
+		for (var4 = 0; var4 < this.count; ++var4) {
 			this.transformTypes[var4] = var3.readUnsignedByte();
 		}
 
-		for (var4 = 0; var4 < this.count; ++var4) { // L: 19
+		for (var4 = 0; var4 < this.count; ++var4) {
 			this.labels[var4] = new int[var3.readUnsignedByte()];
 		}
 
-		for (var4 = 0; var4 < this.count; ++var4) { // L: 20
-			for (int var5 = 0; var5 < this.labels[var4].length; ++var5) { // L: 21
+		for (var4 = 0; var4 < this.count; ++var4) {
+			for (int var5 = 0; var5 < this.labels[var4].length; ++var5) {
 				this.labels[var4][var5] = var3.readUnsignedByte();
 			}
 		}
 
-	} // L: 23
-
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "(III)I",
-		garbageValue = "1482747310"
-	)
-	public static int method3431(int var0, int var1) {
-		int var2;
-		for (var2 = 1; var1 > 1; var1 >>= 1) { // L: 24 25 28
-			if ((var1 & 1) != 0) {
-				var2 = var0 * var2; // L: 26
-			}
-
-			var0 *= var0; // L: 27
-		}
-
-		if (var1 == 1) { // L: 30
-			return var0 * var2;
-		} else {
-			return var2; // L: 31
-		}
 	}
 
-	@ObfuscatedName("iu")
+	@ObfuscatedName("ii")
 	@ObfuscatedSignature(
-		descriptor = "(I)I",
-		garbageValue = "-259166904"
+		descriptor = "(ILjava/lang/String;I)V",
+		garbageValue = "1656377758"
 	)
-	static final int method3433() {
-		return Client.menuOptionsCount - 1; // L: 9018
-	}
+	static void method3899(int var0, String var1) {
+		int var2 = Players.Players_count;
+		int[] var3 = Players.Players_indices;
+		boolean var4 = false;
+		Username var5 = new Username(var1, ModeWhere.loginType);
 
-	@ObfuscatedName("iz")
-	@ObfuscatedSignature(
-		descriptor = "(IIIIIIIII)V",
-		garbageValue = "353587604"
-	)
-	@Export("drawWidgets")
-	static final void drawWidgets(int var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7) {
-		if (class15.loadInterface(var0)) { // L: 9407
-			WallDecoration.field2179 = null; // L: 9414
-			class2.drawInterface(Widget.Widget_interfaceComponents[var0], -1, var1, var2, var3, var4, var5, var6, var7); // L: 9415
-			if (WallDecoration.field2179 != null) { // L: 9416
-				class2.drawInterface(WallDecoration.field2179, -1412584499, var1, var2, var3, var4, class11.field106, class235.field2843, var7); // L: 9417
-				WallDecoration.field2179 = null; // L: 9418
-			}
-
-		} else {
-			if (var7 != -1) { // L: 9408
-				Client.field811[var7] = true;
-			} else {
-				for (int var8 = 0; var8 < 100; ++var8) { // L: 9410
-					Client.field811[var8] = true;
+		for (int var6 = 0; var6 < var2; ++var6) {
+			Player var7 = Client.players[var3[var6]];
+			if (var7 != null && var7 != class35.localPlayer && var7.username != null && var7.username.equals(var5)) {
+				PacketBufferNode var8;
+				if (var0 == 1) {
+					var8 = HealthBarDefinition.getPacketBufferNode(ClientPacket.field2571, Client.packetWriter.isaacCipher);
+					var8.packetBuffer.method6483(var3[var6]);
+					var8.packetBuffer.method6610(0);
+					Client.packetWriter.addNode(var8);
+				} else if (var0 == 4) {
+					var8 = HealthBarDefinition.getPacketBufferNode(ClientPacket.field2565, Client.packetWriter.isaacCipher);
+					var8.packetBuffer.method6483(var3[var6]);
+					var8.packetBuffer.method6610(0);
+					Client.packetWriter.addNode(var8);
+				} else if (var0 == 6) {
+					var8 = HealthBarDefinition.getPacketBufferNode(ClientPacket.field2600, Client.packetWriter.isaacCipher);
+					var8.packetBuffer.method6449(0);
+					var8.packetBuffer.method6484(var3[var6]);
+					Client.packetWriter.addNode(var8);
+				} else if (var0 == 7) {
+					var8 = HealthBarDefinition.getPacketBufferNode(ClientPacket.field2613, Client.packetWriter.isaacCipher);
+					var8.packetBuffer.writeByte(0);
+					var8.packetBuffer.method6484(var3[var6]);
+					Client.packetWriter.addNode(var8);
 				}
-			}
 
+				var4 = true;
+				break;
+			}
 		}
-	} // L: 9412 9420
+
+		if (!var4) {
+			WorldMapScaleHandler.addGameMessage(4, "", "Unable to find " + var1);
+		}
+
+	}
 }

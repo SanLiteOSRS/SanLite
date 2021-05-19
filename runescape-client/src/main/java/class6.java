@@ -2,111 +2,163 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("k")
+@ObfuscatedName("t")
 public class class6 extends class14 {
-	@ObfuscatedName("bo")
-	@ObfuscatedSignature(
-		descriptor = "[Low;"
-	)
-	@Export("worldSelectArrows")
-	static IndexedSprite[] worldSelectArrows;
-	@ObfuscatedName("ii")
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = 1971024859
+		intValue = 1741203959
 	)
-	@Export("oculusOrbFocalPointX")
-	static int oculusOrbFocalPointX;
-	@ObfuscatedName("f")
+	@Export("ItemDefinition_fileCount")
+	public static int ItemDefinition_fileCount;
+	@ObfuscatedName("mh")
 	@ObfuscatedGetter(
-		intValue = -394718965
+		intValue = -699595077
 	)
-	int field49;
-	@ObfuscatedName("o")
+	@Export("selectedSpellWidget")
+	static int selectedSpellWidget;
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = 1266108419
+		intValue = 896931621
 	)
-	int field46;
+	int field52;
+	@ObfuscatedName("c")
+	@ObfuscatedGetter(
+		intValue = 1534263289
+	)
+	int field56;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Lu;"
+		descriptor = "Lo;"
 	)
 	final class2 this$0;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lu;)V"
+		descriptor = "(Lo;)V"
 	)
 	class6(class2 var1) {
-		this.this$0 = var1; // L: 271
+		this.this$0 = var1;
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "(Lnu;I)V",
-		garbageValue = "-1383981708"
+		descriptor = "(Lnk;I)V",
+		garbageValue = "110401227"
 	)
-	void vmethod371(Buffer var1) {
-		this.field49 = var1.readInt(); // L: 274
-		this.field46 = var1.readInt(); // L: 275
-	} // L: 276
-
-	@ObfuscatedName("o")
-	@ObfuscatedSignature(
-		descriptor = "(Lm;I)V",
-		garbageValue = "-1475503816"
-	)
-	void vmethod376(class11 var1) {
-		var1.method178(this.field49, this.field46); // L: 279
-	} // L: 280
-
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "(Lir;I)V",
-		garbageValue = "620748591"
-	)
-	public static void method97(AbstractArchive var0) {
-		ParamComposition.ParamDefinition_archive = var0; // L: 21
-	} // L: 22
-
-	@ObfuscatedName("u")
-	@ObfuscatedSignature(
-		descriptor = "(I)Lgy;",
-		garbageValue = "629458679"
-	)
-	public static PacketBufferNode method98() {
-		PacketBufferNode var0;
-		if (PacketBufferNode.PacketBufferNode_packetBufferNodeCount == 0) { // L: 44
-			var0 = new PacketBufferNode(); // L: 45
-		} else {
-			var0 = PacketBufferNode.PacketBufferNode_packetBufferNodes[--PacketBufferNode.PacketBufferNode_packetBufferNodeCount]; // L: 48
-		}
-
-		var0.clientPacket = null; // L: 51
-		var0.clientPacketLength = 0; // L: 52
-		var0.packetBuffer = new PacketBuffer(5000); // L: 53
-		return var0; // L: 54
+	void vmethod339(Buffer var1) {
+		this.field52 = var1.readInt();
+		this.field56 = var1.readInt();
 	}
 
-	@ObfuscatedName("ax")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(ILcc;ZB)I",
-		garbageValue = "1"
+		descriptor = "(Lx;I)V",
+		garbageValue = "-1535989118"
 	)
-	static int method96(int var0, Script var1, boolean var2) {
-		if (var0 == ScriptOpcodes.LOGOUT) { // L: 3445
-			Client.logoutTimer = 250; // L: 3446
-			return 1; // L: 3447
-		} else if (var0 != 5631 && var0 != 5633) { // L: 3449
-			if (var0 == 5632) { // L: 3453
-				Interpreter.Interpreter_intStack[++class16.Interpreter_intStackSize - 1] = 26; // L: 3454
-				return 1; // L: 3455
+	void vmethod338(class11 var1) {
+		var1.method126(this.field52, this.field56);
+	}
+
+	@ObfuscatedName("t")
+	@Export("Entity_unpackID")
+	public static int Entity_unpackID(long var0) {
+		return (int)(var0 >>> 17 & 4294967295L);
+	}
+
+	@ObfuscatedName("gf")
+	@ObfuscatedSignature(
+		descriptor = "(Lcj;B)V",
+		garbageValue = "-122"
+	)
+	static final void method71(Actor var0) {
+		var0.isWalking = false;
+		SequenceDefinition var1;
+		if (var0.movementSequence != -1) {
+			var1 = Player.SequenceDefinition_get(var0.movementSequence);
+			if (var1 != null && var1.frameIds != null) {
+				++var0.movementFrameCycle;
+				if (var0.movementFrame < var1.frameIds.length && var0.movementFrameCycle > var1.frameLengths[var0.movementFrame]) {
+					var0.movementFrameCycle = 1;
+					++var0.movementFrame;
+					WorldMapManager.method3425(var1, var0.movementFrame, var0.x, var0.y);
+				}
+
+				if (var0.movementFrame >= var1.frameIds.length) {
+					var0.movementFrameCycle = 0;
+					var0.movementFrame = 0;
+					WorldMapManager.method3425(var1, var0.movementFrame, var0.x, var0.y);
+				}
 			} else {
-				return 2; // L: 3457
+				var0.movementSequence = -1;
 			}
-		} else {
-			Interpreter.Interpreter_stringStackSize -= 2; // L: 3450
-			return 1; // L: 3451
 		}
+
+		if (var0.spotAnimation != -1 && Client.cycle >= var0.field1243) {
+			if (var0.spotAnimationFrame < 0) {
+				var0.spotAnimationFrame = 0;
+			}
+
+			int var3 = Friend.SpotAnimationDefinition_get(var0.spotAnimation).sequence;
+			if (var3 != -1) {
+				SequenceDefinition var2 = Player.SequenceDefinition_get(var3);
+				if (var2 != null && var2.frameIds != null) {
+					++var0.spotAnimationFrameCycle;
+					if (var0.spotAnimationFrame < var2.frameIds.length && var0.spotAnimationFrameCycle > var2.frameLengths[var0.spotAnimationFrame]) {
+						var0.spotAnimationFrameCycle = 1;
+						++var0.spotAnimationFrame;
+						WorldMapManager.method3425(var2, var0.spotAnimationFrame, var0.x, var0.y);
+					}
+
+					if (var0.spotAnimationFrame >= var2.frameIds.length && (var0.spotAnimationFrame < 0 || var0.spotAnimationFrame >= var2.frameIds.length)) {
+						var0.spotAnimation = -1;
+					}
+				} else {
+					var0.spotAnimation = -1;
+				}
+			} else {
+				var0.spotAnimation = -1;
+			}
+		}
+
+		if (var0.sequence != -1 && var0.sequenceDelay <= 1) {
+			var1 = Player.SequenceDefinition_get(var0.sequence);
+			if (var1.field1886 == 1 && var0.field1215 > 0 && var0.field1254 <= Client.cycle && var0.field1237 < Client.cycle) {
+				var0.sequenceDelay = 1;
+				return;
+			}
+		}
+
+		if (var0.sequence != -1 && var0.sequenceDelay == 0) {
+			var1 = Player.SequenceDefinition_get(var0.sequence);
+			if (var1 != null && var1.frameIds != null) {
+				++var0.sequenceFrameCycle;
+				if (var0.sequenceFrame < var1.frameIds.length && var0.sequenceFrameCycle > var1.frameLengths[var0.sequenceFrame]) {
+					var0.sequenceFrameCycle = 1;
+					++var0.sequenceFrame;
+					WorldMapManager.method3425(var1, var0.sequenceFrame, var0.x, var0.y);
+				}
+
+				if (var0.sequenceFrame >= var1.frameIds.length) {
+					var0.sequenceFrame -= var1.frameCount;
+					++var0.field1244;
+					if (var0.field1244 >= var1.field1897) {
+						var0.sequence = -1;
+					} else if (var0.sequenceFrame >= 0 && var0.sequenceFrame < var1.frameIds.length) {
+						WorldMapManager.method3425(var1, var0.sequenceFrame, var0.x, var0.y);
+					} else {
+						var0.sequence = -1;
+					}
+				}
+
+				var0.isWalking = var1.field1898;
+			} else {
+				var0.sequence = -1;
+			}
+		}
+
+		if (var0.sequenceDelay > 0) {
+			--var0.sequenceDelay;
+		}
+
 	}
 }

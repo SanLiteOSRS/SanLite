@@ -4,40 +4,45 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("lz")
+@ObfuscatedName("lo")
 @Implements("Ignored")
 public class Ignored extends Nameable {
-	@ObfuscatedName("f")
+	@ObfuscatedName("nv")
+	@ObfuscatedSignature(
+		descriptor = "[Liv;"
+	)
+	static Widget[] field3859;
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = 2054928513
+		intValue = -121727977
 	)
 	@Export("id")
 	int id;
 
 	Ignored() {
-	} // L: 6
+	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "(Llz;S)I",
-		garbageValue = "-7783"
+		descriptor = "(Llo;I)I",
+		garbageValue = "-2048641211"
 	)
 	@Export("compareTo_ignored")
 	int compareTo_ignored(Ignored var1) {
-		return this.id - var1.id; // L: 9
+		return this.id - var1.id;
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(Llt;I)I",
-		garbageValue = "1200801892"
+		descriptor = "(Llm;B)I",
+		garbageValue = "88"
 	)
 	@Export("compareTo_user")
 	public int compareTo_user(Nameable var1) {
-		return this.compareTo_ignored((Ignored)var1); // L: 13
+		return this.compareTo_ignored((Ignored)var1);
 	}
 
 	public int compareTo(Object var1) {
-		return this.compareTo_ignored((Ignored)var1); // L: 17
+		return this.compareTo_ignored((Ignored)var1);
 	}
 }

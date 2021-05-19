@@ -1,110 +1,222 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jv")
+@ObfuscatedName("ev")
 @Implements("VarcInt")
 public class VarcInt extends DualNode {
-	@ObfuscatedName("f")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "Lir;"
+		descriptor = "Ljp;"
 	)
 	@Export("VarcInt_archive")
 	static AbstractArchive VarcInt_archive;
-	@ObfuscatedName("o")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "Lgf;"
+		descriptor = "Lho;"
 	)
 	@Export("VarcInt_cached")
 	static EvictingDualNodeHashTable VarcInt_cached;
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "Low;"
+	@ObfuscatedName("ni")
+	@ObfuscatedGetter(
+		intValue = -1768124815
 	)
-	static IndexedSprite field3429;
-	@ObfuscatedName("u")
+	static int field1576;
+	@ObfuscatedName("o")
 	@Export("persist")
 	public boolean persist;
 
 	static {
-		VarcInt_cached = new EvictingDualNodeHashTable(64); // L: 11
+		VarcInt_cached = new EvictingDualNodeHashTable(64);
 	}
 
 	VarcInt() {
-		this.persist = false; // L: 12
-	} // L: 14
+		this.persist = false;
+	}
 
-	@ObfuscatedName("u")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "(Lnu;B)V",
-		garbageValue = "-9"
+		descriptor = "(Lnk;I)V",
+		garbageValue = "1372759053"
 	)
-	void method4933(Buffer var1) {
+	void method2659(Buffer var1) {
 		while (true) {
-			int var2 = var1.readUnsignedByte(); // L: 32
-			if (var2 == 0) { // L: 33
-				return; // L: 36
+			int var2 = var1.readUnsignedByte();
+			if (var2 == 0) {
+				return;
 			}
 
-			this.method4934(var1, var2); // L: 34
+			this.method2657(var1, var2);
 		}
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("g")
 	@ObfuscatedSignature(
-		descriptor = "(Lnu;II)V",
-		garbageValue = "635398124"
+		descriptor = "(Lnk;IB)V",
+		garbageValue = "0"
 	)
-	void method4934(Buffer var1, int var2) {
-		if (var2 == 2) { // L: 39
-			this.persist = true; // L: 40
+	void method2657(Buffer var1, int var2) {
+		if (var2 == 2) {
+			this.persist = true;
 		}
 
-	} // L: 43
+	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "([BIII)Ljava/lang/String;",
-		garbageValue = "20641087"
+		descriptor = "([Lbc;II[I[II)V",
+		garbageValue = "-2096948369"
 	)
-	public static String method4940(byte[] var0, int var1, int var2) {
-		StringBuilder var3 = new StringBuilder(); // L: 58
+	@Export("sortWorlds")
+	static void sortWorlds(World[] var0, int var1, int var2, int[] var3, int[] var4) {
+		if (var1 < var2) {
+			int var5 = var1 - 1;
+			int var6 = var2 + 1;
+			int var7 = (var2 + var1) / 2;
+			World var8 = var0[var7];
+			var0[var7] = var0[var1];
+			var0[var1] = var8;
 
-		for (int var4 = var1; var4 < var2 + var1; var4 += 3) { // L: 59
-			int var5 = var0[var4] & 255; // L: 60
-			var3.append(class301.field3751[var5 >>> 2]); // L: 61
-			if (var4 < var2 - 1) { // L: 62
-				int var6 = var0[var4 + 1] & 255; // L: 63
-				var3.append(class301.field3751[(var5 & 3) << 4 | var6 >>> 4]); // L: 64
-				if (var4 < var2 - 2) { // L: 65
-					int var7 = var0[var4 + 2] & 255; // L: 66
-					var3.append(class301.field3751[(var6 & 15) << 2 | var7 >>> 6]).append(class301.field3751[var7 & 63]); // L: 67
-				} else {
-					var3.append(class301.field3751[(var6 & 15) << 2]).append("="); // L: 69
+			while (var5 < var6) {
+				boolean var9 = true;
+
+				int var10;
+				int var11;
+				int var12;
+				do {
+					--var6;
+
+					for (var10 = 0; var10 < 4; ++var10) {
+						if (var3[var10] == 2) {
+							var11 = var0[var6].index;
+							var12 = var8.index;
+						} else if (var3[var10] == 1) {
+							var11 = var0[var6].population;
+							var12 = var8.population;
+							if (var11 == -1 && var4[var10] == 1) {
+								var11 = 2001;
+							}
+
+							if (var12 == -1 && var4[var10] == 1) {
+								var12 = 2001;
+							}
+						} else if (var3[var10] == 3) {
+							var11 = var0[var6].isMembersOnly() ? 1 : 0;
+							var12 = var8.isMembersOnly() ? 1 : 0;
+						} else {
+							var11 = var0[var6].id;
+							var12 = var8.id;
+						}
+
+						if (var11 != var12) {
+							if ((var4[var10] != 1 || var11 <= var12) && (var4[var10] != 0 || var11 >= var12)) {
+								var9 = false;
+							}
+							break;
+						}
+
+						if (var10 == 3) {
+							var9 = false;
+						}
+					}
+				} while(var9);
+
+				var9 = true;
+
+				do {
+					++var5;
+
+					for (var10 = 0; var10 < 4; ++var10) {
+						if (var3[var10] == 2) {
+							var11 = var0[var5].index;
+							var12 = var8.index;
+						} else if (var3[var10] == 1) {
+							var11 = var0[var5].population;
+							var12 = var8.population;
+							if (var11 == -1 && var4[var10] == 1) {
+								var11 = 2001;
+							}
+
+							if (var12 == -1 && var4[var10] == 1) {
+								var12 = 2001;
+							}
+						} else if (var3[var10] == 3) {
+							var11 = var0[var5].isMembersOnly() ? 1 : 0;
+							var12 = var8.isMembersOnly() ? 1 : 0;
+						} else {
+							var11 = var0[var5].id;
+							var12 = var8.id;
+						}
+
+						if (var12 != var11) {
+							if ((var4[var10] != 1 || var11 >= var12) && (var4[var10] != 0 || var11 <= var12)) {
+								var9 = false;
+							}
+							break;
+						}
+
+						if (var10 == 3) {
+							var9 = false;
+						}
+					}
+				} while(var9);
+
+				if (var5 < var6) {
+					World var13 = var0[var5];
+					var0[var5] = var0[var6];
+					var0[var6] = var13;
 				}
-			} else {
-				var3.append(class301.field3751[(var5 & 3) << 4]).append("=="); // L: 71
 			}
+
+			sortWorlds(var0, var1, var6, var3, var4);
+			sortWorlds(var0, var6 + 1, var2, var3, var4);
 		}
 
-		return var3.toString(); // L: 73
 	}
 
-	@ObfuscatedName("au")
+	@ObfuscatedName("kx")
 	@ObfuscatedSignature(
-		descriptor = "(ILcc;ZI)I",
-		garbageValue = "-581975107"
+		descriptor = "(Liv;I)V",
+		garbageValue = "685963148"
 	)
-	static int method4941(int var0, Script var1, boolean var2) {
-		if (var0 == 6900) { // L: 4155
-			++Interpreter.Interpreter_stringStackSize; // L: 4156
-			return 1; // L: 4157
-		} else if (var0 == 6950) { // L: 4159
-			++class16.Interpreter_intStackSize; // L: 4160
-			return 1; // L: 4161
-		} else {
-			return 2; // L: 4163
+	static final void method2656(Widget var0) {
+		int var1 = var0.contentType;
+		if (var1 == 324) {
+			if (Client.field630 == -1) {
+				Client.field630 = var0.spriteId2;
+				Client.field631 = var0.spriteId;
+			}
+
+			if (Client.playerAppearance.isFemale) {
+				var0.spriteId2 = Client.field630;
+			} else {
+				var0.spriteId2 = Client.field631;
+			}
+
+		} else if (var1 == 325) {
+			if (Client.field630 == -1) {
+				Client.field630 = var0.spriteId2;
+				Client.field631 = var0.spriteId;
+			}
+
+			if (Client.playerAppearance.isFemale) {
+				var0.spriteId2 = Client.field631;
+			} else {
+				var0.spriteId2 = Client.field630;
+			}
+
+		} else if (var1 == 327) {
+			var0.modelAngleX = 150;
+			var0.modelAngleY = (int)(Math.sin((double)Client.cycle / 40.0D) * 256.0D) & 2047;
+			var0.modelType = 5;
+			var0.modelId = 0;
+		} else if (var1 == 328) {
+			var0.modelAngleX = 150;
+			var0.modelAngleY = (int)(Math.sin((double)Client.cycle / 40.0D) * 256.0D) & 2047;
+			var0.modelType = 5;
+			var0.modelId = 1;
 		}
 	}
 }
