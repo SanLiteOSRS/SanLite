@@ -114,6 +114,13 @@ tasks {
         classpath = project.sourceSets.main.get().runtimeClasspath
         main = "net.runelite.deob.updater.UpdateMappings"
     }
+
+    register<JavaExec>("ClientVersion\$main()") {
+        group = "gamepack"
+
+        classpath = project.sourceSets.main.get().runtimeClasspath
+        main = "net.runelite.deob.clientver.ClientVersionMain"
+    }
 }
 
 publishing {
