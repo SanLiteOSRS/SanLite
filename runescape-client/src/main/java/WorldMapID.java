@@ -4,74 +4,59 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ff")
+@ObfuscatedName("fr")
 @Implements("WorldMapID")
 public class WorldMapID {
-	@ObfuscatedName("h")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "Lff;"
+		descriptor = "Lfr;"
 	)
-	static final WorldMapID field2099;
-	@ObfuscatedName("c")
+	static final WorldMapID field2110;
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "Lff;"
+		descriptor = "Lfr;"
 	)
-	static final WorldMapID field2100;
-	@ObfuscatedName("o")
+	static final WorldMapID field2107;
+	@ObfuscatedName("d")
+	static int[] field2112;
+	@ObfuscatedName("be")
+	@ObfuscatedSignature(
+		descriptor = "Lop;"
+	)
+	@Export("worldSelectRightSprite")
+	static IndexedSprite worldSelectRightSprite;
+	@ObfuscatedName("do")
+	@ObfuscatedSignature(
+		descriptor = "Lls;"
+	)
+	@Export("js5Socket")
+	static AbstractSocket js5Socket;
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = 1258140299
+		intValue = 1539271557
 	)
 	@Export("value")
 	final int value;
 
 	static {
-		field2099 = new WorldMapID(0);
-		field2100 = new WorldMapID(1);
+		field2110 = new WorldMapID(0);
+		field2107 = new WorldMapID(1);
 	}
 
 	WorldMapID(int var1) {
 		this.value = var1;
 	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(I)Z",
-		garbageValue = "490999200"
+		descriptor = "(Ljv;Ljv;Ljv;Lhp;I)Z",
+		garbageValue = "-670462193"
 	)
-	public static boolean method3587() {
-		try {
-			if (class232.musicPlayerStatus == 2) {
-				if (NPC.musicTrack == null) {
-					NPC.musicTrack = MusicTrack.readTrack(JagexCache.musicTrackArchive, class232.musicTrackGroupId, class232.musicTrackFileId);
-					if (NPC.musicTrack == null) {
-						return false;
-					}
-				}
-
-				if (class268.soundCache == null) {
-					class268.soundCache = new SoundCache(UserComparator10.soundEffectsArchive, class232.musicSamplesArchive);
-				}
-
-				if (class232.midiPcmStream.loadMusicTrack(NPC.musicTrack, class232.musicPatchesArchive, class268.soundCache, 22050)) {
-					class232.midiPcmStream.clearAll();
-					class232.midiPcmStream.setPcmStreamVolume(LoginPacket.musicTrackVolume);
-					class232.midiPcmStream.setMusicTrack(NPC.musicTrack, VarpDefinition.musicTrackBoolean);
-					class232.musicPlayerStatus = 0;
-					NPC.musicTrack = null;
-					class268.soundCache = null;
-					JagexCache.musicTrackArchive = null;
-					return true;
-				}
-			}
-		} catch (Exception var1) {
-			var1.printStackTrace();
-			class232.midiPcmStream.clear();
-			class232.musicPlayerStatus = 0;
-			NPC.musicTrack = null;
-			class268.soundCache = null;
-			JagexCache.musicTrackArchive = null;
-		}
-
-		return false;
+	public static boolean method3636(AbstractArchive var0, AbstractArchive var1, AbstractArchive var2, MidiPcmStream var3) {
+		class232.musicPatchesArchive = var0;
+		class232.musicSamplesArchive = var1;
+		WorldMapElement.soundEffectsArchive = var2;
+		class124.midiPcmStream = var3;
+		return true;
 	}
 }

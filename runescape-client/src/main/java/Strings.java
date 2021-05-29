@@ -1,99 +1,107 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jt")
+@ObfuscatedName("jo")
 @Implements("Strings")
 public class Strings {
 	@ObfuscatedName("bu")
-	public static String field3295;
-	@ObfuscatedName("cl")
-	public static String field3334;
-	@ObfuscatedName("jj")
-	public static String field3439;
-	@ObfuscatedName("jg")
+	public static String field3306;
+	@ObfuscatedName("cu")
+	public static String field3327;
+	@ObfuscatedName("jy")
 	public static String field3503;
-	@ObfuscatedName("ji")
-	public static String field3512;
+	@ObfuscatedName("jg")
+	public static String field3504;
+	@ObfuscatedName("jp")
+	public static String field3505;
 
 	static {
-		field3295 = "Please visit the support page for assistance.";
-		field3334 = "Please visit the support page for assistance.";
-		field3439 = "";
-		field3503 = "Page has opened in a new window.";
-		field3512 = "(Please check your popup blocker.)";
+		field3306 = "Please visit the support page for assistance.";
+		field3327 = "Please visit the support page for assistance.";
+		field3503 = "";
+		field3504 = "Page has opened in a new window.";
+		field3505 = "(Please check your popup blocker.)";
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("gw")
 	@ObfuscatedSignature(
-		descriptor = "(II)Lez;",
-		garbageValue = "1535423962"
+		descriptor = "(Lcy;I)V",
+		garbageValue = "-1661416870"
 	)
-	@Export("ItemDefinition_get")
-	public static ItemComposition ItemDefinition_get(int var0) {
-		ItemComposition var1 = (ItemComposition)ItemComposition.ItemDefinition_cached.get((long)var0);
-		if (var1 != null) {
-			return var1;
-		} else {
-			byte[] var2 = ItemComposition.ItemDefinition_archive.takeFile(10, var0);
-			var1 = new ItemComposition();
-			var1.id = var0;
-			if (var2 != null) {
-				var1.decode(new Buffer(var2));
-			}
+	static final void method4850(Actor var0) {
+		if (var0.field1289 != 0) {
+			if (var0.targetIndex != -1) {
+				Object var1 = null;
+				if (var0.targetIndex < 32768) {
+					var1 = Client.npcs[var0.targetIndex];
+				} else if (var0.targetIndex >= 32768) {
+					var1 = Client.players[var0.targetIndex - 32768];
+				}
 
-			var1.post();
-			if (var1.noteTemplate != -1) {
-				var1.genCert(ItemDefinition_get(var1.noteTemplate), ItemDefinition_get(var1.note));
-			}
-
-			if (var1.notedId != -1) {
-				var1.genBought(ItemDefinition_get(var1.notedId), ItemDefinition_get(var1.unnotedId));
-			}
-
-			if (var1.placeholderTemplate != -1) {
-				var1.genPlaceholder(ItemDefinition_get(var1.placeholderTemplate), ItemDefinition_get(var1.placeholder));
-			}
-
-			if (!BufferedNetSocket.ItemDefinition_inMembersWorld && var1.isMembersOnly) {
-				var1.name = "Members object";
-				var1.isTradable = false;
-				var1.groundActions = null;
-				var1.inventoryActions = null;
-				var1.shiftClickIndex = -1;
-				var1.team = 0;
-				if (var1.params != null) {
-					boolean var3 = false;
-
-					for (Node var4 = var1.params.first(); var4 != null; var4 = var1.params.next()) {
-						ParamComposition var5 = WorldMapElement.getParamDefinition((int)var4.key);
-						if (var5.autoDisable) {
-							var4.remove();
-						} else {
-							var3 = true;
-						}
+				if (var1 != null) {
+					int var2 = var0.x - ((Actor)var1).x;
+					int var3 = var0.y - ((Actor)var1).y;
+					if (var2 != 0 || var3 != 0) {
+						var0.orientation = (int)(Math.atan2((double)var2, (double)var3) * 325.949D) & 2047;
 					}
-
-					if (!var3) {
-						var1.params = null;
-					}
+				} else if (var0.false0) {
+					var0.targetIndex = -1;
+					var0.false0 = false;
 				}
 			}
 
-			ItemComposition.ItemDefinition_cached.put(var1, (long)var0);
-			return var1;
-		}
-	}
+			if (var0.field1264 != -1 && (var0.pathLength == 0 || var0.field1294 > 0)) {
+				var0.orientation = var0.field1264;
+				var0.field1264 = -1;
+			}
 
-	@ObfuscatedName("jf")
-	@ObfuscatedSignature(
-		descriptor = "(IIIZI)V",
-		garbageValue = "-1449127026"
-	)
-	static final void method4801(int var0, int var1, int var2, boolean var3) {
-		if (UserComparator8.loadInterface(var0)) {
-			Login.resizeInterface(Widget.Widget_interfaceComponents[var0], -1, var1, var2, var3);
+			int var4 = var0.orientation - var0.rotation & 2047;
+			if (var4 == 0 && var0.false0) {
+				var0.targetIndex = -1;
+				var0.false0 = false;
+			}
+
+			if (var4 != 0) {
+				++var0.field1282;
+				boolean var6;
+				if (var4 > 1024) {
+					var0.rotation -= var0.field1289;
+					var6 = true;
+					if (var4 < var0.field1289 || var4 > 2048 - var0.field1289) {
+						var0.rotation = var0.orientation;
+						var6 = false;
+					}
+
+					if (var0.idleSequence == var0.movementSequence && (var0.field1282 > 25 || var6)) {
+						if (var0.turnLeftSequence != -1) {
+							var0.movementSequence = var0.turnLeftSequence;
+						} else {
+							var0.movementSequence = var0.walkSequence;
+						}
+					}
+				} else {
+					var0.rotation += var0.field1289;
+					var6 = true;
+					if (var4 < var0.field1289 || var4 > 2048 - var0.field1289) {
+						var0.rotation = var0.orientation;
+						var6 = false;
+					}
+
+					if (var0.movementSequence == var0.idleSequence && (var0.field1282 > 25 || var6)) {
+						if (var0.turnRightSequence != -1) {
+							var0.movementSequence = var0.turnRightSequence;
+						} else {
+							var0.movementSequence = var0.walkSequence;
+						}
+					}
+				}
+
+				var0.rotation &= 2047;
+			} else {
+				var0.field1282 = 0;
+			}
+
 		}
 	}
 }

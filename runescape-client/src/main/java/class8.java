@@ -3,80 +3,105 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("b")
+@ObfuscatedName("d")
 public class class8 extends class14 {
-	@ObfuscatedName("iz")
-	@ObfuscatedGetter(
-		intValue = -1034378325
+	@ObfuscatedName("o")
+	public static boolean field75;
+	@ObfuscatedName("dx")
+	@ObfuscatedSignature(
+		descriptor = "Ljp;"
 	)
-	@Export("selectedItemId")
-	static int selectedItemId;
-	@ObfuscatedName("h")
-	@ObfuscatedGetter(
-		longValue = 1767734013338974575L
+	@Export("archive2")
+	static Archive archive2;
+	@ObfuscatedName("ed")
+	@ObfuscatedSignature(
+		descriptor = "Ljp;"
 	)
-	long field69;
-	@ObfuscatedName("c")
-	String field68;
+	@Export("archive17")
+	static Archive archive17;
+	@ObfuscatedName("v")
+	@ObfuscatedGetter(
+		longValue = 5988895091532737889L
+	)
+	long field77;
+	@ObfuscatedName("n")
+	String field71;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Lo;"
+		descriptor = "Lf;"
 	)
 	final class2 this$0;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lo;)V"
+		descriptor = "(Lf;)V"
 	)
 	class8(class2 var1) {
 		this.this$0 = var1;
-		this.field69 = -1L;
-		this.field68 = null;
+		this.field77 = -1L;
+		this.field71 = null;
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(Lnk;I)V",
-		garbageValue = "110401227"
+		descriptor = "(Lnd;I)V",
+		garbageValue = "-1281352827"
 	)
-	void vmethod339(Buffer var1) {
+	void vmethod276(Buffer var1) {
 		if (var1.readUnsignedByte() != 255) {
 			--var1.offset;
-			this.field69 = var1.readLong();
+			this.field77 = var1.readLong();
 		}
 
-		this.field68 = var1.readStringCp1252NullTerminatedOrNull();
+		this.field71 = var1.readStringCp1252NullTerminatedOrNull();
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "(Lx;I)V",
-		garbageValue = "-1535989118"
+		descriptor = "(Ll;B)V",
+		garbageValue = "29"
 	)
-	void vmethod338(class11 var1) {
-		var1.method117(this.field69, this.field68, 0);
+	void vmethod281(class11 var1) {
+		var1.method103(this.field77, this.field71, 0);
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
-		descriptor = "(IS)Ley;",
-		garbageValue = "788"
+		descriptor = "(ILcf;ZB)I",
+		garbageValue = "-51"
 	)
-	@Export("getNpcDefinition")
-	public static NPCComposition getNpcDefinition(int var0) {
-		NPCComposition var1 = (NPCComposition)NPCComposition.NpcDefinition_cached.get((long)var0);
-		if (var1 != null) {
-			return var1;
-		} else {
-			byte[] var2 = NPCComposition.NpcDefinition_archive.takeFile(9, var0);
-			var1 = new NPCComposition();
-			var1.id = var0;
-			if (var2 != null) {
-				var1.decode(new Buffer(var2));
+	static int method82(int var0, Script var1, boolean var2) {
+		if (var0 == 7100) {
+			++class44.Interpreter_intStackSize;
+			return 1;
+		} else if (var0 == 7101) {
+			Interpreter.Interpreter_stringStackSize += 2;
+			return 1;
+		} else if (var0 != 7102 && var0 != 7103 && var0 != 7104 && var0 != 7105 && var0 != 7109) {
+			if (var0 == 7106) {
+				++class44.Interpreter_intStackSize;
+				return 1;
+			} else if (var0 == 7107) {
+				++class44.Interpreter_intStackSize;
+				return 1;
+			} else if (var0 == 7108) {
+				Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = WorldMapIcon_1.method3235() ? 1 : 0;
+				return 1;
+			} else {
+				return 2;
 			}
-
-			var1.postDecode();
-			NPCComposition.NpcDefinition_cached.put(var1, (long)var0);
-			return var1;
+		} else {
+			++class44.Interpreter_intStackSize;
+			return 1;
 		}
+	}
+
+	@ObfuscatedName("jp")
+	@ObfuscatedSignature(
+		descriptor = "(I)Z",
+		garbageValue = "-1387423967"
+	)
+	@Export("getTapToDrop")
+	static boolean getTapToDrop() {
+		return Client.tapToDrop;
 	}
 }

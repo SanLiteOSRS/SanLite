@@ -3,36 +3,40 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("fa")
+@ObfuscatedName("fz")
 @Implements("CollisionMap")
 public class CollisionMap {
-	@ObfuscatedName("al")
+	@ObfuscatedName("dq")
+	@ObfuscatedSignature(
+		descriptor = "Ljp;"
+	)
+	static Archive field1903;
+	@ObfuscatedName("ag")
 	@ObfuscatedGetter(
-		intValue = 1848440881
+		intValue = 280751135
 	)
 	@Export("xInset")
-	public int xInset;
-	@ObfuscatedName("ap")
+	int xInset;
+	@ObfuscatedName("ax")
 	@ObfuscatedGetter(
-		intValue = -344240049
+		intValue = -992681321
 	)
 	@Export("yInset")
-	public int yInset;
-	@ObfuscatedName("am")
+	int yInset;
+	@ObfuscatedName("as")
 	@ObfuscatedGetter(
-		intValue = 973299583
+		intValue = 960002853
 	)
 	@Export("xSize")
 	int xSize;
-	@ObfuscatedName("ax")
+	@ObfuscatedName("aj")
 	@ObfuscatedGetter(
-		intValue = -2082361781
+		intValue = 1646122993
 	)
 	@Export("ySize")
 	int ySize;
-	@ObfuscatedName("ak")
+	@ObfuscatedName("am")
 	@Export("flags")
 	public int[][] flags;
 
@@ -45,10 +49,10 @@ public class CollisionMap {
 		this.clear();
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "2125907821"
+		garbageValue = "1513589499"
 	)
 	@Export("clear")
 	public void clear() {
@@ -64,12 +68,12 @@ public class CollisionMap {
 
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
 		descriptor = "(IIIIZI)V",
-		garbageValue = "207593472"
+		garbageValue = "-1946469678"
 	)
-	public void method3094(int var1, int var2, int var3, int var4, boolean var5) {
+	public void method3164(int var1, int var2, int var3, int var4, boolean var5) {
 		var1 -= this.xInset;
 		var2 -= this.yInset;
 		if (var3 == 0) {
@@ -216,10 +220,10 @@ public class CollisionMap {
 
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(IIIIZB)V",
-		garbageValue = "15"
+		descriptor = "(IIIIZI)V",
+		garbageValue = "281902458"
 	)
 	@Export("addGameObject")
 	public void addGameObject(int var1, int var2, int var3, int var4, boolean var5) {
@@ -243,10 +247,10 @@ public class CollisionMap {
 
 	}
 
-	@ObfuscatedName("g")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
 		descriptor = "(III)V",
-		garbageValue = "-1507041806"
+		garbageValue = "-1025691571"
 	)
 	@Export("setBlockedByFloor")
 	public void setBlockedByFloor(int var1, int var2) {
@@ -256,10 +260,10 @@ public class CollisionMap {
 		var10000[var2] |= 2097152;
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
 		descriptor = "(III)V",
-		garbageValue = "-1454787756"
+		garbageValue = "-323601081"
 	)
 	@Export("setBlockedByFloorDec")
 	public void setBlockedByFloorDec(int var1, int var2) {
@@ -269,10 +273,10 @@ public class CollisionMap {
 		var10000[var2] |= 262144;
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
 		descriptor = "(IIII)V",
-		garbageValue = "1498371160"
+		garbageValue = "1796762342"
 	)
 	@Export("setFlag")
 	void setFlag(int var1, int var2, int var3) {
@@ -280,12 +284,12 @@ public class CollisionMap {
 		var10000[var2] |= var3;
 	}
 
-	@ObfuscatedName("t")
+	@ObfuscatedName("r")
 	@ObfuscatedSignature(
 		descriptor = "(IIIIZI)V",
-		garbageValue = "68640304"
+		garbageValue = "2020526331"
 	)
-	public void method3099(int var1, int var2, int var3, int var4, boolean var5) {
+	public void method3156(int var1, int var2, int var3, int var4, boolean var5) {
 		var1 -= this.xInset;
 		var2 -= this.yInset;
 		if (var3 == 0) {
@@ -432,10 +436,10 @@ public class CollisionMap {
 
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
 		descriptor = "(IIIIIZI)V",
-		garbageValue = "-573687075"
+		garbageValue = "1639638094"
 	)
 	@Export("setFlagOffNonSquare")
 	public void setFlagOffNonSquare(int var1, int var2, int var3, int var4, int var5, boolean var6) {
@@ -465,10 +469,10 @@ public class CollisionMap {
 
 	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
 		descriptor = "(IIII)V",
-		garbageValue = "1089758431"
+		garbageValue = "-308385855"
 	)
 	@Export("setFlagOff")
 	void setFlagOff(int var1, int var2, int var3) {
@@ -476,127 +480,100 @@ public class CollisionMap {
 		var10000[var2] &= ~var3;
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
 		descriptor = "(III)V",
-		garbageValue = "-143187538"
+		garbageValue = "-118708245"
 	)
-	public void method3102(int var1, int var2) {
+	public void method3150(int var1, int var2) {
 		var1 -= this.xInset;
 		var2 -= this.yInset;
 		int[] var10000 = this.flags[var1];
 		var10000[var2] &= -262145;
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "(ILci;ZI)I",
-		garbageValue = "2011512595"
+		descriptor = "(II)I",
+		garbageValue = "832294555"
 	)
-	static int method3127(int var0, Script var1, boolean var2) {
-		int var3;
-		int var6;
-		int var9;
-		if (var0 == ScriptOpcodes.ENUM_STRING) {
-			WorldMapCacheName.Interpreter_intStackSize -= 2;
-			var3 = Interpreter.Interpreter_intStack[WorldMapCacheName.Interpreter_intStackSize];
-			var9 = Interpreter.Interpreter_intStack[WorldMapCacheName.Interpreter_intStackSize + 1];
-			EnumComposition var10 = ViewportMouse.getEnum(var3);
-			if (var10.outputType != 's') {
-			}
-
-			for (var6 = 0; var6 < var10.outputCount; ++var6) {
-				if (var9 == var10.keys[var6]) {
-					Interpreter.Interpreter_stringStack[++class13.Interpreter_stringStackSize - 1] = var10.strVals[var6];
-					var10 = null;
-					break;
-				}
-			}
-
-			if (var10 != null) {
-				Interpreter.Interpreter_stringStack[++class13.Interpreter_stringStackSize - 1] = var10.defaultStr;
-			}
-
-			return 1;
-		} else if (var0 != ScriptOpcodes.ENUM) {
-			if (var0 == ScriptOpcodes.ENUM_GETOUTPUTCOUNT) {
-				var3 = Interpreter.Interpreter_intStack[--WorldMapCacheName.Interpreter_intStackSize];
-				EnumComposition var4 = ViewportMouse.getEnum(var3);
-				Interpreter.Interpreter_intStack[++WorldMapCacheName.Interpreter_intStackSize - 1] = var4.size();
-				return 1;
-			} else {
-				return 2;
-			}
-		} else {
-			WorldMapCacheName.Interpreter_intStackSize -= 4;
-			var3 = Interpreter.Interpreter_intStack[WorldMapCacheName.Interpreter_intStackSize];
-			var9 = Interpreter.Interpreter_intStack[WorldMapCacheName.Interpreter_intStackSize + 1];
-			int var5 = Interpreter.Interpreter_intStack[WorldMapCacheName.Interpreter_intStackSize + 2];
-			var6 = Interpreter.Interpreter_intStack[WorldMapCacheName.Interpreter_intStackSize + 3];
-			EnumComposition var7 = ViewportMouse.getEnum(var5);
-			if (var3 == var7.inputType && var9 == var7.outputType) {
-				for (int var8 = 0; var8 < var7.outputCount; ++var8) {
-					if (var6 == var7.keys[var8]) {
-						if (var9 == 115) {
-							Interpreter.Interpreter_stringStack[++class13.Interpreter_stringStackSize - 1] = var7.strVals[var8];
-						} else {
-							Interpreter.Interpreter_intStack[++WorldMapCacheName.Interpreter_intStackSize - 1] = var7.intVals[var8];
-						}
-
-						var7 = null;
-						break;
-					}
-				}
-
-				if (var7 != null) {
-					if (var9 == 115) {
-						Interpreter.Interpreter_stringStack[++class13.Interpreter_stringStackSize - 1] = var7.defaultStr;
-					} else {
-						Interpreter.Interpreter_intStack[++WorldMapCacheName.Interpreter_intStackSize - 1] = var7.defaultInt;
-					}
-				}
-
-				return 1;
-			} else {
-				if (var9 == 115) {
-					Interpreter.Interpreter_stringStack[++class13.Interpreter_stringStackSize - 1] = "null";
-				} else {
-					Interpreter.Interpreter_intStack[++WorldMapCacheName.Interpreter_intStackSize - 1] = 0;
-				}
-
-				return 1;
-			}
-		}
+	public static int method3185(int var0) {
+		return class230.field2814[var0];
 	}
 
-	@ObfuscatedName("az")
+	@ObfuscatedName("r")
 	@ObfuscatedSignature(
-		descriptor = "(ILci;ZI)I",
-		garbageValue = "-308143601"
+		descriptor = "(II)I",
+		garbageValue = "-687702354"
 	)
-	static int method3110(int var0, Script var1, boolean var2) {
-		if (var0 == 7100) {
-			++WorldMapCacheName.Interpreter_intStackSize;
-			return 1;
-		} else if (var0 == 7101) {
-			class13.Interpreter_stringStackSize += 2;
-			return 1;
-		} else if (var0 != 7102 && var0 != 7103 && var0 != 7104 && var0 != 7105 && var0 != 7109) {
-			if (var0 == 7106) {
-				++WorldMapCacheName.Interpreter_intStackSize;
-				return 1;
-			} else if (var0 == 7107) {
-				++WorldMapCacheName.Interpreter_intStackSize;
-				return 1;
-			} else if (var0 == 7108) {
-				Interpreter.Interpreter_intStack[++WorldMapCacheName.Interpreter_intStackSize - 1] = class11.method190() ? 1 : 0;
-				return 1;
-			} else {
-				return 2;
-			}
-		} else {
-			++WorldMapCacheName.Interpreter_intStackSize;
-			return 1;
+	@Export("iLog")
+	public static int iLog(int var0) {
+		int var1 = 0;
+		if (var0 < 0 || var0 >= 65536) {
+			var0 >>>= 16;
+			var1 += 16;
 		}
+
+		if (var0 >= 256) {
+			var0 >>>= 8;
+			var1 += 8;
+		}
+
+		if (var0 >= 16) {
+			var0 >>>= 4;
+			var1 += 4;
+		}
+
+		if (var0 >= 4) {
+			var0 >>>= 2;
+			var1 += 2;
+		}
+
+		if (var0 >= 1) {
+			var0 >>>= 1;
+			++var1;
+		}
+
+		return var0 + var1;
+	}
+
+	@ObfuscatedName("gs")
+	@ObfuscatedSignature(
+		descriptor = "(II)V",
+		garbageValue = "847550164"
+	)
+	@Export("setWindowedMode")
+	static void setWindowedMode(int var0) {
+		Client.field858 = 0L;
+		if (var0 >= 2) {
+			Client.isResizable = true;
+		} else {
+			Client.isResizable = false;
+		}
+
+		if (SpotAnimationDefinition.getWindowedMode() == 1) {
+			class23.client.setMaxCanvasSize(765, 503);
+		} else {
+			class23.client.setMaxCanvasSize(7680, 2160);
+		}
+
+		if (Client.gameState >= 25) {
+			PacketBufferNode var1 = class21.getPacketBufferNode(ClientPacket.field2662, Client.packetWriter.isaacCipher);
+			var1.packetBuffer.writeByte(SpotAnimationDefinition.getWindowedMode());
+			var1.packetBuffer.writeShort(class32.canvasWidth);
+			var1.packetBuffer.writeShort(ReflectionCheck.canvasHeight);
+			Client.packetWriter.addNode(var1);
+		}
+
+	}
+
+	@ObfuscatedName("kp")
+	@ObfuscatedSignature(
+		descriptor = "(B)V",
+		garbageValue = "16"
+	)
+	static final void method3155() {
+		Client.field844 = Client.cycleCntr;
+		MusicPatch.ClanChat_inClanChat = true;
 	}
 }

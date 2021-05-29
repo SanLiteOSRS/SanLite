@@ -4,72 +4,72 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hw")
+@ObfuscatedName("ho")
 @Implements("WallDecoration")
 public final class WallDecoration {
-	@ObfuscatedName("h")
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = 1910058323
+		intValue = -1988235731
 	)
 	@Export("tileHeight")
 	int tileHeight;
-	@ObfuscatedName("c")
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = -620664259
+		intValue = 1511932377
 	)
 	@Export("x")
 	int x;
-	@ObfuscatedName("o")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = -476919717
+		intValue = 750074813
 	)
 	@Export("y")
 	int y;
-	@ObfuscatedName("g")
+	@ObfuscatedName("y")
 	@ObfuscatedGetter(
-		intValue = -1074211039
+		intValue = 1760283661
 	)
 	@Export("orientation")
 	int orientation;
-	@ObfuscatedName("l")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = -112472913
+		intValue = 1111812521
 	)
 	@Export("orientation2")
 	int orientation2;
-	@ObfuscatedName("z")
+	@ObfuscatedName("j")
 	@ObfuscatedGetter(
-		intValue = 290888717
+		intValue = -2026318183
 	)
 	@Export("xOffset")
 	int xOffset;
-	@ObfuscatedName("t")
+	@ObfuscatedName("r")
 	@ObfuscatedGetter(
-		intValue = -2143429633
+		intValue = 1292762417
 	)
 	@Export("yOffset")
 	int yOffset;
-	@ObfuscatedName("v")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		descriptor = "Lge;"
+		descriptor = "Lgl;"
 	)
 	@Export("renderable1")
 	public Renderable renderable1;
-	@ObfuscatedName("b")
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		descriptor = "Lge;"
+		descriptor = "Lgl;"
 	)
 	@Export("renderable2")
 	public Renderable renderable2;
-	@ObfuscatedName("q")
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		longValue = -1980240772236369191L
+		longValue = 3146556658035252985L
 	)
 	@Export("tag")
 	public long tag;
-	@ObfuscatedName("i")
+	@ObfuscatedName("u")
 	@ObfuscatedGetter(
-		intValue = -1664684485
+		intValue = -740686461
 	)
 	@Export("flags")
 	int flags;
@@ -77,37 +77,5 @@ public final class WallDecoration {
 	WallDecoration() {
 		this.tag = 0L;
 		this.flags = 0;
-	}
-
-	@ObfuscatedName("l")
-	@ObfuscatedSignature(
-		descriptor = "(IB)V",
-		garbageValue = "-10"
-	)
-	public static void method4234(int var0) {
-		if (var0 != -1) {
-			if (class5.Widget_loadedInterfaces[var0]) {
-				GrandExchangeOffer.Widget_archive.clearFilesGroup(var0);
-				if (Widget.Widget_interfaceComponents[var0] != null) {
-					boolean var1 = true;
-
-					for (int var2 = 0; var2 < Widget.Widget_interfaceComponents[var0].length; ++var2) {
-						if (Widget.Widget_interfaceComponents[var0][var2] != null) {
-							if (Widget.Widget_interfaceComponents[var0][var2].type != 2) {
-								Widget.Widget_interfaceComponents[var0][var2] = null;
-							} else {
-								var1 = false;
-							}
-						}
-					}
-
-					if (var1) {
-						Widget.Widget_interfaceComponents[var0] = null;
-					}
-
-					class5.Widget_loadedInterfaces[var0] = false;
-				}
-			}
-		}
 	}
 }

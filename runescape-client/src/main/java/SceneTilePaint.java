@@ -3,46 +3,47 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("gh")
+@ObfuscatedName("ga")
 @Implements("SceneTilePaint")
 public final class SceneTilePaint {
-	@ObfuscatedName("h")
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = 106917001
+		intValue = 1657490379
 	)
 	@Export("swColor")
 	int swColor;
-	@ObfuscatedName("c")
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = -1198653441
+		intValue = -338901479
 	)
 	@Export("seColor")
 	int seColor;
-	@ObfuscatedName("o")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = 62824417
+		intValue = 74746585
 	)
 	@Export("neColor")
 	int neColor;
-	@ObfuscatedName("g")
+	@ObfuscatedName("y")
 	@ObfuscatedGetter(
-		intValue = -790767125
+		intValue = -1630451137
 	)
 	@Export("nwColor")
 	int nwColor;
-	@ObfuscatedName("l")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = 1418532851
+		intValue = -80564939
 	)
 	@Export("texture")
 	int texture;
-	@ObfuscatedName("z")
+	@ObfuscatedName("j")
 	@Export("isFlat")
 	boolean isFlat;
-	@ObfuscatedName("t")
+	@ObfuscatedName("r")
 	@ObfuscatedGetter(
-		intValue = -940535567
+		intValue = 426134523
 	)
 	@Export("rgb")
 	int rgb;
@@ -58,104 +59,100 @@ public final class SceneTilePaint {
 		this.isFlat = var7;
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "(IIII)Lci;",
-		garbageValue = "-313203913"
+		descriptor = "(ILcf;ZB)I",
+		garbageValue = "1"
 	)
-	@Export("getWorldMapScript")
-	static Script getWorldMapScript(int var0, int var1, int var2) {
-		int var3 = (var1 << 8) + var0;
-		Script var6 = (Script)Script.Script_cached.get((long)(var3 << 16));
-		Script var5;
-		if (var6 != null) {
-			var5 = var6;
+	static int method4258(int var0, Script var1, boolean var2) {
+		Widget var3 = var2 ? class13.scriptDotWidget : Interpreter.scriptActiveWidget;
+		if (var0 == ScriptOpcodes.CC_GETX) {
+			Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = var3.x;
+			return 1;
+		} else if (var0 == ScriptOpcodes.CC_GETY) {
+			Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = var3.y;
+			return 1;
+		} else if (var0 == ScriptOpcodes.CC_GETWIDTH) {
+			Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = var3.width;
+			return 1;
+		} else if (var0 == ScriptOpcodes.CC_GETHEIGHT) {
+			Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = var3.height;
+			return 1;
+		} else if (var0 == ScriptOpcodes.CC_GETHIDE) {
+			Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = var3.isHidden ? 1 : 0;
+			return 1;
+		} else if (var0 == ScriptOpcodes.CC_GETLAYER) {
+			Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = var3.parentId;
+			return 1;
 		} else {
-			String var7 = String.valueOf(var3);
-			int var8 = class22.archive12.getGroupId(var7);
-			if (var8 == -1) {
-				var5 = null;
-			} else {
-				label58: {
-					byte[] var9 = class22.archive12.takeFileFlat(var8);
-					if (var9 != null) {
-						if (var9.length <= 1) {
-							var5 = null;
-							break label58;
-						}
-
-						var6 = class25.newScript(var9);
-						if (var6 != null) {
-							Script.Script_cached.put(var6, (long)(var3 << 16));
-							var5 = var6;
-							break label58;
-						}
-					}
-
-					var5 = null;
-				}
-			}
-		}
-
-		if (var5 != null) {
-			return var5;
-		} else {
-			int var4 = WorldMapSection2.method3202(var2, var0);
-			Script var12 = (Script)Script.Script_cached.get((long)(var4 << 16));
-			Script var13;
-			if (var12 != null) {
-				var13 = var12;
-			} else {
-				String var14 = String.valueOf(var4);
-				int var10 = class22.archive12.getGroupId(var14);
-				if (var10 == -1) {
-					var13 = null;
-				} else {
-					byte[] var11 = class22.archive12.takeFileFlat(var10);
-					if (var11 != null) {
-						if (var11.length <= 1) {
-							var13 = null;
-							return var13 != null ? var13 : null;
-						}
-
-						var12 = class25.newScript(var11);
-						if (var12 != null) {
-							Script.Script_cached.put(var12, (long)(var4 << 16));
-							var13 = var12;
-							return var13 != null ? var13 : null;
-						}
-					}
-
-					var13 = null;
-				}
-			}
-
-			return var13 != null ? var13 : null;
+			return 2;
 		}
 	}
 
-	@ObfuscatedName("ht")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		descriptor = "(IIII)I",
-		garbageValue = "-82147640"
+		descriptor = "(I)V",
+		garbageValue = "1201682368"
 	)
-	@Export("getTileHeight")
-	static final int getTileHeight(int var0, int var1, int var2) {
-		int var3 = var0 >> 7;
-		int var4 = var1 >> 7;
-		if (var3 >= 0 && var4 >= 0 && var3 <= 103 && var4 <= 103) {
-			int var5 = var2;
-			if (var2 < 3 && (Tiles.Tiles_renderFlags[1][var3][var4] & 2) == 2) {
-				var5 = var2 + 1;
-			}
+	public static void method4259() {
+		ItemComposition.ItemDefinition_cached.clear();
+		ItemComposition.ItemDefinition_cachedModels.clear();
+		ItemComposition.ItemDefinition_cachedSprites.clear();
+	}
 
-			int var6 = var0 & 127;
-			int var7 = var1 & 127;
-			int var8 = (128 - var6) * Tiles.Tiles_heights[var5][var3][var4] + Tiles.Tiles_heights[var5][var3 + 1][var4] * var6 >> 7;
-			int var9 = Tiles.Tiles_heights[var5][var3][var4 + 1] * (128 - var6) + var6 * Tiles.Tiles_heights[var5][var3 + 1][var4 + 1] >> 7;
-			return var8 * (128 - var7) + var9 * var7 >> 7;
+	@ObfuscatedName("aq")
+	@ObfuscatedSignature(
+		descriptor = "(ILcf;ZI)I",
+		garbageValue = "-1626936369"
+	)
+	static int method4260(int var0, Script var1, boolean var2) {
+		if (var0 != 7000 && var0 != 7005 && var0 != 7010 && var0 != 7015 && var0 != 7020 && var0 != 7025 && var0 != 7030 && var0 != 7035) {
+			if (var0 != 7001 && var0 != 7002 && var0 != 7011 && var0 != 7012 && var0 != 7021 && var0 != 7022) {
+				if (var0 != 7003 && var0 != 7013 && var0 != 7023) {
+					if (var0 != 7006 && var0 != 7007 && var0 != 7016 && var0 != 7017 && var0 != 7026 && var0 != 7027) {
+						if (var0 != 7008 && var0 != 7018 && var0 != 7028) {
+							if (var0 != 7031 && var0 != 7032) {
+								if (var0 == 7033) {
+									--Interpreter.Interpreter_stringStackSize;
+									return 1;
+								} else if (var0 != 7036 && var0 != 7037) {
+									if (var0 == 7038) {
+										--class44.Interpreter_intStackSize;
+										return 1;
+									} else if (var0 != 7004 && var0 != 7009 && var0 != 7014 && var0 != 7019 && var0 != 7024 && var0 != 7029 && var0 != 7034 && var0 != 7039) {
+										return 2;
+									} else {
+										--class44.Interpreter_intStackSize;
+										return 1;
+									}
+								} else {
+									class44.Interpreter_intStackSize -= 2;
+									return 1;
+								}
+							} else {
+								--Interpreter.Interpreter_stringStackSize;
+								--class44.Interpreter_intStackSize;
+								return 1;
+							}
+						} else {
+							--class44.Interpreter_intStackSize;
+							return 1;
+						}
+					} else {
+						class44.Interpreter_intStackSize -= 2;
+						return 1;
+					}
+				} else {
+					class44.Interpreter_intStackSize -= 2;
+					return 1;
+				}
+			} else {
+				class44.Interpreter_intStackSize -= 3;
+				return 1;
+			}
 		} else {
-			return 0;
+			class44.Interpreter_intStackSize -= 5;
+			return 1;
 		}
 	}
 }

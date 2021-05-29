@@ -6,104 +6,147 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bs")
+@ObfuscatedName("bo")
 @Implements("ReflectionCheck")
 public class ReflectionCheck extends Node {
-	@ObfuscatedName("rp")
+	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = -356398607
+		intValue = -1538307343
 	)
-	static int field580;
-	@ObfuscatedName("h")
+	@Export("canvasHeight")
+	public static int canvasHeight;
+	@ObfuscatedName("lz")
+	@ObfuscatedSignature(
+		descriptor = "Lcp;"
+	)
+	@Export("tempMenuAction")
+	static MenuAction tempMenuAction;
+	@ObfuscatedName("ld")
+	@ObfuscatedSignature(
+		descriptor = "Lio;"
+	)
+	static Widget field609;
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = -1554578149
+		intValue = -848582505
 	)
 	@Export("id")
 	int id;
-	@ObfuscatedName("c")
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = 1363104517
+		intValue = -637285787
 	)
 	@Export("size")
 	int size;
-	@ObfuscatedName("o")
-	@Export("operations")
-	int[] operations;
-	@ObfuscatedName("g")
-	@Export("creationErrors")
-	int[] creationErrors;
-	@ObfuscatedName("l")
-	@Export("fields")
-	Field[] fields;
-	@ObfuscatedName("z")
+	@ObfuscatedName("f")
 	@Export("intReplaceValues")
 	int[] intReplaceValues;
-	@ObfuscatedName("t")
+	@ObfuscatedName("y")
+	@Export("operations")
+	int[] operations;
+	@ObfuscatedName("p")
+	@Export("creationErrors")
+	int[] creationErrors;
+	@ObfuscatedName("j")
+	@Export("fields")
+	Field[] fields;
+	@ObfuscatedName("r")
 	@Export("methods")
 	Method[] methods;
-	@ObfuscatedName("v")
+	@ObfuscatedName("b")
 	@Export("arguments")
 	byte[][][] arguments;
 
 	ReflectionCheck() {
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("in")
 	@ObfuscatedSignature(
-		descriptor = "(III)I",
-		garbageValue = "-491303444"
+		descriptor = "(III)V",
+		garbageValue = "-372153509"
 	)
-	static int method1158(int var0, int var1) {
-		FloorOverlayDefinition var2 = WorldMapSection0.method3534(var0);
-		if (var2 == null) {
-			return var1;
-		} else if (var2.secondaryRgb >= 0) {
-			return var2.secondaryRgb | -16777216;
-		} else {
-			int var3;
-			if (var2.texture >= 0) {
-				var3 = AbstractUserComparator.method5592(Rasterizer3D.Rasterizer3D_textureLoader.getAverageTextureRGB(var2.texture), 96);
-				return Rasterizer3D.Rasterizer3D_colorPalette[var3] | -16777216;
-			} else if (var2.primaryRgb == 16711935) {
-				return var1;
-			} else {
-				var3 = class374.method6359(var2.hue, var2.saturation, var2.lightness);
-				int var4 = AbstractUserComparator.method5592(var3, 96);
-				return Rasterizer3D.Rasterizer3D_colorPalette[var4] | -16777216;
+	static void method1126(int var0, int var1) {
+		int var2 = Widget.fontBold12.stringWidth("Choose Option");
+
+		int var3;
+		int var4;
+		for (var3 = 0; var3 < Client.menuOptionsCount; ++var3) {
+			var4 = Widget.fontBold12.stringWidth(MouseRecorder.method2098(var3));
+			if (var4 > var2) {
+				var2 = var4;
 			}
 		}
-	}
 
-	@ObfuscatedName("h")
-	@ObfuscatedSignature(
-		descriptor = "(IIIB)I",
-		garbageValue = "54"
-	)
-	public static int method1159(int var0, int var1, int var2) {
-		var2 &= 3;
-		if (var2 == 0) {
-			return var1;
-		} else if (var2 == 1) {
-			return 7 - var0;
-		} else {
-			return var2 == 2 ? 7 - var1 : var0;
+		var2 += 8;
+		var3 = Client.menuOptionsCount * 15 + 22;
+		var4 = var0 - var2 / 2;
+		if (var2 + var4 > class32.canvasWidth) {
+			var4 = class32.canvasWidth - var2;
 		}
+
+		if (var4 < 0) {
+			var4 = 0;
+		}
+
+		int var5 = var1;
+		if (var1 + var3 > canvasHeight) {
+			var5 = canvasHeight - var3;
+		}
+
+		if (var5 < 0) {
+			var5 = 0;
+		}
+
+		class14.menuX = var4;
+		class243.menuY = var5;
+		class29.menuWidth = var2;
+		class24.menuHeight = Client.menuOptionsCount * 15 + 22;
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("jr")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-1090752465"
+		descriptor = "([Lio;II)V",
+		garbageValue = "2064427541"
 	)
-	static void method1157() {
-		if (Login.Login_username == null || Login.Login_username.length() <= 0) {
-			if (class12.clientPreferences.rememberedUsername != null) {
-				Login.Login_username = class12.clientPreferences.rememberedUsername;
-				Client.Login_isUsernameRemembered = true;
-			} else {
-				Client.Login_isUsernameRemembered = false;
+	@Export("runComponentCloseListeners")
+	static final void runComponentCloseListeners(Widget[] var0, int var1) {
+		for (int var2 = 0; var2 < var0.length; ++var2) {
+			Widget var3 = var0[var2];
+			if (var3 != null) {
+				if (var3.type == 0) {
+					if (var3.children != null) {
+						runComponentCloseListeners(var3.children, var1);
+					}
+
+					InterfaceParent var4 = (InterfaceParent)Client.interfaceParents.get((long)var3.id);
+					if (var4 != null) {
+						Login.runIntfCloseListeners(var4.group, var1);
+					}
+				}
+
+				ScriptEvent var5;
+				if (var1 == 0 && var3.onDialogAbort != null) {
+					var5 = new ScriptEvent();
+					var5.widget = var3;
+					var5.args = var3.onDialogAbort;
+					PacketWriter.runScriptEvent(var5);
+				}
+
+				if (var1 == 1 && var3.onSubChange != null) {
+					if (var3.childIndex >= 0) {
+						Widget var6 = Frames.getWidget(var3.id);
+						if (var6 == null || var6.children == null || var3.childIndex >= var6.children.length || var3 != var6.children[var3.childIndex]) {
+							continue;
+						}
+					}
+
+					var5 = new ScriptEvent();
+					var5.widget = var3;
+					var5.args = var3.onSubChange;
+					PacketWriter.runScriptEvent(var5);
+				}
 			}
-
 		}
+
 	}
 }

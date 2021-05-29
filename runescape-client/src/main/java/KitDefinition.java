@@ -4,69 +4,49 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("es")
+@ObfuscatedName("el")
 @Implements("KitDefinition")
 public class KitDefinition extends DualNode {
-	@ObfuscatedName("rd")
-	@ObfuscatedGetter(
-		intValue = 1875814841
-	)
-	static int field1592;
-	@ObfuscatedName("h")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "Ljp;"
-	)
-	@Export("KitDefinition_archive")
-	public static AbstractArchive KitDefinition_archive;
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "Ljp;"
+		descriptor = "Ljv;"
 	)
 	@Export("KitDefinition_modelsArchive")
-	public static AbstractArchive KitDefinition_modelsArchive;
-	@ObfuscatedName("o")
-	@ObfuscatedGetter(
-		intValue = 755505833
-	)
-	@Export("KitDefinition_fileCount")
-	public static int KitDefinition_fileCount;
-	@ObfuscatedName("g")
+	static AbstractArchive KitDefinition_modelsArchive;
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		descriptor = "Lho;"
+		descriptor = "Lhz;"
 	)
 	@Export("KitDefinition_cached")
-	public static EvictingDualNodeHashTable KitDefinition_cached;
-	@ObfuscatedName("de")
-	@ObfuscatedSignature(
-		descriptor = "Lji;"
-	)
-	@Export("archive2")
-	static Archive archive2;
-	@ObfuscatedName("l")
+	static EvictingDualNodeHashTable KitDefinition_cached;
+	@ObfuscatedName("al")
+	@Export("fontHelvetica13")
+	static java.awt.Font fontHelvetica13;
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = 341886267
+		intValue = 2136524687
 	)
 	@Export("bodypartID")
 	public int bodypartID;
-	@ObfuscatedName("z")
+	@ObfuscatedName("j")
 	@Export("models2")
 	int[] models2;
-	@ObfuscatedName("t")
+	@ObfuscatedName("r")
 	@Export("recolorFrom")
 	short[] recolorFrom;
-	@ObfuscatedName("v")
+	@ObfuscatedName("b")
 	@Export("recolorTo")
 	short[] recolorTo;
-	@ObfuscatedName("b")
+	@ObfuscatedName("d")
 	@Export("retextureFrom")
 	short[] retextureFrom;
-	@ObfuscatedName("q")
+	@ObfuscatedName("s")
 	@Export("retextureTo")
 	short[] retextureTo;
-	@ObfuscatedName("i")
+	@ObfuscatedName("u")
 	@Export("models")
 	int[] models;
-	@ObfuscatedName("x")
+	@ObfuscatedName("l")
 	@Export("nonSelectable")
 	public boolean nonSelectable;
 
@@ -80,10 +60,10 @@ public class KitDefinition extends DualNode {
 		this.nonSelectable = false;
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(Lnk;I)V",
-		garbageValue = "-1874267305"
+		descriptor = "(Lnd;I)V",
+		garbageValue = "76297691"
 	)
 	@Export("decode")
 	void decode(Buffer var1) {
@@ -97,10 +77,10 @@ public class KitDefinition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		descriptor = "(Lnk;II)V",
-		garbageValue = "1591009005"
+		descriptor = "(Lnd;II)V",
+		garbageValue = "-662659008"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
@@ -143,10 +123,10 @@ public class KitDefinition extends DualNode {
 
 	}
 
-	@ObfuscatedName("g")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		descriptor = "(B)Z",
-		garbageValue = "-81"
+		descriptor = "(I)Z",
+		garbageValue = "-2100349999"
 	)
 	@Export("ready")
 	public boolean ready() {
@@ -165,10 +145,10 @@ public class KitDefinition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
-		descriptor = "(I)Lgk;",
-		garbageValue = "-1950704441"
+		descriptor = "(I)Lgm;",
+		garbageValue = "218525675"
 	)
 	@Export("getModelData")
 	public ModelData getModelData() {
@@ -205,12 +185,12 @@ public class KitDefinition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("r")
 	@ObfuscatedSignature(
 		descriptor = "(I)Z",
-		garbageValue = "-456802974"
+		garbageValue = "-1717732165"
 	)
-	public boolean method2673() {
+	public boolean method2684() {
 		boolean var1 = true;
 
 		for (int var2 = 0; var2 < 5; ++var2) {
@@ -222,10 +202,10 @@ public class KitDefinition extends DualNode {
 		return var1;
 	}
 
-	@ObfuscatedName("t")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		descriptor = "(B)Lgk;",
-		garbageValue = "1"
+		descriptor = "(I)Lgm;",
+		garbageValue = "787356684"
 	)
 	@Export("getKitDefinitionModels")
 	public ModelData getKitDefinitionModels() {
@@ -255,25 +235,44 @@ public class KitDefinition extends DualNode {
 		return var5;
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("lc")
 	@ObfuscatedSignature(
-		descriptor = "(II)Len;",
-		garbageValue = "65280"
+		descriptor = "(Ljava/lang/String;ZI)Ljava/lang/String;",
+		garbageValue = "-1936080360"
 	)
-	@Export("getInvDefinition")
-	public static InvDefinition getInvDefinition(int var0) {
-		InvDefinition var1 = (InvDefinition)InvDefinition.InvDefinition_cached.get((long)var0);
-		if (var1 != null) {
-			return var1;
-		} else {
-			byte[] var2 = InvDefinition.InvDefinition_archive.takeFile(5, var0);
-			var1 = new InvDefinition();
-			if (var2 != null) {
-				var1.decode(new Buffer(var2));
-			}
-
-			InvDefinition.InvDefinition_cached.put(var1, (long)var0);
-			return var1;
+	static String method2705(String var0, boolean var1) {
+		String var2 = var1 ? "https://" : "http://";
+		if (Client.gameBuild == 1) {
+			var0 = var0 + "-wtrc";
+		} else if (Client.gameBuild == 2) {
+			var0 = var0 + "-wtqa";
+		} else if (Client.gameBuild == 3) {
+			var0 = var0 + "-wtwip";
+		} else if (Client.gameBuild == 5) {
+			var0 = var0 + "-wti";
+		} else if (Client.gameBuild == 4) {
+			var0 = "local";
 		}
+
+		String var3 = "";
+		if (class363.field4079 != null) {
+			var3 = "/p=" + class363.field4079;
+		}
+
+		String var4 = "runescape.com";
+		return var2 + var0 + "." + var4 + "/l=" + class378.clientLanguage + "/a=" + Script.field1094 + var3 + "/";
+	}
+
+	@ObfuscatedName("lp")
+	@ObfuscatedSignature(
+		descriptor = "([BII)V",
+		garbageValue = "-1641732404"
+	)
+	static void method2687(byte[] var0, int var1) {
+		if (Client.randomDatData == null) {
+			Client.randomDatData = new byte[24];
+		}
+
+		class306.writeRandomDat(var0, var1, Client.randomDatData, 0, 24);
 	}
 }

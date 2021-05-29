@@ -5,32 +5,41 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bl")
+@ObfuscatedName("bk")
 @Implements("GrandExchangeOfferOwnWorldComparator")
 public class GrandExchangeOfferOwnWorldComparator implements Comparator {
-	@ObfuscatedName("gm")
+	@ObfuscatedName("as")
 	@ObfuscatedSignature(
-		descriptor = "Low;"
+		descriptor = "Lli;"
 	)
-	@Export("redHintArrowSprite")
-	static SpritePixels redHintArrowSprite;
-	@ObfuscatedName("lk")
+	static Bounds field631;
+	@ObfuscatedName("gw")
 	@ObfuscatedGetter(
-		intValue = -1477191609
+		intValue = 1130183005
 	)
-	@Export("menuHeight")
-	static int menuHeight;
-	@ObfuscatedName("h")
+	static int field632;
+	@ObfuscatedName("ob")
+	@ObfuscatedSignature(
+		descriptor = "Ldc;"
+	)
+	@Export("varcs")
+	static Varcs varcs;
+	@ObfuscatedName("oo")
+	@ObfuscatedSignature(
+		descriptor = "Lnu;"
+	)
+	static class369 field634;
+	@ObfuscatedName("v")
 	@Export("filterWorlds")
 	boolean filterWorlds;
 
 	GrandExchangeOfferOwnWorldComparator() {
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(Ljz;Ljz;B)I",
-		garbageValue = "-64"
+		descriptor = "(Ljs;Ljs;I)I",
+		garbageValue = "-1562146243"
 	)
 	@Export("compare_bridged")
 	int compare_bridged(GrandExchangeEvent var1, GrandExchangeEvent var2) {
@@ -59,54 +68,97 @@ public class GrandExchangeOfferOwnWorldComparator implements Comparator {
 		return this.compare_bridged((GrandExchangeEvent)var1, (GrandExchangeEvent)var2);
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "836817261"
+		descriptor = "(IB)Lep;",
+		garbageValue = "-78"
 	)
-	static void method1213() {
-		if (Client.Login_isUsernameRemembered && Login.Login_username != null && Login.Login_username.length() > 0) {
-			Login.currentLoginField = 1;
+	@Export("getInvDefinition")
+	public static InvDefinition getInvDefinition(int var0) {
+		InvDefinition var1 = (InvDefinition)InvDefinition.InvDefinition_cached.get((long)var0);
+		if (var1 != null) {
+			return var1;
 		} else {
-			Login.currentLoginField = 0;
-		}
+			byte[] var2 = InvDefinition.InvDefinition_archive.takeFile(5, var0);
+			var1 = new InvDefinition();
+			if (var2 != null) {
+				var1.decode(new Buffer(var2));
+			}
 
+			InvDefinition.InvDefinition_cached.put(var1, (long)var0);
+			return var1;
+		}
 	}
 
-	@ObfuscatedName("im")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-1470000440"
+		descriptor = "(II)V",
+		garbageValue = "-1916477751"
 	)
-	static void method1212() {
-		for (int var0 = 0; var0 < Client.menuOptionsCount; ++var0) {
-			if (class44.method499(Client.menuOpcodes[var0])) {
-				if (var0 < Client.menuOptionsCount - 1) {
-					for (int var1 = var0; var1 < Client.menuOptionsCount - 1; ++var1) {
-						Client.menuActions[var1] = Client.menuActions[var1 + 1];
-						Client.menuTargets[var1] = Client.menuTargets[var1 + 1];
-						Client.menuOpcodes[var1] = Client.menuOpcodes[var1 + 1];
-						Client.menuIdentifiers[var1] = Client.menuIdentifiers[var1 + 1];
-						Client.menuArguments1[var1] = Client.menuArguments1[var1 + 1];
-						Client.menuArguments2[var1] = Client.menuArguments2[var1 + 1];
-						Client.menuShiftClick[var1] = Client.menuShiftClick[var1 + 1];
-					}
-				}
+	@Export("clearItemContainer")
+	static void clearItemContainer(int var0) {
+		ItemContainer var1 = (ItemContainer)ItemContainer.itemContainers.get((long)var0);
+		if (var1 != null) {
+			for (int var2 = 0; var2 < var1.ids.length; ++var2) {
+				var1.ids[var2] = -1;
+				var1.quantities[var2] = 0;
+			}
 
-				--var0;
-				--Client.menuOptionsCount;
+		}
+	}
+
+	@ObfuscatedName("j")
+	@ObfuscatedSignature(
+		descriptor = "(II)I",
+		garbageValue = "-1870393029"
+	)
+	public static int method1166(int var0) {
+		return class229.method4374(ViewportMouse.ViewportMouse_entityTags[var0]);
+	}
+
+	@ObfuscatedName("ai")
+	@ObfuscatedSignature(
+		descriptor = "([BIII)I",
+		garbageValue = "1889329497"
+	)
+	public static int method1176(byte[] var0, int var1, int var2) {
+		int var3 = -1;
+
+		for (int var4 = var1; var4 < var2; ++var4) {
+			var3 = var3 >>> 8 ^ Buffer.crc32Table[(var3 ^ var0[var4]) & 255];
+		}
+
+		var3 = ~var3;
+		return var3;
+	}
+
+	@ObfuscatedName("gl")
+	@ObfuscatedSignature(
+		descriptor = "(ZI)V",
+		garbageValue = "2022835517"
+	)
+	@Export("addNpcsToScene")
+	static final void addNpcsToScene(boolean var0) {
+		for (int var1 = 0; var1 < Client.npcCount; ++var1) {
+			NPC var2 = Client.npcs[Client.npcIndices[var1]];
+			if (var2 != null && var2.isVisible() && var2.definition.isVisible == var0 && var2.definition.transformIsVisible()) {
+				int var3 = var2.x >> 7;
+				int var4 = var2.y >> 7;
+				if (var3 >= 0 && var3 < 104 && var4 >= 0 && var4 < 104) {
+					if (var2.field1239 == 1 && (var2.x & 127) == 64 && (var2.y & 127) == 64) {
+						if (Client.tileLastDrawnActor[var3][var4] == Client.viewportDrawCount) {
+							continue;
+						}
+
+						Client.tileLastDrawnActor[var3][var4] = Client.viewportDrawCount;
+					}
+
+					long var5 = DevicePcmPlayerProvider.calculateTag(0, 0, 1, !var2.definition.isInteractable, Client.npcIndices[var1]);
+					var2.playerCycle = Client.cycle;
+					AbstractSocket.scene.drawEntity(class22.Client_plane, var2.x, var2.y, class105.getTileHeight(var2.field1239 * 64 - 64 + var2.x, var2.field1239 * 64 - 64 + var2.y, class22.Client_plane), var2.field1239 * 64 - 64 + 60, var2, var2.rotation, var5, var2.isWalking);
+				}
 			}
 		}
 
-		WorldMapRegion.method3317(SoundCache.menuWidth / 2 + AbstractByteArrayCopier.menuX, HitSplatDefinition.menuY);
-	}
-
-	@ObfuscatedName("ji")
-	@ObfuscatedSignature(
-		descriptor = "(IB)Ljava/lang/String;",
-		garbageValue = "117"
-	)
-	static final String method1214(int var0) {
-		return var0 < 999999999 ? Integer.toString(var0) : "*";
 	}
 }

@@ -4,40 +4,40 @@ import java.net.Socket;
 import java.net.URL;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("dk")
+@ObfuscatedName("dp")
 @Implements("TaskHandler")
 public class TaskHandler implements Runnable {
-	@ObfuscatedName("h")
+	@ObfuscatedName("v")
 	@Export("javaVendor")
 	public static String javaVendor;
-	@ObfuscatedName("c")
+	@ObfuscatedName("n")
 	@Export("javaVersion")
 	public static String javaVersion;
-	@ObfuscatedName("ab")
-	@ObfuscatedGetter(
-		intValue = 458627189
-	)
-	static int field1466;
-	@ObfuscatedName("o")
+	@ObfuscatedName("ex")
 	@ObfuscatedSignature(
-		descriptor = "Lek;"
+		descriptor = "Llz;"
+	)
+	@Export("spriteIds")
+	static GraphicsDefaults spriteIds;
+	@ObfuscatedName("f")
+	@ObfuscatedSignature(
+		descriptor = "Leu;"
 	)
 	@Export("current")
 	Task current;
-	@ObfuscatedName("g")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		descriptor = "Lek;"
+		descriptor = "Leu;"
 	)
 	@Export("task")
 	Task task;
-	@ObfuscatedName("l")
+	@ObfuscatedName("p")
 	@Export("thread")
 	Thread thread;
-	@ObfuscatedName("z")
+	@ObfuscatedName("j")
 	@Export("isClosed")
 	boolean isClosed;
 
@@ -61,10 +61,10 @@ public class TaskHandler implements Runnable {
 		this.thread.start();
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
 		descriptor = "(B)V",
-		garbageValue = "92"
+		garbageValue = "57"
 	)
 	@Export("close")
 	public final void close() {
@@ -80,10 +80,10 @@ public class TaskHandler implements Runnable {
 
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "(IIILjava/lang/Object;I)Lek;",
-		garbageValue = "684176071"
+		descriptor = "(IIILjava/lang/Object;I)Leu;",
+		garbageValue = "-46619903"
 	)
 	@Export("newTask")
 	final Task newTask(int var1, int var2, int var3, Object var4) {
@@ -104,20 +104,20 @@ public class TaskHandler implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;IB)Lek;",
-		garbageValue = "-33"
+		descriptor = "(Ljava/lang/String;IB)Leu;",
+		garbageValue = "90"
 	)
 	@Export("newSocketTask")
 	public final Task newSocketTask(String var1, int var2) {
 		return this.newTask(1, var2, 0, var1);
 	}
 
-	@ObfuscatedName("g")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/Runnable;II)Lek;",
-		garbageValue = "523573283"
+		descriptor = "(Ljava/lang/Runnable;IB)Leu;",
+		garbageValue = "20"
 	)
 	@Export("newThreadTask")
 	public final Task newThreadTask(Runnable var1, int var2) {
@@ -172,16 +172,39 @@ public class TaskHandler implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("lk")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(II)V",
-		garbageValue = "-822022696"
+		descriptor = "([Ljava/lang/String;[IIIB)V",
+		garbageValue = "121"
 	)
-	static void method2515(int var0) {
-		for (IntegerNode var1 = (IntegerNode)Client.widgetFlags.first(); var1 != null; var1 = (IntegerNode)Client.widgetFlags.next()) {
-			if ((long)var0 == (var1.key >> 48 & 65535L)) {
-				var1.remove();
+	static void method2518(String[] var0, int[] var1, int var2, int var3) {
+		if (var2 < var3) {
+			int var4 = (var3 + var2) / 2;
+			int var5 = var2;
+			String var6 = var0[var4];
+			var0[var4] = var0[var3];
+			var0[var3] = var6;
+			int var7 = var1[var4];
+			var1[var4] = var1[var3];
+			var1[var3] = var7;
+
+			for (int var8 = var2; var8 < var3; ++var8) {
+				if (var6 == null || var0[var8] != null && var0[var8].compareTo(var6) < (var8 & 1)) {
+					String var9 = var0[var8];
+					var0[var8] = var0[var5];
+					var0[var5] = var9;
+					int var10 = var1[var8];
+					var1[var8] = var1[var5];
+					var1[var5++] = var10;
+				}
 			}
+
+			var0[var3] = var0[var5];
+			var0[var5] = var6;
+			var1[var3] = var1[var5];
+			var1[var5] = var7;
+			method2518(var0, var1, var2, var5 - 1);
+			method2518(var0, var1, var5 + 1, var3);
 		}
 
 	}

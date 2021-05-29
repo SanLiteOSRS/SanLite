@@ -4,30 +4,42 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gq")
+@ObfuscatedName("gc")
 @Implements("VertexNormal")
 public class VertexNormal {
-	@ObfuscatedName("h")
+	@ObfuscatedName("l")
+	@ObfuscatedSignature(
+		descriptor = "Ljv;"
+	)
+	@Export("Widget_fontsArchive")
+	public static AbstractArchive Widget_fontsArchive;
+	@ObfuscatedName("gg")
 	@ObfuscatedGetter(
-		intValue = 617912879
+		intValue = 697161691
+	)
+	@Export("baseX")
+	static int baseX;
+	@ObfuscatedName("v")
+	@ObfuscatedGetter(
+		intValue = -573742035
 	)
 	@Export("x")
 	int x;
-	@ObfuscatedName("o")
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = 88457761
+		intValue = -501649501
 	)
 	@Export("y")
 	int y;
-	@ObfuscatedName("g")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = 1378992651
+		intValue = 256687101
 	)
 	@Export("z")
 	int z;
-	@ObfuscatedName("l")
+	@ObfuscatedName("y")
 	@ObfuscatedGetter(
-		intValue = 1412306783
+		intValue = 1984775097
 	)
 	@Export("magnitude")
 	int magnitude;
@@ -36,7 +48,7 @@ public class VertexNormal {
 	}
 
 	@ObfuscatedSignature(
-		descriptor = "(Lgq;)V"
+		descriptor = "(Lgc;)V"
 	)
 	VertexNormal(VertexNormal var1) {
 		this.x = var1.x;
@@ -45,12 +57,13 @@ public class VertexNormal {
 		this.magnitude = var1.magnitude;
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		descriptor = "(Lix;I)V",
-		garbageValue = "-2141628231"
+		descriptor = "(I)[Lon;",
+		garbageValue = "-1929062245"
 	)
-	public static void method4219(Huffman var0) {
-		class377.huffman = var0;
+	@Export("FillMode_values")
+	public static class393[] FillMode_values() {
+		return new class393[]{class393.field4233, class393.SOLID, class393.field4232};
 	}
 }

@@ -1,52 +1,44 @@
-import net.runelite.mapping.ObfuscatedGetter;
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("im")
+@ObfuscatedName("ia")
 public class class253 {
-	@ObfuscatedName("v")
-	@ObfuscatedGetter(
-		intValue = 1972523303
-	)
-	static int field3134;
-	@ObfuscatedName("bm")
-	static String field3136;
+	@ObfuscatedName("p")
+	static byte[][][] field3130;
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		descriptor = "(Ljp;IIB)[Low;",
-		garbageValue = "-38"
+		descriptor = "(Lio;I[B[BI)V",
+		garbageValue = "-26460885"
 	)
-	public static SpritePixels[] method4767(AbstractArchive var0, int var1, int var2) {
-		if (!Username.method5711(var0, var1, var2)) {
-			return null;
-		} else {
-			SpritePixels[] var4 = new SpritePixels[class396.SpriteBuffer_spriteCount];
-
-			for (int var5 = 0; var5 < class396.SpriteBuffer_spriteCount; ++var5) {
-				SpritePixels var6 = var4[var5] = new SpritePixels();
-				var6.width = class396.SpriteBuffer_spriteWidth;
-				var6.height = class396.SpriteBuffer_spriteHeight;
-				var6.xOffset = class243.SpriteBuffer_xOffsets[var5];
-				var6.yOffset = class396.SpriteBuffer_yOffsets[var5];
-				var6.subWidth = ArchiveDiskActionHandler.SpriteBuffer_spriteWidths[var5];
-				var6.subHeight = class372.SpriteBuffer_spriteHeights[var5];
-				int var7 = var6.subWidth * var6.subHeight;
-				byte[] var8 = class396.SpriteBuffer_pixels[var5];
-				var6.pixels = new int[var7];
-
-				for (int var9 = 0; var9 < var7; ++var9) {
-					var6.pixels[var9] = AccessFile.SpriteBuffer_spritePalette[var8[var9] & 255];
-				}
+	@Export("Widget_setKey")
+	static final void Widget_setKey(Widget var0, int var1, byte[] var2, byte[] var3) {
+		if (var0.field3033 == null) {
+			if (var2 == null) {
+				return;
 			}
 
-			class243.SpriteBuffer_xOffsets = null;
-			class396.SpriteBuffer_yOffsets = null;
-			ArchiveDiskActionHandler.SpriteBuffer_spriteWidths = null;
-			class372.SpriteBuffer_spriteHeights = null;
-			AccessFile.SpriteBuffer_spritePalette = null;
-			class396.SpriteBuffer_pixels = null;
-			return var4;
+			var0.field3033 = new byte[11][];
+			var0.field3034 = new byte[11][];
+			var0.field3035 = new int[11];
+			var0.field3079 = new int[11];
 		}
+
+		var0.field3033[var1] = var2;
+		if (var2 != null) {
+			var0.field3032 = true;
+		} else {
+			var0.field3032 = false;
+
+			for (int var4 = 0; var4 < var0.field3033.length; ++var4) {
+				if (var0.field3033[var4] != null) {
+					var0.field3032 = true;
+					break;
+				}
+			}
+		}
+
+		var0.field3034[var1] = var3;
 	}
 }

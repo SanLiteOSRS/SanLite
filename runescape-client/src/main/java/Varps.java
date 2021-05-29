@@ -1,24 +1,24 @@
-import java.io.IOException;
-import java.net.Socket;
+import java.util.Iterator;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ij")
+@ObfuscatedName("ik")
 @Implements("Varps")
 public class Varps {
-	@ObfuscatedName("h")
+	@ObfuscatedName("v")
 	@Export("Varps_masks")
 	static int[] Varps_masks;
-	@ObfuscatedName("c")
+	@ObfuscatedName("n")
 	@Export("Varps_temp")
 	public static int[] Varps_temp;
-	@ObfuscatedName("o")
+	@ObfuscatedName("f")
 	@Export("Varps_main")
 	public static int[] Varps_main;
-	@ObfuscatedName("al")
-	static String field2923;
+	@ObfuscatedName("bd")
+	@Export("otp")
+	static String otp;
 
 	static {
 		Varps_masks = new int[32];
@@ -33,12 +33,27 @@ public class Varps {
 		Varps_main = new int[4000];
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("kt")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/net/Socket;IIB)Llc;",
-		garbageValue = "0"
+		descriptor = "(B)V",
+		garbageValue = "-1"
 	)
-	public static AbstractSocket method4585(Socket var0, int var1, int var2) throws IOException {
-		return new BufferedNetSocket(var0, var1, var2);
+	static final void method4647() {
+		for (int var0 = 0; var0 < Players.Players_count; ++var0) {
+			Player var1 = Client.players[Players.Players_indices[var0]];
+			var1.clearIsFriend();
+		}
+
+		Iterator var2 = Messages.Messages_hashTable.iterator();
+
+		while (var2.hasNext()) {
+			Message var3 = (Message)var2.next();
+			var3.clearIsFromFriend();
+		}
+
+		if (WorldMapRegion.clanChat != null) {
+			WorldMapRegion.clanChat.clearFriends();
+		}
+
 	}
 }

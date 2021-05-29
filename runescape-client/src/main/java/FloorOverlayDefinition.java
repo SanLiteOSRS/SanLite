@@ -3,80 +3,70 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("er")
+@ObfuscatedName("eo")
 @Implements("FloorOverlayDefinition")
 public class FloorOverlayDefinition extends DualNode {
-	@ObfuscatedName("qb")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "Lar;"
-	)
-	@Export("pcmStreamMixer")
-	static PcmStreamMixer pcmStreamMixer;
-	@ObfuscatedName("qi")
-	@Export("ClanChat_inClanChat")
-	static boolean ClanChat_inClanChat;
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "Lho;"
+		descriptor = "Lhz;"
 	)
 	@Export("FloorOverlayDefinition_cached")
-	static EvictingDualNodeHashTable FloorOverlayDefinition_cached;
-	@ObfuscatedName("o")
+	public static EvictingDualNodeHashTable FloorOverlayDefinition_cached;
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = 1001309157
+		intValue = -313850043
 	)
 	@Export("primaryRgb")
 	public int primaryRgb;
-	@ObfuscatedName("g")
+	@ObfuscatedName("y")
 	@ObfuscatedGetter(
-		intValue = -62801967
+		intValue = -1167855135
 	)
 	@Export("texture")
 	public int texture;
-	@ObfuscatedName("l")
+	@ObfuscatedName("p")
 	@Export("hideUnderlay")
 	public boolean hideUnderlay;
-	@ObfuscatedName("z")
+	@ObfuscatedName("j")
 	@ObfuscatedGetter(
-		intValue = -1070753701
+		intValue = 1447154143
 	)
 	@Export("secondaryRgb")
 	public int secondaryRgb;
-	@ObfuscatedName("t")
+	@ObfuscatedName("r")
 	@ObfuscatedGetter(
-		intValue = 1137076507
+		intValue = 1593028731
 	)
 	@Export("hue")
 	public int hue;
-	@ObfuscatedName("v")
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = -1165641247
+		intValue = -1490944887
 	)
 	@Export("saturation")
 	public int saturation;
-	@ObfuscatedName("b")
+	@ObfuscatedName("d")
 	@ObfuscatedGetter(
-		intValue = -1846121867
+		intValue = 1914058459
 	)
 	@Export("lightness")
 	public int lightness;
-	@ObfuscatedName("q")
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = 1497091503
+		intValue = 1757390819
 	)
 	@Export("secondaryHue")
 	public int secondaryHue;
-	@ObfuscatedName("i")
+	@ObfuscatedName("u")
 	@ObfuscatedGetter(
-		intValue = 85102399
+		intValue = -1776147055
 	)
 	@Export("secondarySaturation")
 	public int secondarySaturation;
-	@ObfuscatedName("x")
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = 128394293
+		intValue = -1239811963
 	)
 	@Export("secondaryLightness")
 	public int secondaryLightness;
@@ -92,10 +82,10 @@ public class FloorOverlayDefinition extends DualNode {
 		this.secondaryRgb = -1;
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "281376633"
+		garbageValue = "-593078672"
 	)
 	@Export("postDecode")
 	void postDecode() {
@@ -109,10 +99,10 @@ public class FloorOverlayDefinition extends DualNode {
 		this.setHsl(this.primaryRgb);
 	}
 
-	@ObfuscatedName("g")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(Lnk;II)V",
-		garbageValue = "-1967254458"
+		descriptor = "(Lnd;II)V",
+		garbageValue = "-1052896488"
 	)
 	@Export("decode")
 	void decode(Buffer var1, int var2) {
@@ -126,10 +116,10 @@ public class FloorOverlayDefinition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		descriptor = "(Lnk;III)V",
-		garbageValue = "1171237603"
+		descriptor = "(Lnd;III)V",
+		garbageValue = "666748128"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2, int var3) {
@@ -146,10 +136,10 @@ public class FloorOverlayDefinition extends DualNode {
 
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
 		descriptor = "(II)V",
-		garbageValue = "-2102756856"
+		garbageValue = "273923551"
 	)
 	@Export("setHsl")
 	void setHsl(int var1) {
@@ -176,8 +166,8 @@ public class FloorOverlayDefinition extends DualNode {
 
 		double var12 = 0.0D;
 		double var14 = 0.0D;
-		double var16 = (var8 + var10) / 2.0D;
-		if (var10 != var8) {
+		double var16 = (var10 + var8) / 2.0D;
+		if (var8 != var10) {
 			if (var16 < 0.5D) {
 				var14 = (var10 - var8) / (var8 + var10);
 			}
@@ -186,18 +176,18 @@ public class FloorOverlayDefinition extends DualNode {
 				var14 = (var10 - var8) / (2.0D - var10 - var8);
 			}
 
-			if (var2 == var10) {
+			if (var10 == var2) {
 				var12 = (var4 - var6) / (var10 - var8);
 			} else if (var4 == var10) {
 				var12 = (var6 - var2) / (var10 - var8) + 2.0D;
 			} else if (var10 == var6) {
-				var12 = (var2 - var4) / (var10 - var8) + 4.0D;
+				var12 = 4.0D + (var2 - var4) / (var10 - var8);
 			}
 		}
 
 		var12 /= 6.0D;
-		this.hue = (int)(var12 * 256.0D);
-		this.saturation = (int)(var14 * 256.0D);
+		this.hue = (int)(256.0D * var12);
+		this.saturation = (int)(256.0D * var14);
 		this.lightness = (int)(256.0D * var16);
 		if (this.saturation < 0) {
 			this.saturation = 0;
@@ -213,74 +203,212 @@ public class FloorOverlayDefinition extends DualNode {
 
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		descriptor = "(Low;IIII)V",
-		garbageValue = "-1684210447"
+		descriptor = "(S)[Len;",
+		garbageValue = "-10573"
 	)
-	static void method3052(SpritePixels var0, int var1, int var2, int var3) {
-		DemotingHashTable var4 = WorldMapRegion.WorldMapRegion_cachedSprites;
-		long var6 = (long)(var3 << 16 | var1 << 8 | var2);
-		var4.put(var0, var6, var0.pixels.length * 4);
+	static HorizontalAlignment[] method3103() {
+		return new HorizontalAlignment[]{HorizontalAlignment.HorizontalAlignment_centered, HorizontalAlignment.field1628, HorizontalAlignment.field1624};
 	}
 
-	@ObfuscatedName("r")
+	@ObfuscatedName("ar")
 	@ObfuscatedSignature(
-		descriptor = "(ILci;ZI)I",
-		garbageValue = "2095665462"
+		descriptor = "(Lbm;S)V",
+		garbageValue = "10038"
 	)
-	static int method3049(int var0, Script var1, boolean var2) {
-		Widget var3 = var2 ? class308.scriptDotWidget : class24.scriptActiveWidget;
-		if (var0 == ScriptOpcodes.CC_GETSCROLLX) {
-			Interpreter.Interpreter_intStack[++WorldMapCacheName.Interpreter_intStackSize - 1] = var3.scrollX;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CC_GETSCROLLY) {
-			Interpreter.Interpreter_intStack[++WorldMapCacheName.Interpreter_intStackSize - 1] = var3.scrollY;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CC_GETTEXT) {
-			Interpreter.Interpreter_stringStack[++class13.Interpreter_stringStackSize - 1] = var3.text;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CC_GETSCROLLWIDTH) {
-			Interpreter.Interpreter_intStack[++WorldMapCacheName.Interpreter_intStackSize - 1] = var3.scrollWidth;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CC_GETSCROLLHEIGHT) {
-			Interpreter.Interpreter_intStack[++WorldMapCacheName.Interpreter_intStackSize - 1] = var3.scrollHeight;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CC_GETMODELZOOM) {
-			Interpreter.Interpreter_intStack[++WorldMapCacheName.Interpreter_intStackSize - 1] = var3.modelZoom;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CC_GETMODELANGLE_X) {
-			Interpreter.Interpreter_intStack[++WorldMapCacheName.Interpreter_intStackSize - 1] = var3.modelAngleX;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CC_GETMODELANGLE_Z) {
-			Interpreter.Interpreter_intStack[++WorldMapCacheName.Interpreter_intStackSize - 1] = var3.modelAngleZ;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CC_GETMODELANGLE_Y) {
-			Interpreter.Interpreter_intStack[++WorldMapCacheName.Interpreter_intStackSize - 1] = var3.modelAngleY;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CC_GETTRANSTOP) {
-			Interpreter.Interpreter_intStack[++WorldMapCacheName.Interpreter_intStackSize - 1] = var3.transparencyTop;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CC_GETTRANSBOT) {
-			Interpreter.Interpreter_intStack[++WorldMapCacheName.Interpreter_intStackSize - 1] = var3.transparencyBot;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CC_GETCOLOUR) {
-			Interpreter.Interpreter_intStack[++WorldMapCacheName.Interpreter_intStackSize - 1] = var3.color;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CC_GETFILLCOLOUR) {
-			Interpreter.Interpreter_intStack[++WorldMapCacheName.Interpreter_intStackSize - 1] = var3.color2;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CC_GETFILLMODE) {
-			Interpreter.Interpreter_intStack[++WorldMapCacheName.Interpreter_intStackSize - 1] = var3.fillMode.rsOrdinal();
-			return 1;
-		} else if (var0 == ScriptOpcodes.CC_GETMODELTRANSPARENT) {
-			Interpreter.Interpreter_intStack[++WorldMapCacheName.Interpreter_intStackSize - 1] = var3.modelTransparency ? 1 : 0;
-			return 1;
-		} else if (var0 != 1615 && var0 != 1616) {
-			return 2;
-		} else {
-			++WorldMapCacheName.Interpreter_intStackSize;
-			return 1;
+	@Export("PcmStream_disable")
+	static final void PcmStream_disable(PcmStream var0) {
+		var0.active = false;
+		if (var0.sound != null) {
+			var0.sound.position = 0;
 		}
+
+		for (PcmStream var1 = var0.firstSubStream(); var1 != null; var1 = var0.nextSubStream()) {
+			PcmStream_disable(var1);
+		}
+
+	}
+
+	@ObfuscatedName("fr")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "672313899"
+	)
+	static final void method3104() {
+		int var0;
+		int var1;
+		int var2;
+		int var3;
+		int var4;
+		int var5;
+		if (Client.oculusOrbState == 0) {
+			var0 = class93.localPlayer.x;
+			var1 = class93.localPlayer.y;
+			if (RouteStrategy.oculusOrbFocalPointX - var0 < -500 || RouteStrategy.oculusOrbFocalPointX - var0 > 500 || ModelData0.oculusOrbFocalPointY - var1 < -500 || ModelData0.oculusOrbFocalPointY - var1 > 500) {
+				RouteStrategy.oculusOrbFocalPointX = var0;
+				ModelData0.oculusOrbFocalPointY = var1;
+			}
+
+			if (var0 != RouteStrategy.oculusOrbFocalPointX) {
+				RouteStrategy.oculusOrbFocalPointX += (var0 - RouteStrategy.oculusOrbFocalPointX) / 16;
+			}
+
+			if (var1 != ModelData0.oculusOrbFocalPointY) {
+				ModelData0.oculusOrbFocalPointY += (var1 - ModelData0.oculusOrbFocalPointY) / 16;
+			}
+
+			var2 = RouteStrategy.oculusOrbFocalPointX >> 7;
+			var3 = ModelData0.oculusOrbFocalPointY >> 7;
+			var4 = class105.getTileHeight(RouteStrategy.oculusOrbFocalPointX, ModelData0.oculusOrbFocalPointY, class22.Client_plane);
+			var5 = 0;
+			int var6;
+			if (var2 > 3 && var3 > 3 && var2 < 100 && var3 < 100) {
+				for (var6 = var2 - 4; var6 <= var2 + 4; ++var6) {
+					for (int var7 = var3 - 4; var7 <= var3 + 4; ++var7) {
+						int var8 = class22.Client_plane;
+						if (var8 < 3 && (Tiles.Tiles_renderFlags[1][var6][var7] & 2) == 2) {
+							++var8;
+						}
+
+						int var9 = var4 - Tiles.Tiles_heights[var8][var6][var7];
+						if (var9 > var5) {
+							var5 = var9;
+						}
+					}
+				}
+			}
+
+			var6 = var5 * 192;
+			if (var6 > 98048) {
+				var6 = 98048;
+			}
+
+			if (var6 < 32768) {
+				var6 = 32768;
+			}
+
+			if (var6 > Client.field727) {
+				Client.field727 += (var6 - Client.field727) / 24;
+			} else if (var6 < Client.field727) {
+				Client.field727 += (var6 - Client.field727) / 80;
+			}
+
+			class17.field148 = class105.getTileHeight(class93.localPlayer.x, class93.localPlayer.y, class22.Client_plane) - Client.camFollowHeight;
+		} else if (Client.oculusOrbState == 1) {
+			NPCComposition.method2791();
+			short var10 = -1;
+			if (KeyHandler.KeyHandler_pressedKeys[33]) {
+				var10 = 0;
+			} else if (KeyHandler.KeyHandler_pressedKeys[49]) {
+				var10 = 1024;
+			}
+
+			if (KeyHandler.KeyHandler_pressedKeys[48]) {
+				if (var10 == 0) {
+					var10 = 1792;
+				} else if (var10 == 1024) {
+					var10 = 1280;
+				} else {
+					var10 = 1536;
+				}
+			} else if (KeyHandler.KeyHandler_pressedKeys[50]) {
+				if (var10 == 0) {
+					var10 = 256;
+				} else if (var10 == 1024) {
+					var10 = 768;
+				} else {
+					var10 = 512;
+				}
+			}
+
+			byte var11 = 0;
+			if (KeyHandler.KeyHandler_pressedKeys[35]) {
+				var11 = -1;
+			} else if (KeyHandler.KeyHandler_pressedKeys[51]) {
+				var11 = 1;
+			}
+
+			var2 = 0;
+			if (var10 >= 0 || var11 != 0) {
+				var2 = KeyHandler.KeyHandler_pressedKeys[81] ? Client.oculusOrbSlowedSpeed : Client.oculusOrbNormalSpeed;
+				var2 *= 16;
+				Client.field732 = var10;
+				Client.field720 = var11;
+			}
+
+			if (Client.field718 < var2) {
+				Client.field718 += var2 / 8;
+				if (Client.field718 > var2) {
+					Client.field718 = var2;
+				}
+			} else if (Client.field718 > var2) {
+				Client.field718 = Client.field718 * 9 / 10;
+			}
+
+			if (Client.field718 > 0) {
+				var3 = Client.field718 / 16;
+				if (Client.field732 >= 0) {
+					var0 = Client.field732 - class376.cameraYaw & 2047;
+					var4 = Rasterizer3D.Rasterizer3D_sine[var0];
+					var5 = Rasterizer3D.Rasterizer3D_cosine[var0];
+					RouteStrategy.oculusOrbFocalPointX += var4 * var3 / 65536;
+					ModelData0.oculusOrbFocalPointY += var3 * var5 / 65536;
+				}
+
+				if (Client.field720 != 0) {
+					class17.field148 += var3 * Client.field720;
+					if (class17.field148 > 0) {
+						class17.field148 = 0;
+					}
+				}
+			} else {
+				Client.field732 = -1;
+				Client.field720 = -1;
+			}
+
+			if (KeyHandler.KeyHandler_pressedKeys[13]) {
+				MouseHandler.method634();
+			}
+		}
+
+		if (MouseHandler.MouseHandler_currentButton == 4 && Client.mouseCam) {
+			var0 = MouseHandler.MouseHandler_y - Client.mouseCamClickedY;
+			Client.camAngleDX = var0 * 2;
+			Client.mouseCamClickedY = var0 != -1 && var0 != 1 ? (MouseHandler.MouseHandler_y + Client.mouseCamClickedY) / 2 : MouseHandler.MouseHandler_y;
+			var1 = Client.mouseCamClickedX - MouseHandler.MouseHandler_x;
+			Client.camAngleDY = var1 * 2;
+			Client.mouseCamClickedX = var1 != -1 && var1 != 1 ? (MouseHandler.MouseHandler_x + Client.mouseCamClickedX) / 2 : MouseHandler.MouseHandler_x;
+		} else {
+			if (KeyHandler.KeyHandler_pressedKeys[96]) {
+				Client.camAngleDY += (-24 - Client.camAngleDY) / 2;
+			} else if (KeyHandler.KeyHandler_pressedKeys[97]) {
+				Client.camAngleDY += (24 - Client.camAngleDY) / 2;
+			} else {
+				Client.camAngleDY /= 2;
+			}
+
+			if (KeyHandler.KeyHandler_pressedKeys[98]) {
+				Client.camAngleDX += (12 - Client.camAngleDX) / 2;
+			} else if (KeyHandler.KeyHandler_pressedKeys[99]) {
+				Client.camAngleDX += (-12 - Client.camAngleDX) / 2;
+			} else {
+				Client.camAngleDX /= 2;
+			}
+
+			Client.mouseCamClickedY = MouseHandler.MouseHandler_y;
+			Client.mouseCamClickedX = MouseHandler.MouseHandler_x;
+		}
+
+		Client.camAngleY = Client.camAngleDY / 2 + Client.camAngleY & 2047;
+		Client.camAngleX += Client.camAngleDX / 2;
+		if (Client.camAngleX < 128) {
+			Client.camAngleX = 128;
+		}
+
+		if (Client.camAngleX > 383) {
+			Client.camAngleX = 383;
+		}
+
 	}
 }

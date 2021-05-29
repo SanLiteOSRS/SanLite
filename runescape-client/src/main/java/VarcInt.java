@@ -1,30 +1,24 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ev")
+@ObfuscatedName("ej")
 @Implements("VarcInt")
 public class VarcInt extends DualNode {
-	@ObfuscatedName("h")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "Ljp;"
+		descriptor = "Ljv;"
 	)
 	@Export("VarcInt_archive")
 	static AbstractArchive VarcInt_archive;
-	@ObfuscatedName("c")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "Lho;"
+		descriptor = "Lhz;"
 	)
 	@Export("VarcInt_cached")
 	static EvictingDualNodeHashTable VarcInt_cached;
-	@ObfuscatedName("ni")
-	@ObfuscatedGetter(
-		intValue = -1768124815
-	)
-	static int field1576;
-	@ObfuscatedName("o")
+	@ObfuscatedName("f")
 	@Export("persist")
 	public boolean persist;
 
@@ -36,187 +30,95 @@ public class VarcInt extends DualNode {
 		this.persist = false;
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(Lnk;I)V",
-		garbageValue = "1372759053"
+		descriptor = "(Lnd;B)V",
+		garbageValue = "-17"
 	)
-	void method2659(Buffer var1) {
+	void method2656(Buffer var1) {
 		while (true) {
 			int var2 = var1.readUnsignedByte();
 			if (var2 == 0) {
 				return;
 			}
 
-			this.method2657(var1, var2);
+			this.method2666(var1, var2);
 		}
 	}
 
-	@ObfuscatedName("g")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		descriptor = "(Lnk;IB)V",
-		garbageValue = "0"
+		descriptor = "(Lnd;IB)V",
+		garbageValue = "34"
 	)
-	void method2657(Buffer var1, int var2) {
+	void method2666(Buffer var1, int var2) {
 		if (var2 == 2) {
 			this.persist = true;
 		}
 
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "([Lbc;II[I[II)V",
-		garbageValue = "-2096948369"
+		descriptor = "(IS)Les;",
+		garbageValue = "-9783"
 	)
-	@Export("sortWorlds")
-	static void sortWorlds(World[] var0, int var1, int var2, int[] var3, int[] var4) {
-		if (var1 < var2) {
-			int var5 = var1 - 1;
-			int var6 = var2 + 1;
-			int var7 = (var2 + var1) / 2;
-			World var8 = var0[var7];
-			var0[var7] = var0[var1];
-			var0[var1] = var8;
-
-			while (var5 < var6) {
-				boolean var9 = true;
-
-				int var10;
-				int var11;
-				int var12;
-				do {
-					--var6;
-
-					for (var10 = 0; var10 < 4; ++var10) {
-						if (var3[var10] == 2) {
-							var11 = var0[var6].index;
-							var12 = var8.index;
-						} else if (var3[var10] == 1) {
-							var11 = var0[var6].population;
-							var12 = var8.population;
-							if (var11 == -1 && var4[var10] == 1) {
-								var11 = 2001;
-							}
-
-							if (var12 == -1 && var4[var10] == 1) {
-								var12 = 2001;
-							}
-						} else if (var3[var10] == 3) {
-							var11 = var0[var6].isMembersOnly() ? 1 : 0;
-							var12 = var8.isMembersOnly() ? 1 : 0;
-						} else {
-							var11 = var0[var6].id;
-							var12 = var8.id;
-						}
-
-						if (var11 != var12) {
-							if ((var4[var10] != 1 || var11 <= var12) && (var4[var10] != 0 || var11 >= var12)) {
-								var9 = false;
-							}
-							break;
-						}
-
-						if (var10 == 3) {
-							var9 = false;
-						}
-					}
-				} while(var9);
-
-				var9 = true;
-
-				do {
-					++var5;
-
-					for (var10 = 0; var10 < 4; ++var10) {
-						if (var3[var10] == 2) {
-							var11 = var0[var5].index;
-							var12 = var8.index;
-						} else if (var3[var10] == 1) {
-							var11 = var0[var5].population;
-							var12 = var8.population;
-							if (var11 == -1 && var4[var10] == 1) {
-								var11 = 2001;
-							}
-
-							if (var12 == -1 && var4[var10] == 1) {
-								var12 = 2001;
-							}
-						} else if (var3[var10] == 3) {
-							var11 = var0[var5].isMembersOnly() ? 1 : 0;
-							var12 = var8.isMembersOnly() ? 1 : 0;
-						} else {
-							var11 = var0[var5].id;
-							var12 = var8.id;
-						}
-
-						if (var12 != var11) {
-							if ((var4[var10] != 1 || var11 >= var12) && (var4[var10] != 0 || var11 <= var12)) {
-								var9 = false;
-							}
-							break;
-						}
-
-						if (var10 == 3) {
-							var9 = false;
-						}
-					}
-				} while(var9);
-
-				if (var5 < var6) {
-					World var13 = var0[var5];
-					var0[var5] = var0[var6];
-					var0[var6] = var13;
-				}
+	@Export("SpotAnimationDefinition_get")
+	public static SpotAnimationDefinition SpotAnimationDefinition_get(int var0) {
+		SpotAnimationDefinition var1 = (SpotAnimationDefinition)SpotAnimationDefinition.SpotAnimationDefinition_cached.get((long)var0);
+		if (var1 != null) {
+			return var1;
+		} else {
+			byte[] var2 = SpotAnimationDefinition.SpotAnimationDefinition_archive.takeFile(13, var0);
+			var1 = new SpotAnimationDefinition();
+			var1.id = var0;
+			if (var2 != null) {
+				var1.decode(new Buffer(var2));
 			}
 
-			sortWorlds(var0, var1, var6, var3, var4);
-			sortWorlds(var0, var6 + 1, var2, var3, var4);
+			SpotAnimationDefinition.SpotAnimationDefinition_cached.put(var1, (long)var0);
+			return var1;
+		}
+	}
+
+	@ObfuscatedName("j")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "1100714076"
+	)
+	public static void method2673() {
+		if (NetCache.NetCache_socket != null) {
+			NetCache.NetCache_socket.close();
 		}
 
 	}
 
-	@ObfuscatedName("kx")
+	@ObfuscatedName("jc")
 	@ObfuscatedSignature(
-		descriptor = "(Liv;I)V",
-		garbageValue = "685963148"
+		descriptor = "(Lio;IIB)V",
+		garbageValue = "8"
 	)
-	static final void method2656(Widget var0) {
-		int var1 = var0.contentType;
-		if (var1 == 324) {
-			if (Client.field630 == -1) {
-				Client.field630 = var0.spriteId2;
-				Client.field631 = var0.spriteId;
-			}
+	@Export("clickWidget")
+	static final void clickWidget(Widget var0, int var1, int var2) {
+		if (Client.clickedWidget == null && !Client.isMenuOpen) {
+			if (var0 != null && class11.method125(var0) != null) {
+				Client.clickedWidget = var0;
+				Client.clickedWidgetParent = class11.method125(var0);
+				Client.widgetClickX = var1;
+				Client.widgetClickY = var2;
+				Actor.widgetDragDuration = 0;
+				Client.isDraggingWidget = false;
+				int var3 = MilliClock.method2588();
+				if (var3 != -1) {
+					ReflectionCheck.tempMenuAction = new MenuAction();
+					ReflectionCheck.tempMenuAction.param0 = Client.menuArguments1[var3];
+					ReflectionCheck.tempMenuAction.param1 = Client.menuArguments2[var3];
+					ReflectionCheck.tempMenuAction.opcode = Client.menuOpcodes[var3];
+					ReflectionCheck.tempMenuAction.identifier = Client.menuIdentifiers[var3];
+					ReflectionCheck.tempMenuAction.action = Client.menuActions[var3];
+				}
 
-			if (Client.playerAppearance.isFemale) {
-				var0.spriteId2 = Client.field630;
-			} else {
-				var0.spriteId2 = Client.field631;
 			}
-
-		} else if (var1 == 325) {
-			if (Client.field630 == -1) {
-				Client.field630 = var0.spriteId2;
-				Client.field631 = var0.spriteId;
-			}
-
-			if (Client.playerAppearance.isFemale) {
-				var0.spriteId2 = Client.field631;
-			} else {
-				var0.spriteId2 = Client.field630;
-			}
-
-		} else if (var1 == 327) {
-			var0.modelAngleX = 150;
-			var0.modelAngleY = (int)(Math.sin((double)Client.cycle / 40.0D) * 256.0D) & 2047;
-			var0.modelType = 5;
-			var0.modelId = 0;
-		} else if (var1 == 328) {
-			var0.modelAngleX = 150;
-			var0.modelAngleY = (int)(Math.sin((double)Client.cycle / 40.0D) * 256.0D) & 2047;
-			var0.modelType = 5;
-			var0.modelId = 1;
 		}
 	}
 }

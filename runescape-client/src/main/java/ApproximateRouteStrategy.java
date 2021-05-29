@@ -1,124 +1,192 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bh")
+@ObfuscatedName("bb")
 @Implements("ApproximateRouteStrategy")
 public class ApproximateRouteStrategy extends RouteStrategy {
-	@ObfuscatedName("z")
-	@Export("PcmPlayer_stereo")
-	protected static boolean PcmPlayer_stereo;
+	@ObfuscatedName("qx")
+	@ObfuscatedSignature(
+		descriptor = "Ly;"
+	)
+	static class3 field630;
+	@ObfuscatedName("o")
+	@ObfuscatedGetter(
+		intValue = -344685783
+	)
+	static int field629;
 
 	ApproximateRouteStrategy() {
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(IIILfa;B)Z",
-		garbageValue = "2"
+		descriptor = "(IIILfz;I)Z",
+		garbageValue = "496202097"
 	)
 	@Export("hasArrived")
-	public boolean hasArrived(int var1, int var2, int var3, CollisionMap var4) {
+	protected boolean hasArrived(int var1, int var2, int var3, CollisionMap var4) {
 		return var2 == super.approxDestinationX && var3 == super.approxDestinationY;
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(Ljp;I)V",
-		garbageValue = "450286187"
+		descriptor = "(II)Lcf;",
+		garbageValue = "-26460885"
 	)
-	public static void method1203(AbstractArchive var0) {
-		ParamComposition.ParamDefinition_archive = var0;
-	}
-
-	@ObfuscatedName("t")
-	@ObfuscatedSignature(
-		descriptor = "(Lbc;Lbc;IZI)I",
-		garbageValue = "-205185455"
-	)
-	@Export("compareWorlds")
-	static int compareWorlds(World var0, World var1, int var2, boolean var3) {
-		if (var2 == 1) {
-			int var4 = var0.population;
-			int var5 = var1.population;
-			if (!var3) {
-				if (var4 == -1) {
-					var4 = 2001;
-				}
-
-				if (var5 == -1) {
-					var5 = 2001;
-				}
-			}
-
-			return var4 - var5;
-		} else if (var2 == 2) {
-			return var0.location - var1.location;
-		} else if (var2 == 3) {
-			if (var0.activity.equals("-")) {
-				if (var1.activity.equals("-")) {
-					return 0;
-				} else {
-					return var3 ? -1 : 1;
-				}
-			} else if (var1.activity.equals("-")) {
-				return var3 ? 1 : -1;
-			} else {
-				return var0.activity.compareTo(var1.activity);
-			}
-		} else if (var2 == 4) {
-			return var0.method1686() ? (var1.method1686() ? 0 : 1) : (var1.method1686() ? -1 : 0);
-		} else if (var2 == 5) {
-			return var0.method1722() ? (var1.method1722() ? 0 : 1) : (var1.method1722() ? -1 : 0);
-		} else if (var2 == 6) {
-			return var0.isPvp() ? (var1.isPvp() ? 0 : 1) : (var1.isPvp() ? -1 : 0);
-		} else if (var2 == 7) {
-			return var0.isMembersOnly() ? (var1.isMembersOnly() ? 0 : 1) : (var1.isMembersOnly() ? -1 : 0);
+	@Export("getScript")
+	static Script getScript(int var0) {
+		Script var1 = (Script)Script.Script_cached.get((long)var0);
+		if (var1 != null) {
+			return var1;
 		} else {
-			return var0.id - var1.id;
+			byte[] var2 = UserComparator5.archive12.takeFile(var0, 0);
+			if (var2 == null) {
+				return null;
+			} else {
+				var1 = NameableContainer.newScript(var2);
+				Script.Script_cached.put(var1, (long)var0);
+				return var1;
+			}
 		}
 	}
 
-	@ObfuscatedName("jb")
-	@ObfuscatedSignature(
-		descriptor = "([Liv;Liv;ZI)V",
-		garbageValue = "1379988095"
-	)
-	@Export("revalidateWidgetScroll")
-	static void revalidateWidgetScroll(Widget[] var0, Widget var1, boolean var2) {
-		int var3 = var1.scrollWidth != 0 ? var1.scrollWidth : var1.width;
-		int var4 = var1.scrollHeight != 0 ? var1.scrollHeight : var1.height;
-		Login.resizeInterface(var0, var1.id, var3, var4, var2);
-		if (var1.children != null) {
-			Login.resizeInterface(var1.children, var1.id, var3, var4, var2);
-		}
-
-		InterfaceParent var5 = (InterfaceParent)Client.interfaceParents.get((long)var1.id);
-		if (var5 != null) {
-			Strings.method4801(var5.group, var3, var4, var2);
-		}
-
-		if (var1.contentType == 1337) {
-		}
-
-	}
-
-	@ObfuscatedName("kz")
+	@ObfuscatedName("kk")
 	@ObfuscatedSignature(
 		descriptor = "(II)V",
-		garbageValue = "436780499"
+		garbageValue = "-1598600139"
 	)
-	@Export("Widget_resetModelFrames")
-	static final void Widget_resetModelFrames(int var0) {
-		if (UserComparator8.loadInterface(var0)) {
-			Widget[] var1 = Widget.Widget_interfaceComponents[var0];
+	@Export("changeGameOptions")
+	static final void changeGameOptions(int var0) {
+		class170.method3554();
+		ClientPacket.method4354();
+		int var1 = class11.VarpDefinition_get(var0).type;
+		if (var1 != 0) {
+			int var2 = Varps.Varps_main[var0];
+			if (var1 == 1) {
+				if (var2 == 1) {
+					InterfaceParent.method2082(0.9D);
+				}
 
-			for (int var2 = 0; var2 < var1.length; ++var2) {
-				Widget var3 = var1[var2];
-				if (var3 != null) {
-					var3.modelFrame = 0;
-					var3.modelFrameCycle = 0;
+				if (var2 == 2) {
+					InterfaceParent.method2082(0.8D);
+				}
+
+				if (var2 == 3) {
+					InterfaceParent.method2082(0.7D);
+				}
+
+				if (var2 == 4) {
+					InterfaceParent.method2082(0.6D);
+				}
+			}
+
+			if (var1 == 3) {
+				if (var2 == 0) {
+					PacketWriter.method2402(255);
+				}
+
+				if (var2 == 1) {
+					PacketWriter.method2402(192);
+				}
+
+				if (var2 == 2) {
+					PacketWriter.method2402(128);
+				}
+
+				if (var2 == 3) {
+					PacketWriter.method2402(64);
+				}
+
+				if (var2 == 4) {
+					PacketWriter.method2402(0);
+				}
+			}
+
+			if (var1 == 4) {
+				if (var2 == 0) {
+					WorldMapLabelSize.updateSoundEffectVolume(127);
+				}
+
+				if (var2 == 1) {
+					WorldMapLabelSize.updateSoundEffectVolume(96);
+				}
+
+				if (var2 == 2) {
+					WorldMapLabelSize.updateSoundEffectVolume(64);
+				}
+
+				if (var2 == 3) {
+					WorldMapLabelSize.updateSoundEffectVolume(32);
+				}
+
+				if (var2 == 4) {
+					WorldMapLabelSize.updateSoundEffectVolume(0);
+				}
+			}
+
+			if (var1 == 5) {
+				Client.leftClickOpensMenu = var2;
+			}
+
+			if (var1 == 6) {
+				Client.chatEffects = var2;
+			}
+
+			if (var1 == 9) {
+				Client.field912 = var2;
+			}
+
+			if (var1 == 10) {
+				if (var2 == 0) {
+					LoginPacket.method4373(127);
+				}
+
+				if (var2 == 1) {
+					LoginPacket.method4373(96);
+				}
+
+				if (var2 == 2) {
+					LoginPacket.method4373(64);
+				}
+
+				if (var2 == 3) {
+					LoginPacket.method4373(32);
+				}
+
+				if (var2 == 4) {
+					LoginPacket.method4373(0);
+				}
+			}
+
+			if (var1 == 17) {
+				Client.followerIndex = var2 & 65535;
+			}
+
+			AttackOption[] var3;
+			if (var1 == 18) {
+				var3 = new AttackOption[]{AttackOption.field1357, AttackOption.AttackOption_alwaysRightClick, AttackOption.AttackOption_dependsOnCombatLevels, AttackOption.AttackOption_hidden};
+				Client.playerAttackOption = (AttackOption)Messages.findEnumerated(var3, var2);
+				if (Client.playerAttackOption == null) {
+					Client.playerAttackOption = AttackOption.AttackOption_dependsOnCombatLevels;
+				}
+			}
+
+			if (var1 == 19) {
+				if (var2 == -1) {
+					Client.combatTargetPlayerIndex = -1;
+				} else {
+					Client.combatTargetPlayerIndex = var2 & 2047;
+				}
+			}
+
+			if (var1 == 22) {
+				var3 = new AttackOption[]{AttackOption.field1357, AttackOption.AttackOption_alwaysRightClick, AttackOption.AttackOption_dependsOnCombatLevels, AttackOption.AttackOption_hidden};
+				Client.npcAttackOption = (AttackOption)Messages.findEnumerated(var3, var2);
+				if (Client.npcAttackOption == null) {
+					Client.npcAttackOption = AttackOption.AttackOption_dependsOnCombatLevels;
 				}
 			}
 

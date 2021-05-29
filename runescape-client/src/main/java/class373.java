@@ -1,67 +1,49 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("nb")
+@ObfuscatedName("nw")
 final class class373 implements class370 {
-	@ObfuscatedName("h")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/Object;Lnk;I)V",
-		garbageValue = "-2099055755"
+		descriptor = "(Ljava/lang/Object;Lnd;I)V",
+		garbageValue = "510448708"
 	)
-	public void vmethod6366(Object var1, Buffer var2) {
-		this.method6338((Long)var1, var2);
+	public void vmethod6493(Object var1, Buffer var2) {
+		this.method6465((Long)var1, var2);
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "(Lnk;I)Ljava/lang/Object;",
-		garbageValue = "-559339148"
+		descriptor = "(Lnd;I)Ljava/lang/Object;",
+		garbageValue = "-1954872085"
 	)
-	public Object vmethod6362(Buffer var1) {
+	public Object vmethod6500(Buffer var1) {
 		return var1.readLong();
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/Long;Lnk;I)V",
-		garbageValue = "-1414599186"
+		descriptor = "(Ljava/lang/Long;Lnd;I)V",
+		garbageValue = "-1988673452"
 	)
-	void method6338(Long var1, Buffer var2) {
+	void method6465(Long var1, Buffer var2) {
 		var2.writeLong(var1);
 	}
 
-	@ObfuscatedName("jc")
+	@ObfuscatedName("ge")
 	@ObfuscatedSignature(
-		descriptor = "(Liv;B)Z",
-		garbageValue = "0"
+		descriptor = "(I)V",
+		garbageValue = "-1793660977"
 	)
-	@Export("runCs1")
-	static final boolean runCs1(Widget var0) {
-		if (var0.cs1Comparisons == null) {
-			return false;
-		} else {
-			for (int var1 = 0; var1 < var0.cs1Comparisons.length; ++var1) {
-				int var2 = class161.method3150(var0, var1);
-				int var3 = var0.cs1ComparisonValues[var1];
-				if (var0.cs1Comparisons[var1] == 2) {
-					if (var2 >= var3) {
-						return false;
-					}
-				} else if (var0.cs1Comparisons[var1] == 3) {
-					if (var2 <= var3) {
-						return false;
-					}
-				} else if (var0.cs1Comparisons[var1] == 4) {
-					if (var3 == var2) {
-						return false;
-					}
-				} else if (var2 != var3) {
-					return false;
-				}
-			}
+	static void method6474() {
+		int var0 = Players.Players_count;
+		int[] var1 = Players.Players_indices;
 
-			return true;
+		for (int var2 = 0; var2 < var0; ++var2) {
+			if (var1[var2] != Client.combatTargetPlayerIndex && var1[var2] != Client.localPlayerIndex) {
+				NetSocket.addPlayerToScene(Client.players[var1[var2]], true);
+			}
 		}
+
 	}
 }

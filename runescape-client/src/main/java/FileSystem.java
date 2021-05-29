@@ -2,139 +2,100 @@ import java.io.File;
 import java.util.Hashtable;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("el")
+@ObfuscatedName("ec")
 @Implements("FileSystem")
 public class FileSystem {
-	@ObfuscatedName("h")
+	@ObfuscatedName("v")
 	@Export("FileSystem_hasPermissions")
-	static boolean FileSystem_hasPermissions;
-	@ObfuscatedName("c")
+	public static boolean FileSystem_hasPermissions;
+	@ObfuscatedName("n")
 	@Export("FileSystem_cacheDir")
-	static File FileSystem_cacheDir;
-	@ObfuscatedName("o")
+	public static File FileSystem_cacheDir;
+	@ObfuscatedName("f")
 	@Export("FileSystem_cacheFiles")
 	static Hashtable FileSystem_cacheFiles;
-	@ObfuscatedName("x")
-	@ObfuscatedSignature(
-		descriptor = "Ljp;"
-	)
-	@Export("Widget_fontsArchive")
-	static AbstractArchive Widget_fontsArchive;
-	@ObfuscatedName("fm")
-	@ObfuscatedGetter(
-		longValue = -9193432977542192121L
-	)
-	static long field1486;
 
 	static {
 		FileSystem_hasPermissions = false;
 		FileSystem_cacheFiles = new Hashtable(16);
 	}
 
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "(IIIII)V",
-		garbageValue = "1134946214"
-	)
-	static final void method2542(int var0, int var1, int var2, int var3) {
-		for (int var4 = var1; var4 <= var3 + var1; ++var4) {
-			for (int var5 = var0; var5 <= var0 + var2; ++var5) {
-				if (var5 >= 0 && var5 < 104 && var4 >= 0 && var4 < 104) {
-					Tiles.field1090[0][var5][var4] = 127;
-					if (var0 == var5 && var5 > 0) {
-						Tiles.Tiles_heights[0][var5][var4] = Tiles.Tiles_heights[0][var5 - 1][var4];
-					}
-
-					if (var0 + var2 == var5 && var5 < 103) {
-						Tiles.Tiles_heights[0][var5][var4] = Tiles.Tiles_heights[0][var5 + 1][var4];
-					}
-
-					if (var4 == var1 && var4 > 0) {
-						Tiles.Tiles_heights[0][var5][var4] = Tiles.Tiles_heights[0][var5][var4 - 1];
-					}
-
-					if (var3 + var1 == var4 && var4 < 103) {
-						Tiles.Tiles_heights[0][var5][var4] = Tiles.Tiles_heights[0][var5][var4 + 1];
-					}
-				}
-			}
-		}
-
-	}
-
-	@ObfuscatedName("ft")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "-1955007405"
+		garbageValue = "383441651"
 	)
-	@Export("logOut")
-	static final void logOut() {
-		Client.packetWriter.close();
-		PrivateChatMode.method5815();
-		class44.method494();
-		KitDefinition.KitDefinition_cached.clear();
-		class32.method365();
-		JagexCache.method2538();
-		ItemComposition.ItemDefinition_cached.clear();
-		ItemComposition.ItemDefinition_cachedModels.clear();
-		ItemComposition.ItemDefinition_cachedSprites.clear();
-		SequenceDefinition.SequenceDefinition_cached.clear();
-		SequenceDefinition.SequenceDefinition_cachedFrames.clear();
-		UserComparator8.method2447();
-		VarbitComposition.VarbitDefinition_cached.clear();
-		class169.method3493();
-		class7.field60.method6309();
-		ModeWhere.HitSplatDefinition_cachedSprites.method6309();
-		ScriptFrame.method1162();
-		HealthBarDefinition.field1596.clear();
-		HealthBarDefinition.WorldMapElement_cachedSprites.clear();
-		StructComposition.StructDefinition_cached.clear();
-		UrlRequester.method2422();
-		class12.method202();
-		PlayerComposition.Widget_cachedModels.clear();
-		HealthBarUpdate.method2200();
-		((TextureProvider)Rasterizer3D.Rasterizer3D_textureLoader).clear();
-		Script.Script_cached.clear();
-		MilliClock.archive3.clearFiles();
-		class0.archive4.clearFiles();
-		EnumComposition.archive5.clearFiles();
-		class14.field129.clearFiles();
-		WorldMapSection0.archive7.clearFiles();
-		class29.archive6.clearFiles();
-		class260.archive9.clearFiles();
-		class43.archive8.clearFiles();
-		GameBuild.field3213.clearFiles();
-		PendingSpawn.archive10.clearFiles();
-		KeyHandler.archive11.clearFiles();
-		class22.archive12.clearFiles();
-		class5.scene.clear();
+	public static void method2548() {
+		ParamComposition.ParamDefinition_cached.clear();
+	}
 
-		for (int var0 = 0; var0 < 4; ++var0) {
-			Client.collisionMaps[var0].clear();
+	@ObfuscatedName("g")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "-26460885"
+	)
+	static final void method2545() {
+		if (!ViewportMouse.ViewportMouse_false0) {
+			int var0 = Scene.Scene_cameraPitchSine;
+			int var1 = Scene.Scene_cameraPitchCosine;
+			int var2 = Scene.Scene_cameraYawSine;
+			int var3 = Scene.Scene_cameraYawCosine;
+			byte var4 = 50;
+			short var5 = 3500;
+			int var6 = (ViewportMouse.ViewportMouse_x - Rasterizer3D.Rasterizer3D_clipMidX) * var4 / Rasterizer3D.Rasterizer3D_zoom;
+			int var7 = (ViewportMouse.ViewportMouse_y - Rasterizer3D.Rasterizer3D_clipMidY) * var4 / Rasterizer3D.Rasterizer3D_zoom;
+			int var8 = (ViewportMouse.ViewportMouse_x - Rasterizer3D.Rasterizer3D_clipMidX) * var5 / Rasterizer3D.Rasterizer3D_zoom;
+			int var9 = (ViewportMouse.ViewportMouse_y - Rasterizer3D.Rasterizer3D_clipMidY) * var5 / Rasterizer3D.Rasterizer3D_zoom;
+			int var10 = Rasterizer3D.method3867(var7, var4, var1, var0);
+			int var11 = Rasterizer3D.method3897(var7, var4, var1, var0);
+			var7 = var10;
+			var10 = Rasterizer3D.method3867(var9, var5, var1, var0);
+			int var12 = Rasterizer3D.method3897(var9, var5, var1, var0);
+			var9 = var10;
+			var10 = Rasterizer3D.method3865(var6, var11, var3, var2);
+			var11 = Rasterizer3D.method3866(var6, var11, var3, var2);
+			var6 = var10;
+			var10 = Rasterizer3D.method3865(var8, var12, var3, var2);
+			var12 = Rasterizer3D.method3866(var8, var12, var3, var2);
+			ViewportMouse.field2492 = (var10 + var6) / 2;
+			class249.field3118 = (var9 + var7) / 2;
+			ViewportMouse.field2497 = (var12 + var11) / 2;
+			ViewportMouse.field2496 = (var10 - var6) / 2;
+			WorldMapDecoration.field2082 = (var9 - var7) / 2;
+			DirectByteArrayCopier.field3126 = (var12 - var11) / 2;
+			class161.field1920 = Math.abs(ViewportMouse.field2496);
+			class15.field140 = Math.abs(WorldMapDecoration.field2082);
+			ApproximateRouteStrategy.field629 = Math.abs(DirectByteArrayCopier.field3126);
 		}
+	}
 
-		System.gc();
-		class390.method6744(2);
-		Client.currentTrackGroupId = -1;
-		Client.field866 = false;
+	@ObfuscatedName("hv")
+	@ObfuscatedSignature(
+		descriptor = "(III)V",
+		garbageValue = "-828545505"
+	)
+	static final void method2547(int var0, int var1) {
+		if (Client.menuOptionsCount >= 2 || Client.isItemSelected != 0 || Client.isSpellSelected) {
+			if (Client.showMouseOverText) {
+				int var2 = MilliClock.method2588();
+				String var3;
+				if (Client.isItemSelected == 1 && Client.menuOptionsCount < 2) {
+					var3 = "Use" + " " + Client.selectedItemName + " " + "->";
+				} else if (Client.isSpellSelected && Client.menuOptionsCount < 2) {
+					var3 = Client.selectedSpellActionName + " " + Client.selectedSpellName + " " + "->";
+				} else {
+					var3 = MouseRecorder.method2098(var2);
+				}
 
-		for (ObjectSound var1 = (ObjectSound)ObjectSound.objectSounds.last(); var1 != null; var1 = (ObjectSound)ObjectSound.objectSounds.previous()) {
-			if (var1.stream1 != null) {
-				FloorOverlayDefinition.pcmStreamMixer.removeSubStream(var1.stream1);
-				var1.stream1 = null;
-			}
+				if (Client.menuOptionsCount > 2) {
+					var3 = var3 + class44.colorStartTag(16777215) + " " + '/' + " " + (Client.menuOptionsCount - 2) + " more options";
+				}
 
-			if (var1.stream2 != null) {
-				FloorOverlayDefinition.pcmStreamMixer.removeSubStream(var1.stream2);
-				var1.stream2 = null;
+				Widget.fontBold12.drawRandomAlphaAndSpacing(var3, var0 + 4, var1 + 15, 16777215, 0, Client.cycle / 1000);
 			}
 		}
-
-		ObjectSound.objectSounds.clear();
-		Client.updateGameState(10);
 	}
 }

@@ -1,131 +1,118 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ee")
+@ObfuscatedName("ez")
 @Implements("Clock")
 public abstract class Clock {
-	@ObfuscatedName("eo")
-	@ObfuscatedGetter(
-		intValue = 7166595
-	)
-	static int field1522;
+	@ObfuscatedName("tg")
+	@Export("foundItemIds")
+	static short[] foundItemIds;
 
 	Clock() {
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "2109522039"
+		garbageValue = "-1887937791"
 	)
 	@Export("mark")
 	public abstract void mark();
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
 		descriptor = "(III)I",
-		garbageValue = "665432073"
+		garbageValue = "-1841090229"
 	)
 	@Export("wait")
 	public abstract int wait(int var1, int var2);
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(S)Lhm;",
-		garbageValue = "5230"
+		descriptor = "(IB)Z",
+		garbageValue = "-56"
 	)
-	public static PacketBufferNode method2590() {
-		return PacketBufferNode.PacketBufferNode_packetBufferNodeCount == 0 ? new PacketBufferNode() : PacketBufferNode.PacketBufferNode_packetBufferNodes[--PacketBufferNode.PacketBufferNode_packetBufferNodeCount];
-	}
-
-	@ObfuscatedName("t")
-	@ObfuscatedSignature(
-		descriptor = "(I)Lee;",
-		garbageValue = "-74631623"
-	)
-	public static Clock method2597() {
-		try {
-			return new NanoClock();
-		} catch (Throwable var1) {
-			return new MilliClock();
-		}
-	}
-
-	@ObfuscatedName("i")
-	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;I)Ljava/lang/String;",
-		garbageValue = "-1967334125"
-	)
-	public static String method2592(String var0) {
-		int var1 = var0.length();
-		char[] var2 = new char[var1];
-		byte var3 = 2;
-
-		for (int var4 = 0; var4 < var1; ++var4) {
-			char var5 = var0.charAt(var4);
-			if (var3 == 0) {
-				var5 = Character.toLowerCase(var5);
-			} else if (var3 == 2 || Character.isUpperCase(var5)) {
-				char var6;
-				if (var5 != 181 && var5 != 402) {
-					var6 = Character.toTitleCase(var5);
-				} else {
-					var6 = var5;
-				}
-
-				var5 = var6;
-			}
-
-			if (Character.isLetter(var5)) {
-				var3 = 0;
-			} else if (var5 != '.' && var5 != '?' && var5 != '!') {
-				if (Character.isSpaceChar(var5)) {
-					if (var3 != 2) {
-						var3 = 1;
-					}
-				} else {
-					var3 = 1;
-				}
+	@Export("loadInterface")
+	public static boolean loadInterface(int var0) {
+		if (Widget.Widget_loadedInterfaces[var0]) {
+			return true;
+		} else if (!HealthBarUpdate.Widget_archive.tryLoadGroup(var0)) {
+			return false;
+		} else {
+			int var1 = HealthBarUpdate.Widget_archive.getGroupFileCount(var0);
+			if (var1 == 0) {
+				Widget.Widget_loadedInterfaces[var0] = true;
+				return true;
 			} else {
-				var3 = 2;
-			}
-
-			var2[var4] = var5;
-		}
-
-		return new String(var2);
-	}
-
-	@ObfuscatedName("je")
-	@ObfuscatedSignature(
-		descriptor = "(IIIIIIII)V",
-		garbageValue = "2056453136"
-	)
-	@Export("updateRootInterface")
-	static final void updateRootInterface(int var0, int var1, int var2, int var3, int var4, int var5, int var6) {
-		if (UserComparator8.loadInterface(var0)) {
-			class32.updateInterface(Widget.Widget_interfaceComponents[var0], -1, var1, var2, var3, var4, var5, var6);
-		}
-	}
-
-	@ObfuscatedName("ll")
-	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "1034595766"
-	)
-	static void method2583() {
-		if (class18.field154 != null) {
-			Client.field687 = Client.cycle;
-			class18.field154.method5048();
-
-			for (int var0 = 0; var0 < Client.players.length; ++var0) {
-				if (Client.players[var0] != null) {
-					class18.field154.method5037(JagexCache.baseX * 64 + (Client.players[var0].x >> 7), Messages.baseY * 64 + (Client.players[var0].y >> 7));
+				if (Widget.Widget_interfaceComponents[var0] == null) {
+					Widget.Widget_interfaceComponents[var0] = new Widget[var1];
 				}
+
+				for (int var2 = 0; var2 < var1; ++var2) {
+					if (Widget.Widget_interfaceComponents[var0][var2] == null) {
+						byte[] var3 = HealthBarUpdate.Widget_archive.takeFile(var0, var2);
+						if (var3 != null) {
+							Widget.Widget_interfaceComponents[var0][var2] = new Widget();
+							Widget.Widget_interfaceComponents[var0][var2].id = var2 + (var0 << 16);
+							if (var3[0] == -1) {
+								Widget.Widget_interfaceComponents[var0][var2].decode(new Buffer(var3));
+							} else {
+								Widget.Widget_interfaceComponents[var0][var2].decodeLegacy(new Buffer(var3));
+							}
+						}
+					}
+				}
+
+				Widget.Widget_loadedInterfaces[var0] = true;
+				return true;
 			}
+		}
+	}
+
+	@ObfuscatedName("jd")
+	@ObfuscatedSignature(
+		descriptor = "(Lio;IIZI)V",
+		garbageValue = "-1829145394"
+	)
+	@Export("alignWidgetSize")
+	static void alignWidgetSize(Widget var0, int var1, int var2, boolean var3) {
+		int var4 = var0.width;
+		int var5 = var0.height;
+		if (var0.widthAlignment == 0) {
+			var0.width = var0.rawWidth;
+		} else if (var0.widthAlignment == 1) {
+			var0.width = var1 - var0.rawWidth;
+		} else if (var0.widthAlignment == 2) {
+			var0.width = var0.rawWidth * var1 >> 14;
+		}
+
+		if (var0.heightAlignment == 0) {
+			var0.height = var0.rawHeight;
+		} else if (var0.heightAlignment == 1) {
+			var0.height = var2 - var0.rawHeight;
+		} else if (var0.heightAlignment == 2) {
+			var0.height = var2 * var0.rawHeight >> 14;
+		}
+
+		if (var0.widthAlignment == 4) {
+			var0.width = var0.field3060 * var0.height / var0.field2976;
+		}
+
+		if (var0.heightAlignment == 4) {
+			var0.height = var0.width * var0.field2976 / var0.field3060;
+		}
+
+		if (var0.contentType == 1337) {
+			Client.viewportWidget = var0;
+		}
+
+		if (var3 && var0.onResize != null && (var4 != var0.width || var5 != var0.height)) {
+			ScriptEvent var6 = new ScriptEvent();
+			var6.widget = var0;
+			var6.args = var0.onResize;
+			Client.scriptEvents.addFirst(var6);
 		}
 
 	}

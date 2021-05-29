@@ -3,158 +3,111 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("u")
+@ObfuscatedName("m")
 public class class18 extends class14 {
-	@ObfuscatedName("tw")
-	@ObfuscatedSignature(
-		descriptor = "Ljn;"
-	)
-	public static class285 field154;
-	@ObfuscatedName("rg")
+	@ObfuscatedName("rf")
 	@ObfuscatedGetter(
-		intValue = -1116258304
+		intValue = -1469899117
 	)
-	static int field157;
-	@ObfuscatedName("ap")
-	@ObfuscatedSignature(
-		descriptor = "Lle;"
-	)
-	static Bounds field155;
-	@ObfuscatedName("db")
-	@ObfuscatedSignature(
-		descriptor = "Lji;"
-	)
-	@Export("archive13")
-	static Archive archive13;
-	@ObfuscatedName("h")
+	static int field153;
+	@ObfuscatedName("re")
 	@ObfuscatedGetter(
-		intValue = 91445281
+		intValue = 1439588607
 	)
-	int field152;
-	@ObfuscatedName("c")
-	boolean field151;
+	static int field156;
+	@ObfuscatedName("f")
+	@ObfuscatedGetter(
+		longValue = -6310115608975141981L
+	)
+	public static long field159;
+	@ObfuscatedName("b")
+	@ObfuscatedGetter(
+		intValue = 393303047
+	)
+	@Export("musicTrackFileId")
+	public static int musicTrackFileId;
+	@ObfuscatedName("br")
+	@ObfuscatedSignature(
+		descriptor = "[Lop;"
+	)
+	@Export("worldSelectStars")
+	static IndexedSprite[] worldSelectStars;
+	@ObfuscatedName("gj")
+	@Export("regionLandArchives")
+	static byte[][] regionLandArchives;
+	@ObfuscatedName("jm")
+	@ObfuscatedSignature(
+		descriptor = "Lio;"
+	)
+	@Export("hoveredItemContainer")
+	static Widget hoveredItemContainer;
+	@ObfuscatedName("v")
+	@ObfuscatedGetter(
+		intValue = -918629571
+	)
+	int field157;
+	@ObfuscatedName("n")
+	boolean field150;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Lo;"
+		descriptor = "Lf;"
 	)
 	final class2 this$0;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lo;)V"
+		descriptor = "(Lf;)V"
 	)
 	class18(class2 var1) {
 		this.this$0 = var1;
-		this.field152 = -1;
+		this.field157 = -1;
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(Lnk;I)V",
-		garbageValue = "110401227"
+		descriptor = "(Lnd;I)V",
+		garbageValue = "-1281352827"
 	)
-	void vmethod339(Buffer var1) {
-		this.field152 = var1.readUnsignedShort();
-		this.field151 = var1.readUnsignedByte() == 1;
+	void vmethod276(Buffer var1) {
+		this.field157 = var1.readUnsignedShort();
+		this.field150 = var1.readUnsignedByte() == 1;
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "(Lx;I)V",
-		garbageValue = "-1535989118"
+		descriptor = "(Ll;B)V",
+		garbageValue = "29"
 	)
-	void vmethod338(class11 var1) {
-		var1.method133(this.field152, this.field151);
+	void vmethod281(class11 var1) {
+		var1.method110(this.field157, this.field150);
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/CharSequence;IZB)I",
-		garbageValue = "114"
+		descriptor = "(IB)I",
+		garbageValue = "-52"
 	)
-	static int method255(CharSequence var0, int var1, boolean var2) {
-		if (var1 >= 2 && var1 <= 36) {
-			boolean var3 = false;
-			boolean var4 = false;
-			int var5 = 0;
-			int var6 = var0.length();
+	public static int method213(int var0) {
+		return var0 >> 17 & 7;
+	}
 
-			for (int var7 = 0; var7 < var6; ++var7) {
-				char var8 = var0.charAt(var7);
-				if (var7 == 0) {
-					if (var8 == '-') {
-						var3 = true;
-						continue;
-					}
-
-					if (var8 == '+') {
-						continue;
-					}
-				}
-
-				int var10;
-				if (var8 >= '0' && var8 <= '9') {
-					var10 = var8 - '0';
-				} else if (var8 >= 'A' && var8 <= 'Z') {
-					var10 = var8 - '7';
-				} else {
-					if (var8 < 'a' || var8 > 'z') {
-						throw new NumberFormatException();
-					}
-
-					var10 = var8 - 'W';
-				}
-
-				if (var10 >= var1) {
-					throw new NumberFormatException();
-				}
-
-				if (var3) {
-					var10 = -var10;
-				}
-
-				int var9 = var5 * var1 + var10;
-				if (var9 / var1 != var5) {
-					throw new NumberFormatException();
-				}
-
-				var5 = var9;
-				var4 = true;
+	@ObfuscatedName("kn")
+	@ObfuscatedSignature(
+		descriptor = "(IIZB)V",
+		garbageValue = "-41"
+	)
+	static final void method216(int var0, int var1, boolean var2) {
+		if (Client.field871[var0] != null) {
+			if (var1 >= 0 && var1 < Client.field871[var0].method27()) {
+				class9 var3 = (class9)Client.field871[var0].field28.get(var1);
+				PacketWriter var4 = Client.packetWriter;
+				PacketBufferNode var5 = class21.getPacketBufferNode(ClientPacket.field2607, var4.isaacCipher);
+				var5.packetBuffer.writeByte(4 + Tiles.stringCp1252NullTerminatedByteSize(var3.field84));
+				var5.packetBuffer.writeByte(var0);
+				var5.packetBuffer.writeShort(var1);
+				var5.packetBuffer.writeBoolean(var2);
+				var5.packetBuffer.writeStringCp1252NullTerminated(var3.field84);
+				var4.addNode(var5);
 			}
-
-			if (!var4) {
-				throw new NumberFormatException();
-			} else {
-				return var5;
-			}
-		} else {
-			throw new IllegalArgumentException("" + var1);
 		}
-	}
-
-	@ObfuscatedName("kv")
-	@ObfuscatedSignature(
-		descriptor = "(Lcl;ZI)V",
-		garbageValue = "-1411385437"
-	)
-	@Export("closeInterface")
-	static final void closeInterface(InterfaceParent var0, boolean var1) {
-		int var2 = var0.group;
-		int var3 = (int)var0.key;
-		var0.remove();
-		if (var1) {
-			WallDecoration.method4234(var2);
-		}
-
-		TaskHandler.method2515(var2);
-		Widget var4 = DevicePcmPlayerProvider.getWidget(var3);
-		if (var4 != null) {
-			VerticalAlignment.invalidateWidget(var4);
-		}
-
-		GrandExchangeOfferOwnWorldComparator.method1212();
-		if (Client.rootInterface != -1) {
-			LoginType.runIntfCloseListeners(Client.rootInterface, 1);
-		}
-
 	}
 }

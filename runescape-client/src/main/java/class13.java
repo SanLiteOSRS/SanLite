@@ -3,129 +3,99 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("r")
+@ObfuscatedName("c")
 public class class13 extends class14 {
-	@ObfuscatedName("k")
-	@ObfuscatedGetter(
-		intValue = 1404988967
+	@ObfuscatedName("a")
+	@ObfuscatedSignature(
+		descriptor = "Lio;"
 	)
-	@Export("Interpreter_stringStackSize")
-	static int Interpreter_stringStackSize;
-	@ObfuscatedName("h")
+	@Export("scriptDotWidget")
+	static Widget scriptDotWidget;
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		longValue = -8402859884064294097L
+		longValue = 2060700822682065955L
 	)
-	long field124;
-	@ObfuscatedName("c")
-	String field120;
+	long field129;
+	@ObfuscatedName("n")
+	String field128;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Lo;"
+		descriptor = "Lf;"
 	)
 	final class2 this$0;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lo;)V"
+		descriptor = "(Lf;)V"
 	)
 	class13(class2 var1) {
 		this.this$0 = var1;
-		this.field124 = -1L;
-		this.field120 = null;
+		this.field129 = -1L;
+		this.field128 = null;
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(Lnk;I)V",
-		garbageValue = "110401227"
+		descriptor = "(Lnd;I)V",
+		garbageValue = "-1281352827"
 	)
-	void vmethod339(Buffer var1) {
+	void vmethod276(Buffer var1) {
 		if (var1.readUnsignedByte() != 255) {
 			--var1.offset;
-			this.field124 = var1.readLong();
+			this.field129 = var1.readLong();
 		}
 
-		this.field120 = var1.readStringCp1252NullTerminatedOrNull();
+		this.field128 = var1.readStringCp1252NullTerminatedOrNull();
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "(Lx;I)V",
-		garbageValue = "-1535989118"
+		descriptor = "(Ll;B)V",
+		garbageValue = "29"
 	)
-	void vmethod338(class11 var1) {
-		var1.method120(this.field124, this.field120);
+	void vmethod281(class11 var1) {
+		var1.method106(this.field129, this.field128);
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(II)Lev;",
-		garbageValue = "1730592786"
+		descriptor = "(Ljv;B)V",
+		garbageValue = "-4"
 	)
-	public static VarcInt method210(int var0) {
-		VarcInt var1 = (VarcInt)VarcInt.VarcInt_cached.get((long)var0);
-		if (var1 != null) {
-			return var1;
-		} else {
-			byte[] var2 = VarcInt.VarcInt_archive.takeFile(19, var0);
-			var1 = new VarcInt();
-			if (var2 != null) {
-				var1.method2659(new Buffer(var2));
+	public static void method180(AbstractArchive var0) {
+		StructComposition.StructDefinition_archive = var0;
+	}
+
+	@ObfuscatedName("n")
+	public static double method182(double var0, double var2, double var4) {
+		return MouseHandler.method620((var0 - var2) / var4) / var4;
+	}
+
+	@ObfuscatedName("fz")
+	@ObfuscatedSignature(
+		descriptor = "(Ljp;Ljava/lang/String;I)V",
+		garbageValue = "-1436949198"
+	)
+	static void method175(Archive var0, String var1) {
+		ArchiveLoader var2 = new ArchiveLoader(var0, var1);
+		Client.archiveLoaders.add(var2);
+		Client.field916 += var2.groupCount;
+	}
+
+	@ObfuscatedName("km")
+	@ObfuscatedSignature(
+		descriptor = "(Lio;IIII)V",
+		garbageValue = "425709195"
+	)
+	@Export("drawCompass")
+	static final void drawCompass(Widget var0, int var1, int var2, int var3) {
+		SpriteMask var4 = var0.getSpriteMask(false);
+		if (var4 != null) {
+			if (Client.minimapState < 3) {
+				NPCComposition.compass.drawRotatedMaskedCenteredAround(var1, var2, var4.width, var4.height, 25, 25, Client.camAngleY, 256, var4.xStarts, var4.xWidths);
+			} else {
+				Rasterizer2D.Rasterizer2D_fillMaskedRectangle(var1, var2, 0, var4.xStarts, var4.xWidths);
 			}
 
-			VarcInt.VarcInt_cached.put(var1, (long)var0);
-			return var1;
 		}
-	}
-
-	@ObfuscatedName("b")
-	@ObfuscatedSignature(
-		descriptor = "(I)Lbc;",
-		garbageValue = "-97122486"
-	)
-	@Export("getNextWorldListWorld")
-	static World getNextWorldListWorld() {
-		return World.World_listCount < World.World_count ? Messages.World_worlds[++World.World_listCount - 1] : null;
-	}
-
-	@ObfuscatedName("aw")
-	@ObfuscatedSignature(
-		descriptor = "(Lem;I)Z",
-		garbageValue = "-2025189818"
-	)
-	static boolean method204(ObjectComposition var0) {
-		if (var0.transforms != null) {
-			int[] var1 = var0.transforms;
-
-			for (int var2 = 0; var2 < var1.length; ++var2) {
-				int var3 = var1[var2];
-				ObjectComposition var4 = AttackOption.getObjectDefinition(var3);
-				if (var4.mapIconId != -1) {
-					return true;
-				}
-			}
-		} else if (var0.mapIconId != -1) {
-			return true;
-		}
-
-		return false;
-	}
-
-	@ObfuscatedName("er")
-	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "-24"
-	)
-	static final void method214() {
-		Scene.Scene_isLowDetail = false;
-		Client.isLowDetail = false;
-	}
-
-	@ObfuscatedName("jo")
-	@ObfuscatedSignature(
-		descriptor = "(B)Z",
-		garbageValue = "-86"
-	)
-	static boolean method213() {
-		return Client.tapToDrop || KeyHandler.KeyHandler_pressedKeys[81];
 	}
 }

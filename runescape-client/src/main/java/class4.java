@@ -3,143 +3,132 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("l")
+@ObfuscatedName("p")
 public class class4 extends class14 {
-	@ObfuscatedName("h")
+	@ObfuscatedName("rk")
 	@ObfuscatedGetter(
-		intValue = -205584469
+		intValue = 1710042496
 	)
-	int field41;
-	@ObfuscatedName("c")
+	static int field47;
+	@ObfuscatedName("mf")
+	@ObfuscatedGetter(
+		intValue = -2110888403
+	)
+	@Export("selectedSpellFlags")
+	static int selectedSpellFlags;
+	@ObfuscatedName("ng")
+	@ObfuscatedSignature(
+		descriptor = "[Lio;"
+	)
+	static Widget[] field49;
+	@ObfuscatedName("v")
+	@ObfuscatedGetter(
+		intValue = 82874555
+	)
+	int field43;
+	@ObfuscatedName("n")
 	String field40;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Lo;"
+		descriptor = "Lf;"
 	)
 	final class2 this$0;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lo;)V"
+		descriptor = "(Lf;)V"
 	)
 	class4(class2 var1) {
 		this.this$0 = var1;
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(Lnk;I)V",
-		garbageValue = "110401227"
+		descriptor = "(Lnd;I)V",
+		garbageValue = "-1281352827"
 	)
-	void vmethod339(Buffer var1) {
-		this.field41 = var1.readInt();
+	void vmethod276(Buffer var1) {
+		this.field43 = var1.readInt();
 		this.field40 = var1.readStringCp1252NullTerminated();
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "(Lx;I)V",
-		garbageValue = "-1535989118"
+		descriptor = "(Ll;B)V",
+		garbageValue = "29"
 	)
-	void vmethod338(class11 var1) {
-		var1.method131(this.field41, this.field40);
+	void vmethod281(class11 var1) {
+		var1.method115(this.field43, this.field40);
 	}
 
-	@ObfuscatedName("aq")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;I)I",
-		garbageValue = "-1187192027"
+		descriptor = "(IIIII)V",
+		garbageValue = "-402074125"
 	)
-	@Export("stringCp1252NullTerminatedByteSize")
-	public static int stringCp1252NullTerminatedByteSize(String var0) {
-		return var0.length() + 1;
+	@Export("itemContainerSetItem")
+	static void itemContainerSetItem(int var0, int var1, int var2, int var3) {
+		ItemContainer var4 = (ItemContainer)ItemContainer.itemContainers.get((long)var0);
+		if (var4 == null) {
+			var4 = new ItemContainer();
+			ItemContainer.itemContainers.put(var4, (long)var0);
+		}
+
+		if (var4.ids.length <= var1) {
+			int[] var5 = new int[var1 + 1];
+			int[] var6 = new int[var1 + 1];
+
+			int var7;
+			for (var7 = 0; var7 < var4.ids.length; ++var7) {
+				var5[var7] = var4.ids[var7];
+				var6[var7] = var4.quantities[var7];
+			}
+
+			for (var7 = var4.ids.length; var7 < var1; ++var7) {
+				var5[var7] = -1;
+				var6[var7] = 0;
+			}
+
+			var4.ids = var5;
+			var4.quantities = var6;
+		}
+
+		var4.ids[var1] = var2;
+		var4.quantities[var1] = var3;
 	}
 
-	@ObfuscatedName("go")
+	@ObfuscatedName("kr")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;I)V",
-		garbageValue = "-2119138852"
+		descriptor = "(S)V",
+		garbageValue = "-23226"
 	)
-	@Export("doCheat")
-	static final void doCheat(String var0) {
-		if (var0.equalsIgnoreCase("toggleroof")) {
-			class12.clientPreferences.roofsHidden = !class12.clientPreferences.roofsHidden;
-			KeyHandler.savePreferences();
-			if (class12.clientPreferences.roofsHidden) {
-				WorldMapScaleHandler.addGameMessage(99, "", "Roofs are now all hidden");
-			} else {
-				WorldMapScaleHandler.addGameMessage(99, "", "Roofs will only be removed selectively");
+	static final void method47() {
+		PacketBufferNode var0 = class21.getPacketBufferNode(ClientPacket.field2594, Client.packetWriter.isaacCipher);
+		Client.packetWriter.addNode(var0);
+
+		for (InterfaceParent var1 = (InterfaceParent)Client.interfaceParents.first(); var1 != null; var1 = (InterfaceParent)Client.interfaceParents.next()) {
+			if (var1.type == 0 || var1.type == 3) {
+				class43.closeInterface(var1, true);
 			}
 		}
 
-		if (var0.equalsIgnoreCase("displayfps")) {
-			Client.displayFps = !Client.displayFps;
+		if (Client.meslayerContinueWidget != null) {
+			WorldMapCacheName.invalidateWidget(Client.meslayerContinueWidget);
+			Client.meslayerContinueWidget = null;
 		}
 
-		if (var0.equalsIgnoreCase("renderself")) {
-			Client.renderSelf = !Client.renderSelf;
-		}
-
-		if (var0.equalsIgnoreCase("mouseovertext")) {
-			Client.showMouseOverText = !Client.showMouseOverText;
-		}
-
-		if (Client.staffModLevel >= 2) {
-			if (var0.equalsIgnoreCase("errortest")) {
-				throw new RuntimeException();
-			}
-
-			if (var0.equalsIgnoreCase("showcoord")) {
-				NetSocket.worldMap.showCoord = !NetSocket.worldMap.showCoord;
-			}
-
-			if (var0.equalsIgnoreCase("fpson")) {
-				Client.displayFps = true;
-			}
-
-			if (var0.equalsIgnoreCase("fpsoff")) {
-				Client.displayFps = false;
-			}
-
-			if (var0.equalsIgnoreCase("gc")) {
-				System.gc();
-			}
-
-			if (var0.equalsIgnoreCase("clientdrop")) {
-				BuddyRankComparator.method2492();
-			}
-		}
-
-		PacketBufferNode var1 = HealthBarDefinition.getPacketBufferNode(ClientPacket.field2603, Client.packetWriter.isaacCipher);
-		var1.packetBuffer.writeByte(var0.length() + 1);
-		var1.packetBuffer.writeStringCp1252NullTerminated(var0);
-		Client.packetWriter.addNode(var1);
 	}
 
-	@ObfuscatedName("lf")
+	@ObfuscatedName("lx")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;ZB)Ljava/lang/String;",
-		garbageValue = "9"
+		descriptor = "(IIIZI)V",
+		garbageValue = "1166427642"
 	)
-	static String method57(String var0, boolean var1) {
-		String var2 = var1 ? "https://" : "http://";
-		if (Client.gameBuild == 1) {
-			var0 = var0 + "-wtrc";
-		} else if (Client.gameBuild == 2) {
-			var0 = var0 + "-wtqa";
-		} else if (Client.gameBuild == 3) {
-			var0 = var0 + "-wtwip";
-		} else if (Client.gameBuild == 5) {
-			var0 = var0 + "-wti";
-		} else if (Client.gameBuild == 4) {
-			var0 = "local";
-		}
-
-		String var3 = "";
-		if (class253.field3136 != null) {
-			var3 = "/p=" + class253.field3136;
-		}
-
-		String var4 = "runescape.com";
-		return var2 + var0 + "." + var4 + "/l=" + class7.clientLanguage + "/a=" + class44.field310 + var3 + "/";
+	public static void method50(int var0, int var1, int var2, boolean var3) {
+		PacketBufferNode var4 = class21.getPacketBufferNode(ClientPacket.field2657, Client.packetWriter.isaacCipher);
+		var4.packetBuffer.method6602(var1);
+		var4.packetBuffer.writeInt(var3 ? Client.field723 : 0);
+		var4.packetBuffer.writeByte(var2);
+		var4.packetBuffer.method6619(var0);
+		Client.packetWriter.addNode(var4);
 	}
 }

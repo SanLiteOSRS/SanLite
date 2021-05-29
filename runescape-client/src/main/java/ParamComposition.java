@@ -1,43 +1,45 @@
+import java.awt.image.BufferedImage;
+import java.awt.image.PixelGrabber;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("eo")
+@ObfuscatedName("eh")
 @Implements("ParamComposition")
 public class ParamComposition extends DualNode {
-	@ObfuscatedName("h")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "Ljp;"
+		descriptor = "Ljv;"
 	)
 	@Export("ParamDefinition_archive")
-	static AbstractArchive ParamDefinition_archive;
-	@ObfuscatedName("c")
+	public static AbstractArchive ParamDefinition_archive;
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "Lho;"
+		descriptor = "Lhz;"
 	)
 	@Export("ParamDefinition_cached")
 	static EvictingDualNodeHashTable ParamDefinition_cached;
-	@ObfuscatedName("kj")
-	@ObfuscatedGetter(
-		intValue = 1127122845
-	)
-	@Export("Client_plane")
-	static int Client_plane;
 	@ObfuscatedName("o")
+	@Export("Tiles_hueMultiplier")
+	static int[] Tiles_hueMultiplier;
+	@ObfuscatedName("f")
 	@Export("type")
 	char type;
-	@ObfuscatedName("g")
+	@ObfuscatedName("y")
 	@ObfuscatedGetter(
-		intValue = 648695719
+		intValue = 1035114241
 	)
 	@Export("defaultInt")
 	public int defaultInt;
-	@ObfuscatedName("l")
+	@ObfuscatedName("p")
 	@Export("defaultStr")
 	public String defaultStr;
-	@ObfuscatedName("z")
+	@ObfuscatedName("j")
 	@Export("autoDisable")
 	boolean autoDisable;
 
@@ -49,19 +51,19 @@ public class ParamComposition extends DualNode {
 		this.autoDisable = true;
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "13"
+		descriptor = "(I)V",
+		garbageValue = "-2035039136"
 	)
 	@Export("postDecode")
 	void postDecode() {
 	}
 
-	@ObfuscatedName("g")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(Lnk;B)V",
-		garbageValue = "-46"
+		descriptor = "(Lnd;S)V",
+		garbageValue = "-22209"
 	)
 	@Export("decode")
 	void decode(Buffer var1) {
@@ -75,10 +77,10 @@ public class ParamComposition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		descriptor = "(Lnk;IB)V",
-		garbageValue = "24"
+		descriptor = "(Lnd;IB)V",
+		garbageValue = "36"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
@@ -110,134 +112,166 @@ public class ParamComposition extends DualNode {
 
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		descriptor = "(B)Z",
-		garbageValue = "-66"
+		descriptor = "(S)Z",
+		garbageValue = "25333"
 	)
 	@Export("isString")
 	public boolean isString() {
 		return this.type == 's';
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(CLkr;I)C",
-		garbageValue = "-528030927"
+		descriptor = "([BB)Loh;",
+		garbageValue = "116"
 	)
-	@Export("standardizeChar")
-	static char standardizeChar(char var0, Language var1) {
-		if (var0 >= 192 && var0 <= 255) {
-			if (var0 >= 192 && var0 <= 198) {
-				return 'A';
-			}
+	@Export("convertJpgToSprite")
+	public static final SpritePixels convertJpgToSprite(byte[] var0) {
+		BufferedImage var1 = null;
 
-			if (var0 == 199) {
-				return 'C';
-			}
-
-			if (var0 >= 200 && var0 <= 203) {
-				return 'E';
-			}
-
-			if (var0 >= 204 && var0 <= 207) {
-				return 'I';
-			}
-
-			if (var0 == 209 && var1 != Language.Language_ES) {
-				return 'N';
-			}
-
-			if (var0 >= 210 && var0 <= 214) {
-				return 'O';
-			}
-
-			if (var0 >= 217 && var0 <= 220) {
-				return 'U';
-			}
-
-			if (var0 == 221) {
-				return 'Y';
-			}
-
-			if (var0 == 223) {
-				return 's';
-			}
-
-			if (var0 >= 224 && var0 <= 230) {
-				return 'a';
-			}
-
-			if (var0 == 231) {
-				return 'c';
-			}
-
-			if (var0 >= 232 && var0 <= 235) {
-				return 'e';
-			}
-
-			if (var0 >= 236 && var0 <= 239) {
-				return 'i';
-			}
-
-			if (var0 == 241 && var1 != Language.Language_ES) {
-				return 'n';
-			}
-
-			if (var0 >= 242 && var0 <= 246) {
-				return 'o';
-			}
-
-			if (var0 >= 249 && var0 <= 252) {
-				return 'u';
-			}
-
-			if (var0 == 253 || var0 == 255) {
-				return 'y';
-			}
+		try {
+			var1 = ImageIO.read(new ByteArrayInputStream(var0));
+			int var2 = var1.getWidth();
+			int var3 = var1.getHeight();
+			int[] var4 = new int[var2 * var3];
+			PixelGrabber var5 = new PixelGrabber(var1, 0, 0, var2, var3, var4, 0, var2);
+			var5.grabPixels();
+			return new SpritePixels(var4, var2, var3);
+		} catch (IOException var7) {
+		} catch (InterruptedException var8) {
 		}
 
-		if (var0 == 338) {
-			return 'O';
-		} else if (var0 == 339) {
-			return 'o';
-		} else if (var0 == 376) {
-			return 'Y';
-		} else {
-			return var0;
-		}
+		return new SpritePixels(0, 0);
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "(II)Lgi;",
-		garbageValue = "297744519"
+		descriptor = "(Lnd;Ljava/lang/String;I)I",
+		garbageValue = "-44618968"
 	)
-	@Export("getFrames")
-	static Frames getFrames(int var0) {
-		Frames var1 = (Frames)SequenceDefinition.SequenceDefinition_cachedFrames.get((long)var0);
-		if (var1 != null) {
-			return var1;
-		} else {
-			var1 = IsaacCipher.loadFrames(SequenceDefinition.SequenceDefinition_animationsArchive, SequenceDefinition.SequenceDefinition_skeletonsArchive, var0, false);
-			if (var1 != null) {
-				SequenceDefinition.SequenceDefinition_cachedFrames.put(var1, (long)var0);
-			}
-
-			return var1;
-		}
+	public static int method2878(Buffer var0, String var1) {
+		int var2 = var0.offset;
+		byte[] var3 = DynamicObject.method2004(var1);
+		var0.writeSmartByteShort(var3.length);
+		var0.offset += class249.huffman.compress(var3, 0, var3.length, var0.array, var0.offset);
+		return var0.offset - var2;
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;II)V",
-		garbageValue = "1534971761"
+		descriptor = "(Lnb;II)Z",
+		garbageValue = "422196307"
 	)
-	static final void method2825(String var0, int var1) {
-		PacketBufferNode var2 = HealthBarDefinition.getPacketBufferNode(ClientPacket.field2614, Client.packetWriter.isaacCipher);
-		var2.packetBuffer.writeByte(class4.stringCp1252NullTerminatedByteSize(var0) + 1);
-		var2.packetBuffer.writeStringCp1252NullTerminated(var0);
-		var2.packetBuffer.method6610(var1);
-		Client.packetWriter.addNode(var2);
+	@Export("updateExternalPlayer")
+	static boolean updateExternalPlayer(PacketBuffer var0, int var1) {
+		int var2 = var0.readBits(2);
+		int var3;
+		int var4;
+		int var7;
+		int var8;
+		int var9;
+		int var10;
+		if (var2 == 0) {
+			if (var0.readBits(1) != 0) {
+				updateExternalPlayer(var0, var1);
+			}
+
+			var3 = var0.readBits(13);
+			var4 = var0.readBits(13);
+			boolean var12 = var0.readBits(1) == 1;
+			if (var12) {
+				Players.Players_pendingUpdateIndices[++Players.Players_pendingUpdateCount - 1] = var1;
+			}
+
+			if (Client.players[var1] != null) {
+				throw new RuntimeException();
+			} else {
+				Player var11 = Client.players[var1] = new Player();
+				var11.index = var1;
+				if (Players.field1374[var1] != null) {
+					var11.read(Players.field1374[var1]);
+				}
+
+				var11.orientation = Players.Players_orientations[var1];
+				var11.targetIndex = Players.Players_targetIndices[var1];
+				var7 = Players.Players_regions[var1];
+				var8 = var7 >> 28;
+				var9 = var7 >> 14 & 255;
+				var10 = var7 & 255;
+				var11.pathTraversed[0] = Players.field1373[var1];
+				var11.plane = (byte)var8;
+				var11.resetPath((var9 << 13) + var3 - VertexNormal.baseX * 64, (var10 << 13) + var4 - SoundSystem.baseY * 64);
+				var11.field1218 = false;
+				return true;
+			}
+		} else if (var2 == 1) {
+			var3 = var0.readBits(2);
+			var4 = Players.Players_regions[var1];
+			Players.Players_regions[var1] = (var4 & 268435455) + (((var4 >> 28) + var3 & 3) << 28);
+			return false;
+		} else {
+			int var5;
+			int var6;
+			if (var2 == 2) {
+				var3 = var0.readBits(5);
+				var4 = var3 >> 3;
+				var5 = var3 & 7;
+				var6 = Players.Players_regions[var1];
+				var7 = (var6 >> 28) + var4 & 3;
+				var8 = var6 >> 14 & 255;
+				var9 = var6 & 255;
+				if (var5 == 0) {
+					--var8;
+					--var9;
+				}
+
+				if (var5 == 1) {
+					--var9;
+				}
+
+				if (var5 == 2) {
+					++var8;
+					--var9;
+				}
+
+				if (var5 == 3) {
+					--var8;
+				}
+
+				if (var5 == 4) {
+					++var8;
+				}
+
+				if (var5 == 5) {
+					--var8;
+					++var9;
+				}
+
+				if (var5 == 6) {
+					++var9;
+				}
+
+				if (var5 == 7) {
+					++var8;
+					++var9;
+				}
+
+				Players.Players_regions[var1] = (var8 << 14) + var9 + (var7 << 28);
+				return false;
+			} else {
+				var3 = var0.readBits(18);
+				var4 = var3 >> 16;
+				var5 = var3 >> 8 & 255;
+				var6 = var3 & 255;
+				var7 = Players.Players_regions[var1];
+				var8 = (var7 >> 28) + var4 & 3;
+				var9 = var5 + (var7 >> 14) & 255;
+				var10 = var6 + var7 & 255;
+				Players.Players_regions[var1] = (var9 << 14) + var10 + (var8 << 28);
+				return false;
+			}
+		}
 	}
 }

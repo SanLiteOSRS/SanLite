@@ -1,47 +1,47 @@
-import java.util.Date;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import netscape.javascript.JSObject;
 
-@ObfuscatedName("z")
+@ObfuscatedName("j")
 public class class5 extends class16 {
-	@ObfuscatedName("v")
-	@Export("Widget_loadedInterfaces")
-	static boolean[] Widget_loadedInterfaces;
-	@ObfuscatedName("gz")
-	@ObfuscatedSignature(
-		descriptor = "Lgz;"
-	)
-	@Export("scene")
-	static Scene scene;
-	@ObfuscatedName("h")
+	@ObfuscatedName("an")
 	@ObfuscatedGetter(
-		intValue = 1793437277
+		intValue = 1071759603
 	)
-	int field45;
+	static int field53;
+	@ObfuscatedName("ez")
+	@ObfuscatedSignature(
+		descriptor = "Ljp;"
+	)
+	@Export("archive20")
+	static Archive archive20;
+	@ObfuscatedName("v")
+	@ObfuscatedGetter(
+		intValue = -625073017
+	)
+	int field56;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Lm;"
+		descriptor = "Lx;"
 	)
 	final class19 this$0;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lm;)V"
+		descriptor = "(Lx;)V"
 	)
 	class5(class19 var1) {
 		this.this$0 = var1;
-		this.field45 = -1;
+		this.field56 = -1;
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(Lnk;S)V",
-		garbageValue = "4095"
+		descriptor = "(Lnd;I)V",
+		garbageValue = "68071115"
 	)
-	void vmethod326(Buffer var1) {
-		this.field45 = var1.readUnsignedShort();
+	void vmethod266(Buffer var1) {
+		this.field56 = var1.readUnsignedShort();
 		var1.readUnsignedByte();
 		if (var1.readUnsignedByte() != 255) {
 			--var1.offset;
@@ -50,129 +50,90 @@ public class class5 extends class16 {
 
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "(Lg;B)V",
-		garbageValue = "-61"
+		descriptor = "(Ly;I)V",
+		garbageValue = "-1846892157"
 	)
-	void vmethod314(class3 var1) {
-		var1.method33(this.field45);
+	void vmethod264(class3 var1) {
+		var1.method26(this.field56);
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "(CB)C",
-		garbageValue = "19"
+		descriptor = "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V",
+		garbageValue = "1508723564"
 	)
-	public static char method68(char var0) {
-		switch(var0) {
-		case ' ':
-		case '-':
-		case '_':
-		case ' ':
-			return '_';
-		case '#':
-		case '[':
-		case ']':
-			return var0;
-		case 'À':
-		case 'Á':
-		case 'Â':
-		case 'Ã':
-		case 'Ä':
-		case 'à':
-		case 'á':
-		case 'â':
-		case 'ã':
-		case 'ä':
-			return 'a';
-		case 'Ç':
-		case 'ç':
-			return 'c';
-		case 'È':
-		case 'É':
-		case 'Ê':
-		case 'Ë':
-		case 'è':
-		case 'é':
-		case 'ê':
-		case 'ë':
-			return 'e';
-		case 'Í':
-		case 'Î':
-		case 'Ï':
-		case 'í':
-		case 'î':
-		case 'ï':
-			return 'i';
-		case 'Ñ':
-		case 'ñ':
-			return 'n';
-		case 'Ò':
-		case 'Ó':
-		case 'Ô':
-		case 'Õ':
-		case 'Ö':
-		case 'ò':
-		case 'ó':
-		case 'ô':
-		case 'õ':
-		case 'ö':
-			return 'o';
-		case 'Ù':
-		case 'Ú':
-		case 'Û':
-		case 'Ü':
-		case 'ù':
-		case 'ú':
-		case 'û':
-		case 'ü':
-			return 'u';
-		case 'ß':
-			return 'b';
-		case 'ÿ':
-		case 'Ÿ':
-			return 'y';
-		default:
-			return Character.toLowerCase(var0);
+	@Export("addChatMessage")
+	static void addChatMessage(int var0, String var1, String var2, String var3) {
+		ChatChannel var4 = (ChatChannel)Messages.Messages_channels.get(var0);
+		if (var4 == null) {
+			var4 = new ChatChannel();
+			Messages.Messages_channels.put(var0, var4);
 		}
+
+		Message var5 = var4.addMessage(var0, var1, var2, var3);
+		Messages.Messages_hashTable.put(var5, (long)var5.count);
+		Messages.Messages_queue.add(var5);
+		Client.chatCycle = Client.cycleCntr;
 	}
 
-	@ObfuscatedName("lo")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;I)V",
-		garbageValue = "-1466168379"
+		descriptor = "(IS)[B",
+		garbageValue = "3296"
 	)
-	static void method64(String var0) {
-		class253.field3136 = var0;
+	@Export("ByteArrayPool_getArray")
+	public static synchronized byte[] ByteArrayPool_getArray(int var0) {
+		return ByteArrayPool.ByteArrayPool_getArrayBool(var0, false);
+	}
 
-		try {
-			String var1 = class303.client.getParameter(Integer.toString(18));
-			String var2 = class303.client.getParameter(Integer.toString(13));
-			String var3 = var1 + "settings=" + var0 + "; version=1; path=/; domain=" + var2;
-			String var5;
-			if (var0.length() == 0) {
-				var3 = var3 + "; Expires=Thu, 01-Jan-1970 00:00:00 GMT; Max-Age=0";
-			} else {
-				String var4 = var3 + "; Expires=";
-				long var6 = Archive.currentTimeMillis() + 94608000000L;
-				Calendar.Calendar_calendar.setTime(new Date(var6));
-				int var8 = Calendar.Calendar_calendar.get(7);
-				int var9 = Calendar.Calendar_calendar.get(5);
-				int var10 = Calendar.Calendar_calendar.get(2);
-				int var11 = Calendar.Calendar_calendar.get(1);
-				int var12 = Calendar.Calendar_calendar.get(11);
-				int var13 = Calendar.Calendar_calendar.get(12);
-				int var14 = Calendar.Calendar_calendar.get(13);
-				var5 = Calendar.DAYS_OF_THE_WEEK[var8 - 1] + ", " + var9 / 10 + var9 % 10 + "-" + Calendar.MONTH_NAMES_ENGLISH_GERMAN[0][var10] + "-" + var11 + " " + var12 / 10 + var12 % 10 + ":" + var13 / 10 + var13 % 10 + ":" + var14 / 10 + var14 % 10 + " GMT";
-				var3 = var4 + var5 + "; Max-Age=" + 94608000L;
+	@ObfuscatedName("y")
+	@ObfuscatedSignature(
+		descriptor = "(IB)I",
+		garbageValue = "30"
+	)
+	public static int method58(int var0) {
+		return VarpDefinition.method2630(ViewportMouse.ViewportMouse_entityTags[var0]);
+	}
+
+	@ObfuscatedName("ih")
+	@ObfuscatedSignature(
+		descriptor = "(IB)Z",
+		garbageValue = "113"
+	)
+	static final boolean method51(int var0) {
+		if (var0 < 0) {
+			return false;
+		} else {
+			int var1 = Client.menuOpcodes[var0];
+			if (var1 >= 2000) {
+				var1 -= 2000;
 			}
 
-			Client var16 = class303.client;
-			var5 = "document.cookie=\"" + var3 + "\"";
-			JSObject.getWindow(var16).eval(var5);
-		} catch (Throwable var15) {
+			return var1 == 1007;
 		}
+	}
 
+	@ObfuscatedName("ik")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "-1850055815"
+	)
+	@Export("Widget_runOnTargetLeave")
+	static void Widget_runOnTargetLeave() {
+		if (Client.isSpellSelected) {
+			Widget var0 = ModeWhere.getWidgetChild(Decimator.selectedSpellWidget, Client.selectedSpellChildIndex);
+			if (var0 != null && var0.onTargetLeave != null) {
+				ScriptEvent var1 = new ScriptEvent();
+				var1.widget = var0;
+				var1.args = var0.onTargetLeave;
+				PacketWriter.runScriptEvent(var1);
+			}
+
+			Client.field788 = -1;
+			Client.isSpellSelected = false;
+			WorldMapCacheName.invalidateWidget(var0);
+		}
 	}
 }
