@@ -28,6 +28,7 @@ import com.google.inject.Provides;
 import com.google.inject.Singleton;
 import lombok.Getter;
 import net.runelite.api.Client;
+import net.runelite.api.FriendsChatManager;
 import net.runelite.api.MenuEntry;
 import net.runelite.api.Player;
 import net.runelite.client.events.ConfigChanged;
@@ -36,7 +37,7 @@ import net.runelite.api.events.MenuEntryAdded;
 import net.runelite.api.events.PlayerDespawned;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
-import net.runelite.client.game.FriendChatManager;
+import net.runelite.client.game.ChatIconManager;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.ui.overlay.OverlayManager;
@@ -79,7 +80,7 @@ public class ClanCallerPlugin extends Plugin
 	private Client client;
 
 	@Inject
-	private FriendChatManager friendsChatManager;
+	private ChatIconManager chatIconManager;
 
 	@Getter
 	private List<Player> callersList = new ArrayList<>();
@@ -124,7 +125,7 @@ public class ClanCallerPlugin extends Plugin
 			if (!callersList.contains(player) && !pilesList.contains(player))
 			{
 				// If it is a clan member, it can only be a caller
-				if (friendsChatManager.isMember(name))
+				if (isMember(name))
 				{
 					for (String caller : callersListString)
 					{
@@ -135,7 +136,7 @@ public class ClanCallerPlugin extends Plugin
 					}
 				}
 				// If it is not a clan member, it can only be a pile
-				else if (!friendsChatManager.isMember(name))
+				else if (!isMember(name))
 				{
 					for (Player caller : callersList)
 					{
@@ -250,5 +251,11 @@ public class ClanCallerPlugin extends Plugin
 	private void getCallerRSNs()
 	{
 		callersListString = Text.fromCSV(config.getCallerRsns());
+	}
+
+	private boolean isMember(String name)
+	{
+		FriendsChatManager friendsChatManager = client.getFriendsChatManager();
+		return friendsChatManager != null && friendsChatManager.findByName(name) != null;
 	}
 }

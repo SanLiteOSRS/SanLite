@@ -31,7 +31,7 @@ import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.FriendsChatRank;
 import net.runelite.api.Player;
 import net.runelite.api.Point;
-import net.runelite.client.game.FriendChatManager;
+import net.runelite.client.game.ChatIconManager;
 import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayPosition;
 import net.runelite.client.ui.overlay.OverlayPriority;
@@ -53,15 +53,15 @@ public class PlayerIndicatorsExtendedOverlay extends Overlay
 
 	private final PlayerIndicatorsExtendedService playerIndicatorsService;
 	private final PlayerIndicatorsExtendedConfig config;
-	private final FriendChatManager friendsChatManager;
+	private final ChatIconManager chatIconManager;
 
 	@Inject
 	private PlayerIndicatorsExtendedOverlay(PlayerIndicatorsExtendedConfig config, PlayerIndicatorsExtendedService playerIndicatorsService,
-											FriendChatManager friendsChatManager)
+											ChatIconManager chatIconManager)
 	{
 		this.config = config;
 		this.playerIndicatorsService = playerIndicatorsService;
-		this.friendsChatManager = friendsChatManager;
+		this.chatIconManager = chatIconManager;
 		setPosition(OverlayPosition.DYNAMIC);
 		setPriority(OverlayPriority.MED);
 	}
@@ -158,7 +158,8 @@ public class PlayerIndicatorsExtendedOverlay extends Overlay
 
 		if (config.showFriendsChatRanks() && type == PlayerIndicatorType.FRIENDS_CHAT_MEMBERS)
 		{
-			Point clanRankTextLocation = getNameTextLocationWithClanRank(graphics, name, textLocation, nameLocation);
+			final FriendsChatRank rank = playerIndicatorsService.getFriendsChatRank(player);
+			Point clanRankTextLocation = getNameTextLocationWithClanRank(graphics, rank, textLocation, nameLocation);
 			if (clanRankTextLocation != null)
 			{
 				textLocation = clanRankTextLocation;
@@ -168,13 +169,11 @@ public class PlayerIndicatorsExtendedOverlay extends Overlay
 		OverlayUtil.renderTextLocation(graphics, textLocation, name, color);
 	}
 
-	private Point getNameTextLocationWithClanRank(Graphics2D graphics, String name, Point textLocation, PlayerNameLocation nameLocation)
+	private Point getNameTextLocationWithClanRank(Graphics2D graphics, FriendsChatRank rank, Point textLocation, PlayerNameLocation nameLocation)
 	{
-		final FriendsChatRank rank = friendsChatManager.getRank(name);
-
 		if (rank != FriendsChatRank.UNRANKED)
 		{
-			final BufferedImage clanChatImage = friendsChatManager.getRankImage(rank);
+			final BufferedImage clanChatImage = chatIconManager.getRankImage(rank);
 
 			if (clanChatImage != null)
 			{

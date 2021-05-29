@@ -210,7 +210,7 @@ public interface PlayerIndicatorsExtendedConfig extends Config
 
 	@ConfigItem(
 			position = 7,
-			keyName = "disableFriendHighlightIfClanMember",
+			keyName = "disableFriendHighlightIfFriendsChatMember",
 			name = "Do not highlight friends chat members",
 			description = "Configures whether or not friends who are also in your friends chat should be highlighted as a friend",
 			section = friendsSection
@@ -282,7 +282,7 @@ public interface PlayerIndicatorsExtendedConfig extends Config
 
 	@ConfigItem(
 			position = 13,
-			keyName = "drawClanMemberNames",
+			keyName = "drawFriendsChatMemberNames",
 			name = "Highlight friends chat members",
 			description = "Configures if friends chat members should be highlighted",
 			section = friendsChatMembersSection
@@ -294,7 +294,7 @@ public interface PlayerIndicatorsExtendedConfig extends Config
 
 	@ConfigItem(
 			position = 14,
-			keyName = "clanMemberColor",
+			keyName = "friendsChatMemberColor",
 			name = "Friends chat member color",
 			description = "Color of friends chat members",
 			section = friendsChatMembersSection
@@ -306,7 +306,7 @@ public interface PlayerIndicatorsExtendedConfig extends Config
 
 	@ConfigItem(
 			position = 15,
-			keyName = "drawClanMemberTiles",
+			keyName = "drawFriendsChatMemberTiles",
 			name = "Draw tiles under friends chat members",
 			description = "Configures whether or not tiles under highlighted friends chat members should be drawn",
 			section = friendsChatMembersSection
@@ -318,7 +318,7 @@ public interface PlayerIndicatorsExtendedConfig extends Config
 
 	@ConfigItem(
 			position = 16,
-			keyName = "clanPlayerNamePosition",
+			keyName = "friendsChatPlayerNamePosition",
 			name = "Name position",
 			description = "Configures the position of drawn friends chat member names, or if they should be disabled",
 			section = friendsChatMembersSection
@@ -330,7 +330,7 @@ public interface PlayerIndicatorsExtendedConfig extends Config
 
 	@ConfigItem(
 			position = 17,
-			keyName = "drawClanMinimapNames",
+			keyName = "drawFriendsChatMinimapNames",
 			name = "Draw friends chat member names on minimap",
 			description = "Configures whether or not minimap names for friends chat members with rendered names should be drawn",
 			section = friendsChatMembersSection
@@ -342,7 +342,7 @@ public interface PlayerIndicatorsExtendedConfig extends Config
 
 	@ConfigItem(
 			position = 18,
-			keyName = "colorClanPlayerMenu",
+			keyName = "colorFriendsChatPlayerMenu",
 			name = "Colorize player menu for friends chat members",
 			description = "Color right click menu for friends chat members",
 			section = friendsChatMembersSection
@@ -426,7 +426,7 @@ public interface PlayerIndicatorsExtendedConfig extends Config
 
 	@ConfigItem(
 			position = 25,
-			keyName = "drawNonClanMemberNames",
+			keyName = "drawOtherNames",
 			name = "Highlight others",
 			description = "Configures whether or not other players should be highlighted",
 			section = othersSection
@@ -438,7 +438,7 @@ public interface PlayerIndicatorsExtendedConfig extends Config
 
 	@ConfigItem(
 			position = 26,
-			keyName = "nonClanMemberColor",
+			keyName = "otherColor",
 			name = "Others color",
 			description = "Color of other players names",
 			section = othersSection
@@ -450,7 +450,7 @@ public interface PlayerIndicatorsExtendedConfig extends Config
 
 	@ConfigItem(
 			position = 27,
-			keyName = "drawNonClanTiles",
+			keyName = "drawOtherTiles",
 			name = "Draw tiles under other players",
 			description = "Configures whether or not tiles under highlighted other players should be drawn",
 			section = othersSection
@@ -462,7 +462,7 @@ public interface PlayerIndicatorsExtendedConfig extends Config
 
 	@ConfigItem(
 			position = 28,
-			keyName = "nonClanPlayerNamePosition",
+			keyName = "otherPlayerNamePosition",
 			name = "Name position",
 			description = "Configures the position of drawn other player names, or if they should be disabled",
 			section = othersSection
@@ -474,7 +474,7 @@ public interface PlayerIndicatorsExtendedConfig extends Config
 
 	@ConfigItem(
 			position = 29,
-			keyName = "drawNonClanMinimapNames",
+			keyName = "drawOtherMinimapNames",
 			name = "Draw other player names on minimap",
 			description = "Configures whether or not minimap names for other players with rendered names should be drawn",
 			section = othersSection
@@ -486,7 +486,7 @@ public interface PlayerIndicatorsExtendedConfig extends Config
 
 	@ConfigItem(
 			position = 30,
-			keyName = "colorNonClanPlayerMenu",
+			keyName = "colorOtherPlayerMenu",
 			name = "Colorize player menu for other players",
 			description = "Color right click menu for other players",
 			section = othersSection
@@ -498,7 +498,7 @@ public interface PlayerIndicatorsExtendedConfig extends Config
 
 	@ConfigItem(
 			position = 31,
-			keyName = "notifyOnNonClanMemberSpawned",
+			keyName = "notifyOnOtherPlayerSpawned",
 			name = "Notify on other player spawn",
 			description = "Receive a notification when a other player appears by logging in or running into the " +
 					"player render range in a PvP zone. Notifications will not be triggered in safe death PvP areas",
@@ -609,7 +609,7 @@ public interface PlayerIndicatorsExtendedConfig extends Config
 
 	@ConfigItem(
 			position = 40,
-			keyName = "clanMenuIcons",
+			keyName = "friendsChatMenuIcons",
 			name = "Show friends chat ranks",
 			description = "Add friends chat rank to right click menu and next to player names",
 			section = friendsChatMembersSection
