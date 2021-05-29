@@ -17,8 +17,8 @@ public class WorldMapRegion {
 	@ObfuscatedSignature(
 		descriptor = "Llt;"
 	)
-	@Export("clanChat")
-	static FriendsChatManager clanChat;
+	@Export("friendsChatManager")
+	static FriendsChatManager friendsChatManager;
 	@ObfuscatedName("p")
 	@ObfuscatedSignature(
 		descriptor = "Lhn;"

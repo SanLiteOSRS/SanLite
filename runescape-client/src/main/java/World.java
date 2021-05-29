@@ -431,7 +431,7 @@ public class World {
 									} else {
 										Integer var36;
 										if (var31 == 74) {
-											var36 = class26.field220.method101(var7[var19]);
+											var36 = class26.field220.getTitleGroupValue(var7[var19]);
 											if (var36 == null) {
 												Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = -1;
 											} else {

@@ -51,8 +51,8 @@ public class Varps {
 			var3.clearIsFromFriend();
 		}
 
-		if (WorldMapRegion.clanChat != null) {
-			WorldMapRegion.clanChat.clearFriends();
+		if (WorldMapRegion.friendsChatManager != null) {
+			WorldMapRegion.friendsChatManager.clearFriends();
 		}
 
 	}

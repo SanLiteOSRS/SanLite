@@ -19,7 +19,8 @@ public final class Client extends GameEngine implements Usernamed {
 	@ObfuscatedSignature(
 		descriptor = "[Ll;"
 	)
-	static ClanSettings[] field734;
+	@Export("currentClanSettings")
+	static ClanSettings[] currentClanSettings;
 	@ObfuscatedName("ok")
 	@ObfuscatedGetter(
 		intValue = 257317803
@@ -267,7 +268,8 @@ public final class Client extends GameEngine implements Usernamed {
 	@ObfuscatedGetter(
 		intValue = -2103302667
 	)
-	static int field865;
+	@Export("crossWorldMessageIdsIndex")
+	static int crossWorldMessageIdsIndex;
 	@ObfuscatedName("tx")
 	@ObfuscatedGetter(
 		intValue = 112640073
@@ -283,7 +285,8 @@ public final class Client extends GameEngine implements Usernamed {
 	@ObfuscatedSignature(
 		descriptor = "[Ly;"
 	)
-	static ClanChannel[] field871;
+	@Export("currentClanChannels")
+	static ClanChannel[] currentClanChannels;
 	@ObfuscatedName("pi")
 	static int[] field867;
 	@ObfuscatedName("oj")
@@ -1522,13 +1525,13 @@ public final class Client extends GameEngine implements Usernamed {
 		tradeChatMode = 0;
 		field863 = "";
 		crossWorldMessageIds = new long[100];
-		field865 = 0;
+		crossWorldMessageIdsIndex = 0;
 		field806 = 0;
 		field867 = new int[128];
 		field868 = new int[128];
 		field809 = -1L;
-		field734 = new ClanSettings[1];
-		field871 = new ClanChannel[1];
+		currentClanSettings = new ClanSettings[1];
+		currentClanChannels = new ClanChannel[1];
 		field872 = -1;
 		mapIconCount = 0;
 		mapIconXs = new int[1000];
@@ -3163,11 +3166,11 @@ public final class Client extends GameEngine implements Usernamed {
 						var26.packetBuffer.writeShort(class32.canvasWidth);
 						var26.packetBuffer.writeShort(ReflectionCheck.canvasHeight);
 						packetWriter.addNode(var26);
-						WorldMapRegion.clanChat = null;
-						NPCComposition.field1633 = null;
-						Arrays.fill(field734, (Object)null);
-						ApproximateRouteStrategy.field630 = null;
-						Arrays.fill(field871, (Object)null);
+						WorldMapRegion.friendsChatManager = null;
+						NPCComposition.guestClanSettings = null;
+						Arrays.fill(currentClanSettings, (Object)null);
+						ApproximateRouteStrategy.guestClanChannel = null;
+						Arrays.fill(currentClanChannels, (Object)null);
 
 						for (var41 = 0; var41 < 8; ++var41) {
 							grandExchangeOffers[var41] = new GrandExchangeOffer();
@@ -3447,8 +3450,8 @@ public final class Client extends GameEngine implements Usernamed {
 				}
 
 				if (MusicPatch.ClanChat_inClanChat) {
-					if (WorldMapRegion.clanChat != null) {
-						WorldMapRegion.clanChat.sort();
+					if (WorldMapRegion.friendsChatManager != null) {
+						WorldMapRegion.friendsChatManager.sort();
 					}
 
 					ClanChannelMember.method85();
@@ -4695,8 +4698,8 @@ public final class Client extends GameEngine implements Usernamed {
 					}
 
 					if (!var59 && field755 == 0) {
-						crossWorldMessageIds[field865] = var12;
-						field865 = (field865 + 1) % 100;
+						crossWorldMessageIds[crossWorldMessageIdsIndex] = var12;
+						crossWorldMessageIdsIndex = (crossWorldMessageIdsIndex + 1) % 100;
 						var30 = AbstractFont.escapeBrackets(class43.method433(MusicPatch.method4592(var3)));
 						if (var79.modIcon != -1) {
 							class5.addChatMessage(9, SecureRandomFuture.method1982(var79.modIcon) + var46, var30, class258.base37DecodeLong(var23));
@@ -4797,9 +4800,9 @@ public final class Client extends GameEngine implements Usernamed {
 					var17 = var3.readByte();
 					if (var1.serverPacketLength == 1) {
 						if (var17 >= 0) {
-							field734[var17] = null;
+							currentClanSettings[var17] = null;
 						} else {
-							NPCComposition.field1633 = null;
+							NPCComposition.guestClanSettings = null;
 						}
 
 						var1.serverPacket = null;
@@ -4807,9 +4810,9 @@ public final class Client extends GameEngine implements Usernamed {
 					}
 
 					if (var17 >= 0) {
-						field734[var17] = new ClanSettings(var3);
+						currentClanSettings[var17] = new ClanSettings(var3);
 					} else {
-						NPCComposition.field1633 = new ClanSettings(var3);
+						NPCComposition.guestClanSettings = new ClanSettings(var3);
 					}
 
 					var1.serverPacket = null;
@@ -5080,7 +5083,7 @@ public final class Client extends GameEngine implements Usernamed {
 					var25 = (long)var3.readMedium();
 					var27 = var25 + (var23 << 32);
 					boolean var11 = false;
-					ClanChannel var31 = var17 >= 0 ? field871[var17] : ApproximateRouteStrategy.field630;
+					ClanChannel var31 = var17 >= 0 ? currentClanChannels[var17] : ApproximateRouteStrategy.guestClanChannel;
 					if (var31 == null) {
 						var11 = true;
 					} else {
@@ -5093,8 +5096,8 @@ public final class Client extends GameEngine implements Usernamed {
 					}
 
 					if (!var11) {
-						crossWorldMessageIds[field865] = var27;
-						field865 = (field865 + 1) % 100;
+						crossWorldMessageIds[crossWorldMessageIdsIndex] = var27;
+						crossWorldMessageIdsIndex = (crossWorldMessageIdsIndex + 1) % 100;
 						var32 = MusicPatch.method4592(var3);
 						int var58 = var17 >= 0 ? 43 : 46;
 						class5.addChatMessage(var58, "", var32, var31.name);
@@ -5401,8 +5404,8 @@ public final class Client extends GameEngine implements Usernamed {
 				}
 
 				if (ServerPacket.field2720 == var1.serverPacket) {
-					if (WorldMapRegion.clanChat != null) {
-						WorldMapRegion.clanChat.method5659(var3);
+					if (WorldMapRegion.friendsChatManager != null) {
+						WorldMapRegion.friendsChatManager.method5659(var3);
 					}
 
 					CollisionMap.method3155();
@@ -5479,8 +5482,8 @@ public final class Client extends GameEngine implements Usernamed {
 					}
 
 					if (!var36 && field755 == 0) {
-						crossWorldMessageIds[field865] = var34;
-						field865 = (field865 + 1) % 100;
+						crossWorldMessageIds[crossWorldMessageIdsIndex] = var34;
+						crossWorldMessageIdsIndex = (crossWorldMessageIdsIndex + 1) % 100;
 						var32 = AbstractFont.escapeBrackets(class43.method433(MusicPatch.method4592(var3)));
 						byte var14;
 						if (var33.isPrivileged) {
@@ -5509,7 +5512,7 @@ public final class Client extends GameEngine implements Usernamed {
 					long var41 = (var37 << 32) + var39;
 					boolean var13 = false;
 					ClanChannel var43 = null;
-					var43 = var17 >= 0 ? field871[var17] : ApproximateRouteStrategy.field630;
+					var43 = var17 >= 0 ? currentClanChannels[var17] : ApproximateRouteStrategy.guestClanChannel;
 					if (var43 == null) {
 						var13 = true;
 					} else {
@@ -5533,8 +5536,8 @@ public final class Client extends GameEngine implements Usernamed {
 					}
 
 					if (!var13) {
-						crossWorldMessageIds[field865] = var41;
-						field865 = (field865 + 1) % 100;
+						crossWorldMessageIds[crossWorldMessageIdsIndex] = var41;
+						crossWorldMessageIdsIndex = (crossWorldMessageIdsIndex + 1) % 100;
 						var30 = AbstractFont.escapeBrackets(MusicPatch.method4592(var3));
 						int var16 = var17 >= 0 ? 41 : 44;
 						if (var10.modIcon != -1) {
@@ -5554,9 +5557,9 @@ public final class Client extends GameEngine implements Usernamed {
 					class19 var62 = new class19(var3);
 					ClanChannel var65;
 					if (var17 >= 0) {
-						var65 = field871[var17];
+						var65 = currentClanChannels[var17];
 					} else {
-						var65 = ApproximateRouteStrategy.field630;
+						var65 = ApproximateRouteStrategy.guestClanChannel;
 					}
 
 					var62.method218(var65);
@@ -5570,9 +5573,9 @@ public final class Client extends GameEngine implements Usernamed {
 					class2 var61 = new class2(var3);
 					ClanSettings var19;
 					if (var17 >= 0) {
-						var19 = field734[var17];
+						var19 = currentClanSettings[var17];
 					} else {
-						var19 = NPCComposition.field1633;
+						var19 = NPCComposition.guestClanSettings;
 					}
 
 					var61.method16(var19);
@@ -5632,13 +5635,13 @@ public final class Client extends GameEngine implements Usernamed {
 
 				if (ServerPacket.field2749 == var1.serverPacket) {
 					if (var1.serverPacketLength == 0) {
-						WorldMapRegion.clanChat = null;
+						WorldMapRegion.friendsChatManager = null;
 					} else {
-						if (WorldMapRegion.clanChat == null) {
-							WorldMapRegion.clanChat = new FriendsChatManager(WorldMapSection0.loginType, class23.client);
+						if (WorldMapRegion.friendsChatManager == null) {
+							WorldMapRegion.friendsChatManager = new FriendsChatManager(WorldMapSection0.loginType, class23.client);
 						}
 
-						WorldMapRegion.clanChat.readUpdate(var3);
+						WorldMapRegion.friendsChatManager.readUpdate(var3);
 					}
 
 					CollisionMap.method3155();
@@ -5657,9 +5660,9 @@ public final class Client extends GameEngine implements Usernamed {
 					var17 = var3.readByte();
 					if (var1.serverPacketLength == 1) {
 						if (var17 >= 0) {
-							field871[var17] = null;
+							currentClanChannels[var17] = null;
 						} else {
-							ApproximateRouteStrategy.field630 = null;
+							ApproximateRouteStrategy.guestClanChannel = null;
 						}
 
 						var1.serverPacket = null;
@@ -5667,9 +5670,9 @@ public final class Client extends GameEngine implements Usernamed {
 					}
 
 					if (var17 >= 0) {
-						field871[var17] = new ClanChannel(var3);
+						currentClanChannels[var17] = new ClanChannel(var3);
 					} else {
-						ApproximateRouteStrategy.field630 = new ClanChannel(var3);
+						ApproximateRouteStrategy.guestClanChannel = new ClanChannel(var3);
 					}
 
 					var1.serverPacket = null;

@@ -96,9 +96,9 @@ public class class18 extends class14 {
 		garbageValue = "-41"
 	)
 	static final void method216(int var0, int var1, boolean var2) {
-		if (Client.field871[var0] != null) {
-			if (var1 >= 0 && var1 < Client.field871[var0].method27()) {
-				ClanChannelMember var3 = (ClanChannelMember)Client.field871[var0].members.get(var1);
+		if (Client.currentClanChannels[var0] != null) {
+			if (var1 >= 0 && var1 < Client.currentClanChannels[var0].method27()) {
+				ClanChannelMember var3 = (ClanChannelMember)Client.currentClanChannels[var0].members.get(var1);
 				PacketWriter var4 = Client.packetWriter;
 				PacketBufferNode var5 = class21.getPacketBufferNode(ClientPacket.field2607, var4.isaacCipher);
 				var5.packetBuffer.writeByte(4 + Tiles.stringCp1252NullTerminatedByteSize(var3.name));

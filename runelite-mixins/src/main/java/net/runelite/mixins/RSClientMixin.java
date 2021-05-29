@@ -79,6 +79,9 @@ import net.runelite.api.VarPlayer;
 import net.runelite.api.Varbits;
 import net.runelite.api.WidgetNode;
 import net.runelite.api.WorldType;
+import net.runelite.api.clan.ClanChannel;
+import net.runelite.api.clan.ClanRank;
+import net.runelite.api.clan.ClanSettings;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.coords.WorldPoint;
 import net.runelite.api.events.CanvasSizeChanged;
@@ -495,7 +498,7 @@ public abstract class RSClientMixin implements RSClient
 	@Override
 	public void setGameState(GameState gameState)
 	{
-		assert this.isClientThread();
+		assert this.isClientThread() : "setGameState must be called on client thread";
 		setGameState(gameState.getState());
 	}
 
@@ -869,7 +872,8 @@ public abstract class RSClientMixin implements RSClient
 	@Override
 	public SpritePixels createItemSprite(int itemId, int quantity, int border, int shadowColor, int stackable, boolean noted, int scale)
 	{
-		assert isClientThread();
+		assert isClientThread() : "createItemSprite must be called on client thread";
+
 		int zoom = get3dZoom();
 		set3dZoom(scale);
 		try
@@ -976,6 +980,11 @@ public abstract class RSClientMixin implements RSClient
 
 		if (gameState == GameState.LOGGED_IN)
 		{
+			if (client.getLocalPlayer() == null)
+			{
+				return;
+			}
+
 			int plane = client.getPlane();
 			RSScene scene = client.getScene();
 			RSTile[][][] tiles = scene.getTiles();
@@ -1110,7 +1119,7 @@ public abstract class RSClientMixin implements RSClient
 		}
 	}
 
-	@FieldHook("clanChat")
+	@FieldHook("friendsChatManager")
 	@Inject
 	public static void friendsChatMemberManagerChanged(int idx)
 	{
@@ -1286,7 +1295,7 @@ public abstract class RSClientMixin implements RSClient
 	@Inject
 	public void invokeMenuAction(int actionParam, int widgetId, int menuAction, int id, String menuOption, String menuTarget, int canvasX, int canvasY)
 	{
-		assert isClientThread();
+		assert isClientThread() : "invokeMenuAction must be called on client thread";
 
 		client.sendMenuAction(actionParam, widgetId, menuAction, id, menuOption, menuTarget, canvasX, canvasY);
 	}
@@ -1897,6 +1906,67 @@ public abstract class RSClientMixin implements RSClient
 	public static void preCloseInterface(RSInterfaceParent iface, boolean willUnload)
 	{
 		client.getCallbacks().post(new WidgetClosed(iface.getId(), iface.getModalMode(), willUnload));
+	}
+
+	@Inject
+	@Override
+	public ClanChannel getClanChannel()
+	{
+		return getCurrentClanChannels()[0];
+	}
+
+	@Inject
+	@Override
+	public ClanSettings getClanSettings()
+	{
+		return getCurrentClanSettingsArray()[0];
+	}
+
+	@Inject
+	@Override
+	public ClanRank getClanRankFromRs(int rank)
+	{
+		switch (rank)
+		{
+			case -1:
+				return ClanRank.GUEST;
+			case 10:
+				return ClanRank.CLAN_RANK_2;
+			case 20:
+				return ClanRank.CLAN_RANK_3;
+			case 30:
+				return ClanRank.CLAN_RANK_4;
+			case 40:
+				return ClanRank.CLAN_RANK_5;
+			case 50:
+				return ClanRank.CLAN_RANK_6;
+			case 60:
+				return ClanRank.CLAN_RANK_7;
+			case 70:
+				return ClanRank.CLAN_RANK_8;
+			case 80:
+				return ClanRank.CLAN_RANK_9;
+			case 90:
+				return ClanRank.CLAN_RANK_10;
+			case 100:
+				return ClanRank.ADMINISTRATOR;
+			case 105:
+				return ClanRank.CLAN_RANK_11;
+			case 110:
+				return ClanRank.CLAN_RANK_12;
+			case 115:
+				return ClanRank.CLAN_RANK_13;
+			case 120:
+				return ClanRank.CLAN_RANK_14;
+			case 125:
+				return ClanRank.DEPUTY_OWNER;
+			case 126:
+				return ClanRank.OWNER;
+			case 127:
+				return ClanRank.JMOD;
+			default:
+				return ClanRank.CLAN_RANK_1;
+		}
 	}
 }
 

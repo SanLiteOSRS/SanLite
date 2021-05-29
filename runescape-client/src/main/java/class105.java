@@ -44,7 +44,7 @@ public class class105 {
 	)
 	@Export("clanKickUser")
 	static final void clanKickUser(String var0) {
-		if (WorldMapRegion.clanChat != null) {
+		if (WorldMapRegion.friendsChatManager != null) {
 			PacketBufferNode var1 = class21.getPacketBufferNode(ClientPacket.field2665, Client.packetWriter.isaacCipher);
 			var1.packetBuffer.writeByte(Tiles.stringCp1252NullTerminatedByteSize(var0));
 			var1.packetBuffer.writeStringCp1252NullTerminated(var0);

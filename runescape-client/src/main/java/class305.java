@@ -26,9 +26,9 @@ public final class class305 {
 		garbageValue = "28"
 	)
 	static final void method5533(int var0, int var1) {
-		if (Client.field871[var0] != null) {
-			if (var1 >= 0 && var1 < Client.field871[var0].method27()) {
-				ClanChannelMember var2 = (ClanChannelMember)Client.field871[var0].members.get(var1);
+		if (Client.currentClanChannels[var0] != null) {
+			if (var1 >= 0 && var1 < Client.currentClanChannels[var0].method27()) {
+				ClanChannelMember var2 = (ClanChannelMember)Client.currentClanChannels[var0].members.get(var1);
 				if (var2.rank == -1) {
 					PacketWriter var3 = Client.packetWriter;
 					PacketBufferNode var4 = class21.getPacketBufferNode(ClientPacket.field2612, var3.isaacCipher);

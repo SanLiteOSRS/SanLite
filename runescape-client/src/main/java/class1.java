@@ -84,7 +84,7 @@ public class class1 extends class14 {
 		garbageValue = "-375078554"
 	)
 	static final void method7(int var0, int var1) {
-		ClanChannel var2 = var0 >= 0 ? Client.field871[var0] : ApproximateRouteStrategy.field630;
+		ClanChannel var2 = var0 >= 0 ? Client.currentClanChannels[var0] : ApproximateRouteStrategy.guestClanChannel;
 		if (var2 != null && var1 >= 0 && var1 < var2.method27()) {
 			ClanChannelMember var3 = (ClanChannelMember)var2.members.get(var1);
 			if (var3.rank == -1) {

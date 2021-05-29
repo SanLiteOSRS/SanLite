@@ -1,5 +1,4 @@
 import net.runelite.mapping.Export;
-import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -134,8 +133,8 @@ public class MouseRecorder implements Runnable {
 	@Export("FriendSystem_invalidateIgnoreds")
 	static final void FriendSystem_invalidateIgnoreds() {
 		DesktopPlatformInfoProvider.method6068();
-		if (WorldMapRegion.clanChat != null) {
-			WorldMapRegion.clanChat.invalidateIgnoreds();
+		if (WorldMapRegion.friendsChatManager != null) {
+			WorldMapRegion.friendsChatManager.invalidateIgnoreds();
 		}
 
 	}

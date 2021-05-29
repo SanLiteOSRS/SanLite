@@ -501,7 +501,7 @@ public final class Player extends Actor {
 	)
 	@Export("updateIsInClanChat")
 	void updateIsInClanChat() {
-		this.isInClanChat = WorldMapRegion.clanChat != null && WorldMapRegion.clanChat.contains(this.username) ? TriBool.TriBool_true : TriBool.TriBool_false;
+		this.isInClanChat = WorldMapRegion.friendsChatManager != null && WorldMapRegion.friendsChatManager.contains(this.username) ? TriBool.TriBool_true : TriBool.TriBool_false;
 	}
 
 	@ObfuscatedName("l")
@@ -510,7 +510,7 @@ public final class Player extends Actor {
 		garbageValue = "50"
 	)
 	void method2109() {
-		this.field1217 = Client.field734[0] != null && Client.field734[0].method99(this.username.getName()) != -1 ? TriBool.TriBool_true : TriBool.TriBool_false;
+		this.field1217 = Client.currentClanSettings[0] != null && Client.currentClanSettings[0].method99(this.username.getName()) != -1 ? TriBool.TriBool_true : TriBool.TriBool_false;
 	}
 
 	@ObfuscatedName("o")

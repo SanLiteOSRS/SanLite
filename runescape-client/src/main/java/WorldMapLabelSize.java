@@ -223,9 +223,9 @@ public class WorldMapLabelSize {
 	)
 	static int method3219(int var0, Script var1, boolean var2) {
 		if (var0 == 3800) {
-			if (NPCComposition.field1633 != null) {
+			if (NPCComposition.guestClanSettings != null) {
 				Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = 1;
-				class26.field220 = NPCComposition.field1633;
+				class26.field220 = NPCComposition.guestClanSettings;
 			} else {
 				Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = 0;
 			}
@@ -235,9 +235,9 @@ public class WorldMapLabelSize {
 			int var3;
 			if (var0 == 3801) {
 				var3 = Interpreter.Interpreter_intStack[--class44.Interpreter_intStackSize];
-				if (Client.field734[var3] != null) {
+				if (Client.currentClanSettings[var3] != null) {
 					Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = 1;
-					class26.field220 = Client.field734[var3];
+					class26.field220 = Client.currentClanSettings[var3];
 				} else {
 					Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = 0;
 				}
@@ -266,18 +266,18 @@ public class WorldMapLabelSize {
 				return 1;
 			} else if (var0 == 3810) {
 				var3 = Interpreter.Interpreter_intStack[--class44.Interpreter_intStackSize];
-				Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = class26.field220.field107[var3];
+				Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = class26.field220.memberNames[var3];
 				return 1;
 			} else if (var0 == 3811) {
 				var3 = Interpreter.Interpreter_intStack[--class44.Interpreter_intStackSize];
 				Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = class26.field220.memberRanks[var3];
 				return 1;
 			} else if (var0 == 3812) {
-				Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = class26.field220.field111;
+				Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = class26.field220.bannedMemberCount;
 				return 1;
 			} else if (var0 == 3813) {
 				var3 = Interpreter.Interpreter_intStack[--class44.Interpreter_intStackSize];
-				Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = class26.field220.field90[var3];
+				Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = class26.field220.bannedMemberNames[var3];
 				return 1;
 			} else {
 				int var5;
@@ -299,7 +299,7 @@ public class WorldMapLabelSize {
 					Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = class26.field220.method99(Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize]);
 					return 1;
 				} else if (var0 == 3818) {
-					Interpreter.Interpreter_intStack[class44.Interpreter_intStackSize - 1] = class26.field220.method102()[Interpreter.Interpreter_intStack[class44.Interpreter_intStackSize - 1]];
+					Interpreter.Interpreter_intStack[class44.Interpreter_intStackSize - 1] = class26.field220.getSortedMembers()[Interpreter.Interpreter_intStack[class44.Interpreter_intStackSize - 1]];
 					return 1;
 				} else if (var0 == 3819) {
 					class44.Interpreter_intStackSize -= 2;
@@ -325,9 +325,9 @@ public class WorldMapLabelSize {
 						Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = class26.field220.field108[var3] ? 1 : 0;
 						return 1;
 					} else if (var0 == 3850) {
-						if (ApproximateRouteStrategy.field630 != null) {
+						if (ApproximateRouteStrategy.guestClanChannel != null) {
 							Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = 1;
-							ArchiveLoader.field1147 = ApproximateRouteStrategy.field630;
+							ArchiveLoader.field1147 = ApproximateRouteStrategy.guestClanChannel;
 						} else {
 							Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = 0;
 						}
@@ -335,9 +335,9 @@ public class WorldMapLabelSize {
 						return 1;
 					} else if (var0 == 3851) {
 						var3 = Interpreter.Interpreter_intStack[--class44.Interpreter_intStackSize];
-						if (Client.field871[var3] != null) {
+						if (Client.currentClanChannels[var3] != null) {
 							Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = 1;
-							ArchiveLoader.field1147 = Client.field871[var3];
+							ArchiveLoader.field1147 = Client.currentClanChannels[var3];
 							Interpreter.field982 = var3;
 						} else {
 							Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = 0;

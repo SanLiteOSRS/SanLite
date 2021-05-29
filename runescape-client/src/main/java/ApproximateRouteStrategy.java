@@ -11,7 +11,8 @@ public class ApproximateRouteStrategy extends RouteStrategy {
 	@ObfuscatedSignature(
 		descriptor = "Ly;"
 	)
-	static ClanChannel field630;
+	@Export("guestClanChannel")
+	static ClanChannel guestClanChannel;
 	@ObfuscatedName("o")
 	@ObfuscatedGetter(
 		intValue = -344685783
