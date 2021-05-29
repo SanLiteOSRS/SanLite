@@ -26,8 +26,7 @@
  */
 package net.sanlite.client.plugins.playerindicatorsextended;
 
-import net.runelite.api.Client;
-import net.runelite.api.Player;
+import net.runelite.api.*;
 import net.runelite.client.util.Text;
 
 import javax.inject.Inject;
@@ -342,5 +341,17 @@ class PlayerIndicatorsExtendedService
 	private boolean isNameInCsvList(String playerName, String csvNamesList)
 	{
 		return Text.fromCSV(csvNamesList).contains(Text.standardize(playerName));
+	}
+
+	FriendsChatRank getFriendsChatRank(Player player)
+	{
+		final FriendsChatManager friendsChatManager = client.getFriendsChatManager();
+		if (friendsChatManager == null)
+		{
+			return FriendsChatRank.UNRANKED;
+		}
+
+		FriendsChatMember friendsChatMember = friendsChatManager.findByName(player.getName());
+		return friendsChatMember != null ? friendsChatMember.getRank() : FriendsChatRank.UNRANKED;
 	}
 }

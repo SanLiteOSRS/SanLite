@@ -4,30 +4,38 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fg")
+@ObfuscatedName("fh")
 @Implements("WorldMapDecoration")
 public class WorldMapDecoration {
-	@ObfuscatedName("hh")
+	@ObfuscatedName("y")
+	@Export("SpriteBuffer_xOffsets")
+	public static int[] SpriteBuffer_xOffsets;
+	@ObfuscatedName("d")
 	@ObfuscatedGetter(
-		intValue = -117135279
+		intValue = -1317870659
 	)
-	@Export("cameraZ")
-	static int cameraZ;
-	@ObfuscatedName("h")
+	static int field2082;
+	@ObfuscatedName("hf")
+	@ObfuscatedSignature(
+		descriptor = "[Lop;"
+	)
+	@Export("modIconSprites")
+	static IndexedSprite[] modIconSprites;
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = -193579243
+		intValue = -1952293629
 	)
 	@Export("objectDefinitionId")
 	final int objectDefinitionId;
-	@ObfuscatedName("c")
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = 2117060031
+		intValue = 739729953
 	)
 	@Export("decoration")
 	final int decoration;
-	@ObfuscatedName("o")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = -26030581
+		intValue = -184500109
 	)
 	@Export("rotation")
 	final int rotation;
@@ -38,36 +46,37 @@ public class WorldMapDecoration {
 		this.rotation = var3;
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "(Ljp;IIB)[Lof;",
-		garbageValue = "43"
+		descriptor = "(Ljava/lang/Throwable;Ljava/lang/String;)Loz;"
 	)
-	public static IndexedSprite[] method3571(AbstractArchive var0, int var1, int var2) {
-		if (!Username.method5711(var0, var1, var2)) {
-			return null;
+	@Export("newRunException")
+	public static RunException newRunException(Throwable var0, String var1) {
+		RunException var2;
+		if (var0 instanceof RunException) {
+			var2 = (RunException)var0;
+			var2.message = var2.message + ' ' + var1;
 		} else {
-			IndexedSprite[] var4 = new IndexedSprite[class396.SpriteBuffer_spriteCount];
-
-			for (int var5 = 0; var5 < class396.SpriteBuffer_spriteCount; ++var5) {
-				IndexedSprite var6 = var4[var5] = new IndexedSprite();
-				var6.width = class396.SpriteBuffer_spriteWidth;
-				var6.height = class396.SpriteBuffer_spriteHeight;
-				var6.xOffset = class243.SpriteBuffer_xOffsets[var5];
-				var6.yOffset = class396.SpriteBuffer_yOffsets[var5];
-				var6.subWidth = ArchiveDiskActionHandler.SpriteBuffer_spriteWidths[var5];
-				var6.subHeight = class372.SpriteBuffer_spriteHeights[var5];
-				var6.palette = AccessFile.SpriteBuffer_spritePalette;
-				var6.pixels = class396.SpriteBuffer_pixels[var5];
-			}
-
-			class243.SpriteBuffer_xOffsets = null;
-			class396.SpriteBuffer_yOffsets = null;
-			ArchiveDiskActionHandler.SpriteBuffer_spriteWidths = null;
-			class372.SpriteBuffer_spriteHeights = null;
-			AccessFile.SpriteBuffer_spritePalette = null;
-			class396.SpriteBuffer_pixels = null;
-			return var4;
+			var2 = new RunException(var0, var1);
 		}
+
+		return var2;
+	}
+
+	@ObfuscatedName("hb")
+	@ObfuscatedSignature(
+		descriptor = "(III)I",
+		garbageValue = "-1091351445"
+	)
+	static int method3627(int var0, int var1) {
+		int var2 = var1 - 334;
+		if (var2 < 0) {
+			var2 = 0;
+		} else if (var2 > 100) {
+			var2 = 100;
+		}
+
+		int var3 = (Client.zoomWidth - Client.zoomHeight) * var2 / 100 + Client.zoomHeight;
+		return var0 * var3 / 256;
 	}
 }

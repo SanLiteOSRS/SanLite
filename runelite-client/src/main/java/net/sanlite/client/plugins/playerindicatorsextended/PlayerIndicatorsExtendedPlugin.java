@@ -36,7 +36,7 @@ import net.runelite.client.Notifier;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.events.ConfigChanged;
-import net.runelite.client.game.FriendChatManager;
+import net.runelite.client.game.ChatIconManager;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.ui.overlay.OverlayManager;
@@ -82,7 +82,7 @@ public class PlayerIndicatorsExtendedPlugin extends Plugin
 	private Client client;
 
 	@Inject
-	private FriendChatManager clanManager;
+	private ChatIconManager chatIconManager;
 
 	@Inject
 	private Notifier notifier;
@@ -216,10 +216,10 @@ public class PlayerIndicatorsExtendedPlugin extends Plugin
 		int image = -1;
 		if (playerIndicatorType == PlayerIndicatorType.FRIENDS_CHAT_MEMBERS)
 		{
-			FriendsChatRank rank = clanManager.getRank(player.getName());
+			final FriendsChatRank rank = playerIndicatorsService.getFriendsChatRank(player);
 			if (rank != UNRANKED)
 			{
-				image = clanManager.getIconNumber(rank);
+				image = chatIconManager.getIconNumber(rank);
 			}
 		}
 

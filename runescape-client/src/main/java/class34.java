@@ -2,121 +2,84 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.Reflection;
 
-@ObfuscatedName("ap")
+@ObfuscatedName("ax")
 public enum class34 implements Enumerated {
-	@ObfuscatedName("h")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "Lap;"
+		descriptor = "Lax;"
 	)
-	field243(0, 0);
+	field256(0, 0);
 
-	@ObfuscatedName("ju")
+	@ObfuscatedName("oa")
 	@ObfuscatedSignature(
-		descriptor = "Liv;"
+		descriptor = "Lms;"
 	)
-	@Export("dragInventoryWidget")
-	static Widget dragInventoryWidget;
-	@ObfuscatedName("li")
-	@ObfuscatedSignature(
-		descriptor = "Liv;"
-	)
-	static Widget field241;
-	@ObfuscatedName("c")
+	static class339 field254;
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = -320311027
+		intValue = -537510065
 	)
-	final int field238;
-	@ObfuscatedName("o")
+	final int field252;
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = 1825459299
+		intValue = -1586527889
 	)
-	final int field240;
+	final int field253;
 
 	class34(int var3, int var4) {
-		this.field238 = var3;
-		this.field240 = var4;
+		this.field252 = var3;
+		this.field253 = var4;
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
 		descriptor = "(I)I",
-		garbageValue = "-708237537"
+		garbageValue = "-907662946"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
-		return this.field240;
+		return this.field253;
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "([BZI)Ljava/lang/Object;",
-		garbageValue = "1269397645"
+		descriptor = "(I)V",
+		garbageValue = "-67481948"
 	)
-	public static Object method388(byte[] var0, boolean var1) {
-		if (var0 == null) {
-			return null;
-		} else if (var0.length > 136) {
-			DirectByteArrayCopier var2 = new DirectByteArrayCopier();
-			var2.set(var0);
-			return var2;
-		} else {
-			return var0;
-		}
+	static void method327() {
+		Tiles.Tiles_minPlane = 99;
+		Tiles.field1120 = new byte[4][104][104];
+		class253.field3130 = new byte[4][104][104];
+		class20.field182 = new byte[4][104][104];
+		DirectByteArrayCopier.field3128 = new byte[4][104][104];
+		UrlRequester.field1419 = new int[4][105][105];
+		class372.field4123 = new byte[4][105][105];
+		class229.field2813 = new int[105][105];
+		ChatChannel.Tiles_hue = new int[104];
+		class23.Tiles_saturation = new int[104];
+		Tiles.Tiles_lightness = new int[104];
+		ParamComposition.Tiles_hueMultiplier = new int[104];
+		DefaultsGroup.field3894 = new int[104];
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "(Ljp;Ljp;Ljp;Ljp;B)V",
-		garbageValue = "-21"
+		descriptor = "(B)V",
+		garbageValue = "0"
 	)
-	public static void method391(AbstractArchive var0, AbstractArchive var1, AbstractArchive var2, AbstractArchive var3) {
-		GrandExchangeOffer.Widget_archive = var0;
-		class245.Widget_modelsArchive = var1;
-		Widget.Widget_spritesArchive = var2;
-		FileSystem.Widget_fontsArchive = var3;
-		Widget.Widget_interfaceComponents = new Widget[GrandExchangeOffer.Widget_archive.getGroupCount()][];
-		class5.Widget_loadedInterfaces = new boolean[GrandExchangeOffer.Widget_archive.getGroupCount()];
-	}
-
-	@ObfuscatedName("l")
-	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;I)Ljava/lang/Class;",
-		garbageValue = "-746687545"
-	)
-	@Export("loadClassFromDescriptor")
-	static Class loadClassFromDescriptor(String var0) throws ClassNotFoundException {
-		if (var0.equals("B")) {
-			return Byte.TYPE;
-		} else if (var0.equals("I")) {
-			return Integer.TYPE;
-		} else if (var0.equals("S")) {
-			return Short.TYPE;
-		} else if (var0.equals("J")) {
-			return Long.TYPE;
-		} else if (var0.equals("Z")) {
-			return Boolean.TYPE;
-		} else if (var0.equals("F")) {
-			return Float.TYPE;
-		} else if (var0.equals("D")) {
-			return Double.TYPE;
-		} else if (var0.equals("C")) {
-			return Character.TYPE;
-		} else {
-			return var0.equals("void") ? Void.TYPE : Reflection.findClass(var0);
-		}
-	}
-
-	@ObfuscatedName("k")
-	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;I)V",
-		garbageValue = "51313612"
-	)
-	static final void method393(String var0) {
-		PacketBufferNode var1 = HealthBarDefinition.getPacketBufferNode(ClientPacket.field2567, Client.packetWriter.isaacCipher);
-		var1.packetBuffer.writeByte(class4.stringCp1252NullTerminatedByteSize(var0));
-		var1.packetBuffer.writeStringCp1252NullTerminated(var0);
-		Client.packetWriter.addNode(var1);
+	static void method328() {
+		Tiles.field1120 = null;
+		class253.field3130 = null;
+		class20.field182 = null;
+		DirectByteArrayCopier.field3128 = null;
+		UrlRequester.field1419 = null;
+		class372.field4123 = null;
+		class229.field2813 = null;
+		ChatChannel.Tiles_hue = null;
+		class23.Tiles_saturation = null;
+		Tiles.Tiles_lightness = null;
+		ParamComposition.Tiles_hueMultiplier = null;
+		DefaultsGroup.field3894 = null;
 	}
 }

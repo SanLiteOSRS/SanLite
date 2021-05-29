@@ -3,89 +3,118 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("dv")
+@ObfuscatedName("dq")
 public enum class125 implements Enumerated {
-	@ObfuscatedName("h")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "Ldv;"
+		descriptor = "Ldq;"
 	)
-	field1451(0, 0),
-	@ObfuscatedName("c")
+	field1470(2, 0),
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "Ldv;"
+		descriptor = "Ldq;"
 	)
-	field1450(2, 1),
-	@ObfuscatedName("o")
+	field1469(1, 1),
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "Ldv;"
+		descriptor = "Ldq;"
 	)
-	field1449(3, 2),
-	@ObfuscatedName("g")
+	field1468(0, 2),
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		descriptor = "Ldv;"
+		descriptor = "Ldq;"
 	)
-	field1452(1, 3);
+	field1471(3, 3);
 
-	@ObfuscatedName("ar")
-	@ObfuscatedGetter(
-		intValue = -561913005
+	@ObfuscatedName("x")
+	@ObfuscatedSignature(
+		descriptor = "Lnd;"
 	)
-	static int field1456;
-	@ObfuscatedName("l")
-	@ObfuscatedGetter(
-		intValue = 547368117
+	@Export("NetCache_reference")
+	public static Buffer NetCache_reference;
+	@ObfuscatedName("ec")
+	@ObfuscatedSignature(
+		descriptor = "Ljp;"
 	)
-	public final int field1453;
-	@ObfuscatedName("z")
+	@Export("archive14")
+	static Archive archive14;
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = 270011887
+		intValue = 850248893
+	)
+	public final int field1472;
+	@ObfuscatedName("j")
+	@ObfuscatedGetter(
+		intValue = -1949743275
 	)
 	@Export("id")
 	final int id;
 
 	class125(int var3, int var4) {
-		this.field1453 = var3;
+		this.field1472 = var3;
 		this.id = var4;
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
 		descriptor = "(I)I",
-		garbageValue = "-708237537"
+		garbageValue = "-907662946"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
 		return this.id;
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		descriptor = "(III)Z",
-		garbageValue = "-1218095333"
+		descriptor = "(IIB)I",
+		garbageValue = "-60"
 	)
-	public static boolean method2507(int var0, int var1) {
-		return (var0 >> var1 + 1 & 1) != 0;
+	static int method2502(int var0, int var1) {
+		long var2 = (long)((var0 << 16) + var1);
+		return BuddyRankComparator.NetCache_currentResponse != null && var2 == BuddyRankComparator.NetCache_currentResponse.key ? SoundSystem.NetCache_responseArchiveBuffer.offset * 99 / (SoundSystem.NetCache_responseArchiveBuffer.array.length - BuddyRankComparator.NetCache_currentResponse.padding) + 1 : 0;
 	}
 
-	@ObfuscatedName("hz")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "1978830024"
+		descriptor = "(I)I",
+		garbageValue = "2118107095"
 	)
-	static final void method2506() {
-		Client.field727 = 0;
-		int var0 = JagexCache.baseX * 64 + (class35.localPlayer.x >> 7);
-		int var1 = Messages.baseY * 64 + (class35.localPlayer.y >> 7);
-		if (var0 >= 3053 && var0 <= 3156 && var1 >= 3056 && var1 <= 3136) {
-			Client.field727 = 1;
+	static final int method2504() {
+		return ViewportMouse.ViewportMouse_x;
+	}
+
+	@ObfuscatedName("ja")
+	@ObfuscatedSignature(
+		descriptor = "(Lio;Leq;IIZI)V",
+		garbageValue = "1630446885"
+	)
+	@Export("addWidgetItemMenuItem")
+	static final void addWidgetItemMenuItem(Widget var0, ItemComposition var1, int var2, int var3, boolean var4) {
+		String[] var5 = var1.inventoryActions;
+		byte var6 = -1;
+		String var7 = null;
+		if (var5 != null && var5[var3] != null) {
+			if (var3 == 0) {
+				var6 = 33;
+			} else if (var3 == 1) {
+				var6 = 34;
+			} else if (var3 == 2) {
+				var6 = 35;
+			} else if (var3 == 3) {
+				var6 = 36;
+			} else {
+				var6 = 37;
+			}
+
+			var7 = var5[var3];
+		} else if (var3 == 4) {
+			var6 = 37;
+			var7 = "Drop";
 		}
 
-		if (var0 >= 3072 && var0 <= 3118 && var1 >= 9492 && var1 <= 9535) {
-			Client.field727 = 1;
-		}
-
-		if (Client.field727 == 1 && var0 >= 3139 && var0 <= 3199 && var1 >= 3008 && var1 <= 3062) {
-			Client.field727 = 0;
+		if (var6 != -1 && var7 != null) {
+			BoundaryObject.insertMenuItem(var7, class44.colorStartTag(16748608) + var1.name, var6, var1.id, var2, var0.id, var4);
 		}
 
 	}

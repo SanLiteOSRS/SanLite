@@ -1,96 +1,99 @@
-import java.lang.management.GarbageCollectorMXBean;
-import java.lang.management.ManagementFactory;
-import java.util.Iterator;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ef")
+@ObfuscatedName("es")
 @Implements("SpotAnimationDefinition")
 public class SpotAnimationDefinition extends DualNode {
-	@ObfuscatedName("h")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "Ljp;"
+		descriptor = "Ljv;"
 	)
 	@Export("SpotAnimationDefinition_archive")
 	static AbstractArchive SpotAnimationDefinition_archive;
-	@ObfuscatedName("c")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "Ljp;"
+		descriptor = "Ljv;"
 	)
 	@Export("SpotAnimationDefinition_modelArchive")
 	static AbstractArchive SpotAnimationDefinition_modelArchive;
-	@ObfuscatedName("o")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "Lho;"
+		descriptor = "Lhz;"
 	)
 	@Export("SpotAnimationDefinition_cached")
-	static EvictingDualNodeHashTable SpotAnimationDefinition_cached;
-	@ObfuscatedName("g")
+	public static EvictingDualNodeHashTable SpotAnimationDefinition_cached;
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		descriptor = "Lho;"
+		descriptor = "Lhz;"
 	)
 	@Export("SpotAnimationDefinition_cachedModels")
-	static EvictingDualNodeHashTable SpotAnimationDefinition_cachedModels;
-	@ObfuscatedName("l")
+	public static EvictingDualNodeHashTable SpotAnimationDefinition_cachedModels;
+	@ObfuscatedName("hq")
 	@ObfuscatedGetter(
-		intValue = 380385743
+		intValue = -1584922015
+	)
+	@Export("cameraPitch")
+	static int cameraPitch;
+	@ObfuscatedName("p")
+	@ObfuscatedGetter(
+		intValue = -1517431137
 	)
 	@Export("id")
 	int id;
-	@ObfuscatedName("z")
+	@ObfuscatedName("j")
 	@ObfuscatedGetter(
-		intValue = 130190351
+		intValue = -439820555
 	)
 	@Export("archive")
 	int archive;
-	@ObfuscatedName("t")
+	@ObfuscatedName("r")
 	@ObfuscatedGetter(
-		intValue = 507083685
+		intValue = -814046371
 	)
 	@Export("sequence")
 	public int sequence;
-	@ObfuscatedName("v")
+	@ObfuscatedName("b")
 	@Export("recolorFrom")
 	short[] recolorFrom;
-	@ObfuscatedName("b")
+	@ObfuscatedName("d")
 	@Export("recolorTo")
 	short[] recolorTo;
-	@ObfuscatedName("q")
+	@ObfuscatedName("s")
 	@Export("retextureFrom")
 	short[] retextureFrom;
-	@ObfuscatedName("i")
+	@ObfuscatedName("u")
 	@Export("retextureTo")
 	short[] retextureTo;
-	@ObfuscatedName("x")
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = -118030919
+		intValue = -1653169243
 	)
 	@Export("widthScale")
 	int widthScale;
-	@ObfuscatedName("k")
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = 1475991545
+		intValue = 1577696091
 	)
 	@Export("heightScale")
 	int heightScale;
-	@ObfuscatedName("r")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = -170389419
+		intValue = 1414282043
 	)
 	@Export("orientation")
 	int orientation;
-	@ObfuscatedName("p")
+	@ObfuscatedName("e")
 	@ObfuscatedGetter(
-		intValue = 97378291
+		intValue = 1878430379
 	)
 	@Export("ambient")
 	int ambient;
-	@ObfuscatedName("a")
+	@ObfuscatedName("g")
 	@ObfuscatedGetter(
-		intValue = 1756548977
+		intValue = -191851365
 	)
 	@Export("contrast")
 	int contrast;
@@ -109,10 +112,10 @@ public class SpotAnimationDefinition extends DualNode {
 		this.contrast = 0;
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(Lnk;B)V",
-		garbageValue = "-108"
+		descriptor = "(Lnd;I)V",
+		garbageValue = "-929011134"
 	)
 	@Export("decode")
 	void decode(Buffer var1) {
@@ -126,10 +129,10 @@ public class SpotAnimationDefinition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("g")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		descriptor = "(Lnk;II)V",
-		garbageValue = "-113504660"
+		descriptor = "(Lnd;IB)V",
+		garbageValue = "-81"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
@@ -173,10 +176,10 @@ public class SpotAnimationDefinition extends DualNode {
 
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		descriptor = "(IB)Lgj;",
-		garbageValue = "11"
+		descriptor = "(IB)Lgr;",
+		garbageValue = "42"
 	)
 	@Export("getModel")
 	public final Model getModel(int var1) {
@@ -206,7 +209,7 @@ public class SpotAnimationDefinition extends DualNode {
 
 		Model var5;
 		if (this.sequence != -1 && var1 != -1) {
-			var5 = Player.SequenceDefinition_get(this.sequence).transformSpotAnimationModel(var2, var1);
+			var5 = LoginScreenAnimation.SequenceDefinition_get(this.sequence).transformSpotAnimationModel(var2, var1);
 		} else {
 			var5 = var2.toSharedSpotAnimationModel(true);
 		}
@@ -235,45 +238,24 @@ public class SpotAnimationDefinition extends DualNode {
 		return var5;
 	}
 
-	@ObfuscatedName("az")
+	@ObfuscatedName("r")
 	@ObfuscatedSignature(
-		descriptor = "(B)I",
-		garbageValue = "18"
+		descriptor = "(I)Lbg;",
+		garbageValue = "395857864"
 	)
-	@Export("getGcDuration")
-	protected static int getGcDuration() {
-		int var0 = 0;
-		if (class266.garbageCollector == null || !class266.garbageCollector.isValid()) {
-			try {
-				Iterator var1 = ManagementFactory.getGarbageCollectorMXBeans().iterator();
+	@Export("worldListStart")
+	static World worldListStart() {
+		World.World_listCount = 0;
+		return GraphicsObject.getNextWorldListWorld();
+	}
 
-				while (var1.hasNext()) {
-					GarbageCollectorMXBean var2 = (GarbageCollectorMXBean)var1.next();
-					if (var2.isValid()) {
-						class266.garbageCollector = var2;
-						GameEngine.garbageCollectorLastCheckTimeMs = -1L;
-						GameEngine.garbageCollectorLastCollectionTime = -1L;
-					}
-				}
-			} catch (Throwable var11) {
-			}
-		}
-
-		if (class266.garbageCollector != null) {
-			long var9 = Archive.currentTimeMillis();
-			long var3 = class266.garbageCollector.getCollectionTime();
-			if (GameEngine.garbageCollectorLastCollectionTime != -1L) {
-				long var5 = var3 - GameEngine.garbageCollectorLastCollectionTime;
-				long var7 = var9 - GameEngine.garbageCollectorLastCheckTimeMs;
-				if (0L != var7) {
-					var0 = (int)(100L * var5 / var7);
-				}
-			}
-
-			GameEngine.garbageCollectorLastCollectionTime = var3;
-			GameEngine.garbageCollectorLastCheckTimeMs = var9;
-		}
-
-		return var0;
+	@ObfuscatedName("gb")
+	@ObfuscatedSignature(
+		descriptor = "(I)I",
+		garbageValue = "702215999"
+	)
+	@Export("getWindowedMode")
+	static int getWindowedMode() {
+		return Client.isResizable ? 2 : 1;
 	}
 }

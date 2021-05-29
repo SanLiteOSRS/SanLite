@@ -1,69 +1,81 @@
-import java.awt.Desktop;
-import java.awt.FontMetrics;
-import java.awt.Desktop.Action;
-import java.net.URI;
+import java.net.MalformedURLException;
+import java.net.URL;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("cm")
+@ObfuscatedName("cd")
 @Implements("Interpreter")
 public class Interpreter {
-	@ObfuscatedName("rk")
-	@ObfuscatedGetter(
-		intValue = -1034939264
-	)
-	static int field947;
-	@ObfuscatedName("t")
+	@ObfuscatedName("r")
 	@Export("Interpreter_stringLocals")
 	static String[] Interpreter_stringLocals;
-	@ObfuscatedName("v")
+	@ObfuscatedName("b")
 	@Export("Interpreter_arrayLengths")
 	static int[] Interpreter_arrayLengths;
-	@ObfuscatedName("b")
+	@ObfuscatedName("d")
 	@Export("Interpreter_arrays")
 	static int[][] Interpreter_arrays;
-	@ObfuscatedName("q")
+	@ObfuscatedName("s")
 	@Export("Interpreter_intStack")
 	static int[] Interpreter_intStack;
-	@ObfuscatedName("x")
+	@ObfuscatedName("l")
 	@Export("Interpreter_stringStack")
 	static String[] Interpreter_stringStack;
-	@ObfuscatedName("r")
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = -1509964487
+		intValue = 1824375293
+	)
+	@Export("Interpreter_stringStackSize")
+	static int Interpreter_stringStackSize;
+	@ObfuscatedName("c")
+	@ObfuscatedGetter(
+		intValue = 114758639
 	)
 	@Export("Interpreter_frameDepth")
 	static int Interpreter_frameDepth;
-	@ObfuscatedName("p")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		descriptor = "[Lbx;"
+		descriptor = "[Lbw;"
 	)
 	@Export("Interpreter_frames")
 	static ScriptFrame[] Interpreter_frames;
-	@ObfuscatedName("j")
+	@ObfuscatedName("g")
+	@ObfuscatedSignature(
+		descriptor = "Lio;"
+	)
+	@Export("scriptActiveWidget")
+	static Widget scriptActiveWidget;
+	@ObfuscatedName("x")
+	@ObfuscatedGetter(
+		intValue = -1830375703
+	)
+	static int field982;
+	@ObfuscatedName("z")
 	@Export("Interpreter_calendar")
 	static java.util.Calendar Interpreter_calendar;
-	@ObfuscatedName("f")
+	@ObfuscatedName("w")
 	@Export("Interpreter_MONTHS")
 	static final String[] Interpreter_MONTHS;
-	@ObfuscatedName("y")
-	static boolean field950;
-	@ObfuscatedName("w")
-	static boolean field951;
-	@ObfuscatedName("n")
+	@ObfuscatedName("h")
+	static boolean field973;
+	@ObfuscatedName("q")
+	static boolean field986;
+	@ObfuscatedName("i")
 	@ObfuscatedGetter(
-		intValue = 991337999
+		intValue = 606273051
 	)
-	static int field956;
-	@ObfuscatedName("aj")
-	static final double field953;
-	@ObfuscatedName("aw")
-	@Export("loginScreenFontMetrics")
-	static FontMetrics loginScreenFontMetrics;
+	static int field987;
+	@ObfuscatedName("al")
+	static final double field989;
+	@ObfuscatedName("gy")
+	@ObfuscatedSignature(
+		descriptor = "Loh;"
+	)
+	@Export("redHintArrowSprite")
+	static SpritePixels redHintArrowSprite;
 
 	static {
 		Interpreter_arrayLengths = new int[5];
@@ -74,105 +86,85 @@ public class Interpreter {
 		Interpreter_frames = new ScriptFrame[50];
 		Interpreter_calendar = java.util.Calendar.getInstance();
 		Interpreter_MONTHS = new String[]{"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
-		field950 = false;
-		field951 = false;
-		field956 = 0;
-		field953 = Math.log(2.0D);
+		field973 = false;
+		field986 = false;
+		field987 = 0;
+		field989 = Math.log(2.0D);
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;ZZI)V",
-		garbageValue = "710417468"
+		descriptor = "(Ljava/lang/String;B)Z",
+		garbageValue = "-3"
 	)
-	@Export("openURL")
-	public static void openURL(String var0, boolean var1, boolean var2) {
-		if (var1) {
-			if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Action.BROWSE)) {
-				try {
-					Desktop.getDesktop().browse(new URI(var0));
+	static boolean method1848(String var0) {
+		if (var0 == null) {
+			return false;
+		} else {
+			try {
+				new URL(var0);
+				return true;
+			} catch (MalformedURLException var2) {
+				return false;
+			}
+		}
+	}
+
+	@ObfuscatedName("j")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "1954289740"
+	)
+	public static void method1870() {
+		try {
+			if (class232.musicPlayerStatus == 1) {
+				int var0 = class124.midiPcmStream.method4410();
+				if (var0 > 0 && class124.midiPcmStream.isReady()) {
+					var0 -= class232.pcmSampleLength;
+					if (var0 < 0) {
+						var0 = 0;
+					}
+
+					class124.midiPcmStream.setPcmStreamVolume(var0);
 					return;
-				} catch (Exception var4) {
 				}
-			}
 
-			if (class44.field305.startsWith("win")) {
-				class9.method98(var0, 0);
-			} else if (class44.field305.startsWith("mac")) {
-				class230.method4348(var0, 1, "openjs");
-			} else {
-				class9.method98(var0, 2);
+				class124.midiPcmStream.clear();
+				class124.midiPcmStream.removeAll();
+				if (ModelData0.musicTrackArchive != null) {
+					class232.musicPlayerStatus = 2;
+				} else {
+					class232.musicPlayerStatus = 0;
+				}
+
+				class2.musicTrack = null;
+				Messages.soundCache = null;
 			}
-		} else {
-			class9.method98(var0, 3);
+		} catch (Exception var2) {
+			var2.printStackTrace();
+			class124.midiPcmStream.clear();
+			class232.musicPlayerStatus = 0;
+			class2.musicTrack = null;
+			Messages.soundCache = null;
+			ModelData0.musicTrackArchive = null;
 		}
 
 	}
 
-	@ObfuscatedName("t")
+	@ObfuscatedName("ie")
 	@ObfuscatedSignature(
-		descriptor = "(ILci;ZS)I",
-		garbageValue = "-19668"
+		descriptor = "(II)V",
+		garbageValue = "-1390224792"
 	)
-	static int method1921(int var0, Script var1, boolean var2) {
-		Widget var3;
-		if (var0 >= 2000) {
-			var0 -= 1000;
-			var3 = DevicePcmPlayerProvider.getWidget(Interpreter_intStack[--WorldMapCacheName.Interpreter_intStackSize]);
-		} else {
-			var3 = var2 ? class308.scriptDotWidget : class24.scriptActiveWidget;
+	static final void method1888(int var0) {
+		if (var0 >= 0) {
+			int var1 = Client.menuArguments1[var0];
+			int var2 = Client.menuArguments2[var0];
+			int var3 = Client.menuOpcodes[var0];
+			int var4 = Client.menuIdentifiers[var0];
+			String var5 = Client.menuActions[var0];
+			String var6 = Client.menuTargets[var0];
+			Script.menuAction(var1, var2, var3, var4, var5, var6, MouseHandler.MouseHandler_lastPressedX, MouseHandler.MouseHandler_lastPressedY);
 		}
-
-		VerticalAlignment.invalidateWidget(var3);
-		if (var0 != ScriptOpcodes.CC_SETOBJECT && var0 != ScriptOpcodes.CC_SETOBJECT_NONUM && var0 != ScriptOpcodes.CC_SETOBJECT_ALWAYS_NUM) {
-			if (var0 == ScriptOpcodes.CC_SETNPCHEAD) {
-				var3.modelType = 2;
-				var3.modelId = Interpreter_intStack[--WorldMapCacheName.Interpreter_intStackSize];
-				return 1;
-			} else if (var0 == ScriptOpcodes.CC_SETPLAYERHEAD_SELF) {
-				var3.modelType = 3;
-				var3.modelId = class35.localPlayer.appearance.getChatHeadId();
-				return 1;
-			} else {
-				return 2;
-			}
-		} else {
-			WorldMapCacheName.Interpreter_intStackSize -= 2;
-			int var4 = Interpreter_intStack[WorldMapCacheName.Interpreter_intStackSize];
-			int var5 = Interpreter_intStack[WorldMapCacheName.Interpreter_intStackSize + 1];
-			var3.itemId = var4;
-			var3.itemQuantity = var5;
-			ItemComposition var6 = Strings.ItemDefinition_get(var4);
-			var3.modelAngleX = var6.xan2d;
-			var3.modelAngleY = var6.yan2d;
-			var3.modelAngleZ = var6.zan2d;
-			var3.modelOffsetX = var6.offsetX2d;
-			var3.modelOffsetY = var6.offsetY2d;
-			var3.modelZoom = var6.zoom2d;
-			if (var0 == ScriptOpcodes.CC_SETOBJECT_NONUM) {
-				var3.itemQuantityMode = 0;
-			} else if (var0 == ScriptOpcodes.CC_SETOBJECT_ALWAYS_NUM | 1 == var6.isStackable) {
-				var3.itemQuantityMode = 1;
-			} else {
-				var3.itemQuantityMode = 2;
-			}
-
-			if (var3.field3019 > 0) {
-				var3.modelZoom = var3.modelZoom * 32 / var3.field3019;
-			} else if (var3.rawWidth > 0) {
-				var3.modelZoom = var3.modelZoom * 32 / var3.rawWidth;
-			}
-
-			return 1;
-		}
-	}
-
-	@ObfuscatedName("ak")
-	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "-4124956"
-	)
-	static int method1808(int var0) {
-		return (int)((Math.log((double)var0) / field953 - 7.0D) * 256.0D);
 	}
 }

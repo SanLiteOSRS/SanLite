@@ -1,28 +1,20 @@
-import java.io.File;
-import java.io.RandomAccessFile;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("lm")
+@ObfuscatedName("lx")
 @Implements("Nameable")
 public class Nameable implements Comparable {
-	@ObfuscatedName("bg")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "Lof;"
-	)
-	@Export("worldSelectRightSprite")
-	static IndexedSprite worldSelectRightSprite;
-	@ObfuscatedName("o")
-	@ObfuscatedSignature(
-		descriptor = "Lla;"
+		descriptor = "Lly;"
 	)
 	@Export("username")
 	Username username;
-	@ObfuscatedName("g")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		descriptor = "Lla;"
+		descriptor = "Lly;"
 	)
 	@Export("previousUsername")
 	Username previousUsername;
@@ -30,50 +22,50 @@ public class Nameable implements Comparable {
 	Nameable() {
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "(Llm;B)I",
-		garbageValue = "88"
+		descriptor = "(Llx;I)I",
+		garbageValue = "539732409"
 	)
 	@Export("compareTo_user")
 	public int compareTo_user(Nameable var1) {
 		return this.username.compareToTyped(var1.username);
 	}
 
-	@ObfuscatedName("s")
+	@ObfuscatedName("ag")
 	@ObfuscatedSignature(
-		descriptor = "(I)Lla;",
-		garbageValue = "2109048413"
+		descriptor = "(I)Lly;",
+		garbageValue = "1600385893"
 	)
 	@Export("getUsername")
 	public Username getUsername() {
 		return this.username;
 	}
 
-	@ObfuscatedName("y")
+	@ObfuscatedName("ax")
 	@ObfuscatedSignature(
-		descriptor = "(I)Ljava/lang/String;",
-		garbageValue = "-1818372907"
+		descriptor = "(B)Ljava/lang/String;",
+		garbageValue = "1"
 	)
 	@Export("getName")
 	public String getName() {
 		return this.username == null ? "" : this.username.getName();
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("as")
 	@ObfuscatedSignature(
 		descriptor = "(I)Ljava/lang/String;",
-		garbageValue = "1375714428"
+		garbageValue = "192558419"
 	)
 	@Export("getPreviousName")
 	public String getPreviousName() {
 		return this.previousUsername == null ? "" : this.previousUsername.getName();
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("aj")
 	@ObfuscatedSignature(
-		descriptor = "(Lla;Lla;I)V",
-		garbageValue = "-2074973533"
+		descriptor = "(Lly;Lly;I)V",
+		garbageValue = "2108784704"
 	)
 	@Export("set")
 	void set(Username var1, Username var2) {
@@ -87,29 +79,5 @@ public class Nameable implements Comparable {
 
 	public int compareTo(Object var1) {
 		return this.compareTo_user((Nameable)var1);
-	}
-
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "(Ljava/io/File;ZB)Z",
-		garbageValue = "-109"
-	)
-	@Export("isWriteable")
-	static boolean isWriteable(File var0, boolean var1) {
-		try {
-			RandomAccessFile var2 = new RandomAccessFile(var0, "rw");
-			int var3 = var2.read();
-			var2.seek(0L);
-			var2.write(var3);
-			var2.seek(0L);
-			var2.close();
-			if (var1) {
-				var0.delete();
-			}
-
-			return true;
-		} catch (Exception var4) {
-			return false;
-		}
 	}
 }

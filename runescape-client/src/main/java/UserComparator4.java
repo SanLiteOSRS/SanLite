@@ -5,15 +5,21 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("dn")
+@ObfuscatedName("dv")
 @Implements("UserComparator4")
 public class UserComparator4 implements Comparator {
-	@ObfuscatedName("rr")
+	@ObfuscatedName("z")
 	@ObfuscatedGetter(
-		intValue = 650908415
+		intValue = 2097206533
 	)
-	static int field1403;
-	@ObfuscatedName("h")
+	@Export("loginBoxCenter")
+	static int loginBoxCenter;
+	@ObfuscatedName("gi")
+	@ObfuscatedGetter(
+		intValue = -845013717
+	)
+	static int field1427;
+	@ObfuscatedName("v")
 	@Export("reversed")
 	final boolean reversed;
 
@@ -21,10 +27,10 @@ public class UserComparator4 implements Comparator {
 		this.reversed = var1;
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(Llq;Llq;I)I",
-		garbageValue = "-1160366364"
+		descriptor = "(Llv;Llv;I)I",
+		garbageValue = "-903246659"
 	)
 	@Export("compare_bridged")
 	int compare_bridged(Buddy var1, Buddy var2) {
@@ -39,22 +45,13 @@ public class UserComparator4 implements Comparator {
 		return super.equals(var1);
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("jg")
 	@ObfuscatedSignature(
-		descriptor = "([Lke;II)Lke;",
-		garbageValue = "-1507017848"
+		descriptor = "(ZB)V",
+		garbageValue = "0"
 	)
-	@Export("findEnumerated")
-	public static Enumerated findEnumerated(Enumerated[] var0, int var1) {
-		Enumerated[] var2 = var0;
-
-		for (int var3 = 0; var3 < var2.length; ++var3) {
-			Enumerated var4 = var2[var3];
-			if (var1 == var4.rsOrdinal()) {
-				return var4;
-			}
-		}
-
-		return null;
+	@Export("setTapToDrop")
+	static void setTapToDrop(boolean var0) {
+		Client.tapToDrop = var0;
 	}
 }

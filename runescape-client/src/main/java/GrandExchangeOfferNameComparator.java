@@ -4,62 +4,37 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jv")
+@ObfuscatedName("jc")
 @Implements("GrandExchangeOfferNameComparator")
 final class GrandExchangeOfferNameComparator implements Comparator {
-	@ObfuscatedName("h")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(Ljz;Ljz;I)I",
-		garbageValue = "2030845639"
+		descriptor = "(Ljs;Ljs;I)I",
+		garbageValue = "-929613700"
 	)
 	@Export("compare_bridged")
 	int compare_bridged(GrandExchangeEvent var1, GrandExchangeEvent var2) {
 		return var1.getOfferName().compareTo(var2.getOfferName());
 	}
 
-	public boolean equals(Object var1) {
-		return super.equals(var1);
-	}
-
 	public int compare(Object var1, Object var2) {
 		return this.compare_bridged((GrandExchangeEvent)var1, (GrandExchangeEvent)var2);
 	}
 
-	@ObfuscatedName("h")
-	@ObfuscatedSignature(
-		descriptor = "(ILlw;Lji;S)V",
-		garbageValue = "-5330"
-	)
-	static void method4987(int var0, ArchiveDisk var1, Archive var2) {
-		ArchiveDiskAction var3 = new ArchiveDiskAction();
-		var3.type = 1;
-		var3.key = (long)var0;
-		var3.archiveDisk = var1;
-		var3.archive = var2;
-		synchronized(ArchiveDiskActionHandler.ArchiveDiskActionHandler_requestQueue) {
-			ArchiveDiskActionHandler.ArchiveDiskActionHandler_requestQueue.addFirst(var3);
-		}
-
-		class43.method486();
+	public boolean equals(Object var1) {
+		return super.equals(var1);
 	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("fu")
 	@ObfuscatedSignature(
-		descriptor = "(III)I",
-		garbageValue = "-537107433"
+		descriptor = "(III)V",
+		garbageValue = "-1454161058"
 	)
-	static final int method4986(int var0, int var1) {
-		if (var0 == -1) {
-			return 12345678;
-		} else {
-			var1 = (var0 & 127) * var1 / 128;
-			if (var1 < 2) {
-				var1 = 2;
-			} else if (var1 > 126) {
-				var1 = 126;
-			}
-
-			return (var0 & 65408) + var1;
+	static void method5059(int var0, int var1) {
+		if (ObjectComposition.clientPreferences.musicVolume != 0 && var0 != -1) {
+			LoginScreenAnimation.method2219(WorldMapManager.archive11, var0, 0, ObjectComposition.clientPreferences.musicVolume, false);
+			Client.field881 = true;
 		}
+
 	}
 }

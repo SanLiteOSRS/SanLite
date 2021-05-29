@@ -3,170 +3,138 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("nz")
+@ObfuscatedName("np")
 public class class374 implements Enumerated {
-	@ObfuscatedName("h")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "Lnz;"
+		descriptor = "Lnp;"
 	)
-	public static final class374 field4141;
-	@ObfuscatedName("c")
+	public static final class374 field4131;
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "Lnz;"
+		descriptor = "Lnp;"
 	)
-	public static final class374 field4135;
-	@ObfuscatedName("o")
+	public static final class374 field4128;
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "Lnz;"
+		descriptor = "Lnp;"
 	)
-	public static final class374 field4136;
-	@ObfuscatedName("g")
+	public static final class374 field4129;
+	@ObfuscatedName("y")
 	@ObfuscatedGetter(
-		intValue = -1912726257
+		intValue = -1536498237
 	)
-	final int field4139;
-	@ObfuscatedName("l")
+	final int field4130;
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = 1030005029
+		intValue = 618578037
 	)
-	public final int field4138;
-	@ObfuscatedName("z")
-	public final Class field4134;
-	@ObfuscatedName("t")
+	public final int field4135;
+	@ObfuscatedName("j")
+	public final Class field4127;
+	@ObfuscatedName("r")
 	@ObfuscatedSignature(
-		descriptor = "Lnt;"
+		descriptor = "Lnv;"
 	)
-	final class370 field4137;
+	final class370 field4133;
 
 	static {
-		field4141 = new class374(2, 0, Integer.class, new class371());
-		field4135 = new class374(0, 1, Long.class, new class373());
-		field4136 = new class374(1, 2, String.class, new class375());
+		field4131 = new class374(2, 0, Integer.class, new class371());
+		field4128 = new class374(0, 1, Long.class, new class373());
+		field4129 = new class374(1, 2, String.class, new class375());
 	}
 
 	@ObfuscatedSignature(
-		descriptor = "(IILjava/lang/Class;Lnt;)V"
+		descriptor = "(IILjava/lang/Class;Lnv;)V"
 	)
 	class374(int var1, int var2, Class var3, class370 var4) {
-		this.field4139 = var1;
-		this.field4138 = var2;
-		this.field4134 = var3;
-		this.field4137 = var4;
+		this.field4130 = var1;
+		this.field4135 = var2;
+		this.field4127 = var3;
+		this.field4133 = var4;
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
 		descriptor = "(I)I",
-		garbageValue = "-708237537"
+		garbageValue = "-907662946"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
-		return this.field4138;
+		return this.field4135;
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		descriptor = "(Lnk;B)Ljava/lang/Object;",
-		garbageValue = "-8"
+		descriptor = "(Lnd;I)Ljava/lang/Object;",
+		garbageValue = "-2104172776"
 	)
-	public Object method6351(Buffer var1) {
-		return this.field4137.vmethod6362(var1);
+	public Object method6480(Buffer var1) {
+		return this.field4133.vmethod6500(var1);
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(IIII)I",
-		garbageValue = "-225266091"
+		descriptor = "(Lax;B)Lai;",
+		garbageValue = "-46"
 	)
-	static int method6359(int var0, int var1, int var2) {
-		if (var2 > 179) {
-			var1 /= 2;
+	public static class31 method6477(class34 var0) {
+		switch(var0.field252) {
+		case 0:
+			return new class28();
+		default:
+			throw new IllegalArgumentException();
 		}
-
-		if (var2 > 192) {
-			var1 /= 2;
-		}
-
-		if (var2 > 217) {
-			var1 /= 2;
-		}
-
-		if (var2 > 243) {
-			var1 /= 2;
-		}
-
-		int var3 = (var1 / 32 << 7) + (var0 / 4 << 10) + var2 / 2;
-		return var3;
 	}
 
-	@ObfuscatedName("g")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		descriptor = "(I)[Lnz;",
-		garbageValue = "2122701602"
+		descriptor = "(I)[Lnp;",
+		garbageValue = "-72158502"
 	)
-	public static class374[] method6356() {
-		return new class374[]{field4141, field4136, field4135};
+	public static class374[] method6476() {
+		return new class374[]{field4131, field4128, field4129};
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/Class;I)Lnt;",
-		garbageValue = "-1426815547"
+		descriptor = "(Ljava/lang/Class;B)Lnp;",
+		garbageValue = "-16"
 	)
-	public static class370 method6350(Class var0) {
-		class374[] var2 = method6356();
-		int var3 = 0;
+	public static class374 method6479(Class var0) {
+		class374[] var1 = method6476();
 
-		class374 var1;
-		while (true) {
-			if (var3 >= var2.length) {
-				var1 = null;
-				break;
+		for (int var2 = 0; var2 < var1.length; ++var2) {
+			class374 var3 = var1[var2];
+			if (var3.field4127 == var0) {
+				return var3;
 			}
-
-			class374 var4 = var2[var3];
-			if (var4.field4134 == var0) {
-				var1 = var4;
-				break;
-			}
-
-			++var3;
 		}
 
+		return null;
+	}
+
+	@ObfuscatedName("j")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/Object;Lnd;I)V",
+		garbageValue = "-926534106"
+	)
+	public static void method6475(Object var0, Buffer var1) {
+		class370 var2 = method6478(var0.getClass());
+		var2.vmethod6493(var0, var1);
+	}
+
+	@ObfuscatedName("r")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/Class;S)Lnv;",
+		garbageValue = "-2594"
+	)
+	static class370 method6478(Class var0) {
+		class374 var1 = method6479(var0);
 		if (var1 == null) {
 			throw new IllegalArgumentException();
 		} else {
-			return var1.field4137;
+			return var1.field4133;
 		}
-	}
-
-	@ObfuscatedName("gr")
-	@ObfuscatedSignature(
-		descriptor = "(II)V",
-		garbageValue = "-312092894"
-	)
-	@Export("setWindowedMode")
-	static void setWindowedMode(int var0) {
-		Client.field833 = 0L;
-		if (var0 >= 2) {
-			Client.isResizable = true;
-		} else {
-			Client.isResizable = false;
-		}
-
-		if (HitSplatDefinition.getWindowedMode() == 1) {
-			class303.client.setMaxCanvasSize(765, 503);
-		} else {
-			class303.client.setMaxCanvasSize(7680, 2160);
-		}
-
-		if (Client.gameState >= 25) {
-			PacketBufferNode var1 = HealthBarDefinition.getPacketBufferNode(ClientPacket.field2655, Client.packetWriter.isaacCipher);
-			var1.packetBuffer.writeByte(HitSplatDefinition.getWindowedMode());
-			var1.packetBuffer.writeShort(GameEngine.canvasWidth);
-			var1.packetBuffer.writeShort(HealthBarDefinition.canvasHeight);
-			Client.packetWriter.addNode(var1);
-		}
-
 	}
 }

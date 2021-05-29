@@ -1,23 +1,31 @@
 import java.nio.ByteBuffer;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ie")
+@ObfuscatedName("if")
 @Implements("DirectByteArrayCopier")
 public class DirectByteArrayCopier extends AbstractByteArrayCopier {
-	@ObfuscatedName("h")
+	@ObfuscatedName("r")
+	static byte[][][] field3128;
+	@ObfuscatedName("s")
+	@ObfuscatedGetter(
+		intValue = -1885485519
+	)
+	static int field3126;
+	@ObfuscatedName("v")
 	@Export("directBuffer")
 	ByteBuffer directBuffer;
 
 	DirectByteArrayCopier() {
 	}
 
-	@ObfuscatedName("g")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(I)[B",
-		garbageValue = "-1778746914"
+		descriptor = "(B)[B",
+		garbageValue = "74"
 	)
 	@Export("get")
 	byte[] get() {
@@ -27,10 +35,10 @@ public class DirectByteArrayCopier extends AbstractByteArrayCopier {
 		return var1;
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		descriptor = "([BI)V",
-		garbageValue = "973811650"
+		descriptor = "([BB)V",
+		garbageValue = "43"
 	)
 	@Export("set")
 	void set(byte[] var1) {
@@ -39,76 +47,99 @@ public class DirectByteArrayCopier extends AbstractByteArrayCopier {
 		this.directBuffer.put(var1);
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(CI)B",
-		garbageValue = "-277042529"
+		descriptor = "(Ljp;IIIBZB)V",
+		garbageValue = "-95"
 	)
-	@Export("charToByteCp1252")
-	public static byte charToByteCp1252(char var0) {
-		byte var1;
-		if ((var0 <= 0 || var0 >= 128) && (var0 < 160 || var0 > 255)) {
-			if (var0 == 8364) {
-				var1 = -128;
-			} else if (var0 == 8218) {
-				var1 = -126;
-			} else if (var0 == 402) {
-				var1 = -125;
-			} else if (var0 == 8222) {
-				var1 = -124;
-			} else if (var0 == 8230) {
-				var1 = -123;
-			} else if (var0 == 8224) {
-				var1 = -122;
-			} else if (var0 == 8225) {
-				var1 = -121;
-			} else if (var0 == 710) {
-				var1 = -120;
-			} else if (var0 == 8240) {
-				var1 = -119;
-			} else if (var0 == 352) {
-				var1 = -118;
-			} else if (var0 == 8249) {
-				var1 = -117;
-			} else if (var0 == 338) {
-				var1 = -116;
-			} else if (var0 == 381) {
-				var1 = -114;
-			} else if (var0 == 8216) {
-				var1 = -111;
-			} else if (var0 == 8217) {
-				var1 = -110;
-			} else if (var0 == 8220) {
-				var1 = -109;
-			} else if (var0 == 8221) {
-				var1 = -108;
-			} else if (var0 == 8226) {
-				var1 = -107;
-			} else if (var0 == 8211) {
-				var1 = -106;
-			} else if (var0 == 8212) {
-				var1 = -105;
-			} else if (var0 == 732) {
-				var1 = -104;
-			} else if (var0 == 8482) {
-				var1 = -103;
-			} else if (var0 == 353) {
-				var1 = -102;
-			} else if (var0 == 8250) {
-				var1 = -101;
-			} else if (var0 == 339) {
-				var1 = -100;
-			} else if (var0 == 382) {
-				var1 = -98;
-			} else if (var0 == 376) {
-				var1 = -97;
-			} else {
-				var1 = 63;
+	@Export("requestNetFile")
+	static void requestNetFile(Archive var0, int var1, int var2, int var3, byte var4, boolean var5) {
+		long var6 = (long)((var1 << 16) + var2);
+		NetFileRequest var8 = (NetFileRequest)NetCache.NetCache_pendingPriorityWrites.get(var6);
+		if (var8 == null) {
+			var8 = (NetFileRequest)NetCache.NetCache_pendingPriorityResponses.get(var6);
+			if (var8 == null) {
+				var8 = (NetFileRequest)NetCache.NetCache_pendingWrites.get(var6);
+				if (var8 != null) {
+					if (var5) {
+						var8.removeDual();
+						NetCache.NetCache_pendingPriorityWrites.put(var8, var6);
+						--NetCache.NetCache_pendingWritesCount;
+						++NetCache.NetCache_pendingPriorityWritesCount;
+					}
+
+				} else {
+					if (!var5) {
+						var8 = (NetFileRequest)NetCache.NetCache_pendingResponses.get(var6);
+						if (var8 != null) {
+							return;
+						}
+					}
+
+					var8 = new NetFileRequest();
+					var8.archive = var0;
+					var8.crc = var3;
+					var8.padding = var4;
+					if (var5) {
+						NetCache.NetCache_pendingPriorityWrites.put(var8, var6);
+						++NetCache.NetCache_pendingPriorityWritesCount;
+					} else {
+						NetCache.NetCache_pendingWritesQueue.addFirst(var8);
+						NetCache.NetCache_pendingWrites.put(var8, var6);
+						++NetCache.NetCache_pendingWritesCount;
+					}
+
+				}
 			}
-		} else {
-			var1 = (byte)var0;
+		}
+	}
+
+	@ObfuscatedName("y")
+	@ObfuscatedSignature(
+		descriptor = "(IZIZI)V",
+		garbageValue = "-1640664715"
+	)
+	@Export("sortWorldList")
+	static void sortWorldList(int var0, boolean var1, int var2, boolean var3) {
+		if (Tiles.World_worlds != null) {
+			DesktopPlatformInfoProvider.doWorldSorting(0, Tiles.World_worlds.length - 1, var0, var1, var2, var3);
 		}
 
-		return var1;
+	}
+
+	@ObfuscatedName("go")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/String;ZI)V",
+		garbageValue = "-1591335539"
+	)
+	@Export("drawLoadingMessage")
+	static final void drawLoadingMessage(String var0, boolean var1) {
+		if (Client.showLoadingMessages) {
+			byte var2 = 4;
+			int var3 = var2 + 6;
+			int var4 = var2 + 6;
+			int var5 = UserComparator3.fontPlain12.lineWidth(var0, 250);
+			int var6 = UserComparator3.fontPlain12.lineCount(var0, 250) * 13;
+			Rasterizer2D.Rasterizer2D_fillRectangle(var3 - var2, var4 - var2, var5 + var2 + var2, var6 + var2 + var2, 0);
+			Rasterizer2D.Rasterizer2D_drawRectangle(var3 - var2, var4 - var2, var2 + var2 + var5, var6 + var2 + var2, 16777215);
+			UserComparator3.fontPlain12.drawLines(var0, var3, var4, var5, var6, 16777215, -1, 1, 1, 0);
+			int var7 = var3 - var2;
+			int var8 = var4 - var2;
+			int var9 = var2 + var2 + var5;
+			int var10 = var2 + var2 + var6;
+
+			for (int var11 = 0; var11 < Client.rootWidgetCount; ++var11) {
+				if (Client.rootWidgetXs[var11] + Client.rootWidgetWidths[var11] > var7 && Client.rootWidgetXs[var11] < var9 + var7 && Client.rootWidgetHeights[var11] + Client.rootWidgetYs[var11] > var8 && Client.rootWidgetYs[var11] < var10 + var8) {
+					Client.field719[var11] = true;
+				}
+			}
+
+			if (var1) {
+				class26.rasterProvider.drawFull(0, 0);
+			} else {
+				PcmPlayer.method786(var3, var4, var5, var6);
+			}
+
+		}
 	}
 }

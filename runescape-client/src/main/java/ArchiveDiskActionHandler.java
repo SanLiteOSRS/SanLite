@@ -7,42 +7,34 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("jg")
 @Implements("ArchiveDiskActionHandler")
 public class ArchiveDiskActionHandler implements Runnable {
-	@ObfuscatedName("h")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "Lka;"
+		descriptor = "Lkx;"
 	)
 	@Export("ArchiveDiskActionHandler_requestQueue")
-	static NodeDeque ArchiveDiskActionHandler_requestQueue;
-	@ObfuscatedName("c")
+	public static NodeDeque ArchiveDiskActionHandler_requestQueue;
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "Lka;"
+		descriptor = "Lkx;"
 	)
 	@Export("ArchiveDiskActionHandler_responseQueue")
-	static NodeDeque ArchiveDiskActionHandler_responseQueue;
-	@ObfuscatedName("o")
+	public static NodeDeque ArchiveDiskActionHandler_responseQueue;
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = 1281764183
+		intValue = 2106150539
 	)
-	public static int field3574;
-	@ObfuscatedName("g")
+	static int field3562;
+	@ObfuscatedName("y")
 	@Export("ArchiveDiskActionHandler_lock")
-	public static Object ArchiveDiskActionHandler_lock;
-	@ObfuscatedName("l")
+	static Object ArchiveDiskActionHandler_lock;
+	@ObfuscatedName("p")
 	@Export("ArchiveDiskActionHandler_thread")
 	static Thread ArchiveDiskActionHandler_thread;
-	@ObfuscatedName("z")
-	@Export("SpriteBuffer_spriteWidths")
-	public static int[] SpriteBuffer_spriteWidths;
-	@ObfuscatedName("d")
-	@ObfuscatedSignature(
-		descriptor = "Lx;"
-	)
-	static class11 field3575;
 
 	static {
 		ArchiveDiskActionHandler_requestQueue = new NodeDeque();
 		ArchiveDiskActionHandler_responseQueue = new NodeDeque();
-		field3574 = 0;
+		field3562 = 0;
 		ArchiveDiskActionHandler_lock = new Object();
 	}
 
@@ -71,29 +63,49 @@ public class ArchiveDiskActionHandler implements Runnable {
 					}
 
 					synchronized(ArchiveDiskActionHandler_lock) {
-						if (field3574 <= 1) {
-							field3574 = 0;
+						if (field3562 <= 1) {
+							field3562 = 0;
 							ArchiveDiskActionHandler_lock.notifyAll();
 							return;
 						}
 
-						field3574 = 600;
+						field3562 = 600;
 					}
 				} else {
-					UrlRequest.sleepExact(100L);
+					long var8 = 99L;
+
+					try {
+						Thread.sleep(var8);
+					} catch (InterruptedException var15) {
+					}
+
+					try {
+						Thread.sleep(1L);
+					} catch (InterruptedException var14) {
+					}
+
 					synchronized(ArchiveDiskActionHandler_lock) {
-						if (field3574 <= 1) {
-							field3574 = 0;
+						if (field3562 <= 1) {
+							field3562 = 0;
 							ArchiveDiskActionHandler_lock.notifyAll();
 							return;
 						}
 
-						--field3574;
+						--field3562;
 					}
 				}
 			}
-		} catch (Exception var13) {
-			class27.RunException_sendStackTrace((String)null, var13);
+		} catch (Exception var17) {
+			class266.RunException_sendStackTrace((String)null, var17);
 		}
+	}
+
+	@ObfuscatedName("n")
+	@ObfuscatedSignature(
+		descriptor = "(IB)V",
+		garbageValue = "13"
+	)
+	public static void method4867(int var0) {
+		MouseHandler.MouseHandler_idleCycles = var0;
 	}
 }

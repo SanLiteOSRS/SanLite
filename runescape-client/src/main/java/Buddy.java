@@ -1,29 +1,27 @@
-import java.io.File;
-import java.io.IOException;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("lq")
+@ObfuscatedName("lv")
 @Implements("Buddy")
 public class Buddy extends Nameable {
-	@ObfuscatedName("l")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = 1876506073
+		intValue = 1693720149
 	)
 	@Export("world")
 	public int world;
-	@ObfuscatedName("z")
+	@ObfuscatedName("j")
 	@ObfuscatedGetter(
-		intValue = 1660852993
+		intValue = -1023710905
 	)
 	@Export("int2")
 	public int int2;
-	@ObfuscatedName("t")
+	@ObfuscatedName("r")
 	@ObfuscatedGetter(
-		intValue = 278975133
+		intValue = -523203081
 	)
 	@Export("rank")
 	public int rank;
@@ -32,10 +30,10 @@ public class Buddy extends Nameable {
 		this.world = -1;
 	}
 
-	@ObfuscatedName("ap")
+	@ObfuscatedName("ao")
 	@ObfuscatedSignature(
-		descriptor = "(IIB)V",
-		garbageValue = "45"
+		descriptor = "(III)V",
+		garbageValue = "-1819363744"
 	)
 	@Export("set")
 	void set(int var1, int var2) {
@@ -43,64 +41,23 @@ public class Buddy extends Nameable {
 		this.int2 = var2;
 	}
 
-	@ObfuscatedName("am")
+	@ObfuscatedName("aq")
 	@ObfuscatedSignature(
 		descriptor = "(I)I",
-		garbageValue = "-1247009443"
+		garbageValue = "1872799310"
 	)
 	@Export("getWorld")
 	public int getWorld() {
 		return this.world;
 	}
 
-	@ObfuscatedName("ax")
+	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
 		descriptor = "(I)Z",
-		garbageValue = "731832682"
+		garbageValue = "2092193613"
 	)
 	@Export("hasWorld")
 	public boolean hasWorld() {
 		return this.world > 0;
-	}
-
-	@ObfuscatedName("o")
-	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;Ljava/lang/String;ZI)Lng;",
-		garbageValue = "2145866234"
-	)
-	@Export("getPreferencesFile")
-	public static AccessFile getPreferencesFile(String var0, String var1, boolean var2) {
-		File var3 = new File(JagexCache.cacheDir, "preferences" + var0 + ".dat");
-		if (var3.exists()) {
-			try {
-				AccessFile var10 = new AccessFile(var3, "rw", 10000L);
-				return var10;
-			} catch (IOException var9) {
-			}
-		}
-
-		String var4 = "";
-		if (class310.cacheGamebuild == 33) {
-			var4 = "_rc";
-		} else if (class310.cacheGamebuild == 34) {
-			var4 = "_wip";
-		}
-
-		File var5 = new File(AccessFile.userHomeDirectory, "jagex_" + var1 + "_preferences" + var0 + var4 + ".dat");
-		AccessFile var6;
-		if (!var2 && var5.exists()) {
-			try {
-				var6 = new AccessFile(var5, "rw", 10000L);
-				return var6;
-			} catch (IOException var8) {
-			}
-		}
-
-		try {
-			var6 = new AccessFile(var3, "rw", 10000L);
-			return var6;
-		} catch (IOException var7) {
-			throw new RuntimeException();
-		}
 	}
 }

@@ -3,52 +3,82 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jd")
+@ObfuscatedName("jn")
 public enum class268 implements Enumerated {
-	@ObfuscatedName("h")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "Ljd;"
+		descriptor = "Ljn;"
 	)
-	field3550(-1),
-	@ObfuscatedName("c")
+	field3537(-1),
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "Ljd;"
+		descriptor = "Ljn;"
 	)
-	field3544(0),
-	@ObfuscatedName("o")
+	field3540(0),
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "Ljd;"
+		descriptor = "Ljn;"
 	)
-	field3545(1),
-	@ObfuscatedName("g")
+	field3538(1),
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		descriptor = "Ljd;"
+		descriptor = "Ljn;"
 	)
-	field3543(2);
+	field3539(2);
 
-	@ObfuscatedName("k")
-	@ObfuscatedSignature(
-		descriptor = "Lbu;"
-	)
-	@Export("soundCache")
-	static SoundCache soundCache;
-	@ObfuscatedName("l")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = 163548653
+		intValue = -1451177967
 	)
-	final int field3547;
+	final int field3536;
 
 	class268(int var3) {
-		this.field3547 = var3;
+		this.field3536 = var3;
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
 		descriptor = "(I)I",
-		garbageValue = "-708237537"
+		garbageValue = "-907662946"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
-		return this.field3547;
+		return this.field3536;
+	}
+
+	@ObfuscatedName("y")
+	@ObfuscatedSignature(
+		descriptor = "(IIILeg;IB)V",
+		garbageValue = "2"
+	)
+	static void method4851(int var0, int var1, int var2, ObjectComposition var3, int var4) {
+		ObjectSound var5 = new ObjectSound();
+		var5.plane = var0;
+		var5.x = var1 * 128;
+		var5.y = var2 * 128;
+		int var6 = var3.sizeX;
+		int var7 = var3.sizeY;
+		if (var4 == 1 || var4 == 3) {
+			var6 = var3.sizeY;
+			var7 = var3.sizeX;
+		}
+
+		var5.field956 = (var6 + var1) * 128;
+		var5.field957 = (var7 + var2) * 128;
+		var5.soundEffectId = var3.ambientSoundId;
+		var5.field958 = var3.int4 * 128;
+		var5.field961 = var3.int5;
+		var5.field964 = var3.int6;
+		var5.soundEffectIds = var3.soundEffectIds;
+		if (var3.transforms != null) {
+			var5.obj = var3;
+			var5.set();
+		}
+
+		ObjectSound.objectSounds.addFirst(var5);
+		if (var5.soundEffectIds != null) {
+			var5.field954 = var5.field961 + (int)(Math.random() * (double)(var5.field964 - var5.field961));
+		}
+
 	}
 }

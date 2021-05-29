@@ -3,65 +3,68 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("lu")
+@ObfuscatedName("lb")
 @Implements("FriendsList")
 public class FriendsList extends NameableContainer {
-	@ObfuscatedName("gg")
-	@Export("xteaKeys")
-	static int[][] xteaKeys;
-	@ObfuscatedName("o")
+	@ObfuscatedName("rn")
+	@ObfuscatedGetter(
+		intValue = 993918805
+	)
+	static int field3812;
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "Lnj;"
+		descriptor = "Lnc;"
 	)
 	@Export("loginType")
 	final LoginType loginType;
-	@ObfuscatedName("g")
+	@ObfuscatedName("y")
 	@ObfuscatedGetter(
-		intValue = -1915245561
+		intValue = 1152075333
 	)
-	int field3826;
-	@ObfuscatedName("l")
+	int field3808;
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		descriptor = "Lki;"
+		descriptor = "Lkm;"
 	)
 	@Export("friendLoginUpdates")
 	public LinkDeque friendLoginUpdates;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lnj;)V"
+		descriptor = "(Lnc;)V"
 	)
 	public FriendsList(LoginType var1) {
 		super(400);
-		this.field3826 = 1;
+		this.field3808 = 1;
 		this.friendLoginUpdates = new LinkDeque();
 		this.loginType = var1;
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(I)Llm;",
-		garbageValue = "-1768347101"
+		descriptor = "(B)Llx;",
+		garbageValue = "126"
 	)
 	@Export("newInstance")
 	Nameable newInstance() {
 		return new Friend();
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "(II)[Llm;",
-		garbageValue = "836907267"
+		descriptor = "(II)[Llx;",
+		garbageValue = "1924184817"
 	)
 	@Export("newTypedArray")
 	Nameable[] newTypedArray(int var1) {
 		return new Friend[var1];
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(Lla;ZI)Z",
-		garbageValue = "-1488951229"
+		descriptor = "(Lly;ZB)Z",
+		garbageValue = "112"
 	)
 	@Export("isFriended")
 	public boolean isFriended(Username var1, boolean var2) {
@@ -73,10 +76,10 @@ public class FriendsList extends NameableContainer {
 		}
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		descriptor = "(Lnk;IB)V",
-		garbageValue = "1"
+		descriptor = "(Lnd;II)V",
+		garbageValue = "1726713479"
 	)
 	@Export("read")
 	public void read(Buffer var1, int var2) {
@@ -101,7 +104,7 @@ public class FriendsList extends NameableContainer {
 					Friend var11 = (Friend)this.getByCurrentUsername(var4);
 					if (var3) {
 						Friend var12 = (Friend)this.getByCurrentUsername(var5);
-						if (var12 != null && var11 != var12) {
+						if (var12 != null && var12 != var11) {
 							if (var11 != null) {
 								this.remove(var12);
 							} else {
@@ -140,17 +143,17 @@ public class FriendsList extends NameableContainer {
 					}
 
 					if (var6 != var11.world) {
-						var11.int2 = ++this.field3826 - 1;
+						var11.int2 = ++this.field3808 - 1;
 						if (var11.world == -1 && var6 == 0) {
-							var11.int2 = -(var11.int2 * 735732993) * 1660852993;
+							var11.int2 = -(var11.int2 * -2116718473) * -1023710905;
 						}
 
 						var11.world = var6;
 					}
 
 					var11.rank = var7;
-					var11.field3838 = var9;
-					var11.field3839 = var10;
+					var11.field3824 = var9;
+					var11.field3823 = var10;
 					continue;
 				}
 
@@ -159,6 +162,215 @@ public class FriendsList extends NameableContainer {
 
 			this.sort();
 			return;
+		}
+	}
+
+	@ObfuscatedName("f")
+	@ObfuscatedSignature(
+		descriptor = "(Lmr;ILjava/lang/String;B)Ljava/lang/String;",
+		garbageValue = "98"
+	)
+	static String method5650(IterableNodeHashTable var0, int var1, String var2) {
+		if (var0 == null) {
+			return var2;
+		} else {
+			ObjectNode var3 = (ObjectNode)var0.get((long)var1);
+			return var3 == null ? var2 : (String)var3.obj;
+		}
+	}
+
+	@ObfuscatedName("al")
+	@ObfuscatedSignature(
+		descriptor = "(ILcf;ZI)I",
+		garbageValue = "574138081"
+	)
+	static int method5647(int var0, Script var1, boolean var2) {
+		int var3;
+		int var4;
+		if (var0 == ScriptOpcodes.ADD) {
+			class44.Interpreter_intStackSize -= 2;
+			var3 = Interpreter.Interpreter_intStack[class44.Interpreter_intStackSize];
+			var4 = Interpreter.Interpreter_intStack[class44.Interpreter_intStackSize + 1];
+			Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = var3 + var4;
+			return 1;
+		} else if (var0 == ScriptOpcodes.SUB) {
+			class44.Interpreter_intStackSize -= 2;
+			var3 = Interpreter.Interpreter_intStack[class44.Interpreter_intStackSize];
+			var4 = Interpreter.Interpreter_intStack[class44.Interpreter_intStackSize + 1];
+			Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = var3 - var4;
+			return 1;
+		} else if (var0 == ScriptOpcodes.MULTIPLY) {
+			class44.Interpreter_intStackSize -= 2;
+			var3 = Interpreter.Interpreter_intStack[class44.Interpreter_intStackSize];
+			var4 = Interpreter.Interpreter_intStack[class44.Interpreter_intStackSize + 1];
+			Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = var4 * var3;
+			return 1;
+		} else if (var0 == ScriptOpcodes.DIV) {
+			class44.Interpreter_intStackSize -= 2;
+			var3 = Interpreter.Interpreter_intStack[class44.Interpreter_intStackSize];
+			var4 = Interpreter.Interpreter_intStack[class44.Interpreter_intStackSize + 1];
+			Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = var3 / var4;
+			return 1;
+		} else if (var0 == ScriptOpcodes.RANDOM) {
+			var3 = Interpreter.Interpreter_intStack[--class44.Interpreter_intStackSize];
+			Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = (int)(Math.random() * (double)var3);
+			return 1;
+		} else if (var0 == ScriptOpcodes.RANDOMINC) {
+			var3 = Interpreter.Interpreter_intStack[--class44.Interpreter_intStackSize];
+			Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = (int)(Math.random() * (double)(var3 + 1));
+			return 1;
+		} else {
+			int var5;
+			int var6;
+			int var7;
+			if (var0 == ScriptOpcodes.INTERPOLATE) {
+				class44.Interpreter_intStackSize -= 5;
+				var3 = Interpreter.Interpreter_intStack[class44.Interpreter_intStackSize];
+				var4 = Interpreter.Interpreter_intStack[class44.Interpreter_intStackSize + 1];
+				var5 = Interpreter.Interpreter_intStack[class44.Interpreter_intStackSize + 2];
+				var6 = Interpreter.Interpreter_intStack[class44.Interpreter_intStackSize + 3];
+				var7 = Interpreter.Interpreter_intStack[class44.Interpreter_intStackSize + 4];
+				Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = var3 + (var4 - var3) * (var7 - var5) / (var6 - var5);
+				return 1;
+			} else if (var0 == ScriptOpcodes.ADDPERCENT) {
+				class44.Interpreter_intStackSize -= 2;
+				var3 = Interpreter.Interpreter_intStack[class44.Interpreter_intStackSize];
+				var4 = Interpreter.Interpreter_intStack[class44.Interpreter_intStackSize + 1];
+				Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = var3 + var4 * var3 / 100;
+				return 1;
+			} else if (var0 == ScriptOpcodes.SETBIT) {
+				class44.Interpreter_intStackSize -= 2;
+				var3 = Interpreter.Interpreter_intStack[class44.Interpreter_intStackSize];
+				var4 = Interpreter.Interpreter_intStack[class44.Interpreter_intStackSize + 1];
+				Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = var3 | 1 << var4;
+				return 1;
+			} else if (var0 == ScriptOpcodes.CLEARBIT) {
+				class44.Interpreter_intStackSize -= 2;
+				var3 = Interpreter.Interpreter_intStack[class44.Interpreter_intStackSize];
+				var4 = Interpreter.Interpreter_intStack[class44.Interpreter_intStackSize + 1];
+				Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = var3 & -1 - (1 << var4);
+				return 1;
+			} else if (var0 == ScriptOpcodes.TESTBIT) {
+				class44.Interpreter_intStackSize -= 2;
+				var3 = Interpreter.Interpreter_intStack[class44.Interpreter_intStackSize];
+				var4 = Interpreter.Interpreter_intStack[class44.Interpreter_intStackSize + 1];
+				Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = (var3 & 1 << var4) != 0 ? 1 : 0;
+				return 1;
+			} else if (var0 == ScriptOpcodes.MOD) {
+				class44.Interpreter_intStackSize -= 2;
+				var3 = Interpreter.Interpreter_intStack[class44.Interpreter_intStackSize];
+				var4 = Interpreter.Interpreter_intStack[class44.Interpreter_intStackSize + 1];
+				Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = var3 % var4;
+				return 1;
+			} else if (var0 == ScriptOpcodes.POW) {
+				class44.Interpreter_intStackSize -= 2;
+				var3 = Interpreter.Interpreter_intStack[class44.Interpreter_intStackSize];
+				var4 = Interpreter.Interpreter_intStack[class44.Interpreter_intStackSize + 1];
+				if (var3 == 0) {
+					Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = 0;
+				} else {
+					Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = (int)Math.pow((double)var3, (double)var4);
+				}
+
+				return 1;
+			} else if (var0 == ScriptOpcodes.INVPOW) {
+				class44.Interpreter_intStackSize -= 2;
+				var3 = Interpreter.Interpreter_intStack[class44.Interpreter_intStackSize];
+				var4 = Interpreter.Interpreter_intStack[class44.Interpreter_intStackSize + 1];
+				if (var3 == 0) {
+					Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = 0;
+					return 1;
+				} else {
+					switch(var4) {
+					case 0:
+						Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = Integer.MAX_VALUE;
+						break;
+					case 1:
+						Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = var3;
+						break;
+					case 2:
+						Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = (int)Math.sqrt((double)var3);
+						break;
+					case 3:
+						Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = (int)Math.cbrt((double)var3);
+						break;
+					case 4:
+						Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = (int)Math.sqrt(Math.sqrt((double)var3));
+						break;
+					default:
+						Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = (int)Math.pow((double)var3, 1.0D / (double)var4);
+					}
+
+					return 1;
+				}
+			} else if (var0 == ScriptOpcodes.AND) {
+				class44.Interpreter_intStackSize -= 2;
+				var3 = Interpreter.Interpreter_intStack[class44.Interpreter_intStackSize];
+				var4 = Interpreter.Interpreter_intStack[class44.Interpreter_intStackSize + 1];
+				Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = var3 & var4;
+				return 1;
+			} else if (var0 == ScriptOpcodes.OR) {
+				class44.Interpreter_intStackSize -= 2;
+				var3 = Interpreter.Interpreter_intStack[class44.Interpreter_intStackSize];
+				var4 = Interpreter.Interpreter_intStack[class44.Interpreter_intStackSize + 1];
+				Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = var3 | var4;
+				return 1;
+			} else if (var0 == ScriptOpcodes.SCALE) {
+				class44.Interpreter_intStackSize -= 3;
+				long var9 = (long)Interpreter.Interpreter_intStack[class44.Interpreter_intStackSize];
+				long var11 = (long)Interpreter.Interpreter_intStack[class44.Interpreter_intStackSize + 1];
+				long var13 = (long)Interpreter.Interpreter_intStack[class44.Interpreter_intStackSize + 2];
+				Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = (int)(var9 * var13 / var11);
+				return 1;
+			} else if (var0 == 4025) {
+				var3 = SequenceDefinition.method3149(Interpreter.Interpreter_intStack[--class44.Interpreter_intStackSize]);
+				Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = var3;
+				return 1;
+			} else if (var0 == 4026) {
+				class44.Interpreter_intStackSize -= 2;
+				var3 = Interpreter.Interpreter_intStack[class44.Interpreter_intStackSize];
+				var4 = Interpreter.Interpreter_intStack[class44.Interpreter_intStackSize + 1];
+				Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = var3 ^ 1 << var4;
+				return 1;
+			} else if (var0 == 4027) {
+				class44.Interpreter_intStackSize -= 3;
+				var3 = Interpreter.Interpreter_intStack[class44.Interpreter_intStackSize];
+				var4 = Interpreter.Interpreter_intStack[class44.Interpreter_intStackSize + 1];
+				var5 = Interpreter.Interpreter_intStack[class44.Interpreter_intStackSize + 2];
+				Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = class342.method6043(var3, var4, var5);
+				return 1;
+			} else if (var0 == 4028) {
+				class44.Interpreter_intStackSize -= 3;
+				var3 = Interpreter.Interpreter_intStack[class44.Interpreter_intStackSize];
+				var4 = Interpreter.Interpreter_intStack[class44.Interpreter_intStackSize + 1];
+				var5 = Interpreter.Interpreter_intStack[class44.Interpreter_intStackSize + 2];
+				Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = World.method1685(var3, var4, var5);
+				return 1;
+			} else if (var0 == 4029) {
+				class44.Interpreter_intStackSize -= 3;
+				var3 = Interpreter.Interpreter_intStack[class44.Interpreter_intStackSize];
+				var4 = Interpreter.Interpreter_intStack[class44.Interpreter_intStackSize + 1];
+				var5 = Interpreter.Interpreter_intStack[class44.Interpreter_intStackSize + 2];
+				var6 = 31 - var5;
+				Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = var3 << var6 >>> var4 + var6;
+				return 1;
+			} else if (var0 == 4030) {
+				class44.Interpreter_intStackSize -= 4;
+				var3 = Interpreter.Interpreter_intStack[class44.Interpreter_intStackSize];
+				var4 = Interpreter.Interpreter_intStack[class44.Interpreter_intStackSize + 1];
+				var5 = Interpreter.Interpreter_intStack[class44.Interpreter_intStackSize + 2];
+				var6 = Interpreter.Interpreter_intStack[class44.Interpreter_intStackSize + 3];
+				var3 = World.method1685(var3, var5, var6);
+				var7 = CollisionMap.method3185(var6 - var5 + 1);
+				if (var4 > var7) {
+					var4 = var7;
+				}
+
+				Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = var3 | var4 << var5;
+				return 1;
+			} else {
+				return 2;
+			}
 		}
 	}
 }

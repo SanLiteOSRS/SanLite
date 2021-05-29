@@ -1,66 +1,64 @@
+import java.util.LinkedHashMap;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("eu")
+@ObfuscatedName("ee")
 @Implements("VarbitComposition")
 public class VarbitComposition extends DualNode {
-	@ObfuscatedName("h")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "Ljp;"
+		descriptor = "Ljv;"
 	)
 	@Export("VarbitDefinition_archive")
 	public static AbstractArchive VarbitDefinition_archive;
-	@ObfuscatedName("c")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "Lho;"
+		descriptor = "Lhz;"
 	)
 	@Export("VarbitDefinition_cached")
 	public static EvictingDualNodeHashTable VarbitDefinition_cached;
-	@ObfuscatedName("z")
-	static final int[] field1711;
-	@ObfuscatedName("t")
+	@ObfuscatedName("j")
+	static final int[] field1702;
+	@ObfuscatedName("l")
+	public static short[][] field1708;
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = 2064389097
-	)
-	static int field1710;
-	@ObfuscatedName("o")
-	@ObfuscatedGetter(
-		intValue = 632538905
+		intValue = -2059144841
 	)
 	@Export("baseVar")
 	public int baseVar;
-	@ObfuscatedName("g")
+	@ObfuscatedName("y")
 	@ObfuscatedGetter(
-		intValue = 195506189
+		intValue = -1506226221
 	)
 	@Export("startBit")
 	public int startBit;
-	@ObfuscatedName("l")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = 891667147
+		intValue = -354172645
 	)
 	@Export("endBit")
 	public int endBit;
 
 	static {
 		VarbitDefinition_cached = new EvictingDualNodeHashTable(64);
-		field1711 = new int[32];
+		field1702 = new int[32];
 		int var0 = 2;
 
 		for (int var1 = 0; var1 < 32; ++var1) {
-			field1711[var1] = var0 - 1;
+			field1702[var1] = var0 - 1;
 			var0 += var0;
 		}
 
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(Lnk;I)V",
-		garbageValue = "812293859"
+		descriptor = "(Lnd;I)V",
+		garbageValue = "-683331130"
 	)
 	@Export("decode")
 	public void decode(Buffer var1) {
@@ -74,10 +72,10 @@ public class VarbitComposition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		descriptor = "(Lnk;IS)V",
-		garbageValue = "21911"
+		descriptor = "(Lnd;II)V",
+		garbageValue = "375304564"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
@@ -89,109 +87,57 @@ public class VarbitComposition extends DualNode {
 
 	}
 
-	@ObfuscatedName("g")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		descriptor = "(IS)I",
-		garbageValue = "-15726"
+		descriptor = "(I)V",
+		garbageValue = "-1858038859"
 	)
-	public static int method2813(int var0) {
-		return PacketWriter.method2409(ViewportMouse.ViewportMouse_entityTags[var0]);
+	static void method2859() {
+		if (SoundSystem.loadWorlds()) {
+			Login.worldSelectOpen = true;
+			Login.worldSelectPage = 0;
+			Login.worldSelectPagesCount = 0;
+		}
+
 	}
 
-	@ObfuscatedName("gz")
+	@ObfuscatedName("fj")
 	@ObfuscatedSignature(
-		descriptor = "(IIIIZS)V",
-		garbageValue = "-20141"
+		descriptor = "(ZB)V",
+		garbageValue = "-21"
 	)
-	@Export("setViewportShape")
-	static final void setViewportShape(int var0, int var1, int var2, int var3, boolean var4) {
-		if (var2 < 1) {
-			var2 = 1;
-		}
-
-		if (var3 < 1) {
-			var3 = 1;
-		}
-
-		int var5 = var3 - 334;
-		int var6;
-		if (var5 < 0) {
-			var6 = Client.field820;
-		} else if (var5 >= 100) {
-			var6 = Client.field872;
+	static final void method2849(boolean var0) {
+		if (var0) {
+			Client.field676 = Login.field1043 ? class125.field1469 : class125.field1471;
 		} else {
-			var6 = (Client.field872 - Client.field820) * var5 / 100 + Client.field820;
-		}
+			LinkedHashMap var1 = ObjectComposition.clientPreferences.parameters;
+			String var3 = Login.Login_username;
+			int var4 = var3.length();
+			int var5 = 0;
 
-		int var7 = var3 * var6 * 512 / (var2 * 334);
-		int var8;
-		int var9;
-		short var14;
-		if (var7 < Client.field877) {
-			var14 = Client.field877;
-			var6 = var14 * var2 * 334 / (var3 * 512);
-			if (var6 > Client.field738) {
-				var6 = Client.field738;
-				var8 = var3 * var6 * 512 / (var14 * 334);
-				var9 = (var2 - var8) / 2;
-				if (var4) {
-					Rasterizer2D.Rasterizer2D_resetClip();
-					Rasterizer2D.Rasterizer2D_fillRectangle(var0, var1, var9, var3, -16777216);
-					Rasterizer2D.Rasterizer2D_fillRectangle(var0 + var2 - var9, var1, var9, var3, -16777216);
-				}
-
-				var0 += var9;
-				var2 -= var9 * 2;
-			}
-		} else if (var7 > Client.field878) {
-			var14 = Client.field878;
-			var6 = var14 * var2 * 334 / (var3 * 512);
-			if (var6 < Client.field875) {
-				var6 = Client.field875;
-				var8 = var14 * var2 * 334 / (var6 * 512);
-				var9 = (var3 - var8) / 2;
-				if (var4) {
-					Rasterizer2D.Rasterizer2D_resetClip();
-					Rasterizer2D.Rasterizer2D_fillRectangle(var0, var1, var2, var9, -16777216);
-					Rasterizer2D.Rasterizer2D_fillRectangle(var0, var3 + var1 - var9, var2, var9, -16777216);
-				}
-
-				var1 += var9;
-				var3 -= var9 * 2;
-			}
-		}
-
-		Client.viewportZoom = var3 * var6 / 334;
-		if (var2 != Client.viewportWidth || var3 != Client.viewportHeight) {
-			int[] var13 = new int[9];
-
-			for (var9 = 0; var9 < var13.length; ++var9) {
-				int var10 = var9 * 32 + 15 + 128;
-				int var11 = class21.method281(var10);
-				int var12 = Rasterizer3D.Rasterizer3D_sine[var10];
-				var11 = PlayerComposition.method4640(var11, var3);
-				var13[var9] = var12 * var11 >> 16;
+			for (int var6 = 0; var6 < var4; ++var6) {
+				var5 = (var5 << 5) - var5 + var3.charAt(var6);
 			}
 
-			Scene.Scene_buildVisiblityMap(var13, 500, 800, var2 * 334 / var3, 334);
+			Client.field676 = var1.containsKey(var5) ? class125.field1470 : class125.field1468;
 		}
 
-		Client.viewportOffsetX = var0;
-		Client.viewportOffsetY = var1;
-		Client.viewportWidth = var2;
-		Client.viewportHeight = var3;
 	}
 
-	@ObfuscatedName("ls")
+	@ObfuscatedName("fh")
 	@ObfuscatedSignature(
-		descriptor = "([BIB)V",
-		garbageValue = "7"
+		descriptor = "(I)V",
+		garbageValue = "-1518032135"
 	)
-	static void method2818(byte[] var0, int var1) {
-		if (Client.randomDatData == null) {
-			Client.randomDatData = new byte[24];
+	static final void method2846() {
+		if (class21.field190) {
+			for (int var0 = 0; var0 < Players.Players_count; ++var0) {
+				Player var1 = Client.players[Players.Players_indices[var0]];
+				var1.method2147();
+			}
+
+			class21.field190 = false;
 		}
 
-		class306.writeRandomDat(var0, var1, Client.randomDatData, 0, 24);
 	}
 }
