@@ -159,7 +159,7 @@ public class WorldMapIcon_1 extends AbstractWorldMapIcon {
 				var1 = var2 && var0.isFriend();
 			}
 
-			return var1 || class44.method451() && var0.isClanMember();
+			return var1 || class44.method451() && var0.isFriendsChatMember();
 		}
 	}
 

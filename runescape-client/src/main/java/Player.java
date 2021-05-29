@@ -156,13 +156,14 @@ public final class Player extends Actor {
 	@ObfuscatedSignature(
 		descriptor = "Llu;"
 	)
-	@Export("isInClanChat")
-	TriBool isInClanChat;
+	@Export("isInFriendsChat")
+	TriBool isInFriendsChat;
 	@ObfuscatedName("ae")
 	@ObfuscatedSignature(
 		descriptor = "Llu;"
 	)
-	TriBool field1217;
+	@Export("isInClanChat")
+	TriBool isInClanChat;
 	@ObfuscatedName("ap")
 	boolean field1218;
 	@ObfuscatedName("ab")
@@ -195,8 +196,8 @@ public final class Player extends Actor {
 		this.team = 0;
 		this.isHidden = false;
 		this.isFriendTriBool = TriBool.TriBool_unknown;
+		this.isInFriendsChat = TriBool.TriBool_unknown;
 		this.isInClanChat = TriBool.TriBool_unknown;
-		this.field1217 = TriBool.TriBool_unknown;
 		this.field1218 = false;
 	}
 
@@ -288,7 +289,7 @@ public final class Player extends Actor {
 
 		this.username = new Username(var1.readStringCp1252NullTerminated(), WorldMapSection0.loginType);
 		this.clearIsFriend();
-		this.clearIsInClanChat();
+		this.clearIsInFriendsChat();
 		this.method2147();
 		if (this == class93.localPlayer) {
 			RunException.field4289 = this.username.getName();
@@ -475,13 +476,13 @@ public final class Player extends Actor {
 		descriptor = "(B)Z",
 		garbageValue = "-78"
 	)
-	@Export("isClanMember")
-	boolean isClanMember() {
-		if (this.isInClanChat == TriBool.TriBool_unknown) {
-			this.updateIsInClanChat();
+	@Export("isFriendsChatMember")
+	boolean isFriendsChatMember() {
+		if (this.isInFriendsChat == TriBool.TriBool_unknown) {
+			this.updateIsInFriendsChat();
 		}
 
-		return this.isInClanChat == TriBool.TriBool_true;
+		return this.isInFriendsChat == TriBool.TriBool_true;
 	}
 
 	@ObfuscatedName("s")
@@ -489,9 +490,9 @@ public final class Player extends Actor {
 		descriptor = "(B)V",
 		garbageValue = "4"
 	)
-	@Export("clearIsInClanChat")
-	void clearIsInClanChat() {
-		this.isInClanChat = TriBool.TriBool_unknown;
+	@Export("clearIsInFriendsChat")
+	void clearIsInFriendsChat() {
+		this.isInFriendsChat = TriBool.TriBool_unknown;
 	}
 
 	@ObfuscatedName("u")
@@ -499,9 +500,9 @@ public final class Player extends Actor {
 		descriptor = "(I)V",
 		garbageValue = "2108325676"
 	)
-	@Export("updateIsInClanChat")
-	void updateIsInClanChat() {
-		this.isInClanChat = WorldMapRegion.friendsChatManager != null && WorldMapRegion.friendsChatManager.contains(this.username) ? TriBool.TriBool_true : TriBool.TriBool_false;
+	@Export("updateIsInFriendsChat")
+	void updateIsInFriendsChat() {
+		this.isInFriendsChat = WorldMapRegion.friendsChatManager != null && WorldMapRegion.friendsChatManager.contains(this.username) ? TriBool.TriBool_true : TriBool.TriBool_false;
 	}
 
 	@ObfuscatedName("l")
@@ -509,8 +510,9 @@ public final class Player extends Actor {
 		descriptor = "(B)V",
 		garbageValue = "50"
 	)
-	void method2109() {
-		this.field1217 = Client.currentClanSettings[0] != null && Client.currentClanSettings[0].method99(this.username.getName()) != -1 ? TriBool.TriBool_true : TriBool.TriBool_false;
+	@Export("updateIsInClanChat")
+	void updateIsInClanChat() {
+		this.isInClanChat = Client.currentClanSettings[0] != null && Client.currentClanSettings[0].method99(this.username.getName()) != -1 ? TriBool.TriBool_true : TriBool.TriBool_false;
 	}
 
 	@ObfuscatedName("o")
@@ -519,7 +521,7 @@ public final class Player extends Actor {
 		garbageValue = "-660230159"
 	)
 	void method2147() {
-		this.field1217 = TriBool.TriBool_unknown;
+		this.isInClanChat = TriBool.TriBool_unknown;
 	}
 
 	@ObfuscatedName("c")
@@ -527,12 +529,13 @@ public final class Player extends Actor {
 		descriptor = "(I)Z",
 		garbageValue = "1964192988"
 	)
-	boolean method2126() {
-		if (this.field1217 == TriBool.TriBool_unknown) {
-			this.method2109();
+	@Export("isClanMember")
+	boolean isClanMember() {
+		if (this.isInClanChat == TriBool.TriBool_unknown) {
+			this.updateIsInClanChat();
 		}
 
-		return this.field1217 == TriBool.TriBool_true;
+		return this.isInClanChat == TriBool.TriBool_true;
 	}
 
 	@ObfuscatedName("e")

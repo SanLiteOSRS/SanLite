@@ -485,7 +485,7 @@ public class ClanChannelMember
 	static final void method85() {
 		for (int var0 = 0; var0 < Players.Players_count; ++var0) {
 			Player var1 = Client.players[Players.Players_indices[var0]];
-			var1.clearIsInClanChat();
+			var1.clearIsInFriendsChat();
 		}
 
 	}

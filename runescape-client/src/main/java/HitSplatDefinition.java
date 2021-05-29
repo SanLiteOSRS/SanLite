@@ -493,7 +493,7 @@ public class HitSplatDefinition extends DualNode {
 									} else {
 										var11 = 0;
 									}
-								} else if (var0.method2126()) {
+								} else if (var0.isClanMember()) {
 									var11 = 2000;
 								}
 							} else if (Client.playerOptionsPriorities[var10]) {

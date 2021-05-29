@@ -193,9 +193,9 @@ public final class ObjectSound extends Node {
 							ObjectComposition.drawSpriteOnMinimap(var1, var2, var12, var13, class170.mapDotSprites[3], var4);
 						} else if (class93.localPlayer.team != 0 && var15.team != 0 && var15.team == class93.localPlayer.team) {
 							ObjectComposition.drawSpriteOnMinimap(var1, var2, var12, var13, class170.mapDotSprites[4], var4);
-						} else if (var15.isClanMember()) {
+						} else if (var15.isFriendsChatMember()) {
 							ObjectComposition.drawSpriteOnMinimap(var1, var2, var12, var13, class170.mapDotSprites[5], var4);
-						} else if (var15.method2126()) {
+						} else if (var15.isClanMember()) {
 							ObjectComposition.drawSpriteOnMinimap(var1, var2, var12, var13, class170.mapDotSprites[6], var4);
 						} else {
 							ObjectComposition.drawSpriteOnMinimap(var1, var2, var12, var13, class170.mapDotSprites[2], var4);
