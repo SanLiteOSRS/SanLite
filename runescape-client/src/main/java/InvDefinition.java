@@ -240,7 +240,7 @@ public class InvDefinition extends DualNode {
 				return 1;
 			} else if (var0 == ScriptOpcodes.CC_SETFILLMODE) {
 				var8 = Interpreter.Interpreter_intStack[--class44.Interpreter_intStackSize];
-				class393 var6 = (class393)Messages.findEnumerated(VertexNormal.FillMode_values(), var8);
+				FillMode var6 = (FillMode)Messages.findEnumerated(VertexNormal.FillMode_values(), var8);
 				if (var6 != null) {
 					var3.fillMode = var6;
 					WorldMapCacheName.invalidateWidget(var3);

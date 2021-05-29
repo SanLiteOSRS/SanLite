@@ -63,7 +63,7 @@ public class VertexNormal {
 		garbageValue = "-1929062245"
 	)
 	@Export("FillMode_values")
-	public static class393[] FillMode_values() {
-		return new class393[]{class393.field4233, class393.SOLID, class393.field4232};
+	public static FillMode[] FillMode_values() {
+		return new FillMode[]{FillMode.field4233, FillMode.SOLID, FillMode.field4232};
 	}
 }

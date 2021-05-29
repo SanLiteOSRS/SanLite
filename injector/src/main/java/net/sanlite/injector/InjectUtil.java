@@ -515,9 +515,6 @@ public interface InjectUtil
 		}
 	}
 
-	/**
-	 * Legit fuck annotations
-	 */
 	static ClassFile getVanillaClassFromAnnotationString(InjectData data, Annotation annotation)
 	{
 		Object v = annotation.getValue();

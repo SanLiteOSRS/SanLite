@@ -5,7 +5,6 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("cb")
-@Implements("MouseRecorder")
 public class MouseRecorder implements Runnable {
 	@ObfuscatedName("ri")
 	@ObfuscatedSignature(
