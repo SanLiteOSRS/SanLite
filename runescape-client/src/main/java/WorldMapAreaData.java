@@ -378,7 +378,7 @@ public class WorldMapAreaData extends WorldMapArea {
 											var37 = var33[var21];
 										}
 
-										class9.method89(var15, var19, var20, var9, var36, var17, var32, var37);
+										ClanChannelMember.method89(var15, var19, var20, var9, var36, var17, var32, var37);
 									}
 								}
 							}
@@ -442,7 +442,7 @@ public class WorldMapAreaData extends WorldMapArea {
 																var26 = 7 - var28;
 															}
 
-															loadTerrain(var45, var2, var26 + var14, var15 + class9.method86(var21 & 7, var22 & 7, var8), 0, 0, var8);
+															loadTerrain(var45, var2, var26 + var14, var15 + ClanChannelMember.method86(var21 & 7, var22 & 7, var8), 0, 0, var8);
 														} else {
 															loadTerrain(var45, 0, -1, -1, 0, 0, 0);
 														}
@@ -520,7 +520,7 @@ public class WorldMapAreaData extends WorldMapArea {
 
 				for (var3 = 0; var3 < 104; ++var3) {
 					for (var4 = 0; var4 < 104; ++var4) {
-						class11.updateItemPile(var3, var4);
+						ClanSettings.updateItemPile(var3, var4);
 					}
 				}
 

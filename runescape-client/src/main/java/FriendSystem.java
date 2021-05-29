@@ -928,7 +928,7 @@ public class FriendSystem {
 					var25 = UserComparator4.loginBoxCenter + -117;
 					boolean var9 = Client.Login_isUsernameRemembered;
 					boolean var10 = Login.field1041;
-					IndexedSprite var27 = var9 ? (var10 ? class3.field33 : GrandExchangeOffer.options_buttons_2Sprite) : (var10 ? Decimator.field553 : options_buttons_0Sprite);
+					IndexedSprite var27 = var9 ? (var10 ? ClanChannel.field33 : GrandExchangeOffer.options_buttons_2Sprite) : (var10 ? Decimator.field553 : options_buttons_0Sprite);
 					var27.drawAt(var25, var31);
 					var25 = var25 + var27.subWidth + 5;
 					var1.draw("Remember username", var25, var31 + 13, 16776960, 0);
@@ -1094,7 +1094,7 @@ public class FriendSystem {
 							var6 = "";
 							break;
 						default:
-							class9.Login_promptCredentials(false);
+							ClanChannelMember.Login_promptCredentials(false);
 						}
 
 						var0.drawCentered(var24, Login.loginBoxX + 180, var31, 16776960, 0);

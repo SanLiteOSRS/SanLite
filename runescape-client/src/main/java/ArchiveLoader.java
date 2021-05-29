@@ -11,7 +11,7 @@ public class ArchiveLoader {
 	@ObfuscatedSignature(
 		descriptor = "Ly;"
 	)
-	static class3 field1147;
+	static ClanChannel field1147;
 	@ObfuscatedName("ho")
 	@ObfuscatedSignature(
 		descriptor = "[Loh;"

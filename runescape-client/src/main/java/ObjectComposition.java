@@ -1008,7 +1008,7 @@ public class ObjectComposition extends DualNode {
 			ItemComposition var9 = class260.ItemDefinition_get(var4);
 			if ((!var1 || var9.isTradable) && var9.noteTemplate == -1 && var9.name.toLowerCase().indexOf(var0) != -1) {
 				if (var3 >= 250) {
-					class11.foundItemIdCount = -1;
+					ClanSettings.foundItemIdCount = -1;
 					Clock.foundItemIds = null;
 					return;
 				}
@@ -1029,10 +1029,10 @@ public class ObjectComposition extends DualNode {
 
 		Clock.foundItemIds = var2;
 		Canvas.foundItemIndex = 0;
-		class11.foundItemIdCount = var3;
-		String[] var8 = new String[class11.foundItemIdCount];
+		ClanSettings.foundItemIdCount = var3;
+		String[] var8 = new String[ClanSettings.foundItemIdCount];
 
-		for (int var5 = 0; var5 < class11.foundItemIdCount; ++var5) {
+		for (int var5 = 0; var5 < ClanSettings.foundItemIdCount; ++var5) {
 			var8[var5] = class260.ItemDefinition_get(var2[var5]).name;
 		}
 

@@ -86,7 +86,7 @@ public class class225 {
 			class4.field49 = null;
 			class303.drawInterface(Widget.Widget_interfaceComponents[var0], -1, var1, var2, var3, var4, var5, var6, var7);
 			if (class4.field49 != null) {
-				class303.drawInterface(class4.field49, -1412584499, var1, var2, var3, var4, class3.field38, class82.field1020, var7);
+				class303.drawInterface(class4.field49, -1412584499, var1, var2, var3, var4, ClanChannel.field38, class82.field1020, var7);
 				class4.field49 = null;
 			}
 

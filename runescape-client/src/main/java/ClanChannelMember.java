@@ -1,10 +1,9 @@
-import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
-import net.runelite.mapping.ObfuscatedName;
-import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.mapping.*;
 
 @ObfuscatedName("s")
-public class class9 {
+@Implements("ClanChannelMember")
+public class ClanChannelMember
+{
 	@ObfuscatedName("mq")
 	@ObfuscatedGetter(
 		intValue = 81340013
@@ -12,16 +11,19 @@ public class class9 {
 	@Export("selectedItemSlot")
 	static int selectedItemSlot;
 	@ObfuscatedName("v")
-	public byte field83;
+	@Export("rank")
+	public byte rank;
 	@ObfuscatedName("n")
 	@ObfuscatedGetter(
 		intValue = 186545257
 	)
-	public int field79;
+	@Export("world")
+	public int world;
 	@ObfuscatedName("f")
-	public String field84;
+	@Export("name")
+	public String name;
 
-	class9() {
+	ClanChannelMember() {
 	}
 
 	@ObfuscatedName("v")

@@ -16,7 +16,7 @@ public class class26 extends class14 {
 	@ObfuscatedSignature(
 		descriptor = "Ll;"
 	)
-	static class11 field220;
+	static ClanSettings field220;
 	@ObfuscatedName("ac")
 	@ObfuscatedSignature(
 		descriptor = "Loe;"
@@ -71,7 +71,7 @@ public class class26 extends class14 {
 		descriptor = "(Ll;B)V",
 		garbageValue = "29"
 	)
-	void vmethod281(class11 var1) {
+	void vmethod281(ClanSettings var1) {
 		var1.method103(this.field217, this.field218, this.field219);
 	}
 

@@ -156,7 +156,7 @@ public class FontName {
 							var32 = var9[var31];
 						}
 
-						class9.method89(var1, var29, var30, var11, var20 + var7 & 3, var19, var8, var32);
+						ClanChannelMember.method89(var1, var29, var30, var11, var20 + var7 & 3, var19, var8, var32);
 					}
 				}
 			}

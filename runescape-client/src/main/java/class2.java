@@ -94,7 +94,7 @@ public class class2 {
 		descriptor = "(Ll;I)V",
 		garbageValue = "-184881258"
 	)
-	public void method16(class11 var1) {
+	public void method16(ClanSettings var1) {
 		if (var1.field109 == this.field21 && this.field13 == var1.field94) {
 			for (class14 var2 = (class14)this.field14.last(); var2 != null; var2 = (class14)this.field14.previous()) {
 				var2.vmethod281(var1);

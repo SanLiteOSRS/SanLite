@@ -55,8 +55,8 @@ public class class5 extends class16 {
 		descriptor = "(Ly;I)V",
 		garbageValue = "-1846892157"
 	)
-	void vmethod264(class3 var1) {
-		var1.method26(this.field56);
+	void vmethod264(ClanChannel var1) {
+		var1.removeMember(this.field56);
 	}
 
 	@ObfuscatedName("n")

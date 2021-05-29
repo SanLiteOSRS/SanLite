@@ -11,7 +11,7 @@ public class NPCComposition extends DualNode {
 	@ObfuscatedSignature(
 		descriptor = "Ll;"
 	)
-	static class11 field1633;
+	static ClanSettings field1633;
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
 		descriptor = "Ljv;"

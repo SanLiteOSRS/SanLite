@@ -67,11 +67,11 @@ public class class20 extends class16 {
 		descriptor = "(Ly;I)V",
 		garbageValue = "-1846892157"
 	)
-	void vmethod264(class3 var1) {
-		class9 var2 = (class9)var1.field28.get(this.field178);
-		var2.field83 = this.field172;
-		var2.field79 = this.field173;
-		var2.field84 = this.field174;
+	void vmethod264(ClanChannel var1) {
+		ClanChannelMember var2 = (ClanChannelMember)var1.members.get(this.field178);
+		var2.rank = this.field172;
+		var2.world = this.field173;
+		var2.name = this.field174;
 	}
 
 	@ObfuscatedName("n")
@@ -115,7 +115,7 @@ public class class20 extends class16 {
 		garbageValue = "-93"
 	)
 	static void method230(GameEngine var0) {
-		while (class9.isKeyDown()) {
+		while (ClanChannelMember.isKeyDown()) {
 			if (ItemComposition.field1859 == 13) {
 				Login.worldSelectOpen = false;
 				Login.leftTitleSprite.drawAt(Login.xPadding, 0);

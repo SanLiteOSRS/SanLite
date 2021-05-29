@@ -59,10 +59,10 @@ public class class25 extends class16 {
 		descriptor = "(Ly;I)V",
 		garbageValue = "-1846892157"
 	)
-	void vmethod264(class3 var1) {
-		class9 var2 = (class9)var1.field28.get(this.field213);
-		var2.field83 = this.field210;
-		var2.field79 = this.field214;
-		var2.field84 = this.field212;
+	void vmethod264(ClanChannel var1) {
+		ClanChannelMember var2 = (ClanChannelMember)var1.members.get(this.field213);
+		var2.rank = this.field210;
+		var2.world = this.field214;
+		var2.name = this.field212;
 	}
 }

@@ -147,7 +147,7 @@ public class IgnoreList extends NameableContainer {
 		} else if (var0 < 3700) {
 			return class26.method273(var0, var1, var2);
 		} else if (var0 < 3800) {
-			return class3.method41(var0, var1, var2);
+			return ClanChannel.method41(var0, var1, var2);
 		} else if (var0 < 3900) {
 			return WorldMapLabelSize.method3219(var0, var1, var2);
 		} else if (var0 < 4000) {

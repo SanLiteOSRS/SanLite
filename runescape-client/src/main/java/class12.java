@@ -55,12 +55,12 @@ public class class12 extends class16 {
 		descriptor = "(Ly;I)V",
 		garbageValue = "-1846892157"
 	)
-	void vmethod264(class3 var1) {
-		class9 var2 = new class9();
-		var2.field84 = this.field125;
-		var2.field79 = this.field117;
-		var2.field83 = this.field118;
-		var1.method42(var2);
+	void vmethod264(ClanChannel var1) {
+		ClanChannelMember var2 = new ClanChannelMember();
+		var2.name = this.field125;
+		var2.world = this.field117;
+		var2.rank = this.field118;
+		var1.addMember(var2);
 	}
 
 	@ObfuscatedName("j")

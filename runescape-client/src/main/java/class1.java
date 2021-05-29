@@ -54,7 +54,7 @@ public class class1 extends class14 {
 		descriptor = "(Ll;B)V",
 		garbageValue = "29"
 	)
-	void vmethod281(class11 var1) {
+	void vmethod281(ClanSettings var1) {
 		var1.method113(this.field5, this.field9, this.field6, this.field8);
 	}
 
@@ -84,11 +84,11 @@ public class class1 extends class14 {
 		garbageValue = "-375078554"
 	)
 	static final void method7(int var0, int var1) {
-		class3 var2 = var0 >= 0 ? Client.field871[var0] : ApproximateRouteStrategy.field630;
+		ClanChannel var2 = var0 >= 0 ? Client.field871[var0] : ApproximateRouteStrategy.field630;
 		if (var2 != null && var1 >= 0 && var1 < var2.method27()) {
-			class9 var3 = (class9)var2.field28.get(var1);
-			if (var3.field83 == -1) {
-				String var4 = var3.field84;
+			ClanChannelMember var3 = (ClanChannelMember)var2.members.get(var1);
+			if (var3.rank == -1) {
+				String var4 = var3.name;
 				PacketWriter var5 = Client.packetWriter;
 				PacketBufferNode var6 = class21.getPacketBufferNode(ClientPacket.field2651, var5.isaacCipher);
 				var6.packetBuffer.writeByte(3 + Tiles.stringCp1252NullTerminatedByteSize(var4));

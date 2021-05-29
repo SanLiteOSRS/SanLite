@@ -19,7 +19,7 @@ public final class Client extends GameEngine implements Usernamed {
 	@ObfuscatedSignature(
 		descriptor = "[Ll;"
 	)
-	static class11[] field734;
+	static ClanSettings[] field734;
 	@ObfuscatedName("ok")
 	@ObfuscatedGetter(
 		intValue = 257317803
@@ -283,7 +283,7 @@ public final class Client extends GameEngine implements Usernamed {
 	@ObfuscatedSignature(
 		descriptor = "[Ly;"
 	)
-	static class3[] field871;
+	static ClanChannel[] field871;
 	@ObfuscatedName("pi")
 	static int[] field867;
 	@ObfuscatedName("oj")
@@ -1527,8 +1527,8 @@ public final class Client extends GameEngine implements Usernamed {
 		field867 = new int[128];
 		field868 = new int[128];
 		field809 = -1L;
-		field734 = new class11[1];
-		field871 = new class3[1];
+		field734 = new ClanSettings[1];
+		field871 = new ClanChannel[1];
 		field872 = -1;
 		mapIconCount = 0;
 		mapIconXs = new int[1000];
@@ -2779,7 +2779,7 @@ public final class Client extends GameEngine implements Usernamed {
 				var5.packetBuffer.method6612(0);
 				var5.packetBuffer.method6612(class8.archive17.hash);
 				var5.packetBuffer.writeIntME(class27.archive4.hash);
-				var5.packetBuffer.method6612(class3.archive5.hash);
+				var5.packetBuffer.method6612(ClanChannel.archive5.hash);
 				var5.packetBuffer.writeIntME(class5.archive20.hash);
 				var5.packetBuffer.writeInt(class179.archive19.hash);
 				var5.packetBuffer.method6611(NetCache.archive3.hash);
@@ -3101,7 +3101,7 @@ public final class Client extends GameEngine implements Usernamed {
 						NetSocket.friendSystem.clear();
 
 						for (var41 = 0; var41 < VarpDefinition.VarpDefinition_fileCount; ++var41) {
-							VarpDefinition var32 = class11.VarpDefinition_get(var41);
+							VarpDefinition var32 = ClanSettings.VarpDefinition_get(var41);
 							if (var32 != null) {
 								Varps.Varps_temp[var41] = 0;
 								Varps.Varps_main[var41] = 0;
@@ -3451,7 +3451,7 @@ public final class Client extends GameEngine implements Usernamed {
 						WorldMapRegion.clanChat.sort();
 					}
 
-					class9.method85();
+					ClanChannelMember.method85();
 					MusicPatch.ClanChat_inClanChat = false;
 				}
 
@@ -3635,7 +3635,7 @@ public final class Client extends GameEngine implements Usernamed {
 							}
 						}
 
-						class11.method165();
+						ClanSettings.method165();
 						++field913;
 						if (mouseCrossColor != 0) {
 							mouseCrossState = mouseCrossState * 400 + 20;
@@ -3661,7 +3661,7 @@ public final class Client extends GameEngine implements Usernamed {
 						field819 = false;
 						field806 = 0;
 
-						while (class9.isKeyDown() && field806 < 128) {
+						while (ClanChannelMember.isKeyDown() && field806 < 128) {
 							if (staffModLevel >= 2 && KeyHandler.KeyHandler_pressedKeys[82] && ItemComposition.field1859 == 66) {
 								String var42 = "";
 
@@ -4464,7 +4464,7 @@ public final class Client extends GameEngine implements Usernamed {
 
 				if (ServerPacket.field2714 == var1.serverPacket) {
 					var60 = var3.readUnsignedByte();
-					class11.method163(var60);
+					ClanSettings.method163(var60);
 					var1.serverPacket = null;
 					return true;
 				}
@@ -4807,9 +4807,9 @@ public final class Client extends GameEngine implements Usernamed {
 					}
 
 					if (var17 >= 0) {
-						field734[var17] = new class11(var3);
+						field734[var17] = new ClanSettings(var3);
 					} else {
-						NPCComposition.field1633 = new class11(var3);
+						NPCComposition.field1633 = new ClanSettings(var3);
 					}
 
 					var1.serverPacket = null;
@@ -5080,7 +5080,7 @@ public final class Client extends GameEngine implements Usernamed {
 					var25 = (long)var3.readMedium();
 					var27 = var25 + (var23 << 32);
 					boolean var11 = false;
-					class3 var31 = var17 >= 0 ? field871[var17] : ApproximateRouteStrategy.field630;
+					ClanChannel var31 = var17 >= 0 ? field871[var17] : ApproximateRouteStrategy.field630;
 					if (var31 == null) {
 						var11 = true;
 					} else {
@@ -5097,7 +5097,7 @@ public final class Client extends GameEngine implements Usernamed {
 						field865 = (field865 + 1) % 100;
 						var32 = MusicPatch.method4592(var3);
 						int var58 = var17 >= 0 ? 43 : 46;
-						class5.addChatMessage(var58, "", var32, var31.field31);
+						class5.addChatMessage(var58, "", var32, var31.name);
 					}
 
 					var1.serverPacket = null;
@@ -5247,7 +5247,7 @@ public final class Client extends GameEngine implements Usernamed {
 						for (var5 = class69.field596; var5 < class69.field596 + 8; ++var5) {
 							if (groundItems[class22.Client_plane][var60][var5] != null) {
 								groundItems[class22.Client_plane][var60][var5] = null;
-								class11.updateItemPile(var60, var5);
+								ClanSettings.updateItemPile(var60, var5);
 							}
 						}
 					}
@@ -5412,7 +5412,7 @@ public final class Client extends GameEngine implements Usernamed {
 
 				if (ServerPacket.field2755 == var1.serverPacket) {
 					for (var60 = 0; var60 < VarpDefinition.VarpDefinition_fileCount; ++var60) {
-						VarpDefinition var63 = class11.VarpDefinition_get(var60);
+						VarpDefinition var63 = ClanSettings.VarpDefinition_get(var60);
 						if (var63 != null) {
 							Varps.Varps_temp[var60] = 0;
 							Varps.Varps_main[var60] = 0;
@@ -5508,7 +5508,7 @@ public final class Client extends GameEngine implements Usernamed {
 					PlayerType var10 = (PlayerType)Messages.findEnumerated(class372.PlayerType_values(), var3.readUnsignedByte());
 					long var41 = (var37 << 32) + var39;
 					boolean var13 = false;
-					class3 var43 = null;
+					ClanChannel var43 = null;
 					var43 = var17 >= 0 ? field871[var17] : ApproximateRouteStrategy.field630;
 					if (var43 == null) {
 						var13 = true;
@@ -5538,9 +5538,9 @@ public final class Client extends GameEngine implements Usernamed {
 						var30 = AbstractFont.escapeBrackets(MusicPatch.method4592(var3));
 						int var16 = var17 >= 0 ? 41 : 44;
 						if (var10.modIcon != -1) {
-							class5.addChatMessage(var16, SecureRandomFuture.method1982(var10.modIcon) + var18, var30, var43.field31);
+							class5.addChatMessage(var16, SecureRandomFuture.method1982(var10.modIcon) + var18, var30, var43.name);
 						} else {
-							class5.addChatMessage(var16, var18, var30, var43.field31);
+							class5.addChatMessage(var16, var18, var30, var43.name);
 						}
 					}
 
@@ -5552,7 +5552,7 @@ public final class Client extends GameEngine implements Usernamed {
 					field839 = cycleCntr;
 					var17 = var3.readByte();
 					class19 var62 = new class19(var3);
-					class3 var65;
+					ClanChannel var65;
 					if (var17 >= 0) {
 						var65 = field871[var17];
 					} else {
@@ -5568,7 +5568,7 @@ public final class Client extends GameEngine implements Usernamed {
 					class124.method2496();
 					var17 = var3.readByte();
 					class2 var61 = new class2(var3);
-					class11 var19;
+					ClanSettings var19;
 					if (var17 >= 0) {
 						var19 = field734[var17];
 					} else {
@@ -5667,9 +5667,9 @@ public final class Client extends GameEngine implements Usernamed {
 					}
 
 					if (var17 >= 0) {
-						field871[var17] = new class3(var3);
+						field871[var17] = new ClanChannel(var3);
 					} else {
-						ApproximateRouteStrategy.field630 = new class3(var3);
+						ApproximateRouteStrategy.field630 = new ClanChannel(var3);
 					}
 
 					var1.serverPacket = null;

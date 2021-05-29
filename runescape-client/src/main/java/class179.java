@@ -85,7 +85,7 @@ public class class179 {
 			FriendSystem.options_buttons_0Sprite = EnumComposition.SpriteBuffer_getIndexedSpriteByName(var1, "options_radio_buttons,0", "");
 			Decimator.field553 = EnumComposition.SpriteBuffer_getIndexedSpriteByName(var1, "options_radio_buttons,4", "");
 			GrandExchangeOffer.options_buttons_2Sprite = EnumComposition.SpriteBuffer_getIndexedSpriteByName(var1, "options_radio_buttons,2", "");
-			class3.field33 = EnumComposition.SpriteBuffer_getIndexedSpriteByName(var1, "options_radio_buttons,6", "");
+			ClanChannel.field33 = EnumComposition.SpriteBuffer_getIndexedSpriteByName(var1, "options_radio_buttons,6", "");
 			Skeleton.field2287 = FriendSystem.options_buttons_0Sprite.subWidth;
 			WorldMapIcon_1.field1937 = FriendSystem.options_buttons_0Sprite.subHeight;
 			class24.loginScreenRunesAnimation = new LoginScreenAnimation(Login.runesSprite);

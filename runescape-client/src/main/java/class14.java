@@ -27,7 +27,7 @@ public abstract class class14 extends Node {
 		descriptor = "(Ll;B)V",
 		garbageValue = "29"
 	)
-	abstract void vmethod281(class11 var1);
+	abstract void vmethod281(ClanSettings var1);
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(

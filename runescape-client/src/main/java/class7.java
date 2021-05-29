@@ -44,8 +44,8 @@ public class class7 extends class16 {
 		descriptor = "(Ly;I)V",
 		garbageValue = "-1846892157"
 	)
-	void vmethod264(class3 var1) {
-		var1.field31 = this.field64;
+	void vmethod264(ClanChannel var1) {
+		var1.name = this.field64;
 		if (this.field64 != null) {
 			var1.field32 = this.field65;
 			var1.field26 = this.field66;
@@ -147,7 +147,7 @@ public class class7 extends class16 {
 		Script.Script_cached.clear();
 		NetCache.archive3.clearFiles();
 		class27.archive4.clearFiles();
-		class3.archive5.clearFiles();
+		ClanChannel.archive5.clearFiles();
 		class32.field242.clearFiles();
 		class247.archive7.clearFiles();
 		UrlRequest.archive6.clearFiles();

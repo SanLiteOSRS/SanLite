@@ -1,13 +1,12 @@
 import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.List;
-import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
-import net.runelite.mapping.ObfuscatedName;
-import net.runelite.mapping.ObfuscatedSignature;
+
+import net.runelite.mapping.*;
 
 @ObfuscatedName("y")
-public class class3 extends Node {
+@Implements("ClanChannel")
+public class ClanChannel extends Node {
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
 		descriptor = "Lop;"
@@ -29,16 +28,19 @@ public class class3 extends Node {
 	@ObfuscatedName("n")
 	boolean field27;
 	@ObfuscatedName("f")
-	public List field28;
+	@Export("members")
+	public List members;
 	@ObfuscatedName("y")
-	int[] field35;
+	@Export("sortedMembers")
+	int[] sortedMembers;
 	@ObfuscatedName("p")
 	@ObfuscatedGetter(
 		longValue = -8222609313489775677L
 	)
 	long field29;
 	@ObfuscatedName("j")
-	public String field31;
+	@Export("name")
+	public String name;
 	@ObfuscatedName("r")
 	public byte field32;
 	@ObfuscatedName("b")
@@ -51,9 +53,9 @@ public class class3 extends Node {
 	@ObfuscatedSignature(
 		descriptor = "(Lnd;)V"
 	)
-	public class3(Buffer var1) {
+	public ClanChannel(Buffer var1) {
 		this.field27 = true;
-		this.field31 = null;
+		this.name = null;
 		this.method29(var1);
 	}
 
@@ -62,19 +64,20 @@ public class class3 extends Node {
 		descriptor = "(I)[I",
 		garbageValue = "1562690283"
 	)
-	public int[] method24() {
-		if (this.field35 == null) {
-			String[] var1 = new String[this.field28.size()];
-			this.field35 = new int[this.field28.size()];
+	@Export("getSortedMembers")
+	public int[] getSortedMembers() {
+		if (this.sortedMembers == null) {
+			String[] var1 = new String[this.members.size()];
+			this.sortedMembers = new int[this.members.size()];
 
-			for (int var2 = 0; var2 < this.field28.size(); this.field35[var2] = var2++) {
-				var1[var2] = ((class9)this.field28.get(var2)).field84;
+			for (int var2 = 0; var2 < this.members.size(); this.sortedMembers[var2] = var2++) {
+				var1[var2] = ((ClanChannelMember)this.members.get(var2)).name;
 			}
 
-			ChatChannel.method2013(var1, this.field35);
+			ChatChannel.method2013(var1, this.sortedMembers);
 		}
 
-		return this.field35;
+		return this.sortedMembers;
 	}
 
 	@ObfuscatedName("n")
@@ -82,9 +85,10 @@ public class class3 extends Node {
 		descriptor = "(Ls;I)V",
 		garbageValue = "-1843980816"
 	)
-	void method42(class9 var1) {
-		this.field28.add(var1);
-		this.field35 = null;
+	@Export("addMember")
+	void addMember(ClanChannelMember var1) {
+		this.members.add(var1);
+		this.sortedMembers = null;
 	}
 
 	@ObfuscatedName("f")
@@ -92,9 +96,10 @@ public class class3 extends Node {
 		descriptor = "(IB)V",
 		garbageValue = "85"
 	)
-	void method26(int var1) {
-		this.field28.remove(var1);
-		this.field35 = null;
+	@Export("removeMember")
+	void removeMember(int var1) {
+		this.members.remove(var1);
+		this.sortedMembers = null;
 	}
 
 	@ObfuscatedName("y")
@@ -103,7 +108,7 @@ public class class3 extends Node {
 		garbageValue = "-27"
 	)
 	public int method27() {
-		return this.field28.size();
+		return this.members.size();
 	}
 
 	@ObfuscatedName("p")
@@ -115,8 +120,8 @@ public class class3 extends Node {
 		if (!this.field27) {
 			throw new RuntimeException("Displaynames not available");
 		} else {
-			for (int var2 = 0; var2 < this.field28.size(); ++var2) {
-				if (((class9)this.field28.get(var2)).field84.equalsIgnoreCase(var1)) {
+			for (int var2 = 0; var2 < this.members.size(); ++var2) {
+				if (((ClanChannelMember)this.members.get(var2)).name.equalsIgnoreCase(var1)) {
 					return var2;
 				}
 			}
@@ -147,31 +152,31 @@ public class class3 extends Node {
 
 		super.key = var1.readLong();
 		this.field29 = var1.readLong();
-		this.field31 = var1.readStringCp1252NullTerminated();
+		this.name = var1.readStringCp1252NullTerminated();
 		var1.readBoolean();
 		this.field26 = var1.readByte();
 		this.field32 = var1.readByte();
 		int var4 = var1.readUnsignedShort();
 		if (var4 > 0) {
-			this.field28 = new ArrayList(var4);
+			this.members = new ArrayList(var4);
 
 			for (int var5 = 0; var5 < var4; ++var5) {
-				class9 var6 = new class9();
+				ClanChannelMember var6 = new ClanChannelMember();
 				if (this.field30) {
 					var1.readLong();
 				}
 
 				if (this.field27) {
-					var6.field84 = var1.readStringCp1252NullTerminated();
+					var6.name = var1.readStringCp1252NullTerminated();
 				}
 
-				var6.field83 = var1.readByte();
-				var6.field79 = var1.readUnsignedShort();
+				var6.rank = var1.readByte();
+				var6.world = var1.readUnsignedShort();
 				if (var3 >= 3) {
 					var1.readBoolean();
 				}
 
-				this.field28.add(var5, var6);
+				this.members.add(var5, var6);
 			}
 		}
 

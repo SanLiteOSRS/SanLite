@@ -42,8 +42,8 @@ public class class15 extends class14 {
 		descriptor = "(Ll;B)V",
 		garbageValue = "29"
 	)
-	void vmethod281(class11 var1) {
-		var1.field95 = this.field136;
+	void vmethod281(ClanSettings var1) {
+		var1.name = this.field136;
 	}
 
 	@ObfuscatedName("ff")

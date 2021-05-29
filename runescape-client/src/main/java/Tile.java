@@ -208,7 +208,7 @@ public final class Tile extends Node {
 						}
 					}
 
-					class11.updateItemPile(var6, var7);
+					ClanSettings.updateItemPile(var6, var7);
 				}
 			}
 
@@ -308,7 +308,7 @@ public final class Tile extends Node {
 								Client.groundItems[class22.Client_plane][var4][var5] = null;
 							}
 
-							class11.updateItemPile(var4, var5);
+							ClanSettings.updateItemPile(var4, var5);
 						}
 					}
 
@@ -431,7 +431,7 @@ public final class Tile extends Node {
 								}
 
 								Client.groundItems[class22.Client_plane][var5][var6].addFirst(var32);
-								class11.updateItemPile(var5, var6);
+								ClanSettings.updateItemPile(var5, var6);
 							}
 
 						} else if (class225.field2689 == var0) {

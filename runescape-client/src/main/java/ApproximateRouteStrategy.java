@@ -11,7 +11,7 @@ public class ApproximateRouteStrategy extends RouteStrategy {
 	@ObfuscatedSignature(
 		descriptor = "Ly;"
 	)
-	static class3 field630;
+	static ClanChannel field630;
 	@ObfuscatedName("o")
 	@ObfuscatedGetter(
 		intValue = -344685783
@@ -62,7 +62,7 @@ public class ApproximateRouteStrategy extends RouteStrategy {
 	static final void changeGameOptions(int var0) {
 		class170.method3554();
 		ClientPacket.method4354();
-		int var1 = class11.VarpDefinition_get(var0).type;
+		int var1 = ClanSettings.VarpDefinition_get(var0).type;
 		if (var1 != 0) {
 			int var2 = Varps.Varps_main[var0];
 			if (var1 == 1) {

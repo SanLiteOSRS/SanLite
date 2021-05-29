@@ -244,10 +244,10 @@ public class WorldMapLabelSize {
 
 				return 1;
 			} else if (var0 == 3802) {
-				Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = class26.field220.field95;
+				Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = class26.field220.name;
 				return 1;
 			} else if (var0 == 3803) {
-				Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = class26.field220.field97 ? 1 : 0;
+				Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = class26.field220.allowGuests ? 1 : 0;
 				return 1;
 			} else if (var0 == 3804) {
 				Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = class26.field220.field103;
@@ -262,7 +262,7 @@ public class WorldMapLabelSize {
 				Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = class26.field220.field96;
 				return 1;
 			} else if (var0 == 3809) {
-				Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = class26.field220.field102;
+				Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = class26.field220.memberCount;
 				return 1;
 			} else if (var0 == 3810) {
 				var3 = Interpreter.Interpreter_intStack[--class44.Interpreter_intStackSize];
@@ -270,7 +270,7 @@ public class WorldMapLabelSize {
 				return 1;
 			} else if (var0 == 3811) {
 				var3 = Interpreter.Interpreter_intStack[--class44.Interpreter_intStackSize];
-				Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = class26.field220.field110[var3];
+				Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = class26.field220.memberRanks[var3];
 				return 1;
 			} else if (var0 == 3812) {
 				Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = class26.field220.field111;
@@ -290,7 +290,7 @@ public class WorldMapLabelSize {
 					Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = class26.field220.method100(var3, var6, var5);
 					return 1;
 				} else if (var0 == 3815) {
-					Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = class26.field220.field100;
+					Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = class26.field220.currentOwner;
 					return 1;
 				} else if (var0 == 3816) {
 					Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = class26.field220.field99;
@@ -345,7 +345,7 @@ public class WorldMapLabelSize {
 
 						return 1;
 					} else if (var0 == 3852) {
-						Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = ArchiveLoader.field1147.field31;
+						Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = ArchiveLoader.field1147.name;
 						return 1;
 					} else if (var0 == 3853) {
 						Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = ArchiveLoader.field1147.field26;
@@ -358,15 +358,15 @@ public class WorldMapLabelSize {
 						return 1;
 					} else if (var0 == 3856) {
 						var3 = Interpreter.Interpreter_intStack[--class44.Interpreter_intStackSize];
-						Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = ((class9)ArchiveLoader.field1147.field28.get(var3)).field84;
+						Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = ((ClanChannelMember)ArchiveLoader.field1147.members.get(var3)).name;
 						return 1;
 					} else if (var0 == 3857) {
 						var3 = Interpreter.Interpreter_intStack[--class44.Interpreter_intStackSize];
-						Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = ((class9)ArchiveLoader.field1147.field28.get(var3)).field83;
+						Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = ((ClanChannelMember)ArchiveLoader.field1147.members.get(var3)).rank;
 						return 1;
 					} else if (var0 == 3858) {
 						var3 = Interpreter.Interpreter_intStack[--class44.Interpreter_intStackSize];
-						Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = ((class9)ArchiveLoader.field1147.field28.get(var3)).field79;
+						Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = ((ClanChannelMember)ArchiveLoader.field1147.members.get(var3)).world;
 						return 1;
 					} else if (var0 == 3859) {
 						var3 = Interpreter.Interpreter_intStack[--class44.Interpreter_intStackSize];
@@ -376,7 +376,7 @@ public class WorldMapLabelSize {
 						Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = ArchiveLoader.field1147.method30(Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize]);
 						return 1;
 					} else if (var0 == 3861) {
-						Interpreter.Interpreter_intStack[class44.Interpreter_intStackSize - 1] = ArchiveLoader.field1147.method24()[Interpreter.Interpreter_intStack[class44.Interpreter_intStackSize - 1]];
+						Interpreter.Interpreter_intStack[class44.Interpreter_intStackSize - 1] = ArchiveLoader.field1147.getSortedMembers()[Interpreter.Interpreter_intStack[class44.Interpreter_intStackSize - 1]];
 						return 1;
 					} else if (var0 == 3890) {
 						Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = class34.field254 != null ? 1 : 0;
@@ -485,7 +485,7 @@ public class WorldMapLabelSize {
 					String var3 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];
 					var4 = Interpreter.Interpreter_intStack[--class44.Interpreter_intStackSize];
 					ObjectComposition.findItemDefinitions(var3, var4 == 1);
-					Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = class11.foundItemIdCount;
+					Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = ClanSettings.foundItemIdCount;
 					return 1;
 				} else if (var0 != ScriptOpcodes.OC_FINDNEXT) {
 					if (var0 == ScriptOpcodes.OC_FINDRESET) {
@@ -495,7 +495,7 @@ public class WorldMapLabelSize {
 						return 2;
 					}
 				} else {
-					if (Clock.foundItemIds != null && Canvas.foundItemIndex < class11.foundItemIdCount) {
+					if (Clock.foundItemIds != null && Canvas.foundItemIndex < ClanSettings.foundItemIdCount) {
 						Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = Clock.foundItemIds[++Canvas.foundItemIndex - 1] & '\uffff';
 					} else {
 						Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = -1;

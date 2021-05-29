@@ -567,7 +567,7 @@ public final class WorldMapManager {
 					if (Login.loginIndex == 0) {
 						boolean var41 = false;
 
-						while (class9.isKeyDown()) {
+						while (ClanChannelMember.isKeyDown()) {
 							if (ItemComposition.field1859 == 84) {
 								var41 = true;
 							}
@@ -622,7 +622,7 @@ public final class WorldMapManager {
 									Login.currentLoginField = 0;
 								}
 							} else {
-								class9.Login_promptCredentials(false);
+								ClanChannelMember.Login_promptCredentials(false);
 							}
 						}
 					} else {
@@ -630,11 +630,11 @@ public final class WorldMapManager {
 						int var34;
 						if (Login.loginIndex == 1) {
 							while (true) {
-								if (!class9.isKeyDown()) {
+								if (!ClanChannelMember.isKeyDown()) {
 									var34 = UserComparator4.loginBoxCenter - 80;
 									var8 = 321;
 									if (var23 == 1 && var32 >= var34 - 75 && var32 <= var34 + 75 && var33 >= var8 - 20 && var33 <= var8 + 20) {
-										class9.Login_promptCredentials(false);
+										ClanChannelMember.Login_promptCredentials(false);
 									}
 
 									var34 = UserComparator4.loginBoxCenter + 80;
@@ -645,7 +645,7 @@ public final class WorldMapManager {
 								}
 
 								if (ItemComposition.field1859 == 84) {
-									class9.Login_promptCredentials(false);
+									ClanChannelMember.Login_promptCredentials(false);
 								} else if (ItemComposition.field1859 == 13) {
 									Login.loginIndex = 0;
 								}
@@ -749,7 +749,7 @@ public final class WorldMapManager {
 											label975:
 											do {
 												while (true) {
-													while (class9.isKeyDown()) {
+													while (ClanChannelMember.isKeyDown()) {
 														if (ItemComposition.field1859 != 13) {
 															if (Login.currentLoginField != 0) {
 																continue label975;
@@ -884,7 +884,7 @@ public final class WorldMapManager {
 								var34 = Login.loginBoxX + 180;
 								var8 = 276;
 								if (var23 == 1 && var32 >= var34 - 75 && var32 <= var34 + 75 && var33 >= var8 - 20 && var33 <= var8 + 20) {
-									class9.Login_promptCredentials(false);
+									ClanChannelMember.Login_promptCredentials(false);
 								}
 
 								var34 = Login.loginBoxX + 180;
@@ -931,7 +931,7 @@ public final class WorldMapManager {
 										Varps.otp = "";
 									}
 
-									while (class9.isKeyDown()) {
+									while (ClanChannelMember.isKeyDown()) {
 										boolean var9 = false;
 
 										for (var10 = 0; var10 < "1234567890".length(); ++var10) {
@@ -982,7 +982,7 @@ public final class WorldMapManager {
 
 									var34 = Login.loginBoxX + 180 + 80;
 									if (var23 == 1 && var32 >= var34 - 75 && var32 <= var34 + 75 && var33 >= var8 - 20 && var33 <= var8 + 20) {
-										class9.Login_promptCredentials(true);
+										ClanChannelMember.Login_promptCredentials(true);
 									}
 
 									var36 = 361;
@@ -993,7 +993,7 @@ public final class WorldMapManager {
 										}
 									}
 
-									while (class9.isKeyDown()) {
+									while (ClanChannelMember.isKeyDown()) {
 										var38 = false;
 
 										for (var11 = 0; var11 < "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!\"£$%^&*()-_=+[{]};:'@#~,<.>/?\\| ".length(); ++var11) {
@@ -1004,7 +1004,7 @@ public final class WorldMapManager {
 										}
 
 										if (ItemComposition.field1859 == 13) {
-											class9.Login_promptCredentials(true);
+											ClanChannelMember.Login_promptCredentials(true);
 										} else {
 											if (ItemComposition.field1859 == 85 && Login.Login_username.length() > 0) {
 												Login.Login_username = Login.Login_username.substring(0, Login.Login_username.length() - 1);
@@ -1033,7 +1033,7 @@ public final class WorldMapManager {
 
 										var34 = Login.loginBoxX + 180 + 80;
 										if (var23 == 1 && var32 >= var34 - 75 && var32 <= var34 + 75 && var33 >= var8 - 20 && var33 <= var8 + 20) {
-											class9.Login_promptCredentials(true);
+											ClanChannelMember.Login_promptCredentials(true);
 										}
 									} else if (Login.loginIndex == 8) {
 										var34 = Login.loginBoxX + 180 - 80;
@@ -1047,7 +1047,7 @@ public final class WorldMapManager {
 
 										var34 = Login.loginBoxX + 180 + 80;
 										if (var23 == 1 && var32 >= var34 - 75 && var32 <= var34 + 75 && var33 >= var8 - 20 && var33 <= var8 + 20) {
-											class9.Login_promptCredentials(true);
+											ClanChannelMember.Login_promptCredentials(true);
 										}
 									} else if (Login.loginIndex == 12) {
 										String var28 = "";
@@ -1059,7 +1059,7 @@ public final class WorldMapManager {
 											var28 = "https://support.runescape.com/hc/en-gb/articles/206103939-My-account-is-locked";
 											break;
 										default:
-											class9.Login_promptCredentials(false);
+											ClanChannelMember.Login_promptCredentials(false);
 										}
 
 										var37 = Login.loginBoxX + 180;
@@ -1074,29 +1074,29 @@ public final class WorldMapManager {
 										var37 = Login.loginBoxX + 180;
 										var36 = 326;
 										if (var23 == 1 && var32 >= var37 - 75 && var32 <= var37 + 75 && var33 >= var36 - 20 && var33 <= var36 + 20) {
-											class9.Login_promptCredentials(false);
+											ClanChannelMember.Login_promptCredentials(false);
 										}
 									} else if (Login.loginIndex == 24) {
 										var34 = Login.loginBoxX + 180;
 										var8 = 301;
 										if (var23 == 1 && var32 >= var34 - 75 && var32 <= var34 + 75 && var33 >= var8 - 20 && var33 <= var8 + 20) {
-											class9.Login_promptCredentials(false);
+											ClanChannelMember.Login_promptCredentials(false);
 										}
 									}
 								} else {
 									while (true) {
 										do {
-											if (!class9.isKeyDown()) {
+											if (!ClanChannelMember.isKeyDown()) {
 												var35 = 321;
 												if (var23 == 1 && var33 >= var35 - 20 && var33 <= var35 + 20) {
-													class9.Login_promptCredentials(true);
+													ClanChannelMember.Login_promptCredentials(true);
 												}
 
 												return;
 											}
 										} while(ItemComposition.field1859 != 84 && ItemComposition.field1859 != 13);
 
-										class9.Login_promptCredentials(true);
+										ClanChannelMember.Login_promptCredentials(true);
 									}
 								}
 							}

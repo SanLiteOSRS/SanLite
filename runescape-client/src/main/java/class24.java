@@ -181,7 +181,7 @@ public class class24 {
 					class44.Interpreter_intStackSize -= 2;
 					var3 = Interpreter.Interpreter_intStack[class44.Interpreter_intStackSize];
 					var7 = Interpreter.Interpreter_intStack[class44.Interpreter_intStackSize + 1];
-					var5 = class9.Messages_getByChannelAndID(var3, var7);
+					var5 = ClanChannelMember.Messages_getByChannelAndID(var3, var7);
 					if (var5 != null) {
 						Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = var5.count;
 						Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = var5.cycle;
@@ -297,7 +297,7 @@ public class class24 {
 								class44.Interpreter_intStackSize -= 2;
 								var3 = Interpreter.Interpreter_intStack[class44.Interpreter_intStackSize];
 								var7 = Interpreter.Interpreter_intStack[class44.Interpreter_intStackSize + 1];
-								var5 = class9.Messages_getByChannelAndID(var3, var7);
+								var5 = ClanChannelMember.Messages_getByChannelAndID(var3, var7);
 								if (var5 != null) {
 									Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = var5.count;
 									Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = var5.cycle;

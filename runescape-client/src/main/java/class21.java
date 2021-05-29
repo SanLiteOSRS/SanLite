@@ -58,7 +58,7 @@ public class class21 extends class14 {
 		descriptor = "(Ll;B)V",
 		garbageValue = "29"
 	)
-	void vmethod281(class11 var1) {
+	void vmethod281(ClanSettings var1) {
 		var1.method126(this.field192, this.field185, this.field186, this.field187);
 	}
 

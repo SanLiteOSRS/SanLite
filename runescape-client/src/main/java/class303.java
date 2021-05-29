@@ -43,7 +43,7 @@ public final class class303 {
 					if (var10 == Client.clickedWidget) {
 						if (var1 != -1412584499 && !var10.isScrollBar) {
 							class4.field49 = var0;
-							class3.field38 = var6;
+							ClanChannel.field38 = var6;
 							class82.field1020 = var7;
 							continue;
 						}
@@ -239,7 +239,7 @@ public final class class303 {
 												var26 = var10.itemIds[var19] - 1;
 												if (var22 + 32 > var2 && var22 < var4 && var23 + 32 > var3 && var23 < var5 || var10 == Script.dragInventoryWidget && var19 == Client.dragItemSlotSource) {
 													SpritePixels var35;
-													if (Client.isItemSelected == 1 && var19 == class9.selectedItemSlot && var10.id == Player.selectedItemWidget) {
+													if (Client.isItemSelected == 1 && var19 == ClanChannelMember.selectedItemSlot && var10.id == Player.selectedItemWidget) {
 														var35 = ModelData0.getItemSprite(var26, var10.itemQuantities[var19], 2, 0, 2, false);
 													} else {
 														var35 = ModelData0.getItemSprite(var26, var10.itemQuantities[var19], 1, 3153952, 2, false);
@@ -620,7 +620,7 @@ public final class class303 {
 												if (var10.lineWid == 1) {
 													Rasterizer2D.Rasterizer2D_drawLine(var19, var20, var21, var22, var10.color);
 												} else {
-													class3.method36(var19, var20, var21, var22, var10.color, var10.lineWid);
+													ClanChannel.method36(var19, var20, var21, var22, var10.color, var10.lineWid);
 												}
 											}
 										}

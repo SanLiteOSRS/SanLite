@@ -1,10 +1,9 @@
-import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
-import net.runelite.mapping.ObfuscatedName;
-import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.mapping.*;
 
 @ObfuscatedName("l")
-public class class11 {
+@Implements("ClanSettings")
+public class ClanSettings
+{
 	@ObfuscatedName("tn")
 	@ObfuscatedGetter(
 		intValue = -1559836599
@@ -12,9 +11,11 @@ public class class11 {
 	@Export("foundItemIdCount")
 	static int foundItemIdCount;
 	@ObfuscatedName("n")
-	boolean field91;
+	@Export("useHashes")
+	boolean useHashes;
 	@ObfuscatedName("f")
-	boolean field92;
+	@Export("useNames")
+	boolean useNames;
 	@ObfuscatedName("y")
 	@ObfuscatedGetter(
 		longValue = 2571294659414795761L
@@ -26,14 +27,16 @@ public class class11 {
 	)
 	int field94;
 	@ObfuscatedName("j")
-	public String field95;
+	@Export("name")
+	public String name;
 	@ObfuscatedName("r")
 	@ObfuscatedGetter(
 		intValue = -2010490505
 	)
 	int field114;
 	@ObfuscatedName("b")
-	public boolean field97;
+	@Export("allowGuests")
+	public boolean allowGuests;
 	@ObfuscatedName("d")
 	public byte field103;
 	@ObfuscatedName("s")
@@ -46,13 +49,17 @@ public class class11 {
 	@ObfuscatedGetter(
 		intValue = -1916816431
 	)
-	public int field102;
+	@Export("memberCount")
+	public int memberCount;
 	@ObfuscatedName("c")
-	long[] field93;
+	@Export("memberHashes")
+	long[] memberHashes;
 	@ObfuscatedName("e")
-	public byte[] field110;
+	@Export("memberRanks")
+	public byte[] memberRanks;
 	@ObfuscatedName("g")
-	int[] field105;
+	@Export("sortedMembers")
+	int[] sortedMembers;
 	@ObfuscatedName("a")
 	int[] field106;
 	@ObfuscatedName("k")
@@ -63,7 +70,8 @@ public class class11 {
 	@ObfuscatedGetter(
 		intValue = 1791364373
 	)
-	public int field100;
+	@Export("currentOwner")
+	public int currentOwner;
 	@ObfuscatedName("z")
 	@ObfuscatedGetter(
 		intValue = 1909839147
@@ -89,11 +97,11 @@ public class class11 {
 	@ObfuscatedSignature(
 		descriptor = "(Lnd;)V"
 	)
-	public class11(Buffer var1) {
+	public ClanSettings(Buffer var1) {
 		this.field94 = 0;
-		this.field95 = null;
+		this.name = null;
 		this.field114 = 0;
-		this.field100 = -1;
+		this.currentOwner = -1;
 		this.field99 = -1;
 		this.method127(var1);
 	}
@@ -104,42 +112,42 @@ public class class11 {
 		garbageValue = "1920986266"
 	)
 	void method97(int var1) {
-		if (this.field91) {
-			if (this.field93 != null) {
-				System.arraycopy(this.field93, 0, this.field93 = new long[var1], 0, this.field102);
+		if (this.useHashes) {
+			if (this.memberHashes != null) {
+				System.arraycopy(this.memberHashes, 0, this.memberHashes = new long[var1], 0, this.memberCount);
 			} else {
-				this.field93 = new long[var1];
+				this.memberHashes = new long[var1];
 			}
 		}
 
-		if (this.field92) {
+		if (this.useNames) {
 			if (this.field107 != null) {
-				System.arraycopy(this.field107, 0, this.field107 = new String[var1], 0, this.field102);
+				System.arraycopy(this.field107, 0, this.field107 = new String[var1], 0, this.memberCount);
 			} else {
 				this.field107 = new String[var1];
 			}
 		}
 
-		if (this.field110 != null) {
-			System.arraycopy(this.field110, 0, this.field110 = new byte[var1], 0, this.field102);
+		if (this.memberRanks != null) {
+			System.arraycopy(this.memberRanks, 0, this.memberRanks = new byte[var1], 0, this.memberCount);
 		} else {
-			this.field110 = new byte[var1];
+			this.memberRanks = new byte[var1];
 		}
 
 		if (this.field106 != null) {
-			System.arraycopy(this.field106, 0, this.field106 = new int[var1], 0, this.field102);
+			System.arraycopy(this.field106, 0, this.field106 = new int[var1], 0, this.memberCount);
 		} else {
 			this.field106 = new int[var1];
 		}
 
 		if (this.field101 != null) {
-			System.arraycopy(this.field101, 0, this.field101 = new int[var1], 0, this.field102);
+			System.arraycopy(this.field101, 0, this.field101 = new int[var1], 0, this.memberCount);
 		} else {
 			this.field101 = new int[var1];
 		}
 
 		if (this.field108 != null) {
-			System.arraycopy(this.field108, 0, this.field108 = new boolean[var1], 0, this.field102);
+			System.arraycopy(this.field108, 0, this.field108 = new boolean[var1], 0, this.memberCount);
 		} else {
 			this.field108 = new boolean[var1];
 		}
@@ -152,7 +160,7 @@ public class class11 {
 		garbageValue = "0"
 	)
 	void method98(int var1) {
-		if (this.field91) {
+		if (this.useHashes) {
 			if (this.field112 != null) {
 				System.arraycopy(this.field112, 0, this.field112 = new long[var1], 0, this.field111);
 			} else {
@@ -160,7 +168,7 @@ public class class11 {
 			}
 		}
 
-		if (this.field92) {
+		if (this.useNames) {
 			if (this.field90 != null) {
 				System.arraycopy(this.field90, 0, this.field90 = new String[var1], 0, this.field111);
 			} else {
@@ -177,7 +185,7 @@ public class class11 {
 	)
 	public int method99(String var1) {
 		if (var1 != null && var1.length() != 0) {
-			for (int var2 = 0; var2 < this.field102; ++var2) {
+			for (int var2 = 0; var2 < this.memberCount; ++var2) {
 				if (this.field107[var2].equals(var1)) {
 					return var2;
 				}
@@ -219,21 +227,21 @@ public class class11 {
 		garbageValue = "-1269043110"
 	)
 	public int[] method102() {
-		if (this.field105 == null) {
-			String[] var1 = new String[this.field102];
-			this.field105 = new int[this.field102];
+		if (this.sortedMembers == null) {
+			String[] var1 = new String[this.memberCount];
+			this.sortedMembers = new int[this.memberCount];
 
-			for (int var2 = 0; var2 < this.field102; this.field105[var2] = var2++) {
+			for (int var2 = 0; var2 < this.memberCount; this.sortedMembers[var2] = var2++) {
 				var1[var2] = this.field107[var2];
 				if (var1[var2] != null) {
 					var1[var2] = var1[var2].toLowerCase();
 				}
 			}
 
-			ChatChannel.method2013(var1, this.field105);
+			ChatChannel.method2013(var1, this.sortedMembers);
 		}
 
-		return this.field105;
+		return this.sortedMembers;
 	}
 
 	@ObfuscatedName("r")
@@ -246,35 +254,35 @@ public class class11 {
 			var3 = null;
 		}
 
-		if (var1 > 0L != this.field91) {
+		if (var1 > 0L != this.useHashes) {
 			throw new RuntimeException("");
-		} else if (this.field92 != (var3 != null)) {
+		} else if (this.useNames != (var3 != null)) {
 			throw new RuntimeException("");
 		} else {
-			if (var1 > 0L && (this.field93 == null || this.field102 >= this.field93.length) || var3 != null && (this.field107 == null || this.field102 >= this.field107.length)) {
-				this.method97(this.field102 + 5);
+			if (var1 > 0L && (this.memberHashes == null || this.memberCount >= this.memberHashes.length) || var3 != null && (this.field107 == null || this.memberCount >= this.field107.length)) {
+				this.method97(this.memberCount + 5);
 			}
 
-			if (this.field93 != null) {
-				this.field93[this.field102] = var1;
+			if (this.memberHashes != null) {
+				this.memberHashes[this.memberCount] = var1;
 			}
 
 			if (this.field107 != null) {
-				this.field107[this.field102] = var3;
+				this.field107[this.memberCount] = var3;
 			}
 
-			if (this.field100 == -1) {
-				this.field100 = this.field102;
-				this.field110[this.field102] = 126;
+			if (this.currentOwner == -1) {
+				this.currentOwner = this.memberCount;
+				this.memberRanks[this.memberCount] = 126;
 			} else {
-				this.field110[this.field102] = 0;
+				this.memberRanks[this.memberCount] = 0;
 			}
 
-			this.field106[this.field102] = 0;
-			this.field101[this.field102] = var4;
-			this.field108[this.field102] = false;
-			++this.field102;
-			this.field105 = null;
+			this.field106[this.memberCount] = 0;
+			this.field101[this.memberCount] = var4;
+			this.field108[this.memberCount] = false;
+			++this.memberCount;
+			this.sortedMembers = null;
 		}
 	}
 
@@ -284,29 +292,29 @@ public class class11 {
 		garbageValue = "-888167097"
 	)
 	void method121(int var1) {
-		if (var1 >= 0 && var1 < this.field102) {
-			--this.field102;
-			this.field105 = null;
-			if (this.field102 == 0) {
-				this.field93 = null;
+		if (var1 >= 0 && var1 < this.memberCount) {
+			--this.memberCount;
+			this.sortedMembers = null;
+			if (this.memberCount == 0) {
+				this.memberHashes = null;
 				this.field107 = null;
-				this.field110 = null;
+				this.memberRanks = null;
 				this.field106 = null;
 				this.field101 = null;
 				this.field108 = null;
-				this.field100 = -1;
+				this.currentOwner = -1;
 				this.field99 = -1;
 			} else {
-				System.arraycopy(this.field110, var1 + 1, this.field110, var1, this.field102 - var1);
-				System.arraycopy(this.field106, var1 + 1, this.field106, var1, this.field102 - var1);
-				System.arraycopy(this.field101, var1 + 1, this.field101, var1, this.field102 - var1);
-				System.arraycopy(this.field108, var1 + 1, this.field108, var1, this.field102 - var1);
-				if (this.field93 != null) {
-					System.arraycopy(this.field93, var1 + 1, this.field93, var1, this.field102 - var1);
+				System.arraycopy(this.memberRanks, var1 + 1, this.memberRanks, var1, this.memberCount - var1);
+				System.arraycopy(this.field106, var1 + 1, this.field106, var1, this.memberCount - var1);
+				System.arraycopy(this.field101, var1 + 1, this.field101, var1, this.memberCount - var1);
+				System.arraycopy(this.field108, var1 + 1, this.field108, var1, this.memberCount - var1);
+				if (this.memberHashes != null) {
+					System.arraycopy(this.memberHashes, var1 + 1, this.memberHashes, var1, this.memberCount - var1);
 				}
 
 				if (this.field107 != null) {
-					System.arraycopy(this.field107, var1 + 1, this.field107, var1, this.field102 - var1);
+					System.arraycopy(this.field107, var1 + 1, this.field107, var1, this.memberCount - var1);
 				}
 
 				this.method105();
@@ -323,31 +331,31 @@ public class class11 {
 		garbageValue = "-1130726760"
 	)
 	void method105() {
-		if (this.field102 == 0) {
-			this.field100 = -1;
+		if (this.memberCount == 0) {
+			this.currentOwner = -1;
 			this.field99 = -1;
 		} else {
-			this.field100 = -1;
+			this.currentOwner = -1;
 			this.field99 = -1;
 			int var1 = 0;
-			byte var2 = this.field110[0];
+			byte var2 = this.memberRanks[0];
 
-			for (int var3 = 1; var3 < this.field102; ++var3) {
-				if (this.field110[var3] > var2) {
+			for (int var3 = 1; var3 < this.memberCount; ++var3) {
+				if (this.memberRanks[var3] > var2) {
 					if (var2 == 125) {
 						this.field99 = var1;
 					}
 
 					var1 = var3;
-					var2 = this.field110[var3];
-				} else if (this.field99 == -1 && this.field110[var3] == 125) {
+					var2 = this.memberRanks[var3];
+				} else if (this.field99 == -1 && this.memberRanks[var3] == 125) {
 					this.field99 = var3;
 				}
 			}
 
-			this.field100 = var1;
-			if (this.field100 != -1) {
-				this.field110[this.field100] = 126;
+			this.currentOwner = var1;
+			if (this.currentOwner != -1) {
+				this.memberRanks[this.currentOwner] = 126;
 			}
 
 		}
@@ -363,9 +371,9 @@ public class class11 {
 			var3 = null;
 		}
 
-		if (this.field91 != var1 > 0L) {
+		if (this.useHashes != var1 > 0L) {
 			throw new RuntimeException("");
-		} else if (this.field92 != (var3 != null)) {
+		} else if (this.useNames != (var3 != null)) {
 			throw new RuntimeException("");
 		} else {
 			if (var1 > 0L && (this.field112 == null || this.field111 >= this.field112.length) || var3 != null && (this.field90 == null || this.field111 >= this.field90.length)) {
@@ -413,12 +421,12 @@ public class class11 {
 	)
 	int method112(int var1, byte var2) {
 		if (var2 != 126 && var2 != 127) {
-			if (this.field100 == var1 && (this.field99 == -1 || this.field110[this.field99] < 125)) {
+			if (this.currentOwner == var1 && (this.field99 == -1 || this.memberRanks[this.field99] < 125)) {
 				return -1;
-			} else if (this.field110[var1] == var2) {
+			} else if (this.memberRanks[var1] == var2) {
 				return -1;
 			} else {
-				this.field110[var1] = var2;
+				this.memberRanks[var1] = var2;
 				this.method105();
 				return var1;
 			}
@@ -433,11 +441,11 @@ public class class11 {
 		garbageValue = "-5"
 	)
 	boolean method109(int var1) {
-		if (this.field100 != var1 && this.field110[var1] != 126) {
-			this.field110[this.field100] = 125;
-			this.field99 = this.field100;
-			this.field110[var1] = 126;
-			this.field100 = var1;
+		if (this.currentOwner != var1 && this.memberRanks[var1] != 126) {
+			this.memberRanks[this.currentOwner] = 125;
+			this.field99 = this.currentOwner;
+			this.memberRanks[var1] = 126;
+			this.currentOwner = var1;
 			return true;
 		} else {
 			return false;
@@ -616,19 +624,19 @@ public class class11 {
 		if (var2 >= 1 && var2 <= 6) {
 			int var3 = var1.readUnsignedByte();
 			if ((var3 & 1) != 0) {
-				this.field91 = true;
+				this.useHashes = true;
 			}
 
 			if ((var3 & 2) != 0) {
-				this.field92 = true;
+				this.useNames = true;
 			}
 
-			if (!this.field91) {
-				this.field93 = null;
+			if (!this.useHashes) {
+				this.memberHashes = null;
 				this.field112 = null;
 			}
 
-			if (!this.field92) {
+			if (!this.useNames) {
 				this.field107 = null;
 				this.field90 = null;
 			}
@@ -639,54 +647,54 @@ public class class11 {
 				this.field114 += 16912800;
 			}
 
-			this.field102 = var1.readUnsignedShort();
+			this.memberCount = var1.readUnsignedShort();
 			this.field111 = var1.readUnsignedByte();
-			this.field95 = var1.readStringCp1252NullTerminated();
+			this.name = var1.readStringCp1252NullTerminated();
 			if (var2 >= 4) {
 				var1.readInt();
 			}
 
-			this.field97 = var1.readUnsignedByte() == 1;
+			this.allowGuests = var1.readUnsignedByte() == 1;
 			this.field103 = var1.readByte();
 			this.field113 = var1.readByte();
 			this.field98 = var1.readByte();
 			this.field96 = var1.readByte();
 			int var4;
-			if (this.field102 > 0) {
-				if (this.field91 && (this.field93 == null || this.field93.length < this.field102)) {
-					this.field93 = new long[this.field102];
+			if (this.memberCount > 0) {
+				if (this.useHashes && (this.memberHashes == null || this.memberHashes.length < this.memberCount)) {
+					this.memberHashes = new long[this.memberCount];
 				}
 
-				if (this.field92 && (this.field107 == null || this.field107.length < this.field102)) {
-					this.field107 = new String[this.field102];
+				if (this.useNames && (this.field107 == null || this.field107.length < this.memberCount)) {
+					this.field107 = new String[this.memberCount];
 				}
 
-				if (this.field110 == null || this.field110.length < this.field102) {
-					this.field110 = new byte[this.field102];
+				if (this.memberRanks == null || this.memberRanks.length < this.memberCount) {
+					this.memberRanks = new byte[this.memberCount];
 				}
 
-				if (this.field106 == null || this.field106.length < this.field102) {
-					this.field106 = new int[this.field102];
+				if (this.field106 == null || this.field106.length < this.memberCount) {
+					this.field106 = new int[this.memberCount];
 				}
 
-				if (this.field101 == null || this.field101.length < this.field102) {
-					this.field101 = new int[this.field102];
+				if (this.field101 == null || this.field101.length < this.memberCount) {
+					this.field101 = new int[this.memberCount];
 				}
 
-				if (this.field108 == null || this.field108.length < this.field102) {
-					this.field108 = new boolean[this.field102];
+				if (this.field108 == null || this.field108.length < this.memberCount) {
+					this.field108 = new boolean[this.memberCount];
 				}
 
-				for (var4 = 0; var4 < this.field102; ++var4) {
-					if (this.field91) {
-						this.field93[var4] = var1.readLong();
+				for (var4 = 0; var4 < this.memberCount; ++var4) {
+					if (this.useHashes) {
+						this.memberHashes[var4] = var1.readLong();
 					}
 
-					if (this.field92) {
+					if (this.useNames) {
 						this.field107[var4] = var1.readStringCp1252NullTerminatedOrNull();
 					}
 
-					this.field110[var4] = var1.readByte();
+					this.memberRanks[var4] = var1.readByte();
 					if (var2 >= 2) {
 						this.field106[var4] = var1.readInt();
 					}
@@ -708,20 +716,20 @@ public class class11 {
 			}
 
 			if (this.field111 > 0) {
-				if (this.field91 && (this.field112 == null || this.field112.length < this.field111)) {
+				if (this.useHashes && (this.field112 == null || this.field112.length < this.field111)) {
 					this.field112 = new long[this.field111];
 				}
 
-				if (this.field92 && (this.field90 == null || this.field90.length < this.field111)) {
+				if (this.useNames && (this.field90 == null || this.field90.length < this.field111)) {
 					this.field90 = new String[this.field111];
 				}
 
 				for (var4 = 0; var4 < this.field111; ++var4) {
-					if (this.field91) {
+					if (this.useHashes) {
 						this.field112[var4] = var1.readLong();
 					}
 
-					if (this.field92) {
+					if (this.useNames) {
 						this.field90[var4] = var1.readStringCp1252NullTerminatedOrNull();
 					}
 				}

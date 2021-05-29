@@ -77,7 +77,7 @@ public class class18 extends class14 {
 		descriptor = "(Ll;B)V",
 		garbageValue = "29"
 	)
-	void vmethod281(class11 var1) {
+	void vmethod281(ClanSettings var1) {
 		var1.method110(this.field157, this.field150);
 	}
 
@@ -98,14 +98,14 @@ public class class18 extends class14 {
 	static final void method216(int var0, int var1, boolean var2) {
 		if (Client.field871[var0] != null) {
 			if (var1 >= 0 && var1 < Client.field871[var0].method27()) {
-				class9 var3 = (class9)Client.field871[var0].field28.get(var1);
+				ClanChannelMember var3 = (ClanChannelMember)Client.field871[var0].members.get(var1);
 				PacketWriter var4 = Client.packetWriter;
 				PacketBufferNode var5 = class21.getPacketBufferNode(ClientPacket.field2607, var4.isaacCipher);
-				var5.packetBuffer.writeByte(4 + Tiles.stringCp1252NullTerminatedByteSize(var3.field84));
+				var5.packetBuffer.writeByte(4 + Tiles.stringCp1252NullTerminatedByteSize(var3.name));
 				var5.packetBuffer.writeByte(var0);
 				var5.packetBuffer.writeShort(var1);
 				var5.packetBuffer.writeBoolean(var2);
-				var5.packetBuffer.writeStringCp1252NullTerminated(var3.field84);
+				var5.packetBuffer.writeStringCp1252NullTerminated(var3.name);
 				var4.addNode(var5);
 			}
 		}

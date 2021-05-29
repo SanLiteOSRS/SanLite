@@ -150,7 +150,7 @@ public class HealthBarUpdate extends Node {
 						if (var0.itemIds[var13] > 0) {
 							ItemComposition var8 = class260.ItemDefinition_get(var0.itemIds[var13] - 1);
 							if (Client.isItemSelected == 1 && World.method1663(class21.getWidgetFlags(var0))) {
-								if (var0.id != Player.selectedItemWidget || var13 != class9.selectedItemSlot) {
+								if (var0.id != Player.selectedItemWidget || var13 != ClanChannelMember.selectedItemSlot) {
 									Occluder.insertMenuItemNoShift("Use", Client.selectedItemName + " " + "->" + " " + class44.colorStartTag(16748608) + var8.name, 31, var8.id, var13, var0.id);
 								}
 							} else if (Client.isSpellSelected && World.method1663(class21.getWidgetFlags(var0))) {

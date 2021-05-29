@@ -51,8 +51,8 @@ public class class17 extends class14 {
 		descriptor = "(Ll;B)V",
 		garbageValue = "29"
 	)
-	void vmethod281(class11 var1) {
-		var1.field97 = this.field146;
+	void vmethod281(ClanSettings var1) {
+		var1.allowGuests = this.field146;
 		var1.field103 = this.field143;
 		var1.field113 = this.field144;
 		var1.field98 = this.field145;

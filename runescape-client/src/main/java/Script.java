@@ -148,7 +148,7 @@ public class Script extends DualNode {
 		garbageValue = "-488222672"
 	)
 	static IndexedSprite method1995(boolean var0, boolean var1) {
-		return var0 ? (var1 ? class3.field33 : GrandExchangeOffer.options_buttons_2Sprite) : (var1 ? Decimator.field553 : FriendSystem.options_buttons_0Sprite);
+		return var0 ? (var1 ? ClanChannel.field33 : GrandExchangeOffer.options_buttons_2Sprite) : (var1 ? Decimator.field553 : FriendSystem.options_buttons_0Sprite);
 	}
 
 	@ObfuscatedName("r")
@@ -214,7 +214,7 @@ public class Script extends DualNode {
 			var8.packetBuffer.method6602(SoundSystem.baseY * 64 + var1);
 			var8.packetBuffer.writeInt(Player.selectedItemWidget);
 			var8.packetBuffer.method6602(VertexNormal.baseX * 64 + var0);
-			var8.packetBuffer.writeShort(class9.selectedItemSlot);
+			var8.packetBuffer.writeShort(ClanChannelMember.selectedItemSlot);
 			Client.packetWriter.addNode(var8);
 		} else if (var2 == 2) {
 			Client.mouseCrossX = var6;
@@ -301,7 +301,7 @@ public class Script extends DualNode {
 					var9.packetBuffer.method6602(UserComparator5.selectedItemId);
 					var9.packetBuffer.method6612(Player.selectedItemWidget);
 					var9.packetBuffer.method6619(var3);
-					var9.packetBuffer.method6600(class9.selectedItemSlot);
+					var9.packetBuffer.method6600(ClanChannelMember.selectedItemSlot);
 					Client.packetWriter.addNode(var9);
 				}
 			} else if (var2 == 8) {
@@ -406,7 +406,7 @@ public class Script extends DualNode {
 						var9.packetBuffer.writeIntME(Player.selectedItemWidget);
 						var9.packetBuffer.method6619(UserComparator5.selectedItemId);
 						var9.packetBuffer.method6581(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
-						var9.packetBuffer.method6619(class9.selectedItemSlot);
+						var9.packetBuffer.method6619(ClanChannelMember.selectedItemSlot);
 						var9.packetBuffer.writeShort(var3);
 						Client.packetWriter.addNode(var9);
 					}
@@ -435,7 +435,7 @@ public class Script extends DualNode {
 					Client.destinationX = var0;
 					Client.destinationY = var1;
 					var8 = class21.getPacketBufferNode(ClientPacket.field2577, Client.packetWriter.isaacCipher);
-					var8.packetBuffer.method6600(class9.selectedItemSlot);
+					var8.packetBuffer.method6600(ClanChannelMember.selectedItemSlot);
 					var8.packetBuffer.method6619(var3);
 					var8.packetBuffer.method6600(UserComparator5.selectedItemId);
 					var8.packetBuffer.method6602(SoundSystem.baseY * 64 + var1);
@@ -606,7 +606,7 @@ public class Script extends DualNode {
 								var8.packetBuffer.writeIntME(Player.selectedItemWidget);
 								var8.packetBuffer.method6619(var0);
 								var8.packetBuffer.writeShort(var3);
-								var8.packetBuffer.method6602(class9.selectedItemSlot);
+								var8.packetBuffer.method6602(ClanChannelMember.selectedItemSlot);
 								var8.packetBuffer.method6602(UserComparator5.selectedItemId);
 								Client.packetWriter.addNode(var8);
 								Client.field747 = 0;
@@ -673,7 +673,7 @@ public class Script extends DualNode {
 									class5.Widget_runOnTargetLeave();
 									var16 = Frames.getWidget(var1);
 									Client.isItemSelected = 1;
-									class9.selectedItemSlot = var0;
+									ClanChannelMember.selectedItemSlot = var0;
 									Player.selectedItemWidget = var1;
 									UserComparator5.selectedItemId = var3;
 									WorldMapCacheName.invalidateWidget(var16);

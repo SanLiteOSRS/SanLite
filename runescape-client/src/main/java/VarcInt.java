@@ -101,9 +101,9 @@ public class VarcInt extends DualNode {
 	@Export("clickWidget")
 	static final void clickWidget(Widget var0, int var1, int var2) {
 		if (Client.clickedWidget == null && !Client.isMenuOpen) {
-			if (var0 != null && class11.method125(var0) != null) {
+			if (var0 != null && ClanSettings.method125(var0) != null) {
 				Client.clickedWidget = var0;
-				Client.clickedWidgetParent = class11.method125(var0);
+				Client.clickedWidgetParent = ClanSettings.method125(var0);
 				Client.widgetClickX = var1;
 				Client.widgetClickY = var2;
 				Actor.widgetDragDuration = 0;

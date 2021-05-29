@@ -23,5 +23,5 @@ public abstract class class16 extends Node {
 		descriptor = "(Ly;I)V",
 		garbageValue = "-1846892157"
 	)
-	abstract void vmethod264(class3 var1);
+	abstract void vmethod264(ClanChannel var1);
 }

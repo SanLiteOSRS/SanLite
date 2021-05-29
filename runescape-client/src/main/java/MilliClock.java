@@ -188,7 +188,7 @@ public class MilliClock extends Clock {
 			NetCache.archive3 = FontName.newArchive(0, false, true, true);
 			class27.archive4 = FontName.newArchive(1, false, true, true);
 			class8.archive2 = FontName.newArchive(2, true, false, true);
-			class3.archive5 = FontName.newArchive(3, false, true, true);
+			ClanChannel.archive5 = FontName.newArchive(3, false, true, true);
 			class32.field242 = FontName.newArchive(4, false, true, true);
 			class247.archive7 = FontName.newArchive(5, true, true, true);
 			UrlRequest.archive6 = FontName.newArchive(6, true, true, true);
@@ -357,7 +357,7 @@ public class MilliClock extends Clock {
 							class1.method13(class8.archive2, Decimator.archive9);
 							UserComparator10.method2471(class8.archive2);
 							class280.method5070(class8.archive2);
-							Archive var13 = class3.archive5;
+							Archive var13 = ClanChannel.archive5;
 							Archive var14 = Decimator.archive9;
 							Archive var15 = GrandExchangeOfferAgeComparator.archive8;
 							Archive var16 = Decimator.archive13;
@@ -505,14 +505,14 @@ public class MilliClock extends Clock {
 							Login.Login_loadingPercent = 94;
 						} else {
 							Huffman var0 = new Huffman(SoundCache.archive10.takeFileByNames("huffman", ""));
-							class9.method88(var0);
+							ClanChannelMember.method88(var0);
 							Login.Login_loadingText = "Loaded wordpack";
 							Login.Login_loadingPercent = 94;
 							Client.titleLoadingStage = 130;
 						}
 					} else if (Client.titleLoadingStage == 130) {
-						if (!class3.archive5.isFullyLoaded()) {
-							Login.Login_loadingText = "Loading interfaces - " + class3.archive5.loadPercent() * 4 / 5 + "%";
+						if (!ClanChannel.archive5.isFullyLoaded()) {
+							Login.Login_loadingText = "Loading interfaces - " + ClanChannel.archive5.loadPercent() * 4 / 5 + "%";
 							Login.Login_loadingPercent = 96;
 						} else if (!UserComparator5.archive12.isFullyLoaded()) {
 							Login.Login_loadingText = "Loading interfaces - " + (80 + UserComparator5.archive12.loadPercent() / 6) + "%";
@@ -548,7 +548,7 @@ public class MilliClock extends Clock {
 			var31 = var23 + NetCache.archive3.percentage() * 4 / 100;
 			var31 += class27.archive4.percentage() * 4 / 100;
 			var31 += class8.archive2.percentage() * 2 / 100;
-			var31 += class3.archive5.percentage() * 2 / 100;
+			var31 += ClanChannel.archive5.percentage() * 2 / 100;
 			var31 += class32.field242.percentage() * 6 / 100;
 			var31 += class247.archive7.percentage() * 4 / 100;
 			var31 += UrlRequest.archive6.percentage() * 2 / 100;

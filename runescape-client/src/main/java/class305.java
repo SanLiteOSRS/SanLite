@@ -28,14 +28,14 @@ public final class class305 {
 	static final void method5533(int var0, int var1) {
 		if (Client.field871[var0] != null) {
 			if (var1 >= 0 && var1 < Client.field871[var0].method27()) {
-				class9 var2 = (class9)Client.field871[var0].field28.get(var1);
-				if (var2.field83 == -1) {
+				ClanChannelMember var2 = (ClanChannelMember)Client.field871[var0].members.get(var1);
+				if (var2.rank == -1) {
 					PacketWriter var3 = Client.packetWriter;
 					PacketBufferNode var4 = class21.getPacketBufferNode(ClientPacket.field2612, var3.isaacCipher);
-					var4.packetBuffer.writeByte(3 + Tiles.stringCp1252NullTerminatedByteSize(var2.field84));
+					var4.packetBuffer.writeByte(3 + Tiles.stringCp1252NullTerminatedByteSize(var2.name));
 					var4.packetBuffer.writeByte(var0);
 					var4.packetBuffer.writeShort(var1);
-					var4.packetBuffer.writeStringCp1252NullTerminated(var2.field84);
+					var4.packetBuffer.writeStringCp1252NullTerminated(var2.name);
 					var3.addNode(var4);
 				}
 			}

@@ -74,7 +74,7 @@ public class class19 {
 		descriptor = "(Ly;I)V",
 		garbageValue = "205429833"
 	)
-	public void method218(class3 var1) {
+	public void method218(ClanChannel var1) {
 		if (var1.key == this.field162 && var1.field29 == this.field160) {
 			for (class16 var2 = (class16)this.field163.last(); var2 != null; var2 = (class16)this.field163.previous()) {
 				var2.vmethod264(var1);
