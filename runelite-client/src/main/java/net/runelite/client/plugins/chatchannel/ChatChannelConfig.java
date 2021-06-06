@@ -69,6 +69,17 @@ public interface ChatChannelConfig extends Config
 	}
 
 	@ConfigItem(
+		keyName = "targetMode",
+		name = "Target mode",
+		description = "Enables target changing mode via /f, /c, and /g which controls which channel messages are sent to.",
+		position = 1
+	)
+	default boolean targetMode()
+	{
+		return true;
+	}
+
+	@ConfigItem(
 		keyName = "clanChatIcons",
 		name = "Chat Icons",
 		description = "Show rank icons next to friends chat members.",
@@ -90,18 +101,6 @@ public interface ChatChannelConfig extends Config
 	default boolean recentChats()
 	{
 		return true;
-	}
-
-	@ConfigItem(
-		keyName = "clanCounter",
-		name = "Members Counter",
-		description = "Show the amount of friends chat members near you.",
-		position = 3,
-		section = friendsChatSection
-	)
-	default boolean showCounter()
-	{
-		return false;
 	}
 
 	@ConfigItem(
@@ -129,7 +128,7 @@ public interface ChatChannelConfig extends Config
 		position = 4,
 		section = friendsChatSection
 	)
-	default boolean showJoinLeave()
+	default boolean showFriendsChatJoinLeave()
 	{
 		return false;
 	}

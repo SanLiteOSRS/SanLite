@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016-2019, Adam <Adam@sigterm.info>
+ * Copyright (c) 2017, Adam <Adam@sigterm.info>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,22 +22,25 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.client.rs;
+package net.runelite.http.service.worlds;
 
-import com.google.common.base.Charsets;
-import com.google.common.io.CharStreams;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import okhttp3.OkHttpClient;
+import net.runelite.http.api.worlds.World;
+import net.runelite.http.api.worlds.WorldResult;
+import net.runelite.http.api.worlds.WorldType;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
+import okio.Buffer;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+import org.sql2o.tools.IOUtils;
 
-public class ClientConfigLoaderTest
+public class WorldsServiceTest
 {
 	@Rule
 	public final MockWebServer server = new MockWebServer();
@@ -45,20 +48,32 @@ public class ClientConfigLoaderTest
 	@Before
 	public void before() throws IOException
 	{
-		String response;
-		try (InputStream in = getClass().getResourceAsStream("jav_config.ws"))
-		{
-			response = CharStreams.toString(new InputStreamReader(
-				in, Charsets.UTF_8));
-		}
-		server.enqueue(new MockResponse().setBody(response));
+		InputStream in = WorldsServiceTest.class.getResourceAsStream("worldlist");
+		byte[] worldData = IOUtils.toByteArray(in);
+
+		Buffer buffer = new Buffer();
+		buffer.write(worldData);
+
+		server.enqueue(new MockResponse().setBody(buffer));
 	}
 
 	@Test
-	public void testFetch() throws IOException
+	public void testListWorlds() throws Exception
 	{
-		final RSConfig config = new ClientConfigLoader(new OkHttpClient()).fetch(server.url("/"));
-		assertEquals("http://oldschool1.runescape.com/", config.getCodeBase());
+		WorldsService worlds = new WorldsService();
+		worlds.setUrl(server.url("/"));
+
+		WorldResult worldResult = worlds.getWorlds();
+		assertEquals(82, worldResult.getWorlds().size());
+
+		World world = worldResult.findWorld(385);
+		assertNotNull(world);
+		assertTrue(world.getTypes().contains(WorldType.SKILL_TOTAL));
+
+		for (World testWorld : worldResult.getWorlds())
+		{
+			assertNotNull("Missing a region in WorldRegion enum", testWorld.getRegion());
+		}
 	}
 
 }

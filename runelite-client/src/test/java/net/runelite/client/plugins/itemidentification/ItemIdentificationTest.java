@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 Owain van Brakel <https://github.com/Owain94>
+ * Copyright (c) 2021, Jordan Atwood <nightfirecat@protonmail.com>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,15 +22,17 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+package net.runelite.client.plugins.itemidentification;
 
-object ProjectVersions {
-    const val launcherVersion = "2.2.0"
-    const val rlVersion = "1.7.11.1"
+import net.runelite.api.ItemID;
+import static org.junit.Assert.assertEquals;
+import org.junit.Test;
 
-    const val sanliteVersion = "1.19.5"
-
-    const val rsVersion = 196.2
-    const val cacheVersion = 165
-
-    const val lombokVersion = "1.18.20"
+public class ItemIdentificationTest
+{
+	@Test
+	public void testInit()
+	{
+		assertEquals(ItemIdentification.YEW_SEED, ItemIdentification.get(ItemID.YEW_SEED));
+	}
 }
