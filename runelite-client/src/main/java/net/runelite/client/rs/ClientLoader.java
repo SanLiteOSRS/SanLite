@@ -68,7 +68,7 @@ import org.apache.commons.io.FileUtils;
 
 @Slf4j
 @SuppressWarnings("deprecation")
-public class ClientLoader implements Supplier<Applet>
+public class ClientLoader implements Supplier<Object>
 {
 	private static final int NUM_ATTEMPTS = 6;
 	private static File LOCK_FILE = new File(RuneLite.CACHE_DIR, "cache.lock");
@@ -93,18 +93,14 @@ public class ClientLoader implements Supplier<Applet>
 	}
 
 	@Override
-	public synchronized Applet get()
+	public synchronized Object get()
 	{
 		if (client == null)
 		{
 			client = doLoad();
 		}
 
-		if (client instanceof Throwable)
-		{
-			throw new RuntimeException((Throwable) client);
-		}
-		return (Applet) client;
+		return client;
 	}
 
 	private Object doLoad()
@@ -156,7 +152,6 @@ public class ClientLoader implements Supplier<Applet>
 		{
 			log.error("Error loading RS!", e);
 
-			SwingUtilities.invokeLater(() -> FatalErrorDialog.showNetErrorWindow("loading the client", e));
 			return e;
 		}
 	}
