@@ -49,13 +49,11 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 import java.util.jar.JarInputStream;
 import javax.annotation.Nonnull;
-import javax.swing.SwingUtilities;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Client;
 import net.runelite.client.RuneLite;
 import net.runelite.client.RuneLiteProperties;
 import static net.runelite.client.rs.ClientUpdateCheckMode.NONE;
-import net.runelite.client.ui.FatalErrorDialog;
 import net.sanlite.client.ui.SplashScreen;
 import net.runelite.client.util.CountingInputStream;
 import net.runelite.client.util.VerificationException;
@@ -68,7 +66,7 @@ import org.apache.commons.io.FileUtils;
 
 @Slf4j
 @SuppressWarnings("deprecation")
-public class ClientLoader implements Supplier<Applet>
+public class ClientLoader implements Supplier<Object>
 {
 	private static final int NUM_ATTEMPTS = 6;
 	private static File LOCK_FILE = new File(RuneLite.CACHE_DIR, "cache.lock");
@@ -93,18 +91,14 @@ public class ClientLoader implements Supplier<Applet>
 	}
 
 	@Override
-	public synchronized Applet get()
+	public synchronized Object get()
 	{
 		if (client == null)
 		{
 			client = doLoad();
 		}
 
-		if (client instanceof Throwable)
-		{
-			throw new RuntimeException((Throwable) client);
-		}
-		return (Applet) client;
+		return client;
 	}
 
 	private Object doLoad()
@@ -156,7 +150,6 @@ public class ClientLoader implements Supplier<Applet>
 		{
 			log.error("Error loading RS!", e);
 
-			SwingUtilities.invokeLater(() -> FatalErrorDialog.showNetErrorWindow("loading the client", e));
 			return e;
 		}
 	}
@@ -403,6 +396,7 @@ public class ClientLoader implements Supplier<Applet>
 				SwingUtilities.invokeLater(() ->
 					new FatalErrorDialog("The client-patch is missing from the classpath. If you are building " +
 						"the client you need to re-run maven")
+						.addHelpButtons()
 						.addBuildingGuide()
 						.open());
 				throw new NullPointerException();

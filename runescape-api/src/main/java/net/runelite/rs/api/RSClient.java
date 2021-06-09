@@ -138,6 +138,9 @@ public interface RSClient extends RSGameEngine, Client
 	@Import("changedSkillsCount")
 	void setChangedSkillsCount(int i);
 
+	@Import("cameraYaw")
+	void setCameraYawTarget(int cameraYaw);
+
 	@Import("gameState")
 	int getRSGameState();
 

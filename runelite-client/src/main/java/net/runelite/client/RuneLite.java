@@ -27,6 +27,7 @@ package net.runelite.client;
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
 import com.google.common.annotations.VisibleForTesting;
+import com.google.common.base.Strings;
 import com.google.inject.Guice;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
@@ -70,6 +71,7 @@ import net.runelite.client.ui.overlay.OverlayManager;
 import net.runelite.client.ui.overlay.WidgetOverlay;
 import net.runelite.client.ui.overlay.tooltip.TooltipOverlay;
 import net.runelite.client.ui.overlay.worldmap.WorldMapOverlay;
+import net.runelite.client.util.LinkBrowser;
 import net.runelite.http.api.RuneLiteAPI;
 import okhttp3.Cache;
 import okhttp3.OkHttpClient;
@@ -129,7 +131,7 @@ public class RuneLite
 
 	@Inject
 	@Nullable
-	private Client client;
+	private RuntimeConfig runtimeConfig;
 
 	public static void main(String[] args) throws Exception
 	{
@@ -209,6 +211,7 @@ public class RuneLite
 		try
 		{
 			final ClientLoader clientLoader = new ClientLoader(okHttpClient, options.valueOf(updateMode), (String) options.valueOf("jav_config"));
+			final RuntimeConfigLoader runtimeConfigLoader = new RuntimeConfigLoader(okHttpClient);
 
 			new Thread(() ->
 			{
@@ -226,6 +229,7 @@ public class RuneLite
 				{
 					SwingUtilities.invokeLater(() ->
 						new FatalErrorDialog("Developers should enable assertions; Add `-ea` to your JVM arguments`")
+							.addHelpButtons()
 							.addBuildingGuide()
 							.open());
 					return;
@@ -243,12 +247,13 @@ public class RuneLite
 			injector = Guice.createInjector(new RuneLiteModule(
 				okHttpClient,
 				clientLoader,
+				runtimeConfigLoader,
 				developerMode,
 				options.has("safe-mode"),
 				options.valueOf(sessionfile),
 				options.valueOf(configfile)));
 
-			injector.getInstance(RuneLite.class).start();
+			injector.getInstance(RuneLite.class).start(clientLoader);
 
 			final long end = System.currentTimeMillis();
 			final RuntimeMXBean rb = ManagementFactory.getRuntimeMXBean();
@@ -260,6 +265,7 @@ public class RuneLite
 			log.error("Failure during startup", e);
 			SwingUtilities.invokeLater(() ->
 				new FatalErrorDialog("RuneLite has encountered an unexpected error during startup.")
+					.addHelpButtons()
 					.open());
 		}
 		finally
@@ -268,9 +274,35 @@ public class RuneLite
 		}
 	}
 
-	public void start() throws Exception
+	private void start(ClientLoader clientLoader) throws Exception
 	{
+		Object loaderObject = clientLoader.get();
+		if (loaderObject == null || loaderObject instanceof Throwable)
+		{
+			if (runtimeConfig != null && !Strings.isNullOrEmpty(runtimeConfig.getClientLoadErrorMessage()))
+			{
+				SwingUtilities.invokeLater(() ->
+				{
+					FatalErrorDialog fatalErrorDialog = new FatalErrorDialog(runtimeConfig.getClientLoadErrorMessage());
+					if (runtimeConfig.getClientLoadErrorButtons() != null)
+					{
+						for (RuntimeConfig.ErrorButton errorButton : runtimeConfig.getClientLoadErrorButtons())
+						{
+							fatalErrorDialog.addButton(errorButton.getText(), () -> LinkBrowser.browse(errorButton.getUrl()));
+						}
+					}
+					fatalErrorDialog.open();
+				});
+			}
+			else
+			{
+				SwingUtilities.invokeLater(() -> FatalErrorDialog.showNetErrorWindow("loading the client", (Throwable) loaderObject));
+			}
+			return;
+		}
+
 		// Load RuneLite or Vanilla client
+		final Client client = loaderObject instanceof Client ? (Client) loaderObject : null;
 		final boolean isOutdated = client == null;
 
 		if (!isOutdated)

@@ -62,7 +62,8 @@ import org.slf4j.LoggerFactory;
 public class RuneLiteModule extends AbstractModule
 {
 	private final OkHttpClient okHttpClient;
-	private final Supplier<Applet> clientLoader;
+	private final Supplier<Object> clientLoader;
+	private final Supplier<RuntimeConfig> runtimeConfigSupplier;
 	private final boolean developerMode;
 	private final boolean safeMode;
 	private final File sessionfile;
@@ -110,7 +111,8 @@ public class RuneLiteModule extends AbstractModule
 	@Singleton
 	Applet provideApplet()
 	{
-		return clientLoader.get();
+		Object object = clientLoader.get();
+		return object instanceof Applet ? (Applet) object : null;
 	}
 
 	@Provides
@@ -118,6 +120,13 @@ public class RuneLiteModule extends AbstractModule
 	Client provideClient(@Nullable Applet applet)
 	{
 		return applet instanceof Client ? (Client) applet : null;
+	}
+
+	@Provides
+	@Singleton
+	RuntimeConfig provideRuntimeConfig()
+	{
+		return runtimeConfigSupplier.get();
 	}
 
 	@Provides
