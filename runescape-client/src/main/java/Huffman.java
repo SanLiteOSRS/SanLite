@@ -1,22 +1,24 @@
-import java.util.concurrent.ScheduledExecutorService;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("id")
+@ObfuscatedName("ix")
 @Implements("Huffman")
 public class Huffman {
-	@ObfuscatedName("b")
-	@Export("soundSystemExecutor")
-	static ScheduledExecutorService soundSystemExecutor;
-	@ObfuscatedName("v")
+	@ObfuscatedName("br")
+	@ObfuscatedSignature(
+		descriptor = "[Lof;"
+	)
+	@Export("worldSelectStars")
+	static IndexedSprite[] worldSelectStars;
+	@ObfuscatedName("f")
 	@Export("masks")
 	int[] masks;
-	@ObfuscatedName("n")
+	@ObfuscatedName("e")
 	@Export("bits")
 	byte[] bits;
-	@ObfuscatedName("f")
+	@ObfuscatedName("v")
 	@Export("keys")
 	int[] keys;
 
@@ -45,7 +47,7 @@ public class Huffman {
 
 					for (var10 = var6 - 1; var10 >= 1; --var10) {
 						var11 = var3[var10];
-						if (var8 != var11) {
+						if (var11 != var8) {
 							break;
 						}
 
@@ -103,10 +105,10 @@ public class Huffman {
 
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
 		descriptor = "([BII[BII)I",
-		garbageValue = "-1771956050"
+		garbageValue = "-1958410774"
 	)
 	@Export("compress")
 	int compress(byte[] var1, int var2, int var3, byte[] var4, int var5) {
@@ -124,7 +126,7 @@ public class Huffman {
 			int var11 = var7 >> 3;
 			int var12 = var7 & 7;
 			var6 &= -var12 >> 31;
-			int var13 = (var10 + var12 - 1 >> 3) + var11;
+			int var13 = (var12 + var10 - 1 >> 3) + var11;
 			var12 += 24;
 			var4[var11] = (byte)(var6 |= var9 >>> var12);
 			if (var11 < var13) {
@@ -154,10 +156,10 @@ public class Huffman {
 		return (var7 + 7 >> 3) - var5;
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
 		descriptor = "([BI[BIII)I",
-		garbageValue = "2146568122"
+		garbageValue = "1331615778"
 	)
 	@Export("decompress")
 	int decompress(byte[] var1, int var2, byte[] var3, int var4, int var5) {
@@ -296,5 +298,82 @@ public class Huffman {
 
 			return var7 + 1 - var2;
 		}
+	}
+
+	@ObfuscatedName("v")
+	@ObfuscatedSignature(
+		descriptor = "(Lnt;IIIIIII)V",
+		garbageValue = "1430130968"
+	)
+	@Export("loadTerrain")
+	static final void loadTerrain(Buffer var0, int var1, int var2, int var3, int var4, int var5, int var6) {
+		int var7;
+		if (var2 >= 0 && var2 < 104 && var3 >= 0 && var3 < 104) {
+			Tiles.Tiles_renderFlags[var1][var2][var3] = 0;
+
+			while (true) {
+				var7 = var0.readUnsignedByte();
+				if (var7 == 0) {
+					if (var1 == 0) {
+						int[] var14 = Tiles.Tiles_heights[0][var2];
+						int var11 = var2 + var4 + 932731;
+						int var12 = var3 + var5 + 556238;
+						int var13 = AttackOption.method2382(var11 + 45365, var12 + 91923, 4) - 128 + (AttackOption.method2382(var11 + 10294, 37821 + var12, 2) - 128 >> 1) + (AttackOption.method2382(var11, var12, 1) - 128 >> 2);
+						var13 = (int)(0.3D * (double)var13) + 35;
+						if (var13 < 10) {
+							var13 = 10;
+						} else if (var13 > 60) {
+							var13 = 60;
+						}
+
+						var14[var3] = -var13 * 8;
+					} else {
+						Tiles.Tiles_heights[var1][var2][var3] = Tiles.Tiles_heights[var1 - 1][var2][var3] - 240;
+					}
+					break;
+				}
+
+				if (var7 == 1) {
+					int var8 = var0.readUnsignedByte();
+					if (var8 == 1) {
+						var8 = 0;
+					}
+
+					if (var1 == 0) {
+						Tiles.Tiles_heights[0][var2][var3] = -var8 * 8;
+					} else {
+						Tiles.Tiles_heights[var1][var2][var3] = Tiles.Tiles_heights[var1 - 1][var2][var3] - var8 * 8;
+					}
+					break;
+				}
+
+				if (var7 <= 49) {
+					Tiles.field1111[var1][var2][var3] = var0.readByte();
+					class22.field186[var1][var2][var3] = (byte)((var7 - 2) / 4);
+					class16.field132[var1][var2][var3] = (byte)(var7 - 2 + var6 & 3);
+				} else if (var7 <= 81) {
+					Tiles.Tiles_renderFlags[var1][var2][var3] = (byte)(var7 - 49);
+				} else {
+					AccessFile.field4098[var1][var2][var3] = (byte)(var7 - 81);
+				}
+			}
+		} else {
+			while (true) {
+				var7 = var0.readUnsignedByte();
+				if (var7 == 0) {
+					break;
+				}
+
+				if (var7 == 1) {
+					var0.readUnsignedByte();
+					break;
+				}
+
+				if (var7 <= 49) {
+					var0.readUnsignedByte();
+				}
+			}
+		}
+
 	}
 }

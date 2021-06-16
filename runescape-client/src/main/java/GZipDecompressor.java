@@ -1,13 +1,20 @@
 import java.util.zip.Inflater;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("og")
+@ObfuscatedName("or")
 @Implements("GZipDecompressor")
 public class GZipDecompressor {
-	@ObfuscatedName("v")
+	@ObfuscatedName("y")
+	@ObfuscatedGetter(
+		intValue = 2117115219
+	)
+	@Export("clientType")
+	public static int clientType;
+	@ObfuscatedName("f")
 	@Export("inflater")
 	Inflater inflater;
 
@@ -22,10 +29,10 @@ public class GZipDecompressor {
 		this(-1, 1000000, 1000000);
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(Lnd;[BB)V",
-		garbageValue = "48"
+		descriptor = "(Lnt;[BI)V",
+		garbageValue = "1826658043"
 	)
 	@Export("decompress")
 	public void decompress(Buffer var1, byte[] var2) {

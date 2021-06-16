@@ -3,18 +3,18 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ly")
+@ObfuscatedName("lc")
 @Implements("Username")
 public class Username implements Comparable {
-	@ObfuscatedName("v")
+	@ObfuscatedName("f")
 	@Export("name")
 	String name;
-	@ObfuscatedName("n")
+	@ObfuscatedName("e")
 	@Export("cleanName")
 	String cleanName;
 
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;Lnc;)V"
+		descriptor = "(Ljava/lang/String;Lnb;)V"
 	)
 	public Username(String var1, LoginType var2) {
 		this.name = var1;
@@ -22,150 +22,36 @@ public class Username implements Comparable {
 		if (var1 == null) {
 			var4 = null;
 		} else {
-			label115: {
-				int var5 = 0;
+			int var5 = 0;
 
-				int var6;
-				boolean var7;
-				char var8;
-				for (var6 = var1.length(); var5 < var6; ++var5) {
-					var8 = var1.charAt(var5);
-					var7 = var8 == 160 || var8 == ' ' || var8 == '_' || var8 == '-';
-					if (!var7) {
-						break;
+			int var6;
+			for (var6 = var1.length(); var5 < var6 && SpriteMask.method4777(var1.charAt(var5)); ++var5) {
+			}
+
+			while (var6 > var5 && SpriteMask.method4777(var1.charAt(var6 - 1))) {
+				--var6;
+			}
+
+			int var7 = var6 - var5;
+			if (var7 >= 1 && var7 <= Friend.method5773(var2)) {
+				StringBuilder var8 = new StringBuilder(var7);
+
+				for (int var9 = var5; var9 < var6; ++var9) {
+					char var10 = var1.charAt(var9);
+					if (Client.method1746(var10)) {
+						char var11 = WorldMapElement.method2732(var10);
+						if (var11 != 0) {
+							var8.append(var11);
+						}
 					}
 				}
 
-				while (var6 > var5) {
-					var8 = var1.charAt(var6 - 1);
-					var7 = var8 == 160 || var8 == ' ' || var8 == '_' || var8 == '-';
-					if (!var7) {
-						break;
-					}
-
-					--var6;
+				if (var8.length() == 0) {
+					var4 = null;
+				} else {
+					var4 = var8.toString();
 				}
-
-				int var14 = var6 - var5;
-				if (var14 >= 1) {
-					byte var9;
-					if (var2 == null) {
-						var9 = 12;
-					} else {
-						switch(var2.field4092) {
-						case 8:
-							var9 = 20;
-							break;
-						default:
-							var9 = 12;
-						}
-					}
-
-					if (var14 <= var9) {
-						StringBuilder var13 = new StringBuilder(var14);
-
-						for (int var15 = var5; var15 < var6; ++var15) {
-							char var10 = var1.charAt(var15);
-							if (class14.method188(var10)) {
-								char var11;
-								switch(var10) {
-								case ' ':
-								case '-':
-								case '_':
-								case ' ':
-									var11 = '_';
-									break;
-								case '#':
-								case '[':
-								case ']':
-									var11 = var10;
-									break;
-								case 'À':
-								case 'Á':
-								case 'Â':
-								case 'Ã':
-								case 'Ä':
-								case 'à':
-								case 'á':
-								case 'â':
-								case 'ã':
-								case 'ä':
-									var11 = 'a';
-									break;
-								case 'Ç':
-								case 'ç':
-									var11 = 'c';
-									break;
-								case 'È':
-								case 'É':
-								case 'Ê':
-								case 'Ë':
-								case 'è':
-								case 'é':
-								case 'ê':
-								case 'ë':
-									var11 = 'e';
-									break;
-								case 'Í':
-								case 'Î':
-								case 'Ï':
-								case 'í':
-								case 'î':
-								case 'ï':
-									var11 = 'i';
-									break;
-								case 'Ñ':
-								case 'ñ':
-									var11 = 'n';
-									break;
-								case 'Ò':
-								case 'Ó':
-								case 'Ô':
-								case 'Õ':
-								case 'Ö':
-								case 'ò':
-								case 'ó':
-								case 'ô':
-								case 'õ':
-								case 'ö':
-									var11 = 'o';
-									break;
-								case 'Ù':
-								case 'Ú':
-								case 'Û':
-								case 'Ü':
-								case 'ù':
-								case 'ú':
-								case 'û':
-								case 'ü':
-									var11 = 'u';
-									break;
-								case 'ß':
-									var11 = 'b';
-									break;
-								case 'ÿ':
-								case 'Ÿ':
-									var11 = 'y';
-									break;
-								default:
-									var11 = Character.toLowerCase(var10);
-								}
-
-								if (var11 != 0) {
-									var13.append(var11);
-								}
-							}
-						}
-
-						if (var13.length() == 0) {
-							var4 = null;
-						} else {
-							var4 = var13.toString();
-						}
-						break label115;
-					}
-				}
-
+			} else {
 				var4 = null;
 			}
 		}
@@ -173,30 +59,30 @@ public class Username implements Comparable {
 		this.cleanName = var4;
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(I)Ljava/lang/String;",
-		garbageValue = "2072568808"
+		descriptor = "(B)Ljava/lang/String;",
+		garbageValue = "-55"
 	)
 	@Export("getName")
 	public String getName() {
 		return this.name;
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
 		descriptor = "(B)Z",
-		garbageValue = "0"
+		garbageValue = "1"
 	)
 	@Export("hasCleanName")
 	public boolean hasCleanName() {
 		return this.cleanName != null;
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(Lly;I)I",
-		garbageValue = "831558423"
+		descriptor = "(Llc;I)I",
+		garbageValue = "-928498828"
 	)
 	@Export("compareToTyped")
 	public int compareToTyped(Username var1) {
@@ -232,14 +118,5 @@ public class Username implements Comparable {
 
 	public int compareTo(Object var1) {
 		return this.compareToTyped((Username)var1);
-	}
-
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "(CI)C",
-		garbageValue = "717003887"
-	)
-	static char method5877(char var0) {
-		return var0 != 181 && var0 != 402 ? Character.toTitleCase(var0) : var0;
 	}
 }

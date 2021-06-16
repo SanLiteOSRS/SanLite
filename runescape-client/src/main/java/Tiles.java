@@ -4,87 +4,134 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cg")
+@ObfuscatedName("ca")
 @Implements("Tiles")
 public final class Tiles {
-	@ObfuscatedName("v")
+	@ObfuscatedName("f")
 	@Export("Tiles_heights")
 	static int[][][] Tiles_heights;
-	@ObfuscatedName("n")
+	@ObfuscatedName("e")
 	@Export("Tiles_renderFlags")
 	static byte[][][] Tiles_renderFlags;
-	@ObfuscatedName("f")
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = 1752941579
+		intValue = -879678159
 	)
 	@Export("Tiles_minPlane")
 	static int Tiles_minPlane;
-	@ObfuscatedName("y")
-	static byte[][][] field1120;
-	@ObfuscatedName("p")
-	@ObfuscatedSignature(
-		descriptor = "[Lbg;"
-	)
-	@Export("World_worlds")
-	static World[] World_worlds;
-	@ObfuscatedName("l")
-	@Export("Tiles_lightness")
-	static int[] Tiles_lightness;
-	@ObfuscatedName("m")
-	static final int[] field1117;
-	@ObfuscatedName("x")
-	static final int[] field1125;
-	@ObfuscatedName("z")
-	static final int[] field1126;
-	@ObfuscatedName("w")
-	static final int[] field1123;
-	@ObfuscatedName("t")
-	static final int[] field1128;
+	@ObfuscatedName("j")
+	static byte[][][] field1111;
 	@ObfuscatedName("h")
-	static final int[] field1129;
+	@Export("ByteArrayPool_arrays")
+	public static byte[][][] ByteArrayPool_arrays;
+	@ObfuscatedName("z")
+	@Export("Tiles_saturation")
+	static int[] Tiles_saturation;
+	@ObfuscatedName("k")
+	static int[] field1095;
+	@ObfuscatedName("g")
+	static int[][][] field1101;
 	@ObfuscatedName("q")
+	static final int[] field1102;
+	@ObfuscatedName("s")
+	static final int[] field1107;
+	@ObfuscatedName("p")
+	static final int[] field1100;
+	@ObfuscatedName("c")
+	static final int[] field1105;
+	@ObfuscatedName("n")
+	static final int[] field1106;
+	@ObfuscatedName("l")
+	static final int[] field1097;
+	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		intValue = -760931637
+		intValue = 892658251
 	)
-	static int field1130;
-	@ObfuscatedName("i")
+	static int field1108;
+	@ObfuscatedName("a")
 	@ObfuscatedGetter(
-		intValue = 696638661
+		intValue = 1828170801
 	)
-	static int field1131;
+	static int field1109;
 
 	static {
 		Tiles_heights = new int[4][105][105];
 		Tiles_renderFlags = new byte[4][104][104];
 		Tiles_minPlane = 99;
-		field1117 = new int[]{1, 2, 4, 8};
-		field1125 = new int[]{16, 32, 64, 128};
-		field1126 = new int[]{1, 0, -1, 0};
-		field1123 = new int[]{0, -1, 0, 1};
-		field1128 = new int[]{1, -1, -1, 1};
-		field1129 = new int[]{-1, -1, 1, 1};
-		field1130 = (int)(Math.random() * 17.0D) - 8;
-		field1131 = (int)(Math.random() * 33.0D) - 16;
+		field1102 = new int[]{1, 2, 4, 8};
+		field1107 = new int[]{16, 32, 64, 128};
+		field1100 = new int[]{1, 0, -1, 0};
+		field1105 = new int[]{0, -1, 0, 1};
+		field1106 = new int[]{1, -1, -1, 1};
+		field1097 = new int[]{-1, -1, 1, 1};
+		field1108 = (int)(Math.random() * 17.0D) - 8;
+		field1109 = (int)(Math.random() * 33.0D) - 16;
 	}
 
-	@ObfuscatedName("d")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "928975395"
+		descriptor = "(II)Leu;",
+		garbageValue = "-1940168302"
 	)
-	static final void method2053() {
-		Object var10000 = null;
-		String var0 = "Your friend list is full. Max of 200 for free users, and 400 for members";
-		World.addGameMessage(30, "", var0);
+	@Export("SpotAnimationDefinition_get")
+	public static SpotAnimationDefinition SpotAnimationDefinition_get(int var0) {
+		SpotAnimationDefinition var1 = (SpotAnimationDefinition)SpotAnimationDefinition.SpotAnimationDefinition_cached.get((long)var0);
+		if (var1 != null) {
+			return var1;
+		} else {
+			byte[] var2 = SpotAnimationDefinition.SpotAnimationDefinition_archive.takeFile(13, var0);
+			var1 = new SpotAnimationDefinition();
+			var1.id = var0;
+			if (var2 != null) {
+				var1.decode(new Buffer(var2));
+			}
+
+			SpotAnimationDefinition.SpotAnimationDefinition_cached.put(var1, (long)var0);
+			return var1;
+		}
 	}
 
-	@ObfuscatedName("ac")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;I)I",
-		garbageValue = "-175787881"
+		descriptor = "(IB)Lez;",
+		garbageValue = "107"
 	)
-	@Export("stringCp1252NullTerminatedByteSize")
-	public static int stringCp1252NullTerminatedByteSize(String var0) {
-		return var0.length() + 1;
+	@Export("getObjectDefinition")
+	public static ObjectComposition getObjectDefinition(int var0) {
+		ObjectComposition var1 = (ObjectComposition)ObjectComposition.ObjectDefinition_cached.get((long)var0);
+		if (var1 != null) {
+			return var1;
+		} else {
+			byte[] var2 = ObjectComposition.ObjectDefinition_archive.takeFile(6, var0);
+			var1 = new ObjectComposition();
+			var1.id = var0;
+			if (var2 != null) {
+				var1.decode(new Buffer(var2));
+			}
+
+			var1.postDecode();
+			if (var1.isSolid) {
+				var1.interactType = 0;
+				var1.boolean1 = false;
+			}
+
+			ObjectComposition.ObjectDefinition_cached.put(var1, (long)var0);
+			return var1;
+		}
+	}
+
+	@ObfuscatedName("h")
+	@ObfuscatedSignature(
+		descriptor = "(I)[I",
+		garbageValue = "1675810560"
+	)
+	public static int[] method2154() {
+		int[] var0 = new int[KeyHandler.field274];
+
+		for (int var1 = 0; var1 < KeyHandler.field274; ++var1) {
+			var0[var1] = KeyHandler.field273[var1];
+		}
+
+		return var0;
 	}
 }

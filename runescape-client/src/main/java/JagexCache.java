@@ -3,27 +3,39 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("dm")
+@ObfuscatedName("dn")
 @Implements("JagexCache")
 public class JagexCache {
-	@ObfuscatedName("l")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		descriptor = "Lnf;"
+		descriptor = "Lna;"
 	)
 	@Export("JagexCache_randomDat")
 	public static BufferedFile JagexCache_randomDat;
-	@ObfuscatedName("o")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		descriptor = "Lnf;"
+		descriptor = "Lna;"
 	)
 	@Export("JagexCache_dat2File")
 	public static BufferedFile JagexCache_dat2File;
-	@ObfuscatedName("c")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		descriptor = "Lnf;"
+		descriptor = "Lna;"
 	)
 	@Export("JagexCache_idx255File")
 	public static BufferedFile JagexCache_idx255File;
+	@ObfuscatedName("u")
+	@Export("cacheSubPaths")
+	public static String[] cacheSubPaths;
+	@ObfuscatedName("n")
+	@Export("userHomeDirectory")
+	public static String userHomeDirectory;
+	@ObfuscatedName("dv")
+	@ObfuscatedSignature(
+		descriptor = "Ljf;"
+	)
+	@Export("archive10")
+	static Archive archive10;
 
 	static {
 		JagexCache_randomDat = null;
@@ -31,34 +43,61 @@ public class JagexCache {
 		JagexCache_idx255File = null;
 	}
 
-	@ObfuscatedName("iw")
+	@ObfuscatedName("jm")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;Lio;B)Ljava/lang/String;",
-		garbageValue = "109"
+		descriptor = "(IIIZI)V",
+		garbageValue = "-1038546340"
 	)
-	static String method2540(String var0, Widget var1) {
-		if (var0.indexOf("%") != -1) {
-			for (int var2 = 1; var2 <= 5; ++var2) {
-				while (true) {
-					int var3 = var0.indexOf("%" + var2);
-					if (var3 == -1) {
-						break;
+	static final void method2637(int var0, int var1, int var2, boolean var3) {
+		if (class20.loadInterface(var0)) {
+			DynamicObject.resizeInterface(GrandExchangeOfferOwnWorldComparator.Widget_interfaceComponents[var0], -1, var1, var2, var3);
+		}
+	}
+
+	@ObfuscatedName("jz")
+	@ObfuscatedSignature(
+		descriptor = "([Liv;II)V",
+		garbageValue = "1856599832"
+	)
+	@Export("runComponentCloseListeners")
+	static final void runComponentCloseListeners(Widget[] var0, int var1) {
+		for (int var2 = 0; var2 < var0.length; ++var2) {
+			Widget var3 = var0[var2];
+			if (var3 != null) {
+				if (var3.type == 0) {
+					if (var3.children != null) {
+						runComponentCloseListeners(var3.children, var1);
 					}
 
-					String var4 = var0.substring(0, var3);
-					int var6 = ModeWhere.method5160(var1, var2 - 1);
-					String var5;
-					if (var6 < 999999999) {
-						var5 = Integer.toString(var6);
-					} else {
-						var5 = "*";
+					InterfaceParent var4 = (InterfaceParent)Client.interfaceParents.get((long)var3.id);
+					if (var4 != null) {
+						class8.runIntfCloseListeners(var4.group, var1);
+					}
+				}
+
+				ScriptEvent var5;
+				if (var1 == 0 && var3.onDialogAbort != null) {
+					var5 = new ScriptEvent();
+					var5.widget = var3;
+					var5.args = var3.onDialogAbort;
+					WorldMapSection1.runScriptEvent(var5);
+				}
+
+				if (var1 == 1 && var3.onSubChange != null) {
+					if (var3.childIndex >= 0) {
+						Widget var6 = WorldMapData_1.getWidget(var3.id);
+						if (var6 == null || var6.children == null || var3.childIndex >= var6.children.length || var3 != var6.children[var3.childIndex]) {
+							continue;
+						}
 					}
 
-					var0 = var4 + var5 + var0.substring(var3 + 2);
+					var5 = new ScriptEvent();
+					var5.widget = var3;
+					var5.args = var3.onSubChange;
+					WorldMapSection1.runScriptEvent(var5);
 				}
 			}
 		}
 
-		return var0;
 	}
 }

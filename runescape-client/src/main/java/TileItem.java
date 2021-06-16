@@ -4,24 +4,24 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("dr")
+@ObfuscatedName("di")
 @Implements("TileItem")
 public final class TileItem extends Renderable {
-	@ObfuscatedName("ro")
-	@ObfuscatedSignature(
-		descriptor = "Lbe;"
-	)
-	@Export("decimator")
-	static Decimator decimator;
 	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = -467972035
+		intValue = -1193847607
+	)
+	@Export("KitDefinition_fileCount")
+	public static int KitDefinition_fileCount;
+	@ObfuscatedName("f")
+	@ObfuscatedGetter(
+		intValue = 1014786241
 	)
 	@Export("id")
 	int id;
-	@ObfuscatedName("n")
+	@ObfuscatedName("e")
 	@ObfuscatedGetter(
-		intValue = 223075527
+		intValue = -1411898513
 	)
 	@Export("quantity")
 	int quantity;
@@ -29,38 +29,13 @@ public final class TileItem extends Renderable {
 	TileItem() {
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		descriptor = "(B)Lgr;",
-		garbageValue = "-76"
+		descriptor = "(I)Lgd;",
+		garbageValue = "326918784"
 	)
 	@Export("getModel")
 	protected final Model getModel() {
-		return class260.ItemDefinition_get(this.id).getModel(this.quantity);
-	}
-
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-1655147086"
-	)
-	@Export("savePreferences")
-	static void savePreferences() {
-		AccessFile var0 = null;
-
-		try {
-			var0 = class82.getPreferencesFile("", SoundSystem.field461.name, true);
-			Buffer var1 = ObjectComposition.clientPreferences.toBuffer();
-			var0.write(var1.array, 0, var1.offset);
-		} catch (Exception var3) {
-		}
-
-		try {
-			if (var0 != null) {
-				var0.closeSync(true);
-			}
-		} catch (Exception var2) {
-		}
-
+		return class250.ItemDefinition_get(this.id).getModel(this.quantity);
 	}
 }

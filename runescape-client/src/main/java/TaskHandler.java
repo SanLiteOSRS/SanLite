@@ -2,42 +2,38 @@ import java.io.DataInputStream;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.URL;
+import java.util.Date;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("dp")
+@ObfuscatedName("da")
 @Implements("TaskHandler")
 public class TaskHandler implements Runnable {
-	@ObfuscatedName("v")
+	@ObfuscatedName("f")
 	@Export("javaVendor")
 	public static String javaVendor;
-	@ObfuscatedName("n")
+	@ObfuscatedName("e")
 	@Export("javaVersion")
 	public static String javaVersion;
-	@ObfuscatedName("ex")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "Llz;"
-	)
-	@Export("spriteIds")
-	static GraphicsDefaults spriteIds;
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "Leu;"
+		descriptor = "Lel;"
 	)
 	@Export("current")
 	Task current;
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		descriptor = "Leu;"
+		descriptor = "Lel;"
 	)
 	@Export("task")
 	Task task;
-	@ObfuscatedName("p")
+	@ObfuscatedName("j")
 	@Export("thread")
 	Thread thread;
-	@ObfuscatedName("j")
+	@ObfuscatedName("o")
 	@Export("isClosed")
 	boolean isClosed;
 
@@ -61,10 +57,10 @@ public class TaskHandler implements Runnable {
 		this.thread.start();
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "57"
+		descriptor = "(I)V",
+		garbageValue = "-1744867211"
 	)
 	@Export("close")
 	public final void close() {
@@ -80,10 +76,10 @@ public class TaskHandler implements Runnable {
 
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		descriptor = "(IIILjava/lang/Object;I)Leu;",
-		garbageValue = "-46619903"
+		descriptor = "(IIILjava/lang/Object;B)Lel;",
+		garbageValue = "127"
 	)
 	@Export("newTask")
 	final Task newTask(int var1, int var2, int var3, Object var4) {
@@ -104,10 +100,10 @@ public class TaskHandler implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;IB)Leu;",
-		garbageValue = "90"
+		descriptor = "(Ljava/lang/String;II)Lel;",
+		garbageValue = "1638941584"
 	)
 	@Export("newSocketTask")
 	public final Task newSocketTask(String var1, int var2) {
@@ -116,8 +112,8 @@ public class TaskHandler implements Runnable {
 
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/Runnable;IB)Leu;",
-		garbageValue = "20"
+		descriptor = "(Ljava/lang/Runnable;II)Lel;",
+		garbageValue = "2125831447"
 	)
 	@Export("newThreadTask")
 	public final Task newThreadTask(Runnable var1, int var2) {
@@ -172,39 +168,76 @@ public class TaskHandler implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		descriptor = "([Ljava/lang/String;[IIIB)V",
-		garbageValue = "121"
+		descriptor = "(ILcf;ZB)I",
+		garbageValue = "89"
 	)
-	static void method2518(String[] var0, int[] var1, int var2, int var3) {
-		if (var2 < var3) {
-			int var4 = (var3 + var2) / 2;
-			int var5 = var2;
-			String var6 = var0[var4];
-			var0[var4] = var0[var3];
-			var0[var3] = var6;
-			int var7 = var1[var4];
-			var1[var4] = var1[var3];
-			var1[var3] = var7;
+	static int method2626(int var0, Script var1, boolean var2) {
+		Widget var3 = var2 ? UserComparator5.scriptDotWidget : Nameable.scriptActiveWidget;
+		if (var0 == ScriptOpcodes.CC_GETX) {
+			Interpreter.Interpreter_intStack[++ChatChannel.Interpreter_intStackSize - 1] = var3.x;
+			return 1;
+		} else if (var0 == ScriptOpcodes.CC_GETY) {
+			Interpreter.Interpreter_intStack[++ChatChannel.Interpreter_intStackSize - 1] = var3.y;
+			return 1;
+		} else if (var0 == ScriptOpcodes.CC_GETWIDTH) {
+			Interpreter.Interpreter_intStack[++ChatChannel.Interpreter_intStackSize - 1] = var3.width;
+			return 1;
+		} else if (var0 == ScriptOpcodes.CC_GETHEIGHT) {
+			Interpreter.Interpreter_intStack[++ChatChannel.Interpreter_intStackSize - 1] = var3.height;
+			return 1;
+		} else if (var0 == ScriptOpcodes.CC_GETHIDE) {
+			Interpreter.Interpreter_intStack[++ChatChannel.Interpreter_intStackSize - 1] = var3.isHidden ? 1 : 0;
+			return 1;
+		} else if (var0 == ScriptOpcodes.CC_GETLAYER) {
+			Interpreter.Interpreter_intStack[++ChatChannel.Interpreter_intStackSize - 1] = var3.parentId;
+			return 1;
+		} else {
+			return 2;
+		}
+	}
 
-			for (int var8 = var2; var8 < var3; ++var8) {
-				if (var6 == null || var0[var8] != null && var0[var8].compareTo(var6) < (var8 & 1)) {
-					String var9 = var0[var8];
-					var0[var8] = var0[var5];
-					var0[var5] = var9;
-					int var10 = var1[var8];
-					var1[var8] = var1[var5];
-					var1[var5++] = var10;
-				}
+	@ObfuscatedName("iq")
+	@ObfuscatedSignature(
+		descriptor = "(Lcz;IIB)V",
+		garbageValue = "-68"
+	)
+	static final void method2625(MenuAction var0, int var1, int var2) {
+		GameObject.menuAction(var0.param0, var0.param1, var0.opcode, var0.identifier, var0.action, var0.action, var1, var2);
+	}
+
+	@ObfuscatedName("lr")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/String;I)V",
+		garbageValue = "-846504237"
+	)
+	static void method2615(String var0) {
+		Messages.field1397 = var0;
+
+		try {
+			String var1 = class1.client.getParameter(Integer.toString(18));
+			String var2 = class1.client.getParameter(Integer.toString(13));
+			String var3 = var1 + "settings=" + var0 + "; version=1; path=/; domain=" + var2;
+			if (var0.length() == 0) {
+				var3 = var3 + "; Expires=Thu, 01-Jan-1970 00:00:00 GMT; Max-Age=0";
+			} else {
+				String var4 = var3 + "; Expires=";
+				long var6 = ClientPacket.currentTimeMillis() + 94608000000L;
+				Calendar.Calendar_calendar.setTime(new Date(var6));
+				int var8 = Calendar.Calendar_calendar.get(7);
+				int var9 = Calendar.Calendar_calendar.get(5);
+				int var10 = Calendar.Calendar_calendar.get(2);
+				int var11 = Calendar.Calendar_calendar.get(1);
+				int var12 = Calendar.Calendar_calendar.get(11);
+				int var13 = Calendar.Calendar_calendar.get(12);
+				int var14 = Calendar.Calendar_calendar.get(13);
+				String var5 = Calendar.DAYS_OF_THE_WEEK[var8 - 1] + ", " + var9 / 10 + var9 % 10 + "-" + Calendar.MONTH_NAMES_ENGLISH_GERMAN[0][var10] + "-" + var11 + " " + var12 / 10 + var12 % 10 + ":" + var13 / 10 + var13 % 10 + ":" + var14 / 10 + var14 % 10 + " GMT";
+				var3 = var4 + var5 + "; Max-Age=" + 94608000L;
 			}
 
-			var0[var3] = var0[var5];
-			var0[var5] = var6;
-			var1[var3] = var1[var5];
-			var1[var5] = var7;
-			method2518(var0, var1, var2, var5 - 1);
-			method2518(var0, var1, var5 + 1, var3);
+			class42.method525(class1.client, "document.cookie=\"" + var3 + "\"");
+		} catch (Throwable var15) {
 		}
 
 	}

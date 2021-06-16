@@ -1,24 +1,18 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("du")
+@ObfuscatedName("dd")
 @Implements("UserComparator10")
 public class UserComparator10 extends AbstractUserComparator {
-	@ObfuscatedName("p")
-	@ObfuscatedGetter(
-		intValue = -2005962759
+	@ObfuscatedName("fh")
+	@ObfuscatedSignature(
+		descriptor = "Lkj;"
 	)
-	static int field1457;
-	@ObfuscatedName("g")
-	@ObfuscatedGetter(
-		intValue = -1166420103
-	)
-	@Export("cacheGamebuild")
-	public static int cacheGamebuild;
-	@ObfuscatedName("v")
+	@Export("fontPlain11")
+	static Font fontPlain11;
+	@ObfuscatedName("f")
 	@Export("reversed")
 	final boolean reversed;
 
@@ -26,10 +20,10 @@ public class UserComparator10 extends AbstractUserComparator {
 		this.reversed = var1;
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(Llv;Llv;I)I",
-		garbageValue = "254646745"
+		descriptor = "(Lly;Lly;I)I",
+		garbageValue = "-569162831"
 	)
 	@Export("compareBuddy")
 	int compareBuddy(Buddy var1, Buddy var2) {
@@ -44,35 +38,68 @@ public class UserComparator10 extends AbstractUserComparator {
 		return this.compareBuddy((Buddy)var1, (Buddy)var2);
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(Ljv;I)V",
-		garbageValue = "2118947714"
+		descriptor = "(ILjava/lang/String;Ljava/lang/String;B)V",
+		garbageValue = "89"
 	)
-	public static void method2471(AbstractArchive var0) {
-		VarbitComposition.VarbitDefinition_archive = var0;
+	@Export("addGameMessage")
+	static void addGameMessage(int var0, String var1, String var2) {
+		SecureRandomCallable.addChatMessage(var0, var1, var2, (String)null);
 	}
 
-	@ObfuscatedName("s")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(CB)Z",
-		garbageValue = "-13"
+		descriptor = "(II)Led;",
+		garbageValue = "1800688185"
 	)
-	@Export("isDigit")
-	public static boolean isDigit(char var0) {
-		return var0 >= '0' && var0 <= '9';
-	}
-
-	@ObfuscatedName("e")
-	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "-1839553264"
-	)
-	public static int method2474(int var0) {
-		if (var0 > 0) {
-			return 1;
+	@Export("getParamDefinition")
+	public static ParamComposition getParamDefinition(int var0) {
+		ParamComposition var1 = (ParamComposition)ParamComposition.ParamDefinition_cached.get((long)var0);
+		if (var1 != null) {
+			return var1;
 		} else {
-			return var0 < 0 ? -1 : 0;
+			byte[] var2 = ParamComposition.ParamDefinition_archive.takeFile(11, var0);
+			var1 = new ParamComposition();
+			if (var2 != null) {
+				var1.decode(new Buffer(var2));
+			}
+
+			var1.postDecode();
+			ParamComposition.ParamDefinition_cached.put(var1, (long)var0);
+			return var1;
 		}
+	}
+
+	@ObfuscatedName("f")
+	@ObfuscatedSignature(
+		descriptor = "(II)Leh;",
+		garbageValue = "844202869"
+	)
+	@Export("StructDefinition_getStructDefinition")
+	public static StructComposition StructDefinition_getStructDefinition(int var0) {
+		StructComposition var1 = (StructComposition)StructComposition.StructDefinition_cached.get((long)var0);
+		if (var1 != null) {
+			return var1;
+		} else {
+			byte[] var2 = StructComposition.StructDefinition_archive.takeFile(34, var0);
+			var1 = new StructComposition();
+			if (var2 != null) {
+				var1.decode(new Buffer(var2));
+			}
+
+			var1.postDecode();
+			StructComposition.StructDefinition_cached.put(var1, (long)var0);
+			return var1;
+		}
+	}
+
+	@ObfuscatedName("kg")
+	static final void method2568(double var0) {
+		Rasterizer3D.Rasterizer3D_setBrightness(var0);
+		((TextureProvider)Rasterizer3D.Rasterizer3D_textureLoader).setBrightness(var0);
+		ItemComposition.ItemDefinition_cachedSprites.clear();
+		class4.clientPreferences.field1312 = var0;
+		Actor.savePreferences();
 	}
 }

@@ -3,87 +3,209 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("r")
+@ObfuscatedName("m")
 public class class6 extends class14 {
-	@ObfuscatedName("bs")
-	static String field58;
-	@ObfuscatedName("v")
-	@ObfuscatedGetter(
-		intValue = -1126650753
+	@ObfuscatedName("ec")
+	@ObfuscatedSignature(
+		descriptor = "Ljf;"
 	)
-	int field60;
-	@ObfuscatedName("n")
+	@Export("archive18")
+	static Archive archive18;
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = 910283143
+		intValue = -753176319
 	)
-	int field59;
+	int field47;
+	@ObfuscatedName("e")
+	@ObfuscatedGetter(
+		intValue = 239857617
+	)
+	int field45;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Lf;"
+		descriptor = "Lv;"
 	)
 	final class2 this$0;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lf;)V"
+		descriptor = "(Lv;)V"
 	)
 	class6(class2 var1) {
 		this.this$0 = var1;
 	}
 
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "(Lnd;I)V",
-		garbageValue = "-1281352827"
-	)
-	void vmethod276(Buffer var1) {
-		this.field60 = var1.readInt();
-		this.field59 = var1.readInt();
-	}
-
-	@ObfuscatedName("n")
-	@ObfuscatedSignature(
-		descriptor = "(Ll;B)V",
-		garbageValue = "29"
-	)
-	void vmethod281(ClanSettings var1) {
-		var1.method157(this.field60, this.field59);
-	}
-
-	@ObfuscatedName("n")
-	@ObfuscatedSignature(
-		descriptor = "(II)Lew;",
-		garbageValue = "1647125333"
-	)
-	@Export("WorldMapElement_get")
-	public static WorldMapElement WorldMapElement_get(int var0) {
-		return var0 >= 0 && var0 < WorldMapElement.WorldMapElement_cached.length && WorldMapElement.WorldMapElement_cached[var0] != null ? WorldMapElement.WorldMapElement_cached[var0] : new WorldMapElement(var0);
-	}
-
 	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(ILjv;Ljava/lang/String;Ljava/lang/String;IZI)V",
-		garbageValue = "-908016568"
+		descriptor = "(Lnt;I)V",
+		garbageValue = "73833784"
 	)
-	public static void method60(int var0, AbstractArchive var1, String var2, String var3, int var4, boolean var5) {
-		int var6 = var1.getGroupId(var2);
-		int var7 = var1.getFileId(var6, var3);
-		Canvas.playMusicTrack(var0, var1, var6, var7, var4, var5);
+	void vmethod363(Buffer var1) {
+		this.field47 = var1.readInt();
+		this.field45 = var1.readInt();
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/CharSequence;I)Ljava/lang/String;",
-		garbageValue = "-1691185672"
+		descriptor = "(Lb;I)V",
+		garbageValue = "1885623446"
 	)
-	public static String method67(CharSequence var0) {
-		int var2 = var0.length();
-		char[] var3 = new char[var2];
+	void vmethod354(ClanSettings var1) {
+		var1.method188(this.field47, this.field45);
+	}
 
-		for (int var4 = 0; var4 < var2; ++var4) {
-			var3[var4] = '*';
+	@ObfuscatedName("fw")
+	@ObfuscatedSignature(
+		descriptor = "(II)V",
+		garbageValue = "-719237513"
+	)
+	@Export("playSong")
+	static void playSong(int var0) {
+		if (var0 == -1 && !Client.field862) {
+			Decimator.method1169();
+		} else if (var0 != -1 && var0 != Client.currentTrackGroupId && class4.clientPreferences.musicVolume != 0 && !Client.field862) {
+			WorldMapIcon_1.playMusicTrack(2, DynamicObject.archive6, var0, 0, class4.clientPreferences.musicVolume, false);
 		}
 
-		String var1 = new String(var3);
-		return var1;
+		Client.currentTrackGroupId = var0;
+	}
+
+	@ObfuscatedName("kk")
+	@ObfuscatedSignature(
+		descriptor = "(IB)V",
+		garbageValue = "-28"
+	)
+	@Export("changeGameOptions")
+	static final void changeGameOptions(int var0) {
+		WorldMapID.method3717();
+		Canvas.method495();
+		int var1 = class1.VarpDefinition_get(var0).type;
+		if (var1 != 0) {
+			int var2 = Varps.Varps_main[var0];
+			if (var1 == 1) {
+				if (var2 == 1) {
+					UserComparator10.method2568(0.9D);
+				}
+
+				if (var2 == 2) {
+					UserComparator10.method2568(0.8D);
+				}
+
+				if (var2 == 3) {
+					UserComparator10.method2568(0.7D);
+				}
+
+				if (var2 == 4) {
+					UserComparator10.method2568(0.6D);
+				}
+			}
+
+			if (var1 == 3) {
+				if (var2 == 0) {
+					class0.method0(255);
+				}
+
+				if (var2 == 1) {
+					class0.method0(192);
+				}
+
+				if (var2 == 2) {
+					class0.method0(128);
+				}
+
+				if (var2 == 3) {
+					class0.method0(64);
+				}
+
+				if (var2 == 4) {
+					class0.method0(0);
+				}
+			}
+
+			if (var1 == 4) {
+				if (var2 == 0) {
+					class226.updateSoundEffectVolume(127);
+				}
+
+				if (var2 == 1) {
+					class226.updateSoundEffectVolume(96);
+				}
+
+				if (var2 == 2) {
+					class226.updateSoundEffectVolume(64);
+				}
+
+				if (var2 == 3) {
+					class226.updateSoundEffectVolume(32);
+				}
+
+				if (var2 == 4) {
+					class226.updateSoundEffectVolume(0);
+				}
+			}
+
+			if (var1 == 5) {
+				Client.leftClickOpensMenu = var2;
+			}
+
+			if (var1 == 6) {
+				Client.chatEffects = var2;
+			}
+
+			if (var1 == 9) {
+				Client.field891 = var2;
+			}
+
+			if (var1 == 10) {
+				if (var2 == 0) {
+					NPCComposition.method2882(127);
+				}
+
+				if (var2 == 1) {
+					NPCComposition.method2882(96);
+				}
+
+				if (var2 == 2) {
+					NPCComposition.method2882(64);
+				}
+
+				if (var2 == 3) {
+					NPCComposition.method2882(32);
+				}
+
+				if (var2 == 4) {
+					NPCComposition.method2882(0);
+				}
+			}
+
+			if (var1 == 17) {
+				Client.followerIndex = var2 & 65535;
+			}
+
+			AttackOption[] var3;
+			if (var1 == 18) {
+				var3 = new AttackOption[]{AttackOption.field1344, AttackOption.AttackOption_alwaysRightClick, AttackOption.AttackOption_dependsOnCombatLevels, AttackOption.AttackOption_hidden};
+				Client.playerAttackOption = (AttackOption)Clock.findEnumerated(var3, var2);
+				if (Client.playerAttackOption == null) {
+					Client.playerAttackOption = AttackOption.AttackOption_dependsOnCombatLevels;
+				}
+			}
+
+			if (var1 == 19) {
+				if (var2 == -1) {
+					Client.combatTargetPlayerIndex = -1;
+				} else {
+					Client.combatTargetPlayerIndex = var2 & 2047;
+				}
+			}
+
+			if (var1 == 22) {
+				var3 = new AttackOption[]{AttackOption.field1344, AttackOption.AttackOption_alwaysRightClick, AttackOption.AttackOption_dependsOnCombatLevels, AttackOption.AttackOption_hidden};
+				Client.npcAttackOption = (AttackOption)Clock.findEnumerated(var3, var2);
+				if (Client.npcAttackOption == null) {
+					Client.npcAttackOption = AttackOption.AttackOption_dependsOnCombatLevels;
+				}
+			}
+
+		}
 	}
 }

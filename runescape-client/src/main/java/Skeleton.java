@@ -4,27 +4,22 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ge")
+@ObfuscatedName("gb")
 @Implements("Skeleton")
 public class Skeleton extends Node {
-	@ObfuscatedName("ak")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = 1049112805
-	)
-	static int field2287;
-	@ObfuscatedName("v")
-	@ObfuscatedGetter(
-		intValue = -2039033351
+		intValue = 1170142713
 	)
 	@Export("id")
 	int id;
-	@ObfuscatedName("n")
+	@ObfuscatedName("e")
 	@ObfuscatedGetter(
-		intValue = -1780750535
+		intValue = 213807601
 	)
 	@Export("count")
 	int count;
-	@ObfuscatedName("f")
+	@ObfuscatedName("v")
 	@Export("transformTypes")
 	int[] transformTypes;
 	@ObfuscatedName("y")
@@ -55,63 +50,44 @@ public class Skeleton extends Node {
 
 	}
 
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "-651931102"
-	)
-	@Export("getVarbit")
-	public static int getVarbit(int var0) {
-		VarbitComposition var1 = FontName.method6299(var0);
-		int var2 = var1.baseVar;
-		int var3 = var1.startBit;
-		int var4 = var1.endBit;
-		int var5 = Varps.Varps_masks[var4 - var3];
-		return Varps.Varps_main[var2] >> var3 & var5;
-	}
-
-	@ObfuscatedName("r")
+	@ObfuscatedName("ia")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "-2037150007"
+		garbageValue = "-913891462"
 	)
-	static void method3921() {
-		ItemContainer.itemContainers = new NodeHashTable(32);
-	}
+	static final void method4034() {
+		boolean var0 = false;
 
-	@ObfuscatedName("s")
-	@ObfuscatedSignature(
-		descriptor = "(IIII)I",
-		garbageValue = "-698896598"
-	)
-	static final int method3920(int var0, int var1, int var2) {
-		int var3 = var0 / var2;
-		int var4 = var0 & var2 - 1;
-		int var5 = var1 / var2;
-		int var6 = var1 & var2 - 1;
-		int var7 = Occluder.method4109(var3, var5);
-		int var8 = Occluder.method4109(var3 + 1, var5);
-		int var9 = Occluder.method4109(var3, var5 + 1);
-		int var10 = Occluder.method4109(var3 + 1, var5 + 1);
-		int var12 = 65536 - Rasterizer3D.Rasterizer3D_cosine[var4 * 1024 / var2] >> 1;
-		int var11 = ((65536 - var12) * var7 >> 16) + (var12 * var8 >> 16);
-		int var13 = SoundSystem.method806(var9, var10, var4, var2);
-		int var15 = 65536 - Rasterizer3D.Rasterizer3D_cosine[var6 * 1024 / var2] >> 1;
-		int var14 = ((65536 - var15) * var11 >> 16) + (var13 * var15 >> 16);
-		return var14;
-	}
+		while (!var0) {
+			var0 = true;
 
-	@ObfuscatedName("ay")
-	@ObfuscatedSignature(
-		descriptor = "(ILii;ZI)V",
-		garbageValue = "1737731022"
-	)
-	static void method3922(int var0, Coord var1, boolean var2) {
-		WorldMapArea var3 = HealthBarUpdate.getWorldMap().getMapArea(var0);
-		int var4 = class93.localPlayer.plane;
-		int var5 = VertexNormal.baseX * 64 + (class93.localPlayer.x >> 7);
-		int var6 = SoundSystem.baseY * 64 + (class93.localPlayer.y >> 7);
-		Coord var7 = new Coord(var4, var5, var6);
-		HealthBarUpdate.getWorldMap().method6291(var3, var7, var1, var2);
+			for (int var1 = 0; var1 < Client.menuOptionsCount - 1; ++var1) {
+				if (Client.menuOpcodes[var1] < 1000 && Client.menuOpcodes[var1 + 1] > 1000) {
+					String var2 = Client.menuTargets[var1];
+					Client.menuTargets[var1] = Client.menuTargets[var1 + 1];
+					Client.menuTargets[var1 + 1] = var2;
+					String var3 = Client.menuActions[var1];
+					Client.menuActions[var1] = Client.menuActions[var1 + 1];
+					Client.menuActions[var1 + 1] = var3;
+					int var4 = Client.menuOpcodes[var1];
+					Client.menuOpcodes[var1] = Client.menuOpcodes[var1 + 1];
+					Client.menuOpcodes[var1 + 1] = var4;
+					var4 = Client.menuArguments1[var1];
+					Client.menuArguments1[var1] = Client.menuArguments1[var1 + 1];
+					Client.menuArguments1[var1 + 1] = var4;
+					var4 = Client.menuArguments2[var1];
+					Client.menuArguments2[var1] = Client.menuArguments2[var1 + 1];
+					Client.menuArguments2[var1 + 1] = var4;
+					var4 = Client.menuIdentifiers[var1];
+					Client.menuIdentifiers[var1] = Client.menuIdentifiers[var1 + 1];
+					Client.menuIdentifiers[var1 + 1] = var4;
+					boolean var5 = Client.menuShiftClick[var1];
+					Client.menuShiftClick[var1] = Client.menuShiftClick[var1 + 1];
+					Client.menuShiftClick[var1 + 1] = var5;
+					var0 = false;
+				}
+			}
+		}
+
 	}
 }

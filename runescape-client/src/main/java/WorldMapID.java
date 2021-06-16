@@ -4,59 +4,127 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fr")
+@ObfuscatedName("ff")
 @Implements("WorldMapID")
 public class WorldMapID {
-	@ObfuscatedName("v")
+	@ObfuscatedName("sb")
 	@ObfuscatedSignature(
-		descriptor = "Lfr;"
+		descriptor = "Lla;"
 	)
-	static final WorldMapID field2110;
-	@ObfuscatedName("n")
-	@ObfuscatedSignature(
-		descriptor = "Lfr;"
-	)
-	static final WorldMapID field2107;
-	@ObfuscatedName("d")
-	static int[] field2112;
-	@ObfuscatedName("be")
-	@ObfuscatedSignature(
-		descriptor = "Lop;"
-	)
-	@Export("worldSelectRightSprite")
-	static IndexedSprite worldSelectRightSprite;
-	@ObfuscatedName("do")
-	@ObfuscatedSignature(
-		descriptor = "Lls;"
-	)
-	@Export("js5Socket")
-	static AbstractSocket js5Socket;
+	@Export("masterDisk")
+	static ArchiveDisk masterDisk;
 	@ObfuscatedName("f")
+	@ObfuscatedSignature(
+		descriptor = "Lff;"
+	)
+	static final WorldMapID field2111;
+	@ObfuscatedName("e")
+	@ObfuscatedSignature(
+		descriptor = "Lff;"
+	)
+	static final WorldMapID field2108;
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = 1539271557
+		intValue = 1292015261
 	)
 	@Export("value")
 	final int value;
 
 	static {
-		field2110 = new WorldMapID(0);
-		field2107 = new WorldMapID(1);
+		field2111 = new WorldMapID(0);
+		field2108 = new WorldMapID(1);
 	}
 
 	WorldMapID(int var1) {
 		this.value = var1;
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(Ljv;Ljv;Ljv;Lhp;I)Z",
-		garbageValue = "-670462193"
+		descriptor = "(IIB)I",
+		garbageValue = "-115"
 	)
-	public static boolean method3636(AbstractArchive var0, AbstractArchive var1, AbstractArchive var2, MidiPcmStream var3) {
-		class232.musicPatchesArchive = var0;
-		class232.musicSamplesArchive = var1;
-		WorldMapElement.soundEffectsArchive = var2;
-		class124.midiPcmStream = var3;
-		return true;
+	static int method3718(int var0, int var1) {
+		if (var0 == -2) {
+			return 12345678;
+		} else if (var0 == -1) {
+			if (var1 < 0) {
+				var1 = 0;
+			} else if (var1 > 127) {
+				var1 = 127;
+			}
+
+			var1 = 127 - var1;
+			return var1;
+		} else {
+			var1 = (var0 & 127) * var1 / 128;
+			if (var1 < 2) {
+				var1 = 2;
+			} else if (var1 > 126) {
+				var1 = 126;
+			}
+
+			return (var0 & 65408) + var1;
+		}
+	}
+
+	@ObfuscatedName("b")
+	@ObfuscatedSignature(
+		descriptor = "(III)I",
+		garbageValue = "2096657321"
+	)
+	static final int method3716(int var0, int var1) {
+		if (var0 == -2) {
+			return 12345678;
+		} else if (var0 == -1) {
+			if (var1 < 2) {
+				var1 = 2;
+			} else if (var1 > 126) {
+				var1 = 126;
+			}
+
+			return var1;
+		} else {
+			var1 = (var0 & 127) * var1 / 128;
+			if (var1 < 2) {
+				var1 = 2;
+			} else if (var1 > 126) {
+				var1 = 126;
+			}
+
+			return (var0 & 65408) + var1;
+		}
+	}
+
+	@ObfuscatedName("kc")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "-2067762103"
+	)
+	static void method3717() {
+		for (InterfaceParent var0 = (InterfaceParent)Client.interfaceParents.first(); var0 != null; var0 = (InterfaceParent)Client.interfaceParents.next()) {
+			int var1 = var0.group;
+			if (class20.loadInterface(var1)) {
+				boolean var2 = true;
+				Widget[] var3 = GrandExchangeOfferOwnWorldComparator.Widget_interfaceComponents[var1];
+
+				int var4;
+				for (var4 = 0; var4 < var3.length; ++var4) {
+					if (var3[var4] != null) {
+						var2 = var3[var4].isIf3;
+						break;
+					}
+				}
+
+				if (!var2) {
+					var4 = (int)var0.key;
+					Widget var5 = WorldMapData_1.getWidget(var4);
+					if (var5 != null) {
+						Script.invalidateWidget(var5);
+					}
+				}
+			}
+		}
+
 	}
 }

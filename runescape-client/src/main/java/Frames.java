@@ -3,21 +3,20 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gd")
+@ObfuscatedName("gi")
 @Implements("Frames")
 public class Frames extends DualNode {
-	@ObfuscatedName("v")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "[Lgu;"
+		descriptor = "[Lgz;"
 	)
 	@Export("frames")
 	Animation[] frames;
 
 	@ObfuscatedSignature(
-		descriptor = "(Ljv;Ljv;IZ)V",
-		garbageValue = "0"
+		descriptor = "(Ljp;Ljp;IZ)V"
 	)
-	public Frames(AbstractArchive var1, AbstractArchive var2, int var3, boolean var4) {
+	Frames(AbstractArchive var1, AbstractArchive var2, int var3, boolean var4) {
 		NodeDeque var5 = new NodeDeque();
 		int var6 = var1.getGroupFileCount(var3);
 		this.frames = new Animation[var6];
@@ -36,7 +35,13 @@ public class Frames extends DualNode {
 			}
 
 			if (var10 == null) {
-				byte[] var13 = var2.getFile(var11, 0);
+				byte[] var13;
+				if (var4) {
+					var13 = var2.getFile(0, var11);
+				} else {
+					var13 = var2.getFile(var11, 0);
+				}
+
 				var10 = new Skeleton(var11, var13);
 				var5.addFirst(var10);
 			}
@@ -46,32 +51,54 @@ public class Frames extends DualNode {
 
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		descriptor = "(IB)Z",
-		garbageValue = "4"
+		descriptor = "(II)Z",
+		garbageValue = "1512659835"
 	)
 	@Export("hasAlphaTransform")
 	public boolean hasAlphaTransform(int var1) {
 		return this.frames[var1].hasAlphaTransform;
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		descriptor = "(II)Lio;",
-		garbageValue = "416186781"
+		descriptor = "(S)V",
+		garbageValue = "-9614"
 	)
-	@Export("getWidget")
-	public static Widget getWidget(int var0) {
-		int var1 = var0 >> 16;
-		int var2 = var0 & 65535;
-		if (Widget.Widget_interfaceComponents[var1] == null || Widget.Widget_interfaceComponents[var1][var2] == null) {
-			boolean var3 = Clock.loadInterface(var1);
-			if (!var3) {
-				return null;
+	public static void method4257() {
+		try {
+			if (class233.musicPlayerStatus == 1) {
+				int var0 = class233.midiPcmStream.method4660();
+				if (var0 > 0 && class233.midiPcmStream.isReady()) {
+					var0 -= FaceNormal.pcmSampleLength;
+					if (var0 < 0) {
+						var0 = 0;
+					}
+
+					class233.midiPcmStream.setPcmStreamVolume(var0);
+					return;
+				}
+
+				class233.midiPcmStream.clear();
+				class233.midiPcmStream.removeAll();
+				if (InvDefinition.musicTrackArchive != null) {
+					class233.musicPlayerStatus = 2;
+				} else {
+					class233.musicPlayerStatus = 0;
+				}
+
+				ArchiveLoader.musicTrack = null;
+				class215.soundCache = null;
 			}
+		} catch (Exception var2) {
+			var2.printStackTrace();
+			class233.midiPcmStream.clear();
+			class233.musicPlayerStatus = 0;
+			ArchiveLoader.musicTrack = null;
+			class215.soundCache = null;
+			InvDefinition.musicTrackArchive = null;
 		}
 
-		return Widget.Widget_interfaceComponents[var1][var2];
 	}
 }

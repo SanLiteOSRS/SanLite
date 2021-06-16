@@ -4,69 +4,69 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("eo")
+@ObfuscatedName("fq")
 @Implements("FloorOverlayDefinition")
 public class FloorOverlayDefinition extends DualNode {
-	@ObfuscatedName("n")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		descriptor = "Lhz;"
+		descriptor = "Lht;"
 	)
 	@Export("FloorOverlayDefinition_cached")
-	public static EvictingDualNodeHashTable FloorOverlayDefinition_cached;
-	@ObfuscatedName("f")
+	static EvictingDualNodeHashTable FloorOverlayDefinition_cached;
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = -313850043
+		intValue = -296019843
 	)
 	@Export("primaryRgb")
 	public int primaryRgb;
 	@ObfuscatedName("y")
 	@ObfuscatedGetter(
-		intValue = -1167855135
+		intValue = -1822468251
 	)
 	@Export("texture")
 	public int texture;
-	@ObfuscatedName("p")
+	@ObfuscatedName("j")
 	@Export("hideUnderlay")
 	public boolean hideUnderlay;
-	@ObfuscatedName("j")
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = 1447154143
+		intValue = -1818252281
 	)
 	@Export("secondaryRgb")
 	public int secondaryRgb;
-	@ObfuscatedName("r")
+	@ObfuscatedName("m")
 	@ObfuscatedGetter(
-		intValue = 1593028731
+		intValue = 237098067
 	)
 	@Export("hue")
 	public int hue;
-	@ObfuscatedName("b")
+	@ObfuscatedName("r")
 	@ObfuscatedGetter(
-		intValue = -1490944887
+		intValue = -1367639577
 	)
 	@Export("saturation")
 	public int saturation;
-	@ObfuscatedName("d")
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = 1914058459
+		intValue = 1127074157
 	)
 	@Export("lightness")
 	public int lightness;
-	@ObfuscatedName("s")
+	@ObfuscatedName("d")
 	@ObfuscatedGetter(
-		intValue = 1757390819
+		intValue = 1492871957
 	)
 	@Export("secondaryHue")
 	public int secondaryHue;
-	@ObfuscatedName("u")
+	@ObfuscatedName("z")
 	@ObfuscatedGetter(
-		intValue = -1776147055
+		intValue = 422172471
 	)
 	@Export("secondarySaturation")
 	public int secondarySaturation;
-	@ObfuscatedName("l")
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = -1239811963
+		intValue = 724805775
 	)
 	@Export("secondaryLightness")
 	public int secondaryLightness;
@@ -82,10 +82,10 @@ public class FloorOverlayDefinition extends DualNode {
 		this.secondaryRgb = -1;
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "-593078672"
+		garbageValue = "-1526666702"
 	)
 	@Export("postDecode")
 	void postDecode() {
@@ -99,10 +99,10 @@ public class FloorOverlayDefinition extends DualNode {
 		this.setHsl(this.primaryRgb);
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		descriptor = "(Lnd;II)V",
-		garbageValue = "-1052896488"
+		descriptor = "(Lnt;IB)V",
+		garbageValue = "6"
 	)
 	@Export("decode")
 	void decode(Buffer var1, int var2) {
@@ -116,10 +116,10 @@ public class FloorOverlayDefinition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("y")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
-		descriptor = "(Lnd;III)V",
-		garbageValue = "666748128"
+		descriptor = "(Lnt;III)V",
+		garbageValue = "-608043176"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2, int var3) {
@@ -136,10 +136,10 @@ public class FloorOverlayDefinition extends DualNode {
 
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
 		descriptor = "(II)V",
-		garbageValue = "273923551"
+		garbageValue = "2117241812"
 	)
 	@Export("setHsl")
 	void setHsl(int var1) {
@@ -167,9 +167,9 @@ public class FloorOverlayDefinition extends DualNode {
 		double var12 = 0.0D;
 		double var14 = 0.0D;
 		double var16 = (var10 + var8) / 2.0D;
-		if (var8 != var10) {
+		if (var10 != var8) {
 			if (var16 < 0.5D) {
-				var14 = (var10 - var8) / (var8 + var10);
+				var14 = (var10 - var8) / (var10 + var8);
 			}
 
 			if (var16 >= 0.5D) {
@@ -179,15 +179,15 @@ public class FloorOverlayDefinition extends DualNode {
 			if (var10 == var2) {
 				var12 = (var4 - var6) / (var10 - var8);
 			} else if (var4 == var10) {
-				var12 = (var6 - var2) / (var10 - var8) + 2.0D;
+				var12 = 2.0D + (var6 - var2) / (var10 - var8);
 			} else if (var10 == var6) {
-				var12 = 4.0D + (var2 - var4) / (var10 - var8);
+				var12 = (var2 - var4) / (var10 - var8) + 4.0D;
 			}
 		}
 
 		var12 /= 6.0D;
-		this.hue = (int)(256.0D * var12);
-		this.saturation = (int)(256.0D * var14);
+		this.hue = (int)(var12 * 256.0D);
+		this.saturation = (int)(var14 * 256.0D);
 		this.lightness = (int)(256.0D * var16);
 		if (this.saturation < 0) {
 			this.saturation = 0;
@@ -203,212 +203,134 @@ public class FloorOverlayDefinition extends DualNode {
 
 	}
 
-	@ObfuscatedName("y")
-	@ObfuscatedSignature(
-		descriptor = "(S)[Len;",
-		garbageValue = "-10573"
-	)
-	static HorizontalAlignment[] method3103() {
-		return new HorizontalAlignment[]{HorizontalAlignment.HorizontalAlignment_centered, HorizontalAlignment.field1628, HorizontalAlignment.field1624};
-	}
-
-	@ObfuscatedName("ar")
-	@ObfuscatedSignature(
-		descriptor = "(Lbm;S)V",
-		garbageValue = "10038"
-	)
-	@Export("PcmStream_disable")
-	static final void PcmStream_disable(PcmStream var0) {
-		var0.active = false;
-		if (var0.sound != null) {
-			var0.sound.position = 0;
-		}
-
-		for (PcmStream var1 = var0.firstSubStream(); var1 != null; var1 = var0.nextSubStream()) {
-			PcmStream_disable(var1);
-		}
-
-	}
-
-	@ObfuscatedName("fr")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "672313899"
+		garbageValue = "1165486698"
 	)
-	static final void method3104() {
-		int var0;
-		int var1;
-		int var2;
-		int var3;
-		int var4;
-		int var5;
-		if (Client.oculusOrbState == 0) {
-			var0 = class93.localPlayer.x;
-			var1 = class93.localPlayer.y;
-			if (RouteStrategy.oculusOrbFocalPointX - var0 < -500 || RouteStrategy.oculusOrbFocalPointX - var0 > 500 || ModelData0.oculusOrbFocalPointY - var1 < -500 || ModelData0.oculusOrbFocalPointY - var1 > 500) {
-				RouteStrategy.oculusOrbFocalPointX = var0;
-				ModelData0.oculusOrbFocalPointY = var1;
-			}
+	static final void method3168() {
+		Object var10000 = null;
+		String var0 = "You can't add yourself to your own friend list";
+		UserComparator10.addGameMessage(30, "", var0);
+	}
 
-			if (var0 != RouteStrategy.oculusOrbFocalPointX) {
-				RouteStrategy.oculusOrbFocalPointX += (var0 - RouteStrategy.oculusOrbFocalPointX) / 16;
-			}
+	@ObfuscatedName("kr")
+	@ObfuscatedSignature(
+		descriptor = "(Liv;IIIB)V",
+		garbageValue = "-1"
+	)
+	@Export("drawMinimap")
+	static final void drawMinimap(Widget var0, int var1, int var2, int var3) {
+		class233.playPcmPlayers();
+		SpriteMask var4 = var0.getSpriteMask(false);
+		if (var4 != null) {
+			Rasterizer2D.Rasterizer2D_setClip(var1, var2, var4.width + var1, var2 + var4.height);
+			if (Client.minimapState != 2 && Client.minimapState != 5) {
+				int var5 = Client.camAngleY & 2047;
+				int var6 = class262.localPlayer.x / 32 + 48;
+				int var7 = 464 - class262.localPlayer.y / 32;
+				class69.sceneMinimapSprite.drawRotatedMaskedCenteredAround(var1, var2, var4.width, var4.height, var6, var7, var5, 256, var4.xStarts, var4.xWidths);
 
-			if (var1 != ModelData0.oculusOrbFocalPointY) {
-				ModelData0.oculusOrbFocalPointY += (var1 - ModelData0.oculusOrbFocalPointY) / 16;
-			}
+				int var8;
+				int var10;
+				int var16;
+				for (var8 = 0; var8 < Client.mapIconCount; ++var8) {
+					var16 = Client.mapIconXs[var8] * 4 + 2 - class262.localPlayer.x / 32;
+					var10 = Client.mapIconYs[var8] * 4 + 2 - class262.localPlayer.y / 32;
+					class32.drawSpriteOnMinimap(var1, var2, var16, var10, Client.mapIcons[var8], var4);
+				}
 
-			var2 = RouteStrategy.oculusOrbFocalPointX >> 7;
-			var3 = ModelData0.oculusOrbFocalPointY >> 7;
-			var4 = class105.getTileHeight(RouteStrategy.oculusOrbFocalPointX, ModelData0.oculusOrbFocalPointY, class22.Client_plane);
-			var5 = 0;
-			int var6;
-			if (var2 > 3 && var3 > 3 && var2 < 100 && var3 < 100) {
-				for (var6 = var2 - 4; var6 <= var2 + 4; ++var6) {
-					for (int var7 = var3 - 4; var7 <= var3 + 4; ++var7) {
-						int var8 = class22.Client_plane;
-						if (var8 < 3 && (Tiles.Tiles_renderFlags[1][var6][var7] & 2) == 2) {
-							++var8;
-						}
-
-						int var9 = var4 - Tiles.Tiles_heights[var8][var6][var7];
-						if (var9 > var5) {
-							var5 = var9;
+				int var11;
+				int var12;
+				for (var8 = 0; var8 < 104; ++var8) {
+					for (var16 = 0; var16 < 104; ++var16) {
+						NodeDeque var14 = Client.groundItems[SoundSystem.Client_plane][var8][var16];
+						if (var14 != null) {
+							var11 = var8 * 4 + 2 - class262.localPlayer.x / 32;
+							var12 = var16 * 4 + 2 - class262.localPlayer.y / 32;
+							class32.drawSpriteOnMinimap(var1, var2, var11, var12, class171.mapDotSprites[0], var4);
 						}
 					}
 				}
-			}
 
-			var6 = var5 * 192;
-			if (var6 > 98048) {
-				var6 = 98048;
-			}
+				for (var8 = 0; var8 < Client.npcCount; ++var8) {
+					NPC var9 = Client.npcs[Client.npcIndices[var8]];
+					if (var9 != null && var9.isVisible()) {
+						NPCComposition var18 = var9.definition;
+						if (var18 != null && var18.transforms != null) {
+							var18 = var18.transform();
+						}
 
-			if (var6 < 32768) {
-				var6 = 32768;
-			}
-
-			if (var6 > Client.field727) {
-				Client.field727 += (var6 - Client.field727) / 24;
-			} else if (var6 < Client.field727) {
-				Client.field727 += (var6 - Client.field727) / 80;
-			}
-
-			class17.field148 = class105.getTileHeight(class93.localPlayer.x, class93.localPlayer.y, class22.Client_plane) - Client.camFollowHeight;
-		} else if (Client.oculusOrbState == 1) {
-			NPCComposition.method2791();
-			short var10 = -1;
-			if (KeyHandler.KeyHandler_pressedKeys[33]) {
-				var10 = 0;
-			} else if (KeyHandler.KeyHandler_pressedKeys[49]) {
-				var10 = 1024;
-			}
-
-			if (KeyHandler.KeyHandler_pressedKeys[48]) {
-				if (var10 == 0) {
-					var10 = 1792;
-				} else if (var10 == 1024) {
-					var10 = 1280;
-				} else {
-					var10 = 1536;
-				}
-			} else if (KeyHandler.KeyHandler_pressedKeys[50]) {
-				if (var10 == 0) {
-					var10 = 256;
-				} else if (var10 == 1024) {
-					var10 = 768;
-				} else {
-					var10 = 512;
-				}
-			}
-
-			byte var11 = 0;
-			if (KeyHandler.KeyHandler_pressedKeys[35]) {
-				var11 = -1;
-			} else if (KeyHandler.KeyHandler_pressedKeys[51]) {
-				var11 = 1;
-			}
-
-			var2 = 0;
-			if (var10 >= 0 || var11 != 0) {
-				var2 = KeyHandler.KeyHandler_pressedKeys[81] ? Client.oculusOrbSlowedSpeed : Client.oculusOrbNormalSpeed;
-				var2 *= 16;
-				Client.field732 = var10;
-				Client.field720 = var11;
-			}
-
-			if (Client.field718 < var2) {
-				Client.field718 += var2 / 8;
-				if (Client.field718 > var2) {
-					Client.field718 = var2;
-				}
-			} else if (Client.field718 > var2) {
-				Client.field718 = Client.field718 * 9 / 10;
-			}
-
-			if (Client.field718 > 0) {
-				var3 = Client.field718 / 16;
-				if (Client.field732 >= 0) {
-					var0 = Client.field732 - class376.cameraYaw & 2047;
-					var4 = Rasterizer3D.Rasterizer3D_sine[var0];
-					var5 = Rasterizer3D.Rasterizer3D_cosine[var0];
-					RouteStrategy.oculusOrbFocalPointX += var4 * var3 / 65536;
-					ModelData0.oculusOrbFocalPointY += var3 * var5 / 65536;
-				}
-
-				if (Client.field720 != 0) {
-					class17.field148 += var3 * Client.field720;
-					if (class17.field148 > 0) {
-						class17.field148 = 0;
+						if (var18 != null && var18.drawMapDot && var18.isInteractable) {
+							var11 = var9.x / 32 - class262.localPlayer.x / 32;
+							var12 = var9.y / 32 - class262.localPlayer.y / 32;
+							class32.drawSpriteOnMinimap(var1, var2, var11, var12, class171.mapDotSprites[1], var4);
+						}
 					}
 				}
+
+				var8 = Players.Players_count;
+				int[] var17 = Players.Players_indices;
+
+				for (var10 = 0; var10 < var8; ++var10) {
+					Player var15 = Client.players[var17[var10]];
+					if (var15 != null && var15.isVisible() && !var15.isHidden && var15 != class262.localPlayer) {
+						var12 = var15.x / 32 - class262.localPlayer.x / 32;
+						int var13 = var15.y / 32 - class262.localPlayer.y / 32;
+						if (var15.isFriend()) {
+							class32.drawSpriteOnMinimap(var1, var2, var12, var13, class171.mapDotSprites[3], var4);
+						} else if (class262.localPlayer.team != 0 && var15.team != 0 && var15.team == class262.localPlayer.team) {
+							class32.drawSpriteOnMinimap(var1, var2, var12, var13, class171.mapDotSprites[4], var4);
+						} else if (var15.isFriendsChatMember()) {
+							class32.drawSpriteOnMinimap(var1, var2, var12, var13, class171.mapDotSprites[5], var4);
+						} else if (var15.isClanMember()) {
+							class32.drawSpriteOnMinimap(var1, var2, var12, var13, class171.mapDotSprites[6], var4);
+						} else {
+							class32.drawSpriteOnMinimap(var1, var2, var12, var13, class171.mapDotSprites[2], var4);
+						}
+					}
+				}
+
+				if (Client.hintArrowType != 0 && Client.cycle % 20 < 10) {
+					if (Client.hintArrowType == 1 && Client.hintArrowNpcIndex >= 0 && Client.hintArrowNpcIndex < Client.npcs.length) {
+						NPC var19 = Client.npcs[Client.hintArrowNpcIndex];
+						if (var19 != null) {
+							var11 = var19.x / 32 - class262.localPlayer.x / 32;
+							var12 = var19.y / 32 - class262.localPlayer.y / 32;
+							SoundSystem.worldToMinimap(var1, var2, var11, var12, BuddyRankComparator.mapMarkerSprites[1], var4);
+						}
+					}
+
+					if (Client.hintArrowType == 2) {
+						var10 = Client.hintArrowX * 4 - class15.baseX * 256 + 2 - class262.localPlayer.x / 32;
+						var11 = Client.hintArrowY * 4 - WorldMapSprite.baseY * 256 + 2 - class262.localPlayer.y / 32;
+						SoundSystem.worldToMinimap(var1, var2, var10, var11, BuddyRankComparator.mapMarkerSprites[1], var4);
+					}
+
+					if (Client.hintArrowType == 10 && Client.hintArrowPlayerIndex >= 0 && Client.hintArrowPlayerIndex < Client.players.length) {
+						Player var20 = Client.players[Client.hintArrowPlayerIndex];
+						if (var20 != null) {
+							var11 = var20.x / 32 - class262.localPlayer.x / 32;
+							var12 = var20.y / 32 - class262.localPlayer.y / 32;
+							SoundSystem.worldToMinimap(var1, var2, var11, var12, BuddyRankComparator.mapMarkerSprites[1], var4);
+						}
+					}
+				}
+
+				if (Client.destinationX != 0) {
+					var10 = Client.destinationX * 4 + 2 - class262.localPlayer.x / 32;
+					var11 = Client.destinationY * 4 + 2 - class262.localPlayer.y / 32;
+					class32.drawSpriteOnMinimap(var1, var2, var10, var11, BuddyRankComparator.mapMarkerSprites[0], var4);
+				}
+
+				if (!class262.localPlayer.isHidden) {
+					Rasterizer2D.Rasterizer2D_fillRectangle(var4.width / 2 + var1 - 1, var4.height / 2 + var2 - 1, 3, 3, 16777215);
+				}
 			} else {
-				Client.field732 = -1;
-				Client.field720 = -1;
+				Rasterizer2D.Rasterizer2D_fillMaskedRectangle(var1, var2, 0, var4.xStarts, var4.xWidths);
 			}
 
-			if (KeyHandler.KeyHandler_pressedKeys[13]) {
-				MouseHandler.method634();
-			}
+			Client.field712[var3] = true;
 		}
-
-		if (MouseHandler.MouseHandler_currentButton == 4 && Client.mouseCam) {
-			var0 = MouseHandler.MouseHandler_y - Client.mouseCamClickedY;
-			Client.camAngleDX = var0 * 2;
-			Client.mouseCamClickedY = var0 != -1 && var0 != 1 ? (MouseHandler.MouseHandler_y + Client.mouseCamClickedY) / 2 : MouseHandler.MouseHandler_y;
-			var1 = Client.mouseCamClickedX - MouseHandler.MouseHandler_x;
-			Client.camAngleDY = var1 * 2;
-			Client.mouseCamClickedX = var1 != -1 && var1 != 1 ? (MouseHandler.MouseHandler_x + Client.mouseCamClickedX) / 2 : MouseHandler.MouseHandler_x;
-		} else {
-			if (KeyHandler.KeyHandler_pressedKeys[96]) {
-				Client.camAngleDY += (-24 - Client.camAngleDY) / 2;
-			} else if (KeyHandler.KeyHandler_pressedKeys[97]) {
-				Client.camAngleDY += (24 - Client.camAngleDY) / 2;
-			} else {
-				Client.camAngleDY /= 2;
-			}
-
-			if (KeyHandler.KeyHandler_pressedKeys[98]) {
-				Client.camAngleDX += (12 - Client.camAngleDX) / 2;
-			} else if (KeyHandler.KeyHandler_pressedKeys[99]) {
-				Client.camAngleDX += (-12 - Client.camAngleDX) / 2;
-			} else {
-				Client.camAngleDX /= 2;
-			}
-
-			Client.mouseCamClickedY = MouseHandler.MouseHandler_y;
-			Client.mouseCamClickedX = MouseHandler.MouseHandler_x;
-		}
-
-		Client.camAngleY = Client.camAngleDY / 2 + Client.camAngleY & 2047;
-		Client.camAngleX += Client.camAngleDX / 2;
-		if (Client.camAngleX < 128) {
-			Client.camAngleX = 128;
-		}
-
-		if (Client.camAngleX > 383) {
-			Client.camAngleX = 383;
-		}
-
 	}
 }

@@ -2,12 +2,18 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.Reflection;
+import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("dn")
+@ObfuscatedName("dj")
 @Implements("UserComparator6")
 public class UserComparator6 extends AbstractUserComparator {
-	@ObfuscatedName("v")
+	@ObfuscatedName("s")
+	@ObfuscatedSignature(
+		descriptor = "Lnt;"
+	)
+	@Export("NetCache_reference")
+	public static Buffer NetCache_reference;
+	@ObfuscatedName("f")
 	@Export("reversed")
 	final boolean reversed;
 
@@ -15,10 +21,10 @@ public class UserComparator6 extends AbstractUserComparator {
 		this.reversed = var1;
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(Llv;Llv;I)I",
-		garbageValue = "-26460885"
+		descriptor = "(Lly;Lly;I)I",
+		garbageValue = "2014862906"
 	)
 	@Export("compareBuddy")
 	int compareBuddy(Buddy var1, Buddy var2) {
@@ -33,96 +39,57 @@ public class UserComparator6 extends AbstractUserComparator {
 		return this.compareBuddy((Buddy)var1, (Buddy)var2);
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		descriptor = "(II)Let;",
-		garbageValue = "1390407086"
+		descriptor = "([BIIIIIII[Lfl;B)V",
+		garbageValue = "6"
 	)
-	public static HealthBarDefinition method2492(int var0) {
-		HealthBarDefinition var1 = (HealthBarDefinition)HealthBarDefinition.field1606.get((long)var0);
-		if (var1 != null) {
-			return var1;
-		} else {
-			byte[] var2 = HealthBarDefinition.HealthBarDefinition_archive.takeFile(33, var0);
-			var1 = new HealthBarDefinition();
-			if (var2 != null) {
-				var1.decode(new Buffer(var2));
-			}
-
-			HealthBarDefinition.field1606.put(var1, (long)var0);
-			return var1;
-		}
-	}
-
-	@ObfuscatedName("p")
-	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;I)Ljava/lang/Class;",
-		garbageValue = "-2129011135"
-	)
-	@Export("loadClassFromDescriptor")
-	static Class loadClassFromDescriptor(String var0) throws ClassNotFoundException {
-		if (var0.equals("B")) {
-			return Byte.TYPE;
-		} else if (var0.equals("I")) {
-			return Integer.TYPE;
-		} else if (var0.equals("S")) {
-			return Short.TYPE;
-		} else if (var0.equals("J")) {
-			return Long.TYPE;
-		} else if (var0.equals("Z")) {
-			return Boolean.TYPE;
-		} else if (var0.equals("F")) {
-			return Float.TYPE;
-		} else if (var0.equals("D")) {
-			return Double.TYPE;
-		} else if (var0.equals("C")) {
-			return Character.TYPE;
-		} else {
-			return var0.equals("void") ? Void.TYPE : Reflection.findClass(var0);
-		}
-	}
-
-	@ObfuscatedName("u")
-	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "1210061532"
-	)
-	public static void method2485() {
-		HitSplatDefinition.HitSplatDefinition_cached.clear();
-		HitSplatDefinition.HealthBarDefinition_cached.clear();
-		HitSplatDefinition.HealthBarDefinition_cachedSprites.clear();
-	}
-
-	@ObfuscatedName("bn")
-	@ObfuscatedSignature(
-		descriptor = "([BI)[B",
-		garbageValue = "1275679316"
-	)
-	@Export("decompressBytes")
-	static final byte[] decompressBytes(byte[] var0) {
-		Buffer var1 = new Buffer(var0);
-		int var2 = var1.readUnsignedByte();
-		int var3 = var1.readInt();
-		if (var3 < 0 || AbstractArchive.field3589 != 0 && var3 > AbstractArchive.field3589) {
-			throw new RuntimeException();
-		} else if (var2 == 0) {
-			byte[] var6 = new byte[var3];
-			var1.readBytes(var6, 0, var3);
-			return var6;
-		} else {
-			int var4 = var1.readInt();
-			if (var4 >= 0 && (AbstractArchive.field3589 == 0 || var4 <= AbstractArchive.field3589)) {
-				byte[] var5 = new byte[var4];
-				if (var2 == 1) {
-					BZip2Decompressor.BZip2Decompressor_decompress(var5, var4, var0, var3, 9);
-				} else {
-					AbstractArchive.gzipDecompressor.decompress(var1, var5);
+	static final void method2580(byte[] var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7, CollisionMap[] var8) {
+		int var10;
+		for (int var9 = 0; var9 < 8; ++var9) {
+			for (var10 = 0; var10 < 8; ++var10) {
+				if (var9 + var2 > 0 && var9 + var2 < 103 && var3 + var10 > 0 && var3 + var10 < 103) {
+					int[] var10000 = var8[var1].flags[var9 + var2];
+					var10000[var10 + var3] &= -16777217;
 				}
-
-				return var5;
-			} else {
-				throw new RuntimeException();
 			}
+		}
+
+		Buffer var13 = new Buffer(var0);
+
+		for (var10 = 0; var10 < 4; ++var10) {
+			for (int var11 = 0; var11 < 64; ++var11) {
+				for (int var12 = 0; var12 < 64; ++var12) {
+					if (var10 == var4 && var11 >= var5 && var11 < var5 + 8 && var12 >= var6 && var12 < var6 + 8) {
+						Huffman.loadTerrain(var13, var1, var2 + class143.method2815(var11 & 7, var12 & 7, var7), var3 + class171.method3614(var11 & 7, var12 & 7, var7), 0, 0, var7);
+					} else {
+						Huffman.loadTerrain(var13, 0, -1, -1, 0, 0, 0);
+					}
+				}
+			}
+		}
+
+	}
+
+	@ObfuscatedName("ae")
+	@ObfuscatedSignature(
+		descriptor = "(ILcf;ZI)I",
+		garbageValue = "-675377144"
+	)
+	static int method2585(int var0, Script var1, boolean var2) {
+		if (var0 == ScriptOpcodes.LOGOUT) {
+			Client.logoutTimer = 250;
+			return 1;
+		} else if (var0 != 5631 && var0 != 5633) {
+			if (var0 == 5632) {
+				Interpreter.Interpreter_intStack[++ChatChannel.Interpreter_intStackSize - 1] = 26;
+				return 1;
+			} else {
+				return 2;
+			}
+		} else {
+			UserComparator9.Interpreter_stringStackSize -= 2;
+			return 1;
 		}
 	}
 }

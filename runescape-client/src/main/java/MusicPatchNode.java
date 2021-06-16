@@ -4,191 +4,165 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("iq")
+@ObfuscatedName("ib")
 @Implements("MusicPatchNode")
 public class MusicPatchNode extends Node {
-	@ObfuscatedName("v")
-	@ObfuscatedGetter(
-		intValue = -1025207361
-	)
-	int field2905;
-	@ObfuscatedName("n")
+	@ObfuscatedName("lb")
 	@ObfuscatedSignature(
-		descriptor = "Lin;"
+		descriptor = "Liv;"
+	)
+	@Export("mousedOverWidgetIf1")
+	static Widget mousedOverWidgetIf1;
+	@ObfuscatedName("f")
+	@ObfuscatedGetter(
+		intValue = -830745709
+	)
+	int field2898;
+	@ObfuscatedName("e")
+	@ObfuscatedSignature(
+		descriptor = "Lid;"
 	)
 	@Export("patch")
 	MusicPatch patch;
-	@ObfuscatedName("f")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "Lau;"
+		descriptor = "Lar;"
 	)
 	@Export("rawSound")
 	RawSound rawSound;
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		descriptor = "Lhk;"
+		descriptor = "Lho;"
 	)
-	MusicPatchNode2 field2894;
-	@ObfuscatedName("p")
-	@ObfuscatedGetter(
-		intValue = -2143225367
-	)
-	int field2893;
+	MusicPatchNode2 field2904;
 	@ObfuscatedName("j")
 	@ObfuscatedGetter(
-		intValue = -723940785
-	)
-	int field2896;
-	@ObfuscatedName("r")
-	@ObfuscatedGetter(
-		intValue = 1566640151
+		intValue = 461020611
 	)
 	int field2897;
-	@ObfuscatedName("b")
-	@ObfuscatedGetter(
-		intValue = 970092925
-	)
-	int field2898;
-	@ObfuscatedName("d")
-	@ObfuscatedGetter(
-		intValue = 215164221
-	)
-	int field2900;
-	@ObfuscatedName("s")
-	@ObfuscatedGetter(
-		intValue = -1146128297
-	)
-	int field2899;
-	@ObfuscatedName("u")
-	@ObfuscatedGetter(
-		intValue = 1897214019
-	)
-	int field2901;
-	@ObfuscatedName("l")
-	@ObfuscatedGetter(
-		intValue = -1629995008
-	)
-	int field2902;
 	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = 370154707
+		intValue = -127033357
 	)
-	int field2903;
-	@ObfuscatedName("c")
+	int field2910;
+	@ObfuscatedName("m")
 	@ObfuscatedGetter(
-		intValue = 939918277
+		intValue = -259364835
 	)
-	int field2911;
-	@ObfuscatedName("e")
+	int field2900;
+	@ObfuscatedName("r")
 	@ObfuscatedGetter(
-		intValue = 1951740649
+		intValue = -465046883
 	)
-	int field2895;
-	@ObfuscatedName("g")
+	int field2902;
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = -292962099
-	)
-	int field2906;
-	@ObfuscatedName("a")
-	@ObfuscatedGetter(
-		intValue = 726334989
+		intValue = -1421225285
 	)
 	int field2907;
+	@ObfuscatedName("d")
+	@ObfuscatedGetter(
+		intValue = -1943082417
+	)
+	int field2901;
+	@ObfuscatedName("z")
+	@ObfuscatedGetter(
+		intValue = 903145849
+	)
+	int field2914;
+	@ObfuscatedName("b")
+	@ObfuscatedGetter(
+		intValue = -1537236139
+	)
+	int field2894;
+	@ObfuscatedName("i")
+	@ObfuscatedGetter(
+		intValue = -920697405
+	)
+	int field2906;
 	@ObfuscatedName("k")
 	@ObfuscatedGetter(
-		intValue = 1237883869
+		intValue = 1809682869
+	)
+	int field2905;
+	@ObfuscatedName("g")
+	@ObfuscatedGetter(
+		intValue = 997505503
+	)
+	int field2903;
+	@ObfuscatedName("t")
+	@ObfuscatedGetter(
+		intValue = 1451777966
+	)
+	int field2909;
+	@ObfuscatedName("x")
+	@ObfuscatedGetter(
+		intValue = -1407978861
 	)
 	int field2908;
-	@ObfuscatedName("m")
+	@ObfuscatedName("u")
+	@ObfuscatedGetter(
+		intValue = 2142706347
+	)
+	int field2911;
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
 		descriptor = "Lbv;"
 	)
 	@Export("stream")
 	RawPcmStream stream;
-	@ObfuscatedName("x")
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = 730487289
+		intValue = -1220588121
 	)
-	int field2891;
-	@ObfuscatedName("w")
+	int field2913;
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = -576530835
+		intValue = -1263258455
 	)
-	int field2904;
+	int field2899;
 
 	MusicPatchNode() {
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "-88"
+		descriptor = "(I)V",
+		garbageValue = "-818920920"
 	)
-	void method4634() {
+	void method4772() {
 		this.patch = null;
 		this.rawSound = null;
-		this.field2894 = null;
+		this.field2904 = null;
 		this.stream = null;
 	}
 
 	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/CharSequence;IZI)Z",
-		garbageValue = "-387650050"
+		descriptor = "(III)I",
+		garbageValue = "-1957500664"
 	)
-	static boolean method4638(CharSequence var0, int var1, boolean var2) {
-		if (var1 >= 2 && var1 <= 36) {
-			boolean var3 = false;
-			boolean var4 = false;
-			int var5 = 0;
-			int var6 = var0.length();
+	public static int method4776(int var0, int var1) {
+		return (var0 << 8) + var1;
+	}
 
-			for (int var7 = 0; var7 < var6; ++var7) {
-				char var8 = var0.charAt(var7);
-				if (var7 == 0) {
-					if (var8 == '-') {
-						var3 = true;
-						continue;
-					}
+	@ObfuscatedName("ji")
+	@ObfuscatedSignature(
+		descriptor = "(IB)Ljava/lang/String;",
+		garbageValue = "-68"
+	)
+	@Export("formatItemStacks")
+	static final String formatItemStacks(int var0) {
+		String var1 = Integer.toString(var0);
 
-					if (var8 == '+') {
-						continue;
-					}
-				}
+		for (int var2 = var1.length() - 3; var2 > 0; var2 -= 3) {
+			var1 = var1.substring(0, var2) + "," + var1.substring(var2);
+		}
 
-				int var10;
-				if (var8 >= '0' && var8 <= '9') {
-					var10 = var8 - '0';
-				} else if (var8 >= 'A' && var8 <= 'Z') {
-					var10 = var8 - '7';
-				} else {
-					if (var8 < 'a' || var8 > 'z') {
-						return false;
-					}
-
-					var10 = var8 - 'W';
-				}
-
-				if (var10 >= var1) {
-					return false;
-				}
-
-				if (var3) {
-					var10 = -var10;
-				}
-
-				int var9 = var10 + var5 * var1;
-				if (var9 / var1 != var5) {
-					return false;
-				}
-
-				var5 = var9;
-				var4 = true;
-			}
-
-			return var4;
+		if (var1.length() > 9) {
+			return " " + SecureRandomFuture.colorStartTag(65408) + var1.substring(0, var1.length() - 8) + "M" + " " + " (" + var1 + ")" + "</col>";
 		} else {
-			throw new IllegalArgumentException("" + var1);
+			return var1.length() > 6 ? " " + SecureRandomFuture.colorStartTag(16777215) + var1.substring(0, var1.length() - 4) + "K" + " " + " (" + var1 + ")" + "</col>" : " " + SecureRandomFuture.colorStartTag(16776960) + var1 + "</col>";
 		}
 	}
 }
