@@ -6,145 +6,106 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bo")
+@ObfuscatedName("bn")
 @Implements("ReflectionCheck")
 public class ReflectionCheck extends Node {
-	@ObfuscatedName("q")
+	@ObfuscatedName("g")
 	@ObfuscatedGetter(
-		intValue = -1538307343
+		intValue = 1718223303
 	)
-	@Export("canvasHeight")
-	public static int canvasHeight;
-	@ObfuscatedName("lz")
-	@ObfuscatedSignature(
-		descriptor = "Lcp;"
-	)
-	@Export("tempMenuAction")
-	static MenuAction tempMenuAction;
-	@ObfuscatedName("ld")
-	@ObfuscatedSignature(
-		descriptor = "Lio;"
-	)
-	static Widget field609;
-	@ObfuscatedName("v")
-	@ObfuscatedGetter(
-		intValue = -848582505
-	)
-	@Export("id")
-	int id;
-	@ObfuscatedName("n")
-	@ObfuscatedGetter(
-		intValue = -637285787
-	)
-	@Export("size")
-	int size;
+	@Export("graphicsTickTimeIdx")
+	static int graphicsTickTimeIdx;
 	@ObfuscatedName("f")
 	@Export("intReplaceValues")
 	int[] intReplaceValues;
+	@ObfuscatedName("e")
+	@ObfuscatedGetter(
+		intValue = -1554436787
+	)
+	@Export("id")
+	int id;
+	@ObfuscatedName("v")
+	@ObfuscatedGetter(
+		intValue = 1579568443
+	)
+	@Export("size")
+	int size;
 	@ObfuscatedName("y")
 	@Export("operations")
 	int[] operations;
-	@ObfuscatedName("p")
+	@ObfuscatedName("j")
 	@Export("creationErrors")
 	int[] creationErrors;
-	@ObfuscatedName("j")
+	@ObfuscatedName("o")
 	@Export("fields")
 	Field[] fields;
+	@ObfuscatedName("m")
+	@Export("arguments")
+	byte[][][] arguments;
 	@ObfuscatedName("r")
 	@Export("methods")
 	Method[] methods;
-	@ObfuscatedName("b")
-	@Export("arguments")
-	byte[][][] arguments;
 
 	ReflectionCheck() {
 	}
 
-	@ObfuscatedName("in")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		descriptor = "(III)V",
-		garbageValue = "-372153509"
+		descriptor = "(II)Ljs;",
+		garbageValue = "1563707266"
 	)
-	static void method1126(int var0, int var1) {
-		int var2 = Widget.fontBold12.stringWidth("Choose Option");
+	public static GameBuild method1228(int var0) {
+		GameBuild[] var1 = UserComparator8.method2538();
 
-		int var3;
-		int var4;
-		for (var3 = 0; var3 < Client.menuOptionsCount; ++var3) {
-			var4 = Widget.fontBold12.stringWidth(MouseRecorder.method2098(var3));
-			if (var4 > var2) {
-				var2 = var4;
+		for (int var2 = 0; var2 < var1.length; ++var2) {
+			GameBuild var3 = var1[var2];
+			if (var0 == var3.buildId) {
+				return var3;
 			}
 		}
 
-		var2 += 8;
-		var3 = Client.menuOptionsCount * 15 + 22;
-		var4 = var0 - var2 / 2;
-		if (var2 + var4 > class32.canvasWidth) {
-			var4 = class32.canvasWidth - var2;
-		}
-
-		if (var4 < 0) {
-			var4 = 0;
-		}
-
-		int var5 = var1;
-		if (var1 + var3 > canvasHeight) {
-			var5 = canvasHeight - var3;
-		}
-
-		if (var5 < 0) {
-			var5 = 0;
-		}
-
-		class14.menuX = var4;
-		class243.menuY = var5;
-		class29.menuWidth = var2;
-		class24.menuHeight = Client.menuOptionsCount * 15 + 22;
+		return null;
 	}
 
-	@ObfuscatedName("jr")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "([Lio;II)V",
-		garbageValue = "2064427541"
+		descriptor = "(Lbk;Lbk;IZIZB)I",
+		garbageValue = "88"
 	)
-	@Export("runComponentCloseListeners")
-	static final void runComponentCloseListeners(Widget[] var0, int var1) {
-		for (int var2 = 0; var2 < var0.length; ++var2) {
-			Widget var3 = var0[var2];
-			if (var3 != null) {
-				if (var3.type == 0) {
-					if (var3.children != null) {
-						runComponentCloseListeners(var3.children, var1);
-					}
+	static int method1227(World var0, World var1, int var2, boolean var3, int var4, boolean var5) {
+		int var6 = WorldMapRectangle.compareWorlds(var0, var1, var2, var3);
+		if (var6 != 0) {
+			return var3 ? -var6 : var6;
+		} else if (var4 == -1) {
+			return 0;
+		} else {
+			int var7 = WorldMapRectangle.compareWorlds(var0, var1, var4, var5);
+			return var5 ? -var7 : var7;
+		}
+	}
 
-					InterfaceParent var4 = (InterfaceParent)Client.interfaceParents.get((long)var3.id);
-					if (var4 != null) {
-						Login.runIntfCloseListeners(var4.group, var1);
-					}
-				}
+	@ObfuscatedName("fk")
+	@ObfuscatedSignature(
+		descriptor = "(IIB)V",
+		garbageValue = "111"
+	)
+	static void method1230(int var0, int var1) {
+		if (class4.clientPreferences.musicVolume != 0 && var0 != -1) {
+			class105.method2357(class160.archive11, var0, 0, class4.clientPreferences.musicVolume, false);
+			Client.field862 = true;
+		}
 
-				ScriptEvent var5;
-				if (var1 == 0 && var3.onDialogAbort != null) {
-					var5 = new ScriptEvent();
-					var5.widget = var3;
-					var5.args = var3.onDialogAbort;
-					PacketWriter.runScriptEvent(var5);
-				}
+	}
 
-				if (var1 == 1 && var3.onSubChange != null) {
-					if (var3.childIndex >= 0) {
-						Widget var6 = Frames.getWidget(var3.id);
-						if (var6 == null || var6.children == null || var3.childIndex >= var6.children.length || var3 != var6.children[var3.childIndex]) {
-							continue;
-						}
-					}
-
-					var5 = new ScriptEvent();
-					var5.widget = var3;
-					var5.args = var3.onSubChange;
-					PacketWriter.runScriptEvent(var5);
-				}
+	@ObfuscatedName("il")
+	@ObfuscatedSignature(
+		descriptor = "(IIIIB)V",
+		garbageValue = "0"
+	)
+	static final void method1229(int var0, int var1, int var2, int var3) {
+		for (int var4 = 0; var4 < Client.rootWidgetCount; ++var4) {
+			if (Client.rootWidgetWidths[var4] + Client.rootWidgetXs[var4] > var0 && Client.rootWidgetXs[var4] < var0 + var2 && Client.rootWidgetHeights[var4] + Client.rootWidgetYs[var4] > var1 && Client.rootWidgetYs[var4] < var3 + var1) {
+				Client.field712[var4] = true;
 			}
 		}
 

@@ -4,35 +4,30 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fw")
+@ObfuscatedName("fu")
 @Implements("WorldMapData_1")
 public class WorldMapData_1 extends AbstractWorldMapData {
-	@ObfuscatedName("ee")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = -232137213
-	)
-	static int field2008;
-	@ObfuscatedName("v")
-	@ObfuscatedGetter(
-		intValue = -1553419655
+		intValue = -624362671
 	)
 	@Export("chunkXLow")
 	int chunkXLow;
-	@ObfuscatedName("n")
+	@ObfuscatedName("e")
 	@ObfuscatedGetter(
-		intValue = 558324401
+		intValue = -2082539499
 	)
 	@Export("chunkYLow")
 	int chunkYLow;
-	@ObfuscatedName("f")
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = 2120333981
+		intValue = -2054670475
 	)
 	@Export("chunkX")
 	int chunkX;
 	@ObfuscatedName("y")
 	@ObfuscatedGetter(
-		intValue = -1464921775
+		intValue = -1388655107
 	)
 	@Export("chunkY")
 	int chunkY;
@@ -40,15 +35,15 @@ public class WorldMapData_1 extends AbstractWorldMapData {
 	WorldMapData_1() {
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(Lnd;I)V",
-		garbageValue = "1665401809"
+		descriptor = "(Lnt;I)V",
+		garbageValue = "1149185778"
 	)
 	@Export("init")
 	void init(Buffer var1) {
 		int var2 = var1.readUnsignedByte();
-		if (var2 != WorldMapID.field2107.value) {
+		if (var2 != WorldMapID.field2108.value) {
 			throw new IllegalStateException("");
 		} else {
 			super.minPlane = var1.readUnsignedByte();
@@ -61,26 +56,26 @@ public class WorldMapData_1 extends AbstractWorldMapData {
 			super.regionY = var1.readUnsignedShort();
 			this.chunkX = var1.readUnsignedByte();
 			this.chunkY = var1.readUnsignedByte();
-			super.groupId = var1.method6583();
-			super.fileId = var1.method6583();
+			super.groupId = var1.method6630();
+			super.fileId = var1.method6630();
 		}
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		descriptor = "(Lnd;I)V",
-		garbageValue = "1223315238"
+		descriptor = "(Lnt;I)V",
+		garbageValue = "-1563875465"
 	)
 	@Export("readGeography")
 	void readGeography(Buffer var1) {
 		super.planes = Math.min(super.planes, 4);
 		super.floorUnderlayIds = new short[1][64][64];
 		super.floorOverlayIds = new short[super.planes][64][64];
-		super.field2067 = new byte[super.planes][64][64];
-		super.field2065 = new byte[super.planes][64][64];
+		super.field2068 = new byte[super.planes][64][64];
+		super.field2074 = new byte[super.planes][64][64];
 		super.decorations = new WorldMapDecoration[super.planes][64][64][];
 		int var2 = var1.readUnsignedByte();
-		if (var2 != class179.field2099.value) {
+		if (var2 != class180.field2103.value) {
 			throw new IllegalStateException("");
 		} else {
 			int var3 = var1.readUnsignedByte();
@@ -100,10 +95,10 @@ public class WorldMapData_1 extends AbstractWorldMapData {
 		}
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(I)I",
-		garbageValue = "-225746465"
+		descriptor = "(S)I",
+		garbageValue = "24313"
 	)
 	@Export("getChunkXLow")
 	int getChunkXLow() {
@@ -113,17 +108,17 @@ public class WorldMapData_1 extends AbstractWorldMapData {
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
 		descriptor = "(I)I",
-		garbageValue = "-528787257"
+		garbageValue = "-1571205738"
 	)
 	@Export("getChunkYLow")
 	int getChunkYLow() {
 		return this.chunkYLow;
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
-		descriptor = "(I)I",
-		garbageValue = "-20705095"
+		descriptor = "(B)I",
+		garbageValue = "-115"
 	)
 	@Export("getChunkX")
 	int getChunkX() {
@@ -132,12 +127,16 @@ public class WorldMapData_1 extends AbstractWorldMapData {
 
 	@ObfuscatedName("r")
 	@ObfuscatedSignature(
-		descriptor = "(I)I",
-		garbageValue = "1881961313"
+		descriptor = "(B)I",
+		garbageValue = "-29"
 	)
 	@Export("getChunkY")
 	int getChunkY() {
 		return this.chunkY;
+	}
+
+	public int hashCode() {
+		return super.regionX | super.regionY << 8 | this.chunkX << 16 | this.chunkY << 24;
 	}
 
 	public boolean equals(Object var1) {
@@ -145,24 +144,48 @@ public class WorldMapData_1 extends AbstractWorldMapData {
 			return false;
 		} else {
 			WorldMapData_1 var2 = (WorldMapData_1)var1;
-			if (super.regionX == var2.regionX && super.regionY == var2.regionY) {
-				return this.chunkX == var2.chunkX && var2.chunkY == this.chunkY;
+			if (var2.regionX == super.regionX && super.regionY == var2.regionY) {
+				return this.chunkX == var2.chunkX && this.chunkY == var2.chunkY;
 			} else {
 				return false;
 			}
 		}
 	}
 
-	public int hashCode() {
-		return super.regionX | super.regionY << 8 | this.chunkX << 16 | this.chunkY << 24;
+	@ObfuscatedName("f")
+	@ObfuscatedSignature(
+		descriptor = "(I)Lhg;",
+		garbageValue = "1853252899"
+	)
+	public static PacketBufferNode method3583() {
+		return PacketBufferNode.PacketBufferNode_packetBufferNodeCount == 0 ? new PacketBufferNode() : PacketBufferNode.PacketBufferNode_packetBufferNodes[--PacketBufferNode.PacketBufferNode_packetBufferNodeCount];
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(I)[Ljw;",
-		garbageValue = "1606153053"
+		descriptor = "(B)[Lhj;",
+		garbageValue = "1"
 	)
-	static class261[] method3525() {
-		return new class261[]{class261.field3201, class261.field3200};
+	public static class226[] method3582() {
+		return new class226[]{class226.field2688, class226.field2683, class226.field2684, class226.field2692, class226.field2693, class226.field2687, class226.field2686, class226.field2689, class226.field2690, class226.field2691};
+	}
+
+	@ObfuscatedName("e")
+	@ObfuscatedSignature(
+		descriptor = "(II)Liv;",
+		garbageValue = "1896933792"
+	)
+	@Export("getWidget")
+	public static Widget getWidget(int var0) {
+		int var1 = var0 >> 16;
+		int var2 = var0 & 65535;
+		if (GrandExchangeOfferOwnWorldComparator.Widget_interfaceComponents[var1] == null || GrandExchangeOfferOwnWorldComparator.Widget_interfaceComponents[var1][var2] == null) {
+			boolean var3 = class20.loadInterface(var1);
+			if (!var3) {
+				return null;
+			}
+		}
+
+		return GrandExchangeOfferOwnWorldComparator.Widget_interfaceComponents[var1][var2];
 	}
 }

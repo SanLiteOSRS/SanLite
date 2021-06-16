@@ -592,4 +592,10 @@ public interface RSWidget extends Widget
 
 	@Import("fillMode")
 	RSFillMode getFillMode();
+
+	@Import("textLineHeight")
+	int getLineHeight();
+
+	@Import("textLineHeight")
+	void setLineHeight(int height);
 }

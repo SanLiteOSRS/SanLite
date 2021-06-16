@@ -7,13 +7,19 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cr")
+@ObfuscatedName("cv")
 @Implements("SecureRandomFuture")
 public class SecureRandomFuture {
-	@ObfuscatedName("v")
+	@ObfuscatedName("dl")
+	@ObfuscatedSignature(
+		descriptor = "Ljf;"
+	)
+	@Export("archive2")
+	static Archive archive2;
+	@ObfuscatedName("f")
 	@Export("executor")
 	ExecutorService executor;
-	@ObfuscatedName("n")
+	@ObfuscatedName("e")
 	@Export("future")
 	Future future;
 
@@ -22,10 +28,10 @@ public class SecureRandomFuture {
 		this.future = this.executor.submit(new SecureRandomCallable());
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
 		descriptor = "(B)V",
-		garbageValue = "32"
+		garbageValue = "96"
 	)
 	@Export("shutdown")
 	void shutdown() {
@@ -33,81 +39,47 @@ public class SecureRandomFuture {
 		this.executor = null;
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
 		descriptor = "(I)Z",
-		garbageValue = "-1067207786"
+		garbageValue = "1235169435"
 	)
 	@Export("isDone")
 	boolean isDone() {
 		return this.future.isDone();
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(B)Ljava/security/SecureRandom;",
-		garbageValue = "97"
+		descriptor = "(I)Ljava/security/SecureRandom;",
+		garbageValue = "-455615969"
 	)
 	@Export("get")
 	SecureRandom get() {
 		try {
 			return (SecureRandom)this.future.get();
 		} catch (Exception var2) {
-			return PlayerComposition.method4711();
+			return GrandExchangeOfferOwnWorldComparator.method1271();
 		}
 	}
 
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "([I[II)V",
-		garbageValue = "-2018126556"
-	)
-	public static void method1981(int[] var0, int[] var1) {
-		if (var0 != null && var1 != null) {
-			ByteArrayPool.ByteArrayPool_alternativeSizes = var0;
-			ByteArrayPool.ByteArrayPool_altSizeArrayCounts = new int[var0.length];
-			class20.ByteArrayPool_arrays = new byte[var0.length][][];
-
-			for (int var2 = 0; var2 < ByteArrayPool.ByteArrayPool_alternativeSizes.length; ++var2) {
-				class20.ByteArrayPool_arrays[var2] = new byte[var1[var2]][];
-			}
-
-		} else {
-			ByteArrayPool.ByteArrayPool_alternativeSizes = null;
-			ByteArrayPool.ByteArrayPool_altSizeArrayCounts = null;
-			class20.ByteArrayPool_arrays = null;
-		}
-	}
-
-	@ObfuscatedName("v")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
 		descriptor = "(II)Ljava/lang/String;",
-		garbageValue = "-1561643653"
+		garbageValue = "-687753348"
 	)
-	static String method1982(int var0) {
-		return "<img=" + var0 + ">";
+	@Export("colorStartTag")
+	static String colorStartTag(int var0) {
+		return "<col=" + Integer.toHexString(var0) + ">";
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("ki")
 	@ObfuscatedSignature(
-		descriptor = "(Lmr;III)I",
-		garbageValue = "-1327945264"
+		descriptor = "(I)V",
+		garbageValue = "-758448635"
 	)
-	static int method1977(IterableNodeHashTable var0, int var1, int var2) {
-		if (var0 == null) {
-			return var2;
-		} else {
-			IntegerNode var3 = (IntegerNode)var0.get((long)var1);
-			return var3 == null ? var2 : var3.integer;
-		}
-	}
-
-	@ObfuscatedName("fa")
-	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "353118952"
-	)
-	static int method1980(int var0) {
-		return var0 * 3 + 600;
+	static final void method2085() {
+		Client.field819 = Client.cycleCntr;
+		class170.field2016 = true;
 	}
 }

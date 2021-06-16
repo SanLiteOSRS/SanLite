@@ -6,39 +6,39 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("ag")
 public class class33 implements class30 {
-	@ObfuscatedName("v")
-	final MessageDigest field249;
+	@ObfuscatedName("f")
+	final MessageDigest field230;
 
 	@ObfuscatedSignature(
-		descriptor = "(Laj;)V"
+		descriptor = "(Lae;)V"
 	)
 	class33(class36 var1) {
-		this.field249 = this.method321();
+		this.field230 = this.method393();
 	}
 
-	@ObfuscatedName("v")
-	boolean method307(int var1, String var2, long var3) {
-		byte[] var5 = this.method310(var2, var3);
-		return method308(var5) >= var1;
+	@ObfuscatedName("f")
+	boolean method389(int var1, String var2, long var3) {
+		byte[] var5 = this.method388(var2, var3);
+		return method392(var5) >= var1;
 	}
 
 	@ObfuscatedName("y")
-	byte[] method310(String var1, long var2) {
+	byte[] method388(String var1, long var2) {
 		StringBuilder var4 = new StringBuilder();
 		var4.append(var1).append(Long.toHexString(var2));
-		this.field249.reset();
+		this.field230.reset();
 
 		try {
-			this.field249.update(var4.toString().getBytes("UTF-8"));
+			this.field230.update(var4.toString().getBytes("UTF-8"));
 		} catch (UnsupportedEncodingException var6) {
 			var6.printStackTrace();
 		}
 
-		return this.field249.digest();
+		return this.field230.digest();
 	}
 
-	@ObfuscatedName("p")
-	MessageDigest method321() {
+	@ObfuscatedName("j")
+	MessageDigest method393() {
 		try {
 			return MessageDigest.getInstance("SHA-256");
 		} catch (NoSuchAlgorithmException var2) {
@@ -47,14 +47,14 @@ public class class33 implements class30 {
 		}
 	}
 
-	@ObfuscatedName("n")
-	static int method308(byte[] var0) {
+	@ObfuscatedName("e")
+	static int method392(byte[] var0) {
 		int var1 = 0;
 		byte[] var2 = var0;
 
 		for (int var3 = 0; var3 < var2.length; ++var3) {
 			byte var4 = var2[var3];
-			int var5 = method309(var4);
+			int var5 = method391(var4);
 			var1 += var5;
 			if (var5 != 8) {
 				break;
@@ -64,8 +64,8 @@ public class class33 implements class30 {
 		return var1;
 	}
 
-	@ObfuscatedName("f")
-	static int method309(byte var0) {
+	@ObfuscatedName("v")
+	static int method391(byte var0) {
 		int var1 = 0;
 		if (var0 == 0) {
 			var1 = 8;

@@ -1,39 +1,28 @@
+import java.io.IOException;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("ex")
+@ObfuscatedName("eb")
 @Implements("VarpDefinition")
 public class VarpDefinition extends DualNode {
-	@ObfuscatedName("rr")
-	@ObfuscatedGetter(
-		intValue = 1695432704
-	)
-	static int field1544;
-	@ObfuscatedName("v")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "Ljv;"
+		descriptor = "Ljp;"
 	)
 	@Export("VarpDefinition_archive")
 	static AbstractArchive VarpDefinition_archive;
-	@ObfuscatedName("n")
-	@ObfuscatedGetter(
-		intValue = -1782450907
-	)
-	@Export("VarpDefinition_fileCount")
-	public static int VarpDefinition_fileCount;
-	@ObfuscatedName("f")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "Lhz;"
+		descriptor = "Lht;"
 	)
 	@Export("VarpDefinition_cached")
-	public static EvictingDualNodeHashTable VarpDefinition_cached;
+	static EvictingDualNodeHashTable VarpDefinition_cached;
 	@ObfuscatedName("y")
 	@ObfuscatedGetter(
-		intValue = 812709151
+		intValue = 1436014737
 	)
 	@Export("type")
 	public int type;
@@ -46,10 +35,10 @@ public class VarpDefinition extends DualNode {
 		this.type = 0;
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(Lnd;I)V",
-		garbageValue = "1856210017"
+		descriptor = "(Lnt;I)V",
+		garbageValue = "-383467418"
 	)
 	@Export("decode")
 	void decode(Buffer var1) {
@@ -65,8 +54,8 @@ public class VarpDefinition extends DualNode {
 
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		descriptor = "(Lnd;II)V",
-		garbageValue = "1230881703"
+		descriptor = "(Lnt;IB)V",
+		garbageValue = "8"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
@@ -76,38 +65,38 @@ public class VarpDefinition extends DualNode {
 
 	}
 
-	@ObfuscatedName("p")
-	public static int method2630(long var0) {
-		return (int)(var0 >>> 0 & 127L);
-	}
-
-	@ObfuscatedName("k")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(ILcf;ZI)I",
-		garbageValue = "-2015232474"
+		descriptor = "(I)Lcn;",
+		garbageValue = "1169872264"
 	)
-	static int method2629(int var0, Script var1, boolean var2) {
-		Widget var3 = Frames.getWidget(Interpreter.Interpreter_intStack[--class44.Interpreter_intStackSize]);
-		if (var0 == ScriptOpcodes.IF_GETX) {
-			Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = var3.x;
-			return 1;
-		} else if (var0 == ScriptOpcodes.IF_GETY) {
-			Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = var3.y;
-			return 1;
-		} else if (var0 == ScriptOpcodes.IF_GETWIDTH) {
-			Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = var3.width;
-			return 1;
-		} else if (var0 == ScriptOpcodes.IF_GETHEIGHT) {
-			Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = var3.height;
-			return 1;
-		} else if (var0 == ScriptOpcodes.IF_GETHIDE) {
-			Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = var3.isHidden ? 1 : 0;
-			return 1;
-		} else if (var0 == ScriptOpcodes.IF_GETLAYER) {
-			Interpreter.Interpreter_intStack[++class44.Interpreter_intStackSize - 1] = var3.parentId;
-			return 1;
-		} else {
-			return 2;
+	static ClientPreferences method2715() {
+		AccessFile var0 = null;
+		ClientPreferences var1 = new ClientPreferences();
+
+		try {
+			var0 = class262.getPreferencesFile("", class182.field2114.name, false);
+			byte[] var2 = new byte[(int)var0.length()];
+
+			int var4;
+			for (int var3 = 0; var3 < var2.length; var3 += var4) {
+				var4 = var0.read(var2, var3, var2.length - var3);
+				if (var4 == -1) {
+					throw new IOException();
+				}
+			}
+
+			var1 = new ClientPreferences(new Buffer(var2));
+		} catch (Exception var6) {
 		}
+
+		try {
+			if (var0 != null) {
+				var0.close();
+			}
+		} catch (Exception var5) {
+		}
+
+		return var1;
 	}
 }

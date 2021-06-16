@@ -1,38 +1,53 @@
 import net.runelite.mapping.Export;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("nx")
-public class class372 {
-	@ObfuscatedName("v")
-	public static final int[] field4124;
-	@ObfuscatedName("b")
-	static byte[][][] field4123;
+@ObfuscatedName("nj")
+final class class372 implements class371 {
+	@ObfuscatedName("m")
+	@Export("ByteArrayPool_alternativeSizes")
+	public static int[] ByteArrayPool_alternativeSizes;
+	@ObfuscatedName("r")
+	@ObfuscatedGetter(
+		intValue = -414913701
+	)
+	@Export("gameCyclesToDo")
+	static int gameCyclesToDo;
 
-	static {
-		field4124 = new int[]{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, -1, 1, -1, 1, 1, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, -1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 1, 1, 1, 1, 3, 3};
+	@ObfuscatedName("f")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/Object;Lnt;I)V",
+		garbageValue = "1796019185"
+	)
+	public void vmethod6536(Object var1, Buffer var2) {
+		this.method6492((Integer)var1, var2);
 	}
 
-	@ObfuscatedName("y")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		descriptor = "(B)[Lja;",
+		descriptor = "(Lnt;B)Ljava/lang/Object;",
+		garbageValue = "-46"
+	)
+	public Object vmethod6533(Buffer var1) {
+		return var1.readInt();
+	}
+
+	@ObfuscatedName("o")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/Integer;Lnt;B)V",
 		garbageValue = "5"
 	)
-	@Export("PlayerType_values")
-	public static PlayerType[] PlayerType_values() {
-		return new PlayerType[]{PlayerType.field3548, PlayerType.PlayerType_playerModerator, PlayerType.PlayerType_hardcoreIronman, PlayerType.PlayerType_jagexModerator, PlayerType.PlayerType_ironman, PlayerType.PlayerType_ultimateIronman, PlayerType.PlayerType_normal};
+	void method6492(Integer var1, Buffer var2) {
+		var2.writeInt(var1);
 	}
 
-	@ObfuscatedName("ha")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
-		descriptor = "(III)Lfc;",
-		garbageValue = "-43218468"
+		descriptor = "(IB)Z",
+		garbageValue = "-10"
 	)
-	static RouteStrategy method6463(int var0, int var1) {
-		Client.field785.approxDestinationX = var0;
-		Client.field785.approxDestinationY = var1;
-		Client.field785.approxDestinationSizeX = 1;
-		Client.field785.approxDestinationSizeY = 1;
-		return Client.field785;
+	public static boolean method6497(int var0) {
+		return (var0 >> 30 & 1) != 0;
 	}
 }

@@ -3,10 +3,10 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("dy")
+@ObfuscatedName("dp")
 @Implements("UserComparator8")
 public class UserComparator8 extends AbstractUserComparator {
-	@ObfuscatedName("v")
+	@ObfuscatedName("f")
 	@Export("reversed")
 	final boolean reversed;
 
@@ -14,10 +14,10 @@ public class UserComparator8 extends AbstractUserComparator {
 		this.reversed = var1;
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(Llv;Llv;I)I",
-		garbageValue = "-1643284848"
+		descriptor = "(Lly;Lly;B)I",
+		garbageValue = "1"
 	)
 	@Export("compareBuddy")
 	int compareBuddy(Buddy var1, Buddy var2) {
@@ -36,9 +36,47 @@ public class UserComparator8 extends AbstractUserComparator {
 		return this.compareBuddy((Buddy)var1, (Buddy)var2);
 	}
 
-	@ObfuscatedName("n")
-	static boolean method2437(long var0) {
-		int var2 = (int)(var0 >>> 14 & 3L);
-		return var2 == 2;
+	@ObfuscatedName("f")
+	@ObfuscatedSignature(
+		descriptor = "(I)[Ljs;",
+		garbageValue = "2010413146"
+	)
+	static GameBuild[] method2538() {
+		return new GameBuild[]{GameBuild.WIP, GameBuild.BUILDLIVE, GameBuild.RC, GameBuild.LIVE};
+	}
+
+	@ObfuscatedName("h")
+	@ObfuscatedSignature(
+		descriptor = "(Liv;I[B[BI)V",
+		garbageValue = "700891995"
+	)
+	@Export("Widget_setKey")
+	static final void Widget_setKey(Widget var0, int var1, byte[] var2, byte[] var3) {
+		if (var0.field3035 == null) {
+			if (var2 == null) {
+				return;
+			}
+
+			var0.field3035 = new byte[11][];
+			var0.field3036 = new byte[11][];
+			var0.field3037 = new int[11];
+			var0.field3038 = new int[11];
+		}
+
+		var0.field3035[var1] = var2;
+		if (var2 != null) {
+			var0.field3034 = true;
+		} else {
+			var0.field3034 = false;
+
+			for (int var4 = 0; var4 < var0.field3035.length; ++var4) {
+				if (var0.field3035[var4] != null) {
+					var0.field3034 = true;
+					break;
+				}
+			}
+		}
+
+		var0.field3036[var1] = var3;
 	}
 }

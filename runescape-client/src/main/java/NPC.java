@@ -3,12 +3,14 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("db")
+@ObfuscatedName("du")
 @Implements("NPC")
 public final class NPC extends Actor {
-	@ObfuscatedName("v")
+	@ObfuscatedName("h")
+	static int[][] field1328;
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "Lef;"
+		descriptor = "Lev;"
 	)
 	@Export("definition")
 	NPCComposition definition;
@@ -16,12 +18,12 @@ public final class NPC extends Actor {
 	NPC() {
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
 		descriptor = "(IBI)V",
-		garbageValue = "-300135840"
+		garbageValue = "464713679"
 	)
-	final void method2259(int var1, byte var2) {
+	final void method2343(int var1, byte var2) {
 		int var3 = super.pathX[0];
 		int var4 = super.pathY[0];
 		if (var1 == 0) {
@@ -60,7 +62,7 @@ public final class NPC extends Actor {
 			--var4;
 		}
 
-		if (super.sequence != -1 && LoginScreenAnimation.SequenceDefinition_get(super.sequence).field1890 == 1) {
+		if (super.sequence != -1 && WorldMapScaleHandler.SequenceDefinition_get(super.sequence).field1893 == 1) {
 			super.sequence = -1;
 		}
 
@@ -79,18 +81,18 @@ public final class NPC extends Actor {
 		super.pathTraversed[0] = var2;
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		descriptor = "(B)Lgr;",
-		garbageValue = "-76"
+		descriptor = "(I)Lgd;",
+		garbageValue = "326918784"
 	)
 	@Export("getModel")
 	protected final Model getModel() {
 		if (this.definition == null) {
 			return null;
 		} else {
-			SequenceDefinition var1 = super.sequence != -1 && super.sequenceDelay == 0 ? LoginScreenAnimation.SequenceDefinition_get(super.sequence) : null;
-			SequenceDefinition var2 = super.movementSequence == -1 || super.idleSequence == super.movementSequence && var1 != null ? null : LoginScreenAnimation.SequenceDefinition_get(super.movementSequence);
+			SequenceDefinition var1 = super.sequence != -1 && super.sequenceDelay == 0 ? WorldMapScaleHandler.SequenceDefinition_get(super.sequence) : null;
+			SequenceDefinition var2 = super.movementSequence == -1 || super.idleSequence == super.movementSequence && var1 != null ? null : WorldMapScaleHandler.SequenceDefinition_get(super.movementSequence);
 			Model var3 = this.definition.getModel(var1, super.sequenceFrame, var2, super.movementFrame);
 			if (var3 == null) {
 				return null;
@@ -98,9 +100,9 @@ public final class NPC extends Actor {
 				var3.calculateBoundsCylinder();
 				super.defaultHeight = var3.height;
 				if (super.spotAnimation != -1 && super.spotAnimationFrame != -1) {
-					Model var4 = VarcInt.SpotAnimationDefinition_get(super.spotAnimation).getModel(super.spotAnimationFrame);
+					Model var4 = Tiles.SpotAnimationDefinition_get(super.spotAnimation).getModel(super.spotAnimationFrame);
 					if (var4 != null) {
-						var4.offsetBy(0, -super.field1277, 0);
+						var4.offsetBy(0, -super.field1263, 0);
 						Model[] var5 = new Model[]{var3, var4};
 						var3 = new Model(var5, 2);
 					}
@@ -115,13 +117,13 @@ public final class NPC extends Actor {
 		}
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(IIZI)V",
-		garbageValue = "-660093008"
+		descriptor = "(IIZB)V",
+		garbageValue = "3"
 	)
-	final void method2260(int var1, int var2, boolean var3) {
-		if (super.sequence != -1 && LoginScreenAnimation.SequenceDefinition_get(super.sequence).field1890 == 1) {
+	final void method2347(int var1, int var2, boolean var3) {
+		if (super.sequence != -1 && WorldMapScaleHandler.SequenceDefinition_get(super.sequence).field1893 == 1) {
 			super.sequence = -1;
 		}
 
@@ -147,46 +149,21 @@ public final class NPC extends Actor {
 		}
 
 		super.pathLength = 0;
-		super.field1274 = 0;
-		super.field1294 = 0;
+		super.field1281 = 0;
+		super.field1242 = 0;
 		super.pathX[0] = var1;
 		super.pathY[0] = var2;
-		super.x = super.field1239 * 64 + super.pathX[0] * 128;
-		super.y = super.field1239 * 64 + super.pathY[0] * 128;
+		super.x = super.field1225 * 64 + super.pathX[0] * 128;
+		super.y = super.field1225 * 64 + super.pathY[0] * 128;
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
 		descriptor = "(B)Z",
-		garbageValue = "-6"
+		garbageValue = "3"
 	)
 	@Export("isVisible")
 	final boolean isVisible() {
 		return this.definition != null;
-	}
-
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "(II)Z",
-		garbageValue = "-785880631"
-	)
-	@Export("isWorldMapEvent")
-	public static boolean isWorldMapEvent(int var0) {
-		return var0 == 10 || var0 == 11 || var0 == 12 || var0 == 13 || var0 == 14 || var0 == 15 || var0 == 16 || var0 == 17;
-	}
-
-	@ObfuscatedName("jx")
-	@ObfuscatedSignature(
-		descriptor = "(IB)Z",
-		garbageValue = "3"
-	)
-	static boolean method2258(int var0) {
-		for (int var1 = 0; var1 < Client.field806; ++var1) {
-			if (Client.field868[var1] == var0) {
-				return true;
-			}
-		}
-
-		return false;
 	}
 }

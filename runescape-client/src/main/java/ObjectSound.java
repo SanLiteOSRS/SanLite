@@ -3,86 +3,93 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("bc")
+@ObfuscatedName("bf")
 @Implements("ObjectSound")
 public final class ObjectSound extends Node {
-	@ObfuscatedName("v")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "Lkx;"
+		descriptor = "Lkq;"
 	)
 	@Export("objectSounds")
 	static NodeDeque objectSounds;
-	@ObfuscatedName("n")
+	@ObfuscatedName("ha")
 	@ObfuscatedGetter(
-		intValue = 1262714503
+		intValue = 501440191
+	)
+	@Export("cameraX")
+	static int cameraX;
+	@ObfuscatedName("e")
+	@ObfuscatedGetter(
+		intValue = 179593907
 	)
 	@Export("plane")
 	int plane;
-	@ObfuscatedName("f")
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = 382039955
+		intValue = 724214627
 	)
 	@Export("x")
 	int x;
 	@ObfuscatedName("y")
 	@ObfuscatedGetter(
-		intValue = -377542945
+		intValue = 775363577
 	)
 	@Export("y")
 	int y;
-	@ObfuscatedName("p")
-	@ObfuscatedGetter(
-		intValue = -1913199289
-	)
-	int field956;
 	@ObfuscatedName("j")
 	@ObfuscatedGetter(
-		intValue = 846164283
+		intValue = 1416185027
 	)
-	int field957;
+	int field937;
+	@ObfuscatedName("o")
+	@ObfuscatedGetter(
+		intValue = 50432371
+	)
+	int field944;
+	@ObfuscatedName("m")
+	@ObfuscatedGetter(
+		intValue = -663897917
+	)
+	int field939;
 	@ObfuscatedName("r")
 	@ObfuscatedSignature(
-		descriptor = "Leg;"
+		descriptor = "Lez;"
 	)
 	@Export("obj")
 	ObjectComposition obj;
-	@ObfuscatedName("b")
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = 2101998419
-	)
-	int field958;
-	@ObfuscatedName("d")
-	@ObfuscatedGetter(
-		intValue = 2113426875
+		intValue = -709047569
 	)
 	@Export("soundEffectId")
 	int soundEffectId;
-	@ObfuscatedName("s")
-	@ObfuscatedGetter(
-		intValue = 1385478755
-	)
-	int field961;
-	@ObfuscatedName("u")
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
 		descriptor = "Lbv;"
 	)
 	@Export("stream1")
 	RawPcmStream stream1;
-	@ObfuscatedName("l")
+	@ObfuscatedName("z")
 	@ObfuscatedGetter(
-		intValue = -1819837691
+		intValue = -1448686013
 	)
-	int field964;
-	@ObfuscatedName("o")
+	int field941;
+	@ObfuscatedName("b")
+	@ObfuscatedGetter(
+		intValue = -1441209589
+	)
+	int field943;
+	@ObfuscatedName("i")
 	@Export("soundEffectIds")
 	int[] soundEffectIds;
-	@ObfuscatedName("c")
+	@ObfuscatedName("k")
 	@ObfuscatedGetter(
-		intValue = 1313201795
+		intValue = 1984833823
 	)
-	int field954;
-	@ObfuscatedName("e")
+	int field945;
+	@ObfuscatedName("g")
 	@ObfuscatedSignature(
 		descriptor = "Lbv;"
 	)
@@ -96,10 +103,10 @@ public final class ObjectSound extends Node {
 	ObjectSound() {
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
 		descriptor = "(B)V",
-		garbageValue = "10"
+		garbageValue = "1"
 	)
 	@Export("set")
 	void set() {
@@ -107,161 +114,161 @@ public final class ObjectSound extends Node {
 		ObjectComposition var2 = this.obj.transform();
 		if (var2 != null) {
 			this.soundEffectId = var2.ambientSoundId;
-			this.field958 = var2.int4 * 128;
-			this.field961 = var2.int5;
-			this.field964 = var2.int6;
+			this.field939 = var2.field1801 * 128;
+			this.field941 = var2.int5;
+			this.field943 = var2.int6;
 			this.soundEffectIds = var2.soundEffectIds;
 		} else {
 			this.soundEffectId = -1;
-			this.field958 = 0;
-			this.field961 = 0;
-			this.field964 = 0;
+			this.field939 = 0;
+			this.field941 = 0;
+			this.field943 = 0;
 			this.soundEffectIds = null;
 		}
 
 		if (var1 != this.soundEffectId && this.stream1 != null) {
-			class308.pcmStreamMixer.removeSubStream(this.stream1);
+			UserComparator7.pcmStreamMixer.removeSubStream(this.stream1);
 			this.stream1 = null;
 		}
 
 	}
 
-	@ObfuscatedName("ki")
+	@ObfuscatedName("r")
 	@ObfuscatedSignature(
-		descriptor = "(Lio;IIII)V",
-		garbageValue = "-1477565954"
+		descriptor = "(ILcf;ZI)I",
+		garbageValue = "706769109"
 	)
-	@Export("drawMinimap")
-	static final void drawMinimap(Widget var0, int var1, int var2, int var3) {
-		HealthBarUpdate.playPcmPlayers();
-		SpriteMask var4 = var0.getSpriteMask(false);
-		if (var4 != null) {
-			Rasterizer2D.Rasterizer2D_setClip(var1, var2, var4.width + var1, var2 + var4.height);
-			if (Client.minimapState != 2 && Client.minimapState != 5) {
-				int var5 = Client.camAngleY & 2047;
-				int var6 = class93.localPlayer.x / 32 + 48;
-				int var7 = 464 - class93.localPlayer.y / 32;
-				GameEngine.sceneMinimapSprite.drawRotatedMaskedCenteredAround(var1, var2, var4.width, var4.height, var6, var7, var5, 256, var4.xStarts, var4.xWidths);
+	static int method1889(int var0, Script var1, boolean var2) {
+		boolean var3 = true;
+		Widget var4;
+		if (var0 >= 2000) {
+			var0 -= 1000;
+			var4 = WorldMapData_1.getWidget(Interpreter.Interpreter_intStack[--ChatChannel.Interpreter_intStackSize]);
+			var3 = false;
+		} else {
+			var4 = var2 ? UserComparator5.scriptDotWidget : Nameable.scriptActiveWidget;
+		}
 
-				int var8;
-				int var10;
-				int var16;
-				for (var8 = 0; var8 < Client.mapIconCount; ++var8) {
-					var16 = Client.mapIconXs[var8] * 4 + 2 - class93.localPlayer.x / 32;
-					var10 = Client.mapIconYs[var8] * 4 + 2 - class93.localPlayer.y / 32;
-					ObjectComposition.drawSpriteOnMinimap(var1, var2, var16, var10, Client.mapIcons[var8], var4);
-				}
-
-				int var11;
-				int var12;
-				for (var8 = 0; var8 < 104; ++var8) {
-					for (var16 = 0; var16 < 104; ++var16) {
-						NodeDeque var14 = Client.groundItems[class22.Client_plane][var8][var16];
-						if (var14 != null) {
-							var11 = var8 * 4 + 2 - class93.localPlayer.x / 32;
-							var12 = var16 * 4 + 2 - class93.localPlayer.y / 32;
-							ObjectComposition.drawSpriteOnMinimap(var1, var2, var11, var12, class170.mapDotSprites[0], var4);
-						}
-					}
-				}
-
-				for (var8 = 0; var8 < Client.npcCount; ++var8) {
-					NPC var9 = Client.npcs[Client.npcIndices[var8]];
-					if (var9 != null && var9.isVisible()) {
-						NPCComposition var18 = var9.definition;
-						if (var18 != null && var18.transforms != null) {
-							var18 = var18.transform();
-						}
-
-						if (var18 != null && var18.drawMapDot && var18.isInteractable) {
-							var11 = var9.x / 32 - class93.localPlayer.x / 32;
-							var12 = var9.y / 32 - class93.localPlayer.y / 32;
-							ObjectComposition.drawSpriteOnMinimap(var1, var2, var11, var12, class170.mapDotSprites[1], var4);
-						}
-					}
-				}
-
-				var8 = Players.Players_count;
-				int[] var17 = Players.Players_indices;
-
-				for (var10 = 0; var10 < var8; ++var10) {
-					Player var15 = Client.players[var17[var10]];
-					if (var15 != null && var15.isVisible() && !var15.isHidden && var15 != class93.localPlayer) {
-						var12 = var15.x / 32 - class93.localPlayer.x / 32;
-						int var13 = var15.y / 32 - class93.localPlayer.y / 32;
-						if (var15.isFriend()) {
-							ObjectComposition.drawSpriteOnMinimap(var1, var2, var12, var13, class170.mapDotSprites[3], var4);
-						} else if (class93.localPlayer.team != 0 && var15.team != 0 && var15.team == class93.localPlayer.team) {
-							ObjectComposition.drawSpriteOnMinimap(var1, var2, var12, var13, class170.mapDotSprites[4], var4);
-						} else if (var15.isFriendsChatMember()) {
-							ObjectComposition.drawSpriteOnMinimap(var1, var2, var12, var13, class170.mapDotSprites[5], var4);
-						} else if (var15.isClanMember()) {
-							ObjectComposition.drawSpriteOnMinimap(var1, var2, var12, var13, class170.mapDotSprites[6], var4);
-						} else {
-							ObjectComposition.drawSpriteOnMinimap(var1, var2, var12, var13, class170.mapDotSprites[2], var4);
-						}
-					}
-				}
-
-				if (Client.hintArrowType != 0 && Client.cycle % 20 < 10) {
-					if (Client.hintArrowType == 1 && Client.hintArrowNpcIndex >= 0 && Client.hintArrowNpcIndex < Client.npcs.length) {
-						NPC var19 = Client.npcs[Client.hintArrowNpcIndex];
-						if (var19 != null) {
-							var11 = var19.x / 32 - class93.localPlayer.x / 32;
-							var12 = var19.y / 32 - class93.localPlayer.y / 32;
-							MenuAction.worldToMinimap(var1, var2, var11, var12, WorldMapArea.mapMarkerSprites[1], var4);
-						}
-					}
-
-					if (Client.hintArrowType == 2) {
-						var10 = Client.hintArrowX * 4 - VertexNormal.baseX * 256 + 2 - class93.localPlayer.x / 32;
-						var11 = Client.hintArrowY * 4 - SoundSystem.baseY * 256 + 2 - class93.localPlayer.y / 32;
-						MenuAction.worldToMinimap(var1, var2, var10, var11, WorldMapArea.mapMarkerSprites[1], var4);
-					}
-
-					if (Client.hintArrowType == 10 && Client.hintArrowPlayerIndex >= 0 && Client.hintArrowPlayerIndex < Client.players.length) {
-						Player var20 = Client.players[Client.hintArrowPlayerIndex];
-						if (var20 != null) {
-							var11 = var20.x / 32 - class93.localPlayer.x / 32;
-							var12 = var20.y / 32 - class93.localPlayer.y / 32;
-							MenuAction.worldToMinimap(var1, var2, var11, var12, WorldMapArea.mapMarkerSprites[1], var4);
-						}
-					}
-				}
-
-				if (Client.destinationX != 0) {
-					var10 = Client.destinationX * 4 + 2 - class93.localPlayer.x / 32;
-					var11 = Client.destinationY * 4 + 2 - class93.localPlayer.y / 32;
-					ObjectComposition.drawSpriteOnMinimap(var1, var2, var10, var11, WorldMapArea.mapMarkerSprites[0], var4);
-				}
-
-				if (!class93.localPlayer.isHidden) {
-					Rasterizer2D.Rasterizer2D_fillRectangle(var4.width / 2 + var1 - 1, var4.height / 2 + var2 - 1, 3, 3, 16777215);
-				}
+		int var11;
+		if (var0 == ScriptOpcodes.CC_SETOP) {
+			var11 = Interpreter.Interpreter_intStack[--ChatChannel.Interpreter_intStackSize] - 1;
+			if (var11 >= 0 && var11 <= 9) {
+				var4.setAction(var11, Interpreter.Interpreter_stringStack[--UserComparator9.Interpreter_stringStackSize]);
+				return 1;
 			} else {
-				Rasterizer2D.Rasterizer2D_fillMaskedRectangle(var1, var2, 0, var4.xStarts, var4.xWidths);
+				--UserComparator9.Interpreter_stringStackSize;
+				return 1;
 			}
+		} else {
+			int var6;
+			if (var0 == ScriptOpcodes.CC_SETDRAGGABLE) {
+				ChatChannel.Interpreter_intStackSize -= 2;
+				var11 = Interpreter.Interpreter_intStack[ChatChannel.Interpreter_intStackSize];
+				var6 = Interpreter.Interpreter_intStack[ChatChannel.Interpreter_intStackSize + 1];
+				var4.parent = class17.getWidgetChild(var11, var6);
+				return 1;
+			} else if (var0 == ScriptOpcodes.CC_SETDRAGGABLEBEHAVIOR) {
+				var4.isScrollBar = Interpreter.Interpreter_intStack[--ChatChannel.Interpreter_intStackSize] == 1;
+				return 1;
+			} else if (var0 == ScriptOpcodes.CC_SETDRAGDEADZONE) {
+				var4.dragZoneSize = Interpreter.Interpreter_intStack[--ChatChannel.Interpreter_intStackSize];
+				return 1;
+			} else if (var0 == ScriptOpcodes.CC_SETDRAGDEADTIME) {
+				var4.dragThreshold = Interpreter.Interpreter_intStack[--ChatChannel.Interpreter_intStackSize];
+				return 1;
+			} else if (var0 == ScriptOpcodes.CC_SETOPBASE) {
+				var4.dataText = Interpreter.Interpreter_stringStack[--UserComparator9.Interpreter_stringStackSize];
+				return 1;
+			} else if (var0 == ScriptOpcodes.CC_SETTARGETVERB) {
+				var4.spellActionName = Interpreter.Interpreter_stringStack[--UserComparator9.Interpreter_stringStackSize];
+				return 1;
+			} else if (var0 == ScriptOpcodes.CC_CLEAROPS) {
+				var4.actions = null;
+				return 1;
+			} else if (var0 == 1308) {
+				var4.prioritizeMenuEntry = Interpreter.Interpreter_intStack[--ChatChannel.Interpreter_intStackSize] == 1;
+				return 1;
+			} else if (var0 == 1309) {
+				--ChatChannel.Interpreter_intStackSize;
+				return 1;
+			} else {
+				int var7;
+				byte[] var8;
+				if (var0 != ScriptOpcodes.CC_SETOPKEY) {
+					byte var5;
+					if (var0 == ScriptOpcodes.CC_SETOPTKEY) {
+						ChatChannel.Interpreter_intStackSize -= 2;
+						var5 = 10;
+						var8 = new byte[]{(byte)Interpreter.Interpreter_intStack[ChatChannel.Interpreter_intStackSize]};
+						byte[] var9 = new byte[]{(byte)Interpreter.Interpreter_intStack[ChatChannel.Interpreter_intStackSize + 1]};
+						UserComparator8.Widget_setKey(var4, var5, var8, var9);
+						return 1;
+					} else if (var0 == ScriptOpcodes.CC_SETOPKEYRATE) {
+						ChatChannel.Interpreter_intStackSize -= 3;
+						var11 = Interpreter.Interpreter_intStack[ChatChannel.Interpreter_intStackSize] - 1;
+						var6 = Interpreter.Interpreter_intStack[ChatChannel.Interpreter_intStackSize + 1];
+						var7 = Interpreter.Interpreter_intStack[ChatChannel.Interpreter_intStackSize + 2];
+						if (var11 >= 0 && var11 <= 9) {
+							FileSystem.Widget_setKeyRate(var4, var11, var6, var7);
+							return 1;
+						} else {
+							throw new RuntimeException();
+						}
+					} else if (var0 == ScriptOpcodes.CC_SETOPTKEYRATE) {
+						var5 = 10;
+						var6 = Interpreter.Interpreter_intStack[--ChatChannel.Interpreter_intStackSize];
+						var7 = Interpreter.Interpreter_intStack[--ChatChannel.Interpreter_intStackSize];
+						FileSystem.Widget_setKeyRate(var4, var5, var6, var7);
+						return 1;
+					} else if (var0 == ScriptOpcodes.CC_SETOPKEYIGNOREHELD) {
+						--ChatChannel.Interpreter_intStackSize;
+						var11 = Interpreter.Interpreter_intStack[ChatChannel.Interpreter_intStackSize] - 1;
+						if (var11 >= 0 && var11 <= 9) {
+							class25.Widget_setKeyIgnoreHeld(var4, var11);
+							return 1;
+						} else {
+							throw new RuntimeException();
+						}
+					} else if (var0 == ScriptOpcodes.CC_SETOPTKEYIGNOREHELD) {
+						var5 = 10;
+						class25.Widget_setKeyIgnoreHeld(var4, var5);
+						return 1;
+					} else {
+						return 2;
+					}
+				} else {
+					byte[] var10 = null;
+					var8 = null;
+					if (var3) {
+						ChatChannel.Interpreter_intStackSize -= 10;
 
-			Client.field780[var3] = true;
-		}
-	}
+						for (var7 = 0; var7 < 10 && Interpreter.Interpreter_intStack[var7 + ChatChannel.Interpreter_intStackSize] >= 0; var7 += 2) {
+						}
 
-	@ObfuscatedName("ls")
-	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-1750320042"
-	)
-	static void method1761() {
-		if (UserComparator3.field1444 != null) {
-			Client.field717 = Client.cycle;
-			UserComparator3.field1444.method5126();
+						if (var7 > 0) {
+							var10 = new byte[var7 / 2];
+							var8 = new byte[var7 / 2];
 
-			for (int var0 = 0; var0 < Client.players.length; ++var0) {
-				if (Client.players[var0] != null) {
-					UserComparator3.field1444.method5117(VertexNormal.baseX * 64 + (Client.players[var0].x >> 7), SoundSystem.baseY * 64 + (Client.players[var0].y >> 7));
+							for (var7 -= 2; var7 >= 0; var7 -= 2) {
+								var10[var7 / 2] = (byte)Interpreter.Interpreter_intStack[var7 + ChatChannel.Interpreter_intStackSize];
+								var8[var7 / 2] = (byte)Interpreter.Interpreter_intStack[var7 + ChatChannel.Interpreter_intStackSize + 1];
+							}
+						}
+					} else {
+						ChatChannel.Interpreter_intStackSize -= 2;
+						var10 = new byte[]{(byte)Interpreter.Interpreter_intStack[ChatChannel.Interpreter_intStackSize]};
+						var8 = new byte[]{(byte)Interpreter.Interpreter_intStack[ChatChannel.Interpreter_intStackSize + 1]};
+					}
+
+					var7 = Interpreter.Interpreter_intStack[--ChatChannel.Interpreter_intStackSize] - 1;
+					if (var7 >= 0 && var7 <= 9) {
+						UserComparator8.Widget_setKey(var4, var7, var10, var8);
+						return 1;
+					} else {
+						throw new RuntimeException();
+					}
 				}
 			}
 		}
-
 	}
 }

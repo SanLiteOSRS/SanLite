@@ -1,30 +1,25 @@
+import java.applet.Applet;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("da")
+@ObfuscatedName("dl")
 @Implements("UserComparator5")
 public class UserComparator5 extends AbstractUserComparator {
-	@ObfuscatedName("u")
-	public static short[] field1442;
-	@ObfuscatedName("z")
-	@Export("formattedOperatingSystemName")
-	public static String formattedOperatingSystemName;
-	@ObfuscatedName("dm")
-	@ObfuscatedSignature(
-		descriptor = "Ljp;"
-	)
-	@Export("archive12")
-	static Archive archive12;
-	@ObfuscatedName("iz")
+	@ObfuscatedName("r")
 	@ObfuscatedGetter(
-		intValue = 1854633345
+		intValue = -580519893
 	)
-	@Export("selectedItemId")
-	static int selectedItemId;
-	@ObfuscatedName("v")
+	static int field1442;
+	@ObfuscatedName("x")
+	@ObfuscatedSignature(
+		descriptor = "Liv;"
+	)
+	@Export("scriptDotWidget")
+	static Widget scriptDotWidget;
+	@ObfuscatedName("f")
 	@Export("reversed")
 	final boolean reversed;
 
@@ -32,10 +27,10 @@ public class UserComparator5 extends AbstractUserComparator {
 		this.reversed = var1;
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(Llv;Llv;I)I",
-		garbageValue = "1211998991"
+		descriptor = "(Lly;Lly;B)I",
+		garbageValue = "16"
 	)
 	@Export("compareBuddy")
 	int compareBuddy(Buddy var1, Buddy var2) {
@@ -54,67 +49,16 @@ public class UserComparator5 extends AbstractUserComparator {
 		return this.compareBuddy((Buddy)var1, (Buddy)var2);
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(Ljv;Ljv;I)Z",
-		garbageValue = "-1243272557"
+		descriptor = "(Ljava/applet/Applet;Ljava/lang/String;I)V",
+		garbageValue = "1563764098"
 	)
-	public static boolean method2449(AbstractArchive var0, AbstractArchive var1) {
-		WorldMapElement.WorldMapElement_archive = var1;
-		if (!var0.isFullyLoaded()) {
-			return false;
-		} else {
-			class311.WorldMapElement_count = var0.getGroupFileCount(35);
-			WorldMapElement.WorldMapElement_cached = new WorldMapElement[class311.WorldMapElement_count];
-
-			for (int var2 = 0; var2 < class311.WorldMapElement_count; ++var2) {
-				byte[] var3 = var0.takeFile(35, var2);
-				WorldMapElement.WorldMapElement_cached[var2] = new WorldMapElement(var2);
-				if (var3 != null) {
-					WorldMapElement.WorldMapElement_cached[var2].decode(new Buffer(var3));
-					WorldMapElement.WorldMapElement_cached[var2].method2634();
-				}
-			}
-
-			return true;
-		}
-	}
-
-	@ObfuscatedName("hz")
-	@ObfuscatedSignature(
-		descriptor = "(Lch;I)V",
-		garbageValue = "14093457"
-	)
-	static final void method2448(PendingSpawn var0) {
-		long var1 = 0L;
-		int var3 = -1;
-		int var4 = 0;
-		int var5 = 0;
-		if (var0.type == 0) {
-			var1 = AbstractSocket.scene.getBoundaryObjectTag(var0.plane, var0.x, var0.y);
+	public static void method2543(Applet var0, String var1) {
+		class44.applet = var0;
+		if (var1 != null) {
+			class44.field309 = var1;
 		}
 
-		if (var0.type == 1) {
-			var1 = AbstractSocket.scene.getWallDecorationTag(var0.plane, var0.x, var0.y);
-		}
-
-		if (var0.type == 2) {
-			var1 = AbstractSocket.scene.getGameObjectTag(var0.plane, var0.x, var0.y);
-		}
-
-		if (var0.type == 3) {
-			var1 = AbstractSocket.scene.getFloorDecorationTag(var0.plane, var0.x, var0.y);
-		}
-
-		if (0L != var1) {
-			int var6 = AbstractSocket.scene.getObjectFlags(var0.plane, var0.x, var0.y, var1);
-			var3 = class93.Entity_unpackID(var1);
-			var4 = var6 & 31;
-			var5 = var6 >> 6 & 3;
-		}
-
-		var0.objectId = var3;
-		var0.field1229 = var4;
-		var0.field1225 = var5;
 	}
 }

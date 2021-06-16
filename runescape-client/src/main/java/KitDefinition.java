@@ -4,49 +4,52 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("el")
+@ObfuscatedName("er")
 @Implements("KitDefinition")
 public class KitDefinition extends DualNode {
-	@ObfuscatedName("n")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		descriptor = "Ljv;"
+		descriptor = "Ljp;"
 	)
 	@Export("KitDefinition_modelsArchive")
-	static AbstractArchive KitDefinition_modelsArchive;
+	public static AbstractArchive KitDefinition_modelsArchive;
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		descriptor = "Lhz;"
+		descriptor = "Lht;"
 	)
 	@Export("KitDefinition_cached")
 	static EvictingDualNodeHashTable KitDefinition_cached;
-	@ObfuscatedName("al")
-	@Export("fontHelvetica13")
-	static java.awt.Font fontHelvetica13;
-	@ObfuscatedName("p")
+	@ObfuscatedName("do")
+	@ObfuscatedSignature(
+		descriptor = "Ljf;"
+	)
+	@Export("archive4")
+	static Archive archive4;
+	@ObfuscatedName("j")
 	@ObfuscatedGetter(
-		intValue = 2136524687
+		intValue = -1389060673
 	)
 	@Export("bodypartID")
 	public int bodypartID;
-	@ObfuscatedName("j")
+	@ObfuscatedName("o")
 	@Export("models2")
 	int[] models2;
-	@ObfuscatedName("r")
+	@ObfuscatedName("m")
 	@Export("recolorFrom")
 	short[] recolorFrom;
-	@ObfuscatedName("b")
+	@ObfuscatedName("r")
 	@Export("recolorTo")
 	short[] recolorTo;
-	@ObfuscatedName("d")
+	@ObfuscatedName("h")
 	@Export("retextureFrom")
 	short[] retextureFrom;
-	@ObfuscatedName("s")
+	@ObfuscatedName("d")
 	@Export("retextureTo")
 	short[] retextureTo;
-	@ObfuscatedName("u")
+	@ObfuscatedName("z")
 	@Export("models")
 	int[] models;
-	@ObfuscatedName("l")
+	@ObfuscatedName("b")
 	@Export("nonSelectable")
 	public boolean nonSelectable;
 
@@ -60,10 +63,10 @@ public class KitDefinition extends DualNode {
 		this.nonSelectable = false;
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		descriptor = "(Lnd;I)V",
-		garbageValue = "76297691"
+		descriptor = "(Lnt;B)V",
+		garbageValue = "82"
 	)
 	@Export("decode")
 	void decode(Buffer var1) {
@@ -77,10 +80,10 @@ public class KitDefinition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("y")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(Lnd;II)V",
-		garbageValue = "-662659008"
+		descriptor = "(Lnt;II)V",
+		garbageValue = "-1096590760"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
@@ -123,10 +126,10 @@ public class KitDefinition extends DualNode {
 
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		descriptor = "(I)Z",
-		garbageValue = "-2100349999"
+		descriptor = "(S)Z",
+		garbageValue = "31141"
 	)
 	@Export("ready")
 	public boolean ready() {
@@ -147,8 +150,8 @@ public class KitDefinition extends DualNode {
 
 	@ObfuscatedName("j")
 	@ObfuscatedSignature(
-		descriptor = "(I)Lgm;",
-		garbageValue = "218525675"
+		descriptor = "(B)Lga;",
+		garbageValue = "-55"
 	)
 	@Export("getModelData")
 	public ModelData getModelData() {
@@ -185,12 +188,12 @@ public class KitDefinition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("r")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "(I)Z",
-		garbageValue = "-1717732165"
+		descriptor = "(B)Z",
+		garbageValue = "0"
 	)
-	public boolean method2684() {
+	public boolean method2754() {
 		boolean var1 = true;
 
 		for (int var2 = 0; var2 < 5; ++var2) {
@@ -202,10 +205,10 @@ public class KitDefinition extends DualNode {
 		return var1;
 	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		descriptor = "(I)Lgm;",
-		garbageValue = "787356684"
+		descriptor = "(S)Lga;",
+		garbageValue = "4207"
 	)
 	@Export("getKitDefinitionModels")
 	public ModelData getKitDefinitionModels() {
@@ -235,44 +238,12 @@ public class KitDefinition extends DualNode {
 		return var5;
 	}
 
-	@ObfuscatedName("lc")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;ZI)Ljava/lang/String;",
-		garbageValue = "-1936080360"
+		descriptor = "(II)Z",
+		garbageValue = "383487932"
 	)
-	static String method2705(String var0, boolean var1) {
-		String var2 = var1 ? "https://" : "http://";
-		if (Client.gameBuild == 1) {
-			var0 = var0 + "-wtrc";
-		} else if (Client.gameBuild == 2) {
-			var0 = var0 + "-wtqa";
-		} else if (Client.gameBuild == 3) {
-			var0 = var0 + "-wtwip";
-		} else if (Client.gameBuild == 5) {
-			var0 = var0 + "-wti";
-		} else if (Client.gameBuild == 4) {
-			var0 = "local";
-		}
-
-		String var3 = "";
-		if (class363.field4079 != null) {
-			var3 = "/p=" + class363.field4079;
-		}
-
-		String var4 = "runescape.com";
-		return var2 + var0 + "." + var4 + "/l=" + class378.clientLanguage + "/a=" + Script.field1094 + var3 + "/";
-	}
-
-	@ObfuscatedName("lp")
-	@ObfuscatedSignature(
-		descriptor = "([BII)V",
-		garbageValue = "-1641732404"
-	)
-	static void method2687(byte[] var0, int var1) {
-		if (Client.randomDatData == null) {
-			Client.randomDatData = new byte[24];
-		}
-
-		class306.writeRandomDat(var0, var1, Client.randomDatData, 0, 24);
+	public static boolean method2778(int var0) {
+		return var0 >= 0 && var0 < 112 ? KeyHandler.field265[var0] : false;
 	}
 }

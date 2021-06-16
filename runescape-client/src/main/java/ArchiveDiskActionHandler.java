@@ -4,37 +4,40 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jg")
+@ObfuscatedName("jn")
 @Implements("ArchiveDiskActionHandler")
 public class ArchiveDiskActionHandler implements Runnable {
-	@ObfuscatedName("v")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "Lkx;"
+		descriptor = "Lkq;"
 	)
 	@Export("ArchiveDiskActionHandler_requestQueue")
-	public static NodeDeque ArchiveDiskActionHandler_requestQueue;
-	@ObfuscatedName("n")
+	static NodeDeque ArchiveDiskActionHandler_requestQueue;
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		descriptor = "Lkx;"
+		descriptor = "Lkq;"
 	)
 	@Export("ArchiveDiskActionHandler_responseQueue")
-	public static NodeDeque ArchiveDiskActionHandler_responseQueue;
-	@ObfuscatedName("f")
+	static NodeDeque ArchiveDiskActionHandler_responseQueue;
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = 2106150539
+		intValue = 264350285
 	)
-	static int field3562;
+	static int field3557;
 	@ObfuscatedName("y")
 	@Export("ArchiveDiskActionHandler_lock")
 	static Object ArchiveDiskActionHandler_lock;
-	@ObfuscatedName("p")
-	@Export("ArchiveDiskActionHandler_thread")
-	static Thread ArchiveDiskActionHandler_thread;
+	@ObfuscatedName("fj")
+	@ObfuscatedSignature(
+		descriptor = "Ldz;"
+	)
+	@Export("urlRequester")
+	static UrlRequester urlRequester;
 
 	static {
 		ArchiveDiskActionHandler_requestQueue = new NodeDeque();
 		ArchiveDiskActionHandler_responseQueue = new NodeDeque();
-		field3562 = 0;
+		field3557 = 0;
 		ArchiveDiskActionHandler_lock = new Object();
 	}
 
@@ -63,49 +66,29 @@ public class ArchiveDiskActionHandler implements Runnable {
 					}
 
 					synchronized(ArchiveDiskActionHandler_lock) {
-						if (field3562 <= 1) {
-							field3562 = 0;
+						if (field3557 <= 1) {
+							field3557 = 0;
 							ArchiveDiskActionHandler_lock.notifyAll();
 							return;
 						}
 
-						field3562 = 600;
+						field3557 = 600;
 					}
 				} else {
-					long var8 = 99L;
-
-					try {
-						Thread.sleep(var8);
-					} catch (InterruptedException var15) {
-					}
-
-					try {
-						Thread.sleep(1L);
-					} catch (InterruptedException var14) {
-					}
-
+					class18.method272(100L);
 					synchronized(ArchiveDiskActionHandler_lock) {
-						if (field3562 <= 1) {
-							field3562 = 0;
+						if (field3557 <= 1) {
+							field3557 = 0;
 							ArchiveDiskActionHandler_lock.notifyAll();
 							return;
 						}
 
-						--field3562;
+						--field3557;
 					}
 				}
 			}
-		} catch (Exception var17) {
-			class266.RunException_sendStackTrace((String)null, var17);
+		} catch (Exception var13) {
+			FriendsChatManager.RunException_sendStackTrace((String)null, var13);
 		}
-	}
-
-	@ObfuscatedName("n")
-	@ObfuscatedSignature(
-		descriptor = "(IB)V",
-		garbageValue = "13"
-	)
-	public static void method4867(int var0) {
-		MouseHandler.MouseHandler_idleCycles = var0;
 	}
 }

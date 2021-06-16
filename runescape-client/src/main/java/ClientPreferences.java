@@ -1,4 +1,3 @@
-import java.security.SecureRandom;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map.Entry;
@@ -8,57 +7,54 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cl")
+@ObfuscatedName("cn")
 @Implements("ClientPreferences")
 public class ClientPreferences {
-	@ObfuscatedName("v")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = -437407307
+		intValue = -454250637
 	)
 	@Export("ClientPreferences_optionCount")
 	static int ClientPreferences_optionCount;
-	@ObfuscatedName("eg")
-	@Export("secureRandom")
-	static SecureRandom secureRandom;
-	@ObfuscatedName("f")
+	@ObfuscatedName("v")
 	@Export("roofsHidden")
 	boolean roofsHidden;
 	@ObfuscatedName("y")
 	@Export("titleMusicDisabled")
 	boolean titleMusicDisabled;
-	@ObfuscatedName("p")
+	@ObfuscatedName("j")
 	@ObfuscatedGetter(
-		intValue = -660685365
+		intValue = -1571023127
 	)
 	@Export("windowMode")
 	int windowMode;
-	@ObfuscatedName("j")
+	@ObfuscatedName("o")
 	@Export("rememberedUsername")
 	String rememberedUsername;
-	@ObfuscatedName("r")
+	@ObfuscatedName("m")
 	@Export("hideUsername")
 	boolean hideUsername;
-	@ObfuscatedName("b")
-	double field1337;
-	@ObfuscatedName("d")
+	@ObfuscatedName("r")
+	double field1312;
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = 1285356667
+		intValue = 1112571497
 	)
 	@Export("musicVolume")
 	int musicVolume;
-	@ObfuscatedName("s")
+	@ObfuscatedName("d")
 	@ObfuscatedGetter(
-		intValue = -140834991
+		intValue = 1870852049
 	)
 	@Export("soundEffectsVolume")
 	int soundEffectsVolume;
-	@ObfuscatedName("u")
+	@ObfuscatedName("z")
 	@ObfuscatedGetter(
-		intValue = -1768933319
+		intValue = 348107745
 	)
 	@Export("areaSoundEffectsVolume")
 	int areaSoundEffectsVolume;
-	@ObfuscatedName("l")
+	@ObfuscatedName("b")
 	@Export("parameters")
 	LinkedHashMap parameters;
 
@@ -70,22 +66,22 @@ public class ClientPreferences {
 		this.windowMode = 1;
 		this.rememberedUsername = null;
 		this.hideUsername = false;
-		this.field1337 = 0.8D;
+		this.field1312 = 0.8D;
 		this.musicVolume = 127;
 		this.soundEffectsVolume = 127;
 		this.areaSoundEffectsVolume = 127;
 		this.parameters = new LinkedHashMap();
-		this.method2239(true);
+		this.method2315(true);
 	}
 
 	@ObfuscatedSignature(
-		descriptor = "(Lnd;)V"
+		descriptor = "(Lnt;)V"
 	)
 	ClientPreferences(Buffer var1) {
 		this.windowMode = 1;
 		this.rememberedUsername = null;
 		this.hideUsername = false;
-		this.field1337 = 0.8D;
+		this.field1312 = 0.8D;
 		this.musicVolume = 127;
 		this.soundEffectsVolume = 127;
 		this.areaSoundEffectsVolume = 127;
@@ -124,32 +120,32 @@ public class ClientPreferences {
 				}
 
 				if (var2 > 6) {
-					this.field1337 = (double)var1.readUnsignedByte() / 100.0D;
+					this.field1312 = (double)var1.readUnsignedByte() / 100.0D;
 					this.musicVolume = var1.readUnsignedByte();
 					this.soundEffectsVolume = var1.readUnsignedByte();
 					this.areaSoundEffectsVolume = var1.readUnsignedByte();
 				}
 			} else {
-				this.method2239(true);
+				this.method2315(true);
 			}
 		} else {
-			this.method2239(true);
+			this.method2315(true);
 		}
 
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(ZI)V",
-		garbageValue = "2046027023"
+		descriptor = "(ZB)V",
+		garbageValue = "-49"
 	)
-	void method2239(boolean var1) {
+	void method2315(boolean var1) {
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		descriptor = "(I)Lnd;",
-		garbageValue = "2063389348"
+		descriptor = "(I)Lnt;",
+		garbageValue = "1929327586"
 	)
 	@Export("toBuffer")
 	Buffer toBuffer() {
@@ -169,10 +165,36 @@ public class ClientPreferences {
 
 		var1.writeStringCp1252NullTerminated(this.rememberedUsername != null ? this.rememberedUsername : "");
 		var1.writeBoolean(this.hideUsername);
-		var1.writeByte((int)(100.0D * this.field1337));
+		var1.writeByte((int)(100.0D * this.field1312));
 		var1.writeByte(this.musicVolume);
 		var1.writeByte(this.soundEffectsVolume);
 		var1.writeByte(this.areaSoundEffectsVolume);
 		return var1;
+	}
+
+	@ObfuscatedName("e")
+	@ObfuscatedSignature(
+		descriptor = "(IIII)I",
+		garbageValue = "-648393673"
+	)
+	static int method2330(int var0, int var1, int var2) {
+		if (var2 > 179) {
+			var1 /= 2;
+		}
+
+		if (var2 > 192) {
+			var1 /= 2;
+		}
+
+		if (var2 > 217) {
+			var1 /= 2;
+		}
+
+		if (var2 > 243) {
+			var1 /= 2;
+		}
+
+		int var3 = (var1 / 32 << 7) + (var0 / 4 << 10) + var2 / 2;
+		return var3;
 	}
 }

@@ -4,54 +4,57 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gv")
+@ObfuscatedName("gw")
 @Implements("ItemLayer")
 public final class ItemLayer {
-	@ObfuscatedName("v")
+	@ObfuscatedName("bq")
+	@Export("otp")
+	static String otp;
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = 1950267115
+		intValue = -193076461
 	)
 	@Export("tileHeight")
 	int tileHeight;
-	@ObfuscatedName("n")
+	@ObfuscatedName("e")
 	@ObfuscatedGetter(
-		intValue = -840082071
+		intValue = 314356507
 	)
 	@Export("x")
 	int x;
-	@ObfuscatedName("f")
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = -1958043433
+		intValue = -695126527
 	)
 	@Export("y")
 	int y;
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
-		descriptor = "Lgl;"
+		descriptor = "Lgr;"
 	)
 	@Export("first")
 	Renderable first;
-	@ObfuscatedName("p")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
-		descriptor = "Lgl;"
+		descriptor = "Lgr;"
 	)
 	@Export("second")
 	Renderable second;
-	@ObfuscatedName("j")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "Lgl;"
+		descriptor = "Lgr;"
 	)
 	@Export("third")
 	Renderable third;
-	@ObfuscatedName("r")
+	@ObfuscatedName("m")
 	@ObfuscatedGetter(
-		longValue = 8707211480451132889L
+		longValue = 5487494310770586269L
 	)
 	@Export("tag")
 	long tag;
-	@ObfuscatedName("b")
+	@ObfuscatedName("r")
 	@ObfuscatedGetter(
-		intValue = 1688818251
+		intValue = 400175677
 	)
 	@Export("height")
 	int height;
@@ -59,101 +62,94 @@ public final class ItemLayer {
 	ItemLayer() {
 	}
 
-	@ObfuscatedName("y")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "([BI)V",
-		garbageValue = "-830600929"
+		descriptor = "(Ljp;Ljp;Ljp;Lie;B)Z",
+		garbageValue = "0"
 	)
-	@Export("ByteArrayPool_release")
-	public static synchronized void ByteArrayPool_release(byte[] var0) {
-		if (var0.length == 100 && ByteArrayPool.ByteArrayPool_smallCount < 1000) {
-			ByteArrayPool.ByteArrayPool_small[++ByteArrayPool.ByteArrayPool_smallCount - 1] = var0;
-		} else if (var0.length == 5000 && ByteArrayPool.ByteArrayPool_mediumCount < 250) {
-			ByteArrayPool.ByteArrayPool_medium[++ByteArrayPool.ByteArrayPool_mediumCount - 1] = var0;
-		} else if (var0.length == 30000 && ByteArrayPool.ByteArrayPool_largeCount < 50) {
-			ByteArrayPool.ByteArrayPool_large[++ByteArrayPool.ByteArrayPool_largeCount - 1] = var0;
-		} else {
-			if (class20.ByteArrayPool_arrays != null) {
-				for (int var1 = 0; var1 < ByteArrayPool.ByteArrayPool_alternativeSizes.length; ++var1) {
-					if (var0.length == ByteArrayPool.ByteArrayPool_alternativeSizes[var1] && ByteArrayPool.ByteArrayPool_altSizeArrayCounts[var1] < class20.ByteArrayPool_arrays[var1].length) {
-						class20.ByteArrayPool_arrays[var1][ByteArrayPool.ByteArrayPool_altSizeArrayCounts[var1]++] = var0;
-						return;
+	public static boolean method3860(AbstractArchive var0, AbstractArchive var1, AbstractArchive var2, MidiPcmStream var3) {
+		class233.musicPatchesArchive = var0;
+		class233.musicSamplesArchive = var1;
+		class230.soundEffectsArchive = var2;
+		class233.midiPcmStream = var3;
+		return true;
+	}
+
+	@ObfuscatedName("e")
+	@ObfuscatedSignature(
+		descriptor = "(CI)Z",
+		garbageValue = "-395066972"
+	)
+	public static boolean method3861(char var0) {
+		if ((var0 <= 0 || var0 >= 128) && (var0 < 160 || var0 > 255)) {
+			if (var0 != 0) {
+				char[] var1 = class302.cp1252AsciiExtension;
+
+				for (int var2 = 0; var2 < var1.length; ++var2) {
+					char var3 = var1[var2];
+					if (var0 == var3) {
+						return true;
 					}
 				}
 			}
 
+			return false;
+		} else {
+			return true;
 		}
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("aq")
 	@ObfuscatedSignature(
-		descriptor = "([BB)V",
-		garbageValue = "1"
+		descriptor = "([BII)I",
+		garbageValue = "-1419386207"
 	)
-	@Export("SpriteBuffer_decode")
-	public static void SpriteBuffer_decode(byte[] var0) {
-		Buffer var1 = new Buffer(var0);
-		var1.offset = var0.length - 2;
-		class396.SpriteBuffer_spriteCount = var1.readUnsignedShort();
-		WorldMapDecoration.SpriteBuffer_xOffsets = new int[class396.SpriteBuffer_spriteCount];
-		Calendar.SpriteBuffer_yOffsets = new int[class396.SpriteBuffer_spriteCount];
-		class396.SpriteBuffer_spriteWidths = new int[class396.SpriteBuffer_spriteCount];
-		class302.SpriteBuffer_spriteHeights = new int[class396.SpriteBuffer_spriteCount];
-		class396.SpriteBuffer_pixels = new byte[class396.SpriteBuffer_spriteCount][];
-		var1.offset = var0.length - 7 - class396.SpriteBuffer_spriteCount * 8;
-		class396.SpriteBuffer_spriteWidth = var1.readUnsignedShort();
-		UserComparator2.SpriteBuffer_spriteHeight = var1.readUnsignedShort();
-		int var2 = (var1.readUnsignedByte() & 255) + 1;
+	public static int method3863(byte[] var0, int var1) {
+		int var3 = -1;
 
-		int var3;
-		for (var3 = 0; var3 < class396.SpriteBuffer_spriteCount; ++var3) {
-			WorldMapDecoration.SpriteBuffer_xOffsets[var3] = var1.readUnsignedShort();
+		for (int var4 = 0; var4 < var1; ++var4) {
+			var3 = var3 >>> 8 ^ Buffer.crc32Table[(var3 ^ var0[var4]) & 255];
 		}
 
-		for (var3 = 0; var3 < class396.SpriteBuffer_spriteCount; ++var3) {
-			Calendar.SpriteBuffer_yOffsets[var3] = var1.readUnsignedShort();
-		}
+		var3 = ~var3;
+		return var3;
+	}
 
-		for (var3 = 0; var3 < class396.SpriteBuffer_spriteCount; ++var3) {
-			class396.SpriteBuffer_spriteWidths[var3] = var1.readUnsignedShort();
-		}
-
-		for (var3 = 0; var3 < class396.SpriteBuffer_spriteCount; ++var3) {
-			class302.SpriteBuffer_spriteHeights[var3] = var1.readUnsignedShort();
-		}
-
-		var1.offset = var0.length - 7 - class396.SpriteBuffer_spriteCount * 8 - (var2 - 1) * 3;
-		MilliClock.SpriteBuffer_spritePalette = new int[var2];
-
-		for (var3 = 1; var3 < var2; ++var3) {
-			MilliClock.SpriteBuffer_spritePalette[var3] = var1.readMedium();
-			if (MilliClock.SpriteBuffer_spritePalette[var3] == 0) {
-				MilliClock.SpriteBuffer_spritePalette[var3] = 1;
-			}
-		}
-
-		var1.offset = 0;
-
-		for (var3 = 0; var3 < class396.SpriteBuffer_spriteCount; ++var3) {
-			int var4 = class396.SpriteBuffer_spriteWidths[var3];
-			int var5 = class302.SpriteBuffer_spriteHeights[var3];
-			int var6 = var4 * var5;
-			byte[] var7 = new byte[var6];
-			class396.SpriteBuffer_pixels[var3] = var7;
-			int var8 = var1.readUnsignedByte();
-			int var9;
-			if (var8 == 0) {
-				for (var9 = 0; var9 < var6; ++var9) {
-					var7[var9] = var1.readByte();
+	@ObfuscatedName("jt")
+	@ObfuscatedSignature(
+		descriptor = "(Liv;III)V",
+		garbageValue = "-1678262366"
+	)
+	@Export("clickWidget")
+	static final void clickWidget(Widget var0, int var1, int var2) {
+		if (Client.clickedWidget == null && !Client.isMenuOpen) {
+			if (var0 != null) {
+				Widget var4 = PlayerComposition.method4851(var0);
+				if (var4 == null) {
+					var4 = var0.parent;
 				}
-			} else if (var8 == 1) {
-				for (var9 = 0; var9 < var4; ++var9) {
-					for (int var10 = 0; var10 < var5; ++var10) {
-						var7[var9 + var4 * var10] = var1.readByte();
+
+				if (var4 != null) {
+					Client.clickedWidget = var0;
+					var4 = PlayerComposition.method4851(var0);
+					if (var4 == null) {
+						var4 = var0.parent;
 					}
+
+					Client.clickedWidgetParent = var4;
+					Client.widgetClickX = var1;
+					Client.widgetClickY = var2;
+					UserComparator7.widgetDragDuration = 0;
+					Client.isDraggingWidget = false;
+					int var5 = HealthBarUpdate.method2283();
+					if (var5 != -1) {
+						WorldMapIcon_1.method3305(var5);
+					}
+
+					return;
 				}
 			}
-		}
 
+		}
 	}
 }

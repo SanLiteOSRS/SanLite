@@ -4,41 +4,39 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ck")
+@ObfuscatedName("ce")
 @Implements("ArchiveLoader")
 public class ArchiveLoader {
-	@ObfuscatedName("m")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		descriptor = "Ly;"
+		descriptor = "Lio;"
 	)
-	static ClanChannel field1147;
-	@ObfuscatedName("ho")
+	@Export("musicTrack")
+	static MusicTrack musicTrack;
+	@ObfuscatedName("x")
+	@Export("cacheParentPaths")
+	public static String[] cacheParentPaths;
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		descriptor = "[Loh;"
-	)
-	@Export("crossSprites")
-	static SpritePixels[] crossSprites;
-	@ObfuscatedName("n")
-	@ObfuscatedSignature(
-		descriptor = "Ljp;"
+		descriptor = "Ljf;"
 	)
 	@Export("archive")
 	final Archive archive;
-	@ObfuscatedName("f")
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = 605141689
+		intValue = -1724172575
 	)
 	@Export("groupCount")
 	final int groupCount;
 	@ObfuscatedName("y")
 	@ObfuscatedGetter(
-		intValue = -1897441913
+		intValue = -1090866547
 	)
 	@Export("loadedCount")
 	int loadedCount;
 
 	@ObfuscatedSignature(
-		descriptor = "(Ljp;Ljava/lang/String;)V"
+		descriptor = "(Ljf;Ljava/lang/String;)V"
 	)
 	ArchiveLoader(Archive var1, String var2) {
 		this.loadedCount = 0;
@@ -46,17 +44,17 @@ public class ArchiveLoader {
 		this.groupCount = var1.getGroupCount();
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(B)Z",
-		garbageValue = "14"
+		descriptor = "(I)Z",
+		garbageValue = "1253534662"
 	)
 	@Export("isLoaded")
 	boolean isLoaded() {
 		this.loadedCount = 0;
 
 		for (int var1 = 0; var1 < this.groupCount; ++var1) {
-			if (!this.archive.method4887(var1) || this.archive.method4884(var1)) {
+			if (!this.archive.method5031(var1) || this.archive.method5030(var1)) {
 				++this.loadedCount;
 			}
 		}
@@ -64,51 +62,16 @@ public class ArchiveLoader {
 		return this.loadedCount >= this.groupCount;
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(II)Lei;",
-		garbageValue = "598444391"
+		descriptor = "(I)Lhg;",
+		garbageValue = "-283445178"
 	)
-	@Export("StructDefinition_getStructDefinition")
-	public static StructComposition StructDefinition_getStructDefinition(int var0) {
-		StructComposition var1 = (StructComposition)StructComposition.StructDefinition_cached.get((long)var0);
-		if (var1 != null) {
-			return var1;
-		} else {
-			byte[] var2 = StructComposition.StructDefinition_archive.takeFile(34, var0);
-			var1 = new StructComposition();
-			if (var2 != null) {
-				var1.decode(new Buffer(var2));
-			}
-
-			var1.postDecode();
-			StructComposition.StructDefinition_cached.put(var1, (long)var0);
-			return var1;
-		}
-	}
-
-	@ObfuscatedName("a")
-	@ObfuscatedSignature(
-		descriptor = "(IIIIIIII)Z",
-		garbageValue = "1961168244"
-	)
-	static final boolean method2059(int var0, int var1, int var2, int var3, int var4, int var5, int var6) {
-		int var7 = ViewportMouse.ViewportMouse_y + var6;
-		if (var7 < var0 && var7 < var1 && var7 < var2) {
-			return false;
-		} else {
-			var7 = ViewportMouse.ViewportMouse_y - var6;
-			if (var7 > var0 && var7 > var1 && var7 > var2) {
-				return false;
-			} else {
-				var7 = ViewportMouse.ViewportMouse_x + var6;
-				if (var7 < var3 && var7 < var4 && var7 < var5) {
-					return false;
-				} else {
-					var7 = ViewportMouse.ViewportMouse_x - var6;
-					return var7 <= var3 || var7 <= var4 || var7 <= var5;
-				}
-			}
-		}
+	public static PacketBufferNode method2162() {
+		PacketBufferNode var0 = WorldMapData_1.method3583();
+		var0.clientPacket = null;
+		var0.clientPacketLength = 0;
+		var0.packetBuffer = new PacketBuffer(5000);
+		return var0;
 	}
 }

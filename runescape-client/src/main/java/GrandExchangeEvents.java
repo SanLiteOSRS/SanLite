@@ -7,27 +7,28 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jm")
+@ObfuscatedName("jk")
 @Implements("GrandExchangeEvents")
 public class GrandExchangeEvents {
-	@ObfuscatedName("n")
+	@ObfuscatedName("e")
 	@Export("GrandExchangeEvents_ageComparator")
 	public static Comparator GrandExchangeEvents_ageComparator;
-	@ObfuscatedName("f")
+	@ObfuscatedName("v")
 	@Export("GrandExchangeEvents_priceComparator")
 	public static Comparator GrandExchangeEvents_priceComparator;
 	@ObfuscatedName("y")
 	@Export("GrandExchangeEvents_nameComparator")
 	public static Comparator GrandExchangeEvents_nameComparator;
-	@ObfuscatedName("p")
+	@ObfuscatedName("j")
 	@Export("GrandExchangeEvents_quantityComparator")
 	public static Comparator GrandExchangeEvents_quantityComparator;
-	@ObfuscatedName("jp")
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		descriptor = "Lio;"
+		descriptor = "[Lof;"
 	)
-	static Widget field3626;
-	@ObfuscatedName("v")
+	@Export("title_muteSprite")
+	static IndexedSprite[] title_muteSprite;
+	@ObfuscatedName("f")
 	@Export("events")
 	public final List events;
 
@@ -40,7 +41,7 @@ public class GrandExchangeEvents {
 	}
 
 	@ObfuscatedSignature(
-		descriptor = "(Lnd;Z)V",
+		descriptor = "(Lnt;Z)V",
 		garbageValue = "1"
 	)
 	public GrandExchangeEvents(Buffer var1, boolean var2) {
@@ -62,10 +63,10 @@ public class GrandExchangeEvents {
 
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/util/Comparator;ZI)V",
-		garbageValue = "-1954624010"
+		descriptor = "(Ljava/util/Comparator;ZS)V",
+		garbageValue = "255"
 	)
 	@Export("sort")
 	public void sort(Comparator var1, boolean var2) {
@@ -77,38 +78,41 @@ public class GrandExchangeEvents {
 
 	}
 
-	@ObfuscatedName("hy")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		descriptor = "(IIII)V",
-		garbageValue = "-1158444411"
+		descriptor = "(Ljava/lang/String;B)Ljava/lang/String;",
+		garbageValue = "38"
 	)
-	@Export("worldToScreen")
-	static final void worldToScreen(int var0, int var1, int var2) {
-		if (var0 >= 128 && var1 >= 128 && var0 <= 13056 && var1 <= 13056) {
-			int var3 = class105.getTileHeight(var0, var1, class22.Client_plane) - var2;
-			var0 -= MouseHandler.cameraX;
-			var3 -= SecureRandomCallable.cameraY;
-			var1 -= class105.cameraZ;
-			int var4 = Rasterizer3D.Rasterizer3D_sine[SpotAnimationDefinition.cameraPitch];
-			int var5 = Rasterizer3D.Rasterizer3D_cosine[SpotAnimationDefinition.cameraPitch];
-			int var6 = Rasterizer3D.Rasterizer3D_sine[class376.cameraYaw];
-			int var7 = Rasterizer3D.Rasterizer3D_cosine[class376.cameraYaw];
-			int var8 = var6 * var1 + var0 * var7 >> 16;
-			var1 = var7 * var1 - var0 * var6 >> 16;
-			var0 = var8;
-			var8 = var5 * var3 - var4 * var1 >> 16;
-			var1 = var5 * var1 + var4 * var3 >> 16;
-			if (var1 >= 50) {
-				Client.viewportTempX = var0 * Client.viewportZoom / var1 + Client.viewportWidth / 2;
-				Client.viewportTempY = var8 * Client.viewportZoom / var1 + Client.viewportHeight / 2;
-			} else {
-				Client.viewportTempX = -1;
-				Client.viewportTempY = -1;
+	public static String method5182(String var0) {
+		int var1 = var0.length();
+		char[] var2 = new char[var1];
+		byte var3 = 2;
+
+		for (int var4 = 0; var4 < var1; ++var4) {
+			char var5 = var0.charAt(var4);
+			if (var3 == 0) {
+				var5 = Character.toLowerCase(var5);
+			} else if (var3 == 2 || Character.isUpperCase(var5)) {
+				var5 = HitSplatDefinition.method3013(var5);
 			}
 
-		} else {
-			Client.viewportTempX = -1;
-			Client.viewportTempY = -1;
+			if (Character.isLetter(var5)) {
+				var3 = 0;
+			} else if (var5 != '.' && var5 != '?' && var5 != '!') {
+				if (Character.isSpaceChar(var5)) {
+					if (var3 != 2) {
+						var3 = 1;
+					}
+				} else {
+					var3 = 1;
+				}
+			} else {
+				var3 = 2;
+			}
+
+			var2[var4] = var5;
 		}
+
+		return new String(var2);
 	}
 }
