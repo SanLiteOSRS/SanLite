@@ -12,6 +12,7 @@ import java.nio.file.StandardCopyOption;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class Bootstrapper
 {
@@ -28,13 +29,31 @@ public class Bootstrapper
 
 		// Create output directory
 		File outputDir = new File("./build/bootstrap-output");
-		if (!outputDir.exists())
+		if (outputDir.exists())
 		{
-			if (!outputDir.mkdirs())
+			for (File file: Objects.requireNonNull(outputDir.listFiles()))
 			{
-				System.err.println("Could not create output directory");
+				if (!file.isDirectory())
+				{
+					if (file.delete())
+					{
+						System.err.println("Could not clean output directory");
+						System.exit(1);
+					}
+				}
+			}
+
+			if (!outputDir.delete())
+			{
+				System.err.println("Could not delete output directory");
 				System.exit(1);
 			}
+		}
+
+		if (!outputDir.mkdirs())
+		{
+			System.err.println("Could not create output directory");
+			System.exit(1);
 		}
 
 		// Generate dynamic dependency file checksums
