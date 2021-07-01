@@ -52,12 +52,12 @@ public class Sotetseg extends TheatreOfBloodEncounter
 
 	private boolean isActiveMazeTileObject(int objectId)
 	{
-		return objectId == ObjectID.TILE_33034;
+		return objectId == ObjectID.TILE;
 	}
 
 	private boolean isRedMazeTileObject(int objectId)
 	{
-		return objectId == ObjectID.TILE_33035;
+		return objectId == ObjectID.TILE_38823;
 	}
 
 	private boolean isTileAlreadyAdded(GroundObject groundObject)
