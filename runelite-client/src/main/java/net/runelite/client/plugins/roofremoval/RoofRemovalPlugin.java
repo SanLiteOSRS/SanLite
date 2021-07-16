@@ -57,7 +57,8 @@ import net.runelite.client.plugins.PluginDescriptor;
 @PluginDescriptor(
 	name = "Roof Removal",
 	description = "Remove only the needed roofs above your player, hovered tile, or destination",
-	enabledByDefault = false
+	enabledByDefault = false,
+	hidden = true
 )
 @Slf4j
 public class RoofRemovalPlugin extends Plugin
