@@ -76,13 +76,13 @@ public class WidgetID
 	public static final int SLAYER_REWARDS_GROUP_ID = 426;
 	public static final int PRIVATE_CHAT = 163;
 	public static final int CHATBOX_GROUP_ID = 162;
-	public static final int WORLD_MAP_MENU_GROUP_ID = 160;
 	public static final int VOLCANIC_MINE_GROUP_ID = 611;
 	public static final int BA_ATTACKER_GROUP_ID = 485;
 	public static final int BA_COLLECTOR_GROUP_ID = 486;
 	public static final int BA_DEFENDER_GROUP_ID = 487;
 	public static final int BA_HEALER_GROUP_ID = 488;
 	public static final int BA_REWARD_GROUP_ID = 497;
+	public static final int BA_TEAM_GROUP_ID = 256;
 	public static final int LEVEL_UP_GROUP_ID = 233;
 	public static final int DIALOG_SPRITE_GROUP_ID = 193;
 	public static final int QUEST_COMPLETED_GROUP_ID = 153;
@@ -175,8 +175,7 @@ public class WidgetID
 		static final int BOTTOM_BAR = 23;
 		static final int SEARCH = 26;
 		static final int SURFACE_SELECTOR = 34;
-		static final int TOOLTIP = 43;
-		static final int OPTION = 48;
+		static final int TOOLTIP = 41;
 	}
 
 	static class SlayerRewards
@@ -359,6 +358,7 @@ public class WidgetID
 		static final int SPEC_ORB = 29;
 		static final int WORLDMAP_ORB = 43;
 		static final int WIKI_BANNER = 45;
+		static final int WORLDMAP_OPTIONS = 48;
 	}
 
 	static class LoginClickToPlayScreen
@@ -609,11 +609,14 @@ public class WidgetID
 
 		static class HLR
 		{
+			static final int TEAMMATES = 13;
 			static final int TEAMMATE1 = 18;
 			static final int TEAMMATE2 = 22;
 			static final int TEAMMATE3 = 26;
 			static final int TEAMMATE4 = 30;
 		}
+
+		static final int TEAM = 2;
 
 		static final int ROLE_SPRITE = 10;
 		static final int ROLE = 11;
@@ -672,8 +675,8 @@ public class WidgetID
 
 	static class ExperienceTracker
 	{
-		static final int WIDGET = 3;
-		static final int BOTTOM_BAR = 15;
+		static final int WIDGET = 4;
+		static final int BOTTOM_BAR = 16;
 	}
 
 	static class FairyRingPanel

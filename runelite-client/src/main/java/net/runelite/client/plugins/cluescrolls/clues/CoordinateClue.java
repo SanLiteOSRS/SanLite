@@ -171,6 +171,7 @@ public class CoordinateClue extends ClueScroll implements TextClueScroll, Locati
 		.put(new WorldPoint(3143, 3774, 0), new CoordinateClueInfo("In level 32 Wilderness, by the black chinchompa hunting area.", ZAMORAK_WIZARD))
 		.put(new WorldPoint(2992, 3941, 0), new CoordinateClueInfo("Wilderness Agility Course, past the log balance.", ZAMORAK_WIZARD))
 		.put(new WorldPoint(1410, 3611, 0), new CoordinateClueInfo("Lake Molch dock west of Shayzien Encampment.", SARADOMIN_WIZARD))
+		.put(new WorldPoint(1409, 3483, 0), new CoordinateClueInfo("South of Shayziens' Wall.", SARADOMIN_WIZARD))
 		// Elite
 		.put(new WorldPoint(2357, 3151, 0), new CoordinateClueInfo("Lletya.", ARMADYLEAN_OR_BANDOSIAN_GUARD))
 		.put(new WorldPoint(3587, 3180, 0), new CoordinateClueInfo("Meiyerditch.", ARMADYLEAN_OR_BANDOSIAN_GUARD))
@@ -236,7 +237,7 @@ public class CoordinateClue extends ClueScroll implements TextClueScroll, Locati
 		.put(new WorldPoint(3188, 3939, 0), new CoordinateClueInfo("Wilderness. Resource Area.", BRASSICAN_MAGE))
 		.put(new WorldPoint(3304, 3941, 0), new CoordinateClueInfo("Wilderness. East of Rogues' Castle.", ANCIENT_WIZARDS))
 		.put(new WorldPoint(2994, 3961, 0), new CoordinateClueInfo("Wilderness. Inside Agility Training Area.", BRASSICAN_MAGE))
-		.put(new WorldPoint(1770, 3417, 0), new CoordinateClueInfo("Crabclaw Isle", ANCIENT_WIZARDS))
+		.put(new WorldPoint(1769, 3418, 0), new CoordinateClueInfo("Crabclaw Isle", ANCIENT_WIZARDS))
 		.build();
 
 	private final String text;
