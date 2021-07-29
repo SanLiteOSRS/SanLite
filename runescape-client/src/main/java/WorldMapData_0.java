@@ -3,49 +3,49 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fo")
+@ObfuscatedName("fj")
 @Implements("WorldMapData_0")
 public class WorldMapData_0 extends AbstractWorldMapData {
 	WorldMapData_0() {
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "(Lnt;B)V",
-		garbageValue = "68"
+		descriptor = "(Lnv;I)V",
+		garbageValue = "-1866643170"
 	)
 	@Export("init")
 	void init(Buffer var1) {
 		int var2 = var1.readUnsignedByte();
-		if (var2 != WorldMapID.field2111.value) {
+		if (var2 != WorldMapID.field2095.value) {
 			throw new IllegalStateException("");
 		} else {
 			super.minPlane = var1.readUnsignedByte();
 			super.planes = var1.readUnsignedByte();
 			super.regionXLow = var1.readUnsignedShort() * 4096;
-			super.regionYLow = var1.readUnsignedShort() * 4096;
+			super.regionYLow = var1.readUnsignedShort() * 64;
 			super.regionX = var1.readUnsignedShort();
 			super.regionY = var1.readUnsignedShort();
-			super.groupId = var1.method6630();
-			super.fileId = var1.method6630();
+			super.groupId = var1.method6674();
+			super.fileId = var1.method6674();
 		}
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		descriptor = "(Lnt;I)V",
-		garbageValue = "-1563875465"
+		descriptor = "(Lnv;I)V",
+		garbageValue = "-1489554607"
 	)
 	@Export("readGeography")
 	void readGeography(Buffer var1) {
 		super.planes = Math.min(super.planes, 4);
 		super.floorUnderlayIds = new short[1][64][64];
 		super.floorOverlayIds = new short[super.planes][64][64];
-		super.field2068 = new byte[super.planes][64][64];
-		super.field2074 = new byte[super.planes][64][64];
+		super.field2056 = new byte[super.planes][64][64];
+		super.field2057 = new byte[super.planes][64][64];
 		super.decorations = new WorldMapDecoration[super.planes][64][64][];
 		int var2 = var1.readUnsignedByte();
-		if (var2 != class180.field2102.value) {
+		if (var2 != class181.field2090.value) {
 			throw new IllegalStateException("");
 		} else {
 			int var3 = var1.readUnsignedByte();
@@ -63,10 +63,6 @@ public class WorldMapData_0 extends AbstractWorldMapData {
 		}
 	}
 
-	public int hashCode() {
-		return super.regionX | super.regionY << 8;
-	}
-
 	public boolean equals(Object var1) {
 		if (!(var1 instanceof WorldMapData_0)) {
 			return false;
@@ -76,23 +72,51 @@ public class WorldMapData_0 extends AbstractWorldMapData {
 		}
 	}
 
-	@ObfuscatedName("ak")
+	public int hashCode() {
+		return super.regionX | super.regionY << 8;
+	}
+
+	@ObfuscatedName("ag")
 	@ObfuscatedSignature(
-		descriptor = "(ILcf;ZI)I",
-		garbageValue = "-1824219320"
+		descriptor = "(ILbd;ZB)I",
+		garbageValue = "100"
 	)
-	static int method3267(int var0, Script var1, boolean var2) {
-		if (var0 != 3700 && var0 != 3701) {
-			if (var0 == 3702) {
-				++ChatChannel.Interpreter_intStackSize;
-				return 1;
-			} else {
-				return 2;
-			}
-		} else {
-			--ChatChannel.Interpreter_intStackSize;
-			--UserComparator9.Interpreter_stringStackSize;
+	static int method3227(int var0, Script var1, boolean var2) {
+		if (var0 >= 7200 && var0 < 7204) {
+			Interpreter.Interpreter_intStackSize -= 5;
+			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = -1;
 			return 1;
+		} else if (var0 == 7204) {
+			Interpreter.Interpreter_intStackSize -= 6;
+			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = -1;
+			return 1;
+		} else if (var0 >= 7205 && var0 < 7209) {
+			Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize - 1] = -1;
+			return 1;
+		} else if (var0 == 7209) {
+			Interpreter.Interpreter_intStackSize -= 2;
+			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = -1;
+			return 1;
+		} else if (var0 >= 7210 && var0 < 7214) {
+			--Interpreter.Interpreter_intStackSize;
+			return 1;
+		} else if (var0 == 7214) {
+			Interpreter.Interpreter_intStackSize -= 2;
+			return 1;
+		} else {
+			return 2;
+		}
+	}
+
+	@ObfuscatedName("jm")
+	@ObfuscatedSignature(
+		descriptor = "(IIB)V",
+		garbageValue = "-68"
+	)
+	@Export("runIntfCloseListeners")
+	static final void runIntfCloseListeners(int var0, int var1) {
+		if (Huffman.loadInterface(var0)) {
+			HealthBar.runComponentCloseListeners(Widget.Widget_interfaceComponents[var0], var1);
 		}
 	}
 }

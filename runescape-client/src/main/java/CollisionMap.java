@@ -4,36 +4,30 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fl")
+@ObfuscatedName("fy")
 @Implements("CollisionMap")
 public class CollisionMap {
-	@ObfuscatedName("u")
+	@ObfuscatedName("ax")
 	@ObfuscatedGetter(
-		intValue = -1967137555
-	)
-	@Export("clientTickTimeIdx")
-	static int clientTickTimeIdx;
-	@ObfuscatedName("ag")
-	@ObfuscatedGetter(
-		intValue = 1252151781
+		intValue = -97625897
 	)
 	@Export("xInset")
-	public int xInset;
-	@ObfuscatedName("ab")
+	int xInset;
+	@ObfuscatedName("au")
 	@ObfuscatedGetter(
-		intValue = 193981903
+		intValue = 1592986103
 	)
 	@Export("yInset")
-	public int yInset;
-	@ObfuscatedName("aq")
+	int yInset;
+	@ObfuscatedName("av")
 	@ObfuscatedGetter(
-		intValue = -2099973471
+		intValue = 1072743371
 	)
 	@Export("xSize")
 	int xSize;
-	@ObfuscatedName("ae")
+	@ObfuscatedName("as")
 	@ObfuscatedGetter(
-		intValue = 3583519
+		intValue = -1185927055
 	)
 	@Export("ySize")
 	int ySize;
@@ -50,10 +44,10 @@ public class CollisionMap {
 		this.clear();
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "-950310873"
+		garbageValue = "269494942"
 	)
 	@Export("clear")
 	public void clear() {
@@ -69,12 +63,12 @@ public class CollisionMap {
 
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		descriptor = "(IIIIZB)V",
-		garbageValue = "87"
+		descriptor = "(IIIIZI)V",
+		garbageValue = "-1299948758"
 	)
-	public void method3216(int var1, int var2, int var3, int var4, boolean var5) {
+	public void method3171(int var1, int var2, int var3, int var4, boolean var5) {
 		var1 -= this.xInset;
 		var2 -= this.yInset;
 		if (var3 == 0) {
@@ -223,8 +217,8 @@ public class CollisionMap {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(IIIIZB)V",
-		garbageValue = "-42"
+		descriptor = "(IIIIZI)V",
+		garbageValue = "-1986797422"
 	)
 	@Export("addGameObject")
 	public void addGameObject(int var1, int var2, int var3, int var4, boolean var5) {
@@ -248,10 +242,10 @@ public class CollisionMap {
 
 	}
 
-	@ObfuscatedName("y")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
-		descriptor = "(III)V",
-		garbageValue = "-1224404826"
+		descriptor = "(IIB)V",
+		garbageValue = "-67"
 	)
 	@Export("setBlockedByFloor")
 	public void setBlockedByFloor(int var1, int var2) {
@@ -261,10 +255,10 @@ public class CollisionMap {
 		var10000[var2] |= 2097152;
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
 		descriptor = "(III)V",
-		garbageValue = "-1296944605"
+		garbageValue = "-694805867"
 	)
 	@Export("setBlockedByFloorDec")
 	public void setBlockedByFloorDec(int var1, int var2) {
@@ -274,10 +268,10 @@ public class CollisionMap {
 		var10000[var2] |= 262144;
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
 		descriptor = "(IIIB)V",
-		garbageValue = "34"
+		garbageValue = "0"
 	)
 	@Export("setFlag")
 	void setFlag(int var1, int var2, int var3) {
@@ -285,12 +279,12 @@ public class CollisionMap {
 		var10000[var2] |= var3;
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
 		descriptor = "(IIIIZI)V",
-		garbageValue = "175119648"
+		garbageValue = "74052797"
 	)
-	public void method3217(int var1, int var2, int var3, int var4, boolean var5) {
+	public void method3176(int var1, int var2, int var3, int var4, boolean var5) {
 		var1 -= this.xInset;
 		var2 -= this.yInset;
 		if (var3 == 0) {
@@ -437,10 +431,10 @@ public class CollisionMap {
 
 	}
 
-	@ObfuscatedName("r")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
 		descriptor = "(IIIIIZI)V",
-		garbageValue = "63758690"
+		garbageValue = "1271706136"
 	)
 	@Export("setFlagOffNonSquare")
 	public void setFlagOffNonSquare(int var1, int var2, int var3, int var4, int var5, boolean var6) {
@@ -470,10 +464,10 @@ public class CollisionMap {
 
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
 		descriptor = "(IIII)V",
-		garbageValue = "-1773345241"
+		garbageValue = "-1119202774"
 	)
 	@Export("setFlagOff")
 	void setFlagOff(int var1, int var2, int var3) {
@@ -481,57 +475,33 @@ public class CollisionMap {
 		var10000[var2] &= ~var3;
 	}
 
-	@ObfuscatedName("d")
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
 		descriptor = "(III)V",
-		garbageValue = "1650677027"
+		garbageValue = "-2137873590"
 	)
-	public void method3206(int var1, int var2) {
+	public void method3200(int var1, int var2) {
 		var1 -= this.xInset;
 		var2 -= this.yInset;
 		int[] var10000 = this.flags[var1];
 		var10000[var2] &= -262145;
 	}
 
-	@ObfuscatedName("e")
-	static double method3213(double var0, double var2, double var4) {
-		return WallDecoration.method4429((var0 - var2) / var4) / var4;
+	@ObfuscatedName("s")
+	@ObfuscatedSignature(
+		descriptor = "(B)Lhg;",
+		garbageValue = "0"
+	)
+	public static PacketBufferNode method3205() {
+		return PacketBufferNode.PacketBufferNode_packetBufferNodeCount == 0 ? new PacketBufferNode() : PacketBufferNode.PacketBufferNode_packetBufferNodes[--PacketBufferNode.PacketBufferNode_packetBufferNodeCount];
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("ih")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V",
-		garbageValue = "1850795522"
+		descriptor = "(I)I",
+		garbageValue = "-1173272603"
 	)
-	@Export("setLoginResponseString")
-	static void setLoginResponseString(String var0, String var1, String var2) {
-		Login.Login_response1 = var0;
-		Login.Login_response2 = var1;
-		Login.Login_response3 = var2;
-	}
-
-	@ObfuscatedName("g")
-	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-719935819"
-	)
-	public static void method3245() {
-		ObjectComposition.ObjectDefinition_cached.clear();
-		ObjectComposition.ObjectDefinition_cachedModelData.clear();
-		ObjectComposition.ObjectDefinition_cachedEntities.clear();
-		ObjectComposition.ObjectDefinition_cachedModels.clear();
-	}
-
-	@ObfuscatedName("kh")
-	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "1470187850"
-	)
-	static final void method3244() {
-		for (int var0 = 0; var0 < Players.Players_count; ++var0) {
-			Player var1 = Client.players[Players.Players_indices[var0]];
-			var1.method2213();
-		}
-
+	static final int method3204() {
+		return Client.menuOptionsCount - 1;
 	}
 }

@@ -3,18 +3,24 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("lt")
+@ObfuscatedName("lg")
 @Implements("FriendsChatMember")
 public class FriendsChatMember extends Buddy {
-	@ObfuscatedName("f")
+	@ObfuscatedName("ev")
 	@ObfuscatedSignature(
-		descriptor = "Llu;"
+		descriptor = "Ljs;"
+	)
+	@Export("archive20")
+	static Archive archive20;
+	@ObfuscatedName("s")
+	@ObfuscatedSignature(
+		descriptor = "Lli;"
 	)
 	@Export("friend")
 	TriBool friend;
-	@ObfuscatedName("e")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		descriptor = "Llu;"
+		descriptor = "Lli;"
 	)
 	@Export("ignored")
 	TriBool ignored;
@@ -24,10 +30,10 @@ public class FriendsChatMember extends Buddy {
 		this.ignored = TriBool.TriBool_unknown;
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-1463717617"
+		descriptor = "(B)V",
+		garbageValue = "1"
 	)
 	@Export("clearIsFriend")
 	void clearIsFriend() {
@@ -37,7 +43,7 @@ public class FriendsChatMember extends Buddy {
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
 		descriptor = "(I)Z",
-		garbageValue = "459582232"
+		garbageValue = "939326138"
 	)
 	@Export("isFriend")
 	public final boolean isFriend() {
@@ -48,30 +54,30 @@ public class FriendsChatMember extends Buddy {
 		return this.friend == TriBool.TriBool_true;
 	}
 
-	@ObfuscatedName("y")
-	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "1131395032"
-	)
-	@Export("fillIsFriend")
-	void fillIsFriend() {
-		this.friend = DevicePcmPlayerProvider.friendSystem.friendsList.contains(super.username) ? TriBool.TriBool_true : TriBool.TriBool_false;
-	}
-
 	@ObfuscatedName("j")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "530293268"
+		garbageValue = "-642390933"
+	)
+	@Export("fillIsFriend")
+	void fillIsFriend() {
+		this.friend = Canvas.friendSystem.friendsList.contains(super.username) ? TriBool.TriBool_true : TriBool.TriBool_false;
+	}
+
+	@ObfuscatedName("x")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "-1054730400"
 	)
 	@Export("clearIsIgnored")
 	void clearIsIgnored() {
 		this.ignored = TriBool.TriBool_unknown;
 	}
 
-	@ObfuscatedName("z")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
 		descriptor = "(I)Z",
-		garbageValue = "-105977481"
+		garbageValue = "-270498617"
 	)
 	@Export("isIgnored")
 	public final boolean isIgnored() {
@@ -82,13 +88,13 @@ public class FriendsChatMember extends Buddy {
 		return this.ignored == TriBool.TriBool_true;
 	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "1794197265"
+		garbageValue = "-1583864531"
 	)
 	@Export("fillIsIgnored")
 	void fillIsIgnored() {
-		this.ignored = DevicePcmPlayerProvider.friendSystem.ignoreList.contains(super.username) ? TriBool.TriBool_true : TriBool.TriBool_false;
+		this.ignored = Canvas.friendSystem.ignoreList.contains(super.username) ? TriBool.TriBool_true : TriBool.TriBool_false;
 	}
 }

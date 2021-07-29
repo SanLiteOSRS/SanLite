@@ -1,59 +1,55 @@
-import java.net.MalformedURLException;
-import java.net.URL;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ep")
+@ObfuscatedName("eq")
 @Implements("EnumComposition")
 public class EnumComposition extends DualNode {
-	@ObfuscatedName("f")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "Ljp;"
+		descriptor = "Ljy;"
 	)
 	@Export("EnumDefinition_archive")
-	static AbstractArchive EnumDefinition_archive;
-	@ObfuscatedName("e")
+	public static AbstractArchive EnumDefinition_archive;
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		descriptor = "Lht;"
+		descriptor = "Lhw;"
 	)
 	@Export("EnumDefinition_cached")
 	static EvictingDualNodeHashTable EnumDefinition_cached;
-	@ObfuscatedName("b")
-	@ObfuscatedGetter(
-		intValue = 422415445
-	)
-	static int field1629;
+	@ObfuscatedName("r")
+	@Export("musicTrackBoolean")
+	public static boolean musicTrackBoolean;
 	@ObfuscatedName("v")
 	@Export("inputType")
 	public char inputType;
-	@ObfuscatedName("y")
+	@ObfuscatedName("j")
 	@Export("outputType")
 	public char outputType;
-	@ObfuscatedName("j")
+	@ObfuscatedName("l")
 	@Export("defaultStr")
 	public String defaultStr;
-	@ObfuscatedName("o")
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = -883966701
+		intValue = -2085329693
 	)
 	@Export("defaultInt")
 	public int defaultInt;
-	@ObfuscatedName("m")
+	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		intValue = 691082953
+		intValue = 1996066199
 	)
 	@Export("outputCount")
 	public int outputCount;
-	@ObfuscatedName("r")
+	@ObfuscatedName("f")
 	@Export("keys")
 	public int[] keys;
-	@ObfuscatedName("h")
+	@ObfuscatedName("o")
 	@Export("intVals")
 	public int[] intVals;
-	@ObfuscatedName("d")
+	@ObfuscatedName("x")
 	@Export("strVals")
 	public String[] strVals;
 
@@ -66,10 +62,10 @@ public class EnumComposition extends DualNode {
 		this.outputCount = 0;
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		descriptor = "(Lnt;I)V",
-		garbageValue = "1541381103"
+		descriptor = "(Lnv;B)V",
+		garbageValue = "96"
 	)
 	@Export("decode")
 	void decode(Buffer var1) {
@@ -83,10 +79,10 @@ public class EnumComposition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("y")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(Lnt;II)V",
-		garbageValue = "1108617782"
+		descriptor = "(Lnv;II)V",
+		garbageValue = "-681077341"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
@@ -126,47 +122,10 @@ public class EnumComposition extends DualNode {
 	@ObfuscatedName("j")
 	@ObfuscatedSignature(
 		descriptor = "(I)I",
-		garbageValue = "1940899899"
+		garbageValue = "2004820017"
 	)
 	@Export("size")
 	public int size() {
 		return this.outputCount;
-	}
-
-	@ObfuscatedName("e")
-	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;I)Z",
-		garbageValue = "-1376417697"
-	)
-	static boolean method2831(String var0) {
-		if (var0 == null) {
-			return false;
-		} else {
-			try {
-				new URL(var0);
-				return true;
-			} catch (MalformedURLException var2) {
-				return false;
-			}
-		}
-	}
-
-	@ObfuscatedName("lx")
-	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "49"
-	)
-	static void method2827() {
-		if (LoginPacket.field2800 != null) {
-			Client.field798 = Client.cycle;
-			LoginPacket.field2800.method5246();
-
-			for (int var0 = 0; var0 < Client.players.length; ++var0) {
-				if (Client.players[var0] != null) {
-					LoginPacket.field2800.method5245(class15.baseX * 64 + (Client.players[var0].x >> 7), WorldMapSprite.baseY * 64 + (Client.players[var0].y >> 7));
-				}
-			}
-		}
-
 	}
 }

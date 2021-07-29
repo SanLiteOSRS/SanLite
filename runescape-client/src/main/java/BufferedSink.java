@@ -1,46 +1,50 @@
+import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.net.URL;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("lv")
+@ObfuscatedName("le")
 @Implements("BufferedSink")
 public class BufferedSink implements Runnable {
-	@ObfuscatedName("f")
+	@ObfuscatedName("y")
+	@Export("BZip2Decompressor_block")
+	static int[] BZip2Decompressor_block;
+	@ObfuscatedName("s")
 	@Export("thread")
 	Thread thread;
-	@ObfuscatedName("e")
+	@ObfuscatedName("t")
 	@Export("outputStream")
 	OutputStream outputStream;
 	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = 992988875
+		intValue = 815941805
 	)
 	@Export("capacity")
 	int capacity;
-	@ObfuscatedName("y")
+	@ObfuscatedName("j")
 	@Export("buffer")
 	byte[] buffer;
-	@ObfuscatedName("j")
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = 1280134095
+		intValue = 606679557
 	)
 	@Export("position")
 	int position;
-	@ObfuscatedName("o")
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = -1968641393
+		intValue = 217020143
 	)
 	@Export("limit")
 	int limit;
-	@ObfuscatedName("m")
+	@ObfuscatedName("w")
 	@Export("exception")
 	IOException exception;
-	@ObfuscatedName("r")
+	@ObfuscatedName("f")
 	@Export("closed")
 	boolean closed;
 
@@ -55,10 +59,10 @@ public class BufferedSink implements Runnable {
 		this.thread.start();
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
 		descriptor = "(I)Z",
-		garbageValue = "-1288409472"
+		garbageValue = "1408116923"
 	)
 	@Export("isClosed")
 	boolean isClosed() {
@@ -80,10 +84,10 @@ public class BufferedSink implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		descriptor = "([BIII)V",
-		garbageValue = "-765694644"
+		descriptor = "([BIIB)V",
+		garbageValue = "0"
 	)
 	@Export("write")
 	void write(byte[] var1, int var2, int var3) throws IOException {
@@ -122,8 +126,8 @@ public class BufferedSink implements Runnable {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "70"
+		descriptor = "(I)V",
+		garbageValue = "-811100713"
 	)
 	@Export("close")
 	void close() {
@@ -199,74 +203,46 @@ public class BufferedSink implements Runnable {
 
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "(ILcf;ZB)I",
-		garbageValue = "14"
+		descriptor = "(Ljava/lang/String;Ljava/lang/Throwable;I)V",
+		garbageValue = "1118692057"
 	)
-	static int method5990(int var0, Script var1, boolean var2) {
-		Widget var3;
-		if (var0 >= 2000) {
-			var0 -= 1000;
-			var3 = WorldMapData_1.getWidget(Interpreter.Interpreter_intStack[--ChatChannel.Interpreter_intStackSize]);
+	@Export("RunException_sendStackTrace")
+	public static void RunException_sendStackTrace(String var0, Throwable var1) {
+		if (var1 != null) {
+			var1.printStackTrace();
 		} else {
-			var3 = var2 ? UserComparator5.scriptDotWidget : Nameable.scriptActiveWidget;
+			try {
+				String var2 = "";
+				if (var1 != null) {
+					var2 = class398.method7217(var1);
+				}
+
+				if (var0 != null) {
+					if (var1 != null) {
+						var2 = var2 + " | ";
+					}
+
+					var2 = var2 + var0;
+				}
+
+				System.out.println("Error: " + var2);
+				var2 = var2.replace(':', '.');
+				var2 = var2.replace('@', '_');
+				var2 = var2.replace('&', '_');
+				var2 = var2.replace('#', '_');
+				if (RunException.RunException_applet == null) {
+					return;
+				}
+
+				URL var3 = new URL(RunException.RunException_applet.getCodeBase(), "clienterror.ws?c=" + RunException.RunException_revision + "&u=" + RunException.field4315 + "&v1=" + TaskHandler.javaVendor + "&v2=" + TaskHandler.javaVersion + "&ct=" + UserComparator6.clientType + "&e=" + var2);
+				DataInputStream var4 = new DataInputStream(var3.openStream());
+				var4.read();
+				var4.close();
+			} catch (Exception var5) {
+			}
+
 		}
-
-		Script.invalidateWidget(var3);
-		if (var0 != ScriptOpcodes.CC_SETOBJECT && var0 != ScriptOpcodes.CC_SETOBJECT_NONUM && var0 != ScriptOpcodes.CC_SETOBJECT_ALWAYS_NUM) {
-			if (var0 == ScriptOpcodes.CC_SETNPCHEAD) {
-				var3.modelType = 2;
-				var3.modelId = Interpreter.Interpreter_intStack[--ChatChannel.Interpreter_intStackSize];
-				return 1;
-			} else if (var0 == ScriptOpcodes.CC_SETPLAYERHEAD_SELF) {
-				var3.modelType = 3;
-				var3.modelId = class262.localPlayer.appearance.getChatHeadId();
-				return 1;
-			} else {
-				return 2;
-			}
-		} else {
-			ChatChannel.Interpreter_intStackSize -= 2;
-			int var4 = Interpreter.Interpreter_intStack[ChatChannel.Interpreter_intStackSize];
-			int var5 = Interpreter.Interpreter_intStack[ChatChannel.Interpreter_intStackSize + 1];
-			var3.itemId = var4;
-			var3.itemQuantity = var5;
-			ItemComposition var6 = class250.ItemDefinition_get(var4);
-			var3.modelAngleX = var6.xan2d;
-			var3.modelAngleY = var6.yan2d;
-			var3.modelAngleZ = var6.zan2d;
-			var3.modelOffsetX = var6.offsetX2d;
-			var3.modelOffsetY = var6.offsetY2d;
-			var3.modelZoom = var6.zoom2d;
-			if (var0 == ScriptOpcodes.CC_SETOBJECT_NONUM) {
-				var3.itemQuantityMode = 0;
-			} else if (var0 == ScriptOpcodes.CC_SETOBJECT_ALWAYS_NUM | 1 == var6.isStackable) {
-				var3.itemQuantityMode = 1;
-			} else {
-				var3.itemQuantityMode = 2;
-			}
-
-			if (var3.field3011 > 0) {
-				var3.modelZoom = var3.modelZoom * 32 / var3.field3011;
-			} else if (var3.rawWidth > 0) {
-				var3.modelZoom = var3.modelZoom * 32 / var3.rawWidth;
-			}
-
-			return 1;
-		}
-	}
-
-	@ObfuscatedName("gf")
-	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-452745506"
-	)
-	static void method5992() {
-		PacketBufferNode var0 = InterfaceParent.getPacketBufferNode(ClientPacket.field2656, Client.packetWriter.isaacCipher);
-		var0.packetBuffer.writeByte(class302.getWindowedMode());
-		var0.packetBuffer.writeShort(AttackOption.canvasWidth);
-		var0.packetBuffer.writeShort(class0.canvasHeight);
-		Client.packetWriter.addNode(var0);
 	}
 }

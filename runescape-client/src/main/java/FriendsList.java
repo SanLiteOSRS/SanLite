@@ -4,51 +4,51 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("lo")
+@ObfuscatedName("ld")
 @Implements("FriendsList")
 public class FriendsList extends NameableContainer {
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "Lnb;"
+		descriptor = "Lnf;"
 	)
 	@Export("loginType")
 	final LoginType loginType;
-	@ObfuscatedName("y")
-	@ObfuscatedGetter(
-		intValue = 1954413
-	)
-	int field3812;
 	@ObfuscatedName("j")
+	@ObfuscatedGetter(
+		intValue = -1711234231
+	)
+	int field3828;
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		descriptor = "Lkd;"
+		descriptor = "Lko;"
 	)
 	@Export("friendLoginUpdates")
 	public LinkDeque friendLoginUpdates;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lnb;)V"
+		descriptor = "(Lnf;)V"
 	)
 	public FriendsList(LoginType var1) {
 		super(400);
-		this.field3812 = 1;
+		this.field3828 = 1;
 		this.friendLoginUpdates = new LinkDeque();
 		this.loginType = var1;
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "(I)Llf;",
-		garbageValue = "1590299985"
+		descriptor = "(B)Llm;",
+		garbageValue = "-70"
 	)
 	@Export("newInstance")
 	Nameable newInstance() {
 		return new Friend();
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		descriptor = "(II)[Llf;",
-		garbageValue = "-1320557093"
+		descriptor = "(II)[Llm;",
+		garbageValue = "-2047984332"
 	)
 	@Export("newTypedArray")
 	Nameable[] newTypedArray(int var1) {
@@ -57,8 +57,8 @@ public class FriendsList extends NameableContainer {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(Llc;ZB)Z",
-		garbageValue = "0"
+		descriptor = "(Loh;ZI)Z",
+		garbageValue = "1216777375"
 	)
 	@Export("isFriended")
 	public boolean isFriended(Username var1, boolean var2) {
@@ -70,10 +70,10 @@ public class FriendsList extends NameableContainer {
 		}
 	}
 
-	@ObfuscatedName("d")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "(Lnt;II)V",
-		garbageValue = "730412999"
+		descriptor = "(Lnv;II)V",
+		garbageValue = "2058052808"
 	)
 	@Export("read")
 	public void read(Buffer var1, int var2) {
@@ -137,17 +137,17 @@ public class FriendsList extends NameableContainer {
 					}
 
 					if (var6 != var11.world) {
-						var11.int2 = ++this.field3812 - 1;
+						var11.int2 = ++this.field3828 - 1;
 						if (var11.world == -1 && var6 == 0) {
-							var11.int2 = -(var11.int2 * 1083271825) * -286288271;
+							var11.int2 = -(var11.int2 * 723168297) * -2065584103;
 						}
 
 						var11.world = var6;
 					}
 
 					var11.rank = var7;
-					var11.field3824 = var9;
-					var11.field3825 = var10;
+					var11.field3842 = var9;
+					var11.field3841 = var10;
 					continue;
 				}
 
@@ -157,53 +157,5 @@ public class FriendsList extends NameableContainer {
 			this.sort();
 			return;
 		}
-	}
-
-	@ObfuscatedName("iw")
-	@ObfuscatedSignature(
-		descriptor = "(ILjava/lang/String;S)V",
-		garbageValue = "2200"
-	)
-	static void method5711(int var0, String var1) {
-		int var2 = Players.Players_count;
-		int[] var3 = Players.Players_indices;
-		boolean var4 = false;
-		Username var5 = new Username(var1, LoginScreenAnimation.loginType);
-
-		for (int var6 = 0; var6 < var2; ++var6) {
-			Player var7 = Client.players[var3[var6]];
-			if (var7 != null && var7 != class262.localPlayer && var7.username != null && var7.username.equals(var5)) {
-				PacketBufferNode var8;
-				if (var0 == 1) {
-					var8 = InterfaceParent.getPacketBufferNode(ClientPacket.field2618, Client.packetWriter.isaacCipher);
-					var8.packetBuffer.method6705(var3[var6]);
-					var8.packetBuffer.method6640(0);
-					Client.packetWriter.addNode(var8);
-				} else if (var0 == 4) {
-					var8 = InterfaceParent.getPacketBufferNode(ClientPacket.field2627, Client.packetWriter.isaacCipher);
-					var8.packetBuffer.method6640(0);
-					var8.packetBuffer.method6648(var3[var6]);
-					Client.packetWriter.addNode(var8);
-				} else if (var0 == 6) {
-					var8 = InterfaceParent.getPacketBufferNode(ClientPacket.field2605, Client.packetWriter.isaacCipher);
-					var8.packetBuffer.method6649(var3[var6]);
-					var8.packetBuffer.method6639(0);
-					Client.packetWriter.addNode(var8);
-				} else if (var0 == 7) {
-					var8 = InterfaceParent.getPacketBufferNode(ClientPacket.field2673, Client.packetWriter.isaacCipher);
-					var8.packetBuffer.writeByte(0);
-					var8.packetBuffer.method6705(var3[var6]);
-					Client.packetWriter.addNode(var8);
-				}
-
-				var4 = true;
-				break;
-			}
-		}
-
-		if (!var4) {
-			UserComparator10.addGameMessage(4, "", "Unable to find " + var1);
-		}
-
 	}
 }

@@ -5,91 +5,85 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("dq")
+@ObfuscatedName("cj")
 @Implements("PacketWriter")
 public class PacketWriter {
-	@ObfuscatedName("ei")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "Ljf;"
-	)
-	@Export("archive14")
-	static Archive archive14;
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "Llk;"
+		descriptor = "Llp;"
 	)
 	@Export("socket")
 	AbstractSocket socket;
-	@ObfuscatedName("e")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		descriptor = "Lkz;"
+		descriptor = "Lkk;"
 	)
 	@Export("packetBufferNodes")
 	IterableNodeDeque packetBufferNodes;
 	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = 1878760487
+		intValue = -592223771
 	)
 	@Export("bufferSize")
 	int bufferSize;
-	@ObfuscatedName("y")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
-		descriptor = "Lnt;"
+		descriptor = "Lnv;"
 	)
 	@Export("buffer")
 	Buffer buffer;
-	@ObfuscatedName("j")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		descriptor = "Lod;"
+		descriptor = "Log;"
 	)
 	@Export("isaacCipher")
 	public IsaacCipher isaacCipher;
-	@ObfuscatedName("o")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "Lns;"
+		descriptor = "Lnu;"
 	)
 	@Export("packetBuffer")
 	PacketBuffer packetBuffer;
-	@ObfuscatedName("m")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		descriptor = "Lhs;"
+		descriptor = "Lhi;"
 	)
 	@Export("serverPacket")
 	ServerPacket serverPacket;
-	@ObfuscatedName("r")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = 824884821
+		intValue = 664186129
 	)
 	@Export("serverPacketLength")
 	int serverPacketLength;
-	@ObfuscatedName("h")
-	boolean field1412;
-	@ObfuscatedName("d")
+	@ObfuscatedName("o")
+	boolean field1210;
+	@ObfuscatedName("x")
 	@ObfuscatedGetter(
-		intValue = -1875627651
+		intValue = 642893305
 	)
-	int field1408;
-	@ObfuscatedName("z")
+	int field1209;
+	@ObfuscatedName("r")
 	@ObfuscatedGetter(
-		intValue = 120433437
+		intValue = 1015319725
 	)
 	@Export("pendingWrites")
 	int pendingWrites;
-	@ObfuscatedName("b")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		descriptor = "Lhs;"
+		descriptor = "Lhi;"
 	)
-	ServerPacket field1410;
-	@ObfuscatedName("i")
+	ServerPacket field1211;
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "Lhs;"
+		descriptor = "Lhi;"
 	)
-	ServerPacket field1411;
+	ServerPacket field1213;
 	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		descriptor = "Lhs;"
+		descriptor = "Lhi;"
 	)
-	ServerPacket field1399;
+	ServerPacket field1212;
 
 	PacketWriter() {
 		this.packetBufferNodes = new IterableNodeDeque();
@@ -98,15 +92,15 @@ public class PacketWriter {
 		this.packetBuffer = new PacketBuffer(40000);
 		this.serverPacket = null;
 		this.serverPacketLength = 0;
-		this.field1412 = true;
-		this.field1408 = 0;
+		this.field1210 = true;
+		this.field1209 = 0;
 		this.pendingWrites = 0;
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "-2055980283"
+		garbageValue = "-626526349"
 	)
 	@Export("clearBuffer")
 	final void clearBuffer() {
@@ -114,10 +108,10 @@ public class PacketWriter {
 		this.bufferSize = 0;
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-1160814368"
+		descriptor = "(S)V",
+		garbageValue = "-26503"
 	)
 	@Export("flush")
 	final void flush() throws IOException {
@@ -145,7 +139,7 @@ public class PacketWriter {
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
 		descriptor = "(Lhg;I)V",
-		garbageValue = "-1221651734"
+		garbageValue = "1438482653"
 	)
 	@Export("addNode")
 	public final void addNode(PacketBufferNode var1) {
@@ -155,20 +149,20 @@ public class PacketWriter {
 		this.bufferSize += var1.index;
 	}
 
-	@ObfuscatedName("y")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
-		descriptor = "(Llk;S)V",
-		garbageValue = "3168"
+		descriptor = "(Llp;I)V",
+		garbageValue = "-1647707364"
 	)
 	@Export("setSocket")
 	void setSocket(AbstractSocket var1) {
 		this.socket = var1;
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "2099753174"
+		garbageValue = "355652466"
 	)
 	@Export("close")
 	void close() {
@@ -179,66 +173,32 @@ public class PacketWriter {
 
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "-1099127678"
+		garbageValue = "-1757409709"
 	)
 	@Export("removeSocket")
 	void removeSocket() {
 		this.socket = null;
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		descriptor = "(I)Llk;",
-		garbageValue = "526936130"
+		descriptor = "(I)Llp;",
+		garbageValue = "-1467862512"
 	)
 	@Export("getSocket")
 	AbstractSocket getSocket() {
 		return this.socket;
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(CI)Z",
-		garbageValue = "1259341442"
+		descriptor = "(II)I",
+		garbageValue = "-330695328"
 	)
-	static boolean method2496(char var0) {
-		return "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!\"£$%^&*()-_=+[{]};:'@#~,<.>/?\\| ".indexOf(var0) != -1;
-	}
-
-	@ObfuscatedName("iz")
-	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;Ljava/lang/String;IIIIZB)V",
-		garbageValue = "22"
-	)
-	@Export("insertMenuItem")
-	static final void insertMenuItem(String var0, String var1, int var2, int var3, int var4, int var5, boolean var6) {
-		if (!Client.isMenuOpen) {
-			if (Client.menuOptionsCount < 500) {
-				Client.menuActions[Client.menuOptionsCount] = var0;
-				Client.menuTargets[Client.menuOptionsCount] = var1;
-				Client.menuOpcodes[Client.menuOptionsCount] = var2;
-				Client.menuIdentifiers[Client.menuOptionsCount] = var3;
-				Client.menuArguments1[Client.menuOptionsCount] = var4;
-				Client.menuArguments2[Client.menuOptionsCount] = var5;
-				Client.menuShiftClick[Client.menuOptionsCount] = var6;
-				++Client.menuOptionsCount;
-			}
-
-		}
-	}
-
-	@ObfuscatedName("jr")
-	@ObfuscatedSignature(
-		descriptor = "(IIIIIIII)V",
-		garbageValue = "-277336927"
-	)
-	@Export("updateRootInterface")
-	static final void updateRootInterface(int var0, int var1, int var2, int var3, int var4, int var5, int var6) {
-		if (class20.loadInterface(var0)) {
-			MenuAction.updateInterface(GrandExchangeOfferOwnWorldComparator.Widget_interfaceComponents[var0], -1, var1, var2, var3, var4, var5, var6);
-		}
+	public static int method2117(int var0) {
+		return class345.field3945[var0 & 16383];
 	}
 }

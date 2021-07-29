@@ -3,19 +3,18 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ix")
+@ObfuscatedName("ie")
 @Implements("Huffman")
 public class Huffman {
-	@ObfuscatedName("br")
-	@ObfuscatedSignature(
-		descriptor = "[Lof;"
-	)
-	@Export("worldSelectStars")
-	static IndexedSprite[] worldSelectStars;
 	@ObfuscatedName("f")
+	static byte[][][] field3113;
+	@ObfuscatedName("gz")
+	@Export("regionMapArchiveIds")
+	static int[] regionMapArchiveIds;
+	@ObfuscatedName("s")
 	@Export("masks")
 	int[] masks;
-	@ObfuscatedName("e")
+	@ObfuscatedName("t")
 	@Export("bits")
 	byte[] bits;
 	@ObfuscatedName("v")
@@ -105,10 +104,10 @@ public class Huffman {
 
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
 		descriptor = "([BII[BII)I",
-		garbageValue = "-1958410774"
+		garbageValue = "-2001454460"
 	)
 	@Export("compress")
 	int compress(byte[] var1, int var2, int var3, byte[] var4, int var5) {
@@ -126,7 +125,7 @@ public class Huffman {
 			int var11 = var7 >> 3;
 			int var12 = var7 & 7;
 			var6 &= -var12 >> 31;
-			int var13 = (var12 + var10 - 1 >> 3) + var11;
+			int var13 = (var10 + var12 - 1 >> 3) + var11;
 			var12 += 24;
 			var4[var11] = (byte)(var6 |= var9 >>> var12);
 			if (var11 < var13) {
@@ -156,10 +155,10 @@ public class Huffman {
 		return (var7 + 7 >> 3) - var5;
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
 		descriptor = "([BI[BIII)I",
-		garbageValue = "1331615778"
+		garbageValue = "-2100484345"
 	)
 	@Export("decompress")
 	int decompress(byte[] var1, int var2, byte[] var3, int var4, int var5) {
@@ -300,80 +299,74 @@ public class Huffman {
 		}
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "(Lnt;IIIIIII)V",
-		garbageValue = "1430130968"
+		descriptor = "([Lkf;II)Lkf;",
+		garbageValue = "-498785884"
 	)
-	@Export("loadTerrain")
-	static final void loadTerrain(Buffer var0, int var1, int var2, int var3, int var4, int var5, int var6) {
-		int var7;
-		if (var2 >= 0 && var2 < 104 && var3 >= 0 && var3 < 104) {
-			Tiles.Tiles_renderFlags[var1][var2][var3] = 0;
+	@Export("findEnumerated")
+	public static Enumerated findEnumerated(Enumerated[] var0, int var1) {
+		Enumerated[] var2 = var0;
 
-			while (true) {
-				var7 = var0.readUnsignedByte();
-				if (var7 == 0) {
-					if (var1 == 0) {
-						int[] var14 = Tiles.Tiles_heights[0][var2];
-						int var11 = var2 + var4 + 932731;
-						int var12 = var3 + var5 + 556238;
-						int var13 = AttackOption.method2382(var11 + 45365, var12 + 91923, 4) - 128 + (AttackOption.method2382(var11 + 10294, 37821 + var12, 2) - 128 >> 1) + (AttackOption.method2382(var11, var12, 1) - 128 >> 2);
-						var13 = (int)(0.3D * (double)var13) + 35;
-						if (var13 < 10) {
-							var13 = 10;
-						} else if (var13 > 60) {
-							var13 = 60;
-						}
-
-						var14[var3] = -var13 * 8;
-					} else {
-						Tiles.Tiles_heights[var1][var2][var3] = Tiles.Tiles_heights[var1 - 1][var2][var3] - 240;
-					}
-					break;
-				}
-
-				if (var7 == 1) {
-					int var8 = var0.readUnsignedByte();
-					if (var8 == 1) {
-						var8 = 0;
-					}
-
-					if (var1 == 0) {
-						Tiles.Tiles_heights[0][var2][var3] = -var8 * 8;
-					} else {
-						Tiles.Tiles_heights[var1][var2][var3] = Tiles.Tiles_heights[var1 - 1][var2][var3] - var8 * 8;
-					}
-					break;
-				}
-
-				if (var7 <= 49) {
-					Tiles.field1111[var1][var2][var3] = var0.readByte();
-					class22.field186[var1][var2][var3] = (byte)((var7 - 2) / 4);
-					class16.field132[var1][var2][var3] = (byte)(var7 - 2 + var6 & 3);
-				} else if (var7 <= 81) {
-					Tiles.Tiles_renderFlags[var1][var2][var3] = (byte)(var7 - 49);
-				} else {
-					AccessFile.field4098[var1][var2][var3] = (byte)(var7 - 81);
-				}
-			}
-		} else {
-			while (true) {
-				var7 = var0.readUnsignedByte();
-				if (var7 == 0) {
-					break;
-				}
-
-				if (var7 == 1) {
-					var0.readUnsignedByte();
-					break;
-				}
-
-				if (var7 <= 49) {
-					var0.readUnsignedByte();
-				}
+		for (int var3 = 0; var3 < var2.length; ++var3) {
+			Enumerated var4 = var2[var3];
+			if (var1 == var4.rsOrdinal()) {
+				return var4;
 			}
 		}
 
+		return null;
+	}
+
+	@ObfuscatedName("j")
+	@ObfuscatedSignature(
+		descriptor = "(IB)Z",
+		garbageValue = "-69"
+	)
+	@Export("loadInterface")
+	public static boolean loadInterface(int var0) {
+		if (class100.Widget_loadedInterfaces[var0]) {
+			return true;
+		} else if (!Widget.Widget_archive.tryLoadGroup(var0)) {
+			return false;
+		} else {
+			int var1 = Widget.Widget_archive.getGroupFileCount(var0);
+			if (var1 == 0) {
+				class100.Widget_loadedInterfaces[var0] = true;
+				return true;
+			} else {
+				if (Widget.Widget_interfaceComponents[var0] == null) {
+					Widget.Widget_interfaceComponents[var0] = new Widget[var1];
+				}
+
+				for (int var2 = 0; var2 < var1; ++var2) {
+					if (Widget.Widget_interfaceComponents[var0][var2] == null) {
+						byte[] var3 = Widget.Widget_archive.takeFile(var0, var2);
+						if (var3 != null) {
+							Widget.Widget_interfaceComponents[var0][var2] = new Widget();
+							Widget.Widget_interfaceComponents[var0][var2].id = var2 + (var0 << 16);
+							if (var3[0] == -1) {
+								Widget.Widget_interfaceComponents[var0][var2].decode(new Buffer(var3));
+							} else {
+								Widget.Widget_interfaceComponents[var0][var2].decodeLegacy(new Buffer(var3));
+							}
+						}
+					}
+				}
+
+				class100.Widget_loadedInterfaces[var0] = true;
+				return true;
+			}
+		}
+	}
+
+	@ObfuscatedName("ec")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "311556641"
+	)
+	static final void method4834() {
+		Scene.Scene_isLowDetail = false;
+		Client.isLowDetail = false;
 	}
 }

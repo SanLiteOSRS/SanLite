@@ -1,60 +1,74 @@
+import java.awt.image.BufferedImage;
+import java.awt.image.PixelGrabber;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map.Entry;
+import javax.imageio.ImageIO;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cn")
+@ObfuscatedName("bp")
 @Implements("ClientPreferences")
 public class ClientPreferences {
-	@ObfuscatedName("f")
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = -454250637
+		intValue = 1092227393
 	)
 	@Export("ClientPreferences_optionCount")
 	static int ClientPreferences_optionCount;
+	@ObfuscatedName("t")
+	@ObfuscatedSignature(
+		descriptor = "Ljy;"
+	)
+	@Export("KitDefinition_modelsArchive")
+	public static AbstractArchive KitDefinition_modelsArchive;
+	@ObfuscatedName("b")
+	@Export("operatingSystemName")
+	static String operatingSystemName;
 	@ObfuscatedName("v")
 	@Export("roofsHidden")
 	boolean roofsHidden;
-	@ObfuscatedName("y")
+	@ObfuscatedName("j")
 	@Export("titleMusicDisabled")
 	boolean titleMusicDisabled;
-	@ObfuscatedName("j")
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = -1571023127
+		intValue = 1426015777
 	)
 	@Export("windowMode")
 	int windowMode;
-	@ObfuscatedName("o")
+	@ObfuscatedName("n")
 	@Export("rememberedUsername")
 	String rememberedUsername;
-	@ObfuscatedName("m")
+	@ObfuscatedName("w")
 	@Export("hideUsername")
 	boolean hideUsername;
-	@ObfuscatedName("r")
-	double field1312;
-	@ObfuscatedName("h")
+	@ObfuscatedName("f")
+	double field1117;
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = 1112571497
+		intValue = 1197443065
 	)
 	@Export("musicVolume")
 	int musicVolume;
-	@ObfuscatedName("d")
+	@ObfuscatedName("x")
 	@ObfuscatedGetter(
-		intValue = 1870852049
+		intValue = -1564342051
 	)
 	@Export("soundEffectsVolume")
 	int soundEffectsVolume;
-	@ObfuscatedName("z")
+	@ObfuscatedName("r")
 	@ObfuscatedGetter(
-		intValue = 348107745
+		intValue = -1303154967
 	)
 	@Export("areaSoundEffectsVolume")
 	int areaSoundEffectsVolume;
-	@ObfuscatedName("b")
+	@ObfuscatedName("p")
 	@Export("parameters")
 	LinkedHashMap parameters;
 
@@ -66,22 +80,22 @@ public class ClientPreferences {
 		this.windowMode = 1;
 		this.rememberedUsername = null;
 		this.hideUsername = false;
-		this.field1312 = 0.8D;
+		this.field1117 = 0.8D;
 		this.musicVolume = 127;
 		this.soundEffectsVolume = 127;
 		this.areaSoundEffectsVolume = 127;
 		this.parameters = new LinkedHashMap();
-		this.method2315(true);
+		this.method1937(true);
 	}
 
 	@ObfuscatedSignature(
-		descriptor = "(Lnt;)V"
+		descriptor = "(Lnv;)V"
 	)
 	ClientPreferences(Buffer var1) {
 		this.windowMode = 1;
 		this.rememberedUsername = null;
 		this.hideUsername = false;
-		this.field1312 = 0.8D;
+		this.field1117 = 0.8D;
 		this.musicVolume = 127;
 		this.soundEffectsVolume = 127;
 		this.areaSoundEffectsVolume = 127;
@@ -120,32 +134,32 @@ public class ClientPreferences {
 				}
 
 				if (var2 > 6) {
-					this.field1312 = (double)var1.readUnsignedByte() / 100.0D;
+					this.field1117 = (double)var1.readUnsignedByte() / 100.0D;
 					this.musicVolume = var1.readUnsignedByte();
 					this.soundEffectsVolume = var1.readUnsignedByte();
 					this.areaSoundEffectsVolume = var1.readUnsignedByte();
 				}
 			} else {
-				this.method2315(true);
+				this.method1937(true);
 			}
 		} else {
-			this.method2315(true);
+			this.method1937(true);
 		}
 
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "(ZB)V",
-		garbageValue = "-49"
+		descriptor = "(ZI)V",
+		garbageValue = "909536447"
 	)
-	void method2315(boolean var1) {
+	void method1937(boolean var1) {
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		descriptor = "(I)Lnt;",
-		garbageValue = "1929327586"
+		descriptor = "(I)Lnv;",
+		garbageValue = "2036795437"
 	)
 	@Export("toBuffer")
 	Buffer toBuffer() {
@@ -165,36 +179,49 @@ public class ClientPreferences {
 
 		var1.writeStringCp1252NullTerminated(this.rememberedUsername != null ? this.rememberedUsername : "");
 		var1.writeBoolean(this.hideUsername);
-		var1.writeByte((int)(100.0D * this.field1312));
+		var1.writeByte((int)(this.field1117 * 100.0D));
 		var1.writeByte(this.musicVolume);
 		var1.writeByte(this.soundEffectsVolume);
 		var1.writeByte(this.areaSoundEffectsVolume);
 		return var1;
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "(IIII)I",
-		garbageValue = "-648393673"
+		descriptor = "([BB)Lom;",
+		garbageValue = "12"
 	)
-	static int method2330(int var0, int var1, int var2) {
-		if (var2 > 179) {
-			var1 /= 2;
+	@Export("convertJpgToSprite")
+	public static final SpritePixels convertJpgToSprite(byte[] var0) {
+		BufferedImage var1 = null;
+
+		try {
+			var1 = ImageIO.read(new ByteArrayInputStream(var0));
+			int var2 = var1.getWidth();
+			int var3 = var1.getHeight();
+			int[] var4 = new int[var2 * var3];
+			PixelGrabber var5 = new PixelGrabber(var1, 0, 0, var2, var3, var4, 0, var2);
+			var5.grabPixels();
+			return new SpritePixels(var4, var2, var3);
+		} catch (IOException var7) {
+		} catch (InterruptedException var8) {
 		}
 
-		if (var2 > 192) {
-			var1 /= 2;
+		return new SpritePixels(0, 0);
+	}
+
+	@ObfuscatedName("w")
+	@ObfuscatedSignature(
+		descriptor = "(I)[I",
+		garbageValue = "578056164"
+	)
+	public static int[] method1942() {
+		int[] var0 = new int[KeyHandler.field64];
+
+		for (int var1 = 0; var1 < KeyHandler.field64; ++var1) {
+			var0[var1] = KeyHandler.field55[var1];
 		}
 
-		if (var2 > 217) {
-			var1 /= 2;
-		}
-
-		if (var2 > 243) {
-			var1 /= 2;
-		}
-
-		int var3 = (var1 / 32 << 7) + (var0 / 4 << 10) + var2 / 2;
-		return var3;
+		return var0;
 	}
 }

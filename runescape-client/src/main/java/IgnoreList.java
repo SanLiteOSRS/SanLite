@@ -3,38 +3,38 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("li")
+@ObfuscatedName("lu")
 @Implements("IgnoreList")
 public class IgnoreList extends NameableContainer {
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "Lnb;"
+		descriptor = "Lnf;"
 	)
 	@Export("loginType")
 	final LoginType loginType;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lnb;)V"
+		descriptor = "(Lnf;)V"
 	)
 	public IgnoreList(LoginType var1) {
 		super(400);
 		this.loginType = var1;
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "(I)Llf;",
-		garbageValue = "1590299985"
+		descriptor = "(B)Llm;",
+		garbageValue = "-70"
 	)
 	@Export("newInstance")
 	Nameable newInstance() {
 		return new Ignored();
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		descriptor = "(II)[Llf;",
-		garbageValue = "-1320557093"
+		descriptor = "(II)[Llm;",
+		garbageValue = "-2047984332"
 	)
 	@Export("newTypedArray")
 	Nameable[] newTypedArray(int var1) {
@@ -43,8 +43,8 @@ public class IgnoreList extends NameableContainer {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(Lnt;IB)V",
-		garbageValue = "89"
+		descriptor = "(Lnv;II)V",
+		garbageValue = "541103993"
 	)
 	@Export("read")
 	public void read(Buffer var1, int var2) {
@@ -59,7 +59,7 @@ public class IgnoreList extends NameableContainer {
 					Ignored var7 = (Ignored)this.getByCurrentUsername(var5);
 					if (var4) {
 						Ignored var8 = (Ignored)this.getByCurrentUsername(var6);
-						if (var8 != null && var7 != var8) {
+						if (var8 != null && var8 != var7) {
 							if (var7 != null) {
 								this.remove(var8);
 							} else {
@@ -85,6 +85,25 @@ public class IgnoreList extends NameableContainer {
 			}
 
 			return;
+		}
+	}
+
+	@ObfuscatedName("t")
+	@ObfuscatedSignature(
+		descriptor = "(I)Z",
+		garbageValue = "1517650205"
+	)
+	@Export("isKeyDown")
+	public static final boolean isKeyDown() {
+		synchronized(KeyHandler.KeyHandler_instance) {
+			if (KeyHandler.field59 == KeyHandler.field57) {
+				return false;
+			} else {
+				class120.field1417 = KeyHandler.field54[KeyHandler.field57];
+				class126.field1449 = KeyHandler.field51[KeyHandler.field57];
+				KeyHandler.field57 = KeyHandler.field57 + 1 & 127;
+				return true;
+			}
 		}
 	}
 }

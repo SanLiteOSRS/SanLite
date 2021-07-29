@@ -3,18 +3,18 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gi")
+@ObfuscatedName("ga")
 @Implements("Frames")
 public class Frames extends DualNode {
-	@ObfuscatedName("f")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "[Lgz;"
+		descriptor = "[Lgp;"
 	)
 	@Export("frames")
 	Animation[] frames;
 
 	@ObfuscatedSignature(
-		descriptor = "(Ljp;Ljp;IZ)V"
+		descriptor = "(Ljy;Ljy;IZ)V"
 	)
 	Frames(AbstractArchive var1, AbstractArchive var2, int var3, boolean var4) {
 		NodeDeque var5 = new NodeDeque();
@@ -51,54 +51,30 @@ public class Frames extends DualNode {
 
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		descriptor = "(II)Z",
-		garbageValue = "1512659835"
+		descriptor = "(IB)Z",
+		garbageValue = "-13"
 	)
 	@Export("hasAlphaTransform")
 	public boolean hasAlphaTransform(int var1) {
 		return this.frames[var1].hasAlphaTransform;
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("t")
+	static boolean method4174(long var0) {
+		return class266.method4916(var0) == 2;
+	}
+
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "(S)V",
-		garbageValue = "-9614"
+		descriptor = "(II)V",
+		garbageValue = "1644626137"
 	)
-	public static void method4257() {
-		try {
-			if (class233.musicPlayerStatus == 1) {
-				int var0 = class233.midiPcmStream.method4660();
-				if (var0 > 0 && class233.midiPcmStream.isReady()) {
-					var0 -= FaceNormal.pcmSampleLength;
-					if (var0 < 0) {
-						var0 = 0;
-					}
-
-					class233.midiPcmStream.setPcmStreamVolume(var0);
-					return;
-				}
-
-				class233.midiPcmStream.clear();
-				class233.midiPcmStream.removeAll();
-				if (InvDefinition.musicTrackArchive != null) {
-					class233.musicPlayerStatus = 2;
-				} else {
-					class233.musicPlayerStatus = 0;
-				}
-
-				ArchiveLoader.musicTrack = null;
-				class215.soundCache = null;
-			}
-		} catch (Exception var2) {
-			var2.printStackTrace();
-			class233.midiPcmStream.clear();
-			class233.musicPlayerStatus = 0;
-			ArchiveLoader.musicTrack = null;
-			class215.soundCache = null;
-			InvDefinition.musicTrackArchive = null;
+	static void method4169(int var0) {
+		ItemContainer var1 = (ItemContainer)ItemContainer.itemContainers.get((long)var0);
+		if (var1 != null) {
+			var1.remove();
 		}
-
 	}
 }

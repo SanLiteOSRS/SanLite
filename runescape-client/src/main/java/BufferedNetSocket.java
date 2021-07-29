@@ -5,26 +5,32 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ll")
+@ObfuscatedName("lx")
 @Implements("BufferedNetSocket")
 public class BufferedNetSocket extends AbstractSocket {
-	@ObfuscatedName("f")
-	@Export("socket")
-	Socket socket;
-	@ObfuscatedName("e")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		descriptor = "Llx;"
+		descriptor = "Lgh;"
+	)
+	@Export("worldMapEvent")
+	static WorldMapEvent worldMapEvent;
+	@ObfuscatedName("s")
+	@ObfuscatedSignature(
+		descriptor = "Llv;"
 	)
 	@Export("source")
 	BufferedSource source;
+	@ObfuscatedName("t")
+	@Export("socket")
+	Socket socket;
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "Llv;"
+		descriptor = "Lle;"
 	)
 	@Export("sink")
 	BufferedSink sink;
 
-	BufferedNetSocket(Socket var1, int var2, int var3) throws IOException {
+	public BufferedNetSocket(Socket var1, int var2, int var3) throws IOException {
 		this.socket = var1;
 		this.socket.setSoTimeout(30000);
 		this.socket.setTcpNoDelay(true);
@@ -34,10 +40,10 @@ public class BufferedNetSocket extends AbstractSocket {
 		this.sink = new BufferedSink(this.socket.getOutputStream(), var3);
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "1854440694"
+		descriptor = "(S)V",
+		garbageValue = "-27454"
 	)
 	@Export("close")
 	public void close() {
@@ -51,10 +57,10 @@ public class BufferedNetSocket extends AbstractSocket {
 		this.source.close();
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
 		descriptor = "(I)I",
-		garbageValue = "574875272"
+		garbageValue = "1311148246"
 	)
 	@Export("readUnsignedByte")
 	public int readUnsignedByte() throws IOException {
@@ -63,38 +69,38 @@ public class BufferedNetSocket extends AbstractSocket {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(I)I",
-		garbageValue = "-2063198043"
+		descriptor = "(B)I",
+		garbageValue = "88"
 	)
 	@Export("available")
 	public int available() throws IOException {
 		return this.source.available();
 	}
 
-	@ObfuscatedName("y")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
-		descriptor = "(II)Z",
-		garbageValue = "-2019948581"
+		descriptor = "(IB)Z",
+		garbageValue = "-60"
 	)
 	@Export("isAvailable")
 	public boolean isAvailable(int var1) throws IOException {
 		return this.source.isAvailable(var1);
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
 		descriptor = "([BIII)I",
-		garbageValue = "-334344092"
+		garbageValue = "1814286008"
 	)
 	@Export("read")
 	public int read(byte[] var1, int var2, int var3) throws IOException {
 		return this.source.read(var1, var2, var3);
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		descriptor = "([BIII)V",
-		garbageValue = "-1206684972"
+		descriptor = "([BIIB)V",
+		garbageValue = "-30"
 	)
 	@Export("write")
 	public void write(byte[] var1, int var2, int var3) throws IOException {
@@ -105,12 +111,12 @@ public class BufferedNetSocket extends AbstractSocket {
 		this.close();
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "(Lba;I)V",
-		garbageValue = "-812181835"
+		descriptor = "(Ljy;B)V",
+		garbageValue = "-123"
 	)
-	public static final void method5960(class60 var0) {
-		FontName.pcmPlayerProvider = var0;
+	public static void method5956(AbstractArchive var0) {
+		ParamComposition.ParamDefinition_archive = var0;
 	}
 }

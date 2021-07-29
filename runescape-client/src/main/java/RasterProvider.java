@@ -14,13 +14,13 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("am")
+@ObfuscatedName("e")
 @Implements("RasterProvider")
 public final class RasterProvider extends AbstractRasterProvider {
-	@ObfuscatedName("f")
+	@ObfuscatedName("s")
 	@Export("component")
 	Component component;
-	@ObfuscatedName("e")
+	@ObfuscatedName("t")
 	@Export("image")
 	Image image;
 
@@ -36,20 +36,20 @@ public final class RasterProvider extends AbstractRasterProvider {
 		this.apply();
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/awt/Component;B)V",
-		garbageValue = "1"
+		descriptor = "(Ljava/awt/Component;I)V",
+		garbageValue = "-1711952892"
 	)
 	@Export("setComponent")
 	final void setComponent(Component var1) {
 		this.component = var1;
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		descriptor = "(III)V",
-		garbageValue = "-474214385"
+		descriptor = "(IIB)V",
+		garbageValue = "-13"
 	)
 	@Export("drawFull")
 	public final void drawFull(int var1, int var2) {
@@ -58,18 +58,18 @@ public final class RasterProvider extends AbstractRasterProvider {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(IIIIS)V",
-		garbageValue = "640"
+		descriptor = "(IIIII)V",
+		garbageValue = "-984138546"
 	)
 	@Export("draw")
 	public final void draw(int var1, int var2, int var3, int var4) {
 		this.draw0(this.component.getGraphics(), var1, var2, var3, var4);
 	}
 
-	@ObfuscatedName("y")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/awt/Graphics;III)V",
-		garbageValue = "-941399356"
+		descriptor = "(Ljava/awt/Graphics;IIB)V",
+		garbageValue = "14"
 	)
 	@Export("drawFull0")
 	final void drawFull0(Graphics var1, int var2, int var3) {
@@ -81,10 +81,10 @@ public final class RasterProvider extends AbstractRasterProvider {
 
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
 		descriptor = "(Ljava/awt/Graphics;IIIII)V",
-		garbageValue = "-1413696470"
+		garbageValue = "-2135638956"
 	)
 	@Export("draw0")
 	final void draw0(Graphics var1, int var2, int var3, int var4, int var5) {

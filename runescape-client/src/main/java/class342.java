@@ -1,152 +1,98 @@
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ma")
-public class class342 extends class343 {
-	public class342(int var1) {
-		super(var1);
+@ObfuscatedName("md")
+public abstract class class342 implements class215 {
+	@ObfuscatedName("s")
+	@ObfuscatedSignature(
+		descriptor = "Lni;"
+	)
+	class376 field3940;
+
+	class342(int var1) {
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "(Lnt;II)V",
-		garbageValue = "-1006321266"
+		descriptor = "(Lnv;II)V",
+		garbageValue = "-606165305"
 	)
-	void vmethod6077(Buffer var1, int var2) {
+	abstract void vmethod6079(Buffer var1, int var2);
+
+	@ObfuscatedName("j")
+	@ObfuscatedSignature(
+		descriptor = "(Lnv;B)V",
+		garbageValue = "-109"
+	)
+	public void method6081(Buffer var1) {
+		while (true) {
+			int var2 = var1.readUnsignedByte();
+			if (var2 == 0) {
+				return;
+			}
+
+			class338[] var3 = new class338[]{class338.field3930, class338.field3933, class338.field3928, class338.field3929};
+			class338 var4 = (class338)Huffman.findEnumerated(var3, var2);
+			if (var4 != null) {
+				switch(var4.field3931) {
+				case 0:
+					int var5 = var1.readUnsignedByte();
+					this.field3940 = WorldMapSection0.method3597(var5);
+					if (this.field3940 != null) {
+						break;
+					}
+
+					throw new IllegalStateException("Unknown ScriptVarType ID in VarType.decode: " + var5);
+				case 1:
+					Huffman.findEnumerated(WorldMapSprite.method3649(), var1.readUnsignedByte());
+					break;
+				case 2:
+				default:
+					throw new IllegalStateException("Unrecognised VarTypeEncodingKey - " + var4);
+				case 3:
+					var1.readStringCp1252NullCircumfixed();
+				}
+			} else {
+				this.vmethod6079(var1, var2);
+			}
+		}
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		descriptor = "(ILjava/lang/String;Lkn;II)Lhg;",
-		garbageValue = "15047047"
+		descriptor = "(I)Z",
+		garbageValue = "-1592955951"
 	)
-	public static PacketBufferNode method6068(int var0, String var1, Language var2, int var3) {
-		PacketBufferNode var4 = InterfaceParent.getPacketBufferNode(ClientPacket.field2669, Client.packetWriter.isaacCipher);
-		var4.packetBuffer.writeByte(0);
-		int var5 = var4.packetBuffer.offset;
-		var4.packetBuffer.writeByte(var0);
-		String var6 = var1.toLowerCase();
-		byte var7 = 0;
-		if (var6.startsWith("yellow:")) {
-			var7 = 0;
-			var1 = var1.substring("yellow:".length());
-		} else if (var6.startsWith("red:")) {
-			var7 = 1;
-			var1 = var1.substring("red:".length());
-		} else if (var6.startsWith("green:")) {
-			var7 = 2;
-			var1 = var1.substring("green:".length());
-		} else if (var6.startsWith("cyan:")) {
-			var7 = 3;
-			var1 = var1.substring("cyan:".length());
-		} else if (var6.startsWith("purple:")) {
-			var7 = 4;
-			var1 = var1.substring("purple:".length());
-		} else if (var6.startsWith("white:")) {
-			var7 = 5;
-			var1 = var1.substring("white:".length());
-		} else if (var6.startsWith("flash1:")) {
-			var7 = 6;
-			var1 = var1.substring("flash1:".length());
-		} else if (var6.startsWith("flash2:")) {
-			var7 = 7;
-			var1 = var1.substring("flash2:".length());
-		} else if (var6.startsWith("flash3:")) {
-			var7 = 8;
-			var1 = var1.substring("flash3:".length());
-		} else if (var6.startsWith("glow1:")) {
-			var7 = 9;
-			var1 = var1.substring("glow1:".length());
-		} else if (var6.startsWith("glow2:")) {
-			var7 = 10;
-			var1 = var1.substring("glow2:".length());
-		} else if (var6.startsWith("glow3:")) {
-			var7 = 11;
-			var1 = var1.substring("glow3:".length());
-		} else if (var2 != Language.Language_EN) {
-			if (var6.startsWith("yellow:")) {
-				var7 = 0;
-				var1 = var1.substring("yellow:".length());
-			} else if (var6.startsWith("red:")) {
-				var7 = 1;
-				var1 = var1.substring("red:".length());
-			} else if (var6.startsWith("green:")) {
-				var7 = 2;
-				var1 = var1.substring("green:".length());
-			} else if (var6.startsWith("cyan:")) {
-				var7 = 3;
-				var1 = var1.substring("cyan:".length());
-			} else if (var6.startsWith("purple:")) {
-				var7 = 4;
-				var1 = var1.substring("purple:".length());
-			} else if (var6.startsWith("white:")) {
-				var7 = 5;
-				var1 = var1.substring("white:".length());
-			} else if (var6.startsWith("flash1:")) {
-				var7 = 6;
-				var1 = var1.substring("flash1:".length());
-			} else if (var6.startsWith("flash2:")) {
-				var7 = 7;
-				var1 = var1.substring("flash2:".length());
-			} else if (var6.startsWith("flash3:")) {
-				var7 = 8;
-				var1 = var1.substring("flash3:".length());
-			} else if (var6.startsWith("glow1:")) {
-				var7 = 9;
-				var1 = var1.substring("glow1:".length());
-			} else if (var6.startsWith("glow2:")) {
-				var7 = 10;
-				var1 = var1.substring("glow2:".length());
-			} else if (var6.startsWith("glow3:")) {
-				var7 = 11;
-				var1 = var1.substring("glow3:".length());
-			}
-		}
+	boolean method6080() {
+		return this.field3940 != null;
+	}
 
-		var6 = var1.toLowerCase();
-		byte var8 = 0;
-		if (var6.startsWith("wave:")) {
-			var8 = 1;
-			var1 = var1.substring("wave:".length());
-		} else if (var6.startsWith("wave2:")) {
-			var8 = 2;
-			var1 = var1.substring("wave2:".length());
-		} else if (var6.startsWith("shake:")) {
-			var8 = 3;
-			var1 = var1.substring("shake:".length());
-		} else if (var6.startsWith("scroll:")) {
-			var8 = 4;
-			var1 = var1.substring("scroll:".length());
-		} else if (var6.startsWith("slide:")) {
-			var8 = 5;
-			var1 = var1.substring("slide:".length());
-		} else if (var2 != Language.Language_EN) {
-			if (var6.startsWith("wave:")) {
-				var8 = 1;
-				var1 = var1.substring("wave:".length());
-			} else if (var6.startsWith("wave2:")) {
-				var8 = 2;
-				var1 = var1.substring("wave2:".length());
-			} else if (var6.startsWith("shake:")) {
-				var8 = 3;
-				var1 = var1.substring("shake:".length());
-			} else if (var6.startsWith("scroll:")) {
-				var8 = 4;
-				var1 = var1.substring("scroll:".length());
-			} else if (var6.startsWith("slide:")) {
-				var8 = 5;
-				var1 = var1.substring("slide:".length());
-			}
+	@ObfuscatedName("n")
+	@ObfuscatedSignature(
+		descriptor = "(I)Ljava/lang/Object;",
+		garbageValue = "-1957232535"
+	)
+	Object method6087() {
+		if (this.field3940 == class376.field4163) {
+			return 0;
+		} else if (this.field3940 == class376.field4159) {
+			return -1L;
+		} else {
+			return this.field3940 == class376.field4164 ? "" : null;
 		}
+	}
 
-		var4.packetBuffer.writeByte(var7);
-		var4.packetBuffer.writeByte(var8);
-		ModeWhere.method5292(var4.packetBuffer, var1);
-		if (var0 == class255.field3139.rsOrdinal()) {
-			var4.packetBuffer.writeByte(var3);
-		}
-
-		var4.packetBuffer.writeLengthByte(var4.packetBuffer.offset - var5);
-		return var4;
+	@ObfuscatedName("lc")
+	@ObfuscatedSignature(
+		descriptor = "(IIIZI)V",
+		garbageValue = "1796576439"
+	)
+	public static void method6089(int var0, int var1, int var2, boolean var3) {
+		PacketBufferNode var4 = VerticalAlignment.getPacketBufferNode(ClientPacket.field2634, Client.packetWriter.isaacCipher);
+		var4.packetBuffer.writeByte(var2);
+		var4.packetBuffer.writeShort(var1);
+		var4.packetBuffer.method6786(var0);
+		var4.packetBuffer.writeInt(var3 ? Client.field488 : 0);
+		Client.packetWriter.addNode(var4);
 	}
 }

@@ -1,70 +1,32 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
+import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("kh")
-public class class307 {
-	@ObfuscatedName("f")
-	@Export("writeRandomDat")
-	public static void writeRandomDat(byte[] var0, int var1, byte[] var2, int var3, int var4) {
-		if (var2 == var0) {
-			if (var3 == var1) {
-				return;
-			}
+@ObfuscatedName("ka")
+public final class class307 {
+	@ObfuscatedName("sc")
+	@ObfuscatedSignature(
+		descriptor = "Lln;"
+	)
+	@Export("masterDisk")
+	static ArchiveDisk masterDisk;
+	@ObfuscatedName("s")
+	@Export("base37Table")
+	public static final char[] base37Table;
+	@ObfuscatedName("t")
+	static long[] field3764;
+	@ObfuscatedName("av")
+	@ObfuscatedSignature(
+		descriptor = "Llo;"
+	)
+	static Bounds field3766;
 
-			if (var3 > var1 && var3 < var4 + var1) {
-				--var4;
-				var1 += var4;
-				var3 += var4;
-				var4 = var1 - var4;
+	static {
+		base37Table = new char[]{'_', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+		field3764 = new long[12];
 
-				for (var4 += 7; var1 >= var4; var2[var3--] = var0[var1--]) {
-					var2[var3--] = var0[var1--];
-					var2[var3--] = var0[var1--];
-					var2[var3--] = var0[var1--];
-					var2[var3--] = var0[var1--];
-					var2[var3--] = var0[var1--];
-					var2[var3--] = var0[var1--];
-					var2[var3--] = var0[var1--];
-				}
-
-				for (var4 -= 7; var1 >= var4; var2[var3--] = var0[var1--]) {
-				}
-
-				return;
-			}
-		}
-
-		var4 += var1;
-
-		for (var4 -= 7; var1 < var4; var2[var3++] = var0[var1++]) {
-			var2[var3++] = var0[var1++];
-			var2[var3++] = var0[var1++];
-			var2[var3++] = var0[var1++];
-			var2[var3++] = var0[var1++];
-			var2[var3++] = var0[var1++];
-			var2[var3++] = var0[var1++];
-			var2[var3++] = var0[var1++];
-		}
-
-		for (var4 += 7; var1 < var4; var2[var3++] = var0[var1++]) {
-		}
-
-	}
-
-	@ObfuscatedName("d")
-	@Export("clearIntArray")
-	public static void clearIntArray(int[] var0, int var1, int var2) {
-		for (var2 = var2 + var1 - 7; var1 < var2; var0[var1++] = 0) {
-			var0[var1++] = 0;
-			var0[var1++] = 0;
-			var0[var1++] = 0;
-			var0[var1++] = 0;
-			var0[var1++] = 0;
-			var0[var1++] = 0;
-			var0[var1++] = 0;
-		}
-
-		for (var2 += 7; var1 < var2; var0[var1++] = 0) {
+		for (int var0 = 0; var0 < field3764.length; ++var0) {
+			field3764[var0] = (long)Math.pow(37.0D, (double)var0);
 		}
 
 	}

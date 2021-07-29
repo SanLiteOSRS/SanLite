@@ -1,204 +1,186 @@
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import net.runelite.mapping.Export;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("r")
-public class class7 extends class16 {
-	@ObfuscatedName("gz")
-	@Export("xteaKeys")
-	static int[][] xteaKeys;
-	@ObfuscatedName("f")
-	String field52;
-	@ObfuscatedName("e")
-	byte field55;
+@ObfuscatedName("f")
+public class class7 {
+	@ObfuscatedName("r")
+	public static short[] field25;
+	@ObfuscatedName("gr")
+	@ObfuscatedGetter(
+		intValue = 1371164037
+	)
+	static int field26;
+	@ObfuscatedName("s")
+	ExecutorService field21;
+	@ObfuscatedName("t")
+	Future field23;
 	@ObfuscatedName("v")
-	byte field53;
-	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Ls;"
+		descriptor = "Lnv;"
 	)
-	final class19 this$0;
+	final Buffer field22;
+	@ObfuscatedName("j")
+	@ObfuscatedSignature(
+		descriptor = "Lj;"
+	)
+	final class3 field24;
 
 	@ObfuscatedSignature(
-		descriptor = "(Ls;)V"
+		descriptor = "(Lnv;Lj;)V"
 	)
-	class7(class19 var1) {
-		this.this$0 = var1;
+	public class7(Buffer var1, class3 var2) {
+		this.field21 = Executors.newSingleThreadExecutor();
+		this.field22 = var1;
+		this.field24 = var2;
+		this.method48();
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "(Lnt;I)V",
-		garbageValue = "851460888"
+		descriptor = "(B)Z",
+		garbageValue = "-112"
 	)
-	void vmethod331(Buffer var1) {
-		this.field52 = var1.readStringCp1252NullTerminatedOrNull();
-		if (this.field52 != null) {
-			var1.readUnsignedByte();
-			this.field55 = var1.readByte();
-			this.field53 = var1.readByte();
-		}
-
+	public boolean method46() {
+		return this.field23.isDone();
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		descriptor = "(Ly;I)V",
-		garbageValue = "-1362614343"
+		descriptor = "(I)V",
+		garbageValue = "2123329941"
 	)
-	void vmethod332(ClanChannel var1) {
-		var1.name = this.field52;
-		if (this.field52 != null) {
-			var1.field27 = this.field55;
-			var1.field28 = this.field53;
-		}
-
+	public void method49() {
+		this.field21.shutdown();
+		this.field21 = null;
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(Lns;I)V",
-		garbageValue = "653378140"
+		descriptor = "(B)Lnv;",
+		garbageValue = "-7"
 	)
-	@Export("updatePlayer")
-	static final void updatePlayer(PacketBuffer var0) {
-		var0.importIndex();
-		int var1 = Client.localPlayerIndex;
-		Player var2 = class262.localPlayer = Client.players[var1] = new Player();
-		var2.index = var1;
-		int var3 = var0.readBits(30);
-		byte var4 = (byte)(var3 >> 28);
-		int var5 = var3 >> 14 & 16383;
-		int var6 = var3 & 16383;
-		var2.pathX[0] = var5 - class15.baseX * 64;
-		var2.x = (var2.pathX[0] << 7) + (var2.transformedSize() << 6);
-		var2.pathY[0] = var6 - WorldMapSprite.baseY * 64;
-		var2.y = (var2.pathY[0] << 7) + (var2.transformedSize() << 6);
-		SoundSystem.Client_plane = var2.plane = var4;
-		if (Players.field1362[var1] != null) {
-			var2.read(Players.field1362[var1]);
+	public Buffer method57() {
+		try {
+			return (Buffer)this.field23.get();
+		} catch (Exception var2) {
+			return null;
 		}
+	}
 
-		Players.Players_count = 0;
-		Players.Players_indices[++Players.Players_count - 1] = var1;
-		Players.field1372[var1] = 0;
-		Players.Players_emptyIdxCount = 0;
+	@ObfuscatedName("j")
+	@ObfuscatedSignature(
+		descriptor = "(B)V",
+		garbageValue = "-72"
+	)
+	void method48() {
+		this.field23 = this.field21.submit(new class1(this, this.field22, this.field24));
+	}
 
-		for (int var7 = 1; var7 < 2048; ++var7) {
-			if (var7 != var1) {
-				int var8 = var0.readBits(18);
-				int var9 = var8 >> 16;
-				int var10 = var8 >> 8 & 597;
-				int var11 = var8 & 597;
-				Players.Players_regions[var7] = (var10 << 14) + var11 + (var9 << 28);
-				Players.Players_orientations[var7] = 0;
-				Players.Players_targetIndices[var7] = -1;
-				Players.Players_emptyIndices[++Players.Players_emptyIdxCount - 1] = var7;
-				Players.field1372[var7] = 0;
+	@ObfuscatedName("s")
+	@ObfuscatedSignature(
+		descriptor = "(Ljy;Ljy;IZS)Lga;",
+		garbageValue = "192"
+	)
+	public static Frames method59(AbstractArchive var0, AbstractArchive var1, int var2, boolean var3) {
+		boolean var4 = true;
+		int[] var5 = var0.getGroupFileIds(var2);
+
+		for (int var6 = 0; var6 < var5.length; ++var6) {
+			byte[] var7 = var0.getFile(var2, var5[var6]);
+			if (var7 == null) {
+				var4 = false;
+			} else {
+				int var8 = (var7[0] & 255) << 8 | var7[1] & 255;
+				byte[] var9;
+				if (var3) {
+					var9 = var1.getFile(0, var8);
+				} else {
+					var9 = var1.getFile(var8, 0);
+				}
+
+				if (var9 == null) {
+					var4 = false;
+				}
 			}
 		}
 
-		var0.exportIndex();
+		if (!var4) {
+			return null;
+		} else {
+			try {
+				return new Frames(var0, var1, var2, var3);
+			} catch (Exception var11) {
+				return null;
+			}
+		}
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "(ILcf;ZI)I",
-		garbageValue = "609615234"
+		descriptor = "(II)Lbd;",
+		garbageValue = "-1744482328"
 	)
-	static int method88(int var0, Script var1, boolean var2) {
-		if (var0 < 1000) {
-			return MouseHandler.method718(var0, var1, var2);
-		} else if (var0 < 1100) {
-			return Client.method1745(var0, var1, var2);
-		} else if (var0 < 1200) {
-			return InvDefinition.method2699(var0, var1, var2);
-		} else if (var0 < 1300) {
-			return BufferedSink.method5990(var0, var1, var2);
-		} else if (var0 < 1400) {
-			return ObjectSound.method1889(var0, var1, var2);
-		} else if (var0 < 1500) {
-			return Renderable.method4250(var0, var1, var2);
-		} else if (var0 < 1600) {
-			return TaskHandler.method2626(var0, var1, var2);
-		} else if (var0 < 1700) {
-			return ClanChannelMember.method106(var0, var1, var2);
-		} else if (var0 < 1800) {
-			return Decimator.method1162(var0, var1, var2);
-		} else if (var0 < 1900) {
-			return WorldMapRegion.method3472(var0, var1, var2);
-		} else if (var0 < 2000) {
-			return WorldMapLabel.method3715(var0, var1, var2);
-		} else if (var0 < 2100) {
-			return Client.method1745(var0, var1, var2);
-		} else if (var0 < 2200) {
-			return InvDefinition.method2699(var0, var1, var2);
-		} else if (var0 < 2300) {
-			return BufferedSink.method5990(var0, var1, var2);
-		} else if (var0 < 2400) {
-			return ObjectSound.method1889(var0, var1, var2);
-		} else if (var0 < 2500) {
-			return Renderable.method4250(var0, var1, var2);
-		} else if (var0 < 2600) {
-			return NetCache.method5178(var0, var1, var2);
-		} else if (var0 < 2700) {
-			return Player.method2235(var0, var1, var2);
-		} else if (var0 < 2800) {
-			return MouseHandler.method747(var0, var1, var2);
-		} else if (var0 < 2900) {
-			return StructComposition.method2972(var0, var1, var2);
-		} else if (var0 < 3000) {
-			return WorldMapLabel.method3715(var0, var1, var2);
-		} else if (var0 < 3200) {
-			return class82.method2031(var0, var1, var2);
-		} else if (var0 < 3300) {
-			return StudioGame.method4983(var0, var1, var2);
-		} else if (var0 < 3400) {
-			return class267.method4991(var0, var1, var2);
-		} else if (var0 < 3500) {
-			return class18.method262(var0, var1, var2);
-		} else if (var0 < 3600) {
-			return MilliClock.method2685(var0, var1, var2);
-		} else if (var0 < 3700) {
-			return LoginScreenAnimation.method2314(var0, var1, var2);
-		} else if (var0 < 3800) {
-			return WorldMapData_0.method3267(var0, var1, var2);
-		} else if (var0 < 3900) {
-			return class32.method386(var0, var1, var2);
-		} else if (var0 < 4000) {
-			return class281.method5204(var0, var1, var2);
-		} else if (var0 < 4100) {
-			return NPCComposition.method2857(var0, var1, var2);
-		} else if (var0 < 4200) {
-			return SoundCache.method929(var0, var1, var2);
-		} else if (var0 < 4300) {
-			return class375.method6531(var0, var1, var2);
-		} else if (var0 < 5100) {
-			return class25.method336(var0, var1, var2);
-		} else if (var0 < 5400) {
-			return WorldMapSectionType.method3668(var0, var1, var2);
-		} else if (var0 < 5600) {
-			return LoginScreenAnimation.method2285(var0, var1, var2);
-		} else if (var0 < 5700) {
-			return UserComparator6.method2585(var0, var1, var2);
-		} else if (var0 < 6300) {
-			return class19.method276(var0, var1, var2);
-		} else if (var0 < 6600) {
-			return class8.method102(var0, var1, var2);
-		} else if (var0 < 6700) {
-			return ModeWhere.method5283(var0, var1, var2);
-		} else if (var0 < 6800) {
-			return class43.method527(var0, var1, var2);
-		} else if (var0 < 6900) {
-			return class5.method72(var0, var1, var2);
-		} else if (var0 < 7000) {
-			return UserComparator4.method2529(var0, var1, var2);
-		} else if (var0 < 7100) {
-			return class269.method4996(var0, var1, var2);
-		} else if (var0 < 7200) {
-			return WorldMapScaleHandler.method3857(var0, var1, var2);
+	@Export("getScript")
+	static Script getScript(int var0) {
+		Script var1 = (Script)Script.Script_cached.get((long)var0);
+		if (var1 != null) {
+			return var1;
 		} else {
-			return var0 < 7300 ? PcmPlayer.method898(var0, var1, var2) : 2;
+			byte[] var2 = ApproximateRouteStrategy.archive12.takeFile(var0, 0);
+			if (var2 == null) {
+				return null;
+			} else {
+				var1 = ModelData0.newScript(var2);
+				Script.Script_cached.put(var1, (long)var0);
+				return var1;
+			}
 		}
+	}
+
+	@ObfuscatedName("a")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "768578281"
+	)
+	public static void method58() {
+		ObjectComposition.ObjectDefinition_cached.clear();
+		ObjectComposition.ObjectDefinition_cachedModelData.clear();
+		ObjectComposition.ObjectDefinition_cachedEntities.clear();
+		ObjectComposition.ObjectDefinition_cachedModels.clear();
+	}
+
+	@ObfuscatedName("an")
+	@ObfuscatedSignature(
+		descriptor = "(ILbd;ZI)I",
+		garbageValue = "1029296295"
+	)
+	static int method52(int var0, Script var1, boolean var2) {
+		if (var0 != 3700 && var0 != 3701) {
+			if (var0 == 3702) {
+				++Interpreter.Interpreter_intStackSize;
+				return 1;
+			} else {
+				return 2;
+			}
+		} else {
+			--Interpreter.Interpreter_intStackSize;
+			--class1.Interpreter_stringStackSize;
+			return 1;
+		}
+	}
+
+	@ObfuscatedName("ij")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/String;Ljava/lang/String;IIIII)V",
+		garbageValue = "171958052"
+	)
+	@Export("insertMenuItemNoShift")
+	public static final void insertMenuItemNoShift(String var0, String var1, int var2, int var3, int var4, int var5) {
+		PcmPlayer.insertMenuItem(var0, var1, var2, var3, var4, var5, false);
 	}
 }

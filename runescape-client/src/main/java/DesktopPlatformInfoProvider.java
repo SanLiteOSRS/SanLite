@@ -4,38 +4,38 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("mg")
+@ObfuscatedName("mj")
 @Implements("DesktopPlatformInfoProvider")
 public class DesktopPlatformInfoProvider implements PlatformInfoProvider {
-	@ObfuscatedName("y")
-	@ObfuscatedGetter(
-		intValue = -1922177111
-	)
-	int field3939;
 	@ObfuscatedName("j")
 	@ObfuscatedGetter(
-		intValue = 1155417059
+		intValue = 592380753
 	)
-	int field3937;
-	@ObfuscatedName("o")
+	int field3970;
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = -187752831
+		intValue = 497510611
 	)
-	int field3941;
+	int field3971;
+	@ObfuscatedName("n")
+	@ObfuscatedGetter(
+		intValue = 2127899029
+	)
+	int field3972;
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "(I)Lms;",
-		garbageValue = "-1968333950"
+		descriptor = "(B)Lmz;",
+		garbageValue = "41"
 	)
 	@Export("get")
 	public PlatformInfo get() {
 		byte var1;
-		if (GraphicsObject.formattedOperatingSystemName.startsWith("win")) {
+		if (WorldMapEvent.formattedOperatingSystemName.startsWith("win")) {
 			var1 = 1;
-		} else if (GraphicsObject.formattedOperatingSystemName.startsWith("mac")) {
+		} else if (WorldMapEvent.formattedOperatingSystemName.startsWith("mac")) {
 			var1 = 2;
-		} else if (GraphicsObject.formattedOperatingSystemName.startsWith("linux")) {
+		} else if (WorldMapEvent.formattedOperatingSystemName.startsWith("linux")) {
 			var1 = 3;
 		} else {
 			var1 = 4;
@@ -133,10 +133,10 @@ public class DesktopPlatformInfoProvider implements PlatformInfoProvider {
 			var8 = 4;
 		}
 
-		this.method6099(var5);
+		this.method6120(var5);
 		int var10 = (int)(Runtime.getRuntime().maxMemory() / 1048576L) + 1;
 		int var11;
-		if (this.field3939 > 3) {
+		if (this.field3970 > 3) {
 			var11 = Runtime.getRuntime().availableProcessors();
 		} else {
 			var11 = 0;
@@ -150,19 +150,19 @@ public class DesktopPlatformInfoProvider implements PlatformInfoProvider {
 		String var17 = "";
 		String var18 = "";
 		int[] var23 = new int[3];
-		return new PlatformInfo(var1, var24, var7, var8, this.field3939, this.field3937, this.field3941, false, var10, var11, var12, 0, var13, var14, var15, var16, 0, 0, 0, 0, var17, var18, var23, 0, "");
+		return new PlatformInfo(var1, var24, var7, var8, this.field3970, this.field3971, this.field3972, false, var10, var11, var12, 0, var13, var14, var15, var16, 0, 0, 0, 0, var17, var18, var23, 0, "");
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
 		descriptor = "(Ljava/lang/String;I)V",
-		garbageValue = "1264148958"
+		garbageValue = "-180347683"
 	)
-	void method6099(String var1) {
+	void method6120(String var1) {
 		if (var1.startsWith("1.")) {
-			this.method6107(var1);
+			this.method6118(var1);
 		} else {
-			this.method6101(var1);
+			this.method6119(var1);
 		}
 
 	}
@@ -170,93 +170,35 @@ public class DesktopPlatformInfoProvider implements PlatformInfoProvider {
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
 		descriptor = "(Ljava/lang/String;I)V",
-		garbageValue = "497638496"
+		garbageValue = "-850545251"
 	)
-	void method6107(String var1) {
+	void method6118(String var1) {
 		String[] var2 = var1.split("\\.");
 
 		try {
-			this.field3939 = Integer.parseInt(var2[1]);
+			this.field3970 = Integer.parseInt(var2[1]);
 			var2 = var2[2].split("_");
-			this.field3937 = Integer.parseInt(var2[0]);
-			this.field3941 = Integer.parseInt(var2[1]);
+			this.field3971 = Integer.parseInt(var2[0]);
+			this.field3972 = Integer.parseInt(var2[1]);
 		} catch (Exception var4) {
 		}
 
 	}
 
-	@ObfuscatedName("y")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
 		descriptor = "(Ljava/lang/String;I)V",
-		garbageValue = "-2055431648"
+		garbageValue = "-1756504457"
 	)
-	void method6101(String var1) {
+	void method6119(String var1) {
 		String[] var2 = var1.split("\\.");
 
 		try {
-			this.field3939 = Integer.parseInt(var2[0]);
-			this.field3937 = Integer.parseInt(var2[1]);
-			this.field3941 = Integer.parseInt(var2[2]);
+			this.field3970 = Integer.parseInt(var2[0]);
+			this.field3971 = Integer.parseInt(var2[1]);
+			this.field3972 = Integer.parseInt(var2[2]);
 		} catch (Exception var4) {
 		}
 
-	}
-
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "(Ljp;Ljp;ZII)V",
-		garbageValue = "2098353545"
-	)
-	static void method6109(AbstractArchive var0, AbstractArchive var1, boolean var2, int var3) {
-		if (class377.clearLoginScreen) {
-			if (var3 == 4) {
-				Login.loginIndex = 4;
-			}
-
-		} else {
-			Login.loginIndex = var3;
-			Rasterizer2D.Rasterizer2D_clear();
-			byte[] var4 = var0.takeFileByNames("title.jpg", "");
-			class339.leftTitleSprite = class125.convertJpgToSprite(var4);
-			class377.rightTitleSprite = class339.leftTitleSprite.mirrorHorizontally();
-			class27.method364(var1, Client.worldProperties);
-			Coord.titleboxSprite = TextureProvider.SpriteBuffer_getIndexedSpriteByName(var1, "titlebox", "");
-			class289.titlebuttonSprite = TextureProvider.SpriteBuffer_getIndexedSpriteByName(var1, "titlebutton", "");
-			Login.runesSprite = WorldMapLabelSize.method3268(var1, "runes", "");
-			GrandExchangeEvents.title_muteSprite = WorldMapLabelSize.method3268(var1, "title_mute", "");
-			Login.options_buttons_0Sprite = TextureProvider.SpriteBuffer_getIndexedSpriteByName(var1, "options_radio_buttons,0", "");
-			NetFileRequest.field3577 = TextureProvider.SpriteBuffer_getIndexedSpriteByName(var1, "options_radio_buttons,4", "");
-			WorldMapCacheName.options_buttons_2Sprite = TextureProvider.SpriteBuffer_getIndexedSpriteByName(var1, "options_radio_buttons,2", "");
-			Login.field1005 = TextureProvider.SpriteBuffer_getIndexedSpriteByName(var1, "options_radio_buttons,6", "");
-			class126.field1477 = Login.options_buttons_0Sprite.subWidth;
-			PcmPlayer.field416 = Login.options_buttons_0Sprite.subHeight;
-			PendingSpawn.loginScreenRunesAnimation = new LoginScreenAnimation(Login.runesSprite);
-			if (var2) {
-				Login.Login_username = "";
-				Login.Login_password = "";
-			}
-
-			class0.field2 = 0;
-			ItemLayer.otp = "";
-			Login.field1022 = true;
-			Login.worldSelectOpen = false;
-			if (!class4.clientPreferences.titleMusicDisabled) {
-				Archive var5 = DynamicObject.archive6;
-				int var6 = var5.getGroupId("scape main");
-				int var7 = var5.getFileId(var6, "");
-				WorldMapIcon_1.playMusicTrack(2, var5, var6, var7, 255, false);
-			} else {
-				PcmPlayer.method856(2);
-			}
-
-			class105.method2358(false);
-			class377.clearLoginScreen = true;
-			Login.xPadding = (AttackOption.canvasWidth - 765) / 2;
-			Login.loginBoxX = Login.xPadding + 202;
-			class25.loginBoxCenter = Login.loginBoxX + 180;
-			class339.leftTitleSprite.drawAt(Login.xPadding, 0);
-			class377.rightTitleSprite.drawAt(Login.xPadding + 382, 0);
-			Messages.logoSprite.drawAt(Login.xPadding + 382 - Messages.logoSprite.subWidth / 2, 18);
-		}
 	}
 }
