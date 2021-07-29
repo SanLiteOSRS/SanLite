@@ -10,31 +10,13 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("dz")
+@ObfuscatedName("cn")
 @Implements("UrlRequester")
 public class UrlRequester implements Runnable {
-	@ObfuscatedName("ri")
-	@ObfuscatedSignature(
-		descriptor = "Lbq;"
-	)
-	@Export("pcmPlayer1")
-	static PcmPlayer pcmPlayer1;
-	@ObfuscatedName("m")
-	@Export("Interpreter_stringLocals")
-	static String[] Interpreter_stringLocals;
-	@ObfuscatedName("ce")
-	@ObfuscatedSignature(
-		descriptor = "Lco;"
-	)
-	@Export("mouseRecorder")
-	static class96 mouseRecorder;
-	@ObfuscatedName("gq")
-	@Export("regionMapArchiveIds")
-	static int[] regionMapArchiveIds;
-	@ObfuscatedName("f")
+	@ObfuscatedName("s")
 	@Export("thread")
 	final Thread thread;
-	@ObfuscatedName("e")
+	@ObfuscatedName("t")
 	@Export("isClosed")
 	volatile boolean isClosed;
 	@ObfuscatedName("v")
@@ -48,10 +30,10 @@ public class UrlRequester implements Runnable {
 		this.thread.start();
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/net/URL;I)Ldc;",
-		garbageValue = "-1779738307"
+		descriptor = "(Ljava/net/URL;I)Lcd;",
+		garbageValue = "797764563"
 	)
 	@Export("request")
 	public UrlRequest request(URL var1) {
@@ -63,10 +45,10 @@ public class UrlRequester implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		descriptor = "(S)V",
-		garbageValue = "256"
+		descriptor = "(B)V",
+		garbageValue = "-71"
 	)
 	@Export("close")
 	public void close() {
@@ -129,36 +111,52 @@ public class UrlRequester implements Runnable {
 
 				}
 			} catch (Exception var17) {
-				FriendsChatManager.RunException_sendStackTrace((String)null, var17);
+				BufferedSink.RunException_sendStackTrace((String)null, var17);
 			}
 		}
 
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "(IB)I",
-		garbageValue = "117"
+		descriptor = "(B)J",
+		garbageValue = "-60"
 	)
-	public static int method2504(int var0) {
-		--var0;
-		var0 |= var0 >>> 1;
-		var0 |= var0 >>> 2;
-		var0 |= var0 >>> 4;
-		var0 |= var0 >>> 8;
-		var0 |= var0 >>> 16;
-		return var0 + 1;
+	public static final synchronized long method2125() {
+		long var0 = System.currentTimeMillis();
+		if (var0 < GrandExchangeOfferNameComparator.field3625) {
+			class381.field4173 += GrandExchangeOfferNameComparator.field3625 - var0;
+		}
+
+		GrandExchangeOfferNameComparator.field3625 = var0;
+		return class381.field4173 + var0;
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		descriptor = "(III)I",
-		garbageValue = "216480272"
+		descriptor = "(IB)Lio;",
+		garbageValue = "57"
 	)
-	static final int method2509(int var0, int var1) {
-		int var2 = AttackOption.method2378(var0 - 1, var1 - 1) + AttackOption.method2378(var0 + 1, var1 - 1) + AttackOption.method2378(var0 - 1, var1 + 1) + AttackOption.method2378(1 + var0, 1 + var1);
-		int var3 = AttackOption.method2378(var0 - 1, var1) + AttackOption.method2378(1 + var0, var1) + AttackOption.method2378(var0, var1 - 1) + AttackOption.method2378(var0, var1 + 1);
-		int var4 = AttackOption.method2378(var0, var1);
-		return var2 / 16 + var3 / 8 + var4 / 4;
+	@Export("getWidget")
+	public static Widget getWidget(int var0) {
+		int var1 = var0 >> 16;
+		int var2 = var0 & 65535;
+		if (Widget.Widget_interfaceComponents[var1] == null || Widget.Widget_interfaceComponents[var1][var2] == null) {
+			boolean var3 = Huffman.loadInterface(var1);
+			if (!var3) {
+				return null;
+			}
+		}
+
+		return Widget.Widget_interfaceComponents[var1][var2];
+	}
+
+	@ObfuscatedName("r")
+	@ObfuscatedSignature(
+		descriptor = "(B)V",
+		garbageValue = "-24"
+	)
+	public static void method2126() {
+		PlayerComposition.Widget_cachedModels.clear();
 	}
 }

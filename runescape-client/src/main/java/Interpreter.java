@@ -1,56 +1,72 @@
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cm")
+@ObfuscatedName("ac")
 @Implements("Interpreter")
 public class Interpreter {
-	@ObfuscatedName("r")
+	@ObfuscatedName("w")
+	@Export("Interpreter_stringLocals")
+	static String[] Interpreter_stringLocals;
+	@ObfuscatedName("f")
 	@Export("Interpreter_arrayLengths")
 	static int[] Interpreter_arrayLengths;
-	@ObfuscatedName("h")
+	@ObfuscatedName("o")
 	@Export("Interpreter_arrays")
 	static int[][] Interpreter_arrays;
-	@ObfuscatedName("d")
+	@ObfuscatedName("x")
 	@Export("Interpreter_intStack")
 	static int[] Interpreter_intStack;
-	@ObfuscatedName("b")
+	@ObfuscatedName("r")
+	@ObfuscatedGetter(
+		intValue = -1217280037
+	)
+	@Export("Interpreter_intStackSize")
+	static int Interpreter_intStackSize;
+	@ObfuscatedName("p")
 	@Export("Interpreter_stringStack")
 	static String[] Interpreter_stringStack;
 	@ObfuscatedName("k")
 	@ObfuscatedGetter(
-		intValue = 546325367
+		intValue = -1109121055
 	)
 	@Export("Interpreter_frameDepth")
 	static int Interpreter_frameDepth;
-	@ObfuscatedName("g")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "[Lbu;"
+		descriptor = "[Lar;"
 	)
 	@Export("Interpreter_frames")
 	static ScriptFrame[] Interpreter_frames;
-	@ObfuscatedName("p")
+	@ObfuscatedName("q")
+	@ObfuscatedSignature(
+		descriptor = "Lio;"
+	)
+	@Export("scriptActiveWidget")
+	static Widget scriptActiveWidget;
+	@ObfuscatedName("m")
 	@Export("Interpreter_calendar")
 	static java.util.Calendar Interpreter_calendar;
-	@ObfuscatedName("c")
+	@ObfuscatedName("b")
 	@Export("Interpreter_MONTHS")
 	static final String[] Interpreter_MONTHS;
-	@ObfuscatedName("l")
-	static boolean field963;
-	@ObfuscatedName("w")
-	static boolean field951;
-	@ObfuscatedName("a")
-	static ArrayList field965;
-	@ObfuscatedName("aw")
+	@ObfuscatedName("d")
+	static boolean field752;
+	@ObfuscatedName("y")
+	static boolean field740;
+	@ObfuscatedName("g")
+	static ArrayList field754;
+	@ObfuscatedName("ae")
 	@ObfuscatedGetter(
-		intValue = 1747930903
+		intValue = 744034499
 	)
-	static int field966;
-	@ObfuscatedName("ah")
-	static final double field959;
+	static int field742;
+	@ObfuscatedName("aq")
+	static final double field756;
 
 	static {
 		Interpreter_arrayLengths = new int[5];
@@ -61,38 +77,40 @@ public class Interpreter {
 		Interpreter_frames = new ScriptFrame[50];
 		Interpreter_calendar = java.util.Calendar.getInstance();
 		Interpreter_MONTHS = new String[]{"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
-		field963 = false;
-		field951 = false;
-		field965 = new ArrayList();
-		field966 = 0;
-		field959 = Math.log(2.0D);
+		field752 = false;
+		field740 = false;
+		field754 = new ArrayList();
+		field742 = 0;
+		field756 = Math.log(2.0D);
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("fr")
 	@ObfuscatedSignature(
-		descriptor = "(II)Lem;",
-		garbageValue = "-1531306565"
+		descriptor = "(ZI)V",
+		garbageValue = "-1377527653"
 	)
-	public static VarcInt method2009(int var0) {
-		VarcInt var1 = (VarcInt)VarcInt.VarcInt_cached.get((long)var0);
-		if (var1 != null) {
-			return var1;
+	static final void method1579(boolean var0) {
+		if (var0) {
+			Client.field447 = Login.field820 ? class99.field1268 : class99.field1270;
 		} else {
-			byte[] var2 = VarcInt.VarcInt_archive.takeFile(19, var0);
-			var1 = new VarcInt();
-			if (var2 != null) {
-				var1.method2745(new Buffer(var2));
+			LinkedHashMap var1 = Decimator.clientPreferences.parameters;
+			String var3 = Login.Login_username;
+			int var4 = var3.length();
+			int var5 = 0;
+
+			for (int var6 = 0; var6 < var4; ++var6) {
+				var5 = (var5 << 5) - var5 + var3.charAt(var6);
 			}
 
-			VarcInt.VarcInt_cached.put(var1, (long)var0);
-			return var1;
+			Client.field447 = var1.containsKey(var5) ? class99.field1276 : class99.field1267;
 		}
+
 	}
 
-	@ObfuscatedName("gy")
+	@ObfuscatedName("gj")
 	@ObfuscatedSignature(
-		descriptor = "(IIIIZB)V",
-		garbageValue = "90"
+		descriptor = "(IIIIZI)V",
+		garbageValue = "2099924114"
 	)
 	@Export("setViewportShape")
 	static final void setViewportShape(int var0, int var1, int var2, int var3, boolean var4) {
@@ -107,23 +125,23 @@ public class Interpreter {
 		int var5 = var3 - 334;
 		int var6;
 		if (var5 < 0) {
-			var6 = Client.field876;
+			var6 = Client.field660;
 		} else if (var5 >= 100) {
-			var6 = Client.field877;
+			var6 = Client.field631;
 		} else {
-			var6 = (Client.field877 - Client.field876) * var5 / 100 + Client.field876;
+			var6 = (Client.field631 - Client.field660) * var5 / 100 + Client.field660;
 		}
 
 		int var7 = var3 * var6 * 512 / (var2 * 334);
 		int var8;
 		int var9;
-		short var10;
-		if (var7 < Client.field881) {
-			var10 = Client.field881;
-			var6 = var10 * var2 * 334 / (var3 * 512);
-			if (var6 > Client.field864) {
-				var6 = Client.field864;
-				var8 = var3 * var6 * 512 / (var10 * 334);
+		short var18;
+		if (var7 < Client.field666) {
+			var18 = Client.field666;
+			var6 = var18 * var2 * 334 / (var3 * 512);
+			if (var6 > Client.field542) {
+				var6 = Client.field542;
+				var8 = var3 * var6 * 512 / (var18 * 334);
 				var9 = (var2 - var8) / 2;
 				if (var4) {
 					Rasterizer2D.Rasterizer2D_resetClip();
@@ -134,12 +152,12 @@ public class Interpreter {
 				var0 += var9;
 				var2 -= var9 * 2;
 			}
-		} else if (var7 > Client.field690) {
-			var10 = Client.field690;
-			var6 = var10 * var2 * 334 / (var3 * 512);
-			if (var6 < Client.field880) {
-				var6 = Client.field880;
-				var8 = var10 * var2 * 334 / (var6 * 512);
+		} else if (var7 > Client.field667) {
+			var18 = Client.field667;
+			var6 = var18 * var2 * 334 / (var3 * 512);
+			if (var6 < Client.field472) {
+				var6 = Client.field472;
+				var8 = var18 * var2 * 334 / (var6 * 512);
 				var9 = (var3 - var8) / 2;
 				if (var4) {
 					Rasterizer2D.Rasterizer2D_resetClip();
@@ -154,12 +172,40 @@ public class Interpreter {
 
 		Client.viewportZoom = var3 * var6 / 334;
 		if (var2 != Client.viewportWidth || var3 != Client.viewportHeight) {
-			class12.method209(var2, var3);
+			int[] var17 = new int[9];
+
+			for (var9 = 0; var9 < var17.length; ++var9) {
+				int var10 = var9 * 32 + 15 + 128;
+				int var11 = var10 * 3 + 600;
+				int var13 = Rasterizer3D.Rasterizer3D_sine[var10];
+				int var15 = var3 - 334;
+				if (var15 < 0) {
+					var15 = 0;
+				} else if (var15 > 100) {
+					var15 = 100;
+				}
+
+				int var16 = (Client.zoomWidth - Client.zoomHeight) * var15 / 100 + Client.zoomHeight;
+				int var14 = var11 * var16 / 256;
+				var17[var9] = var13 * var14 >> 16;
+			}
+
+			Scene.Scene_buildVisiblityMap(var17, 500, 800, var2 * 334 / var3, 334);
 		}
 
 		Client.viewportOffsetX = var0;
 		Client.viewportOffsetY = var1;
 		Client.viewportWidth = var2;
 		Client.viewportHeight = var3;
+	}
+
+	@ObfuscatedName("kb")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "1368981143"
+	)
+	static final void method1635() {
+		Client.field604 = Client.cycleCntr;
+		Players.field1182 = true;
 	}
 }

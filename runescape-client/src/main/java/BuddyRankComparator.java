@@ -3,16 +3,19 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("dk")
+@ObfuscatedName("cv")
 @Implements("BuddyRankComparator")
 public class BuddyRankComparator extends AbstractUserComparator {
-	@ObfuscatedName("hr")
+	@ObfuscatedName("u")
+	@Export("cacheParentPaths")
+	static String[] cacheParentPaths;
+	@ObfuscatedName("bl")
 	@ObfuscatedSignature(
-		descriptor = "[Loa;"
+		descriptor = "Lof;"
 	)
-	@Export("mapMarkerSprites")
-	static SpritePixels[] mapMarkerSprites;
-	@ObfuscatedName("f")
+	@Export("worldSelectRightSprite")
+	static IndexedSprite worldSelectRightSprite;
+	@ObfuscatedName("s")
 	@Export("reversed")
 	final boolean reversed;
 
@@ -20,10 +23,10 @@ public class BuddyRankComparator extends AbstractUserComparator {
 		this.reversed = var1;
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "(Lly;Lly;I)I",
-		garbageValue = "1922516179"
+		descriptor = "(Llr;Llr;I)I",
+		garbageValue = "1581905870"
 	)
 	@Export("compareBuddy")
 	int compareBuddy(Buddy var1, Buddy var2) {
@@ -38,20 +41,12 @@ public class BuddyRankComparator extends AbstractUserComparator {
 		return this.compareBuddy((Buddy)var1, (Buddy)var2);
 	}
 
-	@ObfuscatedName("fd")
-	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-16777217"
-	)
-	static final void method2579() {
-		if (class26.ClanChat_inClanChat) {
-			if (class289.friendsChatManager != null) {
-				class289.friendsChatManager.sort();
-			}
-
-			WorldMapCacheName.method3788();
-			class26.ClanChat_inClanChat = false;
-		}
-
+	@ObfuscatedName("jx")
+	static final void method2200(double var0) {
+		Rasterizer3D.Rasterizer3D_setBrightness(var0);
+		((TextureProvider)Rasterizer3D.Rasterizer3D_textureLoader).setBrightness(var0);
+		ItemComposition.ItemDefinition_cachedSprites.clear();
+		Decimator.clientPreferences.field1117 = var0;
+		MilliClock.savePreferences();
 	}
 }

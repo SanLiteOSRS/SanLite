@@ -4,57 +4,71 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gw")
+@ObfuscatedName("gc")
 @Implements("ItemLayer")
 public final class ItemLayer {
-	@ObfuscatedName("bq")
-	@Export("otp")
-	static String otp;
-	@ObfuscatedName("f")
+	@ObfuscatedName("rp")
 	@ObfuscatedGetter(
-		intValue = -193076461
+		intValue = -68501504
+	)
+	static int field2147;
+	@ObfuscatedName("db")
+	@ObfuscatedSignature(
+		descriptor = "Ljs;"
+	)
+	@Export("archive2")
+	static Archive archive2;
+	@ObfuscatedName("eu")
+	@ObfuscatedSignature(
+		descriptor = "Ljs;"
+	)
+	@Export("archive14")
+	static Archive archive14;
+	@ObfuscatedName("s")
+	@ObfuscatedGetter(
+		intValue = -1258904937
 	)
 	@Export("tileHeight")
 	int tileHeight;
-	@ObfuscatedName("e")
+	@ObfuscatedName("t")
 	@ObfuscatedGetter(
-		intValue = 314356507
+		intValue = 1834078105
 	)
 	@Export("x")
 	int x;
 	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = -695126527
+		intValue = -903792953
 	)
 	@Export("y")
 	int y;
-	@ObfuscatedName("y")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
-		descriptor = "Lgr;"
+		descriptor = "Lgy;"
 	)
 	@Export("first")
 	Renderable first;
-	@ObfuscatedName("j")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		descriptor = "Lgr;"
+		descriptor = "Lgy;"
 	)
 	@Export("second")
 	Renderable second;
-	@ObfuscatedName("o")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "Lgr;"
+		descriptor = "Lgy;"
 	)
 	@Export("third")
 	Renderable third;
-	@ObfuscatedName("m")
+	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		longValue = 5487494310770586269L
+		longValue = -4106970907068788613L
 	)
 	@Export("tag")
 	long tag;
-	@ObfuscatedName("r")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = 400175677
+		intValue = -366968213
 	)
 	@Export("height")
 	int height;
@@ -62,94 +76,53 @@ public final class ItemLayer {
 	ItemLayer() {
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		descriptor = "(Ljp;Ljp;Ljp;Lie;B)Z",
-		garbageValue = "0"
+		descriptor = "(IS)I",
+		garbageValue = "5000"
 	)
-	public static boolean method3860(AbstractArchive var0, AbstractArchive var1, AbstractArchive var2, MidiPcmStream var3) {
-		class233.musicPatchesArchive = var0;
-		class233.musicSamplesArchive = var1;
-		class230.soundEffectsArchive = var2;
-		class233.midiPcmStream = var3;
-		return true;
+	@Export("iLog")
+	public static int iLog(int var0) {
+		int var1 = 0;
+		if (var0 < 0 || var0 >= 65536) {
+			var0 >>>= 16;
+			var1 += 16;
+		}
+
+		if (var0 >= 256) {
+			var0 >>>= 8;
+			var1 += 8;
+		}
+
+		if (var0 >= 16) {
+			var0 >>>= 4;
+			var1 += 4;
+		}
+
+		if (var0 >= 4) {
+			var0 >>>= 2;
+			var1 += 2;
+		}
+
+		if (var0 >= 1) {
+			var0 >>>= 1;
+			++var1;
+		}
+
+		return var0 + var1;
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("gt")
 	@ObfuscatedSignature(
-		descriptor = "(CI)Z",
-		garbageValue = "-395066972"
+		descriptor = "(I)I",
+		garbageValue = "-1741190967"
 	)
-	public static boolean method3861(char var0) {
-		if ((var0 <= 0 || var0 >= 128) && (var0 < 160 || var0 > 255)) {
-			if (var0 != 0) {
-				char[] var1 = class302.cp1252AsciiExtension;
-
-				for (int var2 = 0; var2 < var1.length; ++var2) {
-					char var3 = var1[var2];
-					if (var0 == var3) {
-						return true;
-					}
-				}
-			}
-
-			return false;
+	static final int method3791() {
+		if (Decimator.clientPreferences.roofsHidden) {
+			return GrandExchangeEvent.Client_plane;
 		} else {
-			return true;
-		}
-	}
-
-	@ObfuscatedName("aq")
-	@ObfuscatedSignature(
-		descriptor = "([BII)I",
-		garbageValue = "-1419386207"
-	)
-	public static int method3863(byte[] var0, int var1) {
-		int var3 = -1;
-
-		for (int var4 = 0; var4 < var1; ++var4) {
-			var3 = var3 >>> 8 ^ Buffer.crc32Table[(var3 ^ var0[var4]) & 255];
-		}
-
-		var3 = ~var3;
-		return var3;
-	}
-
-	@ObfuscatedName("jt")
-	@ObfuscatedSignature(
-		descriptor = "(Liv;III)V",
-		garbageValue = "-1678262366"
-	)
-	@Export("clickWidget")
-	static final void clickWidget(Widget var0, int var1, int var2) {
-		if (Client.clickedWidget == null && !Client.isMenuOpen) {
-			if (var0 != null) {
-				Widget var4 = PlayerComposition.method4851(var0);
-				if (var4 == null) {
-					var4 = var0.parent;
-				}
-
-				if (var4 != null) {
-					Client.clickedWidget = var0;
-					var4 = PlayerComposition.method4851(var0);
-					if (var4 == null) {
-						var4 = var0.parent;
-					}
-
-					Client.clickedWidgetParent = var4;
-					Client.widgetClickX = var1;
-					Client.widgetClickY = var2;
-					UserComparator7.widgetDragDuration = 0;
-					Client.isDraggingWidget = false;
-					int var5 = HealthBarUpdate.method2283();
-					if (var5 != -1) {
-						WorldMapIcon_1.method3305(var5);
-					}
-
-					return;
-				}
-			}
-
+			int var0 = class122.getTileHeight(ItemContainer.cameraX, WorldMapArchiveLoader.cameraZ, GrandExchangeEvent.Client_plane);
+			return var0 - Bounds.cameraY < 800 && (Tiles.Tiles_renderFlags[GrandExchangeEvent.Client_plane][ItemContainer.cameraX >> 7][WorldMapArchiveLoader.cameraZ >> 7] & 4) != 0 ? GrandExchangeEvent.Client_plane : 3;
 		}
 	}
 }

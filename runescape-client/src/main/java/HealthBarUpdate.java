@@ -1,36 +1,33 @@
-import java.applet.Applet;
-import java.net.URL;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import netscape.javascript.JSObject;
 
-@ObfuscatedName("cw")
+@ObfuscatedName("bz")
 @Implements("HealthBarUpdate")
 public class HealthBarUpdate extends Node {
-	@ObfuscatedName("f")
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = -1899211573
+		intValue = 1564822049
 	)
 	@Export("cycle")
 	int cycle;
-	@ObfuscatedName("e")
+	@ObfuscatedName("t")
 	@ObfuscatedGetter(
-		intValue = -1533499455
+		intValue = 396108399
 	)
 	@Export("health")
 	int health;
 	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = -1222578815
+		intValue = -1574607109
 	)
 	@Export("health2")
 	int health2;
-	@ObfuscatedName("y")
+	@ObfuscatedName("j")
 	@ObfuscatedGetter(
-		intValue = 266860217
+		intValue = -1966461257
 	)
 	@Export("cycleOffset")
 	int cycleOffset;
@@ -42,10 +39,10 @@ public class HealthBarUpdate extends Node {
 		this.cycleOffset = var4;
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
 		descriptor = "(IIIII)V",
-		garbageValue = "-672501131"
+		garbageValue = "1017297352"
 	)
 	@Export("set")
 	void set(int var1, int var2, int var3, int var4) {
@@ -55,72 +52,25 @@ public class HealthBarUpdate extends Node {
 		this.cycleOffset = var4;
 	}
 
-	@ObfuscatedName("y")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;ILjava/lang/String;I)Z",
-		garbageValue = "-2088910415"
+		descriptor = "(II)Lei;",
+		garbageValue = "-1737036949"
 	)
-	static boolean method2284(String var0, int var1, String var2) {
-		if (var1 == 0) {
-			try {
-				if (!class44.field309.startsWith("win")) {
-					throw new Exception();
-				} else if (!var0.startsWith("http://") && !var0.startsWith("https://")) {
-					throw new Exception();
-				} else {
-					String var13 = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789?&=,.%+-_#:/*";
-
-					for (int var4 = 0; var4 < var0.length(); ++var4) {
-						if (var13.indexOf(var0.charAt(var4)) == -1) {
-							throw new Exception();
-						}
-					}
-
-					Runtime.getRuntime().exec("cmd /c start \"j\" \"" + var0 + "\"");
-					return true;
-				}
-			} catch (Throwable var8) {
-				return false;
-			}
-		} else if (var1 == 1) {
-			try {
-				Applet var7 = class44.applet;
-				Object[] var5 = new Object[]{(new URL(class44.applet.getCodeBase(), var0)).toString()};
-				Object var3 = JSObject.getWindow(var7).call(var2, var5);
-				return var3 != null;
-			} catch (Throwable var9) {
-				return false;
-			}
-		} else if (var1 == 2) {
-			try {
-				class44.applet.getAppletContext().showDocument(new URL(class44.applet.getCodeBase(), var0), "_blank");
-				return true;
-			} catch (Exception var10) {
-				return false;
-			}
-		} else if (var1 == 3) {
-			try {
-				class42.method521(class44.applet, "loggedout");
-			} catch (Throwable var12) {
-			}
-
-			try {
-				class44.applet.getAppletContext().showDocument(new URL(class44.applet.getCodeBase(), var0), "_top");
-				return true;
-			} catch (Exception var11) {
-				return false;
-			}
-		} else {
-			throw new IllegalArgumentException();
-		}
+	@Export("WorldMapElement_get")
+	public static WorldMapElement WorldMapElement_get(int var0) {
+		return var0 >= 0 && var0 < WorldMapElement.WorldMapElement_cached.length && WorldMapElement.WorldMapElement_cached[var0] != null ? WorldMapElement.WorldMapElement_cached[var0] : new WorldMapElement(var0);
 	}
 
-	@ObfuscatedName("ii")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		descriptor = "(I)I",
-		garbageValue = "2083004569"
+		descriptor = "(IIII)I",
+		garbageValue = "-1474231876"
 	)
-	static final int method2283() {
-		return Client.menuOptionsCount - 1;
+	public static int method1894(int var0, int var1, int var2) {
+		int var3 = class118.method2461(var2 - var1 + 1);
+		var3 <<= var1;
+		var0 |= var3;
+		return var0;
 	}
 }

@@ -1,4 +1,3 @@
-import java.awt.Component;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
@@ -8,39 +7,39 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("hg")
 @Implements("PacketBufferNode")
 public class PacketBufferNode extends Node {
-	@ObfuscatedName("j")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
 		descriptor = "[Lhg;"
 	)
 	@Export("PacketBufferNode_packetBufferNodes")
 	static PacketBufferNode[] PacketBufferNode_packetBufferNodes;
-	@ObfuscatedName("o")
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = 194087835
+		intValue = 245617369
 	)
 	@Export("PacketBufferNode_packetBufferNodeCount")
 	static int PacketBufferNode_packetBufferNodeCount;
-	@ObfuscatedName("f")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "Lhw;"
+		descriptor = "Lhx;"
 	)
 	@Export("clientPacket")
 	public ClientPacket clientPacket;
-	@ObfuscatedName("e")
+	@ObfuscatedName("t")
 	@ObfuscatedGetter(
-		intValue = -970275451
+		intValue = -1553896473
 	)
 	@Export("clientPacketLength")
 	public int clientPacketLength;
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "Lns;"
+		descriptor = "Lnu;"
 	)
 	@Export("packetBuffer")
 	public PacketBuffer packetBuffer;
-	@ObfuscatedName("y")
+	@ObfuscatedName("j")
 	@ObfuscatedGetter(
-		intValue = 272345779
+		intValue = 394733649
 	)
 	@Export("index")
 	public int index;
@@ -53,10 +52,10 @@ public class PacketBufferNode extends Node {
 	PacketBufferNode() {
 	}
 
-	@ObfuscatedName("y")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "249212949"
+		garbageValue = "-872816135"
 	)
 	@Export("release")
 	public void release() {
@@ -65,14 +64,12 @@ public class PacketBufferNode extends Node {
 		}
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("ap")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/awt/Component;I)V",
-		garbageValue = "1856428662"
+		descriptor = "([BIB)I",
+		garbageValue = "-82"
 	)
-	static void method4497(Component var0) {
-		var0.addMouseListener(MouseHandler.MouseHandler_instance);
-		var0.addMouseMotionListener(MouseHandler.MouseHandler_instance);
-		var0.addFocusListener(MouseHandler.MouseHandler_instance);
+	public static int method4418(byte[] var0, int var1) {
+		return ClientPacket.method4408(var0, 0, var1);
 	}
 }

@@ -111,6 +111,9 @@ public class GroundItemsPluginTest
 
 		when(client.getLocalPlayer()).thenReturn(mock(Player.class));
 		when(config.getHiddenItems()).thenReturn("");
+		/* TODO: Re-enable when mixins are updated */
+//		when(config.showLootbeamForHighlighted()).thenReturn(false);
+//		when(config.showLootbeamTier()).thenReturn(HighlightTier.OFF);
 	}
 
 	@Test

@@ -2,38 +2,42 @@ import java.io.DataInputStream;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.URL;
-import java.util.Date;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("da")
+@ObfuscatedName("dz")
 @Implements("TaskHandler")
 public class TaskHandler implements Runnable {
-	@ObfuscatedName("f")
+	@ObfuscatedName("s")
 	@Export("javaVendor")
 	public static String javaVendor;
-	@ObfuscatedName("e")
+	@ObfuscatedName("t")
 	@Export("javaVersion")
 	public static String javaVersion;
+	@ObfuscatedName("fl")
+	@ObfuscatedSignature(
+		descriptor = "Lkt;"
+	)
+	@Export("fontBold12")
+	static Font fontBold12;
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "Lel;"
+		descriptor = "Lex;"
 	)
 	@Export("current")
 	Task current;
-	@ObfuscatedName("y")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
-		descriptor = "Lel;"
+		descriptor = "Lex;"
 	)
 	@Export("task")
 	Task task;
-	@ObfuscatedName("j")
+	@ObfuscatedName("l")
 	@Export("thread")
 	Thread thread;
-	@ObfuscatedName("o")
+	@ObfuscatedName("n")
 	@Export("isClosed")
 	boolean isClosed;
 
@@ -57,10 +61,10 @@ public class TaskHandler implements Runnable {
 		this.thread.start();
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-1744867211"
+		descriptor = "(B)V",
+		garbageValue = "1"
 	)
 	@Export("close")
 	public final void close() {
@@ -76,10 +80,10 @@ public class TaskHandler implements Runnable {
 
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		descriptor = "(IIILjava/lang/Object;B)Lel;",
-		garbageValue = "127"
+		descriptor = "(IIILjava/lang/Object;B)Lex;",
+		garbageValue = "-1"
 	)
 	@Export("newTask")
 	final Task newTask(int var1, int var2, int var3, Object var4) {
@@ -102,18 +106,18 @@ public class TaskHandler implements Runnable {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;II)Lel;",
-		garbageValue = "1638941584"
+		descriptor = "(Ljava/lang/String;IB)Lex;",
+		garbageValue = "-4"
 	)
 	@Export("newSocketTask")
 	public final Task newSocketTask(String var1, int var2) {
 		return this.newTask(1, var2, 0, var1);
 	}
 
-	@ObfuscatedName("y")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/Runnable;II)Lel;",
-		garbageValue = "2125831447"
+		descriptor = "(Ljava/lang/Runnable;II)Lex;",
+		garbageValue = "-272989107"
 	)
 	@Export("newThreadTask")
 	public final Task newThreadTask(Runnable var1, int var2) {
@@ -168,76 +172,55 @@ public class TaskHandler implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("i")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(ILcf;ZB)I",
-		garbageValue = "89"
+		descriptor = "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V",
+		garbageValue = "1590707620"
 	)
-	static int method2626(int var0, Script var1, boolean var2) {
-		Widget var3 = var2 ? UserComparator5.scriptDotWidget : Nameable.scriptActiveWidget;
-		if (var0 == ScriptOpcodes.CC_GETX) {
-			Interpreter.Interpreter_intStack[++ChatChannel.Interpreter_intStackSize - 1] = var3.x;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CC_GETY) {
-			Interpreter.Interpreter_intStack[++ChatChannel.Interpreter_intStackSize - 1] = var3.y;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CC_GETWIDTH) {
-			Interpreter.Interpreter_intStack[++ChatChannel.Interpreter_intStackSize - 1] = var3.width;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CC_GETHEIGHT) {
-			Interpreter.Interpreter_intStack[++ChatChannel.Interpreter_intStackSize - 1] = var3.height;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CC_GETHIDE) {
-			Interpreter.Interpreter_intStack[++ChatChannel.Interpreter_intStackSize - 1] = var3.isHidden ? 1 : 0;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CC_GETLAYER) {
-			Interpreter.Interpreter_intStack[++ChatChannel.Interpreter_intStackSize - 1] = var3.parentId;
-			return 1;
-		} else {
-			return 2;
+	@Export("addChatMessage")
+	static void addChatMessage(int var0, String var1, String var2, String var3) {
+		ChatChannel var4 = (ChatChannel)Messages.Messages_channels.get(var0);
+		if (var4 == null) {
+			var4 = new ChatChannel();
+			Messages.Messages_channels.put(var0, var4);
 		}
+
+		Message var5 = var4.addMessage(var0, var1, var2, var3);
+		Messages.Messages_hashTable.put(var5, (long)var5.count);
+		Messages.Messages_queue.add(var5);
+		Client.chatCycle = Client.cycleCntr;
 	}
 
-	@ObfuscatedName("iq")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		descriptor = "(Lcz;IIB)V",
-		garbageValue = "-68"
+		descriptor = "(IB)Lay;",
+		garbageValue = "55"
 	)
-	static final void method2625(MenuAction var0, int var1, int var2) {
-		GameObject.menuAction(var0.param0, var0.param1, var0.opcode, var0.identifier, var0.action, var0.action, var1, var2);
+	@Export("Messages_getMessage")
+	static Message Messages_getMessage(int var0) {
+		return (Message)Messages.Messages_hashTable.get((long)var0);
 	}
 
-	@ObfuscatedName("lr")
+	@ObfuscatedName("jj")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;I)V",
-		garbageValue = "-846504237"
+		descriptor = "(II)V",
+		garbageValue = "1968115484"
 	)
-	static void method2615(String var0) {
-		Messages.field1397 = var0;
-
-		try {
-			String var1 = class1.client.getParameter(Integer.toString(18));
-			String var2 = class1.client.getParameter(Integer.toString(13));
-			String var3 = var1 + "settings=" + var0 + "; version=1; path=/; domain=" + var2;
-			if (var0.length() == 0) {
-				var3 = var3 + "; Expires=Thu, 01-Jan-1970 00:00:00 GMT; Max-Age=0";
+	static final void method2582(int var0) {
+		var0 = Math.min(Math.max(var0, 0), 255);
+		if (var0 != Decimator.clientPreferences.musicVolume) {
+			if (Decimator.clientPreferences.musicVolume == 0 && Client.currentTrackGroupId != -1) {
+				Players.method2022(class108.archive6, Client.currentTrackGroupId, 0, var0, false);
+				Client.field647 = false;
+			} else if (var0 == 0) {
+				DynamicObject.method1727();
+				Client.field647 = false;
 			} else {
-				String var4 = var3 + "; Expires=";
-				long var6 = ClientPacket.currentTimeMillis() + 94608000000L;
-				Calendar.Calendar_calendar.setTime(new Date(var6));
-				int var8 = Calendar.Calendar_calendar.get(7);
-				int var9 = Calendar.Calendar_calendar.get(5);
-				int var10 = Calendar.Calendar_calendar.get(2);
-				int var11 = Calendar.Calendar_calendar.get(1);
-				int var12 = Calendar.Calendar_calendar.get(11);
-				int var13 = Calendar.Calendar_calendar.get(12);
-				int var14 = Calendar.Calendar_calendar.get(13);
-				String var5 = Calendar.DAYS_OF_THE_WEEK[var8 - 1] + ", " + var9 / 10 + var9 % 10 + "-" + Calendar.MONTH_NAMES_ENGLISH_GERMAN[0][var10] + "-" + var11 + " " + var12 / 10 + var12 % 10 + ":" + var13 / 10 + var13 % 10 + ":" + var14 / 10 + var14 % 10 + " GMT";
-				var3 = var4 + var5 + "; Max-Age=" + 94608000L;
+				FontName.method6374(var0);
 			}
 
-			class42.method525(class1.client, "document.cookie=\"" + var3 + "\"");
-		} catch (Throwable var15) {
+			Decimator.clientPreferences.musicVolume = var0;
+			MilliClock.savePreferences();
 		}
 
 	}

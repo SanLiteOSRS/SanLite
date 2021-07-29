@@ -1,130 +1,80 @@
-import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("o")
-public class class5 extends class16 {
-	@ObfuscatedName("lw")
-	@ObfuscatedSignature(
-		descriptor = "Liv;"
-	)
-	static Widget field42;
-	@ObfuscatedName("f")
-	@ObfuscatedGetter(
-		intValue = 835981453
-	)
-	int field43;
-	// $FF: synthetic field
-	@ObfuscatedSignature(
-		descriptor = "Ls;"
-	)
-	final class19 this$0;
+@ObfuscatedName("n")
+public class class5 implements class2 {
+	@ObfuscatedName("s")
+	final MessageDigest field8;
 
 	@ObfuscatedSignature(
-		descriptor = "(Ls;)V"
+		descriptor = "(Lo;)V"
 	)
-	class5(class19 var1) {
-		this.this$0 = var1;
-		this.field43 = -1;
+	class5(class8 var1) {
+		this.field8 = this.method26();
 	}
 
-	@ObfuscatedName("f")
-	@ObfuscatedSignature(
-		descriptor = "(Lnt;I)V",
-		garbageValue = "851460888"
-	)
-	void vmethod331(Buffer var1) {
-		this.field43 = var1.readUnsignedShort();
-		var1.readUnsignedByte();
-		if (var1.readUnsignedByte() != 255) {
-			--var1.offset;
-			var1.readLong();
+	@ObfuscatedName("s")
+	boolean method23(int var1, String var2, long var3) {
+		byte[] var5 = this.method25(var2, var3);
+		return method30(var5) >= var1;
+	}
+
+	@ObfuscatedName("j")
+	byte[] method25(String var1, long var2) {
+		StringBuilder var4 = new StringBuilder();
+		var4.append(var1).append(Long.toHexString(var2));
+		this.field8.reset();
+
+		try {
+			this.field8.update(var4.toString().getBytes("UTF-8"));
+		} catch (UnsupportedEncodingException var6) {
+			var6.printStackTrace();
 		}
 
+		return this.field8.digest();
 	}
 
-	@ObfuscatedName("e")
-	@ObfuscatedSignature(
-		descriptor = "(Ly;I)V",
-		garbageValue = "-1362614343"
-	)
-	void vmethod332(ClanChannel var1) {
-		var1.removeMember(this.field43);
+	@ObfuscatedName("l")
+	MessageDigest method26() {
+		try {
+			return MessageDigest.getInstance("SHA-256");
+		} catch (NoSuchAlgorithmException var2) {
+			var2.printStackTrace();
+			return null;
+		}
 	}
 
-	@ObfuscatedName("y")
-	@ObfuscatedSignature(
-		descriptor = "(II)Z",
-		garbageValue = "2066845091"
-	)
-	public static boolean method73(int var0) {
-		return (var0 >> 20 & 1) != 0;
-	}
-
-	@ObfuscatedName("m")
-	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "-217249908"
-	)
-	@Export("iLog")
-	public static int iLog(int var0) {
+	@ObfuscatedName("t")
+	static int method30(byte[] var0) {
 		int var1 = 0;
-		if (var0 < 0 || var0 >= 65536) {
-			var0 >>>= 16;
-			var1 += 16;
+		byte[] var2 = var0;
+
+		for (int var3 = 0; var3 < var2.length; ++var3) {
+			byte var4 = var2[var3];
+			int var5 = method24(var4);
+			var1 += var5;
+			if (var5 != 8) {
+				break;
+			}
 		}
 
-		if (var0 >= 256) {
-			var0 >>>= 8;
-			var1 += 8;
-		}
-
-		if (var0 >= 16) {
-			var0 >>>= 4;
-			var1 += 4;
-		}
-
-		if (var0 >= 4) {
-			var0 >>>= 2;
-			var1 += 2;
-		}
-
-		if (var0 >= 1) {
-			var0 >>>= 1;
-			++var1;
-		}
-
-		return var0 + var1;
+		return var1;
 	}
 
-	@ObfuscatedName("au")
-	@ObfuscatedSignature(
-		descriptor = "(ILcf;ZB)I",
-		garbageValue = "-72"
-	)
-	static int method72(int var0, Script var1, boolean var2) {
-		if (var0 == 6800) {
-			Interpreter.Interpreter_stringStack[++UserComparator9.Interpreter_stringStackSize - 1] = "";
-			return 1;
-		} else if (var0 != 6801 && var0 != 6802) {
-			if (var0 == 6850) {
-				Interpreter.Interpreter_stringStack[++UserComparator9.Interpreter_stringStackSize - 1] = "";
-				return 1;
-			} else if (var0 != 6851 && var0 != 6852) {
-				if (var0 == 6853) {
-					Interpreter.Interpreter_intStack[++ChatChannel.Interpreter_intStackSize - 1] = 0;
-					return 1;
-				} else {
-					return 2;
-				}
-			} else {
-				Interpreter.Interpreter_intStack[++ChatChannel.Interpreter_intStackSize - 1] = -1;
-				return 1;
-			}
+	@ObfuscatedName("v")
+	static int method24(byte var0) {
+		int var1 = 0;
+		if (var0 == 0) {
+			var1 = 8;
 		} else {
-			Interpreter.Interpreter_intStack[++ChatChannel.Interpreter_intStackSize - 1] = -1;
-			return 1;
+			for (int var2 = var0 & 255; (var2 & 128) == 0; var2 <<= 1) {
+				++var1;
+			}
 		}
+
+		return var1;
 	}
 }

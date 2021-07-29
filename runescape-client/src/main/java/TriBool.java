@@ -3,24 +3,24 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("lu")
+@ObfuscatedName("li")
 @Implements("TriBool")
 public class TriBool {
-	@ObfuscatedName("f")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "Llu;"
+		descriptor = "Lli;"
 	)
 	@Export("TriBool_unknown")
 	public static final TriBool TriBool_unknown;
-	@ObfuscatedName("e")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		descriptor = "Llu;"
+		descriptor = "Lli;"
 	)
 	@Export("TriBool_true")
 	public static final TriBool TriBool_true;
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "Llu;"
+		descriptor = "Lli;"
 	)
 	@Export("TriBool_false")
 	public static final TriBool TriBool_false;

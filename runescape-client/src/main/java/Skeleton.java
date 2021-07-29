@@ -4,25 +4,31 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gb")
+@ObfuscatedName("gj")
 @Implements("Skeleton")
 public class Skeleton extends Node {
-	@ObfuscatedName("f")
+	@ObfuscatedName("ds")
+	@ObfuscatedSignature(
+		descriptor = "Ljs;"
+	)
+	@Export("archive7")
+	static Archive archive7;
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = 1170142713
+		intValue = -1537374689
 	)
 	@Export("id")
 	int id;
-	@ObfuscatedName("e")
+	@ObfuscatedName("t")
 	@ObfuscatedGetter(
-		intValue = 213807601
+		intValue = -450404879
 	)
 	@Export("count")
 	int count;
 	@ObfuscatedName("v")
 	@Export("transformTypes")
 	int[] transformTypes;
-	@ObfuscatedName("y")
+	@ObfuscatedName("j")
 	@Export("labels")
 	int[][] labels;
 
@@ -50,44 +56,25 @@ public class Skeleton extends Node {
 
 	}
 
-	@ObfuscatedName("ia")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-913891462"
+		descriptor = "(IB)I",
+		garbageValue = "79"
 	)
-	static final void method4034() {
-		boolean var0 = false;
+	public static int method3973(int var0) {
+		return ApproximateRouteStrategy.method880(ViewportMouse.ViewportMouse_entityTags[var0]);
+	}
 
-		while (!var0) {
-			var0 = true;
-
-			for (int var1 = 0; var1 < Client.menuOptionsCount - 1; ++var1) {
-				if (Client.menuOpcodes[var1] < 1000 && Client.menuOpcodes[var1 + 1] > 1000) {
-					String var2 = Client.menuTargets[var1];
-					Client.menuTargets[var1] = Client.menuTargets[var1 + 1];
-					Client.menuTargets[var1 + 1] = var2;
-					String var3 = Client.menuActions[var1];
-					Client.menuActions[var1] = Client.menuActions[var1 + 1];
-					Client.menuActions[var1 + 1] = var3;
-					int var4 = Client.menuOpcodes[var1];
-					Client.menuOpcodes[var1] = Client.menuOpcodes[var1 + 1];
-					Client.menuOpcodes[var1 + 1] = var4;
-					var4 = Client.menuArguments1[var1];
-					Client.menuArguments1[var1] = Client.menuArguments1[var1 + 1];
-					Client.menuArguments1[var1 + 1] = var4;
-					var4 = Client.menuArguments2[var1];
-					Client.menuArguments2[var1] = Client.menuArguments2[var1 + 1];
-					Client.menuArguments2[var1 + 1] = var4;
-					var4 = Client.menuIdentifiers[var1];
-					Client.menuIdentifiers[var1] = Client.menuIdentifiers[var1 + 1];
-					Client.menuIdentifiers[var1 + 1] = var4;
-					boolean var5 = Client.menuShiftClick[var1];
-					Client.menuShiftClick[var1] = Client.menuShiftClick[var1 + 1];
-					Client.menuShiftClick[var1 + 1] = var5;
-					var0 = false;
-				}
-			}
+	@ObfuscatedName("q")
+	@ObfuscatedSignature(
+		descriptor = "(II)I",
+		garbageValue = "-731407124"
+	)
+	public static int method3972(int var0) {
+		if (var0 > 0) {
+			return 1;
+		} else {
+			return var0 < 0 ? -1 : 0;
 		}
-
 	}
 }

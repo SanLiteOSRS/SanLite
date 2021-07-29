@@ -4,69 +4,81 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fq")
+@ObfuscatedName("fw")
 @Implements("FloorOverlayDefinition")
 public class FloorOverlayDefinition extends DualNode {
-	@ObfuscatedName("e")
+	@ObfuscatedName("rb")
 	@ObfuscatedSignature(
-		descriptor = "Lht;"
+		descriptor = "Lao;"
+	)
+	@Export("decimator")
+	static Decimator decimator;
+	@ObfuscatedName("s")
+	@ObfuscatedSignature(
+		descriptor = "Ljy;"
+	)
+	@Export("FloorOverlayDefinition_archive")
+	public static AbstractArchive FloorOverlayDefinition_archive;
+	@ObfuscatedName("t")
+	@ObfuscatedSignature(
+		descriptor = "Lhw;"
 	)
 	@Export("FloorOverlayDefinition_cached")
-	static EvictingDualNodeHashTable FloorOverlayDefinition_cached;
+	public static EvictingDualNodeHashTable FloorOverlayDefinition_cached;
 	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = -296019843
+		intValue = 667316801
 	)
 	@Export("primaryRgb")
 	public int primaryRgb;
-	@ObfuscatedName("y")
+	@ObfuscatedName("j")
 	@ObfuscatedGetter(
-		intValue = -1822468251
+		intValue = 1063696887
 	)
 	@Export("texture")
 	public int texture;
-	@ObfuscatedName("j")
+	@ObfuscatedName("l")
 	@Export("hideUnderlay")
 	public boolean hideUnderlay;
-	@ObfuscatedName("o")
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = -1818252281
+		intValue = -2020856341
 	)
 	@Export("secondaryRgb")
 	public int secondaryRgb;
-	@ObfuscatedName("m")
+	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		intValue = 237098067
+		intValue = -707439719
 	)
 	@Export("hue")
 	public int hue;
-	@ObfuscatedName("r")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = -1367639577
+		intValue = -605382025
 	)
 	@Export("saturation")
 	public int saturation;
-	@ObfuscatedName("h")
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = 1127074157
+		intValue = 1441861703
 	)
 	@Export("lightness")
 	public int lightness;
-	@ObfuscatedName("d")
+	@ObfuscatedName("x")
 	@ObfuscatedGetter(
-		intValue = 1492871957
+		intValue = 450257925
 	)
 	@Export("secondaryHue")
 	public int secondaryHue;
-	@ObfuscatedName("z")
+	@ObfuscatedName("r")
 	@ObfuscatedGetter(
-		intValue = 422172471
+		intValue = 377708913
 	)
 	@Export("secondarySaturation")
 	public int secondarySaturation;
-	@ObfuscatedName("b")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = 724805775
+		intValue = 1102913933
 	)
 	@Export("secondaryLightness")
 	public int secondaryLightness;
@@ -75,20 +87,20 @@ public class FloorOverlayDefinition extends DualNode {
 		FloorOverlayDefinition_cached = new EvictingDualNodeHashTable(64);
 	}
 
-	FloorOverlayDefinition() {
+	public FloorOverlayDefinition() {
 		this.primaryRgb = 0;
 		this.texture = -1;
 		this.hideUnderlay = true;
 		this.secondaryRgb = -1;
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "-1526666702"
+		garbageValue = "-1241018196"
 	)
 	@Export("postDecode")
-	void postDecode() {
+	public void postDecode() {
 		if (this.secondaryRgb != -1) {
 			this.setHsl(this.secondaryRgb);
 			this.secondaryHue = this.hue;
@@ -99,13 +111,13 @@ public class FloorOverlayDefinition extends DualNode {
 		this.setHsl(this.primaryRgb);
 	}
 
-	@ObfuscatedName("y")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		descriptor = "(Lnt;IB)V",
-		garbageValue = "6"
+		descriptor = "(Lnv;IB)V",
+		garbageValue = "81"
 	)
 	@Export("decode")
-	void decode(Buffer var1, int var2) {
+	public void decode(Buffer var1, int var2) {
 		while (true) {
 			int var3 = var1.readUnsignedByte();
 			if (var3 == 0) {
@@ -116,10 +128,10 @@ public class FloorOverlayDefinition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(Lnt;III)V",
-		garbageValue = "-608043176"
+		descriptor = "(Lnv;III)V",
+		garbageValue = "1340333905"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2, int var3) {
@@ -136,10 +148,10 @@ public class FloorOverlayDefinition extends DualNode {
 
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
 		descriptor = "(II)V",
-		garbageValue = "2117241812"
+		garbageValue = "-1484541968"
 	)
 	@Export("setHsl")
 	void setHsl(int var1) {
@@ -166,8 +178,8 @@ public class FloorOverlayDefinition extends DualNode {
 
 		double var12 = 0.0D;
 		double var14 = 0.0D;
-		double var16 = (var10 + var8) / 2.0D;
-		if (var10 != var8) {
+		double var16 = (var8 + var10) / 2.0D;
+		if (var8 != var10) {
 			if (var16 < 0.5D) {
 				var14 = (var10 - var8) / (var10 + var8);
 			}
@@ -179,15 +191,15 @@ public class FloorOverlayDefinition extends DualNode {
 			if (var10 == var2) {
 				var12 = (var4 - var6) / (var10 - var8);
 			} else if (var4 == var10) {
-				var12 = 2.0D + (var6 - var2) / (var10 - var8);
+				var12 = (var6 - var2) / (var10 - var8) + 2.0D;
 			} else if (var10 == var6) {
-				var12 = (var2 - var4) / (var10 - var8) + 4.0D;
+				var12 = 4.0D + (var2 - var4) / (var10 - var8);
 			}
 		}
 
 		var12 /= 6.0D;
-		this.hue = (int)(var12 * 256.0D);
-		this.saturation = (int)(var14 * 256.0D);
+		this.hue = (int)(256.0D * var12);
+		this.saturation = (int)(256.0D * var14);
 		this.lightness = (int)(256.0D * var16);
 		if (this.saturation < 0) {
 			this.saturation = 0;
@@ -203,134 +215,22 @@ public class FloorOverlayDefinition extends DualNode {
 
 	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "1165486698"
+		descriptor = "(II)Loo;",
+		garbageValue = "-1435537454"
 	)
-	static final void method3168() {
-		Object var10000 = null;
-		String var0 = "You can't add yourself to your own friend list";
-		UserComparator10.addGameMessage(30, "", var0);
-	}
+	public static PrivateChatMode method3134(int var0) {
+		PrivateChatMode[] var1 = new PrivateChatMode[]{PrivateChatMode.field4297, PrivateChatMode.field4299, PrivateChatMode.field4298};
+		PrivateChatMode[] var2 = var1;
 
-	@ObfuscatedName("kr")
-	@ObfuscatedSignature(
-		descriptor = "(Liv;IIIB)V",
-		garbageValue = "-1"
-	)
-	@Export("drawMinimap")
-	static final void drawMinimap(Widget var0, int var1, int var2, int var3) {
-		class233.playPcmPlayers();
-		SpriteMask var4 = var0.getSpriteMask(false);
-		if (var4 != null) {
-			Rasterizer2D.Rasterizer2D_setClip(var1, var2, var4.width + var1, var2 + var4.height);
-			if (Client.minimapState != 2 && Client.minimapState != 5) {
-				int var5 = Client.camAngleY & 2047;
-				int var6 = class262.localPlayer.x / 32 + 48;
-				int var7 = 464 - class262.localPlayer.y / 32;
-				class69.sceneMinimapSprite.drawRotatedMaskedCenteredAround(var1, var2, var4.width, var4.height, var6, var7, var5, 256, var4.xStarts, var4.xWidths);
-
-				int var8;
-				int var10;
-				int var16;
-				for (var8 = 0; var8 < Client.mapIconCount; ++var8) {
-					var16 = Client.mapIconXs[var8] * 4 + 2 - class262.localPlayer.x / 32;
-					var10 = Client.mapIconYs[var8] * 4 + 2 - class262.localPlayer.y / 32;
-					class32.drawSpriteOnMinimap(var1, var2, var16, var10, Client.mapIcons[var8], var4);
-				}
-
-				int var11;
-				int var12;
-				for (var8 = 0; var8 < 104; ++var8) {
-					for (var16 = 0; var16 < 104; ++var16) {
-						NodeDeque var14 = Client.groundItems[SoundSystem.Client_plane][var8][var16];
-						if (var14 != null) {
-							var11 = var8 * 4 + 2 - class262.localPlayer.x / 32;
-							var12 = var16 * 4 + 2 - class262.localPlayer.y / 32;
-							class32.drawSpriteOnMinimap(var1, var2, var11, var12, class171.mapDotSprites[0], var4);
-						}
-					}
-				}
-
-				for (var8 = 0; var8 < Client.npcCount; ++var8) {
-					NPC var9 = Client.npcs[Client.npcIndices[var8]];
-					if (var9 != null && var9.isVisible()) {
-						NPCComposition var18 = var9.definition;
-						if (var18 != null && var18.transforms != null) {
-							var18 = var18.transform();
-						}
-
-						if (var18 != null && var18.drawMapDot && var18.isInteractable) {
-							var11 = var9.x / 32 - class262.localPlayer.x / 32;
-							var12 = var9.y / 32 - class262.localPlayer.y / 32;
-							class32.drawSpriteOnMinimap(var1, var2, var11, var12, class171.mapDotSprites[1], var4);
-						}
-					}
-				}
-
-				var8 = Players.Players_count;
-				int[] var17 = Players.Players_indices;
-
-				for (var10 = 0; var10 < var8; ++var10) {
-					Player var15 = Client.players[var17[var10]];
-					if (var15 != null && var15.isVisible() && !var15.isHidden && var15 != class262.localPlayer) {
-						var12 = var15.x / 32 - class262.localPlayer.x / 32;
-						int var13 = var15.y / 32 - class262.localPlayer.y / 32;
-						if (var15.isFriend()) {
-							class32.drawSpriteOnMinimap(var1, var2, var12, var13, class171.mapDotSprites[3], var4);
-						} else if (class262.localPlayer.team != 0 && var15.team != 0 && var15.team == class262.localPlayer.team) {
-							class32.drawSpriteOnMinimap(var1, var2, var12, var13, class171.mapDotSprites[4], var4);
-						} else if (var15.isFriendsChatMember()) {
-							class32.drawSpriteOnMinimap(var1, var2, var12, var13, class171.mapDotSprites[5], var4);
-						} else if (var15.isClanMember()) {
-							class32.drawSpriteOnMinimap(var1, var2, var12, var13, class171.mapDotSprites[6], var4);
-						} else {
-							class32.drawSpriteOnMinimap(var1, var2, var12, var13, class171.mapDotSprites[2], var4);
-						}
-					}
-				}
-
-				if (Client.hintArrowType != 0 && Client.cycle % 20 < 10) {
-					if (Client.hintArrowType == 1 && Client.hintArrowNpcIndex >= 0 && Client.hintArrowNpcIndex < Client.npcs.length) {
-						NPC var19 = Client.npcs[Client.hintArrowNpcIndex];
-						if (var19 != null) {
-							var11 = var19.x / 32 - class262.localPlayer.x / 32;
-							var12 = var19.y / 32 - class262.localPlayer.y / 32;
-							SoundSystem.worldToMinimap(var1, var2, var11, var12, BuddyRankComparator.mapMarkerSprites[1], var4);
-						}
-					}
-
-					if (Client.hintArrowType == 2) {
-						var10 = Client.hintArrowX * 4 - class15.baseX * 256 + 2 - class262.localPlayer.x / 32;
-						var11 = Client.hintArrowY * 4 - WorldMapSprite.baseY * 256 + 2 - class262.localPlayer.y / 32;
-						SoundSystem.worldToMinimap(var1, var2, var10, var11, BuddyRankComparator.mapMarkerSprites[1], var4);
-					}
-
-					if (Client.hintArrowType == 10 && Client.hintArrowPlayerIndex >= 0 && Client.hintArrowPlayerIndex < Client.players.length) {
-						Player var20 = Client.players[Client.hintArrowPlayerIndex];
-						if (var20 != null) {
-							var11 = var20.x / 32 - class262.localPlayer.x / 32;
-							var12 = var20.y / 32 - class262.localPlayer.y / 32;
-							SoundSystem.worldToMinimap(var1, var2, var11, var12, BuddyRankComparator.mapMarkerSprites[1], var4);
-						}
-					}
-				}
-
-				if (Client.destinationX != 0) {
-					var10 = Client.destinationX * 4 + 2 - class262.localPlayer.x / 32;
-					var11 = Client.destinationY * 4 + 2 - class262.localPlayer.y / 32;
-					class32.drawSpriteOnMinimap(var1, var2, var10, var11, BuddyRankComparator.mapMarkerSprites[0], var4);
-				}
-
-				if (!class262.localPlayer.isHidden) {
-					Rasterizer2D.Rasterizer2D_fillRectangle(var4.width / 2 + var1 - 1, var4.height / 2 + var2 - 1, 3, 3, 16777215);
-				}
-			} else {
-				Rasterizer2D.Rasterizer2D_fillMaskedRectangle(var1, var2, 0, var4.xStarts, var4.xWidths);
+		for (int var3 = 0; var3 < var2.length; ++var3) {
+			PrivateChatMode var4 = var2[var3];
+			if (var0 == var4.field4300) {
+				return var4;
 			}
-
-			Client.field712[var3] = true;
 		}
+
+		return null;
 	}
 }

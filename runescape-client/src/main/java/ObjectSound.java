@@ -3,95 +3,94 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("bf")
+@ObfuscatedName("ad")
 @Implements("ObjectSound")
 public final class ObjectSound extends Node {
-	@ObfuscatedName("f")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		descriptor = "Lkq;"
+		descriptor = "Lke;"
 	)
 	@Export("objectSounds")
 	static NodeDeque objectSounds;
-	@ObfuscatedName("ha")
-	@ObfuscatedGetter(
-		intValue = 501440191
+	@ObfuscatedName("gm")
+	@ObfuscatedSignature(
+		descriptor = "Lom;"
 	)
-	@Export("cameraX")
-	static int cameraX;
-	@ObfuscatedName("e")
+	@Export("compass")
+	static SpritePixels compass;
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = 179593907
+		intValue = 91657877
+	)
+	int field727;
+	@ObfuscatedName("v")
+	@ObfuscatedGetter(
+		intValue = 1049583949
 	)
 	@Export("plane")
 	int plane;
-	@ObfuscatedName("v")
+	@ObfuscatedName("j")
 	@ObfuscatedGetter(
-		intValue = 724214627
+		intValue = 1525995089
 	)
 	@Export("x")
 	int x;
-	@ObfuscatedName("y")
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = 775363577
+		intValue = 483612819
 	)
 	@Export("y")
 	int y;
-	@ObfuscatedName("j")
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = 1416185027
+		intValue = 1198542603
 	)
-	int field937;
+	int field722;
+	@ObfuscatedName("w")
+	@ObfuscatedGetter(
+		intValue = -170902656
+	)
+	int field723;
+	@ObfuscatedName("f")
+	@ObfuscatedGetter(
+		intValue = -2081431069
+	)
+	int field718;
 	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = 50432371
-	)
-	int field944;
-	@ObfuscatedName("m")
-	@ObfuscatedGetter(
-		intValue = -663897917
-	)
-	int field939;
-	@ObfuscatedName("r")
-	@ObfuscatedSignature(
-		descriptor = "Lez;"
-	)
-	@Export("obj")
-	ObjectComposition obj;
-	@ObfuscatedName("h")
-	@ObfuscatedGetter(
-		intValue = -709047569
+		intValue = 7596549
 	)
 	@Export("soundEffectId")
 	int soundEffectId;
-	@ObfuscatedName("d")
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		descriptor = "Lbv;"
+		descriptor = "Lal;"
 	)
 	@Export("stream1")
 	RawPcmStream stream1;
-	@ObfuscatedName("z")
-	@ObfuscatedGetter(
-		intValue = -1448686013
+	@ObfuscatedName("r")
+	@ObfuscatedSignature(
+		descriptor = "Lem;"
 	)
-	int field941;
-	@ObfuscatedName("b")
+	@Export("obj")
+	ObjectComposition obj;
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = -1441209589
+		intValue = -452369011
 	)
-	int field943;
-	@ObfuscatedName("i")
+	int field728;
+	@ObfuscatedName("h")
 	@Export("soundEffectIds")
 	int[] soundEffectIds;
 	@ObfuscatedName("k")
 	@ObfuscatedGetter(
-		intValue = 1984833823
+		intValue = -904318183
 	)
-	int field945;
-	@ObfuscatedName("g")
+	int field725;
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "Lbv;"
+		descriptor = "Lal;"
 	)
 	@Export("stream2")
 	RawPcmStream stream2;
@@ -103,10 +102,10 @@ public final class ObjectSound extends Node {
 	ObjectSound() {
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "1"
+		descriptor = "(I)V",
+		garbageValue = "-351961075"
 	)
 	@Export("set")
 	void set() {
@@ -114,161 +113,67 @@ public final class ObjectSound extends Node {
 		ObjectComposition var2 = this.obj.transform();
 		if (var2 != null) {
 			this.soundEffectId = var2.ambientSoundId;
-			this.field939 = var2.field1801 * 128;
-			this.field941 = var2.int5;
-			this.field943 = var2.int6;
+			this.field718 = var2.field1779 * 128;
+			this.field727 = var2.int5;
+			this.field728 = var2.int6;
 			this.soundEffectIds = var2.soundEffectIds;
 		} else {
 			this.soundEffectId = -1;
-			this.field939 = 0;
-			this.field941 = 0;
-			this.field943 = 0;
+			this.field718 = 0;
+			this.field727 = 0;
+			this.field728 = 0;
 			this.soundEffectIds = null;
 		}
 
 		if (var1 != this.soundEffectId && this.stream1 != null) {
-			UserComparator7.pcmStreamMixer.removeSubStream(this.stream1);
+			TileItem.pcmStreamMixer.removeSubStream(this.stream1);
 			this.stream1 = null;
 		}
 
 	}
 
-	@ObfuscatedName("r")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "(ILcf;ZI)I",
-		garbageValue = "706769109"
+		descriptor = "(Lnv;Lmc;I)Lmc;",
+		garbageValue = "1040141632"
 	)
-	static int method1889(int var0, Script var1, boolean var2) {
-		boolean var3 = true;
-		Widget var4;
-		if (var0 >= 2000) {
-			var0 -= 1000;
-			var4 = WorldMapData_1.getWidget(Interpreter.Interpreter_intStack[--ChatChannel.Interpreter_intStackSize]);
-			var3 = false;
-		} else {
-			var4 = var2 ? UserComparator5.scriptDotWidget : Nameable.scriptActiveWidget;
+	@Export("readStringIntParameters")
+	static final IterableNodeHashTable readStringIntParameters(Buffer var0, IterableNodeHashTable var1) {
+		int var2 = var0.readUnsignedByte();
+		int var3;
+		if (var1 == null) {
+			var3 = SoundSystem.method530(var2);
+			var1 = new IterableNodeHashTable(var3);
 		}
 
-		int var11;
-		if (var0 == ScriptOpcodes.CC_SETOP) {
-			var11 = Interpreter.Interpreter_intStack[--ChatChannel.Interpreter_intStackSize] - 1;
-			if (var11 >= 0 && var11 <= 9) {
-				var4.setAction(var11, Interpreter.Interpreter_stringStack[--UserComparator9.Interpreter_stringStackSize]);
-				return 1;
+		for (var3 = 0; var3 < var2; ++var3) {
+			boolean var4 = var0.readUnsignedByte() == 1;
+			int var5 = var0.readMedium();
+			Object var6;
+			if (var4) {
+				var6 = new ObjectNode(var0.readStringCp1252NullTerminated());
 			} else {
-				--UserComparator9.Interpreter_stringStackSize;
-				return 1;
+				var6 = new IntegerNode(var0.readInt());
 			}
+
+			var1.put((Node)var6, (long)var5);
+		}
+
+		return var1;
+	}
+
+	@ObfuscatedName("v")
+	@ObfuscatedSignature(
+		descriptor = "(III)Lio;",
+		garbageValue = "840518253"
+	)
+	@Export("getWidgetChild")
+	public static Widget getWidgetChild(int var0, int var1) {
+		Widget var2 = UrlRequester.getWidget(var0);
+		if (var1 == -1) {
+			return var2;
 		} else {
-			int var6;
-			if (var0 == ScriptOpcodes.CC_SETDRAGGABLE) {
-				ChatChannel.Interpreter_intStackSize -= 2;
-				var11 = Interpreter.Interpreter_intStack[ChatChannel.Interpreter_intStackSize];
-				var6 = Interpreter.Interpreter_intStack[ChatChannel.Interpreter_intStackSize + 1];
-				var4.parent = class17.getWidgetChild(var11, var6);
-				return 1;
-			} else if (var0 == ScriptOpcodes.CC_SETDRAGGABLEBEHAVIOR) {
-				var4.isScrollBar = Interpreter.Interpreter_intStack[--ChatChannel.Interpreter_intStackSize] == 1;
-				return 1;
-			} else if (var0 == ScriptOpcodes.CC_SETDRAGDEADZONE) {
-				var4.dragZoneSize = Interpreter.Interpreter_intStack[--ChatChannel.Interpreter_intStackSize];
-				return 1;
-			} else if (var0 == ScriptOpcodes.CC_SETDRAGDEADTIME) {
-				var4.dragThreshold = Interpreter.Interpreter_intStack[--ChatChannel.Interpreter_intStackSize];
-				return 1;
-			} else if (var0 == ScriptOpcodes.CC_SETOPBASE) {
-				var4.dataText = Interpreter.Interpreter_stringStack[--UserComparator9.Interpreter_stringStackSize];
-				return 1;
-			} else if (var0 == ScriptOpcodes.CC_SETTARGETVERB) {
-				var4.spellActionName = Interpreter.Interpreter_stringStack[--UserComparator9.Interpreter_stringStackSize];
-				return 1;
-			} else if (var0 == ScriptOpcodes.CC_CLEAROPS) {
-				var4.actions = null;
-				return 1;
-			} else if (var0 == 1308) {
-				var4.prioritizeMenuEntry = Interpreter.Interpreter_intStack[--ChatChannel.Interpreter_intStackSize] == 1;
-				return 1;
-			} else if (var0 == 1309) {
-				--ChatChannel.Interpreter_intStackSize;
-				return 1;
-			} else {
-				int var7;
-				byte[] var8;
-				if (var0 != ScriptOpcodes.CC_SETOPKEY) {
-					byte var5;
-					if (var0 == ScriptOpcodes.CC_SETOPTKEY) {
-						ChatChannel.Interpreter_intStackSize -= 2;
-						var5 = 10;
-						var8 = new byte[]{(byte)Interpreter.Interpreter_intStack[ChatChannel.Interpreter_intStackSize]};
-						byte[] var9 = new byte[]{(byte)Interpreter.Interpreter_intStack[ChatChannel.Interpreter_intStackSize + 1]};
-						UserComparator8.Widget_setKey(var4, var5, var8, var9);
-						return 1;
-					} else if (var0 == ScriptOpcodes.CC_SETOPKEYRATE) {
-						ChatChannel.Interpreter_intStackSize -= 3;
-						var11 = Interpreter.Interpreter_intStack[ChatChannel.Interpreter_intStackSize] - 1;
-						var6 = Interpreter.Interpreter_intStack[ChatChannel.Interpreter_intStackSize + 1];
-						var7 = Interpreter.Interpreter_intStack[ChatChannel.Interpreter_intStackSize + 2];
-						if (var11 >= 0 && var11 <= 9) {
-							FileSystem.Widget_setKeyRate(var4, var11, var6, var7);
-							return 1;
-						} else {
-							throw new RuntimeException();
-						}
-					} else if (var0 == ScriptOpcodes.CC_SETOPTKEYRATE) {
-						var5 = 10;
-						var6 = Interpreter.Interpreter_intStack[--ChatChannel.Interpreter_intStackSize];
-						var7 = Interpreter.Interpreter_intStack[--ChatChannel.Interpreter_intStackSize];
-						FileSystem.Widget_setKeyRate(var4, var5, var6, var7);
-						return 1;
-					} else if (var0 == ScriptOpcodes.CC_SETOPKEYIGNOREHELD) {
-						--ChatChannel.Interpreter_intStackSize;
-						var11 = Interpreter.Interpreter_intStack[ChatChannel.Interpreter_intStackSize] - 1;
-						if (var11 >= 0 && var11 <= 9) {
-							class25.Widget_setKeyIgnoreHeld(var4, var11);
-							return 1;
-						} else {
-							throw new RuntimeException();
-						}
-					} else if (var0 == ScriptOpcodes.CC_SETOPTKEYIGNOREHELD) {
-						var5 = 10;
-						class25.Widget_setKeyIgnoreHeld(var4, var5);
-						return 1;
-					} else {
-						return 2;
-					}
-				} else {
-					byte[] var10 = null;
-					var8 = null;
-					if (var3) {
-						ChatChannel.Interpreter_intStackSize -= 10;
-
-						for (var7 = 0; var7 < 10 && Interpreter.Interpreter_intStack[var7 + ChatChannel.Interpreter_intStackSize] >= 0; var7 += 2) {
-						}
-
-						if (var7 > 0) {
-							var10 = new byte[var7 / 2];
-							var8 = new byte[var7 / 2];
-
-							for (var7 -= 2; var7 >= 0; var7 -= 2) {
-								var10[var7 / 2] = (byte)Interpreter.Interpreter_intStack[var7 + ChatChannel.Interpreter_intStackSize];
-								var8[var7 / 2] = (byte)Interpreter.Interpreter_intStack[var7 + ChatChannel.Interpreter_intStackSize + 1];
-							}
-						}
-					} else {
-						ChatChannel.Interpreter_intStackSize -= 2;
-						var10 = new byte[]{(byte)Interpreter.Interpreter_intStack[ChatChannel.Interpreter_intStackSize]};
-						var8 = new byte[]{(byte)Interpreter.Interpreter_intStack[ChatChannel.Interpreter_intStackSize + 1]};
-					}
-
-					var7 = Interpreter.Interpreter_intStack[--ChatChannel.Interpreter_intStackSize] - 1;
-					if (var7 >= 0 && var7 <= 9) {
-						UserComparator8.Widget_setKey(var4, var7, var10, var8);
-						return 1;
-					} else {
-						throw new RuntimeException();
-					}
-				}
-			}
+			return var2 != null && var2.children != null && var1 < var2.children.length ? var2.children[var1] : null;
 		}
 	}
 }

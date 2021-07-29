@@ -4,24 +4,29 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bi")
+@ObfuscatedName("ae")
 @Implements("SoundSystem")
 public class SoundSystem implements Runnable {
-	@ObfuscatedName("e")
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = -95994325
+		intValue = 1103685727
 	)
-	@Export("VarpDefinition_fileCount")
-	public static int VarpDefinition_fileCount;
-	@ObfuscatedName("km")
-	@ObfuscatedGetter(
-		intValue = 1676071199
-	)
-	@Export("Client_plane")
-	static int Client_plane;
-	@ObfuscatedName("f")
+	static int field219;
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "[Lbq;"
+		descriptor = "Ljy;"
+	)
+	@Export("ItemDefinition_archive")
+	static AbstractArchive ItemDefinition_archive;
+	@ObfuscatedName("r")
+	@ObfuscatedSignature(
+		descriptor = "Ljy;"
+	)
+	@Export("Widget_spritesArchive")
+	static AbstractArchive Widget_spritesArchive;
+	@ObfuscatedName("s")
+	@ObfuscatedSignature(
+		descriptor = "[Ly;"
 	)
 	@Export("players")
 	volatile PcmPlayer[] players;
@@ -39,70 +44,32 @@ public class SoundSystem implements Runnable {
 				}
 			}
 		} catch (Exception var4) {
-			FriendsChatManager.RunException_sendStackTrace((String)null, var4);
+			BufferedSink.RunException_sendStackTrace((String)null, var4);
 		}
 
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "-27"
+		descriptor = "(IB)I",
+		garbageValue = "-18"
 	)
-	public static void method916() {
-		StructComposition.StructDefinition_cached.clear();
+	public static int method530(int var0) {
+		--var0;
+		var0 |= var0 >>> 1;
+		var0 |= var0 >>> 2;
+		var0 |= var0 >>> 4;
+		var0 |= var0 >>> 8;
+		var0 |= var0 >>> 16;
+		return var0 + 1;
 	}
 
-	@ObfuscatedName("ig")
+	@ObfuscatedName("iq")
 	@ObfuscatedSignature(
-		descriptor = "(IIIIIIIIB)V",
-		garbageValue = "1"
+		descriptor = "(II)Z",
+		garbageValue = "-1583086105"
 	)
-	@Export("drawWidgets")
-	static final void drawWidgets(int var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7) {
-		if (class20.loadInterface(var0)) {
-			WorldMapCacheName.field2135 = null;
-			PcmPlayer.drawInterface(GrandExchangeOfferOwnWorldComparator.Widget_interfaceComponents[var0], -1, var1, var2, var3, var4, var5, var6, var7);
-			if (WorldMapCacheName.field2135 != null) {
-				PcmPlayer.drawInterface(WorldMapCacheName.field2135, -1412584499, var1, var2, var3, var4, Clock.field1538, Canvas.field296, var7);
-				WorldMapCacheName.field2135 = null;
-			}
-
-		} else {
-			if (var7 != -1) {
-				Client.field831[var7] = true;
-			} else {
-				for (int var8 = 0; var8 < 100; ++var8) {
-					Client.field831[var8] = true;
-				}
-			}
-
-		}
-	}
-
-	@ObfuscatedName("kw")
-	@ObfuscatedSignature(
-		descriptor = "(IIIILoa;Liq;B)V",
-		garbageValue = "-118"
-	)
-	@Export("worldToMinimap")
-	static final void worldToMinimap(int var0, int var1, int var2, int var3, SpritePixels var4, SpriteMask var5) {
-		int var6 = var3 * var3 + var2 * var2;
-		if (var6 > 4225 && var6 < 90000) {
-			int var7 = Client.camAngleY & 2047;
-			int var8 = Rasterizer3D.Rasterizer3D_sine[var7];
-			int var9 = Rasterizer3D.Rasterizer3D_cosine[var7];
-			int var10 = var9 * var2 + var3 * var8 >> 16;
-			int var11 = var3 * var9 - var8 * var2 >> 16;
-			double var12 = Math.atan2((double)var10, (double)var11);
-			int var14 = var5.width / 2 - 25;
-			int var15 = (int)(Math.sin(var12) * (double)var14);
-			int var16 = (int)(Math.cos(var12) * (double)var14);
-			byte var17 = 20;
-			class22.redHintArrowSprite.method7043(var15 + (var0 + var5.width / 2 - var17 / 2), var5.height / 2 + var1 - var17 / 2 - var16 - 10, var17, var17, 15, 15, var12, 256);
-		} else {
-			class32.drawSpriteOnMinimap(var0, var1, var2, var3, var4, var5);
-		}
-
+	static boolean method524(int var0) {
+		return var0 == 57 || var0 == 58 || var0 == 1007 || var0 == 25 || var0 == 30;
 	}
 }

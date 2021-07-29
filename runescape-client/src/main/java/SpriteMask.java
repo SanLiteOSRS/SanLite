@@ -4,25 +4,25 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("iq")
+@ObfuscatedName("iy")
 @Implements("SpriteMask")
 public class SpriteMask extends DualNode {
-	@ObfuscatedName("f")
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = 833712115
+		intValue = -1651182107
 	)
 	@Export("width")
 	public final int width;
-	@ObfuscatedName("e")
+	@ObfuscatedName("t")
 	@ObfuscatedGetter(
-		intValue = 1197266213
+		intValue = 2104957101
 	)
 	@Export("height")
 	public final int height;
 	@ObfuscatedName("v")
 	@Export("xWidths")
 	public final int[] xWidths;
-	@ObfuscatedName("y")
+	@ObfuscatedName("j")
 	@Export("xStarts")
 	public final int[] xStarts;
 
@@ -33,10 +33,10 @@ public class SpriteMask extends DualNode {
 		this.xStarts = var4;
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
 		descriptor = "(III)Z",
-		garbageValue = "-1133848125"
+		garbageValue = "1977979545"
 	)
 	@Export("contains")
 	public boolean contains(int var1, int var2) {
@@ -50,12 +50,30 @@ public class SpriteMask extends DualNode {
 		return false;
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		descriptor = "(CB)Z",
-		garbageValue = "-99"
+		descriptor = "(Lnv;Ljava/lang/String;I)I",
+		garbageValue = "672319355"
 	)
-	public static final boolean method4777(char var0) {
-		return var0 == 160 || var0 == ' ' || var0 == '_' || var0 == '-';
+	public static int method4690(Buffer var0, String var1) {
+		int var2 = var0.offset;
+		byte[] var3 = class104.method2265(var1);
+		var0.writeSmartByteShort(var3.length);
+		var0.offset += class251.huffman.compress(var3, 0, var3.length, var0.array, var0.offset);
+		return var0.offset - var2;
+	}
+
+	@ObfuscatedName("x")
+	@ObfuscatedSignature(
+		descriptor = "(II)I",
+		garbageValue = "-1881481613"
+	)
+	static int method4691(int var0) {
+		Message var1 = (Message)Messages.Messages_hashTable.get((long)var0);
+		if (var1 == null) {
+			return -1;
+		} else {
+			return var1.nextDual == Messages.Messages_queue.sentinel ? -1 : ((Message)var1.nextDual).count;
+		}
 	}
 }

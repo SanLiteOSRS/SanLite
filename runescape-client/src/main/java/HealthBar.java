@@ -3,34 +3,34 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ch")
+@ObfuscatedName("bh")
 @Implements("HealthBar")
 public class HealthBar extends Node {
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "Ley;"
+		descriptor = "Leb;"
 	)
 	@Export("definition")
 	HealthBarDefinition definition;
-	@ObfuscatedName("y")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
-		descriptor = "Lkz;"
+		descriptor = "Lkk;"
 	)
 	@Export("updates")
 	IterableNodeDeque updates;
 
 	@ObfuscatedSignature(
-		descriptor = "(Ley;)V"
+		descriptor = "(Leb;)V"
 	)
 	HealthBar(HealthBarDefinition var1) {
 		this.updates = new IterableNodeDeque();
 		this.definition = var1;
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "(IIIIB)V",
-		garbageValue = "-45"
+		descriptor = "(IIIII)V",
+		garbageValue = "-1687472084"
 	)
 	@Export("put")
 	void put(int var1, int var2, int var3, int var4) {
@@ -63,10 +63,10 @@ public class HealthBar extends Node {
 		}
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		descriptor = "(II)Lcw;",
-		garbageValue = "-1561739593"
+		descriptor = "(IB)Lbz;",
+		garbageValue = "93"
 	)
 	@Export("get")
 	HealthBarUpdate get(int var1) {
@@ -91,10 +91,66 @@ public class HealthBar extends Node {
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
 		descriptor = "(B)Z",
-		garbageValue = "1"
+		garbageValue = "-27"
 	)
 	@Export("isEmpty")
 	boolean isEmpty() {
-		return this.updates.method5364();
+		return this.updates.method5383();
+	}
+
+	@ObfuscatedName("s")
+	@ObfuscatedSignature(
+		descriptor = "(II)Ljava/lang/String;",
+		garbageValue = "-971711054"
+	)
+	static String method1945(int var0) {
+		return "<img=" + var0 + ">";
+	}
+
+	@ObfuscatedName("jy")
+	@ObfuscatedSignature(
+		descriptor = "([Lio;II)V",
+		garbageValue = "-166878609"
+	)
+	@Export("runComponentCloseListeners")
+	static final void runComponentCloseListeners(Widget[] var0, int var1) {
+		for (int var2 = 0; var2 < var0.length; ++var2) {
+			Widget var3 = var0[var2];
+			if (var3 != null) {
+				if (var3.type == 0) {
+					if (var3.children != null) {
+						runComponentCloseListeners(var3.children, var1);
+					}
+
+					InterfaceParent var4 = (InterfaceParent)Client.interfaceParents.get((long)var3.id);
+					if (var4 != null) {
+						WorldMapData_0.runIntfCloseListeners(var4.group, var1);
+					}
+				}
+
+				ScriptEvent var5;
+				if (var1 == 0 && var3.onDialogAbort != null) {
+					var5 = new ScriptEvent();
+					var5.widget = var3;
+					var5.args = var3.onDialogAbort;
+					UserComparator10.runScriptEvent(var5);
+				}
+
+				if (var1 == 1 && var3.onSubChange != null) {
+					if (var3.childIndex >= 0) {
+						Widget var6 = UrlRequester.getWidget(var3.id);
+						if (var6 == null || var6.children == null || var3.childIndex >= var6.children.length || var3 != var6.children[var3.childIndex]) {
+							continue;
+						}
+					}
+
+					var5 = new ScriptEvent();
+					var5.widget = var3;
+					var5.args = var3.onSubChange;
+					UserComparator10.runScriptEvent(var5);
+				}
+			}
+		}
+
 	}
 }
