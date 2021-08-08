@@ -52,7 +52,12 @@ public class GauntletResourceSpotOverlay extends Overlay
 	@Override
 	public Dimension render(Graphics2D graphics)
 	{
-		for (GameObject gameObject : plugin.getResourceSpots())
+		if (plugin.getGauntlet() == null)
+		{
+			return null;
+		}
+
+		for (GameObject gameObject : plugin.getGauntlet().getResourceSpots())
 		{
 			GauntletResourceSpot resourceSpot = GauntletResourceSpot.getSPOTS().get(gameObject.getId());
 

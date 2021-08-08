@@ -29,6 +29,7 @@ import lombok.Getter;
 import net.runelite.api.ItemID;
 import net.runelite.api.ObjectID;
 
+import java.util.Arrays;
 import java.util.Map;
 
 import static net.runelite.api.ObjectID.*;
@@ -40,36 +41,20 @@ public enum GauntletResourceSpot
 			FISHING_SPOT_36068, FISHING_SPOT_35971
 	),
 	CRYSTAL_DEPOSIT("Crystal Deposit", ItemID.CRYSTAL_ORE,
-			ObjectID.CRYSTAL_DEPOSIT
-	),
-	CORRUPT_DEPOSIT("Corrupt Deposit", ItemID.CORRUPTED_ORE,
-			ObjectID.CORRUPT_DEPOSIT
+			ObjectID.CRYSTAL_DEPOSIT, ObjectID.CORRUPT_DEPOSIT
 	),
 	GRYM_ROOT("Grym Root", ItemID.GRYM_LEAF_23875,
-			GRYM_ROOT_36070
-	),
-	CORRUPT_GRYM_ROOT("Grym Root", ItemID.GRYM_LEAF,
-			ObjectID.GRYM_ROOT
+			GRYM_ROOT_36070, ObjectID.GRYM_ROOT
 	),
 	PHREN_ROOTS("Phren Roots", ItemID.PHREN_BARK_23878,
-			PHREN_ROOTS_36066
-	),
-	CORRUPT_PHREN_ROOTS("Phren Roots", ItemID.PHREN_BARK,
-			ObjectID.PHREN_ROOTS
+			PHREN_ROOTS_36066, ObjectID.PHREN_ROOTS
 	),
 	LINUM_TIRINUM("Linum Tirinum", ItemID.LINUM_TIRINUM_23876,
-			LINUM_TIRINUM_36072
-	),
-	CORRUPT_LINUM_TIRINUM("Linum Tirinum", ItemID.LINUM_TIRINUM,
-			ObjectID.LINUM_TIRINUM
+			LINUM_TIRINUM_36072, ObjectID.LINUM_TIRINUM
 	);
 
 	@Getter
-	private static final Map<Integer, GauntletResourceSpot> SPOTS;
-
-	private final String name;
-	private final int resourceSpriteId;
-	private final int[] ids;
+	static final Map<Integer, GauntletResourceSpot> SPOTS;
 
 	static
 	{
@@ -86,10 +71,19 @@ public enum GauntletResourceSpot
 		SPOTS = builder.build();
 	}
 
+	private final String name;
+	private final int resourceSpriteId;
+	private final int[] ids;
+
 	GauntletResourceSpot(String spot, int resourceSpriteId, int... ids)
 	{
 		this.name = spot;
 		this.resourceSpriteId = resourceSpriteId;
 		this.ids = ids;
 	}
-}
+
+	static boolean isResourceSpot(int gameObjectId, GauntletResourceSpot resourceSpot)
+	{
+		return Arrays.stream(resourceSpot.getIds()).anyMatch((id) -> id == gameObjectId);
+	}
+	}

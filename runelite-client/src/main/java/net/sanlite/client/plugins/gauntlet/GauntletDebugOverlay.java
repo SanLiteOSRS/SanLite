@@ -53,17 +53,37 @@ public class GauntletDebugOverlay extends Overlay
 	@Override
 	public Dimension render(Graphics2D graphics)
 	{
+		if (plugin.getGauntlet() == null) {
+			return null;
+		}
+
+		panelComponent.getChildren().clear();
+
+		panelComponent.getChildren().add(TitleComponent.builder()
+				.color(Color.CYAN.darker())
+				.text("Gauntlet")
+				.build());
+
+		panelComponent.getChildren().add(LineComponent.builder()
+				.left("Game tick")
+				.right("" + client.getTickCount())
+				.build());
+
+		panelComponent.getChildren().add(LineComponent.builder()
+				.left("Final room entered")
+				.right("" + plugin.getGauntlet().isInBossRoom())
+				.build());
+
+		panelComponent.getChildren().add(LineComponent.builder()
+				.left("Number of resource spots")
+				.right("" + plugin.getGauntlet().getResourceSpots().size())
+				.build());
+
 		if (plugin.getGauntletBoss() != null)
 		{
-			panelComponent.getChildren().clear();
-
 			panelComponent.getChildren().add(TitleComponent.builder()
-					.text("Gauntlet boss debug")
-					.build());
-
-			panelComponent.getChildren().add(LineComponent.builder()
-					.left("Game tick")
-					.right("" + client.getTickCount())
+					.color(Color.RED.darker())
+					.text("Boss")
 					.build());
 
 			panelComponent.getChildren().add(LineComponent.builder()
@@ -98,12 +118,7 @@ public class GauntletDebugOverlay extends Overlay
 
 			panelComponent.getChildren().add(LineComponent.builder()
 					.left("Number of AoE effects")
-					.right("" + plugin.getGauntletBoss().getCrystalEffects().size())
-					.build());
-
-			panelComponent.getChildren().add(LineComponent.builder()
-					.left("Number of resource spots")
-					.right("" + plugin.getResourceSpots().size())
+					.right("" + plugin.getGauntletBoss().getCrystals().size())
 					.build());
 
 			return panelComponent.render(graphics);

@@ -51,9 +51,14 @@ public class GauntletResourceSpotMinimapOverlay extends Overlay
 	@Override
 	public Dimension render(Graphics2D graphics)
 	{
+		if (plugin.getGauntlet() == null)
+		{
+			return null;
+		}
+
 		if (config.showResourceSpotsOnMinimap())
 		{
-			for (GameObject gameObject : plugin.getResourceSpots())
+			for (GameObject gameObject : plugin.getGauntlet().getResourceSpots())
 			{
 
 				if (GauntletResourceSpot.getSPOTS().get(gameObject.getId()) == null)

@@ -90,7 +90,7 @@ public class GauntletOverlay extends Overlay
 		{
 			if (config.highlightCrystalAttackTiles())
 			{
-				renderCrystalEffects(graphics, gauntletBoss);
+//				renderCrystalEffects(graphics, gauntletBoss);
 			}
 
 			if (config.showAttackStyleCounter())
@@ -159,21 +159,21 @@ public class GauntletOverlay extends Overlay
 		return null;
 	}
 
-	private void renderCrystalEffects(Graphics2D graphics, GauntletBoss gauntletBoss)
-	{
-		for (NPC npc : gauntletBoss.getCrystalEffects())
-		{
-			LocalPoint localPoint = npc.getLocalLocation();
-			Polygon polygon = Perspective.getCanvasTilePoly(client, localPoint);
-
-			if (polygon != null)
-			{
-				if (gauntletBoss.isNpcCrystalAttack(npc.getId()))
-				{
-					OverlayUtil2.renderPolygon(graphics, polygon, config.getCrystalAttackColor(),
-							config.getTileMarkersLineSize().getSize());
-				}
-			}
-		}
-	}
+//	private void renderCrystalEffects(Graphics2D graphics, GauntletBoss gauntletBoss)
+//	{
+//		for (NPC npc : gauntletBoss.getCrystals())
+//		{
+//			LocalPoint localPoint = npc.getLocalLocation();
+//			Polygon polygon = Perspective.getCanvasTilePoly(client, localPoint);
+//
+//			if (polygon != null)
+//			{
+//				if (gauntletBoss.isNpcCrystalAttack(npc.getId()))
+//				{
+//					OverlayUtil2.renderPolygon(graphics, polygon, config.getCrystalAttackColor(),
+//							config.getTileMarkersLineSize().getSize());
+//				}
+//			}
+//		}
+//	}
 }

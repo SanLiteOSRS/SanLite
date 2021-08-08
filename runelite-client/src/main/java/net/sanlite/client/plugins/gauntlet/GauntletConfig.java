@@ -29,9 +29,11 @@ import net.sanlite.client.config.StrokeSize;
 
 import java.awt.*;
 
-@ConfigGroup("Gauntlet Boss")
+@ConfigGroup(GauntletConfig.GROUP)
 public interface GauntletConfig extends Config
 {
+	String GROUP = "Gauntlet Boss";
+
 	@ConfigSection(
 			name = "Resource spots",
 			description = "Options for highlighting resource spots in the Gauntlet",

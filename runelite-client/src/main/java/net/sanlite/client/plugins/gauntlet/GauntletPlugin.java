@@ -25,11 +25,9 @@
 package net.sanlite.client.plugins.gauntlet;
 
 import com.google.inject.Provides;
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.*;
-import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.events.*;
 import net.runelite.client.callback.ClientThread;
 import net.runelite.client.config.ConfigManager;
@@ -38,17 +36,16 @@ import net.runelite.client.events.ConfigChanged;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.ui.overlay.OverlayManager;
-import net.sanlite.client.plugins.gauntlet.id.AnimationID;
-import net.sanlite.client.plugins.gauntlet.id.ProjectileID;
+import net.sanlite.client.plugins.gauntlet.id.GauntletBossId;
+import net.sanlite.client.plugins.gauntlet.id.GauntletId;
 
 import javax.inject.Inject;
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.util.Map;
 
+import static java.util.Map.entry;
 import static net.runelite.api.ObjectID.*;
+import static net.runelite.api.Varbits.*;
 
 @Slf4j
 @PluginDescriptor(
@@ -59,44 +56,29 @@ import static net.runelite.api.ObjectID.*;
 )
 public class GauntletPlugin extends Plugin
 {
-
-	private static final int[] GAUNTLET_REGION = {
-			7512
-	};
-
-	private static final int[] CORRUPTED_GAUNTLET_REGION = {
-			7768
-	};
+	private Map<GauntletResourceSpot, Boolean> resourceSpotEnabledConfigs;
+	private Map<GauntletResourceSpot, Color> resourceSpotColorConfigs;
 
 	@Inject
 	private Client client;
-
 	@Inject
 	private GauntletConfig config;
-
 	@Inject
 	private OverlayManager overlayManager;
-
 	@Inject
 	private GauntletOverlay overlay;
-
 	@Inject
 	private GauntletResourceSpotOverlay resourceSpotOverlay;
-
 	@Inject
 	private GauntletResourceSpotMinimapOverlay resourceSpotMinimapOverlay;
-
 	@Inject
 	private GauntletDebugOverlay debugOverlay;
-
 	@Inject
 	private ClientThread clientThread;
-
 	@Getter
 	private GauntletBoss gauntletBoss;
-
-	@Getter(AccessLevel.PACKAGE)
-	private final List<GameObject> resourceSpots = new ArrayList<>();
+	@Getter
+	private Gauntlet gauntlet;
 
 	private static boolean isNpcGauntletBoss(int npcId)
 	{
@@ -115,6 +97,22 @@ public class GauntletPlugin extends Plugin
 	@Override
 	protected void startUp() throws Exception
 	{
+		resourceSpotEnabledConfigs = Map.ofEntries(
+				entry(GauntletResourceSpot.PADDLEFISH, config.showPaddlefishSpots()),
+				entry(GauntletResourceSpot.CRYSTAL_DEPOSIT, config.showCrystalDeposits()),
+				entry(GauntletResourceSpot.GRYM_ROOT, config.showGrymRoots()),
+				entry(GauntletResourceSpot.PHREN_ROOTS, config.showPhrenRoots()),
+				entry(GauntletResourceSpot.LINUM_TIRINUM, config.showLinumTirinum())
+		);
+
+		resourceSpotColorConfigs = Map.ofEntries(
+				entry(GauntletResourceSpot.PADDLEFISH, config.getPaddlefishSpotColor()),
+				entry(GauntletResourceSpot.CRYSTAL_DEPOSIT, config.getCrystalDepositColor()),
+				entry(GauntletResourceSpot.GRYM_ROOT, config.getGrymRootColor()),
+				entry(GauntletResourceSpot.PHREN_ROOTS, config.getPhrenRootsColor()),
+				entry(GauntletResourceSpot.LINUM_TIRINUM, config.getLinumTirinumColor())
+		);
+
 		overlayManager.add(overlay);
 		overlayManager.add(resourceSpotOverlay);
 		overlayManager.add(resourceSpotMinimapOverlay);
@@ -122,6 +120,7 @@ public class GauntletPlugin extends Plugin
 		{
 			overlayManager.add(debugOverlay);
 		}
+
 		clientThread.invoke(this::reset);
 	}
 
@@ -135,48 +134,30 @@ public class GauntletPlugin extends Plugin
 		{
 			overlayManager.remove(debugOverlay);
 		}
+
 		reset();
 	}
 
 	@Subscribe
 	public void onConfigChanged(ConfigChanged event)
 	{
-
-		if (!config.showPaddlefishSpots())
+		if (!event.getGroup().equals(GauntletConfig.GROUP))
 		{
-			resourceSpots.removeIf(spot -> spot.getId() == FISHING_SPOT_36068 ||
-					spot.getId() == FISHING_SPOT_35971);
+			return;
 		}
 
-		if (!config.showCrystalDeposits())
+		for (GauntletResourceSpot resourceSpot : GauntletResourceSpot.values())
 		{
-			resourceSpots.removeIf(spot -> spot.getId() == CRYSTAL_DEPOSIT ||
-					spot.getId() == CORRUPT_DEPOSIT);
-		}
-
-		if (!config.showGrymRoots())
-		{
-			resourceSpots.removeIf(spot -> spot.getId() == GRYM_ROOT_36070 ||
-					spot.getId() == GRYM_ROOT);
-		}
-
-		if (!config.showPhrenRoots())
-		{
-			resourceSpots.removeIf(spot -> spot.getId() == PHREN_ROOTS_36066 ||
-					spot.getId() == PHREN_ROOTS);
-		}
-
-		if (!config.showLinumTirinum())
-		{
-			resourceSpots.removeIf(spot -> spot.getId() == LINUM_TIRINUM_36072 ||
-					spot.getId() == LINUM_TIRINUM);
+			if (resourceSpotEnabledConfigs.get(resourceSpot))
+			{
+				gauntlet.resourceSpotDisabled(resourceSpot);
+			}
 		}
 
 		if (config.showDebugOverlay())
 		{
 			overlayManager.add(debugOverlay);
-		}
-		else if (!config.showDebugOverlay())
+		} else if (!config.showDebugOverlay())
 		{
 			overlayManager.remove(debugOverlay);
 		}
@@ -184,165 +165,41 @@ public class GauntletPlugin extends Plugin
 
 	private void reset()
 	{
+		gauntlet = null;
+		log.debug("Gauntlet session reset");
+
 		gauntletBoss = null;
-		resourceSpots.clear();
 	}
 
-	/**
-	 * Checks what the next the attack style should be.
-	 *
-	 * @param attackStyle Ranged or magic
-	 */
-	private void checkGauntletBossAttackStyleSwitch(final GauntletBoss.AttackStyle attackStyle)
+	private void checkGauntletStatus()
 	{
-		// Check if attack style is not a special attack
-		if (attackStyle != GauntletBoss.AttackStyle.MAGIC && attackStyle != GauntletBoss.AttackStyle.RANGED)
+		boolean isGauntletEntered = Gauntlet.isGauntletEntered(client.getVar(GAUNTLET_ENTERED));
+		if (gauntlet != null && !isGauntletEntered)
+		{
+			reset();
+		} else if (gauntlet == null && isGauntletEntered)
+		{
+			gauntlet = new Gauntlet();
+			log.debug("Gauntlet session started");
+		}
+	}
+
+	@Subscribe
+	protected void onVarbitChanged(VarbitChanged event)
+	{
+		if (!GauntletId.inGauntletRegion(client.getMapRegions(), client.isInInstancedRegion()))
 		{
 			return;
 		}
 
-		// Sets the gauntlets boss starting attack style
-		if (gauntletBoss.getCurrentAttackStyle() == null)
+		checkGauntletStatus();
+
+		if (gauntlet == null)
 		{
-			gauntletBoss.setCurrentAttackStyle(attackStyle);
+			return;
 		}
-		else if (gauntletBoss.getAttacksUntilSwitch() <= 0 &&
-				gauntletBoss.getCurrentAttackStyle() == GauntletBoss.AttackStyle.MAGIC)
-		{
-			log.debug("Switch to ranged: " + gauntletBoss.getAttacksUntilSwitch());
-			gauntletBoss.setCurrentAttackStyle(GauntletBoss.AttackStyle.RANGED);
-			gauntletBoss.setAttacksUntilSwitch(GauntletBoss.ATTACKS_PER_SWITCH);
-			gauntletBoss.setChangedAttackStyleThisTick(true);
-		}
-		else if (gauntletBoss.getAttacksUntilSwitch() <= 0 &&
-				gauntletBoss.getCurrentAttackStyle() == GauntletBoss.AttackStyle.RANGED)
-		{
-			log.debug("Switch to magic: " + gauntletBoss.getAttacksUntilSwitch());
-			gauntletBoss.setCurrentAttackStyle(GauntletBoss.AttackStyle.MAGIC);
-			gauntletBoss.setAttacksUntilSwitch(GauntletBoss.ATTACKS_PER_SWITCH);
-			gauntletBoss.setChangedAttackStyleThisTick(true);
-		}
-		// Correct attacks until switch when de-sync might occur (eg. plugin enabled during kill)
-		else if (gauntletBoss.getAttacksUntilSwitch() > 0 &&
-				gauntletBoss.getCurrentAttackStyle() != attackStyle)
-		{
-			log.debug("De-sync switch to: " + attackStyle + " | Attacks left: " + gauntletBoss.getAttacksUntilSwitch());
-			gauntletBoss.setCurrentAttackStyle(attackStyle);
-			gauntletBoss.setAttacksUntilSwitch(GauntletBoss.ATTACKS_PER_SWITCH - 1);
-			gauntletBoss.setChangedAttackStyleThisTick(true);
-		}
-	}
 
-	/**
-	 * Sets the remaining hits for the current Gauntlet boss attack style.
-	 *
-	 * @param attackStyle Ranged or magic
-	 */
-	private void onGauntletBossAttack(final GauntletBoss.AttackStyle attackStyle)
-	{
-
-		gauntletBoss.setAttacksUntilSwitch(gauntletBoss.getAttacksUntilSwitch() - 1);
-		checkGauntletBossAttackStyleSwitch(attackStyle);
-		gauntletBoss.setNextAttackTick(client.getTickCount() + GauntletBoss.ATTACK_RATE);
-	}
-
-	/**
-	 * Checks if the gauntlets boss recent projectile id matches an attack style.
-	 * If this is true onGauntletBossAttack is called and the remainingProjectileCount is
-	 * reduced by 1 to prevent more function calls than attacks fired.
-	 */
-	private void checkGauntletBossAttacks()
-	{
-		if (gauntletBoss != null)
-		{
-			int recentProjectileId = gauntletBoss.getRecentProjectileId();
-
-			if (recentProjectileId != -1 && gauntletBoss.getRemainingProjectileCount() > 0)
-			{
-				switch (recentProjectileId)
-				{
-					case ProjectileID.CRYSTALLINE_HUNLLEF_MAGIC_ATTACK:
-					case ProjectileID.CORRUPTED_HUNLLEF_MAGIC_ATTACK:
-						log.debug("onAttack magic: " + gauntletBoss.getRemainingProjectileCount());
-						gauntletBoss.setRemainingProjectileCount(gauntletBoss.getRemainingProjectileCount() - 1);
-						onGauntletBossAttack(GauntletBoss.AttackStyle.MAGIC);
-						break;
-					case ProjectileID.CRYSTALLINE_HUNLLEF_DISABLE_PRAYERS_ATTACK:
-					case ProjectileID.CORRUPTED_HUNLLEF_DISABLE_PRAYERS_ATTACK:
-						log.debug("onAttack magic disable prayers: " + gauntletBoss.getRemainingProjectileCount());
-						gauntletBoss.setRemainingProjectileCount(gauntletBoss.getRemainingProjectileCount() - 1);
-						onGauntletBossAttack(GauntletBoss.AttackStyle.MAGIC);
-						break;
-					case ProjectileID.CRYSTALLINE_HUNLLEF_RANGED_ATTACK:
-					case ProjectileID.CORRUPTED_HUNLLEF_RANGED_ATTACK:
-						log.debug("onAttack ranged: " + gauntletBoss.getRemainingProjectileCount());
-						gauntletBoss.setRemainingProjectileCount(gauntletBoss.getRemainingProjectileCount() - 1);
-						onGauntletBossAttack(GauntletBoss.AttackStyle.RANGED);
-						break;
-					default:
-						log.warn("Unreachable default case for checkGauntletBossAttacks | projectile id: {}", recentProjectileId);
-				}
-			}
-		}
-	}
-
-	private void checkGauntletBossCrystalAttack()
-	{
-		if (gauntletBoss != null)
-		{
-			int animationId = gauntletBoss.getNpc().getAnimation();
-			if (animationId != gauntletBoss.getLastTickAnimation())
-			{
-				int ticksSinceLastAttack = client.getTickCount() - gauntletBoss.getLastAttackTick();
-				if (animationId == AnimationID.HUNLLEF_SUMMON_CRYSTAL_NPC && ticksSinceLastAttack >= 4)
-				{
-					log.debug("onAttack crystal");
-					gauntletBoss.setAttacksUntilSwitch(gauntletBoss.getAttacksUntilSwitch() - 1);
-					checkGauntletBossAttackStyleSwitch(gauntletBoss.getCurrentAttackStyle());
-					gauntletBoss.setLastAttackTick(client.getTickCount());
-					gauntletBoss.setNextAttackTick(client.getTickCount() + GauntletBoss.ATTACK_RATE);
-				}
-			}
-		}
-	}
-
-	private boolean inGauntletInstance()
-	{
-		return Arrays.equals(client.getMapRegions(), GAUNTLET_REGION) && client.isInInstancedRegion() ||
-				Arrays.equals(client.getMapRegions(), CORRUPTED_GAUNTLET_REGION) && client.isInInstancedRegion();
-	}
-
-	@Subscribe
-	public void onProjectileMoved(ProjectileMoved event)
-	{
-		if (inGauntletInstance() && gauntletBoss != null)
-		{
-			Projectile projectile = event.getProjectile();
-			int projectileId = projectile.getId();
-
-			if (!gauntletBoss.isGauntletBossRangedAttack(projectileId) && !gauntletBoss.isGauntletBossMagicAttack(projectileId))
-			{
-				return;
-			}
-
-			// The event fires once before the projectile starts moving,
-			// and we only want to check each projectile once
-			if (client.getGameCycle() >= projectile.getStartMovementCycle())
-			{
-				return;
-			}
-
-			int ticksSinceLastAttack = client.getTickCount() - gauntletBoss.getLastAttackTick();
-			log.debug(client.getTickCount() + " | Projectile | ticks since last attack: " + ticksSinceLastAttack);
-
-			if (ticksSinceLastAttack >= 4 || gauntletBoss.getLastAttackTick() == -100)
-			{
-				log.debug(client.getTickCount() + " | Projectile confirmed: " + projectileId);
-				gauntletBoss.setRecentProjectileId(projectile.getId());
-				gauntletBoss.setLastAttackTick(client.getTickCount());
-				gauntletBoss.setRemainingProjectileCount(gauntletBoss.getRemainingProjectileCount() + 1);
-			}
-		}
+		gauntlet.checkFinalRoomEntered(client.getVar(GAUNTLET_FINAL_ROOM_ENTERED));
 	}
 
 	@Subscribe
@@ -351,9 +208,9 @@ public class GauntletPlugin extends Plugin
 		GameState gameState = event.getGameState();
 
 		// Clear resource spots when a new gauntlet room is loaded
-		if (gameState == GameState.LOADING)
+		if (gameState == GameState.LOADING && gauntlet != null)
 		{
-			resourceSpots.clear();
+			gauntlet.newRoomLoading();
 		}
 
 		if (gameState == GameState.LOGGING_IN || gameState == GameState.CONNECTION_LOST || gameState == GameState.HOPPING)
@@ -363,9 +220,144 @@ public class GauntletPlugin extends Plugin
 	}
 
 	@Subscribe
+	public void onAnimationChanged(AnimationChanged event)
+	{
+		if (!GauntletId.inGauntletRegion(client.getMapRegions(), client.isInInstancedRegion()) || gauntletBoss == null)
+		{
+			return;
+		}
+
+//		int animationId = event.getActor().getAnimation();
+//		if (!alchemicalHydra.isAlchemicalHydraAnimation(animationId))
+//		{
+//			return;
+//		}
+//
+//		// Phase switch
+//		if (alchemicalHydra.isPhaseSwitchAnimation(animationId))
+//		{
+//			alchemicalHydra.checkAlchemicalHydraPhaseSwitch(animationId, client.getTickCount());
+//			return;
+//		}
+//
+//		// Special attacks
+//		if (alchemicalHydra.getAttacksUntilSpecialAttack() == 0 && alchemicalHydra.isSpecialAttackAnimation(animationId))
+//		{
+//			alchemicalHydra.onSpecialAttack(animationId, client.getTickCount());
+//			return;
+//		}
+//
+//		// Allow the second part of the fire special attack
+//		if (animationId == AnimationID.ALCHEMICAL_HYDRA_RED_PHASE_FIRE_ATTACK)
+//		{
+//			alchemicalHydra.onSpecialAttack(animationId, client.getTickCount());
+//			return;
+//		}
+//
+//		// Regular attacks
+//		if (alchemicalHydra.isRegularAttackAnimation(animationId))
+//		{
+//			alchemicalHydra.onAttack(animationId, client.getTickCount(), false);
+//		}
+	}
+
+//	/**
+//	 * Checks if the gauntlets boss recent projectile id matches an attack style.
+//	 * If this is true onGauntletBossAttack is called and the remainingProjectileCount is
+//	 * reduced by 1 to prevent more function calls than attacks fired.
+//	 */
+//	private void checkGauntletBossAttacks()
+//	{
+//		if (gauntletBoss != null)
+//		{
+//			int recentProjectileId = gauntletBoss.getRecentProjectileId();
+//
+//			if (recentProjectileId != -1 && gauntletBoss.getRemainingProjectileCount() > 0)
+//			{
+//				switch (recentProjectileId)
+//				{
+//					case GauntletBossId.Proj.MAGIC:
+//					case ProjectileID.CORRUPTED_HUNLLEF_MAGIC_ATTACK:
+//						log.debug("onAttack magic: " + gauntletBoss.getRemainingProjectileCount());
+//						gauntletBoss.setRemainingProjectileCount(gauntletBoss.getRemainingProjectileCount() - 1);
+//						gauntletBoss.basicAttack(GauntletBoss.AttackStyle.MAGIC, client.getTickCount());
+//						break;
+//					case ProjectileID.CRYSTALLINE_HUNLLEF_DISABLE_PRAYERS_ATTACK:
+//					case ProjectileID.CORRUPTED_HUNLLEF_DISABLE_PRAYERS_ATTACK:
+//						log.debug("onAttack magic disable prayers: " + gauntletBoss.getRemainingProjectileCount());
+//						gauntletBoss.setRemainingProjectileCount(gauntletBoss.getRemainingProjectileCount() - 1);
+//						gauntletBoss.basicAttack(GauntletBoss.AttackStyle.MAGIC, client.getTickCount());
+//						break;
+//					case ProjectileID.CRYSTALLINE_HUNLLEF_RANGED_ATTACK:
+//					case ProjectileID.CORRUPTED_HUNLLEF_RANGED_ATTACK:
+//						log.debug("onAttack ranged: " + gauntletBoss.getRemainingProjectileCount());
+//						gauntletBoss.setRemainingProjectileCount(gauntletBoss.getRemainingProjectileCount() - 1);
+//						gauntletBoss.basicAttack(GauntletBoss.AttackStyle.RANGED, client.getTickCount());
+//						break;
+//					default:
+//						log.warn("Unreachable default case for checkGauntletBossAttacks | projectile id: {}", recentProjectileId);
+//				}
+//			}
+//		}
+//	}
+
+//	private void checkGauntletBossCrystalAttack()
+//	{
+//		if (gauntletBoss != null)
+//		{
+//			int animationId = gauntletBoss.getNpc().getAnimation();
+//			if (animationId != gauntletBoss.getLastTickAnimation())
+//			{
+//				int ticksSinceLastAttack = client.getTickCount() - gauntletBoss.getLastAttackTick();
+//				if (animationId == AnimationID.HUNLLEF_SUMMON_CRYSTAL_NPC && ticksSinceLastAttack >= 4)
+//				{
+//					log.debug("onAttack crystal");
+//					gauntletBoss.setAttacksUntilSwitch(gauntletBoss.getAttacksUntilSwitch() - 1);
+//					gauntletBoss.checkAttackStyleSwitch(gauntletBoss.getCurrentAttackStyle());
+//					gauntletBoss.setLastAttackTick(client.getTickCount());
+//					gauntletBoss.setNextAttackTick(client.getTickCount() + GauntletBoss.ATTACK_RATE);
+//				}
+//			}
+//		}
+//	}
+
+//	@Subscribe
+//	public void onProjectileMoved(ProjectileMoved event)
+//	{
+//		if (inGauntletInstance() && gauntletBoss != null)
+//		{
+//			Projectile projectile = event.getProjectile();
+//			int projectileId = projectile.getId();
+//
+//			if (!gauntletBoss.isGauntletBossRangedAttack(projectileId) && !gauntletBoss.isGauntletBossMagicAttack(projectileId))
+//			{
+//				return;
+//			}
+//
+//			// The event fires once before the projectile starts moving,
+//			// and we only want to check each projectile once
+//			if (client.getGameCycle() >= projectile.getStartMovementCycle())
+//			{
+//				return;
+//			}
+//
+//			int ticksSinceLastAttack = client.getTickCount() - gauntletBoss.getLastAttackTick();
+//			log.debug(client.getTickCount() + " | Projectile | ticks since last attack: " + ticksSinceLastAttack);
+//
+//			if (ticksSinceLastAttack >= 4 || gauntletBoss.getLastAttackTick() == -100)
+//			{
+//				log.debug(client.getTickCount() + " | Projectile confirmed: " + projectileId);
+//				gauntletBoss.setRecentProjectileId(projectile.getId());
+//				gauntletBoss.setLastAttackTick(client.getTickCount());
+//				gauntletBoss.setRemainingProjectileCount(gauntletBoss.getRemainingProjectileCount() + 1);
+//			}
+//		}
+//	}
+
+	@Subscribe
 	public void onNpcSpawned(NpcSpawned event)
 	{
-		if (inGauntletInstance())
+		if (GauntletId.inGauntletRegion(client.getMapRegions(), client.isInInstancedRegion()))
 		{
 			NPC npc = event.getNpc();
 			if (isNpcGauntletBoss(npc.getId()))
@@ -378,9 +370,9 @@ public class GauntletPlugin extends Plugin
 				return;
 			}
 
-			if (gauntletBoss.isNpcCrystalAttack(npc.getId()))
+			if (GauntletBossId.isCrystalNpc(npc.getId()))
 			{
-				gauntletBoss.getCrystalEffects().add(npc);
+				gauntletBoss.crystalSpawned(npc);
 			}
 		}
 	}
@@ -399,58 +391,45 @@ public class GauntletPlugin extends Plugin
 			return;
 		}
 
-		if (gauntletBoss.isNpcCrystalAttack(npc.getId()))
+		if (GauntletBossId.isCrystalNpc(npc.getId()))
 		{
-			gauntletBoss.getCrystalEffects().remove(npc);
+			gauntletBoss.crystalDespawned(npc);
 		}
 	}
 
 	@Subscribe
 	public void onGameObjectSpawned(GameObjectSpawned event)
 	{
+		if (gauntlet == null)
+		{
+			return;
+		}
+
 		final GameObject gameObject = event.getGameObject();
 		if (gameObject == null || !GauntletResourceSpot.getSPOTS().containsKey(gameObject.getId()))
 		{
 			return;
 		}
 
-		if (event.getGameObject().getId() == FISHING_SPOT_36068 && !config.showPaddlefishSpots() ||
-				event.getGameObject().getId() == FISHING_SPOT_35971 && !config.showPaddlefishSpots())
+		for (GauntletResourceSpot resourceSpot : GauntletResourceSpot.values())
 		{
-			return;
+			if (GauntletResourceSpot.isResourceSpot(gameObject.getId(), resourceSpot) && resourceSpotEnabledConfigs.get(resourceSpot))
+			{
+				return;
+			}
 		}
 
-		if (event.getGameObject().getId() == CRYSTAL_DEPOSIT && !config.showCrystalDeposits() ||
-				event.getGameObject().getId() == CORRUPT_DEPOSIT && !config.showCrystalDeposits())
-		{
-			return;
-		}
-
-		if (event.getGameObject().getId() == GRYM_ROOT_36070 && !config.showGrymRoots() ||
-				event.getGameObject().getId() == GRYM_ROOT && !config.showGrymRoots())
-		{
-			return;
-		}
-
-		if (event.getGameObject().getId() == PHREN_ROOTS_36066 && !config.showPhrenRoots() ||
-				event.getGameObject().getId() == PHREN_ROOTS && !config.showPhrenRoots())
-		{
-			return;
-		}
-
-		if (event.getGameObject().getId() == LINUM_TIRINUM_36072 && !config.showLinumTirinum() ||
-				event.getGameObject().getId() == LINUM_TIRINUM && !config.showLinumTirinum())
-		{
-			return;
-		}
-
-		resourceSpots.add(gameObject);
-		inverseSortSpotDistanceFromPlayer();
+		gauntlet.resourceSpotSpawned(gameObject, client.getCameraX(), client.getCameraY());
 	}
 
 	@Subscribe
 	public void onGameObjectDespawned(GameObjectDespawned event)
 	{
+		if (gauntlet == null)
+		{
+			return;
+		}
+
 		final GameObject gameObject = event.getGameObject();
 
 		if (gameObject == null || !GauntletResourceSpot.getSPOTS().containsKey(gameObject.getId()))
@@ -458,23 +437,7 @@ public class GauntletPlugin extends Plugin
 			return;
 		}
 
-		resourceSpots.remove(gameObject);
-	}
-
-	@Subscribe
-	protected void onClientTick(ClientTick event)
-	{
-		if (inGauntletInstance())
-		{
-			checkGauntletBossAttacks();
-			checkGauntletBossCrystalAttack();
-		}
-	}
-
-	private void inverseSortSpotDistanceFromPlayer()
-	{
-		final LocalPoint cameraPoint = new LocalPoint(client.getCameraX(), client.getCameraY());
-		resourceSpots.sort(Comparator.comparing(spot -> -1 * spot.getLocalLocation().distanceTo(cameraPoint)));
+		gauntlet.resourceSpotDespawned(gameObject);
 	}
 
 	Color getResourceSpotColor(int gameObjectId)
