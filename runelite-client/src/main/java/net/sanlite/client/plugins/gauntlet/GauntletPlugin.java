@@ -227,7 +227,7 @@ public class GauntletPlugin extends Plugin
 			return;
 		}
 
-//		int animationId = event.getActor().getAnimation();
+		int animationId = event.getActor().getAnimation();
 //		if (!alchemicalHydra.isAlchemicalHydraAnimation(animationId))
 //		{
 //			return;
@@ -413,13 +413,14 @@ public class GauntletPlugin extends Plugin
 
 		for (GauntletResourceSpot resourceSpot : GauntletResourceSpot.values())
 		{
+
 			if (GauntletResourceSpot.isResourceSpot(gameObject.getId(), resourceSpot) && resourceSpotEnabledConfigs.get(resourceSpot))
 			{
-				return;
+				log.debug("Gauntlet resource spot spawned: {}", gameObject.getId());
+				gauntlet.resourceSpotSpawned(gameObject, client.getCameraX(), client.getCameraY());
 			}
 		}
 
-		gauntlet.resourceSpotSpawned(gameObject, client.getCameraX(), client.getCameraY());
 	}
 
 	@Subscribe
@@ -431,12 +432,12 @@ public class GauntletPlugin extends Plugin
 		}
 
 		final GameObject gameObject = event.getGameObject();
-
 		if (gameObject == null || !GauntletResourceSpot.getSPOTS().containsKey(gameObject.getId()))
 		{
 			return;
 		}
 
+		log.debug("Gauntlet resource spot despawned: {}", gameObject.getId());
 		gauntlet.resourceSpotDespawned(gameObject);
 	}
 
