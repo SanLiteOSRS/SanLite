@@ -28,6 +28,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.NPC;
+import net.runelite.api.ProjectileID;
 import net.sanlite.client.plugins.gauntlet.id.GauntletBossId;
 
 import java.util.ArrayList;
@@ -107,9 +108,11 @@ class GauntletBoss
 	 */
 	public void basicAttack(final AttackStyle attackStyle, int tickCount)
 	{
-		setAttacksUntilSwitch(getAttacksUntilSwitch() - 1);
+		log.debug("Gauntlet boss {} attack. Tick: {} ", attackStyle, tickCount);
+		remainingProjectileCount = remainingProjectileCount - 1;
+		attacksUntilSwitch = attacksUntilSwitch - 1;
+		nextAttackTick = tickCount + GauntletBoss.ATTACK_RATE;
 		checkAttackStyleSwitch(attackStyle);
-		setNextAttackTick(tickCount + GauntletBoss.ATTACK_RATE);
 	}
 
 	public void crystalSpawned(NPC npc)
@@ -166,5 +169,45 @@ class GauntletBoss
 	{
 		MAGIC,
 		RANGED
+	}
+
+	/**
+	 * Checks if the gauntlets boss recent projectile id matches an attack style.
+	 * If this is true onGauntletBossAttack is called and the remainingProjectileCount is
+	 * reduced by 1 to prevent more function calls than attacks fired.
+	 */
+	private void checkGauntletBossAttacks()
+	{
+		if (gauntletBoss != null)
+		{
+			int recentProjectileId = gauntletBoss.getRecentProjectileId();
+
+			if (recentProjectileId != -1 && gauntletBoss.getRemainingProjectileCount() > 0)
+			{
+				switch (recentProjectileId)
+				{
+					case GauntletBossId.Proj.MAGIC:
+					case ProjectileID.CORRUPTED_HUNLLEF_MAGIC_ATTACK:
+						log.debug("onAttack magic: " + gauntletBoss.getRemainingProjectileCount());
+						gauntletBoss.setRemainingProjectileCount(gauntletBoss.getRemainingProjectileCount() - 1);
+						gauntletBoss.basicAttack(GauntletBoss.AttackStyle.MAGIC, client.getTickCount());
+						break;
+					case ProjectileID.CRYSTALLINE_HUNLLEF_DISABLE_PRAYERS_ATTACK:
+					case ProjectileID.CORRUPTED_HUNLLEF_DISABLE_PRAYERS_ATTACK:
+						log.debug("onAttack magic disable prayers: " + gauntletBoss.getRemainingProjectileCount());
+						gauntletBoss.setRemainingProjectileCount(gauntletBoss.getRemainingProjectileCount() - 1);
+						gauntletBoss.basicAttack(GauntletBoss.AttackStyle.MAGIC, client.getTickCount());
+						break;
+					case ProjectileID.CRYSTALLINE_HUNLLEF_RANGED_ATTACK:
+					case ProjectileID.CORRUPTED_HUNLLEF_RANGED_ATTACK:
+						log.debug("onAttack ranged: " + gauntletBoss.getRemainingProjectileCount());
+						gauntletBoss.setRemainingProjectileCount(gauntletBoss.getRemainingProjectileCount() - 1);
+						gauntletBoss.basicAttack(GauntletBoss.AttackStyle.RANGED, client.getTickCount());
+						break;
+					default:
+						log.warn("Unreachable default case for checkGauntletBossAttacks | projectile id: {}", recentProjectileId);
+				}
+			}
+		}
 	}
 }

@@ -27,8 +27,10 @@ package net.sanlite.client.plugins.gauntlet;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.GameObject;
+import net.runelite.api.*;
 import net.runelite.api.coords.LocalPoint;
+import net.runelite.http.api.hiscore.HiscoreResult;
+import net.sanlite.client.plugins.gauntlet.id.GauntletBossId;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -40,15 +42,20 @@ class Gauntlet
 {
 	private static final int NOT_IN_BOSS_ROOM = 0;
 	private static final int IN_BOSS_ROOM = 1;
+
 	@Getter(AccessLevel.PACKAGE)
 	private final List<GameObject> resourceSpots = new ArrayList<>();
 	@Getter
+	private final Player player;
+	@Getter
 	private boolean inBossRoom;
+	@Getter
+	private GauntletBoss gauntletBoss;
 
-
-	Gauntlet()
+	Gauntlet(Player player)
 	{
 		this.inBossRoom = false;
+		this.player = player;
 	}
 
 	static boolean isGauntletEntered(int varbitValue)
@@ -87,18 +94,64 @@ class Gauntlet
 		resourceSpots.clear();
 	}
 
-	void resourceSpotSpawned(GameObject gameObject, int cameraX, int cameraY) {
+	void resourceSpotSpawned(GameObject gameObject, int cameraX, int cameraY)
+	{
 		resourceSpots.add(gameObject);
 		inverseSortSpotDistanceFromPlayer(cameraX, cameraY);
 	}
 
-	void resourceSpotDespawned(GameObject gameObject) {
+	void resourceSpotDespawned(GameObject gameObject)
+	{
 		resourceSpots.remove(gameObject);
 	}
 
 	void resourceSpotDisabled(GauntletResourceSpot resourceSpot)
 	{
 		Arrays.stream(resourceSpot.getIds()).forEach(id -> resourceSpots.removeIf(spot -> spot.getId() == id));
+	}
+
+	void bossSpawned(NPC npc)
+	{
+		gauntletBoss = new GauntletBoss(npc);
+	}
+
+	void bossDespawned()
+	{
+		gauntletBoss = null;
+	}
+
+	void onProjectile(Actor actor, int projectileId)
+	{
+		// TODO: Implement with ProjectileSpawned
+	}
+
+	void onAnimation(Actor actor, int animationId)
+	{
+		if (actor instanceof NPC)
+		{
+			if (!GauntletBossId.isBossNpc(((NPC) actor).getId()))
+			{
+				return;
+			}
+
+			switch (animationId)
+			{
+				case GauntletBossId.Anim.TRAMPLE_ATTACK:
+					break;
+				case GauntletBossId.Anim.SUMMON_CRYSTAL_NPC:
+					break;
+				case GauntletBossId.Anim.SWITCH_TO_MAGIC:
+					break;
+				case GauntletBossId.Anim.SWITCH_TO_RANGED:
+					break;
+				default:
+					log.warn("Could not determine gauntlet boss animation. Unknown animation id: {}", animationId);
+			}
+			// TODO: Implement
+		} else if (actor instanceof Player)
+		{
+			// TODO: Implement
+		}
 	}
 
 	private void inverseSortSpotDistanceFromPlayer(int cameraX, int cameraY)

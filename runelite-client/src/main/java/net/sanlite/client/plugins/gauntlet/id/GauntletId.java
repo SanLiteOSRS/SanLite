@@ -13,6 +13,18 @@ public class GauntletId
 				Arrays.equals(mapRegions, Region.CORRUPTED_GAUNTLET) && isInInstancedRegion;
 	}
 
+	public static boolean isGauntletAnimation(int animationId)
+	{
+		return animationId == GauntletBossId.Anim.SWITCH_TO_RANGED ||
+				animationId == GauntletBossId.Anim.SWITCH_TO_MAGIC ||
+				animationId == GauntletBossId.Anim.TRAMPLE_ATTACK ||
+				animationId == GauntletBossId.Anim.PROJECTILE_ATTACK ||
+				animationId == GauntletBossId.Anim.SUMMON_CRYSTAL_NPC ||
+				animationId == GauntletPlayerId.Anim.BOW_ATTACK ||
+				animationId == GauntletPlayerId.Anim.STAFF_ATTACK ||
+				animationId == GauntletPlayerId.Anim.HALBERD_ATTACK;
+	}
+
 	public static class Region
 	{
 		public static final int[] GAUNTLET = {

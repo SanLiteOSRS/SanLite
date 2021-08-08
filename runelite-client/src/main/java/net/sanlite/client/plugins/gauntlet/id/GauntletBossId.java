@@ -1,5 +1,7 @@
 package net.sanlite.client.plugins.gauntlet.id;
 
+import net.runelite.api.NpcID;
+
 public final class GauntletBossId
 {
 	public static boolean isRangedAttack(int projectileId)
@@ -13,6 +15,14 @@ public final class GauntletBossId
 				projectileId == Proj.DISABLE_PRAYER ||
 				projectileId == Proj.CORRUPTED_MAGIC ||
 				projectileId == Proj.CORRUPTED_DISABLE_PRAYER;
+	}
+
+	public static boolean isBossNpc(int npcId)
+	{
+		return npcId == NpcID.CRYSTALLINE_HUNLLEF || npcId == NpcID.CRYSTALLINE_HUNLLEF_9022 ||
+				npcId == NpcID.CRYSTALLINE_HUNLLEF_9023 || npcId == NpcID.CRYSTALLINE_HUNLLEF_9024 ||
+				npcId == NpcID.CORRUPTED_HUNLLEF || npcId == NpcID.CORRUPTED_HUNLLEF_9036 ||
+				npcId == NpcID.CORRUPTED_HUNLLEF_9037 || npcId == NpcID.CORRUPTED_HUNLLEF_9038;
 	}
 
 	public static boolean isCrystalNpc(int npcId)

@@ -61,32 +61,30 @@ public class GauntletPlugin extends Plugin
 
 	@Inject
 	private Client client;
+
 	@Inject
 	private GauntletConfig config;
+
 	@Inject
 	private OverlayManager overlayManager;
+
 	@Inject
 	private GauntletOverlay overlay;
+
 	@Inject
 	private GauntletResourceSpotOverlay resourceSpotOverlay;
+
 	@Inject
 	private GauntletResourceSpotMinimapOverlay resourceSpotMinimapOverlay;
+
 	@Inject
 	private GauntletDebugOverlay debugOverlay;
+
 	@Inject
 	private ClientThread clientThread;
-	@Getter
-	private GauntletBoss gauntletBoss;
+
 	@Getter
 	private Gauntlet gauntlet;
-
-	private static boolean isNpcGauntletBoss(int npcId)
-	{
-		return npcId == NpcID.CRYSTALLINE_HUNLLEF || npcId == NpcID.CRYSTALLINE_HUNLLEF_9022 ||
-				npcId == NpcID.CRYSTALLINE_HUNLLEF_9023 || npcId == NpcID.CRYSTALLINE_HUNLLEF_9024 ||
-				npcId == NpcID.CORRUPTED_HUNLLEF || npcId == NpcID.CORRUPTED_HUNLLEF_9036 ||
-				npcId == NpcID.CORRUPTED_HUNLLEF_9037 || npcId == NpcID.CORRUPTED_HUNLLEF_9038;
-	}
 
 	@Provides
 	GauntletConfig getConfig(ConfigManager configManager)
@@ -167,8 +165,6 @@ public class GauntletPlugin extends Plugin
 	{
 		gauntlet = null;
 		log.debug("Gauntlet session reset");
-
-		gauntletBoss = null;
 	}
 
 	private void checkGauntletStatus()
@@ -177,9 +173,16 @@ public class GauntletPlugin extends Plugin
 		if (gauntlet != null && !isGauntletEntered)
 		{
 			reset();
-		} else if (gauntlet == null && isGauntletEntered)
+		}
+		else if (gauntlet == null && isGauntletEntered)
 		{
-			gauntlet = new Gauntlet();
+			Player player = client.getLocalPlayer();
+			if (player == null)
+			{
+				return;
+			}
+
+			gauntlet = new Gauntlet(player);
 			log.debug("Gauntlet session started");
 		}
 	}
@@ -222,16 +225,18 @@ public class GauntletPlugin extends Plugin
 	@Subscribe
 	public void onAnimationChanged(AnimationChanged event)
 	{
-		if (!GauntletId.inGauntletRegion(client.getMapRegions(), client.isInInstancedRegion()) || gauntletBoss == null)
+		if (!GauntletId.inGauntletRegion(client.getMapRegions(), client.isInInstancedRegion()) ||
+				gauntlet.getGauntletBoss() == null)
 		{
 			return;
 		}
 
-		int animationId = event.getActor().getAnimation();
-//		if (!alchemicalHydra.isAlchemicalHydraAnimation(animationId))
-//		{
-//			return;
-//		}
+		if (GauntletId.isGauntletAnimation(event.getActor().getAnimation()))
+		{
+			return;
+		}
+
+		gauntlet.onAnimation(event.getActor(), event.getActor().getAnimation());
 //
 //		// Phase switch
 //		if (alchemicalHydra.isPhaseSwitchAnimation(animationId))
@@ -261,45 +266,7 @@ public class GauntletPlugin extends Plugin
 //		}
 	}
 
-//	/**
-//	 * Checks if the gauntlets boss recent projectile id matches an attack style.
-//	 * If this is true onGauntletBossAttack is called and the remainingProjectileCount is
-//	 * reduced by 1 to prevent more function calls than attacks fired.
-//	 */
-//	private void checkGauntletBossAttacks()
-//	{
-//		if (gauntletBoss != null)
-//		{
-//			int recentProjectileId = gauntletBoss.getRecentProjectileId();
-//
-//			if (recentProjectileId != -1 && gauntletBoss.getRemainingProjectileCount() > 0)
-//			{
-//				switch (recentProjectileId)
-//				{
-//					case GauntletBossId.Proj.MAGIC:
-//					case ProjectileID.CORRUPTED_HUNLLEF_MAGIC_ATTACK:
-//						log.debug("onAttack magic: " + gauntletBoss.getRemainingProjectileCount());
-//						gauntletBoss.setRemainingProjectileCount(gauntletBoss.getRemainingProjectileCount() - 1);
-//						gauntletBoss.basicAttack(GauntletBoss.AttackStyle.MAGIC, client.getTickCount());
-//						break;
-//					case ProjectileID.CRYSTALLINE_HUNLLEF_DISABLE_PRAYERS_ATTACK:
-//					case ProjectileID.CORRUPTED_HUNLLEF_DISABLE_PRAYERS_ATTACK:
-//						log.debug("onAttack magic disable prayers: " + gauntletBoss.getRemainingProjectileCount());
-//						gauntletBoss.setRemainingProjectileCount(gauntletBoss.getRemainingProjectileCount() - 1);
-//						gauntletBoss.basicAttack(GauntletBoss.AttackStyle.MAGIC, client.getTickCount());
-//						break;
-//					case ProjectileID.CRYSTALLINE_HUNLLEF_RANGED_ATTACK:
-//					case ProjectileID.CORRUPTED_HUNLLEF_RANGED_ATTACK:
-//						log.debug("onAttack ranged: " + gauntletBoss.getRemainingProjectileCount());
-//						gauntletBoss.setRemainingProjectileCount(gauntletBoss.getRemainingProjectileCount() - 1);
-//						gauntletBoss.basicAttack(GauntletBoss.AttackStyle.RANGED, client.getTickCount());
-//						break;
-//					default:
-//						log.warn("Unreachable default case for checkGauntletBossAttacks | projectile id: {}", recentProjectileId);
-//				}
-//			}
-//		}
-//	}
+
 
 //	private void checkGauntletBossCrystalAttack()
 //	{
@@ -360,19 +327,20 @@ public class GauntletPlugin extends Plugin
 		if (GauntletId.inGauntletRegion(client.getMapRegions(), client.isInInstancedRegion()))
 		{
 			NPC npc = event.getNpc();
-			if (isNpcGauntletBoss(npc.getId()))
+			if (GauntletBossId.isBossNpc(npc.getId()))
 			{
-				gauntletBoss = new GauntletBoss(npc);
+
+				gauntlet.bossSpawned(npc);
 			}
 
-			if (gauntletBoss == null)
+			if (gauntlet.getGauntletBoss() == null)
 			{
 				return;
 			}
 
 			if (GauntletBossId.isCrystalNpc(npc.getId()))
 			{
-				gauntletBoss.crystalSpawned(npc);
+				gauntlet.getGauntletBoss().crystalSpawned(npc);
 			}
 		}
 	}
@@ -381,19 +349,19 @@ public class GauntletPlugin extends Plugin
 	public void onNpcDespawned(NpcDespawned event)
 	{
 		NPC npc = event.getNpc();
-		if (isNpcGauntletBoss(npc.getId()))
+		if (GauntletBossId.isBossNpc(npc.getId()))
 		{
-			reset();
+			gauntlet.bossDespawned();
 		}
 
-		if (gauntletBoss == null)
+		if (gauntlet.getGauntletBoss() == null)
 		{
 			return;
 		}
 
 		if (GauntletBossId.isCrystalNpc(npc.getId()))
 		{
-			gauntletBoss.crystalDespawned(npc);
+			gauntlet.getGauntletBoss().crystalDespawned(npc);
 		}
 	}
 
