@@ -29,8 +29,8 @@ import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.*;
 import net.runelite.api.coords.LocalPoint;
-import net.runelite.http.api.hiscore.HiscoreResult;
 import net.sanlite.client.plugins.gauntlet.id.GauntletBossId;
+import net.sanlite.client.plugins.gauntlet.id.GauntletPlayerId;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -40,9 +40,6 @@ import java.util.List;
 @Slf4j
 class Gauntlet
 {
-	private static final int NOT_IN_BOSS_ROOM = 0;
-	private static final int IN_BOSS_ROOM = 1;
-
 	@Getter(AccessLevel.PACKAGE)
 	private final List<GameObject> resourceSpots = new ArrayList<>();
 	@Getter
@@ -52,10 +49,14 @@ class Gauntlet
 	@Getter
 	private GauntletBoss gauntletBoss;
 
-	Gauntlet(Player player)
+	Gauntlet(Player player, NPC cachedBossNpc)
 	{
 		this.inBossRoom = false;
 		this.player = player;
+		if (cachedBossNpc != null)
+		{
+			bossSpawned(cachedBossNpc);
+		}
 	}
 
 	static boolean isGauntletEntered(int varbitValue)
@@ -76,11 +77,11 @@ class Gauntlet
 	{
 		switch (varbitValue)
 		{
-			case NOT_IN_BOSS_ROOM:
+			case 0:
 				if (inBossRoom)
 					this.inBossRoom = false;
 				break;
-			case IN_BOSS_ROOM:
+			case 1:
 				if (!inBossRoom)
 					this.inBossRoom = true;
 				break;
@@ -120,12 +121,18 @@ class Gauntlet
 		gauntletBoss = null;
 	}
 
-	void onProjectile(Actor actor, int projectileId)
+	void onProjectile(int projectileId, int tickCount)
 	{
-		// TODO: Implement with ProjectileSpawned
+		GauntletBoss.AttackStyle attackStyle = GauntletBossId.getAttackStyle(projectileId);
+		if (attackStyle == null)
+		{
+			return;
+		}
+
+		gauntletBoss.basicAttack(attackStyle, tickCount);
 	}
 
-	void onAnimation(Actor actor, int animationId)
+	void onAnimation(Actor actor, int animationId, int tickCount)
 	{
 		if (actor instanceof NPC)
 		{
@@ -137,20 +144,35 @@ class Gauntlet
 			switch (animationId)
 			{
 				case GauntletBossId.Anim.TRAMPLE_ATTACK:
+					gauntletBoss.trample(tickCount);
 					break;
 				case GauntletBossId.Anim.SUMMON_CRYSTAL_NPC:
+					gauntletBoss.crystalAttack(tickCount);
 					break;
 				case GauntletBossId.Anim.SWITCH_TO_MAGIC:
+					gauntletBoss.verifyStyleSwitch(GauntletBoss.AttackStyle.MAGIC, tickCount);
 					break;
 				case GauntletBossId.Anim.SWITCH_TO_RANGED:
+					gauntletBoss.verifyStyleSwitch(GauntletBoss.AttackStyle.RANGED, tickCount);
+					break;
+				case GauntletBossId.Anim.PROJECTILE_ATTACK:
 					break;
 				default:
 					log.warn("Could not determine gauntlet boss animation. Unknown animation id: {}", animationId);
 			}
-			// TODO: Implement
 		} else if (actor instanceof Player)
 		{
-			// TODO: Implement
+			if (!GauntletPlayerId.isPlayerAttack(animationId))
+			{
+				return;
+			}
+
+			if (actor.getInteracting() != gauntletBoss.getNpc())
+			{
+				return;
+			}
+
+			gauntletBoss.attacked(GauntletPlayerId.getAttackStyle(animationId), tickCount);
 		}
 	}
 

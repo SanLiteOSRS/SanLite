@@ -31,6 +31,7 @@ import net.runelite.client.game.SkillIconManager;
 import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayLayer;
 import net.runelite.client.ui.overlay.OverlayPosition;
+import net.sanlite.client.plugins.gauntlet.id.GauntletBossId;
 import net.sanlite.client.ui.overlay.OverlayUtil2;
 
 import javax.inject.Inject;
@@ -51,8 +52,8 @@ public class GauntletOverlay extends Overlay
 	private static final int OVERLAY_ICON_DISTANCE = 60;
 	private static final int OVERLAY_ICON_MARGIN = 12;
 
-	private Client client;
-	private GauntletPlugin plugin;
+	private final Client client;
+	private final GauntletPlugin plugin;
 
 	@Inject
 	private GauntletConfig config;
@@ -85,12 +86,18 @@ public class GauntletOverlay extends Overlay
 	@Override
 	public Dimension render(Graphics2D graphics)
 	{
-		GauntletBoss gauntletBoss = plugin.getGauntletBoss();
+		Gauntlet gauntlet = plugin.getGauntlet();
+		if (gauntlet == null)
+		{
+			return null;
+		}
+
+		GauntletBoss gauntletBoss = gauntlet.getGauntletBoss();
 		if (gauntletBoss != null && gauntletBoss.getCurrentAttackStyle() != null)
 		{
 			if (config.highlightCrystalAttackTiles())
 			{
-//				renderCrystalEffects(graphics, gauntletBoss);
+				renderCrystalEffects(graphics, gauntletBoss);
 			}
 
 			if (config.showAttackStyleCounter())
@@ -159,21 +166,21 @@ public class GauntletOverlay extends Overlay
 		return null;
 	}
 
-//	private void renderCrystalEffects(Graphics2D graphics, GauntletBoss gauntletBoss)
-//	{
-//		for (NPC npc : gauntletBoss.getCrystals())
-//		{
-//			LocalPoint localPoint = npc.getLocalLocation();
-//			Polygon polygon = Perspective.getCanvasTilePoly(client, localPoint);
-//
-//			if (polygon != null)
-//			{
-//				if (gauntletBoss.isNpcCrystalAttack(npc.getId()))
-//				{
-//					OverlayUtil2.renderPolygon(graphics, polygon, config.getCrystalAttackColor(),
-//							config.getTileMarkersLineSize().getSize());
-//				}
-//			}
-//		}
-//	}
+	private void renderCrystalEffects(Graphics2D graphics, GauntletBoss gauntletBoss)
+	{
+		for (NPC npc : gauntletBoss.getCrystals())
+		{
+			LocalPoint localPoint = npc.getLocalLocation();
+			Polygon polygon = Perspective.getCanvasTilePoly(client, localPoint);
+
+			if (polygon != null)
+			{
+				if (GauntletBossId.isCrystalNpc(npc.getId()))
+				{
+					OverlayUtil2.renderPolygon(graphics, polygon, config.getCrystalAttackColor(),
+							config.getTileMarkersLineSize().getSize());
+				}
+			}
+		}
+	}
 }

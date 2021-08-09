@@ -53,7 +53,9 @@ public class GauntletDebugOverlay extends Overlay
 	@Override
 	public Dimension render(Graphics2D graphics)
 	{
-		if (plugin.getGauntlet() == null) {
+		Gauntlet gauntlet = plugin.getGauntlet();
+		if (gauntlet == null)
+		{
 			return null;
 		}
 
@@ -79,7 +81,8 @@ public class GauntletDebugOverlay extends Overlay
 				.right("" + plugin.getGauntlet().getResourceSpots().size())
 				.build());
 
-		if (plugin.getGauntletBoss() != null)
+		GauntletBoss gauntletBoss = gauntlet.getGauntletBoss();
+		if (gauntlet.getGauntletBoss() != null)
 		{
 			panelComponent.getChildren().add(TitleComponent.builder()
 					.color(Color.RED.darker())
@@ -88,41 +91,40 @@ public class GauntletDebugOverlay extends Overlay
 
 			panelComponent.getChildren().add(LineComponent.builder()
 					.left("Current attack style")
-					.right("" + plugin.getGauntletBoss().getCurrentAttackStyle())
+					.right("" + gauntletBoss.getCurrentAttackStyle())
 					.build());
 
 			panelComponent.getChildren().add(LineComponent.builder()
 					.left("Attacks until switch")
-					.right("" + plugin.getGauntletBoss().getAttacksUntilSwitch())
+					.right("" + gauntletBoss.getAttacksUntilSwitch())
 					.build());
 
 			panelComponent.getChildren().add(LineComponent.builder()
 					.left("Next attack tick")
-					.right("" + plugin.getGauntletBoss().getNextAttackTick())
+					.right("" + gauntletBoss.getNextAttackTick())
 					.build());
 
 			panelComponent.getChildren().add(LineComponent.builder()
 					.left("Last attack tick")
-					.right("" + plugin.getGauntletBoss().getLastAttackTick())
+					.right("" + gauntletBoss.getLastAttackTick())
 					.build());
 
 			panelComponent.getChildren().add(LineComponent.builder()
-					.left("Recent projectile id")
-					.right("" + plugin.getGauntletBoss().getRecentProjectileId())
+					.left("Last projectile")
+					.right("" + gauntletBoss.getLastProjectileId())
 					.build());
 
 			panelComponent.getChildren().add(LineComponent.builder()
-					.left("Remaining projectile count")
-					.right("" + plugin.getGauntletBoss().getRemainingProjectileCount())
+					.left("Last attack animation")
+					.right("" + gauntletBoss.getLastAttackAnimationId())
 					.build());
 
 			panelComponent.getChildren().add(LineComponent.builder()
-					.left("Number of AoE effects")
-					.right("" + plugin.getGauntletBoss().getCrystals().size())
+					.left("Number of crystals")
+					.right("" + gauntletBoss.getCrystals().size())
 					.build());
-
-			return panelComponent.render(graphics);
 		}
-		return null;
+
+		return panelComponent.render(graphics);
 	}
 }

@@ -86,6 +86,8 @@ public class GauntletPlugin extends Plugin
 	@Getter
 	private Gauntlet gauntlet;
 
+	private NPC cachedBossNpc;
+
 	@Provides
 	GauntletConfig getConfig(ConfigManager configManager)
 	{
@@ -164,6 +166,7 @@ public class GauntletPlugin extends Plugin
 	private void reset()
 	{
 		gauntlet = null;
+		cachedBossNpc = null;
 		log.debug("Gauntlet session reset");
 	}
 
@@ -182,7 +185,8 @@ public class GauntletPlugin extends Plugin
 				return;
 			}
 
-			gauntlet = new Gauntlet(player);
+			gauntlet = new Gauntlet(player, cachedBossNpc);
+			cachedBossNpc = null;
 			log.debug("Gauntlet session started");
 		}
 	}
@@ -225,49 +229,38 @@ public class GauntletPlugin extends Plugin
 	@Subscribe
 	public void onAnimationChanged(AnimationChanged event)
 	{
-		if (!GauntletId.inGauntletRegion(client.getMapRegions(), client.isInInstancedRegion()) ||
-				gauntlet.getGauntletBoss() == null)
+		if (gauntlet == null)
 		{
 			return;
 		}
 
-		if (GauntletId.isGauntletAnimation(event.getActor().getAnimation()))
+		int animationId = event.getActor().getAnimation();
+		if (!GauntletId.isGauntletAnimation(animationId))
 		{
 			return;
 		}
 
-		gauntlet.onAnimation(event.getActor(), event.getActor().getAnimation());
-//
-//		// Phase switch
-//		if (alchemicalHydra.isPhaseSwitchAnimation(animationId))
-//		{
-//			alchemicalHydra.checkAlchemicalHydraPhaseSwitch(animationId, client.getTickCount());
-//			return;
-//		}
-//
-//		// Special attacks
-//		if (alchemicalHydra.getAttacksUntilSpecialAttack() == 0 && alchemicalHydra.isSpecialAttackAnimation(animationId))
-//		{
-//			alchemicalHydra.onSpecialAttack(animationId, client.getTickCount());
-//			return;
-//		}
-//
-//		// Allow the second part of the fire special attack
-//		if (animationId == AnimationID.ALCHEMICAL_HYDRA_RED_PHASE_FIRE_ATTACK)
-//		{
-//			alchemicalHydra.onSpecialAttack(animationId, client.getTickCount());
-//			return;
-//		}
-//
-//		// Regular attacks
-//		if (alchemicalHydra.isRegularAttackAnimation(animationId))
-//		{
-//			alchemicalHydra.onAttack(animationId, client.getTickCount(), false);
-//		}
+		gauntlet.onAnimation(event.getActor(), animationId, client.getTickCount());
 	}
 
+	@Subscribe
+	public void onProjectileSpawned(ProjectileSpawned event)
+	{
+		if (gauntlet == null)
+		{
+			return;
+		}
 
+		int projectileId = event.getProjectile().getId();
+		if (!GauntletBossId.isBossProjectile(projectileId))
+		{
+			return;
+		}
 
+		gauntlet.onProjectile(projectileId, client.getTickCount());
+	}
+
+	// DONE
 //	private void checkGauntletBossCrystalAttack()
 //	{
 //		if (gauntletBoss != null)
@@ -324,30 +317,42 @@ public class GauntletPlugin extends Plugin
 	@Subscribe
 	public void onNpcSpawned(NpcSpawned event)
 	{
-		if (GauntletId.inGauntletRegion(client.getMapRegions(), client.isInInstancedRegion()))
+		if (gauntlet == null && GauntletBossId.isBossNpc(event.getNpc().getId()))
 		{
-			NPC npc = event.getNpc();
-			if (GauntletBossId.isBossNpc(npc.getId()))
-			{
+			cachedBossNpc = event.getNpc();
+			log.debug("Cached boss spawn: {}", event.getNpc().getId());
+		}
 
-				gauntlet.bossSpawned(npc);
-			}
+		if (gauntlet == null)
+		{
+			return;
+		}
 
-			if (gauntlet.getGauntletBoss() == null)
-			{
-				return;
-			}
+		NPC npc = event.getNpc();
+		if (GauntletBossId.isBossNpc(npc.getId()))
+		{
+			gauntlet.bossSpawned(npc);
+		}
 
-			if (GauntletBossId.isCrystalNpc(npc.getId()))
-			{
-				gauntlet.getGauntletBoss().crystalSpawned(npc);
-			}
+		if (gauntlet.getGauntletBoss() == null)
+		{
+			return;
+		}
+
+		if (GauntletBossId.isCrystalNpc(npc.getId()))
+		{
+			gauntlet.getGauntletBoss().crystalSpawned(npc);
 		}
 	}
 
 	@Subscribe
 	public void onNpcDespawned(NpcDespawned event)
 	{
+		if (gauntlet == null)
+		{
+			return;
+		}
+
 		NPC npc = event.getNpc();
 		if (GauntletBossId.isBossNpc(npc.getId()))
 		{

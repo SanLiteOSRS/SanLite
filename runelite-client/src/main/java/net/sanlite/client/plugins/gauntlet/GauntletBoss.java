@@ -28,14 +28,13 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.NPC;
-import net.runelite.api.ProjectileID;
-import net.sanlite.client.plugins.gauntlet.id.GauntletBossId;
+import net.sanlite.client.plugins.gauntlet.id.GauntletPlayerId;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
-class GauntletBoss
+public class GauntletBoss
 {
 	static final int ATTACK_RATE = 5; // 5 ticks between each attack
 	static final int ATTACKS_PER_SWITCH = 4; // 4 attacks per style switch
@@ -58,47 +57,21 @@ class GauntletBoss
 	private int lastAttackTick;
 	@Getter
 	@Setter
-	private int recentProjectileId;
+	private int lastProjectileId;
 	@Getter
 	@Setter
-	private int remainingProjectileCount;
-	@Getter
-	@Setter
-	private boolean changedAttackStyleThisTick;
-	@Getter
-	@Setter
-	private boolean changedAttackStyleLastTick;
-	@Getter
-	@Setter
-	private int lastTickAnimation;
+	private int lastAttackAnimationId;
 
 	GauntletBoss(NPC npc)
 	{
 		this.npc = npc;
 		this.lastAttackTick = -100;
 		this.nextAttackTick = -100;
-		this.recentProjectileId = -1;
+		this.lastProjectileId = -1;
+		this.lastAttackAnimationId = -1;
 		this.attacksUntilSwitch = ATTACKS_PER_SWITCH;
 		this.currentAttackStyle = AttackStyle.RANGED;
 		this.crystals = new ArrayList<>();
-	}
-
-	static AttackStyle getAttackStyle(int projectileId)
-	{
-		switch (projectileId)
-		{
-			case GauntletBossId.Proj.MAGIC:
-			case GauntletBossId.Proj.CORRUPTED_MAGIC:
-			case GauntletBossId.Proj.DISABLE_PRAYER:
-			case GauntletBossId.Proj.CORRUPTED_DISABLE_PRAYER:
-				return AttackStyle.MAGIC;
-			case GauntletBossId.Proj.RANGED:
-			case GauntletBossId.Proj.CORRUPTED_RANGED:
-				return AttackStyle.RANGED;
-			default:
-				log.warn("Could not determine gauntlet boss attack style. Projectile id: {}", projectileId);
-				return null;
-		}
 	}
 
 	/**
@@ -109,10 +82,67 @@ class GauntletBoss
 	public void basicAttack(final AttackStyle attackStyle, int tickCount)
 	{
 		log.debug("Gauntlet boss {} attack. Tick: {} ", attackStyle, tickCount);
-		remainingProjectileCount = remainingProjectileCount - 1;
-		attacksUntilSwitch = attacksUntilSwitch - 1;
-		nextAttackTick = tickCount + GauntletBoss.ATTACK_RATE;
-		checkAttackStyleSwitch(attackStyle);
+		attack(tickCount, GauntletBoss.ATTACK_RATE, true);
+	}
+
+	// TODO: Separate disable prayer attack
+
+	public void crystalAttack(int tickCount)
+	{
+		log.debug("Gauntlet boss CRYSTAL attack. Tick: {} ", tickCount);
+		attack(tickCount, GauntletBoss.ATTACK_RATE, true);
+	}
+
+	public void trample(int tickCount)
+	{
+		log.debug("Gauntlet boss TRAMPLE attack. Tick: {} ", tickCount);
+		// TODO: Get attack rate
+		attack(tickCount, 5, false);
+	}
+
+	private void attack(int tickCount, int attackTickDelay, boolean isDecrementAttack)
+	{
+		if (tickCount != nextAttackTick)
+		{
+			log.warn("Gauntlet boss attack occurred at tick {}, before expected tick {}", tickCount, nextAttackTick);
+		}
+
+		lastAttackTick = tickCount;
+		nextAttackTick = tickCount + attackTickDelay;
+		if (isDecrementAttack)
+		{
+			attacksUntilSwitch = attacksUntilSwitch - 1;
+		}
+
+		if (attacksUntilSwitch <= 0)
+		{
+			switchStyle();
+		}
+	}
+
+	public void attacked(GauntletPlayerId.AttackStyle attackStyle, int tickCount)
+	{
+		// TODO: Implement
+		log.debug("Gauntlet boss was attacked with {} at tick {}", attackStyle, tickCount);
+	}
+
+	private void switchStyle()
+	{
+		AttackStyle newAttackStyle = getNextAttackStyle();
+		currentAttackStyle = newAttackStyle;
+		attacksUntilSwitch = GauntletBoss.ATTACKS_PER_SWITCH;
+		log.debug("Gauntlet boss switched attack style to: {}", newAttackStyle);
+	}
+
+	public void verifyStyleSwitch(GauntletBoss.AttackStyle attackStyle, int tickCount)
+	{
+		if (attacksUntilSwitch == GauntletBoss.ATTACKS_PER_SWITCH && attackStyle == currentAttackStyle)
+		{
+			return;
+		}
+
+		log.warn("Style switched to: {} at tick {} before remaining {} attacks occurred", attackStyle, tickCount, attacksUntilSwitch);
+		switchStyle();
 	}
 
 	public void crystalSpawned(NPC npc)
@@ -125,89 +155,19 @@ class GauntletBoss
 		crystals.remove(npc);
 	}
 
-	/**
-	 * Checks what the next the attack style should be.
-	 *
-	 * @param attackStyle Ranged or magic
-	 */
-	public void checkAttackStyleSwitch(final GauntletBoss.AttackStyle attackStyle)
+	private AttackStyle getNextAttackStyle()
 	{
-		// Check if attack style is not a special attack
-		if (attackStyle != GauntletBoss.AttackStyle.MAGIC && attackStyle != GauntletBoss.AttackStyle.RANGED)
+		if (currentAttackStyle == AttackStyle.RANGED)
 		{
-			return;
+			return AttackStyle.MAGIC;
 		}
 
-		// Sets the gauntlets boss starting attack style
-		if (getCurrentAttackStyle() == null)
-		{
-			setCurrentAttackStyle(attackStyle);
-		} else if (getAttacksUntilSwitch() <= 0 && getCurrentAttackStyle() == GauntletBoss.AttackStyle.MAGIC)
-		{
-			log.debug("Switch to ranged: " + getAttacksUntilSwitch());
-			setCurrentAttackStyle(GauntletBoss.AttackStyle.RANGED);
-			setAttacksUntilSwitch(GauntletBoss.ATTACKS_PER_SWITCH);
-			setChangedAttackStyleThisTick(true);
-		} else if (getAttacksUntilSwitch() <= 0 && getCurrentAttackStyle() == GauntletBoss.AttackStyle.RANGED)
-		{
-			log.debug("Switch to magic: " + getAttacksUntilSwitch());
-			setCurrentAttackStyle(GauntletBoss.AttackStyle.MAGIC);
-			setAttacksUntilSwitch(GauntletBoss.ATTACKS_PER_SWITCH);
-			setChangedAttackStyleThisTick(true);
-		}
-		// Correct attacks until switch when de-sync might occur (eg. plugin enabled during kill)
-		else if (getAttacksUntilSwitch() > 0 && getCurrentAttackStyle() != attackStyle)
-		{
-			log.debug("De-sync switch to: " + attackStyle + " | Attacks left: " + getAttacksUntilSwitch());
-			setCurrentAttackStyle(attackStyle);
-			setAttacksUntilSwitch(GauntletBoss.ATTACKS_PER_SWITCH - 1);
-			setChangedAttackStyleThisTick(true);
-		}
+		return AttackStyle.RANGED;
 	}
 
 	public enum AttackStyle
 	{
 		MAGIC,
 		RANGED
-	}
-
-	/**
-	 * Checks if the gauntlets boss recent projectile id matches an attack style.
-	 * If this is true onGauntletBossAttack is called and the remainingProjectileCount is
-	 * reduced by 1 to prevent more function calls than attacks fired.
-	 */
-	private void checkGauntletBossAttacks()
-	{
-		if (gauntletBoss != null)
-		{
-			int recentProjectileId = gauntletBoss.getRecentProjectileId();
-
-			if (recentProjectileId != -1 && gauntletBoss.getRemainingProjectileCount() > 0)
-			{
-				switch (recentProjectileId)
-				{
-					case GauntletBossId.Proj.MAGIC:
-					case ProjectileID.CORRUPTED_HUNLLEF_MAGIC_ATTACK:
-						log.debug("onAttack magic: " + gauntletBoss.getRemainingProjectileCount());
-						gauntletBoss.setRemainingProjectileCount(gauntletBoss.getRemainingProjectileCount() - 1);
-						gauntletBoss.basicAttack(GauntletBoss.AttackStyle.MAGIC, client.getTickCount());
-						break;
-					case ProjectileID.CRYSTALLINE_HUNLLEF_DISABLE_PRAYERS_ATTACK:
-					case ProjectileID.CORRUPTED_HUNLLEF_DISABLE_PRAYERS_ATTACK:
-						log.debug("onAttack magic disable prayers: " + gauntletBoss.getRemainingProjectileCount());
-						gauntletBoss.setRemainingProjectileCount(gauntletBoss.getRemainingProjectileCount() - 1);
-						gauntletBoss.basicAttack(GauntletBoss.AttackStyle.MAGIC, client.getTickCount());
-						break;
-					case ProjectileID.CRYSTALLINE_HUNLLEF_RANGED_ATTACK:
-					case ProjectileID.CORRUPTED_HUNLLEF_RANGED_ATTACK:
-						log.debug("onAttack ranged: " + gauntletBoss.getRemainingProjectileCount());
-						gauntletBoss.setRemainingProjectileCount(gauntletBoss.getRemainingProjectileCount() - 1);
-						gauntletBoss.basicAttack(GauntletBoss.AttackStyle.RANGED, client.getTickCount());
-						break;
-					default:
-						log.warn("Unreachable default case for checkGauntletBossAttacks | projectile id: {}", recentProjectileId);
-				}
-			}
-		}
 	}
 }

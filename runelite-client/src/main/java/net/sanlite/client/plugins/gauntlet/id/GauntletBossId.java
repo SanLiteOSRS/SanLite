@@ -1,9 +1,17 @@
 package net.sanlite.client.plugins.gauntlet.id;
 
+import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.NpcID;
+import net.sanlite.client.plugins.gauntlet.GauntletBoss;
 
+@Slf4j
 public final class GauntletBossId
 {
+	public static boolean isBossProjectile(int projectileId)
+	{
+		return isRangedAttack(projectileId) || isMagicAttack(projectileId);
+	}
+
 	public static boolean isRangedAttack(int projectileId)
 	{
 		return projectileId == Proj.RANGED || projectileId == Proj.CORRUPTED_RANGED;
@@ -15,6 +23,24 @@ public final class GauntletBossId
 				projectileId == Proj.DISABLE_PRAYER ||
 				projectileId == Proj.CORRUPTED_MAGIC ||
 				projectileId == Proj.CORRUPTED_DISABLE_PRAYER;
+	}
+
+	public static GauntletBoss.AttackStyle getAttackStyle(int projectileId)
+	{
+		switch (projectileId)
+		{
+			case GauntletBossId.Proj.MAGIC:
+			case GauntletBossId.Proj.CORRUPTED_MAGIC:
+			case GauntletBossId.Proj.DISABLE_PRAYER:
+			case GauntletBossId.Proj.CORRUPTED_DISABLE_PRAYER:
+				return GauntletBoss.AttackStyle.MAGIC;
+			case GauntletBossId.Proj.RANGED:
+			case GauntletBossId.Proj.CORRUPTED_RANGED:
+				return GauntletBoss.AttackStyle.RANGED;
+			default:
+				log.warn("Could not determine gauntlet boss attack style. Projectile id: {}", projectileId);
+				return null;
+		}
 	}
 
 	public static boolean isBossNpc(int npcId)
