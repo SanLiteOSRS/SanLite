@@ -33,12 +33,9 @@ import net.runelite.api.Perspective;
 import net.runelite.api.SkullIcon;
 import static net.runelite.api.SkullIcon.*;
 import net.runelite.api.coords.LocalPoint;
-import net.runelite.api.mixins.Copy;
-import net.runelite.api.mixins.Inject;
-import net.runelite.api.mixins.MethodHook;
-import net.runelite.api.mixins.Mixin;
-import net.runelite.api.mixins.Replace;
-import net.runelite.api.mixins.Shadow;
+import net.runelite.api.events.PlayerOverheadChanged;
+import net.runelite.api.events.SkullChanged;
+import net.runelite.api.mixins.*;
 import net.runelite.rs.api.*;
 
 @Mixin(RSPlayer.class)
@@ -49,6 +46,12 @@ public abstract class RSPlayerMixin implements RSPlayer
 
 	@Inject
 	private boolean friended;
+
+	@Inject
+	private int oldHeadIcon = -1;
+
+	@Inject
+	private int oldSkullIcon = -1;
 
 	@Inject
 	@Override
@@ -264,5 +267,32 @@ public abstract class RSPlayerMixin implements RSPlayer
 	void updateFriended()
 	{
 		friended = client.getFriendManager().isFriended(getRsName(), false);
+	}
+
+	@Inject
+	@FieldHook("headIconPrayer")
+	public void overheadChanged(int idx)
+	{
+		int overheadIcon = getRsOverheadIcon();
+		if (overheadIcon != oldHeadIcon)
+		{
+			final HeadIcon headIcon = getHeadIcon(overheadIcon);
+			client.getCallbacks().post(new PlayerOverheadChanged(this, getHeadIcon(oldHeadIcon), headIcon));
+		}
+
+		oldHeadIcon = overheadIcon;
+	}
+
+	@Inject
+	@FieldHook("headIconPk")
+	public void skullChanged(int idx)
+	{
+		final SkullIcon skullIcon = skullFromInt(getRsSkullIcon());
+		if (getRsSkullIcon() != oldSkullIcon)
+		{
+			client.getCallbacks().post(new SkullChanged(this, skullFromInt(getRsSkullIcon()), skullIcon));
+		}
+
+		oldSkullIcon = getRsSkullIcon();
 	}
 }
