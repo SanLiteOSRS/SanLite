@@ -536,8 +536,9 @@ public abstract class Actor extends Renderable {
 		descriptor = "(Ljy;IIB)[Lom;",
 		garbageValue = "49"
 	)
-	public static SpritePixels[] method1884(AbstractArchive var0, int var1, int var2) {
-		return !class290.method5208(var0, var1, var2) ? null : class163.method3229();
+	@Export("SpriteBuffer_getSprites")
+	public static SpritePixels[] SpriteBuffer_getSprites(AbstractArchive var0, int var1, int var2) {
+		return !class290.SpriteBuffer_loadSpritesFromArchive(var0, var1, var2) ? null : class163.SpriteBuffer_loadSpritesFromBuffer();
 	}
 
 	@ObfuscatedName("b")

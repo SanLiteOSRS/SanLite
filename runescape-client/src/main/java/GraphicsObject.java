@@ -192,7 +192,7 @@ public final class GraphicsObject extends Renderable {
 	)
 	static void method1646(Font var0, Font var1) {
 		if (WorldMapAreaData.worldSelectBackSprites == null) {
-			WorldMapAreaData.worldSelectBackSprites = ChatChannel.method1735(class270.archive8, "sl_back", "");
+			WorldMapAreaData.worldSelectBackSprites = ChatChannel.SpriteBuffer_getSpriteByName(class270.archive8, "sl_back", "");
 		}
 
 		IndexedSprite[] var2;

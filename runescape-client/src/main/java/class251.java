@@ -17,6 +17,6 @@ public class class251 {
 		garbageValue = "872502144"
 	)
 	public static Font method4840(AbstractArchive var0, AbstractArchive var1, int var2, int var3) {
-		return !class290.method5208(var0, var2, var3) ? null : class314.method5680(var1.takeFile(var2, var3));
+		return !class290.SpriteBuffer_loadSpritesFromArchive(var0, var2, var3) ? null : class314.method5680(var1.takeFile(var2, var3));
 	}
 }

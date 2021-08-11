@@ -1,3 +1,4 @@
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -16,7 +17,8 @@ public class class163 {
 		descriptor = "(I)[Lom;",
 		garbageValue = "1426518701"
 	)
-	static SpritePixels[] method3229() {
+	@Export("SpriteBuffer_loadSpritesFromBuffer")
+	static SpritePixels[] SpriteBuffer_loadSpritesFromBuffer() {
 		SpritePixels[] var0 = new SpritePixels[class398.SpriteBuffer_spriteCount];
 
 		for (int var1 = 0; var1 < class398.SpriteBuffer_spriteCount; ++var1) {

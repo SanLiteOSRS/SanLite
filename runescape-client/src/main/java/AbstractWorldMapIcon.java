@@ -454,37 +454,37 @@ public abstract class AbstractWorldMapIcon {
 						}
 
 						if (UserComparator4.headIconPkSprites == null) {
-							UserComparator4.headIconPkSprites = Actor.method1884(class270.archive8, WorldMapAreaData.spriteIds.headIconsPk, 0);
+							UserComparator4.headIconPkSprites = Actor.SpriteBuffer_getSprites(class270.archive8, WorldMapAreaData.spriteIds.headIconsPk, 0);
 						} else {
 							++var21;
 						}
 
 						if (StudioGame.headIconPrayerSprites == null) {
-							StudioGame.headIconPrayerSprites = Actor.method1884(class270.archive8, WorldMapAreaData.spriteIds.field3910, 0);
+							StudioGame.headIconPrayerSprites = Actor.SpriteBuffer_getSprites(class270.archive8, WorldMapAreaData.spriteIds.field3910, 0);
 						} else {
 							++var21;
 						}
 
 						if (SpotAnimationDefinition.headIconHintSprites == null) {
-							SpotAnimationDefinition.headIconHintSprites = Actor.method1884(class270.archive8, WorldMapAreaData.spriteIds.field3912, 0);
+							SpotAnimationDefinition.headIconHintSprites = Actor.SpriteBuffer_getSprites(class270.archive8, WorldMapAreaData.spriteIds.field3912, 0);
 						} else {
 							++var21;
 						}
 
 						if (FloorUnderlayDefinition.mapMarkerSprites == null) {
-							FloorUnderlayDefinition.mapMarkerSprites = Actor.method1884(class270.archive8, WorldMapAreaData.spriteIds.field3908, 0);
+							FloorUnderlayDefinition.mapMarkerSprites = Actor.SpriteBuffer_getSprites(class270.archive8, WorldMapAreaData.spriteIds.field3908, 0);
 						} else {
 							++var21;
 						}
 
 						if (Varcs.crossSprites == null) {
-							Varcs.crossSprites = Actor.method1884(class270.archive8, WorldMapAreaData.spriteIds.field3914, 0);
+							Varcs.crossSprites = Actor.SpriteBuffer_getSprites(class270.archive8, WorldMapAreaData.spriteIds.field3914, 0);
 						} else {
 							++var21;
 						}
 
 						if (class126.mapDotSprites == null) {
-							class126.mapDotSprites = Actor.method1884(class270.archive8, WorldMapAreaData.spriteIds.field3913, 0);
+							class126.mapDotSprites = Actor.SpriteBuffer_getSprites(class270.archive8, WorldMapAreaData.spriteIds.field3913, 0);
 						} else {
 							++var21;
 						}

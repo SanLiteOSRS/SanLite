@@ -88,10 +88,11 @@ public class ChatChannel {
 		descriptor = "(Ljy;Ljava/lang/String;Ljava/lang/String;B)[Lom;",
 		garbageValue = "-4"
 	)
-	public static SpritePixels[] method1735(AbstractArchive var0, String var1, String var2) {
+	@Export("SpriteBuffer_getSpritePixelsByName")
+	public static SpritePixels[] SpriteBuffer_getSpriteByName(AbstractArchive var0, String var1, String var2) {
 		int var3 = var0.getGroupId(var1);
 		int var4 = var0.getFileId(var3, var2);
-		return Actor.method1884(var0, var3, var4);
+		return Actor.SpriteBuffer_getSprites(var0, var3, var4);
 	}
 
 	@ObfuscatedName("fl")
