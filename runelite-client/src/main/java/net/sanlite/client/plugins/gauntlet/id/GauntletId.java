@@ -22,7 +22,10 @@ public class GauntletId
 				animationId == GauntletBossId.Anim.SUMMON_CRYSTAL_NPC ||
 				animationId == GauntletPlayerId.Anim.BOW_ATTACK ||
 				animationId == GauntletPlayerId.Anim.STAFF_ATTACK ||
-				animationId == GauntletPlayerId.Anim.HALBERD_ATTACK;
+				animationId == GauntletPlayerId.Anim.HALBERD_ATTACK ||
+				animationId == GauntletPlayerId.Anim.SCEPTRE_ATTACK ||
+				animationId == GauntletPlayerId.Anim.PUNCH_ATTACK ||
+				animationId == GauntletPlayerId.Anim.KICK_ATTACK;
 	}
 
 	public static class Region

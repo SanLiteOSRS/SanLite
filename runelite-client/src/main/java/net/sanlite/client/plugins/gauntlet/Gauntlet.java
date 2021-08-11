@@ -137,11 +137,6 @@ class Gauntlet
 	{
 		if (actor instanceof NPC)
 		{
-			if (!GauntletBossId.isBossNpc(((NPC) actor).getId()))
-			{
-				return;
-			}
-
 			switch (animationId)
 			{
 				case GauntletBossId.Anim.TRAMPLE_ATTACK:
@@ -165,14 +160,10 @@ class Gauntlet
 				default:
 					log.warn("Could not determine gauntlet boss animation. Unknown animation id: {}", animationId);
 			}
-		} else if (actor instanceof Player)
+		}
+		else if (actor instanceof Player)
 		{
 			if (!GauntletPlayerId.isPlayerAttack(animationId))
-			{
-				return;
-			}
-
-			if (actor.getInteracting() != gauntletBoss.getNpc())
 			{
 				return;
 			}

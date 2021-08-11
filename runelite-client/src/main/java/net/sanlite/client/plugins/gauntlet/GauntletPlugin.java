@@ -157,7 +157,8 @@ public class GauntletPlugin extends Plugin
 		if (config.showDebugOverlay())
 		{
 			overlayManager.add(debugOverlay);
-		} else if (!config.showDebugOverlay())
+		}
+		else if (!config.showDebugOverlay())
 		{
 			overlayManager.remove(debugOverlay);
 		}
@@ -170,7 +171,7 @@ public class GauntletPlugin extends Plugin
 		log.debug("Gauntlet session reset");
 	}
 
-	private void checkGauntletStatus()
+	private void updateGauntletStatus()
 	{
 		boolean isGauntletEntered = Gauntlet.isGauntletEntered(client.getVar(GAUNTLET_ENTERED));
 		if (gauntlet != null && !isGauntletEntered)
@@ -199,8 +200,7 @@ public class GauntletPlugin extends Plugin
 			return;
 		}
 
-		checkGauntletStatus();
-
+		updateGauntletStatus();
 		if (gauntlet == null)
 		{
 			return;
@@ -236,6 +236,11 @@ public class GauntletPlugin extends Plugin
 
 		int animationId = event.getActor().getAnimation();
 		if (!GauntletId.isGauntletAnimation(animationId))
+		{
+			return;
+		}
+
+		if (!gauntlet.isInBossRoom())
 		{
 			return;
 		}
@@ -335,7 +340,7 @@ public class GauntletPlugin extends Plugin
 
 			if (GauntletResourceSpot.isResourceSpot(gameObject.getId(), resourceSpot) && resourceSpotEnabledConfigs.get(resourceSpot))
 			{
-				log.debug("Gauntlet resource spot spawned: {}", gameObject.getId());
+//				log.debug("Gauntlet resource spot spawned: {}", gameObject.getId());
 				gauntlet.resourceSpotSpawned(gameObject, client.getCameraX(), client.getCameraY());
 			}
 		}
@@ -356,8 +361,31 @@ public class GauntletPlugin extends Plugin
 			return;
 		}
 
-		log.debug("Gauntlet resource spot despawned: {}", gameObject.getId());
+//		log.debug("Gauntlet resource spot despawned: {}", gameObject.getId());
 		gauntlet.resourceSpotDespawned(gameObject);
+	}
+
+	@Subscribe
+	public void onNpcOverheadChanged(NpcOverheadChanged event)
+	{
+		log.debug("1 ||| NPC changed overhead from {} to {}", event.getOldOverheadIcon(), event.getNewOverheadIcon());
+		if (gauntlet == null || gauntlet.getGauntletBoss() == null)
+		{
+			return;
+		}
+
+		final NPCComposition npcComposition = event.getNpcComposition();
+		final HeadIcon overheadIcon = event.getNewOverheadIcon();
+		if (npcComposition == null || overheadIcon == null)
+		{
+			return;
+		}
+
+		log.debug("NPC {} changed overhead from {} to {}", npcComposition.getId(), event.getOldOverheadIcon(), overheadIcon);
+		if (GauntletBossId.isBossNpc(npcComposition.getId()))
+		{
+			gauntlet.getGauntletBoss().switchProtectedStyle(overheadIcon);
+		}
 	}
 
 	Color getResourceSpotColor(int gameObjectId)

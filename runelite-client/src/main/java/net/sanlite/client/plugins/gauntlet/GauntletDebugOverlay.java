@@ -105,6 +105,11 @@ public class GauntletDebugOverlay extends Overlay
 					.build());
 
 			panelComponent.getChildren().add(LineComponent.builder()
+					.left("Attacks until overhead switch")
+					.right("" + gauntletBoss.getAttacksUntilOverheadSwitch())
+					.build());
+
+			panelComponent.getChildren().add(LineComponent.builder()
 					.left("Next attack tick")
 					.right("" + gauntletBoss.getNextAttackTick())
 					.build());
