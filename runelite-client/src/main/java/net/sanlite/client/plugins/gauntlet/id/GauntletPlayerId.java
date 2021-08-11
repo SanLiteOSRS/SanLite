@@ -1,6 +1,7 @@
 package net.sanlite.client.plugins.gauntlet.id;
 
 import lombok.extern.slf4j.Slf4j;
+import net.sanlite.client.plugins.gauntlet.GauntletBoss;
 
 @Slf4j
 public final class GauntletPlayerId
@@ -28,30 +29,23 @@ public final class GauntletPlayerId
 				animationId == Anim.KICK_ATTACK;
 	}
 
-	public static AttackStyle getAttackStyle(int animationId)
+	public static GauntletBoss.ProtectedStyle getProtectedStyleForAnimation(int animationId)
 	{
 		switch (animationId)
 		{
 			case Anim.BOW_ATTACK:
-				return AttackStyle.RANGED;
+				return GauntletBoss.ProtectedStyle.RANGED;
 			case Anim.HALBERD_ATTACK:
 			case Anim.SCEPTRE_ATTACK:
 			case Anim.PUNCH_ATTACK:
 			case Anim.KICK_ATTACK:
-				return AttackStyle.MELEE;
+				return GauntletBoss.ProtectedStyle.MELEE;
 			case Anim.STAFF_ATTACK:
-				return AttackStyle.MAGIC;
+				return GauntletBoss.ProtectedStyle.MAGIC;
 			default:
-				log.warn("Could not determine gauntlet player attack style. Animation id: {}", animationId);
+				log.warn("Could not determine gauntlet player protected style. Animation id: {}", animationId);
 				return null;
 		}
-	}
-
-	public enum AttackStyle
-	{
-		MAGIC,
-		RANGED,
-		MELEE
 	}
 
 	public static class Anim

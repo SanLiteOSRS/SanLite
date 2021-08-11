@@ -353,7 +353,7 @@ public enum ModeWhere implements Enumerated {
 		Login.loginBoxX = Login.xPadding + 202;
 		WorldMapSection2.loginBoxCenter = Login.loginBoxX + 180;
 		if (Login.worldSelectOpen) {
-			GraphicsObject.method1646(var0, var1);
+			GraphicsObject.drawWorldSelectScreen(var0, var1);
 		} else {
 			Login.leftTitleSprite.drawAt(Login.xPadding, 0);
 			Login.rightTitleSprite.drawAt(Login.xPadding + 382, 0);

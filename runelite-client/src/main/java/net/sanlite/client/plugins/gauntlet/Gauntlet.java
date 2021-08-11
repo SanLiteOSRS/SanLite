@@ -129,6 +129,7 @@ class Gauntlet
 			return;
 		}
 
+		gauntletBoss.setLastProjectileId(projectileId);
 		gauntletBoss.basicAttack(attackStyle, tickCount);
 	}
 
@@ -144,16 +145,20 @@ class Gauntlet
 			switch (animationId)
 			{
 				case GauntletBossId.Anim.TRAMPLE_ATTACK:
+					gauntletBoss.setLastAttackAnimationId(animationId);
 					gauntletBoss.trample(tickCount);
 					break;
 				case GauntletBossId.Anim.SUMMON_CRYSTAL_NPC:
+					gauntletBoss.setLastAttackAnimationId(animationId);
 					gauntletBoss.crystalAttack(tickCount);
 					break;
 				case GauntletBossId.Anim.SWITCH_TO_MAGIC:
-					gauntletBoss.verifyStyleSwitch(GauntletBoss.AttackStyle.MAGIC, tickCount);
+					gauntletBoss.setLastAttackAnimationId(animationId);
+					gauntletBoss.verifyAttackStyleSwitch(GauntletBoss.AttackStyle.MAGIC, tickCount);
 					break;
 				case GauntletBossId.Anim.SWITCH_TO_RANGED:
-					gauntletBoss.verifyStyleSwitch(GauntletBoss.AttackStyle.RANGED, tickCount);
+					gauntletBoss.setLastAttackAnimationId(animationId);
+					gauntletBoss.verifyAttackStyleSwitch(GauntletBoss.AttackStyle.RANGED, tickCount);
 					break;
 				case GauntletBossId.Anim.PROJECTILE_ATTACK:
 					break;
@@ -172,7 +177,7 @@ class Gauntlet
 				return;
 			}
 
-			gauntletBoss.attacked(GauntletPlayerId.getAttackStyle(animationId), tickCount);
+			gauntletBoss.attacked(GauntletPlayerId.getProtectedStyleForAnimation(animationId), tickCount);
 		}
 	}
 

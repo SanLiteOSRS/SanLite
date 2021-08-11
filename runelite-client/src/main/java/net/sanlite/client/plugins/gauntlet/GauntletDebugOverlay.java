@@ -95,6 +95,11 @@ public class GauntletDebugOverlay extends Overlay
 					.build());
 
 			panelComponent.getChildren().add(LineComponent.builder()
+					.left("Current protected style")
+					.right("" + gauntletBoss.getCurrentProtectedStyle())
+					.build());
+
+			panelComponent.getChildren().add(LineComponent.builder()
 					.left("Attacks until switch")
 					.right("" + gauntletBoss.getAttacksUntilSwitch())
 					.build());
@@ -122,6 +127,21 @@ public class GauntletDebugOverlay extends Overlay
 			panelComponent.getChildren().add(LineComponent.builder()
 					.left("Number of crystals")
 					.right("" + gauntletBoss.getCrystals().size())
+					.build());
+
+			panelComponent.getChildren().add(TitleComponent.builder()
+					.color(Color.ORANGE)
+					.text("Player")
+					.build());
+
+			panelComponent.getChildren().add(LineComponent.builder()
+					.left("Last attacked style")
+					.right("" + gauntletBoss.getLastAttackedStyle())
+					.build());
+
+			panelComponent.getChildren().add(LineComponent.builder()
+					.left("Last attacked tick")
+					.right("" + gauntletBoss.getLastAttackedTick())
 					.build());
 		}
 

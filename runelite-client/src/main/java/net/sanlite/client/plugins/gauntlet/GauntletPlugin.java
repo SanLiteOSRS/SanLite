@@ -260,60 +260,6 @@ public class GauntletPlugin extends Plugin
 		gauntlet.onProjectile(projectileId, client.getTickCount());
 	}
 
-	// DONE
-//	private void checkGauntletBossCrystalAttack()
-//	{
-//		if (gauntletBoss != null)
-//		{
-//			int animationId = gauntletBoss.getNpc().getAnimation();
-//			if (animationId != gauntletBoss.getLastTickAnimation())
-//			{
-//				int ticksSinceLastAttack = client.getTickCount() - gauntletBoss.getLastAttackTick();
-//				if (animationId == AnimationID.HUNLLEF_SUMMON_CRYSTAL_NPC && ticksSinceLastAttack >= 4)
-//				{
-//					log.debug("onAttack crystal");
-//					gauntletBoss.setAttacksUntilSwitch(gauntletBoss.getAttacksUntilSwitch() - 1);
-//					gauntletBoss.checkAttackStyleSwitch(gauntletBoss.getCurrentAttackStyle());
-//					gauntletBoss.setLastAttackTick(client.getTickCount());
-//					gauntletBoss.setNextAttackTick(client.getTickCount() + GauntletBoss.ATTACK_RATE);
-//				}
-//			}
-//		}
-//	}
-
-//	@Subscribe
-//	public void onProjectileMoved(ProjectileMoved event)
-//	{
-//		if (inGauntletInstance() && gauntletBoss != null)
-//		{
-//			Projectile projectile = event.getProjectile();
-//			int projectileId = projectile.getId();
-//
-//			if (!gauntletBoss.isGauntletBossRangedAttack(projectileId) && !gauntletBoss.isGauntletBossMagicAttack(projectileId))
-//			{
-//				return;
-//			}
-//
-//			// The event fires once before the projectile starts moving,
-//			// and we only want to check each projectile once
-//			if (client.getGameCycle() >= projectile.getStartMovementCycle())
-//			{
-//				return;
-//			}
-//
-//			int ticksSinceLastAttack = client.getTickCount() - gauntletBoss.getLastAttackTick();
-//			log.debug(client.getTickCount() + " | Projectile | ticks since last attack: " + ticksSinceLastAttack);
-//
-//			if (ticksSinceLastAttack >= 4 || gauntletBoss.getLastAttackTick() == -100)
-//			{
-//				log.debug(client.getTickCount() + " | Projectile confirmed: " + projectileId);
-//				gauntletBoss.setRecentProjectileId(projectile.getId());
-//				gauntletBoss.setLastAttackTick(client.getTickCount());
-//				gauntletBoss.setRemainingProjectileCount(gauntletBoss.getRemainingProjectileCount() + 1);
-//			}
-//		}
-//	}
-
 	@Subscribe
 	public void onNpcSpawned(NpcSpawned event)
 	{
