@@ -75,9 +75,9 @@ public class GauntletOverlay extends Overlay
 		return null;
 	}
 
-	private BufferedImage getProtectedStyleIcon(GauntletBoss.ProtectedStyle protectedStyle)
+	private BufferedImage getProtectedStyleIcon(GauntletBoss.ProtectionPrayer protectionPrayer)
 	{
-		switch (protectedStyle)
+		switch (protectionPrayer)
 		{
 			case RANGED:
 				return iconManager.getSkillImage(Skill.RANGED);

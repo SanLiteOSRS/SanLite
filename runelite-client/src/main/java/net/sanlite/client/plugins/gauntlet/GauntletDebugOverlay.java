@@ -26,6 +26,7 @@ package net.sanlite.client.plugins.gauntlet;
 
 
 import net.runelite.api.Client;
+import net.runelite.api.NPCComposition;
 import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayPosition;
 import net.runelite.client.ui.overlay.components.LineComponent;
@@ -96,13 +97,17 @@ public class GauntletDebugOverlay extends Overlay
 
 			panelComponent.getChildren().add(LineComponent.builder()
 					.left("Current protected style")
-					.right("" + gauntletBoss.getCurrentProtectedStyle())
+					.right("" + gauntletBoss.getCurrentProtectionPrayer())
 					.build());
 
-			panelComponent.getChildren().add(LineComponent.builder()
-					.left("Real time protected style")
-					.right("" + gauntletBoss.getNpc().getComposition().getOverheadIcon())
-					.build());
+			NPCComposition bossComposition = gauntletBoss.getNpc().getComposition();
+			if (bossComposition != null)
+			{
+				panelComponent.getChildren().add(LineComponent.builder()
+						.left("Real time protected style")
+						.right("" + bossComposition.getOverheadIcon())
+						.build());
+			}
 
 			panelComponent.getChildren().add(LineComponent.builder()
 					.left("Attacks until switch")

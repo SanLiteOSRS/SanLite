@@ -61,11 +61,11 @@ public interface GauntletConfig extends Config
 
 	@ConfigItem(
 			position = 2,
-			keyName = "showProtectedStyleCounter",
-			name = "Show protected style counter",
+			keyName = "showProtectionPrayerCounter",
+			name = "Show protection prayer counter",
 			description = "Displays a count until the the gauntlet boss next switches it's protection prayer"
 	)
-	default boolean showProtectedStyleCounter()
+	default boolean showProtectionPrayerCounter()
 	{
 		return true;
 	}

@@ -37,6 +37,8 @@ import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.ui.overlay.OverlayManager;
 import net.sanlite.client.game.SoundManager;
+import net.sanlite.client.plugins.gauntlet.event.BossAttackStyleSwitched;
+import net.sanlite.client.plugins.gauntlet.event.GauntletEvent;
 import net.sanlite.client.plugins.gauntlet.id.GauntletBossId;
 import net.sanlite.client.plugins.gauntlet.id.GauntletId;
 import net.sanlite.client.util.SoundUtil;
@@ -62,7 +64,7 @@ public class GauntletPlugin extends Plugin
 {
 	private final Clip magicAudioClip = SoundUtil.getResourceStreamFromClass(getClass(), "magic.wav");
 	private final Clip rangedAudioClip = SoundUtil.getResourceStreamFromClass(getClass(), "ranged.wav");
-	private final Clip disablePrayerAudioClip = SoundUtil.getResourceStreamFromClass(getClass(), "prayer_disabled.wav");
+	private final Clip prayerDisabledAudioClip = SoundUtil.getResourceStreamFromClass(getClass(), "prayer_disabled.wav");
 	private final Clip overheadSwitchAudioClip = SoundUtil.getResourceStreamFromClass(getClass(), "overhead_switch.wav");
 
 	private Map<GauntletResourceSpot, Boolean> resourceSpotEnabledConfigs;
@@ -219,8 +221,7 @@ public class GauntletPlugin extends Plugin
 				return;
 			}
 
-			gauntlet = new Gauntlet(player, cachedBossNpc,
-					(attackStyle) -> playAttackStyleSwitchSound(attackStyle, config.playSoundOnAttackStyleSwitch()));
+			gauntlet = new Gauntlet(player, cachedBossNpc, this::onGauntletEvent);
 			cachedBossNpc = null;
 			log.debug("Gauntlet session started");
 		}
@@ -296,8 +297,7 @@ public class GauntletPlugin extends Plugin
 			return;
 		}
 
-		gauntlet.onProjectile(projectileId, client.getTickCount(),
-				() -> playSoundIfEnabled(disablePrayerAudioClip, config.playSoundOnDisablePrayerAttack()));
+		gauntlet.onProjectile(projectileId, client.getTickCount());
 	}
 
 	@Subscribe
@@ -400,8 +400,6 @@ public class GauntletPlugin extends Plugin
 		gauntlet.resourceSpotDespawned(gameObject);
 	}
 
-	// TODO: Create callback event handler
-
 	@Subscribe
 	public void onHitsplatApplied(HitsplatApplied event)
 	{
@@ -414,16 +412,8 @@ public class GauntletPlugin extends Plugin
 		if (actor instanceof NPC && GauntletBossId.isBossNpc(((NPC) actor).getId()))
 		{
 			log.debug("Hitsplat applied on gauntlet boss at tick: {}", client.getTickCount());
-			gauntlet.getGauntletBoss().checkProtectedStyle(client.getTickCount());
+			gauntlet.getGauntletBoss().checkProtectionPrayer(client.getTickCount());
 		}
-
-//
-//		log.debug("NPC {} changed overhead from {} to {}", npcComposition.getId(), event.getOldOverheadIcon(), overheadIcon);
-//		if (GauntletBossId.isBossNpc(npcComposition.getId()))
-//		{
-//			gauntlet.getGauntletBoss().switchProtectedStyle(overheadIcon);
-//			playSoundIfEnabled(overheadSwitchAudioClip, config.playSoundOnOverheadSwitch());
-//		}
 	}
 
 	// TODO: use colors config map
@@ -452,9 +442,23 @@ public class GauntletPlugin extends Plugin
 		}
 	}
 
-	private void playAttackStyleSwitchSound(GauntletBoss.AttackStyle attackStyle, boolean isConfigEnabled)
+	private void onGauntletEvent(GauntletEvent event)
 	{
-		playSoundIfEnabled(getAudioClipForAttackStyle(attackStyle), isConfigEnabled);
+		switch (event.getType())
+		{
+			case ATTACK_STYLE_SWITCHED:
+				GauntletBoss.AttackStyle newAttackStyle = ((BossAttackStyleSwitched) event).getNewAttackStyle();
+				playSoundIfEnabled(getAudioClipForAttackStyle(newAttackStyle), config.playSoundOnAttackStyleSwitch());
+				break;
+			case PROTECTION_PRAYER_SWITCHED:
+				playSoundIfEnabled(overheadSwitchAudioClip, config.playSoundOnOverheadSwitch());
+				break;
+			case PLAYER_PRAYER_DISABLED:
+				playSoundIfEnabled(prayerDisabledAudioClip, config.playSoundOnDisablePrayerAttack());
+				break;
+			default:
+				log.warn("Unknown gauntlet event: {}", event.getType());
+		}
 	}
 
 	private void playSoundIfEnabled(Clip soundClip, boolean isConfigEnabled)

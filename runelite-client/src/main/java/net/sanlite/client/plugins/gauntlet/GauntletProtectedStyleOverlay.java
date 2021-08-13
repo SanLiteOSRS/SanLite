@@ -58,12 +58,12 @@ public class GauntletProtectedStyleOverlay extends Overlay
 		}
 
 		GauntletBoss gauntletBoss = gauntlet.getGauntletBoss();
-		if (gauntletBoss == null || gauntletBoss.getCurrentProtectedStyle() == null)
+		if (gauntletBoss == null || gauntletBoss.getCurrentProtectionPrayer() == null)
 		{
 			return null;
 		}
 
-		if (config.showProtectedStyleCounter())
+		if (config.showProtectionPrayerCounter())
 		{
 			renderProtectedStyleCounter(graphics, gauntletBoss);
 		}

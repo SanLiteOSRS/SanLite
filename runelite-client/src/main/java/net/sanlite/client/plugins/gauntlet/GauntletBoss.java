@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019, Siraz <https://github.com/Sirazzz>
+ * Copyright (c) 2021, Siraz <https://github.com/Sirazzz>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,6 +30,10 @@ import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.HeadIcon;
 import net.runelite.api.NPC;
 import net.runelite.api.NPCComposition;
+import net.sanlite.client.plugins.gauntlet.event.BossAttackStyleSwitched;
+import net.sanlite.client.plugins.gauntlet.event.BossProtectionPrayerSwitched;
+import net.sanlite.client.plugins.gauntlet.event.GauntletEvent;
+import net.sanlite.client.plugins.gauntlet.event.PlayerPrayerDisabled;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,14 +45,16 @@ public class GauntletBoss
 	static final int ATTACK_RATE = 5; // 5 ticks between each attack
 	static final int ATTACKS_PER_SWITCH = 4; // 4 attacks per style switch
 	static final int ATTACKS_PER_OVERHEAD_SWITCH = 6; // 6 attacks per overhead switch
+
 	@Getter
 	private final NPC npc;
 	@Getter
+	private final List<NPC> crystals;
+	private final Consumer<GauntletEvent> emitGauntletEvent;
+	@Getter
 	private AttackStyle currentAttackStyle;
 	@Getter
-	private ProtectedStyle currentProtectedStyle;
-	@Getter
-	private final List<NPC> crystals;
+	private ProtectionPrayer currentProtectionPrayer;
 	@Getter
 	private int attacksUntilSwitch;
 	@Getter
@@ -60,7 +66,7 @@ public class GauntletBoss
 	@Getter
 	private int lastAttackedTick;
 	@Getter
-	private ProtectedStyle lastAttackedStyle;
+	private ProtectionPrayer lastAttackedStyle;
 	@Getter
 	@Setter
 	private int lastProjectileId;
@@ -68,9 +74,8 @@ public class GauntletBoss
 	@Setter
 	private int lastAttackAnimationId;
 
-	private final Consumer<AttackStyle> onAttackStyleSwitch;
 
-	GauntletBoss(NPC npc, Consumer<AttackStyle> onAttackStyleSwitch)
+	GauntletBoss(NPC npc, Consumer<GauntletEvent> emitGauntletBossEvent)
 	{
 		this.npc = npc;
 		this.lastAttackTick = -100;
@@ -81,10 +86,45 @@ public class GauntletBoss
 		this.attacksUntilSwitch = ATTACKS_PER_SWITCH;
 		this.attacksUntilOverheadSwitch = ATTACKS_PER_OVERHEAD_SWITCH;
 		this.currentAttackStyle = GauntletBoss.AttackStyle.RANGED;
-		this.currentProtectedStyle = null;
+		this.currentProtectionPrayer = null;
 		this.lastAttackedStyle = null;
 		this.crystals = new ArrayList<>();
-		this.onAttackStyleSwitch = onAttackStyleSwitch;
+		this.emitGauntletEvent = emitGauntletBossEvent;
+	}
+
+	public static ProtectionPrayer getProtectedStyle(NPC npc)
+	{
+		NPCComposition composition = npc.getComposition();
+		if (composition == null)
+		{
+			log.warn("Could not determine protected style because NPC: {} has null composition", npc.getName());
+			return null;
+		}
+
+		HeadIcon overheadIcon = composition.getOverheadIcon();
+		if (overheadIcon == null)
+		{
+			log.warn("Could not determine protected style because NPC: {} has null overhead icon", npc.getName());
+			return null;
+		}
+
+		return getProtectedStyle(overheadIcon);
+	}
+
+	public static ProtectionPrayer getProtectedStyle(HeadIcon overheadIcon)
+	{
+		switch (overheadIcon)
+		{
+			case RANGED:
+				return ProtectionPrayer.RANGED;
+			case MELEE:
+				return ProtectionPrayer.MELEE;
+			case MAGIC:
+				return ProtectionPrayer.MAGIC;
+			default:
+				log.warn("Could not determine gauntlet boss protected style. Head icon ordinal: {}", overheadIcon.ordinal());
+				return null;
+		}
 	}
 
 	/**
@@ -102,6 +142,7 @@ public class GauntletBoss
 	{
 		log.debug("Gauntlet boss disable prayer attack. Tick: {} ", tickCount);
 		attack(tickCount, true);
+		emitGauntletEvent.accept(new PlayerPrayerDisabled());
 	}
 
 	void crystalAttack(int tickCount)
@@ -136,7 +177,7 @@ public class GauntletBoss
 		}
 	}
 
-	void attacked(ProtectedStyle attackStyle, int tickCount)
+	void attacked(ProtectionPrayer attackStyle, int tickCount)
 	{
 		if (lastAttackedTick >= tickCount)
 		{
@@ -145,42 +186,43 @@ public class GauntletBoss
 		}
 
 		// Set protected style for first attack on boss
-		if (currentProtectedStyle == null)
+		if (currentProtectionPrayer == null)
 		{
-			currentProtectedStyle = getProtectedStyle(npc);
+			currentProtectionPrayer = getProtectedStyle(npc);
 		}
 
-		log.debug("Gauntlet boss was attacked with {} on protect {} at tick {}", attackStyle, currentProtectedStyle, tickCount);
+		log.debug("Gauntlet boss was attacked with {} on protect {} at tick {}", attackStyle, currentProtectionPrayer, tickCount);
 		lastAttackedStyle = attackStyle;
 
-		if (attackStyle != currentProtectedStyle)
+		if (attackStyle != currentProtectionPrayer)
 		{
 			lastAttackedTick = tickCount;
 			attacksUntilOverheadSwitch = attacksUntilOverheadSwitch - 1;
 		}
 	}
 
-	void checkProtectedStyle(int tickCount)
+	void checkProtectionPrayer(int tickCount)
 	{
-		ProtectedStyle protectedStyle = getProtectedStyle(npc);
-		log.debug("Boss attacked. Current style: {}, checked style: {}, tick: {}", currentProtectedStyle, protectedStyle, tickCount);
-		if (protectedStyle != currentProtectedStyle)
+		ProtectionPrayer protectionPrayer = getProtectedStyle(npc);
+		log.debug("Boss attacked. Current style: {}, checked style: {}, tick: {}", currentProtectionPrayer, protectionPrayer, tickCount);
+		if (protectionPrayer != currentProtectionPrayer)
 		{
 			if (attacksUntilOverheadSwitch > 0)
 			{
 				log.warn("Gauntlet boss switched to protected style {} early at tick {} with {} remaining attacks",
-						protectedStyle, tickCount, attacksUntilOverheadSwitch);
+						protectionPrayer, tickCount, attacksUntilOverheadSwitch);
 			}
 
-			switchProtectedStyle(protectedStyle);
+			switchProtectionPrayer(protectionPrayer);
 		}
 	}
 
-	private void switchProtectedStyle(ProtectedStyle protectedStyle)
+	private void switchProtectionPrayer(ProtectionPrayer protectionPrayer)
 	{
-		currentProtectedStyle = protectedStyle;
+		currentProtectionPrayer = protectionPrayer;
 		attacksUntilOverheadSwitch = GauntletBoss.ATTACKS_PER_OVERHEAD_SWITCH;
-		log.debug("Gauntlet boss switched protect style to: {}", currentProtectedStyle);
+		emitGauntletEvent.accept(new BossProtectionPrayerSwitched(protectionPrayer));
+		log.debug("Gauntlet boss switched protect style to: {}", currentProtectionPrayer);
 	}
 
 	private void switchAttackStyle()
@@ -188,7 +230,7 @@ public class GauntletBoss
 		AttackStyle newAttackStyle = getNextAttackStyle();
 		currentAttackStyle = newAttackStyle;
 		attacksUntilSwitch = GauntletBoss.ATTACKS_PER_SWITCH;
-		onAttackStyleSwitch.accept(currentAttackStyle);
+		emitGauntletEvent.accept(new BossAttackStyleSwitched(newAttackStyle));
 		log.debug("Gauntlet boss switched attack style to: {}", newAttackStyle);
 	}
 
@@ -213,41 +255,6 @@ public class GauntletBoss
 		crystals.remove(npc);
 	}
 
-	public static ProtectedStyle getProtectedStyle(NPC npc)
-	{
-		NPCComposition composition = npc.getComposition();
-		if (composition == null)
-		{
-			log.warn("Could not determine protected style because NPC: {} has null composition", npc.getName());
-			return null;
-		}
-
-		HeadIcon overheadIcon = composition.getOverheadIcon();
-		if (overheadIcon == null)
-		{
-			log.warn("Could not determine protected style because NPC: {} has null overhead icon", npc.getName());
-			return null;
-		}
-
-		return getProtectedStyle(overheadIcon);
-	}
-
-	public static ProtectedStyle getProtectedStyle(HeadIcon overheadIcon)
-	{
-		switch (overheadIcon)
-		{
-			case RANGED:
-				return ProtectedStyle.RANGED;
-			case MELEE:
-				return ProtectedStyle.MELEE;
-			case MAGIC:
-				return ProtectedStyle.MAGIC;
-			default:
-				log.warn("Could not determine gauntlet boss protected style. Head icon ordinal: {}", overheadIcon.ordinal());
-				return null;
-		}
-	}
-
 	private AttackStyle getNextAttackStyle()
 	{
 		if (currentAttackStyle == GauntletBoss.AttackStyle.RANGED)
@@ -264,7 +271,7 @@ public class GauntletBoss
 		RANGED
 	}
 
-	public enum ProtectedStyle
+	public enum ProtectionPrayer
 	{
 		MAGIC,
 		RANGED,

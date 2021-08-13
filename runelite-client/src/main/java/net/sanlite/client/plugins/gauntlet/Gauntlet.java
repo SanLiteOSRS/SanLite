@@ -29,6 +29,7 @@ import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.*;
 import net.runelite.api.coords.LocalPoint;
+import net.sanlite.client.plugins.gauntlet.event.GauntletEvent;
 import net.sanlite.client.plugins.gauntlet.id.GauntletBossId;
 import net.sanlite.client.plugins.gauntlet.id.GauntletPlayerId;
 
@@ -49,13 +50,13 @@ class Gauntlet
 	private boolean inBossRoom;
 	@Getter
 	private GauntletBoss gauntletBoss;
-	private final Consumer<GauntletBoss.AttackStyle> onBossAttackStyleSwitch;
+	private final Consumer<GauntletEvent> emitGauntletEvent;
 
-	Gauntlet(Player player, NPC cachedBossNpc, Consumer<GauntletBoss.AttackStyle> onBossAttackStyleSwitch)
+	Gauntlet(Player player, NPC cachedBossNpc, Consumer<GauntletEvent> emitGauntletEvent)
 	{
 		this.inBossRoom = false;
 		this.player = player;
-		this.onBossAttackStyleSwitch = onBossAttackStyleSwitch;
+		this.emitGauntletEvent = emitGauntletEvent;
 		if (cachedBossNpc != null)
 		{
 			bossSpawned(cachedBossNpc);
@@ -116,7 +117,7 @@ class Gauntlet
 
 	void bossSpawned(NPC npc)
 	{
-		gauntletBoss = new GauntletBoss(npc, onBossAttackStyleSwitch);
+		gauntletBoss = new GauntletBoss(npc, emitGauntletEvent);
 	}
 
 	void bossDespawned()
@@ -124,7 +125,7 @@ class Gauntlet
 		gauntletBoss = null;
 	}
 
-	void onProjectile(int projectileId, int tickCount, Runnable onDisablePrayerAttack)
+	void onProjectile(int projectileId, int tickCount)
 	{
 		GauntletBoss.AttackStyle attackStyle = GauntletBossId.getAttackStyle(projectileId);
 		if (attackStyle == null)
@@ -136,7 +137,6 @@ class Gauntlet
 		if (GauntletBossId.isDisablePrayerAttack(projectileId))
 		{
 			gauntletBoss.disablePrayerAttack(tickCount);
-			onDisablePrayerAttack.run();
 			return;
 		}
 
