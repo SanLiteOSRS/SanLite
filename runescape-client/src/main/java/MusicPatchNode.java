@@ -197,7 +197,8 @@ public class MusicPatchNode extends Node {
 		descriptor = "(Lbx;II)V",
 		garbageValue = "456956891"
 	)
-	static final void method4684(Actor var0, int var1) {
+	@Export("worldToScreenForActor")
+	static final void worldToScreenForActor(Actor var0, int var1) {
 		FriendLoginUpdate.worldToScreen(var0.x, var0.y, var1);
 	}
 

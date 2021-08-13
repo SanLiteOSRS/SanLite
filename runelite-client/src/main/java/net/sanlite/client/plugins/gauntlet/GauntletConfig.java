@@ -41,6 +41,13 @@ public interface GauntletConfig extends Config
 	)
 	String resourceSpotsSection = "resourceSpots";
 
+	@ConfigSection(
+			name = "Sounds",
+			description = "Options for sounds used throughout the plugin",
+			position = 15
+	)
+	String soundsSection = "sounds";
+
 	@ConfigItem(
 			position = 1,
 			keyName = "showAttackStyleCounter",
@@ -54,6 +61,17 @@ public interface GauntletConfig extends Config
 
 	@ConfigItem(
 			position = 2,
+			keyName = "showProtectedStyleCounter",
+			name = "Show protected style counter",
+			description = "Displays a count until the the gauntlet boss next switches it's protection prayer"
+	)
+	default boolean showProtectedStyleCounter()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+			position = 3,
 			keyName = "highlightCrystalAttackTiles",
 			name = "Highlight crystals tiles",
 			description = "Highlight the tiles for the Gauntlet boss crystals"
@@ -64,7 +82,7 @@ public interface GauntletConfig extends Config
 	}
 
 	@ConfigItem(
-			position = 3,
+			position = 4,
 			keyName = "crystalAttackColor",
 			name = "Crystals marker",
 			description = "Color of Gauntlet boss crystals marker"
@@ -75,7 +93,7 @@ public interface GauntletConfig extends Config
 	}
 
 	@ConfigItem(
-			position = 4,
+			position = 5,
 			keyName = "showResourceSpotsObjectMarkers",
 			name = "Display resource spot object marker",
 			description = "Configures whether the resource spots objects are highlighted",
@@ -87,7 +105,7 @@ public interface GauntletConfig extends Config
 	}
 
 	@ConfigItem(
-			position = 5,
+			position = 6,
 			keyName = "showResourceSpotsTiles",
 			name = "Display resource spot tiles",
 			description = "Configures whether tiles for resource spots are highlighted",
@@ -245,10 +263,10 @@ public interface GauntletConfig extends Config
 	}
 
 	@ConfigItem(
+			position = 19,
 			keyName = "tileMarkersLineSize",
 			name = "Tile markers line size",
-			description = "The size of the outside line for tile markers",
-			position = 19
+			description = "The size of the outside line for tile markers"
 	)
 	default StrokeSize getTileMarkersLineSize()
 	{
@@ -256,10 +274,46 @@ public interface GauntletConfig extends Config
 	}
 
 	@ConfigItem(
+			keyName = "playSoundOnAttackStyleSwitch",
+			name = "Play attack style switch sound",
+			description = "Plays a sound for the respective attack style when the gauntlet boss switches attack style",
+			section = soundsSection,
+			position = 20
+	)
+	default boolean playSoundOnAttackStyleSwitch()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+			keyName = "playSoundOnDisablePrayerAttack",
+			name = "Play disable prayer attack sound",
+			description = "Plays a sound when the gauntlet boss uses it's prayer disabling attack",
+			section = soundsSection,
+			position = 21
+	)
+	default boolean playSoundOnDisablePrayerAttack()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+			keyName = "playSoundOnOverheadSwitch",
+			name = "Play protection prayer switch sound",
+			description = "Plays a sound when the gauntlet boss switches it's overhead protection prayer style",
+			section = soundsSection,
+			position = 22
+	)
+	default boolean playSoundOnOverheadSwitch()
+	{
+		return true;
+	}
+
+	@ConfigItem(
 			keyName = "showDebugOverlay",
 			name = "Display debug overlay",
 			description = "Displays Gauntlet boss debug overlay. This contains variables that the plugin uses to function",
-			position = 20
+			position = 23
 	)
 	default boolean showDebugOverlay()
 	{

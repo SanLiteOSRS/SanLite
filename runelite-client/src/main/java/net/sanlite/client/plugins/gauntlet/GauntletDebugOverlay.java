@@ -100,6 +100,11 @@ public class GauntletDebugOverlay extends Overlay
 					.build());
 
 			panelComponent.getChildren().add(LineComponent.builder()
+					.left("Real time protected style")
+					.right("" + gauntletBoss.getNpc().getComposition().getOverheadIcon())
+					.build());
+
+			panelComponent.getChildren().add(LineComponent.builder()
 					.left("Attacks until switch")
 					.right("" + gauntletBoss.getAttacksUntilSwitch())
 					.build());

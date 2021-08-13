@@ -109,9 +109,6 @@ public class GauntletOverlay extends Overlay
 			if (config.showAttackStyleCounter())
 			{
 				renderAttackStyleCounter(graphics, gauntletBoss);
-
-				// TODO: Add separate config
-				renderProtectedStyleCounter(graphics, gauntletBoss);
 			}
 		}
 		return null;
@@ -123,32 +120,12 @@ public class GauntletOverlay extends Overlay
 		if (localPoint != null)
 		{
 			Point point = Perspective.localToCanvas(client, localPoint, client.getPlane(),
-					gauntletBoss.getNpc().getLogicalHeight() + 250); // TODO: Fix positions for side by side
+					gauntletBoss.getNpc().getLogicalHeight() + 16);
 
-			// TODO: Colors TBD, use config
 			OverlayUtil2.renderCountCircle(graphics, GauntletBoss.ATTACKS_PER_SWITCH,
 					gauntletBoss.getAttacksUntilSwitch(), point,
 					getAttackStyleIcon(gauntletBoss.getCurrentAttackStyle()), OVERLAY_ICON_MARGIN, ICON_WIDTH,
-					ICON_HEIGHT, OVERLAY_ICON_DISTANCE, new Color(28, 184, 231), new Color(253, 3, 3),
-					new Color(130, 2, 2));
-		}
-	}
-
-	// TODO: Implement further
-	private void renderProtectedStyleCounter(Graphics2D graphics, GauntletBoss gauntletBoss)
-	{
-		LocalPoint localPoint = gauntletBoss.getNpc().getLocalLocation();
-		if (localPoint != null)
-		{
-			Point point = Perspective.localToCanvas(client, localPoint, client.getPlane(),
-					gauntletBoss.getNpc().getLogicalHeight() + 16); // TODO: Fix positions for side by side
-
-			// TODO: Colors TBD, use config
-			OverlayUtil2.renderCountCircle(graphics, GauntletBoss.ATTACKS_PER_OVERHEAD_SWITCH,
-					gauntletBoss.getAttacksUntilOverheadSwitch(), point,
-					getProtectedStyleIcon(gauntletBoss.getCurrentProtectedStyle()), OVERLAY_ICON_MARGIN, ICON_WIDTH,
-					ICON_HEIGHT, OVERLAY_ICON_DISTANCE, new Color(231, 173, 28), new Color(0, 206, 22),
-					new Color(22, 95, 1));
+					ICON_HEIGHT, OVERLAY_ICON_DISTANCE);
 		}
 	}
 

@@ -19,10 +19,12 @@ public final class GauntletBossId
 
 	public static boolean isMagicAttack(int projectileId)
 	{
-		return projectileId == Proj.MAGIC ||
-				projectileId == Proj.DISABLE_PRAYER ||
-				projectileId == Proj.CORRUPTED_MAGIC ||
-				projectileId == Proj.CORRUPTED_DISABLE_PRAYER;
+		return projectileId == Proj.MAGIC || projectileId == Proj.CORRUPTED_MAGIC || isDisablePrayerAttack(projectileId);
+	}
+
+	public static boolean isDisablePrayerAttack(int projectileId)
+	{
+		return projectileId == Proj.DISABLE_PRAYER || projectileId == Proj.CORRUPTED_DISABLE_PRAYER;
 	}
 
 	public static GauntletBoss.AttackStyle getAttackStyle(int projectileId)

@@ -216,8 +216,8 @@ public class OverlayUtil2
 	}
 
 	public static void renderCountCircle(Graphics2D graphics, int totalCount, int currentCount, Point point,
-										 BufferedImage image, int imageMargin, int imageWidth, int imageHeight,
-										 int imageDistance)
+											BufferedImage image, int imageMargin, int imageWidth, int imageHeight,
+											int imageDistance)
 	{
 		renderCountCircle(graphics, totalCount, currentCount, point, image, imageMargin, imageWidth, imageHeight,
 				imageDistance, new Color(219, 175, 0, 255), new Color(0, 0, 0, 128),
@@ -225,16 +225,16 @@ public class OverlayUtil2
 	}
 
 	public static void renderCountCircle(Graphics2D graphics, int totalCount, int currentCount, Point point,
-										 BufferedImage image, int imageMargin, int imageWidth, int imageHeight,
-										 int imageDistance, Color countColor)
+											BufferedImage image, int imageMargin, int imageWidth, int imageHeight,
+											int imageDistance, Color countColor)
 	{
 		renderCountCircle(graphics, totalCount, currentCount, point, image, imageMargin, imageWidth, imageHeight,
 				imageDistance, countColor, new Color(0, 0, 0, 128), new Color(0, 0, 0, 255));
 	}
 
 	public static void renderCountCircle(Graphics2D graphics, int totalCount, int currentCount, Point point,
-										 BufferedImage image, int imageMargin, int imageWidth, int imageHeight,
-										 int imageDistance, Color countColor, Color innerOvalColor, Color outerOvalColor)
+											BufferedImage image, int imageMargin, int imageWidth, int imageHeight,
+											int imageDistance, Color countColor, Color innerOvalColor, Color outerOvalColor)
 	{
 		if (point == null)
 		{

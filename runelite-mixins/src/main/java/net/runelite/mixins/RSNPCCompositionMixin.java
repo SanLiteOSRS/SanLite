@@ -56,14 +56,17 @@ public abstract class RSNPCCompositionMixin implements RSNPCComposition
 				return MAGIC;
 			case 6:
 				return RANGE_MAGE;
+			case -1:
+				return null;
 			default:
+				client.getLogger().warn("Could not determine NPC overhead icon: {}", headIcon);
 				return null;
 		}
 	}
 
 	@Inject
 	@FieldHook("headIconPrayer")
-	public void overheadChanged(int idx)
+	public void npcOverheadChanged(int idx)
 	{
 		if (getRsOverheadIcon() != oldOverheadIcon)
 		{

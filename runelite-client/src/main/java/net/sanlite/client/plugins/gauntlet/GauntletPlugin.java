@@ -36,12 +36,16 @@ import net.runelite.client.events.ConfigChanged;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.ui.overlay.OverlayManager;
+import net.sanlite.client.game.SoundManager;
 import net.sanlite.client.plugins.gauntlet.id.GauntletBossId;
 import net.sanlite.client.plugins.gauntlet.id.GauntletId;
+import net.sanlite.client.util.SoundUtil;
 
 import javax.inject.Inject;
+import javax.sound.sampled.Clip;
 import java.awt.*;
 import java.util.Map;
+import java.util.concurrent.ScheduledExecutorService;
 
 import static java.util.Map.entry;
 import static net.runelite.api.ObjectID.*;
@@ -56,6 +60,11 @@ import static net.runelite.api.Varbits.*;
 )
 public class GauntletPlugin extends Plugin
 {
+	private final Clip magicAudioClip = SoundUtil.getResourceStreamFromClass(getClass(), "magic.wav");
+	private final Clip rangedAudioClip = SoundUtil.getResourceStreamFromClass(getClass(), "ranged.wav");
+	private final Clip disablePrayerAudioClip = SoundUtil.getResourceStreamFromClass(getClass(), "prayer_disabled.wav");
+	private final Clip overheadSwitchAudioClip = SoundUtil.getResourceStreamFromClass(getClass(), "overhead_switch.wav");
+
 	private Map<GauntletResourceSpot, Boolean> resourceSpotEnabledConfigs;
 	private Map<GauntletResourceSpot, Color> resourceSpotColorConfigs;
 
@@ -72,6 +81,9 @@ public class GauntletPlugin extends Plugin
 	private GauntletOverlay overlay;
 
 	@Inject
+	private GauntletProtectedStyleOverlay protectedStyleOverlay;
+
+	@Inject
 	private GauntletResourceSpotOverlay resourceSpotOverlay;
 
 	@Inject
@@ -82,6 +94,12 @@ public class GauntletPlugin extends Plugin
 
 	@Inject
 	private ClientThread clientThread;
+
+	@Inject
+	private ScheduledExecutorService scheduledExecutorService;
+
+	@Inject
+	private SoundManager soundManager;
 
 	@Getter
 	private Gauntlet gauntlet;
@@ -114,6 +132,7 @@ public class GauntletPlugin extends Plugin
 		);
 
 		overlayManager.add(overlay);
+		overlayManager.add(protectedStyleOverlay);
 		overlayManager.add(resourceSpotOverlay);
 		overlayManager.add(resourceSpotMinimapOverlay);
 		if (config.showDebugOverlay())
@@ -128,6 +147,7 @@ public class GauntletPlugin extends Plugin
 	protected void shutDown() throws Exception
 	{
 		overlayManager.remove(overlay);
+		overlayManager.remove(protectedStyleOverlay);
 		overlayManager.remove(resourceSpotOverlay);
 		overlayManager.remove(resourceSpotMinimapOverlay);
 		if (config.showDebugOverlay())
@@ -164,6 +184,19 @@ public class GauntletPlugin extends Plugin
 		}
 	}
 
+	private Clip getAudioClipForAttackStyle(GauntletBoss.AttackStyle attackStyle)
+	{
+		switch (attackStyle)
+		{
+			case RANGED:
+				return rangedAudioClip;
+			case MAGIC:
+				return magicAudioClip;
+			default:
+				return null;
+		}
+	}
+
 	private void reset()
 	{
 		gauntlet = null;
@@ -186,7 +219,8 @@ public class GauntletPlugin extends Plugin
 				return;
 			}
 
-			gauntlet = new Gauntlet(player, cachedBossNpc);
+			gauntlet = new Gauntlet(player, cachedBossNpc,
+					(attackStyle) -> playAttackStyleSwitchSound(attackStyle, config.playSoundOnAttackStyleSwitch()));
 			cachedBossNpc = null;
 			log.debug("Gauntlet session started");
 		}
@@ -262,7 +296,8 @@ public class GauntletPlugin extends Plugin
 			return;
 		}
 
-		gauntlet.onProjectile(projectileId, client.getTickCount());
+		gauntlet.onProjectile(projectileId, client.getTickCount(),
+				() -> playSoundIfEnabled(disablePrayerAudioClip, config.playSoundOnDisablePrayerAttack()));
 	}
 
 	@Subscribe
@@ -365,29 +400,33 @@ public class GauntletPlugin extends Plugin
 		gauntlet.resourceSpotDespawned(gameObject);
 	}
 
+	// TODO: Create callback event handler
+
 	@Subscribe
-	public void onNpcOverheadChanged(NpcOverheadChanged event)
+	public void onHitsplatApplied(HitsplatApplied event)
 	{
-		log.debug("1 ||| NPC changed overhead from {} to {}", event.getOldOverheadIcon(), event.getNewOverheadIcon());
 		if (gauntlet == null || gauntlet.getGauntletBoss() == null)
 		{
 			return;
 		}
 
-		final NPCComposition npcComposition = event.getNpcComposition();
-		final HeadIcon overheadIcon = event.getNewOverheadIcon();
-		if (npcComposition == null || overheadIcon == null)
+		final Actor actor = event.getActor();
+		if (actor instanceof NPC && GauntletBossId.isBossNpc(((NPC) actor).getId()))
 		{
-			return;
+			log.debug("Hitsplat applied on gauntlet boss at tick: {}", client.getTickCount());
+			gauntlet.getGauntletBoss().checkProtectedStyle(client.getTickCount());
 		}
 
-		log.debug("NPC {} changed overhead from {} to {}", npcComposition.getId(), event.getOldOverheadIcon(), overheadIcon);
-		if (GauntletBossId.isBossNpc(npcComposition.getId()))
-		{
-			gauntlet.getGauntletBoss().switchProtectedStyle(overheadIcon);
-		}
+//
+//		log.debug("NPC {} changed overhead from {} to {}", npcComposition.getId(), event.getOldOverheadIcon(), overheadIcon);
+//		if (GauntletBossId.isBossNpc(npcComposition.getId()))
+//		{
+//			gauntlet.getGauntletBoss().switchProtectedStyle(overheadIcon);
+//			playSoundIfEnabled(overheadSwitchAudioClip, config.playSoundOnOverheadSwitch());
+//		}
 	}
 
+	// TODO: use colors config map
 	Color getResourceSpotColor(int gameObjectId)
 	{
 		switch (gameObjectId)
@@ -408,8 +447,23 @@ public class GauntletPlugin extends Plugin
 			case LINUM_TIRINUM:
 				return config.getLinumTirinumColor();
 			default:
-				log.warn("Unknown Gauntlet resource spot with id {}", gameObjectId);
+				log.warn("Unknown gauntlet resource spot with id {}", gameObjectId);
 				return Color.GRAY;
 		}
+	}
+
+	private void playAttackStyleSwitchSound(GauntletBoss.AttackStyle attackStyle, boolean isConfigEnabled)
+	{
+		playSoundIfEnabled(getAudioClipForAttackStyle(attackStyle), isConfigEnabled);
+	}
+
+	private void playSoundIfEnabled(Clip soundClip, boolean isConfigEnabled)
+	{
+		if (!isConfigEnabled)
+		{
+			return;
+		}
+
+		scheduledExecutorService.submit(() -> soundManager.playCustomSound(soundClip));
 	}
 }

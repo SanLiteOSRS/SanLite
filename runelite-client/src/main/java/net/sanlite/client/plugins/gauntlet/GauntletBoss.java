@@ -33,6 +33,7 @@ import net.runelite.api.NPCComposition;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 @Slf4j
 public class GauntletBoss
@@ -67,7 +68,9 @@ public class GauntletBoss
 	@Setter
 	private int lastAttackAnimationId;
 
-	GauntletBoss(NPC npc)
+	private final Consumer<AttackStyle> onAttackStyleSwitch;
+
+	GauntletBoss(NPC npc, Consumer<AttackStyle> onAttackStyleSwitch)
 	{
 		this.npc = npc;
 		this.lastAttackTick = -100;
@@ -78,9 +81,10 @@ public class GauntletBoss
 		this.attacksUntilSwitch = ATTACKS_PER_SWITCH;
 		this.attacksUntilOverheadSwitch = ATTACKS_PER_OVERHEAD_SWITCH;
 		this.currentAttackStyle = GauntletBoss.AttackStyle.RANGED;
-		this.currentProtectedStyle = getProtectedStyle(npc);
+		this.currentProtectedStyle = null;
 		this.lastAttackedStyle = null;
 		this.crystals = new ArrayList<>();
+		this.onAttackStyleSwitch = onAttackStyleSwitch;
 	}
 
 	/**
@@ -88,28 +92,31 @@ public class GauntletBoss
 	 *
 	 * @param attackStyle Ranged or magic
 	 */
-	public void basicAttack(final AttackStyle attackStyle, int tickCount)
+	void basicAttack(final AttackStyle attackStyle, int tickCount)
 	{
 		log.debug("Gauntlet boss {} attack. Tick: {} ", attackStyle, tickCount);
-		attack(tickCount, GauntletBoss.ATTACK_RATE, true);
+		attack(tickCount, true);
 	}
 
-	// TODO: Separate disable prayer attack
+	void disablePrayerAttack(int tickCount)
+	{
+		log.debug("Gauntlet boss disable prayer attack. Tick: {} ", tickCount);
+		attack(tickCount, true);
+	}
 
-	public void crystalAttack(int tickCount)
+	void crystalAttack(int tickCount)
 	{
 		log.debug("Gauntlet boss CRYSTAL attack. Tick: {} ", tickCount);
-		attack(tickCount, GauntletBoss.ATTACK_RATE, true);
+		attack(tickCount, true);
 	}
 
-	public void trample(int tickCount)
+	void trample(int tickCount)
 	{
 		log.debug("Gauntlet boss TRAMPLE attack. Tick: {} ", tickCount);
-		// TODO: Get attack rate
-		attack(tickCount, 5, false);
+		attack(tickCount, false);
 	}
 
-	private void attack(int tickCount, int attackTickDelay, boolean isDecrementAttack)
+	private void attack(int tickCount, boolean isDecrementAttack)
 	{
 		if (nextAttackTick != -100 && tickCount != nextAttackTick)
 		{
@@ -117,7 +124,7 @@ public class GauntletBoss
 		}
 
 		lastAttackTick = tickCount;
-		nextAttackTick = tickCount + attackTickDelay;
+		nextAttackTick = tickCount + GauntletBoss.ATTACK_RATE;
 		if (isDecrementAttack)
 		{
 			attacksUntilSwitch = attacksUntilSwitch - 1;
@@ -129,12 +136,18 @@ public class GauntletBoss
 		}
 	}
 
-	public void attacked(ProtectedStyle attackStyle, int tickCount)
+	void attacked(ProtectedStyle attackStyle, int tickCount)
 	{
 		if (lastAttackedTick >= tickCount)
 		{
 			log.warn("Ignored early player {} attack at tick {} while last attack tick was {}", attackStyle, tickCount, lastAttackedTick);
 			return;
+		}
+
+		// Set protected style for first attack on boss
+		if (currentProtectedStyle == null)
+		{
+			currentProtectedStyle = getProtectedStyle(npc);
 		}
 
 		log.debug("Gauntlet boss was attacked with {} on protect {} at tick {}", attackStyle, currentProtectedStyle, tickCount);
@@ -145,16 +158,27 @@ public class GauntletBoss
 			lastAttackedTick = tickCount;
 			attacksUntilOverheadSwitch = attacksUntilOverheadSwitch - 1;
 		}
+	}
 
-		if (attacksUntilOverheadSwitch <= 0)
+	void checkProtectedStyle(int tickCount)
+	{
+		ProtectedStyle protectedStyle = getProtectedStyle(npc);
+		log.debug("Boss attacked. Current style: {}, checked style: {}, tick: {}", currentProtectedStyle, protectedStyle, tickCount);
+		if (protectedStyle != currentProtectedStyle)
 		{
-			log.debug("Gauntlet boss protected style should change");
+			if (attacksUntilOverheadSwitch > 0)
+			{
+				log.warn("Gauntlet boss switched to protected style {} early at tick {} with {} remaining attacks",
+						protectedStyle, tickCount, attacksUntilOverheadSwitch);
+			}
+
+			switchProtectedStyle(protectedStyle);
 		}
 	}
 
-	public void switchProtectedStyle(HeadIcon overheadIcon)
+	private void switchProtectedStyle(ProtectedStyle protectedStyle)
 	{
-		currentProtectedStyle = getProtectedStyle(overheadIcon);
+		currentProtectedStyle = protectedStyle;
 		attacksUntilOverheadSwitch = GauntletBoss.ATTACKS_PER_OVERHEAD_SWITCH;
 		log.debug("Gauntlet boss switched protect style to: {}", currentProtectedStyle);
 	}
@@ -164,10 +188,11 @@ public class GauntletBoss
 		AttackStyle newAttackStyle = getNextAttackStyle();
 		currentAttackStyle = newAttackStyle;
 		attacksUntilSwitch = GauntletBoss.ATTACKS_PER_SWITCH;
+		onAttackStyleSwitch.accept(currentAttackStyle);
 		log.debug("Gauntlet boss switched attack style to: {}", newAttackStyle);
 	}
 
-	public void verifyAttackStyleSwitch(AttackStyle attackStyle, int tickCount)
+	void verifyAttackStyleSwitch(AttackStyle attackStyle, int tickCount)
 	{
 		if (attacksUntilSwitch == GauntletBoss.ATTACKS_PER_SWITCH && attackStyle == currentAttackStyle)
 		{
@@ -178,12 +203,12 @@ public class GauntletBoss
 		switchAttackStyle();
 	}
 
-	public void crystalSpawned(NPC npc)
+	void crystalSpawned(NPC npc)
 	{
 		crystals.add(npc);
 	}
 
-	public void crystalDespawned(NPC npc)
+	void crystalDespawned(NPC npc)
 	{
 		crystals.remove(npc);
 	}

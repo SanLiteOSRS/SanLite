@@ -36,6 +36,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.function.Consumer;
 
 @Slf4j
 class Gauntlet
@@ -48,11 +49,13 @@ class Gauntlet
 	private boolean inBossRoom;
 	@Getter
 	private GauntletBoss gauntletBoss;
+	private final Consumer<GauntletBoss.AttackStyle> onBossAttackStyleSwitch;
 
-	Gauntlet(Player player, NPC cachedBossNpc)
+	Gauntlet(Player player, NPC cachedBossNpc, Consumer<GauntletBoss.AttackStyle> onBossAttackStyleSwitch)
 	{
 		this.inBossRoom = false;
 		this.player = player;
+		this.onBossAttackStyleSwitch = onBossAttackStyleSwitch;
 		if (cachedBossNpc != null)
 		{
 			bossSpawned(cachedBossNpc);
@@ -113,7 +116,7 @@ class Gauntlet
 
 	void bossSpawned(NPC npc)
 	{
-		gauntletBoss = new GauntletBoss(npc);
+		gauntletBoss = new GauntletBoss(npc, onBossAttackStyleSwitch);
 	}
 
 	void bossDespawned()
@@ -121,7 +124,7 @@ class Gauntlet
 		gauntletBoss = null;
 	}
 
-	void onProjectile(int projectileId, int tickCount)
+	void onProjectile(int projectileId, int tickCount, Runnable onDisablePrayerAttack)
 	{
 		GauntletBoss.AttackStyle attackStyle = GauntletBossId.getAttackStyle(projectileId);
 		if (attackStyle == null)
@@ -130,6 +133,13 @@ class Gauntlet
 		}
 
 		gauntletBoss.setLastProjectileId(projectileId);
+		if (GauntletBossId.isDisablePrayerAttack(projectileId))
+		{
+			gauntletBoss.disablePrayerAttack(tickCount);
+			onDisablePrayerAttack.run();
+			return;
+		}
+
 		gauntletBoss.basicAttack(attackStyle, tickCount);
 	}
 
