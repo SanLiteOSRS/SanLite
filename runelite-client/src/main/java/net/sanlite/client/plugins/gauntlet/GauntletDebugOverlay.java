@@ -82,8 +82,8 @@ public class GauntletDebugOverlay extends Overlay
 				.right("" + plugin.getGauntlet().getResourceSpots().size())
 				.build());
 
-		GauntletBoss gauntletBoss = gauntlet.getGauntletBoss();
-		if (gauntlet.getGauntletBoss() != null)
+		GauntletBoss gauntletBoss = gauntlet.getBoss();
+		if (gauntlet.getBoss() != null)
 		{
 			panelComponent.getChildren().add(TitleComponent.builder()
 					.color(Color.RED.darker())

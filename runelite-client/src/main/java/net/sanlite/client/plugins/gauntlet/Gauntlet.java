@@ -49,7 +49,7 @@ class Gauntlet
 	@Getter
 	private boolean inBossRoom;
 	@Getter
-	private GauntletBoss gauntletBoss;
+	private GauntletBoss boss;
 	private final Consumer<GauntletEvent> emitGauntletEvent;
 
 	Gauntlet(Player player, NPC cachedBossNpc, Consumer<GauntletEvent> emitGauntletEvent)
@@ -117,12 +117,12 @@ class Gauntlet
 
 	void bossSpawned(NPC npc)
 	{
-		gauntletBoss = new GauntletBoss(npc, emitGauntletEvent);
+		boss = new GauntletBoss(npc, emitGauntletEvent);
 	}
 
 	void bossDespawned()
 	{
-		gauntletBoss = null;
+		boss = null;
 	}
 
 	void onProjectile(int projectileId, int tickCount)
@@ -133,14 +133,14 @@ class Gauntlet
 			return;
 		}
 
-		gauntletBoss.setLastProjectileId(projectileId);
+		boss.setLastProjectileId(projectileId);
 		if (GauntletBossId.isDisablePrayerAttack(projectileId))
 		{
-			gauntletBoss.disablePrayerAttack(tickCount);
+			boss.disablePrayerAttack(tickCount);
 			return;
 		}
 
-		gauntletBoss.basicAttack(attackStyle, tickCount);
+		boss.basicAttack(attackStyle, tickCount);
 	}
 
 	void onAnimation(Actor actor, int animationId, int tickCount)
@@ -150,20 +150,20 @@ class Gauntlet
 			switch (animationId)
 			{
 				case GauntletBossId.Anim.TRAMPLE_ATTACK:
-					gauntletBoss.setLastAttackAnimationId(animationId);
-					gauntletBoss.trample(tickCount);
+					boss.setLastAttackAnimationId(animationId);
+					boss.trample(tickCount);
 					break;
 				case GauntletBossId.Anim.SUMMON_CRYSTAL_NPC:
-					gauntletBoss.setLastAttackAnimationId(animationId);
-					gauntletBoss.crystalAttack(tickCount);
+					boss.setLastAttackAnimationId(animationId);
+					boss.crystalAttack(tickCount);
 					break;
 				case GauntletBossId.Anim.SWITCH_TO_MAGIC:
-					gauntletBoss.setLastAttackAnimationId(animationId);
-					gauntletBoss.verifyAttackStyleSwitch(GauntletBoss.AttackStyle.MAGIC, tickCount);
+					boss.setLastAttackAnimationId(animationId);
+					boss.verifyAttackStyleSwitch(GauntletBoss.AttackStyle.MAGIC, tickCount);
 					break;
 				case GauntletBossId.Anim.SWITCH_TO_RANGED:
-					gauntletBoss.setLastAttackAnimationId(animationId);
-					gauntletBoss.verifyAttackStyleSwitch(GauntletBoss.AttackStyle.RANGED, tickCount);
+					boss.setLastAttackAnimationId(animationId);
+					boss.verifyAttackStyleSwitch(GauntletBoss.AttackStyle.RANGED, tickCount);
 					break;
 				case GauntletBossId.Anim.PROJECTILE_ATTACK:
 					break;
@@ -178,7 +178,7 @@ class Gauntlet
 				return;
 			}
 
-			gauntletBoss.attacked(GauntletPlayerId.getProtectedStyleForAnimation(animationId), tickCount);
+			boss.attacked(GauntletPlayerId.getProtectedStyleForAnimation(animationId), tickCount);
 		}
 	}
 

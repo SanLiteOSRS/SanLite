@@ -98,7 +98,7 @@ public class GauntletOverlay extends Overlay
 			return null;
 		}
 
-		GauntletBoss gauntletBoss = gauntlet.getGauntletBoss();
+		GauntletBoss gauntletBoss = gauntlet.getBoss();
 		if (gauntletBoss != null && gauntletBoss.getCurrentAttackStyle() != null)
 		{
 			if (config.highlightCrystalAttackTiles())

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019, Siraz <https://github.com/Sirazzz>
+ * Copyright (c) 2021, Siraz <https://github.com/Sirazzz>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -320,14 +320,14 @@ public class GauntletPlugin extends Plugin
 			gauntlet.bossSpawned(npc);
 		}
 
-		if (gauntlet.getGauntletBoss() == null)
+		if (gauntlet.getBoss() == null)
 		{
 			return;
 		}
 
 		if (GauntletBossId.isCrystalNpc(npc.getId()))
 		{
-			gauntlet.getGauntletBoss().crystalSpawned(npc);
+			gauntlet.getBoss().crystalSpawned(npc);
 		}
 	}
 
@@ -345,14 +345,14 @@ public class GauntletPlugin extends Plugin
 			gauntlet.bossDespawned();
 		}
 
-		if (gauntlet.getGauntletBoss() == null)
+		if (gauntlet.getBoss() == null)
 		{
 			return;
 		}
 
 		if (GauntletBossId.isCrystalNpc(npc.getId()))
 		{
-			gauntlet.getGauntletBoss().crystalDespawned(npc);
+			gauntlet.getBoss().crystalDespawned(npc);
 		}
 	}
 
@@ -403,7 +403,7 @@ public class GauntletPlugin extends Plugin
 	@Subscribe
 	public void onHitsplatApplied(HitsplatApplied event)
 	{
-		if (gauntlet == null || gauntlet.getGauntletBoss() == null)
+		if (gauntlet == null || gauntlet.getBoss() == null)
 		{
 			return;
 		}
@@ -412,7 +412,7 @@ public class GauntletPlugin extends Plugin
 		if (actor instanceof NPC && GauntletBossId.isBossNpc(((NPC) actor).getId()))
 		{
 			log.debug("Hitsplat applied on gauntlet boss at tick: {}", client.getTickCount());
-			gauntlet.getGauntletBoss().checkProtectionPrayer(client.getTickCount());
+			gauntlet.getBoss().checkProtectionPrayer(client.getTickCount());
 		}
 	}
 
