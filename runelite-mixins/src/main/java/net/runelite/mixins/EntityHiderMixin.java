@@ -32,6 +32,9 @@ import net.runelite.api.mixins.Shadow;
 import net.runelite.rs.api.*;
 import net.runelite.rs.api.RSRenderable;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Mixin(RSScene.class)
 public abstract class EntityHiderMixin implements RSScene
 {
@@ -79,6 +82,12 @@ public abstract class EntityHiderMixin implements RSScene
 
 	@Shadow("hideDeadNPCs")
 	private static boolean hideDeadNPCs;
+
+	@Shadow("hiddenDeadNpcNames")
+	private static HashMap<String, Integer> hiddenDeadNpcNames;
+
+	@Shadow("hiddenNpcNames")
+	private static HashMap<String, Integer> hiddenNpcNames;
 
 	@Copy("newGameObject")
 	@Replace("newGameObject")
@@ -158,6 +167,32 @@ public abstract class EntityHiderMixin implements RSScene
 		else if (entity instanceof RSNPC)
 		{
 			RSNPC npc = (RSNPC) entity;
+
+			for (Map.Entry<String, Integer> entry : hiddenNpcNames.entrySet())
+			{
+				String name = entry.getKey();
+				int count = entry.getValue();
+				if (name != null && name.equals(""))
+				{
+					if (count > 0 && npc.getName() != null && npc.getName().equalsIgnoreCase(name))
+					{
+						return false;
+					}
+				}
+			}
+
+			for (Map.Entry<String, Integer> entry : hiddenDeadNpcNames.entrySet())
+			{
+				String name = entry.getKey();
+				int count = entry.getValue();
+				if (name != null && name.equals(""))
+				{
+					if (count > 0 && npc.getName() != null && npc.getName().equalsIgnoreCase(name) && npc.isDead())
+					{
+						return false;
+					}
+				}
+			}
 
 			if (npc.isDead() && hideDeadNPCs)
 			{

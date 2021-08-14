@@ -135,6 +135,17 @@ public interface EntityHiderConfig extends Config
 
 	@ConfigItem(
 		position = 10,
+		keyName = "hideDeadNPCs",
+		name = "Hide dead NPCs",
+		description = "Configures whether or not dead NPCs are hidden"
+	)
+	default boolean hideDeadNPCs()
+	{
+		return false;
+	}
+
+	@ConfigItem(
+		position = 11,
 		keyName = "hidePets",
 		name = "Hide Pets",
 		description = "Configures whether or not other player pets are hidden"
@@ -145,7 +156,7 @@ public interface EntityHiderConfig extends Config
 	}
 
 	@ConfigItem(
-		position = 11,
+		position = 12,
 		keyName = "hideAttackers",
 		name = "Hide Attackers",
 		description = "Configures whether or not NPCs/players attacking you are hidden"
@@ -156,7 +167,7 @@ public interface EntityHiderConfig extends Config
 	}
 
 	@ConfigItem(
-		position = 12,
+		position = 13,
 		keyName = "hideProjectiles",
 		name = "Hide Projectiles",
 		description = "Configures whether or not projectiles are hidden"
