@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019, Siraz <https://github.com/Sirazzz>
+ * Copyright (c) 2021, Siraz <https://github.com/Sirazzz>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -25,7 +25,6 @@
 package net.sanlite.client.plugins.gauntlet;
 
 import net.runelite.client.config.*;
-import net.sanlite.client.config.StrokeSize;
 
 import java.awt.*;
 
@@ -397,10 +396,21 @@ public interface GauntletConfig extends Config
 	}
 
 	@ConfigItem(
+			keyName = "hideNpcDeathAnimations",
+			name = "Hide NPC death animations",
+			description = "Hides death animations for regular NPC's in the gauntlet",
+			position = 25
+	)
+	default boolean hideNpcDeathAnimations()
+	{
+		return true;
+	}
+
+	@ConfigItem(
 			keyName = "showDebugOverlay",
 			name = "Display debug overlay",
 			description = "Displays Gauntlet boss debug overlay. This contains variables that the plugin uses to function",
-			position = 25
+			position = 26
 	)
 	default boolean showDebugOverlay()
 	{
@@ -409,8 +419,6 @@ public interface GauntletConfig extends Config
 
 	// TODO: Highlight t3 bossess
 
-	// TODO: Despawn dead npc's
-
 	// TODO: Highlight craft room objects
 
 	// TODO: Hide mega tree thingies
@@ -418,8 +426,6 @@ public interface GauntletConfig extends Config
 	// TODO: Mark potential boss rooms
 
 	// TODO: Switch after attack earlier and verify with hitsplat
-
-	// TODO: Highlight hunllef size
 
 	// TODO: Attack timer
 

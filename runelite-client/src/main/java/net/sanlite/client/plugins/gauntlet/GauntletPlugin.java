@@ -24,6 +24,7 @@
  */
 package net.sanlite.client.plugins.gauntlet;
 
+import com.google.common.collect.ImmutableSet;
 import com.google.inject.Provides;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
@@ -47,6 +48,7 @@ import javax.inject.Inject;
 import javax.sound.sampled.Clip;
 import java.awt.*;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ScheduledExecutorService;
 
 import static java.util.Map.entry;
@@ -71,6 +73,17 @@ public class GauntletPlugin extends Plugin
 
 	private Map<GauntletResourceSpot, Boolean> resourceSpotEnabledConfigs;
 	private Map<GauntletResourceSpot, Color> resourceSpotColorConfigs;
+	private final Set<String> hiddenDeadNpcNames = ImmutableSet.of(
+			"Crystalline Rat",
+			"Crystalline Spider",
+			"Crystalline Bat",
+			"Crystalline Unicorn",
+			"Crystalline Scorpion",
+			"Crystalline Wolf",
+			"Crystalline Bear",
+			"Crystalline Dragon",
+			"Crystalline Dark Beast"
+	);
 
 	@Inject
 	private Client client;
@@ -135,6 +148,11 @@ public class GauntletPlugin extends Plugin
 				entry(GauntletResourceSpot.LINUM_TIRINUM, config.getLinumTirinumColor())
 		);
 
+		if (config.hideNpcDeathAnimations())
+		{
+			hiddenDeadNpcNames.forEach(client::addHiddenDeadNpcName);
+		}
+
 		overlayManager.add(bossOverlay);
 		overlayManager.add(protectedStyleOverlay);
 		overlayManager.add(resourceSpotOverlay);
@@ -159,6 +177,11 @@ public class GauntletPlugin extends Plugin
 			overlayManager.remove(debugOverlay);
 		}
 
+		if (config.hideNpcDeathAnimations())
+		{
+			hiddenDeadNpcNames.forEach(client::removeHiddenDeadNpcName);
+		}
+
 		reset();
 	}
 
@@ -172,19 +195,32 @@ public class GauntletPlugin extends Plugin
 
 		for (GauntletResourceSpot resourceSpot : GauntletResourceSpot.values())
 		{
-			if (resourceSpotEnabledConfigs.get(resourceSpot))
+			if (!resourceSpotEnabledConfigs.get(resourceSpot))
 			{
 				gauntlet.resourceSpotDisabled(resourceSpot);
 			}
 		}
 
-		if (config.showDebugOverlay())
+		switch (event.getKey())
 		{
-			overlayManager.add(debugOverlay);
-		}
-		else if (!config.showDebugOverlay())
-		{
-			overlayManager.remove(debugOverlay);
+			case "hideNpcDeathAnimations":
+				if (config.hideNpcDeathAnimations())
+				{
+					hiddenDeadNpcNames.forEach(client::addHiddenDeadNpcName);
+					break;
+				}
+
+				hiddenDeadNpcNames.forEach(client::removeHiddenDeadNpcName);
+				break;
+			case "showDebugOverlay":
+				if (config.showDebugOverlay())
+				{
+					overlayManager.add(debugOverlay);
+					break;
+				}
+
+				overlayManager.remove(debugOverlay);
+				break;
 		}
 	}
 
@@ -446,6 +482,7 @@ public class GauntletPlugin extends Plugin
 
 	/**
 	 * Handles events emitted in the gauntlet
+	 *
 	 * @param event gauntlet event
 	 */
 	private void onGauntletEvent(GauntletEvent event)

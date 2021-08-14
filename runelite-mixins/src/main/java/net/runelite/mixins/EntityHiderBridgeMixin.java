@@ -76,9 +76,6 @@ public abstract class EntityHiderBridgeMixin implements RSClient
 	public static boolean hideDeadNPCs;
 
 	@Inject
-	public static HashMap<String, Integer> hiddenNpcNames = new HashMap<>();
-
-	@Inject
 	public static HashMap<String, Integer> hiddenDeadNpcNames = new HashMap<>();
 
 	@Inject
@@ -176,34 +173,6 @@ public abstract class EntityHiderBridgeMixin implements RSClient
 	public void setDeadNPCsHidden(boolean state)
 	{
 		hideDeadNPCs = state;
-	}
-
-	@Inject
-	@Override
-	public void addHiddenNpcName(String name)
-	{
-		name = name.toLowerCase();
-		int hideCount = hiddenNpcNames.getOrDefault(name, 0);
-		if (hideCount == Integer.MAX_VALUE)
-		{
-			throw new RuntimeException("NPC with name: " + name + " has passed the hide count limit");
-		}
-
-		hiddenNpcNames.put(name, ++hideCount);
-	}
-
-	@Inject
-	@Override
-	public void removeHiddenNpcName(String name)
-	{
-		name = name.toLowerCase();
-		int i = hiddenNpcNames.getOrDefault(name, 0);
-		if (i == 0)
-		{
-			return;
-		}
-
-		hiddenNpcNames.put(name, --i);
 	}
 
 	@Inject
