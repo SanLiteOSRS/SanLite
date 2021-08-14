@@ -66,7 +66,8 @@ public class GauntletPlugin extends Plugin
 	private final Clip rangedAudioClip = SoundUtil.getResourceStreamFromClass(getClass(), "ranged.wav");
 	private final Clip crystalAudioClip = SoundUtil.getResourceStreamFromClass(getClass(), "crystal.wav");
 	private final Clip prayerDisabledAudioClip = SoundUtil.getResourceStreamFromClass(getClass(), "prayer_disabled.wav");
-	private final Clip overheadSwitchAudioClip = SoundUtil.getResourceStreamFromClass(getClass(), "overhead_switch.wav");
+	private final Clip overheadSwitchAudioClip = SoundUtil.getResourceStreamFromClass(getClass(), "switch_weapon.wav");
+	private final Clip playerDeathAudioClip = SoundUtil.getResourceStreamFromClass(getClass(), "player_death.wav");
 
 	private Map<GauntletResourceSpot, Boolean> resourceSpotEnabledConfigs;
 	private Map<GauntletResourceSpot, Color> resourceSpotColorConfigs;
@@ -81,7 +82,7 @@ public class GauntletPlugin extends Plugin
 	private OverlayManager overlayManager;
 
 	@Inject
-	private GauntletOverlay overlay;
+	private GauntletBossOverlay bossOverlay;
 
 	@Inject
 	private GauntletProtectedStyleOverlay protectedStyleOverlay;
@@ -134,7 +135,7 @@ public class GauntletPlugin extends Plugin
 				entry(GauntletResourceSpot.LINUM_TIRINUM, config.getLinumTirinumColor())
 		);
 
-		overlayManager.add(overlay);
+		overlayManager.add(bossOverlay);
 		overlayManager.add(protectedStyleOverlay);
 		overlayManager.add(resourceSpotOverlay);
 		overlayManager.add(resourceSpotMinimapOverlay);
@@ -149,7 +150,7 @@ public class GauntletPlugin extends Plugin
 	@Override
 	protected void shutDown() throws Exception
 	{
-		overlayManager.remove(overlay);
+		overlayManager.remove(bossOverlay);
 		overlayManager.remove(protectedStyleOverlay);
 		overlayManager.remove(resourceSpotOverlay);
 		overlayManager.remove(resourceSpotMinimapOverlay);
@@ -443,6 +444,10 @@ public class GauntletPlugin extends Plugin
 		}
 	}
 
+	/**
+	 * Handles events emitted in the gauntlet
+	 * @param event gauntlet event
+	 */
 	private void onGauntletEvent(GauntletEvent event)
 	{
 		switch (event.getType())
@@ -454,11 +459,14 @@ public class GauntletPlugin extends Plugin
 			case PROTECTION_PRAYER_SWITCHED:
 				playSoundIfEnabled(overheadSwitchAudioClip, config.playSoundOnOverheadSwitch());
 				break;
+			case CRYSTAL_ATTACK:
+				playSoundIfEnabled(crystalAudioClip, config.playSoundOnCrystalAttack());
+				break;
 			case PLAYER_PRAYER_DISABLED:
 				playSoundIfEnabled(prayerDisabledAudioClip, config.playSoundOnDisablePrayerAttack());
 				break;
-			case CRYSTAL_ATTACK:
-				playSoundIfEnabled(crystalAudioClip, config.playSoundOnCrystalAttack());
+			case PLAYER_DEATH:
+				playSoundIfEnabled(playerDeathAudioClip, config.playSoundOnPlayerDeath());
 				break;
 			default:
 				log.warn("Unknown gauntlet event: {}", event.getType());

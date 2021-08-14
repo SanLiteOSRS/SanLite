@@ -31,6 +31,7 @@ import net.runelite.client.game.SkillIconManager;
 import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayLayer;
 import net.runelite.client.ui.overlay.OverlayPosition;
+import net.runelite.client.util.ColorUtil;
 import net.sanlite.client.plugins.gauntlet.id.GauntletBossId;
 import net.sanlite.client.ui.overlay.OverlayUtil2;
 
@@ -38,7 +39,7 @@ import javax.inject.Inject;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class GauntletOverlay extends Overlay
+public class GauntletBossOverlay extends Overlay
 {
 	private static final int ICON_WIDTH = 25;
 	private static final int ICON_HEIGHT = 25;
@@ -55,7 +56,7 @@ public class GauntletOverlay extends Overlay
 	private SkillIconManager iconManager;
 
 	@Inject
-	public GauntletOverlay(Client client, GauntletPlugin plugin)
+	public GauntletBossOverlay(Client client, GauntletPlugin plugin)
 	{
 		setPosition(OverlayPosition.DYNAMIC);
 		setLayer(OverlayLayer.ABOVE_SCENE);
@@ -75,20 +76,6 @@ public class GauntletOverlay extends Overlay
 		return null;
 	}
 
-	private BufferedImage getProtectedStyleIcon(GauntletBoss.ProtectionPrayer protectionPrayer)
-	{
-		switch (protectionPrayer)
-		{
-			case RANGED:
-				return iconManager.getSkillImage(Skill.RANGED);
-			case MAGIC:
-				return iconManager.getSkillImage(Skill.MAGIC);
-			case MELEE:
-				return iconManager.getSkillImage(Skill.ATTACK);
-		}
-		return null;
-	}
-
 	@Override
 	public Dimension render(Graphics2D graphics)
 	{
@@ -98,40 +85,48 @@ public class GauntletOverlay extends Overlay
 			return null;
 		}
 
-		GauntletBoss gauntletBoss = gauntlet.getBoss();
-		if (gauntletBoss != null && gauntletBoss.getCurrentAttackStyle() != null)
+		GauntletBoss boss = gauntlet.getBoss();
+		if (boss == null)
 		{
-			if (config.highlightCrystalAttackTiles())
-			{
-				renderCrystalEffects(graphics, gauntletBoss);
-			}
-
-			if (config.showAttackStyleCounter())
-			{
-				renderAttackStyleCounter(graphics, gauntletBoss);
-			}
+			return null;
 		}
+
+		if (config.showAttackStyleCounter() && boss.getCurrentAttackStyle() != null)
+		{
+			renderAttackStyleCounter(graphics, boss);
+		}
+
+		if (config.highlightCrystalAttackTiles())
+		{
+			renderCrystalEffects(graphics, boss);
+		}
+
+		if (config.highlightBossTrampleArea())
+		{
+			renderBossTrampleArea(graphics, boss);
+		}
+
 		return null;
 	}
 
-	private void renderAttackStyleCounter(Graphics2D graphics, GauntletBoss gauntletBoss)
+	private void renderAttackStyleCounter(Graphics2D graphics, GauntletBoss boss)
 	{
-		LocalPoint localPoint = gauntletBoss.getNpc().getLocalLocation();
+		LocalPoint localPoint = boss.getNpc().getLocalLocation();
 		if (localPoint != null)
 		{
 			Point point = Perspective.localToCanvas(client, localPoint, client.getPlane(),
-					gauntletBoss.getNpc().getLogicalHeight() + 16);
+					boss.getNpc().getLogicalHeight() + 16);
 
 			OverlayUtil2.renderCountCircle(graphics, GauntletBoss.ATTACKS_PER_SWITCH,
-					gauntletBoss.getAttacksUntilSwitch(), point,
-					getAttackStyleIcon(gauntletBoss.getCurrentAttackStyle()), OVERLAY_ICON_MARGIN, ICON_WIDTH,
+					boss.getAttacksUntilSwitch(), point,
+					getAttackStyleIcon(boss.getCurrentAttackStyle()), OVERLAY_ICON_MARGIN, ICON_WIDTH,
 					ICON_HEIGHT, OVERLAY_ICON_DISTANCE);
 		}
 	}
 
-	private void renderCrystalEffects(Graphics2D graphics, GauntletBoss gauntletBoss)
+	private void renderCrystalEffects(Graphics2D graphics, GauntletBoss boss)
 	{
-		for (NPC npc : gauntletBoss.getCrystals())
+		for (NPC npc : boss.getCrystals())
 		{
 			LocalPoint localPoint = npc.getLocalLocation();
 			Polygon polygon = Perspective.getCanvasTilePoly(client, localPoint);
@@ -141,9 +136,29 @@ public class GauntletOverlay extends Overlay
 				if (GauntletBossId.isCrystalNpc(npc.getId()))
 				{
 					OverlayUtil2.renderPolygon(graphics, polygon, config.getCrystalAttackColor(),
-							config.getTileMarkersLineSize().getSize());
+							config.getBorderWidth());
 				}
 			}
 		}
+	}
+
+	private void renderBossTrampleArea(Graphics2D graphics, GauntletBoss boss)
+	{
+		NPC bossNpc = boss.getNpc();
+		NPCComposition npcComposition = bossNpc.getTransformedComposition();
+		if (npcComposition == null || !npcComposition.isInteractible() || (bossNpc.isDead()))
+		{
+			return;
+		}
+
+		int size = npcComposition.getSize();
+		LocalPoint localPoint = bossNpc.getLocalLocation();
+		Polygon polygon = Perspective.getCanvasTileAreaPoly(client, localPoint, size);
+		if (polygon == null)
+		{
+			return;
+		}
+
+		OverlayUtil2.renderPolygonAlpha(graphics, polygon, config.getBossTrampleAreaColor(), config.getBorderWidth());
 	}
 }

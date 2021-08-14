@@ -74,6 +74,33 @@ public class OverlayUtil2
 		graphics.setStroke(originalStroke);
 	}
 
+	public static void renderPolygon(Graphics2D graphics, Shape poly, Color color, double strokeSize)
+	{
+		graphics.setColor(color);
+		final Stroke originalStroke = graphics.getStroke();
+		graphics.setStroke(new BasicStroke((float) strokeSize));
+		graphics.draw(poly);
+		graphics.setColor(new Color(0, 0, 0, 50));
+		graphics.fill(poly);
+		graphics.setStroke(originalStroke);
+	}
+
+	/**
+	 * Renders polygon with the given color as the alpha fill.
+	 * @param graphics graphics object
+	 * @param poly polygon
+	 * @param color	color
+	 * @param strokeSize outer stroke size
+	 */
+	public static void renderPolygonAlpha(Graphics2D graphics, Shape poly, Color color, double strokeSize)
+	{
+		graphics.setColor(color);
+		graphics.setStroke(new BasicStroke((float) strokeSize));
+		graphics.draw(poly);
+		graphics.setColor(ColorUtil.colorWithAlpha(color, 20));
+		graphics.fill(poly);
+	}
+
 	public static void renderMinimapLocation(Graphics2D graphics, Point mini, Color color)
 	{
 		graphics.setColor(Color.BLACK);

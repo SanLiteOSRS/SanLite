@@ -56,5 +56,6 @@ public final class GauntletPlayerId
 		public static final int BOW_ATTACK = 426;
 		public static final int HALBERD_ATTACK = 440;
 		public static final int STAFF_ATTACK = 1167;
+		public static final int DEATH = 836;
 	}
 }

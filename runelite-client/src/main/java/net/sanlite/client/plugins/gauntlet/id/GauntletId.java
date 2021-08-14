@@ -25,7 +25,8 @@ public class GauntletId
 				animationId == GauntletPlayerId.Anim.HALBERD_ATTACK ||
 				animationId == GauntletPlayerId.Anim.SCEPTRE_ATTACK ||
 				animationId == GauntletPlayerId.Anim.PUNCH_ATTACK ||
-				animationId == GauntletPlayerId.Anim.KICK_ATTACK;
+				animationId == GauntletPlayerId.Anim.KICK_ATTACK ||
+				animationId == GauntletPlayerId.Anim.DEATH;
 	}
 
 	public static class Region

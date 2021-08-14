@@ -32,7 +32,14 @@ import java.awt.*;
 @ConfigGroup(GauntletConfig.GROUP)
 public interface GauntletConfig extends Config
 {
-	String GROUP = "Gauntlet Boss";
+	String GROUP = "gauntlet";
+
+	@ConfigSection(
+			name = "Boss",
+			description = "Options for the cncounter with the gauntlet boss",
+			position = 0
+	)
+	String bossSection = "bossSection";
 
 	@ConfigSection(
 			name = "Resource spots",
@@ -48,11 +55,33 @@ public interface GauntletConfig extends Config
 	)
 	String soundsSection = "sounds";
 
+	@ConfigSection(
+			name = "Colors",
+			description = "Options for colors used throughout the plugin",
+			position = 15
+	)
+	String colorsSection = "colors";
+
+	@ConfigSection(
+			name = "Text",
+			description = "Options for text used throughout the plugin",
+			position = 15
+	)
+	String textSection = "text";
+
+	@ConfigSection(
+			name = "Highlight style",
+			description = "The render style of highlights such as tile markers",
+			position = 25
+	)
+	String highlightStyleSection = "highlightStyleSection";
+
 	@ConfigItem(
 			position = 1,
 			keyName = "showAttackStyleCounter",
 			name = "Show attack style counter",
-			description = "Displays the Gauntlet boss next attack above it's health bar"
+			description = "Displays the Gauntlet boss next attack above it's health bar",
+			section = bossSection
 	)
 	default boolean showAttackStyleCounter()
 	{
@@ -63,7 +92,8 @@ public interface GauntletConfig extends Config
 			position = 2,
 			keyName = "showProtectionPrayerCounter",
 			name = "Show protection prayer counter",
-			description = "Displays a count until the the gauntlet boss next switches it's protection prayer"
+			description = "Displays a count until the the gauntlet boss next switches it's protection prayer",
+			section = bossSection
 	)
 	default boolean showProtectionPrayerCounter()
 	{
@@ -74,7 +104,8 @@ public interface GauntletConfig extends Config
 			position = 3,
 			keyName = "highlightCrystalAttackTiles",
 			name = "Highlight crystals tiles",
-			description = "Highlight the tiles for the Gauntlet boss crystals"
+			description = "Highlight the tiles for the Gauntlet boss crystals",
+			section = bossSection
 	)
 	default boolean highlightCrystalAttackTiles()
 	{
@@ -83,9 +114,36 @@ public interface GauntletConfig extends Config
 
 	@ConfigItem(
 			position = 4,
+			keyName = "highlightBossTrampleArea",
+			name = "Highlight trample area",
+			description = "Highlight the tiles in which the gauntlet boss will use it's trample attack",
+			section = bossSection
+	)
+	default boolean highlightBossTrampleArea()
+	{
+		return true;
+	}
+
+	@Alpha
+	@ConfigItem(
+			position = 10,
+			keyName = "bossTrampleAreaColor",
+			name = "Boss trample area",
+			description = "Color of trample area highlight for the gauntlet boss",
+			section = colorsSection
+	)
+	default Color getBossTrampleAreaColor()
+	{
+		return new Color(9, 255, 199, 150);
+	}
+
+	@Alpha
+	@ConfigItem(
+			position = 4,
 			keyName = "crystalAttackColor",
 			name = "Crystals marker",
-			description = "Color of Gauntlet boss crystals marker"
+			description = "Color of Gauntlet boss crystals marker",
+			section = colorsSection
 	)
 	default Color getCrystalAttackColor()
 	{
@@ -152,18 +210,18 @@ public interface GauntletConfig extends Config
 		return true;
 	}
 
+	@Alpha
 	@ConfigItem(
 			position = 10,
 			keyName = "paddlefishSpotColor",
 			name = "Paddlefish spot color",
 			description = "Color of paddlefish fishing spots resource spot markers",
-			section = resourceSpotsSection
+			section = colorsSection
 	)
 	default Color getPaddlefishSpotColor()
 	{
 		return new Color(14, 189, 185);
 	}
-
 
 	@ConfigItem(
 			position = 11,
@@ -177,12 +235,13 @@ public interface GauntletConfig extends Config
 		return true;
 	}
 
+	@Alpha
 	@ConfigItem(
 			position = 12,
 			keyName = "crystalDepositColor",
 			name = "Crystal deposit color",
 			description = "Color of crystal deposit spots resource spot markers",
-			section = resourceSpotsSection
+			section = colorsSection
 	)
 	default Color getCrystalDepositColor()
 	{
@@ -201,12 +260,13 @@ public interface GauntletConfig extends Config
 		return true;
 	}
 
+	@Alpha
 	@ConfigItem(
 			position = 14,
 			keyName = "grymRootColor",
 			name = "Grym root color",
 			description = "Color of grym root spots resource spot markers",
-			section = resourceSpotsSection
+			section = colorsSection
 	)
 	default Color getGrymRootColor()
 	{
@@ -226,12 +286,13 @@ public interface GauntletConfig extends Config
 		return true;
 	}
 
+	@Alpha
 	@ConfigItem(
 			position = 16,
 			keyName = "phrenRootsColor",
 			name = "Phren roots color",
 			description = "Color of phren roots spots resource spot markers",
-			section = resourceSpotsSection
+			section = colorsSection
 	)
 	default Color getPhrenRootsColor()
 	{
@@ -250,12 +311,13 @@ public interface GauntletConfig extends Config
 		return true;
 	}
 
+	@Alpha
 	@ConfigItem(
 			position = 18,
 			keyName = "linumTirinumColor",
 			name = "Linum Tirinum color",
 			description = "Color of linum tirinum spots resource spot markers",
-			section = resourceSpotsSection
+			section = colorsSection
 	)
 	default Color getLinumTirinumColor()
 	{
@@ -264,13 +326,14 @@ public interface GauntletConfig extends Config
 
 	@ConfigItem(
 			position = 19,
-			keyName = "tileMarkersLineSize",
-			name = "Tile markers line size",
-			description = "The size of the outside line for tile markers"
+			keyName = "borderWidth",
+			name = "Border width",
+			description = "Width of the highlight borders such as tile markers",
+			section = highlightStyleSection
 	)
-	default StrokeSize getTileMarkersLineSize()
+	default double getBorderWidth()
 	{
-		return StrokeSize.NORMAL;
+		return 2;
 	}
 
 	@ConfigItem(
@@ -322,10 +385,22 @@ public interface GauntletConfig extends Config
 	}
 
 	@ConfigItem(
+			keyName = "playSoundOnPlayerDeath",
+			name = "Play player death sound",
+			description = "Plays a 'sound effect' when the player dies in the gauntlet",
+			section = soundsSection,
+			position = 24
+	)
+	default boolean playSoundOnPlayerDeath()
+	{
+		return true;
+	}
+
+	@ConfigItem(
 			keyName = "showDebugOverlay",
 			name = "Display debug overlay",
 			description = "Displays Gauntlet boss debug overlay. This contains variables that the plugin uses to function",
-			position = 24
+			position = 25
 	)
 	default boolean showDebugOverlay()
 	{
@@ -341,4 +416,12 @@ public interface GauntletConfig extends Config
 	// TODO: Hide mega tree thingies
 
 	// TODO: Mark potential boss rooms
+
+	// TODO: Switch after attack earlier and verify with hitsplat
+
+	// TODO: Highlight hunllef size
+
+	// TODO: Attack timer
+
+	// TODO: Text font settings
 }

@@ -30,6 +30,7 @@ import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.*;
 import net.runelite.api.coords.LocalPoint;
 import net.sanlite.client.plugins.gauntlet.event.GauntletEvent;
+import net.sanlite.client.plugins.gauntlet.event.PlayerDeath;
 import net.sanlite.client.plugins.gauntlet.id.GauntletBossId;
 import net.sanlite.client.plugins.gauntlet.id.GauntletPlayerId;
 
@@ -166,6 +167,7 @@ class Gauntlet
 					boss.verifyAttackStyleSwitch(GauntletBoss.AttackStyle.RANGED, tickCount);
 					break;
 				case GauntletBossId.Anim.PROJECTILE_ATTACK:
+					// Ignore this animation
 					break;
 				default:
 					log.warn("Could not determine gauntlet boss animation. Unknown animation id: {}", animationId);
@@ -173,6 +175,12 @@ class Gauntlet
 		}
 		else if (actor instanceof Player)
 		{
+			if (animationId == GauntletPlayerId.Anim.DEATH)
+			{
+				emitGauntletEvent.accept(new PlayerDeath());
+				return;
+			}
+
 			if (!GauntletPlayerId.isPlayerAttack(animationId))
 			{
 				return;
