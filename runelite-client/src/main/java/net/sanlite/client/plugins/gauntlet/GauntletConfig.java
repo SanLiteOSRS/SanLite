@@ -287,7 +287,7 @@ public interface GauntletConfig extends Config
 
 	@ConfigItem(
 			keyName = "playSoundOnDisablePrayerAttack",
-			name = "Play disable prayer attack sound",
+			name = "Play prayers disabled sound",
 			description = "Plays a sound when the gauntlet boss uses it's prayer disabling attack",
 			section = soundsSection,
 			position = 21
@@ -298,11 +298,23 @@ public interface GauntletConfig extends Config
 	}
 
 	@ConfigItem(
+			keyName = "playSoundOnCrystalAttack",
+			name = "Play crystals spawn sound",
+			description = "Plays a sound when the gauntlet boss uses it's crystal spawn attack",
+			section = soundsSection,
+			position = 22
+	)
+	default boolean playSoundOnCrystalAttack()
+	{
+		return true;
+	}
+
+	@ConfigItem(
 			keyName = "playSoundOnOverheadSwitch",
 			name = "Play protection prayer switch sound",
 			description = "Plays a sound when the gauntlet boss switches it's overhead protection prayer style",
 			section = soundsSection,
-			position = 22
+			position = 23
 	)
 	default boolean playSoundOnOverheadSwitch()
 	{
@@ -313,10 +325,20 @@ public interface GauntletConfig extends Config
 			keyName = "showDebugOverlay",
 			name = "Display debug overlay",
 			description = "Displays Gauntlet boss debug overlay. This contains variables that the plugin uses to function",
-			position = 23
+			position = 24
 	)
 	default boolean showDebugOverlay()
 	{
 		return false;
 	}
+
+	// TODO: Highlight t3 bossess
+
+	// TODO: Despawn dead npc's
+
+	// TODO: Highlight craft room objects
+
+	// TODO: Hide mega tree thingies
+
+	// TODO: Mark potential boss rooms
 }

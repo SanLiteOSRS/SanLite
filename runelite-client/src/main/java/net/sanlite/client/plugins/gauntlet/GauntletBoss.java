@@ -30,10 +30,7 @@ import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.HeadIcon;
 import net.runelite.api.NPC;
 import net.runelite.api.NPCComposition;
-import net.sanlite.client.plugins.gauntlet.event.BossAttackStyleSwitched;
-import net.sanlite.client.plugins.gauntlet.event.BossProtectionPrayerSwitched;
-import net.sanlite.client.plugins.gauntlet.event.GauntletEvent;
-import net.sanlite.client.plugins.gauntlet.event.PlayerPrayerDisabled;
+import net.sanlite.client.plugins.gauntlet.event.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -149,6 +146,7 @@ public class GauntletBoss
 	{
 		log.debug("Gauntlet boss CRYSTAL attack. Tick: {} ", tickCount);
 		attack(tickCount, true);
+		emitGauntletEvent.accept(new BossCrystalAttack());
 	}
 
 	void trample(int tickCount)

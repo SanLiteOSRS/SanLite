@@ -64,6 +64,7 @@ public class GauntletPlugin extends Plugin
 {
 	private final Clip magicAudioClip = SoundUtil.getResourceStreamFromClass(getClass(), "magic.wav");
 	private final Clip rangedAudioClip = SoundUtil.getResourceStreamFromClass(getClass(), "ranged.wav");
+	private final Clip crystalAudioClip = SoundUtil.getResourceStreamFromClass(getClass(), "crystal.wav");
 	private final Clip prayerDisabledAudioClip = SoundUtil.getResourceStreamFromClass(getClass(), "prayer_disabled.wav");
 	private final Clip overheadSwitchAudioClip = SoundUtil.getResourceStreamFromClass(getClass(), "overhead_switch.wav");
 
@@ -455,6 +456,9 @@ public class GauntletPlugin extends Plugin
 				break;
 			case PLAYER_PRAYER_DISABLED:
 				playSoundIfEnabled(prayerDisabledAudioClip, config.playSoundOnDisablePrayerAttack());
+				break;
+			case CRYSTAL_ATTACK:
+				playSoundIfEnabled(crystalAudioClip, config.playSoundOnCrystalAttack());
 				break;
 			default:
 				log.warn("Unknown gauntlet event: {}", event.getType());
