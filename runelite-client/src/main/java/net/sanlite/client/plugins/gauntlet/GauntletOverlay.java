@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019, Siraz <https://github.com/Sirazzz>
+ * Copyright (c) 2021, Siraz <https://github.com/Sirazzz>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -24,82 +24,72 @@
  */
 package net.sanlite.client.plugins.gauntlet;
 
-import net.runelite.api.GameObject;
-import net.runelite.api.Point;
+import net.runelite.api.*;
+import net.runelite.api.coords.LocalPoint;
 import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayLayer;
 import net.runelite.client.ui.overlay.OverlayPosition;
-import net.runelite.client.ui.overlay.OverlayUtil;
-import net.sanlite.client.ui.overlay.OverlayUtil2;
+import net.runelite.client.ui.overlay.outline.ModelOutlineRenderer;
 
 import javax.inject.Inject;
 import java.awt.*;
 
-public class GauntletResourceSpotOverlay extends Overlay
+public class GauntletOverlay extends Overlay
 {
-
+	private final Client client;
 	private final GauntletPlugin plugin;
-	private final GauntletConfig config;
+	private final ModelOutlineRenderer modelOutlineRenderer;
 
 	@Inject
-	private GauntletResourceSpotOverlay(GauntletPlugin plugin, GauntletConfig config)
+	private GauntletConfig config;
+
+	@Inject
+	public GauntletOverlay(Client client, GauntletPlugin plugin, ModelOutlineRenderer modelOutlineRenderer)
 	{
 		setPosition(OverlayPosition.DYNAMIC);
 		setLayer(OverlayLayer.ABOVE_SCENE);
+		this.client = client;
 		this.plugin = plugin;
-		this.config = config;
+		this.modelOutlineRenderer = modelOutlineRenderer;
 	}
 
 	@Override
 	public Dimension render(Graphics2D graphics)
 	{
-		if (plugin.getGauntlet() == null)
+		Gauntlet gauntlet = plugin.getGauntlet();
+		if (gauntlet == null)
 		{
 			return null;
 		}
 
-		for (GameObject gameObject : plugin.getGauntlet().getResourceSpots())
+		for (NPC demiBoss : gauntlet.getDemiBosses())
 		{
-			GauntletResourceSpot resourceSpot = GauntletResourceSpot.getSPOTS().get(gameObject.getId());
-
-			if (resourceSpot == null)
+			if (plugin.isHighlightEnabledForDemiBoss(demiBoss.getId()))
 			{
-				continue;
-			}
-
-			Color color = plugin.getResourceSpotColor(gameObject.getId());
-
-			if (config.showResourceSpotsObjectMarkers())
-			{
-				Shape poly = gameObject.getConvexHull();
-				if (poly != null)
-				{
-					OverlayUtil2.renderPolygon(graphics, poly, color, config.getBorderWidth());
-				}
-			}
-
-			if (config.showResourceSpotsTiles())
-			{
-				Polygon poly = gameObject.getCanvasTilePoly();
-				if (poly != null)
-				{
-					OverlayUtil2.renderPolygon(graphics, poly, color, config.getBorderWidth());
-				}
-			}
-
-			if (config.showResourceSpotsNames())
-			{
-				String text = resourceSpot.getName();
-
-				Point textLocation = gameObject.getCanvasTextLocation(graphics, text, 40);
-
-				if (textLocation != null)
-				{
-					OverlayUtil.renderTextLocation(graphics, textLocation, text, color.darker());
-				}
+				renderDemiBossHighlight(demiBoss);
 			}
 		}
 
 		return null;
+	}
+
+	private void renderDemiBossHighlight(NPC demiBoss)
+	{
+		NPCComposition npcComposition = demiBoss.getTransformedComposition();
+		if (npcComposition == null || !npcComposition.isInteractible() || (demiBoss.isDead()))
+		{
+			return;
+		}
+
+		int size = npcComposition.getSize();
+		LocalPoint localPoint = demiBoss.getLocalLocation();
+		Polygon polygon = Perspective.getCanvasTileAreaPoly(client, localPoint, size);
+		if (polygon == null)
+		{
+			return;
+		}
+
+		modelOutlineRenderer.drawOutline(demiBoss, (int) config.getBorderWidth(), config.getDemiBossHighlightColor(),
+				config.outlineFeather());
 	}
 }

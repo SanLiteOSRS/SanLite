@@ -336,6 +336,22 @@ public interface GauntletConfig extends Config
 	}
 
 	@ConfigItem(
+			position = 6,
+			keyName = "outlineFeather",
+			name = "Outline feather",
+			description = "Specify between 0-4 how much of the model outline should be faded",
+			section = highlightStyleSection
+	)
+	@Range(
+			min = 0,
+			max = 4
+	)
+	default int outlineFeather()
+	{
+		return 0;
+	}
+
+	@ConfigItem(
 			keyName = "playSoundOnAttackStyleSwitch",
 			name = "Play attack style switch sound",
 			description = "Plays a sound for the respective attack style when the gauntlet boss switches attack style",
@@ -409,7 +425,7 @@ public interface GauntletConfig extends Config
 	@ConfigItem(
 			keyName = "highlightBearDemiBoss",
 			name = "Highlight bear demi boss",
-			description = "Highlights bear demi boss in the gauntlet",
+			description = "Highlights bear demi boss location and outline in the gauntlet",
 			position = 26
 	)
 	default boolean highlightBearDemiBoss()
@@ -420,7 +436,7 @@ public interface GauntletConfig extends Config
 	@ConfigItem(
 			keyName = "highlightDragonDemiBoss",
 			name = "Highlight dragon demi boss",
-			description = "Highlights dragon demi boss in the gauntlet",
+			description = "Highlights dragon demi boss location and outline in the gauntlet",
 			position = 27
 	)
 	default boolean highlightDragonDemiBoss()
@@ -431,12 +447,25 @@ public interface GauntletConfig extends Config
 	@ConfigItem(
 			keyName = "highlightDarkBeastDemiBoss",
 			name = "Highlight dark beast demi boss",
-			description = "Highlights dark beast demi boss in the gauntlet",
+			description = "Highlights dark beast demi boss location and outline in the gauntlet",
 			position = 28
 	)
 	default boolean highlightDarkBeastDemiBoss()
 	{
 		return true;
+	}
+
+	@Alpha
+	@ConfigItem(
+			position = 14,
+			keyName = "demiBossHighlightColor",
+			name = "Demi boss highlight",
+			description = "Color of demi boss highlight outline in the gauntlet",
+			section = colorsSection
+	)
+	default Color getDemiBossHighlightColor()
+	{
+		return Color.ORANGE;
 	}
 
 	@ConfigItem(
@@ -449,8 +478,6 @@ public interface GauntletConfig extends Config
 	{
 		return false;
 	}
-
-	// TODO: Highlight t3 bossess with color
 
 	// TODO: Highlight craft room objects
 

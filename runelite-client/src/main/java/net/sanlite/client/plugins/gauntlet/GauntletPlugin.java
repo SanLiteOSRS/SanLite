@@ -104,6 +104,9 @@ public class GauntletPlugin extends Plugin
 	private OverlayManager overlayManager;
 
 	@Inject
+	private GauntletOverlay overlay;
+
+	@Inject
 	private GauntletBossOverlay bossOverlay;
 
 	@Inject
@@ -162,6 +165,7 @@ public class GauntletPlugin extends Plugin
 			hiddenDeadNpcNames.forEach(client::addHiddenDeadNpcName);
 		}
 
+		overlayManager.add(overlay);
 		overlayManager.add(bossOverlay);
 		overlayManager.add(protectedStyleOverlay);
 		overlayManager.add(resourceSpotOverlay);
@@ -177,6 +181,7 @@ public class GauntletPlugin extends Plugin
 	@Override
 	protected void shutDown() throws Exception
 	{
+		overlayManager.remove(overlay);
 		overlayManager.remove(bossOverlay);
 		overlayManager.remove(protectedStyleOverlay);
 		overlayManager.remove(resourceSpotOverlay);
@@ -529,16 +534,21 @@ public class GauntletPlugin extends Plugin
 				break;
 			case DEMI_BOSS_SPAWNED:
 				NPC demiBoss = ((DemiBossSpawned) event).getNpc();
-				if ((GauntletNpc.isMeleeDemiBoss(demiBoss.getId()) && config.highlightBearDemiBoss()) ||
-						(GauntletNpc.isRangedDemiBoss(demiBoss.getId()) && config.highlightDarkBeastDemiBoss()) ||
-						(GauntletNpc.isMagicDemiBoss(demiBoss.getId()) && config.highlightDragonDemiBoss()))
+				if (isHighlightEnabledForDemiBoss(demiBoss.getId()))
 				{
-					client.setHintArrow(demiBoss);
+					client.setHintArrow(demiBoss.getWorldLocation());
 				}
 				break;
 			default:
 				log.warn("Unknown gauntlet event: {}", event.getType());
 		}
+	}
+
+	boolean isHighlightEnabledForDemiBoss(int npcId)
+	{
+		return (GauntletNpc.isMeleeDemiBoss(npcId) && config.highlightBearDemiBoss()) ||
+				(GauntletNpc.isRangedDemiBoss(npcId) && config.highlightDarkBeastDemiBoss()) ||
+				(GauntletNpc.isMagicDemiBoss(npcId) && config.highlightDragonDemiBoss());
 	}
 
 	private void playSoundIfEnabled(Clip soundClip, boolean isConfigEnabled)
