@@ -29,6 +29,7 @@ import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.*;
 import net.runelite.api.coords.LocalPoint;
+import net.sanlite.client.plugins.gauntlet.event.DemiBossSpawned;
 import net.sanlite.client.plugins.gauntlet.event.GauntletEvent;
 import net.sanlite.client.plugins.gauntlet.event.PlayerDeath;
 import net.sanlite.client.plugins.gauntlet.id.GauntletBossId;
@@ -51,12 +52,15 @@ class Gauntlet
 	private boolean inBossRoom;
 	@Getter
 	private GauntletBoss boss;
+	@Getter
+	private final List<NPC> demiBosses;
 	private final Consumer<GauntletEvent> emitGauntletEvent;
 
 	Gauntlet(Player player, NPC cachedBossNpc, Consumer<GauntletEvent> emitGauntletEvent)
 	{
 		this.inBossRoom = false;
 		this.player = player;
+		this.demiBosses = new ArrayList<>();
 		this.emitGauntletEvent = emitGauntletEvent;
 		if (cachedBossNpc != null)
 		{
@@ -124,6 +128,17 @@ class Gauntlet
 	void bossDespawned()
 	{
 		boss = null;
+	}
+
+	void demiBossSpawned(NPC npc)
+	{
+		demiBosses.add(npc);
+		emitGauntletEvent.accept(new DemiBossSpawned(npc));
+	}
+
+	void demiBossDespawned(NPC npc)
+	{
+		demiBosses.remove(npc);
 	}
 
 	void onProjectile(int projectileId, int tickCount)

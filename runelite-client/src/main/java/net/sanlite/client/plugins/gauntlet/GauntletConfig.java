@@ -407,17 +407,50 @@ public interface GauntletConfig extends Config
 	}
 
 	@ConfigItem(
+			keyName = "highlightBearDemiBoss",
+			name = "Highlight bear demi boss",
+			description = "Highlights bear demi boss in the gauntlet",
+			position = 26
+	)
+	default boolean highlightBearDemiBoss()
+	{
+		return false;
+	}
+
+	@ConfigItem(
+			keyName = "highlightDragonDemiBoss",
+			name = "Highlight dragon demi boss",
+			description = "Highlights dragon demi boss in the gauntlet",
+			position = 27
+	)
+	default boolean highlightDragonDemiBoss()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+			keyName = "highlightDarkBeastDemiBoss",
+			name = "Highlight dark beast demi boss",
+			description = "Highlights dark beast demi boss in the gauntlet",
+			position = 28
+	)
+	default boolean highlightDarkBeastDemiBoss()
+	{
+		return true;
+	}
+
+	@ConfigItem(
 			keyName = "showDebugOverlay",
 			name = "Display debug overlay",
 			description = "Displays Gauntlet boss debug overlay. This contains variables that the plugin uses to function",
-			position = 26
+			position = 29
 	)
 	default boolean showDebugOverlay()
 	{
 		return false;
 	}
 
-	// TODO: Highlight t3 bossess
+	// TODO: Highlight t3 bossess with color
 
 	// TODO: Highlight craft room objects
 

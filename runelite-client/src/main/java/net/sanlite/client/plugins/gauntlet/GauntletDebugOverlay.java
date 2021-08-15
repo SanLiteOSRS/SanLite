@@ -82,6 +82,11 @@ public class GauntletDebugOverlay extends Overlay
 				.right("" + plugin.getGauntlet().getResourceSpots().size())
 				.build());
 
+		panelComponent.getChildren().add(LineComponent.builder()
+				.left("Number of demi bosses visible")
+				.right("" + plugin.getGauntlet().getDemiBosses().size())
+				.build());
+
 		GauntletBoss gauntletBoss = gauntlet.getBoss();
 		if (gauntlet.getBoss() != null)
 		{

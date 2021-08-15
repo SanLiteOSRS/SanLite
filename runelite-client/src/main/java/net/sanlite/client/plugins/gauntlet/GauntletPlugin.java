@@ -39,9 +39,11 @@ import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.ui.overlay.OverlayManager;
 import net.sanlite.client.game.SoundManager;
 import net.sanlite.client.plugins.gauntlet.event.BossAttackStyleSwitched;
+import net.sanlite.client.plugins.gauntlet.event.DemiBossSpawned;
 import net.sanlite.client.plugins.gauntlet.event.GauntletEvent;
 import net.sanlite.client.plugins.gauntlet.id.GauntletBossId;
 import net.sanlite.client.plugins.gauntlet.id.GauntletId;
+import net.sanlite.client.plugins.gauntlet.id.GauntletNpc;
 import net.sanlite.client.util.SoundUtil;
 
 import javax.inject.Inject;
@@ -70,21 +72,28 @@ public class GauntletPlugin extends Plugin
 	private final Clip prayerDisabledAudioClip = SoundUtil.getResourceStreamFromClass(getClass(), "prayer_disabled.wav");
 	private final Clip overheadSwitchAudioClip = SoundUtil.getResourceStreamFromClass(getClass(), "switch_weapon.wav");
 	private final Clip playerDeathAudioClip = SoundUtil.getResourceStreamFromClass(getClass(), "player_death.wav");
-
+	private final Set<String> hiddenDeadNpcNames = ImmutableSet.of(
+			"Crystalline rat",
+			"Crystalline spider",
+			"Crystalline bat",
+			"Crystalline unicorn",
+			"Crystalline scorpion",
+			"Crystalline wolf",
+			"Crystalline bear",
+			"Crystalline dragon",
+			"Crystalline dark beast",
+			"Corrupted rat",
+			"Corrupted spider",
+			"Corrupted bat",
+			"Corrupted unicorn",
+			"Corrupted scorpion",
+			"Corrupted wolf",
+			"Corrupted bear",
+			"Corrupted dragon",
+			"Corrupted dark beast"
+	);
 	private Map<GauntletResourceSpot, Boolean> resourceSpotEnabledConfigs;
 	private Map<GauntletResourceSpot, Color> resourceSpotColorConfigs;
-	private final Set<String> hiddenDeadNpcNames = ImmutableSet.of(
-			"Crystalline Rat",
-			"Crystalline Spider",
-			"Crystalline Bat",
-			"Crystalline Unicorn",
-			"Crystalline Scorpion",
-			"Crystalline Wolf",
-			"Crystalline Bear",
-			"Crystalline Dragon",
-			"Crystalline Dark Beast"
-	);
-
 	@Inject
 	private Client client;
 
@@ -356,6 +365,13 @@ public class GauntletPlugin extends Plugin
 		if (GauntletBossId.isBossNpc(npc.getId()))
 		{
 			gauntlet.bossSpawned(npc);
+			return;
+		}
+
+		if (GauntletNpc.isDemiBoss(npc.getId()))
+		{
+			gauntlet.demiBossSpawned(npc);
+			return;
 		}
 
 		if (gauntlet.getBoss() == null)
@@ -381,6 +397,13 @@ public class GauntletPlugin extends Plugin
 		if (GauntletBossId.isBossNpc(npc.getId()))
 		{
 			gauntlet.bossDespawned();
+			return;
+		}
+
+		if (GauntletNpc.isDemiBoss(npc.getId()))
+		{
+			gauntlet.demiBossDespawned(npc);
+			return;
 		}
 
 		if (gauntlet.getBoss() == null)
@@ -410,7 +433,6 @@ public class GauntletPlugin extends Plugin
 
 		for (GauntletResourceSpot resourceSpot : GauntletResourceSpot.values())
 		{
-
 			if (GauntletResourceSpot.isResourceSpot(gameObject.getId(), resourceSpot) && resourceSpotEnabledConfigs.get(resourceSpot))
 			{
 //				log.debug("Gauntlet resource spot spawned: {}", gameObject.getId());
@@ -504,6 +526,15 @@ public class GauntletPlugin extends Plugin
 				break;
 			case PLAYER_DEATH:
 				playSoundIfEnabled(playerDeathAudioClip, config.playSoundOnPlayerDeath());
+				break;
+			case DEMI_BOSS_SPAWNED:
+				NPC demiBoss = ((DemiBossSpawned) event).getNpc();
+				if ((GauntletNpc.isMeleeDemiBoss(demiBoss.getId()) && config.highlightBearDemiBoss()) ||
+						(GauntletNpc.isRangedDemiBoss(demiBoss.getId()) && config.highlightDarkBeastDemiBoss()) ||
+						(GauntletNpc.isMagicDemiBoss(demiBoss.getId()) && config.highlightDragonDemiBoss()))
+				{
+					client.setHintArrow(demiBoss);
+				}
 				break;
 			default:
 				log.warn("Unknown gauntlet event: {}", event.getType());
