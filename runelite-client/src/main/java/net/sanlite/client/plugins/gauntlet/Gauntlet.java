@@ -83,22 +83,18 @@ class Gauntlet
 	void newRoomLoading()
 	{
 		resourceSpots.clear();
+		utilitySpots.clear();
 	}
 
 	void resourceSpotSpawned(GameObject gameObject, int cameraX, int cameraY)
 	{
 		resourceSpots.add(gameObject);
-		inverseSortSpotDistanceFromPlayer(cameraX, cameraY);
+		inverseSortSpotDistanceFromPlayer(cameraX, cameraY); // TODO: Check if this is needed
 	}
 
 	void resourceSpotDespawned(GameObject gameObject)
 	{
 		resourceSpots.remove(gameObject);
-	}
-
-	void resourceSpotDisabled(GauntletResourceSpot resourceSpot)
-	{
-		Arrays.stream(resourceSpot.getIds()).forEach(id -> resourceSpots.removeIf(spot -> spot.getId() == id));
 	}
 
 	void utilitySpotSpawned(GameObject gameObject)

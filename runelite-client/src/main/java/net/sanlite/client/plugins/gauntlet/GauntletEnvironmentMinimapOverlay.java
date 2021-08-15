@@ -29,24 +29,23 @@ import net.runelite.api.Point;
 import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayLayer;
 import net.runelite.client.ui.overlay.OverlayPosition;
-import net.sanlite.client.ui.overlay.OverlayUtil2;
+import net.runelite.client.ui.overlay.OverlayUtil;
 
 import javax.inject.Inject;
 import java.awt.*;
 
-public class GauntletResourceSpotOverlay extends Overlay
+public class GauntletEnvironmentMinimapOverlay extends Overlay
 {
-
 	private final GauntletPlugin plugin;
 	private final GauntletConfig config;
 
 	@Inject
-	private GauntletResourceSpotOverlay(GauntletPlugin plugin, GauntletConfig config)
+	private GauntletEnvironmentMinimapOverlay(GauntletPlugin plugin, GauntletConfig config)
 	{
-		setPosition(OverlayPosition.DYNAMIC);
-		setLayer(OverlayLayer.ABOVE_SCENE);
 		this.plugin = plugin;
 		this.config = config;
+		setPosition(OverlayPosition.DYNAMIC);
+		setLayer(OverlayLayer.ABOVE_WIDGETS);
 	}
 
 	@Override
@@ -57,48 +56,43 @@ public class GauntletResourceSpotOverlay extends Overlay
 			return null;
 		}
 
-		for (GameObject gameObject : plugin.getGauntlet().getResourceSpots())
+		if (config.showResourceSpotsOnMinimap())
 		{
-			GauntletResourceSpot resourceSpot = GauntletResourceSpot.getSPOTS().get(gameObject.getId());
-
-			if (resourceSpot == null)
+			for (GameObject gameObject : plugin.getGauntlet().getResourceSpots())
 			{
-				continue;
-			}
-
-			Color color = plugin.getResourceSpotColor(gameObject.getId());
-
-			if (config.showResourceSpotsObjectMarkers())
-			{
-				Shape poly = gameObject.getConvexHull();
-				if (poly != null)
+				if (GauntletResourceSpot.getSPOTS().get(gameObject.getId()) == null)
 				{
-					OverlayUtil2.renderPolygon(graphics, poly, color, config.getBorderWidth());
+					continue;
 				}
+
+				Color color = GauntletResourceSpot.getColor(gameObject.getId(), config);
+				renderSpotHighlight(graphics, gameObject, color);
 			}
+		}
 
-			if (config.showResourceSpotsTiles())
+		if (config.showUtilitySpotsOnMinimap())
+		{
+			for (GameObject gameObject : plugin.getGauntlet().getUtilitySpots())
 			{
-				Polygon poly = gameObject.getCanvasTilePoly();
-				if (poly != null)
+				if (GauntletUtilitySpot.getSPOTS().get(gameObject.getId()) == null)
 				{
-					OverlayUtil2.renderPolygon(graphics, poly, color, config.getBorderWidth());
+					continue;
 				}
-			}
 
-			if (config.showResourceSpotsNames())
-			{
-				String text = resourceSpot.getName();
-
-				Point textLocation = gameObject.getCanvasTextLocation(graphics, text, 40);
-				if (textLocation != null)
-				{
-					OverlayUtil2.renderTextLocation(graphics, text, config.getFontSize(), config.getFontStyle().getFont(),
-							color, textLocation, false, 0);
-				}
+				Color color = GauntletUtilitySpot.getColor(gameObject.getId(), config);
+				renderSpotHighlight(graphics, gameObject, color);
 			}
 		}
 
 		return null;
+	}
+
+	private void renderSpotHighlight(Graphics2D graphics, GameObject gameObject, Color color)
+	{
+		Point minimapLocation = gameObject.getMinimapLocation();
+		if (minimapLocation != null)
+		{
+			OverlayUtil.renderMinimapLocation(graphics, minimapLocation, color);
+		}
 	}
 }

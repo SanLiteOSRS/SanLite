@@ -58,7 +58,7 @@ public class GauntletBossProtectionPrayOverlay extends Overlay
 		}
 
 		GauntletBoss gauntletBoss = gauntlet.getBoss();
-		if (gauntletBoss == null || gauntletBoss.getCurrentProtectionPrayer() == null)
+		if (gauntletBoss == null)
 		{
 			return null;
 		}

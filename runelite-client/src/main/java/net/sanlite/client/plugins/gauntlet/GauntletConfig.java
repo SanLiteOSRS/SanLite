@@ -203,7 +203,7 @@ public interface GauntletConfig extends Config
 	)
 	default Color getSingingBowlHighlightColor()
 	{
-		return new Color(88, 58, 12);
+		return new Color(124, 78, 9);
 	}
 
 	@Alpha
@@ -216,7 +216,7 @@ public interface GauntletConfig extends Config
 	)
 	default Color getCookingRangeHighlightColor()
 	{
-		return new Color(122, 107, 9);
+		return new Color(207, 181, 15);
 	}
 
 	@Alpha
@@ -229,7 +229,7 @@ public interface GauntletConfig extends Config
 	)
 	default Color getWaterPumpHighlightColor()
 	{
-		return new Color(70, 82, 255);
+		return new Color(59, 185, 255);
 	}
 
 	@ConfigItem(
@@ -271,11 +271,23 @@ public interface GauntletConfig extends Config
 	@ConfigItem(
 			position = 8,
 			keyName = "showResourceSpotsOnMinimap",
-			name = "Display resource spot on minimap",
+			name = "Display resource spots on minimap",
 			description = "Configures whether resource spots are displayed on the minimap",
 			section = environmentSection
 	)
 	default boolean showResourceSpotsOnMinimap()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+			position = 8,
+			keyName = "showUtilitySpotsOnMinimap",
+			name = "Display utility spots on minimap",
+			description = "Configures whether utility spots are displayed on the minimap",
+			section = environmentSection
+	)
+	default boolean showUtilitySpotsOnMinimap()
 	{
 		return true;
 	}
@@ -629,7 +641,9 @@ public interface GauntletConfig extends Config
 
 	// TODO: Tidy up config
 
-	// TODO: Highlight craft room objects
+	// TODO: Fix icon centering for craft room highlights
 
 	// TODO: Switch after attack earlier and verify with hitsplat
+
+	// TODO: Skybox
 }

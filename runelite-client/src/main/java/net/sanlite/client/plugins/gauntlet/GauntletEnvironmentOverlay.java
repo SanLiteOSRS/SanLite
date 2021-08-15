@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021, Siraz <https://github.com/Sirazzz>
+ * Copyright (c) 2019, Siraz <https://github.com/Sirazzz>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -39,31 +39,31 @@ import javax.inject.Inject;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class GauntletOverlay extends Overlay
+public class GauntletEnvironmentOverlay extends Overlay
 {
+
 	private final Client client;
 	private final GauntletPlugin plugin;
+	private final GauntletConfig config;
+	private final SkillIconManager iconManager;
 	private final ModelOutlineRenderer modelOutlineRenderer;
 
 	@Inject
-	private GauntletConfig config;
-
-	@Inject
-	private SkillIconManager iconManager;
-
-	@Inject
-	public GauntletOverlay(Client client, GauntletPlugin plugin, ModelOutlineRenderer modelOutlineRenderer)
+	private GauntletEnvironmentOverlay(Client client, GauntletPlugin plugin, GauntletConfig config,
+									   SkillIconManager iconManager, ModelOutlineRenderer modelOutlineRenderer)
 	{
 		setPosition(OverlayPosition.DYNAMIC);
 		setLayer(OverlayLayer.ABOVE_SCENE);
 		this.client = client;
 		this.plugin = plugin;
+		this.config = config;
+		this.iconManager = iconManager;
 		this.modelOutlineRenderer = modelOutlineRenderer;
 	}
 
-	private BufferedImage getIcon(GauntletUtilitySpotType utilitySpotType)
+	private BufferedImage getIcon(GauntletUtilitySpot utilitySpot)
 	{
-		switch (utilitySpotType)
+		switch (utilitySpot)
 		{
 			case SINGING_BOWL:
 				return iconManager.getSkillImage(Skill.CRAFTING);
@@ -92,21 +92,89 @@ public class GauntletOverlay extends Overlay
 			}
 		}
 
-		for (GameObject gameObject : gauntlet.getUtilitySpots())
+		renderResourceSpots(graphics);
+		renderUtilitySpots(graphics);
+
+		return null;
+	}
+
+	private void renderResourceSpots(Graphics2D graphics)
+	{
+		for (GameObject gameObject : plugin.getGauntlet().getResourceSpots())
 		{
-			GauntletUtilitySpotType type = GauntletUtilitySpot.getTypeForId(gameObject.getId(), plugin.getUtilitySpotsConfig());
-			if (type == null)
+			GauntletResourceSpot resourceSpot = GauntletResourceSpot.getSPOTS().get(gameObject.getId());
+			if (resourceSpot == null)
 			{
 				continue;
 			}
 
-			if (plugin.isHighlightEnabledForUtilitySpot(type))
+			boolean isEnabled = GauntletResourceSpot.isEnabled(gameObject.getId(), config);
+			if (!isEnabled)
 			{
-				renderUtilitySpotHighlight(graphics, gameObject, type);
+				continue;
+			}
+
+			Color color = GauntletResourceSpot.getColor(gameObject.getId(), config);
+			if (config.showResourceSpotsObjectMarkers())
+			{
+				Shape poly = gameObject.getConvexHull();
+				if (poly != null)
+				{
+					OverlayUtil2.renderPolygon(graphics, poly, color, config.getBorderWidth());
+				}
+			}
+
+			if (config.showResourceSpotsTiles())
+			{
+				Polygon poly = gameObject.getCanvasTilePoly();
+				if (poly != null)
+				{
+					OverlayUtil2.renderPolygon(graphics, poly, color, config.getBorderWidth());
+				}
+			}
+
+			if (config.showResourceSpotsNames())
+			{
+				String text = resourceSpot.getName();
+
+				Point textLocation = gameObject.getCanvasTextLocation(graphics, text, 40);
+				if (textLocation != null)
+				{
+					OverlayUtil2.renderTextLocation(graphics, text, config.getFontSize(), config.getFontStyle().getFont(),
+							color, textLocation, false, 0);
+				}
 			}
 		}
+	}
 
-		return null;
+	private void renderUtilitySpots(Graphics2D graphics)
+	{
+		for (GameObject gameObject : plugin.getGauntlet().getUtilitySpots())
+		{
+			GauntletUtilitySpot utilitySpot = GauntletUtilitySpot.getSPOTS().get(gameObject.getId());
+			if (utilitySpot == null)
+			{
+				continue;
+			}
+
+			boolean isEnabled = GauntletUtilitySpot.isEnabled(gameObject.getId(), config);
+			if (!isEnabled)
+			{
+				continue;
+			}
+
+			Color color = GauntletUtilitySpot.getColor(gameObject.getId(), config);
+			Point imageLocation = gameObject.getCanvasTextLocation(graphics, "", 0);
+			Shape poly = gameObject.getConvexHull();
+			if (imageLocation == null || poly == null)
+			{
+				return;
+			}
+
+			OverlayUtil2.renderPolygon(graphics, poly, color, config.getBorderWidth());
+			// TODO: Proper centered icon rendering
+			OverlayUtil.renderImageLocation(graphics, imageLocation, getIcon(utilitySpot));
+		}
 	}
 
 	private void renderDemiBossHighlight(NPC demiBoss)
@@ -127,19 +195,5 @@ public class GauntletOverlay extends Overlay
 
 		modelOutlineRenderer.drawOutline(demiBoss, (int) config.getBorderWidth(), config.getDemiBossHighlightColor(),
 				config.outlineFeather());
-	}
-
-	private void renderUtilitySpotHighlight(Graphics2D graphics, GameObject gameObject, GauntletUtilitySpotType type)
-	{
-		Color color = plugin.getUtilitySpotsConfig().get(type).getColor();
-		Point imageLocation = gameObject.getCanvasLocation();
-		Shape poly = gameObject.getConvexHull();
-		if (imageLocation == null || poly == null)
-		{
-			return;
-		}
-
-		OverlayUtil2.renderPolygon(graphics, poly, color, config.getBorderWidth());
-		OverlayUtil.renderImageLocation(graphics, imageLocation, getIcon(type));
 	}
 }

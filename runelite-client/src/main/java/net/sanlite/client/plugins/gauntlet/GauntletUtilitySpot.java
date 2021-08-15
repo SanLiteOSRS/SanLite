@@ -24,54 +24,108 @@
  */
 package net.sanlite.client.plugins.gauntlet;
 
+import com.google.common.collect.ImmutableMap;
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
+import net.runelite.api.ObjectID;
 
 import java.awt.*;
+import java.util.Arrays;
 import java.util.Map;
 
-public final class GauntletUtilitySpot
+import static net.runelite.api.ObjectID.*;
+
+@Slf4j
+@Getter
+public enum GauntletUtilitySpot
 {
-	@Getter
-	private final int[] ids;
+	SINGING_BOWL("Singing bowl", ObjectID.SINGING_BOWL_36063, ObjectID.SINGING_BOWL_35966),
+	COOKING_RANGE("Cooking range", ObjectID.RANGE_36077, ObjectID.RANGE_35980),
+	WATER_PUMP("Water pump", WATER_PUMP_36078, ObjectID.WATER_PUMP_35981);
 
 	@Getter
-	private final GauntletUtilitySpotType type;
+	static final Map<Integer, GauntletUtilitySpot> SPOTS;
 
-	@Getter
-	private final boolean isHighlightEnabled;
-
-	@Getter
-	private final Color color;
-
-	public GauntletUtilitySpot(int[] ids, GauntletUtilitySpotType type, boolean isHighlightEnabled, Color color)
+	static
 	{
-		this.ids = ids;
-		this.type = type;
-		this.isHighlightEnabled = isHighlightEnabled;
-		this.color = color;
+		ImmutableMap.Builder<Integer, GauntletUtilitySpot> builder = new ImmutableMap.Builder<>();
+
+		for (GauntletUtilitySpot spot : values())
+		{
+			for (int spotId : spot.getIds())
+			{
+				builder.put(spotId, spot);
+			}
+		}
+
+		SPOTS = builder.build();
 	}
 
-	public boolean matchesId(int gameObjectId)
+	private final String name;
+	private final int[] ids;
+
+	GauntletUtilitySpot(String spot, int... ids)
 	{
-		for (int id : ids)
+		this.name = spot;
+		this.ids = ids;
+	}
+
+	static boolean matches(int gameObjectId)
+	{
+		return SPOTS.containsKey(gameObjectId);
+	}
+
+	static boolean isUtilitySpot(int gameObjectId, GauntletUtilitySpot utilitySpot)
+	{
+		return Arrays.stream(utilitySpot.getIds()).anyMatch((id) -> id == gameObjectId);
+	}
+
+	static boolean isEnabled(int gameObjectId, GauntletConfig config)
+	{
+		for (Map.Entry<Integer, GauntletUtilitySpot> entry : SPOTS.entrySet())
 		{
-			if (gameObjectId == id)
+			if (entry.getKey() != gameObjectId)
 			{
-				return true;
+				continue;
+			}
+
+			switch (entry.getValue())
+			{
+				case SINGING_BOWL:
+					return config.highlightSingingBowl();
+				case COOKING_RANGE:
+					return config.highlightCookingRange();
+				case WATER_PUMP:
+					return config.highlightWaterPump();
+				default:
+					log.warn("Unknown gauntlet utility spot {}", entry.getValue());
+					return false;
 			}
 		}
 
 		return false;
 	}
 
-	public static GauntletUtilitySpotType getTypeForId(int gameObjectId, Map<GauntletUtilitySpotType, GauntletUtilitySpot> spotsConfig)
+	static Color getColor(int gameObjectId, GauntletConfig config)
 	{
-		for (Map.Entry<GauntletUtilitySpotType, GauntletUtilitySpot> entry : spotsConfig.entrySet())
+		for (Map.Entry<Integer, GauntletUtilitySpot> entry : SPOTS.entrySet())
 		{
-			GauntletUtilitySpot spot = entry.getValue();
-			if (spot.matchesId(gameObjectId))
+			if (entry.getKey() != gameObjectId)
 			{
-				return spot.getType();
+				continue;
+			}
+
+			switch (entry.getValue())
+			{
+				case SINGING_BOWL:
+					return config.getSingingBowlHighlightColor();
+				case COOKING_RANGE:
+					return config.getCookingRangeHighlightColor();
+				case WATER_PUMP:
+					return config.getWaterPumpHighlightColor();
+				default:
+					log.warn("Unknown gauntlet utility spot {}", entry.getValue());
+					return Color.GRAY;
 			}
 		}
 

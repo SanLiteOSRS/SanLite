@@ -26,14 +26,17 @@ package net.sanlite.client.plugins.gauntlet;
 
 import com.google.common.collect.ImmutableMap;
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.ItemID;
 import net.runelite.api.ObjectID;
 
+import java.awt.*;
 import java.util.Arrays;
 import java.util.Map;
 
 import static net.runelite.api.ObjectID.*;
 
+@Slf4j
 @Getter
 public enum GauntletResourceSpot
 {
@@ -82,8 +85,73 @@ public enum GauntletResourceSpot
 		this.ids = ids;
 	}
 
+	static boolean matches(int gameObjectId)
+	{
+		return SPOTS.containsKey(gameObjectId);
+	}
+
 	static boolean isResourceSpot(int gameObjectId, GauntletResourceSpot resourceSpot)
 	{
 		return Arrays.stream(resourceSpot.getIds()).anyMatch((id) -> id == gameObjectId);
+	}
+
+	static boolean isEnabled(int gameObjectId, GauntletConfig config)
+	{
+		for (Map.Entry<Integer, GauntletResourceSpot> entry : SPOTS.entrySet())
+		{
+			if (entry.getKey() != gameObjectId)
+			{
+				continue;
+			}
+
+			switch (entry.getValue())
+			{
+				case PADDLEFISH:
+					return config.showPaddlefishSpots();
+				case CRYSTAL_DEPOSIT:
+					return config.showCrystalDeposits();
+				case GRYM_ROOT:
+					return config.showGrymRoots();
+				case PHREN_ROOTS:
+					return config.showPhrenRoots();
+				case LINUM_TIRINUM:
+					return config.showLinumTirinum();
+				default:
+					log.warn("Unknown gauntlet resource spot {}", entry.getValue());
+					return false;
+			}
+		}
+
+		return false;
+	}
+
+	static Color getColor(int gameObjectId, GauntletConfig config)
+	{
+		for (Map.Entry<Integer, GauntletResourceSpot> entry : SPOTS.entrySet())
+		{
+			if (entry.getKey() != gameObjectId)
+			{
+				continue;
+			}
+
+			switch (entry.getValue())
+			{
+				case PADDLEFISH:
+					return config.getPaddlefishSpotColor();
+				case CRYSTAL_DEPOSIT:
+					return config.getCrystalDepositColor();
+				case GRYM_ROOT:
+					return config.getGrymRootColor();
+				case PHREN_ROOTS:
+					return config.getPhrenRootsColor();
+				case LINUM_TIRINUM:
+					return config.getLinumTirinumColor();
+				default:
+					log.warn("Unknown gauntlet resource spot {}", entry.getValue());
+					return Color.GRAY;
+			}
+		}
+
+		return null;
 	}
 }
