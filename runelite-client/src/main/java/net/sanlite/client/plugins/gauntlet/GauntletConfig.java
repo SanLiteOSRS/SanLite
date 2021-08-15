@@ -158,6 +158,81 @@ public interface GauntletConfig extends Config
 	}
 
 	@ConfigItem(
+			position = 4,
+			keyName = "highlightSingingBowl",
+			name = "Highlight singing bowl",
+			description = "Highlights the singing bowl (crafting spot) in the gauntlet",
+			section = environmentSection
+	)
+	default boolean highlightSingingBowl()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+			position = 4,
+			keyName = "highlightCookingRange",
+			name = "Highlight cooking range",
+			description = "Highlights the cooking range in the gauntlet",
+			section = environmentSection
+	)
+	default boolean highlightCookingRange()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+			position = 4,
+			keyName = "highlightWaterPump",
+			name = "Highlight water pump",
+			description = "Highlights the water pump in the gauntlet",
+			section = environmentSection
+	)
+	default boolean highlightWaterPump()
+	{
+		return true;
+	}
+
+	@Alpha
+	@ConfigItem(
+			position = 4,
+			keyName = "singingBowlHighlightColor",
+			name = "Singing bowl highlight",
+			description = "Color of the singing bowl (crafting spot) highlight in the gauntlet",
+			section = colorsSection
+	)
+	default Color getSingingBowlHighlightColor()
+	{
+		return new Color(88, 58, 12);
+	}
+
+	@Alpha
+	@ConfigItem(
+			position = 4,
+			keyName = "cookingRangeHighlightColor",
+			name = "Cooking range highlight",
+			description = "Color of the cooking range highlight in the gauntlet",
+			section = colorsSection
+	)
+	default Color getCookingRangeHighlightColor()
+	{
+		return new Color(122, 107, 9);
+	}
+
+	@Alpha
+	@ConfigItem(
+			position = 4,
+			keyName = "waterPumpHighlightColor",
+			name = "Water pump highlight",
+			description = "Color of the water pump highlight in the gauntlet",
+			section = colorsSection
+	)
+	default Color getWaterPumpHighlightColor()
+	{
+		return new Color(70, 82, 255);
+	}
+
+	@ConfigItem(
 			position = 5,
 			keyName = "showResourceSpotsObjectMarkers",
 			name = "Display resource spot object marker",
@@ -551,6 +626,8 @@ public interface GauntletConfig extends Config
 	{
 		return false;
 	}
+
+	// TODO: Tidy up config
 
 	// TODO: Highlight craft room objects
 

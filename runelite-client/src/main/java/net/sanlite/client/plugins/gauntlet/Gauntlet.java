@@ -46,8 +46,8 @@ class Gauntlet
 {
 	@Getter(AccessLevel.PACKAGE)
 	private final List<GameObject> resourceSpots = new ArrayList<>();
-	@Getter
-	private final Player player;
+	@Getter(AccessLevel.PACKAGE)
+	private final List<GameObject> utilitySpots = new ArrayList<>();
 	@Getter
 	private boolean inBossRoom;
 	@Getter
@@ -56,30 +56,11 @@ class Gauntlet
 	private final List<NPC> demiBosses;
 	private final Consumer<GauntletEvent> emitGauntletEvent;
 
-	Gauntlet(Player player, NPC cachedBossNpc, Consumer<GauntletEvent> emitGauntletEvent)
+	Gauntlet(Consumer<GauntletEvent> emitGauntletEvent)
 	{
 		this.inBossRoom = false;
-		this.player = player;
 		this.demiBosses = new ArrayList<>();
 		this.emitGauntletEvent = emitGauntletEvent;
-		if (cachedBossNpc != null)
-		{
-			bossSpawned(cachedBossNpc);
-		}
-	}
-
-	static boolean isGauntletEntered(int varbitValue)
-	{
-		switch (varbitValue)
-		{
-			case 0:
-				return false;
-			case 1:
-				return true;
-			default:
-				log.warn("Could not determine gauntlet entered status. Unknown varbit value: {}", varbitValue);
-				return false;
-		}
 	}
 
 	void checkFinalRoomEntered(int varbitValue)
@@ -118,6 +99,16 @@ class Gauntlet
 	void resourceSpotDisabled(GauntletResourceSpot resourceSpot)
 	{
 		Arrays.stream(resourceSpot.getIds()).forEach(id -> resourceSpots.removeIf(spot -> spot.getId() == id));
+	}
+
+	void utilitySpotSpawned(GameObject gameObject)
+	{
+		utilitySpots.add(gameObject);
+	}
+
+	void utilitySpotDespawned(GameObject gameObject)
+	{
+		utilitySpots.remove(gameObject);
 	}
 
 	void bossSpawned(NPC npc)

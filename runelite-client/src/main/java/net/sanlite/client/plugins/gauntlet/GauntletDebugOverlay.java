@@ -83,6 +83,11 @@ public class GauntletDebugOverlay extends Overlay
 				.build());
 
 		panelComponent.getChildren().add(LineComponent.builder()
+				.left("Number of utility spots")
+				.right("" + plugin.getGauntlet().getUtilitySpots().size())
+				.build());
+
+		panelComponent.getChildren().add(LineComponent.builder()
 				.left("Number of demi bosses visible")
 				.right("" + plugin.getGauntlet().getDemiBosses().size())
 				.build());

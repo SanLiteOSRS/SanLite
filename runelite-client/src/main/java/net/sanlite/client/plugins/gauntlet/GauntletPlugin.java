@@ -24,6 +24,7 @@
  */
 package net.sanlite.client.plugins.gauntlet;
 
+import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.google.inject.Provides;
 import lombok.Getter;
@@ -54,7 +55,6 @@ import java.util.Set;
 import java.util.concurrent.ScheduledExecutorService;
 
 import static java.util.Map.entry;
-import static net.runelite.api.ObjectID.*;
 import static net.runelite.api.Varbits.*;
 
 @Slf4j
@@ -92,19 +92,17 @@ public class GauntletPlugin extends Plugin
 			"Corrupted dragon",
 			"Corrupted dark beast"
 	);
-
 	private final Set<Integer> bigTreeGameObjects = ImmutableSet.of(
 			NullObjectID.NULL_36100,
 			NullObjectID.NULL_35997
 	);
-
 	private final Set<Integer> gauntletWallObjects = ImmutableSet.of(
 			NullObjectID.NULL_35995,
 			NullObjectID.NULL_35996,
-			ILLUMINATED_SYMBOL,
-			INACTIVE_SYMBOL,
-			ILLUMINATED_SYMBOL_36095,
-			INACTIVE_SYMBOL_36097,
+			ObjectID.ILLUMINATED_SYMBOL,
+			ObjectID.INACTIVE_SYMBOL,
+			ObjectID.ILLUMINATED_SYMBOL_36095,
+			ObjectID.INACTIVE_SYMBOL_36097,
 			NullObjectID.NULL_36098,
 			NullObjectID.NULL_36099,
 			NullObjectID.NULL_36103,
@@ -153,7 +151,8 @@ public class GauntletPlugin extends Plugin
 	@Getter
 	private Gauntlet gauntlet;
 
-	private NPC cachedBossNpc;
+	@Getter
+	private Map<GauntletUtilitySpotType, GauntletUtilitySpot> utilitySpotsConfig;
 
 	@Provides
 	GauntletConfig getConfig(ConfigManager configManager)
@@ -178,6 +177,24 @@ public class GauntletPlugin extends Plugin
 				entry(GauntletResourceSpot.GRYM_ROOT, config.getGrymRootColor()),
 				entry(GauntletResourceSpot.PHREN_ROOTS, config.getPhrenRootsColor()),
 				entry(GauntletResourceSpot.LINUM_TIRINUM, config.getLinumTirinumColor())
+		);
+
+		utilitySpotsConfig = ImmutableMap.of(
+				GauntletUtilitySpotType.SINGING_BOWL, new GauntletUtilitySpot(
+						new int[]{ObjectID.SINGING_BOWL_36063, ObjectID.SINGING_BOWL_35966},
+						GauntletUtilitySpotType.SINGING_BOWL,
+						config.highlightSingingBowl(), config.getSingingBowlHighlightColor()),
+				GauntletUtilitySpotType.COOKING_RANGE, new GauntletUtilitySpot(
+						new int[]{ObjectID.RANGE_36077, ObjectID.RANGE_35980},
+						GauntletUtilitySpotType.COOKING_RANGE,
+						config.highlightCookingRange(),
+						config.getCookingRangeHighlightColor()),
+				GauntletUtilitySpotType.WATER_PUMP, new GauntletUtilitySpot(
+						new int[]{ObjectID.WATER_PUMP_36078, ObjectID.WATER_PUMP_35981},
+						GauntletUtilitySpotType.WATER_PUMP,
+						config.highlightWaterPump(),
+						config.getWaterPumpHighlightColor()
+				)
 		);
 
 		overlayManager.add(overlay);
@@ -229,11 +246,11 @@ public class GauntletPlugin extends Plugin
 			case "hideNpcDeathAnimations":
 				if (config.hideNpcDeathAnimations())
 				{
-					clientThread.invoke(() ->  hiddenDeadNpcNames.forEach(client::addHiddenDeadNpcName));
+					clientThread.invoke(() -> hiddenDeadNpcNames.forEach(client::addHiddenDeadNpcName));
 					break;
 				}
 
-				clientThread.invoke(() ->  hiddenDeadNpcNames.forEach(client::removeHiddenDeadNpcName));
+				clientThread.invoke(() -> hiddenDeadNpcNames.forEach(client::removeHiddenDeadNpcName));
 				break;
 			case "hideBigTreeObjects":
 				if (config.hideBigTreeObjects())
@@ -281,7 +298,6 @@ public class GauntletPlugin extends Plugin
 	private void reset()
 	{
 		gauntlet = null;
-		cachedBossNpc = null;
 		if (config.hideNpcDeathAnimations())
 		{
 			hiddenDeadNpcNames.forEach(client::removeHiddenDeadNpcName);
@@ -300,23 +316,15 @@ public class GauntletPlugin extends Plugin
 		log.debug("Gauntlet session reset");
 	}
 
-	private void updateGauntletStatus()
+	private void updateGauntletStatus(boolean inGauntlet)
 	{
-		boolean isGauntletEntered = Gauntlet.isGauntletEntered(client.getVar(GAUNTLET_ENTERED));
-		if (gauntlet != null && !isGauntletEntered)
+		if (gauntlet != null && !inGauntlet)
 		{
 			reset();
 		}
-		else if (gauntlet == null && isGauntletEntered)
+		else if (gauntlet == null && inGauntlet)
 		{
-			Player player = client.getLocalPlayer();
-			if (player == null)
-			{
-				return;
-			}
-
-			gauntlet = new Gauntlet(player, cachedBossNpc, this::onGauntletEvent);
-			cachedBossNpc = null;
+			gauntlet = new Gauntlet(this::onGauntletEvent);
 
 			if (config.hideNpcDeathAnimations())
 			{
@@ -339,12 +347,6 @@ public class GauntletPlugin extends Plugin
 	@Subscribe
 	protected void onVarbitChanged(VarbitChanged event)
 	{
-		if (!GauntletId.inGauntletRegion(client.getMapRegions(), client.isInInstancedRegion()))
-		{
-			return;
-		}
-
-		updateGauntletStatus();
 		if (gauntlet == null)
 		{
 			return;
@@ -357,11 +359,20 @@ public class GauntletPlugin extends Plugin
 	public void onGameStateChanged(GameStateChanged event)
 	{
 		GameState gameState = event.getGameState();
+		log.debug("Game state changed: {}", event.getGameState());
 
 		// Clear resource spots when a new gauntlet room is loaded
-		if (gameState == GameState.LOADING && gauntlet != null)
+		if (gameState == GameState.LOADING)
 		{
-			gauntlet.newRoomLoading();
+			boolean inGauntlet = GauntletId.inGauntletRegion(client.getMapRegions(), client.isInInstancedRegion());
+			if (inGauntlet && gauntlet != null)
+			{
+				gauntlet.newRoomLoading();
+				return;
+			}
+
+			updateGauntletStatus(inGauntlet);
+			return;
 		}
 
 		if (gameState == GameState.LOGGING_IN || gameState == GameState.CONNECTION_LOST || gameState == GameState.HOPPING)
@@ -412,9 +423,9 @@ public class GauntletPlugin extends Plugin
 	@Subscribe
 	public void onNpcSpawned(NpcSpawned event)
 	{
+		// TODO: Remove it reliable
 		if (gauntlet == null && GauntletBossId.isBossNpc(event.getNpc().getId()))
 		{
-			cachedBossNpc = event.getNpc();
 			log.debug("Cached boss spawn: {}", event.getNpc().getId());
 		}
 
@@ -482,26 +493,38 @@ public class GauntletPlugin extends Plugin
 	@Subscribe
 	public void onGameObjectSpawned(GameObjectSpawned event)
 	{
+		final GameObject gameObject = event.getGameObject();
+		if (gameObject == null)
+		{
+			return;
+		}
+
+		if (gauntlet == null && utilitySpotsConfig.entrySet().stream().anyMatch((entry) -> entry.getValue().matchesId(gameObject.getId())))
+		{
+			log.debug("Utility spot spawned before init: {}", gameObject.getId());
+		}
+
 		if (gauntlet == null)
 		{
 			return;
 		}
 
-		final GameObject gameObject = event.getGameObject();
-		if (gameObject == null || !GauntletResourceSpot.getSPOTS().containsKey(gameObject.getId()))
+//		final GameObject gameObject = event.getGameObject();
+		if (gameObject == null)
 		{
 			return;
 		}
 
-		for (GauntletResourceSpot resourceSpot : GauntletResourceSpot.values())
+		if (utilitySpotsConfig.entrySet().stream().anyMatch((entry) -> entry.getValue().matchesId(gameObject.getId())))
 		{
-			if (GauntletResourceSpot.isResourceSpot(gameObject.getId(), resourceSpot) && resourceSpotEnabledConfigs.get(resourceSpot))
-			{
-//				log.debug("Gauntlet resource spot spawned: {}", gameObject.getId());
-				gauntlet.resourceSpotSpawned(gameObject, client.getCameraX(), client.getCameraY());
-			}
+			gauntlet.utilitySpotSpawned(gameObject);
+			return;
 		}
 
+		if (GauntletResourceSpot.getSPOTS().containsKey(gameObject.getId()))
+		{
+			gauntlet.resourceSpotSpawned(gameObject, client.getCameraX(), client.getCameraY());
+		}
 	}
 
 	@Subscribe
@@ -515,6 +538,12 @@ public class GauntletPlugin extends Plugin
 		final GameObject gameObject = event.getGameObject();
 		if (gameObject == null || !GauntletResourceSpot.getSPOTS().containsKey(gameObject.getId()))
 		{
+			return;
+		}
+
+		if (utilitySpotsConfig.entrySet().stream().anyMatch((entry) -> entry.getValue().matchesId(gameObject.getId())))
+		{
+			gauntlet.utilitySpotDespawned(gameObject);
 			return;
 		}
 
@@ -543,20 +572,20 @@ public class GauntletPlugin extends Plugin
 	{
 		switch (gameObjectId)
 		{
-			case FISHING_SPOT_36068:
-			case FISHING_SPOT_35971:
+			case ObjectID.FISHING_SPOT_36068:
+			case ObjectID.FISHING_SPOT_35971:
 				return config.getPaddlefishSpotColor();
-			case CRYSTAL_DEPOSIT:
-			case CORRUPT_DEPOSIT:
+			case ObjectID.CRYSTAL_DEPOSIT:
+			case ObjectID.CORRUPT_DEPOSIT:
 				return config.getCrystalDepositColor();
-			case GRYM_ROOT_36070:
-			case GRYM_ROOT:
+			case ObjectID.GRYM_ROOT_36070:
+			case ObjectID.GRYM_ROOT:
 				return config.getGrymRootColor();
-			case PHREN_ROOTS_36066:
-			case PHREN_ROOTS:
+			case ObjectID.PHREN_ROOTS_36066:
+			case ObjectID.PHREN_ROOTS:
 				return config.getPhrenRootsColor();
-			case LINUM_TIRINUM_36072:
-			case LINUM_TIRINUM:
+			case ObjectID.LINUM_TIRINUM_36072:
+			case ObjectID.LINUM_TIRINUM:
 				return config.getLinumTirinumColor();
 			default:
 				log.warn("Unknown gauntlet resource spot with id {}", gameObjectId);
@@ -606,6 +635,11 @@ public class GauntletPlugin extends Plugin
 		return (GauntletNpc.isMeleeDemiBoss(npcId) && config.highlightBearDemiBoss()) ||
 				(GauntletNpc.isRangedDemiBoss(npcId) && config.highlightDarkBeastDemiBoss()) ||
 				(GauntletNpc.isMagicDemiBoss(npcId) && config.highlightDragonDemiBoss());
+	}
+
+	boolean isHighlightEnabledForUtilitySpot(GauntletUtilitySpotType type)
+	{
+		return utilitySpotsConfig.get(type).isHighlightEnabled();
 	}
 
 	private void playSoundIfEnabled(Clip soundClip, boolean isConfigEnabled)

@@ -86,4 +86,4 @@ public enum GauntletResourceSpot
 	{
 		return Arrays.stream(resourceSpot.getIds()).anyMatch((id) -> id == gameObjectId);
 	}
-	}
+}
