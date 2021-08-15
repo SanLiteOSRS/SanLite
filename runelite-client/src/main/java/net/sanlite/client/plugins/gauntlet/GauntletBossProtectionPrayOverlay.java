@@ -33,7 +33,7 @@ import net.sanlite.client.ui.overlay.OverlayUtil2;
 import javax.inject.Inject;
 import java.awt.*;
 
-public class GauntletProtectedStyleOverlay extends Overlay
+public class GauntletBossProtectionPrayOverlay extends Overlay
 {
 	private final GauntletPlugin plugin;
 
@@ -41,7 +41,7 @@ public class GauntletProtectedStyleOverlay extends Overlay
 	private GauntletConfig config;
 
 	@Inject
-	public GauntletProtectedStyleOverlay(GauntletPlugin plugin)
+	public GauntletBossProtectionPrayOverlay(GauntletPlugin plugin)
 	{
 		setPosition(OverlayPosition.DYNAMIC);
 		setLayer(OverlayLayer.ABOVE_WIDGETS);
@@ -73,12 +73,14 @@ public class GauntletProtectedStyleOverlay extends Overlay
 
 	private void renderProtectedStyleCounter(Graphics2D graphics, GauntletBoss gauntletBoss)
 	{
-		Point point = gauntletBoss.getNpc().getCanvasTextLocation(graphics, String.valueOf(gauntletBoss.getAttacksUntilOverheadSwitch()), 0);
+		String text = String.valueOf(gauntletBoss.getAttacksUntilOverheadSwitch());
+		Point point = gauntletBoss.getNpc().getCanvasTextLocation(graphics, text, 0);
 		if (point == null)
 		{
 			return;
 		}
 
-		OverlayUtil2.renderTextLocation(graphics, point, String.valueOf(gauntletBoss.getAttacksUntilOverheadSwitch()), Color.GREEN);
+		OverlayUtil2.renderTextLocation(graphics, text, config.getFontSize(), config.getFontStyle().getFont(),
+				config.getProtectionPrayCountFontColor(), point, false, 0);
 	}
 }

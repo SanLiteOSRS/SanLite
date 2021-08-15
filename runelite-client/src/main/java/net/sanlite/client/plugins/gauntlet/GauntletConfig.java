@@ -25,6 +25,7 @@
 package net.sanlite.client.plugins.gauntlet;
 
 import net.runelite.client.config.*;
+import net.sanlite.client.config.FontStyle;
 
 import java.awt.*;
 
@@ -504,10 +505,47 @@ public interface GauntletConfig extends Config
 	}
 
 	@ConfigItem(
+			position = 35,
+			keyName = "fontSize",
+			name = "Font size",
+			description = "Font size for text",
+			section = textSection
+	)
+	default int getFontSize()
+	{
+		return 16;
+	}
+
+	@ConfigItem(
+			position = 36,
+			keyName = "fontStyle",
+			name = "Font style",
+			description = "Font style for text. Choose between bold, italics or plain",
+			section = textSection
+	)
+	default FontStyle getFontStyle()
+	{
+		return FontStyle.BOLD;
+	}
+
+	@Alpha
+	@ConfigItem(
+			position = 37,
+			keyName = "protectionPrayCountFontColor",
+			name = "Protection prayer count font",
+			description = "Color of protection prayer counter font for the gauntlet boss",
+			section = colorsSection
+	)
+	default Color getProtectionPrayCountFontColor()
+	{
+		return new Color(0, 255, 0);
+	}
+
+	@ConfigItem(
 			keyName = "showDebugOverlay",
 			name = "Display debug overlay",
 			description = "Displays Gauntlet boss debug overlay. This contains variables that the plugin uses to function",
-			position = 29
+			position = 38
 	)
 	default boolean showDebugOverlay()
 	{
@@ -516,11 +554,5 @@ public interface GauntletConfig extends Config
 
 	// TODO: Highlight craft room objects
 
-	// TODO: Mark potential boss rooms
-
 	// TODO: Switch after attack earlier and verify with hitsplat
-
-	// TODO: Attack timer
-
-	// TODO: Text font settings
 }

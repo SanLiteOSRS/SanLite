@@ -92,10 +92,10 @@ public class GauntletResourceSpotOverlay extends Overlay
 				String text = resourceSpot.getName();
 
 				Point textLocation = gameObject.getCanvasTextLocation(graphics, text, 40);
-
 				if (textLocation != null)
 				{
-					OverlayUtil.renderTextLocation(graphics, textLocation, text, color.darker());
+					OverlayUtil2.renderTextLocation(graphics, text, config.getFontSize(), config.getFontStyle().getFont(),
+							color, textLocation, false, 0);
 				}
 			}
 		}

@@ -130,7 +130,7 @@ public class GauntletPlugin extends Plugin
 	private GauntletBossOverlay bossOverlay;
 
 	@Inject
-	private GauntletProtectedStyleOverlay protectedStyleOverlay;
+	private GauntletBossProtectionPrayOverlay bossProtectionPrayOverlay;
 
 	@Inject
 	private GauntletResourceSpotOverlay resourceSpotOverlay;
@@ -182,7 +182,7 @@ public class GauntletPlugin extends Plugin
 
 		overlayManager.add(overlay);
 		overlayManager.add(bossOverlay);
-		overlayManager.add(protectedStyleOverlay);
+		overlayManager.add(bossProtectionPrayOverlay);
 		overlayManager.add(resourceSpotOverlay);
 		overlayManager.add(resourceSpotMinimapOverlay);
 		if (config.showDebugOverlay())
@@ -199,7 +199,7 @@ public class GauntletPlugin extends Plugin
 		clientThread.invoke(this::reset);
 		overlayManager.remove(overlay);
 		overlayManager.remove(bossOverlay);
-		overlayManager.remove(protectedStyleOverlay);
+		overlayManager.remove(bossProtectionPrayOverlay);
 		overlayManager.remove(resourceSpotOverlay);
 		overlayManager.remove(resourceSpotMinimapOverlay);
 		if (config.showDebugOverlay())
