@@ -24,11 +24,7 @@
  */
 package net.runelite.mixins;
 
-import net.runelite.api.Renderable;
-import net.runelite.api.Perspective;
-import net.runelite.api.Tile;
-import net.runelite.api.SceneTileModel;
-import net.runelite.api.SceneTilePaint;
+import net.runelite.api.*;
 import net.runelite.api.hooks.DrawCallbacks;
 import net.runelite.api.mixins.Copy;
 import net.runelite.api.mixins.Inject;
@@ -44,10 +40,12 @@ import net.runelite.rs.api.RSItemLayer;
 import net.runelite.rs.api.RSSceneTileModel;
 import net.runelite.rs.api.RSWallDecoration;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Mixin(RSScene.class)
 public abstract class RSSceneMixin implements RSScene
 {
-	private static final int INVALID_HSL_COLOR = 12345678;
 	private static final int DEFAULT_DISTANCE = 25;
 	private static final int PITCH_LOWER_LIMIT = 128;
 	private static final int PITCH_UPPER_LIMIT = 383;
@@ -69,6 +67,42 @@ public abstract class RSSceneMixin implements RSScene
 
 	@Inject
 	private static int rl$drawDistance;
+
+	@Inject
+	private static final Set<Integer> hiddenGameObjectIds = new HashSet<>();
+
+	@Inject
+	@Override
+	public void hideGameObjectId(int gameObjectId)
+	{
+		hiddenGameObjectIds.add(gameObjectId);
+	}
+
+	@Inject
+	@Override
+	public void unhideGameObjectId(int gameObjectId)
+	{
+		hiddenGameObjectIds.remove(gameObjectId);
+	}
+
+	@Inject
+	private boolean shouldDrawTile(Tile tile)
+	{
+		for (GameObject gameObject : tile.getGameObjects())
+		{
+			if (gameObject == null)
+			{
+				continue;
+			}
+
+			if (hiddenGameObjectIds.contains(gameObject.getId()))
+			{
+				return false;
+			}
+		}
+
+		return true;
+	}
 
 	@Replace("draw")
 	void drawScene(int cameraX, int cameraY, int cameraZ, int cameraPitch, int cameraYaw, int plane)
@@ -219,9 +253,10 @@ public abstract class RSSceneMixin implements RSScene
 							|| renderArea[x - screenCenterX + DEFAULT_DISTANCE][y - screenCenterZ + DEFAULT_DISTANCE]
 							|| tileHeights[z][x][y] - cameraY >= 2000))
 						{
-							tile.setDraw(true);
-							tile.setVisible(true);
-							tile.setDrawEntities(true);
+							boolean shouldDrawTile = shouldDrawTile(tile);
+							tile.setDraw(shouldDrawTile);
+							tile.setVisible(shouldDrawTile);
+							tile.setDrawEntities(shouldDrawTile);
 							client.setTileUpdateCount(client.getTileUpdateCount() + 1);
 						}
 						else
