@@ -35,45 +35,52 @@ public interface GauntletConfig extends Config
 
 	@ConfigSection(
 			name = "Boss",
-			description = "Options for the cncounter with the gauntlet boss",
+			description = "Options for the encounter with the gauntlet boss",
 			position = 0
 	)
-	String bossSection = "bossSection";
+	String bossSection = "boss";
 
 	@ConfigSection(
-			name = "Resource spots",
-			description = "Options for highlighting resource spots in the Gauntlet",
-			position = 20
+			name = "Regular monsters",
+			description = "Options for the regular monsters within the gauntlet",
+			position = 1
 	)
-	String resourceSpotsSection = "resourceSpots";
+	String regularMonstersSection = "regularMonsters";
+
+	@ConfigSection(
+			name = "Environment",
+			description = "Options for the environment in the gauntlet",
+			position = 2
+	)
+	String environmentSection = "environment";
 
 	@ConfigSection(
 			name = "Sounds",
 			description = "Options for sounds used throughout the plugin",
-			position = 15
+			position = 3
 	)
 	String soundsSection = "sounds";
 
 	@ConfigSection(
-			name = "Colors",
-			description = "Options for colors used throughout the plugin",
-			position = 15
-	)
-	String colorsSection = "colors";
-
-	@ConfigSection(
 			name = "Text",
 			description = "Options for text used throughout the plugin",
-			position = 15
+			position = 4
 	)
 	String textSection = "text";
 
 	@ConfigSection(
 			name = "Highlight style",
 			description = "The render style of highlights such as tile markers",
-			position = 25
+			position = 5
 	)
-	String highlightStyleSection = "highlightStyleSection";
+	String highlightStyleSection = "highlightStyle";
+
+	@ConfigSection(
+			name = "Colors",
+			description = "Options for colors used throughout the plugin",
+			position = 6
+	)
+	String colorsSection = "colors";
 
 	@ConfigItem(
 			position = 1,
@@ -154,7 +161,7 @@ public interface GauntletConfig extends Config
 			keyName = "showResourceSpotsObjectMarkers",
 			name = "Display resource spot object marker",
 			description = "Configures whether the resource spots objects are highlighted",
-			section = resourceSpotsSection
+			section = environmentSection
 	)
 	default boolean showResourceSpotsObjectMarkers()
 	{
@@ -166,7 +173,7 @@ public interface GauntletConfig extends Config
 			keyName = "showResourceSpotsTiles",
 			name = "Display resource spot tiles",
 			description = "Configures whether tiles for resource spots are highlighted",
-			section = resourceSpotsSection
+			section = environmentSection
 	)
 	default boolean showResourceSpotsTiles()
 	{
@@ -178,7 +185,7 @@ public interface GauntletConfig extends Config
 			keyName = "showResourceSpotsNames",
 			name = "Display resource spot names",
 			description = "Configures whether names for resource spots are displayed",
-			section = resourceSpotsSection
+			section = environmentSection
 	)
 	default boolean showResourceSpotsNames()
 	{
@@ -190,7 +197,7 @@ public interface GauntletConfig extends Config
 			keyName = "showResourceSpotsOnMinimap",
 			name = "Display resource spot on minimap",
 			description = "Configures whether resource spots are displayed on the minimap",
-			section = resourceSpotsSection
+			section = environmentSection
 	)
 	default boolean showResourceSpotsOnMinimap()
 	{
@@ -202,7 +209,7 @@ public interface GauntletConfig extends Config
 			keyName = "showPaddlefishSpots",
 			name = "Display paddlefish markers",
 			description = "Configures whether paddlefish spots are displayed with the resource spot markers",
-			section = resourceSpotsSection
+			section = environmentSection
 	)
 	default boolean showPaddlefishSpots()
 	{
@@ -227,7 +234,7 @@ public interface GauntletConfig extends Config
 			keyName = "showCrystalDeposits",
 			name = "Display crystal deposit markers",
 			description = "Configures whether crystal deposits are displayed with the resource spot markers",
-			section = resourceSpotsSection
+			section = environmentSection
 	)
 	default boolean showCrystalDeposits()
 	{
@@ -252,7 +259,7 @@ public interface GauntletConfig extends Config
 			keyName = "showGrymRoots",
 			name = "Display Grym roots markers",
 			description = "Configures whether Grym roots are displayed with the resource spot markers",
-			section = resourceSpotsSection
+			section = environmentSection
 	)
 	default boolean showGrymRoots()
 	{
@@ -278,7 +285,7 @@ public interface GauntletConfig extends Config
 			keyName = "showPhrenRoots",
 			name = "Display Phren roots markers",
 			description = "Configures whether Phren roots are displayed with the resource spot markers",
-			section = resourceSpotsSection
+			section = environmentSection
 	)
 	default boolean showPhrenRoots()
 	{
@@ -303,7 +310,7 @@ public interface GauntletConfig extends Config
 			keyName = "showLinumTirinum",
 			name = "Display Linum Tirinum markers",
 			description = "Configures whether Linum Tirinum are displayed with the resource spot markers",
-			section = resourceSpotsSection
+			section = environmentSection
 	)
 	default boolean showLinumTirinum()
 	{
@@ -415,6 +422,7 @@ public interface GauntletConfig extends Config
 			keyName = "hideNpcDeathAnimations",
 			name = "Hide NPC death animations",
 			description = "Hides death animations for regular NPC's in the gauntlet",
+			section = regularMonstersSection,
 			position = 25
 	)
 	default boolean hideNpcDeathAnimations()
@@ -426,6 +434,7 @@ public interface GauntletConfig extends Config
 			keyName = "highlightBearDemiBoss",
 			name = "Highlight bear demi boss",
 			description = "Highlights bear demi boss location and outline in the gauntlet",
+			section = regularMonstersSection,
 			position = 26
 	)
 	default boolean highlightBearDemiBoss()
@@ -437,6 +446,7 @@ public interface GauntletConfig extends Config
 			keyName = "highlightDragonDemiBoss",
 			name = "Highlight dragon demi boss",
 			description = "Highlights dragon demi boss location and outline in the gauntlet",
+			section = regularMonstersSection,
 			position = 27
 	)
 	default boolean highlightDragonDemiBoss()
@@ -448,6 +458,7 @@ public interface GauntletConfig extends Config
 			keyName = "highlightDarkBeastDemiBoss",
 			name = "Highlight dark beast demi boss",
 			description = "Highlights dark beast demi boss location and outline in the gauntlet",
+			section = regularMonstersSection,
 			position = 28
 	)
 	default boolean highlightDarkBeastDemiBoss()
@@ -469,6 +480,30 @@ public interface GauntletConfig extends Config
 	}
 
 	@ConfigItem(
+			keyName = "hideBigTreeObjects",
+			name = "Hide big tree objects",
+			description = "Hides the big tree objects on the walls in the gauntlet",
+			section = environmentSection,
+			position = 33
+	)
+	default boolean hideBigTreeObjects()
+	{
+		return false;
+	}
+
+	@ConfigItem(
+			keyName = "hideWallObjects",
+			name = "Hide wall objects",
+			description = "Hide the wall objects in the gauntlet",
+			section = environmentSection,
+			position = 34
+	)
+	default boolean hideWallObjects()
+	{
+		return false;
+	}
+
+	@ConfigItem(
 			keyName = "showDebugOverlay",
 			name = "Display debug overlay",
 			description = "Displays Gauntlet boss debug overlay. This contains variables that the plugin uses to function",
@@ -480,8 +515,6 @@ public interface GauntletConfig extends Config
 	}
 
 	// TODO: Highlight craft room objects
-
-	// TODO: Hide mega tree thingies
 
 	// TODO: Mark potential boss rooms
 

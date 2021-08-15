@@ -92,8 +92,28 @@ public class GauntletPlugin extends Plugin
 			"Corrupted dragon",
 			"Corrupted dark beast"
 	);
+
+	private final Set<Integer> bigTreeGameObjects = ImmutableSet.of(
+			NullObjectID.NULL_36100,
+			NullObjectID.NULL_35997
+	);
+
+	private final Set<Integer> gauntletWallObjects = ImmutableSet.of(
+			NullObjectID.NULL_35995,
+			NullObjectID.NULL_35996,
+			ILLUMINATED_SYMBOL,
+			INACTIVE_SYMBOL,
+			ILLUMINATED_SYMBOL_36095,
+			INACTIVE_SYMBOL_36097,
+			NullObjectID.NULL_36098,
+			NullObjectID.NULL_36099,
+			NullObjectID.NULL_36103,
+			NullObjectID.NULL_36104
+	);
+
 	private Map<GauntletResourceSpot, Boolean> resourceSpotEnabledConfigs;
 	private Map<GauntletResourceSpot, Color> resourceSpotColorConfigs;
+
 	@Inject
 	private Client client;
 
@@ -160,11 +180,6 @@ public class GauntletPlugin extends Plugin
 				entry(GauntletResourceSpot.LINUM_TIRINUM, config.getLinumTirinumColor())
 		);
 
-		if (config.hideNpcDeathAnimations())
-		{
-			hiddenDeadNpcNames.forEach(client::addHiddenDeadNpcName);
-		}
-
 		overlayManager.add(overlay);
 		overlayManager.add(bossOverlay);
 		overlayManager.add(protectedStyleOverlay);
@@ -181,6 +196,7 @@ public class GauntletPlugin extends Plugin
 	@Override
 	protected void shutDown() throws Exception
 	{
+		clientThread.invoke(this::reset);
 		overlayManager.remove(overlay);
 		overlayManager.remove(bossOverlay);
 		overlayManager.remove(protectedStyleOverlay);
@@ -190,13 +206,6 @@ public class GauntletPlugin extends Plugin
 		{
 			overlayManager.remove(debugOverlay);
 		}
-
-		if (config.hideNpcDeathAnimations())
-		{
-			hiddenDeadNpcNames.forEach(client::removeHiddenDeadNpcName);
-		}
-
-		reset();
 	}
 
 	@Subscribe
@@ -220,11 +229,29 @@ public class GauntletPlugin extends Plugin
 			case "hideNpcDeathAnimations":
 				if (config.hideNpcDeathAnimations())
 				{
-					hiddenDeadNpcNames.forEach(client::addHiddenDeadNpcName);
+					clientThread.invoke(() ->  hiddenDeadNpcNames.forEach(client::addHiddenDeadNpcName));
 					break;
 				}
 
-				hiddenDeadNpcNames.forEach(client::removeHiddenDeadNpcName);
+				clientThread.invoke(() ->  hiddenDeadNpcNames.forEach(client::removeHiddenDeadNpcName));
+				break;
+			case "hideBigTreeObjects":
+				if (config.hideBigTreeObjects())
+				{
+					clientThread.invoke(() -> bigTreeGameObjects.forEach((id) -> client.getScene().hideGameObjectId(id)));
+					break;
+				}
+
+				clientThread.invoke(() -> bigTreeGameObjects.forEach((id) -> client.getScene().unhideGameObjectId(id)));
+				break;
+			case "hideWallObjects":
+				if (config.hideWallObjects())
+				{
+					clientThread.invoke(() -> gauntletWallObjects.forEach((id) -> client.getScene().hideGameObjectId(id)));
+					break;
+				}
+
+				clientThread.invoke(() -> gauntletWallObjects.forEach((id) -> client.getScene().unhideGameObjectId(id)));
 				break;
 			case "showDebugOverlay":
 				if (config.showDebugOverlay())
@@ -255,6 +282,21 @@ public class GauntletPlugin extends Plugin
 	{
 		gauntlet = null;
 		cachedBossNpc = null;
+		if (config.hideNpcDeathAnimations())
+		{
+			hiddenDeadNpcNames.forEach(client::removeHiddenDeadNpcName);
+		}
+
+		if (config.hideBigTreeObjects())
+		{
+			bigTreeGameObjects.forEach((id) -> client.getScene().unhideGameObjectId(id));
+		}
+
+		if (config.hideWallObjects())
+		{
+			gauntletWallObjects.forEach((id) -> client.getScene().unhideGameObjectId(id));
+		}
+
 		log.debug("Gauntlet session reset");
 	}
 
@@ -275,6 +317,21 @@ public class GauntletPlugin extends Plugin
 
 			gauntlet = new Gauntlet(player, cachedBossNpc, this::onGauntletEvent);
 			cachedBossNpc = null;
+
+			if (config.hideNpcDeathAnimations())
+			{
+				clientThread.invoke(() -> hiddenDeadNpcNames.forEach(client::addHiddenDeadNpcName));
+			}
+
+			if (config.hideBigTreeObjects())
+			{
+				clientThread.invoke(() -> bigTreeGameObjects.forEach((id) -> client.getScene().hideGameObjectId(id)));
+			}
+
+			if (config.hideWallObjects())
+			{
+				clientThread.invoke(() -> gauntletWallObjects.forEach((id) -> client.getScene().hideGameObjectId(id)));
+			}
 			log.debug("Gauntlet session started");
 		}
 	}
