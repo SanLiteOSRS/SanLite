@@ -39,6 +39,7 @@ import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.ui.overlay.OverlayManager;
 import net.sanlite.client.game.SoundManager;
 import net.sanlite.client.plugins.gauntlet.event.BossAttackStyleSwitched;
+import net.sanlite.client.plugins.gauntlet.event.DemiBossDespawned;
 import net.sanlite.client.plugins.gauntlet.event.DemiBossSpawned;
 import net.sanlite.client.plugins.gauntlet.event.GauntletEvent;
 import net.sanlite.client.plugins.gauntlet.id.GauntletBossId;
@@ -451,7 +452,7 @@ public class GauntletPlugin extends Plugin
 
 		if (GauntletResourceSpot.matches(gameObject.getId()))
 		{
-			gauntlet.resourceSpotSpawned(gameObject, client.getCameraX(), client.getCameraY());
+			gauntlet.resourceSpotSpawned(gameObject);
 			return;
 		}
 
@@ -537,7 +538,7 @@ public class GauntletPlugin extends Plugin
 				}
 				break;
 			case DEMI_BOSS_DESPAWNED:
-				NPC despawnedDemiBoss = ((DemiBossSpawned) event).getNpc();
+				NPC despawnedDemiBoss = ((DemiBossDespawned) event).getNpc();
 				if (isHighlightEnabledForDemiBoss(despawnedDemiBoss.getId()))
 				{
 					client.clearHintArrow();

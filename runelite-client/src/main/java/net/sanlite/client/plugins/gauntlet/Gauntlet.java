@@ -84,10 +84,9 @@ class Gauntlet
 		utilitySpots.clear();
 	}
 
-	void resourceSpotSpawned(GameObject gameObject, int cameraX, int cameraY)
+	void resourceSpotSpawned(GameObject gameObject)
 	{
 		resourceSpots.add(gameObject);
-//		inverseSortSpotDistanceFromPlayer(cameraX, cameraY); // TODO: Check if this is needed
 	}
 
 	void resourceSpotDespawned(GameObject gameObject)
@@ -189,11 +188,5 @@ class Gauntlet
 
 			boss.attacked(GauntletPlayerId.getProtectedStyleForAnimation(animationId), tickCount);
 		}
-	}
-
-	private void inverseSortSpotDistanceFromPlayer(int cameraX, int cameraY)
-	{
-		final LocalPoint cameraPoint = new LocalPoint(cameraX, cameraY);
-		resourceSpots.sort(Comparator.comparing(spot -> -1 * spot.getLocalLocation().distanceTo(cameraPoint)));
 	}
 }
