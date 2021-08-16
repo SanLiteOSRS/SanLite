@@ -188,6 +188,11 @@ public class GauntletPlugin extends Plugin
 		switch (event.getKey())
 		{
 			case "hideNpcDeathAnimations":
+				if (gauntlet == null)
+				{
+					return;
+				}
+
 				if (config.hideNpcDeathAnimations())
 				{
 					clientThread.invoke(() -> hiddenDeadNpcNames.forEach(client::addHiddenDeadNpcName));
@@ -197,6 +202,11 @@ public class GauntletPlugin extends Plugin
 				clientThread.invoke(() -> hiddenDeadNpcNames.forEach(client::removeHiddenDeadNpcName));
 				break;
 			case "hideBigTreeObjects":
+				if (gauntlet == null)
+				{
+					return;
+				}
+
 				if (config.hideBigTreeObjects())
 				{
 					clientThread.invoke(() -> bigTreeGameObjects.forEach((id) -> client.getScene().hideGameObjectId(id)));
@@ -206,6 +216,11 @@ public class GauntletPlugin extends Plugin
 				clientThread.invoke(() -> bigTreeGameObjects.forEach((id) -> client.getScene().unhideGameObjectId(id)));
 				break;
 			case "hideWallObjects":
+				if (gauntlet == null)
+				{
+					return;
+				}
+
 				if (config.hideWallObjects())
 				{
 					clientThread.invoke(() -> gauntletWallObjects.forEach((id) -> client.getScene().hideGameObjectId(id)));
@@ -217,6 +232,11 @@ public class GauntletPlugin extends Plugin
 			case "highlightBearDemiBoss":
 			case "highlightDragonDemiBoss":
 			case "highlightDarkBeastDemiBoss":
+				if (gauntlet == null)
+				{
+					return;
+				}
+
 				if (!Boolean.parseBoolean(event.getNewValue()))
 				{
 					client.clearHintArrow();
