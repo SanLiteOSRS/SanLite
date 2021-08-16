@@ -213,6 +213,15 @@ public class GauntletPlugin extends Plugin
 
 				clientThread.invoke(() -> gauntletWallObjects.forEach((id) -> client.getScene().unhideGameObjectId(id)));
 				break;
+			case "highlightBearDemiBoss":
+			case "highlightDragonDemiBoss":
+			case "highlightDarkBeastDemiBoss":
+				if (!Boolean.parseBoolean(event.getNewValue()))
+				{
+					client.clearHintArrow();
+				}
+
+				break;
 			case "showDebugOverlay":
 				if (config.showDebugOverlay())
 				{
@@ -520,10 +529,18 @@ public class GauntletPlugin extends Plugin
 				playSoundIfEnabled(playerDeathAudioClip, config.playSoundOnPlayerDeath());
 				break;
 			case DEMI_BOSS_SPAWNED:
-				NPC demiBoss = ((DemiBossSpawned) event).getNpc();
+				DemiBossSpawned demiBossSpawned = ((DemiBossSpawned) event);
+				NPC demiBoss = demiBossSpawned.getNpc();
 				if (isHighlightEnabledForDemiBoss(demiBoss.getId()))
 				{
-					client.setHintArrow(demiBoss.getWorldLocation());
+					client.setHintArrow(demiBossSpawned.getWorldLocation());
+				}
+				break;
+			case DEMI_BOSS_DESPAWNED:
+				NPC despawnedDemiBoss = ((DemiBossSpawned) event).getNpc();
+				if (isHighlightEnabledForDemiBoss(despawnedDemiBoss.getId()))
+				{
+					client.clearHintArrow();
 				}
 				break;
 			default:

@@ -8,4 +8,5 @@ public enum GauntletEventType
 	CRYSTAL_ATTACK,
 	PLAYER_DEATH,
 	DEMI_BOSS_SPAWNED,
+	DEMI_BOSS_DESPAWNED,
 }

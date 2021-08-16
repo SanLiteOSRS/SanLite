@@ -642,8 +642,4 @@ public interface GauntletConfig extends Config
 	// TODO: Tidy up config
 
 	// TODO: Fix icon centering for craft room highlights
-
-	// TODO: Switch after attack earlier and verify with hitsplat
-
-	// TODO: Skybox
 }

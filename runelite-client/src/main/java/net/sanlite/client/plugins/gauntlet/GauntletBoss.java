@@ -197,6 +197,13 @@ public class GauntletBoss
 			lastAttackedTick = tickCount;
 			attacksUntilOverheadSwitch = attacksUntilOverheadSwitch - 1;
 		}
+
+		if (attacksUntilOverheadSwitch <= 0)
+		{
+			attacksUntilOverheadSwitch = GauntletBoss.ATTACKS_PER_OVERHEAD_SWITCH;
+			emitGauntletEvent.accept(new BossProtectionPrayerSwitched());
+			log.debug("Gauntlet boss attacks until overhead switch reset at tick {}", tickCount);
+		}
 	}
 
 	void checkProtectionPrayer(int tickCount)
@@ -205,8 +212,9 @@ public class GauntletBoss
 		log.debug("Boss attacked. Current style: {}, checked style: {}, tick: {}", currentProtectionPrayer, protectionPrayer, tickCount);
 		if (protectionPrayer != currentProtectionPrayer)
 		{
-			if (attacksUntilOverheadSwitch > 0)
+			if (attacksUntilOverheadSwitch > 0 && attacksUntilOverheadSwitch != ATTACKS_PER_OVERHEAD_SWITCH)
 			{
+				attacksUntilOverheadSwitch = GauntletBoss.ATTACKS_PER_OVERHEAD_SWITCH;
 				log.warn("Gauntlet boss switched to protected style {} early at tick {} with {} remaining attacks",
 						protectionPrayer, tickCount, attacksUntilOverheadSwitch);
 			}
@@ -218,8 +226,6 @@ public class GauntletBoss
 	private void switchProtectionPrayer(ProtectionPrayer protectionPrayer)
 	{
 		currentProtectionPrayer = protectionPrayer;
-		attacksUntilOverheadSwitch = GauntletBoss.ATTACKS_PER_OVERHEAD_SWITCH;
-		emitGauntletEvent.accept(new BossProtectionPrayerSwitched(protectionPrayer));
 		log.debug("Gauntlet boss switched protect style to: {}", currentProtectionPrayer);
 	}
 

@@ -29,16 +29,14 @@ import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.*;
 import net.runelite.api.coords.LocalPoint;
+import net.sanlite.client.plugins.gauntlet.event.DemiBossDespawned;
 import net.sanlite.client.plugins.gauntlet.event.DemiBossSpawned;
 import net.sanlite.client.plugins.gauntlet.event.GauntletEvent;
 import net.sanlite.client.plugins.gauntlet.event.PlayerDeath;
 import net.sanlite.client.plugins.gauntlet.id.GauntletBossId;
 import net.sanlite.client.plugins.gauntlet.id.GauntletPlayerId;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.function.Consumer;
 
 @Slf4j
@@ -49,12 +47,12 @@ class Gauntlet
 	@Getter(AccessLevel.PACKAGE)
 	private final List<GameObject> utilitySpots = new ArrayList<>();
 	@Getter
+	private final List<NPC> demiBosses;
+	private final Consumer<GauntletEvent> emitGauntletEvent;
+	@Getter
 	private boolean inBossRoom;
 	@Getter
 	private GauntletBoss boss;
-	@Getter
-	private final List<NPC> demiBosses;
-	private final Consumer<GauntletEvent> emitGauntletEvent;
 
 	Gauntlet(Consumer<GauntletEvent> emitGauntletEvent)
 	{
@@ -89,7 +87,7 @@ class Gauntlet
 	void resourceSpotSpawned(GameObject gameObject, int cameraX, int cameraY)
 	{
 		resourceSpots.add(gameObject);
-		inverseSortSpotDistanceFromPlayer(cameraX, cameraY); // TODO: Check if this is needed
+//		inverseSortSpotDistanceFromPlayer(cameraX, cameraY); // TODO: Check if this is needed
 	}
 
 	void resourceSpotDespawned(GameObject gameObject)
@@ -120,12 +118,13 @@ class Gauntlet
 	void demiBossSpawned(NPC npc)
 	{
 		demiBosses.add(npc);
-		emitGauntletEvent.accept(new DemiBossSpawned(npc));
+		emitGauntletEvent.accept(new DemiBossSpawned(npc, npc.getWorldLocation()));
 	}
 
 	void demiBossDespawned(NPC npc)
 	{
 		demiBosses.remove(npc);
+		emitGauntletEvent.accept(new DemiBossDespawned(npc));
 	}
 
 	void onProjectile(int projectileId, int tickCount)
