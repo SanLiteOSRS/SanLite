@@ -50,7 +50,7 @@ public class GauntletEnvironmentOverlay extends Overlay
 
 	@Inject
 	private GauntletEnvironmentOverlay(Client client, GauntletPlugin plugin, GauntletConfig config,
-									   SkillIconManager iconManager, ModelOutlineRenderer modelOutlineRenderer)
+										SkillIconManager iconManager, ModelOutlineRenderer modelOutlineRenderer)
 	{
 		setPosition(OverlayPosition.DYNAMIC);
 		setLayer(OverlayLayer.ABOVE_SCENE);
