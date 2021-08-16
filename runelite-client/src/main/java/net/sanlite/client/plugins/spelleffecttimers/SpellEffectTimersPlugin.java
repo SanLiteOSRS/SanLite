@@ -440,6 +440,7 @@ public class SpellEffectTimersPlugin extends Plugin
 	 */
 	private void checkIfAnyFrozenActorsMoved()
 	{
+		List<Actor> actorsPendingRemoval = new ArrayList<>();
 		for (Map.Entry<Actor, WorldPoint> frozenActor : frozenActors.entrySet())
 		{
 			Actor actor = frozenActor.getKey();
@@ -458,15 +459,17 @@ public class SpellEffectTimersPlugin extends Plugin
 			else if (!actor.getWorldLocation().equals(oldLocation))
 			{
 				new ArrayList<>(spellEffects).stream()
-						.filter(x -> x.getActor().equals(actor) &&
-								x.getSpellEffect().getSpellType().equals(SpellEffectType.FREEZE))
+						.filter(spellEffect -> spellEffect.getActor().equals(actor) &&
+								spellEffect.getSpellEffect().getSpellType().equals(SpellEffectType.FREEZE))
 						.forEach((spellEffect) ->
 						{
-							frozenActors.remove(actor);
+							actorsPendingRemoval.add(actor);
 							spellEffects.remove(spellEffect);
 						});
 			}
 		}
+
+		frozenActors.entrySet().removeIf(actorsPendingRemoval::contains);
 	}
 
 	private void checkExpiredSpellEffects()
