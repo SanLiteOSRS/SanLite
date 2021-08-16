@@ -83,6 +83,13 @@ public interface GauntletConfig extends Config
 	)
 	String colorsSection = "colors";
 
+	@ConfigSection(
+			name = "Development",
+			description = "Options for plugin developers",
+			position = 7
+	)
+	String developmentSection = "development";
+
 	@ConfigItem(
 			keyName = "showAttackStyleCounter",
 			name = "Show attack style counter",
@@ -635,6 +642,7 @@ public interface GauntletConfig extends Config
 			keyName = "showDebugOverlay",
 			name = "Display debug overlay",
 			description = "Displays Gauntlet boss debug overlay. This contains variables that the plugin uses to function",
+			section = developmentSection,
 			position = 99
 	)
 	default boolean showDebugOverlay()

@@ -28,7 +28,6 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.*;
-import net.runelite.api.coords.LocalPoint;
 import net.sanlite.client.plugins.gauntlet.event.DemiBossDespawned;
 import net.sanlite.client.plugins.gauntlet.event.DemiBossSpawned;
 import net.sanlite.client.plugins.gauntlet.event.GauntletEvent;

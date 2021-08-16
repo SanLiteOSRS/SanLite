@@ -24,7 +24,6 @@
  */
 package net.sanlite.client.plugins.gauntlet;
 
-
 import net.runelite.api.Client;
 import net.runelite.api.NPCComposition;
 import net.runelite.client.ui.overlay.Overlay;
