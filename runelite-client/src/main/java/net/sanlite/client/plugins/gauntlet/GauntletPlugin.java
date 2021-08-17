@@ -421,6 +421,7 @@ public class GauntletPlugin extends Plugin
 		if (GauntletBossId.isCrystalNpc(npc.getId()))
 		{
 			gauntlet.getBoss().crystalSpawned(npc);
+			log.debug("Crystal spawned at tick: {}", client.getTickCount());
 		}
 	}
 
@@ -453,6 +454,7 @@ public class GauntletPlugin extends Plugin
 		if (GauntletBossId.isCrystalNpc(npc.getId()))
 		{
 			gauntlet.getBoss().crystalDespawned(npc);
+			log.debug("Crystal despawned at tick: {}", client.getTickCount());
 		}
 	}
 
@@ -559,10 +561,15 @@ public class GauntletPlugin extends Plugin
 				break;
 			case DEMI_BOSS_DESPAWNED:
 				NPC despawnedDemiBoss = ((DemiBossDespawned) event).getNpc();
+				log.debug("Demi boss despawned: {}", despawnedDemiBoss.getId());
 				if (isHighlightEnabledForDemiBoss(despawnedDemiBoss.getId()))
 				{
+					log.debug("Demi boss despawned: {}, arrow cleared", despawnedDemiBoss.getId());
 					client.clearHintArrow();
 				}
+				break;
+			case BOSS_ROOM_ENTERED:
+				client.clearHintArrow();
 				break;
 			default:
 				log.warn("Unknown gauntlet event: {}", event.getType());

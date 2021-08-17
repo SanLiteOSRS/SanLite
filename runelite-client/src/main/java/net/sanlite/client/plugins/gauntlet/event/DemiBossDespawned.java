@@ -10,7 +10,7 @@ public class DemiBossDespawned extends GauntletEvent
 
 	public DemiBossDespawned(NPC npc)
 	{
-		super(GauntletEventType.DEMI_BOSS_SPAWNED);
+		super(GauntletEventType.DEMI_BOSS_DESPAWNED);
 		this.npc = npc;
 	}
 }

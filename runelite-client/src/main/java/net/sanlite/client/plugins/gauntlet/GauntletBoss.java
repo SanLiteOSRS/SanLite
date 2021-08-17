@@ -214,9 +214,9 @@ public class GauntletBoss
 		{
 			if (attacksUntilOverheadSwitch > 0 && attacksUntilOverheadSwitch != ATTACKS_PER_OVERHEAD_SWITCH)
 			{
-				attacksUntilOverheadSwitch = GauntletBoss.ATTACKS_PER_OVERHEAD_SWITCH;
 				log.warn("Gauntlet boss switched to protected style {} early at tick {} with {} remaining attacks",
 						protectionPrayer, tickCount, attacksUntilOverheadSwitch);
+				attacksUntilOverheadSwitch = GauntletBoss.ATTACKS_PER_OVERHEAD_SWITCH;
 			}
 
 			switchProtectionPrayer(protectionPrayer);
