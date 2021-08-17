@@ -63,13 +63,17 @@ class Gauntlet
 		{
 			case 0:
 				if (inBossRoom)
-					this.inBossRoom = false;
+				{
+					inBossRoom = false;
+				}
 				break;
 			case 1:
 				if (!inBossRoom)
+				{
 					this.inBossRoom = true;
 					emitGauntletEvent.accept(new BossRoomEntered());
 					log.debug("Player entered boss room in the gauntlet");
+				}
 				break;
 			default:
 				log.warn("Could not determine gauntlet boss room status. Unknown varbit value: {}", varbitValue);

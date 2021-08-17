@@ -115,11 +115,40 @@ public interface GauntletConfig extends Config
 	}
 
 	@ConfigItem(
+			keyName = "showRemainingCrystalsDuration",
+			name = "Show remaining crystals duration",
+			description = "Displays the remaining duration (in ticks) on crystals spawned by the gauntlet boss",
+			section = bossSection,
+			position = 3
+	)
+	default boolean showRemainingCrystalsDuration()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+			keyName = "crystalsDurationThreshold",
+			name = "Crystals duration threshold",
+			description = "Specify the threshold to display the remaining crystals duration (between 1 and 21 ticks)",
+			section = bossSection,
+			position = 4
+	)
+	@Range(
+			min = 1,
+			max = 21
+	)
+	@Units(Units.TICKS)
+	default int getCrystalsDurationThreshold()
+	{
+		return 8;
+	}
+
+	@ConfigItem(
 			keyName = "highlightCrystalAttackTiles",
 			name = "Highlight crystals tiles",
 			description = "Highlight the tiles for the Gauntlet boss crystals",
 			section = bossSection,
-			position = 3
+			position = 5
 	)
 	default boolean highlightCrystalAttackTiles()
 	{
@@ -131,7 +160,7 @@ public interface GauntletConfig extends Config
 			name = "Highlight trample area",
 			description = "Highlight the tiles in which the gauntlet boss will use it's trample attack",
 			section = bossSection,
-			position = 4
+			position = 6
 	)
 	default boolean highlightBossTrampleArea()
 	{
@@ -498,9 +527,22 @@ public interface GauntletConfig extends Config
 	@Alpha
 	@ConfigItem(
 			position = 2,
+			keyName = "crystalDurationFontColor",
+			name = "Crystals duration font",
+			description = "Color of gauntlet boss crystals duration font",
+			section = colorsSection
+	)
+	default Color getCrystalDurationFontColor()
+	{
+		return new Color(250, 246, 53);
+	}
+
+	@Alpha
+	@ConfigItem(
+			position = 3,
 			keyName = "crystalAttackColor",
 			name = "Crystals marker",
-			description = "Color of Gauntlet boss crystals marker",
+			description = "Color of gauntlet boss crystals marker",
 			section = colorsSection
 	)
 	default Color getCrystalAttackColor()
@@ -510,7 +552,7 @@ public interface GauntletConfig extends Config
 
 	@Alpha
 	@ConfigItem(
-			position = 3,
+			position = 4,
 			keyName = "bossTrampleAreaColor",
 			name = "Boss trample area",
 			description = "Color of trample area highlight for the gauntlet boss",
@@ -523,7 +565,7 @@ public interface GauntletConfig extends Config
 
 	@Alpha
 	@ConfigItem(
-			position = 4,
+			position = 5,
 			keyName = "demiBossHighlightColor",
 			name = "Demi boss highlight",
 			description = "Color of demi boss highlight outline in the gauntlet",
@@ -536,7 +578,7 @@ public interface GauntletConfig extends Config
 
 	@Alpha
 	@ConfigItem(
-			position = 5,
+			position = 6,
 			keyName = "singingBowlHighlightColor",
 			name = "Singing bowl highlight",
 			description = "Color of the singing bowl (crafting spot) highlight in the gauntlet",
@@ -549,7 +591,7 @@ public interface GauntletConfig extends Config
 
 	@Alpha
 	@ConfigItem(
-			position = 6,
+			position = 7,
 			keyName = "cookingRangeHighlightColor",
 			name = "Cooking range highlight",
 			description = "Color of the cooking range highlight in the gauntlet",
@@ -562,7 +604,7 @@ public interface GauntletConfig extends Config
 
 	@Alpha
 	@ConfigItem(
-			position = 7,
+			position = 8,
 			keyName = "waterPumpHighlightColor",
 			name = "Water pump highlight",
 			description = "Color of the water pump highlight in the gauntlet",
@@ -575,7 +617,7 @@ public interface GauntletConfig extends Config
 
 	@Alpha
 	@ConfigItem(
-			position = 8,
+			position = 9,
 			keyName = "paddlefishSpotColor",
 			name = "Paddlefish spot color",
 			description = "Color of paddlefish fishing spots resource spot markers",
@@ -588,7 +630,7 @@ public interface GauntletConfig extends Config
 
 	@Alpha
 	@ConfigItem(
-			position = 9,
+			position = 10,
 			keyName = "crystalDepositColor",
 			name = "Crystal deposit color",
 			description = "Color of crystal deposit spots resource spot markers",
@@ -601,7 +643,7 @@ public interface GauntletConfig extends Config
 
 	@Alpha
 	@ConfigItem(
-			position = 10,
+			position = 11,
 			keyName = "grymRootColor",
 			name = "Grym root color",
 			description = "Color of grym root spots resource spot markers",
@@ -614,7 +656,7 @@ public interface GauntletConfig extends Config
 
 	@Alpha
 	@ConfigItem(
-			position = 11,
+			position = 12,
 			keyName = "phrenRootsColor",
 			name = "Phren roots color",
 			description = "Color of phren roots spots resource spot markers",
@@ -627,7 +669,7 @@ public interface GauntletConfig extends Config
 
 	@Alpha
 	@ConfigItem(
-			position = 12,
+			position = 13,
 			keyName = "linumTirinumColor",
 			name = "Linum Tirinum color",
 			description = "Color of linum tirinum spots resource spot markers",

@@ -31,12 +31,12 @@ import net.runelite.client.game.SkillIconManager;
 import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayLayer;
 import net.runelite.client.ui.overlay.OverlayPosition;
-import net.sanlite.client.plugins.gauntlet.id.GauntletBossId;
 import net.sanlite.client.ui.overlay.OverlayUtil2;
 
 import javax.inject.Inject;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.List;
 
 public class GauntletBossOverlay extends Overlay
 {
@@ -97,7 +97,12 @@ public class GauntletBossOverlay extends Overlay
 
 		if (config.highlightCrystalAttackTiles())
 		{
-			renderCrystalEffects(graphics, boss);
+			renderCrystalTileHighlight(graphics, boss.getCrystals());
+		}
+
+		if (config.showRemainingCrystalsDuration())
+		{
+			renderCrystalRemainingDuration(graphics, boss.getCrystals());
 		}
 
 		if (config.highlightBossTrampleArea())
@@ -123,21 +128,39 @@ public class GauntletBossOverlay extends Overlay
 		}
 	}
 
-	private void renderCrystalEffects(Graphics2D graphics, GauntletBoss boss)
+	private void renderCrystalTileHighlight(Graphics2D graphics, List<GauntletCrystal> crystals)
 	{
-		for (NPC npc : boss.getCrystals())
+		for (GauntletCrystal crystal : crystals)
 		{
-			LocalPoint localPoint = npc.getLocalLocation();
+			LocalPoint localPoint = crystal.getNpc().getLocalLocation();
 			Polygon polygon = Perspective.getCanvasTilePoly(client, localPoint);
 
 			if (polygon != null)
 			{
-				if (GauntletBossId.isCrystalNpc(npc.getId()))
-				{
-					OverlayUtil2.renderPolygon(graphics, polygon, config.getCrystalAttackColor(),
-							config.getBorderWidth());
-				}
+				OverlayUtil2.renderPolygon(graphics, polygon, config.getCrystalAttackColor(), config.getBorderWidth());
 			}
+		}
+	}
+
+	private void renderCrystalRemainingDuration(Graphics2D graphics, List<GauntletCrystal> crystals)
+	{
+		for (GauntletCrystal crystal : crystals)
+		{
+			int remainingDuration = crystal.getRemainingDuration(client.getTickCount());
+			if (remainingDuration > config.getCrystalsDurationThreshold() || remainingDuration < 0)
+			{
+				continue;
+			}
+
+			String text = String.valueOf(remainingDuration);
+			Point point = crystal.getNpc().getCanvasTextLocation(graphics, text, 0);
+			if (point == null)
+			{
+				return;
+			}
+
+			OverlayUtil2.renderTextLocation(graphics, text, config.getFontSize(), config.getFontStyle().getFont(),
+					config.getCrystalDurationFontColor(), point, false, 0);
 		}
 	}
 

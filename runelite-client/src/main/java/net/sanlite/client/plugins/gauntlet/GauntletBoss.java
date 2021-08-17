@@ -46,7 +46,7 @@ public class GauntletBoss
 	@Getter
 	private final NPC npc;
 	@Getter
-	private final List<NPC> crystals;
+	private final List<GauntletCrystal> crystals;
 	private final Consumer<GauntletEvent> emitGauntletEvent;
 	@Getter
 	private AttackStyle currentAttackStyle;
@@ -249,14 +249,14 @@ public class GauntletBoss
 		switchAttackStyle();
 	}
 
-	void crystalSpawned(NPC npc)
+	void crystalSpawned(NPC npc, int tickCount)
 	{
-		crystals.add(npc);
+		crystals.add(new GauntletCrystal(npc, tickCount));
 	}
 
 	void crystalDespawned(NPC npc)
 	{
-		crystals.remove(npc);
+		crystals.removeIf(crystal -> crystal.getNpc() == npc);
 	}
 
 	private AttackStyle getNextAttackStyle()

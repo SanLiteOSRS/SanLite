@@ -52,9 +52,6 @@ public abstract class RSNPCMixin implements RSNPC
 	private int npcIndex;
 
 	@Inject
-	public int spawnTime = client.getTickCount();
-
-	@Inject
 	@Override
 	public int getId()
 	{
@@ -189,12 +186,5 @@ public abstract class RSNPCMixin implements RSNPC
 
 		int tileHeight = Perspective.getTileHeight(client, tileHeightPoint, client.getPlane());
 		return model.getConvexHull(getX(), getY(), getOrientation(), tileHeight);
-	}
-
-	@Inject
-	@Override
-	public int getSpawnTime()
-	{
-		return spawnTime;
 	}
 }

@@ -420,8 +420,9 @@ public class GauntletPlugin extends Plugin
 
 		if (GauntletBossId.isCrystalNpc(npc.getId()))
 		{
-			gauntlet.getBoss().crystalSpawned(npc);
-			log.debug("Crystal spawned at tick: {}", client.getTickCount());
+			int tickCount = client.getTickCount();
+			gauntlet.getBoss().crystalSpawned(npc, tickCount);
+			log.debug("Crystal spawned at tick: {}", tickCount);
 		}
 	}
 
