@@ -68,4 +68,10 @@ public interface NPC extends Actor
 	 */
 	@Nullable
 	NPCComposition getTransformedComposition();
+
+	/**
+	 * Time in game ticks when the NPC spawned (relative to us)
+	 * @return spawn time (in ticks)
+	 */
+	int getSpawnTime();
 }
