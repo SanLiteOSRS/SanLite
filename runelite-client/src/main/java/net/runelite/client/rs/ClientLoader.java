@@ -504,7 +504,7 @@ public class ClientLoader implements Supplier<Object>
 				if (name.endsWith(".class"))
 				{
 					name = name.substring(0, name.length() - 6);
-					classLoader.loadClass(name);
+					classLoader.loadClass(name.replace('/', '.'));
 				}
 			}
 
