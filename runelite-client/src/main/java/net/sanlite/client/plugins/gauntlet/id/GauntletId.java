@@ -20,6 +20,7 @@ public class GauntletId
 				animationId == GauntletBossId.Anim.TRAMPLE_ATTACK ||
 				animationId == GauntletBossId.Anim.PROJECTILE_ATTACK ||
 				animationId == GauntletBossId.Anim.SUMMON_CRYSTAL_NPC ||
+				animationId == GauntletBossId.Anim.DEATH_BEGIN ||
 				animationId == GauntletPlayerId.Anim.BOW_ATTACK ||
 				animationId == GauntletPlayerId.Anim.STAFF_ATTACK ||
 				animationId == GauntletPlayerId.Anim.HALBERD_ATTACK ||

@@ -537,7 +537,7 @@ public class GauntletPlugin extends Plugin
 				log.debug("{} | Playing attack style switch sound for: {}", client.getTickCount(), newAttackStyle);
 				break;
 			case PROTECTION_PRAYER_SWITCHED:
-				playSoundIfEnabled(overheadSwitchAudioClip, config.playSoundOnOverheadSwitch());
+				playSoundIfEnabled(overheadSwitchAudioClip, config.playSoundOnOverheadSwitch(), true);
 				log.debug("{} | Playing prot prayer switched sound", client.getTickCount());
 				break;
 			case CRYSTAL_ATTACK:
@@ -583,13 +583,24 @@ public class GauntletPlugin extends Plugin
 				(GauntletNpc.isMagicDemiBoss(npcId) && config.highlightDragonDemiBoss());
 	}
 
-	private void playSoundIfEnabled(Clip soundClip, boolean isConfigEnabled)
+	private void playSoundIfEnabled(Clip soundClip, boolean isConfigEnabled, boolean shouldPlayLater)
 	{
 		if (!isConfigEnabled)
 		{
 			return;
 		}
 
-		scheduledExecutorService.submit(() -> soundManager.playCustomSound(soundClip));
+		if (shouldPlayLater)
+		{
+			scheduledExecutorService.submit(() -> soundManager.playClipLater(soundClip));
+			return;
+		}
+
+		scheduledExecutorService.submit(() -> soundManager.playClip(soundClip));
+	}
+
+	private void playSoundIfEnabled(Clip soundClip, boolean isConfigEnabled)
+	{
+		playSoundIfEnabled(soundClip, isConfigEnabled, false);
 	}
 }

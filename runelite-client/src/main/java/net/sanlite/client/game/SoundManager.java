@@ -24,6 +24,7 @@
  */
 package net.sanlite.client.game;
 
+import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.client.config.RuneLiteConfig;
 import net.runelite.client.eventbus.EventBus;
@@ -34,29 +35,61 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 import javax.sound.sampled.*;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 @Singleton
 @Slf4j
 public class SoundManager implements LineListener
 {
+	private static final int MAXIMUM_PLAYBACK_QUEUE_SIZE = 10;
+
 	private final RuneLiteConfig runeLiteConfig;
-	private final List<Clip> playbackQueue;
+	private final List<Clip> currentPlayingSounds;
+	private final LinkedList<Clip> playbackQueue;
 
 	@Inject
 	private SoundManager(RuneLiteConfig runeLiteConfig, EventBus eventBus)
 	{
 		this.runeLiteConfig = runeLiteConfig;
-		playbackQueue = new ArrayList<>();
+		currentPlayingSounds = new ArrayList<>();
+		playbackQueue = new LinkedList<>();
 		eventBus.register(this);
 	}
 
-	public synchronized void playCustomSound(Clip clip)
+	/**
+	 * Plays a clip instantly from frame position 0
+	 * @param clip audio clip
+	 */
+	public synchronized void playClip(@NonNull Clip clip)
 	{
 		setClipVolume(runeLiteConfig.soundVolume(), clip);
 		clip.addLineListener(this);
 		clip.setFramePosition(0);
 		clip.start();
+
+		currentPlayingSounds.add(clip);
+		log.debug("Playing clip, buffer: {}, length: {}, currently playing {} sounds, queue size: {}",
+				clip.getBufferSize(), clip.getFrameLength(), currentPlayingSounds.size(), playbackQueue.size());
+	}
+
+	/**
+	 * Adds clip to the playback queue where it will be played when there are no other clips playing
+	 * @param clip audio clip
+	 */
+	public synchronized void playClipLater(@NonNull Clip clip)
+	{
+		if (playbackQueue.size() > MAXIMUM_PLAYBACK_QUEUE_SIZE)
+		{
+			log.warn("Clip not added to playback queue. Maximum queue size of {} reached", MAXIMUM_PLAYBACK_QUEUE_SIZE);
+			return;
+		}
+
+		if (currentPlayingSounds.size() == 0)
+		{
+			playClip(clip);
+			return;
+		}
 
 		playbackQueue.add(clip);
 		log.debug("Added clip to playback queue, buffer: {}, length: {}, queue size: {}",
@@ -68,7 +101,7 @@ public class SoundManager implements LineListener
 	{
 		if (event.getGroup().equals(RuneLiteConfig.GROUP_NAME) && event.getKey().equals("soundVolume"))
 		{
-			for (Clip clip : playbackQueue)
+			for (Clip clip : currentPlayingSounds)
 			{
 				setClipVolume(runeLiteConfig.soundVolume(), clip);
 			}
@@ -78,10 +111,20 @@ public class SoundManager implements LineListener
 	@Override
 	public void update(LineEvent event)
 	{
-		if (event.getType() == LineEvent.Type.STOP)
+		if (event.getType() != LineEvent.Type.STOP)
 		{
-			if (playbackQueue.removeIf((clip) -> clip.getFrameLength() == clip.getFramePosition()))
-				log.debug("Removed completed audio clips from playback queue, queue size: {}", playbackQueue.size());
+			return;
+		}
+
+		if (currentPlayingSounds.removeIf((clip) -> clip.getFrameLength() == clip.getFramePosition()))
+		{
+			log.debug("Removed all completed audio clips, still playing {} clips, queue size: {}",
+					currentPlayingSounds.size(), playbackQueue.size());
+			Clip clip = playbackQueue.poll();
+			if (clip != null && currentPlayingSounds.size() == 0)
+			{
+				playClip(clip);
+			}
 		}
 	}
 

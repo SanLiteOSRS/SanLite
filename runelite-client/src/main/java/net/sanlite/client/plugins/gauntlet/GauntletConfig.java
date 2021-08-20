@@ -49,22 +49,24 @@ public interface GauntletConfig extends Config
 	String regularMonstersSection = "regularMonsters";
 
 	@ConfigSection(
-			name = "Environment",
-			description = "Options for the environment in the gauntlet",
-			position = 2
-	)
-	String environmentSection = "environment";
-
-	@ConfigSection(
 			name = "Sounds",
 			description = "Options for sounds used throughout the plugin",
-			position = 3
+			position = 2
 	)
 	String soundsSection = "sounds";
 
 	@ConfigSection(
+			name = "Environment",
+			description = "Options for the environment in the gauntlet",
+			closedByDefault = true,
+			position = 3
+	)
+	String environmentSection = "environment";
+
+	@ConfigSection(
 			name = "Text",
 			description = "Options for text used throughout the plugin",
+			closedByDefault = true,
 			position = 4
 	)
 	String textSection = "text";
@@ -72,6 +74,7 @@ public interface GauntletConfig extends Config
 	@ConfigSection(
 			name = "Highlight style",
 			description = "The render style of highlights such as tile markers",
+			closedByDefault = true,
 			position = 5
 	)
 	String highlightStyleSection = "highlightStyle";
@@ -79,6 +82,7 @@ public interface GauntletConfig extends Config
 	@ConfigSection(
 			name = "Colors",
 			description = "Options for colors used throughout the plugin",
+			closedByDefault = true,
 			position = 6
 	)
 	String colorsSection = "colors";
@@ -86,6 +90,7 @@ public interface GauntletConfig extends Config
 	@ConfigSection(
 			name = "Development",
 			description = "Options for plugin developers",
+			closedByDefault = true,
 			position = 7
 	)
 	String developmentSection = "development";
@@ -211,6 +216,66 @@ public interface GauntletConfig extends Config
 			position = 4
 	)
 	default boolean highlightDarkBeastDemiBoss()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+			keyName = "playSoundOnDisablePrayerAttack",
+			name = "Play prayers disabled sound",
+			description = "Plays a sound when the gauntlet boss uses it's prayer disabling attack",
+			section = soundsSection,
+			position = 1
+	)
+	default boolean playSoundOnDisablePrayerAttack()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+			keyName = "playSoundOnCrystalAttack",
+			name = "Play crystals spawn sound",
+			description = "Plays a sound when the gauntlet boss uses it's crystal spawn attack",
+			section = soundsSection,
+			position = 2
+	)
+	default boolean playSoundOnCrystalAttack()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+			keyName = "playSoundOnOverheadSwitch",
+			name = "Play protection prayer switch sound",
+			description = "Plays a sound when the gauntlet boss switches it's overhead protection prayer style",
+			section = soundsSection,
+			position = 3
+	)
+	default boolean playSoundOnOverheadSwitch()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+			keyName = "playSoundOnPlayerDeath",
+			name = "Play player death sound",
+			description = "Plays a 'sound effect' when the player dies in the gauntlet",
+			section = soundsSection,
+			position = 4
+	)
+	default boolean playSoundOnPlayerDeath()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+			keyName = "playSoundOnAttackStyleSwitch",
+			name = "Play attack style switch sound",
+			description = "Plays a sound for the respective attack style when the gauntlet boss switches attack style",
+			section = soundsSection,
+			position = 5
+	)
+	default boolean playSoundOnAttackStyleSwitch()
 	{
 		return true;
 	}
@@ -395,66 +460,6 @@ public interface GauntletConfig extends Config
 			section = environmentSection
 	)
 	default boolean showLinumTirinum()
-	{
-		return true;
-	}
-
-	@ConfigItem(
-			keyName = "playSoundOnDisablePrayerAttack",
-			name = "Play prayers disabled sound",
-			description = "Plays a sound when the gauntlet boss uses it's prayer disabling attack",
-			section = soundsSection,
-			position = 1
-	)
-	default boolean playSoundOnDisablePrayerAttack()
-	{
-		return true;
-	}
-
-	@ConfigItem(
-			keyName = "playSoundOnCrystalAttack",
-			name = "Play crystals spawn sound",
-			description = "Plays a sound when the gauntlet boss uses it's crystal spawn attack",
-			section = soundsSection,
-			position = 2
-	)
-	default boolean playSoundOnCrystalAttack()
-	{
-		return true;
-	}
-
-	@ConfigItem(
-			keyName = "playSoundOnOverheadSwitch",
-			name = "Play protection prayer switch sound",
-			description = "Plays a sound when the gauntlet boss switches it's overhead protection prayer style",
-			section = soundsSection,
-			position = 3
-	)
-	default boolean playSoundOnOverheadSwitch()
-	{
-		return true;
-	}
-
-	@ConfigItem(
-			keyName = "playSoundOnPlayerDeath",
-			name = "Play player death sound",
-			description = "Plays a 'sound effect' when the player dies in the gauntlet",
-			section = soundsSection,
-			position = 4
-	)
-	default boolean playSoundOnPlayerDeath()
-	{
-		return true;
-	}
-
-	@ConfigItem(
-			keyName = "playSoundOnAttackStyleSwitch",
-			name = "Play attack style switch sound",
-			description = "Plays a sound for the respective attack style when the gauntlet boss switches attack style",
-			section = soundsSection,
-			position = 20
-	)
-	default boolean playSoundOnAttackStyleSwitch()
 	{
 		return true;
 	}

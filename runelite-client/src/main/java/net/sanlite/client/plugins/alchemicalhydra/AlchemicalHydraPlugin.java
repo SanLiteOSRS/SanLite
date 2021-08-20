@@ -242,7 +242,7 @@ public class AlchemicalHydraPlugin extends Plugin
 			return;
 		}
 
-		scheduledExecutorService.submit(() -> soundManager.playCustomSound(getAudioClipForAttackStyle(attackStyle)));
+		scheduledExecutorService.submit(() -> soundManager.playClip(getAudioClipForAttackStyle(attackStyle)));
 	}
 
 	@Subscribe
