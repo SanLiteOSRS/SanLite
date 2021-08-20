@@ -164,16 +164,24 @@ public class GauntletEnvironmentOverlay extends Overlay
 			}
 
 			Color color = GauntletUtilitySpot.getColor(gameObject.getId(), config);
-			Point imageLocation = gameObject.getCanvasTextLocation(graphics, "", 0);
 			Shape poly = gameObject.getConvexHull();
-			if (imageLocation == null || poly == null)
+			if (poly != null)
 			{
-				return;
+				OverlayUtil2.renderPolygon(graphics, poly, color, config.getBorderWidth());
 			}
 
-			OverlayUtil2.renderPolygon(graphics, poly, color, config.getBorderWidth());
-			// TODO: Proper centered icon rendering
-			OverlayUtil.renderImageLocation(graphics, imageLocation, getIcon(utilitySpot));
+
+			BufferedImage icon = getIcon(utilitySpot);
+			if (icon == null)
+			{
+				continue;
+			}
+
+			Point imageLocation = Perspective.getCanvasImageLocation(client, gameObject.getLocalLocation(), icon, 75);
+			if (imageLocation != null)
+			{
+				OverlayUtil.renderImageLocation(graphics, imageLocation, icon);
+			}
 		}
 	}
 
