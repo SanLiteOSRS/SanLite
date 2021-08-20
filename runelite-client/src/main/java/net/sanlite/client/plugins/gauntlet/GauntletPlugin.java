@@ -512,19 +512,14 @@ public class GauntletPlugin extends Plugin
 	}
 
 	@Subscribe
-	public void onHitsplatApplied(HitsplatApplied event)
+	public void onGameTick(GameTick event)
 	{
 		if (gauntlet == null || gauntlet.getBoss() == null)
 		{
 			return;
 		}
 
-		final Actor actor = event.getActor();
-		if (actor instanceof NPC && GauntletBossId.isBossNpc(((NPC) actor).getId()))
-		{
-			log.debug("Hitsplat applied on gauntlet boss at tick: {}", client.getTickCount());
-			gauntlet.getBoss().checkProtectionPrayer(client.getTickCount());
-		}
+		gauntlet.getBoss().checkProtectionPrayer(client.getTickCount(), gauntlet.isInBossRoom());
 	}
 
 	/**
@@ -539,15 +534,19 @@ public class GauntletPlugin extends Plugin
 			case ATTACK_STYLE_SWITCHED:
 				GauntletBoss.AttackStyle newAttackStyle = ((BossAttackStyleSwitched) event).getNewAttackStyle();
 				playSoundIfEnabled(getAudioClipForAttackStyle(newAttackStyle), config.playSoundOnAttackStyleSwitch());
+				log.debug("{} | Playing attack style switch sound for: {}", client.getTickCount(), newAttackStyle);
 				break;
 			case PROTECTION_PRAYER_SWITCHED:
 				playSoundIfEnabled(overheadSwitchAudioClip, config.playSoundOnOverheadSwitch());
+				log.debug("{} | Playing prot prayer switched sound", client.getTickCount());
 				break;
 			case CRYSTAL_ATTACK:
 				playSoundIfEnabled(crystalAudioClip, config.playSoundOnCrystalAttack());
+				log.debug("{} | Playing crystal attack sound", client.getTickCount());
 				break;
 			case PLAYER_PRAYER_DISABLED:
 				playSoundIfEnabled(prayerDisabledAudioClip, config.playSoundOnDisablePrayerAttack());
+				log.debug("{} | Playing prayer disabled sound", client.getTickCount());
 				break;
 			case PLAYER_DEATH:
 				playSoundIfEnabled(playerDeathAudioClip, config.playSoundOnPlayerDeath());

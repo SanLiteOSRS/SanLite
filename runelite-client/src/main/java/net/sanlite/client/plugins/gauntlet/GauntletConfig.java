@@ -140,7 +140,7 @@ public interface GauntletConfig extends Config
 	@Units(Units.TICKS)
 	default int getCrystalsDurationThreshold()
 	{
-		return 8;
+		return 10;
 	}
 
 	@ConfigItem(
@@ -503,7 +503,6 @@ public interface GauntletConfig extends Config
 			section = highlightStyleSection
 	)
 	@Range(
-			min = 0,
 			max = 4
 	)
 	default int outlineFeather()

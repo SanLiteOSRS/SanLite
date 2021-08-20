@@ -65,6 +65,11 @@ public class GauntletBossProtectionPrayOverlay extends Overlay
 
 		if (config.showProtectionPrayerCounter())
 		{
+			if (!gauntlet.isInBossRoom())
+			{
+				return null;
+			}
+
 			renderProtectedStyleCounter(graphics, gauntletBoss);
 		}
 

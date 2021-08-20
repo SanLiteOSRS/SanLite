@@ -168,6 +168,10 @@ class Gauntlet
 					boss.setLastAttackAnimationId(animationId);
 					boss.verifyAttackStyleSwitch(GauntletBoss.AttackStyle.RANGED, tickCount);
 					break;
+				case GauntletBossId.Anim.DEATH_BEGIN:
+					log.debug("Gauntlet boss died");
+					bossDespawned();
+					break;
 				case GauntletBossId.Anim.PROJECTILE_ATTACK:
 					// Ignore this animation
 					break;

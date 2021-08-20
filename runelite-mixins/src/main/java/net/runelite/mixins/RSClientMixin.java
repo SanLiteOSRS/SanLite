@@ -972,8 +972,6 @@ public abstract class RSClientMixin implements RSClient
 	public static void gameStateChanged(int idx)
 	{
 		GameState gameState = client.getGameState();
-		client.getLogger().debug("Game state changed: {}", gameState);
-
 		GameStateChanged gameStateChange = new GameStateChanged();
 		gameStateChange.setGameState(gameState);
 		client.getCallbacks().post(gameStateChange);

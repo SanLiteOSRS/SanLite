@@ -74,6 +74,8 @@ public final class GauntletBossId
 		public static final int SUMMON_CRYSTAL_NPC = 8418;
 		public static final int PROJECTILE_ATTACK = 8419;
 		public static final int TRAMPLE_ATTACK = 8420;
+		public static final int DEATH_BEGIN = 8421;
+		public static final int DEATH_END = 8422;
 		public static final int SWITCH_TO_MAGIC = 8754;
 		public static final int SWITCH_TO_RANGED = 8755;
 	}
