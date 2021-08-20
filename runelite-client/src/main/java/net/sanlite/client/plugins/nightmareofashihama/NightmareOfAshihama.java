@@ -193,7 +193,7 @@ public class NightmareOfAshihama
 
 	static BufferedImage getPrayersShuffledIcon()
 	{
-		return ImageUtil.getResourceStreamFromClass(NightmareOfAshihama.class, "prayers_shuffled.png");
+		return ImageUtil.loadImageResource(NightmareOfAshihama.class, "prayers_shuffled.png");
 	}
 
 	/**

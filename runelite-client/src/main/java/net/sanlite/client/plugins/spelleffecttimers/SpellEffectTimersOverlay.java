@@ -60,7 +60,7 @@ public class SpellEffectTimersOverlay extends Overlay
 	{
 		if (spellEffect != null && !spellEffect.getSpellIcon().isEmpty())
 		{
-			return ImageUtil.getResourceStreamFromClass(SpellEffectTimersPlugin.class, spellEffect.getSpellIcon());
+			return ImageUtil.loadImageResource(SpellEffectTimersPlugin.class, spellEffect.getSpellIcon());
 		}
 		return null;
 	}

@@ -133,11 +133,11 @@ public class AlchemicalHydraPlugin extends Plugin
 			case MAGIC:
 				return iconManager.getSkillImage(Skill.MAGIC);
 			case POISON:
-				return ImageUtil.getResourceStreamFromClass(AlchemicalHydraPlugin.class, "poison_attack.png");
+				return ImageUtil.loadImageResource(AlchemicalHydraPlugin.class, "poison_attack.png");
 			case LIGHTNING:
-				return ImageUtil.getResourceStreamFromClass(AlchemicalHydraPlugin.class, "lightning_attack.png");
+				return ImageUtil.loadImageResource(AlchemicalHydraPlugin.class, "lightning_attack.png");
 			case FIRE:
-				return ImageUtil.getResourceStreamFromClass(AlchemicalHydraPlugin.class, "fire_attack.png");
+				return ImageUtil.loadImageResource(AlchemicalHydraPlugin.class, "fire_attack.png");
 		}
 		return null;
 	}

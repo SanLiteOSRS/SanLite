@@ -211,7 +211,7 @@ public class AlchemicalHydraOverlay extends Overlay
 
 		String text = String.valueOf(ticksTillNextAttack);
 
-		BufferedImage image = ImageUtil.getResourceStreamFromClass(getClass(), "/skill_icons_small/attack.png");
+		BufferedImage image = ImageUtil.loadImageResource(getClass(), "/skill_icons_small/attack.png");
 		Point imageLocation = alchemicalHydra.getNpc().getCanvasTextLocation(graphics, text, 0);
 		if (imageLocation == null || image == null)
 		{

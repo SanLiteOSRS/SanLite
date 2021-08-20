@@ -75,11 +75,11 @@ public class VorkathOverlay extends Overlay
 		switch (attackStyle)
 		{
 			case UNKNOWN:
-				return ImageUtil.getResourceStreamFromClass(Vorkath.class, "unknown_special.png");
+				return ImageUtil.loadImageResource(Vorkath.class, "unknown_special.png");
 			case ACID:
-				return ImageUtil.getResourceStreamFromClass(Vorkath.class, "acid_attack.png");
+				return ImageUtil.loadImageResource(Vorkath.class, "acid_attack.png");
 			case ZOMBIFIED_SPAWN:
-				return ImageUtil.getResourceStreamFromClass(Vorkath.class, "zombified_spawn.png");
+				return ImageUtil.loadImageResource(Vorkath.class, "zombified_spawn.png");
 		}
 		return null;
 	}
@@ -195,7 +195,7 @@ public class VorkathOverlay extends Overlay
 
 		BufferedImage image = vorkath.getRemainingAcidPhaseAttacks() != -1
 				? spriteManager.getSprite(SpriteID.SPELL_FIRE_SURGE, 0)
-				: ImageUtil.getResourceStreamFromClass(getClass(), "/skill_icons_small/attack.png");
+				: ImageUtil.loadImageResource(getClass(), "/skill_icons_small/attack.png");
 		Point imageLocation = vorkath.getNpc().getCanvasTextLocation(graphics, text, 0);
 		if (imageLocation == null || image == null)
 		{
