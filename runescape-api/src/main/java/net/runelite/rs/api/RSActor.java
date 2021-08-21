@@ -34,7 +34,6 @@ public interface RSActor extends RSRenderable, Actor
 	int getInteractingIndex();
 
 	// Overhead text
-
 	@Import("overheadText")
 	@Override
 	String getOverheadText();
@@ -43,8 +42,7 @@ public interface RSActor extends RSRenderable, Actor
 	@Override
 	void setOverheadText(String overheadText);
 
-	// Coord stuff
-
+	// Coordinate stuff
 	@Import("x")
 	int getX();
 
@@ -58,7 +56,6 @@ public interface RSActor extends RSRenderable, Actor
 	int[] getPathY();
 
 	// Animation
-
 	@Import("sequence")
 	@Override
 	int getAnimation();
@@ -67,6 +64,32 @@ public interface RSActor extends RSRenderable, Actor
 	@Override
 	void setAnimation(int animation);
 
+	// Idle animation
+	@Import("idleSequence")
+	@Override
+	int getIdlePoseAnimation();
+
+	@Import("idleSequence")
+	@Override
+	void setIdlePoseAnimation(int animation);
+
+	@Import("turnLeftSequence")
+	@Override
+	int getIdleRotateLeft();
+
+	@Import("turnLeftSequence")
+	@Override
+	void setIdleRotateLeft(int animationID);
+
+	@Import("turnRightSequence")
+	@Override
+	int getIdleRotateRight();
+
+	@Import("turnRightSequence")
+	@Override
+	void setIdleRotateRight(int animationID);
+
+	//
 	@Import("sequenceFrame")
 	@Override
 	int getAnimationFrame();
@@ -86,7 +109,6 @@ public interface RSActor extends RSRenderable, Actor
 	int getActionFrameCycle();
 
 	// Spot animation (aka graphic)
-
 	@Import("spotAnimation")
 	@Override
 	int getGraphic();
@@ -108,18 +130,7 @@ public interface RSActor extends RSRenderable, Actor
 	@Import("spotAnimationFrameCycle")
 	int getSpotAnimationFrameCycle();
 
-	// Idle animation
-
-	@Import("idleSequence")
-	@Override
-	int getIdlePoseAnimation();
-
-	@Import("idleSequence")
-	@Override
-	void setIdlePoseAnimation(int animation);
-
 	// Movement animation (aka poseAnimation)
-
 	@Import("movementSequence")
 	@Override
 	int getPoseAnimation();
@@ -149,7 +160,6 @@ public interface RSActor extends RSRenderable, Actor
 	int getCurrentOrientation();
 
 	// Health stuff
-
 	@Import("healthBars")
 	RSIterableNodeDeque getHealthBars();
 
@@ -161,12 +171,6 @@ public interface RSActor extends RSRenderable, Actor
 
 	@Import("hitSplatCycles")
 	int[] getHitsplatCycles();
-
-	@Import("turnLeftSequence")
-	int getTurnLeftAnimation();
-
-	@Import("turnRightSequence")
-	int getTurnRightAnimation();
 
 	@Import("walkSequence")
 	@Override
