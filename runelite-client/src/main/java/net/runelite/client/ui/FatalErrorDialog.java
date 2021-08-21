@@ -104,7 +104,7 @@ public class FatalErrorDialog extends JDialog
 			}
 		});
 
-		setTitle("Fatal error starting RuneLite");
+		setTitle("Fatal error starting SanLite");
 		setLayout(new BorderLayout());
 
 		Container pane = getContentPane();
@@ -114,7 +114,7 @@ public class FatalErrorDialog extends JDialog
 		leftPane.setBackground(ColorScheme.DARKER_GRAY_COLOR);
 		leftPane.setLayout(new BorderLayout());
 
-		JLabel title = new JLabel("There was a fatal error starting RuneLite");
+		JLabel title = new JLabel("There was a fatal error starting SanLite");
 		title.setForeground(Color.WHITE);
 		title.setFont(font.deriveFont(16.f));
 		title.setBorder(new EmptyBorder(10, 10, 10, 10));
@@ -203,7 +203,7 @@ public class FatalErrorDialog extends JDialog
 	{
 		if (err instanceof VerificationException || err instanceof GeneralSecurityException)
 		{
-			new FatalErrorDialog("RuneLite was unable to verify the security of its connection to the internet while " +
+			new FatalErrorDialog("SanLite was unable to verify the security of its connection to the internet while " +
 				action + ". You may have a misbehaving antivirus, internet service provider, a proxy, or an incomplete" +
 				" java installation.")
 				.addHelpButtons()
@@ -213,7 +213,7 @@ public class FatalErrorDialog extends JDialog
 
 		if (err instanceof ConnectException)
 		{
-			new FatalErrorDialog("RuneLite is unable to connect to a required server while " + action + ". " +
+			new FatalErrorDialog("SanLite is unable to connect to a required server while " + action + ". " +
 				"Please check your internet connection")
 				.addHelpButtons()
 				.open();
@@ -222,7 +222,7 @@ public class FatalErrorDialog extends JDialog
 
 		if (err instanceof UnknownHostException)
 		{
-			new FatalErrorDialog("RuneLite is unable to resolve the address of a required server while " + action + ". " +
+			new FatalErrorDialog("SanLite is unable to resolve the address of a required server while " + action + ". " +
 				"Your DNS resolver may be misconfigured, pointing to an inaccurate resolver, or your internet connection may " +
 				"be down. ")
 				.addHelpButtons()
@@ -231,7 +231,7 @@ public class FatalErrorDialog extends JDialog
 			return;
 		}
 
-		new FatalErrorDialog("RuneLite encountered a fatal error while " + action + ".")
+		new FatalErrorDialog("SanLite encountered a fatal error while " + action + ".")
 			.addHelpButtons()
 			.open();
 	}

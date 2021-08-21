@@ -96,7 +96,7 @@ public class RuneliteColorPicker extends JDialog
 	RuneliteColorPicker(Window parent, Color previousColor, String title, boolean alphaHidden,
 		final ConfigManager configManager, final ColorPickerManager colorPickerManager)
 	{
-		super(parent, "RuneLite Color Picker - " + title, ModalityType.MODELESS);
+		super(parent, "SanLite Color Picker - " + title, ModalityType.MODELESS);
 
 		this.selectedColor = previousColor;
 		this.alphaHidden = alphaHidden;
