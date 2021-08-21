@@ -52,12 +52,17 @@ import java.util.Arrays;
 @PluginDescriptor(
 		name = "Nightmare of Ashihama",
 		description = "Helps with the various mechanics in the Nightmare of Ashihama encounter",
-		tags = {"combat", "overlay", "pve", "pvm", "the nightmare", "boss", "group", "timer", "encounter", "sanlite"},
+		tags = {"combat", "overlay", "pve", "pvm", "the nightmare", "boss", "group", "timer", "encounter", "phosani", "sanlite"},
 		enabledByDefault = false
 )
 @Slf4j
 public class NightmareOfAshihamaPlugin extends Plugin
 {
+	private static final String CURSED_MESSAGE = "has cursed you, shuffling your prayers!";
+	private static final String CURSE_DISABLED_MESSAGE = "curse wear off";
+	private static final String PARASITE_MESSAGE = "has impregnated you with a deadly parasite!";
+	private static final String DROWSY_MESSAGE = "making you feel drowsy!";
+
 	private static final int[] ENCOUNTER_REGIONS = {
 			15258, 15259, 15260, 15514, 15515, 15516, 15770, 15771, 15772
 	};
@@ -157,7 +162,7 @@ public class NightmareOfAshihamaPlugin extends Plugin
 			return;
 		}
 
-		if (event.getMessage().contains("The Nightmare has cursed you, shuffling your prayers!"))
+		if (event.getMessage().contains(CURSED_MESSAGE))
 		{
 			if (config.displayPrayersCursedTimer())
 			{
@@ -167,10 +172,10 @@ public class NightmareOfAshihamaPlugin extends Plugin
 
 			if (config.notifyOnPrayersShuffled())
 			{
-				notifier.notify("The Nightmare has shuffled your prayers!");
+				notifier.notify("Your prayer have been shuffled!");
 			}
 		}
-		else if (event.getMessage().contains("You feel the effects of the Nightmare's curse wear off."))
+		else if (event.getMessage().contains(CURSE_DISABLED_MESSAGE))
 		{
 			if (prayersShuffledTimer == null)
 			{
@@ -180,18 +185,18 @@ public class NightmareOfAshihamaPlugin extends Plugin
 			infoBoxManager.removeInfoBox(prayersShuffledTimer);
 			prayersShuffledTimer = null;
 		}
-		else if (event.getMessage().contains("The Nightmare has impregnated you with a deadly parasite!"))
+		else if (event.getMessage().contains(PARASITE_MESSAGE))
 		{
 			if (config.notifyOnParasite())
 			{
-				notifier.notify("The Nightmare has impregnated you with a deadly parasite!");
+				notifier.notify("You have been impregnated with a deadly parasite!");
 			}
 		}
-		else if (event.getMessage().contains("making you feel drowsy!"))
+		else if (event.getMessage().contains(DROWSY_MESSAGE))
 		{
 			if (config.notifyOnDrowsy())
 			{
-				notifier.notify("You have been affected by The Nightmare's drowsy effect!");
+				notifier.notify("You have been affected by the drowsy effect!");
 			}
 		}
 	}
@@ -255,7 +260,7 @@ public class NightmareOfAshihamaPlugin extends Plugin
 		{
 			NPC npc = event.getNpc();
 			int npcId = event.getNpc().getId();
-			if (NightmareOfAshihama.isNpcNightmare(npcId))
+			if (NightmareOfAshihama.isNpcNightmare(npcId) || NightmareOfAshihama.isPhosanisNightmare(npcId))
 			{
 				log.debug("Nightmare spawned: {}", npcId);
 				nightmare = new NightmareOfAshihama(npc);
@@ -267,7 +272,7 @@ public class NightmareOfAshihamaPlugin extends Plugin
 	public void onNpcDespawned(NpcDespawned event)
 	{
 		int npcId = event.getNpc().getId();
-		if (NightmareOfAshihama.isNpcNightmare(npcId))
+		if (NightmareOfAshihama.isNpcNightmare(npcId) || NightmareOfAshihama.isPhosanisNightmare(npcId))
 		{
 			log.debug("Nightmare despawned: {}", npcId);
 			reset();

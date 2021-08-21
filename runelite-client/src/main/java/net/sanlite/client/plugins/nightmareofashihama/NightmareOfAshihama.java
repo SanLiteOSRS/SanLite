@@ -41,54 +41,32 @@ import java.util.stream.Collectors;
 public class NightmareOfAshihama
 {
 	static final int ATTACK_RATE = 6;
-
-	enum AttackStyle
-	{
-		MELEE,
-		MAGIC,
-		RANGED
-	}
-
-	enum Phase
-	{
-		START
-	}
-
 	@Getter
 	private final NPC npc;
-
 	@Getter
 	@Setter
 	private Phase currentPhase;
-
 	@Getter
 	@Setter
 	private AttackStyle currentAttackStyle;
-
 	@Getter
 	@Setter
 	private AttackStyle lastAttackStyle;
-
 	@Getter
 	@Setter
 	private List<GraphicsObject> graphicObjects;
-
 	@Getter
 	@Setter
 	private List<GameObject> gameObjects;
-
 	@Getter
 	@Setter
 	private List<NPC> activeTotems;
-
 	@Getter
 	@Setter
 	private int nextAttackTick;
-
 	@Getter
 	@Setter
 	private int lastAttackTick;
-
 	@Getter
 	@Setter
 	private int lastAnimationId;
@@ -108,6 +86,7 @@ public class NightmareOfAshihama
 	static boolean isNpcNightmare(int npcId)
 	{
 		return npcId == NpcID.THE_NIGHTMARE ||
+				npcId == NpcID.THE_NIGHTMARE_9425 ||
 				npcId == NpcID.THE_NIGHTMARE_9426 ||
 				npcId == NpcID.THE_NIGHTMARE_9427 ||
 				npcId == NpcID.THE_NIGHTMARE_9428 ||
@@ -115,7 +94,29 @@ public class NightmareOfAshihama
 				npcId == NpcID.THE_NIGHTMARE_9430 ||
 				npcId == NpcID.THE_NIGHTMARE_9431 ||
 				npcId == NpcID.THE_NIGHTMARE_9432 ||
-				npcId == NpcID.THE_NIGHTMARE_9433;
+				npcId == NpcID.THE_NIGHTMARE_9433 ||
+				npcId == NpcID.THE_NIGHTMARE_9460 ||
+				npcId == NpcID.THE_NIGHTMARE_9461 ||
+				npcId == NpcID.THE_NIGHTMARE_9462 ||
+				npcId == NpcID.THE_NIGHTMARE_9463 ||
+				npcId == NpcID.THE_NIGHTMARE_9464;
+	}
+
+	static boolean isPhosanisNightmare(int npcId)
+	{
+		return npcId == NpcID.PHOSANIS_NIGHTMARE_9416 ||
+				npcId == NpcID.PHOSANIS_NIGHTMARE_9417 ||
+				npcId == NpcID.PHOSANIS_NIGHTMARE_9418 ||
+				npcId == NpcID.PHOSANIS_NIGHTMARE_9419 ||
+				npcId == NpcID.PHOSANIS_NIGHTMARE_9420 ||
+				npcId == NpcID.PHOSANIS_NIGHTMARE_9421 ||
+				npcId == NpcID.PHOSANIS_NIGHTMARE_9422 ||
+				npcId == NpcID.PHOSANIS_NIGHTMARE_9423 ||
+				npcId == NpcID.PHOSANIS_NIGHTMARE_9424 ||
+				npcId == NpcID.COUNCILLOR_ANDREWS_11152 ||
+				npcId == NpcID.PHOSANIS_NIGHTMARE_11153 ||
+				npcId == NpcID.PHOSANIS_NIGHTMARE_11154 ||
+				npcId == NpcID.PHOSANIS_NIGHTMARE_11155;
 	}
 
 	static boolean isNpcActiveTotem(int npcId)
@@ -124,6 +125,11 @@ public class NightmareOfAshihama
 				npcId == NpcID.TOTEM_9438 ||
 				npcId == NpcID.TOTEM_9441 ||
 				npcId == NpcID.TOTEM_9444;
+	}
+
+	static BufferedImage getPrayersShuffledIcon()
+	{
+		return ImageUtil.loadImageResource(NightmareOfAshihama.class, "prayers_shuffled.png");
 	}
 
 	boolean isRegularAttackAnimation(int animationId)
@@ -191,11 +197,6 @@ public class NightmareOfAshihama
 				.collect(Collectors.toList());
 	}
 
-	static BufferedImage getPrayersShuffledIcon()
-	{
-		return ImageUtil.loadImageResource(NightmareOfAshihama.class, "prayers_shuffled.png");
-	}
-
 	/**
 	 * Get The Nightmare attack style based on the given animation id.
 	 *
@@ -215,5 +216,17 @@ public class NightmareOfAshihama
 			default:
 				return null;
 		}
+	}
+
+	enum AttackStyle
+	{
+		MELEE,
+		MAGIC,
+		RANGED
+	}
+
+	enum Phase
+	{
+		START
 	}
 }
