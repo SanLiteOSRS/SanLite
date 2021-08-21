@@ -22,7 +22,8 @@ public class class290 {
 		descriptor = "(Ljy;III)Z",
 		garbageValue = "-382888164"
 	)
-	static boolean method5208(AbstractArchive var0, int var1, int var2) {
+	@Export("SpriteBuffer_loadSpritesFromArchive")
+	static boolean SpriteBuffer_loadSpritesFromArchive(AbstractArchive var0, int var1, int var2) {
 		byte[] var3 = var0.takeFile(var1, var2);
 		if (var3 == null) {
 			return false;

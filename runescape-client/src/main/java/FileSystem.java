@@ -41,7 +41,7 @@ public class FileSystem {
 		garbageValue = "-2007880048"
 	)
 	public static IndexedSprite[] method2628(AbstractArchive var0, int var1, int var2) {
-		if (!class290.method5208(var0, var1, var2)) {
+		if (!class290.SpriteBuffer_loadSpritesFromArchive(var0, var1, var2)) {
 			return null;
 		} else {
 			IndexedSprite[] var4 = new IndexedSprite[class398.SpriteBuffer_spriteCount];

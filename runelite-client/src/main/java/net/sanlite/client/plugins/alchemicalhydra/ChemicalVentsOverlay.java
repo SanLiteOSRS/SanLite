@@ -68,11 +68,11 @@ public class ChemicalVentsOverlay extends Overlay
 		switch (phase)
 		{
 			case GREEN:
-				return ImageUtil.getResourceStreamFromClass(AlchemicalHydraPlugin.class, "chemical_vent_red.png");
+				return ImageUtil.loadImageResource(AlchemicalHydraPlugin.class, "chemical_vent_red.png");
 			case BLUE:
-				return ImageUtil.getResourceStreamFromClass(AlchemicalHydraPlugin.class, "chemical_vent_green.png");
+				return ImageUtil.loadImageResource(AlchemicalHydraPlugin.class, "chemical_vent_green.png");
 			case RED:
-				return ImageUtil.getResourceStreamFromClass(AlchemicalHydraPlugin.class, "chemical_vent_blue.png");
+				return ImageUtil.loadImageResource(AlchemicalHydraPlugin.class, "chemical_vent_blue.png");
 		}
 		return null;
 	}

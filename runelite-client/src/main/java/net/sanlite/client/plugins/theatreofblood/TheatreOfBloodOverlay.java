@@ -260,7 +260,7 @@ public class TheatreOfBloodOverlay extends Overlay
 				List<Integer> timers = nylocasEncounter.getAliveNylocas().get(nylocas);
 				String text = TickUtil.convertTimerFormat(timers.get(2), config.getTimerFormat());
 
-				BufferedImage image = ImageUtil.getResourceStreamFromClass(TheatreOfBloodPlugin.class, "explosion.png");
+				BufferedImage image = ImageUtil.loadImageResource(TheatreOfBloodPlugin.class, "explosion.png");
 				Point textLocation = nylocas.getCanvasTextLocation(graphics, text, 0);
 				if (textLocation == null)
 				{
@@ -353,7 +353,7 @@ public class TheatreOfBloodOverlay extends Overlay
 
 		String text = TickUtil.convertTimerFormat(xarpus.getRemainingTurnTime(), config.getTimerFormat());
 
-		BufferedImage image = ImageUtil.getResourceStreamFromClass(TheatreOfBloodPlugin.class, "xarpus_turn.png");
+		BufferedImage image = ImageUtil.loadImageResource(TheatreOfBloodPlugin.class, "xarpus_turn.png");
 		Point textLocation = xarpus.getNpc().getCanvasTextLocation(graphics, text, 0);
 		if (textLocation == null)
 		{
@@ -373,7 +373,7 @@ public class TheatreOfBloodOverlay extends Overlay
 
 		String text = TickUtil.convertTimerFormat(verzik.getPhaseTimeTillNextAttack(), config.getTimerFormat());
 
-		BufferedImage image = ImageUtil.getResourceStreamFromClass(getClass(), "/skill_icons_small/attack.png");
+		BufferedImage image = ImageUtil.loadImageResource(getClass(), "/skill_icons_small/attack.png");
 		Point imageLocation = verzik.getNpc().getCanvasTextLocation(graphics, text, 0);
 		if (imageLocation == null || image == null)
 		{

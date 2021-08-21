@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019, Siraz <https://github.com/Sirazzz>
+ * Copyright (c) 2021, Siraz <https://github.com/Sirazzz>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -24,55 +24,73 @@
  */
 package net.sanlite.client.plugins.gauntlet;
 
-import net.runelite.api.GameObject;
 import net.runelite.api.Point;
 import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayLayer;
 import net.runelite.client.ui.overlay.OverlayPosition;
-import net.runelite.client.ui.overlay.OverlayUtil;
+import net.sanlite.client.config.CounterOverlayLocation;
+import net.sanlite.client.ui.overlay.OverlayUtil2;
 
 import javax.inject.Inject;
 import java.awt.*;
 
-public class GauntletResourceSpotMinimapOverlay extends Overlay
+public class GauntletBossProtectionPrayOverlay extends Overlay
 {
 	private final GauntletPlugin plugin;
 	private final GauntletConfig config;
 
 	@Inject
-	private GauntletResourceSpotMinimapOverlay(GauntletPlugin plugin, GauntletConfig config)
+	public GauntletBossProtectionPrayOverlay(GauntletPlugin plugin, GauntletConfig config)
 	{
-		this.plugin = plugin;
-		this.config = config;
 		setPosition(OverlayPosition.DYNAMIC);
 		setLayer(OverlayLayer.ABOVE_WIDGETS);
+		this.plugin = plugin;
+		this.config = config;
 	}
 
 	@Override
 	public Dimension render(Graphics2D graphics)
 	{
-		if (config.showResourceSpotsOnMinimap())
+		Gauntlet gauntlet = plugin.getGauntlet();
+		if (gauntlet == null)
 		{
-			for (GameObject gameObject : plugin.getResourceSpots())
-			{
+			return null;
+		}
 
-				if (GauntletResourceSpot.getSPOTS().get(gameObject.getId()) == null)
-				{
-					continue;
-				}
-				renderResourceSpotOverlay(graphics, gameObject, plugin.getResourceSpotColor(gameObject.getId()));
+		GauntletBoss gauntletBoss = gauntlet.getBoss();
+		if (gauntletBoss == null)
+		{
+			return null;
+		}
+
+		if (config.showProtectionPrayerCounter())
+		{
+			if (config.getProtectionPrayerCounterLocation() == CounterOverlayLocation.FIXED)
+			{
+				return null;
 			}
+
+			if (!gauntlet.isInBossRoom())
+			{
+				return null;
+			}
+
+			renderProtectedStyleCounter(graphics, gauntletBoss);
 		}
 
 		return null;
 	}
 
-	private void renderResourceSpotOverlay(Graphics2D graphics, GameObject gameObject, Color color)
+	private void renderProtectedStyleCounter(Graphics2D graphics, GauntletBoss gauntletBoss)
 	{
-		Point minimapLocation = gameObject.getMinimapLocation();
-		if (minimapLocation != null)
+		String text = String.valueOf(gauntletBoss.getAttacksUntilOverheadSwitch());
+		Point point = gauntletBoss.getNpc().getCanvasTextLocation(graphics, text, 0);
+		if (point == null)
 		{
-			OverlayUtil.renderMinimapLocation(graphics, minimapLocation, color);
+			return;
 		}
+
+		OverlayUtil2.renderTextLocation(graphics, text, config.getFontSize(), config.getFontStyle().getFont(),
+				config.getProtectionPrayCountFontColor(), point, false, 0);
 	}
 }

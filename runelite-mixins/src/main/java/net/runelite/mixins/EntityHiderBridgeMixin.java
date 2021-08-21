@@ -28,6 +28,8 @@ import net.runelite.api.mixins.Inject;
 import net.runelite.api.mixins.Mixin;
 import net.runelite.rs.api.RSClient;
 
+import java.util.HashMap;
+
 @Mixin(RSClient.class)
 public abstract class EntityHiderBridgeMixin implements RSClient
 {
@@ -72,6 +74,9 @@ public abstract class EntityHiderBridgeMixin implements RSClient
 
 	@Inject
 	public static boolean hideDeadNPCs;
+
+	@Inject
+	public static HashMap<String, Integer> hiddenDeadNpcNames = new HashMap<>();
 
 	@Inject
 	@Override
@@ -168,5 +173,33 @@ public abstract class EntityHiderBridgeMixin implements RSClient
 	public void setDeadNPCsHidden(boolean state)
 	{
 		hideDeadNPCs = state;
+	}
+
+	@Inject
+	@Override
+	public void addHiddenDeadNpcName(String name)
+	{
+		name = name.toLowerCase();
+		int hideCount = hiddenDeadNpcNames.getOrDefault(name, 0);
+		if (hideCount == Integer.MAX_VALUE)
+		{
+			throw new RuntimeException("Dead NPC with name: " + name + " has passed the hide count limit");
+		}
+
+		hiddenDeadNpcNames.put(name, ++hideCount);
+	}
+
+	@Inject
+	@Override
+	public void removeHiddenDeadNpcName(String name)
+	{
+		name = name.toLowerCase();
+		int hideCount = hiddenDeadNpcNames.getOrDefault(name, 0);
+		if (hideCount == 0)
+		{
+			return;
+		}
+
+		hiddenDeadNpcNames.put(name, --hideCount);
 	}
 }

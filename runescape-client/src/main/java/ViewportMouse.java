@@ -87,7 +87,7 @@ public class ViewportMouse {
 	)
 	@Export("SpriteBuffer_getSprite")
 	public static SpritePixels SpriteBuffer_getSprite(AbstractArchive var0, int var1, int var2) {
-		if (!class290.method5208(var0, var1, var2)) {
+		if (!class290.SpriteBuffer_loadSpritesFromArchive(var0, var1, var2)) {
 			return null;
 		} else {
 			SpritePixels var4 = new SpritePixels();

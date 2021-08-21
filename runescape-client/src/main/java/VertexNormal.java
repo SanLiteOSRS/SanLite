@@ -97,7 +97,7 @@ public class VertexNormal {
 				if (var9) {
 					Player var76 = (Player)var0;
 					if (var1 < var75) {
-						MusicPatchNode.method4684(var0, var0.defaultHeight + 15);
+						MusicPatchNode.worldToScreenForActor(var0, var0.defaultHeight + 15);
 						AbstractFont var77 = (AbstractFont)Client.fontsMap.get(FontName.FontName_plain12);
 						byte var91 = 9;
 						var77.drawCentered(var76.username.getName(), var2 + Client.viewportTempX, var3 + Client.viewportTempY - var91, 16777215, 0);
@@ -111,7 +111,7 @@ public class VertexNormal {
 			int var22;
 			int var23;
 			if (!var0.healthBars.method5383()) {
-				MusicPatchNode.method4684(var0, var0.defaultHeight + 15);
+				MusicPatchNode.worldToScreenForActor(var0, var0.defaultHeight + 15);
 
 				for (HealthBar var88 = (HealthBar)var0.healthBars.last(); var88 != null; var88 = (HealthBar)var0.healthBars.previous()) {
 					HealthBarUpdate var94 = var88.get(Client.cycle);
@@ -207,7 +207,7 @@ public class VertexNormal {
 				}
 
 				if (var10.headIconPk != -1 || var10.headIconPrayer != -1) {
-					MusicPatchNode.method4684(var0, var0.defaultHeight + 15);
+					MusicPatchNode.worldToScreenForActor(var0, var0.defaultHeight + 15); // Sets viewportTemp values with y offset
 					if (Client.viewportTempX > -1) {
 						if (var10.headIconPk != -1) {
 							var87 += 25;
@@ -222,7 +222,7 @@ public class VertexNormal {
 				}
 
 				if (var1 >= 0 && Client.hintArrowType == 10 && var7[var1] == Client.hintArrowPlayerIndex) {
-					MusicPatchNode.method4684(var0, var0.defaultHeight + 15);
+					MusicPatchNode.worldToScreenForActor(var0, var0.defaultHeight + 15);
 					if (Client.viewportTempX > -1) {
 						var87 += SpotAnimationDefinition.headIconHintSprites[1].subHeight;
 						SpotAnimationDefinition.headIconHintSprites[1].drawTransBgAt(var2 + Client.viewportTempX - 12, var3 + Client.viewportTempY - var87);
@@ -235,14 +235,15 @@ public class VertexNormal {
 				}
 
 				if (var89.headIconPrayer >= 0 && var89.headIconPrayer < StudioGame.headIconPrayerSprites.length) {
-					MusicPatchNode.method4684(var0, var0.defaultHeight + 15);
+					MusicPatchNode.worldToScreenForActor(var0, var0.defaultHeight + 15);
 					if (Client.viewportTempX > -1) {
+						// Draw npc headsprites
 						StudioGame.headIconPrayerSprites[var89.headIconPrayer].drawTransBgAt(var2 + Client.viewportTempX - 12, var3 + Client.viewportTempY - 30);
 					}
 				}
 
 				if (Client.hintArrowType == 1 && Client.npcIndices[var1 - var75] == Client.hintArrowNpcIndex && Client.cycle % 20 < 10) {
-					MusicPatchNode.method4684(var0, var0.defaultHeight + 15);
+					MusicPatchNode.worldToScreenForActor(var0, var0.defaultHeight + 15);
 					if (Client.viewportTempX > -1) {
 						SpotAnimationDefinition.headIconHintSprites[0].drawTransBgAt(var2 + Client.viewportTempX - 12, var3 + Client.viewportTempY - 28);
 					}
@@ -250,7 +251,7 @@ public class VertexNormal {
 			}
 
 			if (var0.overheadText != null && (var1 >= var75 || !var0.field1079 && (Client.publicChatMode == 4 || !var0.isAutoChatting && (Client.publicChatMode == 0 || Client.publicChatMode == 3 || Client.publicChatMode == 1 && ((Player)var0).isFriend())))) {
-				MusicPatchNode.method4684(var0, var0.defaultHeight);
+				MusicPatchNode.worldToScreenForActor(var0, var0.defaultHeight);
 				if (Client.viewportTempX > -1 && Client.overheadTextCount < Client.overheadTextLimit) {
 					Client.overheadTextXOffsets[Client.overheadTextCount] = TaskHandler.fontBold12.stringWidth(var0.overheadText) / 2;
 					Client.overheadTextAscents[Client.overheadTextCount] = TaskHandler.fontBold12.ascent;
@@ -300,7 +301,7 @@ public class VertexNormal {
 					if (var96 == null) {
 						var0.hitSplatCycles[var78] = -1;
 					} else {
-						MusicPatchNode.method4684(var0, var0.defaultHeight / 2);
+						MusicPatchNode.worldToScreenForActor(var0, var0.defaultHeight / 2);
 						if (Client.viewportTempX > -1) {
 							if (var78 == 1) {
 								Client.viewportTempY -= 20;

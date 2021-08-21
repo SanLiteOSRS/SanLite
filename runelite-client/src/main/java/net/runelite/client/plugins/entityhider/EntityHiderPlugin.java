@@ -85,6 +85,7 @@ public class EntityHiderPlugin extends Plugin
 
 		client.setNPCsHidden(config.hideNPCs());
 		client.setNPCsHidden2D(config.hideNPCs2D());
+		client.setDeadNPCsHidden(config.hideDeadNPCs());
 
 		client.setPetsHidden(config.hidePets());
 
@@ -110,6 +111,7 @@ public class EntityHiderPlugin extends Plugin
 
 		client.setNPCsHidden(false);
 		client.setNPCsHidden2D(false);
+		client.setDeadNPCsHidden(false);
 
 		client.setPetsHidden(false);
 

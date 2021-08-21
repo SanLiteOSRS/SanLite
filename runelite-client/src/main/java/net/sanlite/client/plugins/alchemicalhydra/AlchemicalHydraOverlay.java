@@ -31,6 +31,7 @@ import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayLayer;
 import net.runelite.client.ui.overlay.OverlayPosition;
 import net.runelite.client.util.ImageUtil;
+import net.sanlite.client.config.CounterOverlayLocation;
 import net.sanlite.client.plugins.alchemicalhydra.id.GraphicID;
 import net.sanlite.client.ui.overlay.OverlayUtil2;
 
@@ -82,8 +83,8 @@ public class AlchemicalHydraOverlay extends Overlay
 			}
 
 			if (config.showAttackStyleCounter() &&
-					(config.getAttackStyleOverlayLocation().equals(AttackStyleOverlayLocation.ABOVE_HEAD) ||
-							config.getAttackStyleOverlayLocation().equals(AttackStyleOverlayLocation.BOTH)))
+					(config.getAttackStyleOverlayLocation().equals(CounterOverlayLocation.ABOVE_HEAD) ||
+							config.getAttackStyleOverlayLocation().equals(CounterOverlayLocation.BOTH)))
 			{
 				renderAttackStyleCounter(graphics, alchemicalHydra);
 			}
@@ -211,7 +212,7 @@ public class AlchemicalHydraOverlay extends Overlay
 
 		String text = String.valueOf(ticksTillNextAttack);
 
-		BufferedImage image = ImageUtil.getResourceStreamFromClass(getClass(), "/skill_icons_small/attack.png");
+		BufferedImage image = ImageUtil.loadImageResource(getClass(), "/skill_icons_small/attack.png");
 		Point imageLocation = alchemicalHydra.getNpc().getCanvasTextLocation(graphics, text, 0);
 		if (imageLocation == null || image == null)
 		{

@@ -74,6 +74,33 @@ public class OverlayUtil2
 		graphics.setStroke(originalStroke);
 	}
 
+	public static void renderPolygon(Graphics2D graphics, Shape poly, Color color, double strokeSize)
+	{
+		graphics.setColor(color);
+		final Stroke originalStroke = graphics.getStroke();
+		graphics.setStroke(new BasicStroke((float) strokeSize));
+		graphics.draw(poly);
+		graphics.setColor(new Color(0, 0, 0, 50));
+		graphics.fill(poly);
+		graphics.setStroke(originalStroke);
+	}
+
+	/**
+	 * Renders polygon with the given color as the alpha fill.
+	 * @param graphics graphics object
+	 * @param poly polygon
+	 * @param color	color
+	 * @param strokeSize outer stroke size
+	 */
+	public static void renderPolygonAlpha(Graphics2D graphics, Shape poly, Color color, double strokeSize)
+	{
+		graphics.setColor(color);
+		graphics.setStroke(new BasicStroke((float) strokeSize));
+		graphics.draw(poly);
+		graphics.setColor(ColorUtil.colorWithAlpha(color, 20));
+		graphics.fill(poly);
+	}
+
 	public static void renderMinimapLocation(Graphics2D graphics, Point mini, Color color)
 	{
 		graphics.setColor(Color.BLACK);
@@ -219,48 +246,67 @@ public class OverlayUtil2
 											BufferedImage image, int imageMargin, int imageWidth, int imageHeight,
 											int imageDistance)
 	{
-		if (point != null)
+		renderCountCircle(graphics, totalCount, currentCount, point, image, imageMargin, imageWidth, imageHeight,
+				imageDistance, new Color(219, 175, 0, 255), new Color(0, 0, 0, 128),
+				new Color(0, 0, 0, 255));
+	}
+
+	public static void renderCountCircle(Graphics2D graphics, int totalCount, int currentCount, Point point,
+											BufferedImage image, int imageMargin, int imageWidth, int imageHeight,
+											int imageDistance, Color countColor)
+	{
+		renderCountCircle(graphics, totalCount, currentCount, point, image, imageMargin, imageWidth, imageHeight,
+				imageDistance, countColor, new Color(0, 0, 0, 128), new Color(0, 0, 0, 255));
+	}
+
+	public static void renderCountCircle(Graphics2D graphics, int totalCount, int currentCount, Point point,
+											BufferedImage image, int imageMargin, int imageWidth, int imageHeight,
+											int imageDistance, Color countColor, Color innerOvalColor, Color outerOvalColor)
+	{
+		if (point == null)
 		{
-			point = new Point(point.getX(), point.getY());
-			int totalWidth = imageMargin;
-			totalWidth += imageWidth;
-
-			int bgPadding = 4;
-			int currentPosX = 0;
-
-			graphics.setStroke(new BasicStroke(2));
-			graphics.setColor(new Color(0, 0, 0, 128));
-			graphics.fillOval(
-					point.getX() - totalWidth / 2 + currentPosX - bgPadding,
-					point.getY() - imageHeight / 2 - imageDistance - bgPadding,
-					imageWidth + bgPadding * 2,
-					imageHeight + bgPadding * 2);
-
-			graphics.setColor(new Color(0, 0, 0, 255));
-			graphics.drawOval(
-					point.getX() - totalWidth / 2 + currentPosX - bgPadding,
-					point.getY() - imageHeight / 2 - imageDistance - bgPadding,
-					imageWidth + bgPadding * 2,
-					imageHeight + bgPadding * 2);
-
-			graphics.drawImage(
-					image,
-					point.getX() - totalWidth / 2 + currentPosX,
-					point.getY() - imageHeight / 2 - imageDistance,
-					null);
-
-			graphics.setColor(new Color(219, 175, 0, 255));
-
-			Arc2D.Double arc = new Arc2D.Double(
-					point.getX() - totalWidth / 2 + currentPosX - bgPadding,
-					point.getY() - imageHeight / 2 - imageDistance - bgPadding,
-					imageWidth + bgPadding * 2,
-					imageHeight + bgPadding * 2,
-					90.0,
-					-360.0 * (totalCount - currentCount) / totalCount,
-					Arc2D.OPEN);
-			graphics.draw(arc);
+			return;
 		}
+
+		point = new Point(point.getX(), point.getY());
+		int totalWidth = imageMargin;
+		totalWidth += imageWidth;
+
+		int bgPadding = 4;
+		int currentPosX = 0;
+
+		graphics.setStroke(new BasicStroke(2));
+		graphics.setColor(innerOvalColor);
+		graphics.fillOval(
+				point.getX() - totalWidth / 2 + currentPosX - bgPadding,
+				point.getY() - imageHeight / 2 - imageDistance - bgPadding,
+				imageWidth + bgPadding * 2,
+				imageHeight + bgPadding * 2);
+
+		graphics.setColor(outerOvalColor);
+		graphics.drawOval(
+				point.getX() - totalWidth / 2 + currentPosX - bgPadding,
+				point.getY() - imageHeight / 2 - imageDistance - bgPadding,
+				imageWidth + bgPadding * 2,
+				imageHeight + bgPadding * 2);
+
+		graphics.drawImage(
+				image,
+				point.getX() - totalWidth / 2 + currentPosX,
+				point.getY() - imageHeight / 2 - imageDistance,
+				null);
+
+		graphics.setColor(countColor);
+
+		Arc2D.Double arc = new Arc2D.Double(
+				point.getX() - totalWidth / 2 + currentPosX - bgPadding,
+				point.getY() - imageHeight / 2 - imageDistance - bgPadding,
+				imageWidth + bgPadding * 2,
+				imageHeight + bgPadding * 2,
+				90.0,
+				-360.0 * (totalCount - currentCount) / totalCount,
+				Arc2D.OPEN);
+		graphics.draw(arc);
 	}
 
 	public static void setGraphicProperties(Graphics2D graphics)

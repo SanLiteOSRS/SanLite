@@ -25,6 +25,7 @@
 package net.sanlite.client.plugins.alchemicalhydra;
 
 import net.runelite.client.config.*;
+import net.sanlite.client.config.CounterOverlayLocation;
 import net.sanlite.client.config.StrokeSize;
 
 import java.awt.*;
@@ -63,9 +64,9 @@ public interface AlchemicalHydraConfig extends Config
 			description = "Location of the Alchemical Hydra's attack style overlay",
 			position = 2
 	)
-	default AttackStyleOverlayLocation getAttackStyleOverlayLocation()
+	default CounterOverlayLocation getAttackStyleOverlayLocation()
 	{
-		return AttackStyleOverlayLocation.ABOVE_HEAD;
+		return CounterOverlayLocation.ABOVE_HEAD;
 	}
 
 	@ConfigItem(

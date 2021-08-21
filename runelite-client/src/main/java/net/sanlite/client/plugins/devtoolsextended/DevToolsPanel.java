@@ -197,10 +197,15 @@ class DevToolsPanel extends PluginPanel
 			log.info("Shell couldn't be loaded", e);
 		}
 
-		final JButton customSoundBtn = new JButton("Custom Sound");
-		Clip customSoundClip = SoundUtil.getResourceStreamFromClass(getClass(), "custom_sound.wav");
-		customSoundBtn.addActionListener(e -> scheduledExecutorService.submit(() -> soundManager.playCustomSound(customSoundClip)));
-		container.add(customSoundBtn);
+		final JButton playClipBtn = new JButton("Play Clip");
+		Clip customSoundClip = SoundUtil.getResourceStreamFromClass(getClass(), "custom_sound_long.wav");
+		playClipBtn.addActionListener(e -> scheduledExecutorService.submit(() -> soundManager.playClip(customSoundClip)));
+		container.add(playClipBtn);
+
+		final JButton playClipLaterBtn = new JButton("Play Clip Later");
+		Clip customSoundClip2 = SoundUtil.getResourceStreamFromClass(getClass(), "custom_sound_short.wav");
+		playClipLaterBtn.addActionListener(e -> scheduledExecutorService.submit(() -> soundManager.playClipLater(customSoundClip2)));
+		container.add(playClipLaterBtn);
 
 		return container;
 	}

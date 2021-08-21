@@ -58,7 +58,7 @@ public class class117 extends class103 {
 		int var3 = var0.getGroupId(var1);
 		int var4 = var0.getFileId(var3, var2);
 		IndexedSprite var5;
-		if (!class290.method5208(var0, var3, var4)) {
+		if (!class290.SpriteBuffer_loadSpritesFromArchive(var0, var3, var4)) {
 			var5 = null;
 		} else {
 			IndexedSprite var7 = new IndexedSprite();

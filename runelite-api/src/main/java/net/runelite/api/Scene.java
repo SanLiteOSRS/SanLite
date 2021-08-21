@@ -62,4 +62,16 @@ public interface Scene
 	void generateHouses();
 
 	void setRoofRemovalMode(int flags);
+
+	/**
+	 * Hides tiles which include have the given game object id
+	 * @param gameObjectId game object id
+	 */
+	void hideGameObjectId(int gameObjectId);
+
+	/**
+	 * Unhides tiles which include have the given game object id
+	 * @param gameObjectId game object id
+	 */
+	void unhideGameObjectId(int gameObjectId);
 }

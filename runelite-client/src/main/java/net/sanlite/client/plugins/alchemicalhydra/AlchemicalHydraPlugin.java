@@ -33,6 +33,7 @@ import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.events.ConfigChanged;
 import net.runelite.client.game.SkillIconManager;
+import net.sanlite.client.config.CounterOverlayLocation;
 import net.sanlite.client.game.SoundManager;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
@@ -133,11 +134,11 @@ public class AlchemicalHydraPlugin extends Plugin
 			case MAGIC:
 				return iconManager.getSkillImage(Skill.MAGIC);
 			case POISON:
-				return ImageUtil.getResourceStreamFromClass(AlchemicalHydraPlugin.class, "poison_attack.png");
+				return ImageUtil.loadImageResource(AlchemicalHydraPlugin.class, "poison_attack.png");
 			case LIGHTNING:
-				return ImageUtil.getResourceStreamFromClass(AlchemicalHydraPlugin.class, "lightning_attack.png");
+				return ImageUtil.loadImageResource(AlchemicalHydraPlugin.class, "lightning_attack.png");
 			case FIRE:
-				return ImageUtil.getResourceStreamFromClass(AlchemicalHydraPlugin.class, "fire_attack.png");
+				return ImageUtil.loadImageResource(AlchemicalHydraPlugin.class, "fire_attack.png");
 		}
 		return null;
 	}
@@ -171,8 +172,8 @@ public class AlchemicalHydraPlugin extends Plugin
 			overlayManager.add(debugOverlay);
 		}
 
-		if (config.getAttackStyleOverlayLocation().equals(AttackStyleOverlayLocation.FIXED) ||
-				config.getAttackStyleOverlayLocation().equals(AttackStyleOverlayLocation.BOTH))
+		if (config.getAttackStyleOverlayLocation().equals(CounterOverlayLocation.FIXED) ||
+				config.getAttackStyleOverlayLocation().equals(CounterOverlayLocation.BOTH))
 		{
 			overlayManager.add(fixedAttackStyleOverlay);
 		}
@@ -190,8 +191,8 @@ public class AlchemicalHydraPlugin extends Plugin
 			overlayManager.remove(debugOverlay);
 		}
 
-		if (config.getAttackStyleOverlayLocation().equals(AttackStyleOverlayLocation.FIXED) ||
-				config.getAttackStyleOverlayLocation().equals(AttackStyleOverlayLocation.BOTH))
+		if (config.getAttackStyleOverlayLocation().equals(CounterOverlayLocation.FIXED) ||
+				config.getAttackStyleOverlayLocation().equals(CounterOverlayLocation.BOTH))
 		{
 			overlayManager.remove(fixedAttackStyleOverlay);
 		}
@@ -211,10 +212,10 @@ public class AlchemicalHydraPlugin extends Plugin
 				else if (!config.showDebugOverlay())
 					overlayManager.remove(debugOverlay);
 			case "attackStyleOverlayLocation":
-				if (config.getAttackStyleOverlayLocation().equals(AttackStyleOverlayLocation.FIXED) ||
-						config.getAttackStyleOverlayLocation().equals(AttackStyleOverlayLocation.BOTH))
+				if (config.getAttackStyleOverlayLocation().equals(CounterOverlayLocation.FIXED) ||
+						config.getAttackStyleOverlayLocation().equals(CounterOverlayLocation.BOTH))
 					overlayManager.add(fixedAttackStyleOverlay);
-				else if (config.getAttackStyleOverlayLocation().equals(AttackStyleOverlayLocation.ABOVE_HEAD))
+				else if (config.getAttackStyleOverlayLocation().equals(CounterOverlayLocation.ABOVE_HEAD))
 					overlayManager.remove(fixedAttackStyleOverlay);
 				break;
 		}
@@ -242,7 +243,7 @@ public class AlchemicalHydraPlugin extends Plugin
 			return;
 		}
 
-		scheduledExecutorService.submit(() -> soundManager.playCustomSound(getAudioClipForAttackStyle(attackStyle)));
+		scheduledExecutorService.submit(() -> soundManager.playClip(getAudioClipForAttackStyle(attackStyle)));
 	}
 
 	@Subscribe

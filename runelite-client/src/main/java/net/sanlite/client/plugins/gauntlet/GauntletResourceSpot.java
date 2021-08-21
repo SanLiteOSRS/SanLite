@@ -26,13 +26,17 @@ package net.sanlite.client.plugins.gauntlet;
 
 import com.google.common.collect.ImmutableMap;
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.ItemID;
 import net.runelite.api.ObjectID;
 
+import java.awt.*;
+import java.util.Arrays;
 import java.util.Map;
 
 import static net.runelite.api.ObjectID.*;
 
+@Slf4j
 @Getter
 public enum GauntletResourceSpot
 {
@@ -40,36 +44,20 @@ public enum GauntletResourceSpot
 			FISHING_SPOT_36068, FISHING_SPOT_35971
 	),
 	CRYSTAL_DEPOSIT("Crystal Deposit", ItemID.CRYSTAL_ORE,
-			ObjectID.CRYSTAL_DEPOSIT
-	),
-	CORRUPT_DEPOSIT("Corrupt Deposit", ItemID.CORRUPTED_ORE,
-			ObjectID.CORRUPT_DEPOSIT
+			ObjectID.CRYSTAL_DEPOSIT, ObjectID.CORRUPT_DEPOSIT
 	),
 	GRYM_ROOT("Grym Root", ItemID.GRYM_LEAF_23875,
-			GRYM_ROOT_36070
-	),
-	CORRUPT_GRYM_ROOT("Grym Root", ItemID.GRYM_LEAF,
-			ObjectID.GRYM_ROOT
+			GRYM_ROOT_36070, ObjectID.GRYM_ROOT
 	),
 	PHREN_ROOTS("Phren Roots", ItemID.PHREN_BARK_23878,
-			PHREN_ROOTS_36066
-	),
-	CORRUPT_PHREN_ROOTS("Phren Roots", ItemID.PHREN_BARK,
-			ObjectID.PHREN_ROOTS
+			PHREN_ROOTS_36066, ObjectID.PHREN_ROOTS
 	),
 	LINUM_TIRINUM("Linum Tirinum", ItemID.LINUM_TIRINUM_23876,
-			LINUM_TIRINUM_36072
-	),
-	CORRUPT_LINUM_TIRINUM("Linum Tirinum", ItemID.LINUM_TIRINUM,
-			ObjectID.LINUM_TIRINUM
+			LINUM_TIRINUM_36072, ObjectID.LINUM_TIRINUM
 	);
 
 	@Getter
-	private static final Map<Integer, GauntletResourceSpot> SPOTS;
-
-	private final String name;
-	private final int resourceSpriteId;
-	private final int[] ids;
+	static final Map<Integer, GauntletResourceSpot> SPOTS;
 
 	static
 	{
@@ -86,10 +74,84 @@ public enum GauntletResourceSpot
 		SPOTS = builder.build();
 	}
 
+	private final String name;
+	private final int resourceSpriteId;
+	private final int[] ids;
+
 	GauntletResourceSpot(String spot, int resourceSpriteId, int... ids)
 	{
 		this.name = spot;
 		this.resourceSpriteId = resourceSpriteId;
 		this.ids = ids;
+	}
+
+	static boolean matches(int gameObjectId)
+	{
+		return SPOTS.containsKey(gameObjectId);
+	}
+
+	static boolean isResourceSpot(int gameObjectId, GauntletResourceSpot resourceSpot)
+	{
+		return Arrays.stream(resourceSpot.getIds()).anyMatch((id) -> id == gameObjectId);
+	}
+
+	static boolean isEnabled(int gameObjectId, GauntletConfig config)
+	{
+		for (Map.Entry<Integer, GauntletResourceSpot> entry : SPOTS.entrySet())
+		{
+			if (entry.getKey() != gameObjectId)
+			{
+				continue;
+			}
+
+			switch (entry.getValue())
+			{
+				case PADDLEFISH:
+					return config.showPaddlefishSpots();
+				case CRYSTAL_DEPOSIT:
+					return config.showCrystalDeposits();
+				case GRYM_ROOT:
+					return config.showGrymRoots();
+				case PHREN_ROOTS:
+					return config.showPhrenRoots();
+				case LINUM_TIRINUM:
+					return config.showLinumTirinum();
+				default:
+					log.warn("Unknown gauntlet resource spot {}", entry.getValue());
+					return false;
+			}
+		}
+
+		return false;
+	}
+
+	static Color getColor(int gameObjectId, GauntletConfig config)
+	{
+		for (Map.Entry<Integer, GauntletResourceSpot> entry : SPOTS.entrySet())
+		{
+			if (entry.getKey() != gameObjectId)
+			{
+				continue;
+			}
+
+			switch (entry.getValue())
+			{
+				case PADDLEFISH:
+					return config.getPaddlefishSpotColor();
+				case CRYSTAL_DEPOSIT:
+					return config.getCrystalDepositColor();
+				case GRYM_ROOT:
+					return config.getGrymRootColor();
+				case PHREN_ROOTS:
+					return config.getPhrenRootsColor();
+				case LINUM_TIRINUM:
+					return config.getLinumTirinumColor();
+				default:
+					log.warn("Unknown gauntlet resource spot {}", entry.getValue());
+					return Color.GRAY;
+			}
+		}
+
+		return null;
 	}
 }
