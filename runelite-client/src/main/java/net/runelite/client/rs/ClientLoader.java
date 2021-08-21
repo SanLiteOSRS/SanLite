@@ -154,6 +154,7 @@ public class ClientLoader implements Supplier<Applet>
 					}
 				}
 
+				SplashScreen.stage(.25, null, "Checking injected client hash");
 				if (!checkVanillaHash())
 				{
 					log.error("Injected client vanilla hash doesn't match, loading vanilla client.");
@@ -161,7 +162,6 @@ public class ClientLoader implements Supplier<Applet>
 				}
 
 				SplashScreen.stage(.40, null, "Loading client");
-
 				File injectedClient = new File(System.getProperty("user.home") + "/.sanlite/cache/injected-client.jar");
 				if (updateCheckMode == AUTO)
 				{
@@ -509,6 +509,7 @@ public class ClientLoader implements Supplier<Applet>
 
 	private void writeInjectedClient(File cachedInjected) throws IOException
 	{
+		SplashScreen.stage(.30, null, "Calculating cached hash for client");
 		String cachedHash = "";
 		try
 		{
@@ -529,6 +530,7 @@ public class ClientLoader implements Supplier<Applet>
 
 		if (!cachedInjected.exists() || !currentHash.equals(cachedHash))
 		{
+			SplashScreen.stage(.35, null, "Creating injected client cache");
 			cachedInjected.getParentFile().mkdirs();
 			Files.write(cachedInjected.toPath(), currentInjected);
 		}
