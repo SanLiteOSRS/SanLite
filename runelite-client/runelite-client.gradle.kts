@@ -122,7 +122,7 @@ tasks {
     }
 
     compileJava {
-        dependsOn("packInjectedClient")
+        // dependsOn("packInjectedClient")
     }
 
     processResources {
@@ -151,9 +151,11 @@ tasks {
     register<Copy>("packInjectedClient") {
         dependsOn(":injector:inject")
 
-        from("src/main/resources/")
+        from("build/injected/")
         include("**/injected-client.rs")
         into("${buildDir}/resources/main")
+
+        outputs.upToDateWhen { false }
     }
 
     jar {
@@ -170,6 +172,10 @@ tasks {
         dependsOn(":runelite-script-assembler-plugin:assembleMojo")
 
         from("${buildDir}/scripts")
+
+        dependsOn(":injector:inject")
+
+        from("build/injected")
     }
 
     withType<BootstrapTask> {
