@@ -62,7 +62,7 @@ import org.slf4j.LoggerFactory;
 public class RuneLiteModule extends AbstractModule
 {
 	private final OkHttpClient okHttpClient;
-	private final Supplier<Object> clientLoader;
+	private final Supplier<Applet> clientLoader;
 	private final Supplier<RuntimeConfig> runtimeConfigSupplier;
 	private final boolean developerMode;
 	private final boolean safeMode;

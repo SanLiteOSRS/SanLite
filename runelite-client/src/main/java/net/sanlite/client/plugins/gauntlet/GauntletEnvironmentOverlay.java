@@ -79,7 +79,7 @@ public class GauntletEnvironmentOverlay extends Overlay
 	public Dimension render(Graphics2D graphics)
 	{
 		Gauntlet gauntlet = plugin.getGauntlet();
-		if (gauntlet == null)
+		if (gauntlet == null || gauntlet.isInBossRoom())
 		{
 			return null;
 		}

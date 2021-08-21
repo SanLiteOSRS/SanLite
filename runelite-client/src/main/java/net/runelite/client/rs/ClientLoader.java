@@ -27,15 +27,20 @@
 package net.runelite.client.rs;
 
 import com.google.common.base.Strings;
+import com.google.common.hash.Hashing;
 import com.google.common.io.ByteStreams;
 import java.applet.Applet;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.channels.Channels;
 import java.nio.channels.FileChannel;
+import java.nio.channels.FileLock;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.nio.file.StandardOpenOption;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
@@ -49,12 +54,16 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 import java.util.jar.JarInputStream;
 import javax.annotation.Nonnull;
+import javax.swing.SwingUtilities;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Client;
 import net.runelite.client.RuneLite;
 import net.runelite.client.RuneLiteProperties;
+import static net.runelite.client.rs.ClientUpdateCheckMode.AUTO;
 import static net.runelite.client.rs.ClientUpdateCheckMode.NONE;
-import net.sanlite.client.ui.SplashScreen;
+import static net.runelite.client.rs.ClientUpdateCheckMode.VANILLA;
+import net.runelite.client.ui.FatalErrorDialog;
+import net.runelite.client.ui.SplashScreen;
 import net.runelite.client.util.CountingInputStream;
 import net.runelite.client.util.VerificationException;
 import net.runelite.http.api.worlds.World;
@@ -62,12 +71,12 @@ import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-import org.apache.commons.io.FileUtils;
 
 @Slf4j
 @SuppressWarnings("deprecation")
-public class ClientLoader implements Supplier<Object>
+public class ClientLoader implements Supplier<Applet>
 {
+	private static final String INJECTED_CLIENT_NAME = "/injected-client.rs";
 	private static final int NUM_ATTEMPTS = 6;
 	private static File LOCK_FILE = new File(RuneLite.CACHE_DIR, "cache.lock");
 	private static File VANILLA_CACHE = new File(RuneLite.CACHE_DIR, "vanilla.cache");
@@ -91,14 +100,18 @@ public class ClientLoader implements Supplier<Object>
 	}
 
 	@Override
-	public synchronized Object get()
+	public synchronized Applet get()
 	{
 		if (client == null)
 		{
 			client = doLoad();
 		}
 
-		return client;
+		if (client instanceof Throwable)
+		{
+			throw new RuntimeException((Throwable) client);
+		}
+		return (Applet) client;
 	}
 
 	private Object doLoad()
@@ -118,23 +131,47 @@ public class ClientLoader implements Supplier<Object>
 			LOCK_FILE.getParentFile().mkdirs();
 			ClassLoader classLoader;
 			try (FileChannel lockfile = FileChannel.open(LOCK_FILE.toPath(),
-					StandardOpenOption.CREATE, StandardOpenOption.READ, StandardOpenOption.WRITE))
+				StandardOpenOption.CREATE, StandardOpenOption.READ, StandardOpenOption.WRITE);
+				FileLock flock = lockfile.lock())
 			{
-				lockfile.lock();
-				SplashScreen.stage(.40, null, "Loading client");
-
-				// create the classloader for the jar while we hold the lock, and eagerly load and link all classes
-				// in the jar. Otherwise the jar can change on disk and can break future class loads.
-				File injectedClient = new File(System.getProperty("user.home") + "/.sanlite/cache/injected-client.jar");
-				InputStream initialStream = RuneLite.class.getResourceAsStream("injected-client.rs");
-
-				int fileLength = RuneLite.class.getResource("injected-client.rs").getFile().length();
-				if (!injectedClient.exists() || injectedClient.length() != fileLength)
+				SplashScreen.stage(.15, null, "Downloading Old School RuneScape");
+				try
 				{
-					FileUtils.copyInputStreamToFile(initialStream, injectedClient);
+					updateVanilla(config);
+				}
+				catch (IOException ex)
+				{
+					// try again with the fallback config and gamepack
+					if (javConfigUrl.equals(RuneLiteProperties.getJavConfig()) && !config.isFallback())
+					{
+						log.warn("Unable to download game client, attempting to use fallback config", ex);
+						config = downloadFallbackConfig();
+						updateVanilla(config);
+					}
+					else
+					{
+						throw ex;
+					}
 				}
 
-				classLoader = createJarClassLoader(injectedClient);
+				if (!checkVanillaHash())
+				{
+					log.error("Injected client vanilla hash doesn't match, loading vanilla client.");
+					updateCheckMode = VANILLA;
+				}
+
+				SplashScreen.stage(.40, null, "Loading client");
+
+				File injectedClient = new File(System.getProperty("user.home") + "/.sanlite/cache/injected-client.jar");
+				if (updateCheckMode == AUTO)
+				{
+					writeInjectedClient(injectedClient);
+				}
+
+				File jarFile = updateCheckMode == AUTO ? injectedClient : VANILLA_CACHE;
+				// create the classloader for the jar while we hold the lock, and eagerly load and link all classes
+				// in the jar. Otherwise the jar can change on disk and can break future classloads.
+				classLoader = createJarClassLoader(jarFile);
 			}
 
 			SplashScreen.stage(.465, "Starting", "Starting Old School RuneScape");
@@ -146,10 +183,11 @@ public class ClientLoader implements Supplier<Object>
 			return rs;
 		}
 		catch (IOException | ClassNotFoundException | InstantiationException | IllegalAccessException
-			| SecurityException e)
+			| VerificationException | SecurityException e)
 		{
 			log.error("Error loading RS!", e);
 
+			SwingUtilities.invokeLater(() -> FatalErrorDialog.showNetErrorWindow("loading the client", e));
 			return e;
 		}
 	}
@@ -372,7 +410,7 @@ public class ClientLoader implements Supplier<Object>
 					log.warn("Failed to download gamepack from \"{}\"", url, e);
 
 					// With fallback config do 1 attempt (there are no additional urls to try)
-					if (config.isFallback() || attempt >= NUM_ATTEMPTS)
+					if (!javConfigUrl.equals(RuneLiteProperties.getJavConfig()) || config.isFallback() || attempt >= NUM_ATTEMPTS)
 					{
 						throw e;
 					}
@@ -450,6 +488,52 @@ public class ClientLoader implements Supplier<Object>
 		 */
 	}
 
+	private boolean checkVanillaHash()
+	{
+		try (InputStream is = ClientLoader.class.getResourceAsStream("/client.hash"))
+		{
+			String storedHash = new String(is.readAllBytes(), StandardCharsets.UTF_8);
+			String vanillaHash = Hashing.sha256().hashBytes(Files.readAllBytes(VANILLA_CACHE.toPath())).toString();
+			log.debug("Stored vanilla hash: {}", storedHash);
+			log.debug("Actual vanilla hash: {}", vanillaHash);
+
+			return vanillaHash.equals(storedHash);
+		}
+		catch (IOException ex)
+		{
+			log.error("Failed to compare vanilla hashes, loading vanilla", ex);
+		}
+
+		return false;
+	}
+
+	private void writeInjectedClient(File cachedInjected) throws IOException
+	{
+		String cachedHash = "";
+		try
+		{
+			cachedHash = com.google.common.io.Files.asByteSource(cachedInjected).hash(Hashing.sha256()).toString();
+		}
+		catch (IOException ex)
+		{
+			if (!(ex instanceof FileNotFoundException))
+			{
+				log.error("Failed to calculate hash for cached file, falling back to vanilla", ex);
+				updateCheckMode = VANILLA;
+				return;
+			}
+		}
+
+		byte[] currentInjected = ByteStreams.toByteArray(ClientLoader.class.getResourceAsStream(INJECTED_CLIENT_NAME));
+		String currentHash = Hashing.sha256().hashBytes(currentInjected).toString();
+
+		if (!cachedInjected.exists() || !currentHash.equals(cachedHash))
+		{
+			cachedInjected.getParentFile().mkdirs();
+			Files.write(cachedInjected.toPath(), currentInjected);
+		}
+	}
+
 	private ClassLoader createJarClassLoader(File jar) throws IOException, ClassNotFoundException
 	{
 		try (JarFile jarFile = new JarFile(jar))
@@ -504,7 +588,7 @@ public class ClientLoader implements Supplier<Object>
 				if (name.endsWith(".class"))
 				{
 					name = name.substring(0, name.length() - 6);
-					classLoader.loadClass(name);
+					classLoader.loadClass(name.replace('/', '.'));
 				}
 			}
 
@@ -522,7 +606,7 @@ public class ClientLoader implements Supplier<Object>
 
 		if (rs instanceof Client)
 		{
-			//.info("client-patch {}", ((Client) rs).getBuildID());
+			log.info("injected-client {}", RuneLiteProperties.getSanLiteVersion());
 		}
 
 		return rs;
