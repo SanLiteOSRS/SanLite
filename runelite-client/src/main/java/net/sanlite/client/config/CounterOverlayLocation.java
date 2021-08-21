@@ -1,9 +1,9 @@
-package net.sanlite.client.plugins.alchemicalhydra;
+package net.sanlite.client.config;
 
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public enum AttackStyleOverlayLocation
+public enum CounterOverlayLocation
 {
 	ABOVE_HEAD("Above head"),
 	FIXED("Fixed overlay"),

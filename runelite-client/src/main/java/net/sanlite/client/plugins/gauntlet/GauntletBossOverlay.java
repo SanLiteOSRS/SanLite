@@ -27,15 +27,14 @@ package net.sanlite.client.plugins.gauntlet;
 import net.runelite.api.Point;
 import net.runelite.api.*;
 import net.runelite.api.coords.LocalPoint;
-import net.runelite.client.game.SkillIconManager;
 import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayLayer;
 import net.runelite.client.ui.overlay.OverlayPosition;
+import net.sanlite.client.config.CounterOverlayLocation;
 import net.sanlite.client.ui.overlay.OverlayUtil2;
 
 import javax.inject.Inject;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.util.List;
 
 public class GauntletBossOverlay extends Overlay
@@ -52,27 +51,12 @@ public class GauntletBossOverlay extends Overlay
 	private GauntletConfig config;
 
 	@Inject
-	private SkillIconManager iconManager;
-
-	@Inject
 	public GauntletBossOverlay(Client client, GauntletPlugin plugin)
 	{
 		setPosition(OverlayPosition.DYNAMIC);
 		setLayer(OverlayLayer.ABOVE_SCENE);
 		this.client = client;
 		this.plugin = plugin;
-	}
-
-	private BufferedImage getAttackStyleIcon(GauntletBoss.AttackStyle attackStyle)
-	{
-		switch (attackStyle)
-		{
-			case RANGED:
-				return iconManager.getSkillImage(Skill.RANGED);
-			case MAGIC:
-				return iconManager.getSkillImage(Skill.MAGIC);
-		}
-		return null;
 	}
 
 	@Override
@@ -115,6 +99,11 @@ public class GauntletBossOverlay extends Overlay
 
 	private void renderAttackStyleCounter(Graphics2D graphics, GauntletBoss boss)
 	{
+		if (config.getAttackStyleCounterLocation() == CounterOverlayLocation.FIXED)
+		{
+			return;
+		}
+
 		LocalPoint localPoint = boss.getNpc().getLocalLocation();
 		if (localPoint != null)
 		{
@@ -123,8 +112,8 @@ public class GauntletBossOverlay extends Overlay
 
 			OverlayUtil2.renderCountCircle(graphics, GauntletBoss.ATTACKS_PER_SWITCH,
 					boss.getAttacksUntilSwitch(), point,
-					getAttackStyleIcon(boss.getCurrentAttackStyle()), OVERLAY_ICON_MARGIN, ICON_WIDTH,
-					ICON_HEIGHT, OVERLAY_ICON_DISTANCE);
+					plugin.getAttackStyleIcon(boss.getCurrentAttackStyle()), OVERLAY_ICON_MARGIN, ICON_WIDTH,
+					ICON_HEIGHT, OVERLAY_ICON_DISTANCE, config.getAttackStyleCounterColor());
 		}
 	}
 

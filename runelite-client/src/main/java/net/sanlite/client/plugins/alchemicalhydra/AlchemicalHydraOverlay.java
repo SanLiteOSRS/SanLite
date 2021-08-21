@@ -31,6 +31,7 @@ import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayLayer;
 import net.runelite.client.ui.overlay.OverlayPosition;
 import net.runelite.client.util.ImageUtil;
+import net.sanlite.client.config.CounterOverlayLocation;
 import net.sanlite.client.plugins.alchemicalhydra.id.GraphicID;
 import net.sanlite.client.ui.overlay.OverlayUtil2;
 
@@ -82,8 +83,8 @@ public class AlchemicalHydraOverlay extends Overlay
 			}
 
 			if (config.showAttackStyleCounter() &&
-					(config.getAttackStyleOverlayLocation().equals(AttackStyleOverlayLocation.ABOVE_HEAD) ||
-							config.getAttackStyleOverlayLocation().equals(AttackStyleOverlayLocation.BOTH)))
+					(config.getAttackStyleOverlayLocation().equals(CounterOverlayLocation.ABOVE_HEAD) ||
+							config.getAttackStyleOverlayLocation().equals(CounterOverlayLocation.BOTH)))
 			{
 				renderAttackStyleCounter(graphics, alchemicalHydra);
 			}

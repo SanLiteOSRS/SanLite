@@ -33,6 +33,7 @@ import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.events.ConfigChanged;
 import net.runelite.client.game.SkillIconManager;
+import net.sanlite.client.config.CounterOverlayLocation;
 import net.sanlite.client.game.SoundManager;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
@@ -171,8 +172,8 @@ public class AlchemicalHydraPlugin extends Plugin
 			overlayManager.add(debugOverlay);
 		}
 
-		if (config.getAttackStyleOverlayLocation().equals(AttackStyleOverlayLocation.FIXED) ||
-				config.getAttackStyleOverlayLocation().equals(AttackStyleOverlayLocation.BOTH))
+		if (config.getAttackStyleOverlayLocation().equals(CounterOverlayLocation.FIXED) ||
+				config.getAttackStyleOverlayLocation().equals(CounterOverlayLocation.BOTH))
 		{
 			overlayManager.add(fixedAttackStyleOverlay);
 		}
@@ -190,8 +191,8 @@ public class AlchemicalHydraPlugin extends Plugin
 			overlayManager.remove(debugOverlay);
 		}
 
-		if (config.getAttackStyleOverlayLocation().equals(AttackStyleOverlayLocation.FIXED) ||
-				config.getAttackStyleOverlayLocation().equals(AttackStyleOverlayLocation.BOTH))
+		if (config.getAttackStyleOverlayLocation().equals(CounterOverlayLocation.FIXED) ||
+				config.getAttackStyleOverlayLocation().equals(CounterOverlayLocation.BOTH))
 		{
 			overlayManager.remove(fixedAttackStyleOverlay);
 		}
@@ -211,10 +212,10 @@ public class AlchemicalHydraPlugin extends Plugin
 				else if (!config.showDebugOverlay())
 					overlayManager.remove(debugOverlay);
 			case "attackStyleOverlayLocation":
-				if (config.getAttackStyleOverlayLocation().equals(AttackStyleOverlayLocation.FIXED) ||
-						config.getAttackStyleOverlayLocation().equals(AttackStyleOverlayLocation.BOTH))
+				if (config.getAttackStyleOverlayLocation().equals(CounterOverlayLocation.FIXED) ||
+						config.getAttackStyleOverlayLocation().equals(CounterOverlayLocation.BOTH))
 					overlayManager.add(fixedAttackStyleOverlay);
-				else if (config.getAttackStyleOverlayLocation().equals(AttackStyleOverlayLocation.ABOVE_HEAD))
+				else if (config.getAttackStyleOverlayLocation().equals(CounterOverlayLocation.ABOVE_HEAD))
 					overlayManager.remove(fixedAttackStyleOverlay);
 				break;
 		}

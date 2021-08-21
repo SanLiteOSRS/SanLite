@@ -34,9 +34,11 @@ import net.runelite.client.callback.ClientThread;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.events.ConfigChanged;
+import net.runelite.client.game.SkillIconManager;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.ui.overlay.OverlayManager;
+import net.runelite.client.util.ImageUtil;
 import net.sanlite.client.game.SoundManager;
 import net.sanlite.client.plugins.gauntlet.event.BossAttackStyleSwitched;
 import net.sanlite.client.plugins.gauntlet.event.DemiBossDespawned;
@@ -49,6 +51,7 @@ import net.sanlite.client.util.SoundUtil;
 
 import javax.inject.Inject;
 import javax.sound.sampled.Clip;
+import java.awt.image.BufferedImage;
 import java.util.Set;
 import java.util.concurrent.ScheduledExecutorService;
 
@@ -57,7 +60,7 @@ import static net.runelite.api.Varbits.*;
 @Slf4j
 @PluginDescriptor(
 		name = "The Gauntlet",
-		description = "Assists with The Gauntlet minigame",
+		description = "Assists with the Gauntlet minigame",
 		tags = {"combat", "overlay", "pve", "pvm", "gauntlet", "crystal", "hunllef", "custom", "minigame", "sanlite"},
 		enabledByDefault = false
 )
@@ -69,6 +72,13 @@ public class GauntletPlugin extends Plugin
 	private final Clip prayerDisabledAudioClip = SoundUtil.getResourceStreamFromClass(getClass(), "prayer_disabled.wav");
 	private final Clip overheadSwitchAudioClip = SoundUtil.getResourceStreamFromClass(getClass(), "switch_weapon.wav");
 	private final Clip playerDeathAudioClip = SoundUtil.getResourceStreamFromClass(getClass(), "player_death.wav");
+
+	private final BufferedImage rangedStyleIcon = ImageUtil.loadImageResource(GauntletPlugin.class, "ranged_25.png");
+	private final BufferedImage magicStyleIcon = ImageUtil.loadImageResource(GauntletPlugin.class, "magic_25.png");
+	private final BufferedImage rangedOverheadIcon = ImageUtil.loadImageResource(GauntletPlugin.class, "protect_ranged.png");
+	private final BufferedImage magicOverheadIcon = ImageUtil.loadImageResource(GauntletPlugin.class, "protect_magic.png");
+	private final BufferedImage meleeOverheadIcon = ImageUtil.loadImageResource(GauntletPlugin.class, "protect_melee.png");
+
 	private final Set<String> hiddenDeadNpcNames = ImmutableSet.of(
 			"Crystalline rat",
 			"Crystalline spider",
@@ -122,6 +132,12 @@ public class GauntletPlugin extends Plugin
 	private GauntletBossProtectionPrayOverlay bossProtectionPrayOverlay;
 
 	@Inject
+	private GauntletBossFixedAttackOverlay gauntletFixedAttackOverlay;
+
+	@Inject
+	private GauntletBossFixedProtectOverlay gauntletFixedProtectOverlay;
+
+	@Inject
 	private GauntletEnvironmentOverlay environmentOverlay;
 
 	@Inject
@@ -153,6 +169,8 @@ public class GauntletPlugin extends Plugin
 	{
 		overlayManager.add(bossOverlay);
 		overlayManager.add(bossProtectionPrayOverlay);
+		overlayManager.add(gauntletFixedAttackOverlay);
+		overlayManager.add(gauntletFixedProtectOverlay);
 		overlayManager.add(environmentOverlay);
 		overlayManager.add(environmentMinimapOverlay);
 		if (config.showDebugOverlay())
@@ -169,6 +187,8 @@ public class GauntletPlugin extends Plugin
 		clientThread.invoke(this::reset);
 		overlayManager.remove(bossOverlay);
 		overlayManager.remove(bossProtectionPrayOverlay);
+		overlayManager.remove(gauntletFixedAttackOverlay);
+		overlayManager.remove(gauntletFixedProtectOverlay);
 		overlayManager.remove(environmentOverlay);
 		overlayManager.remove(environmentMinimapOverlay);
 		if (config.showDebugOverlay())
@@ -602,5 +622,31 @@ public class GauntletPlugin extends Plugin
 	private void playSoundIfEnabled(Clip soundClip, boolean isConfigEnabled)
 	{
 		playSoundIfEnabled(soundClip, isConfigEnabled, false);
+	}
+
+	BufferedImage getAttackStyleIcon(GauntletBoss.AttackStyle attackStyle)
+	{
+		switch (attackStyle)
+		{
+			case RANGED:
+				return rangedStyleIcon;
+			case MAGIC:
+				return magicStyleIcon;
+		}
+		return null;
+	}
+
+	BufferedImage getProtectionPrayerIcon(GauntletBoss.ProtectionPrayer protectionPrayer)
+	{
+		switch (protectionPrayer)
+		{
+			case RANGED:
+				return rangedOverheadIcon;
+			case MAGIC:
+				return magicOverheadIcon;
+			case MELEE:
+				return meleeOverheadIcon;
+		}
+		return null;
 	}
 }

@@ -28,6 +28,7 @@ import net.runelite.api.Point;
 import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayLayer;
 import net.runelite.client.ui.overlay.OverlayPosition;
+import net.sanlite.client.config.CounterOverlayLocation;
 import net.sanlite.client.ui.overlay.OverlayUtil2;
 
 import javax.inject.Inject;
@@ -36,16 +37,15 @@ import java.awt.*;
 public class GauntletBossProtectionPrayOverlay extends Overlay
 {
 	private final GauntletPlugin plugin;
+	private final GauntletConfig config;
 
 	@Inject
-	private GauntletConfig config;
-
-	@Inject
-	public GauntletBossProtectionPrayOverlay(GauntletPlugin plugin)
+	public GauntletBossProtectionPrayOverlay(GauntletPlugin plugin, GauntletConfig config)
 	{
 		setPosition(OverlayPosition.DYNAMIC);
 		setLayer(OverlayLayer.ABOVE_WIDGETS);
 		this.plugin = plugin;
+		this.config = config;
 	}
 
 	@Override
@@ -65,6 +65,11 @@ public class GauntletBossProtectionPrayOverlay extends Overlay
 
 		if (config.showProtectionPrayerCounter())
 		{
+			if (config.getProtectionPrayerCounterLocation() == CounterOverlayLocation.FIXED)
+			{
+				return null;
+			}
+
 			if (!gauntlet.isInBossRoom())
 			{
 				return null;
