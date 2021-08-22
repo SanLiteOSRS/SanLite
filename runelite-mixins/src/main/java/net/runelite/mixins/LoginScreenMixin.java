@@ -38,8 +38,8 @@ public abstract class LoginScreenMixin implements RSClient
 	@Shadow("client")
 	private static RSClient client;
 
-	@Inject
-	private static boolean shouldRenderLoginScreenFire = true;
+	@Shadow("shouldRenderLoginScreenFire")
+	private static boolean shouldRenderLoginScreenFire;
 
 	@Inject
 	private static SpritePixels loginScreenBackground;

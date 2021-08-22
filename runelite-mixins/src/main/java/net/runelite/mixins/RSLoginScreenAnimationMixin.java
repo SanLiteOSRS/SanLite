@@ -24,10 +24,7 @@
  */
 package net.runelite.mixins;
 
-import net.runelite.api.mixins.Copy;
-import net.runelite.api.mixins.Mixin;
-import net.runelite.api.mixins.Replace;
-import net.runelite.api.mixins.Shadow;
+import net.runelite.api.mixins.*;
 import net.runelite.rs.api.RSClient;
 import net.runelite.rs.api.RSLoginScreenAnimation;
 
@@ -37,11 +34,14 @@ public abstract class RSLoginScreenAnimationMixin implements RSLoginScreenAnimat
 	@Shadow("client")
 	private static RSClient client;
 
+	@Inject
+	private static boolean shouldRenderLoginScreenFire = true;
+
 	@Copy("draw")
 	@Replace("draw")
 	void copy$draw(int var1, int var2)
 	{
-		if (client.shouldRenderLoginScreenFire())
+		if (shouldRenderLoginScreenFire)
 		{
 			copy$draw(var1, var2);
 		}

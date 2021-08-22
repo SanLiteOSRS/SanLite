@@ -39,13 +39,6 @@ public abstract class RSClanChannelMemberMixin implements RSClanChannelMember
 
 	@Inject
 	@Override
-	public int compareTo(Object other)
-	{
-		return getName().compareTo(((RSClanChannelMember) other).getName());
-	}
-
-	@Inject
-	@Override
 	public String getPrevName()
 	{
 		return null;

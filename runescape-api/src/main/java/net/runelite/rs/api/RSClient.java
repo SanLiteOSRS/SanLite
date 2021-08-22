@@ -254,8 +254,7 @@ public interface RSClient extends RSGameEngine, Client
 	String getUsername();
 
 	@Import("Login_username")
-	@Override
-	void setUsername(String username);
+	void setLoginUsername(String username);
 
 	@Import("Login_password")
 	@Override

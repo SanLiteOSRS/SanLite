@@ -1940,8 +1940,6 @@ public interface Client extends GameEngine
 	@Nullable
 	ClanSettings getGuestClanSettings();
 
-	boolean shouldRenderLoginScreenFire();;
-
 	/**
 	 *
 	 * @param param0 This is SceneX for gameObject, index for items, and 0 for npc.

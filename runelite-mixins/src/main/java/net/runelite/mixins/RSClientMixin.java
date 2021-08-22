@@ -1966,5 +1966,13 @@ public abstract class RSClientMixin implements RSClient
 				return ClanRank.CLAN_RANK_1;
 		}
 	}
+
+	@Inject
+	@Override
+	public void setUsername(String username)
+	{
+		this.setLoginUsername(username);
+		client.getCallbacks().post(new UsernameChanged());
+	}
 }
 
