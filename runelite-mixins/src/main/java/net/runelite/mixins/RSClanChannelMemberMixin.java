@@ -24,12 +24,14 @@
  */
 package net.runelite.mixins;
 
+import net.runelite.api.Nameable;
 import net.runelite.api.clan.ClanRank;
 import net.runelite.api.mixins.Inject;
 import net.runelite.api.mixins.Mixin;
 import net.runelite.api.mixins.Shadow;
 import net.runelite.rs.api.RSClanChannelMember;
 import net.runelite.rs.api.RSClient;
+import net.runelite.rs.api.RSUsername;
 
 @Mixin(RSClanChannelMember.class)
 public abstract class RSClanChannelMemberMixin implements RSClanChannelMember
@@ -45,7 +47,6 @@ public abstract class RSClanChannelMemberMixin implements RSClanChannelMember
 	}
 
 	@Inject
-
 	@Override
 	public ClanRank getRank()
 	{
@@ -56,6 +57,20 @@ public abstract class RSClanChannelMemberMixin implements RSClanChannelMember
 	@Inject
 	public String getName()
 	{
-		return getUsername().getName();
+		RSUsername username = getUsername();
+		if (username == null)
+		{
+			return null;
+		}
+
+		String name = username.getName();
+		return name == null ? null : name.replace('\u00A0', ' ');
+	}
+
+	@Inject
+	@Override
+	public int compareTo(Nameable other)
+	{
+		return getName().compareTo(other.getName());
 	}
 }
