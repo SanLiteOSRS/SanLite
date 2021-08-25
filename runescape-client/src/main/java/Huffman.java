@@ -338,7 +338,7 @@ public class Huffman {
 						}
 					}
 
-					int var8 = Client.field614[var1.readBits(3)];
+					int var8 = Client.defaultRotations[var1.readBits(3)];
 					if (var3) {
 						var4.orientation = var4.rotation = var8;
 					}

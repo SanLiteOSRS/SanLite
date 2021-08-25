@@ -173,7 +173,7 @@ public class WorldMapIcon_1 extends AbstractWorldMapIcon {
 		var0 = Math.min(Math.max(var0, 0), 255);
 		if (var0 != VarbitComposition.clientPreferences.musicVolume) {
 			if (VarbitComposition.clientPreferences.musicVolume == 0 && Client.currentTrackGroupId != -1) {
-				Decimator.method1051(class276.archive6, Client.currentTrackGroupId, 0, var0, false);
+				Decimator.playLoginScreenMusic(class276.archive6, Client.currentTrackGroupId, 0, var0, false);
 				Client.field728 = false;
 			} else if (var0 == 0) {
 				Canvas.method371();

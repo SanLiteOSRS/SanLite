@@ -192,7 +192,7 @@ public class DevicePcmPlayerProvider implements class45 {
 					Archive var30 = class276.archive6;
 					var3 = var30.getGroupId("scape main");
 					var4 = var30.getFileId(var3, "");
-					Decimator.method1051(var30, var3, var4, 255, false);
+					Decimator.playLoginScreenMusic(var30, var3, var4, 255, false);
 				} else {
 					Canvas.method371();
 				}

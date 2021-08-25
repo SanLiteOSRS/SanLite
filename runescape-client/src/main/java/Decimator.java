@@ -148,7 +148,8 @@ public class Decimator {
 		descriptor = "(Lkk;IIIZI)V",
 		garbageValue = "1487110181"
 	)
-	public static void method1051(AbstractArchive var0, int var1, int var2, int var3, boolean var4) {
+	@Export("playLoginScreenMusic")
+	public static void playLoginScreenMusic(AbstractArchive var0, int var1, int var2, int var3, boolean var4) {
 		class247.musicPlayerStatus = 1;
 		class247.musicTrackArchive = var0;
 		class247.musicTrackGroupId = var1;

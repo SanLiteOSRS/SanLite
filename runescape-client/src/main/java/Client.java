@@ -479,12 +479,14 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 	@ObfuscatedGetter(
 		intValue = -1568533440
 	)
-	static int field506;
+	@Export("hintArrowSubX")
+	static int hintArrowSubX;
 	@ObfuscatedName("dy")
 	@ObfuscatedGetter(
 		intValue = -2058391232
 	)
-	static int field507;
+	@Export("hintArrowSubY")
+	static int hintArrowSubY;
 	@ObfuscatedName("dc")
 	@ObfuscatedSignature(
 		descriptor = "Lcm;"
@@ -697,12 +699,14 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 	@ObfuscatedGetter(
 		intValue = 299599437
 	)
-	static int field559;
+	@Export("camAngleDY")
+	static int camAngleDY;
 	@ObfuscatedName("ia")
 	@ObfuscatedGetter(
 		intValue = -1028525999
 	)
-	static int field698;
+	@Export("camAngleDX")
+	static int camAngleDX;
 	@ObfuscatedName("iy")
 	@ObfuscatedGetter(
 		intValue = -490020359
@@ -948,7 +952,8 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 	@Export("playerOptionsPriorities")
 	static boolean[] playerOptionsPriorities;
 	@ObfuscatedName("ln")
-	static int[] field614;
+	@Export("defaultRotations")
+	static int[] defaultRotations;
 	@ObfuscatedName("lo")
 	@ObfuscatedGetter(
 		intValue = -1971520031
@@ -1343,8 +1348,8 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 		hintArrowX = 0;
 		hintArrowY = 0;
 		field737 = 0;
-		field506 = 0;
-		field507 = 0;
+		hintArrowSubX = 0;
+		hintArrowSubY = 0;
 		playerAttackOption = AttackOption.AttackOption_hidden;
 		npcAttackOption = AttackOption.AttackOption_hidden;
 		titleLoadingStage = 0;
@@ -1390,8 +1395,8 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 		alternativeScrollbarWidth = 0;
 		camAngleX = 128;
 		camAngleY = 0;
-		field559 = 0;
-		field698 = 0;
+		camAngleDY = 0;
+		camAngleDX = 0;
 		field561 = 0;
 		field562 = 0;
 		oculusOrbState = 0;
@@ -1445,7 +1450,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 		playerMenuOpcodes = new int[]{44, 45, 46, 47, 48, 49, 50, 51};
 		playerMenuActions = new String[8];
 		playerOptionsPriorities = new boolean[8];
-		field614 = new int[]{768, 1024, 1280, 512, 1536, 256, 0, 1792};
+		defaultRotations = new int[]{768, 1024, 1280, 512, 1536, 256, 0, 1792};
 		combatTargetPlayerIndex = -1;
 		groundItems = new NodeDeque[4][104][104];
 		pendingSpawns = new NodeDeque();
@@ -4396,7 +4401,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 									}
 
 									if (var3 > 0) {
-										RawSound var25 = var34.toRawSound().resample(Language.field3798);
+										RawSound var25 = var34.toRawSound().resample(Language.decimator);
 										RawPcmStream var26 = RawPcmStream.createRawPcmStream(var25, 100, var3);
 										var26.setNumLoops(queuedSoundEffectLoops[var1] - 1);
 										MusicPatchPcmStream.pcmStreamMixer.addSubStream(var26);
@@ -4421,7 +4426,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 
 						if (field728 && !FriendSystem.method1727()) {
 							if (VarbitComposition.clientPreferences.musicVolume != 0 && currentTrackGroupId != -1) {
-								Decimator.method1051(class276.archive6, currentTrackGroupId, 0, VarbitComposition.clientPreferences.musicVolume, false);
+								Decimator.playLoginScreenMusic(class276.archive6, currentTrackGroupId, 0, VarbitComposition.clientPreferences.musicVolume, false);
 							}
 
 							field728 = false;
@@ -4883,7 +4888,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 							var10000 = null;
 							SoundEffect var8 = SoundEffect.readSoundEffect(ReflectionCheck.field444, var14.soundEffectId, 0);
 							if (var8 != null) {
-								RawSound var9 = var8.toRawSound().resample(Language.field3798);
+								RawSound var9 = var8.toRawSound().resample(Language.decimator);
 								RawPcmStream var10 = RawPcmStream.createRawPcmStream(var9, 100, var7);
 								var10.setNumLoops(-1);
 								MusicPatchPcmStream.pcmStreamMixer.addSubStream(var10);
@@ -4900,7 +4905,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 							var10000 = null;
 							SoundEffect var15 = SoundEffect.readSoundEffect(ReflectionCheck.field444, var14.soundEffectIds[var13], 0);
 							if (var15 != null) {
-								RawSound var16 = var15.toRawSound().resample(Language.field3798);
+								RawSound var16 = var15.toRawSound().resample(Language.decimator);
 								RawPcmStream var11 = RawPcmStream.createRawPcmStream(var16, 100, var7);
 								var11.setNumLoops(0);
 								MusicPatchPcmStream.pcmStreamMixer.addSubStream(var11);
@@ -5722,28 +5727,28 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 
 					if (hintArrowType >= 2 && hintArrowType <= 6) {
 						if (hintArrowType == 2) {
-							field506 = 4096;
-							field507 = 4096;
+							hintArrowSubX = 4096;
+							hintArrowSubY = 4096;
 						}
 
 						if (hintArrowType == 3) {
-							field506 = 0;
-							field507 = 4096;
+							hintArrowSubX = 0;
+							hintArrowSubY = 4096;
 						}
 
 						if (hintArrowType == 4) {
-							field506 = 8192;
-							field507 = 4096;
+							hintArrowSubX = 8192;
+							hintArrowSubY = 4096;
 						}
 
 						if (hintArrowType == 5) {
-							field506 = 4096;
-							field507 = 0;
+							hintArrowSubX = 4096;
+							hintArrowSubY = 0;
 						}
 
 						if (hintArrowType == 6) {
-							field506 = 4096;
-							field507 = 8192;
+							hintArrowSubX = 4096;
+							hintArrowSubY = 8192;
 						}
 
 						hintArrowType = 2;

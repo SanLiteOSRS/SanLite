@@ -253,7 +253,7 @@ public class class184 implements WorldMapSection {
 				class20.musicTrackBoolean = false;
 				class130.pcmSampleLength = 2;
 			} else {
-				class16.method218(2);
+				class16.stopMusicTrack(2);
 			}
 
 			if (NetCache.NetCache_socket != null) {

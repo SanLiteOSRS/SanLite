@@ -53,7 +53,8 @@ public class class16 implements ThreadFactory {
 		descriptor = "(IB)V",
 		garbageValue = "-4"
 	)
-	public static void method218(int var0) {
+	@Export("stopMusicTrack")
+	public static void stopMusicTrack(int var0) {
 		class247.musicPlayerStatus = 1;
 		class247.musicTrackArchive = null;
 		class247.musicTrackGroupId = -1;
@@ -79,7 +80,7 @@ public class class16 implements ThreadFactory {
 		}
 
 		System.gc();
-		method218(2);
+		stopMusicTrack(2);
 		Client.currentTrackGroupId = -1;
 		Client.field728 = false;
 

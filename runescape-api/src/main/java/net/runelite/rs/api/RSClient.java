@@ -1089,7 +1089,6 @@ public interface RSClient extends RSGameEngine, Client
 	@Import("musicTrackVolume")
 	void setMusicTrackVolume(int volume);
 
-	@Import("playMusicTrack")
 	void playMusicTrack(int var0, RSAbstractArchive var1, int var2, int var3, int var4, boolean var5);
 
 	@Import("viewportWalking")

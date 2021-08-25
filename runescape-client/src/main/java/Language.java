@@ -13,7 +13,8 @@ public class Language implements MouseWheel {
 	@ObfuscatedSignature(
 		descriptor = "Laf;"
 	)
-	static Decimator field3798;
+	@Export("decimator")
+	static Decimator decimator;
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
 		descriptor = "Lka;"

@@ -31,7 +31,7 @@ public class class196 {
 	)
 	static void method3819(int var0, int var1) {
 		if (VarbitComposition.clientPreferences.musicVolume != 0 && var0 != -1) {
-			Decimator.method1051(class318.archive11, var0, 0, VarbitComposition.clientPreferences.musicVolume, false);
+			Decimator.playLoginScreenMusic(class318.archive11, var0, 0, VarbitComposition.clientPreferences.musicVolume, false);
 			Client.field728 = true;
 		}
 

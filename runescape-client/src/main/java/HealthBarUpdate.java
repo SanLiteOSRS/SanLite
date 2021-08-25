@@ -176,7 +176,7 @@ public class HealthBarUpdate extends Node {
 					class7.worldSelectStars = null;
 					class275.field3281 = null;
 					Login.loginScreenRunesAnimation.method2151();
-					class16.method218(2);
+					class16.stopMusicTrack(2);
 					if (NetCache.NetCache_socket != null) {
 						try {
 							Buffer var3 = new Buffer(4);
