@@ -93,7 +93,6 @@ public abstract class RSModelMixin implements RSModel
 		}
 	}
 
-	@Override
 	@Inject
 	public List<Vertex> getVertices()
 	{
@@ -116,7 +115,6 @@ public abstract class RSModelMixin implements RSModel
 		return vertices;
 	}
 
-	@Override
 	@Inject
 	public List<Triangle> getTriangles()
 	{
