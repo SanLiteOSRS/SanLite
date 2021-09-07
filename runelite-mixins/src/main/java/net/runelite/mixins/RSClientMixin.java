@@ -84,32 +84,7 @@ import net.runelite.api.clan.ClanRank;
 import net.runelite.api.clan.ClanSettings;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.coords.WorldPoint;
-import net.runelite.api.events.CanvasSizeChanged;
-import net.runelite.api.events.ChatMessage;
-import net.runelite.api.events.ClientTick;
-import net.runelite.api.events.DraggingWidgetChanged;
-import net.runelite.api.events.FriendsChatChanged;
-import net.runelite.api.events.GameStateChanged;
-import net.runelite.api.events.GrandExchangeOfferChanged;
-import net.runelite.api.events.GrandExchangeSearched;
-import net.runelite.api.events.ItemSpawned;
-import net.runelite.api.events.MenuEntryAdded;
-import net.runelite.api.events.MenuOpened;
-import net.runelite.api.events.MenuOptionClicked;
-import net.runelite.api.events.MenuShouldLeftClick;
-import net.runelite.api.events.NpcSpawned;
-import net.runelite.api.events.PlayerDespawned;
-import net.runelite.api.events.PlayerMenuOptionsChanged;
-import net.runelite.api.events.PlayerSpawned;
-import net.runelite.api.events.PostStructComposition;
-import net.runelite.api.events.ResizeableChanged;
-import net.runelite.api.events.StatChanged;
-import net.runelite.api.events.UsernameChanged;
-import net.runelite.api.events.VarbitChanged;
-import net.runelite.api.events.VolumeChanged;
-import net.runelite.api.events.WidgetClosed;
-import net.runelite.api.events.WidgetLoaded;
-import net.runelite.api.events.WorldChanged;
+import net.runelite.api.events.*;
 import net.runelite.api.hooks.Callbacks;
 import net.runelite.api.hooks.DrawCallbacks;
 import net.runelite.api.mixins.Copy;
@@ -1985,6 +1960,26 @@ public abstract class RSClientMixin implements RSClient
 		client.setMusicTrackVolume(var4);
 		client.setMusicTrackBoolean(var5);
 		client.setPcmSampleLength(var0);
+	}
+
+	@Inject
+	@FieldHook("guestClanChannel")
+	public static void onGuestClanChannelChanged(int idx)
+	{
+		client.getCallbacks().post(new ClanChannelChanged(client.getGuestClanChannel(), true));
+	}
+
+	@Inject
+	@FieldHook("currentClanChannels")
+	public static void onCurrentClanChannelsChanged(int idx)
+	{
+		if (idx == -1)
+		{
+			// don't fire on array field itself being set
+			return;
+		}
+
+		client.getCallbacks().post(new ClanChannelChanged(client.getClanChannel(), false));
 	}
 }
 
