@@ -240,6 +240,9 @@ public interface RSClient extends RSGameEngine, Client
 	@Import("combatTargetPlayerIndex")
 	void setLocalInteractingIndex(int idx);
 
+	@Import("Scene_tilesDeque")
+	RSNodeDeque getTilesDeque();
+
 	@Import("groundItems")
 	RSNodeDeque[][][] getGroundItemDeque();
 
@@ -1386,4 +1389,16 @@ public interface RSClient extends RSGameEngine, Client
 	RSClanSettings getGuestClanSettings();
 
 	ClanRank getClanRankFromRs(int rank);
+
+	@Import("rndHue")
+	int getRndHue();
+
+	@Import("Tiles_underlays")
+	byte[][][] getTileUnderlays();
+
+	@Import("Tiles_overlays")
+	byte[][][] getTileOverlays();
+
+	@Import("Tiles_shapes")
+	byte[][][] getTileShapes();
 }

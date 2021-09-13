@@ -26,14 +26,10 @@ package net.runelite.mixins;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.EnumSet;
-import java.util.List;
-import java.util.Map;
+
+import java.util.*;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import javax.inject.Named;
 import net.runelite.api.ChatMessageType;
 import net.runelite.api.EnumComposition;
 import net.runelite.api.Friend;
@@ -124,6 +120,7 @@ import net.runelite.rs.api.RSUsername;
 import net.runelite.rs.api.RSWidget;
 import net.runelite.rs.api.RSWorld;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Mixin(RSClient.class)
 public abstract class RSClientMixin implements RSClient
@@ -132,16 +129,14 @@ public abstract class RSClientMixin implements RSClient
 	private static RSClient client;
 
 	@Inject
+	public static Logger rl$logger = LoggerFactory.getLogger("injected-client");
+
+	@Inject
 	@javax.inject.Inject
 	private Callbacks callbacks;
 
 	@Inject
 	private DrawCallbacks drawCallbacks;
-
-	@Inject
-	@javax.inject.Inject
-	@Named("Core Logger")
-	private Logger logger;
 
 	@Inject
 	private static int tickCount;
@@ -252,7 +247,7 @@ public abstract class RSClientMixin implements RSClient
 	@Override
 	public Logger getLogger()
 	{
-		return logger;
+		return rl$logger;
 	}
 
 	@Inject
@@ -1980,6 +1975,26 @@ public abstract class RSClientMixin implements RSClient
 		}
 
 		client.getCallbacks().post(new ClanChannelChanged(client.getClanChannel(), false));
+	}
+
+	@Inject
+	@FieldHook("rndHue")
+	public static void rndHue(int idx)
+	{
+		int rndHue = client.getRndHue();
+
+		if (rndHue >= -8 && rndHue <= 8)
+		{
+			RSScene scene = client.getScene();
+
+			byte[][][] underlays = client.getTileUnderlays();
+			byte[][][] overlays = client.getTileOverlays();
+			byte[][][] tileShapes = client.getTileShapes();
+
+			scene.setUnderlayIds(Arrays.copyOf(underlays, underlays.length));
+			scene.setOverlayIds(Arrays.copyOf(overlays, overlays.length));
+			scene.setTileShapes(Arrays.copyOf(tileShapes, tileShapes.length));
+		}
 	}
 }
 

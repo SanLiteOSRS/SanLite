@@ -229,7 +229,6 @@ public class RuneLite
 				{
 					SwingUtilities.invokeLater(() ->
 						new FatalErrorDialog("Developers should enable assertions; Add `-ea` to your JVM arguments`")
-							.addHelpButtons()
 							.addBuildingGuide()
 							.open());
 					return;
@@ -265,7 +264,6 @@ public class RuneLite
 			log.error("Failure during startup", e);
 			SwingUtilities.invokeLater(() ->
 				new FatalErrorDialog("SanLite has encountered an unexpected error during startup.")
-					.addHelpButtons()
 					.open());
 		}
 		finally
