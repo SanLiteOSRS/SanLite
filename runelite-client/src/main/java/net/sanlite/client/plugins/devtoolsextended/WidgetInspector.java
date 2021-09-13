@@ -490,7 +490,7 @@ class WidgetInspector extends DevToolsFrame
 		client.setSpellSelected(false);
 		ev.consume();
 
-		Object target = getWidgetOrWidgetItemForMenuOption(ev.getMenuAction().getId(), ev.getActionParam(), ev.getWidgetId());
+		Object target = getWidgetOrWidgetItemForMenuOption(ev.getMenuAction().getId(), ev.getParam0(), ev.getParam1());
 		if (target == null)
 		{
 			return;

@@ -26,14 +26,10 @@ package net.runelite.mixins;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.EnumSet;
-import java.util.List;
-import java.util.Map;
+
+import java.util.*;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import javax.inject.Named;
 import net.runelite.api.ChatMessageType;
 import net.runelite.api.EnumComposition;
 import net.runelite.api.Friend;
@@ -50,14 +46,6 @@ import net.runelite.api.InventoryID;
 import net.runelite.api.ItemComposition;
 import net.runelite.api.MenuAction;
 import net.runelite.api.MenuEntry;
-import static net.runelite.api.MenuAction.PLAYER_EIGTH_OPTION;
-import static net.runelite.api.MenuAction.PLAYER_FIFTH_OPTION;
-import static net.runelite.api.MenuAction.PLAYER_FIRST_OPTION;
-import static net.runelite.api.MenuAction.PLAYER_FOURTH_OPTION;
-import static net.runelite.api.MenuAction.PLAYER_SECOND_OPTION;
-import static net.runelite.api.MenuAction.PLAYER_SEVENTH_OPTION;
-import static net.runelite.api.MenuAction.PLAYER_SIXTH_OPTION;
-import static net.runelite.api.MenuAction.PLAYER_THIRD_OPTION;
 import net.runelite.api.MessageNode;
 import net.runelite.api.NPC;
 import net.runelite.api.NPCComposition;
@@ -65,6 +53,8 @@ import net.runelite.api.NameableContainer;
 import net.runelite.api.Node;
 import net.runelite.api.NodeCache;
 import net.runelite.api.ObjectComposition;
+
+import static net.runelite.api.MenuAction.*;
 import static net.runelite.api.Perspective.LOCAL_TILE_SIZE;
 import net.runelite.api.Player;
 import net.runelite.api.Point;
@@ -84,32 +74,7 @@ import net.runelite.api.clan.ClanRank;
 import net.runelite.api.clan.ClanSettings;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.coords.WorldPoint;
-import net.runelite.api.events.CanvasSizeChanged;
-import net.runelite.api.events.ChatMessage;
-import net.runelite.api.events.ClientTick;
-import net.runelite.api.events.DraggingWidgetChanged;
-import net.runelite.api.events.FriendsChatChanged;
-import net.runelite.api.events.GameStateChanged;
-import net.runelite.api.events.GrandExchangeOfferChanged;
-import net.runelite.api.events.GrandExchangeSearched;
-import net.runelite.api.events.ItemSpawned;
-import net.runelite.api.events.MenuEntryAdded;
-import net.runelite.api.events.MenuOpened;
-import net.runelite.api.events.MenuOptionClicked;
-import net.runelite.api.events.MenuShouldLeftClick;
-import net.runelite.api.events.NpcSpawned;
-import net.runelite.api.events.PlayerDespawned;
-import net.runelite.api.events.PlayerMenuOptionsChanged;
-import net.runelite.api.events.PlayerSpawned;
-import net.runelite.api.events.PostStructComposition;
-import net.runelite.api.events.ResizeableChanged;
-import net.runelite.api.events.StatChanged;
-import net.runelite.api.events.UsernameChanged;
-import net.runelite.api.events.VarbitChanged;
-import net.runelite.api.events.VolumeChanged;
-import net.runelite.api.events.WidgetClosed;
-import net.runelite.api.events.WidgetLoaded;
-import net.runelite.api.events.WorldChanged;
+import net.runelite.api.events.*;
 import net.runelite.api.hooks.Callbacks;
 import net.runelite.api.hooks.DrawCallbacks;
 import net.runelite.api.mixins.Copy;
@@ -149,6 +114,7 @@ import net.runelite.rs.api.RSUsername;
 import net.runelite.rs.api.RSWidget;
 import net.runelite.rs.api.RSWorld;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Mixin(RSClient.class)
 public abstract class RSClientMixin implements RSClient
@@ -157,16 +123,14 @@ public abstract class RSClientMixin implements RSClient
 	private static RSClient client;
 
 	@Inject
+	public static Logger rl$logger = LoggerFactory.getLogger("injected-client");
+
+	@Inject
 	@javax.inject.Inject
 	private Callbacks callbacks;
 
 	@Inject
 	private DrawCallbacks drawCallbacks;
-
-	@Inject
-	@javax.inject.Inject
-	@Named("Core Logger")
-	private Logger logger;
 
 	@Inject
 	private static int tickCount;
@@ -277,7 +241,7 @@ public abstract class RSClientMixin implements RSClient
 	@Override
 	public Logger getLogger()
 	{
-		return logger;
+		return rl$logger;
 	}
 
 	@Inject
@@ -625,7 +589,7 @@ public abstract class RSClientMixin implements RSClient
 
 		if (skill == Skill.OVERALL)
 		{
-			logger.debug("getSkillExperience called for {}!", skill);
+			rl$logger.debug("getSkillExperience called for {}!", skill);
 			return (int) getOverallExperience();
 		}
 		// I'm not certain exactly how needed this is, but if the Skill enum is updated in the future
@@ -1285,8 +1249,8 @@ public abstract class RSClientMixin implements RSClient
 			return;
 		}
 
-		copy$menuAction(menuOptionClicked.getActionParam(), menuOptionClicked.getWidgetId(),
-			menuOptionClicked.getMenuAction().getId(), menuOptionClicked.getId(),
+		copy$menuAction(menuOptionClicked.getParam0(), menuOptionClicked.getParam1(),
+			menuOptionClicked.getMenuAction() == UNKNOWN ? menuAction : menuOptionClicked.getMenuAction().getId(), menuOptionClicked.getId(),
 			menuOptionClicked.getMenuOption(), menuOptionClicked.getMenuTarget(), canvasX, canvasY);
 	}
 
@@ -1985,6 +1949,46 @@ public abstract class RSClientMixin implements RSClient
 		client.setMusicTrackVolume(var4);
 		client.setMusicTrackBoolean(var5);
 		client.setPcmSampleLength(var0);
+	}
+
+	@Inject
+	@FieldHook("guestClanChannel")
+	public static void onGuestClanChannelChanged(int idx)
+	{
+		client.getCallbacks().post(new ClanChannelChanged(client.getGuestClanChannel(), true));
+	}
+
+	@Inject
+	@FieldHook("currentClanChannels")
+	public static void onCurrentClanChannelsChanged(int idx)
+	{
+		if (idx == -1)
+		{
+			// don't fire on array field itself being set
+			return;
+		}
+
+		client.getCallbacks().post(new ClanChannelChanged(client.getClanChannel(), false));
+	}
+
+	@Inject
+	@FieldHook("rndHue")
+	public static void rndHue(int idx)
+	{
+		int rndHue = client.getRndHue();
+
+		if (rndHue >= -8 && rndHue <= 8)
+		{
+			RSScene scene = client.getScene();
+
+			byte[][][] underlays = client.getTileUnderlays();
+			byte[][][] overlays = client.getTileOverlays();
+			byte[][][] tileShapes = client.getTileShapes();
+
+			scene.setUnderlayIds(Arrays.copyOf(underlays, underlays.length));
+			scene.setOverlayIds(Arrays.copyOf(overlays, overlays.length));
+			scene.setTileShapes(Arrays.copyOf(tileShapes, tileShapes.length));
+		}
 	}
 }
 

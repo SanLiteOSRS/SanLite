@@ -64,6 +64,24 @@ public interface Scene
 	void setRoofRemovalMode(int flags);
 
 	/**
+	 * Get the underlay ids for the scene. The value stored is id + 1, with 0 for no underlay.
+	 * @return
+	 */
+	byte[][][] getUnderlayIds();
+
+	/**
+	 * Get the overlay ids for the scene. The value stored is id + 1, with 0 for no overlay.
+	 * @return
+	 */
+	byte[][][] getOverlayIds();
+
+	/**
+	 * Get the shapes of the tiles for the scene.
+	 * @return
+	 */
+	byte[][][] getTileShapes();
+
+	/**
 	 * Hides tiles which include have the given game object id
 	 * @param gameObjectId game object id
 	 */

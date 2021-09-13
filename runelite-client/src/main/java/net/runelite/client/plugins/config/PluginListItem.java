@@ -70,7 +70,7 @@ class PluginListItem extends JPanel implements SearchablePlugin
 	private final List<String> keywords = new ArrayList<>();
 
 	private final JToggleButton pinButton;
-	private final JToggleButton onOffToggle;
+	private final PluginToggleButton onOffToggle;
 
 	static
 	{
@@ -168,6 +168,7 @@ class PluginListItem extends JPanel implements SearchablePlugin
 		add(nameLabel, BorderLayout.CENTER);
 
 		onOffToggle = new PluginToggleButton();
+		onOffToggle.setConflicts(pluginConfig.getConflicts());
 		buttonPanel.add(onOffToggle);
 		if (pluginConfig.getPlugin() != null)
 		{

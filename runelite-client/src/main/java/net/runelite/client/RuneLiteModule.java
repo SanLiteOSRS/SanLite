@@ -55,15 +55,12 @@ import net.runelite.client.util.ExecutorServiceExceptionLogger;
 import net.runelite.http.api.RuneLiteAPI;
 import net.runelite.http.api.chat.ChatClient;
 import okhttp3.OkHttpClient;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @AllArgsConstructor
 public class RuneLiteModule extends AbstractModule
 {
 	private final OkHttpClient okHttpClient;
 	private final Supplier<Applet> clientLoader;
-	private final Supplier<RuntimeConfig> runtimeConfigSupplier;
 	private final boolean developerMode;
 	private final boolean safeMode;
 	private final File sessionfile;
@@ -101,18 +98,13 @@ public class RuneLiteModule extends AbstractModule
 		bind(EventBus.class)
 			.annotatedWith(Names.named("Deferred EventBus"))
 			.to(DeferredEventBus.class);
-
-		bind(Logger.class)
-			.annotatedWith(Names.named("Core Logger"))
-			.toInstance(LoggerFactory.getLogger(RuneLite.class));
 	}
 
 	@Provides
 	@Singleton
 	Applet provideApplet()
 	{
-		Object object = clientLoader.get();
-		return object instanceof Applet ? (Applet) object : null;
+		return clientLoader.get();
 	}
 
 	@Provides
@@ -120,13 +112,6 @@ public class RuneLiteModule extends AbstractModule
 	Client provideClient(@Nullable Applet applet)
 	{
 		return applet instanceof Client ? (Client) applet : null;
-	}
-
-	@Provides
-	@Singleton
-	RuntimeConfig provideRuntimeConfig()
-	{
-		return runtimeConfigSupplier.get();
 	}
 
 	@Provides
