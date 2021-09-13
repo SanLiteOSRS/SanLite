@@ -46,14 +46,6 @@ import net.runelite.api.InventoryID;
 import net.runelite.api.ItemComposition;
 import net.runelite.api.MenuAction;
 import net.runelite.api.MenuEntry;
-import static net.runelite.api.MenuAction.PLAYER_EIGTH_OPTION;
-import static net.runelite.api.MenuAction.PLAYER_FIFTH_OPTION;
-import static net.runelite.api.MenuAction.PLAYER_FIRST_OPTION;
-import static net.runelite.api.MenuAction.PLAYER_FOURTH_OPTION;
-import static net.runelite.api.MenuAction.PLAYER_SECOND_OPTION;
-import static net.runelite.api.MenuAction.PLAYER_SEVENTH_OPTION;
-import static net.runelite.api.MenuAction.PLAYER_SIXTH_OPTION;
-import static net.runelite.api.MenuAction.PLAYER_THIRD_OPTION;
 import net.runelite.api.MessageNode;
 import net.runelite.api.NPC;
 import net.runelite.api.NPCComposition;
@@ -61,6 +53,8 @@ import net.runelite.api.NameableContainer;
 import net.runelite.api.Node;
 import net.runelite.api.NodeCache;
 import net.runelite.api.ObjectComposition;
+
+import static net.runelite.api.MenuAction.*;
 import static net.runelite.api.Perspective.LOCAL_TILE_SIZE;
 import net.runelite.api.Player;
 import net.runelite.api.Point;
@@ -595,7 +589,7 @@ public abstract class RSClientMixin implements RSClient
 
 		if (skill == Skill.OVERALL)
 		{
-			logger.debug("getSkillExperience called for {}!", skill);
+			rl$logger.debug("getSkillExperience called for {}!", skill);
 			return (int) getOverallExperience();
 		}
 		// I'm not certain exactly how needed this is, but if the Skill enum is updated in the future
@@ -1255,8 +1249,8 @@ public abstract class RSClientMixin implements RSClient
 			return;
 		}
 
-		copy$menuAction(menuOptionClicked.getActionParam(), menuOptionClicked.getWidgetId(),
-			menuOptionClicked.getMenuAction().getId(), menuOptionClicked.getId(),
+		copy$menuAction(menuOptionClicked.getParam0(), menuOptionClicked.getParam1(),
+			menuOptionClicked.getMenuAction() == UNKNOWN ? menuAction : menuOptionClicked.getMenuAction().getId(), menuOptionClicked.getId(),
 			menuOptionClicked.getMenuOption(), menuOptionClicked.getMenuTarget(), canvasX, canvasY);
 	}
 
