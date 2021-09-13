@@ -345,13 +345,12 @@ public abstract class RSSceneMixin implements RSScene
 					if (tile != null)
 					{
 						int tileIdx = rl$tiles[client.getPlane()][x][y];
-						if (tile.getPhysicalLevel() <= plane
-								&& (isGpu
-								|| renderArea[x - screenCenterX + DEFAULT_DISTANCE][y - screenCenterZ + DEFAULT_DISTANCE]
-								|| tileHeights[z][x][y] - cameraY >= 2000)
-								|| rl$roofRemovalMode != 0 && client.getPlane() < tile.getPhysicalLevel()
-								&& tileIdx != 0 && rl$tilesToRemove.contains(tileIdx)
-								|| !shouldDrawGameObjectTile(tile))
+						if (tile.getPhysicalLevel() > plane && rl$roofRemovalMode == 0
+							|| !isGpu && !renderArea[x - screenCenterX + DEFAULT_DISTANCE][y - screenCenterZ + DEFAULT_DISTANCE]
+							&& tileHeights[z][x][y] - cameraY < 2000
+							|| rl$roofRemovalMode != 0 && client.getPlane() < tile.getPhysicalLevel()
+							&& tileIdx != 0 && rl$tilesToRemove.contains(tileIdx)
+							|| !shouldDrawGameObjectTile(tile))
 						{
 							tile.setDraw(false);
 							tile.setVisible(false);
@@ -676,7 +675,7 @@ public abstract class RSSceneMixin implements RSScene
 	@Replace("drawTileOverlay")
 	public void copy$drawTileOverlay(SceneTileModel tile, int pitchSin, int pitchCos, int yawSin, int yawCos, int tileX, int tileY)
 	{
-		Tile rsTile = getTiles()[client.getPlane()][tileX][tileY];
+		RSTile rsTile = getTiles()[client.getPlane()][tileX][tileY];
 		final boolean checkClick = client.isCheckClick();
 
 		if (!client.isGpu())
