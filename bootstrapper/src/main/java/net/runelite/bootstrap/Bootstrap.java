@@ -182,10 +182,10 @@ class Bootstrap
 		artifacts[16].setSize(244518);
 
 		artifacts[17] = new Artifact();
-		artifacts[17].setHash("e040f0f7e77ec76cf9afba153208ae8b437ef3358ffcfe994c002b68fcfddcb9");
-		artifacts[17].setName("jogl-all-2.4.0-rc-20200429-natives-macosx-universal.jar");
-		artifacts[17].setPath("https://repo.runelite.net/net/runelite/jogl/jogl-all/2.4.0-rc-20200429/jogl-all-2.4.0-rc-20200429-natives-macosx-universal.jar");
-		artifacts[17].setSize(232714);
+		artifacts[17].setHash("b79043af5a6f64704c1cf70264aa9acfdf8435baeb3b8196fbeb04a0192b0f41");
+		artifacts[17].setName("jogl-all-natives-macosx-2.4.0-rc-20210117.jar");
+		artifacts[17].setPath("https://repo.runelite.net/net/runelite/jogl/jogl-all-natives-macosx/2.4.0-rc-20210117/jogl-all-natives-macosx-2.4.0-rc-20210117.jar");
+		artifacts[17].setSize(466728);
 
 		artifacts[18] = new Artifact();
 		artifacts[18].setHash("f21532326c62b8371ffe5bb5c9cdb5ae2e1c73f4893e6212f34a005a3755a58f");
@@ -212,10 +212,10 @@ class Bootstrap
 		artifacts[21].setSize(4332);
 
 		artifacts[22] = new Artifact();
-		artifacts[22].setHash("4714b9abe762315b3b42feee90dad2e755ad7a0f6baa5d2d11cbd3d08fe663db");
-		artifacts[22].setName("gluegen-rt-2.4.0-rc-20200429-natives-macosx-universal.jar");
-		artifacts[22].setPath("https://repo.runelite.net/net/runelite/gluegen/gluegen-rt/2.4.0-rc-20200429/gluegen-rt-2.4.0-rc-20200429-natives-macosx-universal.jar");
-		artifacts[22].setSize(3457);
+		artifacts[22].setHash("b43354ca58de215423c57d428abc5c8467a1a5f0b00199aa52a67fb9729c70ef");
+		artifacts[22].setName("gluegen-rt-natives-macosx-2.4.0-rc-20210117.jar");
+		artifacts[22].setPath("https://repo.runelite.net/net/runelite/gluegen/gluegen-rt-natives-macosx/2.4.0-rc-20210117/gluegen-rt-natives-macosx-2.4.0-rc-20210117.jar");
+		artifacts[22].setSize(6539);
 
 		artifacts[23] = new Artifact();
 		artifacts[23].setHash("3dbd9eb9104e46979f2df85108096241780969786fd7c298ac22c83fdf66579f");
@@ -224,16 +224,16 @@ class Bootstrap
 		artifacts[23].setSize(163838);
 
 		artifacts[24] = new Artifact();
-		artifacts[24].setHash("fbc9de96a0cc193a125b4008dbc348e9ed54e5e13fc67b8ed40e645d303cc51b");
-		artifacts[24].setName("jna-4.5.1.jar");
-		artifacts[24].setPath("https://mvn.runelite.net/net/java/dev/jna/jna/4.5.1/jna-4.5.1.jar");
-		artifacts[24].setSize(1440662);
+		artifacts[24].setHash("eafcc780b445434d3c5ae7fa2fb6665de1a7560d537d2c408a8e80cd14d27161");
+		artifacts[24].setName("jna-5.9.0.jar");
+		artifacts[24].setPath("https://mvn.runelite.net/net/java/dev/jna/jna/5.9.0/jna-5.9.0.jar");
+		artifacts[24].setSize(1729586);
 
 		artifacts[25] = new Artifact();
-		artifacts[25].setHash("84c8667555ee8dd91fef44b451419f6f16f71f727d5fc475a10c2663eba83abb");
-		artifacts[25].setName("jna-platform-4.5.1.jar");
-		artifacts[25].setPath("https://mvn.runelite.net/net/java/dev/jna/jna-platform/4.5.1/jna-platform-4.5.1.jar");
-		artifacts[25].setSize(2327547);
+		artifacts[25].setHash("1903bc6d87f3ab92023957b91f45a9c8eb3515bad030356ce977201e5141b724");
+		artifacts[25].setName("jna-platform-5.9.0.jar");
+		artifacts[25].setPath("https://mvn.runelite.net/net/java/dev/jna/jna-platform/5.9.0/jna-platform-5.9.0.jar");
+		artifacts[25].setSize(1343236);
 
 		artifacts[26] = new Artifact();
 		artifacts[26].setHash("766ad2a0783f2687962c8ad74ceecc38a28b9f72a2d085ee438b7813e928d0c7");
@@ -260,10 +260,10 @@ class Bootstrap
 		artifacts[29].setSize(39978);
 
 		artifacts[30] = new Artifact();
-		artifacts[30].setHash("0243291bb0c2844bbde977981a6e928ed2f5813a78e9edf786fc76d38404afd5");
-		artifacts[30].setName("discord-1.2.jar");
-		artifacts[30].setPath("https://repo.runelite.net/net/runelite/discord/1.2/discord-1.2.jar");
-		artifacts[30].setSize(617313);
+		artifacts[30].setHash("6409723fd13496386dfb1335a9794dc0919db6132522f2b7486d6734fc5df6e5");
+		artifacts[30].setName("discord-1.4.jar");
+		artifacts[30].setPath("https://repo.runelite.net/net/runelite/discord/1.4/discord-1.4.jar");
+		artifacts[30].setSize(681590);
 
 		artifacts[31] = new Artifact();
 		artifacts[31].setHash("02f291e5d1243dc143496e3cbbb40a1ced47aa58f2d633d3e38780cd068d5074");
