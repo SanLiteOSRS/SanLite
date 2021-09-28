@@ -58,7 +58,7 @@ dependencies {
     implementation(group = "com.google.code.gson", name = "gson", version = "2.8.5")
     implementation(group = "com.google.guava", name = "guava", version = "23.2-jre")
     implementation(group = "com.google.inject", name = "guice", version = "4.1.0", classifier = "no_aop")
-    implementation(group = "com.squareup.okhttp3", name = "okhttp", version = "3.7.0")
+    implementation(group = "com.squareup.okhttp3", name = "okhttp", version = "3.14.9")
     implementation(group = "io.reactivex.rxjava3", name = "rxjava", version = "3.0.10")
     implementation(group = "net.java.dev.jna", name = "jna", version = "5.9.0")
     implementation(group = "net.java.dev.jna", name = "jna-platform", version = "5.9.0")
@@ -101,7 +101,7 @@ dependencies {
     testImplementation(group = "junit", name = "junit", version = "4.12")
     testImplementation(group = "org.mockito", name = "mockito-core", version = "3.1.0")
     testImplementation(group = "org.mockito", name = "mockito-inline", version = "3.1.0")
-    testImplementation(group = "com.squareup.okhttp3", name = "mockwebserver", version = "3.7.0")
+    testImplementation(group = "com.squareup.okhttp3", name = "mockwebserver", version = "3.14.9")
     testImplementation(group = "org.slf4j", name = "slf4j-api", version = "1.7.12")
 }
 
