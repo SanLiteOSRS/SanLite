@@ -305,8 +305,6 @@ public enum Varbits
 	 */
 	FEROX_ENCLAVE_BUFFER_ZONE(10530),
 
-
-
 	/* RuneLite varbits */
 
 	/*
@@ -573,6 +571,7 @@ public enum Varbits
 
 	// 0 = raid not started, >0 = raid started
 	RAID_STATE(5425),
+	RAID_DURATION_TICK_COUNT(6386),
 
 	/**
 	 * Making Friends with My Arm fire pits
