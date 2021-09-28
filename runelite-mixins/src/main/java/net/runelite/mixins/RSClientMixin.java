@@ -30,45 +30,12 @@ import com.google.common.cache.CacheBuilder;
 import java.util.*;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import net.runelite.api.ChatMessageType;
-import net.runelite.api.EnumComposition;
-import net.runelite.api.Friend;
-import net.runelite.api.GameState;
-import net.runelite.api.GrandExchangeOffer;
-import net.runelite.api.GraphicsObject;
-import net.runelite.api.HashTable;
-import net.runelite.api.HintArrowType;
-import net.runelite.api.Ignore;
-import net.runelite.api.IndexDataBase;
-import net.runelite.api.IndexedSprite;
-import net.runelite.api.IntegerNode;
-import net.runelite.api.InventoryID;
-import net.runelite.api.ItemComposition;
-import net.runelite.api.MenuAction;
-import net.runelite.api.MenuEntry;
-import net.runelite.api.MessageNode;
-import net.runelite.api.NPC;
-import net.runelite.api.NPCComposition;
-import net.runelite.api.NameableContainer;
-import net.runelite.api.Node;
-import net.runelite.api.NodeCache;
-import net.runelite.api.ObjectComposition;
+
+import net.runelite.api.*;
 
 import static net.runelite.api.MenuAction.*;
 import static net.runelite.api.Perspective.LOCAL_TILE_SIZE;
-import net.runelite.api.Player;
-import net.runelite.api.Point;
-import net.runelite.api.Prayer;
-import net.runelite.api.Projectile;
-import net.runelite.api.ScriptEvent;
-import net.runelite.api.Skill;
-import net.runelite.api.SpritePixels;
-import net.runelite.api.StructComposition;
-import net.runelite.api.Tile;
-import net.runelite.api.VarPlayer;
-import net.runelite.api.Varbits;
-import net.runelite.api.WidgetNode;
-import net.runelite.api.WorldType;
+
 import net.runelite.api.clan.ClanChannel;
 import net.runelite.api.clan.ClanRank;
 import net.runelite.api.clan.ClanSettings;
@@ -1241,7 +1208,7 @@ public abstract class RSClientMixin implements RSClient
 		menuOptionClicked.setMenuTarget(target);
 		menuOptionClicked.setMenuAction(MenuAction.of(menuAction));
 		menuOptionClicked.setId(id);
-
+		menuOptionClicked.setSelectedItemIndex(client.getSelectedItemSlot());
 		client.getCallbacks().post(menuOptionClicked);
 
 		if (menuOptionClicked.isConsumed())
@@ -1989,6 +1956,14 @@ public abstract class RSClientMixin implements RSClient
 			scene.setOverlayIds(Arrays.copyOf(overlays, overlays.length));
 			scene.setTileShapes(Arrays.copyOf(tileShapes, tileShapes.length));
 		}
+	}
+
+	@Inject
+	public RuneLiteObject createRuneLiteObject()
+	{
+		// TODO: Implement
+		rl$logger.error("Tried to call createRuneLiteObject which is not implemented");
+		return null;
 	}
 }
 
