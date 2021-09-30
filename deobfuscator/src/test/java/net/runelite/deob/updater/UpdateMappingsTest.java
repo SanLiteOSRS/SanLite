@@ -92,13 +92,13 @@ public class UpdateMappingsTest
 	@Ignore
 	public void testScriptopcodes() throws Exception
 	{
-		File client = new File("C:\\Users\\Lucas\\IdeaProjects\\runelitexxx\\client.jar");
+		File client = new File("C:\\runelite\\client.jar");
 
 		ClassGroup group = JarUtil.load(client);
 
 		new ScriptOpcodesTransformer().transform(group);
 
-		JarUtil.save(group, new File("C:/Users/Lucas/Desktop/Apapapapapap.jar"));
+		JarUtil.save(group, new File("C:\\output.jar"));
 	}
 
 	private void unannotate(ClassGroup group)

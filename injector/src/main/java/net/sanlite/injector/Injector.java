@@ -81,17 +81,17 @@ public class Injector extends InjectData implements InjectTaskHandler
 						});
 
 		OptionSet options = parser.parse(args);
-		String oprsVer = options.valueOf(sanLiteVerOption);
+		String projectVersion = options.valueOf(sanLiteVerOption);
 
 		File vanillaFile = options.valueOf(vanillaFileOption);
 		injector.vanilla = load(vanillaFile);
 		injector.deobfuscated = load(
-				new File("../runescape-client/build/libs/runescape-client-" + oprsVer + ".jar"));
+				new File("../runescape-client/build/libs/runescape-client-" + projectVersion + ".jar"));
 		injector.rsApi = new RSApi(Objects.requireNonNull(
 				new File("../runescape-api/build/classes/java/main/net/runelite/rs/api/")
 						.listFiles()));
 		injector.mixins = load(
-				new File("../runelite-mixins/build/libs/runelite-mixins-" + oprsVer + ".jar"));
+				new File("../runelite-mixins/build/libs/runelite-mixins-" + projectVersion + ".jar"));
 
 		File oldInjected = new File("../runelite-client/src/main/resources/net/runelite/client/injected-client.rs");
 		if (oldInjected.exists())

@@ -51,6 +51,11 @@ public class JarUtil
 
 	public static ClassGroup load(File jarfile)
 	{
+		return load(jarfile, false);
+	}
+
+	public static ClassGroup load(File jarfile, boolean skipExternalClasses)
+	{
 		ClassGroup group = new ClassGroup();
 
 		try (JarFile jar = new JarFile(jarfile))
@@ -59,7 +64,15 @@ public class JarUtil
 			{
 				JarEntry entry = it.nextElement();
 
-				if (!entry.getName().endsWith(".class"))
+				String entryName = entry.getName();
+				if (!entryName.endsWith(".class"))
+				{
+					continue;
+				}
+
+				// Don't include classes from external packages
+				if (skipExternalClasses && entryName.contains("/") &&
+						!(entryName.contains("com/jagex/") || entryName.contains("net/runelite")))
 				{
 					continue;
 				}

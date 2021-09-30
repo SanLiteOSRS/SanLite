@@ -45,7 +45,7 @@ public class ClassFileVisitorTest
 	@Test
 	public void test() throws Exception
 	{
-		ClassGroup group = JarUtil.load(new File(properties.getVanillaClient()));
+		ClassGroup group = JarUtil.load(new File(properties.getVanillaClient()), true);
 
 		JarUtil.save(group, folder.newFile());
 	}

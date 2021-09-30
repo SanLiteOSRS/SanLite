@@ -58,7 +58,7 @@ public class RenameUniqueTest
 	@Before
 	public void before() throws IOException
 	{
-		group = JarUtil.load(new File(properties.getVanillaClient()));
+		group = JarUtil.load(new File(properties.getVanillaClient()), true);
 	}
 	
 	@After
@@ -80,7 +80,8 @@ public class RenameUniqueTest
 	{
 		for (ClassFile cf : group.getClasses())
 		{
-			Assert.assertTrue(cf.getName().startsWith("class") || cf.getName().equals("client"));
+			Assert.assertTrue(cf.getName().startsWith("class") || cf.getName().equals("client")
+					|| cf.getName().contains("com/jagex"));
 
 			for (Field f : cf.getFields())
 			{

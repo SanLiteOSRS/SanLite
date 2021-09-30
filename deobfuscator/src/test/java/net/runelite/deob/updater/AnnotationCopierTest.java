@@ -31,7 +31,9 @@ import net.runelite.asm.Type;
 import net.runelite.deob.util.JarUtil;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 
+@Ignore
 public class AnnotationCopierTest
 {
 	private static final Type EXPORT = new Type("Lnet/runelite/mapping/Export;");
