@@ -1939,6 +1939,24 @@ public interface Client extends GameEngine
 	ClanSettings getGuestClanSettings();
 
 	/**
+	 * Get clan channel by id.
+	 * @param clanId the clan id
+	 * @return
+	 * @see net.runelite.api.clan.ClanID
+	 */
+	@Nullable
+	ClanChannel getClanChannel(int clanId);
+
+	/**
+	 * Get clan settings by id
+	 * @param clanId the clan id
+	 * @return
+	 * @see net.runelite.api.clan.ClanID
+	 */
+	@Nullable
+	ClanSettings getClanSettings(int clanId);
+
+	/**
 	 *
 	 * @param param0 This is SceneX for gameObject, index for items, and 0 for npc.
 	 * @param param1 This is SceneY for gameObject, static for items, and 0 for npc.
