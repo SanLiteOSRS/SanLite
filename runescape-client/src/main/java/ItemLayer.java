@@ -16,7 +16,7 @@ public final class ItemLayer {
 	int tileHeight;
 	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = 1431306240
+		intValue = 1629429381
 	)
 	@Export("x")
 	int x;

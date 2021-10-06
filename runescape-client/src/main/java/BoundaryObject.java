@@ -20,6 +20,9 @@ public final class BoundaryObject {
 	@Export("tileHeight")
 	int tileHeight;
 	@ObfuscatedName("q")
+	@ObfuscatedGetter(
+		intValue = -604518039
+	)
 	@Export("x")
 	int x;
 	@ObfuscatedName("f")
