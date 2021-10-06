@@ -160,7 +160,7 @@ public class class176 {
 							Interpreter.Interpreter_intStack[++AbstractByteArrayCopier.Interpreter_intStackSize - 1] = Client.onMobile ? 1 : 0;
 							return 1;
 						} else if (var0 == ScriptOpcodes.CLIENTTYPE) {
-							Interpreter.Interpreter_intStack[++AbstractByteArrayCopier.Interpreter_intStackSize - 1] = Client.field488 & 3;
+							Interpreter.Interpreter_intStack[++AbstractByteArrayCopier.Interpreter_intStackSize - 1] = Client.clientType & 3;
 							return 1;
 						} else if (var0 == 6520) {
 							return 1;

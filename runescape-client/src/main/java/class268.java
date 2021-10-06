@@ -46,7 +46,7 @@ public class class268 {
 		Rasterizer3D.Rasterizer3D_setBrightness(var0);
 		((TextureProvider)Rasterizer3D.Rasterizer3D_textureLoader).setBrightness(var0);
 		ItemComposition.ItemDefinition_cachedSprites.clear();
-		WorldMapDecorationType.clientPreferences.field1212 = var0;
+		WorldMapDecorationType.clientPreferences.brightness = var0;
 		ScriptFrame.savePreferences();
 	}
 }

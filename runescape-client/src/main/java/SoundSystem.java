@@ -247,7 +247,7 @@ public class SoundSystem implements Runnable {
 									Interpreter.Interpreter_intStack[++AbstractByteArrayCopier.Interpreter_intStackSize - 1] = Varcs.getVarbit(var13);
 								} else if (var33 == ScriptOpcodes.SET_VARBIT) {
 									var13 = var7[var20];
-									class81.method2078(var13, Interpreter.Interpreter_intStack[--AbstractByteArrayCopier.Interpreter_intStackSize]);
+									MouseRecorder.method2078(var13, Interpreter.Interpreter_intStack[--AbstractByteArrayCopier.Interpreter_intStackSize]);
 								} else if (var33 == ScriptOpcodes.IF_ICMPLE) {
 									AbstractByteArrayCopier.Interpreter_intStackSize -= 2;
 									if (Interpreter.Interpreter_intStack[AbstractByteArrayCopier.Interpreter_intStackSize] <= Interpreter.Interpreter_intStack[AbstractByteArrayCopier.Interpreter_intStackSize + 1]) {

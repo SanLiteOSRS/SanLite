@@ -280,7 +280,7 @@ public final class Player extends Actor {
 		this.clearIsInFriendsChat();
 		this.method2127();
 		if (this == class67.localPlayer) {
-			RunException.field4431 = this.username.getName();
+			RunException.localPlayerName = this.username.getName();
 		}
 
 		this.combatLevel = var1.readUnsignedByte();
@@ -1268,11 +1268,11 @@ public final class Player extends Actor {
 				var11 = (var45 + World.World_count - 1) / var45;
 				Login.worldSelectPagesCount = var11 - var42;
 				if (WorldMapCacheName.worldSelectLeftSprite != null && Login.worldSelectPage > 0) {
-					WorldMapCacheName.worldSelectLeftSprite.drawAt(8, class81.canvasHeight / 2 - WorldMapCacheName.worldSelectLeftSprite.subHeight / 2);
+					WorldMapCacheName.worldSelectLeftSprite.drawAt(8, MouseRecorder.canvasHeight / 2 - WorldMapCacheName.worldSelectLeftSprite.subHeight / 2);
 				}
 
 				if (ByteArrayPool.worldSelectRightSprite != null && Login.worldSelectPage < Login.worldSelectPagesCount) {
-					ByteArrayPool.worldSelectRightSprite.drawAt(Huffman.canvasWidth - ByteArrayPool.worldSelectRightSprite.subWidth - 8, class81.canvasHeight / 2 - ByteArrayPool.worldSelectRightSprite.subHeight / 2);
+					ByteArrayPool.worldSelectRightSprite.drawAt(Huffman.canvasWidth - ByteArrayPool.worldSelectRightSprite.subWidth - 8, MouseRecorder.canvasHeight / 2 - ByteArrayPool.worldSelectRightSprite.subHeight / 2);
 				}
 
 				var12 = var28 + 23;
@@ -1745,7 +1745,7 @@ public final class Player extends Actor {
 			if (Client.gameState >= 10) {
 				int[] var30 = new int[4];
 				Rasterizer2D.Rasterizer2D_getClipArray(var30);
-				Rasterizer2D.Rasterizer2D_setClip(Login.xPadding, 0, Login.xPadding + 765, class81.canvasHeight);
+				Rasterizer2D.Rasterizer2D_setClip(Login.xPadding, 0, Login.xPadding + 765, MouseRecorder.canvasHeight);
 				Login.loginScreenRunesAnimation.draw(Login.xPadding - 22, Client.cycle);
 				Login.loginScreenRunesAnimation.draw(Login.xPadding + 22 + 765 - 128, Client.cycle);
 				Rasterizer2D.Rasterizer2D_setClipArray(var30);

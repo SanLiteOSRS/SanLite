@@ -65,7 +65,7 @@ public class LoginScreenAnimation {
 	int field1189;
 	@ObfuscatedName("z")
 	@ObfuscatedGetter(
-		intValue = 1894688880
+		intValue = -12695433
 	)
 	int field1178;
 	@ObfuscatedName("h")

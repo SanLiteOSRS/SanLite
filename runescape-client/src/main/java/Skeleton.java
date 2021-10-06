@@ -19,8 +19,8 @@ public class Skeleton extends Node {
 	@ObfuscatedSignature(
 		descriptor = "Lky;"
 	)
-	@Export("archive9")
-	static Archive archive9;
+	@Export("archive7")
+	static Archive archive7;
 	@ObfuscatedName("l")
 	@ObfuscatedGetter(
 		intValue = 140669593

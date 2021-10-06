@@ -253,7 +253,8 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 	@Export("mapIconCount")
 	static int mapIconCount;
 	@ObfuscatedName("rx")
-	static int[] field724;
+	@Export("mapIconXs")
+	static int[] mapIconXs;
 	@ObfuscatedName("tq")
 	@ObfuscatedSignature(
 		descriptor = "Lnk;"
@@ -261,7 +262,8 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 	@Export("platformInfoProvider")
 	static PlatformInfoProvider platformInfoProvider;
 	@ObfuscatedName("ry")
-	static int[] field725;
+	@Export("mapIconYs")
+	static int[] mapIconYs;
 	@ObfuscatedName("rm")
 	@ObfuscatedSignature(
 		descriptor = "[Lon;"
@@ -373,13 +375,13 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 	@ObfuscatedGetter(
 		intValue = 979848567
 	)
-	@Export("clientType")
-	static int clientType;
+	static int field488;
 	@ObfuscatedName("bd")
 	@ObfuscatedGetter(
 		intValue = -372020577
 	)
-	static int field488;
+	@Export("clientType")
+	static int clientType;
 	@ObfuscatedName("bb")
 	@ObfuscatedGetter(
 		intValue = 386953519
@@ -526,7 +528,8 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 	@ObfuscatedGetter(
 		intValue = 541263159
 	)
-	static int field515;
+	@Export("loginState")
+	static int loginState;
 	@ObfuscatedName("ey")
 	@ObfuscatedGetter(
 		intValue = -278054881
@@ -1336,8 +1339,8 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 		gameBuild = 0;
 		isMembersWorld = false;
 		isLowDetail = false;
-		clientType = -1;
 		field488 = -1;
+		clientType = -1;
 		field681 = -1;
 		onMobile = false;
 		gameState = 0;
@@ -1364,7 +1367,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 		js5ConnectState = 0;
 		field513 = 0;
 		field635 = 0;
-		field515 = 0;
+		loginState = 0;
 		field516 = 0;
 		field680 = 0;
 		field539 = 0;
@@ -1565,8 +1568,8 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 		currentClanChannels = new ClanChannel[2];
 		field722 = -1;
 		mapIconCount = 0;
-		field724 = new int[1000];
-		field725 = new int[1000];
+		mapIconXs = new int[1000];
+		mapIconYs = new int[1000];
 		mapIcons = new SpritePixels[1000];
 		destinationX = 0;
 		destinationY = 0;
@@ -2394,20 +2397,20 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 		PacketBuffer var2 = packetWriter.packetBuffer;
 
 		try {
-			if (field515 == 0) {
-				if (Tile.field2340 == null && (field526.isDone() || field516 > 250)) {
-					Tile.field2340 = field526.get();
+			if (loginState == 0) {
+				if (Tile.secureRandom == null && (field526.isDone() || field516 > 250)) {
+					Tile.secureRandom = field526.get();
 					field526.shutdown();
 					field526 = null;
 				}
 
-				if (Tile.field2340 != null) {
+				if (Tile.secureRandom != null) {
 					if (var1 != null) {
 						((AbstractSocket)var1).close();
 						var1 = null;
 					}
 
-					UrlRequester.field1297 = null;
+					UrlRequester.socketTask = null;
 					field538 = false;
 					field516 = 0;
 					if (field520.method7148()) {
@@ -2425,7 +2428,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 				}
 			}
 
-			if (field515 == 20) {
+			if (loginState == 20) {
 				if (!this.field523.method286()) {
 					return;
 				}
@@ -2448,32 +2451,32 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 				CollisionMap.method3418(1);
 			}
 
-			if (field515 == 1) {
-				if (UrlRequester.field1297 == null) {
-					UrlRequester.field1297 = GameEngine.taskHandler.newSocketTask(EnumComposition.worldHost, RouteStrategy.currentPort);
+			if (loginState == 1) {
+				if (UrlRequester.socketTask == null) {
+					UrlRequester.socketTask = GameEngine.taskHandler.newSocketTask(EnumComposition.worldHost, RouteStrategy.currentPort);
 				}
 
-				if (UrlRequester.field1297.status == 2) {
+				if (UrlRequester.socketTask.status == 2) {
 					throw new IOException();
 				}
 
-				if (UrlRequester.field1297.status == 1) {
+				if (UrlRequester.socketTask.status == 1) {
 					if (useBufferedSocket) {
-						Socket var4 = (Socket)UrlRequester.field1297.result;
+						Socket var4 = (Socket)UrlRequester.socketTask.result;
 						BufferedNetSocket var25 = new BufferedNetSocket(var4, 40000, 5000);
 						var1 = var25;
 					} else {
-						var1 = new NetSocket((Socket)UrlRequester.field1297.result, GameEngine.taskHandler, 5000);
+						var1 = new NetSocket((Socket)UrlRequester.socketTask.result, GameEngine.taskHandler, 5000);
 					}
 
 					packetWriter.setSocket((AbstractSocket)var1);
-					UrlRequester.field1297 = null;
+					UrlRequester.socketTask = null;
 					CollisionMap.method3418(2);
 				}
 			}
 
 			PacketBufferNode var28;
-			if (field515 == 2) {
+			if (loginState == 2) {
 				packetWriter.clearBuffer();
 				var28 = Tile.method4117();
 				var28.clientPacket = null;
@@ -2488,7 +2491,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 
 			boolean var14;
 			int var15;
-			if (field515 == 3) {
+			if (loginState == 3) {
 				if (class126.pcmPlayer0 != null) {
 					class126.pcmPlayer0.method696();
 				}
@@ -2523,7 +2526,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 			}
 
 			int var40;
-			if (field515 == 4) {
+			if (loginState == 4) {
 				if (var2.offset < 8) {
 					var40 = ((AbstractSocket)var1).available();
 					if (var40 > 8 - var2.offset) {
@@ -2543,11 +2546,11 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 				}
 			}
 
-			if (field515 == 5) {
+			if (loginState == 5) {
 				packetWriter.packetBuffer.offset = 0;
 				packetWriter.clearBuffer();
 				PacketBuffer var26 = new PacketBuffer(500);
-				int[] var30 = new int[]{Tile.field2340.nextInt(), Tile.field2340.nextInt(), Tile.field2340.nextInt(), Tile.field2340.nextInt()};
+				int[] var30 = new int[]{Tile.secureRandom.nextInt(), Tile.secureRandom.nextInt(), Tile.secureRandom.nextInt(), Tile.secureRandom.nextInt()};
 				var26.offset = 0;
 				var26.writeByte(1);
 				var26.writeInt(var30[0]);
@@ -2601,14 +2604,14 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 				int var7 = var6.packetBuffer.offset;
 				var6.packetBuffer.writeInt(200);
 				var6.packetBuffer.writeInt(1);
-				var6.packetBuffer.writeByte(field488);
+				var6.packetBuffer.writeByte(clientType);
 				var6.packetBuffer.writeByte(field681);
 				var6.packetBuffer.writeBytes(var26.array, 0, var26.offset);
 				int var8 = var6.packetBuffer.offset;
 				var6.packetBuffer.writeStringCp1252NullTerminated(Login.Login_username);
 				var6.packetBuffer.writeByte((isResizable ? 1 : 0) << 1 | (isLowDetail ? 1 : 0));
 				var6.packetBuffer.writeShort(Huffman.canvasWidth);
-				var6.packetBuffer.writeShort(class81.canvasHeight);
+				var6.packetBuffer.writeShort(MouseRecorder.canvasHeight);
 				PacketBuffer var9 = var6.packetBuffer;
 				int var12;
 				if (randomDatData != null) {
@@ -2640,26 +2643,26 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 				Buffer var10 = new Buffer(MenuAction.platformInfo.size());
 				MenuAction.platformInfo.write(var10);
 				var6.packetBuffer.writeBytes(var10.array, 0, var10.array.length);
-				var6.packetBuffer.writeByte(field488);
+				var6.packetBuffer.writeByte(clientType);
 				var6.packetBuffer.writeInt(0);
 				var6.packetBuffer.writeIntME(UserComparator8.archive10.hash);
 				var6.packetBuffer.writeInt(Tiles.archive6.hash);
 				var6.packetBuffer.writeInt(0);
 				var6.packetBuffer.writeIntME(class54.archive20.hash);
 				var6.packetBuffer.method6940(RouteStrategy.archive2.hash);
-				var6.packetBuffer.method6942(ClanChannel.archive3.hash);
-				var6.packetBuffer.method6942(class150.archive5.hash);
+				var6.packetBuffer.method6942(ClanChannel.archive0.hash);
+				var6.packetBuffer.method6942(class150.archive3.hash);
 				var6.packetBuffer.writeIntME(class12.archive15.hash);
 				var6.packetBuffer.writeIntME(ItemContainer.archive17.hash);
-				var6.packetBuffer.writeIntME(Interpreter.field835.hash);
-				var6.packetBuffer.writeInt(Skeleton.archive9.hash);
-				var6.packetBuffer.method6940(class260.field3029.hash);
-				var6.packetBuffer.writeIntME(ApproximateRouteStrategy.archive7.hash);
+				var6.packetBuffer.writeIntME(Interpreter.archive9.hash);
+				var6.packetBuffer.writeInt(Skeleton.archive7.hash);
+				var6.packetBuffer.method6940(class260.archive4.hash);
+				var6.packetBuffer.writeIntME(ApproximateRouteStrategy.archive5.hash);
 				var6.packetBuffer.method6942(class176.archive8.hash);
 				var6.packetBuffer.method6940(UserComparator6.archive12.hash);
 				var6.packetBuffer.method6940(TextureProvider.archive18.hash);
 				var6.packetBuffer.method6940(class54.archive13.hash);
-				var6.packetBuffer.writeInt(class81.archive4.hash);
+				var6.packetBuffer.writeInt(MouseRecorder.archive1.hash);
 				var6.packetBuffer.writeIntME(ViewportMouse.archive19.hash);
 				var6.packetBuffer.writeIntME(class4.archive11.hash);
 				var6.packetBuffer.method6940(class28.archive14.hash);
@@ -2678,7 +2681,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 				CollisionMap.method3418(6);
 			}
 
-			if (field515 == 6 && ((AbstractSocket)var1).available() > 0) {
+			if (loginState == 6 && ((AbstractSocket)var1).available() > 0) {
 				var40 = ((AbstractSocket)var1).readUnsignedByte();
 				if (var40 == 21 && gameState == 20) {
 					CollisionMap.method3418(12);
@@ -2704,14 +2707,14 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 				}
 			}
 
-			if (field515 == 7 && ((AbstractSocket)var1).available() >= 2) {
+			if (loginState == 7 && ((AbstractSocket)var1).available() >= 2) {
 				((AbstractSocket)var1).read(var2.array, 0, 2);
 				var2.offset = 0;
 				class381.field4217 = var2.readUnsignedShort();
 				CollisionMap.method3418(8);
 			}
 
-			if (field515 == 8 && ((AbstractSocket)var1).available() >= class381.field4217) {
+			if (loginState == 8 && ((AbstractSocket)var1).available() >= class381.field4217) {
 				var2.offset = 0;
 				((AbstractSocket)var1).read(var2.array, var2.offset, class381.field4217);
 				class6[] var27 = new class6[]{class6.field17};
@@ -2727,7 +2730,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 				}
 			}
 
-			if (field515 == 9 && this.field528.method47()) {
+			if (loginState == 9 && this.field528.method47()) {
 				this.field527 = this.field528.method49();
 				this.field528.method48();
 				this.field528 = null;
@@ -2750,23 +2753,23 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 				CollisionMap.method3418(6);
 			}
 
-			if (field515 == 10 && ((AbstractSocket)var1).available() > 0) {
+			if (loginState == 10 && ((AbstractSocket)var1).available() > 0) {
 				ModeWhere.field3818 = ((AbstractSocket)var1).readUnsignedByte();
 				CollisionMap.method3418(11);
 			}
 
-			if (field515 == 11 && ((AbstractSocket)var1).available() >= ModeWhere.field3818) {
+			if (loginState == 11 && ((AbstractSocket)var1).available() >= ModeWhere.field3818) {
 				((AbstractSocket)var1).read(var2.array, 0, ModeWhere.field3818);
 				var2.offset = 0;
 				CollisionMap.method3418(6);
 			}
 
-			if (field515 == 12 && ((AbstractSocket)var1).available() > 0) {
+			if (loginState == 12 && ((AbstractSocket)var1).available() > 0) {
 				field539 = (((AbstractSocket)var1).readUnsignedByte() + 3) * 60;
 				CollisionMap.method3418(13);
 			}
 
-			if (field515 == 13) {
+			if (loginState == 13) {
 				field516 = 0;
 				class17.setLoginResponseString("You have only just left another world.", "Your profile will be transferred in:", field539 / 60 + " seconds.");
 				if (--field539 <= 0) {
@@ -2774,14 +2777,14 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 				}
 
 			} else {
-				if (field515 == 14 && ((AbstractSocket)var1).available() >= 1) {
+				if (loginState == 14 && ((AbstractSocket)var1).available() >= 1) {
 					WorldMapLabel.field2176 = ((AbstractSocket)var1).readUnsignedByte();
 					CollisionMap.method3418(15);
 				}
 
 				int var17;
 				boolean var41;
-				if (field515 == 15 && ((AbstractSocket)var1).available() >= WorldMapLabel.field2176) {
+				if (loginState == 15 && ((AbstractSocket)var1).available() >= WorldMapLabel.field2176) {
 					var14 = ((AbstractSocket)var1).readUnsignedByte() == 1;
 					((AbstractSocket)var1).read(var2.array, 0, 4);
 					var2.offset = 0;
@@ -2837,8 +2840,8 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 					CollisionMap.method3418(16);
 				}
 
-				if (field515 != 16) {
-					if (field515 == 17 && ((AbstractSocket)var1).available() >= 2) {
+				if (loginState != 16) {
+					if (loginState == 17 && ((AbstractSocket)var1).available() >= 2) {
 						var2.offset = 0;
 						((AbstractSocket)var1).read(var2.array, 0, 2);
 						var2.offset = 0;
@@ -2846,7 +2849,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 						CollisionMap.method3418(18);
 					}
 
-					if (field515 == 18 && ((AbstractSocket)var1).available() >= class113.field1364) {
+					if (loginState == 18 && ((AbstractSocket)var1).available() >= class113.field1364) {
 						var2.offset = 0;
 						((AbstractSocket)var1).read(var2.array, 0, class113.field1364);
 						var2.offset = 0;
@@ -2857,7 +2860,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 						NameableContainer.updateGameState(10);
 					}
 
-					if (field515 == 19) {
+					if (loginState == 19) {
 						if (packetWriter.serverPacketLength == -1) {
 							if (((AbstractSocket)var1).available() < 2) {
 								return;
@@ -3026,7 +3029,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 						PacketBufferNode var32 = LoginScreenAnimation.getPacketBufferNode(ClientPacket.field2718, packetWriter.isaacCipher);
 						var32.packetBuffer.writeByte(class12.getWindowedMode());
 						var32.packetBuffer.writeShort(Huffman.canvasWidth);
-						var32.packetBuffer.writeShort(class81.canvasHeight);
+						var32.packetBuffer.writeShort(MouseRecorder.canvasHeight);
 						packetWriter.addNode(var32);
 						class264.friendsChatManager = null;
 						class114.guestClanSettings = null;
@@ -3216,7 +3219,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 								if (var4 >= ClientPreferences.mouseRecorder.index) {
 									ClientPreferences.mouseRecorder.index = 0;
 								} else {
-									class81 var44 = ClientPreferences.mouseRecorder;
+									MouseRecorder var44 = ClientPreferences.mouseRecorder;
 									var44.index -= var4;
 									System.arraycopy(ClientPreferences.mouseRecorder.xs, var4, ClientPreferences.mouseRecorder.xs, 0, ClientPreferences.mouseRecorder.index);
 									System.arraycopy(ClientPreferences.mouseRecorder.ys, var4, ClientPreferences.mouseRecorder.ys, 0, ClientPreferences.mouseRecorder.index);
@@ -3236,8 +3239,8 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 							var3 = MouseHandler.MouseHandler_lastPressedY;
 							if (var3 < 0) {
 								var3 = 0;
-							} else if (var3 > class81.canvasHeight) {
-								var3 = class81.canvasHeight;
+							} else if (var3 > MouseRecorder.canvasHeight) {
+								var3 = MouseRecorder.canvasHeight;
 							}
 
 							var4 = MouseHandler.MouseHandler_lastPressedX;
@@ -3404,7 +3407,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 						}
 
 						if (rootInterface != -1) {
-							class87.updateRootInterface(rootInterface, 0, 0, Huffman.canvasWidth, class81.canvasHeight, 0, 0);
+							class87.updateRootInterface(rootInterface, 0, 0, Huffman.canvasWidth, MouseRecorder.canvasHeight, 0, 0);
 						}
 
 						++cycleCntr;
@@ -3904,7 +3907,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 	@Export("resizeJS")
 	void resizeJS() {
 		int var1 = Huffman.canvasWidth;
-		int var2 = class81.canvasHeight;
+		int var2 = MouseRecorder.canvasHeight;
 		if (super.contentWidth < var1) {
 			var1 = super.contentWidth;
 		}
@@ -3952,7 +3955,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 		Projectile.hoveredItemContainer = null;
 		if (rootInterface != -1) {
 			rootWidgetCount = 0;
-			Canvas.drawWidgets(rootInterface, 0, 0, Huffman.canvasWidth, class81.canvasHeight, 0, 0, -1);
+			Canvas.drawWidgets(rootInterface, 0, 0, Huffman.canvasWidth, MouseRecorder.canvasHeight, 0, 0, -1);
 		}
 
 		Rasterizer2D.Rasterizer2D_resetClip();
@@ -5802,7 +5805,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 	)
 	@Export("resizeRoot")
 	final void resizeRoot(boolean var1) {
-		Canvas.method380(rootInterface, Huffman.canvasWidth, class81.canvasHeight, var1);
+		Canvas.method380(rootInterface, Huffman.canvasWidth, MouseRecorder.canvasHeight, var1);
 	}
 
 	@ObfuscatedName("ir")
@@ -5817,7 +5820,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 		int var4;
 		if (var2 == null) {
 			var3 = Huffman.canvasWidth;
-			var4 = class81.canvasHeight;
+			var4 = MouseRecorder.canvasHeight;
 		} else {
 			var3 = var2.width;
 			var4 = var2.height;
@@ -5975,8 +5978,8 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 							}
 							break;
 						case 4:
-							if (field488 == -1) {
-								field488 = Integer.parseInt(var2);
+							if (clientType == -1) {
+								clientType = Integer.parseInt(var2);
 							}
 							break;
 						case 5:
@@ -6028,7 +6031,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 							Messages.field1273 = var2;
 							break;
 						case 21:
-							clientType = Integer.parseInt(var2);
+							field488 = Integer.parseInt(var2);
 							break;
 						case 22:
 							field540 = Integer.parseInt(var2) != 0;
@@ -6048,7 +6051,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 				}
 
 				class21.client = this;
-				RunException.clientType = field488;
+				RunException.clientType = clientType;
 				if (field681 == -1) {
 					field681 = 0;
 				}

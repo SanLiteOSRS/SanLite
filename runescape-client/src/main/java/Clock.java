@@ -53,7 +53,7 @@ public abstract class Clock {
 	)
 	public static void method2864() {
 		HitSplatDefinition.HitSplatDefinition_cached.clear();
-		HitSplatDefinition.HealthBarDefinition_cached.clear();
-		HitSplatDefinition.HealthBarDefinition_cachedSprites.clear();
+		HitSplatDefinition.HitSplatDefinition_cachedSprites.clear();
+		HitSplatDefinition.HitSplatDefinition_cachedFonts.clear();
 	}
 }

@@ -8,8 +8,8 @@ public class class150 {
 	@ObfuscatedSignature(
 		descriptor = "Lky;"
 	)
-	@Export("archive5")
-	static Archive archive5;
+	@Export("archive3")
+	static Archive archive3;
 	@ObfuscatedName("f")
 	public short[] field1606;
 	@ObfuscatedName("j")

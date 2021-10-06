@@ -20,8 +20,8 @@ public class ClanChannel extends Node {
 	@ObfuscatedSignature(
 		descriptor = "Lky;"
 	)
-	@Export("archive3")
-	static Archive archive3;
+	@Export("archive0")
+	static Archive archive0;
 	@ObfuscatedName("l")
 	boolean field1522;
 	@ObfuscatedName("q")

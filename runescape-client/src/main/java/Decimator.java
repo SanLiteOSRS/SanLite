@@ -241,11 +241,11 @@ public class Decimator {
 				return;
 			}
 
-			if (Login.worldSelectPage > 0 && WorldMapCacheName.worldSelectLeftSprite != null && MouseHandler.MouseHandler_lastPressedX >= 0 && MouseHandler.MouseHandler_lastPressedX <= WorldMapCacheName.worldSelectLeftSprite.subWidth && MouseHandler.MouseHandler_lastPressedY >= class81.canvasHeight / 2 - 50 && MouseHandler.MouseHandler_lastPressedY <= class81.canvasHeight / 2 + 50) {
+			if (Login.worldSelectPage > 0 && WorldMapCacheName.worldSelectLeftSprite != null && MouseHandler.MouseHandler_lastPressedX >= 0 && MouseHandler.MouseHandler_lastPressedX <= WorldMapCacheName.worldSelectLeftSprite.subWidth && MouseHandler.MouseHandler_lastPressedY >= MouseRecorder.canvasHeight / 2 - 50 && MouseHandler.MouseHandler_lastPressedY <= MouseRecorder.canvasHeight / 2 + 50) {
 				--Login.worldSelectPage;
 			}
 
-			if (Login.worldSelectPage < Login.worldSelectPagesCount && ByteArrayPool.worldSelectRightSprite != null && MouseHandler.MouseHandler_lastPressedX >= Huffman.canvasWidth - ByteArrayPool.worldSelectRightSprite.subWidth - 5 && MouseHandler.MouseHandler_lastPressedX <= Huffman.canvasWidth && MouseHandler.MouseHandler_lastPressedY >= class81.canvasHeight / 2 - 50 && MouseHandler.MouseHandler_lastPressedY <= class81.canvasHeight / 2 + 50) {
+			if (Login.worldSelectPage < Login.worldSelectPagesCount && ByteArrayPool.worldSelectRightSprite != null && MouseHandler.MouseHandler_lastPressedX >= Huffman.canvasWidth - ByteArrayPool.worldSelectRightSprite.subWidth - 5 && MouseHandler.MouseHandler_lastPressedX <= Huffman.canvasWidth && MouseHandler.MouseHandler_lastPressedY >= MouseRecorder.canvasHeight / 2 - 50 && MouseHandler.MouseHandler_lastPressedY <= MouseRecorder.canvasHeight / 2 + 50) {
 				++Login.worldSelectPage;
 			}
 		}

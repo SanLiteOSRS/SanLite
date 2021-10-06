@@ -107,14 +107,14 @@ public class WorldMapLabelSize {
 		garbageValue = "-1948532333"
 	)
 	static final void method3448() {
-		class81.method2075(false);
+		MouseRecorder.method2075(false);
 		Client.field764 = 0;
 		boolean var0 = true;
 
 		int var1;
 		for (var1 = 0; var1 < class28.regionLandArchives.length; ++var1) {
 			if (Canvas.regionMapArchiveIds[var1] != -1 && class28.regionLandArchives[var1] == null) {
-				class28.regionLandArchives[var1] = ApproximateRouteStrategy.archive7.takeFile(Canvas.regionMapArchiveIds[var1], 0);
+				class28.regionLandArchives[var1] = ApproximateRouteStrategy.archive5.takeFile(Canvas.regionMapArchiveIds[var1], 0);
 				if (class28.regionLandArchives[var1] == null) {
 					var0 = false;
 					++Client.field764;
@@ -122,7 +122,7 @@ public class WorldMapLabelSize {
 			}
 
 			if (GrandExchangeOfferTotalQuantityComparator.regionLandArchiveIds[var1] != -1 && Client.regionMapArchives[var1] == null) {
-				Client.regionMapArchives[var1] = ApproximateRouteStrategy.archive7.takeFileEncrypted(GrandExchangeOfferTotalQuantityComparator.regionLandArchiveIds[var1], 0, ModeWhere.xteaKeys[var1]);
+				Client.regionMapArchives[var1] = ApproximateRouteStrategy.archive5.takeFileEncrypted(GrandExchangeOfferTotalQuantityComparator.regionLandArchiveIds[var1], 0, ModeWhere.xteaKeys[var1]);
 				if (Client.regionMapArchives[var1] == null) {
 					var0 = false;
 					++Client.field764;
@@ -204,7 +204,7 @@ public class WorldMapLabelSize {
 				}
 
 				ObjectSound.objectSounds.clear();
-				class81.method2075(true);
+				MouseRecorder.method2075(true);
 				int var5;
 				int var9;
 				int var10;
@@ -241,7 +241,7 @@ public class WorldMapLabelSize {
 						}
 					}
 
-					class81.method2075(true);
+					MouseRecorder.method2075(true);
 
 					for (var49 = 0; var49 < var1; ++var49) {
 						byte[] var3 = Client.regionMapArchives[var49];
@@ -420,7 +420,7 @@ public class WorldMapLabelSize {
 						}
 					}
 
-					class81.method2075(true);
+					MouseRecorder.method2075(true);
 
 					for (var49 = 0; var49 < 4; ++var49) {
 						class356.playPcmPlayers();
@@ -541,7 +541,7 @@ public class WorldMapLabelSize {
 					}
 				}
 
-				class81.method2075(true);
+				MouseRecorder.method2075(true);
 				class356.playPcmPlayers();
 				Scene var69 = PlayerComposition.scene;
 				CollisionMap[] var70 = Client.collisionMaps;
@@ -1012,7 +1012,7 @@ public class WorldMapLabelSize {
 					}
 				}
 
-				class81.method2075(true);
+				MouseRecorder.method2075(true);
 				var4 = Tiles.Tiles_minPlane;
 				if (var4 > VertexNormal.Client_plane) {
 					var4 = VertexNormal.Client_plane;
@@ -1062,8 +1062,8 @@ public class WorldMapLabelSize {
 					for (var9 = var5 - 1; var9 <= var6 + 1; ++var9) {
 						for (var10 = var7 - 1; var10 <= var8 + 1; ++var10) {
 							if (var9 < var5 || var9 > var6 || var10 < var7 || var10 > var8) {
-								ApproximateRouteStrategy.archive7.loadRegionFromName("m" + var9 + "_" + var10);
-								ApproximateRouteStrategy.archive7.loadRegionFromName("l" + var9 + "_" + var10);
+								ApproximateRouteStrategy.archive5.loadRegionFromName("m" + var9 + "_" + var10);
+								ApproximateRouteStrategy.archive5.loadRegionFromName("l" + var9 + "_" + var10);
 							}
 						}
 					}

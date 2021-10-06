@@ -33,7 +33,7 @@ public final class ObjectSound extends Node {
 	int y;
 	@ObfuscatedName("m")
 	@ObfuscatedGetter(
-		intValue = 772316544
+		intValue = -1738796741
 	)
 	int field807;
 	@ObfuscatedName("k")

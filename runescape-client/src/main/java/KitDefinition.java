@@ -458,7 +458,7 @@ public class KitDefinition extends DualNode {
 		garbageValue = "82"
 	)
 	static void method2953() {
-		WorldMapDecorationType.clientPreferences.field1209 = Client.clientType;
+		WorldMapDecorationType.clientPreferences.field1209 = Client.field488;
 		ScriptFrame.savePreferences();
 	}
 }

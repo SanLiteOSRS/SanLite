@@ -77,7 +77,7 @@ public final class WorldMapManager {
 	int tileY;
 	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = 1022031296
+		intValue = -2131514409
 	)
 	@Export("tileWidth")
 	int tileWidth;

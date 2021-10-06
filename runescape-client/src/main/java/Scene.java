@@ -739,7 +739,8 @@ public class Scene {
 	@ObfuscatedSignature(
 		descriptor = "(III)Lhw;"
 	)
-	public GameObject method4375(int var1, int var2, int var3) {
+	@Export("getGameObject")
+	public GameObject getGameObject(int var1, int var2, int var3) {
 		Tile var4 = this.tiles[var1][var2][var3];
 		if (var4 == null) {
 			return null;

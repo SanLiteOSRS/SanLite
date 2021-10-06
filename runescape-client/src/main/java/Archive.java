@@ -400,6 +400,6 @@ public class Archive extends AbstractArchive {
 	)
 	static final void method5187() {
 		Client.field686 = Client.cycleCntr;
-		WorldMapSectionType.field2142 = true;
+		WorldMapSectionType.FriendsChatManager_inFriendsChat = true;
 	}
 }

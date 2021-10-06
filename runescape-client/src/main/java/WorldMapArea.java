@@ -443,8 +443,8 @@ public class WorldMapArea {
 					var8 = var7 + (var6 << 8);
 					if (!var16 || var7 != 49 && var7 != 149 && var7 != 147 && var6 != 50 && (var6 != 49 || var7 != 47)) {
 						class129.regions[var4] = var8;
-						Canvas.regionMapArchiveIds[var4] = ApproximateRouteStrategy.archive7.getGroupId("m" + var6 + "_" + var7);
-						GrandExchangeOfferTotalQuantityComparator.regionLandArchiveIds[var4] = ApproximateRouteStrategy.archive7.getGroupId("l" + var6 + "_" + var7);
+						Canvas.regionMapArchiveIds[var4] = ApproximateRouteStrategy.archive5.getGroupId("m" + var6 + "_" + var7);
+						GrandExchangeOfferTotalQuantityComparator.regionLandArchiveIds[var4] = ApproximateRouteStrategy.archive5.getGroupId("l" + var6 + "_" + var7);
 						++var4;
 					}
 				}
@@ -509,8 +509,8 @@ public class WorldMapArea {
 								class129.regions[var5] = var12;
 								var13 = var12 >> 8 & 255;
 								int var14 = var12 & 255;
-								Canvas.regionMapArchiveIds[var5] = ApproximateRouteStrategy.archive7.getGroupId("m" + var13 + "_" + var14);
-								GrandExchangeOfferTotalQuantityComparator.regionLandArchiveIds[var5] = ApproximateRouteStrategy.archive7.getGroupId("l" + var13 + "_" + var14);
+								Canvas.regionMapArchiveIds[var5] = ApproximateRouteStrategy.archive5.getGroupId("m" + var13 + "_" + var14);
+								GrandExchangeOfferTotalQuantityComparator.regionLandArchiveIds[var5] = ApproximateRouteStrategy.archive5.getGroupId("l" + var13 + "_" + var14);
 								++var5;
 							}
 						}

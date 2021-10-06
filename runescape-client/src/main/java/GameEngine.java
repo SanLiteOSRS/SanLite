@@ -373,11 +373,11 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 			}
 
 			Huffman.canvasWidth = Math.min(this.contentWidth, this.maxCanvasWidth);
-			class81.canvasHeight = Math.min(this.contentHeight, this.maxCanvasHeight);
+			MouseRecorder.canvasHeight = Math.min(this.contentHeight, this.maxCanvasHeight);
 			this.canvasX = (this.contentWidth - Huffman.canvasWidth) / 2;
 			this.canvasY = 0;
-			this.canvas.setSize(Huffman.canvasWidth, class81.canvasHeight);
-			class244.rasterProvider = new RasterProvider(Huffman.canvasWidth, class81.canvasHeight, this.canvas);
+			this.canvas.setSize(Huffman.canvasWidth, MouseRecorder.canvasHeight);
+			class244.rasterProvider = new RasterProvider(Huffman.canvasWidth, MouseRecorder.canvasHeight, this.canvas);
 			if (var1 == this.frame) {
 				Insets var3 = this.frame.getInsets();
 				this.canvas.setLocation(this.canvasX + var3.left, var3.top + this.canvasY);
@@ -408,7 +408,7 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 		int var1 = this.canvasX;
 		int var2 = this.canvasY;
 		int var3 = this.contentWidth - Huffman.canvasWidth - var1;
-		int var4 = this.contentHeight - class81.canvasHeight - var2;
+		int var4 = this.contentHeight - MouseRecorder.canvasHeight - var2;
 		if (var1 > 0 || var3 > 0 || var2 > 0 || var4 > 0) {
 			try {
 				Container var5 = this.container();
@@ -494,7 +494,7 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 
 			gameEngine = this;
 			Huffman.canvasWidth = var1;
-			class81.canvasHeight = var2;
+			MouseRecorder.canvasHeight = var2;
 			RunException.RunException_revision = var3;
 			RunException.RunException_applet = this;
 			if (taskHandler == null) {
@@ -523,19 +523,19 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 		}
 
 		Huffman.canvasWidth = Math.max(var1.getWidth(), this.field179);
-		class81.canvasHeight = Math.max(var1.getHeight(), this.field193);
+		MouseRecorder.canvasHeight = Math.max(var1.getHeight(), this.field193);
 		Insets var2;
 		if (this.frame != null) {
 			var2 = this.frame.getInsets();
 			Huffman.canvasWidth -= var2.left + var2.right;
-			class81.canvasHeight -= var2.top + var2.bottom;
+			MouseRecorder.canvasHeight -= var2.top + var2.bottom;
 		}
 
 		this.canvas = new Canvas(this);
 		var1.setBackground(Color.BLACK);
 		var1.setLayout((LayoutManager)null);
 		var1.add(this.canvas);
-		this.canvas.setSize(Huffman.canvasWidth, class81.canvasHeight);
+		this.canvas.setSize(Huffman.canvasWidth, MouseRecorder.canvasHeight);
 		this.canvas.setVisible(true);
 		this.canvas.setBackground(Color.BLACK);
 		if (var1 == this.frame) {
@@ -548,11 +548,11 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 		this.canvas.addFocusListener(this);
 		this.canvas.requestFocus();
 		this.fullRedraw = true;
-		if (class244.rasterProvider != null && Huffman.canvasWidth == class244.rasterProvider.width && class81.canvasHeight == class244.rasterProvider.height) {
+		if (class244.rasterProvider != null && Huffman.canvasWidth == class244.rasterProvider.width && MouseRecorder.canvasHeight == class244.rasterProvider.height) {
 			((RasterProvider)class244.rasterProvider).setComponent(this.canvas);
 			class244.rasterProvider.drawFull(0, 0);
 		} else {
-			class244.rasterProvider = new RasterProvider(Huffman.canvasWidth, class81.canvasHeight, this.canvas);
+			class244.rasterProvider = new RasterProvider(Huffman.canvasWidth, MouseRecorder.canvasHeight, this.canvas);
 		}
 
 		this.isCanvasInvalid = false;
@@ -632,7 +632,7 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 		if (++field200 - 1 > 50) {
 			field200 -= 50;
 			this.fullRedraw = true;
-			this.canvas.setSize(Huffman.canvasWidth, class81.canvasHeight);
+			this.canvas.setSize(Huffman.canvasWidth, MouseRecorder.canvasHeight);
 			this.canvas.setVisible(true);
 			if (var1 == this.frame) {
 				Insets var7 = this.frame.getInsets();
@@ -764,7 +764,7 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 
 			if (var3) {
 				var4.setColor(Color.black);
-				var4.fillRect(0, 0, Huffman.canvasWidth, class81.canvasHeight);
+				var4.fillRect(0, 0, Huffman.canvasWidth, MouseRecorder.canvasHeight);
 			}
 
 			Color var5 = new Color(140, 17, 17);
@@ -784,10 +784,10 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 				var6.setFont(class185.fontHelvetica13);
 				var6.setColor(Color.white);
 				var6.drawString(var2, (304 - loginScreenFontMetrics.stringWidth(var2)) / 2, 22);
-				var4.drawImage(class1.field3, Huffman.canvasWidth / 2 - 152, class81.canvasHeight / 2 - 18, (ImageObserver)null);
+				var4.drawImage(class1.field3, Huffman.canvasWidth / 2 - 152, MouseRecorder.canvasHeight / 2 - 18, (ImageObserver)null);
 			} catch (Exception var9) {
 				int var7 = Huffman.canvasWidth / 2 - 152;
-				int var8 = class81.canvasHeight / 2 - 18;
+				int var8 = MouseRecorder.canvasHeight / 2 - 18;
 				var4.setColor(var5);
 				var4.drawRect(var7, var8, 303, 33);
 				var4.fillRect(var7 + 2, var8 + 2, var1 * 3, 30);
@@ -893,7 +893,7 @@ public abstract class GameEngine extends Applet implements Runnable, FocusListen
 			this.fullRedraw = true;
 			if (UserComparator4.method2406() - this.field203 > 1000L) {
 				Rectangle var2 = var1.getClipBounds();
-				if (var2 == null || var2.width >= Huffman.canvasWidth && var2.height >= class81.canvasHeight) {
+				if (var2 == null || var2.width >= Huffman.canvasWidth && var2.height >= MouseRecorder.canvasHeight) {
 					this.isCanvasInvalid = true;
 				}
 			}

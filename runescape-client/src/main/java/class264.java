@@ -119,7 +119,7 @@ public class class264 {
 			Interpreter.Interpreter_intStack[++AbstractByteArrayCopier.Interpreter_intStackSize - 1] = Huffman.canvasWidth;
 			return 1;
 		} else if (var0 == 6223) {
-			Interpreter.Interpreter_intStack[++AbstractByteArrayCopier.Interpreter_intStackSize - 1] = class81.canvasHeight;
+			Interpreter.Interpreter_intStack[++AbstractByteArrayCopier.Interpreter_intStackSize - 1] = MouseRecorder.canvasHeight;
 			return 1;
 		} else {
 			return 2;

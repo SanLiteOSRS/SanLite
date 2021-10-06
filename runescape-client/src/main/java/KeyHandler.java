@@ -292,9 +292,9 @@ public final class KeyHandler implements KeyListener, FocusListener {
 		garbageValue = "980972475"
 	)
 	public static void method349() {
+		Widget.Widget_cachedSprites.clear();
+		Widget.Widget_cachedModels.clear();
 		Widget.Widget_cachedFonts.clear();
 		Widget.Widget_cachedSpriteMasks.clear();
-		Widget.field3043.clear();
-		Widget.archive0.clear();
 	}
 }

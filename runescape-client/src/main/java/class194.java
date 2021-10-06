@@ -66,7 +66,7 @@ public class class194 {
 					int var6 = (var4.field804 - var5) * WorldMapDecorationType.clientPreferences.areaSoundEffectsVolume / var4.field804;
 					if (var4.stream1 == null) {
 						if (var4.soundEffectId >= 0) {
-							SoundEffect var7 = SoundEffect.readSoundEffect(class260.field3029, var4.soundEffectId, 0);
+							SoundEffect var7 = SoundEffect.readSoundEffect(class260.archive4, var4.soundEffectId, 0);
 							if (var7 != null) {
 								RawSound var8 = var7.toRawSound().resample(RouteStrategy.decimator);
 								RawPcmStream var9 = RawPcmStream.createRawPcmStream(var8, 100, var6);
@@ -82,7 +82,7 @@ public class class194 {
 					if (var4.stream2 == null) {
 						if (var4.soundEffectIds != null && (var4.field811 -= var3) <= 0) {
 							int var11 = (int)(Math.random() * (double)var4.soundEffectIds.length);
-							SoundEffect var12 = SoundEffect.readSoundEffect(class260.field3029, var4.soundEffectIds[var11], 0);
+							SoundEffect var12 = SoundEffect.readSoundEffect(class260.archive4, var4.soundEffectIds[var11], 0);
 							if (var12 != null) {
 								RawSound var13 = var12.toRawSound().resample(RouteStrategy.decimator);
 								RawPcmStream var10 = RawPcmStream.createRawPcmStream(var13, 100, var6);

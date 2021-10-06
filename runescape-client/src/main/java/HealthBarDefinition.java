@@ -23,13 +23,14 @@ public class HealthBarDefinition extends DualNode {
 	@ObfuscatedSignature(
 		descriptor = "Lii;"
 	)
-	public static EvictingDualNodeHashTable field1674;
+	@Export("HealthBarDefinition_cached")
+	public static EvictingDualNodeHashTable HealthBarDefinition_cached;
 	@ObfuscatedName("j")
 	@ObfuscatedSignature(
 		descriptor = "Lii;"
 	)
-	@Export("WorldMapElement_cachedSprites")
-	public static EvictingDualNodeHashTable WorldMapElement_cachedSprites;
+	@Export("HealthBarDefinition_cachedSprites")
+	public static EvictingDualNodeHashTable HealthBarDefinition_cachedSprites;
 	@ObfuscatedName("gv")
 	@ObfuscatedGetter(
 		intValue = -1732997973
@@ -95,8 +96,8 @@ public class HealthBarDefinition extends DualNode {
 	public int widthPadding;
 
 	static {
-		field1674 = new EvictingDualNodeHashTable(64);
-		WorldMapElement_cachedSprites = new EvictingDualNodeHashTable(64);
+		HealthBarDefinition_cached = new EvictingDualNodeHashTable(64);
+		HealthBarDefinition_cachedSprites = new EvictingDualNodeHashTable(64);
 	}
 
 	public HealthBarDefinition() {
@@ -171,13 +172,13 @@ public class HealthBarDefinition extends DualNode {
 		if (this.frontSpriteID < 0) {
 			return null;
 		} else {
-			SpritePixels var1 = (SpritePixels)WorldMapElement_cachedSprites.get((long)this.frontSpriteID);
+			SpritePixels var1 = (SpritePixels) HealthBarDefinition_cachedSprites.get((long)this.frontSpriteID);
 			if (var1 != null) {
 				return var1;
 			} else {
 				var1 = AccessFile.SpriteBuffer_getSprite(HitSplatDefinition_spritesArchive, this.frontSpriteID, 0);
 				if (var1 != null) {
-					WorldMapElement_cachedSprites.put(var1, (long)this.frontSpriteID);
+					HealthBarDefinition_cachedSprites.put(var1, (long)this.frontSpriteID);
 				}
 
 				return var1;
@@ -195,13 +196,13 @@ public class HealthBarDefinition extends DualNode {
 		if (this.backSpriteID < 0) {
 			return null;
 		} else {
-			SpritePixels var1 = (SpritePixels)WorldMapElement_cachedSprites.get((long)this.backSpriteID);
+			SpritePixels var1 = (SpritePixels) HealthBarDefinition_cachedSprites.get((long)this.backSpriteID);
 			if (var1 != null) {
 				return var1;
 			} else {
 				var1 = AccessFile.SpriteBuffer_getSprite(HitSplatDefinition_spritesArchive, this.backSpriteID, 0);
 				if (var1 != null) {
-					WorldMapElement_cachedSprites.put(var1, (long)this.backSpriteID);
+					HealthBarDefinition_cachedSprites.put(var1, (long)this.backSpriteID);
 				}
 
 				return var1;
@@ -240,24 +241,24 @@ public class HealthBarDefinition extends DualNode {
 		TriBool.field3979.method6750();
 		WorldMapIcon_1.HitSplatDefinition_cachedSprites.method6750();
 		Clock.method2864();
-		field1674.clear();
-		WorldMapElement_cachedSprites.clear();
+		HealthBarDefinition_cached.clear();
+		HealthBarDefinition_cachedSprites.clear();
 		class11.method105();
 		ParamComposition.ParamDefinition_cached.clear();
 		MilliClock.method2858();
-		PlayerComposition.Widget_cachedModels.clear();
+		PlayerComposition.PlayerAppearance_cachedModels.clear();
 		KeyHandler.method349();
 		((TextureProvider)Rasterizer3D.Rasterizer3D_textureLoader).clear();
 		Script.Script_cached.clear();
-		ClanChannel.archive3.clearFiles();
-		class81.archive4.clearFiles();
-		class150.archive5.clearFiles();
-		class260.field3029.clearFiles();
-		ApproximateRouteStrategy.archive7.clearFiles();
+		ClanChannel.archive0.clearFiles();
+		MouseRecorder.archive1.clearFiles();
+		class150.archive3.clearFiles();
+		class260.archive4.clearFiles();
+		ApproximateRouteStrategy.archive5.clearFiles();
 		Tiles.archive6.clearFiles();
-		Skeleton.archive9.clearFiles();
+		Skeleton.archive7.clearFiles();
 		class176.archive8.clearFiles();
-		Interpreter.field835.clearFiles();
+		Interpreter.archive9.clearFiles();
 		UserComparator8.archive10.clearFiles();
 		class4.archive11.clearFiles();
 		UserComparator6.archive12.clearFiles();
@@ -347,7 +348,7 @@ public class HealthBarDefinition extends DualNode {
 					}
 
 					if (var9 == 2) {
-						GameObject var43 = PlayerComposition.scene.method4375(VertexNormal.Client_plane, var4, var5);
+						GameObject var43 = PlayerComposition.scene.getGameObject(VertexNormal.Client_plane, var4, var5);
 						if (var7 == 11) {
 							var7 = 10;
 						}

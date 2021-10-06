@@ -34,25 +34,26 @@ public class Widget extends Node {
 	@ObfuscatedSignature(
 		descriptor = "Lii;"
 	)
+	@Export("Widget_cachedSprites")
+	static EvictingDualNodeHashTable Widget_cachedSprites;
+	@ObfuscatedName("v")
+	@ObfuscatedSignature(
+		descriptor = "Lii;"
+	)
+	@Export("Widget_cachedModels")
+	static EvictingDualNodeHashTable Widget_cachedModels;
+	@ObfuscatedName("s")
+	@ObfuscatedSignature(
+		descriptor = "Lii;"
+	)
 	@Export("Widget_cachedFonts")
 	static EvictingDualNodeHashTable Widget_cachedFonts;
-	@ObfuscatedName("v")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
 		descriptor = "Lii;"
 	)
 	@Export("Widget_cachedSpriteMasks")
 	static EvictingDualNodeHashTable Widget_cachedSpriteMasks;
-	@ObfuscatedName("s")
-	@ObfuscatedSignature(
-		descriptor = "Lii;"
-	)
-	static EvictingDualNodeHashTable field3043;
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "Lii;"
-	)
-	@Export("archive0")
-	static EvictingDualNodeHashTable archive0;
 	@ObfuscatedName("b")
 	public static boolean field3045;
 	@ObfuscatedName("x")
@@ -703,10 +704,10 @@ public class Widget extends Node {
 	public boolean prioritizeMenuEntry;
 
 	static {
-		Widget_cachedFonts = new EvictingDualNodeHashTable(200);
-		Widget_cachedSpriteMasks = new EvictingDualNodeHashTable(50);
-		field3043 = new EvictingDualNodeHashTable(20);
-		archive0 = new EvictingDualNodeHashTable(8);
+		Widget_cachedSprites = new EvictingDualNodeHashTable(200);
+		Widget_cachedModels = new EvictingDualNodeHashTable(50);
+		Widget_cachedFonts = new EvictingDualNodeHashTable(20);
+		Widget_cachedSpriteMasks = new EvictingDualNodeHashTable(8);
 		field3045 = false;
 	}
 
@@ -1288,7 +1289,7 @@ public class Widget extends Node {
 			return null;
 		} else {
 			long var3 = ((long)this.spriteShadow << 40) + ((long)this.outline << 36) + (long)var2 + ((this.spriteFlipV ? 1L : 0L) << 38) + ((this.spriteFlipH ? 1L : 0L) << 39);
-			SpritePixels var5 = (SpritePixels)Widget_cachedFonts.get(var3);
+			SpritePixels var5 = (SpritePixels) Widget_cachedSprites.get(var3);
 			if (var5 != null) {
 				return var5;
 			} else {
@@ -1321,7 +1322,7 @@ public class Widget extends Node {
 						var5.shadow(this.spriteShadow);
 					}
 
-					Widget_cachedFonts.put(var5, var3);
+					Widget_cachedSprites.put(var5, var3);
 					return var5;
 				}
 			}
@@ -1339,13 +1340,13 @@ public class Widget extends Node {
 		if (this.fontId == -1) {
 			return null;
 		} else {
-			Font var1 = (Font)field3043.get((long)this.fontId);
+			Font var1 = (Font) Widget_cachedFonts.get((long)this.fontId);
 			if (var1 != null) {
 				return var1;
 			} else {
 				var1 = Actor.method2153(IntHashTable.Widget_spritesArchive, SecureRandomFuture.Widget_fontsArchive, this.fontId, 0);
 				if (var1 != null) {
-					field3043.put(var1, (long)this.fontId);
+					Widget_cachedFonts.put(var1, (long)this.fontId);
 				} else {
 					field3045 = true;
 				}
@@ -1368,13 +1369,13 @@ public class Widget extends Node {
 			if (var2 == -1) {
 				return null;
 			} else {
-				SpritePixels var3 = (SpritePixels)Widget_cachedFonts.get((long)var2);
+				SpritePixels var3 = (SpritePixels) Widget_cachedSprites.get((long)var2);
 				if (var3 != null) {
 					return var3;
 				} else {
 					var3 = AccessFile.SpriteBuffer_getSprite(IntHashTable.Widget_spritesArchive, var2, 0);
 					if (var3 != null) {
-						Widget_cachedFonts.put(var3, (long)var2);
+						Widget_cachedSprites.put(var3, (long)var2);
 					} else {
 						field3045 = true;
 					}
@@ -1410,7 +1411,7 @@ public class Widget extends Node {
 		} else if (var5 == 1 && var6 == -1) {
 			return null;
 		} else {
-			Model var7 = (Model)Widget_cachedSpriteMasks.get((long)(var6 + (var5 << 16)));
+			Model var7 = (Model) Widget_cachedModels.get((long)(var6 + (var5 << 16)));
 			if (var7 == null) {
 				ModelData var8;
 				if (var5 == 1) {
@@ -1455,10 +1456,10 @@ public class Widget extends Node {
 						return null;
 					}
 
-					var7 = var8.toModel(var9.field1892 + 64, var9.field1882 + 768, -50, -10, -50);
+					var7 = var8.toModel(var9.ambient + 64, var9.contrast + 768, -50, -10, -50);
 				}
 
-				Widget_cachedSpriteMasks.put(var7, (long)(var6 + (var5 << 16)));
+				Widget_cachedModels.put(var7, (long)(var6 + (var5 << 16)));
 			}
 
 			if (var1 != null) {
@@ -1485,7 +1486,7 @@ public class Widget extends Node {
 			return null;
 		} else {
 			long var3 = ((long)this.spriteShadow << 40) + ((this.spriteFlipV ? 1L : 0L) << 38) + ((long)this.outline << 36) + (long)var2 + ((this.spriteFlipH ? 1L : 0L) << 39);
-			SpriteMask var5 = (SpriteMask)archive0.get(var3);
+			SpriteMask var5 = (SpriteMask) Widget_cachedSpriteMasks.get(var3);
 			if (var5 != null) {
 				return var5;
 			} else {
@@ -1521,7 +1522,7 @@ public class Widget extends Node {
 					}
 
 					var5 = new SpriteMask(var7.subWidth, var7.subHeight, var9, var8, var2);
-					archive0.put(var5, var3);
+					Widget_cachedSpriteMasks.put(var5, var3);
 					return var5;
 				}
 			}
@@ -1592,8 +1593,8 @@ public class Widget extends Node {
 		}
 
 		int var5 = var1;
-		if (var3 + var1 > class81.canvasHeight) {
-			var5 = class81.canvasHeight - var3;
+		if (var3 + var1 > MouseRecorder.canvasHeight) {
+			var5 = MouseRecorder.canvasHeight - var3;
 		}
 
 		if (var5 < 0) {

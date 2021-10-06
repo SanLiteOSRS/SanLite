@@ -242,12 +242,14 @@ public class ItemComposition extends DualNode {
 	@ObfuscatedGetter(
 		intValue = 1533114405
 	)
-	public int field1892;
+	@Export("ambient")
+	public int ambient;
 	@ObfuscatedName("bt")
 	@ObfuscatedGetter(
 		intValue = 912582123
 	)
-	public int field1882;
+	@Export("contrast")
+	public int contrast;
 	@ObfuscatedName("bg")
 	@ObfuscatedGetter(
 		intValue = 1758157485
@@ -325,8 +327,8 @@ public class ItemComposition extends DualNode {
 		this.resizeX = 128;
 		this.resizeY = 128;
 		this.resizeZ = 128;
-		this.field1892 = 0;
-		this.field1882 = 0;
+		this.ambient = 0;
+		this.contrast = 0;
 		this.team = 0;
 		this.isTradable = false;
 		this.unnotedId = -1;
@@ -473,9 +475,9 @@ public class ItemComposition extends DualNode {
 			} else if (var2 == 112) {
 				this.resizeZ = var1.readUnsignedShort();
 			} else if (var2 == 113) {
-				this.field1892 = var1.readByte();
+				this.ambient = var1.readByte();
 			} else if (var2 == 114) {
-				this.field1882 = var1.readByte() * 5;
+				this.contrast = var1.readByte() * 5;
 			} else if (var2 == 115) {
 				this.team = var1.readUnsignedByte();
 			} else if (var2 == 139) {
@@ -678,7 +680,7 @@ public class ItemComposition extends DualNode {
 					}
 				}
 
-				var5 = var6.toModel(this.field1892 + 64, this.field1882 + 768, -50, -10, -50);
+				var5 = var6.toModel(this.ambient + 64, this.contrast + 768, -50, -10, -50);
 				var5.isSingleTile = true;
 				ItemDefinition_cachedModels.put(var5, (long)this.id);
 				return var5;

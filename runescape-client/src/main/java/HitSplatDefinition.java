@@ -30,14 +30,14 @@ public class HitSplatDefinition extends DualNode {
 	@ObfuscatedSignature(
 		descriptor = "Lii;"
 	)
-	@Export("HealthBarDefinition_cached")
-	static EvictingDualNodeHashTable HealthBarDefinition_cached;
+	@Export("HitSplatDefinition_cachedSprites")
+	static EvictingDualNodeHashTable HitSplatDefinition_cachedSprites;
 	@ObfuscatedName("k")
 	@ObfuscatedSignature(
 		descriptor = "Lii;"
 	)
-	@Export("HealthBarDefinition_cachedSprites")
-	static EvictingDualNodeHashTable HealthBarDefinition_cachedSprites;
+	@Export("HitSplatDefinition_cachedFonts")
+	static EvictingDualNodeHashTable HitSplatDefinition_cachedFonts;
 	@ObfuscatedName("w")
 	@ObfuscatedGetter(
 		intValue = -999465827
@@ -120,8 +120,8 @@ public class HitSplatDefinition extends DualNode {
 
 	static {
 		HitSplatDefinition_cached = new EvictingDualNodeHashTable(64);
-		HealthBarDefinition_cached = new EvictingDualNodeHashTable(64);
-		HealthBarDefinition_cachedSprites = new EvictingDualNodeHashTable(20);
+		HitSplatDefinition_cachedSprites = new EvictingDualNodeHashTable(64);
+		HitSplatDefinition_cachedFonts = new EvictingDualNodeHashTable(20);
 	}
 
 	HitSplatDefinition() {
@@ -280,13 +280,13 @@ public class HitSplatDefinition extends DualNode {
 		if (this.field1819 < 0) {
 			return null;
 		} else {
-			SpritePixels var1 = (SpritePixels)HealthBarDefinition_cached.get((long)this.field1819);
+			SpritePixels var1 = (SpritePixels) HitSplatDefinition_cachedSprites.get((long)this.field1819);
 			if (var1 != null) {
 				return var1;
 			} else {
 				var1 = AccessFile.SpriteBuffer_getSprite(field1799, this.field1819, 0);
 				if (var1 != null) {
-					HealthBarDefinition_cached.put(var1, (long)this.field1819);
+					HitSplatDefinition_cachedSprites.put(var1, (long)this.field1819);
 				}
 
 				return var1;
@@ -303,13 +303,13 @@ public class HitSplatDefinition extends DualNode {
 		if (this.field1808 < 0) {
 			return null;
 		} else {
-			SpritePixels var1 = (SpritePixels)HealthBarDefinition_cached.get((long)this.field1808);
+			SpritePixels var1 = (SpritePixels) HitSplatDefinition_cachedSprites.get((long)this.field1808);
 			if (var1 != null) {
 				return var1;
 			} else {
 				var1 = AccessFile.SpriteBuffer_getSprite(field1799, this.field1808, 0);
 				if (var1 != null) {
-					HealthBarDefinition_cached.put(var1, (long)this.field1808);
+					HitSplatDefinition_cachedSprites.put(var1, (long)this.field1808);
 				}
 
 				return var1;
@@ -326,13 +326,13 @@ public class HitSplatDefinition extends DualNode {
 		if (this.field1805 < 0) {
 			return null;
 		} else {
-			SpritePixels var1 = (SpritePixels)HealthBarDefinition_cached.get((long)this.field1805);
+			SpritePixels var1 = (SpritePixels) HitSplatDefinition_cachedSprites.get((long)this.field1805);
 			if (var1 != null) {
 				return var1;
 			} else {
 				var1 = AccessFile.SpriteBuffer_getSprite(field1799, this.field1805, 0);
 				if (var1 != null) {
-					HealthBarDefinition_cached.put(var1, (long)this.field1805);
+					HitSplatDefinition_cachedSprites.put(var1, (long)this.field1805);
 				}
 
 				return var1;
@@ -349,13 +349,13 @@ public class HitSplatDefinition extends DualNode {
 		if (this.field1812 < 0) {
 			return null;
 		} else {
-			SpritePixels var1 = (SpritePixels)HealthBarDefinition_cached.get((long)this.field1812);
+			SpritePixels var1 = (SpritePixels) HitSplatDefinition_cachedSprites.get((long)this.field1812);
 			if (var1 != null) {
 				return var1;
 			} else {
 				var1 = AccessFile.SpriteBuffer_getSprite(field1799, this.field1812, 0);
 				if (var1 != null) {
-					HealthBarDefinition_cached.put(var1, (long)this.field1812);
+					HitSplatDefinition_cachedSprites.put(var1, (long)this.field1812);
 				}
 
 				return var1;
@@ -373,13 +373,13 @@ public class HitSplatDefinition extends DualNode {
 		if (this.fontId == -1) {
 			return null;
 		} else {
-			Font var1 = (Font)HealthBarDefinition_cachedSprites.get((long)this.fontId);
+			Font var1 = (Font) HitSplatDefinition_cachedFonts.get((long)this.fontId);
 			if (var1 != null) {
 				return var1;
 			} else {
 				var1 = Actor.method2153(field1799, class17.HitSplatDefinition_fontsArchive, this.fontId, 0);
 				if (var1 != null) {
-					HealthBarDefinition_cachedSprites.put(var1, (long)this.fontId);
+					HitSplatDefinition_cachedFonts.put(var1, (long)this.fontId);
 				}
 
 				return var1;

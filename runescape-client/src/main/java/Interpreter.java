@@ -60,7 +60,8 @@ public class Interpreter {
 	@ObfuscatedSignature(
 		descriptor = "Lky;"
 	)
-	static Archive field835;
+	@Export("archive9")
+	static Archive archive9;
 	@ObfuscatedName("gl")
 	@ObfuscatedSignature(
 		descriptor = "Llt;"

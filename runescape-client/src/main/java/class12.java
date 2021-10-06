@@ -212,6 +212,6 @@ class class12 extends SSLSocket {
 		garbageValue = "19204"
 	)
 	static boolean method159() {
-		return WorldMapDecorationType.clientPreferences.field1209 >= Client.clientType;
+		return WorldMapDecorationType.clientPreferences.field1209 >= Client.field488;
 	}
 }

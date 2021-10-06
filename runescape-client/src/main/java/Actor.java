@@ -472,7 +472,7 @@ public abstract class Actor extends Renderable {
 	)
 	@Export("addHealthBar")
 	final void addHealthBar(int var1, int var2, int var3, int var4, int var5, int var6) {
-		HealthBarDefinition var8 = (HealthBarDefinition)HealthBarDefinition.field1674.get((long)var1);
+		HealthBarDefinition var8 = (HealthBarDefinition)HealthBarDefinition.HealthBarDefinition_cached.get((long)var1);
 		HealthBarDefinition var7;
 		if (var8 != null) {
 			var7 = var8;
@@ -483,7 +483,7 @@ public abstract class Actor extends Renderable {
 				var8.decode(new Buffer(var9));
 			}
 
-			HealthBarDefinition.field1674.put(var8, (long)var1);
+			HealthBarDefinition.HealthBarDefinition_cached.put(var8, (long)var1);
 			var7 = var8;
 		}
 
@@ -534,7 +534,7 @@ public abstract class Actor extends Renderable {
 	)
 	@Export("removeHealthBar")
 	final void removeHealthBar(int var1) {
-		HealthBarDefinition var3 = (HealthBarDefinition)HealthBarDefinition.field1674.get((long)var1);
+		HealthBarDefinition var3 = (HealthBarDefinition)HealthBarDefinition.HealthBarDefinition_cached.get((long)var1);
 		HealthBarDefinition var2;
 		if (var3 != null) {
 			var2 = var3;
@@ -545,7 +545,7 @@ public abstract class Actor extends Renderable {
 				var3.decode(new Buffer(var4));
 			}
 
-			HealthBarDefinition.field1674.put(var3, (long)var1);
+			HealthBarDefinition.HealthBarDefinition_cached.put(var3, (long)var1);
 			var2 = var3;
 		}
 

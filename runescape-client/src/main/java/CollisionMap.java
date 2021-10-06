@@ -528,8 +528,8 @@ public class CollisionMap {
 		garbageValue = "-90"
 	)
 	static void method3418(int var0) {
-		if (var0 != Client.field515) {
-			Client.field515 = var0;
+		if (var0 != Client.loginState) {
+			Client.loginState = var0;
 		}
 	}
 }

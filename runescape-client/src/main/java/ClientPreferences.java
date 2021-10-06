@@ -21,7 +21,7 @@ public class ClientPreferences {
 		descriptor = "Lcg;"
 	)
 	@Export("mouseRecorder")
-	static class81 mouseRecorder;
+	static MouseRecorder mouseRecorder;
 	@ObfuscatedName("f")
 	@Export("roofsHidden")
 	boolean roofsHidden;
@@ -41,7 +41,8 @@ public class ClientPreferences {
 	@Export("hideUsername")
 	boolean hideUsername;
 	@ObfuscatedName("a")
-	double field1212;
+	@Export("brightness")
+	double brightness;
 	@ObfuscatedName("e")
 	@ObfuscatedGetter(
 		intValue = -1221768457
@@ -77,7 +78,7 @@ public class ClientPreferences {
 		this.windowMode = 1;
 		this.rememberedUsername = null;
 		this.hideUsername = false;
-		this.field1212 = 0.8D;
+		this.brightness = 0.8D;
 		this.musicVolume = 127;
 		this.soundEffectsVolume = 127;
 		this.areaSoundEffectsVolume = 127;
@@ -93,7 +94,7 @@ public class ClientPreferences {
 		this.windowMode = 1;
 		this.rememberedUsername = null;
 		this.hideUsername = false;
-		this.field1212 = 0.8D;
+		this.brightness = 0.8D;
 		this.musicVolume = 127;
 		this.soundEffectsVolume = 127;
 		this.areaSoundEffectsVolume = 127;
@@ -133,7 +134,7 @@ public class ClientPreferences {
 				}
 
 				if (var2 > 6) {
-					this.field1212 = (double)var1.readUnsignedByte() / 100.0D;
+					this.brightness = (double)var1.readUnsignedByte() / 100.0D;
 					this.musicVolume = var1.readUnsignedByte();
 					this.soundEffectsVolume = var1.readUnsignedByte();
 					this.areaSoundEffectsVolume = var1.readUnsignedByte();
@@ -182,7 +183,7 @@ public class ClientPreferences {
 
 		var1.writeStringCp1252NullTerminated(this.rememberedUsername != null ? this.rememberedUsername : "");
 		var1.writeBoolean(this.hideUsername);
-		var1.writeByte((int)(100.0D * this.field1212));
+		var1.writeByte((int)(100.0D * this.brightness));
 		var1.writeByte(this.musicVolume);
 		var1.writeByte(this.soundEffectsVolume);
 		var1.writeByte(this.areaSoundEffectsVolume);

@@ -134,7 +134,7 @@ public class ScriptEvent extends Node {
 					}
 
 					if (var3 == 6) {
-						float var5 = 200.0F * ((float)WorldMapDecorationType.clientPreferences.field1212 - 0.5F);
+						float var5 = 200.0F * ((float)WorldMapDecorationType.clientPreferences.brightness - 0.5F);
 						var4 = 100 - Math.round(var5);
 					} else if (var3 == 7) {
 						var4 = Math.round((float)WorldMapDecorationType.clientPreferences.musicVolume / 2.55F);

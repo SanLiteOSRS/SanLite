@@ -93,7 +93,7 @@ public class WorldMapData_0 extends AbstractWorldMapData {
 				SoundEffect var1 = Client.soundEffects[var0];
 				if (var1 == null) {
 					Object var10000 = null;
-					var1 = SoundEffect.readSoundEffect(class260.field3029, Client.soundEffectIds[var0], 0);
+					var1 = SoundEffect.readSoundEffect(class260.archive4, Client.soundEffectIds[var0], 0);
 					if (var1 == null) {
 						continue;
 					}

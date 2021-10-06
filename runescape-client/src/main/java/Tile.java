@@ -9,7 +9,8 @@ import net.runelite.mapping.ObfuscatedSignature;
 @Implements("Tile")
 public final class Tile extends Node {
 	@ObfuscatedName("ft")
-	static SecureRandom field2340;
+	@Export("secureRandom")
+	static SecureRandom secureRandom;
 	@ObfuscatedName("ph")
 	@ObfuscatedSignature(
 		descriptor = "Lcf;"

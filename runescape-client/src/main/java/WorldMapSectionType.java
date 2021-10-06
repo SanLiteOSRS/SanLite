@@ -33,7 +33,8 @@ public enum WorldMapSectionType implements MouseWheel {
 	WORLDMAPSECTIONTYPE3(0, (byte)3);
 
 	@ObfuscatedName("qm")
-	static boolean field2142;
+	@Export("FriendsChatManager_inFriendsChat")
+	static boolean FriendsChatManager_inFriendsChat;
 	@ObfuscatedName("bo")
 	@ObfuscatedSignature(
 		descriptor = "Lny;"
@@ -132,8 +133,8 @@ public enum WorldMapSectionType implements MouseWheel {
 					int var10 = class245.getObjectDefinition(var9).mapIconId;
 					if (var10 >= 0 && class13.WorldMapElement_get(var10).field1634) {
 						Client.mapIcons[Client.mapIconCount] = class13.WorldMapElement_get(var10).getSpriteBool(false);
-						Client.field724[Client.mapIconCount] = var5;
-						Client.field725[Client.mapIconCount] = var6;
+						Client.mapIconXs[Client.mapIconCount] = var5;
+						Client.mapIconYs[Client.mapIconCount] = var6;
 						++Client.mapIconCount;
 					}
 				}

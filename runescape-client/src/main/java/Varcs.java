@@ -14,7 +14,7 @@ import net.runelite.mapping.ObfuscatedSignature;
 public class Varcs {
 	@ObfuscatedName("sj")
 	@ObfuscatedGetter(
-		intValue = -494452736
+		intValue = 1235978781
 	)
 	static int field1272;
 	@ObfuscatedName("fo")

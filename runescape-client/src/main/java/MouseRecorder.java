@@ -5,7 +5,7 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("cg")
-public class class81 implements Runnable {
+public class MouseRecorder implements Runnable {
 	@ObfuscatedName("u")
 	@ObfuscatedGetter(
 		intValue = -1289779463
@@ -16,8 +16,8 @@ public class class81 implements Runnable {
 	@ObfuscatedSignature(
 		descriptor = "Lky;"
 	)
-	@Export("archive4")
-	static Archive archive4;
+	@Export("archive1")
+	static Archive archive1;
 	@ObfuscatedName("l")
 	@Export("isRunning")
 	boolean isRunning;
@@ -40,7 +40,7 @@ public class class81 implements Runnable {
 	@Export("millis")
 	long[] millis;
 
-	class81() {
+	MouseRecorder() {
 		this.isRunning = true;
 		this.lock = new Object();
 		this.index = 0;

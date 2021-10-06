@@ -1,3 +1,4 @@
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
@@ -15,7 +16,8 @@ public class class260 {
 	@ObfuscatedSignature(
 		descriptor = "Lky;"
 	)
-	static Archive field3029;
+	@Export("archive4")
+	static Archive archive4;
 
 	static {
 		field3034 = new short[]{6798, 8741, 25238, 4626, 4550};

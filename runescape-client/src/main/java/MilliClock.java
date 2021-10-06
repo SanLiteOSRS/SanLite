@@ -200,7 +200,7 @@ public class MilliClock extends Clock {
 		garbageValue = "152507441"
 	)
 	public static void method2858() {
-		WorldMapElement.Widget_cachedSprites.clear();
+		WorldMapElement.WorldMapElement_cachedSprites.clear();
 	}
 
 	@ObfuscatedName("i")

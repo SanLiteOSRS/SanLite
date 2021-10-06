@@ -21,7 +21,8 @@ public class UrlRequester implements Runnable {
 	@ObfuscatedSignature(
 		descriptor = "Lep;"
 	)
-	static Task field1297;
+	@Export("socketTask")
+	static Task socketTask;
 	@ObfuscatedName("l")
 	@Export("thread")
 	final Thread thread;

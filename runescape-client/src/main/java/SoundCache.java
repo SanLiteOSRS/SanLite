@@ -389,7 +389,7 @@ public class SoundCache {
 						return 1;
 					} else if (var0 == ScriptOpcodes.GETCANVASSIZE) {
 						Interpreter.Interpreter_intStack[++AbstractByteArrayCopier.Interpreter_intStackSize - 1] = Huffman.canvasWidth;
-						Interpreter.Interpreter_intStack[++AbstractByteArrayCopier.Interpreter_intStackSize - 1] = class81.canvasHeight;
+						Interpreter.Interpreter_intStack[++AbstractByteArrayCopier.Interpreter_intStackSize - 1] = MouseRecorder.canvasHeight;
 						return 1;
 					} else if (var0 == ScriptOpcodes.MOBILE_SETFPS) {
 						--AbstractByteArrayCopier.Interpreter_intStackSize;
@@ -567,7 +567,7 @@ public class SoundCache {
 							class268.method5105((double)((float)var10 / 200.0F + 0.5F));
 							return 1;
 						} else if (var0 == 3182) {
-							float var3 = 200.0F * ((float)WorldMapDecorationType.clientPreferences.field1212 - 0.5F);
+							float var3 = 200.0F * ((float)WorldMapDecorationType.clientPreferences.brightness - 0.5F);
 							Interpreter.Interpreter_intStack[++AbstractByteArrayCopier.Interpreter_intStackSize - 1] = 100 - Math.round(var3);
 							return 1;
 						} else if (var0 != 3183 && var0 != 3184) {

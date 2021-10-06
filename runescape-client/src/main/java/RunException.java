@@ -11,7 +11,8 @@ public class RunException extends RuntimeException {
 	@Export("RunException_applet")
 	public static Applet RunException_applet;
 	@ObfuscatedName("q")
-	public static String field4431;
+	@Export("localPlayerName")
+	public static String localPlayerName;
 	@ObfuscatedName("f")
 	@ObfuscatedGetter(
 		intValue = -2072562331

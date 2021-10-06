@@ -116,7 +116,7 @@ public class ObjectComposition extends DualNode {
 	public int int1;
 	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = 1940658432
+		intValue = 779332633
 	)
 	@Export("clipType")
 	int clipType;

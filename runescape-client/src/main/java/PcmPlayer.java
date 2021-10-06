@@ -11,12 +11,12 @@ import net.runelite.rs.ScriptOpcodes;
 public class PcmPlayer {
 	@ObfuscatedName("sm")
 	@ObfuscatedGetter(
-		intValue = 1660829696
+		intValue = 2053999609
 	)
 	static int field284;
 	@ObfuscatedName("m")
 	@ObfuscatedGetter(
-		intValue = -1759201462
+		intValue = 1333600085
 	)
 	public static int field279;
 	@ObfuscatedName("k")

@@ -228,7 +228,7 @@ public final class NPC extends Actor {
 		PacketBufferNode var2 = LoginScreenAnimation.getPacketBufferNode(ClientPacket.field2718, Client.packetWriter.isaacCipher);
 		var2.packetBuffer.writeByte(class12.getWindowedMode());
 		var2.packetBuffer.writeShort(Huffman.canvasWidth);
-		var2.packetBuffer.writeShort(class81.canvasHeight);
+		var2.packetBuffer.writeShort(MouseRecorder.canvasHeight);
 		Client.packetWriter.addNode(var2);
 	}
 }

@@ -204,7 +204,7 @@ public class PacketWriter {
 		garbageValue = "-2081885223"
 	)
 	static final void method2354() {
-		if (WorldMapSectionType.field2142) {
+		if (WorldMapSectionType.FriendsChatManager_inFriendsChat) {
 			if (class264.friendsChatManager != null) {
 				class264.friendsChatManager.sort();
 			}
@@ -214,7 +214,7 @@ public class PacketWriter {
 				var1.clearIsInFriendsChat();
 			}
 
-			WorldMapSectionType.field2142 = false;
+			WorldMapSectionType.FriendsChatManager_inFriendsChat = false;
 		}
 
 	}
