@@ -64,6 +64,7 @@ import static java.lang.Math.min;
 	name = "Developer Tools Extended",
 	description = "Adds the developer tools button to side-panel with various tools to assist development of the client",
 	tags = {"panel", "dev", "camera", "debug", "sanlite"},
+	conflicts = "Developer Tools",
 	enabledByDefault = false
 )
 @Getter

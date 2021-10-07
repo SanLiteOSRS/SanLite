@@ -305,8 +305,6 @@ public enum Varbits
 	 */
 	FEROX_ENCLAVE_BUFFER_ZONE(10530),
 
-
-
 	/* RuneLite varbits */
 
 	/*
@@ -573,6 +571,7 @@ public enum Varbits
 
 	// 0 = raid not started, >0 = raid started
 	RAID_STATE(5425),
+	RAID_DURATION_TICK_COUNT(6386),
 
 	/**
 	 * Making Friends with My Arm fire pits
@@ -874,7 +873,17 @@ public enum Varbits
 	 *
 	 * @see <a href="https://oldschool.runescape.wiki/w/Minimap#Special_attack_orb">The OSRS Wiki's Minimap page</a>
 	 */
-	PVP_SPEC_ORB(8121);
+	PVP_SPEC_ORB(8121),
+
+	/**
+	 * Collection Log notification settings whenever a new item is added
+	 *
+	 * 0 = no notification
+	 * 1 = chat notification only
+	 * 2 = popup notification only
+	 * 3 = chat and popup
+	 */
+	COLLECTION_LOG_NOTIFICATION(11959);
 
 	/**
 	 * The raw varbit ID.

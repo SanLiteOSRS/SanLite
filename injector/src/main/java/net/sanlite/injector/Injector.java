@@ -17,9 +17,11 @@ import net.sanlite.injector.injectors.MixinInjector;
 import net.sanlite.injector.injectors.RSApiInjector;
 import net.sanlite.injector.injectors.raw.ClearColorBuffer;
 import net.sanlite.injector.injectors.raw.DrawMenu;
+import net.sanlite.injector.injectors.raw.GraphicsObject;
 import net.sanlite.injector.injectors.raw.Occluder;
 import net.sanlite.injector.injectors.raw.RasterizerAlpha;
 import net.sanlite.injector.injectors.raw.RenderDraw;
+import net.sanlite.injector.injectors.raw.RuneliteObject;
 import net.sanlite.injector.injectors.raw.ScriptVM;
 import net.sanlite.injector.rsapi.RSApi;
 import net.sanlite.injector.transformers.InjectTransformer;
@@ -81,17 +83,17 @@ public class Injector extends InjectData implements InjectTaskHandler
 						});
 
 		OptionSet options = parser.parse(args);
-		String oprsVer = options.valueOf(sanLiteVerOption);
+		String projectVersion = options.valueOf(sanLiteVerOption);
 
 		File vanillaFile = options.valueOf(vanillaFileOption);
 		injector.vanilla = load(vanillaFile);
 		injector.deobfuscated = load(
-				new File("../runescape-client/build/libs/runescape-client-" + oprsVer + ".jar"));
+				new File("../runescape-client/build/libs/runescape-client-" + projectVersion + ".jar"));
 		injector.rsApi = new RSApi(Objects.requireNonNull(
 				new File("../runescape-api/build/classes/java/main/net/runelite/rs/api/")
 						.listFiles()));
 		injector.mixins = load(
-				new File("../runelite-mixins/build/libs/runelite-mixins-" + oprsVer + ".jar"));
+				new File("../runelite-mixins/build/libs/runelite-mixins-" + projectVersion + ".jar"));
 
 		File oldInjected = new File("../runelite-client/src/main/resources/net/runelite/client/injected-client.rs");
 		if (oldInjected.exists())
@@ -102,6 +104,94 @@ public class Injector extends InjectData implements InjectTaskHandler
 		injector.initToVanilla();
 		injector.injectVanilla();
 		save(injector.getVanilla(), options.valueOf(outFileOption), options.valueOf(outModeOption), vanillaFile);
+	}
+
+	public void injectVanilla()
+	{
+		log.debug("[DEBUG] Starting injection");
+
+		transform(new Java8Ifier(this));
+
+		inject(new CreateAnnotations(this));
+
+		inject(new RuneliteObject(this));
+
+		inject(new InterfaceInjector(this));
+
+		inject(new RasterizerAlpha(this));
+
+		inject(new MixinInjector(this));
+
+		// This is where field hooks runs
+
+		// This is where method hooks runs
+
+		inject(new InjectConstruct(this));
+
+		inject(new RSApiInjector(this));
+
+		//inject(new DrawAfterWidgets(this));
+
+		inject(new ScriptVM(this));
+
+		// All GPU raw injectors should probably be combined, especially RenderDraw and Occluder
+		inject(new ClearColorBuffer(this));
+
+		inject(new RenderDraw(this));
+
+		inject(new Occluder(this));
+
+		inject(new DrawMenu(this));
+
+		inject(new GraphicsObject(this));
+
+		validate(new InjectorValidator(this));
+
+		transform(new SourceChanger(this));
+	}
+
+	private void inject(net.sanlite.injector.injectors.Injector injector)
+	{
+		final String name = injector.getName();
+
+		log.lifecycle("[INFO] Starting {}", name);
+
+		injector.start();
+
+		injector.inject();
+
+		log.lifecycle("{} {}", name, injector.getCompletionMsg());
+
+		if (injector instanceof Validator)
+		{
+			validate((Validator) injector);
+		}
+	}
+
+	private void validate(Validator validator)
+	{
+		final String name = validator.getName();
+
+		if (!validator.validate())
+		{
+			throw new InjectException(name + " failed validation");
+		}
+	}
+
+	private void transform(InjectTransformer transformer)
+	{
+		final String name = transformer.getName();
+
+		log.info("[INFO] Starting {}", name);
+
+		transformer.transform();
+
+		log.lifecycle("{} {}", name, transformer.getCompletionMsg());
+	}
+
+	public void runChildInjector(net.sanlite.injector.injectors.Injector injector)
+	{
+		inject(injector);
 	}
 
 	private static void save(ClassGroup group, File output, OutputMode mode, File vanillaFile)
@@ -160,89 +250,5 @@ public class Injector extends InjectData implements InjectTaskHandler
 		{
 			e.printStackTrace();
 		}
-	}
-
-	public void injectVanilla()
-	{
-		log.debug("[DEBUG] Starting injection");
-
-		transform(new Java8Ifier(this));
-
-		inject(new CreateAnnotations(this));
-
-		inject(new InterfaceInjector(this));
-
-		inject(new RasterizerAlpha(this));
-
-		inject(new MixinInjector(this));
-
-		// This is where field hooks runs
-
-		// This is where method hooks runs
-
-		inject(new InjectConstruct(this));
-
-		inject(new RSApiInjector(this));
-
-		//inject(new DrawAfterWidgets(this));
-
-		inject(new ScriptVM(this));
-
-		// All GPU raw injectors should probably be combined, especially RenderDraw and Occluder
-		inject(new ClearColorBuffer(this));
-
-		inject(new RenderDraw(this));
-
-		inject(new Occluder(this));
-
-		inject(new DrawMenu(this));
-
-		validate(new InjectorValidator(this));
-
-		transform(new SourceChanger(this));
-	}
-
-	private void inject(net.sanlite.injector.injectors.Injector injector)
-	{
-		final String name = injector.getName();
-
-		log.lifecycle("[INFO] Starting {}", name);
-
-		injector.start();
-
-		injector.inject();
-
-		log.lifecycle("{} {}", name, injector.getCompletionMsg());
-
-		if (injector instanceof Validator)
-		{
-			validate((Validator) injector);
-		}
-	}
-
-	private void validate(Validator validator)
-	{
-		final String name = validator.getName();
-
-		if (!validator.validate())
-		{
-			throw new InjectException(name + " failed validation");
-		}
-	}
-
-	private void transform(InjectTransformer transformer)
-	{
-		final String name = transformer.getName();
-
-		log.info("[INFO] Starting {}", name);
-
-		transformer.transform();
-
-		log.lifecycle("{} {}", name, transformer.getCompletionMsg());
-	}
-
-	public void runChildInjector(net.sanlite.injector.injectors.Injector injector)
-	{
-		inject(injector);
 	}
 }

@@ -54,8 +54,9 @@ import static net.runelite.api.MenuAction.*;
 
 @PluginDescriptor(
 	name = "Player Indicators Extended",
-	description = "Highlight players on-screen and/or on the minimap. NOTE: Disable 'Player Indicators' plugin while using this!",
+	description = "Highlight players on-screen and/or on the minimap",
 	tags = {"highlight", "minimap", "overlay", "players", "friend", "finder", "offline", "pvp", "name", "notifications", "sanlite"},
+	conflicts = "Player Indicators",
 	enabledByDefault = false
 )
 public class PlayerIndicatorsExtendedPlugin extends Plugin

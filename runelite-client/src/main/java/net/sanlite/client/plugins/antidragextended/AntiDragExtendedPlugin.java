@@ -46,8 +46,9 @@ import net.runelite.client.plugins.PluginDescriptor;
 
 @PluginDescriptor(
 	name = "Anti Drag Extended",
-	description = "Prevent dragging an item for a specified delay. NOTE: Disable 'Anti Drag' plugin while using this!",
+	description = "Prevent dragging an item for a specified delay",
 	tags = {"antidrag", "delay", "inventory", "items", "keybind", "sanlite"},
+	conflicts = "Anti Drag",
 	enabledByDefault = false
 )
 public class AntiDragExtendedPlugin extends Plugin implements KeyListener

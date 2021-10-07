@@ -39,7 +39,7 @@ public class ExecutionTest
 	@Test
 	public void test() throws Exception
 	{
-		ClassGroup group1 = JarUtil.load(new File(properties.getVanillaClient()));
+		ClassGroup group1 = JarUtil.load(new File(properties.getVanillaClient()), true);
 		Execution e = new Execution(group1);
 		e.populateInitialMethods();
 		e.run();

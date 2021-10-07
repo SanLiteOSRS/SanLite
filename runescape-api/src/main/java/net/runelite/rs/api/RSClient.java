@@ -1339,10 +1339,10 @@ public interface RSClient extends RSGameEngine, Client
 	RSAbstractArchive getSequenceDefinition_animationsArchive();
 
 	@Import("NpcDefinition_archive")
-	AbstractArchive getNpcDefinition_archive();
+	RSAbstractArchive getNpcDefinition_archive();
 
 	@Import("ObjectDefinition_modelsArchive")
-	AbstractArchive getObjectDefinition_modelsArchive();
+	RSAbstractArchive getObjectDefinition_modelsArchive();
 
 	@Import("ObjectDefinition_archive")
 	RSAbstractArchive getObjectDefinition_archive();
@@ -1351,16 +1351,16 @@ public interface RSClient extends RSGameEngine, Client
 	RSAbstractArchive getItemDefinition_archive();
 
 	@Import("KitDefinition_archive")
-	AbstractArchive getKitDefinition_archive();
+	RSAbstractArchive getKitDefinition_archive();
 
 	@Import("KitDefinition_modelsArchive")
-	AbstractArchive getKitDefinition_modelsArchive();
+	RSAbstractArchive getKitDefinition_modelsArchive();
 
 	@Import("SpotAnimationDefinition_archive")
-	AbstractArchive getSpotAnimationDefinition_archive();
+	RSAbstractArchive getSpotAnimationDefinition_archive();
 
 	@Import("SpotAnimationDefinition_modelArchive")
-	AbstractArchive getSpotAnimationDefinition_modelArchive();
+	RSAbstractArchive getSpotAnimationDefinition_modelArchive();
 
 	@Construct
 	RSBuffer createBuffer(byte[] bytes);
@@ -1390,6 +1390,9 @@ public interface RSClient extends RSGameEngine, Client
 
 	ClanRank getClanRankFromRs(int rank);
 
+	@Import("readStringIntParameters")
+	RSIterableNodeHashTable readStringIntParameters(RSBuffer buffer, RSIterableNodeHashTable table);
+
 	@Import("rndHue")
 	int getRndHue();
 
@@ -1401,4 +1404,10 @@ public interface RSClient extends RSGameEngine, Client
 
 	@Import("Tiles_shapes")
 	byte[][][] getTileShapes();
+
+	@Import("SpotAnimationDefinition_get")
+	RSSpotAnimationDefinition getSpotAnimationDefinition(int id);
+
+	@Import("ModelData_get")
+	RSModelData getModelData(RSAbstractArchive var0, int var1, int var2);
 }

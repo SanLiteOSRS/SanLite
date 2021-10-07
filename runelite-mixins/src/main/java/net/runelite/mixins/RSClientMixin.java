@@ -30,45 +30,12 @@ import com.google.common.cache.CacheBuilder;
 import java.util.*;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import net.runelite.api.ChatMessageType;
-import net.runelite.api.EnumComposition;
-import net.runelite.api.Friend;
-import net.runelite.api.GameState;
-import net.runelite.api.GrandExchangeOffer;
-import net.runelite.api.GraphicsObject;
-import net.runelite.api.HashTable;
-import net.runelite.api.HintArrowType;
-import net.runelite.api.Ignore;
-import net.runelite.api.IndexDataBase;
-import net.runelite.api.IndexedSprite;
-import net.runelite.api.IntegerNode;
-import net.runelite.api.InventoryID;
-import net.runelite.api.ItemComposition;
-import net.runelite.api.MenuAction;
-import net.runelite.api.MenuEntry;
-import net.runelite.api.MessageNode;
-import net.runelite.api.NPC;
-import net.runelite.api.NPCComposition;
-import net.runelite.api.NameableContainer;
-import net.runelite.api.Node;
-import net.runelite.api.NodeCache;
-import net.runelite.api.ObjectComposition;
+
+import net.runelite.api.*;
 
 import static net.runelite.api.MenuAction.*;
 import static net.runelite.api.Perspective.LOCAL_TILE_SIZE;
-import net.runelite.api.Player;
-import net.runelite.api.Point;
-import net.runelite.api.Prayer;
-import net.runelite.api.Projectile;
-import net.runelite.api.ScriptEvent;
-import net.runelite.api.Skill;
-import net.runelite.api.SpritePixels;
-import net.runelite.api.StructComposition;
-import net.runelite.api.Tile;
-import net.runelite.api.VarPlayer;
-import net.runelite.api.Varbits;
-import net.runelite.api.WidgetNode;
-import net.runelite.api.WorldType;
+
 import net.runelite.api.clan.ClanChannel;
 import net.runelite.api.clan.ClanRank;
 import net.runelite.api.clan.ClanSettings;
@@ -90,29 +57,7 @@ import net.runelite.api.widgets.WidgetConfig;
 import net.runelite.api.widgets.WidgetInfo;
 import net.runelite.api.widgets.WidgetItem;
 import net.runelite.api.widgets.WidgetType;
-import net.runelite.rs.api.RSAbstractArchive;
-import net.runelite.rs.api.RSChatChannel;
-import net.runelite.rs.api.RSClient;
-import net.runelite.rs.api.RSEnumComposition;
-import net.runelite.rs.api.RSFriendSystem;
-import net.runelite.rs.api.RSIndexedSprite;
-import net.runelite.rs.api.RSInterfaceParent;
-import net.runelite.rs.api.RSItemContainer;
-import net.runelite.rs.api.RSNPC;
-import net.runelite.rs.api.RSNode;
-import net.runelite.rs.api.RSNodeDeque;
-import net.runelite.rs.api.RSNodeHashTable;
-import net.runelite.rs.api.RSPacketBuffer;
-import net.runelite.rs.api.RSPlayer;
-import net.runelite.rs.api.RSScene;
-import net.runelite.rs.api.RSScriptEvent;
-import net.runelite.rs.api.RSSpritePixels;
-import net.runelite.rs.api.RSStructComposition;
-import net.runelite.rs.api.RSTile;
-import net.runelite.rs.api.RSTileItem;
-import net.runelite.rs.api.RSUsername;
-import net.runelite.rs.api.RSWidget;
-import net.runelite.rs.api.RSWorld;
+import net.runelite.rs.api.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -1241,7 +1186,7 @@ public abstract class RSClientMixin implements RSClient
 		menuOptionClicked.setMenuTarget(target);
 		menuOptionClicked.setMenuAction(MenuAction.of(menuAction));
 		menuOptionClicked.setId(id);
-
+		menuOptionClicked.setSelectedItemIndex(client.getSelectedItemSlot());
 		client.getCallbacks().post(menuOptionClicked);
 
 		if (menuOptionClicked.isConsumed())
@@ -1879,9 +1824,35 @@ public abstract class RSClientMixin implements RSClient
 
 	@Inject
 	@Override
+	public ClanChannel getClanChannel(int clanId)
+	{
+		ClanChannel[] clanChannels = client.getCurrentClanChannels();
+		if (clanId >= 0 && clanId < clanChannels.length)
+		{
+			return clanChannels[clanId];
+		}
+
+		return null;
+	}
+
+	@Inject
+	@Override
 	public ClanSettings getClanSettings()
 	{
 		return getCurrentClanSettingsArray()[0];
+	}
+
+	@Inject
+	@Override
+	public ClanSettings getClanSettings(int clanId)
+	{
+		ClanSettings[] clanSettings = getCurrentClanSettingsArray();
+		if (clanId >= 0 && clanId < clanSettings.length)
+		{
+			return clanSettings[clanId];
+		}
+
+		return null;
 	}
 
 	@Inject
@@ -1989,6 +1960,34 @@ public abstract class RSClientMixin implements RSClient
 			scene.setOverlayIds(Arrays.copyOf(overlays, overlays.length));
 			scene.setTileShapes(Arrays.copyOf(tileShapes, tileShapes.length));
 		}
+	}
+
+	@Inject
+	public Model loadModel(int id)
+	{
+		return loadModel(id, null, null);
+	}
+
+	@Inject
+	public Model loadModel(int id, short[] colorToFind, short[] colorToReplace)
+	{
+		RSModelData modelData = client.getModelData(client.getObjectDefinition_modelsArchive(), id, 0);
+
+		if (colorToFind != null)
+		{
+			for (int i = 0; i < colorToFind.length; ++i)
+			{
+				modelData.recolor(colorToFind[i], colorToReplace[i]);
+			}
+		}
+
+		return modelData.toModel(modelData.getAmbient() + 64, modelData.getContrast() + 850, -30, -50, -30);
+	}
+
+	@Inject
+	public Sequence loadAnimation(int id)
+	{
+		return client.getSequenceDefinition(id);
 	}
 }
 

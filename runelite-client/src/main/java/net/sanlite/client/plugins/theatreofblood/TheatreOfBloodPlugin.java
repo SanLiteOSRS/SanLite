@@ -430,7 +430,7 @@ public class TheatreOfBloodPlugin extends Plugin
 			return;
 		}
 
-		if (Pattern.matches("Wave '.+' complete! Duration: .+", Text.removeTags(event.getMessage())))
+		if (Pattern.matches("Wave .+ complete!", Text.removeTags(event.getMessage())))
 		{
 			resetCurrentEncounter();
 			log.debug("Encounter ended due to wave completion");

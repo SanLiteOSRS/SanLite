@@ -465,7 +465,6 @@ public class MenuEntrySwapperPlugin extends Plugin
 
 	private void resetItemCompositionCache()
 	{
-		itemManager.invalidateItemCompositionCache();
 		client.getItemCompositionCache().reset();
 	}
 
@@ -588,20 +587,24 @@ public class MenuEntrySwapperPlugin extends Plugin
 		// widget ticking and prior to our client tick event. This is because drag start
 		// is what builds the context menu row which is what the eventual click will use
 
+		final int widgetGroupId = WidgetInfo.TO_GROUP(event.getActionParam1());
+
+		final boolean isDepositBoxPlayerInventory = widgetGroupId == WidgetID.DEPOSIT_BOX_GROUP_ID;
+		final boolean isChambersOfXericStorageUnitPlayerInventory = widgetGroupId == WidgetID.CHAMBERS_OF_XERIC_STORAGE_UNIT_INVENTORY_GROUP_ID;
+
 		// Swap to shift-click deposit behavior
 		// Deposit- op 1 is the current withdraw amount 1/5/10/x for deposit box interface and chambers of xeric storage unit.
 		// Deposit- op 2 is the current withdraw amount 1/5/10/x for bank interface
 		if (event.getType() == MenuAction.CC_OP.getId()
-			&& (event.getIdentifier() == 2 || event.getIdentifier() == 1)
+			&& event.getIdentifier() == (isDepositBoxPlayerInventory || isChambersOfXericStorageUnitPlayerInventory ? 1 : 2)
 			&& (event.getOption().startsWith("Deposit-") || event.getOption().startsWith("Store") || event.getOption().startsWith("Donate")))
 		{
 			// Swap to shift-click deposit behavior
 			if (shiftModifier() && config.bankDepositShiftClick() != ShiftDepositMode.OFF)
 			{
 				ShiftDepositMode shiftDepositMode = config.bankDepositShiftClick();
-				final int widgetGroupId = WidgetInfo.TO_GROUP(event.getActionParam1());
-				final int opId = widgetGroupId == WidgetID.DEPOSIT_BOX_GROUP_ID ? shiftDepositMode.getIdentifierDepositBox()
-						: widgetGroupId == WidgetID.CHAMBERS_OF_XERIC_STORAGE_UNIT_INVENTORY_GROUP_ID ? shiftDepositMode.getIdentifierChambersStorageUnit()
+				final int opId = isDepositBoxPlayerInventory ? shiftDepositMode.getIdentifierDepositBox()
+						: isChambersOfXericStorageUnitPlayerInventory ? shiftDepositMode.getIdentifierChambersStorageUnit()
 						: shiftDepositMode.getIdentifier();
 				final int actionId = opId >= 6 ? MenuAction.CC_OP_LOW_PRIORITY.getId() : MenuAction.CC_OP.getId();
 				bankModeSwap(actionId, opId);
@@ -621,7 +624,6 @@ public class MenuEntrySwapperPlugin extends Plugin
 			&& event.getOption().startsWith("Withdraw"))
 		{
 			ShiftWithdrawMode shiftWithdrawMode = config.bankWithdrawShiftClick();
-			final int widgetGroupId = WidgetInfo.TO_GROUP(event.getActionParam1());
 			final int actionId, opId;
 			if (widgetGroupId == WidgetID.CHAMBERS_OF_XERIC_STORAGE_UNIT_PRIVATE_GROUP_ID || widgetGroupId == WidgetID.CHAMBERS_OF_XERIC_STORAGE_UNIT_SHARED_GROUP_ID)
 			{

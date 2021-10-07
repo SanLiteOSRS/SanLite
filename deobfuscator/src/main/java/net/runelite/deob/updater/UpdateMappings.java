@@ -93,8 +93,8 @@ public class UpdateMappings
 		}
 
 		UpdateMappings u = new UpdateMappings(
-			JarUtil.load(new File(args[0])),
-			JarUtil.load(new File(args[1]))
+			JarUtil.load(new File(args[0]), true),
+			JarUtil.load(new File(args[1]), true)
 		);
 		u.update();
 		u.save(new File(args[2]));
