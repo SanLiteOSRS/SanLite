@@ -244,7 +244,8 @@ public class ObjectComposition extends DualNode {
 	@ObfuscatedGetter(
 		intValue = 1584485603
 	)
-	public int field1861;
+	@Export("int7")
+	public int int7;
 	@ObfuscatedName("aw")
 	@ObfuscatedGetter(
 		intValue = -2032112943
@@ -261,7 +262,8 @@ public class ObjectComposition extends DualNode {
 	@Export("soundEffectIds")
 	public int[] soundEffectIds;
 	@ObfuscatedName("ai")
-	public boolean field1870;
+	@Export("boolean3")
+	public boolean boolean3;
 	@ObfuscatedName("af")
 	@ObfuscatedSignature(
 		descriptor = "Lnz;"
@@ -309,10 +311,10 @@ public class ObjectComposition extends DualNode {
 		this.transformVarbit = -1;
 		this.transformVarp = -1;
 		this.ambientSoundId = -1;
-		this.field1861 = 0;
+		this.int7 = 0;
 		this.int5 = 0;
 		this.int6 = 0;
-		this.field1870 = true;
+		this.boolean3 = true;
 	}
 
 	@ObfuscatedName("f")
@@ -482,11 +484,11 @@ public class ObjectComposition extends DualNode {
 		} else if (var2 != 77 && var2 != 92) {
 			if (var2 == 78) {
 				this.ambientSoundId = var1.readUnsignedShort();
-				this.field1861 = var1.readUnsignedByte();
+				this.int7 = var1.readUnsignedByte();
 			} else if (var2 == 79) {
 				this.int5 = var1.readUnsignedShort();
 				this.int6 = var1.readUnsignedShort();
-				this.field1861 = var1.readUnsignedByte();
+				this.int7 = var1.readUnsignedByte();
 				var3 = var1.readUnsignedByte();
 				this.soundEffectIds = new int[var3];
 
@@ -498,7 +500,7 @@ public class ObjectComposition extends DualNode {
 			} else if (var2 == 82) {
 				this.mapIconId = var1.readUnsignedShort();
 			} else if (var2 == 89) {
-				this.field1870 = false;
+				this.boolean3 = false;
 			} else if (var2 == 249) {
 				this.params = KeyHandler.readStringIntParameters(var1, this.params);
 			}

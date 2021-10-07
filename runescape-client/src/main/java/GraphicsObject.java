@@ -6,7 +6,7 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("bs")
 @Implements("GraphicsObject")
-public final class GraphicsObject extends Renderable {
+public class GraphicsObject extends Renderable {
 	@ObfuscatedName("tl")
 	@ObfuscatedGetter(
 		intValue = 1912460385
@@ -97,13 +97,18 @@ public final class GraphicsObject extends Renderable {
 
 	}
 
+	public GraphicsObject()
+	{
+
+	}
+
 	@ObfuscatedName("l")
 	@ObfuscatedSignature(
 		descriptor = "(IB)V",
 		garbageValue = "-35"
 	)
 	@Export("advance")
-	final void advance(int var1) {
+	void advance(int var1) {
 		if (!this.isFinished) {
 			this.frameCycle += var1;
 
@@ -125,7 +130,7 @@ public final class GraphicsObject extends Renderable {
 		garbageValue = "126"
 	)
 	@Export("getModel")
-	protected final Model getModel() {
+	protected Model getModel() {
 		SpotAnimationDefinition var1 = class21.SpotAnimationDefinition_get(this.id);
 		Model var2;
 		if (!this.isFinished) {
