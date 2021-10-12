@@ -1194,6 +1194,12 @@ public interface Client extends GameEngine
 	ItemContainer getItemContainer(InventoryID inventory);
 
 	/**
+	 * Get all item containers
+	 * @return
+	 */
+	HashTable<ItemContainer> getItemContainers();
+
+	/**
 	 * Gets the length of the cs2 vm's int stack
 	 */
 	int getIntStackSize();
