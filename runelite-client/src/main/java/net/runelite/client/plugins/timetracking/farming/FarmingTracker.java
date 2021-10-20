@@ -102,8 +102,8 @@ public class FarmingTracker
 
 		//Varbits don't get sent when a modal widget is open so just return
 		if (client.getComponentTable().getNodes()
-			.stream()
-			.anyMatch(widgetNode -> widgetNode.getModalMode() != WidgetModalMode.NON_MODAL))
+				.stream()
+				.anyMatch(widgetNode -> widgetNode.getModalMode() != WidgetModalMode.NON_MODAL))
 		{
 			return false;
 		}
