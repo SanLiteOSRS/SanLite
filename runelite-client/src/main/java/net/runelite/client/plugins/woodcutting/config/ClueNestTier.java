@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020, Noodleeater <noodleeater4@gmail.com>
+ * Copyright (c) 2021, Tal <https://github.com/talsk>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,27 +22,31 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.api;
+package net.runelite.client.plugins.woodcutting.config;
 
-/**
- * Represents an archive of data, which is ordered into "groups" of "files".
- */
-public interface AbstractArchive extends IndexDataBase
+import com.google.common.collect.ImmutableMap;
+import net.runelite.api.ItemID;
+
+public enum ClueNestTier
 {
-	/**
-	 * the methods bellow are usefull for reading byte data from the cache
-	 */
-	int getGroupCount();
+	BEGINNER,
+	EASY,
+	MEDIUM,
+	HARD,
+	ELITE,
+	DISABLED;
 
-	byte[] getConfigData(int archiveId, int fileId);
 
-	int[] getFileIds(int groupId);
+	private static final ImmutableMap<Integer, ClueNestTier> CLUE_NEST_ID_TO_TIER = new ImmutableMap.Builder<Integer, ClueNestTier>()
+		.put(ItemID.CLUE_NEST_ELITE, ClueNestTier.ELITE)
+		.put(ItemID.CLUE_NEST_HARD, ClueNestTier.HARD)
+		.put(ItemID.CLUE_NEST_MEDIUM, ClueNestTier.MEDIUM)
+		.put(ItemID.CLUE_NEST_EASY, ClueNestTier.EASY)
+		.put(ItemID.CLUE_NEST_BEGINNER, ClueNestTier.BEGINNER)
+		.build();
 
-	int[][] getFileIds();
-
-	byte[] getFile(int groupId, int fileId);
-
-	int getGroupFileCount(int groupId);
-
-	int[] getFileCounts();
+	static public ClueNestTier getTierFromItem(int itemId)
+	{
+		return CLUE_NEST_ID_TO_TIER.get(itemId);
+	}
 }

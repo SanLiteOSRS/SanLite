@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 Owain van Brakel <https://github.com/Owain94>
+ * Copyright (c) 2018, Adam <Adam@sigterm.info>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,22 +22,14 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+package net.runelite.cache.script;
 
-plugins {
-    `kotlin-dsl`
-}
-
-repositories {
-    mavenCentral()
-    maven(url = "https://raw.githubusercontent.com/open-osrs/hosting/master")
-}
-
-dependencies {
-    implementation(gradleApi())
-    implementation(group = "net.runelite", name = "fernflower", version = "07082019")
-    implementation(group = "org.json", name = "json", version = "20190722")
-}
-
-kotlinDslPluginOptions {
-    experimentalWarning.set(false)
+public class RuneLiteInstructions extends Instructions implements RuneLiteOpcodes
+{
+	@Override
+	public void init()
+	{
+		super.init();
+		add(RUNELITE_EXECUTE, "runelite_callback");
+	}
 }

@@ -15,14 +15,7 @@ import net.sanlite.injector.injectors.InjectConstruct;
 import net.sanlite.injector.injectors.InterfaceInjector;
 import net.sanlite.injector.injectors.MixinInjector;
 import net.sanlite.injector.injectors.RSApiInjector;
-import net.sanlite.injector.injectors.raw.ClearColorBuffer;
-import net.sanlite.injector.injectors.raw.DrawMenu;
-import net.sanlite.injector.injectors.raw.GraphicsObject;
-import net.sanlite.injector.injectors.raw.Occluder;
-import net.sanlite.injector.injectors.raw.RasterizerAlpha;
-import net.sanlite.injector.injectors.raw.RenderDraw;
-import net.sanlite.injector.injectors.raw.RuneliteObject;
-import net.sanlite.injector.injectors.raw.ScriptVM;
+import net.sanlite.injector.injectors.raw.*;
 import net.sanlite.injector.rsapi.RSApi;
 import net.sanlite.injector.transformers.InjectTransformer;
 import net.sanlite.injector.transformers.Java8Ifier;
@@ -114,6 +107,12 @@ public class Injector extends InjectData implements InjectTaskHandler
 
 		inject(new CreateAnnotations(this));
 
+		inject(new GraphicsObject(this));
+
+		inject(new CopyRuneLiteClasses(this));
+
+		inject(new RuneLiteIterableHashTable(this));
+
 		inject(new RuneliteObject(this));
 
 		inject(new InterfaceInjector(this));
@@ -142,8 +141,6 @@ public class Injector extends InjectData implements InjectTaskHandler
 		inject(new Occluder(this));
 
 		inject(new DrawMenu(this));
-
-		inject(new GraphicsObject(this));
 
 		validate(new InjectorValidator(this));
 
@@ -187,11 +184,6 @@ public class Injector extends InjectData implements InjectTaskHandler
 		transformer.transform();
 
 		log.lifecycle("{} {}", name, transformer.getCompletionMsg());
-	}
-
-	public void runChildInjector(net.sanlite.injector.injectors.Injector injector)
-	{
-		inject(injector);
 	}
 
 	private static void save(ClassGroup group, File output, OutputMode mode, File vanillaFile)
@@ -250,5 +242,10 @@ public class Injector extends InjectData implements InjectTaskHandler
 		{
 			e.printStackTrace();
 		}
+	}
+
+	public void runChildInjector(net.sanlite.injector.injectors.Injector injector)
+	{
+		inject(injector);
 	}
 }

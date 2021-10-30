@@ -35,5 +35,5 @@ dependencies {
     implementation(group = "com.google.inject", name = "guice", version = "4.1.0", classifier = "no_aop")
     implementation(group = "com.fifesoft", name = "rsyntaxtextarea", version = "3.1.2")
     implementation(group = "com.fifesoft", name = "autocomplete", version = "3.1.1")
-    implementation(group = "org.slf4j", name = "slf4j-api", version = "1.7.12")
+    implementation(group = "org.slf4j", name = "slf4j-api", version = "1.7.32")
 }

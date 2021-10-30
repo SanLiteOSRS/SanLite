@@ -31,10 +31,12 @@ import java.util.*;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import com.google.common.primitives.Doubles;
 import net.runelite.api.*;
 
 import static net.runelite.api.MenuAction.*;
 import static net.runelite.api.Perspective.LOCAL_TILE_SIZE;
+import static net.runelite.mixins.CameraMixin.*;
 
 import net.runelite.api.clan.ClanChannel;
 import net.runelite.api.clan.ClanRank;
@@ -132,6 +134,18 @@ public abstract class RSClientMixin implements RSClient
 
 	@Inject
 	public static int viewportColor;
+
+	@Inject
+	public static boolean unlockedFps;
+
+	@Inject
+	public static double tmpCamAngleY;
+
+	@Inject
+	public static double tmpCamAngleX;
+
+	@Inject
+	public long lastNanoTime;
 
 	@Inject
 	private List<String> outdatedScripts = new ArrayList<>();
@@ -729,6 +743,21 @@ public abstract class RSClientMixin implements RSClient
 
 	@Inject
 	@Override
+	public RSItemContainer getItemContainer(int id)
+	{
+		for (Object itemContainer : getItemContainers())
+		{
+			if (((RSItemContainer) itemContainer).getId() == id)
+			{
+				return ((RSItemContainer) itemContainer);
+			}
+		}
+
+		return null;
+	}
+
+	@Inject
+	@Override
 	public boolean isFriended(String name, boolean mustBeLoggedIn)
 	{
 		RSUsername rsName = createName(name, getLoginType());
@@ -1168,7 +1197,7 @@ public abstract class RSClientMixin implements RSClient
 
 	@Copy("menuAction")
 	@Replace("menuAction")
-	static void copy$menuAction(int actionParam, int widgetId, int menuAction, int id, String option, String target, int canvasX, int canvasY)
+	static void copy$menuAction(int param0, int param1, int menuAction, int id, String option, String target, int canvasX, int canvasY)
 	{
 		/*
 		 * The RuneScape client may deprioritize an action in the menu by incrementing the opcode with 2000,
@@ -1180,8 +1209,8 @@ public abstract class RSClientMixin implements RSClient
 		}
 
 		final MenuOptionClicked menuOptionClicked = new MenuOptionClicked();
-		menuOptionClicked.setParam0(actionParam);
-		menuOptionClicked.setParam1(widgetId);
+		menuOptionClicked.setParam0(param0);
+		menuOptionClicked.setParam1(param1);
 		menuOptionClicked.setMenuOption(option);
 		menuOptionClicked.setMenuTarget(target);
 		menuOptionClicked.setMenuAction(MenuAction.of(menuAction));
@@ -1236,13 +1265,17 @@ public abstract class RSClientMixin implements RSClient
 		return WorldType.fromMask(flags);
 	}
 
-	@Inject
-	@MethodHook("openMenu")
-	public void menuOpened(int x, int y)
+	@Copy("openMenu")
+	@Replace("openMenu")
+	public void copy$openMenu(int x, int y)
 	{
 		final MenuOpened event = new MenuOpened();
 		event.setMenuEntries(getMenuEntries());
 		callbacks.post(event);
+
+		copy$openMenu(x, y);
+
+		client.getScene().menuOpen(client.getPlane(), x - client.getViewportXOffset(), y - client.getViewportYOffset(), false);
 	}
 
 	@Inject
@@ -1280,7 +1313,8 @@ public abstract class RSClientMixin implements RSClient
 	@MethodHook("draw")
 	public void draw(boolean var1)
 	{
-		callbacks.clientMainLoop();
+		callbacks.frame();
+		updateCamera();
 	}
 
 	@MethodHook("drawInterface")
@@ -1926,7 +1960,7 @@ public abstract class RSClientMixin implements RSClient
 	@FieldHook("guestClanChannel")
 	public static void onGuestClanChannelChanged(int idx)
 	{
-		client.getCallbacks().post(new ClanChannelChanged(client.getGuestClanChannel(), true));
+		client.getCallbacks().post(new ClanChannelChanged(client.getGuestClanChannel(), -1, true));
 	}
 
 	@Inject
@@ -1939,7 +1973,11 @@ public abstract class RSClientMixin implements RSClient
 			return;
 		}
 
-		client.getCallbacks().post(new ClanChannelChanged(client.getClanChannel(), false));
+		RSClanChannel[] clanChannels = client.getCurrentClanChannels();
+		if (idx < clanChannels.length)
+		{
+			client.getCallbacks().post(new ClanChannelChanged(clanChannels[idx], idx, false));
+		}
 	}
 
 	@Inject
@@ -1988,6 +2026,88 @@ public abstract class RSClientMixin implements RSClient
 	public Sequence loadAnimation(int id)
 	{
 		return client.getSequenceDefinition(id);
+	}
+
+	@Inject
+	@Override
+	public boolean isUnlockedFps()
+	{
+		return unlockedFps;
+	}
+
+	@Inject
+	public void setUnlockedFps(boolean unlocked)
+	{
+		unlockedFps = unlocked;
+
+		if (unlocked)
+		{
+			posToCameraAngle(client.getMapAngle(), client.getCameraPitch());
+		}
+	}
+
+	@Inject
+	public void updateCamera()
+	{
+		if (unlockedFps)
+		{
+			long nanoTime = System.nanoTime();
+			long diff = nanoTime - this.lastNanoTime;
+			this.lastNanoTime = nanoTime;
+
+			if (this.getGameState() == GameState.LOGGED_IN)
+			{
+				this.interpolateCamera(diff);
+			}
+		}
+	}
+
+	@Inject
+	public void interpolateCamera(long var1)
+	{
+		double angleDX = diffToDangle(client.getCamAngleDY(), var1);
+		double angleDY = diffToDangle(client.getCamAngleDX(), var1);
+
+		tmpCamAngleY += angleDX / 2;
+		tmpCamAngleX += angleDY / 2;
+		tmpCamAngleX = Doubles.constrainToRange(tmpCamAngleX, Perspective.UNIT * STANDARD_PITCH_MIN,
+				client.getCameraPitchRelaxerEnabled() ? Perspective.UNIT * NEW_PITCH_MAX : Perspective.UNIT * STANDARD_PITCH_MAX);
+
+		int yaw = toCameraPos(tmpCamAngleY);
+		int pitch = toCameraPos(tmpCamAngleX);
+
+		client.setCameraYawTarget(yaw);
+		client.setCameraPitchTarget(pitch);
+	}
+
+	@Inject
+	public static double diffToDangle(int var0, long var1)
+	{
+		double var2 = var0 * Perspective.UNIT;
+		double var3 = (double) var1 / 2.0E7D;
+
+		return var2 * var3;
+	}
+
+	@Inject
+	@Override
+	public void posToCameraAngle(int var0, int var1)
+	{
+		tmpCamAngleY = var0 * Perspective.UNIT;
+		tmpCamAngleX = var1 * Perspective.UNIT;
+	}
+
+	@Inject
+	public static int toCameraPos(double var0)
+	{
+		return (int) (var0 / Perspective.UNIT) & 2047;
+	}
+
+	@Inject
+	@MethodHook("doCycle")
+	protected final void doCycle()
+	{
+		client.getCallbacks().tick();
 	}
 }
 

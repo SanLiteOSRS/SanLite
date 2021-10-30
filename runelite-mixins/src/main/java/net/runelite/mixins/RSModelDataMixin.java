@@ -220,6 +220,6 @@ public abstract class RSModelDataMixin implements RSModelData
 			}
 		}
 
-		this.faceTextureUVCoordinates = faceTextureUCoordinates;
+		faceTextureUVCoordinates = faceTextureUCoordinates;
 	}
 }

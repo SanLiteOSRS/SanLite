@@ -115,7 +115,7 @@ public abstract class RSWidgetMixin implements RSWidget
 	@Override
 	public int getParentId()
 	{
-		assert client.isClientThread();
+		assert client.isClientThread() : "getParentId must be called on client thread";
 
 		int rsParentId = getRSParentId();
 		if (rsParentId != -1)
@@ -208,7 +208,7 @@ public abstract class RSWidgetMixin implements RSWidget
 	@Override
 	public boolean isHidden()
 	{
-		assert client.isClientThread();
+		assert client.isClientThread() : "isHidden must be called on client thread";
 
 		if (isSelfHidden())
 		{
@@ -415,7 +415,7 @@ public abstract class RSWidgetMixin implements RSWidget
 	@Override
 	public Widget createChild(int index, int type)
 	{
-		assert client.isClientThread();
+		assert client.isClientThread() : "createChild must be called on client thread";
 
 		RSWidget w = client.createWidget();
 		w.setType(type);
@@ -468,7 +468,7 @@ public abstract class RSWidgetMixin implements RSWidget
 	@Override
 	public void revalidate()
 	{
-		assert client.isClientThread();
+		assert client.isClientThread() : "revalidate must be called on client thread";
 
 		client.revalidateWidget(this);
 	}
@@ -477,7 +477,7 @@ public abstract class RSWidgetMixin implements RSWidget
 	@Override
 	public void revalidateScroll()
 	{
-		assert client.isClientThread();
+		assert client.isClientThread() : "revalidateScroll must be called on client thread";
 
 		client.revalidateWidget(this);
 		client.revalidateWidgetScroll(client.getWidgets()[TO_GROUP(this.getId())], this, false);

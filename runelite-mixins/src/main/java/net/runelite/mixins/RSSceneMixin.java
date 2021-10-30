@@ -144,28 +144,23 @@ public abstract class RSSceneMixin implements RSScene
 
 		final boolean isGpu = client.isGpu();
 		final boolean checkClick = client.isCheckClick();
-		if (!client.isMenuOpen())
+		final boolean menuOpen = client.isMenuOpen();
+
+		if (!menuOpen && !checkClick)
 		{
-			// Force check click to update the selected tile
-			client.setCheckClick(true);
-			final int mouseX = client.getMouseX();
-			final int mouseY = client.getMouseY();
-			client.setMouseCanvasHoverPositionX(mouseX - client.getViewportXOffset());
-			client.setMouseCanvasHoverPositionY(mouseY - client.getViewportYOffset());
+			client.getScene().menuOpen(client.getPlane(),
+					client.getMouseX() - client.getViewportXOffset(), client.getMouseY() - client.getViewportYOffset(), false);
 		}
 
-		if (!isGpu)
+		if (!isGpu && skyboxColor != 0)
 		{
-			if (skyboxColor != 0)
-			{
-				client.rasterizerFillRectangle(
-					client.getViewportXOffset(),
-					client.getViewportYOffset(),
-					client.getViewportWidth(),
-					client.getViewportHeight(),
-					skyboxColor
-				);
-			}
+			client.rasterizerFillRectangle(
+				client.getViewportXOffset(),
+				client.getViewportYOffset(),
+				client.getViewportWidth(),
+				client.getViewportHeight(),
+				skyboxColor
+			);
 		}
 
 		final int maxX = getMaxX();
@@ -327,7 +322,7 @@ public abstract class RSSceneMixin implements RSScene
 			}
 		}
 
-		if (!client.isMenuOpen())
+		if (!menuOpen)
 		{
 			rl$hoverY = -1;
 			rl$hoverX = -1;
@@ -427,10 +422,6 @@ public abstract class RSSceneMixin implements RSScene
 						if (client.getTileUpdateCount() == 0)
 						{
 							client.setCheckClick(false);
-							if (!checkClick)
-							{
-								client.setViewportWalking(false);
-							}
 							client.getCallbacks().drawScene();
 
 							if (client.getDrawCallbacks() != null)
@@ -512,12 +503,6 @@ public abstract class RSSceneMixin implements RSScene
 		}
 
 		client.setCheckClick(false);
-		if (!checkClick)
-		{
-			// If checkClick was false, then the selected tile wouldn't have existed next tick,
-			// so clear viewport walking in order to prevent it triggering a walk
-			client.setViewportWalking(false);
-		}
 		client.getCallbacks().drawScene();
 		if (client.getDrawCallbacks() != null)
 		{
@@ -941,5 +926,62 @@ public abstract class RSSceneMixin implements RSScene
 	public void setTileShapes(byte[][][] tileShapes)
 	{
 		rl$tileShapes = tileShapes;
+	}
+
+	@Inject
+	@Override
+	public void removeWallObject(WallObject wallObject)
+	{
+		final RSTile[][][] tiles = getTiles();
+
+		for (int y = 0; y < 104; ++y)
+		{
+			for (int x = 0; x < 104; ++x)
+			{
+				RSTile tile = tiles[client.getPlane()][x][y];
+				if (tile != null && tile.getWallObject() == wallObject)
+				{
+					tile.setWallObject(null);
+				}
+			}
+		}
+	}
+
+	@Inject
+	@Override
+	public void removeDecorativeObject(DecorativeObject decorativeObject)
+	{
+		final RSTile[][][] tiles = getTiles();
+
+		for (int y = 0; y < 104; ++y)
+		{
+			for (int x = 0; x < 104; ++x)
+			{
+				RSTile tile = tiles[client.getPlane()][x][y];
+				if (tile != null && tile.getDecorativeObject() == decorativeObject)
+				{
+					tile.setDecorativeObject(null);
+				}
+			}
+		}
+	}
+
+	@Inject
+	@Override
+	public void removeGroundObject(GroundObject groundObject)
+	{
+		final Tile[][][] tiles = getTiles();
+
+		for (int y = 0; y < 104; ++y)
+		{
+			for (int x = 0; x < 104; ++x)
+			{
+				Tile tile = tiles[client.getPlane()][x][y];
+				if (tile != null && tile.getGroundObject() == groundObject)
+				{
+					tile.setGroundObject(null);
+				}
+			}
+		}
 	}
 }

@@ -49,8 +49,8 @@ public class TeeLogger implements Logger
 	@Override
 	public String getName()
 	{
-		return "RLShell";
-	} // TODO: Rename
+		return "SLShell";
+	}
 
 	@Override
 	public boolean isTraceEnabled()
