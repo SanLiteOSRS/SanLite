@@ -32,7 +32,6 @@ dependencies {
 
     compileOnly(group = "org.projectlombok", name = "lombok", version = ProjectVersions.lombokVersion)
 
-    implementation(project(":runelite-api"))
     implementation(group = "com.google.code.gson", name = "gson", version = "2.8.5")
     implementation(group = "com.google.guava", name = "guava", version = "23.2-jre")
     implementation(group = "com.squareup.okhttp3", name = "okhttp", version = "3.14.9")
