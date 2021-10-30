@@ -548,4 +548,27 @@ public interface InjectUtil
 	{
 		injectObfuscatedGetter(DMath.modInverse(getter), instrs, into);
 	}
+
+	private static List<Type> findArgs(final String str, final List<Type> ret, final int from, final int to)
+	{
+		if (from >= to)
+		{
+			return ret;
+		}
+
+		int i = from;
+		while (str.charAt(i) == '[')
+		{
+			++i;
+		}
+
+		if (str.charAt(i) == 'L')
+		{
+			i = str.indexOf(';', i);
+		}
+
+		ret.add(new Type(str.substring(from, ++i)));
+
+		return findArgs(str, ret, i, to);
+	}
 }

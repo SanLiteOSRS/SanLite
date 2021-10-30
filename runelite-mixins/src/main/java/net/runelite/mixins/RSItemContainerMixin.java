@@ -45,6 +45,13 @@ public abstract class RSItemContainerMixin implements RSItemContainer
 
 	@Inject
 	@Override
+	public int getId()
+	{
+		return (int) this.getHash();
+	}
+
+	@Inject
+	@Override
 	public Item[] getItems()
 	{
 		int[] itemIds = getItemIds();

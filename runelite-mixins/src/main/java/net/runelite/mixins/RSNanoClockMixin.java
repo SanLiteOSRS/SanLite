@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020, Noodleeater <noodleeater4@gmail.com>
+ * Copyright (c) 2016-2017, Adam <Adam@sigterm.info>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,27 +22,49 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.api;
+package net.runelite.mixins;
 
-/**
- * Represents an archive of data, which is ordered into "groups" of "files".
- */
-public interface AbstractArchive extends IndexDataBase
+import net.runelite.api.mixins.Copy;
+import net.runelite.api.mixins.Mixin;
+import net.runelite.api.mixins.Replace;
+import net.runelite.api.mixins.Shadow;
+import net.runelite.rs.api.RSClient;
+import net.runelite.rs.api.RSNanoClock;
+
+@Mixin(RSNanoClock.class)
+public abstract class RSNanoClockMixin implements RSNanoClock
 {
-	/**
-	 * the methods bellow are usefull for reading byte data from the cache
-	 */
-	int getGroupCount();
+	@Shadow("client")
+	private static RSClient client;
 
-	byte[] getConfigData(int archiveId, int fileId);
+	@Copy("wait")
+	@Replace("wait")
+	public int copy$wait(int cycleDurationMillis, int var2)
+	{
+		if (!client.isUnlockedFps())
+		{
+			return copy$wait(cycleDurationMillis, var2);
+		}
 
-	int[] getFileIds(int groupId);
+		long nanoTime = System.nanoTime();
+		if (nanoTime < getLastTimeNano())
+		{
+			setLastTimeNano(nanoTime);
+			return 1;
+		}
 
-	int[][] getFileIds();
+		long cycleDuration = (long) cycleDurationMillis * 1000000L;
+		long diff = nanoTime - getLastTimeNano();
 
-	byte[] getFile(int groupId, int fileId);
+		int cycles = (int) (diff / cycleDuration);
 
-	int getGroupFileCount(int groupId);
+		setLastTimeNano(getLastTimeNano() + (long) cycles * cycleDuration);
 
-	int[] getFileCounts();
+		if (cycles > 10)
+		{
+			cycles = 10;
+		}
+
+		return cycles;
+	}
 }

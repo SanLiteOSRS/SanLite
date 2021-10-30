@@ -1092,10 +1092,10 @@ public interface RSClient extends RSGameEngine, Client
 	@Import("musicTrackVolume")
 	void setMusicTrackVolume(int volume);
 
-	void playMusicTrack(int var0, RSAbstractArchive var1, int var2, int var3, int var4, boolean var5);
-
 	@Import("viewportWalking")
 	void setViewportWalking(boolean viewportWalking);
+
+	void playMusicTrack(int var0, RSAbstractArchive var1, int var2, int var3, int var4, boolean var5);
 
 	@Import("midiPcmStream")
 	RSMidiPcmStream getMidiPcmStream();
@@ -1410,4 +1410,13 @@ public interface RSClient extends RSGameEngine, Client
 
 	@Import("ModelData_get")
 	RSModelData getModelData(RSAbstractArchive var0, int var1, int var2);
+
+	@Import("isCameraLocked")
+	boolean isCameraLocked();
+
+	boolean getCameraPitchRelaxerEnabled();
+
+	boolean isUnlockedFps();
+
+	void posToCameraAngle(int var0, int var1);
 }

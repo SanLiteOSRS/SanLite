@@ -316,7 +316,7 @@ public class HealthBarDefinition extends DualNode {
 				var9 = Client.field690[var7];
 				if (var4 >= 0 && var5 >= 0 && var4 < 103 && var5 < 103) {
 					if (var9 == 0) {
-						BoundaryObject var35 = PlayerComposition.scene.method4219(VertexNormal.Client_plane, var4, var5);
+						BoundaryObject var35 = PlayerComposition.scene.getBoundaryObject(VertexNormal.Client_plane, var4, var5);
 						if (var35 != null) {
 							var11 = InterfaceParent.Entity_unpackID(var35.tag);
 							if (var7 == 2) {
@@ -329,7 +329,7 @@ public class HealthBarDefinition extends DualNode {
 					}
 
 					if (var9 == 1) {
-						WallDecoration var42 = PlayerComposition.scene.method4316(VertexNormal.Client_plane, var4, var5);
+						WallDecoration var42 = PlayerComposition.scene.getWallDecoration(VertexNormal.Client_plane, var4, var5);
 						if (var42 != null) {
 							var11 = InterfaceParent.Entity_unpackID(var42.tag);
 							if (var7 != 4 && var7 != 5) {
