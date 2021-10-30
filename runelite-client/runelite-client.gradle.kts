@@ -44,7 +44,7 @@ description = "RuneLite Client"
 
 dependencies {
     annotationProcessor(group = "org.projectlombok", name = "lombok", version = ProjectVersions.lombokVersion)
-    annotationProcessor(group = "org.pf4j", name = "pf4j", version = "3.5.0")
+    annotationProcessor(group = "org.pf4j", name = "pf4j", version = "3.6.0")
 
     api(project(":runelite-api"))
 
@@ -59,7 +59,7 @@ dependencies {
     implementation(group = "com.google.guava", name = "guava", version = "23.2-jre")
     implementation(group = "com.google.inject", name = "guice", version = "4.1.0", classifier = "no_aop")
     implementation(group = "com.squareup.okhttp3", name = "okhttp", version = "3.14.9")
-    implementation(group = "io.reactivex.rxjava3", name = "rxjava", version = "3.0.10")
+    implementation(group = "io.reactivex.rxjava3", name = "rxjava", version = "3.1.1")
     implementation(group = "net.java.dev.jna", name = "jna", version = "5.9.0")
     implementation(group = "net.java.dev.jna", name = "jna-platform", version = "5.9.0")
     implementation(group = "net.runelite", name = "discord", version = "1.4")
@@ -67,7 +67,7 @@ dependencies {
     implementation(group = "net.sf.jopt-simple", name = "jopt-simple", version = "5.0.1")
     implementation(group = "org.apache.commons", name = "commons-text", version = "1.2")
     implementation(group = "commons-io", name = "commons-io", version = "2.8.0")
-    implementation(group = "org.jetbrains", name = "annotations", version = "20.1.0")
+    implementation(group = "org.jetbrains", name = "annotations", version = "22.0.0")
     implementation(group = "org.slf4j", name = "slf4j-api", version = "1.7.12")
     implementation(group = "org.pf4j", name = "pf4j", version = "3.6.0") {
         exclude(group = "org.slf4j")

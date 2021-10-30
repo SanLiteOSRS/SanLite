@@ -35,14 +35,14 @@ dependencies {
     annotationProcessor(group = "org.projectlombok", name = "lombok", version = ProjectVersions.lombokVersion)
 
     compileOnly(group = "org.projectlombok", name = "lombok", version = ProjectVersions.lombokVersion)
-    compileOnly(group = "net.sf.jopt-simple", name = "jopt-simple", version = "5.0.3")
+    compileOnly(group = "net.sf.jopt-simple", name = "jopt-simple", version = "5.0.4")
     compileOnly(group = "javax.inject", name = "javax.inject", version = "1")
 
-    runtimeOnly(group = "org.slf4j", name = "slf4j-simple", version = "1.7.12")
+    runtimeOnly(group = "org.slf4j", name = "slf4j-simple", version = "1.7.32")
 
     implementation(project(":http-api"))
-    implementation(group = "org.slf4j", name = "slf4j-api", version = "1.7.12")
-    implementation(group = "com.google.code.gson", name = "gson", version = "2.8.6")
+    implementation(group = "org.slf4j", name = "slf4j-api", version = "1.7.32")
+    implementation(group = "com.google.code.gson", name = "gson", version = "2.8.5")
 }
 
 tasks {

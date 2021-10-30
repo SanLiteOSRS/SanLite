@@ -38,4 +38,6 @@ dependencies {
     implementation(group = "org.json", name = "json", version = "20190722")
 }
 
-kotlinDslPluginOptions {}
+kotlinDslPluginOptions {
+    experimentalWarning.set(false)
+}
