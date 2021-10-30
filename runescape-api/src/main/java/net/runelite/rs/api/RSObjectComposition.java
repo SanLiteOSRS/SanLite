@@ -41,9 +41,6 @@ public interface RSObjectComposition extends ObjectComposition
 	RSIterableNodeHashTable getParams();
 
 	@Import("params")
-	void setParams(IterableHashTable params);
-
-	@Import("params")
 	void setParams(RSIterableNodeHashTable params);
 
 	@Import("decodeNext")

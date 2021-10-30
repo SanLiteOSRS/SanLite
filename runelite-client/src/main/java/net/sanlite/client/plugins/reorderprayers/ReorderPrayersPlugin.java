@@ -342,7 +342,7 @@ public class ReorderPrayersPlugin extends Plugin
 	private PrayerTabState getPrayerTabState()
 	{
 		HashTable<WidgetNode> componentTable = client.getComponentTable();
-		for (WidgetNode widgetNode : componentTable.getNodes())
+		for (WidgetNode widgetNode : componentTable)
 		{
 			if (widgetNode.getId() == WidgetID.PRAYER_GROUP_ID)
 			{
