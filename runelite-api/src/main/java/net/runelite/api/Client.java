@@ -1973,6 +1973,8 @@ public interface Client extends GameEngine
 	@Nullable
 	ClanSettings getClanSettings(int clanId);
 
+	void setUnlockedFps(boolean unlock);
+
 	/**
 	 *
 	 * @param param0 This is SceneX for gameObject, index for items, and 0 for npc.
