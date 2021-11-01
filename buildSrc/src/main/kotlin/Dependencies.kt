@@ -27,7 +27,7 @@ object ProjectVersions {
     const val launcherVersion = "2.0.0"
     const val rlVersion = "1.8.0"
 
-    const val sanliteVersion = "1.20.7"
+    const val sanliteVersion = "1.20.8"
 
     const val rsVersion = 200
     const val cacheVersion = 165
