@@ -88,4 +88,7 @@ public interface RSItemComposition extends ItemComposition
 
 	@Import("params")
 	void setParams(RSIterableNodeHashTable params);
+
+	@Import("params")
+	void setParams(IterableHashTable params);
 }

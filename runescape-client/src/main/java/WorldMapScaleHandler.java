@@ -666,7 +666,7 @@ public class WorldMapScaleHandler {
 	)
 	static final void method4005(int var0, int var1) {
 		if (Client.hintArrowType == 2) {
-			class124.worldToScreen(Client.hintArrowSubX * 64 + (Client.hintArrowX - WorldMapSectionType.baseX * 64 << 7), Client.hintArrowSubY * 64 + (Client.hintArrowY - PlayerComposition.baseY * 64 << 7), Client.field506 * 2);
+			class124.worldToScreen(Client.hintArrowSubX * 64 + (Client.hintArrowX - WorldMapSectionType.baseX * 64 << 7), Client.hintArrowSubY * 64 + (Client.hintArrowY - PlayerComposition.baseY * 64 << 7), Client.hintArrowHeight * 2);
 			if (Client.viewportTempX > -1 && Client.cycle % 20 < 10) {
 				UserComparator4.headIconHintSprites[0].drawTransBgAt(var0 + Client.viewportTempX - 12, Client.viewportTempY + var1 - 28);
 			}

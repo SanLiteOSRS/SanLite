@@ -475,18 +475,19 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 	static int hintArrowY;
 	@ObfuscatedName("dm")
 	@ObfuscatedGetter(
-		intValue = 1159946444
+		intValue = -1857497037
 	)
-	static int field506;
+	@Export("hintArrowHeight")
+	static int hintArrowHeight;
 	@ObfuscatedName("dt")
 	@ObfuscatedGetter(
-		intValue = 339633728
+		intValue = -1806632551
 	)
 	@Export("hintArrowSubX")
 	static int hintArrowSubX;
 	@ObfuscatedName("dr")
 	@ObfuscatedGetter(
-		intValue = 539977280
+		intValue = -1199522407
 	)
 	@Export("hintArrowSubY")
 	static int hintArrowSubY;
@@ -523,7 +524,8 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 	@ObfuscatedGetter(
 		intValue = -543080313
 	)
-	static int field635;
+	@Export("js5Errors")
+	static int js5Errors;
 	@ObfuscatedName("ed")
 	@ObfuscatedGetter(
 		intValue = 541263159
@@ -562,7 +564,8 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 	@ObfuscatedSignature(
 		descriptor = "Lby;"
 	)
-	static SecureRandomFuture field526;
+	@Export("secureRandomFuture")
+	static SecureRandomFuture secureRandomFuture;
 	@ObfuscatedName("fv")
 	@Export("randomDatData")
 	static byte[] randomDatData;
@@ -601,7 +604,8 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 	@Export("logoutTimer")
 	static int logoutTimer;
 	@ObfuscatedName("gw")
-	static boolean field538;
+	@Export("hadNetworkError")
+	static boolean hadNetworkError;
 	@ObfuscatedName("ga")
 	@Export("useBufferedSocket")
 	static boolean useBufferedSocket;
@@ -722,12 +726,14 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 	@ObfuscatedGetter(
 		intValue = 1304297933
 	)
-	static int field502;
+	@Export("mouseCamClickedX")
+	static int mouseCamClickedX;
 	@ObfuscatedName("ia")
 	@ObfuscatedGetter(
 		intValue = -517728459
 	)
-	static int field564;
+	@Export("mouseCamClickedY")
+	static int mouseCamClickedY;
 	@ObfuscatedName("ie")
 	@ObfuscatedGetter(
 		intValue = -1645388963
@@ -1358,7 +1364,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 		hintArrowPlayerIndex = 0;
 		hintArrowX = 0;
 		hintArrowY = 0;
-		field506 = 0;
+		hintArrowHeight = 0;
 		hintArrowSubX = 0;
 		hintArrowSubY = 0;
 		playerAttackOption = AttackOption.AttackOption_hidden;
@@ -1366,7 +1372,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 		titleLoadingStage = 0;
 		js5ConnectState = 0;
 		field513 = 0;
-		field635 = 0;
+		js5Errors = 0;
 		loginState = 0;
 		field516 = 0;
 		field680 = 0;
@@ -1374,7 +1380,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 		field519 = class112.field1359;
 		field520 = class404.field4344;
 		Login_isUsernameRemembered = false;
-		field526 = new SecureRandomFuture();
+		secureRandomFuture = new SecureRandomFuture();
 		randomDatData = null;
 		npcs = new NPC[32768];
 		npcCount = 0;
@@ -1383,7 +1389,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 		field535 = new int[250];
 		packetWriter = new PacketWriter();
 		logoutTimer = 0;
-		field538 = false;
+		hadNetworkError = false;
 		useBufferedSocket = true;
 		field540 = false;
 		timer = new Timer();
@@ -1408,8 +1414,8 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 		camAngleY = 0;
 		camAngleDY = 0;
 		camAngleDX = 0;
-		field502 = 0;
-		field564 = 0;
+		mouseCamClickedX = 0;
+		mouseCamClickedY = 0;
 		oculusOrbState = 0;
 		camFollowHeight = 50;
 		field567 = 0;
@@ -2338,7 +2344,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 						class19.js5SocketTask = null;
 						class78.js5Socket = null;
 						js5ConnectState = 0;
-						field635 = 0;
+						js5Errors = 0;
 					}
 				} catch (IOException var4) {
 					this.js5Error(-3);
@@ -2364,18 +2370,18 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 			RouteStrategy.currentPort = WorldMapLabelSize.worldPort;
 		}
 
-		++field635;
-		if (field635 >= 2 && (var1 == 7 || var1 == 9)) {
+		++js5Errors;
+		if (js5Errors >= 2 && (var1 == 7 || var1 == 9)) {
 			if (gameState <= 5) {
 				this.error("js5connect_full");
 				NameableContainer.updateGameState(1000);
 			} else {
 				field513 = 3000;
 			}
-		} else if (field635 >= 2 && var1 == 6) {
+		} else if (js5Errors >= 2 && var1 == 6) {
 			this.error("js5connect_outofdate");
 			NameableContainer.updateGameState(1000);
-		} else if (field635 >= 4) {
+		} else if (js5Errors >= 4) {
 			if (gameState <= 5) {
 				this.error("js5connect");
 				NameableContainer.updateGameState(1000);
@@ -2398,10 +2404,10 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 
 		try {
 			if (loginState == 0) {
-				if (Tile.secureRandom == null && (field526.isDone() || field516 > 250)) {
-					Tile.secureRandom = field526.get();
-					field526.shutdown();
-					field526 = null;
+				if (Tile.secureRandom == null && (secureRandomFuture.isDone() || field516 > 250)) {
+					Tile.secureRandom = secureRandomFuture.get();
+					secureRandomFuture.shutdown();
+					secureRandomFuture = null;
 				}
 
 				if (Tile.secureRandom != null) {
@@ -2411,7 +2417,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 					}
 
 					UrlRequester.socketTask = null;
-					field538 = false;
+					hadNetworkError = false;
 					field516 = 0;
 					if (field520.method7148()) {
 						try {
@@ -3081,8 +3087,8 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 			--logoutTimer;
 		}
 
-		if (field538) {
-			field538 = false;
+		if (hadNetworkError) {
+			hadNetworkError = false;
 			class20.method302();
 		} else {
 			if (!isMenuOpen) {
@@ -3674,12 +3680,12 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 															}
 
 															if (MouseHandler.MouseHandler_currentButton == 4 && VarbitComposition.mouseCam) {
-																var4 = MouseHandler.MouseHandler_y - field564;
+																var4 = MouseHandler.MouseHandler_y - mouseCamClickedY;
 																camAngleDX = var4 * 2;
-																field564 = var4 != -1 && var4 != 1 ? (field564 + MouseHandler.MouseHandler_y) / 2 : MouseHandler.MouseHandler_y;
-																var5 = field502 - MouseHandler.MouseHandler_x;
+																mouseCamClickedY = var4 != -1 && var4 != 1 ? (mouseCamClickedY + MouseHandler.MouseHandler_y) / 2 : MouseHandler.MouseHandler_y;
+																var5 = mouseCamClickedX - MouseHandler.MouseHandler_x;
 																camAngleDY = var5 * 2;
-																field502 = var5 != -1 && var5 != 1 ? (field502 + MouseHandler.MouseHandler_x) / 2 : MouseHandler.MouseHandler_x;
+																mouseCamClickedX = var5 != -1 && var5 != 1 ? (mouseCamClickedX + MouseHandler.MouseHandler_x) / 2 : MouseHandler.MouseHandler_x;
 															} else {
 																if (KeyHandler.KeyHandler_pressedKeys[96]) {
 																	camAngleDY += (-24 - camAngleDY) / 2;
@@ -3697,8 +3703,8 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 																	camAngleDX /= 2;
 																}
 
-																field564 = MouseHandler.MouseHandler_y;
-																field502 = MouseHandler.MouseHandler_x;
+																mouseCamClickedY = MouseHandler.MouseHandler_y;
+																mouseCamClickedX = MouseHandler.MouseHandler_x;
 															}
 
 															camAngleY = camAngleDY / 2 + camAngleY & 2047;
@@ -5308,7 +5314,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 						hintArrowType = 2;
 						hintArrowX = var3.readUnsignedShort();
 						hintArrowY = var3.readUnsignedShort();
-						field506 = var3.readUnsignedByte() * 4;
+						hintArrowHeight = var3.readUnsignedByte() * 4;
 					}
 
 					if (hintArrowType == 10) {

@@ -14,4 +14,7 @@ public interface RSStructComposition extends StructComposition
 
 	@Import("params")
 	void setParams(RSIterableNodeHashTable params);
+
+	@Import("params")
+	void setParams(IterableHashTable params);
 }

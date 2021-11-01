@@ -65,4 +65,7 @@ public interface RSNPCComposition extends NPCComposition
 
 	@Import("params")
 	void setParams(RSIterableNodeHashTable params);
+
+	@Import("params")
+	void setParams(IterableHashTable params);
 }
