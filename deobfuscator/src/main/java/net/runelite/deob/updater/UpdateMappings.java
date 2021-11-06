@@ -98,15 +98,12 @@ public class UpdateMappings
 
 		System.out.println("Updating mappings from: " + args[0] + " for deobfuscated gamepack: " + args[1]);
 
-		Path currentRelativePath = Paths.get("");
-		String s = currentRelativePath.toAbsolutePath().toString();
-		System.out.println("Current absolute path is: " + s);
-
 		UpdateMappings updateMappings = new UpdateMappings(
 			JarUtil.load(new File(args[0]), true),
 			JarUtil.load(new File(args[1]), true)
 		);
 		updateMappings.update();
+
 		updateMappings.save(new File(args[2]));
 		System.out.println("Saved updated gamepack at: " + args[2]);
 	}

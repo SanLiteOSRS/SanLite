@@ -31,17 +31,29 @@ jobs:
         run: ./gradlew build --stacktrace -x test -x checkstyleMain --console=plain
       - name: Download gamepack
         run: ./gradlew Downloader$main --args="../gamepack"
+      - name: Determine gamepack revision
+        run: |
+          ./gradlew ClientVersionMain$main --args="../gamepack/gamepack.jar ../gamepack/revision.txt"
+          export GAMEPACK_REVISION="$(cat ./gamepack/revision.txt)"
+          echo Determined gamepack revision as: $GAMEPACK_REVISION
       - name: Deobfuscate gamepack
         run: ./gradlew Deob$main --args="../gamepack/gamepack.jar ../gamepack/deob.jar"
       - name: Update gamepack mappings
         run: |
-          pwd
-          ls
           export PROJECT_VERSION=$(./gradlew properties -q | grep "version:" | awk '{print $2}')
-          echo $PROJECT_VERSION
-          ./gradlew UpdateMappings$main --args="../runescape-client/build/libs/runescape-client-${PROJECT_VERSION}.jar ../gamepack/deob.jar ../gamepack/refactored-gamepack.jar"
-          ls
-      - uses: actions/upload-artifact@v2.2.4
+          ./gradlew UpdateMappings$main --args="../runescape-client/build/libs/runescape-client-${PROJECT_VERSION}.jar ../gamepack/deob.jar ../gamepack/refactored.jar"
+      - name: Decompile refactored gamepack
+        working-directory: ./gamepack
+        run: |
+          mkdir ./rs-client
+          java -Xmx1024m -cp ../deobfuscator/src/main/resources/fernflower-osrs.jar org.jetbrains.java.decompiler.main.decompiler.ConsoleDecompiler ./refactored.jar ./rs-client
+          mv ./rs-client/refactored.jar ./decompiled.jar
+          unzip ./decompiled.jar -d ./rs-client
+#      - name: Create pull request
+#        run: |
+#          git checkout -b feature/rev-${GAMEPACK_REVISION}-$(date +%s)
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2.2.4
         with:
           name: gamepack
           path: ./gamepack

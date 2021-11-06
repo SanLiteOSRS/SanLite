@@ -47,6 +47,7 @@ dependencies {
     implementation(group = "com.google.code.gson", name = "gson", version = "2.8.5")
     implementation(group = "com.google.guava", name = "guava", version = "30.1.1-jre")
     implementation(group = "org.slf4j", name = "slf4j-api", version = "1.7.32")
+    implementation(group = "commons-io", name = "commons-io", version = "2.8.0")
 
     runtimeOnly(group = "org.slf4j", name = "slf4j-simple", version = "1.7.32")
 
