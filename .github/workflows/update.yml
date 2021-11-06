@@ -28,12 +28,12 @@ jobs:
       - name: Assembling
         run: ./gradlew assemble --console=plain
       - name: Building
-        run: ./gradlew build --stacktrace -x test -x checkstyleMain --console=plain
+        run: ./gradlew build -x test -x checkstyleMain --console=plain
       - name: Download gamepack
         run: ./gradlew Downloader$main --args="../gamepack"
       - name: Determine gamepack revision
         run: |
-          ./gradlew ClientVersionMain$main --args="../gamepack/gamepack.jar ../gamepack/revision.txt"
+          ./gradlew ClientVersion$main --args="../gamepack/gamepack.jar ../gamepack/revision.txt"
           export GAMEPACK_REVISION="$(cat ./gamepack/revision.txt)"
           echo Determined gamepack revision as: $GAMEPACK_REVISION
       - name: Deobfuscate gamepack
