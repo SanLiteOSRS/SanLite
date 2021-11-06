@@ -31,22 +31,37 @@ jobs:
         run: ./gradlew build --stacktrace -x test -x checkstyleMain --console=plain
       - name: Download gamepack
         run: |
+          pwd
           ls
           ./gradlew Downloader$main
           ls
+          pwd
+          cd ../
+          pwd
+          ls
+          cd ../
+          pwd
+          ls
+          cd ../
+          pwd
+          ls
       - name: Deobfuscate gamepack
-        working-directory: ./gamepack
+        working-directory: ../../../gamepack
         run: |
+          pwd
           ls
           ./gradlew Deob$main --args='./gamepack.jar ./deob.jar'
           ls
       - name: Update gamepack mappings
-        working-directory: ./gamepack
+        working-directory: ../../../gamepack
         run: |
+          pwd
           ls
-          ./gradlew UpdateMappings$main --args='./runescape-client.jar ./deob.jar ./refactored.jar'
+          export PROJECT_VERSION=$(./gradlew properties -q | grep "version:" | awk '{print $2}')
+          echo $PROJECT_VERSION
+          ./gradlew UpdateMappings$main --args='../work/sanliteosrs/sanlite/runescape-client/build/libs/runescape-client-$PROJECT_VERSION.jar ./deob.jar ./refactored.jar'
           ls
       - uses: actions/upload-artifact@v2.2.4
         with:
           name: gamepack
-          path: ./gamepack
+          path: ../../../gamepack
