@@ -49,13 +49,14 @@ jobs:
           java -Xmx1024m -cp ../deobfuscator/src/main/resources/fernflower-osrs.jar org.jetbrains.java.decompiler.main.decompiler.ConsoleDecompiler ./refactored.jar ./rs-client
           mv ./rs-client/refactored.jar ./decompiled.jar
           unzip ./decompiled.jar -d ./rs-client
-      - name: Create pull request
+      - name: Prepare pull request changes
         run: |
           rm -rf ./runescape-client/src/main/java/com
           rm -f ./runescape-client/src/main/java/net/runelite/rs/*Opcodes.java
           rm -f ./runescape-client/src/main/java/*.java
           cp -R ./gamepack/rs-client/* ./runescape-client/src/main/java
           sed -i -r "s/rsVersion = [0-9]+/rsVersion = ${GAMEPACK_REVISION}/" ./buildSrc/src/main/kotlin/Dependencies.kt
+      - name: Create pull request
         uses: peter-evans/create-pull-request@v3.11.1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
