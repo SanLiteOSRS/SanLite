@@ -38,7 +38,9 @@ public class Downloader
 
 		try
 		{
-			URL url = new URL(getGamepackUrl());
+			String gamepackUrlString = getGamepackUrl();
+			URL url = new URL(gamepackUrlString);
+			System.out.println("Downloading gamepack from url: " + gamepackUrlString);
 
 			final URLDownloader downloader = new URLDownloader(url, output);
 			downloader.download();
@@ -60,6 +62,7 @@ public class Downloader
 
 	public static void main(String[] args)
 	{
-		gamepack();
+		String outputPath = gamepack();
+		System.out.println("Saved gamepack at path: " + outputPath);
 	}
 }
