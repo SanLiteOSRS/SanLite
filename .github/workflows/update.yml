@@ -30,9 +30,9 @@ jobs:
       - name: Building
         run: ./gradlew build --stacktrace -x test -x checkstyleMain --console=plain
       - name: Download gamepack
-        run: ./gradlew Downloader$main --args="./gamepack"
+        run: ./gradlew Downloader$main --args="../gamepack"
       - name: Deobfuscate gamepack
-        run: ./gradlew Deob$main --args="./gamepack/gamepack.jar ./gamepack/deob.jar"
+        run: ./gradlew Deob$main --args="../gamepack/gamepack.jar ../gamepack/deob.jar"
       - name: Update gamepack mappings
         run: |
           pwd
