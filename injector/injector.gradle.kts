@@ -38,7 +38,7 @@ tasks.register<JavaExec>("inject") {
 
     enableAssertions = true
 
-    main = "net.sanlite.injector.Injector"
+    mainClass.set("net.sanlite.injector.Injector")
     val out = "${project.extra["rootPath"]}/runelite-client/build/injected/injected-client.rs"
     outputs.file(out)
     classpath = sourceSets["main"].runtimeClasspath

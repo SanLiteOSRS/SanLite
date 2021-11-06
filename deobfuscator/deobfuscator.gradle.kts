@@ -98,14 +98,14 @@ tasks {
         group = "gamepack"
 
         classpath = project.sourceSets.main.get().runtimeClasspath
-        main = "net.runelite.gamepack.Downloader"
+        mainClass.set("net.runelite.gamepack.Downloader")
     }
 
     register<JavaExec>("Deob\$main()") {
         group = "gamepack"
 
         classpath = project.sourceSets.main.get().runtimeClasspath
-        main = "net.runelite.deob.Deob"
+        mainClass.set("net.runelite.deob.Deob")
         args = listOf(tokens["vanilla.jar"], "$buildDir/libs/deobfuscated-$version.jar")
     }
 
@@ -113,14 +113,14 @@ tasks {
         group = "gamepack"
 
         classpath = project.sourceSets.main.get().runtimeClasspath
-        main = "net.runelite.deob.updater.UpdateMappings"
+        mainClass.set("net.runelite.deob.updater.UpdateMappings")
     }
 
     register<JavaExec>("ClientVersion\$main()") {
         group = "gamepack"
 
         classpath = project.sourceSets.main.get().runtimeClasspath
-        main = "net.runelite.deob.clientver.ClientVersionMain"
+        mainClass.set("net.runelite.deob.clientver.ClientVersionMain")
     }
 }
 

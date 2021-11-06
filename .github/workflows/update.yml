@@ -30,24 +30,16 @@ jobs:
       - name: Building
         run: ./gradlew build --stacktrace -x test -x checkstyleMain --console=plain
       - name: Download gamepack
-        run: |
-          pwd
-          ls
-          ./gradlew Downloader$main --args='./gamepack'
-          ls
+        run: ./gradlew Downloader$main --args="./gamepack"
       - name: Deobfuscate gamepack
-        run: |
-          pwd
-          ls
-          ./gradlew Deob$main --args='./gamepack/gamepack.jar ./gamepack/deob.jar'
-          ls
+        run: ./gradlew Deob$main --args="./gamepack/gamepack.jar ./gamepack/deob.jar"
       - name: Update gamepack mappings
         run: |
           pwd
           ls
           export PROJECT_VERSION=$(./gradlew properties -q | grep "version:" | awk '{print $2}')
           echo $PROJECT_VERSION
-          ./gradlew UpdateMappings$main --args='./runescape-client/build/libs/runescape-client-$PROJECT_VERSION.jar ./gamepack/deob.jar ./gamepack/refactored.jar'
+          ./gradlew UpdateMappings$main --args="../runescape-client/build/libs/runescape-client-${PROJECT_VERSION}.jar ../gamepack/deob.jar ../gamepack/refactored-gamepack.jar"
           ls
       - uses: actions/upload-artifact@v2.2.4
         with:

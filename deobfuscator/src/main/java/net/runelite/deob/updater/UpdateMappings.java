@@ -26,6 +26,9 @@ package net.runelite.deob.updater;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import net.runelite.asm.ClassGroup;
 import net.runelite.deob.deobfuscators.mapping.AnnotationIntegrityChecker;
 import net.runelite.deob.deobfuscators.mapping.AnnotationMapper;
@@ -87,16 +90,24 @@ public class UpdateMappings
 
 	public static void main(String[] args) throws IOException
 	{
-		if (args.length < 3)
+		if (args.length < 3 || (args[0].isEmpty() || args[1].isEmpty() || args[2].isEmpty()))
 		{
+			System.err.println("Syntax: rs_client_jar deob_jar output_jar");
 			System.exit(-1);
 		}
 
-		UpdateMappings u = new UpdateMappings(
+		System.out.println("Updating mappings from: " + args[0] + " for deobfuscated gamepack: " + args[1]);
+
+		Path currentRelativePath = Paths.get("");
+		String s = currentRelativePath.toAbsolutePath().toString();
+		System.out.println("Current absolute path is: " + s);
+
+		UpdateMappings updateMappings = new UpdateMappings(
 			JarUtil.load(new File(args[0]), true),
 			JarUtil.load(new File(args[1]), true)
 		);
-		u.update();
-		u.save(new File(args[2]));
+		updateMappings.update();
+		updateMappings.save(new File(args[2]));
+		System.out.println("Saved updated gamepack at: " + args[2]);
 	}
 }
