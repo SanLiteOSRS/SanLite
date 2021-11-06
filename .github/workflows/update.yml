@@ -62,6 +62,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           author: SanLite CI <->
           committer: SanLite CI <->
+          base: master
           branch: feature/rev-${GAMEPACK_REVISION}-$(date +%s)
           commit-message: "feat(gamepack): updates to revision ${GAMEPACK_REVISION}"
           title: "feat(gamepack): updates to revision ${GAMEPACK_REVISION}"
