@@ -56,7 +56,7 @@ jobs:
         run: |
           rm -rf ./runescape-client/src/main/java/com
           rm -f ./runescape-client/src/main/java/net/runelite/rs/*Opcodes.java
-          rm -f ./runescape-client/src/main/java/*.java
+          rm -f $(find ./runescape-client/src/main/java -maxdepth 1 -name "*.java" ! -name "RuneLite*.java")
           cp -R ./gamepack/rs-client/* ./runescape-client/src/main/java
           sed -i -r "s/rsVersion = [0-9]+/rsVersion = ${{ env.GAMEPACK_REVISION }}/" ./buildSrc/src/main/kotlin/Dependencies.kt
           echo "BRANCH_NAME=feature/rev-${{ env.GAMEPACK_REVISION }}-$(date +%s)" >> $GITHUB_ENV
