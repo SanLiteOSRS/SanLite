@@ -4,52 +4,54 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fm")
+@ObfuscatedName("fy")
 @Implements("VarbitComposition")
 public class VarbitComposition extends DualNode {
-	@ObfuscatedName("l")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		descriptor = "Lkl;"
+		descriptor = "Lko;"
 	)
 	@Export("VarbitDefinition_archive")
-	public static AbstractArchive VarbitDefinition_archive;
-	@ObfuscatedName("q")
+	static AbstractArchive VarbitDefinition_archive;
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		descriptor = "Lii;"
+		descriptor = "Lig;"
 	)
 	@Export("VarbitDefinition_cached")
 	public static EvictingDualNodeHashTable VarbitDefinition_cached;
-	@ObfuscatedName("k")
-	static final int[] field1784;
-	@ObfuscatedName("do")
-	@Export("mouseCam")
-	static boolean mouseCam;
-	@ObfuscatedName("f")
+	@ObfuscatedName("g")
+	static final int[] field1780;
+	@ObfuscatedName("fh")
 	@ObfuscatedGetter(
-		intValue = 1254012853
+		intValue = -71897969
+	)
+	static int field1775;
+	@ObfuscatedName("s")
+	@ObfuscatedGetter(
+		intValue = 207149791
 	)
 	@Export("baseVar")
 	public int baseVar;
-	@ObfuscatedName("j")
+	@ObfuscatedName("a")
 	@ObfuscatedGetter(
-		intValue = -590597255
+		intValue = 348615607
 	)
 	@Export("startBit")
 	public int startBit;
-	@ObfuscatedName("m")
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = 1105394607
+		intValue = -1999695007
 	)
 	@Export("endBit")
 	public int endBit;
 
 	static {
 		VarbitDefinition_cached = new EvictingDualNodeHashTable(64);
-		field1784 = new int[32];
+		field1780 = new int[32];
 		int var0 = 2;
 
 		for (int var1 = 0; var1 < 32; ++var1) {
-			field1784[var1] = var0 - 1;
+			field1780[var1] = var0 - 1;
 			var0 += var0;
 		}
 
@@ -58,10 +60,10 @@ public class VarbitComposition extends DualNode {
 	VarbitComposition() {
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "(Lot;I)V",
-		garbageValue = "-123239897"
+		descriptor = "(Lop;S)V",
+		garbageValue = "3911"
 	)
 	@Export("decode")
 	void decode(Buffer var1) {
@@ -75,10 +77,10 @@ public class VarbitComposition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "(Lot;II)V",
-		garbageValue = "-1018512127"
+		descriptor = "(Lop;II)V",
+		garbageValue = "-1096806966"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
@@ -90,51 +92,27 @@ public class VarbitComposition extends DualNode {
 
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		descriptor = "(Lkl;II)Liq;",
-		garbageValue = "-1817307583"
+		descriptor = "(B)[Ljb;",
+		garbageValue = "51"
 	)
-	static MusicPatch method3103(AbstractArchive var0, int var1) {
-		byte[] var2 = var0.takeFileFlat(var1);
-		return var2 == null ? null : new MusicPatch(var2);
+	@Export("PlayerType_values")
+	public static PlayerType[] PlayerType_values() {
+		return new PlayerType[]{PlayerType.field3652, PlayerType.PlayerType_jagexModerator, PlayerType.PlayerType_playerModerator, PlayerType.PlayerType_normal, PlayerType.PlayerType_hardcoreIronman, PlayerType.field3650, PlayerType.PlayerType_ironman, PlayerType.PlayerType_ultimateIronman, PlayerType.field3649};
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "(IB)Lfb;",
-		garbageValue = "4"
+		descriptor = "(Lnf;ILjava/lang/String;I)Ljava/lang/String;",
+		garbageValue = "1356427947"
 	)
-	@Export("getEnum")
-	public static EnumComposition getEnum(int var0) {
-		EnumComposition var1 = (EnumComposition)EnumComposition.EnumDefinition_cached.get((long)var0);
-		if (var1 != null) {
-			return var1;
+	static String method3205(IterableNodeHashTable var0, int var1, String var2) {
+		if (var0 == null) {
+			return var2;
 		} else {
-			byte[] var2 = EnumComposition.EnumDefinition_archive.takeFile(8, var0);
-			var1 = new EnumComposition();
-			if (var2 != null) {
-				var1.decode(new Buffer(var2));
-			}
-
-			EnumComposition.EnumDefinition_cached.put(var1, (long)var0);
-			return var1;
-		}
-	}
-
-	@ObfuscatedName("a")
-	@ObfuscatedSignature(
-		descriptor = "(Lkl;IIB)Z",
-		garbageValue = "41"
-	)
-	@Export("SpriteBuffer_loadSpritesFromArchive")
-	public static boolean SpriteBuffer_loadSpritesFromArchive(AbstractArchive var0, int var1, int var2) {
-		byte[] var3 = var0.takeFile(var1, var2);
-		if (var3 == null) {
-			return false;
-		} else {
-			class398.SpriteBuffer_decode(var3);
-			return true;
+			ObjectNode var3 = (ObjectNode)var0.get((long)var1);
+			return var3 == null ? var2 : (String)var3.obj;
 		}
 	}
 }

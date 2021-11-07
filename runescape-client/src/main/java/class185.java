@@ -1,21 +1,18 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gh")
+@ObfuscatedName("go")
 public class class185 {
-	@ObfuscatedName("i")
-	public static short[][] field2101;
-	@ObfuscatedName("ak")
-	@Export("fontHelvetica13")
-	static java.awt.Font fontHelvetica13;
-
-	@ObfuscatedName("q")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
-		descriptor = "(IB)I",
-		garbageValue = "-58"
+		descriptor = "(IIB)V",
+		garbageValue = "1"
 	)
-	public static int method3784(int var0) {
-		return class361.field4056[var0 & 16383];
+	public static final void method3872(int var0, int var1) {
+		ViewportMouse.ViewportMouse_x = var0;
+		ViewportMouse.ViewportMouse_y = var1;
+		ViewportMouse.ViewportMouse_isInViewport = true;
+		ViewportMouse.ViewportMouse_entityCount = 0;
+		ViewportMouse.ViewportMouse_false0 = false;
 	}
 }

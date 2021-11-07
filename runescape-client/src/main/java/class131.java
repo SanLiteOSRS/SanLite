@@ -1,32 +1,33 @@
-import java.awt.Component;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ev")
+@ObfuscatedName("ej")
 public class class131 extends class116 {
-	@ObfuscatedName("m")
-	@Export("SpriteBuffer_yOffsets")
-	public static int[] SpriteBuffer_yOffsets;
-	@ObfuscatedName("en")
+	@ObfuscatedName("k")
+	@ObfuscatedGetter(
+		intValue = -1300731739
+	)
+	static int field1485;
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		descriptor = "Lmr;"
+		descriptor = "Lkj;"
 	)
-	@Export("spriteIds")
-	static GraphicsDefaults spriteIds;
-	@ObfuscatedName("l")
+	@Export("NetCache_currentResponse")
+	public static NetFileRequest NetCache_currentResponse;
+	@ObfuscatedName("i")
 	@ObfuscatedGetter(
-		longValue = -3900186400137069511L
+		longValue = -7049203579552523343L
 	)
-	long field1486;
-	@ObfuscatedName("q")
-	String field1484;
-	@ObfuscatedName("f")
+	long field1487;
+	@ObfuscatedName("w")
+	String field1486;
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = 655775571
+		intValue = -121846283
 	)
-	int field1487;
+	int field1489;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
 		descriptor = "Ldg;"
@@ -38,72 +39,73 @@ public class class131 extends class116 {
 	)
 	class131(class119 var1) {
 		this.this$0 = var1;
-		this.field1486 = -1L;
-		this.field1484 = null;
-		this.field1487 = 0;
+		this.field1487 = -1L;
+		this.field1486 = null;
+		this.field1489 = 0;
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		descriptor = "(Lot;I)V",
-		garbageValue = "-912681401"
+		descriptor = "(Lop;I)V",
+		garbageValue = "-2002779676"
 	)
-	void vmethod2767(Buffer var1) {
+	void vmethod2847(Buffer var1) {
 		if (var1.readUnsignedByte() != 255) {
 			--var1.offset;
-			this.field1486 = var1.readLong();
+			this.field1487 = var1.readLong();
 		}
 
-		this.field1484 = var1.readStringCp1252NullTerminatedOrNull();
-		this.field1487 = var1.readUnsignedShort();
+		this.field1486 = var1.readStringCp1252NullTerminatedOrNull();
+		this.field1489 = var1.readUnsignedShort();
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		descriptor = "(Ldk;I)V",
-		garbageValue = "-1225074726"
+		descriptor = "(Ldm;I)V",
+		garbageValue = "-293908864"
 	)
-	void vmethod2766(ClanSettings var1) {
-		var1.method2646(this.field1486, this.field1484, this.field1487);
+	void vmethod2848(ClanSettings var1) {
+		var1.method2655(this.field1487, this.field1486, this.field1489);
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/awt/Component;I)V",
-		garbageValue = "387235799"
+		descriptor = "(I)V",
+		garbageValue = "-474591339"
 	)
-	static void method2690(Component var0) {
-		var0.addMouseListener(MouseHandler.MouseHandler_instance);
-		var0.addMouseMotionListener(MouseHandler.MouseHandler_instance);
-		var0.addFocusListener(MouseHandler.MouseHandler_instance);
-	}
+	public static void method2753() {
+		try {
+			if (class247.musicPlayerStatus == 1) {
+				int var0 = class247.midiPcmStream.method4754();
+				if (var0 > 0 && class247.midiPcmStream.isReady()) {
+					var0 -= class247.pcmSampleLength;
+					if (var0 < 0) {
+						var0 = 0;
+					}
 
-	@ObfuscatedName("j")
-	@ObfuscatedSignature(
-		descriptor = "(Lkl;Ljava/lang/String;Ljava/lang/String;B)Loz;",
-		garbageValue = "-74"
-	)
-	@Export("SpriteBuffer_getIndexedSpriteByName")
-	public static IndexedSprite SpriteBuffer_getIndexedSpriteByName(AbstractArchive var0, String var1, String var2) {
-		int var3 = var0.getGroupId(var1);
-		int var4 = var0.getFileId(var3, var2);
-		IndexedSprite var5;
-		if (!VarbitComposition.SpriteBuffer_loadSpritesFromArchive(var0, var3, var4)) {
-			var5 = null;
-		} else {
-			IndexedSprite var7 = new IndexedSprite();
-			var7.width = class414.SpriteBuffer_spriteWidth;
-			var7.height = class408.SpriteBuffer_spriteHeight;
-			var7.xOffset = class135.SpriteBuffer_xOffsets[0];
-			var7.yOffset = SpriteBuffer_yOffsets[0];
-			var7.subWidth = class414.SpriteBuffer_spriteWidths[0];
-			var7.subHeight = class16.SpriteBuffer_spriteHeights[0];
-			var7.palette = class351.SpriteBuffer_spritePalette;
-			var7.pixels = class414.SpriteBuffer_pixels[0];
-			StudioGame.method5130();
-			var5 = var7;
+					class247.midiPcmStream.setPcmStreamVolume(var0);
+					return;
+				}
+
+				class247.midiPcmStream.clear();
+				class247.midiPcmStream.removeAll();
+				if (class128.musicTrackArchive != null) {
+					class247.musicPlayerStatus = 2;
+				} else {
+					class247.musicPlayerStatus = 0;
+				}
+
+				class14.musicTrack = null;
+				class247.soundCache = null;
+			}
+		} catch (Exception var2) {
+			var2.printStackTrace();
+			class247.midiPcmStream.clear();
+			class247.musicPlayerStatus = 0;
+			class14.musicTrack = null;
+			class247.soundCache = null;
+			class128.musicTrackArchive = null;
 		}
 
-		return var5;
 	}
 }

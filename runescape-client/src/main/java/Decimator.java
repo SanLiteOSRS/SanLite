@@ -4,22 +4,22 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ai")
+@ObfuscatedName("aa")
 @Implements("Decimator")
 public class Decimator {
-	@ObfuscatedName("j")
+	@ObfuscatedName("a")
 	@ObfuscatedGetter(
-		intValue = 209733467
+		intValue = -1492470375
 	)
 	@Export("inputRate")
 	int inputRate;
-	@ObfuscatedName("m")
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = -1210066833
+		intValue = 1711646651
 	)
 	@Export("outputRate")
 	int outputRate;
-	@ObfuscatedName("k")
+	@ObfuscatedName("g")
 	@Export("table")
 	int[][] table;
 
@@ -58,29 +58,29 @@ public class Decimator {
 				}
 
 				for (double var13 = (double)var2 / (double)var1; var11 < var12; ++var11) {
-					double var15 = ((double)var11 - var9) * 3.141592653589793D;
+					double var15 = 3.141592653589793D * ((double)var11 - var9);
 					double var17 = var13;
 					if (var15 < -1.0E-4D || var15 > 1.0E-4D) {
 						var17 = var13 * (Math.sin(var15) / var15);
 					}
 
 					var17 *= 0.54D + 0.46D * Math.cos(((double)var11 - var9) * 0.2243994752564138D);
-					var8[var11] = (int)Math.floor(65536.0D * var17 + 0.5D);
+					var8[var11] = (int)Math.floor(var17 * 65536.0D + 0.5D);
 				}
 			}
 
 		}
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		descriptor = "([BB)[B",
-		garbageValue = "-52"
+		descriptor = "([BI)[B",
+		garbageValue = "-951677214"
 	)
 	@Export("resample")
 	byte[] resample(byte[] var1) {
 		if (this.table != null) {
-			int var2 = (int)((long)var1.length * (long)this.outputRate / (long)this.inputRate) + 14;
+			int var2 = (int)((long)this.outputRate * (long)var1.length / (long)this.inputRate) + 14;
 			int[] var3 = new int[var2];
 			int var4 = 0;
 			int var5 = 0;
@@ -118,10 +118,10 @@ public class Decimator {
 		return var1;
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
 		descriptor = "(II)I",
-		garbageValue = "835574685"
+		garbageValue = "-441900901"
 	)
 	@Export("scaleRate")
 	int scaleRate(int var1) {
@@ -132,136 +132,50 @@ public class Decimator {
 		return var1;
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "(IB)I",
-		garbageValue = "6"
+		descriptor = "(II)I",
+		garbageValue = "841868680"
 	)
 	@Export("scalePosition")
 	int scalePosition(int var1) {
 		if (this.table != null) {
-			var1 = (int)((long)this.outputRate * (long)var1 / (long)this.inputRate) + 6;
+			var1 = (int)((long)var1 * (long)this.outputRate / (long)this.inputRate) + 6;
 		}
 
 		return var1;
 	}
 
-	@ObfuscatedName("k")
+	@ObfuscatedName("ip")
 	@ObfuscatedSignature(
-		descriptor = "(Lbc;Lbc;IZIZI)I",
-		garbageValue = "1027479972"
+		descriptor = "(IIIII)V",
+		garbageValue = "-2093832763"
 	)
-	static int method1024(World var0, World var1, int var2, boolean var3, int var4, boolean var5) {
-		int var6 = VerticalAlignment.compareWorlds(var0, var1, var2, var3);
-		if (var6 != 0) {
-			return var3 ? -var6 : var6;
-		} else if (var4 == -1) {
-			return 0;
-		} else {
-			int var7 = VerticalAlignment.compareWorlds(var0, var1, var4, var5);
-			return var5 ? -var7 : var7;
+	@Export("selectSpell")
+	static void selectSpell(int var0, int var1, int var2, int var3) {
+		Widget var4 = ItemContainer.getWidgetChild(var0, var1);
+		if (var4 != null && var4.onTargetEnter != null) {
+			ScriptEvent var5 = new ScriptEvent();
+			var5.widget = var4;
+			var5.args = var4.onTargetEnter;
+			Tile.runScriptEvent(var5);
 		}
+
+		Client.field627 = var3;
+		Client.isSpellSelected = true;
+		FontName.selectedSpellWidget = var0;
+		Client.selectedSpellChildIndex = var1;
+		class116.selectedSpellFlags = var2;
+		class184.invalidateWidget(var4);
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("jv")
 	@ObfuscatedSignature(
-		descriptor = "(Lay;I)V",
-		garbageValue = "1657277023"
+		descriptor = "(I)Z",
+		garbageValue = "1138685196"
 	)
-	static void method1014(GameEngine var0) {
-		while (CollisionMap.isKeyDown()) {
-			if (class4.field13 == 13) {
-				Renderable.method4391();
-				return;
-			}
-
-			if (class4.field13 == 96) {
-				if (Login.worldSelectPage > 0 && WorldMapCacheName.worldSelectLeftSprite != null) {
-					--Login.worldSelectPage;
-				}
-			} else if (class4.field13 == 97 && Login.worldSelectPage < Login.worldSelectPagesCount && ByteArrayPool.worldSelectRightSprite != null) {
-				++Login.worldSelectPage;
-			}
-		}
-
-		if (MouseHandler.MouseHandler_lastButton == 1 || !VarbitComposition.mouseCam && MouseHandler.MouseHandler_lastButton == 4) {
-			int var1 = Login.xPadding + 280;
-			if (MouseHandler.MouseHandler_lastPressedX >= var1 && MouseHandler.MouseHandler_lastPressedX <= var1 + 14 && MouseHandler.MouseHandler_lastPressedY >= 4 && MouseHandler.MouseHandler_lastPressedY <= 18) {
-				class19.changeWorldSelectSorting(0, 0);
-				return;
-			}
-
-			if (MouseHandler.MouseHandler_lastPressedX >= var1 + 15 && MouseHandler.MouseHandler_lastPressedX <= var1 + 80 && MouseHandler.MouseHandler_lastPressedY >= 4 && MouseHandler.MouseHandler_lastPressedY <= 18) {
-				class19.changeWorldSelectSorting(0, 1);
-				return;
-			}
-
-			int var2 = Login.xPadding + 390;
-			if (MouseHandler.MouseHandler_lastPressedX >= var2 && MouseHandler.MouseHandler_lastPressedX <= var2 + 14 && MouseHandler.MouseHandler_lastPressedY >= 4 && MouseHandler.MouseHandler_lastPressedY <= 18) {
-				class19.changeWorldSelectSorting(1, 0);
-				return;
-			}
-
-			if (MouseHandler.MouseHandler_lastPressedX >= var2 + 15 && MouseHandler.MouseHandler_lastPressedX <= var2 + 80 && MouseHandler.MouseHandler_lastPressedY >= 4 && MouseHandler.MouseHandler_lastPressedY <= 18) {
-				class19.changeWorldSelectSorting(1, 1);
-				return;
-			}
-
-			int var3 = Login.xPadding + 500;
-			if (MouseHandler.MouseHandler_lastPressedX >= var3 && MouseHandler.MouseHandler_lastPressedX <= var3 + 14 && MouseHandler.MouseHandler_lastPressedY >= 4 && MouseHandler.MouseHandler_lastPressedY <= 18) {
-				class19.changeWorldSelectSorting(2, 0);
-				return;
-			}
-
-			if (MouseHandler.MouseHandler_lastPressedX >= var3 + 15 && MouseHandler.MouseHandler_lastPressedX <= var3 + 80 && MouseHandler.MouseHandler_lastPressedY >= 4 && MouseHandler.MouseHandler_lastPressedY <= 18) {
-				class19.changeWorldSelectSorting(2, 1);
-				return;
-			}
-
-			int var4 = Login.xPadding + 610;
-			if (MouseHandler.MouseHandler_lastPressedX >= var4 && MouseHandler.MouseHandler_lastPressedX <= var4 + 14 && MouseHandler.MouseHandler_lastPressedY >= 4 && MouseHandler.MouseHandler_lastPressedY <= 18) {
-				class19.changeWorldSelectSorting(3, 0);
-				return;
-			}
-
-			if (MouseHandler.MouseHandler_lastPressedX >= var4 + 15 && MouseHandler.MouseHandler_lastPressedX <= var4 + 80 && MouseHandler.MouseHandler_lastPressedY >= 4 && MouseHandler.MouseHandler_lastPressedY <= 18) {
-				class19.changeWorldSelectSorting(3, 1);
-				return;
-			}
-
-			if (MouseHandler.MouseHandler_lastPressedX >= Login.xPadding + 708 && MouseHandler.MouseHandler_lastPressedY >= 4 && MouseHandler.MouseHandler_lastPressedX <= Login.xPadding + 708 + 50 && MouseHandler.MouseHandler_lastPressedY <= 20) {
-				Renderable.method4391();
-				return;
-			}
-
-			if (Login.hoveredWorldIndex != -1) {
-				World var5 = class386.World_worlds[Login.hoveredWorldIndex];
-				World.changeWorld(var5);
-				Renderable.method4391();
-				return;
-			}
-
-			if (Login.worldSelectPage > 0 && WorldMapCacheName.worldSelectLeftSprite != null && MouseHandler.MouseHandler_lastPressedX >= 0 && MouseHandler.MouseHandler_lastPressedX <= WorldMapCacheName.worldSelectLeftSprite.subWidth && MouseHandler.MouseHandler_lastPressedY >= MouseRecorder.canvasHeight / 2 - 50 && MouseHandler.MouseHandler_lastPressedY <= MouseRecorder.canvasHeight / 2 + 50) {
-				--Login.worldSelectPage;
-			}
-
-			if (Login.worldSelectPage < Login.worldSelectPagesCount && ByteArrayPool.worldSelectRightSprite != null && MouseHandler.MouseHandler_lastPressedX >= Huffman.canvasWidth - ByteArrayPool.worldSelectRightSprite.subWidth - 5 && MouseHandler.MouseHandler_lastPressedX <= Huffman.canvasWidth && MouseHandler.MouseHandler_lastPressedY >= MouseRecorder.canvasHeight / 2 - 50 && MouseHandler.MouseHandler_lastPressedY <= MouseRecorder.canvasHeight / 2 + 50) {
-				++Login.worldSelectPage;
-			}
-		}
-
-	}
-
-	@ObfuscatedName("hh")
-	@ObfuscatedSignature(
-		descriptor = "(III)V",
-		garbageValue = "572846346"
-	)
-	@Export("resumePauseWidget")
-	static void resumePauseWidget(int var0, int var1) {
-		PacketBufferNode var2 = LoginScreenAnimation.getPacketBufferNode(ClientPacket.field2734, Client.packetWriter.isaacCipher);
-		var2.packetBuffer.method6930(var1);
-		var2.packetBuffer.writeInt(var0);
-		Client.packetWriter.addNode(var2);
+	@Export("getTapToDrop")
+	static boolean getTapToDrop() {
+		return Client.tapToDrop;
 	}
 }

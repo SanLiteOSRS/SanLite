@@ -3,31 +3,38 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("gt")
+@ObfuscatedName("gw")
 @Implements("WorldMapEvent")
 public class WorldMapEvent {
-	@ObfuscatedName("l")
+	@ObfuscatedName("o")
+	@ObfuscatedSignature(
+		descriptor = "[Lbw;"
+	)
+	@Export("World_worlds")
+	static World[] World_worlds;
+	@ObfuscatedName("i")
 	@ObfuscatedGetter(
-		intValue = -2131068137
+		intValue = -370976069
 	)
 	@Export("mapElement")
 	public int mapElement;
-	@ObfuscatedName("q")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		descriptor = "Lic;"
+		descriptor = "Lie;"
 	)
 	@Export("coord1")
 	public Coord coord1;
-	@ObfuscatedName("f")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "Lic;"
+		descriptor = "Lie;"
 	)
 	@Export("coord2")
 	public Coord coord2;
 
 	@ObfuscatedSignature(
-		descriptor = "(ILic;Lic;)V"
+		descriptor = "(ILie;Lie;)V"
 	)
 	public WorldMapEvent(int var1, Coord var2, Coord var3) {
 		this.mapElement = var1;
@@ -35,80 +42,142 @@ public class WorldMapEvent {
 		this.coord2 = var3;
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		descriptor = "([BIIII[Lfy;I)V",
-		garbageValue = "-804986830"
+		descriptor = "(ILbp;ZB)I",
+		garbageValue = "3"
 	)
-	static final void method4018(byte[] var0, int var1, int var2, int var3, int var4, CollisionMap[] var5) {
-		int var7;
-		int var8;
-		for (int var6 = 0; var6 < 4; ++var6) {
-			for (var7 = 0; var7 < 64; ++var7) {
-				for (var8 = 0; var8 < 64; ++var8) {
-					if (var7 + var1 > 0 && var7 + var1 < 103 && var8 + var2 > 0 && var8 + var2 < 103) {
-						int[] var10000 = var5[var6].flags[var7 + var1];
-						var10000[var8 + var2] &= -16777217;
+	static int method4105(int var0, Script var1, boolean var2) {
+		boolean var3 = true;
+		Widget var4;
+		if (var0 >= 2000) {
+			var0 -= 1000;
+			var4 = UserComparator9.getWidget(Interpreter.Interpreter_intStack[--class14.Interpreter_intStackSize]);
+			var3 = false;
+		} else {
+			var4 = var2 ? class120.scriptDotWidget : Frames.scriptActiveWidget;
+		}
+
+		int var11;
+		if (var0 == ScriptOpcodes.CC_SETOP) {
+			var11 = Interpreter.Interpreter_intStack[--class14.Interpreter_intStackSize] - 1;
+			if (var11 >= 0 && var11 <= 9) {
+				var4.setAction(var11, Interpreter.Interpreter_stringStack[--class295.Interpreter_stringStackSize]);
+				return 1;
+			} else {
+				--class295.Interpreter_stringStackSize;
+				return 1;
+			}
+		} else {
+			int var6;
+			if (var0 == ScriptOpcodes.CC_SETDRAGGABLE) {
+				class14.Interpreter_intStackSize -= 2;
+				var11 = Interpreter.Interpreter_intStack[class14.Interpreter_intStackSize];
+				var6 = Interpreter.Interpreter_intStack[class14.Interpreter_intStackSize + 1];
+				var4.parent = ItemContainer.getWidgetChild(var11, var6);
+				return 1;
+			} else if (var0 == ScriptOpcodes.CC_SETDRAGGABLEBEHAVIOR) {
+				var4.isScrollBar = Interpreter.Interpreter_intStack[--class14.Interpreter_intStackSize] == 1;
+				return 1;
+			} else if (var0 == ScriptOpcodes.CC_SETDRAGDEADZONE) {
+				var4.dragZoneSize = Interpreter.Interpreter_intStack[--class14.Interpreter_intStackSize];
+				return 1;
+			} else if (var0 == ScriptOpcodes.CC_SETDRAGDEADTIME) {
+				var4.dragThreshold = Interpreter.Interpreter_intStack[--class14.Interpreter_intStackSize];
+				return 1;
+			} else if (var0 == ScriptOpcodes.CC_SETOPBASE) {
+				var4.dataText = Interpreter.Interpreter_stringStack[--class295.Interpreter_stringStackSize];
+				return 1;
+			} else if (var0 == ScriptOpcodes.CC_SETTARGETVERB) {
+				var4.spellActionName = Interpreter.Interpreter_stringStack[--class295.Interpreter_stringStackSize];
+				return 1;
+			} else if (var0 == ScriptOpcodes.CC_CLEAROPS) {
+				var4.actions = null;
+				return 1;
+			} else if (var0 == 1308) {
+				var4.prioritizeMenuEntry = Interpreter.Interpreter_intStack[--class14.Interpreter_intStackSize] == 1;
+				return 1;
+			} else if (var0 == 1309) {
+				--class14.Interpreter_intStackSize;
+				return 1;
+			} else {
+				int var7;
+				byte[] var8;
+				if (var0 != ScriptOpcodes.CC_SETOPKEY) {
+					byte var5;
+					if (var0 == ScriptOpcodes.CC_SETOPTKEY) {
+						class14.Interpreter_intStackSize -= 2;
+						var5 = 10;
+						var8 = new byte[]{(byte)Interpreter.Interpreter_intStack[class14.Interpreter_intStackSize]};
+						byte[] var9 = new byte[]{(byte)Interpreter.Interpreter_intStack[class14.Interpreter_intStackSize + 1]};
+						Varps.Widget_setKey(var4, var5, var8, var9);
+						return 1;
+					} else if (var0 == ScriptOpcodes.CC_SETOPKEYRATE) {
+						class14.Interpreter_intStackSize -= 3;
+						var11 = Interpreter.Interpreter_intStack[class14.Interpreter_intStackSize] - 1;
+						var6 = Interpreter.Interpreter_intStack[class14.Interpreter_intStackSize + 1];
+						var7 = Interpreter.Interpreter_intStack[class14.Interpreter_intStackSize + 2];
+						if (var11 >= 0 && var11 <= 9) {
+							Interpreter.Widget_setKeyRate(var4, var11, var6, var7);
+							return 1;
+						} else {
+							throw new RuntimeException();
+						}
+					} else if (var0 == ScriptOpcodes.CC_SETOPTKEYRATE) {
+						var5 = 10;
+						var6 = Interpreter.Interpreter_intStack[--class14.Interpreter_intStackSize];
+						var7 = Interpreter.Interpreter_intStack[--class14.Interpreter_intStackSize];
+						Interpreter.Widget_setKeyRate(var4, var5, var6, var7);
+						return 1;
+					} else if (var0 == ScriptOpcodes.CC_SETOPKEYIGNOREHELD) {
+						--class14.Interpreter_intStackSize;
+						var11 = Interpreter.Interpreter_intStack[class14.Interpreter_intStackSize] - 1;
+						if (var11 >= 0 && var11 <= 9) {
+							class1.Widget_setKeyIgnoreHeld(var4, var11);
+							return 1;
+						} else {
+							throw new RuntimeException();
+						}
+					} else if (var0 == ScriptOpcodes.CC_SETOPTKEYIGNOREHELD) {
+						var5 = 10;
+						class1.Widget_setKeyIgnoreHeld(var4, var5);
+						return 1;
+					} else {
+						return 2;
+					}
+				} else {
+					byte[] var10 = null;
+					var8 = null;
+					if (var3) {
+						class14.Interpreter_intStackSize -= 10;
+
+						for (var7 = 0; var7 < 10 && Interpreter.Interpreter_intStack[var7 + class14.Interpreter_intStackSize] >= 0; var7 += 2) {
+						}
+
+						if (var7 > 0) {
+							var10 = new byte[var7 / 2];
+							var8 = new byte[var7 / 2];
+
+							for (var7 -= 2; var7 >= 0; var7 -= 2) {
+								var10[var7 / 2] = (byte)Interpreter.Interpreter_intStack[var7 + class14.Interpreter_intStackSize];
+								var8[var7 / 2] = (byte)Interpreter.Interpreter_intStack[var7 + class14.Interpreter_intStackSize + 1];
+							}
+						}
+					} else {
+						class14.Interpreter_intStackSize -= 2;
+						var10 = new byte[]{(byte)Interpreter.Interpreter_intStack[class14.Interpreter_intStackSize]};
+						var8 = new byte[]{(byte)Interpreter.Interpreter_intStack[class14.Interpreter_intStackSize + 1]};
+					}
+
+					var7 = Interpreter.Interpreter_intStack[--class14.Interpreter_intStackSize] - 1;
+					if (var7 >= 0 && var7 <= 9) {
+						Varps.Widget_setKey(var4, var7, var10, var8);
+						return 1;
+					} else {
+						throw new RuntimeException();
 					}
 				}
 			}
 		}
-
-		Buffer var10 = new Buffer(var0);
-
-		for (var7 = 0; var7 < 4; ++var7) {
-			for (var8 = 0; var8 < 64; ++var8) {
-				for (int var9 = 0; var9 < 64; ++var9) {
-					VarpDefinition.loadTerrain(var10, var7, var8 + var1, var9 + var2, var3, var4, 0);
-				}
-			}
-		}
-
-	}
-
-	@ObfuscatedName("ij")
-	@ObfuscatedSignature(
-		descriptor = "(Ljt;IIZB)V",
-		garbageValue = "1"
-	)
-	@Export("alignWidgetSize")
-	static void alignWidgetSize(Widget var0, int var1, int var2, boolean var3) {
-		int var4 = var0.width;
-		int var5 = var0.height;
-		if (var0.widthAlignment == 0) {
-			var0.width = var0.rawWidth;
-		} else if (var0.widthAlignment == 1) {
-			var0.width = var1 - var0.rawWidth;
-		} else if (var0.widthAlignment == 2) {
-			var0.width = var0.rawWidth * var1 >> 14;
-		}
-
-		if (var0.heightAlignment == 0) {
-			var0.height = var0.rawHeight;
-		} else if (var0.heightAlignment == 1) {
-			var0.height = var2 - var0.rawHeight;
-		} else if (var0.heightAlignment == 2) {
-			var0.height = var2 * var0.rawHeight >> 14;
-		}
-
-		if (var0.widthAlignment == 4) {
-			var0.width = var0.height * var0.field3067 / var0.field3136;
-		}
-
-		if (var0.heightAlignment == 4) {
-			var0.height = var0.width * var0.field3136 / var0.field3067;
-		}
-
-		if (var0.contentType == 1337) {
-			Client.viewportWidget = var0;
-		}
-
-		if (var3 && var0.onResize != null && (var4 != var0.width || var5 != var0.height)) {
-			ScriptEvent var6 = new ScriptEvent();
-			var6.widget = var0;
-			var6.args = var0.onResize;
-			Client.scriptEvents.addFirst(var6);
-		}
-
 	}
 }

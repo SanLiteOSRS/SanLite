@@ -1,71 +1,125 @@
 import net.runelite.mapping.Export;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ed")
+@ObfuscatedName("ey")
 public class class150 {
-	@ObfuscatedName("ev")
-	@ObfuscatedSignature(
-		descriptor = "Lky;"
+	@ObfuscatedName("os")
+	@ObfuscatedGetter(
+		intValue = 341290279
 	)
-	@Export("archive3")
-	static Archive archive3;
-	@ObfuscatedName("f")
-	public short[] field1606;
-	@ObfuscatedName("j")
-	public short[] field1607;
+	static int field1604;
+	@ObfuscatedName("s")
+	public short[] field1598;
+	@ObfuscatedName("a")
+	public short[] field1600;
 
-	public class150(int var1) {
-		ItemComposition var2 = class87.ItemDefinition_get(var1);
-		if (var2.method3297()) {
-			this.field1606 = new short[var2.recolorTo.length];
-			System.arraycopy(var2.recolorTo, 0, this.field1606, 0, this.field1606.length);
+	class150(int var1) {
+		ItemComposition var2 = TaskHandler.ItemDefinition_get(var1);
+		if (var2.method3368()) {
+			this.field1598 = new short[var2.recolorTo.length];
+			System.arraycopy(var2.recolorTo, 0, this.field1598, 0, this.field1598.length);
 		}
 
-		if (var2.method3272()) {
-			this.field1607 = new short[var2.retextureTo.length];
-			System.arraycopy(var2.retextureTo, 0, this.field1607, 0, this.field1607.length);
+		if (var2.method3347()) {
+			this.field1600 = new short[var2.retextureTo.length];
+			System.arraycopy(var2.retextureTo, 0, this.field1600, 0, this.field1600.length);
 		}
 
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		descriptor = "(I[BLmm;I)V",
-		garbageValue = "-2027548425"
+		descriptor = "(I)[Lfg;",
+		garbageValue = "-639525716"
 	)
-	static void method2873(int var0, byte[] var1, ArchiveDisk var2) {
-		ArchiveDiskAction var3 = new ArchiveDiskAction();
-		var3.type = 0;
-		var3.key = (long)var0;
-		var3.data = var1;
-		var3.archiveDisk = var2;
-		synchronized(ArchiveDiskActionHandler.ArchiveDiskActionHandler_requestQueue) {
-			ArchiveDiskActionHandler.ArchiveDiskActionHandler_requestQueue.addFirst(var3);
-		}
+	static VerticalAlignment[] method2969() {
+		return new VerticalAlignment[]{VerticalAlignment.VerticalAlignment_centered, VerticalAlignment.field1744, VerticalAlignment.field1743};
+	}
 
-		synchronized(ArchiveDiskActionHandler.ArchiveDiskActionHandler_lock) {
-			if (ArchiveDiskActionHandler.field3671 == 0) {
-				Huffman.ArchiveDiskActionHandler_thread = new Thread(new ArchiveDiskActionHandler());
-				Huffman.ArchiveDiskActionHandler_thread.setDaemon(true);
-				Huffman.ArchiveDiskActionHandler_thread.start();
-				Huffman.ArchiveDiskActionHandler_thread.setPriority(5);
+	@ObfuscatedName("w")
+	@ObfuscatedSignature(
+		descriptor = "(IB)Lfy;",
+		garbageValue = "5"
+	)
+	public static VarbitComposition method2965(int var0) {
+		VarbitComposition var1 = (VarbitComposition)VarbitComposition.VarbitDefinition_cached.get((long)var0);
+		if (var1 != null) {
+			return var1;
+		} else {
+			byte[] var2 = VarbitComposition.VarbitDefinition_archive.takeFile(14, var0);
+			var1 = new VarbitComposition();
+			if (var2 != null) {
+				var1.decode(new Buffer(var2));
 			}
 
-			ArchiveDiskActionHandler.field3671 = 600;
+			VarbitComposition.VarbitDefinition_cached.put(var1, (long)var0);
+			return var1;
 		}
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("hm")
 	@ObfuscatedSignature(
-		descriptor = "(III)V",
-		garbageValue = "893646599"
+		descriptor = "(III)I",
+		garbageValue = "1306272035"
 	)
-	static void method2874(int var0, int var1) {
-		long var2 = (long)((var0 << 16) + var1);
-		NetFileRequest var4 = (NetFileRequest)NetCache.NetCache_pendingWrites.get(var2);
-		if (var4 != null) {
-			NetCache.NetCache_pendingWritesQueue.addLast(var4);
+	static int method2971(int var0, int var1) {
+		int var2 = var1 - 334;
+		if (var2 < 0) {
+			var2 = 0;
+		} else if (var2 > 100) {
+			var2 = 100;
 		}
+
+		int var3 = (Client.zoomWidth - Client.zoomHeight) * var2 / 100 + Client.zoomHeight;
+		return var0 * var3 / 256;
+	}
+
+	@ObfuscatedName("jp")
+	@ObfuscatedSignature(
+		descriptor = "([Ljf;IB)V",
+		garbageValue = "-37"
+	)
+	@Export("runComponentCloseListeners")
+	static final void runComponentCloseListeners(Widget[] var0, int var1) {
+		for (int var2 = 0; var2 < var0.length; ++var2) {
+			Widget var3 = var0[var2];
+			if (var3 != null) {
+				if (var3.type == 0) {
+					if (var3.children != null) {
+						runComponentCloseListeners(var3.children, var1);
+					}
+
+					InterfaceParent var4 = (InterfaceParent)Client.interfaceParents.get((long)var3.id);
+					if (var4 != null) {
+						ItemComposition.runIntfCloseListeners(var4.group, var1);
+					}
+				}
+
+				ScriptEvent var5;
+				if (var1 == 0 && var3.onDialogAbort != null) {
+					var5 = new ScriptEvent();
+					var5.widget = var3;
+					var5.args = var3.onDialogAbort;
+					Tile.runScriptEvent(var5);
+				}
+
+				if (var1 == 1 && var3.onSubChange != null) {
+					if (var3.childIndex >= 0) {
+						Widget var6 = UserComparator9.getWidget(var3.id);
+						if (var6 == null || var6.children == null || var3.childIndex >= var6.children.length || var3 != var6.children[var3.childIndex]) {
+							continue;
+						}
+					}
+
+					var5 = new ScriptEvent();
+					var5.widget = var3;
+					var5.args = var3.onSubChange;
+					Tile.runScriptEvent(var5);
+				}
+			}
+		}
+
 	}
 }

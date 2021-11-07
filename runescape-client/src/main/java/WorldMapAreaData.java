@@ -3,36 +3,29 @@ import java.util.LinkedList;
 import java.util.List;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gx")
+@ObfuscatedName("gj")
 @Implements("WorldMapAreaData")
 public class WorldMapAreaData extends WorldMapArea {
-	@ObfuscatedName("tz")
-	@ObfuscatedGetter(
-		intValue = 1969439529
-	)
-	@Export("foundItemIdCount")
-	static int foundItemIdCount;
-	@ObfuscatedName("g")
+	@ObfuscatedName("k")
 	@Export("worldMapData0Set")
 	HashSet worldMapData0Set;
-	@ObfuscatedName("v")
+	@ObfuscatedName("t")
 	@Export("worldMapData1Set")
 	HashSet worldMapData1Set;
-	@ObfuscatedName("s")
+	@ObfuscatedName("l")
 	@Export("iconList")
 	List iconList;
 
 	WorldMapAreaData() {
 	}
 
-	@ObfuscatedName("cy")
+	@ObfuscatedName("bp")
 	@ObfuscatedSignature(
-		descriptor = "(Lot;Lot;IZI)V",
-		garbageValue = "1114240184"
+		descriptor = "(Lop;Lop;IZB)V",
+		garbageValue = "0"
 	)
 	@Export("init")
 	void init(Buffer var1, Buffer var2, int var3, boolean var4) {
@@ -71,10 +64,10 @@ public class WorldMapAreaData extends WorldMapArea {
 		this.initIconsList(var2, var4);
 	}
 
-	@ObfuscatedName("cg")
+	@ObfuscatedName("bn")
 	@ObfuscatedSignature(
-		descriptor = "(Lot;ZI)V",
-		garbageValue = "1360518712"
+		descriptor = "(Lop;ZI)V",
+		garbageValue = "1978597282"
 	)
 	@Export("initIconsList")
 	void initIconsList(Buffer var1, boolean var2) {
@@ -82,7 +75,7 @@ public class WorldMapAreaData extends WorldMapArea {
 		int var3 = var1.readUnsignedShort();
 
 		for (int var4 = 0; var4 < var3; ++var4) {
-			int var5 = var1.method6977();
+			int var5 = var1.method6946();
 			Coord var6 = new Coord(var1.readInt());
 			boolean var7 = var1.readUnsignedByte() == 1;
 			if (var2 || !var7) {

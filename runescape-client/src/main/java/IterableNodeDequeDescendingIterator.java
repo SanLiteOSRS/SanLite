@@ -4,38 +4,38 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ka")
+@ObfuscatedName("kw")
 @Implements("IterableNodeDequeDescendingIterator")
 public class IterableNodeDequeDescendingIterator implements Iterator {
-	@ObfuscatedName("l")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		descriptor = "Lkt;"
+		descriptor = "Lkf;"
 	)
 	@Export("deque")
 	IterableNodeDeque deque;
-	@ObfuscatedName("q")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		descriptor = "Lnv;"
+		descriptor = "Lns;"
 	)
-	Node field3826;
-	@ObfuscatedName("f")
+	Node field3813;
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "Lnv;"
+		descriptor = "Lns;"
 	)
 	@Export("last")
 	Node last;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lkt;)V"
+		descriptor = "(Lkf;)V"
 	)
 	IterableNodeDequeDescendingIterator(IterableNodeDeque var1) {
 		this.last = null;
 		this.setDeque(var1);
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		descriptor = "(Lkt;)V"
+		descriptor = "(Lkf;)V"
 	)
 	@Export("setDeque")
 	void setDeque(IterableNodeDeque var1) {
@@ -43,20 +43,20 @@ public class IterableNodeDequeDescendingIterator implements Iterator {
 		this.start();
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("w")
 	@Export("start")
 	void start() {
-		this.field3826 = this.deque != null ? this.deque.sentinel.previous : null;
+		this.field3813 = this.deque != null ? this.deque.sentinel.previous : null;
 		this.last = null;
 	}
 
 	public Object next() {
-		Node var1 = this.field3826;
+		Node var1 = this.field3813;
 		if (var1 == this.deque.sentinel) {
 			var1 = null;
-			this.field3826 = null;
+			this.field3813 = null;
 		} else {
-			this.field3826 = var1.previous;
+			this.field3813 = var1.previous;
 		}
 
 		this.last = var1;
@@ -64,7 +64,7 @@ public class IterableNodeDequeDescendingIterator implements Iterator {
 	}
 
 	public boolean hasNext() {
-		return this.deque.sentinel != this.field3826 && this.field3826 != null;
+		return this.deque.sentinel != this.field3813 && this.field3813 != null;
 	}
 
 	public void remove() {

@@ -12,10 +12,10 @@ import net.runelite.mapping.ObfuscatedSignature;
 import org.bouncycastle.crypto.tls.TlsClientProtocol;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
-@ObfuscatedName("c")
+@ObfuscatedName("u")
 public class class15 extends SSLSocketFactory {
-	@ObfuscatedName("l")
-	SecureRandom field86;
+	@ObfuscatedName("i")
+	SecureRandom field70;
 
 	static {
 		if (Security.getProvider("BC") == null) {
@@ -25,15 +25,15 @@ public class class15 extends SSLSocketFactory {
 	}
 
 	class15() {
-		this.field86 = new SecureRandom();
+		this.field70 = new SecureRandom();
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
 		descriptor = "(Ljava/lang/String;Lorg/bouncycastle/crypto/tls/TlsClientProtocol;I)Ljavax/net/ssl/SSLSocket;",
-		garbageValue = "-1206486278"
+		garbageValue = "-115547208"
 	)
-	SSLSocket method201(String var1, TlsClientProtocol var2) {
+	SSLSocket method197(String var1, TlsClientProtocol var2) {
 		return new class12(this, var2, var1);
 	}
 
@@ -46,15 +46,11 @@ public class class15 extends SSLSocketFactory {
 			var1.connect(new InetSocketAddress(var2, var3));
 		}
 
-		TlsClientProtocol var5 = new TlsClientProtocol(var1.getInputStream(), var1.getOutputStream(), this.field86);
-		return this.method201(var2, var5);
+		TlsClientProtocol var5 = new TlsClientProtocol(var1.getInputStream(), var1.getOutputStream(), this.field70);
+		return this.method197(var2, var5);
 	}
 
 	public String[] getDefaultCipherSuites() {
-		return null;
-	}
-
-	public String[] getSupportedCipherSuites() {
 		return null;
 	}
 
@@ -66,11 +62,15 @@ public class class15 extends SSLSocketFactory {
 		return null;
 	}
 
-	public Socket createSocket(InetAddress var1, int var2, InetAddress var3, int var4) throws IOException {
+	public Socket createSocket(InetAddress var1, int var2) throws IOException {
 		return null;
 	}
 
-	public Socket createSocket(InetAddress var1, int var2) throws IOException {
+	public String[] getSupportedCipherSuites() {
+		return null;
+	}
+
+	public Socket createSocket(InetAddress var1, int var2, InetAddress var3, int var4) throws IOException {
 		return null;
 	}
 }

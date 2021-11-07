@@ -3,48 +3,48 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ln")
+@ObfuscatedName("lr")
 @Implements("IgnoreList")
 public class IgnoreList extends NameableContainer {
-	@ObfuscatedName("f")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "Lny;"
+		descriptor = "Lni;"
 	)
 	@Export("loginType")
 	final LoginType loginType;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lny;)V"
+		descriptor = "(Lni;)V"
 	)
 	public IgnoreList(LoginType var1) {
 		super(400);
 		this.loginType = var1;
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		descriptor = "(I)Llu;",
-		garbageValue = "396333118"
+		descriptor = "(I)Lla;",
+		garbageValue = "-450730044"
 	)
 	@Export("newInstance")
 	Nameable newInstance() {
 		return new Ignored();
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		descriptor = "(II)[Llu;",
-		garbageValue = "1129798936"
+		descriptor = "(IB)[Lla;",
+		garbageValue = "91"
 	)
 	@Export("newTypedArray")
 	Nameable[] newTypedArray(int var1) {
 		return new Ignored[var1];
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "(Lot;II)V",
-		garbageValue = "2059632689"
+		descriptor = "(Lop;IB)V",
+		garbageValue = "-32"
 	)
 	@Export("read")
 	public void read(Buffer var1, int var2) {
@@ -59,7 +59,7 @@ public class IgnoreList extends NameableContainer {
 					Ignored var7 = (Ignored)this.getByCurrentUsername(var5);
 					if (var4) {
 						Ignored var8 = (Ignored)this.getByCurrentUsername(var6);
-						if (var8 != null && var7 != var8) {
+						if (var8 != null && var8 != var7) {
 							if (var7 != null) {
 								this.remove(var8);
 							} else {
@@ -86,21 +86,5 @@ public class IgnoreList extends NameableContainer {
 
 			return;
 		}
-	}
-
-	@ObfuscatedName("aa")
-	@ObfuscatedSignature(
-		descriptor = "([BIII)I",
-		garbageValue = "618832095"
-	)
-	static int method5946(byte[] var0, int var1, int var2) {
-		int var3 = -1;
-
-		for (int var4 = var1; var4 < var2; ++var4) {
-			var3 = var3 >>> 8 ^ Buffer.crc32Table[(var3 ^ var0[var4]) & 255];
-		}
-
-		var3 = ~var3;
-		return var3;
 	}
 }

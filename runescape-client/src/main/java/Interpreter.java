@@ -5,69 +5,58 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bv")
+@ObfuscatedName("bj")
 @Implements("Interpreter")
 public class Interpreter {
-	@ObfuscatedName("a")
+	@ObfuscatedName("p")
 	@Export("Interpreter_arrayLengths")
 	static int[] Interpreter_arrayLengths;
-	@ObfuscatedName("e")
+	@ObfuscatedName("j")
 	@Export("Interpreter_arrays")
 	static int[][] Interpreter_arrays;
-	@ObfuscatedName("i")
+	@ObfuscatedName("b")
 	@Export("Interpreter_intStack")
 	static int[] Interpreter_intStack;
 	@ObfuscatedName("y")
-	@ObfuscatedGetter(
-		intValue = -784806353
-	)
-	static int field829;
-	@ObfuscatedName("w")
 	@Export("Interpreter_stringStack")
 	static String[] Interpreter_stringStack;
-	@ObfuscatedName("v")
+	@ObfuscatedName("t")
 	@ObfuscatedGetter(
-		intValue = -1089183027
+		intValue = 137218349
 	)
 	@Export("Interpreter_frameDepth")
 	static int Interpreter_frameDepth;
-	@ObfuscatedName("s")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		descriptor = "[Lbj;"
+		descriptor = "[Lbt;"
 	)
 	@Export("Interpreter_frames")
 	static ScriptFrame[] Interpreter_frames;
-	@ObfuscatedName("h")
+	@ObfuscatedName("r")
 	@Export("Interpreter_calendar")
 	static java.util.Calendar Interpreter_calendar;
-	@ObfuscatedName("o")
+	@ObfuscatedName("m")
 	@Export("Interpreter_MONTHS")
 	static final String[] Interpreter_MONTHS;
-	@ObfuscatedName("n")
-	static boolean field828;
-	@ObfuscatedName("u")
-	static boolean field832;
-	@ObfuscatedName("d")
-	static ArrayList field830;
-	@ObfuscatedName("ab")
+	@ObfuscatedName("f")
+	static boolean field795;
+	@ObfuscatedName("h")
+	static boolean field791;
+	@ObfuscatedName("v")
+	static ArrayList field797;
+	@ObfuscatedName("ag")
 	@ObfuscatedGetter(
-		intValue = 1390220385
+		intValue = 519063965
 	)
-	static int field818;
-	@ObfuscatedName("ah")
-	static final double field826;
-	@ObfuscatedName("ez")
+	static int field798;
+	@ObfuscatedName("am")
+	static final double field801;
+	@ObfuscatedName("cb")
 	@ObfuscatedSignature(
-		descriptor = "Lky;"
+		descriptor = "Lci;"
 	)
-	@Export("archive9")
-	static Archive archive9;
-	@ObfuscatedName("gl")
-	@ObfuscatedSignature(
-		descriptor = "Llt;"
-	)
-	@Export("fontBold12")
-	static Font fontBold12;
+	@Export("mouseRecorder")
+	static class81 mouseRecorder;
 
 	static {
 		Interpreter_arrayLengths = new int[5];
@@ -78,44 +67,51 @@ public class Interpreter {
 		Interpreter_frames = new ScriptFrame[50];
 		Interpreter_calendar = java.util.Calendar.getInstance();
 		Interpreter_MONTHS = new String[]{"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
-		field828 = false;
-		field832 = false;
-		field830 = new ArrayList();
-		field818 = 0;
-		field826 = Math.log(2.0D);
+		field795 = false;
+		field791 = false;
+		field797 = new ArrayList();
+		field798 = 0;
+		field801 = Math.log(2.0D);
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "2021156049"
+		descriptor = "(Ljf;IIIB)V",
+		garbageValue = "124"
 	)
-	@Export("Widget_unpackTargetMask")
-	public static int Widget_unpackTargetMask(int var0) {
-		return var0 >> 11 & 63;
-	}
-
-	@ObfuscatedName("d")
-	@ObfuscatedSignature(
-		descriptor = "(ILbe;ZI)I",
-		garbageValue = "525192996"
-	)
-	static int method1868(int var0, Script var1, boolean var2) {
-		int var3;
-		if (var0 == 3500) {
-			var3 = Interpreter_intStack[--AbstractByteArrayCopier.Interpreter_intStackSize];
-			Interpreter_intStack[++AbstractByteArrayCopier.Interpreter_intStackSize - 1] = class6.method43(var3) ? 1 : 0;
-			return 1;
-		} else if (var0 == 3501) {
-			var3 = Interpreter_intStack[--AbstractByteArrayCopier.Interpreter_intStackSize];
-			Interpreter_intStack[++AbstractByteArrayCopier.Interpreter_intStackSize - 1] = PacketBufferNode.method4654(var3) ? 1 : 0;
-			return 1;
-		} else if (var0 == 3502) {
-			var3 = Interpreter_intStack[--AbstractByteArrayCopier.Interpreter_intStackSize];
-			Interpreter_intStack[++AbstractByteArrayCopier.Interpreter_intStackSize - 1] = Messages.method2350(var3) ? 1 : 0;
-			return 1;
+	@Export("Widget_setKeyRate")
+	static final void Widget_setKeyRate(Widget var0, int var1, int var2, int var3) {
+		if (var0.field3128 == null) {
+			throw new RuntimeException();
 		} else {
-			return 2;
+			var0.field3128[var1] = var2;
+			var0.field3129[var1] = var3;
+		}
+	}
+
+	@ObfuscatedName("fv")
+	@ObfuscatedSignature(
+		descriptor = "(Lfm;IIII)V",
+		garbageValue = "-228411245"
+	)
+	static void method1872(SequenceDefinition var0, int var1, int var2, int var3) {
+		if (Client.soundEffectCount < 50 && class408.clientPreferences.areaSoundEffectsVolume != 0) {
+			if (var0.soundEffects != null && var1 < var0.soundEffects.length) {
+				int var4 = var0.soundEffects[var1];
+				if (var4 != 0) {
+					int var5 = var4 >> 8;
+					int var6 = var4 >> 4 & 7;
+					int var7 = var4 & 15;
+					Client.soundEffectIds[Client.soundEffectCount] = var5;
+					Client.queuedSoundEffectLoops[Client.soundEffectCount] = var6;
+					Client.queuedSoundEffectDelays[Client.soundEffectCount] = 0;
+					Client.soundEffects[Client.soundEffectCount] = null;
+					int var8 = (var2 - 64) / 128;
+					int var9 = (var3 - 64) / 128;
+					Client.soundLocations[Client.soundEffectCount] = var7 + (var9 << 8) + (var8 << 16);
+					++Client.soundEffectCount;
+				}
+			}
 		}
 	}
 }

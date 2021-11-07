@@ -1,20 +1,23 @@
+import java.io.File;
+import java.io.IOException;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.Reflection;
 
-@ObfuscatedName("cm")
+@ObfuscatedName("cb")
 @Implements("UserComparator7")
 public class UserComparator7 extends AbstractUserComparator {
-	@ObfuscatedName("mj")
-	@ObfuscatedGetter(
-		intValue = 1788791265
+	@ObfuscatedName("e")
+	@Export("Interpreter_stringLocals")
+	static String[] Interpreter_stringLocals;
+	@ObfuscatedName("be")
+	@ObfuscatedSignature(
+		descriptor = "[Loe;"
 	)
-	@Export("menuWidth")
-	static int menuWidth;
-	@ObfuscatedName("l")
+	@Export("worldSelectFlagSprites")
+	static IndexedSprite[] worldSelectFlagSprites;
+	@ObfuscatedName("i")
 	@Export("reversed")
 	final boolean reversed;
 
@@ -22,10 +25,10 @@ public class UserComparator7 extends AbstractUserComparator {
 		this.reversed = var1;
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		descriptor = "(Lmi;Lmi;B)I",
-		garbageValue = "31"
+		descriptor = "(Lmt;Lmt;I)I",
+		garbageValue = "52692374"
 	)
 	@Export("compareBuddy")
 	int compareBuddy(Buddy var1, Buddy var2) {
@@ -40,45 +43,45 @@ public class UserComparator7 extends AbstractUserComparator {
 		return this.compareBuddy((Buddy)var1, (Buddy)var2);
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		descriptor = "(III)I",
-		garbageValue = "2117353733"
+		descriptor = "(Lko;B)V",
+		garbageValue = "110"
 	)
-	static int method2421(int var0, int var1) {
-		ItemContainer var2 = (ItemContainer)ItemContainer.itemContainers.get((long)var0);
-		if (var2 == null) {
-			return -1;
-		} else {
-			return var1 >= 0 && var1 < var2.ids.length ? var2.ids[var1] : -1;
-		}
+	public static void method2463(AbstractArchive var0) {
+		EnumComposition.EnumDefinition_archive = var0;
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;I)Ljava/lang/Class;",
-		garbageValue = "-412123539"
+		descriptor = "(Ljava/io/File;Ljava/io/File;B)V",
+		garbageValue = "9"
 	)
-	@Export("loadClassFromDescriptor")
-	static Class loadClassFromDescriptor(String var0) throws ClassNotFoundException {
-		if (var0.equals("B")) {
-			return Byte.TYPE;
-		} else if (var0.equals("I")) {
-			return Integer.TYPE;
-		} else if (var0.equals("S")) {
-			return Short.TYPE;
-		} else if (var0.equals("J")) {
-			return Long.TYPE;
-		} else if (var0.equals("Z")) {
-			return Boolean.TYPE;
-		} else if (var0.equals("F")) {
-			return Float.TYPE;
-		} else if (var0.equals("D")) {
-			return Double.TYPE;
-		} else if (var0.equals("C")) {
-			return Character.TYPE;
-		} else {
-			return var0.equals("void") ? Void.TYPE : Reflection.findClass(var0);
+	static void method2470(File var0, File var1) {
+		try {
+			AccessFile var2 = new AccessFile(class351.JagexCache_locationFile, "rw", 10000L);
+			Buffer var3 = new Buffer(500);
+			var3.writeByte(3);
+			var3.writeByte(var1 != null ? 1 : 0);
+			var3.writeCESU8(var0.getPath());
+			if (var1 != null) {
+				var3.writeCESU8("");
+			}
+
+			var2.write(var3.array, 0, var3.offset);
+			var2.close();
+		} catch (IOException var4) {
+			var4.printStackTrace();
 		}
+
+	}
+
+	@ObfuscatedName("ji")
+	@ObfuscatedSignature(
+		descriptor = "(I)Z",
+		garbageValue = "-1682455199"
+	)
+	static boolean method2466() {
+		return Client.tapToDrop || KeyHandler.KeyHandler_pressedKeys[81];
 	}
 }

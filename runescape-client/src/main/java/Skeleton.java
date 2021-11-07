@@ -2,41 +2,32 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
-import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hg")
+@ObfuscatedName("ha")
 @Implements("Skeleton")
 public class Skeleton extends Node {
-	@ObfuscatedName("i")
-	@ObfuscatedSignature(
-		descriptor = "Lac;"
-	)
-	@Export("soundSystem")
-	static SoundSystem soundSystem;
-	@ObfuscatedName("cw")
-	public static char field2376;
-	@ObfuscatedName("eu")
-	@ObfuscatedSignature(
-		descriptor = "Lky;"
-	)
-	@Export("archive7")
-	static Archive archive7;
-	@ObfuscatedName("l")
+	@ObfuscatedName("tv")
 	@ObfuscatedGetter(
-		intValue = 140669593
+		intValue = -946798709
+	)
+	@Export("foundItemIdCount")
+	static int foundItemIdCount;
+	@ObfuscatedName("i")
+	@ObfuscatedGetter(
+		intValue = -1178553901
 	)
 	@Export("id")
 	int id;
-	@ObfuscatedName("q")
+	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		intValue = -818379809
+		intValue = -1443695477
 	)
 	@Export("count")
 	int count;
-	@ObfuscatedName("f")
+	@ObfuscatedName("s")
 	@Export("transformTypes")
 	int[] transformTypes;
-	@ObfuscatedName("j")
+	@ObfuscatedName("a")
 	@Export("labels")
 	int[][] labels;
 
@@ -62,24 +53,5 @@ public class Skeleton extends Node {
 			}
 		}
 
-	}
-
-	@ObfuscatedName("l")
-	@ObfuscatedSignature(
-		descriptor = "(I)[Lpa;",
-		garbageValue = "-1301198284"
-	)
-	static PrivateChatMode[] method4196() {
-		return new PrivateChatMode[]{PrivateChatMode.field4412, PrivateChatMode.field4413, PrivateChatMode.field4411};
-	}
-
-	@ObfuscatedName("ia")
-	@ObfuscatedSignature(
-		descriptor = "(ZI)V",
-		garbageValue = "1116074863"
-	)
-	@Export("setTapToDrop")
-	static void setTapToDrop(boolean var0) {
-		Client.tapToDrop = var0;
 	}
 }

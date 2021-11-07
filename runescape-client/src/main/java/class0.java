@@ -1,31 +1,28 @@
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("l")
+@ObfuscatedName("i")
 public class class0 implements class3 {
-	class0() {
-	}
-
-	@ObfuscatedName("l")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		descriptor = "(Lot;)Lot;"
+		descriptor = "(Lop;)Lop;"
 	)
-	public Buffer vmethod15(Buffer var1) {
+	public Buffer vmethod18(Buffer var1) {
 		Buffer var2 = new Buffer(100);
-		this.method3(var1, var2);
+		this.method7(var1, var2);
 		return var2;
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		descriptor = "(Lot;Lot;)V"
+		descriptor = "(Lop;Lop;)V"
 	)
-	void method3(Buffer var1, Buffer var2) {
+	void method7(Buffer var1, Buffer var2) {
 		class8 var3 = new class8(var1);
 		class5 var4 = new class5(var3);
 
 		long var5;
-		for (var5 = 0L; !var4.method25(var3.method68(), var3.method67(), var5); ++var5) {
+		for (var5 = 0L; !var4.method22(var3.method64(), var3.method60(), var5); ++var5) {
 		}
 
 		var2.writeLong(var5);

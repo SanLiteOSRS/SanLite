@@ -1,25 +1,36 @@
-import java.lang.management.GarbageCollectorMXBean;
-import java.lang.management.ManagementFactory;
-import java.util.Iterator;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ht")
+@ObfuscatedName("ho")
 @Implements("Frames")
 public class Frames extends DualNode {
-	@ObfuscatedName("l")
+	@ObfuscatedName("u")
 	@ObfuscatedSignature(
-		descriptor = "[Lhj;"
+		descriptor = "Ljf;"
+	)
+	@Export("scriptActiveWidget")
+	static Widget scriptActiveWidget;
+	@ObfuscatedName("mx")
+	@ObfuscatedGetter(
+		intValue = -1716567897
+	)
+	@Export("menuY")
+	static int menuY;
+	@ObfuscatedName("i")
+	@ObfuscatedSignature(
+		descriptor = "[Lhe;"
 	)
 	@Export("frames")
 	Animation[] frames;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lkl;Lkl;IZ)V"
+		descriptor = "(Lko;Lko;IZ)V",
+		garbageValue = "0"
 	)
-	Frames(AbstractArchive var1, AbstractArchive var2, int var3, boolean var4) {
+	public Frames(AbstractArchive var1, AbstractArchive var2, int var3, boolean var4) {
 		NodeDeque var5 = new NodeDeque();
 		int var6 = var1.getGroupFileCount(var3);
 		this.frames = new Animation[var6];
@@ -38,13 +49,7 @@ public class Frames extends DualNode {
 			}
 
 			if (var10 == null) {
-				byte[] var13;
-				if (var4) {
-					var13 = var2.getFile(0, var11);
-				} else {
-					var13 = var2.getFile(var11, 0);
-				}
-
+				byte[] var13 = var2.getFile(var11, 0);
 				var10 = new Skeleton(var11, var13);
 				var5.addFirst(var10);
 			}
@@ -54,55 +59,26 @@ public class Frames extends DualNode {
 
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		descriptor = "(IB)Z",
-		garbageValue = "73"
+		descriptor = "(II)Z",
+		garbageValue = "1499014717"
 	)
 	@Export("hasAlphaTransform")
 	public boolean hasAlphaTransform(int var1) {
 		return this.frames[var1].hasAlphaTransform;
 	}
 
-	@ObfuscatedName("aa")
+	@ObfuscatedName("gb")
 	@ObfuscatedSignature(
-		descriptor = "(I)I",
-		garbageValue = "16711935"
+		descriptor = "(B)V",
+		garbageValue = "1"
 	)
-	@Export("getGcDuration")
-	protected static int getGcDuration() {
-		int var0 = 0;
-		if (AccessFile.garbageCollector == null || !AccessFile.garbageCollector.isValid()) {
-			try {
-				Iterator var1 = ManagementFactory.getGarbageCollectorMXBeans().iterator();
-
-				while (var1.hasNext()) {
-					GarbageCollectorMXBean var2 = (GarbageCollectorMXBean)var1.next();
-					if (var2.isValid()) {
-						AccessFile.garbageCollector = var2;
-						GameEngine.garbageCollectorLastCheckTimeMs = -1L;
-						GameEngine.garbageCollectorLastCollectionTime = -1L;
-					}
-				}
-			} catch (Throwable var11) {
-			}
-		}
-
-		if (AccessFile.garbageCollector != null) {
-			long var9 = UserComparator4.method2406();
-			long var3 = AccessFile.garbageCollector.getCollectionTime();
-			if (GameEngine.garbageCollectorLastCollectionTime != -1L) {
-				long var5 = var3 - GameEngine.garbageCollectorLastCollectionTime;
-				long var7 = var9 - GameEngine.garbageCollectorLastCheckTimeMs;
-				if (var7 != 0L) {
-					var0 = (int)(var5 * 100L / var7);
-				}
-			}
-
-			GameEngine.garbageCollectorLastCollectionTime = var3;
-			GameEngine.garbageCollectorLastCheckTimeMs = var9;
-		}
-
-		return var0;
+	static void method4481() {
+		PacketBufferNode var0 = AbstractWorldMapData.getPacketBufferNode(ClientPacket.field2745, Client.packetWriter.isaacCipher);
+		var0.packetBuffer.writeByte(class134.getWindowedMode());
+		var0.packetBuffer.writeShort(GameEngine.canvasWidth);
+		var0.packetBuffer.writeShort(KeyHandler.canvasHeight);
+		Client.packetWriter.addNode(var0);
 	}
 }

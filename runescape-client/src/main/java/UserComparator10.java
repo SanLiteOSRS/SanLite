@@ -1,20 +1,18 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("dp")
+@ObfuscatedName("dw")
 @Implements("UserComparator10")
 public class UserComparator10 extends AbstractUserComparator {
-	@ObfuscatedName("c")
-	@ObfuscatedGetter(
-		intValue = -633659883
+	@ObfuscatedName("ig")
+	@ObfuscatedSignature(
+		descriptor = "[Low;"
 	)
-	@Export("cacheGamebuild")
-	static int cacheGamebuild;
-	@ObfuscatedName("l")
+	@Export("crossSprites")
+	static SpritePixels[] crossSprites;
+	@ObfuscatedName("i")
 	@Export("reversed")
 	final boolean reversed;
 
@@ -22,10 +20,10 @@ public class UserComparator10 extends AbstractUserComparator {
 		this.reversed = var1;
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		descriptor = "(Lmi;Lmi;I)I",
-		garbageValue = "-1753345286"
+		descriptor = "(Lmt;Lmt;I)I",
+		garbageValue = "2093372885"
 	)
 	@Export("compareBuddy")
 	int compareBuddy(Buddy var1, Buddy var2) {
@@ -40,38 +38,16 @@ public class UserComparator10 extends AbstractUserComparator {
 		return this.compareBuddy((Buddy)var1, (Buddy)var2);
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("kl")
 	@ObfuscatedSignature(
-		descriptor = "(ILbe;ZI)I",
-		garbageValue = "-1354304959"
+		descriptor = "(S)V",
+		garbageValue = "-4813"
 	)
-	static int method2451(int var0, Script var1, boolean var2) {
-		Widget var3 = var2 ? WorldMapDecoration.scriptDotWidget : class245.scriptActiveWidget;
-		if (var0 == ScriptOpcodes.CC_GETTARGETMASK) {
-			Interpreter.Interpreter_intStack[++AbstractByteArrayCopier.Interpreter_intStackSize - 1] = Interpreter.Widget_unpackTargetMask(WorldMapRegion.getWidgetFlags(var3));
-			return 1;
-		} else if (var0 != ScriptOpcodes.CC_GETOP) {
-			if (var0 == ScriptOpcodes.CC_GETOPBASE) {
-				if (var3.dataText == null) {
-					Interpreter.Interpreter_stringStack[++class54.Interpreter_stringStackSize - 1] = "";
-				} else {
-					Interpreter.Interpreter_stringStack[++class54.Interpreter_stringStackSize - 1] = var3.dataText;
-				}
-
-				return 1;
-			} else {
-				return 2;
-			}
-		} else {
-			int var4 = Interpreter.Interpreter_intStack[--AbstractByteArrayCopier.Interpreter_intStackSize];
-			--var4;
-			if (var3.actions != null && var4 < var3.actions.length && var3.actions[var4] != null) {
-				Interpreter.Interpreter_stringStack[++class54.Interpreter_stringStackSize - 1] = var3.actions[var4];
-			} else {
-				Interpreter.Interpreter_stringStack[++class54.Interpreter_stringStackSize - 1] = "";
-			}
-
-			return 1;
+	static final void method2494() {
+		for (int var0 = 0; var0 < Players.Players_count; ++var0) {
+			Player var1 = Client.players[Players.Players_indices[var0]];
+			var1.method2105();
 		}
+
 	}
 }

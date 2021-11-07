@@ -3,21 +3,34 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("bu")
+@ObfuscatedName("bh")
 @Implements("GrandExchangeOfferOwnWorldComparator")
 public class GrandExchangeOfferOwnWorldComparator implements Comparator {
-	@ObfuscatedName("l")
+	@ObfuscatedName("em")
+	@ObfuscatedSignature(
+		descriptor = "Lkd;"
+	)
+	@Export("archive8")
+	static Archive archive8;
+	@ObfuscatedName("eo")
+	@ObfuscatedSignature(
+		descriptor = "Lkd;"
+	)
+	@Export("archive20")
+	static Archive archive20;
+	@ObfuscatedName("i")
 	@Export("filterWorlds")
 	boolean filterWorlds;
 
 	GrandExchangeOfferOwnWorldComparator() {
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		descriptor = "(Lkd;Lkd;B)I",
-		garbageValue = "-39"
+		descriptor = "(Lkt;Lkt;I)I",
+		garbageValue = "1561546631"
 	)
 	@Export("compare_bridged")
 	int compare_bridged(GrandExchangeEvent var1, GrandExchangeEvent var2) {
@@ -38,79 +51,133 @@ public class GrandExchangeOfferOwnWorldComparator implements Comparator {
 		}
 	}
 
-	public int compare(Object var1, Object var2) {
-		return this.compare_bridged((GrandExchangeEvent)var1, (GrandExchangeEvent)var2);
-	}
-
 	public boolean equals(Object var1) {
 		return super.equals(var1);
 	}
 
-	@ObfuscatedName("j")
-	@ObfuscatedSignature(
-		descriptor = "([BI)Lbe;",
-		garbageValue = "1110991115"
-	)
-	@Export("newScript")
-	static Script newScript(byte[] var0) {
-		Script var1 = new Script();
-		Buffer var2 = new Buffer(var0);
-		var2.offset = var2.array.length - 2;
-		int var3 = var2.readUnsignedShort();
-		int var4 = var2.array.length - 2 - var3 - 12;
-		var2.offset = var4;
-		int var5 = var2.readInt();
-		var1.localIntCount = var2.readUnsignedShort();
-		var1.localStringCount = var2.readUnsignedShort();
-		var1.intArgumentCount = var2.readUnsignedShort();
-		var1.stringArgumentCount = var2.readUnsignedShort();
-		int var6 = var2.readUnsignedByte();
-		int var7;
-		int var8;
-		if (var6 > 0) {
-			var1.switches = var1.newIterableNodeHashTable(var6);
-
-			for (var7 = 0; var7 < var6; ++var7) {
-				var8 = var2.readUnsignedShort();
-				IterableNodeHashTable var9 = new IterableNodeHashTable(var8 > 0 ? InvDefinition.method2881(var8) : 1);
-				var1.switches[var7] = var9;
-
-				while (var8-- > 0) {
-					int var10 = var2.readInt();
-					int var11 = var2.readInt();
-					var9.put(new IntegerNode(var11), (long)var10);
-				}
-			}
-		}
-
-		var2.offset = 0;
-		var1.field956 = var2.readStringCp1252NullTerminatedOrNull();
-		var1.opcodes = new int[var5];
-		var1.intOperands = new int[var5];
-		var1.stringOperands = new String[var5];
-
-		for (var7 = 0; var2.offset < var4; var1.opcodes[var7++] = var8) {
-			var8 = var2.readUnsignedShort();
-			if (var8 == 3) {
-				var1.stringOperands[var7] = var2.readStringCp1252NullTerminated();
-			} else if (var8 < 100 && var8 != 21 && var8 != 38 && var8 != 39) {
-				var1.intOperands[var7] = var2.readInt();
-			} else {
-				var1.intOperands[var7] = var2.readUnsignedByte();
-			}
-		}
-
-		return var1;
+	public int compare(Object var1, Object var2) {
+		return this.compare_bridged((GrandExchangeEvent)var1, (GrandExchangeEvent)var2);
 	}
 
-	@ObfuscatedName("jh")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "(IB)V",
-		garbageValue = "20"
+		descriptor = "(IIIB)I",
+		garbageValue = "-90"
 	)
-	static final void method1104(int var0) {
-		var0 = Math.min(Math.max(var0, 0), 127);
-		WorldMapDecorationType.clientPreferences.areaSoundEffectsVolume = var0;
-		ScriptFrame.savePreferences();
+	public static int method1162(int var0, int var1, int var2) {
+		int var3 = class123.method2619(var2 - var1 + 1);
+		var3 <<= var1;
+		var0 |= var3;
+		return var0;
+	}
+
+	@ObfuscatedName("ar")
+	@ObfuscatedSignature(
+		descriptor = "(ILbp;ZB)I",
+		garbageValue = "69"
+	)
+	static int method1158(int var0, Script var1, boolean var2) {
+		if (var0 == ScriptOpcodes.VIEWPORT_SETFOV) {
+			class14.Interpreter_intStackSize -= 2;
+			Client.field464 = (short)class9.method83(Interpreter.Interpreter_intStack[class14.Interpreter_intStackSize]);
+			if (Client.field464 <= 0) {
+				Client.field464 = 256;
+			}
+
+			Client.field550 = (short)class9.method83(Interpreter.Interpreter_intStack[class14.Interpreter_intStackSize + 1]);
+			if (Client.field550 <= 0) {
+				Client.field550 = 256;
+			}
+
+			return 1;
+		} else if (var0 == ScriptOpcodes.VIEWPORT_SETZOOM) {
+			class14.Interpreter_intStackSize -= 2;
+			Client.zoomHeight = (short)Interpreter.Interpreter_intStack[class14.Interpreter_intStackSize];
+			if (Client.zoomHeight <= 0) {
+				Client.zoomHeight = 256;
+			}
+
+			Client.zoomWidth = (short)Interpreter.Interpreter_intStack[class14.Interpreter_intStackSize + 1];
+			if (Client.zoomWidth <= 0) {
+				Client.zoomWidth = 320;
+			}
+
+			return 1;
+		} else if (var0 == ScriptOpcodes.VIEWPORT_CLAMPFOV) {
+			class14.Interpreter_intStackSize -= 4;
+			Client.field727 = (short)Interpreter.Interpreter_intStack[class14.Interpreter_intStackSize];
+			if (Client.field727 <= 0) {
+				Client.field727 = 1;
+			}
+
+			Client.field600 = (short)Interpreter.Interpreter_intStack[class14.Interpreter_intStackSize + 1];
+			if (Client.field600 <= 0) {
+				Client.field600 = 32767;
+			} else if (Client.field600 < Client.field727) {
+				Client.field600 = Client.field727;
+			}
+
+			Client.field729 = (short)Interpreter.Interpreter_intStack[class14.Interpreter_intStackSize + 2];
+			if (Client.field729 <= 0) {
+				Client.field729 = 1;
+			}
+
+			Client.field730 = (short)Interpreter.Interpreter_intStack[class14.Interpreter_intStackSize + 3];
+			if (Client.field730 <= 0) {
+				Client.field730 = 32767;
+			} else if (Client.field730 < Client.field729) {
+				Client.field730 = Client.field729;
+			}
+
+			return 1;
+		} else if (var0 == ScriptOpcodes.VIEWPORT_GETEFFECTIVESIZE) {
+			if (Client.viewportWidget != null) {
+				SpriteMask.setViewportShape(0, 0, Client.viewportWidget.width, Client.viewportWidget.height, false);
+				Interpreter.Interpreter_intStack[++class14.Interpreter_intStackSize - 1] = Client.viewportWidth;
+				Interpreter.Interpreter_intStack[++class14.Interpreter_intStackSize - 1] = Client.viewportHeight;
+			} else {
+				Interpreter.Interpreter_intStack[++class14.Interpreter_intStackSize - 1] = -1;
+				Interpreter.Interpreter_intStack[++class14.Interpreter_intStackSize - 1] = -1;
+			}
+
+			return 1;
+		} else if (var0 == ScriptOpcodes.VIEWPORT_GETZOOM) {
+			Interpreter.Interpreter_intStack[++class14.Interpreter_intStackSize - 1] = Client.zoomHeight;
+			Interpreter.Interpreter_intStack[++class14.Interpreter_intStackSize - 1] = Client.zoomWidth;
+			return 1;
+		} else if (var0 == ScriptOpcodes.VIEWPORT_GETFOV) {
+			Interpreter.Interpreter_intStack[++class14.Interpreter_intStackSize - 1] = MouseHandler.method626(Client.field464);
+			Interpreter.Interpreter_intStack[++class14.Interpreter_intStackSize - 1] = MouseHandler.method626(Client.field550);
+			return 1;
+		} else if (var0 == 6220) {
+			Interpreter.Interpreter_intStack[++class14.Interpreter_intStackSize - 1] = 0;
+			return 1;
+		} else if (var0 == 6221) {
+			Interpreter.Interpreter_intStack[++class14.Interpreter_intStackSize - 1] = 0;
+			return 1;
+		} else if (var0 == 6222) {
+			Interpreter.Interpreter_intStack[++class14.Interpreter_intStackSize - 1] = GameEngine.canvasWidth;
+			return 1;
+		} else if (var0 == 6223) {
+			Interpreter.Interpreter_intStack[++class14.Interpreter_intStackSize - 1] = KeyHandler.canvasHeight;
+			return 1;
+		} else {
+			return 2;
+		}
+	}
+
+	@ObfuscatedName("ka")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/String;I)V",
+		garbageValue = "-2002863284"
+	)
+	@Export("Clan_joinChat")
+	static final void Clan_joinChat(String var0) {
+		if (!var0.equals("")) {
+			PacketBufferNode var1 = AbstractWorldMapData.getPacketBufferNode(ClientPacket.field2758, Client.packetWriter.isaacCipher);
+			var1.packetBuffer.writeByte(Client.stringCp1252NullTerminatedByteSize(var0));
+			var1.packetBuffer.writeStringCp1252NullTerminated(var0);
+			Client.packetWriter.addNode(var1);
+		}
 	}
 }
