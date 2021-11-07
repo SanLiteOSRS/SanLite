@@ -4,6 +4,9 @@ on:
   push:
     tags:
       - update*
+  schedule:
+    # 11:35 on Wednesday
+    - cron: '35 11 * * 3'
 
 jobs:
   update:
