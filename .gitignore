@@ -13,6 +13,7 @@ git
 classes/artifacts/client_jar/run.bat
 classes/artifacts/client_jar/client.jar
 *.jar
+!fernflower-osrs.jar
 !gradle-wrapper.jar
 .live/
 **/build/*
@@ -25,6 +26,7 @@ runelite-client/dependencies.txt
 .factorypath
 hs_err_pid*.log
 /runelite-client/src/main/resources/net/runelite/client/injected-client.rs
+gamepack
 
 # General
 .DS_Store

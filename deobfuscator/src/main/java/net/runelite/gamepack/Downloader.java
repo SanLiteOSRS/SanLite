@@ -17,19 +17,16 @@ public class Downloader
 		return archive == null ? "" : GAMEPACK_URL.replace(REPLACE, archive);
 	}
 
-	public static String gamepack()
+	public static String gamepack(Path outputPath)
 	{
-		Path path = Paths.get(System.getProperty("user.home"), "gamepack");
-		final File folder = new File(String.valueOf(path));
-
+		final File folder = new File(String.valueOf(outputPath));
 		if (!folder.exists())
 		{
 			folder.mkdir();
 		}
 
 		downloadLatest(folder);
-
-		return path + File.separator + "gamepack.jar";
+		return outputPath + File.separator + "gamepack.jar";
 	}
 
 	private static void downloadLatest(File folder)
@@ -38,7 +35,9 @@ public class Downloader
 
 		try
 		{
-			URL url = new URL(getGamepackUrl());
+			String gamepackUrlString = getGamepackUrl();
+			URL url = new URL(gamepackUrlString);
+			System.out.println("Downloading gamepack from url: " + gamepackUrlString);
 
 			final URLDownloader downloader = new URLDownloader(url, output);
 			downloader.download();
@@ -60,6 +59,20 @@ public class Downloader
 
 	public static void main(String[] args)
 	{
-		gamepack();
+		String outputPath;
+		if (args == null || args.length == 0)
+		{
+			outputPath = gamepack(Paths.get(System.getProperty("user.home"), "gamepack"));
+			System.out.println("Saved gamepack at path: " + outputPath);
+			return;
+		}
+
+		if (args.length > 1)
+		{
+			System.err.println("Syntax: output_path");
+			System.exit(-1);
+		}
+
+		System.out.println("Saved gamepack at path: " + gamepack(Paths.get(args[0])));
 	}
 }
