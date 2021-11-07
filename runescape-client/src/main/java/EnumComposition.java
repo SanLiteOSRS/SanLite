@@ -1,63 +1,52 @@
-import java.io.File;
-import java.io.IOException;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fb")
+@ObfuscatedName("fi")
 @Implements("EnumComposition")
 public class EnumComposition extends DualNode {
-	@ObfuscatedName("l")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		descriptor = "Lkl;"
+		descriptor = "Lko;"
 	)
 	@Export("EnumDefinition_archive")
 	static AbstractArchive EnumDefinition_archive;
-	@ObfuscatedName("q")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		descriptor = "Lii;"
+		descriptor = "Lig;"
 	)
 	@Export("EnumDefinition_cached")
 	static EvictingDualNodeHashTable EnumDefinition_cached;
-	@ObfuscatedName("bl")
-	@ObfuscatedSignature(
-		descriptor = "[Loz;"
-	)
-	@Export("worldSelectArrows")
-	static IndexedSprite[] worldSelectArrows;
-	@ObfuscatedName("fs")
-	@Export("worldHost")
-	static String worldHost;
-	@ObfuscatedName("f")
+	@ObfuscatedName("s")
 	@Export("inputType")
 	public char inputType;
-	@ObfuscatedName("j")
+	@ObfuscatedName("a")
 	@Export("outputType")
 	public char outputType;
-	@ObfuscatedName("m")
+	@ObfuscatedName("o")
 	@Export("defaultStr")
 	public String defaultStr;
-	@ObfuscatedName("k")
+	@ObfuscatedName("g")
 	@ObfuscatedGetter(
-		intValue = 803208305
+		intValue = -1626628953
 	)
 	@Export("defaultInt")
 	public int defaultInt;
-	@ObfuscatedName("t")
+	@ObfuscatedName("e")
 	@ObfuscatedGetter(
-		intValue = -707506917
+		intValue = -997141697
 	)
 	@Export("outputCount")
 	public int outputCount;
-	@ObfuscatedName("a")
+	@ObfuscatedName("p")
 	@Export("keys")
 	public int[] keys;
-	@ObfuscatedName("e")
+	@ObfuscatedName("j")
 	@Export("intVals")
 	public int[] intVals;
-	@ObfuscatedName("i")
+	@ObfuscatedName("b")
 	@Export("strVals")
 	public String[] strVals;
 
@@ -70,10 +59,10 @@ public class EnumComposition extends DualNode {
 		this.outputCount = 0;
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "(Lot;I)V",
-		garbageValue = "-247598772"
+		descriptor = "(Lop;I)V",
+		garbageValue = "-1999375204"
 	)
 	@Export("decode")
 	void decode(Buffer var1) {
@@ -87,10 +76,10 @@ public class EnumComposition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "(Lot;II)V",
-		garbageValue = "-674446563"
+		descriptor = "(Lop;II)V",
+		garbageValue = "498308918"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
@@ -127,53 +116,186 @@ public class EnumComposition extends DualNode {
 
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
 		descriptor = "(I)I",
-		garbageValue = "2120023502"
+		garbageValue = "689416040"
 	)
 	@Export("size")
 	public int size() {
 		return this.outputCount;
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		descriptor = "(IIII)I",
-		garbageValue = "-358460107"
+		descriptor = "([BI)[B",
+		garbageValue = "211547863"
 	)
-	public static int method2998(int var0, int var1, int var2) {
-		var2 &= 3;
-		if (var2 == 0) {
-			return var0;
-		} else if (var2 == 1) {
-			return var1;
-		} else {
-			return var2 == 2 ? 7 - var0 : 7 - var1;
+	public static byte[] method3106(byte[] var0) {
+		int var1 = var0.length;
+		byte[] var2 = new byte[var1];
+		System.arraycopy(var0, 0, var2, 0, var1);
+		return var2;
+	}
+
+	@ObfuscatedName("p")
+	@ObfuscatedSignature(
+		descriptor = "(ZI)V",
+		garbageValue = "1659130731"
+	)
+	static void method3097(boolean var0) {
+		byte var1 = 0;
+		boolean var2 = class408.clientPreferences.field1182 >= Client.field467;
+		if (!var2) {
+			var1 = 12;
+		} else if (ArchiveLoader.client.method1166()) {
+			var1 = 10;
+		}
+
+		class275.method5201(var1);
+		if (var0) {
+			Login.Login_username = "";
+			Login.Login_password = "";
+			ReflectionCheck.field429 = 0;
+			Tiles.otp = "";
+		}
+
+		if (Login.Login_username == null || Login.Login_username.length() <= 0) {
+			if (class408.clientPreferences.rememberedUsername != null) {
+				Login.Login_username = class408.clientPreferences.rememberedUsername;
+				Client.Login_isUsernameRemembered = true;
+			} else {
+				Client.Login_isUsernameRemembered = false;
+			}
+		}
+
+		ParamComposition.method3216();
+	}
+
+	@ObfuscatedName("hf")
+	@ObfuscatedSignature(
+		descriptor = "(IIZB)V",
+		garbageValue = "11"
+	)
+	static final void method3107(int var0, int var1, boolean var2) {
+		if (!var2 || var0 != ItemLayer.field2243 || WallDecoration.field2630 != var1) {
+			ItemLayer.field2243 = var0;
+			WallDecoration.field2630 = var1;
+			WorldMapData_1.updateGameState(25);
+			class91.drawLoadingMessage("Loading - please wait.", true);
+			int var3 = class19.baseX * 64;
+			int var4 = DefaultsGroup.baseY * 64;
+			class19.baseX = (var0 - 6) * 8;
+			DefaultsGroup.baseY = (var1 - 6) * 8;
+			int var5 = class19.baseX * 64 - var3;
+			int var6 = DefaultsGroup.baseY * 64 - var4;
+			var3 = class19.baseX * 64;
+			var4 = DefaultsGroup.baseY * 64;
+
+			int var7;
+			int var9;
+			int[] var10000;
+			for (var7 = 0; var7 < 32768; ++var7) {
+				NPC var19 = Client.npcs[var7];
+				if (var19 != null) {
+					for (var9 = 0; var9 < 10; ++var9) {
+						var10000 = var19.pathX;
+						var10000[var9] -= var5;
+						var10000 = var19.pathY;
+						var10000[var9] -= var6;
+					}
+
+					var19.x -= var5 * 128;
+					var19.y -= var6 * 128;
+				}
+			}
+
+			for (var7 = 0; var7 < 2048; ++var7) {
+				Player var22 = Client.players[var7];
+				if (var22 != null) {
+					for (var9 = 0; var9 < 10; ++var9) {
+						var10000 = var22.pathX;
+						var10000[var9] -= var5;
+						var10000 = var22.pathY;
+						var10000[var9] -= var6;
+					}
+
+					var22.x -= var5 * 128;
+					var22.y -= var6 * 128;
+				}
+			}
+
+			byte var20 = 0;
+			byte var8 = 104;
+			byte var21 = 1;
+			if (var5 < 0) {
+				var20 = 103;
+				var8 = -1;
+				var21 = -1;
+			}
+
+			byte var10 = 0;
+			byte var11 = 104;
+			byte var12 = 1;
+			if (var6 < 0) {
+				var10 = 103;
+				var11 = -1;
+				var12 = -1;
+			}
+
+			int var14;
+			for (int var13 = var20; var8 != var13; var13 += var21) {
+				for (var14 = var10; var11 != var14; var14 += var12) {
+					int var15 = var13 + var5;
+					int var16 = var6 + var14;
+
+					for (int var17 = 0; var17 < 4; ++var17) {
+						if (var15 >= 0 && var16 >= 0 && var15 < 104 && var16 < 104) {
+							Client.groundItems[var17][var13][var14] = Client.groundItems[var17][var15][var16];
+						} else {
+							Client.groundItems[var17][var13][var14] = null;
+						}
+					}
+				}
+			}
+
+			for (PendingSpawn var18 = (PendingSpawn)Client.pendingSpawns.last(); var18 != null; var18 = (PendingSpawn)Client.pendingSpawns.previous()) {
+				var18.x -= var5;
+				var18.y -= var6;
+				if (var18.x < 0 || var18.y < 0 || var18.x >= 104 || var18.y >= 104) {
+					var18.remove();
+				}
+			}
+
+			if (Client.destinationX != 0) {
+				Client.destinationX -= var5;
+				Client.destinationY -= var6;
+			}
+
+			Client.soundEffectCount = 0;
+			Client.isCameraLocked = false;
+			WorldMapSectionType.cameraX -= var5 << 7;
+			class65.cameraZ -= var6 << 7;
+			class320.oculusOrbFocalPointX -= var5 << 7;
+			class18.oculusOrbFocalPointY -= var6 << 7;
+			Client.field701 = -1;
+			Client.graphicsObjects.clear();
+			Client.projectiles.clear();
+
+			for (var14 = 0; var14 < 4; ++var14) {
+				Client.collisionMaps[var14].clear();
+			}
+
 		}
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("im")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/io/File;Ljava/io/File;I)V",
-		garbageValue = "1964426544"
+		descriptor = "(Ljava/lang/String;Ljava/lang/String;IIIII)V",
+		garbageValue = "1038996465"
 	)
-	static void method3007(File var0, File var1) {
-		try {
-			AccessFile var2 = new AccessFile(JagexCache.JagexCache_locationFile, "rw", 10000L);
-			Buffer var3 = new Buffer(500);
-			var3.writeByte(3);
-			var3.writeByte(var1 != null ? 1 : 0);
-			var3.writeCESU8(var0.getPath());
-			if (var1 != null) {
-				var3.writeCESU8("");
-			}
-
-			var2.write(var3.array, 0, var3.offset);
-			var2.close();
-		} catch (IOException var4) {
-			var4.printStackTrace();
-		}
-
+	@Export("insertMenuItemNoShift")
+	public static final void insertMenuItemNoShift(String var0, String var1, int var2, int var3, int var4, int var5) {
+		ModelData0.insertMenuItem(var0, var1, var2, var3, var4, var5, false);
 	}
 }

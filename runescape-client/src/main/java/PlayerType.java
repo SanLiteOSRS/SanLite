@@ -3,84 +3,78 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("jd")
+@ObfuscatedName("jb")
 @Implements("PlayerType")
 public enum PlayerType implements MouseWheel {
-	@ObfuscatedName("l")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		descriptor = "Ljd;"
+		descriptor = "Ljb;"
 	)
 	@Export("PlayerType_normal")
 	PlayerType_normal(0, -1, true, false, true),
-	@ObfuscatedName("q")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		descriptor = "Ljd;"
+		descriptor = "Ljb;"
 	)
 	@Export("PlayerType_playerModerator")
 	PlayerType_playerModerator(1, 0, true, true, true),
-	@ObfuscatedName("f")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "Ljd;"
+		descriptor = "Ljb;"
 	)
 	@Export("PlayerType_jagexModerator")
 	PlayerType_jagexModerator(2, 1, true, true, false),
-	@ObfuscatedName("j")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "Ljd;"
+		descriptor = "Ljb;"
 	)
 	@Export("PlayerType_ironman")
 	PlayerType_ironman(3, 2, false, false, true),
-	@ObfuscatedName("m")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "Ljd;"
+		descriptor = "Ljb;"
 	)
 	@Export("PlayerType_ultimateIronman")
 	PlayerType_ultimateIronman(4, 3, false, false, true),
-	@ObfuscatedName("k")
+	@ObfuscatedName("g")
 	@ObfuscatedSignature(
-		descriptor = "Ljd;"
+		descriptor = "Ljb;"
 	)
 	@Export("PlayerType_hardcoreIronman")
 	PlayerType_hardcoreIronman(5, 10, false, false, true),
-	@ObfuscatedName("t")
-	@ObfuscatedSignature(
-		descriptor = "Ljd;"
-	)
-	field3657(6, 22, false, false, true),
-	@ObfuscatedName("a")
-	@ObfuscatedSignature(
-		descriptor = "Ljd;"
-	)
-	field3658(7, 41, false, false, true),
 	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		descriptor = "Ljd;"
+		descriptor = "Ljb;"
 	)
-	field3654(8, 42, false, false, true);
-
-	@ObfuscatedName("mw")
+	field3652(6, 22, false, false, true),
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		descriptor = "Ljt;"
+		descriptor = "Ljb;"
 	)
-	static Widget field3661;
-	@ObfuscatedName("i")
+	field3649(7, 41, false, false, true),
+	@ObfuscatedName("j")
+	@ObfuscatedSignature(
+		descriptor = "Ljb;"
+	)
+	field3650(8, 42, false, false, true);
+
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = 1199460545
+		intValue = -1222118175
 	)
 	@Export("id")
 	final int id;
-	@ObfuscatedName("y")
+	@ObfuscatedName("x")
 	@ObfuscatedGetter(
-		intValue = 84538647
+		intValue = 279346655
 	)
 	@Export("modIcon")
 	public final int modIcon;
-	@ObfuscatedName("w")
+	@ObfuscatedName("y")
 	@Export("isPrivileged")
 	public final boolean isPrivileged;
-	@ObfuscatedName("g")
+	@ObfuscatedName("k")
 	@Export("isUser")
 	public final boolean isUser;
 
@@ -91,52 +85,48 @@ public enum PlayerType implements MouseWheel {
 		this.isUser = var7;
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
 		descriptor = "(I)I",
-		garbageValue = "661199397"
+		garbageValue = "238732485"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
 		return this.id;
 	}
 
-	@ObfuscatedName("aa")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		descriptor = "(ILbe;ZB)I",
-		garbageValue = "74"
+		descriptor = "(IIB)V",
+		garbageValue = "0"
 	)
-	static int method5153(int var0, Script var1, boolean var2) {
-		int var3;
-		if (var0 == ScriptOpcodes.CAM_FORCEANGLE) {
-			AbstractByteArrayCopier.Interpreter_intStackSize -= 2;
-			var3 = Interpreter.Interpreter_intStack[AbstractByteArrayCopier.Interpreter_intStackSize];
-			int var4 = Interpreter.Interpreter_intStack[AbstractByteArrayCopier.Interpreter_intStackSize + 1];
-			if (!Client.isCameraLocked) {
-				Client.camAngleX = var3;
-				Client.camAngleY = var4;
-			}
+	@Export("changeWorldSelectSorting")
+	static void changeWorldSelectSorting(int var0, int var1) {
+		int[] var2 = new int[4];
+		int[] var3 = new int[4];
+		var2[0] = var0;
+		var3[0] = var1;
+		int var4 = 1;
 
-			return 1;
-		} else if (var0 == ScriptOpcodes.CAM_GETANGLE_XA) {
-			Interpreter.Interpreter_intStack[++AbstractByteArrayCopier.Interpreter_intStackSize - 1] = Client.camAngleX;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CAM_GETANGLE_YA) {
-			Interpreter.Interpreter_intStack[++AbstractByteArrayCopier.Interpreter_intStackSize - 1] = Client.camAngleY;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CAM_SETFOLLOWHEIGHT) {
-			var3 = Interpreter.Interpreter_intStack[--AbstractByteArrayCopier.Interpreter_intStackSize];
-			if (var3 < 0) {
-				var3 = 0;
+		for (int var5 = 0; var5 < 4; ++var5) {
+			if (World.World_sortOption1[var5] != var0) {
+				var2[var4] = World.World_sortOption1[var5];
+				var3[var4] = World.World_sortOption2[var5];
+				++var4;
 			}
-
-			Client.camFollowHeight = var3;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CAM_GETFOLLOWHEIGHT) {
-			Interpreter.Interpreter_intStack[++AbstractByteArrayCopier.Interpreter_intStackSize - 1] = Client.camFollowHeight;
-			return 1;
-		} else {
-			return 2;
 		}
+
+		World.World_sortOption1 = var2;
+		World.World_sortOption2 = var3;
+		ObjectSound.sortWorlds(WorldMapEvent.World_worlds, 0, WorldMapEvent.World_worlds.length - 1, World.World_sortOption1, World.World_sortOption2);
+	}
+
+	@ObfuscatedName("a")
+	@ObfuscatedSignature(
+		descriptor = "(II)Z",
+		garbageValue = "268701760"
+	)
+	public static boolean method5239(int var0) {
+		return var0 >= 0 && var0 < 112 ? KeyHandler.KeyHandler_pressedKeys[var0] : false;
 	}
 }

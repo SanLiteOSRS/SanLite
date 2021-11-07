@@ -3,21 +3,21 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("lg")
+@ObfuscatedName("lv")
 @Implements("Friend")
 public class Friend extends Buddy {
-	@ObfuscatedName("l")
-	boolean field3949;
-	@ObfuscatedName("q")
-	boolean field3948;
+	@ObfuscatedName("i")
+	boolean field3942;
+	@ObfuscatedName("w")
+	boolean field3941;
 
 	Friend() {
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		descriptor = "(Llg;I)I",
-		garbageValue = "2007974516"
+		descriptor = "(Llv;I)I",
+		garbageValue = "-1418759266"
 	)
 	@Export("compareToFriend")
 	int compareToFriend(Friend var1) {
@@ -29,23 +29,23 @@ public class Friend extends Buddy {
 			return -1;
 		} else if (var1.world != 0 && super.world == 0) {
 			return 1;
-		} else if (this.field3949 && !var1.field3949) {
+		} else if (this.field3942 && !var1.field3942) {
 			return -1;
-		} else if (!this.field3949 && var1.field3949) {
+		} else if (!this.field3942 && var1.field3942) {
 			return 1;
-		} else if (this.field3948 && !var1.field3948) {
+		} else if (this.field3941 && !var1.field3941) {
 			return -1;
-		} else if (!this.field3948 && var1.field3948) {
+		} else if (!this.field3941 && var1.field3941) {
 			return 1;
 		} else {
 			return super.world != 0 ? super.int2 - var1.int2 : var1.int2 - super.int2;
 		}
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		descriptor = "(Llu;B)I",
-		garbageValue = "-81"
+		descriptor = "(Lla;I)I",
+		garbageValue = "-1073614160"
 	)
 	@Export("compareTo_user")
 	public int compareTo_user(Nameable var1) {
@@ -56,21 +56,24 @@ public class Friend extends Buddy {
 		return this.compareToFriend((Friend)var1);
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("fr")
 	@ObfuscatedSignature(
-		descriptor = "(IB)I",
-		garbageValue = "67"
+		descriptor = "(III)V",
+		garbageValue = "1293240706"
 	)
-	public static int method6003(int var0) {
-		return var0 >> 17 & 7;
-	}
+	static void method6057(int var0, int var1) {
+		if (class408.clientPreferences.musicVolume != 0 && var0 != -1) {
+			Archive var2 = AbstractWorldMapIcon.archive11;
+			int var3 = class408.clientPreferences.musicVolume;
+			class247.musicPlayerStatus = 1;
+			class128.musicTrackArchive = var2;
+			FillMode.musicTrackGroupId = var0;
+			ArchiveDiskActionHandler.musicTrackFileId = 0;
+			class247.musicTrackVolume = var3;
+			SecureRandomCallable.musicTrackBoolean = false;
+			class247.pcmSampleLength = 10000;
+			Client.field710 = true;
+		}
 
-	@ObfuscatedName("aq")
-	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "-1839296655"
-	)
-	static int method6004(int var0) {
-		return (int)Math.pow(2.0D, (double)(7.0F + (float)var0 / 256.0F));
 	}
 }

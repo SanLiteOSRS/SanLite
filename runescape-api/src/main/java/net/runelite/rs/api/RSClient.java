@@ -25,7 +25,9 @@
 package net.runelite.rs.api;
 
 import java.util.Map;
+import net.runelite.api.AmbientSoundEffect;
 import net.runelite.api.Client;
+import net.runelite.api.Deque;
 import net.runelite.api.SpritePixels;
 import net.runelite.api.World;
 import net.runelite.api.clan.ClanRank;
@@ -1419,4 +1421,7 @@ public interface RSClient extends RSGameEngine, Client
 	boolean isUnlockedFps();
 
 	void posToCameraAngle(int var0, int var1);
+
+	@Import("objectSounds")
+	Deque<AmbientSoundEffect> getAmbientSoundEffects();
 }

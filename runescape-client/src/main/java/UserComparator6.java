@@ -1,25 +1,21 @@
+import java.io.File;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("du")
+@ObfuscatedName("dc")
 @Implements("UserComparator6")
 public class UserComparator6 extends AbstractUserComparator {
-	@ObfuscatedName("ej")
+	@ObfuscatedName("aj")
+	static String field1340;
+	@ObfuscatedName("bq")
 	@ObfuscatedSignature(
-		descriptor = "Lky;"
+		descriptor = "Loe;"
 	)
-	@Export("archive12")
-	static Archive archive12;
-	@ObfuscatedName("ix")
-	@ObfuscatedGetter(
-		intValue = -863164529
-	)
-	@Export("selectedItemWidget")
-	static int selectedItemWidget;
-	@ObfuscatedName("l")
+	@Export("worldSelectLeftSprite")
+	static IndexedSprite worldSelectLeftSprite;
+	@ObfuscatedName("i")
 	@Export("reversed")
 	final boolean reversed;
 
@@ -27,10 +23,10 @@ public class UserComparator6 extends AbstractUserComparator {
 		this.reversed = var1;
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		descriptor = "(Lmi;Lmi;I)I",
-		garbageValue = "-2006928381"
+		descriptor = "(Lmt;Lmt;B)I",
+		garbageValue = "1"
 	)
 	@Export("compareBuddy")
 	int compareBuddy(Buddy var1, Buddy var2) {
@@ -45,81 +41,114 @@ public class UserComparator6 extends AbstractUserComparator {
 		return this.compareBuddy((Buddy)var1, (Buddy)var2);
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		descriptor = "(Lky;II)V",
-		garbageValue = "1624895888"
+		descriptor = "(I)V",
+		garbageValue = "1965177576"
 	)
-	static void method2466(Archive var0, int var1) {
-		if (TriBool.NetCache_reference != null) {
-			TriBool.NetCache_reference.offset = var1 * 8 + 5;
-			int var2 = TriBool.NetCache_reference.readInt();
-			int var3 = TriBool.NetCache_reference.readInt();
-			var0.loadIndex(var2, var3);
+	static void method2513() {
+		class300.field3765 = new int[2000];
+		int var0 = 0;
+		int var1 = 240;
+
+		int var3;
+		for (byte var2 = 12; var0 < 16; var1 -= var2) {
+			var3 = SequenceDefinition.method3461((double)((float)var1 / 360.0F), 0.9998999834060669D, (double)(0.075F + 0.425F * (float)var0 / 16.0F));
+			class300.field3765[var0] = var3;
+			++var0;
+		}
+
+		var1 = 48;
+
+		for (int var5 = var1 / 6; var0 < class300.field3765.length; var1 -= var5) {
+			var3 = var0 * 2;
+
+			for (int var4 = SequenceDefinition.method3461((double)((float)var1 / 360.0F), 0.9998999834060669D, 0.5D); var0 < var3 && var0 < class300.field3765.length; ++var0) {
+				class300.field3765[var0] = var4;
+			}
+		}
+
+	}
+
+	@ObfuscatedName("i")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/io/File;I)V",
+		garbageValue = "-1996074579"
+	)
+	static void method2508(File var0) {
+		FileSystem.FileSystem_cacheDir = var0;
+		if (!FileSystem.FileSystem_cacheDir.exists()) {
+			throw new RuntimeException("");
 		} else {
-			ClanSettings.requestNetFile((Archive)null, 255, 255, 0, (byte)0, true);
-			NetCache.NetCache_archives[var1] = var0;
+			FileSystem.FileSystem_hasPermissions = true;
 		}
 	}
 
-	@ObfuscatedName("fq")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;I)V",
-		garbageValue = "112358019"
+		descriptor = "(IB)I",
+		garbageValue = "112"
 	)
-	@Export("doCheat")
-	static final void doCheat(String var0) {
-		if (var0.equalsIgnoreCase("toggleroof")) {
-			WorldMapDecorationType.clientPreferences.roofsHidden = !WorldMapDecorationType.clientPreferences.roofsHidden;
-			ScriptFrame.savePreferences();
-			if (WorldMapDecorationType.clientPreferences.roofsHidden) {
-				GraphicsDefaults.addGameMessage(99, "", "Roofs are now all hidden");
-			} else {
-				GraphicsDefaults.addGameMessage(99, "", "Roofs will only be removed selectively");
+	public static int method2512(int var0) {
+		return class361.field4047[var0 & 16383];
+	}
+
+	@ObfuscatedName("jk")
+	@ObfuscatedSignature(
+		descriptor = "(Ljf;IIB)V",
+		garbageValue = "100"
+	)
+	@Export("clickWidget")
+	static final void clickWidget(Widget var0, int var1, int var2) {
+		if (Client.clickedWidget == null && !Client.isMenuOpen) {
+			if (var0 != null) {
+				Widget var4 = BuddyRankComparator.method2501(var0);
+				if (var4 == null) {
+					var4 = var0.parent;
+				}
+
+				if (var4 != null) {
+					Client.clickedWidget = var0;
+					var4 = BuddyRankComparator.method2501(var0);
+					if (var4 == null) {
+						var4 = var0.parent;
+					}
+
+					Client.clickedWidgetParent = var4;
+					Client.widgetClickX = var1;
+					Client.widgetClickY = var2;
+					class134.widgetDragDuration = 0;
+					Client.isDraggingWidget = false;
+					int var6 = Client.menuOptionsCount - 1;
+					if (var6 != -1) {
+						class12.method170(var6);
+					}
+
+					return;
+				}
 			}
+
 		}
+	}
 
-		if (var0.equalsIgnoreCase("displayfps")) {
-			Client.displayFps = !Client.displayFps;
+	@ObfuscatedName("ks")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "-1324364806"
+	)
+	static final void method2509() {
+		Client.field681 = Client.cycleCntr;
+		class29.field162 = true;
+	}
+
+	@ObfuscatedName("lr")
+	@ObfuscatedSignature(
+		descriptor = "(II)V",
+		garbageValue = "1910834630"
+	)
+	static void method2503(int var0) {
+		if (var0 != Client.loginState) {
+			Client.loginState = var0;
 		}
-
-		if (var0.equalsIgnoreCase("renderself")) {
-			Client.renderSelf = !Client.renderSelf;
-		}
-
-		if (var0.equalsIgnoreCase("mouseovertext")) {
-			Client.showMouseOverText = !Client.showMouseOverText;
-		}
-
-		if (Client.staffModLevel >= 2) {
-			if (var0.equalsIgnoreCase("errortest")) {
-				throw new RuntimeException();
-			}
-
-			if (var0.equalsIgnoreCase("showcoord")) {
-				TileItem.worldMap.showCoord = !TileItem.worldMap.showCoord;
-			}
-
-			if (var0.equalsIgnoreCase("fpson")) {
-				Client.displayFps = true;
-			}
-
-			if (var0.equalsIgnoreCase("fpsoff")) {
-				Client.displayFps = false;
-			}
-
-			if (var0.equalsIgnoreCase("gc")) {
-				System.gc();
-			}
-
-			if (var0.equalsIgnoreCase("clientdrop")) {
-				class20.method302();
-			}
-		}
-
-		PacketBufferNode var1 = LoginScreenAnimation.getPacketBufferNode(ClientPacket.field2756, Client.packetWriter.isaacCipher);
-		var1.packetBuffer.writeByte(var0.length() + 1);
-		var1.packetBuffer.writeStringCp1252NullTerminated(var0);
-		Client.packetWriter.addNode(var1);
 	}
 }

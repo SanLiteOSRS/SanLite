@@ -4,61 +4,61 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("lp")
+@ObfuscatedName("lg")
 @Implements("FriendsList")
 public class FriendsList extends NameableContainer {
-	@ObfuscatedName("f")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "Lny;"
+		descriptor = "Lni;"
 	)
 	@Export("loginType")
 	final LoginType loginType;
-	@ObfuscatedName("j")
+	@ObfuscatedName("a")
 	@ObfuscatedGetter(
-		intValue = -1046652711
+		intValue = -1344623889
 	)
-	int field3936;
-	@ObfuscatedName("m")
+	int field3929;
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "Lkm;"
+		descriptor = "Lky;"
 	)
 	@Export("friendLoginUpdates")
 	public LinkDeque friendLoginUpdates;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lny;)V"
+		descriptor = "(Lni;)V"
 	)
 	public FriendsList(LoginType var1) {
 		super(400);
-		this.field3936 = 1;
+		this.field3929 = 1;
 		this.friendLoginUpdates = new LinkDeque();
 		this.loginType = var1;
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		descriptor = "(I)Llu;",
-		garbageValue = "396333118"
+		descriptor = "(I)Lla;",
+		garbageValue = "-450730044"
 	)
 	@Export("newInstance")
 	Nameable newInstance() {
 		return new Friend();
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		descriptor = "(II)[Llu;",
-		garbageValue = "1129798936"
+		descriptor = "(IB)[Lla;",
+		garbageValue = "91"
 	)
 	@Export("newTypedArray")
 	Nameable[] newTypedArray(int var1) {
 		return new Friend[var1];
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "(Lpm;ZI)Z",
-		garbageValue = "1386135004"
+		descriptor = "(Lpb;ZI)Z",
+		garbageValue = "-294857324"
 	)
 	@Export("isFriended")
 	public boolean isFriended(Username var1, boolean var2) {
@@ -70,10 +70,10 @@ public class FriendsList extends NameableContainer {
 		}
 	}
 
-	@ObfuscatedName("y")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		descriptor = "(Lot;II)V",
-		garbageValue = "743763040"
+		descriptor = "(Lop;II)V",
+		garbageValue = "563373210"
 	)
 	@Export("read")
 	public void read(Buffer var1, int var2) {
@@ -137,17 +137,17 @@ public class FriendsList extends NameableContainer {
 					}
 
 					if (var6 != var11.world) {
-						var11.int2 = ++this.field3936 - 1;
+						var11.int2 = ++this.field3929 - 1;
 						if (var11.world == -1 && var6 == 0) {
-							var11.int2 = -(var11.int2 * -780817315) * 245467125;
+							var11.int2 = -(var11.int2 * -939883657) * -641382841;
 						}
 
 						var11.world = var6;
 					}
 
 					var11.rank = var7;
-					var11.field3949 = var9;
-					var11.field3948 = var10;
+					var11.field3942 = var9;
+					var11.field3941 = var10;
 					continue;
 				}
 
@@ -157,14 +157,5 @@ public class FriendsList extends NameableContainer {
 			this.sort();
 			return;
 		}
-	}
-
-	@ObfuscatedName("l")
-	@ObfuscatedSignature(
-		descriptor = "(Lkl;B)V",
-		garbageValue = "28"
-	)
-	public static void method5954(AbstractArchive var0) {
-		EnumComposition.EnumDefinition_archive = var0;
 	}
 }

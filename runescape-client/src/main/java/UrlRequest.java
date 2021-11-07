@@ -5,21 +5,21 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("co")
+@ObfuscatedName("cm")
 @Implements("UrlRequest")
 public class UrlRequest {
-	@ObfuscatedName("ho")
+	@ObfuscatedName("sk")
 	@ObfuscatedGetter(
-		intValue = 1113835115
+		intValue = 264051584
 	)
-	static int field1313;
-	@ObfuscatedName("l")
+	static int field1298;
+	@ObfuscatedName("i")
 	@Export("url")
 	final URL url;
-	@ObfuscatedName("q")
+	@ObfuscatedName("w")
 	@Export("isDone0")
 	volatile boolean isDone0;
-	@ObfuscatedName("f")
+	@ObfuscatedName("s")
 	@Export("response0")
 	volatile byte[] response0;
 
@@ -27,37 +27,56 @@ public class UrlRequest {
 		this.url = var1;
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		descriptor = "(I)Z",
-		garbageValue = "-713550106"
+		descriptor = "(B)Z",
+		garbageValue = "-2"
 	)
 	@Export("isDone")
 	public boolean isDone() {
 		return this.isDone0;
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
 		descriptor = "(I)[B",
-		garbageValue = "-490432666"
+		garbageValue = "-1773825191"
 	)
 	@Export("getResponse")
 	public byte[] getResponse() {
 		return this.response0;
 	}
 
-	@ObfuscatedName("kf")
+	@ObfuscatedName("fy")
 	@ObfuscatedSignature(
-		descriptor = "(IIIZB)V",
-		garbageValue = "-1"
+		descriptor = "(IZZZB)Lkd;",
+		garbageValue = "0"
 	)
-	public static void method2386(int var0, int var1, int var2, boolean var3) {
-		PacketBufferNode var4 = LoginScreenAnimation.getPacketBufferNode(ClientPacket.field2750, Client.packetWriter.isaacCipher);
-		var4.packetBuffer.method7026(var2);
-		var4.packetBuffer.writeInt(var3 ? Client.field572 : 0);
-		var4.packetBuffer.method6931(var1);
-		var4.packetBuffer.method6931(var0);
-		Client.packetWriter.addNode(var4);
+	@Export("newArchive")
+	static Archive newArchive(int var0, boolean var1, boolean var2, boolean var3) {
+		ArchiveDisk var4 = null;
+		if (JagexCache.JagexCache_dat2File != null) {
+			var4 = new ArchiveDisk(var0, JagexCache.JagexCache_dat2File, WorldMapID.JagexCache_idxFiles[var0], 1000000);
+		}
+
+		return new Archive(var4, WorldMapArea.masterDisk, var0, var1, var2, var3);
+	}
+
+	@ObfuscatedName("ix")
+	@ObfuscatedSignature(
+		descriptor = "(IB)Z",
+		garbageValue = "9"
+	)
+	static final boolean method2446(int var0) {
+		if (var0 < 0) {
+			return false;
+		} else {
+			int var1 = Client.menuOpcodes[var0];
+			if (var1 >= 2000) {
+				var1 -= 2000;
+			}
+
+			return var1 == 1007;
+		}
 	}
 }

@@ -1,36 +1,43 @@
+import java.util.Iterator;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cs")
+@ObfuscatedName("ce")
 @Implements("HealthBar")
 public class HealthBar extends Node {
-	@ObfuscatedName("f")
+	@ObfuscatedName("rt")
 	@ObfuscatedSignature(
-		descriptor = "Lfs;"
+		descriptor = "Lak;"
+	)
+	@Export("pcmPlayer0")
+	static PcmPlayer pcmPlayer0;
+	@ObfuscatedName("s")
+	@ObfuscatedSignature(
+		descriptor = "Lfd;"
 	)
 	@Export("definition")
 	HealthBarDefinition definition;
-	@ObfuscatedName("j")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "Lkt;"
+		descriptor = "Lkf;"
 	)
 	@Export("updates")
 	IterableNodeDeque updates;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lfs;)V"
+		descriptor = "(Lfd;)V"
 	)
 	HealthBar(HealthBarDefinition var1) {
 		this.updates = new IterableNodeDeque();
 		this.definition = var1;
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		descriptor = "(IIIII)V",
-		garbageValue = "-1577192016"
+		descriptor = "(IIIIB)V",
+		garbageValue = "0"
 	)
 	@Export("put")
 	void put(int var1, int var2, int var3, int var4) {
@@ -63,10 +70,10 @@ public class HealthBar extends Node {
 		}
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		descriptor = "(IB)Lcp;",
-		garbageValue = "-18"
+		descriptor = "(II)Lcd;",
+		garbageValue = "655971331"
 	)
 	@Export("get")
 	HealthBarUpdate get(int var1) {
@@ -77,7 +84,7 @@ public class HealthBar extends Node {
 				var2 = var3;
 			}
 
-			if (this.definition.int5 + var2.cycleOffset + var2.cycle > var1) {
+			if (this.definition.int5 + var2.cycle + var2.cycleOffset > var1) {
 				return var2;
 			} else {
 				var2.remove();
@@ -88,82 +95,56 @@ public class HealthBar extends Node {
 		}
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "(B)Z",
-		garbageValue = "126"
+		descriptor = "(I)Z",
+		garbageValue = "1027939055"
 	)
 	@Export("isEmpty")
 	boolean isEmpty() {
-		return this.updates.method5563();
+		return this.updates.method5633();
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		descriptor = "(II)Lfk;",
-		garbageValue = "-359923658"
+		descriptor = "(B)V",
+		garbageValue = "45"
 	)
-	public static FloorUnderlayDefinition method2214(int var0) {
-		FloorUnderlayDefinition var1 = (FloorUnderlayDefinition)FloorUnderlayDefinition.FloorUnderlayDefinition_cached.get((long)var0);
-		if (var1 != null) {
-			return var1;
-		} else {
-			byte[] var2 = FloorUnderlayDefinition.FloorUnderlayDefinition_archive.takeFile(1, var0);
-			var1 = new FloorUnderlayDefinition();
-			if (var2 != null) {
-				var1.decode(new Buffer(var2), var0);
-			}
+	static void method2242() {
+		Iterator var0 = Messages.Messages_hashTable.iterator();
 
-			var1.postDecode();
-			FloorUnderlayDefinition.FloorUnderlayDefinition_cached.put(var1, (long)var0);
-			return var1;
+		while (var0.hasNext()) {
+			Message var1 = (Message)var0.next();
+			var1.clearIsFromIgnored();
 		}
+
 	}
 
-	@ObfuscatedName("an")
+	@ObfuscatedName("lq")
 	@ObfuscatedSignature(
-		descriptor = "(ILbe;ZB)I",
-		garbageValue = "0"
+		descriptor = "(Ljava/lang/String;ZS)Ljava/lang/String;",
+		garbageValue = "-17378"
 	)
-	static int method2220(int var0, Script var1, boolean var2) {
-		if (var0 != 6700 && var0 != 6702 && var0 != 6704 && var0 != 6706 && var0 != 6708) {
-			if (var0 != 6701 && var0 != 6703 && var0 != 6705 && var0 != 6707 && var0 != 6709) {
-				if (var0 == 6750) {
-					Interpreter.Interpreter_stringStack[++class54.Interpreter_stringStackSize - 1] = "";
-					return 1;
-				} else if (var0 != 6751 && var0 != 6752 && var0 != 6753) {
-					if (var0 == 6754) {
-						int var3 = Interpreter.Interpreter_intStack[--AbstractByteArrayCopier.Interpreter_intStackSize];
-						NPCComposition var4 = class112.getNpcDefinition(var3);
-						Interpreter.Interpreter_stringStack[++class54.Interpreter_stringStackSize - 1] = var4 != null ? var4.name : "";
-						return 1;
-					} else {
-						return 2;
-					}
-				} else {
-					Interpreter.Interpreter_intStack[++AbstractByteArrayCopier.Interpreter_intStackSize - 1] = -1;
-					return 1;
-				}
-			} else {
-				--AbstractByteArrayCopier.Interpreter_intStackSize;
-				return 1;
-			}
-		} else {
-			AbstractByteArrayCopier.Interpreter_intStackSize -= 2;
-			--class54.Interpreter_stringStackSize;
-			return 1;
-		}
-	}
-
-	@ObfuscatedName("km")
-	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "1149817369"
-	)
-	static void method2221() {
-		if (Client.oculusOrbState == 1) {
-			Client.field573 = true;
+	static String method2246(String var0, boolean var1) {
+		String var2 = var1 ? "https://" : "http://";
+		if (Client.gameBuild == 1) {
+			var0 = var0 + "-wtrc";
+		} else if (Client.gameBuild == 2) {
+			var0 = var0 + "-wtqa";
+		} else if (Client.gameBuild == 3) {
+			var0 = var0 + "-wtwip";
+		} else if (Client.gameBuild == 5) {
+			var0 = var0 + "-wti";
+		} else if (Client.gameBuild == 4) {
+			var0 = "local";
 		}
 
+		String var3 = "";
+		if (UserComparator3.field1316 != null) {
+			var3 = "/p=" + UserComparator3.field1316;
+		}
+
+		String var4 = "runescape.com";
+		return var2 + var0 + "." + var4 + "/l=" + MouseHandler.clientLanguage + "/a=" + TextureProvider.field2483 + var3 + "/";
 	}
 }

@@ -1,16 +1,19 @@
-import java.applet.Applet;
 import java.util.zip.Inflater;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("pt")
+@ObfuscatedName("pd")
 @Implements("GZipDecompressor")
 public class GZipDecompressor {
-	@ObfuscatedName("l")
+	@ObfuscatedName("i")
 	@Export("inflater")
 	Inflater inflater;
+
+	public GZipDecompressor() {
+		this(-1, 1000000, 1000000);
+	}
 
 	@ObfuscatedSignature(
 		descriptor = "(III)V",
@@ -19,14 +22,10 @@ public class GZipDecompressor {
 	GZipDecompressor(int var1, int var2, int var3) {
 	}
 
-	public GZipDecompressor() {
-		this(-1, 1000000, 1000000);
-	}
-
-	@ObfuscatedName("l")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		descriptor = "(Lot;[BI)V",
-		garbageValue = "537396446"
+		descriptor = "(Lop;[BB)V",
+		garbageValue = "-63"
 	)
 	@Export("decompress")
 	public void decompress(Buffer var1, byte[] var2) {
@@ -47,18 +46,5 @@ public class GZipDecompressor {
 		} else {
 			throw new RuntimeException("");
 		}
-	}
-
-	@ObfuscatedName("l")
-	@ObfuscatedSignature(
-		descriptor = "(Ljava/applet/Applet;Ljava/lang/String;B)V",
-		garbageValue = "-111"
-	)
-	public static void method7450(Applet var0, String var1) {
-		class29.field168 = var0;
-		if (var1 != null) {
-			class29.field165 = var1;
-		}
-
 	}
 }

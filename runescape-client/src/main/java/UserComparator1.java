@@ -4,10 +4,10 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ok")
+@ObfuscatedName("ox")
 @Implements("UserComparator1")
 public class UserComparator1 implements Comparator {
-	@ObfuscatedName("l")
+	@ObfuscatedName("i")
 	@Export("reversed")
 	final boolean reversed;
 
@@ -15,10 +15,10 @@ public class UserComparator1 implements Comparator {
 		this.reversed = var1;
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		descriptor = "(Llu;Llu;B)I",
-		garbageValue = "-110"
+		descriptor = "(Lla;Lla;S)I",
+		garbageValue = "-7375"
 	)
 	@Export("compare_bridged")
 	int compare_bridged(Nameable var1, Nameable var2) {
@@ -33,12 +33,31 @@ public class UserComparator1 implements Comparator {
 		return super.equals(var1);
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("g")
 	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "725345511"
+		descriptor = "(Lko;Lko;Ljava/lang/String;Ljava/lang/String;I)Lle;",
+		garbageValue = "976267291"
 	)
-	public static int method7162(int var0) {
-		return Widget.method5030(ViewportMouse.ViewportMouse_entityTags[var0]);
+	public static Font method7234(AbstractArchive var0, AbstractArchive var1, String var2, String var3) {
+		int var4 = var0.getGroupId(var2);
+		int var5 = var0.getFileId(var4, var3);
+		Font var6;
+		if (!BuddyRankComparator.SpriteBuffer_loadSpritesFromArchive(var0, var4, var5)) {
+			var6 = null;
+		} else {
+			byte[] var8 = var1.takeFile(var4, var5);
+			Font var7;
+			if (var8 == null) {
+				var7 = null;
+			} else {
+				Font var9 = new Font(var8, class414.SpriteBuffer_xOffsets, class414.SpriteBuffer_yOffsets, UrlRequester.SpriteBuffer_spriteWidths, class414.SpriteBuffer_spriteHeights, HitSplatDefinition.SpriteBuffer_spritePalette, class295.SpriteBuffer_pixels);
+				PacketBuffer.method6913();
+				var7 = var9;
+			}
+
+			var6 = var7;
+		}
+
+		return var6;
 	}
 }

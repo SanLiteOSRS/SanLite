@@ -26,14 +26,12 @@ package net.runelite.deob.updater;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
 import net.runelite.asm.ClassGroup;
 import net.runelite.deob.deobfuscators.mapping.AnnotationIntegrityChecker;
 import net.runelite.deob.deobfuscators.mapping.AnnotationMapper;
 import net.runelite.deob.deobfuscators.mapping.Mapper;
 import net.runelite.deob.deobfuscators.mapping.ParallelExecutorMapping;
+import net.runelite.deob.deobfuscators.transformers.GraphicsObjectTransformer;
 import net.runelite.deob.deobfuscators.transformers.ScriptOpcodesTransformer;
 import net.runelite.deob.util.JarUtil;
 import org.slf4j.Logger;
@@ -81,6 +79,7 @@ public class UpdateMappings
 		ad.run();
 
 		new ScriptOpcodesTransformer().transform(group2);
+		new GraphicsObjectTransformer().transform(group2);
 	}
 
 	public void save(File out) throws IOException

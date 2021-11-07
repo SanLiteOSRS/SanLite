@@ -1976,6 +1976,12 @@ public interface Client extends GameEngine
 	void setUnlockedFps(boolean unlock);
 
 	/**
+	 * Gets the ambient sound effects
+	 * @return
+	 */
+	Deque<AmbientSoundEffect> getAmbientSoundEffects();
+
+	/**
 	 *
 	 * @param param0 This is SceneX for gameObject, index for items, and 0 for npc.
 	 * @param param1 This is SceneY for gameObject, static for items, and 0 for npc.

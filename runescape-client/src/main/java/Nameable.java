@@ -3,18 +3,18 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("lu")
+@ObfuscatedName("la")
 @Implements("Nameable")
 public class Nameable implements Comparable {
-	@ObfuscatedName("f")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "Lpm;"
+		descriptor = "Lpb;"
 	)
 	@Export("username")
 	Username username;
-	@ObfuscatedName("j")
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "Lpm;"
+		descriptor = "Lpb;"
 	)
 	@Export("previousUsername")
 	Username previousUsername;
@@ -22,50 +22,50 @@ public class Nameable implements Comparable {
 	Nameable() {
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		descriptor = "(Llu;B)I",
-		garbageValue = "-81"
+		descriptor = "(Lla;I)I",
+		garbageValue = "-1073614160"
 	)
 	@Export("compareTo_user")
 	public int compareTo_user(Nameable var1) {
 		return this.username.compareToTyped(var1.username);
 	}
 
-	@ObfuscatedName("r")
+	@ObfuscatedName("ae")
 	@ObfuscatedSignature(
-		descriptor = "(I)Lpm;",
-		garbageValue = "-1591035230"
+		descriptor = "(I)Lpb;",
+		garbageValue = "-1294008122"
 	)
 	@Export("getUsername")
 	public Username getUsername() {
 		return this.username;
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("aq")
 	@ObfuscatedSignature(
 		descriptor = "(I)Ljava/lang/String;",
-		garbageValue = "149819278"
+		garbageValue = "598510100"
 	)
 	@Export("getName")
 	public String getName() {
 		return this.username == null ? "" : this.username.getName();
 	}
 
-	@ObfuscatedName("u")
+	@ObfuscatedName("al")
 	@ObfuscatedSignature(
-		descriptor = "(I)Ljava/lang/String;",
-		garbageValue = "1711535592"
+		descriptor = "(B)Ljava/lang/String;",
+		garbageValue = "56"
 	)
 	@Export("getPreviousName")
 	public String getPreviousName() {
 		return this.previousUsername == null ? "" : this.previousUsername.getName();
 	}
 
-	@ObfuscatedName("d")
+	@ObfuscatedName("am")
 	@ObfuscatedSignature(
-		descriptor = "(Lpm;Lpm;I)V",
-		garbageValue = "-1790598798"
+		descriptor = "(Lpb;Lpb;I)V",
+		garbageValue = "1723391677"
 	)
 	@Export("set")
 	void set(Username var1, Username var2) {
