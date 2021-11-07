@@ -35,12 +35,12 @@ jobs:
         run: |
           ./gradlew ClientVersion$main --args="../gamepack/gamepack.jar ../gamepack/revision.txt"
           echo "GAMEPACK_REVISION=$(cat ./gamepack/revision.txt)" >> $GITHUB_ENV
+          echo "PROJECT_VERSION=$(./gradlew properties -q | grep "version:" | awk '{print $2}')" >> $GITHUB_ENV
           echo Determined gamepack revision as: ${{ env.GAMEPACK_REVISION }}
       - name: Deobfuscate gamepack
         run: ./gradlew Deob$main --args="../gamepack/gamepack.jar ../gamepack/deob.jar"
       - name: Update gamepack mappings
         run: |
-          echo "PROJECT_VERSION=$(./gradlew properties -q | grep "version:" | awk '{print $2}')" >> $GITHUB_ENV
           ./gradlew UpdateMappings$main --args="../runescape-client/build/libs/runescape-client-${{ env.PROJECT_VERSION }}.jar ../gamepack/deob.jar ../gamepack/refactored.jar"
       - name: Decompile refactored gamepack
         working-directory: ./gamepack
