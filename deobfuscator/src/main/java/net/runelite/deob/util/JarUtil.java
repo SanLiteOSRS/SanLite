@@ -90,6 +90,7 @@ public class JarUtil
 		catch (IOException e)
 		{
 			e.printStackTrace();
+			System.exit(-1);
 		}
 
 		group.initialize();

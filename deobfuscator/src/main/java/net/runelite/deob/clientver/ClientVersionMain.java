@@ -26,16 +26,28 @@
 package net.runelite.deob.clientver;
 
 import com.google.common.io.Files;
+import org.apache.commons.io.FileUtils;
+
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 public class ClientVersionMain
 {
 	public static void main(String[] args) throws IOException
 	{
+		if (args == null || args.length < 2)
+		{
+			System.err.println("Syntax: gamepack_jar output_path");
+			System.exit(-1);
+		}
+
 		File jar = new File(args[0]);
-		ClientVersion cv = new ClientVersion(jar);
-		System.out.println(cv.getVersion());
+		ClientVersion clientVersion = new ClientVersion(jar);
+		int version = clientVersion.getVersion();
+
+		System.out.println(version);
+		FileUtils.writeStringToFile(new File(args[1]), String.valueOf(version), StandardCharsets.UTF_8);
 	}
 
 	public static int version(String loc)

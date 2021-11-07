@@ -75,6 +75,6 @@ tasks {
         group = "bootstrapper"
 
         classpath = project.sourceSets.main.get().runtimeClasspath
-        main = "net.runelite.bootstrap.Bootstrapper"
+        mainClass.set("net.runelite.bootstrap.Bootstrapper")
     }
 }

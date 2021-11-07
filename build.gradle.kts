@@ -42,7 +42,7 @@ plugins {
     application
 }
 
-val localGitCommit = try {
+val localGitCommit: String = try {
     val projectPath = rootProject.projectDir.absolutePath
     Grgit.open(mapOf("dir" to projectPath)).head().id
 } catch (_: Exception) {
@@ -103,7 +103,7 @@ subprojects {
             }
         }
 
-        maven(url = "https://mvnrepository.com/artifact")
+        mavenCentral()
     }
 
     apply<JavaLibraryPlugin>()
