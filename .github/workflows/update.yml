@@ -34,14 +34,14 @@ jobs:
       - name: Determine gamepack revision
         run: |
           ./gradlew ClientVersion$main --args="../gamepack/gamepack.jar ../gamepack/revision.txt"
-          export GAMEPACK_REVISION="$(cat ./gamepack/revision.txt)"
-          echo Determined gamepack revision as: $GAMEPACK_REVISION
+          "GAMEPACK_REVISION=$(cat ./gamepack/revision.txt)" >> $GITHUB_ENV
+          echo Determined gamepack revision as: ${{ env.GAMEPACK_REVISION }}
       - name: Deobfuscate gamepack
         run: ./gradlew Deob$main --args="../gamepack/gamepack.jar ../gamepack/deob.jar"
       - name: Update gamepack mappings
         run: |
-          export PROJECT_VERSION=$(./gradlew properties -q | grep "version:" | awk '{print $2}')
-          ./gradlew UpdateMappings$main --args="../runescape-client/build/libs/runescape-client-${PROJECT_VERSION}.jar ../gamepack/deob.jar ../gamepack/refactored.jar"
+          "PROJECT_VERSION=$(./gradlew properties -q | grep "version:" | awk '{print $2}')" >> $GITHUB_ENV
+          ./gradlew UpdateMappings$main --args="../runescape-client/build/libs/runescape-client-${{ env.PROJECT_VERSION }}.jar ../gamepack/deob.jar ../gamepack/refactored.jar"
       - name: Decompile refactored gamepack
         working-directory: ./gamepack
         run: |
@@ -55,11 +55,11 @@ jobs:
           rm -f ./runescape-client/src/main/java/net/runelite/rs/*Opcodes.java
           rm -f ./runescape-client/src/main/java/*.java
           cp -R ./gamepack/rs-client/* ./runescape-client/src/main/java
-          sed -i -r "s/rsVersion = [0-9]+/rsVersion = ${GAMEPACK_REVISION}/" ./buildSrc/src/main/kotlin/Dependencies.kt
-          export BRANCH_NAME="feature/rev-${GAMEPACK_REVISION}-$(date +%s)"
-          export PULL_REQUEST_TITLE="feat(gamepack): updates to revision ${GAMEPACK_REVISION}"
-          echo Branch name: $BRANCH_NAME
-          echo PR title: PULL_REQUEST_TITLE
+          sed -i -r "s/rsVersion = [0-9]+/rsVersion = ${{ env.GAMEPACK_REVISION }}/" ./buildSrc/src/main/kotlin/Dependencies.kt
+          "BRANCH_NAME=feature/rev-${{ env.GAMEPACK_REVISION }}-$(date +%s)" >> $GITHUB_ENV
+          "PULL_REQUEST_TITLE=feat(gamepack): updates to revision ${{ env.GAMEPACK_REVISION }}" >> $GITHUB_ENV
+          echo Branch name: ${{ env.BRANCH_NAME }}
+          echo PR title: ${{ env.PULL_REQUEST_TITLE }}
       - name: Create pull request
         uses: peter-evans/create-pull-request@v3
         with:
