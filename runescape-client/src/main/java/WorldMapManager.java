@@ -70,7 +70,7 @@ public final class WorldMapManager {
 	final HashMap fonts;
 	@ObfuscatedName("y")
 	@ObfuscatedGetter(
-		intValue = -1953888320
+		intValue = 1580083231
 	)
 	@Export("tileX")
 	int tileX;
@@ -88,7 +88,7 @@ public final class WorldMapManager {
 	int tileWidth;
 	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = -512644544
+		intValue = 730187433
 	)
 	@Export("tileHeight")
 	int tileHeight;
