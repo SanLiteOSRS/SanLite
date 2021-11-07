@@ -165,7 +165,7 @@ public class class113 extends class116 {
 				int var13 = var11.getFileId(var8, "");
 				class247.musicPlayerStatus = 1;
 				class128.musicTrackArchive = var11;
-				class411.musicTrackGroupId = var8;
+				FillMode.musicTrackGroupId = var8;
 				ArchiveDiskActionHandler.musicTrackFileId = var13;
 				class247.musicTrackVolume = 255;
 				SecureRandomCallable.musicTrackBoolean = false;
@@ -173,7 +173,7 @@ public class class113 extends class116 {
 			} else {
 				class247.musicPlayerStatus = 1;
 				class128.musicTrackArchive = null;
-				class411.musicTrackGroupId = -1;
+				FillMode.musicTrackGroupId = -1;
 				ArchiveDiskActionHandler.musicTrackFileId = -1;
 				class247.musicTrackVolume = 0;
 				SecureRandomCallable.musicTrackBoolean = false;

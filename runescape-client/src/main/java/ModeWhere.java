@@ -176,7 +176,7 @@ public enum ModeWhere implements MouseWheel {
 			int var2 = class408.clientPreferences.musicVolume;
 			class247.musicPlayerStatus = 1;
 			class128.musicTrackArchive = var1;
-			class411.musicTrackGroupId = var0;
+			FillMode.musicTrackGroupId = var0;
 			ArchiveDiskActionHandler.musicTrackFileId = 0;
 			class247.musicTrackVolume = var2;
 			SecureRandomCallable.musicTrackBoolean = false;

@@ -7,7 +7,7 @@ import net.runelite.rs.ScriptOpcodes;
 
 @ObfuscatedName("bo")
 @Implements("GraphicsObject")
-public final class GraphicsObject extends Renderable {
+public class GraphicsObject extends Renderable {
 	@ObfuscatedName("i")
 	@ObfuscatedGetter(
 		intValue = 193750031
@@ -65,6 +65,10 @@ public final class GraphicsObject extends Renderable {
 	@ObfuscatedName("b")
 	@Export("isFinished")
 	boolean isFinished;
+
+	public GraphicsObject()
+	{
+	}
 
 	GraphicsObject(int var1, int var2, int var3, int var4, int var5, int var6, int var7) {
 		this.frame = 0;

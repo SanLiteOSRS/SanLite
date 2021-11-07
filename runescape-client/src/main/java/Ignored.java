@@ -47,8 +47,8 @@ public class Ignored extends Nameable {
 		garbageValue = "1673389223"
 	)
 	@Export("FillMode_values")
-	public static class411[] FillMode_values() {
-		return new class411[]{class411.field4378, class411.field4377, class411.SOLID};
+	public static FillMode[] FillMode_values() {
+		return new FillMode[]{FillMode.field4378, FillMode.field4377, FillMode.SOLID};
 	}
 
 	@ObfuscatedName("w")

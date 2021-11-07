@@ -67,7 +67,7 @@ public class Friend extends Buddy {
 			int var3 = class408.clientPreferences.musicVolume;
 			class247.musicPlayerStatus = 1;
 			class128.musicTrackArchive = var2;
-			class411.musicTrackGroupId = var0;
+			FillMode.musicTrackGroupId = var0;
 			ArchiveDiskActionHandler.musicTrackFileId = 0;
 			class247.musicTrackVolume = var3;
 			SecureRandomCallable.musicTrackBoolean = false;

@@ -309,7 +309,7 @@ public abstract class class132 extends Node {
 				return 1;
 			} else if (var0 == 1125) {
 				var8 = Interpreter.Interpreter_intStack[--class14.Interpreter_intStackSize];
-				class411 var6 = (class411)UserComparator4.findEnumerated(Ignored.FillMode_values(), var8);
+				FillMode var6 = (FillMode)UserComparator4.findEnumerated(Ignored.FillMode_values(), var8);
 				if (var6 != null) {
 					var3.fillMode = var6;
 					class184.invalidateWidget(var3);
