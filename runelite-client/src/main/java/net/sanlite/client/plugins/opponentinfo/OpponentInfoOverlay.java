@@ -25,6 +25,7 @@
  */
 package net.sanlite.client.plugins.opponentinfo;
 
+import com.google.common.base.Strings;
 import net.runelite.api.*;
 import net.runelite.client.game.HiscoreManager;
 import net.runelite.client.game.NPCManager;
@@ -108,6 +109,15 @@ public class OpponentInfoOverlay extends OverlayPanel
 			lastMaxHealth = null;
 			if (opponent instanceof NPC)
 			{
+				NPCComposition composition = ((NPC) opponent).getTransformedComposition();
+				if (composition != null)
+				{
+					String longName = composition.getStringValue(ParamID.NPC_HP_NAME);
+					if (!Strings.isNullOrEmpty(longName))
+					{
+						opponentName = longName;
+					}
+				}
 				lastMaxHealth = npcManager.getHealth(((NPC) opponent).getId());
 			}
 			else if (opponent instanceof Player)
@@ -135,7 +145,9 @@ public class OpponentInfoOverlay extends OverlayPanel
 			opponentsOpponentName = null;
 		}
 
-		if (opponentName == null)
+		// The in-game hp hud is more accurate than our overlay and duplicates all of the information on it,
+		// so hide ours if it is visible.
+		if (opponentName == null || hasHpHud(opponent))
 		{
 			return null;
 		}
@@ -221,5 +233,21 @@ public class OpponentInfoOverlay extends OverlayPanel
 		}
 
 		return super.render(graphics);
+	}
+
+	/**
+	 * Check if the hp hud is active for an opponent
+	 * @param opponent
+	 * @return
+	 */
+	private boolean hasHpHud(Actor opponent)
+	{
+		boolean settingEnabled = client.getVar(Varbits.BOSS_HEALTH_OVERLAY) == 0;
+		if (settingEnabled && opponent instanceof NPC)
+		{
+			int opponentId = client.getVar(VarPlayer.HP_HUD_NPC_ID);
+			return opponentId != -1 && opponentId == ((NPC) opponent).getId();
+		}
+		return false;
 	}
 }
