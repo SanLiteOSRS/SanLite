@@ -1,6 +1,5 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 
 @ObfuscatedName("oe")
@@ -16,9 +15,6 @@ public final class IndexedSprite extends Rasterizer2D {
 	@Export("subWidth")
 	public int subWidth;
 	@ObfuscatedName("a")
-	@ObfuscatedGetter(
-		intValue = 1094459920
-	)
 	@Export("subHeight")
 	public int subHeight;
 	@ObfuscatedName("o")
