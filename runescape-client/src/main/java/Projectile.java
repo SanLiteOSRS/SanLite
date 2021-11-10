@@ -870,7 +870,7 @@ public final class Projectile extends Renderable {
 		}
 
 		if (Client.hintArrowType == 2) {
-			DefaultsGroup.worldToScreen(Client.hintArrowSubX * 64 + (Client.hintArrowX - class19.baseX * 64 << 7), Client.hintArrowSubY * 64 + (Client.hintArrowY - DefaultsGroup.baseY * 64 << 7), Client.hintArrowHeight * 2);
+			DefaultsGroup.worldToScreen((Client.hintArrowX - class19.baseX * 64 << 7) + Client.hintArrowSubX * 4096, Client.hintArrowSubY * 64 + (Client.hintArrowY - DefaultsGroup.baseY * 64 << 7), Client.hintArrowHeight * 2);
 			if (Client.viewportTempX > -1 && Client.cycle % 20 < 10) {
 				DevicePcmPlayerProvider.headIconHintSprites[0].drawTransBgAt(var0 + Client.viewportTempX - 12, Client.viewportTempY + var1 - 28);
 			}

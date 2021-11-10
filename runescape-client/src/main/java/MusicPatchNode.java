@@ -76,7 +76,7 @@ public class MusicPatchNode extends Node {
 	int field3004;
 	@ObfuscatedName("t")
 	@ObfuscatedGetter(
-		intValue = 1318578998
+		intValue = -1488194149
 	)
 	int field2994;
 	@ObfuscatedName("l")

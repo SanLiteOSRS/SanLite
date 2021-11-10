@@ -148,7 +148,7 @@ public class class113 extends class116 {
 			class9.options_buttons_2Sprite = Script.SpriteBuffer_getIndexedSpriteByName(var1, "options_radio_buttons,2", "");
 			FriendsChatMember.field3950 = Script.SpriteBuffer_getIndexedSpriteByName(var1, "options_radio_buttons,6", "");
 			class327.field3908 = NetSocket.options_buttons_0Sprite.subWidth;
-			UserComparator9.field1326 = NetSocket.options_buttons_0Sprite.subHeight * 470302976;
+			UserComparator9.field1326 = NetSocket.options_buttons_0Sprite.subHeight;
 			Login.loginScreenRunesAnimation = new LoginScreenAnimation(Login.runesSprite);
 			if (var2) {
 				Login.Login_username = "";
@@ -165,7 +165,7 @@ public class class113 extends class116 {
 				int var13 = var11.getFileId(var8, "");
 				class247.musicPlayerStatus = 1;
 				class128.musicTrackArchive = var11;
-				FillMode.musicTrackGroupId = var8;
+				class411.musicTrackGroupId = var8;
 				ArchiveDiskActionHandler.musicTrackFileId = var13;
 				class247.musicTrackVolume = 255;
 				SecureRandomCallable.musicTrackBoolean = false;
@@ -173,7 +173,7 @@ public class class113 extends class116 {
 			} else {
 				class247.musicPlayerStatus = 1;
 				class128.musicTrackArchive = null;
-				FillMode.musicTrackGroupId = -1;
+				class411.musicTrackGroupId = -1;
 				ArchiveDiskActionHandler.musicTrackFileId = -1;
 				class247.musicTrackVolume = 0;
 				SecureRandomCallable.musicTrackBoolean = false;

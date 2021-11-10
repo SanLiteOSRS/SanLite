@@ -121,7 +121,7 @@ public class ArchiveDiskActionHandler implements Runnable {
 			Login.loginScreenRunesAnimation.method2193();
 			class247.musicPlayerStatus = 1;
 			class128.musicTrackArchive = null;
-			FillMode.musicTrackGroupId = -1;
+			class411.musicTrackGroupId = -1;
 			musicTrackFileId = -1;
 			class247.musicTrackVolume = 0;
 			SecureRandomCallable.musicTrackBoolean = false;

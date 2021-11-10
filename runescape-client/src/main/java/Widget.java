@@ -219,7 +219,7 @@ public class Widget extends Node {
 		descriptor = "Lom;"
 	)
 	@Export("fillMode")
-	public FillMode fillMode;
+	public class411 fillMode;
 	@ObfuscatedName("ao")
 	@ObfuscatedGetter(
 		intValue = -1200768777
@@ -725,7 +725,7 @@ public class Widget extends Node {
 		this.mouseOverColor = 0;
 		this.mouseOverColor2 = 0;
 		this.fill = false;
-		this.fillMode = FillMode.SOLID;
+		this.fillMode = class411.SOLID;
 		this.transparencyTop = 0;
 		this.transparencyBot = 0;
 		this.lineWid = 1;
@@ -1458,7 +1458,7 @@ public class Widget extends Node {
 						return null;
 					}
 
-					var7 = var8.toModel(var9.ambient + 64, var9.contrast + 768, -50, -10, -50);
+					var7 = var8.toModel(var9.ambient + 64, var9.contrast * 5 + 768, -50, -10, -50);
 				}
 
 				Widget_cachedModels.put(var7, (long)(var6 + (var5 << 16)));

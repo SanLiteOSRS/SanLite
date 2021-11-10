@@ -297,7 +297,7 @@ public abstract class AbstractWorldMapData {
 			var2.xOffset = class414.SpriteBuffer_xOffsets[var1];
 			var2.yOffset = class414.SpriteBuffer_yOffsets[var1];
 			var2.subWidth = UrlRequester.SpriteBuffer_spriteWidths[var1];
-			var2.subHeight = class414.SpriteBuffer_spriteHeights[var1] * 1094459920;
+			var2.subHeight = class414.SpriteBuffer_spriteHeights[var1];
 			var2.palette = HitSplatDefinition.SpriteBuffer_spritePalette;
 			var2.pixels = class295.SpriteBuffer_pixels[var1];
 		}

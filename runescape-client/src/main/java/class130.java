@@ -59,8 +59,8 @@ public class class130 extends class116 {
 		for (ObjectSound var4 = (ObjectSound)ObjectSound.objectSounds.last(); var4 != null; var4 = (ObjectSound)ObjectSound.objectSounds.previous()) {
 			if (var4.soundEffectId != -1 || var4.soundEffectIds != null) {
 				int var5 = 0;
-				if (var1 > var4.maxX * 128) {
-					var5 += var1 - var4.maxX * 128;
+				if (var1 > var4.maxX * 16384) {
+					var5 += var1 - var4.maxX * 16384;
 				} else if (var1 < var4.x * 16384) {
 					var5 += var4.x * 16384 - var1;
 				}

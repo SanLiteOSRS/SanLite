@@ -407,7 +407,7 @@ public class WorldMapArea {
 		var0.xOffset = class414.SpriteBuffer_xOffsets[0];
 		var0.yOffset = class414.SpriteBuffer_yOffsets[0];
 		var0.subWidth = UrlRequester.SpriteBuffer_spriteWidths[0];
-		var0.subHeight = class414.SpriteBuffer_spriteHeights[0] * 1094459920;
+		var0.subHeight = class414.SpriteBuffer_spriteHeights[0];
 		var0.palette = HitSplatDefinition.SpriteBuffer_spritePalette;
 		var0.pixels = class295.SpriteBuffer_pixels[0];
 		PacketBuffer.method6913();

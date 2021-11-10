@@ -285,11 +285,11 @@ class class12 extends SSLSocket {
 				int var38 = (var47 + World.World_count - 1) / var47;
 				Login.worldSelectPagesCount = var38 - var43;
 				if (UserComparator6.worldSelectLeftSprite != null && Login.worldSelectPage > 0) {
-					UserComparator6.worldSelectLeftSprite.drawAt(8, KeyHandler.canvasHeight / 2 - UserComparator6.worldSelectLeftSprite.subHeight * 470302976 / 2);
+					UserComparator6.worldSelectLeftSprite.drawAt(8, KeyHandler.canvasHeight / 2 - UserComparator6.worldSelectLeftSprite.subHeight / 2);
 				}
 
 				if (class81.worldSelectRightSprite != null && Login.worldSelectPage < Login.worldSelectPagesCount) {
-					class81.worldSelectRightSprite.drawAt(GameEngine.canvasWidth - class81.worldSelectRightSprite.subWidth - 8, KeyHandler.canvasHeight / 2 - class81.worldSelectRightSprite.subHeight * 470302976 / 2);
+					class81.worldSelectRightSprite.drawAt(GameEngine.canvasWidth - class81.worldSelectRightSprite.subWidth - 8, KeyHandler.canvasHeight / 2 - class81.worldSelectRightSprite.subHeight / 2);
 				}
 
 				int var29 = var37 + 23;
@@ -404,7 +404,7 @@ class class12 extends SSLSocket {
 			short var32;
 			short var34;
 			if (Client.gameState == 20) {
-				Login.titleboxSprite.drawAt(Login.loginBoxX + 180 - Login.titleboxSprite.subWidth / 2, 271 - Login.titleboxSprite.subHeight * 470302976 / 2);
+				Login.titleboxSprite.drawAt(Login.loginBoxX + 180 - Login.titleboxSprite.subWidth / 2, 271 - Login.titleboxSprite.subHeight / 2);
 				var32 = 201;
 				var0.drawCentered(Login.Login_response1, Login.loginBoxX + 180, var32, 16776960, 0);
 				var33 = var32 + 15;

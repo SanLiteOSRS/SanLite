@@ -15,7 +15,7 @@ public class BuddyRankComparator extends AbstractUserComparator {
 	static PcmStreamMixer pcmStreamMixer;
 	@ObfuscatedName("sn")
 	@ObfuscatedGetter(
-		intValue = -319897600
+		intValue = -203825792
 	)
 	static int field1333;
 	@ObfuscatedName("p")

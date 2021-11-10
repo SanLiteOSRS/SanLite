@@ -72,7 +72,7 @@ public class class111 implements class110 {
 				IndexedSprite var15 = TriBool.mapSceneSprites[var14.mapSceneId];
 				if (var15 != null) {
 					int var16 = (var14.sizeX * 4 - var15.subWidth) / 2;
-					int var17 = (var14.sizeY * 4 - var15.subHeight * 470302976) / 2;
+					int var17 = (var14.sizeY * 4 - var15.subHeight) / 2;
 					var15.drawAt(var1 * 4 + var16 + 48, (104 - var2 - var14.sizeY) * 4 + var17 + 48);
 				}
 			} else {
@@ -150,7 +150,7 @@ public class class111 implements class110 {
 				IndexedSprite var20 = TriBool.mapSceneSprites[var24.mapSceneId];
 				if (var20 != null) {
 					var13 = (var24.sizeX * 4 - var20.subWidth) / 2;
-					var19 = (var24.sizeY * 4 - var20.subHeight * 470302976) / 2;
+					var19 = (var24.sizeY * 4 - var20.subHeight) / 2;
 					var20.drawAt(var1 * 4 + var13 + 48, var19 + (104 - var2 - var24.sizeY) * 4 + 48);
 				}
 			} else if (var9 == 9) {
@@ -183,7 +183,7 @@ public class class111 implements class110 {
 				IndexedSprite var22 = TriBool.mapSceneSprites[var21.mapSceneId];
 				if (var22 != null) {
 					var10 = (var21.sizeX * 4 - var22.subWidth) / 2;
-					int var23 = (var21.sizeY * 4 - var22.subHeight * 470302976) / 2;
+					int var23 = (var21.sizeY * 4 - var22.subHeight) / 2;
 					var22.drawAt(var10 + var1 * 4 + 48, (104 - var2 - var21.sizeY) * 4 + var23 + 48);
 				}
 			}

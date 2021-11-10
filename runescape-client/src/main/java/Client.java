@@ -471,7 +471,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 	static int hintArrowHeight;
 	@ObfuscatedName("dy")
 	@ObfuscatedGetter(
-		intValue = 217183296
+		intValue = -1204566063
 	)
 	@Export("hintArrowSubX")
 	static int hintArrowSubX;
@@ -853,7 +853,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 	static int mouseCrossY;
 	@ObfuscatedName("ki")
 	@ObfuscatedGetter(
-		intValue = -79046396
+		intValue = 1284537869
 	)
 	@Export("mouseCrossState")
 	static int mouseCrossState;
@@ -2674,7 +2674,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 			try {
 				if (class247.musicPlayerStatus == 2) {
 					if (class14.musicTrack == null) {
-						class14.musicTrack = MusicTrack.readTrack(class128.musicTrackArchive, FillMode.musicTrackGroupId, ArchiveDiskActionHandler.musicTrackFileId);
+						class14.musicTrack = MusicTrack.readTrack(class128.musicTrackArchive, class411.musicTrackGroupId, ArchiveDiskActionHandler.musicTrackFileId);
 						if (class14.musicTrack == null) {
 							var2 = false;
 							break label166;
@@ -4327,7 +4327,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 									var4 = class408.clientPreferences.musicVolume;
 									class247.musicPlayerStatus = 1;
 									class128.musicTrackArchive = var36;
-									FillMode.musicTrackGroupId = var3;
+									class411.musicTrackGroupId = var3;
 									ArchiveDiskActionHandler.musicTrackFileId = 0;
 									class247.musicTrackVolume = var4;
 									SecureRandomCallable.musicTrackBoolean = false;
@@ -4379,8 +4379,8 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 
 						++field531;
 						if (mouseCrossColor != 0) {
-							mouseCrossState = mouseCrossState * 400 + 400;
-							if (mouseCrossState * 20 >= 400) {
+							mouseCrossState = mouseCrossState * 400 + 20;
+							if (mouseCrossState * 400 >= 400) {
 								mouseCrossColor = 0;
 							}
 						}
@@ -4902,11 +4902,11 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 		Rasterizer2D.Rasterizer2D_resetClip();
 		if (showMouseCross) {
 			if (mouseCrossColor == 1) {
-				UserComparator10.crossSprites[mouseCrossState * 20 / 100].drawTransBgAt(mouseCrossX - 8, mouseCrossY - 8);
+				UserComparator10.crossSprites[mouseCrossState * 400 / 100].drawTransBgAt(mouseCrossX - 8, mouseCrossY - 8);
 			}
 
 			if (mouseCrossColor == 2) {
-				UserComparator10.crossSprites[mouseCrossState * 20 / 100 + 4].drawTransBgAt(mouseCrossX - 8, mouseCrossY - 8);
+				UserComparator10.crossSprites[mouseCrossState * 400 / 100 + 4].drawTransBgAt(mouseCrossX - 8, mouseCrossY - 8);
 			}
 		}
 
@@ -5366,13 +5366,13 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 				if (ServerPacket.field2833 == var1.serverPacket) {
 					isCameraLocked = true;
 					SpotAnimationDefinition.field1761 = var3.readUnsignedByte() * 16384;
-					BuddyRankComparator.field1333 = var3.readUnsignedByte() * 16384;
+					BuddyRankComparator.field1333 = var3.readUnsignedByte() * 128;
 					Renderable.field2442 = var3.readUnsignedShort();
 					UserComparator8.field1305 = var3.readUnsignedByte();
 					Login.field888 = var3.readUnsignedByte();
 					if (Login.field888 >= 100) {
 						WorldMapSectionType.cameraX = SpotAnimationDefinition.field1761 * 128 + 64;
-						class65.cameraZ = BuddyRankComparator.field1333 * 128 + 64;
+						class65.cameraZ = BuddyRankComparator.field1333 * 16384 + 64;
 						class174.cameraY = class392.getTileHeight(WorldMapSectionType.cameraX, class65.cameraZ, GrandExchangeOfferTotalQuantityComparator.Client_plane) - Renderable.field2442;
 					}
 
@@ -6440,7 +6440,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 
 					if (hintArrowType >= 2 && hintArrowType <= 6) {
 						if (hintArrowType == 2) {
-							hintArrowSubX = 4096;
+							hintArrowSubX = 64;
 							hintArrowSubY = 4096;
 						}
 
@@ -6450,17 +6450,17 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 						}
 
 						if (hintArrowType == 4) {
-							hintArrowSubX = 8192;
+							hintArrowSubX = 128;
 							hintArrowSubY = 4096;
 						}
 
 						if (hintArrowType == 5) {
-							hintArrowSubX = 4096;
+							hintArrowSubX = 64;
 							hintArrowSubY = 0;
 						}
 
 						if (hintArrowType == 6) {
-							hintArrowSubX = 4096;
+							hintArrowSubX = 64;
 							hintArrowSubY = 8192;
 						}
 

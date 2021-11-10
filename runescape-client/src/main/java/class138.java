@@ -86,8 +86,8 @@ public class class138 extends class116 {
 
 			int var10 = var0.x;
 			int var2 = var0.y;
-			int var3 = var0.pathX[var0.pathLength - 1] * 128 + var0.field1087 * 1912864768;
-			int var4 = var0.pathY[var0.pathLength - 1] * 128 + var0.field1087 * 1912864768;
+			int var3 = var0.field1087 * 1304956928 + var0.pathX[var0.pathLength - 1] * 128;
+			int var4 = var0.field1087 * 1304956928 + var0.pathY[var0.pathLength - 1] * 128;
 			if (var10 < var3) {
 				if (var2 < var4) {
 					var0.orientation = 1280;

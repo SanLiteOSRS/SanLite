@@ -126,7 +126,7 @@ public class Script extends DualNode {
 			var8.xOffset = class414.SpriteBuffer_xOffsets[0];
 			var8.yOffset = class414.SpriteBuffer_yOffsets[0];
 			var8.subWidth = UrlRequester.SpriteBuffer_spriteWidths[0];
-			var8.subHeight = class414.SpriteBuffer_spriteHeights[0] * 1094459920;
+			var8.subHeight = class414.SpriteBuffer_spriteHeights[0];
 			var8.palette = HitSplatDefinition.SpriteBuffer_spritePalette;
 			var8.pixels = class295.SpriteBuffer_pixels[0];
 			PacketBuffer.method6913();

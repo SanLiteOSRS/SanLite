@@ -1,6 +1,5 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 
 @ObfuscatedName("oe")
@@ -16,9 +15,6 @@ public final class IndexedSprite extends Rasterizer2D {
 	@Export("subWidth")
 	public int subWidth;
 	@ObfuscatedName("a")
-	@ObfuscatedGetter(
-		intValue = 1094459920
-	)
 	@Export("subHeight")
 	public int subHeight;
 	@ObfuscatedName("o")
@@ -40,11 +36,11 @@ public final class IndexedSprite extends Rasterizer2D {
 	@ObfuscatedName("i")
 	@Export("normalize")
 	public void normalize() {
-		if (this.subWidth != this.width || this.subHeight * 470302976 != this.height) {
+		if (this.subWidth != this.width || this.subHeight != this.height) {
 			byte[] var1 = new byte[this.width * this.height];
 			int var2 = 0;
 
-			for (int var3 = 0; var3 < this.subHeight * 470302976; ++var3) {
+			for (int var3 = 0; var3 < this.subHeight; ++var3) {
 				for (int var4 = 0; var4 < this.subWidth; ++var4) {
 					var1[var4 + (var3 + this.yOffset) * this.width + this.xOffset] = this.pixels[var2++];
 				}
@@ -52,7 +48,7 @@ public final class IndexedSprite extends Rasterizer2D {
 
 			this.pixels = var1;
 			this.subWidth = this.width;
-			this.subHeight = this.height * 1094459920;
+			this.subHeight = this.height;
 			this.xOffset = 0;
 			this.yOffset = 0;
 		}
@@ -98,7 +94,7 @@ public final class IndexedSprite extends Rasterizer2D {
 		var2 += this.yOffset;
 		int var3 = var1 + var2 * Rasterizer2D.Rasterizer2D_width;
 		int var4 = 0;
-		int var5 = this.subHeight * 470302976;
+		int var5 = this.subHeight;
 		int var6 = this.subWidth;
 		int var7 = Rasterizer2D.Rasterizer2D_width - var6;
 		int var8 = 0;
@@ -140,7 +136,7 @@ public final class IndexedSprite extends Rasterizer2D {
 	@ObfuscatedName("o")
 	public void method7362(int var1, int var2, int var3, int var4) {
 		int var5 = this.subWidth;
-		int var6 = this.subHeight * 470302976;
+		int var6 = this.subHeight;
 		int var7 = 0;
 		int var8 = 0;
 		int var9 = this.width;

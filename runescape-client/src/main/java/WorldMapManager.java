@@ -82,13 +82,13 @@ public final class WorldMapManager {
 	int tileY;
 	@ObfuscatedName("t")
 	@ObfuscatedGetter(
-		intValue = 1027044671
+		intValue = 1306349504
 	)
 	@Export("tileWidth")
 	int tileWidth;
 	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = 730187433
+		intValue = -512644544
 	)
 	@Export("tileHeight")
 	int tileHeight;
@@ -141,9 +141,9 @@ public final class WorldMapManager {
 			this.mapAreaData.getOriginX();
 			this.mapAreaData.getOriginPlane();
 			this.mapAreaData.getOriginY();
-			this.tileX = this.mapAreaData.getRegionLowX() * 4096;
+			this.tileX = this.mapAreaData.getRegionLowX() * 64;
 			this.tileY = this.mapAreaData.getRegionLowY() * 64;
-			this.tileWidth = (this.mapAreaData.getRegionHighX() - this.mapAreaData.getRegionLowX() + 1) * 64;
+			this.tileWidth = (this.mapAreaData.getRegionHighX() - this.mapAreaData.getRegionLowX() + 1) * 4096;
 			this.tileHeight = (this.mapAreaData.getRegionHighY() - this.mapAreaData.getRegionLowY() + 1) * 4096;
 			int var17 = this.mapAreaData.getRegionHighX() - this.mapAreaData.getRegionLowX() + 1;
 			int var9 = this.mapAreaData.getRegionHighY() - this.mapAreaData.getRegionLowY() + 1;
@@ -254,7 +254,7 @@ public final class WorldMapManager {
 		Rasterizer2D.Rasterizer2D_replace(var9, var10, var11);
 		Rasterizer2D.Rasterizer2D_setClipArray(var12);
 		var18 = (int)(64.0F * var14);
-		var19 = this.tileX * 64 + var1;
+		var19 = this.tileX * 4096 + var1;
 		int var20 = this.tileY * 4096 + var2;
 
 		for (int var21 = var13.x; var21 < var13.width + var13.x; ++var21) {
@@ -275,7 +275,7 @@ public final class WorldMapManager {
 		WorldMapRectangle var14 = this.createWorldMapRectangle(var1, var2, var3, var4);
 		float var15 = this.getPixelsPerTile(var7 - var5, var3 - var1);
 		int var16 = (int)(64.0F * var15);
-		int var17 = this.tileX * 64 + var1;
+		int var17 = this.tileX * 4096 + var1;
 		int var18 = this.tileY * 4096 + var2;
 
 		int var19;
@@ -331,7 +331,7 @@ public final class WorldMapManager {
 
 					while (var11.hasNext()) {
 						AbstractWorldMapIcon var12 = (AbstractWorldMapIcon)var11.next();
-						int var13 = var3 * (var12.coord2.x - this.tileX * 64) / (this.tileWidth * 4096);
+						int var13 = var3 * (var12.coord2.x - this.tileX * 4096) / (this.tileWidth * 64);
 						int var14 = var4 - (var12.coord2.y - this.tileY * 4096) * var4 / (this.tileHeight * 64);
 						Rasterizer2D.Rasterizer2D_drawCircleAlpha(var13 + var1, var14 + var2, 2, 16776960, 256);
 					}
@@ -353,7 +353,7 @@ public final class WorldMapManager {
 			WorldMapRectangle var12 = this.createWorldMapRectangle(var1, var2, var3, var4);
 			float var13 = this.getPixelsPerTile(var7, var3 - var1);
 			int var14 = (int)(64.0F * var13);
-			int var15 = this.tileX * 64 + var1;
+			int var15 = this.tileX * 4096 + var1;
 			int var16 = this.tileY * 4096 + var2;
 
 			for (int var17 = var12.x; var17 < var12.width + var12.x; ++var17) {
@@ -377,9 +377,9 @@ public final class WorldMapManager {
 	@Export("createWorldMapRectangle")
 	WorldMapRectangle createWorldMapRectangle(int var1, int var2, int var3, int var4) {
 		WorldMapRectangle var5 = new WorldMapRectangle(this);
-		int var6 = this.tileX * 64 + var1;
+		int var6 = this.tileX * 4096 + var1;
 		int var7 = this.tileY * 4096 + var2;
-		int var8 = var3 + this.tileX * 64;
+		int var8 = var3 + this.tileX * 4096;
 		int var9 = this.tileY * 4096 + var4;
 		int var10 = var6 / 64;
 		int var11 = var7 / 64;

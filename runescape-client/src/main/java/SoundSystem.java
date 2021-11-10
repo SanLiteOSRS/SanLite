@@ -194,7 +194,7 @@ public class SoundSystem implements Runnable {
 									switch(var14) {
 									case 0:
 										var30 = false;
-										break label989;
+										break label990;
 									case 1:
 									default:
 										break;
@@ -409,7 +409,7 @@ public class SoundSystem implements Runnable {
 							var27.append("").append(var8);
 							MilliClock.RunException_sendStackTrace(var27.toString(), var31);
 							var30 = false;
-							break label990;
+							break label989;
 						}
 					} finally {
 						if (var30) {
@@ -462,8 +462,8 @@ public class SoundSystem implements Runnable {
 				}
 
 				while (Interpreter.field797.size() > 0) {
-					class92 var26 = (class92)Interpreter.field797.remove(0);
-					GrandExchangeEvents.widgetDefaultMenuAction(var26.method2277(), var26.method2279(), var26.method2278(), var26.method2281(), "");
+					class92 var34 = (class92)Interpreter.field797.remove(0);
+					GrandExchangeEvents.widgetDefaultMenuAction(var34.method2277(), var34.method2279(), var34.method2278(), var34.method2281(), "");
 				}
 
 				if (Interpreter.field791) {
@@ -484,8 +484,8 @@ public class SoundSystem implements Runnable {
 			}
 
 			while (Interpreter.field797.size() > 0) {
-				class92 var34 = (class92)Interpreter.field797.remove(0);
-				GrandExchangeEvents.widgetDefaultMenuAction(var34.method2277(), var34.method2279(), var34.method2278(), var34.method2281(), "");
+				class92 var26 = (class92)Interpreter.field797.remove(0);
+				GrandExchangeEvents.widgetDefaultMenuAction(var26.method2277(), var26.method2279(), var26.method2278(), var26.method2281(), "");
 			}
 
 			if (Interpreter.field791) {

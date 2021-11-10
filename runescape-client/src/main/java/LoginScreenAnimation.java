@@ -466,7 +466,7 @@ public class LoginScreenAnimation {
 		if (var1 != null) {
 			var2 = 0;
 
-			for (var3 = 0; var3 < var1.subHeight * 470302976; ++var3) {
+			for (var3 = 0; var3 < var1.subHeight; ++var3) {
 				for (var4 = 0; var4 < var1.subWidth; ++var4) {
 					if (var1.pixels[var2++] != 0) {
 						var5 = var4 + var1.xOffset + 16;

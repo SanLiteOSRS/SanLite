@@ -28,7 +28,7 @@ public class class272 {
 					var4 = var2.getFileId(var3, "");
 					class247.musicPlayerStatus = 1;
 					class128.musicTrackArchive = var2;
-					FillMode.musicTrackGroupId = var3;
+					class411.musicTrackGroupId = var3;
 					ArchiveDiskActionHandler.musicTrackFileId = var4;
 					class247.musicTrackVolume = 255;
 					SecureRandomCallable.musicTrackBoolean = false;

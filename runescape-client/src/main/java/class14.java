@@ -1099,7 +1099,7 @@ public class class14 {
 											}
 
 											if (var2 != 1007) {
-												if (var2 == 1009 || var2 == 1010 || var2 == 1011 || var2 == 1008 || var2 == 1012) {
+												if (var2 == 1009 || var2 == 1010 || var2 == 1008 || var2 == 1011 || var2 == 1012) {
 													class133.worldMap.worldMapMenuAction(var2, var3, new Coord(var0), new Coord(var1));
 												}
 												break label646;
@@ -1147,7 +1147,7 @@ public class class14 {
 				int var2 = Client.currentTrackGroupId;
 				class247.musicPlayerStatus = 1;
 				class128.musicTrackArchive = var1;
-				FillMode.musicTrackGroupId = var2;
+				class411.musicTrackGroupId = var2;
 				ArchiveDiskActionHandler.musicTrackFileId = 0;
 				class247.musicTrackVolume = var0;
 				SecureRandomCallable.musicTrackBoolean = false;

@@ -282,7 +282,7 @@ public class class16 implements ThreadFactory {
 				}
 			}
 
-			var4.field1087 = var4.definition.size;
+			var4.field1087 = var4.definition.size * 64;
 			var4.field1138 = var4.definition.rotation;
 			if (var4.field1138 == 0) {
 				var4.rotation = 0;
@@ -360,7 +360,7 @@ public class class16 implements ThreadFactory {
 
 			if ((var5 & 2) != 0) {
 				var4.definition = ScriptFrame.getNpcDefinition(var1.method7120());
-				var4.field1087 = var4.definition.size;
+				var4.field1087 = var4.definition.size * 64;
 				var4.field1138 = var4.definition.rotation;
 				var4.walkSequence = var4.definition.walkSequence;
 				var4.walkBackSequence = var4.definition.walkBackSequence;

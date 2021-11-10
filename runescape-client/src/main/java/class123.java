@@ -218,7 +218,7 @@ public class class123 extends class116 {
 	)
 	static final void method2621() {
 		int var0 = SpotAnimationDefinition.field1761 * 128 + 64;
-		int var1 = BuddyRankComparator.field1333 * 128 + 64;
+		int var1 = BuddyRankComparator.field1333 * 16384 + 64;
 		int var2 = class392.getTileHeight(var0, var1, GrandExchangeOfferTotalQuantityComparator.Client_plane) - Renderable.field2442;
 		if (WorldMapSectionType.cameraX < var0) {
 			WorldMapSectionType.cameraX = (var0 - WorldMapSectionType.cameraX) * Login.field888 / 1000 + WorldMapSectionType.cameraX + UserComparator8.field1305;

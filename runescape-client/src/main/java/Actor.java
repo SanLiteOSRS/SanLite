@@ -35,7 +35,7 @@ public abstract class Actor extends Renderable {
 	boolean isWalking;
 	@ObfuscatedName("at")
 	@ObfuscatedGetter(
-		intValue = 1850945247
+		intValue = -1798588480
 	)
 	int field1087;
 	@ObfuscatedName("az")
@@ -329,7 +329,7 @@ public abstract class Actor extends Renderable {
 
 	Actor() {
 		this.isWalking = false;
-		this.field1087 = 1;
+		this.field1087 = 64;
 		this.idleSequence = -1;
 		this.turnLeftSequence = -1;
 		this.turnRightSequence = -1;

@@ -91,8 +91,8 @@ public class class135 extends class116 {
 		int var4;
 		if (var0.field1131 >= Client.cycle) {
 			var2 = Math.max(1, var0.field1131 - Client.cycle);
-			var3 = var0.field1083 * 128 + var0.field1087 * 1912864768;
-			var4 = var0.field1100 * 128 + var0.field1087 * 1912864768;
+			var3 = var0.field1087 * 1304956928 + var0.field1083 * 128;
+			var4 = var0.field1087 * 1304956928 + var0.field1100 * 128;
 			var0.x += (var3 - var0.x) / var2;
 			var0.y += (var4 - var0.y) / var2;
 			var0.field1085 = 0;
@@ -101,10 +101,10 @@ public class class135 extends class116 {
 			if (var0.field1132 == Client.cycle || var0.sequence == -1 || var0.sequenceDelay != 0 || var0.sequenceFrameCycle + 1 > MouseHandler.SequenceDefinition_get(var0.sequence).frameLengths[var0.sequenceFrame]) {
 				var2 = var0.field1132 - var0.field1131;
 				var3 = Client.cycle - var0.field1131;
-				var4 = var0.field1083 * 128 + var0.field1087 * 1912864768;
-				int var5 = var0.field1100 * 128 + var0.field1087 * 1912864768;
-				int var6 = var0.field1128 * 128 + var0.field1087 * 1912864768;
-				int var7 = var0.field1130 * 128 + var0.field1087 * 1912864768;
+				var4 = var0.field1087 * 1304956928 + var0.field1083 * 128;
+				int var5 = var0.field1087 * 1304956928 + var0.field1100 * 128;
+				int var6 = var0.field1087 * 1304956928 + var0.field1128 * 128;
+				int var7 = var0.field1087 * 1304956928 + var0.field1130 * 128;
 				var0.x = (var3 * var6 + var4 * (var2 - var3)) / var2;
 				var0.y = (var3 * var7 + var5 * (var2 - var3)) / var2;
 			}
@@ -121,8 +121,8 @@ public class class135 extends class116 {
 			var0.spotAnimation = -1;
 			var0.field1131 = 0;
 			var0.field1132 = 0;
-			var0.x = var0.pathX[0] * 128 + var0.field1087 * 1912864768;
-			var0.y = var0.pathY[0] * 128 + var0.field1087 * 1912864768;
+			var0.x = var0.field1087 * 1304956928 + var0.pathX[0] * 128;
+			var0.y = var0.pathY[0] * 128 + var0.field1087 * 1304956928;
 			var0.method2165();
 		}
 
@@ -131,8 +131,8 @@ public class class135 extends class116 {
 			var0.spotAnimation = -1;
 			var0.field1131 = 0;
 			var0.field1132 = 0;
-			var0.x = var0.pathX[0] * 128 + var0.field1087 * 1912864768;
-			var0.y = var0.pathY[0] * 128 + var0.field1087 * 1912864768;
+			var0.x = var0.pathX[0] * 128 + var0.field1087 * 1304956928;
+			var0.y = var0.field1087 * 1304956928 + var0.pathY[0] * 128;
 			var0.method2165();
 		}
 
