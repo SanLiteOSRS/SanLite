@@ -66,10 +66,6 @@ public class GraphicsObject extends Renderable {
 	@Export("isFinished")
 	boolean isFinished;
 
-	public GraphicsObject()
-	{
-	}
-
 	GraphicsObject(int var1, int var2, int var3, int var4, int var5, int var6, int var7) {
 		this.frame = 0;
 		this.frameCycle = 0;
@@ -256,5 +252,8 @@ public class GraphicsObject extends Renderable {
 
 			}
 		}
+	}
+
+	public GraphicsObject() {
 	}
 }

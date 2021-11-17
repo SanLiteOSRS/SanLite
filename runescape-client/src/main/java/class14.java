@@ -1147,7 +1147,7 @@ public class class14 {
 				int var2 = Client.currentTrackGroupId;
 				class247.musicPlayerStatus = 1;
 				class128.musicTrackArchive = var1;
-				FillMode.musicTrackGroupId = var2;
+				class411.musicTrackGroupId = var2;
 				ArchiveDiskActionHandler.musicTrackFileId = 0;
 				class247.musicTrackVolume = var0;
 				SecureRandomCallable.musicTrackBoolean = false;

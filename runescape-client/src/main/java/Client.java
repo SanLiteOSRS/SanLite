@@ -2674,7 +2674,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 			try {
 				if (class247.musicPlayerStatus == 2) {
 					if (class14.musicTrack == null) {
-						class14.musicTrack = MusicTrack.readTrack(class128.musicTrackArchive, FillMode.musicTrackGroupId, ArchiveDiskActionHandler.musicTrackFileId);
+						class14.musicTrack = MusicTrack.readTrack(class128.musicTrackArchive, class411.musicTrackGroupId, ArchiveDiskActionHandler.musicTrackFileId);
 						if (class14.musicTrack == null) {
 							var2 = false;
 							break label166;
@@ -4327,7 +4327,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 									var4 = class408.clientPreferences.musicVolume;
 									class247.musicPlayerStatus = 1;
 									class128.musicTrackArchive = var36;
-									FillMode.musicTrackGroupId = var3;
+									class411.musicTrackGroupId = var3;
 									ArchiveDiskActionHandler.musicTrackFileId = 0;
 									class247.musicTrackVolume = var4;
 									SecureRandomCallable.musicTrackBoolean = false;
