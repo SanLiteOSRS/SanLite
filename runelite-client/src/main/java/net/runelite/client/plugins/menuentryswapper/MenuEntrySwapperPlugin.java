@@ -365,6 +365,7 @@ public class MenuEntrySwapperPlugin extends Plugin
 		swap("wear", "teleport", config::swapTeleportItem);
 		swap("wield", "teleport", config::swapTeleportItem);
 		swap("wield", "invoke", config::swapTeleportItem);
+		swap("wear", "teleports", config::swapTeleportItem);
 		swap("wield", "cast bloom", config::swapCastBloom);
 
 		swap("wear", "farm teleport", () -> config.swapArdougneCloakMode() == ArdougneCloakMode.FARM);
