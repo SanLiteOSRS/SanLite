@@ -111,11 +111,12 @@ class BarrowsOverlay extends Overlay
 			graphics.setColor(playerColor);
 			graphics.fillRect(local.getMinimapLocation().getX(), local.getMinimapLocation().getY(), 3, 3);
 		}
-		else if (config.showBrotherLoc())
+		else if (plugin.isBarrowsLoaded() && config.showBrotherLoc())
 		{
 			renderBarrowsBrothers(graphics);
 		}
 
+		Widget puzzleAnswer = plugin.getPuzzleAnswer();
 		if (puzzleAnswer != null && config.showPuzzleAnswer() && !puzzleAnswer.isHidden())
 		{
 			Rectangle answerRect = puzzleAnswer.getBounds();
@@ -206,20 +207,19 @@ class BarrowsOverlay extends Overlay
 		for (BarrowsBrothers brother : BarrowsBrothers.values())
 		{
 			LocalPoint localLocation = LocalPoint.fromWorld(client, brother.getLocation());
-
 			if (localLocation == null)
 			{
 				continue;
 			}
 
 			String brotherLetter = Character.toString(brother.getName().charAt(0));
-			net.runelite.api.Point minimapText = Perspective.getCanvasTextMiniMapLocation(client, graphics,
+			Point miniMapLocation = Perspective.getCanvasTextMiniMapLocation(client, graphics,
 				localLocation, brotherLetter);
 
-			if (minimapText != null)
+			if (miniMapLocation != null)
 			{
 				graphics.setColor(Color.black);
-				graphics.drawString(brotherLetter, minimapText.getX() + 1, minimapText.getY() + 1);
+				graphics.drawString(brotherLetter, miniMapLocation.getX() + 1, miniMapLocation.getY() + 1);
 
 				if (client.getVar(brother.getKilledVarbit()) > 0)
 				{
@@ -230,7 +230,7 @@ class BarrowsOverlay extends Overlay
 					graphics.setColor(config.brotherLocColor());
 				}
 
-				graphics.drawString(brotherLetter, minimapText.getX(), minimapText.getY());
+				graphics.drawString(brotherLetter, miniMapLocation.getX(), miniMapLocation.getY());
 			}
 		}
 	}
