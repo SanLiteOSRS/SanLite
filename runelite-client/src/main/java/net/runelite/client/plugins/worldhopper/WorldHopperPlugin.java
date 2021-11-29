@@ -36,7 +36,6 @@ import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
@@ -534,8 +533,6 @@ public class WorldHopperPlugin extends Plugin
 		int worldIdx = worlds.indexOf(currentWorld);
 		int totalLevel = client.getTotalLevel();
 
-		final Set<RegionFilterMode> regionFilter = config.quickHopRegionFilter();
-
 		World world;
 		do
 		{
@@ -567,7 +564,7 @@ public class WorldHopperPlugin extends Plugin
 			world = worlds.get(worldIdx);
 
 			// Check world region if filter is enabled
-			if (!regionFilter.isEmpty() && !regionFilter.contains(RegionFilterMode.of(world.getRegion())))
+			if (config.quickHopRegionFilter() != RegionFilterMode.NONE && world.getRegion() != config.quickHopRegionFilter().getRegion())
 			{
 				continue;
 			}
