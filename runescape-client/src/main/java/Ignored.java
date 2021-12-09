@@ -4,12 +4,18 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("mm")
+@ObfuscatedName("mi")
 @Implements("Ignored")
 public class Ignored extends Nameable {
-	@ObfuscatedName("i")
+	@ObfuscatedName("pz")
+	@ObfuscatedSignature(
+		descriptor = "Loo;"
+	)
+	@Export("HitSplatDefinition_cached")
+	static class404 HitSplatDefinition_cached;
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = -781927569
+		intValue = 1285120553
 	)
 	@Export("id")
 	int id;
@@ -17,20 +23,20 @@ public class Ignored extends Nameable {
 	Ignored() {
 	}
 
-	@ObfuscatedName("i")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(Lmm;I)I",
-		garbageValue = "867220542"
+		descriptor = "(Lmi;B)I",
+		garbageValue = "109"
 	)
 	@Export("compareTo_ignored")
 	int compareTo_ignored(Ignored var1) {
 		return this.id - var1.id;
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		descriptor = "(Lla;I)I",
-		garbageValue = "-1073614160"
+		descriptor = "(Lmv;I)I",
+		garbageValue = "-1921032172"
 	)
 	@Export("compareTo_user")
 	public int compareTo_user(Nameable var1) {
@@ -41,22 +47,18 @@ public class Ignored extends Nameable {
 		return this.compareTo_ignored((Ignored)var1);
 	}
 
-	@ObfuscatedName("i")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(I)[Lom;",
-		garbageValue = "1673389223"
+		descriptor = "(I)J",
+		garbageValue = "-376840192"
 	)
-	@Export("FillMode_values")
-	public static FillMode[] FillMode_values() {
-		return new FillMode[]{FillMode.field4378, FillMode.field4377, FillMode.SOLID};
-	}
+	public static final synchronized long method6459() {
+		long var0 = System.currentTimeMillis();
+		if (var0 < class415.field4466) {
+			class415.field4467 += class415.field4466 - var0;
+		}
 
-	@ObfuscatedName("w")
-	@ObfuscatedSignature(
-		descriptor = "(CI)Z",
-		garbageValue = "-1749194740"
-	)
-	static final boolean method6212(char var0) {
-		return var0 == 160 || var0 == ' ' || var0 == '_' || var0 == '-';
+		class415.field4466 = var0;
+		return var0 + class415.field4467;
 	}
 }

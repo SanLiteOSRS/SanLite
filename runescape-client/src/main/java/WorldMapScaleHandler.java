@@ -4,22 +4,22 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ge")
+@ObfuscatedName("ig")
 @Implements("WorldMapScaleHandler")
 public class WorldMapScaleHandler {
-	@ObfuscatedName("x")
+	@ObfuscatedName("ev")
 	@ObfuscatedSignature(
-		descriptor = "Lko;"
+		descriptor = "Lkz;"
 	)
-	@Export("Widget_spritesArchive")
-	static AbstractArchive Widget_spritesArchive;
-	@ObfuscatedName("i")
+	@Export("archive6")
+	static Archive archive6;
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = 811469011
+		intValue = 1907354945
 	)
 	@Export("pixelsPerTile")
 	int pixelsPerTile;
-	@ObfuscatedName("w")
+	@ObfuscatedName("b")
 	@Export("tileTemplates")
 	byte[][][] tileTemplates;
 
@@ -27,25 +27,25 @@ public class WorldMapScaleHandler {
 		this.pixelsPerTile = var1;
 	}
 
-	@ObfuscatedName("i")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(IIIIIIIII)V",
-		garbageValue = "1525676958"
+		descriptor = "(IIIIIIIIB)V",
+		garbageValue = "-14"
 	)
-	void method4086(int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8) {
+	void method4907(int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8) {
 		if (var7 != 0 && this.pixelsPerTile != 0 && this.tileTemplates != null) {
-			var8 = this.method4084(var8, var7);
-			var7 = this.method4065(var7);
+			var8 = this.method4895(var8, var7);
+			var7 = this.method4897(var7);
 			Rasterizer2D.Rasterizer2D_drawGradientPixels(var1, var2, var5, var6, var3, var4, this.tileTemplates[var7 - 1][var8], this.pixelsPerTile);
 		}
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		descriptor = "(IIB)I",
-		garbageValue = "44"
+		descriptor = "(III)I",
+		garbageValue = "-1888183468"
 	)
-	int method4084(int var1, int var2) {
+	int method4895(int var1, int var2) {
 		if (var2 == 9) {
 			var1 = var1 + 1 & 3;
 		}
@@ -61,12 +61,12 @@ public class WorldMapScaleHandler {
 		return var1;
 	}
 
-	@ObfuscatedName("s")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
 		descriptor = "(II)I",
-		garbageValue = "332241717"
+		garbageValue = "-1710569700"
 	)
-	int method4065(int var1) {
+	int method4897(int var1) {
 		if (var1 != 9 && var1 != 10) {
 			return var1 == 11 ? 8 : var1;
 		} else {
@@ -74,10 +74,10 @@ public class WorldMapScaleHandler {
 		}
 	}
 
-	@ObfuscatedName("a")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "-139796910"
+		garbageValue = "16120985"
 	)
 	@Export("init")
 	void init() {
@@ -94,10 +94,10 @@ public class WorldMapScaleHandler {
 		}
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		descriptor = "(S)V",
-		garbageValue = "6694"
+		descriptor = "(I)V",
+		garbageValue = "705578005"
 	)
 	@Export("init0")
 	void init0() {
@@ -161,10 +161,10 @@ public class WorldMapScaleHandler {
 		this.tileTemplates[0][3] = var1;
 	}
 
-	@ObfuscatedName("g")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "478227481"
+		garbageValue = "-2100707486"
 	)
 	@Export("init1")
 	void init1() {
@@ -232,10 +232,10 @@ public class WorldMapScaleHandler {
 		this.tileTemplates[1][3] = var1;
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "654314335"
+		descriptor = "(B)V",
+		garbageValue = "65"
 	)
 	@Export("init2")
 	void init2() {
@@ -299,10 +299,10 @@ public class WorldMapScaleHandler {
 		this.tileTemplates[2][3] = var1;
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "27"
+		descriptor = "(I)V",
+		garbageValue = "-1718839549"
 	)
 	@Export("init3")
 	void init3() {
@@ -366,10 +366,10 @@ public class WorldMapScaleHandler {
 		this.tileTemplates[3][3] = var1;
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "-1406724170"
+		garbageValue = "766597576"
 	)
 	@Export("init4")
 	void init4() {
@@ -433,10 +433,10 @@ public class WorldMapScaleHandler {
 		this.tileTemplates[4][3] = var1;
 	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("r")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "-1804052877"
+		garbageValue = "-236684263"
 	)
 	@Export("init5")
 	void init5() {
@@ -502,10 +502,10 @@ public class WorldMapScaleHandler {
 		this.tileTemplates[5][3] = var1;
 	}
 
-	@ObfuscatedName("x")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "0"
+		descriptor = "(S)V",
+		garbageValue = "255"
 	)
 	@Export("init6")
 	void init6() {
@@ -571,10 +571,10 @@ public class WorldMapScaleHandler {
 		this.tileTemplates[6][3] = var1;
 	}
 
-	@ObfuscatedName("y")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "-507566900"
+		garbageValue = "-279760962"
 	)
 	@Export("init7")
 	void init7() {
@@ -638,220 +638,5 @@ public class WorldMapScaleHandler {
 		}
 
 		this.tileTemplates[7][3] = var1;
-	}
-
-	@ObfuscatedName("i")
-	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/CharSequence;I)J",
-		garbageValue = "-1513370360"
-	)
-	static long method4096(CharSequence var0) {
-		long var1 = 0L;
-		int var3 = var0.length();
-
-		for (int var4 = 0; var4 < var3; ++var4) {
-			var1 *= 37L;
-			char var5 = var0.charAt(var4);
-			if (var5 >= 'A' && var5 <= 'Z') {
-				var1 += (long)(var5 + 1 - 65);
-			} else if (var5 >= 'a' && var5 <= 'z') {
-				var1 += (long)(var5 + 1 - 97);
-			} else if (var5 >= '0' && var5 <= '9') {
-				var1 += (long)(var5 + 27 - 48);
-			}
-
-			if (var1 >= 177917621779460413L) {
-				break;
-			}
-		}
-
-		while (var1 % 37L == 0L && 0L != var1) {
-			var1 /= 37L;
-		}
-
-		return var1;
-	}
-
-	@ObfuscatedName("io")
-	@ObfuscatedSignature(
-		descriptor = "(Lcp;IIII)V",
-		garbageValue = "-1638178326"
-	)
-	@Export("addNpcToMenu")
-	static final void addNpcToMenu(NPC var0, int var1, int var2, int var3) {
-		NPCComposition var4 = var0.definition;
-		if (Client.menuOptionsCount < 400) {
-			if (var4.transforms != null) {
-				var4 = var4.transform();
-			}
-
-			if (var4 != null) {
-				if (var4.isInteractable) {
-					if (!var4.isFollower || Client.followerIndex == var1) {
-						String var5 = var4.name;
-						int var6;
-						int var9;
-						if (var4.combatLevel != 0 && var0.field1145 != 0) {
-							var6 = var0.field1145 != -1 ? var0.field1145 : var4.combatLevel;
-							var9 = HealthBarDefinition.localPlayer.combatLevel;
-							int var10 = var9 - var6;
-							String var8;
-							if (var10 < -9) {
-								var8 = MouseHandler.colorStartTag(16711680);
-							} else if (var10 < -6) {
-								var8 = MouseHandler.colorStartTag(16723968);
-							} else if (var10 < -3) {
-								var8 = MouseHandler.colorStartTag(16740352);
-							} else if (var10 < 0) {
-								var8 = MouseHandler.colorStartTag(16756736);
-							} else if (var10 > 9) {
-								var8 = MouseHandler.colorStartTag(65280);
-							} else if (var10 > 6) {
-								var8 = MouseHandler.colorStartTag(4259584);
-							} else if (var10 > 3) {
-								var8 = MouseHandler.colorStartTag(8453888);
-							} else if (var10 > 0) {
-								var8 = MouseHandler.colorStartTag(12648192);
-							} else {
-								var8 = MouseHandler.colorStartTag(16776960);
-							}
-
-							var5 = var5 + var8 + " " + " (" + "level-" + var6 + ")";
-						}
-
-						if (var4.isFollower && Client.followerOpsLowPriority) {
-							EnumComposition.insertMenuItemNoShift("Examine", MouseHandler.colorStartTag(16776960) + var5, 1003, var1, var2, var3);
-						}
-
-						if (Client.isItemSelected == 1) {
-							EnumComposition.insertMenuItemNoShift("Use", Client.selectedItemName + " " + "->" + " " + MouseHandler.colorStartTag(16776960) + var5, 7, var1, var2, var3);
-						} else if (Client.isSpellSelected) {
-							if ((class116.selectedSpellFlags & 2) == 2) {
-								EnumComposition.insertMenuItemNoShift(Client.selectedSpellActionName, Client.selectedSpellName + " " + "->" + " " + MouseHandler.colorStartTag(16776960) + var5, 8, var1, var2, var3);
-							}
-						} else {
-							var6 = var4.isFollower && Client.followerOpsLowPriority ? 2000 : 0;
-							String[] var7 = var4.actions;
-							int var11;
-							if (var7 != null) {
-								for (var11 = 4; var11 >= 0; --var11) {
-									if (var7[var11] != null && !var7[var11].equalsIgnoreCase("Attack")) {
-										var9 = 0;
-										if (var11 == 0) {
-											var9 = var6 + 9;
-										}
-
-										if (var11 == 1) {
-											var9 = var6 + 10;
-										}
-
-										if (var11 == 2) {
-											var9 = var6 + 11;
-										}
-
-										if (var11 == 3) {
-											var9 = var6 + 12;
-										}
-
-										if (var11 == 4) {
-											var9 = var6 + 13;
-										}
-
-										EnumComposition.insertMenuItemNoShift(var7[var11], MouseHandler.colorStartTag(16776960) + var5, var9, var1, var2, var3);
-									}
-								}
-							}
-
-							if (var7 != null) {
-								for (var11 = 4; var11 >= 0; --var11) {
-									if (var7[var11] != null && var7[var11].equalsIgnoreCase("Attack")) {
-										short var12 = 0;
-										if (Client.npcAttackOption != AttackOption.AttackOption_hidden) {
-											if (AttackOption.AttackOption_alwaysRightClick == Client.npcAttackOption || Client.npcAttackOption == AttackOption.AttackOption_dependsOnCombatLevels && var4.combatLevel > HealthBarDefinition.localPlayer.combatLevel) {
-												var12 = 2000;
-											}
-
-											var9 = 0;
-											if (var11 == 0) {
-												var9 = var12 + 9;
-											}
-
-											if (var11 == 1) {
-												var9 = var12 + 10;
-											}
-
-											if (var11 == 2) {
-												var9 = var12 + 11;
-											}
-
-											if (var11 == 3) {
-												var9 = var12 + 12;
-											}
-
-											if (var11 == 4) {
-												var9 = var12 + 13;
-											}
-
-											EnumComposition.insertMenuItemNoShift(var7[var11], MouseHandler.colorStartTag(16776960) + var5, var9, var1, var2, var3);
-										}
-									}
-								}
-							}
-
-							if (!var4.isFollower || !Client.followerOpsLowPriority) {
-								EnumComposition.insertMenuItemNoShift("Examine", MouseHandler.colorStartTag(16776960) + var5, 1003, var1, var2, var3);
-							}
-						}
-
-					}
-				}
-			}
-		}
-	}
-
-	@ObfuscatedName("jx")
-	@ObfuscatedSignature(
-		descriptor = "(Ljf;IIZB)V",
-		garbageValue = "-94"
-	)
-	@Export("alignWidgetSize")
-	static void alignWidgetSize(Widget var0, int var1, int var2, boolean var3) {
-		int var4 = var0.width;
-		int var5 = var0.height;
-		if (var0.widthAlignment == 0) {
-			var0.width = var0.rawWidth;
-		} else if (var0.widthAlignment == 1) {
-			var0.width = var1 - var0.rawWidth;
-		} else if (var0.widthAlignment == 2) {
-			var0.width = var0.rawWidth * var1 >> 14;
-		}
-
-		if (var0.heightAlignment == 0) {
-			var0.height = var0.rawHeight;
-		} else if (var0.heightAlignment == 1) {
-			var0.height = var2 - var0.rawHeight;
-		} else if (var0.heightAlignment == 2) {
-			var0.height = var2 * var0.rawHeight >> 14;
-		}
-
-		if (var0.widthAlignment == 4) {
-			var0.width = var0.field3068 * var0.height / var0.field3069;
-		}
-
-		if (var0.heightAlignment == 4) {
-			var0.height = var0.width * var0.field3069 / var0.field3068;
-		}
-
-		if (var0.contentType == 1337) {
-			Client.viewportWidget = var0;
-		}
-
-		if (var3 && var0.onResize != null && (var4 != var0.width || var5 != var0.height)) {
-			ScriptEvent var6 = new ScriptEvent();
-			var6.widget = var0;
-			var6.args = var0.onResize;
-			Client.scriptEvents.addFirst(var6);
-		}
-
 	}
 }

@@ -1,33 +1,20 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ho")
+@ObfuscatedName("gg")
 @Implements("Frames")
 public class Frames extends DualNode {
-	@ObfuscatedName("u")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "Ljf;"
-	)
-	@Export("scriptActiveWidget")
-	static Widget scriptActiveWidget;
-	@ObfuscatedName("mx")
-	@ObfuscatedGetter(
-		intValue = -1716567897
-	)
-	@Export("menuY")
-	static int menuY;
-	@ObfuscatedName("i")
-	@ObfuscatedSignature(
-		descriptor = "[Lhe;"
+		descriptor = "[Lgu;"
 	)
 	@Export("frames")
 	Animation[] frames;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lko;Lko;IZ)V",
+		descriptor = "(Lku;Lku;IZ)V",
 		garbageValue = "0"
 	)
 	public Frames(AbstractArchive var1, AbstractArchive var2, int var3, boolean var4) {
@@ -59,26 +46,22 @@ public class Frames extends DualNode {
 
 	}
 
-	@ObfuscatedName("i")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(II)Z",
-		garbageValue = "1499014717"
+		descriptor = "(IB)Z",
+		garbageValue = "-102"
 	)
 	@Export("hasAlphaTransform")
 	public boolean hasAlphaTransform(int var1) {
 		return this.frames[var1].hasAlphaTransform;
 	}
 
-	@ObfuscatedName("gb")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "1"
+		descriptor = "(IB)I",
+		garbageValue = "-24"
 	)
-	static void method4481() {
-		PacketBufferNode var0 = AbstractWorldMapData.getPacketBufferNode(ClientPacket.field2745, Client.packetWriter.isaacCipher);
-		var0.packetBuffer.writeByte(class134.getWindowedMode());
-		var0.packetBuffer.writeShort(GameEngine.canvasWidth);
-		var0.packetBuffer.writeShort(KeyHandler.canvasHeight);
-		Client.packetWriter.addNode(var0);
+	public static int method4149(int var0) {
+		return var0 >> 17 & 7;
 	}
 }

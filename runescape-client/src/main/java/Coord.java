@@ -4,30 +4,38 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ie")
+@ObfuscatedName("ju")
 @Implements("Coord")
 public class Coord {
-	@ObfuscatedName("i")
+	@ObfuscatedName("q")
+	@Export("operatingSystemName")
+	public static String operatingSystemName;
+	@ObfuscatedName("gu")
+	@ObfuscatedSignature(
+		descriptor = "Lmd;"
+	)
+	static AbstractSocket field3186;
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = 530097433
+		intValue = 2028633895
 	)
 	@Export("plane")
 	public int plane;
-	@ObfuscatedName("w")
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = 780251377
+		intValue = -115571391
 	)
 	@Export("x")
 	public int x;
-	@ObfuscatedName("s")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = 1509887785
+		intValue = -193761027
 	)
 	@Export("y")
 	public int y;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lie;)V"
+		descriptor = "(Lju;)V"
 	)
 	public Coord(Coord var1) {
 		this.plane = var1.plane;
@@ -52,10 +60,10 @@ public class Coord {
 
 	}
 
-	@ObfuscatedName("i")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
 		descriptor = "(I)I",
-		garbageValue = "-1761065408"
+		garbageValue = "844590476"
 	)
 	@Export("packed")
 	public int packed() {
@@ -66,10 +74,10 @@ public class Coord {
 		return var1;
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		descriptor = "(Lie;I)Z",
-		garbageValue = "-1713093595"
+		descriptor = "(Lju;B)Z",
+		garbageValue = "-21"
 	)
 	@Export("equalsCoord")
 	boolean equalsCoord(Coord var1) {
@@ -82,18 +90,18 @@ public class Coord {
 		}
 	}
 
-	@ObfuscatedName("s")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
 		descriptor = "(Ljava/lang/String;I)Ljava/lang/String;",
-		garbageValue = "-492056812"
+		garbageValue = "1213799253"
 	)
 	@Export("toString")
 	String toString(String var1) {
 		return this.plane + var1 + (this.x >> 6) + var1 + (this.y >> 6) + var1 + (this.x & 63) + var1 + (this.y & 63);
 	}
 
-	public int hashCode() {
-		return this.packed();
+	public String toString() {
+		return this.toString(",");
 	}
 
 	public boolean equals(Object var1) {
@@ -104,27 +112,7 @@ public class Coord {
 		}
 	}
 
-	public String toString() {
-		return this.toString(",");
-	}
-
-	@ObfuscatedName("s")
-	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "-65"
-	)
-	public static void method5011() {
-		while (true) {
-			ArchiveDiskAction var0;
-			synchronized(ArchiveDiskActionHandler.ArchiveDiskActionHandler_requestQueue) {
-				var0 = (ArchiveDiskAction)ArchiveDiskActionHandler.ArchiveDiskActionHandler_responseQueue.removeLast();
-			}
-
-			if (var0 == null) {
-				return;
-			}
-
-			var0.archive.load(var0.archiveDisk, (int)var0.key, var0.data, false);
-		}
+	public int hashCode() {
+		return this.packed();
 	}
 }

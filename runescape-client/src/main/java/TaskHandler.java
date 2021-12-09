@@ -7,28 +7,34 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ew")
+@ObfuscatedName("eb")
 @Implements("TaskHandler")
 public class TaskHandler implements Runnable {
-	@ObfuscatedName("i")
+	@ObfuscatedName("c")
 	@Export("javaVendor")
 	public static String javaVendor;
-	@ObfuscatedName("s")
+	@ObfuscatedName("eo")
 	@ObfuscatedSignature(
-		descriptor = "Lev;"
+		descriptor = "Lkz;"
+	)
+	@Export("archive12")
+	static Archive archive12;
+	@ObfuscatedName("p")
+	@ObfuscatedSignature(
+		descriptor = "Lfk;"
 	)
 	@Export("current")
 	Task current;
-	@ObfuscatedName("a")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		descriptor = "Lev;"
+		descriptor = "Lfk;"
 	)
 	@Export("task")
 	Task task;
-	@ObfuscatedName("o")
+	@ObfuscatedName("t")
 	@Export("thread")
 	Thread thread;
-	@ObfuscatedName("g")
+	@ObfuscatedName("s")
 	@Export("isClosed")
 	boolean isClosed;
 
@@ -37,11 +43,11 @@ public class TaskHandler implements Runnable {
 		this.task = null;
 		this.isClosed = false;
 		javaVendor = "Unknown";
-		GrandExchangeOfferAgeComparator.javaVersion = "1.6";
+		NPC.javaVersion = "1.6";
 
 		try {
 			javaVendor = System.getProperty("java.vendor");
-			GrandExchangeOfferAgeComparator.javaVersion = System.getProperty("java.version");
+			NPC.javaVersion = System.getProperty("java.version");
 		} catch (Exception var2) {
 		}
 
@@ -52,10 +58,10 @@ public class TaskHandler implements Runnable {
 		this.thread.start();
 	}
 
-	@ObfuscatedName("i")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-1038367564"
+		descriptor = "(S)V",
+		garbageValue = "-23939"
 	)
 	@Export("close")
 	public final void close() {
@@ -71,10 +77,10 @@ public class TaskHandler implements Runnable {
 
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		descriptor = "(IIILjava/lang/Object;I)Lev;",
-		garbageValue = "-1716880810"
+		descriptor = "(IIILjava/lang/Object;I)Lfk;",
+		garbageValue = "838873650"
 	)
 	@Export("newTask")
 	final Task newTask(int var1, int var2, int var3, Object var4) {
@@ -95,20 +101,20 @@ public class TaskHandler implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("s")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;II)Lev;",
-		garbageValue = "-137947903"
+		descriptor = "(Ljava/lang/String;II)Lfk;",
+		garbageValue = "1945864892"
 	)
 	@Export("newSocketTask")
 	public final Task newSocketTask(String var1, int var2) {
 		return this.newTask(1, var2, 0, var1);
 	}
 
-	@ObfuscatedName("a")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/Runnable;II)Lev;",
-		garbageValue = "-1680555194"
+		descriptor = "(Ljava/lang/Runnable;II)Lfk;",
+		garbageValue = "-1633812322"
 	)
 	@Export("newThreadTask")
 	public final Task newThreadTask(Runnable var1, int var2) {
@@ -163,116 +169,15 @@ public class TaskHandler implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("i")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		descriptor = "(II)Lff;",
-		garbageValue = "-1590739193"
+		descriptor = "([BI)[B",
+		garbageValue = "-1643511224"
 	)
-	@Export("ItemDefinition_get")
-	public static ItemComposition ItemDefinition_get(int var0) {
-		ItemComposition var1 = (ItemComposition)ItemComposition.ItemDefinition_cached.get((long)var0);
-		if (var1 != null) {
-			return var1;
-		} else {
-			byte[] var2 = DirectByteArrayCopier.ItemDefinition_archive.takeFile(10, var0);
-			var1 = new ItemComposition();
-			var1.id = var0;
-			if (var2 != null) {
-				var1.decode(new Buffer(var2));
-			}
-
-			var1.post();
-			if (var1.noteTemplate != -1) {
-				var1.genCert(ItemDefinition_get(var1.noteTemplate), ItemDefinition_get(var1.note));
-			}
-
-			if (var1.notedId != -1) {
-				var1.genBought(ItemDefinition_get(var1.notedId), ItemDefinition_get(var1.unnotedId));
-			}
-
-			if (var1.placeholderTemplate != -1) {
-				var1.genPlaceholder(ItemDefinition_get(var1.placeholderTemplate), ItemDefinition_get(var1.placeholder));
-			}
-
-			if (!BuddyRankComparator.ItemDefinition_inMembersWorld && var1.isMembersOnly) {
-				var1.name = "Members object";
-				var1.isTradable = false;
-
-				int var3;
-				for (var3 = 0; var3 < var1.groundActions.length; ++var3) {
-					var1.groundActions[var3] = null;
-				}
-
-				for (var3 = 0; var3 < var1.inventoryActions.length; ++var3) {
-					if (var3 != 4) {
-						var1.inventoryActions[var3] = null;
-					}
-				}
-
-				var1.shiftClickIndex = -2;
-				var1.team = 0;
-				if (var1.params != null) {
-					boolean var6 = false;
-
-					for (Node var4 = var1.params.first(); var4 != null; var4 = var1.params.next()) {
-						ParamComposition var5 = Buffer.getParamDefinition((int)var4.key);
-						if (var5.autoDisable) {
-							var4.remove();
-						} else {
-							var6 = true;
-						}
-					}
-
-					if (!var6) {
-						var1.params = null;
-					}
-				}
-			}
-
-			ItemComposition.ItemDefinition_cached.put(var1, (long)var0);
-			return var1;
-		}
-	}
-
-	@ObfuscatedName("s")
-	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/CharSequence;I)I",
-		garbageValue = "1243234471"
-	)
-	public static int method2881(CharSequence var0) {
-		return AttackOption.method2304(var0, 10, true);
-	}
-
-	@ObfuscatedName("e")
-	@ObfuscatedSignature(
-		descriptor = "(Lko;II)Loe;",
-		garbageValue = "1045837880"
-	)
-	public static IndexedSprite method2882(AbstractArchive var0, int var1) {
-		byte[] var3 = var0.takeFileFlat(var1);
-		boolean var2;
-		if (var3 == null) {
-			var2 = false;
-		} else {
-			Script.SpriteBuffer_decode(var3);
-			var2 = true;
-		}
-
-		return !var2 ? null : WorldMapArea.method3654();
-	}
-
-	@ObfuscatedName("e")
-	@ObfuscatedSignature(
-		descriptor = "(I)[I",
-		garbageValue = "-753625264"
-	)
-	public static int[] method2879() {
-		int[] var0 = new int[KeyHandler.field135];
-
-		for (int var1 = 0; var1 < KeyHandler.field135; ++var1) {
-			var0[var1] = KeyHandler.field127[var1];
-		}
-
-		return var0;
+	public static byte[] method3047(byte[] var0) {
+		int var1 = var0.length;
+		byte[] var2 = new byte[var1];
+		System.arraycopy(var0, 0, var2, 0, var1);
+		return var2;
 	}
 }

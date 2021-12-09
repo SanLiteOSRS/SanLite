@@ -1,27 +1,32 @@
+import java.applet.Applet;
+import java.net.URL;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import netscape.javascript.JSObject;
 
-@ObfuscatedName("cp")
+@ObfuscatedName("cr")
 @Implements("NPC")
 public final class NPC extends Actor {
-	@ObfuscatedName("pr")
+	@ObfuscatedName("b")
+	@Export("javaVersion")
+	public static String javaVersion;
+	@ObfuscatedName("r")
 	@ObfuscatedSignature(
-		descriptor = "Lmd;"
+		descriptor = "Lpl;"
 	)
-	static class353 field1210;
-	@ObfuscatedName("n")
-	@Export("cacheParentPaths")
-	static String[] cacheParentPaths;
-	@ObfuscatedName("ol")
+	@Export("rightTitleSprite")
+	static SpritePixels rightTitleSprite;
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "[Ljf;"
+		descriptor = "Lku;"
 	)
-	static Widget[] field1207;
-	@ObfuscatedName("i")
+	@Export("Widget_fontsArchive")
+	static AbstractArchive Widget_fontsArchive;
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "Lfw;"
+		descriptor = "Lfi;"
 	)
 	@Export("definition")
 	NPCComposition definition;
@@ -29,12 +34,12 @@ public final class NPC extends Actor {
 	NPC() {
 	}
 
-	@ObfuscatedName("i")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(IBI)V",
-		garbageValue = "-1295452505"
+		descriptor = "(ILgj;I)V",
+		garbageValue = "1330012132"
 	)
-	final void method2258(int var1, byte var2) {
+	final void method2319(int var1, class185 var2) {
 		int var3 = super.pathX[0];
 		int var4 = super.pathY[0];
 		if (var1 == 0) {
@@ -73,7 +78,7 @@ public final class NPC extends Actor {
 			--var4;
 		}
 
-		if (super.sequence != -1 && MouseHandler.SequenceDefinition_get(super.sequence).field1956 == 1) {
+		if (super.sequence != -1 && UserComparator5.SequenceDefinition_get(super.sequence).field2097 == 1) {
 			super.sequence = -1;
 		}
 
@@ -84,26 +89,26 @@ public final class NPC extends Actor {
 		for (int var5 = super.pathLength; var5 > 0; --var5) {
 			super.pathX[var5] = super.pathX[var5 - 1];
 			super.pathY[var5] = super.pathY[var5 - 1];
-			super.pathTraversed[var5] = super.pathTraversed[var5 - 1];
+			super.field1153[var5] = super.field1153[var5 - 1];
 		}
 
 		super.pathX[0] = var3;
 		super.pathY[0] = var4;
-		super.pathTraversed[0] = var2;
+		super.field1153[0] = var2;
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		descriptor = "(I)Lhl;",
-		garbageValue = "461766541"
+		descriptor = "(I)Lgo;",
+		garbageValue = "202861607"
 	)
 	@Export("getModel")
 	protected final Model getModel() {
 		if (this.definition == null) {
 			return null;
 		} else {
-			SequenceDefinition var1 = super.sequence != -1 && super.sequenceDelay == 0 ? MouseHandler.SequenceDefinition_get(super.sequence) : null;
-			SequenceDefinition var2 = super.movementSequence == -1 || super.idleSequence == super.movementSequence && var1 != null ? null : MouseHandler.SequenceDefinition_get(super.movementSequence);
+			SequenceDefinition var1 = super.sequence != -1 && super.sequenceDelay == 0 ? UserComparator5.SequenceDefinition_get(super.sequence) : null;
+			SequenceDefinition var2 = super.movementSequence == -1 || super.idleSequence == super.movementSequence && var1 != null ? null : UserComparator5.SequenceDefinition_get(super.movementSequence);
 			Model var3 = this.definition.getModel(var1, super.sequenceFrame, var2, super.movementFrame);
 			if (var3 == null) {
 				return null;
@@ -111,9 +116,9 @@ public final class NPC extends Actor {
 				var3.calculateBoundsCylinder();
 				super.defaultHeight = var3.height;
 				if (super.spotAnimation != -1 && super.spotAnimationFrame != -1) {
-					Model var4 = BZip2State.SpotAnimationDefinition_get(super.spotAnimation).getModel(super.spotAnimationFrame);
+					Model var4 = AccessFile.SpotAnimationDefinition_get(super.spotAnimation).getModel(super.spotAnimationFrame);
 					if (var4 != null) {
-						var4.offsetBy(0, -super.field1126, 0);
+						var4.offsetBy(0, -super.field1131, 0);
 						Model[] var5 = new Model[]{var3, var4};
 						var3 = new Model(var5, 2);
 					}
@@ -123,18 +128,27 @@ public final class NPC extends Actor {
 					var3.isSingleTile = true;
 				}
 
+				if (super.field1146 != 0 && Client.cycle >= super.field1141 && Client.cycle < super.field1140) {
+					var3.field2494 = super.field1143;
+					var3.field2495 = super.field1144;
+					var3.field2479 = super.field1095;
+					var3.field2474 = super.field1146;
+				} else {
+					var3.field2474 = 0;
+				}
+
 				return var3;
 			}
 		}
 	}
 
-	@ObfuscatedName("s")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		descriptor = "(IIZB)V",
-		garbageValue = "-124"
+		descriptor = "(IIZI)V",
+		garbageValue = "-2138088750"
 	)
-	final void method2249(int var1, int var2, boolean var3) {
-		if (super.sequence != -1 && MouseHandler.SequenceDefinition_get(super.sequence).field1956 == 1) {
+	final void method2315(int var1, int var2, boolean var3) {
+		if (super.sequence != -1 && UserComparator5.SequenceDefinition_get(super.sequence).field2097 == 1) {
 			super.sequence = -1;
 		}
 
@@ -149,94 +163,91 @@ public final class NPC extends Actor {
 				for (int var6 = super.pathLength; var6 > 0; --var6) {
 					super.pathX[var6] = super.pathX[var6 - 1];
 					super.pathY[var6] = super.pathY[var6 - 1];
-					super.pathTraversed[var6] = super.pathTraversed[var6 - 1];
+					super.field1153[var6] = super.field1153[var6 - 1];
 				}
 
 				super.pathX[0] = var1;
 				super.pathY[0] = var2;
-				super.pathTraversed[0] = 1;
+				super.field1153[0] = class185.field2123;
 				return;
 			}
 		}
 
 		super.pathLength = 0;
-		super.field1144 = 0;
-		super.field1085 = 0;
+		super.field1098 = 0;
+		super.field1117 = 0;
 		super.pathX[0] = var1;
 		super.pathY[0] = var2;
-		super.x = super.pathX[0] * 128 + super.field1087 * 1912864768;
-		super.y = super.pathY[0] * 128 + super.field1087 * 1912864768;
+		super.x = super.field1120 * 64 + super.pathX[0] * 128;
+		super.y = super.field1120 * 64 + super.pathY[0] * 128;
 	}
 
-	@ObfuscatedName("d")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(I)Z",
-		garbageValue = "-532391824"
+		descriptor = "(B)Z",
+		garbageValue = "1"
 	)
 	@Export("isVisible")
 	final boolean isVisible() {
 		return this.definition != null;
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		descriptor = "(Lnf;III)I",
-		garbageValue = "2110206967"
+		descriptor = "(Ljava/lang/String;ILjava/lang/String;B)Z",
+		garbageValue = "68"
 	)
-	static int method2251(IterableNodeHashTable var0, int var1, int var2) {
-		if (var0 == null) {
-			return var2;
-		} else {
-			IntegerNode var3 = (IntegerNode)var0.get((long)var1);
-			return var3 == null ? var2 : var3.integer;
-		}
-	}
+	static boolean method2314(String var0, int var1, String var2) {
+		if (var1 == 0) {
+			try {
+				if (!class29.field177.startsWith("win")) {
+					throw new Exception();
+				} else if (!var0.startsWith("http://") && !var0.startsWith("https://")) {
+					throw new Exception();
+				} else {
+					String var11 = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789?&=,.%+-_#:/*";
 
-	@ObfuscatedName("w")
-	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "569144046"
-	)
-	public static void method2248() {
-		if (MouseHandler.MouseHandler_instance != null) {
-			synchronized(MouseHandler.MouseHandler_instance) {
-				MouseHandler.MouseHandler_instance = null;
+					for (int var4 = 0; var4 < var0.length(); ++var4) {
+						if (var11.indexOf(var0.charAt(var4)) == -1) {
+							throw new Exception();
+						}
+					}
+
+					Runtime.getRuntime().exec("cmd /c start \"j\" \"" + var0 + "\"");
+					return true;
+				}
+			} catch (Throwable var5) {
+				return false;
 			}
+		} else if (var1 == 1) {
+			try {
+				Object var10 = class27.method433(class29.field172, var2, new Object[]{(new URL(class29.field172.getCodeBase(), var0)).toString()});
+				return var10 != null;
+			} catch (Throwable var6) {
+				return false;
+			}
+		} else if (var1 == 2) {
+			try {
+				class29.field172.getAppletContext().showDocument(new URL(class29.field172.getCodeBase(), var0), "_blank");
+				return true;
+			} catch (Exception var7) {
+				return false;
+			}
+		} else if (var1 == 3) {
+			try {
+				Applet var3 = class29.field172;
+				JSObject.getWindow(var3).call("loggedout", (Object[])null);
+			} catch (Throwable var9) {
+			}
+
+			try {
+				class29.field172.getAppletContext().showDocument(new URL(class29.field172.getCodeBase(), var0), "_top");
+				return true;
+			} catch (Exception var8) {
+				return false;
+			}
+		} else {
+			throw new IllegalArgumentException();
 		}
-
-	}
-
-	@ObfuscatedName("u")
-	@ObfuscatedSignature(
-		descriptor = "(III)Z",
-		garbageValue = "-1285705264"
-	)
-	static final boolean method2265(int var0, int var1) {
-		ObjectComposition var2 = KitDefinition.getObjectDefinition(var0);
-		if (var1 == 11) {
-			var1 = 10;
-		}
-
-		if (var1 >= 5 && var1 <= 8) {
-			var1 = 4;
-		}
-
-		return var2.method3305(var1);
-	}
-
-	@ObfuscatedName("ab")
-	@ObfuscatedSignature(
-		descriptor = "([BIS)I",
-		garbageValue = "-944"
-	)
-	public static int method2256(byte[] var0, int var1) {
-		int var3 = -1;
-
-		for (int var4 = 0; var4 < var1; ++var4) {
-			var3 = var3 >>> 8 ^ Buffer.crc32Table[(var3 ^ var0[var4]) & 255];
-		}
-
-		var3 = ~var3;
-		return var3;
 	}
 }

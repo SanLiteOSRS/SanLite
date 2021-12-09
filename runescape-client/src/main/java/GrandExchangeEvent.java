@@ -4,36 +4,36 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("kt")
+@ObfuscatedName("kj")
 @Implements("GrandExchangeEvent")
 public class GrandExchangeEvent {
-	@ObfuscatedName("i")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = 1932555191
+		intValue = -613018659
 	)
 	@Export("world")
 	public final int world;
-	@ObfuscatedName("w")
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		longValue = -3074264375035497163L
+		longValue = -97265200533879513L
 	)
 	@Export("age")
 	public final long age;
-	@ObfuscatedName("s")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		descriptor = "Lkh;"
+		descriptor = "Lkb;"
 	)
 	@Export("grandExchangeOffer")
 	public final GrandExchangeOffer grandExchangeOffer;
-	@ObfuscatedName("a")
+	@ObfuscatedName("m")
 	@Export("offerName")
 	String offerName;
-	@ObfuscatedName("o")
+	@ObfuscatedName("t")
 	@Export("previousOfferName")
 	String previousOfferName;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lop;BI)V"
+		descriptor = "(Lpi;BI)V"
 	)
 	GrandExchangeEvent(Buffer var1, byte var2, int var3) {
 		this.offerName = var1.readStringCp1252NullTerminated();
@@ -43,8 +43,8 @@ public class GrandExchangeEvent {
 		int var4 = var1.readInt();
 		int var5 = var1.readInt();
 		this.grandExchangeOffer = new GrandExchangeOffer();
-		this.grandExchangeOffer.method5454(2);
-		this.grandExchangeOffer.method5455(var2);
+		this.grandExchangeOffer.method5765(2);
+		this.grandExchangeOffer.method5766(var2);
 		this.grandExchangeOffer.unitPrice = var4;
 		this.grandExchangeOffer.totalQuantity = var5;
 		this.grandExchangeOffer.currentQuantity = 0;
@@ -52,82 +52,44 @@ public class GrandExchangeEvent {
 		this.grandExchangeOffer.id = var3;
 	}
 
-	@ObfuscatedName("i")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(I)Ljava/lang/String;",
-		garbageValue = "-1492995549"
+		descriptor = "(B)Ljava/lang/String;",
+		garbageValue = "0"
 	)
 	@Export("getOfferName")
 	public String getOfferName() {
 		return this.offerName;
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
 		descriptor = "(I)Ljava/lang/String;",
-		garbageValue = "-681990835"
+		garbageValue = "442226804"
 	)
 	@Export("getPreviousOfferName")
 	public String getPreviousOfferName() {
 		return this.previousOfferName;
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(IIZI)Ljava/lang/String;",
-		garbageValue = "1279033906"
+		descriptor = "(S)V",
+		garbageValue = "3161"
 	)
-	static String method5448(int var0, int var1, boolean var2) {
-		if (var1 >= 2 && var1 <= 36) {
-			if (var2 && var0 >= 0) {
-				int var3 = 2;
-
-				for (int var4 = var0 / var1; var4 != 0; ++var3) {
-					var4 /= var1;
-				}
-
-				char[] var5 = new char[var3];
-				var5[0] = '+';
-
-				for (int var6 = var3 - 1; var6 > 0; --var6) {
-					int var7 = var0;
-					var0 /= var1;
-					int var8 = var7 - var0 * var1;
-					if (var8 >= 10) {
-						var5[var6] = (char)(var8 + 87);
-					} else {
-						var5[var6] = (char)(var8 + 48);
-					}
-				}
-
-				return new String(var5);
-			} else {
-				return Integer.toString(var0, var1);
+	static void method5760() {
+		for (ObjectSound var0 = (ObjectSound)ObjectSound.objectSounds.last(); var0 != null; var0 = (ObjectSound)ObjectSound.objectSounds.previous()) {
+			if (var0.stream1 != null) {
+				class281.pcmStreamMixer.removeSubStream(var0.stream1);
+				var0.stream1 = null;
 			}
-		} else {
-			throw new IllegalArgumentException("" + var1);
-		}
-	}
 
-	@ObfuscatedName("iu")
-	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;Ljf;I)Ljava/lang/String;",
-		garbageValue = "-1477810111"
-	)
-	static String method5449(String var0, Widget var1) {
-		if (var0.indexOf("%") != -1) {
-			for (int var2 = 1; var2 <= 5; ++var2) {
-				while (true) {
-					int var3 = var0.indexOf("%" + var2);
-					if (var3 == -1) {
-						break;
-					}
-
-					var0 = var0.substring(0, var3) + WorldMapLabelSize.method3534(class113.method2532(var1, var2 - 1)) + var0.substring(var3 + 2);
-				}
+			if (var0.stream2 != null) {
+				class281.pcmStreamMixer.removeSubStream(var0.stream2);
+				var0.stream2 = null;
 			}
 		}
 
-		return var0;
+		ObjectSound.objectSounds.clear();
 	}
 }

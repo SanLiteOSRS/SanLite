@@ -4,71 +4,69 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bn")
+@ObfuscatedName("bj")
 @Implements("DynamicObject")
 public class DynamicObject extends Renderable {
-	@ObfuscatedName("jy")
+	@ObfuscatedName("o")
+	@Export("musicTrackBoolean")
+	public static boolean musicTrackBoolean;
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = -740824161
-	)
-	static int field942;
-	@ObfuscatedName("i")
-	@ObfuscatedGetter(
-		intValue = -1547181131
+		intValue = 1712801751
 	)
 	@Export("id")
 	int id;
-	@ObfuscatedName("w")
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = -1678803105
+		intValue = 2015197805
 	)
 	@Export("type")
 	int type;
-	@ObfuscatedName("s")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = 625040997
+		intValue = 1555173169
 	)
 	@Export("orientation")
 	int orientation;
-	@ObfuscatedName("a")
+	@ObfuscatedName("m")
 	@ObfuscatedGetter(
-		intValue = 168532931
+		intValue = -393716715
 	)
 	@Export("plane")
 	int plane;
-	@ObfuscatedName("o")
+	@ObfuscatedName("t")
 	@ObfuscatedGetter(
-		intValue = -636498467
+		intValue = -332192069
 	)
 	@Export("x")
 	int x;
-	@ObfuscatedName("g")
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = 1279572157
+		intValue = 1639785979
 	)
 	@Export("y")
 	int y;
-	@ObfuscatedName("e")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
-		descriptor = "Lfm;"
+		descriptor = "Lgn;"
 	)
 	@Export("sequenceDefinition")
 	SequenceDefinition sequenceDefinition;
-	@ObfuscatedName("p")
+	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		intValue = -1999016109
+		intValue = -724114563
 	)
 	@Export("frame")
 	int frame;
-	@ObfuscatedName("j")
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = 1531671951
+		intValue = 343705565
 	)
 	@Export("cycleStart")
 	int cycleStart;
 
 	@ObfuscatedSignature(
-		descriptor = "(IIIIIIIZLhj;)V"
+		descriptor = "(IIIIIIIZLgt;)V"
 	)
 	DynamicObject(int var1, int var2, int var3, int var4, int var5, int var6, int var7, boolean var8, Renderable var9) {
 		this.id = var1;
@@ -78,12 +76,12 @@ public class DynamicObject extends Renderable {
 		this.x = var5;
 		this.y = var6;
 		if (var7 != -1) {
-			this.sequenceDefinition = MouseHandler.SequenceDefinition_get(var7);
+			this.sequenceDefinition = UserComparator5.SequenceDefinition_get(var7);
 			this.frame = 0;
 			this.cycleStart = Client.cycle - 1;
-			if (this.sequenceDefinition.field1965 == 0 && var9 != null && var9 instanceof DynamicObject) {
+			if (this.sequenceDefinition.field2078 == 0 && var9 != null && var9 instanceof DynamicObject) {
 				DynamicObject var10 = (DynamicObject)var9;
-				if (var10.sequenceDefinition == this.sequenceDefinition) {
+				if (this.sequenceDefinition == var10.sequenceDefinition) {
 					this.frame = var10.frame;
 					this.cycleStart = var10.cycleStart;
 					return;
@@ -91,47 +89,64 @@ public class DynamicObject extends Renderable {
 			}
 
 			if (var8 && this.sequenceDefinition.frameCount != -1) {
-				this.frame = (int)(Math.random() * (double)this.sequenceDefinition.frameIds.length);
-				this.cycleStart -= (int)(Math.random() * (double)this.sequenceDefinition.frameLengths[this.frame]);
+				if (!this.sequenceDefinition.method3690()) {
+					this.frame = (int)(Math.random() * (double)this.sequenceDefinition.frameIds.length);
+					this.cycleStart -= (int)(Math.random() * (double)this.sequenceDefinition.frameLengths[this.frame]);
+				} else {
+					this.frame = (int)(Math.random() * (double)this.sequenceDefinition.method3647());
+				}
 			}
 		}
 
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		descriptor = "(I)Lhl;",
-		garbageValue = "461766541"
+		descriptor = "(I)Lgo;",
+		garbageValue = "202861607"
 	)
 	@Export("getModel")
 	protected final Model getModel() {
+		int var2;
 		if (this.sequenceDefinition != null) {
 			int var1 = Client.cycle - this.cycleStart;
 			if (var1 > 100 && this.sequenceDefinition.frameCount > 0) {
 				var1 = 100;
 			}
 
-			label54: {
-				do {
+			if (this.sequenceDefinition.method3690()) {
+				var2 = this.sequenceDefinition.method3647();
+				this.frame += var1;
+				var1 = 0;
+				if (this.frame >= var2) {
+					this.frame = var2 - this.sequenceDefinition.frameCount;
+					if (this.frame < 0 || this.frame > var2) {
+						this.sequenceDefinition = null;
+					}
+				}
+			} else {
+				label79: {
 					do {
-						if (var1 <= this.sequenceDefinition.frameLengths[this.frame]) {
-							break label54;
-						}
+						do {
+							if (var1 <= this.sequenceDefinition.frameLengths[this.frame]) {
+								break label79;
+							}
 
-						var1 -= this.sequenceDefinition.frameLengths[this.frame];
-						++this.frame;
-					} while(this.frame < this.sequenceDefinition.frameIds.length);
+							var1 -= this.sequenceDefinition.frameLengths[this.frame];
+							++this.frame;
+						} while(this.frame < this.sequenceDefinition.frameIds.length);
 
-					this.frame -= this.sequenceDefinition.frameCount;
-				} while(this.frame >= 0 && this.frame < this.sequenceDefinition.frameIds.length);
+						this.frame -= this.sequenceDefinition.frameCount;
+					} while(this.frame >= 0 && this.frame < this.sequenceDefinition.frameIds.length);
 
-				this.sequenceDefinition = null;
+					this.sequenceDefinition = null;
+				}
 			}
 
 			this.cycleStart = Client.cycle - var1;
 		}
 
-		ObjectComposition var12 = KitDefinition.getObjectDefinition(this.id);
+		ObjectComposition var12 = class148.getObjectDefinition(this.id);
 		if (var12.transforms != null) {
 			var12 = var12.transform();
 		}
@@ -139,7 +154,6 @@ public class DynamicObject extends Renderable {
 		if (var12 == null) {
 			return null;
 		} else {
-			int var2;
 			int var3;
 			if (this.orientation != 1 && this.orientation != 3) {
 				var2 = var12.sizeX;
@@ -154,222 +168,46 @@ public class DynamicObject extends Renderable {
 			int var6 = (var3 >> 1) + this.y;
 			int var7 = (var3 + 1 >> 1) + this.y;
 			int[][] var8 = Tiles.Tiles_heights[this.plane];
-			int var9 = var8[var4][var6] + var8[var5][var6] + var8[var4][var7] + var8[var5][var7] >> 2;
+			int var9 = var8[var4][var7] + var8[var4][var6] + var8[var5][var6] + var8[var5][var7] >> 2;
 			int var10 = (this.x << 7) + (var2 << 6);
 			int var11 = (this.y << 7) + (var3 << 6);
 			return var12.getModelDynamic(this.type, this.orientation, var8, var10, var9, var11, this.sequenceDefinition, this.frame);
 		}
 	}
 
-	@ObfuscatedName("i")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
-		descriptor = "([Ljava/lang/CharSequence;III)Ljava/lang/String;",
-		garbageValue = "-1313175336"
+		descriptor = "(II)I",
+		garbageValue = "-2047180013"
 	)
-	public static String method2003(CharSequence[] var0, int var1, int var2) {
-		if (var2 == 0) {
-			return "";
-		} else if (var2 == 1) {
-			CharSequence var10 = var0[var1];
-			return var10 == null ? "null" : var10.toString();
-		} else {
-			int var3 = var2 + var1;
-			int var4 = 0;
-
-			for (int var5 = var1; var5 < var3; ++var5) {
-				CharSequence var9 = var0[var5];
-				if (var9 == null) {
-					var4 += 4;
-				} else {
-					var4 += var9.length();
-				}
-			}
-
-			StringBuilder var8 = new StringBuilder(var4);
-
-			for (int var6 = var1; var6 < var3; ++var6) {
-				CharSequence var7 = var0[var6];
-				if (var7 == null) {
-					var8.append("null");
-				} else {
-					var8.append(var7);
-				}
-			}
-
-			return var8.toString();
-		}
-	}
-
-	@ObfuscatedName("s")
-	@ObfuscatedSignature(
-		descriptor = "(Loj;I)I",
-		garbageValue = "-1853618931"
-	)
-	static int method1998(PacketBuffer var0) {
-		int var1 = var0.readBits(2);
-		int var2;
-		if (var1 == 0) {
-			var2 = 0;
-		} else if (var1 == 1) {
-			var2 = var0.readBits(5);
-		} else if (var1 == 2) {
-			var2 = var0.readBits(8);
-		} else {
-			var2 = var0.readBits(11);
+	@Export("iLog")
+	public static int iLog(int var0) {
+		int var1 = 0;
+		if (var0 < 0 || var0 >= 65536) {
+			var0 >>>= 16;
+			var1 += 16;
 		}
 
-		return var2;
-	}
-
-	@ObfuscatedName("a")
-	@ObfuscatedSignature(
-		descriptor = "(IIIII)V",
-		garbageValue = "1555132909"
-	)
-	@Export("itemContainerSetItem")
-	static void itemContainerSetItem(int var0, int var1, int var2, int var3) {
-		ItemContainer var4 = (ItemContainer)ItemContainer.itemContainers.get((long)var0);
-		if (var4 == null) {
-			var4 = new ItemContainer();
-			ItemContainer.itemContainers.put(var4, (long)var0);
+		if (var0 >= 256) {
+			var0 >>>= 8;
+			var1 += 8;
 		}
 
-		if (var4.ids.length <= var1) {
-			int[] var5 = new int[var1 + 1];
-			int[] var6 = new int[var1 + 1];
-
-			int var7;
-			for (var7 = 0; var7 < var4.ids.length; ++var7) {
-				var5[var7] = var4.ids[var7];
-				var6[var7] = var4.quantities[var7];
-			}
-
-			for (var7 = var4.ids.length; var7 < var1; ++var7) {
-				var5[var7] = -1;
-				var6[var7] = 0;
-			}
-
-			var4.ids = var5;
-			var4.quantities = var6;
+		if (var0 >= 16) {
+			var0 >>>= 4;
+			var1 += 4;
 		}
 
-		var4.ids[var1] = var2;
-		var4.quantities[var1] = var3;
-	}
-
-	@ObfuscatedName("g")
-	@ObfuscatedSignature(
-		descriptor = "(CI)Z",
-		garbageValue = "-339727725"
-	)
-	static boolean method2001(char var0) {
-		return "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!\"ï¿½$%^&*()-_=+[{]};:'@#~,<.>/?\\| ".indexOf(var0) != -1;
-	}
-
-	@ObfuscatedName("b")
-	@ObfuscatedSignature(
-		descriptor = "(II)Lho;",
-		garbageValue = "-1655778063"
-	)
-	@Export("getFrames")
-	static Frames getFrames(int var0) {
-		Frames var1 = (Frames)SequenceDefinition.SequenceDefinition_cachedFrames.get((long)var0);
-		if (var1 != null) {
-			return var1;
-		} else {
-			AbstractArchive var3 = SequenceDefinition.SequenceDefinition_animationsArchive;
-			AbstractArchive var4 = SequenceDefinition.SequenceDefinition_skeletonsArchive;
-			boolean var5 = true;
-			int[] var6 = var3.getGroupFileIds(var0);
-
-			for (int var7 = 0; var7 < var6.length; ++var7) {
-				byte[] var8 = var3.getFile(var0, var6[var7]);
-				if (var8 == null) {
-					var5 = false;
-				} else {
-					int var9 = (var8[0] & 255) << 8 | var8[1] & 255;
-					byte[] var10 = var4.getFile(var9, 0);
-					if (var10 == null) {
-						var5 = false;
-					}
-				}
-			}
-
-			Frames var2;
-			if (!var5) {
-				var2 = null;
-			} else {
-				try {
-					var2 = new Frames(var3, var4, var0, false);
-				} catch (Exception var12) {
-					var2 = null;
-				}
-			}
-
-			if (var2 != null) {
-				SequenceDefinition.SequenceDefinition_cachedFrames.put(var2, (long)var0);
-			}
-
-			return var2;
-		}
-	}
-
-	@ObfuscatedName("x")
-	@ObfuscatedSignature(
-		descriptor = "(IIB)I",
-		garbageValue = "1"
-	)
-	static final int method2002(int var0, int var1) {
-		int var2 = class117.method2573(var0 - 1, var1 - 1) + class117.method2573(1 + var0, var1 - 1) + class117.method2573(var0 - 1, 1 + var1) + class117.method2573(var0 + 1, 1 + var1);
-		int var3 = class117.method2573(var0 - 1, var1) + class117.method2573(1 + var0, var1) + class117.method2573(var0, var1 - 1) + class117.method2573(var0, 1 + var1);
-		int var4 = class117.method2573(var0, var1);
-		return var2 / 16 + var3 / 8 + var4 / 4;
-	}
-
-	@ObfuscatedName("ki")
-	@ObfuscatedSignature(
-		descriptor = "(IIII)Lcq;",
-		garbageValue = "-1244172652"
-	)
-	static final InterfaceParent method1997(int var0, int var1, int var2) {
-		InterfaceParent var3 = new InterfaceParent();
-		var3.group = var1;
-		var3.type = var2;
-		Client.interfaceParents.put(var3, (long)var0);
-		Player.Widget_resetModelFrames(var1);
-		Widget var4 = UserComparator9.getWidget(var0);
-		class184.invalidateWidget(var4);
-		if (Client.meslayerContinueWidget != null) {
-			class184.invalidateWidget(Client.meslayerContinueWidget);
-			Client.meslayerContinueWidget = null;
+		if (var0 >= 4) {
+			var0 >>>= 2;
+			var1 += 2;
 		}
 
-		for (int var5 = 0; var5 < Client.menuOptionsCount; ++var5) {
-			if (class122.method2607(Client.menuOpcodes[var5])) {
-				if (var5 < Client.menuOptionsCount - 1) {
-					for (int var6 = var5; var6 < Client.menuOptionsCount - 1; ++var6) {
-						Client.menuActions[var6] = Client.menuActions[var6 + 1];
-						Client.menuTargets[var6] = Client.menuTargets[var6 + 1];
-						Client.menuOpcodes[var6] = Client.menuOpcodes[var6 + 1];
-						Client.menuIdentifiers[var6] = Client.menuIdentifiers[var6 + 1];
-						Client.menuArguments1[var6] = Client.menuArguments1[var6 + 1];
-						Client.menuArguments2[var6] = Client.menuArguments2[var6 + 1];
-						Client.menuShiftClick[var6] = Client.menuShiftClick[var6 + 1];
-					}
-				}
-
-				--var5;
-				--Client.menuOptionsCount;
-			}
+		if (var0 >= 1) {
+			var0 >>>= 1;
+			++var1;
 		}
 
-		class262.method5136();
-		class81.revalidateWidgetScroll(WorldMapSection1.Widget_interfaceComponents[var0 >> 16], var4, false);
-		class54.runWidgetOnLoadListener(var1);
-		if (Client.rootInterface != -1) {
-			ItemComposition.runIntfCloseListeners(Client.rootInterface, 1);
-		}
-
-		return var3;
+		return var0 + var1;
 	}
 }

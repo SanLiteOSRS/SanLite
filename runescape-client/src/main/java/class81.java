@@ -1,38 +1,45 @@
+import java.awt.image.BufferedImage;
+import java.awt.image.PixelGrabber;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("ci")
+@ObfuscatedName("cd")
 public class class81 implements Runnable {
-	@ObfuscatedName("t")
-	static int[] field1039;
-	@ObfuscatedName("ca")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
-		descriptor = "Loe;"
+		descriptor = "[[Ljm;"
 	)
-	@Export("worldSelectRightSprite")
-	static IndexedSprite worldSelectRightSprite;
-	@ObfuscatedName("i")
+	@Export("Widget_interfaceComponents")
+	public static Widget[][] Widget_interfaceComponents;
+	@ObfuscatedName("ay")
+	@ObfuscatedSignature(
+		descriptor = "Lme;"
+	)
+	static Bounds field1044;
+	@ObfuscatedName("c")
 	@Export("isRunning")
 	boolean isRunning;
-	@ObfuscatedName("w")
+	@ObfuscatedName("b")
 	@Export("lock")
 	Object lock;
-	@ObfuscatedName("s")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = 1216994745
+		intValue = 1539237497
 	)
 	@Export("index")
 	int index;
-	@ObfuscatedName("a")
+	@ObfuscatedName("m")
 	@Export("xs")
 	int[] xs;
-	@ObfuscatedName("o")
+	@ObfuscatedName("t")
 	@Export("ys")
 	int[] ys;
-	@ObfuscatedName("g")
+	@ObfuscatedName("s")
 	@Export("millis")
 	long[] millis;
 
@@ -46,7 +53,7 @@ public class class81 implements Runnable {
 	}
 
 	public void run() {
-		for (; this.isRunning; FloorUnderlayDefinition.method3190(50L)) {
+		for (; this.isRunning; Bounds.method6608(50L)) {
 			synchronized(this.lock) {
 				if (this.index < 500) {
 					this.xs[this.index] = MouseHandler.MouseHandler_x;
@@ -59,74 +66,55 @@ public class class81 implements Runnable {
 
 	}
 
-	@ObfuscatedName("i")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(Lko;B)V",
-		garbageValue = "-12"
+		descriptor = "([BB)Lpl;",
+		garbageValue = "-5"
 	)
-	public static void method2093(AbstractArchive var0) {
-		VarcInt.VarcInt_archive = var0;
+	public static final SpritePixels method2161(byte[] var0) {
+		BufferedImage var1 = null;
+
+		try {
+			var1 = ImageIO.read(new ByteArrayInputStream(var0));
+			int var2 = var1.getWidth();
+			int var3 = var1.getHeight();
+			int[] var4 = new int[var2 * var3];
+			PixelGrabber var5 = new PixelGrabber(var1, 0, 0, var2, var3, var4, 0, var2);
+			var5.grabPixels();
+			return new SpritePixels(var4, var2, var3);
+		} catch (IOException var7) {
+		} catch (InterruptedException var8) {
+		}
+
+		return new SpritePixels(0, 0);
 	}
 
-	@ObfuscatedName("d")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		descriptor = "(ILbp;ZI)I",
-		garbageValue = "355383775"
+		descriptor = "(IIB)I",
+		garbageValue = "-41"
 	)
-	static int method2089(int var0, Script var1, boolean var2) {
-		Widget var5;
-		if (var0 == ScriptOpcodes.IF_GETINVOBJECT) {
-			var5 = UserComparator9.getWidget(Interpreter.Interpreter_intStack[--class14.Interpreter_intStackSize]);
-			Interpreter.Interpreter_intStack[++class14.Interpreter_intStackSize - 1] = var5.itemId;
-			return 1;
-		} else if (var0 == ScriptOpcodes.IF_GETINVCOUNT) {
-			var5 = UserComparator9.getWidget(Interpreter.Interpreter_intStack[--class14.Interpreter_intStackSize]);
-			if (var5.itemId != -1) {
-				Interpreter.Interpreter_intStack[++class14.Interpreter_intStackSize - 1] = var5.itemQuantity;
-			} else {
-				Interpreter.Interpreter_intStack[++class14.Interpreter_intStackSize - 1] = 0;
-			}
-
-			return 1;
-		} else if (var0 == ScriptOpcodes.IF_HASSUB) {
-			int var3 = Interpreter.Interpreter_intStack[--class14.Interpreter_intStackSize];
-			InterfaceParent var4 = (InterfaceParent)Client.interfaceParents.get((long)var3);
-			if (var4 != null) {
-				Interpreter.Interpreter_intStack[++class14.Interpreter_intStackSize - 1] = 1;
-			} else {
-				Interpreter.Interpreter_intStack[++class14.Interpreter_intStackSize - 1] = 0;
-			}
-
-			return 1;
-		} else if (var0 == ScriptOpcodes.IF_GETTOP) {
-			Interpreter.Interpreter_intStack[++class14.Interpreter_intStackSize - 1] = Client.rootInterface;
-			return 1;
+	static int method2160(int var0, int var1) {
+		ItemContainer var2 = (ItemContainer)ItemContainer.itemContainers.get((long)var0);
+		if (var2 == null) {
+			return 0;
+		} else if (var1 == -1) {
+			return 0;
 		} else {
-			return 2;
+			int var3 = 0;
+
+			for (int var4 = 0; var4 < var2.quantities.length; ++var4) {
+				if (var2.ids[var4] == var1) {
+					var3 += var2.quantities[var4];
+				}
+			}
+
+			return var3;
 		}
 	}
 
-	@ObfuscatedName("ie")
-	@ObfuscatedSignature(
-		descriptor = "([Ljf;Ljf;ZB)V",
-		garbageValue = "0"
-	)
-	@Export("revalidateWidgetScroll")
-	static void revalidateWidgetScroll(Widget[] var0, Widget var1, boolean var2) {
-		int var3 = var1.scrollWidth != 0 ? var1.scrollWidth : var1.width;
-		int var4 = var1.scrollHeight != 0 ? var1.scrollHeight : var1.height;
-		WorldMapLabelSize.resizeInterface(var0, var1.id, var3, var4, var2);
-		if (var1.children != null) {
-			WorldMapLabelSize.resizeInterface(var1.children, var1.id, var3, var4, var2);
-		}
-
-		InterfaceParent var5 = (InterfaceParent)Client.interfaceParents.get((long)var1.id);
-		if (var5 != null) {
-			SecureRandomCallable.method2051(var5.group, var3, var4, var2);
-		}
-
-		if (var1.contentType == 1337) {
-		}
-
+	@ObfuscatedName("s")
+	public static int method2159(long var0) {
+		return (int)(var0 >>> 0 & 127L);
 	}
 }

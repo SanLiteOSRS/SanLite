@@ -1,57 +1,57 @@
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("dl")
-public class class126 extends class116 {
-	@ObfuscatedName("i")
+@ObfuscatedName("dg")
+public abstract class class126 extends Node {
+	@ObfuscatedName("ea")
+	@ObfuscatedSignature(
+		descriptor = "Lkz;"
+	)
+	@Export("archive17")
+	static Archive archive17;
+	@ObfuscatedName("fj")
 	@ObfuscatedGetter(
-		intValue = 1462518915
+		intValue = -858901471
 	)
-	int field1433;
-	@ObfuscatedName("w")
-	String field1432;
-	// $FF: synthetic field
+	static int field1497;
+	@ObfuscatedName("gh")
 	@ObfuscatedSignature(
-		descriptor = "Ldg;"
+		descriptor = "Loh;"
 	)
-	final class119 this$0;
+	@Export("WorldMapElement_fonts")
+	static Fonts WorldMapElement_fonts;
 
-	@ObfuscatedSignature(
-		descriptor = "(Ldg;)V"
-	)
-	class126(class119 var1) {
-		this.this$0 = var1;
+	class126() {
 	}
 
-	@ObfuscatedName("i")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(Lop;I)V",
-		garbageValue = "-2002779676"
+		descriptor = "(Lpi;I)V",
+		garbageValue = "1416770155"
 	)
-	void vmethod2847(Buffer var1) {
-		this.field1433 = var1.readInt();
-		this.field1432 = var1.readStringCp1252NullTerminated();
-	}
+	abstract void vmethod3029(Buffer var1);
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		descriptor = "(Ldm;I)V",
-		garbageValue = "-293908864"
+		descriptor = "(Lej;I)V",
+		garbageValue = "-1531735008"
 	)
-	void vmethod2848(ClanSettings var1) {
-		var1.method2667(this.field1433, this.field1432);
-	}
+	abstract void vmethod3028(ClanSettings var1);
 
-	@ObfuscatedName("lh")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "-19"
+		descriptor = "(III)Ljm;",
+		garbageValue = "-1928288772"
 	)
-	static void method2646() {
-		if (Client.oculusOrbState == 1) {
-			Client.field511 = true;
+	@Export("getWidgetChild")
+	public static Widget getWidgetChild(int var0, int var1) {
+		Widget var2 = ChatChannel.getWidget(var0);
+		if (var1 == -1) {
+			return var2;
+		} else {
+			return var2 != null && var2.children != null && var1 < var2.children.length ? var2.children[var1] : null;
 		}
-
 	}
 }

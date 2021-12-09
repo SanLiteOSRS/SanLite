@@ -4,31 +4,57 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jc")
+@ObfuscatedName("km")
 @Implements("ArchiveDiskAction")
 public class ArchiveDiskAction extends Node {
-	@ObfuscatedName("i")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = -1877309383
+		intValue = 1029019227
 	)
 	@Export("type")
 	int type;
-	@ObfuscatedName("w")
+	@ObfuscatedName("b")
 	@Export("data")
-	byte[] data;
-	@ObfuscatedName("s")
+	public byte[] data;
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		descriptor = "Lmr;"
+		descriptor = "Lmy;"
 	)
 	@Export("archiveDisk")
-	ArchiveDisk archiveDisk;
-	@ObfuscatedName("a")
+	public ArchiveDisk archiveDisk;
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		descriptor = "Lkd;"
+		descriptor = "Lkz;"
 	)
 	@Export("archive")
-	Archive archive;
+	public Archive archive;
 
 	ArchiveDiskAction() {
+	}
+
+	@ObfuscatedName("c")
+	@ObfuscatedSignature(
+		descriptor = "(Lpl;IIIB)V",
+		garbageValue = "1"
+	)
+	static void method5526(SpritePixels var0, int var1, int var2, int var3) {
+		DemotingHashTable var4 = WorldMapRegion.WorldMapRegion_cachedSprites;
+		long var6 = (long)(var3 << 16 | var1 << 8 | var2);
+		var4.put(var0, var6, var0.pixels.length * 4);
+	}
+
+	@ObfuscatedName("hp")
+	@ObfuscatedSignature(
+		descriptor = "(IIS)V",
+		garbageValue = "128"
+	)
+	static final void method5527(int var0, int var1) {
+		if (Client.hintArrowType == 2) {
+			ModeWhere.worldToScreen(Client.hintArrowSubX * 64 + (Client.hintArrowX - class131.baseX * 64 << 7), Client.hintArrowSubY * 64 + (Client.hintArrowY - TileItem.baseY * 64 << 7), Client.hintArrowHeight * 2);
+			if (Client.viewportTempX > -1 && Client.cycle % 20 < 10) {
+				class260.headIconHintSprites[0].drawTransBgAt(var0 + Client.viewportTempX - 12, Client.viewportTempY + var1 - 28);
+			}
+
+		}
 	}
 }

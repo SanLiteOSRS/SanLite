@@ -4,35 +4,37 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fg")
+@ObfuscatedName("fs")
 @Implements("VerticalAlignment")
 public enum VerticalAlignment implements MouseWheel {
-	@ObfuscatedName("i")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "Lfg;"
+		descriptor = "Lfs;"
 	)
-	field1743(2, 0),
-	@ObfuscatedName("w")
+	field1870(2, 0),
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		descriptor = "Lfg;"
+		descriptor = "Lfs;"
 	)
 	@Export("VerticalAlignment_centered")
-	VerticalAlignment_centered(0, 1),
-	@ObfuscatedName("s")
+	VerticalAlignment_centered(1, 1),
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		descriptor = "Lfg;"
+		descriptor = "Lfs;"
 	)
-	field1744(1, 2);
+	field1869(0, 2);
 
-	@ObfuscatedName("a")
+	@ObfuscatedName("h")
+	static int[] field1874;
+	@ObfuscatedName("m")
 	@ObfuscatedGetter(
-		intValue = 1028915727
+		intValue = -1994152567
 	)
 	@Export("value")
 	public final int value;
-	@ObfuscatedName("o")
+	@ObfuscatedName("t")
 	@ObfuscatedGetter(
-		intValue = 1836218951
+		intValue = -927577259
 	)
 	@Export("id")
 	final int id;
@@ -42,43 +44,45 @@ public enum VerticalAlignment implements MouseWheel {
 		this.id = var4;
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		descriptor = "(I)I",
-		garbageValue = "238732485"
+		descriptor = "(B)I",
+		garbageValue = "48"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
 		return this.id;
 	}
 
-	@ObfuscatedName("gv")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "-29"
+		descriptor = "(IB)Lfr;",
+		garbageValue = "65"
 	)
-	static final void method3159() {
-		int var0 = Players.Players_count;
-		int[] var1 = Players.Players_indices;
-
-		for (int var2 = 0; var2 < var0; ++var2) {
-			Player var3 = Client.players[var1[var2]];
-			if (var3 != null) {
-				class135.updateActorSequence(var3, 1);
+	@Export("getParamDefinition")
+	public static ParamComposition getParamDefinition(int var0) {
+		ParamComposition var1 = (ParamComposition)ParamComposition.ParamDefinition_cached.get((long)var0);
+		if (var1 != null) {
+			return var1;
+		} else {
+			byte[] var2 = ParamComposition.ParamDefinition_archive.takeFile(11, var0);
+			var1 = new ParamComposition();
+			if (var2 != null) {
+				var1.decode(new Buffer(var2));
 			}
-		}
 
+			var1.postDecode();
+			ParamComposition.ParamDefinition_cached.put(var1, (long)var0);
+			return var1;
+		}
 	}
 
-	@ObfuscatedName("gr")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-375267443"
+		descriptor = "(B)V",
+		garbageValue = "21"
 	)
-	static void method3157() {
-		if (Client.renderSelf) {
-			class132.addPlayerToScene(HealthBarDefinition.localPlayer, false);
-		}
-
+	public static void method3338() {
+		ItemComposition.ItemDefinition_cachedSprites.clear();
 	}
 }

@@ -1,43 +1,50 @@
 import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Iterator;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("me")
+@ObfuscatedName("mr")
 @Implements("BufferedSource")
 public class BufferedSource implements Runnable {
-	@ObfuscatedName("i")
+	@ObfuscatedName("u")
+	@Export("cacheSubPaths")
+	public static String[] cacheSubPaths;
+	@ObfuscatedName("bv")
+	@Export("otp")
+	static String otp;
+	@ObfuscatedName("c")
 	@Export("thread")
 	Thread thread;
-	@ObfuscatedName("w")
+	@ObfuscatedName("b")
 	@Export("inputStream")
 	InputStream inputStream;
-	@ObfuscatedName("s")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = 2040579907
+		intValue = -1854638595
 	)
 	@Export("capacity")
 	int capacity;
-	@ObfuscatedName("a")
+	@ObfuscatedName("m")
 	@Export("buffer")
 	byte[] buffer;
-	@ObfuscatedName("o")
+	@ObfuscatedName("t")
 	@ObfuscatedGetter(
-		intValue = 1771772075
+		intValue = 1353886439
 	)
 	@Export("position")
 	int position;
-	@ObfuscatedName("g")
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = -207794261
+		intValue = 980101141
 	)
 	@Export("limit")
 	int limit;
-	@ObfuscatedName("e")
+	@ObfuscatedName("j")
 	@Export("exception")
 	IOException exception;
 
@@ -52,10 +59,10 @@ public class BufferedSource implements Runnable {
 		this.thread.start();
 	}
 
-	@ObfuscatedName("i")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
 		descriptor = "(II)Z",
-		garbageValue = "529289225"
+		garbageValue = "1211615101"
 	)
 	@Export("isAvailable")
 	boolean isAvailable(int var1) throws IOException {
@@ -86,10 +93,10 @@ public class BufferedSource implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		descriptor = "(B)I",
-		garbageValue = "-50"
+		descriptor = "(I)I",
+		garbageValue = "-146970254"
 	)
 	@Export("available")
 	int available() throws IOException {
@@ -110,10 +117,10 @@ public class BufferedSource implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("s")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
 		descriptor = "(B)I",
-		garbageValue = "-42"
+		garbageValue = "52"
 	)
 	@Export("readUnsignedByte")
 	int readUnsignedByte() throws IOException {
@@ -133,10 +140,10 @@ public class BufferedSource implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("a")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		descriptor = "([BIIS)I",
-		garbageValue = "128"
+		descriptor = "([BIIB)I",
+		garbageValue = "126"
 	)
 	@Export("read")
 	int read(byte[] var1, int var2, int var3) throws IOException {
@@ -174,10 +181,10 @@ public class BufferedSource implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "-885928224"
+		garbageValue = "1858620597"
 	)
 	@Export("close")
 	void close() {
@@ -244,12 +251,153 @@ public class BufferedSource implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("s")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "([Ljava/lang/String;[II)V",
-		garbageValue = "1983432139"
+		descriptor = "(ILjava/lang/String;Llf;II)Liw;",
+		garbageValue = "821161285"
 	)
-	public static void method6301(String[] var0, int[] var1) {
-		class122.method2599(var0, var1, 0, var0.length - 1);
+	public static PacketBufferNode method6527(int var0, String var1, Language var2, int var3) {
+		PacketBufferNode var4 = HitSplatDefinition.getPacketBufferNode(ClientPacket.field2897, Client.packetWriter.isaacCipher);
+		var4.packetBuffer.writeByte(0);
+		int var5 = var4.packetBuffer.offset;
+		var4.packetBuffer.writeByte(var0);
+		String var6 = var1.toLowerCase();
+		byte var7 = 0;
+		if (var6.startsWith("yellow:")) {
+			var7 = 0;
+			var1 = var1.substring("yellow:".length());
+		} else if (var6.startsWith("red:")) {
+			var7 = 1;
+			var1 = var1.substring("red:".length());
+		} else if (var6.startsWith("green:")) {
+			var7 = 2;
+			var1 = var1.substring("green:".length());
+		} else if (var6.startsWith("cyan:")) {
+			var7 = 3;
+			var1 = var1.substring("cyan:".length());
+		} else if (var6.startsWith("purple:")) {
+			var7 = 4;
+			var1 = var1.substring("purple:".length());
+		} else if (var6.startsWith("white:")) {
+			var7 = 5;
+			var1 = var1.substring("white:".length());
+		} else if (var6.startsWith("flash1:")) {
+			var7 = 6;
+			var1 = var1.substring("flash1:".length());
+		} else if (var6.startsWith("flash2:")) {
+			var7 = 7;
+			var1 = var1.substring("flash2:".length());
+		} else if (var6.startsWith("flash3:")) {
+			var7 = 8;
+			var1 = var1.substring("flash3:".length());
+		} else if (var6.startsWith("glow1:")) {
+			var7 = 9;
+			var1 = var1.substring("glow1:".length());
+		} else if (var6.startsWith("glow2:")) {
+			var7 = 10;
+			var1 = var1.substring("glow2:".length());
+		} else if (var6.startsWith("glow3:")) {
+			var7 = 11;
+			var1 = var1.substring("glow3:".length());
+		} else if (var2 != Language.Language_EN) {
+			if (var6.startsWith("yellow:")) {
+				var7 = 0;
+				var1 = var1.substring("yellow:".length());
+			} else if (var6.startsWith("red:")) {
+				var7 = 1;
+				var1 = var1.substring("red:".length());
+			} else if (var6.startsWith("green:")) {
+				var7 = 2;
+				var1 = var1.substring("green:".length());
+			} else if (var6.startsWith("cyan:")) {
+				var7 = 3;
+				var1 = var1.substring("cyan:".length());
+			} else if (var6.startsWith("purple:")) {
+				var7 = 4;
+				var1 = var1.substring("purple:".length());
+			} else if (var6.startsWith("white:")) {
+				var7 = 5;
+				var1 = var1.substring("white:".length());
+			} else if (var6.startsWith("flash1:")) {
+				var7 = 6;
+				var1 = var1.substring("flash1:".length());
+			} else if (var6.startsWith("flash2:")) {
+				var7 = 7;
+				var1 = var1.substring("flash2:".length());
+			} else if (var6.startsWith("flash3:")) {
+				var7 = 8;
+				var1 = var1.substring("flash3:".length());
+			} else if (var6.startsWith("glow1:")) {
+				var7 = 9;
+				var1 = var1.substring("glow1:".length());
+			} else if (var6.startsWith("glow2:")) {
+				var7 = 10;
+				var1 = var1.substring("glow2:".length());
+			} else if (var6.startsWith("glow3:")) {
+				var7 = 11;
+				var1 = var1.substring("glow3:".length());
+			}
+		}
+
+		var6 = var1.toLowerCase();
+		byte var8 = 0;
+		if (var6.startsWith("wave:")) {
+			var8 = 1;
+			var1 = var1.substring("wave:".length());
+		} else if (var6.startsWith("wave2:")) {
+			var8 = 2;
+			var1 = var1.substring("wave2:".length());
+		} else if (var6.startsWith("shake:")) {
+			var8 = 3;
+			var1 = var1.substring("shake:".length());
+		} else if (var6.startsWith("scroll:")) {
+			var8 = 4;
+			var1 = var1.substring("scroll:".length());
+		} else if (var6.startsWith("slide:")) {
+			var8 = 5;
+			var1 = var1.substring("slide:".length());
+		} else if (var2 != Language.Language_EN) {
+			if (var6.startsWith("wave:")) {
+				var8 = 1;
+				var1 = var1.substring("wave:".length());
+			} else if (var6.startsWith("wave2:")) {
+				var8 = 2;
+				var1 = var1.substring("wave2:".length());
+			} else if (var6.startsWith("shake:")) {
+				var8 = 3;
+				var1 = var1.substring("shake:".length());
+			} else if (var6.startsWith("scroll:")) {
+				var8 = 4;
+				var1 = var1.substring("scroll:".length());
+			} else if (var6.startsWith("slide:")) {
+				var8 = 5;
+				var1 = var1.substring("slide:".length());
+			}
+		}
+
+		var4.packetBuffer.writeByte(var7);
+		var4.packetBuffer.writeByte(var8);
+		class370.method6755(var4.packetBuffer, var1);
+		if (var0 == class282.field3379.rsOrdinal()) {
+			var4.packetBuffer.writeByte(var3);
+		}
+
+		var4.packetBuffer.method7357(var4.packetBuffer.offset - var5);
+		return var4;
+	}
+
+	@ObfuscatedName("j")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "843929154"
+	)
+	static void method6516() {
+		Iterator var0 = Messages.Messages_hashTable.iterator();
+
+		while (var0.hasNext()) {
+			Message var1 = (Message)var0.next();
+			var1.clearIsFromIgnored();
+		}
+
 	}
 }
