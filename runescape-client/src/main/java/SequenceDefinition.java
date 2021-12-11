@@ -328,9 +328,9 @@ public class SequenceDefinition extends DualNode {
 				var5 = var1.toSharedSequenceModel(!var6.hasAlphaTransform(var2));
 				var3 &= 3;
 				if (var3 == 1) {
-					var5.method4190();
+					var5.rotateY270Ccw();
 				} else if (var3 == 2) {
-					var5.method4206();
+					var5.rotateY180();
 				} else if (var3 == 3) {
 					var5.rotateY90Ccw();
 				}
@@ -339,9 +339,9 @@ public class SequenceDefinition extends DualNode {
 				if (var3 == 1) {
 					var5.rotateY90Ccw();
 				} else if (var3 == 2) {
-					var5.method4206();
+					var5.rotateY180();
 				} else if (var3 == 3) {
-					var5.method4190();
+					var5.rotateY270Ccw();
 				}
 
 				return var5;
@@ -354,9 +354,9 @@ public class SequenceDefinition extends DualNode {
 				var5 = var1.toSharedSequenceModel(!var4.method2695());
 				var3 &= 3;
 				if (var3 == 1) {
-					var5.method4190();
+					var5.rotateY270Ccw();
 				} else if (var3 == 2) {
-					var5.method4206();
+					var5.rotateY180();
 				} else if (var3 == 3) {
 					var5.rotateY90Ccw();
 				}
@@ -365,9 +365,9 @@ public class SequenceDefinition extends DualNode {
 				if (var3 == 1) {
 					var5.rotateY90Ccw();
 				} else if (var3 == 2) {
-					var5.method4206();
+					var5.rotateY180();
 				} else if (var3 == 3) {
-					var5.method4190();
+					var5.rotateY270Ccw();
 				}
 
 				return var5;

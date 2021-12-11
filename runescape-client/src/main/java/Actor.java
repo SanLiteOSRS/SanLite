@@ -175,7 +175,8 @@ public abstract class Actor extends Renderable {
 	@ObfuscatedGetter(
 		intValue = 892078037
 	)
-	int field1121;
+	@Export("movementFrameCycle")
+	int movementFrameCycle;
 	@ObfuscatedName("bv")
 	@ObfuscatedGetter(
 		intValue = -1419164143
@@ -375,7 +376,7 @@ public abstract class Actor extends Renderable {
 		this.field1122 = -1;
 		this.movementSequence = -1;
 		this.movementFrame = 0;
-		this.field1121 = 0;
+		this.movementFrameCycle = 0;
 		this.sequence = -1;
 		this.sequenceFrame = 0;
 		this.sequenceFrameCycle = 0;
