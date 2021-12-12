@@ -1,24 +1,35 @@
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
+import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 import java.util.Hashtable;
 import net.runelite.mapping.Export;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.ScriptOpcodes;
 import org.bouncycastle.crypto.tls.DefaultTlsClient;
 import org.bouncycastle.crypto.tls.TlsAuthentication;
 
-@ObfuscatedName("t")
+@ObfuscatedName("h")
 class class13 extends DefaultTlsClient {
+	@ObfuscatedName("t")
+	@Export("cacheDir")
+	public static File cacheDir;
+	@ObfuscatedName("d")
+	@ObfuscatedGetter(
+		intValue = 1540402679
+	)
+	@Export("Interpreter_stringStackSize")
+	static int Interpreter_stringStackSize;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Lk;"
+		descriptor = "Ld;"
 	)
 	final class12 this$1;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lk;)V"
+		descriptor = "(Ld;)V"
 	)
 	class13(class12 var1) {
 		this.this$1 = var1;
@@ -46,119 +57,124 @@ class class13 extends DefaultTlsClient {
 		return new class11(this);
 	}
 
-	@ObfuscatedName("i")
+	@ObfuscatedName("c")
+	public static String method195(long var0) {
+		Calendar.Calendar_calendar.setTime(new Date(var0));
+		int var2 = Calendar.Calendar_calendar.get(7);
+		int var3 = Calendar.Calendar_calendar.get(5);
+		int var4 = Calendar.Calendar_calendar.get(2);
+		int var5 = Calendar.Calendar_calendar.get(1);
+		int var6 = Calendar.Calendar_calendar.get(11);
+		int var7 = Calendar.Calendar_calendar.get(12);
+		int var8 = Calendar.Calendar_calendar.get(13);
+		return Calendar.DAYS_OF_THE_WEEK[var2 - 1] + ", " + var3 / 10 + var3 % 10 + "-" + Calendar.MONTH_NAMES_ENGLISH_GERMAN[0][var4] + "-" + var5 + " " + var6 / 10 + var6 % 10 + ":" + var7 / 10 + var7 % 10 + ":" + var8 / 10 + var8 % 10 + " GMT";
+	}
+
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		descriptor = "(Lop;Lnf;I)Lnf;",
-		garbageValue = "261617264"
+		descriptor = "(Ldn;[F[FI)V",
+		garbageValue = "1644015096"
 	)
-	@Export("readStringIntParameters")
-	static final IterableNodeHashTable readStringIntParameters(Buffer var0, IterableNodeHashTable var1) {
-		int var2 = var0.readUnsignedByte();
+	static void method202(class115 var0, float[] var1, float[] var2) {
+		if (var0 != null) {
+			float var3 = var1[3] - var1[0];
+			if ((double)var3 != 0.0D) {
+				float var4 = var1[1] - var1[0];
+				float var5 = var1[2] - var1[0];
+				Float var6 = var4 / var3;
+				Float var7 = var5 / var3;
+				var0.field1398 = var6 == 0.33333334F && var7 == 0.6666667F;
+				float var8 = var6;
+				float var9 = var7;
+				if ((double)var6 < 0.0D) {
+					var6 = 0.0F;
+				}
+
+				if ((double)var7 > 1.0D) {
+					var7 = 1.0F;
+				}
+
+				if ((double)var6 > 1.0D || var7 < -1.0F) {
+					Tile.method3844(var6, var7);
+				}
+
+				if (var6 != var8) {
+					var1[1] = var1[0] + var6 * var3;
+					if (0.0D != (double)var8) {
+						var2[1] = var2[0] + (var2[1] - var2[0]) * var6 / var8;
+					}
+				}
+
+				if (var7 != var9) {
+					var1[2] = var1[0] + var7 * var3;
+					if ((double)var9 != 1.0D) {
+						var2[2] = (float)((double)var2[3] - (double)(var2[3] - var2[2]) * (1.0D - (double)var7) / (1.0D - (double)var9));
+					}
+				}
+
+				var0.field1406 = var1[0];
+				var0.field1394 = var1[3];
+				float var10 = var6;
+				float var11 = var7;
+				float[] var12 = var0.field1401;
+				float var13 = var10 - 0.0F;
+				float var14 = var11 - var10;
+				float var15 = 1.0F - var11;
+				float var16 = var14 - var13;
+				var12[3] = var15 - var14 - var16;
+				var12[2] = var16 + var16 + var16;
+				var12[1] = var13 + var13 + var13;
+				var12[0] = 0.0F;
+				var13 = var2[0];
+				var14 = var2[1];
+				var15 = var2[2];
+				var16 = var2[3];
+				float[] var17 = var0.field1402;
+				float var18 = var14 - var13;
+				float var19 = var15 - var14;
+				float var20 = var16 - var15;
+				float var21 = var19 - var18;
+				var17[3] = var20 - var19 - var21;
+				var17[2] = var21 + var21 + var21;
+				var17[1] = var18 + var18 + var18;
+				var17[0] = var13;
+			}
+		}
+	}
+
+	@ObfuscatedName("y")
+	@ObfuscatedSignature(
+		descriptor = "(ILbn;ZB)I",
+		garbageValue = "-18"
+	)
+	static int method201(int var0, Script var1, boolean var2) {
 		int var3;
-		if (var1 == null) {
-			int var4 = var2 - 1;
-			var4 |= var4 >>> 1;
-			var4 |= var4 >>> 2;
-			var4 |= var4 >>> 4;
-			var4 |= var4 >>> 8;
-			var4 |= var4 >>> 16;
-			var3 = var4 + 1;
-			var1 = new IterableNodeHashTable(var3);
-		}
-
-		for (var3 = 0; var3 < var2; ++var3) {
-			boolean var7 = var0.readUnsignedByte() == 1;
-			int var5 = var0.readMedium();
-			Object var6;
-			if (var7) {
-				var6 = new ObjectNode(var0.readStringCp1252NullTerminated());
-			} else {
-				var6 = new IntegerNode(var0.readInt());
-			}
-
-			var1.put((Node)var6, (long)var5);
-		}
-
-		return var1;
-	}
-
-	@ObfuscatedName("r")
-	@ObfuscatedSignature(
-		descriptor = "(ILbp;ZI)I",
-		garbageValue = "719840218"
-	)
-	static int method173(int var0, Script var1, boolean var2) {
-		Widget var3 = UserComparator9.getWidget(Interpreter.Interpreter_intStack[--class14.Interpreter_intStackSize]);
-		if (var0 == ScriptOpcodes.IF_GETTARGETMASK) {
-			Interpreter.Interpreter_intStack[++class14.Interpreter_intStackSize - 1] = SecureRandomCallable.Widget_unpackTargetMask(PendingSpawn.getWidgetFlags(var3));
+		if (var0 == 3500) {
+			var3 = Interpreter.Interpreter_intStack[--IsaacCipher.Interpreter_intStackSize];
+			Interpreter.Interpreter_intStack[++IsaacCipher.Interpreter_intStackSize - 1] = DevicePcmPlayerProvider.method398(var3) ? 1 : 0;
 			return 1;
-		} else if (var0 != ScriptOpcodes.IF_GETOP) {
-			if (var0 == ScriptOpcodes.IF_GETOPBASE) {
-				if (var3.dataText == null) {
-					Interpreter.Interpreter_stringStack[++class295.Interpreter_stringStackSize - 1] = "";
-				} else {
-					Interpreter.Interpreter_stringStack[++class295.Interpreter_stringStackSize - 1] = var3.dataText;
-				}
-
-				return 1;
-			} else {
-				return 2;
-			}
+		} else if (var0 == 3501) {
+			var3 = Interpreter.Interpreter_intStack[--IsaacCipher.Interpreter_intStackSize];
+			Interpreter.Interpreter_intStack[++IsaacCipher.Interpreter_intStackSize - 1] = StructComposition.method3424(var3) ? 1 : 0;
+			return 1;
+		} else if (var0 == 3502) {
+			var3 = Interpreter.Interpreter_intStack[--IsaacCipher.Interpreter_intStackSize];
+			Interpreter.Interpreter_intStack[++IsaacCipher.Interpreter_intStackSize - 1] = class117.method2676(var3) ? 1 : 0;
+			return 1;
 		} else {
-			int var4 = Interpreter.Interpreter_intStack[--class14.Interpreter_intStackSize];
-			--var4;
-			if (var3.actions != null && var4 < var3.actions.length && var3.actions[var4] != null) {
-				Interpreter.Interpreter_stringStack[++class295.Interpreter_stringStackSize - 1] = var3.actions[var4];
-			} else {
-				Interpreter.Interpreter_stringStack[++class295.Interpreter_stringStackSize - 1] = "";
-			}
-
-			return 1;
+			return 2;
 		}
 	}
 
-	@ObfuscatedName("jl")
+	@ObfuscatedName("jy")
 	@ObfuscatedSignature(
-		descriptor = "(Ljf;IIIIIII)V",
-		garbageValue = "909796147"
+		descriptor = "(IIIIIIII)V",
+		garbageValue = "847874180"
 	)
-	static final void method177(Widget var0, int var1, int var2, int var3, int var4, int var5, int var6) {
-		if (Client.field465) {
-			Client.alternativeScrollbarWidth = 32;
-		} else {
-			Client.alternativeScrollbarWidth = 0;
+	@Export("updateRootInterface")
+	static final void updateRootInterface(int var0, int var1, int var2, int var3, int var4, int var5, int var6) {
+		if (class242.loadInterface(var0)) {
+			FriendSystem.updateInterface(class81.Widget_interfaceComponents[var0], -1, var1, var2, var3, var4, var5, var6);
 		}
-
-		Client.field465 = false;
-		int var7;
-		if (MouseHandler.MouseHandler_currentButton == 1 || !ApproximateRouteStrategy.mouseCam && MouseHandler.MouseHandler_currentButton == 4) {
-			if (var5 >= var1 && var5 < var1 + 16 && var6 >= var2 && var6 < var2 + 16) {
-				var0.scrollY -= 4;
-				class184.invalidateWidget(var0);
-			} else if (var5 >= var1 && var5 < var1 + 16 && var6 >= var3 + var2 - 16 && var6 < var3 + var2) {
-				var0.scrollY += 4;
-				class184.invalidateWidget(var0);
-			} else if (var5 >= var1 - Client.alternativeScrollbarWidth && var5 < Client.alternativeScrollbarWidth + var1 + 16 && var6 >= var2 + 16 && var6 < var3 + var2 - 16) {
-				var7 = var3 * (var3 - 32) / var4;
-				if (var7 < 8) {
-					var7 = 8;
-				}
-
-				int var8 = var6 - var2 - 16 - var7 / 2;
-				int var9 = var3 - 32 - var7;
-				var0.scrollY = var8 * (var4 - var3) / var9;
-				class184.invalidateWidget(var0);
-				Client.field465 = true;
-			}
-		}
-
-		if (Client.mouseWheelRotation != 0) {
-			var7 = var0.width;
-			if (var5 >= var1 - var7 && var6 >= var2 && var5 < var1 + 16 && var6 <= var3 + var2) {
-				var0.scrollY += Client.mouseWheelRotation * 45;
-				class184.invalidateWidget(var0);
-			}
-		}
-
 	}
 }

@@ -3,10 +3,25 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("dq")
+@ObfuscatedName("dm")
 @Implements("UserComparator5")
 public class UserComparator5 extends AbstractUserComparator {
-	@ObfuscatedName("i")
+	@ObfuscatedName("rk")
+	@ObfuscatedSignature(
+		descriptor = "Lei;"
+	)
+	@Export("guestClanChannel")
+	static ClanChannel guestClanChannel;
+	@ObfuscatedName("d")
+	@Export("Tiles_hueMultiplier")
+	static int[] Tiles_hueMultiplier;
+	@ObfuscatedName("ij")
+	@ObfuscatedSignature(
+		descriptor = "[Lpl;"
+	)
+	@Export("crossSprites")
+	static SpritePixels[] crossSprites;
+	@ObfuscatedName("c")
 	@Export("reversed")
 	final boolean reversed;
 
@@ -14,10 +29,10 @@ public class UserComparator5 extends AbstractUserComparator {
 		this.reversed = var1;
 	}
 
-	@ObfuscatedName("i")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(Lmt;Lmt;I)I",
-		garbageValue = "-1513288255"
+		descriptor = "(Lmp;Lmp;I)I",
+		garbageValue = "-1224894671"
 	)
 	@Export("compareBuddy")
 	int compareBuddy(Buddy var1, Buddy var2) {
@@ -36,21 +51,48 @@ public class UserComparator5 extends AbstractUserComparator {
 		return this.compareBuddy((Buddy)var1, (Buddy)var2);
 	}
 
-	@ObfuscatedName("i")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(Lko;IIB)[Loe;",
-		garbageValue = "2"
+		descriptor = "(II)Lgn;",
+		garbageValue = "354960359"
 	)
-	public static IndexedSprite[] method2478(AbstractArchive var0, int var1, int var2) {
-		byte[] var4 = var0.takeFile(var1, var2);
-		boolean var3;
-		if (var4 == null) {
-			var3 = false;
+	@Export("SequenceDefinition_get")
+	public static SequenceDefinition SequenceDefinition_get(int var0) {
+		SequenceDefinition var1 = (SequenceDefinition)SequenceDefinition.SequenceDefinition_cached.get((long)var0);
+		if (var1 != null) {
+			return var1;
 		} else {
-			Script.SpriteBuffer_decode(var4);
-			var3 = true;
-		}
+			byte[] var2 = Canvas.SequenceDefinition_archive.takeFile(12, var0);
+			var1 = new SequenceDefinition();
+			if (var2 != null) {
+				var1.decode(new Buffer(var2));
+			}
 
-		return !var3 ? null : AbstractWorldMapData.method3958();
+			var1.postDecode();
+			SequenceDefinition.SequenceDefinition_cached.put(var1, (long)var0);
+			return var1;
+		}
+	}
+
+	@ObfuscatedName("b")
+	@ObfuscatedSignature(
+		descriptor = "(IB)Ljava/lang/String;",
+		garbageValue = "83"
+	)
+	@Export("colorStartTag")
+	static String colorStartTag(int var0) {
+		return "<col=" + Integer.toHexString(var0) + ">";
+	}
+
+	@ObfuscatedName("g")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "-1519607580"
+	)
+	public static void method2524() {
+		ObjectComposition.ObjectDefinition_cached.clear();
+		ObjectComposition.ObjectDefinition_cachedModelData.clear();
+		ObjectComposition.ObjectDefinition_cachedEntities.clear();
+		ObjectComposition.ObjectDefinition_cachedModels.clear();
 	}
 }

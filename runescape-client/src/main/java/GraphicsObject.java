@@ -3,72 +3,73 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("bo")
+@ObfuscatedName("bs")
 @Implements("GraphicsObject")
 public class GraphicsObject extends Renderable {
-	@ObfuscatedName("i")
+	@ObfuscatedName("o")
+	@ObfuscatedSignature(
+		descriptor = "Lku;"
+	)
+	@Export("Widget_spritesArchive")
+	static AbstractArchive Widget_spritesArchive;
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = 193750031
+		intValue = -1199566727
 	)
 	@Export("id")
 	int id;
-	@ObfuscatedName("w")
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = -198143099
+		intValue = -1643038475
 	)
 	@Export("cycleStart")
 	int cycleStart;
-	@ObfuscatedName("s")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = 2072861117
+		intValue = 575956663
 	)
 	@Export("plane")
 	int plane;
-	@ObfuscatedName("a")
+	@ObfuscatedName("m")
 	@ObfuscatedGetter(
-		intValue = 1279579483
+		intValue = -1504982005
 	)
 	@Export("x")
 	int x;
-	@ObfuscatedName("o")
+	@ObfuscatedName("t")
 	@ObfuscatedGetter(
-		intValue = -817954883
+		intValue = -1721998219
 	)
 	@Export("y")
 	int y;
-	@ObfuscatedName("g")
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = -2037596073
+		intValue = 826937289
 	)
 	@Export("height")
 	int height;
-	@ObfuscatedName("e")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
-		descriptor = "Lfm;"
+		descriptor = "Lgn;"
 	)
 	@Export("sequenceDefinition")
 	SequenceDefinition sequenceDefinition;
-	@ObfuscatedName("p")
+	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		intValue = -2011716423
+		intValue = -991958815
 	)
 	@Export("frame")
 	int frame;
-	@ObfuscatedName("j")
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = 639704075
+		intValue = 126754465
 	)
 	@Export("frameCycle")
 	int frameCycle;
-	@ObfuscatedName("b")
+	@ObfuscatedName("r")
 	@Export("isFinished")
 	boolean isFinished;
-
-	public GraphicsObject()
-	{
-	}
 
 	GraphicsObject(int var1, int var2, int var3, int var4, int var5, int var6, int var7) {
 		this.frame = 0;
@@ -80,46 +81,52 @@ public class GraphicsObject extends Renderable {
 		this.y = var4;
 		this.height = var5;
 		this.cycleStart = var7 + var6;
-		int var8 = BZip2State.SpotAnimationDefinition_get(this.id).sequence;
+		int var8 = AccessFile.SpotAnimationDefinition_get(this.id).sequence;
 		if (var8 != -1) {
 			this.isFinished = false;
-			this.sequenceDefinition = MouseHandler.SequenceDefinition_get(var8);
+			this.sequenceDefinition = UserComparator5.SequenceDefinition_get(var8);
 		} else {
 			this.isFinished = true;
 		}
 
 	}
 
-	@ObfuscatedName("i")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
 		descriptor = "(IB)V",
-		garbageValue = "98"
+		garbageValue = "-41"
 	)
 	@Export("advance")
 	final void advance(int var1) {
 		if (!this.isFinished) {
 			this.frameCycle += var1;
-
-			while (this.frameCycle > this.sequenceDefinition.frameLengths[this.frame]) {
-				this.frameCycle -= this.sequenceDefinition.frameLengths[this.frame];
-				++this.frame;
-				if (this.frame >= this.sequenceDefinition.frameIds.length) {
+			if (!this.sequenceDefinition.method3690()) {
+				while (this.frameCycle > this.sequenceDefinition.frameLengths[this.frame]) {
+					this.frameCycle -= this.sequenceDefinition.frameLengths[this.frame];
+					++this.frame;
+					if (this.frame >= this.sequenceDefinition.frameIds.length) {
+						this.isFinished = true;
+						break;
+					}
+				}
+			} else {
+				this.frame += var1;
+				if (this.frame >= this.sequenceDefinition.method3647()) {
 					this.isFinished = true;
-					break;
 				}
 			}
 
 		}
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		descriptor = "(I)Lhl;",
-		garbageValue = "461766541"
+		descriptor = "(I)Lgo;",
+		garbageValue = "202861607"
 	)
 	@Export("getModel")
 	protected final Model getModel() {
-		SpotAnimationDefinition var1 = BZip2State.SpotAnimationDefinition_get(this.id);
+		SpotAnimationDefinition var1 = AccessFile.SpotAnimationDefinition_get(this.id);
 		Model var2;
 		if (!this.isFinished) {
 			var2 = var1.getModel(this.frame);
@@ -130,131 +137,65 @@ public class GraphicsObject extends Renderable {
 		return var2 == null ? null : var2;
 	}
 
-	@ObfuscatedName("u")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		descriptor = "(ILbp;ZI)I",
-		garbageValue = "-2056514813"
+		descriptor = "(IIIII)V",
+		garbageValue = "1965398967"
 	)
-	static int method1896(int var0, Script var1, boolean var2) {
-		Widget var3 = var2 ? class120.scriptDotWidget : Frames.scriptActiveWidget;
-		if (var0 == ScriptOpcodes.CC_GETTARGETMASK) {
-			Interpreter.Interpreter_intStack[++class14.Interpreter_intStackSize - 1] = SecureRandomCallable.Widget_unpackTargetMask(PendingSpawn.getWidgetFlags(var3));
-			return 1;
-		} else if (var0 != ScriptOpcodes.CC_GETOP) {
-			if (var0 == ScriptOpcodes.CC_GETOPBASE) {
-				if (var3.dataText == null) {
-					Interpreter.Interpreter_stringStack[++class295.Interpreter_stringStackSize - 1] = "";
-				} else {
-					Interpreter.Interpreter_stringStack[++class295.Interpreter_stringStackSize - 1] = var3.dataText;
-				}
+	@Export("itemContainerSetItem")
+	static void itemContainerSetItem(int var0, int var1, int var2, int var3) {
+		ItemContainer var4 = (ItemContainer)ItemContainer.itemContainers.get((long)var0);
+		if (var4 == null) {
+			var4 = new ItemContainer();
+			ItemContainer.itemContainers.put(var4, (long)var0);
+		}
 
-				return 1;
-			} else {
-				return 2;
-			}
-		} else {
-			int var4 = Interpreter.Interpreter_intStack[--class14.Interpreter_intStackSize];
-			--var4;
-			if (var3.actions != null && var4 < var3.actions.length && var3.actions[var4] != null) {
-				Interpreter.Interpreter_stringStack[++class295.Interpreter_stringStackSize - 1] = var3.actions[var4];
-			} else {
-				Interpreter.Interpreter_stringStack[++class295.Interpreter_stringStackSize - 1] = "";
+		if (var4.ids.length <= var1) {
+			int[] var5 = new int[var1 + 1];
+			int[] var6 = new int[var1 + 1];
+
+			int var7;
+			for (var7 = 0; var7 < var4.ids.length; ++var7) {
+				var5[var7] = var4.ids[var7];
+				var6[var7] = var4.quantities[var7];
 			}
 
-			return 1;
+			for (var7 = var4.ids.length; var7 < var1; ++var7) {
+				var5[var7] = -1;
+				var6[var7] = 0;
+			}
+
+			var4.ids = var5;
+			var4.quantities = var6;
+		}
+
+		var4.ids[var1] = var2;
+		var4.quantities[var1] = var3;
+	}
+
+	@ObfuscatedName("j")
+	@ObfuscatedSignature(
+		descriptor = "(B)V",
+		garbageValue = "-76"
+	)
+	public static void method1956() {
+		if (NetCache.NetCache_socket != null) {
+			NetCache.NetCache_socket.close();
+		}
+
+	}
+
+	@ObfuscatedName("kl")
+	@ObfuscatedSignature(
+		descriptor = "(II)V",
+		garbageValue = "54739776"
+	)
+	static final void method1955(int var0) {
+		if (class242.loadInterface(var0)) {
+			class328.drawModelComponents(class81.Widget_interfaceComponents[var0], -1);
 		}
 	}
 
-	@ObfuscatedName("iz")
-	@ObfuscatedSignature(
-		descriptor = "(Lcx;IIII)V",
-		garbageValue = "1361246201"
-	)
-	@Export("addPlayerToMenu")
-	static final void addPlayerToMenu(Player var0, int var1, int var2, int var3) {
-		if (HealthBarDefinition.localPlayer != var0) {
-			if (Client.menuOptionsCount < 400) {
-				String var4;
-				int var7;
-				if (var0.skillLevel == 0) {
-					String var5 = var0.actions[0] + var0.username + var0.actions[1];
-					var7 = var0.combatLevel;
-					int var8 = HealthBarDefinition.localPlayer.combatLevel;
-					int var9 = var8 - var7;
-					String var6;
-					if (var9 < -9) {
-						var6 = MouseHandler.colorStartTag(16711680);
-					} else if (var9 < -6) {
-						var6 = MouseHandler.colorStartTag(16723968);
-					} else if (var9 < -3) {
-						var6 = MouseHandler.colorStartTag(16740352);
-					} else if (var9 < 0) {
-						var6 = MouseHandler.colorStartTag(16756736);
-					} else if (var9 > 9) {
-						var6 = MouseHandler.colorStartTag(65280);
-					} else if (var9 > 6) {
-						var6 = MouseHandler.colorStartTag(4259584);
-					} else if (var9 > 3) {
-						var6 = MouseHandler.colorStartTag(8453888);
-					} else if (var9 > 0) {
-						var6 = MouseHandler.colorStartTag(12648192);
-					} else {
-						var6 = MouseHandler.colorStartTag(16776960);
-					}
-
-					var4 = var5 + var6 + " " + " (" + "level-" + var0.combatLevel + ")" + var0.actions[2];
-				} else {
-					var4 = var0.actions[0] + var0.username + var0.actions[1] + " " + " (" + "skill-" + var0.skillLevel + ")" + var0.actions[2];
-				}
-
-				int var10;
-				if (Client.isItemSelected == 1) {
-					EnumComposition.insertMenuItemNoShift("Use", Client.selectedItemName + " " + "->" + " " + MouseHandler.colorStartTag(16777215) + var4, 14, var1, var2, var3);
-				} else if (Client.isSpellSelected) {
-					if ((class116.selectedSpellFlags & 8) == 8) {
-						EnumComposition.insertMenuItemNoShift(Client.selectedSpellActionName, Client.selectedSpellName + " " + "->" + " " + MouseHandler.colorStartTag(16777215) + var4, 15, var1, var2, var3);
-					}
-				} else {
-					for (var10 = 7; var10 >= 0; --var10) {
-						if (Client.playerMenuActions[var10] != null) {
-							short var11 = 0;
-							if (Client.playerMenuActions[var10].equalsIgnoreCase("Attack")) {
-								if (Client.playerAttackOption == AttackOption.AttackOption_hidden) {
-									continue;
-								}
-
-								if (AttackOption.AttackOption_alwaysRightClick == Client.playerAttackOption || Client.playerAttackOption == AttackOption.AttackOption_dependsOnCombatLevels && var0.combatLevel > HealthBarDefinition.localPlayer.combatLevel) {
-									var11 = 2000;
-								}
-
-								if (HealthBarDefinition.localPlayer.team != 0 && var0.team != 0) {
-									if (var0.team == HealthBarDefinition.localPlayer.team) {
-										var11 = 2000;
-									} else {
-										var11 = 0;
-									}
-								} else if (AttackOption.field1226 == Client.playerAttackOption && var0.isClanMember()) {
-									var11 = 2000;
-								}
-							} else if (Client.playerOptionsPriorities[var10]) {
-								var11 = 2000;
-							}
-
-							boolean var12 = false;
-							var7 = Client.playerMenuOpcodes[var10] + var11;
-							EnumComposition.insertMenuItemNoShift(Client.playerMenuActions[var10], MouseHandler.colorStartTag(16777215) + var4, var7, var1, var2, var3);
-						}
-					}
-				}
-
-				for (var10 = 0; var10 < Client.menuOptionsCount; ++var10) {
-					if (Client.menuOpcodes[var10] == 23) {
-						Client.menuTargets[var10] = MouseHandler.colorStartTag(16777215) + var4;
-						break;
-					}
-				}
-
-			}
-		}
+	public GraphicsObject() {
 	}
 }

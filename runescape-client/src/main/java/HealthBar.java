@@ -1,27 +1,26 @@
-import java.util.Iterator;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ce")
+@ObfuscatedName("cs")
 @Implements("HealthBar")
 public class HealthBar extends Node {
-	@ObfuscatedName("rt")
-	@ObfuscatedSignature(
-		descriptor = "Lak;"
-	)
-	@Export("pcmPlayer0")
-	static PcmPlayer pcmPlayer0;
 	@ObfuscatedName("s")
+	@ObfuscatedGetter(
+		intValue = -1200843619
+	)
+	static int field1209;
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
 		descriptor = "Lfd;"
 	)
 	@Export("definition")
 	HealthBarDefinition definition;
-	@ObfuscatedName("a")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		descriptor = "Lkf;"
+		descriptor = "Llr;"
 	)
 	@Export("updates")
 	IterableNodeDeque updates;
@@ -34,10 +33,10 @@ public class HealthBar extends Node {
 		this.definition = var1;
 	}
 
-	@ObfuscatedName("i")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(IIIIB)V",
-		garbageValue = "0"
+		descriptor = "(IIIII)V",
+		garbageValue = "2125258753"
 	)
 	@Export("put")
 	void put(int var1, int var2, int var3, int var4) {
@@ -70,10 +69,10 @@ public class HealthBar extends Node {
 		}
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		descriptor = "(II)Lcd;",
-		garbageValue = "655971331"
+		descriptor = "(II)Lcn;",
+		garbageValue = "849241629"
 	)
 	@Export("get")
 	HealthBarUpdate get(int var1) {
@@ -95,56 +94,61 @@ public class HealthBar extends Node {
 		}
 	}
 
-	@ObfuscatedName("s")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		descriptor = "(I)Z",
-		garbageValue = "1027939055"
+		descriptor = "(B)Z",
+		garbageValue = "80"
 	)
 	@Export("isEmpty")
 	boolean isEmpty() {
-		return this.updates.method5633();
+		return this.updates.method5915();
 	}
 
 	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "45"
+		descriptor = "(I)V",
+		garbageValue = "2114195084"
 	)
-	static void method2242() {
-		Iterator var0 = Messages.Messages_hashTable.iterator();
+	static void method2311() {
+		if (Login.Login_username == null || Login.Login_username.length() <= 0) {
+			if (SecureRandomFuture.clientPreferences.rememberedUsername != null) {
+				Login.Login_username = SecureRandomFuture.clientPreferences.rememberedUsername;
+				Client.Login_isUsernameRemembered = true;
+			} else {
+				Client.Login_isUsernameRemembered = false;
+			}
 
-		while (var0.hasNext()) {
-			Message var1 = (Message)var0.next();
-			var1.clearIsFromIgnored();
 		}
-
 	}
 
-	@ObfuscatedName("lq")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;ZS)Ljava/lang/String;",
-		garbageValue = "-17378"
+		descriptor = "(CI)C",
+		garbageValue = "2115145690"
 	)
-	static String method2246(String var0, boolean var1) {
-		String var2 = var1 ? "https://" : "http://";
-		if (Client.gameBuild == 1) {
-			var0 = var0 + "-wtrc";
-		} else if (Client.gameBuild == 2) {
-			var0 = var0 + "-wtqa";
-		} else if (Client.gameBuild == 3) {
-			var0 = var0 + "-wtwip";
-		} else if (Client.gameBuild == 5) {
-			var0 = var0 + "-wti";
-		} else if (Client.gameBuild == 4) {
-			var0 = "local";
-		}
+	static char method2313(char var0) {
+		return var0 != 181 && var0 != 402 ? Character.toTitleCase(var0) : var0;
+	}
 
-		String var3 = "";
-		if (UserComparator3.field1316 != null) {
-			var3 = "/p=" + UserComparator3.field1316;
-		}
+	@ObfuscatedName("iq")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "517043711"
+	)
+	@Export("Widget_runOnTargetLeave")
+	static void Widget_runOnTargetLeave() {
+		if (Client.isSpellSelected) {
+			Widget var0 = class126.getWidgetChild(class20.selectedSpellWidget, Client.selectedSpellChildIndex);
+			if (var0 != null && var0.onTargetLeave != null) {
+				ScriptEvent var1 = new ScriptEvent();
+				var1.widget = var0;
+				var1.args = var0.onTargetLeave;
+				class285.runScriptEvent(var1);
+			}
 
-		String var4 = "runescape.com";
-		return var2 + var0 + "." + var4 + "/l=" + MouseHandler.clientLanguage + "/a=" + TextureProvider.field2483 + var3 + "/";
+			Client.field633 = -1;
+			Client.isSpellSelected = false;
+			SecureRandomCallable.invalidateWidget(var0);
+		}
 	}
 }

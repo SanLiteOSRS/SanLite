@@ -1,27 +1,17 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("dn")
+@ObfuscatedName("do")
 @Implements("BuddyRankComparator")
 public class BuddyRankComparator extends AbstractUserComparator {
-	@ObfuscatedName("rd")
+	@ObfuscatedName("pw")
 	@ObfuscatedSignature(
-		descriptor = "Las;"
+		descriptor = "Lnq;"
 	)
-	@Export("pcmStreamMixer")
-	static PcmStreamMixer pcmStreamMixer;
-	@ObfuscatedName("sn")
-	@ObfuscatedGetter(
-		intValue = -319897600
-	)
-	static int field1333;
-	@ObfuscatedName("p")
-	@Export("ItemDefinition_inMembersWorld")
-	public static boolean ItemDefinition_inMembersWorld;
-	@ObfuscatedName("i")
+	static class370 field1342;
+	@ObfuscatedName("c")
 	@Export("reversed")
 	final boolean reversed;
 
@@ -29,10 +19,10 @@ public class BuddyRankComparator extends AbstractUserComparator {
 		this.reversed = var1;
 	}
 
-	@ObfuscatedName("i")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(Lmt;Lmt;B)I",
-		garbageValue = "1"
+		descriptor = "(Lmp;Lmp;I)I",
+		garbageValue = "-1364999182"
 	)
 	@Export("compareBuddy")
 	int compareBuddy(Buddy var1, Buddy var2) {
@@ -47,59 +37,17 @@ public class BuddyRankComparator extends AbstractUserComparator {
 		return this.compareBuddy((Buddy)var1, (Buddy)var2);
 	}
 
-	@ObfuscatedName("y")
+	@ObfuscatedName("ld")
 	@ObfuscatedSignature(
-		descriptor = "(Lko;III)Z",
-		garbageValue = "2134321189"
+		descriptor = "(IIIZI)V",
+		garbageValue = "1683360444"
 	)
-	@Export("SpriteBuffer_loadSpritesFromArchive")
-	public static boolean SpriteBuffer_loadSpritesFromArchive(AbstractArchive var0, int var1, int var2) {
-		byte[] var3 = var0.takeFile(var1, var2);
-		if (var3 == null) {
-			return false;
-		} else {
-			Script.SpriteBuffer_decode(var3);
-			return true;
-		}
-	}
-
-	@ObfuscatedName("gm")
-	@ObfuscatedSignature(
-		descriptor = "(S)V",
-		garbageValue = "459"
-	)
-	static void method2500() {
-		int var0 = Players.Players_count;
-		int[] var1 = Players.Players_indices;
-
-		for (int var2 = 0; var2 < var0; ++var2) {
-			if (var1[var2] != Client.combatTargetPlayerIndex && var1[var2] != Client.localPlayerIndex) {
-				class132.addPlayerToScene(Client.players[var1[var2]], true);
-			}
-		}
-
-	}
-
-	@ObfuscatedName("le")
-	@ObfuscatedSignature(
-		descriptor = "(Ljf;I)Ljf;",
-		garbageValue = "1540120138"
-	)
-	static Widget method2501(Widget var0) {
-		int var2 = PendingSpawn.getWidgetFlags(var0);
-		int var1 = var2 >> 17 & 7;
-		int var3 = var1;
-		if (var1 == 0) {
-			return null;
-		} else {
-			for (int var4 = 0; var4 < var3; ++var4) {
-				var0 = UserComparator9.getWidget(var0.parentId);
-				if (var0 == null) {
-					return null;
-				}
-			}
-
-			return var0;
-		}
+	public static void method2547(int var0, int var1, int var2, boolean var3) {
+		PacketBufferNode var4 = HitSplatDefinition.getPacketBufferNode(ClientPacket.field2819, Client.packetWriter.isaacCipher);
+		var4.packetBuffer.method7527(var3 ? Client.field607 : 0);
+		var4.packetBuffer.method7349(var0);
+		var4.packetBuffer.method7343(var2);
+		var4.packetBuffer.writeShort(var1);
+		Client.packetWriter.addNode(var4);
 	}
 }

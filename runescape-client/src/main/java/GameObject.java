@@ -1,93 +1,104 @@
-import java.io.IOException;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("hv")
+@ObfuscatedName("hl")
 @Implements("GameObject")
 public final class GameObject {
-	@ObfuscatedName("i")
+	@ObfuscatedName("fk")
 	@ObfuscatedGetter(
-		intValue = 704202637
+		intValue = -1234198713
+	)
+	@Export("worldPort")
+	static int worldPort;
+	@ObfuscatedName("ma")
+	@ObfuscatedGetter(
+		intValue = -1786079239
+	)
+	@Export("menuWidth")
+	static int menuWidth;
+	@ObfuscatedName("c")
+	@ObfuscatedGetter(
+		intValue = -1089622701
 	)
 	@Export("plane")
 	int plane;
-	@ObfuscatedName("w")
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = -494879285
+		intValue = -465774691
 	)
 	@Export("height")
 	int height;
-	@ObfuscatedName("s")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = 211210251
+		intValue = 1923590497
 	)
 	@Export("centerX")
 	int centerX;
-	@ObfuscatedName("a")
+	@ObfuscatedName("m")
 	@ObfuscatedGetter(
-		intValue = 1046564479
-	)
-	@Export("centerY")
-	int centerY;
-	@ObfuscatedName("o")
-	@ObfuscatedSignature(
-		descriptor = "Lhj;"
-	)
-	@Export("renderable")
-	public Renderable renderable;
-	@ObfuscatedName("g")
-	@ObfuscatedGetter(
-		intValue = -1520193173
+		intValue = 1996180969
 	)
 	@Export("orientation")
 	int orientation;
-	@ObfuscatedName("e")
+	@ObfuscatedName("t")
 	@ObfuscatedGetter(
-		intValue = -478459065
+		intValue = 1051509529
+	)
+	@Export("centerY")
+	int centerY;
+	@ObfuscatedName("s")
+	@ObfuscatedSignature(
+		descriptor = "Lgt;"
+	)
+	@Export("renderable")
+	public Renderable renderable;
+	@ObfuscatedName("j")
+	@ObfuscatedGetter(
+		intValue = 1723330507
 	)
 	@Export("startX")
 	int startX;
-	@ObfuscatedName("p")
+	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		intValue = -849496909
+		intValue = -621074209
 	)
 	@Export("endX")
 	int endX;
-	@ObfuscatedName("j")
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = 427250493
+		intValue = -178409117
 	)
 	@Export("startY")
 	int startY;
-	@ObfuscatedName("b")
+	@ObfuscatedName("r")
 	@ObfuscatedGetter(
-		intValue = -1968764473
+		intValue = 144998379
 	)
 	@Export("endY")
 	int endY;
-	@ObfuscatedName("x")
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = 1764486953
+		intValue = 1469340071
 	)
-	int field2641;
-	@ObfuscatedName("y")
+	int field2548;
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = -1523827707
+		intValue = 800381971
 	)
 	@Export("lastDrawn")
 	int lastDrawn;
-	@ObfuscatedName("k")
+	@ObfuscatedName("d")
 	@ObfuscatedGetter(
-		longValue = -6523351122347780293L
+		longValue = -3336818157473405963L
 	)
 	@Export("tag")
 	public long tag;
-	@ObfuscatedName("t")
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = -269494523
+		intValue = -1622989155
 	)
 	@Export("flags")
 	int flags;
@@ -97,102 +108,38 @@ public final class GameObject {
 		this.flags = 0;
 	}
 
-	@ObfuscatedName("i")
+	@ObfuscatedName("aa")
 	@ObfuscatedSignature(
-		descriptor = "(Lmp;ZB)V",
-		garbageValue = "38"
+		descriptor = "(ILbn;ZI)I",
+		garbageValue = "210014678"
 	)
-	public static void method4647(AbstractSocket var0, boolean var1) {
-		if (NetCache.NetCache_socket != null) {
-			try {
-				NetCache.NetCache_socket.close();
-			} catch (Exception var8) {
-			}
-
-			NetCache.NetCache_socket = null;
-		}
-
-		NetCache.NetCache_socket = var0;
-		Buffer var2;
-		if (NetCache.NetCache_socket != null) {
-			try {
-				var2 = new Buffer(4);
-				var2.writeByte(var1 ? 2 : 3);
-				var2.writeMedium(0);
-				NetCache.NetCache_socket.write(var2.array, 0, 4);
-			} catch (IOException var7) {
-				try {
-					NetCache.NetCache_socket.close();
-				} catch (Exception var6) {
-				}
-
-				++NetCache.NetCache_ioExceptions;
-				NetCache.NetCache_socket = null;
-			}
-		}
-
-		NetCache.NetCache_responseHeaderBuffer.offset = 0;
-		class131.NetCache_currentResponse = null;
-		class138.NetCache_responseArchiveBuffer = null;
-		NetCache.field3707 = 0;
-
-		while (true) {
-			NetFileRequest var9 = (NetFileRequest)NetCache.NetCache_pendingPriorityResponses.first();
-			if (var9 == null) {
-				while (true) {
-					var9 = (NetFileRequest)NetCache.NetCache_pendingResponses.first();
-					if (var9 == null) {
-						if (NetCache.field3719 != 0) {
-							try {
-								var2 = new Buffer(4);
-								var2.writeByte(4);
-								var2.writeByte(NetCache.field3719);
-								var2.writeShort(0);
-								NetCache.NetCache_socket.write(var2.array, 0, 4);
-							} catch (IOException var5) {
-								try {
-									NetCache.NetCache_socket.close();
-								} catch (Exception var4) {
-								}
-
-								++NetCache.NetCache_ioExceptions;
-								NetCache.NetCache_socket = null;
-							}
-						}
-
-						NetCache.NetCache_loadTime = 0;
-						class423.field4436 = class111.method2516();
-						return;
+	static int method4341(int var0, Script var1, boolean var2) {
+		if (var0 != 6700 && var0 != 6702 && var0 != 6704 && var0 != 6706 && var0 != 6708) {
+			if (var0 != 6701 && var0 != 6703 && var0 != 6705 && var0 != 6707 && var0 != 6709) {
+				if (var0 == 6750) {
+					Interpreter.Interpreter_stringStack[++class13.Interpreter_stringStackSize - 1] = "";
+					return 1;
+				} else if (var0 != 6751 && var0 != 6752 && var0 != 6753) {
+					if (var0 == 6754) {
+						int var3 = Interpreter.Interpreter_intStack[--IsaacCipher.Interpreter_intStackSize];
+						NPCComposition var4 = WorldMapLabelSize.getNpcDefinition(var3);
+						Interpreter.Interpreter_stringStack[++class13.Interpreter_stringStackSize - 1] = var4 != null ? var4.name : "";
+						return 1;
+					} else {
+						return 2;
 					}
-
-					NetCache.NetCache_pendingWritesQueue.addLast(var9);
-					NetCache.NetCache_pendingWrites.put(var9, var9.key);
-					++NetCache.NetCache_pendingWritesCount;
-					--NetCache.NetCache_pendingResponsesCount;
+				} else {
+					Interpreter.Interpreter_intStack[++IsaacCipher.Interpreter_intStackSize - 1] = -1;
+					return 1;
 				}
-			}
-
-			NetCache.NetCache_pendingPriorityWrites.put(var9, var9.key);
-			++NetCache.NetCache_pendingPriorityWritesCount;
-			--NetCache.NetCache_pendingPriorityResponsesCount;
-		}
-	}
-
-	@ObfuscatedName("ku")
-	@ObfuscatedSignature(
-		descriptor = "(Ljf;IIIB)V",
-		garbageValue = "-109"
-	)
-	@Export("drawCompass")
-	static final void drawCompass(Widget var0, int var1, int var2, int var3) {
-		SpriteMask var4 = var0.getSpriteMask(false);
-		if (var4 != null) {
-			if (Client.minimapState < 3) {
-				class114.compass.drawRotatedMaskedCenteredAround(var1, var2, var4.width, var4.height, 25, 25, Client.camAngleY, 256, var4.xStarts, var4.xWidths);
 			} else {
-				Rasterizer2D.Rasterizer2D_fillMaskedRectangle(var1, var2, 0, var4.xStarts, var4.xWidths);
+				--IsaacCipher.Interpreter_intStackSize;
+				return 1;
 			}
-
+		} else {
+			IsaacCipher.Interpreter_intStackSize -= 2;
+			--class13.Interpreter_stringStackSize;
+			return 1;
 		}
 	}
 }

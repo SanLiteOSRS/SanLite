@@ -1,54 +1,51 @@
+import java.util.Iterator;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("gf")
+@ObfuscatedName("it")
 @Implements("WorldMapSection1")
 public class WorldMapSection1 implements WorldMapSection {
-	@ObfuscatedName("e")
-	@ObfuscatedSignature(
-		descriptor = "[[Ljf;"
-	)
-	@Export("Widget_interfaceComponents")
-	public static Widget[][] Widget_interfaceComponents;
-	@ObfuscatedName("ff")
-	static String field2203;
-	@ObfuscatedName("i")
+	@ObfuscatedName("su")
 	@ObfuscatedGetter(
-		intValue = 627592207
+		intValue = 635212315
+	)
+	static int field2755;
+	@ObfuscatedName("c")
+	@ObfuscatedGetter(
+		intValue = 703119
 	)
 	@Export("minPlane")
 	int minPlane;
-	@ObfuscatedName("w")
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = 1419661361
+		intValue = 151084345
 	)
 	@Export("planes")
 	int planes;
-	@ObfuscatedName("s")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = 1032024163
+		intValue = -1603380561
 	)
 	@Export("regionStartX")
 	int regionStartX;
-	@ObfuscatedName("a")
+	@ObfuscatedName("m")
 	@ObfuscatedGetter(
-		intValue = -1425416297
+		intValue = -945911483
 	)
 	@Export("regionStartY")
 	int regionStartY;
-	@ObfuscatedName("o")
+	@ObfuscatedName("t")
 	@ObfuscatedGetter(
-		intValue = -605929777
+		intValue = -1790058655
 	)
 	@Export("regionEndX")
 	int regionEndX;
-	@ObfuscatedName("g")
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = 1140960947
+		intValue = 1326239363
 	)
 	@Export("regionEndY")
 	int regionEndY;
@@ -56,10 +53,10 @@ public class WorldMapSection1 implements WorldMapSection {
 	WorldMapSection1() {
 	}
 
-	@ObfuscatedName("i")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(Lfb;I)V",
-		garbageValue = "-1844012640"
+		descriptor = "(Lhr;I)V",
+		garbageValue = "2069930856"
 	)
 	@Export("expandBounds")
 	public void expandBounds(WorldMapArea var1) {
@@ -81,34 +78,34 @@ public class WorldMapSection1 implements WorldMapSection {
 
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		descriptor = "(IIII)Z",
-		garbageValue = "-1501827396"
+		descriptor = "(IIIB)Z",
+		garbageValue = "81"
 	)
 	@Export("containsCoord")
 	public boolean containsCoord(int var1, int var2, int var3) {
-		if (var1 >= this.minPlane && var1 < this.minPlane + this.planes) {
+		if (var1 >= this.minPlane && var1 < this.planes + this.minPlane) {
 			return var2 >> 6 == this.regionStartX && var3 >> 6 == this.regionStartY;
 		} else {
 			return false;
 		}
 	}
 
-	@ObfuscatedName("s")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
 		descriptor = "(III)Z",
-		garbageValue = "-356013678"
+		garbageValue = "42159517"
 	)
 	@Export("containsPosition")
 	public boolean containsPosition(int var1, int var2) {
 		return var1 >> 6 == this.regionEndX && var2 >> 6 == this.regionEndY;
 	}
 
-	@ObfuscatedName("a")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		descriptor = "(IIIB)[I",
-		garbageValue = "-79"
+		descriptor = "(IIII)[I",
+		garbageValue = "22240711"
 	)
 	@Export("getBorderTileLengths")
 	public int[] getBorderTileLengths(int var1, int var2, int var3) {
@@ -120,10 +117,10 @@ public class WorldMapSection1 implements WorldMapSection {
 		}
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("t")
 	@ObfuscatedSignature(
-		descriptor = "(III)Lie;",
-		garbageValue = "494177498"
+		descriptor = "(IIS)Lju;",
+		garbageValue = "5000"
 	)
 	@Export("coord")
 	public Coord coord(int var1, int var2) {
@@ -136,10 +133,10 @@ public class WorldMapSection1 implements WorldMapSection {
 		}
 	}
 
-	@ObfuscatedName("g")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "(Lop;I)V",
-		garbageValue = "-682362313"
+		descriptor = "(Lpi;S)V",
+		garbageValue = "-15299"
 	)
 	@Export("read")
 	public void read(Buffer var1) {
@@ -152,84 +149,36 @@ public class WorldMapSection1 implements WorldMapSection {
 		this.postRead();
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "124"
+		descriptor = "(I)V",
+		garbageValue = "-2072209821"
 	)
 	@Export("postRead")
 	void postRead() {
 	}
 
-	@ObfuscatedName("t")
+	@ObfuscatedName("kb")
 	@ObfuscatedSignature(
-		descriptor = "(ILbp;ZB)I",
-		garbageValue = "-4"
+		descriptor = "(I)V",
+		garbageValue = "349431240"
 	)
-	static int method3999(int var0, Script var1, boolean var2) {
-		Widget var3 = var2 ? class120.scriptDotWidget : Frames.scriptActiveWidget;
-		if (var0 == ScriptOpcodes.CC_GETSCROLLX) {
-			Interpreter.Interpreter_intStack[++class14.Interpreter_intStackSize - 1] = var3.scrollX;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CC_GETSCROLLY) {
-			Interpreter.Interpreter_intStack[++class14.Interpreter_intStackSize - 1] = var3.scrollY;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CC_GETTEXT) {
-			Interpreter.Interpreter_stringStack[++class295.Interpreter_stringStackSize - 1] = var3.text;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CC_GETSCROLLWIDTH) {
-			Interpreter.Interpreter_intStack[++class14.Interpreter_intStackSize - 1] = var3.scrollWidth;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CC_GETSCROLLHEIGHT) {
-			Interpreter.Interpreter_intStack[++class14.Interpreter_intStackSize - 1] = var3.scrollHeight;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CC_GETMODELZOOM) {
-			Interpreter.Interpreter_intStack[++class14.Interpreter_intStackSize - 1] = var3.modelZoom;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CC_GETMODELANGLE_X) {
-			Interpreter.Interpreter_intStack[++class14.Interpreter_intStackSize - 1] = var3.modelAngleX;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CC_GETMODELANGLE_Z) {
-			Interpreter.Interpreter_intStack[++class14.Interpreter_intStackSize - 1] = var3.modelAngleZ;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CC_GETMODELANGLE_Y) {
-			Interpreter.Interpreter_intStack[++class14.Interpreter_intStackSize - 1] = var3.modelAngleY;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CC_GETTRANS) {
-			Interpreter.Interpreter_intStack[++class14.Interpreter_intStackSize - 1] = var3.transparencyTop;
-			return 1;
-		} else if (var0 == 1610) {
-			Interpreter.Interpreter_intStack[++class14.Interpreter_intStackSize - 1] = var3.transparencyBot;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CC_GETCOLOUR) {
-			Interpreter.Interpreter_intStack[++class14.Interpreter_intStackSize - 1] = var3.color;
-			return 1;
-		} else if (var0 == ScriptOpcodes.CC_GETFILLCOLOUR) {
-			Interpreter.Interpreter_intStack[++class14.Interpreter_intStackSize - 1] = var3.color2;
-			return 1;
-		} else if (var0 == 1613) {
-			Interpreter.Interpreter_intStack[++class14.Interpreter_intStackSize - 1] = var3.fillMode.rsOrdinal();
-			return 1;
-		} else if (var0 == ScriptOpcodes.CC_GETMODELTRANSPARENT) {
-			Interpreter.Interpreter_intStack[++class14.Interpreter_intStackSize - 1] = var3.modelTransparency ? 1 : 0;
-			return 1;
-		} else if (var0 != 1615 && var0 != 1616) {
-			return 2;
-		} else {
-			++class14.Interpreter_intStackSize;
-			return 1;
+	static final void method4831() {
+		for (int var0 = 0; var0 < Players.Players_count; ++var0) {
+			Player var1 = Client.players[Players.Players_indices[var0]];
+			var1.clearIsFriend();
 		}
-	}
 
-	@ObfuscatedName("kd")
-	@ObfuscatedSignature(
-		descriptor = "(II)V",
-		garbageValue = "209576607"
-	)
-	@Export("updateSoundEffectVolume")
-	static final void updateSoundEffectVolume(int var0) {
-		var0 = Math.min(Math.max(var0, 0), 127);
-		class408.clientPreferences.soundEffectsVolume = var0;
-		Login.savePreferences();
+		Iterator var2 = Messages.Messages_hashTable.iterator();
+
+		while (var2.hasNext()) {
+			Message var3 = (Message)var2.next();
+			var3.clearIsFromFriend();
+		}
+
+		if (Players.friendsChatManager != null) {
+			Players.friendsChatManager.clearFriends();
+		}
+
 	}
 }

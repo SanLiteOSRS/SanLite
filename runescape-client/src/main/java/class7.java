@@ -2,162 +2,118 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import net.runelite.mapping.Export;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("p")
+@ObfuscatedName("w")
 public class class7 {
+	@ObfuscatedName("hu")
+	@ObfuscatedSignature(
+		descriptor = "Lgy;"
+	)
+	@Export("scene")
+	static Scene scene;
+	@ObfuscatedName("jl")
+	@ObfuscatedGetter(
+		intValue = -1574043841
+	)
+	@Export("oculusOrbFocalPointX")
+	static int oculusOrbFocalPointX;
 	@ObfuscatedName("c")
+	ExecutorService field30;
+	@ObfuscatedName("b")
+	Future field31;
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		descriptor = "Lgw;"
+		descriptor = "Lpi;"
 	)
-	@Export("worldMapEvent")
-	static WorldMapEvent worldMapEvent;
-	@ObfuscatedName("ip")
+	final Buffer field25;
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
-		descriptor = "[Loe;"
+		descriptor = "Lm;"
 	)
-	@Export("modIconSprites")
-	static IndexedSprite[] modIconSprites;
-	@ObfuscatedName("i")
-	ExecutorService field17;
-	@ObfuscatedName("w")
-	Future field20;
-	@ObfuscatedName("s")
-	@ObfuscatedSignature(
-		descriptor = "Lop;"
-	)
-	final Buffer field18;
-	@ObfuscatedName("a")
-	@ObfuscatedSignature(
-		descriptor = "La;"
-	)
-	final class3 field19;
+	final class3 field26;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lop;La;)V"
+		descriptor = "(Lpi;Lm;)V"
 	)
 	public class7(Buffer var1, class3 var2) {
-		this.field17 = Executors.newSingleThreadExecutor();
-		this.field18 = var1;
-		this.field19 = var2;
-		this.method49();
+		this.field30 = Executors.newSingleThreadExecutor();
+		this.field25 = var1;
+		this.field26 = var2;
+		this.method62();
 	}
 
-	@ObfuscatedName("i")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
 		descriptor = "(I)Z",
-		garbageValue = "830393061"
+		garbageValue = "-1426679915"
 	)
-	public boolean method46() {
-		return this.field20.isDone();
+	public boolean method61() {
+		return this.field31.isDone();
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "1036380916"
+		garbageValue = "-1411495708"
 	)
-	public void method47() {
-		this.field17.shutdown();
-		this.field17 = null;
+	public void method65() {
+		this.field30.shutdown();
+		this.field30 = null;
 	}
 
-	@ObfuscatedName("s")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		descriptor = "(I)Lop;",
-		garbageValue = "945217619"
+		descriptor = "(B)Lpi;",
+		garbageValue = "14"
 	)
-	public Buffer method48() {
+	public Buffer method75() {
 		try {
-			return (Buffer)this.field20.get();
+			return (Buffer)this.field31.get();
 		} catch (Exception var2) {
 			return null;
 		}
 	}
 
-	@ObfuscatedName("a")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "1187826160"
+		garbageValue = "1868135636"
 	)
-	void method49() {
-		this.field20 = this.field17.submit(new class1(this, this.field18, this.field19));
+	void method62() {
+		this.field31 = this.field30.submit(new class1(this, this.field25, this.field26));
 	}
 
-	@ObfuscatedName("g")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(I)[I",
-		garbageValue = "-1545852128"
+		descriptor = "(I)[Ldp;",
+		garbageValue = "1979711764"
 	)
-	public static int[] method57() {
-		int[] var0 = new int[KeyHandler.field110];
+	static class117[] method74() {
+		return new class117[]{class117.field1425, class117.field1444, class117.field1430, class117.field1427, class117.field1428, class117.field1429, class117.field1442, class117.field1431, class117.field1432, class117.field1424, class117.field1434, class117.field1435, class117.field1436, class117.field1437, class117.field1438, class117.field1439, class117.field1440};
+	}
 
-		for (int var1 = 0; var1 < KeyHandler.field110; ++var1) {
-			var0[var1] = KeyHandler.field125[var1];
+	@ObfuscatedName("jw")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/String;Ljm;I)Ljava/lang/String;",
+		garbageValue = "1826034348"
+	)
+	static String method60(String var0, Widget var1) {
+		if (var0.indexOf("%") != -1) {
+			for (int var2 = 1; var2 <= 5; ++var2) {
+				while (true) {
+					int var3 = var0.indexOf("%" + var2);
+					if (var3 == -1) {
+						break;
+					}
+
+					var0 = var0.substring(0, var3) + class1.method11(class28.method442(var1, var2 - 1)) + var0.substring(var3 + 2);
+				}
+			}
 		}
 
 		return var0;
-	}
-
-	@ObfuscatedName("fb")
-	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;B)V",
-		garbageValue = "77"
-	)
-	@Export("doCheat")
-	static final void doCheat(String var0) {
-		if (var0.equalsIgnoreCase("toggleroof")) {
-			class408.clientPreferences.roofsHidden = !class408.clientPreferences.roofsHidden;
-			Login.savePreferences();
-			if (class408.clientPreferences.roofsHidden) {
-				class397.addGameMessage(99, "", "Roofs are now all hidden");
-			} else {
-				class397.addGameMessage(99, "", "Roofs will only be removed selectively");
-			}
-		}
-
-		if (var0.equalsIgnoreCase("displayfps")) {
-			Client.displayFps = !Client.displayFps;
-		}
-
-		if (var0.equalsIgnoreCase("renderself")) {
-			Client.renderSelf = !Client.renderSelf;
-		}
-
-		if (var0.equalsIgnoreCase("mouseovertext")) {
-			Client.showMouseOverText = !Client.showMouseOverText;
-		}
-
-		if (Client.staffModLevel >= 2) {
-			if (var0.equalsIgnoreCase("errortest")) {
-				throw new RuntimeException();
-			}
-
-			if (var0.equalsIgnoreCase("showcoord")) {
-				class133.worldMap.showCoord = !class133.worldMap.showCoord;
-			}
-
-			if (var0.equalsIgnoreCase("fpson")) {
-				Client.displayFps = true;
-			}
-
-			if (var0.equalsIgnoreCase("fpsoff")) {
-				Client.displayFps = false;
-			}
-
-			if (var0.equalsIgnoreCase("gc")) {
-				System.gc();
-			}
-
-			if (var0.equalsIgnoreCase("clientdrop")) {
-				Clock.method2960();
-			}
-		}
-
-		PacketBufferNode var1 = AbstractWorldMapData.getPacketBufferNode(ClientPacket.field2721, Client.packetWriter.isaacCipher);
-		var1.packetBuffer.writeByte(var0.length() + 1);
-		var1.packetBuffer.writeStringCp1252NullTerminated(var0);
-		Client.packetWriter.addNode(var1);
 	}
 }
