@@ -5,8 +5,9 @@ on:
     tags:
       - update*
   schedule:
-    # 11:35 on Wednesday
+    # 11:35 on Wednesday & Thursday
     - cron: '35 11 * * 3'
+    - cron: '35 11 * * 4'
 
 jobs:
   update:
