@@ -56,7 +56,6 @@ import net.runelite.api.events.MenuEntryAdded;
 import net.runelite.api.events.MenuOpened;
 import net.runelite.api.events.MenuOptionClicked;
 import net.runelite.api.events.PostItemComposition;
-import net.runelite.api.events.WidgetMenuOptionClicked;
 import net.runelite.api.widgets.WidgetID;
 import net.runelite.api.widgets.WidgetInfo;
 import net.runelite.client.callback.ClientThread;
@@ -75,7 +74,6 @@ import static net.runelite.client.plugins.menuentryswapper.MenuEntrySwapperConfi
 import static net.runelite.client.plugins.menuentryswapper.MenuEntrySwapperConfig.MorytaniaLegsMode;
 import static net.runelite.client.plugins.menuentryswapper.MenuEntrySwapperConfig.RadasBlessingMode;
 import net.runelite.client.util.Text;
-import org.apache.commons.lang3.ArrayUtils;
 
 @PluginDescriptor(
 	name = "Menu Entry Swapper",
@@ -514,24 +512,6 @@ public class MenuEntrySwapperPlugin extends Plugin
 	}
 
 	@Subscribe
-	public void onWidgetMenuOptionClicked(WidgetMenuOptionClicked event)
-	{
-		if (event.getWidget() == WidgetInfo.FIXED_VIEWPORT_INVENTORY_TAB
-			|| event.getWidget() == WidgetInfo.RESIZABLE_VIEWPORT_INVENTORY_TAB
-			|| event.getWidget() == WidgetInfo.RESIZABLE_VIEWPORT_BOTTOM_LINE_INVENTORY_TAB)
-		{
-			String option = event.getMenuOption();
-			String target = Text.removeTags(event.getMenuTarget());
-			if ((option.equals(CONFIGURE) || option.equals(SAVE)) && (target.equals(LEFT_CLICK_MENU_TARGET) || target.equals(SHIFT_CLICK_MENU_TARGET)))
-			{
-				configuringShiftClick = option.equals(CONFIGURE) && target.equals(SHIFT_CLICK_MENU_TARGET);
-				configuringLeftClick = option.equals(CONFIGURE) && target.equals(LEFT_CLICK_MENU_TARGET);
-				rebuildCustomizationMenus();
-			}
-		}
-	}
-
-	@Subscribe
 	public void onMenuOpened(MenuOpened event)
 	{
 		if (!configuringShiftClick && !configuringLeftClick)
@@ -598,11 +578,11 @@ public class MenuEntrySwapperPlugin extends Plugin
 
 		for (MenuEntry entry : entries)
 		{
-			final MenuAction menuAction = MenuAction.of(entry.getType());
+			final MenuAction menuAction = entry.getType();
 
 			if (ITEM_MENU_TYPES.contains(menuAction) && entry.getIdentifier() == itemId)
 			{
-				entry.setType(MenuAction.RUNELITE.getId());
+				entry.setType(MenuAction.RUNELITE);
 
 				if (activeAction == menuAction)
 				{
@@ -611,13 +591,11 @@ public class MenuEntrySwapperPlugin extends Plugin
 			}
 		}
 
-		final MenuEntry resetShiftClickEntry = new MenuEntry();
-		resetShiftClickEntry.setOption(RESET);
-		resetShiftClickEntry.setTarget(configuringShiftClick ? SHIFT_CLICK_MENU_TARGET : LEFT_CLICK_MENU_TARGET);
-		resetShiftClickEntry.setIdentifier(itemId);
-		resetShiftClickEntry.setParam1(widgetId);
-		resetShiftClickEntry.setType(MenuAction.RUNELITE.getId());
-		client.setMenuEntries(ArrayUtils.addAll(entries, resetShiftClickEntry));
+		client.createMenuEntry(-1)
+			.setOption(RESET)
+			.setTarget(configuringShiftClick ? SHIFT_CLICK_MENU_TARGET : LEFT_CLICK_MENU_TARGET)
+			.setType(MenuAction.RUNELITE)
+			.onClick(e -> unsetSwapConfig(configuringShiftClick, itemId));
 	}
 
 	@Subscribe
@@ -638,7 +616,7 @@ public class MenuEntrySwapperPlugin extends Plugin
 		if (event.getType() == MenuAction.CC_OP.getId()
 			&& event.getIdentifier() == (isDepositBoxPlayerInventory || isChambersOfXericStorageUnitPlayerInventory ? 1 : 2)
 			&& (event.getOption().startsWith("Deposit-") || event.getOption().startsWith("Store") || event.getOption().startsWith("Donate")))
-		{
+		{		
 			// Swap to shift-click deposit behavior
 			if (shiftModifier() && config.bankDepositShiftClick() != ShiftDepositMode.OFF)
 			{
@@ -646,14 +624,13 @@ public class MenuEntrySwapperPlugin extends Plugin
 				final int opId = isDepositBoxPlayerInventory ? shiftDepositMode.getIdentifierDepositBox()
 						: isChambersOfXericStorageUnitPlayerInventory ? shiftDepositMode.getIdentifierChambersStorageUnit()
 						: shiftDepositMode.getIdentifier();
-				final int actionId = opId >= 6 ? MenuAction.CC_OP_LOW_PRIORITY.getId() : MenuAction.CC_OP.getId();
-				bankModeSwap(actionId, opId);
+				bankModeSwap(opId >= 6 ? MenuAction.CC_OP_LOW_PRIORITY : MenuAction.CC_OP, opId);
 			}
 			// Override regular shift-click bank swap
 			else if (config.swapFillPouchInBank() && event.getIdentifier() != 1 &&
 					ESSENCE_POUCH_PATTERN.matcher(Text.standardize(event.getTarget().toLowerCase())).matches())
 			{
-				bankModeSwap(MenuAction.CC_OP_LOW_PRIORITY.getId(), 9, "fill");
+				bankModeSwap(MenuAction.CC_OP_LOW_PRIORITY, 9, "fill");
 			}
 		}
 
@@ -664,22 +641,23 @@ public class MenuEntrySwapperPlugin extends Plugin
 			&& event.getOption().startsWith("Withdraw"))
 		{
 			ShiftWithdrawMode shiftWithdrawMode = config.bankWithdrawShiftClick();
-			final int actionId, opId;
+			final MenuAction action;
+			final int opId;
 			if (widgetGroupId == WidgetID.CHAMBERS_OF_XERIC_STORAGE_UNIT_PRIVATE_GROUP_ID || widgetGroupId == WidgetID.CHAMBERS_OF_XERIC_STORAGE_UNIT_SHARED_GROUP_ID)
 			{
-				actionId = MenuAction.CC_OP.getId();
+				action = MenuAction.CC_OP;
 				opId = shiftWithdrawMode.getIdentifierChambersStorageUnit();
 			}
 			else
 			{
-				actionId = shiftWithdrawMode.getMenuAction().getId();
+				action = shiftWithdrawMode.getMenuAction();
 				opId = shiftWithdrawMode.getIdentifier();
 			}
-			bankModeSwap(actionId, opId);
+			bankModeSwap(action, opId);
 		}
 	}
 
-	private void bankModeSwap(int entryTypeId, int entryIdentifier)
+	private void bankModeSwap(MenuAction entryType, int entryIdentifier)
 	{
 		MenuEntry[] menuEntries = client.getMenuEntries();
 
@@ -687,10 +665,10 @@ public class MenuEntrySwapperPlugin extends Plugin
 		{
 			MenuEntry entry = menuEntries[i];
 
-			if (entry.getType() == entryTypeId && entry.getIdentifier() == entryIdentifier)
+			if (entry.getType() == entryType && entry.getIdentifier() == entryIdentifier)
 			{
 				// Raise the priority of the op so it doesn't get sorted later
-				entry.setType(MenuAction.CC_OP.getId());
+				entry.setType(MenuAction.CC_OP);
 
 				menuEntries[i] = menuEntries[menuEntries.length - 1];
 				menuEntries[menuEntries.length - 1] = entry;
@@ -743,17 +721,6 @@ public class MenuEntrySwapperPlugin extends Plugin
 		String target = event.getMenuTarget();
 		ItemComposition itemComposition = itemManager.getItemComposition(itemId);
 
-		if (option.equals(RESET) && target.equals(SHIFT_CLICK_MENU_TARGET))
-		{
-			unsetSwapConfig(true, itemId);
-			return;
-		}
-		if (option.equals(RESET) && target.equals(LEFT_CLICK_MENU_TARGET))
-		{
-			unsetSwapConfig(false, itemId);
-			return;
-		}
-
 		if (!itemComposition.getName().equals(Text.removeTags(target)))
 		{
 			return;
@@ -781,7 +748,7 @@ public class MenuEntrySwapperPlugin extends Plugin
 	private void swapMenuEntry(MenuEntry[] menuEntries, int index, MenuEntry menuEntry)
 	{
 		final int eventId = menuEntry.getIdentifier();
-		final MenuAction menuAction = MenuAction.of(menuEntry.getType());
+		final MenuAction menuAction = menuEntry.getType();
 		final String option = Text.removeTags(menuEntry.getOption()).toLowerCase();
 		final String target = Text.removeTags(menuEntry.getTarget()).toLowerCase();
 		final NPC hintArrowNpc = client.getHintArrowNpc();
@@ -1008,31 +975,31 @@ public class MenuEntrySwapperPlugin extends Plugin
 		removeCusomizationMenus();
 		if (configuringLeftClick)
 		{
-			menuManager.addManagedCustomMenu(FIXED_INVENTORY_TAB_SAVE_LC);
-			menuManager.addManagedCustomMenu(RESIZABLE_BOTTOM_LINE_INVENTORY_TAB_SAVE_LC);
-			menuManager.addManagedCustomMenu(RESIZABLE_INVENTORY_TAB_SAVE_LC);
+			menuManager.addManagedCustomMenu(FIXED_INVENTORY_TAB_SAVE_LC, this::save);
+			menuManager.addManagedCustomMenu(RESIZABLE_BOTTOM_LINE_INVENTORY_TAB_SAVE_LC, this::save);
+			menuManager.addManagedCustomMenu(RESIZABLE_INVENTORY_TAB_SAVE_LC, this::save);
 		}
 		else if (configuringShiftClick)
 		{
-			menuManager.addManagedCustomMenu(FIXED_INVENTORY_TAB_SAVE_SC);
-			menuManager.addManagedCustomMenu(RESIZABLE_BOTTOM_LINE_INVENTORY_TAB_SAVE_SC);
-			menuManager.addManagedCustomMenu(RESIZABLE_INVENTORY_TAB_SAVE_SC);
+			menuManager.addManagedCustomMenu(FIXED_INVENTORY_TAB_SAVE_SC, this::save);
+			menuManager.addManagedCustomMenu(RESIZABLE_BOTTOM_LINE_INVENTORY_TAB_SAVE_SC, this::save);
+			menuManager.addManagedCustomMenu(RESIZABLE_INVENTORY_TAB_SAVE_SC, this::save);
 		}
 		else
 		{
 			// Left click
 			if (config.leftClickCustomization())
 			{
-				menuManager.addManagedCustomMenu(FIXED_INVENTORY_TAB_CONFIGURE_LC);
-				menuManager.addManagedCustomMenu(RESIZABLE_BOTTOM_LINE_INVENTORY_TAB_CONFIGURE_LC);
-				menuManager.addManagedCustomMenu(RESIZABLE_INVENTORY_TAB_CONFIGURE_LC);
+				menuManager.addManagedCustomMenu(FIXED_INVENTORY_TAB_CONFIGURE_LC, this::configure);
+				menuManager.addManagedCustomMenu(RESIZABLE_BOTTOM_LINE_INVENTORY_TAB_CONFIGURE_LC, this::configure);
+				menuManager.addManagedCustomMenu(RESIZABLE_INVENTORY_TAB_CONFIGURE_LC, this::configure);
 			}
 			// Shift click
 			if (config.shiftClickCustomization())
 			{
-				menuManager.addManagedCustomMenu(FIXED_INVENTORY_TAB_CONFIGURE_SC);
-				menuManager.addManagedCustomMenu(RESIZABLE_BOTTOM_LINE_INVENTORY_TAB_CONFIGURE_SC);
-				menuManager.addManagedCustomMenu(RESIZABLE_INVENTORY_TAB_CONFIGURE_SC);
+				menuManager.addManagedCustomMenu(FIXED_INVENTORY_TAB_CONFIGURE_SC, this::configure);
+				menuManager.addManagedCustomMenu(RESIZABLE_BOTTOM_LINE_INVENTORY_TAB_CONFIGURE_SC, this::configure);
+				menuManager.addManagedCustomMenu(RESIZABLE_INVENTORY_TAB_CONFIGURE_SC, this::configure);
 			}
 		}
 	}
@@ -1040,5 +1007,19 @@ public class MenuEntrySwapperPlugin extends Plugin
 	private boolean shiftModifier()
 	{
 		return client.isKeyPressed(KeyCode.KC_SHIFT);
+	}
+
+	private void save(MenuEntry menuEntry)
+	{
+		configuringLeftClick = configuringShiftClick = false;
+		rebuildCustomizationMenus();
+	}
+
+	private void configure(MenuEntry menuEntry)
+	{
+		String target = Text.removeTags(menuEntry.getTarget());
+		configuringShiftClick = target.equals(SHIFT_CLICK_MENU_TARGET);
+		configuringLeftClick = target.equals(LEFT_CLICK_MENU_TARGET);
+		rebuildCustomizationMenus();
 	}
 }
