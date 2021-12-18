@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020, Owain van Brakel <https://github.com/Owain94>
+ * Copyright (c) 2016-2017, Adam <Adam@sigterm.info>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -24,22 +24,28 @@
  */
 package net.runelite.mixins;
 
-import net.runelite.api.mixins.*;
-import net.runelite.rs.api.RSLoginScreenAnimation;
+import net.runelite.api.mixins.Inject;
+import net.runelite.api.mixins.Mixin;
+import net.runelite.rs.api.RSLink;
+import net.runelite.rs.api.RSLinkDeque;
 
-@Mixin(RSLoginScreenAnimation.class)
-public abstract class RSLoginScreenAnimationMixin implements RSLoginScreenAnimation
+@Mixin(RSLinkDeque.class)
+public abstract class RSLinkDequeMixin implements RSLinkDeque
 {
 	@Inject
-	private static boolean shouldRenderLoginScreenFire = true;
-
-	@Copy("draw")
-	@Replace("draw")
-	void copy$draw(int var1, int var2)
+	@Override
+	public void clear()
 	{
-		if (shouldRenderLoginScreenFire)
+		while (true)
 		{
-			copy$draw(var1, var2);
+			RSLink rsLink = getSentinel().getPrevious();
+			if (rsLink == getSentinel())
+			{
+				setCurrent(null);
+				return;
+			}
+
+			rsLink.remove();
 		}
 	}
 }

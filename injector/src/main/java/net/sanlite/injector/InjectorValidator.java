@@ -17,6 +17,8 @@ import net.runelite.asm.pool.Class;
 import org.gradle.api.logging.Logger;
 import org.gradle.api.logging.Logging;
 
+import static net.sanlite.injector.rsapi.RSApi.API_BASE;
+
 @RequiredArgsConstructor
 public class InjectorValidator implements Validator
 {
@@ -33,7 +35,7 @@ public class InjectorValidator implements Validator
 		{
 			for (Class intf : cf.getInterfaces())
 			{
-				if (!intf.getName().startsWith(RSApi.API_BASE))
+				if (!intf.getName().startsWith(API_BASE))
 				{
 					continue;
 				}
