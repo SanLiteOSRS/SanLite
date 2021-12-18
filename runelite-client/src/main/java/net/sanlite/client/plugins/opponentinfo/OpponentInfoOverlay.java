@@ -27,7 +27,7 @@ package net.sanlite.client.plugins.opponentinfo;
 
 import com.google.common.base.Strings;
 import net.runelite.api.*;
-import net.runelite.client.game.HiscoreManager;
+import net.runelite.client.hiscore.HiscoreManager;
 import net.runelite.client.game.NPCManager;
 import net.runelite.client.plugins.opponentinfo.HitpointsDisplayStyle;
 import net.runelite.client.plugins.opponentinfo.OpponentInfoConfig;
@@ -40,7 +40,7 @@ import net.runelite.client.ui.overlay.components.ComponentConstants;
 import net.runelite.client.ui.overlay.components.ProgressBarComponent;
 import net.runelite.client.ui.overlay.components.TitleComponent;
 import net.runelite.client.util.Text;
-import net.runelite.http.api.hiscore.HiscoreResult;
+import net.runelite.client.hiscore.HiscoreResult;
 
 import javax.inject.Inject;
 import java.awt.Point;
