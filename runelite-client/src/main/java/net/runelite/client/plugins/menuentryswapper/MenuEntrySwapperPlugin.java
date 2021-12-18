@@ -679,7 +679,7 @@ public class MenuEntrySwapperPlugin extends Plugin
 		}
 	}
 
-	private void bankModeSwap(int entryTypeId, int entryIdentifier, String option)
+	private void bankModeSwap(MenuAction entryType, int entryIdentifier, String option)
 	{
 		MenuEntry[] menuEntries = client.getMenuEntries();
 
@@ -687,11 +687,11 @@ public class MenuEntrySwapperPlugin extends Plugin
 		{
 			MenuEntry entry = menuEntries[i];
 
-			if (entry.getType() == entryTypeId && entry.getIdentifier() == entryIdentifier &&
-					entry.getOption().toLowerCase().equals(option.toLowerCase()))
+			if (entry.getType() == entryType && entry.getIdentifier() == entryIdentifier &&
+					entry.getOption().equalsIgnoreCase(option))
 			{
 				// Raise the priority of the op so it doesn't get sorted later
-				entry.setType(MenuAction.CC_OP.getId());
+				entry.setType(MenuAction.CC_OP);
 
 				menuEntries[i] = menuEntries[menuEntries.length - 1];
 				menuEntries[menuEntries.length - 1] = entry;
