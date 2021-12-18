@@ -172,20 +172,20 @@ public class FriendListPlugin extends Plugin
 		if (groupId == WidgetInfo.FRIENDS_LIST.getGroupId() && event.getOption().equals("Message"))
 		{
 			String friend = Text.toJagexName(Text.removeTags(event.getTarget()));
-
-			client.createMenuEntry(-1)
-				.setOption(isHideNotification(friend) ? SHOW_NOTIFICATIONS : HIDE_NOTIFICATIONS)
-				.setType(MenuAction.RUNELITE)
-				.setTarget(event.getTarget()) //Preserve color codes here
-				.onClick(e ->
-				{
-					boolean hidden = isHideNotification(friend);
-					setHideNotifications(friend, !hidden);
-					chatMessageManager.queue(QueuedMessage.builder()
-						.type(ChatMessageType.CONSOLE)
-						.value("Login notifications for " + friend + " are now " + (hidden ? "shown." : "hidden."))
-						.build());
-				});
+			// TODO: Fix
+//			client.createMenuEntry(-1)
+//				.setOption(isHideNotification(friend) ? SHOW_NOTIFICATIONS : HIDE_NOTIFICATIONS)
+//				.setType(MenuAction.RUNELITE)
+//				.setTarget(event.getTarget()) //Preserve color codes here
+//				.onClick(e ->
+//				{
+//					boolean hidden = isHideNotification(friend);
+//					setHideNotifications(friend, !hidden);
+//					chatMessageManager.queue(QueuedMessage.builder()
+//						.type(ChatMessageType.CONSOLE)
+//						.value("Login notifications for " + friend + " are now " + (hidden ? "shown." : "hidden."))
+//						.build());
+//				});
 		}
 	}
 

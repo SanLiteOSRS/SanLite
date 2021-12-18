@@ -769,7 +769,7 @@ public abstract class RSClientMixin implements RSClient
 
 	@Inject
 	@Override
-	public NameableContainer<Friend> getFriendContainer()
+	public FriendContainer getFriendContainer()
 	{
 		final RSFriendSystem friendManager = getFriendManager();
 		if (friendManager == null)
