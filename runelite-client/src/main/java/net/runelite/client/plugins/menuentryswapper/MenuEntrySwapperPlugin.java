@@ -616,7 +616,7 @@ public class MenuEntrySwapperPlugin extends Plugin
 		if (event.getType() == MenuAction.CC_OP.getId()
 			&& event.getIdentifier() == (isDepositBoxPlayerInventory || isChambersOfXericStorageUnitPlayerInventory ? 1 : 2)
 			&& (event.getOption().startsWith("Deposit-") || event.getOption().startsWith("Store") || event.getOption().startsWith("Donate")))
-		{		
+		{
 			// Swap to shift-click deposit behavior
 			if (shiftModifier() && config.bankDepositShiftClick() != ShiftDepositMode.OFF)
 			{

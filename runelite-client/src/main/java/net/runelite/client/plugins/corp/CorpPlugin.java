@@ -47,12 +47,6 @@ import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.ui.overlay.OverlayManager;
 
-import javax.inject.Inject;
-import java.util.HashSet;
-import java.util.Set;
-
-import static net.runelite.api.MenuAction.MENU_ACTION_DEPRIORITIZE_OFFSET;
-
 @PluginDescriptor(
 	name = "Corporeal Beast",
 	description = "Show damage statistics and highlight dark energy cores",
@@ -263,7 +257,7 @@ public class CorpPlugin extends Plugin
 		MenuEntry[] menuEntries = client.getMenuEntries();
 		MenuEntry menuEntry = menuEntries[menuEntries.length - 1];
 
-		menuEntry.setType(NPC_SECTION_ACTION + MENU_ACTION_DEPRIORITIZE_OFFSET);
+		menuEntry.setType(MenuAction.DEPRIORITIZED_NPC_SECOND_OPTION);
 		client.setMenuEntries(menuEntries);
 	}
 }

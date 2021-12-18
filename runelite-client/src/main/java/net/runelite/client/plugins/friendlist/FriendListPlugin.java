@@ -35,7 +35,7 @@ import net.runelite.api.ChatPlayer;
 import net.runelite.api.Client;
 import net.runelite.api.Friend;
 import net.runelite.api.Ignore;
-//import net.runelite.api.MenuAction;
+import net.runelite.api.MenuAction;
 import net.runelite.api.MessageNode;
 import net.runelite.api.NameableContainer;
 import net.runelite.api.PendingLogin;
@@ -47,7 +47,7 @@ import net.runelite.api.events.ScriptPostFired;
 import net.runelite.api.widgets.Widget;
 import net.runelite.api.widgets.WidgetInfo;
 import net.runelite.client.chat.ChatMessageManager;
-//import net.runelite.client.chat.QueuedMessage;
+import net.runelite.client.chat.QueuedMessage;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.plugins.Plugin;
@@ -172,20 +172,19 @@ public class FriendListPlugin extends Plugin
 		if (groupId == WidgetInfo.FRIENDS_LIST.getGroupId() && event.getOption().equals("Message"))
 		{
 			String friend = Text.toJagexName(Text.removeTags(event.getTarget()));
-			// TODO: Fix
-//			client.createMenuEntry(-1)
-//				.setOption(isHideNotification(friend) ? SHOW_NOTIFICATIONS : HIDE_NOTIFICATIONS)
-//				.setType(MenuAction.RUNELITE)
-//				.setTarget(event.getTarget()) //Preserve color codes here
-//				.onClick(e ->
-//				{
-//					boolean hidden = isHideNotification(friend);
-//					setHideNotifications(friend, !hidden);
-//					chatMessageManager.queue(QueuedMessage.builder()
-//						.type(ChatMessageType.CONSOLE)
-//						.value("Login notifications for " + friend + " are now " + (hidden ? "shown." : "hidden."))
-//						.build());
-//				});
+			client.createMenuEntry(-1)
+				.setOption(isHideNotification(friend) ? SHOW_NOTIFICATIONS : HIDE_NOTIFICATIONS)
+				.setType(MenuAction.RUNELITE)
+				.setTarget(event.getTarget()) //Preserve color codes here
+				.onClick(e ->
+				{
+					boolean hidden = isHideNotification(friend);
+					setHideNotifications(friend, !hidden);
+					chatMessageManager.queue(QueuedMessage.builder()
+						.type(ChatMessageType.CONSOLE)
+						.value("Login notifications for " + friend + " are now " + (hidden ? "shown." : "hidden."))
+						.build());
+				});
 		}
 	}
 

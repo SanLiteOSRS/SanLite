@@ -31,15 +31,11 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import javax.inject.Inject;
-import net.runelite.api.Client;
-import net.runelite.api.GameState;
-import net.runelite.api.HashTable;
-import net.runelite.api.Prayer;
-import net.runelite.api.WidgetNode;
+
+import net.runelite.api.*;
 import net.runelite.api.events.DraggingWidgetChanged;
 import net.runelite.api.events.GameStateChanged;
 import net.runelite.api.events.WidgetLoaded;
-import net.runelite.api.events.WidgetMenuOptionClicked;
 import net.runelite.api.widgets.Widget;
 import static net.runelite.api.widgets.WidgetConfig.DRAG;
 import static net.runelite.api.widgets.WidgetConfig.DRAG_ON;
@@ -61,7 +57,6 @@ import net.runelite.client.plugins.PluginDescriptor;
 )
 public class ReorderPrayersPlugin extends Plugin
 {
-
 	static final String CONFIG_GROUP_KEY = "reorderprayers";
 
 	static final String CONFIG_UNLOCK_REORDERING_KEY = "unlockPrayerReordering";
@@ -301,15 +296,9 @@ public class ReorderPrayersPlugin extends Plugin
 		}
 	}
 
-	@Subscribe
-	public void onWidgetMenuOptionClicked(WidgetMenuOptionClicked event)
+	private void togglePrayerReordering(MenuEntry entry)
 	{
-		if (event.getWidget() == WidgetInfo.FIXED_VIEWPORT_PRAYER_TAB
-				|| event.getWidget() == WidgetInfo.RESIZABLE_VIEWPORT_PRAYER_TAB
-				|| event.getWidget() == WidgetInfo.RESIZABLE_VIEWPORT_BOTTOM_LINE_PRAYER_TAB)
-		{
-			config.unlockPrayerReordering(event.getMenuOption().equals(UNLOCK));
-		}
+		config.unlockPrayerReordering(entry.getOption().equals(UNLOCK));
 	}
 
 	private void clearPrayerTabMenus()
@@ -327,15 +316,15 @@ public class ReorderPrayersPlugin extends Plugin
 		clearPrayerTabMenus();
 		if (config.unlockPrayerReordering())
 		{
-			menuManager.addManagedCustomMenu(FIXED_PRAYER_TAB_LOCK);
-			menuManager.addManagedCustomMenu(RESIZABLE_PRAYER_TAB_LOCK);
-			menuManager.addManagedCustomMenu(RESIZABLE_BOTTOM_LINE_PRAYER_TAB_LOCK);
+			menuManager.addManagedCustomMenu(FIXED_PRAYER_TAB_LOCK, this::togglePrayerReordering);
+			menuManager.addManagedCustomMenu(RESIZABLE_PRAYER_TAB_LOCK, this::togglePrayerReordering);
+			menuManager.addManagedCustomMenu(RESIZABLE_BOTTOM_LINE_PRAYER_TAB_LOCK, this::togglePrayerReordering);
 		}
 		else
 		{
-			menuManager.addManagedCustomMenu(FIXED_PRAYER_TAB_UNLOCK);
-			menuManager.addManagedCustomMenu(RESIZABLE_PRAYER_TAB_UNLOCK);
-			menuManager.addManagedCustomMenu(RESIZABLE_BOTTOM_LINE_PRAYER_TAB_UNLOCK);
+			menuManager.addManagedCustomMenu(FIXED_PRAYER_TAB_UNLOCK, this::togglePrayerReordering);
+			menuManager.addManagedCustomMenu(RESIZABLE_PRAYER_TAB_UNLOCK, this::togglePrayerReordering);
+			menuManager.addManagedCustomMenu(RESIZABLE_BOTTOM_LINE_PRAYER_TAB_UNLOCK, this::togglePrayerReordering);
 		}
 	}
 

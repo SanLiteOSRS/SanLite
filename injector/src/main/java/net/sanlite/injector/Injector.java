@@ -142,6 +142,8 @@ public class Injector extends InjectData implements InjectTaskHandler
 
 		inject(new DrawMenu(this));
 
+		inject(new RuneliteMenuEntry(this));
+
 		validate(new InjectorValidator(this));
 
 		transform(new SourceChanger(this));
