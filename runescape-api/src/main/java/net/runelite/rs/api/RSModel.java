@@ -183,4 +183,20 @@ public interface RSModel extends RSRenderable, Model
 
 	int[] getVertexNormalsZ();
 	void setVertexNormalsZ(int[] vertexNormalsZ);
+
+	@Import("overrideAmount")
+	@Override
+	byte getOverrideAmount();
+
+	@Import("overrideHue")
+	@Override
+	byte getOverrideHue();
+
+	@Import("overrideSaturation")
+	@Override
+	byte getOverrideSaturation();
+
+	@Import("overrideLuminance")
+	@Override
+	byte getOverrideLuminance();
 }
