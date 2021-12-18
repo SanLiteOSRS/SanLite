@@ -2026,7 +2026,7 @@ public abstract class RSClientMixin implements RSClient
 	}
 
 	@Inject
-	public Sequence loadAnimation(int id)
+	public Animation loadAnimation(int id)
 	{
 		return client.getSequenceDefinition(id);
 	}

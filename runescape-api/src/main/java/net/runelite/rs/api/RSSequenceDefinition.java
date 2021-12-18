@@ -1,9 +1,9 @@
 package net.runelite.rs.api;
 
-import net.runelite.api.Sequence;
+import net.runelite.api.Animation;
 import net.runelite.mapping.Import;
 
-public interface RSSequenceDefinition extends RSNode, Sequence
+public interface RSSequenceDefinition extends RSNode, Animation
 {
 	@Import("frameIds")
 	int[] getFrameIDs();

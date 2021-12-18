@@ -379,7 +379,7 @@ class SceneUploader
 
 	public int pushModel(Model model, GpuIntBuffer vertexBuffer, GpuFloatBuffer uvBuffer)
 	{
-		final int triangleCount = Math.min(model.getTrianglesCount(), GpuPlugin.MAX_TRIANGLE);
+		final int triangleCount = Math.min(model.getFaceCount(), GpuPlugin.MAX_TRIANGLE);
 
 		vertexBuffer.ensureCapacity(triangleCount * 12);
 		uvBuffer.ensureCapacity(triangleCount * 12);
@@ -388,15 +388,15 @@ class SceneUploader
 		final int[] vertexY = model.getVerticesY();
 		final int[] vertexZ = model.getVerticesZ();
 
-		final int[] trianglesX = model.getTrianglesX();
-		final int[] trianglesY = model.getTrianglesY();
-		final int[] trianglesZ = model.getTrianglesZ();
+		final int[] trianglesX = model.getFaceIndices1();
+		final int[] trianglesY = model.getFaceIndices2();
+		final int[] trianglesZ = model.getFaceIndices3();
 
 		final int[] color1s = model.getFaceColors1();
 		final int[] color2s = model.getFaceColors2();
 		final int[] color3s = model.getFaceColors3();
 
-		final byte[] transparencies = model.getTriangleTransparencies();
+		final byte[] transparencies = model.getFaceTransparencies();
 		final short[] faceTextures = model.getFaceTextures();
 		final byte[] facePriorities = model.getFaceRenderPriorities();
 
@@ -473,15 +473,15 @@ class SceneUploader
 		final int[] vertexY = model.getVerticesY();
 		final int[] vertexZ = model.getVerticesZ();
 
-		final int[] trianglesX = model.getTrianglesX();
-		final int[] trianglesY = model.getTrianglesY();
-		final int[] trianglesZ = model.getTrianglesZ();
+		final int[] trianglesX = model.getFaceIndices1();
+		final int[] trianglesY = model.getFaceIndices2();
+		final int[] trianglesZ = model.getFaceIndices3();
 
 		final int[] color1s = model.getFaceColors1();
 		final int[] color2s = model.getFaceColors2();
 		final int[] color3s = model.getFaceColors3();
 
-		final byte[] transparencies = model.getTriangleTransparencies();
+		final byte[] transparencies = model.getFaceTransparencies();
 		final short[] faceTextures = model.getFaceTextures();
 		final byte[] facePriorities = model.getFaceRenderPriorities();
 
