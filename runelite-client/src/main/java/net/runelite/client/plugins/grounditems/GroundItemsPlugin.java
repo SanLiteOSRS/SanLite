@@ -344,9 +344,10 @@ public class GroundItemsPlugin extends Plugin
 		{
 			MenuEntry menuEntry = menuEntries[i];
 
-			int menuType = menuEntry.getType();
-			if (menuType == FIRST_OPTION || menuType == SECOND_OPTION || menuType == THIRD_OPTION
-				|| menuType == FOURTH_OPTION || menuType == FIFTH_OPTION || menuType == EXAMINE_ITEM)
+			MenuAction menuType = menuEntry.getType();
+			if (menuType == MenuAction.GROUND_ITEM_FIRST_OPTION || menuType == MenuAction.GROUND_ITEM_SECOND_OPTION
+				|| menuType == MenuAction.GROUND_ITEM_THIRD_OPTION || menuType == MenuAction.GROUND_ITEM_FOURTH_OPTION
+				|| menuType == MenuAction.GROUND_ITEM_FIFTH_OPTION || menuType == MenuAction.EXAMINE_ITEM_GROUND)
 			{
 				for (MenuEntryWithCount entryWCount : newEntries)
 				{
