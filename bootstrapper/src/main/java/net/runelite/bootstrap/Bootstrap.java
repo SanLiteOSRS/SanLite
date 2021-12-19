@@ -242,16 +242,16 @@ class Bootstrap
 		artifacts[26].setSize(19936);
 
 		artifacts[27] = new Artifact();
-		artifacts[27].setHash("f55abda036da75e1af45bd43b9dfa79b2a3d90905be9cb38687c6621597a8165");
-		artifacts[27].setName("okhttp-3.7.0.jar");
-		artifacts[27].setPath("https://mvn.runelite.net/com/squareup/okhttp3/okhttp/3.7.0/okhttp-3.7.0.jar");
-		artifacts[27].setSize(394987);
+		artifacts[27].setHash("2570fab55515cbf881d7a4ceef49fc515490bc027057e666776a2832465aeca0");
+		artifacts[27].setName("okhttp-3.14.9.jar");
+		artifacts[27].setPath("https://mvn.runelite.net/com/squareup/okhttp3/okhttp/3.14.9/okhttp-3.14.9.jar");
+		artifacts[27].setSize(430488);
 
 		artifacts[28] = new Artifact();
-		artifacts[28].setHash("bfe7dfe483c37137966a1690f0c7d0b448ba217902c1fed202aaffdbba3291ae");
-		artifacts[28].setName("okio-1.12.0.jar");
-		artifacts[28].setPath("https://mvn.runelite.net/com/squareup/okio/okio/1.12.0/okio-1.12.0.jar");
-		artifacts[28].setSize(81088);
+		artifacts[28].setHash("f80ce42d2ffac47ad4c47e1d6f980d604d247ceb1a886705cf4581ab0c9fe2b8");
+		artifacts[28].setName("okio-1.17.2.jar");
+		artifacts[28].setPath("https://mvn.runelite.net/com/squareup/okio/okio/1.17.2/okio-1.17.2.jar");
+		artifacts[28].setSize(91980);
 
 		artifacts[29] = new Artifact();
 		artifacts[29].setHash("9d4924588d6280c7516db3a4b7298306db5b6f0d1cdf568ce738309b5660f008");
