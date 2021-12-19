@@ -6,7 +6,7 @@ import java.util.Map;
 class Bootstrap
 {
 	private static String CLIENT_REPO_URL;
-	private static final int STATIC_ARTIFACTS_SIZE = 35;
+	private static final int STATIC_ARTIFACTS_SIZE = 36;
 	private static Map<DynamicArtifact, String> CHECKSUMS;
 
 	private Artifact[] artifacts;
@@ -288,6 +288,12 @@ class Bootstrap
 		artifacts[34].setName("jocl-1.0-macos-arm64.jar");
 		artifacts[34].setPath("https://repo.runelite.net/net/runelite/jocl/jocl/1.0/jocl-1.0-macos-arm64.jar");
 		artifacts[34].setSize(59579);
+
+		artifacts[35] = new Artifact();
+		artifacts[35].setHash("9d4924588d6280c7516db3a4b7298306db5b6f0d1cdf568ce738309b5660f008");
+		artifacts[35].setName("commons-csv-1.4.jar");
+		artifacts[35].setPath("https://mvn.runelite.net/org/apache/commons/commons-csv/1.4/commons-csv-1.4.jar");
+		artifacts[35].setSize(39978);
 
 		// Create dynamic artifacts
 		for (DynamicArtifact artifact : DynamicArtifact.values())
