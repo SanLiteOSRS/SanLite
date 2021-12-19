@@ -10,7 +10,7 @@ import net.runelite.mapping.ObfuscatedSignature;
 public class PlayerComposition {
 	@ObfuscatedName("sr")
 	@ObfuscatedGetter(
-		intValue = -1230422016
+		intValue = -992290139
 	)
 	static int field3193;
 	@ObfuscatedName("n")
@@ -24,8 +24,8 @@ public class PlayerComposition {
 	@ObfuscatedSignature(
 		descriptor = "Liq;"
 	)
-	@Export("Widget_cachedSprites")
-	public static EvictingDualNodeHashTable Widget_cachedSprites;
+	@Export("PlayerComposition_cachedModels")
+	public static EvictingDualNodeHashTable PlayerComposition_cachedModels;
 	@ObfuscatedName("hi")
 	@ObfuscatedSignature(
 		descriptor = "[Lpl;"
@@ -68,7 +68,7 @@ public class PlayerComposition {
 
 	static {
 		equipmentIndices = new int[]{8, 11, 4, 6, 9, 7, 10};
-		Widget_cachedSprites = new EvictingDualNodeHashTable(260);
+		PlayerComposition_cachedModels = new EvictingDualNodeHashTable(260);
 	}
 
 	public PlayerComposition() {
@@ -266,7 +266,7 @@ public class PlayerComposition {
 		this.equipment[5] = var3;
 		this.equipment[9] = var4;
 		if (var1 != 0L && var1 != this.hash || this.field3200) {
-			Widget_cachedSprites.remove(var1);
+			PlayerComposition_cachedModels.remove(var1);
 		}
 
 	}
@@ -301,7 +301,7 @@ public class PlayerComposition {
 				}
 			}
 
-			Model var18 = (Model)Widget_cachedSprites.get(var5);
+			Model var18 = (Model) PlayerComposition_cachedModels.get(var5);
 			if (var18 == null) {
 				boolean var9 = false;
 
@@ -319,7 +319,7 @@ public class PlayerComposition {
 
 				if (var9) {
 					if (this.field3201 != -1L) {
-						var18 = (Model)Widget_cachedSprites.get(this.field3201);
+						var18 = (Model) PlayerComposition_cachedModels.get(this.field3201);
 					}
 
 					if (var18 == null) {
@@ -381,7 +381,7 @@ public class PlayerComposition {
 					}
 
 					var18 = var20.toModel(64, 850, -30, -50, -30);
-					Widget_cachedSprites.put(var18, var5);
+					PlayerComposition_cachedModels.put(var18, var5);
 					this.field3201 = var5;
 				}
 			}

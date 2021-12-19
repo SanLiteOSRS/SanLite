@@ -89,7 +89,7 @@ public class WidgetInspectorOverlay extends Overlay
 			{
 				MenuEntry e = entries[i];
 
-				Object wiw = inspector.getWidgetOrWidgetItemForMenuOption(e.getType(), e.getParam0(), e.getParam1());
+				Object wiw = inspector.getWidgetOrWidgetItemForMenuOption(e.getType().getId(), e.getParam0(), e.getParam1());
 				if (wiw == null)
 				{
 					continue;

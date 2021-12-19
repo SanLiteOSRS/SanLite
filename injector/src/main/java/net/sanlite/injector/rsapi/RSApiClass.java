@@ -22,6 +22,8 @@ import org.jetbrains.annotations.NotNull;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
+import static net.sanlite.injector.rsapi.RSApi.CONSTRUCT;
+import static net.sanlite.injector.rsapi.RSApi.IMPORT;
 
 @Getter
 @Setter
@@ -48,13 +50,13 @@ public class RSApiClass extends ClassVisitor implements Iterable<RSApiMethod>
 				continue;
 			}
 
-			if (method.findAnnotation(RSApi.CONSTRUCT) != null)
+			if (method.findAnnotation(CONSTRUCT) != null)
 			{
 				constructList.add(method);
 				continue;
 			}
 
-			final Annotation imported = method.findAnnotation(RSApi.IMPORT);
+			final Annotation imported = method.findAnnotation(IMPORT);
 			if (imported != null)
 			{
 				imports.computeIfAbsent(

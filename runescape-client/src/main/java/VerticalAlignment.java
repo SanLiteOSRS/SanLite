@@ -61,7 +61,7 @@ public enum VerticalAlignment implements MouseWheel {
 	)
 	@Export("getParamDefinition")
 	public static ParamComposition getParamDefinition(int var0) {
-		ParamComposition var1 = (ParamComposition)ParamComposition.ParamDefinition_cached.get((long)var0);
+		ParamComposition var1 = (ParamComposition)ParamComposition.ParamComposition_cached.get((long)var0);
 		if (var1 != null) {
 			return var1;
 		} else {
@@ -72,7 +72,7 @@ public enum VerticalAlignment implements MouseWheel {
 			}
 
 			var1.postDecode();
-			ParamComposition.ParamDefinition_cached.put(var1, (long)var0);
+			ParamComposition.ParamComposition_cached.put(var1, (long)var0);
 			return var1;
 		}
 	}

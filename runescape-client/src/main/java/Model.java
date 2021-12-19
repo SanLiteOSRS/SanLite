@@ -89,11 +89,14 @@ public class Model extends Renderable {
 	@ObfuscatedName("bb")
 	static boolean field2492;
 	@ObfuscatedName("bt")
+	@Export("Model_sine")
 	static int[] Model_sine;
 	@ObfuscatedName("bh")
+	@Export("Model_cosine")
 	static int[] Model_cosine;
 	@ObfuscatedName("bn")
-	static int[] field2490;
+	@Export("Model_colorPalette")
+	static int[] Model_colorPalette;
 	@ObfuscatedName("bj")
 	static int[] field2491;
 	@ObfuscatedName("w")
@@ -197,13 +200,17 @@ public class Model extends Renderable {
 	@Export("zMidOffset")
 	int zMidOffset;
 	@ObfuscatedName("bo")
-	public byte field2494;
+	@Export("overrideHue")
+	public byte overrideHue;
 	@ObfuscatedName("bf")
-	public byte field2495;
+	@Export("overrideSaturation")
+	public byte overrideSaturation;
 	@ObfuscatedName("be")
-	public byte field2479;
+	@Export("overrideLuminance")
+	public byte overrideLuminance;
 	@ObfuscatedName("ce")
-	public byte field2474;
+	@Export("overrideAmount")
+	public byte overrideAmount;
 
 	static {
 		Model_sharedSequenceModel = new Model();
@@ -234,7 +241,7 @@ public class Model extends Renderable {
 		field2492 = true;
 		Model_sine = Rasterizer3D.Rasterizer3D_sine;
 		Model_cosine = Rasterizer3D.Rasterizer3D_cosine;
-		field2490 = Rasterizer3D.Rasterizer3D_colorPalette;
+		Model_colorPalette = Rasterizer3D.Rasterizer3D_colorPalette;
 		field2491 = Rasterizer3D.field2271;
 	}
 
@@ -571,7 +578,7 @@ public class Model extends Renderable {
 		var2.field2449 = this.field2449;
 		var2.isSingleTile = this.isSingleTile;
 		var2.resetBounds();
-		var2.field2474 = 0;
+		var2.overrideAmount = 0;
 		return var2;
 	}
 
@@ -1565,11 +1572,11 @@ public class Model extends Renderable {
 					Rasterizer3D.method3876(modelViewportYs[var2], modelViewportYs[var3], modelViewportYs[var4], modelViewportXs[var2], modelViewportXs[var3], modelViewportXs[var4], this.faceColors1[var1], this.faceColors2[var1], this.faceColors3[var1], field2468[var5], field2468[var6], field2468[var7], field2469[var5], field2469[var6], field2469[var7], field2470[var5], field2470[var6], field2470[var7], this.faceTextures[var1]);
 				}
 			} else if (this.faceColors3[var1] == -1) {
-				Rasterizer3D.method3856(modelViewportYs[var2], modelViewportYs[var3], modelViewportYs[var4], modelViewportXs[var2], modelViewportXs[var3], modelViewportXs[var4], field2490[this.faceColors1[var1]]);
-			} else if (this.field2474 > 0) {
-				var5 = this.method4216(this.faceColors1[var1], this.field2494, this.field2495, this.field2479, this.field2474);
-				var6 = this.method4216(this.faceColors2[var1], this.field2494, this.field2495, this.field2479, this.field2474);
-				var7 = this.method4216(this.faceColors3[var1], this.field2494, this.field2495, this.field2479, this.field2474);
+				Rasterizer3D.method3856(modelViewportYs[var2], modelViewportYs[var3], modelViewportYs[var4], modelViewportXs[var2], modelViewportXs[var3], modelViewportXs[var4], Model_colorPalette[this.faceColors1[var1]]);
+			} else if (this.overrideAmount > 0) {
+				var5 = this.method4216(this.faceColors1[var1], this.overrideHue, this.overrideSaturation, this.overrideLuminance, this.overrideAmount);
+				var6 = this.method4216(this.faceColors2[var1], this.overrideHue, this.overrideSaturation, this.overrideLuminance, this.overrideAmount);
+				var7 = this.method4216(this.faceColors3[var1], this.overrideHue, this.overrideSaturation, this.overrideLuminance, this.overrideAmount);
 				Rasterizer3D.method3854(modelViewportYs[var2], modelViewportYs[var3], modelViewportYs[var4], modelViewportXs[var2], modelViewportXs[var3], modelViewportXs[var4], var5, var6, var7);
 			} else {
 				Rasterizer3D.method3854(modelViewportYs[var2], modelViewportYs[var3], modelViewportYs[var4], modelViewportXs[var2], modelViewportXs[var3], modelViewportXs[var4], this.faceColors1[var1], this.faceColors2[var1], this.faceColors3[var1]);
@@ -1702,7 +1709,7 @@ public class Model extends Renderable {
 					Rasterizer3D.method3876(var14, var15, var16, var11, var12, var13, field2453[0], field2453[1], field2453[2], field2468[var17], field2468[var18], field2468[var19], field2469[var17], field2469[var18], field2469[var19], field2470[var17], field2470[var18], field2470[var19], this.faceTextures[var1]);
 				}
 			} else if (this.faceColors3[var1] == -1) {
-				Rasterizer3D.method3856(var14, var15, var16, var11, var12, var13, field2490[this.faceColors1[var1]]);
+				Rasterizer3D.method3856(var14, var15, var16, var11, var12, var13, Model_colorPalette[this.faceColors1[var1]]);
 			} else {
 				Rasterizer3D.method3854(var14, var15, var16, var11, var12, var13, field2453[0], field2453[1], field2453[2]);
 			}
@@ -1734,7 +1741,7 @@ public class Model extends Renderable {
 					Rasterizer3D.method3876(var14, var16, field2480[3], var11, var13, field2467[3], field2453[0], field2453[2], field2453[3], field2468[var17], field2468[var18], field2468[var19], field2469[var17], field2469[var18], field2469[var19], field2470[var17], field2470[var18], field2470[var19], var21);
 				}
 			} else if (this.faceColors3[var1] == -1) {
-				var17 = field2490[this.faceColors1[var1]];
+				var17 = Model_colorPalette[this.faceColors1[var1]];
 				Rasterizer3D.method3856(var14, var15, var16, var11, var12, var13, var17);
 				Rasterizer3D.method3856(var14, var16, field2480[3], var11, var13, field2467[3], var17);
 			} else {

@@ -133,14 +133,14 @@ public class ChatChannel {
 	public static Widget getWidget(int var0) {
 		int var1 = var0 >> 16;
 		int var2 = var0 & 65535;
-		if (class81.Widget_interfaceComponents[var1] == null || class81.Widget_interfaceComponents[var1][var2] == null) {
+		if (MouseRecorder.Widget_interfaceComponents[var1] == null || MouseRecorder.Widget_interfaceComponents[var1][var2] == null) {
 			boolean var3 = class242.loadInterface(var1);
 			if (!var3) {
 				return null;
 			}
 		}
 
-		return class81.Widget_interfaceComponents[var1][var2];
+		return MouseRecorder.Widget_interfaceComponents[var1][var2];
 	}
 
 	@ObfuscatedName("ka")
@@ -161,8 +161,8 @@ public class ChatChannel {
 			Client.meslayerContinueWidget = null;
 		}
 
-		FileSystem.method3084();
-		class115.revalidateWidgetScroll(class81.Widget_interfaceComponents[var0 >> 16], var4, false);
+		FileSystem.decrementMenuEntries();
+		class115.revalidateWidgetScroll(MouseRecorder.Widget_interfaceComponents[var0 >> 16], var4, false);
 		class33.runWidgetOnLoadListener(var1);
 		if (Client.rootInterface != -1) {
 			Message.runIntfCloseListeners(Client.rootInterface, 1);

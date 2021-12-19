@@ -295,7 +295,12 @@ public enum MenuAction
 	/**
 	 * Menu action triggered when the id is not defined in this class.
 	 */
-	UNKNOWN(-1);
+	UNKNOWN(-1),
+
+	/**
+	 * Deprioritized second menu action for an NPC.
+	 */
+	DEPRIORITIZED_NPC_SECOND_OPTION(2000 + NPC_SECOND_OPTION.getId());
 
 	public static final int MENU_ACTION_DEPRIORITIZE_OFFSET = 2000;
 

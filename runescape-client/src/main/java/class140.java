@@ -56,7 +56,7 @@ public class class140 extends class126 {
 	@Export("Widget_resetModelFrames")
 	static final void Widget_resetModelFrames(int var0) {
 		if (class242.loadInterface(var0)) {
-			Widget[] var1 = class81.Widget_interfaceComponents[var0];
+			Widget[] var1 = MouseRecorder.Widget_interfaceComponents[var0];
 
 			for (int var2 = 0; var2 < var1.length; ++var2) {
 				Widget var3 = var1[var2];

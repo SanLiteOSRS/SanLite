@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021, Trevor <https://github.com/Trevor159>
+ * Copyright (c) 2019, Bram91 <https://github.com/bram91>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,11 +22,12 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.api;
+package net.runelite.client.hiscore;
 
-/**
- * Represents an animation of a renderable
- */
-public interface Sequence
+public enum HiscoreSkillType
 {
+	OVERALL,
+	SKILL,
+	ACTIVITY,
+	BOSS
 }

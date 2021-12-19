@@ -66,6 +66,7 @@ dependencies {
     implementation(group = "net.runelite.pushingpixels", name = "substance", version = "8.0.02")
     implementation(group = "net.sf.jopt-simple", name = "jopt-simple", version = "5.0.1")
     implementation(group = "org.apache.commons", name = "commons-text", version = "1.2")
+    implementation(group = "org.apache.commons", name = "commons-csv", version = "1.9.0")
     implementation(group = "commons-io", name = "commons-io", version = "2.8.0")
     implementation(group = "org.jetbrains", name = "annotations", version = "22.0.0")
     implementation(group = "org.slf4j", name = "slf4j-api", version = "1.7.12")

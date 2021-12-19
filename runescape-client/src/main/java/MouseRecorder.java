@@ -3,13 +3,12 @@ import java.awt.image.PixelGrabber;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
-import net.runelite.mapping.ObfuscatedName;
-import net.runelite.mapping.ObfuscatedSignature;
+
+import net.runelite.mapping.*;
 
 @ObfuscatedName("cd")
-public class class81 implements Runnable {
+@Implements("MouseRecorder")
+public class MouseRecorder implements Runnable {
 	@ObfuscatedName("j")
 	@ObfuscatedSignature(
 		descriptor = "[[Ljm;"
@@ -43,7 +42,7 @@ public class class81 implements Runnable {
 	@Export("millis")
 	long[] millis;
 
-	class81() {
+	MouseRecorder() {
 		this.isRunning = true;
 		this.lock = new Object();
 		this.index = 0;

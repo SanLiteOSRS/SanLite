@@ -133,7 +133,7 @@ public class class194 {
 		Widget.Widget_modelsArchive = var1;
 		GraphicsObject.Widget_spritesArchive = var2;
 		NPC.Widget_fontsArchive = var3;
-		class81.Widget_interfaceComponents = new Widget[CollisionMap.Widget_archive.getGroupCount()][];
+		MouseRecorder.Widget_interfaceComponents = new Widget[CollisionMap.Widget_archive.getGroupCount()][];
 		Widget.Widget_loadedInterfaces = new boolean[CollisionMap.Widget_archive.getGroupCount()];
 	}
 

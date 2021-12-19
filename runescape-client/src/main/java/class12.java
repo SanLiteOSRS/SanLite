@@ -176,7 +176,7 @@ class class12 extends SSLSocket {
 				IsaacCipher.Interpreter_intStackSize -= 2;
 				var3 = Interpreter.Interpreter_intStack[IsaacCipher.Interpreter_intStackSize];
 				var4 = Interpreter.Interpreter_intStack[IsaacCipher.Interpreter_intStackSize + 1];
-				Interpreter.Interpreter_intStack[++IsaacCipher.Interpreter_intStackSize - 1] = class81.method2160(var3, var4);
+				Interpreter.Interpreter_intStack[++IsaacCipher.Interpreter_intStackSize - 1] = MouseRecorder.method2160(var3, var4);
 				return 1;
 			} else if (var0 == ScriptOpcodes.INV_SIZE) {
 				var3 = Interpreter.Interpreter_intStack[--IsaacCipher.Interpreter_intStackSize];
@@ -233,7 +233,7 @@ class class12 extends SSLSocket {
 					IsaacCipher.Interpreter_intStackSize -= 2;
 					var3 = Interpreter.Interpreter_intStack[IsaacCipher.Interpreter_intStackSize] + 32768;
 					var4 = Interpreter.Interpreter_intStack[IsaacCipher.Interpreter_intStackSize + 1];
-					Interpreter.Interpreter_intStack[++IsaacCipher.Interpreter_intStackSize - 1] = class81.method2160(var3, var4);
+					Interpreter.Interpreter_intStack[++IsaacCipher.Interpreter_intStackSize - 1] = MouseRecorder.method2160(var3, var4);
 					return 1;
 				} else if (var0 == ScriptOpcodes.STAFFMODLEVEL) {
 					if (Client.staffModLevel >= 2) {
@@ -299,7 +299,7 @@ class class12 extends SSLSocket {
 	static final void drawWidgets(int var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7) {
 		if (class242.loadInterface(var0)) {
 			BufferedFile.field4430 = null;
-			class118.drawInterface(class81.Widget_interfaceComponents[var0], -1, var1, var2, var3, var4, var5, var6, var7);
+			class118.drawInterface(MouseRecorder.Widget_interfaceComponents[var0], -1, var1, var2, var3, var4, var5, var6, var7);
 			if (BufferedFile.field4430 != null) {
 				class118.drawInterface(BufferedFile.field4430, -1412584499, var1, var2, var3, var4, HitSplatDefinition.field1945, class78.field1000, var7);
 				BufferedFile.field4430 = null;

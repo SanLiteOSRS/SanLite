@@ -166,7 +166,8 @@ public class Message extends DualNode {
 		descriptor = "(I)V",
 		garbageValue = "1989735073"
 	)
-	static final void method1115() {
+	@Export("incrementMenuEntries")
+	static final void incrementMenuEntries() {
 		boolean var0 = false;
 
 		while (!var0) {
@@ -210,7 +211,7 @@ public class Message extends DualNode {
 	@Export("runIntfCloseListeners")
 	static final void runIntfCloseListeners(int var0, int var1) {
 		if (class242.loadInterface(var0)) {
-			Canvas.runComponentCloseListeners(class81.Widget_interfaceComponents[var0], var1);
+			Canvas.runComponentCloseListeners(MouseRecorder.Widget_interfaceComponents[var0], var1);
 		}
 	}
 }

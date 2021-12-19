@@ -137,7 +137,7 @@ class class18 implements Comparator {
 	)
 	static final void method297(int var0, int var1, int var2, boolean var3) {
 		if (class242.loadInterface(var0)) {
-			class92.resizeInterface(class81.Widget_interfaceComponents[var0], -1, var1, var2, var3);
+			class92.resizeInterface(MouseRecorder.Widget_interfaceComponents[var0], -1, var1, var2, var3);
 		}
 	}
 }

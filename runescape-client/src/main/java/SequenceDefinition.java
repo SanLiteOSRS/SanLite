@@ -34,7 +34,8 @@ public class SequenceDefinition extends DualNode {
 	@ObfuscatedSignature(
 		descriptor = "Liq;"
 	)
-	public static EvictingDualNodeHashTable field2086;
+	@Export("SequenceDefinition_cachedModel")
+	public static EvictingDualNodeHashTable SequenceDefinition_cachedModel;
 	@ObfuscatedName("w")
 	@ObfuscatedGetter(
 		intValue = -2061102361
@@ -118,7 +119,7 @@ public class SequenceDefinition extends DualNode {
 		field2084 = false;
 		SequenceDefinition_cached = new EvictingDualNodeHashTable(64);
 		SequenceDefinition_cachedFrames = new EvictingDualNodeHashTable(100);
-		field2086 = new EvictingDualNodeHashTable(100);
+		SequenceDefinition_cachedModel = new EvictingDualNodeHashTable(100);
 	}
 
 	SequenceDefinition() {

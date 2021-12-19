@@ -221,7 +221,7 @@ public class FloorOverlayDefinition extends DualNode {
 		garbageValue = "-1253625598"
 	)
 	public static int method3618(int var0) {
-		return class81.method2159(ViewportMouse.ViewportMouse_entityTags[var0]);
+		return MouseRecorder.method2159(ViewportMouse.ViewportMouse_entityTags[var0]);
 	}
 
 	@ObfuscatedName("t")

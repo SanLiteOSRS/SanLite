@@ -192,7 +192,7 @@ public class GraphicsObject extends Renderable {
 	)
 	static final void method1955(int var0) {
 		if (class242.loadInterface(var0)) {
-			class328.drawModelComponents(class81.Widget_interfaceComponents[var0], -1);
+			class328.drawModelComponents(MouseRecorder.Widget_interfaceComponents[var0], -1);
 		}
 	}
 

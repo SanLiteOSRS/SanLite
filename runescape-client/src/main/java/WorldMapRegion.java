@@ -340,7 +340,7 @@ public class WorldMapRegion {
 					if (var16 == null) {
 						var12 = new WorldMapSprite();
 					} else {
-						var12 = new WorldMapSprite(class81.method2161(var16).pixels);
+						var12 = new WorldMapSprite(MouseRecorder.method2161(var16).pixels);
 					}
 
 					SpritePixels var14 = new SpritePixels(this.pixelsPerTile * 64, this.pixelsPerTile * 64);

@@ -25,15 +25,11 @@
 package net.runelite.mixins;
 
 import net.runelite.api.mixins.*;
-import net.runelite.rs.api.RSClient;
 import net.runelite.rs.api.RSLoginScreenAnimation;
 
 @Mixin(RSLoginScreenAnimation.class)
 public abstract class RSLoginScreenAnimationMixin implements RSLoginScreenAnimation
 {
-	@Shadow("client")
-	private static RSClient client;
-
 	@Inject
 	private static boolean shouldRenderLoginScreenFire = true;
 

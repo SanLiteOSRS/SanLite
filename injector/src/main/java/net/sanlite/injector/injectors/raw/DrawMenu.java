@@ -27,11 +27,12 @@ import net.runelite.asm.execution.MethodContext;
 import net.runelite.asm.pool.Class;
 import net.runelite.asm.pool.Field;
 import net.runelite.asm.signature.Signature;
+import static net.sanlite.injector.injection.InjectData.HOOKS;
 
 public class DrawMenu extends AbstractInjector
 {
 	private static final net.runelite.asm.pool.Method DRAWMENU = new net.runelite.asm.pool.Method(
-		new Class(InjectData.HOOKS),
+		new Class(HOOKS),
 		"drawMenu",
 		new Signature("()Z")
 	);

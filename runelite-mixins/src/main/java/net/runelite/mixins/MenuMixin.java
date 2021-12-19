@@ -24,7 +24,6 @@
  */
 package net.runelite.mixins;
 
-import net.runelite.api.MenuEntry;
 import net.runelite.api.mixins.Inject;
 import net.runelite.api.mixins.Mixin;
 import net.runelite.rs.api.RSClient;
@@ -151,34 +150,5 @@ public abstract class MenuMixin implements RSClient
 
 			font.drawTextLeftAligned(s, x + 3, rowY, highlight, -1);
 		}
-	}
-
-	@Inject
-	public MenuEntry getLeftClickMenuEntry()
-	{
-		final int i = getMenuOptionCount() - 1;
-		MenuEntry entry = new MenuEntry();
-
-		entry.setOption(getMenuOptions()[i]);
-		entry.setTarget(getMenuTargets()[i]);
-		entry.setType(getMenuOpcodes()[i]);
-		entry.setIdentifier(getMenuIdentifiers()[i]);
-		entry.setParam0(getMenuArguments1()[i]);
-		entry.setParam1(getMenuArguments2()[i]);
-		entry.setForceLeftClick(getMenuForceLeftClick()[i]);
-		return entry;
-	}
-
-	@Inject
-	public void setLeftClickMenuEntry(final MenuEntry entry)
-	{
-		final int i = getMenuOptionCount() - 1;
-		getMenuOptions()[i] = entry.getOption();
-		getMenuTargets()[i] = entry.getTarget();
-		getMenuIdentifiers()[i] = entry.getIdentifier();
-		getMenuOpcodes()[i] = entry.getType();
-		getMenuArguments1()[i] = entry.getParam0();
-		getMenuArguments2()[i] = entry.getParam1();
-		getMenuForceLeftClick()[i] = entry.isForceLeftClick();
 	}
 }

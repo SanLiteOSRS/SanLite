@@ -519,8 +519,8 @@ class WidgetInspector extends DevToolsFrame
 		for (int i = 0; i < menuEntries.length; i++)
 		{
 			MenuEntry entry = menuEntries[i];
-			if (entry.getType() != MenuAction.ITEM_USE_ON_WIDGET.getId()
-				&& entry.getType() != MenuAction.SPELL_CAST_ON_WIDGET.getId())
+			if (entry.getType() != MenuAction.ITEM_USE_ON_WIDGET
+				&& entry.getType() != MenuAction.SPELL_CAST_ON_WIDGET)
 			{
 				continue;
 			}

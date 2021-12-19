@@ -7,6 +7,7 @@
  */
 package net.sanlite.injector.injectors.raw;
 
+import net.runelite.asm.attributes.code.instructions.*;
 import net.sanlite.injector.InjectUtil;
 import net.sanlite.injector.injection.InjectData;
 import net.sanlite.injector.injectors.AbstractInjector;
@@ -19,14 +20,6 @@ import net.runelite.asm.Type;
 import net.runelite.asm.attributes.Code;
 import net.runelite.asm.attributes.code.Instruction;
 import net.runelite.asm.attributes.code.Instructions;
-import net.runelite.asm.attributes.code.instructions.GetField;
-import net.runelite.asm.attributes.code.instructions.GetStatic;
-import net.runelite.asm.attributes.code.instructions.InvokeSpecial;
-import net.runelite.asm.attributes.code.instructions.InvokeStatic;
-import net.runelite.asm.attributes.code.instructions.InvokeVirtual;
-import net.runelite.asm.attributes.code.instructions.New;
-import net.runelite.asm.attributes.code.instructions.PutField;
-import net.runelite.asm.attributes.code.instructions.PutStatic;
 import net.runelite.asm.pool.Class;
 import net.runelite.asm.signature.Signature;
 import org.objectweb.asm.Opcodes;
@@ -35,7 +28,10 @@ public class CopyRuneLiteClasses extends AbstractInjector
 {
 	private static final List<String> RUNELITE_OBJECTS = List.of(
 		"RuneLiteObject",
-		"RuneLiteIterableHashTable"
+		"RuneLiteIterableLinkDeque",
+		"RuneLiteIterableNodeDeque",
+		"RuneLiteIterableNodeHashTable",
+		"RuneLiteMenuEntry"
 	);
 
 	public CopyRuneLiteClasses(InjectData inject)
@@ -225,6 +221,11 @@ public class CopyRuneLiteClasses extends AbstractInjector
 					{
 						iterator.set(new New(ins, inject.toVanilla(deobClass)));
 					}
+				}
+				else if (i instanceof CheckCast)
+				{
+					CheckCast clazz = ((CheckCast) i);
+					iterator.set(new CheckCast(ins, getObfuscatedSignature(clazz.getType_())));
 				}
 			}
 		}

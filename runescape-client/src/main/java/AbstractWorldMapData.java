@@ -22,13 +22,13 @@ public abstract class AbstractWorldMapData {
 	static IndexedSprite[] scrollBarSprites;
 	@ObfuscatedName("t")
 	@ObfuscatedGetter(
-		intValue = -1901831360
+		intValue = 1782223213
 	)
 	@Export("regionXLow")
 	int regionXLow;
 	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = 1838712384
+		intValue = -1380556263
 	)
 	@Export("regionYLow")
 	int regionYLow;

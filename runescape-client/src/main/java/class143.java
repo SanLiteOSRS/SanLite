@@ -238,7 +238,7 @@ public class class143 {
 				var3.scrollHeight = Interpreter.Interpreter_intStack[IsaacCipher.Interpreter_intStackSize + 1];
 				SecureRandomCallable.invalidateWidget(var3);
 				if (var4 != -1 && var3.type == 0) {
-					class115.revalidateWidgetScroll(class81.Widget_interfaceComponents[var4 >> 16], var3, false);
+					class115.revalidateWidgetScroll(MouseRecorder.Widget_interfaceComponents[var4 >> 16], var3, false);
 				}
 
 				return 1;

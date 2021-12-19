@@ -331,7 +331,8 @@ public abstract class Actor extends Renderable {
 	@ObfuscatedSignature(
 		descriptor = "[Lgj;"
 	)
-	class185[] field1153;
+	@Export("pathTraversed")
+	class185[] pathTraversed;
 	@ObfuscatedName("ci")
 	@ObfuscatedGetter(
 		intValue = -154765815
@@ -394,7 +395,7 @@ public abstract class Actor extends Renderable {
 		this.pathLength = 0;
 		this.pathX = new int[10];
 		this.pathY = new int[10];
-		this.field1153 = new class185[10];
+		this.pathTraversed = new class185[10];
 		this.field1117 = 0;
 		this.field1098 = 0;
 		this.field1119 = -1;
