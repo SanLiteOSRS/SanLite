@@ -157,13 +157,13 @@ public class class273 {
 		if (var0 != -1) {
 			if (Widget.Widget_loadedInterfaces[var0]) {
 				CollisionMap.Widget_archive.clearFilesGroup(var0);
-				if (class81.Widget_interfaceComponents[var0] != null) {
+				if (MouseRecorder.Widget_interfaceComponents[var0] != null) {
 					boolean var1 = true;
 
-					for (int var2 = 0; var2 < class81.Widget_interfaceComponents[var0].length; ++var2) {
-						if (class81.Widget_interfaceComponents[var0][var2] != null) {
-							if (class81.Widget_interfaceComponents[var0][var2].type != 2) {
-								class81.Widget_interfaceComponents[var0][var2] = null;
+					for (int var2 = 0; var2 < MouseRecorder.Widget_interfaceComponents[var0].length; ++var2) {
+						if (MouseRecorder.Widget_interfaceComponents[var0][var2] != null) {
+							if (MouseRecorder.Widget_interfaceComponents[var0][var2].type != 2) {
+								MouseRecorder.Widget_interfaceComponents[var0][var2] = null;
 							} else {
 								var1 = false;
 							}
@@ -171,7 +171,7 @@ public class class273 {
 					}
 
 					if (var1) {
-						class81.Widget_interfaceComponents[var0] = null;
+						MouseRecorder.Widget_interfaceComponents[var0] = null;
 					}
 
 					Widget.Widget_loadedInterfaces[var0] = false;

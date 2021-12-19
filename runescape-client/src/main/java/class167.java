@@ -7,7 +7,7 @@ import net.runelite.rs.ScriptOpcodes;
 public class class167 {
 	@ObfuscatedName("sh")
 	@ObfuscatedGetter(
-		intValue = -1843445888
+		intValue = 2133081727
 	)
 	static int field1811;
 	@ObfuscatedName("hv")

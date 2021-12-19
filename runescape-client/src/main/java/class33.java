@@ -30,7 +30,7 @@ public class class33 {
 	static void runWidgetOnLoadListener(int var0) {
 		if (var0 != -1) {
 			if (class242.loadInterface(var0)) {
-				Widget[] var1 = class81.Widget_interfaceComponents[var0];
+				Widget[] var1 = MouseRecorder.Widget_interfaceComponents[var0];
 
 				for (int var2 = 0; var2 < var1.length; ++var2) {
 					Widget var3 = var1[var2];

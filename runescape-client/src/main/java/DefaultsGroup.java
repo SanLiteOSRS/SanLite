@@ -47,7 +47,7 @@ public class DefaultsGroup {
 
 			Rasterizer2D.Rasterizer2D_clear();
 			byte[] var4 = var0.takeFileByNames("title.jpg", "");
-			WorldMapCacheName.leftTitleSprite = class81.method2161(var4);
+			WorldMapCacheName.leftTitleSprite = MouseRecorder.method2161(var4);
 			NPC.rightTitleSprite = WorldMapCacheName.leftTitleSprite.mirrorHorizontally();
 			int var5 = Client.worldProperties;
 			if ((var5 & 536870912) != 0) {

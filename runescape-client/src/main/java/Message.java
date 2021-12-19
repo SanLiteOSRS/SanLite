@@ -211,7 +211,7 @@ public class Message extends DualNode {
 	@Export("runIntfCloseListeners")
 	static final void runIntfCloseListeners(int var0, int var1) {
 		if (class242.loadInterface(var0)) {
-			Canvas.runComponentCloseListeners(class81.Widget_interfaceComponents[var0], var1);
+			Canvas.runComponentCloseListeners(MouseRecorder.Widget_interfaceComponents[var0], var1);
 		}
 	}
 }

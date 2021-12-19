@@ -9,7 +9,7 @@ import net.runelite.mapping.ObfuscatedSignature;
 public class VarpDefinition extends DualNode {
 	@ObfuscatedName("sw")
 	@ObfuscatedGetter(
-		intValue = -694403072
+		intValue = 2043894385
 	)
 	static int field1748;
 	@ObfuscatedName("c")

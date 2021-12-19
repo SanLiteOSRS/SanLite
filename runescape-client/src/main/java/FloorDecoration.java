@@ -241,7 +241,7 @@ public final class FloorDecoration {
 		}
 
 		if (-1L != var4) {
-			var8 = class81.method2159(var4);
+			var8 = MouseRecorder.method2159(var4);
 			int var9 = (int)(var4 >>> 7 & 127L);
 			Player var11 = Client.players[Client.combatTargetPlayerIndex];
 			class233.addPlayerToMenu(var11, Client.combatTargetPlayerIndex, var8, var9);

@@ -171,7 +171,7 @@ public final class WorldMapManager {
 			System.nanoTime();
 			if (var1.isValidFileName(WorldMapCacheName.field2764.name, var2)) {
 				byte[] var20 = var1.takeFileByNames(WorldMapCacheName.field2764.name, var2);
-				this.compositeTextureSprite = class81.method2161(var20);
+				this.compositeTextureSprite = MouseRecorder.method2161(var20);
 			}
 
 			System.nanoTime();

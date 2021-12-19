@@ -235,7 +235,7 @@ public class class253 {
 					}
 
 					WorldMapData_1.field2652 = new Bounds(class138.loginBoxCenter, var23, var1.stringWidth(class10.field58), 11);
-					class81.field1044 = new Bounds(class138.loginBoxCenter, var23, var1.stringWidth("Still having trouble logging in?"), 11);
+					MouseRecorder.field1044 = new Bounds(class138.loginBoxCenter, var23, var1.stringWidth("Still having trouble logging in?"), 11);
 					var1.drawCentered(class10.field58, class138.loginBoxCenter, var23, 16777215, 0);
 				} else if (Login.loginIndex == 3) {
 					var23 = 201;

@@ -825,9 +825,9 @@ public class Skeleton extends Node {
 									}
 
 									var39 = 361;
-									if (class81.field1044 != null) {
-										var11 = class81.field1044.highX / 2;
-										if (var5 == 1 && var50 >= class81.field1044.lowX - var11 && var50 <= var11 + class81.field1044.lowX && var36 >= var39 - 15 && var36 < var39) {
+									if (MouseRecorder.field1044 != null) {
+										var11 = MouseRecorder.field1044.highX / 2;
+										if (var5 == 1 && var50 >= MouseRecorder.field1044.lowX - var11 && var50 <= var11 + MouseRecorder.field1044.lowX && var36 >= var39 - 15 && var36 < var39) {
 											WorldMapSprite.openURL(InterfaceParent.method2146("secure", true) + "m=weblogin/g=oldscape/cant_log_in", true, false);
 										}
 									}

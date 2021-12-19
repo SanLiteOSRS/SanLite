@@ -75,7 +75,7 @@ public class class279 {
 			SecureRandomCallable.invalidateWidget(var4);
 			class295.client.alignWidget(var4);
 			if (var3 != -1 && var4.type == 0) {
-				class115.revalidateWidgetScroll(class81.Widget_interfaceComponents[var3 >> 16], var4, false);
+				class115.revalidateWidgetScroll(MouseRecorder.Widget_interfaceComponents[var3 >> 16], var4, false);
 			}
 
 			return 1;
@@ -88,7 +88,7 @@ public class class279 {
 			SecureRandomCallable.invalidateWidget(var4);
 			class295.client.alignWidget(var4);
 			if (var3 != -1 && var4.type == 0) {
-				class115.revalidateWidgetScroll(class81.Widget_interfaceComponents[var3 >> 16], var4, false);
+				class115.revalidateWidgetScroll(MouseRecorder.Widget_interfaceComponents[var3 >> 16], var4, false);
 			}
 
 			return 1;

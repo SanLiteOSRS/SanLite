@@ -24,8 +24,8 @@ public class ParamComposition extends DualNode {
 	@ObfuscatedSignature(
 		descriptor = "Liq;"
 	)
-	@Export("ParamDefinition_cached")
-	public static EvictingDualNodeHashTable ParamDefinition_cached;
+	@Export("ParamComposition_cached")
+	public static EvictingDualNodeHashTable ParamComposition_cached;
 	@ObfuscatedName("p")
 	@Export("type")
 	char type;
@@ -43,7 +43,7 @@ public class ParamComposition extends DualNode {
 	boolean autoDisable;
 
 	static {
-		ParamDefinition_cached = new EvictingDualNodeHashTable(64);
+		ParamComposition_cached = new EvictingDualNodeHashTable(64);
 	}
 
 	ParamComposition() {
