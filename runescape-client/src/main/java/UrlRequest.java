@@ -69,7 +69,7 @@ public class UrlRequest {
 		class1.method8();
 		VarpDefinition.VarpDefinition_cached.clear();
 		AbstractSocket.HitSplatDefinition_cachedSprites.method7216();
-		Ignored.HitSplatDefinition_cached.method7216();
+		Ignored.Ignored_cached.method7216();
 		ObjectSound.method1796();
 		HealthBarDefinition.HealthBarDefinition_cached.clear();
 		HealthBarDefinition.HealthBarDefinition_cachedSprites.clear();

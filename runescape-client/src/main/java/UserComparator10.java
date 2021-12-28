@@ -240,7 +240,7 @@ public class UserComparator10 extends AbstractUserComparator {
 						Archive var13 = class131.archive2;
 						InterfaceParent.method2145(class131.archive2);
 						AbstractSocket.HitSplatDefinition_cachedSprites = new class404(class338.field4054, 54, ScriptFrame.clientLanguage, class131.archive2);
-						Ignored.HitSplatDefinition_cached = new class404(class338.field4054, 47, ScriptFrame.clientLanguage, class131.archive2);
+						Ignored.Ignored_cached = new class404(class338.field4054, 47, ScriptFrame.clientLanguage, class131.archive2);
 						class339.varcs = new Varcs();
 						class331.method6174(class131.archive2, UserComparator6.archive8, class1.archive13);
 						ObjectSound.method1803(class131.archive2, UserComparator6.archive8);

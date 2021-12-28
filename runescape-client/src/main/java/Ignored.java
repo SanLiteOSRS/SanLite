@@ -11,8 +11,8 @@ public class Ignored extends Nameable {
 	@ObfuscatedSignature(
 		descriptor = "Loo;"
 	)
-	@Export("HitSplatDefinition_cached")
-	static class404 HitSplatDefinition_cached;
+	@Export("Ignored_cached")
+	static class404 Ignored_cached;
 	@ObfuscatedName("c")
 	@ObfuscatedGetter(
 		intValue = 1285120553

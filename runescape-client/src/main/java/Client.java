@@ -4932,10 +4932,10 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 
 				if (ServerPacket.field3002 == var1.serverPacket) {
 					if (BuddyRankComparator.field1342 == null) {
-						BuddyRankComparator.field1342 = new class370(Ignored.HitSplatDefinition_cached);
+						BuddyRankComparator.field1342 = new class370(Ignored.Ignored_cached);
 					}
 
-					class426 var49 = Ignored.HitSplatDefinition_cached.method6761(var3);
+					class426 var49 = Ignored.Ignored_cached.method6761(var3);
 					BuddyRankComparator.field1342.field4221.vmethod7129(var49.field4539, var49.field4537);
 					field695[++field734 - 1 & 31] = var49.field4539;
 					var1.serverPacket = null;
@@ -5836,7 +5836,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 				}
 
 				if (ServerPacket.field2981 == var1.serverPacket) {
-					BuddyRankComparator.field1342 = new class370(Ignored.HitSplatDefinition_cached);
+					BuddyRankComparator.field1342 = new class370(Ignored.Ignored_cached);
 					var1.serverPacket = null;
 					return true;
 				}
