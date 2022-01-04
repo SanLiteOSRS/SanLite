@@ -136,7 +136,8 @@ tasks {
                 "rs.version" to ProjectVersions.rsVersion.toString(),
                 "sanlite.version" to ProjectVersions.sanliteVersion,
                 "sanlite.builddate" to formatDate(Date()),
-                "plugin.path" to pluginPath()
+                "plugin.path" to pluginPath(),
+                "gitcommit" to project.extra["gitCommit"]
         )
 
         inputs.properties(tokens)

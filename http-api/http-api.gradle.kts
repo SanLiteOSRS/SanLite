@@ -50,8 +50,7 @@ tasks {
     register<Copy>("filterResources") {
         val tokens = mapOf(
                 "projectver" to ProjectVersions.rlVersion,
-                "rsver" to ProjectVersions.rsVersion.toString(),
-                "gitcommit" to project.extra["gitCommit"]
+                "rsver" to ProjectVersions.rsVersion.toString()
         )
 
         inputs.properties(tokens)
