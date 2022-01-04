@@ -11,8 +11,7 @@ public enum DynamicArtifact
 	RUNELITE_CLIENT("runelite-client", "runelite-client"),
 	RUNELITE_API("runelite-api", "runelite-api"),
 	RUNESCAPE_API("runescape-api", "runescape-api"),
-	RUNELITE_JSHELL("runelite-jshell", "runelite-jshell"),
-	HTTP_API("http-api", "http-api");
+	RUNELITE_JSHELL("runelite-jshell", "runelite-jshell");
 
 	@Getter
 	private final String directory;

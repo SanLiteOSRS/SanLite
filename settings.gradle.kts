@@ -38,7 +38,6 @@ gradleEnterprise {
 include(":bootstrapper")
 include(":cache")
 include(":deobfuscator")
-include(":http-api")
 include(":injection-annotations")
 include(":injector")
 include(":runelite-api")

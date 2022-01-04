@@ -34,8 +34,6 @@ description = "Cache"
 dependencies {
     annotationProcessor(group = "org.projectlombok", name = "lombok", version = ProjectVersions.lombokVersion)
 
-    api(project(":http-api"))
-
     compileOnly(group = "org.projectlombok", name = "lombok", version = ProjectVersions.lombokVersion)
 
     implementation(group = "com.google.code.gson", name = "gson", version = "2.8.5")

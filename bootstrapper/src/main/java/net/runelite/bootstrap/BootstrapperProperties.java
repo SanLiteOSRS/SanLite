@@ -62,10 +62,6 @@ public class BootstrapperProperties
 	{
 		return properties.getProperty(BOOTSTRAP_LIVE_REPO);
 	}
-	String getBootstrapLiveOldRepo()
-	{
-		return properties.getProperty(BOOTSTRAP_LIVE_OLD_REPO);
-	}
 
 	String getBootstrapLiveFallbackRepo()
 	{
@@ -75,11 +71,6 @@ public class BootstrapperProperties
 	String getBootstrapStagingRepo()
 	{
 		return properties.getProperty(BOOTSTRAP_STAGING_REPO);
-	}
-
-	String getBootstrapStagingOldRepo()
-	{
-		return properties.getProperty(BOOTSTRAP_STAGING_OLD_REPO);
 	}
 
 	String getBootstrapStagingFallbackRepo()

@@ -45,7 +45,6 @@ open class BootstrapTask @Inject constructor(@Input val type: String) : DefaultT
             lateinit var path: String
 
             if (it.file.name.contains("runelite-client") ||
-                    it.file.name.contains("http-api") ||
                     it.file.name.contains("runescape-api") ||
                     it.file.name.contains("runelite-api") ||
                     it.file.name.contains("runelite-jshell")) {
