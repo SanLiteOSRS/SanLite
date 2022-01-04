@@ -35,8 +35,10 @@ import okhttp3.HttpUrl;
 public class RuneLiteProperties
 {
 	private static final String RUNELITE_TITLE = "runelite.title";
+    private static final String SANLITE_VERSION = "sanlite.version";
 	private static final String RUNELITE_VERSION = "runelite.version";
-	private static final String SANLITE_VERSION = "sanlite.version";
+	private static final String RUNELITE_COMMIT = "runelite.commit";
+	private static final String RUNELITE_DIRTY = "runelite.dirty";
 	private static final String DISCORD_INVITE = "runelite.discord.invite";
 	private static final String LAUNCHER_VERSION_PROPERTY = "runelite.launcher.version";
 	private static final String INSECURE_SKIP_TLS_VERIFICATION_PROPERTY = "runelite.insecure-skip-tls-verification";
@@ -69,14 +71,24 @@ public class RuneLiteProperties
 		return properties.getProperty(RUNELITE_TITLE);
 	}
 
+    public static String getSanLiteVersion()
+	{
+		return properties.getProperty(SANLITE_VERSION);
+	}
+
 	public static String getVersion()
 	{
 		return properties.getProperty(RUNELITE_VERSION);
 	}
 
-	public static String getSanLiteVersion()
+	public static String getCommit()
 	{
-		return properties.getProperty(SANLITE_VERSION);
+		return properties.getProperty(RUNELITE_COMMIT);
+	}
+
+	public static boolean isDirty()
+	{
+		return Boolean.parseBoolean(properties.getProperty(RUNELITE_DIRTY));
 	}
 
 	public static String getDiscordInvite()
