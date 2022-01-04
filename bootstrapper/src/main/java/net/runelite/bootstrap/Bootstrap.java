@@ -86,16 +86,16 @@ class Bootstrap
 		artifacts[0].setSize(41203);
 
 		artifacts[1] = new Artifact();
-		artifacts[1].setHash("fb53f8539e7fcb8f093a56e138112056ec1dc809ebb020b59d8a36a5ebac37e0");
-		artifacts[1].setName("logback-classic-1.2.3.jar");
-		artifacts[1].setPath("https://mvn.runelite.net/ch/qos/logback/logback-classic/1.2.3/logback-classic-1.2.3.jar");
-		artifacts[1].setSize(290339);
+		artifacts[1].setHash("ad745cc243805800d1ebbf5b7deba03b37c95885e6bce71335a73f7d6d0f14ee");
+		artifacts[1].setName("logback-classic-1.2.9.jar");
+		artifacts[1].setPath("https://mvn.runelite.net/ch/qos/logback/logback-classic/1.2.9/logback-classic-1.2.9.jar");
+		artifacts[1].setSize(233855);
 
 		artifacts[2] = new Artifact();
-		artifacts[2].setHash("5946d837fe6f960c02a53eda7a6926ecc3c758bbdd69aa453ee429f858217f22");
-		artifacts[2].setName("logback-core-1.2.3.jar");
-		artifacts[2].setPath("https://mvn.runelite.net/ch/qos/logback/logback-core/1.2.3/logback-core-1.2.3.jar");
-		artifacts[2].setSize(471901);
+		artifacts[2].setHash("4a9ef7ed809b1fbc6992bf87d404087c247e7a9766e25bb84377b58ed5c9eb58");
+		artifacts[2].setName("logback-core-1.2.9.jar");
+		artifacts[2].setPath("https://mvn.runelite.net/ch/qos/logback/logback-core/1.2.9/logback-core-1.2.9.jar");
+		artifacts[2].setSize(454201);
 
 		artifacts[3] = new Artifact();
 		artifacts[3].setHash("9f0c8d50fa4b79b6ff1502dbec8502179d6b9497cacbe17a13074001aed537ec");

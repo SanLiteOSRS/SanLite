@@ -33,4 +33,5 @@ object ProjectVersions {
     const val cacheVersion = 165
 
     const val lombokVersion = "1.18.20"
+    const val logbackVersion = "1.2.9"
 }
