@@ -10,10 +10,8 @@ If you have any questions, please join our [Discord](https://discord.gg/hNgWmk6)
 - [bootstrapper](bootstrapper/src/main/java/net/runelite/bootstrap) - Generates bootstrap file used for automatically retrieving launcher dependencies
 - [cache](cache/src/main/java/net/runelite/cache) - Libraries used for reading/writing cache files, as well as the data in it
 - [deobfuscator](deobfuscator/src/main/java/net/runelite/deob) - Deobfuscates OSRS gamepacks & updating the runescape-client mappings
-- [http-api](http-api/src/main/java/net/runelite/http/api) - API for api.runelite.net
-- [http-service](http-service/src/main/java/net/runelite/http/service) - Service for api.runelite.net
 - [injected-client](injected-client) - OSRS client with mixins injected
-- [injector-plugin](injector-plugin/src/main/java/net/runelite/injector) - Injects mixins into the OSRS client
+- [injector](injector/src/main/java/net/runelite/injector) - Injects mixins into the OSRS client
 - [runelite-api](runelite-api/src/main/java/net/runelite/api) - RuneLite API, interfaces for accessing the client
 - [runelite-mixins](runelite-mixins/src/main/java/net/runelite) - Mixins which are injected into the injected client's classes	
 - [runescape-api](runescape-api/src/main/java/net/runelite) - Mappings correspond to these interfaces, runelite-api is a subset of this
