@@ -35,7 +35,7 @@ import okhttp3.HttpUrl;
 public class RuneLiteProperties
 {
 	private static final String RUNELITE_TITLE = "runelite.title";
-    private static final String SANLITE_VERSION = "sanlite.version";
+	private static final String SANLITE_VERSION = "sanlite.version";
 	private static final String RUNELITE_VERSION = "runelite.version";
 	private static final String RUNELITE_COMMIT = "runelite.commit";
 	private static final String RUNELITE_DIRTY = "runelite.dirty";
@@ -71,10 +71,10 @@ public class RuneLiteProperties
 		return properties.getProperty(RUNELITE_TITLE);
 	}
 
-    public static String getSanLiteVersion()
+	public static String getSanLiteVersion()
 	{
 		return properties.getProperty(SANLITE_VERSION);
-	}
+}
 
 	public static String getVersion()
 	{

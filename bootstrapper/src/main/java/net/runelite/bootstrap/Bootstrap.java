@@ -6,7 +6,7 @@ import java.util.Map;
 class Bootstrap
 {
 	private static String CLIENT_REPO_URL;
-	private static final int STATIC_ARTIFACTS_SIZE = 36;
+	private static final int STATIC_ARTIFACTS_SIZE = 37;
 	private static Map<DynamicArtifact, String> CHECKSUMS;
 
 	private Artifact[] artifacts;
@@ -294,6 +294,12 @@ class Bootstrap
 		artifacts[35].setName("commons-csv-1.4.jar");
 		artifacts[35].setPath("https://mvn.runelite.net/org/apache/commons/commons-csv/1.4/commons-csv-1.4.jar");
 		artifacts[35].setSize(39978);
+
+		artifacts[36] = new Artifact();
+		artifacts[36].setHash("49132e91d30944682c7caa3d20f764d2112b59ac7ccd9cab89ca08e917c4632e");
+		artifacts[36].setName("http-api-1.0.0.jar");
+		artifacts[36].setPath("https://repo.runelite.net/net/runelite/arn/http-api/1.0.0/http-api-1.0.0.jar");
+		artifacts[36].setSize(58112);
 
 		// Create dynamic artifacts
 		for (DynamicArtifact artifact : DynamicArtifact.values())
