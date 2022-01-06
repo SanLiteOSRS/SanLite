@@ -114,8 +114,7 @@ public class CerberusOverlay extends Overlay
 				return;
 			}
 
-			OverlayUtil2.renderPolygon(graphics, areaPolygon, config.getLavaPoolColor(),
-					config.getTileMarkersLineSize().getSize());
+			OverlayUtil2.renderPolygon(graphics, areaPolygon, config.getLavaPoolColor(), config.borderWidth());
 		}
 	}
 

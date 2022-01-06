@@ -110,18 +110,15 @@ public class AlchemicalHydraOverlay extends Overlay
 
 			if (alchemicalHydra.isPoisonSplatSpecialAttack(graphicsObject.getId()))
 			{
-				OverlayUtil2.renderPolygon(graphics, polygon, config.getPoisonAttackColor(),
-						config.getTileMarkersLineSize().getSize());
+				OverlayUtil2.renderPolygon(graphics, polygon, config.getPoisonAttackColor(), config.borderWidth());
 			}
 			else if (graphicsObject.getId() == GraphicID.ALCHEMICAL_HYDRA_LIGHTNING_ATTACK)
 			{
-				OverlayUtil2.renderPolygon(graphics, polygon, config.getLightningAttackColor(),
-						config.getTileMarkersLineSize().getSize());
+				OverlayUtil2.renderPolygon(graphics, polygon, config.getLightningAttackColor(), config.borderWidth());
 			}
 			else if (graphicsObject.getId() == GraphicID.ALCHEMICAL_HYDRA_FIRE_ATTACK)
 			{
-				OverlayUtil2.renderPolygon(graphics, polygon, config.getFireAttackColor(),
-						config.getTileMarkersLineSize().getSize());
+				OverlayUtil2.renderPolygon(graphics, polygon, config.getFireAttackColor(), config.borderWidth());
 			}
 		}
 	}

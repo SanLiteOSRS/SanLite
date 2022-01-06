@@ -142,8 +142,7 @@ public class TheatreOfBloodOverlay extends Overlay
 			{
 				if (sugadintiMaiden.isBloodSplatAttack(graphicsObject.getId()))
 				{
-					OverlayUtil2.renderPolygon(graphics, polygon, config.getBloodSplatAttackColor(),
-							config.getTileMarkersLineSize().getSize());
+					OverlayUtil2.renderPolygon(graphics, polygon, config.getBloodSplatAttackColor(), config.borderWidth());
 				}
 			}
 		}
@@ -159,8 +158,7 @@ public class TheatreOfBloodOverlay extends Overlay
 			{
 				if (sugadintiMaiden.isBloodSpawnBloodTile(gameObject.getId()))
 				{
-					OverlayUtil2.renderPolygon(graphics, polygon, config.getBloodSpawnBloodColor(),
-							config.getTileMarkersLineSize().getSize());
+					OverlayUtil2.renderPolygon(graphics, polygon, config.getBloodSpawnBloodColor(), config.borderWidth());
 				}
 			}
 		}
@@ -177,8 +175,7 @@ public class TheatreOfBloodOverlay extends Overlay
 			{
 				if (pestilentBloat.isHandAttack(graphicsObject.getId()))
 				{
-					OverlayUtil2.renderPolygon(graphics, polygon, config.getBloatHandAttackColor(),
-							config.getTileMarkersLineSize().getSize());
+					OverlayUtil2.renderPolygon(graphics, polygon, config.getBloatHandAttackColor(), config.borderWidth());
 				}
 			}
 		}
@@ -207,7 +204,7 @@ public class TheatreOfBloodOverlay extends Overlay
 		{
 			color = config.getBloatAwakeColor();
 		}
-		OverlayUtil2.renderPolygon(graphics, objectClickbox, color, config.getTileMarkersLineSize().getSize());
+		OverlayUtil2.renderPolygon(graphics, objectClickbox, color, config.borderWidth());
 	}
 
 	private void renderPestilentBloatTimerText(Graphics2D graphics, PestilentBloat pestilentBloat)
@@ -240,8 +237,7 @@ public class TheatreOfBloodOverlay extends Overlay
 			Shape npcClickbox = npc.getConvexHull();
 			if (npcClickbox != null)
 			{
-				OverlayUtil2.renderPolygon(graphics, npcClickbox, config.getAggressiveNylocasColor(),
-						config.getTileMarkersLineSize().getSize());
+				OverlayUtil2.renderPolygon(graphics, npcClickbox, config.getAggressiveNylocasColor(), config.borderWidth());
 			}
 		}
 	}
@@ -282,8 +278,7 @@ public class TheatreOfBloodOverlay extends Overlay
 					continue;
 				}
 
-				OverlayUtil2.renderPolygon(graphics, polygon, config.getNylocasExplosiveRadiusColor(),
-						config.getTileMarkersLineSize().getSize());
+				OverlayUtil2.renderPolygon(graphics, polygon, config.getNylocasExplosiveRadiusColor(), config.borderWidth());
 			}
 		}
 	}
@@ -302,8 +297,7 @@ public class TheatreOfBloodOverlay extends Overlay
 
 			if (polygon != null)
 			{
-				OverlayUtil2.renderPolygon(graphics, polygon, config.getSotetsegMazeTileColor(),
-						config.getTileMarkersLineSize().getSize());
+				OverlayUtil2.renderPolygon(graphics, polygon, config.getSotetsegMazeTileColor(), config.borderWidth());
 			}
 		}
 	}
@@ -319,8 +313,7 @@ public class TheatreOfBloodOverlay extends Overlay
 			{
 				if (xarpus.isPoisonTileObject(groundObject.getId()))
 				{
-					OverlayUtil2.renderPolygon(graphics, polygon, config.getXarpusPoisonAttackColor(),
-							config.getTileMarkersLineSize().getSize());
+					OverlayUtil2.renderPolygon(graphics, polygon, config.getXarpusPoisonAttackColor(), config.borderWidth());
 				}
 			}
 		}
@@ -337,8 +330,7 @@ public class TheatreOfBloodOverlay extends Overlay
 			{
 				if (xarpus.isHealingPoolTileObject(groundObject.getId()))
 				{
-					OverlayUtil2.renderPolygon(graphics, polygon, config.getXarpusHealingPoolColor(),
-							config.getTileMarkersLineSize().getSize());
+					OverlayUtil2.renderPolygon(graphics, polygon, config.getXarpusHealingPoolColor(), config.borderWidth());
 				}
 			}
 		}
@@ -395,8 +387,7 @@ public class TheatreOfBloodOverlay extends Overlay
 			{
 				if (verzik.isGreenOrbPool(graphicsObject.getId()))
 				{
-					OverlayUtil2.renderPolygon(graphics, polygon, config.getVerzikGreenOrbPoolColor(),
-							config.getTileMarkersLineSize().getSize());
+					OverlayUtil2.renderPolygon(graphics, polygon, config.getVerzikGreenOrbPoolColor(), config.borderWidth());
 				}
 			}
 		}

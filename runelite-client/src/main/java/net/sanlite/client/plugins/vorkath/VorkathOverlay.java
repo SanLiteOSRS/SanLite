@@ -125,8 +125,7 @@ public class VorkathOverlay extends Overlay
 			Polygon polygon = Perspective.getCanvasTilePoly(client, gameObject.getLocalLocation());
 			if (polygon != null)
 			{
-				OverlayUtil2.renderPolygon(graphics, polygon, config.getAcidPoolColor(),
-						config.getTileMarkersLineSize().getSize());
+				OverlayUtil2.renderPolygon(graphics, polygon, config.getAcidPoolColor(), config.borderWidth());
 			}
 		}
 	}
@@ -145,7 +144,7 @@ public class VorkathOverlay extends Overlay
 				}
 
 				OverlayUtil2.renderPolygon(graphics, Perspective.getCanvasTilePoly(client,
-						acidFreeLocalPoint), config.getAcidPhasePathColor(), config.getTileMarkersLineSize().getSize());
+						acidFreeLocalPoint), config.getAcidPhasePathColor(), config.borderWidth());
 			}
 		}
 	}

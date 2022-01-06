@@ -103,8 +103,7 @@ public class NightmareOfAshihamaOverlay extends Overlay
 				return;
 			}
 
-			OverlayUtil2.renderPolygon(graphics, areaPolygon, config.getGhostAttackColor(),
-					config.getTileMarkersLineSize().getSize());
+			OverlayUtil2.renderPolygon(graphics, areaPolygon, config.getGhostAttackColor(), config.borderWidth());
 		}
 
 		for (GraphicsObject graphicsObject : nightmare.getGraphicObjects())
@@ -121,8 +120,7 @@ public class NightmareOfAshihamaOverlay extends Overlay
 				return;
 			}
 
-			OverlayUtil2.renderPolygon(graphics, polygon, config.getGhostAttackColor(),
-					config.getTileMarkersLineSize().getSize());
+			OverlayUtil2.renderPolygon(graphics, polygon, config.getGhostAttackColor(),  config.borderWidth());
 		}
 	}
 
@@ -142,8 +140,7 @@ public class NightmareOfAshihamaOverlay extends Overlay
 				return;
 			}
 
-			OverlayUtil2.renderPolygon(graphics, areaPolygon, config.getInfectiousSporesColor(),
-					config.getTileMarkersLineSize().getSize());
+			OverlayUtil2.renderPolygon(graphics, areaPolygon, config.getInfectiousSporesColor(), config.borderWidth());
 		}
 	}
 }

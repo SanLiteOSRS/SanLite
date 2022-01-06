@@ -1,7 +1,6 @@
 package net.sanlite.client.plugins.cerberus;
 
 import net.runelite.client.config.*;
-import net.sanlite.client.config.StrokeSize;
 
 import java.awt.*;
 
@@ -43,14 +42,14 @@ public interface CerberusConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "tileMarkersLineSize",
-			name = "Tile markers line size",
-			description = "The size of the outside line for tile markers",
+			keyName = "borderWidth",
+			name = "Border Width",
+			description = "Width of the highlighted tile border",
 			position = 4
 	)
-	default StrokeSize getTileMarkersLineSize()
+	default double borderWidth()
 	{
-		return StrokeSize.NORMAL;
+		return 2;
 	}
 
 	@ConfigItem(

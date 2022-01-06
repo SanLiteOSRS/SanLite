@@ -25,7 +25,6 @@
 package net.sanlite.client.plugins.vorkath;
 
 import net.runelite.client.config.*;
-import net.sanlite.client.config.StrokeSize;
 
 import java.awt.*;
 
@@ -213,14 +212,14 @@ public interface VorkathConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "tileMarkersLineSize",
-			name = "Tile markers line size",
-			description = "The size of the outside line for tile markers",
+			keyName = "borderWidth",
+			name = "Border Width",
+			description = "Width of the highlighted tile border",
 			position = 17
 	)
-	default StrokeSize getTileMarkersLineSize()
+	default double borderWidth()
 	{
-		return StrokeSize.NORMAL;
+		return 2;
 	}
 
 	@ConfigItem(

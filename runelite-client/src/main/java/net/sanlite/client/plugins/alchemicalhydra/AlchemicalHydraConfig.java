@@ -26,7 +26,6 @@ package net.sanlite.client.plugins.alchemicalhydra;
 
 import net.runelite.client.config.*;
 import net.sanlite.client.config.CounterOverlayLocation;
-import net.sanlite.client.config.StrokeSize;
 
 import java.awt.*;
 
@@ -192,14 +191,14 @@ public interface AlchemicalHydraConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "tileMarkersLineSize",
-			name = "Tile markers line size",
-			description = "The size of the outside line for tile markers",
+			keyName = "borderWidth",
+			name = "Border Width",
+			description = "Width of the highlighted tile border",
 			position = 13
 	)
-	default StrokeSize getTileMarkersLineSize()
+	default double borderWidth()
 	{
-		return StrokeSize.NORMAL;
+		return 2;
 	}
 
 	@ConfigItem(
