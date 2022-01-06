@@ -86,6 +86,13 @@ public interface Player extends Actor
 	HeadIcon getOverheadIcon();
 
 	/**
+	 * Sets the displayed overhead icon of the player.
+	 *
+	 * @param overheadIcon overhead icon id
+	 */
+	void setOverheadIcon(int overheadIcon);
+
+	/**
 	 * Gets the displayed skull icon of the player.
 	 * Only works on the local player.
 	 *

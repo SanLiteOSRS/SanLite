@@ -382,6 +382,12 @@ public class DevToolsExtendedPlugin extends Plugin
 				client.getLocalPlayer().setSkullIcon(id);
 				break;
 			}
+			case "head":
+			{
+				int id = Integer.parseInt(args[0]);
+				client.getLocalPlayer().setOverheadIcon(id);
+				break;
+			}
 			case "msg":
 			{
 				client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", String.join(" ", args), "");

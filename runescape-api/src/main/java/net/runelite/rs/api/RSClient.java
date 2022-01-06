@@ -1233,6 +1233,9 @@ public interface RSClient extends RSGameEngine, Client
 	@Import("headIconPkSprites")
 	RSSpritePixels[] getHeadIconPkSprites();
 
+	@Import("headIconPrayerSprites")
+	RSSpritePixels[] getHeadIconPrayerSprites();
+
 	@Import("clearLoginScreen")
 	void clearLoginScreen(boolean shouldClear);
 

@@ -6,7 +6,7 @@ import java.util.Map;
 class Bootstrap
 {
 	private static String CLIENT_REPO_URL;
-	private static final int STATIC_ARTIFACTS_SIZE = 39;
+	private static final int STATIC_ARTIFACTS_SIZE = 37;
 	private static Map<DynamicArtifact, String> CHECKSUMS;
 
 	private Artifact[] artifacts;
@@ -301,17 +301,17 @@ class Bootstrap
 		artifacts[36].setPath("https://repo.runelite.net/net/runelite/arn/http-api/1.0.0/http-api-1.0.0.jar");
 		artifacts[36].setSize(58112);
 
-		artifacts[37] = new Artifact();
-		artifacts[37].setHash("9d4924588d6280c7516db3a4b7298306db5b6f0d1cdf568ce738309b5660f008");
-		artifacts[37].setName("rsyntaxtextarea-3.1.2.jar");
-		artifacts[37].setPath("https://repo.maven.apache.org/maven2/com/fifesoft/rsyntaxtextarea/3.1.2/rsyntaxtextarea-3.1.2.jar");
-		artifacts[37].setSize(1209918);
-
-		artifacts[38] = new Artifact();
-		artifacts[38].setHash("c28575ea4256ce6fce57e820fd467b851c2bd4d816c8c51c24699ef832f91f7d");
-		artifacts[38].setName("autocomplete-3.1.1.jar");
-		artifacts[38].setPath("https://repo.maven.apache.org/maven2/com/fifesoft/autocomplete/3.1.1/autocomplete-3.1.1.jar");
-		artifacts[38].setSize(153177);
+//		artifacts[37] = new Artifact();
+//		artifacts[37].setHash("9d4924588d6280c7516db3a4b7298306db5b6f0d1cdf568ce738309b5660f008");
+//		artifacts[37].setName("rsyntaxtextarea-3.1.2.jar");
+//		artifacts[37].setPath("https://repo.maven.apache.org/maven2/com/fifesoft/rsyntaxtextarea/3.1.2/rsyntaxtextarea-3.1.2.jar");
+//		artifacts[37].setSize(1209918);
+//
+//		artifacts[38] = new Artifact();
+//		artifacts[38].setHash("c28575ea4256ce6fce57e820fd467b851c2bd4d816c8c51c24699ef832f91f7d");
+//		artifacts[38].setName("autocomplete-3.1.1.jar");
+//		artifacts[38].setPath("https://repo.maven.apache.org/maven2/com/fifesoft/autocomplete/3.1.1/autocomplete-3.1.1.jar");
+//		artifacts[38].setSize(153177);
 
 		// Create dynamic artifacts
 		for (DynamicArtifact artifact : DynamicArtifact.values())
