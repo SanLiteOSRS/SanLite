@@ -69,7 +69,7 @@ public interface RSScene extends Scene
 
 	void removeDecorativeObject(DecorativeObject decorativeObject);
 
-	@Import("removeWallDecoration")
+	@Import("removeDecorativeObject")
 	void removeDecorativeObject(int plane, int x, int y);
 
 	void removeGroundObject(GroundObject groundObject);

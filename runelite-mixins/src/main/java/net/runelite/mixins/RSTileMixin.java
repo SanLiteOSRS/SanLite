@@ -71,7 +71,7 @@ import net.runelite.rs.api.RSNodeDeque;
 import net.runelite.rs.api.RSProjectile;
 import net.runelite.rs.api.RSTile;
 import net.runelite.rs.api.RSTileItem;
-import net.runelite.rs.api.RSWallDecoration;
+import net.runelite.rs.api.RSDecorativeObject;
 import org.slf4j.Logger;
 
 @Mixin(RSTile.class)
@@ -301,12 +301,12 @@ public abstract class RSTileMixin implements RSTile
 		}
 	}
 
-	@FieldHook("wallDecoration")
+	@FieldHook("decorativeObject")
 	@Inject
 	public void decorativeObjectChanged(int idx)
 	{
 		DecorativeObject previous = previousDecorativeObject;
-		RSWallDecoration current = (RSWallDecoration) getDecorativeObject();
+		RSDecorativeObject current = (RSDecorativeObject) getDecorativeObject();
 
 		previousDecorativeObject = current;
 

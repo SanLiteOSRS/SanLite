@@ -79,7 +79,7 @@ public class DirectByteArrayCopier extends AbstractByteArrayCopier {
 				}
 
 				if (var9 == 1) {
-					WallDecoration var44 = class7.scene.method3973(class20.Client_plane, var39, var40);
+					DecorativeObject var44 = class7.scene.method3973(class20.Client_plane, var39, var40);
 					if (var44 != null) {
 						var11 = PacketWriter.Entity_unpackID(var44.tag);
 						if (var7 != 4 && var7 != 5) {

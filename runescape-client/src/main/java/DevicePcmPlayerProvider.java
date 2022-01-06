@@ -209,7 +209,7 @@ public class DevicePcmPlayerProvider implements class47 {
 			}
 
 			if (var1 == 1) {
-				var7 = class7.scene.getWallDecorationTag(var0, var2, var3);
+				var7 = class7.scene.getDecorativeObjectTag(var0, var2, var3);
 			}
 
 			if (var1 == 2) {
@@ -236,7 +236,7 @@ public class DevicePcmPlayerProvider implements class47 {
 				}
 
 				if (var1 == 1) {
-					class7.scene.removeWallDecoration(var0, var2, var3);
+					class7.scene.removeDecorativeObject(var0, var2, var3);
 				}
 
 				if (var1 == 2) {
@@ -402,7 +402,7 @@ public class DevicePcmPlayerProvider implements class47 {
 								var36 = new DynamicObject(var4, 4, var5, var12, var2, var3, var15.animationId, var15.boolean3, (Renderable)null);
 							}
 
-							var41.newWallDecoration(var0, var2, var3, var23, (Renderable)var36, (Renderable)null, Tiles.field969[var5], 0, 0, 0, var26, var28);
+							var41.newDecorativeObject(var0, var2, var3, var23, (Renderable)var36, (Renderable)null, Tiles.field969[var5], 0, 0, 0, var26, var28);
 						} else {
 							long var30;
 							Object var32;
@@ -419,7 +419,7 @@ public class DevicePcmPlayerProvider implements class47 {
 									var32 = new DynamicObject(var4, 4, var5, var12, var2, var3, var15.animationId, var15.boolean3, (Renderable)null);
 								}
 
-								var41.newWallDecoration(var0, var2, var3, var23, (Renderable)var32, (Renderable)null, Tiles.field969[var5], 0, var29 * Tiles.field976[var5], var29 * Tiles.field966[var5], var26, var28);
+								var41.newDecorativeObject(var0, var2, var3, var23, (Renderable)var32, (Renderable)null, Tiles.field969[var5], 0, var29 * Tiles.field976[var5], var29 * Tiles.field966[var5], var26, var28);
 							} else if (var6 == 6) {
 								var29 = 8;
 								var30 = var41.getWallObjectTag(var0, var2, var3);
@@ -433,7 +433,7 @@ public class DevicePcmPlayerProvider implements class47 {
 									var32 = new DynamicObject(var4, 4, var5 + 4, var12, var2, var3, var15.animationId, var15.boolean3, (Renderable)null);
 								}
 
-								var41.newWallDecoration(var0, var2, var3, var23, (Renderable)var32, (Renderable)null, 256, var5, var29 * Tiles.field973[var5], var29 * Tiles.field974[var5], var26, var28);
+								var41.newDecorativeObject(var0, var2, var3, var23, (Renderable)var32, (Renderable)null, 256, var5, var29 * Tiles.field973[var5], var29 * Tiles.field974[var5], var26, var28);
 							} else if (var6 == 7) {
 								int var35 = var5 + 2 & 3;
 								if (var15.animationId == -1 && var15.transforms == null) {
@@ -442,7 +442,7 @@ public class DevicePcmPlayerProvider implements class47 {
 									var36 = new DynamicObject(var4, 4, var35 + 4, var12, var2, var3, var15.animationId, var15.boolean3, (Renderable)null);
 								}
 
-								var41.newWallDecoration(var0, var2, var3, var23, (Renderable)var36, (Renderable)null, 256, var35, 0, 0, var26, var28);
+								var41.newDecorativeObject(var0, var2, var3, var23, (Renderable)var36, (Renderable)null, 256, var35, 0, 0, var26, var28);
 							} else if (var6 == 8) {
 								var29 = 8;
 								var30 = var41.getWallObjectTag(var0, var2, var3);
@@ -460,7 +460,7 @@ public class DevicePcmPlayerProvider implements class47 {
 									var33 = new DynamicObject(var4, 4, var34 + 4, var12, var2, var3, var15.animationId, var15.boolean3, (Renderable)null);
 								}
 
-								var41.newWallDecoration(var0, var2, var3, var23, (Renderable)var32, (Renderable)var33, 256, var5, var29 * Tiles.field973[var5], var29 * Tiles.field974[var5], var26, var28);
+								var41.newDecorativeObject(var0, var2, var3, var23, (Renderable)var32, (Renderable)var33, 256, var5, var29 * Tiles.field973[var5], var29 * Tiles.field974[var5], var26, var28);
 							}
 						}
 					}

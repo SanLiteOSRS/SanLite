@@ -16,10 +16,10 @@ import net.runelite.rs.api.RSClient;
 import net.runelite.rs.api.RSGroundObject;
 import net.runelite.rs.api.RSGameObject;
 import net.runelite.rs.api.RSItemLayer;
-import net.runelite.rs.api.RSWallDecoration;
+import net.runelite.rs.api.RSDecorativeObject;
 
 @Mixins({
-	@Mixin(RSWallDecoration.class),
+	@Mixin(RSDecorativeObject.class),
 	@Mixin(RSGameObject.class),
 	@Mixin(RSGroundObject.class),
 	@Mixin(RSItemLayer.class),

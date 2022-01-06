@@ -464,7 +464,7 @@ public class ClanChannel extends Node {
 							var34 = new DynamicObject(var3, 4, var4, var0, var1, var2, var8.animationId, var8.boolean3, (Renderable)null);
 						}
 
-						var6.newWallDecoration(var0, var1, var2, var16, (Renderable)var34, (Renderable)null, Tiles.field969[var4], 0, 0, 0, var19, var21);
+						var6.newDecorativeObject(var0, var1, var2, var16, (Renderable)var34, (Renderable)null, Tiles.field969[var4], 0, 0, 0, var19, var21);
 					} else {
 						Object var25;
 						long var29;
@@ -481,7 +481,7 @@ public class ClanChannel extends Node {
 								var25 = new DynamicObject(var3, 4, var4, var0, var1, var2, var8.animationId, var8.boolean3, (Renderable)null);
 							}
 
-							var6.newWallDecoration(var0, var1, var2, var16, (Renderable)var25, (Renderable)null, Tiles.field969[var4], 0, var28 * Tiles.field976[var4], var28 * Tiles.field966[var4], var19, var21);
+							var6.newDecorativeObject(var0, var1, var2, var16, (Renderable)var25, (Renderable)null, Tiles.field969[var4], 0, var28 * Tiles.field976[var4], var28 * Tiles.field966[var4], var19, var21);
 						} else if (var5 == 6) {
 							var28 = 8;
 							var29 = var6.getWallObjectTag(var0, var1, var2);
@@ -495,7 +495,7 @@ public class ClanChannel extends Node {
 								var25 = new DynamicObject(var3, 4, var4 + 4, var0, var1, var2, var8.animationId, var8.boolean3, (Renderable)null);
 							}
 
-							var6.newWallDecoration(var0, var1, var2, var16, (Renderable)var25, (Renderable)null, 256, var4, var28 * Tiles.field973[var4], var28 * Tiles.field974[var4], var19, var21);
+							var6.newDecorativeObject(var0, var1, var2, var16, (Renderable)var25, (Renderable)null, 256, var4, var28 * Tiles.field973[var4], var28 * Tiles.field974[var4], var19, var21);
 						} else if (var5 == 7) {
 							var23 = var4 + 2 & 3;
 							if (var8.animationId == -1 && var8.transforms == null) {
@@ -504,7 +504,7 @@ public class ClanChannel extends Node {
 								var34 = new DynamicObject(var3, 4, var23 + 4, var0, var1, var2, var8.animationId, var8.boolean3, (Renderable)null);
 							}
 
-							var6.newWallDecoration(var0, var1, var2, var16, (Renderable)var34, (Renderable)null, 256, var23, 0, 0, var19, var21);
+							var6.newDecorativeObject(var0, var1, var2, var16, (Renderable)var34, (Renderable)null, 256, var23, 0, 0, var19, var21);
 						} else if (var5 == 8) {
 							var28 = 8;
 							var29 = var6.getWallObjectTag(var0, var1, var2);
@@ -522,7 +522,7 @@ public class ClanChannel extends Node {
 								var26 = new DynamicObject(var3, 4, var27 + 4, var0, var1, var2, var8.animationId, var8.boolean3, (Renderable)null);
 							}
 
-							var6.newWallDecoration(var0, var1, var2, var16, (Renderable)var25, (Renderable)var26, 256, var4, var28 * Tiles.field973[var4], var28 * Tiles.field974[var4], var19, var21);
+							var6.newDecorativeObject(var0, var1, var2, var16, (Renderable)var25, (Renderable)var26, 256, var4, var28 * Tiles.field973[var4], var28 * Tiles.field974[var4], var19, var21);
 						}
 					}
 				}

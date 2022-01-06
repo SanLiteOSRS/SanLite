@@ -6,8 +6,9 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("hp")
-@Implements("WallDecoration")
-public final class WallDecoration {
+@Implements("DecorativeObject")
+public final class DecorativeObject
+{
 	@ObfuscatedName("c")
 	@ObfuscatedGetter(
 		intValue = -2023059781
@@ -75,7 +76,7 @@ public final class WallDecoration {
 	@Export("flags")
 	int flags;
 
-	WallDecoration() {
+	DecorativeObject() {
 		this.tag = 0L;
 		this.flags = 0;
 	}

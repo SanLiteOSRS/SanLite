@@ -11,10 +11,10 @@ import net.runelite.api.mixins.Shadow;
 import net.runelite.rs.api.RSClient;
 import net.runelite.rs.api.RSRenderable;
 import net.runelite.rs.api.RSModel;
-import net.runelite.rs.api.RSWallDecoration;
+import net.runelite.rs.api.RSDecorativeObject;
 
-@Mixin(RSWallDecoration.class)
-public abstract class RSWallDecorationMixin implements RSWallDecoration
+@Mixin(RSDecorativeObject.class)
+public abstract class RSDecorativeObjectMixin implements RSDecorativeObject
 {
 	@Shadow("client")
 	private static RSClient client;

@@ -20,11 +20,11 @@ public interface RSTile extends Tile
 	@Override
 	ItemLayer getItemLayer();
 
-	@Import("wallDecoration")
+	@Import("decorativeObject")
 	@Override
 	DecorativeObject getDecorativeObject();
 
-	@Import("wallDecoration")
+	@Import("decorativeObject")
 	void setDecorativeObject(DecorativeObject object);
 	
 	@Import("groundObject")

@@ -220,7 +220,7 @@ public final class class4 {
 		}
 
 		if (var0.type == 1) {
-			var1 = class7.scene.getWallDecorationTag(var0.plane, var0.x, var0.y);
+			var1 = class7.scene.getDecorativeObjectTag(var0.plane, var0.x, var0.y);
 		}
 
 		if (var0.type == 2) {

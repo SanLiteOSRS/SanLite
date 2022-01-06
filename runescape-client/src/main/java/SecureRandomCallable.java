@@ -11,7 +11,7 @@ public class SecureRandomCallable implements Callable {
 	}
 
 	public Object call() {
-		return WallDecoration.method4340();
+		return DecorativeObject.method4340();
 	}
 
 	@ObfuscatedName("c")

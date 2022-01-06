@@ -59,7 +59,7 @@ public class SecureRandomFuture {
 		try {
 			return (SecureRandom)this.future.get();
 		} catch (Exception var2) {
-			return WallDecoration.method4340();
+			return DecorativeObject.method4340();
 		}
 	}
 

@@ -443,10 +443,10 @@ public class Scene {
 	@ObfuscatedSignature(
 		descriptor = "(IIIILgt;Lgt;IIIIJI)V"
 	)
-	@Export("newWallDecoration")
-	public void newWallDecoration(int var1, int var2, int var3, int var4, Renderable var5, Renderable var6, int var7, int var8, int var9, int var10, long var11, int var13) {
+	@Export("newDecorativeObject")
+	public void newDecorativeObject(int var1, int var2, int var3, int var4, Renderable var5, Renderable var6, int var7, int var8, int var9, int var10, long var11, int var13) {
 		if (var5 != null) {
-			WallDecoration var14 = new WallDecoration();
+			DecorativeObject var14 = new DecorativeObject();
 			var14.tag = var11;
 			var14.flags = var13;
 			var14.x = var2 * 128 + 64;
@@ -465,7 +465,7 @@ public class Scene {
 				}
 			}
 
-			this.tiles[var1][var2][var3].wallDecoration = var14;
+			this.tiles[var1][var2][var3].decorativeObject = var14;
 		}
 	}
 
@@ -657,7 +657,7 @@ public class Scene {
 	public void method3966(int var1, int var2, int var3, int var4) {
 		Tile var5 = this.tiles[var1][var2][var3];
 		if (var5 != null) {
-			WallDecoration var6 = var5.wallDecoration;
+			DecorativeObject var6 = var5.decorativeObject;
 			if (var6 != null) {
 				var6.xOffset = var4 * var6.xOffset / 16;
 				var6.yOffset = var4 * var6.yOffset / 16;
@@ -675,11 +675,11 @@ public class Scene {
 	}
 
 	@ObfuscatedName("k")
-	@Export("removeWallDecoration")
-	public void removeWallDecoration(int var1, int var2, int var3) {
+	@Export("removeDecorativeObject")
+	public void removeDecorativeObject(int var1, int var2, int var3) {
 		Tile var4 = this.tiles[var1][var2][var3];
 		if (var4 != null) {
-			var4.wallDecoration = null;
+			var4.decorativeObject = null;
 		}
 	}
 
@@ -730,9 +730,9 @@ public class Scene {
 	@ObfuscatedSignature(
 		descriptor = "(III)Lhp;"
 	)
-	public WallDecoration method3973(int var1, int var2, int var3) {
+	public DecorativeObject method3973(int var1, int var2, int var3) {
 		Tile var4 = this.tiles[var1][var2][var3];
-		return var4 == null ? null : var4.wallDecoration;
+		return var4 == null ? null : var4.decorativeObject;
 	}
 
 	@ObfuscatedName("i")
@@ -774,10 +774,10 @@ public class Scene {
 	}
 
 	@ObfuscatedName("ao")
-	@Export("getWallDecorationTag")
-	public long getWallDecorationTag(int var1, int var2, int var3) {
+	@Export("getDecorativeObjectTag")
+	public long getDecorativeObjectTag(int var1, int var2, int var3) {
 		Tile var4 = this.tiles[var1][var2][var3];
-		return var4 != null && var4.wallDecoration != null ? var4.wallDecoration.tag : 0L;
+		return var4 != null && var4.decorativeObject != null ? var4.decorativeObject.tag : 0L;
 	}
 
 	@ObfuscatedName("ab")
@@ -813,8 +813,8 @@ public class Scene {
 			return -1;
 		} else if (var6.wallObject != null && var6.wallObject.tag == var4) {
 			return var6.wallObject.flags & 255;
-		} else if (var6.wallDecoration != null && var6.wallDecoration.tag == var4) {
-			return var6.wallDecoration.flags & 255;
+		} else if (var6.decorativeObject != null && var6.decorativeObject.tag == var4) {
+			return var6.decorativeObject.flags & 255;
 		} else if (var6.groundObject != null && var6.groundObject.tag == var4) {
 			return var6.groundObject.flags & 255;
 		} else {
@@ -1383,7 +1383,7 @@ public class Scene {
 											var21 = 0;
 											var11 = 0;
 											WallObject var31 = var3.wallObject;
-											WallDecoration var13 = var3.wallDecoration;
+											DecorativeObject var13 = var3.decorativeObject;
 											if (var31 != null || var13 != null) {
 												if (var4 == Scene_cameraXTile) {
 													++var21;
@@ -1702,7 +1702,7 @@ public class Scene {
 			}
 
 			if (var3.field2236 != 0) {
-				WallDecoration var29 = var3.wallDecoration;
+				DecorativeObject var29 = var3.decorativeObject;
 				if (var29 != null && !this.method4000(var7, var4, var5, var29.renderable1.height)) {
 					if ((var29.orientation & var3.field2236) != 0) {
 						var29.renderable1.draw(0, Scene_cameraPitchSine, Scene_cameraPitchCosine, Scene_cameraYawSine, Scene_cameraYawCosine, var29.xOffset + (var29.x * 4096 - Scene_cameraX), var29.tileHeight - Scene_cameraY, var29.yOffset + (var29.y * 4096 - Scene_cameraZ), var29.tag);
