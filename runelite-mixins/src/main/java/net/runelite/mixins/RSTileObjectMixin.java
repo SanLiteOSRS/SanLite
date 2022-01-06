@@ -13,7 +13,7 @@ import net.runelite.api.mixins.Mixins;
 import net.runelite.api.mixins.Shadow;
 import net.runelite.rs.api.RSBoundaryObject;
 import net.runelite.rs.api.RSClient;
-import net.runelite.rs.api.RSFloorDecoration;
+import net.runelite.rs.api.RSGroundObject;
 import net.runelite.rs.api.RSGameObject;
 import net.runelite.rs.api.RSItemLayer;
 import net.runelite.rs.api.RSWallDecoration;
@@ -21,7 +21,7 @@ import net.runelite.rs.api.RSWallDecoration;
 @Mixins({
 	@Mixin(RSWallDecoration.class),
 	@Mixin(RSGameObject.class),
-	@Mixin(RSFloorDecoration.class),
+	@Mixin(RSGroundObject.class),
 	@Mixin(RSItemLayer.class),
 	@Mixin(RSBoundaryObject.class)
 })

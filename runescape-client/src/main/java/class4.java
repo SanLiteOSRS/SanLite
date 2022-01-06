@@ -228,7 +228,7 @@ public final class class4 {
 		}
 
 		if (var0.type == 3) {
-			var1 = class7.scene.getFloorDecorationTag(var0.plane, var0.x, var0.y);
+			var1 = class7.scene.getGroundObjectTag(var0.plane, var0.x, var0.y);
 		}
 
 		if (0L != var1) {

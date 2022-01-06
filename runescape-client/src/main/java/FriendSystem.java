@@ -461,7 +461,7 @@ public class FriendSystem {
 					boolean var34 = var17 >= var12 && var18 >= var13 && var17 < var14 && var18 < var15;
 					if (var9.contentType == 1337) {
 						if (!Client.isLoading && !Client.isMenuOpen && var34) {
-							FloorDecoration.addSceneMenuOptions(var17, var18, var12, var13);
+							GroundObject.addSceneMenuOptions(var17, var18, var12, var13);
 						}
 					} else if (var9.contentType == 1338) {
 						class312.checkIfMinimapClicked(var9, var10, var11);

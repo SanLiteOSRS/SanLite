@@ -203,7 +203,7 @@ public class class33 {
 			}
 		}
 
-		var5 = class7.scene.getFloorDecorationTag(var0, var1, var2);
+		var5 = class7.scene.getGroundObjectTag(var0, var1, var2);
 		if (0L != var5) {
 			var7 = PacketWriter.Entity_unpackID(var5);
 			ObjectComposition var21 = class148.getObjectDefinition(var7);

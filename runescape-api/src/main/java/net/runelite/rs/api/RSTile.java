@@ -27,11 +27,11 @@ public interface RSTile extends Tile
 	@Import("wallDecoration")
 	void setDecorativeObject(DecorativeObject object);
 	
-	@Import("floorDecoration")
+	@Import("groundObject")
 	@Override
 	GroundObject getGroundObject();
 
-	@Import("floorDecoration")
+	@Import("groundObject")
 	@Override
 	void setGroundObject(GroundObject object);
 

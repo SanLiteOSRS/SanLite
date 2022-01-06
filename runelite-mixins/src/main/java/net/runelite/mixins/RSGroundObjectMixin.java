@@ -33,11 +33,11 @@ import net.runelite.api.mixins.Mixin;
 import net.runelite.api.mixins.Shadow;
 import net.runelite.rs.api.RSClient;
 import net.runelite.rs.api.RSRenderable;
-import net.runelite.rs.api.RSFloorDecoration;
+import net.runelite.rs.api.RSGroundObject;
 import net.runelite.rs.api.RSModel;
 
-@Mixin(RSFloorDecoration.class)
-public abstract class RSFloorDecorationMixin implements RSFloorDecoration
+@Mixin(RSGroundObject.class)
+public abstract class RSGroundObjectMixin implements RSGroundObject
 {
 	@Shadow("client")
 	private static RSClient client;

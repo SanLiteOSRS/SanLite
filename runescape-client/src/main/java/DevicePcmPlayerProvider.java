@@ -217,7 +217,7 @@ public class DevicePcmPlayerProvider implements class47 {
 			}
 
 			if (var1 == 3) {
-				var7 = class7.scene.getFloorDecorationTag(var0, var2, var3);
+				var7 = class7.scene.getGroundObjectTag(var0, var2, var3);
 			}
 
 			int var12;
@@ -252,7 +252,7 @@ public class DevicePcmPlayerProvider implements class47 {
 				}
 
 				if (var1 == 3) {
-					class7.scene.removeFloorDecoration(var0, var2, var3);
+					class7.scene.removeGroundObject(var0, var2, var3);
 					var13 = class148.getObjectDefinition(var38);
 					if (var13.interactType == 1) {
 						Client.collisionMaps[var0].method3701(var2, var3);
@@ -317,7 +317,7 @@ public class DevicePcmPlayerProvider implements class47 {
 						var36 = new DynamicObject(var4, 22, var5, var12, var2, var3, var15.animationId, var15.boolean3, (Renderable)null);
 					}
 
-					var41.newFloorDecoration(var0, var2, var3, var23, (Renderable)var36, var26, var28);
+					var41.newGroundObject(var0, var2, var3, var23, (Renderable)var36, var26, var28);
 					if (var15.interactType == 1) {
 						var14.setBlockedByFloorDec(var2, var3);
 					}

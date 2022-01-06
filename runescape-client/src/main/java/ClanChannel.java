@@ -263,7 +263,7 @@ public class ClanChannel extends Node {
 						var34 = new DynamicObject(var3, 22, var4, var0, var1, var2, var8.animationId, var8.boolean3, (Renderable)null);
 					}
 
-					var6.newFloorDecoration(var0, var1, var2, var16, (Renderable)var34, var19, var21);
+					var6.newGroundObject(var0, var1, var2, var16, (Renderable)var34, var19, var21);
 					if (var8.interactType == 1 && var7 != null) {
 						var7.setBlockedByFloorDec(var1, var2);
 					}

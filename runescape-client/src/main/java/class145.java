@@ -155,7 +155,7 @@ public class class145 extends class126 {
 
 			for (var5 = 0; var5 < 104; ++var5) {
 				for (var6 = 0; var6 < 104; ++var6) {
-					long var7 = class7.scene.getFloorDecorationTag(class20.Client_plane, var5, var6);
+					long var7 = class7.scene.getGroundObjectTag(class20.Client_plane, var5, var6);
 					if (var7 != 0L) {
 						int var9 = PacketWriter.Entity_unpackID(var7);
 						int var10 = class148.getObjectDefinition(var9).mapIconId;

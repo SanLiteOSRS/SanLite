@@ -109,7 +109,7 @@ public class DirectByteArrayCopier extends AbstractByteArrayCopier {
 				}
 
 				if (var9 == 3) {
-					FloorDecoration var46 = class7.scene.getFloorDecoration(class20.Client_plane, var39, var40);
+					GroundObject var46 = class7.scene.getGroundObject(class20.Client_plane, var39, var40);
 					if (var46 != null) {
 						var46.renderable = new DynamicObject(PacketWriter.Entity_unpackID(var46.tag), 22, var8, class20.Client_plane, var39, var40, var37, false, var46.renderable);
 					}

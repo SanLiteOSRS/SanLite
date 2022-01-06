@@ -61,7 +61,7 @@ import net.runelite.api.mixins.Shadow;
 import net.runelite.rs.api.RSActor;
 import net.runelite.rs.api.RSBoundaryObject;
 import net.runelite.rs.api.RSClient;
-import net.runelite.rs.api.RSFloorDecoration;
+import net.runelite.rs.api.RSGroundObject;
 import net.runelite.rs.api.RSRenderable;
 import net.runelite.rs.api.RSGameObject;
 import net.runelite.rs.api.RSGraphicsObject;
@@ -346,12 +346,12 @@ public abstract class RSTileMixin implements RSTile
 		}
 	}
 
-	@FieldHook("floorDecoration")
+	@FieldHook("groundObject")
 	@Inject
 	public void groundObjectChanged(int idx)
 	{
 		GroundObject previous = previousGroundObject;
-		RSFloorDecoration current = (RSFloorDecoration) getGroundObject();
+		RSGroundObject current = (RSGroundObject) getGroundObject();
 
 		previousGroundObject = current;
 

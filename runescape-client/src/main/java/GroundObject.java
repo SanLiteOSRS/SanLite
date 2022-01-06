@@ -5,8 +5,9 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("gx")
-@Implements("FloorDecoration")
-public final class FloorDecoration {
+@Implements("GroundObject")
+public final class GroundObject
+{
 	@ObfuscatedName("c")
 	@ObfuscatedGetter(
 		intValue = -1861325243
@@ -44,7 +45,7 @@ public final class FloorDecoration {
 	@Export("flags")
 	int flags;
 
-	FloorDecoration() {
+	GroundObject() {
 	}
 
 	@ObfuscatedName("ih")
