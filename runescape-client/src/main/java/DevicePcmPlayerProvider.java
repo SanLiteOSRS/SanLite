@@ -205,7 +205,7 @@ public class DevicePcmPlayerProvider implements class47 {
 			boolean var10 = false;
 			boolean var11 = false;
 			if (var1 == 0) {
-				var7 = class7.scene.getBoundaryObjectTag(var0, var2, var3);
+				var7 = class7.scene.getWallObjectTag(var0, var2, var3);
 			}
 
 			if (var1 == 1) {
@@ -228,7 +228,7 @@ public class DevicePcmPlayerProvider implements class47 {
 				int var40 = var12 >> 6 & 3;
 				ObjectComposition var13;
 				if (var1 == 0) {
-					class7.scene.removeBoundaryObject(var0, var2, var3);
+					class7.scene.removeWallObject(var0, var2, var3);
 					var13 = class148.getObjectDefinition(var38);
 					if (var13.interactType != 0) {
 						Client.collisionMaps[var0].method3693(var2, var3, var39, var40, var13.boolean1);
@@ -340,7 +340,7 @@ public class DevicePcmPlayerProvider implements class47 {
 							var36 = new DynamicObject(var4, 0, var5, var12, var2, var3, var15.animationId, var15.boolean3, (Renderable)null);
 						}
 
-						var41.newBoundaryObject(var0, var2, var3, var23, (Renderable)var36, (Renderable)null, Tiles.field969[var5], 0, var26, var28);
+						var41.newWallObject(var0, var2, var3, var23, (Renderable)var36, (Renderable)null, Tiles.field969[var5], 0, var26, var28);
 						if (var15.interactType != 0) {
 							var14.method3721(var2, var3, var6, var5, var15.boolean1);
 						}
@@ -351,7 +351,7 @@ public class DevicePcmPlayerProvider implements class47 {
 							var36 = new DynamicObject(var4, 1, var5, var12, var2, var3, var15.animationId, var15.boolean3, (Renderable)null);
 						}
 
-						var41.newBoundaryObject(var0, var2, var3, var23, (Renderable)var36, (Renderable)null, Tiles.field970[var5], 0, var26, var28);
+						var41.newWallObject(var0, var2, var3, var23, (Renderable)var36, (Renderable)null, Tiles.field970[var5], 0, var26, var28);
 						if (var15.interactType != 0) {
 							var14.method3721(var2, var3, var6, var5, var15.boolean1);
 						}
@@ -369,7 +369,7 @@ public class DevicePcmPlayerProvider implements class47 {
 								var31 = new DynamicObject(var4, 2, var29, var12, var2, var3, var15.animationId, var15.boolean3, (Renderable)null);
 							}
 
-							var41.newBoundaryObject(var0, var2, var3, var23, (Renderable)var37, (Renderable)var31, Tiles.field969[var5], Tiles.field969[var29], var26, var28);
+							var41.newWallObject(var0, var2, var3, var23, (Renderable)var37, (Renderable)var31, Tiles.field969[var5], Tiles.field969[var29], var26, var28);
 							if (var15.interactType != 0) {
 								var14.method3721(var2, var3, var6, var5, var15.boolean1);
 							}
@@ -380,7 +380,7 @@ public class DevicePcmPlayerProvider implements class47 {
 								var36 = new DynamicObject(var4, 3, var5, var12, var2, var3, var15.animationId, var15.boolean3, (Renderable)null);
 							}
 
-							var41.newBoundaryObject(var0, var2, var3, var23, (Renderable)var36, (Renderable)null, Tiles.field970[var5], 0, var26, var28);
+							var41.newWallObject(var0, var2, var3, var23, (Renderable)var36, (Renderable)null, Tiles.field970[var5], 0, var26, var28);
 							if (var15.interactType != 0) {
 								var14.method3721(var2, var3, var6, var5, var15.boolean1);
 							}
@@ -408,7 +408,7 @@ public class DevicePcmPlayerProvider implements class47 {
 							Object var32;
 							if (var6 == 5) {
 								var29 = 16;
-								var30 = var41.getBoundaryObjectTag(var0, var2, var3);
+								var30 = var41.getWallObjectTag(var0, var2, var3);
 								if (var30 != 0L) {
 									var29 = class148.getObjectDefinition(PacketWriter.Entity_unpackID(var30)).int2;
 								}
@@ -422,7 +422,7 @@ public class DevicePcmPlayerProvider implements class47 {
 								var41.newWallDecoration(var0, var2, var3, var23, (Renderable)var32, (Renderable)null, Tiles.field969[var5], 0, var29 * Tiles.field976[var5], var29 * Tiles.field966[var5], var26, var28);
 							} else if (var6 == 6) {
 								var29 = 8;
-								var30 = var41.getBoundaryObjectTag(var0, var2, var3);
+								var30 = var41.getWallObjectTag(var0, var2, var3);
 								if (var30 != 0L) {
 									var29 = class148.getObjectDefinition(PacketWriter.Entity_unpackID(var30)).int2 / 2;
 								}
@@ -445,7 +445,7 @@ public class DevicePcmPlayerProvider implements class47 {
 								var41.newWallDecoration(var0, var2, var3, var23, (Renderable)var36, (Renderable)null, 256, var35, 0, 0, var26, var28);
 							} else if (var6 == 8) {
 								var29 = 8;
-								var30 = var41.getBoundaryObjectTag(var0, var2, var3);
+								var30 = var41.getWallObjectTag(var0, var2, var3);
 								if (0L != var30) {
 									var29 = class148.getObjectDefinition(PacketWriter.Entity_unpackID(var30)).int2 / 2;
 								}

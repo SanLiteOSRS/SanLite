@@ -47,8 +47,8 @@ public final class Tile extends Node {
 	@ObfuscatedSignature(
 		descriptor = "Lhg;"
 	)
-	@Export("boundaryObject")
-	BoundaryObject boundaryObject;
+	@Export("wallObject")
+	WallObject wallObject;
 	@ObfuscatedName("w")
 	@ObfuscatedSignature(
 		descriptor = "Lhp;"

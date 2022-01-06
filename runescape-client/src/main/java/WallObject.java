@@ -7,8 +7,9 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("hg")
-@Implements("BoundaryObject")
-public final class BoundaryObject {
+@Implements("WallObject")
+public final class WallObject
+{
 	@ObfuscatedName("sv")
 	@ObfuscatedSignature(
 		descriptor = "Lbp;"
@@ -76,7 +77,7 @@ public final class BoundaryObject {
 	@Export("flags")
 	int flags;
 
-	BoundaryObject() {
+	WallObject() {
 		this.tag = 0L;
 		this.flags = 0;
 	}

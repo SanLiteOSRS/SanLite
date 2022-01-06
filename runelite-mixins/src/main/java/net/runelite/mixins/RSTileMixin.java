@@ -59,7 +59,7 @@ import net.runelite.api.mixins.Inject;
 import net.runelite.api.mixins.Mixin;
 import net.runelite.api.mixins.Shadow;
 import net.runelite.rs.api.RSActor;
-import net.runelite.rs.api.RSBoundaryObject;
+import net.runelite.rs.api.RSWallObject;
 import net.runelite.rs.api.RSClient;
 import net.runelite.rs.api.RSGroundObject;
 import net.runelite.rs.api.RSRenderable;
@@ -256,12 +256,12 @@ public abstract class RSTileMixin implements RSTile
 		return result;
 	}
 
-	@FieldHook("boundaryObject")
+	@FieldHook("wallObject")
 	@Inject
 	public void wallObjectChanged(int idx)
 	{
 		WallObject previous = previousWallObject;
-		RSBoundaryObject current = (RSBoundaryObject) getWallObject();
+		RSWallObject current = (RSWallObject) getWallObject();
 
 		previousWallObject = current;
 

@@ -281,17 +281,17 @@ public class Skeleton extends Node {
 
 					if (Login.hoveredWorldIndex != -1) {
 						World var6 = class334.World_worlds[Login.hoveredWorldIndex];
-						BoundaryObject.changeWorld(var6);
+						WallObject.changeWorld(var6);
 						Login.worldSelectOpen = false;
 						WorldMapCacheName.leftTitleSprite.drawAt(Login.xPadding, 0);
 						NPC.rightTitleSprite.drawAt(Login.xPadding + 382, 0);
 						Login.logoSprite.drawAt(Login.xPadding + 382 - Login.logoSprite.subWidth / 2, 18);
 					} else {
-						if (Login.worldSelectPage > 0 && class11.worldSelectLeftSprite != null && MouseHandler.MouseHandler_lastPressedX >= 0 && MouseHandler.MouseHandler_lastPressedX <= class11.worldSelectLeftSprite.subWidth && MouseHandler.MouseHandler_lastPressedY >= BoundaryObject.canvasHeight / 2 - 50 && MouseHandler.MouseHandler_lastPressedY <= BoundaryObject.canvasHeight / 2 + 50) {
+						if (Login.worldSelectPage > 0 && class11.worldSelectLeftSprite != null && MouseHandler.MouseHandler_lastPressedX >= 0 && MouseHandler.MouseHandler_lastPressedX <= class11.worldSelectLeftSprite.subWidth && MouseHandler.MouseHandler_lastPressedY >= WallObject.canvasHeight / 2 - 50 && MouseHandler.MouseHandler_lastPressedY <= WallObject.canvasHeight / 2 + 50) {
 							--Login.worldSelectPage;
 						}
 
-						if (Login.worldSelectPage < Login.worldSelectPagesCount && UrlRequest.worldSelectRightSprite != null && MouseHandler.MouseHandler_lastPressedX >= class186.canvasWidth - UrlRequest.worldSelectRightSprite.subWidth - 5 && MouseHandler.MouseHandler_lastPressedX <= class186.canvasWidth && MouseHandler.MouseHandler_lastPressedY >= BoundaryObject.canvasHeight / 2 - 50 && MouseHandler.MouseHandler_lastPressedY <= BoundaryObject.canvasHeight / 2 + 50) {
+						if (Login.worldSelectPage < Login.worldSelectPagesCount && UrlRequest.worldSelectRightSprite != null && MouseHandler.MouseHandler_lastPressedX >= class186.canvasWidth - UrlRequest.worldSelectRightSprite.subWidth - 5 && MouseHandler.MouseHandler_lastPressedX <= class186.canvasWidth && MouseHandler.MouseHandler_lastPressedY >= WallObject.canvasHeight / 2 - 50 && MouseHandler.MouseHandler_lastPressedY <= WallObject.canvasHeight / 2 + 50) {
 							++Login.worldSelectPage;
 						}
 					}

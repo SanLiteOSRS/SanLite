@@ -11,7 +11,7 @@ import net.runelite.api.mixins.Inject;
 import net.runelite.api.mixins.Mixin;
 import net.runelite.api.mixins.Mixins;
 import net.runelite.api.mixins.Shadow;
-import net.runelite.rs.api.RSBoundaryObject;
+import net.runelite.rs.api.RSWallObject;
 import net.runelite.rs.api.RSClient;
 import net.runelite.rs.api.RSGroundObject;
 import net.runelite.rs.api.RSGameObject;
@@ -23,7 +23,7 @@ import net.runelite.rs.api.RSWallDecoration;
 	@Mixin(RSGameObject.class),
 	@Mixin(RSGroundObject.class),
 	@Mixin(RSItemLayer.class),
-	@Mixin(RSBoundaryObject.class)
+	@Mixin(RSWallObject.class)
 })
 public abstract class RSTileObjectMixin implements TileObject
 {

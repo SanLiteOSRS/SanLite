@@ -456,7 +456,7 @@ public class class253 {
 			if (Client.gameState >= 10) {
 				int[] var21 = new int[4];
 				Rasterizer2D.Rasterizer2D_getClipArray(var21);
-				Rasterizer2D.Rasterizer2D_setClip(Login.xPadding, 0, Login.xPadding + 765, BoundaryObject.canvasHeight);
+				Rasterizer2D.Rasterizer2D_setClip(Login.xPadding, 0, Login.xPadding + 765, WallObject.canvasHeight);
 				Client.loginScreenRunesAnimation.draw(Login.xPadding - 22, Client.cycle);
 				Client.loginScreenRunesAnimation.draw(Login.xPadding + 22 + 765 - 128, Client.cycle);
 				Rasterizer2D.Rasterizer2D_setClipArray(var21);

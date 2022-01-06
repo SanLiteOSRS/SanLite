@@ -415,10 +415,10 @@ public class Scene {
 	@ObfuscatedSignature(
 		descriptor = "(IIIILgt;Lgt;IIJI)V"
 	)
-	@Export("newBoundaryObject")
-	public void newBoundaryObject(int var1, int var2, int var3, int var4, Renderable var5, Renderable var6, int var7, int var8, long var9, int var11) {
+	@Export("newWallObject")
+	public void newWallObject(int var1, int var2, int var3, int var4, Renderable var5, Renderable var6, int var7, int var8, long var9, int var11) {
 		if (var5 != null || var6 != null) {
-			BoundaryObject var12 = new BoundaryObject();
+			WallObject var12 = new WallObject();
 			var12.tag = var9;
 			var12.flags = var11;
 			var12.x = var2 * 128 + 64;
@@ -435,7 +435,7 @@ public class Scene {
 				}
 			}
 
-			this.tiles[var1][var2][var3].boundaryObject = var12;
+			this.tiles[var1][var2][var3].wallObject = var12;
 		}
 	}
 
@@ -666,11 +666,11 @@ public class Scene {
 	}
 
 	@ObfuscatedName("u")
-	@Export("removeBoundaryObject")
-	public void removeBoundaryObject(int var1, int var2, int var3) {
+	@Export("removeWallObject")
+	public void removeWallObject(int var1, int var2, int var3) {
 		Tile var4 = this.tiles[var1][var2][var3];
 		if (var4 != null) {
-			var4.boundaryObject = null;
+			var4.wallObject = null;
 		}
 	}
 
@@ -721,9 +721,9 @@ public class Scene {
 	@ObfuscatedSignature(
 		descriptor = "(III)Lhg;"
 	)
-	public BoundaryObject method4105(int var1, int var2, int var3) {
+	public WallObject method4105(int var1, int var2, int var3) {
 		Tile var4 = this.tiles[var1][var2][var3];
-		return var4 == null ? null : var4.boundaryObject;
+		return var4 == null ? null : var4.wallObject;
 	}
 
 	@ObfuscatedName("z")
@@ -767,10 +767,10 @@ public class Scene {
 	}
 
 	@ObfuscatedName("ah")
-	@Export("getBoundaryObjectTag")
-	public long getBoundaryObjectTag(int var1, int var2, int var3) {
+	@Export("getWallObjectTag")
+	public long getWallObjectTag(int var1, int var2, int var3) {
 		Tile var4 = this.tiles[var1][var2][var3];
-		return var4 != null && var4.boundaryObject != null ? var4.boundaryObject.tag : 0L;
+		return var4 != null && var4.wallObject != null ? var4.wallObject.tag : 0L;
 	}
 
 	@ObfuscatedName("ao")
@@ -811,8 +811,8 @@ public class Scene {
 		Tile var6 = this.tiles[var1][var2][var3];
 		if (var6 == null) {
 			return -1;
-		} else if (var6.boundaryObject != null && var6.boundaryObject.tag == var4) {
-			return var6.boundaryObject.flags & 255;
+		} else if (var6.wallObject != null && var6.wallObject.tag == var4) {
+			return var6.wallObject.flags & 255;
 		} else if (var6.wallDecoration != null && var6.wallDecoration.tag == var4) {
 			return var6.wallDecoration.flags & 255;
 		} else if (var6.groundObject != null && var6.groundObject.tag == var4) {
@@ -835,7 +835,7 @@ public class Scene {
 				for (int var6 = 0; var6 < this.ySize; ++var6) {
 					Tile var7 = this.tiles[var4][var5][var6];
 					if (var7 != null) {
-						BoundaryObject var8 = var7.boundaryObject;
+						WallObject var8 = var7.wallObject;
 						ModelData var10;
 						if (var8 != null && var8.renderable1 instanceof ModelData) {
 							ModelData var9 = (ModelData)var8.renderable1;
@@ -933,7 +933,7 @@ public class Scene {
 								Tile var15 = this.tiles[var12][var13][var14];
 								if (var15 != null) {
 									int var16 = (this.tileHeights[var12][var13 + 1][var14] + this.tileHeights[var12][var13 + 1][var14 + 1] + this.tileHeights[var12][var13][var14] + this.tileHeights[var12][var13][var14 + 1]) / 4 - (this.tileHeights[var2][var3 + 1][var4] + this.tileHeights[var2][var3][var4] + this.tileHeights[var2][var3 + 1][var4 + 1] + this.tileHeights[var2][var3][var4 + 1]) / 4;
-									BoundaryObject var17 = var15.boundaryObject;
+									WallObject var17 = var15.wallObject;
 									if (var17 != null) {
 										ModelData var18;
 										if (var17.renderable1 instanceof ModelData) {
@@ -1280,7 +1280,7 @@ public class Scene {
 							do {
 								do {
 									while (true) {
-										BoundaryObject var10;
+										WallObject var10;
 										GameObject var12;
 										int var17;
 										int var18;
@@ -1354,7 +1354,7 @@ public class Scene {
 													this.drawTileOverlay(var9.model, Scene_cameraPitchSine, Scene_cameraPitchCosine, Scene_cameraYawSine, Scene_cameraYawCosine, var4, var5);
 												}
 
-												var10 = var9.boundaryObject;
+												var10 = var9.wallObject;
 												if (var10 != null) {
 													var10.renderable1.draw(0, Scene_cameraPitchSine, Scene_cameraPitchCosine, Scene_cameraYawSine, Scene_cameraYawCosine, var10.x * 4096 - Scene_cameraX, var10.tileHeight - Scene_cameraY, var10.y * 4096 - Scene_cameraZ, var10.tag);
 												}
@@ -1382,7 +1382,7 @@ public class Scene {
 
 											var21 = 0;
 											var11 = 0;
-											BoundaryObject var31 = var3.boundaryObject;
+											WallObject var31 = var3.wallObject;
 											WallDecoration var13 = var3.wallDecoration;
 											if (var31 != null || var13 != null) {
 												if (var4 == Scene_cameraXTile) {
@@ -1528,7 +1528,7 @@ public class Scene {
 											}
 
 											if (var20) {
-												var10 = var3.boundaryObject;
+												var10 = var3.wallObject;
 												if (!this.method3958(var7, var4, var5, var10.orientationA)) {
 													var10.renderable1.draw(0, Scene_cameraPitchSine, Scene_cameraPitchCosine, Scene_cameraYawSine, Scene_cameraYawCosine, var10.x * 4096 - Scene_cameraX, var10.tileHeight - Scene_cameraY, var10.y * 4096 - Scene_cameraZ, var10.tag);
 												}
@@ -1731,7 +1731,7 @@ public class Scene {
 					}
 				}
 
-				BoundaryObject var27 = var3.boundaryObject;
+				WallObject var27 = var3.wallObject;
 				if (var27 != null) {
 					if ((var27.orientationB & var3.field2236) != 0 && !this.method3958(var7, var4, var5, var27.orientationB)) {
 						var27.renderable2.draw(0, Scene_cameraPitchSine, Scene_cameraPitchCosine, Scene_cameraYawSine, Scene_cameraYawCosine, var27.x * 4096 - Scene_cameraX, var27.tileHeight - Scene_cameraY, var27.y * 4096 - Scene_cameraZ, var27.tag);

@@ -3403,7 +3403,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 				var5.packetBuffer.writeStringCp1252NullTerminated(Login.Login_username);
 				var5.packetBuffer.writeByte((isResizable ? 1 : 0) << 1 | (isLowDetail ? 1 : 0));
 				var5.packetBuffer.writeShort(class186.canvasWidth);
-				var5.packetBuffer.writeShort(BoundaryObject.canvasHeight);
+				var5.packetBuffer.writeShort(WallObject.canvasHeight);
 				Decimator.method1082(var5.packetBuffer);
 				var5.packetBuffer.writeStringCp1252NullTerminated(class1.field3);
 				var5.packetBuffer.writeInt(FriendLoginUpdate.field4096);
@@ -3779,7 +3779,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 						var23 = HitSplatDefinition.getPacketBufferNode(ClientPacket.field2824, packetWriter.isaacCipher);
 						var23.packetBuffer.writeByte(class143.getWindowedMode());
 						var23.packetBuffer.writeShort(class186.canvasWidth);
-						var23.packetBuffer.writeShort(BoundaryObject.canvasHeight);
+						var23.packetBuffer.writeShort(WallObject.canvasHeight);
 						packetWriter.addNode(var23);
 						Players.friendsChatManager = null;
 						class222.guestClanSettings = null;
@@ -3991,8 +3991,8 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 							var3 = MouseHandler.MouseHandler_lastPressedY;
 							if (var3 < 0) {
 								var3 = 0;
-							} else if (var3 > BoundaryObject.canvasHeight) {
-								var3 = BoundaryObject.canvasHeight;
+							} else if (var3 > WallObject.canvasHeight) {
+								var3 = WallObject.canvasHeight;
 							}
 
 							var4 = MouseHandler.MouseHandler_lastPressedX;
@@ -4123,7 +4123,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 									}
 
 									if (var3 > 0) {
-										RawSound var23 = var32.toRawSound().resample(BoundaryObject.decimator);
+										RawSound var23 = var32.toRawSound().resample(WallObject.decimator);
 										RawPcmStream var24 = RawPcmStream.createRawPcmStream(var23, 100, var3);
 										var24.setNumLoops(queuedSoundEffectLoops[var1] - 1);
 										class281.pcmStreamMixer.addSubStream(var24);
@@ -4216,7 +4216,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 						}
 
 						if (rootInterface != -1) {
-							class13.updateRootInterface(rootInterface, 0, 0, class186.canvasWidth, BoundaryObject.canvasHeight, 0, 0);
+							class13.updateRootInterface(rootInterface, 0, 0, class186.canvasWidth, WallObject.canvasHeight, 0, 0);
 						}
 
 						++cycleCntr;
@@ -4642,7 +4642,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 	@Export("resizeJS")
 	void resizeJS() {
 		int var1 = class186.canvasWidth;
-		int var2 = BoundaryObject.canvasHeight;
+		int var2 = WallObject.canvasHeight;
 		if (super.contentWidth < var1) {
 			var1 = super.contentWidth;
 		}
@@ -4689,7 +4689,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 		FloorOverlayDefinition.hoveredItemContainer = null;
 		if (rootInterface != -1) {
 			rootWidgetCount = 0;
-			class12.drawWidgets(rootInterface, 0, 0, class186.canvasWidth, BoundaryObject.canvasHeight, 0, 0, -1);
+			class12.drawWidgets(rootInterface, 0, 0, class186.canvasWidth, WallObject.canvasHeight, 0, 0, -1);
 		}
 
 		Rasterizer2D.Rasterizer2D_resetClip();
@@ -4754,7 +4754,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 							var10000 = null;
 							SoundEffect var8 = SoundEffect.readSoundEffect(KeyHandler.archive4, var5.soundEffectId, 0);
 							if (var8 != null) {
-								RawSound var9 = var8.toRawSound().resample(BoundaryObject.decimator);
+								RawSound var9 = var8.toRawSound().resample(WallObject.decimator);
 								RawPcmStream var10 = RawPcmStream.createRawPcmStream(var9, 100, var7);
 								var10.setNumLoops(-1);
 								class281.pcmStreamMixer.addSubStream(var10);
@@ -4771,7 +4771,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 							var10000 = null;
 							SoundEffect var13 = SoundEffect.readSoundEffect(KeyHandler.archive4, var5.soundEffectIds[var12], 0);
 							if (var13 != null) {
-								RawSound var14 = var13.toRawSound().resample(BoundaryObject.decimator);
+								RawSound var14 = var13.toRawSound().resample(WallObject.decimator);
 								RawPcmStream var11 = RawPcmStream.createRawPcmStream(var14, 100, var7);
 								var11.setNumLoops(0);
 								class281.pcmStreamMixer.addSubStream(var11);
@@ -5236,7 +5236,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 					VertexNormal.updateGameState(45);
 					var2.close();
 					var2 = null;
-					BoundaryObject.changeWorld(var48);
+					WallObject.changeWorld(var48);
 					var1.serverPacket = null;
 					return false;
 				}
@@ -6547,7 +6547,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 	)
 	@Export("resizeRoot")
 	final void resizeRoot(boolean var1) {
-		class18.method297(rootInterface, class186.canvasWidth, BoundaryObject.canvasHeight, var1);
+		class18.method297(rootInterface, class186.canvasWidth, WallObject.canvasHeight, var1);
 	}
 
 	@ObfuscatedName("jc")
@@ -6562,7 +6562,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 		int var4;
 		if (var2 == null) {
 			var3 = class186.canvasWidth;
-			var4 = BoundaryObject.canvasHeight;
+			var4 = WallObject.canvasHeight;
 		} else {
 			var3 = var2.width;
 			var4 = var2.height;
@@ -6878,7 +6878,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 
 							if (var39 != null) {
 								var42 = new File(var39, "test.dat");
-								if (!BoundaryObject.method4321(var42, true)) {
+								if (!WallObject.method4321(var42, true)) {
 									var39 = null;
 								}
 							}
@@ -6960,7 +6960,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthTokens {
 
 							for (var7 = 0; var7 < var43.length; ++var7) {
 								File var40 = var43[var7];
-								if (!BoundaryObject.method4321(var40, false)) {
+								if (!WallObject.method4321(var40, false)) {
 									++var19;
 									continue label275;
 								}

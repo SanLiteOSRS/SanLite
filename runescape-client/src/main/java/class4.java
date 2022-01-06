@@ -216,7 +216,7 @@ public final class class4 {
 		int var4 = 0;
 		int var5 = 0;
 		if (var0.type == 0) {
-			var1 = class7.scene.getBoundaryObjectTag(var0.plane, var0.x, var0.y);
+			var1 = class7.scene.getWallObjectTag(var0.plane, var0.x, var0.y);
 		}
 
 		if (var0.type == 1) {

@@ -160,7 +160,7 @@ public class UserComparator10 extends AbstractUserComparator {
 				PacketWriter.pcmPlayer1 = class4.method29(GameEngine.taskHandler, 1, 2048);
 				class281.pcmStreamMixer = new PcmStreamMixer();
 				PacketWriter.pcmPlayer1.setStream(class281.pcmStreamMixer);
-				BoundaryObject.decimator = new Decimator(22050, class339.field4058 * 981712656);
+				WallObject.decimator = new Decimator(22050, class339.field4058 * 981712656);
 				Login.Login_loadingText = "Prepared sound engine";
 				Login.Login_loadingPercent = 35;
 				Client.titleLoadingStage = 50;

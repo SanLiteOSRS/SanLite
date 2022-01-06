@@ -144,7 +144,7 @@ public class class116 implements MouseWheel {
 		PacketBufferNode var2 = HitSplatDefinition.getPacketBufferNode(ClientPacket.field2824, Client.packetWriter.isaacCipher);
 		var2.packetBuffer.writeByte(class143.getWindowedMode());
 		var2.packetBuffer.writeShort(class186.canvasWidth);
-		var2.packetBuffer.writeShort(BoundaryObject.canvasHeight);
+		var2.packetBuffer.writeShort(WallObject.canvasHeight);
 		Client.packetWriter.addNode(var2);
 	}
 }

@@ -136,7 +136,7 @@ public final class Occluder {
 			PacketBufferNode var1 = HitSplatDefinition.getPacketBufferNode(ClientPacket.field2824, Client.packetWriter.isaacCipher);
 			var1.packetBuffer.writeByte(class143.getWindowedMode());
 			var1.packetBuffer.writeShort(class186.canvasWidth);
-			var1.packetBuffer.writeShort(BoundaryObject.canvasHeight);
+			var1.packetBuffer.writeShort(WallObject.canvasHeight);
 			Client.packetWriter.addNode(var1);
 		}
 

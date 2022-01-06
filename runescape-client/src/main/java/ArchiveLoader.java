@@ -243,7 +243,7 @@ public class ArchiveLoader {
 						return 1;
 					} else if (var0 == ScriptOpcodes.GETCANVASSIZE) {
 						Interpreter.Interpreter_intStack[++IsaacCipher.Interpreter_intStackSize - 1] = class186.canvasWidth;
-						Interpreter.Interpreter_intStack[++IsaacCipher.Interpreter_intStackSize - 1] = BoundaryObject.canvasHeight;
+						Interpreter.Interpreter_intStack[++IsaacCipher.Interpreter_intStackSize - 1] = WallObject.canvasHeight;
 						return 1;
 					} else if (var0 == ScriptOpcodes.MOBILE_SETFPS) {
 						--IsaacCipher.Interpreter_intStackSize;

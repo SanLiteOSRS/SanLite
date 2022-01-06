@@ -379,8 +379,8 @@ public class MouseHandler implements MouseListener, MouseMotionListener, FocusLi
 		}
 
 		int var5 = var1;
-		if (var3 + var1 > BoundaryObject.canvasHeight) {
-			var5 = BoundaryObject.canvasHeight - var3;
+		if (var3 + var1 > WallObject.canvasHeight) {
+			var5 = WallObject.canvasHeight - var3;
 		}
 
 		if (var5 < 0) {

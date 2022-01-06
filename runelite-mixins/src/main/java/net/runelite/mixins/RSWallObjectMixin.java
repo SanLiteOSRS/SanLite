@@ -32,13 +32,13 @@ import net.runelite.api.geometry.Shapes;
 import net.runelite.api.mixins.Inject;
 import net.runelite.api.mixins.Mixin;
 import net.runelite.api.mixins.Shadow;
-import net.runelite.rs.api.RSBoundaryObject;
+import net.runelite.rs.api.RSWallObject;
 import net.runelite.rs.api.RSClient;
 import net.runelite.rs.api.RSRenderable;
 import net.runelite.rs.api.RSModel;
 
-@Mixin(RSBoundaryObject.class)
-public abstract class RSBoundaryObjectMixin implements RSBoundaryObject
+@Mixin(RSWallObject.class)
+public abstract class RSWallObjectMixin implements RSWallObject
 {
 	@Shadow("client")
 	private static RSClient client;

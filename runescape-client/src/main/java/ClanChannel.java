@@ -295,7 +295,7 @@ public class ClanChannel extends Node {
 						var34 = new DynamicObject(var3, 0, var4, var0, var1, var2, var8.animationId, var8.boolean3, (Renderable)null);
 					}
 
-					var6.newBoundaryObject(var0, var1, var2, var16, (Renderable)var34, (Renderable)null, Tiles.field969[var4], 0, var19, var21);
+					var6.newWallObject(var0, var1, var2, var16, (Renderable)var34, (Renderable)null, Tiles.field969[var4], 0, var19, var21);
 					if (var4 == 0) {
 						if (var8.clipped) {
 							SoundCache.field321[var0][var1][var2] = 50;
@@ -353,7 +353,7 @@ public class ClanChannel extends Node {
 						var34 = new DynamicObject(var3, 1, var4, var0, var1, var2, var8.animationId, var8.boolean3, (Renderable)null);
 					}
 
-					var6.newBoundaryObject(var0, var1, var2, var16, (Renderable)var34, (Renderable)null, Tiles.field970[var4], 0, var19, var21);
+					var6.newWallObject(var0, var1, var2, var16, (Renderable)var34, (Renderable)null, Tiles.field970[var4], 0, var19, var21);
 					if (var8.clipped) {
 						if (var4 == 0) {
 							SoundCache.field321[var0][var1][var2 + 1] = 50;
@@ -384,7 +384,7 @@ public class ClanChannel extends Node {
 							var32 = new DynamicObject(var3, 2, var28, var0, var1, var2, var8.animationId, var8.boolean3, (Renderable)null);
 						}
 
-						var6.newBoundaryObject(var0, var1, var2, var16, (Renderable)var31, (Renderable)var32, Tiles.field969[var4], Tiles.field969[var28], var19, var21);
+						var6.newWallObject(var0, var1, var2, var16, (Renderable)var31, (Renderable)var32, Tiles.field969[var4], Tiles.field969[var28], var19, var21);
 						if (var8.modelClipped) {
 							if (var4 == 0) {
 								var10000 = ClanChannelMember.field1504[var0][var1];
@@ -424,7 +424,7 @@ public class ClanChannel extends Node {
 							var34 = new DynamicObject(var3, 3, var4, var0, var1, var2, var8.animationId, var8.boolean3, (Renderable)null);
 						}
 
-						var6.newBoundaryObject(var0, var1, var2, var16, (Renderable)var34, (Renderable)null, Tiles.field970[var4], 0, var19, var21);
+						var6.newWallObject(var0, var1, var2, var16, (Renderable)var34, (Renderable)null, Tiles.field970[var4], 0, var19, var21);
 						if (var8.clipped) {
 							if (var4 == 0) {
 								SoundCache.field321[var0][var1][var2 + 1] = 50;
@@ -470,7 +470,7 @@ public class ClanChannel extends Node {
 						long var29;
 						if (var5 == 5) {
 							var28 = 16;
-							var29 = var6.getBoundaryObjectTag(var0, var1, var2);
+							var29 = var6.getWallObjectTag(var0, var1, var2);
 							if (0L != var29) {
 								var28 = class148.getObjectDefinition(PacketWriter.Entity_unpackID(var29)).int2;
 							}
@@ -484,7 +484,7 @@ public class ClanChannel extends Node {
 							var6.newWallDecoration(var0, var1, var2, var16, (Renderable)var25, (Renderable)null, Tiles.field969[var4], 0, var28 * Tiles.field976[var4], var28 * Tiles.field966[var4], var19, var21);
 						} else if (var5 == 6) {
 							var28 = 8;
-							var29 = var6.getBoundaryObjectTag(var0, var1, var2);
+							var29 = var6.getWallObjectTag(var0, var1, var2);
 							if (0L != var29) {
 								var28 = class148.getObjectDefinition(PacketWriter.Entity_unpackID(var29)).int2 / 2;
 							}
@@ -507,7 +507,7 @@ public class ClanChannel extends Node {
 							var6.newWallDecoration(var0, var1, var2, var16, (Renderable)var34, (Renderable)null, 256, var23, 0, 0, var19, var21);
 						} else if (var5 == 8) {
 							var28 = 8;
-							var29 = var6.getBoundaryObjectTag(var0, var1, var2);
+							var29 = var6.getWallObjectTag(var0, var1, var2);
 							if (var29 != 0L) {
 								var28 = class148.getObjectDefinition(PacketWriter.Entity_unpackID(var29)).int2 / 2;
 							}

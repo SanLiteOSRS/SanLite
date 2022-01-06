@@ -427,11 +427,11 @@ public class Language implements MouseWheel {
 			int var27 = (var5 + World.World_count - 1) / var5;
 			Login.worldSelectPagesCount = var27 - var4;
 			if (class11.worldSelectLeftSprite != null && Login.worldSelectPage > 0) {
-				class11.worldSelectLeftSprite.drawAt(8, BoundaryObject.canvasHeight / 2 - class11.worldSelectLeftSprite.subHeight / 2);
+				class11.worldSelectLeftSprite.drawAt(8, WallObject.canvasHeight / 2 - class11.worldSelectLeftSprite.subHeight / 2);
 			}
 
 			if (UrlRequest.worldSelectRightSprite != null && Login.worldSelectPage < Login.worldSelectPagesCount) {
-				UrlRequest.worldSelectRightSprite.drawAt(class186.canvasWidth - UrlRequest.worldSelectRightSprite.subWidth - 8, BoundaryObject.canvasHeight / 2 - UrlRequest.worldSelectRightSprite.subHeight / 2);
+				UrlRequest.worldSelectRightSprite.drawAt(class186.canvasWidth - UrlRequest.worldSelectRightSprite.subWidth - 8, WallObject.canvasHeight / 2 - UrlRequest.worldSelectRightSprite.subHeight / 2);
 			}
 
 			var11 = var9 + 23;

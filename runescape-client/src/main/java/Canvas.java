@@ -228,7 +228,7 @@ public final class Canvas extends java.awt.Canvas {
 			Interpreter.Interpreter_intStack[++IsaacCipher.Interpreter_intStackSize - 1] = class186.canvasWidth;
 			return 1;
 		} else if (var0 == 6223) {
-			Interpreter.Interpreter_intStack[++IsaacCipher.Interpreter_intStackSize - 1] = BoundaryObject.canvasHeight;
+			Interpreter.Interpreter_intStack[++IsaacCipher.Interpreter_intStackSize - 1] = WallObject.canvasHeight;
 			return 1;
 		} else {
 			return 2;

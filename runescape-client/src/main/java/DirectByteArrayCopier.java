@@ -66,7 +66,7 @@ public class DirectByteArrayCopier extends AbstractByteArrayCopier {
 			var9 = Client.field537[var7];
 			if (var39 >= 0 && var40 >= 0 && var39 < 103 && var40 < 103) {
 				if (var9 == 0) {
-					BoundaryObject var36 = class7.scene.method4105(class20.Client_plane, var39, var40);
+					WallObject var36 = class7.scene.method4105(class20.Client_plane, var39, var40);
 					if (var36 != null) {
 						var11 = PacketWriter.Entity_unpackID(var36.tag);
 						if (var7 == 2) {
