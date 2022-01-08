@@ -168,6 +168,36 @@ public interface AreaOfEffectIndicatorsConfig extends Config
 	String grotesqueGuardiansSection = "grotesqueGuardians";
 
 	@ConfigSection(
+			name = "Nex",
+			description = "Options for the Nex area of effect indicators",
+			closedByDefault = true,
+			position = 99
+	)
+	String nexSection = "nex";
+
+	@ConfigItem(
+			keyName = "displayRemainingDuration",
+			name = "Show remaining duration",
+			description = "Display the remaining time until an area of effect hits the target area.",
+			position = 0
+	)
+	default boolean displayRemainingDuration()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+			keyName = "borderWidth",
+			name = "Border Width",
+			description = "Width of the highlighted tile border",
+			position = 1
+	)
+	default double borderWidth()
+	{
+		return 2;
+	}
+
+	@ConfigSection(
 			name = "Alchemical Hydra",
 			description = "Options for the Alchemical Hydra's area of effect indicators",
 			closedByDefault = true,
@@ -599,7 +629,7 @@ public interface AreaOfEffectIndicatorsConfig extends Config
 	@ConfigItem(
 			keyName = "olmHealingPoolsColor",
 			name = "Healing pools color",
-			description = "Color of the of healing pools tile markers during the Great Olm encounter",
+			description = "Color of the healing pools tile markers during the Great Olm encounter",
 			section = chambersOfXericSection,
 			position = 34
 	)
@@ -624,13 +654,38 @@ public interface AreaOfEffectIndicatorsConfig extends Config
 	@ConfigItem(
 			keyName = "olmAcidPoolsColor",
 			name = "Acid pools color",
-			description = "Color of the of acid pools tile markers during the Great Olm encounter",
+			description = "Color of the acid pools tile markers during the Great Olm encounter",
 			section = chambersOfXericSection,
 			position = 36
 	)
 	default Color getOlmAcidPoolsColor()
 	{
 		return new Color(68, 126, 45);
+	}
+
+	@ConfigItem(
+			keyName = "highlightOlmGroundSpikes",
+			name = "Highlight Olm ground spikes",
+			description = "Highlight the tiles of crystal spikes that will pop up from the ground during the Great Olm encounter",
+			section = chambersOfXericSection,
+			position = 37
+	)
+	default boolean highlightOlmGroundSpikes()
+	{
+		return true;
+	}
+
+	@Alpha
+	@ConfigItem(
+			keyName = "olmCrystalGroundSpikesColor",
+			name = "Crystal ground spikes color",
+			description = "Color of the crystal ground spikes tile markers during the Great Olm encounter",
+			section = chambersOfXericSection,
+			position = 38
+	)
+	default Color getOlmCrystalGroundSpikesColor()
+	{
+		return new Color(146, 189, 22);
 	}
 
 	@ConfigItem(
@@ -1261,24 +1316,27 @@ public interface AreaOfEffectIndicatorsConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "displayRemainingProjectileDuration",
-			name = "Show remaining projectile duration",
-			description = "Display the remaining time until a projectile hits the target area.",
-			position = 81
+			keyName = "highlightNexShadowAttack",
+			name = "Highlight shadow attack",
+			description = "Highlight the tile for the Nex's shadow attack",
+			section = nexSection,
+			position = 79
 	)
-	default boolean displayRemainingProjectileDuration()
+	default boolean highlightNexShadowAttack()
 	{
 		return true;
 	}
 
+	@Alpha
 	@ConfigItem(
-			keyName = "borderWidth",
-			name = "Border Width",
-			description = "Width of the highlighted tile border",
-			position = 82
+			keyName = "nexShadowAttackColor",
+			name = "Shadow attack color",
+			description = "Color of Nex's shadow attack tile marker",
+			section = nexSection,
+			position = 80
 	)
-	default double borderWidth()
+	default Color getNexShadowAttackColor()
 	{
-		return 2;
+		return new Color(1, 26, 25);
 	}
 }
