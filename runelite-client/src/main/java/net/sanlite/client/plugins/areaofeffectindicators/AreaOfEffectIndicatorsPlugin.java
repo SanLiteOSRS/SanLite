@@ -38,7 +38,6 @@ import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.ui.overlay.OverlayManager;
 import net.sanlite.client.plugins.areaofeffectindicators.id.ProjectileID;
-import net.sanlite.client.plugins.gauntlet.id.GauntletId;
 
 import javax.inject.Inject;
 import java.util.List;
