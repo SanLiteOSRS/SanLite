@@ -27,6 +27,8 @@ package net.sanlite.client.plugins.areaofeffectindicators;
 import net.runelite.api.Client;
 import net.runelite.api.Perspective;
 import net.runelite.api.Point;
+import net.runelite.api.Tile;
+import net.runelite.api.coords.LocalPoint;
 import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayLayer;
 import net.runelite.client.ui.overlay.OverlayPosition;
@@ -60,13 +62,8 @@ public class AreaOfEffectIndicatorsOverlay extends Overlay
 	@Override
 	public Dimension render(Graphics2D graphics)
 	{
-		List<AreaOfEffectProjectile> areaOfEffectProjectiles = plugin.getAreaOfEffectProjectiles();
-		if (areaOfEffectProjectiles == null)
-		{
-			return null;
-		}
-
-		renderAreaOfEffectProjectiles(graphics, areaOfEffectProjectiles);
+		renderAreaOfEffectProjectiles(graphics, plugin.getAreaOfEffectProjectiles());
+		renderAreaOfEffectGameObjects(graphics, plugin.getAreaOfEffectGameObjects());
 		return null;
 	}
 
@@ -98,7 +95,7 @@ public class AreaOfEffectIndicatorsOverlay extends Overlay
 
 			OverlayUtil2.renderPolygon(graphics, polygon, projectile.getHighlightColor(),  config.borderWidth());
 
-			if (!config.displayRemainingProjectileDuration())
+			if (!config.displayRemainingDuration())
 			{
 				continue;
 			}
@@ -118,6 +115,46 @@ public class AreaOfEffectIndicatorsOverlay extends Overlay
 			}
 
 			OverlayUtil.renderTextLocation(graphics, textPoint, remainingCycles, Color.WHITE);
+		}
+	}
+
+	private void renderAreaOfEffectGameObjects(Graphics2D graphics, List<AreaOfEffectGameObject> areaOfEffectGameObjects)
+	{
+		if (areaOfEffectGameObjects == null)
+		{
+			return;
+		}
+
+		for (AreaOfEffectGameObject object : areaOfEffectGameObjects)
+		{
+			Tile tile = object.getTile();
+			if (tile == null || object.getDamageTick() < client.getTickCount())
+			{
+				continue;
+			}
+
+			LocalPoint tilePoint = tile.getLocalLocation();
+			Polygon polygon = Perspective.getCanvasTileAreaPoly(client, tilePoint, 1);
+			if (polygon == null)
+			{
+				continue;
+			}
+
+			OverlayUtil2.renderPolygon(graphics, polygon, object.getHighlightColor(),  config.borderWidth());
+
+			if (!config.displayRemainingDuration())
+			{
+				continue;
+			}
+
+			String remainingTicks = Integer.toString(object.getDamageTick() - client.getTickCount());
+			Point textPoint = Perspective.getCanvasTextLocation(client, graphics, tilePoint, remainingTicks, 0);
+			if (textPoint == null)
+			{
+				continue;
+			}
+
+			OverlayUtil.renderTextLocation(graphics, textPoint, remainingTicks, Color.WHITE);
 		}
 	}
 

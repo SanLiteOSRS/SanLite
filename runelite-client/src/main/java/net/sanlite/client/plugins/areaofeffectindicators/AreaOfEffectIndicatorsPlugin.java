@@ -26,16 +26,14 @@ package net.sanlite.client.plugins.areaofeffectindicators;
 
 import com.google.inject.Provides;
 import lombok.Getter;
-import net.runelite.api.Client;
-import net.runelite.api.GameState;
-import net.runelite.api.Player;
-import net.runelite.api.Projectile;
+import lombok.extern.slf4j.Slf4j;
+import net.runelite.api.*;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.coords.WorldPoint;
-import net.runelite.api.events.GameStateChanged;
-import net.runelite.api.events.ProjectileMoved;
+import net.runelite.api.events.*;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
+import net.runelite.client.events.ConfigChanged;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.ui.overlay.OverlayManager;
@@ -51,6 +49,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 		tags = {"aoe", "projectile", "highlight", "pvm", "overlay", "boss", "encounter", "tile", "sanlite"},
 		enabledByDefault = false
 )
+@Slf4j
 public class AreaOfEffectIndicatorsPlugin extends Plugin
 {
 
@@ -68,8 +67,17 @@ public class AreaOfEffectIndicatorsPlugin extends Plugin
 	@Inject
 	private AreaOfEffectIndicatorsOverlay overlay;
 
+	@Inject
+	private AreaOfEffectIndicatorsDebugOverlay debugOverlay;
+
 	@Getter
 	private List<AreaOfEffectProjectile> areaOfEffectProjectiles;
+
+	@Getter
+	private List<AreaOfEffectGameObject> areaOfEffectGameObjects;
+
+	@Getter
+	private AoeObjectConfig aoeObjectConfig;
 
 	@Provides
 	AreaOfEffectIndicatorsConfig getConfig(ConfigManager configManager)
@@ -82,6 +90,12 @@ public class AreaOfEffectIndicatorsPlugin extends Plugin
 	{
 		overlayManager.add(overlay);
 		areaOfEffectProjectiles = new CopyOnWriteArrayList<>();
+		areaOfEffectGameObjects = new CopyOnWriteArrayList<>();
+		aoeObjectConfig = new AoeObjectConfig(config);
+		if (config.showDebugOverlay())
+		{
+			overlayManager.add(debugOverlay);
+		}
 	}
 
 	@Override
@@ -89,6 +103,43 @@ public class AreaOfEffectIndicatorsPlugin extends Plugin
 	{
 		overlayManager.remove(overlay);
 		areaOfEffectProjectiles = null;
+		areaOfEffectGameObjects = null;
+		aoeObjectConfig = null;
+		if (config.showDebugOverlay())
+		{
+			overlayManager.remove(debugOverlay);
+		}
+	}
+
+	@Subscribe
+	public void onConfigChanged(ConfigChanged event)
+	{
+		if (!event.getGroup().equals(AreaOfEffectIndicatorsConfig.GROUP_NAME))
+		{
+			return;
+		}
+
+		switch (event.getKey())
+		{
+			// TODO: Make this dynamic to easily support more config keys
+			case "highlightOlmGroundSpikes":
+			case "olmCrystalGroundSpikesColor":
+			case "highlightNexShadowAttack":
+			case "nexShadowAttackColor":
+				log.debug("Reinitializing AoE object config. Config value changed: {}", event.getKey());
+				aoeObjectConfig = new AoeObjectConfig(config);
+				break;
+			case "showDebugOverlay":
+				if (Boolean.parseBoolean(event.getNewValue()))
+				{
+					overlayManager.add(debugOverlay);
+				}
+				else
+				{
+					overlayManager.remove(debugOverlay);
+				}
+				break;
+		}
 	}
 
 	@Subscribe
@@ -98,6 +149,56 @@ public class AreaOfEffectIndicatorsPlugin extends Plugin
 		if (gameState == GameState.LOGGING_IN || gameState == GameState.CONNECTION_LOST || gameState == GameState.HOPPING)
 		{
 			areaOfEffectProjectiles.clear();
+			areaOfEffectGameObjects.clear();
+		}
+
+		// Clear AoE game objects on new area load
+		if (gameState == GameState.LOADING)
+		{
+			areaOfEffectGameObjects.clear();
+		}
+	}
+
+	@Subscribe
+	public void onGameObjectSpawned(GameObjectSpawned event)
+	{
+		GameObject gameObject = event.getGameObject();
+		Tile tile = event.getTile();
+		if (gameObject == null || tile == null)
+		{
+			return;
+		}
+
+		int id = gameObject.getId();
+		if (!aoeObjectConfig.getOBJECTS().containsKey(id))
+		{
+			return;
+		}
+
+		log.debug("AoE Game object: {} spawned at tick: {}", id, client.getTickCount());
+		onAreaOfEffectGameObject(gameObject, tile);
+	}
+
+	@Subscribe
+	public void onGameObjectDespawned(GameObjectDespawned event)
+	{
+		GameObject gameObject = event.getGameObject();
+		if (gameObject == null)
+		{
+			return;
+		}
+
+		int id = gameObject.getId();
+		if (!aoeObjectConfig.getOBJECTS().containsKey(id))
+		{
+			return;
+		}
+
+		log.debug("Potential AoE Game object: {} removed at tick: {}", id, client.getTickCount());
+		boolean removed = areaOfEffectGameObjects.removeIf((aoeObject) -> aoeObject.getGameObject().equals(gameObject));
+		if (removed)
+		{
+			log.debug("AoE Game object: {} removed at tick: {}", id, client.getTickCount());
 		}
 	}
 
@@ -105,12 +206,23 @@ public class AreaOfEffectIndicatorsPlugin extends Plugin
 	public void onProjectileMoved(ProjectileMoved event)
 	{
 		Projectile projectile = event.getProjectile();
+		// Area of effect projectiles don't interact with actors
 		if (projectile.getInteracting() != null)
 		{
 			return;
 		}
 
 		onAreaOfEffectProjectile(projectile, event.getPosition());
+	}
+
+	@Subscribe
+	public void onGameTick(GameTick event)
+	{
+		boolean removed = areaOfEffectGameObjects.removeIf((aoeObject) -> aoeObject.getDamageTick() <= client.getTickCount());
+		if (removed)
+		{
+			log.debug("Expired AoE Game object(s) removed at tick: {}", client.getTickCount());
+		}
 	}
 
 	public void onAreaOfEffectProjectile(Projectile projectile, LocalPoint targetPoint)
@@ -329,6 +441,15 @@ public class AreaOfEffectIndicatorsPlugin extends Plugin
 				if (config.highlightElvenTraitorExplosiveArrow())
 					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 1, targetPoint, config.getElvenTraitorExplosiveArrowColor()));
 				break;
+		}
+	}
+
+	public void onAreaOfEffectGameObject(GameObject gameObject, Tile tile)
+	{
+		AoeObjectConfig.AoeGameObjectInfo objectInfo = aoeObjectConfig.getOBJECTS().get(gameObject.getId());
+		if (objectInfo.isEnabled())
+		{
+			areaOfEffectGameObjects.add(new AreaOfEffectGameObject(gameObject, tile, client.getTickCount(), objectInfo.getTicksBeforeDamage(), objectInfo.getColor()));
 		}
 	}
 
