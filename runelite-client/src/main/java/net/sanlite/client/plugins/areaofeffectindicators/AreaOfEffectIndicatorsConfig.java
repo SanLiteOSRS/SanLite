@@ -28,9 +28,11 @@ import net.runelite.client.config.*;
 
 import java.awt.*;
 
-@ConfigGroup("aoewarnings")
+@ConfigGroup(AreaOfEffectIndicatorsConfig.GROUP_NAME)
 public interface AreaOfEffectIndicatorsConfig extends Config
 {
+	String GROUP_NAME = "aoewarnings";
+
 	@ConfigSection(
 			name = "Corporeal Beast",
 			description = "Options for the Corporeal Beasts area of effect indicators",
@@ -195,6 +197,17 @@ public interface AreaOfEffectIndicatorsConfig extends Config
 	default double borderWidth()
 	{
 		return 2;
+	}
+
+	@ConfigItem(
+			keyName = "showDebugOverlay",
+			name = "Display debug overlay",
+			description = "Displays debug overlay. This displays variables that the plugin uses to function",
+			position = 999
+	)
+	default boolean showDebugOverlay()
+	{
+		return false;
 	}
 
 	@ConfigSection(

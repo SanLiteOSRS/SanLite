@@ -24,50 +24,39 @@
  */
 package net.sanlite.client.plugins.areaofeffectindicators;
 
-import lombok.Data;
-import net.runelite.api.GameObject;
-import net.runelite.api.Tile;
+import com.google.common.collect.ImmutableMap;
+import lombok.Getter;
+import net.runelite.api.ObjectID;
 
 import java.awt.*;
 
-/**
- * A game object that will do area of effect damage after a given time period.
- */
-@Data
-public class AreaOfEffectGameObject
+public class AoeObjectConfig
 {
-	private GameObject gameObject;
-	private Tile tile;
+	@Getter
+	private final ImmutableMap<Integer, AoeGameObjectInfo> OBJECTS;
 
-	/**
-	 * The game tick that the game object spawned at begun movement at.
-	 */
-	private int spawnTick;
-
-	/**
-	 * The game tick that the game object will do damage to the player.
-	 */
-	private int damageTick;
-
-	/**
-	 * The size of the area affected by the game object damage (e.g. 3 is a 3x3 area).
-	 */
-	private int tileSize;
-
-	/**
-	 * The color of the tile marker highlight.
-	 */
-	private Color highlightColor;
-
-	public AreaOfEffectGameObject(GameObject gameObject, Tile tile, int spawnTick, int ticksBeforeDamage, Color highlightColor)
+	public AoeObjectConfig(AreaOfEffectIndicatorsConfig config)
 	{
-		if (gameObject == null)
-			throw new IllegalArgumentException("GameObject is null");
+		OBJECTS = new ImmutableMap.Builder<Integer, AoeGameObjectInfo>()
+				// Chambers of Xeric
+				.put(ObjectID.SMALL_CRYSTALS, new AoeGameObjectInfo(4, config.highlightOlmGroundSpikes(), config.getOlmCrystalGroundSpikesColor()))
+				// Nex
+				.put(ObjectID.SHADOW, new AoeGameObjectInfo(6, config.highlightNexShadowAttack(), config.getNexShadowAttackColor()))
+				.build();
+	}
 
-		this.gameObject = gameObject;
-		this.tile = tile;
-		this.spawnTick = spawnTick;
-		this.damageTick = spawnTick + ticksBeforeDamage;
-		this.highlightColor = highlightColor;
+	@Getter
+	static class AoeGameObjectInfo
+	{
+		private final int ticksBeforeDamage;
+		private final boolean enabled;
+		private final Color color;
+
+		private AoeGameObjectInfo(int ticksBeforeDamage, boolean enabled, Color color)
+		{
+			this.ticksBeforeDamage = ticksBeforeDamage;
+			this.enabled = enabled;
+			this.color = color;
+		}
 	}
 }
