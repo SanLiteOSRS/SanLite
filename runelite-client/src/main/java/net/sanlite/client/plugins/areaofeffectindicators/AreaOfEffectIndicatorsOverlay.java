@@ -24,10 +24,9 @@
  */
 package net.sanlite.client.plugins.areaofeffectindicators;
 
-import net.runelite.api.Client;
-import net.runelite.api.Perspective;
+import lombok.extern.slf4j.Slf4j;
+import net.runelite.api.*;
 import net.runelite.api.Point;
-import net.runelite.api.Tile;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayLayer;
@@ -42,6 +41,7 @@ import java.awt.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 public class AreaOfEffectIndicatorsOverlay extends Overlay
 {
 	private final Client client;
@@ -64,6 +64,7 @@ public class AreaOfEffectIndicatorsOverlay extends Overlay
 	{
 		renderAreaOfEffectProjectiles(graphics, plugin.getAreaOfEffectProjectiles());
 		renderAreaOfEffectGameObjects(graphics, plugin.getAreaOfEffectGameObjects());
+		renderAreaOfEffectGraphicsObjects(graphics, plugin.getAreaOfEffectGraphicsObjects());
 		return null;
 	}
 
@@ -93,7 +94,7 @@ public class AreaOfEffectIndicatorsOverlay extends Overlay
 				continue;
 			}
 
-			OverlayUtil2.renderPolygon(graphics, polygon, projectile.getHighlightColor(),  config.borderWidth());
+			OverlayUtil2.renderPolygon(graphics, polygon, projectile.getHighlightColor(), config.borderWidth());
 
 			if (!config.displayRemainingDuration())
 			{
@@ -127,28 +128,66 @@ public class AreaOfEffectIndicatorsOverlay extends Overlay
 
 		for (AreaOfEffectGameObject object : areaOfEffectGameObjects)
 		{
-			Tile tile = object.getTile();
-			if (tile == null || object.getDamageTick() < client.getTickCount())
-			{
-				continue;
-			}
+			LocalPoint localPoint = object.getGameObject().getLocalLocation();
+			AoeConfig.AoeObjectInfo objectInfo = plugin.getAoeConfig().getGameObjects().get(object.getGameObject().getId());
 
-			LocalPoint tilePoint = tile.getLocalLocation();
-			Polygon polygon = Perspective.getCanvasTileAreaPoly(client, tilePoint, 1);
+			int tileSize = objectInfo.getTileSize();
+			Polygon polygon = Perspective.getCanvasTileAreaPoly(client, localPoint, tileSize);
 			if (polygon == null)
 			{
 				continue;
 			}
 
-			OverlayUtil2.renderPolygon(graphics, polygon, object.getHighlightColor(),  config.borderWidth());
+			OverlayUtil2.renderPolygon(graphics, polygon, objectInfo.getColor(), config.borderWidth());
 
 			if (!config.displayRemainingDuration())
 			{
 				continue;
 			}
 
-			String remainingTicks = Integer.toString(object.getDamageTick() - client.getTickCount());
-			Point textPoint = Perspective.getCanvasTextLocation(client, graphics, tilePoint, remainingTicks, 0);
+			String remainingTicks = Integer.toString(object.getDespawnTick() - client.getTickCount());
+			Point textPoint = Perspective.getCanvasTextLocation(client, graphics, localPoint, remainingTicks, 0);
+			if (textPoint == null)
+			{
+				continue;
+			}
+
+			OverlayUtil.renderTextLocation(graphics, textPoint, remainingTicks, Color.WHITE);
+		}
+	}
+
+	private void renderAreaOfEffectGraphicsObjects(Graphics2D graphics, List<AreaOfEffectGraphicsObject> areaOfEffectGraphicsObjects)
+	{
+		if (areaOfEffectGraphicsObjects == null)
+		{
+			return;
+		}
+
+		for (AreaOfEffectGraphicsObject object : areaOfEffectGraphicsObjects)
+		{
+			GraphicsObject graphicsObject = object.getGraphicsObject();
+			LocalPoint localPoint = graphicsObject.getLocation();
+			if (localPoint == null)
+			{
+				continue;
+			}
+
+			Polygon polygon = Perspective.getCanvasTilePoly(client, localPoint);
+			if (polygon == null)
+			{
+				continue;
+			}
+
+			AoeConfig.AoeObjectInfo objectInfo = plugin.getAoeConfig().getGraphicObjects().get(graphicsObject.getId());
+			OverlayUtil2.renderPolygon(graphics, polygon, objectInfo.getColor(), config.borderWidth());
+
+			if (!config.displayRemainingDuration() || object.isDynamicDespawnTick())
+			{
+				continue;
+			}
+
+			String remainingTicks = Integer.toString(object.getDespawnTick() - client.getTickCount());
+			Point textPoint = Perspective.getCanvasTextLocation(client, graphics, localPoint, remainingTicks, 0);
 			if (textPoint == null)
 			{
 				continue;

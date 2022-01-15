@@ -99,7 +99,7 @@ public interface VorkathConfig extends Config
 	)
 	default Color getAcidPoolColor()
 	{
-		return new Color(74, 178, 23);
+		return new Color(74, 178, 23, 200);
 	}
 
 	@ConfigItem(
@@ -196,7 +196,7 @@ public interface VorkathConfig extends Config
 	)
 	default int getMinimumAcidPhasePathLength()
 	{
-		return 7;
+		return 8;
 	}
 
 	@ConfigItem(
@@ -208,7 +208,7 @@ public interface VorkathConfig extends Config
 	)
 	default Color getAcidPhasePathColor()
 	{
-		return new Color(35, 83, 133);
+		return new Color(35, 83, 133, 75);
 	}
 
 	@ConfigItem(

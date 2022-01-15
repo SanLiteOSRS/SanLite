@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022, Siraz <https://github.com/Sirazzz>
+ * Copyright (c) 2021, Siraz <https://github.com/Sirazzz>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,41 +22,23 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.sanlite.client.plugins.areaofeffectindicators;
+package net.sanlite.client.plugins.areaofeffectindicators.id;
 
-import com.google.common.collect.ImmutableMap;
-import lombok.Getter;
-import net.runelite.api.ObjectID;
-
-import java.awt.*;
-
-public class AoeObjectConfig
+public class GraphicID
 {
-	@Getter
-	private final ImmutableMap<Integer, AoeGameObjectInfo> OBJECTS;
+	// Chambers of Xeric - The Great Olm
+	public static final int OLM_BURN = 1351;
+	public static final int OLM_LIGHTNING = 1356;
+	public static final int OLM_FALLING_CRYSTAL = 1357;
+	public static final int OLM_FALLING_CRYSTAL_SHATTER = 1358;
+	public static final int OLM_TELEPORT_WHITE = 1359;
+	public static final int OLM_TELEPORT_GREEN = 1360;
+	public static final int OLM_TELEPORT_YELLOW = 1361;
+	public static final int OLM_TELEPORT_PURPLE = 1362;
+	public static final int OLM_BLUE_HEAL_POOL = 1363;
+	public static final int OLM_FALLING_CRYSTAL_SHADOW = 1447;
 
-	public AoeObjectConfig(AreaOfEffectIndicatorsConfig config)
-	{
-		OBJECTS = new ImmutableMap.Builder<Integer, AoeGameObjectInfo>()
-				// Chambers of Xeric
-				.put(ObjectID.SMALL_CRYSTALS, new AoeGameObjectInfo(4, config.highlightOlmGroundSpikes(), config.getOlmCrystalGroundSpikesColor()))
-				// Nex
-				.put(ObjectID.SHADOW, new AoeGameObjectInfo(6, config.highlightNexShadowAttack(), config.getNexShadowAttackColor()))
-				.build();
-	}
-
-	@Getter
-	static class AoeGameObjectInfo
-	{
-		private final int ticksBeforeDamage;
-		private final boolean enabled;
-		private final Color color;
-
-		private AoeGameObjectInfo(int ticksBeforeDamage, boolean enabled, Color color)
-		{
-			this.ticksBeforeDamage = ticksBeforeDamage;
-			this.enabled = enabled;
-			this.color = color;
-		}
-	}
+	// Zalcano
+	public static final int ZALCANO_FALLING_ROCK = 1727;
+	public static final int ZALCANO_GOLEM_SPAWN_EXPLOSION = 1730;
 }

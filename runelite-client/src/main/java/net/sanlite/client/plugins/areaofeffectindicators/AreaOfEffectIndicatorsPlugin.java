@@ -77,7 +77,10 @@ public class AreaOfEffectIndicatorsPlugin extends Plugin
 	private List<AreaOfEffectGameObject> areaOfEffectGameObjects;
 
 	@Getter
-	private AoeObjectConfig aoeObjectConfig;
+	private List<AreaOfEffectGraphicsObject> areaOfEffectGraphicsObjects;
+
+	@Getter
+	private AoeConfig aoeConfig;
 
 	@Provides
 	AreaOfEffectIndicatorsConfig getConfig(ConfigManager configManager)
@@ -91,7 +94,9 @@ public class AreaOfEffectIndicatorsPlugin extends Plugin
 		overlayManager.add(overlay);
 		areaOfEffectProjectiles = new CopyOnWriteArrayList<>();
 		areaOfEffectGameObjects = new CopyOnWriteArrayList<>();
-		aoeObjectConfig = new AoeObjectConfig(config);
+		areaOfEffectGraphicsObjects = new CopyOnWriteArrayList<>();
+
+		aoeConfig = new AoeConfig(config);
 		if (config.showDebugOverlay())
 		{
 			overlayManager.add(debugOverlay);
@@ -104,7 +109,9 @@ public class AreaOfEffectIndicatorsPlugin extends Plugin
 		overlayManager.remove(overlay);
 		areaOfEffectProjectiles = null;
 		areaOfEffectGameObjects = null;
-		aoeObjectConfig = null;
+		areaOfEffectGraphicsObjects = null;
+
+		aoeConfig = null;
 		if (config.showDebugOverlay())
 		{
 			overlayManager.remove(debugOverlay);
@@ -119,27 +126,20 @@ public class AreaOfEffectIndicatorsPlugin extends Plugin
 			return;
 		}
 
-		switch (event.getKey())
+		if (event.getKey().equals("showDebugOverlay"))
 		{
-			// TODO: Make this dynamic to easily support more config keys
-			case "highlightOlmGroundSpikes":
-			case "olmCrystalGroundSpikesColor":
-			case "highlightNexShadowAttack":
-			case "nexShadowAttackColor":
-				log.debug("Reinitializing AoE object config. Config value changed: {}", event.getKey());
-				aoeObjectConfig = new AoeObjectConfig(config);
-				break;
-			case "showDebugOverlay":
-				if (Boolean.parseBoolean(event.getNewValue()))
-				{
-					overlayManager.add(debugOverlay);
-				}
-				else
-				{
-					overlayManager.remove(debugOverlay);
-				}
-				break;
+			if (Boolean.parseBoolean(event.getNewValue()))
+			{
+				overlayManager.add(debugOverlay);
+				return;
+			}
+
+			overlayManager.remove(debugOverlay);
+			return;
 		}
+
+		log.debug("Reinitializing AoE object config. Config value changed: {}", event.getKey());
+		aoeConfig = new AoeConfig(config);
 	}
 
 	@Subscribe
@@ -152,10 +152,11 @@ public class AreaOfEffectIndicatorsPlugin extends Plugin
 			areaOfEffectGameObjects.clear();
 		}
 
-		// Clear AoE game objects on new area load
+		// Clear AoE objects on new area load (i.e. going up a ladder)
 		if (gameState == GameState.LOADING)
 		{
 			areaOfEffectGameObjects.clear();
+			areaOfEffectGraphicsObjects.clear();
 		}
 	}
 
@@ -163,22 +164,22 @@ public class AreaOfEffectIndicatorsPlugin extends Plugin
 	public void onGameObjectSpawned(GameObjectSpawned event)
 	{
 		GameObject gameObject = event.getGameObject();
-		Tile tile = event.getTile();
-		if (gameObject == null || tile == null)
+		if (gameObject == null)
 		{
 			return;
 		}
 
 		int id = gameObject.getId();
-		if (!aoeObjectConfig.getOBJECTS().containsKey(id))
+		if (!aoeConfig.getGameObjects().containsKey(id))
 		{
 			return;
 		}
 
-		log.debug("AoE Game object: {} spawned at tick: {}", id, client.getTickCount());
-		onAreaOfEffectGameObject(gameObject, tile);
+		log.debug("AoE game object: {} spawned at tick: {}", id, client.getTickCount());
+		onAreaOfEffectGameObject(gameObject);
 	}
 
+	// TODO: This doesn't work consistently for removing (cached?), so remove after implementation is done
 	@Subscribe
 	public void onGameObjectDespawned(GameObjectDespawned event)
 	{
@@ -189,17 +190,31 @@ public class AreaOfEffectIndicatorsPlugin extends Plugin
 		}
 
 		int id = gameObject.getId();
-		if (!aoeObjectConfig.getOBJECTS().containsKey(id))
+		if (!aoeConfig.getGameObjects().containsKey(id))
 		{
 			return;
 		}
 
-		log.debug("Potential AoE Game object: {} removed at tick: {}", id, client.getTickCount());
-		boolean removed = areaOfEffectGameObjects.removeIf((aoeObject) -> aoeObject.getGameObject().equals(gameObject));
-		if (removed)
+		log.debug("AoE Game object: {} despawned at tick: {}", id, client.getTickCount());
+	}
+
+	@Subscribe
+	public void onGraphicsObjectCreated(GraphicsObjectCreated event)
+	{
+		GraphicsObject graphicsObject = event.getGraphicsObject();
+		if (graphicsObject == null)
 		{
-			log.debug("AoE Game object: {} removed at tick: {}", id, client.getTickCount());
+			return;
 		}
+
+		int id = graphicsObject.getId();
+		if (!aoeConfig.getGraphicObjects().containsKey(id))
+		{
+			return;
+		}
+
+		log.debug("AoE graphics object: {} spawned at tick: {}", id, client.getTickCount());
+		onAreaOfEffectGraphicsObject(graphicsObject);
 	}
 
 	@Subscribe
@@ -218,10 +233,16 @@ public class AreaOfEffectIndicatorsPlugin extends Plugin
 	@Subscribe
 	public void onGameTick(GameTick event)
 	{
-		boolean removed = areaOfEffectGameObjects.removeIf((aoeObject) -> aoeObject.getDamageTick() <= client.getTickCount());
-		if (removed)
+		boolean removedGameObjects = areaOfEffectGameObjects.removeIf((aoeObject) -> aoeObject.isDespawned(client.getTickCount()));
+		if (removedGameObjects)
 		{
-			log.debug("Expired AoE Game object(s) removed at tick: {}", client.getTickCount());
+			log.debug("Despawned AoE game object(s) removed at tick: {}", client.getTickCount());
+		}
+
+		boolean removedGraphicsObjects = areaOfEffectGraphicsObjects.removeIf((aoeObject) -> aoeObject.isDespawned(client.getTickCount()));
+		if (removedGraphicsObjects)
+		{
+			log.debug("Despawned AoE graphics object(s) removed at tick: {}", client.getTickCount());
 		}
 	}
 
@@ -441,15 +462,39 @@ public class AreaOfEffectIndicatorsPlugin extends Plugin
 				if (config.highlightElvenTraitorExplosiveArrow())
 					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 1, targetPoint, config.getElvenTraitorExplosiveArrowColor()));
 				break;
+
+			// The Mimic
+			case ProjectileID.MIMIC_CANDY_PINK_AOE:
+			case ProjectileID.MIMIC_CANDY_GREEN_AOE:
+			case ProjectileID.MIMIC_CANDY_ORANGE_AOE:
+			case ProjectileID.MIMIC_CANDY_BLUE_AOE:
+				if (config.highlightMimicCandyAttack())
+					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 1, targetPoint, config.getMimicCandyAttackColor()));
+				break;
 		}
 	}
 
-	public void onAreaOfEffectGameObject(GameObject gameObject, Tile tile)
+	public void onAreaOfEffectGameObject(GameObject gameObject)
 	{
-		AoeObjectConfig.AoeGameObjectInfo objectInfo = aoeObjectConfig.getOBJECTS().get(gameObject.getId());
+		AoeConfig.AoeObjectInfo objectInfo = aoeConfig.getGameObjects().get(gameObject.getId());
 		if (objectInfo.isEnabled())
 		{
-			areaOfEffectGameObjects.add(new AreaOfEffectGameObject(gameObject, tile, client.getTickCount(), objectInfo.getTicksBeforeDamage(), objectInfo.getColor()));
+			areaOfEffectGameObjects.add(new AreaOfEffectGameObject(gameObject, client.getTickCount(), objectInfo.getTickDuration()));
+		}
+	}
+
+	public void onAreaOfEffectGraphicsObject(GraphicsObject graphicsObject)
+	{
+		AoeConfig.AoeObjectInfo objectInfo = aoeConfig.getGraphicObjects().get(graphicsObject.getId());
+		if (objectInfo.isEnabled())
+		{
+			if (objectInfo.getTickDuration() == -1)
+			{
+				areaOfEffectGraphicsObjects.add(new AreaOfEffectGraphicsObject(graphicsObject, client.getTickCount(), true));
+				return;
+			}
+
+			areaOfEffectGraphicsObjects.add(new AreaOfEffectGraphicsObject(graphicsObject, client.getTickCount(), objectInfo.getTickDuration()));
 		}
 	}
 

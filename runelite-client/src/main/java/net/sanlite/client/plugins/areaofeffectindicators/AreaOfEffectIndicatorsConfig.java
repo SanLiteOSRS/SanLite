@@ -177,6 +177,14 @@ public interface AreaOfEffectIndicatorsConfig extends Config
 	)
 	String nexSection = "nex";
 
+	@ConfigSection(
+			name = "The Mimic",
+			description = "Options for the Mimic area of effect indicators",
+			closedByDefault = true,
+			position = 99
+	)
+	String mimicSection = "mimic";
+
 	@ConfigItem(
 			keyName = "displayRemainingDuration",
 			name = "Show remaining duration",
@@ -699,6 +707,81 @@ public interface AreaOfEffectIndicatorsConfig extends Config
 	default Color getOlmCrystalGroundSpikesColor()
 	{
 		return new Color(146, 189, 22);
+	}
+
+	@ConfigItem(
+			keyName = "highlightOlmCrystalBomb",
+			name = "Highlight Olm crystal bomb",
+			description = "Highlight the tiles of crystal bombs that will blow up during the Great Olm encounter",
+			section = chambersOfXericSection,
+			position = 39
+	)
+	default boolean highlightOlmCrystalBomb()
+	{
+		return true;
+	}
+
+	@Alpha
+	@ConfigItem(
+			keyName = "olmCrystalBombColor",
+			name = "Crystal bomb color",
+			description = "Color of the crystal bomb tile markers during the Great Olm encounter",
+			section = chambersOfXericSection,
+			position = 40
+	)
+	default Color getOlmCrystalBombColor()
+	{
+		return new Color(168, 50, 12);
+	}
+
+	@ConfigItem(
+			keyName = "highlightOlmTeleportSwap",
+			name = "Highlight Olm teleport attack",
+			description = "Highlight the tile of the teleport swap attack during the Great Olm encounter (solo only for now)",
+			section = chambersOfXericSection,
+			position = 41
+	)
+	default boolean highlightOlmTeleportSwap()
+	{
+		return true;
+	}
+
+	@Alpha
+	@ConfigItem(
+			keyName = "olmTeleportSwapColor",
+			name = "Teleport swap color",
+			description = "Color of the teleport swap tile markers during the Great Olm encounter",
+			section = chambersOfXericSection,
+			position = 42
+	)
+	default Color getOlmTeleportSwapColor()
+	{
+		return new Color(225, 225, 225);
+	}
+
+	@ConfigItem(
+			keyName = "highlightOlmLightning",
+			name = "Highlight Olm lightning",
+			description = "Highlight the tiles of the lightning during the Great Olm encounter",
+			section = chambersOfXericSection,
+			position = 43
+	)
+	default boolean highlightOlmLightning()
+	{
+		return true;
+	}
+
+	@Alpha
+	@ConfigItem(
+			keyName = "olmLightningColor",
+			name = "Lightning color",
+			description = "Color of the lightning tile markers during the Great Olm encounter",
+			section = chambersOfXericSection,
+			position = 44
+	)
+	default Color getOlmLightningColor()
+	{
+		return new Color(41, 255, 68);
 	}
 
 	@ConfigItem(
@@ -1351,5 +1434,30 @@ public interface AreaOfEffectIndicatorsConfig extends Config
 	default Color getNexShadowAttackColor()
 	{
 		return new Color(1, 26, 25);
+	}
+
+	@ConfigItem(
+			keyName = "highlightMimicCandyAttack",
+			name = "Highlight candy attack",
+			description = "Highlight the tile for the Mimic's candy attack",
+			section = mimicSection,
+			position = 79
+	)
+	default boolean highlightMimicCandyAttack()
+	{
+		return true;
+	}
+
+	@Alpha
+	@ConfigItem(
+			keyName = "mimicCandyAttackColor",
+			name = "Candy attack color",
+			description = "Color of the Mimic's candy attack tile marker",
+			section = mimicSection,
+			position = 80
+	)
+	default Color getMimicCandyAttackColor()
+	{
+		return new Color(144, 28, 181);
 	}
 }

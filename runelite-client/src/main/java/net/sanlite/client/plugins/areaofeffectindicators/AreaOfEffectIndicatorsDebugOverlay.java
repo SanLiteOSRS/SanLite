@@ -50,6 +50,11 @@ public class AreaOfEffectIndicatorsDebugOverlay extends Overlay
 				.right("" + plugin.getAreaOfEffectGameObjects().size())
 				.build());
 
+		panelComponent.getChildren().add(LineComponent.builder()
+				.left("AoE graphics objects")
+				.right("" + plugin.getAreaOfEffectGraphicsObjects().size())
+				.build());
+
 		return panelComponent.render(graphics);
 	}
 }

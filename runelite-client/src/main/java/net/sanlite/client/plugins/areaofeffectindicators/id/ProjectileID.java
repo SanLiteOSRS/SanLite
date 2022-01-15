@@ -111,6 +111,12 @@ public class ProjectileID
 	// Alchemical Hydra
 	public static final int ALCHEMICAL_HYDRA_POISON_AOE = 1644;
 
+	// The Mimic
+	public static final int MIMIC_CANDY_PINK_AOE = 1670;
+	public static final int MIMIC_CANDY_GREEN_AOE = 1671;
+	public static final int MIMIC_CANDY_ORANGE_AOE = 1672;
+	public static final int MIMIC_CANDY_BLUE_AOE = 1673;
+
 	// Zalcano
 	public static final int ZALCANO_SPAWN_GOLEM_AOE = 1729;
 

@@ -25,34 +25,53 @@
 package net.sanlite.client.plugins.areaofeffectindicators;
 
 import lombok.Data;
-import net.runelite.api.GameObject;
+import net.runelite.api.GraphicsObject;
 
 /**
- * A game object that will do area of effect damage.
+ * A graphics object that will do area of effect damage.
  */
 @Data
-public class AreaOfEffectGameObject
+public class AreaOfEffectGraphicsObject
 {
-	private GameObject gameObject;
+	// Amount of ticks after which objects with a dynamic duration will be removed
+	private static int DYNAMIC_DURATION_EXPIRY_TICKS = 30;
+
+	private GraphicsObject graphicsObject;
 
 	/**
-	 * The game tick that the game object spawned at begun movement at.
+	 * The game tick that the graphics object spawned at.
 	 */
 	private int spawnTick;
 
 	/**
-	 * The game tick that the game object will despawn.
+	 * The game tick that the graphics object will despawn.
 	 */
 	private int despawnTick;
 
-	public AreaOfEffectGameObject(GameObject gameObject, int spawnTick, int tickDuration)
-	{
-		if (gameObject == null)
-			throw new IllegalArgumentException("GameObject is null");
+	/**
+	 * Whether the despawn tick is a dynamic amount of ticks after the spawn tick
+	 */
+	private boolean dynamicDespawnTick;
 
-		this.gameObject = gameObject;
+	public AreaOfEffectGraphicsObject(GraphicsObject graphicsObject, int spawnTick, int tickDuration)
+	{
+		if (graphicsObject == null)
+			throw new IllegalArgumentException("GraphicsObject is null");
+
+		this.graphicsObject = graphicsObject;
 		this.spawnTick = spawnTick;
 		this.despawnTick = spawnTick + tickDuration;
+	}
+
+	public AreaOfEffectGraphicsObject(GraphicsObject graphicsObject, int spawnTick, boolean dynamicDespawnTick)
+	{
+		if (graphicsObject == null)
+			throw new IllegalArgumentException("GraphicsObject is null");
+
+		this.graphicsObject = graphicsObject;
+		this.spawnTick = spawnTick;
+		this.despawnTick = spawnTick + DYNAMIC_DURATION_EXPIRY_TICKS;
+		this.dynamicDespawnTick = dynamicDespawnTick;
 	}
 
 	boolean isDespawned(int tickCount)
