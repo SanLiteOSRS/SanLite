@@ -75,26 +75,21 @@ public class AreaOfEffectIndicatorsOverlay extends Overlay
 			return;
 		}
 
-		for (AreaOfEffectProjectile projectile : areaOfEffectProjectiles)
+		for (AreaOfEffectProjectile aoeProjectile : areaOfEffectProjectiles)
 		{
-			if (projectile.getTargetPoint() == null)
+			if (aoeProjectile.getTargetPoint() == null)
 			{
 				continue;
 			}
 
-			if (projectile.getEndCycle() < client.getGameCycle())
-			{
-				areaOfEffectProjectiles.remove(projectile);
-				continue;
-			}
-
-			Polygon polygon = Perspective.getCanvasTileAreaPoly(client, projectile.getTargetPoint(), projectile.getTileSize());
+			AreaOfEffectConfig.AoeProjectileInfo projectileInfo = plugin.getAoeConfig().getProjectiles().get(aoeProjectile.getProjectile().getId());
+			Polygon polygon = Perspective.getCanvasTileAreaPoly(client, aoeProjectile.getTargetPoint(), projectileInfo.getTileSize());
 			if (polygon == null)
 			{
 				continue;
 			}
 
-			OverlayUtil2.renderPolygon(graphics, polygon, projectile.getHighlightColor(), config.borderWidth());
+			OverlayUtil2.renderPolygon(graphics, polygon, projectileInfo.getColor(), config.borderWidth());
 
 			if (!config.displayRemainingDuration())
 			{
@@ -102,14 +97,14 @@ public class AreaOfEffectIndicatorsOverlay extends Overlay
 			}
 
 			// Do not render text if there is another projectile hitting the target point before this one
-			List<AreaOfEffectProjectile> filteredProjectiles = getSameTargetProjectiles(areaOfEffectProjectiles, projectile);
-			if (!filteredProjectiles.isEmpty() && shouldSkipRenderText(filteredProjectiles, projectile))
+			List<AreaOfEffectProjectile> filteredProjectiles = getSameTargetProjectiles(areaOfEffectProjectiles, aoeProjectile);
+			if (!filteredProjectiles.isEmpty() && shouldSkipRenderText(filteredProjectiles, aoeProjectile))
 			{
 				continue;
 			}
 
-			String remainingCycles = TickUtil.convertTimerFormat(projectile.getEndCycle() - client.getGameCycle(), TimerFormat.SECONDS_MILLISECONDS);
-			Point textPoint = Perspective.getCanvasTextLocation(client, graphics, projectile.getTargetPoint(), remainingCycles, 0);
+			String remainingCycles = TickUtil.convertTimerFormat(aoeProjectile.getEndCycle() - client.getGameCycle(), TimerFormat.SECONDS_MILLISECONDS);
+			Point textPoint = Perspective.getCanvasTextLocation(client, graphics, aoeProjectile.getTargetPoint(), remainingCycles, 0);
 			if (textPoint == null)
 			{
 				continue;
@@ -129,7 +124,7 @@ public class AreaOfEffectIndicatorsOverlay extends Overlay
 		for (AreaOfEffectGameObject object : areaOfEffectGameObjects)
 		{
 			LocalPoint localPoint = object.getGameObject().getLocalLocation();
-			AoeConfig.AoeObjectInfo objectInfo = plugin.getAoeConfig().getGameObjects().get(object.getGameObject().getId());
+			AreaOfEffectConfig.AoeObjectInfo objectInfo = plugin.getAoeConfig().getGameObjects().get(object.getGameObject().getId());
 
 			int tileSize = objectInfo.getTileSize();
 			Polygon polygon = Perspective.getCanvasTileAreaPoly(client, localPoint, tileSize);
@@ -178,7 +173,7 @@ public class AreaOfEffectIndicatorsOverlay extends Overlay
 				continue;
 			}
 
-			AoeConfig.AoeObjectInfo objectInfo = plugin.getAoeConfig().getGraphicObjects().get(graphicsObject.getId());
+			AreaOfEffectConfig.AoeObjectInfo objectInfo = plugin.getAoeConfig().getGraphicObjects().get(graphicsObject.getId());
 			OverlayUtil2.renderPolygon(graphics, polygon, objectInfo.getColor(), config.borderWidth());
 
 			if (!config.displayRemainingDuration() || object.isDynamicDespawnTick())

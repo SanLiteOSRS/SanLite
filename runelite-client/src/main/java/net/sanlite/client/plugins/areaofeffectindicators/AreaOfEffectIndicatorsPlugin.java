@@ -37,7 +37,6 @@ import net.runelite.client.events.ConfigChanged;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.ui.overlay.OverlayManager;
-import net.sanlite.client.plugins.areaofeffectindicators.id.ProjectileID;
 
 import javax.inject.Inject;
 import java.util.List;
@@ -52,9 +51,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
 @Slf4j
 public class AreaOfEffectIndicatorsPlugin extends Plugin
 {
-
-	private final static int INFERNO_REGION = 9043;
-
 	@Inject
 	private Client client;
 
@@ -80,7 +76,7 @@ public class AreaOfEffectIndicatorsPlugin extends Plugin
 	private List<AreaOfEffectGraphicsObject> areaOfEffectGraphicsObjects;
 
 	@Getter
-	private AoeConfig aoeConfig;
+	private AreaOfEffectConfig aoeConfig;
 
 	@Provides
 	AreaOfEffectIndicatorsConfig getConfig(ConfigManager configManager)
@@ -96,7 +92,7 @@ public class AreaOfEffectIndicatorsPlugin extends Plugin
 		areaOfEffectGameObjects = new CopyOnWriteArrayList<>();
 		areaOfEffectGraphicsObjects = new CopyOnWriteArrayList<>();
 
-		aoeConfig = new AoeConfig(config);
+		aoeConfig = new AreaOfEffectConfig(config);
 		if (config.showDebugOverlay())
 		{
 			overlayManager.add(debugOverlay);
@@ -139,7 +135,7 @@ public class AreaOfEffectIndicatorsPlugin extends Plugin
 		}
 
 		log.debug("Reinitializing AoE object config. Config value changed: {}", event.getKey());
-		aoeConfig = new AoeConfig(config);
+		aoeConfig = new AreaOfEffectConfig(config);
 	}
 
 	@Subscribe
@@ -246,237 +242,34 @@ public class AreaOfEffectIndicatorsPlugin extends Plugin
 		}
 	}
 
+	@Subscribe
+	public void onClientTick(ClientTick event)
+	{
+		boolean removed = areaOfEffectProjectiles.removeIf((aoeProjectile) -> aoeProjectile.isDespawned(client.getGameCycle()));
+		if (removed)
+		{
+			log.debug("Despawned AoE projectile(s) removed at client tick: {}", client.getGameCycle());
+		}
+	}
+
 	public void onAreaOfEffectProjectile(Projectile projectile, LocalPoint targetPoint)
 	{
-		switch (projectile.getId())
+		AreaOfEffectConfig.AoeProjectileInfo projectileInfo = aoeConfig.getProjectiles().get(projectile.getId());
+		if (projectileInfo.isEnabled())
 		{
-			// Alchemical Hydra
-			case ProjectileID.ALCHEMICAL_HYDRA_POISON_AOE:
-				if (config.highlightAlchemicalHydraPoisonAttack())
-					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 3, targetPoint, config.getAlchemicalHydraPoisonAttackColor()));
-				break;
+			int blacklistedRegion = projectileInfo.getBlacklistedRegion();
+			if (blacklistedRegion != -1 && isInRegion(blacklistedRegion))
+			{
+				return;
+			}
 
-			// Corporeal Beast
-			case ProjectileID.CORPOREAL_BEAST_AOE:
-				if (config.highlightCorporealBeastAttackTiles())
-					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 3, targetPoint, config.getCorporealBeastSplashAttackColor()));
-				break;
-			case ProjectileID.CORPOREAL_BEAST_DARK_CORE_AOE:
-				if (config.highlightDarkCoreLandingSpot())
-					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 3, targetPoint, config.getDarkCoreLandingSpotColor()));
-				break;
-
-			// Crazy/deranged archaeologist
-			case ProjectileID.CRAZY_AND_DERANGED_ARCHAEOLOGIST_BOOK_AOE:
-				if (config.highlightDerangedArchaeologistBookAttackTiles())
-					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 3, targetPoint, config.getDerangedArchaeologistBookAttackColor()));
-				break;
-
-			// Basilisk Knights
-			case ProjectileID.BASILISK_KNIGHT_STONE_ENTOMB_AOE:
-				if (config.highlightBasiliskKnightEntombAttackTiles())
-					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 1, targetPoint, config.getBasiliskKnightsEntombAttackColor()));
-				break;
-
-			// Lizardman Shamans
-			case ProjectileID.LIZARDMAN_SHAMAN_ACID_AOE:
-				if (config.highlightShamansAcidAttackTiles())
-					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 5, targetPoint, config.getShamansAcidAttackColor()));
-				break;
-
-			// Chambers of Xeric
-			case ProjectileID.TEKTON_METEOR_AOE:
-				// This projectile is re-used in the Inferno, where it is not helpful to display, so block it
-				if (config.highlightTektonMeteors() && isNotInRegion(INFERNO_REGION))
-					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 3, targetPoint, config.getTektonMeteorsColor()));
-				break;
-			case ProjectileID.ICE_DEMON_RANGED_AOE:
-				if (config.highlightIceDemonIceBoulders())
-					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 3, targetPoint, config.getIceDemonIceBoulderColor()));
-				break;
-			case ProjectileID.ICE_DEMON_ICE_BARRAGE_AOE:
-				if (config.highlightIceDemonIceBarrage())
-					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 3, targetPoint, config.getIceDemonIceBarrageColor()));
-				break;
-			case ProjectileID.GUARDIANS_ROCK_FALLING_AOE:
-				if (config.highlightGuardiansFallingRocks())
-					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 3, targetPoint, config.getGuardiansFallingRocksColor()));
-				break;
-			case ProjectileID.MAGE_VANGUARD_METEOR_TARGETED_AND_AOE:
-				if (config.highlightMageVanguardMeteors())
-					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 3, targetPoint, config.getMageVanguardMeteorColor()));
-				break;
-			case ProjectileID.RANGED_VANGUARD_ROCKS_1_AOE:
-			case ProjectileID.RANGED_VANGUARD_ROCKS_2_AOE:
-				if (config.highlightRangedVanguardRocks())
-					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 3, targetPoint, config.getRangedVanguardRocksColor()));
-				break;
-			case ProjectileID.VESPULA_TOXIC_ATTACK_TARGETED_AND_AOE:
-				if (config.highlightVespulaToxicAttack())
-					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 3, targetPoint, config.getVespulaToxicAttackColor()));
-				break;
-			case ProjectileID.VASA_AWAKEN_AOE:
-				if (config.highlightVasaTeleportAttackTiles())
-					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 3, targetPoint, config.getVasaTeleportAttackColor()));
-				break;
-			case ProjectileID.VASA_RANGED_BOULDER_AOE:
-				// Vasa Nistirio's boulder attack hits around 400 milliseconds before it ends
-				if (config.highlightVasaBoulderAttackTiles())
-					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, projectile.getEndCycle() - 20, 3, targetPoint, config.getVasaBoulderAttackColor()));
-				break;
-			case ProjectileID.OLM_FALLING_CRYSTAL_AOE:
-				if (config.highlightOlmFallingCrystals())
-					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 3, targetPoint, config.getOlmFallingCrystalsColor()));
-				break;
-			case ProjectileID.OLM_FALLING_SPIKE_AOE:
-				if (config.highlightOlmFallingSpikes())
-					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 1, targetPoint, config.getOlmFallingSpikesColor()));
-				break;
-			case ProjectileID.OLM_HEALING_POOL_AOE:
-				if (config.highlightOlmHealingPools())
-					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 1, targetPoint, config.getOlmHealingPoolsColor()));
-				break;
-			case ProjectileID.OLM_ACID_POOL_AOE:
-				if (config.highlightOlmAcidPools())
-					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 1, targetPoint, config.getOlmAcidPoolsColor()));
-				break;
-
-			// Vorkath
-			case ProjectileID.VORKATH_FIREBOMB:
-				if (config.highlightVorkathFirebombTiles())
-					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 3, targetPoint, config.getVorkathFirebombMarkerColor()));
-				break;
-			case ProjectileID.VORKATH_ACID_PHASE_FIREBALL_AOE:
-				if (config.highlightVorkathFireballTiles())
-					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 1, targetPoint, config.getVorkathFireballMarkerColor()));
-				break;
-			case ProjectileID.VORKATH_ACID_AOE:
-				if (config.highlightVorkathAcidPhaseTiles())
-					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 1, targetPoint, config.getVorkathAcidPhaseMarkerColor()));
-				break;
-			case ProjectileID.VORKATH_ZOMBIFIED_SPAWN_AOE:
-				if (config.highlightVorkathZombifiedSpawnTiles())
-					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 1, targetPoint, config.getVorkathZombifiedSpawnMarkerColor()));
-				break;
-
-			// Galvek
-			case ProjectileID.GALVEK_MINE:
-				if (config.highlightGalvekMine())
-					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 3, targetPoint, config.getGalvekMineColor()));
-				break;
-			case ProjectileID.GALVEK_BOMB:
-				if (config.highlightGalvekFirebomb())
-					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 3, targetPoint, config.getGalvekFirebombColor()));
-				break;
-
-			// Wintertodt
-			case ProjectileID.WINTERTODT_SNOW_FALL_AOE:
-				if (config.highlightWintertodtSnowfall())
-					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 3, targetPoint, config.getWintertodtSnowfallColor()));
-				break;
-
-			// Slayer
-			case ProjectileID.MARBLE_GARGOYLE_AOE:
-				if (config.highlightMarbleGargoyleStoneBall())
-					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 1, targetPoint, config.getMarbleGargoyleStoneBallColor()));
-				break;
-			case ProjectileID.ADAMANT_DRAGON_POISON_AOE:
-				if (config.highlightAdamantDragonPoisonAttack())
-					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 1, targetPoint, config.getAdamantDragonPoisonAttackColor()));
-				break;
-			case ProjectileID.DRAKE_BREATH_AOE:
-				if (config.highlightDrakeFireBreath())
-					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 1, targetPoint, config.getDrakeFireBreathColor()));
-				break;
-
-			// Theatre of Blood
-			case ProjectileID.SUGADINTI_MAIDEN_BLOOD_SPLAT_AOE:
-				if (config.highlightMaidenBloodSplatAttack())
-					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 1, targetPoint, config.getMaidenBloodSplatAttackColor()));
-				break;
-			case ProjectileID.XARPUS_ACID_BALL_AOE:
-				if (config.highlightXarpusAcidAttack())
-					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 3, targetPoint, config.getXarpusAcidAttackColor()));
-				break;
-			case ProjectileID.VERZIK_SKULL_ATTACK_AOE:
-				if (config.highlightVerzikSkullAttack())
-					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 1, targetPoint, config.getVerzikSkullAttackColor()));
-				break;
-			case ProjectileID.VERZIK_WEB_ATTACK_AOE:
-				if (config.highlightVerzikWebAttack())
-					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 1, targetPoint, config.getVerzikWebAttackColor()));
-				break;
-
-			// Cerberus
-			case ProjectileID.CERBERUS_LAVA_POOL_AOE:
-				if (config.highlightCerberusLavaPool())
-					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 3, targetPoint, config.getCerberusLavaPoolAttackColor()));
-				break;
-
-			// Grotesque Guardians
-			case ProjectileID.DUSK_FALLING_CEILING_DEBRIS_AOE:
-				if (config.highlightDuskFallingCeilingDebris())
-					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 3, targetPoint, config.getDuskFallingCeilingDebrisColor()));
-				break;
-			case ProjectileID.DAWN_FREEZE_ROCK_AOE:
-				if (config.highlightDawnFreezeRock())
-					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 3, targetPoint, config.getDawnFreezeRockColor()));
-				break;
-
-			// Chaos Fanatic
-			case ProjectileID.CHAOS_FANATIC_AOE:
-				if (config.highlightChaosFanaticGreenOrbs())
-					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 1, targetPoint, config.getChaosFanaticGreenOrbsColor()));
-				break;
-
-			// Vetion
-			case ProjectileID.VETION_LIGHTNING_AOE:
-				if (config.highlightVetionLightning())
-					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 1, targetPoint, config.getVetionLightningAttackColor()));
-				break;
-
-			// Demonic Gorillas
-			case ProjectileID.DEMONIC_GORILLA_BOULDER_AOE:
-				if (config.highlightDemonicGorillaBoulder())
-					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 1, targetPoint, config.getDemonicGorillasBoulderColor()));
-				break;
-
-			// Zalcano
-			case ProjectileID.ZALCANO_SPAWN_GOLEM_AOE:
-				if (config.highlightZalcanoGolemSpawn())
-					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 1, targetPoint, config.getZalcanoGolemSpawnColor()));
-				break;
-
-			// Zulrah
-			case ProjectileID.ZULRAH_POISON_CLOUD_AOE:
-				if (config.highlightZulrahPoisonCloud())
-					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 4, targetPoint, config.getZulrahPoisonCloudsColor()));
-				break;
-			case ProjectileID.ZULRAH_SNAKELING_SPAWN_AOE:
-				if (config.highlightZulrahSnakelingSpawn())
-					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 1, targetPoint, config.getZulrahSnakelingSpawnColor()));
-				break;
-
-			// Elven Traitor
-			case ProjectileID.ELVEN_TRAITOR_EXPLOSIVE_ARROW_AOE:
-				if (config.highlightElvenTraitorExplosiveArrow())
-					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 1, targetPoint, config.getElvenTraitorExplosiveArrowColor()));
-				break;
-
-			// The Mimic
-			case ProjectileID.MIMIC_CANDY_PINK_AOE:
-			case ProjectileID.MIMIC_CANDY_GREEN_AOE:
-			case ProjectileID.MIMIC_CANDY_ORANGE_AOE:
-			case ProjectileID.MIMIC_CANDY_BLUE_AOE:
-				if (config.highlightMimicCandyAttack())
-					areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, 1, targetPoint, config.getMimicCandyAttackColor()));
-				break;
+			areaOfEffectProjectiles.add(new AreaOfEffectProjectile(projectile, targetPoint, projectileInfo.getEndCycleDelay()));
 		}
 	}
 
 	public void onAreaOfEffectGameObject(GameObject gameObject)
 	{
-		AoeConfig.AoeObjectInfo objectInfo = aoeConfig.getGameObjects().get(gameObject.getId());
+		AreaOfEffectConfig.AoeObjectInfo objectInfo = aoeConfig.getGameObjects().get(gameObject.getId());
 		if (objectInfo.isEnabled())
 		{
 			areaOfEffectGameObjects.add(new AreaOfEffectGameObject(gameObject, client.getTickCount(), objectInfo.getTickDuration()));
@@ -485,7 +278,7 @@ public class AreaOfEffectIndicatorsPlugin extends Plugin
 
 	public void onAreaOfEffectGraphicsObject(GraphicsObject graphicsObject)
 	{
-		AoeConfig.AoeObjectInfo objectInfo = aoeConfig.getGraphicObjects().get(graphicsObject.getId());
+		AreaOfEffectConfig.AoeObjectInfo objectInfo = aoeConfig.getGraphicObjects().get(graphicsObject.getId());
 		if (objectInfo.isEnabled())
 		{
 			if (objectInfo.getTickDuration() == -1)
@@ -498,7 +291,7 @@ public class AreaOfEffectIndicatorsPlugin extends Plugin
 		}
 	}
 
-	private boolean isNotInRegion(int regionId)
+	private boolean isInRegion(int regionId)
 	{
 		final Player player = client.getLocalPlayer();
 		if (player == null)
@@ -506,6 +299,6 @@ public class AreaOfEffectIndicatorsPlugin extends Plugin
 			return false;
 		}
 
-		return WorldPoint.fromLocalInstance(client, player.getLocalLocation()).getRegionID() != regionId;
+		return WorldPoint.fromLocalInstance(client, player.getLocalLocation()).getRegionID() == regionId;
 	}
 }
