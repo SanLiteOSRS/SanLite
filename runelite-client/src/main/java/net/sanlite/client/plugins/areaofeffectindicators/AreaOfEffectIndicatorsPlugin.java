@@ -223,6 +223,13 @@ public class AreaOfEffectIndicatorsPlugin extends Plugin
 			return;
 		}
 
+		int id = projectile.getId();
+		if (!aoeConfig.getProjectiles().containsKey(id))
+		{
+			return;
+		}
+
+		log.debug("AoE projectile: {} spawned at tick: {}", id, client.getTickCount());
 		onAreaOfEffectProjectile(projectile, event.getPosition());
 	}
 

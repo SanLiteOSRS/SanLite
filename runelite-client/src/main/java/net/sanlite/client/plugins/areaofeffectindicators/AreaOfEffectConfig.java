@@ -87,7 +87,7 @@ public class AreaOfEffectConfig
 				.put(ProjectileID.WINTERTODT_SNOW_FALL_AOE, new AoeProjectileInfo(3, config.highlightWintertodtSnowfall(), config.getWintertodtSnowfallColor()))
 				// Slayer
 				.put(ProjectileID.MARBLE_GARGOYLE_AOE, new AoeProjectileInfo(1, config.highlightMarbleGargoyleStoneBall(), config.getMarbleGargoyleStoneBallColor()))
-				.put(ProjectileID.ADAMANT_DRAGON_POISON_AOE, new AoeProjectileInfo(1, config.highlightAdamantDragonPoisonAttack(), config.getAdamantDragonPoisonAttackColor()))
+				.put(ProjectileID.ADAMANT_DRAGON_POISON_AOE, new AoeProjectileInfo(3, config.highlightAdamantDragonPoisonAttack(), config.getAdamantDragonPoisonAttackColor()))
 				.put(ProjectileID.DRAKE_BREATH_AOE, new AoeProjectileInfo(1, config.highlightDrakeFireBreath(), config.getDrakeFireBreathColor()))
 				// Theatre of Blood
 				.put(ProjectileID.SUGADINTI_MAIDEN_BLOOD_SPLAT_AOE, new AoeProjectileInfo(1, config.highlightMaidenBloodSplatAttack(), config.getMaidenBloodSplatAttackColor()))
