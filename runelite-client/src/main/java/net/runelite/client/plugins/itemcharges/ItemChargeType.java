@@ -50,7 +50,9 @@ enum ItemChargeType
 	FRUIT_BASKET(ItemChargeConfig::showBasketCharges),
 	SACK(ItemChargeConfig::showSackCharges),
 	RING_OF_FORGING(ItemChargeConfig::showRingOfForgingCount),
-	POTION(ItemChargeConfig::showPotionDoseCount);
+	POTION(ItemChargeConfig::showPotionDoseCount),
+	GUTHIX_REST(ItemChargeConfig::showGuthixRestDoses),
+	BLOOD_ESSENCE(ItemChargeConfig::showBloodEssenceCharges);
 
 	private final Function<ItemChargeConfig, Boolean> enabled;
 }

@@ -46,6 +46,7 @@ public interface ItemChargeConfig extends Config
 	String KEY_EXPEDITIOUS_BRACELET = "expeditiousBracelet";
 	String KEY_EXPLORERS_RING = "explorerRing";
 	String KEY_RING_OF_FORGING = "ringOfForging";
+	String KEY_BLOOD_ESSENCE = "bloodEssence";
 
 	@ConfigSection(
 		name = "Charge Settings",
@@ -400,6 +401,30 @@ public interface ItemChargeConfig extends Config
 		section = notificationSection
 	)
 	default boolean expeditiousNotification()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+		keyName = "showGuthixRestDoses",
+		name = "Guthix Rest Doses",
+		description = "Show Guthix Rest doses",
+		position = 29,
+		section = chargesSection
+	)
+	default boolean showGuthixRestDoses()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+		keyName = "showBloodEssenceCharges",
+		name = "Blood Essence Charges",
+		description = "Show Blood Essence charges",
+		position = 30,
+		section = chargesSection
+	)
+	default boolean showBloodEssenceCharges()
 	{
 		return true;
 	}
