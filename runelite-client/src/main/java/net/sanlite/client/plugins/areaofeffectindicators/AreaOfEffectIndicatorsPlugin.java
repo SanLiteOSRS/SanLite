@@ -73,9 +73,6 @@ public class AreaOfEffectIndicatorsPlugin extends Plugin
 	private List<AreaOfEffectGameObject> areaOfEffectGameObjects;
 
 	@Getter
-	private List<AreaOfEffectGraphicsObject> areaOfEffectGraphicsObjects;
-
-	@Getter
 	private AreaOfEffectConfig aoeConfig;
 
 	@Provides
@@ -90,7 +87,6 @@ public class AreaOfEffectIndicatorsPlugin extends Plugin
 		overlayManager.add(overlay);
 		areaOfEffectProjectiles = new CopyOnWriteArrayList<>();
 		areaOfEffectGameObjects = new CopyOnWriteArrayList<>();
-		areaOfEffectGraphicsObjects = new CopyOnWriteArrayList<>();
 
 		aoeConfig = new AreaOfEffectConfig(config);
 		if (config.showDebugOverlay())
@@ -105,7 +101,6 @@ public class AreaOfEffectIndicatorsPlugin extends Plugin
 		overlayManager.remove(overlay);
 		areaOfEffectProjectiles = null;
 		areaOfEffectGameObjects = null;
-		areaOfEffectGraphicsObjects = null;
 
 		aoeConfig = null;
 		if (config.showDebugOverlay())
@@ -152,7 +147,6 @@ public class AreaOfEffectIndicatorsPlugin extends Plugin
 		if (gameState == GameState.LOADING)
 		{
 			areaOfEffectGameObjects.clear();
-			areaOfEffectGraphicsObjects.clear();
 		}
 	}
 
@@ -173,44 +167,6 @@ public class AreaOfEffectIndicatorsPlugin extends Plugin
 
 		log.debug("AoE game object: {} spawned at tick: {}", id, client.getTickCount());
 		onAreaOfEffectGameObject(gameObject);
-	}
-
-	// TODO: This doesn't work consistently for removing (cached?), so remove after implementation is done
-	@Subscribe
-	public void onGameObjectDespawned(GameObjectDespawned event)
-	{
-		GameObject gameObject = event.getGameObject();
-		if (gameObject == null)
-		{
-			return;
-		}
-
-		int id = gameObject.getId();
-		if (!aoeConfig.getGameObjects().containsKey(id))
-		{
-			return;
-		}
-
-		log.debug("AoE Game object: {} despawned at tick: {}", id, client.getTickCount());
-	}
-
-	@Subscribe
-	public void onGraphicsObjectCreated(GraphicsObjectCreated event)
-	{
-		GraphicsObject graphicsObject = event.getGraphicsObject();
-		if (graphicsObject == null)
-		{
-			return;
-		}
-
-		int id = graphicsObject.getId();
-		if (!aoeConfig.getGraphicObjects().containsKey(id))
-		{
-			return;
-		}
-
-		log.debug("AoE graphics object: {} spawned at tick: {}", id, client.getTickCount());
-		onAreaOfEffectGraphicsObject(graphicsObject);
 	}
 
 	@Subscribe
@@ -240,12 +196,6 @@ public class AreaOfEffectIndicatorsPlugin extends Plugin
 		if (removedGameObjects)
 		{
 			log.debug("Despawned AoE game object(s) removed at tick: {}", client.getTickCount());
-		}
-
-		boolean removedGraphicsObjects = areaOfEffectGraphicsObjects.removeIf((aoeObject) -> aoeObject.isDespawned(client.getTickCount()));
-		if (removedGraphicsObjects)
-		{
-			log.debug("Despawned AoE graphics object(s) removed at tick: {}", client.getTickCount());
 		}
 	}
 
@@ -280,21 +230,6 @@ public class AreaOfEffectIndicatorsPlugin extends Plugin
 		if (objectInfo.isEnabled())
 		{
 			areaOfEffectGameObjects.add(new AreaOfEffectGameObject(gameObject, client.getTickCount(), objectInfo.getTickDuration()));
-		}
-	}
-
-	public void onAreaOfEffectGraphicsObject(GraphicsObject graphicsObject)
-	{
-		AreaOfEffectConfig.AoeObjectInfo objectInfo = aoeConfig.getGraphicObjects().get(graphicsObject.getId());
-		if (objectInfo.isEnabled())
-		{
-			if (objectInfo.getTickDuration() == -1)
-			{
-				areaOfEffectGraphicsObjects.add(new AreaOfEffectGraphicsObject(graphicsObject, client.getTickCount(), true));
-				return;
-			}
-
-			areaOfEffectGraphicsObjects.add(new AreaOfEffectGraphicsObject(graphicsObject, client.getTickCount(), objectInfo.getTickDuration()));
 		}
 	}
 

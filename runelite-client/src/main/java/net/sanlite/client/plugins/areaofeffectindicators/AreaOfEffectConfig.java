@@ -27,7 +27,6 @@ package net.sanlite.client.plugins.areaofeffectindicators;
 import com.google.common.collect.ImmutableMap;
 import lombok.Getter;
 import net.runelite.api.ObjectID;
-import net.sanlite.client.plugins.areaofeffectindicators.id.GraphicID;
 import net.sanlite.client.plugins.areaofeffectindicators.id.ProjectileID;
 import net.sanlite.client.plugins.areaofeffectindicators.id.RegionID;
 
@@ -40,9 +39,6 @@ public class AreaOfEffectConfig
 
 	@Getter
 	private final ImmutableMap<Integer, AoeObjectInfo> gameObjects;
-
-	@Getter
-	private final ImmutableMap<Integer, AoeObjectInfo> graphicObjects;
 
 	public AreaOfEffectConfig(AreaOfEffectIndicatorsConfig config)
 	{
@@ -118,19 +114,9 @@ public class AreaOfEffectConfig
 				// Chambers of Xeric
 				.put(ObjectID.SMALL_CRYSTALS, new AoeObjectInfo(AoeObjectType.SINGLE_DAMAGE, 4, config.highlightOlmGroundSpikes(), config.getOlmCrystalGroundSpikesColor()))
 				.put(ObjectID.ACID_POOL, new AoeObjectInfo(AoeObjectType.DAMAGE_PER_TICK, 15, config.highlightOlmAcidPools(), config.getOlmAcidPoolsColor()))
-				.put(ObjectID.CRYSTAL_BOMB, new AoeObjectInfo(AoeObjectType.SINGLE_DAMAGE, 7, 5, config.highlightOlmCrystalBomb(), config.getOlmCrystalBombColor()))
+				.put(ObjectID.CRYSTAL_BOMB, new AoeObjectInfo(AoeObjectType.SINGLE_DAMAGE, 6, 5, config.highlightOlmCrystalBomb(), config.getOlmCrystalBombColor()))
 				// Nex
 				.put(ObjectID.SHADOW, new AoeObjectInfo(AoeObjectType.SINGLE_DAMAGE, 6, config.highlightNexShadowAttack(), config.getNexShadowAttackColor()))
-				.build();
-
-		graphicObjects = new ImmutableMap.Builder<Integer, AoeObjectInfo>()
-				// Chambers of Xeric
-				.put(GraphicID.OLM_LIGHTNING, new AoeObjectInfo(AoeObjectType.SINGLE_DAMAGE, -1, config.highlightOlmLightning(), config.getOlmLightningColor()))
-				.put(GraphicID.OLM_BLUE_HEAL_POOL, new AoeObjectInfo(AoeObjectType.SINGLE_DAMAGE, 6, config.highlightOlmHealingPools(), config.getOlmHealingPoolsColor()))
-				.put(GraphicID.OLM_TELEPORT_WHITE, new AoeObjectInfo(AoeObjectType.SINGLE_DAMAGE, 15, config.highlightOlmTeleportSwap(), config.getOlmTeleportSwapColor()))
-				.put(GraphicID.OLM_TELEPORT_GREEN, new AoeObjectInfo(AoeObjectType.SINGLE_DAMAGE, 15, config.highlightOlmTeleportSwap(), config.getOlmTeleportSwapColor()))
-				.put(GraphicID.OLM_TELEPORT_YELLOW, new AoeObjectInfo(AoeObjectType.SINGLE_DAMAGE, 15, config.highlightOlmTeleportSwap(), config.getOlmTeleportSwapColor()))
-				.put(GraphicID.OLM_TELEPORT_PURPLE, new AoeObjectInfo(AoeObjectType.SINGLE_DAMAGE, 15, config.highlightOlmTeleportSwap(), config.getOlmTeleportSwapColor()))
 				.build();
 	}
 

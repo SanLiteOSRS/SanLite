@@ -735,56 +735,6 @@ public interface AreaOfEffectIndicatorsConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "highlightOlmTeleportSwap",
-			name = "Highlight Olm teleport attack",
-			description = "Highlight the tile of the teleport swap attack during the Great Olm encounter (solo only for now)",
-			section = chambersOfXericSection,
-			position = 41
-	)
-	default boolean highlightOlmTeleportSwap()
-	{
-		return true;
-	}
-
-	@Alpha
-	@ConfigItem(
-			keyName = "olmTeleportSwapColor",
-			name = "Teleport swap color",
-			description = "Color of the teleport swap tile markers during the Great Olm encounter",
-			section = chambersOfXericSection,
-			position = 42
-	)
-	default Color getOlmTeleportSwapColor()
-	{
-		return new Color(225, 225, 225);
-	}
-
-	@ConfigItem(
-			keyName = "highlightOlmLightning",
-			name = "Highlight Olm lightning",
-			description = "Highlight the tiles of the lightning during the Great Olm encounter",
-			section = chambersOfXericSection,
-			position = 43
-	)
-	default boolean highlightOlmLightning()
-	{
-		return true;
-	}
-
-	@Alpha
-	@ConfigItem(
-			keyName = "olmLightningColor",
-			name = "Lightning color",
-			description = "Color of the lightning tile markers during the Great Olm encounter",
-			section = chambersOfXericSection,
-			position = 44
-	)
-	default Color getOlmLightningColor()
-	{
-		return new Color(41, 255, 68);
-	}
-
-	@ConfigItem(
 			keyName = "highlightVorkathFirebombTiles",
 			name = "Highlight firebomb attack",
 			description = "Highlight the tiles where Vorkath's firebomb is going to land",

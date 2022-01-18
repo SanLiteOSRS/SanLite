@@ -64,7 +64,6 @@ public class AreaOfEffectIndicatorsOverlay extends Overlay
 	{
 		renderAreaOfEffectProjectiles(graphics, plugin.getAreaOfEffectProjectiles());
 		renderAreaOfEffectGameObjects(graphics, plugin.getAreaOfEffectGameObjects());
-		renderAreaOfEffectGraphicsObjects(graphics, plugin.getAreaOfEffectGraphicsObjects());
 		return null;
 	}
 
@@ -136,47 +135,6 @@ public class AreaOfEffectIndicatorsOverlay extends Overlay
 			OverlayUtil2.renderPolygon(graphics, polygon, objectInfo.getColor(), config.borderWidth());
 
 			if (!config.displayRemainingDuration())
-			{
-				continue;
-			}
-
-			String remainingTicks = Integer.toString(object.getDespawnTick() - client.getTickCount());
-			Point textPoint = Perspective.getCanvasTextLocation(client, graphics, localPoint, remainingTicks, 0);
-			if (textPoint == null)
-			{
-				continue;
-			}
-
-			OverlayUtil.renderTextLocation(graphics, textPoint, remainingTicks, Color.WHITE);
-		}
-	}
-
-	private void renderAreaOfEffectGraphicsObjects(Graphics2D graphics, List<AreaOfEffectGraphicsObject> areaOfEffectGraphicsObjects)
-	{
-		if (areaOfEffectGraphicsObjects == null)
-		{
-			return;
-		}
-
-		for (AreaOfEffectGraphicsObject object : areaOfEffectGraphicsObjects)
-		{
-			GraphicsObject graphicsObject = object.getGraphicsObject();
-			LocalPoint localPoint = graphicsObject.getLocation();
-			if (localPoint == null)
-			{
-				continue;
-			}
-
-			Polygon polygon = Perspective.getCanvasTilePoly(client, localPoint);
-			if (polygon == null)
-			{
-				continue;
-			}
-
-			AreaOfEffectConfig.AoeObjectInfo objectInfo = plugin.getAoeConfig().getGraphicObjects().get(graphicsObject.getId());
-			OverlayUtil2.renderPolygon(graphics, polygon, objectInfo.getColor(), config.borderWidth());
-
-			if (!config.displayRemainingDuration() || object.isDynamicDespawnTick())
 			{
 				continue;
 			}
