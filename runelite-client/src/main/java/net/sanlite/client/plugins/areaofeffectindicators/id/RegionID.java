@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022, Siraz <https://github.com/Sirazzz>
+ * Copyright (c) 2021, Siraz <https://github.com/Sirazzz>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,41 +22,9 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.sanlite.client.plugins.areaofeffectindicators;
+package net.sanlite.client.plugins.areaofeffectindicators.id;
 
-import lombok.Data;
-import net.runelite.api.GameObject;
-
-/**
- * A game object that will do area of effect damage.
- */
-@Data
-public class AreaOfEffectGameObject
+public class RegionID
 {
-	private GameObject gameObject;
-
-	/**
-	 * The game tick that the game object spawned at begun movement at.
-	 */
-	private int spawnTick;
-
-	/**
-	 * The game tick that the game object will despawn.
-	 */
-	private int despawnTick;
-
-	public AreaOfEffectGameObject(GameObject gameObject, int spawnTick, int tickDuration)
-	{
-		if (gameObject == null)
-			throw new IllegalArgumentException("GameObject is null");
-
-		this.gameObject = gameObject;
-		this.spawnTick = spawnTick;
-		this.despawnTick = spawnTick + tickDuration;
-	}
-
-	boolean isDespawned(int tickCount)
-	{
-		return this.despawnTick <= tickCount;
-	}
+	public static final int INFERNO = 9043;
 }
