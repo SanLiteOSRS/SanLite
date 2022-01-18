@@ -27,6 +27,7 @@ package net.sanlite.client.plugins.alchemicalhydra;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import net.runelite.api.Deque;
 import net.runelite.api.GraphicsObject;
 import net.runelite.api.NPC;
 import net.sanlite.client.plugins.alchemicalhydra.id.AnimationID;
@@ -36,6 +37,7 @@ import net.sanlite.client.plugins.alchemicalhydra.id.ProjectileID;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Slf4j
 class AlchemicalHydra
@@ -52,69 +54,39 @@ class AlchemicalHydra
 
 	static final int DELAY_BEFORE_FIRE_SPECIAL_ATTACK = 15; // 15 ticks delay from last attack till the fire special
 	static final int DELAY_AFTER_FIRE_SPECIAL_ATTACK = 12; // 12 ticks delay till next attack after the fire special
-
-	enum AttackStyle
-	{
-		MAGIC,
-		RANGED,
-		POISON,
-		LIGHTNING,
-		FIRE
-	}
-
-	enum Phase
-	{
-		GREEN,
-		BLUE,
-		RED,
-		JAD
-	}
-
 	private final AlchemicalHydraPlugin plugin;
-
 	@Getter
 	private final NPC npc;
-
 	@Getter
 	@Setter
 	private Phase currentPhase;
-
 	@Getter
 	@Setter
 	private AttackStyle currentAttackStyle;
-
 	@Getter
 	@Setter
 	private AttackStyle lastAttackStyle;
-
 	@Getter
 	@Setter
 	private AttackStyle currentSpecialAttackStyle;
-
 	@Getter
 	@Setter
 	private List<GraphicsObject> aoeEffects;
-
 	@Getter
 	@Setter
 	private boolean isWeakened;
-
 	@Getter
 	@Setter
 	private int attacksUntilSwitch;
-
 	@Getter
 	@Setter
 	private int attacksUntilSpecialAttack;
-
 	@Getter
 	@Setter
 	private int nextAttackTick;
-
 	@Getter
 	@Setter
 	private int lastAttackTick;
-
 	@Getter
 	@Setter
 	private int lastAnimationId;
@@ -455,10 +427,11 @@ class AlchemicalHydra
 	/**
 	 * Checks if the client graphics objects contain a special attack object and updates the aoe effects list
 	 */
-	void checkGraphicObjects(List<GraphicsObject> graphicsObjects)
+	void checkGraphicObjects(Deque<GraphicsObject> graphicsObjects)
 	{
-		aoeEffects = graphicsObjects.stream()
-				.filter(x -> isSpecialAttackGraphicsObject(x.getId()))
+		aoeEffects = StreamSupport
+				.stream(graphicsObjects.spliterator(), false)
+				.filter(graphicsObject -> isSpecialAttackGraphicsObject(graphicsObject.getId()))
 				.collect(Collectors.toList());
 	}
 
@@ -498,5 +471,22 @@ class AlchemicalHydra
 			default:
 				return -1;
 		}
+	}
+
+	enum AttackStyle
+	{
+		MAGIC,
+		RANGED,
+		POISON,
+		LIGHTNING,
+		FIRE
+	}
+
+	enum Phase
+	{
+		GREEN,
+		BLUE,
+		RED,
+		JAD
 	}
 }

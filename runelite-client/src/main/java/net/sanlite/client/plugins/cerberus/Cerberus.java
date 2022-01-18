@@ -4,10 +4,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.GraphicsObject;
-import net.runelite.api.NPC;
-import net.runelite.api.NpcID;
-import net.runelite.api.Skill;
+import net.runelite.api.*;
 import net.sanlite.client.plugins.cerberus.id.AnimationID;
 import net.sanlite.client.plugins.cerberus.id.GraphicID;
 import net.sanlite.client.plugins.cerberus.id.ProjectileID;
@@ -15,78 +12,41 @@ import net.sanlite.client.plugins.cerberus.id.ProjectileID;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Slf4j
 class Cerberus
 {
-	enum Attack
-	{
-		DEFAULT,
-		TRIPLE,
-		GHOSTS,
-		LAVA
-	}
-
-	enum AttackStyle
-	{
-		MAGE,
-		RANGE,
-		MELEE
-	}
-
 	@Getter
-	@RequiredArgsConstructor
-	enum CerberusGhost
-	{
-		RANGE(NpcID.SUMMONED_SOUL, Skill.RANGED),
-		MAGE(NpcID.SUMMONED_SOUL_5868, Skill.MAGIC),
-		MELEE(NpcID.SUMMONED_SOUL_5869, Skill.ATTACK);
-
-		private final int npcId;
-		private final Skill type;
-	}
-
+	private final List<NPC> ghosts = new ArrayList<>();
 	@Getter
 	@Setter
 	private NPC npc;
-
 	@Getter
 	private AttackStyle currentAttackStyle;
-
 	@Getter
 	@Setter
 	private Attack currentAttack;
-
 	@Getter
 	@Setter
 	private int attackCount;
-
 	@Getter
 	private int health;
-
 	@Getter
 	@Setter
 	private int tripleAttackCount;
-
 	@Getter
 	@Setter
 	private boolean tripleAttack;
-
 	@Getter
 	@Setter
 	private boolean ghostsActive;
-
 	@Getter
 	@Setter
 	private int ghostsCycleCount;
-
 	@Getter
 	@Setter
 	private int timeOfLastAnimation;
-
-	@Getter
-	private final List<NPC> ghosts = new ArrayList<>();
-
 	@Getter
 	private List<GraphicsObject> poolsGraphicObjects = new ArrayList<>();
 
@@ -204,10 +164,11 @@ class Cerberus
 		}
 	}
 
-	void checkPoolSpawns(List<GraphicsObject> graphicsObjects)
+	void checkPoolSpawns(Deque<GraphicsObject> graphicsObjects)
 	{
-		poolsGraphicObjects = graphicsObjects.stream()
-				.filter(x -> isPoolGraphicsObject(x.getId()))
+		poolsGraphicObjects = StreamSupport
+				.stream(graphicsObjects.spliterator(), false)
+				.filter(graphicsObject -> isPoolGraphicsObject(graphicsObject.getId()))
 				.collect(Collectors.toList());
 	}
 
@@ -263,5 +224,32 @@ class Cerberus
 			// Show both the hitpoint and percentage values if enabled in the config
 			this.health = health;
 		}
+	}
+
+	enum Attack
+	{
+		DEFAULT,
+		TRIPLE,
+		GHOSTS,
+		LAVA
+	}
+
+	enum AttackStyle
+	{
+		MAGE,
+		RANGE,
+		MELEE
+	}
+
+	@Getter
+	@RequiredArgsConstructor
+	enum CerberusGhost
+	{
+		RANGE(NpcID.SUMMONED_SOUL, Skill.RANGED),
+		MAGE(NpcID.SUMMONED_SOUL_5868, Skill.MAGIC),
+		MELEE(NpcID.SUMMONED_SOUL_5869, Skill.ATTACK);
+
+		private final int npcId;
+		private final Skill type;
 	}
 }

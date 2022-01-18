@@ -29,6 +29,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Constants;
+import net.runelite.api.Deque;
 import net.runelite.api.GraphicsObject;
 import net.runelite.api.NPC;
 import net.sanlite.client.plugins.theatreofblood.id.AnimationID;
@@ -36,6 +37,7 @@ import net.sanlite.client.plugins.theatreofblood.id.GraphicID;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Slf4j
 public class PestilentBloat extends TheatreOfBloodEncounter
@@ -146,9 +148,10 @@ public class PestilentBloat extends TheatreOfBloodEncounter
 	 *
 	 * @param clientGraphicObjects the clients graphics objects list
 	 */
-	public void checkHandAttackGraphicObjects(List<GraphicsObject> clientGraphicObjects)
+	public void checkHandAttackGraphicObjects(Deque<GraphicsObject> clientGraphicObjects)
 	{
-		List<GraphicsObject> handAttacks = clientGraphicObjects.stream()
+		List<GraphicsObject> handAttacks = StreamSupport
+				.stream(clientGraphicObjects.spliterator(), false)
 				.filter(x -> isHandAttack(x.getId()))
 				.collect(Collectors.toList());
 

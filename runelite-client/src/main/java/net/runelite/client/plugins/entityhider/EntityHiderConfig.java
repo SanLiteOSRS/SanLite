@@ -177,7 +177,7 @@ public interface EntityHiderConfig extends Config
 		return false;
 	}
 
-    @ConfigItem(
+	@ConfigItem(
 		position = 14,
 		keyName = "hideDeadNPCs",
 		name = "Hide dead NPCs",

@@ -541,7 +541,7 @@ public class DemonicGorillaPlugin extends Plugin
 
 		// The event fires once before the projectile starts moving,
 		// and we only want to check each projectile once
-		if (client.getGameCycle() >= projectile.getStartMovementCycle())
+		if (client.getGameCycle() >= projectile.getStartCycle())
 		{
 			return;
 		}
