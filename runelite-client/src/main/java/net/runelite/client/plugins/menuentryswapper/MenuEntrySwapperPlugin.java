@@ -614,12 +614,12 @@ public class MenuEntrySwapperPlugin extends Plugin
 
 		final boolean isDepositBoxPlayerInventory = widgetGroupId == WidgetID.DEPOSIT_BOX_GROUP_ID;
 		final boolean isChambersOfXericStorageUnitPlayerInventory = widgetGroupId == WidgetID.CHAMBERS_OF_XERIC_STORAGE_UNIT_INVENTORY_GROUP_ID;
-
+		final boolean isGroupStoragePlayerInventory = widgetGroupId == WidgetID.GROUP_STORAGE_INVENTORY_GROUP_ID;
 		// Swap to shift-click deposit behavior
 		// Deposit- op 1 is the current withdraw amount 1/5/10/x for deposit box interface and chambers of xeric storage unit.
 		// Deposit- op 2 is the current withdraw amount 1/5/10/x for bank interface
 		if (event.getType() == MenuAction.CC_OP.getId()
-			&& event.getIdentifier() == (isDepositBoxPlayerInventory || isChambersOfXericStorageUnitPlayerInventory ? 1 : 2)
+			&& event.getIdentifier() == (isDepositBoxPlayerInventory || isGroupStoragePlayerInventory || isChambersOfXericStorageUnitPlayerInventory ? 1 : 2)
 			&& (event.getOption().startsWith("Deposit-") || event.getOption().startsWith("Store") || event.getOption().startsWith("Donate")))
 		{
 			// Swap to shift-click deposit behavior
@@ -628,8 +628,10 @@ public class MenuEntrySwapperPlugin extends Plugin
 				ShiftDepositMode shiftDepositMode = config.bankDepositShiftClick();
 				final int opId = isDepositBoxPlayerInventory ? shiftDepositMode.getIdentifierDepositBox()
 						: isChambersOfXericStorageUnitPlayerInventory ? shiftDepositMode.getIdentifierChambersStorageUnit()
+                        : isGroupStoragePlayerInventory ? shiftDepositMode.getIdentifierGroupStorage()
 						: shiftDepositMode.getIdentifier();
-				bankModeSwap(opId >= 6 ? MenuAction.CC_OP_LOW_PRIORITY : MenuAction.CC_OP, opId);
+                final MenuAction action = opId >= 6 ? MenuAction.CC_OP_LOW_PRIORITY : MenuAction.CC_OP;
+				bankModeSwap(action, opId);
 			}
 			// Override regular shift-click bank swap
 			else if (config.swapFillPouchInBank() && event.getIdentifier() != 1 &&
@@ -637,6 +639,7 @@ public class MenuEntrySwapperPlugin extends Plugin
 			{
 				bankModeSwap(MenuAction.CC_OP_LOW_PRIORITY, 9, "fill");
 			}
+			
 		}
 
 		// Swap to shift-click withdraw behavior
