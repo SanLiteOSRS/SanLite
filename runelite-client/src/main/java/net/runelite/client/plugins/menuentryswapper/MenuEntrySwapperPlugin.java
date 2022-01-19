@@ -628,9 +628,9 @@ public class MenuEntrySwapperPlugin extends Plugin
 				ShiftDepositMode shiftDepositMode = config.bankDepositShiftClick();
 				final int opId = isDepositBoxPlayerInventory ? shiftDepositMode.getIdentifierDepositBox()
 						: isChambersOfXericStorageUnitPlayerInventory ? shiftDepositMode.getIdentifierChambersStorageUnit()
-                        : isGroupStoragePlayerInventory ? shiftDepositMode.getIdentifierGroupStorage()
+						: isGroupStoragePlayerInventory ? shiftDepositMode.getIdentifierGroupStorage()
 						: shiftDepositMode.getIdentifier();
-                final MenuAction action = opId >= 6 ? MenuAction.CC_OP_LOW_PRIORITY : MenuAction.CC_OP;
+				final MenuAction action = opId >= 6 ? MenuAction.CC_OP_LOW_PRIORITY : MenuAction.CC_OP;
 				bankModeSwap(action, opId);
 			}
 			// Override regular shift-click bank swap
