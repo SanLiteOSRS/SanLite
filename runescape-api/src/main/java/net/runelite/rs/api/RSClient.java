@@ -25,11 +25,8 @@
 package net.runelite.rs.api;
 
 import java.util.Map;
-import net.runelite.api.AmbientSoundEffect;
-import net.runelite.api.Client;
-import net.runelite.api.Deque;
-import net.runelite.api.SpritePixels;
-import net.runelite.api.World;
+
+import net.runelite.api.*;
 import net.runelite.api.clan.ClanRank;
 import net.runelite.api.clan.ClanSettings;
 import net.runelite.api.widgets.Widget;
@@ -1515,4 +1512,10 @@ public interface RSClient extends RSGameEngine, Client
 
 	@Construct
 	RSProjectile newProjectile(int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, int var9, int var10, int var11);
+
+	@Construct
+	RSModelData newModelData(ModelData[] modelData, int var2);
+
+	@Construct
+	RSEvictingDualNodeHashTable newEvictingDualNodeHashTable(int size);
 }

@@ -25,6 +25,7 @@
 package net.runelite.mixins;
 
 import net.runelite.api.Model;
+import net.runelite.api.ModelData;
 import net.runelite.api.mixins.Copy;
 import net.runelite.api.mixins.Inject;
 import net.runelite.api.mixins.Mixin;
@@ -34,6 +35,8 @@ import net.runelite.rs.api.RSClient;
 import net.runelite.rs.api.RSModel;
 import net.runelite.rs.api.RSModelData;
 import net.runelite.rs.api.RSVertexNormal;
+
+import java.util.Arrays;
 
 @Mixin(RSModelData.class)
 public abstract class RSModelDataMixin implements RSModelData
@@ -56,11 +59,11 @@ public abstract class RSModelDataMixin implements RSModelData
 	@Copy("toModel")
 	@Replace("toModel")
 	@SuppressWarnings("InfiniteRecursion")
-	public Model copy$light(int ambient, int contrast, int var3, int var4, int var5)
+	public Model copy$light(int ambient, int contrast, int x, int y, int z)
 	{
 		client.getLogger().trace("Lighting model {}", this);
 
-		Model model = copy$light(ambient, contrast, var3, var4, var5);
+		Model model = copy$light(ambient, contrast, x, y, z);
 		if (model == null)
 		{
 			return null;
@@ -124,13 +127,13 @@ public abstract class RSModelDataMixin implements RSModelData
 			return;
 		}
 
-		final int[] vertexPositionsX = getVertexX();
-		final int[] vertexPositionsY = getVertexY();
-		final int[] vertexPositionsZ = getVertexZ();
+		final int[] vertexPositionsX = getVerticesX();
+		final int[] vertexPositionsY = getVerticesY();
+		final int[] vertexPositionsZ = getVerticesZ();
 
-		final int[] trianglePointsX = getTrianglePointsX();
-		final int[] trianglePointsY = getTrianglePointsY();
-		final int[] trianglePointsZ = getTrianglePointsZ();
+		final int[] trianglePointsX = getFaceIndices1();
+		final int[] trianglePointsY = getFaceIndices2();
+		final int[] trianglePointsZ = getFaceIndices3();
 
 		final short[] texTriangleX = getTexTriangleX();
 		final short[] texTriangleY = getTexTriangleY();
@@ -138,7 +141,7 @@ public abstract class RSModelDataMixin implements RSModelData
 
 		final byte[] textureCoords = getTextureCoords();
 
-		int faceCount = getTriangleFaceCount();
+		int faceCount = getFaceCount();
 		float[] faceTextureUCoordinates = new float[faceCount * 6];
 
 		for (int i = 0; i < faceCount; i++)
@@ -221,5 +224,147 @@ public abstract class RSModelDataMixin implements RSModelData
 		}
 
 		faceTextureUVCoordinates = faceTextureUCoordinates;
+	}
+
+	@Inject
+	@Override
+	public Model light(int ambient, int contrast, int x, int y, int z)
+	{
+		return toModel(ambient, contrast, x, y, z);
+	}
+
+	@Inject
+	@Override
+	public Model light()
+	{
+		return toModel(DEFAULT_AMBIENT, DEFAULT_CONTRAST, DEFAULT_X, DEFAULT_Y, DEFAULT_Z);
+	}
+
+	@Inject
+	@Override
+	public ModelData recolor(short colorToReplace, short colorToReplaceWith)
+	{
+		rs$recolor(colorToReplace, colorToReplaceWith);
+		return this;
+	}
+
+	@Inject
+	@Override
+	public ModelData retexture(short find, short replace)
+	{
+		rs$retexture(find, replace);
+		return this;
+	}
+
+	@Inject
+	@Override
+	public ModelData cloneVertices()
+	{
+		setVerticesX(Arrays.copyOf(getVerticesX(), getVerticesX().length));
+		setVerticesY(Arrays.copyOf(getVerticesY(), getVerticesX().length));
+		setVerticesZ(Arrays.copyOf(getVerticesZ(), getVerticesX().length));
+		return this;
+	}
+
+	@Inject
+	@Override
+	public ModelData cloneColors()
+	{
+		setFaceColors(Arrays.copyOf(getFaceColors(), getFaceColors().length));
+		return this;
+	}
+
+	@Inject
+	@Override
+	public ModelData cloneTextures()
+	{
+		setFaceTextures(Arrays.copyOf(getFaceTextures(), getFaceTextures().length));
+		return this;
+	}
+
+	@Inject
+	@Override
+	public ModelData cloneTransparencies()
+	{
+		setFaceTransparencies(Arrays.copyOf(getFaceTransparencies(), getFaceTransparencies().length));
+		return this;
+	}
+
+	@Inject
+	@Override
+	public RSModelData rotateY90Ccw()
+	{
+		for (int i = 0; i < getVerticesCount(); ++i)
+		{
+			int vertexX = getVerticesX()[i];
+			getVerticesX()[i] = getVerticesZ()[i];
+			getVerticesZ()[i] = -vertexX;
+		}
+
+		invalidate();
+		return this;
+	}
+
+	@Inject
+	@Override
+	public RSModelData rotateY180Ccw()
+	{
+		for (int i = 0; i < getVerticesCount(); ++i)
+		{
+			getVerticesX()[i] = -getVerticesX()[i];
+			getVerticesZ()[i] = -getVerticesZ()[i];
+		}
+
+		invalidate();
+		return this;
+	}
+
+	@Inject
+	@Override
+	public RSModelData rotateY270Ccw()
+	{
+		for (int i = 0; i < getVerticesCount(); ++i)
+		{
+			int vertexZ = getVerticesZ()[i];
+			getVerticesZ()[i] = getVerticesX()[i];
+			getVerticesX()[i] = -vertexZ;
+		}
+
+		invalidate();
+		return this;
+	}
+
+	@Inject
+	@Override
+	public RSModelData scale(int x, int y, int z)
+	{
+		for (int i = 0; i < getVerticesCount(); ++i)
+		{
+			getVerticesX()[i] = getVerticesX()[i] * x / 128;
+			getVerticesY()[i] = getVerticesY()[i] * y / 128;
+			getVerticesZ()[i] = getVerticesZ()[i] * z / 128;
+		}
+
+		invalidate();
+		return this;
+	}
+
+	@Inject
+	@Override
+	public RSModelData translate(int x, int y, int z)
+	{
+		for (int i = 0; i < getVerticesCount(); ++i)
+		{
+			int[] vertexX = getVerticesX();
+			int[] vertexY = getVerticesY();
+			int[] vertexZ = getVerticesZ();
+
+			vertexX[i] += x;
+			vertexY[i] += y;
+			vertexZ[i] += z;
+		}
+
+		invalidate();
+		return this;
 	}
 }

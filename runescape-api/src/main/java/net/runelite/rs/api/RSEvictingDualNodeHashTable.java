@@ -8,6 +8,9 @@ public interface RSEvictingDualNodeHashTable extends NodeCache
 	@Import("get")
 	RSDualNode get(long id);
 
+	@Import("put")
+	void put(RSDualNode dualNode, long id);
+
 	@Import("dualNode")
 	RSDualNode getDualNode();
 

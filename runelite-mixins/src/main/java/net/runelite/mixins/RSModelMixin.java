@@ -25,8 +25,6 @@
 package net.runelite.mixins;
 
 import java.awt.Shape;
-import java.util.ArrayList;
-import java.util.List;
 import net.runelite.api.Model;
 import net.runelite.api.Perspective;
 import net.runelite.api.hooks.DrawCallbacks;
@@ -37,8 +35,6 @@ import net.runelite.api.mixins.Mixin;
 import net.runelite.api.mixins.Replace;
 import net.runelite.api.mixins.Shadow;
 import net.runelite.api.model.Jarvis;
-import net.runelite.api.model.Triangle;
-import net.runelite.api.model.Vertex;
 import net.runelite.rs.api.RSAnimation;
 import net.runelite.rs.api.RSClient;
 import net.runelite.rs.api.RSFrames;
@@ -102,55 +98,6 @@ public abstract class RSModelMixin implements RSModel
 		}
 
 		vertexNormals();
-	}
-
-	@Inject
-	public List<Vertex> getVertices()
-	{
-		int[] verticesX = getVerticesX();
-		int[] verticesY = getVerticesY();
-		int[] verticesZ = getVerticesZ();
-
-		List<Vertex> vertices = new ArrayList<Vertex>(getVerticesCount());
-
-		for (int i = 0; i < getVerticesCount(); ++i)
-		{
-			Vertex v = new Vertex(
-				verticesX[i],
-				verticesY[i],
-				verticesZ[i]
-			);
-			vertices.add(v);
-		}
-
-		return vertices;
-	}
-
-	@Inject
-	public List<Triangle> getTriangles()
-	{
-		int[] trianglesX = getFaceIndices1();
-		int[] trianglesY = getFaceIndices2();
-		int[] trianglesZ = getFaceIndices3();
-
-		List<Vertex> vertices = getVertices();
-		List<Triangle> triangles = new ArrayList<>(getFaceCount());
-
-		for (int i = 0; i < getFaceCount(); ++i)
-		{
-			int triangleX = trianglesX[i];
-			int triangleY = trianglesY[i];
-			int triangleZ = trianglesZ[i];
-
-			Triangle triangle = new Triangle(
-				vertices.get(triangleX),
-				vertices.get(triangleY),
-				vertices.get(triangleZ)
-			);
-			triangles.add(triangle);
-		}
-
-		return triangles;
 	}
 
 	@Copy("contourGround")
@@ -501,5 +448,45 @@ public abstract class RSModelMixin implements RSModel
 	public void setVertexNormalsZ(int[] vertexNormalsZ)
 	{
 		rl$vertexNormalsZ = vertexNormalsZ;
+	}
+
+	@Inject
+	@Override
+	public RSModel rotateY90Ccw()
+	{
+		rs$rotateY90Ccw();
+		return this;
+	}
+
+	@Inject
+	@Override
+	public RSModel rotateY180Ccw()
+	{
+		rs$rotateY180Ccw();
+		return this;
+	}
+
+	@Inject
+	@Override
+	public RSModel rotateY270Ccw()
+	{
+		rs$rotateY270Ccw();
+		return this;
+	}
+
+	@Inject
+	@Override
+	public RSModel scale(int x, int y, int z)
+	{
+		rs$scale(x, y, z);
+		return this;
+	}
+
+	@Inject
+	@Override
+	public RSModel translate(int x, int y, int z)
+	{
+		rs$translate(x, y, z);
+		return this;
 	}
 }

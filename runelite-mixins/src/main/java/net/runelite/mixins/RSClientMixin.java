@@ -168,6 +168,12 @@ public abstract class RSClientMixin implements RSClient
 	private static int tmpMenuOptionsCount;
 
 	@Inject
+	public RSEvictingDualNodeHashTable tmpModelDataCache = newEvictingDualNodeHashTable(16);
+
+	@Inject
+	public static RSArchive[] archives = new RSArchive[21];
+
+	@Inject
 	@Override
 	public void setAllWidgetsAreOpTargetable(boolean yes)
 	{
@@ -2197,7 +2203,7 @@ public abstract class RSClientMixin implements RSClient
 		{
 			for (int i = 0; i < colorToFind.length; ++i)
 			{
-				modelData.recolor(colorToFind[i], colorToReplace[i]);
+				modelData.rs$recolor(colorToFind[i], colorToReplace[i]);
 			}
 		}
 
@@ -2377,6 +2383,47 @@ public abstract class RSClientMixin implements RSClient
 		check("Widget_cachedFonts", client.getFontsCache());
 		check("Widget_cachedSpriteMasks", client.getSpriteMasksCache());
 		check("WorldMapElement_cachedSprites", client.getSpritesCache());
+	}
+
+	@Inject
+	@Override
+	public ModelData loadModelData(int id)
+	{
+		assert isClientThread() : "loadModelData must be called on client thread";
+
+		RSModelData modelData = (RSModelData) this.tmpModelDataCache.get(id);
+		if (modelData == null)
+		{
+			modelData = getModelData(RSClientMixin.archives[7], id, 0);
+			if (modelData == null)
+			{
+				return null;
+			}
+
+			this.tmpModelDataCache.put((RSDualNode) modelData, id);
+		}
+
+		return modelData.newModelData(modelData, true, true, true, true);
+	}
+
+	@Inject
+	@Override
+	public ModelData mergeModels(ModelData[] models, int length)
+	{
+		return newModelData(Arrays.copyOf(models, length), length);
+	}
+
+	@Inject
+	@Override
+	public ModelData mergeModels(ModelData ...models)
+	{
+		return newModelData(Arrays.copyOf(models, models.length), models.length);
+	}
+
+	@Inject
+	public IndexDataBase getIndex(int id)
+	{
+		return RSClientMixin.archives[id];
 	}
 }
 
