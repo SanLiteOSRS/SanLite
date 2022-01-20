@@ -27,31 +27,13 @@ package net.runelite.api;
 /**
  * Represents the model of an object.
  */
-public interface Model extends Renderable
+public interface Model extends Mesh, Renderable
 {
-	int getVerticesCount();
-
-	int[] getVerticesX();
-
-	int[] getVerticesY();
-
-	int[] getVerticesZ();
-
-	int getFaceCount();
-
-	int[] getFaceIndices1();
-
-	int[] getFaceIndices2();
-
-	int[] getFaceIndices3();
-
 	int[] getFaceColors1();
 
 	int[] getFaceColors2();
 
 	int[] getFaceColors3();
-
-	byte[] getFaceTransparencies();
 
 	int getSceneId();
 	void setSceneId(int sceneId);
@@ -69,8 +51,6 @@ public interface Model extends Renderable
 	byte[] getFaceRenderPriorities();
 
 	int getRadius();
-
-	short[] getFaceTextures();
 
 	float[] getFaceTextureUVCoordinates();
 

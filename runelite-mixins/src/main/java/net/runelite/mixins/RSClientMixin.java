@@ -38,6 +38,7 @@ import static net.runelite.api.MenuAction.*;
 import static net.runelite.api.Perspective.LOCAL_TILE_SIZE;
 import static net.runelite.mixins.CameraMixin.*;
 
+import net.runelite.api.Deque;
 import net.runelite.api.clan.ClanChannel;
 import net.runelite.api.clan.ClanRank;
 import net.runelite.api.clan.ClanSettings;
@@ -165,6 +166,12 @@ public abstract class RSClientMixin implements RSClient
 
 	@Inject
 	private static int tmpMenuOptionsCount;
+
+	@Inject
+	public RSEvictingDualNodeHashTable tmpModelDataCache = newEvictingDualNodeHashTable(16);
+
+	@Inject
+	public static RSArchive[] archives = new RSArchive[21];
 
 	@Inject
 	@Override
@@ -810,34 +817,36 @@ public abstract class RSClientMixin implements RSClient
 
 	@Inject
 	@Override
-	public List<Projectile> getProjectiles()
+	public Projectile createProjectile(int id, int plane, int startX, int startY, int startZ, int startCycle, int endCycle, int slope, int startHeight, int endHeight, Actor target, int targetX, int targetY)
 	{
-		List<Projectile> projectiles = new ArrayList<Projectile>();
-		RSNodeDeque projectileDeque = this.getProjectilesDeque();
-		Node head = projectileDeque.getSentinel();
-
-		for (Node node = head.getNext(); node != head; node = node.getNext())
+		int targetIndex = 0;
+		if (target instanceof RSNPC)
 		{
-			projectiles.add((Projectile) node);
+			targetIndex = ((RSNPC)target).getIndex() + 1;
+		}
+		else if (target instanceof RSPlayer)
+		{
+			targetIndex = -(((RSPlayer)target).getPlayerId() + 1);
 		}
 
-		return projectiles;
+		RSProjectile projectile = client.newProjectile(id, plane, startX, startY, startZ, startCycle, endCycle, slope, startHeight, targetIndex, endHeight);
+		projectile.setDestination(targetX, targetY, Perspective.getTileHeight(client, new LocalPoint(targetX, targetY), client.getPlane()), startCycle + client.getGameCycle());
+
+		return projectile;
 	}
 
 	@Inject
 	@Override
-	public List<GraphicsObject> getGraphicsObjects()
+	public Deque<Projectile> getProjectiles()
 	{
-		List<GraphicsObject> graphicsObjects = new ArrayList<GraphicsObject>();
-		RSNodeDeque graphicsObjectDeque = this.getGraphicsObjectDeque();
-		Node head = graphicsObjectDeque.getSentinel();
+		return this.getProjectilesDeque();
+	}
 
-		for (Node node = head.getNext(); node != head; node = node.getNext())
-		{
-			graphicsObjects.add((GraphicsObject) node);
-		}
-
-		return graphicsObjects;
+	@Inject
+	@Override
+	public Deque<GraphicsObject> getGraphicsObjects()
+	{
+		return this.getGraphicsObjectDeque();
 	}
 
 	@Inject
@@ -1195,6 +1204,13 @@ public abstract class RSClientMixin implements RSClient
 
 			oldIsResized = isResized;
 		}
+	}
+
+	@Inject
+	public static RSRuneLiteClanMember runeLiteClanMember()
+	{
+		// Implementation is done with raw injection
+		throw new NotImplementedException();
 	}
 
 	@FieldHook("friendsChatManager")
@@ -2187,7 +2203,7 @@ public abstract class RSClientMixin implements RSClient
 		{
 			for (int i = 0; i < colorToFind.length; ++i)
 			{
-				modelData.recolor(colorToFind[i], colorToReplace[i]);
+				modelData.rs$recolor(colorToFind[i], colorToReplace[i]);
 			}
 		}
 
@@ -2367,6 +2383,47 @@ public abstract class RSClientMixin implements RSClient
 		check("Widget_cachedFonts", client.getFontsCache());
 		check("Widget_cachedSpriteMasks", client.getSpriteMasksCache());
 		check("WorldMapElement_cachedSprites", client.getSpritesCache());
+	}
+
+	@Inject
+	@Override
+	public ModelData loadModelData(int id)
+	{
+		assert isClientThread() : "loadModelData must be called on client thread";
+
+		RSModelData modelData = (RSModelData) this.tmpModelDataCache.get(id);
+		if (modelData == null)
+		{
+			modelData = getModelData(RSClientMixin.archives[7], id, 0);
+			if (modelData == null)
+			{
+				return null;
+			}
+
+			this.tmpModelDataCache.put((RSDualNode) modelData, id);
+		}
+
+		return modelData.newModelData(modelData, true, true, true, true);
+	}
+
+	@Inject
+	@Override
+	public ModelData mergeModels(ModelData[] models, int length)
+	{
+		return newModelData(Arrays.copyOf(models, length), length);
+	}
+
+	@Inject
+	@Override
+	public ModelData mergeModels(ModelData ...models)
+	{
+		return newModelData(Arrays.copyOf(models, models.length), models.length);
+	}
+
+	@Inject
+	public IndexDataBase getIndex(int id)
+	{
+		return RSClientMixin.archives[id];
 	}
 }
 

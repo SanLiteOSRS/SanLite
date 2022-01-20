@@ -36,6 +36,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Slf4j
 public class Verzik extends TheatreOfBloodEncounter
@@ -48,30 +49,22 @@ public class Verzik extends TheatreOfBloodEncounter
 	private final static int P2_ATTACK_SPEED = 2400;
 	private final static int P3_ATTACK_SPEED = 4200;
 	private final static int P4_ATTACK_SPEED = 3000;
-
+	private final HashMap<String, Boolean> specials;
+	@Getter
+	private final List<NPC> nylocas;
 	@Setter
 	@Getter
 	int verzikPhase;
-
 	@Getter
 	private int attackCount;
-
 	@Getter
 	private int phaseStartTime;
-
 	@Getter
 	private int phaseLastAttack;
-
 	@Getter
 	private int phaseNextAttack;
-
 	@Getter
 	private int phaseTimeTillNextAttack;
-
-	private final HashMap<String, Boolean> specials;
-
-	@Getter
-	private final List<NPC> nylocas;
 
 	public Verzik(TheatreOfBloodEncounters encounter)
 	{
@@ -105,10 +98,11 @@ public class Verzik extends TheatreOfBloodEncounter
 	 *
 	 * @param clientGraphicObjects the clients current graphics objects list
 	 */
-	public void checkGreenOrbPoolGraphicObjects(List<GraphicsObject> clientGraphicObjects)
+	public void checkGreenOrbPoolGraphicObjects(Deque<GraphicsObject> clientGraphicObjects)
 	{
 		setAoeEffects(
-				clientGraphicObjects.stream()
+				StreamSupport
+						.stream(clientGraphicObjects.spliterator(), false)
 						.filter(x -> isGreenOrbPool(x.getId()))
 						.collect(Collectors.toList()));
 	}

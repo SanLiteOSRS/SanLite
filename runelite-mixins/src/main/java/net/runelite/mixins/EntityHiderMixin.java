@@ -56,6 +56,9 @@ public abstract class EntityHiderMixin implements RSScene
 	@Shadow("hideFriendsChatMembers")
 	private static boolean hideFriendsChatMembers;
 
+	@Shadow("hideClanChatMembers")
+	private static boolean hideClanChatMembers;
+
 	@Shadow("hideLocalPlayer")
 	private static boolean hideLocalPlayer;
 
@@ -152,6 +155,11 @@ public abstract class EntityHiderMixin implements RSScene
 			if (player.isFriendsChatMember())
 			{
 				return !hideFriendsChatMembers;
+			}
+
+			if (player.isClanMember())
+			{
+				return !hideClanChatMembers;
 			}
 
 			if (client.getFriendManager().isIgnored(player.getRsName()))

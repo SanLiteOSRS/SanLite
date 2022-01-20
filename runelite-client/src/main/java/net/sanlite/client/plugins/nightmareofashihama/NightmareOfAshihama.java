@@ -36,6 +36,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Slf4j
 public class NightmareOfAshihama
@@ -180,10 +181,11 @@ public class NightmareOfAshihama
 	/**
 	 * Checks if the client graphics objects contain a special attack object and updates the list
 	 */
-	void checkGraphicObjects(List<GraphicsObject> graphicsObjects)
+	void checkGraphicObjects(Deque<GraphicsObject> graphicsObjects)
 	{
-		this.graphicObjects = graphicsObjects.stream()
-				.filter(x -> isNightmareGraphicsObject(x.getId()))
+		this.graphicObjects = StreamSupport
+				.stream(graphicsObjects.spliterator(), false)
+				.filter(graphicsObject -> isNightmareGraphicsObject(graphicsObject.getId()))
 				.collect(Collectors.toList());
 	}
 

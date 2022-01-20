@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020, ThatGamerBlue <thatgamerblue@gmail.com>
+ * Copyright (c) 2022 Abex
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,34 +22,52 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.rs.api;
+package net.runelite.api;
 
-import net.runelite.api.Deque;
-import net.runelite.mapping.Import;
-
-public interface RSNodeDeque extends Deque
+/**
+ * A {@link Model} or {@link ModelData}
+ */
+public interface Mesh<T extends Mesh<T>>
 {
-	@Import("current")
-	RSNode getCurrent();
+	int getVerticesCount();
+	int[] getVerticesX();
+	int[] getVerticesY();
+	int[] getVerticesZ();
 
-	@Import("sentinel")
-	RSNode getSentinel();
+	int getFaceCount();
+	int[] getFaceIndices1();
+	int[] getFaceIndices2();
+	int[] getFaceIndices3();
+	byte[] getFaceTransparencies();
+	short[] getFaceTextures();
 
-	@Import("last")
-	RSNode last();
+	/**
+	 * Rotates this model 90 degrees around the vertical axis.
+	 * {@link ModelData#cloneVertices()} should be called before calling this method
+	 */
+	T rotateY90Ccw();
 
-	@Import("previous")
-	RSNode previous();
+	/**
+	 * Rotates this model 180 degrees around the vertical axis.
+	 * {@link ModelData#cloneVertices()} should be called before calling this method
+	 */
+	T rotateY180Ccw();
 
-	@Import("addFirst")
-	void addFirst(RSNode val);
+	/**
+	 * Rotates this model 270 degrees around the vertical axis.
+	 * {@link ModelData#cloneVertices()} should be called before calling this method
+	 */
+	T rotateY270Ccw();
 
-	@Import("addLast")
-	void addLast(RSNode val);
+	/**
+	 * Offsets this model by the passed amount (1/128ths of a tile).
+	 * {@link ModelData#cloneVertices()} should be called before calling this method
+	 */
+	T translate(int x, int y, int z);
 
-	@Import("removeLast")
-	RSNode removeLast();
-
-	@Import("clear")
-	void clear();
+	/**
+	 * Resizes this model by the passed amount (1/128ths).
+	 * {@link ModelData#cloneVertices()} should be called before calling this method
+	 */
+	T scale(int x, int y, int z);
 }

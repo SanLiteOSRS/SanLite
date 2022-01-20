@@ -49,6 +49,9 @@ public abstract class EntityHiderBridgeMixin implements RSClient
 	public static boolean hideFriendsChatMembers;
 
 	@Inject
+	public static boolean hideClanChatMembers;
+
+	@Inject
 	public static boolean hideLocalPlayer;
 
 	@Inject
@@ -111,6 +114,13 @@ public abstract class EntityHiderBridgeMixin implements RSClient
 	public void setFriendsChatMembersHidden(boolean state)
 	{
 		hideFriendsChatMembers = state;
+	}
+
+	@Inject
+	@Override
+	public void setClanChatMembersHidden(boolean state)
+	{
+		hideClanChatMembers = state;
 	}
 
 	@Inject

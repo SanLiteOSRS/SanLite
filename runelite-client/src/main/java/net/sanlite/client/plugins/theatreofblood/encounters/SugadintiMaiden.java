@@ -31,6 +31,7 @@ import net.sanlite.client.plugins.theatreofblood.id.GraphicID;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 public class SugadintiMaiden extends TheatreOfBloodEncounter
 {
@@ -99,10 +100,11 @@ public class SugadintiMaiden extends TheatreOfBloodEncounter
 	 *
 	 * @param clientGraphicObjects the clients current graphics objects list
 	 */
-	public void checkBloodSplatGraphicObjects(List<GraphicsObject> clientGraphicObjects)
+	public void checkBloodSplatGraphicObjects(Deque<GraphicsObject> clientGraphicObjects)
 	{
 		setAoeEffects(
-				clientGraphicObjects.stream()
+				StreamSupport
+						.stream(clientGraphicObjects.spliterator(), false)
 						.filter(x -> isBloodSplatAttack(x.getId()))
 						.collect(Collectors.toList()));
 	}

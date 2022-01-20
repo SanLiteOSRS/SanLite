@@ -61,7 +61,7 @@ public class AreaOfEffectProjectile
 
 		this.projectile = projectile;
 		this.targetPoint = targetPoint;
-		this.startCycle = projectile.getStartMovementCycle();
+		this.startCycle = projectile.getStartCycle();
 		this.endCycle = projectile.getEndCycle() + endCycleDelay;
 	}
 

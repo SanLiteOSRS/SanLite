@@ -122,15 +122,20 @@ public class ModelData extends Renderable {
 	@Export("isBoundsCalculated")
 	boolean isBoundsCalculated;
 	@ObfuscatedName("ap")
-	int field2182;
+	@Export("maxBoundY")
+	int maxBoundY;
 	@ObfuscatedName("ac")
-	int field2176;
+	@Export("minBoundX")
+	int minBoundX;
 	@ObfuscatedName("aj")
-	int field2152;
+	@Export("maxBoundX")
+	int maxBoundX;
 	@ObfuscatedName("af")
-	int field2168;
+	@Export("maxBoundZ")
+	int maxBoundZ;
 	@ObfuscatedName("ar")
-	int field2186;
+	@Export("minBoundZ")
+	int minBoundZ;
 
 	static {
 		field2187 = new int[10000];
@@ -1640,7 +1645,8 @@ public class ModelData extends Renderable {
 	@ObfuscatedSignature(
 		descriptor = "()Lge;"
 	)
-	public ModelData method3751() {
+	@Export("shallowCopy")
+	public ModelData shallowCopy() {
 		ModelData var1 = new ModelData();
 		if (this.faceRenderTypes != null) {
 			var1.faceRenderTypes = new byte[this.faceCount];
@@ -1686,10 +1692,10 @@ public class ModelData extends Renderable {
 	)
 	public ModelData method3752(int[][] var1, int var2, int var3, int var4, boolean var5, int var6) {
 		this.calculateBounds();
-		int var7 = var2 + this.field2176;
-		int var8 = var2 + this.field2152;
-		int var9 = var4 + this.field2186;
-		int var10 = var4 + this.field2168;
+		int var7 = var2 + this.minBoundX;
+		int var8 = var2 + this.maxBoundX;
+		int var9 = var4 + this.minBoundZ;
+		int var10 = var4 + this.maxBoundZ;
 		if (var7 >= 0 && var8 + 128 >> 7 < var1.length && var9 >= 0 && var10 + 128 >> 7 < var1[0].length) {
 			var7 >>= 7;
 			var8 = var8 + 127 >> 7;
@@ -2038,38 +2044,38 @@ public class ModelData extends Renderable {
 	void calculateBounds() {
 		if (!this.isBoundsCalculated) {
 			super.height = 0;
-			this.field2182 = 0;
-			this.field2176 = 999999;
-			this.field2152 = -999999;
-			this.field2168 = -99999;
-			this.field2186 = 99999;
+			this.maxBoundY = 0;
+			this.minBoundX = 999999;
+			this.maxBoundX = -999999;
+			this.maxBoundZ = -99999;
+			this.minBoundZ = 99999;
 
 			for (int var1 = 0; var1 < this.verticesCount; ++var1) {
 				int var2 = this.verticesX[var1];
 				int var3 = this.verticesY[var1];
 				int var4 = this.verticesZ[var1];
-				if (var2 < this.field2176) {
-					this.field2176 = var2;
+				if (var2 < this.minBoundX) {
+					this.minBoundX = var2;
 				}
 
-				if (var2 > this.field2152) {
-					this.field2152 = var2;
+				if (var2 > this.maxBoundX) {
+					this.maxBoundX = var2;
 				}
 
-				if (var4 < this.field2186) {
-					this.field2186 = var4;
+				if (var4 < this.minBoundZ) {
+					this.minBoundZ = var4;
 				}
 
-				if (var4 > this.field2168) {
-					this.field2168 = var4;
+				if (var4 > this.maxBoundZ) {
+					this.maxBoundZ = var4;
 				}
 
 				if (-var3 > super.height) {
 					super.height = -var3;
 				}
 
-				if (var3 > this.field2182) {
-					this.field2182 = var3;
+				if (var3 > this.maxBoundY) {
+					this.maxBoundY = var3;
 				}
 			}
 
@@ -2295,11 +2301,11 @@ public class ModelData extends Renderable {
 			VertexNormal var10 = var0.vertexNormals[var9];
 			if (var10.magnitude != 0) {
 				int var11 = var0.verticesY[var9] - var3;
-				if (var11 <= var1.field2182) {
+				if (var11 <= var1.maxBoundY) {
 					int var12 = var0.verticesX[var9] - var2;
-					if (var12 >= var1.field2176 && var12 <= var1.field2152) {
+					if (var12 >= var1.minBoundX && var12 <= var1.maxBoundX) {
 						int var13 = var0.verticesZ[var9] - var4;
-						if (var13 >= var1.field2186 && var13 <= var1.field2168) {
+						if (var13 >= var1.minBoundZ && var13 <= var1.maxBoundZ) {
 							for (int var14 = 0; var14 < var8; ++var14) {
 								VertexNormal var15 = var1.vertexNormals[var14];
 								if (var12 == var7[var14] && var13 == var1.verticesZ[var14] && var11 == var1.verticesY[var14] && var15.magnitude != 0) {

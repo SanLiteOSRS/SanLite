@@ -9477,6 +9477,9 @@ public final class NpcID
 	public static final int REGENT = 11229;
 	public static final int GROUP_STORAGE_TUTOR = 11230;
 	public static final int GROUP_IRON_TUTOR = 11231;
+	public static final int THE_SAGE = 11232;
+	public static final int LEAGUE_TUTOR = 11233;
+	public static final int LEAGUES_ASSISTANT_11234 = 11234;
 	public static final int NEXLING = 11276;
 	public static final int NEXLING_11277 = 11277;
 	public static final int NEX = 11278;
