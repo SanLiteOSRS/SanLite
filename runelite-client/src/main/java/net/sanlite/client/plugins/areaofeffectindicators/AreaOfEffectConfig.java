@@ -112,9 +112,9 @@ public class AreaOfEffectConfig
 
 		gameObjects = new ImmutableMap.Builder<Integer, AoeObjectInfo>()
 				// Chambers of Xeric
-				.put(ObjectID.SMALL_CRYSTALS, new AoeObjectInfo(AoeObjectType.SINGLE_DAMAGE, 5, config.highlightOlmGroundSpikes(), config.getOlmCrystalGroundSpikesColor()))
+				.put(ObjectID.SMALL_CRYSTALS, new AoeObjectInfo(AoeObjectType.SINGLE_DAMAGE, 4, config.highlightOlmGroundSpikes(), config.getOlmCrystalGroundSpikesColor()))
 				.put(ObjectID.ACID_POOL, new AoeObjectInfo(AoeObjectType.DAMAGE_PER_TICK, 15, config.highlightOlmAcidPools(), config.getOlmAcidPoolsColor()))
-				.put(ObjectID.CRYSTAL_BOMB, new AoeObjectInfo(AoeObjectType.SINGLE_DAMAGE, 6, 5, config.highlightOlmCrystalBomb(), config.getOlmCrystalBombColor()))
+				.put(ObjectID.CRYSTAL_BOMB, new AoeObjectInfo(AoeObjectType.SINGLE_DAMAGE, 8, 5, config.highlightOlmCrystalBomb(), config.getOlmCrystalBombColor()))
 				// Nex
 				.put(ObjectID.SHADOW, new AoeObjectInfo(AoeObjectType.SINGLE_DAMAGE, 6, config.highlightNexShadowAttack(), config.getNexShadowAttackColor()))
 				.build();
