@@ -9,19 +9,19 @@ import net.runelite.mapping.ObfuscatedSignature;
 public class InvDefinition extends DualNode {
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "Lku;"
+		descriptor = "Lkq;"
 	)
 	@Export("InvDefinition_archive")
-	public static AbstractArchive InvDefinition_archive;
-	@ObfuscatedName("b")
+	static AbstractArchive InvDefinition_archive;
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		descriptor = "Liq;"
+		descriptor = "Lic;"
 	)
 	@Export("InvDefinition_cached")
 	static EvictingDualNodeHashTable InvDefinition_cached;
-	@ObfuscatedName("p")
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = -1155784087
+		intValue = -1694978241
 	)
 	@Export("size")
 	public int size;
@@ -34,10 +34,10 @@ public class InvDefinition extends DualNode {
 		this.size = 0;
 	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "(Lpi;I)V",
-		garbageValue = "607571940"
+		descriptor = "(Lpi;S)V",
+		garbageValue = "14661"
 	)
 	@Export("decode")
 	void decode(Buffer var1) {
@@ -51,10 +51,10 @@ public class InvDefinition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		descriptor = "(Lpi;IB)V",
-		garbageValue = "1"
+		descriptor = "(Lpi;II)V",
+		garbageValue = "310801205"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
@@ -62,14 +62,5 @@ public class InvDefinition extends DualNode {
 			this.size = var1.readUnsignedShort();
 		}
 
-	}
-
-	@ObfuscatedName("ir")
-	@ObfuscatedSignature(
-		descriptor = "(IB)Z",
-		garbageValue = "2"
-	)
-	static boolean method3157(int var0) {
-		return var0 == 57 || var0 == 58 || var0 == 1007 || var0 == 25 || var0 == 30;
 	}
 }

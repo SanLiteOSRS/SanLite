@@ -1,32 +1,29 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cs")
+@ObfuscatedName("ck")
 @Implements("HealthBar")
 public class HealthBar extends Node {
+	@ObfuscatedName("fk")
+	@Export("worldHost")
+	static String worldHost;
 	@ObfuscatedName("s")
-	@ObfuscatedGetter(
-		intValue = -1200843619
-	)
-	static int field1209;
-	@ObfuscatedName("p")
 	@ObfuscatedSignature(
-		descriptor = "Lfd;"
+		descriptor = "Lfs;"
 	)
 	@Export("definition")
 	HealthBarDefinition definition;
-	@ObfuscatedName("m")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		descriptor = "Llr;"
+		descriptor = "Llt;"
 	)
 	@Export("updates")
 	IterableNodeDeque updates;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lfd;)V"
+		descriptor = "(Lfs;)V"
 	)
 	HealthBar(HealthBarDefinition var1) {
 		this.updates = new IterableNodeDeque();
@@ -36,7 +33,7 @@ public class HealthBar extends Node {
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
 		descriptor = "(IIIII)V",
-		garbageValue = "2125258753"
+		garbageValue = "-1837572845"
 	)
 	@Export("put")
 	void put(int var1, int var2, int var3, int var4) {
@@ -69,10 +66,10 @@ public class HealthBar extends Node {
 		}
 	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		descriptor = "(II)Lcn;",
-		garbageValue = "849241629"
+		descriptor = "(IB)Lcd;",
+		garbageValue = "1"
 	)
 	@Export("get")
 	HealthBarUpdate get(int var1) {
@@ -94,61 +91,33 @@ public class HealthBar extends Node {
 		}
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "(B)Z",
-		garbageValue = "80"
+		descriptor = "(I)Z",
+		garbageValue = "2000667860"
 	)
 	@Export("isEmpty")
 	boolean isEmpty() {
-		return this.updates.method5915();
+		return this.updates.method5882();
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "2114195084"
+		descriptor = "(Lkq;Lkq;ZI)V",
+		garbageValue = "-2108078857"
 	)
-	static void method2311() {
-		if (Login.Login_username == null || Login.Login_username.length() <= 0) {
-			if (SecureRandomFuture.clientPreferences.rememberedUsername != null) {
-				Login.Login_username = SecureRandomFuture.clientPreferences.rememberedUsername;
-				Client.Login_isUsernameRemembered = true;
-			} else {
-				Client.Login_isUsernameRemembered = false;
-			}
-
-		}
+	public static void method2248(AbstractArchive var0, AbstractArchive var1, boolean var2) {
+		class12.ObjectDefinition_archive = var0;
+		ObjectComposition.ObjectDefinition_modelsArchive = var1;
+		ObjectComposition.ObjectDefinition_isLowDetail = var2;
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("gj")
 	@ObfuscatedSignature(
-		descriptor = "(CI)C",
-		garbageValue = "2115145690"
+		descriptor = "(B)Z",
+		garbageValue = "4"
 	)
-	static char method2313(char var0) {
-		return var0 != 181 && var0 != 402 ? Character.toTitleCase(var0) : var0;
-	}
-
-	@ObfuscatedName("iq")
-	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "517043711"
-	)
-	@Export("Widget_runOnTargetLeave")
-	static void Widget_runOnTargetLeave() {
-		if (Client.isSpellSelected) {
-			Widget var0 = class126.getWidgetChild(class20.selectedSpellWidget, Client.selectedSpellChildIndex);
-			if (var0 != null && var0.onTargetLeave != null) {
-				ScriptEvent var1 = new ScriptEvent();
-				var1.widget = var0;
-				var1.args = var0.onTargetLeave;
-				class285.runScriptEvent(var1);
-			}
-
-			Client.field633 = -1;
-			Client.isSpellSelected = false;
-			SecureRandomCallable.invalidateWidget(var0);
-		}
+	static boolean method2250() {
+		return (Client.drawPlayerNames & 8) != 0;
 	}
 }

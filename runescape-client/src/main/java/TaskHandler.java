@@ -7,34 +7,28 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("eb")
+@ObfuscatedName("ex")
 @Implements("TaskHandler")
 public class TaskHandler implements Runnable {
 	@ObfuscatedName("c")
 	@Export("javaVendor")
 	public static String javaVendor;
-	@ObfuscatedName("eo")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "Lkz;"
-	)
-	@Export("archive12")
-	static Archive archive12;
-	@ObfuscatedName("p")
-	@ObfuscatedSignature(
-		descriptor = "Lfk;"
+		descriptor = "Lfw;"
 	)
 	@Export("current")
 	Task current;
-	@ObfuscatedName("m")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		descriptor = "Lfk;"
+		descriptor = "Lfw;"
 	)
 	@Export("task")
 	Task task;
-	@ObfuscatedName("t")
+	@ObfuscatedName("r")
 	@Export("thread")
 	Thread thread;
-	@ObfuscatedName("s")
+	@ObfuscatedName("o")
 	@Export("isClosed")
 	boolean isClosed;
 
@@ -43,11 +37,11 @@ public class TaskHandler implements Runnable {
 		this.task = null;
 		this.isClosed = false;
 		javaVendor = "Unknown";
-		NPC.javaVersion = "1.6";
+		class134.javaVersion = "1.6";
 
 		try {
 			javaVendor = System.getProperty("java.vendor");
-			NPC.javaVersion = System.getProperty("java.version");
+			class134.javaVersion = System.getProperty("java.version");
 		} catch (Exception var2) {
 		}
 
@@ -60,8 +54,8 @@ public class TaskHandler implements Runnable {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(S)V",
-		garbageValue = "-23939"
+		descriptor = "(B)V",
+		garbageValue = "116"
 	)
 	@Export("close")
 	public final void close() {
@@ -77,10 +71,10 @@ public class TaskHandler implements Runnable {
 
 	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		descriptor = "(IIILjava/lang/Object;I)Lfk;",
-		garbageValue = "838873650"
+		descriptor = "(IIILjava/lang/Object;B)Lfw;",
+		garbageValue = "31"
 	)
 	@Export("newTask")
 	final Task newTask(int var1, int var2, int var3, Object var4) {
@@ -101,20 +95,20 @@ public class TaskHandler implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;II)Lfk;",
-		garbageValue = "1945864892"
+		descriptor = "(Ljava/lang/String;II)Lfw;",
+		garbageValue = "-111366077"
 	)
 	@Export("newSocketTask")
 	public final Task newSocketTask(String var1, int var2) {
 		return this.newTask(1, var2, 0, var1);
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/Runnable;II)Lfk;",
-		garbageValue = "-1633812322"
+		descriptor = "(Ljava/lang/Runnable;IS)Lfw;",
+		garbageValue = "-6952"
 	)
 	@Export("newThreadTask")
 	public final Task newThreadTask(Runnable var1, int var2) {
@@ -167,17 +161,5 @@ public class TaskHandler implements Runnable {
 				var1.status = 2;
 			}
 		}
-	}
-
-	@ObfuscatedName("b")
-	@ObfuscatedSignature(
-		descriptor = "([BI)[B",
-		garbageValue = "-1643511224"
-	)
-	public static byte[] method3047(byte[] var0) {
-		int var1 = var0.length;
-		byte[] var2 = new byte[var1];
-		System.arraycopy(var0, 0, var2, 0, var1);
-		return var2;
 	}
 }

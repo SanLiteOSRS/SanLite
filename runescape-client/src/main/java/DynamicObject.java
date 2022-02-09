@@ -4,69 +4,66 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bj")
+@ObfuscatedName("bc")
 @Implements("DynamicObject")
 public class DynamicObject extends Renderable {
-	@ObfuscatedName("o")
-	@Export("musicTrackBoolean")
-	public static boolean musicTrackBoolean;
 	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = 1712801751
+		intValue = 1992615399
 	)
 	@Export("id")
 	int id;
-	@ObfuscatedName("b")
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = 2015197805
+		intValue = -1317067285
 	)
 	@Export("type")
 	int type;
-	@ObfuscatedName("p")
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = 1555173169
+		intValue = -206062303
 	)
 	@Export("orientation")
 	int orientation;
-	@ObfuscatedName("m")
+	@ObfuscatedName("e")
 	@ObfuscatedGetter(
-		intValue = -393716715
+		intValue = 957350903
 	)
 	@Export("plane")
 	int plane;
-	@ObfuscatedName("t")
+	@ObfuscatedName("r")
 	@ObfuscatedGetter(
-		intValue = -332192069
+		intValue = -713175869
 	)
 	@Export("x")
 	int x;
-	@ObfuscatedName("s")
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = 1639785979
+		intValue = -210754635
 	)
 	@Export("y")
 	int y;
-	@ObfuscatedName("j")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		descriptor = "Lgn;"
+		descriptor = "Lgm;"
 	)
 	@Export("sequenceDefinition")
 	SequenceDefinition sequenceDefinition;
 	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		intValue = -724114563
+		intValue = -1627064681
 	)
 	@Export("frame")
 	int frame;
-	@ObfuscatedName("n")
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = 343705565
+		intValue = -1083644335
 	)
 	@Export("cycleStart")
 	int cycleStart;
 
 	@ObfuscatedSignature(
-		descriptor = "(IIIIIIIZLgt;)V"
+		descriptor = "(IIIIIIIZLgp;)V"
 	)
 	DynamicObject(int var1, int var2, int var3, int var4, int var5, int var6, int var7, boolean var8, Renderable var9) {
 		this.id = var1;
@@ -76,10 +73,10 @@ public class DynamicObject extends Renderable {
 		this.x = var5;
 		this.y = var6;
 		if (var7 != -1) {
-			this.sequenceDefinition = UserComparator5.SequenceDefinition_get(var7);
+			this.sequenceDefinition = class78.SequenceDefinition_get(var7);
 			this.frame = 0;
 			this.cycleStart = Client.cycle - 1;
-			if (this.sequenceDefinition.field2078 == 0 && var9 != null && var9 instanceof DynamicObject) {
+			if (this.sequenceDefinition.field2109 == 0 && var9 != null && var9 instanceof DynamicObject) {
 				DynamicObject var10 = (DynamicObject)var9;
 				if (this.sequenceDefinition == var10.sequenceDefinition) {
 					this.frame = var10.frame;
@@ -89,21 +86,21 @@ public class DynamicObject extends Renderable {
 			}
 
 			if (var8 && this.sequenceDefinition.frameCount != -1) {
-				if (!this.sequenceDefinition.method3690()) {
+				if (!this.sequenceDefinition.method3600()) {
 					this.frame = (int)(Math.random() * (double)this.sequenceDefinition.frameIds.length);
 					this.cycleStart -= (int)(Math.random() * (double)this.sequenceDefinition.frameLengths[this.frame]);
 				} else {
-					this.frame = (int)(Math.random() * (double)this.sequenceDefinition.method3647());
+					this.frame = (int)(Math.random() * (double)this.sequenceDefinition.method3637());
 				}
 			}
 		}
 
 	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		descriptor = "(I)Lgo;",
-		garbageValue = "202861607"
+		descriptor = "(B)Lgf;",
+		garbageValue = "39"
 	)
 	@Export("getModel")
 	protected final Model getModel() {
@@ -114,8 +111,8 @@ public class DynamicObject extends Renderable {
 				var1 = 100;
 			}
 
-			if (this.sequenceDefinition.method3690()) {
-				var2 = this.sequenceDefinition.method3647();
+			if (this.sequenceDefinition.method3600()) {
+				var2 = this.sequenceDefinition.method3637();
 				this.frame += var1;
 				var1 = 0;
 				if (this.frame >= var2) {
@@ -125,11 +122,11 @@ public class DynamicObject extends Renderable {
 					}
 				}
 			} else {
-				label79: {
+				label82: {
 					do {
 						do {
 							if (var1 <= this.sequenceDefinition.frameLengths[this.frame]) {
-								break label79;
+								break label82;
 							}
 
 							var1 -= this.sequenceDefinition.frameLengths[this.frame];
@@ -146,7 +143,7 @@ public class DynamicObject extends Renderable {
 			this.cycleStart = Client.cycle - var1;
 		}
 
-		ObjectComposition var12 = class148.getObjectDefinition(this.id);
+		ObjectComposition var12 = ParamComposition.getObjectDefinition(this.id);
 		if (var12.transforms != null) {
 			var12 = var12.transform();
 		}
@@ -175,39 +172,63 @@ public class DynamicObject extends Renderable {
 		}
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "-2047180013"
+		descriptor = "(Lkq;Lkq;IIB)Llv;",
+		garbageValue = "15"
 	)
-	@Export("iLog")
-	public static int iLog(int var0) {
-		int var1 = 0;
-		if (var0 < 0 || var0 >= 65536) {
-			var0 >>>= 16;
-			var1 += 16;
-		}
+	public static Font method1996(AbstractArchive var0, AbstractArchive var1, int var2, int var3) {
+		return !class125.SpriteBuffer_loadSpritesFromArchive(var0, var2, var3) ? null : Clock.method3125(var1.takeFile(var2, var3));
+	}
 
-		if (var0 >= 256) {
-			var0 >>>= 8;
-			var1 += 8;
-		}
+	@ObfuscatedName("r")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "-911650493"
+	)
+	static void method1998() {
+		if (Login.Login_username == null || Login.Login_username.length() <= 0) {
+			if (class424.clientPreferences.rememberedUsername != null) {
+				Login.Login_username = class424.clientPreferences.rememberedUsername;
+				Client.Login_isUsernameRemembered = true;
+			} else {
+				Client.Login_isUsernameRemembered = false;
+			}
 
-		if (var0 >= 16) {
-			var0 >>>= 4;
-			var1 += 4;
 		}
+	}
 
-		if (var0 >= 4) {
-			var0 >>>= 2;
-			var1 += 2;
+	@ObfuscatedName("y")
+	@ObfuscatedSignature(
+		descriptor = "(Ljz;II)V",
+		garbageValue = "-1250618442"
+	)
+	@Export("Widget_setKeyIgnoreHeld")
+	static final void Widget_setKeyIgnoreHeld(Widget var0, int var1) {
+		if (var0.field3339 == null) {
+			throw new RuntimeException();
+		} else {
+			if (var0.field3254 == null) {
+				var0.field3254 = new int[var0.field3339.length];
+			}
+
+			var0.field3254[var1] = Integer.MAX_VALUE;
 		}
+	}
 
-		if (var0 >= 1) {
-			var0 >>>= 1;
-			++var1;
+	@ObfuscatedName("y")
+	@ObfuscatedSignature(
+		descriptor = "(CI)Z",
+		garbageValue = "1245279724"
+	)
+	@Export("isCharPrintable")
+	public static boolean isCharPrintable(char var0) {
+		if (var0 >= ' ' && var0 <= '~') {
+			return true;
+		} else if (var0 >= 160 && var0 <= 255) {
+			return true;
+		} else {
+			return var0 == 8364 || var0 == 338 || var0 == 8212 || var0 == 339 || var0 == 376;
 		}
-
-		return var0 + var1;
 	}
 }

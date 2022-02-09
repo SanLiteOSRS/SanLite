@@ -1,28 +1,30 @@
-import java.io.File;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jv")
+@ObfuscatedName("je")
 @Implements("Huffman")
 public class Huffman {
-	@ObfuscatedName("m")
-	@Export("JagexCache_locationFile")
-	public static File JagexCache_locationFile;
-	@ObfuscatedName("bl")
-	@ObfuscatedGetter(
-		intValue = 1568185021
+	@ObfuscatedName("uf")
+	@ObfuscatedSignature(
+		descriptor = "Lor;"
 	)
-	static int field3152;
+	@Export("worldMap")
+	static WorldMap worldMap;
+	@ObfuscatedName("ih")
+	@ObfuscatedSignature(
+		descriptor = "[Lpt;"
+	)
+	@Export("mapDotSprites")
+	static SpritePixels[] mapDotSprites;
 	@ObfuscatedName("c")
 	@Export("masks")
 	int[] masks;
-	@ObfuscatedName("b")
+	@ObfuscatedName("l")
 	@Export("bits")
 	byte[] bits;
-	@ObfuscatedName("p")
+	@ObfuscatedName("s")
 	@Export("keys")
 	int[] keys;
 
@@ -51,7 +53,7 @@ public class Huffman {
 
 					for (var10 = var6 - 1; var10 >= 1; --var10) {
 						var11 = var3[var10];
-						if (var8 != var11) {
+						if (var11 != var8) {
 							break;
 						}
 
@@ -112,7 +114,7 @@ public class Huffman {
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
 		descriptor = "([BII[BII)I",
-		garbageValue = "1986002175"
+		garbageValue = "647813929"
 	)
 	@Export("compress")
 	int compress(byte[] var1, int var2, int var3, byte[] var4, int var5) {
@@ -130,7 +132,7 @@ public class Huffman {
 			int var11 = var7 >> 3;
 			int var12 = var7 & 7;
 			var6 &= -var12 >> 31;
-			int var13 = (var10 + var12 - 1 >> 3) + var11;
+			int var13 = (var12 + var10 - 1 >> 3) + var11;
 			var12 += 24;
 			var4[var11] = (byte)(var6 |= var9 >>> var12);
 			if (var11 < var13) {
@@ -160,10 +162,10 @@ public class Huffman {
 		return (var7 + 7 >> 3) - var5;
 	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		descriptor = "([BI[BIIB)I",
-		garbageValue = "67"
+		descriptor = "([BI[BIII)I",
+		garbageValue = "1600049269"
 	)
 	@Export("decompress")
 	int decompress(byte[] var1, int var2, byte[] var3, int var4, int var5) {
@@ -302,5 +304,38 @@ public class Huffman {
 
 			return var7 + 1 - var2;
 		}
+	}
+
+	@ObfuscatedName("e")
+	@ObfuscatedSignature(
+		descriptor = "(Lkq;Ljava/lang/String;Ljava/lang/String;I)[Lpg;",
+		garbageValue = "-1550512202"
+	)
+	public static IndexedSprite[] method5278(AbstractArchive var0, String var1, String var2) {
+		int var3 = var0.getGroupId(var1);
+		int var4 = var0.getFileId(var3, var2);
+		IndexedSprite[] var5;
+		if (!class125.SpriteBuffer_loadSpritesFromArchive(var0, var3, var4)) {
+			var5 = null;
+		} else {
+			IndexedSprite[] var7 = new IndexedSprite[class434.SpriteBuffer_spriteCount];
+
+			for (int var8 = 0; var8 < class434.SpriteBuffer_spriteCount; ++var8) {
+				IndexedSprite var9 = var7[var8] = new IndexedSprite();
+				var9.width = class434.SpriteBuffer_spriteWidth;
+				var9.height = class434.SpriteBuffer_spriteHeight;
+				var9.xOffset = class434.SpriteBuffer_xOffsets[var8];
+				var9.yOffset = class434.SpriteBuffer_yOffsets[var8];
+				var9.subWidth = class434.SpriteBuffer_spriteWidths[var8];
+				var9.subHeight = Fonts.SpriteBuffer_spriteHeights[var8];
+				var9.palette = HealthBarUpdate.SpriteBuffer_spritePalette;
+				var9.pixels = WorldMapLabelSize.SpriteBuffer_pixels[var8];
+			}
+
+			Canvas.method365();
+			var5 = var7;
+		}
+
+		return var5;
 	}
 }
