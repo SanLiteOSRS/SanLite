@@ -57,8 +57,6 @@ tasks {
             "git.commit" to project.extra["gitCommit"]
         )
 
-        logger.warn("floempie: $tokens")
-
         inputs.properties(tokens)
 
         from("src/main/resources/net/runelite/bootstrap") {
