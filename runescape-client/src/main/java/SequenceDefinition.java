@@ -45,7 +45,8 @@ public class SequenceDefinition extends DualNode {
 	@ObfuscatedGetter(
 		intValue = 36227189
 	)
-	int field2091;
+	@Export("SequenceDefinition_cachedModelId")
+	int SequenceDefinition_cachedModelId;
 	@ObfuscatedName("v")
 	public Map field2092;
 	@ObfuscatedName("a")
@@ -128,7 +129,7 @@ public class SequenceDefinition extends DualNode {
 	}
 
 	SequenceDefinition() {
-		this.field2091 = -1;
+		this.SequenceDefinition_cachedModelId = -1;
 		this.field2097 = 0;
 		this.field2094 = 0;
 		this.frameCount = -1;
@@ -231,7 +232,7 @@ public class SequenceDefinition extends DualNode {
 				this.soundEffects[var4] = var1.readMedium();
 			}
 		} else if (var2 == 14) {
-			this.field2091 = var1.readInt();
+			this.SequenceDefinition_cachedModelId = var1.readInt();
 		} else if (var2 == 15) {
 			var3 = var1.readUnsignedShort();
 			this.field2092 = new HashMap();
@@ -293,7 +294,7 @@ public class SequenceDefinition extends DualNode {
 	@Export("transformActorModel")
 	public Model transformActorModel(Model var1, int var2) {
 		Model var4;
-		if (!this.method3600()) {
+		if (!this.isCachedModelIdSet()) {
 			var2 = this.frameIds[var2];
 			Frames var5 = MouseHandler.getFrames(var2 >> 16);
 			var2 &= 65535;
@@ -305,7 +306,7 @@ public class SequenceDefinition extends DualNode {
 				return var4;
 			}
 		} else {
-			class120 var3 = WorldMapSectionType.method4724(this.field2091);
+			class120 var3 = WorldMapSectionType.method4724(this.SequenceDefinition_cachedModelId);
 			if (var3 == null) {
 				return var1.toSharedSequenceModel(true);
 			} else {
@@ -324,7 +325,7 @@ public class SequenceDefinition extends DualNode {
 	@Export("transformObjectModel")
 	Model transformObjectModel(Model var1, int var2, int var3) {
 		Model var5;
-		if (!this.method3600()) {
+		if (!this.isCachedModelIdSet()) {
 			var2 = this.frameIds[var2];
 			Frames var6 = MouseHandler.getFrames(var2 >> 16);
 			var2 &= 65535;
@@ -353,7 +354,7 @@ public class SequenceDefinition extends DualNode {
 				return var5;
 			}
 		} else {
-			class120 var4 = WorldMapSectionType.method4724(this.field2091);
+			class120 var4 = WorldMapSectionType.method4724(this.SequenceDefinition_cachedModelId);
 			if (var4 == null) {
 				return var1.toSharedSequenceModel(true);
 			} else {
@@ -389,7 +390,7 @@ public class SequenceDefinition extends DualNode {
 	@Export("transformSpotAnimationModel")
 	Model transformSpotAnimationModel(Model var1, int var2) {
 		Model var4;
-		if (!this.method3600()) {
+		if (!this.isCachedModelIdSet()) {
 			var2 = this.frameIds[var2];
 			Frames var5 = MouseHandler.getFrames(var2 >> 16);
 			var2 &= 65535;
@@ -401,7 +402,7 @@ public class SequenceDefinition extends DualNode {
 				return var4;
 			}
 		} else {
-			class120 var3 = WorldMapSectionType.method4724(this.field2091);
+			class120 var3 = WorldMapSectionType.method4724(this.SequenceDefinition_cachedModelId);
 			if (var3 == null) {
 				return var1.toSharedSpotAnimationModel(true);
 			} else {
@@ -419,16 +420,16 @@ public class SequenceDefinition extends DualNode {
 	)
 	@Export("applyTransformations")
 	public Model applyTransformations(Model var1, int var2, SequenceDefinition var3, int var4) {
-		if (field2105 && !this.method3600() && !var3.method3600()) {
+		if (field2105 && !this.isCachedModelIdSet() && !var3.isCachedModelIdSet()) {
 			return this.method3598(var1, var2, var3, var4);
 		} else {
 			Model var5 = var1.toSharedSequenceModel(false);
 			boolean var6 = false;
 			Frames var7 = null;
 			class120 var8;
-			if (this.method3600()) {
+			if (this.isCachedModelIdSet()) {
 				var8 = this.method3602();
-				if (var3.method3600() && this.field2101 == null) {
+				if (var3.isCachedModelIdSet() && this.field2101 == null) {
 					var5.method4140(var8, var2);
 					return var5;
 				}
@@ -442,7 +443,7 @@ public class SequenceDefinition extends DualNode {
 					return var3.transformActorModel(var1, var4);
 				}
 
-				if (!var3.method3600() && (this.field2100 == null || var4 == -1)) {
+				if (!var3.isCachedModelIdSet() && (this.field2100 == null || var4 == -1)) {
 					var5.animate(var7, var2);
 					return var5;
 				}
@@ -452,13 +453,13 @@ public class SequenceDefinition extends DualNode {
 					return var5;
 				}
 
-				var6 = var3.method3600();
+				var6 = var3.isCachedModelIdSet();
 				if (!var6) {
 					var5.method4145(var7, var2, this.field2100, false);
 				}
 			}
 
-			if (var3.method3600()) {
+			if (var3.isCachedModelIdSet()) {
 				var8 = var3.method3602();
 				var5.method4139(var8, var4, this.field2101, true);
 			} else {
@@ -516,7 +517,7 @@ public class SequenceDefinition extends DualNode {
 	)
 	@Export("transformWidgetModel")
 	public Model transformWidgetModel(Model var1, int var2) {
-		if (!this.method3600()) {
+		if (!this.isCachedModelIdSet()) {
 			int var3 = this.frameIds[var2];
 			Frames var4 = MouseHandler.getFrames(var3 >> 16);
 			var3 &= 65535;
@@ -553,8 +554,9 @@ public class SequenceDefinition extends DualNode {
 		descriptor = "(I)Z",
 		garbageValue = "-2140209014"
 	)
-	public boolean method3600() {
-		return this.field2091 >= 0;
+	@Export("isCachedModelIdSet")
+	public boolean isCachedModelIdSet() {
+		return this.SequenceDefinition_cachedModelId >= 0;
 	}
 
 	@ObfuscatedName("h")
@@ -572,7 +574,7 @@ public class SequenceDefinition extends DualNode {
 		garbageValue = "-1955299057"
 	)
 	public class120 method3602() {
-		return this.method3600() ? WorldMapSectionType.method4724(this.field2091) : null;
+		return this.isCachedModelIdSet() ? WorldMapSectionType.method4724(this.SequenceDefinition_cachedModelId) : null;
 	}
 
 	@ObfuscatedName("c")

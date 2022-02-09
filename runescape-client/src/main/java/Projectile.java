@@ -227,7 +227,7 @@ public final class Projectile extends Renderable {
 		this.yaw = (int)(Math.atan2(this.speedX, this.speedY) * 325.949D) + 1024 & 2047;
 		this.pitch = (int)(Math.atan2(this.speedZ, this.speed) * 325.949D) & 2047;
 		if (this.sequenceDefinition != null) {
-			if (!this.sequenceDefinition.method3600()) {
+			if (!this.sequenceDefinition.isCachedModelIdSet()) {
 				this.frameCycle += var1;
 
 				while (true) {

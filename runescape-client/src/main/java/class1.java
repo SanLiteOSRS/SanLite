@@ -632,7 +632,7 @@ public class class1 implements Callable {
 				return 1;
 			} else if (var0 == 1125) {
 				var8 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-				class431 var6 = (class431)class140.findEnumerated(class368.FillMode_values(), var8);
+				FillMode var6 = (FillMode)class140.findEnumerated(class368.FillMode_values(), var8);
 				if (var6 != null) {
 					var3.fillMode = var6;
 					class112.invalidateWidget(var3);

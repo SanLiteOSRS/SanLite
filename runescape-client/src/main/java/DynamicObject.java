@@ -86,7 +86,7 @@ public class DynamicObject extends Renderable {
 			}
 
 			if (var8 && this.sequenceDefinition.frameCount != -1) {
-				if (!this.sequenceDefinition.method3600()) {
+				if (!this.sequenceDefinition.isCachedModelIdSet()) {
 					this.frame = (int)(Math.random() * (double)this.sequenceDefinition.frameIds.length);
 					this.cycleStart -= (int)(Math.random() * (double)this.sequenceDefinition.frameLengths[this.frame]);
 				} else {
@@ -111,7 +111,7 @@ public class DynamicObject extends Renderable {
 				var1 = 100;
 			}
 
-			if (this.sequenceDefinition.method3600()) {
+			if (this.sequenceDefinition.isCachedModelIdSet()) {
 				var2 = this.sequenceDefinition.method3637();
 				this.frame += var1;
 				var1 = 0;

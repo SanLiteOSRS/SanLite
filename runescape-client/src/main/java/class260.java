@@ -4,7 +4,6 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@jf
 @ObfuscatedName("jh")
 public final class class260 {
 	@ObfuscatedName("s")

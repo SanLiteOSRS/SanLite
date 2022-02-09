@@ -51,7 +51,8 @@ public class LoginPacket implements class253 {
 	@ObfuscatedSignature(
 		descriptor = "[Lis;"
 	)
-	static final LoginPacket[] field3070;
+	@Export("LoginPacket_indexedValues")
+	static final LoginPacket[] LoginPacket_indexedValues;
 	@ObfuscatedName("w")
 	@ObfuscatedGetter(
 		intValue = -997966029
@@ -67,12 +68,12 @@ public class LoginPacket implements class253 {
 		field3066 = new LoginPacket(19, -2);
 		field3063 = new LoginPacket(26, 8);
 		field3068 = new LoginPacket(27, 0);
-		field3070 = new LoginPacket[32];
+		LoginPacket_indexedValues = new LoginPacket[32];
 		LoginPacket[] var0 = new LoginPacket[]{field3063, field3066, field3064, field3071, field3068, field3065, field3067};
 		LoginPacket[] var1 = var0;
 
 		for (int var2 = 0; var2 < var1.length; ++var2) {
-			field3070[var1[var2].id] = var1[var2];
+			LoginPacket_indexedValues[var1[var2].id] = var1[var2];
 		}
 
 	}

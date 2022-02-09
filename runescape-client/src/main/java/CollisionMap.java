@@ -247,7 +247,8 @@ public class CollisionMap {
 		descriptor = "(IIB)V",
 		garbageValue = "-55"
 	)
-	public void method3650(int var1, int var2) {
+	@Export("setBlockedByFloor")
+	public void setBlockedByFloor(int var1, int var2) {
 		var1 -= this.xInset;
 		var2 -= this.yInset;
 		int[] var10000 = this.flags[var1];

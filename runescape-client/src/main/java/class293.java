@@ -81,7 +81,7 @@ public class class293 {
 		if (var0.movementSequence != -1) {
 			var1 = class78.SequenceDefinition_get(var0.movementSequence);
 			if (var1 != null) {
-				if (!var1.method3600() && var1.frameIds != null) {
+				if (!var1.isCachedModelIdSet() && var1.frameIds != null) {
 					++var0.movementFrameCycle;
 					if (var0.movementFrame < var1.frameIds.length && var0.movementFrameCycle > var1.frameLengths[var0.movementFrame]) {
 						var0.movementFrameCycle = 1;
@@ -94,7 +94,7 @@ public class class293 {
 						var0.movementFrame = 0;
 						Projectile.method1958(var1, var0.movementFrame, var0.x, var0.y);
 					}
-				} else if (var1.method3600()) {
+				} else if (var1.isCachedModelIdSet()) {
 					++var0.movementFrame;
 					var2 = var1.method3637();
 					if (var0.movementFrame < var2) {
@@ -131,7 +131,7 @@ public class class293 {
 					if (var0.spotAnimationFrame >= var5.frameIds.length && (var0.spotAnimationFrame < 0 || var0.spotAnimationFrame >= var5.frameIds.length)) {
 						var0.spotAnimation = -1;
 					}
-				} else if (var5.method3600()) {
+				} else if (var5.isCachedModelIdSet()) {
 					++var0.spotAnimationFrame;
 					int var3 = var5.method3637();
 					if (var0.spotAnimationFrame < var3) {
@@ -158,7 +158,7 @@ public class class293 {
 		if (var0.sequence != -1 && var0.sequenceDelay == 0) {
 			var1 = class78.SequenceDefinition_get(var0.sequence);
 			if (var1 != null) {
-				if (!var1.method3600() && var1.frameIds != null) {
+				if (!var1.isCachedModelIdSet() && var1.frameIds != null) {
 					++var0.sequenceFrameCycle;
 					if (var0.sequenceFrame < var1.frameIds.length && var0.sequenceFrameCycle > var1.frameLengths[var0.sequenceFrame]) {
 						var0.sequenceFrameCycle = 1;
@@ -179,7 +179,7 @@ public class class293 {
 					}
 
 					var0.isWalking = var1.field2102;
-				} else if (var1.method3600()) {
+				} else if (var1.isCachedModelIdSet()) {
 					++var0.sequenceFrame;
 					var2 = var1.method3602().method2693();
 					if (var0.sequenceFrame < var2) {

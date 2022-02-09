@@ -10,8 +10,8 @@ public class class368 {
 		garbageValue = "12112"
 	)
 	@Export("FillMode_values")
-	public static class431[] FillMode_values() {
-		return new class431[]{class431.field4588, class431.SOLID, class431.field4591};
+	public static FillMode[] FillMode_values() {
+		return new FillMode[]{FillMode.field4588, FillMode.SOLID, FillMode.field4591};
 	}
 
 	@ObfuscatedName("hx")

@@ -68,7 +68,7 @@ public class class145 extends class126 {
 						}
 
 						if (var5 >= 0) {
-							var1[var5].method3650(var3, var4);
+							var1[var5].setBlockedByFloor(var3, var4);
 						}
 					}
 				}
@@ -259,7 +259,7 @@ public class class145 extends class126 {
 									var32 = var12 * 256 / var15;
 									var33 = var13 / var16;
 									var34 = var14 / var16;
-									var30 = KitDefinition.method3224(var32, var33, var34);
+									var30 = KitDefinition.hslToRgb(var32, var33, var34);
 									var32 = var32 + Tiles.rndHue & 255;
 									var34 += Tiles.rndLightness;
 									if (var34 < 0) {
@@ -268,7 +268,7 @@ public class class145 extends class126 {
 										var34 = 255;
 									}
 
-									var31 = KitDefinition.method3224(var32, var33, var34);
+									var31 = KitDefinition.hslToRgb(var32, var33, var34);
 								}
 
 								FloorOverlayDefinition var35;
@@ -346,7 +346,7 @@ public class class145 extends class126 {
 										var47 = -1;
 										var40 = -2;
 									} else {
-										var39 = KitDefinition.method3224(var35.hue, var35.saturation, var35.lightness);
+										var39 = KitDefinition.hslToRgb(var35.hue, var35.saturation, var35.lightness);
 										var41 = var35.hue + Tiles.rndHue & 255;
 										var42 = var35.lightness + Tiles.rndLightness;
 										if (var42 < 0) {
@@ -355,7 +355,7 @@ public class class145 extends class126 {
 											var42 = 255;
 										}
 
-										var40 = KitDefinition.method3224(var41, var35.saturation, var42);
+										var40 = KitDefinition.hslToRgb(var41, var35.saturation, var42);
 									}
 
 									var41 = 0;
@@ -372,7 +372,7 @@ public class class145 extends class126 {
 											var43 = 255;
 										}
 
-										var40 = KitDefinition.method3224(var42, var35.secondarySaturation, var43);
+										var40 = KitDefinition.hslToRgb(var42, var35.secondarySaturation, var43);
 										var41 = Rasterizer3D.Rasterizer3D_colorPalette[IgnoreList.method6264(var40, 96)];
 									}
 

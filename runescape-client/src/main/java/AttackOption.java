@@ -160,7 +160,7 @@ public enum AttackOption implements MouseWheel {
 			if ((var4 & 1024) != 0) {
 				var3.spotAnimation = var0.method7408();
 				var6 = var0.readInt();
-				var3.field1152 = var6 >> 16;
+				var3.spotAnimationHeight = var6 >> 16;
 				var3.field1177 = (var6 & 65535) + Client.cycle;
 				var3.spotAnimationFrame = 0;
 				var3.spotAnimationFrameCycle = 0;

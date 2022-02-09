@@ -70,7 +70,7 @@ public abstract class class142 extends Node {
 			if ((var4 & 128) != 0) {
 				var3.spotAnimation = var0.method7562();
 				var5 = var0.readInt();
-				var3.field1152 = var5 >> 16;
+				var3.spotAnimationHeight = var5 >> 16;
 				var3.field1177 = (var5 & 65535) + Client.cycle;
 				var3.spotAnimationFrame = 0;
 				var3.spotAnimationFrameCycle = 0;
