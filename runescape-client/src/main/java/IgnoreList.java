@@ -1,25 +1,20 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.StringReader;
-import java.io.StringWriter;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("mq")
+@ObfuscatedName("mn")
 @Implements("IgnoreList")
 public class IgnoreList extends NameableContainer {
-	@ObfuscatedName("p")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "Low;"
+		descriptor = "Lok;"
 	)
 	@Export("loginType")
 	final LoginType loginType;
 
 	@ObfuscatedSignature(
-		descriptor = "(Low;)V"
+		descriptor = "(Lok;)V"
 	)
 	public IgnoreList(LoginType var1) {
 		super(400);
@@ -28,28 +23,28 @@ public class IgnoreList extends NameableContainer {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(B)Lmv;",
-		garbageValue = "2"
+		descriptor = "(I)Lmy;",
+		garbageValue = "2000225121"
 	)
 	@Export("newInstance")
 	Nameable newInstance() {
 		return new Ignored();
 	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		descriptor = "(II)[Lmv;",
-		garbageValue = "-813912346"
+		descriptor = "(IB)[Lmy;",
+		garbageValue = "55"
 	)
 	@Export("newTypedArray")
 	Nameable[] newTypedArray(int var1) {
 		return new Ignored[var1];
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
 		descriptor = "(Lpi;II)V",
-		garbageValue = "-2139408560"
+		garbageValue = "2036771987"
 	)
 	@Export("read")
 	public void read(Buffer var1, int var2) {
@@ -93,56 +88,54 @@ public class IgnoreList extends NameableContainer {
 		}
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/Throwable;B)Ljava/lang/String;",
-		garbageValue = "111"
+		descriptor = "(IIB)I",
+		garbageValue = "33"
 	)
-	static String method6267(Throwable var0) throws IOException {
-		String var1;
-		if (var0 instanceof RunException) {
-			RunException var2 = (RunException)var0;
-			var1 = var2.message + " | ";
-			var0 = var2.throwable;
-		} else {
-			var1 = "";
-		}
-
-		StringWriter var12 = new StringWriter();
-		PrintWriter var3 = new PrintWriter(var12);
-		var0.printStackTrace(var3);
-		var3.close();
-		String var4 = var12.toString();
-		BufferedReader var5 = new BufferedReader(new StringReader(var4));
-		String var6 = var5.readLine();
-
-		while (true) {
-			while (true) {
-				String var7 = var5.readLine();
-				if (var7 == null) {
-					var1 = var1 + "| " + var6;
-					return var1;
-				}
-
-				int var8 = var7.indexOf(40);
-				int var9 = var7.indexOf(41, var8 + 1);
-				if (var8 >= 0 && var9 >= 0) {
-					String var10 = var7.substring(var8 + 1, var9);
-					int var11 = var10.indexOf(".java:");
-					if (var11 >= 0) {
-						var10 = var10.substring(0, var11) + var10.substring(var11 + 5);
-						var1 = var1 + var10 + ' ';
-						continue;
-					}
-
-					var7 = var7.substring(0, var8);
-				}
-
-				var7 = var7.trim();
-				var7 = var7.substring(var7.lastIndexOf(32) + 1);
-				var7 = var7.substring(var7.lastIndexOf(9) + 1);
-				var1 = var1 + var7 + ' ';
+	static final int method6264(int var0, int var1) {
+		if (var0 == -2) {
+			return 12345678;
+		} else if (var0 == -1) {
+			if (var1 < 2) {
+				var1 = 2;
+			} else if (var1 > 126) {
+				var1 = 126;
 			}
+
+			return var1;
+		} else {
+			var1 = (var0 & 127) * var1 / 128;
+			if (var1 < 2) {
+				var1 = 2;
+			} else if (var1 > 126) {
+				var1 = 126;
+			}
+
+			return (var0 & 65408) + var1;
 		}
+	}
+
+	@ObfuscatedName("al")
+	@ObfuscatedSignature(
+		descriptor = "(Lfg;I)Z",
+		garbageValue = "65280"
+	)
+	static boolean method6265(ObjectComposition var0) {
+		if (var0.transforms != null) {
+			int[] var1 = var0.transforms;
+
+			for (int var2 = 0; var2 < var1.length; ++var2) {
+				int var3 = var1[var2];
+				ObjectComposition var4 = ParamComposition.getObjectDefinition(var3);
+				if (var4.mapIconId != -1) {
+					return true;
+				}
+			}
+		} else if (var0.mapIconId != -1) {
+			return true;
+		}
+
+		return false;
 	}
 }

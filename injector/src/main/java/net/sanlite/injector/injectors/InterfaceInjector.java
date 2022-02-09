@@ -53,7 +53,6 @@ public class InterfaceInjector extends AbstractInjector
 		}
 
 		final Interfaces interfaces = vanillaCf.getInterfaces();
-		System.out.println(fullName);
 		interfaces.addInterface(new Class(fullName));
 		implemented++;
 

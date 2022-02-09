@@ -16,4 +16,9 @@ public interface RSSequenceDefinition extends RSNode, Animation
 
 	@Import("transformSpotAnimationModel")
 	RSModel transformSpotAnimationModel(RSModel var1, int var2);
+
+	@Import("isCachedModelIdSet")
+	boolean isCachedModelIdSet();
+
+	void setId(int id);
 }

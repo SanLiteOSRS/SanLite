@@ -3,44 +3,42 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("aa")
+@ObfuscatedName("au")
 @Implements("SoundCache")
 public class SoundCache {
-	@ObfuscatedName("s")
-	@Export("Interpreter_intLocals")
-	static int[] Interpreter_intLocals;
-	@ObfuscatedName("w")
-	static byte[][][] field321;
-	@ObfuscatedName("a")
-	@Export("ByteArrayPool_alternativeSizes")
-	public static int[] ByteArrayPool_alternativeSizes;
+	@ObfuscatedName("eq")
+	@ObfuscatedSignature(
+		descriptor = "Lkz;"
+	)
+	@Export("archive14")
+	static Archive archive14;
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "Lku;"
+		descriptor = "Lkq;"
 	)
 	@Export("soundEffectIndex")
 	AbstractArchive soundEffectIndex;
-	@ObfuscatedName("b")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		descriptor = "Lku;"
+		descriptor = "Lkq;"
 	)
 	@Export("musicSampleIndex")
 	AbstractArchive musicSampleIndex;
-	@ObfuscatedName("p")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "Lon;"
+		descriptor = "Loj;"
 	)
 	@Export("musicSamples")
 	NodeHashTable musicSamples;
-	@ObfuscatedName("m")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		descriptor = "Lon;"
+		descriptor = "Loj;"
 	)
 	@Export("rawSounds")
 	NodeHashTable rawSounds;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lku;Lku;)V"
+		descriptor = "(Lkq;Lkq;)V"
 	)
 	public SoundCache(AbstractArchive var1, AbstractArchive var2) {
 		this.musicSamples = new NodeHashTable(256);
@@ -51,8 +49,8 @@ public class SoundCache {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(II[IB)Laj;",
-		garbageValue = "-53"
+		descriptor = "(II[IB)Lab;",
+		garbageValue = "-12"
 	)
 	@Export("getSoundEffect0")
 	RawSound getSoundEffect0(int var1, int var2, int[] var3) {
@@ -80,10 +78,10 @@ public class SoundCache {
 		}
 	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		descriptor = "(II[II)Laj;",
-		garbageValue = "1434349687"
+		descriptor = "(II[IB)Lab;",
+		garbageValue = "-33"
 	)
 	@Export("getMusicSample0")
 	RawSound getMusicSample0(int var1, int var2, int[] var3) {
@@ -117,10 +115,10 @@ public class SoundCache {
 		}
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "(I[II)Laj;",
-		garbageValue = "-806437525"
+		descriptor = "(I[IB)Lab;",
+		garbageValue = "8"
 	)
 	@Export("getSoundEffect")
 	public RawSound getSoundEffect(int var1, int[] var2) {
@@ -133,10 +131,10 @@ public class SoundCache {
 		}
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		descriptor = "(I[II)Laj;",
-		garbageValue = "-1607899300"
+		descriptor = "(I[II)Lab;",
+		garbageValue = "1424152379"
 	)
 	@Export("getMusicSample")
 	public RawSound getMusicSample(int var1, int[] var2) {
@@ -149,174 +147,113 @@ public class SoundCache {
 		}
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "919700872"
+		descriptor = "(IIIII)V",
+		garbageValue = "-501729153"
 	)
-	public static int method833(int var0) {
-		return class378.field4233[var0 & 16383];
-	}
+	static void method800(int var0, int var1, int var2, int var3) {
+		for (ObjectSound var4 = (ObjectSound)ObjectSound.objectSounds.last(); var4 != null; var4 = (ObjectSound)ObjectSound.objectSounds.previous()) {
+			if (var4.soundEffectId != -1 || var4.soundEffectIds != null) {
+				int var5 = 0;
+				if (var1 > var4.maxX * 16384) {
+					var5 += var1 - var4.maxX * 16384;
+				} else if (var1 < var4.x * 16384) {
+					var5 += var4.x * 16384 - var1;
+				}
 
-	@ObfuscatedName("m")
-	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "2120721647"
-	)
-	static void method823() {
-		if (DirectByteArrayCopier.clearLoginScreen) {
-			AbstractByteArrayCopier.titleboxSprite = null;
-			class19.titlebuttonSprite = null;
-			Login.runesSprite = null;
-			WorldMapCacheName.leftTitleSprite = null;
-			NPC.rightTitleSprite = null;
-			Login.logoSprite = null;
-			Login.title_muteSprite = null;
-			KeyHandler.options_buttons_0Sprite = null;
-			LoginType.options_buttons_2Sprite = null;
-			class148.worldSelectBackSprites = null;
-			AbstractArchive.worldSelectFlagSprites = null;
-			UserComparator3.worldSelectArrows = null;
-			class112.worldSelectStars = null;
-			class21.field118 = null;
-			Client.loginScreenRunesAnimation.method2280();
-			class260.musicPlayerStatus = 1;
-			class124.musicTrackArchive = null;
-			VarcInt.musicTrackGroupId = -1;
-			class260.musicTrackFileId = -1;
-			ChatChannel.musicTrackVolume = 0;
-			DynamicObject.musicTrackBoolean = false;
-			class260.pcmSampleLength = 2;
-			ClientPreferences.method2297(true);
-			DirectByteArrayCopier.clearLoginScreen = false;
-		}
-	}
+				if (var2 > var4.maxY * 16384) {
+					var5 += var2 - var4.maxY * 16384;
+				} else if (var2 < var4.y * 16384) {
+					var5 += var4.y * 16384 - var2;
+				}
 
-	@ObfuscatedName("ak")
-	@ObfuscatedSignature(
-		descriptor = "(ILju;ZB)V",
-		garbageValue = "8"
-	)
-	static void method831(int var0, Coord var1, boolean var2) {
-		WorldMapArea var3 = WorldMapRectangle.getWorldMap().getMapArea(var0);
-		int var4 = class340.localPlayer.plane;
-		int var5 = class131.baseX * 64 + (class340.localPlayer.x >> 7);
-		int var6 = TileItem.baseY * 64 + (class340.localPlayer.y >> 7);
-		Coord var7 = new Coord(var4, var5, var6);
-		WorldMapRectangle.getWorldMap().method6876(var3, var7, var1, var2);
-	}
-
-	@ObfuscatedName("ie")
-	@ObfuscatedSignature(
-		descriptor = "(IIIILjava/lang/String;I)V",
-		garbageValue = "-1022759307"
-	)
-	@Export("widgetDefaultMenuAction")
-	static void widgetDefaultMenuAction(int var0, int var1, int var2, int var3, String var4) {
-		Widget var5 = class126.getWidgetChild(var1, var2);
-		if (var5 != null) {
-			if (var5.onOp != null) {
-				ScriptEvent var6 = new ScriptEvent();
-				var6.widget = var5;
-				var6.opIndex = var0;
-				var6.targetName = var4;
-				var6.args = var5.onOp;
-				class285.runScriptEvent(var6);
-			}
-
-			boolean var11 = true;
-			if (var5.contentType > 0) {
-				var11 = class19.method329(var5);
-			}
-
-			if (var11) {
-				int var8 = class363.getWidgetFlags(var5);
-				int var9 = var0 - 1;
-				boolean var7 = (var8 >> var9 + 1 & 1) != 0;
-				if (var7) {
-					PacketBufferNode var10;
-					if (var0 == 1) {
-						var10 = HitSplatDefinition.getPacketBufferNode(ClientPacket.field2891, Client.packetWriter.isaacCipher);
-						var10.packetBuffer.writeInt(var1);
-						var10.packetBuffer.writeShort(var2);
-						var10.packetBuffer.writeShort(var3);
-						Client.packetWriter.addNode(var10);
+				if (var5 - 64 <= var4.field822 && class424.clientPreferences.areaSoundEffectsVolume != 0 && var0 == var4.plane) {
+					var5 -= 64;
+					if (var5 < 0) {
+						var5 = 0;
 					}
 
-					if (var0 == 2) {
-						var10 = HitSplatDefinition.getPacketBufferNode(ClientPacket.field2880, Client.packetWriter.isaacCipher);
-						var10.packetBuffer.writeInt(var1);
-						var10.packetBuffer.writeShort(var2);
-						var10.packetBuffer.writeShort(var3);
-						Client.packetWriter.addNode(var10);
+					int var6 = (var4.field822 - var5) * class424.clientPreferences.areaSoundEffectsVolume / var4.field822;
+					if (var4.stream1 == null) {
+						if (var4.soundEffectId >= 0) {
+							SoundEffect var7 = SoundEffect.readSoundEffect(class403.archive4, var4.soundEffectId, 0);
+							if (var7 != null) {
+								RawSound var8 = var7.toRawSound().resample(class131.decimator);
+								RawPcmStream var9 = RawPcmStream.createRawPcmStream(var8, 100, var6);
+								var9.setNumLoops(-1);
+								class123.pcmStreamMixer.addSubStream(var9);
+								var4.stream1 = var9;
+							}
+						}
+					} else {
+						var4.stream1.method813(var6);
 					}
 
-					if (var0 == 3) {
-						var10 = HitSplatDefinition.getPacketBufferNode(ClientPacket.field2834, Client.packetWriter.isaacCipher);
-						var10.packetBuffer.writeInt(var1);
-						var10.packetBuffer.writeShort(var2);
-						var10.packetBuffer.writeShort(var3);
-						Client.packetWriter.addNode(var10);
+					if (var4.stream2 == null) {
+						if (var4.soundEffectIds != null && (var4.field826 -= var3) <= 0) {
+							int var11 = (int)(Math.random() * (double)var4.soundEffectIds.length);
+							SoundEffect var12 = SoundEffect.readSoundEffect(class403.archive4, var4.soundEffectIds[var11], 0);
+							if (var12 != null) {
+								RawSound var13 = var12.toRawSound().resample(class131.decimator);
+								RawPcmStream var10 = RawPcmStream.createRawPcmStream(var13, 100, var6);
+								var10.setNumLoops(0);
+								class123.pcmStreamMixer.addSubStream(var10);
+								var4.stream2 = var10;
+								var4.field826 = var4.field820 + (int)(Math.random() * (double)(var4.field830 - var4.field820));
+							}
+						}
+					} else {
+						var4.stream2.method813(var6);
+						if (!var4.stream2.hasNext()) {
+							var4.stream2 = null;
+						}
+					}
+				} else {
+					if (var4.stream1 != null) {
+						class123.pcmStreamMixer.removeSubStream(var4.stream1);
+						var4.stream1 = null;
 					}
 
-					if (var0 == 4) {
-						var10 = HitSplatDefinition.getPacketBufferNode(ClientPacket.field2821, Client.packetWriter.isaacCipher);
-						var10.packetBuffer.writeInt(var1);
-						var10.packetBuffer.writeShort(var2);
-						var10.packetBuffer.writeShort(var3);
-						Client.packetWriter.addNode(var10);
+					if (var4.stream2 != null) {
+						class123.pcmStreamMixer.removeSubStream(var4.stream2);
+						var4.stream2 = null;
 					}
-
-					if (var0 == 5) {
-						var10 = HitSplatDefinition.getPacketBufferNode(ClientPacket.field2877, Client.packetWriter.isaacCipher);
-						var10.packetBuffer.writeInt(var1);
-						var10.packetBuffer.writeShort(var2);
-						var10.packetBuffer.writeShort(var3);
-						Client.packetWriter.addNode(var10);
-					}
-
-					if (var0 == 6) {
-						var10 = HitSplatDefinition.getPacketBufferNode(ClientPacket.field2866, Client.packetWriter.isaacCipher);
-						var10.packetBuffer.writeInt(var1);
-						var10.packetBuffer.writeShort(var2);
-						var10.packetBuffer.writeShort(var3);
-						Client.packetWriter.addNode(var10);
-					}
-
-					if (var0 == 7) {
-						var10 = HitSplatDefinition.getPacketBufferNode(ClientPacket.field2822, Client.packetWriter.isaacCipher);
-						var10.packetBuffer.writeInt(var1);
-						var10.packetBuffer.writeShort(var2);
-						var10.packetBuffer.writeShort(var3);
-						Client.packetWriter.addNode(var10);
-					}
-
-					if (var0 == 8) {
-						var10 = HitSplatDefinition.getPacketBufferNode(ClientPacket.field2884, Client.packetWriter.isaacCipher);
-						var10.packetBuffer.writeInt(var1);
-						var10.packetBuffer.writeShort(var2);
-						var10.packetBuffer.writeShort(var3);
-						Client.packetWriter.addNode(var10);
-					}
-
-					if (var0 == 9) {
-						var10 = HitSplatDefinition.getPacketBufferNode(ClientPacket.field2830, Client.packetWriter.isaacCipher);
-						var10.packetBuffer.writeInt(var1);
-						var10.packetBuffer.writeShort(var2);
-						var10.packetBuffer.writeShort(var3);
-						Client.packetWriter.addNode(var10);
-					}
-
-					if (var0 == 10) {
-						var10 = HitSplatDefinition.getPacketBufferNode(ClientPacket.field2853, Client.packetWriter.isaacCipher);
-						var10.packetBuffer.writeInt(var1);
-						var10.packetBuffer.writeShort(var2);
-						var10.packetBuffer.writeShort(var3);
-						Client.packetWriter.addNode(var10);
-					}
-
 				}
 			}
 		}
+
+	}
+
+	@ObfuscatedName("e")
+	@ObfuscatedSignature(
+		descriptor = "(S)[Ldo;",
+		garbageValue = "-23360"
+	)
+	static class117[] method792() {
+		return new class117[]{class117.field1457, class117.field1445, class117.field1444, class117.field1446, class117.field1448, class117.field1449, class117.field1450, class117.field1452, class117.field1447, class117.field1453, class117.field1454, class117.field1455, class117.field1456, class117.field1462, class117.field1458, class117.field1451, class117.field1460};
+	}
+
+	@ObfuscatedName("hg")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "1792385733"
+	)
+	static final void method785() {
+		Client.field658 = 0;
+		int var0 = Canvas.baseX * 64 + (WorldMapSprite.localPlayer.x >> 7);
+		int var1 = class118.baseY * 64 + (WorldMapSprite.localPlayer.y >> 7);
+		if (var0 >= 3053 && var0 <= 3156 && var1 >= 3056 && var1 <= 3136) {
+			Client.field658 = 1;
+		}
+
+		if (var0 >= 3072 && var0 <= 3118 && var1 >= 9492 && var1 <= 9535) {
+			Client.field658 = 1;
+		}
+
+		if (Client.field658 == 1 && var0 >= 3139 && var0 <= 3199 && var1 >= 3008 && var1 <= 3062) {
+			Client.field658 = 0;
+		}
+
 	}
 }

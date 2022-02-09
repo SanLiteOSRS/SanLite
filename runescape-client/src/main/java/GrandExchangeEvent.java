@@ -4,31 +4,31 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("kj")
+@ObfuscatedName("ld")
 @Implements("GrandExchangeEvent")
 public class GrandExchangeEvent {
 	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = -613018659
+		intValue = -1765018995
 	)
 	@Export("world")
 	public final int world;
-	@ObfuscatedName("b")
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		longValue = -97265200533879513L
+		longValue = 5745888229985927283L
 	)
 	@Export("age")
 	public final long age;
-	@ObfuscatedName("p")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "Lkb;"
+		descriptor = "Llm;"
 	)
 	@Export("grandExchangeOffer")
 	public final GrandExchangeOffer grandExchangeOffer;
-	@ObfuscatedName("m")
+	@ObfuscatedName("e")
 	@Export("offerName")
 	String offerName;
-	@ObfuscatedName("t")
+	@ObfuscatedName("r")
 	@Export("previousOfferName")
 	String previousOfferName;
 
@@ -43,8 +43,8 @@ public class GrandExchangeEvent {
 		int var4 = var1.readInt();
 		int var5 = var1.readInt();
 		this.grandExchangeOffer = new GrandExchangeOffer();
-		this.grandExchangeOffer.method5765(2);
-		this.grandExchangeOffer.method5766(var2);
+		this.grandExchangeOffer.method5735(2);
+		this.grandExchangeOffer.method5731(var2);
 		this.grandExchangeOffer.unitPrice = var4;
 		this.grandExchangeOffer.totalQuantity = var5;
 		this.grandExchangeOffer.currentQuantity = 0;
@@ -54,18 +54,18 @@ public class GrandExchangeEvent {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(B)Ljava/lang/String;",
-		garbageValue = "0"
+		descriptor = "(I)Ljava/lang/String;",
+		garbageValue = "714500304"
 	)
 	@Export("getOfferName")
 	public String getOfferName() {
 		return this.offerName;
 	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
 		descriptor = "(I)Ljava/lang/String;",
-		garbageValue = "442226804"
+		garbageValue = "-1208399136"
 	)
 	@Export("getPreviousOfferName")
 	public String getPreviousOfferName() {
@@ -74,22 +74,12 @@ public class GrandExchangeEvent {
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(S)V",
-		garbageValue = "3161"
+		descriptor = "(Lkq;Lkq;B)V",
+		garbageValue = "-116"
 	)
-	static void method5760() {
-		for (ObjectSound var0 = (ObjectSound)ObjectSound.objectSounds.last(); var0 != null; var0 = (ObjectSound)ObjectSound.objectSounds.previous()) {
-			if (var0.stream1 != null) {
-				class281.pcmStreamMixer.removeSubStream(var0.stream1);
-				var0.stream1 = null;
-			}
-
-			if (var0.stream2 != null) {
-				class281.pcmStreamMixer.removeSubStream(var0.stream2);
-				var0.stream2 = null;
-			}
-		}
-
-		ObjectSound.objectSounds.clear();
+	public static void method5726(AbstractArchive var0, AbstractArchive var1) {
+		KitDefinition.KitDefinition_archive = var0;
+		KitDefinition.KitDefinition_modelsArchive = var1;
+		UserComparator10.KitDefinition_fileCount = KitDefinition.KitDefinition_archive.getGroupFileCount(3);
 	}
 }

@@ -4,34 +4,40 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ke")
+@ObfuscatedName("kg")
 @Implements("ArchiveDiskActionHandler")
 public class ArchiveDiskActionHandler implements Runnable {
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "Llh;"
+		descriptor = "Lls;"
 	)
 	@Export("ArchiveDiskActionHandler_requestQueue")
-	public static NodeDeque ArchiveDiskActionHandler_requestQueue;
-	@ObfuscatedName("b")
+	static NodeDeque ArchiveDiskActionHandler_requestQueue;
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		descriptor = "Llh;"
+		descriptor = "Lls;"
 	)
 	@Export("ArchiveDiskActionHandler_responseQueue")
-	public static NodeDeque ArchiveDiskActionHandler_responseQueue;
-	@ObfuscatedName("p")
+	static NodeDeque ArchiveDiskActionHandler_responseQueue;
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = 449251955
+		intValue = -153421111
 	)
-	static int field3815;
-	@ObfuscatedName("m")
+	static int field3869;
+	@ObfuscatedName("e")
 	@Export("ArchiveDiskActionHandler_lock")
 	static Object ArchiveDiskActionHandler_lock;
+	@ObfuscatedName("r")
+	@Export("ArchiveDiskActionHandler_thread")
+	static Thread ArchiveDiskActionHandler_thread;
+	@ObfuscatedName("m")
+	@Export("ByteArrayPool_altSizeArrayCounts")
+	public static int[] ByteArrayPool_altSizeArrayCounts;
 
 	static {
 		ArchiveDiskActionHandler_requestQueue = new NodeDeque();
 		ArchiveDiskActionHandler_responseQueue = new NodeDeque();
-		field3815 = 0;
+		field3869 = 0;
 		ArchiveDiskActionHandler_lock = new Object();
 	}
 
@@ -60,64 +66,29 @@ public class ArchiveDiskActionHandler implements Runnable {
 					}
 
 					synchronized(ArchiveDiskActionHandler_lock) {
-						if (field3815 <= 1) {
-							field3815 = 0;
+						if (field3869 <= 1) {
+							field3869 = 0;
 							ArchiveDiskActionHandler_lock.notifyAll();
 							return;
 						}
 
-						field3815 = 600;
+						field3869 = 600;
 					}
 				} else {
-					Bounds.method6608(100L);
+					Language.method5813(100L);
 					synchronized(ArchiveDiskActionHandler_lock) {
-						if (field3815 <= 1) {
-							field3815 = 0;
+						if (field3869 <= 1) {
+							field3869 = 0;
 							ArchiveDiskActionHandler_lock.notifyAll();
 							return;
 						}
 
-						--field3815;
+						--field3869;
 					}
 				}
 			}
 		} catch (Exception var13) {
-			AccessFile.RunException_sendStackTrace((String)null, var13);
-		}
-	}
-
-	@ObfuscatedName("gl")
-	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;ZB)V",
-		garbageValue = "-14"
-	)
-	@Export("drawLoadingMessage")
-	static final void drawLoadingMessage(String var0, boolean var1) {
-		if (Client.showLoadingMessages) {
-			byte var2 = 4;
-			int var3 = var2 + 6;
-			int var4 = var2 + 6;
-			int var5 = class114.fontPlain12.lineWidth(var0, 250);
-			int var6 = class114.fontPlain12.lineCount(var0, 250) * 13;
-			Rasterizer2D.Rasterizer2D_fillRectangle(var3 - var2, var4 - var2, var2 + var2 + var5, var2 + var6 + var2, 0);
-			Rasterizer2D.Rasterizer2D_drawRectangle(var3 - var2, var4 - var2, var2 + var5 + var2, var2 + var2 + var6, 16777215);
-			class114.fontPlain12.drawLines(var0, var3, var4, var5, var6, 16777215, -1, 1, 1, 0);
-			class10.method124(var3 - var2, var4 - var2, var2 + var5 + var2, var6 + var2 + var2);
-			if (var1) {
-				class19.rasterProvider.drawFull(0, 0);
-			} else {
-				int var7 = var3;
-				int var8 = var4;
-				int var9 = var5;
-				int var10 = var6;
-
-				for (int var11 = 0; var11 < Client.rootWidgetCount; ++var11) {
-					if (Client.rootWidgetWidths[var11] + Client.rootWidgetXs[var11] > var7 && Client.rootWidgetXs[var11] < var9 + var7 && Client.rootWidgetHeights[var11] + Client.rootWidgetYs[var11] > var8 && Client.rootWidgetYs[var11] < var8 + var10) {
-						Client.field686[var11] = true;
-					}
-				}
-			}
-
+			GroundObject.RunException_sendStackTrace((String)null, var13);
 		}
 	}
 }

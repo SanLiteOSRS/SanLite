@@ -1,64 +1,66 @@
+import java.io.File;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("mm")
+@ObfuscatedName("mi")
 @Implements("FriendsList")
 public class FriendsList extends NameableContainer {
-	@ObfuscatedName("p")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "Low;"
+		descriptor = "Lok;"
 	)
 	@Export("loginType")
 	final LoginType loginType;
-	@ObfuscatedName("m")
+	@ObfuscatedName("e")
 	@ObfuscatedGetter(
-		intValue = -2043730647
+		intValue = 759780713
 	)
-	int field4081;
-	@ObfuscatedName("t")
+	int field4127;
+	@ObfuscatedName("r")
 	@ObfuscatedSignature(
-		descriptor = "Llc;"
+		descriptor = "Llp;"
 	)
 	@Export("friendLoginUpdates")
 	public LinkDeque friendLoginUpdates;
 
 	@ObfuscatedSignature(
-		descriptor = "(Low;)V"
+		descriptor = "(Lok;)V"
 	)
 	public FriendsList(LoginType var1) {
 		super(400);
-		this.field4081 = 1;
+		this.field4127 = 1;
 		this.friendLoginUpdates = new LinkDeque();
 		this.loginType = var1;
 	}
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(B)Lmv;",
-		garbageValue = "2"
+		descriptor = "(I)Lmy;",
+		garbageValue = "2000225121"
 	)
 	@Export("newInstance")
 	Nameable newInstance() {
 		return new Friend();
 	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		descriptor = "(II)[Lmv;",
-		garbageValue = "-813912346"
+		descriptor = "(IB)[Lmy;",
+		garbageValue = "55"
 	)
 	@Export("newTypedArray")
 	Nameable[] newTypedArray(int var1) {
 		return new Friend[var1];
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "(Lpo;ZI)Z",
-		garbageValue = "-611613577"
+		descriptor = "(Lpb;ZI)Z",
+		garbageValue = "-770793649"
 	)
 	@Export("isFriended")
 	public boolean isFriended(Username var1, boolean var2) {
@@ -70,10 +72,10 @@ public class FriendsList extends NameableContainer {
 		}
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(Lpi;II)V",
-		garbageValue = "2023217222"
+		descriptor = "(Lpi;IB)V",
+		garbageValue = "8"
 	)
 	@Export("read")
 	public void read(Buffer var1, int var2) {
@@ -137,17 +139,17 @@ public class FriendsList extends NameableContainer {
 					}
 
 					if (var6 != var11.world) {
-						var11.int2 = ++this.field4081 - 1;
+						var11.int2 = ++this.field4127 - 1;
 						if (var11.world == -1 && var6 == 0) {
-							var11.int2 = -(var11.int2 * -818070345) * -79798009;
+							var11.int2 = -(var11.int2 * 650111289) * 2142778633;
 						}
 
 						var11.world = var6;
 					}
 
 					var11.rank = var7;
-					var11.field4085 = var9;
-					var11.field4086 = var10;
+					var11.field4133 = var9;
+					var11.field4134 = var10;
 					continue;
 				}
 
@@ -156,6 +158,73 @@ public class FriendsList extends NameableContainer {
 
 			this.sort();
 			return;
+		}
+	}
+
+	@ObfuscatedName("c")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/io/File;I)V",
+		garbageValue = "-428175274"
+	)
+	static void method6282(File var0) {
+		SecureRandomCallable.FileSystem_cacheDir = var0;
+		if (!SecureRandomCallable.FileSystem_cacheDir.exists()) {
+			throw new RuntimeException("");
+		} else {
+			FileSystem.FileSystem_hasPermissions = true;
+		}
+	}
+
+	@ObfuscatedName("j")
+	@ObfuscatedSignature(
+		descriptor = "(ILbl;ZI)I",
+		garbageValue = "-490218334"
+	)
+	static int method6283(int var0, Script var1, boolean var2) {
+		Widget var5;
+		if (var0 == ScriptOpcodes.IF_GETINVOBJECT) {
+			var5 = class130.getWidget(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);
+			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var5.itemId;
+			return 1;
+		} else if (var0 == ScriptOpcodes.IF_GETINVCOUNT) {
+			var5 = class130.getWidget(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);
+			if (var5.itemId != -1) {
+				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var5.itemQuantity;
+			} else {
+				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = 0;
+			}
+
+			return 1;
+		} else if (var0 == ScriptOpcodes.IF_HASSUB) {
+			int var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
+			InterfaceParent var4 = (InterfaceParent)Client.interfaceParents.get((long)var3);
+			if (var4 != null) {
+				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = 1;
+			} else {
+				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = 0;
+			}
+
+			return 1;
+		} else if (var0 == ScriptOpcodes.IF_GETTOP) {
+			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = Client.rootInterface;
+			return 1;
+		} else {
+			return 2;
+		}
+	}
+
+	@ObfuscatedName("g")
+	@ObfuscatedSignature(
+		descriptor = "(IZIB)V",
+		garbageValue = "-56"
+	)
+	public static final void method6281(int var0, boolean var1, int var2) {
+		if (var0 >= 8000 && var0 <= 48000) {
+			PcmPlayer.field305 = var0;
+			PcmPlayer.PcmPlayer_stereo = var1;
+			DevicePcmPlayerProvider.field156 = var2;
+		} else {
+			throw new IllegalArgumentException();
 		}
 	}
 }

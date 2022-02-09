@@ -1,44 +1,32 @@
-import java.awt.image.BufferedImage;
-import java.awt.image.PixelGrabber;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import javax.imageio.ImageIO;
+import java.util.Iterator;
+import net.runelite.mapping.Export;
+import net.runelite.mapping.Implements;
+import net.runelite.mapping.ObfuscatedGetter;
+import net.runelite.mapping.ObfuscatedName;
+import net.runelite.mapping.ObfuscatedSignature;
 
-import net.runelite.mapping.*;
-
-@ObfuscatedName("cd")
+@ObfuscatedName("cu")
 @Implements("MouseRecorder")
 public class MouseRecorder implements Runnable {
-	@ObfuscatedName("j")
-	@ObfuscatedSignature(
-		descriptor = "[[Ljm;"
-	)
-	@Export("Widget_interfaceComponents")
-	public static Widget[][] Widget_interfaceComponents;
-	@ObfuscatedName("ay")
-	@ObfuscatedSignature(
-		descriptor = "Lme;"
-	)
-	static Bounds field1044;
 	@ObfuscatedName("c")
 	@Export("isRunning")
 	boolean isRunning;
-	@ObfuscatedName("b")
+	@ObfuscatedName("l")
 	@Export("lock")
 	Object lock;
-	@ObfuscatedName("p")
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = 1539237497
+		intValue = 28944215
 	)
 	@Export("index")
 	int index;
-	@ObfuscatedName("m")
+	@ObfuscatedName("e")
 	@Export("xs")
 	int[] xs;
-	@ObfuscatedName("t")
+	@ObfuscatedName("r")
 	@Export("ys")
 	int[] ys;
-	@ObfuscatedName("s")
+	@ObfuscatedName("o")
 	@Export("millis")
 	long[] millis;
 
@@ -52,7 +40,7 @@ public class MouseRecorder implements Runnable {
 	}
 
 	public void run() {
-		for (; this.isRunning; Bounds.method6608(50L)) {
+		for (; this.isRunning; Language.method5813(50L)) {
 			synchronized(this.lock) {
 				if (this.index < 500) {
 					this.xs[this.index] = MouseHandler.MouseHandler_x;
@@ -65,55 +53,32 @@ public class MouseRecorder implements Runnable {
 
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		descriptor = "([BB)Lpl;",
-		garbageValue = "-5"
+		descriptor = "(B)V",
+		garbageValue = "-122"
 	)
-	public static final SpritePixels method2161(byte[] var0) {
-		BufferedImage var1 = null;
-
-		try {
-			var1 = ImageIO.read(new ByteArrayInputStream(var0));
-			int var2 = var1.getWidth();
-			int var3 = var1.getHeight();
-			int[] var4 = new int[var2 * var3];
-			PixelGrabber var5 = new PixelGrabber(var1, 0, 0, var2, var3, var4, 0, var2);
-			var5.grabPixels();
-			return new SpritePixels(var4, var2, var3);
-		} catch (IOException var7) {
-		} catch (InterruptedException var8) {
-		}
-
-		return new SpritePixels(0, 0);
+	public static void method2100() {
+		StructComposition.StructDefinition_cached.clear();
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("kz")
 	@ObfuscatedSignature(
-		descriptor = "(IIB)I",
-		garbageValue = "-41"
+		descriptor = "(I)V",
+		garbageValue = "1953012058"
 	)
-	static int method2160(int var0, int var1) {
-		ItemContainer var2 = (ItemContainer)ItemContainer.itemContainers.get((long)var0);
-		if (var2 == null) {
-			return 0;
-		} else if (var1 == -1) {
-			return 0;
-		} else {
-			int var3 = 0;
+	@Export("FriendSystem_invalidateIgnoreds")
+	static final void FriendSystem_invalidateIgnoreds() {
+		Iterator var0 = Messages.Messages_hashTable.iterator();
 
-			for (int var4 = 0; var4 < var2.quantities.length; ++var4) {
-				if (var2.ids[var4] == var1) {
-					var3 += var2.quantities[var4];
-				}
-			}
-
-			return var3;
+		while (var0.hasNext()) {
+			Message var1 = (Message)var0.next();
+			var1.clearIsFromIgnored();
 		}
-	}
 
-	@ObfuscatedName("s")
-	public static int method2159(long var0) {
-		return (int)(var0 >>> 0 & 127L);
+		if (class67.friendsChatManager != null) {
+			class67.friendsChatManager.invalidateIgnoreds();
+		}
+
 	}
 }

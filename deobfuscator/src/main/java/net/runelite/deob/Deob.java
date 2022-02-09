@@ -26,7 +26,6 @@ package net.runelite.deob;
 
 import com.google.common.base.Stopwatch;
 import java.io.File;
-import java.io.IOException;
 import net.runelite.asm.ClassGroup;
 import net.runelite.asm.execution.Execution;
 import net.runelite.deob.deobfuscators.CastNull;
@@ -65,7 +64,7 @@ public class Deob
 	public static final int OBFUSCATED_NAME_MAX_LEN = 3;
 	private static final boolean CHECK_EXEC = false;
 
-	public static void main(String[] args) throws IOException
+	public static void main(String[] args)
 	{
 		if (args == null || args.length < 2)
 		{

@@ -9,72 +9,66 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ff")
+@ObfuscatedName("fc")
 @Implements("NetSocket")
 public final class NetSocket extends AbstractSocket implements Runnable {
-	@ObfuscatedName("er")
-	@ObfuscatedSignature(
-		descriptor = "Lkz;"
-	)
-	@Export("archive9")
-	static Archive archive9;
 	@ObfuscatedName("c")
 	@Export("inputStream")
 	InputStream inputStream;
-	@ObfuscatedName("b")
+	@ObfuscatedName("l")
 	@Export("outputStream")
 	OutputStream outputStream;
-	@ObfuscatedName("p")
+	@ObfuscatedName("s")
 	@Export("socket")
 	Socket socket;
-	@ObfuscatedName("m")
+	@ObfuscatedName("e")
 	@Export("isClosed")
 	boolean isClosed;
-	@ObfuscatedName("t")
+	@ObfuscatedName("r")
 	@ObfuscatedSignature(
-		descriptor = "Leb;"
+		descriptor = "Lex;"
 	)
 	@Export("taskHandler")
 	TaskHandler taskHandler;
-	@ObfuscatedName("s")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "Lfk;"
+		descriptor = "Lfw;"
 	)
 	@Export("task")
 	Task task;
-	@ObfuscatedName("j")
+	@ObfuscatedName("i")
 	@Export("outBuffer")
 	byte[] outBuffer;
 	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		intValue = -1984666421
+		intValue = -818522115
 	)
 	@Export("outLength")
 	int outLength;
-	@ObfuscatedName("n")
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = 773716871
+		intValue = 991491695
 	)
 	@Export("outOffset")
 	int outOffset;
-	@ObfuscatedName("r")
+	@ObfuscatedName("a")
 	@Export("exceptionWriting")
 	boolean exceptionWriting;
-	@ObfuscatedName("o")
+	@ObfuscatedName("y")
 	@ObfuscatedGetter(
-		intValue = 1772673061
+		intValue = 123579555
 	)
 	@Export("bufferLength")
 	final int bufferLength;
-	@ObfuscatedName("v")
+	@ObfuscatedName("u")
 	@ObfuscatedGetter(
-		intValue = -19944007
+		intValue = -1696123211
 	)
 	@Export("maxPacketLength")
 	final int maxPacketLength;
 
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/net/Socket;Leb;I)V"
+		descriptor = "(Ljava/net/Socket;Lex;I)V"
 	)
 	public NetSocket(Socket var1, TaskHandler var2, int var3) throws IOException {
 		this.isClosed = false;
@@ -96,7 +90,7 @@ public final class NetSocket extends AbstractSocket implements Runnable {
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "-2099219864"
+		garbageValue = "-499949391"
 	)
 	@Export("close")
 	public void close() {
@@ -108,7 +102,7 @@ public final class NetSocket extends AbstractSocket implements Runnable {
 
 			if (this.task != null) {
 				while (this.task.status == 0) {
-					Bounds.method6608(1L);
+					Language.method5813(1L);
 				}
 
 				if (this.task.status == 1) {
@@ -123,30 +117,30 @@ public final class NetSocket extends AbstractSocket implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
 		descriptor = "(B)I",
-		garbageValue = "-44"
+		garbageValue = "-86"
 	)
 	@Export("readUnsignedByte")
 	public int readUnsignedByte() throws IOException {
 		return this.isClosed ? 0 : this.inputStream.read();
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
 		descriptor = "(I)I",
-		garbageValue = "-1579083707"
+		garbageValue = "2115909346"
 	)
 	@Export("available")
 	public int available() throws IOException {
 		return this.isClosed ? 0 : this.inputStream.available();
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		descriptor = "(II)Z",
-		garbageValue = "1654551476"
+		descriptor = "(IB)Z",
+		garbageValue = "67"
 	)
 	@Export("isAvailable")
 	public boolean isAvailable(int var1) throws IOException {
@@ -157,10 +151,10 @@ public final class NetSocket extends AbstractSocket implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("t")
+	@ObfuscatedName("r")
 	@ObfuscatedSignature(
-		descriptor = "([BIIS)I",
-		garbageValue = "909"
+		descriptor = "([BIII)I",
+		garbageValue = "-781316249"
 	)
 	@Export("read")
 	public int read(byte[] var1, int var2, int var3) throws IOException {
@@ -182,10 +176,10 @@ public final class NetSocket extends AbstractSocket implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("s")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "([BIIB)V",
-		garbageValue = "-34"
+		descriptor = "([BIIS)V",
+		garbageValue = "155"
 	)
 	@Export("write0")
 	void write0(byte[] var1, int var2, int var3) throws IOException {
@@ -217,10 +211,10 @@ public final class NetSocket extends AbstractSocket implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
 		descriptor = "([BIII)V",
-		garbageValue = "-1320460000"
+		garbageValue = "300460862"
 	)
 	@Export("write")
 	public void write(byte[] var1, int var2, int var3) throws IOException {
@@ -234,7 +228,7 @@ public final class NetSocket extends AbstractSocket implements Runnable {
 					int var1;
 					int var2;
 					synchronized(this) {
-						if (this.outOffset == this.outLength) {
+						if (this.outLength == this.outOffset) {
 							if (this.isClosed) {
 								break label84;
 							}
@@ -294,7 +288,7 @@ public final class NetSocket extends AbstractSocket implements Runnable {
 				break;
 			}
 		} catch (Exception var12) {
-			AccessFile.RunException_sendStackTrace((String)null, var12);
+			GroundObject.RunException_sendStackTrace((String)null, var12);
 		}
 
 	}
@@ -303,27 +297,84 @@ public final class NetSocket extends AbstractSocket implements Runnable {
 		this.close();
 	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		descriptor = "(CI)Z",
-		garbageValue = "320078998"
+		descriptor = "(IB)Lfs;",
+		garbageValue = "1"
 	)
-	static final boolean method3119(char var0) {
-		return var0 == 160 || var0 == ' ' || var0 == '_' || var0 == '-';
+	public static HealthBarDefinition method3073(int var0) {
+		HealthBarDefinition var1 = (HealthBarDefinition)HealthBarDefinition.HealthBarDefinition_cached.get((long)var0);
+		if (var1 != null) {
+			return var1;
+		} else {
+			byte[] var2 = HealthBarDefinition.HealthBarDefinition_archive.takeFile(33, var0);
+			var1 = new HealthBarDefinition();
+			if (var2 != null) {
+				var1.decode(new Buffer(var2));
+			}
+
+			HealthBarDefinition.HealthBarDefinition_cached.put(var1, (long)var0);
+			return var1;
+		}
 	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "(Lku;IIIZI)V",
-		garbageValue = "1774445817"
+		descriptor = "(I)V",
+		garbageValue = "-1639582857"
 	)
-	public static void method3118(AbstractArchive var0, int var1, int var2, int var3, boolean var4) {
-		class260.musicPlayerStatus = 1;
-		class124.musicTrackArchive = var0;
-		VarcInt.musicTrackGroupId = var1;
-		class260.musicTrackFileId = var2;
-		ChatChannel.musicTrackVolume = var3;
-		DynamicObject.musicTrackBoolean = var4;
-		class260.pcmSampleLength = 10000;
+	public static void method3105() {
+		try {
+			if (class265.musicPlayerStatus == 1) {
+				int var0 = class265.midiPcmStream.method5096();
+				if (var0 > 0 && class265.midiPcmStream.isReady()) {
+					var0 -= GrandExchangeOfferNameComparator.pcmSampleLength;
+					if (var0 < 0) {
+						var0 = 0;
+					}
+
+					class265.midiPcmStream.setPcmStreamVolume(var0);
+					return;
+				}
+
+				class265.midiPcmStream.clear();
+				class265.midiPcmStream.removeAll();
+				if (class265.musicTrackArchive != null) {
+					class265.musicPlayerStatus = 2;
+				} else {
+					class265.musicPlayerStatus = 0;
+				}
+
+				class265.musicTrack = null;
+				FileSystem.soundCache = null;
+			}
+		} catch (Exception var2) {
+			var2.printStackTrace();
+			class265.midiPcmStream.clear();
+			class265.musicPlayerStatus = 0;
+			class265.musicTrack = null;
+			FileSystem.soundCache = null;
+			class265.musicTrackArchive = null;
+		}
+
+	}
+
+	@ObfuscatedName("fw")
+	@ObfuscatedSignature(
+		descriptor = "(III)V",
+		garbageValue = "1276680943"
+	)
+	static void method3096(int var0, int var1) {
+		int[] var2 = new int[9];
+
+		for (int var3 = 0; var3 < var2.length; ++var3) {
+			int var4 = var3 * 32 + 15 + 128;
+			int var5 = var4 * 3 + 600;
+			int var7 = Rasterizer3D.Rasterizer3D_sine[var4];
+			int var6 = class167.method3254(var5, var1);
+			var2[var3] = var6 * var7 >> 16;
+		}
+
+		Scene.Scene_buildVisiblityMap(var2, 500, 800, var0 * 334 / var1, 334);
 	}
 }

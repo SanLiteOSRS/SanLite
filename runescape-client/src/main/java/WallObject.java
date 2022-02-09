@@ -1,5 +1,5 @@
 import java.io.File;
-import java.io.RandomAccessFile;
+import java.io.IOException;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
@@ -8,71 +8,58 @@ import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("hg")
 @Implements("WallObject")
-public final class WallObject
-{
-	@ObfuscatedName("sv")
-	@ObfuscatedSignature(
-		descriptor = "Lbp;"
-	)
-	@Export("decimator")
-	static Decimator decimator;
-	@ObfuscatedName("z")
-	@ObfuscatedGetter(
-		intValue = 1063429417
-	)
-	@Export("canvasHeight")
-	public static int canvasHeight;
+public final class WallObject {
 	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = 1211283293
+		intValue = -695987835
 	)
 	@Export("tileHeight")
 	int tileHeight;
-	@ObfuscatedName("b")
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = 392897309
+		intValue = -1300612235
 	)
 	@Export("x")
 	int x;
-	@ObfuscatedName("p")
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = 1130231369
+		intValue = -190485209
 	)
 	@Export("y")
 	int y;
-	@ObfuscatedName("m")
+	@ObfuscatedName("e")
 	@ObfuscatedGetter(
-		intValue = 1078743455
+		intValue = 810073207
 	)
 	@Export("orientationA")
 	int orientationA;
-	@ObfuscatedName("t")
+	@ObfuscatedName("r")
 	@ObfuscatedGetter(
-		intValue = -1456059729
+		intValue = -1356551947
 	)
 	@Export("orientationB")
 	int orientationB;
-	@ObfuscatedName("s")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "Lgt;"
+		descriptor = "Lgp;"
 	)
 	@Export("renderable1")
 	public Renderable renderable1;
-	@ObfuscatedName("j")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		descriptor = "Lgt;"
+		descriptor = "Lgp;"
 	)
 	@Export("renderable2")
 	public Renderable renderable2;
 	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		longValue = 7825076594130185971L
+		longValue = -7729917977965778771L
 	)
 	@Export("tag")
 	public long tag;
-	@ObfuscatedName("n")
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = -1681276427
+		intValue = 318935705
 	)
 	@Export("flags")
 	int flags;
@@ -82,58 +69,100 @@ public final class WallObject
 		this.flags = 0;
 	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/io/File;ZB)Z",
-		garbageValue = "15"
+		descriptor = "(Ljava/io/File;Ljava/io/File;B)V",
+		garbageValue = "119"
 	)
-	public static boolean method4321(File var0, boolean var1) {
+	static void method4277(File var0, File var1) {
 		try {
-			RandomAccessFile var2 = new RandomAccessFile(var0, "rw");
-			int var3 = var2.read();
-			var2.seek(0L);
-			var2.write(var3);
-			var2.seek(0L);
-			var2.close();
-			if (var1) {
-				var0.delete();
+			AccessFile var2 = new AccessFile(JagexCache.JagexCache_locationFile, "rw", 10000L);
+			Buffer var3 = new Buffer(500);
+			var3.writeByte(3);
+			var3.writeByte(var1 != null ? 1 : 0);
+			var3.writeCESU8(var0.getPath());
+			if (var1 != null) {
+				var3.writeCESU8("");
 			}
 
-			return true;
-		} catch (Exception var4) {
-			return false;
+			var2.write(var3.array, 0, var3.offset);
+			var2.close();
+		} catch (IOException var4) {
+			var4.printStackTrace();
 		}
+
 	}
 
-	@ObfuscatedName("d")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		descriptor = "(Lbw;B)V",
-		garbageValue = "2"
+		descriptor = "(III)I",
+		garbageValue = "602248811"
 	)
-	@Export("changeWorld")
-	static void changeWorld(World var0) {
-		if (var0.isMembersOnly() != Client.isMembersWorld) {
-			Client.isMembersWorld = var0.isMembersOnly();
-			UserComparator6.method2552(var0.isMembersOnly());
-		}
+	public static int method4275(int var0, int var1) {
+		return (-3 - var0 << 8) + var1;
+	}
 
-		if (var0.properties != Client.worldProperties) {
-			Archive var1 = UserComparator6.archive8;
-			int var2 = var0.properties;
-			if ((var2 & 536870912) != 0) {
-				Login.logoSprite = ClientPreferences.SpriteBuffer_getIndexedSpriteByName(var1, "logo_deadman_mode", "");
-			} else if ((var2 & 1073741824) != 0) {
-				Login.logoSprite = ClientPreferences.SpriteBuffer_getIndexedSpriteByName(var1, "logo_seasonal_mode", "");
-			} else {
-				Login.logoSprite = ClientPreferences.SpriteBuffer_getIndexedSpriteByName(var1, "logo", "");
+	@ObfuscatedName("r")
+	@ObfuscatedSignature(
+		descriptor = "(IIIZIZI)V",
+		garbageValue = "-1941182040"
+	)
+	@Export("doWorldSorting")
+	static void doWorldSorting(int var0, int var1, int var2, boolean var3, int var4, boolean var5) {
+		if (var0 < var1) {
+			int var6 = (var0 + var1) / 2;
+			int var7 = var0;
+			World var8 = class33.World_worlds[var6];
+			class33.World_worlds[var6] = class33.World_worlds[var1];
+			class33.World_worlds[var1] = var8;
+
+			for (int var9 = var0; var9 < var1; ++var9) {
+				World var11 = class33.World_worlds[var9];
+				int var12 = LoginScreenAnimation.compareWorlds(var11, var8, var2, var3);
+				int var10;
+				if (var12 != 0) {
+					if (var3) {
+						var10 = -var12;
+					} else {
+						var10 = var12;
+					}
+				} else if (var4 == -1) {
+					var10 = 0;
+				} else {
+					int var13 = LoginScreenAnimation.compareWorlds(var11, var8, var4, var5);
+					if (var5) {
+						var10 = -var13;
+					} else {
+						var10 = var13;
+					}
+				}
+
+				if (var10 <= 0) {
+					World var14 = class33.World_worlds[var9];
+					class33.World_worlds[var9] = class33.World_worlds[var7];
+					class33.World_worlds[var7++] = var14;
+				}
 			}
+
+			class33.World_worlds[var1] = class33.World_worlds[var7];
+			class33.World_worlds[var7] = var8;
+			doWorldSorting(var0, var7 - 1, var2, var3, var4, var5);
+			doWorldSorting(var7 + 1, var1, var2, var3, var4, var5);
 		}
 
-		class185.worldHost = var0.host;
-		Client.worldId = var0.id;
-		Client.worldProperties = var0.properties;
-		GameObject.worldPort = Client.gameBuild == 0 ? 43594 : var0.id + 40000;
-		class133.js5Port = Client.gameBuild == 0 ? 443 : var0.id + 50000;
-		class129.currentPort = GameObject.worldPort;
+	}
+
+	@ObfuscatedName("ai")
+	@ObfuscatedSignature(
+		descriptor = "(ILjd;ZI)V",
+		garbageValue = "1668611134"
+	)
+	static void method4276(int var0, Coord var1, boolean var2) {
+		WorldMapArea var3 = WorldMapEvent.getWorldMap().getMapArea(var0);
+		int var4 = WorldMapSprite.localPlayer.plane;
+		int var5 = Canvas.baseX * 64 + (WorldMapSprite.localPlayer.x >> 7);
+		int var6 = class118.baseY * 64 + (WorldMapSprite.localPlayer.y >> 7);
+		Coord var7 = new Coord(var4, var5, var6);
+		WorldMapEvent.getWorldMap().method7006(var3, var7, var1, var2);
 	}
 }

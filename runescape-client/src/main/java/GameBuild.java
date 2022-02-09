@@ -1,43 +1,42 @@
-import java.awt.Component;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("kd")
+@ObfuscatedName("kf")
 @Implements("GameBuild")
 public class GameBuild {
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "Lkd;"
+		descriptor = "Lkf;"
 	)
 	@Export("LIVE")
 	public static final GameBuild LIVE;
-	@ObfuscatedName("b")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		descriptor = "Lkd;"
+		descriptor = "Lkf;"
 	)
 	@Export("BUILDLIVE")
 	public static final GameBuild BUILDLIVE;
-	@ObfuscatedName("p")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "Lkd;"
+		descriptor = "Lkf;"
 	)
 	@Export("RC")
 	public static final GameBuild RC;
-	@ObfuscatedName("m")
+	@ObfuscatedName("e")
 	@ObfuscatedSignature(
-		descriptor = "Lkd;"
+		descriptor = "Lkf;"
 	)
 	@Export("WIP")
 	public static final GameBuild WIP;
-	@ObfuscatedName("t")
+	@ObfuscatedName("r")
 	@Export("name")
 	public final String name;
-	@ObfuscatedName("s")
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = -794048651
+		intValue = 1842686617
 	)
 	@Export("buildId")
 	public final int buildId;
@@ -54,15 +53,21 @@ public class GameBuild {
 		this.buildId = var2;
 	}
 
-	@ObfuscatedName("b")
+	@ObfuscatedName("kg")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/awt/Component;I)V",
-		garbageValue = "727628854"
+		descriptor = "(S)V",
+		garbageValue = "2700"
 	)
-	static void method5494(Component var0) {
-		var0.removeMouseListener(MouseHandler.MouseHandler_instance);
-		var0.removeMouseMotionListener(MouseHandler.MouseHandler_instance);
-		var0.removeFocusListener(MouseHandler.MouseHandler_instance);
-		MouseHandler.MouseHandler_currentButtonVolatile = 0;
+	static final void method5483() {
+		for (int var0 = 0; var0 < Players.Players_count; ++var0) {
+			Player var1 = Client.players[Players.Players_indices[var0]];
+			var1.clearIsFriend();
+		}
+
+		ClanSettings.method2903();
+		if (class67.friendsChatManager != null) {
+			class67.friendsChatManager.clearFriends();
+		}
+
 	}
 }
