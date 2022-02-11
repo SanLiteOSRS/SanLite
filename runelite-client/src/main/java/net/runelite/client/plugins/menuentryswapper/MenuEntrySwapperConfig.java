@@ -777,10 +777,11 @@ public interface MenuEntrySwapperConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "swapPapaya",
-			name = "Papaya",
-			description = "Swap Eat with Use on a Papaya",
-			section = itemSection
+	keyName = "swapPapaya",
+	name = "Papaya",
+	description = "Swap Eat with Use on a Papaya",
+	section = itemSection
+
 	)
 	default boolean swapPapaya()
 	{
