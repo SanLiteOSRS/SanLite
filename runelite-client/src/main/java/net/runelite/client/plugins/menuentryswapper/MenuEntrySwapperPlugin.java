@@ -422,7 +422,6 @@ public class MenuEntrySwapperPlugin extends Plugin
 		swap("eat", "guzzle", config::swapRockCake);
 
 		swap("eat", "papaya fruit", "use", config::swapPapaya);
-		//swap("eat", "use", config::swapPapaya);
 
 		swap("travel", "dive", config::swapRowboatDive);
 
