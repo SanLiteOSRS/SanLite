@@ -421,6 +421,8 @@ public class MenuEntrySwapperPlugin extends Plugin
 
 		swap("eat", "guzzle", config::swapRockCake);
 
+		swap("eat", "papaya fruit", "use", config::swapPapaya);
+
 		swap("travel", "dive", config::swapRowboatDive);
 
 		swap("climb", "climb-up", () -> (shiftModifier() ? config.swapStairsShiftClick() : config.swapStairsLeftClick()) == MenuEntrySwapperConfig.StairsMode.CLIMB_UP);
