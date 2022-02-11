@@ -777,6 +777,17 @@ public interface MenuEntrySwapperConfig extends Config
 	}
 
 	@ConfigItem(
+			keyName = "swapPapaya",
+			name = "Papaya",
+			description = "Swap Eat with Use on a Papaya",
+			section = itemSection
+	)
+	default boolean swapPapaya()
+	{
+		return false;
+	}
+
+	@ConfigItem(
 		keyName = "swapRowboatDive",
 		name = "Fossil Island Rowboat Dive",
 		description = "Swap Travel with Dive on the rowboat found on the small island north-east of Fossil Island",
