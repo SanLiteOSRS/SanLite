@@ -218,10 +218,10 @@ class Bootstrap
 		artifacts[22].setSize(6539);
 
 		artifacts[23] = new Artifact();
-		artifacts[23].setHash("3dbd9eb9104e46979f2df85108096241780969786fd7c298ac22c83fdf66579f");
-		artifacts[23].setName("archive-patcher-1.0.jar");
-		artifacts[23].setPath("https://repo.runelite.net/net/runelite/archive-patcher/1.0/archive-patcher-1.0.jar");
-		artifacts[23].setSize(163838);
+		artifacts[23].setHash("ce932f3eeeb31021ae4d62108fdab23e18b7efd79833e4cd050e2d78d78c3347");
+		artifacts[23].setName("archive-patcher-applier-1.2.jar");
+		artifacts[23].setPath("https://repo.runelite.net/net/runelite/archive-patcher/archive-patcher-applier/1.2/archive-patcher-applier-1.2.jar");
+		artifacts[23].setSize(50339);
 
 		artifacts[24] = new Artifact();
 		artifacts[24].setHash("eafcc780b445434d3c5ae7fa2fb6665de1a7560d537d2c408a8e80cd14d27161");
