@@ -333,7 +333,7 @@ public final class NPC extends Actor {
 					NodeDeque var34 = Client.groundItems[SoundSystem.Client_plane][var12][var26];
 					if (var34 != null) {
 						for (TileItem var33 = (TileItem)var34.first(); var33 != null; var33 = (TileItem)var34.next()) {
-							ItemComposition var37 = Client.ItemDefinition_get(var33.id);
+							ItemComposition var37 = Client.ItemComposition_get(var33.id);
 							if (Client.isItemSelected == 1) {
 								class11.insertMenuItemNoShift("Use", Client.selectedItemName + " " + "->" + " " + LoginScreenAnimation.colorStartTag(16748608) + var37.name, 16, var33.id, var12, var26);
 							} else if (Client.isSpellSelected) {

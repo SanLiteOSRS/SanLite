@@ -13,20 +13,20 @@ public class ItemComposition extends DualNode {
 	@ObfuscatedSignature(
 		descriptor = "Lic;"
 	)
-	@Export("ItemDefinition_cached")
-	public static EvictingDualNodeHashTable ItemDefinition_cached;
+	@Export("ItemComposition_cached")
+	public static EvictingDualNodeHashTable ItemComposition_cached;
 	@ObfuscatedName("y")
 	@ObfuscatedSignature(
 		descriptor = "Lic;"
 	)
-	@Export("ItemDefinition_cachedModels")
-	public static EvictingDualNodeHashTable ItemDefinition_cachedModels;
+	@Export("ItemComposition_cachedModels")
+	public static EvictingDualNodeHashTable ItemComposition_cachedModels;
 	@ObfuscatedName("u")
 	@ObfuscatedSignature(
 		descriptor = "Lic;"
 	)
-	@Export("ItemDefinition_cachedSprites")
-	public static EvictingDualNodeHashTable ItemDefinition_cachedSprites;
+	@Export("ItemComposition_cachedSprites")
+	public static EvictingDualNodeHashTable ItemComposition_cachedSprites;
 	@ObfuscatedName("q")
 	@ObfuscatedGetter(
 		intValue = 10175285
@@ -278,9 +278,9 @@ public class ItemComposition extends DualNode {
 	public int placeholderTemplate;
 
 	static {
-		ItemDefinition_cached = new EvictingDualNodeHashTable(64);
-		ItemDefinition_cachedModels = new EvictingDualNodeHashTable(50);
-		ItemDefinition_cachedSprites = new EvictingDualNodeHashTable(200);
+		ItemComposition_cached = new EvictingDualNodeHashTable(64);
+		ItemComposition_cachedModels = new EvictingDualNodeHashTable(50);
+		ItemComposition_cachedSprites = new EvictingDualNodeHashTable(200);
 	}
 
 	ItemComposition() {
@@ -593,11 +593,11 @@ public class ItemComposition extends DualNode {
 			}
 
 			if (var2 != -1) {
-				return Client.ItemDefinition_get(var2).getModelData(1);
+				return Client.ItemComposition_get(var2).getModelData(1);
 			}
 		}
 
-		ModelData var4 = ModelData.ModelData_get(class6.ItemDefinition_modelArchive, this.model, 0);
+		ModelData var4 = ModelData.ModelData_get(class6.ItemComposition_modelArchive, this.model, 0);
 		if (var4 == null) {
 			return null;
 		} else {
@@ -638,15 +638,15 @@ public class ItemComposition extends DualNode {
 			}
 
 			if (var2 != -1) {
-				return Client.ItemDefinition_get(var2).getModel(1);
+				return Client.ItemComposition_get(var2).getModel(1);
 			}
 		}
 
-		Model var5 = (Model)ItemDefinition_cachedModels.get((long)this.id);
+		Model var5 = (Model) ItemComposition_cachedModels.get((long)this.id);
 		if (var5 != null) {
 			return var5;
 		} else {
-			ModelData var6 = ModelData.ModelData_get(class6.ItemDefinition_modelArchive, this.model, 0);
+			ModelData var6 = ModelData.ModelData_get(class6.ItemComposition_modelArchive, this.model, 0);
 			if (var6 == null) {
 				return null;
 			} else {
@@ -669,7 +669,7 @@ public class ItemComposition extends DualNode {
 
 				var5 = var6.toModel(this.ambient + 64, this.contrast + 768, -50, -10, -50);
 				var5.isSingleTile = true;
-				ItemDefinition_cachedModels.put(var5, (long)this.id);
+				ItemComposition_cachedModels.put(var5, (long)this.id);
 				return var5;
 			}
 		}
@@ -692,7 +692,7 @@ public class ItemComposition extends DualNode {
 			}
 
 			if (var2 != -1) {
-				return Client.ItemDefinition_get(var2);
+				return Client.ItemComposition_get(var2);
 			}
 		}
 
@@ -719,15 +719,15 @@ public class ItemComposition extends DualNode {
 			return true;
 		} else {
 			boolean var5 = true;
-			if (!class6.ItemDefinition_modelArchive.tryLoadFile(var2, 0)) {
+			if (!class6.ItemComposition_modelArchive.tryLoadFile(var2, 0)) {
 				var5 = false;
 			}
 
-			if (var3 != -1 && !class6.ItemDefinition_modelArchive.tryLoadFile(var3, 0)) {
+			if (var3 != -1 && !class6.ItemComposition_modelArchive.tryLoadFile(var3, 0)) {
 				var5 = false;
 			}
 
-			if (var4 != -1 && !class6.ItemDefinition_modelArchive.tryLoadFile(var4, 0)) {
+			if (var4 != -1 && !class6.ItemComposition_modelArchive.tryLoadFile(var4, 0)) {
 				var5 = false;
 			}
 
@@ -753,11 +753,11 @@ public class ItemComposition extends DualNode {
 		if (var2 == -1) {
 			return null;
 		} else {
-			ModelData var5 = ModelData.ModelData_get(class6.ItemDefinition_modelArchive, var2, 0);
+			ModelData var5 = ModelData.ModelData_get(class6.ItemComposition_modelArchive, var2, 0);
 			if (var3 != -1) {
-				ModelData var6 = ModelData.ModelData_get(class6.ItemDefinition_modelArchive, var3, 0);
+				ModelData var6 = ModelData.ModelData_get(class6.ItemComposition_modelArchive, var3, 0);
 				if (var4 != -1) {
-					ModelData var7 = ModelData.ModelData_get(class6.ItemDefinition_modelArchive, var4, 0);
+					ModelData var7 = ModelData.ModelData_get(class6.ItemComposition_modelArchive, var4, 0);
 					ModelData[] var8 = new ModelData[]{var5, var6, var7};
 					var5 = new ModelData(var8, 3);
 				} else {
@@ -808,11 +808,11 @@ public class ItemComposition extends DualNode {
 			return true;
 		} else {
 			boolean var4 = true;
-			if (!class6.ItemDefinition_modelArchive.tryLoadFile(var2, 0)) {
+			if (!class6.ItemComposition_modelArchive.tryLoadFile(var2, 0)) {
 				var4 = false;
 			}
 
-			if (var3 != -1 && !class6.ItemDefinition_modelArchive.tryLoadFile(var3, 0)) {
+			if (var3 != -1 && !class6.ItemComposition_modelArchive.tryLoadFile(var3, 0)) {
 				var4 = false;
 			}
 
@@ -836,9 +836,9 @@ public class ItemComposition extends DualNode {
 		if (var2 == -1) {
 			return null;
 		} else {
-			ModelData var4 = ModelData.ModelData_get(class6.ItemDefinition_modelArchive, var2, 0);
+			ModelData var4 = ModelData.ModelData_get(class6.ItemComposition_modelArchive, var2, 0);
 			if (var3 != -1) {
-				ModelData var5 = ModelData.ModelData_get(class6.ItemDefinition_modelArchive, var3, 0);
+				ModelData var5 = ModelData.ModelData_get(class6.ItemComposition_modelArchive, var3, 0);
 				ModelData[] var6 = new ModelData[]{var4, var5};
 				var4 = new ModelData(var6, 2);
 			}

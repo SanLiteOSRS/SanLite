@@ -11,8 +11,8 @@ import net.runelite.mapping.ObfuscatedSignature;
 @Implements("MilliClock")
 public class MilliClock extends Clock {
 	@ObfuscatedName("w")
-	@Export("ItemDefinition_inMembersWorld")
-	public static boolean ItemDefinition_inMembersWorld;
+	@Export("ItemComposition_inMembersWorld")
+	public static boolean ItemComposition_inMembersWorld;
 	@ObfuscatedName("c")
 	long[] field1725;
 	@ObfuscatedName("l")

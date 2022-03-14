@@ -545,7 +545,7 @@ class class18 implements Comparator {
 									class133.selectedItemWidget = var1;
 									class286.selectedItemId = var3;
 									class112.invalidateWidget(var16);
-									Client.selectedItemName = LoginScreenAnimation.colorStartTag(16748608) + Client.ItemDefinition_get(var3).name + LoginScreenAnimation.colorStartTag(16777215);
+									Client.selectedItemName = LoginScreenAnimation.colorStartTag(16748608) + Client.ItemComposition_get(var3).name + LoginScreenAnimation.colorStartTag(16777215);
 									if (Client.selectedItemName == null) {
 										Client.selectedItemName = "null";
 									}
@@ -773,7 +773,7 @@ class class18 implements Comparator {
 									} else if (var2 == 1005) {
 										var16 = class130.getWidget(var1);
 										if (var16 != null && var16.itemQuantities[var0] >= 100000) {
-											LoginScreenAnimation.addGameMessage(27, "", var16.itemQuantities[var0] + " x " + Client.ItemDefinition_get(var3).name);
+											LoginScreenAnimation.addGameMessage(27, "", var16.itemQuantities[var0] + " x " + Client.ItemComposition_get(var3).name);
 										} else {
 											var9 = class135.getPacketBufferNode(ClientPacket.field2925, Client.packetWriter.isaacCipher);
 											var9.packetBuffer.writeShort(var3);

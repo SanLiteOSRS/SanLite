@@ -161,13 +161,13 @@ public final class class370 {
 		long var6 = ((long)var3 << 42) + ((long)var4 << 40) + (long)var0 + ((long)var1 << 16) + ((long)var2 << 38);
 		SpritePixels var8;
 		if (!var5) {
-			var8 = (SpritePixels)ItemComposition.ItemDefinition_cachedSprites.get(var6);
+			var8 = (SpritePixels)ItemComposition.ItemComposition_cachedSprites.get(var6);
 			if (var8 != null) {
 				return var8;
 			}
 		}
 
-		ItemComposition var9 = Client.ItemDefinition_get(var0);
+		ItemComposition var9 = Client.ItemComposition_get(var0);
 		if (var1 > 1 && var9.countobj != null) {
 			int var10 = -1;
 
@@ -178,7 +178,7 @@ public final class class370 {
 			}
 
 			if (var10 != -1) {
-				var9 = Client.ItemDefinition_get(var10);
+				var9 = Client.ItemComposition_get(var10);
 			}
 		}
 
@@ -252,7 +252,7 @@ public final class class370 {
 			}
 
 			if (var4 == 1 || var4 == 2 && var9.isStackable == 1) {
-				Font var19 = class67.ItemDefinition_fontPlain11;
+				Font var19 = class67.ItemComposition_fontPlain11;
 				String var20;
 				if (var1 < 100000) {
 					var20 = "<col=ffff00>" + var1 + "</col>";
@@ -266,7 +266,7 @@ public final class class370 {
 			}
 
 			if (!var5) {
-				ItemComposition.ItemDefinition_cachedSprites.put(var8, var6);
+				ItemComposition.ItemComposition_cachedSprites.put(var8, var6);
 			}
 
 			Rasterizer2D.Rasterizer2D_replace(var12, var13, var14);

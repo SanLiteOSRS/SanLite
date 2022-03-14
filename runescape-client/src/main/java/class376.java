@@ -111,7 +111,7 @@ public abstract class class376 extends class242 implements class427 {
 						var9 += var2[var4++];
 						var10 = class130.getWidget(var9);
 						var11 = var2[var4++];
-						if (var11 != -1 && (!Client.ItemDefinition_get(var11).isMembersOnly || Client.isMembersWorld)) {
+						if (var11 != -1 && (!Client.ItemComposition_get(var11).isMembersOnly || Client.isMembersWorld)) {
 							for (var12 = 0; var12 < var10.itemIds.length; ++var12) {
 								if (var11 + 1 == var10.itemIds[var12]) {
 									var7 += var10.itemQuantities[var12];
@@ -149,7 +149,7 @@ public abstract class class376 extends class242 implements class427 {
 						var9 += var2[var4++];
 						var10 = class130.getWidget(var9);
 						var11 = var2[var4++];
-						if (var11 != -1 && (!Client.ItemDefinition_get(var11).isMembersOnly || Client.isMembersWorld)) {
+						if (var11 != -1 && (!Client.ItemComposition_get(var11).isMembersOnly || Client.isMembersWorld)) {
 							for (var12 = 0; var12 < var10.itemIds.length; ++var12) {
 								if (var11 + 1 == var10.itemIds[var12]) {
 									var7 = 999999999;

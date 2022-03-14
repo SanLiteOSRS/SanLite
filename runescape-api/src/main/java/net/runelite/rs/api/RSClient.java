@@ -403,7 +403,7 @@ public interface RSClient extends RSGameEngine, Client
 	@Import("itemContainers")
 	RSNodeHashTable getItemContainers();
 
-	@Import("ItemDefinition_get")
+	@Import("ItemComposition_get")
 	RSItemComposition getRSItemDefinition(int itemId);
 
 	@Import("getItemSprite")
@@ -839,7 +839,7 @@ public interface RSClient extends RSGameEngine, Client
 	@Override
 	RSEvictingDualNodeHashTable getWidgetSpriteCache();
 
-	@Import("ItemDefinition_cached")
+	@Import("ItemComposition_cached")
 	@Override
 	RSEvictingDualNodeHashTable getItemCompositionCache();
 
@@ -1099,7 +1099,7 @@ public interface RSClient extends RSGameEngine, Client
 	@Override
 	RSSpritePixels[] getCrossSprites();
 
-	@Import("ItemDefinition_fileCount")
+	@Import("ItemComposition_fileCount")
 	int getItemCount();
 
 	@Import("insertMenuItem")
@@ -1113,6 +1113,10 @@ public interface RSClient extends RSGameEngine, Client
 
 	@Import("selectedItemSlot")
 	void setSelectedItemSlot(int index);
+
+	@Import("selectedItemSlot")
+	@Override
+	int getSelectedItemIndex();
 
 	@Import("selectedItemWidget")
 	int getSelectedItemWidget();
@@ -1255,6 +1259,10 @@ public interface RSClient extends RSGameEngine, Client
 	@Import("isItemSelected")
 	int isItemSelected();
 
+	@Override
+	@Import("isItemSelected")
+	int getSelectedItem();
+
 	@Import("selectedItemName")
 	String getSelectedItemName();
 
@@ -1342,8 +1350,8 @@ public interface RSClient extends RSGameEngine, Client
 	@Import("ObjectDefinition_archive")
 	RSAbstractArchive getObjectDefinition_archive();
 
-	@Import("ItemDefinition_archive")
-	RSAbstractArchive getItemDefinition_archive();
+	@Import("ItemComposition_archive")
+	RSAbstractArchive getItemComposition_archive();
 
 	@Import("KitDefinition_archive")
 	RSAbstractArchive getKitDefinition_archive();
@@ -1441,11 +1449,13 @@ public interface RSClient extends RSGameEngine, Client
 	@Import("InvDefinition_cached")
 	RSEvictingDualNodeHashTable getInvDefinitionCache();
 
-	@Import("ItemDefinition_cachedModels")
-	RSEvictingDualNodeHashTable getItemDefinitionModelsCache();
+	@Import("ItemComposition_cachedModels")
+	@Override
+	RSEvictingDualNodeHashTable getItemModelCache();
 
-	@Import("ItemDefinition_cachedSprites")
-	RSEvictingDualNodeHashTable getItemDefinitionSpritesCache();
+	@Import("ItemComposition_cachedSprites")
+	@Override
+	RSEvictingDualNodeHashTable getItemSpriteCache();
 
 	@Import("KitDefinition_cached")
 	RSEvictingDualNodeHashTable getKitDefinitionCache();

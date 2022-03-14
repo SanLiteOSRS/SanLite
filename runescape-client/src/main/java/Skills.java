@@ -99,7 +99,7 @@ public class Skills {
 		int var3;
 		if (var0 == ScriptOpcodes.OC_NAME) {
 			var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-			Interpreter.Interpreter_stringStack[++BufferedNetSocket.Interpreter_stringStackSize - 1] = Client.ItemDefinition_get(var3).name;
+			Interpreter.Interpreter_stringStack[++BufferedNetSocket.Interpreter_stringStackSize - 1] = Client.ItemComposition_get(var3).name;
 			return 1;
 		} else {
 			int var4;
@@ -108,7 +108,7 @@ public class Skills {
 				Interpreter.Interpreter_intStackSize -= 2;
 				var3 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
 				var4 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
-				var5 = Client.ItemDefinition_get(var3);
+				var5 = Client.ItemComposition_get(var3);
 				if (var4 >= 1 && var4 <= 5 && var5.groundActions[var4 - 1] != null) {
 					Interpreter.Interpreter_stringStack[++BufferedNetSocket.Interpreter_stringStackSize - 1] = var5.groundActions[var4 - 1];
 				} else {
@@ -120,7 +120,7 @@ public class Skills {
 				Interpreter.Interpreter_intStackSize -= 2;
 				var3 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
 				var4 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
-				var5 = Client.ItemDefinition_get(var3);
+				var5 = Client.ItemComposition_get(var3);
 				if (var4 >= 1 && var4 <= 5 && var5.inventoryActions[var4 - 1] != null) {
 					Interpreter.Interpreter_stringStack[++BufferedNetSocket.Interpreter_stringStackSize - 1] = var5.inventoryActions[var4 - 1];
 				} else {
@@ -130,17 +130,17 @@ public class Skills {
 				return 1;
 			} else if (var0 == ScriptOpcodes.OC_COST) {
 				var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = Client.ItemDefinition_get(var3).price;
+				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = Client.ItemComposition_get(var3).price;
 				return 1;
 			} else if (var0 == ScriptOpcodes.OC_STACKABLE) {
 				var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = Client.ItemDefinition_get(var3).isStackable == 1 ? 1 : 0;
+				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = Client.ItemComposition_get(var3).isStackable == 1 ? 1 : 0;
 				return 1;
 			} else {
 				ItemComposition var7;
 				if (var0 == ScriptOpcodes.OC_CERT) {
 					var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-					var7 = Client.ItemDefinition_get(var3);
+					var7 = Client.ItemComposition_get(var3);
 					if (var7.noteTemplate == -1 && var7.note >= 0) {
 						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var7.note;
 					} else {
@@ -150,7 +150,7 @@ public class Skills {
 					return 1;
 				} else if (var0 == ScriptOpcodes.OC_UNCERT) {
 					var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-					var7 = Client.ItemDefinition_get(var3);
+					var7 = Client.ItemComposition_get(var3);
 					if (var7.noteTemplate >= 0 && var7.note >= 0) {
 						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var7.note;
 					} else {
@@ -160,11 +160,11 @@ public class Skills {
 					return 1;
 				} else if (var0 == ScriptOpcodes.OC_MEMBERS) {
 					var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-					Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = Client.ItemDefinition_get(var3).isMembersOnly ? 1 : 0;
+					Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = Client.ItemComposition_get(var3).isMembersOnly ? 1 : 0;
 					return 1;
 				} else if (var0 == ScriptOpcodes.OC_PLACEHOLDER) {
 					var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-					var7 = Client.ItemDefinition_get(var3);
+					var7 = Client.ItemComposition_get(var3);
 					if (var7.placeholderTemplate == -1 && var7.placeholder >= 0) {
 						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var7.placeholder;
 					} else {
@@ -174,7 +174,7 @@ public class Skills {
 					return 1;
 				} else if (var0 == ScriptOpcodes.OC_UNPLACEHOLDER) {
 					var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-					var7 = Client.ItemDefinition_get(var3);
+					var7 = Client.ItemComposition_get(var3);
 					if (var7.placeholderTemplate >= 0 && var7.placeholder >= 0) {
 						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var7.placeholder;
 					} else {
@@ -194,7 +194,7 @@ public class Skills {
 						return 1;
 					} else if (var0 == 4213) {
 						var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-						var4 = Client.ItemDefinition_get(var3).getShiftClickIndex();
+						var4 = Client.ItemComposition_get(var3).getShiftClickIndex();
 						if (var4 == -1) {
 							Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var4;
 						} else {
@@ -584,7 +584,7 @@ public class Skills {
 											}
 
 											if (var10.isIf3 && var10.itemId != -1) {
-												ItemComposition var45 = Client.ItemDefinition_get(var10.itemId);
+												ItemComposition var45 = Client.ItemComposition_get(var10.itemId);
 												var44 = var45.name;
 												if (var44 == null) {
 													var44 = "null";
@@ -674,7 +674,7 @@ public class Skills {
 											Model var41 = null;
 											var22 = 0;
 											if (var10.itemId != -1) {
-												var33 = Client.ItemDefinition_get(var10.itemId);
+												var33 = Client.ItemComposition_get(var10.itemId);
 												if (var33 != null) {
 													var33 = var33.getCountObj(var10.itemQuantity);
 													var41 = var33.getModel(1);
@@ -736,7 +736,7 @@ public class Skills {
 												for (var21 = 0; var21 < var10.rawHeight; ++var21) {
 													for (var22 = 0; var22 < var10.rawWidth; ++var22) {
 														if (var10.itemIds[var20] > 0) {
-															var33 = Client.ItemDefinition_get(var10.itemIds[var20] - 1);
+															var33 = Client.ItemComposition_get(var10.itemIds[var20] - 1);
 															String var34;
 															if (var33.isStackable != 1 && var10.itemQuantities[var20] == 1) {
 																var34 = LoginScreenAnimation.colorStartTag(16748608) + var33.name + "</col>";

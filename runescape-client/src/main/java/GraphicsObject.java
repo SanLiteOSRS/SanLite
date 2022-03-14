@@ -174,7 +174,7 @@ public class GraphicsObject extends Renderable {
 		garbageValue = "-534888453"
 	)
 	public static void method1890() {
-		ItemComposition.ItemDefinition_cachedSprites.clear();
+		ItemComposition.ItemComposition_cachedSprites.clear();
 	}
 
 	public GraphicsObject() {

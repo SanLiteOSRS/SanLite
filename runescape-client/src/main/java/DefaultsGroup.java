@@ -16,8 +16,8 @@ public class DefaultsGroup {
 	@ObfuscatedSignature(
 		descriptor = "Lkq;"
 	)
-	@Export("ItemDefinition_archive")
-	public static AbstractArchive ItemDefinition_archive;
+	@Export("ItemComposition_archive")
+	public static AbstractArchive ItemComposition_archive;
 	@ObfuscatedName("l")
 	@ObfuscatedGetter(
 		intValue = 394872165

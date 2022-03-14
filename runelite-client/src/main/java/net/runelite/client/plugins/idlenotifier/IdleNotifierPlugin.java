@@ -60,7 +60,8 @@ import net.runelite.client.plugins.PluginDescriptor;
 @PluginDescriptor(
 	name = "Idle Notifier",
 	description = "Send a notification when going idle, or when HP/Prayer reaches a threshold",
-	tags = {"health", "hitpoints", "notifications", "prayer"}
+	tags = {"health", "hitpoints", "notifications", "prayer"},
+	enabledByDefault = false
 )
 public class IdleNotifierPlugin extends Plugin
 {
@@ -223,6 +224,7 @@ public class IdleNotifierPlugin extends Plugin
 			case FISHING_PEARL_FLY_ROD_2:
 			case FISHING_PEARL_BARBARIAN_ROD_2:
 			case FISHING_PEARL_OILY_ROD:
+			case FISHING_BARBARIAN_ROD:
 			/* Mining(Normal) */
 			case MINING_BRONZE_PICKAXE:
 			case MINING_IRON_PICKAXE:

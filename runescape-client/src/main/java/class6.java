@@ -16,8 +16,8 @@ public enum class6 implements MouseWheel {
 	@ObfuscatedSignature(
 		descriptor = "Lkq;"
 	)
-	@Export("ItemDefinition_modelArchive")
-	public static AbstractArchive ItemDefinition_modelArchive;
+	@Export("ItemComposition_modelArchive")
+	public static AbstractArchive ItemComposition_modelArchive;
 	@ObfuscatedName("aj")
 	@ObfuscatedSignature(
 		descriptor = "Lna;"

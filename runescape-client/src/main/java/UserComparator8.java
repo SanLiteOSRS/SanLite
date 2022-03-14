@@ -133,9 +133,9 @@ public class UserComparator8 extends AbstractUserComparator {
 		KitDefinition.KitDefinition_cached.clear();
 		class21.method301();
 		class113.method2603();
-		ItemComposition.ItemDefinition_cached.clear();
-		ItemComposition.ItemDefinition_cachedModels.clear();
-		ItemComposition.ItemDefinition_cachedSprites.clear();
+		ItemComposition.ItemComposition_cached.clear();
+		ItemComposition.ItemComposition_cachedModels.clear();
+		ItemComposition.ItemComposition_cachedSprites.clear();
 		Clock.method3121();
 		WorldMapSectionType.method4726();
 		VarbitComposition.VarbitDefinition_cached.clear();

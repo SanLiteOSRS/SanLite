@@ -285,7 +285,7 @@ public class PlayerComposition {
 						var9 = true;
 					}
 
-					if (var11 >= 512 && !Client.ItemDefinition_get(var11 - 512).hasNoValidModel(this.isFemale)) {
+					if (var11 >= 512 && !Client.ItemComposition_get(var11 - 512).hasNoValidModel(this.isFemale)) {
 						var9 = true;
 					}
 				}
@@ -315,7 +315,7 @@ public class PlayerComposition {
 						}
 
 						if (var13 >= 512) {
-							ItemComposition var22 = Client.ItemDefinition_get(var13 - 512);
+							ItemComposition var22 = Client.ItemComposition_get(var13 - 512);
 							ModelData var15 = var22.method3519(this.isFemale);
 							if (var15 != null) {
 								if (this.field3242 != null) {
@@ -395,7 +395,7 @@ public class PlayerComposition {
 					var1 = true;
 				}
 
-				if (var3 >= 512 && !Client.ItemDefinition_get(var3 - 512).method3509(this.isFemale)) {
+				if (var3 >= 512 && !Client.ItemComposition_get(var3 - 512).method3509(this.isFemale)) {
 					var1 = true;
 				}
 			}
@@ -418,7 +418,7 @@ public class PlayerComposition {
 					}
 
 					if (var5 >= 512) {
-						var6 = Client.ItemDefinition_get(var5 - 512).method3521(this.isFemale);
+						var6 = Client.ItemComposition_get(var5 - 512).method3521(this.isFemale);
 						if (var6 != null) {
 							var7[var3++] = var6;
 						}

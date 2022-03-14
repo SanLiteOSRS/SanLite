@@ -447,9 +447,9 @@ public class Players {
 							var4 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
 							var5 = HealthBarUpdate.getParamDefinition(var4);
 							if (var5.isString()) {
-								Interpreter.Interpreter_stringStack[++BufferedNetSocket.Interpreter_stringStackSize - 1] = Client.ItemDefinition_get(var3).getStringParam(var4, var5.defaultStr);
+								Interpreter.Interpreter_stringStack[++BufferedNetSocket.Interpreter_stringStackSize - 1] = Client.ItemComposition_get(var3).getStringParam(var4, var5.defaultStr);
 							} else {
-								Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = Client.ItemDefinition_get(var3).getIntParam(var4, var5.defaultInt);
+								Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = Client.ItemComposition_get(var3).getIntParam(var4, var5.defaultInt);
 							}
 
 							return 1;
