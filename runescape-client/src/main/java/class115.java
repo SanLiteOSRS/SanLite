@@ -251,11 +251,11 @@ public class class115 {
 		garbageValue = "-596145677"
 	)
 	public static void method2638(boolean var0) {
-		if (var0 != MilliClock.ItemDefinition_inMembersWorld) {
-			ItemComposition.ItemDefinition_cached.clear();
-			ItemComposition.ItemDefinition_cachedModels.clear();
-			ItemComposition.ItemDefinition_cachedSprites.clear();
-			MilliClock.ItemDefinition_inMembersWorld = var0;
+		if (var0 != MilliClock.ItemComposition_inMembersWorld) {
+			ItemComposition.ItemComposition_cached.clear();
+			ItemComposition.ItemComposition_cachedModels.clear();
+			ItemComposition.ItemComposition_cachedSprites.clear();
+			MilliClock.ItemComposition_inMembersWorld = var0;
 		}
 
 	}

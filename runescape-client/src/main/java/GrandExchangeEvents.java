@@ -183,7 +183,7 @@ public class GrandExchangeEvents {
 						Client.dragItemSlotDestination = var15;
 						NPC.hoveredItemContainer = var0;
 						if (var0.itemIds[var15] > 0) {
-							ItemComposition var8 = Client.ItemDefinition_get(var0.itemIds[var15] - 1);
+							ItemComposition var8 = Client.ItemComposition_get(var0.itemIds[var15] - 1);
 							if (Client.isItemSelected == 1 && Skills.method5475(Language.getWidgetFlags(var0))) {
 								if (var0.id != class133.selectedItemWidget || var15 != WorldMapAreaData.selectedItemSlot) {
 									class11.insertMenuItemNoShift("Use", Client.selectedItemName + " " + "->" + " " + LoginScreenAnimation.colorStartTag(16748608) + var8.name, 31, var8.id, var15, var0.id);

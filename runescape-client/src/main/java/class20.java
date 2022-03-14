@@ -86,7 +86,7 @@ public class class20 implements Callable {
 			int var5 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
 			var3.itemId = var4;
 			var3.itemQuantity = var5;
-			ItemComposition var6 = Client.ItemDefinition_get(var4);
+			ItemComposition var6 = Client.ItemComposition_get(var4);
 			var3.modelAngleX = var6.xan2d;
 			var3.modelAngleY = var6.yan2d;
 			var3.modelAngleZ = var6.zan2d;

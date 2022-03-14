@@ -34,7 +34,7 @@ public final class TileItem extends Renderable {
 	)
 	@Export("getModel")
 	protected final Model getModel() {
-		return Client.ItemDefinition_get(this.id).getModel(this.quantity);
+		return Client.ItemComposition_get(this.id).getModel(this.quantity);
 	}
 
 	@ObfuscatedName("c")

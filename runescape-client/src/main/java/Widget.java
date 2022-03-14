@@ -1453,7 +1453,7 @@ public class Widget extends Node {
 				}
 
 				if (var5 == 4) {
-					ItemComposition var9 = Client.ItemDefinition_get(var6);
+					ItemComposition var9 = Client.ItemComposition_get(var6);
 					var8 = var9.getModelData(10);
 					if (var8 == null) {
 						field3262 = true;

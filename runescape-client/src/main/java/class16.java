@@ -375,8 +375,8 @@ public class class16 implements ThreadFactory {
 		short[] var2 = new short[16];
 		int var3 = 0;
 
-		for (int var4 = 0; var4 < HealthBarUpdate.ItemDefinition_fileCount; ++var4) {
-			ItemComposition var9 = Client.ItemDefinition_get(var4);
+		for (int var4 = 0; var4 < HealthBarUpdate.ItemComposition_fileCount; ++var4) {
+			ItemComposition var9 = Client.ItemComposition_get(var4);
 			if ((!var1 || var9.isTradable) && var9.noteTemplate == -1 && var9.name.toLowerCase().indexOf(var0) != -1) {
 				if (var3 >= 250) {
 					GroundObject.foundItemIdCount = -1;
@@ -404,7 +404,7 @@ public class class16 implements ThreadFactory {
 		String[] var8 = new String[GroundObject.foundItemIdCount];
 
 		for (int var5 = 0; var5 < GroundObject.foundItemIdCount; ++var5) {
-			var8[var5] = Client.ItemDefinition_get(var2[var5]).name;
+			var8[var5] = Client.ItemComposition_get(var2[var5]).name;
 		}
 
 		Client.method1632(var8, class133.foundItemIds);

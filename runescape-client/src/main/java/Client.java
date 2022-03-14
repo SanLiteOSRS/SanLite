@@ -4504,7 +4504,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
 							return true;
 						}
 
-						var78 = ItemDefinition_get(var5);
+						var78 = ItemComposition_get(var5);
 						var53.modelType = 4;
 						var53.modelId = var5;
 						var53.modelAngleX = var78.xan2d;
@@ -4514,7 +4514,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
 					} else {
 						var53.itemId = var5;
 						var53.itemQuantity = var17;
-						var78 = ItemDefinition_get(var5);
+						var78 = ItemComposition_get(var5);
 						var53.modelAngleX = var78.xan2d;
 						var53.modelAngleY = var78.yan2d;
 						var53.modelAngleZ = var78.zan2d;
@@ -5939,13 +5939,13 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
 		descriptor = "(II)Lfn;",
 		garbageValue = "1114292674"
 	)
-	@Export("ItemDefinition_get")
-	public static ItemComposition ItemDefinition_get(int var0) {
-		ItemComposition var1 = (ItemComposition)ItemComposition.ItemDefinition_cached.get((long)var0);
+	@Export("ItemComposition_get")
+	public static ItemComposition ItemComposition_get(int var0) {
+		ItemComposition var1 = (ItemComposition)ItemComposition.ItemComposition_cached.get((long)var0);
 		if (var1 != null) {
 			return var1;
 		} else {
-			byte[] var2 = DefaultsGroup.ItemDefinition_archive.takeFile(10, var0);
+			byte[] var2 = DefaultsGroup.ItemComposition_archive.takeFile(10, var0);
 			var1 = new ItemComposition();
 			var1.id = var0;
 			if (var2 != null) {
@@ -5954,18 +5954,18 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
 
 			var1.post();
 			if (var1.noteTemplate != -1) {
-				var1.genCert(ItemDefinition_get(var1.noteTemplate), ItemDefinition_get(var1.note));
+				var1.genCert(ItemComposition_get(var1.noteTemplate), ItemComposition_get(var1.note));
 			}
 
 			if (var1.notedId != -1) {
-				var1.genBought(ItemDefinition_get(var1.notedId), ItemDefinition_get(var1.unnotedId));
+				var1.genBought(ItemComposition_get(var1.notedId), ItemComposition_get(var1.unnotedId));
 			}
 
 			if (var1.placeholderTemplate != -1) {
-				var1.genPlaceholder(ItemDefinition_get(var1.placeholderTemplate), ItemDefinition_get(var1.placeholder));
+				var1.genPlaceholder(ItemComposition_get(var1.placeholderTemplate), ItemComposition_get(var1.placeholder));
 			}
 
-			if (!MilliClock.ItemDefinition_inMembersWorld && var1.isMembersOnly) {
+			if (!MilliClock.ItemComposition_inMembersWorld && var1.isMembersOnly) {
 				var1.name = "Members object";
 				var1.isTradable = false;
 
@@ -6000,7 +6000,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
 				}
 			}
 
-			ItemComposition.ItemDefinition_cached.put(var1, (long)var0);
+			ItemComposition.ItemComposition_cached.put(var1, (long)var0);
 			return var1;
 		}
 	}

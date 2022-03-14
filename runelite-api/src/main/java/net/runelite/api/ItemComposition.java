@@ -151,6 +151,12 @@ public interface ItemComposition extends ParamHolder
 	void setShiftClickActionIndex(int shiftClickActionIndex);
 
 	/**
+	 * Resets the menu action index of the shift-click action to its
+	 * default value.
+	 */
+	void resetShiftClickActionIndex();
+
+	/**
 	 * Gets the model ID of the inventory item.
 	 *
 	 * @return the model ID

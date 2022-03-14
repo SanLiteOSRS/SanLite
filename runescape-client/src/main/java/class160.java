@@ -23,7 +23,7 @@ public class class160 {
 	public short[] field1746;
 
 	class160(int var1) {
-		ItemComposition var2 = Client.ItemDefinition_get(var1);
+		ItemComposition var2 = Client.ItemComposition_get(var1);
 		if (var2.method3525()) {
 			this.field1745 = new short[var2.recolorTo.length];
 			System.arraycopy(var2.recolorTo, 0, this.field1745, 0, this.field1745.length);

@@ -85,7 +85,7 @@ public enum StudioGame implements MouseWheel {
 
 			TileItem var6;
 			for (var6 = (TileItem)var2.last(); var6 != null; var6 = (TileItem)var2.previous()) {
-				ItemComposition var7 = Client.ItemDefinition_get(var6.id);
+				ItemComposition var7 = Client.ItemComposition_get(var6.id);
 				long var11 = (long)var7.price;
 				if (var7.isStackable == 1) {
 					var11 *= (long)(var6.quantity + 1);

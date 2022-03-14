@@ -14,8 +14,8 @@ public class HealthBarUpdate extends Node {
 	@ObfuscatedGetter(
 		intValue = 474414413
 	)
-	@Export("ItemDefinition_fileCount")
-	public static int ItemDefinition_fileCount;
+	@Export("ItemComposition_fileCount")
+	public static int ItemComposition_fileCount;
 	@ObfuscatedName("dy")
 	static boolean field1178;
 	@ObfuscatedName("c")

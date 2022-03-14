@@ -325,11 +325,11 @@ public class Decimator {
 						Archive var22 = WorldMapLabelSize.archive7;
 						boolean var29 = Client.isMembersWorld;
 						Font var27 = class1.fontPlain11;
-						DefaultsGroup.ItemDefinition_archive = var2;
-						class6.ItemDefinition_modelArchive = var22;
-						MilliClock.ItemDefinition_inMembersWorld = var29;
-						HealthBarUpdate.ItemDefinition_fileCount = DefaultsGroup.ItemDefinition_archive.getGroupFileCount(10);
-						class67.ItemDefinition_fontPlain11 = var27;
+						DefaultsGroup.ItemComposition_archive = var2;
+						class6.ItemComposition_modelArchive = var22;
+						MilliClock.ItemComposition_inMembersWorld = var29;
+						HealthBarUpdate.ItemComposition_fileCount = DefaultsGroup.ItemComposition_archive.getGroupFileCount(10);
+						class67.ItemComposition_fontPlain11 = var27;
 						ModeWhere.method5816(FriendLoginUpdate.archive2, class7.archive0, Client.archive1);
 						method1051(FriendLoginUpdate.archive2, WorldMapLabelSize.archive7);
 						Calendar.method5310(FriendLoginUpdate.archive2);

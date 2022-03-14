@@ -19,8 +19,8 @@ public class class67 {
 	@ObfuscatedSignature(
 		descriptor = "Llv;"
 	)
-	@Export("ItemDefinition_fontPlain11")
-	public static Font ItemDefinition_fontPlain11;
+	@Export("ItemComposition_fontPlain11")
+	public static Font ItemComposition_fontPlain11;
 
 	static {
 		field886 = new BigInteger("10001", 16);
