@@ -6,10 +6,16 @@ import net.runelite.mapping.Import;
 public interface RSItemLayer extends ItemLayer
 {
 	@Import("x")
+	@Override
 	int getX();
 
 	@Import("y")
+	@Override
 	int getY();
+
+	@Import("z")
+	@Override
+	int getZ();
 
 	@Import("tag")
 	@Override

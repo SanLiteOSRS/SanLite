@@ -15,6 +15,10 @@ public interface RSDecorativeObject extends DecorativeObject
 	@Import("y")
 	int getY();
 
+	@Override
+	@Import("z")
+	int getZ();
+
 	@Import("xOffset")
 	int getXOffset();
 

@@ -6,7 +6,7 @@ import java.util.Map;
 class Bootstrap
 {
 	private static String CLIENT_REPO_URL;
-	private static final int STATIC_ARTIFACTS_SIZE = 37;
+	private static final int STATIC_ARTIFACTS_SIZE = 38;
 	private static Map<DynamicArtifact, String> CHECKSUMS;
 
 	private Artifact[] artifacts;
@@ -158,64 +158,64 @@ class Bootstrap
 		artifacts[12].setSize(499634);
 
 		artifacts[13] = new Artifact();
-		artifacts[13].setHash("100e3c65ca864732f1616d575e114e1352e6bb5b073467d42acd4c4126cfca40");
-		artifacts[13].setName("jogl-all-2.4.0-rc-20200429.jar");
-		artifacts[13].setPath("https://repo.runelite.net/net/runelite/jogl/jogl-all/2.4.0-rc-20200429/jogl-all-2.4.0-rc-20200429.jar");
-		artifacts[13].setSize(3556304);
+		artifacts[13].setHash("f36a1ddfaa92f9a8eae83a37627aebd22cd927ab9e5c7f0cfe778810757a7b1f");
+		artifacts[13].setName("jogl-rl-2.4.0-rc-20220318.jar");
+		artifacts[13].setPath("https://repo.runelite.net/net/runelite/jogl/jogl-rl/2.4.0-rc-20220318/jogl-rl-2.4.0-rc-20220318.jar");
+		artifacts[13].setSize(1217403);
 
 		artifacts[14] = new Artifact();
-		artifacts[14].setHash("65512191409b98be8f435fc82dca5fe964ce79cdde5cdd09783144b5391893b2");
-		artifacts[14].setName("jogl-all-2.4.0-rc-20200429-natives-windows-amd64.jar");
-		artifacts[14].setPath("https://repo.runelite.net/net/runelite/jogl/jogl-all/2.4.0-rc-20200429/jogl-all-2.4.0-rc-20200429-natives-windows-amd64.jar");
-		artifacts[14].setSize(227080);
+		artifacts[14].setHash("346dee2189c431fe99980c478e511f9465f26bd8aba4db4288010532fde116af");
+		artifacts[14].setName("jogl-rl-2.4.0-rc-20220318-natives-linux-amd64.jar");
+		artifacts[14].setPath("https://repo.runelite.net/net/runelite/jogl/jogl-rl/2.4.0-rc-20220318/jogl-rl-2.4.0-rc-20220318-natives-linux-amd64.jar");
+		artifacts[14].setSize(133417);
 
 		artifacts[15] = new Artifact();
-		artifacts[15].setHash("e0fa809496961db1b1f840fead006a03357d1215b0464f54dd872081e2e6094b");
-		artifacts[15].setName("jogl-all-2.4.0-rc-20200429-natives-windows-i586.jar");
-		artifacts[15].setPath("https://repo.runelite.net/net/runelite/jogl/jogl-all/2.4.0-rc-20200429/jogl-all-2.4.0-rc-20200429-natives-windows-i586.jar");
-		artifacts[15].setSize(198922);
+		artifacts[15].setHash("75029af713b9df5ecd47a818ef32eb0909a95bb0dde7514cd6dc73e82900ed13");
+		artifacts[15].setName("jogl-rl-2.4.0-rc-20220318-natives-windows-i586.jar");
+		artifacts[15].setPath("https://repo.runelite.net/net/runelite/jogl/jogl-rl/2.4.0-rc-20220318/jogl-rl-2.4.0-rc-20220318-natives-windows-i586.jar");
+		artifacts[15].setSize(112944);
 
 		artifacts[16] = new Artifact();
-		artifacts[16].setHash("4bad2ac72598f517f284b172827fcec591569dcf2a551b5315d58c6ddbbed94d");
-		artifacts[16].setName("jogl-all-2.4.0-rc-20200429-natives-linux-amd64.jar");
-		artifacts[16].setPath("https://repo.runelite.net/net/runelite/jogl/jogl-all/2.4.0-rc-20200429/jogl-all-2.4.0-rc-20200429-natives-linux-amd64.jar");
-		artifacts[16].setSize(244518);
+		artifacts[16].setHash("06da0e7e3c519b44c6ce510ff31ef5ade04a5f97f20461b2991dc55e373553c0");
+		artifacts[16].setName("jogl-rl-2.4.0-rc-20220318-natives-macosx-universal.jar");
+		artifacts[16].setPath("https://repo.runelite.net/net/runelite/jogl/jogl-rl/2.4.0-rc-20220318/jogl-rl-2.4.0-rc-20220318-natives-macosx-universal.jar");
+		artifacts[16].setSize(307700);
 
 		artifacts[17] = new Artifact();
-		artifacts[17].setHash("b79043af5a6f64704c1cf70264aa9acfdf8435baeb3b8196fbeb04a0192b0f41");
-		artifacts[17].setName("jogl-all-natives-macosx-2.4.0-rc-20210117.jar");
-		artifacts[17].setPath("https://repo.runelite.net/net/runelite/jogl/jogl-all-natives-macosx/2.4.0-rc-20210117/jogl-all-natives-macosx-2.4.0-rc-20210117.jar");
-		artifacts[17].setSize(466728);
+		artifacts[17].setHash("12cb4a18958d3da1fb7def4800cd31a5a266e9da9ccbb6dca9efa1d1b9d953e0");
+		artifacts[17].setName("jogl-gldesktop-dbg-2.4.0-rc-20220318.jar");
+		artifacts[17].setPath("https://repo.runelite.net/net/runelite/jogl/jogl-gldesktop-dbg/2.4.0-rc-20220318/jogl-gldesktop-dbg-2.4.0-rc-20220318.jar");
+		artifacts[17].setSize(293221);
 
 		artifacts[18] = new Artifact();
-		artifacts[18].setHash("f21532326c62b8371ffe5bb5c9cdb5ae2e1c73f4893e6212f34a005a3755a58f");
-		artifacts[18].setName("gluegen-rt-2.4.0-rc-20200429.jar");
-		artifacts[18].setPath("https://repo.runelite.net/net/runelite/gluegen/gluegen-rt/2.4.0-rc-20200429/gluegen-rt-2.4.0-rc-20200429.jar");
-		artifacts[18].setSize(360948);
+		artifacts[18].setHash("ba22a3338a3dea346801f5ae4a0341fc13f59bf4b02d54d575a6f0399a30e8b2");
+		artifacts[18].setName("gluegen-rt-2.4.0-rc-20220318.jar");
+		artifacts[18].setPath("https://repo.runelite.net/net/runelite/gluegen/gluegen-rt/2.4.0-rc-20220318/gluegen-rt-2.4.0-rc-20220318.jar");
+		artifacts[18].setSize(360949);
 
 		artifacts[19] = new Artifact();
-		artifacts[19].setHash("b02d1c1fa3184c977e04d4abc7c944676d0591fb363885762abc5e0ced7d0b92");
-		artifacts[19].setName("gluegen-rt-2.4.0-rc-20200429-natives-windows-amd64.jar");
-		artifacts[19].setPath("https://repo.runelite.net/net/runelite/gluegen/gluegen-rt/2.4.0-rc-20200429/gluegen-rt-2.4.0-rc-20200429-natives-windows-amd64.jar");
-		artifacts[19].setSize(8696);
+		artifacts[19].setHash("1ab1e977c70bf8edbc519438619e9c317d285ef286eb95cd241546492ba0dc64");
+		artifacts[19].setName("gluegen-rt-2.4.0-rc-20220318-natives-windows-amd64.jar");
+		artifacts[19].setPath("https://repo.runelite.net/net/runelite/gluegen/gluegen-rt/2.4.0-rc-20220318/gluegen-rt-2.4.0-rc-20220318-natives-windows-amd64.jar");
+		artifacts[19].setSize(8702);
 
 		artifacts[20] = new Artifact();
-		artifacts[20].setHash("337582d1ea47c240b1b58e65fdd904a2c9665e42abedf4fcf152bb669d9a3b8e");
-		artifacts[20].setName("gluegen-rt-2.4.0-rc-20200429-natives-windows-i586.jar");
-		artifacts[20].setPath("https://repo.runelite.net/net/runelite/gluegen/gluegen-rt/2.4.0-rc-20200429/gluegen-rt-2.4.0-rc-20200429-natives-windows-i586.jar");
-		artifacts[20].setSize(7526);
+		artifacts[20].setHash("fc235e8164cbac2382053b850b10cd7cc971241b54b3f84410ff54edd71c852d");
+		artifacts[20].setName("gluegen-rt-2.4.0-rc-20220318-natives-windows-i586.jar");
+		artifacts[20].setPath("https://repo.runelite.net/net/runelite/gluegen/gluegen-rt/2.4.0-rc-20220318/gluegen-rt-2.4.0-rc-20220318-natives-windows-i586.jar");
+		artifacts[20].setSize(7531);
 
 		artifacts[21] = new Artifact();
-		artifacts[21].setHash("785f12e6c4242450ed5bcadc541288c9ec8a9b965ee6b5cae6bff2a2c65c1e35");
-		artifacts[21].setName("gluegen-rt-2.4.0-rc-20200429-natives-linux-amd64.jar");
-		artifacts[21].setPath("https://repo.runelite.net/net/runelite/gluegen/gluegen-rt/2.4.0-rc-20200429/gluegen-rt-2.4.0-rc-20200429-natives-linux-amd64.jar");
-		artifacts[21].setSize(4332);
+		artifacts[21].setHash("187ce9ddabfa7cd83447ccf9c166018aa7d2519c334942d91e33b3aaf24b53c7");
+		artifacts[21].setName("gluegen-rt-2.4.0-rc-20220318-natives-linux-amd64.jar");
+		artifacts[21].setPath("https://repo.runelite.net/net/runelite/gluegen/gluegen-rt/2.4.0-rc-20220318/gluegen-rt-2.4.0-rc-20220318-natives-linux-amd64.jar");
+		artifacts[21].setSize(4583);
 
 		artifacts[22] = new Artifact();
-		artifacts[22].setHash("b43354ca58de215423c57d428abc5c8467a1a5f0b00199aa52a67fb9729c70ef");
-		artifacts[22].setName("gluegen-rt-natives-macosx-2.4.0-rc-20210117.jar");
-		artifacts[22].setPath("https://repo.runelite.net/net/runelite/gluegen/gluegen-rt-natives-macosx/2.4.0-rc-20210117/gluegen-rt-natives-macosx-2.4.0-rc-20210117.jar");
-		artifacts[22].setSize(6539);
+		artifacts[22].setHash("c4d42a4c2335b1a5eb6d56a871af9360184b2dd2a028e9b7b7bd8644f6975583");
+		artifacts[22].setName("gluegen-rt-2.4.0-rc-20220318-natives-macosx-universal.jar");
+		artifacts[22].setPath("https://repo.runelite.net/net/runelite/gluegen/gluegen-rt/2.4.0-rc-20220318/gluegen-rt-2.4.0-rc-20220318-natives-macosx-universal.jar");
+		artifacts[22].setSize(6924);
 
 		artifacts[23] = new Artifact();
 		artifacts[23].setHash("ce932f3eeeb31021ae4d62108fdab23e18b7efd79833e4cd050e2d78d78c3347");
@@ -300,6 +300,12 @@ class Bootstrap
 		artifacts[36].setName("http-api-1.0.0.jar");
 		artifacts[36].setPath("https://repo.runelite.net/net/runelite/arn/http-api/1.0.0/http-api-1.0.0.jar");
 		artifacts[36].setSize(58112);
+
+		artifacts[37] = new Artifact();
+		artifacts[37].setHash("e7636fef6e9edc9f2caad7a4d5ca748edcc7cecb9446b917e4e5f93241123f2c");
+		artifacts[37].setName("jogl-rl-2.4.0-rc-20220318-natives-windows-amd64.jar");
+		artifacts[37].setPath("https://repo.runelite.net/net/runelite/jogl/jogl-rl/2.4.0-rc-20220318/jogl-rl-2.4.0-rc-20220318-natives-windows-amd64.jar");
+		artifacts[37].setSize(132196);
 
 //		artifacts[37] = new Artifact();
 //		artifacts[37].setHash("9d4924588d6280c7516db3a4b7298306db5b6f0d1cdf568ce738309b5660f008");
