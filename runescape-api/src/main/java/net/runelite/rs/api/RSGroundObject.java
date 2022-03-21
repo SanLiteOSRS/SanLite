@@ -10,10 +10,16 @@ public interface RSGroundObject extends GroundObject
 	long getHash();
 
 	@Import("x")
+	@Override
 	int getX();
 
 	@Import("y")
+	@Override
 	int getY();
+
+	@Import("z")
+	@Override
+	int getZ();
 
 	@Import("renderable")
 	@Override

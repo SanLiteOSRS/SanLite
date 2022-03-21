@@ -28,8 +28,9 @@ public interface RSGameObject extends GameObject
 	@Override
 	int getY();
 
-	@Import("height")
-	int getHeight();
+	@Import("z")
+	@Override
+	int getZ();
 
 	@Import("orientation")
 	int getModelOrientation();

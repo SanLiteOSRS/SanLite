@@ -16,8 +16,8 @@ public final class DecorativeObject {
 	@ObfuscatedGetter(
 		intValue = -358335925
 	)
-	@Export("tileHeight")
-	int tileHeight;
+	@Export("z")
+	int z;
 	@ObfuscatedName("l")
 	@ObfuscatedGetter(
 		intValue = -1796933097

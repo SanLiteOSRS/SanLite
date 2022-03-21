@@ -97,6 +97,6 @@ public abstract class RSGroundObjectMixin implements RSGroundObject
 	@Override
 	public Shape getClickbox()
 	{
-		return Perspective.getClickbox(client, getModel(), 0, getLocalLocation());
+		return Perspective.getClickbox(client, getModel(), 0, getX(), getY(), getZ());
 	}
 }
