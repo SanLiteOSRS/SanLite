@@ -1,3 +1,5 @@
+package com.jagex.oldscape.pub;
+
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 

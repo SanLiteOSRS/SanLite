@@ -7,7 +7,6 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 import net.runelite.rs.Reflection;
 
-@jo
 @ObfuscatedName("jj")
 public final class class268 {
 	@ObfuscatedName("h")

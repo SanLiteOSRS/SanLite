@@ -10,7 +10,7 @@ public interface OAuthApi {
 	@ObfuscatedSignature(
 		descriptor = "(Lcom/jagex/oldscape/pub/OtlTokenRequester;)V"
 	)
-	void setOtlTokenRequester(.OtlTokenRequester var1);
+	void setOtlTokenRequester(OtlTokenRequester var1);
 
 	long getAccountHash();
 }
