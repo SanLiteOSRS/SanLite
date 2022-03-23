@@ -4,49 +4,55 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fq")
+@ObfuscatedName("fh")
 @Implements("EnumComposition")
 public class EnumComposition extends DualNode {
-	@ObfuscatedName("c")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "Lkq;"
-	)
-	@Export("EnumDefinition_archive")
-	static AbstractArchive EnumDefinition_archive;
-	@ObfuscatedName("l")
-	@ObfuscatedSignature(
-		descriptor = "Lic;"
+		descriptor = "Liq;"
 	)
 	@Export("EnumDefinition_cached")
 	static EvictingDualNodeHashTable EnumDefinition_cached;
-	@ObfuscatedName("s")
+	@ObfuscatedName("m")
+	@ObfuscatedSignature(
+		descriptor = "[[Lkn;"
+	)
+	@Export("Widget_interfaceComponents")
+	public static Widget[][] Widget_interfaceComponents;
+	@ObfuscatedName("iq")
+	@ObfuscatedGetter(
+		intValue = 1021472065
+	)
+	@Export("cameraX")
+	static int cameraX;
+	@ObfuscatedName("h")
 	@Export("inputType")
 	public char inputType;
-	@ObfuscatedName("e")
+	@ObfuscatedName("g")
 	@Export("outputType")
 	public char outputType;
-	@ObfuscatedName("r")
+	@ObfuscatedName("l")
 	@Export("defaultStr")
 	public String defaultStr;
-	@ObfuscatedName("o")
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = 1973980043
+		intValue = 345435135
 	)
 	@Export("defaultInt")
 	public int defaultInt;
-	@ObfuscatedName("i")
+	@ObfuscatedName("d")
 	@ObfuscatedGetter(
-		intValue = -882871953
+		intValue = 123601371
 	)
 	@Export("outputCount")
 	public int outputCount;
-	@ObfuscatedName("w")
+	@ObfuscatedName("f")
 	@Export("keys")
 	public int[] keys;
-	@ObfuscatedName("v")
+	@ObfuscatedName("u")
 	@Export("intVals")
 	public int[] intVals;
-	@ObfuscatedName("a")
+	@ObfuscatedName("r")
 	@Export("strVals")
 	public String[] strVals;
 
@@ -59,10 +65,10 @@ public class EnumComposition extends DualNode {
 		this.outputCount = 0;
 	}
 
-	@ObfuscatedName("s")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "(Lpi;I)V",
-		garbageValue = "1858536756"
+		descriptor = "(Lpd;I)V",
+		garbageValue = "-701511419"
 	)
 	@Export("decode")
 	void decode(Buffer var1) {
@@ -76,10 +82,10 @@ public class EnumComposition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "(Lpi;II)V",
-		garbageValue = "-148344704"
+		descriptor = "(Lpd;IB)V",
+		garbageValue = "1"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
@@ -116,10 +122,10 @@ public class EnumComposition extends DualNode {
 
 	}
 
-	@ObfuscatedName("r")
+	@ObfuscatedName("g")
 	@ObfuscatedSignature(
 		descriptor = "(I)I",
-		garbageValue = "-919641499"
+		garbageValue = "-1309113097"
 	)
 	@Export("size")
 	public int size() {

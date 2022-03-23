@@ -2,59 +2,54 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("ox")
+@ObfuscatedName("oa")
 @Implements("FontName")
 public class FontName {
-	@ObfuscatedName("c")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "Lox;"
+		descriptor = "Loa;"
 	)
 	@Export("FontName_plain11")
 	public static final FontName FontName_plain11;
-	@ObfuscatedName("l")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "Lox;"
+		descriptor = "Loa;"
 	)
 	@Export("FontName_plain12")
 	public static final FontName FontName_plain12;
-	@ObfuscatedName("s")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "Lox;"
+		descriptor = "Loa;"
 	)
 	@Export("FontName_bold12")
 	public static final FontName FontName_bold12;
-	@ObfuscatedName("e")
+	@ObfuscatedName("g")
 	@ObfuscatedSignature(
-		descriptor = "Lox;"
+		descriptor = "Loa;"
 	)
 	@Export("FontName_verdana11")
 	public static final FontName FontName_verdana11;
-	@ObfuscatedName("r")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		descriptor = "Lox;"
+		descriptor = "Loa;"
 	)
 	@Export("FontName_verdana13")
 	public static final FontName FontName_verdana13;
-	@ObfuscatedName("o")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "Lox;"
+		descriptor = "Loa;"
 	)
 	@Export("FontName_verdana15")
 	public static final FontName FontName_verdana15;
-	@ObfuscatedName("dx")
+	@ObfuscatedName("pv")
 	@ObfuscatedSignature(
-		descriptor = "Lfw;"
+		descriptor = "Lps;"
 	)
-	@Export("js5SocketTask")
-	static Task js5SocketTask;
-	@ObfuscatedName("eg")
-	@ObfuscatedSignature(
-		descriptor = "Lkz;"
-	)
-	@Export("archive15")
-	static Archive archive15;
-	@ObfuscatedName("i")
+	@Export("Ignored_cached")
+	static class426 Ignored_cached;
+	@ObfuscatedName("d")
 	@Export("name")
 	String name;
 
@@ -71,43 +66,139 @@ public class FontName {
 		this.name = var1;
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("g")
 	@ObfuscatedSignature(
-		descriptor = "(I)[Lox;",
-		garbageValue = "1811636946"
+		descriptor = "(B)V",
+		garbageValue = "8"
 	)
-	public static FontName[] method7085() {
-		return new FontName[]{FontName_plain12, FontName_verdana11, FontName_bold12, FontName_plain11, FontName_verdana15, FontName_verdana13};
+	public static void method7509() {
+		VarpDefinition.VarpDefinition_cached.clear();
 	}
 
-	@ObfuscatedName("iv")
+	@ObfuscatedName("g")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "1759173263"
+		descriptor = "(ILbo;ZI)I",
+		garbageValue = "35948304"
 	)
-	@Export("decrementMenuEntries")
-	static void decrementMenuEntries() {
-		for (int var0 = 0; var0 < Client.menuOptionsCount; ++var0) {
-			int var2 = Client.menuOpcodes[var0];
-			boolean var1 = var2 == 57 || var2 == 58 || var2 == 1007 || var2 == 25 || var2 == 30;
-			if (var1) {
-				if (var0 < Client.menuOptionsCount - 1) {
-					for (int var3 = var0; var3 < Client.menuOptionsCount - 1; ++var3) {
-						Client.menuActions[var3] = Client.menuActions[var3 + 1];
-						Client.menuTargets[var3] = Client.menuTargets[var3 + 1];
-						Client.menuOpcodes[var3] = Client.menuOpcodes[var3 + 1];
-						Client.menuIdentifiers[var3] = Client.menuIdentifiers[var3 + 1];
-						Client.menuArguments1[var3] = Client.menuArguments1[var3 + 1];
-						Client.menuArguments2[var3] = Client.menuArguments2[var3 + 1];
-						Client.menuShiftClick[var3] = Client.menuShiftClick[var3 + 1];
-					}
+	static int method7511(int var0, Script var1, boolean var2) {
+		int var4;
+		int var9;
+		if (var0 == ScriptOpcodes.CC_CREATE) {
+			class295.Interpreter_intStackSize -= 3;
+			var9 = Interpreter.Interpreter_intStack[class295.Interpreter_intStackSize];
+			var4 = Interpreter.Interpreter_intStack[class295.Interpreter_intStackSize + 1];
+			int var11 = Interpreter.Interpreter_intStack[class295.Interpreter_intStackSize + 2];
+			if (var4 == 0) {
+				throw new RuntimeException();
+			} else {
+				Widget var6 = HorizontalAlignment.getWidget(var9);
+				if (var6.children == null) {
+					var6.children = new Widget[var11 + 1];
 				}
 
-				--var0;
-				--Client.menuOptionsCount;
+				if (var6.children.length <= var11) {
+					Widget[] var7 = new Widget[var11 + 1];
+
+					for (int var8 = 0; var8 < var6.children.length; ++var8) {
+						var7[var8] = var6.children[var8];
+					}
+
+					var6.children = var7;
+				}
+
+				if (var11 > 0 && var6.children[var11 - 1] == null) {
+					throw new RuntimeException("" + (var11 - 1));
+				} else {
+					Widget var12 = new Widget();
+					var12.type = var4;
+					var12.parentId = var12.id = var6.id;
+					var12.childIndex = var11;
+					var12.isIf3 = true;
+					var6.children[var11] = var12;
+					if (var2) {
+						class432.scriptDotWidget = var12;
+					} else {
+						class341.scriptActiveWidget = var12;
+					}
+
+					class290.invalidateWidget(var6);
+					return 1;
+				}
+			}
+		} else {
+			Widget var3;
+			if (var0 == ScriptOpcodes.CC_DELETE) {
+				var3 = var2 ? class432.scriptDotWidget : class341.scriptActiveWidget;
+				Widget var10 = HorizontalAlignment.getWidget(var3.id);
+				var10.children[var3.childIndex] = null;
+				class290.invalidateWidget(var10);
+				return 1;
+			} else if (var0 == ScriptOpcodes.CC_DELETEALL) {
+				var3 = HorizontalAlignment.getWidget(Interpreter.Interpreter_intStack[--class295.Interpreter_intStackSize]);
+				var3.children = null;
+				class290.invalidateWidget(var3);
+				return 1;
+			} else if (var0 == 103) {
+				class295.Interpreter_intStackSize -= 3;
+				return 1;
+			} else if (var0 == 104) {
+				--class295.Interpreter_intStackSize;
+				return 1;
+			} else if (var0 != ScriptOpcodes.CC_FIND) {
+				if (var0 == ScriptOpcodes.IF_FIND) {
+					var3 = HorizontalAlignment.getWidget(Interpreter.Interpreter_intStack[--class295.Interpreter_intStackSize]);
+					if (var3 != null) {
+						Interpreter.Interpreter_intStack[++class295.Interpreter_intStackSize - 1] = 1;
+						if (var2) {
+							class432.scriptDotWidget = var3;
+						} else {
+							class341.scriptActiveWidget = var3;
+						}
+					} else {
+						Interpreter.Interpreter_intStack[++class295.Interpreter_intStackSize - 1] = 0;
+					}
+
+					return 1;
+				} else if (var0 == 202) {
+					Interpreter.Interpreter_intStack[class295.Interpreter_intStackSize + 1] = 0;
+					return 1;
+				} else if (var0 == 203) {
+					Interpreter.Interpreter_intStack[--class295.Interpreter_intStackSize + 1] = 0;
+					return 1;
+				} else {
+					return 2;
+				}
+			} else {
+				class295.Interpreter_intStackSize -= 2;
+				var9 = Interpreter.Interpreter_intStack[class295.Interpreter_intStackSize];
+				var4 = Interpreter.Interpreter_intStack[class295.Interpreter_intStackSize + 1];
+				Widget var5 = class143.getWidgetChild(var9, var4);
+				if (var5 != null && var4 != -1) {
+					Interpreter.Interpreter_intStack[++class295.Interpreter_intStackSize - 1] = 1;
+					if (var2) {
+						class432.scriptDotWidget = var5;
+					} else {
+						class341.scriptActiveWidget = var5;
+					}
+				} else {
+					Interpreter.Interpreter_intStack[++class295.Interpreter_intStackSize - 1] = 0;
+				}
+
+				return 1;
 			}
 		}
+	}
 
-		Interpreter.method1875(Calendar.menuWidth / 2 + Projectile.menuX, ReflectionCheck.menuY);
+	@ObfuscatedName("lb")
+	@ObfuscatedSignature(
+		descriptor = "([BII)V",
+		garbageValue = "-1923637215"
+	)
+	static void method7510(byte[] var0, int var1) {
+		if (Client.randomDatData == null) {
+			Client.randomDatData = new byte[24];
+		}
+
+		class350.writeRandomDat(var0, var1, Client.randomDatData, 0, 24);
 	}
 }

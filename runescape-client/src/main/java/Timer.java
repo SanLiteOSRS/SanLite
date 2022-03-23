@@ -4,149 +4,173 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ms")
+@ObfuscatedName("mk")
 @Implements("Timer")
 public class Timer {
-	@ObfuscatedName("c")
-	@ObfuscatedGetter(
-		longValue = 7666449776100644517L
-	)
-	long field4091;
-	@ObfuscatedName("l")
-	@ObfuscatedGetter(
-		longValue = 7643972614193275521L
-	)
-	long field4086;
-	@ObfuscatedName("s")
-	public boolean field4087;
-	@ObfuscatedName("e")
-	@ObfuscatedGetter(
-		longValue = 2147518401873365381L
-	)
-	long field4088;
-	@ObfuscatedName("r")
-	@ObfuscatedGetter(
-		longValue = 7978551471441627079L
-	)
-	long field4089;
-	@ObfuscatedName("o")
-	@ObfuscatedGetter(
-		longValue = -7821732314937529085L
-	)
-	long field4085;
-	@ObfuscatedName("i")
-	@ObfuscatedGetter(
-		intValue = -1729935737
-	)
-	int field4090;
-	@ObfuscatedName("w")
-	@ObfuscatedGetter(
-		intValue = -861607359
-	)
-	int field4097;
 	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = -936537631
+		longValue = 4555750395140073021L
 	)
-	int field4093;
-	@ObfuscatedName("a")
+	long field4185;
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = 1497729987
+		longValue = -2846643341585363461L
 	)
-	int field4094;
+	long field4183;
+	@ObfuscatedName("h")
+	public boolean field4182;
+	@ObfuscatedName("g")
+	@ObfuscatedGetter(
+		longValue = 5666983759497851335L
+	)
+	long field4189;
+	@ObfuscatedName("l")
+	@ObfuscatedGetter(
+		longValue = 796750526860624939L
+	)
+	long field4186;
+	@ObfuscatedName("n")
+	@ObfuscatedGetter(
+		longValue = -3256458823420726931L
+	)
+	long field4187;
+	@ObfuscatedName("d")
+	@ObfuscatedGetter(
+		intValue = 283694851
+	)
+	int field4188;
+	@ObfuscatedName("f")
+	@ObfuscatedGetter(
+		intValue = -2009036561
+	)
+	int field4184;
+	@ObfuscatedName("u")
+	@ObfuscatedGetter(
+		intValue = 43489845
+	)
+	int field4190;
+	@ObfuscatedName("r")
+	@ObfuscatedGetter(
+		intValue = 425168073
+	)
+	int field4191;
 
 	public Timer() {
-		this.field4091 = -1L;
-		this.field4086 = -1L;
-		this.field4087 = false;
-		this.field4088 = 0L;
-		this.field4089 = 0L;
-		this.field4085 = 0L;
-		this.field4090 = 0;
-		this.field4097 = 0;
-		this.field4093 = 0;
-		this.field4094 = 0;
+		this.field4185 = -1L;
+		this.field4183 = -1L;
+		this.field4182 = false;
+		this.field4189 = 0L;
+		this.field4186 = 0L;
+		this.field4187 = 0L;
+		this.field4188 = 0;
+		this.field4184 = 0;
+		this.field4190 = 0;
+		this.field4191 = 0;
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "-204571477"
+		garbageValue = "2052102546"
 	)
-	public void method6230() {
-		this.field4091 = DirectByteArrayCopier.method5318();
+	public void method6594() {
+		this.field4185 = WorldMapSprite.method4989();
+	}
+
+	@ObfuscatedName("o")
+	@ObfuscatedSignature(
+		descriptor = "(B)V",
+		garbageValue = "8"
+	)
+	public void method6595() {
+		if (this.field4185 != -1L) {
+			this.field4186 = WorldMapSprite.method4989() - this.field4185;
+			this.field4185 = -1L;
+		}
+
+	}
+
+	@ObfuscatedName("h")
+	@ObfuscatedSignature(
+		descriptor = "(IS)V",
+		garbageValue = "-20934"
+	)
+	public void method6596(int var1) {
+		this.field4183 = WorldMapSprite.method4989();
+		this.field4188 = var1;
+	}
+
+	@ObfuscatedName("g")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "1987458157"
+	)
+	public void method6597() {
+		if (this.field4183 != -1L) {
+			this.field4189 = WorldMapSprite.method4989() - this.field4183;
+			this.field4183 = -1L;
+		}
+
+		++this.field4190;
+		this.field4182 = true;
 	}
 
 	@ObfuscatedName("l")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "2142280170"
+		garbageValue = "85953838"
 	)
-	public void method6243() {
-		if (this.field4091 != -1L) {
-			this.field4089 = DirectByteArrayCopier.method5318() - this.field4091;
-			this.field4091 = -1L;
-		}
-
+	public void method6593() {
+		this.field4182 = false;
+		this.field4184 = 0;
 	}
 
-	@ObfuscatedName("s")
-	@ObfuscatedSignature(
-		descriptor = "(II)V",
-		garbageValue = "-1216107861"
-	)
-	public void method6232(int var1) {
-		this.field4086 = DirectByteArrayCopier.method5318();
-		this.field4090 = var1;
-	}
-
-	@ObfuscatedName("e")
-	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "-42"
-	)
-	public void method6240() {
-		if (this.field4086 != -1L) {
-			this.field4088 = DirectByteArrayCopier.method5318() - this.field4086;
-			this.field4086 = -1L;
-		}
-
-		++this.field4093;
-		this.field4087 = true;
-	}
-
-	@ObfuscatedName("r")
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "-1652628938"
+		garbageValue = "-687283504"
 	)
-	public void method6234() {
-		this.field4087 = false;
-		this.field4097 = 0;
+	public void method6598() {
+		this.method6597();
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-1956304109"
-	)
-	public void method6235() {
-		this.method6240();
-	}
-
-	@ObfuscatedName("i")
-	@ObfuscatedSignature(
-		descriptor = "(Lpi;B)V",
-		garbageValue = "105"
+		descriptor = "(Lpd;I)V",
+		garbageValue = "-893944716"
 	)
 	@Export("write")
 	public void write(Buffer var1) {
-		NetFileRequest.method5573(var1, this.field4089);
-		NetFileRequest.method5573(var1, this.field4088);
-		NetFileRequest.method5573(var1, this.field4085);
-		var1.writeShort(this.field4090);
-		var1.writeShort(this.field4097);
-		var1.writeShort(this.field4093);
-		var1.writeShort(this.field4094);
+		long var2 = this.field4186;
+		var2 /= 10L;
+		if (var2 < 0L) {
+			var2 = 0L;
+		} else if (var2 > 65535L) {
+			var2 = 65535L;
+		}
+
+		var1.writeShort((int)var2);
+		long var4 = this.field4189;
+		var4 /= 10L;
+		if (var4 < 0L) {
+			var4 = 0L;
+		} else if (var4 > 65535L) {
+			var4 = 65535L;
+		}
+
+		var1.writeShort((int)var4);
+		long var6 = this.field4187;
+		var6 /= 10L;
+		if (var6 < 0L) {
+			var6 = 0L;
+		} else if (var6 > 65535L) {
+			var6 = 65535L;
+		}
+
+		var1.writeShort((int)var6);
+		var1.writeShort(this.field4188);
+		var1.writeShort(this.field4184);
+		var1.writeShort(this.field4190);
+		var1.writeShort(this.field4191);
 	}
 }

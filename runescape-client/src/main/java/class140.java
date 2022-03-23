@@ -1,143 +1,68 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("es")
-public class class140 extends class126 {
-	@ObfuscatedName("up")
+@ObfuscatedName("en")
+public class class140 extends class144 {
+	@ObfuscatedName("v")
+	String field1623;
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		longValue = -4940723474862761385L
-	)
-	static long field1626;
-	@ObfuscatedName("w")
-	@ObfuscatedGetter(
-		intValue = -1868849589
-	)
-	@Export("musicTrackFileId")
-	public static int musicTrackFileId;
-	@ObfuscatedName("u")
-	@ObfuscatedGetter(
-		intValue = 106617299
-	)
-	static int field1630;
-	@ObfuscatedName("ex")
-	@ObfuscatedSignature(
-		descriptor = "Lnm;"
-	)
-	@Export("spriteIds")
-	static GraphicsDefaults spriteIds;
-	@ObfuscatedName("c")
-	@ObfuscatedGetter(
-		intValue = 858742987
+		intValue = 1314589285
 	)
 	int field1625;
+	@ObfuscatedName("h")
+	byte field1624;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Ldk;"
+		descriptor = "Lez;"
 	)
-	final class129 this$0;
+	final class145 this$0;
 
 	@ObfuscatedSignature(
-		descriptor = "(Ldk;)V"
+		descriptor = "(Lez;)V"
 	)
-	class140(class129 var1) {
+	class140(class145 var1) {
 		this.this$0 = var1;
-		this.field1625 = -1;
+		this.field1623 = null;
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(Lpi;I)V",
-		garbageValue = "703192976"
+		descriptor = "(Lpd;S)V",
+		garbageValue = "3239"
 	)
-	void vmethod3019(Buffer var1) {
+	void vmethod3096(Buffer var1) {
+		if (var1.readUnsignedByte() != 255) {
+			--var1.offset;
+			var1.readLong();
+		}
+
+		this.field1623 = var1.readStringCp1252NullTerminatedOrNull();
 		this.field1625 = var1.readUnsignedShort();
+		this.field1624 = var1.readByte();
+		var1.readLong();
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "(Ley;I)V",
-		garbageValue = "750335300"
+		descriptor = "(Ley;B)V",
+		garbageValue = "26"
 	)
-	void vmethod3020(ClanSettings var1) {
-		var1.method2856(this.field1625);
+	void vmethod3093(ClanChannel var1) {
+		ClanChannelMember var2 = new ClanChannelMember();
+		var2.username = new Username(this.field1623);
+		var2.world = this.field1625;
+		var2.rank = this.field1624;
+		var1.addMember(var2);
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "([Llr;II)Llr;",
-		garbageValue = "-1875165885"
+		descriptor = "(I)V",
+		garbageValue = "1416883390"
 	)
-	@Export("findEnumerated")
-	public static MouseWheel findEnumerated(MouseWheel[] var0, int var1) {
-		MouseWheel[] var2 = var0;
-
-		for (int var3 = 0; var3 < var2.length; ++var3) {
-			MouseWheel var4 = var2[var3];
-			if (var1 == var4.rsOrdinal()) {
-				return var4;
-			}
-		}
-
-		return null;
-	}
-
-	@ObfuscatedName("e")
-	@ObfuscatedSignature(
-		descriptor = "([BIII)Ljava/lang/String;",
-		garbageValue = "-1708933530"
-	)
-	@Export("decodeStringCp1252")
-	public static String decodeStringCp1252(byte[] var0, int var1, int var2) {
-		char[] var3 = new char[var2];
-		int var4 = 0;
-
-		for (int var5 = 0; var5 < var2; ++var5) {
-			int var6 = var0[var5 + var1] & 255;
-			if (var6 != 0) {
-				if (var6 >= 128 && var6 < 160) {
-					char var7 = class333.cp1252AsciiExtension[var6 - 128];
-					if (var7 == 0) {
-						var7 = '?';
-					}
-
-					var6 = var7;
-				}
-
-				var3[var4++] = (char)var6;
-			}
-		}
-
-		return new String(var3, 0, var4);
-	}
-
-	@ObfuscatedName("w")
-	@ObfuscatedSignature(
-		descriptor = "(IB)I",
-		garbageValue = "-53"
-	)
-	static int method2932(int var0) {
-		Message var1 = (Message)Messages.Messages_hashTable.get((long)var0);
-		if (var1 == null) {
-			return -1;
-		} else {
-			return var1.nextDual == Messages.Messages_queue.sentinel ? -1 : ((Message)var1.nextDual).count;
-		}
-	}
-
-	@ObfuscatedName("ff")
-	@ObfuscatedSignature(
-		descriptor = "(IZZZI)Lkz;",
-		garbageValue = "492803972"
-	)
-	@Export("newArchive")
-	static Archive newArchive(int var0, boolean var1, boolean var2, boolean var3) {
-		ArchiveDisk var4 = null;
-		if (JagexCache.JagexCache_dat2File != null) {
-			var4 = new ArchiveDisk(var0, JagexCache.JagexCache_dat2File, VerticalAlignment.JagexCache_idxFiles[var0], 1000000);
-		}
-
-		return new Archive(var4, class16.masterDisk, var0, var1, var2, var3);
+	public static void method2985() {
+		WorldMapRegion.WorldMapRegion_cachedSprites.demote(5);
 	}
 }

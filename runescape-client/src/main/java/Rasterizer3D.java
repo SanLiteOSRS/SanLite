@@ -3,92 +3,92 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gb")
+@ObfuscatedName("gr")
 @Implements("Rasterizer3D")
 public class Rasterizer3D extends Rasterizer2D {
-	@ObfuscatedName("c")
-	static boolean field2262;
-	@ObfuscatedName("l")
-	static boolean field2283;
-	@ObfuscatedName("s")
+	@ObfuscatedName("v")
+	static boolean field2334;
+	@ObfuscatedName("o")
+	static boolean field2323;
+	@ObfuscatedName("h")
 	@Export("Rasterizer3D_isLowDetailTexture")
 	static boolean Rasterizer3D_isLowDetailTexture;
-	@ObfuscatedName("e")
-	public static boolean field2261;
-	@ObfuscatedName("r")
+	@ObfuscatedName("g")
+	public static boolean field2325;
+	@ObfuscatedName("l")
 	@Export("Rasterizer3D_alpha")
 	static int Rasterizer3D_alpha;
-	@ObfuscatedName("u")
+	@ObfuscatedName("x")
 	@Export("Rasterizer3D_zoom")
 	public static int Rasterizer3D_zoom;
-	@ObfuscatedName("h")
+	@ObfuscatedName("c")
 	@Export("Rasterizer3D_clipMidX")
 	static int Rasterizer3D_clipMidX;
-	@ObfuscatedName("q")
+	@ObfuscatedName("j")
 	@Export("Rasterizer3D_clipMidY")
 	static int Rasterizer3D_clipMidY;
-	@ObfuscatedName("x")
+	@ObfuscatedName("p")
 	@Export("Rasterizer3D_clipWidth")
 	static int Rasterizer3D_clipWidth;
-	@ObfuscatedName("p")
+	@ObfuscatedName("s")
 	@Export("Rasterizer3D_clipHeight")
 	static int Rasterizer3D_clipHeight;
-	@ObfuscatedName("n")
+	@ObfuscatedName("b")
 	@Export("Rasterizer3D_clipNegativeMidX")
 	static int Rasterizer3D_clipNegativeMidX;
-	@ObfuscatedName("m")
+	@ObfuscatedName("w")
 	@Export("Rasterizer3D_clipMidX2")
 	static int Rasterizer3D_clipMidX2;
-	@ObfuscatedName("d")
+	@ObfuscatedName("a")
 	@Export("Rasterizer3D_clipNegativeMidY")
 	static int Rasterizer3D_clipNegativeMidY;
-	@ObfuscatedName("j")
+	@ObfuscatedName("m")
 	@Export("Rasterizer3D_clipMidY2")
 	static int Rasterizer3D_clipMidY2;
-	@ObfuscatedName("f")
+	@ObfuscatedName("q")
 	@Export("Rasterizer3D_rowOffsets")
 	static int[] Rasterizer3D_rowOffsets;
-	@ObfuscatedName("g")
+	@ObfuscatedName("y")
 	@Export("Rasterizer3D_colorPalette")
 	public static int[] Rasterizer3D_colorPalette;
-	@ObfuscatedName("t")
+	@ObfuscatedName("z")
 	@ObfuscatedSignature(
-		descriptor = "Lha;"
+		descriptor = "Lht;"
 	)
 	@Export("Rasterizer3D_textureLoader")
 	public static TextureLoader Rasterizer3D_textureLoader;
-	@ObfuscatedName("k")
-	static int[] field2281;
-	@ObfuscatedName("b")
-	static int[] field2264;
-	@ObfuscatedName("z")
+	@ObfuscatedName("e")
+	static int[] field2345;
+	@ObfuscatedName("t")
+	static int[] field2346;
+	@ObfuscatedName("i")
 	@Export("Rasterizer3D_sine")
 	public static int[] Rasterizer3D_sine;
-	@ObfuscatedName("ap")
+	@ObfuscatedName("ac")
 	@Export("Rasterizer3D_cosine")
 	public static int[] Rasterizer3D_cosine;
 
 	static {
-		field2262 = false;
-		field2283 = false;
+		field2334 = false;
+		field2323 = false;
 		Rasterizer3D_isLowDetailTexture = false;
-		field2261 = true;
+		field2325 = true;
 		Rasterizer3D_alpha = 0;
 		Rasterizer3D_zoom = 512;
 		Rasterizer3D_rowOffsets = new int[1024];
 		Rasterizer3D_colorPalette = new int[65536];
-		field2281 = new int[512];
-		field2264 = new int[2048];
+		field2345 = new int[512];
+		field2346 = new int[2048];
 		Rasterizer3D_sine = new int[2048];
 		Rasterizer3D_cosine = new int[2048];
 
 		int var0;
 		for (var0 = 1; var0 < 512; ++var0) {
-			field2281[var0] = 32768 / var0;
+			field2345[var0] = 32768 / var0;
 		}
 
 		for (var0 = 1; var0 < 2048; ++var0) {
-			field2264[var0] = 65536 / var0;
+			field2346[var0] = 65536 / var0;
 		}
 
 		for (var0 = 0; var0 < 2048; ++var0) {
@@ -98,20 +98,20 @@ public class Rasterizer3D extends Rasterizer2D {
 
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("v")
 	@Export("Rasterizer3D_setClipFromRasterizer2D")
 	public static final void Rasterizer3D_setClipFromRasterizer2D() {
 		Rasterizer3D_setClip(Rasterizer2D.Rasterizer2D_xClipStart, Rasterizer2D.Rasterizer2D_yClipStart, Rasterizer2D.Rasterizer2D_xClipEnd, Rasterizer2D.Rasterizer2D_yClipEnd);
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("o")
 	@Export("Rasterizer3D_setClip")
 	static final void Rasterizer3D_setClip(int var0, int var1, int var2, int var3) {
 		Rasterizer3D_clipWidth = var2 - var0;
 		Rasterizer3D_clipHeight = var3 - var1;
 		Rasterizer3D_method3();
 		if (Rasterizer3D_rowOffsets.length < Rasterizer3D_clipHeight) {
-			Rasterizer3D_rowOffsets = new int[GrandExchangeOfferNameComparator.method5702(Rasterizer3D_clipHeight)];
+			Rasterizer3D_rowOffsets = new int[Login.method1894(Rasterizer3D_clipHeight)];
 		}
 
 		int var4 = var0 + Rasterizer2D.Rasterizer2D_width * var1;
@@ -123,7 +123,7 @@ public class Rasterizer3D extends Rasterizer2D {
 
 	}
 
-	@ObfuscatedName("s")
+	@ObfuscatedName("h")
 	@Export("Rasterizer3D_method3")
 	public static final void Rasterizer3D_method3() {
 		Rasterizer3D_clipMidX = Rasterizer3D_clipWidth / 2;
@@ -134,8 +134,8 @@ public class Rasterizer3D extends Rasterizer2D {
 		Rasterizer3D_clipMidY2 = Rasterizer3D_clipHeight - Rasterizer3D_clipMidY;
 	}
 
-	@ObfuscatedName("e")
-	public static final void method3787(int var0, int var1) {
+	@ObfuscatedName("g")
+	public static final void method3997(int var0, int var1) {
 		int var2 = Rasterizer3D_rowOffsets[0];
 		int var3 = var2 / Rasterizer2D.Rasterizer2D_width;
 		int var4 = var2 - var3 * Rasterizer2D.Rasterizer2D_width;
@@ -147,22 +147,22 @@ public class Rasterizer3D extends Rasterizer2D {
 		Rasterizer3D_clipMidY2 = Rasterizer3D_clipHeight - Rasterizer3D_clipMidY;
 	}
 
-	@ObfuscatedName("r")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		descriptor = "(Lha;)V"
+		descriptor = "(Lht;)V"
 	)
 	@Export("Rasterizer3D_setTextureLoader")
 	public static final void Rasterizer3D_setTextureLoader(TextureLoader var0) {
 		Rasterizer3D_textureLoader = var0;
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("n")
 	@Export("Rasterizer3D_setBrightness")
 	public static final void Rasterizer3D_setBrightness(double var0) {
 		Rasterizer3D_buildPalette(var0, 0, 512);
 	}
 
-	@ObfuscatedName("i")
+	@ObfuscatedName("d")
 	@Export("Rasterizer3D_buildPalette")
 	static final void Rasterizer3D_buildPalette(double var0, int var2, int var3) {
 		int var4 = var2 * 128;
@@ -241,7 +241,7 @@ public class Rasterizer3D extends Rasterizer2D {
 
 	}
 
-	@ObfuscatedName("w")
+	@ObfuscatedName("f")
 	@Export("Rasterizer3D_brighten")
 	static int Rasterizer3D_brighten(int var0, double var1) {
 		double var3 = (double)(var0 >> 16) / 256.0D;
@@ -256,13 +256,13 @@ public class Rasterizer3D extends Rasterizer2D {
 		return var11 + (var10 << 8) + (var9 << 16);
 	}
 
-	@ObfuscatedName("v")
-	public static void method3792(int var0, int var1, int var2) {
-		field2262 = var0 < 0 || var0 > Rasterizer3D_clipWidth || var1 < 0 || var1 > Rasterizer3D_clipWidth || var2 < 0 || var2 > Rasterizer3D_clipWidth;
+	@ObfuscatedName("u")
+	public static void method4024(int var0, int var1, int var2) {
+		field2334 = var0 < 0 || var0 > Rasterizer3D_clipWidth || var1 < 0 || var1 > Rasterizer3D_clipWidth || var2 < 0 || var2 > Rasterizer3D_clipWidth;
 	}
 
-	@ObfuscatedName("a")
-	static final void method3843(int var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8) {
+	@ObfuscatedName("r")
+	static final void method4003(int var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8) {
 		int var9 = var4 - var3;
 		int var10 = var1 - var0;
 		int var11 = var5 - var3;
@@ -767,16 +767,16 @@ public class Rasterizer3D extends Rasterizer2D {
 		}
 	}
 
-	@ObfuscatedName("y")
-	static final void method3810(int var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, byte var9, byte var10, byte var11, byte var12) {
-		var6 = method3795(var6, var9, var10, var11, var12);
-		var7 = method3795(var7, var9, var10, var11, var12);
-		var8 = method3795(var8, var9, var10, var11, var12);
-		method3843(var0, var1, var2, var3, var4, var5, var6, var7, var8);
+	@ObfuscatedName("k")
+	static final void method4084(int var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, byte var9, byte var10, byte var11, byte var12) {
+		var6 = method4005(var6, var9, var10, var11, var12);
+		var7 = method4005(var7, var9, var10, var11, var12);
+		var8 = method4005(var8, var9, var10, var11, var12);
+		method4003(var0, var1, var2, var3, var4, var5, var6, var7, var8);
 	}
 
-	@ObfuscatedName("u")
-	static int method3795(int var0, byte var1, byte var2, byte var3, byte var4) {
+	@ObfuscatedName("x")
+	static int method4005(int var0, byte var1, byte var2, byte var3, byte var4) {
 		int var5 = var0 >> 10 & 63;
 		int var6 = var0 >> 7 & 7;
 		int var7 = var0 & 127;
@@ -796,10 +796,10 @@ public class Rasterizer3D extends Rasterizer2D {
 		return (var5 << 10 | var6 << 7 | var7) & 65535;
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("c")
 	@Export("Rasterizer3D_vertAlpha")
 	static final void Rasterizer3D_vertAlpha(int[] var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7) {
-		if (field2262) {
+		if (field2334) {
 			if (var5 > Rasterizer3D_clipWidth) {
 				var5 = Rasterizer3D_clipWidth;
 			}
@@ -816,7 +816,7 @@ public class Rasterizer3D extends Rasterizer2D {
 			int var9;
 			int var10;
 			int var11;
-			if (field2261) {
+			if (field2325) {
 				var3 = var5 - var4 >> 2;
 				var7 <<= 2;
 				if (Rasterizer3D_alpha == 0) {
@@ -906,8 +906,8 @@ public class Rasterizer3D extends Rasterizer2D {
 		}
 	}
 
-	@ObfuscatedName("q")
-	public static final void method3797(int var0, int var1, int var2, int var3, int var4, int var5, int var6) {
+	@ObfuscatedName("j")
+	public static final void method4007(int var0, int var1, int var2, int var3, int var4, int var5, int var6) {
 		int var7 = 0;
 		if (var0 != var1) {
 			var7 = (var4 - var3 << 14) / (var1 - var0);
@@ -1014,33 +1014,7 @@ public class Rasterizer3D extends Rasterizer2D {
 						var2 = 0;
 					}
 
-					if ((var0 == var2 || var9 >= var7) && (var0 != var2 || var8 <= var7)) {
-						var1 -= var2;
-						var2 -= var0;
-						var0 = Rasterizer3D_rowOffsets[var0];
-
-						while (true) {
-							--var2;
-							if (var2 < 0) {
-								while (true) {
-									--var1;
-									if (var1 < 0) {
-										return;
-									}
-
-									Rasterizer3D_horizAlpha(Rasterizer2D.Rasterizer2D_pixels, var0, var6, 0, var3 >> 14, var5 >> 14);
-									var5 += var8;
-									var3 += var7;
-									var0 += Rasterizer2D.Rasterizer2D_width;
-								}
-							}
-
-							Rasterizer3D_horizAlpha(Rasterizer2D.Rasterizer2D_pixels, var0, var6, 0, var3 >> 14, var4 >> 14);
-							var4 += var9;
-							var3 += var7;
-							var0 += Rasterizer2D.Rasterizer2D_width;
-						}
-					} else {
+					if (var0 != var2 && var9 < var7 || var0 == var2 && var8 > var7) {
 						var1 -= var2;
 						var2 -= var0;
 						var0 = Rasterizer3D_rowOffsets[var0];
@@ -1062,6 +1036,32 @@ public class Rasterizer3D extends Rasterizer2D {
 							}
 
 							Rasterizer3D_horizAlpha(Rasterizer2D.Rasterizer2D_pixels, var0, var6, 0, var4 >> 14, var3 >> 14);
+							var4 += var9;
+							var3 += var7;
+							var0 += Rasterizer2D.Rasterizer2D_width;
+						}
+					} else {
+						var1 -= var2;
+						var2 -= var0;
+						var0 = Rasterizer3D_rowOffsets[var0];
+
+						while (true) {
+							--var2;
+							if (var2 < 0) {
+								while (true) {
+									--var1;
+									if (var1 < 0) {
+										return;
+									}
+
+									Rasterizer3D_horizAlpha(Rasterizer2D.Rasterizer2D_pixels, var0, var6, 0, var3 >> 14, var5 >> 14);
+									var5 += var8;
+									var3 += var7;
+									var0 += Rasterizer2D.Rasterizer2D_width;
+								}
+							}
+
+							Rasterizer3D_horizAlpha(Rasterizer2D.Rasterizer2D_pixels, var0, var6, 0, var3 >> 14, var4 >> 14);
 							var4 += var9;
 							var3 += var7;
 							var0 += Rasterizer2D.Rasterizer2D_width;
@@ -1362,17 +1362,17 @@ public class Rasterizer3D extends Rasterizer2D {
 		}
 	}
 
-	@ObfuscatedName("x")
-	static final void method3842(int var0, int var1, int var2, int var3, int var4, int var5, int var6, byte var7, byte var8, byte var9, byte var10) {
-		int var11 = method3795(var6, var7, var8, var9, var10);
+	@ObfuscatedName("p")
+	static final void method4008(int var0, int var1, int var2, int var3, int var4, int var5, int var6, byte var7, byte var8, byte var9, byte var10) {
+		int var11 = method4005(var6, var7, var8, var9, var10);
 		var6 = Rasterizer3D_colorPalette[var11];
-		method3797(var0, var1, var2, var3, var4, var5, var6);
+		method4007(var0, var1, var2, var3, var4, var5, var6);
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("s")
 	@Export("Rasterizer3D_horizAlpha")
 	static final void Rasterizer3D_horizAlpha(int[] var0, int var1, int var2, int var3, int var4, int var5) {
-		if (field2262) {
+		if (field2334) {
 			if (var5 > Rasterizer3D_clipWidth) {
 				var5 = Rasterizer3D_clipWidth;
 			}
@@ -1464,16 +1464,16 @@ public class Rasterizer3D extends Rasterizer2D {
 		}
 	}
 
-	@ObfuscatedName("n")
-	static final void method3800(int var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, int var9, int var10, int var11, int var12, int var13, int var14, int var15, int var16, int var17, int var18) {
+	@ObfuscatedName("b")
+	static final void method4010(int var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, int var9, int var10, int var11, int var12, int var13, int var14, int var15, int var16, int var17, int var18) {
 		int[] var19 = Rasterizer3D_textureLoader.getTexturePixels(var18);
 		int var20;
 		if (var19 == null) {
 			var20 = Rasterizer3D_textureLoader.getAverageTextureRGB(var18);
-			method3843(var0, var1, var2, var3, var4, var5, method3819(var20, var6), method3819(var20, var7), method3819(var20, var8));
+			method4003(var0, var1, var2, var3, var4, var5, method4014(var20, var6), method4014(var20, var7), method4014(var20, var8));
 		} else {
 			Rasterizer3D_isLowDetailTexture = Rasterizer3D_textureLoader.isLowDetail(var18);
-			field2283 = Rasterizer3D_textureLoader.vmethod4281(var18);
+			field2323 = Rasterizer3D_textureLoader.vmethod4505(var18);
 			var20 = var4 - var3;
 			int var21 = var1 - var0;
 			int var22 = var5 - var3;
@@ -2085,10 +2085,10 @@ public class Rasterizer3D extends Rasterizer2D {
 		}
 	}
 
-	@ObfuscatedName("m")
+	@ObfuscatedName("w")
 	@Export("Rasterizer3D_iDontKnow")
 	static final void Rasterizer3D_iDontKnow(int[] var0, int[] var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, int var9, int var10, int var11, int var12, int var13, int var14) {
-		if (field2262) {
+		if (field2334) {
 			if (var6 > Rasterizer3D_clipWidth) {
 				var6 = Rasterizer3D_clipWidth;
 			}
@@ -2152,7 +2152,7 @@ public class Rasterizer3D extends Rasterizer2D {
 				var17 >>= 3;
 				var8 <<= 3;
 				var15 = var7 >> 8;
-				if (field2283) {
+				if (field2323) {
 					if (var17 > 0) {
 						do {
 							var3 = var1[(var2 >>> 26) + (var2 & 4032)];
@@ -2347,7 +2347,7 @@ public class Rasterizer3D extends Rasterizer2D {
 				var17 >>= 3;
 				var8 <<= 3;
 				var15 = var7 >> 8;
-				if (field2283) {
+				if (field2323) {
 					if (var17 > 0) {
 						do {
 							var3 = var1[(var2 & 16256) + (var2 >>> 25)];
@@ -2506,17 +2506,17 @@ public class Rasterizer3D extends Rasterizer2D {
 		}
 	}
 
-	@ObfuscatedName("d")
+	@ObfuscatedName("a")
 	@Export("drawTexturedTile")
 	static final void drawTexturedTile(int var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, int var9, int var10, int var11, int var12, int var13, int var14, int var15, int var16, int var17, int var18) {
 		int[] var19 = Rasterizer3D_textureLoader.getTexturePixels(var18);
 		int var20;
 		if (var19 == null) {
 			var20 = Rasterizer3D_textureLoader.getAverageTextureRGB(var18);
-			method3843(var0, var1, var2, var3, var4, var5, method3819(var20, var6), method3819(var20, var7), method3819(var20, var8));
+			method4003(var0, var1, var2, var3, var4, var5, method4014(var20, var6), method4014(var20, var7), method4014(var20, var8));
 		} else {
 			Rasterizer3D_isLowDetailTexture = Rasterizer3D_textureLoader.isLowDetail(var18);
-			field2283 = Rasterizer3D_textureLoader.vmethod4281(var18);
+			field2323 = Rasterizer3D_textureLoader.vmethod4505(var18);
 			var20 = var4 - var3;
 			int var21 = var1 - var0;
 			int var22 = var5 - var3;
@@ -2588,41 +2588,7 @@ public class Rasterizer3D extends Rasterizer2D {
 							var32 += var34 * var41;
 							var35 += var37 * var41;
 							var38 += var40 * var41;
-							if ((var0 == var1 || var28 >= var26) && (var0 != var1 || var28 <= var27)) {
-								var2 -= var1;
-								var1 -= var0;
-								var0 = Rasterizer3D_rowOffsets[var0];
-
-								while (true) {
-									--var1;
-									if (var1 < 0) {
-										while (true) {
-											--var2;
-											if (var2 < 0) {
-												return;
-											}
-
-											Rasterizer3D_textureAlpha(Rasterizer2D.Rasterizer2D_pixels, var19, 0, 0, var0, var4 >> 14, var5 >> 14, var6, var30, var32, var35, var38, var33, var36, var39);
-											var5 += var28;
-											var4 += var27;
-											var6 += var31;
-											var0 += Rasterizer2D.Rasterizer2D_width;
-											var32 += var34;
-											var35 += var37;
-											var38 += var40;
-										}
-									}
-
-									Rasterizer3D_textureAlpha(Rasterizer2D.Rasterizer2D_pixels, var19, 0, 0, var0, var3 >> 14, var5 >> 14, var6, var30, var32, var35, var38, var33, var36, var39);
-									var5 += var28;
-									var3 += var26;
-									var6 += var31;
-									var0 += Rasterizer2D.Rasterizer2D_width;
-									var32 += var34;
-									var35 += var37;
-									var38 += var40;
-								}
-							} else {
+							if (var0 != var1 && var28 < var26 || var0 == var1 && var28 > var27) {
 								var2 -= var1;
 								var1 -= var0;
 								var0 = Rasterizer3D_rowOffsets[var0];
@@ -2648,6 +2614,40 @@ public class Rasterizer3D extends Rasterizer2D {
 									}
 
 									Rasterizer3D_textureAlpha(Rasterizer2D.Rasterizer2D_pixels, var19, 0, 0, var0, var5 >> 14, var3 >> 14, var6, var30, var32, var35, var38, var33, var36, var39);
+									var5 += var28;
+									var3 += var26;
+									var6 += var31;
+									var0 += Rasterizer2D.Rasterizer2D_width;
+									var32 += var34;
+									var35 += var37;
+									var38 += var40;
+								}
+							} else {
+								var2 -= var1;
+								var1 -= var0;
+								var0 = Rasterizer3D_rowOffsets[var0];
+
+								while (true) {
+									--var1;
+									if (var1 < 0) {
+										while (true) {
+											--var2;
+											if (var2 < 0) {
+												return;
+											}
+
+											Rasterizer3D_textureAlpha(Rasterizer2D.Rasterizer2D_pixels, var19, 0, 0, var0, var4 >> 14, var5 >> 14, var6, var30, var32, var35, var38, var33, var36, var39);
+											var5 += var28;
+											var4 += var27;
+											var6 += var31;
+											var0 += Rasterizer2D.Rasterizer2D_width;
+											var32 += var34;
+											var35 += var37;
+											var38 += var40;
+										}
+									}
+
+									Rasterizer3D_textureAlpha(Rasterizer2D.Rasterizer2D_pixels, var19, 0, 0, var0, var3 >> 14, var5 >> 14, var6, var30, var32, var35, var38, var33, var36, var39);
 									var5 += var28;
 									var3 += var26;
 									var6 += var31;
@@ -3128,10 +3128,10 @@ public class Rasterizer3D extends Rasterizer2D {
 		}
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("m")
 	@Export("Rasterizer3D_textureAlpha")
 	static final void Rasterizer3D_textureAlpha(int[] var0, int[] var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, int var9, int var10, int var11, int var12, int var13, int var14) {
-		if (field2262) {
+		if (field2334) {
 			if (var6 > Rasterizer3D_clipWidth) {
 				var6 = Rasterizer3D_clipWidth;
 			}
@@ -3184,7 +3184,7 @@ public class Rasterizer3D extends Rasterizer2D {
 				var17 >>= 3;
 				var8 <<= 3;
 				var15 = var7 >> 8;
-				if (field2283) {
+				if (field2323) {
 					if (var17 > 0) {
 						do {
 							var3 = var1[(var2 >>> 26) + (var2 & 4032)];
@@ -3327,7 +3327,7 @@ public class Rasterizer3D extends Rasterizer2D {
 				var17 >>= 3;
 				var8 <<= 3;
 				var15 = var7 >> 8;
-				if (field2283) {
+				if (field2323) {
 					if (var17 > 0) {
 						do {
 							var3 = var1[(var2 & 16256) + (var2 >>> 25)];
@@ -3444,8 +3444,8 @@ public class Rasterizer3D extends Rasterizer2D {
 		}
 	}
 
-	@ObfuscatedName("f")
-	static final int method3819(int var0, int var1) {
+	@ObfuscatedName("q")
+	static final int method4014(int var0, int var1) {
 		var1 = (var0 & 127) * var1 >> 7;
 		if (var1 < 2) {
 			var1 = 2;
@@ -3456,33 +3456,33 @@ public class Rasterizer3D extends Rasterizer2D {
 		return (var0 & 65408) + var1;
 	}
 
-	@ObfuscatedName("g")
-	static final int method3805(int var0, int var1, int var2, int var3) {
+	@ObfuscatedName("y")
+	static final int method4080(int var0, int var1, int var2, int var3) {
 		return var0 * var2 + var3 * var1 >> 16;
-	}
-
-	@ObfuscatedName("t")
-	static final int method3806(int var0, int var1, int var2, int var3) {
-		return var2 * var1 - var3 * var0 >> 16;
-	}
-
-	@ObfuscatedName("k")
-	static final int method3807(int var0, int var1, int var2, int var3) {
-		return var0 * var2 - var3 * var1 >> 16;
-	}
-
-	@ObfuscatedName("b")
-	static final int method3799(int var0, int var1, int var2, int var3) {
-		return var3 * var0 + var2 * var1 >> 16;
 	}
 
 	@ObfuscatedName("z")
-	static final int method3808(int var0, int var1, int var2, int var3) {
+	static final int method3993(int var0, int var1, int var2, int var3) {
+		return var2 * var1 - var3 * var0 >> 16;
+	}
+
+	@ObfuscatedName("e")
+	static final int method4017(int var0, int var1, int var2, int var3) {
+		return var0 * var2 - var3 * var1 >> 16;
+	}
+
+	@ObfuscatedName("t")
+	static final int method4018(int var0, int var1, int var2, int var3) {
+		return var3 * var0 + var2 * var1 >> 16;
+	}
+
+	@ObfuscatedName("i")
+	static final int method4019(int var0, int var1, int var2, int var3) {
 		return var0 * var2 + var3 * var1 >> 16;
 	}
 
-	@ObfuscatedName("ap")
-	static final int method3809(int var0, int var1, int var2, int var3) {
+	@ObfuscatedName("ac")
+	static final int method4020(int var0, int var1, int var2, int var3) {
 		return var2 * var1 - var3 * var0 >> 16;
 	}
 }

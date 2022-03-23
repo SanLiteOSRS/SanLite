@@ -1,111 +1,60 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("et")
-public class class133 extends class126 {
-	@ObfuscatedName("uy")
-	@Export("foundItemIds")
-	static short[] foundItemIds;
-	@ObfuscatedName("bq")
+@ObfuscatedName("ec")
+public class class133 extends class128 {
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = -2050424251
+		intValue = 124738811
 	)
-	static int field1560;
-	@ObfuscatedName("ix")
+	int field1560;
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = 948344683
+		intValue = -1528369699
 	)
-	@Export("selectedItemWidget")
-	static int selectedItemWidget;
-	@ObfuscatedName("c")
-	boolean field1559;
-	@ObfuscatedName("l")
-	byte field1565;
-	@ObfuscatedName("s")
-	byte field1562;
-	@ObfuscatedName("e")
-	byte field1558;
-	@ObfuscatedName("r")
-	byte field1561;
+	int field1558;
+	@ObfuscatedName("h")
+	@ObfuscatedGetter(
+		intValue = 556051491
+	)
+	int field1562;
+	@ObfuscatedName("g")
+	@ObfuscatedGetter(
+		intValue = -387663765
+	)
+	int field1561;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Ldk;"
+		descriptor = "Lee;"
 	)
-	final class129 this$0;
+	final class131 this$0;
 
 	@ObfuscatedSignature(
-		descriptor = "(Ldk;)V"
+		descriptor = "(Lee;)V"
 	)
-	class133(class129 var1) {
+	class133(class131 var1) {
 		this.this$0 = var1;
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(Lpi;I)V",
-		garbageValue = "703192976"
+		descriptor = "(Lpd;B)V",
+		garbageValue = "-73"
 	)
-	void vmethod3019(Buffer var1) {
-		this.field1559 = var1.readUnsignedByte() == 1;
-		this.field1565 = var1.readByte();
-		this.field1562 = var1.readByte();
-		this.field1558 = var1.readByte();
-		this.field1561 = var1.readByte();
+	void vmethod3107(Buffer var1) {
+		this.field1560 = var1.readInt();
+		this.field1561 = var1.readInt();
+		this.field1558 = var1.readUnsignedByte();
+		this.field1562 = var1.readUnsignedByte();
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "(Ley;I)V",
-		garbageValue = "750335300"
+		descriptor = "(Leh;I)V",
+		garbageValue = "-1228032820"
 	)
-	void vmethod3020(ClanSettings var1) {
-		var1.allowGuests = this.field1559;
-		var1.field1593 = this.field1565;
-		var1.field1594 = this.field1562;
-		var1.field1595 = this.field1558;
-		var1.field1596 = this.field1561;
-	}
-
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "(II)Z",
-		garbageValue = "-278213073"
-	)
-	public static boolean method2813(int var0) {
-		return (var0 & 1) != 0;
-	}
-
-	@ObfuscatedName("ft")
-	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "31"
-	)
-	@Export("logOut")
-	static final void logOut() {
-		Client.packetWriter.close();
-		UserComparator8.method2449();
-		Decimator.scene.clear();
-
-		for (int var0 = 0; var0 < 4; ++var0) {
-			Client.collisionMaps[var0].clear();
-		}
-
-		System.gc();
-		class259.method4998(2);
-		Client.currentTrackGroupId = -1;
-		Client.field744 = false;
-		SequenceDefinition.method3623();
-		class111.updateGameState(10);
-	}
-
-	@ObfuscatedName("lo")
-	@ObfuscatedSignature(
-		descriptor = "(B)Z",
-		garbageValue = "119"
-	)
-	public static boolean method2807() {
-		return Client.staffModLevel >= 2;
+	void vmethod3104(ClanSettings var1) {
+		var1.method2928(this.field1560, this.field1561, this.field1558, this.field1562);
 	}
 }

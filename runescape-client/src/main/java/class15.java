@@ -12,10 +12,10 @@ import net.runelite.mapping.ObfuscatedSignature;
 import org.bouncycastle.crypto.tls.TlsClientProtocol;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
-@ObfuscatedName("p")
+@ObfuscatedName("s")
 public class class15 extends SSLSocketFactory {
-	@ObfuscatedName("c")
-	SecureRandom field88;
+	@ObfuscatedName("v")
+	SecureRandom field82;
 
 	static {
 		if (Security.getProvider("BC") == null) {
@@ -24,25 +24,17 @@ public class class15 extends SSLSocketFactory {
 
 	}
 
-	class15() {
-		this.field88 = new SecureRandom();
+	public class15() {
+		this.field82 = new SecureRandom();
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;Lorg/bouncycastle/crypto/tls/TlsClientProtocol;I)Ljavax/net/ssl/SSLSocket;",
-		garbageValue = "2008156590"
+		descriptor = "(Ljava/lang/String;Lorg/bouncycastle/crypto/tls/TlsClientProtocol;B)Ljavax/net/ssl/SSLSocket;",
+		garbageValue = "8"
 	)
-	SSLSocket method183(String var1, TlsClientProtocol var2) {
+	SSLSocket method189(String var1, TlsClientProtocol var2) {
 		return new class12(this, var2, var1);
-	}
-
-	public String[] getDefaultCipherSuites() {
-		return null;
-	}
-
-	public String[] getSupportedCipherSuites() {
-		return null;
 	}
 
 	public Socket createSocket(Socket var1, String var2, int var3, boolean var4) throws IOException {
@@ -54,8 +46,8 @@ public class class15 extends SSLSocketFactory {
 			var1.connect(new InetSocketAddress(var2, var3));
 		}
 
-		TlsClientProtocol var5 = new TlsClientProtocol(var1.getInputStream(), var1.getOutputStream(), this.field88);
-		return this.method183(var2, var5);
+		TlsClientProtocol var5 = new TlsClientProtocol(var1.getInputStream(), var1.getOutputStream(), this.field82);
+		return this.method189(var2, var5);
 	}
 
 	public Socket createSocket(InetAddress var1, int var2, InetAddress var3, int var4) throws IOException {
@@ -71,6 +63,14 @@ public class class15 extends SSLSocketFactory {
 	}
 
 	public Socket createSocket(String var1, int var2) throws IOException, UnknownHostException {
+		return null;
+	}
+
+	public String[] getSupportedCipherSuites() {
+		return null;
+	}
+
+	public String[] getDefaultCipherSuites() {
 		return null;
 	}
 }

@@ -3,21 +3,21 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("jp")
+@ObfuscatedName("js")
 @Implements("MusicTrack")
 public class MusicTrack extends Node {
-	@ObfuscatedName("c")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "Loj;"
+		descriptor = "Lpo;"
 	)
 	@Export("table")
 	NodeHashTable table;
-	@ObfuscatedName("l")
+	@ObfuscatedName("o")
 	@Export("midi")
 	byte[] midi;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lpi;)V"
+		descriptor = "(Lpd;)V"
 	)
 	MusicTrack(Buffer var1) {
 		var1.offset = var1.array.length - 3;
@@ -335,8 +335,8 @@ public class MusicTrack extends Node {
 
 	}
 
-	@ObfuscatedName("l")
-	void method5267() {
+	@ObfuscatedName("o")
+	void method5489() {
 		if (this.table == null) {
 			this.table = new NodeHashTable(16);
 			int[] var1 = new int[16];
@@ -416,18 +416,18 @@ public class MusicTrack extends Node {
 		}
 	}
 
-	@ObfuscatedName("s")
+	@ObfuscatedName("h")
 	@Export("clear")
 	void clear() {
 		this.table = null;
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(Lkq;II)Ljp;"
+		descriptor = "(Llq;II)Ljs;"
 	)
 	@Export("readTrack")
-	public static MusicTrack readTrack(AbstractArchive var0, int var1, int var2) {
+	static MusicTrack readTrack(AbstractArchive var0, int var1, int var2) {
 		byte[] var3 = var0.takeFile(var1, var2);
 		return var3 == null ? null : new MusicTrack(new Buffer(var3));
 	}

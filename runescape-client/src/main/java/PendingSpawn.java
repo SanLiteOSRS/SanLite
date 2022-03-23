@@ -1,83 +1,103 @@
+import java.lang.management.GarbageCollectorMXBean;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cb")
+@ObfuscatedName("ck")
 @Implements("PendingSpawn")
 public final class PendingSpawn extends Node {
-	@ObfuscatedName("ax")
-	@ObfuscatedSignature(
-		descriptor = "Lna;"
-	)
-	static Bounds field1107;
-	@ObfuscatedName("c")
+	@ObfuscatedName("uz")
 	@ObfuscatedGetter(
-		intValue = 475992133
+		intValue = -19855095
+	)
+	@Export("foundItemIdCount")
+	static int foundItemIdCount;
+	@ObfuscatedName("b")
+	@Export("cacheParentPaths")
+	public static String[] cacheParentPaths;
+	@ObfuscatedName("ak")
+	@Export("garbageCollector")
+	static GarbageCollectorMXBean garbageCollector;
+	@ObfuscatedName("ew")
+	@ObfuscatedSignature(
+		descriptor = "Lne;"
+	)
+	@Export("spriteIds")
+	static GraphicsDefaults spriteIds;
+	@ObfuscatedName("ix")
+	@ObfuscatedGetter(
+		intValue = -28260951
+	)
+	@Export("selectedItemWidget")
+	static int selectedItemWidget;
+	@ObfuscatedName("v")
+	@ObfuscatedGetter(
+		intValue = -395030049
 	)
 	@Export("plane")
 	int plane;
-	@ObfuscatedName("l")
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = -1877756307
+		intValue = 1083883841
 	)
 	@Export("type")
 	int type;
-	@ObfuscatedName("s")
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = 376673497
+		intValue = 664401913
 	)
 	@Export("x")
 	int x;
-	@ObfuscatedName("e")
+	@ObfuscatedName("g")
 	@ObfuscatedGetter(
-		intValue = 2136154367
+		intValue = 2084106709
 	)
 	@Export("y")
 	int y;
-	@ObfuscatedName("r")
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = 111814825
+		intValue = 469927407
 	)
 	@Export("objectId")
 	int objectId;
-	@ObfuscatedName("o")
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = -1791810711
+		intValue = 456466373
 	)
-	int field1106;
-	@ObfuscatedName("i")
+	int field1117;
+	@ObfuscatedName("d")
 	@ObfuscatedGetter(
-		intValue = 1470559275
+		intValue = -875007293
 	)
-	int field1100;
-	@ObfuscatedName("w")
+	int field1119;
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = 1174026637
+		intValue = 503773945
 	)
 	@Export("id")
 	int id;
-	@ObfuscatedName("v")
+	@ObfuscatedName("u")
 	@ObfuscatedGetter(
-		intValue = -1690874167
+		intValue = 1610620631
 	)
 	@Export("orientation")
 	int orientation;
-	@ObfuscatedName("a")
+	@ObfuscatedName("r")
 	@ObfuscatedGetter(
-		intValue = 1276938079
+		intValue = -917284009
 	)
-	int field1103;
-	@ObfuscatedName("y")
+	int field1122;
+	@ObfuscatedName("k")
 	@ObfuscatedGetter(
-		intValue = -1583628925
+		intValue = 270987311
 	)
 	@Export("delay")
 	int delay;
-	@ObfuscatedName("u")
+	@ObfuscatedName("x")
 	@ObfuscatedGetter(
-		intValue = 1760851717
+		intValue = 1980741835
 	)
 	@Export("hitpoints")
 	int hitpoints;
@@ -85,67 +105,5 @@ public final class PendingSpawn extends Node {
 	PendingSpawn() {
 		this.delay = 0;
 		this.hitpoints = -1;
-	}
-
-	@ObfuscatedName("c")
-	@ObfuscatedSignature(
-		descriptor = "([Ljava/lang/CharSequence;III)Ljava/lang/String;",
-		garbageValue = "-880833024"
-	)
-	public static String method2161(CharSequence[] var0, int var1, int var2) {
-		if (var2 == 0) {
-			return "";
-		} else if (var2 == 1) {
-			CharSequence var10 = var0[var1];
-			return var10 == null ? "null" : var10.toString();
-		} else {
-			int var3 = var2 + var1;
-			int var4 = 0;
-
-			for (int var5 = var1; var5 < var3; ++var5) {
-				CharSequence var9 = var0[var5];
-				if (var9 == null) {
-					var4 += 4;
-				} else {
-					var4 += var9.length();
-				}
-			}
-
-			StringBuilder var8 = new StringBuilder(var4);
-
-			for (int var6 = var1; var6 < var3; ++var6) {
-				CharSequence var7 = var0[var6];
-				if (var7 == null) {
-					var8.append("null");
-				} else {
-					var8.append(var7);
-				}
-			}
-
-			return var8.toString();
-		}
-	}
-
-	@ObfuscatedName("in")
-	@ObfuscatedSignature(
-		descriptor = "(IIIIB)V",
-		garbageValue = "0"
-	)
-	@Export("selectSpell")
-	static void selectSpell(int var0, int var1, int var2, int var3) {
-		Widget var4 = ModeWhere.getWidgetChild(var0, var1);
-		if (var4 != null && var4.onTargetEnter != null) {
-			ScriptEvent var5 = new ScriptEvent();
-			var5.widget = var4;
-			var5.args = var4.onTargetEnter;
-			class92.runScriptEvent(var5);
-		}
-
-		Client.field536 = var3;
-		Client.isSpellSelected = true;
-		WorldMapLabelSize.selectedSpellWidget = var0;
-		Client.selectedSpellChildIndex = var1;
-		RouteStrategy.selectedSpellFlags = var2;
-		class112.invalidateWidget(var4);
 	}
 }

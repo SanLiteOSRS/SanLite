@@ -1,39 +1,45 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ck")
+@ObfuscatedName("cc")
 @Implements("HealthBar")
 public class HealthBar extends Node {
-	@ObfuscatedName("fk")
-	@Export("worldHost")
-	static String worldHost;
-	@ObfuscatedName("s")
+	@ObfuscatedName("f")
+	@Export("ItemComposition_inMembersWorld")
+	static boolean ItemComposition_inMembersWorld;
+	@ObfuscatedName("k")
+	@ObfuscatedGetter(
+		intValue = 1015592217
+	)
+	static int field1251;
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "Lfs;"
+		descriptor = "Lfy;"
 	)
 	@Export("definition")
 	HealthBarDefinition definition;
-	@ObfuscatedName("e")
+	@ObfuscatedName("g")
 	@ObfuscatedSignature(
-		descriptor = "Llt;"
+		descriptor = "Lld;"
 	)
 	@Export("updates")
 	IterableNodeDeque updates;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lfs;)V"
+		descriptor = "(Lfy;)V"
 	)
 	HealthBar(HealthBarDefinition var1) {
 		this.updates = new IterableNodeDeque();
 		this.definition = var1;
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(IIIII)V",
-		garbageValue = "-1837572845"
+		descriptor = "(IIIIB)V",
+		garbageValue = "-121"
 	)
 	@Export("put")
 	void put(int var1, int var2, int var3, int var4) {
@@ -66,10 +72,10 @@ public class HealthBar extends Node {
 		}
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "(IB)Lcd;",
-		garbageValue = "1"
+		descriptor = "(IB)Lcu;",
+		garbageValue = "62"
 	)
 	@Export("get")
 	HealthBarUpdate get(int var1) {
@@ -80,7 +86,7 @@ public class HealthBar extends Node {
 				var2 = var3;
 			}
 
-			if (this.definition.int5 + var2.cycle + var2.cycleOffset > var1) {
+			if (this.definition.int5 + var2.cycleOffset + var2.cycle > var1) {
 				return var2;
 			} else {
 				var2.remove();
@@ -91,33 +97,42 @@ public class HealthBar extends Node {
 		}
 	}
 
-	@ObfuscatedName("s")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "(I)Z",
-		garbageValue = "2000667860"
+		descriptor = "(B)Z",
+		garbageValue = "82"
 	)
 	@Export("isEmpty")
 	boolean isEmpty() {
-		return this.updates.method5882();
+		return this.updates.method6269();
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(Lkq;Lkq;ZI)V",
-		garbageValue = "-2108078857"
+		descriptor = "(I)V",
+		garbageValue = "1836952304"
 	)
-	public static void method2248(AbstractArchive var0, AbstractArchive var1, boolean var2) {
-		class12.ObjectDefinition_archive = var0;
-		ObjectComposition.ObjectDefinition_modelsArchive = var1;
-		ObjectComposition.ObjectDefinition_isLowDetail = var2;
-	}
+	static void method2351() {
+		class113.field1387 = new int[2000];
+		int var0 = 0;
+		int var1 = 240;
 
-	@ObfuscatedName("gj")
-	@ObfuscatedSignature(
-		descriptor = "(B)Z",
-		garbageValue = "4"
-	)
-	static boolean method2250() {
-		return (Client.drawPlayerNames & 8) != 0;
+		int var3;
+		for (byte var2 = 12; var0 < 16; var1 -= var2) {
+			var3 = class92.method2373((double)((float)var1 / 360.0F), 0.9998999834060669D, (double)(0.425F * (float)var0 / 16.0F + 0.075F));
+			class113.field1387[var0] = var3;
+			++var0;
+		}
+
+		var1 = 48;
+
+		for (int var5 = var1 / 6; var0 < class113.field1387.length; var1 -= var5) {
+			var3 = var0 * 2;
+
+			for (int var4 = class92.method2373((double)((float)var1 / 360.0F), 0.9998999834060669D, 0.5D); var0 < var3 && var0 < class113.field1387.length; ++var0) {
+				class113.field1387[var0] = var4;
+			}
+		}
+
 	}
 }
