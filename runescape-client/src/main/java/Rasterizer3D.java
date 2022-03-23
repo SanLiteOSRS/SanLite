@@ -151,12 +151,14 @@ public class Rasterizer3D extends Rasterizer2D {
 	@ObfuscatedSignature(
 		descriptor = "(Lht;)V"
 	)
-	public static final void method3998(TextureLoader var0) {
+	@Export("Rasterizer3D_setTextureLoader")
+	public static final void Rasterizer3D_setTextureLoader(TextureLoader var0) {
 		Rasterizer3D_textureLoader = var0;
 	}
 
 	@ObfuscatedName("n")
-	public static final void method3999(double var0) {
+	@Export("Rasterizer3D_setBrightness")
+	public static final void Rasterizer3D_setBrightness(double var0) {
 		Rasterizer3D_buildPalette(var0, 0, 512);
 	}
 

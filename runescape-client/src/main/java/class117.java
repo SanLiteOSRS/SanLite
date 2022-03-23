@@ -388,7 +388,7 @@ public class class117 {
 				return 1;
 			} else if (var0 == 1125) {
 				var8 = Interpreter.Interpreter_intStack[--class295.Interpreter_intStackSize];
-				class448 var6 = (class448)ChatChannel.findEnumerated(PlayerType.FillMode_values(), var8);
+				FillMode var6 = (FillMode)ChatChannel.findEnumerated(PlayerType.FillMode_values(), var8);
 				if (var6 != null) {
 					var3.fillMode = var6;
 					class290.invalidateWidget(var3);

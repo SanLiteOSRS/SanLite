@@ -571,8 +571,8 @@ public class WorldMapLabelSize {
 					}
 
 					if (Client.hintArrowType == 2) {
-						var10 = Client.field520 * 4 - ApproximateRouteStrategy.baseX * 256 + 2 - class19.localPlayer.x / 32;
-						var11 = Client.field502 * 4 - class250.baseY * 256 + 2 - class19.localPlayer.y / 32;
+						var10 = Client.hintArrowX * 4 - ApproximateRouteStrategy.baseX * 256 + 2 - class19.localPlayer.x / 32;
+						var11 = Client.hintArrowY * 4 - class250.baseY * 256 + 2 - class19.localPlayer.y / 32;
 						NetFileRequest.worldToMinimap(var1, var2, var10, var11, class17.mapMarkerSprites[1], var4);
 					}
 

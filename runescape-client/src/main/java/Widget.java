@@ -231,7 +231,7 @@ public class Widget extends Node {
 		descriptor = "Lqs;"
 	)
 	@Export("fillMode")
-	public class448 fillMode;
+	public FillMode fillMode;
 	@ObfuscatedName("by")
 	@ObfuscatedGetter(
 		intValue = -374157533
@@ -755,7 +755,7 @@ public class Widget extends Node {
 		this.mouseOverColor = 0;
 		this.mouseOverColor2 = 0;
 		this.fill = false;
-		this.fillMode = class448.SOLID;
+		this.fillMode = FillMode.SOLID;
 		this.transparencyTop = 0;
 		this.transparencyBot = 0;
 		this.lineWid = 1;
@@ -1289,7 +1289,8 @@ public class Widget extends Node {
 		descriptor = "(ZLci;B)Lql;",
 		garbageValue = "76"
 	)
-	public SpritePixels method5627(boolean var1, UrlRequester var2) {
+	@Export("getSprite")
+	public SpritePixels getSprite(boolean var1, UrlRequester var2) {
 		field3368 = false;
 		if (this.field3386 != null) {
 			SpritePixels var3 = this.method5628(var2);
@@ -1571,7 +1572,7 @@ public class Widget extends Node {
 			if (var5 != null) {
 				return var5;
 			} else {
-				SpritePixels var6 = this.method5627(var1, (UrlRequester)null);
+				SpritePixels var6 = this.getSprite(var1, (UrlRequester)null);
 				if (var6 == null) {
 					return null;
 				} else {

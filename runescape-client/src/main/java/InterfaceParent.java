@@ -673,7 +673,7 @@ public class InterfaceParent extends Node {
 									} else if (var10.type == 5) {
 										SpritePixels var40;
 										if (!var10.isIf3) {
-											var40 = var10.method5627(PacketWriter.runCs1(var10), UserComparator9.urlRequester);
+											var40 = var10.getSprite(PacketWriter.runCs1(var10), UserComparator9.urlRequester);
 											if (var40 != null) {
 												var40.drawTransBgAt(var12, var13);
 											} else if (Widget.field3368) {
@@ -683,7 +683,7 @@ public class InterfaceParent extends Node {
 											if (var10.itemId != -1) {
 												var40 = WorldMapCacheName.getItemSprite(var10.itemId, var10.itemQuantity, var10.outline, var10.spriteShadow, var10.itemQuantityMode, false);
 											} else {
-												var40 = var10.method5627(false, UserComparator9.urlRequester);
+												var40 = var10.getSprite(false, UserComparator9.urlRequester);
 											}
 
 											if (var40 == null) {

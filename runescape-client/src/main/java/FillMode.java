@@ -1,10 +1,8 @@
-import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
-import net.runelite.mapping.ObfuscatedName;
-import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.mapping.*;
 
 @ObfuscatedName("qs")
-public enum class448 implements MouseWheel {
+@Implements("FillMode")
+public enum FillMode implements MouseWheel {
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
 		descriptor = "Lqs;"
@@ -33,7 +31,7 @@ public enum class448 implements MouseWheel {
 	)
 	final int field4697;
 
-	class448(int var3, int var4) {
+	FillMode(int var3, int var4) {
 		this.field4696 = var3;
 		this.field4697 = var4;
 	}

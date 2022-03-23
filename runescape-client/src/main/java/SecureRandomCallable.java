@@ -162,7 +162,7 @@ public class SecureRandomCallable implements Callable {
 						}
 
 						var5 = var1.readBits(1);
-						var8 = Client.field663[var1.readBits(3)];
+						var8 = Client.defaultRotations[var1.readBits(3)];
 						if (var3) {
 							var4.orientation = var4.rotation = var8;
 						}
@@ -226,7 +226,7 @@ public class SecureRandomCallable implements Callable {
 						}
 
 						var4.definition = class9.getNpcDefinition(var1.readBits(14));
-						var10 = Client.field663[var1.readBits(3)];
+						var10 = Client.defaultRotations[var1.readBits(3)];
 						if (var3) {
 							var4.orientation = var4.rotation = var10;
 						}

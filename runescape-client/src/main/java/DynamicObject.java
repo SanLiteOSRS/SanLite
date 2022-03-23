@@ -276,7 +276,7 @@ public class DynamicObject extends Renderable {
 			if ((var5 & 16) != 0) {
 				var4.spotAnimation = var1.readUnsignedShort();
 				var6 = var1.readInt();
-				var4.field1174 = var6 >> 16;
+				var4.spotAnimationHeight = var6 >> 16;
 				var4.field1173 = (var6 & 65535) + Client.cycle;
 				var4.spotAnimationFrame = 0;
 				var4.spotAnimationFrameCycle = 0;

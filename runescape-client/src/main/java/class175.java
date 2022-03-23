@@ -425,7 +425,7 @@ public class class175 {
 
 	@ObfuscatedName("kn")
 	static final void method3439(double var0) {
-		Rasterizer3D.method3999(var0);
+		Rasterizer3D.Rasterizer3D_setBrightness(var0);
 		((TextureProvider)Rasterizer3D.Rasterizer3D_textureLoader).setBrightness(var0);
 		class82.method2122();
 		Interpreter.clientPreferences.method2260(var0);

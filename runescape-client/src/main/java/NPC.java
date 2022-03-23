@@ -108,7 +108,7 @@ public final class NPC extends Actor {
 				if (super.spotAnimation != -1 && super.spotAnimationFrame != -1) {
 					Model var4 = class6.SpotAnimationDefinition_get(super.spotAnimation).getModel(super.spotAnimationFrame);
 					if (var4 != null) {
-						var4.offsetBy(0, -super.field1174, 0);
+						var4.offsetBy(0, -super.spotAnimationHeight, 0);
 						Model[] var5 = new Model[]{var3, var4};
 						var3 = new Model(var5, 2);
 					}
@@ -367,7 +367,7 @@ public final class NPC extends Actor {
 		FriendSystem.scene.clearTempGameObjects();
 		InterfaceParent.method2100(var0, var1, var2, var3);
 		if (Client.hintArrowType == 2) {
-			class10.worldToScreen(Client.field504 * 64 + (Client.field520 - ApproximateRouteStrategy.baseX * 64 << 7), Client.field505 * 64 + (Client.field502 - class250.baseY * 64 << 7), Client.field503 * 2);
+			class10.worldToScreen(Client.hintArrowSubX * 64 + (Client.hintArrowX - ApproximateRouteStrategy.baseX * 64 << 7), Client.hintArrowSubY * 64 + (Client.hintArrowY - class250.baseY * 64 << 7), Client.hintArrowHeight * 2);
 			if (Client.viewportTempX > -1 && Client.cycle % 20 < 10) {
 				VarpDefinition.headIconHintSprites[0].drawTransBgAt(var0 + Client.viewportTempX - 12, Client.viewportTempY + var1 - 28);
 			}

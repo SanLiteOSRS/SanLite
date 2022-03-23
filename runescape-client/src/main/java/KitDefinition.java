@@ -266,7 +266,8 @@ public class KitDefinition extends DualNode {
 		descriptor = "(IIII)V",
 		garbageValue = "-599485145"
 	)
-	static void method3416(int var0, int var1, int var2) {
+	@Export("queueSoundEffect")
+	static void queueSoundEffect(int var0, int var1, int var2) {
 		if (Interpreter.clientPreferences.method2269() != 0 && var1 != 0 && Client.soundEffectCount < 50) {
 			Client.soundEffectIds[Client.soundEffectCount] = var0;
 			Client.queuedSoundEffectLoops[Client.soundEffectCount] = var1;

@@ -725,7 +725,7 @@ public class Varcs {
 											var22 = var9.method5686();
 											if (var22 != null) {
 												PacketBufferNode var23 = ItemContainer.getPacketBufferNode(ClientPacket.field2999, Client.packetWriter.isaacCipher);
-												var23.packetBuffer.method7807(var22[0]);
+												var23.packetBuffer.writeIntME(var22[0]);
 												var23.packetBuffer.method7795(var9.childIndex);
 												var23.packetBuffer.method7806(var22[1]);
 												var23.packetBuffer.method7746(var9.method5699());
@@ -861,11 +861,11 @@ public class Varcs {
 								ScriptEvent var25;
 								int var39;
 								int var40;
-								if (var9.onVarTransmit != null && Client.field677 > var9.field3391) {
-									if (var9.varTransmitTriggers != null && Client.field677 - var9.field3391 <= 32) {
+								if (var9.onVarTransmit != null && Client.changedVarpCount > var9.field3391) {
+									if (var9.varTransmitTriggers != null && Client.changedVarpCount - var9.field3391 <= 32) {
 										label827:
-										for (var40 = var9.field3391; var40 < Client.field677; ++var40) {
-											var29 = Client.field676[var40 & 31];
+										for (var40 = var9.field3391; var40 < Client.changedVarpCount; ++var40) {
+											var29 = Client.changedVarps[var40 & 31];
 
 											for (var39 = 0; var39 < var9.varTransmitTriggers.length; ++var39) {
 												if (var29 == var9.varTransmitTriggers[var39]) {
@@ -884,14 +884,14 @@ public class Varcs {
 										Client.scriptEvents.addFirst(var37);
 									}
 
-									var9.field3391 = Client.field677;
+									var9.field3391 = Client.changedVarpCount;
 								}
 
 								if (var9.onInvTransmit != null && Client.field746 > var9.field3355) {
 									if (var9.invTransmitTriggers != null && Client.field746 - var9.field3355 <= 32) {
 										label803:
 										for (var40 = var9.field3355; var40 < Client.field746; ++var40) {
-											var29 = Client.field563[var40 & 31];
+											var29 = Client.changedItemContainers[var40 & 31];
 
 											for (var39 = 0; var39 < var9.invTransmitTriggers.length; ++var39) {
 												if (var29 == var9.invTransmitTriggers[var39]) {
@@ -913,11 +913,11 @@ public class Varcs {
 									var9.field3355 = Client.field746;
 								}
 
-								if (var9.onStatTransmit != null && Client.field681 > var9.field3387) {
-									if (var9.statTransmitTriggers != null && Client.field681 - var9.field3387 <= 32) {
+								if (var9.onStatTransmit != null && Client.changedSkillsCount > var9.field3387) {
+									if (var9.statTransmitTriggers != null && Client.changedSkillsCount - var9.field3387 <= 32) {
 										label779:
-										for (var40 = var9.field3387; var40 < Client.field681; ++var40) {
-											var29 = Client.field680[var40 & 31];
+										for (var40 = var9.field3387; var40 < Client.changedSkillsCount; ++var40) {
+											var29 = Client.changedSkills[var40 & 31];
 
 											for (var39 = 0; var39 < var9.statTransmitTriggers.length; ++var39) {
 												if (var29 == var9.statTransmitTriggers[var39]) {
@@ -936,7 +936,7 @@ public class Varcs {
 										Client.scriptEvents.addFirst(var37);
 									}
 
-									var9.field3387 = Client.field681;
+									var9.field3387 = Client.changedSkillsCount;
 								}
 
 								if (Client.chatCycle > var9.field3481 && var9.onChatTransmit != null) {

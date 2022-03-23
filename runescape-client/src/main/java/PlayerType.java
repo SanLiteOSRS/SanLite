@@ -101,7 +101,7 @@ public enum PlayerType implements MouseWheel {
 		garbageValue = "-1527934024"
 	)
 	@Export("FillMode_values")
-	public static class448[] FillMode_values() {
-		return new class448[]{class448.field4695, class448.field4698, class448.SOLID};
+	public static FillMode[] FillMode_values() {
+		return new FillMode[]{FillMode.field4695, FillMode.field4698, FillMode.SOLID};
 	}
 }

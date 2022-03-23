@@ -149,7 +149,7 @@ public class HealthBarUpdate extends Node {
 		if ((var3 & 4096) != 0) {
 			var2.spotAnimation = var0.method7798();
 			var5 = var0.method7889();
-			var2.field1174 = var5 >> 16;
+			var2.spotAnimationHeight = var5 >> 16;
 			var2.field1173 = (var5 & 65535) + Client.cycle;
 			var2.spotAnimationFrame = 0;
 			var2.spotAnimationFrameCycle = 0;

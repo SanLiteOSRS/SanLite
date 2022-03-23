@@ -58,7 +58,7 @@ public class DirectByteArrayCopier extends AbstractByteArrayCopier {
 	static int method5540(int var0, Script var1, boolean var2) {
 		if (var0 == ScriptOpcodes.SOUND_SYNTH) {
 			class295.Interpreter_intStackSize -= 3;
-			KitDefinition.method3416(Interpreter.Interpreter_intStack[class295.Interpreter_intStackSize], Interpreter.Interpreter_intStack[class295.Interpreter_intStackSize + 1], Interpreter.Interpreter_intStack[class295.Interpreter_intStackSize + 2]);
+			KitDefinition.queueSoundEffect(Interpreter.Interpreter_intStack[class295.Interpreter_intStackSize], Interpreter.Interpreter_intStack[class295.Interpreter_intStackSize + 1], Interpreter.Interpreter_intStack[class295.Interpreter_intStackSize + 2]);
 			return 1;
 		} else if (var0 == ScriptOpcodes.SOUND_SONG) {
 			class401.playSong(Interpreter.Interpreter_intStack[--class295.Interpreter_intStackSize]);
