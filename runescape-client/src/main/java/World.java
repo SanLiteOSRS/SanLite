@@ -4,60 +4,72 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bi")
+@ObfuscatedName("br")
 @Implements("World")
 public class World {
-	@ObfuscatedName("o")
+	@ObfuscatedName("l")
+	@ObfuscatedSignature(
+		descriptor = "[Lbr;"
+	)
+	@Export("World_worlds")
+	static World[] World_worlds;
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = 424514993
+		intValue = 708983157
 	)
 	@Export("World_count")
 	static int World_count;
-	@ObfuscatedName("i")
+	@ObfuscatedName("d")
 	@ObfuscatedGetter(
-		intValue = 1627138945
+		intValue = 1412956873
 	)
 	@Export("World_listCount")
 	static int World_listCount;
-	@ObfuscatedName("w")
+	@ObfuscatedName("f")
 	@Export("World_sortOption2")
 	static int[] World_sortOption2;
-	@ObfuscatedName("v")
+	@ObfuscatedName("u")
 	@Export("World_sortOption1")
 	static int[] World_sortOption1;
-	@ObfuscatedName("y")
+	@ObfuscatedName("eo")
+	@ObfuscatedSignature(
+		descriptor = "Llu;"
+	)
+	@Export("archive10")
+	static Archive archive10;
+	@ObfuscatedName("k")
 	@ObfuscatedGetter(
-		intValue = -1204793871
+		intValue = 1791268419
 	)
 	@Export("id")
 	int id;
-	@ObfuscatedName("u")
+	@ObfuscatedName("x")
 	@ObfuscatedGetter(
-		intValue = -1353463065
+		intValue = 1457180793
 	)
 	@Export("properties")
 	int properties;
-	@ObfuscatedName("h")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = -1508326675
+		intValue = 1283993585
 	)
 	@Export("population")
 	int population;
-	@ObfuscatedName("q")
+	@ObfuscatedName("j")
 	@Export("host")
 	String host;
-	@ObfuscatedName("x")
+	@ObfuscatedName("p")
 	@Export("activity")
 	String activity;
-	@ObfuscatedName("p")
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = -828676327
+		intValue = -658464583
 	)
 	@Export("location")
 	int location;
-	@ObfuscatedName("n")
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = -190751717
+		intValue = -1286682885
 	)
 	@Export("index")
 	int index;
@@ -72,70 +84,90 @@ public class World {
 	World() {
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("r")
 	@ObfuscatedSignature(
-		descriptor = "(B)Z",
-		garbageValue = "0"
+		descriptor = "(I)Z",
+		garbageValue = "1842412760"
 	)
 	@Export("isMembersOnly")
 	boolean isMembersOnly() {
 		return (1 & this.properties) != 0;
 	}
 
-	@ObfuscatedName("a")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
 		descriptor = "(I)Z",
-		garbageValue = "-406459188"
+		garbageValue = "728871441"
 	)
-	boolean method1649() {
+	boolean method1628() {
 		return (2 & this.properties) != 0;
 	}
 
-	@ObfuscatedName("y")
+	@ObfuscatedName("x")
 	@ObfuscatedSignature(
-		descriptor = "(B)Z",
-		garbageValue = "0"
+		descriptor = "(I)Z",
+		garbageValue = "-1860289724"
 	)
 	@Export("isPvp")
 	boolean isPvp() {
 		return (4 & this.properties) != 0;
 	}
 
-	@ObfuscatedName("u")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(B)Z",
-		garbageValue = "20"
+		descriptor = "(I)Z",
+		garbageValue = "-1727369163"
 	)
-	boolean method1662() {
+	boolean method1612() {
 		return (8 & this.properties) != 0;
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("j")
 	@ObfuscatedSignature(
 		descriptor = "(I)Z",
-		garbageValue = "-305789619"
+		garbageValue = "-1493123434"
 	)
 	@Export("isDeadman")
 	boolean isDeadman() {
 		return (536870912 & this.properties) != 0;
 	}
 
-	@ObfuscatedName("q")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
 		descriptor = "(I)Z",
-		garbageValue = "-786125281"
+		garbageValue = "-1898535773"
 	)
 	@Export("isBeta")
 	boolean isBeta() {
 		return (33554432 & this.properties) != 0;
 	}
 
-	@ObfuscatedName("x")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
 		descriptor = "(B)Z",
-		garbageValue = "63"
+		garbageValue = "116"
 	)
-	boolean method1640() {
+	boolean method1638() {
 		return (1073741824 & this.properties) != 0;
+	}
+
+	@ObfuscatedName("d")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "-200801552"
+	)
+	public static void method1655() {
+		try {
+			JagexCache.JagexCache_dat2File.close();
+
+			for (int var0 = 0; var0 < JagexCache.idxCount; ++var0) {
+				class194.JagexCache_idxFiles[var0].close();
+			}
+
+			JagexCache.JagexCache_idx255File.close();
+			JagexCache.JagexCache_randomDat.close();
+		} catch (Exception var2) {
+		}
+
 	}
 }

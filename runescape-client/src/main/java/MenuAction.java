@@ -4,62 +4,56 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bh")
+@ObfuscatedName("bp")
 @Implements("MenuAction")
 public class MenuAction {
-	@ObfuscatedName("c")
+	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = 683087729
+		intValue = -1395213587
 	)
 	@Export("param0")
 	int param0;
-	@ObfuscatedName("l")
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = -1027855045
+		intValue = 1235070557
 	)
 	@Export("param1")
 	int param1;
-	@ObfuscatedName("s")
+	@ObfuscatedName("h")
 	@ObfuscatedGetter(
-		intValue = 791610257
+		intValue = -1780359583
 	)
 	@Export("opcode")
 	int opcode;
-	@ObfuscatedName("e")
+	@ObfuscatedName("g")
 	@ObfuscatedGetter(
-		intValue = 1555115433
+		intValue = -538792745
 	)
 	@Export("identifier")
 	int identifier;
-	@ObfuscatedName("r")
+	@ObfuscatedName("l")
 	@Export("action")
 	String action;
 
 	MenuAction() {
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "(Lkq;IIIZB)V",
-		garbageValue = "-93"
+		descriptor = "(CS)C",
+		garbageValue = "1843"
 	)
-	public static void method1894(AbstractArchive var0, int var1, int var2, int var3, boolean var4) {
-		class265.musicPlayerStatus = 1;
-		class265.musicTrackArchive = var0;
-		class265.musicTrackGroupId = var1;
-		class140.musicTrackFileId = var2;
-		class167.musicTrackVolume = var3;
-		MusicPatch.musicTrackBoolean = var4;
-		GrandExchangeOfferNameComparator.pcmSampleLength = 10000;
-	}
-
-	@ObfuscatedName("lv")
-	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-1125693830"
-	)
-	static void method1895() {
-		class424.clientPreferences.field1231 = Client.field699;
-		GameEngine.savePreferences();
+	static char method1877(char var0) {
+		if (var0 == 198) {
+			return 'E';
+		} else if (var0 == 230) {
+			return 'e';
+		} else if (var0 == 223) {
+			return 's';
+		} else if (var0 == 338) {
+			return 'E';
+		} else {
+			return (char)(var0 == 339 ? 'e' : '\u0000');
+		}
 	}
 }

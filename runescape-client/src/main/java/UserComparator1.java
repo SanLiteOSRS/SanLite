@@ -4,10 +4,10 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("pu")
+@ObfuscatedName("qd")
 @Implements("UserComparator1")
 public class UserComparator1 implements Comparator {
-	@ObfuscatedName("c")
+	@ObfuscatedName("v")
 	@Export("reversed")
 	final boolean reversed;
 
@@ -15,35 +15,31 @@ public class UserComparator1 implements Comparator {
 		this.reversed = var1;
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(Lmy;Lmy;B)I",
-		garbageValue = "104"
+		descriptor = "(Lnc;Lnc;I)I",
+		garbageValue = "-471042095"
 	)
 	@Export("compare_bridged")
 	int compare_bridged(Nameable var1, Nameable var2) {
 		return this.reversed ? var1.compareTo_user(var2) : var2.compareTo_user(var1);
 	}
 
-	public int compare(Object var1, Object var2) {
-		return this.compare_bridged((Nameable)var1, (Nameable)var2);
-	}
-
 	public boolean equals(Object var1) {
 		return super.equals(var1);
 	}
 
-	@ObfuscatedName("l")
+	public int compare(Object var1, Object var2) {
+		return this.compare_bridged((Nameable)var1, (Nameable)var2);
+	}
+
+	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "(Lon;IIB)I",
-		garbageValue = "3"
+		descriptor = "(I)V",
+		garbageValue = "-889372526"
 	)
-	static int method7638(IterableNodeHashTable var0, int var1, int var2) {
-		if (var0 == null) {
-			return var2;
-		} else {
-			IntegerNode var3 = (IntegerNode)var0.get((long)var1);
-			return var3 == null ? var2 : var3.integer;
-		}
+	public static void method8029() {
+		HealthBarDefinition.HealthBarDefinition_cached.clear();
+		HealthBarDefinition.HealthBarDefinition_cachedSprites.clear();
 	}
 }

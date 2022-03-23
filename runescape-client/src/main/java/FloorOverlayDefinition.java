@@ -4,81 +4,92 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fm")
+@ObfuscatedName("gu")
 @Implements("FloorOverlayDefinition")
 public class FloorOverlayDefinition extends DualNode {
-	@ObfuscatedName("c")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "Lkq;"
+		descriptor = "Llq;"
 	)
 	@Export("FloorOverlayDefinition_archive")
 	public static AbstractArchive FloorOverlayDefinition_archive;
-	@ObfuscatedName("l")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "Lic;"
+		descriptor = "Liq;"
 	)
 	@Export("FloorOverlayDefinition_cached")
 	public static EvictingDualNodeHashTable FloorOverlayDefinition_cached;
-	@ObfuscatedName("pq")
+	@ObfuscatedName("eb")
 	@ObfuscatedSignature(
-		descriptor = "Lop;"
+		descriptor = "Llu;"
 	)
-	@Export("Ignored_cached")
-	static class409 Ignored_cached;
-	@ObfuscatedName("s")
+	@Export("archive2")
+	static Archive archive2;
+	@ObfuscatedName("hd")
+	@ObfuscatedSignature(
+		descriptor = "Lmr;"
+	)
+	@Export("fontBold12")
+	static Font fontBold12;
+	@ObfuscatedName("jm")
 	@ObfuscatedGetter(
-		intValue = 1253258649
+		intValue = -1743026493
+	)
+	static int field2136;
+	@ObfuscatedName("h")
+	@ObfuscatedGetter(
+		intValue = 67638903
 	)
 	@Export("primaryRgb")
 	public int primaryRgb;
-	@ObfuscatedName("e")
+	@ObfuscatedName("g")
 	@ObfuscatedGetter(
-		intValue = -2096043849
+		intValue = 222487841
 	)
 	@Export("texture")
 	public int texture;
-	@ObfuscatedName("r")
+	@ObfuscatedName("l")
 	@Export("hideUnderlay")
 	public boolean hideUnderlay;
-	@ObfuscatedName("o")
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = 583754113
+		intValue = 1576648291
 	)
 	@Export("secondaryRgb")
 	public int secondaryRgb;
-	@ObfuscatedName("i")
+	@ObfuscatedName("d")
 	@ObfuscatedGetter(
-		intValue = -457325531
+		intValue = 1331174071
 	)
 	@Export("hue")
 	public int hue;
-	@ObfuscatedName("w")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = 1533328135
+		intValue = 1793349537
 	)
 	@Export("saturation")
 	public int saturation;
-	@ObfuscatedName("v")
+	@ObfuscatedName("u")
 	@ObfuscatedGetter(
-		intValue = 61984717
+		intValue = 167555719
 	)
 	@Export("lightness")
 	public int lightness;
-	@ObfuscatedName("a")
+	@ObfuscatedName("r")
 	@ObfuscatedGetter(
-		intValue = 1537463893
+		intValue = -19762575
 	)
 	@Export("secondaryHue")
 	public int secondaryHue;
-	@ObfuscatedName("y")
+	@ObfuscatedName("k")
 	@ObfuscatedGetter(
-		intValue = 1841738529
+		intValue = -1484296667
 	)
 	@Export("secondarySaturation")
 	public int secondarySaturation;
-	@ObfuscatedName("u")
+	@ObfuscatedName("x")
 	@ObfuscatedGetter(
-		intValue = 1909179785
+		intValue = 1158289255
 	)
 	@Export("secondaryLightness")
 	public int secondaryLightness;
@@ -94,10 +105,10 @@ public class FloorOverlayDefinition extends DualNode {
 		this.secondaryRgb = -1;
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "1"
+		descriptor = "(I)V",
+		garbageValue = "1865539852"
 	)
 	@Export("postDecode")
 	public void postDecode() {
@@ -111,10 +122,10 @@ public class FloorOverlayDefinition extends DualNode {
 		this.setHsl(this.primaryRgb);
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("h")
 	@ObfuscatedSignature(
-		descriptor = "(Lpi;II)V",
-		garbageValue = "207241390"
+		descriptor = "(Lpd;II)V",
+		garbageValue = "-1353822747"
 	)
 	@Export("decode")
 	public void decode(Buffer var1, int var2) {
@@ -128,10 +139,10 @@ public class FloorOverlayDefinition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("s")
+	@ObfuscatedName("g")
 	@ObfuscatedSignature(
-		descriptor = "(Lpi;III)V",
-		garbageValue = "-1432325027"
+		descriptor = "(Lpd;IIS)V",
+		garbageValue = "995"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2, int var3) {
@@ -148,10 +159,10 @@ public class FloorOverlayDefinition extends DualNode {
 
 	}
 
-	@ObfuscatedName("e")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		descriptor = "(IB)V",
-		garbageValue = "-38"
+		descriptor = "(II)V",
+		garbageValue = "-2044852241"
 	)
 	@Export("setHsl")
 	void setHsl(int var1) {
@@ -178,10 +189,10 @@ public class FloorOverlayDefinition extends DualNode {
 
 		double var12 = 0.0D;
 		double var14 = 0.0D;
-		double var16 = (var8 + var10) / 2.0D;
-		if (var10 != var8) {
+		double var16 = (var10 + var8) / 2.0D;
+		if (var8 != var10) {
 			if (var16 < 0.5D) {
-				var14 = (var10 - var8) / (var8 + var10);
+				var14 = (var10 - var8) / (var10 + var8);
 			}
 
 			if (var16 >= 0.5D) {
@@ -190,17 +201,17 @@ public class FloorOverlayDefinition extends DualNode {
 
 			if (var10 == var2) {
 				var12 = (var4 - var6) / (var10 - var8);
-			} else if (var4 == var10) {
-				var12 = (var6 - var2) / (var10 - var8) + 2.0D;
-			} else if (var10 == var6) {
-				var12 = (var2 - var4) / (var10 - var8) + 4.0D;
+			} else if (var10 == var4) {
+				var12 = 2.0D + (var6 - var2) / (var10 - var8);
+			} else if (var6 == var10) {
+				var12 = 4.0D + (var2 - var4) / (var10 - var8);
 			}
 		}
 
 		var12 /= 6.0D;
-		this.hue = (int)(256.0D * var12);
+		this.hue = (int)(var12 * 256.0D);
 		this.saturation = (int)(var14 * 256.0D);
-		this.lightness = (int)(256.0D * var16);
+		this.lightness = (int)(var16 * 256.0D);
 		if (this.saturation < 0) {
 			this.saturation = 0;
 		} else if (this.saturation > 255) {
@@ -215,39 +226,92 @@ public class FloorOverlayDefinition extends DualNode {
 
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		descriptor = "(IB)V",
-		garbageValue = "18"
+		descriptor = "(Ljava/lang/CharSequence;IZB)I",
+		garbageValue = "110"
 	)
-	static void method3588(int var0) {
-		class370.field4230 = var0;
-		class370.field4235 = new class370[var0];
-		class370.field4231 = 0;
-	}
+	public static int method3788(CharSequence var0, int var1, boolean var2) {
+		if (var1 >= 2 && var1 <= 36) {
+			boolean var3 = false;
+			boolean var4 = false;
+			int var5 = 0;
+			int var6 = var0.length();
 
-	@ObfuscatedName("e")
-	@ObfuscatedSignature(
-		descriptor = "(I)Ljava/lang/String;",
-		garbageValue = "-2023848504"
-	)
-	static String method3573() {
-		String var0;
-		if (class424.clientPreferences.hideUsername) {
-			String var2 = Login.Login_username;
-			int var4 = var2.length();
-			char[] var5 = new char[var4];
+			for (int var7 = 0; var7 < var6; ++var7) {
+				char var8 = var0.charAt(var7);
+				if (var7 == 0) {
+					if (var8 == '-') {
+						var3 = true;
+						continue;
+					}
 
-			for (int var6 = 0; var6 < var4; ++var6) {
-				var5[var6] = '*';
+					if (var8 == '+') {
+						continue;
+					}
+				}
+
+				int var10;
+				if (var8 >= '0' && var8 <= '9') {
+					var10 = var8 - '0';
+				} else if (var8 >= 'A' && var8 <= 'Z') {
+					var10 = var8 - '7';
+				} else {
+					if (var8 < 'a' || var8 > 'z') {
+						throw new NumberFormatException();
+					}
+
+					var10 = var8 - 'W';
+				}
+
+				if (var10 >= var1) {
+					throw new NumberFormatException();
+				}
+
+				if (var3) {
+					var10 = -var10;
+				}
+
+				int var9 = var5 * var1 + var10;
+				if (var9 / var1 != var5) {
+					throw new NumberFormatException();
+				}
+
+				var5 = var9;
+				var4 = true;
 			}
 
-			String var3 = new String(var5);
-			var0 = var3;
+			if (!var4) {
+				throw new NumberFormatException();
+			} else {
+				return var5;
+			}
 		} else {
-			var0 = Login.Login_username;
+			throw new IllegalArgumentException("" + var1);
 		}
+	}
 
-		return var0;
+	@ObfuscatedName("ax")
+	@ObfuscatedSignature(
+		descriptor = "(ILbo;ZI)I",
+		garbageValue = "-1419819792"
+	)
+	static int method3773(int var0, Script var1, boolean var2) {
+		int var3;
+		if (var0 == 3500) {
+			var3 = Interpreter.Interpreter_intStack[--class295.Interpreter_intStackSize];
+			Interpreter.Interpreter_intStack[++class295.Interpreter_intStackSize - 1] = UserComparator3.method2600(var3) ? 1 : 0;
+			return 1;
+		} else if (var0 == 3501) {
+			var3 = Interpreter.Interpreter_intStack[--class295.Interpreter_intStackSize];
+			Interpreter.Interpreter_intStack[++class295.Interpreter_intStackSize - 1] = class268.method5227(var3) ? 1 : 0;
+			return 1;
+		} else if (var0 == 3502) {
+			var3 = Interpreter.Interpreter_intStack[--class295.Interpreter_intStackSize];
+			Interpreter.Interpreter_intStack[++class295.Interpreter_intStackSize - 1] = PcmPlayer.method772(var3) ? 1 : 0;
+			return 1;
+		} else {
+			return 2;
+		}
 	}
 }

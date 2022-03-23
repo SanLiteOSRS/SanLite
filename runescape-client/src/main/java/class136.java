@@ -2,68 +2,91 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("ee")
-public class class136 extends class126 {
-	@ObfuscatedName("c")
+@ObfuscatedName("ei")
+public class class136 extends class144 {
+	@ObfuscatedName("ow")
 	@ObfuscatedGetter(
-		intValue = -35384725
+		intValue = -1282904603
 	)
-	int field1578;
-	@ObfuscatedName("l")
-	String field1579;
+	@Export("widgetDragDuration")
+	static int widgetDragDuration;
+	@ObfuscatedName("v")
+	@ObfuscatedGetter(
+		intValue = 1060413805
+	)
+	int field1581;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Ldk;"
+		descriptor = "Lez;"
 	)
-	final class129 this$0;
+	final class145 this$0;
 
 	@ObfuscatedSignature(
-		descriptor = "(Ldk;)V"
+		descriptor = "(Lez;)V"
 	)
-	class136(class129 var1) {
+	class136(class145 var1) {
 		this.this$0 = var1;
+		this.field1581 = -1;
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(Lpi;I)V",
-		garbageValue = "703192976"
+		descriptor = "(Lpd;S)V",
+		garbageValue = "3239"
 	)
-	void vmethod3019(Buffer var1) {
-		this.field1578 = var1.readInt();
-		this.field1579 = var1.readStringCp1252NullTerminated();
+	void vmethod3096(Buffer var1) {
+		this.field1581 = var1.readUnsignedShort();
+		var1.readUnsignedByte();
+		if (var1.readUnsignedByte() != 255) {
+			--var1.offset;
+			var1.readLong();
+		}
+
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "(Ley;I)V",
-		garbageValue = "750335300"
+		descriptor = "(Ley;B)V",
+		garbageValue = "26"
 	)
-	void vmethod3020(ClanSettings var1) {
-		var1.method2864(this.field1578, this.field1579);
+	void vmethod3093(ClanChannel var1) {
+		var1.removeMember(this.field1581);
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		descriptor = "(II)Lfe;",
-		garbageValue = "2041648826"
+		descriptor = "(ILbo;ZI)I",
+		garbageValue = "-2073039041"
 	)
-	@Export("StructDefinition_getStructDefinition")
-	public static StructComposition StructDefinition_getStructDefinition(int var0) {
-		StructComposition var1 = (StructComposition)StructComposition.StructDefinition_cached.get((long)var0);
-		if (var1 != null) {
-			return var1;
+	static int method2896(int var0, Script var1, boolean var2) {
+		Widget var3 = var2 ? class432.scriptDotWidget : class341.scriptActiveWidget;
+		if (var0 == ScriptOpcodes.CC_GETTARGETMASK) {
+			Interpreter.Interpreter_intStack[++class295.Interpreter_intStackSize - 1] = WorldMapSection2.Widget_unpackTargetMask(WorldMapSection2.getWidgetFlags(var3));
+			return 1;
+		} else if (var0 != ScriptOpcodes.CC_GETOP) {
+			if (var0 == ScriptOpcodes.CC_GETOPBASE) {
+				if (var3.dataText == null) {
+					Interpreter.Interpreter_stringStack[++ChatChannel.Interpreter_stringStackSize - 1] = "";
+				} else {
+					Interpreter.Interpreter_stringStack[++ChatChannel.Interpreter_stringStackSize - 1] = var3.dataText;
+				}
+
+				return 1;
+			} else {
+				return 2;
+			}
 		} else {
-			byte[] var2 = StructComposition.StructDefinition_archive.takeFile(34, var0);
-			var1 = new StructComposition();
-			if (var2 != null) {
-				var1.decode(new Buffer(var2));
+			int var4 = Interpreter.Interpreter_intStack[--class295.Interpreter_intStackSize];
+			--var4;
+			if (var3.actions != null && var4 < var3.actions.length && var3.actions[var4] != null) {
+				Interpreter.Interpreter_stringStack[++ChatChannel.Interpreter_stringStackSize - 1] = var3.actions[var4];
+			} else {
+				Interpreter.Interpreter_stringStack[++ChatChannel.Interpreter_stringStackSize - 1] = "";
 			}
 
-			var1.postDecode();
-			StructComposition.StructDefinition_cached.put(var1, (long)var0);
-			return var1;
+			return 1;
 		}
 	}
 }
