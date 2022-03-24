@@ -588,6 +588,7 @@ public class ConfigManager
 			rsProfileKey = prof.getKey();
 			this.rsProfileKey = rsProfileKey;
 
+			log.debug("RS profile changed to {}", rsProfileKey);
 			eventBus.post(new RuneScapeProfileChanged());
 		}
 		setConfiguration(groupName, rsProfileKey, key, value);
@@ -1143,6 +1144,7 @@ public class ConfigManager
 		}
 		rsProfileKey = key;
 
+		log.debug("RS profile changed to {}", key);
 		eventBus.post(new RuneScapeProfileChanged());
 	}
 
