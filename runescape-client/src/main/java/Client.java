@@ -1363,7 +1363,8 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
 	@ObfuscatedGetter(
 		longValue = -4252506564993549717L
 	)
-	long field658;
+	@Export("accountHash")
+	long accountHash;
 
 	static {
 		field536 = true;
@@ -1651,7 +1652,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
 	}
 
 	public Client() {
-		this.field658 = -1L;
+		this.accountHash = -1L;
 	}
 
 	@ObfuscatedName("x")
@@ -2677,7 +2678,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
 					field607 = ((AbstractSocket)var1).readUnsignedByte();
 					((AbstractSocket)var1).read(var2.array, 0, 8);
 					var2.offset = 0;
-					this.field658 = var2.readLong();
+					this.accountHash = var2.readLong();
 					if (class124.field1514 >= 29) {
 						((AbstractSocket)var1).read(var2.array, 0, 8);
 						var2.offset = 0;
@@ -5932,7 +5933,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
 	}
 
 	public long getAccountHash() {
-		return this.field658;
+		return this.accountHash;
 	}
 
 	public final void init() {
