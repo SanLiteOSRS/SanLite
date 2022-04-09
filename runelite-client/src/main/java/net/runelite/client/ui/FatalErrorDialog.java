@@ -115,7 +115,7 @@ public class FatalErrorDialog extends JDialog
 		leftPane.setBackground(ColorScheme.DARKER_GRAY_COLOR);
 		leftPane.setLayout(new BorderLayout());
 
-		JLabel title = new JLabel("There was a fatal error starting SanLite");
+		title = new JLabel("There was a fatal error starting SanLite");
 		title.setForeground(Color.WHITE);
 		title.setFont(font.deriveFont(16.f));
 		title.setBorder(new EmptyBorder(10, 10, 10, 10));
@@ -149,14 +149,6 @@ public class FatalErrorDialog extends JDialog
 		setLocationRelativeTo(null);
 		SplashScreen.stop();
 		setVisible(true);
-	}
-
-	public FatalErrorDialog addHelpButtons()
-	{
-		addButton("Open logs folder", () -> LinkBrowser.open(RuneLite.LOGS_DIR.toString()));
-		addButton("Get help on Discord", () -> LinkBrowser.browse(RuneLiteProperties.getDiscordInvite()));
-		addButton("Troubleshooting steps", () -> LinkBrowser.browse(RuneLiteProperties.getTroubleshootingLink()));
-		return this;
 	}
 
 	public FatalErrorDialog addButton(String message, Runnable action)
