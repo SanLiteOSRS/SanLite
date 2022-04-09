@@ -61,6 +61,7 @@ public class FatalErrorDialog extends JDialog
 
 	private final JPanel rightColumn = new JPanel();
 	private final Font font = new Font(Font.DIALOG, Font.PLAIN, 12);
+	private final JLabel title;
 
 	public FatalErrorDialog(String message)
 	{
@@ -191,6 +192,13 @@ public class FatalErrorDialog extends JDialog
 		rightColumn.add(button);
 		rightColumn.revalidate();
 
+		return this;
+	}
+
+	public FatalErrorDialog setTitle(String windowTitle, String header)
+	{
+		super.setTitle(windowTitle);
+		title.setText(header);
 		return this;
 	}
 
