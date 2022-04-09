@@ -2453,5 +2453,17 @@ public abstract class RSClientMixin implements RSClient
 	{
 		return RSClientMixin.archives[id];
 	}
+
+	@FieldHook("accountHash")
+	@Inject
+	public void onAccountHashChanged(int idx)
+	{
+		if (client == null)
+		{
+			return;
+		}
+
+		client.getCallbacks().post(new AccountHashChanged());
+	}
 }
 

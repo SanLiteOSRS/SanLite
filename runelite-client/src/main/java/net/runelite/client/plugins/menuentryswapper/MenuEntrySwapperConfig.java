@@ -138,6 +138,30 @@ public interface MenuEntrySwapperConfig extends Config
 	}
 
 	@ConfigItem(
+		position = -2,
+		keyName = "objectLeftClickCustomization",
+		name = "Customizable left-click",
+		description = "Allows customization of left-clicks on objects",
+		section = objectSection
+	)
+	default boolean objectLeftClickCustomization()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+		position = -2,
+		keyName = "npcLeftClickCustomization",
+		name = "Customizable left-click",
+		description = "Allows customization of left-clicks on NPCs",
+		section = npcSection
+	)
+	default boolean npcLeftClickCustomization()
+	{
+		return true;
+	}
+
+	@ConfigItem(
 		keyName = "swapAdmire",
 		name = "Admire",
 		description = "Swap Admire with Teleport, Spellbook and Perks (max cape) for mounted skill capes.",
@@ -835,6 +859,17 @@ public interface MenuEntrySwapperConfig extends Config
 		section = npcSection
 	)
 	default boolean swapTemporossLeave()
+	{
+		return false;
+	}
+
+	@ConfigItem(
+		keyName = "swapDepositPool",
+		name = "Deposit Pool - Only Runes",
+		description = "Swap Deposit with Deposit Runes on the Deposit Pool in Guardians of the Rift.",
+		section = objectSection
+	)
+	default boolean swapDepositPool()
 	{
 		return false;
 	}

@@ -34,8 +34,12 @@ import net.runelite.api.GameState;
 import net.runelite.api.KeyCode;
 import net.runelite.api.MenuAction;
 import net.runelite.api.MenuEntry;
+import net.runelite.api.NPC;
+import net.runelite.api.NPCComposition;
+import net.runelite.api.ObjectComposition;
 import net.runelite.api.events.ClientTick;
 import net.runelite.api.events.MenuEntryAdded;
+import net.runelite.client.chat.ChatMessageManager;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.game.ItemManager;
 import net.runelite.client.menus.TestMenuEntry;
@@ -45,10 +49,12 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
 import org.mockito.Mock;
 import static org.mockito.Mockito.clearInvocations;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.lenient;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -72,6 +78,10 @@ public class MenuEntrySwapperPluginTest
 
 	@Mock
 	@Bind
+	ChatMessageManager chatMessageManager;
+
+	@Mock
+	@Bind
 	MenuEntrySwapperConfig config;
 
 	@Inject
@@ -85,6 +95,12 @@ public class MenuEntrySwapperPluginTest
 		Guice.createInjector(BoundFieldModule.of(this)).injectMembers(this);
 
 		when(client.getGameState()).thenReturn(GameState.LOGGED_IN);
+		when(client.getObjectDefinition(anyInt())).thenReturn(mock(ObjectComposition.class));
+
+		NPC npc = mock(NPC.class);
+		NPCComposition composition = mock(NPCComposition.class);
+		when(npc.getTransformedComposition()).thenReturn(composition);
+		when(client.getCachedNPCs()).thenReturn(new NPC[] { npc });
 
 		when(client.getMenuEntries()).thenAnswer((Answer<MenuEntry[]>) invocationOnMock ->
 		{

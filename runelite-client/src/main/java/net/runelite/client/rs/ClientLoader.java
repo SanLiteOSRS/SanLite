@@ -59,6 +59,8 @@ import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Client;
 import net.runelite.client.RuneLite;
 import net.runelite.client.RuneLiteProperties;
+import net.runelite.client.RuntimeConfig;
+import net.runelite.client.RuntimeConfigLoader;
 import static net.runelite.client.rs.ClientUpdateCheckMode.AUTO;
 import static net.runelite.client.rs.ClientUpdateCheckMode.NONE;
 import static net.runelite.client.rs.ClientUpdateCheckMode.VANILLA;
@@ -73,7 +75,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 @Slf4j
-@SuppressWarnings("deprecation")
+@SuppressWarnings({"deprecation", "removal"})
 public class ClientLoader implements Supplier<Applet>
 {
 	private static final String INJECTED_CLIENT_NAME = "/injected-client.rs";
@@ -86,16 +88,18 @@ public class ClientLoader implements Supplier<Applet>
 	private final ClientConfigLoader clientConfigLoader;
 	private ClientUpdateCheckMode updateCheckMode;
 	private final WorldSupplier worldSupplier;
+	private final RuntimeConfigLoader runtimeConfigLoader;
 	private final String javConfigUrl;
 
 	private Object client;
 
-	public ClientLoader(OkHttpClient okHttpClient, ClientUpdateCheckMode updateCheckMode, String javConfigUrl)
+	public ClientLoader(OkHttpClient okHttpClient, ClientUpdateCheckMode updateCheckMode, RuntimeConfigLoader runtimeConfigLoader, String javConfigUrl)
 	{
 		this.okHttpClient = okHttpClient;
 		this.clientConfigLoader = new ClientConfigLoader(okHttpClient);
 		this.updateCheckMode = updateCheckMode;
 		this.worldSupplier = new WorldSupplier(okHttpClient);
+		this.runtimeConfigLoader = runtimeConfigLoader;
 		this.javConfigUrl = javConfigUrl;
 	}
 
@@ -182,12 +186,19 @@ public class ClientLoader implements Supplier<Applet>
 
 			return rs;
 		}
+		catch (OutageException e)
+		{
+			return e;
+		}
 		catch (IOException | ClassNotFoundException | InstantiationException | IllegalAccessException
 			| VerificationException | SecurityException e)
 		{
 			log.error("Error loading RS!", e);
 
-			SwingUtilities.invokeLater(() -> FatalErrorDialog.showNetErrorWindow("loading the client", e));
+			if (!checkOutages())
+			{
+				SwingUtilities.invokeLater(() -> FatalErrorDialog.showNetErrorWindow("loading the client", e));
+			}
 			return e;
 		}
 	}
@@ -212,6 +223,10 @@ public class ClientLoader implements Supplier<Applet>
 			catch (IOException e)
 			{
 				log.info("Failed to get jav_config from host \"{}\" ({})", url.host(), e.getMessage());
+				if (checkOutages())
+				{
+					throw new OutageException(e);
+				}
 
 				if (!javConfigUrl.equals(RuneLiteProperties.getJavConfig()))
 				{
@@ -299,6 +314,11 @@ public class ClientLoader implements Supplier<Applet>
 				vanillaCacheIsInvalid = true;
 			}
 			vanilla.position(0);
+
+			if (!vanillaCacheIsInvalid && "false".equals(System.getProperty("runelite.updateVanilla")))
+			{
+				return;
+			}
 
 			// Start downloading the vanilla client
 			HttpUrl url;
@@ -411,6 +431,10 @@ public class ClientLoader implements Supplier<Applet>
 				catch (IOException e)
 				{
 					log.warn("Failed to download gamepack from \"{}\"", url, e);
+					if (checkOutages())
+					{
+						throw new OutageException(e);
+					}
 
 					// With fallback config do 1 attempt (there are no additional urls to try)
 					if (!javConfigUrl.equals(RuneLiteProperties.getJavConfig()) || config.isFallback() || attempt >= NUM_ATTEMPTS)
@@ -607,7 +631,7 @@ public class ClientLoader implements Supplier<Applet>
 		Class<?> clientClass = classLoader.loadClass(initialClass);
 
 		Applet rs = (Applet) clientClass.newInstance();
-		rs.setStub(new RSAppletStub(config));
+		rs.setStub(new RSAppletStub(config, runtimeConfigLoader));
 
 		if (rs instanceof Client)
 		{
@@ -659,5 +683,23 @@ public class ClientLoader implements Supplier<Applet>
 			jis.skip(Long.MAX_VALUE);
 			verifyJarEntry(je, chains);
 		}
+	}
+
+	private static class OutageException extends RuntimeException
+	{
+		private OutageException(Throwable cause)
+		{
+			super(cause);
+		}
+	}
+
+	private boolean checkOutages()
+	{
+		RuntimeConfig rtc = runtimeConfigLoader.tryGet();
+		if (rtc != null)
+		{
+			return rtc.showOutageMessage();
+		}
+		return false;
 	}
 }
