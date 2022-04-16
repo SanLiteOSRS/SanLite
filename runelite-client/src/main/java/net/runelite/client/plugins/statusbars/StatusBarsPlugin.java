@@ -64,4 +64,45 @@ public class StatusBarsPlugin extends Plugin
 	{
 		return configManager.getConfig(StatusBarsConfig.class);
 	}
+
+	@Subscribe
+	public void onGameTick(GameTick gameTick)
+	{
+		checkStatusBars();
+	}
+
+	@Subscribe
+	public void onConfigChanged(ConfigChanged event)
+	{
+		if (StatusBarsConfig.GROUP.equals(event.getGroup()) && event.getKey().equals("hideAfterCombatDelay"))
+		{
+			clientThread.invokeLater(this::checkStatusBars);
+		}
+	}
+
+	private void checkStatusBars()
+	{
+		final Player localPlayer = client.getLocalPlayer();
+		if (localPlayer == null)
+		{
+			return;
+		}
+
+		final Actor interacting = localPlayer.getInteracting();
+
+		if (config.hideAfterCombatDelay() == 0)
+		{
+			barsDisplayed = true;
+		}
+		else if ((interacting instanceof NPC && ArrayUtils.contains(((NPC) interacting).getComposition().getActions(), "Attack"))
+			|| (interacting instanceof Player && client.getVarbitValue(Varbits.PVP_SPEC_ORB) == 1))
+		{
+			lastCombatActionTickCount = client.getTickCount();
+			barsDisplayed = true;
+		}
+		else if (client.getTickCount() - lastCombatActionTickCount >= config.hideAfterCombatDelay())
+		{
+			barsDisplayed = false;
+		}
+	}
 }

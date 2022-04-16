@@ -133,7 +133,7 @@ class StatusBarsOverlay extends Overlay
 					return DISEASE_COLOR;
 				}
 
-				if (client.getVar(Varbits.PARASITE) >= 1)
+				if (client.getVarbitValue(Varbits.PARASITE) >= 1)
 				{
 					return PARASITE_COLOR;
 				}
@@ -191,7 +191,7 @@ class StatusBarsOverlay extends Overlay
 			() -> getRestoreValue("Run Energy"),
 			() ->
 			{
-				if (client.getVar(Varbits.RUN_SLOWED_DEPLETION_ACTIVE) != 0)
+				if (client.getVarbitValue(Varbits.RUN_SLOWED_DEPLETION_ACTIVE) != 0)
 				{
 					return RUN_STAMINA_COLOR;
 				}
