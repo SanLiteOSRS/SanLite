@@ -12,4 +12,10 @@ public interface RSFriendsChatManager extends RSNameableContainer<FriendsChatMem
 
 	@Import("name")
 	String getName();
+
+	@Import("rank")
+	int getRank();
+
+	@Import("minKick")
+	byte getMinKickRank();
 }

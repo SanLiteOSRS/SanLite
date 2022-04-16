@@ -50,15 +50,13 @@ public abstract class RSFriendsChatManagerMixin implements RSFriendsChatManager
 	@Override
 	public FriendsChatRank getMyRank()
 	{
-		// TODO: Implement
-		return null;
+		return FriendsChatRank.valueOf(getRank());
 	}
 
 	@Inject
 	@Override
 	public FriendsChatRank getKickRank()
 	{
-		// TODO: Implement
-		return null;
+		return FriendsChatRank.valueOf(getMinKickRank());
 	}
 }
