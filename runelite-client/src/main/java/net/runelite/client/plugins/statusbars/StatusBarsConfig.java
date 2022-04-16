@@ -31,9 +31,11 @@ import net.runelite.client.config.Range;
 import net.runelite.client.config.Units;
 import net.runelite.client.plugins.statusbars.config.BarMode;
 
-@ConfigGroup("statusbars")
+@ConfigGroup(StatusBarsConfig.GROUP)
 public interface StatusBarsConfig extends Config
 {
+	String GROUP = "statusbars";
+
 	@ConfigItem(
 		keyName = "enableCounter",
 		name = "Show counters",

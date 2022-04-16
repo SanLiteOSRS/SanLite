@@ -41,12 +41,12 @@ public final class Varbits
 	/**
 	 * Grand Exchange
 	 */
-	GRAND_EXCHANGE_PRICE_PER_ITEM(4398),
-	GRAND_EXCHANGE_UNKNOWN_1(4399),
+	public static final int GRAND_EXCHANGE_PRICE_PER_ITEM = 4398;
+	public static final int GRAND_EXCHANGE_UNKNOWN_1 = 4399;
 
-	RIGOUR_UNLOCKED(5451),
-	AUGURY_UNLOCKED(5452),
-	PRESERVE_UNLOCKED(5453),
+	public static final int RIGOUR_UNLOCKED = 5451;
+	public static final int AUGURY_UNLOCKED = 5452;
+	public static final int PRESERVE_UNLOCKED = 5453;
 
 	/**
 	 * Value for the current encounter state ranging from 0 to 3,
@@ -57,27 +57,13 @@ public final class Varbits
 	 * Xarpus | start 0 -> 2 | healing phase end 2 -> 1 | end 1 -> 0
 	 * Verzik | start 0 -> 3 | pillar phase end 3 -> 1 | end 1 -> 0
 	 */
-	TOB_ENCOUNTER_STATE(6447), // Range from 0-3, values depend on encounter
-	TOB_ENCOUNTER_HEALTH_BAR_CURRENT_VALUE(6448), // Value is current health percentage (eg. 839 is 83,9%)
-	TOB_ENCOUNTER_HEALTH_BAR_MAX_VALUE(6449), // Max value health percentage (eg. 1000 for 100% and 0 for 0%)
+	public static final int TOB_ENCOUNTER_STATE = 6447;  // Range from 0-3, values depend on encounter
+	public static final int TOB_ENCOUNTER_HEALTH_BAR_CURRENT_VALUE = 6448; // Value is current health percentage (eg. 839 is 83,9%)
+	public static final int TOB_ENCOUNTER_HEALTH_BAR_MAX_VALUE = 6449; // Max value health percentage (eg. 1000 for 100% and 0 for 0%)
 
-	/**
-	 * Theatre of Blood orb varbits each number stands for the player's health on a scale of 1-27,
-	 * 0 hides the orb, 31 turns the orb yellow
-	 */
-	THEATRE_OF_BLOOD_ORB_1(6442),
-	THEATRE_OF_BLOOD_ORB_2(6443),
-	THEATRE_OF_BLOOD_ORB_3(6444),
-	THEATRE_OF_BLOOD_ORB_4(6445),
-	THEATRE_OF_BLOOD_ORB_5(6446),
-
-	/**
-	 * Nightmare Zone
-	 */
-	NMZ_OVERLOAD(3955),
-
-
-	IN_THE_WILDERNESS(5963),
+	public static final int NMZ_OVERLOAD = 3955;
+	public static final int WITHDRAW_X_AMOUNT = 3960;
+	public static final int SLAYER_REWARD_POINTS = 4068;
 
 	/**
 	 * 0 = Sir Bedivere
@@ -90,12 +76,8 @@ public final class Varbits
 	 * 7 = Sir Lancelot
 	 * 8 = Completed (Chivalry and Piety are unlocked)
 	 */
-	CAMELOT_TRAINING_ROOM_STATUS(3909),
+	public static final int CAMELOT_TRAINING_ROOM_STATUS = 3909;
 
-	/**
-	 * Varbit used for Slayer reward points
-	 */
-	SLAYER_REWARD_POINTS(4068),
 
 	/**
 	 * 0 = withdraw/deposit 1
@@ -104,10 +86,7 @@ public final class Varbits
 	 * 3 = withdraw/deposit X
 	 * 4 = withdraw/deposit all
 	 */
-	BANK_QUANTITY_MODE(6590),
-
-	WORLDHOPPER_FAVORITE_1(4597),
-	WORLDHOPPER_FAVORITE_2(4598),
+	public static final int BANK_QUANTITY_MODE = 6590;
 
 	/**
 	 * 0 = standard
@@ -115,190 +94,82 @@ public final class Varbits
 	 * 2 = lunars
 	 * 3 = arceuus
 	 **/
-	SPELLBOOK_ID(4070),
-
-	/**
-	 * 0 = no
-	 * 1 = yes
-	 **/
-	SPELLBOOK_HIDDEN(6718),
-
+	public static final int SPELLBOOK_ID = 4070;
 
 	/**
 	 * Spells being auto-casted
 	 */
-	AUTO_CAST_SPELL(276),
+	public static final int AUTO_CAST_SPELL = 276;
 
 	/**
 	 * Temple Trekking
 	 */
-	TREK_POINTS(1955),
-	TREK_STARTED(1956),
-	TREK_EVENT(1958),
-	TREK_STATUS(6719),
-	BLOAT_ENTERED_ROOM(6447),
-
-	/**
-	 * f2p Quest varbits, these don't hold the completion value.
-	 */
-	QUEST_DEMON_SLAYER(2561),
-	QUEST_GOBLIN_DIPLOMACY(2378),
-	QUEST_MISTHALIN_MYSTERY(3468),
-	QUEST_THE_CORSAIR_CURSE(6071),
-	QUEST_X_MARKS_THE_SPOT(8063),
-
-	/**
-	 * member Quest varbits, these don't hold the completion value.
-	 */
-	QUEST_ANIMAL_MAGNETISM(3185),
-	QUEST_BETWEEN_A_ROCK(299),
-	QUEST_CONTACT(3274),
-	QUEST_ZOGRE_FLESH_EATERS(487),
-	QUEST_DARKNESS_OF_HALLOWVALE(2573),
-	QUEST_DEATH_TO_THE_DORGESHUUN(2258),
-	QUEST_DESERT_TREASURE(358),
-	QUEST_DEVIOUS_MINDS(1465),
-	QUEST_EAGLES_PEAK(2780),
-	QUEST_ELEMENTAL_WORKSHOP_II(2639),
-	QUEST_ENAKHRAS_LAMENT(1560),
-	QUEST_ENLIGHTENED_JOURNEY(2866),
-	QUEST_THE_EYES_OF_GLOUPHRIE(2497),
-	QUEST_FAIRYTALE_I_GROWING_PAINS(1803),
-	QUEST_FAIRYTALE_II_CURE_A_QUEEN(2326),
-	QUEST_THE_FEUD(334), // 14 = able to pickpocket
-	QUEST_FORGETTABLE_TALE(822),
-	QUEST_GARDEN_OF_TRANQUILLITY(961),
-	QUEST_GHOSTS_AHOY(217),
-	QUEST_THE_GIANT_DWARF(571),
-	QUEST_THE_GOLEM(346),
-	QUEST_HORROR_FROM_THE_DEEP(34),
-	QUEST_ICTHLARINS_LITTLE_HELPER(418),
-	QUEST_IN_AID_OF_THE_MYREQUE(1990),
-	QUEST_THE_LOST_TRIBE(532),
-	QUEST_LUNAR_DIPLOMACY(2448),
-	QUEST_MAKING_HISTORY(1383),
-	QUEST_MOUNTAIN_DAUGHTER(260),
-	QUEST_MOURNINGS_END_PART_II(1103),
-	QUEST_MY_ARMS_BIG_ADVENTURE(2790),
-	QUEST_RATCATCHERS(1404),
-	QUEST_RECIPE_FOR_DISASTER(1850),
-	QUEST_RECRUITMENT_DRIVE(657),
-	QUEST_ROYAL_TROUBLE(2140),
-	QUEST_THE_SLUG_MENACE(2610),
-	QUEST_SHADOW_OF_THE_STORM(1372),
-	QUEST_A_SOULS_BANE(2011),
-	QUEST_SPIRITS_OF_THE_ELID(1444),
-	QUEST_SWAN_SONG(2098),
-	QUEST_A_TAIL_OF_TWO_CATS(1028),
-	QUEST_TEARS_OF_GUTHIX(451),
-	QUEST_WANTED(1051),
-	QUEST_COLD_WAR(3293),
-	QUEST_THE_FREMENNIK_ISLES(3311),
-	QUEST_TOWER_OF_LIFE(3337),
-	QUEST_WHAT_LIES_BELOW(3523),
-	QUEST_OLAFS_QUEST(3534),
-	QUEST_ANOTHER_SLICE_OF_HAM(3550),
-	QUEST_DREAM_MENTOR(3618),
-	QUEST_GRIM_TALES(2783),
-	QUEST_KINGS_RANSOM(3888),
-	QUEST_MONKEY_MADNESS_II(5027),
-	QUEST_CLIENT_OF_KOUREND(5619),
-	QUEST_BONE_VOYAGE(5795),
-	QUEST_THE_QUEEN_OF_THIEVES(6037),
-	QUEST_THE_DEPTHS_OF_DESPAIR(6027),
-	QUEST_DRAGON_SLAYER_II(6104),
-	QUEST_TALE_OF_THE_RIGHTEOUS(6358),
-	QUEST_A_TASTE_OF_HOPE(6396),
-	QUEST_MAKING_FRIENDS_WITH_MY_ARM(6528),
-	QUEST_THE_ASCENT_OF_ARCEUUS(7856),
-	QUEST_THE_FORSAKEN_TOWER(7796),
-	QUEST_SONG_OF_THE_ELVES(7796),
-
-	/**
-	 * mini-quest varbits, these don't hold the completion value.
-	 */
-	QUEST_ARCHITECTURAL_ALLIANCE(4982),
-	QUEST_BEAR_YOUR_SOUL(5078),
-	QUEST_CURSE_OF_THE_EMPTY_LORD(821),
-	QUEST_ENCHANTED_KEY(1391),
-	QUEST_THE_GENERALS_SHADOW(3330),
-	QUEST_SKIPPY_AND_THE_MOGRES(1344),
-	QUEST_LAIR_OF_TARN_RAZORLOR(3290),
-	QUEST_FAMILY_PEST(5347),
-	QUEST_THE_MAGE_ARENA_II(6067),
-	QUEST_IN_SEARCH_OF_KNOWLEDGE(6067),
-
-	/**
-	 * Active spellbook (see enumID)
-	 */
-	SPELLBOOK(4070),
-
-	/**
-	 * Spellbook filtering (1 = unfiltered, 0 = filtered)
-	 */
-	FILTER_SPELLBOOK(6718),
+	public static final int TREK_POINTS = 1955;
+	public static final int TREK_STARTED = 1956;
+	public static final int TREK_EVENT = 1958;
+	public static final int TREK_STATUS = 6719;
 
 	/**
 	 * POH Building mode (1 = yes, 0 = no)
 	 */
-	BUILDING_MODE(2176),
+	public static final int BUILDING_MODE = 2176;
 
 	/**
 	 * 1 if in game, 0 if not
 	 */
-	LMS_IN_GAME(5314),
+	public static final int LMS_IN_GAME = 5314;
 
 	/**
 	 * Amount of pvp kills in current game
 	 */
-	LMS_KILLS(5315),
+	public static final int LMS_KILLS = 5315;
 
 	/**
 	 * The x coordinate of the final safespace (world coord)
 	 */
-	LMS_SAFE_X(5316),
-
-	/**
-	 * Starts at 100, counts down every 10 ticks (6 seconds)
-	 */
-	LMS_POISON_PROGRESS(5317),
+	public static final int LMS_SAFE_X = 5316;
 
 	/**
 	 * The y coordinate of the final safespace (world coord)
 	 */
-	LMS_SAFE_Y(5320),
+	public static final int LMS_SAFE_Y = 5320;
+
+	/**
+	 * Starts at 100, counts down every 10 ticks (6 seconds)
+	 */
+	public static final int LMS_POISON_PROGRESS = 5317;
 
 	/**
 	 * 1 is true, 0 is false.
 	 */
-	GAUNTLET_FINAL_ROOM_ENTERED(9177),
+	public static final int GAUNTLET_FINAL_ROOM_ENTERED = 9177;
 
 	/**
 	 * 1 is true, 0 is false.
 	 */
-	GAUNTLET_ENTERED(9178),
+	public static final int GAUNTLET_ENTERED = 9178;
 
-	WITHDRAW_X_AMOUNT(3960),
-
-	CLAN_WARS_ARENA_UNKNOWN_1(4285),
+	public static final int CLAN_WARS_ARENA_UNKNOWN_1 = 4285;
 	/**
 	 * The value of this equals the remaining ticks till the countdown finished.
 	 * Starts at 204 (~2 minutes) in a normal Clan Wars match. Value decreases by 3 every 3 ticks.
 	 */
-	CLAN_WARS_ARENA_COUNTDOWN_TIMER(4286),
-	CLAN_WARS_ARENA_UNKNOWN_2(4287),
-	CLAN_WARS_ARENA_UNKNOWN_3(4288),
-	CLAN_WARS_ARENA_UNKNOWN_4(4289),
+	public static final int CLAN_WARS_ARENA_COUNTDOWN_TIMER = 4286;
+	public static final int CLAN_WARS_ARENA_UNKNOWN_2 = 4287;
+	public static final int CLAN_WARS_ARENA_UNKNOWN_3 = 4288;
+	public static final int CLAN_WARS_ARENA_UNKNOWN_4 = 4289;
 
 	/**
 	 * The amount of minutes since the start of the day (UTC). Updates every minute.
 	 */
-	GAME_TIME_MINUTES_COUNT(8354),
+	public static final int GAME_TIME_MINUTES_COUNT = 8354;
 
 	/**
 	 * Whether the player is in the buffer zone between the Wilderness and Ferox's Enclave.
 	 */
-	FEROX_ENCLAVE_BUFFER_ZONE(10530),
+	public static final int FEROX_ENCLAVE_BUFFER_ZONE = 10530;
+
+	public static final int RAID_DURATION_TICK_COUNT = 6386;
 
 	/* RuneLite varbits */
 
@@ -566,7 +437,6 @@ public final class Varbits
 
 	// 0 = raid not started, >0 = raid started
 	public static final int RAID_STATE = 5425;
-    public static final int RAID_DURATI	RAID_DURATION_TICK_COUNT(6386);
 
 	/**
 	 * Making Friends with My Arm fire pits
