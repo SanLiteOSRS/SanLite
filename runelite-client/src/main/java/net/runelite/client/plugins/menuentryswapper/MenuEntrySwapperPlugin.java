@@ -133,15 +133,6 @@ public class MenuEntrySwapperPlugin extends Plugin
 	private static final WidgetMenuOption RESIZABLE_BOTTOM_LINE_INVENTORY_TAB_SAVE_LC = new WidgetMenuOption(SAVE,
 		LEFT_CLICK_MENU_TARGET, WidgetInfo.RESIZABLE_VIEWPORT_BOTTOM_LINE_INVENTORY_TAB);
 
-	private static final Set<MenuAction> ITEM_MENU_TYPES = ImmutableSet.of(
-		MenuAction.ITEM_FIRST_OPTION,
-		MenuAction.ITEM_SECOND_OPTION,
-		MenuAction.ITEM_THIRD_OPTION,
-		MenuAction.ITEM_FOURTH_OPTION,
-		MenuAction.ITEM_FIFTH_OPTION,
-		MenuAction.ITEM_USE
-	);
-
 	private static final List<MenuAction> NPC_MENU_TYPES = ImmutableList.of(
 		MenuAction.NPC_FIRST_OPTION,
 		MenuAction.NPC_SECOND_OPTION,
@@ -545,25 +536,27 @@ public class MenuEntrySwapperPlugin extends Plugin
 			return;
 		}
 
-		MenuEntry firstEntry = event.getFirstEntry();
+		final MenuEntry firstEntry = event.getFirstEntry();
 		if (firstEntry == null)
 		{
 			return;
 		}
 
-		int widgetId = firstEntry.getParam1();
-		if (widgetId != WidgetInfo.INVENTORY.getId())
+		final int itemId;
+		if (firstEntry.getType() == MenuAction.WIDGET_TARGET && firstEntry.getWidget().getId() == WidgetInfo.INVENTORY.getId())
+		{
+			itemId = firstEntry.getWidget().getItemId();
+		}
+		else if (firstEntry.isItemOp())
+		{
+			itemId = firstEntry.getItemId();
+		}
+		else
 		{
 			return;
 		}
 
-		int itemId = firstEntry.getIdentifier();
-		if (itemId == -1)
-		{
-			return;
-		}
-
-		MenuAction activeAction = null;
+		int activeOp = 0;
 		final ItemComposition itemComposition = itemManager.getItemComposition(itemId);
 
 		if (configuringShiftClick)
@@ -574,7 +567,7 @@ public class MenuEntrySwapperPlugin extends Plugin
 
 			if (shiftClickActionIndex >= 0)
 			{
-				activeAction = MenuAction.of(MenuAction.ITEM_FIRST_OPTION.getId() + shiftClickActionIndex);
+				activeOp = 1 + shiftClickActionIndex;
 			}
 			else
 			{
@@ -582,7 +575,7 @@ public class MenuEntrySwapperPlugin extends Plugin
 				Integer config = getItemSwapConfig(true, itemId);
 				if (config != null && config == -1)
 				{
-					activeAction = MenuAction.ITEM_USE;
+					activeOp = -1;
 				}
 			}
 		}
@@ -592,9 +585,9 @@ public class MenuEntrySwapperPlugin extends Plugin
 			Integer config = getItemSwapConfig(false, itemId);
 			if (config != null)
 			{
-				activeAction = config >= 0
-					? MenuAction.of(MenuAction.ITEM_FIRST_OPTION.getId() + config)
-					: MenuAction.ITEM_USE;
+				activeOp = config >= 0
+					? 1 + config
+					: -1;
 			}
 		}
 
@@ -602,20 +595,31 @@ public class MenuEntrySwapperPlugin extends Plugin
 
 		for (MenuEntry entry : entries)
 		{
-			final MenuAction menuAction = entry.getType();
-
-			if (ITEM_MENU_TYPES.contains(menuAction) && entry.getIdentifier() == itemId)
+			if (entry.getType() == MenuAction.WIDGET_TARGET && entry.getWidget().getId() == WidgetInfo.INVENTORY.getId() && entry.getWidget().getItemId() == itemId)
 			{
 				entry.setType(MenuAction.RUNELITE);
 				entry.onClick(e ->
 				{
-					int index = menuAction == MenuAction.ITEM_USE
-						? -1
-						: menuAction.getId() - MenuAction.ITEM_FIRST_OPTION.getId();
-					setItemSwapConfig(configuringShiftClick, itemId, index);
+					log.debug("Set {} item swap for {} to USE", configuringShiftClick ? "shift" : "left", itemId);
+					setItemSwapConfig(configuringShiftClick, itemId, -1);
 				});
 
-				if (activeAction == menuAction)
+				if (activeOp == -1)
+				{
+					entry.setOption("* " + entry.getOption());
+				}
+			}
+			else if (entry.isItemOp() && entry.getItemId() == itemId)
+			{
+				final int itemOp = entry.getItemOp();
+				entry.setType(MenuAction.RUNELITE);
+				entry.onClick(e ->
+				{
+					log.debug("Set {} item swap config for {} to {}", configuringShiftClick ? "shift" : "left", itemId, itemOp - 1);
+					setItemSwapConfig(configuringShiftClick, itemId, itemOp - 1);
+				});
+
+				if (itemOp == activeOp)
 				{
 					entry.setOption("* " + entry.getOption());
 				}
@@ -928,19 +932,15 @@ public class MenuEntrySwapperPlugin extends Plugin
 			return;
 		}
 
-		final boolean itemOp = menuAction == MenuAction.ITEM_FIRST_OPTION
-			|| menuAction == MenuAction.ITEM_SECOND_OPTION
-			|| menuAction == MenuAction.ITEM_THIRD_OPTION
-			|| menuAction == MenuAction.ITEM_FOURTH_OPTION
-			|| menuAction == MenuAction.ITEM_FIFTH_OPTION
-			|| menuAction == MenuAction.ITEM_USE;
+		final boolean itemOp = menuEntry.isItemOp();
+		// Custom shift-click item swap
 		if (shiftModifier() && itemOp)
 		{
 			// Special case use shift click due to items not actually containing a "Use" option, making
 			// the client unable to perform the swap itself.
 			if (config.shiftClickCustomization() && !option.equals("use"))
 			{
-				Integer customOption = getItemSwapConfig(true, eventId);
+				Integer customOption = getItemSwapConfig(true, menuEntry.getItemId());
 
 				if (customOption != null && customOption == -1)
 				{
@@ -956,14 +956,18 @@ public class MenuEntrySwapperPlugin extends Plugin
 		// Custom left-click item swap
 		if (itemOp)
 		{
-			Integer swapIndex = getItemSwapConfig(false, eventId);
+			Integer swapIndex = getItemSwapConfig(false, menuEntry.getItemId());
 			if (swapIndex != null)
 			{
-				MenuAction swapAction = swapIndex >= 0
-					? MenuAction.of(MenuAction.ITEM_FIRST_OPTION.getId() + swapIndex)
-					: MenuAction.ITEM_USE;
+				final int swapAction = swapIndex >= 0
+					? 1 + swapIndex
+					: -1;
 
-				if (menuAction == swapAction)
+				if (swapAction == -1)
+				{
+					swap(menuEntries, "use", target, index, true);
+				}
+				else if (swapAction == menuEntry.getItemOp())
 				{
 					swap(optionIndexes, menuEntries, index, menuEntries.length - 1);
 				}
