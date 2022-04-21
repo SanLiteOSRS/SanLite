@@ -70,7 +70,7 @@ public class PlayerIndicatorsExtendedMinimapOverlay extends Overlay
 	{
 		switch (type)
 		{
-			case OWN_PLAYER:
+			case LOCAL:
 				renderMinimapOverlay(graphics, player, config.getOwnPlayerColor(), config.drawOwnPlayerMinimapName());
 				break;
 			case FRIEND:
@@ -91,13 +91,13 @@ public class PlayerIndicatorsExtendedMinimapOverlay extends Overlay
 			case CUSTOM_LIST_5:
 				renderMinimapOverlay(graphics, player, config.getListFiveColor(), config.drawListFiveMinimapName());
 				break;
-			case FRIENDS_CHAT_MEMBERS:
+			case FRIENDS_CHAT:
 				renderMinimapOverlay(graphics, player, config.getFriendsChatMemberColor(), config.drawFriendsChatMemberMinimapNames());
 				break;
-			case TEAM_CAPE_MEMBER:
+			case TEAM_CAPE:
 				renderMinimapOverlay(graphics, player, config.getTeamMemberColor(), config.drawTeamMinimapNames());
 				break;
-			case NON_CLAN_MEMBER:
+			case OTHER:
 				renderMinimapOverlay(graphics, player, config.getOthersColor(), config.drawOthersMinimapNames());
 				break;
 			default:

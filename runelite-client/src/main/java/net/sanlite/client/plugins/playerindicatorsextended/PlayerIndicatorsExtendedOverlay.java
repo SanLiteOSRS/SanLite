@@ -77,7 +77,7 @@ public class PlayerIndicatorsExtendedOverlay extends Overlay
 	{
 		switch (type)
 		{
-			case OWN_PLAYER:
+			case LOCAL:
 				renderPlayerName(graphics, player, type, config.getOwnPlayerNamePosition(), config.getOwnPlayerColor());
 				break;
 			case FRIEND:
@@ -98,13 +98,13 @@ public class PlayerIndicatorsExtendedOverlay extends Overlay
 			case CUSTOM_LIST_5:
 				renderPlayerName(graphics, player, type, config.getListFiveNamePosition(), config.getListFiveColor());
 				break;
-			case FRIENDS_CHAT_MEMBERS:
+			case FRIENDS_CHAT:
 				renderPlayerName(graphics, player, type, config.getFriendsChatMemberPlayerNamePosition(), config.getFriendsChatMemberColor());
 				break;
-			case TEAM_CAPE_MEMBER:
+			case TEAM_CAPE:
 				renderPlayerName(graphics, player, type, config.getTeamPlayerNamePosition(), config.getTeamMemberColor());
 				break;
-			case NON_CLAN_MEMBER:
+			case OTHER:
 				renderPlayerName(graphics, player, type, config.getOthersPlayerNamePosition(), config.getOthersColor());
 				break;
 			default:
@@ -156,7 +156,7 @@ public class PlayerIndicatorsExtendedOverlay extends Overlay
 			return;
 		}
 
-		if (config.showFriendsChatRanks() && type == PlayerIndicatorType.FRIENDS_CHAT_MEMBERS)
+		if (config.showFriendsChatRanks() && type == PlayerIndicatorType.FRIENDS_CHAT)
 		{
 			final FriendsChatRank rank = playerIndicatorsService.getFriendsChatRank(player);
 			Point clanRankTextLocation = getNameTextLocationWithClanRank(graphics, rank, textLocation, nameLocation);
