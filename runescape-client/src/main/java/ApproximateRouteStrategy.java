@@ -48,7 +48,7 @@ public class ApproximateRouteStrategy extends RouteStrategy {
 			class1.runScriptEvent(var5);
 		}
 
-		Client.field688 = var3;
+		Client.selectedSpellItemId = var3;
 		Client.isSpellSelected = true;
 		class92.selectedSpellWidget = var0;
 		Client.selectedSpellChildIndex = var1;

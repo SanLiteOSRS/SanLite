@@ -287,7 +287,7 @@ public abstract class RSClientMixin implements RSClient
 	@Override
 	public AccountType getAccountType()
 	{
-		int varbit = getVar(Varbits.ACCOUNT_TYPE);
+		int varbit = getVarbitValue(Varbits.ACCOUNT_TYPE);
 
 		switch (varbit)
 		{
@@ -584,7 +584,7 @@ public abstract class RSClientMixin implements RSClient
 
 		if (skill == Skill.OVERALL)
 		{
-			rl$logger.debug("getSkillExperience called for {}!", skill);
+			client.getLogger().debug("getSkillExperience called for {}!", skill);
 			return (int) getOverallExperience();
 		}
 		// I'm not certain exactly how needed this is, but if the Skill enum is updated in the future
@@ -638,75 +638,72 @@ public abstract class RSClientMixin implements RSClient
 		{
 			throw new IllegalStateException();
 		}
-		else
+
+		if (idx < 0)
 		{
+			idx = client.getMenuOptionCount() + idx + 1;
 			if (idx < 0)
 			{
-				idx = client.getMenuOptionCount() + idx + 1;
-				if (idx < 0)
-				{
-					throw new IllegalArgumentException();
-				}
+				throw new IllegalArgumentException();
 			}
-
-			RSRuneLiteMenuEntry menuEntry;
-			if (idx < client.getMenuOptionCount())
-			{
-				RSRuneLiteMenuEntry tmpEntry = rl$menuEntries[client.getMenuOptionCount()];
-				if (tmpEntry == null)
-				{
-					tmpEntry = rl$menuEntries[client.getMenuOptionCount()] = newRuneliteMenuEntry(client.getMenuOptionCount());
-				}
-
-				for (int i = client.getMenuOptionCount(); i > idx; rl$menuEntries[i].setIdx(i--))
-				{
-					client.getMenuOptions()[i] = client.getMenuOptions()[i - 1];
-					client.getMenuTargets()[i] = client.getMenuTargets()[i - 1];
-					client.getMenuIdentifiers()[i] = client.getMenuIdentifiers()[i - 1];
-					client.getMenuOpcodes()[i] = client.getMenuOpcodes()[i - 1];
-					client.getMenuArguments1()[i] = client.getMenuArguments1()[i - 1];
-					client.getMenuArguments2()[i] = client.getMenuArguments2()[i - 1];
-					client.getMenuForceLeftClick()[i] = client.getMenuForceLeftClick()[i - 1];
-
-					rl$menuEntries[i] = rl$menuEntries[i - 1];
-				}
-
-				client.setMenuOptionCount(client.getMenuOptionCount() + 1);
-				tmpMenuOptionsCount = client.getMenuOptionCount();
-
-				menuEntry = tmpEntry;
-				rl$menuEntries[idx] = tmpEntry;
-
-				tmpEntry.setIdx(idx);
-			}
-			else
-			{
-				if (idx != client.getMenuOptionCount())
-				{
-					throw new IllegalArgumentException();
-				}
-
-				menuEntry = rl$menuEntries[client.getMenuOptionCount()];
-
-				if (menuEntry == null)
-				{
-					menuEntry = rl$menuEntries[client.getMenuOptionCount()] = newRuneliteMenuEntry(client.getMenuOptionCount());
-				}
-
-				client.setMenuOptionCount(client.getMenuOptionCount() + 1);
-				tmpMenuOptionsCount = client.getMenuOptionCount();
-			}
-
-			menuEntry.setOption("");
-			menuEntry.setTarget("");
-			menuEntry.setIdentifier(0);
-			menuEntry.setType(MenuAction.RUNELITE);
-			menuEntry.setParam0(0);
-			menuEntry.setParam1(0);
-			menuEntry.setConsumer(null);
-
-			return menuEntry;
 		}
+
+		RSRuneLiteMenuEntry menuEntry;
+		if (idx < client.getMenuOptionCount())
+		{
+			RSRuneLiteMenuEntry tmpEntry = rl$menuEntries[client.getMenuOptionCount()];
+			if (tmpEntry == null)
+			{
+				tmpEntry = rl$menuEntries[client.getMenuOptionCount()] = newRuneliteMenuEntry(client.getMenuOptionCount());
+			}
+
+			for (int i = client.getMenuOptionCount(); i > idx; rl$menuEntries[i].setIdx(i--))
+			{
+				client.getMenuOptions()[i] = client.getMenuOptions()[i - 1];
+				client.getMenuTargets()[i] = client.getMenuTargets()[i - 1];
+				client.getMenuIdentifiers()[i] = client.getMenuIdentifiers()[i - 1];
+				client.getMenuOpcodes()[i] = client.getMenuOpcodes()[i - 1];
+				client.getMenuArguments1()[i] = client.getMenuArguments1()[i - 1];
+				client.getMenuArguments2()[i] = client.getMenuArguments2()[i - 1];
+				client.getMenuForceLeftClick()[i] = client.getMenuForceLeftClick()[i - 1];
+
+				rl$menuEntries[i] = rl$menuEntries[i - 1];
+			}
+
+			client.setMenuOptionCount(client.getMenuOptionCount() + 1);
+			tmpMenuOptionsCount = client.getMenuOptionCount();
+
+			menuEntry = tmpEntry;
+			rl$menuEntries[idx] = tmpEntry;
+
+			tmpEntry.setIdx(idx);
+		}
+		else
+		{
+			if (idx != client.getMenuOptionCount())
+			{
+				throw new IllegalArgumentException();
+			}
+
+			menuEntry = rl$menuEntries[client.getMenuOptionCount()];
+
+			if (menuEntry == null)
+			{
+				menuEntry = rl$menuEntries[client.getMenuOptionCount()] = newRuneliteMenuEntry(client.getMenuOptionCount());
+			}
+
+			client.setMenuOptionCount(client.getMenuOptionCount() + 1);
+			tmpMenuOptionsCount = client.getMenuOptionCount();
+		}
+
+		menuEntry.setOption("");
+		menuEntry.setTarget("");
+		menuEntry.setType(MenuAction.RUNELITE);
+		menuEntry.setIdentifier(0);
+		menuEntry.setParam0(0);
+		menuEntry.setParam1(0);
+		menuEntry.setConsumer(null);
+		return menuEntry;
 	}
 
 	@Inject
@@ -720,6 +717,16 @@ public abstract class RSClientMixin implements RSClient
 	@Override
 	public void setMenuEntries(MenuEntry[] menuEntries)
 	{
+		boolean isTempMenuActionLastOption = false;
+		if (client.getTempMenuAction() != null && client.getMenuOptionCount() > 0)
+		{
+			isTempMenuActionLastOption = client.getTempMenuAction().getParam0() == client.getMenuArguments1()[client.getMenuOptionCount() - 1] &&
+				client.getTempMenuAction().getParam1() == client.getMenuArguments2()[client.getMenuOptionCount() - 1] &&
+				client.getTempMenuAction().getOption().equals(client.getMenuOptions()[client.getMenuOptionCount() - 1]) &&
+				client.getTempMenuAction().getIdentifier() == client.getMenuIdentifiers()[client.getMenuOptionCount() - 1] &&
+				client.getTempMenuAction().getOpcode() == client.getMenuOpcodes()[client.getMenuOptionCount() - 1];
+		}
+
 		for (int i = 0; i < menuEntries.length; ++i)
 		{
 			RSRuneLiteMenuEntry menuEntry = (RSRuneLiteMenuEntry) menuEntries[i];
@@ -731,6 +738,16 @@ public abstract class RSClientMixin implements RSClient
 
 		client.setMenuOptionCount(menuEntries.length);
 		tmpMenuOptionsCount = menuEntries.length;
+
+		if (isTempMenuActionLastOption && client.getMenuOptionCount() > 0)
+		{
+			assert client.getTempMenuAction() != null;
+			client.getTempMenuAction().setParam0(client.getMenuArguments1()[client.getMenuOptionCount() - 1]);
+			client.getTempMenuAction().setParam1(client.getMenuArguments2()[client.getMenuOptionCount() - 1]);
+			client.getTempMenuAction().setOption(client.getMenuOptions()[client.getMenuOptionCount() - 1]);
+			client.getTempMenuAction().setIdentifier(client.getMenuIdentifiers()[client.getMenuOptionCount() - 1]);
+			client.getTempMenuAction().setOpcode(client.getMenuOpcodes()[client.getMenuOptionCount() - 1]);
+		}
 	}
 
 	@Inject
@@ -764,6 +781,9 @@ public abstract class RSClientMixin implements RSClient
 		client.getMenuForceLeftClick()[left] = client.getMenuForceLeftClick()[right];
 		client.getMenuForceLeftClick()[right] = menuForceLeftClick;
 
+		assert rl$menuEntries[left].getIdx() == left;
+		assert rl$menuEntries[right].getIdx() == right;
+
 		RSRuneLiteMenuEntry tmpEntry = rl$menuEntries[left];
 		rl$menuEntries[left] = rl$menuEntries[right];
 		rl$menuEntries[right] = tmpEntry;
@@ -773,16 +793,19 @@ public abstract class RSClientMixin implements RSClient
 	}
 
 	@Inject
-	public static void swapMenuEntries(int var0)
+	public static void swapMenuEntries(int idx)
 	{
-		RSRuneLiteMenuEntry var1 = rl$menuEntries[var0];
-		RSRuneLiteMenuEntry var2 = rl$menuEntries[var0 + 1];
+		RSRuneLiteMenuEntry rl$menuEntry1 = rl$menuEntries[idx];
+		RSRuneLiteMenuEntry rl$menuEntry2 = rl$menuEntries[idx + 1];
 
-		rl$menuEntries[var0] = var2;
-		rl$menuEntries[var0 + 1] = var1;
+		assert rl$menuEntry1.getIdx() == idx;
+		assert rl$menuEntry2.getIdx() == idx + 1;
 
-		var1.setIdx(var0 + 1);
-		var2.setIdx(var0);
+		rl$menuEntries[idx] = rl$menuEntry2;
+		rl$menuEntries[idx + 1] = rl$menuEntry1;
+
+		rl$menuEntry1.setIdx(idx + 1);
+		rl$menuEntry2.setIdx(idx);
 	}
 
 	@FieldHook("menuOptionsCount")
@@ -798,6 +821,12 @@ public abstract class RSClientMixin implements RSClient
 		{
 			for (int i = optionCount; i < tmpOptionsCount; ++i)
 			{
+				RSRuneLiteMenuEntry entry = rl$menuEntries[i];
+				if (entry == null)
+				{
+					client.getLogger().error("Unexpected null menu entry. optionCount: {}, tmpOptionsCount:{}, index: {}",
+							optionCount, tmpOptionsCount, i);
+				}
 				rl$menuEntries[i].setConsumer(null);
 			}
 		}
@@ -1374,12 +1403,79 @@ public abstract class RSClientMixin implements RSClient
 	{
 		RSRuneLiteMenuEntry menuEntry = null;
 
-		for (int i = client.getMenuOptionCount() - 1; i >= 0; --i)
+		int idx;
+		for (idx = client.getMenuOptionCount() - 1; idx >= 0; --idx)
 		{
-			if (client.getMenuOptions()[i].equals(option) && client.getMenuTargets()[i].equals(target) && client.getMenuIdentifiers()[i] == id && client.getMenuOpcodes()[i] == menuAction)
+			if (client.getMenuOpcodes()[idx] == menuAction
+				&& client.getMenuIdentifiers()[idx] == id
+				&& client.getMenuArguments1()[idx] == param0
+				&& client.getMenuArguments2()[idx] == param1
+				&& option.equals(client.getMenuOptions()[idx])
+				&& (option.equals(target) || target.equals(client.getMenuTargets()[idx]))
+			)
 			{
-				menuEntry = rl$menuEntries[i];
+				menuEntry = rl$menuEntries[idx];
 				break;
+			}
+		}
+
+		if (menuEntry == null && option.equals(target))
+		{
+			if (client.getMenuOptionCount() < 500)
+			{
+				idx = client.getMenuOptionCount();
+				client.setMenuOptionCount(client.getMenuOptionCount() + 1);
+			}
+			else
+			{
+				idx = 0;
+			}
+
+			client.getMenuOpcodes()[idx] = menuAction;
+			client.getMenuIdentifiers()[idx] = id;
+			client.getMenuOptions()[idx] = option;
+			client.getMenuTargets()[idx] = target;
+			client.getMenuArguments1()[idx] = param0;
+			client.getMenuArguments2()[idx] = param1;
+			client.getMenuForceLeftClick()[idx] = false;
+			menuEntry = rl$menuEntries[idx];
+			if (menuEntry == null)
+			{
+				menuEntry = rl$menuEntries[idx] = newRuneliteMenuEntry(idx);
+			}
+		}
+
+		if (menuEntry == null)
+		{
+			assert option == target;
+
+			if (canvasX != -1 || canvasY != -1)
+			{
+				client.getLogger().warn("Unable to find clicked menu op {} targ {} action {} id {} p0 {} p1 {}", option, target, menuAction, id, param0, param1);
+			}
+		}
+		else
+		{
+			client.getLogger().trace("Menu click op {} targ {} action {} id {} p0 {} p1 {}", option, target, menuAction, id, param0, param1);
+
+			MenuOptionClicked event = new MenuOptionClicked(menuEntry);
+			client.getCallbacks().post(event);
+
+			if (menuEntry.getConsumer() != null)
+			{
+				try
+				{
+					menuEntry.getConsumer().accept(menuEntry);
+				}
+				catch (Exception ex)
+				{
+					client.getLogger().warn("exception in menu callback", ex);
+				}
+			}
+
+			if (event.isConsumed())
+			{
+				return;
 			}
 		}
 
@@ -1392,29 +1488,16 @@ public abstract class RSClientMixin implements RSClient
 			menuAction -= 2000;
 		}
 
-		final MenuOptionClicked menuOptionClicked = new MenuOptionClicked();
-		menuOptionClicked.setParam0(param0);
-		menuOptionClicked.setParam1(param1);
-		menuOptionClicked.setMenuOption(option);
-		menuOptionClicked.setMenuTarget(target);
-		menuOptionClicked.setMenuAction(MenuAction.of(menuAction));
-		menuOptionClicked.setId(id);
-		menuOptionClicked.setSelectedItemIndex(client.getSelectedItemSlot());
-		client.getCallbacks().post(menuOptionClicked);
-
-		if (menuEntry != null && menuEntry.getConsumer() != null)
+		if (menuAction == MenuAction.WIDGET_CONTINUE.getId())
 		{
-			menuEntry.getConsumer().accept(menuEntry);
+			Widget widget = client.getWidget(param1);
+			if (widget == null || param0 > -1 && widget.getChild(param0) == null)
+			{
+				return;
+			}
 		}
 
-		if (menuOptionClicked.isConsumed())
-		{
-			return;
-		}
-
-		copy$menuAction(menuOptionClicked.getParam0(), menuOptionClicked.getParam1(),
-			menuOptionClicked.getMenuAction() == UNKNOWN ? menuAction : menuOptionClicked.getMenuAction().getId(), menuOptionClicked.getId(),
-			menuOptionClicked.getMenuOption(), menuOptionClicked.getMenuTarget(), canvasX, canvasY);
+		copy$menuAction(param0, param1, menuAction, id, option, target, canvasX, canvasY);
 	}
 
 	@Inject
@@ -2454,6 +2537,66 @@ public abstract class RSClientMixin implements RSClient
 		return RSClientMixin.archives[id];
 	}
 
+	@Inject
+	public static RSFloorOverlayDefinition loadFloorOverlay(int var0)
+	{
+		RSFloorOverlayDefinition floorOverlayDefinition = (RSFloorOverlayDefinition) client.getFloorOverlayDefinitionCache().get(var0);
+		if (floorOverlayDefinition == null)
+		{
+			byte[] var2 = client.getFloorOverlayDefinitionArchive().loadData(4, var0);
+			floorOverlayDefinition = client.newFloorOverlayDefinition();
+			if (var2 != null)
+			{
+				RSBuffer var3 = client.newBuffer(var2);
+				floorOverlayDefinition.decode(var3, var0);
+			}
+
+			floorOverlayDefinition.postDecode();
+			client.getFloorOverlayDefinitionCache().put((RSDualNode) floorOverlayDefinition, (long) var0);
+		}
+
+		return floorOverlayDefinition;
+	}
+
+	@Copy("addObjects")
+	@Replace("addObjects")
+	@SuppressWarnings("InfiniteRecursion")
+	public static void copy$addObjects(int var0, int var1, int var2, int var3, int var4, int var5, RSScene var6, RSCollisionMap var7)
+	{
+		boolean resetLowMemory = false;
+
+		byte tileSetting = client.getTileSettings()[var0][var1][var2];
+
+		if (client.isLowMemory())
+		{
+			byte[] var10000 = client.getTileSettings()[var0][var1];
+			var10000[var2] &= -17;
+			if (var5 == 22)
+			{
+				int TileOverlay = client.getTileOverlays()[var0][var1][var2] & 255;
+
+				if (TileOverlay > 0)
+				{
+					RSFloorOverlayDefinition floorOverlayDefinition = loadFloorOverlay(TileOverlay - 1);
+					if (floorOverlayDefinition.getTexture() < 0 && floorOverlayDefinition.getPrimaryRgb() == 16711935)
+					{
+						client.setLowMemory(false);
+						resetLowMemory = true;
+					}
+				}
+			}
+		}
+
+		copy$addObjects(var0, var1, var2, var3, var4, var5, var6, var7);
+
+		client.getTileSettings()[var0][var1][var2] = tileSetting;
+
+		if (resetLowMemory)
+		{
+			client.setLowMemory(true);
+		}
+	}
+
 	@FieldHook("accountHash")
 	@Inject
 	public void onAccountHashChanged(int idx)
@@ -2464,6 +2607,22 @@ public abstract class RSClientMixin implements RSClient
 		}
 
 		client.getCallbacks().post(new AccountHashChanged());
+	}
+
+	@Inject
+	@Override
+	public Widget getSelectedWidget()
+	{
+		int selectedSpellWidget = client.getSelectedSpellWidget();
+		int selectedSpellChildIndex = client.getSelectedSpellChildIndex();
+
+		Widget widget = client.getWidget(selectedSpellWidget);
+		if (widget != null && selectedSpellChildIndex > -1)
+		{
+			return widget.getChild(selectedSpellChildIndex);
+		}
+
+		return null;
 	}
 }
 

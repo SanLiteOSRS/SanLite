@@ -510,7 +510,7 @@ public class TheatreOfBloodPlugin extends Plugin
 
 		if (currentEncounter.getEncounter() == TheatreOfBloodEncounters.SOTETSEG)
 		{
-			currentEncounter.castToSotetseg().checkMazeActivityChanged(client.getVar(TOB_ENCOUNTER_STATE));
+			currentEncounter.castToSotetseg().checkMazeActivityChanged(client.getVarbitValue(TOB_ENCOUNTER_STATE));
 		}
 	}
 

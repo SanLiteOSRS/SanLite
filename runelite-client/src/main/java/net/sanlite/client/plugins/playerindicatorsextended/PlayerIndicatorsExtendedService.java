@@ -72,7 +72,7 @@ class PlayerIndicatorsExtendedService
 			// Own player
 			if (config.highlightOwnPlayer() && player == localPlayer)
 			{
-				consumer.accept(player, PlayerIndicatorType.OWN_PLAYER);
+				consumer.accept(player, PlayerIndicatorType.LOCAL);
 				continue;
 			}
 			else if (player == localPlayer)
@@ -88,7 +88,7 @@ class PlayerIndicatorsExtendedService
 			{
 				if (config.disableFriendHighlightIfFriendsChatMember() && isFriendsChatMember)
 				{
-					consumer.accept(player, PlayerIndicatorType.FRIENDS_CHAT_MEMBERS);
+					consumer.accept(player, PlayerIndicatorType.FRIENDS_CHAT);
 					continue;
 				}
 
@@ -101,7 +101,7 @@ class PlayerIndicatorsExtendedService
 			{
 				if (config.disableFriendHighlightIfFriendsChatMember() && isFriendsChatMember)
 				{
-					consumer.accept(player, PlayerIndicatorType.FRIENDS_CHAT_MEMBERS);
+					consumer.accept(player, PlayerIndicatorType.FRIENDS_CHAT);
 					continue;
 				}
 
@@ -147,118 +147,23 @@ class PlayerIndicatorsExtendedService
 			// Clan members
 			if (config.highlightFriendsChatMembers() && isFriendsChatMember)
 			{
-				consumer.accept(player, PlayerIndicatorType.FRIENDS_CHAT_MEMBERS);
+				consumer.accept(player, PlayerIndicatorType.FRIENDS_CHAT);
 				continue;
 			}
 
 			// Team-cape members
 			if (config.highlightTeamMembers() && localPlayer.getTeam() > 0 && localPlayer.getTeam() == player.getTeam())
 			{
-				consumer.accept(player, PlayerIndicatorType.TEAM_CAPE_MEMBER);
+				consumer.accept(player, PlayerIndicatorType.TEAM_CAPE);
 				continue;
 			}
 
 			// Non-clan members
 			if (config.highlightOthers() && !isFriendsChatMember)
 			{
-				consumer.accept(player, PlayerIndicatorType.NON_CLAN_MEMBER);
+				consumer.accept(player, PlayerIndicatorType.OTHER);
 			}
 		}
-	}
-
-	PlayerIndicatorType getMenuEntryPlayerIndicatorType(Player player)
-	{
-		if (!config.highlightOwnPlayer() && !config.highlightFriendsChatMembers()
-				&& !config.highlightFriends() && !config.highlightOthers() && !config.highlightTeamMembers())
-		{
-			return null;
-		}
-
-		final Player localPlayer = client.getLocalPlayer();
-		if (localPlayer == null || localPlayer == player)
-		{
-			return null;
-		}
-
-		final String playerName = player.getName();
-		final boolean isFriendsChatMember = player.isFriendsChatMember();
-
-		// Friends
-		if (config.highlightFriends() && config.colorFriendPlayerMenu() && player.isFriend())
-		{
-			if (config.disableFriendHighlightIfFriendsChatMember() && isFriendsChatMember)
-			{
-				return PlayerIndicatorType.FRIENDS_CHAT_MEMBERS;
-			}
-
-			return PlayerIndicatorType.FRIEND;
-		}
-
-		// Appear offline friends
-		if (config.highlightOfflineFriends() && config.colorFriendPlayerMenu() && client.isFriended(playerName, false))
-		{
-			if (config.disableFriendHighlightIfFriendsChatMember() && isFriendsChatMember)
-			{
-				return PlayerIndicatorType.FRIENDS_CHAT_MEMBERS;
-			}
-
-			return PlayerIndicatorType.FRIEND;
-		}
-
-		// Custom list one
-		if (config.highlightCustomListOne() && config.colorListOnePlayerMenu() &&
-				isNameInCsvList(playerName, config.getListOneNames().toLowerCase()))
-		{
-			return PlayerIndicatorType.CUSTOM_LIST_1;
-		}
-
-		// Custom list two
-		if (config.highlightCustomListTwo() && config.colorListTwoPlayerMenu() &&
-				isNameInCsvList(playerName, config.getListTwoNames().toLowerCase()))
-		{
-			return PlayerIndicatorType.CUSTOM_LIST_2;
-		}
-
-		// Custom list three
-		if (config.highlightCustomListThree() && config.colorListThreePlayerMenu() &&
-				isNameInCsvList(playerName, config.getListThreeNames().toLowerCase()))
-		{
-			return PlayerIndicatorType.CUSTOM_LIST_3;
-		}
-
-		// Custom list four
-		if (config.highlightCustomListFour() && config.colorListFourPlayerMenu() &&
-				isNameInCsvList(playerName, config.getListFourNames().toLowerCase()))
-		{
-			return PlayerIndicatorType.CUSTOM_LIST_4;
-		}
-
-		// Custom list five
-		if (config.highlightCustomListFive() && config.colorListFivePlayerMenu() &&
-				isNameInCsvList(playerName, config.getListFiveNames().toLowerCase()))
-		{
-			return PlayerIndicatorType.CUSTOM_LIST_5;
-		}
-
-		// Clan members
-		if (config.highlightFriendsChatMembers() && config.colorFriendsChatMemberPlayerMenu() && isFriendsChatMember)
-		{
-			return PlayerIndicatorType.FRIENDS_CHAT_MEMBERS;
-		}
-
-		// Team-cape members
-		if (config.highlightTeamMembers() && config.colorTeamMemberPlayerMenu() && localPlayer.getTeam() > 0 &&
-				localPlayer.getTeam() == player.getTeam())
-		{
-			return PlayerIndicatorType.TEAM_CAPE_MEMBER;
-		}
-
-		// Non-clan members
-		if (config.highlightOthers() && config.colorOthersPlayerMenu() && !isFriendsChatMember)
-		{
-			return PlayerIndicatorType.NON_CLAN_MEMBER;
-		}
-		return PlayerIndicatorType.UNKNOWN_PLAYER;
 	}
 
 	PlayerIndicatorType getPlayerIndicatorType(Player player)
@@ -277,7 +182,7 @@ class PlayerIndicatorsExtendedService
 		{
 			if (config.disableFriendHighlightIfFriendsChatMember() && isFriendsChatMember)
 			{
-				return PlayerIndicatorType.FRIENDS_CHAT_MEMBERS;
+				return PlayerIndicatorType.FRIENDS_CHAT;
 			}
 
 			return PlayerIndicatorType.FRIEND;
@@ -318,7 +223,7 @@ class PlayerIndicatorsExtendedService
 		{
 			if (config.disableFriendHighlightIfFriendsChatMember() && isFriendsChatMember)
 			{
-				return PlayerIndicatorType.FRIENDS_CHAT_MEMBERS;
+				return PlayerIndicatorType.FRIENDS_CHAT;
 			}
 
 			return PlayerIndicatorType.FRIEND;
@@ -327,15 +232,15 @@ class PlayerIndicatorsExtendedService
 		// Clan members
 		if (isFriendsChatMember)
 		{
-			return PlayerIndicatorType.FRIENDS_CHAT_MEMBERS;
+			return PlayerIndicatorType.FRIENDS_CHAT;
 		}
 
 		// Team-cape members
 		if (localPlayer.getTeam() > 0 && localPlayer.getTeam() == player.getTeam())
 		{
-			return PlayerIndicatorType.TEAM_CAPE_MEMBER;
+			return PlayerIndicatorType.TEAM_CAPE;
 		}
-		return PlayerIndicatorType.NON_CLAN_MEMBER;
+		return PlayerIndicatorType.OTHER;
 	}
 
 	private boolean isNameInCsvList(String playerName, String csvNamesList)

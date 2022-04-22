@@ -20,7 +20,7 @@ public class class120 implements class112 {
 				class1.runScriptEvent(var1);
 			}
 
-			Client.field688 = -1;
+			Client.selectedSpellItemId = -1;
 			Client.isSpellSelected = false;
 			class290.invalidateWidget(var0);
 		}

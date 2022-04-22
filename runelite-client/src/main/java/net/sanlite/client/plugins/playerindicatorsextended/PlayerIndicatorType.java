@@ -27,14 +27,13 @@ package net.sanlite.client.plugins.playerindicatorsextended;
 public enum PlayerIndicatorType
 {
 	FRIEND,
-	FRIENDS_CHAT_MEMBERS,
-	NON_CLAN_MEMBER,
-	TEAM_CAPE_MEMBER,
-	OWN_PLAYER,
+	FRIENDS_CHAT,
+	OTHER,
+	TEAM_CAPE,
+	LOCAL,
 	CUSTOM_LIST_1,
 	CUSTOM_LIST_2,
 	CUSTOM_LIST_3,
 	CUSTOM_LIST_4,
-	CUSTOM_LIST_5,
-	UNKNOWN_PLAYER
+	CUSTOM_LIST_5
 }

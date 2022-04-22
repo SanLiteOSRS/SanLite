@@ -60,6 +60,7 @@ public class LocationOverlay extends OverlayPanel
 		WorldPoint localWorld = client.getLocalPlayer().getWorldLocation();
 		LocalPoint localPoint = client.getLocalPlayer().getLocalLocation();
 
+		// Show correct region for instances too
 		int regionID = WorldPoint.fromLocalInstance(client, client.getLocalPlayer().getLocalLocation()).getRegionID();
 
 		if (client.isInInstancedRegion())

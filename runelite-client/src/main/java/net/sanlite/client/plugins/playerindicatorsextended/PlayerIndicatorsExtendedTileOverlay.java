@@ -65,7 +65,7 @@ public class PlayerIndicatorsExtendedTileOverlay extends Overlay
 		{
 			switch (type)
 			{
-				case OWN_PLAYER:
+				case LOCAL:
 					renderTileOverlay(graphics, player, config.getOwnPlayerColor(), config.drawOwnPlayerTiles());
 					break;
 				case FRIEND:
@@ -86,13 +86,13 @@ public class PlayerIndicatorsExtendedTileOverlay extends Overlay
 				case CUSTOM_LIST_5:
 					renderTileOverlay(graphics, player, config.getListFiveColor(), config.drawListFiveTiles());
 					break;
-				case FRIENDS_CHAT_MEMBERS:
+				case FRIENDS_CHAT:
 					renderTileOverlay(graphics, player, config.getFriendsChatMemberColor(), config.drawFriendsChatMemberTiles());
 					break;
-				case TEAM_CAPE_MEMBER:
+				case TEAM_CAPE:
 					renderTileOverlay(graphics, player, config.getTeamMemberColor(), config.drawTeamMemberTiles());
 					break;
-				case NON_CLAN_MEMBER:
+				case OTHER:
 					renderTileOverlay(graphics, player, config.getOthersColor(), config.drawOthersTiles());
 					break;
 				default:
