@@ -344,7 +344,7 @@ public class GauntletPlugin extends Plugin
 			return;
 		}
 
-		gauntlet.checkFinalRoomEntered(client.getVar(GAUNTLET_FINAL_ROOM_ENTERED));
+		gauntlet.checkFinalRoomEntered(client.getVarbitValue(GAUNTLET_FINAL_ROOM_ENTERED));
 	}
 
 	@Subscribe

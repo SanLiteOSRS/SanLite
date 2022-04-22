@@ -7,7 +7,6 @@
  */
 package net.sanlite.injector.injectors.raw;
 
-import net.runelite.asm.attributes.code.instructions.*;
 import net.sanlite.injector.InjectUtil;
 import net.sanlite.injector.injection.InjectData;
 import net.sanlite.injector.injectors.AbstractInjector;
@@ -20,6 +19,15 @@ import net.runelite.asm.Type;
 import net.runelite.asm.attributes.Code;
 import net.runelite.asm.attributes.code.Instruction;
 import net.runelite.asm.attributes.code.Instructions;
+import net.runelite.asm.attributes.code.instructions.CheckCast;
+import net.runelite.asm.attributes.code.instructions.GetField;
+import net.runelite.asm.attributes.code.instructions.GetStatic;
+import net.runelite.asm.attributes.code.instructions.InvokeSpecial;
+import net.runelite.asm.attributes.code.instructions.InvokeStatic;
+import net.runelite.asm.attributes.code.instructions.InvokeVirtual;
+import net.runelite.asm.attributes.code.instructions.New;
+import net.runelite.asm.attributes.code.instructions.PutField;
+import net.runelite.asm.attributes.code.instructions.PutStatic;
 import net.runelite.asm.pool.Class;
 import net.runelite.asm.signature.Signature;
 import org.objectweb.asm.Opcodes;
@@ -46,7 +54,7 @@ public class CopyRuneLiteClasses extends AbstractInjector
 		{
 			ClassFile runeliteObjectVanilla = inject.vanilla.findClass(className);
 
-			final ClassFile runeLiteObjectDeob = inject.getDeobfuscated()
+			final ClassFile runeLiteDeob = inject.getDeobfuscated()
 				.findClass(className);
 
 			if (runeliteObjectVanilla == null)
@@ -54,11 +62,11 @@ public class CopyRuneLiteClasses extends AbstractInjector
 				runeliteObjectVanilla = new ClassFile(inject.vanilla);
 				runeliteObjectVanilla.setVersion(Opcodes.V1_8);
 				runeliteObjectVanilla.setName(className);
-				runeliteObjectVanilla.setAccess(runeLiteObjectDeob.getAccess());
+				runeliteObjectVanilla.setAccess(runeLiteDeob.getAccess());
 
-				if (runeLiteObjectDeob.getParentClass() != null)
+				if (runeLiteDeob.getParentClass() != null)
 				{
-					ClassFile deobClass = inject.getDeobfuscated().findClass(runeLiteObjectDeob.getParentClass().getName());
+					ClassFile deobClass = inject.getDeobfuscated().findClass(runeLiteDeob.getParentClass().getName());
 
 					if (deobClass != null)
 					{
@@ -66,25 +74,30 @@ public class CopyRuneLiteClasses extends AbstractInjector
 					}
 					else
 					{
-						runeliteObjectVanilla.setParentClass(runeLiteObjectDeob.getParentClass());
+						runeliteObjectVanilla.setParentClass(runeLiteDeob.getParentClass());
 					}
 				}
 
-				inject.toVanilla.put(runeLiteObjectDeob, runeliteObjectVanilla);
+				inject.toVanilla.put(runeLiteDeob, runeliteObjectVanilla);
 
-				for (Class interfaze : runeLiteObjectDeob.getInterfaces())
+				for (Class interfaze : runeLiteDeob.getInterfaces())
 				{
 					runeliteObjectVanilla.getInterfaces().addInterface(interfaze);
 				}
 
-				for (Field field : runeLiteObjectDeob.getFields())
+				for (Field field : runeLiteDeob.getFields())
 				{
 					field.setType(InjectUtil.deobToVanilla(inject, field.getType()));
 					runeliteObjectVanilla.addField(field);
 				}
 
-				for (Method method : runeLiteObjectDeob.getMethods())
+				for (Method method : runeLiteDeob.getMethods())
 				{
+					if (className.equals("RuneLiteMenuEntry") && (method.getName().equals("getItemId") || method.getName().equals("getWidget")))
+					{
+						continue;
+					}
+
 					transformMethod(method);
 					runeliteObjectVanilla.addMethod(method);
 				}

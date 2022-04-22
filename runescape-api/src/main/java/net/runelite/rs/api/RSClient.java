@@ -188,6 +188,10 @@ public interface RSClient extends RSGameEngine, Client
 	@Override
 	void setDraggedOnWidget(Widget widget);
 
+	@Import("widgetDragDuration")
+	@Override
+	int getDragTime();
+
 	@Import("Widget_interfaceComponents")
 	RSWidget[][] getWidgets();
 
@@ -310,6 +314,9 @@ public interface RSClient extends RSGameEngine, Client
 
 	@Import("menuOptionsCount")
 	void setMenuOptionCount(int menuOptionCount);
+
+	@Import("tempMenuAction")
+	RSMenuAction getTempMenuAction();
 
 	@Import("menuActions")
 	String[] getMenuOptions();
@@ -628,6 +635,9 @@ public interface RSClient extends RSGameEngine, Client
 
 	@Import("KeyHandler_pressedKeys")
 	boolean[] getPressedKeys();
+
+	@Import("isLowDetail")
+	boolean isLowMemory();
 
 	@Import("isLowDetail")
 	void setLowMemory(boolean lowMemory);
@@ -1063,6 +1073,9 @@ public interface RSClient extends RSGameEngine, Client
 	@Import("selectedSpellFlags")
 	int getSelectedSpellFlags();
 
+	@Import("selectedSpellFlags")
+	void setSelectedSpellFlags(int var0);
+
 	@Import("isSpellSelected")
 	boolean getSpellSelected();
 
@@ -1109,12 +1122,6 @@ public interface RSClient extends RSGameEngine, Client
 	void setSelectedItemID(int id);
 
 	@Import("selectedItemSlot")
-	int getSelectedItemSlot();
-
-	@Import("selectedItemSlot")
-	void setSelectedItemSlot(int index);
-
-	@Import("selectedItemSlot")
 	@Override
 	int getSelectedItemIndex();
 
@@ -1150,6 +1157,9 @@ public interface RSClient extends RSGameEngine, Client
 
 	@Construct
 	RSTileItem newTileItem();
+
+	@Construct
+	RSFloorOverlayDefinition newFloorOverlayDefinition();
 
 	@Construct
 	RSNodeDeque newNodeDeque();
@@ -1256,10 +1266,6 @@ public interface RSClient extends RSGameEngine, Client
 	@Import("followerIndex")
 	int getFollowerIndex();
 
-	@Import("isItemSelected")
-	int isItemSelected();
-
-	@Override
 	@Import("isItemSelected")
 	int getSelectedItem();
 
@@ -1433,6 +1439,9 @@ public interface RSClient extends RSGameEngine, Client
 
 	@Import("FloorUnderlayDefinition_cached")
 	RSEvictingDualNodeHashTable getFloorUnderlayDefinitionCache();
+
+	@Import("FloorOverlayDefinition_archive")
+	RSAbstractArchive getFloorOverlayDefinitionArchive();
 
 	@Import("FloorOverlayDefinition_cached")
 	RSEvictingDualNodeHashTable getFloorOverlayDefinitionCache();

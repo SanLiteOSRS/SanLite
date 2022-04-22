@@ -139,6 +139,7 @@ public class DevToolsExtendedPlugin extends Plugin
 	private DevToolsButton soundEffects;
 	private DevToolsButton scriptInspector;
 	private DevToolsButton inventoryInspector;
+	private DevToolsButton roofs;
 	private DevToolsButton shell;
 	private NavigationButton navButton;
 
@@ -184,6 +185,7 @@ public class DevToolsExtendedPlugin extends Plugin
 		soundEffects = new DevToolsButton("Sound Effects");
 		scriptInspector = new DevToolsButton("Script Inspector");
 		inventoryInspector = new DevToolsButton("Inventory Inspector");
+		roofs = new DevToolsButton("Roofs");
 		shell = new DevToolsButton("Shell");
 
 		overlayManager.add(overlay);
@@ -451,9 +453,9 @@ public class DevToolsExtendedPlugin extends Plugin
 					}
 				}
 				chatMessageManager.queue(QueuedMessage.builder()
-						.type(ChatMessageType.GAMEMESSAGE)
-						.runeLiteFormattedMessage(builder.build())
-						.build());
+					.type(ChatMessageType.GAMEMESSAGE)
+					.runeLiteFormattedMessage(builder.build())
+					.build());
 				break;
 			}
 		}
@@ -494,7 +496,6 @@ public class DevToolsExtendedPlugin extends Plugin
 			}
 
 			entry.setTarget(entry.getTarget() + " " + ColorUtil.prependColorTag("(" + info + ")", JagexColors.MENU_TARGET));
-			client.setMenuEntries(entries);
 		}
 	}
 }

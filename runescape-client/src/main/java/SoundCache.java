@@ -237,7 +237,7 @@ public class SoundCache {
 			Client.destinationX = var0;
 			Client.destinationY = var1;
 			var8 = ItemContainer.getPacketBufferNode(ClientPacket.field2894, Client.packetWriter.isaacCipher);
-			var8.packetBuffer.method7796(Client.field688);
+			var8.packetBuffer.method7796(Client.selectedSpellItemId);
 			var8.packetBuffer.writeByte(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
 			var8.packetBuffer.method7791(class250.baseY * 64 + var1);
 			var8.packetBuffer.method7796(Client.selectedSpellChildIndex);
@@ -331,7 +331,7 @@ public class SoundCache {
 					var9.packetBuffer.writeShort(Client.selectedSpellChildIndex);
 					var9.packetBuffer.method7795(var3);
 					var9.packetBuffer.method7806(class92.selectedSpellWidget);
-					var9.packetBuffer.method7796(Client.field688);
+					var9.packetBuffer.method7796(Client.selectedSpellItemId);
 					Client.packetWriter.addNode(var9);
 				}
 			} else if (var2 == 9) {
@@ -437,7 +437,7 @@ public class SoundCache {
 						var9.packetBuffer.method7796(var3);
 						var9.packetBuffer.method7787(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
 						var9.packetBuffer.writeInt(class92.selectedSpellWidget);
-						var9.packetBuffer.writeShort(Client.field688);
+						var9.packetBuffer.writeShort(Client.selectedSpellItemId);
 						Client.packetWriter.addNode(var9);
 					}
 				} else if (var2 == 16) {
@@ -464,7 +464,7 @@ public class SoundCache {
 					Client.destinationX = var0;
 					Client.destinationY = var1;
 					var8 = ItemContainer.getPacketBufferNode(ClientPacket.field2942, Client.packetWriter.isaacCipher);
-					var8.packetBuffer.writeShort(Client.field688);
+					var8.packetBuffer.writeShort(Client.selectedSpellItemId);
 					var8.packetBuffer.writeByte(KeyHandler.KeyHandler_pressedKeys[82] ? 1 : 0);
 					var8.packetBuffer.method7795(var3);
 					var8.packetBuffer.writeInt(class92.selectedSpellWidget);
@@ -862,7 +862,7 @@ public class SoundCache {
 												var16 = class143.getWidgetChild(var1, var0);
 												if (var16 != null) {
 													var9 = ItemContainer.getPacketBufferNode(ClientPacket.field2932, Client.packetWriter.isaacCipher);
-													var9.packetBuffer.writeShort(Client.field688);
+													var9.packetBuffer.writeShort(Client.selectedSpellItemId);
 													var9.packetBuffer.writeIntME(class92.selectedSpellWidget);
 													var9.packetBuffer.method7796(var16.itemId);
 													var9.packetBuffer.method7791(Client.selectedSpellChildIndex);

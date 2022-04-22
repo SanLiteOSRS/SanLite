@@ -1,6 +1,8 @@
 import java.util.function.Consumer;
 import net.runelite.api.MenuAction;
 import net.runelite.api.MenuEntry;
+import net.runelite.api.widgets.Widget;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class RuneLiteMenuEntry implements MenuEntry
 {
@@ -268,6 +270,72 @@ public class RuneLiteMenuEntry implements MenuEntry
 	}
 
 	@Override
+	public boolean isItemOp()
+	{
+		MenuAction var1 = this.getType();
+		if (var1 == MenuAction.CC_OP || var1 == MenuAction.CC_OP_LOW_PRIORITY) {
+			int var2 = this.getIdentifier();
+			int var3 = this.getParam1();
+			if (var3 == 9764864) {
+				switch(var2) {
+					case 2:
+					case 3:
+					case 4:
+					case 6:
+					case 7:
+						return true;
+					case 5:
+				}
+			}
+		}
+
+		return false;
+	}
+
+	@Override
+	public int getItemOp()
+	{
+		MenuAction var1 = this.getType();
+		if (var1 == MenuAction.CC_OP || var1 == MenuAction.CC_OP_LOW_PRIORITY) {
+			int var2 = this.getIdentifier();
+			int var3 = this.getParam1();
+			if (var3 == 9764864) {
+				switch(var2) {
+					case 2:
+						return 1;
+					case 3:
+						return 2;
+					case 4:
+						return 3;
+					case 5:
+					default:
+						break;
+					case 6:
+						return 4;
+					case 7:
+						return 5;
+				}
+			}
+		}
+
+		return -1;
+	}
+
+	@Override
+	public int getItemId()
+	{
+		// Implementation is done with raw injection of mixin method
+		throw new NotImplementedException();
+	}
+
+	@Override
+	public Widget getWidget()
+	{
+		// Implementation is done with raw injection of mixin method
+		throw new NotImplementedException();
+	}
+
+	@Override
 	public int hashCode()
 	{
 		byte b = 1;
@@ -285,5 +353,14 @@ public class RuneLiteMenuEntry implements MenuEntry
 		hash = hash * 59 + (type == null ? 43 : type.hashCode());
 
 		return hash;
+	}
+
+	@Override
+	public String toString()
+	{
+		return "MenuEntryImpl(getOption=" + this.getOption() + ", getTarget=" + this.getTarget() +
+				", getIdentifier=" + this.getIdentifier() + ", getType=" + this.getType() +
+				", getParam0=" + this.getParam0() + ", getParam1=" + this.getParam1() + ", isForceLeftClick=" +
+				this.isForceLeftClick() + ", isDeprioritized=" + this.isDeprioritized() + ")";
 	}
 }
