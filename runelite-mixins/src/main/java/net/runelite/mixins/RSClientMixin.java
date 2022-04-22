@@ -781,8 +781,8 @@ public abstract class RSClientMixin implements RSClient
 		client.getMenuForceLeftClick()[left] = client.getMenuForceLeftClick()[right];
 		client.getMenuForceLeftClick()[right] = menuForceLeftClick;
 
-		assert rl$menuEntries[left].getIdx() != left;
-		assert rl$menuEntries[right].getIdx() != right;
+		assert rl$menuEntries[left].getIdx() == left;
+		assert rl$menuEntries[right].getIdx() == right;
 
 		RSRuneLiteMenuEntry tmpEntry = rl$menuEntries[left];
 		rl$menuEntries[left] = rl$menuEntries[right];
