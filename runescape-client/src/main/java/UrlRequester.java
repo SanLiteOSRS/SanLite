@@ -6,26 +6,19 @@ import java.util.LinkedList;
 import java.util.Queue;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ci")
+@ObfuscatedName("ck")
 @Implements("UrlRequester")
 public abstract class UrlRequester implements Runnable {
-	@ObfuscatedName("mn")
-	@ObfuscatedGetter(
-		intValue = -1967298029
-	)
-	@Export("menuHeight")
-	static int menuHeight;
 	@ObfuscatedName("v")
 	@Export("thread")
 	final Thread thread;
-	@ObfuscatedName("o")
+	@ObfuscatedName("c")
 	@Export("isClosed")
 	volatile boolean isClosed;
-	@ObfuscatedName("h")
+	@ObfuscatedName("i")
 	@Export("requests")
 	Queue requests;
 
@@ -38,29 +31,29 @@ public abstract class UrlRequester implements Runnable {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(Lct;I)V",
-		garbageValue = "-1783154457"
+		descriptor = "(Lcw;I)V",
+		garbageValue = "1977687936"
 	)
-	abstract void vmethod2538(UrlRequest var1) throws IOException;
+	abstract void vmethod2546(UrlRequest var1) throws IOException;
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
 		descriptor = "(Ljava/net/URLConnection;B)V",
-		garbageValue = "4"
+		garbageValue = "28"
 	)
-	void method2524(URLConnection var1) {
+	void method2517(URLConnection var1) {
 		var1.setConnectTimeout(5000);
 		var1.setReadTimeout(5000);
 		var1.setUseCaches(false);
 		var1.setRequestProperty("Connection", "close");
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/net/URLConnection;Lct;I)V",
-		garbageValue = "328398044"
+		descriptor = "(Ljava/net/URLConnection;Lcw;B)V",
+		garbageValue = "4"
 	)
-	void method2515(URLConnection var1, UrlRequest var2) {
+	void method2518(URLConnection var1, UrlRequest var2) {
 		DataInputStream var3 = null;
 
 		try {
@@ -72,7 +65,7 @@ public abstract class UrlRequester implements Runnable {
 				var3.readFully(var4);
 			} else {
 				var4 = new byte[0];
-				byte[] var6 = class355.ByteArrayPool_getArray(5000);
+				byte[] var6 = ArchiveDiskActionHandler.ByteArrayPool_getArray(5000);
 
 				byte[] var8;
 				for (int var7 = var3.read(var6, 0, var6.length); var7 > -1; var4 = var8) {
@@ -81,7 +74,7 @@ public abstract class UrlRequester implements Runnable {
 					System.arraycopy(var6, 0, var8, var4.length, var7);
 				}
 
-				ServerPacket.ByteArrayPool_release(var6);
+				UserComparator10.ByteArrayPool_release(var6);
 			}
 
 			var2.response0 = var4;
@@ -97,10 +90,10 @@ public abstract class UrlRequester implements Runnable {
 
 	}
 
-	@ObfuscatedName("g")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/net/URL;I)Lct;",
-		garbageValue = "1891707218"
+		descriptor = "(Ljava/net/URL;B)Lcw;",
+		garbageValue = "30"
 	)
 	@Export("request")
 	public UrlRequest request(URL var1) {
@@ -112,10 +105,10 @@ public abstract class UrlRequester implements Runnable {
 		}
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
 		descriptor = "(B)V",
-		garbageValue = "28"
+		garbageValue = "73"
 	)
 	@Export("close")
 	public void close() {
@@ -147,39 +140,38 @@ public abstract class UrlRequester implements Runnable {
 					}
 				}
 
-				this.vmethod2538(var1);
+				this.vmethod2546(var1);
 			} catch (Exception var7) {
-				class301.RunException_sendStackTrace((String)null, var7);
+				Widget.RunException_sendStackTrace((String)null, var7);
 			}
 		}
 
 	}
 
-	@ObfuscatedName("f")
+	@ObfuscatedName("ik")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/CharSequence;B)I",
-		garbageValue = "-106"
+		descriptor = "(III)V",
+		garbageValue = "-1814729991"
 	)
-	@Export("hashString")
-	public static int hashString(CharSequence var0) {
-		int var1 = var0.length();
-		int var2 = 0;
+	static final void method2537(int var0, int var1) {
+		if (Client.menuOptionsCount >= 2 || Client.isItemSelected != 0 || Client.isSpellSelected) {
+			if (Client.showMouseOverText) {
+				int var2 = GameBuild.method5773();
+				String var3;
+				if (Client.isItemSelected == 1 && Client.menuOptionsCount < 2) {
+					var3 = "Use" + " " + Client.selectedItemName + " " + "->";
+				} else if (Client.isSpellSelected && Client.menuOptionsCount < 2) {
+					var3 = Client.selectedSpellActionName + " " + Client.selectedSpellName + " " + "->";
+				} else {
+					var3 = AbstractUserComparator.method6736(var2);
+				}
 
-		for (int var3 = 0; var3 < var1; ++var3) {
-			var2 = (var2 << 5) - var2 + class123.charToByteCp1252(var0.charAt(var3));
-		}
+				if (Client.menuOptionsCount > 2) {
+					var3 = var3 + UserComparator9.colorStartTag(16777215) + " " + '/' + " " + (Client.menuOptionsCount - 2) + " more options";
+				}
 
-		return var2;
-	}
-
-	@ObfuscatedName("lt")
-	@ObfuscatedSignature(
-		descriptor = "(II)V",
-		garbageValue = "-2085317549"
-	)
-	static void method2533(int var0) {
-		if (var0 != Client.loginState) {
-			Client.loginState = var0;
+				RouteStrategy.fontBold12.drawRandomAlphaAndSpacing(var3, var0 + 4, var1 + 15, 16777215, 0, Client.cycle / 1000);
+			}
 		}
 	}
 }

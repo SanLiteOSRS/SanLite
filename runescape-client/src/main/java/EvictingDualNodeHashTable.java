@@ -3,30 +3,30 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("iq")
+@ObfuscatedName("ig")
 @Implements("EvictingDualNodeHashTable")
 public final class EvictingDualNodeHashTable {
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "Loh;"
+		descriptor = "Loz;"
 	)
 	@Export("dualNode")
 	DualNode dualNode;
-	@ObfuscatedName("o")
+	@ObfuscatedName("c")
 	@Export("capacity")
 	int capacity;
-	@ObfuscatedName("h")
+	@ObfuscatedName("i")
 	@Export("remainingCapacity")
 	int remainingCapacity;
-	@ObfuscatedName("g")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "Lpq;"
+		descriptor = "Lpt;"
 	)
 	@Export("hashTable")
 	IterableNodeHashTable hashTable;
-	@ObfuscatedName("l")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		descriptor = "Lmq;"
+		descriptor = "Lmr;"
 	)
 	@Export("deque")
 	IterableDualNodeQueue deque;
@@ -46,7 +46,7 @@ public final class EvictingDualNodeHashTable {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(J)Loh;"
+		descriptor = "(J)Loz;"
 	)
 	@Export("get")
 	public DualNode get(long var1) {
@@ -58,7 +58,7 @@ public final class EvictingDualNodeHashTable {
 		return var3;
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("c")
 	@Export("remove")
 	public void remove(long var1) {
 		DualNode var3 = (DualNode)this.hashTable.get(var1);
@@ -70,9 +70,9 @@ public final class EvictingDualNodeHashTable {
 
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		descriptor = "(Loh;J)V"
+		descriptor = "(Loz;J)V"
 	)
 	@Export("put")
 	public void put(DualNode var1, long var2) {
@@ -93,7 +93,7 @@ public final class EvictingDualNodeHashTable {
 		this.deque.add(var1);
 	}
 
-	@ObfuscatedName("g")
+	@ObfuscatedName("f")
 	@Export("clear")
 	public void clear() {
 		this.deque.clear();

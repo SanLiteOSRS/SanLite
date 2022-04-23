@@ -1,24 +1,30 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("fb")
+@ObfuscatedName("fc")
 @Implements("VarcInt")
 public class VarcInt extends DualNode {
-	@ObfuscatedName("v")
+	@ObfuscatedName("uy")
 	@ObfuscatedSignature(
-		descriptor = "Llq;"
+		descriptor = "Llf;"
 	)
-	@Export("VarcInt_archive")
-	public static AbstractArchive VarcInt_archive;
-	@ObfuscatedName("o")
+	public static class326 field1841;
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "Liq;"
+		descriptor = "Lig;"
 	)
 	@Export("VarcInt_cached")
-	public static EvictingDualNodeHashTable VarcInt_cached;
-	@ObfuscatedName("h")
+	static EvictingDualNodeHashTable VarcInt_cached;
+	@ObfuscatedName("ho")
+	@ObfuscatedGetter(
+		intValue = -248717599
+	)
+	@Export("baseY")
+	static int baseY;
+	@ObfuscatedName("i")
 	@Export("persist")
 	public boolean persist;
 
@@ -26,32 +32,32 @@ public class VarcInt extends DualNode {
 		VarcInt_cached = new EvictingDualNodeHashTable(64);
 	}
 
-	public VarcInt() {
+	VarcInt() {
 		this.persist = false;
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(Lpd;B)V",
-		garbageValue = "-81"
+		descriptor = "(Lpi;I)V",
+		garbageValue = "-400441754"
 	)
-	public void method3386(Buffer var1) {
+	void method3414(Buffer var1) {
 		while (true) {
 			int var2 = var1.readUnsignedByte();
 			if (var2 == 0) {
 				return;
 			}
 
-			this.method3387(var1, var2);
+			this.method3407(var1, var2);
 		}
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		descriptor = "(Lpd;II)V",
-		garbageValue = "141297465"
+		descriptor = "(Lpi;IB)V",
+		garbageValue = "114"
 	)
-	void method3387(Buffer var1, int var2) {
+	void method3407(Buffer var1, int var2) {
 		if (var2 == 2) {
 			this.persist = true;
 		}

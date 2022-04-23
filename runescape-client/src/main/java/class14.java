@@ -6,190 +6,122 @@ import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
-import net.runelite.rs.ScriptOpcodes;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
-@ObfuscatedName("p")
+@ObfuscatedName("d")
 public class class14 {
-	@ObfuscatedName("ug")
-	@Export("foundItemIds")
-	static short[] foundItemIds;
-	@ObfuscatedName("iu")
+	@ObfuscatedName("b")
+	@Export("Tiles_overlays")
+	static byte[][][] Tiles_overlays;
+	@ObfuscatedName("ia")
 	@ObfuscatedSignature(
-		descriptor = "Lql;"
+		descriptor = "Lqi;"
 	)
 	@Export("compass")
 	static SpritePixels compass;
 	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = 659185471
+		intValue = 225446733
 	)
-	final int field76;
-	@ObfuscatedName("o")
-	final String field74;
-	@ObfuscatedName("h")
+	final int field73;
+	@ObfuscatedName("c")
+	final String field69;
+	@ObfuscatedName("i")
 	final ThreadFactory field75;
-	@ObfuscatedName("g")
-	final ThreadPoolExecutor field73;
+	@ObfuscatedName("f")
+	final ThreadPoolExecutor field71;
 
 	public class14(String var1, int var2, int var3) {
-		this.field74 = var1;
-		this.field76 = var2;
+		this.field69 = var1;
+		this.field73 = var2;
 		this.field75 = new class16(this);
-		this.field73 = this.method176(var3);
+		this.field71 = this.method165(var3);
 	}
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(II)Ljava/util/concurrent/ThreadPoolExecutor;",
-		garbageValue = "-2010668855"
+		descriptor = "(IB)Ljava/util/concurrent/ThreadPoolExecutor;",
+		garbageValue = "-61"
 	)
-	final ThreadPoolExecutor method176(int var1) {
-		return new ThreadPoolExecutor(var1, var1, 0L, TimeUnit.MILLISECONDS, new ArrayBlockingQueue(this.field76), this.field75);
+	final ThreadPoolExecutor method165(int var1) {
+		return new ThreadPoolExecutor(var1, var1, 0L, TimeUnit.MILLISECONDS, new ArrayBlockingQueue(this.field73), this.field75);
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(Lk;I)Lm;",
-		garbageValue = "-964082167"
+		descriptor = "(Lr;B)Lx;",
+		garbageValue = "3"
 	)
-	public class19 method180(class10 var1) {
-		if (this.field73.getQueue().remainingCapacity() <= 0) {
-			System.err.println("REST thread pool queue is empty\r\nThread pool size " + this.field73.getCorePoolSize() + " Queue capacity " + this.field76);
+	public class19 method166(class10 var1) {
+		if (this.field71.getQueue().remainingCapacity() <= 0) {
+			System.err.println("REST thread pool queue is empty\r\nThread pool size " + this.field71.getCorePoolSize() + " Queue capacity " + this.field73);
 			return new class19("Queue full");
 		} else {
-			class19 var2 = new class19(this.field73.submit(new class20(this, var1)));
+			class19 var2 = new class19(this.field71.submit(new class20(this, var1)));
 			return var2;
 		}
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-302987445"
+		descriptor = "(B)V",
+		garbageValue = "-31"
 	)
-	public final void method178() {
+	public final void method167() {
 		try {
-			this.field73.shutdown();
+			this.field71.shutdown();
 		} catch (Exception var2) {
 			System.err.println("Error shutting down RestRequestService\r\n" + var2);
 		}
 
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("gi")
 	@ObfuscatedSignature(
-		descriptor = "(II)Z",
-		garbageValue = "-1120017674"
+		descriptor = "(Lky;III)V",
+		garbageValue = "-1754195222"
 	)
-	public static boolean method175(int var0) {
-		return var0 >= WorldMapDecorationType.field3519.id && var0 <= WorldMapDecorationType.field3511.id || var0 == WorldMapDecorationType.field3514.id;
-	}
+	@Export("checkIfMinimapClicked")
+	static final void checkIfMinimapClicked(Widget var0, int var1, int var2) {
+		if (Client.minimapState == 0 || Client.minimapState == 3) {
+			if (!Client.isMenuOpen && (MouseHandler.MouseHandler_lastButton == 1 || !GameBuild.mouseCam && MouseHandler.MouseHandler_lastButton == 4)) {
+				SpriteMask var3 = var0.getSpriteMask(true);
+				if (var3 == null) {
+					return;
+				}
 
-	@ObfuscatedName("w")
-	@ObfuscatedSignature(
-		descriptor = "(Lorg/json/JSONObject;Ljava/lang/String;B)[F",
-		garbageValue = "28"
-	)
-	static float[] method186(JSONObject var0, String var1) throws JSONException {
-		float[] var2 = new float[4];
-
-		try {
-			JSONArray var3 = var0.getJSONArray(var1);
-			var2[0] = (float)var3.optDouble(0, 0.0D);
-			var2[1] = (float)var3.optDouble(1, 0.0D);
-			var2[2] = (float)var3.optDouble(2, 1.0D);
-			var2[3] = (float)var3.optDouble(3, 1.0D);
-		} catch (JSONException var4) {
-			var2[0] = 0.0F;
-			var2[1] = 0.0F;
-			var2[2] = 1.0F;
-			var2[3] = 1.0F;
-		}
-
-		return var2;
-	}
-
-	@ObfuscatedName("ac")
-	@ObfuscatedSignature(
-		descriptor = "(ILbo;ZI)I",
-		garbageValue = "-1324190419"
-	)
-	static int method184(int var0, Script var1, boolean var2) {
-		int var3;
-		int var6;
-		int var9;
-		if (var0 == ScriptOpcodes.ENUM_STRING) {
-			class295.Interpreter_intStackSize -= 2;
-			var3 = Interpreter.Interpreter_intStack[class295.Interpreter_intStackSize];
-			var9 = Interpreter.Interpreter_intStack[class295.Interpreter_intStackSize + 1];
-			EnumComposition var10 = class268.getEnum(var3);
-			if (var10.outputType != 's') {
-			}
-
-			for (var6 = 0; var6 < var10.outputCount; ++var6) {
-				if (var9 == var10.keys[var6]) {
-					Interpreter.Interpreter_stringStack[++ChatChannel.Interpreter_stringStackSize - 1] = var10.strVals[var6];
-					var10 = null;
-					break;
+				int var4 = MouseHandler.MouseHandler_lastPressedX - var1;
+				int var5 = MouseHandler.MouseHandler_lastPressedY - var2;
+				if (var3.contains(var4, var5)) {
+					var4 -= var3.width / 2;
+					var5 -= var3.height / 2;
+					int var6 = Client.camAngleY & 2047;
+					int var7 = Rasterizer3D.Rasterizer3D_sine[var6];
+					int var8 = Rasterizer3D.Rasterizer3D_cosine[var6];
+					int var9 = var7 * var5 + var4 * var8 >> 11;
+					int var10 = var5 * var8 - var7 * var4 >> 11;
+					int var11 = var9 + GrandExchangeEvents.localPlayer.x >> 7;
+					int var12 = GrandExchangeEvents.localPlayer.y - var10 >> 7;
+					PacketBufferNode var13 = WorldMapSprite.getPacketBufferNode(ClientPacket.field2910, Client.packetWriter.isaacCipher);
+					var13.packetBuffer.writeByte(18);
+					var13.packetBuffer.method7710(GrandExchangeOfferOwnWorldComparator.baseX * 64 + var11);
+					var13.packetBuffer.writeShort(VarcInt.baseY * 64 + var12);
+					var13.packetBuffer.method7703(KeyHandler.KeyHandler_pressedKeys[82] ? (KeyHandler.KeyHandler_pressedKeys[81] ? 2 : 1) : 0);
+					var13.packetBuffer.writeByte(var4);
+					var13.packetBuffer.writeByte(var5);
+					var13.packetBuffer.writeShort(Client.camAngleY);
+					var13.packetBuffer.writeByte(57);
+					var13.packetBuffer.writeByte(0);
+					var13.packetBuffer.writeByte(0);
+					var13.packetBuffer.writeByte(89);
+					var13.packetBuffer.writeShort(GrandExchangeEvents.localPlayer.x);
+					var13.packetBuffer.writeShort(GrandExchangeEvents.localPlayer.y);
+					var13.packetBuffer.writeByte(63);
+					Client.packetWriter.addNode(var13);
+					Client.destinationX = var11;
+					Client.destinationY = var12;
 				}
 			}
 
-			if (var10 != null) {
-				Interpreter.Interpreter_stringStack[++ChatChannel.Interpreter_stringStackSize - 1] = var10.defaultStr;
-			}
-
-			return 1;
-		} else if (var0 != ScriptOpcodes.ENUM) {
-			if (var0 == ScriptOpcodes.ENUM_GETOUTPUTCOUNT) {
-				var3 = Interpreter.Interpreter_intStack[--class295.Interpreter_intStackSize];
-				EnumComposition var4 = class268.getEnum(var3);
-				Interpreter.Interpreter_intStack[++class295.Interpreter_intStackSize - 1] = var4.size();
-				return 1;
-			} else {
-				return 2;
-			}
-		} else {
-			class295.Interpreter_intStackSize -= 4;
-			var3 = Interpreter.Interpreter_intStack[class295.Interpreter_intStackSize];
-			var9 = Interpreter.Interpreter_intStack[class295.Interpreter_intStackSize + 1];
-			int var5 = Interpreter.Interpreter_intStack[class295.Interpreter_intStackSize + 2];
-			var6 = Interpreter.Interpreter_intStack[class295.Interpreter_intStackSize + 3];
-			EnumComposition var7 = class268.getEnum(var5);
-			if (var3 == var7.inputType && var9 == var7.outputType) {
-				for (int var8 = 0; var8 < var7.outputCount; ++var8) {
-					if (var6 == var7.keys[var8]) {
-						if (var9 == 115) {
-							Interpreter.Interpreter_stringStack[++ChatChannel.Interpreter_stringStackSize - 1] = var7.strVals[var8];
-						} else {
-							Interpreter.Interpreter_intStack[++class295.Interpreter_intStackSize - 1] = var7.intVals[var8];
-						}
-
-						var7 = null;
-						break;
-					}
-				}
-
-				if (var7 != null) {
-					if (var9 == 115) {
-						Interpreter.Interpreter_stringStack[++ChatChannel.Interpreter_stringStackSize - 1] = var7.defaultStr;
-					} else {
-						Interpreter.Interpreter_intStack[++class295.Interpreter_intStackSize - 1] = var7.defaultInt;
-					}
-				}
-
-				return 1;
-			} else {
-				if (var9 == 115) {
-					Interpreter.Interpreter_stringStack[++ChatChannel.Interpreter_stringStackSize - 1] = "null";
-				} else {
-					Interpreter.Interpreter_intStack[++class295.Interpreter_intStackSize - 1] = 0;
-				}
-
-				return 1;
-			}
 		}
 	}
 }

@@ -2,78 +2,99 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("dl")
+@ObfuscatedName("dy")
 public class class129 extends class128 {
-	@ObfuscatedName("s")
-	@ObfuscatedSignature(
-		descriptor = "Leh;"
-	)
-	static ClanSettings field1535;
 	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = -312799529
+		intValue = 1742059043
 	)
-	int field1536;
-	@ObfuscatedName("o")
-	boolean field1534;
+	int field1526;
+	@ObfuscatedName("c")
+	boolean field1522;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Lee;"
+		descriptor = "Les;"
 	)
 	final class131 this$0;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lee;)V"
+		descriptor = "(Les;)V"
 	)
 	class129(class131 var1) {
 		this.this$0 = var1;
-		this.field1536 = -1;
+		this.field1526 = -1;
 	}
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(Lpd;B)V",
-		garbageValue = "-73"
+		descriptor = "(Lpi;I)V",
+		garbageValue = "-413979452"
 	)
-	void vmethod3107(Buffer var1) {
-		this.field1536 = var1.readUnsignedShort();
-		this.field1534 = var1.readUnsignedByte() == 1;
+	void vmethod3168(Buffer var1) {
+		this.field1526 = var1.readUnsignedShort();
+		this.field1522 = var1.readUnsignedByte() == 1;
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(Leh;I)V",
-		garbageValue = "-1228032820"
+		descriptor = "(Lex;S)V",
+		garbageValue = "-10316"
 	)
-	void vmethod3104(ClanSettings var1) {
-		var1.method2925(this.field1536, this.field1534);
+	void vmethod3162(ClanSettings var1) {
+		var1.method3027(this.field1526, this.field1522);
 	}
 
-	@ObfuscatedName("ly")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;ZI)Ljava/lang/String;",
-		garbageValue = "76298290"
+		descriptor = "(CI)C",
+		garbageValue = "-1943199368"
 	)
-	static String method2849(String var0, boolean var1) {
-		String var2 = var1 ? "https://" : "http://";
-		if (Client.gameBuild == 1) {
-			var0 = var0 + "-wtrc";
-		} else if (Client.gameBuild == 2) {
-			var0 = var0 + "-wtqa";
-		} else if (Client.gameBuild == 3) {
-			var0 = var0 + "-wtwip";
-		} else if (Client.gameBuild == 5) {
-			var0 = var0 + "-wti";
-		} else if (Client.gameBuild == 4) {
-			var0 = "local";
+	static char method2863(char var0) {
+		return var0 != 181 && var0 != 402 ? Character.toTitleCase(var0) : var0;
+	}
+
+	@ObfuscatedName("jj")
+	@ObfuscatedSignature(
+		descriptor = "(Lky;IIIIIIB)V",
+		garbageValue = "-9"
+	)
+	static final void method2861(Widget var0, int var1, int var2, int var3, int var4, int var5, int var6) {
+		if (Client.field570) {
+			Client.alternativeScrollbarWidth = 32;
+		} else {
+			Client.alternativeScrollbarWidth = 0;
 		}
 
-		String var3 = "";
-		if (class429.field4593 != null) {
-			var3 = "/p=" + class429.field4593;
+		Client.field570 = false;
+		int var7;
+		if (MouseHandler.MouseHandler_currentButton == 1 || !GameBuild.mouseCam && MouseHandler.MouseHandler_currentButton == 4) {
+			if (var5 >= var1 && var5 < var1 + 16 && var6 >= var2 && var6 < var2 + 16) {
+				var0.scrollY -= 4;
+				class346.method6449(var0);
+			} else if (var5 >= var1 && var5 < var1 + 16 && var6 >= var3 + var2 - 16 && var6 < var3 + var2) {
+				var0.scrollY += 4;
+				class346.method6449(var0);
+			} else if (var5 >= var1 - Client.alternativeScrollbarWidth && var5 < Client.alternativeScrollbarWidth + var1 + 16 && var6 >= var2 + 16 && var6 < var3 + var2 - 16) {
+				var7 = var3 * (var3 - 32) / var4;
+				if (var7 < 8) {
+					var7 = 8;
+				}
+
+				int var8 = var6 - var2 - 16 - var7 / 2;
+				int var9 = var3 - 32 - var7;
+				var0.scrollY = var8 * (var4 - var3) / var9;
+				class346.method6449(var0);
+				Client.field570 = true;
+			}
 		}
 
-		String var4 = "runescape.com";
-		return var2 + var0 + "." + var4 + "/l=" + FriendSystem.clientLanguage + "/a=" + class7.field27 + var3 + "/";
+		if (Client.mouseWheelRotation != 0) {
+			var7 = var0.width;
+			if (var5 >= var1 - var7 && var6 >= var2 && var5 < var1 + 16 && var6 <= var3 + var2) {
+				var0.scrollY += Client.mouseWheelRotation * 45;
+				class346.method6449(var0);
+			}
+		}
+
 	}
 }

@@ -4,144 +4,150 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("mk")
+@ObfuscatedName("mu")
 @Implements("Timer")
 public class Timer {
+	@ObfuscatedName("nf")
+	@ObfuscatedGetter(
+		intValue = -1068147205
+	)
+	@Export("selectedSpellWidget")
+	static int selectedSpellWidget;
 	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		longValue = 4555750395140073021L
+		longValue = -3244593562421258965L
 	)
-	long field4185;
-	@ObfuscatedName("o")
+	long field4174;
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		longValue = -2846643341585363461L
+		longValue = 1641413866718548925L
 	)
-	long field4183;
-	@ObfuscatedName("h")
-	public boolean field4182;
-	@ObfuscatedName("g")
-	@ObfuscatedGetter(
-		longValue = 5666983759497851335L
-	)
-	long field4189;
-	@ObfuscatedName("l")
-	@ObfuscatedGetter(
-		longValue = 796750526860624939L
-	)
-	long field4186;
-	@ObfuscatedName("n")
-	@ObfuscatedGetter(
-		longValue = -3256458823420726931L
-	)
-	long field4187;
-	@ObfuscatedName("d")
-	@ObfuscatedGetter(
-		intValue = 283694851
-	)
-	int field4188;
+	long field4172;
+	@ObfuscatedName("i")
+	public boolean field4179;
 	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = -2009036561
+		longValue = 7215038072955031607L
 	)
-	int field4184;
-	@ObfuscatedName("u")
+	long field4173;
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = 43489845
+		longValue = -4614957419067559229L
 	)
-	int field4190;
-	@ObfuscatedName("r")
+	long field4175;
+	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = 425168073
+		longValue = -584897100758161969L
 	)
-	int field4191;
+	long field4171;
+	@ObfuscatedName("s")
+	@ObfuscatedGetter(
+		intValue = 225650281
+	)
+	int field4177;
+	@ObfuscatedName("l")
+	@ObfuscatedGetter(
+		intValue = -648366881
+	)
+	int field4178;
+	@ObfuscatedName("q")
+	@ObfuscatedGetter(
+		intValue = -809978943
+	)
+	int field4176;
+	@ObfuscatedName("o")
+	@ObfuscatedGetter(
+		intValue = 1244988383
+	)
+	int field4180;
 
 	public Timer() {
-		this.field4185 = -1L;
-		this.field4183 = -1L;
-		this.field4182 = false;
-		this.field4189 = 0L;
-		this.field4186 = 0L;
-		this.field4187 = 0L;
-		this.field4188 = 0;
-		this.field4184 = 0;
-		this.field4190 = 0;
-		this.field4191 = 0;
+		this.field4174 = -1L;
+		this.field4172 = -1L;
+		this.field4179 = false;
+		this.field4173 = 0L;
+		this.field4175 = 0L;
+		this.field4171 = 0L;
+		this.field4177 = 0;
+		this.field4178 = 0;
+		this.field4176 = 0;
+		this.field4180 = 0;
 	}
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "2052102546"
+		descriptor = "(B)V",
+		garbageValue = "1"
 	)
-	public void method6594() {
-		this.field4185 = WorldMapSprite.method4989();
+	public void method6574() {
+		this.field4174 = class136.method2931();
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("c")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "369845371"
+	)
+	public void method6562() {
+		if (this.field4174 != -1L) {
+			this.field4175 = class136.method2931() - this.field4174;
+			this.field4174 = -1L;
+		}
+
+	}
+
+	@ObfuscatedName("i")
+	@ObfuscatedSignature(
+		descriptor = "(II)V",
+		garbageValue = "-52559849"
+	)
+	public void method6563(int var1) {
+		this.field4172 = class136.method2931();
+		this.field4177 = var1;
+	}
+
+	@ObfuscatedName("f")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "-929974829"
+	)
+	public void method6564() {
+		if (this.field4172 != -1L) {
+			this.field4173 = class136.method2931() - this.field4172;
+			this.field4172 = -1L;
+		}
+
+		++this.field4176;
+		this.field4179 = true;
+	}
+
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
 		descriptor = "(B)V",
-		garbageValue = "8"
+		garbageValue = "-127"
 	)
-	public void method6595() {
-		if (this.field4185 != -1L) {
-			this.field4186 = WorldMapSprite.method4989() - this.field4185;
-			this.field4185 = -1L;
-		}
-
-	}
-
-	@ObfuscatedName("h")
-	@ObfuscatedSignature(
-		descriptor = "(IS)V",
-		garbageValue = "-20934"
-	)
-	public void method6596(int var1) {
-		this.field4183 = WorldMapSprite.method4989();
-		this.field4188 = var1;
-	}
-
-	@ObfuscatedName("g")
-	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "1987458157"
-	)
-	public void method6597() {
-		if (this.field4183 != -1L) {
-			this.field4189 = WorldMapSprite.method4989() - this.field4183;
-			this.field4183 = -1L;
-		}
-
-		++this.field4190;
-		this.field4182 = true;
-	}
-
-	@ObfuscatedName("l")
-	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "85953838"
-	)
-	public void method6593() {
-		this.field4182 = false;
-		this.field4184 = 0;
+	public void method6580() {
+		this.field4179 = false;
+		this.field4178 = 0;
 	}
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
 		descriptor = "(I)V",
-		garbageValue = "-687283504"
+		garbageValue = "-1687652356"
 	)
-	public void method6598() {
-		this.method6597();
+	public void method6566() {
+		this.method6564();
 	}
 
-	@ObfuscatedName("d")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "(Lpd;I)V",
-		garbageValue = "-893944716"
+		descriptor = "(Lpi;I)V",
+		garbageValue = "-598240073"
 	)
 	@Export("write")
 	public void write(Buffer var1) {
-		long var2 = this.field4186;
+		long var2 = this.field4175;
 		var2 /= 10L;
 		if (var2 < 0L) {
 			var2 = 0L;
@@ -150,7 +156,7 @@ public class Timer {
 		}
 
 		var1.writeShort((int)var2);
-		long var4 = this.field4189;
+		long var4 = this.field4173;
 		var4 /= 10L;
 		if (var4 < 0L) {
 			var4 = 0L;
@@ -159,7 +165,7 @@ public class Timer {
 		}
 
 		var1.writeShort((int)var4);
-		long var6 = this.field4187;
+		long var6 = this.field4171;
 		var6 /= 10L;
 		if (var6 < 0L) {
 			var6 = 0L;
@@ -168,9 +174,9 @@ public class Timer {
 		}
 
 		var1.writeShort((int)var6);
-		var1.writeShort(this.field4188);
-		var1.writeShort(this.field4184);
-		var1.writeShort(this.field4190);
-		var1.writeShort(this.field4191);
+		var1.writeShort(this.field4177);
+		var1.writeShort(this.field4178);
+		var1.writeShort(this.field4176);
+		var1.writeShort(this.field4180);
 	}
 }

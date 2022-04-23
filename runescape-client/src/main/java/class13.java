@@ -8,16 +8,22 @@ import net.runelite.mapping.ObfuscatedSignature;
 import org.bouncycastle.crypto.tls.DefaultTlsClient;
 import org.bouncycastle.crypto.tls.TlsAuthentication;
 
-@ObfuscatedName("j")
+@ObfuscatedName("k")
 class class13 extends DefaultTlsClient {
+	@ObfuscatedName("gk")
+	@ObfuscatedSignature(
+		descriptor = "Lmd;"
+	)
+	@Export("fontPlain12")
+	static Font fontPlain12;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Lc;"
+		descriptor = "Lw;"
 	)
 	final class12 this$1;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lc;)V"
+		descriptor = "(Lw;)V"
 	)
 	class13(class12 var1) {
 		this.this$1 = var1;
@@ -45,49 +51,70 @@ class class13 extends DefaultTlsClient {
 		return new class11(this);
 	}
 
-	@ObfuscatedName("la")
+	@ObfuscatedName("gs")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;ZB)V",
-		garbageValue = "1"
+		descriptor = "(IIII)V",
+		garbageValue = "-547008186"
 	)
-	@Export("findItemDefinitions")
-	static void findItemDefinitions(String var0, boolean var1) {
-		var0 = var0.toLowerCase();
-		short[] var2 = new short[16];
-		int var3 = 0;
-
-		for (int var4 = 0; var4 < ArchiveLoader.ItemComposition_fileCount; ++var4) {
-			ItemComposition var9 = class67.ItemComposition_get(var4);
-			if ((!var1 || var9.isTradable) && var9.noteTemplate == -1 && var9.name.toLowerCase().indexOf(var0) != -1) {
-				if (var3 >= 250) {
-					PendingSpawn.foundItemIdCount = -1;
-					class14.foundItemIds = null;
-					return;
-				}
-
-				if (var3 >= var2.length) {
-					short[] var6 = new short[var2.length * 2];
-
-					for (int var7 = 0; var7 < var3; ++var7) {
-						var6[var7] = var2[var7];
-					}
-
-					var2 = var6;
-				}
-
-				var2[var3++] = (short)var4;
+	static final void method163(int var0, int var1, int var2) {
+		if (WorldMapLabelSize.cameraX < var0) {
+			WorldMapLabelSize.cameraX = (var0 - WorldMapLabelSize.cameraX) * ArchiveDisk.field4309 / 1000 + WorldMapLabelSize.cameraX + Script.field955;
+			if (WorldMapLabelSize.cameraX > var0) {
+				WorldMapLabelSize.cameraX = var0;
 			}
 		}
 
-		class14.foundItemIds = var2;
-		MouseRecorder.foundItemIndex = 0;
-		PendingSpawn.foundItemIdCount = var3;
-		String[] var8 = new String[PendingSpawn.foundItemIdCount];
-
-		for (int var5 = 0; var5 < PendingSpawn.foundItemIdCount; ++var5) {
-			var8[var5] = class67.ItemComposition_get(var2[var5]).name;
+		if (WorldMapLabelSize.cameraX > var0) {
+			WorldMapLabelSize.cameraX -= (WorldMapLabelSize.cameraX - var0) * ArchiveDisk.field4309 / 1000 + Script.field955;
+			if (WorldMapLabelSize.cameraX < var0) {
+				WorldMapLabelSize.cameraX = var0;
+			}
 		}
 
-		class193.method3880(var8, class14.foundItemIds);
+		if (ItemContainer.cameraY < var1) {
+			ItemContainer.cameraY = (var1 - ItemContainer.cameraY) * ArchiveDisk.field4309 / 1000 + ItemContainer.cameraY + Script.field955;
+			if (ItemContainer.cameraY > var1) {
+				ItemContainer.cameraY = var1;
+			}
+		}
+
+		if (ItemContainer.cameraY > var1) {
+			ItemContainer.cameraY -= (ItemContainer.cameraY - var1) * ArchiveDisk.field4309 / 1000 + Script.field955;
+			if (ItemContainer.cameraY < var1) {
+				ItemContainer.cameraY = var1;
+			}
+		}
+
+		if (class154.cameraZ < var2) {
+			class154.cameraZ = (var2 - class154.cameraZ) * ArchiveDisk.field4309 / 1000 + class154.cameraZ + Script.field955;
+			if (class154.cameraZ > var2) {
+				class154.cameraZ = var2;
+			}
+		}
+
+		if (class154.cameraZ > var2) {
+			class154.cameraZ -= (class154.cameraZ - var2) * ArchiveDisk.field4309 / 1000 + Script.field955;
+			if (class154.cameraZ < var2) {
+				class154.cameraZ = var2;
+			}
+		}
+
+	}
+
+	@ObfuscatedName("hs")
+	@ObfuscatedSignature(
+		descriptor = "(IIB)I",
+		garbageValue = "109"
+	)
+	static int method164(int var0, int var1) {
+		int var2 = var1 - 334;
+		if (var2 < 0) {
+			var2 = 0;
+		} else if (var2 > 100) {
+			var2 = 100;
+		}
+
+		int var3 = (Client.zoomWidth - Client.zoomHeight) * var2 / 100 + Client.zoomHeight;
+		return var0 * var3 / 256;
 	}
 }

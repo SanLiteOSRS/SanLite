@@ -1,31 +1,20 @@
-import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("mg")
+@ObfuscatedName("mc")
 public class class358 {
-	@ObfuscatedName("ai")
+	@ObfuscatedName("lf")
 	@ObfuscatedSignature(
-		descriptor = "(IB)V",
-		garbageValue = "-16"
+		descriptor = "(Lky;II)Ljava/lang/String;",
+		garbageValue = "-707928815"
 	)
-	@Export("runWidgetOnLoadListener")
-	static void runWidgetOnLoadListener(int var0) {
-		if (var0 != -1) {
-			if (MusicPatchNode2.loadInterface(var0)) {
-				Widget[] var1 = EnumComposition.Widget_interfaceComponents[var0];
-
-				for (int var2 = 0; var2 < var1.length; ++var2) {
-					Widget var3 = var1[var2];
-					if (var3.onLoad != null) {
-						ScriptEvent var4 = new ScriptEvent();
-						var4.widget = var3;
-						var4.args = var3.onLoad;
-						class175.runScript(var4, 5000000, 0);
-					}
-				}
-
-			}
+	static String method6583(Widget var0, int var1) {
+		int var3 = class326.getWidgetFlags(var0);
+		boolean var2 = (var3 >> var1 + 1 & 1) != 0;
+		if (!var2 && var0.onOp == null) {
+			return null;
+		} else {
+			return var0.actions != null && var0.actions.length > var1 && var0.actions[var1] != null && var0.actions[var1].trim().length() != 0 ? var0.actions[var1] : null;
 		}
 	}
 }

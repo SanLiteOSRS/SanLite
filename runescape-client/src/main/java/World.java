@@ -1,75 +1,67 @@
+import java.io.InputStream;
+import java.io.OutputStreamWriter;
+import java.net.URL;
+import java.net.URLConnection;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("br")
+@ObfuscatedName("bb")
 @Implements("World")
 public class World {
-	@ObfuscatedName("l")
-	@ObfuscatedSignature(
-		descriptor = "[Lbr;"
-	)
-	@Export("World_worlds")
-	static World[] World_worlds;
 	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = 708983157
+		intValue = -99479259
 	)
 	@Export("World_count")
 	static int World_count;
-	@ObfuscatedName("d")
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = 1412956873
+		intValue = 666094335
 	)
 	@Export("World_listCount")
 	static int World_listCount;
-	@ObfuscatedName("f")
+	@ObfuscatedName("l")
 	@Export("World_sortOption2")
 	static int[] World_sortOption2;
-	@ObfuscatedName("u")
+	@ObfuscatedName("q")
 	@Export("World_sortOption1")
 	static int[] World_sortOption1;
-	@ObfuscatedName("eo")
-	@ObfuscatedSignature(
-		descriptor = "Llu;"
-	)
-	@Export("archive10")
-	static Archive archive10;
-	@ObfuscatedName("k")
+	@ObfuscatedName("r")
 	@ObfuscatedGetter(
-		intValue = 1791268419
+		intValue = 2132870801
 	)
 	@Export("id")
 	int id;
-	@ObfuscatedName("x")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = 1457180793
+		intValue = -1264114231
 	)
 	@Export("properties")
 	int properties;
-	@ObfuscatedName("c")
+	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		intValue = 1283993585
+		intValue = 1643368369
 	)
 	@Export("population")
 	int population;
-	@ObfuscatedName("j")
+	@ObfuscatedName("k")
 	@Export("host")
 	String host;
-	@ObfuscatedName("p")
+	@ObfuscatedName("d")
 	@Export("activity")
 	String activity;
-	@ObfuscatedName("s")
+	@ObfuscatedName("m")
 	@ObfuscatedGetter(
-		intValue = -658464583
+		intValue = 786542067
 	)
 	@Export("location")
 	int location;
-	@ObfuscatedName("b")
+	@ObfuscatedName("u")
 	@ObfuscatedGetter(
-		intValue = -1286682885
+		intValue = -154567813
 	)
 	@Export("index")
 	int index;
@@ -84,90 +76,137 @@ public class World {
 	World() {
 	}
 
-	@ObfuscatedName("r")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "(I)Z",
-		garbageValue = "1842412760"
+		descriptor = "(B)Z",
+		garbageValue = "1"
 	)
 	@Export("isMembersOnly")
 	boolean isMembersOnly() {
 		return (1 & this.properties) != 0;
 	}
 
-	@ObfuscatedName("k")
+	@ObfuscatedName("r")
 	@ObfuscatedSignature(
 		descriptor = "(I)Z",
-		garbageValue = "728871441"
+		garbageValue = "-1237619504"
 	)
-	boolean method1628() {
+	boolean method1637() {
 		return (2 & this.properties) != 0;
 	}
 
-	@ObfuscatedName("x")
+	@ObfuscatedName("p")
 	@ObfuscatedSignature(
 		descriptor = "(I)Z",
-		garbageValue = "-1860289724"
+		garbageValue = "1559605214"
 	)
 	@Export("isPvp")
 	boolean isPvp() {
 		return (4 & this.properties) != 0;
 	}
 
-	@ObfuscatedName("c")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		descriptor = "(I)Z",
-		garbageValue = "-1727369163"
+		descriptor = "(B)Z",
+		garbageValue = "-3"
 	)
-	boolean method1612() {
+	boolean method1639() {
 		return (8 & this.properties) != 0;
 	}
 
-	@ObfuscatedName("j")
+	@ObfuscatedName("k")
 	@ObfuscatedSignature(
 		descriptor = "(I)Z",
-		garbageValue = "-1493123434"
+		garbageValue = "-1091774244"
 	)
 	@Export("isDeadman")
 	boolean isDeadman() {
 		return (536870912 & this.properties) != 0;
 	}
 
-	@ObfuscatedName("p")
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
 		descriptor = "(I)Z",
-		garbageValue = "-1898535773"
+		garbageValue = "-980357381"
 	)
 	@Export("isBeta")
 	boolean isBeta() {
 		return (33554432 & this.properties) != 0;
 	}
 
-	@ObfuscatedName("s")
+	@ObfuscatedName("m")
 	@ObfuscatedSignature(
 		descriptor = "(B)Z",
-		garbageValue = "116"
+		garbageValue = "-67"
 	)
-	boolean method1638() {
+	boolean method1642() {
 		return (1073741824 & this.properties) != 0;
 	}
 
-	@ObfuscatedName("d")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-200801552"
+		descriptor = "(I)J",
+		garbageValue = "248587859"
 	)
-	public static void method1655() {
+	static long method1678() {
 		try {
-			JagexCache.JagexCache_dat2File.close();
+			URL var0 = new URL(ArchiveLoader.method2063("services", false) + "m=accountappeal/login.ws");
+			URLConnection var1 = var0.openConnection();
+			var1.setRequestProperty("connection", "close");
+			var1.setDoInput(true);
+			var1.setDoOutput(true);
+			var1.setConnectTimeout(5000);
+			OutputStreamWriter var2 = new OutputStreamWriter(var1.getOutputStream());
+			var2.write("data1=req");
+			var2.flush();
+			InputStream var3 = var1.getInputStream();
+			Buffer var4 = new Buffer(new byte[1000]);
 
-			for (int var0 = 0; var0 < JagexCache.idxCount; ++var0) {
-				class194.JagexCache_idxFiles[var0].close();
-			}
+			do {
+				int var5 = var3.read(var4.array, var4.offset, 1000 - var4.offset);
+				if (var5 == -1) {
+					var4.offset = 0;
+					long var7 = var4.readLong();
+					return var7;
+				}
 
-			JagexCache.JagexCache_idx255File.close();
-			JagexCache.JagexCache_randomDat.close();
-		} catch (Exception var2) {
+				var4.offset += var5;
+			} while(var4.offset < 1000);
+
+			return 0L;
+		} catch (Exception var9) {
+			return 0L;
 		}
+	}
 
+	@ObfuscatedName("c")
+	@ObfuscatedSignature(
+		descriptor = "(IB)I",
+		garbageValue = "-88"
+	)
+	public static int method1673(int var0) {
+		long var2 = ViewportMouse.ViewportMouse_entityTags[var0];
+		int var1 = (int)(var2 >>> 0 & 127L);
+		return var1;
+	}
+
+	@ObfuscatedName("i")
+	@ObfuscatedSignature(
+		descriptor = "(IIII)I",
+		garbageValue = "2080667319"
+	)
+	public static int method1679(int var0, int var1, int var2) {
+		int var3 = class54.method1078(var2 - var1 + 1);
+		var3 <<= var1;
+		return var0 & ~var3;
+	}
+
+	@ObfuscatedName("i")
+	@ObfuscatedSignature(
+		descriptor = "(I)I",
+		garbageValue = "1622392704"
+	)
+	public static int method1677() {
+		return ++MouseHandler.MouseHandler_idleCycles - 1;
 	}
 }

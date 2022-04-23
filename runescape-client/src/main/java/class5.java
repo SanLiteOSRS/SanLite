@@ -7,38 +7,38 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("n")
 public class class5 implements class2 {
 	@ObfuscatedName("v")
-	final MessageDigest field14;
+	final MessageDigest field9;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lu;)V"
+		descriptor = "(Lq;)V"
 	)
 	class5(class8 var1) {
-		this.field14 = this.method31();
+		this.field9 = this.method23();
 	}
 
 	@ObfuscatedName("v")
-	boolean method21(int var1, String var2, long var3) {
-		byte[] var5 = this.method23(var2, var3);
-		return method22(var5) >= var1;
+	boolean method19(int var1, String var2, long var3) {
+		byte[] var5 = this.method22(var2, var3);
+		return method33(var5) >= var1;
 	}
 
-	@ObfuscatedName("g")
-	byte[] method23(String var1, long var2) {
+	@ObfuscatedName("f")
+	byte[] method22(String var1, long var2) {
 		StringBuilder var4 = new StringBuilder();
 		var4.append(var1).append(Long.toHexString(var2));
-		this.field14.reset();
+		this.field9.reset();
 
 		try {
-			this.field14.update(var4.toString().getBytes("UTF-8"));
+			this.field9.update(var4.toString().getBytes("UTF-8"));
 		} catch (UnsupportedEncodingException var6) {
 			var6.printStackTrace();
 		}
 
-		return this.field14.digest();
+		return this.field9.digest();
 	}
 
-	@ObfuscatedName("l")
-	MessageDigest method31() {
+	@ObfuscatedName("b")
+	MessageDigest method23() {
 		try {
 			return MessageDigest.getInstance("SHA-256");
 		} catch (NoSuchAlgorithmException var2) {
@@ -47,14 +47,14 @@ public class class5 implements class2 {
 		}
 	}
 
-	@ObfuscatedName("o")
-	static int method22(byte[] var0) {
+	@ObfuscatedName("c")
+	static int method33(byte[] var0) {
 		int var1 = 0;
 		byte[] var2 = var0;
 
 		for (int var3 = 0; var3 < var2.length; ++var3) {
 			byte var4 = var2[var3];
-			int var5 = method20(var4);
+			int var5 = method26(var4);
 			var1 += var5;
 			if (var5 != 8) {
 				break;
@@ -64,8 +64,8 @@ public class class5 implements class2 {
 		return var1;
 	}
 
-	@ObfuscatedName("h")
-	static int method20(byte var0) {
+	@ObfuscatedName("i")
+	static int method26(byte var0) {
 		int var1 = 0;
 		if (var0 == 0) {
 			var1 = 8;

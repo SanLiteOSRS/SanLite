@@ -1,48 +1,59 @@
+import java.awt.FontMetrics;
+import java.util.concurrent.ScheduledExecutorService;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("il")
+@ObfuscatedName("hd")
 @Implements("WorldMapSection1")
 public class WorldMapSection1 implements WorldMapSection {
-	@ObfuscatedName("w")
-	@Export("cacheSubPaths")
-	public static String[] cacheSubPaths;
+	@ObfuscatedName("l")
+	@Export("soundSystemExecutor")
+	static ScheduledExecutorService soundSystemExecutor;
+	@ObfuscatedName("m")
+	@ObfuscatedGetter(
+		intValue = -1670816889
+	)
+	@Export("cacheGamebuild")
+	static int cacheGamebuild;
+	@ObfuscatedName("ak")
+	@Export("loginScreenFontMetrics")
+	static FontMetrics loginScreenFontMetrics;
 	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = 337700621
+		intValue = -660682519
 	)
 	@Export("minPlane")
 	int minPlane;
-	@ObfuscatedName("o")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = -871255259
+		intValue = 1314045431
 	)
 	@Export("planes")
 	int planes;
-	@ObfuscatedName("h")
+	@ObfuscatedName("i")
 	@ObfuscatedGetter(
-		intValue = 380425473
+		intValue = 911829811
 	)
 	@Export("regionStartX")
 	int regionStartX;
-	@ObfuscatedName("g")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = -925378869
+		intValue = -1785911481
 	)
 	@Export("regionStartY")
 	int regionStartY;
-	@ObfuscatedName("l")
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = 1275046463
+		intValue = 587301171
 	)
 	@Export("regionEndX")
 	int regionEndX;
 	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = -899633607
+		intValue = 1342465229
 	)
 	@Export("regionEndY")
 	int regionEndY;
@@ -52,8 +63,8 @@ public class WorldMapSection1 implements WorldMapSection {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(Lhw;I)V",
-		garbageValue = "-1521793701"
+		descriptor = "(Lgu;I)V",
+		garbageValue = "964088357"
 	)
 	@Export("expandBounds")
 	public void expandBounds(WorldMapArea var1) {
@@ -75,10 +86,10 @@ public class WorldMapSection1 implements WorldMapSection {
 
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
 		descriptor = "(IIII)Z",
-		garbageValue = "-2091891709"
+		garbageValue = "-1337137401"
 	)
 	@Export("containsCoord")
 	public boolean containsCoord(int var1, int var2, int var3) {
@@ -89,20 +100,20 @@ public class WorldMapSection1 implements WorldMapSection {
 		}
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		descriptor = "(IIB)Z",
-		garbageValue = "-59"
+		descriptor = "(III)Z",
+		garbageValue = "1769831605"
 	)
 	@Export("containsPosition")
 	public boolean containsPosition(int var1, int var2) {
 		return var1 >> 6 == this.regionEndX && var2 >> 6 == this.regionEndY;
 	}
 
-	@ObfuscatedName("g")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
 		descriptor = "(IIII)[I",
-		garbageValue = "-604533765"
+		garbageValue = "1941144122"
 	)
 	@Export("getBorderTileLengths")
 	public int[] getBorderTileLengths(int var1, int var2, int var3) {
@@ -114,10 +125,10 @@ public class WorldMapSection1 implements WorldMapSection {
 		}
 	}
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		descriptor = "(III)Lko;",
-		garbageValue = "-41254697"
+		descriptor = "(III)Lks;",
+		garbageValue = "-670243838"
 	)
 	@Export("coord")
 	public Coord coord(int var1, int var2) {
@@ -132,8 +143,8 @@ public class WorldMapSection1 implements WorldMapSection {
 
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "(Lpd;B)V",
-		garbageValue = "119"
+		descriptor = "(Lpi;I)V",
+		garbageValue = "-860121653"
 	)
 	@Export("read")
 	public void read(Buffer var1) {
@@ -146,12 +157,247 @@ public class WorldMapSection1 implements WorldMapSection {
 		this.postRead();
 	}
 
-	@ObfuscatedName("d")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "16"
+		descriptor = "(I)V",
+		garbageValue = "1338654039"
 	)
 	@Export("postRead")
 	void postRead() {
+	}
+
+	@ObfuscatedName("b")
+	@ObfuscatedSignature(
+		descriptor = "(IB)V",
+		garbageValue = "40"
+	)
+	@Export("clearItemContainer")
+	static void clearItemContainer(int var0) {
+		ItemContainer var1 = (ItemContainer)ItemContainer.itemContainers.get((long)var0);
+		if (var1 != null) {
+			for (int var2 = 0; var2 < var1.ids.length; ++var2) {
+				var1.ids[var2] = -1;
+				var1.quantities[var2] = 0;
+			}
+
+		}
+	}
+
+	@ObfuscatedName("ix")
+	@ObfuscatedSignature(
+		descriptor = "(ZLpz;B)V",
+		garbageValue = "71"
+	)
+	@Export("updateNpcs")
+	static final void updateNpcs(boolean var0, PacketBuffer var1) {
+		Client.field626 = 0;
+		Client.field547 = 0;
+		PacketBuffer var2 = Client.packetWriter.packetBuffer;
+		var2.importIndex();
+		int var3 = var2.readBits(8);
+		int var4;
+		if (var3 < Client.npcCount) {
+			for (var4 = var3; var4 < Client.npcCount; ++var4) {
+				Client.field627[++Client.field626 - 1] = Client.npcIndices[var4];
+			}
+		}
+
+		if (var3 > Client.npcCount) {
+			throw new RuntimeException("");
+		} else {
+			Client.npcCount = 0;
+
+			int var5;
+			int var7;
+			int var8;
+			int var10;
+			for (var4 = 0; var4 < var3; ++var4) {
+				var5 = Client.npcIndices[var4];
+				NPC var13 = Client.npcs[var5];
+				var7 = var2.readBits(1);
+				if (var7 == 0) {
+					Client.npcIndices[++Client.npcCount - 1] = var5;
+					var13.npcCycle = Client.cycle;
+				} else {
+					var8 = var2.readBits(2);
+					if (var8 == 0) {
+						Client.npcIndices[++Client.npcCount - 1] = var5;
+						var13.npcCycle = Client.cycle;
+						Client.field548[++Client.field547 - 1] = var5;
+					} else {
+						int var9;
+						if (var8 == 1) {
+							Client.npcIndices[++Client.npcCount - 1] = var5;
+							var13.npcCycle = Client.cycle;
+							var9 = var2.readBits(3);
+							var13.method2347(var9, class193.field2185);
+							var10 = var2.readBits(1);
+							if (var10 == 1) {
+								Client.field548[++Client.field547 - 1] = var5;
+							}
+						} else if (var8 == 2) {
+							Client.npcIndices[++Client.npcCount - 1] = var5;
+							var13.npcCycle = Client.cycle;
+							if (var2.readBits(1) == 1) {
+								var9 = var2.readBits(3);
+								var13.method2347(var9, class193.field2187);
+								var10 = var2.readBits(3);
+								var13.method2347(var10, class193.field2187);
+							} else {
+								var9 = var2.readBits(3);
+								var13.method2347(var9, class193.field2184);
+							}
+
+							var9 = var2.readBits(1);
+							if (var9 == 1) {
+								Client.field548[++Client.field547 - 1] = var5;
+							}
+						} else if (var8 == 3) {
+							Client.field627[++Client.field626 - 1] = var5;
+						}
+					}
+				}
+			}
+
+			int var11;
+			while (var1.bitsRemaining(Client.packetWriter.serverPacketLength) >= 27) {
+				var11 = var1.readBits(15);
+				if (var11 == 32767) {
+					break;
+				}
+
+				boolean var14 = false;
+				if (Client.npcs[var11] == null) {
+					Client.npcs[var11] = new NPC();
+					var14 = true;
+				}
+
+				NPC var12 = Client.npcs[var11];
+				Client.npcIndices[++Client.npcCount - 1] = var11;
+				var12.npcCycle = Client.cycle;
+				int var6;
+				boolean var15;
+				if (class431.field4602) {
+					if (var0) {
+						var6 = var1.readBits(8);
+						if (var6 > 127) {
+							var6 -= 256;
+						}
+					} else {
+						var6 = var1.readBits(5);
+						if (var6 > 15) {
+							var6 -= 32;
+						}
+					}
+
+					var5 = var1.readBits(1);
+					var8 = Client.defaultRotations[var1.readBits(3)];
+					if (var14) {
+						var12.orientation = var12.rotation = var8;
+					}
+
+					var12.definition = KeyHandler.getNpcDefinition(var1.readBits(14));
+					if (var0) {
+						var7 = var1.readBits(8);
+						if (var7 > 127) {
+							var7 -= 256;
+						}
+					} else {
+						var7 = var1.readBits(5);
+						if (var7 > 15) {
+							var7 -= 32;
+						}
+					}
+
+					var15 = var1.readBits(1) == 1;
+					if (var15) {
+						var1.readBits(32);
+					}
+
+					var10 = var1.readBits(1);
+					if (var10 == 1) {
+						Client.field548[++Client.field547 - 1] = var11;
+					}
+				} else {
+					var5 = var1.readBits(1);
+					var8 = var1.readBits(1);
+					if (var8 == 1) {
+						Client.field548[++Client.field547 - 1] = var11;
+					}
+
+					if (var0) {
+						var7 = var1.readBits(8);
+						if (var7 > 127) {
+							var7 -= 256;
+						}
+					} else {
+						var7 = var1.readBits(5);
+						if (var7 > 15) {
+							var7 -= 32;
+						}
+					}
+
+					var15 = var1.readBits(1) == 1;
+					if (var15) {
+						var1.readBits(32);
+					}
+
+					if (var0) {
+						var6 = var1.readBits(8);
+						if (var6 > 127) {
+							var6 -= 256;
+						}
+					} else {
+						var6 = var1.readBits(5);
+						if (var6 > 15) {
+							var6 -= 32;
+						}
+					}
+
+					var12.definition = KeyHandler.getNpcDefinition(var1.readBits(14));
+					var10 = Client.defaultRotations[var1.readBits(3)];
+					if (var14) {
+						var12.orientation = var12.rotation = var10;
+					}
+				}
+
+				var12.field1150 = var12.definition.size * 760325307;
+				var12.field1175 = var12.definition.rotation;
+				if (var12.field1175 == 0) {
+					var12.rotation = 0;
+				}
+
+				var12.walkSequence = var12.definition.walkSequence;
+				var12.walkBackSequence = var12.definition.walkBackSequence;
+				var12.walkLeftSequence = var12.definition.walkLeftSequence;
+				var12.walkRightSequence = var12.definition.walkRightSequence;
+				var12.idleSequence = var12.definition.idleSequence;
+				var12.turnLeftSequence = var12.definition.turnLeftSequence;
+				var12.turnRightSequence = var12.definition.turnRightSequence;
+				var12.method2348(GrandExchangeEvents.localPlayer.pathX[0] + var6, GrandExchangeEvents.localPlayer.pathY[0] + var7, var5 == 1);
+			}
+
+			var1.exportIndex();
+			MouseHandler.method593(var1);
+
+			for (var11 = 0; var11 < Client.field626; ++var11) {
+				var3 = Client.field627[var11];
+				if (Client.npcs[var3].npcCycle != Client.cycle) {
+					Client.npcs[var3].definition = null;
+					Client.npcs[var3] = null;
+				}
+			}
+
+			if (var1.offset != Client.packetWriter.serverPacketLength) {
+				throw new RuntimeException(var1.offset + "," + Client.packetWriter.serverPacketLength);
+			} else {
+				for (var11 = 0; var11 < Client.npcCount; ++var11) {
+					if (Client.npcs[Client.npcIndices[var11]] == null) {
+						throw new RuntimeException(var11 + "," + Client.npcCount);
+					}
+				}
+
+			}
+		}
 	}
 }

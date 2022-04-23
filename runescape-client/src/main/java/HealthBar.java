@@ -1,35 +1,29 @@
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cc")
+@ObfuscatedName("ci")
 @Implements("HealthBar")
 public class HealthBar extends Node {
-	@ObfuscatedName("f")
-	@Export("ItemComposition_inMembersWorld")
-	static boolean ItemComposition_inMembersWorld;
-	@ObfuscatedName("k")
-	@ObfuscatedGetter(
-		intValue = 1015592217
-	)
-	static int field1251;
-	@ObfuscatedName("h")
+	@ObfuscatedName("bc")
+	@Export("otp")
+	static String otp;
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		descriptor = "Lfy;"
+		descriptor = "Lfv;"
 	)
 	@Export("definition")
 	HealthBarDefinition definition;
-	@ObfuscatedName("g")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "Lld;"
+		descriptor = "Llk;"
 	)
 	@Export("updates")
 	IterableNodeDeque updates;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lfy;)V"
+		descriptor = "(Lfv;)V"
 	)
 	HealthBar(HealthBarDefinition var1) {
 		this.updates = new IterableNodeDeque();
@@ -39,7 +33,7 @@ public class HealthBar extends Node {
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
 		descriptor = "(IIIIB)V",
-		garbageValue = "-121"
+		garbageValue = "-72"
 	)
 	@Export("put")
 	void put(int var1, int var2, int var3, int var4) {
@@ -72,10 +66,10 @@ public class HealthBar extends Node {
 		}
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(IB)Lcu;",
-		garbageValue = "62"
+		descriptor = "(II)Lcp;",
+		garbageValue = "675782761"
 	)
 	@Export("get")
 	HealthBarUpdate get(int var1) {
@@ -97,42 +91,87 @@ public class HealthBar extends Node {
 		}
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
 		descriptor = "(B)Z",
-		garbageValue = "82"
+		garbageValue = "-107"
 	)
 	@Export("isEmpty")
 	boolean isEmpty() {
-		return this.updates.method6269();
+		return this.updates.method6164();
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "1836952304"
+		descriptor = "(IB)I",
+		garbageValue = "-31"
 	)
-	static void method2351() {
-		class113.field1387 = new int[2000];
-		int var0 = 0;
-		int var1 = 240;
+	public static int method2344(int var0) {
+		return class400.field4389[var0 & 16383];
+	}
 
-		int var3;
-		for (byte var2 = 12; var0 < 16; var1 -= var2) {
-			var3 = class92.method2373((double)((float)var1 / 360.0F), 0.9998999834060669D, (double)(0.425F * (float)var0 / 16.0F + 0.075F));
-			class113.field1387[var0] = var3;
-			++var0;
+	@ObfuscatedName("ai")
+	@ObfuscatedSignature(
+		descriptor = "(ILbd;ZI)I",
+		garbageValue = "1491549945"
+	)
+	static int method2343(int var0, Script var1, boolean var2) {
+		if (var0 == 6800) {
+			Interpreter.Interpreter_stringStack[++class122.Interpreter_stringStackSize - 1] = "";
+			return 1;
+		} else if (var0 != 6801 && var0 != 6802) {
+			if (var0 == 6850) {
+				Interpreter.Interpreter_stringStack[++class122.Interpreter_stringStackSize - 1] = "";
+				return 1;
+			} else if (var0 != 6851 && var0 != 6852) {
+				if (var0 == 6853) {
+					Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = 0;
+					return 1;
+				} else {
+					return 2;
+				}
+			} else {
+				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = -1;
+				return 1;
+			}
+		} else {
+			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = -1;
+			return 1;
 		}
+	}
 
-		var1 = 48;
-
-		for (int var5 = var1 / 6; var0 < class113.field1387.length; var1 -= var5) {
-			var3 = var0 * 2;
-
-			for (int var4 = class92.method2373((double)((float)var1 / 360.0F), 0.9998999834060669D, 0.5D); var0 < var3 && var0 < class113.field1387.length; ++var0) {
-				class113.field1387[var0] = var4;
+	@ObfuscatedName("il")
+	@ObfuscatedSignature(
+		descriptor = "(IIIII)V",
+		garbageValue = "-1357746428"
+	)
+	static final void method2330(int var0, int var1, int var2, int var3) {
+		for (int var4 = 0; var4 < Client.rootWidgetCount; ++var4) {
+			if (Client.rootWidgetWidths[var4] + Client.rootWidgetXs[var4] > var0 && Client.rootWidgetXs[var4] < var0 + var2 && Client.rootWidgetHeights[var4] + Client.rootWidgetYs[var4] > var1 && Client.rootWidgetYs[var4] < var3 + var1) {
+				Client.field715[var4] = true;
 			}
 		}
 
+	}
+
+	@ObfuscatedName("lq")
+	@ObfuscatedSignature(
+		descriptor = "(IIB)V",
+		garbageValue = "-66"
+	)
+	static final void method2328(int var0, int var1) {
+		ClanChannel var2 = var0 >= 0 ? Client.currentClanChannels[var0] : class21.guestClanChannel;
+		if (var2 != null && var1 >= 0 && var1 < var2.method3119()) {
+			ClanChannelMember var3 = (ClanChannelMember)var2.members.get(var1);
+			if (var3.rank == -1) {
+				String var4 = var3.username.getName();
+				PacketBufferNode var5 = WorldMapSprite.getPacketBufferNode(ClientPacket.field2900, Client.packetWriter.isaacCipher);
+				var5.packetBuffer.writeByte(3 + class425.stringCp1252NullTerminatedByteSize(var4));
+				var5.packetBuffer.writeByte(var0);
+				var5.packetBuffer.writeShort(var1);
+				var5.packetBuffer.writeStringCp1252NullTerminated(var4);
+				Client.packetWriter.addNode(var5);
+			}
+		}
 	}
 }

@@ -3,31 +3,43 @@ import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("cu")
+@ObfuscatedName("cp")
 @Implements("HealthBarUpdate")
 public class HealthBarUpdate extends Node {
+	@ObfuscatedName("rg")
+	@ObfuscatedSignature(
+		descriptor = "Lqi;"
+	)
+	@Export("sceneMinimapSprite")
+	static SpritePixels sceneMinimapSprite;
+	@ObfuscatedName("b")
+	@ObfuscatedGetter(
+		intValue = -1067255387
+	)
+	public static int field1189;
 	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = -285078811
+		intValue = 1328246863
 	)
 	@Export("cycle")
 	int cycle;
-	@ObfuscatedName("o")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = 1160559969
+		intValue = 399035073
 	)
 	@Export("health")
 	int health;
-	@ObfuscatedName("h")
+	@ObfuscatedName("i")
 	@ObfuscatedGetter(
-		intValue = -93193481
+		intValue = 573948343
 	)
 	@Export("health2")
 	int health2;
-	@ObfuscatedName("g")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = 2006973369
+		intValue = 2144773551
 	)
 	@Export("cycleOffset")
 	int cycleOffset;
@@ -42,7 +54,7 @@ public class HealthBarUpdate extends Node {
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
 		descriptor = "(IIIII)V",
-		garbageValue = "1575098257"
+		garbageValue = "-1624379348"
 	)
 	@Export("set")
 	void set(int var1, int var2, int var3, int var4) {
@@ -54,272 +66,133 @@ public class HealthBarUpdate extends Node {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(Llq;I)V",
-		garbageValue = "-241424449"
+		descriptor = "(Lln;Lln;IZB)Lim;",
+		garbageValue = "-50"
 	)
-	public static void method2217(AbstractArchive var0) {
-		FloorUnderlayDefinition.FloorUnderlayDefinition_archive = var0;
-	}
+	public static Frames method2185(AbstractArchive var0, AbstractArchive var1, int var2, boolean var3) {
+		boolean var4 = true;
+		int[] var5 = var0.getGroupFileIds(var2);
 
-	@ObfuscatedName("o")
-	@ObfuscatedSignature(
-		descriptor = "(III)I",
-		garbageValue = "2004197987"
-	)
-	@Export("ItemContainer_getCount")
-	static int ItemContainer_getCount(int var0, int var1) {
-		ItemContainer var2 = (ItemContainer)ItemContainer.itemContainers.get((long)var0);
-		if (var2 == null) {
-			return 0;
-		} else {
-			return var1 >= 0 && var1 < var2.quantities.length ? var2.quantities[var1] : 0;
-		}
-	}
-
-	@ObfuscatedName("d")
-	@ObfuscatedSignature(
-		descriptor = "(Lpy;ILcw;II)V",
-		garbageValue = "-1310765413"
-	)
-	static final void method2213(PacketBuffer var0, int var1, Player var2, int var3) {
-		byte var4 = class193.field2192.field2194;
-		if ((var3 & 8192) != 0) {
-			var2.field1133 = Client.cycle + var0.method7935();
-			var2.field1185 = Client.cycle + var0.method7798();
-			var2.field1146 = var0.method7955();
-			var2.field1187 = var0.method7955();
-			var2.field1188 = var0.method7925();
-			var2.field1189 = (byte)var0.method7790();
-		}
-
-		if ((var3 & 256) != 0) {
-			var4 = var0.method7925();
-		}
-
-		int var5;
-		int var8;
-		int var9;
-		int var12;
-		if ((var3 & 1) != 0) {
-			var5 = var0.method7798();
-			PlayerType var6 = (PlayerType)ChatChannel.findEnumerated(HitSplatDefinition.PlayerType_values(), var0.readUnsignedByte());
-			boolean var7 = var0.method7927() == 1;
-			var8 = var0.method7927();
-			var9 = var0.offset;
-			if (var2.username != null && var2.appearance != null) {
-				boolean var10 = false;
-				if (var6.isUser && class155.friendSystem.isIgnored(var2.username)) {
-					var10 = true;
-				}
-
-				if (!var10 && Client.field603 == 0 && !var2.isHidden) {
-					Players.field1299.offset = 0;
-					var0.method7812(Players.field1299.array, 0, var8);
-					Players.field1299.offset = 0;
-					String var11 = AbstractFont.escapeBrackets(AbstractByteArrayCopier.method5528(class118.method2737(Players.field1299)));
-					var2.overheadText = var11.trim();
-					var2.overheadTextColor = var5 >> 8;
-					var2.overheadTextEffect = var5 & 255;
-					var2.overheadTextCyclesRemaining = 150;
-					var2.isAutoChatting = var7;
-					var2.field1152 = var2 != class19.localPlayer && var6.isUser && "" != Client.field712 && var11.toLowerCase().indexOf(Client.field712) == -1;
-					if (var6.isPrivileged) {
-						var12 = var7 ? 91 : 1;
-					} else {
-						var12 = var7 ? 90 : 2;
-					}
-
-					if (var6.modIcon != -1) {
-						Login.addGameMessage(var12, class351.method6579(var6.modIcon) + var2.username.getName(), var11);
-					} else {
-						Login.addGameMessage(var12, var2.username.getName(), var11);
-					}
-				}
-			}
-
-			var0.offset = var8 + var9;
-		}
-
-		if ((var3 & 2048) != 0) {
-			for (var5 = 0; var5 < 3; ++var5) {
-				var2.actions[var5] = var0.readStringCp1252NullTerminated();
-			}
-		}
-
-		if ((var3 & 4096) != 0) {
-			var2.spotAnimation = var0.method7798();
-			var5 = var0.method7889();
-			var2.spotAnimationHeight = var5 >> 16;
-			var2.field1173 = (var5 & 65535) + Client.cycle;
-			var2.spotAnimationFrame = 0;
-			var2.spotAnimationFrameCycle = 0;
-			if (var2.field1173 > Client.cycle) {
-				var2.spotAnimationFrame = -1;
-			}
-
-			if (var2.spotAnimation == 65535) {
-				var2.spotAnimation = -1;
-			}
-		}
-
-		if ((var3 & 128) != 0) {
-			var5 = var0.method7927();
-			byte[] var17 = new byte[var5];
-			Buffer var13 = new Buffer(var17);
-			var0.method7812(var17, 0, var5);
-			Players.field1289[var1] = var13;
-			var2.read(var13);
-		}
-
-		if ((var3 & 512) != 0) {
-			var2.field1175 = var0.method7792();
-			var2.field1177 = var0.readByte();
-			var2.field1176 = var0.method7925();
-			var2.field1178 = var0.method7955();
-			var2.field1179 = var0.method7935() + Client.cycle;
-			var2.field1180 = var0.method7971() + Client.cycle;
-			var2.field1181 = var0.method7798();
-			if (var2.field1109) {
-				var2.field1175 += var2.tileX;
-				var2.field1177 += var2.tileY;
-				var2.field1176 += var2.tileX;
-				var2.field1178 += var2.tileY;
-				var2.pathLength = 0;
+		for (int var6 = 0; var6 < var5.length; ++var6) {
+			byte[] var7 = var0.getFile(var2, var5[var6]);
+			if (var7 == null) {
+				var4 = false;
 			} else {
-				var2.field1175 += var2.pathX[0];
-				var2.field1177 += var2.pathY[0];
-				var2.field1176 += var2.pathX[0];
-				var2.field1178 += var2.pathY[0];
-				var2.pathLength = 1;
-			}
-
-			var2.field1134 = 0;
-		}
-
-		if ((var3 & 16) != 0) {
-			var2.field1160 = var0.readUnsignedShort();
-			if (var2.pathLength == 0) {
-				var2.orientation = var2.field1160;
-				var2.field1160 = -1;
-			}
-		}
-
-		if ((var3 & 2) != 0) {
-			var2.overheadText = var0.readStringCp1252NullTerminated();
-			if (var2.overheadText.charAt(0) == '~') {
-				var2.overheadText = var2.overheadText.substring(1);
-				Login.addGameMessage(2, var2.username.getName(), var2.overheadText);
-			} else if (var2 == class19.localPlayer) {
-				Login.addGameMessage(2, var2.username.getName(), var2.overheadText);
-			}
-
-			var2.isAutoChatting = false;
-			var2.overheadTextColor = 0;
-			var2.overheadTextEffect = 0;
-			var2.overheadTextCyclesRemaining = 150;
-		}
-
-		int var14;
-		if ((var3 & 8) != 0) {
-			var5 = var0.method7971();
-			if (var5 == 65535) {
-				var5 = -1;
-			}
-
-			var14 = var0.method7927();
-			KeyHandler.performPlayerAnimation(var2, var5, var14);
-		}
-
-		if ((var3 & 16384) != 0) {
-			Players.field1285[var1] = (class193)ChatChannel.findEnumerated(class124.method2801(), var0.method7955());
-		}
-
-		if ((var3 & 32) != 0) {
-			var2.targetIndex = var0.method7798();
-			if (var2.targetIndex == 65535) {
-				var2.targetIndex = -1;
-			}
-		}
-
-		if ((var3 & 4) != 0) {
-			var5 = var0.method7790();
-			int var16;
-			int var18;
-			int var19;
-			if (var5 > 0) {
-				for (var14 = 0; var14 < var5; ++var14) {
-					var8 = -1;
-					var9 = -1;
-					var19 = -1;
-					var18 = var0.readUShortSmart();
-					if (var18 == 32767) {
-						var18 = var0.readUShortSmart();
-						var9 = var0.readUShortSmart();
-						var8 = var0.readUShortSmart();
-						var19 = var0.readUShortSmart();
-					} else if (var18 != 32766) {
-						var9 = var0.readUShortSmart();
-					} else {
-						var18 = -1;
-					}
-
-					var16 = var0.readUShortSmart();
-					var2.addHitSplat(var18, var9, var8, var19, Client.cycle, var16);
-				}
-			}
-
-			var14 = var0.readUnsignedByte();
-			if (var14 > 0) {
-				for (var18 = 0; var18 < var14; ++var18) {
-					var8 = var0.readUShortSmart();
-					var9 = var0.readUShortSmart();
-					if (var9 != 32767) {
-						var19 = var0.readUShortSmart();
-						var16 = var0.readUnsignedByte();
-						var12 = var9 > 0 ? var0.method7790() : var16;
-						var2.addHealthBar(var8, Client.cycle, var9, var19, var16, var12);
-					} else {
-						var2.removeHealthBar(var8);
-					}
-				}
-			}
-		}
-
-		if (var2.field1109) {
-			if (var4 == 127) {
-				var2.resetPath(var2.tileX, var2.tileY);
-			} else {
-				class193 var15;
-				if (var4 != class193.field2192.field2194) {
-					var15 = (class193)ChatChannel.findEnumerated(class124.method2801(), var4);
+				int var8 = (var7[0] & 255) << 8 | var7[1] & 255;
+				byte[] var9;
+				if (var3) {
+					var9 = var1.getFile(0, var8);
 				} else {
-					var15 = Players.field1285[var1];
+					var9 = var1.getFile(var8, 0);
 				}
 
-				var2.method2144(var2.tileX, var2.tileY, var15);
+				if (var9 == null) {
+					var4 = false;
+				}
 			}
 		}
 
+		if (!var4) {
+			return null;
+		} else {
+			try {
+				return new Frames(var0, var1, var2, var3);
+			} catch (Exception var11) {
+				return null;
+			}
+		}
 	}
 
-	@ObfuscatedName("fi")
+	@ObfuscatedName("g")
 	@ObfuscatedSignature(
-		descriptor = "(IIII)V",
-		garbageValue = "921137815"
+		descriptor = "(ILbd;ZB)I",
+		garbageValue = "-30"
 	)
-	static void method2210(int var0, int var1, int var2) {
-		if (var0 != 0) {
-			int var3 = var0 >> 8;
-			int var4 = var0 >> 4 & 7;
-			int var5 = var0 & 15;
-			Client.soundEffectIds[Client.soundEffectCount] = var3;
-			Client.queuedSoundEffectLoops[Client.soundEffectCount] = var4;
-			Client.queuedSoundEffectDelays[Client.soundEffectCount] = 0;
-			Client.soundEffects[Client.soundEffectCount] = null;
-			int var6 = (var1 - 64) / 128;
-			int var7 = (var2 - 64) / 128;
-			Client.soundLocations[Client.soundEffectCount] = var5 + (var7 << 8) + (var6 << 16);
-			++Client.soundEffectCount;
+	static int method2186(int var0, Script var1, boolean var2) {
+		Widget var7;
+		if (var0 != ScriptOpcodes.CC_CALLONRESIZE && var0 != ScriptOpcodes.IF_CALLONRESIZE) {
+			int var4;
+			if (var0 == ScriptOpcodes.CC_TRIGGEROP) {
+				var7 = var2 ? WorldMapID.scriptDotWidget : Interpreter.scriptActiveWidget;
+				var4 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
+				if (var4 >= 1 && var4 <= 10) {
+					class93 var8 = new class93(var4, var7.id, var7.childIndex, var7.itemId);
+					Interpreter.field843.add(var8);
+					return 1;
+				} else {
+					throw new RuntimeException();
+				}
+			} else if (var0 == ScriptOpcodes.IF_TRIGGEROP) {
+				Interpreter.Interpreter_intStackSize -= 3;
+				int var3 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
+				var4 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
+				int var5 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 2];
+				if (var5 >= 1 && var5 <= 10) {
+					class93 var6 = new class93(var5, var3, var4, class127.getWidget(var3).itemId);
+					Interpreter.field843.add(var6);
+					return 1;
+				} else {
+					throw new RuntimeException();
+				}
+			} else {
+				return 2;
+			}
+		} else if (Interpreter.field844 >= 10) {
+			throw new RuntimeException();
+		} else {
+			if (var0 >= 2000) {
+				var7 = class127.getWidget(Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize]);
+			} else {
+				var7 = var2 ? WorldMapID.scriptDotWidget : Interpreter.scriptActiveWidget;
+			}
+
+			if (var7.onResize == null) {
+				return 0;
+			} else {
+				ScriptEvent var9 = new ScriptEvent();
+				var9.widget = var7;
+				var9.args = var7.onResize;
+				var9.field1031 = Interpreter.field844 + 1;
+				Client.scriptEvents.addFirst(var9);
+				return 1;
+			}
 		}
+	}
+
+	@ObfuscatedName("jy")
+	@ObfuscatedSignature(
+		descriptor = "(Lky;III)V",
+		garbageValue = "-1103204446"
+	)
+	@Export("alignWidgetPosition")
+	static void alignWidgetPosition(Widget var0, int var1, int var2) {
+		if (var0.xAlignment == 0) {
+			var0.x = var0.rawX;
+		} else if (var0.xAlignment == 1) {
+			var0.x = var0.rawX + (var1 - var0.width) / 2;
+		} else if (var0.xAlignment == 2) {
+			var0.x = var1 - var0.width - var0.rawX;
+		} else if (var0.xAlignment == 3) {
+			var0.x = var0.rawX * var1 >> 14;
+		} else if (var0.xAlignment == 4) {
+			var0.x = (var1 - var0.width) / 2 + (var0.rawX * var1 >> 14);
+		} else {
+			var0.x = var1 - var0.width - (var0.rawX * var1 >> 14);
+		}
+
+		if (var0.yAlignment == 0) {
+			var0.y = var0.rawY;
+		} else if (var0.yAlignment == 1) {
+			var0.y = (var2 - var0.height) / 2 + var0.rawY;
+		} else if (var0.yAlignment == 2) {
+			var0.y = var2 - var0.height - var0.rawY;
+		} else if (var0.yAlignment == 3) {
+			var0.y = var2 * var0.rawY >> 14;
+		} else if (var0.yAlignment == 4) {
+			var0.y = (var2 * var0.rawY >> 14) + (var2 - var0.height) / 2;
+		} else {
+			var0.y = var2 - var0.height - (var2 * var0.rawY >> 14);
+		}
+
 	}
 }

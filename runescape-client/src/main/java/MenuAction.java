@@ -4,56 +4,116 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bp")
+@ObfuscatedName("ba")
 @Implements("MenuAction")
 public class MenuAction {
+	@ObfuscatedName("pz")
+	@ObfuscatedSignature(
+		descriptor = "Lfo;"
+	)
+	@Export("mouseWheel")
+	static class158 mouseWheel;
 	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = -1395213587
+		intValue = -1429096249
 	)
 	@Export("param0")
 	int param0;
-	@ObfuscatedName("o")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = 1235070557
+		intValue = 2131658559
 	)
 	@Export("param1")
 	int param1;
-	@ObfuscatedName("h")
+	@ObfuscatedName("i")
 	@ObfuscatedGetter(
-		intValue = -1780359583
+		intValue = 1741045209
 	)
 	@Export("opcode")
 	int opcode;
-	@ObfuscatedName("g")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = -538792745
+		intValue = -1117975603
 	)
 	@Export("identifier")
 	int identifier;
-	@ObfuscatedName("l")
+	@ObfuscatedName("b")
 	@Export("action")
 	String action;
 
 	MenuAction() {
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("hk")
 	@ObfuscatedSignature(
-		descriptor = "(CS)C",
-		garbageValue = "1843"
+		descriptor = "(I)V",
+		garbageValue = "942696763"
 	)
-	static char method1877(char var0) {
-		if (var0 == 198) {
-			return 'E';
-		} else if (var0 == 230) {
-			return 'e';
-		} else if (var0 == 223) {
-			return 's';
-		} else if (var0 == 338) {
-			return 'E';
-		} else {
-			return (char)(var0 == 339 ? 'e' : '\u0000');
+	static final void method1907() {
+		for (PendingSpawn var0 = (PendingSpawn)Client.pendingSpawns.last(); var0 != null; var0 = (PendingSpawn)Client.pendingSpawns.previous()) {
+			if (var0.hitpoints > 0) {
+				--var0.hitpoints;
+			}
+
+			boolean var1;
+			int var2;
+			int var3;
+			ObjectComposition var4;
+			if (var0.hitpoints == 0) {
+				if (var0.objectId >= 0) {
+					var2 = var0.objectId;
+					var3 = var0.field1105;
+					var4 = class146.getObjectDefinition(var2);
+					if (var3 == 11) {
+						var3 = 10;
+					}
+
+					if (var3 >= 5 && var3 <= 8) {
+						var3 = 4;
+					}
+
+					var1 = var4.method3664(var3);
+					if (!var1) {
+						continue;
+					}
+				}
+
+				ClanChannel.addPendingSpawnToScene(var0.plane, var0.type, var0.x, var0.y, var0.objectId, var0.field1104, var0.field1105);
+				var0.remove();
+			} else {
+				if (var0.delay > 0) {
+					--var0.delay;
+				}
+
+				if (var0.delay == 0 && var0.x >= 1 && var0.y >= 1 && var0.x <= 102 && var0.y <= 102) {
+					if (var0.id >= 0) {
+						var2 = var0.id;
+						var3 = var0.field1107;
+						var4 = class146.getObjectDefinition(var2);
+						if (var3 == 11) {
+							var3 = 10;
+						}
+
+						if (var3 >= 5 && var3 <= 8) {
+							var3 = 4;
+						}
+
+						var1 = var4.method3664(var3);
+						if (!var1) {
+							continue;
+						}
+					}
+
+					ClanChannel.addPendingSpawnToScene(var0.plane, var0.type, var0.x, var0.y, var0.id, var0.orientation, var0.field1107);
+					var0.delay = -1;
+					if (var0.id == var0.objectId && var0.objectId == -1) {
+						var0.remove();
+					} else if (var0.id == var0.objectId && var0.orientation == var0.field1104 && var0.field1105 == var0.field1107) {
+						var0.remove();
+					}
+				}
+			}
 		}
+
 	}
 }

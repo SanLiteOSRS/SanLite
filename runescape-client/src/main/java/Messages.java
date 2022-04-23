@@ -6,36 +6,35 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ch")
+@ObfuscatedName("ce")
 @Implements("Messages")
 public class Messages {
 	@ObfuscatedName("v")
 	@Export("Messages_channels")
 	static final Map Messages_channels;
-	@ObfuscatedName("o")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "Lpq;"
+		descriptor = "Lpt;"
 	)
 	@Export("Messages_hashTable")
 	static final IterableNodeHashTable Messages_hashTable;
-	@ObfuscatedName("h")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		descriptor = "Lmq;"
+		descriptor = "Lmr;"
 	)
 	@Export("Messages_queue")
 	static final IterableDualNodeQueue Messages_queue;
-	@ObfuscatedName("g")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = -202962725
+		intValue = 1887673835
 	)
 	@Export("Messages_count")
 	static int Messages_count;
-	@ObfuscatedName("jg")
-	@ObfuscatedGetter(
-		intValue = -78187277
+	@ObfuscatedName("bl")
+	@ObfuscatedSignature(
+		descriptor = "Lkt;"
 	)
-	@Export("oculusOrbFocalPointX")
-	static int oculusOrbFocalPointX;
+	static StudioGame field1305;
 
 	static {
 		Messages_channels = new HashMap();
@@ -44,41 +43,22 @@ public class Messages {
 		Messages_count = 0;
 	}
 
-	@ObfuscatedName("it")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
-		descriptor = "(III)V",
-		garbageValue = "1155417987"
+		descriptor = "(ZI)V",
+		garbageValue = "-2020687752"
 	)
-	@Export("resumePauseWidget")
-	static void resumePauseWidget(int var0, int var1) {
-		PacketBufferNode var2 = ItemContainer.getPacketBufferNode(ClientPacket.field2943, Client.packetWriter.isaacCipher);
-		var2.packetBuffer.writeIntME(var0);
-		var2.packetBuffer.method7795(var1);
-		Client.packetWriter.addNode(var2);
-	}
-
-	@ObfuscatedName("ky")
-	@ObfuscatedSignature(
-		descriptor = "(IIIILql;Lkw;I)V",
-		garbageValue = "1883987067"
-	)
-	@Export("drawSpriteOnMinimap")
-	static final void drawSpriteOnMinimap(int var0, int var1, int var2, int var3, SpritePixels var4, SpriteMask var5) {
-		if (var4 != null) {
-			int var6 = Client.camAngleY & 2047;
-			int var7 = var3 * var3 + var2 * var2;
-			if (var7 <= 6400) {
-				int var8 = Rasterizer3D.Rasterizer3D_sine[var6];
-				int var9 = Rasterizer3D.Rasterizer3D_cosine[var6];
-				int var10 = var3 * var8 + var9 * var2 >> 16;
-				int var11 = var3 * var9 - var8 * var2 >> 16;
-				if (var7 > 2500) {
-					var4.method8178(var10 + var5.width / 2 - var4.width / 2, var5.height / 2 - var11 - var4.height / 2, var0, var1, var5.width, var5.height, var5.xStarts, var5.xWidths);
-				} else {
-					var4.drawTransBgAt(var0 + var10 + var5.width / 2 - var4.width / 2, var5.height / 2 + var1 - var11 - var4.height / 2);
-				}
-
-			}
+	@Export("Login_promptCredentials")
+	static void Login_promptCredentials(boolean var0) {
+		Login.Login_response1 = "";
+		Login.Login_response2 = "Enter your username/email & password.";
+		Login.Login_response3 = "";
+		Ignored.method6828(2);
+		if (var0) {
+			Login.Login_password = "";
 		}
+
+		Players.method2421();
+		class12.method157();
 	}
 }

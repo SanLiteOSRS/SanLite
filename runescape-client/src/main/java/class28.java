@@ -1,29 +1,61 @@
+import java.io.File;
 import javax.imageio.ImageIO;
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ay")
+@ObfuscatedName("aw")
 public class class28 {
+	@ObfuscatedName("f")
+	@Export("JagexCache_locationFile")
+	static File JagexCache_locationFile;
+	@ObfuscatedName("ee")
+	@ObfuscatedSignature(
+		descriptor = "Llx;"
+	)
+	@Export("archive15")
+	static Archive archive15;
+
 	static {
 		ImageIO.setUseCache(false);
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("hu")
 	@ObfuscatedSignature(
-		descriptor = "(IIIB)Lql;",
-		garbageValue = "16"
+		descriptor = "(I)V",
+		garbageValue = "1511751941"
 	)
-	static SpritePixels method423(int var0, int var1, int var2) {
-		return (SpritePixels)WorldMapRegion.WorldMapRegion_cachedSprites.get(class65.method1867(var0, var1, var2));
+	static final void method390() {
+		for (PendingSpawn var0 = (PendingSpawn)Client.pendingSpawns.last(); var0 != null; var0 = (PendingSpawn)Client.pendingSpawns.previous()) {
+			if (var0.hitpoints == -1) {
+				var0.delay = 0;
+				class163.method3315(var0);
+			} else {
+				var0.remove();
+			}
+		}
+
 	}
 
-	@ObfuscatedName("ke")
+	@ObfuscatedName("ig")
 	@ObfuscatedSignature(
-		descriptor = "(II)V",
-		garbageValue = "-229308626"
+		descriptor = "(Ljava/lang/String;Ljava/lang/String;IIIIZI)V",
+		garbageValue = "157439460"
 	)
-	static final void method424(int var0) {
-		var0 = Math.min(Math.max(var0, 0), 127);
-		Interpreter.clientPreferences.method2330(var0);
+	@Export("insertMenuItem")
+	static final void insertMenuItem(String var0, String var1, int var2, int var3, int var4, int var5, boolean var6) {
+		if (!Client.isMenuOpen) {
+			if (Client.menuOptionsCount < 500) {
+				Client.menuActions[Client.menuOptionsCount] = var0;
+				Client.menuTargets[Client.menuOptionsCount] = var1;
+				Client.menuOpcodes[Client.menuOptionsCount] = var2;
+				Client.menuIdentifiers[Client.menuOptionsCount] = var3;
+				Client.menuArguments1[Client.menuOptionsCount] = var4;
+				Client.menuArguments2[Client.menuOptionsCount] = var5;
+				Client.menuShiftClick[Client.menuOptionsCount] = var6;
+				++Client.menuOptionsCount;
+			}
+
+		}
 	}
 }

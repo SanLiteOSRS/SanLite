@@ -4,77 +4,75 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bi")
+@ObfuscatedName("bc")
 @Implements("DynamicObject")
 public class DynamicObject extends Renderable {
-	@ObfuscatedName("az")
+	@ObfuscatedName("gx")
 	@ObfuscatedSignature(
-		descriptor = "Lnm;"
+		descriptor = "Lfx;"
 	)
-	static Bounds field973;
-	@ObfuscatedName("ia")
-	@ObfuscatedSignature(
-		descriptor = "[Lql;"
-	)
-	@Export("headIconPrayerSprites")
-	static SpritePixels[] headIconPrayerSprites;
+	@Export("socketTask")
+	static Task socketTask;
+	@ObfuscatedName("hp")
+	@Export("regionMapArchives")
+	static byte[][] regionMapArchives;
 	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = 554829183
+		intValue = 920193097
 	)
 	@Export("id")
 	int id;
-	@ObfuscatedName("o")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = 991387999
+		intValue = -1286565411
 	)
 	@Export("type")
 	int type;
-	@ObfuscatedName("h")
+	@ObfuscatedName("i")
 	@ObfuscatedGetter(
-		intValue = 736345731
+		intValue = -971153847
 	)
 	@Export("orientation")
 	int orientation;
-	@ObfuscatedName("g")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = -831272437
+		intValue = 326052965
 	)
 	@Export("plane")
 	int plane;
-	@ObfuscatedName("l")
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = 270984957
+		intValue = -1315093071
 	)
 	@Export("x")
 	int x;
 	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = 1149406205
+		intValue = 255854397
 	)
 	@Export("y")
 	int y;
-	@ObfuscatedName("d")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "Lgg;"
+		descriptor = "Lgw;"
 	)
 	@Export("sequenceDefinition")
 	SequenceDefinition sequenceDefinition;
-	@ObfuscatedName("f")
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = -895172373
+		intValue = 896717489
 	)
 	@Export("frame")
 	int frame;
-	@ObfuscatedName("u")
+	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = 1887106399
+		intValue = 131494325
 	)
 	@Export("cycleStart")
 	int cycleStart;
 
 	@ObfuscatedSignature(
-		descriptor = "(IIIIIIIZLgh;)V"
+		descriptor = "(IIIIIIIZLix;)V"
 	)
 	DynamicObject(int var1, int var2, int var3, int var4, int var5, int var6, int var7, boolean var8, Renderable var9) {
 		this.id = var1;
@@ -84,12 +82,12 @@ public class DynamicObject extends Renderable {
 		this.x = var5;
 		this.y = var6;
 		if (var7 != -1) {
-			this.sequenceDefinition = ItemContainer.SequenceDefinition_get(var7);
+			this.sequenceDefinition = class163.SequenceDefinition_get(var7);
 			this.frame = 0;
 			this.cycleStart = Client.cycle - 1;
-			if (this.sequenceDefinition.field2172 == 0 && var9 != null && var9 instanceof DynamicObject) {
+			if (this.sequenceDefinition.field2161 == 0 && var9 != null && var9 instanceof DynamicObject) {
 				DynamicObject var10 = (DynamicObject)var9;
-				if (var10.sequenceDefinition == this.sequenceDefinition) {
+				if (this.sequenceDefinition == var10.sequenceDefinition) {
 					this.frame = var10.frame;
 					this.cycleStart = var10.cycleStart;
 					return;
@@ -101,17 +99,17 @@ public class DynamicObject extends Renderable {
 					this.frame = (int)(Math.random() * (double)this.sequenceDefinition.frameIds.length);
 					this.cycleStart -= (int)(Math.random() * (double)this.sequenceDefinition.frameLengths[this.frame]);
 				} else {
-					this.frame = (int)(Math.random() * (double)this.sequenceDefinition.method3827());
+					this.frame = (int)(Math.random() * (double)this.sequenceDefinition.method3844());
 				}
 			}
 		}
 
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(B)Lhx;",
-		garbageValue = "63"
+		descriptor = "(B)Liq;",
+		garbageValue = "103"
 	)
 	@Export("getModel")
 	protected final Model getModel() {
@@ -123,7 +121,7 @@ public class DynamicObject extends Renderable {
 			}
 
 			if (this.sequenceDefinition.isCachedModelIdSet()) {
-				var2 = this.sequenceDefinition.method3827();
+				var2 = this.sequenceDefinition.method3844();
 				this.frame += var1;
 				var1 = 0;
 				if (this.frame >= var2) {
@@ -133,11 +131,11 @@ public class DynamicObject extends Renderable {
 					}
 				}
 			} else {
-				label78: {
+				label79: {
 					do {
 						do {
 							if (var1 <= this.sequenceDefinition.frameLengths[this.frame]) {
-								break label78;
+								break label79;
 							}
 
 							var1 -= this.sequenceDefinition.frameLengths[this.frame];
@@ -154,7 +152,7 @@ public class DynamicObject extends Renderable {
 			this.cycleStart = Client.cycle - var1;
 		}
 
-		ObjectComposition var12 = class116.getObjectDefinition(this.id);
+		ObjectComposition var12 = class146.getObjectDefinition(this.id);
 		if (var12.transforms != null) {
 			var12 = var12.transform();
 		}
@@ -176,293 +174,52 @@ public class DynamicObject extends Renderable {
 			int var6 = (var3 >> 1) + this.y;
 			int var7 = (var3 + 1 >> 1) + this.y;
 			int[][] var8 = Tiles.Tiles_heights[this.plane];
-			int var9 = var8[var4][var6] + var8[var5][var6] + var8[var4][var7] + var8[var5][var7] >> 2;
+			int var9 = var8[var5][var7] + var8[var5][var6] + var8[var4][var6] + var8[var4][var7] >> 2;
 			int var10 = (this.x << 7) + (var2 << 6);
 			int var11 = (this.y << 7) + (var3 << 6);
 			return var12.getModelDynamic(this.type, this.orientation, var8, var10, var9, var11, this.sequenceDefinition, this.frame);
 		}
 	}
 
-	@ObfuscatedName("g")
+	@ObfuscatedName("r")
 	@ObfuscatedSignature(
-		descriptor = "(Lpd;II)Ljava/lang/String;",
-		garbageValue = "-255046682"
+		descriptor = "(B)V",
+		garbageValue = "57"
 	)
-	static String method1988(Buffer var0, int var1) {
-		try {
-			int var2 = var0.readUShortSmart();
-			if (var2 > var1) {
-				var2 = var1;
-			}
-
-			byte[] var3 = new byte[var2];
-			var0.offset += class282.huffman.decompress(var0.array, var0.offset, var3, 0, var2);
-			String var4 = class113.decodeStringCp1252(var3, 0, var2);
-			return var4;
-		} catch (Exception var6) {
-			return "Cabbage";
-		}
-	}
-
-	@ObfuscatedName("g")
-	@ObfuscatedSignature(
-		descriptor = "(II)I",
-		garbageValue = "-429735944"
-	)
-	public static int method1987(int var0) {
-		long var2 = ViewportMouse.ViewportMouse_entityTags[var0];
-		int var1 = (int)(var2 >>> 0 & 127L);
-		return var1;
-	}
-
-	@ObfuscatedName("b")
-	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;II)V",
-		garbageValue = "2084684475"
-	)
-	static final void method1985(String var0, int var1) {
-		PacketBufferNode var2 = ItemContainer.getPacketBufferNode(ClientPacket.field2924, Client.packetWriter.isaacCipher);
-		var2.packetBuffer.writeByte(ItemLayer.stringCp1252NullTerminatedByteSize(var0) + 1);
-		var2.packetBuffer.writeStringCp1252NullTerminated(var0);
-		var2.packetBuffer.method7787(var1);
-		Client.packetWriter.addNode(var2);
-	}
-
-	@ObfuscatedName("hq")
-	@ObfuscatedSignature(
-		descriptor = "(ZLpy;S)V",
-		garbageValue = "176"
-	)
-	@Export("updateNpcs")
-	static final void updateNpcs(boolean var0, PacketBuffer var1) {
-		Client.field634 = 0;
-		Client.field609 = 0;
-		class385.method7028();
-		SecureRandomCallable.method2066(var0, var1);
-
-		int var2;
-		int var3;
-		for (var2 = 0; var2 < Client.field609; ++var2) {
-			var3 = Client.field533[var2];
-			NPC var4 = Client.npcs[var3];
-			int var5 = var1.readUnsignedByte();
-			int var6;
-			if (class162.field1768 && (var5 & 64) != 0) {
-				var6 = var1.readUnsignedByte();
-				var5 += var6 << 8;
-			}
-
-			int var7;
-			int var8;
-			int var9;
-			if ((var5 & 1) != 0) {
-				var6 = var1.readUnsignedShort();
-				var7 = var1.method7971();
-				if (class162.field1768) {
-					var4.field1183 = var1.method7789() == 1;
-				}
-
-				var8 = var4.x - (var6 - ApproximateRouteStrategy.baseX * 64 - ApproximateRouteStrategy.baseX * 64) * 64;
-				var9 = var4.y - (var7 - class250.baseY * 64 - class250.baseY * 64) * 64;
-				if (var8 != 0 || var9 != 0) {
-					var4.field1160 = (int)(Math.atan2((double)var8, (double)var9) * 325.949D) & 2047;
-				}
-			}
-
-			if ((var5 & 1024) != 0) {
-				var4.field1161 = var1.readInt();
-			}
-
-			if ((var5 & 16) != 0) {
-				var4.spotAnimation = var1.readUnsignedShort();
-				var6 = var1.readInt();
-				var4.spotAnimationHeight = var6 >> 16;
-				var4.field1173 = (var6 & 65535) + Client.cycle;
-				var4.spotAnimationFrame = 0;
-				var4.spotAnimationFrameCycle = 0;
-				if (var4.field1173 > Client.cycle) {
-					var4.spotAnimationFrame = -1;
-				}
-
-				if (var4.spotAnimation == 65535) {
-					var4.spotAnimation = -1;
-				}
-			}
-
-			if ((var5 & 128) != 0) {
-				var6 = var1.readUnsignedByte();
-				int var10;
-				int var11;
-				int var12;
-				if (var6 > 0) {
-					for (var7 = 0; var7 < var6; ++var7) {
-						var9 = -1;
-						var10 = -1;
-						var11 = -1;
-						var8 = var1.readUShortSmart();
-						if (var8 == 32767) {
-							var8 = var1.readUShortSmart();
-							var10 = var1.readUShortSmart();
-							var9 = var1.readUShortSmart();
-							var11 = var1.readUShortSmart();
-						} else if (var8 != 32766) {
-							var10 = var1.readUShortSmart();
-						} else {
-							var8 = -1;
-						}
-
-						var12 = var1.readUShortSmart();
-						var4.addHitSplat(var8, var10, var9, var11, Client.cycle, var12);
-					}
-				}
-
-				var7 = var1.method7790();
-				if (var7 > 0) {
-					for (var8 = 0; var8 < var7; ++var8) {
-						var9 = var1.readUShortSmart();
-						var10 = var1.readUShortSmart();
-						if (var10 != 32767) {
-							var11 = var1.readUShortSmart();
-							var12 = var1.readUnsignedByte();
-							int var13 = var10 > 0 ? var1.method7789() : var12;
-							var4.addHealthBar(var9, Client.cycle, var10, var11, var12, var13);
-						} else {
-							var4.removeHealthBar(var9);
-						}
-					}
-				}
-			}
-
-			if (class162.field1768 && (var5 & 256) != 0 || !class162.field1768 && (var5 & 64) != 0) {
-				var4.field1175 = var1.method7925();
-				var4.field1177 = var1.method7792();
-				var4.field1176 = var1.readByte();
-				var4.field1178 = var1.readByte();
-				var4.field1179 = var1.method7971() + Client.cycle;
-				var4.field1180 = var1.readUnsignedShort() + Client.cycle;
-				var4.field1181 = var1.method7971();
-				var4.pathLength = 1;
-				var4.field1134 = 0;
-				var4.field1175 += var4.pathX[0];
-				var4.field1177 += var4.pathY[0];
-				var4.field1176 += var4.pathX[0];
-				var4.field1178 += var4.pathY[0];
-			}
-
-			if ((var5 & 512) != 0) {
-				var4.field1133 = Client.cycle + var1.method7798();
-				var4.field1185 = Client.cycle + var1.method7935();
-				var4.field1146 = var1.readByte();
-				var4.field1187 = var1.method7792();
-				var4.field1188 = var1.method7792();
-				var4.field1189 = (byte)var1.method7927();
-			}
-
-			if ((var5 & 2) != 0) {
-				var4.overheadText = var1.readStringCp1252NullTerminated();
-				var4.overheadTextCyclesRemaining = 100;
-			}
-
-			if ((var5 & 4) != 0) {
-				var4.targetIndex = var1.method7935();
-				if (var4.targetIndex == 65535) {
-					var4.targetIndex = -1;
-				}
-			}
-
-			if ((var5 & 32) != 0) {
-				var4.definition = class9.getNpcDefinition(var1.method7971());
-				var4.field1145 = var4.definition.size;
-				var4.field1192 = var4.definition.rotation;
-				var4.walkSequence = var4.definition.walkSequence;
-				var4.walkBackSequence = var4.definition.walkBackSequence;
-				var4.walkLeftSequence = var4.definition.walkLeftSequence;
-				var4.walkRightSequence = var4.definition.walkRightSequence;
-				var4.idleSequence = var4.definition.idleSequence;
-				var4.turnLeftSequence = var4.definition.turnLeftSequence;
-				var4.turnRightSequence = var4.definition.turnRightSequence;
-			}
-
-			if ((var5 & 8) != 0) {
-				var6 = var1.method7798();
-				if (var6 == 65535) {
-					var6 = -1;
-				}
-
-				var7 = var1.method7789();
-				if (var6 == var4.sequence && var6 != -1) {
-					var8 = ItemContainer.SequenceDefinition_get(var6).field2172;
-					if (var8 == 1) {
-						var4.sequenceFrame = 0;
-						var4.sequenceFrameCycle = 0;
-						var4.sequenceDelay = var7;
-						var4.field1169 = 0;
-					}
-
-					if (var8 == 2) {
-						var4.field1169 = 0;
-					}
-				} else if (var6 == -1 || var4.sequence == -1 || ItemContainer.SequenceDefinition_get(var6).field2166 >= ItemContainer.SequenceDefinition_get(var4.sequence).field2166) {
-					var4.sequence = var6;
-					var4.sequenceFrame = 0;
-					var4.sequenceFrameCycle = 0;
-					var4.sequenceDelay = var7;
-					var4.field1169 = 0;
-					var4.field1134 = var4.pathLength;
-				}
-			}
-		}
-
-		for (var2 = 0; var2 < Client.field634; ++var2) {
-			var3 = Client.field612[var2];
-			if (Client.npcs[var3].npcCycle != Client.cycle) {
-				Client.npcs[var3].definition = null;
-				Client.npcs[var3] = null;
-			}
-		}
-
-		if (var1.offset != Client.packetWriter.serverPacketLength) {
-			throw new RuntimeException(var1.offset + "," + Client.packetWriter.serverPacketLength);
+	static void method2003() {
+		Login.Login_username = Login.Login_username.trim();
+		if (Login.Login_username.length() == 0) {
+			class4.setLoginResponseString("Please enter your username.", "If you created your account after November", "2010, this will be the creation email address.");
 		} else {
-			for (var2 = 0; var2 < Client.npcCount; ++var2) {
-				if (Client.npcs[Client.npcIndices[var2]] == null) {
-					throw new RuntimeException(var2 + "," + Client.npcCount);
-				}
+			long var1 = World.method1678();
+			int var0;
+			if (0L == var1) {
+				var0 = 5;
+			} else {
+				var0 = WorldMapSectionType.method4312(var1, Login.Login_username);
 			}
 
-		}
-	}
-
-	@ObfuscatedName("if")
-	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;Ljava/lang/String;IIIIZB)V",
-		garbageValue = "-4"
-	)
-	@Export("insertMenuItem")
-	static final void insertMenuItem(String var0, String var1, int var2, int var3, int var4, int var5, boolean var6) {
-		if (!Client.isMenuOpen) {
-			if (Client.menuOptionsCount < 500) {
-				Client.menuActions[Client.menuOptionsCount] = var0;
-				Client.menuTargets[Client.menuOptionsCount] = var1;
-				Client.menuOpcodes[Client.menuOptionsCount] = var2;
-				Client.menuIdentifiers[Client.menuOptionsCount] = var3;
-				Client.menuArguments1[Client.menuOptionsCount] = var4;
-				Client.menuArguments2[Client.menuOptionsCount] = var5;
-				Client.menuShiftClick[Client.menuOptionsCount] = var6;
-				++Client.menuOptionsCount;
+			switch(var0) {
+			case 2:
+				class4.setLoginResponseString(Strings.field3628, Strings.field3870, Strings.field3646);
+				Ignored.method6828(6);
+				break;
+			case 3:
+				class4.setLoginResponseString("", "Error connecting to server.", "");
+				break;
+			case 4:
+				class4.setLoginResponseString("The part of the website you are trying", "to connect to is offline at the moment.", "Please try again later.");
+				break;
+			case 5:
+				class4.setLoginResponseString("Sorry, there was an error trying to", "log you in to this part of the website.", "Please try again later.");
+				break;
+			case 6:
+				class4.setLoginResponseString("", "Error connecting to server.", "");
+				break;
+			case 7:
+				class4.setLoginResponseString("You must enter a valid login to proceed. For accounts", "created after 24th November 2010, please use your", "email address. Otherwise please use your username.");
 			}
 
-		}
-	}
-
-	@ObfuscatedName("jx")
-	@ObfuscatedSignature(
-		descriptor = "(IIIZI)V",
-		garbageValue = "-403331915"
-	)
-	static final void method1982(int var0, int var1, int var2, boolean var3) {
-		if (MusicPatchNode2.loadInterface(var0)) {
-			class65.resizeInterface(EnumComposition.Widget_interfaceComponents[var0], -1, var1, var2, var3);
 		}
 	}
 }

@@ -3,97 +3,125 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ev")
+@ObfuscatedName("eb")
 public class class143 extends class128 {
-	@ObfuscatedName("s")
-	@ObfuscatedSignature(
-		descriptor = "Lqx;"
-	)
-	static IndexedSprite field1639;
 	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		longValue = 7651930284509588633L
+		longValue = -5266391678876425789L
 	)
-	long field1636;
-	@ObfuscatedName("o")
-	String field1637;
-	@ObfuscatedName("h")
+	long field1627;
+	@ObfuscatedName("c")
+	String field1626;
+	@ObfuscatedName("i")
 	@ObfuscatedGetter(
-		intValue = -1748652711
+		intValue = 386086251
 	)
-	int field1638;
+	int field1625;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Lee;"
+		descriptor = "Les;"
 	)
 	final class131 this$0;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lee;)V"
+		descriptor = "(Les;)V"
 	)
 	class143(class131 var1) {
 		this.this$0 = var1;
-		this.field1636 = -1L;
-		this.field1637 = null;
-		this.field1638 = 0;
+		this.field1627 = -1L;
+		this.field1626 = null;
+		this.field1625 = 0;
 	}
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(Lpd;B)V",
-		garbageValue = "-73"
+		descriptor = "(Lpi;I)V",
+		garbageValue = "-413979452"
 	)
-	void vmethod3107(Buffer var1) {
+	void vmethod3168(Buffer var1) {
 		if (var1.readUnsignedByte() != 255) {
 			--var1.offset;
-			this.field1636 = var1.readLong();
+			this.field1627 = var1.readLong();
 		}
 
-		this.field1637 = var1.readStringCp1252NullTerminatedOrNull();
-		this.field1638 = var1.readUnsignedShort();
-	}
-
-	@ObfuscatedName("o")
-	@ObfuscatedSignature(
-		descriptor = "(Leh;I)V",
-		garbageValue = "-1228032820"
-	)
-	void vmethod3104(ClanSettings var1) {
-		var1.method2918(this.field1636, this.field1637, this.field1638);
-	}
-
-	@ObfuscatedName("o")
-	@ObfuscatedSignature(
-		descriptor = "(III)Lkn;",
-		garbageValue = "1044730683"
-	)
-	@Export("getWidgetChild")
-	public static Widget getWidgetChild(int var0, int var1) {
-		Widget var2 = HorizontalAlignment.getWidget(var0);
-		if (var1 == -1) {
-			return var2;
-		} else {
-			return var2 != null && var2.children != null && var1 < var2.children.length ? var2.children[var1] : null;
-		}
+		this.field1626 = var1.readStringCp1252NullTerminatedOrNull();
+		this.field1625 = var1.readUnsignedShort();
 	}
 
 	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(II)Lgo;",
-		garbageValue = "1616770151"
+		descriptor = "(Lex;S)V",
+		garbageValue = "-10316"
 	)
-	@Export("getFrames")
-	static Frames getFrames(int var0) {
-		Frames var1 = (Frames)SequenceDefinition.SequenceDefinition_cachedFrames.get((long)var0);
-		if (var1 != null) {
-			return var1;
-		} else {
-			var1 = class346.method6480(SequenceDefinition.SequenceDefinition_animationsArchive, DevicePcmPlayerProvider.SequenceDefinition_skeletonsArchive, var0, false);
-			if (var1 != null) {
-				SequenceDefinition.SequenceDefinition_cachedFrames.put(var1, (long)var0);
-			}
+	void vmethod3162(ClanSettings var1) {
+		var1.method2959(this.field1627, this.field1626, this.field1625);
+	}
 
-			return var1;
+	@ObfuscatedName("n")
+	@ObfuscatedSignature(
+		descriptor = "(IB)I",
+		garbageValue = "34"
+	)
+	@Export("iLog")
+	public static int iLog(int var0) {
+		int var1 = 0;
+		if (var0 < 0 || var0 >= 65536) {
+			var0 >>>= 16;
+			var1 += 16;
 		}
+
+		if (var0 >= 256) {
+			var0 >>>= 8;
+			var1 += 8;
+		}
+
+		if (var0 >= 16) {
+			var0 >>>= 4;
+			var1 += 4;
+		}
+
+		if (var0 >= 4) {
+			var0 >>>= 2;
+			var1 += 2;
+		}
+
+		if (var0 >= 1) {
+			var0 >>>= 1;
+			++var1;
+		}
+
+		return var0 + var1;
+	}
+
+	@ObfuscatedName("kf")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "345981332"
+	)
+	static void method3072() {
+		for (InterfaceParent var0 = (InterfaceParent)Client.interfaceParents.first(); var0 != null; var0 = (InterfaceParent)Client.interfaceParents.next()) {
+			int var1 = var0.group;
+			if (class155.loadInterface(var1)) {
+				boolean var2 = true;
+				Widget[] var3 = Widget.Widget_interfaceComponents[var1];
+
+				int var4;
+				for (var4 = 0; var4 < var3.length; ++var4) {
+					if (var3[var4] != null) {
+						var2 = var3[var4].isIf3;
+						break;
+					}
+				}
+
+				if (!var2) {
+					var4 = (int)var0.key;
+					Widget var5 = class127.getWidget(var4);
+					if (var5 != null) {
+						class346.method6449(var5);
+					}
+				}
+			}
+		}
+
 	}
 }

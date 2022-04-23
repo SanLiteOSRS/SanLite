@@ -9,7 +9,7 @@ import net.runelite.mapping.ObfuscatedSignature;
 public class Ignored extends Nameable {
 	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = -291144419
+		intValue = -60193045
 	)
 	@Export("id")
 	int id;
@@ -19,18 +19,18 @@ public class Ignored extends Nameable {
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(Lng;I)I",
-		garbageValue = "-264858177"
+		descriptor = "(Lng;B)I",
+		garbageValue = "-48"
 	)
 	@Export("compareTo_ignored")
 	int compareTo_ignored(Ignored var1) {
 		return this.id - var1.id;
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(Lnc;S)I",
-		garbageValue = "-8912"
+		descriptor = "(Lnn;I)I",
+		garbageValue = "842367957"
 	)
 	@Export("compareTo_user")
 	public int compareTo_user(Nameable var1) {
@@ -39,5 +39,16 @@ public class Ignored extends Nameable {
 
 	public int compareTo(Object var1) {
 		return this.compareTo_ignored((Ignored)var1);
+	}
+
+	@ObfuscatedName("u")
+	@ObfuscatedSignature(
+		descriptor = "(IB)V",
+		garbageValue = "127"
+	)
+	static void method6828(int var0) {
+		if (var0 != Login.loginIndex) {
+			Login.loginIndex = var0;
+		}
 	}
 }
