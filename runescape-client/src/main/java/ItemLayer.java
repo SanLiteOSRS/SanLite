@@ -15,13 +15,13 @@ public final class ItemLayer {
 	int z;
 	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = 636485632
+		intValue = 616317407
 	)
 	@Export("x")
 	int x;
 	@ObfuscatedName("i")
 	@ObfuscatedGetter(
-		intValue = 1477443584
+		intValue = -1784777855
 	)
 	@Export("y")
 	int y;

@@ -24,7 +24,7 @@ public final class WallObject {
 	int x;
 	@ObfuscatedName("i")
 	@ObfuscatedGetter(
-		intValue = -1003487232
+		intValue = 436509427
 	)
 	@Export("y")
 	int y;
