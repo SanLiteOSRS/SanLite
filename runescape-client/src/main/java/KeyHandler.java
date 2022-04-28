@@ -11,96 +11,108 @@ import net.runelite.mapping.ObfuscatedSignature;
 @ObfuscatedName("e")
 @Implements("KeyHandler")
 public final class KeyHandler implements KeyListener, FocusListener {
+	@ObfuscatedName("sz")
+	@ObfuscatedSignature(
+		descriptor = "Lay;"
+	)
+	@Export("pcmPlayer0")
+	static PcmPlayer pcmPlayer0;
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
 		descriptor = "Le;"
 	)
 	@Export("KeyHandler_instance")
 	public static KeyHandler KeyHandler_instance;
-	@ObfuscatedName("bv")
-	@ObfuscatedGetter(
-		intValue = 138807253
-	)
-	static int field140;
-	@ObfuscatedName("cu")
+	@ObfuscatedName("cp")
 	@Export("KeyHandler_pressedKeys")
 	public static boolean[] KeyHandler_pressedKeys;
-	@ObfuscatedName("cl")
-	public static boolean[] field121;
-	@ObfuscatedName("cv")
-	public static boolean[] field125;
-	@ObfuscatedName("cg")
-	public static int[] field129;
-	@ObfuscatedName("cz")
-	@ObfuscatedGetter(
-		intValue = 1330451443
-	)
-	public static int field138;
-	@ObfuscatedName("cb")
-	@ObfuscatedGetter(
-		intValue = 542360451
-	)
-	public static int field124;
+	@ObfuscatedName("co")
+	public static boolean[] field140;
+	@ObfuscatedName("ca")
+	public static boolean[] field131;
+	@ObfuscatedName("cr")
+	public static int[] field145;
 	@ObfuscatedName("cq")
-	static char[] field115;
-	@ObfuscatedName("cf")
-	static int[] field130;
-	@ObfuscatedName("cm")
-	public static int[] field139;
-	@ObfuscatedName("ch")
 	@ObfuscatedGetter(
-		intValue = 480717521
+		intValue = 818092329
 	)
-	public static int field132;
+	public static int field133;
+	@ObfuscatedName("cn")
+	@ObfuscatedGetter(
+		intValue = -119285303
+	)
+	public static int field128;
+	@ObfuscatedName("cu")
+	static char[] field135;
+	@ObfuscatedName("cg")
+	static int[] field136;
 	@ObfuscatedName("cj")
-	public static int[] field133;
-	@ObfuscatedName("ci")
-	@ObfuscatedGetter(
-		intValue = 1701924001
-	)
-	public static int field134;
-	@ObfuscatedName("cs")
-	@ObfuscatedGetter(
-		intValue = 1014391871
-	)
-	public static int field135;
-	@ObfuscatedName("ct")
-	@ObfuscatedGetter(
-		intValue = -1239653249
-	)
-	public static int field136;
+	public static int[] field143;
 	@ObfuscatedName("ce")
 	@ObfuscatedGetter(
-		intValue = -463917317
+		intValue = -1041441839
 	)
-	public static int field137;
-	@ObfuscatedName("dd")
+	public static int field118;
+	@ObfuscatedName("cl")
+	public static int[] field139;
+	@ObfuscatedName("ck")
 	@ObfuscatedGetter(
-		intValue = -958068693
+		intValue = -1817748749
+	)
+	public static int field132;
+	@ObfuscatedName("cd")
+	@ObfuscatedGetter(
+		intValue = -2054154743
+	)
+	public static int field141;
+	@ObfuscatedName("cw")
+	@ObfuscatedGetter(
+		intValue = 295038649
+	)
+	public static int field142;
+	@ObfuscatedName("cx")
+	@ObfuscatedGetter(
+		intValue = -1399162193
+	)
+	public static int field138;
+	@ObfuscatedName("dr")
+	@ObfuscatedGetter(
+		intValue = -1784108457
 	)
 	@Export("KeyHandler_idleCycles")
 	public static volatile int KeyHandler_idleCycles;
-	@ObfuscatedName("de")
+	@ObfuscatedName("dj")
 	@Export("KeyHandler_keyCodes")
 	static int[] KeyHandler_keyCodes;
+	@ObfuscatedName("es")
+	@ObfuscatedGetter(
+		longValue = 4474634211423163711L
+	)
+	static long field149;
+	@ObfuscatedName("el")
+	@ObfuscatedSignature(
+		descriptor = "Llx;"
+	)
+	@Export("archive0")
+	static Archive archive0;
 
 	static {
 		KeyHandler_instance = new KeyHandler();
 		KeyHandler_pressedKeys = new boolean[112];
-		field121 = new boolean[112];
-		field125 = new boolean[112];
-		field129 = new int[128];
-		field138 = 0;
-		field124 = 0;
-		field115 = new char[128];
-		field130 = new int[128];
+		field140 = new boolean[112];
+		field131 = new boolean[112];
+		field145 = new int[128];
+		field133 = 0;
+		field128 = 0;
+		field135 = new char[128];
+		field136 = new int[128];
+		field143 = new int[128];
+		field118 = 0;
 		field139 = new int[128];
 		field132 = 0;
-		field133 = new int[128];
-		field134 = 0;
-		field135 = 0;
-		field136 = 0;
-		field137 = 0;
+		field141 = 0;
+		field142 = 0;
+		field138 = 0;
 		KeyHandler_idleCycles = 0;
 		KeyHandler_keyCodes = new int[]{-1, -1, -1, -1, -1, -1, -1, -1, 85, 80, 84, -1, 91, -1, -1, -1, 81, 82, 86, -1, -1, -1, -1, -1, -1, -1, -1, 13, -1, -1, -1, -1, 83, 104, 105, 103, 102, 96, 98, 97, 99, -1, -1, -1, -1, -1, -1, -1, 25, 16, 17, 18, 19, 20, 21, 22, 23, 24, -1, -1, -1, -1, -1, -1, -1, 48, 68, 66, 50, 34, 51, 52, 53, 39, 54, 55, 56, 70, 69, 40, 41, 32, 35, 49, 36, 38, 67, 33, 65, 37, 64, -1, -1, -1, -1, -1, 228, 231, 227, 233, 224, 219, 225, 230, 226, 232, 89, 87, -1, 88, 229, 90, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, -1, -1, -1, 101, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 100, -1, 87, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
 	}
@@ -108,45 +120,15 @@ public final class KeyHandler implements KeyListener, FocusListener {
 	KeyHandler() {
 	}
 
-	public final synchronized void focusLost(FocusEvent var1) {
-		if (KeyHandler_instance != null) {
-			field124 = -1;
-		}
-
-	}
-
 	public final void keyTyped(KeyEvent var1) {
 		if (KeyHandler_instance != null) {
 			char var2 = var1.getKeyChar();
-			if (var2 != 0 && var2 != '\uffff') {
-				boolean var3;
-				if (var2 > 0 && var2 < 128 || var2 >= 160 && var2 <= 255) {
-					var3 = true;
-				} else {
-					label57: {
-						if (var2 != 0) {
-							char[] var4 = class345.cp1252AsciiExtension;
-
-							for (int var5 = 0; var5 < var4.length; ++var5) {
-								char var6 = var4[var5];
-								if (var6 == var2) {
-									var3 = true;
-									break label57;
-								}
-							}
-						}
-
-						var3 = false;
-					}
-				}
-
-				if (var3) {
-					int var7 = field136 + 1 & 127;
-					if (var7 != field135) {
-						field130[field136] = -1;
-						field115[field136] = var2;
-						field136 = var7;
-					}
+			if (var2 != 0 && var2 != '\uffff' && class134.method2905(var2)) {
+				int var3 = field142 + 1 & 127;
+				if (var3 != field141) {
+					field136[field142] = -1;
+					field135[field142] = var2;
+					field142 = var3;
 				}
 			}
 		}
@@ -163,11 +145,11 @@ public final class KeyHandler implements KeyListener, FocusListener {
 				var2 = -1;
 			}
 
-			if (field124 >= 0 && var2 >= 0) {
-				field129[field124] = ~var2;
-				field124 = field124 + 1 & 127;
-				if (field124 == field138) {
-					field124 = -1;
+			if (field128 >= 0 && var2 >= 0) {
+				field145[field128] = ~var2;
+				field128 = field128 + 1 & 127;
+				if (field133 == field128) {
+					field128 = -1;
 				}
 			}
 		}
@@ -190,21 +172,21 @@ public final class KeyHandler implements KeyListener, FocusListener {
 				var2 = -1;
 			}
 
-			if (field124 >= 0 && var2 >= 0) {
-				field129[field124] = var2;
-				field124 = field124 + 1 & 127;
-				if (field124 == field138) {
-					field124 = -1;
+			if (field128 >= 0 && var2 >= 0) {
+				field145[field128] = var2;
+				field128 = field128 + 1 & 127;
+				if (field128 == field133) {
+					field128 = -1;
 				}
 			}
 
 			int var3;
 			if (var2 >= 0) {
-				var3 = field136 + 1 & 127;
-				if (var3 != field135) {
-					field130[field136] = var2;
-					field115[field136] = 0;
-					field136 = var3;
+				var3 = field142 + 1 & 127;
+				if (var3 != field141) {
+					field136[field142] = var2;
+					field135[field142] = 0;
+					field142 = var3;
 				}
 			}
 
@@ -216,66 +198,128 @@ public final class KeyHandler implements KeyListener, FocusListener {
 
 	}
 
-	@ObfuscatedName("v")
-	@ObfuscatedSignature(
-		descriptor = "(II)V",
-		garbageValue = "-1076431446"
-	)
-	static void method377(int var0) {
+	public final synchronized void focusLost(FocusEvent var1) {
+		if (KeyHandler_instance != null) {
+			field128 = -1;
+		}
+
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(I)Lnf;",
-		garbageValue = "1727286765"
+		descriptor = "(IB)Lft;",
+		garbageValue = "1"
 	)
-	public static class386 method378() {
-		synchronized(class386.field4342) {
-			if (class386.field4336 == 0) {
-				return new class386();
-			} else {
-				class386.field4342[--class386.field4336].method7033();
-				return class386.field4342[class386.field4336];
+	@Export("getNpcDefinition")
+	public static NPCComposition getNpcDefinition(int var0) {
+		NPCComposition var1 = (NPCComposition)NPCComposition.NpcDefinition_cached.get((long)var0);
+		if (var1 != null) {
+			return var1;
+		} else {
+			byte[] var2 = NPCComposition.NpcDefinition_archive.takeFile(9, var0);
+			var1 = new NPCComposition();
+			var1.id = var0;
+			if (var2 != null) {
+				var1.decode(new Buffer(var2));
 			}
+
+			var1.postDecode();
+			NPCComposition.NpcDefinition_cached.put(var1, (long)var0);
+			return var1;
 		}
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(I)Z",
-		garbageValue = "-2117472619"
+		descriptor = "(IB)Lkl;",
+		garbageValue = "-105"
 	)
-	public static boolean method376() {
-		return class273.musicPlayerStatus != 0 ? true : WorldMapEvent.midiPcmStream.isReady();
-	}
+	public static GameBuild method332(int var0) {
+		GameBuild[] var1 = class155.method3185();
 
-	@ObfuscatedName("gf")
-	@ObfuscatedSignature(
-		descriptor = "(Lcw;III)V",
-		garbageValue = "840635869"
-	)
-	@Export("performPlayerAnimation")
-	static void performPlayerAnimation(Player var0, int var1, int var2) {
-		if (var0.sequence == var1 && var1 != -1) {
-			int var3 = ItemContainer.SequenceDefinition_get(var1).field2172;
-			if (var3 == 1) {
-				var0.sequenceFrame = 0;
-				var0.sequenceFrameCycle = 0;
-				var0.sequenceDelay = var2;
-				var0.field1169 = 0;
+		for (int var2 = 0; var2 < var1.length; ++var2) {
+			GameBuild var3 = var1[var2];
+			if (var0 == var3.buildId) {
+				return var3;
 			}
-
-			if (var3 == 2) {
-				var0.field1169 = 0;
-			}
-		} else if (var1 == -1 || var0.sequence == -1 || ItemContainer.SequenceDefinition_get(var1).field2166 >= ItemContainer.SequenceDefinition_get(var0.sequence).field2166) {
-			var0.sequence = var1;
-			var0.sequenceFrame = 0;
-			var0.sequenceFrameCycle = 0;
-			var0.sequenceDelay = var2;
-			var0.field1169 = 0;
-			var0.field1134 = var0.pathLength;
 		}
 
+		return null;
+	}
+
+	@ObfuscatedName("n")
+	@ObfuscatedSignature(
+		descriptor = "(IIII)V",
+		garbageValue = "-471060529"
+	)
+	static final void method337(int var0, int var1, int var2) {
+		int var3;
+		for (var3 = 0; var3 < 8; ++var3) {
+			for (int var4 = 0; var4 < 8; ++var4) {
+				Tiles.Tiles_heights[var0][var3 + var1][var4 + var2] = 0;
+			}
+		}
+
+		if (var1 > 0) {
+			for (var3 = 1; var3 < 8; ++var3) {
+				Tiles.Tiles_heights[var0][var1][var3 + var2] = Tiles.Tiles_heights[var0][var1 - 1][var3 + var2];
+			}
+		}
+
+		if (var2 > 0) {
+			for (var3 = 1; var3 < 8; ++var3) {
+				Tiles.Tiles_heights[var0][var3 + var1][var2] = Tiles.Tiles_heights[var0][var3 + var1][var2 - 1];
+			}
+		}
+
+		if (var1 > 0 && Tiles.Tiles_heights[var0][var1 - 1][var2] != 0) {
+			Tiles.Tiles_heights[var0][var1][var2] = Tiles.Tiles_heights[var0][var1 - 1][var2];
+		} else if (var2 > 0 && Tiles.Tiles_heights[var0][var1][var2 - 1] != 0) {
+			Tiles.Tiles_heights[var0][var1][var2] = Tiles.Tiles_heights[var0][var1][var2 - 1];
+		} else if (var1 > 0 && var2 > 0 && Tiles.Tiles_heights[var0][var1 - 1][var2 - 1] != 0) {
+			Tiles.Tiles_heights[var0][var1][var2] = Tiles.Tiles_heights[var0][var1 - 1][var2 - 1];
+		}
+
+	}
+
+	@ObfuscatedName("l")
+	static final void method350(long var0) {
+		ViewportMouse.ViewportMouse_entityTags[++ViewportMouse.ViewportMouse_entityCount - 1] = var0;
+	}
+
+	@ObfuscatedName("m")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/String;I)V",
+		garbageValue = "1206801353"
+	)
+	static final void method348(String var0) {
+		class149.method3138("Please remove " + var0 + " from your friend list first");
+	}
+
+	@ObfuscatedName("ft")
+	@ObfuscatedSignature(
+		descriptor = "(Lgw;IIIB)V",
+		garbageValue = "85"
+	)
+	static void method336(SequenceDefinition var0, int var1, int var2, int var3) {
+		if (Client.soundEffectCount < 50 && class131.clientPreferences.method2270() != 0) {
+			if (var0.field2144 != null && var0.field2144.containsKey(var1)) {
+				int var4 = (Integer)var0.field2144.get(var1);
+				if (var4 != 0) {
+					int var7 = var4 >> 8;
+					int var8 = var4 >> 4 & 7;
+					int var9 = var4 & 15;
+					Client.soundEffectIds[Client.soundEffectCount] = var7;
+					Client.queuedSoundEffectLoops[Client.soundEffectCount] = var8;
+					Client.queuedSoundEffectDelays[Client.soundEffectCount] = 0;
+					Client.soundEffects[Client.soundEffectCount] = null;
+					int var10 = (var2 - 64) / 128;
+					int var11 = (var3 - 64) / 128;
+					Client.soundLocations[Client.soundEffectCount] = var9 + (var11 << 8) + (var10 << 16);
+					++Client.soundEffectCount;
+				}
+
+			}
+		}
 	}
 }

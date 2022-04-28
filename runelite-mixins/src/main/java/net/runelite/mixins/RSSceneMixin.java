@@ -64,6 +64,9 @@ public abstract class RSSceneMixin implements RSScene
 	@Shadow("skyboxColor")
 	static int skyboxColor;
 
+	@Shadow("viewportColor")
+	private static int viewportColor;
+
 	@Inject
 	private static int[] tmpX = new int[6];
 
@@ -139,6 +142,7 @@ public abstract class RSSceneMixin implements RSScene
 		final DrawCallbacks drawCallbacks = client.getDrawCallbacks();
 		if (drawCallbacks != null)
 		{
+			viewportColor = 0;
 			drawCallbacks.drawScene(cameraX, cameraY, cameraZ, cameraPitch, cameraYaw, plane);
 		}
 

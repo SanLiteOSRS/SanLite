@@ -1,5 +1,3 @@
-import java.io.File;
-import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import net.runelite.mapping.Export;
@@ -8,124 +6,155 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ab")
+@ObfuscatedName("bo")
 @Implements("ReflectionCheck")
 public class ReflectionCheck extends Node {
-	@ObfuscatedName("ub")
+	@ObfuscatedName("pl")
 	@ObfuscatedSignature(
-		descriptor = "Lll;"
+		descriptor = "Lpj;"
 	)
-	@Export("grandExchangeEvents")
-	static GrandExchangeEvents grandExchangeEvents;
-	@ObfuscatedName("tx")
-	@ObfuscatedGetter(
-		intValue = -1200671157
-	)
-	static int field250;
-	@ObfuscatedName("y")
-	@Export("operatingSystemName")
-	public static String operatingSystemName;
-	@ObfuscatedName("ej")
-	@ObfuscatedSignature(
-		descriptor = "Llu;"
-	)
-	@Export("archive20")
-	static Archive archive20;
+	@Export("HitSplatDefinition_cachedSprites")
+	static class426 HitSplatDefinition_cachedSprites;
 	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = 408894777
+		intValue = 1002546903
 	)
 	@Export("id")
 	int id;
-	@ObfuscatedName("o")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = -416838537
+		intValue = -1236852851
 	)
 	@Export("size")
 	int size;
-	@ObfuscatedName("h")
+	@ObfuscatedName("i")
 	@Export("operations")
 	int[] operations;
-	@ObfuscatedName("g")
-	@Export("creationErrors")
-	int[] creationErrors;
-	@ObfuscatedName("l")
-	@Export("fields")
-	Field[] fields;
-	@ObfuscatedName("n")
+	@ObfuscatedName("f")
 	@Export("intReplaceValues")
 	int[] intReplaceValues;
-	@ObfuscatedName("d")
+	@ObfuscatedName("b")
+	@Export("creationErrors")
+	int[] creationErrors;
+	@ObfuscatedName("n")
+	@Export("fields")
+	Field[] fields;
+	@ObfuscatedName("s")
 	@Export("methods")
 	Method[] methods;
-	@ObfuscatedName("f")
+	@ObfuscatedName("l")
 	@Export("arguments")
 	byte[][][] arguments;
 
 	ReflectionCheck() {
 	}
 
-	@ObfuscatedName("g")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "(Ljava/lang/String;Ljava/lang/String;ZB)Lpr;",
-		garbageValue = "-28"
+		descriptor = "(II)Z",
+		garbageValue = "950633701"
 	)
-	@Export("getPreferencesFile")
-	public static AccessFile getPreferencesFile(String var0, String var1, boolean var2) {
-		File var3 = new File(VertexNormal.cacheDir, "preferences" + var0 + ".dat");
-		if (var3.exists()) {
-			try {
-				AccessFile var10 = new AccessFile(var3, "rw", 10000L);
-				return var10;
-			} catch (IOException var9) {
+	public static boolean method1079(int var0) {
+		return (var0 >> 29 & 1) != 0;
+	}
+
+	@ObfuscatedName("fr")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "1315350901"
+	)
+	static void method1080() {
+		Client.packetWriter.clearBuffer();
+		Client.packetWriter.packetBuffer.offset = 0;
+		Client.packetWriter.serverPacket = null;
+		Client.packetWriter.field1324 = null;
+		Client.packetWriter.field1325 = null;
+		Client.packetWriter.field1313 = null;
+		Client.packetWriter.serverPacketLength = 0;
+		Client.packetWriter.field1322 = 0;
+		Client.rebootTimer = 0;
+		Client.menuOptionsCount = 0;
+		Client.isMenuOpen = false;
+		Client.minimapState = 0;
+		Client.destinationX = 0;
+
+		int var0;
+		for (var0 = 0; var0 < 2048; ++var0) {
+			Client.players[var0] = null;
+		}
+
+		GrandExchangeEvents.localPlayer = null;
+
+		for (var0 = 0; var0 < Client.npcs.length; ++var0) {
+			NPC var1 = Client.npcs[var0];
+			if (var1 != null) {
+				var1.targetIndex = -1;
+				var1.false0 = false;
 			}
 		}
 
-		String var4 = "";
-		if (SecureRandomFuture.cacheGamebuild == 33) {
-			var4 = "_rc";
-		} else if (SecureRandomFuture.cacheGamebuild == 34) {
-			var4 = "_wip";
+		UserComparator10.method2622();
+		Decimator.updateGameState(30);
+
+		for (var0 = 0; var0 < 100; ++var0) {
+			Client.field715[var0] = true;
 		}
 
-		File var5 = new File(class230.userHomeDirectory, "jagex_" + var1 + "_preferences" + var0 + var4 + ".dat");
-		AccessFile var6;
-		if (!var2 && var5.exists()) {
-			try {
-				var6 = new AccessFile(var5, "rw", 10000L);
-				return var6;
-			} catch (IOException var8) {
-			}
-		}
-
-		try {
-			var6 = new AccessFile(var3, "rw", 10000L);
-			return var6;
-		} catch (IOException var7) {
-			throw new RuntimeException();
-		}
+		PacketBufferNode var2 = WorldMapSprite.getPacketBufferNode(ClientPacket.field3000, Client.packetWriter.isaacCipher);
+		var2.packetBuffer.writeByte(Client.getWindowedMode());
+		var2.packetBuffer.writeShort(InvDefinition.canvasWidth);
+		var2.packetBuffer.writeShort(class321.canvasHeight);
+		Client.packetWriter.addNode(var2);
 	}
 
-	@ObfuscatedName("ge")
+	@ObfuscatedName("ka")
 	@ObfuscatedSignature(
-		descriptor = "(I)I",
-		garbageValue = "1964601703"
+		descriptor = "(IIIILqi;Lki;I)V",
+		garbageValue = "1940791589"
 	)
-	@Export("getWindowedMode")
-	static int getWindowedMode() {
-		return Client.isResizable ? 2 : 1;
-	}
-
-	@ObfuscatedName("ii")
-	@ObfuscatedSignature(
-		descriptor = "(II)Ljava/lang/String;",
-		garbageValue = "16916013"
-	)
-	static String method637(int var0) {
-		if (var0 < 0) {
-			return "";
+	@Export("worldToMinimap")
+	static final void worldToMinimap(int var0, int var1, int var2, int var3, SpritePixels var4, SpriteMask var5) {
+		int var6 = var3 * var3 + var2 * var2;
+		if (var6 > 4225 && var6 < 90000) {
+			int var7 = Client.camAngleY & 2047;
+			int var8 = Rasterizer3D.Rasterizer3D_sine[var7];
+			int var9 = Rasterizer3D.Rasterizer3D_cosine[var7];
+			int var10 = var9 * var2 + var3 * var8 >> 16;
+			int var11 = var3 * var9 - var8 * var2 >> 16;
+			double var12 = Math.atan2((double)var10, (double)var11);
+			int var14 = var5.width / 2 - 25;
+			int var15 = (int)(Math.sin(var12) * (double)var14);
+			int var16 = (int)(Math.cos(var12) * (double)var14);
+			byte var17 = 20;
+			Canvas.redHintArrowSprite.method8105(var15 + (var0 + var5.width / 2 - var17 / 2), var5.height / 2 + var1 - var17 / 2 - var16 - 10, var17, var17, 15, 15, var12, 256);
 		} else {
-			return Client.menuTargets[var0].length() > 0 ? Client.menuActions[var0] + " " + Client.menuTargets[var0] : Client.menuActions[var0];
+			drawSpriteOnMinimap(var0, var1, var2, var3, var4, var5);
+		}
+
+	}
+
+	@ObfuscatedName("kz")
+	@ObfuscatedSignature(
+		descriptor = "(IIIILqi;Lki;I)V",
+		garbageValue = "812723929"
+	)
+	@Export("drawSpriteOnMinimap")
+	static final void drawSpriteOnMinimap(int var0, int var1, int var2, int var3, SpritePixels var4, SpriteMask var5) {
+		if (var4 != null) {
+			int var6 = Client.camAngleY & 2047;
+			int var7 = var3 * var3 + var2 * var2;
+			if (var7 <= 6400) {
+				int var8 = Rasterizer3D.Rasterizer3D_sine[var6];
+				int var9 = Rasterizer3D.Rasterizer3D_cosine[var6];
+				int var10 = var3 * var8 + var9 * var2 >> 16;
+				int var11 = var3 * var9 - var8 * var2 >> 16;
+				if (var7 > 2500) {
+					var4.method8103(var10 + var5.width / 2 - var4.width / 2, var5.height / 2 - var11 - var4.height / 2, var0, var1, var5.width, var5.height, var5.xStarts, var5.xWidths);
+				} else {
+					var4.drawTransBgAt(var0 + var10 + var5.width / 2 - var4.width / 2, var5.height / 2 + var1 - var11 - var4.height / 2);
+				}
+
+			}
 		}
 	}
 }

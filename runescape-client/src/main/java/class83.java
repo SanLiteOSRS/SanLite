@@ -3,119 +3,90 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cp")
+@ObfuscatedName("cs")
 public enum class83 implements MouseWheel {
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "Lcp;"
+		descriptor = "Lcs;"
 	)
-	field1081(0, -1),
-	@ObfuscatedName("o")
+	field1064(0, -1),
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "Lcp;"
+		descriptor = "Lcs;"
 	)
-	field1074(1, 2),
-	@ObfuscatedName("h")
+	field1066(1, 2),
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		descriptor = "Lcp;"
+		descriptor = "Lcs;"
 	)
-	field1075(2, 3),
-	@ObfuscatedName("g")
+	field1062(2, 3),
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "Lcp;"
+		descriptor = "Lcs;"
 	)
-	field1076(3, 4),
-	@ObfuscatedName("l")
+	field1061(3, 4),
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		descriptor = "Lcp;"
+		descriptor = "Lcs;"
 	)
-	field1077(4, 5),
+	field1067(4, 5),
 	@ObfuscatedName("n")
 	@ObfuscatedSignature(
-		descriptor = "Lcp;"
+		descriptor = "Lcs;"
 	)
-	field1078(5, 6);
+	field1065(5, 6);
 
-	@ObfuscatedName("rl")
+	@ObfuscatedName("uk")
 	@ObfuscatedSignature(
-		descriptor = "Ley;"
+		descriptor = "Llu;"
 	)
-	@Export("guestClanChannel")
-	static ClanChannel guestClanChannel;
-	@ObfuscatedName("ba")
-	@ObfuscatedSignature(
-		descriptor = "Lpa;"
-	)
-	@Export("loginType")
-	static LoginType loginType;
-	@ObfuscatedName("d")
+	@Export("grandExchangeEvents")
+	static GrandExchangeEvents grandExchangeEvents;
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = -1515440803
+		intValue = -106805987
 	)
-	final int field1079;
-	@ObfuscatedName("f")
+	final int field1060;
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = 79198917
+		intValue = -672454085
 	)
-	final int field1073;
+	final int field1063;
 
 	class83(int var3, int var4) {
-		this.field1079 = var3;
-		this.field1073 = var4;
+		this.field1060 = var3;
+		this.field1063 = var4;
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
 		descriptor = "(B)I",
-		garbageValue = "15"
+		garbageValue = "16"
 	)
 	@Export("rsOrdinal")
 	public int rsOrdinal() {
-		return this.field1073;
+		return this.field1063;
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("aj")
 	@ObfuscatedSignature(
-		descriptor = "(Lpy;II)V",
-		garbageValue = "-2074244777"
+		descriptor = "(ILky;IIIII[FI)Lky;",
+		garbageValue = "-511868196"
 	)
-	@Export("updatePlayers")
-	static final void updatePlayers(PacketBuffer var0, int var1) {
-		int var2 = var0.offset;
-		Players.Players_pendingUpdateCount = 0;
-		UserComparator8.method2575(var0);
-
-		for (int var3 = 0; var3 < Players.Players_pendingUpdateCount; ++var3) {
-			int var4 = Players.Players_pendingUpdateIndices[var3];
-			Player var5 = Client.players[var4];
-			int var6 = var0.readUnsignedByte();
-			if ((var6 & 64) != 0) {
-				var6 += var0.readUnsignedByte() << 8;
-			}
-
-			HealthBarUpdate.method2213(var0, var4, var5, var6);
-		}
-
-		if (var0.offset - var2 != var1) {
-			throw new RuntimeException(var0.offset - var2 + " " + var1);
-		}
-	}
-
-	@ObfuscatedName("o")
-	@ObfuscatedSignature(
-		descriptor = "(IB)Lqv;",
-		garbageValue = "-122"
-	)
-	public static PrivateChatMode method2124(int var0) {
-		PrivateChatMode[] var1 = Canvas.method389();
-
-		for (int var2 = 0; var2 < var1.length; ++var2) {
-			PrivateChatMode var3 = var1[var2];
-			if (var0 == var3.field4737) {
-				return var3;
-			}
-		}
-
-		return null;
+	static Widget method2111(int var0, Widget var1, int var2, int var3, int var4, int var5, int var6, float[] var7) {
+		Widget var8 = new Widget();
+		var8.type = var0;
+		var8.parentId = var1.id;
+		var8.childIndex = var2;
+		var8.isIf3 = true;
+		var8.xAlignment = var3;
+		var8.yAlignment = var4;
+		var8.widthAlignment = var5;
+		var8.heightAlignment = var6;
+		var8.rawX = (int)(var7[0] * (float)var1.width);
+		var8.rawY = (int)(var7[1] * (float)var1.height);
+		var8.rawWidth = (int)(var7[2] * (float)var1.width);
+		var8.rawHeight = (int)((float)var1.height * var7[3]);
+		return var8;
 	}
 }

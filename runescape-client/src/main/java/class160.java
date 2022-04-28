@@ -1,98 +1,105 @@
-import java.util.Date;
 import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("fa")
+@ObfuscatedName("fu")
 public class class160 {
-	@ObfuscatedName("x")
-	public static short[][] field1747;
-	@ObfuscatedName("c")
+	@ObfuscatedName("ps")
 	@ObfuscatedSignature(
-		descriptor = "Lqx;"
+		descriptor = "Lcj;"
 	)
-	@Export("options_buttons_0Sprite")
-	static IndexedSprite options_buttons_0Sprite;
-	@ObfuscatedName("lo")
-	@ObfuscatedGetter(
-		intValue = -1196067177
-	)
-	@Export("Client_plane")
-	static int Client_plane;
-	@ObfuscatedName("nx")
-	@ObfuscatedSignature(
-		descriptor = "Lkn;"
-	)
-	static Widget field1750;
+	@Export("varcs")
+	static Varcs varcs;
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "Lct;"
+		descriptor = "Lcw;"
 	)
-	public UrlRequest field1749;
-	@ObfuscatedName("o")
-	public float[] field1748;
+	public UrlRequest field1737;
+	@ObfuscatedName("c")
+	public float[] field1735;
 	// $FF: synthetic field
 	@ObfuscatedSignature(
-		descriptor = "Lef;"
+		descriptor = "Lev;"
 	)
 	final class155 this$0;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lef;)V"
+		descriptor = "(Lev;)V"
 	)
 	class160(class155 var1) {
 		this.this$0 = var1;
-		this.field1748 = new float[4];
+		this.field1735 = new float[4];
 	}
 
-	@ObfuscatedName("v")
-	public static String method3236(long var0) {
-		Calendar.Calendar_calendar.setTime(new Date(var0));
-		int var2 = Calendar.Calendar_calendar.get(7);
-		int var3 = Calendar.Calendar_calendar.get(5);
-		int var4 = Calendar.Calendar_calendar.get(2);
-		int var5 = Calendar.Calendar_calendar.get(1);
-		int var6 = Calendar.Calendar_calendar.get(11);
-		int var7 = Calendar.Calendar_calendar.get(12);
-		int var8 = Calendar.Calendar_calendar.get(13);
-		return Calendar.DAYS_OF_THE_WEEK[var2 - 1] + ", " + var3 / 10 + var3 % 10 + "-" + Calendar.MONTH_NAMES_ENGLISH_GERMAN[0][var4] + "-" + var5 + " " + var6 / 10 + var6 % 10 + ":" + var7 / 10 + var7 % 10 + ":" + var8 / 10 + var8 % 10 + " GMT";
-	}
-
-	@ObfuscatedName("o")
+	@ObfuscatedName("an")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-235461419"
+		descriptor = "(ILbd;ZI)I",
+		garbageValue = "-1437558717"
 	)
-	public static void method3237() {
-		if (MouseHandler.MouseHandler_instance != null) {
-			synchronized(MouseHandler.MouseHandler_instance) {
-				MouseHandler.MouseHandler_instance = null;
-			}
-		}
+	static int method3279(int var0, Script var1, boolean var2) {
+		if (var0 == ScriptOpcodes.GETWINDOWMODE) {
+			Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = Client.getWindowedMode();
+			return 1;
+		} else {
+			int var3;
+			if (var0 == ScriptOpcodes.SETWINDOWMODE) {
+				var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
+				if (var3 == 1 || var3 == 2) {
+					class131.setWindowedMode(var3);
+				}
 
-	}
-
-	@ObfuscatedName("gh")
-	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-2025153042"
-	)
-	static final void method3238() {
-		for (GraphicsObject var0 = (GraphicsObject)Client.graphicsObjects.last(); var0 != null; var0 = (GraphicsObject)Client.graphicsObjects.previous()) {
-			if (var0.plane == Client_plane && !var0.isFinished) {
-				if (Client.cycle >= var0.cycleStart) {
-					var0.advance(Client.field550);
-					if (var0.isFinished) {
-						var0.remove();
-					} else {
-						FriendSystem.scene.drawEntity(var0.plane, var0.x, var0.y, var0.z, 60, var0, 0, -1L, false);
-					}
+				return 1;
+			} else if (var0 == ScriptOpcodes.GETDEFAULTWINDOWMODE) {
+				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = class131.clientPreferences.method2251();
+				return 1;
+			} else if (var0 != ScriptOpcodes.SETDEFAULTWINDOWMODE) {
+				if (var0 == 5310) {
+					--Interpreter.Interpreter_intStackSize;
+					return 1;
+				} else if (var0 == 5311) {
+					Interpreter.Interpreter_intStackSize -= 2;
+					return 1;
+				} else if (var0 == 5312) {
+					--Interpreter.Interpreter_intStackSize;
+					return 1;
+				} else if (var0 == 5350) {
+					class122.Interpreter_stringStackSize -= 2;
+					--Interpreter.Interpreter_intStackSize;
+					return 1;
+				} else if (var0 == 5351) {
+					--class122.Interpreter_stringStackSize;
+					return 1;
+				} else {
+					return 2;
 				}
 			} else {
-				var0.remove();
+				var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
+				if (var3 == 1 || var3 == 2) {
+					class131.clientPreferences.method2250(var3);
+				}
+
+				return 1;
+			}
+		}
+	}
+
+	@ObfuscatedName("mk")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/String;B)Ljava/lang/String;",
+		garbageValue = "-75"
+	)
+	static String method3280(String var0) {
+		PlayerType[] var1 = WorldMapManager.PlayerType_values();
+
+		for (int var2 = 0; var2 < var1.length; ++var2) {
+			PlayerType var3 = var1[var2];
+			if (var3.modIcon != -1 && var0.startsWith(Script.method1990(var3.modIcon))) {
+				var0 = var0.substring(6 + Integer.toString(var3.modIcon).length());
+				break;
 			}
 		}
 
+		return var0;
 	}
 }

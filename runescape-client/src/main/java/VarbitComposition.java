@@ -4,61 +4,58 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("gn")
+@ObfuscatedName("gi")
 @Implements("VarbitComposition")
 public class VarbitComposition extends DualNode {
-	@ObfuscatedName("v")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "Llq;"
-	)
-	@Export("VarbitDefinition_archive")
-	public static AbstractArchive VarbitDefinition_archive;
-	@ObfuscatedName("o")
-	@ObfuscatedSignature(
-		descriptor = "Liq;"
+		descriptor = "Lig;"
 	)
 	@Export("VarbitDefinition_cached")
 	public static EvictingDualNodeHashTable VarbitDefinition_cached;
 	@ObfuscatedName("n")
-	static final int[] field1983;
-	@ObfuscatedName("h")
+	static final int[] field1970;
+	@ObfuscatedName("i")
 	@ObfuscatedGetter(
-		intValue = -603401275
+		intValue = -775301691
 	)
 	@Export("baseVar")
 	public int baseVar;
-	@ObfuscatedName("g")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = -902508973
+		intValue = 1129048987
 	)
 	@Export("startBit")
 	public int startBit;
-	@ObfuscatedName("l")
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = -1508398865
+		intValue = 153132931
 	)
 	@Export("endBit")
 	public int endBit;
 
 	static {
 		VarbitDefinition_cached = new EvictingDualNodeHashTable(64);
-		field1983 = new int[32];
+		field1970 = new int[32];
 		int var0 = 2;
 
 		for (int var1 = 0; var1 < 32; ++var1) {
-			field1983[var1] = var0 - 1;
+			field1970[var1] = var0 - 1;
 			var0 += var0;
 		}
 
 	}
 
-	@ObfuscatedName("v")
+	VarbitComposition() {
+	}
+
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(Lpd;B)V",
-		garbageValue = "58"
+		descriptor = "(Lpi;I)V",
+		garbageValue = "391271030"
 	)
 	@Export("decode")
-	public void decode(Buffer var1) {
+	void decode(Buffer var1) {
 		while (true) {
 			int var2 = var1.readUnsignedByte();
 			if (var2 == 0) {
@@ -69,10 +66,10 @@ public class VarbitComposition extends DualNode {
 		}
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		descriptor = "(Lpd;IB)V",
-		garbageValue = "-96"
+		descriptor = "(Lpi;II)V",
+		garbageValue = "-467631265"
 	)
 	@Export("decodeNext")
 	void decodeNext(Buffer var1, int var2) {
@@ -84,48 +81,48 @@ public class VarbitComposition extends DualNode {
 
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("hq")
 	@ObfuscatedSignature(
-		descriptor = "(Ldi;FI)F",
-		garbageValue = "-1168558464"
+		descriptor = "(IIII)V",
+		garbageValue = "-1670747147"
 	)
-	static float method3555(class117 var0, float var1) {
-		if (var0 == null) {
-			return 0.0F;
+	@Export("worldToScreen")
+	static final void worldToScreen(int var0, int var1, int var2) {
+		if (var0 >= 128 && var1 >= 128 && var0 <= 13056 && var1 <= 13056) {
+			int var3 = WorldMapLabel.getTileHeight(var0, var1, class18.Client_plane) - var2;
+			var0 -= WorldMapLabelSize.cameraX;
+			var3 -= ItemContainer.cameraY;
+			var1 -= class154.cameraZ;
+			int var4 = Rasterizer3D.Rasterizer3D_sine[class147.cameraPitch];
+			int var5 = Rasterizer3D.Rasterizer3D_cosine[class147.cameraPitch];
+			int var6 = Rasterizer3D.Rasterizer3D_sine[class21.cameraYaw];
+			int var7 = Rasterizer3D.Rasterizer3D_cosine[class21.cameraYaw];
+			int var8 = var0 * var7 + var6 * var1 >> 16;
+			var1 = var7 * var1 - var0 * var6 >> 16;
+			var0 = var8;
+			var8 = var5 * var3 - var4 * var1 >> 16;
+			var1 = var5 * var1 + var3 * var4 >> 16;
+			if (var1 >= 50) {
+				Client.viewportTempX = var0 * Client.viewportZoom / var1 + Client.viewportWidth / 2;
+				Client.viewportTempY = Client.viewportHeight / 2 + var8 * Client.viewportZoom / var1;
+			} else {
+				Client.viewportTempX = -1;
+				Client.viewportTempY = -1;
+			}
+
 		} else {
-			float var2;
-			if (var0.field1432 == var1) {
-				var2 = 0.0F;
-			} else if (var1 == var0.field1433) {
-				var2 = 1.0F;
-			} else {
-				var2 = (var1 - var0.field1432) / (var0.field1433 - var0.field1432);
-			}
-
-			float var3;
-			if (var0.field1438) {
-				var3 = var2;
-			} else {
-				float[] var4 = new float[]{var0.field1440[0] - var2, var0.field1440[1], var0.field1440[2], var0.field1440[3]};
-				float[] var5 = new float[5];
-				int var6 = class154.method3129(var4, 3, 0.0F, true, 1.0F, true, var5);
-				if (var6 == 1) {
-					var3 = var5[0];
-				} else {
-					var3 = 0.0F;
-				}
-			}
-
-			return (var0.field1435[1] + (var0.field1435[3] * var3 + var0.field1435[2]) * var3) * var3 + var0.field1435[0];
+			Client.viewportTempX = -1;
+			Client.viewportTempY = -1;
 		}
 	}
 
-	@ObfuscatedName("u")
+	@ObfuscatedName("ko")
 	@ObfuscatedSignature(
-		descriptor = "(IB)Z",
-		garbageValue = "13"
+		descriptor = "(I)I",
+		garbageValue = "1667758885"
 	)
-	public static boolean method3561(int var0) {
-		return (var0 >> 31 & 1) != 0;
+	static final int method3578() {
+		float var0 = 200.0F * ((float)class131.clientPreferences.method2240() - 0.5F);
+		return 100 - Math.round(var0);
 	}
 }

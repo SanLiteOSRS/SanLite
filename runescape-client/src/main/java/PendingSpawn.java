@@ -1,103 +1,84 @@
-import java.lang.management.GarbageCollectorMXBean;
+import java.applet.Applet;
+import java.net.URL;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import netscape.javascript.JSObject;
 
-@ObfuscatedName("ck")
+@ObfuscatedName("ct")
 @Implements("PendingSpawn")
 public final class PendingSpawn extends Node {
-	@ObfuscatedName("uz")
-	@ObfuscatedGetter(
-		intValue = -19855095
-	)
-	@Export("foundItemIdCount")
-	static int foundItemIdCount;
-	@ObfuscatedName("b")
-	@Export("cacheParentPaths")
-	public static String[] cacheParentPaths;
-	@ObfuscatedName("ak")
-	@Export("garbageCollector")
-	static GarbageCollectorMXBean garbageCollector;
-	@ObfuscatedName("ew")
-	@ObfuscatedSignature(
-		descriptor = "Lne;"
-	)
-	@Export("spriteIds")
-	static GraphicsDefaults spriteIds;
-	@ObfuscatedName("ix")
-	@ObfuscatedGetter(
-		intValue = -28260951
-	)
-	@Export("selectedItemWidget")
-	static int selectedItemWidget;
+	@ObfuscatedName("ux")
+	@Export("foundItemIds")
+	static short[] foundItemIds;
 	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		intValue = -395030049
+		intValue = 1984278839
 	)
 	@Export("plane")
 	int plane;
-	@ObfuscatedName("o")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = 1083883841
+		intValue = -685471761
 	)
 	@Export("type")
 	int type;
-	@ObfuscatedName("h")
+	@ObfuscatedName("i")
 	@ObfuscatedGetter(
-		intValue = 664401913
+		intValue = -1470046835
 	)
 	@Export("x")
 	int x;
-	@ObfuscatedName("g")
+	@ObfuscatedName("f")
 	@ObfuscatedGetter(
-		intValue = 2084106709
+		intValue = 241546961
 	)
 	@Export("y")
 	int y;
-	@ObfuscatedName("l")
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = 469927407
+		intValue = 1849366507
 	)
 	@Export("objectId")
 	int objectId;
 	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = 456466373
+		intValue = 1969851359
 	)
-	int field1117;
-	@ObfuscatedName("d")
+	int field1104;
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = -875007293
+		intValue = -2130994383
 	)
-	int field1119;
-	@ObfuscatedName("f")
+	int field1105;
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = 503773945
+		intValue = -406866951
 	)
 	@Export("id")
 	int id;
-	@ObfuscatedName("u")
+	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = 1610620631
+		intValue = 1916353905
 	)
 	@Export("orientation")
 	int orientation;
+	@ObfuscatedName("o")
+	@ObfuscatedGetter(
+		intValue = 1901242165
+	)
+	int field1107;
 	@ObfuscatedName("r")
 	@ObfuscatedGetter(
-		intValue = -917284009
-	)
-	int field1122;
-	@ObfuscatedName("k")
-	@ObfuscatedGetter(
-		intValue = 270987311
+		intValue = 1886053549
 	)
 	@Export("delay")
 	int delay;
-	@ObfuscatedName("x")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = 1980741835
+		intValue = -758552801
 	)
 	@Export("hitpoints")
 	int hitpoints;
@@ -105,5 +86,87 @@ public final class PendingSpawn extends Node {
 	PendingSpawn() {
 		this.delay = 0;
 		this.hitpoints = -1;
+	}
+
+	@ObfuscatedName("f")
+	@ObfuscatedSignature(
+		descriptor = "(Ljava/lang/String;ILjava/lang/String;I)Z",
+		garbageValue = "1938115950"
+	)
+	static boolean method2165(String var0, int var1, String var2) {
+		if (var1 == 0) {
+			try {
+				if (!class29.field175.startsWith("win")) {
+					throw new Exception();
+				} else if (!var0.startsWith("http://") && !var0.startsWith("https://")) {
+					throw new Exception();
+				} else {
+					String var13 = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789?&=,.%+-_#:/*";
+
+					for (int var4 = 0; var4 < var0.length(); ++var4) {
+						if (var13.indexOf(var0.charAt(var4)) == -1) {
+							throw new Exception();
+						}
+					}
+
+					Runtime.getRuntime().exec("cmd /c start \"j\" \"" + var0 + "\"");
+					return true;
+				}
+			} catch (Throwable var8) {
+				return false;
+			}
+		} else if (var1 == 1) {
+			try {
+				Applet var7 = class29.field176;
+				Object[] var5 = new Object[]{(new URL(class29.field176.getCodeBase(), var0)).toString()};
+				Object var3 = JSObject.getWindow(var7).call(var2, var5);
+				return var3 != null;
+			} catch (Throwable var9) {
+				return false;
+			}
+		} else if (var1 == 2) {
+			try {
+				class29.field176.getAppletContext().showDocument(new URL(class29.field176.getCodeBase(), var0), "_blank");
+				return true;
+			} catch (Exception var10) {
+				return false;
+			}
+		} else if (var1 == 3) {
+			try {
+				class27.method383(class29.field176, "loggedout");
+			} catch (Throwable var12) {
+			}
+
+			try {
+				class29.field176.getAppletContext().showDocument(new URL(class29.field176.getCodeBase(), var0), "_top");
+				return true;
+			} catch (Exception var11) {
+				return false;
+			}
+		} else {
+			throw new IllegalArgumentException();
+		}
+	}
+
+	@ObfuscatedName("fd")
+	@ObfuscatedSignature(
+		descriptor = "(I)Z",
+		garbageValue = "-617620981"
+	)
+	static boolean method2166() {
+		if (Client.archiveLoaders != null && Client.archiveLoadersDone < Client.archiveLoaders.size()) {
+			while (Client.archiveLoadersDone < Client.archiveLoaders.size()) {
+				ArchiveLoader var0 = (ArchiveLoader)Client.archiveLoaders.get(Client.archiveLoadersDone);
+				if (!var0.isLoaded()) {
+					return false;
+				}
+
+				++Client.archiveLoadersDone;
+			}
+
+			return true;
+		} else {
+			return true;
+		}
 	}
 }

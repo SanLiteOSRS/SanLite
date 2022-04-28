@@ -1,83 +1,95 @@
 import java.io.IOException;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
+import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("nj")
+@ObfuscatedName("ny")
 @Implements("AbstractSocket")
 public abstract class AbstractSocket {
+	@ObfuscatedName("bk")
+	@ObfuscatedGetter(
+		intValue = 770576215
+	)
+	static int field4275;
+
 	protected AbstractSocket() {
 	}
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "105"
+		descriptor = "(S)V",
+		garbageValue = "-13138"
 	)
 	@Export("close")
 	public abstract void close();
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
 		descriptor = "(I)I",
-		garbageValue = "-1669312252"
+		garbageValue = "-891040314"
 	)
 	@Export("readUnsignedByte")
 	public abstract int readUnsignedByte() throws IOException;
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		descriptor = "(I)I",
-		garbageValue = "-1264669351"
+		descriptor = "(B)I",
+		garbageValue = "46"
 	)
 	@Export("available")
 	public abstract int available() throws IOException;
 
-	@ObfuscatedName("g")
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(II)Z",
-		garbageValue = "396806768"
+		descriptor = "(IB)Z",
+		garbageValue = "27"
 	)
 	@Export("isAvailable")
 	public abstract boolean isAvailable(int var1) throws IOException;
 
-	@ObfuscatedName("l")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		descriptor = "([BIII)I",
-		garbageValue = "52142940"
+		descriptor = "([BIIB)I",
+		garbageValue = "-118"
 	)
 	@Export("read")
 	public abstract int read(byte[] var1, int var2, int var3) throws IOException;
 
-	@ObfuscatedName("d")
+	@ObfuscatedName("s")
 	@ObfuscatedSignature(
-		descriptor = "([BIIB)V",
-		garbageValue = "-57"
+		descriptor = "([BIII)V",
+		garbageValue = "-1359342670"
 	)
 	@Export("write")
 	public abstract void write(byte[] var1, int var2, int var3) throws IOException;
 
-	@ObfuscatedName("u")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		descriptor = "(Llq;Llq;Ljava/lang/String;Ljava/lang/String;I)Lmr;",
-		garbageValue = "1832446298"
+		descriptor = "(Lln;Ljava/lang/String;Ljava/lang/String;B)Lqq;",
+		garbageValue = "3"
 	)
-	public static Font method6899(AbstractArchive var0, AbstractArchive var1, String var2, String var3) {
-		int var4 = var0.getGroupId(var2);
-		int var5 = var0.getFileId(var4, var3);
-		return class19.method319(var0, var1, var4, var5);
-	}
+	@Export("SpriteBuffer_getIndexedSpriteByName")
+	public static IndexedSprite SpriteBuffer_getIndexedSpriteByName(AbstractArchive var0, String var1, String var2) {
+		int var3 = var0.getGroupId(var1);
+		int var4 = var0.getFileId(var3, var2);
+		byte[] var7 = var0.takeFile(var3, var4);
+		boolean var6;
+		if (var7 == null) {
+			var6 = false;
+		} else {
+			WorldMapArea.SpriteBuffer_decode(var7);
+			var6 = true;
+		}
 
-	@ObfuscatedName("p")
-	@ObfuscatedSignature(
-		descriptor = "(III)I",
-		garbageValue = "1681140308"
-	)
-	static final int method6884(int var0, int var1) {
-		int var2 = var1 * 57 + var0;
-		var2 ^= var2 << 13;
-		int var3 = (var2 * var2 * 15731 + 789221) * var2 + 1376312589 & Integer.MAX_VALUE;
-		return var3 >> 19 & 255;
+		IndexedSprite var5;
+		if (!var6) {
+			var5 = null;
+		} else {
+			var5 = HorizontalAlignment.method3492();
+		}
+
+		return var5;
 	}
 }

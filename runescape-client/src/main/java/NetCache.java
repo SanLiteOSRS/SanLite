@@ -1,42 +1,40 @@
-import java.lang.management.GarbageCollectorMXBean;
-import java.lang.management.ManagementFactory;
-import java.util.Iterator;
 import java.util.zip.CRC32;
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("lx")
+@ObfuscatedName("lz")
 @Implements("NetCache")
 public class NetCache {
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "Lnj;"
+		descriptor = "Lny;"
 	)
 	@Export("NetCache_socket")
 	public static AbstractSocket NetCache_socket;
-	@ObfuscatedName("o")
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		intValue = -218484267
+		intValue = 875893217
 	)
 	@Export("NetCache_loadTime")
 	public static int NetCache_loadTime;
-	@ObfuscatedName("h")
+	@ObfuscatedName("i")
 	@ObfuscatedGetter(
-		longValue = 2715459608811227853L
+		longValue = -7945689886712382461L
 	)
-	public static long field3976;
-	@ObfuscatedName("g")
+	public static long field3982;
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
 		descriptor = "Lpo;"
 	)
 	@Export("NetCache_pendingPriorityWrites")
 	public static NodeHashTable NetCache_pendingPriorityWrites;
-	@ObfuscatedName("l")
+	@ObfuscatedName("b")
 	@ObfuscatedGetter(
-		intValue = -1619207221
+		intValue = 1056584685
 	)
 	@Export("NetCache_pendingPriorityWritesCount")
 	public static int NetCache_pendingPriorityWritesCount;
@@ -46,79 +44,73 @@ public class NetCache {
 	)
 	@Export("NetCache_pendingPriorityResponses")
 	public static NodeHashTable NetCache_pendingPriorityResponses;
-	@ObfuscatedName("d")
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = -447894711
+		intValue = -275565499
 	)
 	@Export("NetCache_pendingPriorityResponsesCount")
 	public static int NetCache_pendingPriorityResponsesCount;
-	@ObfuscatedName("f")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		descriptor = "Llv;"
+		descriptor = "Lla;"
 	)
 	@Export("NetCache_pendingWritesQueue")
 	public static DualNodeDeque NetCache_pendingWritesQueue;
-	@ObfuscatedName("u")
+	@ObfuscatedName("q")
 	@ObfuscatedSignature(
 		descriptor = "Lpo;"
 	)
 	@Export("NetCache_pendingWrites")
 	public static NodeHashTable NetCache_pendingWrites;
-	@ObfuscatedName("r")
+	@ObfuscatedName("o")
 	@ObfuscatedGetter(
-		intValue = 494273937
+		intValue = -644606303
 	)
 	@Export("NetCache_pendingWritesCount")
 	public static int NetCache_pendingWritesCount;
-	@ObfuscatedName("k")
+	@ObfuscatedName("r")
 	@ObfuscatedSignature(
 		descriptor = "Lpo;"
 	)
 	@Export("NetCache_pendingResponses")
 	public static NodeHashTable NetCache_pendingResponses;
-	@ObfuscatedName("x")
+	@ObfuscatedName("p")
 	@ObfuscatedGetter(
-		intValue = 988805017
+		intValue = -183804397
 	)
 	@Export("NetCache_pendingResponsesCount")
 	public static int NetCache_pendingResponsesCount;
-	@ObfuscatedName("j")
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		descriptor = "Llf;"
-	)
-	@Export("NetCache_currentResponse")
-	public static NetFileRequest NetCache_currentResponse;
-	@ObfuscatedName("p")
-	@ObfuscatedSignature(
-		descriptor = "Lpd;"
+		descriptor = "Lpi;"
 	)
 	@Export("NetCache_responseHeaderBuffer")
 	public static Buffer NetCache_responseHeaderBuffer;
-	@ObfuscatedName("b")
+	@ObfuscatedName("u")
 	@ObfuscatedGetter(
-		intValue = -315371955
+		intValue = -47257767
 	)
-	public static int field3990;
-	@ObfuscatedName("a")
+	public static int field3995;
+	@ObfuscatedName("g")
 	@Export("NetCache_crc")
-	static CRC32 NetCache_crc;
-	@ObfuscatedName("q")
+	public static CRC32 NetCache_crc;
+	@ObfuscatedName("a")
 	@ObfuscatedSignature(
-		descriptor = "[Llu;"
+		descriptor = "[Llx;"
 	)
 	@Export("NetCache_archives")
-	static Archive[] NetCache_archives;
+	public static Archive[] NetCache_archives;
 	@ObfuscatedName("y")
-	public static byte field3999;
-	@ObfuscatedName("z")
+	public static byte field3998;
+	@ObfuscatedName("j")
 	@ObfuscatedGetter(
-		intValue = 1125875511
+		intValue = -1326084145
 	)
 	@Export("NetCache_crcMismatches")
 	public static int NetCache_crcMismatches;
 	@ObfuscatedName("e")
 	@ObfuscatedGetter(
-		intValue = -1768770895
+		intValue = -1735632963
 	)
 	@Export("NetCache_ioExceptions")
 	public static int NetCache_ioExceptions;
@@ -135,65 +127,139 @@ public class NetCache {
 		NetCache_pendingResponses = new NodeHashTable(4096);
 		NetCache_pendingResponsesCount = 0;
 		NetCache_responseHeaderBuffer = new Buffer(8);
-		field3990 = 0;
+		field3995 = 0;
 		NetCache_crc = new CRC32();
 		NetCache_archives = new Archive[256];
-		field3999 = 0;
+		field3998 = 0;
 		NetCache_crcMismatches = 0;
 		NetCache_ioExceptions = 0;
 	}
 
-	@ObfuscatedName("n")
+	@ObfuscatedName("av")
 	@ObfuscatedSignature(
-		descriptor = "(B)V",
-		garbageValue = "77"
+		descriptor = "(ILbd;ZI)I",
+		garbageValue = "-1081311758"
 	)
-	static void method5988() {
-		Messages.Messages_channels.clear();
-		Messages.Messages_hashTable.clear();
-		Messages.Messages_queue.clear();
-		Messages.Messages_count = 0;
-	}
+	static int method5965(int var0, Script var1, boolean var2) {
+		int var3;
+		if (var0 == ScriptOpcodes.OC_NAME) {
+			var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
+			Interpreter.Interpreter_stringStack[++class122.Interpreter_stringStackSize - 1] = class19.ItemComposition_get(var3).name;
+			return 1;
+		} else {
+			int var4;
+			ItemComposition var5;
+			if (var0 == ScriptOpcodes.OC_OP) {
+				Interpreter.Interpreter_intStackSize -= 2;
+				var3 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
+				var4 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
+				var5 = class19.ItemComposition_get(var3);
+				if (var4 >= 1 && var4 <= 5 && var5.groundActions[var4 - 1] != null) {
+					Interpreter.Interpreter_stringStack[++class122.Interpreter_stringStackSize - 1] = var5.groundActions[var4 - 1];
+				} else {
+					Interpreter.Interpreter_stringStack[++class122.Interpreter_stringStackSize - 1] = "";
+				}
 
-	@ObfuscatedName("an")
-	@ObfuscatedSignature(
-		descriptor = "(B)I",
-		garbageValue = "27"
-	)
-	@Export("getGcDuration")
-	protected static int getGcDuration() {
-		int var0 = 0;
-		if (PendingSpawn.garbageCollector == null || !PendingSpawn.garbageCollector.isValid()) {
-			try {
-				Iterator var1 = ManagementFactory.getGarbageCollectorMXBeans().iterator();
+				return 1;
+			} else if (var0 == ScriptOpcodes.OC_IOP) {
+				Interpreter.Interpreter_intStackSize -= 2;
+				var3 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
+				var4 = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
+				var5 = class19.ItemComposition_get(var3);
+				if (var4 >= 1 && var4 <= 5 && var5.inventoryActions[var4 - 1] != null) {
+					Interpreter.Interpreter_stringStack[++class122.Interpreter_stringStackSize - 1] = var5.inventoryActions[var4 - 1];
+				} else {
+					Interpreter.Interpreter_stringStack[++class122.Interpreter_stringStackSize - 1] = "";
+				}
 
-				while (var1.hasNext()) {
-					GarbageCollectorMXBean var2 = (GarbageCollectorMXBean)var1.next();
-					if (var2.isValid()) {
-						PendingSpawn.garbageCollector = var2;
-						GameEngine.garbageCollectorLastCheckTimeMs = -1L;
-						GameEngine.garbageCollectorLastCollectionTime = -1L;
+				return 1;
+			} else if (var0 == ScriptOpcodes.OC_COST) {
+				var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
+				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = class19.ItemComposition_get(var3).price;
+				return 1;
+			} else if (var0 == ScriptOpcodes.OC_STACKABLE) {
+				var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
+				Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = class19.ItemComposition_get(var3).isStackable == 1 ? 1 : 0;
+				return 1;
+			} else {
+				ItemComposition var7;
+				if (var0 == ScriptOpcodes.OC_CERT) {
+					var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
+					var7 = class19.ItemComposition_get(var3);
+					if (var7.noteTemplate == -1 && var7.note >= 0) {
+						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var7.note;
+					} else {
+						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3;
 					}
+
+					return 1;
+				} else if (var0 == ScriptOpcodes.OC_UNCERT) {
+					var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
+					var7 = class19.ItemComposition_get(var3);
+					if (var7.noteTemplate >= 0 && var7.note >= 0) {
+						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var7.note;
+					} else {
+						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3;
+					}
+
+					return 1;
+				} else if (var0 == ScriptOpcodes.OC_MEMBERS) {
+					var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
+					Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = class19.ItemComposition_get(var3).isMembersOnly ? 1 : 0;
+					return 1;
+				} else if (var0 == ScriptOpcodes.OC_PLACEHOLDER) {
+					var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
+					var7 = class19.ItemComposition_get(var3);
+					if (var7.placeholderTemplate == -1 && var7.placeholder >= 0) {
+						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var7.placeholder;
+					} else {
+						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3;
+					}
+
+					return 1;
+				} else if (var0 == ScriptOpcodes.OC_UNPLACEHOLDER) {
+					var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
+					var7 = class19.ItemComposition_get(var3);
+					if (var7.placeholderTemplate >= 0 && var7.placeholder >= 0) {
+						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var7.placeholder;
+					} else {
+						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var3;
+					}
+
+					return 1;
+				} else if (var0 == ScriptOpcodes.OC_FIND) {
+					String var6 = Interpreter.Interpreter_stringStack[--class122.Interpreter_stringStackSize];
+					var4 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
+					class12.findItemDefinitions(var6, var4 == 1);
+					Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = Script.foundItemIdCount;
+					return 1;
+				} else if (var0 != ScriptOpcodes.OC_FINDNEXT) {
+					if (var0 == ScriptOpcodes.OC_FINDRESET) {
+						GameEngine.foundItemIndex = 0;
+						return 1;
+					} else if (var0 == 4213) {
+						var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
+						var4 = class19.ItemComposition_get(var3).getShiftClickIndex();
+						if (var4 == -1) {
+							Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var4;
+						} else {
+							Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = var4 + 1;
+						}
+
+						return 1;
+					} else {
+						return 2;
+					}
+				} else {
+					if (PendingSpawn.foundItemIds != null && GameEngine.foundItemIndex < Script.foundItemIdCount) {
+						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = PendingSpawn.foundItemIds[++GameEngine.foundItemIndex - 1] & '\uffff';
+					} else {
+						Interpreter.Interpreter_intStack[++Interpreter.Interpreter_intStackSize - 1] = -1;
+					}
+
+					return 1;
 				}
-			} catch (Throwable var11) {
 			}
 		}
-
-		if (PendingSpawn.garbageCollector != null) {
-			long var9 = WorldMapSprite.method4989();
-			long var3 = PendingSpawn.garbageCollector.getCollectionTime();
-			if (GameEngine.garbageCollectorLastCollectionTime != -1L) {
-				long var5 = var3 - GameEngine.garbageCollectorLastCollectionTime;
-				long var7 = var9 - GameEngine.garbageCollectorLastCheckTimeMs;
-				if (var7 != 0L) {
-					var0 = (int)(100L * var5 / var7);
-				}
-			}
-
-			GameEngine.garbageCollectorLastCollectionTime = var3;
-			GameEngine.garbageCollectorLastCheckTimeMs = var9;
-		}
-
-		return var0;
 	}
 }

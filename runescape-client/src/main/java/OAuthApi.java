@@ -1,21 +1,16 @@
-package com.jagex.oldscape.pub;
-
-import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
+import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @Implements("OAuthApi")
+@ObfuscatedName("com/jagex/oldscape/pub/OAuthApi")
 public interface OAuthApi {
-
-	@Export("isOnLoginScreen")
 	boolean isOnLoginScreen();
+
+	long getAccountHash();
 
 	@ObfuscatedSignature(
 		descriptor = "(Lcom/jagex/oldscape/pub/OtlTokenRequester;)V"
 	)
-	@Export("setOtlTokenRequester")
 	void setOtlTokenRequester(OtlTokenRequester var1);
-
-	@Export("getAccountHash")
-	long getAccountHash();
 }

@@ -1,57 +1,58 @@
 import net.runelite.mapping.Export;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("l")
+@ObfuscatedName("b")
 public final class class4 {
-	@ObfuscatedName("r")
-	@Export("Tiles_hue")
-	static int[] Tiles_hue;
-	@ObfuscatedName("k")
+	@ObfuscatedName("w")
 	@ObfuscatedSignature(
-		descriptor = "Lfq;"
+		descriptor = "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V",
+		garbageValue = "1921636813"
 	)
-	@Export("clock")
-	static Clock clock;
-	@ObfuscatedName("e")
-	@ObfuscatedGetter(
-		intValue = 337025771
-	)
-	@Export("canvasWidth")
-	public static int canvasWidth;
-	@ObfuscatedName("ez")
-	@ObfuscatedSignature(
-		descriptor = "Llu;"
-	)
-	@Export("archive13")
-	static Archive archive13;
-
-	@ObfuscatedName("fn")
-	@ObfuscatedSignature(
-		descriptor = "(I)J",
-		garbageValue = "178536163"
-	)
-	static long method16() {
-		return Client.field608;
+	@Export("setLoginResponseString")
+	static void setLoginResponseString(String var0, String var1, String var2) {
+		Login.Login_response1 = var0;
+		Login.Login_response2 = var1;
+		Login.Login_response3 = var2;
 	}
 
-	@ObfuscatedName("ld")
+	@ObfuscatedName("gy")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "1841271895"
+		descriptor = "(B)V",
+		garbageValue = "-5"
 	)
-	static void method19() {
-		if (class340.field4109 != null) {
-			Client.field764 = Client.cycle;
-			class340.field4109.method6086();
+	static void method17() {
+		PacketBufferNode var0 = WorldMapSprite.getPacketBufferNode(ClientPacket.field3000, Client.packetWriter.isaacCipher);
+		var0.packetBuffer.writeByte(Client.getWindowedMode());
+		var0.packetBuffer.writeShort(InvDefinition.canvasWidth);
+		var0.packetBuffer.writeShort(class321.canvasHeight);
+		Client.packetWriter.addNode(var0);
+	}
 
-			for (int var0 = 0; var0 < Client.players.length; ++var0) {
-				if (Client.players[var0] != null) {
-					class340.field4109.method6091(ApproximateRouteStrategy.baseX * 64 + (Client.players[var0].x >> 7), class250.baseY * 64 + (Client.players[var0].y >> 7));
-				}
-			}
+	@ObfuscatedName("ke")
+	@ObfuscatedSignature(
+		descriptor = "(IIII)Lcc;",
+		garbageValue = "-1034458506"
+	)
+	static final InterfaceParent method16(int var0, int var1, int var2) {
+		InterfaceParent var3 = new InterfaceParent();
+		var3.group = var1;
+		var3.type = var2;
+		Client.interfaceParents.put(var3, (long)var0);
+		class29.Widget_resetModelFrames(var1);
+		Widget var4 = class127.getWidget(var0);
+		class346.method6449(var4);
+		if (Client.meslayerContinueWidget != null) {
+			class346.method6449(Client.meslayerContinueWidget);
+			Client.meslayerContinueWidget = null;
 		}
 
+		AbstractByteArrayCopier.revalidateWidgetScroll(Widget.Widget_interfaceComponents[var0 >> 16], var4, false);
+		class145.runWidgetOnLoadListener(var1);
+		if (Client.rootInterface != -1) {
+			MouseRecorder.runIntfCloseListeners(Client.rootInterface, 1);
+		}
+
+		return var3;
 	}
 }

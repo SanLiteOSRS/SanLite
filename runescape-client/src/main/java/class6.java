@@ -3,79 +3,91 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("d")
+@ObfuscatedName("s")
 public enum class6 implements MouseWheel {
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "Ld;"
+		descriptor = "Ls;"
 	)
-	field22(0, 0);
-
-	@ObfuscatedName("o")
-	@ObfuscatedGetter(
-		intValue = -7519613
-	)
-	final int field17;
-	@ObfuscatedName("h")
-	@ObfuscatedGetter(
-		intValue = 151046051
-	)
-	final int field18;
-
-	class6(int var3, int var4) {
-		this.field17 = var3;
-		this.field18 = var4;
-	}
+	field14(0, 0);
 
 	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "(B)I",
-		garbageValue = "15"
+		descriptor = "Lah;"
 	)
-	@Export("rsOrdinal")
-	public int rsOrdinal() {
-		return this.field18;
+	@Export("soundSystem")
+	static SoundSystem soundSystem;
+	@ObfuscatedName("c")
+	@ObfuscatedGetter(
+		intValue = -758443575
+	)
+	public final int field12;
+	@ObfuscatedName("i")
+	@ObfuscatedGetter(
+		intValue = 834021789
+	)
+	final int field13;
+
+	class6(int var3, int var4) {
+		this.field12 = var3;
+		this.field13 = var4;
 	}
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(II)Lfp;",
-		garbageValue = "758685102"
+		descriptor = "(B)I",
+		garbageValue = "16"
 	)
-	@Export("SpotAnimationDefinition_get")
-	public static SpotAnimationDefinition SpotAnimationDefinition_get(int var0) {
-		SpotAnimationDefinition var1 = (SpotAnimationDefinition)SpotAnimationDefinition.SpotAnimationDefinition_cached.get((long)var0);
-		if (var1 != null) {
-			return var1;
+	@Export("rsOrdinal")
+	public int rsOrdinal() {
+		return this.field13;
+	}
+
+	@ObfuscatedName("c")
+	@ObfuscatedSignature(
+		descriptor = "(Lln;III)Lqi;",
+		garbageValue = "-1027602960"
+	)
+	@Export("SpriteBuffer_getSprite")
+	public static SpritePixels SpriteBuffer_getSprite(AbstractArchive var0, int var1, int var2) {
+		byte[] var4 = var0.takeFile(var1, var2);
+		boolean var3;
+		if (var4 == null) {
+			var3 = false;
 		} else {
-			byte[] var2 = SpotAnimationDefinition.SpotAnimationDefinition_archive.takeFile(13, var0);
-			var1 = new SpotAnimationDefinition();
-			var1.id = var0;
-			if (var2 != null) {
-				var1.decode(new Buffer(var2));
+			WorldMapArea.SpriteBuffer_decode(var4);
+			var3 = true;
+		}
+
+		if (!var3) {
+			return null;
+		} else {
+			SpritePixels var5 = new SpritePixels();
+			var5.width = class451.SpriteBuffer_spriteWidth;
+			var5.height = class451.SpriteBuffer_spriteHeight;
+			var5.xOffset = class451.SpriteBuffer_xOffsets[0];
+			var5.yOffset = class271.SpriteBuffer_yOffsets[0];
+			var5.subWidth = class451.SpriteBuffer_spriteWidths[0];
+			var5.subHeight = class451.SpriteBuffer_spriteHeights[0];
+			int var6 = var5.subWidth * var5.subHeight;
+			byte[] var7 = FriendLoginUpdate.SpriteBuffer_pixels[0];
+			var5.pixels = new int[var6];
+
+			for (int var8 = 0; var8 < var6; ++var8) {
+				var5.pixels[var8] = NetFileRequest.SpriteBuffer_spritePalette[var7[var8] & 255];
 			}
 
-			SpotAnimationDefinition.SpotAnimationDefinition_cached.put(var1, (long)var0);
-			return var1;
+			ArchiveDiskActionHandler.method5813();
+			return var5;
 		}
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("hn")
 	@ObfuscatedSignature(
-		descriptor = "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V",
-		garbageValue = "1259408823"
+		descriptor = "(I)Z",
+		garbageValue = "144596898"
 	)
-	@Export("addChatMessage")
-	static void addChatMessage(int var0, String var1, String var2, String var3) {
-		ChatChannel var4 = (ChatChannel)Messages.Messages_channels.get(var0);
-		if (var4 == null) {
-			var4 = new ChatChannel();
-			Messages.Messages_channels.put(var0, var4);
-		}
-
-		Message var5 = var4.addMessage(var0, var1, var2, var3);
-		Messages.Messages_hashTable.put(var5, (long)var5.count);
-		Messages.Messages_queue.add(var5);
-		Client.chatCycle = Client.cycleCntr;
+	static boolean method36() {
+		return (Client.drawPlayerNames & 8) != 0;
 	}
 }

@@ -1,90 +1,210 @@
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
-import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
+import net.runelite.rs.ScriptOpcodes;
 
-@ObfuscatedName("f")
+@ObfuscatedName("l")
 public class class7 {
-	@ObfuscatedName("bf")
-	@ObfuscatedGetter(
-		intValue = 1881203141
-	)
-	static int field27;
 	@ObfuscatedName("v")
-	ExecutorService field25;
-	@ObfuscatedName("o")
-	Future field24;
-	@ObfuscatedName("h")
+	ExecutorService field20;
+	@ObfuscatedName("c")
+	Future field18;
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		descriptor = "Lpd;"
+		descriptor = "Lpi;"
 	)
-	final Buffer field23;
-	@ObfuscatedName("g")
+	final Buffer field19;
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "Lg;"
+		descriptor = "Lf;"
 	)
-	final class3 field26;
+	final class3 field17;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lpd;Lg;)V"
+		descriptor = "(Lpi;Lf;)V"
 	)
 	public class7(Buffer var1, class3 var2) {
-		this.field25 = Executors.newSingleThreadExecutor();
-		this.field23 = var1;
-		this.field26 = var2;
-		this.method51();
+		this.field20 = Executors.newSingleThreadExecutor();
+		this.field19 = var1;
+		this.field17 = var2;
+		this.method42();
 	}
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
 		descriptor = "(I)Z",
-		garbageValue = "521214923"
+		garbageValue = "-254090586"
 	)
-	public boolean method42() {
-		return this.field24.isDone();
+	public boolean method43() {
+		return this.field18.isDone();
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "979398206"
+		descriptor = "(B)V",
+		garbageValue = "67"
 	)
-	public void method43() {
-		this.field25.shutdown();
-		this.field25 = null;
+	public void method47() {
+		this.field20.shutdown();
+		this.field20 = null;
 	}
 
-	@ObfuscatedName("h")
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		descriptor = "(I)Lpd;",
-		garbageValue = "-2131615831"
+		descriptor = "(I)Lpi;",
+		garbageValue = "-2056850231"
 	)
-	public Buffer method44() {
+	public Buffer method45() {
 		try {
-			return (Buffer)this.field24.get();
+			return (Buffer)this.field18.get();
 		} catch (Exception var2) {
 			return null;
 		}
 	}
 
-	@ObfuscatedName("g")
-	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-1341828538"
-	)
-	void method51() {
-		this.field24 = this.field25.submit(new class1(this, this.field23, this.field26));
-	}
-
 	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "(III)I",
-		garbageValue = "-184151325"
+		descriptor = "(B)V",
+		garbageValue = "0"
 	)
-	public static int method53(int var0, int var1) {
-		int var2 = var0 >>> 31;
-		return (var0 + var2) / var1 - var2;
+	void method42() {
+		this.field18 = this.field20.submit(new class1(this, this.field19, this.field17));
+	}
+
+	@ObfuscatedName("v")
+	@ObfuscatedSignature(
+		descriptor = "(IIB)I",
+		garbageValue = "6"
+	)
+	static int method53(int var0, int var1) {
+		FloorOverlayDefinition var2 = Clock.method3349(var0);
+		if (var2 == null) {
+			return var1;
+		} else if (var2.secondaryRgb >= 0) {
+			return var2.secondaryRgb | -16777216;
+		} else {
+			int var3;
+			int var4;
+			byte var5;
+			int var7;
+			if (var2.texture >= 0) {
+				var4 = Rasterizer3D.Rasterizer3D_textureLoader.getAverageTextureRGB(var2.texture);
+				var5 = 96;
+				if (var4 == -2) {
+					var3 = 12345678;
+				} else if (var4 == -1) {
+					if (var5 < 0) {
+						var5 = 0;
+					} else if (var5 > 127) {
+						var5 = 127;
+					}
+
+					var7 = 127 - var5;
+					var3 = var7;
+				} else {
+					var7 = var5 * (var4 & 127) / 128;
+					if (var7 < 2) {
+						var7 = 2;
+					} else if (var7 > 126) {
+						var7 = 126;
+					}
+
+					var3 = var7 + (var4 & 65408);
+				}
+
+				return Rasterizer3D.Rasterizer3D_colorPalette[var3] | -16777216;
+			} else if (var2.primaryRgb == 16711935) {
+				return var1;
+			} else {
+				var3 = FontName.method7415(var2.hue, var2.saturation, var2.lightness);
+				var5 = 96;
+				if (var3 == -2) {
+					var4 = 12345678;
+				} else if (var3 == -1) {
+					if (var5 < 0) {
+						var5 = 0;
+					} else if (var5 > 127) {
+						var5 = 127;
+					}
+
+					var7 = 127 - var5;
+					var4 = var7;
+				} else {
+					var7 = var5 * (var3 & 127) / 128;
+					if (var7 < 2) {
+						var7 = 2;
+					} else if (var7 > 126) {
+						var7 = 126;
+					}
+
+					var4 = var7 + (var3 & 65408);
+				}
+
+				return Rasterizer3D.Rasterizer3D_colorPalette[var4] | -16777216;
+			}
+		}
+	}
+
+	@ObfuscatedName("b")
+	@ObfuscatedSignature(
+		descriptor = "(ILbd;ZI)I",
+		garbageValue = "17269568"
+	)
+	static int method54(int var0, Script var1, boolean var2) {
+		int var3 = -1;
+		Widget var4;
+		if (var0 >= 2000) {
+			var0 -= 1000;
+			var3 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
+			var4 = class127.getWidget(var3);
+		} else {
+			var4 = var2 ? WorldMapID.scriptDotWidget : Interpreter.scriptActiveWidget;
+		}
+
+		if (var0 == ScriptOpcodes.CC_SETPOSITION) {
+			Interpreter.Interpreter_intStackSize -= 4;
+			var4.rawX = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
+			var4.rawY = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
+			var4.xAlignment = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 2];
+			var4.yAlignment = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 3];
+			class346.method6449(var4);
+			class127.client.alignWidget(var4);
+			if (var3 != -1 && var4.type == 0) {
+				AbstractByteArrayCopier.revalidateWidgetScroll(Widget.Widget_interfaceComponents[var3 >> 16], var4, false);
+			}
+
+			return 1;
+		} else if (var0 == ScriptOpcodes.CC_SETSIZE) {
+			Interpreter.Interpreter_intStackSize -= 4;
+			var4.rawWidth = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize];
+			var4.rawHeight = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 1];
+			var4.widthAlignment = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 2];
+			var4.heightAlignment = Interpreter.Interpreter_intStack[Interpreter.Interpreter_intStackSize + 3];
+			class346.method6449(var4);
+			class127.client.alignWidget(var4);
+			if (var3 != -1 && var4.type == 0) {
+				AbstractByteArrayCopier.revalidateWidgetScroll(Widget.Widget_interfaceComponents[var3 >> 16], var4, false);
+			}
+
+			return 1;
+		} else if (var0 == ScriptOpcodes.CC_SETHIDE) {
+			boolean var5 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize] == 1;
+			if (var5 != var4.isHidden) {
+				var4.isHidden = var5;
+				class346.method6449(var4);
+			}
+
+			return 1;
+		} else if (var0 == ScriptOpcodes.CC_SETNOCLICKTHROUGH) {
+			var4.noClickThrough = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize] == 1;
+			return 1;
+		} else if (var0 == ScriptOpcodes.CC_SETNOSCROLLTHROUGH) {
+			var4.noScrollThrough = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize] == 1;
+			return 1;
+		} else {
+			return 2;
+		}
 	}
 }

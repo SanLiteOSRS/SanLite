@@ -3,47 +3,47 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("ez")
+@ObfuscatedName("er")
 public class class145 {
-	@ObfuscatedName("eh")
+	@ObfuscatedName("eq")
 	@ObfuscatedSignature(
-		descriptor = "Llu;"
+		descriptor = "Llx;"
 	)
-	@Export("archive7")
-	static Archive archive7;
+	@Export("archive8")
+	static Archive archive8;
 	@ObfuscatedName("v")
 	@ObfuscatedGetter(
-		longValue = -7880473209241660409L
+		longValue = -8660248817658951919L
 	)
-	long field1651;
-	@ObfuscatedName("o")
+	long field1633;
+	@ObfuscatedName("c")
 	@ObfuscatedGetter(
-		longValue = 7161139519803830859L
+		longValue = 945677273558696457L
 	)
-	long field1644;
-	@ObfuscatedName("h")
+	long field1635;
+	@ObfuscatedName("i")
 	@ObfuscatedSignature(
-		descriptor = "Lld;"
+		descriptor = "Llk;"
 	)
-	IterableNodeDeque field1647;
+	IterableNodeDeque field1632;
 
 	@ObfuscatedSignature(
-		descriptor = "(Lpd;)V"
+		descriptor = "(Lpi;)V"
 	)
 	public class145(Buffer var1) {
-		this.field1644 = -1L;
-		this.field1647 = new IterableNodeDeque();
-		this.method3024(var1);
+		this.field1635 = -1L;
+		this.field1632 = new IterableNodeDeque();
+		this.method3084(var1);
 	}
 
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(Lpd;I)V",
-		garbageValue = "1820436577"
+		descriptor = "(Lpi;I)V",
+		garbageValue = "1488842408"
 	)
-	void method3024(Buffer var1) {
-		this.field1651 = var1.readLong();
-		this.field1644 = var1.readLong();
+	void method3084(Buffer var1) {
+		this.field1633 = var1.readLong();
+		this.field1635 = var1.readLong();
 
 		for (int var2 = var1.readUnsignedByte(); var2 != 0; var2 = var1.readUnsignedByte()) {
 			Object var3;
@@ -63,39 +63,88 @@ public class class145 {
 				var3 = new class141(this);
 			}
 
-			((class144)var3).vmethod3096(var1);
-			this.field1647.addFirst((Node)var3);
+			((class144)var3).vmethod3152(var1);
+			this.field1632.addFirst((Node)var3);
 		}
 
 	}
 
-	@ObfuscatedName("o")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(Ley;I)V",
-		garbageValue = "451732035"
+		descriptor = "(Lea;I)V",
+		garbageValue = "1969966641"
 	)
-	public void method3030(ClanChannel var1) {
-		if (this.field1651 == var1.key && var1.field1664 == this.field1644) {
-			for (class144 var2 = (class144)this.field1647.last(); var2 != null; var2 = (class144)this.field1647.previous()) {
-				var2.vmethod3093(var1);
+	public void method3086(ClanChannel var1) {
+		if (var1.key == this.field1633 && var1.field1656 == this.field1635) {
+			for (class144 var2 = (class144)this.field1632.last(); var2 != null; var2 = (class144)this.field1632.previous()) {
+				var2.vmethod3153(var1);
 			}
 
-			++var1.field1664;
+			++var1.field1656;
 		} else {
 			throw new RuntimeException("");
 		}
 	}
 
-	@ObfuscatedName("fh")
+	@ObfuscatedName("l")
 	@ObfuscatedSignature(
-		descriptor = "(III)V",
-		garbageValue = "1527642591"
+		descriptor = "(IIZI)Ljava/lang/String;",
+		garbageValue = "803323107"
 	)
-	static void method3032(int var0, int var1) {
-		if (Interpreter.clientPreferences.method2288() != 0 && var0 != -1) {
-			WorldMapSection2.method4561(class268.archive11, var0, 0, Interpreter.clientPreferences.method2288(), false);
-			Client.field731 = true;
-		}
+	static String method3085(int var0, int var1, boolean var2) {
+		if (var1 >= 2 && var1 <= 36) {
+			if (var2 && var0 >= 0) {
+				int var3 = 2;
 
+				for (int var4 = var0 / var1; var4 != 0; ++var3) {
+					var4 /= var1;
+				}
+
+				char[] var5 = new char[var3];
+				var5[0] = '+';
+
+				for (int var6 = var3 - 1; var6 > 0; --var6) {
+					int var7 = var0;
+					var0 /= var1;
+					int var8 = var7 - var0 * var1;
+					if (var8 >= 10) {
+						var5[var6] = (char)(var8 + 87);
+					} else {
+						var5[var6] = (char)(var8 + 48);
+					}
+				}
+
+				return new String(var5);
+			} else {
+				return Integer.toString(var0, var1);
+			}
+		} else {
+			throw new IllegalArgumentException("" + var1);
+		}
+	}
+
+	@ObfuscatedName("aa")
+	@ObfuscatedSignature(
+		descriptor = "(IB)V",
+		garbageValue = "-62"
+	)
+	@Export("runWidgetOnLoadListener")
+	static void runWidgetOnLoadListener(int var0) {
+		if (var0 != -1) {
+			if (class155.loadInterface(var0)) {
+				Widget[] var1 = Widget.Widget_interfaceComponents[var0];
+
+				for (int var2 = 0; var2 < var1.length; ++var2) {
+					Widget var3 = var1[var2];
+					if (var3.onLoad != null) {
+						ScriptEvent var4 = new ScriptEvent();
+						var4.widget = var3;
+						var4.args = var3.onLoad;
+						Interpreter.runScript(var4, 5000000, 0);
+					}
+				}
+
+			}
+		}
 	}
 }

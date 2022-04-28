@@ -4,67 +4,73 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("cf")
+@ObfuscatedName("cg")
 @Implements("Players")
 public class Players {
-	@ObfuscatedName("h")
-	static byte[] field1288;
-	@ObfuscatedName("g")
+	@ObfuscatedName("i")
+	static byte[] field1283;
+	@ObfuscatedName("f")
 	@ObfuscatedSignature(
-		descriptor = "[Lgv;"
+		descriptor = "[Lgm;"
 	)
-	static class193[] field1285;
-	@ObfuscatedName("l")
+	static class193[] field1286;
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		descriptor = "[Lpd;"
+		descriptor = "[Lpi;"
 	)
-	static Buffer[] field1289;
+	static Buffer[] field1276;
 	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = -1063456779
+		intValue = 1248043757
 	)
 	@Export("Players_count")
 	static int Players_count;
-	@ObfuscatedName("d")
+	@ObfuscatedName("s")
 	@Export("Players_indices")
 	static int[] Players_indices;
-	@ObfuscatedName("f")
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = -1214047537
+		intValue = -1950904155
 	)
 	@Export("Players_emptyIdxCount")
 	static int Players_emptyIdxCount;
-	@ObfuscatedName("u")
+	@ObfuscatedName("q")
 	@Export("Players_emptyIndices")
 	static int[] Players_emptyIndices;
-	@ObfuscatedName("r")
+	@ObfuscatedName("o")
 	@Export("Players_regions")
 	static int[] Players_regions;
-	@ObfuscatedName("k")
+	@ObfuscatedName("r")
 	@Export("Players_orientations")
 	static int[] Players_orientations;
-	@ObfuscatedName("x")
+	@ObfuscatedName("p")
 	@Export("Players_targetIndices")
 	static int[] Players_targetIndices;
-	@ObfuscatedName("c")
+	@ObfuscatedName("w")
 	@ObfuscatedGetter(
-		intValue = -1240441597
+		intValue = -2045827781
 	)
 	@Export("Players_pendingUpdateCount")
 	static int Players_pendingUpdateCount;
-	@ObfuscatedName("j")
+	@ObfuscatedName("k")
 	@Export("Players_pendingUpdateIndices")
 	static int[] Players_pendingUpdateIndices;
-	@ObfuscatedName("p")
+	@ObfuscatedName("d")
 	@ObfuscatedSignature(
-		descriptor = "Lpd;"
+		descriptor = "Lpi;"
 	)
-	static Buffer field1299;
+	static Buffer field1273;
+	@ObfuscatedName("ef")
+	@ObfuscatedSignature(
+		descriptor = "Llx;"
+	)
+	@Export("archive5")
+	static Archive archive5;
 
 	static {
-		field1288 = new byte[2048];
-		field1285 = new class193[2048];
-		field1289 = new Buffer[2048];
+		field1283 = new byte[2048];
+		field1286 = new class193[2048];
+		field1276 = new Buffer[2048];
 		Players_count = 0;
 		Players_indices = new int[2048];
 		Players_emptyIdxCount = 0;
@@ -74,27 +80,71 @@ public class Players {
 		Players_targetIndices = new int[2048];
 		Players_pendingUpdateCount = 0;
 		Players_pendingUpdateIndices = new int[2048];
-		field1299 = new Buffer(new byte[5000]);
+		field1273 = new Buffer(new byte[5000]);
 	}
 
-	@ObfuscatedName("v")
+	@ObfuscatedName("c")
 	@ObfuscatedSignature(
-		descriptor = "(I)V",
-		garbageValue = "-1554757323"
+		descriptor = "(IB)I",
+		garbageValue = "124"
 	)
-	static void method2419() {
-		for (ObjectSound var0 = (ObjectSound)ObjectSound.objectSounds.last(); var0 != null; var0 = (ObjectSound)ObjectSound.objectSounds.previous()) {
-			if (var0.stream1 != null) {
-				WorldMapIcon_1.pcmStreamMixer.removeSubStream(var0.stream1);
-				var0.stream1 = null;
-			}
+	public static int method2420(int var0) {
+		return var0 >> 17 & 7;
+	}
 
-			if (var0.stream2 != null) {
-				WorldMapIcon_1.pcmStreamMixer.removeSubStream(var0.stream2);
-				var0.stream2 = null;
+	@ObfuscatedName("c")
+	@ObfuscatedSignature(
+		descriptor = "(IIB)V",
+		garbageValue = "-54"
+	)
+	@Export("changeWorldSelectSorting")
+	static void changeWorldSelectSorting(int var0, int var1) {
+		int[] var2 = new int[4];
+		int[] var3 = new int[4];
+		var2[0] = var0;
+		var3[0] = var1;
+		int var4 = 1;
+
+		for (int var5 = 0; var5 < 4; ++var5) {
+			if (World.World_sortOption1[var5] != var0) {
+				var2[var4] = World.World_sortOption1[var5];
+				var3[var4] = World.World_sortOption2[var5];
+				++var4;
 			}
 		}
 
-		ObjectSound.objectSounds.clear();
+		World.World_sortOption1 = var2;
+		World.World_sortOption2 = var3;
+		class127.sortWorlds(DevicePcmPlayerProvider.World_worlds, 0, DevicePcmPlayerProvider.World_worlds.length - 1, World.World_sortOption1, World.World_sortOption2);
+	}
+
+	@ObfuscatedName("i")
+	@ObfuscatedSignature(
+		descriptor = "(I)V",
+		garbageValue = "-1709005821"
+	)
+	static void method2421() {
+		if (Login.Login_username == null || Login.Login_username.length() <= 0) {
+			if (class131.clientPreferences.method2247() != null) {
+				Login.Login_username = class131.clientPreferences.method2247();
+				Client.Login_isUsernameRemembered = true;
+			} else {
+				Client.Login_isUsernameRemembered = false;
+			}
+
+		}
+	}
+
+	@ObfuscatedName("fk")
+	@ObfuscatedSignature(
+		descriptor = "(III)V",
+		garbageValue = "2053593928"
+	)
+	static void method2419(int var0, int var1) {
+		if (class131.clientPreferences.method2321() != 0 && var0 != -1) {
+			class18.method266(Message.archive11, var0, 0, class131.clientPreferences.method2321(), false);
+			Client.field746 = true;
+		}
+
 	}
 }

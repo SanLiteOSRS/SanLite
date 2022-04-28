@@ -4,53 +4,64 @@ import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
-@ObfuscatedName("bo")
+@ObfuscatedName("bd")
 @Implements("Script")
 public class Script extends DualNode {
+	@ObfuscatedName("sv")
+	@ObfuscatedGetter(
+		intValue = 1540125023
+	)
+	static int field955;
+	@ObfuscatedName("ud")
+	@ObfuscatedGetter(
+		intValue = 1431517737
+	)
+	@Export("foundItemIdCount")
+	static int foundItemIdCount;
 	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "Liq;"
+		descriptor = "Lig;"
 	)
 	@Export("Script_cached")
 	static EvictingDualNodeHashTable Script_cached;
-	@ObfuscatedName("o")
-	String field959;
-	@ObfuscatedName("h")
+	@ObfuscatedName("c")
+	String field954;
+	@ObfuscatedName("i")
 	@Export("opcodes")
 	int[] opcodes;
-	@ObfuscatedName("g")
+	@ObfuscatedName("f")
 	@Export("intOperands")
 	int[] intOperands;
-	@ObfuscatedName("l")
+	@ObfuscatedName("b")
 	@Export("stringOperands")
 	String[] stringOperands;
 	@ObfuscatedName("n")
 	@ObfuscatedGetter(
-		intValue = 138857027
+		intValue = -61904285
 	)
 	@Export("localIntCount")
 	int localIntCount;
-	@ObfuscatedName("d")
+	@ObfuscatedName("s")
 	@ObfuscatedGetter(
-		intValue = 736868675
+		intValue = -166989853
 	)
 	@Export("localStringCount")
 	int localStringCount;
-	@ObfuscatedName("f")
+	@ObfuscatedName("l")
 	@ObfuscatedGetter(
-		intValue = -674733225
+		intValue = 2085074269
 	)
 	@Export("intArgumentCount")
 	int intArgumentCount;
-	@ObfuscatedName("u")
+	@ObfuscatedName("q")
 	@ObfuscatedGetter(
-		intValue = -1049907835
+		intValue = 832856221
 	)
 	@Export("stringArgumentCount")
 	int stringArgumentCount;
-	@ObfuscatedName("r")
+	@ObfuscatedName("o")
 	@ObfuscatedSignature(
-		descriptor = "[Lpq;"
+		descriptor = "[Lpt;"
 	)
 	@Export("switches")
 	IterableNodeHashTable[] switches;
@@ -62,63 +73,105 @@ public class Script extends DualNode {
 	Script() {
 	}
 
-	@ObfuscatedName("g")
+	@ObfuscatedName("b")
 	@ObfuscatedSignature(
-		descriptor = "(II)[Lpq;",
-		garbageValue = "-256970075"
+		descriptor = "(II)[Lpt;",
+		garbageValue = "1023486381"
 	)
 	@Export("newIterableNodeHashTable")
 	IterableNodeHashTable[] newIterableNodeHashTable(int var1) {
 		return new IterableNodeHashTable[var1];
 	}
 
-	@ObfuscatedName("fm")
+	@ObfuscatedName("v")
 	@ObfuscatedSignature(
-		descriptor = "(Lkn;III)V",
-		garbageValue = "762866023"
+		descriptor = "(II)Ljava/lang/String;",
+		garbageValue = "-881844017"
 	)
-	@Export("checkIfMinimapClicked")
-	static final void checkIfMinimapClicked(Widget var0, int var1, int var2) {
-		if (Client.minimapState == 0 || Client.minimapState == 3) {
-			if (!Client.isMenuOpen && (MouseHandler.MouseHandler_lastButton == 1 || !UserComparator5.mouseCam && MouseHandler.MouseHandler_lastButton == 4)) {
-				SpriteMask var3 = var0.getSpriteMask(true);
-				if (var3 == null) {
-					return;
-				}
+	static String method1990(int var0) {
+		return "<img=" + var0 + ">";
+	}
 
-				int var4 = MouseHandler.MouseHandler_lastPressedX - var1;
-				int var5 = MouseHandler.MouseHandler_lastPressedY - var2;
-				if (var3.contains(var4, var5)) {
-					var4 -= var3.width / 2;
-					var5 -= var3.height / 2;
-					int var6 = Client.camAngleY & 2047;
-					int var7 = Rasterizer3D.Rasterizer3D_sine[var6];
-					int var8 = Rasterizer3D.Rasterizer3D_cosine[var6];
-					int var9 = var4 * var8 + var7 * var5 >> 11;
-					int var10 = var5 * var8 - var4 * var7 >> 11;
-					int var11 = var9 + class19.localPlayer.x >> 7;
-					int var12 = class19.localPlayer.y - var10 >> 7;
-					PacketBufferNode var13 = ItemContainer.getPacketBufferNode(ClientPacket.field2963, Client.packetWriter.isaacCipher);
-					var13.packetBuffer.writeByte(18);
-					var13.packetBuffer.method7795(ApproximateRouteStrategy.baseX * 64 + var11);
-					var13.packetBuffer.writeShort(class250.baseY * 64 + var12);
-					var13.packetBuffer.method7788(KeyHandler.KeyHandler_pressedKeys[82] ? (KeyHandler.KeyHandler_pressedKeys[81] ? 2 : 1) : 0);
-					var13.packetBuffer.writeByte(var4);
-					var13.packetBuffer.writeByte(var5);
-					var13.packetBuffer.writeShort(Client.camAngleY);
-					var13.packetBuffer.writeByte(57);
-					var13.packetBuffer.writeByte(0);
-					var13.packetBuffer.writeByte(0);
-					var13.packetBuffer.writeByte(89);
-					var13.packetBuffer.writeShort(class19.localPlayer.x);
-					var13.packetBuffer.writeShort(class19.localPlayer.y);
-					var13.packetBuffer.writeByte(63);
-					Client.packetWriter.addNode(var13);
-					Client.destinationX = var11;
-					Client.destinationY = var12;
-				}
+	@ObfuscatedName("v")
+	@ObfuscatedSignature(
+		descriptor = "(IIII)I",
+		garbageValue = "108796867"
+	)
+	public static int method1996(int var0, int var1, int var2) {
+		var2 &= 3;
+		if (var2 == 0) {
+			return var0;
+		} else if (var2 == 1) {
+			return var1;
+		} else {
+			return var2 == 2 ? 7 - var0 : 7 - var1;
+		}
+	}
+
+	@ObfuscatedName("c")
+	@ObfuscatedSignature(
+		descriptor = "(II)Lfl;",
+		garbageValue = "2129001923"
+	)
+	@Export("getInvDefinition")
+	public static InvDefinition getInvDefinition(int var0) {
+		InvDefinition var1 = (InvDefinition)InvDefinition.InvDefinition_cached.get((long)var0);
+		if (var1 != null) {
+			return var1;
+		} else {
+			byte[] var2 = InvDefinition.InvDefinition_archive.takeFile(5, var0);
+			var1 = new InvDefinition();
+			if (var2 != null) {
+				var1.decode(new Buffer(var2));
 			}
 
+			InvDefinition.InvDefinition_cached.put(var1, (long)var0);
+			return var1;
 		}
+	}
+
+	@ObfuscatedName("kd")
+	@ObfuscatedSignature(
+		descriptor = "(Lcc;ZS)V",
+		garbageValue = "7462"
+	)
+	@Export("closeInterface")
+	static final void closeInterface(InterfaceParent var0, boolean var1) {
+		int var2 = var0.group;
+		int var3 = (int)var0.key;
+		var0.remove();
+		if (var1 && var2 != -1 && WorldMapSectionType.Widget_loadedInterfaces[var2]) {
+			Widget.Widget_archive.clearFilesGroup(var2);
+			if (Widget.Widget_interfaceComponents[var2] != null) {
+				boolean var4 = true;
+
+				for (int var5 = 0; var5 < Widget.Widget_interfaceComponents[var2].length; ++var5) {
+					if (Widget.Widget_interfaceComponents[var2][var5] != null) {
+						if (Widget.Widget_interfaceComponents[var2][var5].type != 2) {
+							Widget.Widget_interfaceComponents[var2][var5] = null;
+						} else {
+							var4 = false;
+						}
+					}
+				}
+
+				if (var4) {
+					Widget.Widget_interfaceComponents[var2] = null;
+				}
+
+				WorldMapSectionType.Widget_loadedInterfaces[var2] = false;
+			}
+		}
+
+		class29.method403(var2);
+		Widget var6 = class127.getWidget(var3);
+		if (var6 != null) {
+			class346.method6449(var6);
+		}
+
+		if (Client.rootInterface != -1) {
+			MouseRecorder.runIntfCloseListeners(Client.rootInterface, 1);
+		}
+
 	}
 }
