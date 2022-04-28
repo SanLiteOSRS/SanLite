@@ -1,13 +1,5 @@
 package net.runelite.rs.api;
 
-import com.jagex.oldscape.pub.OtlTokenResponse;
-import net.runelite.mapping.Import;
-
-public interface RSOtlTokenResponse extends OtlTokenResponse
+public interface RSOtlTokenResponse
 {
-	@Import("isSuccess")
-	boolean isSuccess();
-
-	@Import("getToken")
-	String getToken();
 }

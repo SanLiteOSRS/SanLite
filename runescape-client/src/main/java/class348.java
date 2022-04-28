@@ -12,7 +12,7 @@ public class class348 {
 		byte var1 = 0;
 		if (!BufferedSource.method6889()) {
 			var1 = 12;
-		} else if (class127.client.method1532() || class127.client.method1476()) {
+		} else if (class127.client.method1532() || class127.client.isOtlTokenRequesterInitialized()) {
 			var1 = 10;
 		}
 

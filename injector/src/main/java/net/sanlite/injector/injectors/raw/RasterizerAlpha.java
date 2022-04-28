@@ -8,6 +8,7 @@
 package net.sanlite.injector.injectors.raw;
 
 import com.google.common.collect.Lists;
+import net.sanlite.injector.InjectException;
 import net.sanlite.injector.InjectUtil;
 import net.sanlite.injector.injection.InjectData;
 import net.sanlite.injector.injectors.AbstractInjector;
@@ -62,6 +63,16 @@ public class RasterizerAlpha extends AbstractInjector
 	{
 		final Field r2dPx = InjectUtil.findField(inject, "Rasterizer2D_pixels", "Rasterizer2D");
 		final Method draw = InjectUtil.findMethod(inject, "drawLoggedIn", "Client");
+		if (r2dPx == null)
+		{
+			throw new InjectException("Failed to execute RasterizerAlpha. Rasterizer2D.Rasterizer2D_pixels field not found");
+		}
+
+		if (draw == null)
+		{
+			throw new InjectException("Failed to execute RasterizerAlpha. Client.drawLoggedIn method not found");
+		}
+
 		final ClassFile rasterizer2D = r2dPx.getClassFile();
 		final Execution ex = new Execution(rasterizer2D.getGroup());
 		ex.staticStep = false;

@@ -164,7 +164,7 @@ public class class291 {
 		garbageValue = "-868128197"
 	)
 	@Export("FillMode_values")
-	public static class448[] FillMode_values() {
-		return new class448[]{class448.field4694, class448.field4695, class448.SOLID};
+	public static FillMode[] FillMode_values() {
+		return new FillMode[]{FillMode.field4694, FillMode.field4695, FillMode.SOLID};
 	}
 }

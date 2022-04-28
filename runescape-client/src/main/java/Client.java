@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.concurrent.Future;
+
 import net.runelite.mapping.Export;
 import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
@@ -17,7 +18,8 @@ import netscape.javascript.JSObject;
 
 @Implements("Client")
 @ObfuscatedName("client")
-public final class Client extends GameEngine implements Usernamed, OAuthApi {
+public final class Client extends GameEngine implements Usernamed, OAuthApi
+{
 	@ObfuscatedName("rw")
 	@ObfuscatedSignature(
 		descriptor = "[Lex;"
@@ -1305,7 +1307,8 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
 	@ObfuscatedName("qo")
 	static int[] field725;
 	@ObfuscatedName("fl")
-	String field564;
+	@Export("otlToken")
+	String otlToken;
 	@ObfuscatedName("fb")
 	@ObfuscatedSignature(
 		descriptor = "Ld;"
@@ -1320,9 +1323,11 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
 	@ObfuscatedSignature(
 		descriptor = "Lcom/jagex/oldscape/pub/OtlTokenRequester;"
 	)
-	OtlTokenRequester field536;
+	@Export("otlTokenRequester")
+	OtlTokenRequester otlTokenRequester;
 	@ObfuscatedName("fq")
-	Future field599;
+	@Export("otlTokenRequest")
+	Future otlTokenRequest;
 	@ObfuscatedName("gb")
 	@ObfuscatedSignature(
 		descriptor = "Lpi;"
@@ -1994,8 +1999,9 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
 		descriptor = "(B)Z",
 		garbageValue = "42"
 	)
-	boolean method1476() {
-		return this.field536 != null;
+	@Export("isOtlTokenRequesterInitialized")
+	boolean isOtlTokenRequesterInitialized() {
+		return this.otlTokenRequester != null;
 	}
 
 	@ObfuscatedName("ev")
@@ -2003,11 +2009,12 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
 		descriptor = "(Ljava/lang/String;B)V",
 		garbageValue = "20"
 	)
-	void method1366(String var1) throws MalformedURLException, IOException {
+	@Export("requestOtlToken")
+	void requestOtlToken(String var1) throws MalformedURLException, IOException {
 		URL var2 = new URL(class113.field1372 + "public/v1/games/YCfdbvr2pM1zUYMxJRexZY/play");
-		OtlTokenRequester var3 = this.field536;
+		OtlTokenRequester var3 = this.otlTokenRequester;
 		if (var3 != null) {
-			this.field599 = var3.request(var2);
+			this.otlTokenRequest = var3.request(var2);
 		} else {
 			class10 var4 = new class10(var2, class9.field37);
 			var4.method77("Authorization", "Bearer " + var1);
@@ -2474,7 +2481,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
 					field528 = 0;
 					if (field532.method7928()) {
 						try {
-							this.method1366(class360.field4209);
+							this.requestOtlToken(class360.field4209);
 							ModeWhere.method6099(20);
 						} catch (Throwable var27) {
 							Widget.RunException_sendStackTrace((String)null, var27);
@@ -2488,31 +2495,31 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
 			}
 
 			if (loginState == 20) {
-				if (this.field599 != null) {
-					if (!this.field599.isDone()) {
+				if (this.otlTokenRequest != null) {
+					if (!this.otlTokenRequest.isDone()) {
 						return;
 					}
 
-					if (this.field599.isCancelled()) {
+					if (this.otlTokenRequest.isCancelled()) {
 						ScriptFrame.getLoginError(65);
-						this.field599 = null;
+						this.otlTokenRequest = null;
 						return;
 					}
 
 					try {
-						OtlTokenResponse var3 = (OtlTokenResponse)this.field599.get();
+						OtlTokenResponse var3 = (OtlTokenResponse)this.otlTokenRequest.get();
 						if (!var3.isSuccess()) {
 							ScriptFrame.getLoginError(65);
-							this.field599 = null;
+							this.otlTokenRequest = null;
 							return;
 						}
 
-						this.field564 = var3.getToken();
-						this.field599 = null;
+						this.otlToken = var3.getToken();
+						this.otlTokenRequest = null;
 					} catch (Exception var26) {
 						Widget.RunException_sendStackTrace((String)null, var26);
 						ScriptFrame.getLoginError(65);
-						this.field599 = null;
+						this.otlTokenRequest = null;
 						return;
 					}
 				} else {
@@ -2540,7 +2547,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
 						return;
 					}
 
-					this.field564 = var30.method297();
+					this.otlToken = var30.method297();
 					this.field690 = null;
 				}
 
@@ -2699,7 +2706,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
 
 					if (field532.method7928()) {
 						var32.writeByte(class441.field4671.rsOrdinal());
-						var32.writeStringCp1252NullTerminated(this.field564);
+						var32.writeStringCp1252NullTerminated(this.otlToken);
 					} else {
 						var32.writeByte(class441.field4678.rsOrdinal());
 						var32.writeStringCp1252NullTerminated(Login.Login_password);
@@ -6146,7 +6153,7 @@ public final class Client extends GameEngine implements Usernamed, OAuthApi {
 	)
 	public void setOtlTokenRequester(OtlTokenRequester var1) {
 		if (var1 != null) {
-			this.field536 = var1;
+			this.otlTokenRequester = var1;
 			Ignored.method6828(10);
 		}
 	}

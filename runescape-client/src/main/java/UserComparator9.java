@@ -306,7 +306,7 @@ public class UserComparator9 extends AbstractUserComparator {
 				return 1;
 			} else if (var0 == 1125) {
 				var8 = Interpreter.Interpreter_intStack[--Interpreter.Interpreter_intStackSize];
-				class448 var6 = (class448)MusicPatchPcmStream.findEnumerated(class291.FillMode_values(), var8);
+				FillMode var6 = (FillMode)MusicPatchPcmStream.findEnumerated(class291.FillMode_values(), var8);
 				if (var6 != null) {
 					var3.fillMode = var6;
 					class346.method6449(var3);
