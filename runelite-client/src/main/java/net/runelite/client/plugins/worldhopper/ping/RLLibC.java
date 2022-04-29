@@ -31,7 +31,7 @@ import net.runelite.client.util.OSType;
 
 interface RLLibC extends LibC
 {
-	RLLibC INSTANCE = Native.load(NAME, RLLibC.class);
+	RLLibC INSTANCE = Native.loadLibrary(NAME, RLLibC.class);
 
 	int AF_INET = 2;
 	int SOCK_DGRAM = 2;

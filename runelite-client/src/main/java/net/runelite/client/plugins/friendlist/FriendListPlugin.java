@@ -172,6 +172,7 @@ public class FriendListPlugin extends Plugin
 		if (groupId == WidgetInfo.FRIENDS_LIST.getGroupId() && event.getOption().equals("Message"))
 		{
 			String friend = Text.toJagexName(Text.removeTags(event.getTarget()));
+
 			client.createMenuEntry(-1)
 				.setOption(isHideNotification(friend) ? SHOW_NOTIFICATIONS : HIDE_NOTIFICATIONS)
 				.setType(MenuAction.RUNELITE)

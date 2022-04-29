@@ -25,7 +25,7 @@
  */
 package net.runelite.client.plugins.itemcharges;
 
-import java.util.function.Function;
+import java.util.function.Predicate;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -54,5 +54,5 @@ enum ItemChargeType
 	GUTHIX_REST(ItemChargeConfig::showGuthixRestDoses),
 	BLOOD_ESSENCE(ItemChargeConfig::showBloodEssenceCharges);
 
-	private final Function<ItemChargeConfig, Boolean> enabled;
+	private final Predicate<ItemChargeConfig> enabled;
 }

@@ -388,9 +388,9 @@ class SceneUploader
 		final int[] vertexY = model.getVerticesY();
 		final int[] vertexZ = model.getVerticesZ();
 
-		final int[] trianglesX = model.getFaceIndices1();
-		final int[] trianglesY = model.getFaceIndices2();
-		final int[] trianglesZ = model.getFaceIndices3();
+		final int[] indices1 = model.getFaceIndices1();
+		final int[] indices2 = model.getFaceIndices2();
+		final int[] indices3 = model.getFaceIndices3();
 
 		final int[] color1s = model.getFaceColors1();
 		final int[] color2s = model.getFaceColors2();
@@ -448,9 +448,9 @@ class SceneUploader
 
 			int packAlphaPriority = packAlphaPriority(faceTextures, transparencies, facePriorities, face);
 
-			int triangleA = trianglesX[face];
-			int triangleB = trianglesY[face];
-			int triangleC = trianglesZ[face];
+			int triangleA = indices1[face];
+			int triangleB = indices2[face];
+			int triangleC = indices3[face];
 
 			vertexBuffer.put(vertexX[triangleA], vertexY[triangleA], vertexZ[triangleA], packAlphaPriority | color1);
 			vertexBuffer.put(vertexX[triangleB], vertexY[triangleB], vertexZ[triangleB], packAlphaPriority | color2);
@@ -474,9 +474,9 @@ class SceneUploader
 		final int[] vertexY = model.getVerticesY();
 		final int[] vertexZ = model.getVerticesZ();
 
-		final int[] trianglesX = model.getFaceIndices1();
-		final int[] trianglesY = model.getFaceIndices2();
-		final int[] trianglesZ = model.getFaceIndices3();
+		final int[] indices1 = model.getFaceIndices1();
+		final int[] indices2 = model.getFaceIndices2();
+		final int[] indices3 = model.getFaceIndices3();
 
 		final int[] color1s = model.getFaceColors1();
 		final int[] color2s = model.getFaceColors2();
@@ -486,9 +486,9 @@ class SceneUploader
 		final short[] faceTextures = model.getFaceTextures();
 		final byte[] facePriorities = model.getFaceRenderPriorities();
 
-		final int triangleA = trianglesX[face];
-		final int triangleB = trianglesY[face];
-		final int triangleC = trianglesZ[face];
+		final int triangleA = indices1[face];
+		final int triangleB = indices2[face];
+		final int triangleC = indices3[face];
 
 		int color1 = color1s[face];
 		int color2 = color2s[face];

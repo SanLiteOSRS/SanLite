@@ -106,7 +106,6 @@ import net.runelite.client.util.ColorUtil;
 import net.runelite.client.util.ImageUtil;
 import net.runelite.client.util.SwingUtil;
 import net.runelite.client.util.Text;
-import net.sanlite.client.config.AllKeyCodeKeybind;
 import net.sanlite.client.ui.Colors;
 import org.apache.commons.lang3.ArrayUtils;
 
@@ -376,7 +375,7 @@ class ConfigPanel extends PluginPanel
 			{
 				item.add(createComboBox(cd, cid), BorderLayout.EAST);
 			}
-			else if (cid.getType() == Keybind.class || cid.getType() == ModifierlessKeybind.class || cid.getType() == AllKeyCodeKeybind.class)
+			else if (cid.getType() == Keybind.class || cid.getType() == ModifierlessKeybind.class)
 			{
 				item.add(createKeybind(cd, cid), BorderLayout.EAST);
 			}
@@ -635,7 +634,7 @@ class ConfigPanel extends PluginPanel
 			cid.getItem().keyName(),
 			(Class<? extends Keybind>) cid.getType());
 
-		HotkeyButton button = new HotkeyButton(startingValue, cid.getType() == ModifierlessKeybind.class, cid.getType() == AllKeyCodeKeybind.class);
+		HotkeyButton button = new HotkeyButton(startingValue, cid.getType() == ModifierlessKeybind.class);
 
 		button.addFocusListener(new FocusAdapter()
 		{

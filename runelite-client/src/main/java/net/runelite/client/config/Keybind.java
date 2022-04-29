@@ -60,14 +60,14 @@ public class Keybind
 	private final int keyCode;
 	private final int modifiers;
 
-	public Keybind(int keyCode, int modifiers, boolean ignoreModifiers, boolean allowModifierKeyCodes)
+	protected Keybind(int keyCode, int modifiers, boolean ignoreModifiers)
 	{
 		modifiers &= KEYBOARD_MODIFIER_MASK;
 
 		// If the keybind is just modifiers we don't want the keyCode to contain the modifier too,
 		// because this breaks if you do the keycode backwards
 		Integer mf = getModifierForKeyCode(keyCode);
-		if (mf != null && !allowModifierKeyCodes)
+		if (mf != null)
 		{
 			assert (modifiers & mf) != 0;
 			keyCode = KeyEvent.VK_UNDEFINED;
@@ -82,14 +82,9 @@ public class Keybind
 		this.modifiers = modifiers;
 	}
 
-	public Keybind(int keyCode, int modifiers, boolean ignoreModifiers)
-	{
-		this(keyCode, modifiers, ignoreModifiers, false);
-	}
-
 	public Keybind(int keyCode, int modifiers)
 	{
-		this(keyCode, modifiers, false, false);
+		this(keyCode, modifiers, false);
 	}
 
 	/**

@@ -97,7 +97,6 @@ import net.runelite.client.events.RuneScapeProfileChanged;
 import net.runelite.client.util.ColorUtil;
 import net.runelite.http.api.config.ConfigEntry;
 import net.runelite.http.api.config.Configuration;
-import net.sanlite.client.config.AllKeyCodeKeybind;
 
 @Singleton
 @Slf4j
@@ -824,7 +823,7 @@ public class ConfigManager
 		{
 			return Instant.parse(str);
 		}
-		if (type == Keybind.class || type == ModifierlessKeybind.class || type == AllKeyCodeKeybind.class)
+		if (type == Keybind.class || type == ModifierlessKeybind.class)
 		{
 			String[] splitStr = str.split(":");
 			int code = Integer.parseInt(splitStr[0]);
@@ -832,10 +831,6 @@ public class ConfigManager
 			if (type == ModifierlessKeybind.class)
 			{
 				return new ModifierlessKeybind(code, mods);
-			}
-			else if (type == AllKeyCodeKeybind.class)
-			{
-				return new AllKeyCodeKeybind(code, mods);
 			}
 			return new Keybind(code, mods);
 		}

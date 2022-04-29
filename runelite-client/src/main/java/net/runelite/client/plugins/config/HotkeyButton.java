@@ -33,14 +33,13 @@ import lombok.Getter;
 import net.runelite.client.config.Keybind;
 import net.runelite.client.config.ModifierlessKeybind;
 import net.runelite.client.ui.FontManager;
-import net.sanlite.client.config.AllKeyCodeKeybind;
 
 class HotkeyButton extends JButton
 {
 	@Getter
 	private Keybind value;
 
-	public HotkeyButton(Keybind value, boolean modifierless, boolean allKeyCode)
+	public HotkeyButton(Keybind value, boolean modifierless)
 	{
 		setFont(FontManager.getDefaultFont().deriveFont(12.f));
 		setValue(value);
@@ -62,10 +61,6 @@ class HotkeyButton extends JButton
 				if (modifierless)
 				{
 					setValue(new ModifierlessKeybind(e));
-				}
-				else if (allKeyCode)
-				{
-					setValue(new AllKeyCodeKeybind(e));
 				}
 				else
 				{
