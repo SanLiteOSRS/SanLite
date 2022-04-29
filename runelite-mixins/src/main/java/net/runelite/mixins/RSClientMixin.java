@@ -565,7 +565,7 @@ public abstract class RSClientMixin implements RSClient
 	@Override
 	public boolean isPrayerActive(Prayer prayer)
 	{
-		return getVar(prayer.getVarbit()) == 1;
+		return getVarbitValue(prayer.getVarbit()) == 1;
 	}
 
 	/**
